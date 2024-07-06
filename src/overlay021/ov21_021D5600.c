@@ -1,16 +1,17 @@
+#include "overlay021/ov21_021D5600.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "inlines.h"
+#include "constants/narc.h"
+#include "constants/species.h"
 
+#include "error_handling.h"
+#include "inlines.h"
 #include "message.h"
 #include "message_util.h"
-#include "error_handling.h"
 #include "strbuf.h"
 #include "unk_020986CC.h"
-#include "overlay021/ov21_021D5600.h"
-#include "constants/species.h"
-#include "constants/narc.h"
 
 static const u8 Unk_ov21_021E9CC4[6] = {
     0x1,
@@ -23,29 +24,28 @@ static const u8 Unk_ov21_021E9CC4[6] = {
 
 static inline int inline_ov21_021D5764(int param0);
 static inline BOOL inline_ov21_021D5764_1(int param0, int param1);
-static Strbuf* LoadMessage(int param0, int param1, int param2);
-static void ov21_021D5764(int param0, int param1, int * param2, int * param3, int * param4);
+static Strbuf *LoadMessage(int param0, int param1, int param2);
+static void ov21_021D5764(int param0, int param1, int *param2, int *param3, int *param4);
 
-void ov21_021D5600 (Strbuf *param0)
+void ov21_021D5600(Strbuf *param0)
 {
     Strbuf_Free(param0);
 }
 
-int ov21_021D5608 (int param0)
+int ov21_021D5608(int param0)
 {
     return sub_020986E8(Unk_ov21_021E9CC4[param0 + 1]);
 }
 
-
-Strbuf* ov21_021D561C (int param0, int param1, int param2)
+Strbuf *ov21_021D561C(int param0, int param1, int param2)
 {
     int v0;
     int v1;
     int v2;
     int v3;
-    
+
     ov21_021D5764(param0, param1, &v0, &v1, &v2);
-    
+
     if (v2 == 6) {
         return MessageUtil_SpeciesName(param0, param2);
     } else {
@@ -60,19 +60,19 @@ Strbuf* ov21_021D561C (int param0, int param1, int param2)
         v3 = Unk_ov21_021E9CCC[v2];
         v2 = v0;
     }
- 
+
     return LoadMessage(v3, v2, param2);
 }
 
-Strbuf* ov21_021D566C (int param0, int param1, int param2)
+Strbuf *ov21_021D566C(int param0, int param1, int param2)
 {
     int v0;
     int v1;
     int v2;
     int v3;
-    
+
     ov21_021D5764(param0, param1, &v0, &v1, &v2);
-    
+
     if (v2 == 6) {
         v2 = param0;
         v3 = 711;
@@ -88,19 +88,19 @@ Strbuf* ov21_021D566C (int param0, int param1, int param2)
         v3 = Unk_ov21_021E9CE4[v2];
         v2 = v0;
     }
- 
+
     return LoadMessage(v3, v2, param2);
 }
- 
-Strbuf* ov21_021D56BC (int param0, int param1, int param2, int param3)
+
+Strbuf *ov21_021D56BC(int param0, int param1, int param2, int param3)
 {
     int v0;
     int v1;
     int v2;
     int v3;
-    
+
     ov21_021D5764(param0, param1, &v0, &v1, &v2);
-    
+
     if (v2 == 6) {
         GF_ASSERT(param2 < 1);
         v2 = param0 * 1 + param2;
@@ -118,11 +118,11 @@ Strbuf* ov21_021D56BC (int param0, int param1, int param2, int param3)
         v3 = Unk_ov21_021E9CFC[v2];
         v2 = v0 * 1 + param2;
     }
- 
+
     return LoadMessage(v3, v2, param3);
 }
 
-static inline BOOL inline_ov21_021D5764_1 (int param0, int param1)
+static inline BOOL inline_ov21_021D5764_1(int param0, int param1)
 {
     if ((param0 > NATIONAL_DEX_COUNT) && (param1 != 6)) {
         return 0;
@@ -131,12 +131,12 @@ static inline BOOL inline_ov21_021D5764_1 (int param0, int param1)
     return 1;
 }
 
-static Strbuf* LoadMessage (int bankID, int entryID, int heapID)
+static Strbuf *LoadMessage(int bankID, int entryID, int heapID)
 {
     MessageLoader *messageLoader = MessageLoader_Init(1, NARC_INDEX_MSGDATA__PL_MSG, bankID, heapID);
 
     if (messageLoader) {
-        Strbuf* strbuf = Strbuf_Init(256, heapID);
+        Strbuf *strbuf = Strbuf_Init(256, heapID);
 
         if (strbuf) {
             MessageLoader_GetStrbuf(messageLoader, entryID, strbuf);
@@ -149,7 +149,7 @@ static Strbuf* LoadMessage (int bankID, int entryID, int heapID)
     return NULL;
 }
 
-static void ov21_021D5764 (int param0, int param1, int * param2, int * param3, int * param4)
+static void ov21_021D5764(int param0, int param1, int *param2, int *param3, int *param4)
 {
     *param3 = sub_020986CC(param1);
 
@@ -161,7 +161,7 @@ static void ov21_021D5764 (int param0, int param1, int * param2, int * param3, i
     GF_ASSERT(inline_ov21_021D5764_1(*param2, *param4));
 }
 
-static inline int inline_ov21_021D5764 (int param0)
+static inline int inline_ov21_021D5764(int param0)
 {
     GF_ASSERT(param0 < 6);
     return (param0 == 1) ? 6 : param0;

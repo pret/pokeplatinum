@@ -1,11 +1,12 @@
+#include "overlay005/ov5_021EAFA4.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "overlay115/camera_angle.h"
 
-#include "heap.h"
 #include "camera.h"
-#include "overlay005/ov5_021EAFA4.h"
+#include "heap.h"
 
 typedef struct UnkStruct_ov5_021EB0E0_t {
     u16 unk_00;
@@ -14,11 +15,11 @@ typedef struct UnkStruct_ov5_021EB0E0_t {
     VecFx32 unk_10;
     fx32 unk_1C;
     MtxFx43 unk_20;
-    Camera * camera;
+    Camera *camera;
     VecFx32 unk_54;
 } UnkStruct_ov5_021EB0E0;
 
-VecFx32 ov5_021EAFA4 (const u16 param0, const u16 param1, const UnkStruct_ov5_021EB0E0 * param2)
+VecFx32 ov5_021EAFA4(const u16 param0, const u16 param1, const UnkStruct_ov5_021EB0E0 *param2)
 {
     s8 v0, v1;
     VecFx32 v2;
@@ -32,7 +33,7 @@ VecFx32 ov5_021EAFA4 (const u16 param0, const u16 param1, const UnkStruct_ov5_02
     {
         MtxFx43 v8;
         VecFx32 v9;
-        VecFx32 v10 = {0, 0, -FX32_ONE};
+        VecFx32 v10 = { 0, 0, -FX32_ONE };
 
         if (param1 < 96) {
             v4 = 96 - param1;
@@ -78,9 +79,9 @@ VecFx32 ov5_021EAFA4 (const u16 param0, const u16 param1, const UnkStruct_ov5_02
     }
 }
 
-UnkStruct_ov5_021EB0E0 * ov5_021EB0C8 (Camera * const param0)
+UnkStruct_ov5_021EB0E0 *ov5_021EB0C8(Camera *const param0)
 {
-    UnkStruct_ov5_021EB0E0 * v0;
+    UnkStruct_ov5_021EB0E0 *v0;
 
     v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021EB0E0));
     ov5_021EB0E0(v0, param0);
@@ -88,7 +89,7 @@ UnkStruct_ov5_021EB0E0 * ov5_021EB0C8 (Camera * const param0)
     return v0;
 }
 
-void ov5_021EB0E0 (UnkStruct_ov5_021EB0E0 * param0, Camera * const param1)
+void ov5_021EB0E0(UnkStruct_ov5_021EB0E0 *param0, Camera *const param1)
 {
     CameraAngle v0;
 
@@ -104,7 +105,7 @@ void ov5_021EB0E0 (UnkStruct_ov5_021EB0E0 * param0, Camera * const param1)
         param0->unk_02 = FX_AtanIdx(v1);
     }
     {
-        VecFx32 v2 = {0, FX32_ONE, 0};
+        VecFx32 v2 = { 0, FX32_ONE, 0 };
         VecFx32 v3, v4;
 
         v3 = Camera_GetPosition(param1);
@@ -120,7 +121,7 @@ void ov5_021EB0E0 (UnkStruct_ov5_021EB0E0 * param0, Camera * const param1)
     param0->camera = param1;
 }
 
-void ov5_021EB184 (UnkStruct_ov5_021EB0E0 ** param0)
+void ov5_021EB184(UnkStruct_ov5_021EB0E0 **param0)
 {
     if ((*param0) == NULL) {
         return;
@@ -128,6 +129,6 @@ void ov5_021EB184 (UnkStruct_ov5_021EB0E0 ** param0)
 
     GF_ASSERT((*param0) != NULL);
 
-    Heap_FreeToHeap((*param0));
+    Heap_FreeToHeap(*param0);
     (*param0) = NULL;
 }

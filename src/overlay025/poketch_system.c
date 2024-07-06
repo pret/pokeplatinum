@@ -1,33 +1,32 @@
-#include "enums.h"
+#include "overlay025/poketch_system.h"
 
 #include <nitro.h>
 #include <string.h>
 
-#include "inlines.h"
+#include "consts/sdat.h"
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "trainer_info.h"
+
 #include "field/field_system_decl.h"
-#include "savedata.h"
-#include "overlay025/poketch_system.h"
-#include "overlay025/struct_ov25_02254560_decl.h"
+#include "overlay025/ov25_02254560.h"
 #include "overlay025/poketch_button.h"
+#include "overlay025/struct_ov25_02254560_decl.h"
 
-#include "touch_screen.h"
-
-#include "unk_02005474.h"
-#include "game_overlay.h"
-#include "sys_task.h"
-#include "heap.h"
-#include "unk_0201E3D8.h"
-#include "save_player.h"
+#include "enums.h"
 #include "field_system.h"
+#include "game_overlay.h"
+#include "gender.h"
+#include "heap.h"
+#include "inlines.h"
+#include "save_player.h"
+#include "savedata.h"
+#include "sys_task.h"
+#include "touch_screen.h"
 #include "trainer_info.h"
+#include "unk_02005474.h"
+#include "unk_0201E3D8.h"
 #include "unk_020508D4.h"
 #include "unk_02099D44.h"
-#include "overlay025/ov25_02254560.h"
-#include "consts/sdat.h"
-#include "gender.h"
 
 FS_EXTERN_OVERLAY(overlay26);
 FS_EXTERN_OVERLAY(overlay27);
@@ -79,7 +78,7 @@ static BOOL PoketchSystem_ButtonInit(PoketchSystem *poketchSys);
 static void PoketchSystem_ButtonShutdown(PoketchSystem *poketchSys);
 static void PoketchSystem_ButtonUpdate(PoketchSystem *poketchSys);
 static void PoketchSystem_OnButtonEvent(u32 buttonID, u32 buttonEvent, u32 touchEvent, void *system);
-static BOOL ov25_022543EC(UnkStruct_ov25_02254560 * param0, u32 param1);
+static BOOL ov25_022543EC(UnkStruct_ov25_02254560 *param0, u32 param1);
 static inline BOOL PoketchSystem_InsideScreenBounds(u32 x, u32 y);
 
 // the order of this array determines the app order in the poketch.
@@ -87,38 +86,37 @@ static const struct {
     int appID;
     FSOverlayID overlayID;
 } sAppOverlayIDs[] = {
-    {POKETCH_APPID_DIGITALWATCH,        FS_OVERLAY_ID(overlay26)},
-    {POKETCH_APPID_STOPWATCH,           FS_OVERLAY_ID(overlay27)},
-    {POKETCH_APPID_CALCULATOR,          FS_OVERLAY_ID(overlay28)},
-    {POKETCH_APPID_MEMOPAD,             FS_OVERLAY_ID(overlay29)},
-    {POKETCH_APPID_ANALOGWATCH,         FS_OVERLAY_ID(overlay30)},
-    {POKETCH_APPID_DOTART,              FS_OVERLAY_ID(overlay31)},
-    {POKETCH_APPID_PARTYSTATUS,         FS_OVERLAY_ID(overlay32)},
-    {POKETCH_APPID_FRIENDSHIPCHECKER,   FS_OVERLAY_ID(overlay33)},
-    {POKETCH_APPID_DOWSINGMACHINE,      FS_OVERLAY_ID(overlay34)},
-    {POKETCH_APPID_COUNTER,             FS_OVERLAY_ID(overlay35)},
-    {POKETCH_APPID_PEDOMETER,           FS_OVERLAY_ID(overlay36)},
-    {POKETCH_APPID_DAYCARECHECKER,      FS_OVERLAY_ID(overlay40)},
-    {POKETCH_APPID_ROULETTE,            FS_OVERLAY_ID(overlay41)},
-    {POKETCH_APPID_COINTOSS,            FS_OVERLAY_ID(overlay42)},
-    {POKETCH_APPID_MOVETESTER,          FS_OVERLAY_ID(overlay43)},
-    {POKETCH_APPID_MATCHUPCHECKER,      FS_OVERLAY_ID(overlay44)},
-    {POKETCH_APPID_ALARMCLOCK,          FS_OVERLAY_ID(overlay45)},
-    {POKETCH_APPID_KITCHENTIMER,        FS_OVERLAY_ID(overlay46)},
-    {POKETCH_APPID_MARKINGMAP,          FS_OVERLAY_ID(overlay47)},
-    {POKETCH_APPID_BERRYSEARCHER,       FS_OVERLAY_ID(overlay48)},
-    {POKETCH_APPID_COLORCHANGER,        FS_OVERLAY_ID(overlay49)},
-    {POKETCH_APPID_CALENDAR,            FS_OVERLAY_ID(overlay50)},
-    {POKETCH_APPID_LINKSEARCHER,        FS_OVERLAY_ID(overlay52)},
-    {POKETCH_APPID_RADARCHAINCOUNTER,   FS_OVERLAY_ID(overlay53)},
-    {POKETCH_APPID_POKEMONHISTORY,      FS_OVERLAY_ID(overlay54)}
+    { POKETCH_APPID_DIGITALWATCH, FS_OVERLAY_ID(overlay26) },
+    { POKETCH_APPID_STOPWATCH, FS_OVERLAY_ID(overlay27) },
+    { POKETCH_APPID_CALCULATOR, FS_OVERLAY_ID(overlay28) },
+    { POKETCH_APPID_MEMOPAD, FS_OVERLAY_ID(overlay29) },
+    { POKETCH_APPID_ANALOGWATCH, FS_OVERLAY_ID(overlay30) },
+    { POKETCH_APPID_DOTART, FS_OVERLAY_ID(overlay31) },
+    { POKETCH_APPID_PARTYSTATUS, FS_OVERLAY_ID(overlay32) },
+    { POKETCH_APPID_FRIENDSHIPCHECKER, FS_OVERLAY_ID(overlay33) },
+    { POKETCH_APPID_DOWSINGMACHINE, FS_OVERLAY_ID(overlay34) },
+    { POKETCH_APPID_COUNTER, FS_OVERLAY_ID(overlay35) },
+    { POKETCH_APPID_PEDOMETER, FS_OVERLAY_ID(overlay36) },
+    { POKETCH_APPID_DAYCARECHECKER, FS_OVERLAY_ID(overlay40) },
+    { POKETCH_APPID_ROULETTE, FS_OVERLAY_ID(overlay41) },
+    { POKETCH_APPID_COINTOSS, FS_OVERLAY_ID(overlay42) },
+    { POKETCH_APPID_MOVETESTER, FS_OVERLAY_ID(overlay43) },
+    { POKETCH_APPID_MATCHUPCHECKER, FS_OVERLAY_ID(overlay44) },
+    { POKETCH_APPID_ALARMCLOCK, FS_OVERLAY_ID(overlay45) },
+    { POKETCH_APPID_KITCHENTIMER, FS_OVERLAY_ID(overlay46) },
+    { POKETCH_APPID_MARKINGMAP, FS_OVERLAY_ID(overlay47) },
+    { POKETCH_APPID_BERRYSEARCHER, FS_OVERLAY_ID(overlay48) },
+    { POKETCH_APPID_COLORCHANGER, FS_OVERLAY_ID(overlay49) },
+    { POKETCH_APPID_CALENDAR, FS_OVERLAY_ID(overlay50) },
+    { POKETCH_APPID_LINKSEARCHER, FS_OVERLAY_ID(overlay52) },
+    { POKETCH_APPID_RADARCHAINCOUNTER, FS_OVERLAY_ID(overlay53) },
+    { POKETCH_APPID_POKEMONHISTORY, FS_OVERLAY_ID(overlay54) }
 };
 
-static PoketchSystem* PoketchSystem_GetFromFieldSystem(void)
+static PoketchSystem *PoketchSystem_GetFromFieldSystem(void)
 {
     return FieldSystem_GetPoketchSystem();
 }
-
 
 void PoketchSystem_Create(FieldSystem *fieldSystem, PoketchSystem **poketchSys, SaveData *saveData, BGL *bgl, NNSG2dOamManagerInstance *oamManager)
 {
@@ -148,7 +146,7 @@ void PoketchSystem_Create(FieldSystem *fieldSystem, PoketchSystem **poketchSys, 
     }
 }
 
-void PoketchSystem_StartShutdown (PoketchSystem *poketchSys)
+void PoketchSystem_StartShutdown(PoketchSystem *poketchSys)
 {
     if (poketchSys->systemState != POKETCH_SYSTEM_SHUTDOWN && poketchSys->systemState != POKETCH_SYSTEM_UNLOAD) {
         PoketchSystem_SetState(poketchSys, POKETCH_SYSTEM_SHUTDOWN);
@@ -168,7 +166,7 @@ void PoketchSystem_SendEvent(PoketchSystem *poketchSys, enum PoketchEventID even
     case POKETCH_EVENT_PLAYER_MOVED:
         poketchSys->playerMoving = TRUE;
         break;
-    case POKETCH_EVENT_PEDOMETER:{
+    case POKETCH_EVENT_PEDOMETER: {
         u32 step_count = PoketchData_StepCount(poketchSys->poketchData);
 
         if (++step_count > POKETCH_PEDOMETER_MAX) {
@@ -177,8 +175,7 @@ void PoketchSystem_SendEvent(PoketchSystem *poketchSys, enum PoketchEventID even
 
         PoketchData_SetStepCount(poketchSys->poketchData, step_count);
         poketchSys->pedometerUpdated = TRUE;
-    }
-    break;
+    } break;
     case POKETCH_EVENT_SAVE:
         if (poketchSys->appState == POKETCH_APP_STATE_UPDATE && poketchSys->currAppSave) {
             poketchSys->currAppSave(poketchSys->appSaveData);
@@ -395,8 +392,7 @@ static void PoketchEvent_UpdateApp(PoketchSystem *poketchSys)
 static void PoketchEvent_OnAppChange(PoketchSystem *poketchSys)
 {
     switch (poketchSys->subState) {
-    case 0:
-    {
+    case 0: {
         u32 v0;
 
         poketchSys->unk_06 = 1;
@@ -406,8 +402,7 @@ static void PoketchEvent_OnAppChange(PoketchSystem *poketchSys)
         PoketchSystem_InitApp(poketchSys, v0);
 
         poketchSys->subState++;
-    }
-    break;
+    } break;
     case 1:
         if (PoketchSystem_IsAppInitialized(poketchSys)) {
             ov25_022547D0(poketchSys->unk_1C, 2);
@@ -545,9 +540,9 @@ void PoketchSystem_SetSaveFunction(PoketchAppSaveFunction saveFunction, void *sa
 }
 
 static const TouchScreenHitTable sMainPoketchButtons[] = {
-    [POKETCH_SYSTEM_MAIN_BUTTON_UP]     = {POKETCH_BUTTON_TOP_MIN_Y,    POKETCH_BUTTON_TOP_MAX_Y,    POKETCH_BUTTON_TOP_MIN_X,    POKETCH_BUTTON_TOP_MAX_X},      // Top button
-    [POKETCH_SYSTEM_MAIN_BUTTON_DOWN]   = {POKETCH_BUTTON_BOTTOM_MIN_Y, POKETCH_BUTTON_BOTTOM_MAX_Y, POKETCH_BUTTON_BOTTOM_MIN_X, POKETCH_BUTTON_BOTTOM_MAX_X},   // Bottom Button
-    [POKETCH_SYSTEM_MAIN_BUTTON_SCREEN] = {POKETCH_SCREEN_MIN_Y,        POKETCH_SCREEN_MAX_Y,        POKETCH_SCREEN_MIN_X,        POKETCH_SCREEN_MAX_X}           // Screen
+    [POKETCH_SYSTEM_MAIN_BUTTON_UP] = { POKETCH_BUTTON_TOP_MIN_Y, POKETCH_BUTTON_TOP_MAX_Y, POKETCH_BUTTON_TOP_MIN_X, POKETCH_BUTTON_TOP_MAX_X }, // Top button
+    [POKETCH_SYSTEM_MAIN_BUTTON_DOWN] = { POKETCH_BUTTON_BOTTOM_MIN_Y, POKETCH_BUTTON_BOTTOM_MAX_Y, POKETCH_BUTTON_BOTTOM_MIN_X, POKETCH_BUTTON_BOTTOM_MAX_X }, // Bottom Button
+    [POKETCH_SYSTEM_MAIN_BUTTON_SCREEN] = { POKETCH_SCREEN_MIN_Y, POKETCH_SCREEN_MAX_Y, POKETCH_SCREEN_MIN_X, POKETCH_SCREEN_MAX_X } // Screen
 };
 
 static BOOL PoketchSystem_ButtonInit(PoketchSystem *poketchSys)
@@ -649,9 +644,9 @@ static void PoketchSystem_OnButtonEvent(u32 buttonID, u32 buttonEvent, u32 touch
     }
 }
 
-static BOOL ov25_022543EC (UnkStruct_ov25_02254560 * param0, u32 param1)
+static BOOL ov25_022543EC(UnkStruct_ov25_02254560 *param0, u32 param1)
 {
-   for (u32 i = 0; i < 6; i++) {
+    for (u32 i = 0; i < 6; i++) {
         if (ov25_022547F4(param0, param1) == FALSE) {
             return FALSE;
         }
@@ -661,7 +656,7 @@ static BOOL ov25_022543EC (UnkStruct_ov25_02254560 * param0, u32 param1)
     return TRUE;
 }
 
-UnkStruct_ov25_02254560 * ov25_02254418 (void)
+UnkStruct_ov25_02254560 *ov25_02254418(void)
 {
     PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
     return poketchSys->unk_1C;
@@ -676,7 +671,7 @@ void PoketchSystem_PlaySoundEffect(u32 soundID)
     }
 }
 
-void ov25_02254444 (u32 param0, u32 param1)
+void ov25_02254444(u32 param0, u32 param1)
 {
     PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
 
@@ -720,12 +715,12 @@ BOOL PoketchSystem_GetDisplayTappedCoords(u32 *x, u32 *y)
     return FALSE;
 }
 
-BOOL ov25_0225450C (const PoketchSystem *poketchSys)
+BOOL ov25_0225450C(const PoketchSystem *poketchSys)
 {
     return sub_020509A4(poketchSys->fieldSystem);
 }
 
-void ov25_02254518 (const PoketchSystem *poketchSys, PoketchButtonManager *buttonManager)
+void ov25_02254518(const PoketchSystem *poketchSys, PoketchButtonManager *buttonManager)
 {
     if (ov25_0225450C(poketchSys) == 0 && poketchSys->appChanging == FALSE) {
         PoketchButtonManager_Update(buttonManager);
@@ -742,17 +737,17 @@ BOOL PoketchSystem_PedometerUpdated(const PoketchSystem *poketchSys)
     return poketchSys->pedometerUpdated;
 }
 
-FieldSystem* PoketchSystem_GetFieldSystem(const PoketchSystem *poketchSys)
+FieldSystem *PoketchSystem_GetFieldSystem(const PoketchSystem *poketchSys)
 {
     return poketchSys->fieldSystem;
 }
 
-PoketchData* PoketchSystem_GetPoketchData(const PoketchSystem *poketchSys)
+PoketchData *PoketchSystem_GetPoketchData(const PoketchSystem *poketchSys)
 {
     return poketchSys->poketchData;
 }
 
-SaveData* PoketchSystem_GetSaveData(const PoketchSystem *poketchSys)
+SaveData *PoketchSystem_GetSaveData(const PoketchSystem *poketchSys)
 {
     return poketchSys->saveData;
 }

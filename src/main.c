@@ -1,35 +1,33 @@
-#include <nitro.h>
 #include <dwc.h>
+#include <nitro.h>
 #include <string.h>
-
-#include "core_sys.h"
-#include "assert.h"
-
-
-#include "overlay077/const_ov77_021D742C.h"
-#include "overlay057/const_ov57_021D0F70.h"
 
 #include "struct_defs/struct_0203CC84.h"
 
+#include "overlay057/const_ov57_021D0F70.h"
+#include "overlay077/const_ov77_021D742C.h"
+
+#include "assert.h"
+#include "communication_system.h"
+#include "core_sys.h"
+#include "game_overlay.h"
+#include "overlay_manager.h"
+#include "rtc.h"
+#include "save_player.h"
+#include "savedata.h"
+#include "sys_task_manager.h"
 #include "unk_02000C88.h"
 #include "unk_02002B7C.h"
 #include "unk_02003B60.h"
-#include "game_overlay.h"
-#include "overlay_manager.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
-#include "rtc.h"
 #include "unk_02017428.h"
 #include "unk_02017728.h"
-#include "sys_task_manager.h"
 #include "unk_0201D15C.h"
 #include "unk_0201E3D8.h"
 #include "unk_02022844.h"
 #include "unk_0202419C.h"
-#include "savedata.h"
-#include "save_player.h"
 #include "unk_0202CC64.h"
-#include "communication_system.h"
 #include "unk_020366A0.h"
 #include "unk_02038FFC.h"
 #include "unk_02039814.h"
@@ -43,9 +41,9 @@ FS_EXTERN_OVERLAY(overlay77);
 
 typedef struct {
     FSOverlayID unk_00;
-    OverlayManager * unk_04;
+    OverlayManager *unk_04;
     FSOverlayID unk_08;
-    const OverlayManagerTemplate * unk_0C;
+    const OverlayManagerTemplate *unk_0C;
     UnkStruct_0203CC84 unk_10;
 } UnkStruct_02101D28;
 
@@ -64,7 +62,7 @@ static PMBackLightSwitch sSavedBacklightState;
 BOOL gIgnoreCartridgeForWake;
 extern const OverlayManagerTemplate Unk_ov77_021D788C;
 
-void NitroMain (void)
+void NitroMain(void)
 {
     sub_0201789C();
     InitGraphics();
@@ -164,7 +162,7 @@ void NitroMain (void)
     }
 }
 
-static void sub_02000E3C (void)
+static void sub_02000E3C(void)
 {
     Unk_02101D28.unk_00 = 0xffffffff;
     Unk_02101D28.unk_04 = NULL;
@@ -172,7 +170,7 @@ static void sub_02000E3C (void)
     Unk_02101D28.unk_0C = NULL;
 }
 
-static void sub_02000E54 (void)
+static void sub_02000E54(void)
 {
     BOOL v0;
 
@@ -203,7 +201,7 @@ static void sub_02000E54 (void)
     }
 }
 
-void sub_02000EC4 (FSOverlayID param0, const OverlayManagerTemplate * param1)
+void sub_02000EC4(FSOverlayID param0, const OverlayManagerTemplate *param1)
 {
     GF_ASSERT(Unk_02101D28.unk_0C == NULL);
 
@@ -211,7 +209,7 @@ void sub_02000EC4 (FSOverlayID param0, const OverlayManagerTemplate * param1)
     Unk_02101D28.unk_0C = param1;
 }
 
-static void WaitFrame (void)
+static void WaitFrame(void)
 {
     CommSys_Update();
 
@@ -225,7 +223,7 @@ static void WaitFrame (void)
     }
 }
 
-static void sub_02000F10 (int param0)
+static void sub_02000F10(int param0)
 {
     if (sub_02038AB8()) {
         if (CARD_TryWaitBackupAsync() == TRUE) {
@@ -236,7 +234,7 @@ static void sub_02000F10 (int param0)
     WaitFrame();
 }
 
-static void CheckHeapCanary (void)
+static void CheckHeapCanary(void)
 {
     int v0 = sub_020389D8();
 
@@ -253,7 +251,7 @@ static void CheckHeapCanary (void)
     }
 }
 
-static void SoftReset (int param0)
+static void SoftReset(int param0)
 {
     sub_0200F344(0, 0x7fff);
     sub_0200F344(1, 0x7fff);
@@ -268,7 +266,7 @@ static void SoftReset (int param0)
     }
 }
 
-static void HeapCanaryFailed (int param0, int param1)
+static void HeapCanaryFailed(int param0, int param1)
 {
     int elapsed;
     BOOL v1;
@@ -315,7 +313,7 @@ static void HeapCanaryFailed (int param0, int param1)
     SoftReset(param0);
 }
 
-void InitRNG (void)
+void InitRNG(void)
 {
     RTCDate v0;
     RTCTime v1;
@@ -329,7 +327,7 @@ void InitRNG (void)
     LCRNG_SetSeed(v2);
 }
 
-void HandleConsoleFold (void)
+void HandleConsoleFold(void)
 {
     PMBackLightSwitch top, bottom;
     PMWakeUpTrigger trigger;

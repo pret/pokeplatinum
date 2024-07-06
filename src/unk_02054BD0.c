@@ -1,3 +1,5 @@
+#include "unk_02054BD0.h"
+
 #include <nitro.h>
 #include <string.h>
 
@@ -6,23 +8,22 @@
 
 #include "field/field_system.h"
 
-#include "narc.h"
 #include "heap.h"
+#include "narc.h"
 #include "unk_02039C80.h"
-#include "unk_02054BD0.h"
 
 typedef struct UnkStruct_02054C18_t {
     u8 unk_00[225];
     u16 unk_E2[16384];
 } UnkStruct_02054C18;
 
-static void sub_02054C18(UnkStruct_02039E30 * param0, UnkStruct_02054C18 * param1, const u8 param2);
-static const u8 sub_02054CC4(const u16 param0, u16 * param1, u8 * param2);
+static void sub_02054C18(UnkStruct_02039E30 *param0, UnkStruct_02054C18 *param1, const u8 param2);
+static const u8 sub_02054CC4(const u16 param0, u16 *param1, u8 *param2);
 
-void sub_02054BD0 (FieldSystem * fieldSystem, const u8 param1)
+void sub_02054BD0(FieldSystem *fieldSystem, const u8 param1)
 {
     int v0;
-    void * v1;
+    void *v1;
 
     if (fieldSystem->unk_58 == NULL) {
         fieldSystem->unk_58 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02054C18));
@@ -31,7 +32,7 @@ void sub_02054BD0 (FieldSystem * fieldSystem, const u8 param1)
     }
 }
 
-void sub_02054BF8 (FieldSystem * fieldSystem)
+void sub_02054BF8(FieldSystem *fieldSystem)
 {
     if (fieldSystem->unk_58 != NULL) {
         Heap_FreeToHeap(fieldSystem->unk_58);
@@ -39,9 +40,9 @@ void sub_02054BF8 (FieldSystem * fieldSystem)
     }
 }
 
-u16 const * sub_02054C0C (const u32 param0, const UnkStruct_02054C18 * param1)
+u16 const *sub_02054C0C(const u32 param0, const UnkStruct_02054C18 *param1)
 {
-    u16 const * v0;
+    u16 const *v0;
     u8 v1;
 
     v1 = param1->unk_00[param0];
@@ -50,7 +51,7 @@ u16 const * sub_02054C0C (const u32 param0, const UnkStruct_02054C18 * param1)
     return v0;
 }
 
-static void sub_02054C18 (UnkStruct_02039E30 * param0, UnkStruct_02054C18 * param1, const u8 param2)
+static void sub_02054C18(UnkStruct_02039E30 *param0, UnkStruct_02054C18 *param1, const u8 param2)
 {
     u8 v0;
     u16 v1;
@@ -59,8 +60,8 @@ static void sub_02054C18 (UnkStruct_02039E30 * param0, UnkStruct_02054C18 * para
     int v4, v5;
     int v6, v7;
     u16 v8[16];
-    void * v9;
-    NARC * v10;
+    void *v9;
+    NARC *v10;
 
     v0 = 0;
     v7 = sub_02039E10(param0);
@@ -87,7 +88,7 @@ static void sub_02054C18 (UnkStruct_02039E30 * param0, UnkStruct_02054C18 * para
     NARC_dtor(v10);
 }
 
-static const u8 sub_02054CC4 (const u16 param0, u16 * param1, u8 * param2)
+static const u8 sub_02054CC4(const u16 param0, u16 *param1, u8 *param2)
 {
     u8 v0;
 

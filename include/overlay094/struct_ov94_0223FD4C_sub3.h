@@ -11,8 +11,8 @@ typedef struct {
     u16 unk_0A;
     int unk_0C;
     int unk_10;
-    u8 * unk_14;
-    u16 * unk_18;
+    u8 *unk_14;
+    u16 *unk_18;
     int unk_1C;
     int unk_20;
     int unk_24;

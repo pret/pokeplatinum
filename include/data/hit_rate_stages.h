@@ -1,5 +1,6 @@
 #include "struct_defs/fraction.h"
 
+// clang-format off
 static const Fraction HitRateByStage[] = {
     {  33, 100 },
     {  36, 100 },
@@ -13,5 +14,6 @@ static const Fraction HitRateByStage[] = {
     {   2,   1 },
     { 233, 100 },
     { 133,  50 },
-    {   3,   1 }
+    {   3,   1 },
 };
+// clang-format on

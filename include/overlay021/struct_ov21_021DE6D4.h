@@ -5,11 +5,11 @@
 #include "overlay021/struct_ov21_021E68F4.h"
 
 typedef struct {
-    int * unk_00;
-    UnkStruct_ov21_021D3320 * unk_04;
+    int *unk_00;
+    UnkStruct_ov21_021D3320 *unk_04;
     int unk_08;
     int unk_0C;
-    const UnkStruct_ov21_021E68F4 * unk_10;
+    const UnkStruct_ov21_021E68F4 *unk_10;
     int unk_14;
     int unk_18;
     BOOL unk_1C;

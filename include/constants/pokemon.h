@@ -17,7 +17,7 @@ enum {
     STAT_MAX
 };
 
-#define MAX_PARTY_SIZE  6
+#define MAX_PARTY_SIZE      6
 #define NUM_BOOSTABLE_STATS 8
 
 #define MAX_IVS_SINGLE_STAT 31

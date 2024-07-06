@@ -76,10 +76,10 @@ typedef struct ItemData {
 } ItemData;
 
 enum ItemFileType {
-	ITEM_FILE_TYPE_DATA,
-	ITEM_FILE_TYPE_ICON,
-	ITEM_FILE_TYPE_PALETTE,
-	ITEM_FILE_TYPE_GBA,
+    ITEM_FILE_TYPE_DATA,
+    ITEM_FILE_TYPE_ICON,
+    ITEM_FILE_TYPE_PALETTE,
+    ITEM_FILE_TYPE_GBA,
 };
 
 enum ItemDataParam {
@@ -162,7 +162,7 @@ void Item_MoveInPocket(void *pocket, u16 srcSlot, u16 dstSlot);
  * Each type points to a different value for the item's entry in sItemArchiveIDs.
  *
  * @param item
- * @param type      The type of ID to get. 
+ * @param type      The type of ID to get.
  * @return The item's ID of the specified type.
  */
 u16 Item_FileID(u16 item, enum ItemFileType type);
@@ -197,7 +197,7 @@ u16 Item_IconNANRFile(void);
  * @param heapID    ID of the heap to own the allocated memory.
  * @return The loaded data structure.
  */
-void* Item_Load(u16 item, enum ItemFileType type, u32 heapID);
+void *Item_Load(u16 item, enum ItemFileType type, u32 heapID);
 
 /**
  * @brief Load the name of the item into a string buffer.
@@ -284,14 +284,14 @@ u8 Item_MailNumber(u16 item);
  * @brief Get the item for a given mail number.
  *
  * @param mail
- * @return The item for the mail number, or ITEM_NONE if none exists. 
+ * @return The item for the mail number, or ITEM_NONE if none exists.
  */
 u16 Item_ForMailNumber(u8 mail);
 
 /**
  * @brief Check if a given item is a berry.
  *
- * @param item 
+ * @param item
  * @return TRUE if the item is a berry, FALSE otherwise.
  */
 u8 Item_IsBerry(u16 item);
@@ -315,7 +315,7 @@ u16 Item_ForBerryNumber(u8 item);
 /**
  * @brief Check if a given item is herbal medicine.
  *
- * @param item 
+ * @param item
  * @return TRUE if the item is herbal medicine, FALSE otherwise.
  */
 u8 Item_IsHerbalMedicine(u16 item);
@@ -326,7 +326,7 @@ u8 Item_IsHerbalMedicine(u16 item);
  * @param heapID    The heap which will own the item table's allocation.
  * @return The full table of item data.
  */
-void* ItemTable_Load(int heapID);
+void *ItemTable_Load(int heapID);
 
 /**
  * @brief Get the ItemData value at a given index from within a loaded table.
@@ -335,6 +335,6 @@ void* ItemTable_Load(int heapID);
  * @param index     Index of the ItemData to be retrieved.
  * @return ItemData at a given index within the loaded item table.
  */
-ItemData* ItemTable_Index(ItemData *itemTable, u16 index);
+ItemData *ItemTable_Index(ItemData *itemTable, u16 index);
 
 #endif // POKEPLATINUM_ITEM_DATA_H

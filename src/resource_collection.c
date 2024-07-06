@@ -1,10 +1,12 @@
+#include "resource_collection.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "constants/heap.h"
-#include "unk_02017728.h"
+
 #include "heap.h"
-#include "resource_collection.h"
+#include "unk_02017728.h"
 
 #define RESOURCE_ID_INVALID (-1)
 
@@ -202,11 +204,10 @@ BOOL TextureResourceManager_IsIDUnused(const TextureResourceManager *texMgr, int
     return ResourceCollection_IsIDUnused(texMgr->resources, id);
 }
 
-TextureResource *TextureResourceManager_AddTexture(const TextureResourceManager *texMgr, void *data, 
-    int id, enum TextureResourceMode mode, enum HeapId heapID)
+TextureResource *TextureResourceManager_AddTexture(const TextureResourceManager *texMgr, void *data, int id, enum TextureResourceMode mode, enum HeapId heapID)
 {
-    TextureResource * texResource;
-    void * resourceData;
+    TextureResource *texResource;
+    void *resourceData;
 
     GF_ASSERT(texMgr);
 
@@ -226,8 +227,7 @@ TextureResource *TextureResourceManager_AddTexture(const TextureResourceManager 
     return texResource;
 }
 
-TextureResource *TextureResourceManager_AddTextureAndAllocVRam(TextureResourceManager *texMgr, void *data, 
-    int id, enum TextureResourceMode mode, enum HeapId heapID)
+TextureResource *TextureResourceManager_AddTextureAndAllocVRam(TextureResourceManager *texMgr, void *data, int id, enum TextureResourceMode mode, enum HeapId heapID)
 {
     TextureResource *texResource = TextureResourceManager_AddTexture(texMgr, data, id, mode, heapID);
     TextureResource_AllocVRam(texResource);
@@ -350,11 +350,10 @@ void TextureResource_DiscardTextureData(TextureResource *texResource)
 
     TexRes_ReleaseVRamKeys(TextureResource_GetTexResWithData(texResource));
     TexRes_AssignVRamKeys(
-        TextureResource_GetTexRes(texResource), 
-        texResource->texKey, 
-        texResource->tex4x4Key, 
-        texResource->paletteKey
-    );
+        TextureResource_GetTexRes(texResource),
+        texResource->texKey,
+        texResource->tex4x4Key,
+        texResource->paletteKey);
     Heap_FreeToHeap(texResource->textureData);
 
     texResource->textureData = NULL;
@@ -433,8 +432,8 @@ static NNSG3dResTex *TextureResource_GetTexRes(const TextureResource *texResourc
 
 static NNSG3dResTex *TextureResource_GetTexResWithData(const TextureResource *texResource)
 {
-    void *texData = texResource->mode == TEX_RESOURCE_MODE_NORMAL 
-        ? Resource_GetData(texResource->resource) 
+    void *texData = texResource->mode == TEX_RESOURCE_MODE_NORMAL
+        ? Resource_GetData(texResource->resource)
         : texResource->textureData;
 
     return NNS_G3dGetTex(texData);

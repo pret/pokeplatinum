@@ -1,12 +1,13 @@
 #ifndef POKEPLATINUM_STRUCT_OV21_021D3208_H
 #define POKEPLATINUM_STRUCT_OV21_021D3208_H
 
-#include "trainer_info.h"
 #include "struct_decls/pokedexdata_decl.h"
 
+#include "trainer_info.h"
+
 typedef struct {
-    const PokedexData * unk_00;
-    const TrainerInfo * unk_04;
+    const PokedexData *unk_00;
+    const TrainerInfo *unk_04;
     int unk_08;
     BOOL unk_0C;
     BOOL unk_10;

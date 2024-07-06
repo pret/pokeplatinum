@@ -1,13 +1,13 @@
+#include "overlay006/ov6_022477B8.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-
 #include "overlay006/wild_encounters.h"
 
-#include "overlay006/ov6_022477B8.h"
+#include "core_sys.h"
 
-void WildEncounters_ReplaceDualSlotEncounters (const WildEncounters * encounterData, const BOOL nationalDexObtained, int * param2, int * param3)
+void WildEncounters_ReplaceDualSlotEncounters(const WildEncounters *encounterData, const BOOL nationalDexObtained, int *param2, int *param3)
 {
     if (!nationalDexObtained) {
         return;

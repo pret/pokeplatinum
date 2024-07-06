@@ -3,8 +3,8 @@
 
 typedef struct {
     u8 unk_00;
-    u8 unk_01_0    : 4;
-    u8 unk_01_4    : 4;
+    u8 unk_01_0 : 4;
+    u8 unk_01_4 : 4;
     s16 unk_02;
     u32 unk_04;
     u32 unk_08;

@@ -1,24 +1,24 @@
+#include "unk_0201E3D8.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-#include "inlines.h"
-
 #include "overlay072/struct_ov72_0223E2A8.h"
 
-#include "unk_0201E3D8.h"
+#include "core_sys.h"
+#include "inlines.h"
 
 static u32 sub_0201E658(u32 param0);
 static u32 sub_0201E4EC(void);
 static u32 sub_0201E6CC(u32 param0, u32 param1, u32 param2);
 static u32 sub_0201E784(u32 param0, u32 param1);
-static void sub_0201E7FC(UnkStruct_ov72_0223E2A8 * param0, u32 param1);
+static void sub_0201E7FC(UnkStruct_ov72_0223E2A8 *param0, u32 param1);
 static u32 sub_0201E69C(u32 param0, u32 param1, u32 param2);
-static void sub_0201E4A4(u32 param0, u32 param1, void * param2, u32 param3, u32 param4, u32 param5);
-static void sub_0201E4D8(TPData * param0, int param1);
+static void sub_0201E4A4(u32 param0, u32 param1, void *param2, u32 param3, u32 param4, u32 param5);
+static void sub_0201E4D8(TPData *param0, int param1);
 
 typedef struct {
-    TPData * unk_00;
+    TPData *unk_00;
     u32 unk_04;
     u32 unk_08;
     TPData unk_0C[9];
@@ -29,7 +29,7 @@ typedef struct {
 
 static UnkStruct_021C0704 Unk_021C0704;
 
-void sub_0201E3D8 (void)
+void sub_0201E3D8(void)
 {
     GF_ASSERT(Unk_021C0704.unk_5A == 0);
 
@@ -37,7 +37,7 @@ void sub_0201E3D8 (void)
     Unk_021C0704.unk_5A = 0;
 }
 
-u32 sub_0201E3F4 (TPData * param0, u32 param1, u32 param2)
+u32 sub_0201E3F4(TPData *param0, u32 param1, u32 param2)
 {
     int v0 = 0;
     u32 v1;
@@ -64,7 +64,7 @@ u32 sub_0201E3F4 (TPData * param0, u32 param1, u32 param2)
     return 1;
 }
 
-u32 sub_0201E450 (u32 param0)
+u32 sub_0201E450(u32 param0)
 {
     u32 v0;
     int v1;
@@ -90,7 +90,7 @@ u32 sub_0201E450 (u32 param0)
     return 1;
 }
 
-static void sub_0201E4A4 (u32 param0, u32 param1, void * param2, u32 param3, u32 param4, u32 param5)
+static void sub_0201E4A4(u32 param0, u32 param1, void *param2, u32 param3, u32 param4, u32 param5)
 {
     Unk_021C0704.unk_58 = param0;
     gCoreSys.unk_64 = param1;
@@ -102,7 +102,7 @@ static void sub_0201E4A4 (u32 param0, u32 param1, void * param2, u32 param3, u32
     sub_0201E4D8(Unk_021C0704.unk_0C, 9);
 }
 
-static void sub_0201E4D8 (TPData * param0, int param1)
+static void sub_0201E4D8(TPData *param0, int param1)
 {
     int v0;
 
@@ -111,7 +111,7 @@ static void sub_0201E4D8 (TPData * param0, int param1)
     }
 }
 
-static u32 sub_0201E4EC (void)
+static u32 sub_0201E4EC(void)
 {
     u32 v0 = 0;
     u32 v1;
@@ -139,7 +139,7 @@ static u32 sub_0201E4EC (void)
     return 1;
 }
 
-u32 sub_0201E530 (void)
+u32 sub_0201E530(void)
 {
     u32 v0;
 
@@ -154,7 +154,7 @@ u32 sub_0201E530 (void)
     return v0;
 }
 
-u32 sub_0201E564 (UnkStruct_ov72_0223E2A8 * param0, u32 param1, u32 param2)
+u32 sub_0201E564(UnkStruct_ov72_0223E2A8 *param0, u32 param1, u32 param2)
 {
     u32 v0 = 3;
     u32 v1;
@@ -182,7 +182,7 @@ u32 sub_0201E564 (UnkStruct_ov72_0223E2A8 * param0, u32 param1, u32 param2)
     return v0;
 }
 
-void sub_0201E5C0 (TPData * param0, u32 param1)
+void sub_0201E5C0(TPData *param0, u32 param1)
 {
     int v0;
     TPData v1;
@@ -193,7 +193,7 @@ void sub_0201E5C0 (TPData * param0, u32 param1)
     }
 }
 
-void AfterSleep (void)
+void AfterSleep(void)
 {
     u32 v0;
 
@@ -211,7 +211,7 @@ void AfterSleep (void)
     Unk_021C0704.unk_5A = 0;
 }
 
-void BeforeSleep (void)
+void BeforeSleep(void)
 {
     u32 v0;
 
@@ -229,7 +229,7 @@ void BeforeSleep (void)
     Unk_021C0704.unk_5A = 1;
 }
 
-static u32 sub_0201E658 (u32 param0)
+static u32 sub_0201E658(u32 param0)
 {
     int v0 = 0;
     u32 v1;
@@ -252,7 +252,7 @@ static u32 sub_0201E658 (u32 param0)
     return 1;
 }
 
-static u32 sub_0201E69C (u32 param0, u32 param1, u32 param2)
+static u32 sub_0201E69C(u32 param0, u32 param1, u32 param2)
 {
     u32 v0;
 
@@ -273,13 +273,13 @@ static u32 sub_0201E69C (u32 param0, u32 param1, u32 param2)
     return v0;
 }
 
-static inline int inline_0201E6CC (int param0, int param1)
+static inline int inline_0201E6CC(int param0, int param1)
 {
     int v0 = (param0 >= param1) ? (param0 - param1) : (param1 - param0);
     return v0;
 }
 
-static u32 sub_0201E6CC (u32 param0, u32 param1, u32 param2)
+static u32 sub_0201E6CC(u32 param0, u32 param1, u32 param2)
 {
     int v0;
     s32 v1;
@@ -315,7 +315,7 @@ static u32 sub_0201E6CC (u32 param0, u32 param1, u32 param2)
     return Unk_021C0704.unk_54;
 }
 
-static u32 sub_0201E784 (u32 param0, u32 param1)
+static u32 sub_0201E784(u32 param0, u32 param1)
 {
     int v0;
     s16 v1;
@@ -342,7 +342,7 @@ static u32 sub_0201E784 (u32 param0, u32 param1)
     return Unk_021C0704.unk_54;
 }
 
-static void sub_0201E7FC (UnkStruct_ov72_0223E2A8 * param0, u32 param1)
+static void sub_0201E7FC(UnkStruct_ov72_0223E2A8 *param0, u32 param1)
 {
     int v0;
     s16 v1;

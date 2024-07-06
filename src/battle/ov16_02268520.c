@@ -1,20 +1,21 @@
+#include "battle/ov16_02268520.h"
+
 #include <nitro.h>
 #include <string.h>
 
+#include "struct_decls/battle_system.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/battle_system.h"
-
-#include "struct_defs/struct_0200D0F4.h"
-#include "battle/struct_ov16_02268520.h"
 #include "struct_defs/sprite_template.h"
+#include "struct_defs/struct_0200D0F4.h"
 
-#include "unk_02002F38.h"
-#include "narc.h"
-#include "unk_0200C6E4.h"
 #include "battle/ov16_0223DF00.h"
-#include "battle/ov16_02268520.h"
+#include "battle/struct_ov16_02268520.h"
+
+#include "narc.h"
+#include "unk_02002F38.h"
+#include "unk_0200C6E4.h"
 
 static const SpriteTemplate Unk_ov16_022700CC[] = {
     {
@@ -25,9 +26,9 @@ static const SpriteTemplate Unk_ov16_022700CC[] = {
         0x3E8,
         0x0,
         NNS_G2D_VRAM_TYPE_2DMAIN,
-        {0x4E2D, 0x4E29, 0x4E25, 0x4E25, 0xFFFFFFFF, 0xFFFFFFFF},
+        { 0x4E2D, 0x4E29, 0x4E25, 0x4E25, 0xFFFFFFFF, 0xFFFFFFFF },
         0x3,
-        0x0
+        0x0,
     },
     {
         0xFFFFFFFFFFFFFFB0,
@@ -37,10 +38,10 @@ static const SpriteTemplate Unk_ov16_022700CC[] = {
         0x3E8,
         0x0,
         NNS_G2D_VRAM_TYPE_2DMAIN,
-        {0x4E2E, 0x4E29, 0x4E26, 0x4E26, 0xFFFFFFFF, 0xFFFFFFFF},
+        { 0x4E2E, 0x4E29, 0x4E26, 0x4E26, 0xFFFFFFFF, 0xFFFFFFFF },
         0x3,
-        0x0
-    }
+        0x0,
+    },
 };
 
 __attribute__((aligned(4))) static const u16 Unk_ov16_0227009C[] = {
@@ -172,14 +173,14 @@ __attribute__((aligned(4))) static const u16 Unk_ov16_02270134[][3] = {
     0x45
 };
 
-void ov16_02268520 (UnkStruct_ov16_02268520 * param0)
+void ov16_02268520(UnkStruct_ov16_02268520 *param0)
 {
-    SpriteRenderer * v0;
-    SpriteGfxHandler * v1;
-    const SpriteTemplate * v2;
+    SpriteRenderer *v0;
+    SpriteGfxHandler *v1;
+    const SpriteTemplate *v2;
     int v3, v4, v5, v6, v7, v8;
     int v9;
-    NARC * v10;
+    NARC *v10;
 
     v10 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
     v0 = ov16_0223E010(param0->unk_04);
@@ -211,11 +212,11 @@ void ov16_02268520 (UnkStruct_ov16_02268520 * param0)
     NARC_dtor(v10);
 }
 
-void ov16_0226862C (UnkStruct_ov16_02268520 * param0)
+void ov16_0226862C(UnkStruct_ov16_02268520 *param0)
 {
-    SpriteRenderer * v0;
-    SpriteGfxHandler * v1;
-    const SpriteTemplate * v2;
+    SpriteRenderer *v0;
+    SpriteGfxHandler *v1;
+    const SpriteTemplate *v2;
 
     v0 = ov16_0223E010(param0->unk_04);
     v1 = ov16_0223E018(param0->unk_04);
@@ -225,7 +226,7 @@ void ov16_0226862C (UnkStruct_ov16_02268520 * param0)
     SpriteActor_UpdateObject(param0->unk_00->unk_00);
 }
 
-void ov16_02268660 (UnkStruct_ov16_02268520 * param0)
+void ov16_02268660(UnkStruct_ov16_02268520 *param0)
 {
     if (param0->unk_00 == NULL) {
         return;
@@ -235,9 +236,9 @@ void ov16_02268660 (UnkStruct_ov16_02268520 * param0)
     param0->unk_00 = NULL;
 }
 
-void ov16_02268674 (UnkStruct_ov16_02268520 * param0)
+void ov16_02268674(UnkStruct_ov16_02268520 *param0)
 {
-    SpriteGfxHandler * v0;
+    SpriteGfxHandler *v0;
     int v1, v2, v3;
 
     v0 = ov16_0223E018(param0->unk_04);
@@ -258,7 +259,7 @@ void ov16_02268674 (UnkStruct_ov16_02268520 * param0)
     SpriteGfxHandler_UnloadAnimObjById(v0, v3);
 }
 
-void ov16_022686BC (UnkStruct_ov16_02268520 * param0, int param1)
+void ov16_022686BC(UnkStruct_ov16_02268520 *param0, int param1)
 {
     if (param0->unk_00 == NULL) {
         return;
@@ -267,7 +268,7 @@ void ov16_022686BC (UnkStruct_ov16_02268520 * param0, int param1)
     SpriteActor_EnableObject(param0->unk_00, param1);
 }
 
-void ov16_022686CC (UnkStruct_ov16_02268520 * param0, BattleSystem * param1, u16 param2, int param3)
+void ov16_022686CC(UnkStruct_ov16_02268520 *param0, BattleSystem *param1, u16 param2, int param3)
 {
     MI_CpuClearFast(param0, sizeof(UnkStruct_ov16_02268520));
 
@@ -284,7 +285,7 @@ void ov16_022686CC (UnkStruct_ov16_02268520 * param0, BattleSystem * param1, u16
     ov16_0226862C(param0);
 }
 
-void ov16_02268700 (UnkStruct_ov16_02268520 * param0)
+void ov16_02268700(UnkStruct_ov16_02268520 *param0)
 {
     ov16_02268660(param0);
     ov16_02268674(param0);

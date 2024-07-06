@@ -2,6 +2,7 @@
 #define POKEPLATINUM_MAP_HEADER_DATA_H
 
 #include "constants/heap.h"
+
 #include "field/field_system_decl.h"
 #include "overlay006/wild_encounters.h"
 
@@ -55,37 +56,37 @@ typedef struct MapHeaderData {
     u32 numObjectEvents;
     u32 numWarpEvents;
     u32 numCoordEvents;
-    const BgEvent * bgEvents;
-    const ObjectEvent * objectEvents;
-    const WarpEvent * warpEvents;
-    const CoordEvent * coordEvents;
+    const BgEvent *bgEvents;
+    const ObjectEvent *objectEvents;
+    const WarpEvent *warpEvents;
+    const CoordEvent *coordEvents;
     u32 tmpEventsBuf[512];
     u32 initScripts[64];
     WildEncounters wildEncounters;
 } MapHeaderData;
 
-void MapHeaderData_Init(FieldSystem * fieldSystem, enum HeapId heapID);
-void MapHeaderData_Free(FieldSystem * fieldSystem);
-void MapHeaderData_Load(FieldSystem * fieldSystem, int headerID);
-void sub_0203A418(FieldSystem * fieldSystem);
-const BgEvent * MapHeaderData_GetBgEvents(const FieldSystem * fieldSystem);
-int MapHeaderData_GetNumBgEvents(const FieldSystem * fieldSystem);
-const WarpEvent * MapHeaderData_GetWarpEventByIndex(const FieldSystem * fieldSystem, int index);
-int MapHeaderData_GetIndexOfWarpEventAtPos(const FieldSystem * fieldSystem, int x, int z);
-int MapHeaderData_GetNumCoordEvents(const FieldSystem * fieldSystem);
-const CoordEvent * MapHeaderData_GetCoordEvents(const FieldSystem * fieldSystem);
-u32 MapHeaderData_GetNumObjectEvents(const FieldSystem * fieldSystem);
-const ObjectEvent * MapHeaderData_GetObjectEvents(const FieldSystem * fieldSystem);
-BOOL MapHeaderData_SetObjectEventPos(FieldSystem * fieldSystem, int index, u16 x, u16 z);
-BOOL MapHeaderData_SetObjectEventDir(FieldSystem * fieldSystem, int localID, int dir);
-BOOL MapHeaderData_SetObjectEventMovementType(FieldSystem * fieldSystem, int localID, int movementType);
-BOOL MapHeaderData_SetWarpEventPos(FieldSystem * fieldSystem, u16 index, u16 x, u16 z);
-BOOL MapHeaderData_SetWarpEventDestHeaderID(FieldSystem * fieldSystem, u16 index, u16 destHeaderID);
-BOOL MapHeaderData_SetWarpEventDestWarpID(FieldSystem * fieldSystem, u16 index, u16 destWarpID);
-BOOL MapHeaderData_SetBgEventPos(FieldSystem * fieldSystem, u16 index, u16 x, u16 z);
-void MapHeaderData_LoadWildEncounters(WildEncounters * encounterData, int headerID);
-const WildEncounters * MapHeaderData_GetWildEncounters(const FieldSystem * fieldSystem);
-const u8 * MapHeaderData_GetInitScripts(const FieldSystem * fieldSystem);
-BOOL MapHeaderData_IsAnyObjectEventAtPos(const FieldSystem * fieldSystem, u16 x, u16 z);
+void MapHeaderData_Init(FieldSystem *fieldSystem, enum HeapId heapID);
+void MapHeaderData_Free(FieldSystem *fieldSystem);
+void MapHeaderData_Load(FieldSystem *fieldSystem, int headerID);
+void sub_0203A418(FieldSystem *fieldSystem);
+const BgEvent *MapHeaderData_GetBgEvents(const FieldSystem *fieldSystem);
+int MapHeaderData_GetNumBgEvents(const FieldSystem *fieldSystem);
+const WarpEvent *MapHeaderData_GetWarpEventByIndex(const FieldSystem *fieldSystem, int index);
+int MapHeaderData_GetIndexOfWarpEventAtPos(const FieldSystem *fieldSystem, int x, int z);
+int MapHeaderData_GetNumCoordEvents(const FieldSystem *fieldSystem);
+const CoordEvent *MapHeaderData_GetCoordEvents(const FieldSystem *fieldSystem);
+u32 MapHeaderData_GetNumObjectEvents(const FieldSystem *fieldSystem);
+const ObjectEvent *MapHeaderData_GetObjectEvents(const FieldSystem *fieldSystem);
+BOOL MapHeaderData_SetObjectEventPos(FieldSystem *fieldSystem, int index, u16 x, u16 z);
+BOOL MapHeaderData_SetObjectEventDir(FieldSystem *fieldSystem, int localID, int dir);
+BOOL MapHeaderData_SetObjectEventMovementType(FieldSystem *fieldSystem, int localID, int movementType);
+BOOL MapHeaderData_SetWarpEventPos(FieldSystem *fieldSystem, u16 index, u16 x, u16 z);
+BOOL MapHeaderData_SetWarpEventDestHeaderID(FieldSystem *fieldSystem, u16 index, u16 destHeaderID);
+BOOL MapHeaderData_SetWarpEventDestWarpID(FieldSystem *fieldSystem, u16 index, u16 destWarpID);
+BOOL MapHeaderData_SetBgEventPos(FieldSystem *fieldSystem, u16 index, u16 x, u16 z);
+void MapHeaderData_LoadWildEncounters(WildEncounters *encounterData, int headerID);
+const WildEncounters *MapHeaderData_GetWildEncounters(const FieldSystem *fieldSystem);
+const u8 *MapHeaderData_GetInitScripts(const FieldSystem *fieldSystem);
+BOOL MapHeaderData_IsAnyObjectEventAtPos(const FieldSystem *fieldSystem, u16 x, u16 z);
 
 #endif // POKEPLATINUM_MAP_HEADER_DATA_H

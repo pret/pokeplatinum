@@ -1,44 +1,42 @@
+#include "unk_0204CFFC.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "inlines.h"
-
-#include "trainer_info.h"
-#include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "field/field_system.h"
-#include "field_script_context.h"
-
-#include "unk_02017038.h"
-#include "heap.h"
+#include "overlay005/ov5_021E622C.h"
 #include "savedata/save_table.h"
+
+#include "field_script_context.h"
+#include "field_system.h"
+#include "heap.h"
+#include "inlines.h"
+#include "item.h"
+#include "map_header.h"
+#include "party.h"
+#include "pokemon.h"
 #include "save_player.h"
 #include "trainer_info.h"
-#include "map_header.h"
-#include "field_system.h"
-#include "unk_0204CFFC.h"
+#include "unk_02017038.h"
 #include "unk_02054884.h"
 #include "unk_0205DFC4.h"
 #include "unk_0206CCB0.h"
-#include "pokemon.h"
 #include "unk_020797C8.h"
-#include "party.h"
-#include "item.h"
 #include "unk_020923C0.h"
-#include "overlay005/ov5_021E622C.h"
 
-BOOL ScrCmd_096 (ScriptContext * param0)
+BOOL ScrCmd_096(ScriptContext *param0)
 {
     int v0 = MapHeader_GetMapLabelTextID(param0->fieldSystem->location->mapId);
     int v1 = 24;
-    Party * v2;
-    FieldSystem * fieldSystem = param0->fieldSystem;
+    Party *v2;
+    FieldSystem *fieldSystem = param0->fieldSystem;
     u16 v4 = ScriptContext_GetVar(param0);
     u16 v5 = ScriptContext_GetVar(param0);
     u16 v6 = ScriptContext_GetVar(param0);
-    u16 * v7 = ScriptContext_GetVarPointer(param0);
+    u16 *v7 = ScriptContext_GetVarPointer(param0);
 
     v2 = Party_GetFromSavedata(fieldSystem->saveData);
     *v7 = sub_020548B0(11, fieldSystem->saveData, v4, v5, v6, v0, v1);
@@ -46,12 +44,12 @@ BOOL ScrCmd_096 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_198 (ScriptContext * param0)
+BOOL ScrCmd_198(ScriptContext *param0)
 {
-    FieldSystem * fieldSystem = param0->fieldSystem;
-    Pokemon * v1;
-    u16 * v2 = ScriptContext_GetVarPointer(param0);
-    u16 * v3 = ScriptContext_GetVarPointer(param0);
+    FieldSystem *fieldSystem = param0->fieldSystem;
+    Pokemon *v1;
+    u16 *v2 = ScriptContext_GetVarPointer(param0);
+    u16 *v3 = ScriptContext_GetVarPointer(param0);
 
     v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), *v2);
 
@@ -64,13 +62,13 @@ BOOL ScrCmd_198 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_199 (ScriptContext * param0)
+BOOL ScrCmd_199(ScriptContext *param0)
 {
-    FieldSystem * fieldSystem = param0->fieldSystem;
-    Pokemon * v1;
-    TrainerInfo * v2 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSystem));
-    u16 * v3 = ScriptContext_GetVarPointer(param0);
-    u16 * v4 = ScriptContext_GetVarPointer(param0);
+    FieldSystem *fieldSystem = param0->fieldSystem;
+    Pokemon *v1;
+    TrainerInfo *v2 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSystem));
+    u16 *v3 = ScriptContext_GetVarPointer(param0);
+    u16 *v4 = ScriptContext_GetVarPointer(param0);
     u16 v5, v6;
 
     v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), *v3);
@@ -86,15 +84,15 @@ BOOL ScrCmd_199 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_097 (ScriptContext * param0)
+BOOL ScrCmd_097(ScriptContext *param0)
 {
     int v0;
     u8 v1;
     BOOL v2;
-    Party * v3;
-    Pokemon * v4;
-    FieldSystem * fieldSystem = param0->fieldSystem;
-    TrainerInfo * v6 = SaveData_GetTrainerInfo(fieldSystem->saveData);
+    Party *v3;
+    Pokemon *v4;
+    FieldSystem *fieldSystem = param0->fieldSystem;
+    TrainerInfo *v6 = SaveData_GetTrainerInfo(fieldSystem->saveData);
     u16 v7 = ScriptContext_GetVar(param0);
     u16 v8 = ScriptContext_GetVar(param0);
 
@@ -115,7 +113,7 @@ BOOL ScrCmd_097 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_098 (ScriptContext * param0)
+BOOL ScrCmd_098(ScriptContext *param0)
 {
     u16 v0, v1, v2;
 
@@ -127,11 +125,11 @@ BOOL ScrCmd_098 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_099 (ScriptContext * param0)
+BOOL ScrCmd_099(ScriptContext *param0)
 {
-    FieldSystem * fieldSystem = param0->fieldSystem;
-    Pokemon * v1;
-    u16 * v2 = ScriptContext_GetVarPointer(param0);
+    FieldSystem *fieldSystem = param0->fieldSystem;
+    Pokemon *v1;
+    u16 *v2 = ScriptContext_GetVarPointer(param0);
     u16 v3 = ScriptContext_GetVar(param0);
     u16 v4 = ScriptContext_GetVar(param0);
     u16 v5;
@@ -150,11 +148,11 @@ BOOL ScrCmd_099 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_09A (ScriptContext * param0)
+BOOL ScrCmd_09A(ScriptContext *param0)
 {
-    FieldSystem * fieldSystem = param0->fieldSystem;
-    Pokemon * v1;
-    u16 * v2 = ScriptContext_GetVarPointer(param0);
+    FieldSystem *fieldSystem = param0->fieldSystem;
+    Pokemon *v1;
+    u16 *v2 = ScriptContext_GetVarPointer(param0);
     u16 v3 = ScriptContext_GetVar(param0);
     u16 v4;
     u8 v5, v6;
@@ -177,11 +175,11 @@ BOOL ScrCmd_09A (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_1F7 (ScriptContext * param0)
+BOOL ScrCmd_1F7(ScriptContext *param0)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     u16 v1;
-    u16 * v2;
+    u16 *v2;
 
     v2 = ScriptContext_GetVarPointer(param0);
     v1 = ScriptContext_GetVar(param0);
@@ -191,11 +189,11 @@ BOOL ScrCmd_1F7 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_1F6 (ScriptContext * param0)
+BOOL ScrCmd_1F6(ScriptContext *param0)
 {
-    FieldSystem * fieldSystem = param0->fieldSystem;
-    Pokemon * v1;
-    u16 * v2 = ScriptContext_GetVarPointer(param0);
+    FieldSystem *fieldSystem = param0->fieldSystem;
+    Pokemon *v1;
+    u16 *v2 = ScriptContext_GetVarPointer(param0);
     u16 v3 = ScriptContext_GetVar(param0);
     u8 v4, v5, v6;
 
@@ -217,11 +215,11 @@ BOOL ScrCmd_1F6 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_278 (ScriptContext * param0)
+BOOL ScrCmd_278(ScriptContext *param0)
 {
-    FieldSystem * fieldSystem = param0->fieldSystem;
-    Pokemon * v1;
-    u16 * v2 = ScriptContext_GetVarPointer(param0);
+    FieldSystem *fieldSystem = param0->fieldSystem;
+    Pokemon *v1;
+    u16 *v2 = ScriptContext_GetVarPointer(param0);
     u16 v3 = ScriptContext_GetVar(param0);
 
     v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v3);
@@ -234,11 +232,11 @@ BOOL ScrCmd_278 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_212 (ScriptContext * param0)
+BOOL ScrCmd_212(ScriptContext *param0)
 {
-    FieldSystem * fieldSystem = param0->fieldSystem;
-    Pokemon * v1;
-    u16 * v2 = ScriptContext_GetVarPointer(param0);
+    FieldSystem *fieldSystem = param0->fieldSystem;
+    Pokemon *v1;
+    u16 *v2 = ScriptContext_GetVarPointer(param0);
     u16 v3 = ScriptContext_GetVar(param0);
     u8 v4;
 
@@ -261,11 +259,11 @@ BOOL ScrCmd_212 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_213 (ScriptContext * param0)
+BOOL ScrCmd_213(ScriptContext *param0)
 {
-    FieldSystem * fieldSystem = param0->fieldSystem;
-    Pokemon * v1;
-    u16 * v2 = ScriptContext_GetVarPointer(param0);
+    FieldSystem *fieldSystem = param0->fieldSystem;
+    Pokemon *v1;
+    u16 *v2 = ScriptContext_GetVarPointer(param0);
     u16 v3 = ScriptContext_GetVar(param0);
     u8 v4, v5;
 
@@ -286,11 +284,11 @@ BOOL ScrCmd_213 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_1B9 (ScriptContext * param0)
+BOOL ScrCmd_1B9(ScriptContext *param0)
 {
-    FieldSystem * fieldSystem = param0->fieldSystem;
-    Pokemon * v1;
-    u16 * v2 = ScriptContext_GetVarPointer(param0);
+    FieldSystem *fieldSystem = param0->fieldSystem;
+    Pokemon *v1;
+    u16 *v2 = ScriptContext_GetVarPointer(param0);
     u16 v3 = ScriptContext_GetVar(param0);
 
     v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v3);
@@ -299,10 +297,10 @@ BOOL ScrCmd_1B9 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_1BA (ScriptContext * param0)
+BOOL ScrCmd_1BA(ScriptContext *param0)
 {
-    FieldSystem * fieldSystem = param0->fieldSystem;
-    Pokemon * v1;
+    FieldSystem *fieldSystem = param0->fieldSystem;
+    Pokemon *v1;
     u16 v2 = ScriptContext_GetVar(param0);
     u16 v3 = ScriptContext_GetVar(param0);
     u16 v4;
@@ -335,10 +333,10 @@ BOOL ScrCmd_1BA (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_1BB (ScriptContext * param0)
+BOOL ScrCmd_1BB(ScriptContext *param0)
 {
-    FieldSystem * fieldSystem = param0->fieldSystem;
-    Pokemon * v1;
+    FieldSystem *fieldSystem = param0->fieldSystem;
+    Pokemon *v1;
     u16 v2 = ScriptContext_GetVar(param0);
     u16 v3 = ScriptContext_GetVar(param0);
     u16 v4;
@@ -356,12 +354,12 @@ BOOL ScrCmd_1BB (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_281 (ScriptContext * param0)
+BOOL ScrCmd_281(ScriptContext *param0)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     u16 v1 = ScriptContext_GetVar(param0);
     u16 v2 = ScriptContext_GetVar(param0);
-    u16 * v3 = ScriptContext_GetVarPointer(param0);
+    u16 *v3 = ScriptContext_GetVarPointer(param0);
 
     v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->fieldSystem->saveData), v1);
     *v3 = Pokemon_GetValue(v0, MON_DATA_COOL + v2, NULL);
@@ -369,20 +367,20 @@ BOOL ScrCmd_281 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_247 (ScriptContext * param0)
+BOOL ScrCmd_247(ScriptContext *param0)
 {
-    u16 * v0 = ScriptContext_GetVarPointer(param0);
+    u16 *v0 = ScriptContext_GetVarPointer(param0);
 
     *v0 = sub_0205E1B4(param0->fieldSystem->saveData);
     return 0;
 }
 
-BOOL ScrCmd_248 (ScriptContext * param0)
+BOOL ScrCmd_248(ScriptContext *param0)
 {
-    FieldSystem * fieldSystem = param0->fieldSystem;
-    Pokemon * v1;
-    u16 * v2 = ScriptContext_GetVarPointer(param0);
-    u16 * v3 = ScriptContext_GetVarPointer(param0);
+    FieldSystem *fieldSystem = param0->fieldSystem;
+    Pokemon *v1;
+    u16 *v2 = ScriptContext_GetVarPointer(param0);
+    u16 *v3 = ScriptContext_GetVarPointer(param0);
     u16 v4 = ScriptContext_GetVar(param0);
 
     v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v4);
@@ -392,12 +390,12 @@ BOOL ScrCmd_248 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_177 (ScriptContext * param0)
+BOOL ScrCmd_177(ScriptContext *param0)
 {
     int v0;
-    Pokemon * v1;
-    FieldSystem * fieldSystem = param0->fieldSystem;
-    u16 * v3 = ScriptContext_GetVarPointer(param0);
+    Pokemon *v1;
+    FieldSystem *fieldSystem = param0->fieldSystem;
+    u16 *v3 = ScriptContext_GetVarPointer(param0);
 
     v0 = Party_GetCurrentCount(Party_GetFromSavedata(fieldSystem->saveData));
     *v3 = v0;
@@ -405,12 +403,12 @@ BOOL ScrCmd_177 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_19A (ScriptContext * param0)
+BOOL ScrCmd_19A(ScriptContext *param0)
 {
     int v0, v1, v2;
-    Pokemon * v3;
-    FieldSystem * fieldSystem = param0->fieldSystem;
-    u16 * v5 = ScriptContext_GetVarPointer(param0);
+    Pokemon *v3;
+    FieldSystem *fieldSystem = param0->fieldSystem;
+    u16 *v5 = ScriptContext_GetVarPointer(param0);
 
     v0 = Party_GetCurrentCount(Party_GetFromSavedata(fieldSystem->saveData));
 
@@ -427,12 +425,12 @@ BOOL ScrCmd_19A (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_19B (ScriptContext * param0)
+BOOL ScrCmd_19B(ScriptContext *param0)
 {
     int v0, v1, v2;
-    Pokemon * v3;
-    FieldSystem * fieldSystem = param0->fieldSystem;
-    u16 * v5 = ScriptContext_GetVarPointer(param0);
+    Pokemon *v3;
+    FieldSystem *fieldSystem = param0->fieldSystem;
+    u16 *v5 = ScriptContext_GetVarPointer(param0);
     u16 v6 = ScriptContext_GetVar(param0);
 
     v0 = Party_GetCurrentCount(Party_GetFromSavedata(fieldSystem->saveData));
@@ -456,13 +454,13 @@ BOOL ScrCmd_19B (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_19C (ScriptContext * param0)
+BOOL ScrCmd_19C(ScriptContext *param0)
 {
     int v0, v1, v2;
-    Pokemon * v3;
-    FieldSystem * fieldSystem = param0->fieldSystem;
-    u16 * v5 = ScriptContext_GetVarPointer(param0);
-    PCBoxes * v6 = SaveData_PCBoxes(fieldSystem->saveData);
+    Pokemon *v3;
+    FieldSystem *fieldSystem = param0->fieldSystem;
+    u16 *v5 = ScriptContext_GetVarPointer(param0);
+    PCBoxes *v6 = SaveData_PCBoxes(fieldSystem->saveData);
 
     v0 = Party_GetCurrentCount(Party_GetFromSavedata(fieldSystem->saveData));
 
@@ -482,12 +480,12 @@ BOOL ScrCmd_19C (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_19D (ScriptContext * param0)
+BOOL ScrCmd_19D(ScriptContext *param0)
 {
     int v0, v1, v2;
-    Pokemon * v3;
-    FieldSystem * fieldSystem = param0->fieldSystem;
-    u16 * v5 = ScriptContext_GetVarPointer(param0);
+    Pokemon *v3;
+    FieldSystem *fieldSystem = param0->fieldSystem;
+    u16 *v5 = ScriptContext_GetVarPointer(param0);
 
     v0 = Party_GetCurrentCount(Party_GetFromSavedata(fieldSystem->saveData));
 
@@ -504,13 +502,13 @@ BOOL ScrCmd_19D (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_119 (ScriptContext * param0)
+BOOL ScrCmd_119(ScriptContext *param0)
 {
     u16 v0, v1;
-    u16 * v2;
+    u16 *v2;
     u32 v3;
-    Pokemon * v4;
-    FieldSystem * fieldSystem = param0->fieldSystem;
+    Pokemon *v4;
+    FieldSystem *fieldSystem = param0->fieldSystem;
 
     v2 = ScriptContext_GetVarPointer(param0);
     v1 = Party_GetCurrentCount(Party_GetFromSavedata(fieldSystem->saveData));
@@ -530,11 +528,11 @@ BOOL ScrCmd_119 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_11A (ScriptContext * param0)
+BOOL ScrCmd_11A(ScriptContext *param0)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     u16 v1 = ScriptContext_GetVar(param0);
-    u16 * v2 = ScriptContext_GetVarPointer(param0);
+    u16 *v2 = ScriptContext_GetVarPointer(param0);
 
     v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->fieldSystem->saveData), v1);
     *v2 = Pokemon_GetValue(v0, MON_DATA_GENDER, NULL);
@@ -542,11 +540,11 @@ BOOL ScrCmd_11A (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_1C8 (ScriptContext * param0)
+BOOL ScrCmd_1C8(ScriptContext *param0)
 {
-    FieldSystem * v0 = param0->fieldSystem;
-    Pokemon * v1;
-    u16 * v2 = ScriptContext_GetVarPointer(param0);
+    FieldSystem *v0 = param0->fieldSystem;
+    Pokemon *v1;
+    u16 *v2 = ScriptContext_GetVarPointer(param0);
     u16 v3 = ScriptContext_GetVar(param0);
     u8 v4;
 
@@ -559,19 +557,19 @@ BOOL ScrCmd_1C8 (ScriptContext * param0)
 
     v4 = 0;
 
-    if ((Pokemon_GetValue(v1, MON_DATA_MOVE1, NULL) != 0)) {
+    if (Pokemon_GetValue(v1, MON_DATA_MOVE1, NULL) != 0) {
         v4++;
     }
 
-    if ((Pokemon_GetValue(v1, MON_DATA_MOVE2, NULL) != 0)) {
+    if (Pokemon_GetValue(v1, MON_DATA_MOVE2, NULL) != 0) {
         v4++;
     }
 
-    if ((Pokemon_GetValue(v1, MON_DATA_MOVE3, NULL) != 0)) {
+    if (Pokemon_GetValue(v1, MON_DATA_MOVE3, NULL) != 0) {
         v4++;
     }
 
-    if ((Pokemon_GetValue(v1, MON_DATA_MOVE4, NULL) != 0)) {
+    if (Pokemon_GetValue(v1, MON_DATA_MOVE4, NULL) != 0) {
         v4++;
     }
 
@@ -579,10 +577,10 @@ BOOL ScrCmd_1C8 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_1C9 (ScriptContext * param0)
+BOOL ScrCmd_1C9(ScriptContext *param0)
 {
-    FieldSystem * fieldSystem = param0->fieldSystem;
-    Pokemon * v1;
+    FieldSystem *fieldSystem = param0->fieldSystem;
+    Pokemon *v1;
     u32 v2;
     u8 v3;
     u16 v4 = ScriptContext_GetVar(param0);
@@ -594,11 +592,11 @@ BOOL ScrCmd_1C9 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_1CA (ScriptContext * param0)
+BOOL ScrCmd_1CA(ScriptContext *param0)
 {
-    FieldSystem * fieldSystem = param0->fieldSystem;
-    Pokemon * v1;
-    u16 * v2 = ScriptContext_GetVarPointer(param0);
+    FieldSystem *fieldSystem = param0->fieldSystem;
+    Pokemon *v1;
+    u16 *v2 = ScriptContext_GetVarPointer(param0);
     u16 v3 = ScriptContext_GetVar(param0);
     u16 v4 = ScriptContext_GetVar(param0);
 
@@ -608,11 +606,11 @@ BOOL ScrCmd_1CA (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_1EE (ScriptContext * param0)
+BOOL ScrCmd_1EE(ScriptContext *param0)
 {
-    FieldSystem * fieldSystem = param0->fieldSystem;
-    Pokemon * v1;
-    u16 * v2 = ScriptContext_GetVarPointer(param0);
+    FieldSystem *fieldSystem = param0->fieldSystem;
+    Pokemon *v1;
+    u16 *v2 = ScriptContext_GetVarPointer(param0);
     u16 v3 = ScriptContext_GetVar(param0);
 
     v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v3);
@@ -621,10 +619,10 @@ BOOL ScrCmd_1EE (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_1F0 (ScriptContext * param0)
+BOOL ScrCmd_1F0(ScriptContext *param0)
 {
-    FieldSystem * fieldSystem = param0->fieldSystem;
-    Pokemon * v1;
+    FieldSystem *fieldSystem = param0->fieldSystem;
+    Pokemon *v1;
     u16 v2 = ScriptContext_GetVar(param0);
     u16 v3;
 
@@ -636,12 +634,12 @@ BOOL ScrCmd_1F0 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_1C0 (ScriptContext * param0)
+BOOL ScrCmd_1C0(ScriptContext *param0)
 {
-    FieldSystem * fieldSystem = param0->fieldSystem;
-    Pokemon * v1;
-    Party * v2;
-    u16 * v3 = ScriptContext_GetVarPointer(param0);
+    FieldSystem *fieldSystem = param0->fieldSystem;
+    Pokemon *v1;
+    Party *v2;
+    u16 *v3 = ScriptContext_GetVarPointer(param0);
     u16 v4 = ScriptContext_GetVar(param0);
     u8 v5, v6;
     u16 v7;
@@ -666,12 +664,12 @@ BOOL ScrCmd_1C0 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_2CB (ScriptContext * param0)
+BOOL ScrCmd_2CB(ScriptContext *param0)
 {
-    FieldSystem * fieldSystem = param0->fieldSystem;
-    Pokemon * v1;
-    Party * v2;
-    u16 * v3 = ScriptContext_GetVarPointer(param0);
+    FieldSystem *fieldSystem = param0->fieldSystem;
+    Pokemon *v1;
+    Party *v2;
+    u16 *v3 = ScriptContext_GetVarPointer(param0);
     u16 v4 = ScriptContext_GetVar(param0);
     u8 v5, v6, v7;
     u16 v8;
@@ -711,12 +709,12 @@ BOOL ScrCmd_2CB (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_2DD (ScriptContext * param0)
+BOOL ScrCmd_2DD(ScriptContext *param0)
 {
-    FieldSystem * fieldSystem = param0->fieldSystem;
-    Pokemon * v1;
-    Party * v2;
-    u16 * v3 = ScriptContext_GetVarPointer(param0);
+    FieldSystem *fieldSystem = param0->fieldSystem;
+    Pokemon *v1;
+    Party *v2;
+    u16 *v3 = ScriptContext_GetVarPointer(param0);
     u16 v4 = ScriptContext_GetVar(param0);
     u8 v5, v6;
     u16 v7;
@@ -741,10 +739,10 @@ BOOL ScrCmd_2DD (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_22E (ScriptContext * param0)
+BOOL ScrCmd_22E(ScriptContext *param0)
 {
-    Pokemon * v0;
-    u16 * v1 = ScriptContext_GetVarPointer(param0);
+    Pokemon *v0;
+    u16 *v1 = ScriptContext_GetVarPointer(param0);
     u16 v2 = ScriptContext_GetVar(param0);
     u16 v3, v4;
 
@@ -761,11 +759,11 @@ BOOL ScrCmd_22E (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_22F (ScriptContext * param0)
+BOOL ScrCmd_22F(ScriptContext *param0)
 {
-    Pokemon * v0;
-    Party * v1;
-    u16 * v2 = ScriptContext_GetVarPointer(param0);
+    Pokemon *v0;
+    Party *v1;
+    u16 *v2 = ScriptContext_GetVarPointer(param0);
     u16 v3, v4, v5, v6;
 
     v6 = Party_GetCurrentCount(Party_GetFromSavedata(param0->fieldSystem->saveData));
@@ -789,10 +787,10 @@ BOOL ScrCmd_22F (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_230 (ScriptContext * param0)
+BOOL ScrCmd_230(ScriptContext *param0)
 {
-    Pokemon * v0;
-    u16 * v1 = ScriptContext_GetVarPointer(param0);
+    Pokemon *v0;
+    u16 *v1 = ScriptContext_GetVarPointer(param0);
     u16 v2 = ScriptContext_GetVar(param0);
     u16 v3 = ScriptContext_GetVar(param0);
     u8 v4 = 1;
@@ -803,9 +801,9 @@ BOOL ScrCmd_230 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_231 (ScriptContext * param0)
+BOOL ScrCmd_231(ScriptContext *param0)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     u16 v1 = ScriptContext_GetVar(param0);
     u16 v2 = ScriptContext_GetVar(param0);
     u8 v3 = 1;
@@ -818,11 +816,11 @@ BOOL ScrCmd_231 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_2B7 (ScriptContext * param0)
+BOOL ScrCmd_2B7(ScriptContext *param0)
 {
-    Pokemon * v0;
-    Party * v1;
-    u16 * v2 = ScriptContext_GetVarPointer(param0);
+    Pokemon *v0;
+    Party *v1;
+    u16 *v2 = ScriptContext_GetVarPointer(param0);
     u16 v3, v4, v5;
 
     v5 = Party_GetCurrentCount(Party_GetFromSavedata(param0->fieldSystem->saveData));
@@ -846,19 +844,19 @@ BOOL ScrCmd_2B7 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_0A0 (ScriptContext * param0)
+BOOL ScrCmd_0A0(ScriptContext *param0)
 {
     return 0;
 }
 
-BOOL ScrCmd_31C (ScriptContext * param0)
+BOOL ScrCmd_31C(ScriptContext *param0)
 {
     u8 v0, v1;
     u16 v2;
-    Pokemon * v3;
-    Party * v4;
-    FieldSystem * fieldSystem = param0->fieldSystem;
-    u16 * v6 = ScriptContext_GetVarPointer(param0);
+    Pokemon *v3;
+    Party *v4;
+    FieldSystem *fieldSystem = param0->fieldSystem;
+    u16 *v6 = ScriptContext_GetVarPointer(param0);
     u16 v7 = ScriptContext_GetVar(param0);
 
     v4 = Party_GetFromSavedata(fieldSystem->saveData);
@@ -883,14 +881,14 @@ BOOL ScrCmd_31C (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_32F (ScriptContext * param0)
+BOOL ScrCmd_32F(ScriptContext *param0)
 {
     int v0, v1;
-    Party * v2;
-    Pokemon * v3;
-    FieldSystem * fieldSystem = param0->fieldSystem;
+    Party *v2;
+    Pokemon *v3;
+    FieldSystem *fieldSystem = param0->fieldSystem;
     u16 v5 = ScriptContext_GetVar(param0);
-    u16 * v6 = ScriptContext_GetVarPointer(param0);
+    u16 *v6 = ScriptContext_GetVarPointer(param0);
 
     v2 = Party_GetFromSavedata(fieldSystem->saveData);
     v1 = Party_GetCurrentCount(v2);

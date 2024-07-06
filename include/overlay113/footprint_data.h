@@ -7,5 +7,4 @@ typedef struct FootprintData {
     u16 unk_02;
 } FootprintData;
 
-#endif  // POKEPLATINUM_FOOTPRINT_DATA_H
-
+#endif // POKEPLATINUM_FOOTPRINT_DATA_H

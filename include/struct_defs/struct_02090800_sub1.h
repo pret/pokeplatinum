@@ -5,7 +5,7 @@
 
 typedef struct {
     int unk_00;
-    Strbuf* unk_04;
+    Strbuf *unk_04;
 } PokemonInfoDisplayStruct_sub1;
 
 #endif // POKEPLATINUM_STRUCT_02090800_SUB1_H

@@ -1,14 +1,14 @@
+#include "unk_02003B60.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_02003D54_decl.h"
-#include "sys_task_manager.h"
 #include "struct_defs/chatot_cry.h"
-
 #include "struct_defs/struct_020052C8.h"
-#include "game_options.h"
 
-#include "unk_02003B60.h"
+#include "game_options.h"
+#include "sys_task_manager.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_02006224.h"
@@ -19,7 +19,7 @@ struct UnkStruct_02003D54_t {
     u8 unk_FC[769024];
     NNSSndHandle unk_BBCFC[9];
     NNSSndWaveOutHandle unk_BBD20[2];
-    const NNSSndArcBankInfo * unk_BBD28;
+    const NNSSndArcBankInfo *unk_BBD28;
     u8 unk_BBD2C[4096] ATTRIBUTE_ALIGN(32);
     UnkStruct_020052C8 unk_BCD2C;
     u16 unk_BCD48;
@@ -45,12 +45,12 @@ struct UnkStruct_02003D54_t {
     u8 unk_BCD84;
     u8 unk_BCD85;
     u16 unk_BCD86;
-    const SNDWaveData * unk_BCD88;
-    void * unk_BCD8C;
+    const SNDWaveData *unk_BCD88;
+    void *unk_BCD8C;
     int unk_BCD90;
-    SysTask * unk_BCD94;
-    ChatotCry * unk_BCD98;
-    ChatotCry * unk_BCD9C[4];
+    SysTask *unk_BCD94;
+    ChatotCry *unk_BCD98;
+    ChatotCry *unk_BCD9C[4];
     int unk_BCDAC[2];
     int unk_BCDB4[2];
     int unk_BCDBC[2];
@@ -61,9 +61,9 @@ struct UnkStruct_02003D54_t {
     u8 unk_BCDD3;
 };
 
-static void sub_0200413C(UnkStruct_02003D54 * param0);
-static void sub_02004160(UnkStruct_02003D54 * param0);
-static void sub_0200417C(UnkStruct_02003D54 * param0);
+static void sub_0200413C(UnkStruct_02003D54 *param0);
+static void sub_02004160(UnkStruct_02003D54 *param0);
+static void sub_0200417C(UnkStruct_02003D54 *param0);
 static void sub_020041A0(void);
 static BOOL sub_02003D28(void);
 static void sub_02003C64(void);
@@ -73,9 +73,9 @@ static UnkStruct_02003D54 Unk_02101DF8;
 static int Unk_02101DF0;
 static NNSSndCaptureOutputEffectType Unk_02101DF4;
 
-void sub_02003B60 (ChatotCry * param0, Options * param1)
+void sub_02003B60(ChatotCry *param0, Options *param1)
 {
-    UnkStruct_02003D54 * v0 = sub_02003D54();
+    UnkStruct_02003D54 *v0 = sub_02003D54();
 
     NNS_SndInit();
 
@@ -98,10 +98,10 @@ void sub_02003B60 (ChatotCry * param0, Options * param1)
     return;
 }
 
-void UpdateSound (void)
+void UpdateSound(void)
 {
     int v0;
-    UnkStruct_02003D54 * v1 = sub_02003D54();
+    UnkStruct_02003D54 *v1 = sub_02003D54();
 
     if (sub_02003D28() == 0) {
         if (v1->unk_BCD4C > 0) {
@@ -127,10 +127,10 @@ void UpdateSound (void)
     return;
 }
 
-static void sub_02003C64 (void)
+static void sub_02003C64(void)
 {
     int v0;
-    UnkStruct_02003D54 * v1 = sub_02003D54();
+    UnkStruct_02003D54 *v1 = sub_02003D54();
 
     switch (Unk_02101DF0) {
     case 0:
@@ -172,9 +172,9 @@ static void sub_02003C64 (void)
     return;
 }
 
-void sub_02003D0C (int param0)
+void sub_02003D0C(int param0)
 {
-    UnkStruct_02003D54 * v0 = sub_02003D54();
+    UnkStruct_02003D54 *v0 = sub_02003D54();
 
     v0->unk_BCD48 = 0;
     Unk_02101DF0 = param0;
@@ -182,9 +182,9 @@ void sub_02003D0C (int param0)
     return;
 }
 
-static BOOL sub_02003D28 (void)
+static BOOL sub_02003D28(void)
 {
-    UnkStruct_02003D54 * v0 = sub_02003D54();
+    UnkStruct_02003D54 *v0 = sub_02003D54();
 
     if (sub_02004B04(2) != 0) {
         return 1;
@@ -197,14 +197,14 @@ static BOOL sub_02003D28 (void)
     return 0;
 }
 
-UnkStruct_02003D54 * sub_02003D54 ()
+UnkStruct_02003D54 *sub_02003D54()
 {
     return (UnkStruct_02003D54 *)&Unk_02101DF8;
 }
 
-void * sub_02003D5C (int param0)
+void *sub_02003D5C(int param0)
 {
-    UnkStruct_02003D54 * v0 = sub_02003D54();
+    UnkStruct_02003D54 *v0 = sub_02003D54();
 
     switch (param0) {
     case 5:
@@ -323,10 +323,10 @@ void * sub_02003D5C (int param0)
     return NULL;
 }
 
-int sub_02004014 (int * param0)
+int sub_02004014(int *param0)
 {
     int v0;
-    UnkStruct_02003D54 * v1 = sub_02003D54();
+    UnkStruct_02003D54 *v1 = sub_02003D54();
 
     v0 = NNS_SndHeapSaveState(v1->unk_F8);
 
@@ -341,62 +341,62 @@ int sub_02004014 (int * param0)
     return v0;
 }
 
-void sub_0200403C (int param0)
+void sub_0200403C(int param0)
 {
-    UnkStruct_02003D54 * v0 = sub_02003D54();
+    UnkStruct_02003D54 *v0 = sub_02003D54();
 
     NNS_SndHeapLoadState(v0->unk_F8, param0);
     return;
 }
 
-BOOL sub_02004050 (u16 param0)
+BOOL sub_02004050(u16 param0)
 {
     int v0;
-    UnkStruct_02003D54 * v1 = sub_02003D54();
+    UnkStruct_02003D54 *v1 = sub_02003D54();
 
     v0 = NNS_SndArcLoadGroup(param0, v1->unk_F8);
     return v0;
 }
 
-BOOL sub_02004068 (u16 param0)
+BOOL sub_02004068(u16 param0)
 {
     int v0;
-    UnkStruct_02003D54 * v1 = sub_02003D54();
+    UnkStruct_02003D54 *v1 = sub_02003D54();
 
     v0 = NNS_SndArcLoadSeq(param0, v1->unk_F8);
     return v0;
 }
 
-BOOL sub_02004080 (u16 param0, u32 param1)
+BOOL sub_02004080(u16 param0, u32 param1)
 {
     int v0;
-    UnkStruct_02003D54 * v1 = sub_02003D54();
+    UnkStruct_02003D54 *v1 = sub_02003D54();
 
     v0 = NNS_SndArcLoadSeqEx(param0, param1, v1->unk_F8);
     return v0;
 }
 
-BOOL sub_0200409C (u16 param0)
+BOOL sub_0200409C(u16 param0)
 {
     int v0;
-    UnkStruct_02003D54 * v1 = sub_02003D54();
+    UnkStruct_02003D54 *v1 = sub_02003D54();
 
     v0 = NNS_SndArcLoadWaveArc(param0, v1->unk_F8);
     return v0;
 }
 
-BOOL sub_020040B4 (u16 param0)
+BOOL sub_020040B4(u16 param0)
 {
     int v0;
-    UnkStruct_02003D54 * v1 = sub_02003D54();
+    UnkStruct_02003D54 *v1 = sub_02003D54();
 
     v0 = NNS_SndArcLoadBank(param0, v1->unk_F8);
     return v0;
 }
 
-NNSSndHandle * sub_020040CC (int param0)
+NNSSndHandle *sub_020040CC(int param0)
 {
-    UnkStruct_02003D54 * v0 = sub_02003D54();
+    UnkStruct_02003D54 *v0 = sub_02003D54();
 
     if (param0 >= 9) {
         GF_ASSERT(FALSE);
@@ -406,7 +406,7 @@ NNSSndHandle * sub_020040CC (int param0)
     return &v0->unk_BBCFC[param0];
 }
 
-int sub_020040F0 (int param0)
+int sub_020040F0(int param0)
 {
     int v0;
 
@@ -444,7 +444,7 @@ int sub_020040F0 (int param0)
     return v0;
 }
 
-static void sub_0200413C (UnkStruct_02003D54 * param0)
+static void sub_0200413C(UnkStruct_02003D54 *param0)
 {
     int v0;
 
@@ -457,7 +457,7 @@ static void sub_0200413C (UnkStruct_02003D54 * param0)
     return;
 }
 
-static void sub_02004160 (UnkStruct_02003D54 * param0)
+static void sub_02004160(UnkStruct_02003D54 *param0)
 {
     int v0;
 
@@ -468,7 +468,7 @@ static void sub_02004160 (UnkStruct_02003D54 * param0)
     return;
 }
 
-static void sub_0200417C (UnkStruct_02003D54 * param0)
+static void sub_0200417C(UnkStruct_02003D54 *param0)
 {
     int v0;
 
@@ -479,7 +479,7 @@ static void sub_0200417C (UnkStruct_02003D54 * param0)
     return;
 }
 
-static void sub_020041A0 (void)
+static void sub_020041A0(void)
 {
     MIC_Init();
 
@@ -489,7 +489,7 @@ static void sub_020041A0 (void)
     return;
 }
 
-static void sub_020041B4 (void)
+static void sub_020041B4(void)
 {
     NNS_SndPlayerStopSeqByPlayerNo(7, 0);
     NNS_SndHandleReleaseSeq(sub_020040CC(7));

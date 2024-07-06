@@ -1,31 +1,33 @@
+#include "battle/ov16_0226E148.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/battle_system.h"
-#include "battle/struct_ov16_02268A14_decl.h"
+#include "struct_decls/struct_02006C24_decl.h"
 
-#include "unk_02005474.h"
-#include "narc.h"
-#include "sys_task.h"
-#include "heap.h"
-#include "sys_task_manager.h"
 #include "battle/ov16_0223DF00.h"
 #include "battle/ov16_0226871C.h"
-#include "battle/ov16_0226E148.h"
+#include "battle/struct_ov16_02268A14_decl.h"
+
+#include "heap.h"
+#include "narc.h"
+#include "sys_task.h"
+#include "sys_task_manager.h"
+#include "unk_02005474.h"
 
 typedef struct {
-    BattleSystem * unk_00;
+    BattleSystem *unk_00;
     s16 unk_04;
     s16 unk_06;
 } UnkStruct_ov16_0226E148;
 
-static void ov16_0226E188(SysTask * param0, void * param1);
+static void ov16_0226E188(SysTask *param0, void *param1);
 
-SysTask * ov16_0226E148 (BattleSystem * param0)
+SysTask *ov16_0226E148(BattleSystem *param0)
 {
-    UnkStruct_ov16_0226E148 * v0;
-    SysTask * v1;
+    UnkStruct_ov16_0226E148 *v0;
+    SysTask *v1;
 
     v0 = Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_0226E148));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov16_0226E148));
@@ -36,9 +38,9 @@ SysTask * ov16_0226E148 (BattleSystem * param0)
     return v1;
 }
 
-void ov16_0226E174 (SysTask * param0)
+void ov16_0226E174(SysTask *param0)
 {
-    UnkStruct_ov16_0226E148 * v0;
+    UnkStruct_ov16_0226E148 *v0;
 
     v0 = SysTask_GetParam(param0);
 
@@ -46,10 +48,10 @@ void ov16_0226E174 (SysTask * param0)
     SysTask_Done(param0);
 }
 
-static void ov16_0226E188 (SysTask * param0, void * param1)
+static void ov16_0226E188(SysTask *param0, void *param1)
 {
-    UnkStruct_ov16_0226E148 * v0 = param1;
-    UnkStruct_ov16_02268A14 * v1;
+    UnkStruct_ov16_0226E148 *v0 = param1;
+    UnkStruct_ov16_02268A14 *v1;
 
     v1 = ov16_0223E02C(v0->unk_00);
 
@@ -58,7 +60,7 @@ static void ov16_0226E188 (SysTask * param0, void * param1)
         GF_ASSERT(v1 != NULL);
 
         {
-            NARC * v2, * v3;
+            NARC *v2, *v3;
 
             v2 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
             v3 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);

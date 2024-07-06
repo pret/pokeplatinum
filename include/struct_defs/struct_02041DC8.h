@@ -4,7 +4,7 @@
 #include "struct_decls/struct_0202A750_decl.h"
 
 typedef struct {
-    UnkStruct_0202A750 * unk_00;
+    UnkStruct_0202A750 *unk_00;
     u32 unk_04;
     u32 unk_08;
 } UnkStruct_02041DC8;

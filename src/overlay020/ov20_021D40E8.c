@@ -1,39 +1,38 @@
+#include "overlay020/ov20_021D40E8.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "enums.h"
-
 #include "struct_decls/struct_02018340_decl.h"
-#include "strbuf.h"
 #include "struct_decls/struct_020998EC_decl.h"
+#include "struct_defs/struct_0205AA50.h"
+
+#include "overlay020/ov20_021D0D80.h"
+#include "overlay020/ov20_021D2098.h"
+#include "overlay020/ov20_021D4E38.h"
 #include "overlay020/struct_ov20_021D16E8_decl.h"
 #include "overlay020/struct_ov20_021D2128_decl.h"
-
-#include "struct_defs/struct_0205AA50.h"
 #include "overlay020/struct_ov20_021D4E8C.h"
 #include "overlay020/struct_ov20_021D4FF0.h"
 
+#include "cell_actor.h"
+#include "enums.h"
 #include "heap.h"
+#include "strbuf.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "cell_actor.h"
-#include "strbuf.h"
-#include "overlay020/ov20_021D0D80.h"
-#include "overlay020/ov20_021D2098.h"
-#include "overlay020/ov20_021D40E8.h"
-#include "overlay020/ov20_021D4E38.h"
 
 typedef struct UnkStruct_ov20_021D4210_t {
-    UnkStruct_ov20_021D2128 * unk_00;
-    const UnkStruct_ov20_021D16E8 * unk_04;
-    const UnkStruct_020998EC * unk_08;
-    BGL * unk_0C;
+    UnkStruct_ov20_021D2128 *unk_00;
+    const UnkStruct_ov20_021D16E8 *unk_04;
+    const UnkStruct_020998EC *unk_08;
+    BGL *unk_0C;
     Window unk_10;
     Window unk_20;
-    CellActor * unk_30;
-    CellActor * unk_34;
-    CellActor * unk_38;
-    Strbuf* unk_3C;
+    CellActor *unk_30;
+    CellActor *unk_34;
+    CellActor *unk_38;
+    Strbuf *unk_3C;
     UnkStruct_ov20_021D4FF0 unk_40;
     UnkStruct_ov20_021D4E8C unk_60;
     u32 unk_80;
@@ -43,14 +42,14 @@ typedef struct UnkStruct_ov20_021D4210_t {
     int unk_90;
 } UnkStruct_ov20_021D4210;
 
-static void ov20_021D4210(UnkStruct_ov20_021D4210 * param0);
-static void ov20_021D45AC(UnkStruct_ov20_021D4210 * param0, int param1);
-static void ov20_021D4638(UnkStruct_ov20_021D4210 * param0);
-static void ov20_021D4658(UnkStruct_ov20_021D4210 * param0, u32 param1, u32 param2);
+static void ov20_021D4210(UnkStruct_ov20_021D4210 *param0);
+static void ov20_021D45AC(UnkStruct_ov20_021D4210 *param0, int param1);
+static void ov20_021D4638(UnkStruct_ov20_021D4210 *param0);
+static void ov20_021D4658(UnkStruct_ov20_021D4210 *param0, u32 param1, u32 param2);
 
-UnkStruct_ov20_021D4210 * ov20_021D40E8 (UnkStruct_ov20_021D2128 * param0, const UnkStruct_ov20_021D16E8 * param1, const UnkStruct_020998EC * param2)
+UnkStruct_ov20_021D4210 *ov20_021D40E8(UnkStruct_ov20_021D2128 *param0, const UnkStruct_ov20_021D16E8 *param1, const UnkStruct_020998EC *param2)
 {
-    UnkStruct_ov20_021D4210 * v0 = Heap_AllocFromHeap(35, sizeof(UnkStruct_ov20_021D4210));
+    UnkStruct_ov20_021D4210 *v0 = Heap_AllocFromHeap(35, sizeof(UnkStruct_ov20_021D4210));
 
     v0->unk_00 = param0;
     v0->unk_04 = param1;
@@ -68,7 +67,7 @@ UnkStruct_ov20_021D4210 * ov20_021D40E8 (UnkStruct_ov20_021D2128 * param0, const
     return v0;
 }
 
-void ov20_021D4164 (UnkStruct_ov20_021D4210 * param0)
+void ov20_021D4164(UnkStruct_ov20_021D4210 *param0)
 {
     if (param0->unk_30) {
         CellActor_Delete(param0->unk_30);
@@ -91,9 +90,9 @@ void ov20_021D4164 (UnkStruct_ov20_021D4210 * param0)
     Heap_FreeToHeap(param0);
 }
 
-void ov20_021D41A8 (UnkStruct_ov20_021D4210 * param0)
+void ov20_021D41A8(UnkStruct_ov20_021D4210 *param0)
 {
-    BGL * v0;
+    BGL *v0;
     u32 v1;
 
     v0 = ov20_021D2E04(param0->unk_00);
@@ -111,7 +110,7 @@ void ov20_021D41A8 (UnkStruct_ov20_021D4210 * param0)
     sub_02019120(2, 0);
 }
 
-static void ov20_021D4210 (UnkStruct_ov20_021D4210 * param0)
+static void ov20_021D4210(UnkStruct_ov20_021D4210 *param0)
 {
     CellActorResourceData v0;
 
@@ -130,7 +129,7 @@ static void ov20_021D4210 (UnkStruct_ov20_021D4210 * param0)
     CellActor_SetDrawFlag(param0->unk_38, 0);
 }
 
-void ov20_021D4294 (UnkStruct_ov20_021D4210 * param0)
+void ov20_021D4294(UnkStruct_ov20_021D4210 *param0)
 {
     u32 v0, v1, v2;
 
@@ -156,7 +155,7 @@ void ov20_021D4294 (UnkStruct_ov20_021D4210 * param0)
     sub_0201ACCC(&param0->unk_10);
 }
 
-void ov20_021D42E4 (UnkStruct_ov20_021D4210 * param0)
+void ov20_021D42E4(UnkStruct_ov20_021D4210 *param0)
 {
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_ALL, 0, 16);
     sub_02019120(2, 1);
@@ -173,7 +172,7 @@ void ov20_021D42E4 (UnkStruct_ov20_021D4210 * param0)
     ov20_021D4F1C(&param0->unk_40, GX_BLEND_PLANEMASK_BG2, GX_BLEND_ALL, 0, 124, (6 * 2));
 }
 
-BOOL ov20_021D4390 (UnkStruct_ov20_021D4210 * param0)
+BOOL ov20_021D4390(UnkStruct_ov20_021D4210 *param0)
 {
     switch (param0->unk_80) {
     case 0:
@@ -188,13 +187,13 @@ BOOL ov20_021D4390 (UnkStruct_ov20_021D4210 * param0)
     return 0;
 }
 
-void ov20_021D43B4 (UnkStruct_ov20_021D4210 * param0)
+void ov20_021D43B4(UnkStruct_ov20_021D4210 *param0)
 {
     param0->unk_80 = 0;
     ov20_021D4F1C(&param0->unk_40, GX_BLEND_PLANEMASK_BG2, GX_BLEND_ALL, 124, 0, (6 * 2));
 }
 
-BOOL ov20_021D43D8 (UnkStruct_ov20_021D4210 * param0)
+BOOL ov20_021D43D8(UnkStruct_ov20_021D4210 *param0)
 {
     switch (param0->unk_80) {
     case 0:
@@ -212,7 +211,7 @@ BOOL ov20_021D43D8 (UnkStruct_ov20_021D4210 * param0)
     return 0;
 }
 
-void ov20_021D4440 (UnkStruct_ov20_021D4210 * param0, BOOL param1)
+void ov20_021D4440(UnkStruct_ov20_021D4210 *param0, BOOL param1)
 {
     CellActor_SetDrawFlag(param0->unk_30, param1);
 
@@ -225,7 +224,7 @@ void ov20_021D4440 (UnkStruct_ov20_021D4210 * param0, BOOL param1)
     }
 }
 
-void ov20_021D4480 (UnkStruct_ov20_021D4210 * param0, u32 param1)
+void ov20_021D4480(UnkStruct_ov20_021D4210 *param0, u32 param1)
 {
     VecFx32 v0;
     u32 v1, v2;
@@ -241,7 +240,7 @@ void ov20_021D4480 (UnkStruct_ov20_021D4210 * param0, u32 param1)
     CellActor_SetAnim(param0->unk_30, 8);
 }
 
-void ov20_021D44BC (UnkStruct_ov20_021D4210 * param0, int param1)
+void ov20_021D44BC(UnkStruct_ov20_021D4210 *param0, int param1)
 {
     int v0, v1, v2, v3, v4, v5, v6;
 
@@ -282,7 +281,7 @@ void ov20_021D44BC (UnkStruct_ov20_021D4210 * param0, int param1)
     ov20_021D4E38(&(param0->unk_60), param0->unk_0C, 2, 1, param1 * 24, v6);
 }
 
-BOOL ov20_021D4578 (UnkStruct_ov20_021D4210 * param0)
+BOOL ov20_021D4578(UnkStruct_ov20_021D4210 *param0)
 {
     if (ov20_021D4E8C(&param0->unk_60)) {
         CellActor_SetDrawFlag(param0->unk_34, ov20_021D204C(param0->unk_04));
@@ -293,7 +292,7 @@ BOOL ov20_021D4578 (UnkStruct_ov20_021D4210 * param0)
     return 0;
 }
 
-static void ov20_021D45AC (UnkStruct_ov20_021D4210 * param0, int param1)
+static void ov20_021D45AC(UnkStruct_ov20_021D4210 *param0, int param1)
 {
     int v0, v1;
 
@@ -313,7 +312,7 @@ static void ov20_021D45AC (UnkStruct_ov20_021D4210 * param0, int param1)
     }
 }
 
-static void ov20_021D4638 (UnkStruct_ov20_021D4210 * param0)
+static void ov20_021D4638(UnkStruct_ov20_021D4210 *param0)
 {
     param0->unk_8C = 48;
     param0->unk_90 = 0;
@@ -321,7 +320,7 @@ static void ov20_021D4638 (UnkStruct_ov20_021D4210 * param0)
     sub_02019184(param0->unk_0C, 2, 3, 0);
 }
 
-static void ov20_021D4658 (UnkStruct_ov20_021D4210 * param0, u32 param1, u32 param2)
+static void ov20_021D4658(UnkStruct_ov20_021D4210 *param0, u32 param1, u32 param2)
 {
     ov20_021D2008(param0->unk_04, param1, param0->unk_3C);
 

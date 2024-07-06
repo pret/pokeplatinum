@@ -2,9 +2,9 @@
 #define POKEPLATINUM_STRUCT_0202FF58_H
 
 typedef struct {
-    u8 unk_00_0  : 1;
-    u8 unk_00_1  : 3;
-    u8 unk_00_4  : 1;
+    u8 unk_00_0 : 1;
+    u8 unk_00_1 : 3;
+    u8 unk_00_4 : 1;
     u8 : 3;
     u8 unk_01;
     u16 padding_02;

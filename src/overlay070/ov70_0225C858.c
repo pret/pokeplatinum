@@ -1,21 +1,22 @@
+#include "overlay070/ov70_0225C858.h"
+
 #include <nitro.h>
 #include <string.h>
 
+#include "overlay063/ov63_0222BCE8.h"
 #include "overlay063/struct_ov63_0222BCE8_decl.h"
 
-#include "unk_02006E3C.h"
 #include "heap.h"
-#include "overlay063/ov63_0222BCE8.h"
-#include "overlay070/ov70_0225C858.h"
+#include "unk_02006E3C.h"
 
 typedef struct UnkStruct_ov70_0225C894_t {
-    UnkStruct_ov63_0222BCE8 * unk_00;
+    UnkStruct_ov63_0222BCE8 *unk_00;
 } UnkStruct_ov70_0225C894;
 
-UnkStruct_ov70_0225C894 * ov70_0225C858 (u32 param0)
+UnkStruct_ov70_0225C894 *ov70_0225C858(u32 param0)
 {
-    UnkStruct_ov70_0225C894 * v0;
-    void * v1;
+    UnkStruct_ov70_0225C894 *v0;
+    void *v1;
 
     v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov70_0225C894));
     v0->unk_00 = ov63_0222BCE8(35, 42, param0);
@@ -28,23 +29,23 @@ UnkStruct_ov70_0225C894 * ov70_0225C858 (u32 param0)
     return v0;
 }
 
-void ov70_0225C894 (UnkStruct_ov70_0225C894 * param0)
+void ov70_0225C894(UnkStruct_ov70_0225C894 *param0)
 {
     ov63_0222BD30(param0->unk_00);
     Heap_FreeToHeap(param0);
 }
 
-u16 ov70_0225C8A8 (const UnkStruct_ov70_0225C894 * param0)
+u16 ov70_0225C8A8(const UnkStruct_ov70_0225C894 *param0)
 {
     return 35;
 }
 
-BOOL ov70_0225C8AC (const UnkStruct_ov70_0225C894 * param0, u16 param1, u16 param2)
+BOOL ov70_0225C8AC(const UnkStruct_ov70_0225C894 *param0, u16 param1, u16 param2)
 {
     return ov63_0222BDAC(param0->unk_00, param1, param2);
 }
 
-u32 ov70_0225C8B8 (const UnkStruct_ov70_0225C894 * param0, u16 param1, u16 param2)
+u32 ov70_0225C8B8(const UnkStruct_ov70_0225C894 *param0, u16 param1, u16 param2)
 {
     u32 v0;
 
@@ -52,7 +53,7 @@ u32 ov70_0225C8B8 (const UnkStruct_ov70_0225C894 * param0, u16 param1, u16 param
     return v0 >> 15;
 }
 
-u32 ov70_0225C8C4 (const UnkStruct_ov70_0225C894 * param0, u16 param1, u16 param2)
+u32 ov70_0225C8C4(const UnkStruct_ov70_0225C894 *param0, u16 param1, u16 param2)
 {
     u32 v0;
 
@@ -62,7 +63,7 @@ u32 ov70_0225C8C4 (const UnkStruct_ov70_0225C894 * param0, u16 param1, u16 param
     return v0;
 }
 
-BOOL ov70_0225C8D8 (const UnkStruct_ov70_0225C894 * param0, u32 param1, u16 * param2, u16 * param3, u32 param4)
+BOOL ov70_0225C8D8(const UnkStruct_ov70_0225C894 *param0, u32 param1, u16 *param2, u16 *param3, u32 param4)
 {
     int v0, v1, v2;
     u32 v3;
@@ -88,7 +89,7 @@ BOOL ov70_0225C8D8 (const UnkStruct_ov70_0225C894 * param0, u32 param1, u16 * pa
     return 0;
 }
 
-BOOL ov70_0225C930 (u32 param0)
+BOOL ov70_0225C930(u32 param0)
 {
     static const u8 v0[] = {
         1,
@@ -135,10 +136,12 @@ BOOL ov70_0225C930 (u32 param0)
     return 0;
 }
 
-BOOL ov70_0225C950 (u32 param0)
+BOOL ov70_0225C950(u32 param0)
 {
     static const u8 v0[] = {
-        39, 40, 41,
+        39,
+        40,
+        41,
     };
     int v1;
 
@@ -151,7 +154,7 @@ BOOL ov70_0225C950 (u32 param0)
     return 0;
 }
 
-BOOL ov70_0225C970 (u32 param0)
+BOOL ov70_0225C970(u32 param0)
 {
     static const u8 v0[] = {
         36, 37, 38, 39, 40, 41, 43
@@ -167,10 +170,13 @@ BOOL ov70_0225C970 (u32 param0)
     return 0;
 }
 
-BOOL ov70_0225C990 (u32 param0)
+BOOL ov70_0225C990(u32 param0)
 {
     static const u8 v0[] = {
-        2, 3, 4, 5,
+        2,
+        3,
+        4,
+        5,
     };
     int v1;
 
@@ -183,7 +189,7 @@ BOOL ov70_0225C990 (u32 param0)
     return 0;
 }
 
-const UnkStruct_ov63_0222BCE8 * ov70_0225C9B0 (const UnkStruct_ov70_0225C894 * param0)
+const UnkStruct_ov63_0222BCE8 *ov70_0225C9B0(const UnkStruct_ov70_0225C894 *param0)
 {
     return param0->unk_00;
 }

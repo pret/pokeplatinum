@@ -1,57 +1,57 @@
+#include "overlay100/ov100_021D0D80.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-
 #include "struct_decls/struct_02018340_decl.h"
-
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
+
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
+#include "overlay100/ov100_021D13E4.h"
+#include "overlay100/ov100_021D1C44.h"
+#include "overlay100/ov100_021D2F0C.h"
+#include "overlay100/ov100_021D46C8.h"
 #include "overlay100/struct_ov100_021D46C8.h"
 #include "overlay100/struct_ov100_021D4DD8.h"
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_02241308.h"
 #include "overlay104/struct_ov104_0224133C.h"
 
+#include "camera.h"
+#include "core_sys.h"
+#include "game_options.h"
+#include "gx_layers.h"
+#include "heap.h"
+#include "message.h"
+#include "narc.h"
+#include "overlay_manager.h"
 #include "unk_02002F38.h"
 #include "unk_020041CC.h"
-#include "overlay_manager.h"
-#include "narc.h"
-#include "message.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201DBEC.h"
-#include "gx_layers.h"
-#include "camera.h"
 #include "unk_02024220.h"
-#include "game_options.h"
-#include "overlay100/ov100_021D0D80.h"
-#include "overlay100/ov100_021D13E4.h"
-#include "overlay100/ov100_021D1C44.h"
-#include "overlay100/ov100_021D2F0C.h"
-#include "overlay100/ov100_021D46C8.h"
 
 FS_EXTERN_OVERLAY(overlay100);
 
-typedef void *(* UnkFuncPtr_ov100_021D5130)(UnkStruct_ov100_021D4DD8 *);
-typedef BOOL (* UnkFuncPtr_ov100_021D5130_1)(void *);
-typedef BOOL (* UnkFuncPtr_ov100_021D5130_2)(void *);
+typedef void *(*UnkFuncPtr_ov100_021D5130)(UnkStruct_ov100_021D4DD8 *);
+typedef BOOL (*UnkFuncPtr_ov100_021D5130_1)(void *);
+typedef BOOL (*UnkFuncPtr_ov100_021D5130_2)(void *);
 
-static void ov100_021D0FA0(UnkStruct_ov100_021D46C8 * param0);
-static void ov100_021D1034(UnkStruct_ov100_021D46C8 * param0);
-static void ov100_021D111C(UnkStruct_ov100_021D46C8 * param0);
-static void ov100_021D1208(BGL * param0);
-static void ov100_021D13B4(void * param0);
+static void ov100_021D0FA0(UnkStruct_ov100_021D46C8 *param0);
+static void ov100_021D1034(UnkStruct_ov100_021D46C8 *param0);
+static void ov100_021D111C(UnkStruct_ov100_021D46C8 *param0);
+static void ov100_021D1208(BGL *param0);
+static void ov100_021D13B4(void *param0);
 
-int ov100_021D0D80 (OverlayManager * param0, int * param1)
+int ov100_021D0D80(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov100_021D4DD8 * v0;
+    UnkStruct_ov100_021D4DD8 *v0;
 
     Heap_Create(3, 111, 0xC0000);
 
@@ -71,7 +71,7 @@ int ov100_021D0D80 (OverlayManager * param0, int * param1)
     sub_02005454(1);
 
     {
-        Window * v1 = &v0->unk_0C.unk_30;
+        Window *v1 = &v0->unk_0C.unk_30;
         int v2 = Options_Frame(v0->unk_D0->unk_04);
 
         Window_Init(v1);
@@ -95,33 +95,28 @@ static const struct {
     UnkFuncPtr_ov100_021D5130_1 unk_04;
     UnkFuncPtr_ov100_021D5130_2 unk_08;
 } Unk_ov100_021D5130[] = {
-    {ov100_021D3620, ov100_021D39E4, ov100_021D3FD4},
-    {ov100_021D13E4, ov100_021D14A8, ov100_021D16C4},
-    {ov100_021D2340, ov100_021D2428, ov100_021D2C8C},
+    { ov100_021D3620, ov100_021D39E4, ov100_021D3FD4 },
+    { ov100_021D13E4, ov100_021D14A8, ov100_021D16C4 },
+    { ov100_021D2340, ov100_021D2428, ov100_021D2C8C },
 };
 
-int ov100_021D0EA8 (OverlayManager * param0, int * param1)
+int ov100_021D0EA8(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov100_021D4DD8 * v0 = OverlayManager_Data(param0);
+    UnkStruct_ov100_021D4DD8 *v0 = OverlayManager_Data(param0);
 
     switch (*param1) {
-    case 0:
-    {
+    case 0: {
         v0->unk_08 = Unk_ov100_021D5130[v0->unk_04].unk_00(v0);
         *param1 = 1;
-    }
-    break;
-    case 1:
-    {
+    } break;
+    case 1: {
         BOOL v1 = Unk_ov100_021D5130[v0->unk_04].unk_04(v0->unk_08);
 
         if (v1 == 0) {
             *param1 = 2;
         }
-    }
-    break;
-    case 2:
-    {
+    } break;
+    case 2: {
         BOOL v2 = Unk_ov100_021D5130[v0->unk_04].unk_08(v0->unk_08);
 
         if (v2 == 0) {
@@ -131,13 +126,10 @@ int ov100_021D0EA8 (OverlayManager * param0, int * param1)
                 *param1 = 3;
             }
         }
-    }
-    break;
-    case 3:
-    {
+    } break;
+    case 3: {
         return 1;
-    }
-    break;
+    } break;
     default:
         GF_ASSERT(0);
         break;
@@ -148,9 +140,9 @@ int ov100_021D0EA8 (OverlayManager * param0, int * param1)
     return 0;
 }
 
-int ov100_021D0F44 (OverlayManager * param0, int * param1)
+int ov100_021D0F44(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov100_021D4DD8 * v0;
+    UnkStruct_ov100_021D4DD8 *v0;
 
     v0 = OverlayManager_Data(param0);
 
@@ -171,7 +163,7 @@ int ov100_021D0F44 (OverlayManager * param0, int * param1)
     return 1;
 }
 
-static void ov100_021D0FA0 (UnkStruct_ov100_021D46C8 * param0)
+static void ov100_021D0FA0(UnkStruct_ov100_021D46C8 *param0)
 {
     param0->unk_04 = sub_0200C6E4(111);
 
@@ -201,7 +193,12 @@ static void ov100_021D0FA0 (UnkStruct_ov100_021D46C8 * param0)
     {
         BOOL v3;
         const UnkStruct_ov104_02241308 v4 = {
-            48 + 48, 16 + 16, 64, 64, 16, 16,
+            48 + 48,
+            16 + 16,
+            64,
+            64,
+            16,
+            16,
         };
 
         param0->unk_08 = sub_0200C704(param0->unk_04);
@@ -214,7 +211,7 @@ static void ov100_021D0FA0 (UnkStruct_ov100_021D46C8 * param0)
     }
 }
 
-static void ov100_021D1034 (UnkStruct_ov100_021D46C8 * param0)
+static void ov100_021D1034(UnkStruct_ov100_021D46C8 *param0)
 {
     SetMainCallback(NULL, NULL);
     DisableHBlank();
@@ -243,7 +240,7 @@ static void ov100_021D1034 (UnkStruct_ov100_021D46C8 * param0)
     Heap_FndInitAllocatorForExpHeap(&param0->unk_1C, 111, 32);
 }
 
-static void ov100_021D111C (UnkStruct_ov100_021D46C8 * param0)
+static void ov100_021D111C(UnkStruct_ov100_021D46C8 *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
@@ -279,7 +276,7 @@ static void ov100_021D111C (UnkStruct_ov100_021D46C8 * param0)
     G3X_AlphaBlend(0);
 }
 
-static void ov100_021D1208 (BGL * param0)
+static void ov100_021D1208(BGL *param0)
 {
     GXLayers_DisableEngineALayers();
 
@@ -331,7 +328,7 @@ static void ov100_021D1208 (BGL * param0)
                 1,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -346,7 +343,7 @@ static void ov100_021D1208 (BGL * param0)
                 0,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -361,7 +358,7 @@ static void ov100_021D1208 (BGL * param0)
                 3,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -376,7 +373,7 @@ static void ov100_021D1208 (BGL * param0)
                 0,
                 0,
                 0,
-                0
+                0,
             },
         };
 
@@ -409,7 +406,7 @@ static void ov100_021D1208 (BGL * param0)
                 0,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -424,7 +421,7 @@ static void ov100_021D1208 (BGL * param0)
                 2,
                 0,
                 0,
-                0
+                0,
             },
         };
 
@@ -449,9 +446,9 @@ static void ov100_021D1208 (BGL * param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void ov100_021D13B4 (void * param0)
+static void ov100_021D13B4(void *param0)
 {
-    UnkStruct_ov100_021D4DD8 * v0 = param0;
+    UnkStruct_ov100_021D4DD8 *v0 = param0;
 
     sub_0201DCAC();
     sub_0200C800();

@@ -5,6 +5,7 @@
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_defs/struct_02049FA8.h"
 #include "struct_defs/struct_0204B404.h"
+
 #include "overlay104/struct_ov104_0223A348.h"
 
 typedef struct UnkStruct_0204AFC4_t {
@@ -35,8 +36,8 @@ typedef struct UnkStruct_0204AFC4_t {
     u16 unk_36[4];
     u16 unk_3E[14];
     Location unk_5C;
-    UnkStruct_0202D060 * unk_70;
-    UnkStruct_0202D750 * unk_74;
+    UnkStruct_0202D060 *unk_70;
+    UnkStruct_0202D750 *unk_74;
     UnkStruct_ov104_0223A348 unk_78[2];
     UnkStruct_ov104_0223A348 unk_298[5];
     UnkStruct_0204B404 unk_7E8[5];
@@ -44,7 +45,7 @@ typedef struct UnkStruct_0204AFC4_t {
     u16 unk_83E[35];
     u16 unk_884[35];
     int unk_8CC;
-    void * unk_8D0;
+    void *unk_8D0;
     u8 unk_8D4;
     u8 unk_8D5;
     u8 unk_8D6;

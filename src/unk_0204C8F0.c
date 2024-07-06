@@ -1,25 +1,23 @@
+#include "unk_0204C8F0.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "inlines.h"
-
-#include "trainer_info.h"
-
-#include "field/field_system.h"
 #include "struct_defs/struct_0205AA50.h"
 
-#include "save_player.h"
-#include "trainer_info.h"
-#include "field_system.h"
-#include "field_script_context.h"
-#include "script_manager.h"
-#include "unk_0204C8F0.h"
+#include "field/field_system.h"
 #include "overlay005/ov5_021DC018.h"
 
+#include "field_script_context.h"
+#include "field_system.h"
+#include "inlines.h"
+#include "save_player.h"
+#include "script_manager.h"
+#include "trainer_info.h"
 
-BOOL ScrCmd_06F (ScriptContext * param0)
+BOOL ScrCmd_06F(ScriptContext *param0)
 {
-    TrainerInfo * v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSystem));
+    TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSystem));
     u32 v1;
 
     v1 = ScriptContext_ReadWord(param0);
@@ -28,9 +26,9 @@ BOOL ScrCmd_06F (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_070 (ScriptContext * param0)
+BOOL ScrCmd_070(ScriptContext *param0)
 {
-    TrainerInfo * v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSystem));
+    TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSystem));
     u32 v1;
 
     v1 = ScriptContext_ReadWord(param0);
@@ -39,9 +37,9 @@ BOOL ScrCmd_070 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_1A3 (ScriptContext * param0)
+BOOL ScrCmd_1A3(ScriptContext *param0)
 {
-    TrainerInfo * v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSystem));
+    TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSystem));
     u32 v1;
 
     v1 = ScriptContext_GetVar(param0);
@@ -50,10 +48,10 @@ BOOL ScrCmd_1A3 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_071 (ScriptContext * param0)
+BOOL ScrCmd_071(ScriptContext *param0)
 {
-    TrainerInfo * v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSystem));
-    u16 * v1;
+    TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSystem));
+    u16 *v1;
     u32 v2, v3;
 
     v1 = ScriptContext_GetVarPointer(param0);
@@ -69,10 +67,10 @@ BOOL ScrCmd_071 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_1AB (ScriptContext * param0)
+BOOL ScrCmd_1AB(ScriptContext *param0)
 {
-    TrainerInfo * v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSystem));
-    u16 * v1;
+    TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSystem));
+    u16 *v1;
     u32 v2, v3;
 
     v1 = ScriptContext_GetVarPointer(param0);
@@ -88,12 +86,12 @@ BOOL ScrCmd_1AB (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_072 (ScriptContext * param0)
+BOOL ScrCmd_072(ScriptContext *param0)
 {
-    FieldSystem * fieldSystem = param0->fieldSystem;
+    FieldSystem *fieldSystem = param0->fieldSystem;
     u16 v1 = ScriptContext_GetVar(param0);
     u16 v2 = ScriptContext_GetVar(param0);
-    Window ** v3;
+    Window **v3;
 
     v3 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MONEY_WINDOW);
     *v3 = ov5_021DCEB0(param0->fieldSystem, v1, v2);
@@ -101,19 +99,19 @@ BOOL ScrCmd_072 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_073 (ScriptContext * param0)
+BOOL ScrCmd_073(ScriptContext *param0)
 {
-    FieldSystem * fieldSystem = param0->fieldSystem;
-    Window ** v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MONEY_WINDOW);
+    FieldSystem *fieldSystem = param0->fieldSystem;
+    Window **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MONEY_WINDOW);
 
     ov5_021DCF58(*v1);
     return 0;
 }
 
-BOOL ScrCmd_074 (ScriptContext * param0)
+BOOL ScrCmd_074(ScriptContext *param0)
 {
-    FieldSystem * fieldSystem = param0->fieldSystem;
-    Window ** v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MONEY_WINDOW);
+    FieldSystem *fieldSystem = param0->fieldSystem;
+    Window **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MONEY_WINDOW);
 
     ov5_021DCF6C(param0->fieldSystem, *v1);
     return 0;

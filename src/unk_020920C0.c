@@ -1,15 +1,15 @@
+#include "unk_020920C0.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-
-#include "touch_screen.h"
 #include "struct_defs/pokemon_summary_app.h"
 
+#include "core_sys.h"
+#include "touch_screen.h"
 #include "unk_02005474.h"
 #include "unk_02018340.h"
 #include "unk_0208EA44.h"
-#include "unk_020920C0.h"
 
 typedef struct {
     u8 unk_00;
@@ -18,76 +18,76 @@ typedef struct {
     u8 unk_03;
 } UnkStruct_020F5164;
 
-static void sub_0223D0BC(PokemonSummaryApp * param0);
-static int sub_020921FC(PokemonSummaryApp * param0);
+static void sub_0223D0BC(PokemonSummaryApp *param0);
+static int sub_020921FC(PokemonSummaryApp *param0);
 
 static const UnkStruct_020F5164 Unk_020F5164[] = {
-    {0x0, 0x1, 0x1, 0x4},
-    {0x1, 0x1, 0x2, 0xA},
-    {0x2, 0x2, 0x5, 0xF},
-    {0x3, 0x3, 0xA, 0x12},
-    {0x4, 0x2, 0x11, 0x12},
-    {0x5, 0x3, 0x16, 0xF},
-    {0x6, 0x4, 0x19, 0xA},
-    {0x7, 0x4, 0x1A, 0x4},
-    {0xFF, 0xFF, 0xFF, 0xFF}
+    { 0x0, 0x1, 0x1, 0x4 },
+    { 0x1, 0x1, 0x2, 0xA },
+    { 0x2, 0x2, 0x5, 0xF },
+    { 0x3, 0x3, 0xA, 0x12 },
+    { 0x4, 0x2, 0x11, 0x12 },
+    { 0x5, 0x3, 0x16, 0xF },
+    { 0x6, 0x4, 0x19, 0xA },
+    { 0x7, 0x4, 0x1A, 0x4 },
+    { 0xFF, 0xFF, 0xFF, 0xFF }
 };
 
 static const UnkStruct_020F5164 Unk_020F514C[] = {
-    {0x0, 0x1, 0x2, 0x9},
-    {0x1, 0x1, 0x6, 0xF},
-    {0x2, 0x2, 0xE, 0x12},
-    {0x3, 0x3, 0x16, 0xF},
-    {0x7, 0x4, 0x1A, 0x9},
-    {0xFF, 0xFF, 0xFF, 0xFF}
+    { 0x0, 0x1, 0x2, 0x9 },
+    { 0x1, 0x1, 0x6, 0xF },
+    { 0x2, 0x2, 0xE, 0x12 },
+    { 0x3, 0x3, 0x16, 0xF },
+    { 0x7, 0x4, 0x1A, 0x9 },
+    { 0xFF, 0xFF, 0xFF, 0xFF }
 };
 
 static const UnkStruct_020F5164 Unk_020F5128[] = {
-    {0x3, 0x3, 0xA, 0x12},
-    {0x5, 0x3, 0x11, 0x12},
-    {0xFF, 0xFF, 0xFF, 0xFF}
+    { 0x3, 0x3, 0xA, 0x12 },
+    { 0x5, 0x3, 0x11, 0x12 },
+    { 0xFF, 0xFF, 0xFF, 0xFF }
 };
 
-static const UnkStruct_020F5164 * Unk_02100D84[] = {
+static const UnkStruct_020F5164 *Unk_02100D84[] = {
     Unk_020F5164,
     Unk_020F514C,
     Unk_020F5128
 };
 
 static const TouchScreenRect Unk_020F5188[] = {
-    {0x20, 0x47, 0x8, 0x2F},
-    {0x50, 0x77, 0x10, 0x37},
-    {0x78, 0x9F, 0x28, 0x4F},
-    {0x90, 0xB7, 0x50, 0x77},
-    {0x90, 0xB7, 0x88, 0xAF},
-    {0x78, 0x9F, 0xB0, 0xD7},
-    {0x50, 0x77, 0xC8, 0xEF},
-    {0x20, 0x47, 0xD0, 0xF7},
-    {0xFF, 0x0, 0x0, 0x0}
+    { 0x20, 0x47, 0x8, 0x2F },
+    { 0x50, 0x77, 0x10, 0x37 },
+    { 0x78, 0x9F, 0x28, 0x4F },
+    { 0x90, 0xB7, 0x50, 0x77 },
+    { 0x90, 0xB7, 0x88, 0xAF },
+    { 0x78, 0x9F, 0xB0, 0xD7 },
+    { 0x50, 0x77, 0xC8, 0xEF },
+    { 0x20, 0x47, 0xD0, 0xF7 },
+    { 0xFF, 0x0, 0x0, 0x0 }
 };
 
 static const TouchScreenRect Unk_020F5134[] = {
-    {0x48, 0x6F, 0xC, 0x33},
-    {0x78, 0x9F, 0x2C, 0x53},
-    {0x90, 0xB7, 0x6C, 0x93},
-    {0x78, 0x9F, 0xAC, 0xD3},
-    {0x48, 0x6F, 0xCC, 0xF3},
-    {0xFF, 0x0, 0x0, 0x0}
+    { 0x48, 0x6F, 0xC, 0x33 },
+    { 0x78, 0x9F, 0x2C, 0x53 },
+    { 0x90, 0xB7, 0x6C, 0x93 },
+    { 0x78, 0x9F, 0xAC, 0xD3 },
+    { 0x48, 0x6F, 0xCC, 0xF3 },
+    { 0xFF, 0x0, 0x0, 0x0 }
 };
 
 static const TouchScreenRect Unk_020F511C[] = {
-    {0x90, 0xB7, 0x50, 0x77},
-    {0x90, 0xB7, 0x88, 0xAF},
-    {0xFF, 0x0, 0x0, 0x0}
+    { 0x90, 0xB7, 0x50, 0x77 },
+    { 0x90, 0xB7, 0x88, 0xAF },
+    { 0xFF, 0x0, 0x0, 0x0 }
 };
 
-static const TouchScreenRect * Unk_02100D78[] = {
+static const TouchScreenRect *Unk_02100D78[] = {
     Unk_020F5188,
     Unk_020F5134,
     Unk_020F511C
 };
 
-void sub_020920C0 (PokemonSummaryApp * param0)
+void sub_020920C0(PokemonSummaryApp *param0)
 {
     switch (param0->data->mode) {
     case 0:
@@ -108,9 +108,9 @@ void sub_020920C0 (PokemonSummaryApp * param0)
     sub_0209219C(param0);
 }
 
-static void sub_0209212C (PokemonSummaryApp * param0, const UnkStruct_020F5164 * param1, u8 param2)
+static void sub_0209212C(PokemonSummaryApp *param0, const UnkStruct_020F5164 *param1, u8 param2)
 {
-    u16 * v0;
+    u16 *v0;
     u16 v1;
     u8 v2;
     u8 v3, v4;
@@ -125,9 +125,9 @@ static void sub_0209212C (PokemonSummaryApp * param0, const UnkStruct_020F5164 *
     }
 }
 
-void sub_0209219C (PokemonSummaryApp * param0)
+void sub_0209219C(PokemonSummaryApp *param0)
 {
-    const UnkStruct_020F5164 * v0;
+    const UnkStruct_020F5164 *v0;
     u8 v1;
 
     if (param0->subscreenType == 0xf) {
@@ -149,7 +149,7 @@ void sub_0209219C (PokemonSummaryApp * param0)
     sub_0201C3C0(param0->bgl, 4);
 }
 
-u8 sub_020921E4 (PokemonSummaryApp * param0)
+u8 sub_020921E4(PokemonSummaryApp *param0)
 {
     int v0;
 
@@ -162,7 +162,7 @@ u8 sub_020921E4 (PokemonSummaryApp * param0)
     return 0xff;
 }
 
-static int sub_020921FC (PokemonSummaryApp * param0)
+static int sub_020921FC(PokemonSummaryApp *param0)
 {
     int v0;
 
@@ -175,7 +175,7 @@ static int sub_020921FC (PokemonSummaryApp * param0)
     return v0;
 }
 
-static int sub_02092224 (PokemonSummaryApp * param0)
+static int sub_02092224(PokemonSummaryApp *param0)
 {
     int v0;
 
@@ -196,9 +196,9 @@ static int sub_02092224 (PokemonSummaryApp * param0)
     return v0;
 }
 
-u8 sub_0209228C (PokemonSummaryApp * param0)
+u8 sub_0209228C(PokemonSummaryApp *param0)
 {
-    const UnkStruct_020F5164 * v0 = Unk_02100D84[param0->subscreenType];
+    const UnkStruct_020F5164 *v0 = Unk_02100D84[param0->subscreenType];
 
     switch (param0->buttonState) {
     case 0:
@@ -238,16 +238,16 @@ u8 sub_0209228C (PokemonSummaryApp * param0)
     return 0;
 }
 
-void sub_02092368 (PokemonSummaryApp * param0, s16 * param1, s16 * param2)
+void sub_02092368(PokemonSummaryApp *param0, s16 *param1, s16 *param2)
 {
-    const UnkStruct_020F5164 * v0 = Unk_02100D84[param0->subscreenType];
+    const UnkStruct_020F5164 *v0 = Unk_02100D84[param0->subscreenType];
 
     *param1 = v0[param0->buttonPos].unk_02 * 8 + (5 * 8) / 2;
     *param2 = v0[param0->buttonPos].unk_03 * 8 + (5 * 8) / 2;
 }
 
-u8 sub_020923A4 (PokemonSummaryApp * param0, u8 param1)
+u8 sub_020923A4(PokemonSummaryApp *param0, u8 param1)
 {
-    const UnkStruct_020F5164 * v0 = Unk_02100D84[param0->subscreenType];
+    const UnkStruct_020F5164 *v0 = Unk_02100D84[param0->subscreenType];
     return v0[param1].unk_00;
 }

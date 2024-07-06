@@ -1,17 +1,16 @@
+#include "overlay006/ov6_02243004.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay005/struct_ov5_021D1BEC_decl.h"
-
 #include "field/field_system.h"
+#include "overlay005/struct_ov5_021D1BEC_decl.h"
+#include "overlay006/ov6_0223E140.h"
 #include "overlay115/camera_angle.h"
 
-#include "overlay006/ov6_0223E140.h"
-#include "overlay006/ov6_02243004.h"
+static UnkStruct_ov5_021D1BEC *Unk_ov6_02249940;
 
-static UnkStruct_ov5_021D1BEC * Unk_ov6_02249940;
-
-BOOL ov6_02243004 (FieldSystem * fieldSystem, int param1)
+BOOL ov6_02243004(FieldSystem *fieldSystem, int param1)
 {
     VecFx32 v0;
     CameraAngle v1;

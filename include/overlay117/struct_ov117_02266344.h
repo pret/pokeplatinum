@@ -4,7 +4,7 @@
 #include "struct_decls/cell_actor_data.h"
 
 typedef struct {
-    CellActorData * unk_00[2];
+    CellActorData *unk_00[2];
     fx32 unk_08[2];
     fx32 unk_10[2];
     u8 unk_18;

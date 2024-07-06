@@ -4,7 +4,7 @@
 #include "cell_actor.h"
 
 typedef struct {
-    CellActorResourceData * unk_00;
+    CellActorResourceData *unk_00;
     int unk_04;
 } UnkStruct_02009508;
 

@@ -1,22 +1,20 @@
+#include "save_player.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "savedata.h"
-
-#include "savedata.h"
-#include "save_player.h"
-#include "trainer_info.h"
-#include "game_options.h"
 #include "coins.h"
+#include "game_options.h"
 #include "play_time.h"
+#include "savedata.h"
+#include "trainer_info.h"
 
-
-int Player_SaveSize (void)
+int Player_SaveSize(void)
 {
     return sizeof(PlayerSave);
 }
 
-void Player_Init (PlayerSave * player)
+void Player_Init(PlayerSave *player)
 {
     MI_CpuClearFast(player, sizeof(PlayerSave));
 
@@ -26,21 +24,21 @@ void Player_Init (PlayerSave * player)
     PlayTime_Init(&player->playTime);
 }
 
-TrainerInfo * SaveData_GetTrainerInfo (SaveData * saveData)
+TrainerInfo *SaveData_GetTrainerInfo(SaveData *saveData)
 {
-    PlayerSave * state = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_PLAYER);
+    PlayerSave *state = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_PLAYER);
     return &state->info;
 }
 
-Options * SaveData_Options (SaveData * saveData)
+Options *SaveData_Options(SaveData *saveData)
 {
-    PlayerSave * state = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_PLAYER);
+    PlayerSave *state = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_PLAYER);
     return &state->options;
 }
 
-u16 * SaveData_GetCoins (SaveData * saveData)
+u16 *SaveData_GetCoins(SaveData *saveData)
 {
-    PlayerSave * state = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_PLAYER);
+    PlayerSave *state = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_PLAYER);
     return &state->coins;
 }
 

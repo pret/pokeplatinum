@@ -1,55 +1,55 @@
+#include "unk_02071D40.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "consts/game_records.h"
-#include "play_time.h"
-#include "trainer_info.h"
+
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_0202C834_decl.h"
 #include "struct_decls/struct_0202C844_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "savedata.h"
-
-#include "field/field_system.h"
 #include "struct_defs/struct_02072014.h"
 
-#include "unk_020021B0.h"
+#include "field/field_system.h"
+
+#include "field_system.h"
+#include "game_records.h"
 #include "heap.h"
+#include "play_time.h"
 #include "save_player.h"
+#include "savedata.h"
 #include "trainer_info.h"
+#include "unk_020021B0.h"
 #include "unk_0202631C.h"
 #include "unk_0202854C.h"
 #include "unk_0202C7FC.h"
-#include "play_time.h"
-#include "game_records.h"
 #include "unk_0203061C.h"
-#include "field_system.h"
 #include "unk_0203D1B8.h"
-#include "vars_flags.h"
 #include "unk_020508D4.h"
 #include "unk_020559DC.h"
 #include "unk_0205B33C.h"
 #include "unk_0206A8DC.h"
-#include "unk_02071D40.h"
+#include "vars_flags.h"
 
 typedef struct {
     int unk_00;
-    TrainerCard * unk_04;
+    TrainerCard *unk_04;
 } UnkStruct_02072204;
 
-static void sub_02072014(const u8 param0, const u8 param1, const u8 param2, const u8 param3, const u8 param4, TrainerCard * param5);
-static void sub_02072038(const u16 param0, const u8 param1, const u16 * param2, const u32 param3, const u32 param4, const BOOL param5, const u32 param6, TrainerCard * param7);
-static void sub_0207207C(const u8 param0, const PlayTime *playTime, const RTCDate * param2, const RTCDate * param3, const RTCTime * param4, const u8 param5, TrainerCard * param6);
-static void sub_02072120(const u32 param0, const u32 param1, const u32 param2, const u32 param3, const u8 * param4, TrainerCard * param5);
-static void sub_0207216C(TrainerInfo * param0, FieldSystem * fieldSystem, TrainerCard * param2);
-static BOOL sub_02072230(TaskManager * param0);
+static void sub_02072014(const u8 param0, const u8 param1, const u8 param2, const u8 param3, const u8 param4, TrainerCard *param5);
+static void sub_02072038(const u16 param0, const u8 param1, const u16 *param2, const u32 param3, const u32 param4, const BOOL param5, const u32 param6, TrainerCard *param7);
+static void sub_0207207C(const u8 param0, const PlayTime *playTime, const RTCDate *param2, const RTCDate *param3, const RTCTime *param4, const u8 param5, TrainerCard *param6);
+static void sub_02072120(const u32 param0, const u32 param1, const u32 param2, const u32 param3, const u8 *param4, TrainerCard *param5);
+static void sub_0207216C(TrainerInfo *param0, FieldSystem *fieldSystem, TrainerCard *param2);
+static BOOL sub_02072230(TaskManager *param0);
 
-void sub_02071D40 (const u8 param0, const u8 param1, const u8 param2, const u8 param3, FieldSystem * fieldSystem, TrainerCard * param5)
+void sub_02071D40(const u8 param0, const u8 param1, const u8 param2, const u8 param3, FieldSystem *fieldSystem, TrainerCard *param5)
 {
-    TrainerInfo * v0;
-    GameRecords * v1;
-    SaveData * v2;
+    TrainerInfo *v0;
+    GameRecords *v1;
+    SaveData *v2;
 
     v2 = FieldSystem_SaveData(fieldSystem);
     v0 = SaveData_GetTrainerInfo(v2);
@@ -70,7 +70,7 @@ void sub_02071D40 (const u8 param0, const u8 param1, const u8 param2, const u8 p
         RTCDate v4;
         RTCDate v5;
         RTCTime v6;
-        PlayTime * playTime;
+        PlayTime *playTime;
 
         playTime = SaveData_GetPlayTime(v2);
 
@@ -81,7 +81,7 @@ void sub_02071D40 (const u8 param0, const u8 param1, const u8 param2, const u8 p
 
     {
         u32 v8, v9, v10, v11;
-        UnkStruct_0202C834 * v12;
+        UnkStruct_0202C834 *v12;
 
         v12 = sub_0202C834(fieldSystem->saveData);
         v8 = GameRecords_GetRecordValue(v1, RECORD_UNK_091) + GameRecords_GetRecordValue(v1, RECORD_UNK_019) + GameRecords_GetRecordValue(v1, RECORD_UNK_024) + GameRecords_GetRecordValue(v1, RECORD_UNK_020) + GameRecords_GetRecordValue(v1, RECORD_UNK_025) + GameRecords_GetRecordValue(v1, RECORD_UNK_032);
@@ -96,7 +96,7 @@ void sub_02071D40 (const u8 param0, const u8 param1, const u8 param2, const u8 p
 
     {
         int v13, v14 = 0;
-        u8 * v15 = (u8 *)param5;
+        u8 *v15 = (u8 *)param5;
 
         for (v13 = 0; v13 < sizeof(TrainerCard); v13++) {
             v14 ^= v15[v13];
@@ -108,27 +108,27 @@ void sub_02071D40 (const u8 param0, const u8 param1, const u8 param2, const u8 p
     param5->unk_66A = 0;
 }
 
-TrainerCard * sub_02071F04 (const u16 param0)
+TrainerCard *sub_02071F04(const u16 param0)
 {
-    TrainerCard * v0 = Heap_AllocFromHeap(param0, sizeof(TrainerCard));
+    TrainerCard *v0 = Heap_AllocFromHeap(param0, sizeof(TrainerCard));
 
     memset(v0, 0, sizeof(TrainerCard));
     return v0;
 }
 
-void sub_02071F20 (TrainerCard * param0)
+void sub_02071F20(TrainerCard *param0)
 {
     Heap_FreeToHeap(param0);
 }
 
-u8 sub_02071F28 (FieldSystem * fieldSystem)
+u8 sub_02071F28(FieldSystem *fieldSystem)
 {
     u8 v0;
-    SaveData * v1;
-    GameRecords * v2;
-    VarsFlags * v3;
-    SecretBaseRecord * v4;
-    UnkStruct_0203068C * v5;
+    SaveData *v1;
+    GameRecords *v2;
+    VarsFlags *v3;
+    SecretBaseRecord *v4;
+    UnkStruct_0203068C *v5;
 
     v1 = FieldSystem_SaveData(fieldSystem);
     v2 = SaveData_GetGameRecordsPtr(v1);
@@ -160,7 +160,7 @@ u8 sub_02071F28 (FieldSystem * fieldSystem)
     return v0;
 }
 
-static void sub_02072014 (const u8 param0, const u8 param1, const u8 param2, const u8 param3, const u8 param4, TrainerCard * param5)
+static void sub_02072014(const u8 param0, const u8 param1, const u8 param2, const u8 param3, const u8 param4, TrainerCard *param5)
 {
     param5->unk_04_0 = param0;
     param5->unk_00 = param1;
@@ -169,7 +169,7 @@ static void sub_02072014 (const u8 param0, const u8 param1, const u8 param2, con
     param5->unk_02 = param3;
 }
 
-static void sub_02072038 (const u16 param0, const u8 param1, const u16 * param2, const u32 param3, const u32 param4, const BOOL param5, const u32 param6, TrainerCard * param7)
+static void sub_02072038(const u16 param0, const u8 param1, const u16 *param2, const u32 param3, const u32 param4, const BOOL param5, const u32 param6, TrainerCard *param7)
 {
     param7->unk_28 = param0;
     param7->unk_04_2 = param1;
@@ -182,7 +182,7 @@ static void sub_02072038 (const u16 param0, const u8 param1, const u16 * param2,
     param7->unk_24 = param6;
 }
 
-static void sub_0207207C (const u8 param0, const PlayTime *playTime, const RTCDate * param2, const RTCDate * param3, const RTCTime * param4, const u8 param5, TrainerCard * trainerCard)
+static void sub_0207207C(const u8 param0, const PlayTime *playTime, const RTCDate *param2, const RTCDate *param3, const RTCTime *param4, const u8 param5, TrainerCard *trainerCard)
 {
     trainerCard->playTimeHours = PlayTime_GetHours(playTime);
     trainerCard->playTimeMinutes = PlayTime_GetMinutes(playTime);
@@ -213,7 +213,7 @@ static void sub_0207207C (const u8 param0, const PlayTime *playTime, const RTCDa
     }
 }
 
-static void sub_02072120 (const u32 param0, const u32 param1, const u32 param2, const u32 param3, const u8 * param4, TrainerCard * param5)
+static void sub_02072120(const u32 param0, const u32 param1, const u32 param2, const u32 param3, const u8 *param4, TrainerCard *param5)
 {
     param5->unk_38 = param0;
 
@@ -241,11 +241,11 @@ static void sub_02072120 (const u32 param0, const u32 param1, const u32 param2, 
     MI_CpuCopy8(param4, param5->unk_68, 24 * 8 * 8);
 }
 
-static void sub_0207216C (TrainerInfo * param0, FieldSystem * fieldSystem, TrainerCard * param2)
+static void sub_0207216C(TrainerInfo *param0, FieldSystem *fieldSystem, TrainerCard *param2)
 {
     u8 v0;
-    UnkStruct_0202C834 * v1;
-    UnkStruct_0202C844 * v2;
+    UnkStruct_0202C834 *v1;
+    UnkStruct_0202C844 *v2;
 
     v1 = sub_0202C834(fieldSystem->saveData);
     v2 = sub_0202C844(v1);
@@ -261,11 +261,11 @@ static void sub_0207216C (TrainerInfo * param0, FieldSystem * fieldSystem, Train
     }
 }
 
-void sub_020721D4 (FieldSystem * fieldSystem, const TrainerCard * param1)
+void sub_020721D4(FieldSystem *fieldSystem, const TrainerCard *param1)
 {
     u8 v0;
-    UnkStruct_0202C834 * v1;
-    UnkStruct_0202C844 * v2;
+    UnkStruct_0202C834 *v1;
+    UnkStruct_0202C844 *v2;
 
     v1 = sub_0202C834(fieldSystem->saveData);
     v2 = sub_0202C844(v1);
@@ -275,9 +275,9 @@ void sub_020721D4 (FieldSystem * fieldSystem, const TrainerCard * param1)
     }
 }
 
-void sub_02072204 (FieldSystem * fieldSystem)
+void sub_02072204(FieldSystem *fieldSystem)
 {
-    UnkStruct_02072204 * v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02072204));
+    UnkStruct_02072204 *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02072204));
 
     v0->unk_00 = 0;
     v0->unk_04 = (TrainerCard *)sub_0205C17C(fieldSystem->unk_7C);
@@ -285,10 +285,10 @@ void sub_02072204 (FieldSystem * fieldSystem)
     FieldTask_Start(fieldSystem->unk_10, sub_02072230, v0);
 }
 
-static BOOL sub_02072230 (TaskManager * param0)
+static BOOL sub_02072230(TaskManager *param0)
 {
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_02072204 * v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+    UnkStruct_02072204 *v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_00) {
     case 0:

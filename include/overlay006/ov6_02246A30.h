@@ -3,6 +3,6 @@
 
 #include "field/field_system_decl.h"
 
-int ov6_02246B40(FieldSystem * fieldSystem);
+int ov6_02246B40(FieldSystem *fieldSystem);
 
 #endif // POKEPLATINUM_OV6_02246A30_H

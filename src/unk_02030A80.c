@@ -1,35 +1,32 @@
+#include "unk_02030A80.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "strbuf.h"
 #include "struct_decls/struct_02025CCC_decl.h"
-#include "trainer_info.h"
 #include "struct_decls/struct_0202C878_decl.h"
-#include "savedata.h"
-
 #include "struct_defs/sentence.h"
 #include "struct_defs/struct_0202F298_sub1.h"
 #include "struct_defs/struct_02030A80.h"
 
+#include "heap.h"
+#include "pokemon.h"
+#include "save_player.h"
+#include "savedata.h"
+#include "savedata_misc.h"
+#include "strbuf.h"
+#include "trainer_info.h"
 #include "unk_020021B0.h"
 #include "unk_02014A84.h"
 #include "unk_02014D38.h"
-#include "heap.h"
-#include "strbuf.h"
-#include "savedata.h"
 #include "unk_02025CB0.h"
-#include "save_player.h"
-#include "trainer_info.h"
-#include "savedata_misc.h"
 #include "unk_0202C858.h"
-#include "unk_02030A80.h"
 #include "unk_0205C980.h"
-#include "pokemon.h"
 #include "unk_020996D0.h"
 
-UnkStruct_02030A80 * sub_02030A80 (int param0)
+UnkStruct_02030A80 *sub_02030A80(int param0)
 {
-    UnkStruct_02030A80 * v0;
+    UnkStruct_02030A80 *v0;
 
     v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_02030A80));
     MI_CpuClear8(v0, sizeof(UnkStruct_02030A80));
@@ -37,17 +34,17 @@ UnkStruct_02030A80 * sub_02030A80 (int param0)
     return v0;
 }
 
-void sub_02030A98 (UnkStruct_02030A80 * param0)
+void sub_02030A98(UnkStruct_02030A80 *param0)
 {
     Heap_FreeToHeap(param0);
 }
 
-void sub_02030AA0 (UnkStruct_02030A80 * param0, SaveData * param1)
+void sub_02030AA0(UnkStruct_02030A80 *param0, SaveData *param1)
 {
-    TrainerInfo * v0 = SaveData_GetTrainerInfo(param1);
-    UnkStruct_0202C878 * v1 = sub_0202C878(param1);
-    UnkStruct_02025CCC * v2 = sub_02025CCC(param1);
-    const MiscSaveBlock * v3 = SaveData_MiscSaveBlockConst(param1);
+    TrainerInfo *v0 = SaveData_GetTrainerInfo(param1);
+    UnkStruct_0202C878 *v1 = sub_0202C878(param1);
+    UnkStruct_02025CCC *v2 = sub_02025CCC(param1);
+    const MiscSaveBlock *v3 = SaveData_MiscSaveBlockConst(param1);
     int v4, v5, v6;
     int v7;
     OSOwnerInfo v8;
@@ -79,15 +76,15 @@ void sub_02030AA0 (UnkStruct_02030A80 * param0, SaveData * param1)
     param0->unk_7C.unk_00 = SaveData_CalculateChecksum(param1, param0, sizeof(UnkStruct_02030A80) - (sizeof(UnkStruct_0202F298_sub1)));
 }
 
-Strbuf* sub_02030B94 (const UnkStruct_02030A80 * param0, int param1)
+Strbuf *sub_02030B94(const UnkStruct_02030A80 *param0, int param1)
 {
-    Strbuf* v0 = Strbuf_Init((7 * 2) + 1, param1);
+    Strbuf *v0 = Strbuf_Init((7 * 2) + 1, param1);
 
     Strbuf_CopyNumChars(v0, param0->unk_00, (7 * 2) + 1);
     return v0;
 }
 
-u32 sub_02030BAC (const UnkStruct_02030A80 * param0)
+u32 sub_02030BAC(const UnkStruct_02030A80 *param0)
 {
     if ((param0->unk_14 != 0) && (param0->unk_14 != 1)) {
         return 0;
@@ -96,7 +93,7 @@ u32 sub_02030BAC (const UnkStruct_02030A80 * param0)
     return param0->unk_14;
 }
 
-int sub_02030BBC (const UnkStruct_02030A80 * param0)
+int sub_02030BBC(const UnkStruct_02030A80 *param0)
 {
     if (param0->unk_1C >= 495) {
         return 0;
@@ -105,7 +102,7 @@ int sub_02030BBC (const UnkStruct_02030A80 * param0)
     return param0->unk_1C;
 }
 
-int sub_02030BCC (const UnkStruct_02030A80 * param0)
+int sub_02030BCC(const UnkStruct_02030A80 *param0)
 {
     if (param0->unk_1C >= 495) {
         return 0;
@@ -114,7 +111,7 @@ int sub_02030BCC (const UnkStruct_02030A80 * param0)
     return Pokemon_SanitizeFormId(param0->unk_1C, param0->unk_1B_1);
 }
 
-int sub_02030BEC (const UnkStruct_02030A80 * param0)
+int sub_02030BEC(const UnkStruct_02030A80 *param0)
 {
     if (param0->unk_1B_0 > 1) {
         return 1;
@@ -123,7 +120,7 @@ int sub_02030BEC (const UnkStruct_02030A80 * param0)
     return param0->unk_1B_0;
 }
 
-int sub_02030BFC (const UnkStruct_02030A80 * param0)
+int sub_02030BFC(const UnkStruct_02030A80 *param0)
 {
     if (param0->unk_17 >= 234) {
         return 0;
@@ -132,7 +129,7 @@ int sub_02030BFC (const UnkStruct_02030A80 * param0)
     return param0->unk_17;
 }
 
-int sub_02030C08 (const UnkStruct_02030A80 * param0)
+int sub_02030C08(const UnkStruct_02030A80 *param0)
 {
     if (param0->unk_17 >= 234) {
         return 0;
@@ -145,7 +142,7 @@ int sub_02030C08 (const UnkStruct_02030A80 * param0)
     return param0->unk_18;
 }
 
-Strbuf* sub_02030C28 (const UnkStruct_02030A80 * param0, Sentence * param1, int param2)
+Strbuf *sub_02030C28(const UnkStruct_02030A80 *param0, Sentence *param1, int param2)
 {
     int v0 = 0;
 
@@ -173,14 +170,14 @@ Strbuf* sub_02030C28 (const UnkStruct_02030A80 * param0, Sentence * param1, int 
 
         return NULL;
     } else {
-        Strbuf* v3 = Strbuf_Init(40, param2);
+        Strbuf *v3 = Strbuf_Init(40, param2);
 
         Strbuf_CopyNumChars(v3, param0->unk_20_val2, 40);
         return v3;
     }
 }
 
-int sub_02030CCC (const UnkStruct_02030A80 * param0)
+int sub_02030CCC(const UnkStruct_02030A80 *param0)
 {
     if ((param0->unk_15 >= 1) && (param0->unk_15 <= 12)) {
         return param0->unk_15;
@@ -189,7 +186,7 @@ int sub_02030CCC (const UnkStruct_02030A80 * param0)
     return 1;
 }
 
-int sub_02030CDC (const UnkStruct_02030A80 * param0)
+int sub_02030CDC(const UnkStruct_02030A80 *param0)
 {
     if (param0->unk_16 > 15) {
         return 0;

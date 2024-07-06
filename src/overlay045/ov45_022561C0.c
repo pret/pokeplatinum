@@ -1,28 +1,28 @@
 #include <nitro.h>
-#include <string.h>
 #include <nitro/sinit.h>
+#include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "sys_task_manager.h"
-#include "overlay025/poketch_system.h"
+
 #include "overlay025/poketch_button.h"
+#include "overlay025/poketch_system.h"
+#include "overlay045/ov45_022566EC.h"
+#include "overlay045/struct_ov45_022566EC_1.h"
 #include "overlay045/struct_ov45_022566EC_decl.h"
 
-#include "touch_screen.h"
-#include "overlay045/struct_ov45_022566EC_1.h"
-
-#include "sys_task.h"
-#include "rtc.h"
 #include "heap.h"
 #include "poketch_data.h"
-#include "overlay045/ov45_022566EC.h"
+#include "rtc.h"
+#include "sys_task.h"
+#include "sys_task_manager.h"
+#include "touch_screen.h"
 
 typedef struct {
     u8 unk_00;
     u8 unk_01;
     u8 unk_02;
     UnkStruct_ov45_022566EC_1 unk_03;
-    UnkStruct_ov45_022566EC * unk_08;
+    UnkStruct_ov45_022566EC *unk_08;
     PoketchSystem *poketchSys;
     PoketchData *poketchData;
     PoketchButtonManager *buttonManager;
@@ -35,32 +35,32 @@ typedef struct {
 
 static void NitroStaticInit(void);
 
-static BOOL ov45_022561D4(void ** param0, PoketchSystem *poketchSys, BGL * param2, u32 param3);
-static BOOL ov45_0225621C(UnkStruct_ov45_022561D4 * param0, PoketchSystem *poketchSys, BGL * param2, u32 param3);
-static void ov45_022562C0(UnkStruct_ov45_022566EC_1 * param0);
-static void ov45_022562F8(UnkStruct_ov45_022561D4 * param0);
-static void ov45_02256310(u32 param0, u32 param1, u32 param2, void * param3);
-static void ov45_02256318(SysTask * param0, void * param1);
-static void ov45_02256354(void * param0);
-static void ov45_0225635C(UnkStruct_ov45_022561D4 * param0, u32 param1);
-static BOOL ov45_02256370(UnkStruct_ov45_022561D4 * param0);
-static BOOL ov45_022563C0(UnkStruct_ov45_022561D4 * param0);
-static BOOL ov45_022564D0(UnkStruct_ov45_022561D4 * param0);
-static BOOL ov45_0225659C(UnkStruct_ov45_022561D4 * param0);
-static BOOL ov45_02256664(UnkStruct_ov45_022561D4 * param0);
-static void ov45_02256668(UnkStruct_ov45_022561D4 * param0);
-static BOOL ov45_02256680(UnkStruct_ov45_022561D4 * param0, u32 * param1, u32 * param2);
-static BOOL ov45_02256698(UnkStruct_ov45_022561D4 * param0);
-static BOOL ov45_022566CC(UnkStruct_ov45_022566EC_1 * param0);
+static BOOL ov45_022561D4(void **param0, PoketchSystem *poketchSys, BGL *param2, u32 param3);
+static BOOL ov45_0225621C(UnkStruct_ov45_022561D4 *param0, PoketchSystem *poketchSys, BGL *param2, u32 param3);
+static void ov45_022562C0(UnkStruct_ov45_022566EC_1 *param0);
+static void ov45_022562F8(UnkStruct_ov45_022561D4 *param0);
+static void ov45_02256310(u32 param0, u32 param1, u32 param2, void *param3);
+static void ov45_02256318(SysTask *param0, void *param1);
+static void ov45_02256354(void *param0);
+static void ov45_0225635C(UnkStruct_ov45_022561D4 *param0, u32 param1);
+static BOOL ov45_02256370(UnkStruct_ov45_022561D4 *param0);
+static BOOL ov45_022563C0(UnkStruct_ov45_022561D4 *param0);
+static BOOL ov45_022564D0(UnkStruct_ov45_022561D4 *param0);
+static BOOL ov45_0225659C(UnkStruct_ov45_022561D4 *param0);
+static BOOL ov45_02256664(UnkStruct_ov45_022561D4 *param0);
+static void ov45_02256668(UnkStruct_ov45_022561D4 *param0);
+static BOOL ov45_02256680(UnkStruct_ov45_022561D4 *param0, u32 *param1, u32 *param2);
+static BOOL ov45_02256698(UnkStruct_ov45_022561D4 *param0);
+static BOOL ov45_022566CC(UnkStruct_ov45_022566EC_1 *param0);
 
-static void NitroStaticInit (void)
+static void NitroStaticInit(void)
 {
     PoketchSystem_SetAppFunctions(ov45_022561D4, ov45_02256354);
 }
 
-static BOOL ov45_022561D4 (void ** param0, PoketchSystem *poketchSys, BGL * param2, u32 param3)
+static BOOL ov45_022561D4(void **param0, PoketchSystem *poketchSys, BGL *param2, u32 param3)
 {
-    UnkStruct_ov45_022561D4 * v0 = (UnkStruct_ov45_022561D4 *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov45_022561D4));
+    UnkStruct_ov45_022561D4 *v0 = (UnkStruct_ov45_022561D4 *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov45_022561D4));
 
     if (v0 != NULL) {
         if (ov45_0225621C(v0, poketchSys, param2, param3)) {
@@ -76,15 +76,45 @@ static BOOL ov45_022561D4 (void ** param0, PoketchSystem *poketchSys, BGL * para
     return 0;
 }
 
-static BOOL ov45_0225621C (UnkStruct_ov45_022561D4 * param0, PoketchSystem *poketchSys, BGL * param2, u32 param3)
+static BOOL ov45_0225621C(UnkStruct_ov45_022561D4 *param0, PoketchSystem *poketchSys, BGL *param2, u32 param3)
 {
     static const TouchScreenHitTable v0[] = {
-        {72, 104, 176, 208, },
-        {104, 136, 176, 208, },
-        {112, 128, 64, 80, },
-        {160, 176, 64, 80, },
-        {112, 128, 112, 128, },
-        {160, 176, 112, 128, }
+        {
+            72,
+            104,
+            176,
+            208,
+        },
+        {
+            104,
+            136,
+            176,
+            208,
+        },
+        {
+            112,
+            128,
+            64,
+            80,
+        },
+        {
+            160,
+            176,
+            64,
+            80,
+        },
+        {
+            112,
+            128,
+            112,
+            128,
+        },
+        {
+            160,
+            176,
+            112,
+            128,
+        }
     };
     u32 v1, v2;
 
@@ -120,7 +150,7 @@ static BOOL ov45_0225621C (UnkStruct_ov45_022561D4 * param0, PoketchSystem *poke
     return 0;
 }
 
-static void ov45_022562C0 (UnkStruct_ov45_022566EC_1 * param0)
+static void ov45_022562C0(UnkStruct_ov45_022566EC_1 *param0)
 {
     RTCTime v0;
 
@@ -138,7 +168,7 @@ static void ov45_022562C0 (UnkStruct_ov45_022566EC_1 * param0)
     param0->unk_02 = v0.minute;
 }
 
-static void ov45_022562F8 (UnkStruct_ov45_022561D4 * param0)
+static void ov45_022562F8(UnkStruct_ov45_022561D4 *param0)
 {
     PoketchButtonManager_Free(param0->buttonManager);
     ov45_02256728(param0->unk_08);
@@ -146,17 +176,17 @@ static void ov45_022562F8 (UnkStruct_ov45_022561D4 * param0)
     Heap_FreeToHeap(param0);
 }
 
-static void ov45_02256310 (u32 param0, u32 param1, u32 param2, void * param3)
+static void ov45_02256310(u32 param0, u32 param1, u32 param2, void *param3)
 {
-    UnkStruct_ov45_022561D4 * v0 = param3;
+    UnkStruct_ov45_022561D4 *v0 = param3;
 
     v0->unk_18 = param0;
     v0->unk_1C = param1;
 }
 
-static void ov45_02256318 (SysTask * param0, void * param1)
+static void ov45_02256318(SysTask *param0, void *param1)
 {
-    static BOOL(*const v0[])(UnkStruct_ov45_022561D4 *) = {
+    static BOOL (*const v0[])(UnkStruct_ov45_022561D4 *) = {
         ov45_02256370,
         ov45_022563C0,
         ov45_022564D0,
@@ -164,7 +194,7 @@ static void ov45_02256318 (SysTask * param0, void * param1)
         ov45_02256698
     };
 
-    UnkStruct_ov45_022561D4 * v1 = (UnkStruct_ov45_022561D4 *)param1;
+    UnkStruct_ov45_022561D4 *v1 = (UnkStruct_ov45_022561D4 *)param1;
 
     if (v1->unk_00 < NELEMS(v0)) {
         ov25_02254518(v1->poketchSys, v1->buttonManager);
@@ -178,12 +208,12 @@ static void ov45_02256318 (SysTask * param0, void * param1)
     }
 }
 
-static void ov45_02256354 (void * param0)
+static void ov45_02256354(void *param0)
 {
     ((UnkStruct_ov45_022561D4 *)param0)->unk_02 = 1;
 }
 
-static void ov45_0225635C (UnkStruct_ov45_022561D4 * param0, u32 param1)
+static void ov45_0225635C(UnkStruct_ov45_022561D4 *param0, u32 param1)
 {
     if (param0->unk_02 == 0) {
         param0->unk_00 = param1;
@@ -194,7 +224,7 @@ static void ov45_0225635C (UnkStruct_ov45_022561D4 * param0, u32 param1)
     param0->unk_01 = 0;
 }
 
-static BOOL ov45_02256370 (UnkStruct_ov45_022561D4 * param0)
+static BOOL ov45_02256370(UnkStruct_ov45_022561D4 *param0)
 {
     switch (param0->unk_01) {
     case 0:
@@ -217,7 +247,7 @@ static BOOL ov45_02256370 (UnkStruct_ov45_022561D4 * param0)
     return 0;
 }
 
-static BOOL ov45_022563C0 (UnkStruct_ov45_022561D4 * param0)
+static BOOL ov45_022563C0(UnkStruct_ov45_022561D4 *param0)
 {
     if (param0->unk_02) {
         ov45_0225635C(param0, 4);
@@ -281,7 +311,7 @@ static BOOL ov45_022563C0 (UnkStruct_ov45_022561D4 * param0)
     return 0;
 }
 
-static BOOL ov45_022564D0 (UnkStruct_ov45_022561D4 * param0)
+static BOOL ov45_022564D0(UnkStruct_ov45_022561D4 *param0)
 {
     if (param0->unk_02) {
         ov45_0225635C(param0, 4);
@@ -337,7 +367,7 @@ static BOOL ov45_022564D0 (UnkStruct_ov45_022561D4 * param0)
     return 0;
 }
 
-static BOOL ov45_0225659C (UnkStruct_ov45_022561D4 * param0)
+static BOOL ov45_0225659C(UnkStruct_ov45_022561D4 *param0)
 {
     if (param0->unk_02) {
         ov45_0225635C(param0, 4);
@@ -387,12 +417,12 @@ static BOOL ov45_0225659C (UnkStruct_ov45_022561D4 * param0)
     return 0;
 }
 
-static BOOL ov45_02256664 (UnkStruct_ov45_022561D4 * param0)
+static BOOL ov45_02256664(UnkStruct_ov45_022561D4 *param0)
 {
     return param0->unk_2C;
 }
 
-static void ov45_02256668 (UnkStruct_ov45_022561D4 * param0)
+static void ov45_02256668(UnkStruct_ov45_022561D4 *param0)
 {
     if (param0->unk_2C == 0) {
         GetCurrentTime(&(param0->unk_20));
@@ -400,7 +430,7 @@ static void ov45_02256668 (UnkStruct_ov45_022561D4 * param0)
     }
 }
 
-static BOOL ov45_02256680 (UnkStruct_ov45_022561D4 * param0, u32 * param1, u32 * param2)
+static BOOL ov45_02256680(UnkStruct_ov45_022561D4 *param0, u32 *param1, u32 *param2)
 {
     if (param0->unk_30) {
         *param1 = param0->unk_20.hour;
@@ -411,7 +441,7 @@ static BOOL ov45_02256680 (UnkStruct_ov45_022561D4 * param0, u32 * param1, u32 *
     return 0;
 }
 
-static BOOL ov45_02256698 (UnkStruct_ov45_022561D4 * param0)
+static BOOL ov45_02256698(UnkStruct_ov45_022561D4 *param0)
 {
     switch (param0->unk_01) {
     case 0:
@@ -428,7 +458,7 @@ static BOOL ov45_02256698 (UnkStruct_ov45_022561D4 * param0)
     return 0;
 }
 
-static BOOL ov45_022566CC (UnkStruct_ov45_022566EC_1 * param0)
+static BOOL ov45_022566CC(UnkStruct_ov45_022566EC_1 *param0)
 {
     return (param0->unk_01 == param0->unk_03) && (param0->unk_02 == param0->unk_04);
 }

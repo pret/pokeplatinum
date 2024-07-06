@@ -10,9 +10,9 @@ typedef struct {
     int unk_08;
     int unk_0C;
     int unk_10;
-    void * unk_14;
-    UnkStruct_02010658 * unk_18;
-    UnkStruct_0200F600 * unk_1C;
+    void *unk_14;
+    UnkStruct_02010658 *unk_18;
+    UnkStruct_0200F600 *unk_1C;
     int unk_20;
     u16 unk_24;
     u8 padding_26[2];

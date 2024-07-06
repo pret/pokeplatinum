@@ -1,39 +1,39 @@
+#include "overlay005/ov5_021F101C.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "sys_task_manager.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "overlay005/struct_ov5_021F0468_decl.h"
-
-#include "field/field_system.h"
 #include "struct_defs/struct_020711C8.h"
 
-#include "heap.h"
-#include "unk_020508D4.h"
-#include "player_avatar.h"
+#include "field/field_system.h"
 #include "overlay005/ov5_021F007C.h"
-#include "overlay005/ov5_021F101C.h"
+#include "overlay005/struct_ov5_021F0468_decl.h"
 #include "overlay006/ov6_02243258.h"
 
+#include "heap.h"
+#include "player_avatar.h"
+#include "sys_task_manager.h"
+#include "unk_020508D4.h"
+
 typedef struct {
-    SysTask * unk_00;
-    UnkStruct_ov5_021F0468 * unk_04;
+    SysTask *unk_00;
+    UnkStruct_ov5_021F0468 *unk_04;
 } UnkStruct_ov5_021F101C;
 
-BOOL ov5_021F101C (TaskManager * param0)
+BOOL ov5_021F101C(TaskManager *param0)
 {
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_020711C8 * v1 = TaskManager_Environment(param0);
-    int * v2 = FieldTask_GetState(param0);
-    UnkStruct_ov5_021F101C * v3 = v1->unk_04;
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+    UnkStruct_020711C8 *v1 = TaskManager_Environment(param0);
+    int *v2 = FieldTask_GetState(param0);
+    UnkStruct_ov5_021F101C *v3 = v1->unk_04;
 
     switch (*v2) {
     case 0:
         v1->unk_04 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov5_021F101C));
         (*v2)++;
         break;
-    case 1:
-    {
+    case 1: {
         int v4 = ov5_021F0484();
 
         v3->unk_04 = Heap_AllocFromHeapAtEnd(11, v4);
@@ -41,8 +41,7 @@ BOOL ov5_021F101C (TaskManager * param0)
     }
         (*v2)++;
         break;
-    case 2:
-    {
+    case 2: {
         int v5 = PlayerAvatar_Gender(fieldSystem->playerAvatar);
         v3->unk_00 = ov6_02243F88(fieldSystem, 0, v1->unk_00, v5);
     }

@@ -14,21 +14,21 @@ enum AIActionChoice {
     AI_ENEMY_SWITCH,
 };
 
-#define AI_CONTEXT  (battleCtx->aiContext)
+#define AI_CONTEXT (battleCtx->aiContext)
 #endif
 
-#define AI_INIT_SCORE_MOVE_1        (1 << 0)
-#define AI_INIT_SCORE_MOVE_2        (1 << 1)
-#define AI_INIT_SCORE_MOVE_3        (1 << 2)
-#define AI_INIT_SCORE_MOVE_4        (1 << 3)
+#define AI_INIT_SCORE_MOVE_1 (1 << 0)
+#define AI_INIT_SCORE_MOVE_2 (1 << 1)
+#define AI_INIT_SCORE_MOVE_3 (1 << 2)
+#define AI_INIT_SCORE_MOVE_4 (1 << 3)
 
-#define AI_INIT_SCORE_ALL_MOVES     (AI_INIT_SCORE_MOVE_1 | AI_INIT_SCORE_MOVE_2 | AI_INIT_SCORE_MOVE_3 | AI_INIT_SCORE_MOVE_4)
+#define AI_INIT_SCORE_ALL_MOVES (AI_INIT_SCORE_MOVE_1 | AI_INIT_SCORE_MOVE_2 | AI_INIT_SCORE_MOVE_3 | AI_INIT_SCORE_MOVE_4)
 
-#define AI_STATUS_FLAG_DONE         (1 << 0)
-#define AI_STATUS_FLAG_ESCAPE       (1 << 1)
-#define AI_STATUS_FLAG_SAFARI       (1 << 2)
-#define AI_STATUS_FLAG_BREAK        (1 << 3)
-#define AI_STATUS_FLAG_CONTINUE     (1 << 4)
+#define AI_STATUS_FLAG_DONE     (1 << 0)
+#define AI_STATUS_FLAG_ESCAPE   (1 << 1)
+#define AI_STATUS_FLAG_SAFARI   (1 << 2)
+#define AI_STATUS_FLAG_BREAK    (1 << 3)
+#define AI_STATUS_FLAG_CONTINUE (1 << 4)
 
 #define AI_STATUS_FLAG_DONE_OFF     (AI_STATUS_FLAG_DONE ^ 0xFF)
 #define AI_STATUS_FLAG_ESCAPE_OFF   (AI_STATUS_FLAG_ESCAPE ^ 0xFF)
@@ -41,11 +41,11 @@ enum AIActionChoice {
 #define AI_BATTLER_DEFENDER_PARTNER (AI_BATTLER_DEFENDER ^ 2)
 #define AI_BATTLER_ATTACKER_PARTNER (AI_BATTLER_ATTACKER ^ 2)
 
-#define AI_MAX_STACK_SIZE   8
+#define AI_MAX_STACK_SIZE 8
 
-#define AI_NO_COMPARISON_MADE       0
-#define AI_NOT_HIGHEST_DAMAGE       1
-#define AI_MOVE_IS_HIGHEST_DAMAGE   2
+#define AI_NO_COMPARISON_MADE     0
+#define AI_NOT_HIGHEST_DAMAGE     1
+#define AI_MOVE_IS_HIGHEST_DAMAGE 2
 
 #define AI_NOT_HAVE 0
 #define AI_HAVE     1

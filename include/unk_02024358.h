@@ -2,6 +2,6 @@
 #define POKEPLATINUM_UNK_02024358_H
 
 void sub_02024358(void);
-void sub_020243E0(const char * param0);
+void sub_020243E0(const char *param0);
 
 #endif // POKEPLATINUM_UNK_02024358_H

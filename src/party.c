@@ -1,30 +1,29 @@
+#include "party.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "savedata.h"
-
-#include "pokemon.h"
 #include "struct_defs/struct_party.h"
 
 #include "heap.h"
-#include "savedata.h"
 #include "pokemon.h"
-#include "party.h"
+#include "savedata.h"
 
-#define PARTY_ASSERT_SLOT(party, slot) {        \
-    GF_ASSERT(slot >= 0);                       \
-    GF_ASSERT(slot < (party)->currentCount);    \
-    GF_ASSERT(slot < (party)->capacity);        \
-}
+#define PARTY_ASSERT_SLOT(party, slot)           \
+    {                                            \
+        GF_ASSERT(slot >= 0);                    \
+        GF_ASSERT(slot < (party)->currentCount); \
+        GF_ASSERT(slot < (party)->capacity);     \
+    }
 
-int Party_SaveSize (void)
+int Party_SaveSize(void)
 {
     return sizeof(Party);
 }
 
-Party * Party_New (u32 param0)
+Party *Party_New(u32 param0)
 {
-    Party * v0;
+    Party *v0;
 
     v0 = Heap_AllocFromHeap(param0, sizeof(Party));
     Party_Init(v0);
@@ -32,12 +31,12 @@ Party * Party_New (u32 param0)
     return v0;
 }
 
-void Party_Init (Party * param0)
+void Party_Init(Party *param0)
 {
     Party_InitWithCapacity(param0, 6);
 }
 
-void Party_InitWithCapacity (Party * party, int capacity)
+void Party_InitWithCapacity(Party *party, int capacity)
 {
     int i;
 
@@ -52,7 +51,7 @@ void Party_InitWithCapacity (Party * party, int capacity)
     }
 }
 
-BOOL Party_AddPokemon (Party * party, Pokemon * pokemon)
+BOOL Party_AddPokemon(Party *party, Pokemon *pokemon)
 {
     if (party->currentCount >= party->capacity) {
         return FALSE;
@@ -64,7 +63,7 @@ BOOL Party_AddPokemon (Party * party, Pokemon * pokemon)
     return TRUE;
 }
 
-BOOL Party_RemovePokemonBySlotIndex (Party * party, int slot)
+BOOL Party_RemovePokemonBySlotIndex(Party *party, int slot)
 {
     int i;
 
@@ -81,23 +80,23 @@ BOOL Party_RemovePokemonBySlotIndex (Party * party, int slot)
     return TRUE;
 }
 
-int Party_GetCapacity (const Party * party)
+int Party_GetCapacity(const Party *party)
 {
     return party->capacity;
 }
 
-int Party_GetCurrentCount (const Party * party)
+int Party_GetCurrentCount(const Party *party)
 {
     return party->currentCount;
 }
 
-Pokemon * Party_GetPokemonBySlotIndex (const Party * party, int slot)
+Pokemon *Party_GetPokemonBySlotIndex(const Party *party, int slot)
 {
     PARTY_ASSERT_SLOT(party, slot);
     return (Pokemon *)&party->pokemon[slot];
 }
 
-void sub_0207A128 (Party * party, int slot, Pokemon * param2)
+void sub_0207A128(Party *party, int slot, Pokemon *param2)
 {
     int v0;
 
@@ -108,9 +107,9 @@ void sub_0207A128 (Party * party, int slot, Pokemon * param2)
     party->currentCount += v0;
 }
 
-BOOL Party_SwapSlots (Party * party, int slotA, int slotB)
+BOOL Party_SwapSlots(Party *party, int slotA, int slotB)
 {
-    Pokemon * tempPokemon;
+    Pokemon *tempPokemon;
 
     PARTY_ASSERT_SLOT(party, slotA);
     PARTY_ASSERT_SLOT(party, slotB);
@@ -126,12 +125,12 @@ BOOL Party_SwapSlots (Party * party, int slotA, int slotB)
     return FALSE;
 }
 
-void Party_cpy (const Party * src, Party * dest)
+void Party_cpy(const Party *src, Party *dest)
 {
     *dest = *src;
 }
 
-BOOL Party_HasSpecies (const Party * party, int species)
+BOOL Party_HasSpecies(const Party *party, int species)
 {
     int i;
 
@@ -144,9 +143,9 @@ BOOL Party_HasSpecies (const Party * party, int species)
     return i != party->currentCount;
 }
 
-Party * Party_GetFromSavedata (SaveData * param0)
+Party *Party_GetFromSavedata(SaveData *param0)
 {
-    Party * v0;
+    Party *v0;
 
     v0 = (Party *)SaveData_SaveTable(param0, 2);
     return v0;

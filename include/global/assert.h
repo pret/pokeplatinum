@@ -11,7 +11,7 @@
 #define GF_ASSERT(expr) ((expr) ? (void)0 : ErrorHandling_AssertFail())
 #else
 #define GF_ASSERT(...) ((void)0)
-#endif //PM_KEEP_ASSERTS
+#endif // PM_KEEP_ASSERTS
 
 /*
  * void ErrorHandling_AssertFail(void)
@@ -22,4 +22,4 @@
  */
 void ErrorHandling_AssertFail(void);
 
-#endif //POKEPLATINUM_ASSERT_H
+#endif // POKEPLATINUM_ASSERT_H

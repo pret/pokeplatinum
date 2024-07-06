@@ -1,25 +1,26 @@
+#include "overlay006/ov6_02246184.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_party_decl.h"
-#include "overlay006/struct_ov6_02246204_decl.h"
 
 #include "field/field_system.h"
+#include "overlay006/struct_ov6_02246204_decl.h"
 #include "overlay006/struct_ov6_02246254.h"
 
-#include "unk_02006E3C.h"
-#include "message.h"
 #include "heap.h"
-#include "strbuf.h"
-#include "save_player.h"
-#include "trainer_info.h"
-#include "unk_0202F180.h"
 #include "map_header.h"
-#include "unk_020559DC.h"
-#include "pokemon.h"
+#include "message.h"
 #include "party.h"
+#include "pokemon.h"
+#include "save_player.h"
+#include "strbuf.h"
+#include "trainer_info.h"
+#include "unk_02006E3C.h"
+#include "unk_0202F180.h"
+#include "unk_020559DC.h"
 #include "unk_02092494.h"
-#include "overlay006/ov6_02246184.h"
 
 typedef struct {
     u32 unk_00;
@@ -45,20 +46,20 @@ typedef struct {
 } UnkStruct_ov6_0224630C;
 
 typedef struct UnkStruct_ov6_02246204_t {
-    UnkStruct_ov6_0224630C * unk_00;
-    Pokemon * unk_04;
-    TrainerInfo * unk_08;
+    UnkStruct_ov6_0224630C *unk_00;
+    Pokemon *unk_04;
+    TrainerInfo *unk_08;
     u32 unk_0C;
     u32 unk_10;
 };
 
-static Strbuf* ov6_022462E4(u32 param0, u32 param1);
-static void ov6_0224630C(Pokemon * param0, UnkStruct_ov6_0224630C * param1, u32 param2, u32 param3, u32 param4, u32 param5);
+static Strbuf *ov6_022462E4(u32 param0, u32 param1);
+static void ov6_0224630C(Pokemon *param0, UnkStruct_ov6_0224630C *param1, u32 param2, u32 param3, u32 param4, u32 param5);
 
-UnkStruct_ov6_02246204 * ov6_02246184 (u32 param0, u32 param1)
+UnkStruct_ov6_02246204 *ov6_02246184(u32 param0, u32 param1)
 {
-    UnkStruct_ov6_02246204 * v0;
-    Strbuf* v1;
+    UnkStruct_ov6_02246204 *v0;
+    Strbuf *v1;
     u16 v2[128];
 
     GF_ASSERT(param1 < 4);
@@ -83,7 +84,7 @@ UnkStruct_ov6_02246204 * ov6_02246184 (u32 param0, u32 param1)
     return v0;
 }
 
-void ov6_02246204 (UnkStruct_ov6_02246204 * param0)
+void ov6_02246204(UnkStruct_ov6_02246204 *param0)
 {
     Heap_FreeToHeap(param0->unk_00);
     Heap_FreeToHeap(param0->unk_04);
@@ -91,29 +92,29 @@ void ov6_02246204 (UnkStruct_ov6_02246204 * param0)
     Heap_FreeToHeap(param0);
 }
 
-u32 ov6_02246224 (const UnkStruct_ov6_02246204 * param0)
+u32 ov6_02246224(const UnkStruct_ov6_02246204 *param0)
 {
     return param0->unk_00->unk_00;
 }
 
-u32 ov6_0224622C (const UnkStruct_ov6_02246204 * param0)
+u32 ov6_0224622C(const UnkStruct_ov6_02246204 *param0)
 {
     return param0->unk_00->unk_4C;
 }
 
-void ov6_02246234 (FieldSystem * fieldSystem, UnkStruct_ov6_02246204 * param1, int param2)
+void ov6_02246234(FieldSystem *fieldSystem, UnkStruct_ov6_02246204 *param1, int param2)
 {
-    Party * v0 = Party_GetFromSavedata(fieldSystem->saveData);
+    Party *v0 = Party_GetFromSavedata(fieldSystem->saveData);
 
     sub_0207A128(v0, param2, param1->unk_04);
     sub_0202F180(fieldSystem->saveData, param1->unk_04);
 }
 
-void ov6_02246254 (FieldSystem * fieldSystem, UnkStruct_ov6_02246204 * param1, int param2, UnkStruct_ov6_02246254 * param3, Pokemon * param4, Pokemon * param5)
+void ov6_02246254(FieldSystem *fieldSystem, UnkStruct_ov6_02246204 *param1, int param2, UnkStruct_ov6_02246254 *param3, Pokemon *param4, Pokemon *param5)
 {
-    Party * v0 = Party_GetFromSavedata(fieldSystem->saveData);
-    Pokemon * v1;
-    Strbuf* v2;
+    Party *v0 = Party_GetFromSavedata(fieldSystem->saveData);
+    Pokemon *v1;
+    Strbuf *v2;
     u32 v3;
     int v4;
 
@@ -142,19 +143,19 @@ void ov6_02246254 (FieldSystem * fieldSystem, UnkStruct_ov6_02246204 * param1, i
     }
 }
 
-static Strbuf* ov6_022462E4 (u32 fieldSystem, u32 param1)
+static Strbuf *ov6_022462E4(u32 fieldSystem, u32 param1)
 {
-    Strbuf* v0;
-    MessageLoader * v1 = MessageLoader_Init(0, 26, 370, fieldSystem);
+    Strbuf *v0;
+    MessageLoader *v1 = MessageLoader_Init(0, 26, 370, fieldSystem);
 
     v0 = MessageLoader_GetNewStrbuf(v1, param1);
     MessageLoader_Free(v1);
     return v0;
 }
 
-static void ov6_0224630C (Pokemon * param0, UnkStruct_ov6_0224630C * param1, u32 param2, u32 param3, u32 param4, u32 param5)
+static void ov6_0224630C(Pokemon *param0, UnkStruct_ov6_0224630C *param1, u32 param2, u32 param3, u32 param4, u32 param5)
 {
-    Strbuf* v0;
+    Strbuf *v0;
     u8 v1;
     u32 v2;
 

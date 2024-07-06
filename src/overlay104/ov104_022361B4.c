@@ -1,21 +1,23 @@
+#include "overlay104/ov104_022361B4.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "consts/game_records.h"
-#include "message.h"
+
 #include "struct_decls/struct_02018340_decl.h"
-#include "strbuf.h"
-#include "trainer_info.h"
 #include "struct_decls/struct_020302DC_decl.h"
 #include "struct_decls/struct_0203041C_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
-#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
-#include "savedata.h"
-#include "overlay104/struct_ov104_022320B4_decl.h"
-
 #include "struct_defs/struct_0204B184.h"
 #include "struct_defs/struct_0205AA50.h"
+
+#include "overlay104/ov104_0222DCE0.h"
+#include "overlay104/ov104_0222E63C.h"
+#include "overlay104/ov104_0222ECE8.h"
+#include "overlay104/ov104_0223B6F4.h"
+#include "overlay104/struct_ov104_022320B4_decl.h"
 #include "overlay104/struct_ov104_022320B4_t.h"
 #include "overlay104/struct_ov104_0223597C.h"
 #include "overlay104/struct_ov104_0223A348_sub1.h"
@@ -23,60 +25,57 @@
 #include "overlay104/struct_ov104_0223BA10.h"
 #include "overlay104/struct_ov104_0223C4CC.h"
 
-#include "message.h"
-#include "string_template.h"
-#include "unk_0200DA60.h"
-#include "heap.h"
-#include "unk_02018340.h"
-#include "unk_0201D670.h"
-#include "strbuf.h"
-#include "save_player.h"
-#include "game_records.h"
-#include "unk_020302D0.h"
-#include "unk_0203061C.h"
 #include "communication_information.h"
 #include "communication_system.h"
-#include "vars_flags.h"
+#include "game_records.h"
+#include "heap.h"
+#include "message.h"
+#include "party.h"
+#include "pokemon.h"
+#include "save_player.h"
+#include "savedata.h"
+#include "strbuf.h"
+#include "string_template.h"
+#include "trainer_info.h"
+#include "unk_0200DA60.h"
+#include "unk_02018340.h"
+#include "unk_0201D670.h"
+#include "unk_020302D0.h"
+#include "unk_0203061C.h"
 #include "unk_0205DFC4.h"
 #include "unk_0206AFE0.h"
-#include "pokemon.h"
-#include "party.h"
-#include "overlay104/ov104_0222DCE0.h"
-#include "overlay104/ov104_0222E63C.h"
-#include "overlay104/ov104_0222ECE8.h"
-#include "overlay104/ov104_022361B4.h"
-#include "overlay104/ov104_0223B6F4.h"
+#include "vars_flags.h"
 
-UnkStruct_ov104_0223BA10 * ov104_022361B4(SaveData * param0, u16 param1, u8 param2, u16 param3, u16 param4, u16 param5, u16 * param6);
-void ov104_02236514(UnkStruct_ov104_0223BA10 * param0, u16 param1);
-static void ov104_02236528(UnkStruct_ov104_0223BA10 * param0);
-static void ov104_022365F8(UnkStruct_ov104_0223BA10 * param0);
-static void ov104_022366A4(UnkStruct_ov104_0223BA10 * param0);
-void ov104_022367AC(UnkStruct_ov104_0223BA10 * param0);
-void ov104_022367DC(UnkStruct_ov104_0223BA10 * param0, void * param1);
-u16 ov104_02236834(void * param0, u8 param1);
-void ov104_02236BF0(UnkStruct_ov104_0223BA10 * param0);
-void ov104_02236BF8(UnkStruct_ov104_0223BA10 * param0);
-void ov104_02236C50(UnkStruct_ov104_0223BA10 * param0);
-int ov104_02236D10(UnkStruct_ov104_0223BA10 * param0);
-BOOL ov104_02236F70(UnkStruct_ov104_0223BA10 * param0, u16 param1, u16 param2);
-void ov104_02236FC0(UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_0223BA10 * param1);
-void ov104_022370E0(UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_0223BA10 * param1);
-void ov104_02237180(UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_0223BA10 * param1);
-static void ov104_022370C0(BGL * param0, Window * param1);
-static void ov104_02237284(UnkStruct_ov104_022320B4 * param0, Window * param1, TrainerInfo * param2, u16 param3);
-u16 ov104_02237338(UnkStruct_ov104_0223BA10 * param0);
+UnkStruct_ov104_0223BA10 *ov104_022361B4(SaveData *param0, u16 param1, u8 param2, u16 param3, u16 param4, u16 param5, u16 *param6);
+void ov104_02236514(UnkStruct_ov104_0223BA10 *param0, u16 param1);
+static void ov104_02236528(UnkStruct_ov104_0223BA10 *param0);
+static void ov104_022365F8(UnkStruct_ov104_0223BA10 *param0);
+static void ov104_022366A4(UnkStruct_ov104_0223BA10 *param0);
+void ov104_022367AC(UnkStruct_ov104_0223BA10 *param0);
+void ov104_022367DC(UnkStruct_ov104_0223BA10 *param0, void *param1);
+u16 ov104_02236834(void *param0, u8 param1);
+void ov104_02236BF0(UnkStruct_ov104_0223BA10 *param0);
+void ov104_02236BF8(UnkStruct_ov104_0223BA10 *param0);
+void ov104_02236C50(UnkStruct_ov104_0223BA10 *param0);
+int ov104_02236D10(UnkStruct_ov104_0223BA10 *param0);
+BOOL ov104_02236F70(UnkStruct_ov104_0223BA10 *param0, u16 param1, u16 param2);
+void ov104_02236FC0(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *param1);
+void ov104_022370E0(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *param1);
+void ov104_02237180(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *param1);
+static void ov104_022370C0(BGL *param0, Window *param1);
+static void ov104_02237284(UnkStruct_ov104_022320B4 *param0, Window *param1, TrainerInfo *param2, u16 param3);
+u16 ov104_02237338(UnkStruct_ov104_0223BA10 *param0);
 
-UnkStruct_ov104_0223BA10 * ov104_022361B4 (SaveData * param0, u16 param1, u8 param2, u16 param3, u16 param4, u16 param5, u16 * param6)
+UnkStruct_ov104_0223BA10 *ov104_022361B4(SaveData *param0, u16 param1, u8 param2, u16 param3, u16 param4, u16 param5, u16 *param6)
 {
     u32 v0, v1;
-    Party * v2;
-    Pokemon * v3;
-    UnkStruct_020302DC * v4;
+    Party *v2;
+    Pokemon *v3;
+    UnkStruct_020302DC *v4;
     u8 v5, v6;
     u16 v7, v8;
-    static UnkStruct_ov104_0223BA10 * v9;
-    UnkStruct_0203041C * v10;
+    static UnkStruct_ov104_0223BA10 *v9;
+    UnkStruct_0203041C *v10;
 
     v9 = Heap_AllocFromHeap(11, sizeof(UnkStruct_ov104_0223BA10));
     MI_CpuClear8(v9, sizeof(UnkStruct_ov104_0223BA10));
@@ -165,7 +164,7 @@ UnkStruct_ov104_0223BA10 * ov104_022361B4 (SaveData * param0, u16 param1, u8 par
     return v9;
 }
 
-void ov104_02236514 (UnkStruct_ov104_0223BA10 * param0, u16 param1)
+void ov104_02236514(UnkStruct_ov104_0223BA10 *param0, u16 param1)
 {
     if (param1 == 0) {
         ov104_02236528(param0);
@@ -176,13 +175,13 @@ void ov104_02236514 (UnkStruct_ov104_0223BA10 * param0, u16 param1)
     return;
 }
 
-static void ov104_02236528 (UnkStruct_ov104_0223BA10 * param0)
+static void ov104_02236528(UnkStruct_ov104_0223BA10 *param0)
 {
     u8 v0;
     int v1;
     UnkStruct_ov104_0223A348_sub2 v2;
-    Pokemon * v3;
-    Party * v4;
+    Pokemon *v3;
+    Party *v4;
     u16 v5[6];
     u16 v6[6];
 
@@ -212,11 +211,11 @@ static void ov104_02236528 (UnkStruct_ov104_0223BA10 * param0)
     return;
 }
 
-static void ov104_022365F8 (UnkStruct_ov104_0223BA10 * param0)
+static void ov104_022365F8(UnkStruct_ov104_0223BA10 *param0)
 {
     u16 v0;
     int v1;
-    Pokemon * v2;
+    Pokemon *v2;
     u8 v3;
     UnkStruct_ov104_0223A348_sub2 v4[6];
     u8 v5[6];
@@ -248,14 +247,14 @@ static void ov104_022365F8 (UnkStruct_ov104_0223BA10 * param0)
     return;
 }
 
-static void ov104_022366A4 (UnkStruct_ov104_0223BA10 * param0)
+static void ov104_022366A4(UnkStruct_ov104_0223BA10 *param0)
 {
     u8 v0;
     u32 v1;
     u16 v2;
     u8 v3;
     int v4;
-    Pokemon * v5;
+    Pokemon *v5;
 
     v0 = Party_GetCurrentCount(param0->unk_28);
 
@@ -287,7 +286,7 @@ static void ov104_022366A4 (UnkStruct_ov104_0223BA10 * param0)
     return;
 }
 
-void ov104_022367AC (UnkStruct_ov104_0223BA10 * param0)
+void ov104_022367AC(UnkStruct_ov104_0223BA10 *param0)
 {
     int v0;
 
@@ -311,10 +310,10 @@ void ov104_022367AC (UnkStruct_ov104_0223BA10 * param0)
     return;
 }
 
-void ov104_022367DC (UnkStruct_ov104_0223BA10 * param0, void * param1)
+void ov104_022367DC(UnkStruct_ov104_0223BA10 *param0, void *param1)
 {
     int v0;
-    UnkStruct_ov104_0223597C * v1 = param1;
+    UnkStruct_ov104_0223597C *v1 = param1;
 
     for (v0 = 0; v0 < 6; v0++) {
         param0->unk_380[v0] = ov104_02236834(param1, v0);
@@ -331,9 +330,9 @@ void ov104_022367DC (UnkStruct_ov104_0223BA10 * param0, void * param1)
     return;
 }
 
-u16 ov104_02236834 (void * param0, u8 param1)
+u16 ov104_02236834(void *param0, u8 param1)
 {
-    UnkStruct_ov104_0223597C * v0 = param0;
+    UnkStruct_ov104_0223597C *v0 = param0;
 
     if (param1 >= 6) {
         GF_ASSERT(0);
@@ -343,14 +342,14 @@ u16 ov104_02236834 (void * param0, u8 param1)
     return v0->unk_20;
 }
 
-void ov104_02236848(UnkStruct_ov104_0223BA10 * param0, u8 param1);
-u16 ov104_02236B48(UnkStruct_ov104_0223BA10 * param0);
-u16 ov104_02236B54(UnkStruct_ov104_0223BA10 * param0);
-u16 ov104_02236B58(UnkStruct_ov104_0223BA10 * param0, u8 param1);
-void ov104_02236B8C(UnkStruct_ov104_0223BA10 * param0);
-void ov104_02236BD0(UnkStruct_ov104_0223BA10 * param0);
+void ov104_02236848(UnkStruct_ov104_0223BA10 *param0, u8 param1);
+u16 ov104_02236B48(UnkStruct_ov104_0223BA10 *param0);
+u16 ov104_02236B54(UnkStruct_ov104_0223BA10 *param0);
+u16 ov104_02236B58(UnkStruct_ov104_0223BA10 *param0, u8 param1);
+void ov104_02236B8C(UnkStruct_ov104_0223BA10 *param0);
+void ov104_02236BD0(UnkStruct_ov104_0223BA10 *param0);
 
-void ov104_02236848 (UnkStruct_ov104_0223BA10 * param0, u8 param1)
+void ov104_02236848(UnkStruct_ov104_0223BA10 *param0, u8 param1)
 {
     u16 v0, v1, v2;
     u8 v3;
@@ -358,10 +357,10 @@ void ov104_02236848 (UnkStruct_ov104_0223BA10 * param0, u8 param1)
     u16 v5[4];
     u32 v6[4];
     u32 v7, v8, v9;
-    UnkStruct_0203068C * v10;
-    Pokemon * v11;
-    UnkStruct_020302DC * v12 = param0->unk_08;
-    UnkStruct_0203041C * v13 = sub_0203041C(param0->unk_04);
+    UnkStruct_0203068C *v10;
+    Pokemon *v11;
+    UnkStruct_020302DC *v12 = param0->unk_08;
+    UnkStruct_0203041C *v13 = sub_0203041C(param0->unk_04);
 
     v10 = sub_0203068C(param0->unk_04);
     v3 = ov104_0223B7DC(param0->unk_10, 1);
@@ -444,21 +443,21 @@ void ov104_02236848 (UnkStruct_ov104_0223BA10 * param0, u8 param1)
     return;
 }
 
-u16 ov104_02236B48 (UnkStruct_ov104_0223BA10 * param0)
+u16 ov104_02236B48(UnkStruct_ov104_0223BA10 *param0)
 {
     param0->unk_11++;
     return param0->unk_11;
 }
 
-u16 ov104_02236B54 (UnkStruct_ov104_0223BA10 * param0)
+u16 ov104_02236B54(UnkStruct_ov104_0223BA10 *param0)
 {
     return param0->unk_11;
 }
 
-u16 ov104_02236B58 (UnkStruct_ov104_0223BA10 * param0, u8 param1)
+u16 ov104_02236B58(UnkStruct_ov104_0223BA10 *param0, u8 param1)
 {
     UnkStruct_ov104_0223A348_sub1 v0;
-    UnkStruct_0204B184 * v1;
+    UnkStruct_0204B184 *v1;
     u8 v2;
 
     v2 = param0->unk_11 + (param1 * 7);
@@ -469,7 +468,7 @@ u16 ov104_02236B58 (UnkStruct_ov104_0223BA10 * param0, u8 param1)
     return ov104_0222E10C(v0.unk_04);
 }
 
-void ov104_02236B8C (UnkStruct_ov104_0223BA10 * param0)
+void ov104_02236B8C(UnkStruct_ov104_0223BA10 *param0)
 {
     u16 v0[4];
     int v1;
@@ -485,7 +484,7 @@ void ov104_02236B8C (UnkStruct_ov104_0223BA10 * param0)
     return;
 }
 
-void ov104_02236BD0 (UnkStruct_ov104_0223BA10 * param0)
+void ov104_02236BD0(UnkStruct_ov104_0223BA10 *param0)
 {
     param0->unk_27 = 1;
 
@@ -499,13 +498,13 @@ void ov104_02236BD0 (UnkStruct_ov104_0223BA10 * param0)
     return;
 }
 
-void ov104_02236BF0 (UnkStruct_ov104_0223BA10 * param0)
+void ov104_02236BF0(UnkStruct_ov104_0223BA10 *param0)
 {
     ov104_0223BAB8(param0);
     return;
 }
 
-void ov104_02236BF8 (UnkStruct_ov104_0223BA10 * param0)
+void ov104_02236BF8(UnkStruct_ov104_0223BA10 *param0)
 {
     int v0, v1, v2;
 
@@ -519,11 +518,11 @@ void ov104_02236BF8 (UnkStruct_ov104_0223BA10 * param0)
     return;
 }
 
-void ov104_02236C50 (UnkStruct_ov104_0223BA10 * param0)
+void ov104_02236C50(UnkStruct_ov104_0223BA10 *param0)
 {
     u8 v0, v1;
     int v2, v3;
-    Pokemon * v4;
+    Pokemon *v4;
 
     if (CommSys_CurNetId() == 0) {
         v0 = 0;
@@ -555,12 +554,12 @@ void ov104_02236C50 (UnkStruct_ov104_0223BA10 * param0)
     return;
 }
 
-int ov104_02236D10 (UnkStruct_ov104_0223BA10 * param0)
+int ov104_02236D10(UnkStruct_ov104_0223BA10 *param0)
 {
     u8 v0, v1, v2;
     u32 v3, v4;
     int v5, v6, v7, v8;
-    Pokemon * v9;
+    Pokemon *v9;
     u8 v10[20];
     int v11 = 0;
 
@@ -657,7 +656,7 @@ int ov104_02236D10 (UnkStruct_ov104_0223BA10 * param0)
     return v11;
 }
 
-void ov104_02236ED8 (SaveData * param0, u8 param1, int param2)
+void ov104_02236ED8(SaveData *param0, u8 param1, int param2)
 {
     u16 v0;
 
@@ -673,7 +672,7 @@ void ov104_02236ED8 (SaveData * param0, u8 param1, int param2)
     return;
 }
 
-BOOL ov104_02236F70 (UnkStruct_ov104_0223BA10 * param0, u16 param1, u16 param2)
+BOOL ov104_02236F70(UnkStruct_ov104_0223BA10 *param0, u16 param1, u16 param2)
 {
     int v0;
 
@@ -704,9 +703,9 @@ BOOL ov104_02236F70 (UnkStruct_ov104_0223BA10 * param0, u16 param1, u16 param2)
     return v0;
 }
 
-void ov104_02236FC0 (UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_0223BA10 * param1)
+void ov104_02236FC0(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *param1)
 {
-    UnkStruct_ov104_0223C4CC * v0 = ov104_0222E924(param0);
+    UnkStruct_ov104_0223C4CC *v0 = ov104_0222E924(param0);
 
     GF_ASSERT(param0->unk_A8 == NULL);
     GF_ASSERT(param0->unk_AC == NULL);
@@ -730,7 +729,7 @@ void ov104_02236FC0 (UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_0223BA10
     return;
 }
 
-static void ov104_022370C0 (BGL * param0, Window * param1)
+static void ov104_022370C0(BGL *param0, Window *param1)
 {
     Window_Show(param1, 1, ((1024 - (18 + 12)) - 9), 12);
     BGL_FillWindow(param1, 15);
@@ -738,10 +737,10 @@ static void ov104_022370C0 (BGL * param0, Window * param1)
     return;
 }
 
-void ov104_022370E0 (UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_0223BA10 * param1)
+void ov104_022370E0(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *param1)
 {
-    Window * v0;
-    Window * v1;
+    Window *v0;
+    Window *v1;
 
     if (ov104_0223BA14(param1->unk_10) == 0) {
         GF_ASSERT(param0->unk_A8 != NULL);
@@ -772,7 +771,7 @@ void ov104_022370E0 (UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_0223BA10
     return;
 }
 
-void ov104_02237180 (UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_0223BA10 * param1)
+void ov104_02237180(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *param1)
 {
     u16 v0, v1;
 
@@ -799,11 +798,11 @@ void ov104_02237180 (UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_0223BA10
     return;
 }
 
-static void ov104_02237284 (UnkStruct_ov104_022320B4 * param0, Window * param1, TrainerInfo * param2, u16 param3)
+static void ov104_02237284(UnkStruct_ov104_022320B4 *param0, Window *param1, TrainerInfo *param2, u16 param3)
 {
-    MessageLoader * v0;
-    Strbuf* v1 = Strbuf_Init((10 * 2), param0->unk_34);
-    Strbuf* v2 = Strbuf_Init((10 * 2), param0->unk_34);
+    MessageLoader *v0;
+    Strbuf *v1 = Strbuf_Init((10 * 2), param0->unk_34);
+    Strbuf *v2 = Strbuf_Init((10 * 2), param0->unk_34);
 
     v0 = MessageLoader_Init(0, 26, 199, 11);
 
@@ -828,12 +827,12 @@ static void ov104_02237284 (UnkStruct_ov104_022320B4 * param0, Window * param1, 
     return;
 }
 
-u16 ov104_02237338 (UnkStruct_ov104_0223BA10 * param0)
+u16 ov104_02237338(UnkStruct_ov104_0223BA10 *param0)
 {
     u8 v0;
     u16 v1;
-    static const u8 v2[8 + 1] = {0, 3, 3, 4, 4, 5, 5, 7, 7};
-    static const u8 v3[8 + 1] = {0, 8, 9, 11, 12, 14, 15, 18, 18};
+    static const u8 v2[8 + 1] = { 0, 3, 3, 4, 4, 5, 5, 7, 7 };
+    static const u8 v3[8 + 1] = { 0, 8, 9, 11, 12, 14, 15, 18, 18 };
 
     v1 = param0->unk_16;
 

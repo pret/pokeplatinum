@@ -12,7 +12,7 @@ typedef struct UnkStruct_020F3DCC_t {
     int unk_14;
     int unk_18;
     int unk_1C;
-    const UnkStruct_020F3DCC * unk_20;
+    const UnkStruct_020F3DCC *unk_20;
 } UnkStruct_020F3DCC;
 
 #endif // POKEPLATINUM_STRUCT_020F3DCC_H

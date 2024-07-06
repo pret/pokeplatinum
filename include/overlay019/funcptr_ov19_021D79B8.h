@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_FUNCPTR_OV19_021D79B8_H
 #define POKEPLATINUM_FUNCPTR_OV19_021D79B8_H
 
-typedef void (* UnkFuncPtr_ov19_021D79B8)(void *);
+typedef void (*UnkFuncPtr_ov19_021D79B8)(void *);
 
 #endif // POKEPLATINUM_FUNCPTR_OV19_021D79B8_H

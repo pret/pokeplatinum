@@ -1,23 +1,24 @@
+#include "overlay005/ov5_021F0824.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_02029894_decl.h"
 
 #include "field/field_system.h"
-
-#include "unk_0202854C.h"
-#include "unk_020573FC.h"
-#include "field_comm_manager.h"
 #include "overlay005/ov5_021E15F4.h"
 #include "overlay005/ov5_021EF75C.h"
-#include "overlay005/ov5_021F0824.h"
 #include "overlay023/ov23_02241F74.h"
 
-void ov5_021F0824 (FieldSystem * fieldSystem)
+#include "field_comm_manager.h"
+#include "unk_0202854C.h"
+#include "unk_020573FC.h"
+
+void ov5_021F0824(FieldSystem *fieldSystem)
 {
     int v0;
     int v1;
-    UnkStruct_02029894 * v2;
+    UnkStruct_02029894 *v2;
     int v3, v4;
     int v5, v6;
     int v7, v8;

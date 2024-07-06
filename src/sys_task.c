@@ -1,8 +1,9 @@
+#include "sys_task.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "core_sys.h"
-#include "sys_task.h"
 #include "sys_task_manager.h"
 
 SysTask *SysTask_Start(SysTaskFunc callback, void *param, u32 priority)

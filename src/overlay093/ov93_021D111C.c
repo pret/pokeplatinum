@@ -1,33 +1,34 @@
+#include "overlay093/ov93_021D111C.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-
 #include "struct_defs/struct_0206C8D4.h"
 #include "struct_defs/struct_02099F80.h"
+
 #include "overlay009/struct_ov9_02249FF4.h"
 
-#include "unk_02005474.h"
-#include "overlay_manager.h"
-#include "narc.h"
-#include "unk_0200F174.h"
-#include "unk_02017728.h"
-#include "heap.h"
+#include "camera.h"
 #include "easy3d.h"
 #include "gx_layers.h"
-#include "camera.h"
+#include "heap.h"
+#include "narc.h"
+#include "overlay_manager.h"
+#include "unk_02005474.h"
+#include "unk_0200F174.h"
+#include "unk_02017728.h"
 #include "unk_0202419C.h"
 #include "unk_0208C098.h"
-#include "overlay093/ov93_021D111C.h"
 
 typedef struct {
-    Camera * camera;
+    Camera *camera;
     NNSG3dRenderObj unk_04;
-    NNSG3dResMdl * unk_58;
-    NNSG3dResFileHeader * unk_5C;
-    void * unk_60[3];
+    NNSG3dResMdl *unk_58;
+    NNSG3dResFileHeader *unk_5C;
+    void *unk_60[3];
     NNSFndAllocator unk_6C;
-    NNSG3dAnmObj * unk_7C[3];
+    NNSG3dAnmObj *unk_7C[3];
     VecFx32 unk_88;
     u8 unk_94;
     u8 unk_95;
@@ -40,11 +41,11 @@ typedef struct {
 
 static void ov93_021D133C(void);
 static void ov93_021D13A0(void);
-static void ov93_021D13C0(UnkStruct_ov93_021D13C0 * param0);
+static void ov93_021D13C0(UnkStruct_ov93_021D13C0 *param0);
 
 static const UnkStruct_ov9_02249FF4 Unk_ov93_021D1534 = {
     0x29AEC1,
-    {-0x29fe, 0x0, 0x0},
+    { -0x29fe, 0x0, 0x0 },
     0x0,
     0x5C1,
     0x0
@@ -64,27 +65,27 @@ static const GXRgb Unk_ov93_021D1524[8] = {
 static UnkStruct_ov93_021D15C8 Unk_ov93_021D15C8[4] = {
     {
         0x1,
-        {0x3, 0x2, 0x0}
+        { 0x3, 0x2, 0x0 },
     },
     {
         0x5,
-        {0x7, 0x6, 0x4}
+        { 0x7, 0x6, 0x4 },
     },
     {
         0x1,
-        {0x3, 0x2, 0x0}
+        { 0x3, 0x2, 0x0 },
     },
     {
         0x1,
-        {0x3, 0x2, 0x0}
-    }
+        { 0x3, 0x2, 0x0 },
+    },
 };
 
-int ov93_021D111C (OverlayManager * param0, int * param1)
+int ov93_021D111C(OverlayManager *param0, int *param1)
 {
     u8 v0;
-    UnkStruct_ov93_021D13C0 * v1;
-    UnkStruct_0206C8D4 * v2;
+    UnkStruct_ov93_021D13C0 *v1;
+    UnkStruct_0206C8D4 *v2;
 
     Heap_Create(3, 72, 0x20000);
 
@@ -101,7 +102,7 @@ int ov93_021D111C (OverlayManager * param0, int * param1)
     ov93_021D13C0(v1);
 
     {
-        VecFx32 v3 = {0, 0, 0};
+        VecFx32 v3 = { 0, 0, 0 };
 
         Camera_InitWithTarget(&v3, Unk_ov93_021D1534.unk_00, &Unk_ov93_021D1534.cameraAngle, Unk_ov93_021D1534.unk_0E, Unk_ov93_021D1534.unk_0C, 0, v1->camera);
         Camera_SetAsActive(v1->camera);
@@ -120,7 +121,7 @@ int ov93_021D111C (OverlayManager * param0, int * param1)
     return 1;
 }
 
-int ov93_021D120C (OverlayManager * param0, int * param1)
+int ov93_021D120C(OverlayManager *param0, int *param1)
 {
     u8 v0;
     BOOL v1;
@@ -145,7 +146,7 @@ int ov93_021D120C (OverlayManager * param0, int * param1)
         0,
         0
     };
-    UnkStruct_ov93_021D13C0 * v5 = OverlayManager_Data(param0);
+    UnkStruct_ov93_021D13C0 *v5 = OverlayManager_Data(param0);
 
     switch (*param1) {
     case 0:
@@ -179,10 +180,10 @@ int ov93_021D120C (OverlayManager * param0, int * param1)
     return 0;
 }
 
-int ov93_021D12F0 (OverlayManager * param0, int * param1)
+int ov93_021D12F0(OverlayManager *param0, int *param1)
 {
     u8 v0;
-    UnkStruct_ov93_021D13C0 * v1 = OverlayManager_Data(param0);
+    UnkStruct_ov93_021D13C0 *v1 = OverlayManager_Data(param0);
 
     for (v0 = 0; v0 < 3; v0++) {
         NNS_G3dFreeAnmObj(&v1->unk_6C, v1->unk_7C[v0]);
@@ -198,7 +199,7 @@ int ov93_021D12F0 (OverlayManager * param0, int * param1)
     return 1;
 }
 
-static void ov93_021D133C (void)
+static void ov93_021D133C(void)
 {
     SetMainCallback(NULL, NULL);
     DisableHBlank();
@@ -217,7 +218,7 @@ static void ov93_021D133C (void)
     GXLayers_SwapDisplay();
 }
 
-static void ov93_021D13A0 (void)
+static void ov93_021D13A0(void)
 {
     UnkStruct_02099F80 v0 = {
         GX_VRAM_BG_128_C,
@@ -235,12 +236,12 @@ static void ov93_021D13A0 (void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov93_021D13C0 (UnkStruct_ov93_021D13C0 * param0)
+static void ov93_021D13C0(UnkStruct_ov93_021D13C0 *param0)
 {
     u8 v0;
-    NNSG3dResTex * v1;
-    void * v2;
-    NARC * v3;
+    NNSG3dResTex *v1;
+    void *v2;
+    NARC *v3;
 
     v3 = NARC_ctor(NARC_INDEX_ARC__SHIP_DEMO_PL, 72);
     Heap_FndInitAllocatorForExpHeap(&param0->unk_6C, 72, 4);

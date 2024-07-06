@@ -1,13 +1,13 @@
 #ifndef POKEPLATINUM_STRUCT_OV13_0221FC20_H
 #define POKEPLATINUM_STRUCT_OV13_0221FC20_H
 
-#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/battle_system.h"
+#include "struct_decls/struct_party_decl.h"
 
 typedef struct {
-    Party * unk_00;
-    void * unk_04;
-    BattleSystem * unk_08;
+    Party *unk_00;
+    void *unk_04;
+    BattleSystem *unk_08;
     u32 unk_0C;
     u8 unk_10;
     u8 unk_11;

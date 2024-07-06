@@ -3,8 +3,8 @@
 
 #include "overlay100/struct_ov100_021D4DD8.h"
 
-void * ov100_021D3620(UnkStruct_ov100_021D4DD8 * param0);
-BOOL ov100_021D39E4(void * param0);
-BOOL ov100_021D3FD4(void * param0);
+void *ov100_021D3620(UnkStruct_ov100_021D4DD8 *param0);
+BOOL ov100_021D39E4(void *param0);
+BOOL ov100_021D3FD4(void *param0);
 
 #endif // POKEPLATINUM_OV100_021D2F0C_H

@@ -4,7 +4,7 @@
 #include "cell_actor.h"
 
 typedef struct {
-    CellActor * unk_00;
+    CellActor *unk_00;
     int unk_04;
     int unk_08;
     BOOL unk_0C;

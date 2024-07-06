@@ -1,29 +1,30 @@
+#include "unk_020985E4.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_020508D4_decl.h"
-#include "savedata.h"
-
-#include "field/field_system.h"
 #include "struct_defs/struct_020985E4.h"
 #include "struct_defs/struct_0209862C.h"
 
-#include "unk_0200F174.h"
-#include "heap.h"
-#include "save_player.h"
-#include "trainer_info.h"
-#include "field_system.h"
-#include "unk_020508D4.h"
-#include "unk_020985E4.h"
+#include "field/field_system.h"
 #include "overlay005/ov5_021D0D80.h"
 #include "overlay100/ov100_021D0D80.h"
 
+#include "field_system.h"
+#include "heap.h"
+#include "save_player.h"
+#include "savedata.h"
+#include "trainer_info.h"
+#include "unk_0200F174.h"
+#include "unk_020508D4.h"
+
 FS_EXTERN_OVERLAY(overlay100);
 
-void sub_020985E4 (TaskManager * param0, SaveData * param1)
+void sub_020985E4(TaskManager *param0, SaveData *param1)
 {
-    UnkStruct_0209862C * v0;
-    UnkStruct_020985E4 * v1;
+    UnkStruct_0209862C *v0;
+    UnkStruct_020985E4 *v1;
 
     v0 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0209862C));
     v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_020985E4));
@@ -38,10 +39,10 @@ void sub_020985E4 (TaskManager * param0, SaveData * param1)
     FieldTask_Start(param0, sub_0209862C, v0);
 }
 
-BOOL sub_0209862C (TaskManager * param0)
+BOOL sub_0209862C(TaskManager *param0)
 {
-    FieldSystem * fieldSystem;
-    UnkStruct_0209862C * v1;
+    FieldSystem *fieldSystem;
+    UnkStruct_0209862C *v1;
 
     fieldSystem = TaskManager_FieldSystem(param0);
     v1 = TaskManager_Environment(param0);

@@ -1,23 +1,23 @@
+#include "unk_0206C2D0.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "trainer_info.h"
 #include "struct_decls/struct_0202C834_decl.h"
 #include "struct_decls/struct_0202C844_decl.h"
-#include "savedata.h"
 
 #include "save_player.h"
+#include "savedata.h"
 #include "trainer_info.h"
 #include "unk_0202C7FC.h"
-#include "unk_0206C2D0.h"
 
-void sub_0206C2D0 (SaveData * param0, const s32 param1)
+void sub_0206C2D0(SaveData *param0, const s32 param1)
 {
     u8 v0;
     int v1;
-    UnkStruct_0202C834 * v2;
-    UnkStruct_0202C844 * v3;
-    TrainerInfo * v4;
+    UnkStruct_0202C834 *v2;
+    UnkStruct_0202C844 *v3;
+    TrainerInfo *v4;
 
     if (param1 <= 0) {
         return;

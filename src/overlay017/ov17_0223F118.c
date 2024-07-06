@@ -1,53 +1,53 @@
-#include <nitro.h>
-#include <string.h>
-#include <nitro/sinit.h>
+#include "overlay017/ov17_0223F118.h"
 
+#include <nitro.h>
+#include <nitro/sinit.h>
+#include <string.h>
+
+#include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02002F38_decl.h"
-#include "message.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "sys_task_manager.h"
-#include "strbuf.h"
-
+#include "struct_defs/sprite_manager_allocation.h"
+#include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/sprite_manager_allocation.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02095C48.h"
+
+#include "overlay017/ov17_02252A70.h"
 #include "overlay017/struct_ov17_0223F2E4.h"
 #include "overlay017/struct_ov17_0223F6E8.h"
 #include "overlay017/struct_ov17_0223F744.h"
-#include "struct_defs/sprite_template.h"
 
+#include "game_overlay.h"
+#include "gx_layers.h"
+#include "heap.h"
+#include "message.h"
+#include "pokemon.h"
+#include "strbuf.h"
+#include "sys_task.h"
+#include "sys_task_manager.h"
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
-#include "game_overlay.h"
 #include "unk_0200A9DC.h"
-#include "message.h"
 #include "unk_0200C6E4.h"
-#include "sys_task.h"
 #include "unk_02012744.h"
-#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201E86C.h"
-#include "gx_layers.h"
 #include "unk_02024220.h"
-#include "pokemon.h"
-#include "overlay017/ov17_0223F118.h"
-#include "overlay017/ov17_02252A70.h"
 
 FS_EXTERN_OVERLAY(overlay11);
 FS_EXTERN_OVERLAY(overlay12);
 FS_EXTERN_OVERLAY(overlay22);
 
-static void ov17_0223F6E8(SysTask * param0, void * param1);
+static void ov17_0223F6E8(SysTask *param0, void *param1);
 static void ov17_0223F15C(void);
-static void ov17_0223F774(SysTask * param0, void * param1);
+static void ov17_0223F774(SysTask *param0, void *param1);
 
 static const SpriteTemplate Unk_ov17_022531FC = {
     0x0,
@@ -57,7 +57,7 @@ static const SpriteTemplate Unk_ov17_022531FC = {
     0x0,
     0x0,
     NNS_G2D_VRAM_TYPE_2DMAIN,
-    {0x0, 0x0, 0x0, 0x0, 0xFFFFFFFF, 0xFFFFFFFF},
+    { 0x0, 0x0, 0x0, 0x0, 0xFFFFFFFF, 0xFFFFFFFF },
     0x3,
     0x0
 };
@@ -68,30 +68,30 @@ static const struct {
     s16 unk_04;
     u8 unk_06;
 } Unk_ov17_022531CC[] = {
-    {0xD, 0xAC, 0xFFFFFFFFFFFFFE80, 0x1},
-    {0x25, 0xA4, 0x300, 0x1},
-    {0x40, 0xB0, 0xFFFFFFFFFFFFFF80, 0x0},
-    {0xC0, 0xB0, 0x80, 0x0},
-    {0xDB, 0xA4, 0xFFFFFFFFFFFFFD00, 0x1},
-    {0xF3, 0xAC, 0x180, 0x1}
+    { 0xD, 0xAC, 0xFFFFFFFFFFFFFE80, 0x1 },
+    { 0x25, 0xA4, 0x300, 0x1 },
+    { 0x40, 0xB0, 0xFFFFFFFFFFFFFF80, 0x0 },
+    { 0xC0, 0xB0, 0x80, 0x0 },
+    { 0xDB, 0xA4, 0xFFFFFFFFFFFFFD00, 0x1 },
+    { 0xF3, 0xAC, 0x180, 0x1 }
 };
 
-static void NitroStaticInit (void)
+static void NitroStaticInit(void)
 {
     Overlay_LoadByID(FS_OVERLAY_ID(overlay11), 2);
     Overlay_LoadByID(FS_OVERLAY_ID(overlay12), 2);
     Overlay_LoadByID(FS_OVERLAY_ID(overlay22), 2);
 }
 
-GenericPointerData * ov17_0223F140 (int param0)
+GenericPointerData *ov17_0223F140(int param0)
 {
-    GenericPointerData * v0;
+    GenericPointerData *v0;
 
     v0 = sub_02024220(param0, 0, 2, 0, 2, ov17_0223F15C);
     return v0;
 }
 
-static void ov17_0223F15C (void)
+static void ov17_0223F15C(void)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
@@ -106,18 +106,18 @@ static void ov17_0223F15C (void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-void ov17_0223F1E0 (GenericPointerData * param0)
+void ov17_0223F1E0(GenericPointerData *param0)
 {
     sub_020242C4(param0);
 }
 
-void ov17_0223F1E8 (int param0, BGL * param1, SpriteGfxHandler * param2, UnkStruct_02012744 * param3, UnkStruct_ov17_0223F2E4 * param4, const Strbuf *param5, int param6, u32 param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
+void ov17_0223F1E8(int param0, BGL *param1, SpriteGfxHandler *param2, UnkStruct_02012744 *param3, UnkStruct_ov17_0223F2E4 *param4, const Strbuf *param5, int param6, u32 param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
 {
     UnkStruct_020127E8 v0;
     Window v1;
     SpriteManagerAllocation v2;
     int v3;
-    FontOAM * v4;
+    FontOAM *v4;
     int v5, v6;
     int v7 = 0;
 
@@ -172,13 +172,13 @@ void ov17_0223F1E8 (int param0, BGL * param1, SpriteGfxHandler * param2, UnkStru
     param4->unk_10 = v5;
 }
 
-void ov17_0223F2E4 (UnkStruct_ov17_0223F2E4 * param0)
+void ov17_0223F2E4(UnkStruct_ov17_0223F2E4 *param0)
 {
     sub_02012870(param0->unk_00);
     sub_0201EE28(&param0->unk_04);
 }
 
-void ov17_0223F2F8 (UnkStruct_ov17_0223F2E4 * param0, int param1, int param2, int param3)
+void ov17_0223F2F8(UnkStruct_ov17_0223F2E4 *param0, int param1, int param2, int param3)
 {
     if (param3 == 1) {
         param1 -= param0->unk_10 / 2;
@@ -188,10 +188,10 @@ void ov17_0223F2F8 (UnkStruct_ov17_0223F2E4 * param0, int param1, int param2, in
     sub_020128C4(param0->unk_00, param1, param2);
 }
 
-Strbuf* ov17_0223F310 (u32 param0, u32 param1)
+Strbuf *ov17_0223F310(u32 param0, u32 param1)
 {
-    MessageLoader * v0;
-    Strbuf* v1;
+    MessageLoader *v0;
+    Strbuf *v1;
 
     v0 = MessageLoader_Init(1, 26, 207, param1);
     v1 = MessageLoader_GetNewStrbuf(v0, param0);
@@ -200,9 +200,9 @@ Strbuf* ov17_0223F310 (u32 param0, u32 param1)
     return v1;
 }
 
-void ov17_0223F334 (UnkStruct_02095C48 * param0, int param1)
+void ov17_0223F334(UnkStruct_02095C48 *param0, int param1)
 {
-    u8 * v0;
+    u8 *v0;
     int v1;
 
     v0 = ov17_02252A9C(param1, param0->unk_00.unk_112);
@@ -214,7 +214,7 @@ void ov17_0223F334 (UnkStruct_02095C48 * param0, int param1)
     Heap_FreeToHeap(v0);
 }
 
-void ov17_0223F374 (UnkStruct_02095C48 * param0)
+void ov17_0223F374(UnkStruct_02095C48 *param0)
 {
     int v0, v1, v2, v3, v4;
     u32 v5;
@@ -314,7 +314,7 @@ void ov17_0223F374 (UnkStruct_02095C48 * param0)
     }
 }
 
-void ov17_0223F560 (SpriteRenderer * param0, SpriteGfxHandler * param1, PaletteData * param2, int param3, int param4, int param5, int param6)
+void ov17_0223F560(SpriteRenderer *param0, SpriteGfxHandler *param1, PaletteData *param2, int param3, int param4, int param5, int param6)
 {
     if (param3 != -1) {
         sub_0200CBDC(param0, param1, 46, 73, 1, NNS_G2D_VRAM_TYPE_2DMAIN, param3);
@@ -333,7 +333,7 @@ void ov17_0223F560 (SpriteRenderer * param0, SpriteGfxHandler * param1, PaletteD
     }
 }
 
-void ov17_0223F5E8 (SpriteGfxHandler * param0, int param1, int param2, int param3, int param4)
+void ov17_0223F5E8(SpriteGfxHandler *param0, int param1, int param2, int param3, int param4)
 {
     if (param1 != -1) {
         SpriteGfxHandler_UnloadCharObjById(param0, param1);
@@ -352,7 +352,7 @@ void ov17_0223F5E8 (SpriteGfxHandler * param0, int param1, int param2, int param
     }
 }
 
-void ov17_0223F630 (UnkStruct_ov17_0223F6E8 * param0, SpriteRenderer * param1, SpriteGfxHandler * param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, u32 param10)
+void ov17_0223F630(UnkStruct_ov17_0223F6E8 *param0, SpriteRenderer *param1, SpriteGfxHandler *param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, u32 param10)
 {
     int v0;
     SpriteTemplate v1;
@@ -381,7 +381,7 @@ void ov17_0223F630 (UnkStruct_ov17_0223F6E8 * param0, SpriteRenderer * param1, S
     param0->unk_18 = SysTask_Start(ov17_0223F6E8, param0, param10);
 }
 
-void ov17_0223F6C4 (UnkStruct_ov17_0223F6E8 * param0)
+void ov17_0223F6C4(UnkStruct_ov17_0223F6E8 *param0)
 {
     int v0;
 
@@ -393,9 +393,9 @@ void ov17_0223F6C4 (UnkStruct_ov17_0223F6E8 * param0)
     param0->unk_18 = NULL;
 }
 
-static void ov17_0223F6E8 (SysTask * param0, void * param1)
+static void ov17_0223F6E8(SysTask *param0, void *param1)
 {
-    UnkStruct_ov17_0223F6E8 * v0 = param1;
+    UnkStruct_ov17_0223F6E8 *v0 = param1;
     int v1;
 
     for (v1 = 0; v1 < 6; v1++) {
@@ -403,9 +403,9 @@ static void ov17_0223F6E8 (SysTask * param0, void * param1)
     }
 }
 
-UnkStruct_ov17_0223F744 * ov17_0223F70C (int param0, PaletteData * param1, const u16 * param2, int param3, int param4, u32 param5)
+UnkStruct_ov17_0223F744 *ov17_0223F70C(int param0, PaletteData *param1, const u16 *param2, int param3, int param4, u32 param5)
 {
-    UnkStruct_ov17_0223F744 * v0;
+    UnkStruct_ov17_0223F744 *v0;
 
     v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov17_0223F744));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_0223F744));
@@ -419,7 +419,7 @@ UnkStruct_ov17_0223F744 * ov17_0223F70C (int param0, PaletteData * param1, const
     return v0;
 }
 
-void ov17_0223F744 (UnkStruct_ov17_0223F744 * param0)
+void ov17_0223F744(UnkStruct_ov17_0223F744 *param0)
 {
     GF_ASSERT(param0->unk_00 != NULL);
 
@@ -427,7 +427,7 @@ void ov17_0223F744 (UnkStruct_ov17_0223F744 * param0)
     Heap_FreeToHeap(param0);
 }
 
-BOOL ov17_0223F760 (void)
+BOOL ov17_0223F760(void)
 {
     if (sub_0200AC1C(1) == 1) {
         return 1;
@@ -436,9 +436,9 @@ BOOL ov17_0223F760 (void)
     return 0;
 }
 
-static void ov17_0223F774 (SysTask * param0, void * param1)
+static void ov17_0223F774(SysTask *param0, void *param1)
 {
-    UnkStruct_ov17_0223F744 * v0 = param1;
+    UnkStruct_ov17_0223F744 *v0 = param1;
 
     if (sub_0200AC1C(1) == 0) {
         return;

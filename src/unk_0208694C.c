@@ -1,63 +1,60 @@
+#include "unk_0208694C.h"
+
 #include <nitro.h>
 #include <string.h>
-
-#include "core_sys.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "strbuf.h"
-#include "pokemon.h"
 #include "struct_decls/struct_02087A10_decl.h"
-
-#include "constdata/const_020F2DAC.h"
-
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/struct_02099F80.h"
+
 #include "overlay022/struct_ov22_022559F8.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 
+#include "cell_actor.h"
+#include "core_sys.h"
+#include "game_options.h"
+#include "gx_layers.h"
+#include "heap.h"
+#include "message.h"
+#include "message_util.h"
+#include "narc.h"
+#include "overlay_manager.h"
+#include "pokemon.h"
+#include "pokemon_icon.h"
+#include "strbuf.h"
+#include "string_template.h"
+#include "sys_task_manager.h"
 #include "unk_020021B0.h"
 #include "unk_02002B7C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
-#include "overlay_manager.h"
-#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "message.h"
-#include "message_util.h"
-#include "string_template.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_0201567C.h"
 #include "unk_02017728.h"
-#include "heap.h"
 #include "unk_02018340.h"
-#include "sys_task_manager.h"
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
-#include "gx_layers.h"
-#include "cell_actor.h"
-#include "strbuf.h"
-#include "game_options.h"
-#include "pokemon.h"
 #include "unk_020797C8.h"
-#include "pokemon_icon.h"
-#include "unk_0208694C.h"
+
+#include "constdata/const_020F2DAC.h"
 
 typedef struct {
     int unk_00;
@@ -76,7 +73,7 @@ struct UnkStruct_02087A10_t {
     int unk_0C;
     int unk_10;
     int unk_14;
-    Options * unk_18;
+    Options *unk_18;
     UnkStruct_02087A10_sub1 unk_1C;
     u16 unk_38;
     u16 unk_3A[6][13];
@@ -85,26 +82,26 @@ struct UnkStruct_02087A10_t {
     u16 unk_118[32];
     u16 unk_158;
     u16 unk_15A[3];
-    BGL * unk_160;
+    BGL *unk_160;
     BOOL unk_164;
-    StringTemplate * unk_168;
-    MessageLoader * unk_16C;
-    MessageLoader * unk_170;
-    MessageLoader * unk_174;
-    Strbuf* unk_178;
-    Strbuf* unk_17C;
-    Strbuf* unk_180;
-    Strbuf* unk_184;
-    CellActorCollection * unk_188;
+    StringTemplate *unk_168;
+    MessageLoader *unk_16C;
+    MessageLoader *unk_170;
+    MessageLoader *unk_174;
+    Strbuf *unk_178;
+    Strbuf *unk_17C;
+    Strbuf *unk_180;
+    Strbuf *unk_184;
+    CellActorCollection *unk_188;
     UnkStruct_0200C738 unk_18C;
-    UnkStruct_02009714 * unk_318[4];
-    UnkStruct_02009DC8 * unk_328[2][4];
+    UnkStruct_02009714 *unk_318[4];
+    UnkStruct_02009DC8 *unk_328[2][4];
     CellActorResourceData unk_348;
     CellActorResourceData unk_36C;
-    CellActor * unk_390[14];
-    CellActor * unk_3C8[12];
-    CellActor * unk_3F8[2];
-    SysTask * unk_400[7];
+    CellActor *unk_390[14];
+    CellActor *unk_3C8[12];
+    CellActor *unk_3F8[2];
+    SysTask *unk_400[7];
     Window unk_41C[10];
     int unk_4BC;
     int unk_4C0;
@@ -116,27 +113,27 @@ struct UnkStruct_02087A10_t {
     int unk_4EC;
     int unk_4F0;
     int unk_4F4[7];
-    void * unk_510;
-    NNSG2dCharacterData * unk_514;
-    void * unk_518;
-    NNSG2dCharacterData * unk_51C;
-    void * unk_520;
-    NNSG2dPaletteData * unk_524;
+    void *unk_510;
+    NNSG2dCharacterData *unk_514;
+    void *unk_518;
+    NNSG2dCharacterData *unk_51C;
+    void *unk_520;
+    NNSG2dPaletteData *unk_524;
     u8 unk_528[256];
-    void * unk_628;
+    void *unk_628;
     BOOL unk_62C;
     int unk_630;
 };
 
 typedef struct {
-    CellActor * unk_00;
-    CellActor * unk_04;
+    CellActor *unk_00;
+    CellActor *unk_04;
     int unk_08;
     int unk_0C;
 } UnkStruct_020879DC;
 
 typedef struct {
-    CellActor * unk_00;
+    CellActor *unk_00;
     int unk_04;
     int unk_08;
     int unk_0C;
@@ -146,729 +143,729 @@ typedef struct {
     u8 unk_00;
     u8 unk_01;
     u16 unk_02_0 : 2;
-    u16  : 14;
+    u16 : 14;
     u8 unk_04_0 : 5;
-    u8  : 3;
+    u8 : 3;
     u8 unk_05_0 : 5;
-    u8  : 3;
+    u8 : 3;
 } UnkStruct_020F2A14;
 
-static int sub_0208694C(OverlayManager * param0, int * param1);
-static int sub_02086B64(OverlayManager * param0, int * param1);
-static int sub_02086F3C(OverlayManager * param0, int * param1);
-static void sub_02087190(void * param0);
+static int sub_0208694C(OverlayManager *param0, int *param1);
+static int sub_02086B64(OverlayManager *param0, int *param1);
+static int sub_02086F3C(OverlayManager *param0, int *param1);
+static void sub_02087190(void *param0);
 static void sub_020871CC(void);
-static void sub_020871EC(BGL * param0);
-static void sub_0208765C(BGL * param0, Window * param1);
-static void sub_0208769C(UnkStruct_02087A10 * param0, NARC * param1);
-static void sub_02087D64(BGL * param0, Window * param1, int * param2, int param3, int * param4, VecFx32 param5[], CellActor ** param6, void * param7);
-static void sub_0208737C(UnkStruct_02087A10 * param0, OverlayManager * param1);
-static void sub_02088240(BGL * param0, int param1, VecFx32 param2[]);
+static void sub_020871EC(BGL *param0);
+static void sub_0208765C(BGL *param0, Window *param1);
+static void sub_0208769C(UnkStruct_02087A10 *param0, NARC *param1);
+static void sub_02087D64(BGL *param0, Window *param1, int *param2, int param3, int *param4, VecFx32 param5[], CellActor **param6, void *param7);
+static void sub_0208737C(UnkStruct_02087A10 *param0, OverlayManager *param1);
+static void sub_02088240(BGL *param0, int param1, VecFx32 param2[]);
 static void sub_02088260(VecFx32 param0[], int param1);
-static void sub_020877F4(UnkStruct_02087A10 * param0, NARC * param1);
-static void sub_02087A10(UnkStruct_02087A10 * param0);
+static void sub_020877F4(UnkStruct_02087A10 *param0, NARC *param1);
+static void sub_02087A10(UnkStruct_02087A10 *param0);
 static void sub_020877C4(void);
-static void sub_02087FC0(UnkStruct_02087A10 * param0, OverlayManager * param1, NARC * param2);
-static void sub_02088350(UnkStruct_02087A10 * param0);
-static void sub_02088514(u16 * param0);
-static void sub_02088554(Window * param0, const u16 * param1, int param2, int param3, int param4, int param5, u32 param6, u8 * param7);
-static void sub_02088678(Window * param0, const u16 * param1, u8 * param2, Strbuf *param3);
+static void sub_02087FC0(UnkStruct_02087A10 *param0, OverlayManager *param1, NARC *param2);
+static void sub_02088350(UnkStruct_02087A10 *param0);
+static void sub_02088514(u16 *param0);
+static void sub_02088554(Window *param0, const u16 *param1, int param2, int param3, int param4, int param5, u32 param6, u8 *param7);
+static void sub_02088678(Window *param0, const u16 *param1, u8 *param2, Strbuf *param3);
 static void sub_02088844(u16 param0[][13], const int param1);
-static void sub_02088754(Window * param0, u16 * param1, int param2, u16 * param3, u8 * param4, Strbuf *param5);
-static int sub_02088898(UnkStruct_02087A10 * param0, u16 param1, int param2);
-static int sub_02088D08(int param0, int param1, int param2, int param3, u16 * param4, int param5);
-static int sub_02088C9C(int param0, int param1, u16 * param2, int param3);
-static void sub_02088E1C(CellActor ** param0, int param1, int param2);
-static void sub_020871B0(UnkStruct_02087A10 * param0, UnkStruct_0208737C * param1);
-static void sub_02088E58(Window * param0, u16 param1, int param2, u32 param3, u8 * param4);
-static void sub_02088454(UnkStruct_02087A10 * param0, int param1);
-static void sub_02088F40(int param0[], CellActor ** param1, int param2);
-static void sub_020879DC(SysTask * param0, void * param1);
-static void sub_02087CDC(SysTask * param0, void * param1);
-static void sub_02086B30(NNSG2dCharacterData * param0, NNSG2dPaletteData * param1, int param2, int param3);
+static void sub_02088754(Window *param0, u16 *param1, int param2, u16 *param3, u8 *param4, Strbuf *param5);
+static int sub_02088898(UnkStruct_02087A10 *param0, u16 param1, int param2);
+static int sub_02088D08(int param0, int param1, int param2, int param3, u16 *param4, int param5);
+static int sub_02088C9C(int param0, int param1, u16 *param2, int param3);
+static void sub_02088E1C(CellActor **param0, int param1, int param2);
+static void sub_020871B0(UnkStruct_02087A10 *param0, UnkStruct_0208737C *param1);
+static void sub_02088E58(Window *param0, u16 param1, int param2, u32 param3, u8 *param4);
+static void sub_02088454(UnkStruct_02087A10 *param0, int param1);
+static void sub_02088F40(int param0[], CellActor **param1, int param2);
+static void sub_020879DC(SysTask *param0, void *param1);
+static void sub_02087CDC(SysTask *param0, void *param1);
+static void sub_02086B30(NNSG2dCharacterData *param0, NNSG2dPaletteData *param1, int param2, int param3);
 static void sub_0208732C(int param0);
-static void sub_02087544(UnkStruct_02087A10 * param0, OverlayManager * param1);
-static void sub_02087BE4(UnkStruct_02087A10 * param0, CellActorInitParamsEx * param1);
-static void sub_02086E6C(UnkStruct_02087A10 * param0, UnkStruct_0208737C * param1);
-static void sub_02087F48(Window * param0, int param1, Strbuf *param2);
-static void sub_02088FD0(UnkStruct_02087A10 * param0);
-static int sub_02086D38(UnkStruct_02087A10 * param0, int param1);
-static int sub_02086F14(u16 * param0);
-static void * sub_02088654(Window * param0, Strbuf *param1, u8 param2, u32 param3);
-static BOOL sub_0208903C(UnkStruct_02087A10 * param0);
+static void sub_02087544(UnkStruct_02087A10 *param0, OverlayManager *param1);
+static void sub_02087BE4(UnkStruct_02087A10 *param0, CellActorInitParamsEx *param1);
+static void sub_02086E6C(UnkStruct_02087A10 *param0, UnkStruct_0208737C *param1);
+static void sub_02087F48(Window *param0, int param1, Strbuf *param2);
+static void sub_02088FD0(UnkStruct_02087A10 *param0);
+static int sub_02086D38(UnkStruct_02087A10 *param0, int param1);
+static int sub_02086F14(u16 *param0);
+static void *sub_02088654(Window *param0, Strbuf *param1, u8 param2, u32 param3);
+static BOOL sub_0208903C(UnkStruct_02087A10 *param0);
 
 static const int Unk_020F2984[][4] = {
-	{ 0x4, 0x44, 0x3, 0x1 },
-	{ 0x24, 0x44, 0x8, 0x1 },
-	{ 0x44, 0x44, 0xD, 0x1 },
-	{ 0x0, 0xC8, 0x12, 0x1 },
-	{ 0x65, 0x44, 0x14, 0x1 },
-	{ 0x88, 0x44, 0x17, 0x1 },
-	{ 0xB0, 0x44, 0x19, 0x1 },
-	{ 0x16, 0x38, 0x25, 0x2 },
-	{ 0x1A, 0x5B, 0x27, 0x0 }
+    { 0x4, 0x44, 0x3, 0x1 },
+    { 0x24, 0x44, 0x8, 0x1 },
+    { 0x44, 0x44, 0xD, 0x1 },
+    { 0x0, 0xC8, 0x12, 0x1 },
+    { 0x65, 0x44, 0x14, 0x1 },
+    { 0x88, 0x44, 0x17, 0x1 },
+    { 0xB0, 0x44, 0x19, 0x1 },
+    { 0x16, 0x38, 0x25, 0x2 },
+    { 0x1A, 0x5B, 0x27, 0x0 }
 };
 
 static const u16 Unk_020F255A[] = {
-	0xE002,
-	0xE002,
-	0xE003,
-	0xE003,
-	0xE004,
-	0xE004,
-	0xD004,
-	0xD004,
-	0xE007,
-	0xE007,
-	0xE007,
-	0xE008,
-	0xE008
+    0xE002,
+    0xE002,
+    0xE003,
+    0xE003,
+    0xE004,
+    0xE004,
+    0xD004,
+    0xD004,
+    0xE007,
+    0xE007,
+    0xE007,
+    0xE008,
+    0xE008
 };
 
 static const u16 Unk_020F2574[] = {
-	0xD004,
-	0xD004,
-	0xD004,
-	0xD004,
-	0xD004,
-	0xD004,
-	0xD004,
-	0xD004,
-	0xE007,
-	0xE007,
-	0xE007,
-	0xE008,
-	0xE008
+    0xD004,
+    0xD004,
+    0xD004,
+    0xD004,
+    0xD004,
+    0xD004,
+    0xD004,
+    0xD004,
+    0xE007,
+    0xE007,
+    0xE007,
+    0xE008,
+    0xE008
 };
 
 static const u16 *Unk_02100C40[] = {
-	Unk_020F255A,
-	Unk_020F255A,
-	Unk_020F255A,
-	Unk_020F255A,
-	Unk_020F2574
+    Unk_020F255A,
+    Unk_020F255A,
+    Unk_020F255A,
+    Unk_020F255A,
+    Unk_020F2574
 };
 
 static const u16 Unk_020F251C[] = {
-	0x19,
-	0x39,
-	0x59,
-	0x61,
-	0x7A,
-	0x9E,
-	0xC6,
-	0x0
+    0x19,
+    0x39,
+    0x59,
+    0x61,
+    0x7A,
+    0x9E,
+    0xC6,
+    0x0
 };
 
 static const u8 Unk_020F24E8[] = {
-	0x28,
-	0x28,
-	0x28,
-	0x28,
-	0x29,
-	0x29,
-	0x29
+    0x28,
+    0x28,
+    0x28,
+    0x28,
+    0x29,
+    0x29,
+    0x29
 };
 
 static const u16 Unk_020F261C[] = {
-	0x12B,
-	0x12C,
-	0x12D,
-	0x12E,
-	0x12f,
-	0x130,
-	0x131,
-	0x132,
-	0x133,
-	0x134,
-	0x1DE,
-	0x1AD,
-	0x1AE,
-	0xffff
+    0x12B,
+    0x12C,
+    0x12D,
+    0x12E,
+    0x12f,
+    0x130,
+    0x131,
+    0x132,
+    0x133,
+    0x134,
+    0x1DE,
+    0x1AD,
+    0x1AE,
+    0xffff
 };
 
 static const u16 Unk_020F2638[] = {
-	0x135,
-	0x136,
-	0x137,
-	0x138,
-	0x139,
-	0x13A,
-	0x13B,
-	0x13C,
-	0x13D,
-	0x13E,
-	0x1DE,
-	0x1B3,
-	0x1BE,
-	0xffff
+    0x135,
+    0x136,
+    0x137,
+    0x138,
+    0x139,
+    0x13A,
+    0x13B,
+    0x13C,
+    0x13D,
+    0x13E,
+    0x1DE,
+    0x1B3,
+    0x1BE,
+    0xffff
 };
 
 static const u16 Unk_020F2654[] = {
-	0x13f,
-	0x140,
-	0x141,
-	0x142,
-	0x143,
-	0x144,
-	0x1DE,
-	0x1DE,
-	0x1DE,
-	0x1DE,
-	0x1DE,
-	0x1BB,
-	0x1BC,
-	0xffff
+    0x13f,
+    0x140,
+    0x141,
+    0x142,
+    0x143,
+    0x144,
+    0x1DE,
+    0x1DE,
+    0x1DE,
+    0x1DE,
+    0x1DE,
+    0x1BB,
+    0x1BC,
+    0xffff
 };
 
 static const u16 Unk_020F25C8[] = {
-	0x1DE,
-	0x1DE,
-	0x1DE,
-	0x1DE,
-	0x1DE,
-	0x1DE,
-	0x1DE,
-	0x1DE,
-	0x1DE,
-	0x1DE,
-	0x1DE,
-	0x1DE,
-	0x1DE,
-	0xffff
+    0x1DE,
+    0x1DE,
+    0x1DE,
+    0x1DE,
+    0x1DE,
+    0x1DE,
+    0x1DE,
+    0x1DE,
+    0x1DE,
+    0x1DE,
+    0x1DE,
+    0x1DE,
+    0x1DE,
+    0xffff
 };
 
 static const u16 Unk_020F2600[] = {
-	0x121,
-	0x122,
-	0x123,
-	0x124,
-	0x125,
-	0x126,
-	0x127,
-	0x128,
-	0x129,
-	0x12A,
-	0x1DE,
-	0x1DE,
-	0x1DE,
-	0xffff
+    0x121,
+    0x122,
+    0x123,
+    0x124,
+    0x125,
+    0x126,
+    0x127,
+    0x128,
+    0x129,
+    0x12A,
+    0x1DE,
+    0x1DE,
+    0x1DE,
+    0xffff
 };
 
 static const u16 Unk_020F268C[] = {
-	0x145,
-	0x146,
-	0x147,
-	0x148,
-	0x149,
-	0x14A,
-	0x14B,
-	0x14C,
-	0x14D,
-	0x14E,
-	0x1DE,
-	0x1AD,
-	0x1AE,
-	0xffff
+    0x145,
+    0x146,
+    0x147,
+    0x148,
+    0x149,
+    0x14A,
+    0x14B,
+    0x14C,
+    0x14D,
+    0x14E,
+    0x1DE,
+    0x1AD,
+    0x1AE,
+    0xffff
 };
 
 static const u16 Unk_020F26A8[] = {
-	0x14f,
-	0x150,
-	0x151,
-	0x152,
-	0x153,
-	0x154,
-	0x155,
-	0x156,
-	0x157,
-	0x158,
-	0x1DE,
-	0x1B3,
-	0x1BE,
-	0xffff
+    0x14f,
+    0x150,
+    0x151,
+    0x152,
+    0x153,
+    0x154,
+    0x155,
+    0x156,
+    0x157,
+    0x158,
+    0x1DE,
+    0x1B3,
+    0x1BE,
+    0xffff
 };
 
 static const u16 Unk_020F27F8[] = {
-	0x159,
-	0x15A,
-	0x15B,
-	0x15C,
-	0x15D,
-	0x15E,
-	0x1DE,
-	0x1DE,
-	0x1DE,
-	0x1DE,
-	0x1DE,
-	0x1BB,
-	0x1BC,
-	0xffff
+    0x159,
+    0x15A,
+    0x15B,
+    0x15C,
+    0x15D,
+    0x15E,
+    0x1DE,
+    0x1DE,
+    0x1DE,
+    0x1DE,
+    0x1DE,
+    0x1BB,
+    0x1BC,
+    0xffff
 };
 
 static const u16 Unk_020F26FC[] = {
-	0x1DE,
-	0x1DE,
-	0x1DE,
-	0x1DE,
-	0x1DE,
-	0x1DE,
-	0x1DE,
-	0x1DE,
-	0x1DE,
-	0x1DE,
-	0x1DE,
-	0x1DE,
-	0x1DE,
-	0xffff
+    0x1DE,
+    0x1DE,
+    0x1DE,
+    0x1DE,
+    0x1DE,
+    0x1DE,
+    0x1DE,
+    0x1DE,
+    0x1DE,
+    0x1DE,
+    0x1DE,
+    0x1DE,
+    0x1DE,
+    0xffff
 };
 
 static const u16 Unk_020F27C0[] = {
-	0x121,
-	0x122,
-	0x123,
-	0x124,
-	0x125,
-	0x126,
-	0x127,
-	0x128,
-	0x129,
-	0x12A,
-	0x1DE,
-	0x1DE,
-	0x1DE,
-	0xffff
+    0x121,
+    0x122,
+    0x123,
+    0x124,
+    0x125,
+    0x126,
+    0x127,
+    0x128,
+    0x129,
+    0x12A,
+    0x1DE,
+    0x1DE,
+    0x1DE,
+    0xffff
 };
 
 static const u16 Unk_020F2734[] = {
-	0x1AD,
-	0x1AE,
-	0x1C4,
-	0x1C5,
-	0x1AB,
-	0x1AC,
-	0x1DE,
-	0x1DE,
-	0x1DE,
-	0x1BB,
-	0x1BC,
-	0x1DE,
-	0x1DE,
-	0xffff
+    0x1AD,
+    0x1AE,
+    0x1C4,
+    0x1C5,
+    0x1AB,
+    0x1AC,
+    0x1DE,
+    0x1DE,
+    0x1DE,
+    0x1BB,
+    0x1BC,
+    0x1DE,
+    0x1DE,
+    0xffff
 };
 
 static const u16 Unk_020F276C[] = {
-	0x1B4,
-	0x1B5,
-	0x1B2,
-	0x1B3,
-	0x1B9,
-	0x1BA,
-	0x1DE,
-	0x1DE,
-	0x1DE,
-	0x1DE,
-	0x1DE,
-	0x1DE,
-	0x1DE,
-	0xffff
+    0x1B4,
+    0x1B5,
+    0x1B2,
+    0x1B3,
+    0x1B9,
+    0x1BA,
+    0x1DE,
+    0x1DE,
+    0x1DE,
+    0x1DE,
+    0x1DE,
+    0x1DE,
+    0x1DE,
+    0xffff
 };
 
 static const u16 Unk_020F2788[] = {
-	0x1af,
-	0x1B0,
-	0x1C3,
-	0x1D0,
-	0x1C0,
-	0x1D2,
-	0x1BD,
-	0x1BE,
-	0x1bf,
-	0x1B1,
-	0x1C1,
-	0x1DE,
-	0x1DE,
-	0xffff
+    0x1af,
+    0x1B0,
+    0x1C3,
+    0x1D0,
+    0x1C0,
+    0x1D2,
+    0x1BD,
+    0x1BE,
+    0x1bf,
+    0x1B1,
+    0x1C1,
+    0x1DE,
+    0x1DE,
+    0xffff
 };
 
 static const u16 Unk_020F27A4[] = {
-	0x1CB,
-	0x1CC,
-	0x1CD,
-	0x1CE,
-	0x1cf,
-	0x1C6,
-	0x1C8,
-	0x1C9,
-	0x1C7,
-	0x1CA,
-	0x1D1,
-	0x1DE,
-	0x1DE,
-	0xffff
+    0x1CB,
+    0x1CC,
+    0x1CD,
+    0x1CE,
+    0x1cf,
+    0x1C6,
+    0x1C8,
+    0x1C9,
+    0x1C7,
+    0x1CA,
+    0x1D1,
+    0x1DE,
+    0x1DE,
+    0xffff
 };
 
 static const u16 Unk_020F27DC[] = {
-	0x1D3,
-	0x1D4,
-	0x1D5,
-	0x1D6,
-	0x1D7,
-	0x1D8,
-	0x1D9,
-	0x1DA,
-	0x1DD,
-	0x1DB,
-	0x1DC,
-	0x1DE,
-	0x1DE,
-	0xffff
+    0x1D3,
+    0x1D4,
+    0x1D5,
+    0x1D6,
+    0x1D7,
+    0x1D8,
+    0x1D9,
+    0x1DA,
+    0x1DD,
+    0x1DB,
+    0x1DC,
+    0x1DE,
+    0x1DE,
+    0xffff
 };
 
 static const u16 Unk_020F2718[] = {
-	0xA2,
-	0xA3,
-	0xA4,
-	0xA5,
-	0xA6,
-	0xA7,
-	0xA8,
-	0xA9,
-	0xAA,
-	0xAB,
-	0x1,
-	0xE1,
-	0xE2,
-	0xffff
+    0xA2,
+    0xA3,
+    0xA4,
+    0xA5,
+    0xA6,
+    0xA7,
+    0xA8,
+    0xA9,
+    0xAA,
+    0xAB,
+    0x1,
+    0xE1,
+    0xE2,
+    0xffff
 };
 
 static const u16 Unk_020F258E[] = {
-	0xE3,
-	0xE4,
-	0xf9,
-	0xf8,
-	0xE5,
-	0xE6,
-	0xf5,
-	0xf6,
-	0xf7,
-	0xE7,
-	0x1,
-	0xEE,
-	0xef,
-	0xffff
+    0xE3,
+    0xE4,
+    0xf9,
+    0xf8,
+    0xE5,
+    0xE6,
+    0xf5,
+    0xf6,
+    0xf7,
+    0xE7,
+    0x1,
+    0xEE,
+    0xef,
+    0xffff
 };
 
 static const u16 Unk_020F26E0[] = {
-	0xE8,
-	0xE9,
-	0xEA,
-	0xEB,
-	0xEC,
-	0xED,
-	0xf0,
-	0xf1,
-	0xf2,
-	0xf3,
-	0xf4,
-	0x106,
-	0x104,
-	0xffff
+    0xE8,
+    0xE9,
+    0xEA,
+    0xEB,
+    0xEC,
+    0xED,
+    0xf0,
+    0xf1,
+    0xf2,
+    0xf3,
+    0xf4,
+    0x106,
+    0x104,
+    0xffff
 };
 
 static const u16 Unk_020F26C4[] = {
-	0xff,
-	0x100,
-	0x101,
-	0x102,
-	0x103,
-	0xfc,
-	0xfa,
-	0xfd,
-	0xfb,
-	0xfe,
-	0x105,
-	0x1,
-	0x1,
-	0xffff
+    0xff,
+    0x100,
+    0x101,
+    0x102,
+    0x103,
+    0xfc,
+    0xfa,
+    0xfd,
+    0xfb,
+    0xfe,
+    0x105,
+    0x1,
+    0x1,
+    0xffff
 };
 
 static const u16 Unk_020F25E4[] = {
-	0x107,
-	0x108,
-	0x109,
-	0x10A,
-	0x10B,
-	0x10C,
-	0x10D,
-	0x10E,
-	0x111,
-	0x10f,
-	0x110,
-	0x1,
-	0x1,
-	0xffff
+    0x107,
+    0x108,
+    0x109,
+    0x10A,
+    0x10B,
+    0x10C,
+    0x10D,
+    0x10E,
+    0x111,
+    0x10f,
+    0x110,
+    0x1,
+    0x1,
+    0xffff
 };
 
 static const u16 Unk_020F2870[] = {
-	0x121,
-	0x122,
-	0x123,
-	0x124,
-	0x125,
-	0x1,
-	0x1,
-	0x1,
-	0x1,
-	0x1,
-	0x1,
-	0x1,
-	0x1,
-	0x1,
-	0x1,
-	0x1,
-	0x1,
-	0xffff
+    0x121,
+    0x122,
+    0x123,
+    0x124,
+    0x125,
+    0x1,
+    0x1,
+    0x1,
+    0x1,
+    0x1,
+    0x1,
+    0x1,
+    0x1,
+    0x1,
+    0x1,
+    0x1,
+    0x1,
+    0xffff
 };
 
 static const u16 Unk_020F2894[] = {
-	0x126,
-	0x127,
-	0x128,
-	0x129,
-	0x12A,
-	0x1,
-	0x1,
-	0x1,
-	0x1,
-	0x1,
-	0x1,
-	0x1,
-	0x1,
-	0x1,
-	0x1,
-	0x1,
-	0x1,
-	0xffff
+    0x126,
+    0x127,
+    0x128,
+    0x129,
+    0x12A,
+    0x1,
+    0x1,
+    0x1,
+    0x1,
+    0x1,
+    0x1,
+    0x1,
+    0x1,
+    0x1,
+    0x1,
+    0x1,
+    0x1,
+    0xffff
 };
 
 static const u16 Unk_020F28B8[] = {
-	0x1,
-	0x1,
-	0x1,
-	0x1,
-	0x1,
-	0x1,
-	0x1,
-	0x1,
-	0x1,
-	0x1,
-	0x1,
-	0x1,
-	0x1,
-	0x1,
-	0x1,
-	0x1,
-	0x1,
-	0xffff
+    0x1,
+    0x1,
+    0x1,
+    0x1,
+    0x1,
+    0x1,
+    0x1,
+    0x1,
+    0x1,
+    0x1,
+    0x1,
+    0x1,
+    0x1,
+    0x1,
+    0x1,
+    0x1,
+    0x1,
+    0xffff
 };
 
 const u16 *Unk_02100C54[][5] = {
-	{ Unk_020F261C, Unk_020F2638, Unk_020F2654, Unk_020F25C8, Unk_020F2600 },
-	{ Unk_020F268C, Unk_020F26A8, Unk_020F27F8, Unk_020F26FC, Unk_020F27C0 },
-	{ Unk_020F2734, Unk_020F276C, Unk_020F2788, Unk_020F27A4, Unk_020F27DC },
-	{ Unk_020F2718, Unk_020F258E, Unk_020F26E0, Unk_020F26C4, Unk_020F25E4 },
-	{ Unk_020F2870, Unk_020F2894, Unk_020F28B8, Unk_020F28B8, Unk_020F28B8 }
+    { Unk_020F261C, Unk_020F2638, Unk_020F2654, Unk_020F25C8, Unk_020F2600 },
+    { Unk_020F268C, Unk_020F26A8, Unk_020F27F8, Unk_020F26FC, Unk_020F27C0 },
+    { Unk_020F2734, Unk_020F276C, Unk_020F2788, Unk_020F27A4, Unk_020F27DC },
+    { Unk_020F2718, Unk_020F258E, Unk_020F26E0, Unk_020F26C4, Unk_020F25E4 },
+    { Unk_020F2870, Unk_020F2894, Unk_020F28B8, Unk_020F28B8, Unk_020F28B8 }
 };
 
 static const u16 Unk_020F2BBE[][3] = {
-	{ 0x3, 0x1, 0x2 },
-	{ 0x5, 0x1, 0x4 },
-	{ 0x7, 0x1, 0x6 },
-	{ 0x9, 0x1, 0x8 },
-	{ 0xB, 0x1, 0xA },
-	{ 0x53, 0x1, 0x52 },
-	{ 0x55, 0x1, 0x54 },
-	{ 0x57, 0x1, 0x56 },
-	{ 0x59, 0x1, 0x58 },
-	{ 0x5B, 0x1, 0x5A },
-	{ 0x45, 0x1, 0x44 },
-	{ 0x47, 0x1, 0x46 },
-	{ 0x49, 0x1, 0x48 },
-	{ 0x95, 0x1, 0x94 },
-	{ 0x97, 0x1, 0x96 },
-	{ 0x99, 0x1, 0x98 },
-	{ 0xAC, 0x1, 0xC6 },
-	{ 0xAD, 0x1, 0xC7 },
-	{ 0xAE, 0x1, 0xC8 },
-	{ 0xaf, 0x1, 0xC9 },
-	{ 0xB0, 0x1, 0xCA },
-	{ 0xB1, 0x1, 0xCB },
-	{ 0xB2, 0x1, 0xCC },
-	{ 0xB3, 0x1, 0xCD },
-	{ 0xB4, 0x1, 0xCE },
-	{ 0xB5, 0x1, 0xcf },
-	{ 0xB6, 0x1, 0xD0 },
-	{ 0xB7, 0x1, 0xD1 },
-	{ 0xB8, 0x1, 0xD2 },
-	{ 0xB9, 0x1, 0xD3 },
-	{ 0xBA, 0x1, 0xD4 },
-	{ 0xBB, 0x1, 0xD5 },
-	{ 0xBC, 0x1, 0xD6 },
-	{ 0xBD, 0x1, 0xD7 },
-	{ 0xBE, 0x1, 0xD8 },
-	{ 0xbf, 0x1, 0xD9 },
-	{ 0xC0, 0x1, 0xDA },
-	{ 0xC1, 0x1, 0xDB },
-	{ 0xC2, 0x1, 0xDC },
-	{ 0xC3, 0x1, 0xDD },
-	{ 0xC4, 0x1, 0xDE },
-	{ 0xC5, 0x1, 0xdf },
-	{ 0x25, 0x26, 0x24 },
-	{ 0x75, 0x76, 0x74 },
-	{ 0xC, 0xD, 0x1 },
-	{ 0xE, 0x0f, 0x1 },
-	{ 0x10, 0x11, 0x1 },
-	{ 0x12, 0x13, 0x1 },
-	{ 0x14, 0x15, 0x1 },
-	{ 0x16, 0x17, 0x1 },
-	{ 0x18, 0x19, 0x1 },
-	{ 0x1A, 0x1B, 0x1 },
-	{ 0x1C, 0x1D, 0x1 },
-	{ 0x1E, 0x1f, 0x1 },
-	{ 0x20, 0x21, 0x1 },
-	{ 0x22, 0x23, 0x1 },
-	{ 0x27, 0x28, 0x1 },
-	{ 0x29, 0x2A, 0x1 },
-	{ 0x5C, 0x5D, 0x1 },
-	{ 0x5E, 0x5f, 0x1 },
-	{ 0x60, 0x61, 0x1 },
-	{ 0x62, 0x63, 0x1 },
-	{ 0x64, 0x65, 0x1 },
-	{ 0x66, 0x67, 0x1 },
-	{ 0x68, 0x69, 0x1 },
-	{ 0x6A, 0x6B, 0x1 },
-	{ 0x6C, 0x6D, 0x1 },
-	{ 0x6E, 0x6f, 0x1 },
-	{ 0x70, 0x71, 0x1 },
-	{ 0x72, 0x73, 0x1 },
-	{ 0x77, 0x78, 0x1 },
-	{ 0x79, 0x7A, 0x1 },
-	{ 0x30, 0x31, 0x32 },
-	{ 0x33, 0x34, 0x35 },
-	{ 0x36, 0x37, 0x38 },
-	{ 0x39, 0x3A, 0x3B },
-	{ 0x3C, 0x3D, 0x3E },
-	{ 0x80, 0x81, 0x82 },
-	{ 0x83, 0x84, 0x85 },
-	{ 0x86, 0x87, 0x88 },
-	{ 0x89, 0x8A, 0x8B },
-	{ 0x8C, 0x8D, 0x8E }
+    { 0x3, 0x1, 0x2 },
+    { 0x5, 0x1, 0x4 },
+    { 0x7, 0x1, 0x6 },
+    { 0x9, 0x1, 0x8 },
+    { 0xB, 0x1, 0xA },
+    { 0x53, 0x1, 0x52 },
+    { 0x55, 0x1, 0x54 },
+    { 0x57, 0x1, 0x56 },
+    { 0x59, 0x1, 0x58 },
+    { 0x5B, 0x1, 0x5A },
+    { 0x45, 0x1, 0x44 },
+    { 0x47, 0x1, 0x46 },
+    { 0x49, 0x1, 0x48 },
+    { 0x95, 0x1, 0x94 },
+    { 0x97, 0x1, 0x96 },
+    { 0x99, 0x1, 0x98 },
+    { 0xAC, 0x1, 0xC6 },
+    { 0xAD, 0x1, 0xC7 },
+    { 0xAE, 0x1, 0xC8 },
+    { 0xaf, 0x1, 0xC9 },
+    { 0xB0, 0x1, 0xCA },
+    { 0xB1, 0x1, 0xCB },
+    { 0xB2, 0x1, 0xCC },
+    { 0xB3, 0x1, 0xCD },
+    { 0xB4, 0x1, 0xCE },
+    { 0xB5, 0x1, 0xcf },
+    { 0xB6, 0x1, 0xD0 },
+    { 0xB7, 0x1, 0xD1 },
+    { 0xB8, 0x1, 0xD2 },
+    { 0xB9, 0x1, 0xD3 },
+    { 0xBA, 0x1, 0xD4 },
+    { 0xBB, 0x1, 0xD5 },
+    { 0xBC, 0x1, 0xD6 },
+    { 0xBD, 0x1, 0xD7 },
+    { 0xBE, 0x1, 0xD8 },
+    { 0xbf, 0x1, 0xD9 },
+    { 0xC0, 0x1, 0xDA },
+    { 0xC1, 0x1, 0xDB },
+    { 0xC2, 0x1, 0xDC },
+    { 0xC3, 0x1, 0xDD },
+    { 0xC4, 0x1, 0xDE },
+    { 0xC5, 0x1, 0xdf },
+    { 0x25, 0x26, 0x24 },
+    { 0x75, 0x76, 0x74 },
+    { 0xC, 0xD, 0x1 },
+    { 0xE, 0x0f, 0x1 },
+    { 0x10, 0x11, 0x1 },
+    { 0x12, 0x13, 0x1 },
+    { 0x14, 0x15, 0x1 },
+    { 0x16, 0x17, 0x1 },
+    { 0x18, 0x19, 0x1 },
+    { 0x1A, 0x1B, 0x1 },
+    { 0x1C, 0x1D, 0x1 },
+    { 0x1E, 0x1f, 0x1 },
+    { 0x20, 0x21, 0x1 },
+    { 0x22, 0x23, 0x1 },
+    { 0x27, 0x28, 0x1 },
+    { 0x29, 0x2A, 0x1 },
+    { 0x5C, 0x5D, 0x1 },
+    { 0x5E, 0x5f, 0x1 },
+    { 0x60, 0x61, 0x1 },
+    { 0x62, 0x63, 0x1 },
+    { 0x64, 0x65, 0x1 },
+    { 0x66, 0x67, 0x1 },
+    { 0x68, 0x69, 0x1 },
+    { 0x6A, 0x6B, 0x1 },
+    { 0x6C, 0x6D, 0x1 },
+    { 0x6E, 0x6f, 0x1 },
+    { 0x70, 0x71, 0x1 },
+    { 0x72, 0x73, 0x1 },
+    { 0x77, 0x78, 0x1 },
+    { 0x79, 0x7A, 0x1 },
+    { 0x30, 0x31, 0x32 },
+    { 0x33, 0x34, 0x35 },
+    { 0x36, 0x37, 0x38 },
+    { 0x39, 0x3A, 0x3B },
+    { 0x3C, 0x3D, 0x3E },
+    { 0x80, 0x81, 0x82 },
+    { 0x83, 0x84, 0x85 },
+    { 0x86, 0x87, 0x88 },
+    { 0x89, 0x8A, 0x8B },
+    { 0x8C, 0x8D, 0x8E }
 };
 
 static const u16 Unk_020F2954[][2] = {
-	{ 0x24, 0x26 },
-	{ 0x74, 0x76 },
-	{ 0x32, 0x31 },
-	{ 0x35, 0x34 },
-	{ 0x38, 0x37 },
-	{ 0x3B, 0x3A },
-	{ 0x3E, 0x3D },
-	{ 0x82, 0x81 },
-	{ 0x85, 0x84 },
-	{ 0x88, 0x87 },
-	{ 0x8B, 0x8A },
-	{ 0x8E, 0x8D }
+    { 0x24, 0x26 },
+    { 0x74, 0x76 },
+    { 0x32, 0x31 },
+    { 0x35, 0x34 },
+    { 0x38, 0x37 },
+    { 0x3B, 0x3A },
+    { 0x3E, 0x3D },
+    { 0x82, 0x81 },
+    { 0x85, 0x84 },
+    { 0x88, 0x87 },
+    { 0x8B, 0x8A },
+    { 0x8E, 0x8D }
 };
 
 static const u16 Unk_020F292C[][2] = {
-	{ 0x31, 0x32 },
-	{ 0x34, 0x35 },
-	{ 0x37, 0x38 },
-	{ 0x3A, 0x3B },
-	{ 0x3D, 0x3E },
-	{ 0x81, 0x82 },
-	{ 0x84, 0x85 },
-	{ 0x87, 0x88 },
-	{ 0x8A, 0x8B },
-	{ 0x8D, 0x8E }
+    { 0x31, 0x32 },
+    { 0x34, 0x35 },
+    { 0x37, 0x38 },
+    { 0x3A, 0x3B },
+    { 0x3D, 0x3E },
+    { 0x81, 0x82 },
+    { 0x84, 0x85 },
+    { 0x87, 0x88 },
+    { 0x8A, 0x8B },
+    { 0x8D, 0x8E }
 };
 
 static const int Unk_020F24F0[] = {
-	0x70,
-	0x4C,
-	0x48
+    0x70,
+    0x4C,
+    0x48
 };
 
 static const u8 Unk_020F24DC[4] = {
-	0x4,
-	0x7,
-	0xD,
-	0xA
+    0x4,
+    0x7,
+    0xD,
+    0xA
 };
 
 const u16 Unk_020F252C[] = {
-	0x3,
-	0x2B,
-	0x20,
-	0x2f,
-	0x1,
-	0x2B,
-	0x3f,
-	0x9,
-	0x30,
-	0xE2,
-	0xffff
+    0x3,
+    0x2B,
+    0x20,
+    0x2f,
+    0x1,
+    0x2B,
+    0x3f,
+    0x9,
+    0x30,
+    0xE2,
+    0xffff
 };
 
 const u16 Unk_020F2830[] = {
-	0x8E,
-	0x62,
-	0x93,
-	0xA1,
-	0x2f,
-	0x1,
-	0x7C,
-	0x74,
-	0x60,
-	0x7E,
-	0xf1,
-	0x91,
-	0x30,
-	0xE2,
-	0xffff
+    0x8E,
+    0x62,
+    0x93,
+    0xA1,
+    0x2f,
+    0x1,
+    0x7C,
+    0x74,
+    0x60,
+    0x7E,
+    0xf1,
+    0x91,
+    0x30,
+    0xE2,
+    0xffff
 };
 
 const u16 Unk_020F2542[] = {
-	0x8D,
-	0x74,
-	0x60,
-	0x6A,
-	0x2f,
-	0x1,
-	0x2B,
-	0x3f,
-	0x9,
-	0x30,
-	0xE2,
-	0xffff
+    0x8D,
+    0x74,
+    0x60,
+    0x6A,
+    0x2f,
+    0x1,
+    0x2B,
+    0x3f,
+    0x9,
+    0x30,
+    0xE2,
+    0xffff
 };
 
 static const u16 *dummy[] = {
     Unk_020F252C,
-	Unk_020F2830,
-	Unk_020F2542,
+    Unk_020F2830,
+    Unk_020F2542,
 };
 
 static const int Unk_020F2850[] = {
-	0x0,
-	0x1,
-	0x2,
-	0x3,
-	0x4,
-	0x5,
-	0x6,
-	0x3
+    0x0,
+    0x1,
+    0x2,
+    0x3,
+    0x4,
+    0x5,
+    0x6,
+    0x3
 };
 
 const OverlayManagerTemplate Unk_020F2DAC = {
@@ -878,12 +875,12 @@ const OverlayManagerTemplate Unk_020F2DAC = {
     0xFFFFFFFF
 };
 
-static UnkStruct_02087A10 * Unk_021C0A30;
+static UnkStruct_02087A10 *Unk_021C0A30;
 
-static int sub_0208694C (OverlayManager * param0, int * param1)
+static int sub_0208694C(OverlayManager *param0, int *param1)
 {
-    UnkStruct_02087A10 * v0;
-    NARC * v1;
+    UnkStruct_02087A10 *v0;
+    NARC *v1;
 
     switch (*param1) {
     case 0:
@@ -951,18 +948,18 @@ static int sub_0208694C (OverlayManager * param0, int * param1)
     return 0;
 }
 
-static void sub_02086B30 (NNSG2dCharacterData * param0, NNSG2dPaletteData * param1, int param2, int param3)
+static void sub_02086B30(NNSG2dCharacterData *param0, NNSG2dPaletteData *param1, int param2, int param3)
 {
-    u8 * v0;
+    u8 *v0;
 
     GX_LoadOBJ(param0->pRawData, (21 * 32 + 31) * 0x20, 0x20 * 4 * 4);
     v0 = (u8 *)param1->pRawData;
     GX_LoadOBJPltt((void *)(v0 + PokeIconPaletteIndex(param2, param3, 0) * 0x20), 6 * 0x20, 0x20);
 }
 
-static int sub_02086B64 (OverlayManager * param0, int * param1)
+static int sub_02086B64(OverlayManager *param0, int *param1)
 {
-    UnkStruct_02087A10 * v0 = OverlayManager_Data(param0);
+    UnkStruct_02087A10 *v0 = OverlayManager_Data(param0);
 
     switch (*param1) {
     case 0:
@@ -991,7 +988,7 @@ static int sub_02086B64 (OverlayManager * param0, int * param1)
         case 5:
             sub_02087544(v0, param0);
             BGL_FillWindow(&v0->unk_41C[9], 0xf0f);
-            sub_0200E060(&v0->unk_41C[9], 0, ((32 * 8)), 10);
+            sub_0200E060(&v0->unk_41C[9], 0, (32 * 8), 10);
             v0->unk_4BC = PrintStringSimple(&v0->unk_41C[9], 1, v0->unk_180, 0, 0, 1, NULL);
             sub_0201A954(&v0->unk_41C[9]);
             v0->unk_4C0 = 6;
@@ -1030,7 +1027,7 @@ static int sub_02086B64 (OverlayManager * param0, int * param1)
     return 0;
 }
 
-static int sub_02086D38 (UnkStruct_02087A10 * param0, int param1)
+static int sub_02086D38(UnkStruct_02087A10 *param0, int param1)
 {
     sub_02088350(param0);
 
@@ -1075,10 +1072,10 @@ static int sub_02086D38 (UnkStruct_02087A10 * param0, int param1)
     return param1;
 }
 
-static void sub_02086E6C (UnkStruct_02087A10 * param0, UnkStruct_0208737C * param1)
+static void sub_02086E6C(UnkStruct_02087A10 *param0, UnkStruct_0208737C *param1)
 {
     if (param0->unk_00 == 0) {
-        Strbuf* v0;
+        Strbuf *v0;
 
         if (param0->unk_04 == 0) {
             v0 = MessageLoader_GetNewStrbuf(param0->unk_170, 0 + LCRNG_Next() % 18);
@@ -1090,7 +1087,7 @@ static void sub_02086E6C (UnkStruct_02087A10 * param0, UnkStruct_0208737C * para
         Strbuf_Free(v0);
         Strbuf_ToChars(param1->unk_18, param1->unk_1C, 10);
     } else if (param0->unk_00 == 3) {
-        Strbuf* v1;
+        Strbuf *v1;
 
         v1 = MessageLoader_GetNewStrbuf(param0->unk_170, 88 + (LCRNG_Next() % 2));
 
@@ -1102,7 +1099,7 @@ static void sub_02086E6C (UnkStruct_02087A10 * param0, UnkStruct_0208737C * para
     }
 }
 
-static int sub_02086F14 (u16 * param0)
+static int sub_02086F14(u16 *param0)
 {
     int v0 = 1;
     int v1;
@@ -1120,17 +1117,17 @@ static int sub_02086F14 (u16 * param0)
     return v0;
 }
 
-static int sub_02086F3C (OverlayManager * param0, int * param1)
+static int sub_02086F3C(OverlayManager *param0, int *param1)
 {
-    UnkStruct_02087A10 * v0 = OverlayManager_Data(param0);
-    UnkStruct_0208737C * v1 = (UnkStruct_0208737C *)OverlayManager_Args(param0);
+    UnkStruct_02087A10 *v0 = OverlayManager_Data(param0);
+    UnkStruct_0208737C *v1 = (UnkStruct_0208737C *)OverlayManager_Args(param0);
     int v2;
 
     v0->unk_D8[v0->unk_158] = 0xffff;
 
     if (v0->unk_00 == 1) {
         u16 v3[10 + 1];
-        Pokemon * v4;
+        Pokemon *v4;
 
         v4 = Pokemon_New(18);
         Pokemon_InitWith(v4, v0->unk_04, 5, 10, 10, 10, 10, 10);
@@ -1201,9 +1198,9 @@ static int sub_02086F3C (OverlayManager * param0, int * param1)
     return 1;
 }
 
-UnkStruct_0208737C * sub_0208712C (int param0, int param1, int param2, int param3, Options * param4)
+UnkStruct_0208737C *sub_0208712C(int param0, int param1, int param2, int param3, Options *param4)
 {
-    UnkStruct_0208737C * v0;
+    UnkStruct_0208737C *v0;
 
     v0 = (UnkStruct_0208737C *)Heap_AllocFromHeap(param0, sizeof(UnkStruct_0208737C));
 
@@ -1222,7 +1219,7 @@ UnkStruct_0208737C * sub_0208712C (int param0, int param1, int param2, int param
     return v0;
 }
 
-void sub_0208716C (UnkStruct_0208737C * param0)
+void sub_0208716C(UnkStruct_0208737C *param0)
 {
     GF_ASSERT((param0->unk_18) != NULL);
     GF_ASSERT((param0) != NULL);
@@ -1231,7 +1228,7 @@ void sub_0208716C (UnkStruct_0208737C * param0)
     Heap_FreeToHeap(param0);
 }
 
-static void sub_02087190 (void * param0)
+static void sub_02087190(void *param0)
 {
     sub_0201DCAC();
     sub_0200A858();
@@ -1239,7 +1236,7 @@ static void sub_02087190 (void * param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void sub_020871B0 (UnkStruct_02087A10 * param0, UnkStruct_0208737C * param1)
+static void sub_020871B0(UnkStruct_02087A10 *param0, UnkStruct_0208737C *param1)
 {
     param0->unk_00 = param1->unk_00;
     param0->unk_04 = param1->unk_04;
@@ -1249,7 +1246,7 @@ static void sub_020871B0 (UnkStruct_02087A10 * param0, UnkStruct_0208737C * para
     param0->unk_18 = param1->unk_4C;
 }
 
-static void sub_020871CC (void)
+static void sub_020871CC(void)
 {
     UnkStruct_02099F80 v0 = {
         GX_VRAM_BG_128_A,
@@ -1267,7 +1264,7 @@ static void sub_020871CC (void)
     GXLayers_SetBanks(&v0);
 }
 
-static void sub_020871EC (BGL * param0)
+static void sub_020871EC(BGL *param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -1375,7 +1372,7 @@ static void sub_020871EC (BGL * param0)
     G2S_BlendNone();
 }
 
-static void sub_0208732C (int param0)
+static void sub_0208732C(int param0)
 {
     GXLayers_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG0, param0);
     GXLayers_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG1, param0);
@@ -1387,9 +1384,9 @@ static void sub_0208732C (int param0)
     GXLayers_EngineBToggleLayers(GX_BLEND_PLANEMASK_OBJ, 0);
 }
 
-static void sub_0208737C (UnkStruct_02087A10 * param0, OverlayManager * param1)
+static void sub_0208737C(UnkStruct_02087A10 *param0, OverlayManager *param1)
 {
-    UnkStruct_0208737C * v0 = (UnkStruct_0208737C *)OverlayManager_Args(param1);
+    UnkStruct_0208737C *v0 = (UnkStruct_0208737C *)OverlayManager_Args(param1);
 
     param0->unk_4C0 = 4;
 
@@ -1408,7 +1405,7 @@ static void sub_0208737C (UnkStruct_02087A10 * param0, OverlayManager * param1)
     MI_CpuFill16(param0->unk_D8, 0x1, 32 * 2);
 
     if (param0->unk_00 == 1) {
-        Pokemon * v1;
+        Pokemon *v1;
 
         v1 = Pokemon_New(18);
         Pokemon_InitWith(v1, param0->unk_04, 5, 10, 10, 10, 10, 10);
@@ -1453,10 +1450,10 @@ static void sub_0208737C (UnkStruct_02087A10 * param0, OverlayManager * param1)
     }
 }
 
-static void sub_02087544 (UnkStruct_02087A10 * param0, OverlayManager * param1)
+static void sub_02087544(UnkStruct_02087A10 *param0, OverlayManager *param1)
 {
-    Strbuf* v0 = NULL;
-    UnkStruct_0208737C * v1 = (UnkStruct_0208737C *)OverlayManager_Args(param1);
+    Strbuf *v0 = NULL;
+    UnkStruct_0208737C *v1 = (UnkStruct_0208737C *)OverlayManager_Args(param1);
 
     if (v1->unk_44 != 0) {
         int v2, v3;
@@ -1476,7 +1473,7 @@ static void sub_02087544 (UnkStruct_02087A10 * param0, OverlayManager * param1)
         }
 
         if ((param0->unk_158 == 0) || sub_02086F14(param0->unk_D8)) {
-            Pokemon * v4 = Pokemon_New(18);
+            Pokemon *v4 = Pokemon_New(18);
 
             Pokemon_InitWith(v4, param0->unk_04, 1, 0, 0, 0, 0, 0);
             StringTemplate_SetSpeciesName(param0->unk_168, 0, Pokemon_GetBoxPokemon(v4));
@@ -1494,7 +1491,7 @@ static void sub_02087544 (UnkStruct_02087A10 * param0, OverlayManager * param1)
     }
 }
 
-static void sub_0208765C (BGL * param0, Window * param1)
+static void sub_0208765C(BGL *param0, Window *param1)
 {
     int v0;
 
@@ -1509,9 +1506,9 @@ static void sub_0208765C (BGL * param0, Window * param1)
     Heap_FreeToHeapExplicit(18, param0);
 }
 
-static void sub_0208769C (UnkStruct_02087A10 * param0, NARC * param1)
+static void sub_0208769C(UnkStruct_02087A10 *param0, NARC *param1)
 {
-    BGL * v0 = param0->unk_160;
+    BGL *v0 = param0->unk_160;
 
     sub_02007130(param1, 0, 0, 0, 16 * 3 * 2, 18);
     sub_02006E84(12, 12, 4, 0, 16 * 2, 18);
@@ -1522,13 +1519,13 @@ static void sub_0208769C (UnkStruct_02087A10 * param0, NARC * param1)
     sub_0200710C(param1, 6, v0, 1, 0, (32 * 14 * 2), 1, 18);
     sub_0200710C(param1, 7, v0, 0, 0, (32 * 14 * 2), 1, 18);
     sub_02002E98(0, 12 * 32, 18);
-    sub_0200DD0C(param0->unk_160, 4, ((32 * 8)), 10, Options_Frame(param0->unk_18), 18);
+    sub_0200DD0C(param0->unk_160, 4, (32 * 8), 10, Options_Frame(param0->unk_18), 18);
     sub_02002E98(4, 12 * 32, 18);
 
     param0->unk_510 = sub_020071B4(param1, 16, 1, &param0->unk_514, 18);
 }
 
-void sub_020877C4 (void)
+void sub_020877C4(void)
 {
     {
         UnkStruct_ov22_022559F8 v0 = {
@@ -1543,7 +1540,7 @@ void sub_020877C4 (void)
     sub_0201F8E4();
 }
 
-static void sub_020877F4 (UnkStruct_02087A10 * param0, NARC * param1)
+static void sub_020877F4(UnkStruct_02087A10 *param0, NARC *param1)
 {
     int v0;
 
@@ -1582,11 +1579,11 @@ static void sub_020877F4 (UnkStruct_02087A10 * param0, NARC * param1)
     sub_0200A5C8(param0->unk_328[1][1]);
 }
 
-static void sub_020879DC (SysTask * param0, void * param1)
+static void sub_020879DC(SysTask *param0, void *param1)
 {
-    const VecFx32 * v0;
+    const VecFx32 *v0;
     VecFx32 v1;
-    UnkStruct_020879DC * v2 = (UnkStruct_020879DC *)param1;
+    UnkStruct_020879DC *v2 = (UnkStruct_020879DC *)param1;
 
     v0 = CellActor_GetPosition(v2->unk_00);
     v1.x = v0->x + v2->unk_08;
@@ -1596,7 +1593,7 @@ static void sub_020879DC (SysTask * param0, void * param1)
     CellActor_SetPosition(v2->unk_04, &v1);
 }
 
-static void sub_02087A10 (UnkStruct_02087A10 * param0)
+static void sub_02087A10(UnkStruct_02087A10 *param0)
 {
     int v0;
 
@@ -1634,7 +1631,7 @@ static void sub_02087A10 (UnkStruct_02087A10 * param0)
         CellActor_SetDrawFlag(param0->unk_390[8], 0);
 
         for (v0 = 0; v0 < 7; v0++) {
-            UnkStruct_020879DC * v2;
+            UnkStruct_020879DC *v2;
 
             param0->unk_400[v0] = SysTask_StartAndAllocateParam(sub_020879DC, 16, 5, 18);
             v2 = SysTask_GetParam(param0->unk_400[v0]);
@@ -1662,7 +1659,7 @@ static void sub_02087A10 (UnkStruct_02087A10 * param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void sub_02087BE4 (UnkStruct_02087A10 * param0, CellActorInitParamsEx * param1)
+static void sub_02087BE4(UnkStruct_02087A10 *param0, CellActorInitParamsEx *param1)
 {
     param1->position.x = FX32_ONE * 24;
     param1->position.y = FX32_ONE * (16 - 8);
@@ -1712,9 +1709,9 @@ static void sub_02087BE4 (UnkStruct_02087A10 * param0, CellActorInitParamsEx * p
     }
 }
 
-static void sub_02087CDC (SysTask * param0, void * param1)
+static void sub_02087CDC(SysTask *param0, void *param1)
 {
-    UnkStruct_02087CDC * v0 = (UnkStruct_02087CDC *)param1;
+    UnkStruct_02087CDC *v0 = (UnkStruct_02087CDC *)param1;
     VecFx32 v1;
 
     v1.y = v0->unk_0C;
@@ -1743,23 +1740,21 @@ static void sub_02087CDC (SysTask * param0, void * param1)
     v0->unk_04++;
 }
 
-static void sub_02087D64 (BGL * param0, Window * param1, int * param2, int param3, int * param4, VecFx32 param5[], CellActor ** param6, void * param7)
+static void sub_02087D64(BGL *param0, Window *param1, int *param2, int param3, int *param4, VecFx32 param5[], CellActor **param6, void *param7)
 {
     int v0 = *param4;
     int v1 = v0 ^ 1;
     int v2;
 
     switch (*param2) {
-    case 0:
-    {
+    case 0: {
         u16 v3 = Unk_020F24DC[param3] | (Unk_020F24DC[param3] << 4);
 
         sub_02006E60(31, 6 + param3, param0, 0 + v0, 0, (32 * 14 * 2), 1, 18);
         sub_02088260(param5, v0);
         sub_02088E58(&param1[v0], v3, param3, (u32)(((0xe & 0xff) << 16) | ((0xf & 0xff) << 8) | ((0 & 0xff) << 0)), param7);
         (*param2)++;
-    }
-    break;
+    } break;
     case 1:
         sub_02019184(param0, 0 + v0, 0, 238);
         sub_02019184(param0, 0 + v0, 3, -80);
@@ -1769,8 +1764,8 @@ static void sub_02087D64 (BGL * param0, Window * param1, int * param2, int param
         param5[v0].x -= 24;
 
         if (param5[v0].x < -11 + 10) {
-            UnkStruct_02087CDC * v4;
-            SysTask * v5;
+            UnkStruct_02087CDC *v4;
+            SysTask *v5;
 
             v5 = SysTask_StartAndAllocateParam(sub_02087CDC, 16, 0, 18);
             v4 = SysTask_GetParam(v5);
@@ -1814,14 +1809,14 @@ static void sub_02087D64 (BGL * param0, Window * param1, int * param2, int param
     }
 }
 
-static void sub_02087F48 (Window * param0, int param1, Strbuf *param2)
+static void sub_02087F48(Window *param0, int param1, Strbuf *param2)
 {
-    sub_0200E060(param0, 0, ((32 * 8)), 10);
+    sub_0200E060(param0, 0, (32 * 8), 10);
     PrintStringSimple(param0, 1, param2, 0, 0, 0, NULL);
     sub_0201A954(param0);
 }
 
-static void sub_02087F78 (Window * param0, int param1, Strbuf *param2)
+static void sub_02087F78(Window *param0, int param1, Strbuf *param2)
 {
     int v0 = 16;
     int v1 = sub_02002D7C(0, param2, 0);
@@ -1835,7 +1830,7 @@ static void sub_02087F78 (Window * param0, int param1, Strbuf *param2)
     sub_0201A954(param0);
 }
 
-static void sub_02087FC0 (UnkStruct_02087A10 * param0, OverlayManager * param1, NARC * param2)
+static void sub_02087FC0(UnkStruct_02087A10 *param0, OverlayManager *param1, NARC *param2)
 {
     BGL_AddWindow(param0->unk_160, &param0->unk_41C[0], 0, 2, 1, 26, 12, 1, (32 * 8));
     BGL_AddWindow(param0->unk_160, &param0->unk_41C[1], 1, 2, 1, 26, 12, 1, ((32 * 8) + (26 * 12)));
@@ -1867,12 +1862,12 @@ static void sub_02087FC0 (UnkStruct_02087A10 * param0, OverlayManager * param1, 
         sub_0201A954(&param0->unk_41C[8]);
     }
 
-    BGL_AddWindow(param0->unk_160, &param0->unk_41C[9], 4, 2, 19, 27, 4, 12, ((120 + (2 * 2 * 3))));
+    BGL_AddWindow(param0->unk_160, &param0->unk_41C[9], 4, 2, 19, 27, 4, 12, (120 + (2 * 2 * 3)));
     BGL_FillWindow(&param0->unk_41C[9], 0xf0f);
     sub_02087F48(&param0->unk_41C[9], param0->unk_00, param0->unk_178);
 
     {
-        UnkStruct_0208737C * v1 = (UnkStruct_0208737C *)OverlayManager_Args(param1);
+        UnkStruct_0208737C *v1 = (UnkStruct_0208737C *)OverlayManager_Args(param1);
 
         if (param0->unk_118[0] != 0xffff) {
             GF_strcpy(param0->unk_D8, param0->unk_118);
@@ -1893,13 +1888,13 @@ static void sub_02087FC0 (UnkStruct_02087A10 * param0, OverlayManager * param1, 
     }
 }
 
-static void sub_02088240 (BGL * param0, int param1, VecFx32 param2[])
+static void sub_02088240(BGL *param0, int param1, VecFx32 param2[])
 {
     BGL_SetPriority(0 + param1, 1);
     BGL_SetPriority(0 + param1 ^ 1, 2);
 }
 
-static void sub_02088260 (VecFx32 param0[], int param1)
+static void sub_02088260(VecFx32 param0[], int param1)
 {
     param0[param1].x = 238;
     param0[param1].y = -80;
@@ -1908,14 +1903,14 @@ static void sub_02088260 (VecFx32 param0[], int param1)
 }
 
 static const int Unk_020F2904[][2] = {
-    {0x0, 0x0},
-    {0x0, 0xFFFFFFFFFFFFFFFF},
-    {0x0, 0x1},
-    {0xFFFFFFFFFFFFFFFF, 0x0},
-    {0x1, 0x0}
+    { 0x0, 0x0 },
+    { 0x0, 0xFFFFFFFFFFFFFFFF },
+    { 0x0, 0x1 },
+    { 0xFFFFFFFFFFFFFFFF, 0x0 },
+    { 0x1, 0x0 }
 };
 
-static int sub_02088288 (int param0, int param1, int param2)
+static int sub_02088288(int param0, int param1, int param2)
 {
     if (param0 >= param2) {
         param0 = param1;
@@ -1928,7 +1923,7 @@ static int sub_02088288 (int param0, int param1, int param2)
     return param0;
 }
 
-static void sub_02088298 (UnkStruct_02087A10 * param0, int param1)
+static void sub_02088298(UnkStruct_02087A10 *param0, int param1)
 {
     int v0, v1;
     u16 v2;
@@ -1957,7 +1952,7 @@ static void sub_02088298 (UnkStruct_02087A10 * param0, int param1)
     param0->unk_1C.unk_04 = v1;
 }
 
-static void sub_02088350 (UnkStruct_02087A10 * param0)
+static void sub_02088350(UnkStruct_02087A10 *param0)
 {
     int v0 = 0;
     int v1 = 0;
@@ -2021,7 +2016,7 @@ static void sub_02088350 (UnkStruct_02087A10 * param0)
     }
 }
 
-static void sub_02088454 (UnkStruct_02087A10 * param0, int param1)
+static void sub_02088454(UnkStruct_02087A10 *param0, int param1)
 {
     if (param0->unk_1C.unk_04 != 0) {
         VecFx32 v0;
@@ -2056,7 +2051,7 @@ static void sub_02088454 (UnkStruct_02087A10 * param0, int param1)
     }
 }
 
-static void sub_02088514 (u16 * param0)
+static void sub_02088514(u16 *param0)
 {
     fx32 v0;
     GXRgb v1;
@@ -2075,11 +2070,11 @@ static void sub_02088514 (u16 * param0)
     GX_LoadOBJPltt((u16 *)&v1, (16 + 13) * 2, 2);
 }
 
-static void sub_02088554 (Window * param0, const u16 * param1, int param2, int param3, int param4, int param5, u32 param6, u8 * param7)
+static void sub_02088554(Window *param0, const u16 *param1, int param2, int param3, int param4, int param5, u32 param6, u8 *param7)
 {
     int v0 = 0, v1, v2;
     u16 v3[2];
-    Strbuf* v4;
+    Strbuf *v4;
 
     v4 = Strbuf_Init(2, 18);
 
@@ -2116,17 +2111,17 @@ static const u8 Unk_020F24D8[] = {
     0x58
 };
 
-static void * sub_02088654 (Window * param0, Strbuf *param1, u8 param2, const u32 param3)
+static void *sub_02088654(Window *param0, Strbuf *param1, u8 param2, const u32 param3)
 {
     sub_0201D78C(param0, param2, param1, 0, 0, 0xff, param3, NULL);
     return param0->unk_0C;
 }
 
-static void sub_02088678 (Window * param0, const u16 * param1, u8 * param2, Strbuf *param3)
+static void sub_02088678(Window *param0, const u16 *param1, u8 *param2, Strbuf *param3)
 {
     u16 v0[20 + 1], v1, v2;
-    void * v3;
-    Strbuf* v4;
+    void *v3;
+    Strbuf *v4;
 
     BGL_FillWindow(&param0[3], 0);
     v3 = sub_02088654(&param0[3], param3, 2, (u32)(((0xd & 0xff) << 16) | ((0xe & 0xff) << 8) | ((0xf & 0xff) << 0)));
@@ -2156,10 +2151,10 @@ static void sub_02088678 (Window * param0, const u16 * param1, u8 * param2, Strb
     Strbuf_Free(v4);
 }
 
-static void sub_02088754 (Window * param0, u16 * param1, int param2, u16 * param3, u8 * param4, Strbuf *param5)
+static void sub_02088754(Window *param0, u16 *param1, int param2, u16 *param3, u8 *param4, Strbuf *param5)
 {
     int v0, v1;
-    const u16 * v2 = NULL;
+    const u16 *v2 = NULL;
     u16 v3;
 
     if (param2 == 0) {
@@ -2211,7 +2206,7 @@ static void sub_02088754 (Window * param0, u16 * param1, int param2, u16 * param
     sub_02088678(param0, param3, param4, param5);
 }
 
-static void sub_02088844 (u16 param0[][13], const int param1)
+static void sub_02088844(u16 param0[][13], const int param1)
 {
     int v0, v1;
 
@@ -2226,7 +2221,7 @@ static void sub_02088844 (u16 param0[][13], const int param1)
     }
 }
 
-static int sub_02088898 (UnkStruct_02087A10 * param0, u16 param1, int param2)
+static int sub_02088898(UnkStruct_02087A10 *param0, u16 param1, int param2)
 {
     if ((param1 == (0xd001 + 2)) || (param1 == (0xd001 + 3))) {
         param1 = 0x1;
@@ -2344,7 +2339,7 @@ static int sub_02088898 (UnkStruct_02087A10 * param0, u16 param1, int param2)
     return 2;
 }
 
-static u16 sub_02088C7C (const u16 * param0, int param1)
+static u16 sub_02088C7C(const u16 *param0, int param1)
 {
     do {
         param1 = sub_02088288(++param1, 0, 3);
@@ -2353,7 +2348,7 @@ static u16 sub_02088C7C (const u16 * param0, int param1)
     return param0[param1];
 }
 
-static int sub_02088C9C (int param0, int param1, u16 * param2, int param3)
+static int sub_02088C9C(int param0, int param1, u16 *param2, int param3)
 {
     int v0, v1;
     u16 v2, v3;
@@ -2376,7 +2371,7 @@ static int sub_02088C9C (int param0, int param1, u16 * param2, int param3)
     return 0;
 }
 
-static int sub_02088D08 (int param0, int param1, int param2, int param3, u16 * param4, int param5)
+static int sub_02088D08(int param0, int param1, int param2, int param3, u16 *param4, int param5)
 {
     int v0;
     u16 v1;
@@ -2434,7 +2429,7 @@ static int sub_02088D08 (int param0, int param1, int param2, int param3, u16 * p
     return 0;
 }
 
-static void sub_02088E1C (CellActor ** param0, int param1, int param2)
+static void sub_02088E1C(CellActor **param0, int param1, int param2)
 {
     int v0;
 
@@ -2455,7 +2450,7 @@ static const u8 Unk_020F24E0[] = {
     0x9
 };
 
-static void sub_02088E58 (Window * param0, u16 param1, int param2, u32 param3, u8 * param4)
+static void sub_02088E58(Window *param0, u16 param1, int param2, u32 param3, u8 *param4)
 {
     int v0, v1, v2;
 
@@ -2479,7 +2474,7 @@ static void sub_02088E58 (Window * param0, u16 param1, int param2, u32 param3, u
     sub_0201A954(param0);
 }
 
-static void sub_02088F40 (int param0[], CellActor ** param1, int param2)
+static void sub_02088F40(int param0[], CellActor **param1, int param2)
 {
     int v0, v1;
 
@@ -2505,7 +2500,7 @@ static void sub_02088F40 (int param0[], CellActor ** param1, int param2)
     }
 }
 
-static void sub_02088FD0 (UnkStruct_02087A10 * param0)
+static void sub_02088FD0(UnkStruct_02087A10 *param0)
 {
     if (!CellActor_IsAnimated(param0->unk_390[8])) {
         if (param0->unk_158 == param0->unk_0C) {
@@ -2529,80 +2524,80 @@ static void sub_02088FD0 (UnkStruct_02087A10 * param0)
 }
 
 static const UnkStruct_020F2A14 Unk_020F2A14[] = {
-    {0x19, 0x3C, 0x0, 0x0, 0x0},
-    {0x39, 0x3C, 0x0, 0x2, 0x0},
-    {0x59, 0x3C, 0x0, 0x4, 0x0},
-    {0x0, 0xC0, 0x0, 0x4, 0x0},
-    {0x9D, 0x3C, 0x1, 0x8, 0x0},
-    {0xC5, 0x3C, 0x1, 0xB, 0x0},
-    {0x1C, 0x58, 0x2, 0x0, 0x1},
-    {0x2C, 0x58, 0x2, 0x1, 0x1},
-    {0x3C, 0x58, 0x2, 0x2, 0x1},
-    {0x4C, 0x58, 0x2, 0x3, 0x1},
-    {0x5C, 0x58, 0x2, 0x4, 0x1},
-    {0x6C, 0x58, 0x2, 0x5, 0x1},
-    {0x7C, 0x58, 0x2, 0x6, 0x1},
-    {0x8C, 0x58, 0x2, 0x7, 0x1},
-    {0x9C, 0x58, 0x2, 0x8, 0x1},
-    {0xAC, 0x58, 0x2, 0x9, 0x1},
-    {0xBC, 0x58, 0x2, 0xA, 0x1},
-    {0xCC, 0x58, 0x2, 0xB, 0x1},
-    {0xDC, 0x58, 0x2, 0xC, 0x1},
-    {0x1C, 0x6B, 0x2, 0x0, 0x2},
-    {0x2C, 0x6B, 0x2, 0x1, 0x2},
-    {0x3C, 0x6B, 0x2, 0x2, 0x2},
-    {0x4C, 0x6B, 0x2, 0x3, 0x2},
-    {0x5C, 0x6B, 0x2, 0x4, 0x2},
-    {0x6C, 0x6B, 0x2, 0x5, 0x2},
-    {0x7C, 0x6B, 0x2, 0x6, 0x2},
-    {0x8C, 0x6B, 0x2, 0x7, 0x2},
-    {0x9C, 0x6B, 0x2, 0x8, 0x2},
-    {0xAC, 0x6B, 0x2, 0x9, 0x2},
-    {0xBC, 0x6B, 0x2, 0xA, 0x2},
-    {0xCC, 0x6B, 0x2, 0xB, 0x2},
-    {0xDC, 0x6B, 0x2, 0xC, 0x2},
-    {0x1C, 0x7E, 0x2, 0x0, 0x3},
-    {0x2C, 0x7E, 0x2, 0x1, 0x3},
-    {0x3C, 0x7E, 0x2, 0x2, 0x3},
-    {0x4C, 0x7E, 0x2, 0x3, 0x3},
-    {0x5C, 0x7E, 0x2, 0x4, 0x3},
-    {0x6C, 0x7E, 0x2, 0x5, 0x3},
-    {0x7C, 0x7E, 0x2, 0x6, 0x3},
-    {0x8C, 0x7E, 0x2, 0x7, 0x3},
-    {0x9C, 0x7E, 0x2, 0x8, 0x3},
-    {0xAC, 0x7E, 0x2, 0x9, 0x3},
-    {0xBC, 0x7E, 0x2, 0xA, 0x3},
-    {0xCC, 0x7E, 0x2, 0xB, 0x3},
-    {0xDC, 0x7E, 0x2, 0xC, 0x3},
-    {0x1C, 0x91, 0x2, 0x0, 0x4},
-    {0x2C, 0x91, 0x2, 0x1, 0x4},
-    {0x3C, 0x91, 0x2, 0x2, 0x4},
-    {0x4C, 0x91, 0x2, 0x3, 0x4},
-    {0x5C, 0x91, 0x2, 0x4, 0x4},
-    {0x6C, 0x91, 0x2, 0x5, 0x4},
-    {0x7C, 0x91, 0x2, 0x6, 0x4},
-    {0x8C, 0x91, 0x2, 0x7, 0x4},
-    {0x9C, 0x91, 0x2, 0x8, 0x4},
-    {0xAC, 0x91, 0x2, 0x9, 0x4},
-    {0xBC, 0x91, 0x2, 0xA, 0x4},
-    {0xCC, 0x91, 0x2, 0xB, 0x4},
-    {0xDC, 0x91, 0x2, 0xC, 0x4},
-    {0x1C, 0xA4, 0x2, 0x0, 0x5},
-    {0x2C, 0xA4, 0x2, 0x1, 0x5},
-    {0x3C, 0xA4, 0x2, 0x2, 0x5},
-    {0x4C, 0xA4, 0x2, 0x3, 0x5},
-    {0x5C, 0xA4, 0x2, 0x4, 0x5},
-    {0x6C, 0xA4, 0x2, 0x5, 0x5},
-    {0x7C, 0xA4, 0x2, 0x6, 0x5},
-    {0x8C, 0xA4, 0x2, 0x7, 0x5},
-    {0x9C, 0xA4, 0x2, 0x8, 0x5},
-    {0xAC, 0xA4, 0x2, 0x9, 0x5},
-    {0xBC, 0xA4, 0x2, 0xA, 0x5},
-    {0xCC, 0xA4, 0x2, 0xB, 0x5},
-    {0xDC, 0xA4, 0x2, 0xC, 0x5}
+    { 0x19, 0x3C, 0x0, 0x0, 0x0 },
+    { 0x39, 0x3C, 0x0, 0x2, 0x0 },
+    { 0x59, 0x3C, 0x0, 0x4, 0x0 },
+    { 0x0, 0xC0, 0x0, 0x4, 0x0 },
+    { 0x9D, 0x3C, 0x1, 0x8, 0x0 },
+    { 0xC5, 0x3C, 0x1, 0xB, 0x0 },
+    { 0x1C, 0x58, 0x2, 0x0, 0x1 },
+    { 0x2C, 0x58, 0x2, 0x1, 0x1 },
+    { 0x3C, 0x58, 0x2, 0x2, 0x1 },
+    { 0x4C, 0x58, 0x2, 0x3, 0x1 },
+    { 0x5C, 0x58, 0x2, 0x4, 0x1 },
+    { 0x6C, 0x58, 0x2, 0x5, 0x1 },
+    { 0x7C, 0x58, 0x2, 0x6, 0x1 },
+    { 0x8C, 0x58, 0x2, 0x7, 0x1 },
+    { 0x9C, 0x58, 0x2, 0x8, 0x1 },
+    { 0xAC, 0x58, 0x2, 0x9, 0x1 },
+    { 0xBC, 0x58, 0x2, 0xA, 0x1 },
+    { 0xCC, 0x58, 0x2, 0xB, 0x1 },
+    { 0xDC, 0x58, 0x2, 0xC, 0x1 },
+    { 0x1C, 0x6B, 0x2, 0x0, 0x2 },
+    { 0x2C, 0x6B, 0x2, 0x1, 0x2 },
+    { 0x3C, 0x6B, 0x2, 0x2, 0x2 },
+    { 0x4C, 0x6B, 0x2, 0x3, 0x2 },
+    { 0x5C, 0x6B, 0x2, 0x4, 0x2 },
+    { 0x6C, 0x6B, 0x2, 0x5, 0x2 },
+    { 0x7C, 0x6B, 0x2, 0x6, 0x2 },
+    { 0x8C, 0x6B, 0x2, 0x7, 0x2 },
+    { 0x9C, 0x6B, 0x2, 0x8, 0x2 },
+    { 0xAC, 0x6B, 0x2, 0x9, 0x2 },
+    { 0xBC, 0x6B, 0x2, 0xA, 0x2 },
+    { 0xCC, 0x6B, 0x2, 0xB, 0x2 },
+    { 0xDC, 0x6B, 0x2, 0xC, 0x2 },
+    { 0x1C, 0x7E, 0x2, 0x0, 0x3 },
+    { 0x2C, 0x7E, 0x2, 0x1, 0x3 },
+    { 0x3C, 0x7E, 0x2, 0x2, 0x3 },
+    { 0x4C, 0x7E, 0x2, 0x3, 0x3 },
+    { 0x5C, 0x7E, 0x2, 0x4, 0x3 },
+    { 0x6C, 0x7E, 0x2, 0x5, 0x3 },
+    { 0x7C, 0x7E, 0x2, 0x6, 0x3 },
+    { 0x8C, 0x7E, 0x2, 0x7, 0x3 },
+    { 0x9C, 0x7E, 0x2, 0x8, 0x3 },
+    { 0xAC, 0x7E, 0x2, 0x9, 0x3 },
+    { 0xBC, 0x7E, 0x2, 0xA, 0x3 },
+    { 0xCC, 0x7E, 0x2, 0xB, 0x3 },
+    { 0xDC, 0x7E, 0x2, 0xC, 0x3 },
+    { 0x1C, 0x91, 0x2, 0x0, 0x4 },
+    { 0x2C, 0x91, 0x2, 0x1, 0x4 },
+    { 0x3C, 0x91, 0x2, 0x2, 0x4 },
+    { 0x4C, 0x91, 0x2, 0x3, 0x4 },
+    { 0x5C, 0x91, 0x2, 0x4, 0x4 },
+    { 0x6C, 0x91, 0x2, 0x5, 0x4 },
+    { 0x7C, 0x91, 0x2, 0x6, 0x4 },
+    { 0x8C, 0x91, 0x2, 0x7, 0x4 },
+    { 0x9C, 0x91, 0x2, 0x8, 0x4 },
+    { 0xAC, 0x91, 0x2, 0x9, 0x4 },
+    { 0xBC, 0x91, 0x2, 0xA, 0x4 },
+    { 0xCC, 0x91, 0x2, 0xB, 0x4 },
+    { 0xDC, 0x91, 0x2, 0xC, 0x4 },
+    { 0x1C, 0xA4, 0x2, 0x0, 0x5 },
+    { 0x2C, 0xA4, 0x2, 0x1, 0x5 },
+    { 0x3C, 0xA4, 0x2, 0x2, 0x5 },
+    { 0x4C, 0xA4, 0x2, 0x3, 0x5 },
+    { 0x5C, 0xA4, 0x2, 0x4, 0x5 },
+    { 0x6C, 0xA4, 0x2, 0x5, 0x5 },
+    { 0x7C, 0xA4, 0x2, 0x6, 0x5 },
+    { 0x8C, 0xA4, 0x2, 0x7, 0x5 },
+    { 0x9C, 0xA4, 0x2, 0x8, 0x5 },
+    { 0xAC, 0xA4, 0x2, 0x9, 0x5 },
+    { 0xBC, 0xA4, 0x2, 0xA, 0x5 },
+    { 0xCC, 0xA4, 0x2, 0xB, 0x5 },
+    { 0xDC, 0xA4, 0x2, 0xC, 0x5 }
 };
 
-static BOOL sub_0208903C (UnkStruct_02087A10 * param0)
+static BOOL sub_0208903C(UnkStruct_02087A10 *param0)
 {
     int v0, v1 = 0;
     u8 v2, v3, v4, v5, v6, v7;

@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_02099F80_H
 #define POKEPLATINUM_STRUCT_02099F80_H
 
-
 #include <nitro/gx.h>
 
 typedef struct {

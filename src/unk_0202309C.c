@@ -1,15 +1,15 @@
+#include "unk_0202309C.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_0202309C.h"
-
-void sub_0202309C (NNSG2dRendererInstance * param0, fx32 param1)
+void sub_0202309C(NNSG2dRendererInstance *param0, fx32 param1)
 {
     NNS_G2dInitRenderer(param0);
     NNS_G2dSetRendererSpriteZoffset(param0, param1);
 }
 
-void sub_020230AC (NNSG2dRenderSurface * param0, NNSG2dViewRect * param1, NNSG2dOamRegisterFunction param2, NNSG2dAffineRegisterFunction param3, NNSG2dRndCellCullingFunction param4, NNSG2dSurfaceType param5, NNSG2dRendererInstance * param6)
+void sub_020230AC(NNSG2dRenderSurface *param0, NNSG2dViewRect *param1, NNSG2dOamRegisterFunction param2, NNSG2dAffineRegisterFunction param3, NNSG2dRndCellCullingFunction param4, NNSG2dSurfaceType param5, NNSG2dRendererInstance *param6)
 {
     NNS_G2dInitRenderSurface(param0);
 
@@ -24,14 +24,14 @@ void sub_020230AC (NNSG2dRenderSurface * param0, NNSG2dViewRect * param1, NNSG2d
     }
 }
 
-void sub_020230E0 (NNSG2dRenderSurface * param0, NNSG2dViewRect * param1)
+void sub_020230E0(NNSG2dRenderSurface *param0, NNSG2dViewRect *param1)
 {
     param0->viewRect = *param1;
 }
 
-BOOL sub_020230F0 (const NNSG2dCellData * param0, const MtxFx32 * param1, const NNSG2dViewRect * param2)
+BOOL sub_020230F0(const NNSG2dCellData *param0, const MtxFx32 *param1, const NNSG2dViewRect *param2)
 {
-    const NNSG2dCellBoundingRectS16 * v0 = NNS_G2dGetCellBoundingRect(param0);
+    const NNSG2dCellBoundingRectS16 *v0 = NNS_G2dGetCellBoundingRect(param0);
     const fx32 v1 = NNS_G2dGetCellBoundingSphereR(param0);
     const fx32 v2 = param1->_20 - param2->posTopLeft.x;
     const fx32 v3 = param1->_21 - param2->posTopLeft.y;

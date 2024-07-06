@@ -1,77 +1,76 @@
+#include "overlay071/ov71_0223B140.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-
 #include "struct_decls/struct_02006C24_decl.h"
-#include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-
-#include "touch_screen.h"
 #include "struct_defs/struct_02099F80.h"
+
+#include "overlay071/ov71_0223C69C.h"
+#include "overlay071/ov71_0223CF0C.h"
+#include "overlay071/ov71_0223D324.h"
 #include "overlay071/struct_ov71_0223B620.h"
 #include "overlay071/struct_ov71_0223C444.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 
+#include "cell_actor.h"
+#include "core_sys.h"
+#include "gx_layers.h"
+#include "heap.h"
+#include "message.h"
+#include "narc.h"
+#include "overlay_manager.h"
+#include "strbuf.h"
+#include "touch_screen.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "overlay_manager.h"
-#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200A784.h"
-#include "message.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
-#include "gx_layers.h"
-#include "cell_actor.h"
-#include "strbuf.h"
 #include "unk_020393C8.h"
-#include "overlay071/ov71_0223B140.h"
-#include "overlay071/ov71_0223C69C.h"
-#include "overlay071/ov71_0223CF0C.h"
-#include "overlay071/ov71_0223D324.h"
 
 typedef struct {
-    const TouchScreenRect * unk_00[2];
+    const TouchScreenRect *unk_00[2];
 } UnkStruct_ov71_0223D4D0;
 
-static void ov71_0223B620(UnkStruct_ov71_0223B620 * param0);
-static void ov71_0223B668(UnkStruct_ov71_0223B620 * param0);
+static void ov71_0223B620(UnkStruct_ov71_0223B620 *param0);
+static void ov71_0223B668(UnkStruct_ov71_0223B620 *param0);
 static void ov71_0223B688(void);
-static void ov71_0223B858(BGL * param0);
-static void ov71_0223B968(UnkStruct_ov71_0223B620 * param0, NARC * param1);
-static void ov71_0223BBDC(BGL * param0);
-static BOOL ov71_0223BC20(UnkStruct_ov71_0223B620 * param0);
-static BOOL ov71_0223BDF8(UnkStruct_ov71_0223B620 * param0);
-static BOOL ov71_0223C334(UnkStruct_ov71_0223B620 * param0, const u8 * param1);
-static int ov71_0223BEF8(UnkStruct_ov71_0223B620 * param0);
-static void ov71_0223BFBC(UnkStruct_ov71_0223B620 * param0);
-static void ov71_0223B6A8(const u8 param0, const u8 param1, NARC * param2);
-static void ov71_0223B768(const u8 param0, NARC * param1);
-static void ov71_0223B820(const u8 param0, NARC * param1);
-static void ov71_0223C0D8(UnkStruct_ov71_0223B620 * param0, const u8 param1);
-static void ov71_0223C128(UnkStruct_ov71_0223B620 * param0, const u8 param1);
-static void ov71_0223C18C(void * param0);
-static void ov71_0223C390(UnkStruct_ov71_0223B620 * param0);
-static void ov71_0223C3E8(UnkStruct_ov71_0223B620 * param0);
-static void ov71_0223C1AC(UnkStruct_ov71_0223B620 * param0, const u8 param1);
+static void ov71_0223B858(BGL *param0);
+static void ov71_0223B968(UnkStruct_ov71_0223B620 *param0, NARC *param1);
+static void ov71_0223BBDC(BGL *param0);
+static BOOL ov71_0223BC20(UnkStruct_ov71_0223B620 *param0);
+static BOOL ov71_0223BDF8(UnkStruct_ov71_0223B620 *param0);
+static BOOL ov71_0223C334(UnkStruct_ov71_0223B620 *param0, const u8 *param1);
+static int ov71_0223BEF8(UnkStruct_ov71_0223B620 *param0);
+static void ov71_0223BFBC(UnkStruct_ov71_0223B620 *param0);
+static void ov71_0223B6A8(const u8 param0, const u8 param1, NARC *param2);
+static void ov71_0223B768(const u8 param0, NARC *param1);
+static void ov71_0223B820(const u8 param0, NARC *param1);
+static void ov71_0223C0D8(UnkStruct_ov71_0223B620 *param0, const u8 param1);
+static void ov71_0223C128(UnkStruct_ov71_0223B620 *param0, const u8 param1);
+static void ov71_0223C18C(void *param0);
+static void ov71_0223C390(UnkStruct_ov71_0223B620 *param0);
+static void ov71_0223C3E8(UnkStruct_ov71_0223B620 *param0);
+static void ov71_0223C1AC(UnkStruct_ov71_0223B620 *param0, const u8 param1);
 static void ov71_0223C288(void);
-static void ov71_0223C2F4(UnkStruct_ov71_0223B620 * param0);
+static void ov71_0223C2F4(UnkStruct_ov71_0223B620 *param0);
 static const u8 ov71_0223C40C(const int param0);
-static void ov71_0223C444(UnkStruct_ov71_0223C444 * param0);
-static void ov71_0223C44C(UnkStruct_ov71_0223C444 * param0);
-static void ov71_0223C45C(UnkStruct_ov71_0223C444 * param0);
-static void ov71_0223C4DC(const u8 * param0, u8 * param1);
-static void ov71_0223C530(BGL * param0, const int param1, const u8 * param2);
+static void ov71_0223C444(UnkStruct_ov71_0223C444 *param0);
+static void ov71_0223C44C(UnkStruct_ov71_0223C444 *param0);
+static void ov71_0223C45C(UnkStruct_ov71_0223C444 *param0);
+static void ov71_0223C4DC(const u8 *param0, u8 *param1);
+static void ov71_0223C530(BGL *param0, const int param1, const u8 *param2);
 static void ov71_0223C594(const int param0);
-static void ov71_0223C5A4(UnkStruct_ov71_0223B620 * param0, const u8 param1);
-static int ov71_0223C60C(BGL * param0, const TouchScreenRect *rect);
-static int ov71_0223C654(BGL * param0, const TouchScreenRect *rect);
+static void ov71_0223C5A4(UnkStruct_ov71_0223B620 *param0, const u8 param1);
+static int ov71_0223C60C(BGL *param0, const TouchScreenRect *rect);
+static int ov71_0223C654(BGL *param0, const TouchScreenRect *rect);
 
 static const u8 Unk_ov71_0223D4B0[5] = {
     0x1,
@@ -82,26 +81,26 @@ static const u8 Unk_ov71_0223D4B0[5] = {
 };
 
 static const TouchScreenRect Unk_ov71_0223D5A4[] = {
-    {0x98, 0xB7, 0x78, 0x97},
-    {0x28, 0x4F, 0x18, 0x3F},
-    {0x28, 0x4F, 0x50, 0x77},
-    {0x28, 0x4F, 0x88, 0xA7},
-    {0x28, 0x4F, 0xC0, 0xE7},
-    {0x60, 0x87, 0x18, 0x3F},
-    {0x60, 0x87, 0x50, 0x77},
-    {0x60, 0x87, 0x88, 0xA7},
-    {0x60, 0x87, 0xC0, 0xE7},
-    {0xFF, 0x0, 0x0, 0x0}
+    { 0x98, 0xB7, 0x78, 0x97 },
+    { 0x28, 0x4F, 0x18, 0x3F },
+    { 0x28, 0x4F, 0x50, 0x77 },
+    { 0x28, 0x4F, 0x88, 0xA7 },
+    { 0x28, 0x4F, 0xC0, 0xE7 },
+    { 0x60, 0x87, 0x18, 0x3F },
+    { 0x60, 0x87, 0x50, 0x77 },
+    { 0x60, 0x87, 0x88, 0xA7 },
+    { 0x60, 0x87, 0xC0, 0xE7 },
+    { 0xFF, 0x0, 0x0, 0x0 }
 };
 
 static const TouchScreenRect Unk_ov71_0223D4C0[] = {
-    {0x98, 0xB7, 0x78, 0x97},
-    {0xFF, 0x0, 0x0, 0x0}
+    { 0x98, 0xB7, 0x78, 0x97 },
+    { 0xFF, 0x0, 0x0, 0x0 }
 };
 
 static const UnkStruct_ov71_0223D4D0 Unk_ov71_0223D4D0[] = {
-    {Unk_ov71_0223D4C0, Unk_ov71_0223D4C0},
-    {Unk_ov71_0223D4C0, Unk_ov71_0223D5A4}
+    { Unk_ov71_0223D4C0, Unk_ov71_0223D4C0 },
+    { Unk_ov71_0223D4C0, Unk_ov71_0223D5A4 }
 };
 
 static const u8 Unk_ov71_0223D4A8[] = {
@@ -118,7 +117,7 @@ static const u8 Unk_ov71_0223D4AC[] = {
     0x0
 };
 
-static const u8 * const Unk_ov71_0223D4C8[] = {
+static const u8 *const Unk_ov71_0223D4C8[] = {
     Unk_ov71_0223D4A8,
     Unk_ov71_0223D4AC
 };
@@ -142,10 +141,10 @@ static const int Unk_ov71_0223D604[16] = {
     0x3F
 };
 
-int ov71_0223B140 (OverlayManager * param0, int * param1)
+int ov71_0223B140(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov71_0223B620 * v0;
-    NARC * v1;
+    UnkStruct_ov71_0223B620 *v0;
+    NARC *v1;
 
     SetMainCallback(NULL, NULL);
     SetHBlankCallback(NULL, NULL);
@@ -257,9 +256,9 @@ int ov71_0223B140 (OverlayManager * param0, int * param1)
     return 1;
 }
 
-int ov71_0223B388 (OverlayManager * param0, int * param1)
+int ov71_0223B388(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov71_0223B620 * v0 = OverlayManager_Data(param0);
+    UnkStruct_ov71_0223B620 *v0 = OverlayManager_Data(param0);
 
     switch (*param1) {
     case 0:
@@ -269,8 +268,7 @@ int ov71_0223B388 (OverlayManager * param0, int * param1)
 
         break;
 
-    case 1:
-    {
+    case 1: {
         int v1;
 
         v1 = ov71_0223BEF8(v0);
@@ -328,8 +326,7 @@ int ov71_0223B388 (OverlayManager * param0, int * param1)
         }
 
         ov71_0223C5A4(v0, v0->unk_B4->unk_04_1);
-    }
-    break;
+    } break;
     case 2:
         if (ScreenWipe_Done()) {
             return 1;
@@ -383,9 +380,9 @@ int ov71_0223B388 (OverlayManager * param0, int * param1)
     return 0;
 }
 
-int ov71_0223B5B8 (OverlayManager * param0, int * param1)
+int ov71_0223B5B8(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov71_0223B620 * v0 = OverlayManager_Data(param0);
+    UnkStruct_ov71_0223B620 *v0 = OverlayManager_Data(param0);
 
     ov71_0223C288();
     ov71_0223B668(v0);
@@ -406,13 +403,13 @@ int ov71_0223B5B8 (OverlayManager * param0, int * param1)
     return 1;
 }
 
-static void ov71_0223B620 (UnkStruct_ov71_0223B620 * param0)
+static void ov71_0223B620(UnkStruct_ov71_0223B620 *param0)
 {
     param0->unk_336C = Strbuf_Init(3 + 1, 25);
     param0->unk_3370 = Strbuf_Init(5, 25);
 
     {
-        MessageLoader * v0;
+        MessageLoader *v0;
 
         v0 = MessageLoader_Init(0, 26, 616, 25);
 
@@ -421,13 +418,13 @@ static void ov71_0223B620 (UnkStruct_ov71_0223B620 * param0)
     }
 }
 
-static void ov71_0223B668 (UnkStruct_ov71_0223B620 * param0)
+static void ov71_0223B668(UnkStruct_ov71_0223B620 *param0)
 {
     Strbuf_Free(param0->unk_336C);
     Strbuf_Free(param0->unk_3370);
 }
 
-static void ov71_0223B688 (void)
+static void ov71_0223B688(void)
 {
     UnkStruct_02099F80 v0 = {
         GX_VRAM_BG_64_E,
@@ -445,11 +442,11 @@ static void ov71_0223B688 (void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov71_0223B6A8 (const u8 param0, const u8 param1, NARC * param2)
+static void ov71_0223B6A8(const u8 param0, const u8 param1, NARC *param2)
 {
     {
-        void * v0;
-        NNSG2dPaletteData * v1;
+        void *v0;
+        NNSG2dPaletteData *v1;
 
         if (param1) {
             switch (param0) {
@@ -477,7 +474,7 @@ static void ov71_0223B6A8 (const u8 param0, const u8 param1, NARC * param2)
         }
 
         {
-            u16 * v2;
+            u16 *v2;
 
             DC_FlushRange(v1->pRawData, 2 * 16 * 16);
             v2 = v1->pRawData;
@@ -490,10 +487,10 @@ static void ov71_0223B6A8 (const u8 param0, const u8 param1, NARC * param2)
     }
 }
 
-static void ov71_0223B768 (const u8 param0, NARC * param1)
+static void ov71_0223B768(const u8 param0, NARC *param1)
 {
-    void * v0;
-    NNSG2dPaletteData * v1;
+    void *v0;
+    NNSG2dPaletteData *v1;
 
     switch (param0) {
     case 10:
@@ -524,11 +521,11 @@ static void ov71_0223B768 (const u8 param0, NARC * param1)
     Heap_FreeToHeap(v0);
 }
 
-static void ov71_0223B820 (const u8 param0, NARC * param1)
+static void ov71_0223B820(const u8 param0, NARC *param1)
 {
-    void * v0;
-    u8 * v1;
-    NNSG2dPaletteData * v2;
+    void *v0;
+    u8 *v1;
+    NNSG2dPaletteData *v2;
 
     v0 = sub_020071EC(param1, 48, &v2, 25);
     v1 = (u8 *)(v2->pRawData);
@@ -539,7 +536,7 @@ static void ov71_0223B820 (const u8 param0, NARC * param1)
     Heap_FreeToHeap(v0);
 }
 
-static void ov71_0223B858 (BGL * param0)
+static void ov71_0223B858(BGL *param0)
 {
     GX_SetDispSelect(GX_DISP_SELECT_SUB_MAIN);
 
@@ -660,11 +657,11 @@ static void ov71_0223B858 (BGL * param0)
     }
 }
 
-static void ov71_0223B968 (UnkStruct_ov71_0223B620 * param0, NARC * param1)
+static void ov71_0223B968(UnkStruct_ov71_0223B620 *param0, NARC *param1)
 {
     {
-        void * v0;
-        NNSG2dPaletteData * v1;
+        void *v0;
+        NNSG2dPaletteData *v1;
 
         v0 = sub_020071EC(param1, 0, &v1, 25);
 
@@ -676,8 +673,8 @@ static void ov71_0223B968 (UnkStruct_ov71_0223B620 * param0, NARC * param1)
     ov71_0223B6A8(param0->unk_B4->unk_03, param0->unk_B4->unk_04_3, param1);
 
     {
-        void * v2;
-        NNSG2dPaletteData * v3;
+        void *v2;
+        NNSG2dPaletteData *v3;
 
         v2 = sub_020071EC(param1, 13, &v3, 25);
 
@@ -757,7 +754,7 @@ static void ov71_0223B968 (UnkStruct_ov71_0223B620 * param0, NARC * param1)
     ov71_0223C4DC(param0->unk_B4->unk_68, param0->unk_B8);
 }
 
-static void ov71_0223BBDC (BGL * param0)
+static void ov71_0223BBDC(BGL *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_OBJ, 0);
@@ -769,7 +766,7 @@ static void ov71_0223BBDC (BGL * param0)
     Heap_FreeToHeap(param0);
 }
 
-static BOOL ov71_0223BC20 (UnkStruct_ov71_0223B620 * param0)
+static BOOL ov71_0223BC20(UnkStruct_ov71_0223B620 *param0)
 {
     BOOL v0;
     MtxFx22 v1;
@@ -790,7 +787,7 @@ static BOOL ov71_0223BC20 (UnkStruct_ov71_0223B620 * param0)
         param0->unk_337E++;
         break;
     case 1:
-        param0->unk_30C8 -= 2 << ((FX32_SHIFT - param0->unk_3348));
+        param0->unk_30C8 -= 2 << (FX32_SHIFT - param0->unk_3348);
 
         if (param0->unk_30C8 <= 0) {
             param0->unk_30C8 = 0x24;
@@ -830,7 +827,7 @@ static BOOL ov71_0223BC20 (UnkStruct_ov71_0223B620 * param0)
             param0->unk_3348 = 8;
         }
 
-        param0->unk_30C8 += 2 << ((FX32_SHIFT - param0->unk_3348));
+        param0->unk_30C8 += 2 << (FX32_SHIFT - param0->unk_3348);
 
         if (param0->unk_30C8 >= (1 << FX32_SHIFT)) {
             param0->unk_30C8 = 1 << FX32_SHIFT;
@@ -859,22 +856,22 @@ static BOOL ov71_0223BC20 (UnkStruct_ov71_0223B620 * param0)
 
 static const fx32 Unk_ov71_0223D5CC[] = {
     2 << (FX32_SHIFT - 6),
-        2 << (FX32_SHIFT - 6),
-        2 << (FX32_SHIFT - 6),
-        2 << (FX32_SHIFT - 6),
-        2 << (FX32_SHIFT - 6),
-        2 << (FX32_SHIFT - 5),
-        2 << (FX32_SHIFT - 5),
-        2 << (FX32_SHIFT - 5),
-        2 << (FX32_SHIFT - 5),
-        2 << (FX32_SHIFT - 5),
-        2 << (FX32_SHIFT - 4),
-        2 << (FX32_SHIFT - 4),
-        2 << (FX32_SHIFT - 4),
-        2 << (FX32_SHIFT - 4)
+    2 << (FX32_SHIFT - 6),
+    2 << (FX32_SHIFT - 6),
+    2 << (FX32_SHIFT - 6),
+    2 << (FX32_SHIFT - 6),
+    2 << (FX32_SHIFT - 5),
+    2 << (FX32_SHIFT - 5),
+    2 << (FX32_SHIFT - 5),
+    2 << (FX32_SHIFT - 5),
+    2 << (FX32_SHIFT - 5),
+    2 << (FX32_SHIFT - 4),
+    2 << (FX32_SHIFT - 4),
+    2 << (FX32_SHIFT - 4),
+    2 << (FX32_SHIFT - 4)
 };
 
-static BOOL ov71_0223BDF8 (UnkStruct_ov71_0223B620 * param0)
+static BOOL ov71_0223BDF8(UnkStruct_ov71_0223B620 *param0)
 {
     MtxFx22 v0;
     fx32 v1, v2;
@@ -927,7 +924,7 @@ static BOOL ov71_0223BDF8 (UnkStruct_ov71_0223B620 * param0)
     return 0;
 }
 
-static int ov71_0223BEF8 (UnkStruct_ov71_0223B620 * param0)
+static int ov71_0223BEF8(UnkStruct_ov71_0223B620 *param0)
 {
     int v0;
     BOOL v1;
@@ -968,7 +965,7 @@ static int ov71_0223BEF8 (UnkStruct_ov71_0223B620 * param0)
     return v0;
 }
 
-static void ov71_0223BFBC (UnkStruct_ov71_0223B620 * param0)
+static void ov71_0223BFBC(UnkStruct_ov71_0223B620 *param0)
 {
     BOOL v0;
     int v1;
@@ -1029,9 +1026,9 @@ static void ov71_0223BFBC (UnkStruct_ov71_0223B620 * param0)
     param0->unk_30E0 = gCoreSys.touchY;
 }
 
-static void ov71_0223C0D8 (UnkStruct_ov71_0223B620 * param0, const u8 param1)
+static void ov71_0223C0D8(UnkStruct_ov71_0223B620 *param0, const u8 param1)
 {
-    u16 * v0;
+    u16 *v0;
     u16 v1;
     u8 v2, v3;
 
@@ -1047,9 +1044,9 @@ static void ov71_0223C0D8 (UnkStruct_ov71_0223B620 * param0, const u8 param1)
     sub_02019448(param0->unk_00, 2);
 }
 
-static void ov71_0223C128 (UnkStruct_ov71_0223B620 * param0, const u8 param1)
+static void ov71_0223C128(UnkStruct_ov71_0223B620 *param0, const u8 param1)
 {
-    u8 * v0;
+    u8 *v0;
     u16 v1;
     u8 v2, v3;
     u8 v4, v5;
@@ -1073,7 +1070,7 @@ static void ov71_0223C128 (UnkStruct_ov71_0223B620 * param0, const u8 param1)
     }
 }
 
-static void ov71_0223C18C (void * param0)
+static void ov71_0223C18C(void *param0)
 {
     sub_0201DCAC();
     sub_0200A858();
@@ -1081,7 +1078,7 @@ static void ov71_0223C18C (void * param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void ov71_0223C1AC (UnkStruct_ov71_0223B620 * param0, const u8 param1)
+static void ov71_0223C1AC(UnkStruct_ov71_0223B620 *param0, const u8 param1)
 {
     int v0;
     u8 v1, v2;
@@ -1120,13 +1117,13 @@ static void ov71_0223C1AC (UnkStruct_ov71_0223B620 * param0, const u8 param1)
     }
 }
 
-static void ov71_0223C288 (void)
+static void ov71_0223C288(void)
 {
     MtxFx22 v0;
     fx32 v1, v2;
 
-    v1 = FX_Inv((1 << FX32_SHIFT));
-    v2 = FX_Inv((1 << FX32_SHIFT));
+    v1 = FX_Inv(1 << FX32_SHIFT);
+    v2 = FX_Inv(1 << FX32_SHIFT);
     v0._00 = v1;
     v0._01 = 0;
     v0._10 = 0;
@@ -1142,7 +1139,7 @@ static void ov71_0223C288 (void)
     G2_SetBG3Affine(&v0, 128, 0, 0, 0);
 }
 
-static void ov71_0223C2F4 (UnkStruct_ov71_0223B620 * param0)
+static void ov71_0223C2F4(UnkStruct_ov71_0223B620 *param0)
 {
     if (param0->unk_3381 == 1) {
         if (ov71_0223C334(param0, Unk_ov71_0223D4C8[0])) {
@@ -1155,7 +1152,7 @@ static void ov71_0223C2F4 (UnkStruct_ov71_0223B620 * param0)
     }
 }
 
-static BOOL ov71_0223C334 (UnkStruct_ov71_0223B620 * param0, const u8 * param1)
+static BOOL ov71_0223C334(UnkStruct_ov71_0223B620 *param0, const u8 *param1)
 {
     u8 v0, v1;
 
@@ -1181,7 +1178,7 @@ static BOOL ov71_0223C334 (UnkStruct_ov71_0223B620 * param0, const u8 * param1)
     return 0;
 }
 
-static void ov71_0223C390 (UnkStruct_ov71_0223B620 * param0)
+static void ov71_0223C390(UnkStruct_ov71_0223B620 *param0)
 {
     u32 v0;
 
@@ -1196,12 +1193,12 @@ static void ov71_0223C390 (UnkStruct_ov71_0223B620 * param0)
     sub_02019460(param0->unk_00, 7, param0->unk_3360->rawData, v0, 0);
 }
 
-static void ov71_0223C3E8 (UnkStruct_ov71_0223B620 * param0)
+static void ov71_0223C3E8(UnkStruct_ov71_0223B620 *param0)
 {
     sub_02019CB8(param0->unk_00, 7, 0, 20, 6, 6, 9, 16);
 }
 
-static const u8 ov71_0223C40C (const int param0)
+static const u8 ov71_0223C40C(const int param0)
 {
     u8 v0;
 
@@ -1223,13 +1220,13 @@ static const u8 ov71_0223C40C (const int param0)
     return v0;
 }
 
-static void ov71_0223C444 (UnkStruct_ov71_0223C444 * param0)
+static void ov71_0223C444(UnkStruct_ov71_0223C444 *param0)
 {
     param0->unk_02 = 0;
     param0->unk_03 = 0;
 }
 
-static void ov71_0223C44C (UnkStruct_ov71_0223C444 * param0)
+static void ov71_0223C44C(UnkStruct_ov71_0223C444 *param0)
 {
     param0->unk_00 = 0;
     param0->unk_01 = 0;
@@ -1238,7 +1235,7 @@ static void ov71_0223C44C (UnkStruct_ov71_0223C444 * param0)
     param0->unk_04 = 0;
 }
 
-static void ov71_0223C45C (UnkStruct_ov71_0223C444 * param0)
+static void ov71_0223C45C(UnkStruct_ov71_0223C444 *param0)
 {
     int v0[2] = {
         1682, 1683
@@ -1259,7 +1256,7 @@ static void ov71_0223C45C (UnkStruct_ov71_0223C444 * param0)
     param0->unk_03 = 0;
 }
 
-static void ov71_0223C4DC (const u8 * param0, u8 * param1)
+static void ov71_0223C4DC(const u8 *param0, u8 *param1)
 {
     int v0, v1;
     u8 v2;
@@ -1274,9 +1271,9 @@ static void ov71_0223C4DC (const u8 * param0, u8 * param1)
     }
 }
 
-static void ov71_0223C530 (BGL * param0, const int param1, const u8 * param2)
+static void ov71_0223C530(BGL *param0, const int param1, const u8 *param2)
 {
-    u16 * v0;
+    u16 *v0;
     u8 v1, v2;
     u16 v3;
 
@@ -1295,7 +1292,7 @@ static void ov71_0223C530 (BGL * param0, const int param1, const u8 * param2)
     sub_02019448(param0, param1);
 }
 
-static void ov71_0223C594 (const int param0)
+static void ov71_0223C594(const int param0)
 {
     if (param0 == 1) {
         Sound_PlayEffect(1689);
@@ -1304,7 +1301,7 @@ static void ov71_0223C594 (const int param0)
     }
 }
 
-static void ov71_0223C5A4 (UnkStruct_ov71_0223B620 * param0, const u8 param1)
+static void ov71_0223C5A4(UnkStruct_ov71_0223B620 *param0, const u8 param1)
 {
     if (!param1) {
         return;
@@ -1323,7 +1320,7 @@ static void ov71_0223C5A4 (UnkStruct_ov71_0223B620 * param0, const u8 param1)
     param0->unk_3382 = (param0->unk_3382 + 1) % 30;
 }
 
-static int ov71_0223C60C (BGL * param0, const TouchScreenRect *rect)
+static int ov71_0223C60C(BGL *param0, const TouchScreenRect *rect)
 {
     int v0 = sub_02022664(rect);
 
@@ -1342,7 +1339,7 @@ static int ov71_0223C60C (BGL * param0, const TouchScreenRect *rect)
     return v0;
 }
 
-static int ov71_0223C654 (BGL * param0, const TouchScreenRect *rect)
+static int ov71_0223C654(BGL *param0, const TouchScreenRect *rect)
 {
     int v0 = sub_02022644(rect);
 

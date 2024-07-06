@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV19_021D3CFC_H
 
 typedef struct {
-    void * unk_00;
+    void *unk_00;
     u8 unk_04;
     s8 unk_05;
     s8 unk_06;

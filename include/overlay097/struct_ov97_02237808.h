@@ -1,16 +1,17 @@
 #ifndef POKEPLATINUM_STRUCT_OV97_02237808_H
 #define POKEPLATINUM_STRUCT_OV97_02237808_H
 
-#include "string_template.h"
 #include "struct_defs/struct_0205AA50.h"
+
+#include "string_template.h"
 
 typedef struct {
     int unk_00;
     int unk_04;
     int unk_08;
     int unk_0C;
-    Window * unk_10;
-    StringTemplate * unk_14;
+    Window *unk_10;
+    StringTemplate *unk_14;
     int unk_18;
     int unk_1C;
     int unk_20;

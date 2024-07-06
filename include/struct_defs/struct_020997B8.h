@@ -1,15 +1,15 @@
 #ifndef POKEPLATINUM_STRUCT_020997B8_H
 #define POKEPLATINUM_STRUCT_020997B8_H
 
-#include "trainer_info.h"
 #include "game_options.h"
 #include "pokemon.h"
+#include "trainer_info.h"
 
 typedef struct {
-    Pokemon * unk_00;
-    TrainerInfo * unk_04;
-    Options * unk_08;
-    u16 * unk_0C;
+    Pokemon *unk_00;
+    TrainerInfo *unk_04;
+    Options *unk_08;
+    u16 *unk_0C;
     u16 unk_10;
     u16 unk_12;
     u8 unk_14;

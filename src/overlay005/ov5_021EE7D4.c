@@ -1,20 +1,20 @@
+#include "overlay005/ov5_021EE7D4.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "pokemon.h"
 #include "struct_decls/struct_02098700_decl.h"
 
 #include "field/field_system.h"
 
-#include "string_template.h"
+#include "party.h"
+#include "pokemon.h"
 #include "script_manager.h"
-#include "vars_flags.h"
+#include "string_template.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206CCB0.h"
-#include "pokemon.h"
-#include "party.h"
 #include "unk_02098700.h"
-#include "overlay005/ov5_021EE7D4.h"
+#include "vars_flags.h"
 
 typedef struct {
     u16 unk_00;
@@ -24,25 +24,25 @@ typedef struct {
 } UnkStruct_ov5_021FF508;
 
 static const UnkStruct_ov5_021FF508 Unk_ov5_021FF508[] = {
-    {0x122, 0x1, 0x0, 0x0},
-    {0x12C, 0x1, 0xA, 0x0},
-    {0x190, 0x2, 0x6E, 0x0},
-    {0x1F4, 0x4, 0x136, 0x0},
-    {0x258, 0x14, 0x2C6, 0x0},
-    {0x2BC, 0x32, 0xA96, 0x0},
-    {0x320, 0x64, 0x1E1E, 0x0},
-    {0x384, 0x96, 0x452E, 0x0},
-    {0x3E8, 0x96, 0x7FC6, 0x0},
-    {0x44C, 0x64, 0xBA5E, 0x0},
-    {0x4B0, 0x32, 0xE16E, 0x0},
-    {0x514, 0x14, 0xF4F6, 0x0},
-    {0x578, 0x5, 0xFCC6, 0x0},
-    {0x5DC, 0x2, 0xFEBA, 0x0},
-    {0x640, 0x1, 0xFF82, 0x0},
-    {0x6A4, 0x1, 0xFFE6, 0x0}
+    { 0x122, 0x1, 0x0, 0x0 },
+    { 0x12C, 0x1, 0xA, 0x0 },
+    { 0x190, 0x2, 0x6E, 0x0 },
+    { 0x1F4, 0x4, 0x136, 0x0 },
+    { 0x258, 0x14, 0x2C6, 0x0 },
+    { 0x2BC, 0x32, 0xA96, 0x0 },
+    { 0x320, 0x64, 0x1E1E, 0x0 },
+    { 0x384, 0x96, 0x452E, 0x0 },
+    { 0x3E8, 0x96, 0x7FC6, 0x0 },
+    { 0x44C, 0x64, 0xBA5E, 0x0 },
+    { 0x4B0, 0x32, 0xE16E, 0x0 },
+    { 0x514, 0x14, 0xF4F6, 0x0 },
+    { 0x578, 0x5, 0xFCC6, 0x0 },
+    { 0x5DC, 0x2, 0xFEBA, 0x0 },
+    { 0x640, 0x1, 0xFF82, 0x0 },
+    { 0x6A4, 0x1, 0xFFE6, 0x0 }
 };
 
-static int ov5_021EE7D4 (Pokemon * param0)
+static int ov5_021EE7D4(Pokemon *param0)
 {
     u16 v0;
     u16 v1, v2, v3;
@@ -62,7 +62,7 @@ static int ov5_021EE7D4 (Pokemon * param0)
     return v7 * 256 + v8;
 }
 
-static u8 ov5_021EE880 (u16 param0)
+static u8 ov5_021EE880(u16 param0)
 {
     u8 v0;
 
@@ -75,13 +75,13 @@ static u8 ov5_021EE880 (u16 param0)
     return v0;
 }
 
-static u32 ov5_021EE8A8 (u16 param0, u16 param1)
+static u32 ov5_021EE8A8(u16 param0, u16 param1)
 {
     u64 v0, v1, v2;
     u32 v3;
     u64 v4;
     u8 v5;
-    HeightWeightData * v6;
+    HeightWeightData *v6;
 
     v6 = Pokedex_HeightWeightData(4);
     Pokedex_HeightWeightData_Load(v6, 0, 4);
@@ -99,9 +99,9 @@ static u32 ov5_021EE8A8 (u16 param0, u16 param1)
     return v3 * v4 / 10;
 }
 
-u8 ov5_021EE920 (FieldSystem * fieldSystem, u16 param1)
+u8 ov5_021EE920(FieldSystem *fieldSystem, u16 param1)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     vu16 v1, v2;
     u16 v3;
     u32 v4;
@@ -131,9 +131,9 @@ u8 ov5_021EE920 (FieldSystem * fieldSystem, u16 param1)
     }
 }
 
-void ov5_021EE9BC (FieldSystem * fieldSystem, u16 param1)
+void ov5_021EE9BC(FieldSystem *fieldSystem, u16 param1)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     vu16 v1;
 
     v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), param1);
@@ -142,10 +142,10 @@ void ov5_021EE9BC (FieldSystem * fieldSystem, u16 param1)
     sub_0206B0C4(SaveData_GetVarsFlags(fieldSystem->saveData), v1);
 }
 
-static void ov5_021EE9E8 (FieldSystem * fieldSystem, u8 param1, u8 param2, u16 param3, vu16 param4)
+static void ov5_021EE9E8(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 param3, vu16 param4)
 {
     u32 v0;
-    StringTemplate ** v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
 
     v0 = ov5_021EE8A8(param3, param4);
 
@@ -158,7 +158,7 @@ static void ov5_021EE9E8 (FieldSystem * fieldSystem, u8 param1, u8 param2, u16 p
     StringTemplate_SetNumber(*v1, param2, v0 % 10, 1, 0, 1);
 }
 
-void ov5_021EEA54 (FieldSystem * fieldSystem, u8 param1, u8 param2, u16 param3)
+void ov5_021EEA54(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 param3)
 {
     vu16 v0;
 
@@ -166,9 +166,9 @@ void ov5_021EEA54 (FieldSystem * fieldSystem, u8 param1, u8 param2, u16 param3)
     ov5_021EE9E8(fieldSystem, param1, param2, param3, v0);
 }
 
-void ov5_021EEA84 (FieldSystem * fieldSystem, u8 param1, u8 param2, u16 param3)
+void ov5_021EEA84(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 param3)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     u16 v1;
     vu16 v2;
 

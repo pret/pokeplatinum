@@ -1,22 +1,21 @@
+#include "poffin.h"
+
 #include <nitro.h>
 #include <string.h>
-
-#include "savedata.h"
 
 #include "struct_defs/struct_0202A93C.h"
 #include "struct_defs/struct_0202AB28.h"
 
 #include "heap.h"
-#include "unk_0201D15C.h"
 #include "savedata.h"
-#include "poffin.h"
+#include "unk_0201D15C.h"
 
-int Poffin_sizeof (void)
+int Poffin_sizeof(void)
 {
     return sizeof(Poffin);
 }
 
-BOOL sub_0202A914 (Poffin * poffin)
+BOOL sub_0202A914(Poffin *poffin)
 {
     if (poffin->flavor == 30) {
         return FALSE;
@@ -25,7 +24,7 @@ BOOL sub_0202A914 (Poffin * poffin)
     return TRUE;
 }
 
-void Poffin_clear (Poffin * poffin)
+void Poffin_clear(Poffin *poffin)
 {
     poffin->flavor = 30;
     poffin->spiciness = 0;
@@ -37,9 +36,9 @@ void Poffin_clear (Poffin * poffin)
     poffin->dummy = 0;
 }
 
-Poffin * Poffin_malloc (int heapID)
+Poffin *Poffin_malloc(int heapID)
 {
-    Poffin * poffin;
+    Poffin *poffin;
 
     poffin = Heap_AllocFromHeapAtEnd(heapID, sizeof(Poffin));
     Poffin_clear(poffin);
@@ -47,7 +46,7 @@ Poffin * Poffin_malloc (int heapID)
     return poffin;
 }
 
-void Poffin_copy (Poffin * src, Poffin * dest)
+void Poffin_copy(Poffin *src, Poffin *dest)
 {
     dest->flavor = src->flavor;
     dest->spiciness = src->spiciness;
@@ -59,7 +58,7 @@ void Poffin_copy (Poffin * src, Poffin * dest)
     dest->dummy = src->dummy;
 }
 
-u8 Poffin_GetAttribute (Poffin * poffin, PoffinAttributeID attributeID)
+u8 Poffin_GetAttribute(Poffin *poffin, PoffinAttributeID attributeID)
 {
     switch (attributeID) {
     case POFFIN_ATTRIBUTEID_FLAVOR:
@@ -80,7 +79,7 @@ u8 Poffin_GetAttribute (Poffin * poffin, PoffinAttributeID attributeID)
     }
 }
 
-static void MakePoffinFoul (Poffin * poffin, u8 param1)
+static void MakePoffinFoul(Poffin *poffin, u8 param1)
 {
     int v0;
     u8 v1;
@@ -102,7 +101,7 @@ static void MakePoffinFoul (Poffin * poffin, u8 param1)
     poffin->val1_06 = param1;
 }
 
-int sub_0202A9E4 (Poffin * poffin, u8 * param1, u8 param2, BOOL isFoul)
+int sub_0202A9E4(Poffin *poffin, u8 *param1, u8 param2, BOOL isFoul)
 {
     int v0, v1 = 0;
     u8 v2[5];
@@ -162,7 +161,7 @@ int sub_0202A9E4 (Poffin * poffin, u8 * param1, u8 param2, BOOL isFoul)
     return v4;
 }
 
-void Poffin_StoreAttributesToArray (Poffin * poffin, u8 * dest)
+void Poffin_StoreAttributesToArray(Poffin *poffin, u8 *dest)
 {
     dest[0] = poffin->flavor;
     dest[1] = poffin->spiciness;
@@ -173,7 +172,7 @@ void Poffin_StoreAttributesToArray (Poffin * poffin, u8 * dest)
     dest[6] = poffin->val1_06;
 }
 
-u8 Poffin_CalcLevel (Poffin * poffin)
+u8 Poffin_CalcLevel(Poffin *poffin)
 {
     u8 v0 = 0;
     u8 level = 0;
@@ -225,17 +224,17 @@ u8 Poffin_CalcLevel (Poffin * poffin)
     return level;
 }
 
-UnkStruct_0202AB28 * Poffin_GetSavedataBlock (SaveData * savedata)
+UnkStruct_0202AB28 *Poffin_GetSavedataBlock(SaveData *savedata)
 {
     return SaveData_SaveTable(savedata, 16);
 }
 
-int Poffin_SaveSize (void)
+int Poffin_SaveSize(void)
 {
     return sizeof(Poffin) * 100;
 }
 
-void Poffin_Init (UnkStruct_0202AB28 * param0)
+void Poffin_Init(UnkStruct_0202AB28 *param0)
 {
     int i = 0;
 
@@ -244,7 +243,7 @@ void Poffin_Init (UnkStruct_0202AB28 * param0)
     }
 }
 
-u16 sub_0202AB54 (UnkStruct_0202AB28 * param0)
+u16 sub_0202AB54(UnkStruct_0202AB28 *param0)
 {
     u16 v0;
 
@@ -257,7 +256,7 @@ u16 sub_0202AB54 (UnkStruct_0202AB28 * param0)
     return 0xFFFF;
 }
 
-u16 sub_0202AB74 (UnkStruct_0202AB28 * param0, Poffin * param1)
+u16 sub_0202AB74(UnkStruct_0202AB28 *param0, Poffin *param1)
 {
     u16 v0 = sub_0202AB54(param0);
 
@@ -269,7 +268,7 @@ u16 sub_0202AB74 (UnkStruct_0202AB28 * param0, Poffin * param1)
     return v0;
 }
 
-BOOL sub_0202AB98 (UnkStruct_0202AB28 * param0, u16 param1)
+BOOL sub_0202AB98(UnkStruct_0202AB28 *param0, u16 param1)
 {
     if (param1 >= 100) {
         return FALSE;
@@ -279,7 +278,7 @@ BOOL sub_0202AB98 (UnkStruct_0202AB28 * param0, u16 param1)
     return TRUE;
 }
 
-static u16 sub_0202ABB0 (UnkStruct_0202AB28 * param0, u16 param1)
+static u16 sub_0202ABB0(UnkStruct_0202AB28 *param0, u16 param1)
 {
     u16 v0;
 
@@ -292,7 +291,7 @@ static u16 sub_0202ABB0 (UnkStruct_0202AB28 * param0, u16 param1)
     return 0xFFFF;
 }
 
-void sub_0202ABD4 (UnkStruct_0202AB28 * param0)
+void sub_0202ABD4(UnkStruct_0202AB28 *param0)
 {
     u16 v0, v1, v2;
     u16 v3, v4, v5;
@@ -323,7 +322,7 @@ void sub_0202ABD4 (UnkStruct_0202AB28 * param0)
     }
 }
 
-void sub_0202AC54 (UnkStruct_0202AB28 * param0, u16 param1, Poffin * param2)
+void sub_0202AC54(UnkStruct_0202AB28 *param0, u16 param1, Poffin *param2)
 {
     if (param1 >= 100) {
         Poffin_clear(param2);
@@ -334,9 +333,9 @@ void sub_0202AC54 (UnkStruct_0202AB28 * param0, u16 param1, Poffin * param2)
     return;
 }
 
-Poffin * sub_0202AC70 (UnkStruct_0202AB28 * param0, u16 param1, int param2)
+Poffin *sub_0202AC70(UnkStruct_0202AB28 *param0, u16 param1, int param2)
 {
-    Poffin * v0;
+    Poffin *v0;
 
     v0 = Poffin_malloc(param2);
 
@@ -349,7 +348,7 @@ Poffin * sub_0202AC70 (UnkStruct_0202AB28 * param0, u16 param1, int param2)
     return v0;
 }
 
-u16 sub_0202AC98 (UnkStruct_0202AB28 * param0)
+u16 sub_0202AC98(UnkStruct_0202AB28 *param0)
 {
     u16 v0 = 0, v1;
 
@@ -362,7 +361,7 @@ u16 sub_0202AC98 (UnkStruct_0202AB28 * param0)
     return v0;
 }
 
-u16 sub_0202ACC0 (UnkStruct_0202AB28 * param0)
+u16 sub_0202ACC0(UnkStruct_0202AB28 *param0)
 {
     u16 v0, v1;
 

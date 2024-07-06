@@ -1,46 +1,48 @@
+#include "script_manager.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "strbuf.h"
-#include "constdata/const_020EAC58.h"
-#include "constdata/const_020EAB80.h"
-#include "field/field_system.h"
-#include "field/scripts/scr_seq.naix"
 #include "constants/battle.h"
-#include "narc.h"
-#include "message.h"
-#include "heap.h"
-#include "unk_0201D15C.h"
-#include "strbuf.h"
-#include "map_header.h"
-#include "map_header_data.h"
-#include "field_menu.h"
-#include "script_manager.h"
-#include "vars_flags.h"
-#include "unk_020508D4.h"
-#include "player_avatar.h"
-#include "map_object.h"
-#include "trainer_data.h"
 #include "consts/map.h"
 
 #include "data/field/hidden_items.h"
+#include "field/field_system.h"
+#include "field/scripts/scr_seq.naix"
 
-static BOOL FieldTask_RunScript(TaskManager * taskManager);
-static ScriptManager * ScriptManager_New();
-static void ScriptContext_Free(ScriptContext * ctx);
-static void sub_0203EA68(FieldSystem * fieldSystem, ScriptManager * scriptManager, u16 scriptID, MapObject * object, void * saveType);
-static void sub_0203EAF4(FieldSystem * fieldSystem, ScriptContext * ctx, u16 scriptID, u8 dummy);
-static u16 ScriptContext_LoadAndOffsetID(FieldSystem * fieldSystem, ScriptContext * ctx, u16 scriptID);
-static void ScriptContext_Load(FieldSystem * fieldSystem, ScriptContext * ctx, int scriptFile, u32 textBank);
-static void ScriptContext_LoadFromCurrentMap(FieldSystem * fieldSystem, ScriptContext * ctx);
-static void sub_0203F0E4(ScriptContext * ctx, u16 param1);
-static void * ScriptContext_LoadScripts(int headerID);
+#include "field_menu.h"
+#include "heap.h"
+#include "map_header.h"
+#include "map_header_data.h"
+#include "map_object.h"
+#include "message.h"
+#include "narc.h"
+#include "player_avatar.h"
+#include "strbuf.h"
+#include "trainer_data.h"
+#include "unk_0201D15C.h"
+#include "unk_020508D4.h"
+#include "vars_flags.h"
+
+#include "constdata/const_020EAB80.h"
+#include "constdata/const_020EAC58.h"
+
+static BOOL FieldTask_RunScript(TaskManager *taskManager);
+static ScriptManager *ScriptManager_New();
+static void ScriptContext_Free(ScriptContext *ctx);
+static void sub_0203EA68(FieldSystem *fieldSystem, ScriptManager *scriptManager, u16 scriptID, MapObject *object, void *saveType);
+static void sub_0203EAF4(FieldSystem *fieldSystem, ScriptContext *ctx, u16 scriptID, u8 dummy);
+static u16 ScriptContext_LoadAndOffsetID(FieldSystem *fieldSystem, ScriptContext *ctx, u16 scriptID);
+static void ScriptContext_Load(FieldSystem *fieldSystem, ScriptContext *ctx, int scriptFile, u32 textBank);
+static void ScriptContext_LoadFromCurrentMap(FieldSystem *fieldSystem, ScriptContext *ctx);
+static void sub_0203F0E4(ScriptContext *ctx, u16 param1);
+static void *ScriptContext_LoadScripts(int headerID);
 static u32 MapHeaderToMsgArchive(int headerID);
-static BOOL ScriptManager_SetHiddenItem(ScriptManager * scriptManager, u16 scriptID);
-static u16 sub_0203F610(const u8 * param0, u8 param1);
-static u16 sub_0203F638(FieldSystem * fieldSystem, const u8 * param1, u8 param2);
+static BOOL ScriptManager_SetHiddenItem(ScriptManager *scriptManager, u16 scriptID);
+static u16 sub_0203F610(const u8 *param0, u8 param1);
+static u16 sub_0203F638(FieldSystem *fieldSystem, const u8 *param1, u8 param2);
 
-void ScriptManager_Set (FieldSystem * fieldSystem, u16 scriptID, MapObject * object)
+void ScriptManager_Set(FieldSystem *fieldSystem, u16 scriptID, MapObject *object)
 {
     ScriptManager *scriptManager = ScriptManager_New();
 
@@ -48,7 +50,7 @@ void ScriptManager_Set (FieldSystem * fieldSystem, u16 scriptID, MapObject * obj
     FieldTask_Set(fieldSystem, FieldTask_RunScript, scriptManager);
 }
 
-void ScriptManager_SetApproachingTrainer (FieldSystem * fieldSystem, MapObject * object, int sightRange, int direction, int scriptID, int trainerID, int trainerType, int approachNum)
+void ScriptManager_SetApproachingTrainer(FieldSystem *fieldSystem, MapObject *object, int sightRange, int direction, int scriptID, int trainerID, int trainerType, int approachNum)
 {
     ScriptManager *scriptManager = TaskManager_Environment(fieldSystem->unk_10);
     ApproachingTrainer *trainer = &scriptManager->trainers[approachNum];
@@ -61,7 +63,7 @@ void ScriptManager_SetApproachingTrainer (FieldSystem * fieldSystem, MapObject *
     trainer->object = object;
 }
 
-void ScriptManager_Start (TaskManager * taskManager, u16 scriptID, MapObject * object, void * saveType)
+void ScriptManager_Start(TaskManager *taskManager, u16 scriptID, MapObject *object, void *saveType)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskManager);
     ScriptManager *scriptManager = ScriptManager_New();
@@ -70,7 +72,7 @@ void ScriptManager_Start (TaskManager * taskManager, u16 scriptID, MapObject * o
     FieldTask_Start(taskManager, FieldTask_RunScript, scriptManager);
 }
 
-void ScriptManager_Change (TaskManager * taskManager, u16 scriptID, MapObject * object)
+void ScriptManager_Change(TaskManager *taskManager, u16 scriptID, MapObject *object)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskManager);
     ScriptManager *scriptManager = ScriptManager_New();
@@ -79,7 +81,7 @@ void ScriptManager_Change (TaskManager * taskManager, u16 scriptID, MapObject * 
     FieldTask_Change(taskManager, FieldTask_RunScript, scriptManager);
 }
 
-static BOOL FieldTask_RunScript (TaskManager *taskManager)
+static BOOL FieldTask_RunScript(TaskManager *taskManager)
 {
     int i;
     FieldSysFunc scriptFunction;
@@ -130,7 +132,7 @@ static BOOL FieldTask_RunScript (TaskManager *taskManager)
     return FALSE;
 }
 
-static ScriptManager * ScriptManager_New ()
+static ScriptManager *ScriptManager_New()
 {
     ScriptManager *scriptManager = Heap_AllocFromHeap(11, sizeof(ScriptManager));
 
@@ -141,14 +143,14 @@ static ScriptManager * ScriptManager_New ()
     return scriptManager;
 }
 
-static void ScriptContext_Free (ScriptContext * ctx)
+static void ScriptContext_Free(ScriptContext *ctx)
 {
     MessageLoader_Free(ctx->loader);
     Heap_FreeToHeap(ctx->scripts);
     Heap_FreeToHeap(ctx);
 }
 
-static void sub_0203EA68 (FieldSystem * fieldSystem, ScriptManager * scriptManager, u16 scriptID, MapObject * object, void * saveType)
+static void sub_0203EA68(FieldSystem *fieldSystem, ScriptManager *scriptManager, u16 scriptID, MapObject *object, void *saveType)
 {
     u16 *targetID = ScriptManager_GetMemberPtr(scriptManager, SCRIPT_DATA_TARGET_OBJECT_ID);
 
@@ -166,7 +168,7 @@ static void sub_0203EA68 (FieldSystem * fieldSystem, ScriptManager * scriptManag
     }
 }
 
-ScriptContext * ScriptContext_CreateAndStart (FieldSystem * fieldSystem, u16 scriptID)
+ScriptContext *ScriptContext_CreateAndStart(FieldSystem *fieldSystem, u16 scriptID)
 {
     ScriptContext *ctx = Heap_AllocFromHeap(11, sizeof(ScriptContext));
 
@@ -178,7 +180,7 @@ ScriptContext * ScriptContext_CreateAndStart (FieldSystem * fieldSystem, u16 scr
     return ctx;
 }
 
-static void sub_0203EAF4 (FieldSystem * fieldSystem, ScriptContext * ctx, u16 scriptID, u8 dummy)
+static void sub_0203EAF4(FieldSystem *fieldSystem, ScriptContext *ctx, u16 scriptID, u8 dummy)
 {
     ctx->fieldSystem = fieldSystem;
     u16 offsetID = ScriptContext_LoadAndOffsetID(fieldSystem, ctx, scriptID);
@@ -188,7 +190,7 @@ static void sub_0203EAF4 (FieldSystem * fieldSystem, ScriptContext * ctx, u16 sc
     ScriptContext_SetTaskManager(ctx, fieldSystem->unk_10);
 }
 
-static u16 ScriptContext_LoadAndOffsetID (FieldSystem * fieldSystem, ScriptContext * ctx, u16 scriptID)
+static u16 ScriptContext_LoadAndOffsetID(FieldSystem *fieldSystem, ScriptContext *ctx, u16 scriptID)
 {
     u16 retScriptID = scriptID;
 
@@ -293,21 +295,21 @@ static u16 ScriptContext_LoadAndOffsetID (FieldSystem * fieldSystem, ScriptConte
     return retScriptID;
 }
 
-static void ScriptContext_Load (FieldSystem * fieldSystem, ScriptContext * ctx, int scriptFile, u32 textBank)
+static void ScriptContext_Load(FieldSystem *fieldSystem, ScriptContext *ctx, int scriptFile, u32 textBank)
 {
     u8 *scripts = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__SCRIPT__SCR_SEQ, scriptFile, 11);
     ctx->scripts = scripts;
     ctx->loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, textBank, 11);
 }
 
-static void ScriptContext_LoadFromCurrentMap (FieldSystem * fieldSystem, ScriptContext * ctx)
+static void ScriptContext_LoadFromCurrentMap(FieldSystem *fieldSystem, ScriptContext *ctx)
 {
     u8 *scripts = ScriptContext_LoadScripts(fieldSystem->location->mapId);
     ctx->scripts = scripts;
     ctx->loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, MapHeaderToMsgArchive(fieldSystem->location->mapId), 11);
 }
 
-void * ScriptManager_GetMemberPtr (ScriptManager *scriptManager, u32 member)
+void *ScriptManager_GetMemberPtr(ScriptManager *scriptManager, u32 member)
 {
     ApproachingTrainer *trainer;
 
@@ -318,7 +320,7 @@ void * ScriptManager_GetMemberPtr (ScriptManager *scriptManager, u32 member)
         return &scriptManager->window;
     case SCRIPT_MANAGER_UI_CONTROL:
         return &scriptManager->ctrlUI;
-    case SCRIPT_MANAGER_MESSAGE_ID: 
+    case SCRIPT_MANAGER_MESSAGE_ID:
         return &scriptManager->messageID;
     case SCRIPT_MANAGER_MOVEMENT_COUNT:
         return &scriptManager->movementCount;
@@ -430,7 +432,7 @@ void * ScriptManager_GetMemberPtr (ScriptManager *scriptManager, u32 member)
     return NULL;
 }
 
-void * FieldSystem_GetScriptMemberPtr (FieldSystem * fieldSystem, u32 member)
+void *FieldSystem_GetScriptMemberPtr(FieldSystem *fieldSystem, u32 member)
 {
     ScriptManager *script = TaskManager_Environment(fieldSystem->unk_10);
 
@@ -439,7 +441,7 @@ void * FieldSystem_GetScriptMemberPtr (FieldSystem * fieldSystem, u32 member)
     return ScriptManager_GetMemberPtr(script, member);
 }
 
-void sub_0203F0C0 (FieldSystem * fieldSystem)
+void sub_0203F0C0(FieldSystem *fieldSystem)
 {
     ScriptManager *scriptManager = TaskManager_Environment(fieldSystem->unk_10);
 
@@ -448,23 +450,23 @@ void sub_0203F0C0 (FieldSystem * fieldSystem)
     }
 }
 
-static void sub_0203F0E4 (ScriptContext * ctx, u16 param1)
+static void sub_0203F0E4(ScriptContext *ctx, u16 param1)
 {
     ctx->scriptPtr += (param1 * 4);
     ctx->scriptPtr += ScriptContext_ReadWord(ctx);
 }
 
-static void * ScriptContext_LoadScripts (int headerID)
+static void *ScriptContext_LoadScripts(int headerID)
 {
     return NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__SCRIPT__SCR_SEQ, MapHeader_GetScriptsArchiveID(headerID), 11);
 }
 
-static u32 MapHeaderToMsgArchive (int headerID)
+static u32 MapHeaderToMsgArchive(int headerID)
 {
     return MapHeader_GetMsgArchiveID(headerID);
 }
 
-u16 * FieldSystem_GetVarPointer (FieldSystem * fieldSystem, u16 varID)
+u16 *FieldSystem_GetVarPointer(FieldSystem *fieldSystem, u16 varID)
 {
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
@@ -479,7 +481,7 @@ u16 * FieldSystem_GetVarPointer (FieldSystem * fieldSystem, u16 varID)
     return FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_DATA_START + varID - SPECIAL_VARS_START);
 }
 
-u16 FieldSystem_TryGetVar (FieldSystem * fieldSystem, u16 varID)
+u16 FieldSystem_TryGetVar(FieldSystem *fieldSystem, u16 varID)
 {
     u16 *var = FieldSystem_GetVarPointer(fieldSystem, varID);
 
@@ -490,28 +492,28 @@ u16 FieldSystem_TryGetVar (FieldSystem * fieldSystem, u16 varID)
     return *var;
 }
 
-u16 sub_0203F164 (FieldSystem * fieldSystem, u16 varID)
+u16 sub_0203F164(FieldSystem *fieldSystem, u16 varID)
 {
     GF_ASSERT(varID < 16);
     return FieldSystem_TryGetVar(fieldSystem, (((0 + VARS_START) + 32) + varID));
 }
 
-BOOL FieldSystem_CheckFlag (FieldSystem * fieldSystem, u16 flagID)
+BOOL FieldSystem_CheckFlag(FieldSystem *fieldSystem, u16 flagID)
 {
     return VarsFlags_CheckFlag(SaveData_GetVarsFlags(fieldSystem->saveData), flagID);
 }
 
-void FieldSystem_SetFlag (FieldSystem * fieldSystem, u16 flagID)
+void FieldSystem_SetFlag(FieldSystem *fieldSystem, u16 flagID)
 {
     VarsFlags_SetFlag(SaveData_GetVarsFlags(fieldSystem->saveData), flagID);
 }
 
-void FieldSystem_ClearFlag (FieldSystem * fieldSystem, u16 flagID)
+void FieldSystem_ClearFlag(FieldSystem *fieldSystem, u16 flagID)
 {
     VarsFlags_ClearFlag(SaveData_GetVarsFlags(fieldSystem->saveData), flagID);
 }
 
-void FieldSystem_ClearLocalFlags (FieldSystem * fieldSystem)
+void FieldSystem_ClearLocalFlags(FieldSystem *fieldSystem)
 {
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
@@ -519,14 +521,14 @@ void FieldSystem_ClearLocalFlags (FieldSystem * fieldSystem)
     memset(VarsFlags_GetVarAddress(varsFlags, (0 + VARS_START)), 0, 2 * 32);
 }
 
-void sub_0203F1FC (FieldSystem * fieldSystem)
+void sub_0203F1FC(FieldSystem *fieldSystem)
 {
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
     memset(VarsFlags_GetFlagChunk(varsFlags, 2400 + 320), 0, 192 / 8);
 }
 
-void FieldSystem_SetScriptParameters (FieldSystem * fieldSystem, u16 scriptParam0, u16 scriptParam1, u16 scriptParam2, u16 scriptParam3)
+void FieldSystem_SetScriptParameters(FieldSystem *fieldSystem, u16 scriptParam0, u16 scriptParam1, u16 scriptParam2, u16 scriptParam3)
 {
     *(u16 *)FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_DATA_PARAMETER_0) = scriptParam0;
     *(u16 *)FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_DATA_PARAMETER_1) = scriptParam1;
@@ -543,7 +545,7 @@ u16 Script_GetTrainerID(u16 scriptID)
     }
 }
 
-int Script_GetTrainerBattlerIndex (u16 scriptID)
+int Script_GetTrainerBattlerIndex(u16 scriptID)
 {
     return !(scriptID < SCRIPT_ID_OFFSET_DOUBLE_BATTLES);
 }
@@ -558,31 +560,31 @@ BOOL Script_IsTrainerDefeated(FieldSystem *fieldSystem, u16 trainerID)
     return VarsFlags_CheckFlag(SaveData_GetVarsFlags(fieldSystem->saveData), FLAG_OFFSET_TRAINER_DEFEATED + trainerID);
 }
 
-void Script_SetTrainerDefeated (FieldSystem *fieldSystem, u16 trainerID)
+void Script_SetTrainerDefeated(FieldSystem *fieldSystem, u16 trainerID)
 {
     VarsFlags_SetFlag(SaveData_GetVarsFlags(fieldSystem->saveData), FLAG_OFFSET_TRAINER_DEFEATED + trainerID);
 }
 
-void Script_ClearTrainerDefeated (FieldSystem *fieldSystem, u16 trainerID)
+void Script_ClearTrainerDefeated(FieldSystem *fieldSystem, u16 trainerID)
 {
     VarsFlags_ClearFlag(SaveData_GetVarsFlags(fieldSystem->saveData), FLAG_OFFSET_TRAINER_DEFEATED + trainerID);
 }
 
-u16 Script_GetHiddenItemFlag (u16 scriptID)
+u16 Script_GetHiddenItemFlag(u16 scriptID)
 {
     return scriptID - SCRIPT_ID_OFFSET_HIDDEN_ITEMS + FLAG_OFFSET_HIDDEN_ITEMS;
 }
 
-u16 Script_GetHiddenItemScript (u16 scriptID)
+u16 Script_GetHiddenItemScript(u16 scriptID)
 {
     return scriptID - SCRIPT_ID_OFFSET_HIDDEN_ITEMS;
 }
 
 static u16 sIronIslandHiddenItemFlags[][2] = {
-    {MAP_HEADER_IRON_ISLAND_B1F_RIGHT_ROOM, 0x34},
-    {MAP_HEADER_IRON_ISLAND_B2F_RIGHT_ROOM, 0x35},
-    {MAP_HEADER_IRON_ISLAND_B2F_LEFT_ROOM,  0x36},
-    {MAP_HEADER_IRON_ISLAND_B2F_LEFT_ROOM,  0x37}
+    { MAP_HEADER_IRON_ISLAND_B1F_RIGHT_ROOM, 0x34 },
+    { MAP_HEADER_IRON_ISLAND_B2F_RIGHT_ROOM, 0x35 },
+    { MAP_HEADER_IRON_ISLAND_B2F_LEFT_ROOM, 0x36 },
+    { MAP_HEADER_IRON_ISLAND_B2F_LEFT_ROOM, 0x37 }
 };
 
 static u16 sFloaromaMeadowHiddenItemFlags[] = {
@@ -594,7 +596,7 @@ static u16 sFloaromaMeadowHiddenItemFlags[] = {
     0xDE
 };
 
-void FieldSystem_ClearDailyHiddenItemFlags (FieldSystem * fieldSystem)
+void FieldSystem_ClearDailyHiddenItemFlags(FieldSystem *fieldSystem)
 {
     u8 rand = LCRNG_Next() % NELEMS(sIronIslandHiddenItemFlags);
 
@@ -617,7 +619,7 @@ void FieldSystem_ClearDailyHiddenItemFlags (FieldSystem * fieldSystem)
     }
 }
 
-u8 Script_GetHiddenItemRange (u16 scriptID)
+u8 Script_GetHiddenItemRange(u16 scriptID)
 {
     int i;
     const HiddenItem *item = gHiddenItems;
@@ -637,7 +639,7 @@ u8 Script_GetHiddenItemRange (u16 scriptID)
     return item[i].range;
 }
 
-static BOOL ScriptManager_SetHiddenItem (ScriptManager * scriptManager, u16 scriptID)
+static BOOL ScriptManager_SetHiddenItem(ScriptManager *scriptManager, u16 scriptID)
 {
     int i;
     u16 *scriptParam0 = ScriptManager_GetMemberPtr(scriptManager, SCRIPT_DATA_PARAMETER_0);
@@ -664,10 +666,10 @@ static BOOL ScriptManager_SetHiddenItem (ScriptManager * scriptManager, u16 scri
     return TRUE;
 }
 
-UnkStruct_0203F478 * sub_0203F478 (FieldSystem * fieldSystem, int param1)
+UnkStruct_0203F478 *sub_0203F478(FieldSystem *fieldSystem, int param1)
 {
-    UnkStruct_0203F478 * v0;
-    const BgEvent * v1;
+    UnkStruct_0203F478 *v0;
+    const BgEvent *v1;
     int v2, v3, v4, v5, v6, v7;
     int v8, v9, v10, v11;
 
@@ -727,21 +729,22 @@ UnkStruct_0203F478 * sub_0203F478 (FieldSystem * fieldSystem, int param1)
     return v0;
 }
 
-void FieldSystem_InitNewGameState (FieldSystem * fieldSystem)
+void FieldSystem_InitNewGameState(FieldSystem *fieldSystem)
 {
     FieldSystem_RunScript(fieldSystem, 9600);
 }
 
-void FieldSystem_RunScript (FieldSystem * fieldSystem, u16 scriptID)
+void FieldSystem_RunScript(FieldSystem *fieldSystem, u16 scriptID)
 {
     ScriptContext *ctx = ScriptContext_CreateAndStart(fieldSystem, scriptID);
 
-    while (ScriptContext_Run(ctx) == TRUE); 
+    while (ScriptContext_Run(ctx) == TRUE)
+        ;
 
     ScriptContext_Free(ctx);
 }
 
-BOOL sub_0203F5C0 (FieldSystem * fieldSystem, u8 param1)
+BOOL sub_0203F5C0(FieldSystem *fieldSystem, u8 param1)
 {
     const u8 *initScripts = MapHeaderData_GetInitScripts(fieldSystem);
 
@@ -769,7 +772,7 @@ BOOL sub_0203F5C0 (FieldSystem * fieldSystem, u8 param1)
     return TRUE;
 }
 
-static u16 sub_0203F610 (const u8 * param0, u8 param1)
+static u16 sub_0203F610(const u8 *param0, u8 param1)
 {
     while (TRUE) {
         if (*param0 == 0) {
@@ -787,7 +790,7 @@ static u16 sub_0203F610 (const u8 * param0, u8 param1)
     return 0xffff;
 }
 
-static u16 sub_0203F638 (FieldSystem * fieldSystem, const u8 * param1, u8 param2)
+static u16 sub_0203F638(FieldSystem *fieldSystem, const u8 *param1, u8 param2)
 {
     u16 v0, v1;
     u32 v2;

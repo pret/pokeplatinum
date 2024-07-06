@@ -1,67 +1,21 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "inlines.h"
-#include "core_sys.h"
-
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02020C44_decl.h"
 #include "struct_decls/struct_02027860_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
-#include "field/field_system_sub2_decl.h"
-#include "overlay005/struct_ov5_021D1A68_decl.h"
+#include "struct_defs/struct_020556C4.h"
+#include "struct_defs/struct_02099F80.h"
 
+#include "field/field_system.h"
+#include "field/field_system_sub2_decl.h"
+#include "field/field_system_sub2_t.h"
 #include "overlay005/const_ov5_021F89B0.h"
 #include "overlay005/const_ov5_021FF6B8.h"
 #include "overlay005/const_ov5_021FF744.h"
 #include "overlay005/const_ov5_021FF7D0.h"
-
-#include "field/field_system.h"
-#include "field/field_system_sub2_t.h"
-#include "struct_defs/struct_020556C4.h"
-#include "struct_defs/struct_02099F80.h"
-#include "overlay005/struct_ov5_021D5894.h"
-#include "overlay005/struct_ov5_021ED0A4.h"
-#include "overlay022/struct_ov22_022559F8.h"
-#include "overlay084/struct_ov84_0223BA5C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
-
-#include "game_overlay.h"
-#include "overlay_manager.h"
-#include "narc.h"
-#include "unk_0200A784.h"
-#include "unk_0200F174.h"
-#include "unk_02017728.h"
-#include "heap.h"
-#include "unk_02018340.h"
-#include "easy3d.h"
-#include "unk_0201DBEC.h"
-#include "unk_0201E86C.h"
-#include "unk_0201F834.h"
-#include "gx_layers.h"
-#include "camera.h"
-#include "unk_02020AEC.h"
-#include "unk_0202419C.h"
-#include "savedata_misc.h"
-#include "unk_02027F50.h"
-#include "unk_02039C80.h"
-#include "map_header.h"
-#include "map_header_data.h"
-#include "field_overworld_state.h"
-#include "field_system.h"
-#include "script_manager.h"
-#include "unk_020508D4.h"
-#include "field_map_change.h"
-#include "unk_020553DC.h"
-#include "unk_020556C4.h"
-#include "unk_020559DC.h"
-#include "unk_02055C50.h"
-#include "comm_player_manager.h"
-#include "unk_0205D8CC.h"
-#include "player_avatar.h"
-#include "map_object.h"
-#include "unk_02068344.h"
-#include "pokeradar.h"
+#include "overlay005/hblank_system.h"
 #include "overlay005/ov5_021D0D80.h"
 #include "overlay005/ov5_021D1A94.h"
 #include "overlay005/ov5_021D37AC.h"
@@ -82,13 +36,57 @@
 #include "overlay005/ov5_021ECE40.h"
 #include "overlay005/ov5_021EE75C.h"
 #include "overlay005/ov5_021EF250.h"
-#include "overlay005/hblank_system.h"
 #include "overlay005/ov5_021EF4BC.h"
 #include "overlay005/ov5_021EF75C.h"
 #include "overlay005/ov5_021EFB0C.h"
 #include "overlay005/ov5_021F0824.h"
 #include "overlay005/ov5_021F10E8.h"
+#include "overlay005/struct_ov5_021D1A68_decl.h"
+#include "overlay005/struct_ov5_021D5894.h"
+#include "overlay005/struct_ov5_021ED0A4.h"
 #include "overlay009/ov9_02249960.h"
+#include "overlay022/struct_ov22_022559F8.h"
+#include "overlay084/struct_ov84_0223BA5C.h"
+#include "overlay097/struct_ov97_0222DB78.h"
+
+#include "camera.h"
+#include "comm_player_manager.h"
+#include "core_sys.h"
+#include "easy3d.h"
+#include "field_map_change.h"
+#include "field_overworld_state.h"
+#include "field_system.h"
+#include "game_overlay.h"
+#include "gx_layers.h"
+#include "heap.h"
+#include "inlines.h"
+#include "map_header.h"
+#include "map_header_data.h"
+#include "map_object.h"
+#include "narc.h"
+#include "overlay_manager.h"
+#include "player_avatar.h"
+#include "pokeradar.h"
+#include "savedata_misc.h"
+#include "script_manager.h"
+#include "unk_0200A784.h"
+#include "unk_0200F174.h"
+#include "unk_02017728.h"
+#include "unk_02018340.h"
+#include "unk_0201DBEC.h"
+#include "unk_0201E86C.h"
+#include "unk_0201F834.h"
+#include "unk_02020AEC.h"
+#include "unk_0202419C.h"
+#include "unk_02027F50.h"
+#include "unk_02039C80.h"
+#include "unk_020508D4.h"
+#include "unk_020553DC.h"
+#include "unk_020556C4.h"
+#include "unk_020559DC.h"
+#include "unk_02055C50.h"
+#include "unk_0205D8CC.h"
+#include "unk_02068344.h"
 
 FS_EXTERN_OVERLAY(overlay6);
 FS_EXTERN_OVERLAY(overlay7);
@@ -100,47 +98,46 @@ struct UnkStruct_ov5_021D1A68_t {
     int unk_02[24];
 };
 
-static void ov5_021D1444(BGL * bgl);
-static void ov5_021D1524(BGL * bgl);
+static void ov5_021D1444(BGL *bgl);
+static void ov5_021D1524(BGL *bgl);
 static void ov5_021D154C(void);
 static void ov5_021D1570(void);
-static void ov5_021D1578(UnkStruct_ov5_021D5894 * param0);
-static void ov5_021D15F4(FieldSystem * fieldSystem);
-static void ov5_021D173C(FieldSystem * fieldSystem);
+static void ov5_021D1578(UnkStruct_ov5_021D5894 *param0);
+static void ov5_021D15F4(FieldSystem *fieldSystem);
+static void ov5_021D173C(FieldSystem *fieldSystem);
 static void ov5_021D1414(void);
 static void ov5_021D15B4(void);
 static void ov5_021D15E8(void);
-static void ov5_021D1790(FieldSystem * fieldSystem);
-static void ov5_021D17EC(FieldSystem * fieldSystem);
-static void ov5_021D1878(FieldSystem * fieldSystem);
-static void ov5_021D1968(FieldSystem * fieldSystem);
-static BOOL FieldMap_Init(OverlayManager * overlayMan, int * param1);
-static BOOL FieldMap_Main(OverlayManager * overlayMan, int * param1);
-static BOOL FieldMap_Exit(OverlayManager * overlayMan, int * param1);
-static BOOL FieldMap_ChangeZone(FieldSystem * fieldSystem);
-static void ov5_021D134C(FieldSystem * fieldSystem, u8 param1);
-static BOOL ov5_021D119C(FieldSystem * fieldSystem);
-static void ov5_021D0D80(void * param0);
-static void ov5_021D13B4(FieldSystem * fieldSystem);
-static int ov5_021D1178(FieldSystem * fieldSystem);
-static BOOL FieldMap_InDistortionWorld(FieldSystem * fieldSystem);
-static UnkStruct_ov5_021D1A68 * ov5_021D1A14(int param0, int param1);
-static const int * ov5_021D1A68(const UnkStruct_ov5_021D1A68 * param0);
-static const int ov5_021D1A6C(const UnkStruct_ov5_021D1A68 * param0);
-static void ov5_021D1A70(UnkStruct_ov5_021D1A68 * param0);
+static void ov5_021D1790(FieldSystem *fieldSystem);
+static void ov5_021D17EC(FieldSystem *fieldSystem);
+static void ov5_021D1878(FieldSystem *fieldSystem);
+static void ov5_021D1968(FieldSystem *fieldSystem);
+static BOOL FieldMap_Init(OverlayManager *overlayMan, int *param1);
+static BOOL FieldMap_Main(OverlayManager *overlayMan, int *param1);
+static BOOL FieldMap_Exit(OverlayManager *overlayMan, int *param1);
+static BOOL FieldMap_ChangeZone(FieldSystem *fieldSystem);
+static void ov5_021D134C(FieldSystem *fieldSystem, u8 param1);
+static BOOL ov5_021D119C(FieldSystem *fieldSystem);
+static void ov5_021D0D80(void *param0);
+static void ov5_021D13B4(FieldSystem *fieldSystem);
+static int ov5_021D1178(FieldSystem *fieldSystem);
+static BOOL FieldMap_InDistortionWorld(FieldSystem *fieldSystem);
+static UnkStruct_ov5_021D1A68 *ov5_021D1A14(int param0, int param1);
+static const int *ov5_021D1A68(const UnkStruct_ov5_021D1A68 *param0);
+static const int ov5_021D1A6C(const UnkStruct_ov5_021D1A68 *param0);
+static void ov5_021D1A70(UnkStruct_ov5_021D1A68 *param0);
 
-
-static inline void inline_ov5_021D0D80 (FieldSystem * fieldSystem)
+static inline void inline_ov5_021D0D80(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov5_021ED0A4 * v0 = sub_0206285C(fieldSystem->mapObjMan);
-    UnkStruct_02020C44 * v1 = ov5_021EDC8C(v0);
+    UnkStruct_ov5_021ED0A4 *v0 = sub_0206285C(fieldSystem->mapObjMan);
+    UnkStruct_02020C44 *v1 = ov5_021EDC8C(v0);
 
     sub_02020D68(v1);
 }
 
-static void ov5_021D0D80 (void * param0)
+static void ov5_021D0D80(void *param0)
 {
-    FieldSystem * fieldSystem = param0;
+    FieldSystem *fieldSystem = param0;
 
     sub_0201C2B8(fieldSystem->unk_08);
     sub_0201DCAC();
@@ -149,9 +146,9 @@ static void ov5_021D0D80 (void * param0)
     inline_ov5_021D0D80(fieldSystem);
 }
 
-static BOOL FieldMap_Init (OverlayManager * overlayMan, int * param1)
+static BOOL FieldMap_Init(OverlayManager *overlayMan, int *param1)
 {
-    FieldSystem * fieldSystem;
+    FieldSystem *fieldSystem;
     BOOL ret = FALSE;
 
     fieldSystem = OverlayManager_Args(overlayMan);
@@ -245,9 +242,9 @@ static BOOL FieldMap_Init (OverlayManager * overlayMan, int * param1)
     return ret;
 }
 
-static BOOL FieldMap_Main (OverlayManager * overlayMan, int * param1)
+static BOOL FieldMap_Main(OverlayManager *overlayMan, int *param1)
 {
-    FieldSystem * fieldSystem = OverlayManager_Args(overlayMan);
+    FieldSystem *fieldSystem = OverlayManager_Args(overlayMan);
 
     if (ov5_021D119C(fieldSystem)) {
         sub_02055D94(fieldSystem);
@@ -266,9 +263,9 @@ static BOOL FieldMap_Main (OverlayManager * overlayMan, int * param1)
     }
 }
 
-static BOOL FieldMap_Exit (OverlayManager * overlayMan, int * param1)
+static BOOL FieldMap_Exit(OverlayManager *overlayMan, int *param1)
 {
-    FieldSystem * fieldSystem = OverlayManager_Args(overlayMan);
+    FieldSystem *fieldSystem = OverlayManager_Args(overlayMan);
     ov5_021E8188(fieldSystem, fieldSystem->unk_28);
 
     switch (*param1) {
@@ -369,9 +366,9 @@ const OverlayManagerTemplate gFieldMapTemplate = {
     0xffffffff
 };
 
-static int ov5_021D1178 (FieldSystem * fieldSystem)
+static int ov5_021D1178(FieldSystem *fieldSystem)
 {
-    UnkStruct_02027860 * v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+    UnkStruct_02027860 *v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     int v1 = sub_02027F80(v0);
 
     if (v1 == 0) {
@@ -385,7 +382,7 @@ static int ov5_021D1178 (FieldSystem * fieldSystem)
     return 0;
 }
 
-static BOOL ov5_021D119C (FieldSystem * fieldSystem)
+static BOOL ov5_021D119C(FieldSystem *fieldSystem)
 {
     int x, y;
 
@@ -401,12 +398,12 @@ static BOOL ov5_021D119C (FieldSystem * fieldSystem)
     }
 }
 
-static BOOL FieldMap_ChangeZone (FieldSystem * fieldSystem)
+static BOOL FieldMap_ChangeZone(FieldSystem *fieldSystem)
 {
     u32 v0;
     u32 v1;
     int v2, v3;
-    FieldOverworldState * v4;
+    FieldOverworldState *v4;
 
     if (FieldMap_InDistortionWorld(fieldSystem) == 1) {
         return 0;
@@ -431,7 +428,7 @@ static BOOL FieldMap_ChangeZone (FieldSystem * fieldSystem)
 
     {
         int v5 = MapHeaderData_GetNumObjectEvents(fieldSystem);
-        const ObjectEvent * v6 = MapHeaderData_GetObjectEvents(fieldSystem);
+        const ObjectEvent *v6 = MapHeaderData_GetObjectEvents(fieldSystem);
 
         sub_0206184C(fieldSystem->mapObjMan, v1, v0, v5, v6);
     }
@@ -467,10 +464,10 @@ static BOOL FieldMap_ChangeZone (FieldSystem * fieldSystem)
     return TRUE;
 }
 
-void ov5_021D12D0 (FieldSystem * fieldSystem, u32 param1)
+void ov5_021D12D0(FieldSystem *fieldSystem, u32 param1)
 {
     u32 v0;
-    FieldOverworldState * v1;
+    FieldOverworldState *v1;
 
     v0 = fieldSystem->location->mapId;
     v1 = SaveData_GetFieldOverworldState(fieldSystem->saveData);
@@ -484,7 +481,7 @@ void ov5_021D12D0 (FieldSystem * fieldSystem, u32 param1)
 
     {
         int v2 = MapHeaderData_GetNumObjectEvents(fieldSystem);
-        const ObjectEvent * v3 = MapHeaderData_GetObjectEvents(fieldSystem);
+        const ObjectEvent *v3 = MapHeaderData_GetObjectEvents(fieldSystem);
 
         sub_0206184C(fieldSystem->mapObjMan, v0, param1, v2, v3);
     }
@@ -499,7 +496,7 @@ void ov5_021D12D0 (FieldSystem * fieldSystem, u32 param1)
     }
 }
 
-static void ov5_021D134C (FieldSystem * fieldSystem, u8 param1)
+static void ov5_021D134C(FieldSystem *fieldSystem, u8 param1)
 {
     if (sub_020509A4(fieldSystem) == 0) {
         sub_020559DC(fieldSystem);
@@ -529,9 +526,9 @@ static void ov5_021D134C (FieldSystem * fieldSystem, u8 param1)
     }
 }
 
-static void ov5_021D13B4 (FieldSystem * fieldSystem)
+static void ov5_021D13B4(FieldSystem *fieldSystem)
 {
-    UnkStruct_020556C4 * v0;
+    UnkStruct_020556C4 *v0;
     int v1, v2, v3;
 
     if (MapHeader_IsOnMainMatrix(fieldSystem->location->mapId) == 0) {
@@ -546,7 +543,7 @@ static void ov5_021D13B4 (FieldSystem * fieldSystem)
     sub_02055740(v0, v1, v2, v3);
 }
 
-static void ov5_021D1414 (void)
+static void ov5_021D1414(void)
 {
     UnkStruct_02099F80 v0 = {
         GX_VRAM_BG_128_C,
@@ -564,17 +561,17 @@ static void ov5_021D1414 (void)
     GXLayers_SetBanks(&v0);
 }
 
-void ov5_021D1434 (BGL * bgl)
+void ov5_021D1434(BGL *bgl)
 {
     ov5_021D1444(bgl);
 }
 
-void ov5_021D143C (BGL * bgl)
+void ov5_021D143C(BGL *bgl)
 {
     ov5_021D1524(bgl);
 }
 
-static void ov5_021D1444 (BGL * bgl)
+static void ov5_021D1444(BGL *bgl)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -660,7 +657,7 @@ static void ov5_021D1444 (BGL * bgl)
     }
 }
 
-static void ov5_021D1524 (BGL * bgl)
+static void ov5_021D1524(BGL *bgl)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3, 0);
     sub_02019044(bgl, 1);
@@ -668,18 +665,18 @@ static void ov5_021D1524 (BGL * bgl)
     sub_02019044(bgl, 3);
 }
 
-static void ov5_021D154C (void)
+static void ov5_021D154C(void)
 {
     NNS_G2dInitOamManagerModule();
     sub_0200A784(0, 124, 0, 31, 0, 124, 0, 31, 4);
 }
 
-static void ov5_021D1570 (void)
+static void ov5_021D1570(void)
 {
     sub_0200A878();
 }
 
-static void ov5_021D1578 (UnkStruct_ov5_021D5894 * param0)
+static void ov5_021D1578(UnkStruct_ov5_021D5894 *param0)
 {
     ov5_021D5ADC(param0, GX_POLYGONMODE_MODULATE, 0);
     ov5_021D5AF0(param0, GX_CULL_BACK, 0);
@@ -688,7 +685,7 @@ static void ov5_021D1578 (UnkStruct_ov5_021D5894 * param0)
     ov5_021D58A8(param0, 1 << 22);
 }
 
-void ov5_021D15B4 (void)
+void ov5_021D15B4(void)
 {
     {
         UnkStruct_ov22_022559F8 v0 = {
@@ -703,13 +700,13 @@ void ov5_021D15B4 (void)
     sub_0201F8E4();
 }
 
-void ov5_021D15E8 (void)
+void ov5_021D15E8(void)
 {
     sub_0201E958();
     sub_0201F8B4();
 }
 
-static void ov5_021D15F4 (FieldSystem * fieldSystem)
+static void ov5_021D15F4(FieldSystem *fieldSystem)
 {
     MtxFx44 v0, v1;
 
@@ -735,7 +732,7 @@ static void ov5_021D15F4 (FieldSystem * fieldSystem)
     ov5_021E1A6C(fieldSystem->unk_A4, fieldSystem->unk_30);
 
     {
-        const MtxFx44 * v2;
+        const MtxFx44 *v2;
 
         v2 = NNS_G3dGlbGetProjectionMtx();
         v0 = *v2;
@@ -762,7 +759,7 @@ static void ov5_021D15F4 (FieldSystem * fieldSystem)
     G3_RequestSwapBuffers(GX_SORTMODE_AUTO, gBufferMode);
 }
 
-void ov5_021D16F4 (FieldSystem * fieldSystem, BOOL param1)
+void ov5_021D16F4(FieldSystem *fieldSystem, BOOL param1)
 {
     if (param1 == 1) {
         fieldSystem->unk_C0 |= 4;
@@ -771,7 +768,7 @@ void ov5_021D16F4 (FieldSystem * fieldSystem, BOOL param1)
     }
 }
 
-void ov5_021D1718 (FieldSystem * fieldSystem, BOOL param1)
+void ov5_021D1718(FieldSystem *fieldSystem, BOOL param1)
 {
     if (param1 == 1) {
         fieldSystem->unk_C0 |= 1;
@@ -780,12 +777,12 @@ void ov5_021D1718 (FieldSystem * fieldSystem, BOOL param1)
     }
 }
 
-static void ov5_021D173C (FieldSystem * fieldSystem)
+static void ov5_021D173C(FieldSystem *fieldSystem)
 {
     fieldSystem->unk_C0 = (8 | 1 | 2 | 4);
 }
 
-void ov5_021D1744 (const u8 param0)
+void ov5_021D1744(const u8 param0)
 {
     if (param0 == 1) {
         sub_0200F174(
@@ -798,7 +795,7 @@ void ov5_021D1744 (const u8 param0)
     }
 }
 
-static void ov5_021D1790 (FieldSystem * fieldSystem)
+static void ov5_021D1790(FieldSystem *fieldSystem)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     G3_SwapBuffers(GX_SORTMODE_AUTO, gBufferMode);
@@ -819,7 +816,7 @@ static void ov5_021D1790 (FieldSystem * fieldSystem)
     }
 }
 
-static void ov5_021D17EC (FieldSystem * fieldSystem)
+static void ov5_021D17EC(FieldSystem *fieldSystem)
 {
     fieldSystem->unk_28 = ov5_021E9084(fieldSystem->unk_2C, fieldSystem->unk_30, fieldSystem->unk_50, fieldSystem->unk_60);
 
@@ -842,7 +839,7 @@ static void ov5_021D17EC (FieldSystem * fieldSystem)
     ov5_021E9150(fieldSystem->unk_28, fieldSystem->location->x, fieldSystem->location->z);
 }
 
-static void ov5_021D1878 (FieldSystem * fieldSystem)
+static void ov5_021D1878(FieldSystem *fieldSystem)
 {
     fieldSystem->unk_40 = ov5_021DF440(fieldSystem, 34, 4);
 
@@ -863,7 +860,7 @@ static void ov5_021D1878 (FieldSystem * fieldSystem)
     }
 
     {
-        const u32 * v1;
+        const u32 *v1;
 
         if (fieldSystem->unk_70 == 1) {
             v1 = Unk_ov5_021FF7D0;
@@ -891,7 +888,7 @@ static void ov5_021D1878 (FieldSystem * fieldSystem)
     FieldEffect_InitRenderObject(fieldSystem->unk_40);
 
     {
-        UnkStruct_02027860 * v3 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+        UnkStruct_02027860 *v3 = sub_02027860(FieldSystem_SaveData(fieldSystem));
         int v4 = sub_02027F80(v3);
 
         PlayerAvatar_InitDraw(fieldSystem->playerAvatar, v4);
@@ -905,7 +902,7 @@ static void ov5_021D1878 (FieldSystem * fieldSystem)
     fieldSystem->unk_04->unk_18 = sub_02055C8C(fieldSystem, 4);
 }
 
-static void ov5_021D1968 (FieldSystem * fieldSystem)
+static void ov5_021D1968(FieldSystem *fieldSystem)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_TurnBothDispOn();
@@ -936,11 +933,11 @@ static void ov5_021D1968 (FieldSystem * fieldSystem)
     SetMainCallback(ov5_021D0D80, fieldSystem);
 }
 
-static UnkStruct_ov5_021D1A68 * ov5_021D1A14 (int fieldSystem, int param1)
+static UnkStruct_ov5_021D1A68 *ov5_021D1A14(int fieldSystem, int param1)
 {
     int v0;
-    u16 * v1;
-    UnkStruct_ov5_021D1A68 * v2;
+    u16 *v1;
+    UnkStruct_ov5_021D1A68 *v2;
 
     v2 = Heap_AllocFromHeap(fieldSystem, sizeof(UnkStruct_ov5_021D1A68));
     v1 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__MM_LIST__MOVE_MODEL_LIST, param1, fieldSystem);
@@ -962,24 +959,24 @@ static UnkStruct_ov5_021D1A68 * ov5_021D1A14 (int fieldSystem, int param1)
     return v2;
 }
 
-static const int * ov5_021D1A68 (const UnkStruct_ov5_021D1A68 * param0)
+static const int *ov5_021D1A68(const UnkStruct_ov5_021D1A68 *param0)
 {
     return param0->unk_02;
 }
 
-static const int ov5_021D1A6C (const UnkStruct_ov5_021D1A68 * param0)
+static const int ov5_021D1A6C(const UnkStruct_ov5_021D1A68 *param0)
 {
     return param0->unk_00;
 }
 
-static void ov5_021D1A70 (UnkStruct_ov5_021D1A68 * param0)
+static void ov5_021D1A70(UnkStruct_ov5_021D1A68 *param0)
 {
     Heap_FreeToHeap(param0);
 }
 
-static BOOL FieldMap_InDistortionWorld (FieldSystem * fieldSystem)
+static BOOL FieldMap_InDistortionWorld(FieldSystem *fieldSystem)
 {
-    UnkStruct_02027860 * v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+    UnkStruct_02027860 *v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     int v1 = sub_02027F80(v0);
 
     if (v1 == 9) {

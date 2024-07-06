@@ -1,20 +1,21 @@
+#include "overlay006/ov6_022465FC.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_0202440C_decl.h"
-#include "overlay006/struct_ov6_022465F4_decl.h"
 
 #include "field/field_system.h"
+#include "overlay006/ov6_02246444.h"
+#include "overlay006/struct_ov6_022465F4_decl.h"
+#include "savedata/save_table.h"
 
 #include "narc.h"
 #include "rtc.h"
 #include "unk_0201D15C.h"
-#include "savedata/save_table.h"
 #include "unk_0202E2CC.h"
 #include "unk_020559DC.h"
 #include "unk_0206CCB0.h"
-#include "overlay006/ov6_02246444.h"
-#include "overlay006/ov6_022465FC.h"
 
 typedef struct {
     u8 unk_00;
@@ -27,27 +28,27 @@ typedef struct {
 } UnkStruct_ov6_02249470;
 
 static const UnkStruct_ov6_02249470 Unk_ov6_02249470[] = {
-    {0x0, 0x1, 0x2, 0x3, 0x4, 0x5, 0x6},
-    {0x7, 0x8, 0x9, 0xA, 0xB, 0xC, 0xD},
-    {0xE, 0xF, 0x10, 0x11, 0x12, 0x13, 0x14},
-    {0x15, 0x16, 0x17, 0x18, 0x19, 0x1A, 0x1B},
-    {0x1C, 0x1D, 0x1E, 0x1F, 0x20, 0x21, 0x22},
-    {0x23, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29},
-    {0x2A, 0x2B, 0x2C, 0x2D, 0x2E, 0x2F, 0x30},
-    {0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37},
-    {0x38, 0x39, 0x3A, 0x3B, 0x3C, 0x3D, 0x3E}
+    { 0x0, 0x1, 0x2, 0x3, 0x4, 0x5, 0x6 },
+    { 0x7, 0x8, 0x9, 0xA, 0xB, 0xC, 0xD },
+    { 0xE, 0xF, 0x10, 0x11, 0x12, 0x13, 0x14 },
+    { 0x15, 0x16, 0x17, 0x18, 0x19, 0x1A, 0x1B },
+    { 0x1C, 0x1D, 0x1E, 0x1F, 0x20, 0x21, 0x22 },
+    { 0x23, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29 },
+    { 0x2A, 0x2B, 0x2C, 0x2D, 0x2E, 0x2F, 0x30 },
+    { 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37 },
+    { 0x38, 0x39, 0x3A, 0x3B, 0x3C, 0x3D, 0x3E }
 };
 
-void ov6_022465FC (FieldSystem * fieldSystem)
+void ov6_022465FC(FieldSystem *fieldSystem)
 {
-    TVBroadcast * v0 = SaveData_TVBroadcast(fieldSystem->saveData);
+    TVBroadcast *v0 = SaveData_TVBroadcast(fieldSystem->saveData);
     sub_0202E374(v0, 1);
 }
 
-int ov6_0224660C (FieldSystem * fieldSystem)
+int ov6_0224660C(FieldSystem *fieldSystem)
 {
     int v0;
-    TVBroadcast * v1 = SaveData_TVBroadcast(fieldSystem->saveData);
+    TVBroadcast *v1 = SaveData_TVBroadcast(fieldSystem->saveData);
 
     if (sub_0202E380(v1) == 1) {
         return 0;
@@ -66,7 +67,7 @@ int ov6_0224660C (FieldSystem * fieldSystem)
     return 3;
 }
 
-static int ov6_0224663C (FieldSystem * fieldSystem)
+static int ov6_0224663C(FieldSystem *fieldSystem)
 {
     u8 v0;
     u8 v1[7];
@@ -85,7 +86,7 @@ static int ov6_0224663C (FieldSystem * fieldSystem)
     return v0;
 }
 
-static int ov6_0224669C (int param0)
+static int ov6_0224669C(int param0)
 {
     u8 v0;
     int v1 = (1 + 11) * (param0 - 1);
@@ -96,7 +97,7 @@ static int ov6_0224669C (int param0)
     return v0;
 }
 
-static void ov6_022466C8 (int param0, u8 * param1)
+static void ov6_022466C8(int param0, u8 *param1)
 {
     u8 v0;
     int v1 = (1 + 11) * (param0 - 1) + 1;
@@ -104,16 +105,16 @@ static void ov6_022466C8 (int param0, u8 * param1)
     NARC_ReadFromMemberByIndexPair(param1, NARC_INDEX_ARC__TV, 1, v1, sizeof(u8) * 11);
 }
 
-static BOOL ov6_022466E8 (FieldSystem * fieldSystem, int param1, int param2)
+static BOOL ov6_022466E8(FieldSystem *fieldSystem, int param1, int param2)
 {
     return 1;
 }
 
-static void ov6_022466EC (int param0, FieldSystem * fieldSystem, u8 * param2)
+static void ov6_022466EC(int param0, FieldSystem *fieldSystem, u8 *param2)
 {
     u8 v0[11];
     int v1, v2;
-    TVBroadcast * v3 = SaveData_TVBroadcast(fieldSystem->saveData);
+    TVBroadcast *v3 = SaveData_TVBroadcast(fieldSystem->saveData);
 
     ov6_022466C8(param0, v0);
     MI_CpuClear8(param2, sizeof(u8) * 11);
@@ -130,7 +131,7 @@ static void ov6_022466EC (int param0, FieldSystem * fieldSystem, u8 * param2)
     }
 }
 
-static int ov6_0224673C (FieldSystem * fieldSystem, const u8 * param1)
+static int ov6_0224673C(FieldSystem *fieldSystem, const u8 *param1)
 {
     u8 v0[11];
     int v1, v2;
@@ -153,7 +154,7 @@ static int ov6_0224673C (FieldSystem * fieldSystem, const u8 * param1)
     return v0[MTRNG_Next() % v2];
 }
 
-static int ov6_0224678C (TVBroadcast * param0, int param1, int param2, BOOL param3, BOOL param4, u8 * param5)
+static int ov6_0224678C(TVBroadcast *param0, int param1, int param2, BOOL param3, BOOL param4, u8 *param5)
 {
     if ((param1 != 4) && (param1 != 5)) {
         return sub_0202E614(param0, param1, param2, param3, param4, param5);
@@ -175,10 +176,10 @@ static int ov6_0224678C (TVBroadcast * param0, int param1, int param2, BOOL para
     return 0;
 }
 
-static int ov6_022467DC (int param0, FieldSystem * fieldSystem, BOOL param2, BOOL param3, const u8 * param4, u8 * param5)
+static int ov6_022467DC(int param0, FieldSystem *fieldSystem, BOOL param2, BOOL param3, const u8 *param4, u8 *param5)
 {
     u8 v0[16];
-    TVBroadcast * v1 = SaveData_TVBroadcast(fieldSystem->saveData);
+    TVBroadcast *v1 = SaveData_TVBroadcast(fieldSystem->saveData);
     int v2, v3;
     int v4 = 0;
 
@@ -198,10 +199,10 @@ static int ov6_022467DC (int param0, FieldSystem * fieldSystem, BOOL param2, BOO
     return v4;
 }
 
-static void ov6_02246844 (FieldSystem * fieldSystem, int param1, u8 * param2)
+static void ov6_02246844(FieldSystem *fieldSystem, int param1, u8 *param2)
 {
     int v0;
-    UnkStruct_ov6_022465F4 * v1;
+    UnkStruct_ov6_022465F4 *v1;
 
     for (v0 = 0; *param2 != 0 && v0 < 16; param2++, v0++) {
         v1 = ov6_022465A0(fieldSystem, param1, *param2);
@@ -214,9 +215,9 @@ static void ov6_02246844 (FieldSystem * fieldSystem, int param1, u8 * param2)
     }
 }
 
-static void ov6_02246884 (FieldSystem * fieldSystem, u8 * param1)
+static void ov6_02246884(FieldSystem *fieldSystem, u8 *param1)
 {
-    TVBroadcast * v0 = SaveData_TVBroadcast(fieldSystem->saveData);
+    TVBroadcast *v0 = SaveData_TVBroadcast(fieldSystem->saveData);
 
     while (*param1 != 0) {
         if (sub_0202E3C4(v0, *param1)) {
@@ -227,7 +228,7 @@ static void ov6_02246884 (FieldSystem * fieldSystem, u8 * param1)
     }
 }
 
-int ov6_022468B0 (FieldSystem * fieldSystem, BOOL param1, BOOL param2)
+int ov6_022468B0(FieldSystem *fieldSystem, BOOL param1, BOOL param2)
 {
     u8 v0[11];
     u8 v1[16];
@@ -257,7 +258,7 @@ int ov6_022468B0 (FieldSystem * fieldSystem, BOOL param1, BOOL param2)
     return v2;
 }
 
-int ov6_02246920 (FieldSystem * fieldSystem)
+int ov6_02246920(FieldSystem *fieldSystem)
 {
     int v0;
 
@@ -283,7 +284,7 @@ int ov6_02246920 (FieldSystem * fieldSystem)
     return v0;
 }
 
-static const UnkStruct_ov6_02249470 * ov6_02246958 (FieldSystem * fieldSystem)
+static const UnkStruct_ov6_02249470 *ov6_02246958(FieldSystem *fieldSystem)
 {
     int v0 = ov6_0224663C(fieldSystem);
 
@@ -291,10 +292,10 @@ static const UnkStruct_ov6_02249470 * ov6_02246958 (FieldSystem * fieldSystem)
     return &Unk_ov6_02249470[v0 - 1];
 }
 
-int ov6_02246978 (FieldSystem * fieldSystem, int param1)
+int ov6_02246978(FieldSystem *fieldSystem, int param1)
 {
-    TVBroadcast * v0 = SaveData_TVBroadcast(fieldSystem->saveData);
-    const UnkStruct_ov6_02249470 * v1 = ov6_02246958(fieldSystem);
+    TVBroadcast *v0 = SaveData_TVBroadcast(fieldSystem->saveData);
+    const UnkStruct_ov6_02249470 *v1 = ov6_02246958(fieldSystem);
 
     switch (param1) {
     default:
@@ -321,12 +322,12 @@ int ov6_02246978 (FieldSystem * fieldSystem, int param1)
     }
 }
 
-BOOL ov6_022469E0 (FieldSystem * fieldSystem, StringTemplate * param1, int param2, u16 * param3, u16 * param4)
+BOOL ov6_022469E0(FieldSystem *fieldSystem, StringTemplate *param1, int param2, u16 *param3, u16 *param4)
 {
     int v0 = ov6_0224663C(fieldSystem);
     int v1 = ov6_0224669C(v0);
-    TVBroadcast * v2 = SaveData_TVBroadcast(fieldSystem->saveData);
-    UnkStruct_ov6_022465F4 * v3;
+    TVBroadcast *v2 = SaveData_TVBroadcast(fieldSystem->saveData);
+    UnkStruct_ov6_022465F4 *v3;
 
     sub_0202E384(v2, param2);
 

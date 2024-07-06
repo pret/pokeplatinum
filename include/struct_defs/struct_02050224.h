@@ -7,7 +7,7 @@ typedef struct {
     u8 padding_02[2];
     u16 unk_04[2];
     u16 unk_08[2];
-    u16 * unk_0C;
+    u16 *unk_0C;
 } UnkStruct_02050224;
 
 #endif // POKEPLATINUM_STRUCT_02050224_H

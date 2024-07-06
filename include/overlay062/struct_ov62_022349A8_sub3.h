@@ -13,7 +13,7 @@ typedef struct {
         UnkStruct_ov62_022349A8_sub3_sub1 unk_00_val1;
         UnkStruct_ov62_022349A8_sub3_sub2 unk_00_val2;
         UnkStruct_ov62_0223D518_sub1 unk_00_val3;
-        UnkStruct_ov62_022349A8_sub3_sub3 * unk_00_val4;
+        UnkStruct_ov62_022349A8_sub3_sub3 *unk_00_val4;
         UnkStruct_ov62_022349A8_sub3_sub4 unk_00_val5;
         UnkStruct_ov62_022349A8_sub3_sub5 unk_00_val6;
     };

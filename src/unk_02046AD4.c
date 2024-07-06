@@ -1,19 +1,18 @@
+#include "unk_02046AD4.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "inlines.h"
+#include "data/mart_items.h"
+#include "overlay007/ov7_0224CD28.h"
 
 #include "field_script_context.h"
-
+#include "inlines.h"
 #include "save_player.h"
 #include "trainer_info.h"
 #include "unk_0203D1B8.h"
-#include "unk_02046AD4.h"
-#include "overlay007/ov7_0224CD28.h"
 
-#include "data/mart_items.h"
-
-BOOL ScrCmd_147 (ScriptContext * param0)
+BOOL ScrCmd_147(ScriptContext *param0)
 {
     u16 v0[64];
     u8 v1, v2, v3, v4;
@@ -69,7 +68,7 @@ BOOL ScrCmd_147 (ScriptContext * param0)
     return 1;
 }
 
-BOOL ScrCmd_148 (ScriptContext * param0)
+BOOL ScrCmd_148(ScriptContext *param0)
 {
     u16 v0 = ScriptContext_GetVar(param0);
     BOOL v1;
@@ -84,7 +83,7 @@ BOOL ScrCmd_148 (ScriptContext * param0)
     return 1;
 }
 
-BOOL ScrCmd_149 (ScriptContext * param0)
+BOOL ScrCmd_149(ScriptContext *param0)
 {
     u16 v0 = ScriptContext_GetVar(param0);
     BOOL v1;
@@ -99,7 +98,7 @@ BOOL ScrCmd_149 (ScriptContext * param0)
     return 1;
 }
 
-BOOL ScrCmd_14A (ScriptContext * param0)
+BOOL ScrCmd_14A(ScriptContext *param0)
 {
     u16 v0 = ScriptContext_GetVar(param0);
 
@@ -107,7 +106,7 @@ BOOL ScrCmd_14A (ScriptContext * param0)
     return 1;
 }
 
-BOOL ScrCmd_257 (ScriptContext * param0)
+BOOL ScrCmd_257(ScriptContext *param0)
 {
     sub_0203E518(param0->fieldSystem->unk_10);
     return 1;

@@ -2,11 +2,12 @@
 #define POKEPLATINUM_STRUCT_OV62_02230C28_H
 
 #include "struct_decls/cell_actor_data.h"
+
 #include "sys_task_manager.h"
 
 typedef struct {
-    CellActorData * unk_00[2];
-    SysTask * unk_08;
+    CellActorData *unk_00[2];
+    SysTask *unk_08;
     fx32 unk_0C;
     f32 unk_10;
     s16 unk_14;

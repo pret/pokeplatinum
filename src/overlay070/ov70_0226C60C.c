@@ -1,8 +1,17 @@
-#include <nitro.h>
-#include <string.h>
-#include <ppwlobby/ppw_lobby.h>
+#include "overlay070/ov70_0226C60C.h"
 
+#include <nitro.h>
+#include <ppwlobby/ppw_lobby.h>
+#include <string.h>
+
+#include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
+#include "overlay070/ov70_0225C9B4.h"
+#include "overlay070/ov70_0225D9A4.h"
+#include "overlay070/ov70_02261E10.h"
+#include "overlay070/ov70_0226C338.h"
+#include "overlay070/ov70_0226C8B4.h"
+#include "overlay070/ov70_0226CE54.h"
 #include "overlay070/struct_ov70_0225CA20_decl.h"
 #include "overlay070/struct_ov70_0225DEE8_decl.h"
 #include "overlay070/struct_ov70_02261E10_decl.h"
@@ -11,33 +20,25 @@
 #include "overlay070/struct_ov70_0226CF38_decl.h"
 
 #include "heap.h"
-#include "overlay066/ov66_0222DDF0.h"
-#include "overlay070/ov70_0225C9B4.h"
-#include "overlay070/ov70_0225D9A4.h"
-#include "overlay070/ov70_02261E10.h"
-#include "overlay070/ov70_0226C338.h"
-#include "overlay070/ov70_0226C60C.h"
-#include "overlay070/ov70_0226C8B4.h"
-#include "overlay070/ov70_0226CE54.h"
 
 typedef struct UnkStruct_ov70_0226C6F8_t {
-    UnkStruct_ov70_0225DEE8 * unk_00;
-    UnkStruct_ov66_0222DFF8 * unk_04;
-    UnkStruct_ov70_02261E10 * unk_08;
-    UnkStruct_ov70_0225CA20 * unk_0C;
-    UnkStruct_ov70_0226C39C * unk_10;
-    UnkStruct_ov70_0226CF38 * unk_14;
-    UnkStruct_ov70_0226C914 * unk_18;
+    UnkStruct_ov70_0225DEE8 *unk_00;
+    UnkStruct_ov66_0222DFF8 *unk_04;
+    UnkStruct_ov70_02261E10 *unk_08;
+    UnkStruct_ov70_0225CA20 *unk_0C;
+    UnkStruct_ov70_0226C39C *unk_10;
+    UnkStruct_ov70_0226CF38 *unk_14;
+    UnkStruct_ov70_0226C914 *unk_18;
 } UnkStruct_ov70_0226C6F8;
 
 static u32 ov70_0226C81C(PPW_LOBBY_TIME_EVENT param0);
 static u32 ov70_0226C848(PPW_LOBBY_TIME_EVENT param0);
 static u32 ov70_0226C87C(PPW_LOBBY_TIME_EVENT param0);
-static void ov70_0226C8A8(UnkStruct_ov70_0226C6F8 * param0);
+static void ov70_0226C8A8(UnkStruct_ov70_0226C6F8 *param0);
 
-UnkStruct_ov70_0226C6F8 * ov70_0226C60C (u32 param0, UnkStruct_ov70_0225DEE8 * param1)
+UnkStruct_ov70_0226C6F8 *ov70_0226C60C(u32 param0, UnkStruct_ov70_0225DEE8 *param1)
 {
-    UnkStruct_ov70_0226C6F8 * v0;
+    UnkStruct_ov70_0226C6F8 *v0;
     u32 v1, v2, v3;
     u32 v4, v5, v6, v7, v8, v9;
 
@@ -95,7 +96,7 @@ UnkStruct_ov70_0226C6F8 * ov70_0226C60C (u32 param0, UnkStruct_ov70_0225DEE8 * p
     return v0;
 }
 
-void ov70_0226C6F8 (UnkStruct_ov70_0226C6F8 * param0)
+void ov70_0226C6F8(UnkStruct_ov70_0226C6F8 *param0)
 {
     ov70_0226C914(param0->unk_18);
     ov70_0226CF38(param0->unk_14);
@@ -104,7 +105,7 @@ void ov70_0226C6F8 (UnkStruct_ov70_0226C6F8 * param0)
     Heap_FreeToHeap(param0);
 }
 
-void ov70_0226C718 (UnkStruct_ov70_0226C6F8 * param0)
+void ov70_0226C718(UnkStruct_ov70_0226C6F8 *param0)
 {
     if (ov66_0222E084(param0->unk_04, 1)) {
         u32 v0;
@@ -161,12 +162,12 @@ void ov70_0226C718 (UnkStruct_ov70_0226C6F8 * param0)
     ov70_0226C924(param0->unk_18);
 }
 
-BOOL ov70_0226C810 (const UnkStruct_ov70_0226C6F8 * param0, u32 param1, int param2)
+BOOL ov70_0226C810(const UnkStruct_ov70_0226C6F8 *param0, u32 param1, int param2)
 {
     return ov70_0226CFFC(param0->unk_14, param1, param2);
 }
 
-static u32 ov70_0226C81C (PPW_LOBBY_TIME_EVENT param0)
+static u32 ov70_0226C81C(PPW_LOBBY_TIME_EVENT param0)
 {
     switch (param0) {
     case PPW_LOBBY_TIME_EVENT_NEON_A0:
@@ -184,7 +185,7 @@ static u32 ov70_0226C81C (PPW_LOBBY_TIME_EVENT param0)
     return 0;
 }
 
-static u32 ov70_0226C848 (PPW_LOBBY_TIME_EVENT param0)
+static u32 ov70_0226C848(PPW_LOBBY_TIME_EVENT param0)
 {
     switch (param0) {
     case PPW_LOBBY_TIME_EVENT_NEON_B0:
@@ -200,7 +201,7 @@ static u32 ov70_0226C848 (PPW_LOBBY_TIME_EVENT param0)
     return 0;
 }
 
-static u32 ov70_0226C87C (PPW_LOBBY_TIME_EVENT param0)
+static u32 ov70_0226C87C(PPW_LOBBY_TIME_EVENT param0)
 {
     switch (param0) {
     case PPW_LOBBY_TIME_EVENT_NEON_C0:
@@ -216,7 +217,7 @@ static u32 ov70_0226C87C (PPW_LOBBY_TIME_EVENT param0)
     return 0;
 }
 
-static void ov70_0226C8A8 (UnkStruct_ov70_0226C6F8 * param0)
+static void ov70_0226C8A8(UnkStruct_ov70_0226C6F8 *param0)
 {
     NNS_G3dGlbLightColor(2, GX_RGB(0, 0, 0));
 }

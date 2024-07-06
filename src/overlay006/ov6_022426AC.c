@@ -1,42 +1,42 @@
+#include "overlay006/ov6_022426AC.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "sys_task_manager.h"
-
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0200C738.h"
 
+#include "cell_actor.h"
+#include "heap.h"
 #include "narc.h"
+#include "pokemon.h"
+#include "sys_task.h"
+#include "sys_task_manager.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
-#include "sys_task.h"
 #include "unk_020131EC.h"
-#include "heap.h"
 #include "unk_0201D15C.h"
-#include "cell_actor.h"
-#include "pokemon.h"
-#include "overlay006/ov6_022426AC.h"
 
 typedef struct UnkStruct_ov6_022426B8_t {
-    UnkStruct_02009714 * unk_00[4];
-    UnkStruct_02009DC8 * unk_10[4];
-    void * unk_20;
-    void * unk_24;
+    UnkStruct_02009714 *unk_00[4];
+    UnkStruct_02009DC8 *unk_10[4];
+    void *unk_20;
+    void *unk_24;
     ArchivedSprite unk_28;
-    CellActorCollection * unk_38;
+    CellActorCollection *unk_38;
     UnkStruct_0200C738 unk_3C;
-    CellActor * unk_1C8;
+    CellActor *unk_1C8;
     BOOL unk_1CC;
     BOOL unk_1D0;
 } UnkStruct_ov6_022426B8;
 
-static void ov6_022428F8(UnkStruct_ov6_022426B8 * param0);
-static void ov6_02242860(SysTask * param0, void * param1);
-static void ov6_02242880(UnkStruct_02009714 * param0, UnkStruct_02009714 * param1, void * param2, void * param3);
+static void ov6_022428F8(UnkStruct_ov6_022426B8 *param0);
+static void ov6_02242860(SysTask *param0, void *param1);
+static void ov6_02242880(UnkStruct_02009714 *param0, UnkStruct_02009714 *param1, void *param2, void *param3);
 
 static const u8 Unk_ov6_02249030[] = {
     0x1,
@@ -45,23 +45,23 @@ static const u8 Unk_ov6_02249030[] = {
     0x1
 };
 
-UnkStruct_ov6_022426B8 * ov6_022426AC (const int param0)
+UnkStruct_ov6_022426B8 *ov6_022426AC(const int param0)
 {
-    UnkStruct_ov6_022426B8 * v0;
+    UnkStruct_ov6_022426B8 *v0;
 
     v0 = Heap_AllocFromHeapAtEnd(param0, sizeof(UnkStruct_ov6_022426B8));
     return v0;
 }
 
-void ov6_022426B8 (UnkStruct_ov6_022426B8 * param0)
+void ov6_022426B8(UnkStruct_ov6_022426B8 *param0)
 {
     Heap_FreeToHeap(param0);
 }
 
-void ov6_022426C0 (UnkStruct_ov6_022426B8 * param0, const int param1)
+void ov6_022426C0(UnkStruct_ov6_022426B8 *param0, const int param1)
 {
     int v0;
-    NARC * v1;
+    NARC *v1;
 
     param0->unk_1CC = 0;
 
@@ -115,7 +115,7 @@ void ov6_022426C0 (UnkStruct_ov6_022426B8 * param0, const int param1)
     ov6_022428F8(param0);
 }
 
-void ov6_022427F4 (UnkStruct_ov6_022426B8 * param0)
+void ov6_022427F4(UnkStruct_ov6_022426B8 *param0)
 {
     param0->unk_1CC = 1;
     param0->unk_1D0 = 0;
@@ -123,17 +123,17 @@ void ov6_022427F4 (UnkStruct_ov6_022426B8 * param0)
     SysTask_Start(ov6_02242860, param0, 0);
 }
 
-void ov6_02242814 (UnkStruct_ov6_022426B8 * param0)
+void ov6_02242814(UnkStruct_ov6_022426B8 *param0)
 {
     param0->unk_1CC = 0;
 }
 
-BOOL ov6_02242820 (UnkStruct_ov6_022426B8 * param0)
+BOOL ov6_02242820(UnkStruct_ov6_022426B8 *param0)
 {
     return param0->unk_1D0;
 }
 
-void ov6_02242828 (UnkStruct_ov6_022426B8 * param0)
+void ov6_02242828(UnkStruct_ov6_022426B8 *param0)
 {
     u8 v0;
 
@@ -149,9 +149,9 @@ void ov6_02242828 (UnkStruct_ov6_022426B8 * param0)
     Heap_FreeToHeap(param0->unk_24);
 }
 
-static void ov6_02242860 (SysTask * param0, void * param1)
+static void ov6_02242860(SysTask *param0, void *param1)
 {
-    UnkStruct_ov6_022426B8 * v0 = param1;
+    UnkStruct_ov6_022426B8 *v0 = param1;
 
     if (v0->unk_1CC) {
         CellActorCollection_Update(v0->unk_38);
@@ -161,14 +161,14 @@ static void ov6_02242860 (SysTask * param0, void * param1)
     }
 }
 
-static void ov6_02242880 (UnkStruct_02009714 * param0, UnkStruct_02009714 * param1, void * param2, void * param3)
+static void ov6_02242880(UnkStruct_02009714 *param0, UnkStruct_02009714 *param1, void *param2, void *param3)
 {
     int v0;
     u32 v1, v2;
-    UnkStruct_02009DC8 * v3;
-    UnkStruct_02009DC8 * v4;
-    NNSG2dImageProxy * v5;
-    const NNSG2dImagePaletteProxy * v6;
+    UnkStruct_02009DC8 *v3;
+    UnkStruct_02009DC8 *v4;
+    NNSG2dImageProxy *v5;
+    const NNSG2dImagePaletteProxy *v6;
 
     v3 = sub_02009DC8(param0, 0);
     v4 = sub_02009DC8(param1, 1);
@@ -191,7 +191,7 @@ static void ov6_02242880 (UnkStruct_02009714 * param0, UnkStruct_02009714 * para
     GX_LoadOBJPltt(param3, v2, v0);
 }
 
-static void ov6_022428F8 (UnkStruct_ov6_022426B8 * param0)
+static void ov6_022428F8(UnkStruct_ov6_022426B8 *param0)
 {
     int v0;
     CellActorResourceData v1;

@@ -1,13 +1,13 @@
+#include "trainer_info.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "constants/charcode.h"
 
-#include "unk_020021B0.h"
-
 #include "heap.h"
 #include "strbuf.h"
-#include "trainer_info.h"
+#include "unk_020021B0.h"
 
 #define MONEY_MAX 999999
 
@@ -16,7 +16,7 @@ int TrainerInfo_Size(void)
     return sizeof(TrainerInfo);
 }
 
-TrainerInfo* TrainerInfo_New(u32 heapID)
+TrainerInfo *TrainerInfo_New(u32 heapID)
 {
     TrainerInfo *info = Heap_AllocFromHeap(heapID, sizeof(TrainerInfo));
     TrainerInfo_Init(info);
@@ -28,7 +28,6 @@ void TrainerInfo_Copy(const TrainerInfo *src, TrainerInfo *dst)
 {
     MI_CpuCopy8(src, dst, sizeof(TrainerInfo));
 }
-
 
 void TrainerInfo_Init(TrainerInfo *info)
 {
@@ -62,7 +61,7 @@ void TrainerInfo_SetNameFromStrbuf(TrainerInfo *info, const Strbuf *name)
     Strbuf_ToChars(name, info->name, TRAINER_NAME_LEN + 1);
 }
 
-const charcode_t* TrainerInfo_Name(const TrainerInfo *info)
+const charcode_t *TrainerInfo_Name(const TrainerInfo *info)
 {
     return info->name;
 }
@@ -72,7 +71,7 @@ void TrainerInfo_NameStrbuf(const TrainerInfo *info, Strbuf *name)
     Strbuf_CopyChars(name, info->name);
 }
 
-Strbuf* TrainerInfo_NameNewStrbuf(const TrainerInfo *info, int heapID)
+Strbuf *TrainerInfo_NameNewStrbuf(const TrainerInfo *info, int heapID)
 {
     Strbuf *name = Strbuf_Init(TRAINER_NAME_LEN + 1, heapID);
 
@@ -230,5 +229,5 @@ BOOL TrainerInfo_HasNationalDex(TrainerInfo *info)
 BOOL TrainerInfo_Equals(const TrainerInfo *info1, const TrainerInfo *info2)
 {
     return GF_strncmp(info1->name, info2->name, TRAINER_NAME_LEN) == 0
-            && info1->id == info2->id;
+        && info1->id == info2->id;
 }

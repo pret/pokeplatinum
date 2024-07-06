@@ -1,10 +1,11 @@
+#include "unk_02098FFC.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-
 #include "struct_defs/struct_02009508.h"
 #include "struct_defs/struct_02009CFC.h"
 #include "struct_defs/struct_0200D0F4.h"
@@ -12,23 +13,22 @@
 #include "struct_defs/struct_0209903C_sub1.h"
 #include "struct_defs/struct_0209916C.h"
 
+#include "cell_actor.h"
+#include "heap.h"
 #include "narc.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200C6E4.h"
-#include "heap.h"
-#include "cell_actor.h"
-#include "unk_02098FFC.h"
 
-static void sub_02099058(UnkStruct_0209903C * param0);
-static void sub_02099118(UnkStruct_0209903C * param0);
-static void sub_020993A8(UnkStruct_0209903C * param0);
-static s16 sub_020994B8(UnkStruct_0209903C * param0, u8 param1);
+static void sub_02099058(UnkStruct_0209903C *param0);
+static void sub_02099118(UnkStruct_0209903C *param0);
+static void sub_020993A8(UnkStruct_0209903C *param0);
+static s16 sub_020994B8(UnkStruct_0209903C *param0, u8 param1);
 
-UnkStruct_0209903C * sub_02098FFC (int param0, u16 param1, u16 param2, u16 param3, int param4)
+UnkStruct_0209903C *sub_02098FFC(int param0, u16 param1, u16 param2, u16 param3, int param4)
 {
-    UnkStruct_0209903C * v0;
+    UnkStruct_0209903C *v0;
 
     v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_0209903C));
     MI_CpuClear8(v0, sizeof(UnkStruct_0209903C));
@@ -49,17 +49,17 @@ UnkStruct_0209903C * sub_02098FFC (int param0, u16 param1, u16 param2, u16 param
     return v0;
 }
 
-void sub_0209903C (UnkStruct_0209903C * param0)
+void sub_0209903C(UnkStruct_0209903C *param0)
 {
     sub_02099118(param0);
     MI_CpuClear8(param0, sizeof(UnkStruct_0209903C));
     Heap_FreeToHeap(param0);
 }
 
-static void sub_02099058 (UnkStruct_0209903C * param0)
+static void sub_02099058(UnkStruct_0209903C *param0)
 {
     u32 v0, v1;
-    u8 v2[] = {1, 1, 1, 1};
+    u8 v2[] = { 1, 1, 1, 1 };
 
     param0->unk_10 = sub_020095C4(param0->unk_0C, &param0->unk_14, param0->unk_00);
 
@@ -80,7 +80,7 @@ static void sub_02099058 (UnkStruct_0209903C * param0)
     MI_CpuClear8(param0->unk_1C4, sizeof(UnkStruct_0209903C_sub1));
 }
 
-static void sub_02099118 (UnkStruct_0209903C * param0)
+static void sub_02099118(UnkStruct_0209903C *param0)
 {
     u32 v0;
 
@@ -95,20 +95,20 @@ static void sub_02099118 (UnkStruct_0209903C * param0)
     }
 }
 
-void sub_02099160 (UnkStruct_0209903C * param0)
+void sub_02099160(UnkStruct_0209903C *param0)
 {
     CellActorCollection_Update(param0->unk_10);
 }
 
-UnkStruct_0209916C * sub_0209916C (UnkStruct_0209903C * param0, int param1, u16 param2, u16 param3, u16 param4, u8 param5, u8 param6, int param7)
+UnkStruct_0209916C *sub_0209916C(UnkStruct_0209903C *param0, int param1, u16 param2, u16 param3, u16 param4, u8 param5, u8 param6, int param7)
 {
     u8 v0;
     s16 v1;
     u32 v2;
-    UnkStruct_0209916C * v3;
-    CellActorData * v4 = NULL;
+    UnkStruct_0209916C *v3;
+    CellActorData *v4 = NULL;
     CellActorInitParamsEx v5;
-    UnkStruct_02009DC8 * v6;
+    UnkStruct_02009DC8 *v6;
 
     v1 = sub_020994B8(param0, param1);
 
@@ -173,9 +173,9 @@ UnkStruct_0209916C * sub_0209916C (UnkStruct_0209903C * param0, int param1, u16 
     return v3;
 }
 
-void sub_0209933C (UnkStruct_0209903C * param0, UnkStruct_0209916C * param1, int param2)
+void sub_0209933C(UnkStruct_0209903C *param0, UnkStruct_0209916C *param1, int param2)
 {
-    UnkStruct_02009DC8 * v0;
+    UnkStruct_02009DC8 *v0;
 
     v0 = param0->unk_1B4[1]->unk_00[param1->unk_00];
 
@@ -183,7 +183,7 @@ void sub_0209933C (UnkStruct_0209903C * param0, UnkStruct_0209916C * param1, int
     sub_0200A6B8(v0);
 }
 
-void sub_02099370 (UnkStruct_0209903C * param0, UnkStruct_0209916C * param1)
+void sub_02099370(UnkStruct_0209903C *param0, UnkStruct_0209916C *param1)
 {
     sub_0200D0F4(param1->unk_04);
 
@@ -194,20 +194,20 @@ void sub_02099370 (UnkStruct_0209903C * param0, UnkStruct_0209916C * param1)
     Heap_FreeToHeap(param1);
 }
 
-static void sub_020993A8 (UnkStruct_0209903C * param0)
+static void sub_020993A8(UnkStruct_0209903C *param0)
 {
     int v0;
-    UnkStruct_02009714 * v1;
-    UnkStruct_02009CFC * v2;
-    UnkStruct_02009DC8 * v3;
-    NARC * v4;
+    UnkStruct_02009714 *v1;
+    UnkStruct_02009CFC *v2;
+    UnkStruct_02009DC8 *v3;
+    NARC *v4;
 
     v4 = NARC_ctor(NARC_INDEX_GRAPHIC__PORUACT, param0->unk_00);
 
     v2 = param0->unk_1B4[0];
     v2->unk_00[0] = sub_02009A4C(param0->unk_1A4[0], v4, 0, 0, 0xe000, param0->unk_0E, param0->unk_00);
 
-    GF_ASSERT((v2->unk_00[0] != NULL));
+    GF_ASSERT(v2->unk_00[0] != NULL);
 
     switch (param0->unk_04) {
     case 1:
@@ -226,7 +226,7 @@ static void sub_020993A8 (UnkStruct_0209903C * param0)
         v2 = param0->unk_1B4[2 + v0];
         v2->unk_00[0] = sub_02009BC4(param0->unk_1A4[2 + v0], v4, 1 + v0, 0, 0xe000, 2 + v0, param0->unk_00);
 
-        GF_ASSERT((v2->unk_00[0] != NULL));
+        GF_ASSERT(v2->unk_00[0] != NULL);
     }
 
     v2 = param0->unk_1B4[1];
@@ -234,14 +234,14 @@ static void sub_020993A8 (UnkStruct_0209903C * param0)
     for (v0 = 0; v0 < param0->unk_0A; v0++) {
         v2->unk_00[v0] = sub_02009B04(param0->unk_1A4[1], v4, 3 + 1, 0, 0xe000 + v0, param0->unk_0E, 1, param0->unk_00);
 
-        GF_ASSERT((v2->unk_00[v0] != NULL));
+        GF_ASSERT(v2->unk_00[v0] != NULL);
         sub_0200A5C8(v2->unk_00[v0]);
     }
 
     NARC_dtor(v4);
 }
 
-static s16 sub_020994B8 (UnkStruct_0209903C * param0, u8 param1)
+static s16 sub_020994B8(UnkStruct_0209903C *param0, u8 param1)
 {
     u16 v0 = 0;
 

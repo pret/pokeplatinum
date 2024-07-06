@@ -5,7 +5,7 @@
 #include "overlay021/struct_ov21_021D2648.h"
 
 typedef struct {
-    UnkStruct_ov21_021D2584 * unk_00;
+    UnkStruct_ov21_021D2584 *unk_00;
     UnkStruct_ov21_021D2648 unk_04;
     UnkStruct_ov21_021D2648 unk_24;
     int unk_44;

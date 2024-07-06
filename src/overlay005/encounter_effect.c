@@ -1,23 +1,26 @@
+#include "overlay005/encounter_effect.h"
+
+#include "nitro/fx/fx.h"
 #include <nitro.h>
 #include <string.h>
 
 #include "constants/battle.h"
-
 #include "constants/heap.h"
 
-#include "nitro/fx/fx.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "pokemon.h"
+#include "struct_defs/struct_0205AA50.h"
+#include "struct_defs/struct_02099F80.h"
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
-#include "struct_defs/struct_0205AA50.h"
-#include "struct_defs/struct_02099F80.h"
 #include "overlay005/encounter_effect.h"
-#include "overlay005/linear_interpolation_task_s32.h"
+#include "overlay005/encounter_effect_core.h"
+#include "overlay005/hblank_system.h"
 #include "overlay005/linear_interpolation_task_fx32.h"
+#include "overlay005/linear_interpolation_task_s32.h"
+#include "overlay005/ov5_021D0D80.h"
 #include "overlay005/quadratic_interpolation_task_fx32.h"
 #include "overlay005/struct_ov5_021DDF24.h"
 #include "overlay005/struct_ov5_021DE47C.h"
@@ -27,28 +30,24 @@
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 
+#include "camera.h"
+#include "cell_actor.h"
+#include "enc_effects.h"
+#include "gx_layers.h"
+#include "heap.h"
+#include "narc.h"
+#include "pokemon.h"
+#include "sys_task.h"
+#include "sys_task_manager.h"
 #include "unk_02002F38.h"
 #include "unk_0200679C.h"
-#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
-#include "sys_task.h"
 #include "unk_02014000.h"
-#include "heap.h"
 #include "unk_02018340.h"
-#include "sys_task_manager.h"
-#include "gx_layers.h"
-#include "camera.h"
-#include "cell_actor.h"
 #include "unk_02054884.h"
-#include "pokemon.h"
-#include "overlay005/ov5_021D0D80.h"
-#include "overlay005/encounter_effect.h"
-#include "overlay005/encounter_effect_core.h"
-#include "overlay005/hblank_system.h"
-#include "enc_effects.h"
 
 enum ScreenFlashState {
     SCREENFLASH_STATE_INIT_OTHER_SCREEN_FADE = 0,
@@ -91,7 +90,6 @@ typedef struct UnkStruct_ov5_02202120 {
     u32 unk_10;
     u32 unk_14;
 } UnkStruct_ov5_02202120;
-
 
 static void ov5_021DE89C(Window *param0, s32 param1, s32 param2, s32 param3, s32 param4, u8 param5);
 static void ov5_021DEB04(Window *param0, u16 param1, u16 param2, u8 param3);
@@ -173,14 +171,14 @@ static const u8 Unk_ov5_021F9988[8] = {
 };
 
 static const u16 Unk_ov5_021F9A2C[8][2] = {
-    {0x0, 0x17},
-    {0x2D, 0x16},
-    {0x2D, 0x44},
-    {0x5A, 0x43},
-    {0x5B, 0x71},
-    {0x87, 0x70},
-    {0x87, 0x9E},
-    {0xB4, 0x9D}
+    { 0x0, 0x17 },
+    { 0x2D, 0x16 },
+    { 0x2D, 0x44 },
+    { 0x5A, 0x43 },
+    { 0x5B, 0x71 },
+    { 0x87, 0x70 },
+    { 0x87, 0x9E },
+    { 0xB4, 0x9D }
 };
 
 static UnkStruct_ov5_02202120 *Unk_ov5_02202120 = NULL;
@@ -380,8 +378,8 @@ BOOL QuadraticInterpolationTaskFX32_Update(QuadraticInterpolationTaskFX32 *task)
 
 void BrightnessFadeTask_ApplyBrightnessToScreen(enum Screen screen, int brightness)
 {
-    screen == SCREEN_TOP 
-        ? GX_SetMasterBrightness(brightness) 
+    screen == SCREEN_TOP
+        ? GX_SetMasterBrightness(brightness)
         : GXS_SetMasterBrightness(brightness);
 }
 
@@ -721,7 +719,7 @@ void ov5_021DE3D0(NARC *param0, u32 param1, u32 param2, u32 param3, u32 param4, 
     void *v0;
     NNSG2dScreenData *v1;
 
-    sub_02007130(param0, param3, 0, param4 *32, param5 *32, 4);
+    sub_02007130(param0, param3, 0, param4 * 32, param5 * 32, 4);
     sub_020070E8(param0, param2, param6, param7, 0, 0, 0, 4);
 
     v0 = sub_020071D0(param0, param1, 0, &v1, 4);
@@ -818,7 +816,7 @@ CellActor *ov5_021DE62C(UnkStruct_ov5_021DE47C *param0, UnkStruct_ov5_021DE5A4 *
 
 VecFx32 VecFx32_FromXYZ(fx32 x, fx32 y, fx32 z)
 {
-    return (VecFx32){ x, y, z };
+    return (VecFx32) { x, y, z };
 }
 
 static void ov5_021DE67C(CellActor *param0, void *param1, u32 param2)
@@ -1023,9 +1021,9 @@ BOOL ov5_021DE988(UnkStruct_ov5_021DE928 *param0)
             param0->unk_C8 = param0->unk_C7;
 
             v0 = Unk_ov5_021F9988[param0->unk_C4 % 8];
-            v0 = (32 / 2) + (v0 *32);
-            v1 = -16 - ((param0->unk_C4 / 8) *32);
-            v2 = (192 + -16) - ((param0->unk_C4 / 8) *32);
+            v0 = (32 / 2) + (v0 * 32);
+            v1 = -16 - ((param0->unk_C4 / 8) * 32);
+            v2 = (192 + -16) - ((param0->unk_C4 / 8) * 32);
 
             ov5_021DE7A4(param0->unk_04[param0->unk_C4], v0, v0, v1, v2, param0->unk_C6, param0->unk_00, 32, 32, param0->unk_C9);
             param0->unk_C4++;
@@ -1111,8 +1109,8 @@ static void ov5_021DEB04(Window *param0, u16 param1, u16 param2, u8 param3)
 
     for (v5 = 0; v5 < 96; v5++) {
         v6 = 95 - v5;
-        v0 = FX_Mul(v7, v6 *FX32_ONE) >> FX32_SHIFT;
-        v1 = FX_Mul(v8, v6 *FX32_ONE) >> FX32_SHIFT;
+        v0 = FX_Mul(v7, v6 * FX32_ONE) >> FX32_SHIFT;
+        v1 = FX_Mul(v8, v6 * FX32_ONE) >> FX32_SHIFT;
         v3 = 128 + v0;
         v4 = 128 + v1;
         v0 = 128 - v0;
@@ -1166,7 +1164,7 @@ void ov5_021DEC38(UnkStruct_ov5_021DEC18 *param0, u8 param1, Window *param2, u8 
     int v0;
 
     for (v0 = 0; v0 < 8; v0++) {
-        ov5_021DEAA0(param0->unk_00[v0], param1, ((Unk_ov5_021F9A2C[v0][0] *0xffff) / 360), ((Unk_ov5_021F9A2C[v0][1] *0xffff) / 360), param2, param3);
+        ov5_021DEAA0(param0->unk_00[v0], param1, ((Unk_ov5_021F9A2C[v0][0] * 0xffff) / 360), ((Unk_ov5_021F9A2C[v0][1] * 0xffff) / 360), param2, param3);
     }
 
     param0->unk_20 = 1;
@@ -1230,7 +1228,7 @@ void ov5_021DED20(EncounterEffect *param0, UnkStruct_ov5_021DED04 *param1, u32 p
 
     for (v0 = 0; v0 < 192; v0++) {
         v1 = v0 % param3;
-        v2 = v1 *param4;
+        v2 = v1 * param4;
         v2 = v2 / param3;
 
         if (((v0 / param3) % 2) == 0) {
@@ -1318,9 +1316,9 @@ u32 CutInEffects_ForBattle(const BattleParams *param0)
 
     if (param0->battleType & BATTLE_TYPE_TRAINER) {
         v2 = 1;
-    // Implicitly, this must be a wild battle
+        // Implicitly, this must be a wild battle
     } else if ((param0->battleType & BATTLE_TYPE_SPECIAL_WILD)
-            || (param0->battleType == BATTLE_TYPE_SINGLES)) {
+        || (param0->battleType == BATTLE_TYPE_SINGLES)) {
         v2 = 0;
     } else {
         GF_ASSERT(0);
@@ -1345,13 +1343,13 @@ u32 CutInEffects_ForBattle(const BattleParams *param0)
     case 11:
     case 9:
     case 24:
-        v1 = 0 *2;
+        v1 = 0 * 2;
         break;
     case 7:
-        v1 = 1 *2;
+        v1 = 1 * 2;
         break;
     case 5:
-        v1 = 2 *2;
+        v1 = 2 * 2;
         break;
     }
 
@@ -1359,7 +1357,7 @@ u32 CutInEffects_ForBattle(const BattleParams *param0)
         v1++;
     }
 
-    return (v2 *6) + v1;
+    return (v2 * 6) + v1;
 }
 
 static void ov5_021DEF74(SysTask *param0, void *param1)
@@ -1448,7 +1446,7 @@ void ov5_021DF0CC(NARC *param0, u32 param1)
     sub_02014788(Unk_ov5_02202120->unk_08, 1);
 
     v1 = sub_02014784(Unk_ov5_02202120->unk_08);
-    Camera_SetClipping(FX32_ONE, FX32_ONE *900, v1);
+    Camera_SetClipping(FX32_ONE, FX32_ONE * 900, v1);
 
     v0 = sub_0200723C(param0, param1, 0, 4, 0);
     sub_020144CC(Unk_ov5_02202120->unk_08, v0, 0 | 0, 0);
@@ -1457,7 +1455,7 @@ void ov5_021DF0CC(NARC *param0, u32 param1)
 void ov5_021DF17C(u32 param0)
 {
     int v0;
-    VecFx32 v1 = {0, 0, 0};
+    VecFx32 v1 = { 0, 0, 0 };
 
     GF_ASSERT(Unk_ov5_02202120);
     GF_ASSERT(Unk_ov5_02202120->unk_08);
@@ -1532,8 +1530,8 @@ static void ov5_021DF28C(SysTask *param0, void *param1)
         sub_02014000();
 
         {
-            VecFx32 v1 = {0};
-            VecFx32 v2 = {FX32_ONE, FX32_ONE, FX32_ONE};
+            VecFx32 v1 = { 0 };
+            VecFx32 v2 = { FX32_ONE, FX32_ONE, FX32_ONE };
             MtxFx33 v3;
 
             MTX_Identity33(&v3);

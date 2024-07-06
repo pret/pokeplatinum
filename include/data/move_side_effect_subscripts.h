@@ -1,8 +1,9 @@
 #include "constants/battle/side_effects.h"
-
-#include "battle/scripts/sub_seq.naix"
 #include "consts/battle.h"
 
+#include "battle/scripts/sub_seq.naix"
+
+// clang-format off
 static const int sSideEffectSubscripts[] = {
     [MOVE_SUBSCRIPT_PTR_NONE]                             = NULL,
     [MOVE_SUBSCRIPT_PTR_SLEEP]                            = subscript_fall_asleep,
@@ -150,3 +151,4 @@ static const int sSideEffectSubscripts[] = {
     [MOVE_SUBSCRIPT_PTR_LUNAR_DANCE]                      = subscript_lunar_dance,
     [MOVE_SUBSCRIPT_PTR_GIVE_TARGET_OWN_STATUS]           = subscript_give_target_own_status,
 };
+// clang-format on

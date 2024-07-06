@@ -1,10 +1,11 @@
 #ifndef POKEPLATINUM_STRUCT_OV87_021D12C0_H
 #define POKEPLATINUM_STRUCT_OV87_021D12C0_H
 
+#include <nitro/rtc.h>
+
 #include "overlay087/struct_ov87_021D1640.h"
 
 #include "enums.h"
-#include <nitro/rtc.h>
 
 typedef struct {
     int unk_00;

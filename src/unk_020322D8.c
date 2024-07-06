@@ -1,3 +1,5 @@
+#include "unk_020322D8.h"
+
 #include <nitro.h>
 #include <string.h>
 
@@ -6,14 +8,13 @@
 #include "struct_defs/struct_02032318.h"
 #include "struct_defs/struct_0203233C.h"
 
-#include "heap.h"
 #include "comm_ring.h"
-#include "unk_020322D8.h"
+#include "heap.h"
 #include "unk_02032798.h"
 
-static UnkStruct_020322D8 * sub_020322D8 (CommQueueMan * param0)
+static UnkStruct_020322D8 *sub_020322D8(CommQueueMan *param0)
 {
-    UnkStruct_020322D8 * v0 = param0->unk_18;
+    UnkStruct_020322D8 *v0 = param0->unk_18;
     int v1;
 
     for (v1 = 0; v1 < param0->unk_1C; v1++) {
@@ -27,9 +28,9 @@ static UnkStruct_020322D8 * sub_020322D8 (CommQueueMan * param0)
     return NULL;
 }
 
-BOOL CommQueue_IsEmpty (CommQueueMan * param0)
+BOOL CommQueue_IsEmpty(CommQueueMan *param0)
 {
-    UnkStruct_020322D8 * v0 = param0->unk_18;
+    UnkStruct_020322D8 *v0 = param0->unk_18;
     int v1;
 
     for (v1 = 0; v1 < param0->unk_1C; v1++) {
@@ -43,7 +44,7 @@ BOOL CommQueue_IsEmpty (CommQueueMan * param0)
     return 1;
 }
 
-static BOOL sub_02032318 (UnkStruct_02032318 * param0)
+static BOOL sub_02032318(UnkStruct_02032318 *param0)
 {
     if (param0->unk_00 != NULL) {
         if (param0->unk_00->unk_08 != NULL) {
@@ -60,7 +61,7 @@ static BOOL sub_02032318 (UnkStruct_02032318 * param0)
     return 0;
 }
 
-static BOOL sub_0203233C (UnkStruct_0203233C * param0, u8 param1)
+static BOOL sub_0203233C(UnkStruct_0203233C *param0, u8 param1)
 {
     *param0->unk_00 = param1;
     param0->unk_00++;
@@ -73,7 +74,7 @@ static BOOL sub_0203233C (UnkStruct_0203233C * param0, u8 param1)
     return 0;
 }
 
-static BOOL sub_02032358 (UnkStruct_020322D8 * param0, UnkStruct_0203233C * param1)
+static BOOL sub_02032358(UnkStruct_020322D8 *param0, UnkStruct_0203233C *param1)
 {
     int v0 = CommCmd_PacketSizeOf(param0->unk_0E);
 
@@ -102,7 +103,7 @@ static BOOL sub_02032358 (UnkStruct_020322D8 * param0, UnkStruct_0203233C * para
     return 0;
 }
 
-static BOOL sub_020323D0 (UnkStruct_020322D8 * param0, UnkStruct_0203233C * param1, CommRing * param2, BOOL param3)
+static BOOL sub_020323D0(UnkStruct_020322D8 *param0, UnkStruct_0203233C *param1, CommRing *param2, BOOL param3)
 {
     int v0;
     int v1;
@@ -152,11 +153,11 @@ static BOOL sub_020323D0 (UnkStruct_020322D8 * param0, UnkStruct_0203233C * para
     return 1;
 }
 
-BOOL CommQueue_Write (CommQueueMan * param0, int cmd, u8 * param2, int param3, BOOL param4, BOOL param5)
+BOOL CommQueue_Write(CommQueueMan *param0, int cmd, u8 *param2, int param3, BOOL param4, BOOL param5)
 {
-    UnkStruct_020322D8 * v0;
-    UnkStruct_020322D8 * v1 = sub_020322D8(param0);
-    UnkStruct_02032318 * v2;
+    UnkStruct_020322D8 *v0;
+    UnkStruct_020322D8 *v1 = sub_020322D8(param0);
+    UnkStruct_02032318 *v2;
     int v3;
 
     param4 = 1;
@@ -207,9 +208,9 @@ BOOL CommQueue_Write (CommQueueMan * param0, int cmd, u8 * param2, int param3, B
     return 1;
 }
 
-static UnkStruct_020322D8 * sub_02032530 (CommQueueMan * param0)
+static UnkStruct_020322D8 *sub_02032530(CommQueueMan *param0)
 {
-    UnkStruct_02032318 * v0;
+    UnkStruct_02032318 *v0;
 
     if (param0->unk_10 != NULL) {
         return param0->unk_10;
@@ -226,9 +227,9 @@ static UnkStruct_020322D8 * sub_02032530 (CommQueueMan * param0)
     return NULL;
 }
 
-static void sub_02032550 (CommQueueMan * param0)
+static void sub_02032550(CommQueueMan *param0)
 {
-    UnkStruct_02032318 * v0;
+    UnkStruct_02032318 *v0;
 
     if (param0->unk_10 != NULL) {
         param0->unk_10 = NULL;
@@ -239,14 +240,14 @@ static void sub_02032550 (CommQueueMan * param0)
     }
 }
 
-BOOL sub_02032574 (CommQueueMan * param0, UnkStruct_0203233C * param1, BOOL param2)
+BOOL sub_02032574(CommQueueMan *param0, UnkStruct_0203233C *param1, BOOL param2)
 {
     int v0;
     int v1;
     int v2 = 1;
 
     while (param1->unk_04 > 0) {
-        UnkStruct_020322D8 * v3 = sub_02032530(param0);
+        UnkStruct_020322D8 *v3 = sub_02032530(param0);
 
         if (NULL == v3) {
             break;
@@ -277,7 +278,7 @@ BOOL sub_02032574 (CommQueueMan * param0, UnkStruct_0203233C * param1, BOOL para
     return 1;
 }
 
-void CommQueueMan_Init (CommQueueMan * param0, int param1, CommRing * param2)
+void CommQueueMan_Init(CommQueueMan *param0, int param1, CommRing *param2)
 {
     MI_CpuFill8(param0, 0, sizeof(CommQueueMan));
     param0->unk_18 = Heap_AllocFromHeap(15, sizeof(UnkStruct_020322D8) * param1);
@@ -287,7 +288,7 @@ void CommQueueMan_Init (CommQueueMan * param0, int param1, CommRing * param2)
     param0->unk_14 = param2;
 }
 
-void CommQueueMan_Reset (CommQueueMan * param0)
+void CommQueueMan_Reset(CommQueueMan *param0)
 {
     MI_CpuFill8(param0->unk_18, 0, sizeof(UnkStruct_020322D8) * param0->unk_1C);
 
@@ -298,15 +299,15 @@ void CommQueueMan_Reset (CommQueueMan * param0)
     param0->unk_10 = NULL;
 }
 
-void CommQueueMan_Delete (CommQueueMan * param0)
+void CommQueueMan_Delete(CommQueueMan *param0)
 {
     Heap_FreeToHeap(param0->unk_18);
 }
 
-BOOL CommQueue_CompareCmd (CommQueueMan * param0, int param1)
+BOOL CommQueue_CompareCmd(CommQueueMan *param0, int param1)
 {
     int v0;
-    UnkStruct_020322D8 * v1 = param0->unk_18;
+    UnkStruct_020322D8 *v1 = param0->unk_18;
 
     for (v0 = 0; v0 < param0->unk_1C; v0++) {
         if (v1->unk_0E == param1) {

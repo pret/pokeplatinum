@@ -1,20 +1,21 @@
+#include "overlay006/ov6_02246C24.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_020508D4_decl.h"
-#include "overlay005/struct_ov5_021E1890_decl.h"
 
 #include "field/field_system.h"
-
-#include "unk_02005474.h"
-#include "heap.h"
-#include "unk_02039C80.h"
-#include "unk_020508D4.h"
-#include "unk_02054D00.h"
 #include "overlay005/ov5_021D37AC.h"
 #include "overlay005/ov5_021E15F4.h"
 #include "overlay005/ov5_021EF75C.h"
-#include "overlay006/ov6_02246C24.h"
+#include "overlay005/struct_ov5_021E1890_decl.h"
+
+#include "heap.h"
+#include "unk_02005474.h"
+#include "unk_02039C80.h"
+#include "unk_020508D4.h"
+#include "unk_02054D00.h"
 
 typedef struct {
     VecFx32 unk_00;
@@ -25,28 +26,28 @@ typedef struct {
     u8 unk_10[6];
 } UnkStruct_ov6_02246C24;
 
-static BOOL ov6_02246C9C(TaskManager * param0);
+static BOOL ov6_02246C9C(TaskManager *param0);
 
 static VecFx32 Unk_ov6_0224989C[6] = {
-    {-((FX32_ONE * 4) + (FX32_ONE / 2)), FX32_ONE * 12, -((FX32_ONE * 4) + (FX32_ONE / 2))},
-    {((FX32_ONE * 4) + (FX32_ONE / 2)), FX32_ONE * 12, -((FX32_ONE * 4) + (FX32_ONE / 2))},
-    {-((FX32_ONE * 4) + (FX32_ONE / 2)), FX32_ONE * 12, 0x0},
-    {((FX32_ONE * 4) + (FX32_ONE / 2)), FX32_ONE * 12, 0x0},
-    {-((FX32_ONE * 4) + (FX32_ONE / 2)), FX32_ONE * 12, ((FX32_ONE * 4) + (FX32_ONE / 2))},
-    {((FX32_ONE * 4) + (FX32_ONE / 2)), FX32_ONE * 12, ((FX32_ONE * 4) + (FX32_ONE / 2))}
+    { -((FX32_ONE * 4) + (FX32_ONE / 2)), FX32_ONE * 12, -((FX32_ONE * 4) + (FX32_ONE / 2)) },
+    { ((FX32_ONE * 4) + (FX32_ONE / 2)), FX32_ONE * 12, -((FX32_ONE * 4) + (FX32_ONE / 2)) },
+    { -((FX32_ONE * 4) + (FX32_ONE / 2)), FX32_ONE * 12, 0x0 },
+    { ((FX32_ONE * 4) + (FX32_ONE / 2)), FX32_ONE * 12, 0x0 },
+    { -((FX32_ONE * 4) + (FX32_ONE / 2)), FX32_ONE * 12, ((FX32_ONE * 4) + (FX32_ONE / 2)) },
+    { ((FX32_ONE * 4) + (FX32_ONE / 2)), FX32_ONE * 12, ((FX32_ONE * 4) + (FX32_ONE / 2)) }
 };
 
-void ov6_02246C24 (FieldSystem * fieldSystem, const u8 param1)
+void ov6_02246C24(FieldSystem *fieldSystem, const u8 param1)
 {
     BOOL v0;
-    UnkStruct_ov5_021E1890 * v1;
+    UnkStruct_ov5_021E1890 *v1;
     int v2;
     int v3 = 123;
 
     v0 = sub_020552B4(fieldSystem, v3, &v1, &v2);
 
     if (v0) {
-        UnkStruct_ov6_02246C24 * v4 = Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov6_02246C24));
+        UnkStruct_ov6_02246C24 *v4 = Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov6_02246C24));
 
         v4->unk_0C = param1;
         v4->unk_0D = 0;
@@ -69,20 +70,19 @@ void ov6_02246C24 (FieldSystem * fieldSystem, const u8 param1)
     }
 }
 
-static BOOL ov6_02246C9C (TaskManager * param0)
+static BOOL ov6_02246C9C(TaskManager *param0)
 {
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov6_02246C24 * v1 = (UnkStruct_ov6_02246C24 *)TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+    UnkStruct_ov6_02246C24 *v1 = (UnkStruct_ov6_02246C24 *)TaskManager_Environment(param0);
 
     switch (v1->unk_0F) {
-    case 0:
-    {
-        NNSG3dResMdl * v2;
-        NNSG3dResFileHeader ** v3;
-        NNSG3dResMdl * v4;
-        NNSG3dResFileHeader ** v5;
-        UnkStruct_ov5_021E1890 * v6;
-        NNSG3dRenderObj * v7;
+    case 0: {
+        NNSG3dResMdl *v2;
+        NNSG3dResFileHeader **v3;
+        NNSG3dResMdl *v4;
+        NNSG3dResFileHeader **v5;
+        UnkStruct_ov5_021E1890 *v6;
+        NNSG3dRenderObj *v7;
         BOOL v8;
 
         v3 = ov5_021EF9E8(517, fieldSystem->unk_30);
@@ -100,12 +100,11 @@ static BOOL ov6_02246C9C (TaskManager * param0)
     }
         (v1->unk_0F)++;
         break;
-    case 1:
-    {
-        UnkStruct_ov5_021E1890 * v9;
-        NNSG3dRenderObj * v10;
+    case 1: {
+        UnkStruct_ov5_021E1890 *v9;
+        NNSG3dRenderObj *v10;
         VecFx32 v11;
-        VecFx32 v12 = {0, 0, 0};
+        VecFx32 v12 = { 0, 0, 0 };
 
         v11.x = v1->unk_00.x + Unk_ov6_0224989C[v1->unk_0D].x;
         v11.y = v1->unk_00.y + Unk_ov6_0224989C[v1->unk_0D].y;
@@ -119,8 +118,7 @@ static BOOL ov6_02246C9C (TaskManager * param0)
         v10 = ov5_021E18BC(v9);
         ov5_021D4220(fieldSystem->unk_54, 0x10, v1->unk_0D, v10);
         (v1->unk_0F)++;
-    }
-    break;
+    } break;
     case 2:
         if (v1->unk_0E < 15) {
             v1->unk_0E++;

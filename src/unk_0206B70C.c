@@ -1,30 +1,28 @@
+#include "unk_0206B70C.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "inlines.h"
-
-#include "trainer_info.h"
 #include "struct_decls/struct_0203A790_decl.h"
-
-#include "field/field_system.h"
 #include "struct_defs/struct_0203D8AC.h"
 #include "struct_defs/struct_02049FA8.h"
 #include "struct_defs/struct_020556C4.h"
 #include "struct_defs/union_0206B878.h"
 
-#include "heap.h"
-#include "save_player.h"
-#include "trainer_info.h"
-#include "unk_02039C80.h"
-#include "map_header.h"
+#include "field/field_system.h"
+
 #include "field_overworld_state.h"
 #include "field_system.h"
-#include "script_manager.h"
-#include "vars_flags.h"
+#include "heap.h"
+#include "inlines.h"
+#include "map_header.h"
 #include "player_avatar.h"
+#include "save_player.h"
+#include "script_manager.h"
+#include "trainer_info.h"
+#include "unk_02039C80.h"
 #include "unk_0206AFE0.h"
-#include "unk_0206B70C.h"
-
+#include "vars_flags.h"
 
 typedef struct {
     u8 unk_00;
@@ -33,19 +31,19 @@ typedef struct {
     u8 unk_03;
 } UnkStruct_0206B878;
 
-static void sub_0206B878(FieldSystem * fieldSystem, UnkStruct_0203D8AC * param1, const char * param2);
+static void sub_0206B878(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1, const char *param2);
 
 static const int Unk_020EFA98[10][4] = {
-	{ 0x23D, 0x15, 0x120, 0xA },
-	{ 0x23E, 0x0, 0x100, 0x23 },
-	{ 0x23F, 0xF, 0xE0, 0x0 },
-	{ 0x240, 0x2F, 0xC0, 0x15 },
-	{ 0x241, 0x39, 0xA0, 0x22 },
-	{ 0x243, 0x39, 0x80, 0x22 },
-	{ 0x244, 0x38, 0x72, 0x26 },
-	{ 0x245, 0x4A, 0x40, 0x20 },
-	{ 0x246, 0x0, 0x0, 0x0 },
-	{ 0x247, 0x46, 0x40, 0x1E }
+    { 0x23D, 0x15, 0x120, 0xA },
+    { 0x23E, 0x0, 0x100, 0x23 },
+    { 0x23F, 0xF, 0xE0, 0x0 },
+    { 0x240, 0x2F, 0xC0, 0x15 },
+    { 0x241, 0x39, 0xA0, 0x22 },
+    { 0x243, 0x39, 0x80, 0x22 },
+    { 0x244, 0x38, 0x72, 0x26 },
+    { 0x245, 0x4A, 0x40, 0x20 },
+    { 0x246, 0x0, 0x0, 0x0 },
+    { 0x247, 0x46, 0x40, 0x1E }
 };
 
 static const u8 Unk_020EFA84[20] = {
@@ -71,15 +69,15 @@ static const u8 Unk_020EFA84[20] = {
     0x44
 };
 
-void sub_0206B70C (FieldSystem * fieldSystem, UnkStruct_0203D8AC * param1, int param2)
+void sub_0206B70C(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1, int param2)
 {
-    TrainerInfo * v0;
+    TrainerInfo *v0;
     int v1 = 0, v2 = 0, v3 = 0;
     int x, z, v6;
-    UnkStruct_020556C4 * v7;
-    VarsFlags * v8 = SaveData_GetVarsFlags(fieldSystem->saveData);
-    FieldOverworldState * v9 = SaveData_GetFieldOverworldState(fieldSystem->saveData);
-    Location * v10 = sub_0203A72C(v9);
+    UnkStruct_020556C4 *v7;
+    VarsFlags *v8 = SaveData_GetVarsFlags(fieldSystem->saveData);
+    FieldOverworldState *v9 = SaveData_GetFieldOverworldState(fieldSystem->saveData);
+    Location *v10 = sub_0203A72C(v9);
 
     memset(param1, 0, sizeof(UnkStruct_0203D8AC));
 
@@ -87,7 +85,7 @@ void sub_0206B70C (FieldSystem * fieldSystem, UnkStruct_0203D8AC * param1, int p
     z = Player_GetZPos(fieldSystem->playerAvatar);
 
     int v11 = 10 - 1;
-    Location * location = sub_0203A720(v9);
+    Location *location = sub_0203A720(v9);
 
     v6 = location->mapId;
 
@@ -100,7 +98,7 @@ void sub_0206B70C (FieldSystem * fieldSystem, UnkStruct_0203D8AC * param1, int p
 
         v11--;
     }
-    
+
     v6 = sub_02039E30(fieldSystem->unk_2C, x / 32, z / 32);
 
     if (MapHeader_IsOnMainMatrix(v6)) {
@@ -149,14 +147,14 @@ void sub_0206B70C (FieldSystem * fieldSystem, UnkStruct_0203D8AC * param1, int p
     param1->unk_139 = param2;
 }
 
-static void sub_0206B878 (FieldSystem * fieldSystem, UnkStruct_0203D8AC * param1, const char * param2)
+static void sub_0206B878(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1, const char *param2)
 {
     FSFile v0;
     int v1, v2;
     int v3;
-    UnkStruct_0206B878 * v4;
-    UnkUnion_0206B878 * v5;
-    VarsFlags * v6 = SaveData_GetVarsFlags(fieldSystem->saveData);
+    UnkStruct_0206B878 *v4;
+    UnkUnion_0206B878 *v5;
+    VarsFlags *v6 = SaveData_GetVarsFlags(fieldSystem->saveData);
 
     FS_InitFile(&v0);
 

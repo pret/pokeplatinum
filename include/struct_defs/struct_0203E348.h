@@ -4,7 +4,7 @@
 #include "game_records.h"
 
 typedef struct {
-    int * unk_00;
+    int *unk_00;
     int unk_04;
     GameRecords *records;
     int unk_0C;

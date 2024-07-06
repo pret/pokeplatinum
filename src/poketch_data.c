@@ -1,13 +1,13 @@
+#include "poketch_data.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "pokemon.h"
-#include "savedata.h"
-
-#include "savedata.h"
-#include "poketch_data.h"
-#include "pokemon_icon.h"
 #include "savedata/save_table.h"
+
+#include "pokemon.h"
+#include "pokemon_icon.h"
+#include "savedata.h"
 
 int Poketch_SaveSize(void)
 {
@@ -15,15 +15,15 @@ int Poketch_SaveSize(void)
 }
 
 static const struct {
-        u8 x;
-        u8 y;
+    u8 x;
+    u8 y;
 } sDefaultMapMarkers[POKETCH_MAPMARKER_COUNT] = {
-    {104, 152},
-    {120, 152},
-    {136, 152},
-    {152, 152},
-    {168, 152},
-    {184, 152}
+    { 104, 152 },
+    { 120, 152 },
+    { 136, 152 },
+    { 152, 152 },
+    { 168, 152 },
+    { 184, 152 }
 };
 
 void Poketch_Init(PoketchData *poketchData)
@@ -91,7 +91,7 @@ BOOL PoketchData_RegisterApp(PoketchData *poketchData, enum PoketchAppID appID)
         }
 
         appRegistered = TRUE;
-    }    
+    }
 
     return appRegistered;
 }
@@ -304,7 +304,7 @@ u32 PoketchData_PokemonHistoryForm(const PoketchData *poketchData, int index)
     return poketchData->pokemonHistoryQueue[index].form;
 }
 
-PoketchData* SaveData_PoketchData(SaveData *saveData)
+PoketchData *SaveData_PoketchData(SaveData *saveData)
 {
     return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_POKETCH);
 }

@@ -1,65 +1,60 @@
+#include "battle/healthbar.h"
+
 #include <nitro.h>
-#include <string.h>
-
 #include <stdlib.h>
-
-#include "assert.h"
+#include <string.h>
 
 #include "constants/font.h"
 #include "constants/heap.h"
 
-#include "gmm/message_bank_battle_strings.h"
-
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "message.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "sys_task_manager.h"
-#include "strbuf.h"
-#include "pokemon.h"
-
+#include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0205AA50.h"
-#include "battle/struct_ov16_022674C4.h"
-#include "struct_defs/sprite_template.h"
 
-#include "unk_02002F38.h"
-#include "narc.h"
+#include "battle/ov16_0223DF00.h"
+#include "battle/struct_ov16_022674C4.h"
+#include "gmm/message_bank_battle_strings.h"
+
+#include "assert.h"
+#include "cell_actor.h"
+#include "heap.h"
 #include "message.h"
+#include "narc.h"
+#include "pokemon.h"
+#include "strbuf.h"
 #include "string_template.h"
+#include "sys_task.h"
+#include "sys_task_manager.h"
+#include "unk_02002F38.h"
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
-#include "sys_task.h"
-#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
-#include "cell_actor.h"
-#include "strbuf.h"
-#include "pokemon.h"
 #include "unk_0208C098.h"
-#include "battle/ov16_0223DF00.h"
-#include "battle/healthbar.h"
 
-#define HEALTHBAR_SCROLL_SPEED  24
+#define HEALTHBAR_SCROLL_SPEED      24
 #define HEALTHBAR_SCROLL_OUT_OFFSET 160
 
-#define HEALTHBAR_X_OFFSET_SOLO_PLAYER      192
-#define HEALTHBAR_Y_OFFSET_SOLO_PLAYER      116
-#define HEALTHBAR_X_OFFSET_SOLO_ENEMY       58
-#define HEALTHBAR_Y_OFFSET_SOLO_ENEMY       36
-#define HEALTHBAR_X_OFFSET_PLAYER_SLOT_1    HEALTHBAR_X_OFFSET_SOLO_PLAYER
-#define HEALTHBAR_Y_OFFSET_PLAYER_SLOT_1    HEALTHBAR_Y_OFFSET_SOLO_PLAYER - 13
-#define HEALTHBAR_X_OFFSET_PLAYER_SLOT_2    HEALTHBAR_X_OFFSET_SOLO_PLAYER + 6
-#define HEALTHBAR_Y_OFFSET_PLAYER_SLOT_2    HEALTHBAR_Y_OFFSET_SOLO_PLAYER + 16
-#define HEALTHBAR_X_OFFSET_ENEMY_SLOT_1     HEALTHBAR_X_OFFSET_SOLO_ENEMY + 6
-#define HEALTHBAR_Y_OFFSET_ENEMY_SLOT_1     HEALTHBAR_Y_OFFSET_SOLO_ENEMY - 20
-#define HEALTHBAR_X_OFFSET_ENEMY_SLOT_2     HEALTHBAR_X_OFFSET_SOLO_ENEMY
-#define HEALTHBAR_Y_OFFSET_ENEMY_SLOT_2     HEALTHBAR_Y_OFFSET_SOLO_ENEMY + 9
+#define HEALTHBAR_X_OFFSET_SOLO_PLAYER   192
+#define HEALTHBAR_Y_OFFSET_SOLO_PLAYER   116
+#define HEALTHBAR_X_OFFSET_SOLO_ENEMY    58
+#define HEALTHBAR_Y_OFFSET_SOLO_ENEMY    36
+#define HEALTHBAR_X_OFFSET_PLAYER_SLOT_1 HEALTHBAR_X_OFFSET_SOLO_PLAYER
+#define HEALTHBAR_Y_OFFSET_PLAYER_SLOT_1 HEALTHBAR_Y_OFFSET_SOLO_PLAYER - 13
+#define HEALTHBAR_X_OFFSET_PLAYER_SLOT_2 HEALTHBAR_X_OFFSET_SOLO_PLAYER + 6
+#define HEALTHBAR_Y_OFFSET_PLAYER_SLOT_2 HEALTHBAR_Y_OFFSET_SOLO_PLAYER + 16
+#define HEALTHBAR_X_OFFSET_ENEMY_SLOT_1  HEALTHBAR_X_OFFSET_SOLO_ENEMY + 6
+#define HEALTHBAR_Y_OFFSET_ENEMY_SLOT_1  HEALTHBAR_Y_OFFSET_SOLO_ENEMY - 20
+#define HEALTHBAR_X_OFFSET_ENEMY_SLOT_2  HEALTHBAR_X_OFFSET_SOLO_ENEMY
+#define HEALTHBAR_Y_OFFSET_ENEMY_SLOT_2  HEALTHBAR_Y_OFFSET_SOLO_ENEMY + 9
 
-#define HEALTHBAR_WINDOW_BLOCK_SIZE     32
+#define HEALTHBAR_WINDOW_BLOCK_SIZE 32
 
 #define HEALTHBAR_NAME_BLOCK_COUNT_X    8
 #define HEALTHBAR_NAME_BLOCK_COUNT_Y    2
@@ -68,9 +63,8 @@
 #define HEALTHBAR_NAME_BACKGROUND_COLOR 0xF
 #define HEALTHBAR_NAME_FONT_COLOR       MAKE_FONT_COLOR(14, 2, HEALTHBAR_NAME_BACKGROUND_COLOR)
 
-#define VRAM_TRANSFER_DST(vram, transferTable, index_0, index_1, imgProxy) (\
-    (void *)((u32)vram + transferTable[index_0][index_1].pos + imgProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN])\
-)
+#define VRAM_TRANSFER_DST(vram, transferTable, index_0, index_1, imgProxy) ( \
+    (void *)((u32)vram + transferTable[index_0][index_1].pos + imgProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]))
 
 #define S32_MIN -2147483648
 
@@ -80,266 +74,266 @@ typedef struct VRAMTransfer {
 } VRAMTransfer;
 
 typedef struct {
-    Healthbar * unk_00;
-    u8 * unk_04;
+    Healthbar *unk_00;
+    u8 *unk_04;
     u8 unk_08;
     u8 unk_09;
     s8 unk_0A;
 } UnkStruct_ov16_0226834C;
 
 static s32 Healthbar_DrawGauge(Healthbar *healthbar, enum HealthbarGaugeType gaugeType);
-static s32 UpdateGauge(s32 max, s32 cur, s32 diff, s32 * temp, u8 size, u16 fillOffset);
-static u8 FillCells (s32 max, s32 cur, s32 diff, s32 * temp, u8 * cells, u8 cellNum);
+static s32 UpdateGauge(s32 max, s32 cur, s32 diff, s32 *temp, u8 size, u16 fillOffset);
+static u8 FillCells(s32 max, s32 cur, s32 diff, s32 *temp, u8 *cells, u8 cellNum);
 static u32 CalcGaugeFill(s32 param0, s32 param1, s32 param2, u8 param3);
-static const u8 * ov16_02268250(int param0);
-static void DrawGauge(Healthbar * param0, u8 param1);
-static void Healthbar_DrawBattlerName(Healthbar * param0);
-static void Healthbar_DrawLevelText(Healthbar * param0);
-static void Healthbar_DrawLevelNumber(Healthbar * param0);
-static void Healthbar_DrawCurrentHP(Healthbar * param0, u32 param1);
-static void Healthbar_DrawMaxHP(Healthbar * param0);
-static void Healthbar_DrawCaughtIcon(Healthbar * param0);
-static void Healthbar_DrawStatusIcon(Healthbar * param0, int param1);
-static void Healthbar_DrawBallCount(Healthbar * param0, u32 param1);
-static void Healthbar_DrawBallsLeftMessage(Healthbar * param0, u32 param1);
-static void Healthbar_LoadMainPalette(SpriteRenderer * renderer, SpriteGfxHandler * handler, NARC * narc, PaletteData * palette, int type);
-static void ov16_02267244(Healthbar * param0);
-static void ov16_0226728C(Healthbar * param0);
-static const SpriteTemplate* Healthbar_SpriteTemplate(u8 type);
-static const SpriteTemplate * ov16_02268314(u8 param0);
+static const u8 *ov16_02268250(int param0);
+static void DrawGauge(Healthbar *param0, u8 param1);
+static void Healthbar_DrawBattlerName(Healthbar *param0);
+static void Healthbar_DrawLevelText(Healthbar *param0);
+static void Healthbar_DrawLevelNumber(Healthbar *param0);
+static void Healthbar_DrawCurrentHP(Healthbar *param0, u32 param1);
+static void Healthbar_DrawMaxHP(Healthbar *param0);
+static void Healthbar_DrawCaughtIcon(Healthbar *param0);
+static void Healthbar_DrawStatusIcon(Healthbar *param0, int param1);
+static void Healthbar_DrawBallCount(Healthbar *param0, u32 param1);
+static void Healthbar_DrawBallsLeftMessage(Healthbar *param0, u32 param1);
+static void Healthbar_LoadMainPalette(SpriteRenderer *renderer, SpriteGfxHandler *handler, NARC *narc, PaletteData *palette, int type);
+static void ov16_02267244(Healthbar *param0);
+static void ov16_0226728C(Healthbar *param0);
+static const SpriteTemplate *Healthbar_SpriteTemplate(u8 type);
+static const SpriteTemplate *ov16_02268314(u8 param0);
 static void ScrollHealthbarTask(SysTask *task, void *data);
-static void ov16_02268380(SysTask * param0, void * param1);
-void ov16_02268470(Healthbar * param0);
-void ov16_02268498(Healthbar * param0);
-static void ov16_022684BC(SysTask * param0, void * param1);
-static void Healthbar_EnableArrow(Healthbar * param0, int param1);
+static void ov16_02268380(SysTask *param0, void *param1);
+void ov16_02268470(Healthbar *param0);
+void ov16_02268498(Healthbar *param0);
+static void ov16_022684BC(SysTask *param0, void *param1);
+static void Healthbar_EnableArrow(Healthbar *param0, int param1);
 
 __attribute__((aligned(4))) static const s8 sArrowOffsetX[] = {
-    [HEALTHBAR_TYPE_PLAYER_SOLO]   = 72,
-    [HEALTHBAR_TYPE_ENEMY_SOLO]    = 0,
+    [HEALTHBAR_TYPE_PLAYER_SOLO] = 72,
+    [HEALTHBAR_TYPE_ENEMY_SOLO] = 0,
     [HEALTHBAR_TYPE_PLAYER_SLOT_1] = 72,
-    [HEALTHBAR_TYPE_ENEMY_SLOT_1]  = 0,
+    [HEALTHBAR_TYPE_ENEMY_SLOT_1] = 0,
     [HEALTHBAR_TYPE_PLAYER_SLOT_2] = 72,
-    [HEALTHBAR_TYPE_ENEMY_SLOT_2]  = 0,
+    [HEALTHBAR_TYPE_ENEMY_SLOT_2] = 0,
 };
 
 static const VRAMTransfer sBattlerNameVRAMTransfer[][4] = {
     [HEALTHBAR_TYPE_PLAYER_SOLO] = {
-        {19 * HEALTHBAR_WINDOW_BLOCK_SIZE, 5 * HEALTHBAR_WINDOW_BLOCK_SIZE},
-        {27 * HEALTHBAR_WINDOW_BLOCK_SIZE, 5 * HEALTHBAR_WINDOW_BLOCK_SIZE},
-        {80 * HEALTHBAR_WINDOW_BLOCK_SIZE, 3 * HEALTHBAR_WINDOW_BLOCK_SIZE},
-        {88 * HEALTHBAR_WINDOW_BLOCK_SIZE, 3 * HEALTHBAR_WINDOW_BLOCK_SIZE},
+        { 19 * HEALTHBAR_WINDOW_BLOCK_SIZE, 5 * HEALTHBAR_WINDOW_BLOCK_SIZE },
+        { 27 * HEALTHBAR_WINDOW_BLOCK_SIZE, 5 * HEALTHBAR_WINDOW_BLOCK_SIZE },
+        { 80 * HEALTHBAR_WINDOW_BLOCK_SIZE, 3 * HEALTHBAR_WINDOW_BLOCK_SIZE },
+        { 88 * HEALTHBAR_WINDOW_BLOCK_SIZE, 3 * HEALTHBAR_WINDOW_BLOCK_SIZE },
     },
     [HEALTHBAR_TYPE_ENEMY_SOLO] = {
-        {17 * HEALTHBAR_WINDOW_BLOCK_SIZE, 7 * HEALTHBAR_WINDOW_BLOCK_SIZE},
-        {25 * HEALTHBAR_WINDOW_BLOCK_SIZE, 7 * HEALTHBAR_WINDOW_BLOCK_SIZE},
-        {80 * HEALTHBAR_WINDOW_BLOCK_SIZE, 1 * HEALTHBAR_WINDOW_BLOCK_SIZE},
-        {88 * HEALTHBAR_WINDOW_BLOCK_SIZE, 1 * HEALTHBAR_WINDOW_BLOCK_SIZE},
+        { 17 * HEALTHBAR_WINDOW_BLOCK_SIZE, 7 * HEALTHBAR_WINDOW_BLOCK_SIZE },
+        { 25 * HEALTHBAR_WINDOW_BLOCK_SIZE, 7 * HEALTHBAR_WINDOW_BLOCK_SIZE },
+        { 80 * HEALTHBAR_WINDOW_BLOCK_SIZE, 1 * HEALTHBAR_WINDOW_BLOCK_SIZE },
+        { 88 * HEALTHBAR_WINDOW_BLOCK_SIZE, 1 * HEALTHBAR_WINDOW_BLOCK_SIZE },
     },
     [HEALTHBAR_TYPE_PLAYER_SLOT_1] = {
-        {18 * HEALTHBAR_WINDOW_BLOCK_SIZE, 6 * HEALTHBAR_WINDOW_BLOCK_SIZE},
-        {26 * HEALTHBAR_WINDOW_BLOCK_SIZE, 6 * HEALTHBAR_WINDOW_BLOCK_SIZE},
-        {80 * HEALTHBAR_WINDOW_BLOCK_SIZE, 2 * HEALTHBAR_WINDOW_BLOCK_SIZE},
-        {88 * HEALTHBAR_WINDOW_BLOCK_SIZE, 2 * HEALTHBAR_WINDOW_BLOCK_SIZE},
+        { 18 * HEALTHBAR_WINDOW_BLOCK_SIZE, 6 * HEALTHBAR_WINDOW_BLOCK_SIZE },
+        { 26 * HEALTHBAR_WINDOW_BLOCK_SIZE, 6 * HEALTHBAR_WINDOW_BLOCK_SIZE },
+        { 80 * HEALTHBAR_WINDOW_BLOCK_SIZE, 2 * HEALTHBAR_WINDOW_BLOCK_SIZE },
+        { 88 * HEALTHBAR_WINDOW_BLOCK_SIZE, 2 * HEALTHBAR_WINDOW_BLOCK_SIZE },
     },
     [HEALTHBAR_TYPE_ENEMY_SLOT_1] = {
-        {17 * HEALTHBAR_WINDOW_BLOCK_SIZE, 7 * HEALTHBAR_WINDOW_BLOCK_SIZE},
-        {25 * HEALTHBAR_WINDOW_BLOCK_SIZE, 7 * HEALTHBAR_WINDOW_BLOCK_SIZE},
-        {80 * HEALTHBAR_WINDOW_BLOCK_SIZE, 1 * HEALTHBAR_WINDOW_BLOCK_SIZE},
-        {88 * HEALTHBAR_WINDOW_BLOCK_SIZE, 1 * HEALTHBAR_WINDOW_BLOCK_SIZE},
+        { 17 * HEALTHBAR_WINDOW_BLOCK_SIZE, 7 * HEALTHBAR_WINDOW_BLOCK_SIZE },
+        { 25 * HEALTHBAR_WINDOW_BLOCK_SIZE, 7 * HEALTHBAR_WINDOW_BLOCK_SIZE },
+        { 80 * HEALTHBAR_WINDOW_BLOCK_SIZE, 1 * HEALTHBAR_WINDOW_BLOCK_SIZE },
+        { 88 * HEALTHBAR_WINDOW_BLOCK_SIZE, 1 * HEALTHBAR_WINDOW_BLOCK_SIZE },
     },
     [HEALTHBAR_TYPE_PLAYER_SLOT_2] = {
-        {18 * HEALTHBAR_WINDOW_BLOCK_SIZE, 6 * HEALTHBAR_WINDOW_BLOCK_SIZE},
-        {26 * HEALTHBAR_WINDOW_BLOCK_SIZE, 6 * HEALTHBAR_WINDOW_BLOCK_SIZE},
-        {80 * HEALTHBAR_WINDOW_BLOCK_SIZE, 2 * HEALTHBAR_WINDOW_BLOCK_SIZE},
-        {88 * HEALTHBAR_WINDOW_BLOCK_SIZE, 2 * HEALTHBAR_WINDOW_BLOCK_SIZE},
+        { 18 * HEALTHBAR_WINDOW_BLOCK_SIZE, 6 * HEALTHBAR_WINDOW_BLOCK_SIZE },
+        { 26 * HEALTHBAR_WINDOW_BLOCK_SIZE, 6 * HEALTHBAR_WINDOW_BLOCK_SIZE },
+        { 80 * HEALTHBAR_WINDOW_BLOCK_SIZE, 2 * HEALTHBAR_WINDOW_BLOCK_SIZE },
+        { 88 * HEALTHBAR_WINDOW_BLOCK_SIZE, 2 * HEALTHBAR_WINDOW_BLOCK_SIZE },
     },
     [HEALTHBAR_TYPE_ENEMY_SLOT_2] = {
-        {17 * HEALTHBAR_WINDOW_BLOCK_SIZE, 7 * HEALTHBAR_WINDOW_BLOCK_SIZE},
-        {25 * HEALTHBAR_WINDOW_BLOCK_SIZE, 7 * HEALTHBAR_WINDOW_BLOCK_SIZE},
-        {80 * HEALTHBAR_WINDOW_BLOCK_SIZE, 1 * HEALTHBAR_WINDOW_BLOCK_SIZE},
-        {88 * HEALTHBAR_WINDOW_BLOCK_SIZE, 1 * HEALTHBAR_WINDOW_BLOCK_SIZE},
-    }
+        { 17 * HEALTHBAR_WINDOW_BLOCK_SIZE, 7 * HEALTHBAR_WINDOW_BLOCK_SIZE },
+        { 25 * HEALTHBAR_WINDOW_BLOCK_SIZE, 7 * HEALTHBAR_WINDOW_BLOCK_SIZE },
+        { 80 * HEALTHBAR_WINDOW_BLOCK_SIZE, 1 * HEALTHBAR_WINDOW_BLOCK_SIZE },
+        { 88 * HEALTHBAR_WINDOW_BLOCK_SIZE, 1 * HEALTHBAR_WINDOW_BLOCK_SIZE },
+    },
 };
 
 static const VRAMTransfer Unk_ov16_0226F47C[][2] = {
     {
-        {0xA60, 0x40},
-        {0xB60, 0x40}
+        { 0xA60, 0x40 },
+        { 0xB60, 0x40 },
     },
     {
-        {0xA20, 0x40},
-        {0xB20, 0x40}
+        { 0xA20, 0x40 },
+        { 0xB20, 0x40 },
     },
     {
-        {0xA40, 0x40},
-        {0xB40, 0x40}
+        { 0xA40, 0x40 },
+        { 0xB40, 0x40 },
     },
     {
-        {0xA20, 0x40},
-        {0xB20, 0x40}
+        { 0xA20, 0x40 },
+        { 0xB20, 0x40 },
     },
     {
-        {0xA40, 0x40},
-        {0xB40, 0x40}
+        { 0xA40, 0x40 },
+        { 0xB40, 0x40 },
     },
     {
-        {0xA20, 0x40},
-        {0xB20, 0x40}
-    }
+        { 0xA20, 0x40 },
+        { 0xB20, 0x40 },
+    },
 };
 
 static const VRAMTransfer Unk_ov16_0226F3EC[][2] = {
     {
-        {0xAA0, 0x60},
-        {0xBA0, 0x60}
+        { 0xAA0, 0x60 },
+        { 0xBA0, 0x60 },
     },
     {
-        {0xA60, 0x60},
-        {0xB60, 0x60}
+        { 0xA60, 0x60 },
+        { 0xB60, 0x60 },
     },
     {
-        {0xA80, 0x60},
-        {0xB80, 0x60}
+        { 0xA80, 0x60 },
+        { 0xB80, 0x60 },
     },
     {
-        {0xA60, 0x60},
-        {0xB60, 0x60}
+        { 0xA60, 0x60 },
+        { 0xB60, 0x60 },
     },
     {
-        {0xA80, 0x60},
-        {0xB80, 0x60}
+        { 0xA80, 0x60 },
+        { 0xB80, 0x60 },
     },
     {
-        {0xA60, 0x60},
-        {0xB60, 0x60}
-    }
+        { 0xA60, 0x60 },
+        { 0xB60, 0x60 },
+    },
 };
 
 static const VRAMTransfer Unk_ov16_0226F41C[][2] = {
     {
-        {0x0, 0x0},
-        {0xD00, 0x60}
+        { 0x0, 0x0 },
+        { 0xD00, 0x60 },
     },
     {
-        {0x620, 0x60},
-        {0x0, 0x0}
+        { 0x620, 0x60 },
+        { 0x0, 0x0 },
     },
     {
-        {0x0, 0x0},
-        {0xC00, 0x60}
+        { 0x0, 0x0 },
+        { 0xC00, 0x60 },
     },
     {
-        {0x620, 0x60},
-        {0x0, 0x0}
+        { 0x620, 0x60 },
+        { 0x0, 0x0 },
     },
     {
-        {0x0, 0x0},
-        {0xC00, 0x60}
+        { 0x0, 0x0 },
+        { 0xC00, 0x60 },
     },
     {
-        {0x620, 0x60},
-        {0x0, 0x0}
-    }
+        { 0x620, 0x60 },
+        { 0x0, 0x0 },
+    },
 };
 
 static const VRAMTransfer Unk_ov16_0226F3BC[] = {
-    {0xD80, 0x60},
-    {0x6A0, 0x60},
-    {0xC80, 0x60},
-    {0x6A0, 0x60},
-    {0xC80, 0x60},
-    {0x6A0, 0x60}
+    { 0xD80, 0x60 },
+    { 0x6A0, 0x60 },
+    { 0xC80, 0x60 },
+    { 0x6A0, 0x60 },
+    { 0xC80, 0x60 },
+    { 0x6A0, 0x60 },
 };
 
 static const VRAMTransfer Unk_ov16_0226F44C[][2] = {
     {
-        {0x4E0, 0x0},
-        {0xC20, 0xC0}
+        { 0x4E0, 0x0 },
+        { 0xC20, 0xC0 },
     },
     {
-        {0x4E0, 0x20},
-        {0xC00, 0xA0}
+        { 0x4E0, 0x20 },
+        { 0xC00, 0xA0 },
     },
     {
-        {0x4E0, 0x0},
-        {0xC00, 0xC0}
+        { 0x4E0, 0x0 },
+        { 0xC00, 0xC0 },
     },
     {
-        {0x4E0, 0x20},
-        {0xC00, 0xA0}
+        { 0x4E0, 0x20 },
+        { 0xC00, 0xA0 },
     },
     {
-        {0x4E0, 0x0},
-        {0xC00, 0xC0}
+        { 0x4E0, 0x0 },
+        { 0xC00, 0xC0 },
     },
     {
-        {0x4E0, 0x20},
-        {0xC00, 0xA0}
-    }
+        { 0x4E0, 0x20 },
+        { 0xC00, 0xA0 },
+    },
 };
 
 static const VRAMTransfer Unk_ov16_0226F38C[] = {
-    {0x460, 0x20},
-    {0x420, 0x20},
-    {0x440, 0x20},
-    {0x420, 0x20},
-    {0x440, 0x20},
-    {0x420, 0x20}
+    { 0x460, 0x20 },
+    { 0x420, 0x20 },
+    { 0x440, 0x20 },
+    { 0x420, 0x20 },
+    { 0x440, 0x20 },
+    { 0x420, 0x20 },
 };
 
 static const VRAMTransfer Unk_ov16_0226F35C[] = {
-    {0x480, 0x60},
-    {0x440, 0x60},
-    {0x460, 0x60},
-    {0x440, 0x60},
-    {0x460, 0x60},
-    {0x440, 0x60}
+    { 0x480, 0x60 },
+    { 0x440, 0x60 },
+    { 0x460, 0x60 },
+    { 0x440, 0x60 },
+    { 0x460, 0x60 },
+    { 0x440, 0x60 },
 };
 
 static const VRAMTransfer Unk_ov16_0226F33C[4] = {
-    {0x240, 0xC0},
-    {0x340, 0xC0},
-    {0xA00, 0xE0},
-    {0xB00, 0xE0}
+    { 0x240, 0xC0 },
+    { 0x340, 0xC0 },
+    { 0xA00, 0xE0 },
+    { 0xB00, 0xE0 },
 };
 
 static const VRAMTransfer Unk_ov16_0226F34C[4] = {
-    {0x440, 0xC0},
-    {0x540, 0xC0},
-    {0xC00, 0xE0},
-    {0xD00, 0xE0}
+    { 0x440, 0xC0 },
+    { 0x540, 0xC0 },
+    { 0xC00, 0xE0 },
+    { 0xD00, 0xE0 },
 };
 
 static const VRAMTransfer Unk_ov16_0226F374[] = {
-    {0x0, 0x0},
-    {0x0, 0x0},
-    {0x4C0, 0x40},
-    {0x0, 0x0},
-    {0x4C0, 0x40},
-    {0x0, 0x0}
+    { 0x0, 0x0 },
+    { 0x0, 0x0 },
+    { 0x4C0, 0x40 },
+    { 0x0, 0x0 },
+    { 0x4C0, 0x40 },
+    { 0x0, 0x0 },
 };
 
 static const VRAMTransfer Unk_ov16_0226F3A4[] = {
-    {0x0, 0x0},
-    {0x0, 0x0},
-    {0xCC0, 0x20},
-    {0x0, 0x0},
-    {0xCC0, 0x20},
-    {0x0, 0x0}
+    { 0x0, 0x0 },
+    { 0x0, 0x0 },
+    { 0xCC0, 0x20 },
+    { 0x0, 0x0 },
+    { 0xCC0, 0x20 },
+    { 0x0, 0x0 },
 };
 
 static const VRAMTransfer Unk_ov16_0226F3D4[] = {
-    {0x0, 0x0},
-    {0x0, 0x0},
-    {0xC60, 0x20},
-    {0x0, 0x0},
-    {0xC60, 0x20},
-    {0x0, 0x0}
+    { 0x0, 0x0 },
+    { 0x0, 0x0 },
+    { 0xC60, 0x20 },
+    { 0x0, 0x0 },
+    { 0xC60, 0x20 },
+    { 0x0, 0x0 },
 };
 
-#define HEALTHBAR_MAIN_PALETTE_NCLR     71
-#define HEALTHBAR_SAFARI_PALETTE_NCLR   81
+#define HEALTHBAR_MAIN_PALETTE_NCLR   71
+#define HEALTHBAR_SAFARI_PALETTE_NCLR 81
 
 #define HEALTHBAR_MAIN_PALETTE_RESID    20006
 #define HEALTHBAR_EFFECTS_PALETTE_RESID 20007
@@ -498,7 +492,7 @@ static const SpriteTemplate Unk_ov16_0226F514 = {
     17,
     0x0,
     NNS_G2D_VRAM_TYPE_2DMAIN,
-    {0xB9, 0x4E26, 0xB8, 0xB7, 0xFFFFFFFF, 0xFFFFFFFF},
+    { 0xB9, 0x4E26, 0xB8, 0xB7, 0xFFFFFFFF, 0xFFFFFFFF },
     0x0,
     0x0
 };
@@ -540,9 +534,9 @@ void Healthbar_LoadResources(SpriteRenderer *renderer, SpriteGfxHandler *gfxHand
     }
 }
 
-static void Healthbar_LoadMainPalette (SpriteRenderer * renderer, SpriteGfxHandler * handler, NARC * narc, PaletteData * palette, int type)
+static void Healthbar_LoadMainPalette(SpriteRenderer *renderer, SpriteGfxHandler *handler, NARC *narc, PaletteData *palette, int type)
 {
-    const SpriteTemplate * template = ov16_02268314(type);
+    const SpriteTemplate *template = ov16_02268314(type);
 
     if (template != NULL) {
         SpriteRenderer_LoadCharResObjFromOpenNarc(renderer, handler, narc, template->resources[0], TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, template->resources[0]);
@@ -552,10 +546,10 @@ static void Healthbar_LoadMainPalette (SpriteRenderer * renderer, SpriteGfxHandl
     }
 }
 
-CellActorData * Healthbar_LoadCellActor (SpriteRenderer * renderer, SpriteGfxHandler * handler, int type)
+CellActorData *Healthbar_LoadCellActor(SpriteRenderer *renderer, SpriteGfxHandler *handler, int type)
 {
-    const SpriteTemplate * template = Healthbar_SpriteTemplate(type);
-    CellActorData * data = SpriteActor_LoadResources(renderer, handler, template);
+    const SpriteTemplate *template = Healthbar_SpriteTemplate(type);
+    CellActorData *data = SpriteActor_LoadResources(renderer, handler, template);
 
     SpriteActor_UpdateObject(data->unk_00);
     return data;
@@ -681,7 +675,7 @@ void Healthbar_DrawInfo(Healthbar *healthbar, u32 hp, u32 flags)
     }
 }
 
-void ov16_02267220 (Healthbar * param0)
+void ov16_02267220(Healthbar *param0)
 {
     if (param0->unk_50 != NULL) {
         SysTask_Done(param0->unk_50);
@@ -696,7 +690,7 @@ void ov16_02267220 (Healthbar * param0)
     param0->mainActor = NULL;
 }
 
-static void ov16_02267244 (Healthbar * param0)
+static void ov16_02267244(Healthbar *param0)
 {
     if (param0->arrowActor == NULL) {
         return;
@@ -706,11 +700,11 @@ static void ov16_02267244 (Healthbar * param0)
     param0->arrowActor = NULL;
 }
 
-void ov16_02267258 (Healthbar * param0)
+void ov16_02267258(Healthbar *param0)
 {
-    SpriteRenderer * v0;
-    SpriteGfxHandler * v1;
-    const SpriteTemplate * v2;
+    SpriteRenderer *v0;
+    SpriteGfxHandler *v1;
+    const SpriteTemplate *v2;
 
     v2 = Healthbar_SpriteTemplate(param0->type);
     v0 = ov16_0223E010(param0->battleSys);
@@ -721,11 +715,11 @@ void ov16_02267258 (Healthbar * param0)
     SpriteGfxHandler_UnloadAnimObjById(v1, v2->resources[3]);
 }
 
-static void ov16_0226728C (Healthbar * param0)
+static void ov16_0226728C(Healthbar *param0)
 {
-    SpriteRenderer * v0;
-    SpriteGfxHandler * v1;
-    const SpriteTemplate * v2;
+    SpriteRenderer *v0;
+    SpriteGfxHandler *v1;
+    const SpriteTemplate *v2;
 
     v2 = ov16_02268314(param0->type);
 
@@ -741,13 +735,13 @@ static void ov16_0226728C (Healthbar * param0)
     SpriteGfxHandler_UnloadAnimObjById(v1, v2->resources[3]);
 }
 
-void ov16_022672C4 (Healthbar * param0)
+void ov16_022672C4(Healthbar *param0)
 {
-    const SpriteTemplate * v0;
-    SpriteRenderer * v1;
-    SpriteGfxHandler * v2;
-    PaletteData * v3;
-    NARC * v4;
+    const SpriteTemplate *v0;
+    SpriteRenderer *v1;
+    SpriteGfxHandler *v2;
+    PaletteData *v3;
+    NARC *v4;
 
     v4 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
     v1 = ov16_0223E010(param0->battleSys);
@@ -767,7 +761,7 @@ void ov16_022672C4 (Healthbar * param0)
     NARC_dtor(v4);
 }
 
-void ov16_02267360 (Healthbar * param0)
+void ov16_02267360(Healthbar *param0)
 {
     ov16_02267220(param0);
     ov16_02267258(param0);
@@ -775,11 +769,11 @@ void ov16_02267360 (Healthbar * param0)
     ov16_0226728C(param0);
 }
 
-void ov16_0226737C (Healthbar * param0)
+void ov16_0226737C(Healthbar *param0)
 {
-    const u8 * v0;
-    NNSG2dImageProxy * v1;
-    void * v2;
+    const u8 *v0;
+    NNSG2dImageProxy *v1;
+    void *v2;
 
     switch (param0->type) {
     case 2:
@@ -842,7 +836,7 @@ void Healthbar_CalcHP(Healthbar *healthbar, int damage)
     }
 }
 
-s32 ov16_022674F8 (Healthbar * param0)
+s32 ov16_022674F8(Healthbar *param0)
 {
     s32 v0;
 
@@ -858,7 +852,7 @@ s32 ov16_022674F8 (Healthbar * param0)
     return v0;
 }
 
-void Healthbar_CalcExp (Healthbar * param0, int param1)
+void Healthbar_CalcExp(Healthbar *param0, int param1)
 {
     param0->expTemp = -2147483648;
 
@@ -881,7 +875,7 @@ void Healthbar_CalcExp (Healthbar * param0, int param1)
     }
 }
 
-s32 ov16_02267560 (Healthbar * param0)
+s32 ov16_02267560(Healthbar *param0)
 {
     s32 v0;
 
@@ -894,7 +888,7 @@ s32 ov16_02267560 (Healthbar * param0)
     return v0;
 }
 
-void ov16_0226757C (Healthbar * param0)
+void ov16_0226757C(Healthbar *param0)
 {
     if (param0->arrowActor != NULL) {
         CellActor_SetAnimateFlag(param0->arrowActor->unk_00, 1);
@@ -906,7 +900,7 @@ void ov16_0226757C (Healthbar * param0)
     }
 }
 
-void ov16_022675AC (Healthbar * param0)
+void ov16_022675AC(Healthbar *param0)
 {
     if (param0->arrowActor != NULL) {
         CellActor_SetAnimateFlag(param0->arrowActor->unk_00, 0);
@@ -917,7 +911,7 @@ void ov16_022675AC (Healthbar * param0)
     ov16_02268498(param0);
 }
 
-void ov16_022675D8 (Healthbar * param0, int param1)
+void ov16_022675D8(Healthbar *param0, int param1)
 {
     if (param0->mainActor == NULL) {
         return;
@@ -932,9 +926,9 @@ void ov16_022675D8 (Healthbar * param0, int param1)
 
 /**
  * @brief Enable the extended arrow-graphic used by the healthbar for Pokemon battlers.
- * 
- * @param battleSys 
- * @param enable 
+ *
+ * @param battleSys
+ * @param enable
  */
 static void Healthbar_EnableArrow(Healthbar *battleSys, BOOL enable)
 {
@@ -944,7 +938,7 @@ static void Healthbar_EnableArrow(Healthbar *battleSys, BOOL enable)
 
     // Safari battles don't get an arrow.
     if ((BattleSystem_BattleType(battleSys->battleSys) & (BATTLE_TYPE_SAFARI | BATTLE_TYPE_PAL_PARK))
-            && enable == TRUE) {
+        && enable == TRUE) {
         return;
     }
 
@@ -1007,9 +1001,9 @@ void Healthbar_Scroll(Healthbar *healthbar, enum HealthbarScrollDirection direct
 
 /**
  * @brief Scroll the healthbar in or out by the configured scroll-speed value.
- * 
- * @param task 
- * @param data 
+ *
+ * @param task
+ * @param data
  */
 static void ScrollHealthbarTask(SysTask *task, void *data)
 {
@@ -1080,8 +1074,8 @@ static void ScrollHealthbarTask(SysTask *task, void *data)
 
 /**
  * @brief Draw the battler's name onto the healthbar.
- * 
- * @param healthbar 
+ *
+ * @param healthbar
  */
 static void Healthbar_DrawBattlerName(Healthbar *healthbar)
 {
@@ -1108,11 +1102,7 @@ static void Healthbar_DrawBattlerName(Healthbar *healthbar)
     StringTemplate_SetNickname(strFormatter, 0, boxMon);
     StringTemplate_Format(strFormatter, nickname, template);
 
-    BGL_AddFramelessWindow(bgl, &window,
-        HEALTHBAR_NAME_BLOCK_COUNT_X,
-        HEALTHBAR_NAME_BLOCK_COUNT_Y,
-        HEALTHBAR_NAME_WINDOW_OFFSET,
-        HEALTHBAR_NAME_BACKGROUND_COLOR);
+    BGL_AddFramelessWindow(bgl, &window, HEALTHBAR_NAME_BLOCK_COUNT_X, HEALTHBAR_NAME_BLOCK_COUNT_Y, HEALTHBAR_NAME_WINDOW_OFFSET, HEALTHBAR_NAME_BACKGROUND_COLOR);
     PrintStringWithColorAndMargins(&window, FONT_SYSTEM, nickname, 0, 0, 0xFF, HEALTHBAR_NAME_FONT_COLOR, 0, 0, NULL);
     buf = window.unk_0C;
 
@@ -1142,11 +1132,11 @@ static void Healthbar_DrawBattlerName(Healthbar *healthbar)
     Strbuf_Free(template);
 }
 
-static void Healthbar_DrawLevelText (Healthbar * param0)
+static void Healthbar_DrawLevelText(Healthbar *param0)
 {
-    NNSG2dImageProxy * v0;
-    const u8 * v1;
-    const u8 * v2;
+    NNSG2dImageProxy *v0;
+    const u8 *v1;
+    const u8 *v2;
     int v3, v4;
 
     if (param0->unk_49 == 0) {
@@ -1164,7 +1154,7 @@ static void Healthbar_DrawLevelText (Healthbar * param0)
     v2 = ov16_02268250(v4);
 
     {
-        void * v5;
+        void *v5;
 
         v5 = G2_GetOBJCharPtr();
         v0 = SpriteActor_ImageProxy(param0->mainActor->unk_00);
@@ -1174,10 +1164,10 @@ static void Healthbar_DrawLevelText (Healthbar * param0)
     }
 }
 
-static void Healthbar_DrawLevelNumber (Healthbar * param0)
+static void Healthbar_DrawLevelNumber(Healthbar *param0)
 {
-    u8 * v0, * v1;
-    NNSG2dImageProxy * v2;
+    u8 *v0, *v1;
+    NNSG2dImageProxy *v2;
     int v3, v4, v5, v6;
 
     v3 = 3 * 0x20;
@@ -1188,8 +1178,8 @@ static void Healthbar_DrawLevelNumber (Healthbar * param0)
     sub_0200C67C(ov16_0223E054(param0->battleSys), param0->unk_48, 3, 0, v0);
 
     {
-        void * v7;
-        u8 * v8, * v9;
+        void *v7;
+        u8 *v8, *v9;
 
         v7 = G2_GetOBJCharPtr();
         v2 = SpriteActor_ImageProxy(param0->mainActor->unk_00);
@@ -1220,10 +1210,10 @@ static void Healthbar_DrawLevelNumber (Healthbar * param0)
     Heap_FreeToHeap(v1);
 }
 
-static void Healthbar_DrawCurrentHP (Healthbar * param0, u32 param1)
+static void Healthbar_DrawCurrentHP(Healthbar *param0, u32 param1)
 {
-    u8 * v0;
-    NNSG2dImageProxy * v1;
+    u8 *v0;
+    NNSG2dImageProxy *v1;
 
     v0 = Heap_AllocFromHeap(5, 3 * 0x20);
 
@@ -1231,8 +1221,8 @@ static void Healthbar_DrawCurrentHP (Healthbar * param0, u32 param1)
     sub_0200C67C(ov16_0223E04C(param0->battleSys), param1, 3, 1, v0);
 
     {
-        void * v2;
-        u8 * v3;
+        void *v2;
+        u8 *v3;
 
         v2 = G2_GetOBJCharPtr();
         v1 = SpriteActor_ImageProxy(param0->mainActor->unk_00);
@@ -1245,10 +1235,10 @@ static void Healthbar_DrawCurrentHP (Healthbar * param0, u32 param1)
     Heap_FreeToHeap(v0);
 }
 
-static void Healthbar_DrawMaxHP (Healthbar * param0)
+static void Healthbar_DrawMaxHP(Healthbar *param0)
 {
-    u8 * v0;
-    NNSG2dImageProxy * v1;
+    u8 *v0;
+    NNSG2dImageProxy *v1;
 
     v0 = Heap_AllocFromHeap(5, 3 * 0x20);
 
@@ -1256,8 +1246,8 @@ static void Healthbar_DrawMaxHP (Healthbar * param0)
     sub_0200C67C(ov16_0223E04C(param0->battleSys), param0->maxHP, 3, 0, v0);
 
     {
-        void * v2;
-        u8 * v3;
+        void *v2;
+        u8 *v3;
 
         v2 = G2_GetOBJCharPtr();
         v1 = SpriteActor_ImageProxy(param0->mainActor->unk_00);
@@ -1269,10 +1259,10 @@ static void Healthbar_DrawMaxHP (Healthbar * param0)
     Heap_FreeToHeap(v0);
 }
 
-static void Healthbar_DrawCaughtIcon (Healthbar * param0)
+static void Healthbar_DrawCaughtIcon(Healthbar *param0)
 {
-    NNSG2dImageProxy * v0;
-    const u8 * v1;
+    NNSG2dImageProxy *v0;
+    const u8 *v1;
 
     if (param0->unk_4B == 1) {
         v1 = ov16_02268250(59);
@@ -1281,7 +1271,7 @@ static void Healthbar_DrawCaughtIcon (Healthbar * param0)
     }
 
     {
-        void * v2;
+        void *v2;
 
         v2 = G2_GetOBJCharPtr();
         v0 = SpriteActor_ImageProxy(param0->mainActor->unk_00);
@@ -1290,15 +1280,15 @@ static void Healthbar_DrawCaughtIcon (Healthbar * param0)
     }
 }
 
-static void Healthbar_DrawStatusIcon (Healthbar * param0, int param1)
+static void Healthbar_DrawStatusIcon(Healthbar *param0, int param1)
 {
-    NNSG2dImageProxy * v0;
-    const u8 * v1;
+    NNSG2dImageProxy *v0;
+    const u8 *v1;
 
     v1 = ov16_02268250(param1);
 
     {
-        void * v2;
+        void *v2;
 
         v2 = G2_GetOBJCharPtr();
         v0 = SpriteActor_ImageProxy(param0->mainActor->unk_00);
@@ -1307,14 +1297,14 @@ static void Healthbar_DrawStatusIcon (Healthbar * param0, int param1)
     }
 }
 
-static void Healthbar_DrawBallCount (Healthbar * param0, u32 param1)
+static void Healthbar_DrawBallCount(Healthbar *param0, u32 param1)
 {
-    BGL * v0;
-    u8 * v1;
-    NNSG2dImageProxy * v2;
+    BGL *v0;
+    u8 *v1;
+    NNSG2dImageProxy *v2;
     Window v3;
-    MessageLoader * v4;
-    Strbuf* v5;
+    MessageLoader *v4;
+    Strbuf *v5;
 
     v0 = BattleSystem_BGL(param0->battleSys);
     v4 = BattleSystem_MessageLoader(param0->battleSys);
@@ -1326,13 +1316,13 @@ static void Healthbar_DrawBallCount (Healthbar * param0, u32 param1)
     }
 
     BGL_AddFramelessWindow(v0, &v3, 13, 2, 0, 0xf);
-    PrintStringWithColorAndMargins(&v3, 0, v5, 0, 0, 0xff, ((u32)(((0xe & 0xff) << 16) | ((2 & 0xff) << 8) | (((0xf & 0xff) << 0)))), 0, 0, NULL);
+    PrintStringWithColorAndMargins(&v3, 0, v5, 0, 0, 0xff, ((u32)(((0xe & 0xff) << 16) | ((2 & 0xff) << 8) | ((0xf & 0xff) << 0))), 0, 0, NULL);
 
     v1 = v3.unk_0C;
 
     {
-        void * v6;
-        u8 * v7, * v8;
+        void *v6;
+        u8 *v7, *v8;
 
         v6 = G2_GetOBJCharPtr();
         v2 = SpriteActor_ImageProxy(param0->mainActor->unk_00);
@@ -1350,15 +1340,15 @@ static void Healthbar_DrawBallCount (Healthbar * param0, u32 param1)
     Strbuf_Free(v5);
 }
 
-static void Healthbar_DrawBallsLeftMessage (Healthbar * param0, u32 param1)
+static void Healthbar_DrawBallsLeftMessage(Healthbar *param0, u32 param1)
 {
-    BGL * v0;
-    u8 * v1;
-    NNSG2dImageProxy * v2;
+    BGL *v0;
+    u8 *v1;
+    NNSG2dImageProxy *v2;
     Window v3;
-    MessageLoader * v4;
-    Strbuf* v5, * v6;
-    StringTemplate * v7;
+    MessageLoader *v4;
+    Strbuf *v5, *v6;
+    StringTemplate *v7;
 
     v0 = BattleSystem_BGL(param0->battleSys);
     v4 = BattleSystem_MessageLoader(param0->battleSys);
@@ -1374,13 +1364,13 @@ static void Healthbar_DrawBallsLeftMessage (Healthbar * param0, u32 param1)
     StringTemplate_SetNumber(v7, 0, param0->unk_27, 2, 1, 1);
     StringTemplate_Format(v7, v5, v6);
     BGL_AddFramelessWindow(v0, &v3, 13, 2, 0, 0xf);
-    PrintStringWithColorAndMargins(&v3, 0, v5, 0, 0, 0xff, ((u32)(((0xe & 0xff) << 16) | ((2 & 0xff) << 8) | (((0xf & 0xff) << 0)))), 0, 0, NULL);
+    PrintStringWithColorAndMargins(&v3, 0, v5, 0, 0, 0xff, ((u32)(((0xe & 0xff) << 16) | ((2 & 0xff) << 8) | ((0xf & 0xff) << 0))), 0, 0, NULL);
 
     v1 = v3.unk_0C;
 
     {
-        void * v8;
-        u8 * v9, * v10;
+        void *v8;
+        u8 *v9, *v10;
 
         v8 = G2_GetOBJCharPtr();
         v2 = SpriteActor_ImageProxy(param0->mainActor->unk_00);
@@ -1431,16 +1421,16 @@ static s32 Healthbar_DrawGauge(Healthbar *healthbar, enum HealthbarGaugeType gau
     return result;
 }
 
-static void DrawGauge (Healthbar * param0, u8 param1)
+static void DrawGauge(Healthbar *param0, u8 param1)
 {
     u8 v0;
     u8 v1[12];
     u8 v2, v3;
     u8 v4;
     u8 v5;
-    const u8 * v6;
-    void * v7;
-    NNSG2dImageProxy * v8;
+    const u8 *v6;
+    void *v7;
+    NNSG2dImageProxy *v8;
     int v9;
 
     v7 = G2_GetOBJCharPtr();
@@ -1506,7 +1496,7 @@ static void DrawGauge (Healthbar * param0, u8 param1)
 /**
  * @brief Update the pixels of a gauge based on the calculated
  * change in the current value of a gauge.
- * 
+ *
  * @param cur       Current value of the gauge
  * @param diff      Change to be applied to the current value
  * @param max       Max value of the gauge
@@ -1514,7 +1504,7 @@ static void DrawGauge (Healthbar * param0, u8 param1)
  * @param temp      Temporary value stored in the gauge
  * @return          Number of pixels to be filled
  */
-static s32 UpdateGauge (s32 max, s32 cur, s32 diff, s32 * temp, u8 size, u16 fillOffset)
+static s32 UpdateGauge(s32 max, s32 cur, s32 diff, s32 *temp, u8 size, u16 fillOffset)
 {
     s32 updated, final, ratio;
 
@@ -1591,7 +1581,7 @@ static s32 UpdateGauge (s32 max, s32 cur, s32 diff, s32 * temp, u8 size, u16 fil
     return final;
 }
 
-static u8 FillCells (s32 max, s32 cur, s32 diff, s32 * temp, u8 * cells, u8 cellNum)
+static u8 FillCells(s32 max, s32 cur, s32 diff, s32 *temp, u8 *cells, u8 cellNum)
 {
     int cell;
     u32 offset, pixels, final;
@@ -1608,7 +1598,7 @@ static u8 FillCells (s32 max, s32 cur, s32 diff, s32 * temp, u8 * cells, u8 cell
     for (cell = 0; cell < cellNum; cell++) {
         cells[cell] = 0;
     }
-    
+
     if (max < offset) {
         pixels = (*temp * offset / max) >> 8;
     } else {
@@ -1638,7 +1628,7 @@ static u8 FillCells (s32 max, s32 cur, s32 diff, s32 * temp, u8 * cells, u8 cell
 /**
  * @brief Calculate the number of pixels that will need to be filled to account
  * for a change in the current value of a gauge.
- * 
+ *
  * @param curVal    Current value of the gauge
  * @param diff      Change to be applied to the current value
  * @param maxVal    Max value of the gauge
@@ -1662,7 +1652,7 @@ static u32 CalcGaugeFill(s32 curVal, s32 diff, s32 maxVal, u8 gaugeSize)
     return abs(curPixels - newPixels);
 }
 
-static const u8 * ov16_02268250 (int param0)
+static const u8 *ov16_02268250(int param0)
 {
     return &Unk_ov16_0226F6AC[param0 * 0x20];
 }
@@ -1704,12 +1694,12 @@ u8 Healthbar_Type(int battlerType, u32 battleType)
 
 /**
  * @brief Grab the sprite template that applies to a given healthbar type.
- * 
+ *
  * @param type  The healthbar type. See enum HealthbarType for accepted values.
  * @return      Address of the SpriteTemplate struct which applies to this
  *              healthbar type.
  */
-static const SpriteTemplate* Healthbar_SpriteTemplate(u8 type)
+static const SpriteTemplate *Healthbar_SpriteTemplate(u8 type)
 {
     switch (type) {
     case HEALTHBAR_TYPE_PLAYER_SOLO:
@@ -1740,9 +1730,9 @@ static const SpriteTemplate* Healthbar_SpriteTemplate(u8 type)
     }
 }
 
-static const SpriteTemplate * ov16_02268314 (u8 param0)
+static const SpriteTemplate *ov16_02268314(u8 param0)
 {
-    const SpriteTemplate * v0;
+    const SpriteTemplate *v0;
 
     switch (param0) {
     case 0:
@@ -1764,9 +1754,9 @@ static const SpriteTemplate * ov16_02268314 (u8 param0)
     return v0;
 }
 
-void ov16_0226834C (Healthbar * param0, u8 * param1)
+void ov16_0226834C(Healthbar *param0, u8 *param1)
 {
-    UnkStruct_ov16_0226834C * v0;
+    UnkStruct_ov16_0226834C *v0;
 
     *param1 = 0;
 
@@ -1779,12 +1769,12 @@ void ov16_0226834C (Healthbar * param0, u8 * param1)
     SysTask_Start(ov16_02268380, v0, 1000);
 }
 
-static void ov16_02268380 (SysTask * param0, void * param1)
+static void ov16_02268380(SysTask *param0, void *param1)
 {
-    UnkStruct_ov16_0226834C * v0 = param1;
-    SpriteGfxHandler * v1;
+    UnkStruct_ov16_0226834C *v0 = param1;
+    SpriteGfxHandler *v1;
     int v2;
-    PaletteData * v3;
+    PaletteData *v3;
 
     v1 = ov16_0223E018(v0->unk_00->battleSys);
     v3 = BattleSystem_PaletteSys(v0->unk_00->battleSys);
@@ -1828,17 +1818,17 @@ static void ov16_02268380 (SysTask * param0, void * param1)
     }
 }
 
-void ov16_02268468 (Healthbar * param0)
+void ov16_02268468(Healthbar *param0)
 {
     return;
 }
 
-void ov16_0226846C (Healthbar * param0)
+void ov16_0226846C(Healthbar *param0)
 {
     return;
 }
 
-void ov16_02268470 (Healthbar * param0)
+void ov16_02268470(Healthbar *param0)
 {
     if (param0->unk_50 != NULL) {
         return;
@@ -1848,7 +1838,7 @@ void ov16_02268470 (Healthbar * param0)
     param0->unk_50 = SysTask_Start(ov16_022684BC, param0, 1010);
 }
 
-void ov16_02268498 (Healthbar * param0)
+void ov16_02268498(Healthbar *param0)
 {
     if (param0->unk_50 != NULL) {
         SysTask_Done(param0->unk_50);
@@ -1859,9 +1849,9 @@ void ov16_02268498 (Healthbar * param0)
     Healthbar_OffsetPositionXY(param0, 0, 0);
 }
 
-static void ov16_022684BC (SysTask * param0, void * param1)
+static void ov16_022684BC(SysTask *param0, void *param1)
 {
-    Healthbar * v0 = param1;
+    Healthbar *v0 = param1;
     int v1;
 
     v0->unk_54 += 20;

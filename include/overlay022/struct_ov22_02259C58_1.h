@@ -1,14 +1,14 @@
 #ifndef POKEPLATINUM_STRUCT_OV22_02259C58_1_H
 #define POKEPLATINUM_STRUCT_OV22_02259C58_1_H
 
-#include "cell_actor.h"
-
 #include "overlay022/funcptr_ov22_02259D78.h"
 
+#include "cell_actor.h"
+
 typedef struct {
-    CellActorInitParamsEx * unk_00;
+    CellActorInitParamsEx *unk_00;
     UnkFuncPtr_ov22_02259D78 unk_04;
-    void * unk_08;
+    void *unk_08;
     int unk_0C;
 } UnkStruct_ov22_02259C58_1;
 

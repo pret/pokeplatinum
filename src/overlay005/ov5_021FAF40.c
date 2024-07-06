@@ -1,20 +1,23 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay005/const_ov5_021FD77C.h"
+#include "struct_defs/struct_020217F4.h"
+
+#include "overlay005/const_ov5_021FAF40.h"
+#include "overlay005/const_ov5_021FAF48.h"
 #include "overlay005/const_ov5_021FAF50.h"
-#include "overlay005/const_ov5_021FB97C.h"
-#include "overlay005/const_ov5_021FB5BC.h"
 #include "overlay005/const_ov5_021FB470.h"
 #include "overlay005/const_ov5_021FB484.h"
-#include "overlay005/const_ov5_021FAF48.h"
-#include "overlay005/const_ov5_021FB67C.h"
-#include "overlay005/const_ov5_021FC194.h"
 #include "overlay005/const_ov5_021FB51C.h"
+#include "overlay005/const_ov5_021FB5BC.h"
+#include "overlay005/const_ov5_021FB67C.h"
+#include "overlay005/const_ov5_021FB97C.h"
+#include "overlay005/const_ov5_021FC194.h"
 #include "overlay005/const_ov5_021FC9B4.h"
-#include "overlay005/const_ov5_021FAF40.h"
-
-#include "struct_defs/struct_020217F4.h"
+#include "overlay005/const_ov5_021FD77C.h"
+#include "overlay005/ov5_021EB1A0.h"
+#include "overlay005/ov5_021ECA70.h"
+#include "overlay005/ov5_021ECC20.h"
 #include "overlay005/struct_ov5_021EC700.h"
 #include "overlay005/struct_ov5_021ECD10.h"
 #include "overlay005/struct_ov5_021ED2D0.h"
@@ -24,9 +27,6 @@
 #include "overlay005/struct_ov5_021FB97C.h"
 
 #include "unk_020677F4.h"
-#include "overlay005/ov5_021EB1A0.h"
-#include "overlay005/ov5_021ECA70.h"
-#include "overlay005/ov5_021ECC20.h"
 
 static const UnkStruct_ov5_021FB0F0 Unk_ov5_021FB0F0 = {
     ov5_021EBA0C,
@@ -1918,75 +1918,79 @@ const UnkStruct_ov5_021EC700 Unk_ov5_021FB51C[] = {
         {
             0x0,
             0x0,
-            ((FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2))
-        }
+            ((FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2)),
+        },
     },
     {
         0x5C,
-        { 0x0, 0x0, ((FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2)) }
+        {
+            0x0,
+            0x0,
+            ((FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2)),
+        },
     },
     {
         0x5D,
         {
             0x0,
             0x0,
-            ((FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2))
-        }
+            ((FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2)),
+        },
     },
     {
         0x5E,
         {
             0x0,
             0x0,
-            ((FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2))
-        }
+            ((FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2)),
+        },
     },
     {
         0x5f,
         {
             0x0,
             0x0,
-            ((FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2))
-        }
+            ((FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2)),
+        },
     },
     {
         0x60,
         {
             0x0,
             0x0,
-            ((FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2))
-        }
+            ((FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2)),
+        },
     },
     {
         0xB7,
         {
             0x0,
             0x0,
-            ((FX32_ONE * 6) - (FX32_ONE * 6))
-        }
+            ((FX32_ONE * 6) - (FX32_ONE * 6)),
+        },
     },
     {
         0xD1,
         {
             0x0,
             0x0,
-            ((FX32_ONE * 6) - (FX32_ONE * 6))
-        }
+            ((FX32_ONE * 6) - (FX32_ONE * 6)),
+        },
     },
     {
         0x106,
         {
             0x0,
             0x0,
-            ((FX32_ONE * 6) - (FX32_ONE * 6))
-        }
+            ((FX32_ONE * 6) - (FX32_ONE * 6)),
+        },
     },
     {
         0xffff,
         {
             0x0,
             0x0,
-            0x0
-        }
+            0x0,
+        },
     }
 };

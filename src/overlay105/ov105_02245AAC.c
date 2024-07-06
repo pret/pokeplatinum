@@ -1,23 +1,23 @@
+#include "overlay105/ov105_02245AAC.h"
+
 #include <nitro.h>
 #include <string.h>
-
 
 #include "overlay022/struct_ov22_022559F8.h"
 #include "overlay105/struct_ov105_02245AAC.h"
 
+#include "cell_actor.h"
+#include "gx_layers.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
-#include "gx_layers.h"
-#include "cell_actor.h"
-#include "overlay105/ov105_02245AAC.h"
 
-void ov105_02245AAC(UnkStruct_ov105_02245AAC * param0);
-CellActor * ov105_02245BA4(UnkStruct_ov105_02245AAC * param0, u32 param1, u32 param2, u32 param3, int param4, u8 param5);
-void ov105_02245C50(UnkStruct_ov105_02245AAC * param0);
+void ov105_02245AAC(UnkStruct_ov105_02245AAC *param0);
+CellActor *ov105_02245BA4(UnkStruct_ov105_02245AAC *param0, u32 param1, u32 param2, u32 param3, int param4, u8 param5);
+void ov105_02245C50(UnkStruct_ov105_02245AAC *param0);
 static void ov105_02245C98(void);
 
 static const u8 Unk_ov105_02246444[4] = {
@@ -27,7 +27,7 @@ static const u8 Unk_ov105_02246444[4] = {
     0x1
 };
 
-void ov105_02245AAC (UnkStruct_ov105_02245AAC * param0)
+void ov105_02245AAC(UnkStruct_ov105_02245AAC *param0)
 {
     int v0;
 
@@ -57,11 +57,11 @@ void ov105_02245AAC (UnkStruct_ov105_02245AAC * param0)
     return;
 }
 
-CellActor * ov105_02245BA4 (UnkStruct_ov105_02245AAC * param0, u32 param1, u32 param2, u32 param3, int param4, u8 param5)
+CellActor *ov105_02245BA4(UnkStruct_ov105_02245AAC *param0, u32 param1, u32 param2, u32 param3, int param4, u8 param5)
 {
     int v0;
     CellActorResourceData v1;
-    CellActor * v2;
+    CellActor *v2;
 
     sub_020093B4(&v1, param1, param1, param1, param1, 0xffffffff, 0xffffffff, 0, param4, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
 
@@ -100,7 +100,7 @@ CellActor * ov105_02245BA4 (UnkStruct_ov105_02245AAC * param0, u32 param1, u32 p
     return v2;
 }
 
-void ov105_02245C50 (UnkStruct_ov105_02245AAC * param0)
+void ov105_02245C50(UnkStruct_ov105_02245AAC *param0)
 {
     u8 v0;
 
@@ -121,7 +121,7 @@ void ov105_02245C50 (UnkStruct_ov105_02245AAC * param0)
     return;
 }
 
-static void ov105_02245C98 (void)
+static void ov105_02245C98(void)
 {
     {
         UnkStruct_ov22_022559F8 v0 = {

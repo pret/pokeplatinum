@@ -2,10 +2,10 @@
 #define POKEPLATINUM_STRUCT_OV97_02232AC8_H
 
 typedef struct {
-    void * unk_00;
-    void * unk_04;
-    void * unk_08;
-    void * unk_0C;
+    void *unk_00;
+    void *unk_04;
+    void *unk_08;
+    void *unk_0C;
     u32 unk_10;
     u32 unk_14;
     vu8 unk_18;

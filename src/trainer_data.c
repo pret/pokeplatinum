@@ -1,3 +1,5 @@
+#include "struct_defs/trainer_data.h"
+
 #include <nitro.h>
 #include <string.h>
 
@@ -5,11 +7,9 @@
 #include "constants/pokemon.h"
 #include "constants/trainer.h"
 
-#include "data/trainer_class_genders.h"
-
 #include "struct_decls/struct_02006C24_decl.h"
-#include "savedata.h"
-#include "struct_defs/trainer_data.h"
+
+#include "data/trainer_class_genders.h"
 #include "overlay006/battle_params.h"
 
 #include "heap.h"
@@ -17,11 +17,12 @@
 #include "narc.h"
 #include "party.h"
 #include "pokemon.h"
+#include "savedata.h"
+#include "savedata_misc.h"
 #include "strbuf.h"
 #include "trainer_data.h"
 #include "unk_020021B0.h"
 #include "unk_0201D15C.h"
-#include "savedata_misc.h"
 
 static void TrainerData_BuildParty(BattleParams *battleParams, int battler, int heapID);
 
@@ -35,7 +36,7 @@ void TrainerData_Encounter(BattleParams *battleParams, const SaveData *save, int
         if (!battleParams->trainerIDs[i]) {
             continue;
         }
-            
+
         TrainerData_Load(battleParams->trainerIDs[i], &trdata);
         battleParams->trainerData[i] = trdata;
 
@@ -170,7 +171,7 @@ u8 TrainerClass_Gender(int trclass)
 
 /**
  * @brief Build the party for a trainer as loaded in the BattleParams struct.
- * 
+ *
  * @param battleParams  The parent BattleParams struct containing trainer data.
  * @param battler       Which battler's party is to be loaded.
  * @param heapID        Heap on which to perform any allocations.
@@ -195,7 +196,8 @@ static void TrainerData_BuildParty(BattleParams *battleParams, int battler, int 
 
     // determine which magic gender-specific modifier to use for the RNG function
     genderMod = TrainerClass_Gender(battleParams->trainerData[battler].class) == GENDER_FEMALE
-            ? 120 : 136;
+        ? 120
+        : 136;
 
     switch (battleParams->trainerData[battler].type) {
     case TRDATATYPE_BASE: {

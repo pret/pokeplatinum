@@ -1,10 +1,11 @@
+#include "overlay006/ov6_02243218.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "overlay006/wild_encounters.h"
 
 #include "map_header_data.h"
-#include "overlay006/ov6_02243218.h"
 
 static const u32 Unk_ov6_02249090[22] = {
     0x156,
@@ -31,12 +32,12 @@ static const u32 Unk_ov6_02249090[22] = {
     0xCB
 };
 
-u32 ov6_02243218 (const u32 param0)
+u32 ov6_02243218(const u32 param0)
 {
     return Unk_ov6_02249090[param0 % 22];
 }
 
-void ov6_0224322C (const u32 param0, u16 * param1, u16 * param2)
+void ov6_0224322C(const u32 param0, u16 *param1, u16 *param2)
 {
     WildEncounters encounterData;
     u32 v1;

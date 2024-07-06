@@ -1,16 +1,24 @@
+#include "overlay116/ov116_022604C4.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-
 #include "struct_decls/struct_02018340_decl.h"
-
 #include "struct_defs/struct_02099F80.h"
+
+#include "overlay004/ov4_021D0D80.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_02241308.h"
 #include "overlay104/struct_ov104_0224133C.h"
+#include "overlay114/ov114_0225C700.h"
+#include "overlay116/ov116_02260440.h"
+#include "overlay116/ov116_02261870.h"
+#include "overlay116/ov116_02262A44.h"
+#include "overlay116/ov116_02262A8C.h"
+#include "overlay116/ov116_0226432C.h"
+#include "overlay116/ov116_02266FEC.h"
 #include "overlay116/struct_ov116_0226048C.h"
 #include "overlay116/struct_ov116_02260494.h"
 #include "overlay116/struct_ov116_02260498.h"
@@ -18,49 +26,41 @@
 #include "overlay116/struct_ov116_02262A8C.h"
 #include "overlay116/struct_ov116_0226501C.h"
 
+#include "camera.h"
+#include "communication_information.h"
+#include "communication_system.h"
+#include "core_sys.h"
+#include "easy3d_object.h"
+#include "gx_layers.h"
+#include "heap.h"
+#include "narc.h"
+#include "overlay_manager.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
-#include "overlay_manager.h"
-#include "narc.h"
 #include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
-#include "easy3d_object.h"
 #include "unk_02017728.h"
-#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
-#include "gx_layers.h"
-#include "camera.h"
 #include "unk_02024220.h"
-#include "communication_information.h"
-#include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
-#include "overlay004/ov4_021D0D80.h"
-#include "overlay114/ov114_0225C700.h"
-#include "overlay116/ov116_02260440.h"
-#include "overlay116/ov116_022604C4.h"
-#include "overlay116/ov116_02261870.h"
-#include "overlay116/ov116_02262A44.h"
-#include "overlay116/ov116_02262A8C.h"
-#include "overlay116/ov116_0226432C.h"
-#include "overlay116/ov116_02266FEC.h"
 
-static void ov116_022612CC(UnkStruct_ov116_0226139C * param0);
-static void ov116_02261494(BGL * param0);
-static void ov116_022616CC(UnkStruct_ov116_0226139C * param0);
+static void ov116_022612CC(UnkStruct_ov116_0226139C *param0);
+static void ov116_02261494(BGL *param0);
+static void ov116_022616CC(UnkStruct_ov116_0226139C *param0);
 static BOOL ov116_02261768(int param0);
-static void ov116_0226178C(UnkStruct_ov116_0226139C * param0, BOOL param1, int param2, int * param3);
-static void ov116_02261794(void * param0);
-static void ov116_022610FC(UnkStruct_ov116_0226139C * param0);
-static void ov116_02261244(UnkStruct_ov116_0226139C * param0);
-static u32 ov116_022617E4(UnkStruct_ov116_0226139C * param0);
+static void ov116_0226178C(UnkStruct_ov116_0226139C *param0, BOOL param1, int param2, int *param3);
+static void ov116_02261794(void *param0);
+static void ov116_022610FC(UnkStruct_ov116_0226139C *param0);
+static void ov116_02261244(UnkStruct_ov116_0226139C *param0);
+static u32 ov116_022617E4(UnkStruct_ov116_0226139C *param0);
 
-static void ov116_022604C4 (UnkStruct_ov116_0226139C * param0)
+static void ov116_022604C4(UnkStruct_ov116_0226139C *param0)
 {
     param0->unk_78 = LCRNG_GetSeed();
 
@@ -73,8 +73,8 @@ static void ov116_022604C4 (UnkStruct_ov116_0226139C * param0)
     sub_02039734();
 
     {
-        NNSG2dPaletteData * v0;
-        void * v1 = sub_020394A8(106);
+        NNSG2dPaletteData *v0;
+        void *v1 = sub_020394A8(106);
 
         NNS_G2dGetUnpackedPaletteData(v1, &v0);
         sub_02002FBC(param0->unk_48.unk_14, v0->pRawData, 2, 14 * 16, 32);
@@ -116,22 +116,22 @@ static void ov116_022604C4 (UnkStruct_ov116_0226139C * param0)
         {
             int v4;
             int v5[][2] = {
-                {44, 43},
-                {46, 45},
-                {48, 47},
-                {50, 49},
-                {44, 43},
-                {46, 45},
-                {48, 47},
-                {50, 49},
-                {44, 43},
-                {46, 45},
-                {48, 47},
-                {50, 49},
-                {44, 43},
-                {46, 45},
-                {48, 47},
-                {50, 49},
+                { 44, 43 },
+                { 46, 45 },
+                { 48, 47 },
+                { 50, 49 },
+                { 44, 43 },
+                { 46, 45 },
+                { 48, 47 },
+                { 50, 49 },
+                { 44, 43 },
+                { 46, 45 },
+                { 48, 47 },
+                { 50, 49 },
+                { 44, 43 },
+                { 46, 45 },
+                { 48, 47 },
+                { 50, 49 },
             };
 
             for (v4 = 0; v4 < 8; v4++) {
@@ -189,7 +189,7 @@ static void ov116_022604C4 (UnkStruct_ov116_0226139C * param0)
             ov116_022618B4(&param0->unk_04->unk_308[2], param0->unk_14.unk_00);
 
             {
-                UnkStruct_ov116_0226501C * v9;
+                UnkStruct_ov116_0226501C *v9;
                 int v10;
 
                 v9 = &param0->unk_04->unk_308[0];
@@ -237,9 +237,9 @@ static void ov116_022604C4 (UnkStruct_ov116_0226139C * param0)
     }
 }
 
-int ov116_022609B4 (OverlayManager * param0, int * param1)
+int ov116_022609B4(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov116_0226139C * v0;
+    UnkStruct_ov116_0226139C *v0;
 
     Heap_Create(3, 106, 0x65000);
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov116_0226139C), 106);
@@ -265,7 +265,7 @@ int ov116_022609B4 (OverlayManager * param0, int * param1)
     return 1;
 }
 
-static void ov116_02260A2C (UnkStruct_ov116_02262A8C * param0, u32 param1, u32 param2)
+static void ov116_02260A2C(UnkStruct_ov116_02262A8C *param0, u32 param1, u32 param2)
 {
     s16 v0, v1;
     BOOL v2;
@@ -278,7 +278,7 @@ static void ov116_02260A2C (UnkStruct_ov116_02262A8C * param0, u32 param1, u32 p
             v2 = ov116_0226452C(&param0->unk_FC, 1.0f);
 
             if (v2 = 1) {
-                VecFx32 v3 = {0, (FX32_CONST(100)), 0};
+                VecFx32 v3 = { 0, (FX32_CONST(100)), 0 };
                 VecFx32 v4;
                 MTX_MultVec43(&v3, &param0->unk_308[0].unk_1B0, &param0->unk_1FB0);
             }
@@ -304,7 +304,7 @@ static void ov116_02260A2C (UnkStruct_ov116_02262A8C * param0, u32 param1, u32 p
         v2 = ov116_0226432C(&param0->unk_FC, param1, param2, param0->unk_1FBC.unk_00, param0->unk_1FBC.unk_04, (2.50 * 0.80), 1);
 
         if (v2 = 1) {
-            VecFx32 v6 = {0, (FX32_CONST(100)), 0};
+            VecFx32 v6 = { 0, (FX32_CONST(100)), 0 };
             VecFx32 v7;
             MTX_MultVec43(&v6, &param0->unk_308[0].unk_1B0, &param0->unk_1FB0);
         }
@@ -318,60 +318,60 @@ static void ov116_02260A2C (UnkStruct_ov116_02262A8C * param0, u32 param1, u32 p
     }
 }
 
-static BOOL ov116_02260B6C (UnkStruct_ov116_02262A8C * param0)
+static BOOL ov116_02260B6C(UnkStruct_ov116_02262A8C *param0)
 {
     int v0;
     int v1;
     int v2, v3;
     s16 v4[][2] = {
-        {0, 0},
-        {0, -40},
-        {0, -30},
-        {0, -20},
-        {0, -10},
-        {0, 0},
-        {0, 10},
-        {0, 20},
-        {0, 30},
-        {0, 40},
-        {0, 00},
-        {0, 0},
-        {0, 0},
-        {0, -40},
-        {0, -30},
-        {0, -20},
-        {0, -10},
-        {0, 0},
-        {0, 10},
-        {0, 20},
-        {0, 30},
-        {0, 40},
-        {0, 00},
-        {0, 0},
-        {0, 0},
-        {10, 0},
-        {20, 0},
-        {30, 0},
-        {40, 0},
-        {50, 0},
-        {60, 0},
-        {70, 0},
-        {80, 0},
-        {90, 0},
-        {0, 0},
-        {0, 0},
-        {0, 0},
-        {10, 0},
-        {20, 0},
-        {30, 0},
-        {40, 0},
-        {50, 0},
-        {60, 0},
-        {70, 0},
-        {80, 0},
-        {90, 0},
-        {0, 0},
-        {0, 0},
+        { 0, 0 },
+        { 0, -40 },
+        { 0, -30 },
+        { 0, -20 },
+        { 0, -10 },
+        { 0, 0 },
+        { 0, 10 },
+        { 0, 20 },
+        { 0, 30 },
+        { 0, 40 },
+        { 0, 00 },
+        { 0, 0 },
+        { 0, 0 },
+        { 0, -40 },
+        { 0, -30 },
+        { 0, -20 },
+        { 0, -10 },
+        { 0, 0 },
+        { 0, 10 },
+        { 0, 20 },
+        { 0, 30 },
+        { 0, 40 },
+        { 0, 00 },
+        { 0, 0 },
+        { 0, 0 },
+        { 10, 0 },
+        { 20, 0 },
+        { 30, 0 },
+        { 40, 0 },
+        { 50, 0 },
+        { 60, 0 },
+        { 70, 0 },
+        { 80, 0 },
+        { 90, 0 },
+        { 0, 0 },
+        { 0, 0 },
+        { 0, 0 },
+        { 10, 0 },
+        { 20, 0 },
+        { 30, 0 },
+        { 40, 0 },
+        { 50, 0 },
+        { 60, 0 },
+        { 70, 0 },
+        { 80, 0 },
+        { 90, 0 },
+        { 0, 0 },
+        { 0, 0 },
     };
 
     v0 = sub_0200D3E0(param0->unk_D8);
@@ -430,9 +430,9 @@ static BOOL ov116_02260B6C (UnkStruct_ov116_02262A8C * param0)
     return 0;
 }
 
-int ov116_02260CF4 (OverlayManager * param0, int * param1)
+int ov116_02260CF4(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov116_0226139C * v0 = OverlayManager_Data(param0);
+    UnkStruct_ov116_0226139C *v0 = OverlayManager_Data(param0);
     BOOL v1 = 0;
     u32 v2;
 
@@ -668,7 +668,7 @@ int ov116_02260CF4 (OverlayManager * param0, int * param1)
     return 0;
 }
 
-static void ov116_022610FC (UnkStruct_ov116_0226139C * param0)
+static void ov116_022610FC(UnkStruct_ov116_0226139C *param0)
 {
     SetMainCallback(NULL, NULL);
     DisableHBlank();
@@ -721,7 +721,7 @@ static void ov116_022610FC (UnkStruct_ov116_0226139C * param0)
     param0->unk_04 = NULL;
 }
 
-static void ov116_02261244 (UnkStruct_ov116_0226139C * param0)
+static void ov116_02261244(UnkStruct_ov116_0226139C *param0)
 {
     param0->unk_0C = 0;
     param0->unk_08 = 0;
@@ -731,13 +731,12 @@ static void ov116_02261244 (UnkStruct_ov116_0226139C * param0)
     memset(&param0->unk_24, 0, sizeof(UnkStruct_ov116_02260498));
 }
 
-int ov116_0226126C (OverlayManager * param0, int * param1)
+int ov116_0226126C(OverlayManager *param0, int *param1)
 {
     switch (*param1) {
-    case 0:
-    {
+    case 0: {
         u32 v0;
-        UnkStruct_ov116_0226139C * v1 = OverlayManager_Data(param0);
+        UnkStruct_ov116_0226139C *v1 = OverlayManager_Data(param0);
 
         v0 = ov116_022617E4(v1);
 
@@ -751,8 +750,7 @@ int ov116_0226126C (OverlayManager * param0, int * param1)
 
         CommTiming_StartSync(999);
         (*param1)++;
-    }
-    break;
+    } break;
     default:
         if ((CommTiming_IsSyncState(999) == 1) || (CommSys_ConnectedCount() < CommInfo_CountReceived())) {
             return 1;
@@ -763,7 +761,7 @@ int ov116_0226126C (OverlayManager * param0, int * param1)
     return 0;
 }
 
-static void ov116_022612CC (UnkStruct_ov116_0226139C * param0)
+static void ov116_022612CC(UnkStruct_ov116_0226139C *param0)
 {
     param0->unk_48.unk_00 = NARC_ctor(NARC_INDEX_ARC__MANENE, 106);
     param0->unk_48.unk_04 = NARC_ctor(NARC_INDEX_GRAPHIC__BUCKET, 106);
@@ -804,7 +802,7 @@ static void ov116_022612CC (UnkStruct_ov116_0226139C * param0)
     Heap_FndInitAllocatorForExpHeap(&param0->unk_48.unk_24, 106, 32);
 }
 
-void ov116_0226139C (UnkStruct_ov116_0226139C * param0)
+void ov116_0226139C(UnkStruct_ov116_0226139C *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
@@ -841,7 +839,7 @@ void ov116_0226139C (UnkStruct_ov116_0226139C * param0)
     G3X_AlphaBlend(0);
 }
 
-static void ov116_02261494 (BGL * param0)
+static void ov116_02261494(BGL *param0)
 {
     GXLayers_DisableEngineALayers();
     {
@@ -888,7 +886,7 @@ static void ov116_02261494 (BGL * param0)
                 0x3,
                 0x0,
                 0x0,
-                0x0
+                0x0,
             },
             {
                 0x0,
@@ -903,7 +901,7 @@ static void ov116_02261494 (BGL * param0)
                 0x2,
                 0x0,
                 0x0,
-                0x0
+                0x0,
             },
             {
                 0x0,
@@ -918,7 +916,7 @@ static void ov116_02261494 (BGL * param0)
                 0x2,
                 0x0,
                 0x0,
-                0x0
+                0x0,
             },
             {
                 0x0,
@@ -933,7 +931,7 @@ static void ov116_02261494 (BGL * param0)
                 0x3,
                 0x0,
                 0x0,
-                0x0
+                0x0,
             },
         };
 
@@ -963,7 +961,7 @@ static void ov116_02261494 (BGL * param0)
                 3,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -978,7 +976,7 @@ static void ov116_02261494 (BGL * param0)
                 1,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -993,7 +991,7 @@ static void ov116_02261494 (BGL * param0)
                 1,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -1008,7 +1006,7 @@ static void ov116_02261494 (BGL * param0)
                 0,
                 0,
                 0,
-                0
+                0,
             },
         };
 
@@ -1048,7 +1046,7 @@ static void ov116_02261494 (BGL * param0)
     G2S_SetBlendAlpha(0, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ, 7, 10);
 }
 
-static void ov116_022616CC (UnkStruct_ov116_0226139C * param0)
+static void ov116_022616CC(UnkStruct_ov116_0226139C *param0)
 {
     param0->unk_48.unk_08 = sub_0200C6E4(106);
     {
@@ -1095,22 +1093,22 @@ static void ov116_022616CC (UnkStruct_ov116_0226139C * param0)
     sub_0200964C(sub_0200C738(param0->unk_48.unk_08), 0, (192 + 64) << FX32_SHIFT);
 }
 
-static BOOL ov116_02261768 (int param0)
+static BOOL ov116_02261768(int param0)
 {
     sub_0200F174(0, param0, param0, 0, 6, 1, 106);
     return 1;
 }
 
-static void ov116_0226178C (UnkStruct_ov116_0226139C * param0, BOOL param1, int param2, int * param3)
+static void ov116_0226178C(UnkStruct_ov116_0226139C *param0, BOOL param1, int param2, int *param3)
 {
     if (param1) {
         *param3 = param2;
     }
 }
 
-static void ov116_02261794 (void * param0)
+static void ov116_02261794(void *param0)
 {
-    UnkStruct_ov116_0226139C * v0 = param0;
+    UnkStruct_ov116_0226139C *v0 = param0;
 
     sub_0201DCAC();
     sub_0200C800();
@@ -1120,22 +1118,22 @@ static void ov116_02261794 (void * param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-BOOL ov116_022617C4 (UnkStruct_ov116_0226139C * param0)
+BOOL ov116_022617C4(UnkStruct_ov116_0226139C *param0)
 {
     return (param0->unk_44 == 0) ? 1 : 0;
 }
 
-void ov116_022617D4 (UnkStruct_ov116_0226139C * param0)
+void ov116_022617D4(UnkStruct_ov116_0226139C *param0)
 {
     param0->unk_08 = 1;
 }
 
-void ov116_022617DC (UnkStruct_ov116_0226139C * param0)
+void ov116_022617DC(UnkStruct_ov116_0226139C *param0)
 {
     param0->unk_0C = 1;
 }
 
-static u32 ov116_022617E4 (UnkStruct_ov116_0226139C * param0)
+static u32 ov116_022617E4(UnkStruct_ov116_0226139C *param0)
 {
     if (ov114_0225CA54(&param0->unk_84) == 1) {
         if (param0->unk_48.unk_2C.unk_00 == 0) {

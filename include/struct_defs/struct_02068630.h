@@ -4,7 +4,7 @@
 #include "struct_decls/struct_020508D4_decl.h"
 
 typedef struct {
-    TaskManager * unk_00;
+    TaskManager *unk_00;
     u16 unk_04;
     u8 unk_06;
     u8 padding_07;

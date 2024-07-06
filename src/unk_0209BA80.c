@@ -1,20 +1,13 @@
+#include "unk_0209BA80.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
-
 #include "struct_defs/struct_02039A58.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_0209BBA4.h"
 
-#include "unk_0203061C.h"
-#include "unk_02032798.h"
-#include "communication_system.h"
-#include "unk_0205DFC4.h"
-#include "pokemon.h"
-#include "party.h"
-#include "unk_0209BA80.h"
 #include "overlay104/ov104_0222ECE8.h"
 #include "overlay104/ov104_0223C164.h"
 #include "overlay105/ov105_02241AE0.h"
@@ -23,88 +16,95 @@
 #include "overlay107/ov107_02245EB0.h"
 #include "overlay108/ov108_02241AE0.h"
 
-static void sub_0209BA94(int param0, int param1, void * param2, void * param3);
-BOOL sub_0209BB08(UnkStruct_0204AFC4 * param0);
-static void sub_0209BB34(int param0, int param1, void * param2, void * param3);
-static void sub_0209BB68(int param0, int param1, void * param2, void * param3);
-BOOL sub_0209BBA4(UnkStruct_0209BBA4 * param0);
-void sub_0209BBEC(int param0, int param1, void * param2, void * param3);
-BOOL sub_0209BC1C(UnkStruct_0209BBA4 * param0, u16 param1);
-void sub_0209BC3C(int param0, int param1, void * param2, void * param3);
-BOOL sub_0209BC64(UnkStruct_0209BBA4 * param0, u16 param1, u16 param2);
-void sub_0209BD28(int param0, int param1, void * param2, void * param3);
-BOOL sub_0209BD68(UnkStruct_0209BBA4 * param0, u16 param1);
-void sub_0209BD88(int param0, int param1, void * param2, void * param3);
-BOOL sub_0209BDB0(UnkStruct_0209BBA4 * param0, u16 param1);
-void sub_0209BDD0(int param0, int param1, void * param2, void * param3);
+#include "communication_system.h"
+#include "party.h"
+#include "pokemon.h"
+#include "unk_0203061C.h"
+#include "unk_02032798.h"
+#include "unk_0205DFC4.h"
+
+static void sub_0209BA94(int param0, int param1, void *param2, void *param3);
+BOOL sub_0209BB08(UnkStruct_0204AFC4 *param0);
+static void sub_0209BB34(int param0, int param1, void *param2, void *param3);
+static void sub_0209BB68(int param0, int param1, void *param2, void *param3);
+BOOL sub_0209BBA4(UnkStruct_0209BBA4 *param0);
+void sub_0209BBEC(int param0, int param1, void *param2, void *param3);
+BOOL sub_0209BC1C(UnkStruct_0209BBA4 *param0, u16 param1);
+void sub_0209BC3C(int param0, int param1, void *param2, void *param3);
+BOOL sub_0209BC64(UnkStruct_0209BBA4 *param0, u16 param1, u16 param2);
+void sub_0209BD28(int param0, int param1, void *param2, void *param3);
+BOOL sub_0209BD68(UnkStruct_0209BBA4 *param0, u16 param1);
+void sub_0209BD88(int param0, int param1, void *param2, void *param3);
+BOOL sub_0209BDB0(UnkStruct_0209BBA4 *param0, u16 param1);
+void sub_0209BDD0(int param0, int param1, void *param2, void *param3);
 
 static const CommCmdTable Unk_020F8BF0[] = {
-    {ov104_0222EF30, sub_02032944, NULL},
-    {ov104_0222EF94, sub_02032944, NULL},
-    {ov104_0222F03C, sub_02032944, NULL},
-    {ov104_0222F124, sub_02032944, NULL},
-    {ov104_0222F1C4, sub_02032944, NULL},
-    {ov104_0222F210, sub_02032944, NULL},
-    {ov104_0222F31C, sub_02032944, NULL},
-    {ov105_0224569C, sub_02032944, NULL},
-    {ov105_02245744, sub_02032944, NULL},
-    {ov105_022457B8, sub_02032944, NULL},
-    {ov105_022458A4, sub_02032944, NULL},
-    {ov104_0222ECE8, sub_02032944, NULL},
-    {ov104_0222ED2C, sub_02032944, NULL},
-    {ov104_0222ED74, sub_02032944, NULL},
-    {ov104_0222EDDC, sub_02032944, NULL},
-    {ov104_0222EE38, sub_02032944, NULL},
-    {ov104_0222EEA8, sub_02032944, ov104_0222EED8},
-    {ov106_02243130, sub_02032944, NULL},
-    {ov106_02243180, sub_02032944, NULL},
-    {ov106_022431E0, sub_02032944, NULL},
-    {ov104_0222F418, sub_02032944, NULL},
-    {ov104_0222F480, sub_02032944, NULL},
-    {ov104_0222F530, sub_02032944, NULL},
-    {ov104_0222F650, sub_02032944, NULL},
-    {ov104_0222F6E8, sub_02032944, NULL},
-    {ov104_0222F730, sub_02032944, NULL},
-    {ov104_0222F7BC, sub_02032944, ov104_0222F84C},
-    {ov107_02245338, sub_02032944, NULL},
-    {ov107_022453A0, sub_02032944, NULL},
-    {ov107_02245408, sub_02032944, NULL},
-    {ov107_02245438, sub_02032944, NULL},
-    {ov107_02248910, sub_02032944, NULL},
-    {ov107_02248978, sub_02032944, NULL},
-    {ov107_022489E0, sub_02032944, NULL},
-    {ov107_02248A10, sub_02032944, NULL},
-    {sub_0209BBEC, sub_02032944, NULL},
-    {sub_0209BC3C, sub_02032944, NULL},
-    {sub_0209BD28, sub_02032944, NULL},
-    {sub_0209BD88, sub_02032944, NULL},
-    {sub_0209BDD0, sub_02032944, NULL},
-    {sub_0209BA94, sub_02032944, NULL},
-    {sub_0209BB34, sub_02032944, NULL},
-    {sub_0209BB68, sub_02032944, NULL},
-    {ov104_0222F8A0, sub_02032944, NULL},
-    {ov104_0222F908, sub_02032944, NULL},
-    {ov104_0222F9C0, sub_02032944, NULL},
-    {ov104_0222FA5C, sub_02032944, NULL},
-    {ov104_0222FAA8, sub_02032944, NULL},
-    {ov104_0222FB34, sub_02032944, ov104_0222FBC4},
-    {ov108_02242AB0, sub_02032944, NULL},
-    {ov108_02242B24, sub_02032944, NULL},
-    {ov108_02242B84, sub_02032944, NULL}
+    { ov104_0222EF30, sub_02032944, NULL },
+    { ov104_0222EF94, sub_02032944, NULL },
+    { ov104_0222F03C, sub_02032944, NULL },
+    { ov104_0222F124, sub_02032944, NULL },
+    { ov104_0222F1C4, sub_02032944, NULL },
+    { ov104_0222F210, sub_02032944, NULL },
+    { ov104_0222F31C, sub_02032944, NULL },
+    { ov105_0224569C, sub_02032944, NULL },
+    { ov105_02245744, sub_02032944, NULL },
+    { ov105_022457B8, sub_02032944, NULL },
+    { ov105_022458A4, sub_02032944, NULL },
+    { ov104_0222ECE8, sub_02032944, NULL },
+    { ov104_0222ED2C, sub_02032944, NULL },
+    { ov104_0222ED74, sub_02032944, NULL },
+    { ov104_0222EDDC, sub_02032944, NULL },
+    { ov104_0222EE38, sub_02032944, NULL },
+    { ov104_0222EEA8, sub_02032944, ov104_0222EED8 },
+    { ov106_02243130, sub_02032944, NULL },
+    { ov106_02243180, sub_02032944, NULL },
+    { ov106_022431E0, sub_02032944, NULL },
+    { ov104_0222F418, sub_02032944, NULL },
+    { ov104_0222F480, sub_02032944, NULL },
+    { ov104_0222F530, sub_02032944, NULL },
+    { ov104_0222F650, sub_02032944, NULL },
+    { ov104_0222F6E8, sub_02032944, NULL },
+    { ov104_0222F730, sub_02032944, NULL },
+    { ov104_0222F7BC, sub_02032944, ov104_0222F84C },
+    { ov107_02245338, sub_02032944, NULL },
+    { ov107_022453A0, sub_02032944, NULL },
+    { ov107_02245408, sub_02032944, NULL },
+    { ov107_02245438, sub_02032944, NULL },
+    { ov107_02248910, sub_02032944, NULL },
+    { ov107_02248978, sub_02032944, NULL },
+    { ov107_022489E0, sub_02032944, NULL },
+    { ov107_02248A10, sub_02032944, NULL },
+    { sub_0209BBEC, sub_02032944, NULL },
+    { sub_0209BC3C, sub_02032944, NULL },
+    { sub_0209BD28, sub_02032944, NULL },
+    { sub_0209BD88, sub_02032944, NULL },
+    { sub_0209BDD0, sub_02032944, NULL },
+    { sub_0209BA94, sub_02032944, NULL },
+    { sub_0209BB34, sub_02032944, NULL },
+    { sub_0209BB68, sub_02032944, NULL },
+    { ov104_0222F8A0, sub_02032944, NULL },
+    { ov104_0222F908, sub_02032944, NULL },
+    { ov104_0222F9C0, sub_02032944, NULL },
+    { ov104_0222FA5C, sub_02032944, NULL },
+    { ov104_0222FAA8, sub_02032944, NULL },
+    { ov104_0222FB34, sub_02032944, ov104_0222FBC4 },
+    { ov108_02242AB0, sub_02032944, NULL },
+    { ov108_02242B24, sub_02032944, NULL },
+    { ov108_02242B84, sub_02032944, NULL }
 };
 
-void sub_0209BA80 (void * param0)
+void sub_0209BA80(void *param0)
 {
     int v0 = sizeof(Unk_020F8BF0) / sizeof(CommCmdTable);
     CommCmd_Init(Unk_020F8BF0, v0, param0);
 }
 
-static void sub_0209BA94 (int param0, int param1, void * param2, void * param3)
+static void sub_0209BA94(int param0, int param1, void *param2, void *param3)
 {
     u16 v0;
     int v1;
-    UnkStruct_0204AFC4 * v2 = param3;
-    const u16 * v3 = param2;
+    UnkStruct_0204AFC4 *v2 = param3;
+    const u16 *v3 = param2;
 
     v0 = 0;
     v1 = 0;
@@ -132,7 +132,7 @@ static void sub_0209BA94 (int param0, int param1, void * param2, void * param3)
     return;
 }
 
-BOOL sub_0209BB08 (UnkStruct_0204AFC4 * param0)
+BOOL sub_0209BB08(UnkStruct_0204AFC4 *param0)
 {
     int v0, v1;
 
@@ -149,11 +149,11 @@ BOOL sub_0209BB08 (UnkStruct_0204AFC4 * param0)
     return v0;
 }
 
-static void sub_0209BB34 (int param0, int param1, void * param2, void * param3)
+static void sub_0209BB34(int param0, int param1, void *param2, void *param3)
 {
     int v0;
-    UnkStruct_0204AFC4 * v1 = param3;
-    const u16 * v2 = param2;
+    UnkStruct_0204AFC4 *v1 = param3;
+    const u16 *v2 = param2;
 
     v0 = 0;
     v1->unk_8D4++;
@@ -170,11 +170,11 @@ static void sub_0209BB34 (int param0, int param1, void * param2, void * param3)
     return;
 }
 
-static void sub_0209BB68 (int param0, int param1, void * param2, void * param3)
+static void sub_0209BB68(int param0, int param1, void *param2, void *param3)
 {
     int v0;
-    UnkStruct_0204AFC4 * v1 = param3;
-    const u16 * v2 = param2;
+    UnkStruct_0204AFC4 *v1 = param3;
+    const u16 *v2 = param2;
 
     v0 = 0;
 
@@ -192,7 +192,7 @@ static void sub_0209BB68 (int param0, int param1, void * param2, void * param3)
     return;
 }
 
-BOOL sub_0209BBA4 (UnkStruct_0209BBA4 * param0)
+BOOL sub_0209BBA4(UnkStruct_0209BBA4 *param0)
 {
     int v0, v1, v2;
 
@@ -211,11 +211,11 @@ BOOL sub_0209BBA4 (UnkStruct_0209BBA4 * param0)
     return v0;
 }
 
-void sub_0209BBEC (int param0, int param1, void * param2, void * param3)
+void sub_0209BBEC(int param0, int param1, void *param2, void *param3)
 {
     u16 v0;
-    UnkStruct_0209BBA4 * v1 = param3;
-    const u16 * v2 = param2;
+    UnkStruct_0209BBA4 *v1 = param3;
+    const u16 *v2 = param2;
 
     v1->unk_6F++;
 
@@ -229,7 +229,7 @@ void sub_0209BBEC (int param0, int param1, void * param2, void * param3)
     return;
 }
 
-BOOL sub_0209BC1C (UnkStruct_0209BBA4 * param0, u16 param1)
+BOOL sub_0209BC1C(UnkStruct_0209BBA4 *param0, u16 param1)
 {
     int v0, v1;
 
@@ -245,11 +245,11 @@ BOOL sub_0209BC1C (UnkStruct_0209BBA4 * param0, u16 param1)
     return v0;
 }
 
-void sub_0209BC3C (int param0, int param1, void * param2, void * param3)
+void sub_0209BC3C(int param0, int param1, void *param2, void *param3)
 {
     int v0;
-    UnkStruct_0209BBA4 * v1 = param3;
-    const u16 * v2 = param2;
+    UnkStruct_0209BBA4 *v1 = param3;
+    const u16 *v2 = param2;
 
     v0 = 0;
     v1->unk_6F++;
@@ -262,11 +262,11 @@ void sub_0209BC3C (int param0, int param1, void * param2, void * param3)
     return;
 }
 
-BOOL sub_0209BC64 (UnkStruct_0209BBA4 * param0, u16 param1, u16 param2)
+BOOL sub_0209BC64(UnkStruct_0209BBA4 *param0, u16 param1, u16 param2)
 {
     int v0, v1;
-    Pokemon * v2;
-    Party * v3;
+    Pokemon *v2;
+    Party *v3;
 
     v1 = 40;
     v3 = Party_GetFromSavedata(param0->unk_00);
@@ -305,10 +305,10 @@ BOOL sub_0209BC64 (UnkStruct_0209BBA4 * param0, u16 param1, u16 param2)
     return v0;
 }
 
-void sub_0209BD28 (int param0, int param1, void * param2, void * param3)
+void sub_0209BD28(int param0, int param1, void *param2, void *param3)
 {
-    UnkStruct_0209BBA4 * v0 = param3;
-    const u16 * v1 = param2;
+    UnkStruct_0209BBA4 *v0 = param3;
+    const u16 *v1 = param2;
 
     v0->unk_6F++;
 
@@ -324,7 +324,7 @@ void sub_0209BD28 (int param0, int param1, void * param2, void * param3)
     return;
 }
 
-BOOL sub_0209BD68 (UnkStruct_0209BBA4 * param0, u16 param1)
+BOOL sub_0209BD68(UnkStruct_0209BBA4 *param0, u16 param1)
 {
     int v0, v1;
 
@@ -341,11 +341,11 @@ BOOL sub_0209BD68 (UnkStruct_0209BBA4 * param0, u16 param1)
     return v0;
 }
 
-void sub_0209BD88 (int param0, int param1, void * param2, void * param3)
+void sub_0209BD88(int param0, int param1, void *param2, void *param3)
 {
     int v0;
-    UnkStruct_0209BBA4 * v1 = param3;
-    const u16 * v2 = param2;
+    UnkStruct_0209BBA4 *v1 = param3;
+    const u16 *v2 = param2;
 
     v0 = 0;
     v1->unk_6F++;
@@ -358,7 +358,7 @@ void sub_0209BD88 (int param0, int param1, void * param2, void * param3)
     return;
 }
 
-BOOL sub_0209BDB0 (UnkStruct_0209BBA4 * param0, u16 param1)
+BOOL sub_0209BDB0(UnkStruct_0209BBA4 *param0, u16 param1)
 {
     int v0, v1;
 
@@ -374,11 +374,11 @@ BOOL sub_0209BDB0 (UnkStruct_0209BBA4 * param0, u16 param1)
     return v0;
 }
 
-void sub_0209BDD0 (int param0, int param1, void * param2, void * param3)
+void sub_0209BDD0(int param0, int param1, void *param2, void *param3)
 {
     int v0;
-    UnkStruct_0209BBA4 * v1 = param3;
-    const u16 * v2 = param2;
+    UnkStruct_0209BBA4 *v1 = param3;
+    const u16 *v2 = param2;
 
     v0 = 0;
     v1->unk_6F++;

@@ -1,11 +1,12 @@
 #ifndef POKEPLATINUM_STRUCT_OV116_0226501C_H
 #define POKEPLATINUM_STRUCT_OV116_0226501C_H
 
-#include "easy3d_object.h"
+#include <nitro/fx/fx.h>
+
 #include "overlay116/union_ov116_02266FEC.h"
 #include "overlay116/union_ov116_022671EC.h"
 
-#include <nitro/fx/fx.h>
+#include "easy3d_object.h"
 
 typedef struct {
     Easy3DObject unk_00;

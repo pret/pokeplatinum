@@ -1,17 +1,17 @@
+#include "overlay097/ov97_02233814.h"
+
 #include <nitro.h>
 #include <string.h>
 
+#include "overlay097/ov97_02232200.h"
+#include "overlay097/ov97_02233408.h"
+#include "overlay097/ov97_022337FC.h"
 #include "overlay097/struct_ov97_02232254.h"
 #include "overlay097/struct_ov97_02232620.h"
 #include "overlay097/struct_ov97_02233268.h"
 #include "overlay097/struct_ov97_022339EC.h"
 
-#include "overlay097/ov97_02232200.h"
-#include "overlay097/ov97_02233408.h"
-#include "overlay097/ov97_022337FC.h"
-#include "overlay097/ov97_02233814.h"
-
-BOOL ov97_02233814 (const void * param0, u32 param1, u16 param2)
+BOOL ov97_02233814(const void *param0, u32 param1, u16 param2)
 {
     WMErrCode v0;
 
@@ -25,7 +25,7 @@ BOOL ov97_02233814 (const void * param0, u32 param1, u16 param2)
     }
 }
 
-BOOL ov97_02233854 (void)
+BOOL ov97_02233854(void)
 {
     WMErrCode v0;
 
@@ -39,7 +39,7 @@ BOOL ov97_02233854 (void)
     }
 }
 
-BOOL ov97_02233870 (void)
+BOOL ov97_02233870(void)
 {
     WMErrCode v0;
 
@@ -54,7 +54,7 @@ BOOL ov97_02233870 (void)
     }
 }
 
-BOOL ov97_02233890 (u32 param0)
+BOOL ov97_02233890(u32 param0)
 {
     WMErrCode v0;
 
@@ -68,12 +68,12 @@ BOOL ov97_02233890 (u32 param0)
     }
 }
 
-BOOL ov97_022338BC (void)
+BOOL ov97_022338BC(void)
 {
     WMErrCode v0;
-    WMParentParam * v1 = ov97_02233408();
-    UnkStruct_ov97_02233268 * v2 = ov97_02233590();
-    UnkStruct_ov97_02232254 * v3 = ov97_02233510();
+    WMParentParam *v1 = ov97_02233408();
+    UnkStruct_ov97_02233268 *v2 = ov97_02233590();
+    UnkStruct_ov97_02232254 *v3 = ov97_02233510();
 
     v1->channel = v3->unk_64;
     v1->userGameInfo = (u16 *)v2;
@@ -89,7 +89,7 @@ BOOL ov97_022338BC (void)
     }
 }
 
-BOOL ov97_022338F8 (void)
+BOOL ov97_022338F8(void)
 {
     WMErrCode v0;
 
@@ -103,7 +103,7 @@ BOOL ov97_022338F8 (void)
     }
 }
 
-BOOL ov97_02233914 (void)
+BOOL ov97_02233914(void)
 {
     WMErrCode v0;
 
@@ -117,13 +117,13 @@ BOOL ov97_02233914 (void)
     }
 }
 
-BOOL ov97_02233938 (void)
+BOOL ov97_02233938(void)
 {
     WMErrCode v0;
 
     {
-        WMScanParam * v1 = ov97_02233478();
-        UnkStruct_ov97_02232620 * v2 = ov97_02233508();
+        WMScanParam *v1 = ov97_02233478();
+        UnkStruct_ov97_02232620 *v2 = ov97_02233508();
 
         v1->bssid[0] = v2->unk_00[v2->unk_1C3_0].unk_34.unk_00.val1[0];
         v1->bssid[1] = v2->unk_00[v2->unk_1C3_0].unk_34.unk_00.val1[1];
@@ -143,7 +143,7 @@ BOOL ov97_02233938 (void)
     }
 }
 
-BOOL ov97_022339D0 (void)
+BOOL ov97_022339D0(void)
 {
     WMErrCode v0;
 
@@ -157,10 +157,10 @@ BOOL ov97_022339D0 (void)
     }
 }
 
-BOOL ov97_022339EC (void)
+BOOL ov97_022339EC(void)
 {
     WMErrCode v0;
-    UnkStruct_ov97_022339EC * v1 = ov97_0223359C();
+    UnkStruct_ov97_022339EC *v1 = ov97_0223359C();
 
     v0 = WM_StartConnect(ov97_02232998, ov97_022334B4(), (const u8 *)v1);
 
@@ -172,7 +172,7 @@ BOOL ov97_022339EC (void)
     }
 }
 
-BOOL ov97_02233A24 (void)
+BOOL ov97_02233A24(void)
 {
     WMErrCode v0;
 
@@ -195,7 +195,7 @@ BOOL ov97_02233A24 (void)
     }
 }
 
-BOOL ov97_02233A9C (void)
+BOOL ov97_02233A9C(void)
 {
     WMErrCode v0;
 
@@ -209,7 +209,7 @@ BOOL ov97_02233A9C (void)
     }
 }
 
-BOOL ov97_02233AB8 (void)
+BOOL ov97_02233AB8(void)
 {
     WMErrCode v0;
 
@@ -224,7 +224,7 @@ BOOL ov97_02233AB8 (void)
     }
 }
 
-BOOL ov97_02233AD8 (void)
+BOOL ov97_02233AD8(void)
 {
     WMErrCode v0;
 
@@ -239,7 +239,7 @@ BOOL ov97_02233AD8 (void)
     }
 }
 
-BOOL ov97_02233AF8 (void)
+BOOL ov97_02233AF8(void)
 {
     WMErrCode v0;
 

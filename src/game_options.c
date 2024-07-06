@@ -1,14 +1,14 @@
+#include "game_options.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "core_sys.h"
-#include "savedata.h"
 #include "heap.h"
 #include "save_player.h"
-#include "game_options.h"
-#include "core_sys.h"
+#include "savedata.h"
 
-Options* Options_New (u32 heapID)
+Options *Options_New(u32 heapID)
 {
     Options *options = Heap_AllocFromHeap(heapID, sizeof(Options));
     Options_Init(options);
@@ -16,12 +16,12 @@ Options* Options_New (u32 heapID)
     return options;
 }
 
-void Options_Copy (const Options *src, Options *dest)
+void Options_Copy(const Options *src, Options *dest)
 {
     MI_CpuCopy8(src, dest, sizeof(Options));
 }
 
-void Options_Init (Options *options)
+void Options_Init(Options *options)
 {
     MI_CpuFill8(options, 0, sizeof(Options));
 
@@ -33,9 +33,9 @@ void Options_Init (Options *options)
     options->frame = OPTIONS_FRAME_1;
 }
 
-void Options_SetSystemButtonMode (SaveData *saveData, enum OptionsButtonMode mode)
+void Options_SetSystemButtonMode(SaveData *saveData, enum OptionsButtonMode mode)
 {
-    if (saveData != NULL) { 
+    if (saveData != NULL) {
         mode = Options_ButtonMode(SaveData_Options(saveData));
     }
 
@@ -53,17 +53,17 @@ void Options_SetSystemButtonMode (SaveData *saveData, enum OptionsButtonMode mod
     }
 }
 
-int Options_TextSpeed (const Options *options)
+int Options_TextSpeed(const Options *options)
 {
     return options->textSpeed;
 }
 
-void Options_SetTextSpeed (Options *options, enum OptionsTextSpeed speed)
+void Options_SetTextSpeed(Options *options, enum OptionsTextSpeed speed)
 {
     options->textSpeed = speed;
 }
 
-u8 Options_TextFrameDelay (const Options *options)
+u8 Options_TextFrameDelay(const Options *options)
 {
     int speed = Options_TextSpeed(options);
 
@@ -76,52 +76,52 @@ u8 Options_TextFrameDelay (const Options *options)
     }
 }
 
-int Options_SoundMode (const Options *options)
+int Options_SoundMode(const Options *options)
 {
     return options->soundMode;
 }
 
-void Options_SetSoundMode (Options *options, enum OptionsSoundMode mode)
+void Options_SetSoundMode(Options *options, enum OptionsSoundMode mode)
 {
     options->soundMode = mode;
 }
 
-int Options_BattleScene (const Options *options)
+int Options_BattleScene(const Options *options)
 {
     return options->battleScene;
 }
 
-void Options_SetBattleScene (Options *options, enum OptionsBattleScene scene)
+void Options_SetBattleScene(Options *options, enum OptionsBattleScene scene)
 {
     options->battleScene = scene;
 }
 
-int Options_BattleStyle (const Options *options)
+int Options_BattleStyle(const Options *options)
 {
     return options->battleStyle;
 }
 
-void Options_SetBattleStyle (Options *options, enum OptionsBattleStyle style)
+void Options_SetBattleStyle(Options *options, enum OptionsBattleStyle style)
 {
     options->battleStyle = style;
 }
 
-int Options_ButtonMode (const Options *options)
+int Options_ButtonMode(const Options *options)
 {
     return options->buttonMode;
 }
 
-void Options_SetButtonMode (Options *options, enum OptionsButtonMode mode)
+void Options_SetButtonMode(Options *options, enum OptionsButtonMode mode)
 {
     options->buttonMode = mode;
 }
 
-int Options_Frame (const Options *options)
+int Options_Frame(const Options *options)
 {
     return options->frame;
 }
 
-void Options_SetFrame (Options *options, enum OptionsFrame frame)
+void Options_SetFrame(Options *options, enum OptionsFrame frame)
 {
     options->frame = frame;
 }

@@ -1,18 +1,18 @@
+#include "unk_0207E060.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "trainer_info.h"
-
 #include "struct_defs/struct_0207E060.h"
+
+#include "overlay004/ov4_021D0D80.h"
 
 #include "heap.h"
 #include "trainer_info.h"
-#include "unk_0207E060.h"
-#include "overlay004/ov4_021D0D80.h"
 
-UnkStruct_0207E060 * sub_0207E060 (const TrainerInfo * param0, u32 param1)
+UnkStruct_0207E060 *sub_0207E060(const TrainerInfo *param0, u32 param1)
 {
-    UnkStruct_0207E060 * v0;
+    UnkStruct_0207E060 *v0;
     BOOL v1;
 
     v0 = Heap_AllocFromHeap(param1, (sizeof(UnkStruct_0207E060)));
@@ -30,7 +30,7 @@ UnkStruct_0207E060 * sub_0207E060 (const TrainerInfo * param0, u32 param1)
     return v0;
 }
 
-void sub_0207E0B0 (UnkStruct_0207E060 * param0)
+void sub_0207E0B0(UnkStruct_0207E060 *param0)
 {
     Heap_FreeToHeap(param0);
 }

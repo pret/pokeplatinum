@@ -50,7 +50,7 @@ static const u8 sCommonPickupRate[] = {
 };
 
 static const u8 sHoneyGatherRate[] = {
-     5,
+    5,
     10,
     15,
     20,

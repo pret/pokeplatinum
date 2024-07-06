@@ -1,36 +1,37 @@
+#include "overlay005/ov5_021D2F14.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02009F38_decl.h"
-
+#include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_02009508.h"
 #include "struct_defs/struct_02009CFC.h"
 #include "struct_defs/struct_0200D0F4.h"
+
 #include "overlay005/struct_ov5_021D30A8.h"
 #include "overlay007/struct_ov7_0224F2EC.h"
 #include "overlay007/struct_ov7_0224F358.h"
-#include "struct_defs/sprite_template.h"
 #include "overlay104/struct_ov104_02241308.h"
 
+#include "cell_actor.h"
+#include "heap.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_02017728.h"
-#include "heap.h"
-#include "cell_actor.h"
-#include "overlay005/ov5_021D2F14.h"
 
-static BOOL ov5_021D3478(UnkStruct_02009CFC * param0, UnkStruct_02009DC8 * param1);
-static void ov5_021D34AC(UnkStruct_ov5_021D30A8 * param0, int param1, int param2, int param3, int param4, int param5);
-static void ov5_021D3518(UnkStruct_ov5_021D30A8 * param0, NARC * param1, int param2, int param3, int param4, int param5);
+static BOOL ov5_021D3478(UnkStruct_02009CFC *param0, UnkStruct_02009DC8 *param1);
+static void ov5_021D34AC(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, int param3, int param4, int param5);
+static void ov5_021D3518(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, int param3, int param4, int param5);
 
-void ov5_021D2F14 (UnkStruct_ov5_021D30A8 * param0, const UnkStruct_ov7_0224F2EC * param1, u32 param2, u32 param3)
+void ov5_021D2F14(UnkStruct_ov5_021D30A8 *param0, const UnkStruct_ov7_0224F2EC *param1, u32 param2, u32 param3)
 {
-    UnkStruct_02009F38 * v0;
-    UnkStruct_02009F38 * v1;
-    void * v2;
+    UnkStruct_02009F38 *v0;
+    UnkStruct_02009F38 *v1;
+    void *v2;
     u32 v3;
     u32 v4;
 
@@ -81,7 +82,7 @@ void ov5_021D2F14 (UnkStruct_ov5_021D30A8 * param0, const UnkStruct_ov7_0224F2EC
     Heap_FreeToHeap(v2);
 }
 
-void ov5_021D30A8 (UnkStruct_ov5_021D30A8 * param0)
+void ov5_021D30A8(UnkStruct_ov5_021D30A8 *param0)
 {
     u32 v0;
 
@@ -96,11 +97,11 @@ void ov5_021D30A8 (UnkStruct_ov5_021D30A8 * param0)
     }
 }
 
-CellActor * ov5_021D3104 (UnkStruct_ov5_021D30A8 * param0, const UnkStruct_ov7_0224F358 * param1)
+CellActor *ov5_021D3104(UnkStruct_ov5_021D30A8 *param0, const UnkStruct_ov7_0224F358 *param1)
 {
     CellActorInitParamsEx v0;
-    CellActor * v1;
-    VecFx32 v2 = {FX32_ONE, FX32_ONE, FX32_ONE};
+    CellActor *v1;
+    VecFx32 v2 = { FX32_ONE, FX32_ONE, FX32_ONE };
     VecFx32 v3;
 
     v3.x = param1->unk_04 * FX32_ONE;
@@ -125,11 +126,11 @@ CellActor * ov5_021D3104 (UnkStruct_ov5_021D30A8 * param0, const UnkStruct_ov7_0
     return v1;
 }
 
-void ov5_021D3190 (UnkStruct_ov5_021D30A8 * param0, UnkStruct_ov104_02241308 * param1, u32 param2, u32 param3)
+void ov5_021D3190(UnkStruct_ov5_021D30A8 *param0, UnkStruct_ov104_02241308 *param1, u32 param2, u32 param3)
 {
-    UnkStruct_02009F38 * v0;
-    UnkStruct_02009F38 * v1;
-    void * v2;
+    UnkStruct_02009F38 *v0;
+    UnkStruct_02009F38 *v1;
+    void *v2;
     u32 v3;
     u32 v4, v5;
 
@@ -161,9 +162,9 @@ void ov5_021D3190 (UnkStruct_ov5_021D30A8 * param0, UnkStruct_ov104_02241308 * p
     }
 }
 
-void ov5_021D3270 (UnkStruct_ov5_021D30A8 * param0, int param1, int param2, int param3, int param4, int param5, int param6)
+void ov5_021D3270(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, int param3, int param4, int param5, int param6)
 {
-    UnkStruct_02009DC8 * v0;
+    UnkStruct_02009DC8 *v0;
     int v1;
 
     if (sub_02009D34(param0->unk_194[1], param6) == 0) {
@@ -185,9 +186,9 @@ void ov5_021D3270 (UnkStruct_ov5_021D30A8 * param0, int param1, int param2, int 
     GF_ASSERT(0);
 }
 
-void ov5_021D32E8 (UnkStruct_ov5_021D30A8 * param0, NARC * param1, int param2, int param3, int param4, int param5, int param6)
+void ov5_021D32E8(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, int param3, int param4, int param5, int param6)
 {
-    UnkStruct_02009DC8 * v0;
+    UnkStruct_02009DC8 *v0;
     int v1;
 
     if (sub_02009D34(param0->unk_194[1], param6) == 0) {
@@ -209,29 +210,29 @@ void ov5_021D32E8 (UnkStruct_ov5_021D30A8 * param0, NARC * param1, int param2, i
     GF_ASSERT(0);
 }
 
-void ov5_021D3360 (UnkStruct_ov5_021D30A8 * param0, int param1, int param2, int param3, int param4)
+void ov5_021D3360(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, int param3, int param4)
 {
     ov5_021D34AC(param0, param1, param2, param3, 2, param4);
 }
 
-void ov5_021D3374 (UnkStruct_ov5_021D30A8 * param0, NARC * param1, int param2, int param3, int param4)
+void ov5_021D3374(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, int param3, int param4)
 {
     ov5_021D3518(param0, param1, param2, param3, 2, param4);
 }
 
-void ov5_021D3388 (UnkStruct_ov5_021D30A8 * param0, int param1, int param2, int param3, int param4)
+void ov5_021D3388(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, int param3, int param4)
 {
     ov5_021D34AC(param0, param1, param2, param3, 3, param4);
 }
 
-void ov5_021D339C (UnkStruct_ov5_021D30A8 * param0, NARC * param1, int param2, int param3, int param4)
+void ov5_021D339C(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, int param3, int param4)
 {
     ov5_021D3518(param0, param1, param2, param3, 3, param4);
 }
 
-void ov5_021D33B0 (UnkStruct_ov5_021D30A8 * param0, int param1, int param2, BOOL param3, int param4, int param5)
+void ov5_021D33B0(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, BOOL param3, int param4, int param5)
 {
-    UnkStruct_02009DC8 * v0;
+    UnkStruct_02009DC8 *v0;
 
     if (sub_02009D34(param0->unk_194[0], param5) == 0) {
         GF_ASSERT(0);
@@ -249,9 +250,9 @@ void ov5_021D33B0 (UnkStruct_ov5_021D30A8 * param0, int param1, int param2, BOOL
     GF_ASSERT(0);
 }
 
-void ov5_021D3414 (UnkStruct_ov5_021D30A8 * param0, NARC * param1, int param2, BOOL param3, int param4, int param5)
+void ov5_021D3414(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, BOOL param3, int param4, int param5)
 {
-    UnkStruct_02009DC8 * v0;
+    UnkStruct_02009DC8 *v0;
 
     if (sub_02009D34(param0->unk_194[0], param5) == 0) {
         GF_ASSERT(0);
@@ -270,7 +271,7 @@ void ov5_021D3414 (UnkStruct_ov5_021D30A8 * param0, NARC * param1, int param2, B
     GF_ASSERT(0);
 }
 
-static BOOL ov5_021D3478 (UnkStruct_02009CFC * param0, UnkStruct_02009DC8 * param1)
+static BOOL ov5_021D3478(UnkStruct_02009CFC *param0, UnkStruct_02009DC8 *param1)
 {
     int v0;
 
@@ -288,9 +289,9 @@ static BOOL ov5_021D3478 (UnkStruct_02009CFC * param0, UnkStruct_02009DC8 * para
     return 0;
 }
 
-static void ov5_021D34AC (UnkStruct_ov5_021D30A8 * param0, int param1, int param2, int param3, int param4, int param5)
+static void ov5_021D34AC(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, int param3, int param4, int param5)
 {
-    UnkStruct_02009DC8 * v0;
+    UnkStruct_02009DC8 *v0;
     int v1;
 
     if (sub_02009D34(param0->unk_194[param4], param5) == 0) {
@@ -309,9 +310,9 @@ static void ov5_021D34AC (UnkStruct_ov5_021D30A8 * param0, int param1, int param
     GF_ASSERT(0);
 }
 
-static void ov5_021D3518 (UnkStruct_ov5_021D30A8 * param0, NARC * param1, int param2, int param3, int param4, int param5)
+static void ov5_021D3518(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, int param3, int param4, int param5)
 {
-    UnkStruct_02009DC8 * v0;
+    UnkStruct_02009DC8 *v0;
     int v1;
 
     if (sub_02009D34(param0->unk_194[param4], param5) == 0) {
@@ -331,11 +332,11 @@ static void ov5_021D3518 (UnkStruct_ov5_021D30A8 * param0, NARC * param1, int pa
     GF_ASSERT(0);
 }
 
-CellActorData * ov5_021D3584 (UnkStruct_ov5_021D30A8 * param0, const SpriteTemplate * param1)
+CellActorData *ov5_021D3584(UnkStruct_ov5_021D30A8 *param0, const SpriteTemplate *param1)
 {
     int v0;
     int v1;
-    CellActorData * v2 = NULL;
+    CellActorData *v2 = NULL;
     CellActorInitParamsEx v3;
     int v4[6];
 
@@ -395,7 +396,7 @@ CellActorData * ov5_021D3584 (UnkStruct_ov5_021D30A8 * param0, const SpriteTempl
     return v2;
 }
 
-void ov5_021D375C (UnkStruct_ov5_021D30A8 * param0)
+void ov5_021D375C(UnkStruct_ov5_021D30A8 *param0)
 {
     u32 v0;
 

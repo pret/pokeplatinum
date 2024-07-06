@@ -9,4 +9,3 @@ typedef struct ChooseStarterData {
 } ChooseStarterData;
 
 #endif // POKEPLATINUM_STRUCT_020425E0_H
-

@@ -3,9 +3,9 @@
 
 typedef struct {
     u8 unk_00;
-    u8 unk_01_0    : 2;
-    u8 unk_01_2    : 1;
-    u8                  : 5;
+    u8 unk_01_0 : 2;
+    u8 unk_01_2 : 1;
+    u8 : 5;
     u8 unk_02;
     u8 padding_03;
     s16 unk_04;

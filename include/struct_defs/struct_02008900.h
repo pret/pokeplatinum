@@ -10,7 +10,7 @@ typedef struct {
     u8 unk_03;
     u8 unk_04[10];
     u8 padding_0E[2];
-    const SpriteAnimationFrame * unk_10;
+    const SpriteAnimationFrame *unk_10;
 } UnkStruct_02008900;
 
 #endif // POKEPLATINUM_STRUCT_02008900_H

@@ -1,15 +1,17 @@
+#include "unk_02030880.h"
+
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/species.h"
+
 #include "struct_decls/struct_0203068C_decl.h"
-#include "savedata.h"
+
+#include "savedata/save_table.h"
 
 #include "heap.h"
-#include "savedata/save_table.h"
-#include "constants/species.h"
 #include "savedata.h"
 #include "unk_0203061C.h"
-#include "unk_02030880.h"
 
 typedef struct {
     u16 unk_00[MAX_SPECIES];
@@ -23,30 +25,30 @@ typedef struct BattleFrontierStage {
     UnkStruct_020308A0_sub1 unk_04;
 } BattleFrontierStage;
 
-static u16 sub_02030908(BattleFrontierStage * param0, int param1, int param2, u16 param3);
-static u16 sub_02030954(SaveData * param0, BattleFrontierStage * param1, int param2, int param3, u16 param4);
+static u16 sub_02030908(BattleFrontierStage *param0, int param1, int param2, u16 param3);
+static u16 sub_02030954(SaveData *param0, BattleFrontierStage *param1, int param2, int param3, u16 param4);
 
-int Frontier_Extra_SaveSize (void)
+int Frontier_Extra_SaveSize(void)
 {
     GF_ASSERT(sizeof(BattleFrontierStage) % 4 == 0);
     return sizeof(BattleFrontierStage);
 }
 
-void Frontier_Extra_Init (BattleFrontierStage * param0)
+void Frontier_Extra_Init(BattleFrontierStage *param0)
 {
     MI_CpuClear8(param0, sizeof(BattleFrontierStage));
     param0->unk_00 = 0xffffffff;
 }
 
-BattleFrontierStage * sub_020308A0 (SaveData * param0, int param1, int * param2)
+BattleFrontierStage *sub_020308A0(SaveData *param0, int param1, int *param2)
 {
-    BattleFrontierStage * v0;
+    BattleFrontierStage *v0;
 
     v0 = SaveData_BattleFrontierStage(param0, param1, param2);
     return v0;
 }
 
-int sub_020308A8 (SaveData * param0, BattleFrontierStage * param1)
+int sub_020308A8(SaveData *param0, BattleFrontierStage *param1)
 {
     int v0;
 
@@ -56,7 +58,7 @@ int sub_020308A8 (SaveData * param0, BattleFrontierStage * param1)
     return v0;
 }
 
-u16 sub_020308BC (SaveData * param0, BattleFrontierStage * param1, int param2, int param3)
+u16 sub_020308BC(SaveData *param0, BattleFrontierStage *param1, int param2, int param3)
 {
     if (SaveData_MiscSaveBlock_InitFlag(param0) == 0) {
         return 0;
@@ -75,7 +77,7 @@ u16 sub_020308BC (SaveData * param0, BattleFrontierStage * param1, int param2, i
     return 0;
 }
 
-static u16 sub_02030908 (BattleFrontierStage * param0, int param1, int param2, u16 param3)
+static u16 sub_02030908(BattleFrontierStage *param0, int param1, int param2, u16 param3)
 {
     if (param3 > 9999) {
         param3 = 9999;
@@ -99,7 +101,7 @@ static u16 sub_02030908 (BattleFrontierStage * param0, int param1, int param2, u
     return param3;
 }
 
-static u16 sub_02030954 (SaveData * param0, BattleFrontierStage * param1, int param2, int param3, u16 param4)
+static u16 sub_02030954(SaveData *param0, BattleFrontierStage *param1, int param2, int param3, u16 param4)
 {
     u16 v0;
 
@@ -120,10 +122,10 @@ static u16 sub_02030954 (SaveData * param0, BattleFrontierStage * param1, int pa
     }
 }
 
-BOOL sub_020309A0 (SaveData * param0, int param1, int param2, int param3, int param4, int param5, int * param6, int * param7)
+BOOL sub_020309A0(SaveData *param0, int param1, int param2, int param3, int param4, int param5, int *param6, int *param7)
 {
-    UnkStruct_0203068C * v0;
-    BattleFrontierStage * v1;
+    UnkStruct_0203068C *v0;
+    BattleFrontierStage *v1;
     u16 v2, v3, v4;
     int v5;
     BOOL v6 = 0;

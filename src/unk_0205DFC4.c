@@ -1,30 +1,29 @@
+#include "unk_0205DFC4.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "trainer_info.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
-#include "savedata.h"
 
 #include "field/field_system.h"
-
-#include "heap.h"
-#include "unk_0201D15C.h"
-#include "save_player.h"
-#include "trainer_info.h"
-#include "communication_information.h"
-#include "communication_system.h"
-#include "unk_020508D4.h"
-#include "unk_0205DFC4.h"
-#include "map_object.h"
-#include "pokemon.h"
-#include "party.h"
 #include "overlay004/ov4_021D0D80.h"
 
+#include "communication_information.h"
+#include "communication_system.h"
+#include "heap.h"
+#include "map_object.h"
+#include "party.h"
+#include "pokemon.h"
+#include "save_player.h"
+#include "savedata.h"
+#include "trainer_info.h"
+#include "unk_0201D15C.h"
+#include "unk_020508D4.h"
+
 typedef struct {
-    MapObject * unk_00;
+    MapObject *unk_00;
     fx32 unk_04;
     fx32 unk_08;
     u16 unk_0C;
@@ -33,7 +32,7 @@ typedef struct {
 } UnkStruct_0205E268;
 
 typedef struct {
-    MapObject * unk_00;
+    MapObject *unk_00;
     u16 unk_04;
     u16 unk_06;
     u8 unk_08;
@@ -61,13 +60,13 @@ int sub_0205E658(u8 param0);
 int sub_0205E680(u8 param0);
 int sub_0205E6A8(u32 param0);
 u8 sub_0205E6B8(void);
-u8 sub_0205E6D8(SaveData * param0);
+u8 sub_0205E6D8(SaveData *param0);
 int sub_0205E700(u8 param0);
 int sub_0205E728(u8 param0);
 int sub_0205E750(u8 param0);
 int sub_0205E790(u8 param0);
 
-u16 sub_0205DFC4 (u32 param0)
+u16 sub_0205DFC4(u32 param0)
 {
     if (param0 / 10 == 0) {
         return 1;
@@ -90,7 +89,7 @@ u16 sub_0205DFC4 (u32 param0)
     return 1;
 }
 
-u16 sub_0205E060 (u16 param0)
+u16 sub_0205E060(u16 param0)
 {
     if ((param0 >= 328) && (param0 <= 427)) {
         return 1;
@@ -99,7 +98,7 @@ u16 sub_0205E060 (u16 param0)
     return 0;
 }
 
-u16 sub_0205E078 (u16 param0, u16 param1)
+u16 sub_0205E078(u16 param0, u16 param1)
 {
     if (param0 <= 15) {
         return 6;
@@ -156,7 +155,7 @@ u16 sub_0205E078 (u16 param0, u16 param1)
     }
 }
 
-u16 sub_0205E0E4 (u16 param0, u16 param1)
+u16 sub_0205E0E4(u16 param0, u16 param1)
 {
     if (param0 <= 39) {
         return 22;
@@ -241,9 +240,9 @@ u16 sub_0205E0E4 (u16 param0, u16 param1)
     }
 }
 
-u16 sub_0205E1B4 (SaveData * param0)
+u16 sub_0205E1B4(SaveData *param0)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     u16 v1, v2;
 
     v2 = Party_GetCurrentCount(Party_GetFromSavedata(param0));
@@ -259,11 +258,11 @@ u16 sub_0205E1B4 (SaveData * param0)
     return 0;
 }
 
-BOOL HasAllLegendaryTitansInParty (SaveData * param0)
+BOOL HasAllLegendaryTitansInParty(SaveData *param0)
 {
     int v0, v1, v2, v3 = 0;
-    Party * v4;
-    static const u16 v5[] = {377, 378, 379};
+    Party *v4;
+    static const u16 v5[] = { 377, 378, 379 };
     u16 v6[6];
 
     v4 = Party_GetFromSavedata(param0);
@@ -289,11 +288,11 @@ BOOL HasAllLegendaryTitansInParty (SaveData * param0)
     return 0;
 }
 
-static BOOL sub_0205E268 (TaskManager * param0)
+static BOOL sub_0205E268(TaskManager *param0)
 {
     VecFx32 v0;
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_0205E268 * v2 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+    UnkStruct_0205E268 *v2 = TaskManager_Environment(param0);
 
     v0.x = FX32_CONST(8);
     v0.z = FX32_CONST(8);
@@ -320,10 +319,10 @@ static BOOL sub_0205E268 (TaskManager * param0)
     return 0;
 }
 
-void sub_0205E318 (TaskManager * param0, MapObject * param1, u16 param2, u16 param3, u16 param4, u16 param5)
+void sub_0205E318(TaskManager *param0, MapObject *param1, u16 param2, u16 param3, u16 param4, u16 param5)
 {
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_0205E268 * v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0205E268));
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+    UnkStruct_0205E268 *v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0205E268));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_0205E268));
 
@@ -336,10 +335,10 @@ void sub_0205E318 (TaskManager * param0, MapObject * param1, u16 param2, u16 par
     FieldTask_Start(fieldSystem->unk_10, sub_0205E268, v1);
 }
 
-static BOOL sub_0205E3AC (TaskManager * param0)
+static BOOL sub_0205E3AC(TaskManager *param0)
 {
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_0205E3AC * v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+    UnkStruct_0205E3AC *v1 = TaskManager_Environment(param0);
 
     MapObject_SetHidden(v1->unk_00, v1->unk_09);
 
@@ -356,10 +355,10 @@ static BOOL sub_0205E3AC (TaskManager * param0)
     return 0;
 }
 
-void sub_0205E3F4 (TaskManager * param0, MapObject * param1, u16 param2, u16 param3)
+void sub_0205E3F4(TaskManager *param0, MapObject *param1, u16 param2, u16 param3)
 {
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_0205E3AC * v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0205E3AC));
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+    UnkStruct_0205E3AC *v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0205E3AC));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_0205E3AC));
 
@@ -371,7 +370,7 @@ void sub_0205E3F4 (TaskManager * param0, MapObject * param1, u16 param2, u16 par
     FieldTask_Start(fieldSystem->unk_10, sub_0205E3AC, v1);
 }
 
-int sub_0205E430 (u8 param0, u8 param1)
+int sub_0205E430(u8 param0, u8 param1)
 {
     int v0;
 
@@ -393,7 +392,7 @@ int sub_0205E430 (u8 param0, u8 param1)
     return v0 + (param0 * 4);
 }
 
-int sub_0205E45C (u8 param0, u8 param1)
+int sub_0205E45C(u8 param0, u8 param1)
 {
     int v0;
 
@@ -415,7 +414,7 @@ int sub_0205E45C (u8 param0, u8 param1)
     return v0 + (param0 * 4);
 }
 
-int sub_0205E488 (u8 param0, u8 param1)
+int sub_0205E488(u8 param0, u8 param1)
 {
     int v0;
 
@@ -437,7 +436,7 @@ int sub_0205E488 (u8 param0, u8 param1)
     return v0 + (param0 * 4);
 }
 
-int sub_0205E4B4 (u8 param0, u8 param1)
+int sub_0205E4B4(u8 param0, u8 param1)
 {
     int v0;
 
@@ -459,7 +458,7 @@ int sub_0205E4B4 (u8 param0, u8 param1)
     return v0 + (param0 * 4);
 }
 
-int sub_0205E4E0 (u8 param0, u8 param1)
+int sub_0205E4E0(u8 param0, u8 param1)
 {
     int v0;
 
@@ -482,7 +481,7 @@ int sub_0205E4E0 (u8 param0, u8 param1)
     return v0;
 }
 
-int sub_0205E50C (u8 param0)
+int sub_0205E50C(u8 param0)
 {
     int v0;
 
@@ -504,7 +503,7 @@ int sub_0205E50C (u8 param0)
     return v0;
 }
 
-int sub_0205E534 (u8 param0)
+int sub_0205E534(u8 param0)
 {
     int v0;
 
@@ -526,7 +525,7 @@ int sub_0205E534 (u8 param0)
     return v0;
 }
 
-int sub_0205E55C (u8 param0)
+int sub_0205E55C(u8 param0)
 {
     int v0;
 
@@ -548,7 +547,7 @@ int sub_0205E55C (u8 param0)
     return v0;
 }
 
-int sub_0205E584 (u8 param0)
+int sub_0205E584(u8 param0)
 {
     int v0;
 
@@ -571,7 +570,7 @@ int sub_0205E584 (u8 param0)
     return v0;
 }
 
-int sub_0205E5B4 (u8 param0, u8 param1)
+int sub_0205E5B4(u8 param0, u8 param1)
 {
     int v0;
 
@@ -594,7 +593,7 @@ int sub_0205E5B4 (u8 param0, u8 param1)
     return v0;
 }
 
-int sub_0205E5E0 (u8 param0)
+int sub_0205E5E0(u8 param0)
 {
     int v0;
 
@@ -616,7 +615,7 @@ int sub_0205E5E0 (u8 param0)
     return v0;
 }
 
-int sub_0205E608 (u8 param0)
+int sub_0205E608(u8 param0)
 {
     int v0;
 
@@ -638,7 +637,7 @@ int sub_0205E608 (u8 param0)
     return v0;
 }
 
-int sub_0205E630 (u8 param0)
+int sub_0205E630(u8 param0)
 {
     int v0;
 
@@ -660,7 +659,7 @@ int sub_0205E630 (u8 param0)
     return v0;
 }
 
-int sub_0205E658 (u8 param0)
+int sub_0205E658(u8 param0)
 {
     int v0;
 
@@ -682,7 +681,7 @@ int sub_0205E658 (u8 param0)
     return v0;
 }
 
-int sub_0205E680 (u8 param0)
+int sub_0205E680(u8 param0)
 {
     int v0;
 
@@ -704,7 +703,7 @@ int sub_0205E680 (u8 param0)
     return v0;
 }
 
-int sub_0205E6A8 (u32 param0)
+int sub_0205E6A8(u32 param0)
 {
     if (param0 < 100) {
         return 0xff;
@@ -713,9 +712,9 @@ int sub_0205E6A8 (u32 param0)
     return ov4_021D2388();
 }
 
-u8 sub_0205E6B8 (void)
+u8 sub_0205E6B8(void)
 {
-    TrainerInfo * v0;
+    TrainerInfo *v0;
 
     v0 = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
     GF_ASSERT(v0 != NULL);
@@ -723,7 +722,7 @@ u8 sub_0205E6B8 (void)
     return TrainerInfo_GameCode(v0);
 }
 
-u8 sub_0205E6D8 (SaveData * param0)
+u8 sub_0205E6D8(SaveData *param0)
 {
     if (TrainerInfo_GameCode(SaveData_GetTrainerInfo(param0)) == 0) {
         return 1;
@@ -736,7 +735,7 @@ u8 sub_0205E6D8 (SaveData * param0)
     return 0;
 }
 
-int sub_0205E700 (u8 param0)
+int sub_0205E700(u8 param0)
 {
     int v0;
 
@@ -758,7 +757,7 @@ int sub_0205E700 (u8 param0)
     return v0;
 }
 
-int sub_0205E728 (u8 param0)
+int sub_0205E728(u8 param0)
 {
     int v0;
 
@@ -780,7 +779,7 @@ int sub_0205E728 (u8 param0)
     return v0;
 }
 
-int sub_0205E750 (u8 param0)
+int sub_0205E750(u8 param0)
 {
     int v0;
 
@@ -811,7 +810,7 @@ int sub_0205E750 (u8 param0)
     return v0;
 }
 
-int sub_0205E790 (u8 param0)
+int sub_0205E790(u8 param0)
 {
     int v0;
 

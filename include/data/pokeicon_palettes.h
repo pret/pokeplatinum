@@ -54,6 +54,7 @@ enum {
  * for the icons used by Pokemon in PC boxes, the party list, etc. Alternate
  * forms are listed after the full National Dex using a custom ordering.
  */
+// clang-format off
 const u8 sPokemonIconPaletteIndex[] = {
     [SPECIES_NONE]      	= 0,
     [SPECIES_BULBASAUR] 	= 1,
@@ -596,3 +597,4 @@ const u8 sPokemonIconPaletteIndex[] = {
     [ICON_ROTOM_FAN]          = 0,
     [ICON_ROTOM_MOW]          = 0,
 };
+// clang-format on

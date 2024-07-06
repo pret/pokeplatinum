@@ -4,7 +4,7 @@
 #include "strbuf.h"
 
 typedef struct {
-    void * unk_00;
+    void *unk_00;
     u16 unk_04;
     u8 unk_06;
     u8 unk_07;
@@ -21,8 +21,8 @@ typedef struct {
     u16 unk_1C;
     u16 unk_1E;
     u16 unk_20[4];
-    Strbuf* unk_28;
-    Strbuf* unk_2C;
+    Strbuf *unk_28;
+    Strbuf *unk_2C;
 } UnkStruct_ov19_021D5FAC;
 
 #endif // POKEPLATINUM_STRUCT_OV19_021D5FAC_H

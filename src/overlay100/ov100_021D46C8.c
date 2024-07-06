@@ -1,48 +1,46 @@
+#include "overlay100/ov100_021D46C8.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-
 #include "struct_decls/struct_02006C24_decl.h"
-#include "message.h"
-#include "strbuf.h"
-
 #include "struct_defs/struct_020985E4.h"
+
+#include "overlay100/ov100_021D44C0.h"
 #include "overlay100/struct_ov100_021D46C8.h"
 #include "overlay100/struct_ov100_021D4890.h"
 #include "overlay100/struct_ov100_021D49B4.h"
 #include "overlay100/struct_ov100_021D4DD8.h"
 #include "overlay115/camera_angle.h"
 
-#include "unk_02002F38.h"
-#include "message.h"
-#include "string_template.h"
-#include "unk_0200DA60.h"
+#include "camera.h"
+#include "core_sys.h"
 #include "easy3d_object.h"
+#include "game_options.h"
+#include "gx_layers.h"
+#include "message.h"
+#include "strbuf.h"
+#include "string_template.h"
+#include "trainer_info.h"
+#include "unk_02002F38.h"
+#include "unk_0200DA60.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "gx_layers.h"
-#include "camera.h"
-#include "strbuf.h"
-#include "trainer_info.h"
-#include "game_options.h"
-#include "overlay100/ov100_021D44C0.h"
-#include "overlay100/ov100_021D46C8.h"
 
-int ov100_021D46C8 (UnkStruct_ov100_021D46C8 * param0, UnkStruct_020985E4 * param1, int param2)
+int ov100_021D46C8(UnkStruct_ov100_021D46C8 *param0, UnkStruct_020985E4 *param1, int param2)
 {
     int v0;
-    MessageLoader * v1;
-    Strbuf* v2;
-    Strbuf* v3 = Strbuf_Init(511, 111);
+    MessageLoader *v1;
+    Strbuf *v2;
+    Strbuf *v3 = Strbuf_Init(511, 111);
     u8 v4 = 0;
 
     v1 = param0->unk_2C;
     v2 = MessageLoader_GetNewStrbuf(v1, param2);
 
     if (param2 == 22) {
-        Strbuf* v5 = TrainerInfo_NameNewStrbuf(param1->unk_08, 111);
-        StringTemplate * v6 = StringTemplate_Default(111);
+        Strbuf *v5 = TrainerInfo_NameNewStrbuf(param1->unk_08, 111);
+        StringTemplate *v6 = StringTemplate_Default(111);
 
         StringTemplate_SetStrbuf(v6, 0, v5, 0, 1, GAME_LANGUAGE);
         StringTemplate_Format(v6, v3, v2);
@@ -67,16 +65,16 @@ int ov100_021D46C8 (UnkStruct_ov100_021D46C8 * param0, UnkStruct_020985E4 * para
     return v0;
 }
 
-void ov100_021D4788 (UnkStruct_ov100_021D46C8 * param0)
+void ov100_021D4788(UnkStruct_ov100_021D46C8 *param0)
 {
     sub_0200E084(&param0->unk_30, 1);
     sub_0201ACF4(&param0->unk_30);
 }
 
-void ov100_021D47A0 (UnkStruct_ov100_021D46C8 * param0)
+void ov100_021D47A0(UnkStruct_ov100_021D46C8 *param0)
 {
-    VecFx32 v0 = {0, -FX32_ONE, -FX32_ONE};
-    VecFx32 v1 = {-2043, -3548, 110};
+    VecFx32 v0 = { 0, -FX32_ONE, -FX32_ONE };
+    VecFx32 v1 = { -2043, -3548, 110 };
 
     VEC_Normalize(&v0, &v0);
     NNS_G3dGlbLightVector(0, v0.x, v0.y, v0.z);
@@ -90,7 +88,7 @@ void ov100_021D47A0 (UnkStruct_ov100_021D46C8 * param0)
     NNS_G3dGlbMaterialColorSpecEmi(GX_RGB(20, 20, 20), GX_RGB(16, 16, 16), 0);
 }
 
-void ov100_021D4844 (UnkStruct_ov100_021D46C8 * param0)
+void ov100_021D4844(UnkStruct_ov100_021D46C8 *param0)
 {
     CameraAngle v0 = Camera_GetAngle(param0->camera);
     VecFx32 v1 = Camera_GetPosition(param0->camera);
@@ -99,7 +97,7 @@ void ov100_021D4844 (UnkStruct_ov100_021D46C8 * param0)
     Camera_SetAngleAroundTarget(&v0, param0->camera);
 }
 
-void ov100_021D4890 (UnkStruct_ov100_021D4890 * param0)
+void ov100_021D4890(UnkStruct_ov100_021D4890 *param0)
 {
     CameraAngle v0;
 
@@ -119,7 +117,7 @@ void ov100_021D4890 (UnkStruct_ov100_021D4890 * param0)
     param0->cameraAngle.z = v0.z + ((65535 / 360) * param0->unk_14);
 }
 
-BOOL ov100_021D4920 (UnkStruct_ov100_021D4890 * param0)
+BOOL ov100_021D4920(UnkStruct_ov100_021D4890 *param0)
 {
     BOOL v0 = 0;
     CameraAngle v1 = Camera_GetAngle(param0->camera);
@@ -148,7 +146,7 @@ BOOL ov100_021D4920 (UnkStruct_ov100_021D4890 * param0)
     return v0;
 }
 
-void ov100_021D49B4 (UnkStruct_ov100_021D49B4 * param0)
+void ov100_021D49B4(UnkStruct_ov100_021D49B4 *param0)
 {
     if (param0->unk_174 == 0) {
         return;
@@ -194,17 +192,17 @@ void ov100_021D49B4 (UnkStruct_ov100_021D49B4 * param0)
     NNS_G3dGePopMtx(1);
 }
 
-void ov100_021D4A84 (UnkStruct_ov100_021D49B4 * param0)
+void ov100_021D4A84(UnkStruct_ov100_021D49B4 *param0)
 {
     Easy3DModel_Release(&param0->unk_78);
 }
 
-void ov100_021D4A90 (int param0, UnkStruct_ov100_021D49B4 * param1, NNSFndAllocator * param2)
+void ov100_021D4A90(int param0, UnkStruct_ov100_021D49B4 *param1, NNSFndAllocator *param2)
 {
     Easy3DAnim_Release(&param1->unk_88[param0], param2);
 }
 
-void ov100_021D4AA4 (UnkStruct_ov100_021D49B4 * param0, NNSFndAllocator * param1, int param2)
+void ov100_021D4AA4(UnkStruct_ov100_021D49B4 *param0, NNSFndAllocator *param1, int param2)
 {
     int v0;
 
@@ -215,7 +213,7 @@ void ov100_021D4AA4 (UnkStruct_ov100_021D49B4 * param0, NNSFndAllocator * param1
     }
 }
 
-void ov100_021D4AC8 (UnkStruct_ov100_021D49B4 * param0, int param1, NARC * param2)
+void ov100_021D4AC8(UnkStruct_ov100_021D49B4 *param0, int param1, NARC *param2)
 {
     Easy3DModel_LoadFrom(&param0->unk_78, param2, param1, 111);
     Easy3DObject_Init(&param0->unk_00, &param0->unk_78);
@@ -226,7 +224,7 @@ void ov100_021D4AC8 (UnkStruct_ov100_021D49B4 * param0, int param1, NARC * param
     param0->unk_174 = 1;
 }
 
-void ov100_021D4B10 (UnkStruct_ov100_021D49B4 * param0, UnkStruct_ov100_021D49B4 * param1, int param2, NARC * param3)
+void ov100_021D4B10(UnkStruct_ov100_021D49B4 *param0, UnkStruct_ov100_021D49B4 *param1, int param2, NARC *param3)
 {
     Easy3DObject_Init(&param1->unk_00, &param0->unk_78);
     Easy3DObject_SetPosition(&param1->unk_00, 0, 0, 0);
@@ -236,7 +234,7 @@ void ov100_021D4B10 (UnkStruct_ov100_021D49B4 * param0, UnkStruct_ov100_021D49B4
     param1->unk_174 = 1;
 }
 
-void ov100_021D4B4C (int param0, UnkStruct_ov100_021D49B4 * param1, int param2, NARC * param3, NNSFndAllocator * param4)
+void ov100_021D4B4C(int param0, UnkStruct_ov100_021D49B4 *param1, int param2, NARC *param3, NNSFndAllocator *param4)
 {
     Easy3DAnim_LoadFrom(&param1->unk_88[param0], &param1->unk_78, param3, param2, 111, param4);
     Easy3DAnim_SetFrame(&param1->unk_88[param0], 0);
@@ -247,7 +245,7 @@ void ov100_021D4B4C (int param0, UnkStruct_ov100_021D49B4 * param1, int param2, 
     param1->unk_178 = 0xFF;
 }
 
-void ov100_021D4BA0 (int param0, UnkStruct_ov100_021D49B4 * param1, UnkStruct_ov100_021D49B4 * param2, int param3, NARC * param4, NNSFndAllocator * param5)
+void ov100_021D4BA0(int param0, UnkStruct_ov100_021D49B4 *param1, UnkStruct_ov100_021D49B4 *param2, int param3, NARC *param4, NNSFndAllocator *param5)
 {
     Easy3DAnim_LoadFrom(&param2->unk_88[param0], &param1->unk_78, param4, param3, 111, param5);
     Easy3DAnim_SetFrame(&param2->unk_88[param0], 0);
@@ -258,7 +256,7 @@ void ov100_021D4BA0 (int param0, UnkStruct_ov100_021D49B4 * param1, UnkStruct_ov
     param2->unk_178 = 0xFF;
 }
 
-void ov100_021D4BF0 (UnkStruct_ov100_021D46C8 * param0)
+void ov100_021D4BF0(UnkStruct_ov100_021D46C8 *param0)
 {
     if (param0->unk_C0 == 0) {
         if (param0->unk_C1 < 31) {
@@ -278,24 +276,28 @@ void ov100_021D4BF0 (UnkStruct_ov100_021D46C8 * param0)
     sub_020039B0(param0->unk_10, 1, 4, 6, param0->unk_C1 / 8, 0xCCCC);
 }
 
-void ov100_021D4C94 (UnkStruct_ov100_021D46C8 * param0, int param1)
+void ov100_021D4C94(UnkStruct_ov100_021D46C8 *param0, int param1)
 {
     int v0;
     const u8 v1[] = {
-        4, 4, 4,
+        4,
+        4,
+        4,
     };
     const v2[][2] = {
-        {0, 31},
-        {0, 31},
-        {0, 31},
+        { 0, 31 },
+        { 0, 31 },
+        { 0, 31 },
     };
     const u8 v3[][2] = {
-        {0, 32},
-        {0, 32},
-        {0, 32},
+        { 0, 32 },
+        { 0, 32 },
+        { 0, 32 },
     };
     const int v4[] = {
-        0x10, 0x10, 0x10,
+        0x10,
+        0x10,
+        0x10,
     };
 
     v0 = param1;
@@ -332,13 +334,13 @@ void ov100_021D4C94 (UnkStruct_ov100_021D46C8 * param0, int param1)
     sub_020039B0(param0->unk_10, 1, v3[v0][0], v3[v0][1], param0->unk_C1 / v1[v0], v4[v0]);
 }
 
-void ov100_021D4DC8 (int param0)
+void ov100_021D4DC8(int param0)
 {
     gCoreSys.unk_65 = param0;
     GXLayers_SwapDisplay();
 }
 
-void ov100_021D4DD8 (UnkStruct_ov100_021D4DD8 * param0, int param1)
+void ov100_021D4DD8(UnkStruct_ov100_021D4DD8 *param0, int param1)
 {
     param0->unk_0C.unk_50.unk_03 = param1;
     G2_SetBlendBrightness((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), param0->unk_0C.unk_50.unk_03);

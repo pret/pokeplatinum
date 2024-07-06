@@ -1,323 +1,323 @@
+#include "unk_0200762C.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "inlines.h"
-
-#include "struct_defs/struct_02007768.h"
+#include "struct_defs/archived_sprite.h"
 #include "struct_defs/sprite_animation_frame.h"
-#include "functypes/funcptr_02007C34.h"
+#include "struct_defs/struct_02007768.h"
 #include "struct_defs/struct_02007C7C.h"
 #include "struct_defs/struct_02008900.h"
-#include "struct_defs/archived_sprite.h"
 
-#include "unk_02002F38.h"
-#include "narc.h"
-#include "unk_0200762C.h"
+#include "functypes/funcptr_02007C34.h"
+
 #include "heap.h"
+#include "inlines.h"
+#include "narc.h"
+#include "unk_02002F38.h"
 
 typedef struct {
     u8 unk_00;
     u8 unk_01;
 } UnkStruct_020E4E62;
 
-
 static const UnkStruct_020E4E62 Unk_020E4E62[] = {
-	{ 0x1B, 0xF },
-	{ 0x1C, 0xF },
-	{ 0x1D, 0xF },
-	{ 0x1E, 0xF },
-	{ 0x1A, 0x10 },
-	{ 0x1B, 0x10 },
-	{ 0x1C, 0x10 },
-	{ 0x1D, 0x10 },
-	{ 0x1E, 0x10 },
-	{ 0x1F, 0x10 },
-	{ 0x19, 0x11 },
-	{ 0x1A, 0x11 },
-	{ 0x1B, 0x11 },
-	{ 0x1C, 0x11 },
-	{ 0x1D, 0x11 },
-	{ 0x1E, 0x11 },
-	{ 0x1F, 0x11 },
-	{ 0x20, 0x11 },
-	{ 0x19, 0x12 },
-	{ 0x1A, 0x12 },
-	{ 0x1B, 0x12 },
-	{ 0x1C, 0x12 },
-	{ 0x1D, 0x12 },
-	{ 0x1E, 0x12 },
-	{ 0x1F, 0x12 },
-	{ 0x20, 0x12 },
-	{ 0x19, 0x13 },
-	{ 0x1A, 0x13 },
-	{ 0x1B, 0x13 },
-	{ 0x1C, 0x13 },
-	{ 0x1D, 0x13 },
-	{ 0x1E, 0x13 },
-	{ 0x1F, 0x13 },
-	{ 0x20, 0x13 },
-	{ 0x19, 0x14 },
-	{ 0x1A, 0x14 },
-	{ 0x1B, 0x14 },
-	{ 0x1C, 0x14 },
-	{ 0x1D, 0x14 },
-	{ 0x1E, 0x14 },
-	{ 0x1F, 0x14 },
-	{ 0x20, 0x14 },
-	{ 0x1A, 0x15 },
-	{ 0x1B, 0x15 },
-	{ 0x1C, 0x15 },
-	{ 0x1D, 0x15 },
-	{ 0x1E, 0x15 },
-	{ 0x1F, 0x15 },
-	{ 0x1B, 0x16 },
-	{ 0x1C, 0x16 },
-	{ 0x1D, 0x16 },
-	{ 0x1E, 0x16 },
-	{ 0xff, 0xff }
+    { 0x1B, 0xF },
+    { 0x1C, 0xF },
+    { 0x1D, 0xF },
+    { 0x1E, 0xF },
+    { 0x1A, 0x10 },
+    { 0x1B, 0x10 },
+    { 0x1C, 0x10 },
+    { 0x1D, 0x10 },
+    { 0x1E, 0x10 },
+    { 0x1F, 0x10 },
+    { 0x19, 0x11 },
+    { 0x1A, 0x11 },
+    { 0x1B, 0x11 },
+    { 0x1C, 0x11 },
+    { 0x1D, 0x11 },
+    { 0x1E, 0x11 },
+    { 0x1F, 0x11 },
+    { 0x20, 0x11 },
+    { 0x19, 0x12 },
+    { 0x1A, 0x12 },
+    { 0x1B, 0x12 },
+    { 0x1C, 0x12 },
+    { 0x1D, 0x12 },
+    { 0x1E, 0x12 },
+    { 0x1F, 0x12 },
+    { 0x20, 0x12 },
+    { 0x19, 0x13 },
+    { 0x1A, 0x13 },
+    { 0x1B, 0x13 },
+    { 0x1C, 0x13 },
+    { 0x1D, 0x13 },
+    { 0x1E, 0x13 },
+    { 0x1F, 0x13 },
+    { 0x20, 0x13 },
+    { 0x19, 0x14 },
+    { 0x1A, 0x14 },
+    { 0x1B, 0x14 },
+    { 0x1C, 0x14 },
+    { 0x1D, 0x14 },
+    { 0x1E, 0x14 },
+    { 0x1F, 0x14 },
+    { 0x20, 0x14 },
+    { 0x1A, 0x15 },
+    { 0x1B, 0x15 },
+    { 0x1C, 0x15 },
+    { 0x1D, 0x15 },
+    { 0x1E, 0x15 },
+    { 0x1F, 0x15 },
+    { 0x1B, 0x16 },
+    { 0x1C, 0x16 },
+    { 0x1D, 0x16 },
+    { 0x1E, 0x16 },
+    { 0xff, 0xff }
 };
 
 static const UnkStruct_020E4E62 Unk_020E4DF8[] = {
-	{ 0x33, 0x11 },
-	{ 0x34, 0x11 },
-	{ 0x35, 0x11 },
-	{ 0x36, 0x11 },
-	{ 0x32, 0x12 },
-	{ 0x33, 0x12 },
-	{ 0x34, 0x12 },
-	{ 0x35, 0x12 },
-	{ 0x36, 0x12 },
-	{ 0x37, 0x12 },
-	{ 0x31, 0x13 },
-	{ 0x32, 0x13 },
-	{ 0x33, 0x13 },
-	{ 0x34, 0x13 },
-	{ 0x35, 0x13 },
-	{ 0x36, 0x13 },
-	{ 0x37, 0x13 },
-	{ 0x38, 0x13 },
-	{ 0x31, 0x14 },
-	{ 0x32, 0x14 },
-	{ 0x33, 0x14 },
-	{ 0x34, 0x14 },
-	{ 0x35, 0x14 },
-	{ 0x36, 0x14 },
-	{ 0x37, 0x14 },
-	{ 0x38, 0x14 },
-	{ 0x31, 0x15 },
-	{ 0x32, 0x15 },
-	{ 0x33, 0x15 },
-	{ 0x34, 0x15 },
-	{ 0x35, 0x15 },
-	{ 0x36, 0x15 },
-	{ 0x37, 0x15 },
-	{ 0x38, 0x15 },
-	{ 0x31, 0x16 },
-	{ 0x32, 0x16 },
-	{ 0x33, 0x16 },
-	{ 0x34, 0x16 },
-	{ 0x35, 0x16 },
-	{ 0x36, 0x16 },
-	{ 0x37, 0x16 },
-	{ 0x38, 0x16 },
-	{ 0x32, 0x17 },
-	{ 0x33, 0x17 },
-	{ 0x34, 0x17 },
-	{ 0x35, 0x17 },
-	{ 0x36, 0x17 },
-	{ 0x37, 0x17 },
-	{ 0x33, 0x18 },
-	{ 0x34, 0x18 },
-	{ 0x35, 0x18 },
-	{ 0x36, 0x18 },
-	{ 0xff, 0xff }
+    { 0x33, 0x11 },
+    { 0x34, 0x11 },
+    { 0x35, 0x11 },
+    { 0x36, 0x11 },
+    { 0x32, 0x12 },
+    { 0x33, 0x12 },
+    { 0x34, 0x12 },
+    { 0x35, 0x12 },
+    { 0x36, 0x12 },
+    { 0x37, 0x12 },
+    { 0x31, 0x13 },
+    { 0x32, 0x13 },
+    { 0x33, 0x13 },
+    { 0x34, 0x13 },
+    { 0x35, 0x13 },
+    { 0x36, 0x13 },
+    { 0x37, 0x13 },
+    { 0x38, 0x13 },
+    { 0x31, 0x14 },
+    { 0x32, 0x14 },
+    { 0x33, 0x14 },
+    { 0x34, 0x14 },
+    { 0x35, 0x14 },
+    { 0x36, 0x14 },
+    { 0x37, 0x14 },
+    { 0x38, 0x14 },
+    { 0x31, 0x15 },
+    { 0x32, 0x15 },
+    { 0x33, 0x15 },
+    { 0x34, 0x15 },
+    { 0x35, 0x15 },
+    { 0x36, 0x15 },
+    { 0x37, 0x15 },
+    { 0x38, 0x15 },
+    { 0x31, 0x16 },
+    { 0x32, 0x16 },
+    { 0x33, 0x16 },
+    { 0x34, 0x16 },
+    { 0x35, 0x16 },
+    { 0x36, 0x16 },
+    { 0x37, 0x16 },
+    { 0x38, 0x16 },
+    { 0x32, 0x17 },
+    { 0x33, 0x17 },
+    { 0x34, 0x17 },
+    { 0x35, 0x17 },
+    { 0x36, 0x17 },
+    { 0x37, 0x17 },
+    { 0x33, 0x18 },
+    { 0x34, 0x18 },
+    { 0x35, 0x18 },
+    { 0x36, 0x18 },
+    { 0xff, 0xff }
 };
 
 static const UnkStruct_020E4E62 Unk_020E4D90[] = {
-	{ 0x1E, 0x21 },
-	{ 0x1F, 0x21 },
-	{ 0x20, 0x21 },
-	{ 0x1D, 0x22 },
-	{ 0x1E, 0x22 },
-	{ 0x1F, 0x22 },
-	{ 0x20, 0x22 },
-	{ 0x21, 0x22 },
-	{ 0x1C, 0x23 },
-	{ 0x1D, 0x23 },
-	{ 0x1E, 0x23 },
-	{ 0x1F, 0x23 },
-	{ 0x20, 0x23 },
-	{ 0x21, 0x23 },
-	{ 0x22, 0x23 },
-	{ 0x1C, 0x24 },
-	{ 0x1D, 0x24 },
-	{ 0x1E, 0x24 },
-	{ 0x1F, 0x24 },
-	{ 0x20, 0x24 },
-	{ 0x21, 0x24 },
-	{ 0x22, 0x24 },
-	{ 0x1C, 0x25 },
-	{ 0x1D, 0x25 },
-	{ 0x1E, 0x25 },
-	{ 0x1F, 0x25 },
-	{ 0x20, 0x25 },
-	{ 0x21, 0x25 },
-	{ 0x22, 0x25 },
-	{ 0x1C, 0x26 },
-	{ 0x1D, 0x26 },
-	{ 0x1E, 0x26 },
-	{ 0x1F, 0x26 },
-	{ 0x20, 0x26 },
-	{ 0x21, 0x26 },
-	{ 0x22, 0x26 },
-	{ 0x1C, 0x27 },
-	{ 0x1D, 0x27 },
-	{ 0x1E, 0x27 },
-	{ 0x1F, 0x27 },
-	{ 0x20, 0x27 },
-	{ 0x21, 0x27 },
-	{ 0x22, 0x27 },
-	{ 0x1D, 0x28 },
-	{ 0x1E, 0x28 },
-	{ 0x1F, 0x28 },
-	{ 0x20, 0x28 },
-	{ 0x21, 0x28 },
-	{ 0x1E, 0x29 },
-	{ 0x1F, 0x29 },
-	{ 0x20, 0x29 },
-	{ 0xff, 0xff }
+    { 0x1E, 0x21 },
+    { 0x1F, 0x21 },
+    { 0x20, 0x21 },
+    { 0x1D, 0x22 },
+    { 0x1E, 0x22 },
+    { 0x1F, 0x22 },
+    { 0x20, 0x22 },
+    { 0x21, 0x22 },
+    { 0x1C, 0x23 },
+    { 0x1D, 0x23 },
+    { 0x1E, 0x23 },
+    { 0x1F, 0x23 },
+    { 0x20, 0x23 },
+    { 0x21, 0x23 },
+    { 0x22, 0x23 },
+    { 0x1C, 0x24 },
+    { 0x1D, 0x24 },
+    { 0x1E, 0x24 },
+    { 0x1F, 0x24 },
+    { 0x20, 0x24 },
+    { 0x21, 0x24 },
+    { 0x22, 0x24 },
+    { 0x1C, 0x25 },
+    { 0x1D, 0x25 },
+    { 0x1E, 0x25 },
+    { 0x1F, 0x25 },
+    { 0x20, 0x25 },
+    { 0x21, 0x25 },
+    { 0x22, 0x25 },
+    { 0x1C, 0x26 },
+    { 0x1D, 0x26 },
+    { 0x1E, 0x26 },
+    { 0x1F, 0x26 },
+    { 0x20, 0x26 },
+    { 0x21, 0x26 },
+    { 0x22, 0x26 },
+    { 0x1C, 0x27 },
+    { 0x1D, 0x27 },
+    { 0x1E, 0x27 },
+    { 0x1F, 0x27 },
+    { 0x20, 0x27 },
+    { 0x21, 0x27 },
+    { 0x22, 0x27 },
+    { 0x1D, 0x28 },
+    { 0x1E, 0x28 },
+    { 0x1F, 0x28 },
+    { 0x20, 0x28 },
+    { 0x21, 0x28 },
+    { 0x1E, 0x29 },
+    { 0x1F, 0x29 },
+    { 0x20, 0x29 },
+    { 0xff, 0xff }
 };
 
 static const UnkStruct_020E4E62 Unk_020E4F4C[] = {
-	{ 0x2B, 0x21 },
-	{ 0x2C, 0x21 },
-	{ 0x2D, 0x21 },
-	{ 0x29, 0x22 },
-	{ 0x2A, 0x22 },
-	{ 0x2B, 0x22 },
-	{ 0x2C, 0x22 },
-	{ 0x2D, 0x22 },
-	{ 0x2E, 0x22 },
-	{ 0x2F, 0x22 },
-	{ 0x28, 0x23 },
-	{ 0x29, 0x23 },
-	{ 0x2A, 0x23 },
-	{ 0x2B, 0x23 },
-	{ 0x2C, 0x23 },
-	{ 0x2D, 0x23 },
-	{ 0x2E, 0x23 },
-	{ 0x2F, 0x23 },
-	{ 0x30, 0x23 },
-	{ 0x28, 0x24 },
-	{ 0x29, 0x24 },
-	{ 0x2A, 0x24 },
-	{ 0x2B, 0x24 },
-	{ 0x2C, 0x24 },
-	{ 0x2D, 0x24 },
-	{ 0x2E, 0x24 },
-	{ 0x2F, 0x24 },
-	{ 0x30, 0x24 },
-	{ 0x28, 0x25 },
-	{ 0x29, 0x25 },
-	{ 0x2A, 0x25 },
-	{ 0x2B, 0x25 },
-	{ 0x2C, 0x25 },
-	{ 0x2D, 0x25 },
-	{ 0x2E, 0x25 },
-	{ 0x2F, 0x25 },
-	{ 0x30, 0x25 },
-	{ 0x28, 0x26 },
-	{ 0x29, 0x26 },
-	{ 0x2A, 0x26 },
-	{ 0x2B, 0x26 },
-	{ 0x2C, 0x26 },
-	{ 0x2D, 0x26 },
-	{ 0x2E, 0x26 },
-	{ 0x2F, 0x26 },
-	{ 0x30, 0x26 },
-	{ 0x28, 0x27 },
-	{ 0x29, 0x27 },
-	{ 0x2A, 0x27 },
-	{ 0x2B, 0x27 },
-	{ 0x2C, 0x27 },
-	{ 0x2D, 0x27 },
-	{ 0x2E, 0x27 },
-	{ 0x2F, 0x27 },
-	{ 0x30, 0x27 },
-	{ 0x28, 0x28 },
-	{ 0x29, 0x28 },
-	{ 0x2A, 0x28 },
-	{ 0x2B, 0x28 },
-	{ 0x2C, 0x28 },
-	{ 0x2D, 0x28 },
-	{ 0x2E, 0x28 },
-	{ 0x2F, 0x28 },
-	{ 0x30, 0x28 },
-	{ 0x29, 0x29 },
-	{ 0x2A, 0x29 },
-	{ 0x2B, 0x29 },
-	{ 0x2C, 0x29 },
-	{ 0x2D, 0x29 },
-	{ 0x2E, 0x29 },
-	{ 0x2F, 0x29 },
-	{ 0x2B, 0x2A },
-	{ 0x2C, 0x2A },
-	{ 0x2D, 0x2A },
-	{ 0xff, 0xff }
+    { 0x2B, 0x21 },
+    { 0x2C, 0x21 },
+    { 0x2D, 0x21 },
+    { 0x29, 0x22 },
+    { 0x2A, 0x22 },
+    { 0x2B, 0x22 },
+    { 0x2C, 0x22 },
+    { 0x2D, 0x22 },
+    { 0x2E, 0x22 },
+    { 0x2F, 0x22 },
+    { 0x28, 0x23 },
+    { 0x29, 0x23 },
+    { 0x2A, 0x23 },
+    { 0x2B, 0x23 },
+    { 0x2C, 0x23 },
+    { 0x2D, 0x23 },
+    { 0x2E, 0x23 },
+    { 0x2F, 0x23 },
+    { 0x30, 0x23 },
+    { 0x28, 0x24 },
+    { 0x29, 0x24 },
+    { 0x2A, 0x24 },
+    { 0x2B, 0x24 },
+    { 0x2C, 0x24 },
+    { 0x2D, 0x24 },
+    { 0x2E, 0x24 },
+    { 0x2F, 0x24 },
+    { 0x30, 0x24 },
+    { 0x28, 0x25 },
+    { 0x29, 0x25 },
+    { 0x2A, 0x25 },
+    { 0x2B, 0x25 },
+    { 0x2C, 0x25 },
+    { 0x2D, 0x25 },
+    { 0x2E, 0x25 },
+    { 0x2F, 0x25 },
+    { 0x30, 0x25 },
+    { 0x28, 0x26 },
+    { 0x29, 0x26 },
+    { 0x2A, 0x26 },
+    { 0x2B, 0x26 },
+    { 0x2C, 0x26 },
+    { 0x2D, 0x26 },
+    { 0x2E, 0x26 },
+    { 0x2F, 0x26 },
+    { 0x30, 0x26 },
+    { 0x28, 0x27 },
+    { 0x29, 0x27 },
+    { 0x2A, 0x27 },
+    { 0x2B, 0x27 },
+    { 0x2C, 0x27 },
+    { 0x2D, 0x27 },
+    { 0x2E, 0x27 },
+    { 0x2F, 0x27 },
+    { 0x30, 0x27 },
+    { 0x28, 0x28 },
+    { 0x29, 0x28 },
+    { 0x2A, 0x28 },
+    { 0x2B, 0x28 },
+    { 0x2C, 0x28 },
+    { 0x2D, 0x28 },
+    { 0x2E, 0x28 },
+    { 0x2F, 0x28 },
+    { 0x30, 0x28 },
+    { 0x29, 0x29 },
+    { 0x2A, 0x29 },
+    { 0x2B, 0x29 },
+    { 0x2C, 0x29 },
+    { 0x2D, 0x29 },
+    { 0x2E, 0x29 },
+    { 0x2F, 0x29 },
+    { 0x2B, 0x2A },
+    { 0x2C, 0x2A },
+    { 0x2D, 0x2A },
+    { 0xff, 0xff }
 };
 
 static const UnkStruct_020E4E62 *Unk_021007A4[] = {
-	(UnkStruct_020E4E62 *)&Unk_020E4E62,
-	(UnkStruct_020E4E62 *)&Unk_020E4DF8,
-	(UnkStruct_020E4E62 *)&Unk_020E4D90,
-	(UnkStruct_020E4E62 *)&Unk_020E4F4C
+    (UnkStruct_020E4E62 *)&Unk_020E4E62,
+    (UnkStruct_020E4E62 *)&Unk_020E4DF8,
+    (UnkStruct_020E4E62 *)&Unk_020E4D90,
+    (UnkStruct_020E4E62 *)&Unk_020E4F4C
 };
 
-void * sub_0200762C(int param0);
-void sub_02007768(UnkStruct_02007768 * param0);
-void sub_02007B6C(UnkStruct_02007768 * param0);
-Sprite * sub_02007C34(UnkStruct_02007768 * param0, ArchivedSprite * param1, int param2, int param3, int param4, int param5, SpriteAnimationFrame * param6, UnkFuncPtr_02007C34 * param7);
-Sprite * sub_02007C7C(UnkStruct_02007768 * param0, ArchivedSprite * param1, int param2, int param3, int param4, int param5, int param6, SpriteAnimationFrame * param7, UnkFuncPtr_02007C34 * param8);
-void sub_02007DC8(Sprite * param0);
-void sub_02007DD4(UnkStruct_02007768 * param0);
-void sub_02007B98(Sprite * param0, int param1);
-void sub_02007C10(Sprite * param0, SpriteAnimationFrame * param1);
-BOOL sub_02007C24(Sprite * param0);
-void sub_02007DEC(Sprite * param0, int param1, int param2);
-int sub_020080C0(Sprite * param0, int param1);
-void sub_02008274(Sprite * param0, int param1, int param2);
-void sub_020086D4(Sprite * param0, int param1, int param2, int param3, int param4);
-void sub_020086FC(Sprite * param0, int param1, int param2, int param3, int param4);
-void sub_0200872C(UnkStruct_02007768 * param0, int param1, int param2, int param3, int param4);
-void sub_02008780(Sprite * param0);
-BOOL sub_020087B4(Sprite * param0);
-void sub_020087C8(Sprite * param0, int param1);
-void sub_020089A0(Sprite * param0);
-void sub_020089B0(Sprite * param0);
-void sub_02008A0C(Sprite * param0);
-void sub_02008A78(UnkStruct_02007768 * param0, u32 param1, u32 param2);
-void sub_02008A84(UnkStruct_02007768 * param0, u32 param1, u32 param2);
-ArchivedSprite * sub_02008A90(Sprite * param0);
-void sub_02008A94(UnkStruct_02007768 * param0);
-void sub_02008B2C(UnkStruct_02007768 * param0, int param1);
-BOOL sub_02008B38(Sprite * param0);
-void sub_02008B54(UnkStruct_02007768 * param0, u32 param1);
-void sub_02008B60(UnkStruct_02007768 * param0, u32 param1);
-void sub_020091D8(u8 * param0, u32 param1, BOOL param2);
-void sub_02009348(u8 * param0);
-static void sub_02008B78(UnkStruct_02007768 * param0);
-static void sub_02008FC8(UnkStruct_02007768 * param0);
-static void sub_020088D8(Sprite * param0);
+void *sub_0200762C(int param0);
+void sub_02007768(UnkStruct_02007768 *param0);
+void sub_02007B6C(UnkStruct_02007768 *param0);
+Sprite *sub_02007C34(UnkStruct_02007768 *param0, ArchivedSprite *param1, int param2, int param3, int param4, int param5, SpriteAnimationFrame *param6, UnkFuncPtr_02007C34 *param7);
+Sprite *sub_02007C7C(UnkStruct_02007768 *param0, ArchivedSprite *param1, int param2, int param3, int param4, int param5, int param6, SpriteAnimationFrame *param7, UnkFuncPtr_02007C34 *param8);
+void sub_02007DC8(Sprite *param0);
+void sub_02007DD4(UnkStruct_02007768 *param0);
+void sub_02007B98(Sprite *param0, int param1);
+void sub_02007C10(Sprite *param0, SpriteAnimationFrame *param1);
+BOOL sub_02007C24(Sprite *param0);
+void sub_02007DEC(Sprite *param0, int param1, int param2);
+int sub_020080C0(Sprite *param0, int param1);
+void sub_02008274(Sprite *param0, int param1, int param2);
+void sub_020086D4(Sprite *param0, int param1, int param2, int param3, int param4);
+void sub_020086FC(Sprite *param0, int param1, int param2, int param3, int param4);
+void sub_0200872C(UnkStruct_02007768 *param0, int param1, int param2, int param3, int param4);
+void sub_02008780(Sprite *param0);
+BOOL sub_020087B4(Sprite *param0);
+void sub_020087C8(Sprite *param0, int param1);
+void sub_020089A0(Sprite *param0);
+void sub_020089B0(Sprite *param0);
+void sub_02008A0C(Sprite *param0);
+void sub_02008A78(UnkStruct_02007768 *param0, u32 param1, u32 param2);
+void sub_02008A84(UnkStruct_02007768 *param0, u32 param1, u32 param2);
+ArchivedSprite *sub_02008A90(Sprite *param0);
+void sub_02008A94(UnkStruct_02007768 *param0);
+void sub_02008B2C(UnkStruct_02007768 *param0, int param1);
+BOOL sub_02008B38(Sprite *param0);
+void sub_02008B54(UnkStruct_02007768 *param0, u32 param1);
+void sub_02008B60(UnkStruct_02007768 *param0, u32 param1);
+void sub_020091D8(u8 *param0, u32 param1, BOOL param2);
+void sub_02009348(u8 *param0);
+static void sub_02008B78(UnkStruct_02007768 *param0);
+static void sub_02008FC8(UnkStruct_02007768 *param0);
+static void sub_020088D8(Sprite *param0);
 static u8 sub_020091AC(u8 param0);
-static void sub_020091C0(Sprite * param0, u8 * param1);
+static void sub_020091C0(Sprite *param0, u8 *param1);
 
-void * sub_0200762C (int param0)
+void *sub_0200762C(int param0)
 {
-    UnkStruct_02007768 * v0;
+    UnkStruct_02007768 *v0;
     int v1, v2, v3, v4;
-    NNSG2dCharacterData * v5;
-    u8 * v6;
-    void * v7;
+    NNSG2dCharacterData *v5;
+    u8 *v6;
+    void *v7;
 
     v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_02007768));
 
@@ -330,9 +330,9 @@ void * sub_0200762C (int param0)
     v0->unk_2FC = Heap_AllocFromHeap(param0, (32 * 32 * 0x20));
     v0->unk_300 = Heap_AllocFromHeap(param0, (0x20 * 6));
 
-    MI_CpuClearFast(v0->unk_300, sizeof((0x20 * 6)));
+    MI_CpuClearFast(v0->unk_300, sizeof(0x20 * 6));
     v0->unk_304 = Heap_AllocFromHeap(param0, (0x20 * 6));
-    MI_CpuClearFast(v0->unk_304, sizeof((0x20 * 6)));
+    MI_CpuClearFast(v0->unk_304, sizeof(0x20 * 6));
 
     for (v1 = 0; v1 < 4; v1++) {
         MI_CpuClearFast(&v0->unk_00[v1], sizeof(Sprite));
@@ -369,31 +369,31 @@ void * sub_0200762C (int param0)
 
 static const int Unk_020E4ECC[4][2][4] = {
     {
-        {0x0, 0x0, 0x50, 0x50},
-        {0x50, 0x0, 0xA0, 0x50}
+        { 0x0, 0x0, 0x50, 0x50 },
+        { 0x50, 0x0, 0xA0, 0x50 },
     },
     {
-        {0x0, 0x50, 0x50, 0xA0},
-        {0x50, 0x50, 0xA0, 0xA0}
+        { 0x0, 0x50, 0x50, 0xA0 },
+        { 0x50, 0x50, 0xA0, 0xA0 },
     },
     {
-        {0x0, 0xA0, 0x50, 0xF0},
-        {0x50, 0xA0, 0xA0, 0xF0}
+        { 0x0, 0xA0, 0x50, 0xF0 },
+        { 0x50, 0xA0, 0xA0, 0xF0 },
     },
     {
-        {0xA0, 0x0, 0xF0, 0x50},
-        {0xA0, 0x50, 0xF0, 0xA0}
-    }
+        { 0xA0, 0x0, 0xF0, 0x50 },
+        { 0xA0, 0x50, 0xF0, 0xA0 },
+    },
 };
 
 static const int Unk_020E4D50[4][4] = {
-    {0xA0, 0xA0, 0xE0, 0xB0},
-    {0xA0, 0xA0, 0xE0, 0xB0},
-    {0xA0, 0xB0, 0xE0, 0xC0},
-    {0xA0, 0xC0, 0xE0, 0xD0}
+    { 0xA0, 0xA0, 0xE0, 0xB0 },
+    { 0xA0, 0xA0, 0xE0, 0xB0 },
+    { 0xA0, 0xB0, 0xE0, 0xC0 },
+    { 0xA0, 0xC0, 0xE0, 0xD0 }
 };
 
-void sub_02007768 (UnkStruct_02007768 * param0)
+void sub_02007768(UnkStruct_02007768 *param0)
 {
     int v0;
     int v1, v2;
@@ -483,7 +483,7 @@ void sub_02007768 (UnkStruct_02007768 * param0)
     G3_PopMtx(1);
 }
 
-void sub_02007B6C (UnkStruct_02007768 * param0)
+void sub_02007B6C(UnkStruct_02007768 *param0)
 {
     Heap_FreeToHeap(param0->unk_2FC);
     Heap_FreeToHeap(param0->unk_300);
@@ -491,7 +491,7 @@ void sub_02007B6C (UnkStruct_02007768 * param0)
     Heap_FreeToHeap(param0);
 }
 
-void sub_02007B98 (Sprite * param0, int param1)
+void sub_02007B98(Sprite *param0, int param1)
 {
     int v0;
 
@@ -511,17 +511,17 @@ void sub_02007B98 (Sprite * param0, int param1)
     }
 }
 
-void sub_02007C10 (Sprite * param0, SpriteAnimationFrame * param1)
+void sub_02007C10(Sprite *param0, SpriteAnimationFrame *param1)
 {
     MI_CpuCopy8(param1, &param0->unk_84, sizeof(SpriteAnimationFrame) * 10);
 }
 
-BOOL sub_02007C24 (Sprite * param0)
+BOOL sub_02007C24(Sprite *param0)
 {
     return param0->unk_58 != 0;
 }
 
-Sprite * sub_02007C34 (UnkStruct_02007768 * param0, ArchivedSprite * param1, int param2, int param3, int param4, int param5, SpriteAnimationFrame * param6, UnkFuncPtr_02007C34 * param7)
+Sprite *sub_02007C34(UnkStruct_02007768 *param0, ArchivedSprite *param1, int param2, int param3, int param4, int param5, SpriteAnimationFrame *param6, UnkFuncPtr_02007C34 *param7)
 {
     int v0;
 
@@ -536,7 +536,7 @@ Sprite * sub_02007C34 (UnkStruct_02007768 * param0, ArchivedSprite * param1, int
     return sub_02007C7C(param0, param1, param2, param3, param4, param5, v0, param6, param7);
 }
 
-Sprite * sub_02007C7C (UnkStruct_02007768 * param0, ArchivedSprite * param1, int param2, int param3, int param4, int param5, int param6, SpriteAnimationFrame * param7, UnkFuncPtr_02007C34 * param8)
+Sprite *sub_02007C7C(UnkStruct_02007768 *param0, ArchivedSprite *param1, int param2, int param3, int param4, int param5, int param6, SpriteAnimationFrame *param7, UnkFuncPtr_02007C34 *param8)
 {
     GF_ASSERT(param0->unk_00[param6].unk_00_0 == 0);
 
@@ -574,12 +574,12 @@ Sprite * sub_02007C7C (UnkStruct_02007768 * param0, ArchivedSprite * param1, int
     return &param0->unk_00[param6];
 }
 
-void sub_02007DC8 (Sprite * param0)
+void sub_02007DC8(Sprite *param0)
 {
     param0->unk_00_0 = 0;
 }
 
-void sub_02007DD4 (UnkStruct_02007768 * param0)
+void sub_02007DD4(UnkStruct_02007768 *param0)
 {
     int v0;
 
@@ -588,7 +588,7 @@ void sub_02007DD4 (UnkStruct_02007768 * param0)
     }
 }
 
-void sub_02007DEC (Sprite * param0, int param1, int param2)
+void sub_02007DEC(Sprite *param0, int param1, int param2)
 {
     switch (param1) {
     case 0:
@@ -740,7 +740,7 @@ void sub_02007DEC (Sprite * param0, int param1, int param2)
     }
 }
 
-int sub_020080C0 (Sprite * param0, int param1)
+int sub_020080C0(Sprite *param0, int param1)
 {
     switch (param1) {
     case 0:
@@ -843,7 +843,7 @@ int sub_020080C0 (Sprite * param0, int param1)
     return 0;
 }
 
-void sub_02008274 (Sprite * param0, int param1, int param2)
+void sub_02008274(Sprite *param0, int param1, int param2)
 {
     switch (param1) {
     case 0:
@@ -995,7 +995,7 @@ void sub_02008274 (Sprite * param0, int param1, int param2)
     }
 }
 
-void sub_020086D4 (Sprite * param0, int param1, int param2, int param3, int param4)
+void sub_020086D4(Sprite *param0, int param1, int param2, int param3, int param4)
 {
     param0->unk_24.unk_30_1 = 1;
     param0->unk_24.unk_20 = param1;
@@ -1004,7 +1004,7 @@ void sub_020086D4 (Sprite * param0, int param1, int param2, int param3, int para
     param0->unk_24.unk_23 = param4;
 }
 
-void sub_020086FC (Sprite * param0, int param1, int param2, int param3, int param4)
+void sub_020086FC(Sprite *param0, int param1, int param2, int param3, int param4)
 {
     param0->unk_24.unk_30_12 = 1;
     param0->unk_24.unk_24 = param1;
@@ -1014,7 +1014,7 @@ void sub_020086FC (Sprite * param0, int param1, int param2, int param3, int para
     param0->unk_24.unk_28 = param4;
 }
 
-void sub_0200872C (UnkStruct_02007768 * param0, int param1, int param2, int param3, int param4)
+void sub_0200872C(UnkStruct_02007768 *param0, int param1, int param2, int param3, int param4)
 {
     int v0;
 
@@ -1030,7 +1030,7 @@ void sub_0200872C (UnkStruct_02007768 * param0, int param1, int param2, int para
     }
 }
 
-void sub_02008780 (Sprite * param0)
+void sub_02008780(Sprite *param0)
 {
     param0->unk_24.unk_30_12 = 0;
     param0->unk_24.unk_24 = 0;
@@ -1041,17 +1041,17 @@ void sub_02008780 (Sprite * param0)
     param0->unk_00_8 = 1;
 }
 
-BOOL sub_020087B4 (Sprite * param0)
+BOOL sub_020087B4(Sprite *param0)
 {
     return param0->unk_24.unk_30_12 == 1;
 }
 
-void sub_020087C8 (Sprite * param0, int param1)
+void sub_020087C8(Sprite *param0, int param1)
 {
     param0->unk_24.unk_0A = ((80 / 2) - param1) - ((((80 / 2) - param1) * param0->unk_24.unk_12) >> 8);
 }
 
-static inline void inline_02008900 (u8 * param0, u8 * param1, u8 * param2, u8 * param3, u8 * param4, const SpriteAnimationFrame * param5)
+static inline void inline_02008900(u8 *param0, u8 *param1, u8 *param2, u8 *param3, u8 *param4, const SpriteAnimationFrame *param5)
 {
     if (*param0) {
         if ((*param3) == 0) {
@@ -1082,7 +1082,7 @@ static inline void inline_02008900 (u8 * param0, u8 * param1, u8 * param2, u8 * 
     }
 }
 
-static void sub_020087DC (Sprite * param0)
+static void sub_020087DC(Sprite *param0)
 {
     if (param0->unk_58) {
         if (param0->unk_5A == 0) {
@@ -1116,12 +1116,12 @@ static void sub_020087DC (Sprite * param0)
     }
 }
 
-static void sub_020088D8 (Sprite * param0)
+static void sub_020088D8(Sprite *param0)
 {
     sub_020087DC(param0);
 }
 
-void sub_020088E0 (UnkStruct_02008900 * param0, const SpriteAnimationFrame * param1)
+void sub_020088E0(UnkStruct_02008900 *param0, const SpriteAnimationFrame *param1)
 {
     int v0;
 
@@ -1136,7 +1136,7 @@ void sub_020088E0 (UnkStruct_02008900 * param0, const SpriteAnimationFrame * par
     }
 }
 
-int sub_02008900 (UnkStruct_02008900 * param0)
+int sub_02008900(UnkStruct_02008900 *param0)
 {
     if (param0->unk_00) {
         inline_02008900(&param0->unk_00, &param0->unk_01, &param0->unk_02, &param0->unk_03, param0->unk_04, param0->unk_10);
@@ -1146,19 +1146,19 @@ int sub_02008900 (UnkStruct_02008900 * param0)
     return -1;
 }
 
-void sub_020089A0 (Sprite * param0)
+void sub_020089A0(Sprite *param0)
 {
     param0->unk_00_7 = 1;
     param0->unk_00_8 = 1;
 }
 
-void sub_020089B0 (Sprite * param0)
+void sub_020089B0(Sprite *param0)
 {
     param0->unk_14 = param0->unk_04;
     param0->unk_78 = param0->unk_6C;
 }
 
-void sub_02008A0C (Sprite * param0)
+void sub_02008A0C(Sprite *param0)
 {
     param0->unk_04 = param0->unk_14;
     param0->unk_6C = param0->unk_78;
@@ -1166,24 +1166,24 @@ void sub_02008A0C (Sprite * param0)
     param0->unk_00_8 = 1;
 }
 
-void sub_02008A78 (UnkStruct_02007768 * param0, u32 param1, u32 param2)
+void sub_02008A78(UnkStruct_02007768 *param0, u32 param1, u32 param2)
 {
     param0->unk_2EC = param1;
     param0->unk_2F0 = param2;
 }
 
-void sub_02008A84 (UnkStruct_02007768 * param0, u32 param1, u32 param2)
+void sub_02008A84(UnkStruct_02007768 *param0, u32 param1, u32 param2)
 {
     param0->unk_2F4 = param1;
     param0->unk_2F8 = param2;
 }
 
-ArchivedSprite * sub_02008A90 (Sprite * param0)
+ArchivedSprite *sub_02008A90(Sprite *param0)
 {
     return &param0->unk_04;
 }
 
-void sub_02008A94 (UnkStruct_02007768 * param0)
+void sub_02008A94(UnkStruct_02007768 *param0)
 {
     if (param0->unk_331) {
         param0->unk_331 = 0;
@@ -1210,33 +1210,33 @@ void sub_02008A94 (UnkStruct_02007768 * param0)
     }
 }
 
-void sub_02008B2C (UnkStruct_02007768 * param0, int param1)
+void sub_02008B2C(UnkStruct_02007768 *param0, int param1)
 {
     param0->unk_333 = param1;
 }
 
-BOOL sub_02008B38 (Sprite * param0)
+BOOL sub_02008B38(Sprite *param0)
 {
     GF_ASSERT(param0 != NULL);
     return param0->unk_00_0 != 0;
 }
 
-void sub_02008B54 (UnkStruct_02007768 * param0, u32 param1)
+void sub_02008B54(UnkStruct_02007768 *param0, u32 param1)
 {
     param0->unk_334 |= param1;
 }
 
-void sub_02008B60 (UnkStruct_02007768 * param0, u32 param1)
+void sub_02008B60(UnkStruct_02007768 *param0, u32 param1)
 {
     param0->unk_334 &= (param1 ^ 0xffffffff);
 }
 
-static void sub_02008B78 (UnkStruct_02007768 * param0)
+static void sub_02008B78(UnkStruct_02007768 *param0)
 {
-    NNSG2dCharacterData * v0;
+    NNSG2dCharacterData *v0;
     int v1, v2, v3;
-    u8 * v4;
-    void * v5;
+    u8 *v4;
+    void *v5;
     u8 v6;
 
     v6 = 0;
@@ -1346,12 +1346,12 @@ static void sub_02008B78 (UnkStruct_02007768 * param0)
     param0->unk_331 = v6;
 }
 
-static void sub_02008FC8 (UnkStruct_02007768 * param0)
+static void sub_02008FC8(UnkStruct_02007768 *param0)
 {
-    NNSG2dPaletteData * v0;
+    NNSG2dPaletteData *v0;
     int v1, v2, v3;
-    u16 * v4;
-    void * v5;
+    u16 *v4;
+    void *v5;
     u8 v6;
 
     v6 = 0;
@@ -1416,7 +1416,7 @@ static void sub_02008FC8 (UnkStruct_02007768 * param0)
     param0->unk_332 = v6;
 }
 
-static u8 sub_020091AC (u8 param0)
+static u8 sub_020091AC(u8 param0)
 {
     u8 v0;
 
@@ -1426,7 +1426,7 @@ static u8 sub_020091AC (u8 param0)
     return v0;
 }
 
-static void sub_020091C0 (Sprite * param0, u8 * param1)
+static void sub_020091C0(Sprite *param0, u8 *param1)
 {
     if (param0->unk_04.spindaSpots == 0) {
         return;
@@ -1435,9 +1435,9 @@ static void sub_020091C0 (Sprite * param0, u8 * param1)
     sub_020091D8(param1, param0->unk_04.personality, 1);
 }
 
-void sub_020091D8 (u8 * param0, u32 param1, BOOL param2)
+void sub_020091D8(u8 *param0, u32 param1, BOOL param2)
 {
-    const UnkStruct_020E4E62 * v0;
+    const UnkStruct_020E4E62 *v0;
     int v1;
     u8 v2, v3, v4;
     int v5;
@@ -1500,16 +1500,16 @@ void sub_020091D8 (u8 * param0, u32 param1, BOOL param2)
     }
 }
 
-static u16 sub_02009328 (u32 * param0)
+static u16 sub_02009328(u32 *param0)
 {
     param0[0] = param0[0] * 1103515245L + 24691;
     return (u16)(param0[0] / 65536L);
 }
 
-void sub_02009348 (u8 * param0)
+void sub_02009348(u8 *param0)
 {
     int v0;
-    u16 * v1;
+    u16 *v1;
     u32 v2;
 
     v1 = (u16 *)param0;
@@ -1521,10 +1521,10 @@ void sub_02009348 (u8 * param0)
     }
 }
 
-void sub_02009370 (u8 * param0)
+void sub_02009370(u8 *param0)
 {
     int v0;
-    u16 * v1;
+    u16 *v1;
     u32 v2;
 
     v1 = (u16 *)param0;
@@ -1536,7 +1536,7 @@ void sub_02009370 (u8 * param0)
     }
 }
 
-void sub_020093A0 (u8 * param0, int param1)
+void sub_020093A0(u8 *param0, int param1)
 {
     if ((param1 == 165) || (param1 == 166)) {
         sub_02009370(param0);

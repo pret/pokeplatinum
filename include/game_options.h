@@ -1,8 +1,9 @@
 #ifndef POKEPLATINUM_GAME_OPTIONS_H
 #define POKEPLATINUM_GAME_OPTIONS_H
 
-#include "savedata.h"
 #include "constants/game_options.h"
+
+#include "savedata.h"
 
 typedef struct Options {
     u16 textSpeed : 4;
@@ -14,7 +15,7 @@ typedef struct Options {
     u16 : 1;
 } Options;
 
-Options* Options_New(u32 heapID);
+Options *Options_New(u32 heapID);
 void Options_Copy(const Options *src, Options *dest);
 void Options_Init(Options *options);
 void Options_SetSystemButtonMode(SaveData *saveData, enum OptionsButtonMode mode);

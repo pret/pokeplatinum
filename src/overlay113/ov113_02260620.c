@@ -1,62 +1,61 @@
+#include "overlay113/ov113_02260620.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/pokemon.h"
-#include "message.h"
-#include "strbuf.h"
-#include "trainer_info.h"
-#include "overlay066/struct_ov66_0222DFF8_decl.h"
-#include "overlay066/struct_ov66_0222E71C_decl.h"
-
-#include "touch_screen.h"
-#include "struct_defs/struct_0205AA50.h"
-#include "overlay113/struct_ov113_02260818.h"
-#include "overlay113/footprint_data.h"
-
-#include "message.h"
 #include "constants/species.h"
-#include "string_template.h"
-#include "heap.h"
-#include "unk_02018340.h"
-#include "unk_0201D670.h"
-#include "strbuf.h"
-#include "trainer_info.h"
+#include "consts/pokemon.h"
+
+#include "struct_defs/struct_0205AA50.h"
+
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/ov66_022324F0.h"
-#include "overlay113/ov113_02260620.h"
+#include "overlay066/struct_ov66_0222DFF8_decl.h"
+#include "overlay066/struct_ov66_0222E71C_decl.h"
+#include "overlay113/footprint_data.h"
+#include "overlay113/struct_ov113_02260818.h"
+
+#include "heap.h"
+#include "message.h"
+#include "strbuf.h"
+#include "string_template.h"
+#include "touch_screen.h"
+#include "trainer_info.h"
+#include "unk_02018340.h"
+#include "unk_0201D670.h"
 
 __attribute__((aligned(4))) static const u16 Unk_ov113_02260D6C[][2] = {
-	{ 0x4210, 0x6f7b },
-	{ 0x1A, 0x483C },
-	{ 0x221, 0x1746 },
-	{ 0x61A0, 0x7325 },
-	{ 0x17D, 0x7DE },
-	{ 0x3C70, 0x79D9 },
-	{ 0xC, 0x5f3d },
-	{ 0x3A80, 0x5400 },
-	{ 0x2D4A, 0x5651 }
+    { 0x4210, 0x6f7b },
+    { 0x1A, 0x483C },
+    { 0x221, 0x1746 },
+    { 0x61A0, 0x7325 },
+    { 0x17D, 0x7DE },
+    { 0x3C70, 0x79D9 },
+    { 0xC, 0x5f3d },
+    { 0x3A80, 0x5400 },
+    { 0x2D4A, 0x5651 }
 };
 
 #include "res/pokemon/footprint_data.h"
 
 static const TouchScreenRect Unk_ov113_02260D4C[] = {
-    {0xA0, 0xC0, 0x0, 0x20},
-    {0xA0, 0xC0, 0x20, 0x40},
-    {0xA0, 0xC0, 0x40, 0x60},
-    {0xA0, 0xC0, 0x60, 0x80},
-    {0xA0, 0xC0, 0x80, 0xA0},
-    {0xA0, 0xC0, 0xA0, 0xC0},
-    {0xA0, 0xC0, 0xC0, 0xFF},
-    {0xFF, 0x0, 0x0, 0x0}
+    { 0xA0, 0xC0, 0x0, 0x20 },
+    { 0xA0, 0xC0, 0x20, 0x40 },
+    { 0xA0, 0xC0, 0x40, 0x60 },
+    { 0xA0, 0xC0, 0x60, 0x80 },
+    { 0xA0, 0xC0, 0x80, 0xA0 },
+    { 0xA0, 0xC0, 0xA0, 0xC0 },
+    { 0xA0, 0xC0, 0xC0, 0xFF },
+    { 0xFF, 0x0, 0x0, 0x0 }
 };
 
-void ov113_02260620 (MessageLoader * param0, StringTemplate * param1, Window param2[], UnkStruct_ov66_0222DFF8 * param3, s32 param4)
+void ov113_02260620(MessageLoader *param0, StringTemplate *param1, Window param2[], UnkStruct_ov66_0222DFF8 *param3, s32 param4)
 {
-    const UnkStruct_ov66_0222E71C * v0;
-    TrainerInfo * v1;
-    Strbuf* v2;
-    Strbuf* v3;
-    Strbuf* v4;
+    const UnkStruct_ov66_0222E71C *v0;
+    TrainerInfo *v1;
+    Strbuf *v2;
+    Strbuf *v3;
+    Strbuf *v4;
     int v5 = 64;
     int v6;
     u32 v7, v8;
@@ -113,7 +112,7 @@ void ov113_02260620 (MessageLoader * param0, StringTemplate * param1, Window par
     Heap_FreeToHeap(v1);
 }
 
-void ov113_02260714 (Window param0[], u32 param1)
+void ov113_02260714(Window param0[], u32 param1)
 {
     if (param1 >= 8) {
         GF_ASSERT(0);
@@ -123,12 +122,12 @@ void ov113_02260714 (Window param0[], u32 param1)
     sub_0201ACF4(&param0[param1]);
 }
 
-u16 ov113_0226072C (int param0, u32 param1)
+u16 ov113_0226072C(int param0, u32 param1)
 {
     return Unk_ov113_02260D6C[param1 % NELEMS(Unk_ov113_02260D6C)][param0];
 }
 
-int ov113_02260748 (UnkStruct_ov113_02260818 * param0, int param1)
+int ov113_02260748(UnkStruct_ov113_02260818 *param0, int param1)
 {
     int v0;
     int v1 = 0xff;
@@ -151,7 +150,7 @@ int ov113_02260748 (UnkStruct_ov113_02260818 * param0, int param1)
 // canShowArceus is a flag pulled from wifi room data that dictates whether or not Arceus is allowed to be seen.
 // The contexts where Arceus is allowed to be seen is unclear. I haven't seen any case where this could be true
 // Seems to be from a cut feature where you could have pokemon out walking around while being in a wifi room. Amity square?
-BOOL PokemonHasOverworldFootprint (int species, int form, BOOL canShowArceus)
+BOOL PokemonHasOverworldFootprint(int species, int form, BOOL canShowArceus)
 {
     if (species == SPECIES_GIRATINA && form > 0) {
         return FALSE;
@@ -164,7 +163,7 @@ BOOL PokemonHasOverworldFootprint (int species, int form, BOOL canShowArceus)
     return sSpeciesFootprintData[species].hasFootprint;
 }
 
-int PokemonOverworldFootprintSize (int species, int form)
+int PokemonOverworldFootprintSize(int species, int form)
 {
     if (species == SPECIES_GIRATINA && form > 0) {
         return FOOTPRINT_LARGE;
@@ -172,4 +171,3 @@ int PokemonOverworldFootprintSize (int species, int form)
 
     return sSpeciesFootprintData[species].footprintSize;
 }
-

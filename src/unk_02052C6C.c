@@ -1,77 +1,76 @@
+#include "unk_02052C6C.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "consts/game_records.h"
-#include "message.h"
-#include "strbuf.h"
-#include "trainer_info.h"
+
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_party_decl.h"
-
-#include "game_options.h"
 #include "struct_defs/struct_0202DF8C.h"
-#include "field/field_system.h"
 #include "struct_defs/struct_0203E234.h"
 #include "struct_defs/struct_0203E274.h"
 #include "struct_defs/struct_02049FA8.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
+
+#include "field/field_system.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
+#include "savedata/save_table.h"
 
-#include "unk_02005474.h"
+#include "field_overworld_state.h"
+#include "game_options.h"
+#include "game_records.h"
+#include "gx_layers.h"
+#include "heap.h"
 #include "message.h"
 #include "message_util.h"
+#include "party.h"
+#include "rtc.h"
+#include "save_player.h"
+#include "savedata.h"
+#include "strbuf.h"
 #include "string_template.h"
+#include "trainer_info.h"
+#include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "rtc.h"
-#include "heap.h"
 #include "unk_02018340.h"
-#include "gx_layers.h"
-#include "strbuf.h"
-#include "savedata/save_table.h"
-#include "savedata.h"
-#include "save_player.h"
-#include "trainer_info.h"
 #include "unk_0202631C.h"
-#include "game_records.h"
 #include "unk_0202DF8C.h"
-#include "field_overworld_state.h"
 #include "unk_0203D178.h"
 #include "unk_0203D1B8.h"
-#include "vars_flags.h"
 #include "unk_020508D4.h"
-#include "unk_02052C6C.h"
 #include "unk_02054884.h"
 #include "unk_020559DC.h"
 #include "unk_0205D8CC.h"
 #include "unk_0206A8DC.h"
-#include "party.h"
 #include "unk_02096420.h"
+#include "vars_flags.h"
 
 typedef struct {
     BOOL unk_00;
     UnkStruct_0203E234 unk_04;
     UnkStruct_0203E274 unk_10;
     Window unk_1C;
-    Strbuf* unk_2C;
-    void * unk_30;
+    Strbuf *unk_2C;
+    void *unk_30;
     int unk_34;
     int unk_38;
 } UnkStruct_0205300C;
 
-static void sub_02052F28(FieldSystem * fieldSystem, UnkStruct_0205300C * param1);
-static void sub_02052FA8(FieldSystem * fieldSystem, UnkStruct_0205300C * param1);
-static void sub_02053028(FieldSystem * fieldSystem, UnkStruct_0205300C * param1, int param2);
-static void sub_0205300C(UnkStruct_0205300C * param0);
-static void sub_02053098(FieldSystem * fieldSystem, UnkStruct_0205300C * param1);
-static BOOL sub_02052FFC(UnkStruct_0205300C * param0);
+static void sub_02052F28(FieldSystem *fieldSystem, UnkStruct_0205300C *param1);
+static void sub_02052FA8(FieldSystem *fieldSystem, UnkStruct_0205300C *param1);
+static void sub_02053028(FieldSystem *fieldSystem, UnkStruct_0205300C *param1, int param2);
+static void sub_0205300C(UnkStruct_0205300C *param0);
+static void sub_02053098(FieldSystem *fieldSystem, UnkStruct_0205300C *param1);
+static BOOL sub_02052FFC(UnkStruct_0205300C *param0);
 
-static void sub_02052C6C (FieldSystem * fieldSystem, BOOL param1)
+static void sub_02052C6C(FieldSystem *fieldSystem, BOOL param1)
 {
-    HallOfFame * v0;
-    Party * v1;
+    HallOfFame *v0;
+    Party *v1;
     RTCDate v2;
     int v3;
 
@@ -89,14 +88,14 @@ static void sub_02052C6C (FieldSystem * fieldSystem, BOOL param1)
     Heap_FreeToHeap(v0);
 }
 
-static BOOL sub_02052CBC (TaskManager * param0)
+static BOOL sub_02052CBC(TaskManager *param0)
 {
-    Location * v0;
-    VarsFlags * v1;
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_0205300C * v3 = TaskManager_Environment(param0);
-    int * v4 = FieldTask_GetState(param0);
-    UnkStruct_0203E234 * v5 = &v3->unk_04;
+    Location *v0;
+    VarsFlags *v1;
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+    UnkStruct_0205300C *v3 = TaskManager_Environment(param0);
+    int *v4 = FieldTask_GetState(param0);
+    UnkStruct_0203E234 *v5 = &v3->unk_04;
 
     switch (*v4) {
     case 0:
@@ -126,8 +125,7 @@ static BOOL sub_02052CBC (TaskManager * param0)
             (*v4)++;
         }
         break;
-    case 4:
-    {
+    case 4: {
         int v6;
 
         HealAllPokemonInParty(Party_GetFromSavedata(fieldSystem->saveData));
@@ -137,8 +135,7 @@ static BOOL sub_02052CBC (TaskManager * param0)
         sub_0205300C(v3);
         sub_02053028(fieldSystem, v3, v6);
         (*v4)++;
-    }
-    break;
+    } break;
     case 5:
         if (sub_02052FFC(v3)) {
             Sound_PlayEffect(1563);
@@ -177,15 +174,15 @@ static BOOL sub_02052CBC (TaskManager * param0)
     return 0;
 }
 
-void sub_02052E58 (TaskManager * param0)
+void sub_02052E58(TaskManager *param0)
 {
-    FieldSystem * fieldSystem;
-    Location * v1, * v2;
-    VarsFlags * v3;
-    TrainerInfo * v4;
-    UnkStruct_0205300C * v5;
-    GameRecords * v6;
-    Party * v7;
+    FieldSystem *fieldSystem;
+    Location *v1, *v2;
+    VarsFlags *v3;
+    TrainerInfo *v4;
+    UnkStruct_0205300C *v5;
+    GameRecords *v6;
+    Party *v7;
 
     fieldSystem = TaskManager_FieldSystem(param0);
     v5 = Heap_AllocFromHeap(32, sizeof(UnkStruct_0205300C));
@@ -221,7 +218,7 @@ void sub_02052E58 (TaskManager * param0)
     FieldTask_Start(param0, sub_02052CBC, v5);
 }
 
-static void sub_02052F28 (FieldSystem * fieldSystem, UnkStruct_0205300C * param1)
+static void sub_02052F28(FieldSystem *fieldSystem, UnkStruct_0205300C *param1)
 {
     static const UnkStruct_02099F80 v0 = {
         GX_VRAM_BG_128_B,
@@ -273,9 +270,9 @@ static void sub_02052F28 (FieldSystem * fieldSystem, UnkStruct_0205300C * param1
     sub_02019448(fieldSystem->unk_08, 3);
 }
 
-static void sub_02052FA8 (FieldSystem * fieldSystem, UnkStruct_0205300C * param1)
+static void sub_02052FA8(FieldSystem *fieldSystem, UnkStruct_0205300C *param1)
 {
-    Options * v0 = SaveData_Options(fieldSystem->saveData);
+    Options *v0 = SaveData_Options(fieldSystem->saveData);
 
     param1->unk_2C = MessageBank_GetNewStrbufFromNARC(26, 213, 15, 32);
 
@@ -286,24 +283,24 @@ static void sub_02052FA8 (FieldSystem * fieldSystem, UnkStruct_0205300C * param1
     param1->unk_30 = sub_0200E7FC(&param1->unk_1C, 1024 - (18 + 12));
 }
 
-static BOOL sub_02052FFC (UnkStruct_0205300C * param0)
+static BOOL sub_02052FFC(UnkStruct_0205300C *param0)
 {
     return FieldMessage_FinishedPrinting(param0->unk_34);
 }
 
-static void sub_0205300C (UnkStruct_0205300C * param0)
+static void sub_0205300C(UnkStruct_0205300C *param0)
 {
     Strbuf_Free(param0->unk_2C);
     DeleteWaitDial(param0->unk_30);
     sub_0205D988(&param0->unk_1C);
 }
 
-static void sub_02053028 (FieldSystem * fieldSystem, UnkStruct_0205300C * param1, int param2)
+static void sub_02053028(FieldSystem *fieldSystem, UnkStruct_0205300C *param1, int param2)
 {
-    MessageLoader * v0 = MessageLoader_Init(1, 26, 213, 4);
+    MessageLoader *v0 = MessageLoader_Init(1, 26, 213, 4);
 
     if (param2 == 2) {
-        StringTemplate * v1;
+        StringTemplate *v1;
 
         v1 = StringTemplate_Default(4);
         StringTemplate_SetPlayerName(v1, 0, SaveData_GetTrainerInfo(fieldSystem->saveData));
@@ -317,7 +314,7 @@ static void sub_02053028 (FieldSystem * fieldSystem, UnkStruct_0205300C * param1
     param1->unk_34 = FieldMessage_Print(&param1->unk_1C, param1->unk_2C, SaveData_Options(fieldSystem->saveData), 1);
 }
 
-static void sub_02053098 (FieldSystem * fieldSystem, UnkStruct_0205300C * param1)
+static void sub_02053098(FieldSystem *fieldSystem, UnkStruct_0205300C *param1)
 {
     if (param1->unk_2C) {
         Strbuf_Free(param1->unk_2C);

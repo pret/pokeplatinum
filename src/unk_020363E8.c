@@ -1,16 +1,17 @@
+#include "unk_020363E8.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "heap.h"
 #include "communication_system.h"
-#include "unk_020363E8.h"
+#include "heap.h"
 
 typedef struct {
     u8 unk_00;
     u8 unk_01;
 } UnkStruct_02036574;
 
-#define COMM_TOOL_TEMP_DATA_SIZE    70
+#define COMM_TOOL_TEMP_DATA_SIZE 70
 
 typedef struct {
     UnkStruct_02036574 unk_00[MAX_CONNECTED_PLAYERS];
@@ -22,9 +23,9 @@ typedef struct {
     u8 sendTiming;
 } CommTool;
 
-static CommTool * sCommTool = NULL;
+static CommTool *sCommTool = NULL;
 
-void CommTool_Init (int netId)
+void CommTool_Init(int netId)
 {
     if (!sCommTool) {
         sCommTool = Heap_AllocFromHeap(netId, sizeof(CommTool));
@@ -40,13 +41,13 @@ void CommTool_Init (int netId)
     sCommTool->sendTiming = 0;
 }
 
-void CommTool_Delete (void)
+void CommTool_Delete(void)
 {
     Heap_FreeToHeap(sCommTool);
     sCommTool = NULL;
 }
 
-BOOL CommTool_IsInitialized (void)
+BOOL CommTool_IsInitialized(void)
 {
     if (sCommTool) {
         return 1;
@@ -55,9 +56,9 @@ BOOL CommTool_IsInitialized (void)
     return 0;
 }
 
-void CommCmd_16 (int netId, int param1, void * _buff, void * param3)
+void CommCmd_16(int netId, int param1, void *_buff, void *param3)
 {
-    u8 * buff = _buff;
+    u8 *buff = _buff;
     u8 syncNo = buff[0];
     u8 v2[2];
     int netJd;
@@ -81,27 +82,27 @@ void CommCmd_16 (int netId, int param1, void * _buff, void * param3)
     }
 }
 
-void CommCmd_18 (int netId, int param1, void * param2, void * param3)
+void CommCmd_18(int netId, int param1, void *param2, void *param3)
 {
-    u8 * v0 = param2;
+    u8 *v0 = param2;
     sCommTool->syncNo[v0[0]] = v0[1];
 }
 
-void CommCmd_17 (int netId, int param1, void * param2, void * param3)
+void CommCmd_17(int netId, int param1, void *param2, void *param3)
 {
-    u8 * v0 = param2;
+    u8 *v0 = param2;
     u8 v1 = v0[0];
 
     sCommTool->syncState = v1;
 }
 
-void CommTiming_StartSync (u8 syncNo)
+void CommTiming_StartSync(u8 syncNo)
 {
     sCommTool->syncNoPersonal = syncNo;
     sCommTool->sendTiming = TRUE;
 }
 
-void sub_0203650C (void)
+void sub_0203650C(void)
 {
     if (sCommTool) {
         if (sCommTool->sendTiming) {
@@ -112,7 +113,7 @@ void sub_0203650C (void)
     }
 }
 
-BOOL CommTiming_IsSyncState (u8 syncState)
+BOOL CommTiming_IsSyncState(u8 syncState)
 {
     if (sCommTool == NULL) {
         return TRUE;
@@ -125,25 +126,25 @@ BOOL CommTiming_IsSyncState (u8 syncState)
     return FALSE;
 }
 
-int sub_02036564 (int netId)
+int sub_02036564(int netId)
 {
     return sCommTool->syncNo[netId];
 }
 
-void sub_02036574 (int netId, int param1, void * param2, void * param3)
+void sub_02036574(int netId, int param1, void *param2, void *param3)
 {
-    UnkStruct_02036574 * v0 = param2;
+    UnkStruct_02036574 *v0 = param2;
 
     sCommTool->unk_00[netId].unk_00 = v0->unk_00;
     sCommTool->unk_00[netId].unk_01 = v0->unk_01;
 }
 
-int sub_02036590 (void)
+int sub_02036590(void)
 {
     return sizeof(UnkStruct_02036574);
 }
 
-void sub_02036594 (u8 param0, u8 param1)
+void sub_02036594(u8 param0, u8 param1)
 {
     UnkStruct_02036574 v0;
 
@@ -153,7 +154,7 @@ void sub_02036594 (u8 param0, u8 param1)
     CommSys_SendDataFixedSize(19, &v0);
 }
 
-int CommList_Get (int param0, u8 param1)
+int CommList_Get(int param0, u8 param1)
 {
     if (!sCommTool) {
         return -1;
@@ -166,7 +167,7 @@ int CommList_Get (int param0, u8 param1)
     return -1;
 }
 
-void CommList_Refresh (void)
+void CommList_Refresh(void)
 {
     int v0;
 
@@ -175,7 +176,7 @@ void CommList_Refresh (void)
     }
 }
 
-void sub_020365F4 (void)
+void sub_020365F4(void)
 {
     int v0;
 
@@ -184,7 +185,7 @@ void sub_020365F4 (void)
     }
 }
 
-BOOL sub_02036614 (int param0, const void * param1)
+BOOL sub_02036614(int param0, const void *param1)
 {
     if (sCommTool) {
         MI_CpuCopy8(param1, sCommTool->unk_18[param0], COMM_TOOL_TEMP_DATA_SIZE);
@@ -195,7 +196,7 @@ BOOL sub_02036614 (int param0, const void * param1)
     return 0;
 }
 
-const void * sub_0203664C (int netId)
+const void *sub_0203664C(int netId)
 {
     if (sCommTool->hasRecievedTempData[netId]) {
         return &sCommTool->unk_18[netId];
@@ -204,13 +205,13 @@ const void * sub_0203664C (int netId)
     return NULL;
 }
 
-void sub_02036670 (int netId, int param1, void * param2, void * param3)
+void sub_02036670(int netId, int param1, void *param2, void *param3)
 {
     sCommTool->hasRecievedTempData[netId] = TRUE;
     MI_CpuCopy8(param2, sCommTool->unk_18[netId], COMM_TOOL_TEMP_DATA_SIZE);
 }
 
-int CommTool_TempDataSize (void)
+int CommTool_TempDataSize(void)
 {
     return COMM_TOOL_TEMP_DATA_SIZE;
 }

@@ -5,7 +5,7 @@
 #include "strbuf.h"
 
 typedef struct {
-    Strbuf* unk_00;
+    Strbuf *unk_00;
     u16 unk_04;
     u16 unk_06;
     u16 unk_08;
@@ -26,7 +26,7 @@ typedef struct {
     s16 unk_1C;
     s16 unk_1E;
     s16 unk_20;
-    CellActor * unk_24;
+    CellActor *unk_24;
     u8 unk_28;
     u8 unk_29;
 } StrBufWrapper;

@@ -1,41 +1,38 @@
-#include "constants/charcode.h"
-#include "constants/heap.h"
-#include "enums.h"
+#include "string_template.h"
 
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/charcode.h"
+#include "constants/heap.h"
+#include "constants/narc.h"
+#include "constants/pokemon.h"
 #include "consts/abilities.h"
 #include "consts/gender.h"
 #include "consts/moves.h"
+
+#include "struct_decls/struct_0202B4A0_decl.h"
+#include "struct_decls/struct_020797DC_decl.h"
+#include "struct_defs/trainer_data.h"
 
 #include "gmm/message_bank_common_strings.h"
 #include "gmm/message_bank_common_strings_2.h"
 #include "gmm/message_bank_mystery_gift_event_names.h"
 #include "gmm/message_bank_special_met_location_names.h"
-
-#include "constants/narc.h"
-#include "constants/pokemon.h"
 #include "text/pl_msg.naix"
 
-#include "struct_decls/struct_0202B4A0_decl.h"
-#include "struct_decls/struct_020797DC_decl.h"
-
-#include "struct_defs/trainer_data.h"
-
 #include "charcode.h"
+#include "enums.h"
 #include "heap.h"
 #include "message.h"
 #include "pokemon.h"
+#include "save_player.h"
 #include "savedata.h"
 #include "savedata_misc.h"
 #include "strbuf.h"
-#include "string_template.h"
 #include "trainer_info.h"
-
 #include "unk_02014D38.h"
 #include "unk_02017038.h"
-#include "save_player.h"
 #include "unk_0202B37C.h"
 #include "unk_020797C8.h"
 #include "unk_020996D0.h"
@@ -60,7 +57,7 @@ StringTemplate *StringTemplate_New(u32 maxArgs, u32 maxLen, u32 heapID)
         goto cleanup;
     }
 
-    tmp->maxArgs= maxArgs;
+    tmp->maxArgs = maxArgs;
     tmp->heapID = heapID;
     tmp->templateBuf = Strbuf_Init(maxLen, heapID);
     if (tmp->templateBuf == NULL) {
@@ -484,7 +481,7 @@ void StringTemplate_SetMetLocationName(StringTemplate *template, u32 idx, u32 lo
 
     if (loader) {
         if (metLocationID < MessageLoader_MessageCount(loader)
-                && (!(metLocationType == 0 && metLocationID == 0))) {
+            && (!(metLocationType == 0 && metLocationID == 0))) {
             MessageLoader_GetStrbuf(loader, metLocationID, template->templateBuf);
             SetStringTemplateArg(template, idx, template->templateBuf, NULL);
             MessageLoader_Free(loader);
@@ -666,4 +663,3 @@ void StringTemplate_ClearArgs(StringTemplate *template)
         Strbuf_Clear(template->args[i].strbuf);
     }
 }
-

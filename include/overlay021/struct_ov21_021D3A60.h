@@ -1,8 +1,9 @@
 #ifndef POKEPLATINUM_STRUCT_OV21_021D3A60_H
 #define POKEPLATINUM_STRUCT_OV21_021D3A60_H
 
-#include "overlay021/struct_ov21_021D37DC.h"
 #include "constants/species.h"
+
+#include "overlay021/struct_ov21_021D37DC.h"
 
 typedef struct {
     UnkStruct_ov21_021D37DC unk_00[NATIONAL_DEX_COUNT];

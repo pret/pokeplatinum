@@ -1,17 +1,18 @@
+#include "overlay099/ov99_021D3A40.h"
+
 #include <nitro.h>
 #include <string.h>
 
+#include "overlay099/ov99_021D4134.h"
 #include "overlay099/struct_ov99_021D2CB0.h"
 #include "overlay099/struct_ov99_021D3A40.h"
 #include "overlay099/struct_ov99_021D3B2C.h"
 
 #include "unk_0200A9DC.h"
-#include "overlay099/ov99_021D3A40.h"
-#include "overlay099/ov99_021D4134.h"
 
-BOOL ov99_021D3A40 (UnkStruct_ov99_021D2CB0 * param0, UnkStruct_ov99_021D3A40 * param1)
+BOOL ov99_021D3A40(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D3A40 *param1)
 {
-    UnkStruct_ov99_021D3B2C * v0 = &param1->unk_08_val4;
+    UnkStruct_ov99_021D3B2C *v0 = &param1->unk_08_val4;
 
     switch (param1->unk_00) {
     case 0:
@@ -56,9 +57,9 @@ BOOL ov99_021D3A40 (UnkStruct_ov99_021D2CB0 * param0, UnkStruct_ov99_021D3A40 * 
     return 0;
 }
 
-BOOL ov99_021D3B2C (UnkStruct_ov99_021D2CB0 * param0, UnkStruct_ov99_021D3A40 * param1)
+BOOL ov99_021D3B2C(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D3A40 *param1)
 {
-    UnkStruct_ov99_021D3B2C * v0 = &param1->unk_08_val4;
+    UnkStruct_ov99_021D3B2C *v0 = &param1->unk_08_val4;
 
     switch (param1->unk_00) {
     case 0:

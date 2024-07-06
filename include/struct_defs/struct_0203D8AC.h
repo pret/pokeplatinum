@@ -2,6 +2,7 @@
 #define POKEPLATINUM_STRUCT_0203D8AC_H
 
 #include "struct_defs/union_0206B878.h"
+
 #include "overlay080/struct_ov80_021D259C.h"
 
 typedef struct {

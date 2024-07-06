@@ -1,11 +1,11 @@
+#include "overlay012/ov12_02226998.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "overlay012/funcptr_ov12_02239E64_1.h"
 #include "overlay012/funcptr_ov12_02239E68.h"
 #include "overlay012/funcptr_ov12_02239EEC.h"
-
-#include "overlay012/ov12_02226998.h"
 #include "overlay012/ov12_022269C0.h"
 #include "overlay012/ov12_02226B84.h"
 #include "overlay012/ov12_0222AC70.h"
@@ -145,12 +145,12 @@ static const UnkFuncPtr_ov12_02239E64_1 Unk_ov12_02239E64[] = {
     NULL
 };
 
-void include_unk_ov12_02239E64 ()
+void include_unk_ov12_02239E64()
 {
     Unk_ov12_02239E64[0];
 }
 
-UnkFuncPtr_ov12_02239EEC ov12_02226998 (u32 param0)
+UnkFuncPtr_ov12_02239EEC ov12_02226998(u32 param0)
 {
     UnkFuncPtr_ov12_02239EEC v0;
 
@@ -162,7 +162,7 @@ UnkFuncPtr_ov12_02239EEC ov12_02226998 (u32 param0)
     return v0;
 }
 
-UnkFuncPtr_ov12_02239E68 ov12_022269AC (u32 param0)
+UnkFuncPtr_ov12_02239E68 ov12_022269AC(u32 param0)
 {
     UnkFuncPtr_ov12_02239E68 v0;
 

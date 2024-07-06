@@ -1,17 +1,19 @@
 #ifndef POKEPLATINUM_SCRIPT_MANAGER_H
 #define POKEPLATINUM_SCRIPT_MANAGER_H
 
-#include "field/field_system_decl.h"
-#include "field_script_context.h"
-#include "struct_defs/struct_0203F478.h"
+#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "overlay005/struct_ov5_021DC1A4_decl.h"
+#include "struct_defs/struct_0203F478.h"
 #include "struct_defs/struct_0205AA50.h"
-#include "struct_decls/struct_02001AF4_decl.h"
-#include "string_template.h"
-#include "overlay101/struct_ov101_021D5D90_decl.h"
+
+#include "field/field_system_decl.h"
+#include "overlay005/struct_ov5_021DC1A4_decl.h"
 #include "overlay005/struct_ov5_021E1FF4_decl.h"
+#include "overlay101/struct_ov101_021D5D90_decl.h"
+
+#include "field_script_context.h"
+#include "string_template.h"
 #include "sys_task_manager.h"
 
 enum ScriptManagerMember {
@@ -86,12 +88,12 @@ enum ScriptContextType {
 #define SCRIPT_ID_OFFSET_HIDDEN_ITEMS   8000
 #define SCRIPT_ID_OFFSET_SAFARI_ZONE    8800
 
-#define FLAG_OFFSET_HIDDEN_ITEMS        730
-#define FLAG_OFFSET_TRAINER_DEFEATED    1360
+#define FLAG_OFFSET_HIDDEN_ITEMS     730
+#define FLAG_OFFSET_TRAINER_DEFEATED 1360
 
-#define SCRIPT_MANAGER_MAGIC_NUMBER     0x3643F
+#define SCRIPT_MANAGER_MAGIC_NUMBER 0x3643F
 
-typedef void (* FieldSysFunc)(FieldSystem *);
+typedef void (*FieldSysFunc)(FieldSystem *);
 
 typedef struct ApproachingTrainer {
     int sightRange;
@@ -99,8 +101,8 @@ typedef struct ApproachingTrainer {
     int scriptID;
     int trainerID;
     int trainerType;
-    MapObject * object;
-    SysTask * task;
+    MapObject *object;
+    SysTask *task;
 } ApproachingTrainer;
 
 typedef struct ScriptManager {
@@ -113,60 +115,60 @@ typedef struct ScriptManager {
     u8 numActiveContexts;
     u16 scriptID;
     BOOL playerWonBattle;
-    UnkStruct_ov5_021DC1A4 * unk_10; // appears to be used for multichoice windows
+    UnkStruct_ov5_021DC1A4 *unk_10; // appears to be used for multichoice windows
     Window window;
-    UIControlData * ctrlUI;
+    UIControlData *ctrlUI;
     int playerDir;
-    MapObject * targetObject;
-    MapObject * cameraObject;
-    u16 * saveType; // the result of the check to determine what type of save is required in ScrCmd_CheckSaveType
-    ScriptContext * ctx[NUM_SCRIPT_CONTEXTS];
-    StringTemplate * strTemplate;
-    Strbuf * msgBuf;
-    Strbuf * tmpBuf;
-    void * savingIcon;
+    MapObject *targetObject;
+    MapObject *cameraObject;
+    u16 *saveType; // the result of the check to determine what type of save is required in ScrCmd_CheckSaveType
+    ScriptContext *ctx[NUM_SCRIPT_CONTEXTS];
+    StringTemplate *strTemplate;
+    Strbuf *msgBuf;
+    Strbuf *tmpBuf;
+    void *savingIcon;
     ApproachingTrainer trainers[2];
     u16 data[SCRIPT_DATA_MAX - SCRIPT_DATA_START];
     FieldSysFunc function;
-    void * unk_A8;
-    void * dataPtr; // used as a generic pointer to data in many different script commands
-    UnkStruct_ov101_021D5D90 * unk_B0;
-    SysTask * playerTask; // used to set player sprite animations while saving
+    void *unk_A8;
+    void *dataPtr; // used as a generic pointer to data in many different script commands
+    UnkStruct_ov101_021D5D90 *unk_B0;
+    SysTask *playerTask; // used to set player sprite animations while saving
     Window coinWindow;
     Window moneyWindow;
-    UnkStruct_ov5_021E1FF4 * unk_D8;
+    UnkStruct_ov5_021E1FF4 *unk_D8;
 } ScriptManager;
 
-void ScriptManager_Set(FieldSystem * fieldSystem, u16 scriptID, MapObject * object);
-void ScriptManager_SetApproachingTrainer(FieldSystem * fieldSystem, MapObject * object, int sightRange, int direction, int scriptID, int trainerID, int trainerType, int approachNum);
-void ScriptManager_Start(TaskManager * taskManager, u16 scriptID, MapObject * object, void * saveType);
-void ScriptManager_Change(TaskManager * taskManager, u16 scriptID, MapObject * object);
-ScriptContext * ScriptContext_CreateAndStart(FieldSystem * fieldSystem, u16 scriptID);
-void * ScriptManager_GetMemberPtr(ScriptManager * scriptManager, u32 member);
-void * FieldSystem_GetScriptMemberPtr(FieldSystem * fieldSystem, u32 member);
-void sub_0203F0C0(FieldSystem * fieldSystem);
-u16 * FieldSystem_GetVarPointer(FieldSystem * fieldSystem, u16 varID);
-u16 FieldSystem_TryGetVar(FieldSystem * fieldSystem, u16 varID);
-u16 sub_0203F164(FieldSystem * fieldSystem, u16 param1);
-BOOL FieldSystem_CheckFlag(FieldSystem * fieldSystem, u16 flagID);
-void FieldSystem_SetFlag(FieldSystem * fieldSystem, u16 flagID);
-void FieldSystem_ClearFlag(FieldSystem * fieldSystem, u16 flagID);
-void FieldSystem_ClearLocalFlags(FieldSystem * fieldSystem);
-void sub_0203F1FC(FieldSystem * fieldSystem);
-void FieldSystem_SetScriptParameters(FieldSystem * fieldSystem, u16 scriptParam0, u16 scriptParam1, u16 scriptParam2, u16 scriptParam3);
+void ScriptManager_Set(FieldSystem *fieldSystem, u16 scriptID, MapObject *object);
+void ScriptManager_SetApproachingTrainer(FieldSystem *fieldSystem, MapObject *object, int sightRange, int direction, int scriptID, int trainerID, int trainerType, int approachNum);
+void ScriptManager_Start(TaskManager *taskManager, u16 scriptID, MapObject *object, void *saveType);
+void ScriptManager_Change(TaskManager *taskManager, u16 scriptID, MapObject *object);
+ScriptContext *ScriptContext_CreateAndStart(FieldSystem *fieldSystem, u16 scriptID);
+void *ScriptManager_GetMemberPtr(ScriptManager *scriptManager, u32 member);
+void *FieldSystem_GetScriptMemberPtr(FieldSystem *fieldSystem, u32 member);
+void sub_0203F0C0(FieldSystem *fieldSystem);
+u16 *FieldSystem_GetVarPointer(FieldSystem *fieldSystem, u16 varID);
+u16 FieldSystem_TryGetVar(FieldSystem *fieldSystem, u16 varID);
+u16 sub_0203F164(FieldSystem *fieldSystem, u16 param1);
+BOOL FieldSystem_CheckFlag(FieldSystem *fieldSystem, u16 flagID);
+void FieldSystem_SetFlag(FieldSystem *fieldSystem, u16 flagID);
+void FieldSystem_ClearFlag(FieldSystem *fieldSystem, u16 flagID);
+void FieldSystem_ClearLocalFlags(FieldSystem *fieldSystem);
+void sub_0203F1FC(FieldSystem *fieldSystem);
+void FieldSystem_SetScriptParameters(FieldSystem *fieldSystem, u16 scriptParam0, u16 scriptParam1, u16 scriptParam2, u16 scriptParam3);
 u16 Script_GetTrainerID(u16 scriptID);
 BOOL Script_GetTrainerBattlerIndex(u16 scriptID);
 BOOL Script_IsTrainerDoubleBattle(u16 trainerID);
-BOOL Script_IsTrainerDefeated(FieldSystem * fieldSystem, u16 trainerID);
-void Script_SetTrainerDefeated(FieldSystem * fieldSystem, u16 trainerID);
-void Script_ClearTrainerDefeated(FieldSystem * fieldSystem, u16 trainerID);
+BOOL Script_IsTrainerDefeated(FieldSystem *fieldSystem, u16 trainerID);
+void Script_SetTrainerDefeated(FieldSystem *fieldSystem, u16 trainerID);
+void Script_ClearTrainerDefeated(FieldSystem *fieldSystem, u16 trainerID);
 u16 Script_GetHiddenItemFlag(u16 scriptID);
 u16 Script_GetHiddenItemScript(u16 scriptID);
-void FieldSystem_ClearDailyHiddenItemFlags(FieldSystem * fieldSystem);
+void FieldSystem_ClearDailyHiddenItemFlags(FieldSystem *fieldSystem);
 u8 Script_GetHiddenItemRange(u16 scriptID);
-UnkStruct_0203F478 * sub_0203F478(FieldSystem * fieldSystem, int param1);
-void FieldSystem_InitNewGameState(FieldSystem * fieldSystem);
-void FieldSystem_RunScript(FieldSystem * fieldSystem, u16 scriptID);
-BOOL sub_0203F5C0(FieldSystem * fieldSystem, u8 param1);
+UnkStruct_0203F478 *sub_0203F478(FieldSystem *fieldSystem, int param1);
+void FieldSystem_InitNewGameState(FieldSystem *fieldSystem);
+void FieldSystem_RunScript(FieldSystem *fieldSystem, u16 scriptID);
+BOOL sub_0203F5C0(FieldSystem *fieldSystem, u8 param1);
 
 #endif // POKEPLATINUM_SCRIPT_MANAGER_H

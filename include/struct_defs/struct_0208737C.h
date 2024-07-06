@@ -1,9 +1,10 @@
 #ifndef POKEPLATINUM_STRUCT_0208737C_H
 #define POKEPLATINUM_STRUCT_0208737C_H
 
-#include "strbuf.h"
-#include "game_options.h"
 #include "struct_decls/struct_020797DC_decl.h"
+
+#include "game_options.h"
+#include "strbuf.h"
 
 typedef struct {
     int unk_00;
@@ -12,11 +13,11 @@ typedef struct {
     int unk_0C;
     int unk_10;
     int unk_14;
-    Strbuf* unk_18;
+    Strbuf *unk_18;
     u16 unk_1C[20];
     int unk_44;
-    PCBoxes * unk_48;
-    Options * unk_4C;
+    PCBoxes *unk_48;
+    Options *unk_4C;
 } UnkStruct_0208737C;
 
 #endif // POKEPLATINUM_STRUCT_0208737C_H

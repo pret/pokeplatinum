@@ -3,6 +3,6 @@
 
 #include "overlay084/struct_ov84_0223B5A0.h"
 
-typedef int (* UnkFuncPtr_ov84_0223D730)(UnkStruct_ov84_0223B5A0 * param0);
+typedef int (*UnkFuncPtr_ov84_0223D730)(UnkStruct_ov84_0223B5A0 *param0);
 
 #endif // POKEPLATINUM_FUNCPTR_OV84_0223D730_H

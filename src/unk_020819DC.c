@@ -1,99 +1,98 @@
+#include "unk_020819DC.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "strbuf.h"
-#include "pokemon.h"
-
 #include "struct_defs/struct_0201D738.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207F248.h"
 #include "struct_defs/struct_02081CF4.h"
+
 #include "overlay061/struct_ov61_0222C884.h"
 
+#include "game_options.h"
+#include "message.h"
+#include "party.h"
+#include "pokemon.h"
+#include "strbuf.h"
+#include "string_template.h"
 #include "unk_02001AF4.h"
 #include "unk_02002328.h"
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
-#include "message.h"
-#include "string_template.h"
 #include "unk_0200C440.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "strbuf.h"
-#include "game_options.h"
-#include "pokemon.h"
-#include "party.h"
 #include "unk_0207E0B8.h"
-#include "unk_020819DC.h"
 #include "unk_02083370.h"
 #include "unk_02084B70.h"
 #include "unk_0208C098.h"
 
-static void sub_02082810(GameWindowLayout * param0, u8 param1, u8 param2);
-static void sub_02082880(GameWindowLayout * param0, u8 param1, u8 param2);
-static void sub_02082900(GameWindowLayout * param0, u8 param1, u8 param2);
-static void sub_02082964(GameWindowLayout * param0, u8 param1, u8 param2);
-static BOOL sub_0208279C(UnkStruct_0201D738 * param0, u16 param1);
+static void sub_02082810(GameWindowLayout *param0, u8 param1, u8 param2);
+static void sub_02082880(GameWindowLayout *param0, u8 param1, u8 param2);
+static void sub_02082900(GameWindowLayout *param0, u8 param1, u8 param2);
+static void sub_02082964(GameWindowLayout *param0, u8 param1, u8 param2);
+static BOOL sub_0208279C(UnkStruct_0201D738 *param0, u16 param1);
 
 static const UnkStruct_ov61_0222C884 Unk_020F1F08[] = {
-    {0x1, 0x6, 0x1, 0x9, 0x2, 0x0, 0x28},
-    {0x1, 0x0, 0x4, 0x6, 0x2, 0x0, 0x3A},
-    {0x1, 0x7, 0x4, 0x8, 0x2, 0x0, 0x46},
-    {0x1, 0x8, 0x3, 0x6, 0x1, 0x3, 0x56},
-    {0x1, 0x6, 0x4, 0xA, 0x2, 0x0, 0x46},
-    {0x1, 0x16, 0x2, 0x9, 0x2, 0x0, 0x5C},
-    {0x1, 0x10, 0x5, 0x6, 0x2, 0x0, 0x6E},
-    {0x1, 0x17, 0x5, 0x8, 0x2, 0x0, 0x7A},
-    {0x1, 0x18, 0x4, 0x6, 0x1, 0x4, 0x8A},
-    {0x1, 0x16, 0x5, 0xA, 0x2, 0x0, 0x7A},
-    {0x1, 0x6, 0x7, 0x9, 0x2, 0x0, 0x90},
-    {0x1, 0x0, 0xA, 0x6, 0x2, 0x0, 0xA2},
-    {0x1, 0x7, 0xA, 0x8, 0x2, 0x0, 0xAE},
-    {0x1, 0x8, 0x9, 0x6, 0x1, 0x5, 0xBE},
-    {0x1, 0x6, 0xA, 0xA, 0x2, 0x0, 0xAE},
-    {0x1, 0x16, 0x8, 0x9, 0x2, 0x0, 0xC4},
-    {0x1, 0x10, 0xB, 0x6, 0x2, 0x0, 0xD6},
-    {0x1, 0x17, 0xB, 0x8, 0x2, 0x0, 0xE2},
-    {0x1, 0x18, 0xA, 0x6, 0x1, 0x6, 0xF2},
-    {0x1, 0x16, 0xB, 0xA, 0x2, 0x0, 0xE2},
-    {0x1, 0x6, 0xD, 0x9, 0x2, 0x0, 0xF8},
-    {0x1, 0x0, 0x10, 0x6, 0x2, 0x0, 0x10A},
-    {0x1, 0x7, 0x10, 0x8, 0x2, 0x0, 0x116},
-    {0x1, 0x8, 0xF, 0x6, 0x1, 0x7, 0x126},
-    {0x1, 0x6, 0x10, 0xA, 0x2, 0x0, 0x116},
-    {0x1, 0x16, 0xE, 0x9, 0x2, 0x0, 0x12C},
-    {0x1, 0x10, 0x11, 0x6, 0x2, 0x0, 0x13E},
-    {0x1, 0x17, 0x11, 0x8, 0x2, 0x0, 0x14A},
-    {0x1, 0x18, 0x10, 0x6, 0x1, 0x8, 0x15A},
-    {0x1, 0x16, 0x11, 0xA, 0x2, 0x0, 0x14A},
-    {0x1, 0x16, 0x1, 0x9, 0x2, 0x0, 0x5C},
-    {0x1, 0x11, 0x5, 0x5, 0x2, 0x0, 0x6E},
-    {0x1, 0x17, 0x5, 0x8, 0x2, 0x0, 0x7A},
-    {0x1, 0x18, 0x4, 0x6, 0x1, 0x4, 0x8A},
-    {0x1, 0x18, 0x4, 0x6, 0x1, 0x4, 0x8A},
-    {0x1, 0x16, 0x8, 0x9, 0x2, 0x0, 0xC4},
-    {0x1, 0x11, 0xB, 0x5, 0x2, 0x0, 0xD6},
-    {0x1, 0x17, 0xB, 0x8, 0x2, 0x0, 0xE2},
-    {0x1, 0x18, 0xA, 0x6, 0x1, 0x6, 0xF2},
-    {0x1, 0x18, 0x4, 0x6, 0x1, 0x4, 0x8A},
-    {0x1, 0x16, 0xE, 0x9, 0x2, 0x0, 0x12C},
-    {0x1, 0x11, 0x11, 0x5, 0x2, 0x0, 0x13E},
-    {0x1, 0x17, 0x11, 0x8, 0x2, 0x0, 0x14A},
-    {0x1, 0x18, 0x10, 0x6, 0x1, 0x8, 0x15A},
-    {0x1, 0x18, 0x4, 0x6, 0x1, 0x4, 0x8A}
+    { 0x1, 0x6, 0x1, 0x9, 0x2, 0x0, 0x28 },
+    { 0x1, 0x0, 0x4, 0x6, 0x2, 0x0, 0x3A },
+    { 0x1, 0x7, 0x4, 0x8, 0x2, 0x0, 0x46 },
+    { 0x1, 0x8, 0x3, 0x6, 0x1, 0x3, 0x56 },
+    { 0x1, 0x6, 0x4, 0xA, 0x2, 0x0, 0x46 },
+    { 0x1, 0x16, 0x2, 0x9, 0x2, 0x0, 0x5C },
+    { 0x1, 0x10, 0x5, 0x6, 0x2, 0x0, 0x6E },
+    { 0x1, 0x17, 0x5, 0x8, 0x2, 0x0, 0x7A },
+    { 0x1, 0x18, 0x4, 0x6, 0x1, 0x4, 0x8A },
+    { 0x1, 0x16, 0x5, 0xA, 0x2, 0x0, 0x7A },
+    { 0x1, 0x6, 0x7, 0x9, 0x2, 0x0, 0x90 },
+    { 0x1, 0x0, 0xA, 0x6, 0x2, 0x0, 0xA2 },
+    { 0x1, 0x7, 0xA, 0x8, 0x2, 0x0, 0xAE },
+    { 0x1, 0x8, 0x9, 0x6, 0x1, 0x5, 0xBE },
+    { 0x1, 0x6, 0xA, 0xA, 0x2, 0x0, 0xAE },
+    { 0x1, 0x16, 0x8, 0x9, 0x2, 0x0, 0xC4 },
+    { 0x1, 0x10, 0xB, 0x6, 0x2, 0x0, 0xD6 },
+    { 0x1, 0x17, 0xB, 0x8, 0x2, 0x0, 0xE2 },
+    { 0x1, 0x18, 0xA, 0x6, 0x1, 0x6, 0xF2 },
+    { 0x1, 0x16, 0xB, 0xA, 0x2, 0x0, 0xE2 },
+    { 0x1, 0x6, 0xD, 0x9, 0x2, 0x0, 0xF8 },
+    { 0x1, 0x0, 0x10, 0x6, 0x2, 0x0, 0x10A },
+    { 0x1, 0x7, 0x10, 0x8, 0x2, 0x0, 0x116 },
+    { 0x1, 0x8, 0xF, 0x6, 0x1, 0x7, 0x126 },
+    { 0x1, 0x6, 0x10, 0xA, 0x2, 0x0, 0x116 },
+    { 0x1, 0x16, 0xE, 0x9, 0x2, 0x0, 0x12C },
+    { 0x1, 0x10, 0x11, 0x6, 0x2, 0x0, 0x13E },
+    { 0x1, 0x17, 0x11, 0x8, 0x2, 0x0, 0x14A },
+    { 0x1, 0x18, 0x10, 0x6, 0x1, 0x8, 0x15A },
+    { 0x1, 0x16, 0x11, 0xA, 0x2, 0x0, 0x14A },
+    { 0x1, 0x16, 0x1, 0x9, 0x2, 0x0, 0x5C },
+    { 0x1, 0x11, 0x5, 0x5, 0x2, 0x0, 0x6E },
+    { 0x1, 0x17, 0x5, 0x8, 0x2, 0x0, 0x7A },
+    { 0x1, 0x18, 0x4, 0x6, 0x1, 0x4, 0x8A },
+    { 0x1, 0x18, 0x4, 0x6, 0x1, 0x4, 0x8A },
+    { 0x1, 0x16, 0x8, 0x9, 0x2, 0x0, 0xC4 },
+    { 0x1, 0x11, 0xB, 0x5, 0x2, 0x0, 0xD6 },
+    { 0x1, 0x17, 0xB, 0x8, 0x2, 0x0, 0xE2 },
+    { 0x1, 0x18, 0xA, 0x6, 0x1, 0x6, 0xF2 },
+    { 0x1, 0x18, 0x4, 0x6, 0x1, 0x4, 0x8A },
+    { 0x1, 0x16, 0xE, 0x9, 0x2, 0x0, 0x12C },
+    { 0x1, 0x11, 0x11, 0x5, 0x2, 0x0, 0x13E },
+    { 0x1, 0x17, 0x11, 0x8, 0x2, 0x0, 0x14A },
+    { 0x1, 0x18, 0x10, 0x6, 0x1, 0x8, 0x15A },
+    { 0x1, 0x18, 0x4, 0x6, 0x1, 0x4, 0x8A }
 };
 
 static const UnkStruct_ov61_0222C884 Unk_020F1ED0[] = {
-    {0x1, 0x1A, 0x15, 0x5, 0x2, 0x0, 0x160},
-    {0x1, 0x19, 0x14, 0x7, 0x2, 0x0, 0x16A},
-    {0x0, 0x2, 0x15, 0x14, 0x2, 0xD, 0x178},
-    {0x0, 0x2, 0x13, 0xD, 0x4, 0xD, 0x1A0},
-    {0x0, 0x2, 0x13, 0x1B, 0x4, 0xD, 0x1D4},
-    {0x0, 0x13, 0x11, 0xC, 0x6, 0x0, 0x240},
-    {0x0, 0x13, 0xF, 0xC, 0x8, 0x0, 0x240}
+    { 0x1, 0x1A, 0x15, 0x5, 0x2, 0x0, 0x160 },
+    { 0x1, 0x19, 0x14, 0x7, 0x2, 0x0, 0x16A },
+    { 0x0, 0x2, 0x15, 0x14, 0x2, 0xD, 0x178 },
+    { 0x0, 0x2, 0x13, 0xD, 0x4, 0xD, 0x1A0 },
+    { 0x0, 0x2, 0x13, 0x1B, 0x4, 0xD, 0x1D4 },
+    { 0x0, 0x13, 0x11, 0xC, 0x6, 0x0, 0x240 },
+    { 0x0, 0x13, 0xF, 0xC, 0x8, 0x0, 0x240 }
 };
 
 static const UnkStruct_ov61_0222C884 Unk_020F1E98 = {
@@ -106,7 +105,7 @@ static const UnkStruct_ov61_0222C884 Unk_020F1E98 = {
     0x240
 };
 
-static void sub_020819DC (BGL * param0, Window * param1, const UnkStruct_ov61_0222C884 * param2)
+static void sub_020819DC(BGL *param0, Window *param1, const UnkStruct_ov61_0222C884 *param2)
 {
     sub_0201A8D4(param0, &param1[0], &param2[0]);
     sub_0201A8D4(param0, &param1[1], &param2[1]);
@@ -115,9 +114,9 @@ static void sub_020819DC (BGL * param0, Window * param1, const UnkStruct_ov61_02
     sub_0201A8D4(param0, &param1[4], &param2[4]);
 }
 
-void sub_02081A24 (GameWindowLayout * param0)
+void sub_02081A24(GameWindowLayout *param0)
 {
-    const UnkStruct_ov61_0222C884 * v0 = Unk_020F1F08;
+    const UnkStruct_ov61_0222C884 *v0 = Unk_020F1F08;
     u16 v1;
 
     sub_020819DC(param0->unk_00, &param0->unk_04[0], &v0[0]);
@@ -152,7 +151,7 @@ void sub_02081A24 (GameWindowLayout * param0)
     sub_0201A8D4(param0->unk_00, &param0->unk_04[36], &Unk_020F1ED0[6]);
 }
 
-void sub_02081B90 (GameWindowLayout * param0)
+void sub_02081B90(GameWindowLayout *param0)
 {
     u16 v0;
 
@@ -167,7 +166,7 @@ void sub_02081B90 (GameWindowLayout * param0)
     }
 }
 
-void sub_02081BC0 (GameWindowLayout * param0)
+void sub_02081BC0(GameWindowLayout *param0)
 {
     MessageLoader_GetStrbuf(param0->unk_69C, 145, param0->unk_6AC[0]);
     MessageLoader_GetStrbuf(param0->unk_69C, 146, param0->unk_6AC[1]);
@@ -187,9 +186,9 @@ void sub_02081BC0 (GameWindowLayout * param0)
     MessageLoader_GetStrbuf(param0->unk_69C, 200, param0->unk_6AC[15]);
 }
 
-void sub_02081CAC (GameWindowLayout * param0, u16 param1, u8 param2)
+void sub_02081CAC(GameWindowLayout *param0, u16 param1, u8 param2)
 {
-    Strbuf* v0;
+    Strbuf *v0;
 
     v0 = MessageLoader_GetNewStrbuf(param0->unk_69C, 156 + param2);
 
@@ -199,12 +198,12 @@ void sub_02081CAC (GameWindowLayout * param0, u16 param1, u8 param2)
     Strbuf_Free(v0);
 }
 
-void sub_02081CF4 (GameWindowLayout * param0, const u8 * param1, u8 param2)
+void sub_02081CF4(GameWindowLayout *param0, const u8 *param1, u8 param2)
 {
     UnkStruct_02081CF4 v0;
     u16 v1, v2;
 
-    BGL_AddWindow(param0->unk_00, &param0->unk_254[0], 0, 19, 23 - param2 * 2, 12, param2 * 2, 0, ((((((((((((((((((((((((((((((((1 + 9) + (18 + 12)) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 5 * 2) + 7 * 2) + 20 * 2) + 13 * 4) + 27 * 4)));
+    BGL_AddWindow(param0->unk_00, &param0->unk_254[0], 0, 19, 23 - param2 * 2, 12, param2 * 2, 0, (((((((((((((((((((((((((((((((1 + 9) + (18 + 12)) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 5 * 2) + 7 * 2) + 20 * 2) + 13 * 4) + 27 * 4));
 
     param0->unk_6FC = sub_02013A04(param2, 12);
     v2 = 0;
@@ -236,10 +235,10 @@ void sub_02081CF4 (GameWindowLayout * param0, const u8 * param1, u8 param2)
     param0->unk_700 = sub_02001B7C(&v0, 8, 0, 0, 12, PAD_BUTTON_B);
 }
 
-void sub_02081E08 (GameWindowLayout * param0)
+void sub_02081E08(GameWindowLayout *param0)
 {
-    Pokemon * v0;
-    Strbuf* v1;
+    Pokemon *v0;
+    Strbuf *v1;
 
     if (param0->unk_5A4->unk_20 == 15) {
         MessageLoader_GetStrbuf(param0->unk_69C, 42, param0->unk_6A4);
@@ -256,22 +255,22 @@ void sub_02081E08 (GameWindowLayout * param0)
 }
 
 static const u16 Unk_020F1EA0[6][4] = {
-    {0x8, 0x2, 0x14, 0xE},
-    {0x9, 0x3, 0x15, 0xF},
-    {0xA, 0x4, 0x16, 0x10},
-    {0xB, 0x5, 0x17, 0x11},
-    {0xC, 0x6, 0x18, 0x12},
-    {0xD, 0x7, 0x19, 0x13}
+    { 0x8, 0x2, 0x14, 0xE },
+    { 0x9, 0x3, 0x15, 0xF },
+    { 0xA, 0x4, 0x16, 0x10 },
+    { 0xB, 0x5, 0x17, 0x11 },
+    { 0xC, 0x6, 0x18, 0x12 },
+    { 0xD, 0x7, 0x19, 0x13 }
 };
 
-static void sub_02081EAC (GameWindowLayout * param0, u8 param1)
+static void sub_02081EAC(GameWindowLayout *param0, u8 param1)
 {
     sub_0200C578(param0->unk_698, 0, &param0->unk_04[2 + param1 * 5], 28, 2);
 }
 
-void sub_02081ED8 (GameWindowLayout * param0, Pokemon * param1, u32 param2)
+void sub_02081ED8(GameWindowLayout *param0, Pokemon *param1, u32 param2)
 {
-    Strbuf* v0;
+    Strbuf *v0;
 
     v0 = MessageLoader_GetNewStrbuf(param0->unk_69C, Unk_020F1EA0[param2][0]);
 
@@ -280,10 +279,10 @@ void sub_02081ED8 (GameWindowLayout * param0, Pokemon * param1, u32 param2)
     Strbuf_Free(v0);
 }
 
-void sub_02081F2C (GameWindowLayout * param0, u8 param1)
+void sub_02081F2C(GameWindowLayout *param0, u8 param1)
 {
-    Window * v0;
-    Pokemon * v1;
+    Window *v0;
+    Pokemon *v1;
 
     v0 = &param0->unk_04[0 + param1 * 5];
 
@@ -309,10 +308,10 @@ void sub_02081F2C (GameWindowLayout * param0, u8 param1)
     sub_0201A9A4(v0);
 }
 
-void sub_02081FFC (GameWindowLayout * param0, u8 param1)
+void sub_02081FFC(GameWindowLayout *param0, u8 param1)
 {
-    Window * v0;
-    Strbuf* v1;
+    Window *v0;
+    Strbuf *v1;
 
     v0 = &param0->unk_04[1 + param1 * 5];
 
@@ -325,10 +324,10 @@ void sub_02081FFC (GameWindowLayout * param0, u8 param1)
     sub_0201A9A4(v0);
 }
 
-void sub_02082058 (GameWindowLayout * param0, u8 param1)
+void sub_02082058(GameWindowLayout *param0, u8 param1)
 {
-    Window * v0;
-    Strbuf* v1;
+    Window *v0;
+    Strbuf *v1;
     u32 v2;
 
     v0 = &param0->unk_04[2 + param1 * 5];
@@ -337,10 +336,10 @@ void sub_02082058 (GameWindowLayout * param0, u8 param1)
     sub_0201A9A4(v0);
 }
 
-void sub_02082098 (GameWindowLayout * param0, u8 param1)
+void sub_02082098(GameWindowLayout *param0, u8 param1)
 {
-    Window * v0;
-    Strbuf* v1;
+    Window *v0;
+    Strbuf *v1;
     u32 v2;
 
     v0 = &param0->unk_04[2 + param1 * 5];
@@ -349,10 +348,10 @@ void sub_02082098 (GameWindowLayout * param0, u8 param1)
     sub_0201A9A4(v0);
 }
 
-static void sub_020820C4 (GameWindowLayout * param0, u8 param1)
+static void sub_020820C4(GameWindowLayout *param0, u8 param1)
 {
-    Window * v0;
-    Strbuf* v1;
+    Window *v0;
+    Strbuf *v1;
 
     v0 = &param0->unk_04[2 + param1 * 5];
 
@@ -360,9 +359,9 @@ static void sub_020820C4 (GameWindowLayout * param0, u8 param1)
     sub_0201A9A4(v0);
 }
 
-void sub_02082104 (GameWindowLayout * param0, u8 param1)
+void sub_02082104(GameWindowLayout *param0, u8 param1)
 {
-    Window * v0;
+    Window *v0;
     u8 v1;
 
     v0 = &param0->unk_04[3 + param1 * 5];
@@ -391,7 +390,7 @@ void sub_02082104 (GameWindowLayout * param0, u8 param1)
     sub_0201A9A4(v0);
 }
 
-void sub_020821F8 (GameWindowLayout * param0, u8 param1)
+void sub_020821F8(GameWindowLayout *param0, u8 param1)
 {
     BGL_FillWindow(&param0->unk_04[0 + param1 * 5], 0);
     BGL_FillWindow(&param0->unk_04[1 + param1 * 5], 0);
@@ -414,7 +413,7 @@ void sub_020821F8 (GameWindowLayout * param0, u8 param1)
     sub_02082104(param0, param1);
 }
 
-void sub_020822BC (GameWindowLayout * param0, u8 param1)
+void sub_020822BC(GameWindowLayout *param0, u8 param1)
 {
     sub_0201ACCC(&param0->unk_04[0 + param1 * 5]);
     sub_0201ACCC(&param0->unk_04[1 + param1 * 5]);
@@ -422,7 +421,7 @@ void sub_020822BC (GameWindowLayout * param0, u8 param1)
     sub_0201ACCC(&param0->unk_04[3 + param1 * 5]);
 }
 
-void sub_020822F4 (GameWindowLayout * param0, u8 param1)
+void sub_020822F4(GameWindowLayout *param0, u8 param1)
 {
     sub_0201AD10(&param0->unk_04[0 + param1 * 5]);
     sub_0201AD10(&param0->unk_04[1 + param1 * 5]);
@@ -430,9 +429,9 @@ void sub_020822F4 (GameWindowLayout * param0, u8 param1)
     sub_0201AD10(&param0->unk_04[3 + param1 * 5]);
 }
 
-void sub_0208232C (GameWindowLayout * param0, u8 param1)
+void sub_0208232C(GameWindowLayout *param0, u8 param1)
 {
-    Pokemon * v0;
+    Pokemon *v0;
 
     BGL_FillWindow(&param0->unk_04[0 + param1 * 5], 0);
     BGL_FillWindow(&param0->unk_04[1 + param1 * 5], 0);
@@ -454,9 +453,9 @@ void sub_0208232C (GameWindowLayout * param0, u8 param1)
     }
 }
 
-void sub_020823C4 (GameWindowLayout * param0, u8 param1)
+void sub_020823C4(GameWindowLayout *param0, u8 param1)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     u8 v1;
 
     BGL_FillWindow(&param0->unk_04[0 + param1 * 5], 0);
@@ -482,9 +481,9 @@ void sub_020823C4 (GameWindowLayout * param0, u8 param1)
     }
 }
 
-void sub_0208245C (GameWindowLayout * param0, u8 param1)
+void sub_0208245C(GameWindowLayout *param0, u8 param1)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     u8 v1;
 
     BGL_FillWindow(&param0->unk_04[0 + param1 * 5], 0);
@@ -498,9 +497,9 @@ void sub_0208245C (GameWindowLayout * param0, u8 param1)
     sub_02082900(param0, param1, (u8)param0->unk_704[param1].unk_0E_15);
 }
 
-void sub_020824C0 (GameWindowLayout * param0, u8 param1)
+void sub_020824C0(GameWindowLayout *param0, u8 param1)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     u8 v1;
 
     BGL_FillWindow(&param0->unk_04[0 + param1 * 5], 0);
@@ -512,7 +511,7 @@ void sub_020824C0 (GameWindowLayout * param0, u8 param1)
     }
 }
 
-void sub_02082508 (GameWindowLayout * param0, u8 param1)
+void sub_02082508(GameWindowLayout *param0, u8 param1)
 {
     u8 v0;
 
@@ -543,14 +542,14 @@ void sub_02082508 (GameWindowLayout * param0, u8 param1)
     sub_02082964(param0, param1, 7);
 }
 
-static u32 sub_020825A4 (int param0, const Strbuf *param1, u32 param2)
+static u32 sub_020825A4(int param0, const Strbuf *param1, u32 param2)
 {
     u32 v0 = sub_02002D7C(param0, param1, 0);
 
     return (param2 - v0) >> 1;
 }
 
-void sub_020825B4 (GameWindowLayout * param0, u8 param1)
+void sub_020825B4(GameWindowLayout *param0, u8 param1)
 {
     u32 v0;
 
@@ -572,7 +571,7 @@ void sub_020825B4 (GameWindowLayout * param0, u8 param1)
     }
 }
 
-static void sub_02082680 (GameWindowLayout * param0, Window * param1, u32 param2, u8 param3)
+static void sub_02082680(GameWindowLayout *param0, Window *param1, u32 param2, u8 param3)
 {
     if (param3 == 1) {
         sub_0200E060(param1, 1, (1 + 9), 15);
@@ -588,19 +587,19 @@ static void sub_02082680 (GameWindowLayout * param0, Window * param1, u32 param2
     sub_0201A9A4(param1);
 }
 
-void sub_020826E0 (GameWindowLayout * param0, u32 param1, u8 param2)
+void sub_020826E0(GameWindowLayout *param0, u32 param1, u8 param2)
 {
     sub_02082680(param0, &param0->unk_04[32], param1, param2);
 }
 
-void sub_020826F4 (GameWindowLayout * param0, u32 param1, u8 param2)
+void sub_020826F4(GameWindowLayout *param0, u32 param1, u8 param2)
 {
     sub_02082680(param0, &param0->unk_04[33], param1, param2);
 }
 
-void sub_02082708 (GameWindowLayout * param0, u32 param1, u8 param2)
+void sub_02082708(GameWindowLayout *param0, u32 param1, u8 param2)
 {
-    Window * v0 = &param0->unk_04[34];
+    Window *v0 = &param0->unk_04[34];
 
     if (param2 == 1) {
         sub_0200E060(v0, 1, (1 + 9), 15);
@@ -615,7 +614,7 @@ void sub_02082708 (GameWindowLayout * param0, u32 param1, u8 param2)
     sub_0208274C(param0);
 }
 
-void sub_0208274C (GameWindowLayout * param0)
+void sub_0208274C(GameWindowLayout *param0)
 {
     sub_02002AC8(1);
     sub_02002AE4(0);
@@ -623,7 +622,7 @@ void sub_0208274C (GameWindowLayout * param0)
         &param0->unk_04[34], 1, param0->unk_6A4, 0, 0, Options_TextFrameDelay(param0->unk_5A4->unk_0C), sub_0208279C);
 }
 
-static BOOL sub_0208279C (UnkStruct_0201D738 * param0, u16 param1)
+static BOOL sub_0208279C(UnkStruct_0201D738 *param0, u16 param1)
 {
     switch (param1) {
     case 1:
@@ -643,16 +642,16 @@ static BOOL sub_0208279C (UnkStruct_0201D738 * param0, u16 param1)
     return 0;
 }
 
-void sub_020827EC (GameWindowLayout * param0)
+void sub_020827EC(GameWindowLayout *param0)
 {
     param0->unk_700 = sub_02002100(
         param0->unk_00, &Unk_020F1E98, 1, 14, 12);
 }
 
-static void sub_02082810 (GameWindowLayout * param0, u8 param1, u8 param2)
+static void sub_02082810(GameWindowLayout *param0, u8 param1, u8 param2)
 {
-    Window * v0;
-    Strbuf* v1;
+    Window *v0;
+    Strbuf *v1;
 
     v0 = &param0->unk_04[4 + param1 * 5];
 
@@ -672,10 +671,10 @@ static void sub_02082810 (GameWindowLayout * param0, u8 param1, u8 param2)
     sub_0201A9A4(v0);
 }
 
-static void sub_02082880 (GameWindowLayout * param0, u8 param1, u8 param2)
+static void sub_02082880(GameWindowLayout *param0, u8 param1, u8 param2)
 {
-    Window * v0;
-    Strbuf* v1;
+    Window *v0;
+    Strbuf *v1;
 
     v0 = &param0->unk_04[4 + param1 * 5];
 
@@ -698,10 +697,10 @@ static void sub_02082880 (GameWindowLayout * param0, u8 param1, u8 param2)
     sub_0201A9A4(v0);
 }
 
-static void sub_02082900 (GameWindowLayout * param0, u8 param1, u8 param2)
+static void sub_02082900(GameWindowLayout *param0, u8 param1, u8 param2)
 {
-    Window * v0;
-    Strbuf* v1;
+    Window *v0;
+    Strbuf *v1;
 
     v0 = &param0->unk_04[4 + param1 * 5];
 
@@ -718,10 +717,10 @@ static void sub_02082900 (GameWindowLayout * param0, u8 param1, u8 param2)
     sub_0201A9A4(v0);
 }
 
-static void sub_02082964 (GameWindowLayout * param0, u8 param1, u8 param2)
+static void sub_02082964(GameWindowLayout *param0, u8 param1, u8 param2)
 {
-    Window * v0;
-    Strbuf* v1;
+    Window *v0;
+    Strbuf *v1;
 
     v0 = &param0->unk_04[4 + param1 * 5];
 
@@ -740,10 +739,10 @@ static void sub_02082964 (GameWindowLayout * param0, u8 param1, u8 param2)
     sub_0201A9A4(v0);
 }
 
-void sub_020829DC (GameWindowLayout * param0)
+void sub_020829DC(GameWindowLayout *param0)
 {
-    Pokemon * v0;
-    Strbuf* v1;
+    Pokemon *v0;
+    Strbuf *v1;
     u32 v2;
     u16 v3[6];
 
@@ -782,9 +781,9 @@ void sub_020829DC (GameWindowLayout * param0)
     sub_0201A9A4(&param0->unk_254[0]);
 }
 
-void sub_02082B58 (GameWindowLayout * param0)
+void sub_02082B58(GameWindowLayout *param0)
 {
-    Strbuf* v0;
+    Strbuf *v0;
     u32 v1;
     u32 v2;
 
@@ -804,7 +803,7 @@ void sub_02082B58 (GameWindowLayout * param0)
     sub_0201A9A4(&param0->unk_254[0]);
 }
 
-void sub_02082C10 (GameWindowLayout * param0)
+void sub_02082C10(GameWindowLayout *param0)
 {
     Window_Clear(&param0->unk_254[0], 0);
     BGL_DeleteWindow(&param0->unk_254[0]);

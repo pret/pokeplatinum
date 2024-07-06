@@ -1,21 +1,20 @@
+#include "overlay005/encounter_effect_core.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "constants/heap.h"
 #include "constants/trainer.h"
-#include "message.h"
-#include "sys_task_manager.h"
-#include "strbuf.h"
-#include "trainer_info.h"
-#include "overlay005/encounter_effect.h"
-#include "overlay005/field_motion_blur.h"
+
+#include "struct_defs/struct_0205AA50.h"
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "overlay005/encounter_effect.h"
-#include "overlay005/linear_interpolation_task_s32.h"
+#include "overlay005/field_motion_blur.h"
+#include "overlay005/hblank_system.h"
 #include "overlay005/linear_interpolation_task_fx32.h"
+#include "overlay005/linear_interpolation_task_s32.h"
 #include "overlay005/quadratic_interpolation_task_fx32.h"
 #include "overlay005/struct_ov5_021DE47C.h"
 #include "overlay005/struct_ov5_021DE5A4.h"
@@ -23,70 +22,67 @@
 #include "overlay005/struct_ov5_021E52A8_sub2.h"
 #include "overlay115/camera_angle.h"
 
-#include "unk_02006E3C.h"
-#include "unk_0200A9DC.h"
-#include "message.h"
-#include "string_template.h"
-#include "sys_task.h"
-#include "unk_0200F174.h"
-#include "screen_scroll_manager.h"
-#include "heap.h"
-#include "unk_02018340.h"
-#include "unk_0201D670.h"
-#include "gx_layers.h"
 #include "camera.h"
 #include "cell_actor.h"
-#include "strbuf.h"
-#include "unk_0202419C.h"
+#include "gx_layers.h"
+#include "heap.h"
+#include "message.h"
 #include "save_player.h"
+#include "screen_scroll_manager.h"
+#include "strbuf.h"
+#include "string_template.h"
+#include "sys_task.h"
+#include "sys_task_manager.h"
 #include "trainer_info.h"
-#include "overlay005/encounter_effect.h"
-#include "overlay005/field_motion_blur.h"
-#include "overlay005/encounter_effect_core.h"
-#include "overlay005/hblank_system.h"
+#include "unk_02006E3C.h"
+#include "unk_0200A9DC.h"
+#include "unk_0200F174.h"
+#include "unk_02018340.h"
+#include "unk_0201D670.h"
+#include "unk_0202419C.h"
 
 // EncounterEffect_Grass_HigherLevel
-#define GRASS_HIGHER_LEVEL_PIXELS_PER_SLICE        2
-#define GRASS_HIGHER_LEVEL_INTERPOLATION_FRAMES    6
-#define GRASS_HIGHER_LEVEL_SLICE_START_X_1         0
-#define GRASS_HIGHER_LEVEL_SLICE_END_X_1           (FX32_ONE * -3)
-#define GRASS_HIGHER_LEVEL_SLICE_START_SPEED_1     (FX32_ONE * -12)
-#define GRASS_HIGHER_LEVEL_CAMERA_OFFSET_1         (FX32_ONE * 50)
-#define GRASS_HIGHER_LEVEL_CAMERA_SPEED_1          (FX32_ONE * 30)
-#define GRASS_HIGHER_LEVEL_SLICE_START_X_2         (FX32_ONE * -3)
-#define GRASS_HIGHER_LEVEL_SLICE_END_X_2           (FX32_ONE * 255)
-#define GRASS_HIGHER_LEVEL_SLICE_START_SPEED_2     (FX32_ONE * 30)
-#define GRASS_HIGHER_LEVEL_CAMERA_OFFSET_2         (FX32_ONE * -50)
-#define GRASS_HIGHER_LEVEL_CAMERA_SPEED_2          (FX32_ONE * -255)
+#define GRASS_HIGHER_LEVEL_PIXELS_PER_SLICE     2
+#define GRASS_HIGHER_LEVEL_INTERPOLATION_FRAMES 6
+#define GRASS_HIGHER_LEVEL_SLICE_START_X_1      0
+#define GRASS_HIGHER_LEVEL_SLICE_END_X_1        (FX32_ONE * -3)
+#define GRASS_HIGHER_LEVEL_SLICE_START_SPEED_1  (FX32_ONE * -12)
+#define GRASS_HIGHER_LEVEL_CAMERA_OFFSET_1      (FX32_ONE * 50)
+#define GRASS_HIGHER_LEVEL_CAMERA_SPEED_1       (FX32_ONE * 30)
+#define GRASS_HIGHER_LEVEL_SLICE_START_X_2      (FX32_ONE * -3)
+#define GRASS_HIGHER_LEVEL_SLICE_END_X_2        (FX32_ONE * 255)
+#define GRASS_HIGHER_LEVEL_SLICE_START_SPEED_2  (FX32_ONE * 30)
+#define GRASS_HIGHER_LEVEL_CAMERA_OFFSET_2      (FX32_ONE * -50)
+#define GRASS_HIGHER_LEVEL_CAMERA_SPEED_2       (FX32_ONE * -255)
 
 // EncounterEffect_Grass_LowerLevel
-#define GRASS_LOWER_LEVEL_PIXELS_PER_SLICE         5
-#define GRASS_LOWER_LEVEL_INTERPOLATION_FRAMES     6
-#define GRASS_LOWER_LEVEL_SLICE_START_X_1          0
-#define GRASS_LOWER_LEVEL_SLICE_END_X_1            (FX32_ONE * -2)
-#define GRASS_LOWER_LEVEL_SLICE_START_SPEED_1      (FX32_ONE * -12)
-#define GRASS_LOWER_LEVEL_CAMERA_OFFSET_1          (FX32_ONE * 50)
-#define GRASS_LOWER_LEVEL_CAMERA_SPEED_1           (FX32_ONE * 30)
-#define GRASS_LOWER_LEVEL_SLICE_START_X_2          (FX32_ONE * -2)
-#define GRASS_LOWER_LEVEL_SLICE_END_X_2            (FX32_ONE * 255)
-#define GRASS_LOWER_LEVEL_SLICE_START_SPEED_2      (FX32_ONE * 30)
-#define GRASS_LOWER_LEVEL_CAMERA_OFFSET_2          (FX32_ONE * -30)
-#define GRASS_LOWER_LEVEL_CAMERA_SPEED_2           (FX32_ONE * -100)
+#define GRASS_LOWER_LEVEL_PIXELS_PER_SLICE     5
+#define GRASS_LOWER_LEVEL_INTERPOLATION_FRAMES 6
+#define GRASS_LOWER_LEVEL_SLICE_START_X_1      0
+#define GRASS_LOWER_LEVEL_SLICE_END_X_1        (FX32_ONE * -2)
+#define GRASS_LOWER_LEVEL_SLICE_START_SPEED_1  (FX32_ONE * -12)
+#define GRASS_LOWER_LEVEL_CAMERA_OFFSET_1      (FX32_ONE * 50)
+#define GRASS_LOWER_LEVEL_CAMERA_SPEED_1       (FX32_ONE * 30)
+#define GRASS_LOWER_LEVEL_SLICE_START_X_2      (FX32_ONE * -2)
+#define GRASS_LOWER_LEVEL_SLICE_END_X_2        (FX32_ONE * 255)
+#define GRASS_LOWER_LEVEL_SLICE_START_SPEED_2  (FX32_ONE * 30)
+#define GRASS_LOWER_LEVEL_CAMERA_OFFSET_2      (FX32_ONE * -30)
+#define GRASS_LOWER_LEVEL_CAMERA_SPEED_2       (FX32_ONE * -100)
 
 // EncounterEffect_Cave_LowerLevel
-#define CAVE_LOWER_LEVEL_INTERPOLATION_FRAMES           12
-#define CAVE_LOWER_LEVEL_CAMERA_OFFSET                  (FX32_ONE * -400)
-#define CAVE_LOWER_LEVEL_CAMERA_SPEED                   (FX32_ONE * -2)
+#define CAVE_LOWER_LEVEL_INTERPOLATION_FRAMES 12
+#define CAVE_LOWER_LEVEL_CAMERA_OFFSET        (FX32_ONE * -400)
+#define CAVE_LOWER_LEVEL_CAMERA_SPEED         (FX32_ONE * -2)
 
 // EncounterEffect_Cave_HigherLevel
-#define CAVE_HIGHER_LEVEL_INTERPOLATION_FRAMES          12
-#define CAVE_HIGHER_LEVEL_CAMERA_OFFSET                 (FX32_ONE * -800)
-#define CAVE_HIGHER_LEVEL_CAMERA_SPEED                  (FX32_ONE * -5)
+#define CAVE_HIGHER_LEVEL_INTERPOLATION_FRAMES 12
+#define CAVE_HIGHER_LEVEL_CAMERA_OFFSET        (FX32_ONE * -800)
+#define CAVE_HIGHER_LEVEL_CAMERA_SPEED         (FX32_ONE * -5)
 
 typedef struct GrassEncounterEffect {
-    Camera * camera;
+    Camera *camera;
     QuadraticInterpolationTaskFX32 camDistanceTask;
-    ScreenSliceEffect * screenSliceEfx;
+    ScreenSliceEffect *screenSliceEfx;
 } GrassEncounterEffect;
 
 typedef struct ScreenShakeEffect {
@@ -101,11 +97,11 @@ typedef struct WaterEncounterEffect {
 } WaterEncounterEffect;
 
 typedef struct CaveEncounterEffect {
-    Camera * camera;
+    Camera *camera;
     QuadraticInterpolationTaskFX32 camInterpolation;
 } CaveEncounterEffect;
 
-static SysTask * ScreenShakeEffect_CreateDMATransferTask(ScreenShakeEffect *screenShake);
+static SysTask *ScreenShakeEffect_CreateDMATransferTask(ScreenShakeEffect *screenShake);
 static void ScreenShakeEffect_DMATransfer(SysTask *task, void *param);
 static void ScreenShakeEffect_Init(ScreenShakeEffect *screenShake, enum HeapId heapID);
 static void ScreenShakeEffect_Finish(ScreenShakeEffect *screenShake);
@@ -136,23 +132,21 @@ void EncounterEffect_Grass_HigherLevel(SysTask *task, void *param)
             encEffect->effectComplete = 0;
             encEffect->state++;
             EncounterEffect_ScreenSlice(
-                encEffect, 
-                grassEffect->screenSliceEfx, 
-                GRASS_HIGHER_LEVEL_PIXELS_PER_SLICE, 
-                GRASS_HIGHER_LEVEL_INTERPOLATION_FRAMES + 1, 
-                GRASS_HIGHER_LEVEL_SLICE_START_X_1, 
-                GRASS_HIGHER_LEVEL_SLICE_END_X_1, 
-                GRASS_HIGHER_LEVEL_SLICE_START_SPEED_1
-            );
+                encEffect,
+                grassEffect->screenSliceEfx,
+                GRASS_HIGHER_LEVEL_PIXELS_PER_SLICE,
+                GRASS_HIGHER_LEVEL_INTERPOLATION_FRAMES + 1,
+                GRASS_HIGHER_LEVEL_SLICE_START_X_1,
+                GRASS_HIGHER_LEVEL_SLICE_END_X_1,
+                GRASS_HIGHER_LEVEL_SLICE_START_SPEED_1);
             grassEffect->camera = encEffect->fieldSystem->camera;
             distance = Camera_GetDistance(grassEffect->camera);
             QuadraticInterpolationTaskFX32_Init(
-                &grassEffect->camDistanceTask, 
-                distance, 
-                distance + GRASS_HIGHER_LEVEL_CAMERA_OFFSET_1, 
-                GRASS_HIGHER_LEVEL_CAMERA_SPEED_1, 
-                GRASS_HIGHER_LEVEL_INTERPOLATION_FRAMES
-            );
+                &grassEffect->camDistanceTask,
+                distance,
+                distance + GRASS_HIGHER_LEVEL_CAMERA_OFFSET_1,
+                GRASS_HIGHER_LEVEL_CAMERA_SPEED_1,
+                GRASS_HIGHER_LEVEL_INTERPOLATION_FRAMES);
         }
         break;
     case 3:
@@ -162,23 +156,21 @@ void EncounterEffect_Grass_HigherLevel(SysTask *task, void *param)
         if (done == TRUE) {
             encEffect->state++;
             ScreenSliceEffect_Modify(
-                encEffect, 
-                grassEffect->screenSliceEfx, 
-                GRASS_HIGHER_LEVEL_PIXELS_PER_SLICE, 
-                GRASS_HIGHER_LEVEL_INTERPOLATION_FRAMES, 
-                GRASS_HIGHER_LEVEL_SLICE_START_X_2, 
-                GRASS_HIGHER_LEVEL_SLICE_END_X_2, 
-                GRASS_HIGHER_LEVEL_SLICE_START_SPEED_2
-            );
+                encEffect,
+                grassEffect->screenSliceEfx,
+                GRASS_HIGHER_LEVEL_PIXELS_PER_SLICE,
+                GRASS_HIGHER_LEVEL_INTERPOLATION_FRAMES,
+                GRASS_HIGHER_LEVEL_SLICE_START_X_2,
+                GRASS_HIGHER_LEVEL_SLICE_END_X_2,
+                GRASS_HIGHER_LEVEL_SLICE_START_SPEED_2);
             grassEffect->camera = encEffect->fieldSystem->camera;
             distance = Camera_GetDistance(grassEffect->camera);
             QuadraticInterpolationTaskFX32_Init(
-                &grassEffect->camDistanceTask, 
-                distance, 
-                distance + GRASS_HIGHER_LEVEL_CAMERA_OFFSET_2, 
-                GRASS_HIGHER_LEVEL_CAMERA_SPEED_2, 
-                GRASS_HIGHER_LEVEL_INTERPOLATION_FRAMES
-            );
+                &grassEffect->camDistanceTask,
+                distance,
+                distance + GRASS_HIGHER_LEVEL_CAMERA_OFFSET_2,
+                GRASS_HIGHER_LEVEL_CAMERA_SPEED_2,
+                GRASS_HIGHER_LEVEL_INTERPOLATION_FRAMES);
         }
         break;
     case 4:
@@ -233,23 +225,21 @@ void EncounterEffect_Grass_LowerLevel(SysTask *task, void *param)
             encEffect->effectComplete = FALSE;
             encEffect->state++;
             EncounterEffect_ScreenSlice(
-                encEffect, 
-                grassEffect->screenSliceEfx, 
-                GRASS_LOWER_LEVEL_PIXELS_PER_SLICE, 
-                GRASS_LOWER_LEVEL_INTERPOLATION_FRAMES + 1, 
-                GRASS_LOWER_LEVEL_SLICE_START_X_1, 
-                GRASS_LOWER_LEVEL_SLICE_END_X_1, 
-                GRASS_LOWER_LEVEL_SLICE_START_SPEED_1
-            );
+                encEffect,
+                grassEffect->screenSliceEfx,
+                GRASS_LOWER_LEVEL_PIXELS_PER_SLICE,
+                GRASS_LOWER_LEVEL_INTERPOLATION_FRAMES + 1,
+                GRASS_LOWER_LEVEL_SLICE_START_X_1,
+                GRASS_LOWER_LEVEL_SLICE_END_X_1,
+                GRASS_LOWER_LEVEL_SLICE_START_SPEED_1);
             grassEffect->camera = encEffect->fieldSystem->camera;
             distance = Camera_GetDistance(grassEffect->camera);
             QuadraticInterpolationTaskFX32_Init(
-                &grassEffect->camDistanceTask, 
-                distance, 
-                distance + GRASS_LOWER_LEVEL_CAMERA_OFFSET_1, 
-                GRASS_LOWER_LEVEL_CAMERA_SPEED_1, 
-                GRASS_LOWER_LEVEL_INTERPOLATION_FRAMES
-            );
+                &grassEffect->camDistanceTask,
+                distance,
+                distance + GRASS_LOWER_LEVEL_CAMERA_OFFSET_1,
+                GRASS_LOWER_LEVEL_CAMERA_SPEED_1,
+                GRASS_LOWER_LEVEL_INTERPOLATION_FRAMES);
         }
         break;
     case 3:
@@ -259,23 +249,21 @@ void EncounterEffect_Grass_LowerLevel(SysTask *task, void *param)
         if (done == TRUE) {
             encEffect->state++;
             ScreenSliceEffect_Modify(
-                encEffect, 
-                grassEffect->screenSliceEfx, 
-                GRASS_LOWER_LEVEL_PIXELS_PER_SLICE, 
-                GRASS_LOWER_LEVEL_INTERPOLATION_FRAMES, 
-                GRASS_LOWER_LEVEL_SLICE_START_X_2, 
-                GRASS_LOWER_LEVEL_SLICE_END_X_2, 
-                GRASS_LOWER_LEVEL_SLICE_START_SPEED_2
-            );
+                encEffect,
+                grassEffect->screenSliceEfx,
+                GRASS_LOWER_LEVEL_PIXELS_PER_SLICE,
+                GRASS_LOWER_LEVEL_INTERPOLATION_FRAMES,
+                GRASS_LOWER_LEVEL_SLICE_START_X_2,
+                GRASS_LOWER_LEVEL_SLICE_END_X_2,
+                GRASS_LOWER_LEVEL_SLICE_START_SPEED_2);
             grassEffect->camera = encEffect->fieldSystem->camera;
             distance = Camera_GetDistance(grassEffect->camera);
             QuadraticInterpolationTaskFX32_Init(
-                &grassEffect->camDistanceTask, 
-                distance, 
-                distance + GRASS_LOWER_LEVEL_CAMERA_OFFSET_2, 
-                GRASS_LOWER_LEVEL_CAMERA_SPEED_2, 
-                GRASS_LOWER_LEVEL_INTERPOLATION_FRAMES
-            );
+                &grassEffect->camDistanceTask,
+                distance,
+                distance + GRASS_LOWER_LEVEL_CAMERA_OFFSET_2,
+                GRASS_LOWER_LEVEL_CAMERA_SPEED_2,
+                GRASS_LOWER_LEVEL_INTERPOLATION_FRAMES);
         }
         break;
     case 4:
@@ -504,12 +492,11 @@ void EncounterEffect_Cave_LowerLevel(SysTask *task, void *param)
         distance = Camera_GetDistance(caveEffect->camera);
 
         QuadraticInterpolationTaskFX32_Init(
-            &caveEffect->camInterpolation, 
-            distance, 
-            distance + CAVE_LOWER_LEVEL_CAMERA_OFFSET, 
-            CAVE_LOWER_LEVEL_CAMERA_SPEED, 
-            CAVE_LOWER_LEVEL_INTERPOLATION_FRAMES
-        );
+            &caveEffect->camInterpolation,
+            distance,
+            distance + CAVE_LOWER_LEVEL_CAMERA_OFFSET,
+            CAVE_LOWER_LEVEL_CAMERA_SPEED,
+            CAVE_LOWER_LEVEL_INTERPOLATION_FRAMES);
         encEffect->state++;
         break;
     case 4:
@@ -563,12 +550,11 @@ void EncounterEffect_Cave_HigherLevel(SysTask *task, void *param)
         distance = Camera_GetDistance(caveEffect->camera);
 
         QuadraticInterpolationTaskFX32_Init(
-            &caveEffect->camInterpolation, 
-            distance, 
-            distance + CAVE_HIGHER_LEVEL_CAMERA_OFFSET, 
-            CAVE_HIGHER_LEVEL_CAMERA_SPEED, 
-            CAVE_HIGHER_LEVEL_INTERPOLATION_FRAMES
-        );
+            &caveEffect->camInterpolation,
+            distance,
+            distance + CAVE_HIGHER_LEVEL_CAMERA_OFFSET,
+            CAVE_HIGHER_LEVEL_CAMERA_SPEED,
+            CAVE_HIGHER_LEVEL_INTERPOLATION_FRAMES);
         encEffect->state++;
         break;
     case 4:
@@ -596,11 +582,11 @@ typedef struct TrainerGrassEncounterEffect {
     QuadraticInterpolationTaskFX32 pokeballScale;
     LinearInterpolationTaskS32 pokeballRotation;
     QuadraticInterpolationTaskFX32 unk_2C;
-    ScreenSliceEffect * screenSliceEfx;
+    ScreenSliceEffect *screenSliceEfx;
     UnkStruct_ov5_021DE47C unk_48;
     UnkStruct_ov5_021DE5A4 unk_1E8;
-    CellActor * pokeballSprites[2];
-    Camera * camera;
+    CellActor *pokeballSprites[2];
+    Camera *camera;
     QuadraticInterpolationTaskFX32 unk_228;
     s32 unk_240;
 } TrainerGrassEncounterEffect;
@@ -608,11 +594,11 @@ typedef struct TrainerGrassEncounterEffect {
 typedef struct {
     LinearInterpolationTaskFX32 unk_00;
     LinearInterpolationTaskS32 unk_14;
-    ScreenSplitEffect * unk_28;
+    ScreenSplitEffect *unk_28;
     UnkStruct_ov5_021DE47C unk_2C;
     UnkStruct_ov5_021DE5A4 unk_1CC;
-    CellActor * unk_200[2];
-    Camera * camera;
+    CellActor *unk_200[2];
+    Camera *camera;
     QuadraticInterpolationTaskFX32 unk_20C;
     s32 unk_224;
 } UnkStruct_ov5_021E2EB0;
@@ -625,8 +611,8 @@ typedef struct {
     BOOL unk_4C;
     UnkStruct_ov5_021DE47C unk_50;
     UnkStruct_ov5_021DE5A4 unk_1F0;
-    CellActor * unk_224[2];
-    Camera * camera;
+    CellActor *unk_224[2];
+    Camera *camera;
     QuadraticInterpolationTaskFX32 unk_230;
     s32 unk_248;
 } UnkStruct_ov5_021E31A4;
@@ -634,15 +620,15 @@ typedef struct {
 typedef struct {
     UnkStruct_ov5_021DE47C unk_00;
     UnkStruct_ov5_021DE5A4 unk_1A0;
-    CellActor * unk_1D4[3];
+    CellActor *unk_1D4[3];
     LinearInterpolationTaskS32 unk_1E0[3];
     LinearInterpolationTaskS32 unk_21C[3];
-    UnkStruct_ov5_021DE6BC * unk_258[3];
+    UnkStruct_ov5_021DE6BC *unk_258[3];
     BOOL unk_264[3];
-    Window * unk_270;
+    Window *unk_270;
     ScreenShakeEffect unk_274;
     BOOL unk_280;
-    Camera * camera;
+    Camera *camera;
     QuadraticInterpolationTaskFX32 unk_288;
     s32 unk_2A0;
 } UnkStruct_ov5_021E3560;
@@ -654,8 +640,8 @@ typedef struct {
     LinearInterpolationTaskS32 unk_48;
     UnkStruct_ov5_021DE47C unk_5C;
     UnkStruct_ov5_021DE5A4 unk_1FC;
-    CellActor * unk_230;
-    Camera * camera;
+    CellActor *unk_230;
+    Camera *camera;
     QuadraticInterpolationTaskFX32 unk_238;
     s32 unk_250;
 } UnkStruct_ov5_021E3AD0;
@@ -663,13 +649,13 @@ typedef struct {
 typedef struct {
     UnkStruct_ov5_021DE47C unk_00;
     UnkStruct_ov5_021DE5A4 unk_1A0;
-    CellActor * unk_1D4[3];
+    CellActor *unk_1D4[3];
     LinearInterpolationTaskS32 unk_1E0[3];
     LinearInterpolationTaskS32 unk_21C[3];
     BOOL unk_258[3];
-    Window * unk_264;
-    UnkStruct_ov5_021DE928 * unk_268;
-    Camera * camera;
+    Window *unk_264;
+    UnkStruct_ov5_021DE928 *unk_268;
+    Camera *camera;
     QuadraticInterpolationTaskFX32 unk_270;
     s16 unk_288;
 } UnkStruct_ov5_021E3D8C;
@@ -683,7 +669,7 @@ void EncounterEffect_Trainer_Grass_LowerLevel(SysTask *task, void *param)
     int i;
     VecFx32 v5;
     u16 v6;
-    
+
     switch (encEffect->state) {
     case 0:
         encEffect->param = Heap_AllocFromHeap(4, sizeof(TrainerGrassEncounterEffect));
@@ -726,10 +712,9 @@ void EncounterEffect_Trainer_Grass_LowerLevel(SysTask *task, void *param)
         QuadraticInterpolationTaskFX32_Init(&trainerEffect->pokeballScale, (FX32_CONST(0.01f)), (FX32_CONST(1.0f)), 2, 10);
 
         v5 = VecFx32_FromXYZ(
-            trainerEffect->pokeballScale.currentValue, 
-            trainerEffect->pokeballScale.currentValue, 
-            trainerEffect->pokeballScale.currentValue
-        );
+            trainerEffect->pokeballScale.currentValue,
+            trainerEffect->pokeballScale.currentValue,
+            trainerEffect->pokeballScale.currentValue);
 
         for (i = 0; i < 2; i++) {
             CellActor_SetDrawFlag(
@@ -839,10 +824,10 @@ void EncounterEffect_Trainer_Grass_LowerLevel(SysTask *task, void *param)
     }
 }
 
-void EncounterEffect_Trainer_Grass_HigherLevel (SysTask * param0, void * param1)
+void EncounterEffect_Trainer_Grass_HigherLevel(SysTask *param0, void *param1)
 {
     EncounterEffect *encEffect = param1;
-    UnkStruct_ov5_021E2EB0 * v1 = encEffect->param;
+    UnkStruct_ov5_021E2EB0 *v1 = encEffect->param;
     BOOL v2;
     fx32 v3;
 
@@ -983,10 +968,10 @@ void EncounterEffect_Trainer_Grass_HigherLevel (SysTask * param0, void * param1)
     }
 }
 
-void EncounterEffect_Trainer_Water_LowerLevel (SysTask * param0, void * param1)
+void EncounterEffect_Trainer_Water_LowerLevel(SysTask *param0, void *param1)
 {
-    EncounterEffect * v0 = param1;
-    UnkStruct_ov5_021E31A4 * v1 = v0->param;
+    EncounterEffect *v0 = param1;
+    UnkStruct_ov5_021E31A4 *v1 = v0->param;
     BOOL v2;
     BOOL v3;
     fx32 v4;
@@ -1155,10 +1140,10 @@ void EncounterEffect_Trainer_Water_LowerLevel (SysTask * param0, void * param1)
     }
 }
 
-void EncounterEffect_Trainer_Water_HigherLevel (SysTask * param0, void * param1)
+void EncounterEffect_Trainer_Water_HigherLevel(SysTask *param0, void *param1)
 {
-    EncounterEffect * v0 = param1;
-    UnkStruct_ov5_021E3560 * v1 = v0->param;
+    EncounterEffect *v0 = param1;
+    UnkStruct_ov5_021E3560 *v1 = v0->param;
     BOOL v2;
     int v3;
     VecFx32 v4;
@@ -1340,7 +1325,7 @@ void EncounterEffect_Trainer_Water_HigherLevel (SysTask * param0, void * param1)
 
     for (v3 = 0; v3 < 3; v3++) {
         if (v1->unk_264[v3] == 1) {
-            const VecFx32 * v7;
+            const VecFx32 *v7;
             VecFx32 v8;
 
             v2 = ov5_021DE71C(v1->unk_258[v3]);
@@ -1368,10 +1353,10 @@ void EncounterEffect_Trainer_Water_HigherLevel (SysTask * param0, void * param1)
     }
 }
 
-void EncounterEffect_Trainer_Cave_LowerLevel (SysTask * param0, void * param1)
+void EncounterEffect_Trainer_Cave_LowerLevel(SysTask *param0, void *param1)
 {
-    EncounterEffect * v0 = param1;
-    UnkStruct_ov5_021E3AD0 * v1 = v0->param;
+    EncounterEffect *v0 = param1;
+    UnkStruct_ov5_021E3AD0 *v1 = v0->param;
     BOOL v2;
     fx32 v3;
     VecFx32 v4;
@@ -1493,10 +1478,10 @@ void EncounterEffect_Trainer_Cave_LowerLevel (SysTask * param0, void * param1)
     }
 }
 
-void EncounterEffect_Trainer_Cave_HigherLevel (SysTask * param0, void * param1)
+void EncounterEffect_Trainer_Cave_HigherLevel(SysTask *param0, void *param1)
 {
-    EncounterEffect * v0 = param1;
-    UnkStruct_ov5_021E3D8C * v1 = v0->param;
+    EncounterEffect *v0 = param1;
+    UnkStruct_ov5_021E3D8C *v1 = v0->param;
     VecFx32 v2;
     BOOL v3;
     int v4;
@@ -1683,7 +1668,7 @@ void EncounterEffect_Trainer_Cave_HigherLevel (SysTask * param0, void * param1)
 
     for (v4 = 0; v4 < 3; v4++) {
         if (v1->unk_258[v4] == 1) {
-            const VecFx32 * v7;
+            const VecFx32 *v7;
             VecFx32 v8;
 
             v3 = LinearInterpolationTaskS32_Update(&v1->unk_1E0[v4]);
@@ -1711,21 +1696,21 @@ typedef struct {
     QuadraticInterpolationTaskFX32 unk_14;
     UnkStruct_ov5_021DE47C unk_2C;
     UnkStruct_ov5_021DE5A4 unk_1CC;
-    CellActor * unk_200;
+    CellActor *unk_200;
     s32 unk_204;
 } UnkStruct_ov5_021E4260;
 
 typedef struct {
     UnkStruct_ov5_021DE47C unk_00;
     UnkStruct_ov5_021DE5A4 unk_1A0;
-    CellActor * unk_1D4[4];
+    CellActor *unk_1D4[4];
     QuadraticInterpolationTaskFX32 unk_1E4[2];
 } UnkStruct_ov5_021E44C0;
 
-void EncounterEffect_Frontier (SysTask * param0, void * param1)
+void EncounterEffect_Frontier(SysTask *param0, void *param1)
 {
-    EncounterEffect * v0 = param1;
-    UnkStruct_ov5_021E4260 * v1 = v0->param;
+    EncounterEffect *v0 = param1;
+    UnkStruct_ov5_021E4260 *v1 = v0->param;
     BOOL v2;
 
     switch (v0->state) {
@@ -1835,10 +1820,10 @@ void EncounterEffect_Frontier (SysTask * param0, void * param1)
     }
 }
 
-void EncounterEffect_Double (SysTask * param0, void * param1)
+void EncounterEffect_Double(SysTask *param0, void *param1)
 {
-    EncounterEffect * v0 = param1;
-    UnkStruct_ov5_021E44C0 * v1 = v0->param;
+    EncounterEffect *v0 = param1;
+    UnkStruct_ov5_021E44C0 *v1 = v0->param;
     BOOL v2;
     int v3;
     VecFx32 v4;
@@ -1955,25 +1940,18 @@ void EncounterEffect_Double (SysTask * param0, void * param1)
 }
 
 static const s32 Unk_ov5_021F9E94[6][8] = {
-    {
-        FX32_CONST(260), FX32_CONST(128), -FX32_CONST(30), FX32_CONST(0), FX32_CONST(100), FX32_CONST(20), 4, 0xffff * 2
-    }, {
-        FX32_CONST(-16), FX32_CONST(128), FX32_CONST(30), FX32_CONST(160), FX32_CONST(100), -FX32_CONST(20), 3, 0xffff * 1
-    }, {
-        FX32_CONST(0), FX32_CONST(128), FX32_CONST(30), FX32_CONST(-16), FX32_CONST(100), FX32_CONST(20), 4, -0xffff * 3
-    }, {
-        FX32_CONST(140), FX32_CONST(128), -FX32_CONST(10), FX32_CONST(160), FX32_CONST(100), -FX32_CONST(20), 2, -0xffff * 2
-    }, {
-        FX32_CONST(260), FX32_CONST(128), -FX32_CONST(30), FX32_CONST(80), FX32_CONST(100), FX32_CONST(1), 3, -0xffff * 3
-    }, {
-        FX32_CONST(0), FX32_CONST(128), FX32_CONST(30), FX32_CONST(160), FX32_CONST(100), -FX32_CONST(20), 3, 0xffff * 1
-    },
+    { FX32_CONST(260), FX32_CONST(128), -FX32_CONST(30), FX32_CONST(0), FX32_CONST(100), FX32_CONST(20), 4, 0xffff * 2 },
+    { FX32_CONST(-16), FX32_CONST(128), FX32_CONST(30), FX32_CONST(160), FX32_CONST(100), -FX32_CONST(20), 3, 0xffff * 1 },
+    { FX32_CONST(0), FX32_CONST(128), FX32_CONST(30), FX32_CONST(-16), FX32_CONST(100), FX32_CONST(20), 4, -0xffff * 3 },
+    { FX32_CONST(140), FX32_CONST(128), -FX32_CONST(10), FX32_CONST(160), FX32_CONST(100), -FX32_CONST(20), 2, -0xffff * 2 },
+    { FX32_CONST(260), FX32_CONST(128), -FX32_CONST(30), FX32_CONST(80), FX32_CONST(100), FX32_CONST(1), 3, -0xffff * 3 },
+    { FX32_CONST(0), FX32_CONST(128), FX32_CONST(30), FX32_CONST(160), FX32_CONST(100), -FX32_CONST(20), 3, 0xffff * 1 },
 };
 
 typedef struct {
     UnkStruct_ov5_021DE47C unk_00;
     UnkStruct_ov5_021DE5A4 unk_1A0;
-    CellActor * unk_1D4[6];
+    CellActor *unk_1D4[6];
     QuadraticInterpolationTaskFX32 unk_1EC[6];
     QuadraticInterpolationTaskFX32 unk_27C[6];
     QuadraticInterpolationTaskFX32 unk_30C[6];
@@ -1984,21 +1962,21 @@ typedef struct {
 } UnkStruct_ov5_021E4738;
 
 typedef struct {
-    Window * unk_00;
-    UnkStruct_ov5_021DEC18 * unk_04;
+    Window *unk_00;
+    UnkStruct_ov5_021DEC18 *unk_04;
     UnkStruct_ov5_021DE47C unk_08;
     UnkStruct_ov5_021DE5A4 unk_1A8;
-    CellActor * unk_1DC;
+    CellActor *unk_1DC;
     LinearInterpolationTaskS32 unk_1E0;
     LinearInterpolationTaskS32 unk_1F4;
     LinearInterpolationTaskS32 unk_208;
     s32 unk_21C;
 } UnkStruct_ov5_021E4B3C;
 
-void EncounterEffect_GalacticGrunt (SysTask * param0, void * param1)
+void EncounterEffect_GalacticGrunt(SysTask *param0, void *param1)
 {
-    EncounterEffect * v0 = param1;
-    UnkStruct_ov5_021E4738 * v1 = v0->param;
+    EncounterEffect *v0 = param1;
+    UnkStruct_ov5_021E4738 *v1 = v0->param;
     BOOL v2;
     int v3;
     VecFx32 v4;
@@ -2144,10 +2122,10 @@ void EncounterEffect_GalacticGrunt (SysTask * param0, void * param1)
     }
 }
 
-void EncounterEffect_GalacticBoss (SysTask * param0, void * param1)
+void EncounterEffect_GalacticBoss(SysTask *param0, void *param1)
 {
-    EncounterEffect * v0 = param1;
-    UnkStruct_ov5_021E4B3C * v1 = v0->param;
+    EncounterEffect *v0 = param1;
+    UnkStruct_ov5_021E4B3C *v1 = v0->param;
     BOOL v2;
 
     switch (v0->state) {
@@ -2282,115 +2260,115 @@ typedef struct LegendaryEncounterCameraParam {
 
 static const LegendaryEncounterCameraParam sLegendaryEncounterCameraParams[16] = {
     {
-        .distance   = 0x29AEC1, 
-        .angleX     = 0xD602, 
-        .angleY     = 0x0, 
-        .fov        = 0x5C1, 
+        .distance = 0x29AEC1,
+        .angleX = 0xD602,
+        .angleY = 0x0,
+        .fov = 0x5C1,
         .frameDelay = 4,
-    }, 
+    },
     {
-        .distance   = 0x29AEC1, 
-        .angleX     = 0xcf02, 
-        .angleY     = 0xff00, 
-        .fov        = 0x601, 
+        .distance = 0x29AEC1,
+        .angleX = 0xcf02,
+        .angleY = 0xff00,
+        .fov = 0x601,
         .frameDelay = 4,
-    }, 
+    },
     {
-        .distance   = 0x29AEC1, 
-        .angleX     = 0xe602, 
-        .angleY     = 0x1000, 
-        .fov        = 0x691, 
+        .distance = 0x29AEC1,
+        .angleX = 0xe602,
+        .angleY = 0x1000,
+        .fov = 0x691,
         .frameDelay = 4,
-    }, 
+    },
     {
-        .distance   = 0x29AEC1, 
-        .angleX     = 0xD602, 
-        .angleY     = 0xa00, 
-        .fov        = 0x711, 
+        .distance = 0x29AEC1,
+        .angleX = 0xD602,
+        .angleY = 0xa00,
+        .fov = 0x711,
         .frameDelay = 3,
-    }, 
+    },
     {
-        .distance   = 0x29AEC1, 
-        .angleX     = 0xe102, 
-        .angleY     = 0xf000, 
-        .fov        = 0x780, 
+        .distance = 0x29AEC1,
+        .angleX = 0xe102,
+        .angleY = 0xf000,
+        .fov = 0x780,
         .frameDelay = 3,
-    }, 
+    },
     {
-        .distance   = 0x29AEC1, 
-        .angleX     = 0xc602, 
-        .angleY     = 0x0, 
-        .fov        = 0x751, 
+        .distance = 0x29AEC1,
+        .angleX = 0xc602,
+        .angleY = 0x0,
+        .fov = 0x751,
         .frameDelay = 3,
-    }, 
+    },
     {
-        .distance   = 0x29AEC1, 
-        .angleX     = 0xe002, 
-        .angleY     = 0xf000, 
-        .fov        = 0x800, 
+        .distance = 0x29AEC1,
+        .angleX = 0xe002,
+        .angleY = 0xf000,
+        .fov = 0x800,
         .frameDelay = 3,
-    }, 
+    },
     {
-        .distance   = 0x29AEC1, 
-        .angleX     = 0xD602, 
-        .angleY     = 0, 
-        .fov        = 0x802, 
+        .distance = 0x29AEC1,
+        .angleX = 0xD602,
+        .angleY = 0,
+        .fov = 0x802,
         .frameDelay = 3,
-    }, 
+    },
     {
-        .distance   = 0x29AEC1, 
-        .angleX     = 0xD002, 
-        .angleY     = 0x1000, 
-        .fov        = 0x800, 
+        .distance = 0x29AEC1,
+        .angleX = 0xD002,
+        .angleY = 0x1000,
+        .fov = 0x800,
         .frameDelay = 3,
-    }, 
+    },
     {
-        .distance   = 0x29AEC1, 
-        .angleX     = 0xD902, 
-        .angleY     = 0xf500, 
-        .fov        = 0x751, 
+        .distance = 0x29AEC1,
+        .angleX = 0xD902,
+        .angleY = 0xf500,
+        .fov = 0x751,
         .frameDelay = 3,
-    }, 
+    },
     {
-        .distance   = 0x29AEC1, 
-        .angleX     = 0xD002, 
-        .angleY     = 0xa00, 
-        .fov        = 0x4C1, 
+        .distance = 0x29AEC1,
+        .angleX = 0xD002,
+        .angleY = 0xa00,
+        .fov = 0x4C1,
         .frameDelay = 2,
-    }, 
+    },
     {
-        .distance   = 0x29AEC1, 
-        .angleX     = 0xe002, 
-        .angleY     = 0xf000, 
-        .fov        = 0x3C1, 
+        .distance = 0x29AEC1,
+        .angleX = 0xe002,
+        .angleY = 0xf000,
+        .fov = 0x3C1,
         .frameDelay = 2,
-    }, 
+    },
     {
-        .distance   = 0x29AEC1, 
-        .angleX     = 0xD002, 
-        .angleY     = 0xf000, 
-        .fov        = 0x650, 
+        .distance = 0x29AEC1,
+        .angleX = 0xD002,
+        .angleY = 0xf000,
+        .fov = 0x650,
         .frameDelay = 1,
-    }, 
+    },
     {
-        .distance   = 0x29AEC1, 
-        .angleX     = 0xe002, 
-        .angleY     = 0xa000, 
-        .fov        = 0x241, 
+        .distance = 0x29AEC1,
+        .angleX = 0xe002,
+        .angleY = 0xa000,
+        .fov = 0x241,
         .frameDelay = 1,
-    }, 
+    },
     {
-        .distance   = 0x29AEC1, 
-        .angleX     = 0xe1a2, 
-        .angleY     = 0x500, 
-        .fov        = 0x500, 
+        .distance = 0x29AEC1,
+        .angleX = 0xe1a2,
+        .angleY = 0x500,
+        .fov = 0x500,
         .frameDelay = 1,
-    }, 
+    },
     {
-        .distance   = 0x29AEC1, 
-        .angleX     = 0xD602, 
-        .angleY     = 0, 
-        .fov        = 0x241, 
+        .distance = 0x29AEC1,
+        .angleX = 0xD602,
+        .angleY = 0,
+        .fov = 0x241,
         .frameDelay = 1,
     },
 };
@@ -2403,7 +2381,7 @@ typedef struct MythicalEncounterEffect {
 } MythicalEncounterEffect;
 
 typedef struct LegendaryEncounterEffect {
-    FieldMotionBlur * motionBlur;
+    FieldMotionBlur *motionBlur;
     Camera *unused;
     LinearInterpolationTaskS32 fovInterpolation;
     QuadraticInterpolationTaskFX32 distanceInterpolation;
@@ -2414,12 +2392,12 @@ static void EncounterEffect_SetLegendaryEncounterCamera(FieldSystem *fieldSystem
 {
     Camera_SetFOV(param->fov, fieldSystem->camera);
     Camera_SetDistance(param->distance, fieldSystem->camera);
-    
+
     CameraAngle angle;
     angle.x = param->angleX;
     angle.y = param->angleY;
     angle.z = 0;
-    
+
     Camera_SetAngleAroundTarget(&angle, fieldSystem->camera);
 }
 
@@ -2505,7 +2483,7 @@ void EncounterEffect_Mythical(SysTask *task, void *param)
     }
 }
 
-void EncounterEffect_Legendary(SysTask *task, void * param)
+void EncounterEffect_Legendary(SysTask *task, void *param)
 {
     EncounterEffect *encEffect = param;
     LegendaryEncounterEffect *legendaryEffect = encEffect->param;
@@ -2628,116 +2606,116 @@ typedef struct GymLeaderEncounterParam {
 
 static const GymLeaderEncounterParam sGymLeaderEncounterParams[8] = {
     {
-        .endX           = 214 * FX32_ONE, 
-        .trainerID      = 246, 
-        .trainerClass   = TRAINER_CLASS_LEADER_ROARK, 
-        .unk_0A         = 1, 
-        .unk_0C         = 55, 
-        .unk_0D         = 56, 
-        .unk_0E         = 57, 
-        .unk_0F         = 58, 
-        .unk_10         = 15, 
-        .unk_11         = 16, 
-        .unk_12         = 17, 
-        .padding        = 0,
-    }, 
+        .endX = 214 * FX32_ONE,
+        .trainerID = 246,
+        .trainerClass = TRAINER_CLASS_LEADER_ROARK,
+        .unk_0A = 1,
+        .unk_0C = 55,
+        .unk_0D = 56,
+        .unk_0E = 57,
+        .unk_0F = 58,
+        .unk_10 = 15,
+        .unk_11 = 16,
+        .unk_12 = 17,
+        .padding = 0,
+    },
     {
-        .endX           = 214 * FX32_ONE, 
-        .trainerID      = 315, 
-        .trainerClass   = TRAINER_CLASS_LEADER_GARDENIA, 
-        .unk_0A         = 1, 
-        .unk_0C         = 59, 
-        .unk_0D         = 60, 
-        .unk_0E         = 61, 
-        .unk_0F         = 62, 
-        .unk_10         = 18, 
-        .unk_11         = 19, 
-        .unk_12         = 20, 
-        .padding        = 0,
-    }, 
+        .endX = 214 * FX32_ONE,
+        .trainerID = 315,
+        .trainerClass = TRAINER_CLASS_LEADER_GARDENIA,
+        .unk_0A = 1,
+        .unk_0C = 59,
+        .unk_0D = 60,
+        .unk_0E = 61,
+        .unk_0F = 62,
+        .unk_10 = 18,
+        .unk_11 = 19,
+        .unk_12 = 20,
+        .padding = 0,
+    },
     {
-        .endX           = 214 * FX32_ONE, 
-        .trainerID      = 316, 
-        .trainerClass   = TRAINER_CLASS_LEADER_WAKE, 
-        .unk_0A         = 0, 
-        .unk_0C         = 63, 
-        .unk_0D         = 64, 
-        .unk_0E         = 65, 
-        .unk_0F         = 66, 
-        .unk_10         = 21, 
-        .unk_11         = 22, 
-        .unk_12         = 23, 
-        .padding        = 0,
-    }, 
+        .endX = 214 * FX32_ONE,
+        .trainerID = 316,
+        .trainerClass = TRAINER_CLASS_LEADER_WAKE,
+        .unk_0A = 0,
+        .unk_0C = 63,
+        .unk_0D = 64,
+        .unk_0E = 65,
+        .unk_0F = 66,
+        .unk_10 = 21,
+        .unk_11 = 22,
+        .unk_12 = 23,
+        .padding = 0,
+    },
     {
-        .endX           = 214 * FX32_ONE, 
-        .trainerID      = 317, 
-        .trainerClass   = TRAINER_CLASS_LEADER_MAYLENE, 
-        .unk_0A         = 1, 
-        .unk_0C         = 67, 
-        .unk_0D         = 68, 
-        .unk_0E         = 69, 
-        .unk_0F         = 70, 
-        .unk_10         = 24, 
-        .unk_11         = 25, 
-        .unk_12         = 26, 
-        .padding        = 0,
-    }, 
+        .endX = 214 * FX32_ONE,
+        .trainerID = 317,
+        .trainerClass = TRAINER_CLASS_LEADER_MAYLENE,
+        .unk_0A = 1,
+        .unk_0C = 67,
+        .unk_0D = 68,
+        .unk_0E = 69,
+        .unk_0F = 70,
+        .unk_10 = 24,
+        .unk_11 = 25,
+        .unk_12 = 26,
+        .padding = 0,
+    },
     {
-        .endX           = 214 * FX32_ONE, 
-        .trainerID      = 318, 
-        .trainerClass   = TRAINER_CLASS_LEADER_FANTINA, 
-        .unk_0A         = 1, 
-        .unk_0C         = 71, 
-        .unk_0D         = 72, 
-        .unk_0E         = 73, 
-        .unk_0F         = 74, 
-        .unk_10         = 27, 
-        .unk_11         = 28, 
-        .unk_12         = 29, 
-        .padding        = 0,
-    }, 
+        .endX = 214 * FX32_ONE,
+        .trainerID = 318,
+        .trainerClass = TRAINER_CLASS_LEADER_FANTINA,
+        .unk_0A = 1,
+        .unk_0C = 71,
+        .unk_0D = 72,
+        .unk_0E = 73,
+        .unk_0F = 74,
+        .unk_10 = 27,
+        .unk_11 = 28,
+        .unk_12 = 29,
+        .padding = 0,
+    },
     {
-        .endX           = 214 * FX32_ONE, 
-        .trainerID      = 319, 
-        .trainerClass   = TRAINER_CLASS_LEADER_CANDICE, 
-        .unk_0A         = 1, 
-        .unk_0C         = 75, 
-        .unk_0D         = 76, 
-        .unk_0E         = 77, 
-        .unk_0F         = 78, 
-        .unk_10         = 30, 
-        .unk_11         = 31, 
-        .unk_12         = 32, 
-        .padding        = 0,
-    }, 
+        .endX = 214 * FX32_ONE,
+        .trainerID = 319,
+        .trainerClass = TRAINER_CLASS_LEADER_CANDICE,
+        .unk_0A = 1,
+        .unk_0C = 75,
+        .unk_0D = 76,
+        .unk_0E = 77,
+        .unk_0F = 78,
+        .unk_10 = 30,
+        .unk_11 = 31,
+        .unk_12 = 32,
+        .padding = 0,
+    },
     {
-        .endX           = 214 * FX32_ONE, 
-        .trainerID      = 250, 
-        .trainerClass   = TRAINER_CLASS_LEADER_BYRON, 
-        .unk_0A         = 1, 
-        .unk_0C         = 79, 
-        .unk_0D         = 80, 
-        .unk_0E         = 81, 
-        .unk_0F         = 82, 
-        .unk_10         = 33, 
-        .unk_11         = 34, 
-        .unk_12         = 35, 
-        .padding        = 0,
-    }, 
+        .endX = 214 * FX32_ONE,
+        .trainerID = 250,
+        .trainerClass = TRAINER_CLASS_LEADER_BYRON,
+        .unk_0A = 1,
+        .unk_0C = 79,
+        .unk_0D = 80,
+        .unk_0E = 81,
+        .unk_0F = 82,
+        .unk_10 = 33,
+        .unk_11 = 34,
+        .unk_12 = 35,
+        .padding = 0,
+    },
     {
-        .endX           = 214 * FX32_ONE, 
-        .trainerID      = 320, 
-        .trainerClass   = TRAINER_CLASS_LEADER_VOLKNER, 
-        .unk_0A         = 1, 
-        .unk_0C         = 83, 
-        .unk_0D         = 84, 
-        .unk_0E         = 85, 
-        .unk_0F         = 86, 
-        .unk_10         = 36, 
-        .unk_11         = 37, 
-        .unk_12         = 38, 
-        .padding        = 0,
+        .endX = 214 * FX32_ONE,
+        .trainerID = 320,
+        .trainerClass = TRAINER_CLASS_LEADER_VOLKNER,
+        .unk_0A = 1,
+        .unk_0C = 83,
+        .unk_0D = 84,
+        .unk_0E = 85,
+        .unk_0F = 86,
+        .unk_10 = 36,
+        .unk_11 = 37,
+        .unk_12 = 38,
+        .padding = 0,
     },
 };
 
@@ -2750,47 +2728,37 @@ typedef struct EliterFourChampionEncounterParam {
 } EliterFourChampionEncounterParam;
 
 static const EliterFourChampionEncounterParam sEliteFourChampionEncounterParams[5] = {
-    {
-        .unk_00         = 87,
-        .unk_02         = 39,
-        .facePanFrames  = 32,
-        .trainerClass   = TRAINER_CLASS_ELITE_FOUR_AARON,
-        .trainerID      = 261
-    }, 
-    {
-        .unk_00         = 91,
-        .unk_02         = 43,
-        .facePanFrames  = 32,
-        .trainerClass   = TRAINER_CLASS_ELITE_FOUR_BERTHA,
-        .trainerID      = 262
-    }, 
-    {
-        .unk_00         = 95,
-        .unk_02         = 44,
-        .facePanFrames  = 32,
-        .trainerClass   = TRAINER_CLASS_ELITE_FOUR_FLINT,
-        .trainerID      = 263
-    }, 
-    {
-        .unk_00         = 99,
-        .unk_02         = 45,
-        .facePanFrames  = 32,
-        .trainerClass   = TRAINER_CLASS_ELITE_FOUR_LUCIAN,
-        .trainerID      = 264
-    }, 
-    {
-        .unk_00         = 103,
-        .unk_02         = 46,
-        .facePanFrames  = 9,
-        .trainerClass   = TRAINER_CLASS_CHAMPION_CYNTHIA,
-        .trainerID      = 267
-    },
+    { .unk_00 = 87,
+        .unk_02 = 39,
+        .facePanFrames = 32,
+        .trainerClass = TRAINER_CLASS_ELITE_FOUR_AARON,
+        .trainerID = 261 },
+    { .unk_00 = 91,
+        .unk_02 = 43,
+        .facePanFrames = 32,
+        .trainerClass = TRAINER_CLASS_ELITE_FOUR_BERTHA,
+        .trainerID = 262 },
+    { .unk_00 = 95,
+        .unk_02 = 44,
+        .facePanFrames = 32,
+        .trainerClass = TRAINER_CLASS_ELITE_FOUR_FLINT,
+        .trainerID = 263 },
+    { .unk_00 = 99,
+        .unk_02 = 45,
+        .facePanFrames = 32,
+        .trainerClass = TRAINER_CLASS_ELITE_FOUR_LUCIAN,
+        .trainerID = 264 },
+    { .unk_00 = 103,
+        .unk_02 = 46,
+        .facePanFrames = 9,
+        .trainerClass = TRAINER_CLASS_CHAMPION_CYNTHIA,
+        .trainerID = 267 },
 };
 
 typedef struct {
     s16 unk_00;
     s16 unk_02;
-    CellActor * unk_04[4];
+    CellActor *unk_04[4];
     LinearInterpolationTaskFX32 unk_14[4];
 } UnkStruct_ov5_021E5128;
 
@@ -2798,10 +2766,10 @@ typedef struct {
     QuadraticInterpolationTaskFX32 unk_00;
     LinearInterpolationTaskS32 unk_18;
     LinearInterpolationTaskFX32 unk_2C;
-    UnkStruct_ov5_021DED04 * unk_40;
+    UnkStruct_ov5_021DED04 *unk_40;
     UnkStruct_ov5_021DE47C unk_44;
     UnkStruct_ov5_021DE5A4 unk_1E4[2];
-    CellActor * unk_24C;
+    CellActor *unk_24C;
     UnkStruct_ov5_021E5128 unk_250;
     UnkStruct_ov5_021E52A8_sub1 unk_2B4;
     UnkStruct_ov5_021E52A8_sub2 unk_2BC;
@@ -2818,7 +2786,7 @@ typedef struct {
     LinearInterpolationTaskS32 unk_48;
     UnkStruct_ov5_021DE47C unk_5C;
     UnkStruct_ov5_021DE5A4 unk_1FC[4];
-    CellActor * unk_2CC[4];
+    CellActor *unk_2CC[4];
     VecFx32 unk_2DC;
     VecFx32 unk_2E8;
     UnkStruct_ov5_021E5128 unk_2F4;
@@ -2828,7 +2796,7 @@ typedef struct {
     s32 unk_370;
 } UnkStruct_ov5_021E5890;
 
-static void ov5_021E5128 (UnkStruct_ov5_021E5128 * param0, UnkStruct_ov5_021DE47C * param1, UnkStruct_ov5_021DE5A4 * param2, fx32 param3, fx32 param4, u32 param5)
+static void ov5_021E5128(UnkStruct_ov5_021E5128 *param0, UnkStruct_ov5_021DE47C *param1, UnkStruct_ov5_021DE5A4 *param2, fx32 param3, fx32 param4, u32 param5)
 {
     int v0;
 
@@ -2851,7 +2819,7 @@ static void ov5_021E5128 (UnkStruct_ov5_021E5128 * param0, UnkStruct_ov5_021DE47
     }
 }
 
-static void ov5_021E519C (UnkStruct_ov5_021E5128 * param0)
+static void ov5_021E519C(UnkStruct_ov5_021E5128 *param0)
 {
     int v0;
 
@@ -2860,7 +2828,7 @@ static void ov5_021E519C (UnkStruct_ov5_021E5128 * param0)
     }
 }
 
-static BOOL ov5_021E51B4 (UnkStruct_ov5_021E5128 * param0)
+static BOOL ov5_021E51B4(UnkStruct_ov5_021E5128 *param0)
 {
     int v0;
     BOOL v1;
@@ -2895,10 +2863,10 @@ static BOOL ov5_021E51B4 (UnkStruct_ov5_021E5128 * param0)
 
 static Strbuf *EncounterEffect_GetGymLeaderName(u32 trainerClass, u32 heapID)
 {
-    StringTemplate * template;
-    MessageLoader * messageLoader;
-    Strbuf* result;
-    Strbuf* message;
+    StringTemplate *template;
+    MessageLoader *messageLoader;
+    Strbuf *result;
+    Strbuf *message;
 
     messageLoader = MessageLoader_Init(1, 26, 359, heapID);
     template = StringTemplate_Default(heapID);
@@ -2916,14 +2884,14 @@ static Strbuf *EncounterEffect_GetGymLeaderName(u32 trainerClass, u32 heapID)
 
 static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapId heapID, const GymLeaderEncounterParam *param)
 {
-    UnkStruct_ov5_021E52A8 * v0 = encEffect->param;
+    UnkStruct_ov5_021E52A8 *v0 = encEffect->param;
     BOOL v1;
-    const VecFx32 * v2;
+    const VecFx32 *v2;
     VecFx32 v3;
     VecFx32 v4;
     int v5;
     int v6;
-    Strbuf* v7;
+    Strbuf *v7;
 
     switch (encEffect->state) {
     case 0:
@@ -3234,13 +3202,13 @@ static u32 FieldSystem_GetTrainerGender(FieldSystem *fieldSystem)
 
 static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum HeapId heapID, const EliterFourChampionEncounterParam *param)
 {
-    UnkStruct_ov5_021E5890 * v0 = encEffect->param;
+    UnkStruct_ov5_021E5890 *v0 = encEffect->param;
     BOOL v1, v2;
     VecFx32 v3;
     VecFx32 v4;
     int v5;
     fx32 v6;
-    UnkStruct_ov5_021DE5A4 * v7;
+    UnkStruct_ov5_021DE5A4 *v7;
     int v8;
 
     switch (encEffect->state) {
@@ -3364,7 +3332,7 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
         CellActor_SetDrawFlag(v0->unk_2CC[3], 1);
 
         {
-            Strbuf* v9;
+            Strbuf *v9;
 
             sub_02007130(encEffect->narc, 11, 0, 2 * 0x20, 0x20, heapID);
 

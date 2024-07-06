@@ -4,7 +4,7 @@
 #include "overlay061/funcptr_ov61_0222B920.h"
 
 typedef struct {
-    void * unk_00;
+    void *unk_00;
     UnkFuncPtr_ov61_0222B920 unk_04;
     UnkFuncPtr_ov61_0222B920 unk_08;
     UnkFuncPtr_ov61_0222B920 unk_0C;

@@ -1,49 +1,19 @@
+#include "overlay094/ov94_0223BCB0.h"
+
+#include <dwc.h>
 #include <nitro.h>
 #include <string.h>
-#include <dwc.h>
-
-#include "inlines.h"
 
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-
 #include "struct_defs/struct_0203E0FC.h"
 #include "struct_defs/struct_02099F80.h"
+
 #include "overlay022/struct_ov22_022559F8.h"
 #include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
-#include "overlay094/struct_ov94_0223FD4C.h"
-
-#include "unk_02001AF4.h"
-#include "unk_020041CC.h"
-#include "overlay_manager.h"
-#include "narc.h"
-#include "unk_02006E3C.h"
-#include "unk_020093B4.h"
-#include "unk_02009714.h"
-#include "unk_0200A328.h"
-#include "unk_0200A784.h"
-#include "message.h"
-#include "string_template.h"
-#include "unk_0200DA60.h"
-#include "unk_0200F174.h"
-#include "unk_02017728.h"
-#include "heap.h"
-#include "unk_02018340.h"
-#include "unk_0201DBEC.h"
-#include "unk_0201E86C.h"
-#include "unk_0201F834.h"
-#include "gx_layers.h"
-#include "cell_actor.h"
-#include "trainer_info.h"
-#include "game_options.h"
-#include "unk_02033200.h"
-#include "unk_020797C8.h"
-#include "pokemon_icon.h"
-#include "unk_02099550.h"
 #include "overlay094/ov94_0223B140.h"
-#include "overlay094/ov94_0223BCB0.h"
 #include "overlay094/ov94_0223C610.h"
 #include "overlay094/ov94_0223D0C4.h"
 #include "overlay094/ov94_0223DC04.h"
@@ -55,41 +25,71 @@
 #include "overlay094/ov94_022443E0.h"
 #include "overlay094/ov94_022444C8.h"
 #include "overlay094/ov94_02244950.h"
+#include "overlay094/struct_ov94_0223FD4C.h"
 
-static void ov94_0223BFE4(void * param0);
+#include "cell_actor.h"
+#include "game_options.h"
+#include "gx_layers.h"
+#include "heap.h"
+#include "inlines.h"
+#include "message.h"
+#include "narc.h"
+#include "overlay_manager.h"
+#include "pokemon_icon.h"
+#include "string_template.h"
+#include "trainer_info.h"
+#include "unk_02001AF4.h"
+#include "unk_020041CC.h"
+#include "unk_02006E3C.h"
+#include "unk_020093B4.h"
+#include "unk_02009714.h"
+#include "unk_0200A328.h"
+#include "unk_0200A784.h"
+#include "unk_0200DA60.h"
+#include "unk_0200F174.h"
+#include "unk_02017728.h"
+#include "unk_02018340.h"
+#include "unk_0201DBEC.h"
+#include "unk_0201E86C.h"
+#include "unk_0201F834.h"
+#include "unk_02033200.h"
+#include "unk_020797C8.h"
+#include "unk_02099550.h"
+
+static void ov94_0223BFE4(void *param0);
 static void ov94_0223C01C(void);
-static void ov94_0223C03C(UnkStruct_ov94_0223FD4C * param0, OverlayManager * param1);
-static void ov94_0223C0A0(UnkStruct_ov94_0223FD4C * param0);
+static void ov94_0223C03C(UnkStruct_ov94_0223FD4C *param0, OverlayManager *param1);
+static void ov94_0223C0A0(UnkStruct_ov94_0223FD4C *param0);
 static void ov94_0223C0A4(void);
-static void ov94_0223C0D4(UnkStruct_ov94_0223FD4C * param0);
-static void ov94_0223C32C(UnkStruct_ov94_0223FD4C * param0);
-static void ov94_0223C490(DWCAllocType param0, void * param1, u32 param2);
-static void * ov94_0223C468(DWCAllocType param0, u32 param1, int param2);
-static void ov94_0223C4E0(UnkStruct_ov94_0223FD4C * param0);
-static void ov94_0223C508(UnkStruct_ov94_0223FD4C * param0);
-static void ov94_0223C578(UnkStruct_ov94_0223FD4C * param0);
-static void ov94_0223C598(UnkStruct_ov94_0223FD4C * param0);
+static void ov94_0223C0D4(UnkStruct_ov94_0223FD4C *param0);
+static void ov94_0223C32C(UnkStruct_ov94_0223FD4C *param0);
+static void ov94_0223C490(DWCAllocType param0, void *param1, u32 param2);
+static void *ov94_0223C468(DWCAllocType param0, u32 param1, int param2);
+static void ov94_0223C4E0(UnkStruct_ov94_0223FD4C *param0);
+static void ov94_0223C508(UnkStruct_ov94_0223FD4C *param0);
+static void ov94_0223C578(UnkStruct_ov94_0223FD4C *param0);
+static void ov94_0223C598(UnkStruct_ov94_0223FD4C *param0);
 
 static NNSFndHeapHandle Unk_ov94_02246C04;
 
-static int (* Unk_ov94_0224674C[][3])(UnkStruct_ov94_0223FD4C *, int) = {
-    {ov94_02244950, ov94_022449FC, ov94_02244A2C},
-    {ov94_0223C610, ov94_0223C6D4, ov94_0223C6F4},
-    {ov94_0223D0C4, ov94_0223D19C, ov94_0223D1B0},
-    {ov94_0223DC04, ov94_0223DCE4, ov94_0223DCF8},
-    {ov94_0223E46C, ov94_0223E560, ov94_0223E574},
-    {ov94_0223FB48, ov94_0223FBBC, ov94_0223FBDC},
-    {ov94_022414B8, ov94_02241548, ov94_02241568},
-    {ov94_02242AD0, ov94_02242B14, ov94_02242B34},
-    {ov94_022443E0, ov94_02244490, ov94_022444BC},
-    {ov94_022444C8, ov94_02244678, ov94_0224484C},
+static int (*Unk_ov94_0224674C[][3])(UnkStruct_ov94_0223FD4C *, int) = {
+    { ov94_02244950, ov94_022449FC, ov94_02244A2C },
+    { ov94_0223C610, ov94_0223C6D4, ov94_0223C6F4 },
+    { ov94_0223D0C4, ov94_0223D19C, ov94_0223D1B0 },
+    { ov94_0223DC04, ov94_0223DCE4, ov94_0223DCF8 },
+    { ov94_0223E46C, ov94_0223E560, ov94_0223E574 },
+    { ov94_0223FB48, ov94_0223FBBC, ov94_0223FBDC },
+    { ov94_022414B8, ov94_02241548, ov94_02241568 },
+    { ov94_02242AD0, ov94_02242B14, ov94_02242B34 },
+    { ov94_022443E0, ov94_02244490, ov94_022444BC },
+    { ov94_022444C8, ov94_02244678, ov94_0224484C },
 };
 
-UnkStruct_ov94_0223FD4C * Unk_ov94_02246C08;
+UnkStruct_ov94_0223FD4C *Unk_ov94_02246C08;
 
-int ov94_0223BCB0 (OverlayManager * param0, int * param1)
+int ov94_0223BCB0(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov94_0223FD4C * v0;
+    UnkStruct_ov94_0223FD4C *v0;
 
     switch (*param1) {
     case 0:
@@ -149,9 +149,9 @@ int ov94_0223BCB0 (OverlayManager * param0, int * param1)
     return 0;
 }
 
-int ov94_0223BE2C (OverlayManager * param0, int * param1)
+int ov94_0223BE2C(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov94_0223FD4C * v0 = OverlayManager_Data(param0);
+    UnkStruct_ov94_0223FD4C *v0 = OverlayManager_Data(param0);
 
     DWC_UpdateConnection();
     ov94_0223B15C();
@@ -206,9 +206,9 @@ int ov94_0223BE2C (OverlayManager * param0, int * param1)
     return 0;
 }
 
-int ov94_0223BF54 (OverlayManager * param0, int * param1)
+int ov94_0223BF54(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov94_0223FD4C * v0 = OverlayManager_Data(param0);
+    UnkStruct_ov94_0223FD4C *v0 = OverlayManager_Data(param0);
     int v1;
 
     Heap_FreeToHeap(v0->unk_4C);
@@ -236,9 +236,9 @@ int ov94_0223BF54 (OverlayManager * param0, int * param1)
     return 1;
 }
 
-static void ov94_0223BFE4 (void * param0)
+static void ov94_0223BFE4(void *param0)
 {
-    UnkStruct_ov94_0223FD4C * v0 = param0;
+    UnkStruct_ov94_0223FD4C *v0 = param0;
 
     if (v0->unk_1118) {
         v0->unk_1118(param0);
@@ -253,7 +253,7 @@ static void ov94_0223BFE4 (void * param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void ov94_0223C01C (void)
+static void ov94_0223C01C(void)
 {
     UnkStruct_02099F80 v0 = {
         GX_VRAM_BG_128_A,
@@ -271,7 +271,7 @@ static void ov94_0223C01C (void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov94_0223C03C (UnkStruct_ov94_0223FD4C * param0, OverlayManager * param1)
+static void ov94_0223C03C(UnkStruct_ov94_0223FD4C *param0, OverlayManager *param1)
 {
     param0->unk_00 = (UnkStruct_0203E0FC *)OverlayManager_Args(param1);
     param0->unk_14 = 0;
@@ -293,12 +293,12 @@ static void ov94_0223C03C (UnkStruct_ov94_0223FD4C * param0, OverlayManager * pa
     param0->unk_11B0 = 0;
 }
 
-static void ov94_0223C0A0 (UnkStruct_ov94_0223FD4C * param0)
+static void ov94_0223C0A0(UnkStruct_ov94_0223FD4C *param0)
 {
     return;
 }
 
-static void ov94_0223C0A4 (void)
+static void ov94_0223C0A4(void)
 {
     {
         UnkStruct_ov22_022559F8 v0 = {
@@ -313,10 +313,10 @@ static void ov94_0223C0A4 (void)
     sub_0201F8E4();
 }
 
-static void ov94_0223C0D4 (UnkStruct_ov94_0223FD4C * param0)
+static void ov94_0223C0D4(UnkStruct_ov94_0223FD4C *param0)
 {
     int v0;
-    NARC * v1;
+    NARC *v1;
 
     v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, 62);
 
@@ -346,10 +346,10 @@ static void ov94_0223C0D4 (UnkStruct_ov94_0223FD4C * param0)
     sub_0200A5C8(param0->unk_D84[1][1]);
 
     {
-        void * v2;
-        NNSG2dPaletteData * v3;
+        void *v2;
+        NNSG2dPaletteData *v3;
         int v4, v5, v6, v7;
-        u16 * v8;
+        u16 *v8;
 
         v2 = sub_02006F88(19, PokeIconPalettesFileIndex(), &v3, 62);
 
@@ -362,7 +362,9 @@ static void ov94_0223C0D4 (UnkStruct_ov94_0223FD4C * param0)
             v5 = v8[v4] >> 10 & 0x1f;
             v6 = (v8[v4] >> 5) & 0x1f;
             v7 = v8[v4] & 0x1f;
-            v5 /= 2; v6 /= 2; v7 /= 2;
+            v5 /= 2;
+            v6 /= 2;
+            v7 /= 2;
             v8[v4] = (v5 << 10) | (v6 << 5) | v7;
         }
 
@@ -375,7 +377,7 @@ static void ov94_0223C0D4 (UnkStruct_ov94_0223FD4C * param0)
     NARC_dtor(v1);
 }
 
-void ov94_0223C300 (CellActorInitParamsEx * param0, UnkStruct_ov94_0223FD4C * param1, CellActorResourceData * param2, int param3)
+void ov94_0223C300(CellActorInitParamsEx *param0, UnkStruct_ov94_0223FD4C *param1, CellActorResourceData *param2, int param3)
 {
     param0->collection = param1->unk_BE4;
     param0->resourceData = param2;
@@ -389,7 +391,7 @@ void ov94_0223C300 (CellActorInitParamsEx * param0, UnkStruct_ov94_0223FD4C * pa
     param0->heapID = 62;
 }
 
-static void ov94_0223C32C (UnkStruct_ov94_0223FD4C * param0)
+static void ov94_0223C32C(UnkStruct_ov94_0223FD4C *param0)
 {
     int v0;
 
@@ -409,7 +411,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov94_022459F8 = {
     0x0
 };
 
-UIControlData * ov94_0223C3C0 (BGL * param0, int param1, int param2)
+UIControlData *ov94_0223C3C0(BGL *param0, int param1, int param2)
 {
     UnkStruct_ov61_0222C884 v0;
 
@@ -420,13 +422,13 @@ UIControlData * ov94_0223C3C0 (BGL * param0, int param1, int param2)
     return sub_02002100(param0, &v0, (1 + (18 + 12)), 11, 62);
 }
 
-void ov94_0223C3F4 (UnkStruct_ov94_0223FD4C * param0, int param1, int param2)
+void ov94_0223C3F4(UnkStruct_ov94_0223FD4C *param0, int param1, int param2)
 {
     param0->unk_2C = param1;
     param0->unk_30 = param2;
 }
 
-void ov94_0223C3FC (CellActor * param0, int param1, int param2)
+void ov94_0223C3FC(CellActor *param0, int param1, int param2)
 {
     VecFx32 v0;
 
@@ -437,10 +439,10 @@ void ov94_0223C3FC (CellActor * param0, int param1, int param2)
     CellActor_SetPosition(param0, &v0);
 }
 
-static void * ov94_0223C468 (DWCAllocType param0, u32 param1, int param2)
+static void *ov94_0223C468(DWCAllocType param0, u32 param1, int param2)
 {
-#pragma unused( param0 )
-    void * v0;
+#pragma unused(param0)
+    void *v0;
     OSIntrMode v1;
 
     v1 = OS_DisableInterrupts();
@@ -455,9 +457,9 @@ static void * ov94_0223C468 (DWCAllocType param0, u32 param1, int param2)
     return v0;
 }
 
-static void ov94_0223C490 (DWCAllocType param0, void * param1, u32 param2)
+static void ov94_0223C490(DWCAllocType param0, void *param1, u32 param2)
 {
-#pragma unused( param0, param2 )
+#pragma unused(param0, param2)
     OSIntrMode v0;
 
     if (!param1) {
@@ -470,29 +472,29 @@ static void ov94_0223C490 (DWCAllocType param0, void * param1, u32 param2)
     OS_RestoreInterrupts(v0);
 }
 
-int ov94_0223C4B4 (void)
+int ov94_0223C4B4(void)
 {
     return WM_LINK_LEVEL_3 - DWC_GetLinkLevel();
 }
 
-void ov94_0223C4C0 (UnkStruct_ov94_0223FD4C * param0, int param1, int param2)
+void ov94_0223C4C0(UnkStruct_ov94_0223FD4C *param0, int param1, int param2)
 {
     param0->unk_18 = param1;
     param0->unk_24 = param2;
 }
 
-void ov94_0223C4C8 (UnkStruct_ov94_0223FD4C * param0)
+void ov94_0223C4C8(UnkStruct_ov94_0223FD4C *param0)
 {
     param0->unk_20 = param0->unk_14;
     param0->unk_14 = param0->unk_18;
 }
 
-int ov94_0223C4D4 (UnkStruct_ov94_0223FD4C * param0)
+int ov94_0223C4D4(UnkStruct_ov94_0223FD4C *param0)
 {
     return Options_TextFrameDelay(param0->unk_00->unk_24);
 }
 
-static void ov94_0223C4E0 (UnkStruct_ov94_0223FD4C * param0)
+static void ov94_0223C4E0(UnkStruct_ov94_0223FD4C *param0)
 {
     ov94_0223C01C();
     ov94_0223C0A4();
@@ -502,7 +504,7 @@ static void ov94_0223C4E0 (UnkStruct_ov94_0223FD4C * param0)
     SetMainCallback(ov94_0223BFE4, param0);
 }
 
-static void ov94_0223C508 (UnkStruct_ov94_0223FD4C * param0)
+static void ov94_0223C508(UnkStruct_ov94_0223FD4C *param0)
 {
     int v0;
 
@@ -525,20 +527,20 @@ static void ov94_0223C508 (UnkStruct_ov94_0223FD4C * param0)
     sub_0201F8B4();
 }
 
-static void ov94_0223C578 (UnkStruct_ov94_0223FD4C * param0)
+static void ov94_0223C578(UnkStruct_ov94_0223FD4C *param0)
 {
     if (param0->unk_3A) {
         param0->unk_3A--;
     }
 }
 
-void ov94_0223C584 (UnkStruct_ov94_0223FD4C * param0)
+void ov94_0223C584(UnkStruct_ov94_0223FD4C *param0)
 {
     param0->unk_110E = 1;
     param0->unk_110C = 0;
 }
 
-static void ov94_0223C598 (UnkStruct_ov94_0223FD4C * param0)
+static void ov94_0223C598(UnkStruct_ov94_0223FD4C *param0)
 {
     if (param0->unk_110E) {
         param0->unk_110C += sub_02079B54(param0->unk_00->unk_0C, param0->unk_110E - 1);
@@ -550,12 +552,12 @@ static void ov94_0223C598 (UnkStruct_ov94_0223FD4C * param0)
     }
 }
 
-void ov94_0223C5D8 (UnkStruct_ov94_0223FD4C * param0)
+void ov94_0223C5D8(UnkStruct_ov94_0223FD4C *param0)
 {
     param0->unk_10DC = sub_0200E7FC(&param0->unk_F5C, 1);
 }
 
-void ov94_0223C5F4 (UnkStruct_ov94_0223FD4C * param0)
+void ov94_0223C5F4(UnkStruct_ov94_0223FD4C *param0)
 {
     if (param0->unk_10DC != NULL) {
         DeleteWaitDial(param0->unk_10DC);

@@ -19,7 +19,7 @@ typedef struct MoveEffectsData {
     u32 stockpileSpDefBoosts : 3;
     u32 truant : 1;
     u32 flashFire : 1;
-    
+
     u32 lockOnTarget : 2;
     u32 mimickedMoveSlot : 4;
     u32 bindTarget : 2;
@@ -120,7 +120,7 @@ typedef struct BattleMon {
 
     u8 timesDamaged;
     u8 trainerMessageFlags;
-    u8 gender :4;
+    u8 gender : 4;
     u8 OTGender : 4;
     u8 capturedBall;
 

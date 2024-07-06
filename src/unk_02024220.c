@@ -1,19 +1,21 @@
+#include "unk_02024220.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "functypes/funcptr_02024220.h"
 #include "struct_defs/struct_0207C690.h"
 
-#include "heap.h"
+#include "functypes/funcptr_02024220.h"
+
 #include "gx_layers.h"
-#include "unk_02024220.h"
+#include "heap.h"
 
 static void sub_020242DC(void);
 
-GenericPointerData * sub_02024220 (u32 param0, int param1, int param2, int param3, int param4, UnkFuncPtr_02024220 param5)
+GenericPointerData *sub_02024220(u32 param0, int param1, int param2, int param3, int param4, UnkFuncPtr_02024220 param5)
 {
     int v0, v1;
-    GenericPointerData * v2 = Heap_AllocFromHeap(param0, sizeof(GenericPointerData));
+    GenericPointerData *v2 = Heap_AllocFromHeap(param0, sizeof(GenericPointerData));
 
     v2->unk_00 = param0;
 
@@ -47,14 +49,14 @@ GenericPointerData * sub_02024220 (u32 param0, int param1, int param2, int param
     return v2;
 }
 
-void sub_020242C4 (GenericPointerData * param0)
+void sub_020242C4(GenericPointerData *param0)
 {
     Heap_FreeToHeap(param0->unk_04);
     Heap_FreeToHeap(param0->unk_08);
     Heap_FreeToHeap(param0);
 }
 
-static void sub_020242DC (void)
+static void sub_020242DC(void)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 

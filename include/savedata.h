@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_SAVEDATA_H
 #define POKEPLATINUM_SAVEDATA_H
 
-#include "constants/savedata/savedata.h"
 #include "constants/savedata/save_table.h"
+#include "constants/savedata/savedata.h"
 
 typedef struct SaveBlockFooter {
     u32 saveCounter;
@@ -76,10 +76,10 @@ typedef struct SaveCheckFooter {
     u16 checksum;
 } SaveCheckFooter;
 
-SaveData* SaveData_Init(void);
-SaveData* SaveData_Ptr(void);
-void* SaveData_SaveTable(SaveData *saveData, int saveTableID);
-const void* SaveData_SaveTableConst(const SaveData *saveData, int saveTableID);
+SaveData *SaveData_Init(void);
+SaveData *SaveData_Ptr(void);
+void *SaveData_SaveTable(SaveData *saveData, int saveTableID);
+const void *SaveData_SaveTableConst(const SaveData *saveData, int saveTableID);
 BOOL SaveData_Erase(SaveData *saveData);
 BOOL SaveData_Load(SaveData *saveData);
 int SaveData_Save(SaveData *saveData);
@@ -101,8 +101,8 @@ int SaveTableEntry_BodySize(int saveTableID);
 void SaveDataExtra_Init(SaveData *saveData);
 int SaveDataExtra_Save(const SaveData *saveData, int extraSaveID, void *data);
 int SaveDataExtra_SaveMirror(SaveData *saveData, int extraSaveID, void *data);
-void* SaveDataExtra_Get(SaveData *saveData, int heapID, int extraSaveID, int *loadResult);
-void* SaveDataExtra_Mirror(SaveData *saveData, int heapID, int extraSaveID, int *loadResult, BOOL *isOld);
+void *SaveDataExtra_Get(SaveData *saveData, int heapID, int extraSaveID, int *loadResult);
+void *SaveDataExtra_Mirror(SaveData *saveData, int heapID, int extraSaveID, int *loadResult, BOOL *isOld);
 BOOL SaveData_CardBackupType(void);
 BOOL SaveData_CardSave(u32 address, void *data, u32 size);
 BOOL SaveData_CardLoad(u32 address, void *data, u32 size);

@@ -1,35 +1,36 @@
+#include "unk_020494DC.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "consts/game_records.h"
-#include "inlines.h"
 
-#include "trainer_info.h"
-#include "savedata.h"
-
-#include "field/field_system.h"
 #include "struct_defs/struct_02049A68.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_0205AA50.h"
 
-#include "game_records.h"
-#include "unk_0202D05C.h"
+#include "field/field_system.h"
+#include "overlay005/ov5_021DC018.h"
+
 #include "communication_system.h"
-#include "unk_020363E8.h"
-#include "field_system.h"
 #include "field_script_context.h"
+#include "field_system.h"
+#include "game_records.h"
+#include "inlines.h"
+#include "savedata.h"
 #include "script_manager.h"
-#include "unk_020494DC.h"
+#include "trainer_info.h"
+#include "unk_0202D05C.h"
+#include "unk_020363E8.h"
 #include "unk_02049D08.h"
 #include "unk_0204AEE8.h"
 #include "unk_0205DFC4.h"
 #include "unk_0206B9D8.h"
 #include "unk_0209BA80.h"
-#include "overlay005/ov5_021DC018.h"
 
-static u16 sub_02049AE0(UnkStruct_0204AFC4 * param0, u8 param1);
+static u16 sub_02049AE0(UnkStruct_0204AFC4 *param0, u8 param1);
 
-BOOL ScrCmd_1DB (ScriptContext * param0)
+BOOL ScrCmd_1DB(ScriptContext *param0)
 {
     u16 v0, v1;
 
@@ -40,15 +41,15 @@ BOOL ScrCmd_1DB (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_1DA (ScriptContext * param0)
+BOOL ScrCmd_1DA(ScriptContext *param0)
 {
     sub_0204A110(&(param0->fieldSystem->unk_AC));
     return 0;
 }
 
-BOOL ScrCmd_1DC (ScriptContext * param0)
+BOOL ScrCmd_1DC(ScriptContext *param0)
 {
-    UnkStruct_0204AFC4 * v0;
+    UnkStruct_0204AFC4 *v0;
 
     sub_0204A32C(param0->fieldSystem->unk_AC);
     param0->fieldSystem->unk_AC = NULL;
@@ -56,12 +57,12 @@ BOOL ScrCmd_1DC (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_1DD (ScriptContext * param0)
+BOOL ScrCmd_1DD(ScriptContext *param0)
 {
     u16 v0, v1, v2;
-    u16 * v3, * v4;
-    void ** v5;
-    UnkStruct_0204AFC4 * v6;
+    u16 *v3, *v4;
+    void **v5;
+    UnkStruct_0204AFC4 *v6;
 
     v0 = ScriptContext_ReadHalfWord(param0);
     v1 = ScriptContext_GetVar(param0);
@@ -200,11 +201,11 @@ BOOL ScrCmd_1DD (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_1DE (ScriptContext * param0)
+BOOL ScrCmd_1DE(ScriptContext *param0)
 {
     u16 v0, v1;
-    u16 * v2, * v3;
-    UnkStruct_0204AFC4 * v4 = param0->fieldSystem->unk_AC;
+    u16 *v2, *v3;
+    UnkStruct_0204AFC4 *v4 = param0->fieldSystem->unk_AC;
 
     v0 = ScriptContext_GetVar(param0);
     v1 = ScriptContext_GetVar(param0);
@@ -217,10 +218,10 @@ BOOL ScrCmd_1DE (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_1DF (ScriptContext * param0)
+BOOL ScrCmd_1DF(ScriptContext *param0)
 {
     u16 v0, v1, v2;
-    u16 * v3;
+    u16 *v3;
 
     v0 = ScriptContext_ReadHalfWord(param0);
     v3 = FieldSystem_GetVarPointer(param0->fieldSystem, v0);
@@ -229,10 +230,10 @@ BOOL ScrCmd_1DF (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_1E0 (ScriptContext * param0)
+BOOL ScrCmd_1E0(ScriptContext *param0)
 {
     u16 v0, v1, v2;
-    u16 * v3;
+    u16 *v3;
 
     v0 = ScriptContext_ReadHalfWord(param0);
     v3 = FieldSystem_GetVarPointer(param0->fieldSystem, v0);
@@ -241,14 +242,14 @@ BOOL ScrCmd_1E0 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_1E1 (ScriptContext * param0)
+BOOL ScrCmd_1E1(ScriptContext *param0)
 {
     int v0, v1;
-    const TrainerInfo * v2;
+    const TrainerInfo *v2;
     u16 v3 = ScriptContext_GetVar(param0);
     u16 v4 = ScriptContext_GetVar(param0);
-    u16 * v5 = ScriptContext_GetVarPointer(param0);
-    UnkStruct_0204AFC4 * v6 = param0->fieldSystem->unk_AC;
+    u16 *v5 = ScriptContext_GetVarPointer(param0);
+    UnkStruct_0204AFC4 *v6 = param0->fieldSystem->unk_AC;
 
     *v5 = 0;
 
@@ -286,13 +287,13 @@ BOOL ScrCmd_1E1 (ScriptContext * param0)
     return 0;
 }
 
-static BOOL sub_02049A20(ScriptContext * param0);
+static BOOL sub_02049A20(ScriptContext *param0);
 
-BOOL ScrCmd_1E2 (ScriptContext * param0)
+BOOL ScrCmd_1E2(ScriptContext *param0)
 {
     u16 v0;
     u16 v1;
-    UnkStruct_0204AFC4 * v2 = param0->fieldSystem->unk_AC;
+    UnkStruct_0204AFC4 *v2 = param0->fieldSystem->unk_AC;
 
     v1 = ScriptContext_GetVar(param0);
     v0 = ScriptContext_ReadHalfWord(param0);
@@ -309,11 +310,11 @@ BOOL ScrCmd_1E2 (ScriptContext * param0)
     return 1;
 }
 
-static BOOL sub_02049A20 (ScriptContext * param0)
+static BOOL sub_02049A20(ScriptContext *param0)
 {
     u8 v0;
-    UnkStruct_0204AFC4 * v1 = param0->fieldSystem->unk_AC;
-    u16 * v2 = FieldSystem_GetVarPointer(param0->fieldSystem, v1->unk_8DA);
+    UnkStruct_0204AFC4 *v1 = param0->fieldSystem->unk_AC;
+    u16 *v2 = FieldSystem_GetVarPointer(param0->fieldSystem, v1->unk_8DA);
 
     if (v1->unk_8D5 == 1) {
         v0 = 1;
@@ -331,11 +332,11 @@ static BOOL sub_02049A20 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_1E3 (ScriptContext * param0)
+BOOL ScrCmd_1E3(ScriptContext *param0)
 {
     UnkStruct_02049A68 v0;
-    u16 * v1 = FieldSystem_GetVarPointer(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
-    u16 * v2 = FieldSystem_GetVarPointer(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
+    u16 *v1 = FieldSystem_GetVarPointer(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
+    u16 *v2 = FieldSystem_GetVarPointer(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
 
     sub_0202D708(sub_0202D764(param0->fieldSystem->saveData), &v0);
 
@@ -345,15 +346,15 @@ BOOL ScrCmd_1E3 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_1E4 (ScriptContext * param0)
+BOOL ScrCmd_1E4(ScriptContext *param0)
 {
-    u16 * v0 = FieldSystem_GetVarPointer(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
+    u16 *v0 = FieldSystem_GetVarPointer(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
 
     *v0 = sub_0202D5F0(sub_0202D764(param0->fieldSystem->saveData));
     return 0;
 }
 
-static u16 sub_02049AE0 (UnkStruct_0204AFC4 * param0, u8 param1)
+static u16 sub_02049AE0(UnkStruct_0204AFC4 *param0, u8 param1)
 {
     static const u16 v0[] = {
         0x8d,
@@ -386,12 +387,12 @@ static u16 sub_02049AE0 (UnkStruct_0204AFC4 * param0, u8 param1)
     }
 }
 
-BOOL ScrCmd_294 (ScriptContext * param0)
+BOOL ScrCmd_294(ScriptContext *param0)
 {
-    FieldSystem * fieldSystem = param0->fieldSystem;
+    FieldSystem *fieldSystem = param0->fieldSystem;
     u8 v1 = ScriptContext_ReadByte(param0);
     u8 v2 = ScriptContext_ReadByte(param0);
-    Window ** v3;
+    Window **v3;
 
     v3 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_COIN_WINDOW);
     *v3 = ov5_021DD140(param0->fieldSystem, v1, v2);
@@ -399,38 +400,38 @@ BOOL ScrCmd_294 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_295 (ScriptContext * param0)
+BOOL ScrCmd_295(ScriptContext *param0)
 {
-    FieldSystem * fieldSystem = param0->fieldSystem;
-    Window ** v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_COIN_WINDOW);
+    FieldSystem *fieldSystem = param0->fieldSystem;
+    Window **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_COIN_WINDOW);
 
     ov5_021DD084(*v1);
     return 0;
 }
 
-BOOL ScrCmd_296 (ScriptContext * param0)
+BOOL ScrCmd_296(ScriptContext *param0)
 {
-    FieldSystem * fieldSystem = param0->fieldSystem;
-    Window ** v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_COIN_WINDOW);
+    FieldSystem *fieldSystem = param0->fieldSystem;
+    Window **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_COIN_WINDOW);
 
     ov5_021DD1A4(param0->fieldSystem, *v1);
     return 0;
 }
 
-BOOL ScrCmd_297 (ScriptContext * param0)
+BOOL ScrCmd_297(ScriptContext *param0)
 {
-    FieldSystem * fieldSystem = param0->fieldSystem;
-    SaveData * v1 = fieldSystem->saveData;
-    u16 * v2 = ScriptContext_GetVarPointer(param0);
+    FieldSystem *fieldSystem = param0->fieldSystem;
+    SaveData *v1 = fieldSystem->saveData;
+    u16 *v2 = ScriptContext_GetVarPointer(param0);
 
     *v2 = sub_0202D230(sub_0202D750(v1), 0, 0);
     return 0;
 }
 
-BOOL ScrCmd_298 (ScriptContext * param0)
+BOOL ScrCmd_298(ScriptContext *param0)
 {
-    FieldSystem * fieldSystem = param0->fieldSystem;
-    SaveData * v1 = fieldSystem->saveData;
+    FieldSystem *fieldSystem = param0->fieldSystem;
+    SaveData *v1 = fieldSystem->saveData;
     u16 v2 = ScriptContext_GetVar(param0);
 
     GameRecords_AddToRecordValue(SaveData_GetGameRecordsPtr(param0->fieldSystem->saveData), RECORD_UNK_068, v2);
@@ -439,10 +440,10 @@ BOOL ScrCmd_298 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_299 (ScriptContext * param0)
+BOOL ScrCmd_299(ScriptContext *param0)
 {
-    FieldSystem * fieldSystem = param0->fieldSystem;
-    SaveData * v1 = fieldSystem->saveData;
+    FieldSystem *fieldSystem = param0->fieldSystem;
+    SaveData *v1 = fieldSystem->saveData;
     u16 v2 = ScriptContext_GetVar(param0);
 
     GameRecords_AddToRecordValue(SaveData_GetGameRecordsPtr(param0->fieldSystem->saveData), RECORD_UNK_069, v2);
@@ -451,13 +452,13 @@ BOOL ScrCmd_299 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_29A (ScriptContext * param0)
+BOOL ScrCmd_29A(ScriptContext *param0)
 {
     u16 v0;
-    FieldSystem * fieldSystem = param0->fieldSystem;
-    SaveData * v2 = fieldSystem->saveData;
+    FieldSystem *fieldSystem = param0->fieldSystem;
+    SaveData *v2 = fieldSystem->saveData;
     u16 v3 = ScriptContext_GetVar(param0);
-    u16 * v4 = ScriptContext_GetVarPointer(param0);
+    u16 *v4 = ScriptContext_GetVarPointer(param0);
 
     v0 = sub_0202D230(
         sub_0202D750(v2), 0, 0);
@@ -471,55 +472,55 @@ BOOL ScrCmd_29A (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_29B (ScriptContext * param0)
+BOOL ScrCmd_29B(ScriptContext *param0)
 {
     u8 v0 = 0;
     u16 v1 = ScriptContext_GetVar(param0);
     u16 v2 = ScriptContext_GetVar(param0);
-    u16 * v3 = ScriptContext_GetVarPointer(param0);
-    u16 * v4 = ScriptContext_GetVarPointer(param0);
+    u16 *v3 = ScriptContext_GetVarPointer(param0);
+    u16 *v4 = ScriptContext_GetVarPointer(param0);
     static const u16 v5[][2] = {
-        {0x2E, 0x1},
-        {0x31, 0x1},
-        {0x2F, 0x1},
-        {0x34, 0x1},
-        {0x30, 0x1},
-        {0x2D, 0x1},
-        {0x121, 0x10},
-        {0x122, 0x10},
-        {0x123, 0x10},
-        {0x124, 0x10},
-        {0x125, 0x10},
-        {0x126, 0x10},
-        {0x110, 0x10},
-        {0x111, 0x10},
-        {0xD6, 0x20},
-        {0x10F, 0x20},
-        {0xD5, 0x30},
-        {0xDC, 0x30},
-        {0xE6, 0x30},
-        {0xE8, 0x30},
-        {0x10A, 0x30},
-        {0x113, 0x30},
-        {0x11F, 0x30},
-        {0x146, 0x30},
-        {0x147, 0x30},
-        {0x32, 0x30},
-        {0x14D, 0x20},
-        {0x190, 0x20},
-        {0x184, 0x20},
-        {0x174, 0x20},
-        {0x16F, 0x28},
-        {0x166, 0x28},
-        {0x14F, 0x30},
-        {0x14B, 0x30},
-        {0x198, 0x40},
-        {0x165, 0x40},
-        {0x17C, 0x40},
-        {0x16B, 0x50},
-        {0x182, 0x50},
-        {0x18E, 0x50},
-        {0x161, 0x50}
+        { 0x2E, 0x1 },
+        { 0x31, 0x1 },
+        { 0x2F, 0x1 },
+        { 0x34, 0x1 },
+        { 0x30, 0x1 },
+        { 0x2D, 0x1 },
+        { 0x121, 0x10 },
+        { 0x122, 0x10 },
+        { 0x123, 0x10 },
+        { 0x124, 0x10 },
+        { 0x125, 0x10 },
+        { 0x126, 0x10 },
+        { 0x110, 0x10 },
+        { 0x111, 0x10 },
+        { 0xD6, 0x20 },
+        { 0x10F, 0x20 },
+        { 0xD5, 0x30 },
+        { 0xDC, 0x30 },
+        { 0xE6, 0x30 },
+        { 0xE8, 0x30 },
+        { 0x10A, 0x30 },
+        { 0x113, 0x30 },
+        { 0x11F, 0x30 },
+        { 0x146, 0x30 },
+        { 0x147, 0x30 },
+        { 0x32, 0x30 },
+        { 0x14D, 0x20 },
+        { 0x190, 0x20 },
+        { 0x184, 0x20 },
+        { 0x174, 0x20 },
+        { 0x16F, 0x28 },
+        { 0x166, 0x28 },
+        { 0x14F, 0x30 },
+        { 0x14B, 0x30 },
+        { 0x198, 0x40 },
+        { 0x165, 0x40 },
+        { 0x17C, 0x40 },
+        { 0x16B, 0x50 },
+        { 0x182, 0x50 },
+        { 0x18E, 0x50 },
+        { 0x161, 0x50 }
     };
 
     if (v1 == 1) {

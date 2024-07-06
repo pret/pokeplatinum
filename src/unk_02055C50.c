@@ -1,56 +1,56 @@
+#include "unk_02055C50.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-
-#include "sys_task_manager.h"
 #include "struct_decls/struct_02027854_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02055CBC_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "overlay005/struct_ov5_021DF47C_decl.h"
-
 #include "struct_defs/struct_02027BF4.h"
+
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay005/map_object_anim_cmd.h"
+#include "overlay005/ov5_021DF440.h"
+#include "overlay005/ov5_021DFB54.h"
+#include "overlay005/struct_ov5_021DF47C_decl.h"
 
-#include "heap.h"
+#include "bag.h"
+#include "core_sys.h"
 #include "easy3d.h"
-#include "unk_0201CED8.h"
+#include "heap.h"
+#include "map_object.h"
+#include "player_avatar.h"
 #include "savedata_misc.h"
+#include "sys_task_manager.h"
+#include "unk_0201CED8.h"
 #include "unk_02027B70.h"
 #include "unk_020508D4.h"
 #include "unk_02054D00.h"
-#include "unk_02055C50.h"
-#include "player_avatar.h"
-#include "map_object.h"
 #include "unk_020655F4.h"
 #include "unk_020677F4.h"
 #include "unk_0206CCB0.h"
-#include "bag.h"
-#include "overlay005/ov5_021DF440.h"
-#include "overlay005/ov5_021DFB54.h"
 
 struct UnkStruct_02055CBC_t {
     int unk_00;
-    UnkStruct_02027BF4 * unk_04;
+    UnkStruct_02027BF4 *unk_04;
     NNSG3dRenderObj unk_08;
-    NNSG3dResMdl * unk_5C;
-    NNSG3dResFileHeader * unk_60;
+    NNSG3dResMdl *unk_5C;
+    NNSG3dResFileHeader *unk_60;
 };
 
 typedef struct {
     int unk_00;
     int unk_04;
     int unk_08;
-    SysTask * unk_0C;
+    SysTask *unk_0C;
 } UnkStruct_020562AC;
 
-static void sub_02055D14(FieldSystem * fieldSystem, UnkStruct_02055CBC * param1);
-static void sub_02055D48(UnkStruct_02055CBC * param0);
+static void sub_02055D14(FieldSystem *fieldSystem, UnkStruct_02055CBC *param1);
+static void sub_02055D48(UnkStruct_02055CBC *param0);
 
-static u16 sub_02055C50 (int param0)
+static u16 sub_02055C50(int param0)
 {
     if (param0 == 0) {
         return 0;
@@ -59,7 +59,7 @@ static u16 sub_02055C50 (int param0)
     return param0 + 149 - 1;
 }
 
-static u16 sub_02055C60 (int param0)
+static u16 sub_02055C60(int param0)
 {
     if (param0 == 0) {
         return 0;
@@ -68,7 +68,7 @@ static u16 sub_02055C60 (int param0)
     return param0 - 149 + 1;
 }
 
-static u16 sub_02055C70 (int param0)
+static u16 sub_02055C70(int param0)
 {
     if (param0 == 0) {
         return 0;
@@ -77,7 +77,7 @@ static u16 sub_02055C70 (int param0)
     return param0 + 95 - 1;
 }
 
-static int sub_02055C80 (int param0)
+static int sub_02055C80(int param0)
 {
     if (param0 == 0) {
         return 0;
@@ -86,9 +86,9 @@ static int sub_02055C80 (int param0)
     return param0 - 95 + 1;
 }
 
-UnkStruct_02055CBC * sub_02055C8C (FieldSystem * fieldSystem, int param1)
+UnkStruct_02055CBC *sub_02055C8C(FieldSystem *fieldSystem, int param1)
 {
-    UnkStruct_02055CBC * v0;
+    UnkStruct_02055CBC *v0;
 
     v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_02055CBC));
     MI_CpuClear8(v0, sizeof(UnkStruct_02055CBC));
@@ -100,17 +100,17 @@ UnkStruct_02055CBC * sub_02055C8C (FieldSystem * fieldSystem, int param1)
     return v0;
 }
 
-void sub_02055CBC (UnkStruct_02055CBC * param0)
+void sub_02055CBC(UnkStruct_02055CBC *param0)
 {
     sub_02055D48(param0);
     Heap_FreeToHeap(param0->unk_04);
     Heap_FreeToHeap(param0);
 }
 
-void sub_02055CD4 (FieldSystem * fieldSystem, int param1)
+void sub_02055CD4(FieldSystem *fieldSystem, int param1)
 {
-    UnkStruct_02027854 * v0;
-    UnkStruct_02027BF4 * v1;
+    UnkStruct_02027854 *v0;
+    UnkStruct_02027BF4 *v1;
 
     if (fieldSystem->unk_04 == NULL) {
         v1 = sub_02027BF4(11);
@@ -124,9 +124,9 @@ void sub_02055CD4 (FieldSystem * fieldSystem, int param1)
     }
 }
 
-static void sub_02055D14 (FieldSystem * fieldSystem, UnkStruct_02055CBC * param1)
+static void sub_02055D14(FieldSystem *fieldSystem, UnkStruct_02055CBC *param1)
 {
-    UnkStruct_ov5_021DF47C * v0 = fieldSystem->unk_40;
+    UnkStruct_ov5_021DF47C *v0 = fieldSystem->unk_40;
     u32 v1 = ov5_021DF5A8(v0, 17);
 
     param1->unk_60 = Heap_AllocFromHeap(param1->unk_00, v1);
@@ -135,14 +135,14 @@ static void sub_02055D14 (FieldSystem * fieldSystem, UnkStruct_02055CBC * param1
     Easy3D_InitRenderObjFromResource(&param1->unk_08, &param1->unk_5C, &param1->unk_60);
 }
 
-static void sub_02055D48 (UnkStruct_02055CBC * param0)
+static void sub_02055D48(UnkStruct_02055CBC *param0)
 {
     ov5_021DF554(param0->unk_60);
 }
 
-static BOOL sub_02055D54 (FieldSystem * fieldSystem, const VecFx32 * param1)
+static BOOL sub_02055D54(FieldSystem *fieldSystem, const VecFx32 *param1)
 {
-    const VecFx32 v0 = {FX32_ONE, FX32_ONE, FX32_ONE};
+    const VecFx32 v0 = { FX32_ONE, FX32_ONE, FX32_ONE };
     MtxFx33 v1;
 
     MTX_Identity33(&v1);
@@ -154,11 +154,11 @@ static BOOL sub_02055D54 (FieldSystem * fieldSystem, const VecFx32 * param1)
     }
 }
 
-void sub_02055D94 (FieldSystem * fieldSystem)
+void sub_02055D94(FieldSystem *fieldSystem)
 {
     int v0 = 0;
-    MapObject * v1;
-    UnkStruct_02027854 * v2 = sub_02027854(fieldSystem->saveData);
+    MapObject *v1;
+    UnkStruct_02027854 *v2 = sub_02027854(fieldSystem->saveData);
 
     while (sub_020625B0(fieldSystem->mapObjMan, &v1, &v0, (1 << 0)) == 1) {
         if (sub_020677F4(sub_02062920(v1)) == 1) {
@@ -170,10 +170,10 @@ void sub_02055D94 (FieldSystem * fieldSystem)
     }
 }
 
-BOOL sub_02055E00 (FieldSystem * fieldSystem, MapObject * param1)
+BOOL sub_02055E00(FieldSystem *fieldSystem, MapObject *param1)
 {
     int v0, v1, v2;
-    UnkStruct_02027854 * v3 = sub_02027854(fieldSystem->saveData);
+    UnkStruct_02027854 *v3 = sub_02027854(fieldSystem->saveData);
 
     v0 = sub_020629D8(param1, 0);
     v2 = sub_02027D10(v3, v0);
@@ -186,88 +186,88 @@ BOOL sub_02055E00 (FieldSystem * fieldSystem, MapObject * param1)
     return Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), sub_02055C50(v2), v1, 4);
 }
 
-void sub_02055E80 (FieldSystem * fieldSystem, MapObject * param1, u16 param2)
+void sub_02055E80(FieldSystem *fieldSystem, MapObject *param1, u16 param2)
 {
     int v0;
-    UnkStruct_02027854 * v1 = sub_02027854(fieldSystem->saveData);
+    UnkStruct_02027854 *v1 = sub_02027854(fieldSystem->saveData);
 
     v0 = sub_020629D8(param1, 0);
     sub_02027DA8(v1, v0, sub_02055C80(param2));
 }
 
-void sub_02055EAC (FieldSystem * fieldSystem, MapObject * param1, u16 param2)
+void sub_02055EAC(FieldSystem *fieldSystem, MapObject *param1, u16 param2)
 {
     int v0;
-    UnkStruct_02027854 * v1 = sub_02027854(fieldSystem->saveData);
+    UnkStruct_02027854 *v1 = sub_02027854(fieldSystem->saveData);
 
     v0 = sub_020629D8(param1, 0);
     sub_02027D40(v1, v0, fieldSystem->unk_04->unk_18->unk_04, sub_02055C60(param2));
 }
 
-void sub_02055EE0 (FieldSystem * fieldSystem, MapObject * param1)
+void sub_02055EE0(FieldSystem *fieldSystem, MapObject *param1)
 {
     int v0;
-    UnkStruct_02027854 * v1 = sub_02027854(fieldSystem->saveData);
+    UnkStruct_02027854 *v1 = sub_02027854(fieldSystem->saveData);
 
     v0 = sub_020629D8(param1, 0);
     sub_02027D78(v1, v0);
 }
 
-int sub_02055F00 (const FieldSystem * fieldSystem, const MapObject * param1)
+int sub_02055F00(const FieldSystem *fieldSystem, const MapObject *param1)
 {
     int v0;
-    UnkStruct_02027854 * v1 = sub_02027854(fieldSystem->saveData);
+    UnkStruct_02027854 *v1 = sub_02027854(fieldSystem->saveData);
 
     v0 = sub_020629D8(param1, 0);
     return sub_02027D04(v1, v0);
 }
 
-int sub_02055F20 (const FieldSystem * fieldSystem, const MapObject * param1)
+int sub_02055F20(const FieldSystem *fieldSystem, const MapObject *param1)
 {
     int v0;
-    UnkStruct_02027854 * v1 = sub_02027854(fieldSystem->saveData);
+    UnkStruct_02027854 *v1 = sub_02027854(fieldSystem->saveData);
 
     v0 = sub_020629D8(param1, 0);
     return sub_02027D10(v1, v0);
 }
 
-u16 sub_02055F40 (const FieldSystem * fieldSystem, const MapObject * param1)
+u16 sub_02055F40(const FieldSystem *fieldSystem, const MapObject *param1)
 {
     int v0;
-    UnkStruct_02027854 * v1 = sub_02027854(fieldSystem->saveData);
+    UnkStruct_02027854 *v1 = sub_02027854(fieldSystem->saveData);
 
     v0 = sub_020629D8(param1, 0);
     return sub_02055C50(sub_02027D10(v1, v0));
 }
 
-u16 sub_02055F64 (const FieldSystem * fieldSystem, const MapObject * param1)
+u16 sub_02055F64(const FieldSystem *fieldSystem, const MapObject *param1)
 {
     int v0;
-    UnkStruct_02027854 * v1 = sub_02027854(fieldSystem->saveData);
+    UnkStruct_02027854 *v1 = sub_02027854(fieldSystem->saveData);
 
     v0 = sub_020629D8(param1, 0);
     return sub_02055C70(sub_02027D9C(v1, v0));
 }
 
-int sub_02055F88 (const FieldSystem * fieldSystem, const MapObject * param1)
+int sub_02055F88(const FieldSystem *fieldSystem, const MapObject *param1)
 {
     int v0;
-    UnkStruct_02027854 * v1 = sub_02027854(fieldSystem->saveData);
+    UnkStruct_02027854 *v1 = sub_02027854(fieldSystem->saveData);
 
     v0 = sub_020629D8(param1, 0);
     return sub_02027D18(v1, v0);
 }
 
-int sub_02055FA8 (const FieldSystem * fieldSystem, const MapObject * param1)
+int sub_02055FA8(const FieldSystem *fieldSystem, const MapObject *param1)
 {
     int v0;
-    UnkStruct_02027854 * v1 = sub_02027854(fieldSystem->saveData);
+    UnkStruct_02027854 *v1 = sub_02027854(fieldSystem->saveData);
 
     v0 = sub_020629D8(param1, 0);
     return sub_02027DB4(v1, v0);
 }
 
-u32 sub_02055FC8 (const FieldSystem * fieldSystem, const MapObject * param1)
+u32 sub_02055FC8(const FieldSystem *fieldSystem, const MapObject *param1)
 {
     u32 v0 = 0;
 
@@ -292,16 +292,16 @@ u32 sub_02055FC8 (const FieldSystem * fieldSystem, const MapObject * param1)
 }
 
 static const MapObjectAnimCmd Unk_020EC51C[] = {
-    {0xA, 0x1},
-    {0xfe, 0x0}
+    { 0xA, 0x1 },
+    { 0xfe, 0x0 }
 };
 
 static const MapObjectAnimCmd Unk_020EC524[] = {
-    {0xB, 0x1},
-    {0xfe, 0x0}
+    { 0xB, 0x1 },
+    { 0xfe, 0x0 }
 };
 
-static BOOL sub_02056010 (FieldSystem * fieldSystem, UnkStruct_020562AC * param1, int param2)
+static BOOL sub_02056010(FieldSystem *fieldSystem, UnkStruct_020562AC *param1, int param2)
 {
     int v0, v1;
 
@@ -327,7 +327,7 @@ static BOOL sub_02056010 (FieldSystem * fieldSystem, UnkStruct_020562AC * param1
     return sub_0206326C(fieldSystem->mapObjMan, v0, v1, 0) != NULL;
 }
 
-static MapObject * sub_02056074 (FieldSystem * fieldSystem, int param1)
+static MapObject *sub_02056074(FieldSystem *fieldSystem, int param1)
 {
     int v0, v1;
 
@@ -344,7 +344,7 @@ static MapObject * sub_02056074 (FieldSystem * fieldSystem, int param1)
     return sub_0206326C(fieldSystem->mapObjMan, v0, v1, 0);
 }
 
-static MapObject * sub_020560A8 (FieldSystem * fieldSystem, UnkStruct_020562AC * param1)
+static MapObject *sub_020560A8(FieldSystem *fieldSystem, UnkStruct_020562AC *param1)
 {
     int v0, v1;
 
@@ -362,14 +362,14 @@ static MapObject * sub_020560A8 (FieldSystem * fieldSystem, UnkStruct_020562AC *
     return sub_0206326C(fieldSystem->mapObjMan, v0, v1, 0);
 }
 
-static BOOL sub_020560E4 (MapObject * mapObj)
+static BOOL sub_020560E4(MapObject *mapObj)
 {
     return sub_02062920(mapObj) == 0x64;
 }
 
-static void sub_020560F8 (FieldSystem * fieldSystem, UnkStruct_020562AC * param1)
+static void sub_020560F8(FieldSystem *fieldSystem, UnkStruct_020562AC *param1)
 {
-    MapObject * v0;
+    MapObject *v0;
 
     v0 = sub_020560A8(fieldSystem, param1);
 
@@ -378,16 +378,16 @@ static void sub_020560F8 (FieldSystem * fieldSystem, UnkStruct_020562AC * param1
     }
 }
 
-static void sub_0205610C (FieldSystem * fieldSystem, UnkStruct_020562AC * param1, const MapObjectAnimCmd * param2)
+static void sub_0205610C(FieldSystem *fieldSystem, UnkStruct_020562AC *param1, const MapObjectAnimCmd *param2)
 {
-    MapObject * v0 = Player_MapObject(fieldSystem->playerAvatar);
+    MapObject *v0 = Player_MapObject(fieldSystem->playerAvatar);
     param1->unk_0C = MapObject_StartAnimation(v0, param2);
 }
 
-static BOOL sub_02056124 (TaskManager * taskMan)
+static BOOL sub_02056124(TaskManager *taskMan)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(taskMan);
-    UnkStruct_020562AC * v1 = TaskManager_Environment(taskMan);
+    FieldSystem *v0 = TaskManager_FieldSystem(taskMan);
+    UnkStruct_020562AC *v1 = TaskManager_Environment(taskMan);
 
     switch (v1->unk_00) {
     case 0:
@@ -402,7 +402,7 @@ static BOOL sub_02056124 (TaskManager * taskMan)
         v1->unk_00 = 2;
     case 2:
         if (gCoreSys.heldKeys & PAD_KEY_LEFT) {
-            MapObject * v2 = sub_02056074(v0, 2);
+            MapObject *v2 = sub_02056074(v0, 2);
 
             if ((v2 == NULL) || !sub_020560E4(v2)) {
                 v1->unk_00 = 4;
@@ -413,7 +413,7 @@ static BOOL sub_02056124 (TaskManager * taskMan)
                 break;
             }
         } else if (gCoreSys.heldKeys & PAD_KEY_RIGHT) {
-            MapObject * v2 = sub_02056074(v0, 3);
+            MapObject *v2 = sub_02056074(v0, 3);
 
             if ((v2 == NULL) || !sub_020560E4(v2)) {
                 v1->unk_00 = 4;
@@ -441,7 +441,7 @@ static BOOL sub_02056124 (TaskManager * taskMan)
         break;
     case 3:
         if (MapObject_HasAnimationEnded(v1->unk_0C)) {
-            MapObject * v3;
+            MapObject *v3;
 
             MapObject_FinishAnimation(v1->unk_0C);
             v3 = sub_020560A8(v0, v1);
@@ -464,9 +464,9 @@ static BOOL sub_02056124 (TaskManager * taskMan)
     return 0;
 }
 
-void sub_020562AC (FieldSystem * fieldSystem)
+void sub_020562AC(FieldSystem *fieldSystem)
 {
-    UnkStruct_020562AC * v0;
+    UnkStruct_020562AC *v0;
 
     v0 = Heap_AllocFromHeap(32, sizeof(UnkStruct_020562AC));
 
@@ -477,7 +477,7 @@ void sub_020562AC (FieldSystem * fieldSystem)
     FieldTask_Start(fieldSystem->unk_10, sub_02056124, v0);
 }
 
-void sub_020562D8 (FieldSystem * fieldSystem)
+void sub_020562D8(FieldSystem *fieldSystem)
 {
     int v0 = PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar);
     u32 v1 = sub_0205EED8(v0);

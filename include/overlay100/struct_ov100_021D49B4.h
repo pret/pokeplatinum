@@ -1,8 +1,9 @@
 #ifndef POKEPLATINUM_STRUCT_OV100_021D49B4_H
 #define POKEPLATINUM_STRUCT_OV100_021D49B4_H
 
-#include "easy3d_object.h"
 #include "overlay100/struct_ov100_021D54D0.h"
+
+#include "easy3d_object.h"
 
 typedef struct {
     Easy3DObject unk_00;
@@ -21,7 +22,7 @@ typedef struct {
     int unk_178;
     int unk_17C;
     int unk_180;
-    UnkStruct_ov100_021D54D0 * unk_184;
+    UnkStruct_ov100_021D54D0 *unk_184;
 } UnkStruct_ov100_021D49B4;
 
 #endif // POKEPLATINUM_STRUCT_OV100_021D49B4_H

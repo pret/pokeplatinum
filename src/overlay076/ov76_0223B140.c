@@ -1,37 +1,37 @@
-#include <nitro.h>
-#include <string.h>
-#include <nitro/sinit.h>
+#include "overlay076/ov76_0223B140.h"
 
-#include "core_sys.h"
+#include <nitro.h>
+#include <nitro/sinit.h>
+#include <string.h>
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-
+#include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
-#include "touch_screen.h"
 #include "struct_defs/struct_0202CA28.h"
+
+#include "overlay012/ov12_02237E54.h"
 #include "overlay076/struct_ov76_0223B52C.h"
 #include "overlay076/struct_ov76_0223DE00.h"
-#include "struct_defs/sprite_template.h"
 
+#include "core_sys.h"
 #include "game_overlay.h"
+#include "touch_screen.h"
 #include "unk_0200C6E4.h"
 #include "unk_0202C9F4.h"
 #include "unk_02097B18.h"
-#include "overlay012/ov12_02237E54.h"
-#include "overlay076/ov76_0223B140.h"
 
 FS_EXTERN_OVERLAY(overlay11);
 FS_EXTERN_OVERLAY(overlay12);
 
-static void NitroStaticInit (void)
+static void NitroStaticInit(void)
 {
     Overlay_LoadByID(FS_OVERLAY_ID(overlay11), 2);
     Overlay_LoadByID(FS_OVERLAY_ID(overlay12), 2);
 }
 
-static void ov76_0223B15C (TouchScreenRect *rect, u8 param1, u8 param2)
+static void ov76_0223B15C(TouchScreenRect *rect, u8 param1, u8 param2)
 {
     rect->rect.top = param2 - 10;
     rect->rect.left = param1 - 10;
@@ -39,7 +39,7 @@ static void ov76_0223B15C (TouchScreenRect *rect, u8 param1, u8 param2)
     rect->rect.right = param1 + 10;
 }
 
-static void ov76_0223B174 (TouchScreenRect *rect)
+static void ov76_0223B174(TouchScreenRect *rect)
 {
     rect->rect.top = 0;
     rect->rect.left = 0;
@@ -47,7 +47,7 @@ static void ov76_0223B174 (TouchScreenRect *rect)
     rect->rect.right = 255;
 }
 
-void ov76_0223B184 (TouchScreenRect *rect, CellActorData * param1, BOOL param2)
+void ov76_0223B184(TouchScreenRect *rect, CellActorData *param1, BOOL param2)
 {
     s16 v0, v1;
 
@@ -65,7 +65,7 @@ void ov76_0223B184 (TouchScreenRect *rect, CellActorData * param1, BOOL param2)
     }
 }
 
-void ov76_0223B1E0 (UnkStruct_ov76_0223DE00 * param0)
+void ov76_0223B1E0(UnkStruct_ov76_0223DE00 *param0)
 {
     int v0;
 
@@ -78,10 +78,10 @@ void ov76_0223B1E0 (UnkStruct_ov76_0223DE00 * param0)
     }
 }
 
-void ov76_0223B208 (UnkStruct_ov76_0223DE00 * param0)
+void ov76_0223B208(UnkStruct_ov76_0223DE00 *param0)
 {
     int v0;
-    UnkStruct_0202CA28 * v1;
+    UnkStruct_0202CA28 *v1;
 
     v1 = param0->unk_04[param0->unk_3C4[0]].unk_04;
 
@@ -102,7 +102,7 @@ void ov76_0223B208 (UnkStruct_ov76_0223DE00 * param0)
     }
 }
 
-int ov76_0223B278 (UnkStruct_ov76_0223DE00 * param0, u8 param1)
+int ov76_0223B278(UnkStruct_ov76_0223DE00 *param0, u8 param1)
 {
     int v0;
     u32 v1, v2;
@@ -132,7 +132,7 @@ int ov76_0223B278 (UnkStruct_ov76_0223DE00 * param0, u8 param1)
     return 0xFF;
 }
 
-BOOL ov76_0223B2F8 (UnkStruct_ov76_0223DE00 * param0)
+BOOL ov76_0223B2F8(UnkStruct_ov76_0223DE00 *param0)
 {
     int v0;
     u32 v1, v2;
@@ -148,7 +148,7 @@ BOOL ov76_0223B2F8 (UnkStruct_ov76_0223DE00 * param0)
     return 0;
 }
 
-void ov76_0223B314 (UnkStruct_ov76_0223DE00 * param0, u8 param1)
+void ov76_0223B314(UnkStruct_ov76_0223DE00 *param0, u8 param1)
 {
     int v0;
 
@@ -171,13 +171,13 @@ void ov76_0223B314 (UnkStruct_ov76_0223DE00 * param0, u8 param1)
     }
 }
 
-void ov76_0223B36C (UnkStruct_ov76_0223DE00 * param0, u8 param1, u8 param2)
+void ov76_0223B36C(UnkStruct_ov76_0223DE00 *param0, u8 param1, u8 param2)
 {
     int v0;
     int v1;
-    SpriteRenderer * v2;
-    SpriteGfxHandler * v3;
-    PaletteData * v4;
+    SpriteRenderer *v2;
+    SpriteGfxHandler *v3;
+    PaletteData *v4;
 
     v2 = param0->unk_D4.unk_08;
     v3 = param0->unk_D4.unk_0C;
@@ -193,7 +193,7 @@ void ov76_0223B36C (UnkStruct_ov76_0223DE00 * param0, u8 param1, u8 param2)
     sub_0200CE3C(v2, v3, 91, 1, 1, 23000 + 1);
 }
 
-void ov76_0223B400 (UnkStruct_ov76_0223DE00 * param0)
+void ov76_0223B400(UnkStruct_ov76_0223DE00 *param0)
 {
     int v0, v1;
     int v2;
@@ -270,15 +270,15 @@ void ov76_0223B400 (UnkStruct_ov76_0223DE00 * param0)
     }
 }
 
-BOOL ov76_0223B52C (UnkStruct_ov76_0223DE00 * param0, u8 param1)
+BOOL ov76_0223B52C(UnkStruct_ov76_0223DE00 *param0, u8 param1)
 {
     int v0;
     int v1;
-    UnkStruct_ov76_0223B52C * v2;
+    UnkStruct_ov76_0223B52C *v2;
     SpriteTemplate v3;
-    SpriteRenderer * v4;
-    SpriteGfxHandler * v5;
-    PaletteData * v6;
+    SpriteRenderer *v4;
+    SpriteGfxHandler *v5;
+    PaletteData *v6;
 
     v4 = param0->unk_D4.unk_08;
     v5 = param0->unk_D4.unk_0C;
@@ -318,7 +318,7 @@ BOOL ov76_0223B52C (UnkStruct_ov76_0223DE00 * param0, u8 param1)
     return 1;
 }
 
-BOOL ov76_0223B5C4 (UnkStruct_ov76_0223DE00 * param0, u32 param1, u8 param2)
+BOOL ov76_0223B5C4(UnkStruct_ov76_0223DE00 *param0, u32 param1, u8 param2)
 {
     if (param0->unk_324[param2].unk_00 == 0) {
         return 1;
@@ -331,8 +331,7 @@ BOOL ov76_0223B5C4 (UnkStruct_ov76_0223DE00 * param0, u32 param1, u8 param2)
             ov76_0223B314(param0, param2);
         }
         break;
-    case 2:
-    {
+    case 2: {
         s16 v0, v1;
 
         if (param0->unk_D4.unk_00 == param2) {
@@ -340,11 +339,9 @@ BOOL ov76_0223B5C4 (UnkStruct_ov76_0223DE00 * param0, u32 param1, u8 param2)
             ov76_0223B758(param0, param2);
             ov76_0223B7D4(param0, param2);
         }
-    }
-    break;
+    } break;
     case 3:
-    case 1:
-    {
+    case 1: {
         BOOL v2;
 
         if (param0->unk_D4.unk_00 == 0xFF) {
@@ -357,8 +354,7 @@ BOOL ov76_0223B5C4 (UnkStruct_ov76_0223DE00 * param0, u32 param1, u8 param2)
 
             param0->unk_D4.unk_00 = 0xFF;
         }
-    }
-    break;
+    } break;
     default:
         GF_ASSERT(0);
         break;
@@ -367,7 +363,7 @@ BOOL ov76_0223B5C4 (UnkStruct_ov76_0223DE00 * param0, u32 param1, u8 param2)
     return 1;
 }
 
-void ov76_0223B678 (UnkStruct_ov76_0223DE00 * param0)
+void ov76_0223B678(UnkStruct_ov76_0223DE00 *param0)
 {
     int v0;
 
@@ -380,7 +376,7 @@ void ov76_0223B678 (UnkStruct_ov76_0223DE00 * param0)
     }
 }
 
-void ov76_0223B69C (UnkStruct_ov76_0223DE00 * param0, int param1)
+void ov76_0223B69C(UnkStruct_ov76_0223DE00 *param0, int param1)
 {
     int v0;
 
@@ -393,7 +389,7 @@ void ov76_0223B69C (UnkStruct_ov76_0223DE00 * param0, int param1)
     }
 }
 
-BOOL ov76_0223B6C4 (UnkStruct_ov76_0223DE00 * param0, int param1)
+BOOL ov76_0223B6C4(UnkStruct_ov76_0223DE00 *param0, int param1)
 {
     int v0;
     s16 v1, v2;
@@ -412,7 +408,7 @@ BOOL ov76_0223B6C4 (UnkStruct_ov76_0223DE00 * param0, int param1)
     return 1;
 }
 
-void ov76_0223B704 (UnkStruct_ov76_0223DE00 * param0, int param1)
+void ov76_0223B704(UnkStruct_ov76_0223DE00 *param0, int param1)
 {
     int v0;
     int v1;
@@ -432,7 +428,7 @@ void ov76_0223B704 (UnkStruct_ov76_0223DE00 * param0, int param1)
     ov76_0223B15C(param0->unk_324[param1].unk_0C, 0, 0);
 }
 
-void ov76_0223B758 (UnkStruct_ov76_0223DE00 * param0, int param1)
+void ov76_0223B758(UnkStruct_ov76_0223DE00 *param0, int param1)
 {
     BOOL v0;
 
@@ -445,11 +441,11 @@ void ov76_0223B758 (UnkStruct_ov76_0223DE00 * param0, int param1)
     }
 }
 
-BOOL ov76_0223B78C (UnkStruct_ov76_0223DE00 * param0)
+BOOL ov76_0223B78C(UnkStruct_ov76_0223DE00 *param0)
 {
     int v0;
     int v1;
-    UnkStruct_0202CA28 * v2;
+    UnkStruct_0202CA28 *v2;
 
     v1 = param0->unk_3C4[0];
     v2 = param0->unk_04[v1].unk_04;
@@ -463,7 +459,7 @@ BOOL ov76_0223B78C (UnkStruct_ov76_0223DE00 * param0)
     return 0;
 }
 
-void ov76_0223B7D4 (UnkStruct_ov76_0223DE00 * param0, int param1)
+void ov76_0223B7D4(UnkStruct_ov76_0223DE00 *param0, int param1)
 {
     s16 v0, v1;
 
@@ -473,7 +469,7 @@ void ov76_0223B7D4 (UnkStruct_ov76_0223DE00 * param0, int param1)
     param0->unk_324[param1].unk_06 = (u8)v1;
 }
 
-void ov76_0223B808 (UnkStruct_ov76_0223DE00 * param0)
+void ov76_0223B808(UnkStruct_ov76_0223DE00 *param0)
 {
     int v0;
     UnkStruct_0202CA28 v1;
@@ -487,7 +483,7 @@ void ov76_0223B808 (UnkStruct_ov76_0223DE00 * param0)
     sub_0202CA40(param0->unk_00->unk_20, &v1, param0->unk_3C4[0]);
 }
 
-void ov76_0223B848 (UnkStruct_0202CA28 * param0, UnkStruct_ov76_0223DE00 * param1)
+void ov76_0223B848(UnkStruct_0202CA28 *param0, UnkStruct_ov76_0223DE00 *param1)
 {
     int v0;
 

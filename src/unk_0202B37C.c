@@ -1,31 +1,29 @@
+#include "unk_0202B37C.h"
+
 #include <nitro.h>
 #include <string.h>
-
-#include "strbuf.h"
-#include "savedata.h"
 
 #include "struct_defs/struct_0202B4A0.h"
 #include "struct_defs/struct_0202B510.h"
 
+#include "savedata.h"
+#include "strbuf.h"
 #include "unk_020021B0.h"
 #include "unk_0201D15C.h"
-#include "strbuf.h"
-#include "savedata.h"
-#include "unk_0202B37C.h"
 
-UnkStruct_0202B4A0 * Unk_021C079C;
+UnkStruct_0202B4A0 *Unk_021C079C;
 
-int RandomGroup_SaveSize (void)
+int RandomGroup_SaveSize(void)
 {
     return sizeof(UnkStruct_0202B4A0);
 }
 
-void sub_0202B384 (UnkStruct_0202B4A0 * param0, int param1, int param2)
+void sub_0202B384(UnkStruct_0202B4A0 *param0, int param1, int param2)
 {
     param0->unk_00[param2] = param0->unk_00[param1];
 }
 
-void RandomGroup_Init (UnkStruct_0202B4A0 * param0)
+void RandomGroup_Init(UnkStruct_0202B4A0 *param0)
 {
     int v0;
 
@@ -39,7 +37,7 @@ void RandomGroup_Init (UnkStruct_0202B4A0 * param0)
     Unk_021C079C = param0;
 }
 
-void sub_0202B3D8 (UnkStruct_0202B4A0 * param0, u32 param1)
+void sub_0202B3D8(UnkStruct_0202B4A0 *param0, u32 param1)
 {
     u32 v0, v1;
 
@@ -50,23 +48,23 @@ void sub_0202B3D8 (UnkStruct_0202B4A0 * param0, u32 param1)
     }
 }
 
-u32 sub_0202B400 (UnkStruct_0202B4A0 * param0, int param1)
+u32 sub_0202B400(UnkStruct_0202B4A0 *param0, int param1)
 {
     return param0->unk_00[param1].unk_24;
 }
 
-void sub_0202B40C (UnkStruct_0202B4A0 * param0, int param1, u32 param2)
+void sub_0202B40C(UnkStruct_0202B4A0 *param0, int param1, u32 param2)
 {
     param0->unk_00[param1].unk_24 = param2;
     param0->unk_00[param1].unk_28 = ARNG_Next(param2);
 }
 
-u32 sub_0202B428 (UnkStruct_0202B4A0 * param0)
+u32 sub_0202B428(UnkStruct_0202B4A0 *param0)
 {
     return param0->unk_00[1].unk_28;
 }
 
-const u16 * sub_0202B42C (const UnkStruct_0202B4A0 * param0, int param1, int param2)
+const u16 *sub_0202B42C(const UnkStruct_0202B4A0 *param0, int param1, int param2)
 {
     if (param2 == 0) {
         return param0->unk_00[param1].unk_00;
@@ -75,9 +73,9 @@ const u16 * sub_0202B42C (const UnkStruct_0202B4A0 * param0, int param1, int par
     return param0->unk_00[param1].unk_10;
 }
 
-void sub_0202B444 (UnkStruct_0202B4A0 * param0, int param1, int param2, Strbuf *param3)
+void sub_0202B444(UnkStruct_0202B4A0 *param0, int param1, int param2, Strbuf *param3)
 {
-    u16 * v0;
+    u16 *v0;
 
     if (param2 == 0) {
         v0 = param0->unk_00[param1].unk_00;
@@ -88,40 +86,40 @@ void sub_0202B444 (UnkStruct_0202B4A0 * param0, int param1, int param2, Strbuf *
     }
 }
 
-void sub_0202B470 (UnkStruct_0202B4A0 * param0, int param1, int param2)
+void sub_0202B470(UnkStruct_0202B4A0 *param0, int param1, int param2)
 {
     param0->unk_00[param1].unk_20 = param2;
 }
 
-int sub_0202B47C (const UnkStruct_0202B4A0 * param0, int param1)
+int sub_0202B47C(const UnkStruct_0202B4A0 *param0, int param1)
 {
     return param0->unk_00[param1].unk_20;
 }
 
-int sub_0202B488 (const UnkStruct_0202B4A0 * param0, int param1)
+int sub_0202B488(const UnkStruct_0202B4A0 *param0, int param1)
 {
     return param0->unk_00[param1].unk_21;
 }
 
-void sub_0202B494 (UnkStruct_0202B4A0 * param0, int param1, int param2)
+void sub_0202B494(UnkStruct_0202B4A0 *param0, int param1, int param2)
 {
     param0->unk_00[param1].unk_21 = param2;
 }
 
-UnkStruct_0202B4A0 * sub_0202B4A0 (SaveData * param0)
+UnkStruct_0202B4A0 *sub_0202B4A0(SaveData *param0)
 {
     return (UnkStruct_0202B4A0 *)SaveData_SaveTable(param0, 17);
 }
 
-BOOL sub_0202B4AC (const UnkStruct_0202B4A0 * param0, int param1)
+BOOL sub_0202B4AC(const UnkStruct_0202B4A0 *param0, int param1)
 {
-    const UnkStruct_0202B510 * v0 = &param0->unk_00[param1];
+    const UnkStruct_0202B510 *v0 = &param0->unk_00[param1];
     return !(sub_0202B510(v0));
 }
 
-BOOL sub_0202B4C4 (const UnkStruct_0202B4A0 * param0, int param1)
+BOOL sub_0202B4C4(const UnkStruct_0202B4A0 *param0, int param1)
 {
-    const UnkStruct_0202B510 * v0, * v1;
+    const UnkStruct_0202B510 *v0, *v1;
 
     v0 = &param0->unk_00[1];
     v1 = &param0->unk_00[param1];
@@ -129,10 +127,10 @@ BOOL sub_0202B4C4 (const UnkStruct_0202B4A0 * param0, int param1)
     return sub_0202B530(v0, v1);
 }
 
-BOOL sub_0202B4D8 (const UnkStruct_0202B4A0 * param0, const u16 * param1)
+BOOL sub_0202B4D8(const UnkStruct_0202B4A0 *param0, const u16 *param1)
 {
     int v0;
-    const UnkStruct_0202B510 * v1;
+    const UnkStruct_0202B510 *v1;
 
     if (*param1 == 0xffff) {
         return 0;
@@ -149,7 +147,7 @@ BOOL sub_0202B4D8 (const UnkStruct_0202B4A0 * param0, const u16 * param1)
     return 0;
 }
 
-BOOL sub_0202B510 (const UnkStruct_0202B510 * param0)
+BOOL sub_0202B510(const UnkStruct_0202B510 *param0)
 {
     if (param0->unk_00[0] == 0xffff) {
         return 1;
@@ -162,7 +160,7 @@ BOOL sub_0202B510 (const UnkStruct_0202B510 * param0)
     return 0;
 }
 
-BOOL sub_0202B530 (const UnkStruct_0202B510 * param0, const UnkStruct_0202B510 * param1)
+BOOL sub_0202B530(const UnkStruct_0202B510 *param0, const UnkStruct_0202B510 *param1)
 {
     int v0;
 

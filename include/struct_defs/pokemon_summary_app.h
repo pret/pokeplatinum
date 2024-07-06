@@ -3,24 +3,25 @@
 
 #include "constants/moves.h"
 
-#include "struct_decls/struct_02006C24_decl.h"
-#include "message.h"
-#include "string_template.h"
-#include "struct_decls/struct_0200C440_decl.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/cell_actor_data.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_decls/sprite_decl.h"
+#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/struct_0200C440_decl.h"
+#include "struct_decls/struct_0200C6E4_decl.h"
+#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "camera.h"
-#include "cell_actor.h"
-#include "strbuf.h"
 #include "struct_defs/archived_poke_sprite_data.h"
+#include "struct_defs/pokemon_summary.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02091850.h"
-#include "struct_defs/pokemon_summary.h"
+
+#include "camera.h"
+#include "cell_actor.h"
+#include "message.h"
+#include "strbuf.h"
+#include "string_template.h"
 
 typedef struct PokemonSummaryAppData {
     Strbuf *speciesName;
@@ -41,7 +42,7 @@ typedef struct PokemonSummaryAppData {
     u32 curExp;
     u32 curLevelExp;
     u32 nextLevelExp;
-    
+
     u16 curHP;
     u16 maxHP;
     u16 attack;
@@ -77,7 +78,7 @@ typedef struct PokemonSummaryAppData {
 } PokemonSummaryAppData;
 
 typedef struct PokemonSummaryAppSpriteData {
-    Camera * camera;
+    Camera *camera;
     void *spriteManager;
     SpriteAnimationFrame frames[MAX_ANIMATION_FRAMES];
     PokemonAnimationSys *animationSys;
@@ -102,7 +103,7 @@ typedef struct PokemonSummaryApp {
 
     SpriteRenderer *renderer;
     SpriteGfxHandler *gfxHandler;
-    CellActor * unk_41C[77];
+    CellActor *unk_41C[77];
     CellActorData *actor[77];
 
     UnkStruct_0200C440 *unk_684;
