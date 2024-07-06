@@ -1,25 +1,26 @@
 #ifndef POKEPLATINUM_ENCOUNTER_EFFECT_H
 #define POKEPLATINUM_ENCOUNTER_EFFECT_H
 
-#include "overlay005/hblank_system.h"
+#include <nitro/fx/fx.h>
+
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "sys_task_manager.h"
-#include "cell_actor.h"
-#include "field/field_system_decl.h"
 #include "struct_defs/struct_0205AA50.h"
+
+#include "field/field_system_decl.h"
 #include "overlay005/encounter_effect.h"
-#include "overlay005/linear_interpolation_task_s32.h"
+#include "overlay005/hblank_system.h"
 #include "overlay005/linear_interpolation_task_fx32.h"
+#include "overlay005/linear_interpolation_task_s32.h"
 #include "overlay005/quadratic_interpolation_task_fx32.h"
 #include "overlay005/struct_ov5_021DDF24.h"
 #include "overlay005/struct_ov5_021DE47C.h"
 #include "overlay005/struct_ov5_021DE5A4.h"
 #include "overlay006/battle_params.h"
+
+#include "cell_actor.h"
 #include "enc_effects.h"
-
-#include <nitro/fx/fx.h>
-
+#include "sys_task_manager.h"
 
 typedef struct EncounterEffect {
     int state;

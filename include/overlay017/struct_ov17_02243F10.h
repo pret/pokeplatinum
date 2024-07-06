@@ -5,7 +5,7 @@
 #include "overlay017/struct_ov17_02246F24.h"
 
 typedef struct {
-    UnkStruct_ov17_02246F24 * unk_00;
+    UnkStruct_ov17_02246F24 *unk_00;
     UnkStruct_ov17_02243C80 unk_04;
     s32 unk_0C;
     s32 unk_10;

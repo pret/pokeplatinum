@@ -1,27 +1,26 @@
+#include "unk_02002328.h"
+
 #include <nitro.h>
 #include <string.h>
-
-#include "core_sys.h"
 
 #include "struct_defs/struct_02002328.h"
 #include "struct_defs/struct_02002D18.h"
 #include "struct_defs/struct_0201D834.h"
 #include "struct_defs/struct_02101D44.h"
 
-#include "unk_02002328.h"
+#include "charcode.h"
+#include "core_sys.h"
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
 #include "unk_02018340.h"
-#include "charcode.h"
 #include "unk_0201D670.h"
 
 static UnkStruct_02101D44 Unk_02101D44;
 
-
-int sub_02002328 (UnkStruct_0201D834 * param0)
+int sub_02002328(UnkStruct_0201D834 *param0)
 {
-    const UnkStruct_02002328 * v0;
-    UnkStruct_02002D18 * v1;
+    const UnkStruct_02002328 *v0;
+    UnkStruct_02002D18 *v1;
     int v2, v3;
     u16 v4;
 
@@ -71,8 +70,7 @@ int sub_02002328 (UnkStruct_0201D834 * param0)
             v4 = CharCode_FormatArgType(param0->unk_00.unk_00_val1);
 
             switch (v4) {
-            case 0xff00:
-            {
+            case 0xff00: {
                 u16 v5 = CharCode_FormatArgParam(param0->unk_00.unk_00_val1, 0);
 
                 if (v5 == 255) {
@@ -94,10 +92,8 @@ int sub_02002328 (UnkStruct_0201D834 * param0)
                 param0->unk_00.unk_17 = 1 + (v5 * 2) + 1;
 
                 sub_0201D9FC(param0->unk_00.unk_15, param0->unk_00.unk_16, param0->unk_00.unk_17);
-            }
-            break;
-            case 0x200:
-            {
+            } break;
+            case 0x200: {
                 u16 v7 = CharCode_FormatArgParam(param0->unk_00.unk_00_val1, 0);
                 sub_0201DB8C(param0, param0->unk_00.unk_0C, param0->unk_00.unk_0E, v7);
             }
@@ -106,14 +102,12 @@ int sub_02002328 (UnkStruct_0201D834 * param0)
                     sub_0201A954(param0->unk_00.unk_04);
                 }
                 break;
-            case 0x201:
-            {
+            case 0x201: {
                 param0->unk_2A = CharCode_FormatArgParam(param0->unk_00.unk_00_val1, 0);
                 param0->unk_00.unk_00_val1 = CharCode_SkipFormatArg(param0->unk_00.unk_00_val1);
                 param0->unk_28 = 6;
                 return 3;
-            }
-            break;
+            } break;
             case 0x202:
                 param0->unk_2E = CharCode_FormatArgParam(param0->unk_00.unk_00_val1, 0);
                 param0->unk_00.unk_00_val1 = CharCode_SkipFormatArg(param0->unk_00.unk_00_val1);
@@ -124,8 +118,7 @@ int sub_02002328 (UnkStruct_0201D834 * param0)
             case 0x204:
                 param0->unk_00.unk_0E = CharCode_FormatArgParam(param0->unk_00.unk_00_val1, 0);
                 break;
-            case 0xff01:
-            {
+            case 0xff01: {
                 u16 v8 = CharCode_FormatArgParam(param0->unk_00.unk_00_val1, 0);
 
                 switch (v8) {
@@ -138,10 +131,8 @@ int sub_02002328 (UnkStruct_0201D834 * param0)
                     param0->unk_00.unk_1A = 0;
                     break;
                 }
-            }
-            break;
-            case 0xfe06:
-            {
+            } break;
+            case 0xfe06: {
                 u16 v9 = CharCode_FormatArgParam(param0->unk_00.unk_00_val1, 0);
 
                 switch (v9) {
@@ -156,8 +147,7 @@ int sub_02002328 (UnkStruct_0201D834 * param0)
                     param0->unk_00.unk_00_val1 = CharCode_SkipFormatArg(param0->unk_00.unk_00_val1);
                     return 3;
                 }
-            }
-            break;
+            } break;
             }
 
             param0->unk_00.unk_00_val1 = CharCode_SkipFormatArg(param0->unk_00.unk_00_val1);
@@ -242,14 +232,14 @@ int sub_02002328 (UnkStruct_0201D834 * param0)
 
 static u16 Unk_02101D46 = 0;
 
-void sub_020027A8 (u16 param0)
+void sub_020027A8(u16 param0)
 {
     Unk_02101D46 = param0;
 }
 
-void sub_020027B4 (UnkStruct_0201D834 * param0)
+void sub_020027B4(UnkStruct_0201D834 *param0)
 {
-    UnkStruct_02002D18 * v0;
+    UnkStruct_02002D18 *v0;
 
     v0 = (UnkStruct_02002D18 *)&(param0->unk_20[0]);
 
@@ -268,10 +258,10 @@ static const u8 Unk_020E4CD0[] = {
     0x1
 };
 
-void sub_020027E0 (UnkStruct_0201D834 * param0)
+void sub_020027E0(UnkStruct_0201D834 *param0)
 {
-    UnkStruct_02002D18 * v0;
-    void * v1;
+    UnkStruct_02002D18 *v0;
+    void *v1;
 
     v0 = (UnkStruct_02002D18 *)&(param0->unk_20[0]);
 
@@ -305,7 +295,7 @@ void sub_020027E0 (UnkStruct_0201D834 * param0)
     }
 }
 
-void sub_02002968 (UnkStruct_0201D834 * param0)
+void sub_02002968(UnkStruct_0201D834 *param0)
 {
     u16 v0;
     u8 v1, v2, v3, v4;
@@ -321,7 +311,7 @@ void sub_02002968 (UnkStruct_0201D834 * param0)
     sub_02019448(param0->unk_00.unk_04->unk_00, v1);
 }
 
-static BOOL sub_020029FC (UnkStruct_0201D834 * param0)
+static BOOL sub_020029FC(UnkStruct_0201D834 *param0)
 {
     if ((gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) || ((gCoreSys.touchPressed) && (Unk_02101D44.unk_00_4))) {
         Sound_PlayEffect(1500);
@@ -332,9 +322,9 @@ static BOOL sub_020029FC (UnkStruct_0201D834 * param0)
     return 0;
 }
 
-BOOL sub_02002A44 (UnkStruct_0201D834 * param0)
+BOOL sub_02002A44(UnkStruct_0201D834 *param0)
 {
-    UnkStruct_02002D18 * v0;
+    UnkStruct_02002D18 *v0;
     u16 v1;
 
     v0 = (UnkStruct_02002D18 *)&(param0->unk_20[0]);
@@ -353,7 +343,7 @@ BOOL sub_02002A44 (UnkStruct_0201D834 * param0)
     return 0;
 }
 
-BOOL sub_02002A80 (UnkStruct_0201D834 * param0)
+BOOL sub_02002A80(UnkStruct_0201D834 *param0)
 {
     BOOL v0 = 0;
 
@@ -367,7 +357,7 @@ BOOL sub_02002A80 (UnkStruct_0201D834 * param0)
     return v0;
 }
 
-BOOL sub_02002AA4 (UnkStruct_0201D834 * param0)
+BOOL sub_02002AA4(UnkStruct_0201D834 *param0)
 {
     u8 v0 = 0;
 
@@ -380,38 +370,38 @@ BOOL sub_02002AA4 (UnkStruct_0201D834 * param0)
     return v0;
 }
 
-void sub_02002AC8 (int param0)
+void sub_02002AC8(int param0)
 {
     Unk_02101D44.unk_00_0 = param0;
 }
 
-void sub_02002AE4 (int param0)
+void sub_02002AE4(int param0)
 {
     Unk_02101D44.unk_00_2 = (param0 & 1);
     Unk_02101D44.unk_00_5 = ((param0 >> 1) & 1);
 }
 
-void sub_02002B20 (int param0)
+void sub_02002B20(int param0)
 {
     Unk_02101D44.unk_00_4 = param0;
 }
 
-u8 sub_02002B3C (void)
+u8 sub_02002B3C(void)
 {
     return Unk_02101D44.unk_00_6;
 }
 
-void sub_02002B4C (void)
+void sub_02002B4C(void)
 {
     Unk_02101D44.unk_00_6 = 0;
 }
 
-u8 sub_02002B5C (void)
+u8 sub_02002B5C(void)
 {
     return Unk_02101D44.unk_00_7;
 }
 
-void sub_02002B6C (void)
+void sub_02002B6C(void)
 {
     Unk_02101D44.unk_00_7 = 0;
 }

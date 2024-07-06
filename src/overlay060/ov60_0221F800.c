@@ -1,26 +1,26 @@
-#include <nitro.h>
-#include <string.h>
+#include "overlay060/ov60_0221F800.h"
+
 #include <dwc.h>
 #include <gs/nonport.h>
-
-#include "overlay060/ov60_0221F800.h"
+#include <nitro.h>
+#include <string.h>
 
 static int Unk_ov60_02229E20;
 
-static void ov60_0221F800 (unsigned long param0)
+static void ov60_0221F800(unsigned long param0)
 {
     Unk_ov60_02229E20 = (int)(param0 | (param0 << 16));
 }
 
-static unsigned char ov60_0221F810 (void)
+static unsigned char ov60_0221F810(void)
 {
     Unk_ov60_02229E20 = (int)((69 * Unk_ov60_02229E20 + 4369) % 0x80000000);
     return (unsigned char)((Unk_ov60_02229E20 >> 16) & 0xff);
 }
 
-int ov60_0221F838 (u32 param0, const u8 * param1, int param2, u8 * param3, int param4)
+int ov60_0221F838(u32 param0, const u8 *param1, int param2, u8 *param3, int param4)
 {
-    unsigned char * v0;
+    unsigned char *v0;
     u32 v1 = 0;
     int v2;
 
@@ -70,7 +70,7 @@ int ov60_0221F838 (u32 param0, const u8 * param1, int param2, u8 * param3, int p
     return 0;
 }
 
-u32 ov60_0221F944 (u32 param0)
+u32 ov60_0221F944(u32 param0)
 {
     u32 v0;
 

@@ -1,64 +1,65 @@
+#include "overlay080/ov80_021D0D80.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-
 #include "struct_defs/struct_0203D8AC.h"
 #include "struct_defs/struct_02099F80.h"
+
+#include "overlay080/ov80_021D2A08.h"
+#include "overlay080/ov80_021D2AF4.h"
 #include "overlay080/struct_ov80_021D2A08.h"
 #include "overlay080/struct_ov80_021D2E94.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 
+#include "gx_layers.h"
+#include "heap.h"
+#include "message.h"
+#include "narc.h"
+#include "overlay_manager.h"
+#include "strbuf.h"
 #include "unk_02002B7C.h"
 #include "unk_020041CC.h"
-#include "overlay_manager.h"
-#include "narc.h"
-#include "message.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201E3D8.h"
-#include "gx_layers.h"
-#include "strbuf.h"
 #include "unk_02039C80.h"
 #include "unk_0208C098.h"
-#include "overlay080/ov80_021D0D80.h"
-#include "overlay080/ov80_021D2A08.h"
-#include "overlay080/ov80_021D2AF4.h"
 
-int ov80_021D0D80(OverlayManager * param0, int * param1);
-int ov80_021D0DD8(OverlayManager * param0, int * param1);
-int ov80_021D0E50(OverlayManager * param0, int * param1);
-static void ov80_021D0E68(void * param0);
+int ov80_021D0D80(OverlayManager *param0, int *param1);
+int ov80_021D0DD8(OverlayManager *param0, int *param1);
+int ov80_021D0E50(OverlayManager *param0, int *param1);
+static void ov80_021D0E68(void *param0);
 static void ov80_021D0EA8(void);
-static int ov80_021D0EC8(UnkStruct_ov80_021D2A08 * param0);
-static void ov80_021D1088(UnkStruct_ov80_021D2A08 * param0, BGL * param1);
-static void ov80_021D1158(UnkStruct_ov80_021D2A08 * param0);
-static void ov80_021D12D8(UnkStruct_ov80_021D2A08 * param0);
-static void ov80_021D0FF4(UnkStruct_ov80_021D2A08 * param0);
-static void ov80_021D1068(UnkStruct_ov80_021D2A08 * param0);
-static int ov80_021D132C(UnkStruct_ov80_021D2A08 * param0);
-static int ov80_021D1354(UnkStruct_ov80_021D2A08 * param0);
-static int ov80_021D138C(UnkStruct_ov80_021D2A08 * param0);
-static int ov80_021D13A0(UnkStruct_ov80_021D2A08 * param0);
-static int ov80_021D13DC(UnkStruct_ov80_021D2A08 * param0);
-static int ov80_021D1438(UnkStruct_ov80_021D2A08 * param0);
-int ov80_021D1458(UnkStruct_ov80_021D2A08 * param0);
-int ov80_021D14A8(UnkStruct_ov80_021D2A08 * param0);
-int ov80_021D1550(UnkStruct_ov80_021D2A08 * param0);
-int ov80_021D159C(UnkStruct_ov80_021D2A08 * param0);
-int ov80_021D163C(UnkStruct_ov80_021D2A08 * param0);
-int ov80_021D16F8(UnkStruct_ov80_021D2A08 * param0);
-int ov80_021D1744(UnkStruct_ov80_021D2A08 * param0);
-int ov80_021D1478(UnkStruct_ov80_021D2A08 * param0);
-int ov80_021D1758(UnkStruct_ov80_021D2A08 * param0);
-int ov80_021D1678(UnkStruct_ov80_021D2A08 * param0);
-int ov80_021D15C8(UnkStruct_ov80_021D2A08 * param0);
-int ov80_021D1610(UnkStruct_ov80_021D2A08 * param0);
-int ov80_021D16D0(UnkStruct_ov80_021D2A08 * param0);
+static int ov80_021D0EC8(UnkStruct_ov80_021D2A08 *param0);
+static void ov80_021D1088(UnkStruct_ov80_021D2A08 *param0, BGL *param1);
+static void ov80_021D1158(UnkStruct_ov80_021D2A08 *param0);
+static void ov80_021D12D8(UnkStruct_ov80_021D2A08 *param0);
+static void ov80_021D0FF4(UnkStruct_ov80_021D2A08 *param0);
+static void ov80_021D1068(UnkStruct_ov80_021D2A08 *param0);
+static int ov80_021D132C(UnkStruct_ov80_021D2A08 *param0);
+static int ov80_021D1354(UnkStruct_ov80_021D2A08 *param0);
+static int ov80_021D138C(UnkStruct_ov80_021D2A08 *param0);
+static int ov80_021D13A0(UnkStruct_ov80_021D2A08 *param0);
+static int ov80_021D13DC(UnkStruct_ov80_021D2A08 *param0);
+static int ov80_021D1438(UnkStruct_ov80_021D2A08 *param0);
+int ov80_021D1458(UnkStruct_ov80_021D2A08 *param0);
+int ov80_021D14A8(UnkStruct_ov80_021D2A08 *param0);
+int ov80_021D1550(UnkStruct_ov80_021D2A08 *param0);
+int ov80_021D159C(UnkStruct_ov80_021D2A08 *param0);
+int ov80_021D163C(UnkStruct_ov80_021D2A08 *param0);
+int ov80_021D16F8(UnkStruct_ov80_021D2A08 *param0);
+int ov80_021D1744(UnkStruct_ov80_021D2A08 *param0);
+int ov80_021D1478(UnkStruct_ov80_021D2A08 *param0);
+int ov80_021D1758(UnkStruct_ov80_021D2A08 *param0);
+int ov80_021D1678(UnkStruct_ov80_021D2A08 *param0);
+int ov80_021D15C8(UnkStruct_ov80_021D2A08 *param0);
+int ov80_021D1610(UnkStruct_ov80_021D2A08 *param0);
+int ov80_021D16D0(UnkStruct_ov80_021D2A08 *param0);
 
 const UnkStruct_ov80_021D2E94 Unk_ov80_021D2E94[3] = {
     {
@@ -96,10 +97,10 @@ const UnkStruct_ov80_021D2E94 Unk_ov80_021D2E94[3] = {
     },
 };
 
-int ov80_021D0D80 (OverlayManager * param0, int * param1)
+int ov80_021D0D80(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov80_021D2A08 * v0 = NULL;
-    UnkStruct_0203D8AC * v1 = (UnkStruct_0203D8AC *)OverlayManager_Args(param0);
+    UnkStruct_ov80_021D2A08 *v0 = NULL;
+    UnkStruct_0203D8AC *v1 = (UnkStruct_0203D8AC *)OverlayManager_Args(param0);
 
     Heap_Create(3, 17, 0x20000);
 
@@ -121,9 +122,9 @@ int ov80_021D0D80 (OverlayManager * param0, int * param1)
     return 1;
 }
 
-int ov80_021D0DD8 (OverlayManager * param0, int * param1)
+int ov80_021D0DD8(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov80_021D2A08 * v0 = OverlayManager_Data(param0);
+    UnkStruct_ov80_021D2A08 *v0 = OverlayManager_Data(param0);
 
     switch (v0->unk_08) {
     case 0:
@@ -154,10 +155,10 @@ int ov80_021D0DD8 (OverlayManager * param0, int * param1)
     return 0;
 }
 
-int ov80_021D0E50 (OverlayManager * param0, int * param1)
+int ov80_021D0E50(OverlayManager *param0, int *param1)
 {
     int v0 = 0;
-    UnkStruct_ov80_021D2A08 * v1 = OverlayManager_Data(param0);
+    UnkStruct_ov80_021D2A08 *v1 = OverlayManager_Data(param0);
 
     OverlayManager_FreeData(param0);
     Heap_Destroy(17);
@@ -165,9 +166,9 @@ int ov80_021D0E50 (OverlayManager * param0, int * param1)
     return 1;
 }
 
-static void ov80_021D0E68 (void * param0)
+static void ov80_021D0E68(void *param0)
 {
-    UnkStruct_ov80_021D2A08 * v0 = param0;
+    UnkStruct_ov80_021D2A08 *v0 = param0;
 
     if (Unk_ov80_021D2E94[v0->unk_00].unk_20 != NULL) {
         (Unk_ov80_021D2E94[v0->unk_00].unk_20)(v0);
@@ -181,7 +182,7 @@ static void ov80_021D0E68 (void * param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void ov80_021D0EA8 (void)
+static void ov80_021D0EA8(void)
 {
     UnkStruct_02099F80 v0 = {
         GX_VRAM_BG_128_A,
@@ -199,7 +200,7 @@ static void ov80_021D0EA8 (void)
     GXLayers_SetBanks(&v0);
 }
 
-static int ov80_021D0EC8 (UnkStruct_ov80_021D2A08 * param0)
+static int ov80_021D0EC8(UnkStruct_ov80_021D2A08 *param0)
 {
     switch (param0->unk_0C) {
     case 0:
@@ -247,7 +248,7 @@ static int ov80_021D0EC8 (UnkStruct_ov80_021D2A08 * param0)
     return 0;
 }
 
-static void ov80_021D0FF4 (UnkStruct_ov80_021D2A08 * param0)
+static void ov80_021D0FF4(UnkStruct_ov80_021D2A08 *param0)
 {
     int v0;
 
@@ -272,13 +273,13 @@ static void ov80_021D0FF4 (UnkStruct_ov80_021D2A08 * param0)
     MessageLoader_Free(param0->unk_80);
 }
 
-static void ov80_021D1068 (UnkStruct_ov80_021D2A08 * param0)
+static void ov80_021D1068(UnkStruct_ov80_021D2A08 *param0)
 {
     (Unk_ov80_021D2E94[param0->unk_00].unk_18)(param0);
     ov80_021D2AE0(param0);
 }
 
-static void ov80_021D1088 (UnkStruct_ov80_021D2A08 * param0, BGL * param1)
+static void ov80_021D1088(UnkStruct_ov80_021D2A08 *param0, BGL *param1)
 {
     int v0, v1;
 
@@ -435,11 +436,11 @@ static void ov80_021D1088 (UnkStruct_ov80_021D2A08 * param0, BGL * param1)
     sub_02019690(7, 32, 0, param0->unk_04);
 }
 
-static void ov80_021D1158 (UnkStruct_ov80_021D2A08 * param0)
+static void ov80_021D1158(UnkStruct_ov80_021D2A08 *param0)
 {
-    void * v0;
+    void *v0;
     u32 v1, v2;
-    NARC * v3;
+    NARC *v3;
 
     v2 = 17;
     v3 = NARC_ctor(NARC_INDEX_GRAPHIC__TMAP_GRA, param0->unk_04);
@@ -465,7 +466,7 @@ static void ov80_021D1158 (UnkStruct_ov80_021D2A08 * param0)
     sub_02002E7C(4, 15 * 32, param0->unk_04);
 }
 
-static void ov80_021D12D8 (UnkStruct_ov80_021D2A08 * param0)
+static void ov80_021D12D8(UnkStruct_ov80_021D2A08 *param0)
 {
     Heap_FreeToHeap(param0->unk_B4);
     Heap_FreeToHeap(param0->unk_B0);
@@ -477,7 +478,7 @@ static void ov80_021D12D8 (UnkStruct_ov80_021D2A08 * param0)
     Heap_FreeToHeap(param0->unk_98);
 }
 
-static int ov80_021D132C (UnkStruct_ov80_021D2A08 * param0)
+static int ov80_021D132C(UnkStruct_ov80_021D2A08 *param0)
 {
     if (ov80_021D0EC8(param0) != 1) {
         return 0;
@@ -487,7 +488,7 @@ static int ov80_021D132C (UnkStruct_ov80_021D2A08 * param0)
     return 1;
 }
 
-static int ov80_021D1354 (UnkStruct_ov80_021D2A08 * param0)
+static int ov80_021D1354(UnkStruct_ov80_021D2A08 *param0)
 {
     if ((Unk_ov80_021D2E94[param0->unk_00].unk_04)(param0) != 1) {
         return 1;
@@ -497,7 +498,7 @@ static int ov80_021D1354 (UnkStruct_ov80_021D2A08 * param0)
     return 3;
 }
 
-static int ov80_021D138C (UnkStruct_ov80_021D2A08 * param0)
+static int ov80_021D138C(UnkStruct_ov80_021D2A08 *param0)
 {
     if (!ScreenWipe_Done()) {
         return 3;
@@ -506,7 +507,7 @@ static int ov80_021D138C (UnkStruct_ov80_021D2A08 * param0)
     return 4;
 }
 
-static int ov80_021D13A0 (UnkStruct_ov80_021D2A08 * param0)
+static int ov80_021D13A0(UnkStruct_ov80_021D2A08 *param0)
 {
     if ((param0->unk_38)(param0) != 1) {
         Unk_ov80_021D2E94[param0->unk_00].unk_14(param0);
@@ -517,7 +518,7 @@ static int ov80_021D13A0 (UnkStruct_ov80_021D2A08 * param0)
     return 6;
 }
 
-static int ov80_021D13DC (UnkStruct_ov80_021D2A08 * param0)
+static int ov80_021D13DC(UnkStruct_ov80_021D2A08 *param0)
 {
     if (ScreenWipe_Done()) {
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_NONE, 31, 0);
@@ -532,7 +533,7 @@ static int ov80_021D13DC (UnkStruct_ov80_021D2A08 * param0)
     return 6;
 }
 
-static int ov80_021D1438 (UnkStruct_ov80_021D2A08 * param0)
+static int ov80_021D1438(UnkStruct_ov80_021D2A08 *param0)
 {
     (Unk_ov80_021D2E94[param0->unk_00].unk_1C)(param0);
 

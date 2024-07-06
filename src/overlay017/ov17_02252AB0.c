@@ -1,30 +1,30 @@
+#include "overlay017/ov17_02252AB0.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "sys_task_manager.h"
-
-#include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/sprite_template.h"
+#include "struct_defs/struct_0200D0F4.h"
 
-#include "unk_0200C6E4.h"
-#include "sys_task.h"
 #include "heap.h"
-#include "overlay017/ov17_02252AB0.h"
+#include "sys_task.h"
+#include "sys_task_manager.h"
+#include "unk_0200C6E4.h"
 
 typedef struct UnkStruct_ov17_02252B48_t {
-    CellActorData * unk_00[5];
-    SysTask * unk_14;
+    CellActorData *unk_00[5];
+    SysTask *unk_14;
 } UnkStruct_ov17_02252B48;
 
-static void ov17_02252CB8(SysTask * param0, void * param1);
-void ov17_02252AB0(SpriteRenderer * param0, SpriteGfxHandler * param1, PaletteData * param2, u32 param3, u32 param4, u32 param5, u32 param6);
-void ov17_02252B20(SpriteGfxHandler * param0, u32 param1, u32 param2, u32 param3, u32 param4);
-UnkStruct_ov17_02252B48 * ov17_02252B48(SpriteRenderer * param0, SpriteGfxHandler * param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8);
-void ov17_02252BCC(UnkStruct_ov17_02252B48 * param0);
-void ov17_02252C9C(UnkStruct_ov17_02252B48 * param0);
+static void ov17_02252CB8(SysTask *param0, void *param1);
+void ov17_02252AB0(SpriteRenderer *param0, SpriteGfxHandler *param1, PaletteData *param2, u32 param3, u32 param4, u32 param5, u32 param6);
+void ov17_02252B20(SpriteGfxHandler *param0, u32 param1, u32 param2, u32 param3, u32 param4);
+UnkStruct_ov17_02252B48 *ov17_02252B48(SpriteRenderer *param0, SpriteGfxHandler *param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8);
+void ov17_02252BCC(UnkStruct_ov17_02252B48 *param0);
+void ov17_02252C9C(UnkStruct_ov17_02252B48 *param0);
 
 static const SpriteTemplate Unk_ov17_02254D9C = {
     0x0,
@@ -34,12 +34,12 @@ static const SpriteTemplate Unk_ov17_02254D9C = {
     0x0,
     0x0,
     NNS_G2D_VRAM_TYPE_2DSUB,
-    {0x0, 0x0, 0x0, 0x0, 0xFFFFFFFF, 0xFFFFFFFF},
+    { 0x0, 0x0, 0x0, 0x0, 0xFFFFFFFF, 0xFFFFFFFF },
     0x0,
     0x0
 };
 
-void ov17_02252AB0 (SpriteRenderer * param0, SpriteGfxHandler * param1, PaletteData * param2, u32 param3, u32 param4, u32 param5, u32 param6)
+void ov17_02252AB0(SpriteRenderer *param0, SpriteGfxHandler *param1, PaletteData *param2, u32 param3, u32 param4, u32 param5, u32 param6)
 {
     sub_0200CD7C(param2, 3, param0, param1, 27, 80, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, param4);
     sub_0200CBDC(param0, param1, 27, 250, 1, NNS_G2D_VRAM_TYPE_2DSUB, param3);
@@ -47,7 +47,7 @@ void ov17_02252AB0 (SpriteRenderer * param0, SpriteGfxHandler * param1, PaletteD
     sub_0200CE3C(param0, param1, 27, 252, 1, param6);
 }
 
-void ov17_02252B20 (SpriteGfxHandler * param0, u32 param1, u32 param2, u32 param3, u32 param4)
+void ov17_02252B20(SpriteGfxHandler *param0, u32 param1, u32 param2, u32 param3, u32 param4)
 {
     SpriteGfxHandler_UnloadCharObjById(param0, param1);
     SpriteGfxHandler_UnloadPlttObjById(param0, param2);
@@ -55,9 +55,9 @@ void ov17_02252B20 (SpriteGfxHandler * param0, u32 param1, u32 param2, u32 param
     SpriteGfxHandler_UnloadAnimObjById(param0, param4);
 }
 
-UnkStruct_ov17_02252B48 * ov17_02252B48 (SpriteRenderer * param0, SpriteGfxHandler * param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)
+UnkStruct_ov17_02252B48 *ov17_02252B48(SpriteRenderer *param0, SpriteGfxHandler *param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)
 {
-    UnkStruct_ov17_02252B48 * v0;
+    UnkStruct_ov17_02252B48 *v0;
     SpriteTemplate v1;
     int v2;
 
@@ -81,7 +81,7 @@ UnkStruct_ov17_02252B48 * ov17_02252B48 (SpriteRenderer * param0, SpriteGfxHandl
     return v0;
 }
 
-void ov17_02252BCC (UnkStruct_ov17_02252B48 * param0)
+void ov17_02252BCC(UnkStruct_ov17_02252B48 *param0)
 {
     int v0;
 
@@ -93,7 +93,7 @@ void ov17_02252BCC (UnkStruct_ov17_02252B48 * param0)
     Heap_FreeToHeap(param0);
 }
 
-void ov17_02252BF0 (UnkStruct_ov17_02252B48 * param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, fx32 param9)
+void ov17_02252BF0(UnkStruct_ov17_02252B48 *param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, fx32 param9)
 {
     int v0;
 
@@ -112,12 +112,12 @@ void ov17_02252BF0 (UnkStruct_ov17_02252B48 * param0, int param1, int param2, in
     }
 }
 
-void ov17_02252C78 (UnkStruct_ov17_02252B48 * param0, int param1, int param2, int param3, int param4, fx32 param5)
+void ov17_02252C78(UnkStruct_ov17_02252B48 *param0, int param1, int param2, int param3, int param4, fx32 param5)
 {
     ov17_02252BF0(param0, param1, param3, param2, param3, param1, param4, param2, param4, param5);
 }
 
-void ov17_02252C9C (UnkStruct_ov17_02252B48 * param0)
+void ov17_02252C9C(UnkStruct_ov17_02252B48 *param0)
 {
     int v0;
 
@@ -126,9 +126,9 @@ void ov17_02252C9C (UnkStruct_ov17_02252B48 * param0)
     }
 }
 
-static void ov17_02252CB8 (SysTask * param0, void * param1)
+static void ov17_02252CB8(SysTask *param0, void *param1)
 {
-    UnkStruct_ov17_02252B48 * v0 = param1;
+    UnkStruct_ov17_02252B48 *v0 = param1;
     int v1;
 
     if (sub_0200D408(v0->unk_00[0]) == 0) {

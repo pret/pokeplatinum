@@ -3,6 +3,6 @@
 
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 
-typedef void (* UnkFuncPtr_ov12_02239EEC)(UnkStruct_ov12_0221FCDC *);
+typedef void (*UnkFuncPtr_ov12_02239EEC)(UnkStruct_ov12_0221FCDC *);
 
 #endif // POKEPLATINUM_FUNCPTR_OV12_02239EEC_H

@@ -1,28 +1,27 @@
+#include "unk_020480A8.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "inlines.h"
-
-#include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
 
 #include "field/field_system.h"
-#include "field_script_context.h"
-
 #include "savedata/save_table.h"
-#include "unk_020480A8.h"
-#include "vars_flags.h"
-#include "unk_0206AFE0.h"
-#include "pokemon.h"
-#include "unk_020797C8.h"
+
+#include "field_script_context.h"
+#include "inlines.h"
 #include "party.h"
+#include "pokemon.h"
+#include "unk_0206AFE0.h"
+#include "unk_020797C8.h"
+#include "vars_flags.h"
 
 static u8 sub_02048268(u16 param0, u16 param1);
 
-BOOL ScrCmd_24E (ScriptContext * param0)
+BOOL ScrCmd_24E(ScriptContext *param0)
 {
-    VarsFlags * v0 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
-    u16 * v1 = ScriptContext_GetVarPointer(param0);
+    VarsFlags *v0 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
+    u16 *v1 = ScriptContext_GetVarPointer(param0);
     u32 v2;
 
     v2 = sub_0206B2A4(v0);
@@ -31,15 +30,15 @@ BOOL ScrCmd_24E (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_24F (ScriptContext * param0)
+BOOL ScrCmd_24F(ScriptContext *param0)
 {
-    FieldSystem * fieldSystem = param0->fieldSystem;
-    Pokemon * v1;
-    BoxPokemon * v2;
-    PCBoxes * v3 = SaveData_PCBoxes(fieldSystem->saveData);
-    u16 * v4 = ScriptContext_GetVarPointer(param0);
-    u16 * v5 = ScriptContext_GetVarPointer(param0);
-    u16 * v6 = ScriptContext_GetVarPointer(param0);
+    FieldSystem *fieldSystem = param0->fieldSystem;
+    Pokemon *v1;
+    BoxPokemon *v2;
+    PCBoxes *v3 = SaveData_PCBoxes(fieldSystem->saveData);
+    u16 *v4 = ScriptContext_GetVarPointer(param0);
+    u16 *v5 = ScriptContext_GetVarPointer(param0);
+    u16 *v6 = ScriptContext_GetVarPointer(param0);
     u16 v7 = ScriptContext_GetVar(param0);
     u16 v8, v9, v10;
     u16 v11, v12;
@@ -104,9 +103,9 @@ BOOL ScrCmd_24F (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_250 (ScriptContext * param0)
+BOOL ScrCmd_250(ScriptContext *param0)
 {
-    VarsFlags * v0 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
+    VarsFlags *v0 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
 
     sub_0206B2C8(v0);
     return 0;
@@ -114,7 +113,7 @@ BOOL ScrCmd_250 (ScriptContext * param0)
 
 static u16 Unk_021C07F0 = 0, Unk_021C07F2 = 0;
 
-static u8 sub_02048268 (u16 param0, u16 param1)
+static u8 sub_02048268(u16 param0, u16 param1)
 {
     u8 v0, v1;
 

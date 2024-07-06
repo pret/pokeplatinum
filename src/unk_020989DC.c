@@ -1,35 +1,34 @@
-#include "enums.h"
+#include "unk_020989DC.h"
 
 #include <nitro.h>
 #include <string.h>
 
-#include "pokemon.h"
-#include "savedata.h"
-
-#include "constdata/const_020F1E88.h"
-#include "constdata/const_020F410C.h"
-#include "constdata/const_020F6890.h"
-
+#include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_0202A93C.h"
 #include "struct_defs/struct_0203D9B8.h"
 #include "struct_defs/struct_020989DC.h"
 #include "struct_defs/struct_02098C44.h"
-#include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_02098DE8.h"
 
-#include "overlay_manager.h"
-#include "string_template.h"
-#include "heap.h"
-#include "save_player.h"
-#include "game_options.h"
-#include "poffin.h"
-#include "pokemon.h"
-#include "party.h"
-#include "bag.h"
-#include "pokemon_summary_app.h"
-#include "unk_020989DC.h"
 #include "overlay079/ov79_021D0D80.h"
 #include "overlay079/ov79_021D2268.h"
+
+#include "bag.h"
+#include "enums.h"
+#include "game_options.h"
+#include "heap.h"
+#include "overlay_manager.h"
+#include "party.h"
+#include "poffin.h"
+#include "pokemon.h"
+#include "pokemon_summary_app.h"
+#include "save_player.h"
+#include "savedata.h"
+#include "string_template.h"
+
+#include "constdata/const_020F1E88.h"
+#include "constdata/const_020F410C.h"
+#include "constdata/const_020F6890.h"
 
 FS_EXTERN_OVERLAY(overlay79);
 
@@ -67,23 +66,23 @@ typedef struct {
     u8 unk_08;
     u8 unk_09;
     u16 unk_0A;
-    UnkStruct_0203D9B8 * unk_0C;
-    void * unk_10;
-    OverlayManager * unk_14;
+    UnkStruct_0203D9B8 *unk_0C;
+    void *unk_10;
+    OverlayManager *unk_14;
 } UnkStruct_02098BE4;
 
-static int sub_02098B1C(OverlayManager * param0, int * param1);
-static int sub_02098B50(OverlayManager * param0, int * param1);
-static int sub_02098BC4(OverlayManager * param0, int * param1);
-static void sub_02098BE4(UnkStruct_02098BE4 * param0);
-static int sub_02098C2C(UnkStruct_02098BE4 * param0);
-static int sub_02098C44(UnkStruct_02098BE4 * param0);
-static int sub_02098CB0(UnkStruct_02098BE4 * param0);
-static int sub_02098D38(UnkStruct_02098BE4 * param0);
-static int sub_02098D7C(UnkStruct_02098BE4 * param0);
-static int sub_02098DE8(UnkStruct_02098BE4 * param0);
-static int sub_02098E0C(UnkStruct_02098BE4 * param0);
-static int sub_02098E88(UnkStruct_02098BE4 * param0);
+static int sub_02098B1C(OverlayManager *param0, int *param1);
+static int sub_02098B50(OverlayManager *param0, int *param1);
+static int sub_02098BC4(OverlayManager *param0, int *param1);
+static void sub_02098BE4(UnkStruct_02098BE4 *param0);
+static int sub_02098C2C(UnkStruct_02098BE4 *param0);
+static int sub_02098C44(UnkStruct_02098BE4 *param0);
+static int sub_02098CB0(UnkStruct_02098BE4 *param0);
+static int sub_02098D38(UnkStruct_02098BE4 *param0);
+static int sub_02098D7C(UnkStruct_02098BE4 *param0);
+static int sub_02098DE8(UnkStruct_02098BE4 *param0);
+static int sub_02098E0C(UnkStruct_02098BE4 *param0);
+static int sub_02098E88(UnkStruct_02098BE4 *param0);
 
 const OverlayManagerTemplate Unk_020F6890 = {
     sub_02098B1C,
@@ -92,12 +91,12 @@ const OverlayManagerTemplate Unk_020F6890 = {
     0xFFFFFFFF
 };
 
-UnkStruct_0203D9B8 * sub_020989DC (SaveData * param0, int param1)
+UnkStruct_0203D9B8 *sub_020989DC(SaveData *param0, int param1)
 {
-    UnkStruct_0203D9B8 * v0;
-    Poffin * v1;
-    UnkStruct_020989DC * v2;
-    StringTemplate * v3;
+    UnkStruct_0203D9B8 *v0;
+    Poffin *v1;
+    UnkStruct_020989DC *v2;
+    StringTemplate *v3;
     u8 v4[7];
     u8 v5 = 0, v6 = 0, v7 = 0;
     u8 v8 = 0;
@@ -154,13 +153,13 @@ UnkStruct_0203D9B8 * sub_020989DC (SaveData * param0, int param1)
     return v0;
 }
 
-void sub_02098AF0 (UnkStruct_0203D9B8 * param0)
+void sub_02098AF0(UnkStruct_0203D9B8 *param0)
 {
     int v0;
     Heap_FreeToHeap(param0);
 }
 
-static BOOL sub_02098AF8 (OverlayManager ** param0)
+static BOOL sub_02098AF8(OverlayManager **param0)
 {
     if (*param0) {
         if (OverlayManager_Exec(*param0)) {
@@ -173,10 +172,10 @@ static BOOL sub_02098AF8 (OverlayManager ** param0)
     return 0;
 }
 
-static int sub_02098B1C (OverlayManager * param0, int * param1)
+static int sub_02098B1C(OverlayManager *param0, int *param1)
 {
-    UnkStruct_02098BE4 * v0 = NULL;
-    void * v1 = OverlayManager_Args(param0);
+    UnkStruct_02098BE4 *v0 = NULL;
+    void *v1 = OverlayManager_Args(param0);
 
     Heap_Create(3, 44, 0x1000);
 
@@ -189,9 +188,9 @@ static int sub_02098B1C (OverlayManager * param0, int * param1)
     return 1;
 }
 
-static int sub_02098B50 (OverlayManager * param0, int * param1)
+static int sub_02098B50(OverlayManager *param0, int *param1)
 {
-    UnkStruct_02098BE4 * v0 = (UnkStruct_02098BE4 *)OverlayManager_Data(param0);
+    UnkStruct_02098BE4 *v0 = (UnkStruct_02098BE4 *)OverlayManager_Data(param0);
 
     switch (*param1) {
     case 0:
@@ -225,9 +224,9 @@ static int sub_02098B50 (OverlayManager * param0, int * param1)
     return 0;
 }
 
-static int  sub_02098BC4 (OverlayManager * param0, int * param1)
+static int sub_02098BC4(OverlayManager *param0, int *param1)
 {
-    UnkStruct_02098BE4 * v0 = (UnkStruct_02098BE4 *)OverlayManager_Data(param0);
+    UnkStruct_02098BE4 *v0 = (UnkStruct_02098BE4 *)OverlayManager_Data(param0);
 
     sub_02098BE4(v0);
     OverlayManager_FreeData(param0);
@@ -236,10 +235,10 @@ static int  sub_02098BC4 (OverlayManager * param0, int * param1)
     return 1;
 }
 
-static void sub_02098BE4 (UnkStruct_02098BE4 * param0)
+static void sub_02098BE4(UnkStruct_02098BE4 *param0)
 {
     u8 v0 = 0, v1 = 0;
-    UnkStruct_020989DC * v2;
+    UnkStruct_020989DC *v2;
 
     for (v0 = 0; v0 < param0->unk_0C->unk_00; v0++) {
         v2 = &param0->unk_0C->unk_1C[v0];
@@ -257,7 +256,7 @@ static void sub_02098BE4 (UnkStruct_02098BE4 * param0)
     sub_0202ABD4(param0->unk_0C->unk_08);
 }
 
-static int sub_02098C2C (UnkStruct_02098BE4 * param0)
+static int sub_02098C2C(UnkStruct_02098BE4 *param0)
 {
     FS_EXTERN_OVERLAY(overlay79);
 
@@ -272,9 +271,9 @@ static int sub_02098C2C (UnkStruct_02098BE4 * param0)
     return 1;
 }
 
-static int sub_02098C44 (UnkStruct_02098BE4 * param0)
+static int sub_02098C44(UnkStruct_02098BE4 *param0)
 {
-    PartyManagementData * v0;
+    PartyManagementData *v0;
 
     if (!sub_02098AF8(&param0->unk_14)) {
         return 1;
@@ -300,11 +299,11 @@ static int sub_02098C44 (UnkStruct_02098BE4 * param0)
     return 2;
 }
 
-static int sub_02098CB0 (UnkStruct_02098BE4 * param0)
+static int sub_02098CB0(UnkStruct_02098BE4 *param0)
 {
     u8 v0;
-    PartyManagementData * v1;
-    PokemonSummary * v2;
+    PartyManagementData *v1;
+    PokemonSummary *v2;
     static const u8 v3[] = {
         4, 7, 8
     };
@@ -343,9 +342,9 @@ static int sub_02098CB0 (UnkStruct_02098BE4 * param0)
     return 3;
 }
 
-static int sub_02098D38 (UnkStruct_02098BE4 * param0)
+static int sub_02098D38(UnkStruct_02098BE4 *param0)
 {
-    PokemonSummary * v0;
+    PokemonSummary *v0;
     u8 v1;
 
     if (!sub_02098AF8(&param0->unk_14)) {
@@ -369,7 +368,7 @@ static int sub_02098D38 (UnkStruct_02098BE4 * param0)
     return 4;
 }
 
-static int sub_02098D7C (UnkStruct_02098BE4 * param0)
+static int sub_02098D7C(UnkStruct_02098BE4 *param0)
 {
     FS_EXTERN_OVERLAY(overlay79);
 
@@ -379,7 +378,7 @@ static int sub_02098D7C (UnkStruct_02098BE4 * param0)
         ov79_021D2460,
         FS_OVERLAY_ID(overlay79),
     };
-    UnkStruct_02098DE8 * v1;
+    UnkStruct_02098DE8 *v1;
 
     v1 = Heap_AllocFromHeap(param0->unk_00, sizeof(UnkStruct_02098DE8));
     MI_CpuClear8(v1, sizeof(UnkStruct_02098DE8));
@@ -396,9 +395,9 @@ static int sub_02098D7C (UnkStruct_02098BE4 * param0)
     return 5;
 }
 
-static int sub_02098DE8 (UnkStruct_02098BE4 * param0)
+static int sub_02098DE8(UnkStruct_02098BE4 *param0)
 {
-    UnkStruct_02098DE8 * v0;
+    UnkStruct_02098DE8 *v0;
 
     if (!sub_02098AF8(&param0->unk_14)) {
         return 5;
@@ -412,11 +411,11 @@ static int sub_02098DE8 (UnkStruct_02098BE4 * param0)
     return 6;
 }
 
-static int sub_02098E0C (UnkStruct_02098BE4 * param0)
+static int sub_02098E0C(UnkStruct_02098BE4 *param0)
 {
     u8 v0;
-    PokemonSummary * v1;
-    Poffin * v2;
+    PokemonSummary *v1;
+    Poffin *v2;
     static const u8 v3[] = {
         4, 8
     };
@@ -444,11 +443,11 @@ static int sub_02098E0C (UnkStruct_02098BE4 * param0)
     return 7;
 }
 
-static int sub_02098E88 (UnkStruct_02098BE4 * param0)
+static int sub_02098E88(UnkStruct_02098BE4 *param0)
 {
     u8 v0;
-    PokemonSummary * v1;
-    Poffin * v2;
+    PokemonSummary *v1;
+    Poffin *v2;
 
     if (!sub_02098AF8(&param0->unk_14)) {
         return 7;
@@ -461,7 +460,7 @@ static int sub_02098E88 (UnkStruct_02098BE4 * param0)
     return 0;
 }
 
-UnkEnum_02098EAC sub_02098EAC (Poffin * param0, u8 param1)
+UnkEnum_02098EAC sub_02098EAC(Poffin *param0, u8 param1)
 {
     u8 v0[7];
     u8 v1, v2, v3;
@@ -491,7 +490,7 @@ UnkEnum_02098EAC sub_02098EAC (Poffin * param0, u8 param1)
     }
 }
 
-void sub_02098EF8 (Poffin * param0, Pokemon * param1)
+void sub_02098EF8(Poffin *param0, Pokemon *param1)
 {
     u8 v0, v1;
     u8 v2, v3;

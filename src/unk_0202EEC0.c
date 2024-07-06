@@ -1,11 +1,10 @@
+#include "unk_0202EEC0.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "pokemon.h"
-
 #include "rtc.h"
-#include "unk_0202EEC0.h"
-#include "pokemon.h"
 
 typedef struct PalParkTransfer {
     Pokemon unk_00[6];
@@ -15,12 +14,12 @@ typedef struct PalParkTransfer {
     u8 unk_380[6];
 } PalParkTransfer;
 
-int PalParkTransfer_SaveSize (void)
+int PalParkTransfer_SaveSize(void)
 {
     return sizeof(PalParkTransfer);
 }
 
-void PalParkTransfer_Init (PalParkTransfer * param0)
+void PalParkTransfer_Init(PalParkTransfer *param0)
 {
     int v0;
 
@@ -32,7 +31,7 @@ void PalParkTransfer_Init (PalParkTransfer * param0)
     }
 }
 
-void sub_0202EF04 (PalParkTransfer * param0)
+void sub_0202EF04(PalParkTransfer *param0)
 {
     int v0;
 
@@ -44,7 +43,7 @@ void sub_0202EF04 (PalParkTransfer * param0)
     }
 }
 
-static int sub_0202EF40 (PalParkTransfer * param0, u32 param1)
+static int sub_0202EF40(PalParkTransfer *param0, u32 param1)
 {
     int v0, v1;
     s64 v2;
@@ -73,12 +72,12 @@ static int sub_0202EF40 (PalParkTransfer * param0, u32 param1)
     return v1;
 }
 
-void sub_0202EFA4 (PalParkTransfer * param0, BoxPokemon * param1, int param2)
+void sub_0202EFA4(PalParkTransfer *param0, BoxPokemon *param1, int param2)
 {
     Pokemon_FromBoxPokemon(param1, &param0->unk_00[param2]);
 }
 
-void sub_0202EFB8 (PalParkTransfer * param0, u32 param1)
+void sub_0202EFB8(PalParkTransfer *param0, u32 param1)
 {
     int v0 = sub_0202EF40(param0, param1);
 
@@ -89,13 +88,13 @@ void sub_0202EFB8 (PalParkTransfer * param0, u32 param1)
     OS_GetMacAddress(param0->unk_380);
 }
 
-void sub_0202F000 (const PalParkTransfer * param0, int param1, Pokemon * param2)
+void sub_0202F000(const PalParkTransfer *param0, int param1, Pokemon *param2)
 {
     GF_ASSERT(param1 < 6);
     *param2 = param0->unk_00[param1];
 }
 
-int sub_0202F028 (const PalParkTransfer * param0)
+int sub_0202F028(const PalParkTransfer *param0)
 {
     int v0, v1;
 
@@ -108,7 +107,7 @@ int sub_0202F028 (const PalParkTransfer * param0)
     return v1;
 }
 
-int sub_0202F050 (const PalParkTransfer * param0, u32 param1)
+int sub_0202F050(const PalParkTransfer *param0, u32 param1)
 {
     int v0;
     s64 v1 = GetTimestamp();
@@ -122,7 +121,7 @@ int sub_0202F050 (const PalParkTransfer * param0, u32 param1)
     return 0;
 }
 
-BOOL sub_0202F088 (const PalParkTransfer * param0)
+BOOL sub_0202F088(const PalParkTransfer *param0)
 {
     int v0;
     u8 v1[6];
@@ -138,12 +137,12 @@ BOOL sub_0202F088 (const PalParkTransfer * param0)
     return 1;
 }
 
-BOOL sub_0202F0BC (const PalParkTransfer * param0)
+BOOL sub_0202F0BC(const PalParkTransfer *param0)
 {
     return param0->unk_378 == OS_GetOwnerRtcOffset();
 }
 
-BOOL sub_0202F0E0 (const PalParkTransfer * param0)
+BOOL sub_0202F0E0(const PalParkTransfer *param0)
 {
     int v0;
     u8 v1;

@@ -1,18 +1,18 @@
+#include "unk_02017728.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-
 #include "struct_defs/struct_02017E74.h"
 
-#include "unk_02017728.h"
+#include "core_sys.h"
 #include "heap.h"
 #include "sys_task_manager.h"
 #include "unk_0201D15C.h"
 #include "unk_02024358.h"
 
 typedef struct {
-    void * unk_00;
+    void *unk_00;
     u32 unk_04;
 } UnkStruct_021BF6F0;
 
@@ -22,7 +22,7 @@ static void ApplyButtonModeToInput(void);
 
 CoreSys gCoreSys;
 
-void sub_02017728 (void)
+void sub_02017728(void)
 {
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 
@@ -32,33 +32,33 @@ void sub_02017728 (void)
     gCoreSys.unk_30++;
 }
 
-static void sub_0201775C (void)
+static void sub_0201775C(void)
 {
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
     MI_WaitDma(GX_DEFAULT_DMAID);
 }
 
-void sub_0201777C (void)
+void sub_0201777C(void)
 {
     (void)OS_DisableIrqMask(OS_IE_V_BLANK);
     OS_SetIrqFunction(OS_IE_V_BLANK, sub_0201775C);
     (void)OS_EnableIrqMask(OS_IE_V_BLANK);
 }
 
-void SetMainCallback (Callback cb, void * data)
+void SetMainCallback(Callback cb, void *data)
 {
     gCoreSys.mainCallback = cb;
     gCoreSys.mainCallbackData = data;
 }
 
-void DisableHBlank (void)
+void DisableHBlank(void)
 {
     SetHBlankEnabled(0);
     gCoreSys.hblankCallback = NULL;
     gCoreSys.hblankCallbackData = NULL;
 }
 
-BOOL SetHBlankCallback (Callback cb, void * data)
+BOOL SetHBlankCallback(Callback cb, void *data)
 {
     if (cb == NULL) {
         SetHBlankEnabled(0);
@@ -77,18 +77,18 @@ BOOL SetHBlankCallback (Callback cb, void * data)
     }
 }
 
-static void HBlankIntr (void)
+static void HBlankIntr(void)
 {
     if (gCoreSys.hblankCallback) {
         gCoreSys.hblankCallback(gCoreSys.hblankCallbackData);
     }
 }
 
-static void SetHBlankEnabled (BOOL enabled)
+static void SetHBlankEnabled(BOOL enabled)
 {
     OSIrqMask savedMask;
 
-    OS_DisableIrq( );
+    OS_DisableIrq();
 
     if (!enabled) {
         savedMask = OS_GetIrqMask();
@@ -101,17 +101,17 @@ static void SetHBlankEnabled (BOOL enabled)
         GX_HBlankIntr(1);
     }
 
-    OS_EnableIrq( );
+    OS_EnableIrq();
 }
 
 static const HeapParam Unk_020E5674[] = {
-    {0xD200, OS_ARENA_MAIN},
-    {0x20E00, OS_ARENA_MAIN},
-    {0x10, OS_ARENA_MAIN},
-    {0x10D800, OS_ARENA_MAIN}
+    { 0xD200, OS_ARENA_MAIN },
+    { 0x20E00, OS_ARENA_MAIN },
+    { 0x10, OS_ARENA_MAIN },
+    { 0x10D800, OS_ARENA_MAIN }
 };
 
-static void sub_02017850 (void)
+static void sub_02017850(void)
 {
     u32 v0[8];
     u8 v1[MATH_MD5_DIGEST_SIZE];
@@ -135,7 +135,7 @@ static void sub_02017850 (void)
     Heap_InitSystem(Unk_020E5674, NELEMS(Unk_020E5674), 123, v2);
 }
 
-void sub_0201789C (void)
+void sub_0201789C(void)
 {
     OS_Init();
     FX_Init();
@@ -167,7 +167,7 @@ void sub_0201789C (void)
 
     {
         u32 v0 = FS_GetTableSize();
-        void * v1 = OS_AllocFromMainArenaLo(v0, 4);
+        void *v1 = OS_AllocFromMainArenaLo(v0, 4);
 
         GF_ASSERT(v1 != NULL);
         FS_LoadTable(v1, v0);
@@ -186,7 +186,7 @@ void sub_0201789C (void)
     sub_0201D640(0);
 }
 
-void InitGraphics (void)
+void InitGraphics(void)
 {
     GX_SetBankForLCDC(GX_VRAM_LCDC_ALL);
 
@@ -200,10 +200,10 @@ void InitGraphics (void)
     MI_CpuClearFast((void *)HW_DB_PLTT, HW_DB_PLTT_SIZE);
 }
 
-void * ReadFileToHeap (int heapID, const char * filename)
+void *ReadFileToHeap(int heapID, const char *filename)
 {
     FSFile file;
-    void * buf;
+    void *buf;
 
     FS_InitFile(&file);
 
@@ -227,7 +227,7 @@ void * ReadFileToHeap (int heapID, const char * filename)
     return buf;
 }
 
-void ReadFileToBuffer (const char * filename, void ** buf)
+void ReadFileToBuffer(const char *filename, void **buf)
 {
     FSFile file;
 
@@ -248,7 +248,7 @@ void ReadFileToBuffer (const char * filename, void ** buf)
 
 UnkStruct_021BF6F0 Unk_021BF6F0[128];
 
-void sub_02017ACC (void)
+void sub_02017ACC(void)
 {
     int v0;
 
@@ -262,7 +262,7 @@ void sub_02017ACC (void)
     }
 }
 
-void InitKeypadAndTouchpad (void)
+void InitKeypadAndTouchpad(void)
 {
     TPCalibrateParam v0;
 
@@ -296,22 +296,22 @@ void InitKeypadAndTouchpad (void)
     }
 }
 
-void sub_02017B70 (int param0)
+void sub_02017B70(int param0)
 {
     gCoreSys.unk_66 = param0;
 }
 
-void SleepLock (u8 param0)
+void SleepLock(u8 param0)
 {
     gCoreSys.inhibitSleep |= param0;
 }
 
-void SleepUnlock (u8 param0)
+void SleepUnlock(u8 param0)
 {
     gCoreSys.inhibitSleep &= ~(param0);
 }
 
-void ReadKeypadAndTouchpad (void)
+void ReadKeypadAndTouchpad(void)
 {
     TPData tpRaw;
     TPData tp;
@@ -350,7 +350,8 @@ void ReadKeypadAndTouchpad (void)
     ApplyButtonModeToInput();
 
     if (gCoreSys.unk_64 == 0) {
-        while (TP_RequestRawSampling(&tpRaw) != 0);
+        while (TP_RequestRawSampling(&tpRaw) != 0)
+            ;
     } else {
         TP_GetLatestRawPointInAuto(&tpRaw);
     }
@@ -383,7 +384,7 @@ void ReadKeypadAndTouchpad (void)
     gCoreSys.touchHeld = tp.touch;
 }
 
-static void ApplyButtonModeToInput (void)
+static void ApplyButtonModeToInput(void)
 {
     switch (gCoreSys.buttonMode) {
     default:
@@ -402,21 +403,20 @@ static void ApplyButtonModeToInput (void)
             gCoreSys.pressedKeysRepeatable |= PAD_BUTTON_X;
         }
         break;
-    case BUTTON_MODE_SWAP_XY:
-        {
-            u32 tmp = 0;
+    case BUTTON_MODE_SWAP_XY: {
+        u32 tmp = 0;
 
-            if (gCoreSys.pressedKeys & PAD_BUTTON_X) {
-                tmp |= PAD_BUTTON_Y;
-            }
-
-            if (gCoreSys.pressedKeys & PAD_BUTTON_Y) {
-                tmp |= PAD_BUTTON_X;
-            }
-
-            gCoreSys.pressedKeys &= ((PAD_BUTTON_X | PAD_BUTTON_Y) ^ 0xffff);
-            gCoreSys.pressedKeys |= tmp;
+        if (gCoreSys.pressedKeys & PAD_BUTTON_X) {
+            tmp |= PAD_BUTTON_Y;
         }
+
+        if (gCoreSys.pressedKeys & PAD_BUTTON_Y) {
+            tmp |= PAD_BUTTON_X;
+        }
+
+        gCoreSys.pressedKeys &= ((PAD_BUTTON_X | PAD_BUTTON_Y) ^ 0xffff);
+        gCoreSys.pressedKeys |= tmp;
+    }
         {
             u32 tmp = 0;
 
@@ -466,25 +466,25 @@ static void ApplyButtonModeToInput (void)
     }
 }
 
-void SetAutorepeat (int rate, int delay)
+void SetAutorepeat(int rate, int delay)
 {
     gCoreSys.autorepeatRate = rate;
     gCoreSys.autorepeatDelay = delay;
 }
 
-void ResetLock (u8 param0)
+void ResetLock(u8 param0)
 {
     gCoreSys.inhibitReset |= param0;
 }
 
-void ResetUnlock (u8 param0)
+void ResetUnlock(u8 param0)
 {
     gCoreSys.inhibitReset &= ~(param0);
 }
 
 #define HEAP_CANARY 0x2f93a1bc
 
-void InitHeapCanary (int heapID)
+void InitHeapCanary(int heapID)
 {
     GF_ASSERT(gCoreSys.heapCanary == NULL);
 
@@ -492,7 +492,7 @@ void InitHeapCanary (int heapID)
     *(gCoreSys.heapCanary) = HEAP_CANARY;
 }
 
-void FreeHeapCanary (void)
+void FreeHeapCanary(void)
 {
     GF_ASSERT(gCoreSys.heapCanary != NULL);
 
@@ -501,7 +501,7 @@ void FreeHeapCanary (void)
     gCoreSys.heapCanary = NULL;
 }
 
-BOOL HeapCanaryOK (void)
+BOOL HeapCanaryOK(void)
 {
     if (gCoreSys.heapCanary && *gCoreSys.heapCanary == HEAP_CANARY) {
         return 1;

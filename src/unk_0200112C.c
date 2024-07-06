@@ -1,19 +1,19 @@
-#include <nitro.h>
-#include <string.h>
-#include <nnsys.h>
+#include "unk_0200112C.h"
 
-#include "core_sys.h"
+#include <nitro.h>
+#include <nnsys.h>
+#include <string.h>
 
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_020149F0_decl.h"
-
 #include "struct_defs/struct_02013A04_t.h"
+
 #include "overlay084/struct_ov84_02240FA8.h"
 
-#include "unk_0200112C.h"
+#include "core_sys.h"
+#include "heap.h"
 #include "unk_02002B7C.h"
 #include "unk_020149F0.h"
-#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 
@@ -30,7 +30,7 @@ typedef struct {
 typedef struct UnkStruct_0200112C_t {
     UnkStruct_ov84_02240FA8 unk_00;
     UnkStruct_0200112C_sub1 unk_1F;
-    UnkStruct_020149F0 * unk_24;
+    UnkStruct_020149F0 *unk_24;
     u16 unk_28;
     u16 unk_2A;
     u8 unk_2C;
@@ -40,18 +40,18 @@ typedef struct UnkStruct_0200112C_t {
     u8 unk_30;
 } BmpList;
 
-static void sub_020015D0(BmpList * param0, void * param1, u8 param2, u8 param3);
-static void sub_02001688(BmpList * param0, u16 param1, u16 param2, u16 param3);
-static void sub_02001720(BmpList * param0);
-static void sub_02001778(BmpList * param0, u16 param1);
-static u8 sub_020017E0(BmpList * param0, u8 param1);
-static void sub_02001900(BmpList * param0, u8 param1, u8 param2);
-static u8 sub_02001A18(BmpList * param0, u8 param1, u8 param2, u8 param3);
-static void sub_02001AD8(BmpList * param0, u8 param1);
+static void sub_020015D0(BmpList *param0, void *param1, u8 param2, u8 param3);
+static void sub_02001688(BmpList *param0, u16 param1, u16 param2, u16 param3);
+static void sub_02001720(BmpList *param0);
+static void sub_02001778(BmpList *param0, u16 param1);
+static u8 sub_020017E0(BmpList *param0, u8 param1);
+static void sub_02001900(BmpList *param0, u8 param1, u8 param2);
+static u8 sub_02001A18(BmpList *param0, u8 param1, u8 param2, u8 param3);
+static void sub_02001AD8(BmpList *param0, u8 param1);
 
-BmpList * sub_0200112C (const UnkStruct_ov84_02240FA8 * param0, u16 param1, u16 param2, u8 param3)
+BmpList *sub_0200112C(const UnkStruct_ov84_02240FA8 *param0, u16 param1, u16 param2, u8 param3)
 {
-    BmpList * v0 = (BmpList *)Heap_AllocFromHeap(param3, sizeof(BmpList));
+    BmpList *v0 = (BmpList *)Heap_AllocFromHeap(param3, sizeof(BmpList));
 
     v0->unk_00 = *param0;
     v0->unk_24 = sub_020149F0(param3);
@@ -84,7 +84,7 @@ BmpList * sub_0200112C (const UnkStruct_ov84_02240FA8 * param0, u16 param1, u16 
     return v0;
 }
 
-u32 sub_02001288 (BmpList * param0)
+u32 sub_02001288(BmpList *param0)
 {
     u16 v0, v1;
 
@@ -149,7 +149,7 @@ u32 sub_02001288 (BmpList * param0)
     return 0xffffffff;
 }
 
-void sub_02001384 (BmpList * param0, u16 * param1, u16 * param2)
+void sub_02001384(BmpList *param0, u16 *param1, u16 *param2)
 {
     if (param1 != NULL) {
         *param1 = param0->unk_28;
@@ -163,7 +163,7 @@ void sub_02001384 (BmpList * param0, u16 * param1, u16 * param2)
     Heap_FreeToHeapExplicit(param0->unk_30, param0);
 }
 
-void sub_020013AC (BmpList * param0)
+void sub_020013AC(BmpList *param0)
 {
     BGL_FillWindow(param0->unk_00.unk_0C, param0->unk_00.unk_18_0);
     sub_02001688(param0, param0->unk_28, 0, param0->unk_00.unk_12);
@@ -171,14 +171,14 @@ void sub_020013AC (BmpList * param0)
     sub_0201A954(param0->unk_00.unk_0C);
 }
 
-void sub_020013D8 (BmpList * param0, u8 param1, u8 param2, u8 param3)
+void sub_020013D8(BmpList *param0, u8 param1, u8 param2, u8 param3)
 {
     param0->unk_00.unk_17_4 = param1;
     param0->unk_00.unk_18_0 = param2;
     param0->unk_00.unk_18_4 = param3;
 }
 
-u32 sub_02001408 (BmpList * param0, UnkStruct_ov84_02240FA8 * param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 * param6, u16 * param7)
+u32 sub_02001408(BmpList *param0, UnkStruct_ov84_02240FA8 *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 *param6, u16 *param7)
 {
     if (param1) {
         param0->unk_00 = *param1;
@@ -206,7 +206,7 @@ u32 sub_02001408 (BmpList * param0, UnkStruct_ov84_02240FA8 * param1, u16 param2
     return 0xffffffff;
 }
 
-void sub_0200147C (BmpList * param0, u8 param1, u8 param2, u8 param3)
+void sub_0200147C(BmpList *param0, u8 param1, u8 param2, u8 param3)
 {
     param0->unk_1F.unk_00_0 = param1;
     param0->unk_1F.unk_00_4 = param2;
@@ -214,12 +214,12 @@ void sub_0200147C (BmpList * param0, u8 param1, u8 param2, u8 param3)
     param0->unk_1F.unk_04_7 = 1;
 }
 
-void sub_020014D0 (BmpList * param0, u16 * param1)
+void sub_020014D0(BmpList *param0, u16 *param1)
 {
     *param1 = (u16)(param0->unk_28 + param0->unk_2A);
 }
 
-void sub_020014DC (BmpList * param0, u16 * param1, u16 * param2)
+void sub_020014DC(BmpList *param0, u16 *param1, u16 *param2)
 {
     if (param1 != NULL) {
         *param1 = param0->unk_28;
@@ -230,17 +230,17 @@ void sub_020014DC (BmpList * param0, u16 * param1, u16 * param2)
     }
 }
 
-u8 sub_020014F0 (BmpList * param0)
+u8 sub_020014F0(BmpList *param0)
 {
     return param0->unk_2F;
 }
 
-u32 sub_020014F8 (BmpList * param0, u16 param1)
+u32 sub_020014F8(BmpList *param0, u16 param1)
 {
     return param0->unk_00.unk_00[param1].unk_04;
 }
 
-u32 sub_02001504 (BmpList * param0, u8 param1)
+u32 sub_02001504(BmpList *param0, u8 param1)
 {
     u32 v0;
 
@@ -309,12 +309,12 @@ u32 sub_02001504 (BmpList * param0, u8 param1)
     return v0;
 }
 
-void sub_020015CC (BmpList * param0, ResourceMetadata * param1)
+void sub_020015CC(BmpList *param0, ResourceMetadata *param1)
 {
     param0->unk_00.unk_00 = param1;
 }
 
-static void sub_020015D0 (BmpList * param0, void * param1, u8 param2, u8 param3)
+static void sub_020015D0(BmpList *param0, void *param1, u8 param2, u8 param3)
 {
     if (param1 == NULL) {
         return;
@@ -327,7 +327,7 @@ static void sub_020015D0 (BmpList * param0, void * param1, u8 param2, u8 param3)
     }
 }
 
-static void sub_02001688 (BmpList * param0, u16 param1, u16 param2, u16 param3)
+static void sub_02001688(BmpList *param0, u16 param1, u16 param2, u16 param3)
 {
     int v0;
     u8 v1, v2, v3;
@@ -352,7 +352,7 @@ static void sub_02001688 (BmpList * param0, u16 param1, u16 param2, u16 param3)
     }
 }
 
-static void sub_02001720 (BmpList * param0)
+static void sub_02001720(BmpList *param0)
 {
     u8 v0, v1, v2;
 
@@ -373,7 +373,7 @@ static void sub_02001720 (BmpList * param0)
     }
 }
 
-static void sub_02001778 (BmpList * param0, u16 param1)
+static void sub_02001778(BmpList *param0, u16 param1)
 {
     u8 v0;
 
@@ -389,7 +389,7 @@ static void sub_02001778 (BmpList * param0, u16 param1)
     }
 }
 
-static u8 sub_020017E0 (BmpList * param0, u8 param1)
+static u8 sub_020017E0(BmpList *param0, u8 param1)
 {
     u16 v0, v1, v2;
 
@@ -467,7 +467,7 @@ static u8 sub_020017E0 (BmpList * param0, u8 param1)
     return 2;
 }
 
-static void sub_02001900 (BmpList * param0, u8 param1, u8 param2)
+static void sub_02001900(BmpList *param0, u8 param1, u8 param2)
 {
     u8 v0;
     u16 v1;
@@ -494,7 +494,7 @@ static void sub_02001900 (BmpList * param0, u8 param1, u8 param2)
     }
 }
 
-static u8 sub_02001A18 (BmpList * param0, u8 param1, u8 param2, u8 param3)
+static u8 sub_02001A18(BmpList *param0, u8 param1, u8 param2, u8 param3)
 {
     u16 v0;
     u8 v1, v2;
@@ -543,7 +543,7 @@ static u8 sub_02001A18 (BmpList * param0, u8 param1, u8 param2, u8 param3)
     return 0;
 }
 
-static void sub_02001AD8 (BmpList * param0, u8 param1)
+static void sub_02001AD8(BmpList *param0, u8 param1)
 {
     if (param0->unk_00.unk_04 != NULL) {
         param0->unk_00.unk_04(param0, param0->unk_00.unk_00[param0->unk_28 + param0->unk_2A].unk_04, param1);

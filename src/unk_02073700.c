@@ -1,28 +1,27 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "trainer_info.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_0202D750_decl.h"
-#include "savedata.h"
-
 #include "struct_defs/struct_0202D314.h"
+
 #include "overlay096/struct_ov96_0223B450_sub1.h"
 
 #include "save_player.h"
+#include "savedata.h"
 #include "trainer_info.h"
 #include "unk_0202C858.h"
 #include "unk_0202D05C.h"
 #include "unk_0205C980.h"
 
-void sub_02073700(SaveData * param0, int param1, UnkStruct_ov96_0223B450_sub1 * param2);
+void sub_02073700(SaveData *param0, int param1, UnkStruct_ov96_0223B450_sub1 *param2);
 
-void sub_02073700 (SaveData * param0, int param1, UnkStruct_ov96_0223B450_sub1 * param2)
+void sub_02073700(SaveData *param0, int param1, UnkStruct_ov96_0223B450_sub1 *param2)
 {
     int v0;
-    TrainerInfo * v1 = SaveData_GetTrainerInfo(param0);
-    UnkStruct_0202C878 * v2 = sub_0202C878(param0);
-    UnkStruct_0202D750 * v3 = sub_0202D750(param0);
+    TrainerInfo *v1 = SaveData_GetTrainerInfo(param0);
+    UnkStruct_0202C878 *v2 = sub_0202C878(param0);
+    UnkStruct_0202D750 *v3 = sub_0202D750(param0);
 
     MI_CpuClear8(param2, sizeof(UnkStruct_ov96_0223B450_sub1));
     MI_CpuCopy8(TrainerInfo_Name(v1), param2->unk_A8, 8 * 2);

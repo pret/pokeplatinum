@@ -2,7 +2,7 @@
 
 #include "charcode.h"
 
-#define FORMAT_ARG_TYPE_MASK   0xFF00
+#define FORMAT_ARG_TYPE_MASK 0xFF00
 
 charcode_t *CharCode_SkipFormatArg(const charcode_t *cstr)
 {
@@ -28,8 +28,8 @@ BOOL CharCode_IsFormatArg(const charcode_t *cstr)
     u32 type = CharCode_FormatArgType(cstr);
 
     if ((type & FORMAT_ARG_TYPE_MASK) == 0x100
-            || (type & FORMAT_ARG_TYPE_MASK) == 0x600
-            || (type & FORMAT_ARG_TYPE_MASK) == 0x500) {
+        || (type & FORMAT_ARG_TYPE_MASK) == 0x600
+        || (type & FORMAT_ARG_TYPE_MASK) == 0x500) {
         return TRUE;
     }
 
@@ -47,4 +47,3 @@ u32 CharCode_FormatArgParam(const charcode_t *cstr, u32 paramIdx)
 
     return cstr[paramIdx];
 }
-

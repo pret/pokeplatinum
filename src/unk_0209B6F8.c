@@ -1,15 +1,14 @@
+#include "unk_0209B6F8.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-
-#include "overlay104/struct_ov104_022320B4_decl.h"
-
-#include "constdata/const_020F8BE0.h"
-
 #include "functypes/funcptr_0209B988.h"
+#include "overlay104/ov104_0222E63C.h"
+#include "overlay104/ov104_0223C2D4.h"
 #include "overlay104/struct_ov104_0222E8C8.h"
 #include "overlay104/struct_ov104_02230BE4.h"
+#include "overlay104/struct_ov104_022320B4_decl.h"
 #include "overlay104/struct_ov104_022320B4_t.h"
 #include "overlay104/struct_ov104_0223C4CC.h"
 #include "overlay104/struct_ov104_0223C634.h"
@@ -18,25 +17,25 @@
 #include "overlay104/struct_ov104_0223D3B0_sub1.h"
 #include "overlay104/struct_ov104_0223D8F0.h"
 
+#include "core_sys.h"
 #include "game_overlay.h"
-#include "overlay_manager.h"
 #include "heap.h"
-#include "unk_0209B6F8.h"
-#include "overlay104/ov104_0222E63C.h"
-#include "overlay104/ov104_0223C2D4.h"
+#include "overlay_manager.h"
+
+#include "constdata/const_020F8BE0.h"
 
 FS_EXTERN_OVERLAY(overlay63);
 FS_EXTERN_OVERLAY(overlay104);
 FS_EXTERN_OVERLAY(overlay105);
 
 typedef struct UnkStruct_0209B75C_t {
-    UnkStruct_ov104_02230BE4 * unk_00;
-    OverlayManager * unk_04;
-    void * unk_08;
+    UnkStruct_ov104_02230BE4 *unk_00;
+    OverlayManager *unk_04;
+    void *unk_08;
     UnkFuncPtr_0209B988 unk_0C;
     u8 unk_10;
-    UnkStruct_ov104_022320B4 * unk_14;
-    UnkStruct_ov104_0223C4CC * unk_18;
+    UnkStruct_ov104_022320B4 *unk_14;
+    UnkStruct_ov104_0223C4CC *unk_18;
     u8 unk_1C;
     u8 unk_1D;
     u8 unk_1E;
@@ -48,14 +47,14 @@ typedef struct UnkStruct_0209B75C_t {
     UnkStruct_ov104_0223D3B0 unk_98C;
 } UnkStruct_0209B75C;
 
-int sub_0209B6F8(OverlayManager * param0, int * param1);
-int sub_0209B75C(OverlayManager * param0, int * param1);
-int sub_0209B8A4(OverlayManager * param0, int * param1);
-static void sub_0209B8C8(UnkStruct_0209B75C * param0);
-static void sub_0209B8D8(UnkStruct_0209B75C * param0);
+int sub_0209B6F8(OverlayManager *param0, int *param1);
+int sub_0209B75C(OverlayManager *param0, int *param1);
+int sub_0209B8A4(OverlayManager *param0, int *param1);
+static void sub_0209B8C8(UnkStruct_0209B75C *param0);
+static void sub_0209B8D8(UnkStruct_0209B75C *param0);
 static void sub_0209B924(void);
 static void sub_0209B94C(void);
-static void sub_0209B8E8(UnkStruct_0209B75C * param0);
+static void sub_0209B8E8(UnkStruct_0209B75C *param0);
 
 const OverlayManagerTemplate Unk_020F8BE0 = {
     sub_0209B6F8,
@@ -64,9 +63,9 @@ const OverlayManagerTemplate Unk_020F8BE0 = {
     0xffffffff
 };
 
-int sub_0209B6F8 (OverlayManager * param0, int * param1)
+int sub_0209B6F8(OverlayManager *param0, int *param1)
 {
-    UnkStruct_0209B75C * v0;
+    UnkStruct_0209B75C *v0;
     int v1;
 
     sub_0209B924();
@@ -88,9 +87,9 @@ int sub_0209B6F8 (OverlayManager * param0, int * param1)
     return 1;
 }
 
-int sub_0209B75C (OverlayManager * param0, int * param1)
+int sub_0209B75C(OverlayManager *param0, int *param1)
 {
-    UnkStruct_0209B75C * v0 = OverlayManager_Data(param0);
+    UnkStruct_0209B75C *v0 = OverlayManager_Data(param0);
     int v1;
 
     switch (*param1) {
@@ -163,7 +162,7 @@ int sub_0209B75C (OverlayManager * param0, int * param1)
         if (v0->unk_20 == 0xffff) {
             ov104_0222E86C(v0->unk_14, v0->unk_00->unk_24, 11);
         } else {
-            UnkStruct_ov104_0222E8C8 * v2;
+            UnkStruct_ov104_0222E8C8 *v2;
 
             v2 = ov104_0222E8C8(v0->unk_14, 11);
             ov104_0222E710(v0->unk_14);
@@ -181,9 +180,9 @@ int sub_0209B75C (OverlayManager * param0, int * param1)
     return 0;
 }
 
-int sub_0209B8A4 (OverlayManager * param0, int * param1)
+int sub_0209B8A4(OverlayManager *param0, int *param1)
 {
-    UnkStruct_0209B75C * v0 = OverlayManager_Data(param0);
+    UnkStruct_0209B75C *v0 = OverlayManager_Data(param0);
 
     ov104_0222E710(v0->unk_14);
 
@@ -194,19 +193,19 @@ int sub_0209B8A4 (OverlayManager * param0, int * param1)
     return 1;
 }
 
-static void sub_0209B8C8 (UnkStruct_0209B75C * param0)
+static void sub_0209B8C8(UnkStruct_0209B75C *param0)
 {
     param0->unk_18 = ov104_0223C2D4(param0);
     param0->unk_1D = 1;
 }
 
-static void sub_0209B8D8 (UnkStruct_0209B75C * param0)
+static void sub_0209B8D8(UnkStruct_0209B75C *param0)
 {
     ov104_0223C4CC(param0->unk_18);
     param0->unk_1D = 0;
 }
 
-static void sub_0209B8E8 (UnkStruct_0209B75C * param0)
+static void sub_0209B8E8(UnkStruct_0209B75C *param0)
 {
     int v0;
 
@@ -221,41 +220,41 @@ static void sub_0209B8E8 (UnkStruct_0209B75C * param0)
     }
 }
 
-static void sub_0209B924 (void)
+static void sub_0209B924(void)
 {
     Overlay_LoadByID(FS_OVERLAY_ID(overlay104), 2);
     Overlay_LoadByID(FS_OVERLAY_ID(overlay105), 2);
     Overlay_LoadByID(FS_OVERLAY_ID(overlay63), 2);
 }
 
-static void sub_0209B94C (void)
+static void sub_0209B94C(void)
 {
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay104));
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay105));
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay63));
 }
 
-UnkStruct_ov104_02230BE4 * sub_0209B970 (UnkStruct_0209B75C * param0)
+UnkStruct_ov104_02230BE4 *sub_0209B970(UnkStruct_0209B75C *param0)
 {
     return param0->unk_00;
 }
 
-UnkStruct_ov104_0223C4CC * sub_0209B974 (UnkStruct_0209B75C * param0)
+UnkStruct_ov104_0223C4CC *sub_0209B974(UnkStruct_0209B75C *param0)
 {
     return param0->unk_18;
 }
 
-void * sub_0209B978 (UnkStruct_0209B75C * param0)
+void *sub_0209B978(UnkStruct_0209B75C *param0)
 {
     return param0->unk_00->unk_00;
 }
 
-void sub_0209B980 (UnkStruct_0209B75C * param0, void * param1)
+void sub_0209B980(UnkStruct_0209B75C *param0, void *param1)
 {
     param0->unk_00->unk_00 = param1;
 }
 
-void sub_0209B988 (UnkStruct_0209B75C * param0, const OverlayManagerTemplate * param1, void * param2, int param3, UnkFuncPtr_0209B988 param4)
+void sub_0209B988(UnkStruct_0209B75C *param0, const OverlayManagerTemplate *param1, void *param2, int param3, UnkFuncPtr_0209B988 param4)
 {
     GF_ASSERT(param0->unk_04 == NULL);
     param0->unk_04 = OverlayManager_New(param1, param2, 11);
@@ -264,39 +263,39 @@ void sub_0209B988 (UnkStruct_0209B75C * param0, const OverlayManagerTemplate * p
     param0->unk_0C = param4;
 }
 
-void sub_0209B9B4 (UnkStruct_0209B75C * param0)
+void sub_0209B9B4(UnkStruct_0209B75C *param0)
 {
     param0->unk_22 = 1;
 }
 
-void sub_0209B9BC (UnkStruct_0209B75C * param0, u16 param1, u16 param2)
+void sub_0209B9BC(UnkStruct_0209B75C *param0, u16 param1, u16 param2)
 {
     param0->unk_00->unk_24 = param1;
     param0->unk_1E = 1;
     param0->unk_20 = param2;
 }
 
-UnkStruct_ov104_0223C688 * sub_0209B9CC (UnkStruct_0209B75C * param0)
+UnkStruct_ov104_0223C688 *sub_0209B9CC(UnkStruct_0209B75C *param0)
 {
     return param0->unk_24;
 }
 
-UnkStruct_ov104_0223C634 * sub_0209B9D0 (UnkStruct_0209B75C * param0)
+UnkStruct_ov104_0223C634 *sub_0209B9D0(UnkStruct_0209B75C *param0)
 {
     return param0->unk_6C;
 }
 
-UnkStruct_ov104_0223C634 * sub_0209B9D4 (UnkStruct_0209B75C * param0, int param1)
+UnkStruct_ov104_0223C634 *sub_0209B9D4(UnkStruct_0209B75C *param0, int param1)
 {
     return &param0->unk_6C[param1];
 }
 
-UnkStruct_ov104_0223D3B0 * sub_0209B9E0 (UnkStruct_0209B75C * param0)
+UnkStruct_ov104_0223D3B0 *sub_0209B9E0(UnkStruct_0209B75C *param0)
 {
     return &param0->unk_98C;
 }
 
-void sub_0209B9EC (UnkStruct_0209B75C * param0)
+void sub_0209B9EC(UnkStruct_0209B75C *param0)
 {
     int v0;
 

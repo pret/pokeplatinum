@@ -1,21 +1,22 @@
+#include "unk_0201567C.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_02002F38_decl.h"
 
+#include "sys_task_manager.h"
 #include "unk_02002F38.h"
 #include "unk_0200679C.h"
-#include "unk_0201567C.h"
 #include "unk_02018340.h"
-#include "sys_task_manager.h"
 #include "unk_020241F0.h"
 
-typedef void (* UnkFuncPtr_020157E4)(void *, u16 *);
+typedef void (*UnkFuncPtr_020157E4)(void *, u16 *);
 
 typedef struct {
-    SysTask * unk_00;
+    SysTask *unk_00;
     UnkFuncPtr_020157E4 unk_04;
-    PaletteData * unk_08;
+    PaletteData *unk_08;
     u16 unk_0C[16];
     u16 unk_2C[16];
     u8 unk_4C;
@@ -24,18 +25,18 @@ typedef struct {
     u8 unk_4F;
 } UnkStruct_020157E4;
 
-static void sub_0201576C(SysTask * param0, void * param1);
-static u8 sub_020157E4(UnkStruct_020157E4 * param0);
-static void sub_02015840(void * param0, u16 * param1);
-static void sub_02015858(void * param0, u16 * param1);
-static void sub_02015870(void * param0, u16 * param1);
-static void sub_0201588C(void * param0, u16 * param1);
+static void sub_0201576C(SysTask *param0, void *param1);
+static u8 sub_020157E4(UnkStruct_020157E4 *param0);
+static void sub_02015840(void *param0, u16 *param1);
+static void sub_02015858(void *param0, u16 *param1);
+static void sub_02015870(void *param0, u16 *param1);
+static void sub_0201588C(void *param0, u16 *param1);
 
-void * sub_0201567C (PaletteData * param0, u16 param1, u16 param2, u32 param3)
+void *sub_0201567C(PaletteData *param0, u16 param1, u16 param2, u32 param3)
 {
-    UnkStruct_020157E4 * v0;
-    SysTask * v1;
-    u16 * v2;
+    UnkStruct_020157E4 *v0;
+    SysTask *v1;
+    u16 *v2;
 
     v1 = SysTask_StartAndAllocateParam(sub_0201576C, sizeof(UnkStruct_020157E4), 0, param3);
     v0 = (UnkStruct_020157E4 *)SysTask_GetParam(v1);
@@ -71,9 +72,9 @@ void * sub_0201567C (PaletteData * param0, u16 param1, u16 param2, u32 param3)
     return v0;
 }
 
-void sub_02015738 (void * param0, u8 param1)
+void sub_02015738(void *param0, u8 param1)
 {
-    UnkStruct_020157E4 * v0 = (UnkStruct_020157E4 *)param0;
+    UnkStruct_020157E4 *v0 = (UnkStruct_020157E4 *)param0;
 
     switch (param1) {
     case 0:
@@ -87,15 +88,15 @@ void sub_02015738 (void * param0, u8 param1)
     }
 }
 
-void sub_02015760 (void * param0)
+void sub_02015760(void *param0)
 {
-    UnkStruct_020157E4 * v0 = (UnkStruct_020157E4 *)param0;
+    UnkStruct_020157E4 *v0 = (UnkStruct_020157E4 *)param0;
     SysTask_FinishAndFreeParam(v0->unk_00);
 }
 
-static void sub_0201576C (SysTask * param0, void * param1)
+static void sub_0201576C(SysTask *param0, void *param1)
 {
-    UnkStruct_020157E4 * v0 = (UnkStruct_020157E4 *)param1;
+    UnkStruct_020157E4 *v0 = (UnkStruct_020157E4 *)param1;
 
     switch (v0->unk_4E) {
     case 0:
@@ -121,7 +122,7 @@ static void sub_0201576C (SysTask * param0, void * param1)
     }
 }
 
-static u8 sub_020157E4 (UnkStruct_020157E4 * param0)
+static u8 sub_020157E4(UnkStruct_020157E4 *param0)
 {
     u32 v0;
 
@@ -150,26 +151,26 @@ static u8 sub_020157E4 (UnkStruct_020157E4 * param0)
     return 0;
 }
 
-static void sub_02015840 (void * param0, u16 * param1)
+static void sub_02015840(void *param0, u16 *param1)
 {
-    UnkStruct_020157E4 * v0 = (UnkStruct_020157E4 *)param0;
+    UnkStruct_020157E4 *v0 = (UnkStruct_020157E4 *)param0;
     sub_0201972C(0, param1, 0x20, v0->unk_4D * 0x20);
 }
 
-static void sub_02015858 (void * param0, u16 * param1)
+static void sub_02015858(void *param0, u16 *param1)
 {
-    UnkStruct_020157E4 * v0 = (UnkStruct_020157E4 *)param0;
+    UnkStruct_020157E4 *v0 = (UnkStruct_020157E4 *)param0;
     sub_0201972C(4, param1, 0x20, v0->unk_4D * 0x20);
 }
 
-static void sub_02015870 (void * param0, u16 * param1)
+static void sub_02015870(void *param0, u16 *param1)
 {
-    UnkStruct_020157E4 * v0 = (UnkStruct_020157E4 *)param0;
+    UnkStruct_020157E4 *v0 = (UnkStruct_020157E4 *)param0;
     sub_02002FBC(v0->unk_08, param1, 0, v0->unk_4D * 16, 0x20);
 }
 
-static void sub_0201588C (void * param0, u16 * param1)
+static void sub_0201588C(void *param0, u16 *param1)
 {
-    UnkStruct_020157E4 * v0 = (UnkStruct_020157E4 *)param0;
+    UnkStruct_020157E4 *v0 = (UnkStruct_020157E4 *)param0;
     sub_02002FBC(v0->unk_08, param1, 1, v0->unk_4D * 16, 0x20);
 }

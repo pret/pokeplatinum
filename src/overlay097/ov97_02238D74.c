@@ -1,20 +1,18 @@
+#include <dwc.h>
 #include <nitro.h>
 #include <string.h>
-#include <dwc.h>
 
-#include "core_sys.h"
-
-
+#include "overlay004/ov4_021D0D80.h"
+#include "overlay097/ov97_0222D30C.h"
 #include "overlay097/struct_ov97_0222D04C.h"
 
-#include "overlay_manager.h"
+#include "core_sys.h"
 #include "heap.h"
+#include "overlay_manager.h"
 #include "unk_02033200.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 #include "unk_02099550.h"
-#include "overlay004/ov4_021D0D80.h"
-#include "overlay097/ov97_0222D30C.h"
 
 static BOOL Unk_ov97_02240400;
 static int Unk_ov97_0224040C;
@@ -23,13 +21,13 @@ static Unk_ov97_02240408;
 static DWCNdFileInfo Unk_ov97_02240414[10];
 
 static void ov97_02238E88(void);
-int ov97_02238EAC(OverlayManager * param0, int * param1);
+int ov97_02238EAC(OverlayManager *param0, int *param1);
 
-static void * ov97_02238D74 (DWCAllocType param0, u32 param1, int param2)
+static void *ov97_02238D74(DWCAllocType param0, u32 param1, int param2)
 {
 #pragma unused(param0, param2)
-    void * v0;
-    u32 * v1;
+    void *v0;
+    u32 *v1;
 
     param1 = (((param1 + sizeof(void *)) + 32) & ~31) + 32;
 
@@ -43,10 +41,10 @@ static void * ov97_02238D74 (DWCAllocType param0, u32 param1, int param2)
     return v1;
 }
 
-static void ov97_02238D94 (DWCAllocType param0, void * param1, u32 param2)
+static void ov97_02238D94(DWCAllocType param0, void *param1, u32 param2)
 {
-#pragma unused( param0, param2 )
-    u32 * v0;
+#pragma unused(param0, param2)
+    u32 *v0;
 
     if (!param1) {
         return;
@@ -58,7 +56,7 @@ static void ov97_02238D94 (DWCAllocType param0, void * param1, u32 param2)
 
 static volatile BOOL Unk_ov97_02240410;
 
-static int ov97_02238DA4 (UnkStruct_ov97_0222D04C * param0)
+static int ov97_02238DA4(UnkStruct_ov97_0222D04C *param0)
 {
     DWCError v0;
     DWCErrorType v1;
@@ -78,7 +76,7 @@ static int ov97_02238DA4 (UnkStruct_ov97_0222D04C * param0)
     return 4111;
 }
 
-static BOOL ov97_02238DF8 (UnkStruct_ov97_0222D04C * param0)
+static BOOL ov97_02238DF8(UnkStruct_ov97_0222D04C *param0)
 {
     DWCApInfo v0;
     DWCError v1;
@@ -104,7 +102,7 @@ static BOOL ov97_02238DF8 (UnkStruct_ov97_0222D04C * param0)
     return 0;
 }
 
-static void ov97_02238E20 (UnkStruct_ov97_0222D04C * param0, int * param1, int param2)
+static void ov97_02238E20(UnkStruct_ov97_0222D04C *param0, int *param1, int param2)
 {
     Unk_ov97_02240400 = 0;
     Unk_ov97_0224040C = DWC_ND_ERROR_NONE;
@@ -112,7 +110,7 @@ static void ov97_02238E20 (UnkStruct_ov97_0222D04C * param0, int * param1, int p
     *param1 = 4114;
 }
 
-static void ov97_02238E44 (UnkStruct_ov97_0222D04C * param0, int param1, int * param2, int param3, int param4)
+static void ov97_02238E44(UnkStruct_ov97_0222D04C *param0, int param1, int *param2, int param3, int param4)
 {
     Unk_ov97_02240404 = 0;
     Unk_ov97_02240408 = param1;
@@ -124,7 +122,7 @@ static void ov97_02238E44 (UnkStruct_ov97_0222D04C * param0, int param1, int * p
     }
 }
 
-static void ov97_02238E78 (DWCNdCallbackReason param0, DWCNdError param1, int param2)
+static void ov97_02238E78(DWCNdCallbackReason param0, DWCNdError param1, int param2)
 {
     switch (param0) {
     case DWC_ND_CBREASON_GETFILELISTNUM:
@@ -161,7 +159,7 @@ static void ov97_02238E78 (DWCNdCallbackReason param0, DWCNdError param1, int pa
     Unk_ov97_0224040C = param1;
 }
 
-static void ov97_02238E88 (void)
+static void ov97_02238E88(void)
 {
     switch (Unk_ov97_02240408) {
     case 1:
@@ -175,7 +173,7 @@ static void ov97_02238E88 (void)
     Unk_ov97_02240404 = 1;
 }
 
-static void ov97_02238E94 (void)
+static void ov97_02238E94(void)
 {
     sub_02039794();
     sub_02038514();
@@ -184,11 +182,11 @@ static void ov97_02238E94 (void)
     sub_020334CC();
 }
 
-int ov97_02238EAC (OverlayManager * param0, int * param1)
+int ov97_02238EAC(OverlayManager *param0, int *param1)
 {
     int v0;
     DWCNasLoginState v1;
-    UnkStruct_ov97_0222D04C * v2 = OverlayManager_Data(param0);
+    UnkStruct_ov97_0222D04C *v2 = OverlayManager_Data(param0);
 
     if (v2->unk_26DC) {
         if (v2->unk_26DC() == 1) {
@@ -212,7 +210,7 @@ int ov97_02238EAC (OverlayManager * param0, int * param1)
         break;
     case 4098:
         DWC_InitInetEx(&v2->unk_164C, 2, 1, 20);
-        DWC_SetAuthServer((DWC_CONNECTINET_AUTH_RELEASE));
+        DWC_SetAuthServer(DWC_CONNECTINET_AUTH_RELEASE);
         DWC_ConnectInetAsync();
         sub_02039734();
         *param1 = 4099;

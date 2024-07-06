@@ -1,13 +1,14 @@
+#include "strbuf.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "constants/charcode.h"
 
 #include "heap.h"
-#include "strbuf.h"
 
 #define SIZEOF_STRBUF_HEADER (sizeof(Strbuf) - sizeof(charcode_t))
-#define STRBUF_MAGIC_NUMBER (0xB6F8D2EC)
+#define STRBUF_MAGIC_NUMBER  (0xB6F8D2EC)
 
 static inline void Strbuf_Check(const Strbuf *strbuf)
 {
@@ -15,7 +16,7 @@ static inline void Strbuf_Check(const Strbuf *strbuf)
     GF_ASSERT(strbuf->integrity == STRBUF_MAGIC_NUMBER);
 }
 
-Strbuf* Strbuf_Init(u32 size, u32 heapID)
+Strbuf *Strbuf_Init(u32 size, u32 heapID)
 {
     Strbuf *strbuf;
 
@@ -61,7 +62,7 @@ void Strbuf_Copy(Strbuf *dst, const Strbuf *src)
     GF_ASSERT(FALSE);
 }
 
-Strbuf* Strbuf_Clone(const Strbuf *src, u32 heapID)
+Strbuf *Strbuf_Clone(const Strbuf *src, u32 heapID)
 {
     Strbuf_Check(src);
 
@@ -134,7 +135,7 @@ void Strbuf_FormatInt(Strbuf *dst, int num, u32 maxDigits, enum PaddingMode padd
 
             if (paddingMode == PADDING_MODE_ZEROES) {
                 dst->data[dst->size++] = (digit < 10) ? digitSet[digit] : CHAR_JP_QUESTION;
-            // If we hit a non-zero digit, flip the padding mode off
+                // If we hit a non-zero digit, flip the padding mode off
             } else if (digit != 0 || div == 1) {
                 paddingMode = PADDING_MODE_ZEROES;
                 dst->data[dst->size++] = (digit < 10) ? digitSet[digit] : CHAR_JP_QUESTION;
@@ -318,7 +319,7 @@ void Strbuf_CopyLineNum(Strbuf *dst, const Strbuf *src, u32 lineNum)
 
     Strbuf_Clear(dst);
 
-    for ( ; i < src->size; i++) {
+    for (; i < src->size; i++) {
         if (src->data[i] == CHAR_CR) {
             break;
         }
@@ -382,7 +383,7 @@ void Strbuf_ToChars(const Strbuf *src, charcode_t *dst, u32 dstSize)
     GF_ASSERT(FALSE);
 }
 
-const charcode_t* Strbuf_GetData(const Strbuf *src)
+const charcode_t *Strbuf_GetData(const Strbuf *src)
 {
     Strbuf_Check(src);
 
@@ -416,9 +417,9 @@ void Strbuf_AppendChar(Strbuf *dst, charcode_t c)
     GF_ASSERT(FALSE);
 }
 
-#define COMPRESSED_LEADER   (0xF100)
-#define COMPRESSED_MASK     (0x01FF)
-#define COMPRESSED_EOS      (0x01FF) // 0xFFFF & 0x01FF
+#define COMPRESSED_LEADER (0xF100)
+#define COMPRESSED_MASK   (0x01FF)
+#define COMPRESSED_EOS    (0x01FF) // 0xFFFF & 0x01FF
 
 BOOL Strbuf_IsTrainerName(Strbuf *strbuf)
 {

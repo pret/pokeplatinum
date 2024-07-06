@@ -1,28 +1,28 @@
+#include "unk_020562F8.h"
+
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/species.h"
 #include "consts/game_records.h"
-#include "inlines.h"
 
 #include "struct_decls/struct_02024440_decl.h"
 #include "struct_decls/struct_020564B4_decl.h"
-#include "pokemon.h"
 
 #include "field/field_system.h"
 #include "overlay006/battle_params.h"
-
-#include "narc.h"
-#include "rtc.h"
-#include "heap.h"
 #include "savedata/save_table.h"
+
 #include "game_records.h"
+#include "heap.h"
+#include "inlines.h"
+#include "narc.h"
+#include "pokemon.h"
+#include "rtc.h"
 #include "unk_0202EEC0.h"
 #include "unk_02051D8C.h"
 #include "unk_02054D00.h"
-#include "unk_020562F8.h"
 #include "unk_0205DAC8.h"
-#include "pokemon.h"
-#include "constants/species.h"
 
 typedef struct {
     u16 unk_00;
@@ -42,23 +42,23 @@ struct UnkStruct_020564B4_t {
     int unk_48;
 };
 
-static void sub_0205642C(FieldSystem * fieldSystem, UnkStruct_020564B4 * param1);
-static void sub_02056624(FieldSystem * fieldSystem, BattleParams * param1, UnkStruct_020564B4 * param2);
-static BOOL sub_02056554(FieldSystem * fieldSystem, UnkStruct_020564B4 * param1, int param2, int param3);
-static BattleParams * sub_0205664C(FieldSystem * fieldSystem, UnkStruct_020564B4 * param1);
-static sub_020564B4(UnkStruct_020564B4 * param0);
-static void sub_020564D0(UnkStruct_020564B4 * param0);
-static BOOL sub_020564F4(UnkStruct_020564B4 * param0);
-static u32 sub_020566AC(UnkStruct_020564B4 * param0);
-static u32 sub_02056698(UnkStruct_020564B4 * param0);
-static u32 sub_0205671C(UnkStruct_020564B4 * param0);
+static void sub_0205642C(FieldSystem *fieldSystem, UnkStruct_020564B4 *param1);
+static void sub_02056624(FieldSystem *fieldSystem, BattleParams *param1, UnkStruct_020564B4 *param2);
+static BOOL sub_02056554(FieldSystem *fieldSystem, UnkStruct_020564B4 *param1, int param2, int param3);
+static BattleParams *sub_0205664C(FieldSystem *fieldSystem, UnkStruct_020564B4 *param1);
+static sub_020564B4(UnkStruct_020564B4 *param0);
+static void sub_020564D0(UnkStruct_020564B4 *param0);
+static BOOL sub_020564F4(UnkStruct_020564B4 *param0);
+static u32 sub_020566AC(UnkStruct_020564B4 *param0);
+static u32 sub_02056698(UnkStruct_020564B4 *param0);
+static u32 sub_0205671C(UnkStruct_020564B4 *param0);
 
 static UnkStruct_020564B4 Unk_021C07FC;
 
-void sub_020562F8 (FieldSystem * fieldSystem)
+void sub_020562F8(FieldSystem *fieldSystem)
 {
     int v0;
-    UnkStruct_020564B4 * v1 = &Unk_021C07FC;
+    UnkStruct_020564B4 *v1 = &Unk_021C07FC;
 
     MI_CpuClearFast(v1, sizeof(UnkStruct_020564B4));
 
@@ -68,10 +68,10 @@ void sub_020562F8 (FieldSystem * fieldSystem)
     v1->unk_40 = GetTimestamp();
 }
 
-void sub_02056328 (FieldSystem * fieldSystem)
+void sub_02056328(FieldSystem *fieldSystem)
 {
-    UnkStruct_020564B4 * v0 = &Unk_021C07FC;
-    GameRecords * v1 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
+    UnkStruct_020564B4 *v0 = &Unk_021C07FC;
+    GameRecords *v1 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
     s64 v2 = GetTimestamp();
     s64 v3 = TimeElapsed(v0->unk_40, v2);
 
@@ -84,7 +84,7 @@ void sub_02056328 (FieldSystem * fieldSystem)
     GameRecords_IncrementTrainerScore(v1, TRAINER_SCORE_EVENT_UNK_17);
 }
 
-BOOL sub_02056374 (FieldSystem * fieldSystem, int param1, int param2)
+BOOL sub_02056374(FieldSystem *fieldSystem, int param1, int param2)
 {
     if (sub_020564F4(&Unk_021C07FC) == 1) {
         return sub_02056554(fieldSystem, &Unk_021C07FC, param1, param2);
@@ -93,37 +93,37 @@ BOOL sub_02056374 (FieldSystem * fieldSystem, int param1, int param2)
     }
 }
 
-BattleParams * sub_0205639C (FieldSystem * fieldSystem)
+BattleParams *sub_0205639C(FieldSystem *fieldSystem)
 {
     return sub_0205664C(fieldSystem, &Unk_021C07FC);
 }
 
-void sub_020563AC (FieldSystem * fieldSystem, BattleParams * param1)
+void sub_020563AC(FieldSystem *fieldSystem, BattleParams *param1)
 {
     sub_02056624(fieldSystem, param1, &Unk_021C07FC);
 }
 
-int sub_020563BC (FieldSystem * fieldSystem)
+int sub_020563BC(FieldSystem *fieldSystem)
 {
     return 6 - sub_020564B4(&Unk_021C07FC);
 }
 
-int sub_020563D0 (FieldSystem * fieldSystem)
+int sub_020563D0(FieldSystem *fieldSystem)
 {
     return sub_02056698(&Unk_021C07FC);
 }
 
-int sub_020563E0 (FieldSystem * fieldSystem)
+int sub_020563E0(FieldSystem *fieldSystem)
 {
     return sub_0205671C(&Unk_021C07FC);
 }
 
-int sub_020563F0 (FieldSystem * fieldSystem)
+int sub_020563F0(FieldSystem *fieldSystem)
 {
     return sub_020566AC(&Unk_021C07FC);
 }
 
-static void sub_02056400 (u32 param0, u8 * param1)
+static void sub_02056400(u32 param0, u8 *param1)
 {
     int v0;
 
@@ -133,13 +133,13 @@ static void sub_02056400 (u32 param0, u8 * param1)
     NARC_ReadFromMemberByIndexPair(param1, NARC_INDEX_ARC__PPARK, 0, v0, sizeof(u8) * 6);
 }
 
-static void sub_0205642C (FieldSystem * fieldSystem, UnkStruct_020564B4 * param1)
+static void sub_0205642C(FieldSystem *fieldSystem, UnkStruct_020564B4 *param1)
 {
     int v0;
     u8 v1[8];
     u16 v2;
-    Pokemon * v3;
-    PalParkTransfer * v4;
+    Pokemon *v3;
+    PalParkTransfer *v4;
 
     v4 = SaveData_PalParkTransfer(fieldSystem->saveData);
     v3 = Pokemon_New(4);
@@ -168,7 +168,7 @@ static void sub_0205642C (FieldSystem * fieldSystem, UnkStruct_020564B4 * param1
     Heap_FreeToHeap(v3);
 }
 
-static int sub_020564B4 (UnkStruct_020564B4 * param0)
+static int sub_020564B4(UnkStruct_020564B4 *param0)
 {
     int v0;
     int v1 = 0;
@@ -182,12 +182,12 @@ static int sub_020564B4 (UnkStruct_020564B4 * param0)
     return v1;
 }
 
-static void sub_020564D0 (UnkStruct_020564B4 * param0)
+static void sub_020564D0(UnkStruct_020564B4 *param0)
 {
     param0->unk_38 = inline_020564D0(10) + 5;
 }
 
-static BOOL sub_020564F4 (UnkStruct_020564B4 * param0)
+static BOOL sub_020564F4(UnkStruct_020564B4 *param0)
 {
     param0->unk_38--;
 
@@ -199,7 +199,7 @@ static BOOL sub_020564F4 (UnkStruct_020564B4 * param0)
     return 0;
 }
 
-static int sub_0205650C (FieldSystem * fieldSystem, int param1, int param2)
+static int sub_0205650C(FieldSystem *fieldSystem, int param1, int param2)
 {
     u16 v0 = sub_02054F94(fieldSystem, param1, param2);
     int v1;
@@ -216,7 +216,7 @@ static int sub_0205650C (FieldSystem * fieldSystem, int param1, int param2)
     return 0;
 }
 
-static BOOL sub_02056554 (FieldSystem * fieldSystem, UnkStruct_020564B4 * param1, int param2, int param3)
+static BOOL sub_02056554(FieldSystem *fieldSystem, UnkStruct_020564B4 *param1, int param2, int param3)
 {
     int v0;
     int v1, v2 = 0;
@@ -259,7 +259,7 @@ static BOOL sub_02056554 (FieldSystem * fieldSystem, UnkStruct_020564B4 * param1
     return 0;
 }
 
-static void sub_02056624 (FieldSystem * fieldSystem, BattleParams * param1, UnkStruct_020564B4 * param2)
+static void sub_02056624(FieldSystem *fieldSystem, BattleParams *param1, UnkStruct_020564B4 *param2)
 {
     switch (param1->unk_14) {
     case 0x4:
@@ -272,11 +272,11 @@ static void sub_02056624 (FieldSystem * fieldSystem, BattleParams * param1, UnkS
     }
 }
 
-static BattleParams * sub_0205664C (FieldSystem * fieldSystem, UnkStruct_020564B4 * param1)
+static BattleParams *sub_0205664C(FieldSystem *fieldSystem, UnkStruct_020564B4 *param1)
 {
-    BattleParams * v0;
-    Pokemon * v1 = Pokemon_New(32);
-    PalParkTransfer * v2 = SaveData_PalParkTransfer(fieldSystem->saveData);
+    BattleParams *v0;
+    Pokemon *v1 = Pokemon_New(32);
+    PalParkTransfer *v2 = SaveData_PalParkTransfer(fieldSystem->saveData);
     int v3 = sub_020563BC(fieldSystem);
 
     v0 = sub_02051F38(11, v3);
@@ -289,7 +289,7 @@ static BattleParams * sub_0205664C (FieldSystem * fieldSystem, UnkStruct_020564B
     return v0;
 }
 
-static u32 sub_02056698 (UnkStruct_020564B4 * param0)
+static u32 sub_02056698(UnkStruct_020564B4 *param0)
 {
     int v0;
     u32 v1 = 0;
@@ -301,7 +301,7 @@ static u32 sub_02056698 (UnkStruct_020564B4 * param0)
     return v1;
 }
 
-static u32 sub_020566AC (UnkStruct_020564B4 * param0)
+static u32 sub_020566AC(UnkStruct_020564B4 *param0)
 {
     int v0, v1;
     int v2, v3, v4, v5;
@@ -337,7 +337,7 @@ static u32 sub_020566AC (UnkStruct_020564B4 * param0)
     return v7;
 }
 
-static u32 sub_0205671C (UnkStruct_020564B4 * param0)
+static u32 sub_0205671C(UnkStruct_020564B4 *param0)
 {
     return param0->unk_48;
 }

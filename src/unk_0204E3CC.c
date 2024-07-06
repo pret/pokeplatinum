@@ -1,47 +1,45 @@
-#include <nitro.h>
-#include <string.h>
+#include "unk_0204E3CC.h"
 
-#include "inlines.h"
+#include <nitro.h>
+#include <nitro/code16.h>
+#include <string.h>
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
-
-#include "field_script_context.h"
 #include "struct_defs/struct_0205EC34.h"
 
+#include "field_overworld_state.h"
+#include "field_script_context.h"
+#include "inlines.h"
+#include "player_avatar.h"
 #include "save_player.h"
 #include "trainer_info.h"
 #include "unk_0202631C.h"
-#include "field_overworld_state.h"
-#include "unk_0204E3CC.h"
-#include "vars_flags.h"
-#include "player_avatar.h"
 #include "unk_0206A8DC.h"
+#include "vars_flags.h"
 
-#include <nitro/code16.h>
-
-BOOL ScrCmd_157 (ScriptContext * param0)
+BOOL ScrCmd_157(ScriptContext *param0)
 {
-    const PokedexData * v0 = SaveData_Pokedex(param0->fieldSystem->saveData);
-    u16 * v1 = ScriptContext_GetVarPointer(param0);
+    const PokedexData *v0 = SaveData_Pokedex(param0->fieldSystem->saveData);
+    u16 *v1 = ScriptContext_GetVarPointer(param0);
 
     *v1 = sub_02027520(v0);
     return 0;
 }
 
-BOOL ScrCmd_158 (ScriptContext * param0)
+BOOL ScrCmd_158(ScriptContext *param0)
 {
-    PokedexData * v0 = SaveData_Pokedex(param0->fieldSystem->saveData);
+    PokedexData *v0 = SaveData_Pokedex(param0->fieldSystem->saveData);
 
     sub_02027540(v0);
     return 0;
 }
 
-BOOL ScrCmd_159 (ScriptContext * param0)
+BOOL ScrCmd_159(ScriptContext *param0)
 {
-    FieldOverworldState * v0;
-    PlayerData * v1;
-    u16 * v2 = ScriptContext_GetVarPointer(param0);
+    FieldOverworldState *v0;
+    PlayerData *v1;
+    u16 *v2 = ScriptContext_GetVarPointer(param0);
 
     v0 = SaveData_GetFieldOverworldState(param0->fieldSystem->saveData);
     v1 = FieldOverworldState_GetPlayerData(v0);
@@ -50,10 +48,10 @@ BOOL ScrCmd_159 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_15A (ScriptContext * param0)
+BOOL ScrCmd_15A(ScriptContext *param0)
 {
-    FieldOverworldState * v0;
-    PlayerData * v1;
+    FieldOverworldState *v0;
+    PlayerData *v1;
 
     v0 = SaveData_GetFieldOverworldState(param0->fieldSystem->saveData);
     v1 = FieldOverworldState_GetPlayerData(v0);
@@ -62,18 +60,18 @@ BOOL ScrCmd_15A (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_15B (ScriptContext * param0)
+BOOL ScrCmd_15B(ScriptContext *param0)
 {
     u16 v0 = ScriptContext_GetVar(param0);
-    u16 * v1 = ScriptContext_GetVarPointer(param0);
+    u16 *v1 = ScriptContext_GetVarPointer(param0);
 
     GF_ASSERT(v0 < 8);
-    * v1 = TrainerInfo_HasBadge(SaveData_GetTrainerInfo(param0->fieldSystem->saveData), v0);
+    *v1 = TrainerInfo_HasBadge(SaveData_GetTrainerInfo(param0->fieldSystem->saveData), v0);
 
     return 0;
 }
 
-BOOL ScrCmd_15C (ScriptContext * param0)
+BOOL ScrCmd_15C(ScriptContext *param0)
 {
     u16 v0 = ScriptContext_GetVar(param0);
 
@@ -83,9 +81,9 @@ BOOL ScrCmd_15C (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_15E (ScriptContext * param0)
+BOOL ScrCmd_15E(ScriptContext *param0)
 {
-    u16 * v0 = ScriptContext_GetVarPointer(param0);
+    u16 *v0 = ScriptContext_GetVarPointer(param0);
 
     *v0 = sub_0206A938(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
     return 0;
@@ -102,10 +100,10 @@ const u8 Unk_020EC064[8] = {
     0x7
 };
 
-BOOL ScrCmd_15D (ScriptContext * param0)
+BOOL ScrCmd_15D(ScriptContext *param0)
 {
     u16 v0, v1;
-    u16 * v2 = ScriptContext_GetVarPointer(param0);
+    u16 *v2 = ScriptContext_GetVarPointer(param0);
 
     for (v0 = 0, v1 = 0; v0 < 8; v0++) {
         if (TrainerInfo_HasBadge(SaveData_GetTrainerInfo(param0->fieldSystem->saveData), Unk_020EC064[v0]) == 1) {
@@ -117,71 +115,71 @@ BOOL ScrCmd_15D (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_15F (ScriptContext * param0)
+BOOL ScrCmd_15F(ScriptContext *param0)
 {
     sub_0206A92C(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
     return 0;
 }
 
-BOOL ScrCmd_160 (ScriptContext * param0)
+BOOL ScrCmd_160(ScriptContext *param0)
 {
-    u16 * v0 = ScriptContext_GetVarPointer(param0);
+    u16 *v0 = ScriptContext_GetVarPointer(param0);
 
     *v0 = sub_0206A984(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
     return 0;
 }
 
-BOOL ScrCmd_161 (ScriptContext * param0)
+BOOL ScrCmd_161(ScriptContext *param0)
 {
     sub_0206A964(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
     return 0;
 }
 
-BOOL ScrCmd_162 (ScriptContext * param0)
+BOOL ScrCmd_162(ScriptContext *param0)
 {
     sub_0206A974(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
     return 0;
 }
 
-BOOL ScrCmd_163 (ScriptContext * param0)
+BOOL ScrCmd_163(ScriptContext *param0)
 {
-    u16 * v0 = ScriptContext_GetVarPointer(param0);
+    u16 *v0 = ScriptContext_GetVarPointer(param0);
 
     *v0 = sub_0206A9B4(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
     return 0;
 }
 
-BOOL ScrCmd_164 (ScriptContext * param0)
+BOOL ScrCmd_164(ScriptContext *param0)
 {
     sub_0206A994(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
     return 0;
 }
 
-BOOL ScrCmd_165 (ScriptContext * param0)
+BOOL ScrCmd_165(ScriptContext *param0)
 {
     sub_0206A9A4(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
     return 0;
 }
 
-BOOL ScrCmd_166 (ScriptContext * param0)
+BOOL ScrCmd_166(ScriptContext *param0)
 {
-    u16 * v0 = ScriptContext_GetVarPointer(param0);
+    u16 *v0 = ScriptContext_GetVarPointer(param0);
 
     *v0 = sub_0206A954(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
     return 0;
 }
 
-BOOL ScrCmd_167 (ScriptContext * param0)
+BOOL ScrCmd_167(ScriptContext *param0)
 {
     sub_0206A944(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
     return 0;
 }
 
-BOOL ScrCmd_1CF (ScriptContext * param0)
+BOOL ScrCmd_1CF(ScriptContext *param0)
 {
     u8 v0;
-    u16 * v1;
-    VarsFlags * v2 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
+    u16 *v1;
+    VarsFlags *v2 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
 
     v0 = ScriptContext_ReadByte(param0);
 
@@ -203,11 +201,11 @@ BOOL ScrCmd_1CF (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_1D0 (ScriptContext * param0)
+BOOL ScrCmd_1D0(ScriptContext *param0)
 {
     u8 v0;
-    u16 * v1;
-    VarsFlags * v2 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
+    u16 *v1;
+    VarsFlags *v2 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
 
     v0 = ScriptContext_ReadByte(param0);
 
@@ -229,11 +227,11 @@ BOOL ScrCmd_1D0 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_1D1 (ScriptContext * param0)
+BOOL ScrCmd_1D1(ScriptContext *param0)
 {
     u8 v0;
-    u16 * v1;
-    VarsFlags * v2 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
+    u16 *v1;
+    VarsFlags *v2 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
 
     v0 = ScriptContext_ReadByte(param0);
 

@@ -1,60 +1,58 @@
+#include "overlay007/ov7_0224B4E8.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-
 #include "struct_decls/struct_0200112C_decl.h"
-#include "message.h"
 #include "struct_decls/struct_02013A04_decl.h"
-#include "strbuf.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_02098700_decl.h"
-
+#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_0202610C.h"
-#include "field/field_system.h"
 #include "struct_defs/struct_0205AA50.h"
+
+#include "field/field_system.h"
 #include "overlay084/struct_ov84_02240FA8.h"
 
+#include "core_sys.h"
+#include "heap.h"
+#include "message.h"
+#include "party.h"
+#include "save_player.h"
+#include "strbuf.h"
+#include "string_template.h"
 #include "unk_0200112C.h"
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
-#include "message.h"
-#include "string_template.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
-#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "strbuf.h"
-#include "save_player.h"
 #include "unk_0202602C.h"
 #include "unk_02026150.h"
 #include "unk_020508D4.h"
 #include "unk_0205D8CC.h"
-#include "party.h"
 #include "unk_0207A2A8.h"
-#include "overlay007/ov7_0224B4E8.h"
 
 typedef struct {
-    BmpList * unk_00;
-    BmpList * unk_04;
-    ResourceMetadata * unk_08;
-    ResourceMetadata * unk_0C;
-    FieldSystem * fieldSystem;
-    Strbuf* unk_14;
-    Strbuf* unk_18;
-    Strbuf* unk_1C;
-    Strbuf* unk_20;
+    BmpList *unk_00;
+    BmpList *unk_04;
+    ResourceMetadata *unk_08;
+    ResourceMetadata *unk_0C;
+    FieldSystem *fieldSystem;
+    Strbuf *unk_14;
+    Strbuf *unk_18;
+    Strbuf *unk_1C;
+    Strbuf *unk_20;
     Window unk_24;
     Window unk_34;
     Window unk_44;
     Window unk_54;
-    StringTemplate * unk_64;
-    MessageLoader * unk_68;
-    HeightWeightData * unk_6C;
-    u16 * unk_70;
+    StringTemplate *unk_64;
+    MessageLoader *unk_68;
+    HeightWeightData *unk_6C;
+    u16 *unk_70;
     int unk_74;
     u16 unk_78;
     u16 unk_7A;
@@ -90,7 +88,7 @@ static const UnkStruct_ov84_02240FA8 Unk_ov7_0224F188 = {
     NULL
 };
 
-static void ov7_0224B4E8 (UnkStruct_ov7_0224B4E8 * param0, int param1)
+static void ov7_0224B4E8(UnkStruct_ov7_0224B4E8 *param0, int param1)
 {
     if (BGL_WindowAdded(&param0->unk_54) == 0) {
         Window_Init(&param0->unk_54);
@@ -106,7 +104,7 @@ static void ov7_0224B4E8 (UnkStruct_ov7_0224B4E8 * param0, int param1)
     param0->unk_74 = FieldMessage_Print(&param0->unk_54, param0->unk_18, SaveData_Options(param0->fieldSystem->saveData), 1);
 }
 
-static void ov7_0224B558 (UnkStruct_ov7_0224B4E8 * param0, BOOL param1)
+static void ov7_0224B558(UnkStruct_ov7_0224B4E8 *param0, BOOL param1)
 {
     if (param1) {
         sub_0200E084(&param0->unk_54, 0);
@@ -116,17 +114,17 @@ static void ov7_0224B558 (UnkStruct_ov7_0224B4E8 * param0, BOOL param1)
     BGL_DeleteWindow(&param0->unk_54);
 }
 
-static void ov7_0224B57C (UnkStruct_ov7_0224B4E8 * param0, int param1)
+static void ov7_0224B57C(UnkStruct_ov7_0224B4E8 *param0, int param1)
 {
     sub_0202616C(param0->fieldSystem->saveData, param1, param0->unk_1C, 4);
     StringTemplate_SetStrbuf(param0->unk_64, 0, param0->unk_1C, 0, 1, GAME_LANGUAGE);
 }
 
-static void ov7_0224B5A8 (UnkStruct_ov7_0224B4E8 * param0)
+static void ov7_0224B5A8(UnkStruct_ov7_0224B4E8 *param0)
 {
     UnkStruct_ov84_02240FA8 v0;
-    Window * v1 = &(param0->unk_34);
-    BattleRegulation * v2 = sub_0202610C(param0->fieldSystem->saveData, 0);
+    Window *v1 = &(param0->unk_34);
+    BattleRegulation *v2 = sub_0202610C(param0->fieldSystem->saveData, 0);
     int v3 = 5;
 
     if (v2) {
@@ -164,7 +162,7 @@ static void ov7_0224B5A8 (UnkStruct_ov7_0224B4E8 * param0)
     sub_0201A954(&param0->unk_34);
 }
 
-static void ov7_0224B6AC (UnkStruct_ov7_0224B4E8 * param0)
+static void ov7_0224B6AC(UnkStruct_ov7_0224B4E8 *param0)
 {
     if (param0->unk_00) {
         sub_02001384(param0->unk_00, NULL, NULL);
@@ -177,7 +175,7 @@ static void ov7_0224B6AC (UnkStruct_ov7_0224B4E8 * param0)
     }
 }
 
-static int ov7_0224B6E8 (UnkStruct_ov7_0224B4E8 * param0)
+static int ov7_0224B6E8(UnkStruct_ov7_0224B4E8 *param0)
 {
     int v0;
     u16 v1;
@@ -215,19 +213,19 @@ static int ov7_0224B6E8 (UnkStruct_ov7_0224B4E8 * param0)
 }
 
 static UnkStruct_ov7_0224F4D8 Unk_ov7_0224F4D8[] = {
-    {0x73, (u32)1},
-    {0x74, (u32)2},
-    {0x72, (u32)0xfffffffe}
+    { 0x73, (u32)1 },
+    { 0x74, (u32)2 },
+    { 0x72, (u32)0xfffffffe }
 };
 
-static void ov7_0224B788 (UnkStruct_ov7_0224B4E8 * param0)
+static void ov7_0224B788(UnkStruct_ov7_0224B4E8 *param0)
 {
     UnkStruct_ov84_02240FA8 v0;
     int v1 = 3, v2;
     int v3 = 10;
     int v4 = 9;
     int v5 = 22;
-    UnkStruct_ov7_0224F4D8 * v6 = Unk_ov7_0224F4D8;
+    UnkStruct_ov7_0224F4D8 *v6 = Unk_ov7_0224F4D8;
 
     param0->unk_0C = sub_02013A04(v1, 4);
 
@@ -254,7 +252,7 @@ static void ov7_0224B788 (UnkStruct_ov7_0224B4E8 * param0)
     sub_0201A954(&param0->unk_44);
 }
 
-static int ov7_0224B83C (UnkStruct_ov7_0224B4E8 * param0)
+static int ov7_0224B83C(UnkStruct_ov7_0224B4E8 *param0)
 {
     int v0;
     u16 v1;
@@ -319,13 +317,13 @@ static u8 Unk_ov7_0224F4CC[] = {
     0x5D
 };
 
-static void ov7_0224B8DC (UnkStruct_ov7_0224B4E8 * param0)
+static void ov7_0224B8DC(UnkStruct_ov7_0224B4E8 *param0)
 {
-    MessageLoader * v0;
-    StringTemplate * v1 = param0->unk_64;
-    Strbuf* v2;
-    Strbuf* v3;
-    Window * v4;
+    MessageLoader *v0;
+    StringTemplate *v1 = param0->unk_64;
+    Strbuf *v2;
+    Strbuf *v3;
+    Window *v4;
     int v5, v6, v7, v8;
     const int v9 = 16;
     const int v10 = 2;
@@ -421,16 +419,16 @@ static void ov7_0224B8DC (UnkStruct_ov7_0224B4E8 * param0)
     sub_0201A954(v4);
 }
 
-static void ov7_0224BBA0 (UnkStruct_ov7_0224B4E8 * param0)
+static void ov7_0224BBA0(UnkStruct_ov7_0224B4E8 *param0)
 {
     Window_Clear(&param0->unk_24, 1);
     sub_0201C3C0(param0->unk_24.unk_00, param0->unk_24.unk_04);
     BGL_DeleteWindow(&param0->unk_24);
 }
 
-static BOOL ov7_0224BBC4 (UnkStruct_ov7_0224B4E8 * param0)
+static BOOL ov7_0224BBC4(UnkStruct_ov7_0224B4E8 *param0)
 {
-    Party * v0 = Party_GetFromSavedata(param0->fieldSystem->saveData);
+    Party *v0 = Party_GetFromSavedata(param0->fieldSystem->saveData);
     int v1 = sub_0207A594(param0->fieldSystem->unk_B0, v0, param0->unk_6C);
     int v2;
 
@@ -457,10 +455,10 @@ static BOOL ov7_0224BBC4 (UnkStruct_ov7_0224B4E8 * param0)
     return 0;
 }
 
-static BOOL ov7_0224BC74 (TaskManager * param0)
+static BOOL ov7_0224BC74(TaskManager *param0)
 {
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov7_0224B4E8 * v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+    UnkStruct_ov7_0224B4E8 *v1 = TaskManager_Environment(param0);
     int v2;
 
     switch (v1->unk_7C) {
@@ -556,9 +554,9 @@ static BOOL ov7_0224BC74 (TaskManager * param0)
     return 0;
 }
 
-static UnkStruct_ov7_0224B4E8 * ov7_0224BE10 (FieldSystem * fieldSystem)
+static UnkStruct_ov7_0224B4E8 *ov7_0224BE10(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov7_0224B4E8 * v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov7_0224B4E8));
+    UnkStruct_ov7_0224B4E8 *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov7_0224B4E8));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_ov7_0224B4E8));
 
@@ -576,10 +574,10 @@ static UnkStruct_ov7_0224B4E8 * ov7_0224BE10 (FieldSystem * fieldSystem)
     return v0;
 }
 
-void ov7_0224BE7C (TaskManager * param0, u16 * param1)
+void ov7_0224BE7C(TaskManager *param0, u16 *param1)
 {
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov7_0224B4E8 * v1 = ov7_0224BE10(fieldSystem);
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+    UnkStruct_ov7_0224B4E8 *v1 = ov7_0224BE10(fieldSystem);
 
     v1->unk_70 = param1;
     FieldTask_Start(param0, ov7_0224BC74, v1);

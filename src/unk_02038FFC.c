@@ -1,20 +1,21 @@
+#include "unk_02038FFC.h"
+
+#include <dwc.h>
 #include <nitro.h>
 #include <string.h>
-#include <dwc.h>
 
 #include "struct_decls/struct_0202B370_decl.h"
-#include "savedata.h"
 
 #include "heap.h"
+#include "savedata.h"
 #include "unk_0202ACE0.h"
-#include "unk_02038FFC.h"
 #include "unk_02099550.h"
 
-int sub_02038FFC (int param0)
+int sub_02038FFC(int param0)
 {
     int v0;
-    u8 * v1;
-    u8 * v2;
+    u8 *v1;
+    u8 *v2;
 
     sub_02099550();
     sub_020995B4();
@@ -30,9 +31,9 @@ int sub_02038FFC (int param0)
     return v0;
 }
 
-void sub_02039034 (UnkStruct_0202B370 * param0)
+void sub_02039034(UnkStruct_0202B370 *param0)
 {
-    DWCUserData * v0 = sub_0202AD28(param0);
+    DWCUserData *v0 = sub_0202AD28(param0);
 
     if (!DWC_CheckUserData(v0)) {
         DWC_CreateUserData(v0, 'ADAJ');
@@ -40,19 +41,19 @@ void sub_02039034 (UnkStruct_0202B370 * param0)
     }
 }
 
-int sub_02039058 (UnkStruct_0202B370 * param0)
+int sub_02039058(UnkStruct_0202B370 *param0)
 {
-    DWCUserData * v0 = sub_0202AD28(param0);
+    DWCUserData *v0 = sub_0202AD28(param0);
     DWCFriendData v1;
 
     DWC_CreateExchangeToken(v0, &v1);
     return DWC_GetGsProfileId(v0, &v1);
 }
 
-BOOL sub_02039074 (SaveData * param0)
+BOOL sub_02039074(SaveData *param0)
 {
-    UnkStruct_0202B370 * v0 = sub_0202B370(param0);
-    DWCUserData * v1 = sub_0202AD28(v0);
+    UnkStruct_0202B370 *v0 = sub_0202B370(param0);
+    DWCUserData *v1 = sub_0202AD28(v0);
 
     if (DWC_CheckHasProfile(v1)
         && DWC_CheckValidConsole(v1)) {

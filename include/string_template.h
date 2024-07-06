@@ -5,18 +5,17 @@
 #include "consts/gender.h"
 #include "consts/moves.h"
 
+#include "struct_decls/struct_020797DC_decl.h"
+#include "struct_defs/trainer_data.h"
+
+#include "enums.h"
 #include "pokemon.h"
 #include "savedata.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 
-#include "struct_decls/struct_020797DC_decl.h"
-#include "struct_defs/trainer_data.h"
-
-#include "enums.h"
-
-#define STRING_TEMPLATE_DEFAULT_MAX_ARGS    8
-#define STRING_TEMPLATE_DEFAULT_MAX_LENGTH  32
+#define STRING_TEMPLATE_DEFAULT_MAX_ARGS   8
+#define STRING_TEMPLATE_DEFAULT_MAX_LENGTH 32
 
 typedef struct StringTemplateArgHeader {
     u8 unused_00;
@@ -113,4 +112,3 @@ void StringTemplate_Format(const StringTemplate *template, Strbuf *dst, const St
 void StringTemplate_ClearArgs(StringTemplate *template);
 
 #endif // POKEPLATINUM_STRING_TEMPLATE_H
-

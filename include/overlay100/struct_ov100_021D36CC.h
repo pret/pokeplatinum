@@ -8,7 +8,7 @@ typedef struct {
     int unk_04;
     int unk_08;
     int unk_0C;
-    UnkStruct_ov100_021D4890 * unk_10;
+    UnkStruct_ov100_021D4890 *unk_10;
 } UnkStruct_ov100_021D36CC;
 
 #endif // POKEPLATINUM_STRUCT_OV100_021D36CC_H

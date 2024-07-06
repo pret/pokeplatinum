@@ -1,27 +1,28 @@
+#include "unk_02067A84.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "overlay101/struct_ov101_021D5D90_decl.h"
 
 #include "field/field_system.h"
-
-#include "sys_task.h"
-#include "heap.h"
-#include "sys_task_manager.h"
-#include "script_manager.h"
-#include "player_avatar.h"
-#include "map_object.h"
-#include "map_object_move.h"
-#include "unk_020655F4.h"
-#include "unk_02067A84.h"
-#include "unk_020711EC.h"
-#include "unk_02071B10.h"
 #include "overlay005/ov5_021ECC20.h"
 #include "overlay005/ov5_021F5A10.h"
 #include "overlay008/ov8_02249960.h"
+#include "overlay101/struct_ov101_021D5D90_decl.h"
+
+#include "heap.h"
+#include "map_object.h"
+#include "map_object_move.h"
+#include "player_avatar.h"
+#include "script_manager.h"
+#include "sys_task.h"
+#include "sys_task_manager.h"
+#include "unk_020655F4.h"
+#include "unk_020711EC.h"
+#include "unk_02071B10.h"
 
 typedef struct {
     int unk_00;
@@ -29,7 +30,7 @@ typedef struct {
     int unk_08;
     int unk_0C;
     int unk_10;
-    MapObject * unk_14;
+    MapObject *unk_14;
 } UnkStruct_02067C28;
 
 typedef struct {
@@ -41,40 +42,40 @@ typedef struct {
     int unk_14;
     int unk_18;
     int unk_1C;
-    UnkStruct_ov101_021D5D90 * unk_20;
-    MapObject * unk_24;
-    PlayerAvatar * playerAvatar;
-    FieldSystem * fieldSystem;
+    UnkStruct_ov101_021D5D90 *unk_20;
+    MapObject *unk_24;
+    PlayerAvatar *playerAvatar;
+    FieldSystem *fieldSystem;
 } UnkStruct_020EF6D0;
 
-static int sub_02067BA8(FieldSystem * fieldSystem, MapObjectManager * param1, PlayerAvatar * playerAvatar, const MapObject * param3, UnkStruct_02067C28 * param4);
-static void sub_02067C28(UnkStruct_02067C28 * param0, MapObject * param1, int param2, int param3);
-static int sub_02067C54(const MapObject * param0);
-static int sub_02067C80(const MapObject * param0, PlayerAvatar * playerAvatar, int * param2);
-static int sub_02067DA8(const MapObject * param0, int param1, int param2, int param3, int param4, int param5);
-static int sub_02067E74(const MapObject * param0, int param1, int param2);
-static int sub_02067F14(MapObject * param0);
-static MapObject * sub_02067F2C(FieldSystem * fieldSystem, MapObjectManager * param1, MapObject * param2, int param3);
-static SysTask * sub_02067FF0(FieldSystem * fieldSystem, MapObject * param1, PlayerAvatar * playerAvatar, int param3, int param4, int param5, int param6, int param7);
-static int sub_02068048(SysTask * param0);
-static void sub_02068054(SysTask * param0);
-static void sub_0206806C(SysTask * param0, void * param1);
+static int sub_02067BA8(FieldSystem *fieldSystem, MapObjectManager *param1, PlayerAvatar *playerAvatar, const MapObject *param3, UnkStruct_02067C28 *param4);
+static void sub_02067C28(UnkStruct_02067C28 *param0, MapObject *param1, int param2, int param3);
+static int sub_02067C54(const MapObject *param0);
+static int sub_02067C80(const MapObject *param0, PlayerAvatar *playerAvatar, int *param2);
+static int sub_02067DA8(const MapObject *param0, int param1, int param2, int param3, int param4, int param5);
+static int sub_02067E74(const MapObject *param0, int param1, int param2);
+static int sub_02067F14(MapObject *param0);
+static MapObject *sub_02067F2C(FieldSystem *fieldSystem, MapObjectManager *param1, MapObject *param2, int param3);
+static SysTask *sub_02067FF0(FieldSystem *fieldSystem, MapObject *param1, PlayerAvatar *playerAvatar, int param3, int param4, int param5, int param6, int param7);
+static int sub_02068048(SysTask *param0);
+static void sub_02068054(SysTask *param0);
+static void sub_0206806C(SysTask *param0, void *param1);
 
-int(*const Unk_020EF6C0[])(const MapObject *, int, int, int, int);
-int(*const Unk_020EF6D0[])(UnkStruct_020EF6D0 *);
+int (*const Unk_020EF6C0[])(const MapObject *, int, int, int, int);
+int (*const Unk_020EF6D0[])(UnkStruct_020EF6D0 *);
 
-int sub_02067A84 (FieldSystem * fieldSystem, BOOL param1)
+int sub_02067A84(FieldSystem *fieldSystem, BOOL param1)
 {
     UnkStruct_02067C28 v0;
-    MapObjectManager * mapObjMan = fieldSystem->mapObjMan;
-    PlayerAvatar * playerAvatar = fieldSystem->playerAvatar;
+    MapObjectManager *mapObjMan = fieldSystem->mapObjMan;
+    PlayerAvatar *playerAvatar = fieldSystem->playerAvatar;
 
     if (sub_02067BA8(fieldSystem, mapObjMan, playerAvatar, NULL, &v0) == 0) {
         return 0;
     }
 
     if (v0.unk_10 == 0) {
-        MapObject * v3;
+        MapObject *v3;
         UnkStruct_02067C28 v4;
 
         ScriptManager_Set(fieldSystem, 3928, v0.unk_14);
@@ -91,7 +92,7 @@ int sub_02067A84 (FieldSystem * fieldSystem, BOOL param1)
     }
 
     if (v0.unk_10 == 1) {
-        MapObject * v5;
+        MapObject *v5;
         UnkStruct_02067C28 v6;
 
         if (param1 == 0) {
@@ -112,10 +113,10 @@ int sub_02067A84 (FieldSystem * fieldSystem, BOOL param1)
     return 0;
 }
 
-static int sub_02067BA8 (FieldSystem * fieldSystem, MapObjectManager * param1, PlayerAvatar * playerAvatar, const MapObject * param3, UnkStruct_02067C28 * param4)
+static int sub_02067BA8(FieldSystem *fieldSystem, MapObjectManager *param1, PlayerAvatar *playerAvatar, const MapObject *param3, UnkStruct_02067C28 *param4)
 {
     int v0, v1, v2;
-    MapObject * v3;
+    MapObject *v3;
 
     v0 = 0;
     v3 = NULL;
@@ -137,7 +138,7 @@ static int sub_02067BA8 (FieldSystem * fieldSystem, MapObjectManager * param1, P
     return 0;
 }
 
-static void sub_02067C28 (UnkStruct_02067C28 * param0, MapObject * param1, int param2, int param3)
+static void sub_02067C28(UnkStruct_02067C28 *param0, MapObject *param1, int param2, int param3)
 {
     param0->unk_00 = param2;
     param0->unk_04 = param3;
@@ -147,7 +148,7 @@ static void sub_02067C28 (UnkStruct_02067C28 * param0, MapObject * param1, int p
     param0->unk_14 = param1;
 }
 
-static int sub_02067C54 (const MapObject * param0)
+static int sub_02067C54(const MapObject *param0)
 {
     int v0 = MapObject_GetEventType(param0);
 
@@ -164,7 +165,7 @@ static int sub_02067C54 (const MapObject * param0)
     return v0;
 }
 
-static int sub_02067C80 (const MapObject * param0, PlayerAvatar * playerAvatar, int * param2)
+static int sub_02067C80(const MapObject *param0, PlayerAvatar *playerAvatar, int *param2)
 {
     int v0, v1, v2, v3, v4, v5;
 
@@ -184,7 +185,7 @@ static int sub_02067C80 (const MapObject * param0, PlayerAvatar * playerAvatar, 
             }
         }
 
-        return(-1);
+        return -1;
     }
 
     if (v0 == 0x2) {
@@ -206,13 +207,13 @@ static int sub_02067C80 (const MapObject * param0, PlayerAvatar * playerAvatar, 
             v2++;
         } while (v2 < 4);
 
-        return(-1);
+        return -1;
     }
 
-    return(-1);
+    return -1;
 }
 
-int sub_02067D58 (const MapObject * mapObj, PlayerAvatar * playerAvatar, int param2, int param3)
+int sub_02067D58(const MapObject *mapObj, PlayerAvatar *playerAvatar, int param2, int param3)
 {
     int v0 = Player_GetXPos(playerAvatar);
     int v1 = Player_GetZPos(playerAvatar);
@@ -227,12 +228,12 @@ int sub_02067D58 (const MapObject * mapObj, PlayerAvatar * playerAvatar, int par
     return v2;
 }
 
-static int sub_02067DA8 (const MapObject * mapObj, int param1, int param2, int param3, int param4, int param5)
+static int sub_02067DA8(const MapObject *mapObj, int param1, int param2, int param3, int param4, int param5)
 {
     return Unk_020EF6C0[param1](mapObj, param2, param3, param4, param5);
 }
 
-static int sub_02067DC4 (const MapObject * mapObj, int param1, int param2, int param3, int param4)
+static int sub_02067DC4(const MapObject *mapObj, int param1, int param2, int param3, int param4)
 {
     int v0, v1;
 
@@ -246,10 +247,10 @@ static int sub_02067DC4 (const MapObject * mapObj, int param1, int param2, int p
         }
     }
 
-    return(-1);
+    return -1;
 }
 
-static int sub_02067DF0 (const MapObject * mapObj, int param1, int param2, int param3, int param4)
+static int sub_02067DF0(const MapObject *mapObj, int param1, int param2, int param3, int param4)
 {
     int v0, v1;
 
@@ -263,10 +264,10 @@ static int sub_02067DF0 (const MapObject * mapObj, int param1, int param2, int p
         }
     }
 
-    return(-1);
+    return -1;
 }
 
-static int sub_02067E1C (const MapObject * mapObj, int param1, int param2, int param3, int param4)
+static int sub_02067E1C(const MapObject *mapObj, int param1, int param2, int param3, int param4)
 {
     int v0, v1;
 
@@ -280,10 +281,10 @@ static int sub_02067E1C (const MapObject * mapObj, int param1, int param2, int p
         }
     }
 
-    return(-1);
+    return -1;
 }
 
-static int sub_02067E48 (const MapObject * mapObj, int param1, int param2, int param3, int param4)
+static int sub_02067E48(const MapObject *mapObj, int param1, int param2, int param3, int param4)
 {
     int v0, v1;
 
@@ -297,17 +298,17 @@ static int sub_02067E48 (const MapObject * mapObj, int param1, int param2, int p
         }
     }
 
-    return(-1);
+    return -1;
 }
 
-static int(*const Unk_020EF6C0[])(const MapObject *, int, int, int, int) = {
+static int (*const Unk_020EF6C0[])(const MapObject *, int, int, int, int) = {
     sub_02067DC4,
     sub_02067DF0,
     sub_02067E1C,
     sub_02067E48
 };
 
-static int sub_02067E74 (const MapObject * mapObj, int param1, int param2)
+static int sub_02067E74(const MapObject *mapObj, int param1, int param2)
 {
     int v0, v1, v2, v3;
     u32 v4;
@@ -344,7 +345,7 @@ static int sub_02067E74 (const MapObject * mapObj, int param1, int param2)
     return 1;
 }
 
-static int sub_02067F14 (MapObject * mapObj)
+static int sub_02067F14(MapObject *mapObj)
 {
     int v0;
 
@@ -352,15 +353,15 @@ static int sub_02067F14 (MapObject * mapObj)
     return Script_GetTrainerID(v0);
 }
 
-int sub_02067F24 (MapObject * mapObj)
+int sub_02067F24(MapObject *mapObj)
 {
     return sub_02067F14(mapObj);
 }
 
-static MapObject * sub_02067F2C (FieldSystem * fieldSystem, MapObjectManager * param1, MapObject * param2, int param3)
+static MapObject *sub_02067F2C(FieldSystem *fieldSystem, MapObjectManager *param1, MapObject *param2, int param3)
 {
     int v0;
-    MapObject * v1;
+    MapObject *v1;
 
     v0 = 0;
 
@@ -380,7 +381,7 @@ static MapObject * sub_02067F2C (FieldSystem * fieldSystem, MapObjectManager * p
     return NULL;
 }
 
-int sub_02067F88 (FieldSystem * fieldSystem, MapObject * param1)
+int sub_02067F88(FieldSystem *fieldSystem, MapObject *param1)
 {
     int v0 = sub_02067C54(param1);
 
@@ -393,26 +394,26 @@ int sub_02067F88 (FieldSystem * fieldSystem, MapObject * param1)
     return 0;
 }
 
-SysTask * sub_02067FB8 (FieldSystem * fieldSystem, MapObject * param1, PlayerAvatar * playerAvatar, int param3, int param4, int param5, int param6, int param7)
+SysTask *sub_02067FB8(FieldSystem *fieldSystem, MapObject *param1, PlayerAvatar *playerAvatar, int param3, int param4, int param5, int param6, int param7)
 {
     return sub_02067FF0(fieldSystem, param1, playerAvatar, param3, param4, param5, param6, param7);
 }
 
-int sub_02067FD4 (SysTask * task)
+int sub_02067FD4(SysTask *task)
 {
     GF_ASSERT(task != NULL);
     return sub_02068048(task);
 }
 
-void sub_02067FE8 (SysTask * task)
+void sub_02067FE8(SysTask *task)
 {
     sub_02068054(task);
 }
 
-static SysTask * sub_02067FF0 (FieldSystem * fieldSystem, MapObject * param1, PlayerAvatar * playerAvatar, int param3, int param4, int param5, int param6, int param7)
+static SysTask *sub_02067FF0(FieldSystem *fieldSystem, MapObject *param1, PlayerAvatar *playerAvatar, int param3, int param4, int param5, int param6, int param7)
 {
-    SysTask * v0;
-    UnkStruct_020EF6D0 * v1;
+    SysTask *v0;
+    UnkStruct_020EF6D0 *v1;
 
     v1 = Heap_AllocFromHeapAtEnd(4, (sizeof(UnkStruct_020EF6D0)));
     GF_ASSERT(v1 != NULL);
@@ -434,17 +435,17 @@ static SysTask * sub_02067FF0 (FieldSystem * fieldSystem, MapObject * param1, Pl
     return v0;
 }
 
-static int sub_02068048 (SysTask * task)
+static int sub_02068048(SysTask *task)
 {
-    UnkStruct_020EF6D0 * v0;
+    UnkStruct_020EF6D0 *v0;
 
     v0 = SysTask_GetParam(task);
     return v0->unk_04;
 }
 
-static void sub_02068054 (SysTask * task)
+static void sub_02068054(SysTask *task)
 {
-    UnkStruct_020EF6D0 * v0;
+    UnkStruct_020EF6D0 *v0;
 
     v0 = SysTask_GetParam(task);
 
@@ -452,9 +453,9 @@ static void sub_02068054 (SysTask * task)
     SysTask_Done(task);
 }
 
-static void sub_0206806C (SysTask * task, void * param1)
+static void sub_0206806C(SysTask *task, void *param1)
 {
-    UnkStruct_020EF6D0 * v0;
+    UnkStruct_020EF6D0 *v0;
 
     v0 = param1;
 
@@ -463,9 +464,9 @@ static void sub_0206806C (SysTask * task, void * param1)
     }
 }
 
-static int sub_02068088 (UnkStruct_020EF6D0 * param0)
+static int sub_02068088(UnkStruct_020EF6D0 *param0)
 {
-    MapObject * v0 = param0->unk_24;
+    MapObject *v0 = param0->unk_24;
 
     if (MapObject_IsMoving(v0) == 1) {
         sub_02062DDC(v0);
@@ -475,9 +476,9 @@ static int sub_02068088 (UnkStruct_020EF6D0 * param0)
     return 1;
 }
 
-static int sub_020680A4 (UnkStruct_020EF6D0 * param0)
+static int sub_020680A4(UnkStruct_020EF6D0 *param0)
 {
-    MapObject * v0 = param0->unk_24;
+    MapObject *v0 = param0->unk_24;
 
     if (MapObject_IsMoving(v0) == 1) {
         return 0;
@@ -490,9 +491,9 @@ static int sub_020680A4 (UnkStruct_020EF6D0 * param0)
     return 1;
 }
 
-static int sub_020680D0 (UnkStruct_020EF6D0 * param0)
+static int sub_020680D0(UnkStruct_020EF6D0 *param0)
 {
-    MapObject * v0 = Player_MapObject(param0->playerAvatar);
+    MapObject *v0 = Player_MapObject(param0->playerAvatar);
 
     if (LocalMapObj_CheckAnimationFinished(v0) == 0) {
         return 0;
@@ -515,7 +516,7 @@ static int sub_020680D0 (UnkStruct_020EF6D0 * param0)
     return 1;
 }
 
-static int sub_02068118 (UnkStruct_020EF6D0 * param0)
+static int sub_02068118(UnkStruct_020EF6D0 *param0)
 {
     int v0;
 
@@ -532,7 +533,7 @@ static int sub_02068118 (UnkStruct_020EF6D0 * param0)
     return 0;
 }
 
-static int sub_02068150 (UnkStruct_020EF6D0 * param0)
+static int sub_02068150(UnkStruct_020EF6D0 *param0)
 {
     if (LocalMapObj_CheckAnimationFinished(param0->unk_24) == 0) {
         return 0;
@@ -542,7 +543,7 @@ static int sub_02068150 (UnkStruct_020EF6D0 * param0)
     return 1;
 }
 
-static int sub_0206816C (UnkStruct_020EF6D0 * param0)
+static int sub_0206816C(UnkStruct_020EF6D0 *param0)
 {
     param0->unk_20 = ov5_021F5D8C(param0->unk_24, 0, 0, 0);
     param0->unk_00 = 6;
@@ -550,7 +551,7 @@ static int sub_0206816C (UnkStruct_020EF6D0 * param0)
     return 0;
 }
 
-static int sub_02068188 (UnkStruct_020EF6D0 * param0)
+static int sub_02068188(UnkStruct_020EF6D0 *param0)
 {
     if (ov5_021F5C4C(param0->unk_20) == 1) {
         sub_0207136C(param0->unk_20);
@@ -560,7 +561,7 @@ static int sub_02068188 (UnkStruct_020EF6D0 * param0)
     return 0;
 }
 
-static int sub_020681A4 (UnkStruct_020EF6D0 * param0)
+static int sub_020681A4(UnkStruct_020EF6D0 *param0)
 {
     LocalMapObj_SetAnimationCode(param0->unk_24, 0x65);
     param0->unk_00 = 8;
@@ -568,7 +569,7 @@ static int sub_020681A4 (UnkStruct_020EF6D0 * param0)
     return 0;
 }
 
-static int sub_020681B8 (UnkStruct_020EF6D0 * param0)
+static int sub_020681B8(UnkStruct_020EF6D0 *param0)
 {
     if (LocalMapObj_CheckAnimationFinished(param0->unk_24) == 1) {
         param0->unk_00 = 9;
@@ -577,7 +578,7 @@ static int sub_020681B8 (UnkStruct_020EF6D0 * param0)
     return 0;
 }
 
-static int sub_020681D0 (UnkStruct_020EF6D0 * param0)
+static int sub_020681D0(UnkStruct_020EF6D0 *param0)
 {
     param0->unk_1C++;
 
@@ -589,7 +590,7 @@ static int sub_020681D0 (UnkStruct_020EF6D0 * param0)
     return 0;
 }
 
-static int sub_020681E8 (UnkStruct_020EF6D0 * param0)
+static int sub_020681E8(UnkStruct_020EF6D0 *param0)
 {
     if (param0->unk_0C <= 1) {
         param0->unk_00 = 13;
@@ -600,7 +601,7 @@ static int sub_020681E8 (UnkStruct_020EF6D0 * param0)
     return 1;
 }
 
-static int sub_02068200 (UnkStruct_020EF6D0 * param0)
+static int sub_02068200(UnkStruct_020EF6D0 *param0)
 {
     int v0;
 
@@ -613,7 +614,7 @@ static int sub_02068200 (UnkStruct_020EF6D0 * param0)
     return 0;
 }
 
-static int sub_02068228 (UnkStruct_020EF6D0 * param0)
+static int sub_02068228(UnkStruct_020EF6D0 *param0)
 {
     if (LocalMapObj_CheckAnimationFinished(param0->unk_24) == 0) {
         return 0;
@@ -625,7 +626,7 @@ static int sub_02068228 (UnkStruct_020EF6D0 * param0)
     return 1;
 }
 
-static int sub_02068248 (UnkStruct_020EF6D0 * param0)
+static int sub_02068248(UnkStruct_020EF6D0 *param0)
 {
     param0->unk_1C++;
 
@@ -639,10 +640,10 @@ static int sub_02068248 (UnkStruct_020EF6D0 * param0)
     return 1;
 }
 
-static int sub_02068264 (UnkStruct_020EF6D0 * param0)
+static int sub_02068264(UnkStruct_020EF6D0 *param0)
 {
     int v0, v1;
-    MapObject * v2;
+    MapObject *v2;
 
     v2 = Player_MapObject(param0->playerAvatar);
     v1 = sub_02064488(MapObject_GetXPos(v2), MapObject_GetZPos(v2), MapObject_GetXPos(param0->unk_24), MapObject_GetZPos(param0->unk_24));
@@ -661,9 +662,9 @@ static int sub_02068264 (UnkStruct_020EF6D0 * param0)
     return 0;
 }
 
-static int sub_020682E0 (UnkStruct_020EF6D0 * param0)
+static int sub_020682E0(UnkStruct_020EF6D0 *param0)
 {
-    MapObject * v0;
+    MapObject *v0;
 
     v0 = Player_MapObject(param0->playerAvatar);
 
@@ -677,7 +678,7 @@ static int sub_020682E0 (UnkStruct_020EF6D0 * param0)
     return 1;
 }
 
-static int sub_02068308 (UnkStruct_020EF6D0 * param0)
+static int sub_02068308(UnkStruct_020EF6D0 *param0)
 {
     sub_020656AC(param0->unk_24);
 
@@ -689,13 +690,13 @@ static int sub_02068308 (UnkStruct_020EF6D0 * param0)
     return 1;
 }
 
-static int sub_0206833C (UnkStruct_020EF6D0 * param0)
+static int sub_0206833C(UnkStruct_020EF6D0 *param0)
 {
     param0->unk_04 = 1;
     return 0;
 }
 
-static int(*const Unk_020EF6D0[])(UnkStruct_020EF6D0 *) = {
+static int (*const Unk_020EF6D0[])(UnkStruct_020EF6D0 *) = {
     sub_02068088,
     sub_020680A4,
     sub_020680D0,

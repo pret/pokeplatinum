@@ -1,9 +1,8 @@
 #ifndef POKEPLATINUM_STRUCT_OV5_021D5894_H
 #define POKEPLATINUM_STRUCT_OV5_021D5894_H
 
-
-#include <nitro/gx.h>
 #include <nitro/fx/fx.h>
+#include <nitro/gx.h>
 
 typedef struct UnkStruct_ov5_021D5894_t {
     VecFx16 unk_00[4];

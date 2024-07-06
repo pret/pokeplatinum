@@ -1,12 +1,14 @@
 #ifndef POKEPLATINUM_STRUCT_OV83_0223FE50_H
 #define POKEPLATINUM_STRUCT_OV83_0223FE50_H
 
-#include "trainer_info.h"
 #include "struct_defs/struct_0202A93C.h"
+
 #include "overlay083/struct_ov83_0223D2E8.h"
 #include "overlay083/struct_ov83_0223DB4C.h"
 #include "overlay083/struct_ov83_0223DB4C_sub1.h"
 #include "overlay083/struct_ov83_022401AC.h"
+
+#include "trainer_info.h"
 
 typedef struct {
     UnkStruct_ov83_0223DB4C_sub1 unk_00;
@@ -16,14 +18,14 @@ typedef struct {
     UnkStruct_ov83_022401AC unk_58;
     UnkStruct_ov83_0223DB4C unk_6C;
     UnkStruct_ov83_0223D2E8 unk_90[4];
-    Poffin * unk_100;
+    Poffin *unk_100;
     u32 unk_104[4];
     UnkStruct_ov83_0223DB4C_sub1 unk_114[4];
     u8 unk_124[4];
     u8 unk_128[4];
     u8 unk_12C[4];
     u8 unk_130[4];
-    const TrainerInfo * unk_134[4];
+    const TrainerInfo *unk_134[4];
     u8 unk_144;
     u8 unk_145;
 } UnkStruct_ov83_0223FE50;

@@ -1,9 +1,7 @@
-#include "enums.h"
+#include "battle/party_gauge.h"
 
 #include <nitro.h>
 #include <string.h>
-
-#include "assert.h"
 
 #include "constants/heap.h"
 #include "constants/palette.h"
@@ -13,20 +11,21 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "sys_task_manager.h"
-
 #include "struct_defs/battle_io.h"
-#include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/sprite_template.h"
+#include "struct_defs/struct_0200D0F4.h"
 
-#include "unk_02005474.h"
-#include "narc.h"
-#include "unk_0200C6E4.h"
-#include "sys_task.h"
-#include "heap.h"
-#include "cell_actor.h"
 #include "battle/ov16_0223DF00.h"
-#include "battle/party_gauge.h"
+
+#include "assert.h"
+#include "cell_actor.h"
+#include "enums.h"
+#include "heap.h"
+#include "narc.h"
+#include "sys_task.h"
+#include "sys_task_manager.h"
+#include "unk_02005474.h"
+#include "unk_0200C6E4.h"
 
 typedef struct {
     CellActorData *cells;
@@ -89,7 +88,7 @@ static void HidePokeballsStartOfBattleTask(SysTask *task, void *data);
 static void HidePokeballsMidBattleTask(SysTask *task, void *data);
 static int PokeballsAnimationFrame(enum PartyGaugeBallStatus status, enum PartyGaugeSide side);
 static int FlippedAnimationFrame(int frame);
-static PartyGauge* NewPartyGauge(void);
+static PartyGauge *NewPartyGauge(void);
 static void FreePartyGauge(PartyGauge *partyGauge);
 
 // TODO: enum?
@@ -138,72 +137,72 @@ static const SpriteTemplate sPokeballTemplate = {
     .transferToVRAM = FALSE,
 };
 
-#define ARROW_TASK_PRIORITY     500
-#define POKEBALL_TASK_PRIORITY  (ARROW_TASK_PRIORITY + 1)
+#define ARROW_TASK_PRIORITY    500
+#define POKEBALL_TASK_PRIORITY (ARROW_TASK_PRIORITY + 1)
 
-#define SCREEN_EDGE_RIGHT       256
-#define SCREEN_EDGE_LEFT        0
+#define SCREEN_EDGE_RIGHT 256
+#define SCREEN_EDGE_LEFT  0
 
-#define ARROW_X_START_OURS      (SCREEN_EDGE_RIGHT + 96)  // 96 pixels off-screem
-#define ARROW_X_START_THEIRS    (SCREEN_EDGE_LEFT  - 96)  // 96 pixels off-screen
-#define ARROW_X_END_OURS        (SCREEN_EDGE_RIGHT - 32)
-#define ARROW_X_END_THEIRS      (SCREEN_EDGE_LEFT  + 32)
-#define ARROW_Y_POS_OURS        120
-#define ARROW_Y_POS_THEIRS      56
+#define ARROW_X_START_OURS   (SCREEN_EDGE_RIGHT + 96) // 96 pixels off-screem
+#define ARROW_X_START_THEIRS (SCREEN_EDGE_LEFT - 96) // 96 pixels off-screen
+#define ARROW_X_END_OURS     (SCREEN_EDGE_RIGHT - 32)
+#define ARROW_X_END_THEIRS   (SCREEN_EDGE_LEFT + 32)
+#define ARROW_Y_POS_OURS     120
+#define ARROW_Y_POS_THEIRS   56
 
 #define POKEBALL_X_START_OURS   (SCREEN_EDGE_RIGHT + 20)
-#define POKEBALL_X_START_THEIRS (SCREEN_EDGE_LEFT  - 20)
+#define POKEBALL_X_START_THEIRS (SCREEN_EDGE_LEFT - 20)
 #define POKEBALL_X_END_OURS     (SCREEN_EDGE_RIGHT - 128 + 34)
-#define POKEBALL_X_END_THEIRS   (SCREEN_EDGE_LEFT  + 128 - 34)
+#define POKEBALL_X_END_THEIRS   (SCREEN_EDGE_LEFT + 128 - 34)
 #define POKEBALL_Y_POS_OURS     (ARROW_Y_POS_OURS - 6)
 #define POKEBALL_Y_POS_THEIRS   (ARROW_Y_POS_THEIRS - 6)
 
-#define POKEBALL_SPACING            16
-#define POKEBALL_OVERFLOW_SPACING   15
-#define POKEBALL_OVERFLOW_LEN       6
+#define POKEBALL_SPACING          16
+#define POKEBALL_OVERFLOW_SPACING 15
+#define POKEBALL_OVERFLOW_LEN     6
 
-#define ARROW_IN_SPEED          (18 << 8)
-#define ARROW_OUT_SPEED         (4 << 8)
-#define ARROW_FADE_SPEED        (1 << 8)
+#define ARROW_IN_SPEED   (18 << 8)
+#define ARROW_OUT_SPEED  (4 << 8)
+#define ARROW_FADE_SPEED (1 << 8)
 
-#define POKEBALL_IN_SPEED       (18 << 8)
-#define POKEBALL_IN_SPEED_SLOW  (6 << 8)
-#define POKEBALL_OUT_SPEED      (12 << 8)
+#define POKEBALL_IN_SPEED      (18 << 8)
+#define POKEBALL_IN_SPEED_SLOW (6 << 8)
+#define POKEBALL_OUT_SPEED     (12 << 8)
 
-#define POKEBALL_SLOT_SHOW_DELAY    3
-#define POKEBALL_FLAT_SHOW_DELAY    5
+#define POKEBALL_SLOT_SHOW_DELAY 3
+#define POKEBALL_FLAT_SHOW_DELAY 5
 
-#define HIGH_LOW_Y_POS_DIFF     36
+#define HIGH_LOW_Y_POS_DIFF 36
 
 __attribute__((aligned(4))) static const u16 sArrowYPosOurs[] = {
-    [PARTY_GAUGE_POSITION_HIGH]   = ARROW_Y_POS_OURS - HIGH_LOW_Y_POS_DIFF,
+    [PARTY_GAUGE_POSITION_HIGH] = ARROW_Y_POS_OURS - HIGH_LOW_Y_POS_DIFF,
     [PARTY_GAUGE_POSITION_MIDDLE] = ARROW_Y_POS_OURS,
-    [PARTY_GAUGE_POSITION_LOW]    = ARROW_Y_POS_OURS
+    [PARTY_GAUGE_POSITION_LOW] = ARROW_Y_POS_OURS
 };
 
 __attribute__((aligned(4))) static const u16 sArrowYPosTheirs[] = {
-    [PARTY_GAUGE_POSITION_HIGH]   = ARROW_Y_POS_THEIRS - HIGH_LOW_Y_POS_DIFF,
+    [PARTY_GAUGE_POSITION_HIGH] = ARROW_Y_POS_THEIRS - HIGH_LOW_Y_POS_DIFF,
     [PARTY_GAUGE_POSITION_MIDDLE] = ARROW_Y_POS_THEIRS,
-    [PARTY_GAUGE_POSITION_LOW]    = ARROW_Y_POS_THEIRS
+    [PARTY_GAUGE_POSITION_LOW] = ARROW_Y_POS_THEIRS
 };
 
 __attribute__((aligned(4))) static const u16 sPokeballYPosOurs[] = {
-    [PARTY_GAUGE_POSITION_HIGH]   = POKEBALL_Y_POS_OURS - HIGH_LOW_Y_POS_DIFF,
+    [PARTY_GAUGE_POSITION_HIGH] = POKEBALL_Y_POS_OURS - HIGH_LOW_Y_POS_DIFF,
     [PARTY_GAUGE_POSITION_MIDDLE] = POKEBALL_Y_POS_OURS,
-    [PARTY_GAUGE_POSITION_LOW]    = POKEBALL_Y_POS_OURS
+    [PARTY_GAUGE_POSITION_LOW] = POKEBALL_Y_POS_OURS
 };
 
 __attribute__((aligned(4))) static const u16 sPokeballYPosTheirs[] = {
-    [PARTY_GAUGE_POSITION_HIGH]   = POKEBALL_Y_POS_THEIRS - HIGH_LOW_Y_POS_DIFF,
+    [PARTY_GAUGE_POSITION_HIGH] = POKEBALL_Y_POS_THEIRS - HIGH_LOW_Y_POS_DIFF,
     [PARTY_GAUGE_POSITION_MIDDLE] = POKEBALL_Y_POS_THEIRS,
-    [PARTY_GAUGE_POSITION_LOW]    = POKEBALL_Y_POS_THEIRS
+    [PARTY_GAUGE_POSITION_LOW] = POKEBALL_Y_POS_THEIRS
 };
 
 // TODO: naix?
-#define PARTY_GAUGE_NCLR        110
-#define PARTY_GAUGE_NCGR_BIN    340
-#define PARTY_GAUGE_NCER_BIN    341
-#define PARTY_GAUGE_NANR_BIN    342
+#define PARTY_GAUGE_NCLR     110
+#define PARTY_GAUGE_NCGR_BIN 340
+#define PARTY_GAUGE_NCER_BIN 341
+#define PARTY_GAUGE_NANR_BIN 342
 
 void PartyGauge_LoadGraphics(SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler, PaletteData *palette)
 {
@@ -225,7 +224,7 @@ void PartyGauge_FreeGraphics(SpriteGfxHandler *gfxHandler)
     SpriteGfxHandler_UnloadAnimObjById(gfxHandler, PARTY_GAUGE_ANIM_RES_ID);
 }
 
-static PartyGauge* NewPartyGauge()
+static PartyGauge *NewPartyGauge()
 {
     PartyGauge *gauge = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(PartyGauge));
     MI_CpuClear8(gauge, sizeof(PartyGauge));
@@ -238,7 +237,7 @@ static void FreePartyGauge(PartyGauge *gauge)
     Heap_FreeToHeap(gauge);
 }
 
-PartyGauge* PartyGauge_Show(u8 ballStatus[], enum PartyGaugeSide side, enum ShowPartyGaugeType showType, enum PartyGaugePosition pos, SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler)
+PartyGauge *PartyGauge_Show(u8 ballStatus[], enum PartyGaugeSide side, enum ShowPartyGaugeType showType, enum PartyGaugePosition pos, SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler)
 {
     PartyGauge *gauge = NewPartyGauge();
     ShowArrow(&gauge->arrow, side, pos, renderer, gfxHandler);
@@ -348,7 +347,7 @@ static void ShowArrowTask(SysTask *task, void *data)
         s16 x, y;
 
         SpriteActor_GetSpritePositionXY(arrow->cells, &x, &y);
-        arrow->x = x << 8; 
+        arrow->x = x << 8;
         arrow->state++;
         // fall-through
     case SHOW_ARROW_DRAW:
@@ -414,8 +413,7 @@ static void HideArrowTask(SysTask *task, void *data)
         SpriteActor_SetOAMMode(arrow->cells, GX_OAM_MODE_XLU);
         arrow->alpha = 16 << 8;
 
-        G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD,
-            (arrow->alpha >> 8), 16 - (arrow->alpha >> 8));
+        G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, (arrow->alpha >> 8), 16 - (arrow->alpha >> 8));
         arrow->state++;
         // fall-through
     case HIDE_ARROW_DELAY:
@@ -512,7 +510,7 @@ static void ShowPokeballs(PartyGaugePokeballs *pokeballs, s8 *numBalls, enum Par
 
 static void ShowPokeballsStartOfBattleTask(SysTask *task, void *data)
 {
-    PartyGaugePokeballs * pokeballs = data;
+    PartyGaugePokeballs *pokeballs = data;
 
     switch (pokeballs->state) {
     case SHOW_POKEBALLS_INIT:
@@ -606,7 +604,7 @@ static void ShowPokeballsStartOfBattleTask(SysTask *task, void *data)
 
         SpriteActor_UpdateObject(pokeballs->cells->unk_00);
         break;
-    
+
     default:
         SpriteActor_SetAnimFrame(pokeballs->cells->unk_00, 0);
         SysTask_Done(task);
@@ -691,7 +689,7 @@ enum {
 
 static void HidePokeballsStartOfBattleTask(SysTask *task, void *data)
 {
-    PartyGaugePokeballs * pokeballs = data;
+    PartyGaugePokeballs *pokeballs = data;
 
     if (*(pokeballs->arrowAlpha) == 0) {
         pokeballs->state = HIDE_POKEBALLS_BREAK;
@@ -774,10 +772,10 @@ static int PokeballsAnimationFrame(enum PartyGaugeBallStatus status, enum PartyG
     case BALL_STATUS_NO_MON:
     default:
         return PGANM_POKEBALL_EMPTY_SLOT;
-        
+
     case BALL_STATUS_MON_ALIVE:
         return (side == PARTY_GAUGE_OURS) ? PGANM_POKEBALL_HEALTHY_OURS : PGANM_POKEBALL_HEALTHY_THEIRS;
-        
+
     case BALL_STATUS_MON_FAINTED:
         return (side == PARTY_GAUGE_OURS) ? PGANM_POKEBALL_FAINTED_OURS : PGANM_POKEBALL_FAINTED_THEIRS;
 

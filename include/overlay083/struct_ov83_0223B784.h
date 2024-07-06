@@ -3,6 +3,7 @@
 
 #include "struct_decls/struct_02015064_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
+
 #include "overlay083/struct_ov83_0223D4CC_decl.h"
 #include "overlay083/struct_ov83_0223D784.h"
 #include "overlay083/struct_ov83_0223D95C.h"
@@ -34,13 +35,13 @@ typedef struct {
     u8 unk_1A;
     u8 unk_1B;
     int unk_1C;
-    BGL * unk_20;
+    BGL *unk_20;
     int unk_24;
     int unk_28;
     UnkStruct_ov83_0223D784 unk_2C;
     UnkStruct_ov83_0223D95C unk_1CC[6];
     BOOL unk_31C;
-    UnkStruct_02015064 * unk_320;
+    UnkStruct_02015064 *unk_320;
     u32 unk_324;
     u32 unk_328;
     BOOL unk_32C;
@@ -64,7 +65,7 @@ typedef struct {
     UnkStruct_ov83_0223F770 unk_1478;
     UnkStruct_ov83_0223F7A4 unk_1480;
     int unk_1488;
-    UnkStruct_ov83_0223D4CC * unk_148C;
+    UnkStruct_ov83_0223D4CC *unk_148C;
     int unk_1490;
     UnkStruct_ov83_0223FE50 unk_1494;
     BOOL unk_15DC;

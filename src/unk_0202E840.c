@@ -1,55 +1,53 @@
+#include "unk_0202E840.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "consts/game_records.h"
-#include "strbuf.h"
-#include "trainer_info.h"
-#include "struct_decls/struct_0203068C_decl.h"
-#include "savedata.h"
 
+#include "struct_decls/struct_0203068C_decl.h"
 #include "struct_defs/struct_0202E858.h"
 #include "struct_defs/struct_0202E8C0.h"
 #include "struct_defs/struct_0202E91C.h"
 #include "struct_defs/struct_0202EA80.h"
 #include "struct_defs/struct_0202EE10.h"
 
-#include "unk_020021B0.h"
-#include "heap.h"
-#include "strbuf.h"
-#include "savedata.h"
-#include "save_player.h"
-#include "trainer_info.h"
-#include "unk_0202B37C.h"
 #include "game_records.h"
-#include "unk_0202E840.h"
+#include "heap.h"
+#include "save_player.h"
+#include "savedata.h"
+#include "strbuf.h"
+#include "trainer_info.h"
+#include "unk_020021B0.h"
+#include "unk_0202B37C.h"
 #include "unk_0203061C.h"
 
 typedef struct {
     int unk_00;
     int unk_04;
     int unk_08;
-    UnkStruct_0202E858 * unk_0C[11];
-    UnkStruct_0202E858 * unk_38[6];
+    UnkStruct_0202E858 *unk_0C[11];
+    UnkStruct_0202E858 *unk_38[6];
     UnkStruct_0202EA80 unk_50;
 } UnkStruct_0202EABC;
 
 static const u8 Unk_020E5CD0[][2] = {
-    {0x6, 0x0},
-    {0x4, 0x6},
-    {0x3, 0xA}
+    { 0x6, 0x0 },
+    { 0x4, 0x6 },
+    { 0x3, 0xA }
 };
 
-u8 sub_0202E840 (int param0)
+u8 sub_0202E840(int param0)
 {
     return Unk_020E5CD0[param0][0];
 }
 
-u8 sub_0202E84C (int param0)
+u8 sub_0202E84C(int param0)
 {
     return Unk_020E5CD0[param0][1];
 }
 
-void sub_0202E858 (UnkStruct_0202E858 * param0)
+void sub_0202E858(UnkStruct_0202E858 *param0)
 {
     param0->unk_00 = 0;
     param0->unk_04 = 0;
@@ -58,7 +56,7 @@ void sub_0202E858 (UnkStruct_0202E858 * param0)
     SaveData_SetChecksum(28);
 }
 
-BOOL sub_0202E870 (UnkStruct_0202E858 * param0)
+BOOL sub_0202E870(UnkStruct_0202E858 *param0)
 {
     if (GF_strlen(param0->unk_08) == 0) {
         return 0;
@@ -67,12 +65,12 @@ BOOL sub_0202E870 (UnkStruct_0202E858 * param0)
     return 1;
 }
 
-int Rankings_SaveSize (void)
+int Rankings_SaveSize(void)
 {
     return sizeof(UnkStruct_0202E8C0);
 }
 
-void Rankings_Init (UnkStruct_0202E8C0 * param0)
+void Rankings_Init(UnkStruct_0202E8C0 *param0)
 {
     int v0, v1;
 
@@ -87,16 +85,16 @@ void Rankings_Init (UnkStruct_0202E8C0 * param0)
     SaveData_SetChecksum(28);
 }
 
-UnkStruct_0202E8C0 * sub_0202E8C0 (SaveData * param0)
+UnkStruct_0202E8C0 *sub_0202E8C0(SaveData *param0)
 {
     SaveData_Checksum(28);
     return SaveData_SaveTable(param0, 28);
 }
 
-void sub_0202E8D4 (UnkStruct_0202E8C0 * param0, int param1, u8 param2)
+void sub_0202E8D4(UnkStruct_0202E8C0 *param0, int param1, u8 param2)
 {
     int v0;
-    UnkStruct_0202EA80 * v1;
+    UnkStruct_0202EA80 *v1;
 
     if (param2 >= 6) {
         GF_ASSERT(param2 < 6);
@@ -113,18 +111,18 @@ void sub_0202E8D4 (UnkStruct_0202E8C0 * param0, int param1, u8 param2)
     SaveData_SetChecksum(28);
 }
 
-int sub_0202E91C (void)
+int sub_0202E91C(void)
 {
     return sizeof(UnkStruct_0202E91C);
 }
 
-static u32 * sub_0202E924 (SaveData * param0, int param1)
+static u32 *sub_0202E924(SaveData *param0, int param1)
 {
     int v0;
     u32 v1;
-    GameRecords * v2;
-    UnkStruct_0203068C * v3;
-    u32 * v4;
+    GameRecords *v2;
+    UnkStruct_0203068C *v3;
+    u32 *v4;
     static const int v5[] = {
         0x0,
         0x2,
@@ -185,14 +183,14 @@ static u32 * sub_0202E924 (SaveData * param0, int param1)
     return v4;
 }
 
-void * sub_0202E9FC (SaveData * param0, int param1)
+void *sub_0202E9FC(SaveData *param0, int param1)
 {
     int v0;
     u32 v1, v2;
-    UnkStruct_0202E91C * v3;
-    Strbuf* v4;
-    TrainerInfo * v5 = SaveData_GetTrainerInfo(param0);
-    u32 * v6;
+    UnkStruct_0202E91C *v3;
+    Strbuf *v4;
+    TrainerInfo *v5 = SaveData_GetTrainerInfo(param0);
+    u32 *v6;
 
     v3 = Heap_AllocFromHeapAtEnd(param1, sizeof(UnkStruct_0202E91C));
     MI_CpuClear8(v3, sizeof(UnkStruct_0202E91C));
@@ -216,7 +214,7 @@ void * sub_0202E9FC (SaveData * param0, int param1)
     return v3;
 }
 
-static void sub_0202EA80 (UnkStruct_0202EA80 * param0)
+static void sub_0202EA80(UnkStruct_0202EA80 *param0)
 {
     int v0;
 
@@ -225,7 +223,7 @@ static void sub_0202EA80 (UnkStruct_0202EA80 * param0)
     }
 }
 
-static BOOL sub_0202EA98 (const UnkStruct_0202E858 * param0, const UnkStruct_0202E858 * param1)
+static BOOL sub_0202EA98(const UnkStruct_0202E858 *param0, const UnkStruct_0202E858 *param1)
 {
     if (param0->unk_00 != param1->unk_00) {
         return 0;
@@ -238,7 +236,7 @@ static BOOL sub_0202EA98 (const UnkStruct_0202E858 * param0, const UnkStruct_020
     return 1;
 }
 
-static BOOL sub_0202EABC (UnkStruct_0202EABC * param0, const UnkStruct_0202E858 * param1)
+static BOOL sub_0202EABC(UnkStruct_0202EABC *param0, const UnkStruct_0202E858 *param1)
 {
     int v0;
 
@@ -251,11 +249,11 @@ static BOOL sub_0202EABC (UnkStruct_0202EABC * param0, const UnkStruct_0202E858 
     return 0;
 }
 
-static void sub_0202EAEC (UnkStruct_0202E8C0 * param0, UnkStruct_0202EABC * param1, u32 param2, u8 param3, u8 param4, UnkStruct_0202E91C ** param5, u8 param6, int param7)
+static void sub_0202EAEC(UnkStruct_0202E8C0 *param0, UnkStruct_0202EABC *param1, u32 param2, u8 param3, u8 param4, UnkStruct_0202E91C **param5, u8 param6, int param7)
 {
     int v0, v1;
-    UnkStruct_0202E858 * v2;
-    UnkStruct_0202EA80 * v3;
+    UnkStruct_0202E858 *v2;
+    UnkStruct_0202EA80 *v3;
 
     MI_CpuClear8(param1, sizeof(UnkStruct_0202EABC));
 
@@ -334,10 +332,10 @@ static void sub_0202EAEC (UnkStruct_0202E8C0 * param0, UnkStruct_0202EABC * para
     }
 }
 
-static void sub_0202ECB0 (UnkStruct_0202E8C0 * param0, u32 param1, u8 param2, UnkStruct_0202E91C ** param3, u8 param4, int param5)
+static void sub_0202ECB0(UnkStruct_0202E8C0 *param0, u32 param1, u8 param2, UnkStruct_0202E91C **param3, u8 param4, int param5)
 {
     int v0, v1;
-    UnkStruct_0202EABC * v2;
+    UnkStruct_0202EABC *v2;
 
     v2 = Heap_AllocFromHeapAtEnd(param5, sizeof(UnkStruct_0202EABC));
 
@@ -350,13 +348,13 @@ static void sub_0202ECB0 (UnkStruct_0202E8C0 * param0, u32 param1, u8 param2, Un
     Heap_FreeToHeap(v2);
 }
 
-void sub_0202ED0C (SaveData * param0, int param1, u8 param2, const void ** param3, int param4)
+void sub_0202ED0C(SaveData *param0, int param1, u8 param2, const void **param3, int param4)
 {
     u8 v0, v1;
     u32 v2;
-    UnkStruct_0202E91C * v3[5];
-    UnkStruct_0202E8C0 * v4;
-    UnkStruct_0202EE10 * v5;
+    UnkStruct_0202E91C *v3[5];
+    UnkStruct_0202E8C0 *v4;
+    UnkStruct_0202EE10 *v5;
 
     v4 = sub_0202E8C0(param0);
     v2 = sub_0202B400(sub_0202B4A0(param0), 1);
@@ -387,13 +385,13 @@ void sub_0202ED0C (SaveData * param0, int param1, u8 param2, const void ** param
     return;
 }
 
-UnkStruct_0202EE10 * sub_0202ED8C (SaveData * param0, int param1, int param2)
+UnkStruct_0202EE10 *sub_0202ED8C(SaveData *param0, int param1, int param2)
 {
     int v0, v1;
     u32 v2;
-    UnkStruct_0202EE10 * v3;
-    u32 * v4;
-    TrainerInfo * v5;
+    UnkStruct_0202EE10 *v3;
+    u32 *v4;
+    TrainerInfo *v5;
 
     v5 = SaveData_GetTrainerInfo(param0);
     v3 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_0202EE10));
@@ -415,11 +413,11 @@ UnkStruct_0202EE10 * sub_0202ED8C (SaveData * param0, int param1, int param2)
     return v3;
 }
 
-UnkStruct_0202EE10 * sub_0202EE10 (UnkStruct_0202E8C0 * param0, int param1, int param2)
+UnkStruct_0202EE10 *sub_0202EE10(UnkStruct_0202E8C0 *param0, int param1, int param2)
 {
     int v0;
-    UnkStruct_0202EE10 * v1;
-    UnkStruct_0202EA80 * v2;
+    UnkStruct_0202EE10 *v1;
+    UnkStruct_0202EA80 *v2;
 
     v1 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_0202EE10));
     MI_CpuClear8(v1, sizeof(UnkStruct_0202EE10));
@@ -440,7 +438,7 @@ UnkStruct_0202EE10 * sub_0202EE10 (UnkStruct_0202E8C0 * param0, int param1, int 
     return v1;
 }
 
-void sub_0202EE8C (UnkStruct_0202EE10 * param0)
+void sub_0202EE8C(UnkStruct_0202EE10 *param0)
 {
     int v0;
 

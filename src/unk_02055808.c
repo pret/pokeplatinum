@@ -1,19 +1,20 @@
+#include "unk_02055808.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_020508D4_decl.h"
 
 #include "field/field_system.h"
-
-#include "unk_0200F174.h"
-#include "field_system.h"
-#include "unk_020508D4.h"
-#include "unk_02055808.h"
 #include "overlay005/ov5_021DD6FC.h"
 
-static BOOL sub_02055808 (TaskManager * param0)
+#include "field_system.h"
+#include "unk_0200F174.h"
+#include "unk_020508D4.h"
+
+static BOOL sub_02055808(TaskManager *param0)
 {
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
 
     if (!sub_0203CD4C(fieldSystem)) {
         return 1;
@@ -22,9 +23,9 @@ static BOOL sub_02055808 (TaskManager * param0)
     return 0;
 }
 
-void sub_02055820 (TaskManager * param0)
+void sub_02055820(TaskManager *param0)
 {
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
 
     if (!sub_0203CD4C(fieldSystem)) {
         GF_ASSERT(FALSE);
@@ -35,9 +36,9 @@ void sub_02055820 (TaskManager * param0)
     FieldTask_Start(param0, sub_02055808, NULL);
 }
 
-static BOOL sub_02055850 (TaskManager * param0)
+static BOOL sub_02055850(TaskManager *param0)
 {
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
 
     if (sub_020509DC(fieldSystem)) {
         return 1;
@@ -46,9 +47,9 @@ static BOOL sub_02055850 (TaskManager * param0)
     return 0;
 }
 
-void sub_02055868 (TaskManager * param0)
+void sub_02055868(TaskManager *param0)
 {
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
 
     if (sub_0203CD4C(fieldSystem)) {
         GF_ASSERT(FALSE);
@@ -59,7 +60,7 @@ void sub_02055868 (TaskManager * param0)
     FieldTask_Start(param0, sub_02055850, NULL);
 }
 
-static BOOL sub_02055898 (TaskManager * param0)
+static BOOL sub_02055898(TaskManager *param0)
 {
     if (ScreenWipe_Done()) {
         return 1;
@@ -68,9 +69,9 @@ static BOOL sub_02055898 (TaskManager * param0)
     return 0;
 }
 
-void sub_020558AC (TaskManager * param0)
+void sub_020558AC(TaskManager *param0)
 {
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
 
     if (!sub_0203CD4C(fieldSystem)) {
         GF_ASSERT(FALSE);
@@ -83,9 +84,9 @@ void sub_020558AC (TaskManager * param0)
     }
 }
 
-void sub_020558F0 (TaskManager * param0)
+void sub_020558F0(TaskManager *param0)
 {
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
 
     if (!sub_0203CD4C(fieldSystem)) {
         GF_ASSERT(FALSE);
@@ -98,9 +99,9 @@ void sub_020558F0 (TaskManager * param0)
     }
 }
 
-static BOOL sub_02055934 (TaskManager * param0)
+static BOOL sub_02055934(TaskManager *param0)
 {
-    int * v0 = FieldTask_GetState(param0);
+    int *v0 = FieldTask_GetState(param0);
 
     switch (*v0) {
     case 0:
@@ -118,15 +119,15 @@ static BOOL sub_02055934 (TaskManager * param0)
     return 0;
 }
 
-void sub_02055974 (TaskManager * param0)
+void sub_02055974(TaskManager *param0)
 {
     FieldTask_Start(param0, sub_02055934, NULL);
 }
 
-static BOOL sub_02055984 (TaskManager * param0)
+static BOOL sub_02055984(TaskManager *param0)
 {
-    int * v0 = FieldTask_GetState(param0);
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
+    int *v0 = FieldTask_GetState(param0);
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
 
     switch (*v0) {
     case 0:
@@ -145,7 +146,7 @@ static BOOL sub_02055984 (TaskManager * param0)
     return 0;
 }
 
-void FieldTask_StartFadeIn (TaskManager * param0)
+void FieldTask_StartFadeIn(TaskManager *param0)
 {
     FieldTask_Start(param0, sub_02055984, NULL);
 }

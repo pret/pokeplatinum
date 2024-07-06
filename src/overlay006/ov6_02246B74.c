@@ -1,12 +1,13 @@
+#include "overlay006/ov6_02246B74.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "rtc.h"
-#include "overlay006/ov6_02246B74.h"
 
 typedef struct {
     int unk_00;
-    const u16 * unk_04;
+    const u16 *unk_04;
 } UnkStruct_ov6_0224954C;
 
 static const u16 Unk_ov6_02249522[4] = {
@@ -89,18 +90,18 @@ static const u16 Unk_ov6_022494E2[3] = {
 };
 
 static const UnkStruct_ov6_0224954C Unk_ov6_0224954C[12] = {
-    {0x4, Unk_ov6_02249522},
-    {0x4, Unk_ov6_02249502},
-    {0x3, Unk_ov6_022494F4},
-    {0x4, Unk_ov6_0224951A},
-    {0x4, Unk_ov6_0224950A},
-    {0x1, Unk_ov6_022494E0},
-    {0x3, Unk_ov6_022494E8},
-    {0x4, Unk_ov6_022494FA},
-    {0x6, Unk_ov6_0224952A},
-    {0x3, Unk_ov6_022494EE},
-    {0x4, Unk_ov6_02249512},
-    {0x3, Unk_ov6_022494E2}
+    { 0x4, Unk_ov6_02249522 },
+    { 0x4, Unk_ov6_02249502 },
+    { 0x3, Unk_ov6_022494F4 },
+    { 0x4, Unk_ov6_0224951A },
+    { 0x4, Unk_ov6_0224950A },
+    { 0x1, Unk_ov6_022494E0 },
+    { 0x3, Unk_ov6_022494E8 },
+    { 0x4, Unk_ov6_022494FA },
+    { 0x6, Unk_ov6_0224952A },
+    { 0x3, Unk_ov6_022494EE },
+    { 0x4, Unk_ov6_02249512 },
+    { 0x3, Unk_ov6_022494E2 }
 };
 
 static const int Unk_ov6_02249538[] = {
@@ -111,12 +112,12 @@ static const int Unk_ov6_02249538[] = {
     0xA
 };
 
-int ov6_02246B74 (const int param0, const BOOL param1)
+int ov6_02246B74(const int param0, const BOOL param1)
 {
     u8 v0;
     int v1;
     RTCDate v2;
-    const UnkStruct_ov6_0224954C * v3;
+    const UnkStruct_ov6_0224954C *v3;
 
     if (param1) {
         return param0;

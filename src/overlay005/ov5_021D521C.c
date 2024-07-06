@@ -1,34 +1,35 @@
+#include "overlay005/ov5_021D521C.h"
+
 #include <nitro.h>
 #include <string.h>
 
+#include "overlay005/ov5_021D5878.h"
 #include "overlay005/struct_ov5_021D52F4.h"
 #include "overlay005/struct_ov5_021D5894.h"
 
-#include "unk_02006E3C.h"
-#include "rtc.h"
-#include "heap.h"
 #include "ascii_util.h"
-#include "overlay005/ov5_021D521C.h"
-#include "overlay005/ov5_021D5878.h"
+#include "heap.h"
+#include "rtc.h"
+#include "unk_02006E3C.h"
 
 typedef struct UnkStruct_ov5_021D538C_t {
     u32 unk_00;
-    UnkStruct_ov5_021D52F4 * unk_04;
+    UnkStruct_ov5_021D52F4 *unk_04;
     int unk_08;
-    UnkStruct_ov5_021D5894 * unk_0C;
+    UnkStruct_ov5_021D5894 *unk_0C;
     BOOL unk_10;
 } UnkStruct_ov5_021D538C;
 
-static void ov5_021D538C(UnkStruct_ov5_021D538C * param0);
-static u32 ov5_021D53D4(u32 param0, UnkStruct_ov5_021D52F4 ** param1);
-static void ov5_021D555C(UnkStruct_ov5_021D52F4 ** param0);
-static char * ov5_021D5570(char * param0, GXRgb * param1, VecFx16 * param2);
-static char * ov5_021D5660(char * param0, GXRgb * param1);
+static void ov5_021D538C(UnkStruct_ov5_021D538C *param0);
+static u32 ov5_021D53D4(u32 param0, UnkStruct_ov5_021D52F4 **param1);
+static void ov5_021D555C(UnkStruct_ov5_021D52F4 **param0);
+static char *ov5_021D5570(char *param0, GXRgb *param1, VecFx16 *param2);
+static char *ov5_021D5660(char *param0, GXRgb *param1);
 
-UnkStruct_ov5_021D538C * ov5_021D521C (UnkStruct_ov5_021D5894 * param0, const u8 param1)
+UnkStruct_ov5_021D538C *ov5_021D521C(UnkStruct_ov5_021D5894 *param0, const u8 param1)
 {
     int v0;
-    UnkStruct_ov5_021D538C * v1;
+    UnkStruct_ov5_021D538C *v1;
     int v2;
 
     GF_ASSERT(param1 < 4);
@@ -54,7 +55,7 @@ UnkStruct_ov5_021D538C * ov5_021D521C (UnkStruct_ov5_021D5894 * param0, const u8
     return v1;
 }
 
-void ov5_021D5278 (UnkStruct_ov5_021D538C ** param0)
+void ov5_021D5278(UnkStruct_ov5_021D538C **param0)
 {
     GF_ASSERT(param0);
 
@@ -64,7 +65,7 @@ void ov5_021D5278 (UnkStruct_ov5_021D538C ** param0)
     *param0 = NULL;
 }
 
-void ov5_021D5298 (UnkStruct_ov5_021D538C * param0)
+void ov5_021D5298(UnkStruct_ov5_021D538C *param0)
 {
     u32 v0;
     int v1;
@@ -99,7 +100,7 @@ void ov5_021D5298 (UnkStruct_ov5_021D538C * param0)
     }
 }
 
-void ov5_021D52F4 (const UnkStruct_ov5_021D52F4 * param0, UnkStruct_ov5_021D5894 * param1)
+void ov5_021D52F4(const UnkStruct_ov5_021D52F4 *param0, UnkStruct_ov5_021D5894 *param1)
 {
     int v0;
 
@@ -121,13 +122,13 @@ void ov5_021D52F4 (const UnkStruct_ov5_021D52F4 * param0, UnkStruct_ov5_021D5894
     ov5_021D5AC8(param1, param0->unk_2E, 1);
 }
 
-static void ov5_021D538C (UnkStruct_ov5_021D538C * param0)
+static void ov5_021D538C(UnkStruct_ov5_021D538C *param0)
 {
-    UnkStruct_ov5_021D52F4 * v0 = &param0->unk_04[param0->unk_08];
+    UnkStruct_ov5_021D52F4 *v0 = &param0->unk_04[param0->unk_08];
     ov5_021D52F4(v0, param0->unk_0C);
 }
 
-void ov5_021D53A4 (NNSG3dResMdl * param0)
+void ov5_021D53A4(NNSG3dResMdl *param0)
 {
     NNS_G3dMdlUseGlbDiff(param0);
     NNS_G3dMdlUseGlbAmb(param0);
@@ -135,16 +136,16 @@ void ov5_021D53A4 (NNSG3dResMdl * param0)
     NNS_G3dMdlUseGlbEmi(param0);
 }
 
-static u32 ov5_021D53D4 (u32 param0, UnkStruct_ov5_021D52F4 ** param1)
+static u32 ov5_021D53D4(u32 param0, UnkStruct_ov5_021D52F4 **param1)
 {
     int v0, v1;
     int v2;
-    void * v3;
-    void * v4;
+    void *v3;
+    void *v4;
     char v5[256];
-    char * v6;
+    char *v6;
     char v7[256];
-    UnkStruct_ov5_021D52F4 * v8;
+    UnkStruct_ov5_021D52F4 *v8;
 
     v4 = sub_02006FE8(176, param0, 0, 4, 0);
     v3 = v4;
@@ -200,17 +201,17 @@ static u32 ov5_021D53D4 (u32 param0, UnkStruct_ov5_021D52F4 ** param1)
     return v2;
 }
 
-static void ov5_021D555C (UnkStruct_ov5_021D52F4 ** param0)
+static void ov5_021D555C(UnkStruct_ov5_021D52F4 **param0)
 {
     Heap_FreeToHeapExplicit(4, *param0);
     *param0 = NULL;
 }
 
-static char * ov5_021D5570 (char * param0, GXRgb * param1, VecFx16 * param2)
+static char *ov5_021D5570(char *param0, GXRgb *param1, VecFx16 *param2)
 {
     char v0[256];
     char v1[256];
-    char * v2;
+    char *v2;
     u32 v3;
     int v4;
     u16 v5[3];
@@ -269,11 +270,11 @@ static char * ov5_021D5570 (char * param0, GXRgb * param1, VecFx16 * param2)
     return param0;
 }
 
-static char * ov5_021D5660 (char * param0, GXRgb * param1)
+static char *ov5_021D5660(char *param0, GXRgb *param1)
 {
     char v0[256];
     char v1[256];
-    char * v2;
+    char *v2;
     int v3;
     u16 v4[3];
 

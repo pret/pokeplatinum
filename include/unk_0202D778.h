@@ -4,7 +4,7 @@
 #include "savedata.h"
 
 int Ribbons_SaveSize(void);
-void Ribbons_Init(u8 * param0);
-u8 * sub_0202D79C(SaveData * param0);
+void Ribbons_Init(u8 *param0);
+u8 *sub_0202D79C(SaveData *param0);
 
 #endif // POKEPLATINUM_UNK_0202D778_H

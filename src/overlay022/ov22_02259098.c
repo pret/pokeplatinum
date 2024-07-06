@@ -1,45 +1,44 @@
+#include "overlay022/ov22_02259098.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-
 #include "struct_decls/struct_02007768_decl.h"
-#include "pokemon.h"
-
 #include "struct_defs/archived_sprite.h"
-#include "touch_screen.h"
 #include "struct_defs/struct_020298D8.h"
+
+#include "overlay022/ov22_02255094.h"
 #include "overlay022/struct_ov22_022596B0.h"
 #include "overlay022/struct_ov22_0225A0E4.h"
 
-#include "unk_02006E3C.h"
-#include "unk_0200762C.h"
+#include "core_sys.h"
 #include "heap.h"
 #include "pokemon.h"
-#include "overlay022/ov22_02255094.h"
-#include "overlay022/ov22_02259098.h"
+#include "touch_screen.h"
+#include "unk_02006E3C.h"
+#include "unk_0200762C.h"
 
-static int ov22_0225936C(char * param0, int param1);
+static int ov22_0225936C(char *param0, int param1);
 static void ov22_02259448(TouchScreenRect *rect, int param1, int param2, int param3, int param4);
-static void ov22_022593B8(char * param0, int param1, int param2, UnkStruct_ov22_022596B0 * param3);
+static void ov22_022593B8(char *param0, int param1, int param2, UnkStruct_ov22_022596B0 *param3);
 
-void ov22_02259098 (UnkStruct_ov22_0225A0E4 * param0, ArchivedSprite * param1)
+void ov22_02259098(UnkStruct_ov22_0225A0E4 *param0, ArchivedSprite *param1)
 {
-    void * v0;
-    NNSG2dCharacterData * v1;
+    void *v0;
+    NNSG2dCharacterData *v1;
 
     v0 = sub_02006FE8(param1->archive, param1->character, 0, 14, 0);
-    v1 = ov22_02255340(param0, v0, ((100 + 18)));
+    v1 = ov22_02255340(param0, v0, (100 + 18));
 
     sub_020093A0((u8 *)v1->pRawData, param1->archive);
 }
 
-void ov22_022590C0 (UnkStruct_020298D8 * param0, UnkStruct_02007768 * param1, Pokemon * param2, ArchivedSprite * param3, int param4)
+void ov22_022590C0(UnkStruct_020298D8 *param0, UnkStruct_02007768 *param1, Pokemon *param2, ArchivedSprite *param3, int param4)
 {
     ov22_022590D4(param0, param1, param2, param3, param4, 0);
 }
 
-void ov22_022590D4 (UnkStruct_020298D8 * param0, UnkStruct_02007768 * param1, Pokemon * param2, ArchivedSprite * param3, int param4, BOOL param5)
+void ov22_022590D4(UnkStruct_020298D8 *param0, UnkStruct_02007768 *param1, Pokemon *param2, ArchivedSprite *param3, int param4, BOOL param5)
 {
     int v0 = Pokemon_GetValue(param2, MON_DATA_SPECIES, NULL);
 
@@ -64,8 +63,8 @@ void ov22_022590D4 (UnkStruct_020298D8 * param0, UnkStruct_02007768 * param1, Po
 
     {
         u8 v3 = Pokemon_DPSpriteYOffset(param2, 2);
-        void * v4;
-        NNSG2dCharacterData * v5;
+        void *v4;
+        NNSG2dCharacterData *v5;
 
         v4 = sub_02006FE8(param3->archive, param3->character, 0, param4, 0);
 
@@ -87,23 +86,23 @@ void ov22_022590D4 (UnkStruct_020298D8 * param0, UnkStruct_02007768 * param1, Po
     param0->unk_0C = param2;
 }
 
-void ov22_022591B8 (UnkStruct_020298D8 * param0)
+void ov22_022591B8(UnkStruct_020298D8 *param0)
 {
     sub_02007DC8(param0->unk_00);
     memset(param0, 0, sizeof(UnkStruct_020298D8));
 }
 
-void ov22_022591D0 (UnkStruct_020298D8 * param0, int param1)
+void ov22_022591D0(UnkStruct_020298D8 *param0, int param1)
 {
     sub_02007DEC(param0->unk_00, 2, param1);
 }
 
-int ov22_022591E0 (UnkStruct_020298D8 * param0)
+int ov22_022591E0(UnkStruct_020298D8 *param0)
 {
     return sub_020080C0(param0->unk_00, 2);
 }
 
-void ov22_022591EC (UnkStruct_020298D8 * param0, int param1, int param2)
+void ov22_022591EC(UnkStruct_020298D8 *param0, int param1, int param2)
 {
     int v0, v1;
 
@@ -117,29 +116,29 @@ void ov22_022591EC (UnkStruct_020298D8 * param0, int param1, int param2)
     ov22_02259448(&param0->unk_04, param1, param2, v0, v1);
 }
 
-BOOL ov22_02259238 (UnkStruct_020298D8 * param0)
+BOOL ov22_02259238(UnkStruct_020298D8 *param0)
 {
     return TouchScreen_LocationHeld(&param0->unk_04);
 }
 
-BOOL ov22_02259244 (UnkStruct_020298D8 * param0, int param1, int param2)
+BOOL ov22_02259244(UnkStruct_020298D8 *param0, int param1, int param2)
 {
     return sub_02022830(&param0->unk_04, param1, param2);
 }
 
-void ov22_02259250 (UnkStruct_020298D8 * param0, int * param1, int * param2)
+void ov22_02259250(UnkStruct_020298D8 *param0, int *param1, int *param2)
 {
     *param1 = sub_020080C0(param0->unk_00, 0);
     *param2 = sub_020080C0(param0->unk_00, 1);
 }
 
-void ov22_02259270 (UnkStruct_020298D8 * param0, int * param1, int * param2)
+void ov22_02259270(UnkStruct_020298D8 *param0, int *param1, int *param2)
 {
     *param1 = 80;
     *param2 = 80;
 }
 
-BOOL ov22_02259278 (UnkStruct_020298D8 * param0, int * param1, int * param2, NNSG2dCharacterData * param3)
+BOOL ov22_02259278(UnkStruct_020298D8 *param0, int *param1, int *param2, NNSG2dCharacterData *param3)
 {
     int v0;
     int v1, v2;
@@ -169,7 +168,7 @@ BOOL ov22_02259278 (UnkStruct_020298D8 * param0, int * param1, int * param2, NNS
     return 0;
 }
 
-BOOL ov22_022592F0 (UnkStruct_020298D8 * param0, int param1, int param2, NNSG2dCharacterData * param3)
+BOOL ov22_022592F0(UnkStruct_020298D8 *param0, int param1, int param2, NNSG2dCharacterData *param3)
 {
     int v0;
     int v1, v2;
@@ -199,12 +198,12 @@ BOOL ov22_022592F0 (UnkStruct_020298D8 * param0, int param1, int param2, NNSG2dC
     return 0;
 }
 
-void ov22_02259358 (UnkStruct_020298D8 * param0, UnkStruct_ov22_022596B0 * param1)
+void ov22_02259358(UnkStruct_020298D8 *param0, UnkStruct_ov22_022596B0 *param1)
 {
     *param1 = param0->unk_08;
 }
 
-static int ov22_0225936C (char * param0, int param1)
+static int ov22_0225936C(char *param0, int param1)
 {
     int v0, v1;
     int v2;
@@ -226,7 +225,7 @@ static int ov22_0225936C (char * param0, int param1)
     return 80;
 }
 
-static void ov22_022593B8 (char * param0, int param1, int param2, UnkStruct_ov22_022596B0 * param3)
+static void ov22_022593B8(char *param0, int param1, int param2, UnkStruct_ov22_022596B0 *param3)
 {
     int v0, v1;
     int v2;
@@ -265,7 +264,7 @@ static void ov22_022593B8 (char * param0, int param1, int param2, UnkStruct_ov22
     }
 }
 
-static void ov22_02259448 (TouchScreenRect *rect, int param1, int param2, int param3, int param4)
+static void ov22_02259448(TouchScreenRect *rect, int param1, int param2, int param3, int param4)
 {
     if ((param2 - param4) >= 0) {
         rect->rect.top = param2 - param4;

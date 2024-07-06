@@ -1,16 +1,18 @@
+#include "unk_02018340.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_defs/struct_0201AE08.h"
 #include "struct_defs/struct_0205AA50.h"
+
 #include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 
-#include "heap.h"
-#include "unk_02018340.h"
-#include "unk_0201D15C.h"
 #include "gx_layers.h"
+#include "heap.h"
+#include "unk_0201D15C.h"
 
 enum {
     UnkEnum_00 = 0,
@@ -18,7 +20,7 @@ enum {
 };
 
 typedef struct {
-    void * unk_00;
+    void *unk_00;
     u32 unk_04;
     u32 unk_08;
     int unk_0C;
@@ -42,39 +44,39 @@ typedef struct UnkStruct_02018340_t {
 } BGL;
 
 static u8 sub_02018F80(u8 param0, u8 param1);
-static void sub_02019304(UnkStruct_02019304 * param0, u8 param1, int param2);
-static void sub_020193E4(BGL * param0, u8 param1);
-static void sub_020194E0(u8 param0, void * param1, u32 param2, u32 param3);
-static void sub_020195B8(BGL * param0, u8 param1, const void * param2, u32 param3, u32 param4);
-static void sub_020195FC(u8 param0, void * param1, u32 param2, u32 param3);
-static void sub_020199E0(UnkStruct_02019304 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, u8 param6, u8 param7, u8 param8, u8 param9, u8 param10);
-static void sub_02019B54(UnkStruct_02019304 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 * param5, u8 param6, u8 param7, u8 param8, u8 param9, u8 param10);
-static void sub_02019D08(UnkStruct_02019304 * param0, u16 param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6);
-static void sub_02019DB8(UnkStruct_02019304 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5);
-static void sub_0201AC20(Window * param0);
-static void sub_0201AC4C(Window * param0);
-static void sub_0201AC64(Window * param0);
-static void sub_0201ACA0(Window * param0);
-static void sub_0201AD2C(Window * param0);
-static void sub_0201AD54(Window * param0);
-static void sub_0201AD68(Window * param0);
-static void sub_0201AD90(Window * param0);
-static void sub_0201C06C(Window * param0, u8 param1, u8 param2, u8 param3);
-static void sub_0201C158(Window * param0, u8 param1, u8 param2, u8 param3);
-static void sub_0201C8E0(BGL * param0, u8 param1, u8 * param2);
-static void sub_0201AA58(Window * param0);
-static void sub_0201AADC(Window * param0);
-static void sub_0201AB38(Window * param0);
-static void sub_0201ABC8(Window * param0);
-static void sub_0201C684(UnkStruct_02019304 * param0, u8 param1, u16 param2);
-static void sub_0201C6CC(UnkStruct_02019304 * param0, u8 param1, fx32 param2);
-static void sub_0201C73C(UnkStruct_02019304 * param0, u8 param1, int param2);
-static void sub_0201C3D0(BGL * param0);
-static void sub_0201C2D0(BGL * param0);
+static void sub_02019304(UnkStruct_02019304 *param0, u8 param1, int param2);
+static void sub_020193E4(BGL *param0, u8 param1);
+static void sub_020194E0(u8 param0, void *param1, u32 param2, u32 param3);
+static void sub_020195B8(BGL *param0, u8 param1, const void *param2, u32 param3, u32 param4);
+static void sub_020195FC(u8 param0, void *param1, u32 param2, u32 param3);
+static void sub_020199E0(UnkStruct_02019304 *param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 *param5, u8 param6, u8 param7, u8 param8, u8 param9, u8 param10);
+static void sub_02019B54(UnkStruct_02019304 *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 *param5, u8 param6, u8 param7, u8 param8, u8 param9, u8 param10);
+static void sub_02019D08(UnkStruct_02019304 *param0, u16 param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6);
+static void sub_02019DB8(UnkStruct_02019304 *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5);
+static void sub_0201AC20(Window *param0);
+static void sub_0201AC4C(Window *param0);
+static void sub_0201AC64(Window *param0);
+static void sub_0201ACA0(Window *param0);
+static void sub_0201AD2C(Window *param0);
+static void sub_0201AD54(Window *param0);
+static void sub_0201AD68(Window *param0);
+static void sub_0201AD90(Window *param0);
+static void sub_0201C06C(Window *param0, u8 param1, u8 param2, u8 param3);
+static void sub_0201C158(Window *param0, u8 param1, u8 param2, u8 param3);
+static void sub_0201C8E0(BGL *param0, u8 param1, u8 *param2);
+static void sub_0201AA58(Window *param0);
+static void sub_0201AADC(Window *param0);
+static void sub_0201AB38(Window *param0);
+static void sub_0201ABC8(Window *param0);
+static void sub_0201C684(UnkStruct_02019304 *param0, u8 param1, u16 param2);
+static void sub_0201C6CC(UnkStruct_02019304 *param0, u8 param1, fx32 param2);
+static void sub_0201C73C(UnkStruct_02019304 *param0, u8 param1, int param2);
+static void sub_0201C3D0(BGL *param0);
+static void sub_0201C2D0(BGL *param0);
 
-BGL * sub_02018340 (u32 param0)
+BGL *sub_02018340(u32 param0)
 {
-    BGL * v0 = Heap_AllocFromHeap(param0, sizeof(BGL));
+    BGL *v0 = Heap_AllocFromHeap(param0, sizeof(BGL));
 
     memset(v0, 0, sizeof(BGL));
 
@@ -85,12 +87,12 @@ BGL * sub_02018340 (u32 param0)
     return v0;
 }
 
-u32 sub_02018364 (BGL * param0)
+u32 sub_02018364(BGL *param0)
 {
     return param0->unk_00;
 }
 
-void sub_02018368 (const UnkStruct_ov84_0223BA5C * param0)
+void sub_02018368(const UnkStruct_ov84_0223BA5C *param0)
 {
     GX_SetGraphicsMode(param0->unk_00, param0->unk_04, param0->unk_0C);
     GXS_SetGraphicsMode(param0->unk_08);
@@ -102,7 +104,7 @@ void sub_02018368 (const UnkStruct_ov84_0223BA5C * param0)
     GXLayers_DisableEngineBLayers();
 }
 
-void sub_020183A0 (const UnkStruct_ov84_0223BA5C * param0, u8 param1)
+void sub_020183A0(const UnkStruct_ov84_0223BA5C *param0, u8 param1)
 {
     if (param1 == 0) {
         GX_SetGraphicsMode(param0->unk_00, param0->unk_04, param0->unk_0C);
@@ -113,7 +115,7 @@ void sub_020183A0 (const UnkStruct_ov84_0223BA5C * param0, u8 param1)
     }
 }
 
-void sub_020183C4 (BGL * param0, u8 param1, const UnkStruct_ov97_0222DB78 * param2, u8 param3)
+void sub_020183C4(BGL *param0, u8 param1, const UnkStruct_ov97_0222DB78 *param2, u8 param3)
 {
     u8 v0 = sub_02018F80(param2->unk_10, param3);
 
@@ -253,15 +255,14 @@ void sub_020183C4 (BGL * param0, u8 param1, const UnkStruct_ov97_0222DB78 * para
     sub_02019184(param0, param1, 3, param2->unk_04);
 }
 
-void sub_02018898 (BGL * param0, u8 param1, u8 param2, u8 param3)
+void sub_02018898(BGL *param0, u8 param1, u8 param2, u8 param3)
 {
     if (param2 == 0) {
         param0->unk_08[param1].unk_16 = param3;
     }
 
     switch (param1) {
-    case 0:
-    {
+    case 0: {
         GXBg01Control v0 = G2_GetBG0Control();
 
         if (param2 == 1) {
@@ -271,10 +272,8 @@ void sub_02018898 (BGL * param0, u8 param1, u8 param2, u8 param3)
         }
 
         G2_SetBG0Control((GXBGScrSizeText)v0.screenSize, (GXBGColorMode)param0->unk_08[param1].unk_16, (GXBGScrBase)v0.screenBase, (GXBGCharBase)v0.charBase, (GXBGExtPltt)v0.bgExtPltt);
-    }
-    break;
-    case 1:
-    {
+    } break;
+    case 1: {
         GXBg01Control v1 = G2_GetBG1Control();
 
         if (param2 == 1) {
@@ -284,13 +283,11 @@ void sub_02018898 (BGL * param0, u8 param1, u8 param2, u8 param3)
         }
 
         G2_SetBG1Control((GXBGScrSizeText)v1.screenSize, (GXBGColorMode)param0->unk_08[param1].unk_16, (GXBGScrBase)v1.screenBase, (GXBGCharBase)v1.charBase, (GXBGExtPltt)v1.bgExtPltt);
-    }
-    break;
+    } break;
     case 2:
         switch (param0->unk_08[param1].unk_14) {
         default:
-        case 0:
-        {
+        case 0: {
             GXBg23ControlText v2 = G2_GetBG2ControlText();
 
             if (param2 == 1) {
@@ -300,10 +297,8 @@ void sub_02018898 (BGL * param0, u8 param1, u8 param2, u8 param3)
             }
 
             G2_SetBG2ControlText((GXBGScrSizeText)v2.screenSize, (GXBGColorMode)param0->unk_08[param1].unk_16, (GXBGScrBase)v2.screenBase, (GXBGCharBase)v2.charBase);
-        }
-        break;
-        case 1:
-        {
+        } break;
+        case 1: {
             GXBg23ControlAffine v3 = G2_GetBG2ControlAffine();
 
             if (param2 == 1) {
@@ -313,10 +308,8 @@ void sub_02018898 (BGL * param0, u8 param1, u8 param2, u8 param3)
             }
 
             G2_SetBG2ControlAffine((GXBGScrSizeText)v3.screenSize, (GXBGAreaOver)v3.areaOver, (GXBGScrBase)v3.screenBase, (GXBGCharBase)v3.charBase);
-        }
-        break;
-        case 2:
-        {
+        } break;
+        case 2: {
             GXBg23Control256x16Pltt v4 = G2_GetBG2Control256x16Pltt();
 
             if (param2 == 1) {
@@ -326,16 +319,14 @@ void sub_02018898 (BGL * param0, u8 param1, u8 param2, u8 param3)
             }
 
             G2_SetBG2Control256x16Pltt((GXBGScrSizeText)v4.screenSize, (GXBGAreaOver)v4.areaOver, (GXBGScrBase)v4.screenBase, (GXBGCharBase)v4.charBase);
-        }
-        break;
+        } break;
         }
 
         break;
     case 3:
         switch (param0->unk_08[param1].unk_14) {
         default:
-        case 0:
-        {
+        case 0: {
             GXBg23ControlText v5 = G2_GetBG3ControlText();
 
             if (param2 == 1) {
@@ -345,10 +336,8 @@ void sub_02018898 (BGL * param0, u8 param1, u8 param2, u8 param3)
             }
 
             G2_SetBG3ControlText((GXBGScrSizeText)v5.screenSize, (GXBGColorMode)param0->unk_08[param1].unk_16, (GXBGScrBase)v5.screenBase, (GXBGCharBase)v5.charBase);
-        }
-        break;
-        case 1:
-        {
+        } break;
+        case 1: {
             GXBg23ControlAffine v6 = G2_GetBG3ControlAffine();
 
             if (param2 == 1) {
@@ -358,10 +347,8 @@ void sub_02018898 (BGL * param0, u8 param1, u8 param2, u8 param3)
             }
 
             G2_SetBG3ControlAffine((GXBGScrSizeText)v6.screenSize, (GXBGAreaOver)v6.areaOver, (GXBGScrBase)v6.screenBase, (GXBGCharBase)v6.charBase);
-        }
-        break;
-        case 2:
-        {
+        } break;
+        case 2: {
             GXBg23Control256x16Pltt v7 = G2_GetBG3Control256x16Pltt();
 
             if (param2 == 1) {
@@ -371,13 +358,11 @@ void sub_02018898 (BGL * param0, u8 param1, u8 param2, u8 param3)
             }
 
             G2_SetBG3Control256x16Pltt((GXBGScrSizeText)v7.screenSize, (GXBGAreaOver)v7.areaOver, (GXBGScrBase)v7.screenBase, (GXBGCharBase)v7.charBase);
-        }
-        break;
+        } break;
         }
 
         break;
-    case 4:
-    {
+    case 4: {
         GXBg01Control v8 = G2S_GetBG0Control();
 
         if (param2 == 1) {
@@ -387,10 +372,8 @@ void sub_02018898 (BGL * param0, u8 param1, u8 param2, u8 param3)
         }
 
         G2S_SetBG0Control((GXBGScrSizeText)v8.screenSize, (GXBGColorMode)param0->unk_08[param1].unk_16, (GXBGScrBase)v8.screenBase, (GXBGCharBase)v8.charBase, (GXBGExtPltt)v8.bgExtPltt);
-    }
-    break;
-    case 5:
-    {
+    } break;
+    case 5: {
         GXBg01Control v9 = G2S_GetBG1Control();
 
         if (param2 == 1) {
@@ -400,13 +383,11 @@ void sub_02018898 (BGL * param0, u8 param1, u8 param2, u8 param3)
         }
 
         G2S_SetBG1Control((GXBGScrSizeText)v9.screenSize, (GXBGColorMode)param0->unk_08[param1].unk_16, (GXBGScrBase)v9.screenBase, (GXBGCharBase)v9.charBase, (GXBGExtPltt)v9.bgExtPltt);
-    }
-    break;
+    } break;
     case 6:
         switch (param0->unk_08[param1].unk_14) {
         default:
-        case 0:
-        {
+        case 0: {
             GXBg23ControlText v10 = G2S_GetBG2ControlText();
 
             if (param2 == 1) {
@@ -416,10 +397,8 @@ void sub_02018898 (BGL * param0, u8 param1, u8 param2, u8 param3)
             }
 
             G2S_SetBG2ControlText((GXBGScrSizeText)v10.screenSize, (GXBGColorMode)param0->unk_08[param1].unk_16, (GXBGScrBase)v10.screenBase, (GXBGCharBase)v10.charBase);
-        }
-        break;
-        case 1:
-        {
+        } break;
+        case 1: {
             GXBg23ControlAffine v11 = G2S_GetBG2ControlAffine();
 
             if (param2 == 1) {
@@ -429,10 +408,8 @@ void sub_02018898 (BGL * param0, u8 param1, u8 param2, u8 param3)
             }
 
             G2S_SetBG2ControlAffine((GXBGScrSizeText)v11.screenSize, (GXBGAreaOver)v11.areaOver, (GXBGScrBase)v11.screenBase, (GXBGCharBase)v11.charBase);
-        }
-        break;
-        case 2:
-        {
+        } break;
+        case 2: {
             GXBg23Control256x16Pltt v12 = G2S_GetBG2Control256x16Pltt();
 
             if (param2 == 1) {
@@ -442,16 +419,14 @@ void sub_02018898 (BGL * param0, u8 param1, u8 param2, u8 param3)
             }
 
             G2S_SetBG2Control256x16Pltt((GXBGScrSizeText)v12.screenSize, (GXBGAreaOver)v12.areaOver, (GXBGScrBase)v12.screenBase, (GXBGCharBase)v12.charBase);
-        }
-        break;
+        } break;
         }
 
         break;
     case 7:
         switch (param0->unk_08[param1].unk_14) {
         default:
-        case 0:
-        {
+        case 0: {
             GXBg23ControlText v13 = G2S_GetBG3ControlText();
 
             if (param2 == 1) {
@@ -461,10 +436,8 @@ void sub_02018898 (BGL * param0, u8 param1, u8 param2, u8 param3)
             }
 
             G2S_SetBG3ControlText((GXBGScrSizeText)v13.screenSize, (GXBGColorMode)param0->unk_08[param1].unk_16, (GXBGScrBase)v13.screenBase, (GXBGCharBase)v13.charBase);
-        }
-        break;
-        case 1:
-        {
+        } break;
+        case 1: {
             GXBg23ControlAffine v14 = G2S_GetBG3ControlAffine();
 
             if (param2 == 1) {
@@ -474,10 +447,8 @@ void sub_02018898 (BGL * param0, u8 param1, u8 param2, u8 param3)
             }
 
             G2S_SetBG3ControlAffine((GXBGScrSizeText)v14.screenSize, (GXBGAreaOver)v14.areaOver, (GXBGScrBase)v14.screenBase, (GXBGCharBase)v14.charBase);
-        }
-        break;
-        case 2:
-        {
+        } break;
+        case 2: {
             GXBg23Control256x16Pltt v15 = G2S_GetBG3Control256x16Pltt();
 
             if (param2 == 1) {
@@ -487,14 +458,13 @@ void sub_02018898 (BGL * param0, u8 param1, u8 param2, u8 param3)
             }
 
             G2S_SetBG3Control256x16Pltt((GXBGScrSizeText)v15.screenSize, (GXBGAreaOver)v15.areaOver, (GXBGScrBase)v15.screenBase, (GXBGCharBase)v15.charBase);
-        }
-        break;
+        } break;
         }
         break;
     }
 }
 
-static u8 sub_02018F80 (u8 param0, u8 param1)
+static u8 sub_02018F80(u8 param0, u8 param1)
 {
     switch (param1) {
     case 0:
@@ -553,7 +523,7 @@ static u8 sub_02018F80 (u8 param0, u8 param1)
     return 0;
 }
 
-static void sub_02018FF4 (u8 param0, u8 * param1, u8 * param2)
+static void sub_02018FF4(u8 param0, u8 *param1, u8 *param2)
 {
     switch (param0) {
     case 0:
@@ -583,7 +553,7 @@ static void sub_02018FF4 (u8 param0, u8 * param1, u8 * param2)
     }
 }
 
-void sub_02019044 (BGL * param0, u8 param1)
+void sub_02019044(BGL *param0, u8 param1)
 {
     if (param0->unk_08[param1].unk_00 == NULL) {
         return;
@@ -593,7 +563,7 @@ void sub_02019044 (BGL * param0, u8 param1)
     param0->unk_08[param1].unk_00 = NULL;
 }
 
-void BGL_SetPriority (u8 param0, u8 param1)
+void BGL_SetPriority(u8 param0, u8 param1)
 {
     switch (param0) {
     case 0:
@@ -623,7 +593,7 @@ void BGL_SetPriority (u8 param0, u8 param1)
     }
 }
 
-void sub_02019120 (u8 param0, u8 param1)
+void sub_02019120(u8 param0, u8 param1)
 {
     switch (param0) {
     case 0:
@@ -653,7 +623,7 @@ void sub_02019120 (u8 param0, u8 param1)
     }
 }
 
-void sub_02019184 (BGL * param0, u8 param1, u8 param2, int param3)
+void sub_02019184(BGL *param0, u8 param1, u8 param2, int param3)
 {
     int v0, v1;
 
@@ -707,17 +677,17 @@ void sub_02019184 (BGL * param0, u8 param1, u8 param2, int param3)
     }
 }
 
-int sub_020192EC (BGL * param0, u32 param1)
+int sub_020192EC(BGL *param0, u32 param1)
 {
     return param0->unk_08[param1].unk_0C;
 }
 
-int sub_020192F8 (BGL * param0, u32 param1)
+int sub_020192F8(BGL *param0, u32 param1)
 {
     return param0->unk_08[param1].unk_10;
 }
 
-static void sub_02019304 (UnkStruct_02019304 * param0, u8 param1, int param2)
+static void sub_02019304(UnkStruct_02019304 *param0, u8 param1, int param2)
 {
     switch (param1) {
     case 0:
@@ -741,7 +711,7 @@ static void sub_02019304 (UnkStruct_02019304 * param0, u8 param1, int param2)
     }
 }
 
-void sub_02019348 (BGL * param0, u8 param1, const MtxFx22 * param2, int param3, int param4)
+void sub_02019348(BGL *param0, u8 param1, const MtxFx22 *param2, int param3, int param4)
 {
     switch (param1) {
     case 2:
@@ -759,7 +729,7 @@ void sub_02019348 (BGL * param0, u8 param1, const MtxFx22 * param2, int param3, 
     }
 }
 
-static void sub_020193E4 (BGL * param0, u8 param1)
+static void sub_020193E4(BGL *param0, u8 param1)
 {
     MtxFx22 v0;
 
@@ -767,7 +737,7 @@ static void sub_020193E4 (BGL * param0, u8 param1)
     sub_02019348(param0, param1, &v0, 0, 0);
 }
 
-void sub_02019410 (const void * param0, void * param1, u32 param2)
+void sub_02019410(const void *param0, void *param1, u32 param2)
 {
     if (param2 == 0) {
         MI_UncompressLZ8(param0, param1);
@@ -780,14 +750,14 @@ void sub_02019410 (const void * param0, void * param1, u32 param2)
     }
 }
 
-void sub_02019448 (BGL * param0, u8 param1)
+void sub_02019448(BGL *param0, u8 param1)
 {
     sub_02019460(param0, param1, param0->unk_08[param1].unk_00, param0->unk_08[param1].unk_04, param0->unk_08[param1].unk_08);
 }
 
-void sub_02019460 (BGL * param0, u8 param1, const void * param2, u32 param3, u32 param4)
+void sub_02019460(BGL *param0, u8 param1, const void *param2, u32 param3, u32 param4)
 {
-    void * v0;
+    void *v0;
 
     if (param3 == 0) {
         if (param0->unk_08[param1].unk_00 != NULL) {
@@ -809,7 +779,7 @@ void sub_02019460 (BGL * param0, u8 param1, const void * param2, u32 param3, u32
     }
 }
 
-static void sub_020194E0 (u8 param0, void * param1, u32 param2, u32 param3)
+static void sub_020194E0(u8 param0, void *param1, u32 param2, u32 param3)
 {
     DC_FlushRange(param1, param3);
 
@@ -841,12 +811,12 @@ static void sub_020194E0 (u8 param0, void * param1, u32 param2, u32 param3)
     }
 }
 
-void sub_02019574 (BGL * param0, u8 param1, const void * param2, u32 param3)
+void sub_02019574(BGL *param0, u8 param1, const void *param2, u32 param3)
 {
     sub_02019410(param2, param0->unk_08[param1].unk_00, param3);
 }
 
-void sub_0201958C (BGL * param0, u8 param1, const void * param2, u32 param3, u32 param4)
+void sub_0201958C(BGL *param0, u8 param1, const void *param2, u32 param3, u32 param4)
 {
     if (param0->unk_08[param1].unk_16 == GX_BG_COLORMODE_16) {
         sub_020195B8(param0, param1, param2, param3, param4 * 0x20);
@@ -855,9 +825,9 @@ void sub_0201958C (BGL * param0, u8 param1, const void * param2, u32 param3, u32
     }
 }
 
-static void sub_020195B8 (BGL * param0, u8 param1, const void * param2, u32 param3, u32 param4)
+static void sub_020195B8(BGL *param0, u8 param1, const void *param2, u32 param3, u32 param4)
 {
-    void * v0;
+    void *v0;
 
     if (param3 == 0) {
         u32 v1;
@@ -873,7 +843,7 @@ static void sub_020195B8 (BGL * param0, u8 param1, const void * param2, u32 para
     }
 }
 
-static void sub_020195FC (u8 param0, void * param1, u32 param2, u32 param3)
+static void sub_020195FC(u8 param0, void *param1, u32 param2, u32 param3)
 {
     DC_FlushRange(param1, param3);
 
@@ -905,9 +875,9 @@ static void sub_020195FC (u8 param0, void * param1, u32 param2, u32 param3)
     }
 }
 
-void sub_02019690 (u8 param0, u32 param1, u32 param2, u32 param3)
+void sub_02019690(u8 param0, u32 param1, u32 param2, u32 param3)
 {
-    u32 * v0 = (u32 *)Heap_AllocFromHeapAtEnd(param3, param1);
+    u32 *v0 = (u32 *)Heap_AllocFromHeapAtEnd(param3, param1);
 
     memset(v0, 0, param1);
 
@@ -915,9 +885,9 @@ void sub_02019690 (u8 param0, u32 param1, u32 param2, u32 param3)
     Heap_FreeToHeapExplicit(param3, v0);
 }
 
-void sub_020196C0 (BGL * param0, u32 param1, u32 param2, u32 param3, u32 param4)
+void sub_020196C0(BGL *param0, u32 param1, u32 param2, u32 param3, u32 param4)
 {
-    u32 * v0;
+    u32 *v0;
     u32 v1;
 
     v1 = param3 * param0->unk_08[param1].unk_17;
@@ -936,7 +906,7 @@ void sub_020196C0 (BGL * param0, u32 param1, u32 param2, u32 param3, u32 param4)
     Heap_FreeToHeap(v0);
 }
 
-void sub_0201972C (u8 param0, void * param1, u16 param2, u16 param3)
+void sub_0201972C(u8 param0, void *param1, u16 param2, u16 param3)
 {
     DC_FlushRange((void *)param1, param2);
 
@@ -947,12 +917,12 @@ void sub_0201972C (u8 param0, void * param1, u16 param2, u16 param3)
     }
 }
 
-void sub_0201975C (u8 param0, u16 param1)
+void sub_0201975C(u8 param0, u16 param1)
 {
     sub_0201972C(param0, &param1, 2, 0);
 }
 
-static u16 sub_02019774 (u8 param0, u8 param1, u8 param2)
+static u16 sub_02019774(u8 param0, u8 param1, u8 param2)
 {
     u16 v0;
 
@@ -979,7 +949,7 @@ static u16 sub_02019774 (u8 param0, u8 param1, u8 param2)
     return v0;
 }
 
-static u16 sub_020197E0 (u8 param0, u8 param1, u8 param2, u8 param3)
+static u16 sub_020197E0(u8 param0, u8 param1, u8 param2, u8 param3)
 {
     u8 v0 = 0;
     u16 v1 = 0;
@@ -1029,12 +999,12 @@ static u16 sub_020197E0 (u8 param0, u8 param1, u8 param2, u8 param3)
     return v1;
 }
 
-void sub_020198C0 (BGL * param0, u8 param1, const void * param2, u8 param3, u8 param4, u8 param5, u8 param6)
+void sub_020198C0(BGL *param0, u8 param1, const void *param2, u8 param3, u8 param4, u8 param5, u8 param6)
 {
     sub_020198E8(param0, param1, param3, param4, param5, param6, param2, 0, 0, param5, param6);
 }
 
-void sub_020198E8 (BGL * param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, const void * param6, u8 param7, u8 param8, u8 param9, u8 param10)
+void sub_020198E8(BGL *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, const void *param6, u8 param7, u8 param8, u8 param9, u8 param10)
 {
     if (param0->unk_08[param1].unk_14 != 1) {
         sub_020199E0(&param0->unk_08[param1], param2, param3, param4, param5, (u16 *)param6, param7, param8, param9, param10, 0);
@@ -1043,7 +1013,7 @@ void sub_020198E8 (BGL * param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 
     }
 }
 
-void sub_02019964 (BGL * param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, const void * param6, u8 param7, u8 param8, u8 param9, u8 param10)
+void sub_02019964(BGL *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, const void *param6, u8 param7, u8 param8, u8 param9, u8 param10)
 {
     if (param0->unk_08[param1].unk_14 != 1) {
         sub_020199E0(&param0->unk_08[param1], param2, param3, param4, param5, (u16 *)param6, param7, param8, param9, param10, 1);
@@ -1052,9 +1022,9 @@ void sub_02019964 (BGL * param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 
     }
 }
 
-static void sub_020199E0 (UnkStruct_02019304 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, u8 param6, u8 param7, u8 param8, u8 param9, u8 param10)
+static void sub_020199E0(UnkStruct_02019304 *param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 *param5, u8 param6, u8 param7, u8 param8, u8 param9, u8 param10)
 {
-    u16 * v0;
+    u16 *v0;
     u8 v1, v2;
     u8 v3, v4;
 
@@ -1096,9 +1066,9 @@ static void sub_020199E0 (UnkStruct_02019304 * param0, u8 param1, u8 param2, u8 
     }
 }
 
-static void sub_02019B54 (UnkStruct_02019304 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 * param5, u8 param6, u8 param7, u8 param8, u8 param9, u8 param10)
+static void sub_02019B54(UnkStruct_02019304 *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 *param5, u8 param6, u8 param7, u8 param8, u8 param9, u8 param10)
 {
-    u8 * v0;
+    u8 *v0;
     u8 v1, v2;
     u8 v3, v4;
 
@@ -1140,7 +1110,7 @@ static void sub_02019B54 (UnkStruct_02019304 * param0, u8 param1, u8 param2, u8 
     }
 }
 
-void sub_02019CB8 (BGL * param0, u8 param1, u16 param2, u8 param3, u8 param4, u8 param5, u8 param6, u8 param7)
+void sub_02019CB8(BGL *param0, u8 param1, u16 param2, u8 param3, u8 param4, u8 param5, u8 param6, u8 param7)
 {
     if (param0->unk_08[param1].unk_14 != 1) {
         sub_02019D08(&param0->unk_08[param1], param2, param3, param4, param5, param6, param7);
@@ -1149,9 +1119,9 @@ void sub_02019CB8 (BGL * param0, u8 param1, u16 param2, u8 param3, u8 param4, u8
     }
 }
 
-static void sub_02019D08 (UnkStruct_02019304 * param0, u16 param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6)
+static void sub_02019D08(UnkStruct_02019304 *param0, u16 param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6)
 {
-    u16 * v0;
+    u16 *v0;
     u8 v1, v2;
     u8 v3, v4;
 
@@ -1187,9 +1157,9 @@ static void sub_02019D08 (UnkStruct_02019304 * param0, u16 param1, u8 param2, u8
     }
 }
 
-static void sub_02019DB8 (UnkStruct_02019304 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5)
+static void sub_02019DB8(UnkStruct_02019304 *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5)
 {
-    u8 * v0;
+    u8 *v0;
     u8 v1, v2;
     u8 v3, v4;
 
@@ -1215,9 +1185,9 @@ static void sub_02019DB8 (UnkStruct_02019304 * param0, u8 param1, u8 param2, u8 
     }
 }
 
-void sub_02019E2C (BGL * param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6)
+void sub_02019E2C(BGL *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6)
 {
-    u16 * v0;
+    u16 *v0;
     u8 v1, v2;
     u8 v3, v4;
 
@@ -1246,7 +1216,7 @@ void sub_02019E2C (BGL * param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 
     }
 }
 
-void sub_02019EBC (BGL * param0, u8 param1)
+void sub_02019EBC(BGL *param0, u8 param1)
 {
     if (param0->unk_08[param1].unk_00 == NULL) {
         return;
@@ -1256,7 +1226,7 @@ void sub_02019EBC (BGL * param0, u8 param1)
     sub_02019448(param0, param1);
 }
 
-void sub_02019EE0 (BGL * param0, u8 param1, u16 param2)
+void sub_02019EE0(BGL *param0, u8 param1, u16 param2)
 {
     if (param0->unk_08[param1].unk_00 == NULL) {
         return;
@@ -1266,7 +1236,7 @@ void sub_02019EE0 (BGL * param0, u8 param1, u16 param2)
     sub_02019448(param0, param1);
 }
 
-void sub_02019F04 (BGL * param0, u8 param1, u16 param2)
+void sub_02019F04(BGL *param0, u8 param1, u16 param2)
 {
     if (param0->unk_08[param1].unk_00 == NULL) {
         return;
@@ -1276,7 +1246,7 @@ void sub_02019F04 (BGL * param0, u8 param1, u16 param2)
     sub_0201C3C0(param0, param1);
 }
 
-void * sub_02019F28 (u8 param0)
+void *sub_02019F28(u8 param0)
 {
     switch (param0) {
     case 0:
@@ -1300,7 +1270,7 @@ void * sub_02019F28 (u8 param0)
     return NULL;
 }
 
-void sub_02019F80 (const u8 * param0, u32 param1, u8 * param2, u8 param3)
+void sub_02019F80(const u8 *param0, u32 param1, u8 *param2, u8 param3)
 {
     u32 v0;
 
@@ -1321,9 +1291,9 @@ void sub_02019F80 (const u8 * param0, u32 param1, u8 * param2, u8 param3)
     }
 }
 
-void * sub_02019FC0 (const u8 * param0, u32 param1, u8 param2, u32 param3)
+void *sub_02019FC0(const u8 *param0, u32 param1, u8 param2, u32 param3)
 {
-    void * v0;
+    void *v0;
 
     v0 = Heap_AllocFromHeap(param3, param1 * 2);
     sub_02019F80(param0, param1, (u8 *)v0, param2);
@@ -1331,49 +1301,44 @@ void * sub_02019FC0 (const u8 * param0, u32 param1, u8 param2, u32 param3)
     return v0;
 }
 
-void * sub_02019FE4 (BGL * param0, u8 param1)
+void *sub_02019FE4(BGL *param0, u8 param1)
 {
     return param0->unk_08[param1].unk_00;
 }
 
-int sub_02019FF0 (BGL * param0, u8 param1)
+int sub_02019FF0(BGL *param0, u8 param1)
 {
     return param0->unk_08[param1].unk_0C;
 }
 
-u16 sub_02019FFC (BGL * param0, u8 param1)
+u16 sub_02019FFC(BGL *param0, u8 param1)
 {
     return param0->unk_08[param1].unk_18;
 }
 
-u8 sub_0201A008 (BGL * param0, u8 param1)
+u8 sub_0201A008(BGL *param0, u8 param1)
 {
     switch (param1) {
-    case 0:
-    {
+    case 0: {
         GXBg01Control v0 = G2_GetBG0Control();
         return (u8)v0.priority;
     }
-    case 1:
-    {
+    case 1: {
         GXBg01Control v1 = G2_GetBG1Control();
         return (u8)v1.priority;
     }
     case 2:
         switch (param0->unk_08[param1].unk_14) {
         default:
-        case 0:
-        {
+        case 0: {
             GXBg23ControlText v2 = G2_GetBG2ControlText();
             return (u8)v2.priority;
         }
-        case 1:
-        {
+        case 1: {
             GXBg23ControlAffine v3 = G2_GetBG2ControlAffine();
             return (u8)v3.priority;
         }
-        case 2:
-        {
+        case 2: {
             GXBg23Control256x16Pltt v4 = G2_GetBG2Control256x16Pltt();
             return (u8)v4.priority;
         }
@@ -1382,48 +1347,40 @@ u8 sub_0201A008 (BGL * param0, u8 param1)
     case 3:
         switch (param0->unk_08[param1].unk_14) {
         default:
-        case 0:
-        {
+        case 0: {
             GXBg23ControlText v5 = G2_GetBG3ControlText();
             return (u8)v5.priority;
         }
-        case 1:
-        {
+        case 1: {
             GXBg23ControlAffine v6 = G2_GetBG3ControlAffine();
             return (u8)v6.priority;
         }
-        case 2:
-        {
+        case 2: {
             GXBg23Control256x16Pltt v7 = G2_GetBG3Control256x16Pltt();
             return (u8)v7.priority;
         }
         }
 
-    case 4:
-    {
+    case 4: {
         GXBg01Control v8 = G2S_GetBG0Control();
         return (u8)v8.priority;
     }
-    case 5:
-    {
+    case 5: {
         GXBg01Control v9 = G2S_GetBG1Control();
         return (u8)v9.priority;
     }
     case 6:
         switch (param0->unk_08[param1].unk_14) {
         default:
-        case 0:
-        {
+        case 0: {
             GXBg23ControlText v10 = G2S_GetBG2ControlText();
             return (u8)v10.priority;
         }
-        case 1:
-        {
+        case 1: {
             GXBg23ControlAffine v11 = G2S_GetBG2ControlAffine();
             return (u8)v11.priority;
         }
-        case 2:
-        {
+        case 2: {
             GXBg23Control256x16Pltt v12 = G2S_GetBG2Control256x16Pltt();
             return (u8)v12.priority;
         }
@@ -1432,18 +1389,15 @@ u8 sub_0201A008 (BGL * param0, u8 param1)
     case 7:
         switch (param0->unk_08[param1].unk_14) {
         default:
-        case 0:
-        {
+        case 0: {
             GXBg23ControlText v13 = G2S_GetBG3ControlText();
             return (u8)v13.priority;
         }
-        case 1:
-        {
+        case 1: {
             GXBg23ControlAffine v14 = G2S_GetBG3ControlAffine();
             return (u8)v14.priority;
         }
-        case 2:
-        {
+        case 2: {
             GXBg23Control256x16Pltt v15 = G2S_GetBG3Control256x16Pltt();
             return (u8)v15.priority;
         }
@@ -1453,10 +1407,10 @@ u8 sub_0201A008 (BGL * param0, u8 param1)
     return 0;
 }
 
-void sub_0201A1E4 (const UnkStruct_0201AE08 * param0, const UnkStruct_0201AE08 * param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6, u16 param7, u16 param8)
+void sub_0201A1E4(const UnkStruct_0201AE08 *param0, const UnkStruct_0201AE08 *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6, u16 param7, u16 param8)
 {
     int v0, v1, v2, v3, v4, v5, v6, v7, v8, v9;
-    u8 * v10, * v11;
+    u8 *v10, *v11;
 
     if (((param1->unk_04) - (param4)) < (param6)) {
         v6 = (param1->unk_04) - (param4) + (param2);
@@ -1470,8 +1424,8 @@ void sub_0201A1E4 (const UnkStruct_0201AE08 * param0, const UnkStruct_0201AE08 *
         v7 = (param7) + (param3);
     }
 
-    v8 = ((((param0->unk_04)) + ((param0->unk_04) & 7)) >> 3);
-    v9 = ((((param1->unk_04)) + ((param1->unk_04) & 7)) >> 3);
+    v8 = (((param0->unk_04) + ((param0->unk_04) & 7)) >> 3);
+    v9 = (((param1->unk_04) + ((param1->unk_04) & 7)) >> 3);
 
     if (param8 == 0xffff) {
         for (v2 = (param3), v3 = (param5); v2 < v7; v2++, v3++) {
@@ -1501,11 +1455,11 @@ void sub_0201A1E4 (const UnkStruct_0201AE08 * param0, const UnkStruct_0201AE08 *
     }
 }
 
-void sub_0201A424 (const UnkStruct_0201AE08 * param0, const UnkStruct_0201AE08 * param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6, u16 param7, u16 param8)
+void sub_0201A424(const UnkStruct_0201AE08 *param0, const UnkStruct_0201AE08 *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6, u16 param7, u16 param8)
 {
     int v0, v1, v2, v3, v4, v5, v6, v7;
-    u8 * v8;
-    u8 * v9;
+    u8 *v8;
+    u8 *v9;
 
     if (((param1->unk_04) - (param4)) < (param6)) {
         v4 = (param1->unk_04) - (param4) + (param2);
@@ -1519,22 +1473,22 @@ void sub_0201A424 (const UnkStruct_0201AE08 * param0, const UnkStruct_0201AE08 *
         v5 = (param7) + (param3);
     }
 
-    v6 = ((((param0->unk_04)) + ((param0->unk_04) & 7)) >> 3);
-    v7 = ((((param1->unk_04)) + ((param1->unk_04) & 7)) >> 3);
+    v6 = (((param0->unk_04) + ((param0->unk_04) & 7)) >> 3);
+    v7 = (((param1->unk_04) + ((param1->unk_04) & 7)) >> 3);
 
     if (param8 == 0xffff) {
         for (v2 = (param3), v3 = (param5); v2 < v5; v2++, v3++) {
             for (v0 = (param2), v1 = (param4); v0 < v4; v0++, v1++) {
-                v8 = (u8 *)(((param0->unk_00)) + (v0 & 0x7) + ((v0 << 3) & 0x7fc0) + (((v2 << 3) & 0x7fc0) * v6) + ((u32)((v2 << 3) & 0x38)));
-                v9 = (u8 *)(((param1->unk_00)) + (v1 & 0x7) + ((v1 << 3) & 0x7fc0) + (((v3 << 3) & 0x7fc0) * v7) + ((u32)((v3 << 3) & 0x38)));
+                v8 = (u8 *)((param0->unk_00) + (v0 & 0x7) + ((v0 << 3) & 0x7fc0) + (((v2 << 3) & 0x7fc0) * v6) + ((u32)((v2 << 3) & 0x38)));
+                v9 = (u8 *)((param1->unk_00) + (v1 & 0x7) + ((v1 << 3) & 0x7fc0) + (((v3 << 3) & 0x7fc0) * v7) + ((u32)((v3 << 3) & 0x38)));
                 *v9 = *v8;
             }
         }
     } else {
         for (v2 = (param3), v3 = (param5); v2 < v5; v2++, v3++) {
             for (v0 = (param2), v1 = (param4); v0 < v4; v0++, v1++) {
-                v8 = (u8 *)(((param0->unk_00)) + (v0 & 0x7) + ((v0 << 3) & 0x7fc0) + (((v2 << 3) & 0x7fc0) * v6) + ((u32)((v2 << 3) & 0x38)));
-                v9 = (u8 *)(((param1->unk_00)) + (v1 & 0x7) + ((v1 << 3) & 0x7fc0) + (((v3 << 3) & 0x7fc0) * v7) + ((u32)((v3 << 3) & 0x38)));
+                v8 = (u8 *)((param0->unk_00) + (v0 & 0x7) + ((v0 << 3) & 0x7fc0) + (((v2 << 3) & 0x7fc0) * v6) + ((u32)((v2 << 3) & 0x38)));
+                v9 = (u8 *)((param1->unk_00) + (v1 & 0x7) + ((v1 << 3) & 0x7fc0) + (((v3 << 3) & 0x7fc0) * v7) + ((u32)((v3 << 3) & 0x38)));
 
                 if (*v8 != (param8)) {
                     *v9 = *v8;
@@ -1544,10 +1498,10 @@ void sub_0201A424 (const UnkStruct_0201AE08 * param0, const UnkStruct_0201AE08 *
     }
 }
 
-void sub_0201A60C (const UnkStruct_0201AE08 * param0, u16 param1, u16 param2, u16 param3, u16 param4, u8 param5)
+void sub_0201A60C(const UnkStruct_0201AE08 *param0, u16 param1, u16 param2, u16 param3, u16 param4, u8 param5)
 {
     int v0, v1, v2, v3, v4;
-    u8 * v5;
+    u8 *v5;
 
     v2 = param1 + param3;
 
@@ -1578,10 +1532,10 @@ void sub_0201A60C (const UnkStruct_0201AE08 * param0, u16 param1, u16 param2, u1
     }
 }
 
-void sub_0201A6D0 (const UnkStruct_0201AE08 * param0, u16 param1, u16 param2, u16 param3, u16 param4, u8 param5)
+void sub_0201A6D0(const UnkStruct_0201AE08 *param0, u16 param1, u16 param2, u16 param3, u16 param4, u8 param5)
 {
     int v0, v1, v2, v3, v4;
-    u8 * v5;
+    u8 *v5;
 
     v2 = param1 + param3;
 
@@ -1605,9 +1559,9 @@ void sub_0201A6D0 (const UnkStruct_0201AE08 * param0, u16 param1, u16 param2, u1
     }
 }
 
-Window * sub_0201A778 (u32 param0, u8 param1)
+Window *sub_0201A778(u32 param0, u8 param1)
 {
-    Window * v0;
+    Window *v0;
     u16 v1;
 
     v0 = (Window *)Heap_AllocFromHeap(param0, sizeof(Window) * param1);
@@ -1619,7 +1573,7 @@ Window * sub_0201A778 (u32 param0, u8 param1)
     return v0;
 }
 
-void Window_Init (Window * param0)
+void Window_Init(Window *param0)
 {
     param0->unk_00 = NULL;
     param0->unk_04 = 0xff;
@@ -1633,7 +1587,7 @@ void Window_Init (Window * param0)
     param0->unk_0A_15 = UnkEnum_00;
 }
 
-u8 BGL_WindowAdded (Window * param0)
+u8 BGL_WindowAdded(Window *param0)
 {
     if ((param0->unk_00 == NULL) || (param0->unk_04 == 0xff) || (param0->unk_0C == NULL)) {
         return 0;
@@ -1642,9 +1596,9 @@ u8 BGL_WindowAdded (Window * param0)
     return 1;
 }
 
-void BGL_AddWindow (BGL * param0, Window * param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6, u8 param7, u16 param8)
+void BGL_AddWindow(BGL *param0, Window *param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6, u8 param7, u16 param8)
 {
-    void * v0;
+    void *v0;
     u32 v1;
 
     if (param0->unk_08[param2].unk_00 == NULL) {
@@ -1670,9 +1624,9 @@ void BGL_AddWindow (BGL * param0, Window * param1, u8 param2, u8 param3, u8 para
     param1->unk_0A_15 = (param0->unk_08[param2].unk_16 == GX_BG_COLORMODE_16) ? UnkEnum_00 : UnkEnum_01;
 }
 
-void BGL_AddFramelessWindow (BGL * param0, Window * param1, u8 param2, u8 param3, u16 param4, u8 param5)
+void BGL_AddFramelessWindow(BGL *param0, Window *param1, u8 param2, u8 param3, u16 param4, u8 param5)
 {
-    void * v0;
+    void *v0;
     u32 v1;
 
     v1 = (u32)(param2 * param3 * 0x20);
@@ -1693,13 +1647,13 @@ void BGL_AddFramelessWindow (BGL * param0, Window * param1, u8 param2, u8 param3
     param1->unk_0A_15 = UnkEnum_00;
 }
 
-void sub_0201A8D4 (BGL * param0, Window * param1, const UnkStruct_ov61_0222C884 * param2)
+void sub_0201A8D4(BGL *param0, Window *param1, const UnkStruct_ov61_0222C884 *param2)
 {
     BGL_AddWindow(
         param0, param1, param2->unk_00, param2->unk_01, param2->unk_02, param2->unk_03, param2->unk_04, param2->unk_05, param2->unk_06);
 }
 
-void BGL_DeleteWindow (Window * param0)
+void BGL_DeleteWindow(Window *param0)
 {
     Heap_FreeToHeap(param0->unk_0C);
 
@@ -1714,7 +1668,7 @@ void BGL_DeleteWindow (Window * param0)
     param0->unk_0C = NULL;
 }
 
-void sub_0201A928 (Window * param0, u8 param1)
+void sub_0201A928(Window *param0, u8 param1)
 {
     u16 v0;
 
@@ -1729,37 +1683,37 @@ void sub_0201A928 (Window * param0, u8 param1)
     Heap_FreeToHeap(param0);
 }
 
-static void(*const Unk_020E56CC[])(Window *) = {
+static void (*const Unk_020E56CC[])(Window *) = {
     sub_0201AC20,
     sub_0201AC64,
     sub_0201AC20
 };
 
-static void(*const Unk_020E56C0[])(Window *) = {
+static void (*const Unk_020E56C0[])(Window *) = {
     sub_0201AC4C,
     sub_0201ACA0,
     sub_0201AC4C
 };
 
-static void(*const Unk_020E56B4[])(Window *) = {
+static void (*const Unk_020E56B4[])(Window *) = {
     sub_0201AD2C,
     sub_0201AD68,
     sub_0201AD2C
 };
 
-static void(*const Unk_020E56A8[])(Window *) = {
+static void (*const Unk_020E56A8[])(Window *) = {
     sub_0201AD54,
     sub_0201AD90,
     sub_0201AD54
 };
 
-static void(*const Unk_020E569C[])(Window *) = {
+static void (*const Unk_020E569C[])(Window *) = {
     sub_0201AA58,
     sub_0201AADC,
     sub_0201AA58
 };
 
-static void(*const Unk_020E56D8[])(Window *) = {
+static void (*const Unk_020E56D8[])(Window *) = {
     sub_0201AB38,
     sub_0201ABC8,
     sub_0201AB38
@@ -1774,7 +1728,7 @@ static const u8 Unk_020E5694[] = {
     0x20
 };
 
-void sub_0201A954 (Window * param0)
+void sub_0201A954(Window *param0)
 {
     GF_ASSERT(param0 != NULL);
     GF_ASSERT(param0->unk_00 != NULL);
@@ -1784,7 +1738,7 @@ void sub_0201A954 (Window * param0)
     Unk_020E56CC[param0->unk_00->unk_08[param0->unk_04].unk_14](param0);
 }
 
-void sub_0201A9A4 (Window * param0)
+void sub_0201A9A4(Window *param0)
 {
     GF_ASSERT(param0 != NULL);
     GF_ASSERT(param0->unk_00 != NULL);
@@ -1794,12 +1748,12 @@ void sub_0201A9A4 (Window * param0)
     Unk_020E56C0[param0->unk_00->unk_08[param0->unk_04].unk_14](param0);
 }
 
-void sub_0201A9F4 (Window * param0)
+void sub_0201A9F4(Window *param0)
 {
     Unk_020E569C[param0->unk_00->unk_08[param0->unk_04].unk_14](param0);
 }
 
-void sub_0201AA10 (Window * param0, u32 param1, u32 param2)
+void sub_0201AA10(Window *param0, u32 param1, u32 param2)
 {
     u32 v0, v1;
 
@@ -1815,16 +1769,16 @@ void sub_0201AA10 (Window * param0, u32 param1, u32 param2)
     param0->unk_08 = v1;
 }
 
-void sub_0201AA3C (Window * param0)
+void sub_0201AA3C(Window *param0)
 {
     Unk_020E56D8[param0->unk_00->unk_08[param0->unk_04].unk_14](param0);
 }
 
-static void sub_0201AA58 (Window * param0)
+static void sub_0201AA58(Window *param0)
 {
     if (param0->unk_00->unk_08[param0->unk_04].unk_00) {
         u32 v0, v1, v2, v3, v4, v5, v6;
-        u16 * v7;
+        u16 *v7;
 
         v6 = 32;
         v7 = (u16 *)(param0->unk_00->unk_08[param0->unk_04].unk_00);
@@ -1842,11 +1796,11 @@ static void sub_0201AA58 (Window * param0)
     }
 }
 
-static void sub_0201AADC (Window * param0)
+static void sub_0201AADC(Window *param0)
 {
     if (param0->unk_00->unk_08[param0->unk_04].unk_00) {
         int v0, v1, v2, v3;
-        u8 * v4;
+        u8 *v4;
 
         v3 = Unk_020E5694[param0->unk_00->unk_08[param0->unk_04].unk_15];
         v4 = (u8 *)(param0->unk_00->unk_08[param0->unk_04].unk_00) + param0->unk_06 * v3 + param0->unk_05;
@@ -1862,11 +1816,11 @@ static void sub_0201AADC (Window * param0)
     }
 }
 
-static void sub_0201AB38 (Window * param0)
+static void sub_0201AB38(Window *param0)
 {
     if (param0->unk_00->unk_08[param0->unk_04].unk_00) {
         u32 v0, v1, v2, v3, v4, v5;
-        u16 * v6;
+        u16 *v6;
 
         v5 = Unk_020E5694[param0->unk_00->unk_08[param0->unk_04].unk_15];
         v6 = (u16 *)(param0->unk_00->unk_08[param0->unk_04].unk_00);
@@ -1882,11 +1836,11 @@ static void sub_0201AB38 (Window * param0)
     }
 }
 
-static void sub_0201ABC8 (Window * param0)
+static void sub_0201ABC8(Window *param0)
 {
     if (param0->unk_00->unk_08[param0->unk_04].unk_00) {
         int v0, v1, v2;
-        u8 * v3;
+        u8 *v3;
 
         v2 = Unk_020E5694[param0->unk_00->unk_08[param0->unk_04].unk_15];
         v3 = (u8 *)(param0->unk_00->unk_08[param0->unk_04].unk_00) + param0->unk_06 * v2 + param0->unk_05;
@@ -1901,21 +1855,21 @@ static void sub_0201ABC8 (Window * param0)
     }
 }
 
-static void sub_0201AC20 (Window * param0)
+static void sub_0201AC20(Window *param0)
 {
     sub_0201AA58(param0);
     sub_0201ACCC(param0);
     sub_02019460(param0->unk_00, param0->unk_04, param0->unk_00->unk_08[param0->unk_04].unk_00, param0->unk_00->unk_08[param0->unk_04].unk_04, param0->unk_00->unk_08[param0->unk_04].unk_08);
 }
 
-static void sub_0201AC4C (Window * param0)
+static void sub_0201AC4C(Window *param0)
 {
     sub_0201AA58(param0);
     sub_0201C3C0(param0->unk_00, param0->unk_04);
     sub_0201ACCC(param0);
 }
 
-static void sub_0201AC64 (Window * param0)
+static void sub_0201AC64(Window *param0)
 {
     sub_0201AADC(param0);
 
@@ -1923,7 +1877,7 @@ static void sub_0201AC64 (Window * param0)
     sub_0201958C(param0->unk_00, param0->unk_04, param0->unk_0C, (u32)(param0->unk_07 * param0->unk_08 * 0x40), (u32)param0->unk_0A_0);
 }
 
-static void sub_0201ACA0 (Window * param0)
+static void sub_0201ACA0(Window *param0)
 {
     sub_0201AADC(param0);
 
@@ -1931,47 +1885,47 @@ static void sub_0201ACA0 (Window * param0)
     sub_0201958C(param0->unk_00, param0->unk_04, param0->unk_0C, (u32)(param0->unk_07 * param0->unk_08 * 0x40), (u32)param0->unk_0A_0);
 }
 
-void sub_0201ACCC (Window * param0)
+void sub_0201ACCC(Window *param0)
 {
     u32 v0 = param0->unk_07 * param0->unk_08 * param0->unk_00->unk_08[param0->unk_04].unk_17;
     sub_0201958C(param0->unk_00, param0->unk_04, param0->unk_0C, v0, param0->unk_0A_0);
 }
 
-void sub_0201ACF4 (Window * param0)
+void sub_0201ACF4(Window *param0)
 {
     Unk_020E56B4[param0->unk_00->unk_08[param0->unk_04].unk_14](param0);
 }
 
-void sub_0201AD10 (Window * param0)
+void sub_0201AD10(Window *param0)
 {
     Unk_020E56A8[param0->unk_00->unk_08[param0->unk_04].unk_14](param0);
 }
 
-static void sub_0201AD2C (Window * param0)
+static void sub_0201AD2C(Window *param0)
 {
     sub_0201AB38(param0);
     sub_02019460(param0->unk_00, param0->unk_04, param0->unk_00->unk_08[param0->unk_04].unk_00, param0->unk_00->unk_08[param0->unk_04].unk_04, param0->unk_00->unk_08[param0->unk_04].unk_08);
 }
 
-static void sub_0201AD54 (Window * param0)
+static void sub_0201AD54(Window *param0)
 {
     sub_0201AB38(param0);
     sub_0201C3C0(param0->unk_00, param0->unk_04);
 }
 
-static void sub_0201AD68 (Window * param0)
+static void sub_0201AD68(Window *param0)
 {
     sub_0201ABC8(param0);
     sub_02019460(param0->unk_00, param0->unk_04, param0->unk_00->unk_08[param0->unk_04].unk_00, param0->unk_00->unk_08[param0->unk_04].unk_04, param0->unk_00->unk_08[param0->unk_04].unk_08);
 }
 
-static void sub_0201AD90 (Window * param0)
+static void sub_0201AD90(Window *param0)
 {
     sub_0201ABC8(param0);
     sub_0201C3C0(param0->unk_00, param0->unk_04);
 }
 
-void BGL_FillWindow (Window * param0, u8 param1)
+void BGL_FillWindow(Window *param0, u8 param1)
 {
     u32 v0;
     u32 v1;
@@ -1986,12 +1940,12 @@ void BGL_FillWindow (Window * param0, u8 param1)
     MI_CpuFillFast(param0->unk_0C, v1, v0);
 }
 
-void sub_0201ADDC (Window * param0, void * param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6, u16 param7, u16 param8, u16 param9)
+void sub_0201ADDC(Window *param0, void *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6, u16 param7, u16 param8, u16 param9)
 {
     sub_0201AE08(param0, param1, param2, param3, param4, param5, param6, param7, param8, param9, 0);
 }
 
-void sub_0201AE08 (Window * param0, void * param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6, u16 param7, u16 param8, u16 param9, u16 param10)
+void sub_0201AE08(Window *param0, void *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6, u16 param7, u16 param8, u16 param9, u16 param10)
 {
     UnkStruct_0201AE08 v0;
     UnkStruct_0201AE08 v1;
@@ -2010,7 +1964,7 @@ void sub_0201AE08 (Window * param0, void * param1, u16 param2, u16 param3, u16 p
     }
 }
 
-void BGL_WindowColor (Window * param0, u8 param1, u16 param2, u16 param3, u16 param4, u16 param5)
+void BGL_WindowColor(Window *param0, u8 param1, u16 param2, u16 param3, u16 param4, u16 param5)
 {
     UnkStruct_0201AE08 v0;
 
@@ -2025,9 +1979,9 @@ void BGL_WindowColor (Window * param0, u8 param1, u16 param2, u16 param3, u16 pa
     }
 }
 
-void sub_0201AED0 (Window * param0, const u8 * param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6)
+void sub_0201AED0(Window *param0, const u8 *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6)
 {
-    u8 * v0;
+    u8 *v0;
     u16 v1, v2;
     int v3, v4;
     u8 v5;
@@ -2060,20 +2014,20 @@ void sub_0201AED0 (Window * param0, const u8 * param1, u16 param2, u16 param3, u
 
     if (param0->unk_0A_15 == UnkEnum_00) {
         switch (v5) {
-        case 0:
-        {
+        case 0: {
             int v7, v8, v9, v10, v17;
             u8 v11;
             u8 v12;
             u8 v13;
-            u8 * v14;
-            const u8 * v15;
+            u8 *v14;
+            const u8 *v15;
             u32 v16;
 
             v15 = (param1) + (0 / 8 * 0x40) + (0 / 8 * 0x20);
 
             if (0 == 0) {
-                v10 = (param5) + 0; v13 = (u8)((param6) & 0xff);
+                v10 = (param5) + 0;
+                v13 = (u8)((param6) & 0xff);
             } else {
                 v10 = (param5) + 0;
 
@@ -2087,16 +2041,21 @@ void sub_0201AED0 (Window * param0, const u8 * param1, u16 param2, u16 param3, u
             }
 
             for (v9 = 0; v9 < v4; v9++) {
-                v16 = *(u32 *)v15; v12 = (u8)((v13 >> v9) & 1);
+                v16 = *(u32 *)v15;
+                v12 = (u8)((v13 >> v9) & 1);
 
                 for (v7 = 0, v8 = (param4) + 0; v7 < v3; v7++, v8++) {
-                    v14 = (u8 *)(((v0)) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + (((v10 << 2) & 0x3fe0) * ((((v1)) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 2) & 0x1c))); v11 = (u8)((v16 >> (v7 * 4)) & 0xf);
+                    v14 = (u8 *)((v0) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + (((v10 << 2) & 0x3fe0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 2) & 0x1c)));
+                    v11 = (u8)((v16 >> (v7 * 4)) & 0xf);
 
                     if (v11 != 0) {
-                        v17 = (v8 & 1) * 4; v11 = (u8)((v11 << v17) | (*v14 & (0xf0 >> v17))); *v14 = v11;
+                        v17 = (v8 & 1) * 4;
+                        v11 = (u8)((v11 << v17) | (*v14 & (0xf0 >> v17)));
+                        *v14 = v11;
 
                         if (v12 != 0) {
-                            v14 = (u8 *)(((v0)) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + ((((v10 + 1) << 2) & 0x3fe0) * ((((v1)) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 2) & 0x1c))); *v14 = v11;
+                            v14 = (u8 *)((v0) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + ((((v10 + 1) << 2) & 0x3fe0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 2) & 0x1c)));
+                            *v14 = v11;
                         }
                     }
                 }
@@ -2111,20 +2070,20 @@ void sub_0201AED0 (Window * param0, const u8 * param1, u16 param2, u16 param3, u
             }
         };
             return;
-        case 1:
-        {
+        case 1: {
             int v7, v8, v9, v10, v17;
             u8 v11;
             u8 v12;
             u8 v13;
-            u8 * v14;
-            const u8 * v15;
+            u8 *v14;
+            const u8 *v15;
             u32 v16;
 
             v15 = (param1) + (0 / 8 * 0x40) + (0 / 8 * 0x20);
 
             if (0 == 0) {
-                v10 = (param5) + 0; v13 = (u8)((param6) & 0xff);
+                v10 = (param5) + 0;
+                v13 = (u8)((param6) & 0xff);
             } else {
                 v10 = (param5) + 0;
 
@@ -2138,16 +2097,21 @@ void sub_0201AED0 (Window * param0, const u8 * param1, u16 param2, u16 param3, u
             }
 
             for (v9 = 0; v9 < v4; v9++) {
-                v16 = *(u32 *)v15; v12 = (u8)((v13 >> v9) & 1);
+                v16 = *(u32 *)v15;
+                v12 = (u8)((v13 >> v9) & 1);
 
                 for (v7 = 0, v8 = (param4) + 0; v7 < 8; v7++, v8++) {
-                    v14 = (u8 *)(((v0)) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + (((v10 << 2) & 0x3fe0) * ((((v1)) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 2) & 0x1c))); v11 = (u8)((v16 >> (v7 * 4)) & 0xf);
+                    v14 = (u8 *)((v0) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + (((v10 << 2) & 0x3fe0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 2) & 0x1c)));
+                    v11 = (u8)((v16 >> (v7 * 4)) & 0xf);
 
                     if (v11 != 0) {
-                        v17 = (v8 & 1) * 4; v11 = (u8)((v11 << v17) | (*v14 & (0xf0 >> v17))); *v14 = v11;
+                        v17 = (v8 & 1) * 4;
+                        v11 = (u8)((v11 << v17) | (*v14 & (0xf0 >> v17)));
+                        *v14 = v11;
 
                         if (v12 != 0) {
-                            v14 = (u8 *)(((v0)) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + ((((v10 + 1) << 2) & 0x3fe0) * ((((v1)) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 2) & 0x1c))); *v14 = v11;
+                            v14 = (u8 *)((v0) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + ((((v10 + 1) << 2) & 0x3fe0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 2) & 0x1c)));
+                            *v14 = v11;
                         }
                     }
                 }
@@ -2166,14 +2130,15 @@ void sub_0201AED0 (Window * param0, const u8 * param1, u16 param2, u16 param3, u
                 u8 v11;
                 u8 v12;
                 u8 v13;
-                u8 * v14;
-                const u8 * v15;
+                u8 *v14;
+                const u8 *v15;
                 u32 v16;
 
                 v15 = (param1) + (0 / 8 * 0x40) + (8 / 8 * 0x20);
 
                 if (0 == 0) {
-                    v10 = (param5) + 0; v13 = (u8)((param6) & 0xff);
+                    v10 = (param5) + 0;
+                    v13 = (u8)((param6) & 0xff);
                 } else {
                     v10 = (param5) + 0;
 
@@ -2187,16 +2152,21 @@ void sub_0201AED0 (Window * param0, const u8 * param1, u16 param2, u16 param3, u
                 }
 
                 for (v9 = 0; v9 < v4; v9++) {
-                    v16 = *(u32 *)v15; v12 = (u8)((v13 >> v9) & 1);
+                    v16 = *(u32 *)v15;
+                    v12 = (u8)((v13 >> v9) & 1);
 
                     for (v7 = 0, v8 = (param4) + 8; v7 < v3 - 8; v7++, v8++) {
-                        v14 = (u8 *)(((v0)) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + (((v10 << 2) & 0x3fe0) * ((((v1)) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 2) & 0x1c))); v11 = (u8)((v16 >> (v7 * 4)) & 0xf);
+                        v14 = (u8 *)((v0) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + (((v10 << 2) & 0x3fe0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 2) & 0x1c)));
+                        v11 = (u8)((v16 >> (v7 * 4)) & 0xf);
 
                         if (v11 != 0) {
-                            v17 = (v8 & 1) * 4; v11 = (u8)((v11 << v17) | (*v14 & (0xf0 >> v17))); *v14 = v11;
+                            v17 = (v8 & 1) * 4;
+                            v11 = (u8)((v11 << v17) | (*v14 & (0xf0 >> v17)));
+                            *v14 = v11;
 
                             if (v12 != 0) {
-                                v14 = (u8 *)(((v0)) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + ((((v10 + 1) << 2) & 0x3fe0) * ((((v1)) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 2) & 0x1c))); *v14 = v11;
+                                v14 = (u8 *)((v0) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + ((((v10 + 1) << 2) & 0x3fe0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 2) & 0x1c)));
+                                *v14 = v11;
                             }
                         }
                     }
@@ -2211,20 +2181,20 @@ void sub_0201AED0 (Window * param0, const u8 * param1, u16 param2, u16 param3, u
                 }
             }
             return;
-        case 2:
-        {
+        case 2: {
             int v7, v8, v9, v10, v17;
             u8 v11;
             u8 v12;
             u8 v13;
-            u8 * v14;
-            const u8 * v15;
+            u8 *v14;
+            const u8 *v15;
             u32 v16;
 
             v15 = (param1) + (0 / 8 * 0x40) + (0 / 8 * 0x20);
 
             if (0 == 0) {
-                v10 = (param5) + 0; v13 = (u8)((param6) & 0xff);
+                v10 = (param5) + 0;
+                v13 = (u8)((param6) & 0xff);
             } else {
                 v10 = (param5) + 0;
 
@@ -2238,111 +2208,21 @@ void sub_0201AED0 (Window * param0, const u8 * param1, u16 param2, u16 param3, u
             }
 
             for (v9 = 0; v9 < 8; v9++) {
-                v16 = *(u32 *)v15; v12 = (u8)((v13 >> v9) & 1);
+                v16 = *(u32 *)v15;
+                v12 = (u8)((v13 >> v9) & 1);
 
                 for (v7 = 0, v8 = (param4) + 0; v7 < v3; v7++, v8++) {
-                    v14 = (u8 *)(((v0)) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + (((v10 << 2) & 0x3fe0) * ((((v1)) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 2) & 0x1c))); v11 = (u8)((v16 >> (v7 * 4)) & 0xf);
+                    v14 = (u8 *)((v0) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + (((v10 << 2) & 0x3fe0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 2) & 0x1c)));
+                    v11 = (u8)((v16 >> (v7 * 4)) & 0xf);
 
                     if (v11 != 0) {
-                        v17 = (v8 & 1) * 4; v11 = (u8)((v11 << v17) | (*v14 & (0xf0 >> v17))); *v14 = v11;
+                        v17 = (v8 & 1) * 4;
+                        v11 = (u8)((v11 << v17) | (*v14 & (0xf0 >> v17)));
+                        *v14 = v11;
 
                         if (v12 != 0) {
-                            v14 = (u8 *)(((v0)) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + ((((v10 + 1) << 2) & 0x3fe0) * ((((v1)) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 2) & 0x1c))); *v14 = v11;
-                        }
-                    }
-                }
-
-                if (v12 != 0) {
-                    v10 += 2;
-                } else {
-                    v10++;
-                }
-
-                v15 += 4;
-            }
-        };
-            {
-                int v7, v8, v9, v10, v17;
-                u8 v11;
-                u8 v12;
-                u8 v13; u8 * v14; const u8 * v15; u32 v16; v15 = (param1) + (8 / 8 * 0x40) + (0 / 8 * 0x20);
-
-                if (8 == 0) {
-                    v10 = (param5) + 8; v13 = (u8)((param6) & 0xff);
-                } else {
-                    v10 = (param5) + 8;
-
-                    for (v9 = 0; v9 < 8; v9++) {
-                        if ((((param6) >> v9) & 1) != 0) {
-                            v10++;
-                        }
-                    }
-
-                    v13 = (u8)((param6) >> 8);
-                }
-
-                for (v9 = 0; v9 < v4 - 8; v9++) {
-                    v16 = *(u32 *)v15; v12 = (u8)((v13 >> v9) & 1);
-
-                    for (v7 = 0, v8 = (param4) + 0; v7 < v3; v7++, v8++) {
-                        v14 = (u8 *)(((v0)) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + (((v10 << 2) & 0x3fe0) * ((((v1)) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 2) & 0x1c))); v11 = (u8)((v16 >> (v7 * 4)) & 0xf);
-
-                        if (v11 != 0) {
-                            v17 = (v8 & 1) * 4; v11 = (u8)((v11 << v17) | (*v14 & (0xf0 >> v17))); *v14 = v11;
-
-                            if (v12 != 0) {
-                                v14 = (u8 *)(((v0)) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + ((((v10 + 1) << 2) & 0x3fe0) * ((((v1)) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 2) & 0x1c))); *v14 = v11;
-                            }
-                        }
-                    }
-
-                    if (v12 != 0) {
-                        v10 += 2;
-                    } else {
-                        v10++;
-                    }
-
-                    v15 += 4;
-                }
-            }
-            return;
-        case 3:
-        {
-            int v7, v8, v9, v10, v17;
-            u8 v11;
-            u8 v12;
-            u8 v13;
-            u8 * v14;
-            const u8 * v15;
-            u32 v16;
-
-            v15 = (param1) + (0 / 8 * 0x40) + (0 / 8 * 0x20);
-
-            if (0 == 0) {
-                v10 = (param5) + 0; v13 = (u8)((param6) & 0xff);
-            } else {
-                v10 = (param5) + 0;
-
-                for (v9 = 0; v9 < 8; v9++) {
-                    if ((((param6) >> v9) & 1) != 0) {
-                        v10++;
-                    }
-                }
-
-                v13 = (u8)((param6) >> 8);
-            }
-
-            for (v9 = 0; v9 < 8; v9++) {
-                v16 = *(u32 *)v15; v12 = (u8)((v13 >> v9) & 1);
-
-                for (v7 = 0, v8 = (param4) + 0; v7 < 8; v7++, v8++) {
-                    v14 = (u8 *)(((v0)) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + (((v10 << 2) & 0x3fe0) * ((((v1)) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 2) & 0x1c))); v11 = (u8)((v16 >> (v7 * 4)) & 0xf);
-
-                    if (v11 != 0) {
-                        v17 = (v8 & 1) * 4; v11 = (u8)((v11 << v17) | (*v14 & (0xf0 >> v17))); *v14 = v11;
-
-                        if (v12 != 0) {
-                            v14 = (u8 *)(((v0)) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + ((((v10 + 1) << 2) & 0x3fe0) * ((((v1)) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 2) & 0x1c))); *v14 = v11;
+                            v14 = (u8 *)((v0) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + ((((v10 + 1) << 2) & 0x3fe0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 2) & 0x1c)));
+                            *v14 = v11;
                         }
                     }
                 }
@@ -2361,14 +2241,125 @@ void sub_0201AED0 (Window * param0, const u8 * param1, u16 param2, u16 param3, u
                 u8 v11;
                 u8 v12;
                 u8 v13;
-                u8 * v14;
-                const u8 * v15;
+                u8 *v14;
+                const u8 *v15;
+                u32 v16;
+                v15 = (param1) + (8 / 8 * 0x40) + (0 / 8 * 0x20);
+
+                if (8 == 0) {
+                    v10 = (param5) + 8;
+                    v13 = (u8)((param6) & 0xff);
+                } else {
+                    v10 = (param5) + 8;
+
+                    for (v9 = 0; v9 < 8; v9++) {
+                        if ((((param6) >> v9) & 1) != 0) {
+                            v10++;
+                        }
+                    }
+
+                    v13 = (u8)((param6) >> 8);
+                }
+
+                for (v9 = 0; v9 < v4 - 8; v9++) {
+                    v16 = *(u32 *)v15;
+                    v12 = (u8)((v13 >> v9) & 1);
+
+                    for (v7 = 0, v8 = (param4) + 0; v7 < v3; v7++, v8++) {
+                        v14 = (u8 *)((v0) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + (((v10 << 2) & 0x3fe0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 2) & 0x1c)));
+                        v11 = (u8)((v16 >> (v7 * 4)) & 0xf);
+
+                        if (v11 != 0) {
+                            v17 = (v8 & 1) * 4;
+                            v11 = (u8)((v11 << v17) | (*v14 & (0xf0 >> v17)));
+                            *v14 = v11;
+
+                            if (v12 != 0) {
+                                v14 = (u8 *)((v0) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + ((((v10 + 1) << 2) & 0x3fe0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 2) & 0x1c)));
+                                *v14 = v11;
+                            }
+                        }
+                    }
+
+                    if (v12 != 0) {
+                        v10 += 2;
+                    } else {
+                        v10++;
+                    }
+
+                    v15 += 4;
+                }
+            }
+            return;
+        case 3: {
+            int v7, v8, v9, v10, v17;
+            u8 v11;
+            u8 v12;
+            u8 v13;
+            u8 *v14;
+            const u8 *v15;
+            u32 v16;
+
+            v15 = (param1) + (0 / 8 * 0x40) + (0 / 8 * 0x20);
+
+            if (0 == 0) {
+                v10 = (param5) + 0;
+                v13 = (u8)((param6) & 0xff);
+            } else {
+                v10 = (param5) + 0;
+
+                for (v9 = 0; v9 < 8; v9++) {
+                    if ((((param6) >> v9) & 1) != 0) {
+                        v10++;
+                    }
+                }
+
+                v13 = (u8)((param6) >> 8);
+            }
+
+            for (v9 = 0; v9 < 8; v9++) {
+                v16 = *(u32 *)v15;
+                v12 = (u8)((v13 >> v9) & 1);
+
+                for (v7 = 0, v8 = (param4) + 0; v7 < 8; v7++, v8++) {
+                    v14 = (u8 *)((v0) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + (((v10 << 2) & 0x3fe0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 2) & 0x1c)));
+                    v11 = (u8)((v16 >> (v7 * 4)) & 0xf);
+
+                    if (v11 != 0) {
+                        v17 = (v8 & 1) * 4;
+                        v11 = (u8)((v11 << v17) | (*v14 & (0xf0 >> v17)));
+                        *v14 = v11;
+
+                        if (v12 != 0) {
+                            v14 = (u8 *)((v0) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + ((((v10 + 1) << 2) & 0x3fe0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 2) & 0x1c)));
+                            *v14 = v11;
+                        }
+                    }
+                }
+
+                if (v12 != 0) {
+                    v10 += 2;
+                } else {
+                    v10++;
+                }
+
+                v15 += 4;
+            }
+        };
+            {
+                int v7, v8, v9, v10, v17;
+                u8 v11;
+                u8 v12;
+                u8 v13;
+                u8 *v14;
+                const u8 *v15;
                 u32 v16;
 
                 v15 = (param1) + (0 / 8 * 0x40) + (8 / 8 * 0x20);
 
                 if (0 == 0) {
-                    v10 = (param5) + 0; v13 = (u8)((param6) & 0xff);
+                    v10 = (param5) + 0;
+                    v13 = (u8)((param6) & 0xff);
                 } else {
                     v10 = (param5) + 0;
 
@@ -2382,16 +2373,21 @@ void sub_0201AED0 (Window * param0, const u8 * param1, u16 param2, u16 param3, u
                 }
 
                 for (v9 = 0; v9 < 8; v9++) {
-                    v16 = *(u32 *)v15; v12 = (u8)((v13 >> v9) & 1);
+                    v16 = *(u32 *)v15;
+                    v12 = (u8)((v13 >> v9) & 1);
 
                     for (v7 = 0, v8 = (param4) + 8; v7 < v3 - 8; v7++, v8++) {
-                        v14 = (u8 *)(((v0)) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + (((v10 << 2) & 0x3fe0) * ((((v1)) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 2) & 0x1c))); v11 = (u8)((v16 >> (v7 * 4)) & 0xf);
+                        v14 = (u8 *)((v0) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + (((v10 << 2) & 0x3fe0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 2) & 0x1c)));
+                        v11 = (u8)((v16 >> (v7 * 4)) & 0xf);
 
                         if (v11 != 0) {
-                            v17 = (v8 & 1) * 4; v11 = (u8)((v11 << v17) | (*v14 & (0xf0 >> v17))); *v14 = v11;
+                            v17 = (v8 & 1) * 4;
+                            v11 = (u8)((v11 << v17) | (*v14 & (0xf0 >> v17)));
+                            *v14 = v11;
 
                             if (v12 != 0) {
-                                v14 = (u8 *)(((v0)) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + ((((v10 + 1) << 2) & 0x3fe0) * ((((v1)) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 2) & 0x1c))); *v14 = v11;
+                                v14 = (u8 *)((v0) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + ((((v10 + 1) << 2) & 0x3fe0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 2) & 0x1c)));
+                                *v14 = v11;
                             }
                         }
                     }
@@ -2410,14 +2406,15 @@ void sub_0201AED0 (Window * param0, const u8 * param1, u16 param2, u16 param3, u
                 u8 v11;
                 u8 v12;
                 u8 v13;
-                u8 * v14;
-                const u8 * v15;
+                u8 *v14;
+                const u8 *v15;
                 u32 v16;
 
                 v15 = (param1) + (8 / 8 * 0x40) + (0 / 8 * 0x20);
 
                 if (8 == 0) {
-                    v10 = (param5) + 8; v13 = (u8)((param6) & 0xff);
+                    v10 = (param5) + 8;
+                    v13 = (u8)((param6) & 0xff);
                 } else {
                     v10 = (param5) + 8;
 
@@ -2431,16 +2428,21 @@ void sub_0201AED0 (Window * param0, const u8 * param1, u16 param2, u16 param3, u
                 }
 
                 for (v9 = 0; v9 < v4 - 8; v9++) {
-                    v16 = *(u32 *)v15; v12 = (u8)((v13 >> v9) & 1);
+                    v16 = *(u32 *)v15;
+                    v12 = (u8)((v13 >> v9) & 1);
 
                     for (v7 = 0, v8 = (param4) + 0; v7 < 8; v7++, v8++) {
-                        v14 = (u8 *)(((v0)) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + (((v10 << 2) & 0x3fe0) * ((((v1)) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 2) & 0x1c))); v11 = (u8)((v16 >> (v7 * 4)) & 0xf);
+                        v14 = (u8 *)((v0) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + (((v10 << 2) & 0x3fe0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 2) & 0x1c)));
+                        v11 = (u8)((v16 >> (v7 * 4)) & 0xf);
 
                         if (v11 != 0) {
-                            v17 = (v8 & 1) * 4; v11 = (u8)((v11 << v17) | (*v14 & (0xf0 >> v17))); *v14 = v11;
+                            v17 = (v8 & 1) * 4;
+                            v11 = (u8)((v11 << v17) | (*v14 & (0xf0 >> v17)));
+                            *v14 = v11;
 
                             if (v12 != 0) {
-                                v14 = (u8 *)(((v0)) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + ((((v10 + 1) << 2) & 0x3fe0) * ((((v1)) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 2) & 0x1c))); *v14 = v11;
+                                v14 = (u8 *)((v0) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + ((((v10 + 1) << 2) & 0x3fe0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 2) & 0x1c)));
+                                *v14 = v11;
                             }
                         }
                     }
@@ -2459,14 +2461,15 @@ void sub_0201AED0 (Window * param0, const u8 * param1, u16 param2, u16 param3, u
                 u8 v11;
                 u8 v12;
                 u8 v13;
-                u8 * v14;
-                const u8 * v15;
+                u8 *v14;
+                const u8 *v15;
                 u32 v16;
 
                 v15 = (param1) + (8 / 8 * 0x40) + (8 / 8 * 0x20);
 
                 if (8 == 0) {
-                    v10 = (param5) + 8; v13 = (u8)((param6) & 0xff);
+                    v10 = (param5) + 8;
+                    v13 = (u8)((param6) & 0xff);
                 } else {
                     v10 = (param5) + 8;
 
@@ -2480,16 +2483,21 @@ void sub_0201AED0 (Window * param0, const u8 * param1, u16 param2, u16 param3, u
                 }
 
                 for (v9 = 0; v9 < v4 - 8; v9++) {
-                    v16 = *(u32 *)v15; v12 = (u8)((v13 >> v9) & 1);
+                    v16 = *(u32 *)v15;
+                    v12 = (u8)((v13 >> v9) & 1);
 
                     for (v7 = 0, v8 = (param4) + 8; v7 < v3 - 8; v7++, v8++) {
-                        v14 = (u8 *)(((v0)) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + (((v10 << 2) & 0x3fe0) * ((((v1)) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 2) & 0x1c))); v11 = (u8)((v16 >> (v7 * 4)) & 0xf);
+                        v14 = (u8 *)((v0) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + (((v10 << 2) & 0x3fe0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 2) & 0x1c)));
+                        v11 = (u8)((v16 >> (v7 * 4)) & 0xf);
 
                         if (v11 != 0) {
-                            v17 = (v8 & 1) * 4; v11 = (u8)((v11 << v17) | (*v14 & (0xf0 >> v17))); *v14 = v11;
+                            v17 = (v8 & 1) * 4;
+                            v11 = (u8)((v11 << v17) | (*v14 & (0xf0 >> v17)));
+                            *v14 = v11;
 
                             if (v12 != 0) {
-                                v14 = (u8 *)(((v0)) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + ((((v10 + 1) << 2) & 0x3fe0) * ((((v1)) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 2) & 0x1c))); *v14 = v11;
+                                v14 = (u8 *)((v0) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + ((((v10 + 1) << 2) & 0x3fe0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 2) & 0x1c)));
+                                *v14 = v11;
                             }
                         }
                     }
@@ -2506,23 +2514,23 @@ void sub_0201AED0 (Window * param0, const u8 * param1, u16 param2, u16 param3, u
             return;
         }
     } else {
-        u8 * v6 = sub_02019FC0(param1, param2 * 4 * param3 * 8, param0->unk_09, param0->unk_00->unk_00);
+        u8 *v6 = sub_02019FC0(param1, param2 * 4 * param3 * 8, param0->unk_09, param0->unk_00->unk_00);
 
         switch (v5) {
-        case 0:
-        {
+        case 0: {
             int v7, v8, v9, v10;
             u8 v11;
             u8 v12;
             u8 v13;
-            u8 * v14;
-            const u8 * v15;
-            u8 * v16;
+            u8 *v14;
+            const u8 *v15;
+            u8 *v16;
 
             v15 = (v6) + (0 / 8 * 0x80) + (0 / 8 * 0x40);
 
             if (0 == 0) {
-                v10 = (param5) + 0; v13 = (u8)((param6) & 0xff);
+                v10 = (param5) + 0;
+                v13 = (u8)((param6) & 0xff);
             } else {
                 v10 = (param5) + 0;
 
@@ -2536,16 +2544,19 @@ void sub_0201AED0 (Window * param0, const u8 * param1, u16 param2, u16 param3, u
             }
 
             for (v9 = 0; v9 < v4; v9++) {
-                v16 = (u8 *)v15; v12 = (u8)((v13 >> v9) & 1);
+                v16 = (u8 *)v15;
+                v12 = (u8)((v13 >> v9) & 1);
 
                 for (v7 = 0, v8 = (param4) + 0; v7 < v3; v7++, v8++) {
-                    v14 = (u8 *)(((v0)) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + (((v10 << 3) & 0x7fc0) * ((((v1)) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 3) & 0x38))); v11 = v16[v7];
+                    v14 = (u8 *)((v0) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + (((v10 << 3) & 0x7fc0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 3) & 0x38)));
+                    v11 = v16[v7];
 
                     if (v11 != 0) {
                         *v14 = v11;
 
                         if (v12 != 0) {
-                            v14 = (u8 *)(((v0)) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + ((((v10 + 1) << 3) & 0x7fc0) * ((((v1)) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 3) & 0x38))); *v14 = v11;
+                            v14 = (u8 *)((v0) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + ((((v10 + 1) << 3) & 0x7fc0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 3) & 0x38)));
+                            *v14 = v11;
                         }
                     }
                 }
@@ -2560,20 +2571,20 @@ void sub_0201AED0 (Window * param0, const u8 * param1, u16 param2, u16 param3, u
             }
         };
             break;
-        case 1:
-        {
+        case 1: {
             int v7, v8, v9, v10;
             u8 v11;
             u8 v12;
             u8 v13;
-            u8 * v14;
-            const u8 * v15;
-            u8 * v16;
+            u8 *v14;
+            const u8 *v15;
+            u8 *v16;
 
             v15 = (v6) + (0 / 8 * 0x80) + (0 / 8 * 0x40);
 
             if (0 == 0) {
-                v10 = (param5) + 0; v13 = (u8)((param6) & 0xff);
+                v10 = (param5) + 0;
+                v13 = (u8)((param6) & 0xff);
             } else {
                 v10 = (param5) + 0;
 
@@ -2587,16 +2598,19 @@ void sub_0201AED0 (Window * param0, const u8 * param1, u16 param2, u16 param3, u
             }
 
             for (v9 = 0; v9 < v4; v9++) {
-                v16 = (u8 *)v15; v12 = (u8)((v13 >> v9) & 1);
+                v16 = (u8 *)v15;
+                v12 = (u8)((v13 >> v9) & 1);
 
                 for (v7 = 0, v8 = (param4) + 0; v7 < 8; v7++, v8++) {
-                    v14 = (u8 *)(((v0)) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + (((v10 << 3) & 0x7fc0) * ((((v1)) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 3) & 0x38))); v11 = v16[v7];
+                    v14 = (u8 *)((v0) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + (((v10 << 3) & 0x7fc0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 3) & 0x38)));
+                    v11 = v16[v7];
 
                     if (v11 != 0) {
                         *v14 = v11;
 
                         if (v12 != 0) {
-                            v14 = (u8 *)(((v0)) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + ((((v10 + 1) << 3) & 0x7fc0) * ((((v1)) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 3) & 0x38))); *v14 = v11;
+                            v14 = (u8 *)((v0) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + ((((v10 + 1) << 3) & 0x7fc0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 3) & 0x38)));
+                            *v14 = v11;
                         }
                     }
                 }
@@ -2615,14 +2629,15 @@ void sub_0201AED0 (Window * param0, const u8 * param1, u16 param2, u16 param3, u
                 u8 v11;
                 u8 v12;
                 u8 v13;
-                u8 * v14;
-                const u8 * v15;
-                u8 * v16;
+                u8 *v14;
+                const u8 *v15;
+                u8 *v16;
 
                 v15 = (v6) + (0 / 8 * 0x80) + (8 / 8 * 0x40);
 
                 if (0 == 0) {
-                    v10 = (param5) + 0; v13 = (u8)((param6) & 0xff);
+                    v10 = (param5) + 0;
+                    v13 = (u8)((param6) & 0xff);
                 } else {
                     v10 = (param5) + 0;
 
@@ -2636,16 +2651,19 @@ void sub_0201AED0 (Window * param0, const u8 * param1, u16 param2, u16 param3, u
                 }
 
                 for (v9 = 0; v9 < v4; v9++) {
-                    v16 = (u8 *)v15; v12 = (u8)((v13 >> v9) & 1);
+                    v16 = (u8 *)v15;
+                    v12 = (u8)((v13 >> v9) & 1);
 
                     for (v7 = 0, v8 = (param4) + 8; v7 < v3 - 8; v7++, v8++) {
-                        v14 = (u8 *)(((v0)) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + (((v10 << 3) & 0x7fc0) * ((((v1)) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 3) & 0x38))); v11 = v16[v7];
+                        v14 = (u8 *)((v0) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + (((v10 << 3) & 0x7fc0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 3) & 0x38)));
+                        v11 = v16[v7];
 
                         if (v11 != 0) {
                             *v14 = v11;
 
                             if (v12 != 0) {
-                                v14 = (u8 *)(((v0)) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + ((((v10 + 1) << 3) & 0x7fc0) * ((((v1)) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 3) & 0x38))); *v14 = v11;
+                                v14 = (u8 *)((v0) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + ((((v10 + 1) << 3) & 0x7fc0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 3) & 0x38)));
+                                *v14 = v11;
                             }
                         }
                     }
@@ -2660,12 +2678,19 @@ void sub_0201AED0 (Window * param0, const u8 * param1, u16 param2, u16 param3, u
                 }
             }
             break;
-        case 2:
-        {
-            int v7, v8, v9, v10; u8 v11; u8 v12; u8 v13; u8 * v14; const u8 * v15; u8 * v16; v15 = (v6) + (0 / 8 * 0x80) + (0 / 8 * 0x40);
+        case 2: {
+            int v7, v8, v9, v10;
+            u8 v11;
+            u8 v12;
+            u8 v13;
+            u8 *v14;
+            const u8 *v15;
+            u8 *v16;
+            v15 = (v6) + (0 / 8 * 0x80) + (0 / 8 * 0x40);
 
             if (0 == 0) {
-                v10 = (param5) + 0; v13 = (u8)((param6) & 0xff);
+                v10 = (param5) + 0;
+                v13 = (u8)((param6) & 0xff);
             } else {
                 v10 = (param5) + 0;
 
@@ -2679,16 +2704,19 @@ void sub_0201AED0 (Window * param0, const u8 * param1, u16 param2, u16 param3, u
             }
 
             for (v9 = 0; v9 < 8; v9++) {
-                v16 = (u8 *)v15; v12 = (u8)((v13 >> v9) & 1);
+                v16 = (u8 *)v15;
+                v12 = (u8)((v13 >> v9) & 1);
 
                 for (v7 = 0, v8 = (param4) + 0; v7 < v3; v7++, v8++) {
-                    v14 = (u8 *)(((v0)) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + (((v10 << 3) & 0x7fc0) * ((((v1)) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 3) & 0x38))); v11 = v16[v7];
+                    v14 = (u8 *)((v0) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + (((v10 << 3) & 0x7fc0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 3) & 0x38)));
+                    v11 = v16[v7];
 
                     if (v11 != 0) {
                         *v14 = v11;
 
                         if (v12 != 0) {
-                            v14 = (u8 *)(((v0)) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + ((((v10 + 1) << 3) & 0x7fc0) * ((((v1)) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 3) & 0x38))); *v14 = v11;
+                            v14 = (u8 *)((v0) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + ((((v10 + 1) << 3) & 0x7fc0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 3) & 0x38)));
+                            *v14 = v11;
                         }
                     }
                 }
@@ -2707,14 +2735,15 @@ void sub_0201AED0 (Window * param0, const u8 * param1, u16 param2, u16 param3, u
                 u8 v11;
                 u8 v12;
                 u8 v13;
-                u8 * v14;
-                const u8 * v15;
-                u8 * v16;
+                u8 *v14;
+                const u8 *v15;
+                u8 *v16;
 
                 v15 = (v6) + (8 / 8 * 0x80) + (0 / 8 * 0x40);
 
                 if (8 == 0) {
-                    v10 = (param5) + 8; v13 = (u8)((param6) & 0xff);
+                    v10 = (param5) + 8;
+                    v13 = (u8)((param6) & 0xff);
                 } else {
                     v10 = (param5) + 8;
 
@@ -2728,16 +2757,19 @@ void sub_0201AED0 (Window * param0, const u8 * param1, u16 param2, u16 param3, u
                 }
 
                 for (v9 = 0; v9 < v4 - 8; v9++) {
-                    v16 = (u8 *)v15; v12 = (u8)((v13 >> v9) & 1);
+                    v16 = (u8 *)v15;
+                    v12 = (u8)((v13 >> v9) & 1);
 
                     for (v7 = 0, v8 = (param4) + 0; v7 < v3; v7++, v8++) {
-                        v14 = (u8 *)(((v0)) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + (((v10 << 3) & 0x7fc0) * ((((v1)) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 3) & 0x38))); v11 = v16[v7];
+                        v14 = (u8 *)((v0) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + (((v10 << 3) & 0x7fc0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 3) & 0x38)));
+                        v11 = v16[v7];
 
                         if (v11 != 0) {
                             *v14 = v11;
 
                             if (v12 != 0) {
-                                v14 = (u8 *)(((v0)) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + ((((v10 + 1) << 3) & 0x7fc0) * ((((v1)) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 3) & 0x38))); *v14 = v11;
+                                v14 = (u8 *)((v0) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + ((((v10 + 1) << 3) & 0x7fc0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 3) & 0x38)));
+                                *v14 = v11;
                             }
                         }
                     }
@@ -2752,20 +2784,20 @@ void sub_0201AED0 (Window * param0, const u8 * param1, u16 param2, u16 param3, u
                 }
             }
             break;
-        case 3:
-        {
+        case 3: {
             int v7, v8, v9, v10;
             u8 v11;
             u8 v12;
             u8 v13;
-            u8 * v14;
-            const u8 * v15;
-            u8 * v16;
+            u8 *v14;
+            const u8 *v15;
+            u8 *v16;
 
             v15 = (v6) + (0 / 8 * 0x80) + (0 / 8 * 0x40);
 
             if (0 == 0) {
-                v10 = (param5) + 0; v13 = (u8)((param6) & 0xff);
+                v10 = (param5) + 0;
+                v13 = (u8)((param6) & 0xff);
             } else {
                 v10 = (param5) + 0;
 
@@ -2779,16 +2811,19 @@ void sub_0201AED0 (Window * param0, const u8 * param1, u16 param2, u16 param3, u
             }
 
             for (v9 = 0; v9 < 8; v9++) {
-                v16 = (u8 *)v15; v12 = (u8)((v13 >> v9) & 1);
+                v16 = (u8 *)v15;
+                v12 = (u8)((v13 >> v9) & 1);
 
                 for (v7 = 0, v8 = (param4) + 0; v7 < 8; v7++, v8++) {
-                    v14 = (u8 *)(((v0)) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + (((v10 << 3) & 0x7fc0) * ((((v1)) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 3) & 0x38))); v11 = v16[v7];
+                    v14 = (u8 *)((v0) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + (((v10 << 3) & 0x7fc0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 3) & 0x38)));
+                    v11 = v16[v7];
 
                     if (v11 != 0) {
                         *v14 = v11;
 
                         if (v12 != 0) {
-                            v14 = (u8 *)(((v0)) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + ((((v10 + 1) << 3) & 0x7fc0) * ((((v1)) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 3) & 0x38))); *v14 = v11;
+                            v14 = (u8 *)((v0) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + ((((v10 + 1) << 3) & 0x7fc0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 3) & 0x38)));
+                            *v14 = v11;
                         }
                     }
                 }
@@ -2807,14 +2842,15 @@ void sub_0201AED0 (Window * param0, const u8 * param1, u16 param2, u16 param3, u
                 u8 v11;
                 u8 v12;
                 u8 v13;
-                u8 * v14;
-                const u8 * v15;
-                u8 * v16;
+                u8 *v14;
+                const u8 *v15;
+                u8 *v16;
 
                 v15 = (v6) + (0 / 8 * 0x80) + (8 / 8 * 0x40);
 
                 if (0 == 0) {
-                    v10 = (param5) + 0; v13 = (u8)((param6) & 0xff);
+                    v10 = (param5) + 0;
+                    v13 = (u8)((param6) & 0xff);
                 } else {
                     v10 = (param5) + 0;
 
@@ -2828,16 +2864,19 @@ void sub_0201AED0 (Window * param0, const u8 * param1, u16 param2, u16 param3, u
                 }
 
                 for (v9 = 0; v9 < 8; v9++) {
-                    v16 = (u8 *)v15; v12 = (u8)((v13 >> v9) & 1);
+                    v16 = (u8 *)v15;
+                    v12 = (u8)((v13 >> v9) & 1);
 
                     for (v7 = 0, v8 = (param4) + 8; v7 < v3 - 8; v7++, v8++) {
-                        v14 = (u8 *)(((v0)) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + (((v10 << 3) & 0x7fc0) * ((((v1)) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 3) & 0x38))); v11 = v16[v7];
+                        v14 = (u8 *)((v0) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + (((v10 << 3) & 0x7fc0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 3) & 0x38)));
+                        v11 = v16[v7];
 
                         if (v11 != 0) {
                             *v14 = v11;
 
                             if (v12 != 0) {
-                                v14 = (u8 *)(((v0)) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + ((((v10 + 1) << 3) & 0x7fc0) * ((((v1)) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 3) & 0x38))); *v14 = v11;
+                                v14 = (u8 *)((v0) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + ((((v10 + 1) << 3) & 0x7fc0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 3) & 0x38)));
+                                *v14 = v11;
                             }
                         }
                     }
@@ -2856,14 +2895,15 @@ void sub_0201AED0 (Window * param0, const u8 * param1, u16 param2, u16 param3, u
                 u8 v11;
                 u8 v12;
                 u8 v13;
-                u8 * v14;
-                const u8 * v15;
-                u8 * v16;
+                u8 *v14;
+                const u8 *v15;
+                u8 *v16;
 
                 v15 = (v6) + (8 / 8 * 0x80) + (0 / 8 * 0x40);
 
                 if (8 == 0) {
-                    v10 = (param5) + 8; v13 = (u8)((param6) & 0xff);
+                    v10 = (param5) + 8;
+                    v13 = (u8)((param6) & 0xff);
                 } else {
                     v10 = (param5) + 8;
 
@@ -2877,16 +2917,19 @@ void sub_0201AED0 (Window * param0, const u8 * param1, u16 param2, u16 param3, u
                 }
 
                 for (v9 = 0; v9 < v4 - 8; v9++) {
-                    v16 = (u8 *)v15; v12 = (u8)((v13 >> v9) & 1);
+                    v16 = (u8 *)v15;
+                    v12 = (u8)((v13 >> v9) & 1);
 
                     for (v7 = 0, v8 = (param4) + 0; v7 < 8; v7++, v8++) {
-                        v14 = (u8 *)(((v0)) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + (((v10 << 3) & 0x7fc0) * ((((v1)) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 3) & 0x38))); v11 = v16[v7];
+                        v14 = (u8 *)((v0) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + (((v10 << 3) & 0x7fc0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 3) & 0x38)));
+                        v11 = v16[v7];
 
                         if (v11 != 0) {
                             *v14 = v11;
 
                             if (v12 != 0) {
-                                v14 = (u8 *)(((v0)) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + ((((v10 + 1) << 3) & 0x7fc0) * ((((v1)) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 3) & 0x38))); *v14 = v11;
+                                v14 = (u8 *)((v0) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + ((((v10 + 1) << 3) & 0x7fc0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 3) & 0x38)));
+                                *v14 = v11;
                             }
                         }
                     }
@@ -2901,10 +2944,18 @@ void sub_0201AED0 (Window * param0, const u8 * param1, u16 param2, u16 param3, u
                 }
             }
             {
-                int v7, v8, v9, v10; u8 v11; u8 v12; u8 v13; u8 * v14; const u8 * v15; u8 * v16; v15 = (v6) + (8 / 8 * 0x80) + (8 / 8 * 0x40);
+                int v7, v8, v9, v10;
+                u8 v11;
+                u8 v12;
+                u8 v13;
+                u8 *v14;
+                const u8 *v15;
+                u8 *v16;
+                v15 = (v6) + (8 / 8 * 0x80) + (8 / 8 * 0x40);
 
                 if (8 == 0) {
-                    v10 = (param5) + 8; v13 = (u8)((param6) & 0xff);
+                    v10 = (param5) + 8;
+                    v13 = (u8)((param6) & 0xff);
                 } else {
                     v10 = (param5) + 8;
 
@@ -2918,16 +2969,19 @@ void sub_0201AED0 (Window * param0, const u8 * param1, u16 param2, u16 param3, u
                 }
 
                 for (v9 = 0; v9 < v4 - 8; v9++) {
-                    v16 = (u8 *)v15; v12 = (u8)((v13 >> v9) & 1);
+                    v16 = (u8 *)v15;
+                    v12 = (u8)((v13 >> v9) & 1);
 
                     for (v7 = 0, v8 = (param4) + 8; v7 < v3 - 8; v7++, v8++) {
-                        v14 = (u8 *)(((v0)) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + (((v10 << 3) & 0x7fc0) * ((((v1)) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 3) & 0x38))); v11 = v16[v7];
+                        v14 = (u8 *)((v0) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + (((v10 << 3) & 0x7fc0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 3) & 0x38)));
+                        v11 = v16[v7];
 
                         if (v11 != 0) {
                             *v14 = v11;
 
                             if (v12 != 0) {
-                                v14 = (u8 *)(((v0)) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + ((((v10 + 1) << 3) & 0x7fc0) * ((((v1)) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 3) & 0x38))); *v14 = v11;
+                                v14 = (u8 *)((v0) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + ((((v10 + 1) << 3) & 0x7fc0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 3) & 0x38)));
+                                *v14 = v11;
                             }
                         }
                     }
@@ -2948,7 +3002,7 @@ void sub_0201AED0 (Window * param0, const u8 * param1, u16 param2, u16 param3, u
     }
 }
 
-void sub_0201C04C (Window * param0, u8 param1, u8 param2, u8 param3)
+void sub_0201C04C(Window *param0, u8 param1, u8 param2, u8 param3)
 {
     if (param0->unk_00->unk_08[param0->unk_04].unk_16 == GX_BG_COLORMODE_16) {
         sub_0201C06C(param0, param1, param2, param3);
@@ -2957,9 +3011,9 @@ void sub_0201C04C (Window * param0, u8 param1, u8 param2, u8 param3)
     }
 }
 
-static void sub_0201C06C (Window * param0, u8 param1, u8 param2, u8 param3)
+static void sub_0201C06C(Window *param0, u8 param1, u8 param2, u8 param3)
 {
-    u8 * v0;
+    u8 *v0;
     int v1, v2, v3;
     int v4, v5;
     int v6, v7;
@@ -3017,9 +3071,9 @@ static void sub_0201C06C (Window * param0, u8 param1, u8 param2, u8 param3)
     }
 }
 
-static void sub_0201C158 (Window * param0, u8 param1, u8 param2, u8 param3)
+static void sub_0201C158(Window *param0, u8 param1, u8 param2, u8 param3)
 {
-    u8 * v0;
+    u8 *v0;
     int v1, v2, v3;
     int v4, v5;
     int v6, v7;
@@ -3094,57 +3148,57 @@ static void sub_0201C158 (Window * param0, u8 param1, u8 param2, u8 param3)
     }
 }
 
-BGL * sub_0201C28C (Window * param0)
+BGL *sub_0201C28C(Window *param0)
 {
     return param0->unk_00;
 }
 
-u8 sub_0201C290 (Window * param0)
+u8 sub_0201C290(Window *param0)
 {
     return param0->unk_04;
 }
 
-u8 sub_0201C294 (Window * param0)
+u8 sub_0201C294(Window *param0)
 {
     return param0->unk_07;
 }
 
-u8 sub_0201C298 (Window * param0)
+u8 sub_0201C298(Window *param0)
 {
     return param0->unk_08;
 }
 
-u8 sub_0201C29C (Window * param0)
+u8 sub_0201C29C(Window *param0)
 {
     return param0->unk_05;
 }
 
-u8 sub_0201C2A0 (Window * param0)
+u8 sub_0201C2A0(Window *param0)
 {
     return param0->unk_06;
 }
 
-u16 sub_0201C2A4 (Window * param0)
+u16 sub_0201C2A4(Window *param0)
 {
     return param0->unk_0A_0;
 }
 
-void sub_0201C2AC (Window * param0, u8 param1)
+void sub_0201C2AC(Window *param0, u8 param1)
 {
     param0->unk_05 = param1;
 }
 
-void sub_0201C2B0 (Window * param0, u8 param1)
+void sub_0201C2B0(Window *param0, u8 param1)
 {
     param0->unk_06 = param1;
 }
 
-void sub_0201C2B4 (Window * param0, u8 param1)
+void sub_0201C2B4(Window *param0, u8 param1)
 {
     param0->unk_09 = param1;
 }
 
-void sub_0201C2B8 (BGL * param0)
+void sub_0201C2B8(BGL *param0)
 {
     sub_0201C3D0(param0);
     sub_0201C2D0(param0);
@@ -3153,7 +3207,7 @@ void sub_0201C2B8 (BGL * param0)
     param0->unk_06 = 0;
 }
 
-static void sub_0201C2D0 (BGL * param0)
+static void sub_0201C2D0(BGL *param0)
 {
     if ((param0->unk_06 & 1) != 0) {
         sub_020194E0(0, param0->unk_08[0].unk_00, param0->unk_08[0].unk_08 * 0x2, param0->unk_08[0].unk_04);
@@ -3188,12 +3242,12 @@ static void sub_0201C2D0 (BGL * param0)
     }
 }
 
-void sub_0201C3C0 (BGL * param0, u8 param1)
+void sub_0201C3C0(BGL *param0, u8 param1)
 {
     param0->unk_06 |= (1 << param1);
 }
 
-static void sub_0201C3D0 (BGL * param0)
+static void sub_0201C3D0(BGL *param0)
 {
     if ((param0->unk_04 & 1) != 0) {
         G2_SetBG0Offset(param0->unk_08[0].unk_0C, param0->unk_08[0].unk_10);
@@ -3256,19 +3310,19 @@ static void sub_0201C3D0 (BGL * param0)
     }
 }
 
-void sub_0201C63C (BGL * param0, u8 param1, u8 param2, int param3)
+void sub_0201C63C(BGL *param0, u8 param1, u8 param2, int param3)
 {
     sub_02019304(&param0->unk_08[param1], param2, param3);
     param0->unk_04 |= (1 << param1);
 }
 
-void sub_0201C660 (BGL * param0, u8 param1, u8 param2, u16 param3)
+void sub_0201C660(BGL *param0, u8 param1, u8 param2, u16 param3)
 {
     sub_0201C684(&param0->unk_08[param1], param2, param3);
     param0->unk_04 |= (1 << param1);
 }
 
-static void sub_0201C684 (UnkStruct_02019304 * param0, u8 param1, u16 param2)
+static void sub_0201C684(UnkStruct_02019304 *param0, u8 param1, u16 param2)
 {
     switch (param1) {
     case 0:
@@ -3283,13 +3337,13 @@ static void sub_0201C684 (UnkStruct_02019304 * param0, u8 param1, u16 param2)
     }
 }
 
-void sub_0201C6A8 (BGL * param0, u8 param1, u8 param2, fx32 param3)
+void sub_0201C6A8(BGL *param0, u8 param1, u8 param2, fx32 param3)
 {
     sub_0201C6CC(&param0->unk_08[param1], param2, param3);
     param0->unk_04 |= (1 << param1);
 }
 
-static void sub_0201C6CC (UnkStruct_02019304 * param0, u8 param1, fx32 param2)
+static void sub_0201C6CC(UnkStruct_02019304 *param0, u8 param1, fx32 param2)
 {
     switch (param1) {
     case 3:
@@ -3313,13 +3367,13 @@ static void sub_0201C6CC (UnkStruct_02019304 * param0, u8 param1, fx32 param2)
     }
 }
 
-void sub_0201C718 (BGL * param0, u8 param1, u8 param2, int param3)
+void sub_0201C718(BGL *param0, u8 param1, u8 param2, int param3)
 {
     sub_0201C73C(&param0->unk_08[param1], param2, param3);
     param0->unk_04 |= (1 << param1);
 }
 
-static void sub_0201C73C (UnkStruct_02019304 * param0, u8 param1, int param2)
+static void sub_0201C73C(UnkStruct_02019304 *param0, u8 param1, int param2)
 {
     switch (param1) {
     case 9:
@@ -3343,9 +3397,9 @@ static void sub_0201C73C (UnkStruct_02019304 * param0, u8 param1, int param2)
     }
 }
 
-u8 sub_0201C784 (BGL * param0, u8 param1, u16 param2, u16 param3, u16 * param4)
+u8 sub_0201C784(BGL *param0, u8 param1, u16 param2, u16 param3, u16 *param4)
 {
-    u8 * v0;
+    u8 *v0;
     u16 v1;
     u8 v2, v3;
     u8 v4;
@@ -3361,8 +3415,8 @@ u8 sub_0201C784 (BGL * param0, u8 param1, u16 param2, u16 param3, u16 * param4)
     v3 = (u8)(param3 & 7);
 
     if (param0->unk_08[param1].unk_16 == GX_BG_COLORMODE_16) {
-        u16 * v6;
-        u8 * v7;
+        u16 *v6;
+        u8 *v7;
 
         v6 = (u16 *)param0->unk_08[param1].unk_00;
         v7 = Heap_AllocFromHeapAtEnd(param0->unk_00, 64);
@@ -3383,8 +3437,8 @@ u8 sub_0201C784 (BGL * param0, u8 param1, u16 param2, u16 param3, u16 * param4)
         }
     } else {
         if (param0->unk_08[param1].unk_14 != 1) {
-            u16 * v8;
-            u8 * v9;
+            u16 *v8;
+            u8 *v9;
 
             v8 = (u16 *)param0->unk_08[param1].unk_00;
             v9 = Heap_AllocFromHeapAtEnd(param0->unk_00, 64);
@@ -3395,7 +3449,7 @@ u8 sub_0201C784 (BGL * param0, u8 param1, u16 param2, u16 param3, u16 * param4)
             v4 = v9[v2 + (v3 << 3)];
             Heap_FreeToHeap(v9);
         } else {
-            u8 * v10 = (u8 *)param0->unk_08[param1].unk_00;
+            u8 *v10 = (u8 *)param0->unk_08[param1].unk_00;
 
             v4 = v0[(v10[v1] << 6) + v2 + (v3 << 3)];
         }
@@ -3416,9 +3470,9 @@ u8 sub_0201C784 (BGL * param0, u8 param1, u16 param2, u16 param3, u16 * param4)
     return 0;
 }
 
-static void sub_0201C8E0 (BGL * param0, u8 param1, u8 * param2)
+static void sub_0201C8E0(BGL *param0, u8 param1, u8 *param2)
 {
-    u8 * v0;
+    u8 *v0;
     u8 v1, v2;
 
     if (param1 == 0) {

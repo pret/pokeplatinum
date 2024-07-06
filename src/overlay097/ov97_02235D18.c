@@ -1,11 +1,11 @@
+#include "overlay097/ov97_02235D18.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "overlay097/struct_ov97_02236340.h"
 #include "overlay097/struct_ov97_0223F440.h"
 #include "overlay097/struct_ov97_0223F450.h"
-
-#include "overlay097/ov97_02235D18.h"
 
 typedef struct {
     u32 unk_00;
@@ -22,22 +22,22 @@ typedef struct {
     u32 unk_FFC;
 } UnkStruct_ov97_02235F4C;
 
-static int ov97_02235DC8(const UnkStruct_ov97_02235DC8 * param0, int param1);
-static u16 ov97_02235FFC(void * param0, int * param1, u32 * param2);
-static u32 ov97_02236244(struct CTRDGTaskInfo_tag * param0);
+static int ov97_02235DC8(const UnkStruct_ov97_02235DC8 *param0, int param1);
+static u16 ov97_02235FFC(void *param0, int *param1, u32 *param2);
+static u32 ov97_02236244(struct CTRDGTaskInfo_tag *param0);
 static UnkStruct_ov97_0223F450 Unk_ov97_0223F450;
 
 static UnkStruct_ov97_0223F450 Unk_ov97_0223F450;
 static const UnkStruct_ov97_02235DC8 Unk_ov97_0223D92C[30];
 static u8 Unk_ov97_0223EC04[0xa0 - 4];
-static const UnkStruct_ov97_02235DC8 * Unk_ov97_0223EBFC = NULL;
+static const UnkStruct_ov97_02235DC8 *Unk_ov97_0223EBFC = NULL;
 static int Unk_ov97_0223F438;
 static u32 Unk_ov97_0223F448;
-UnkStruct_ov97_0223F440 * Unk_ov97_0223F440;
+UnkStruct_ov97_0223F440 *Unk_ov97_0223F440;
 static int Unk_ov97_0223F43C = 0;
 static int Unk_ov97_0223F444;
 
-static BOOL ov97_02235D18 ()
+static BOOL ov97_02235D18()
 {
     if (CTRDG_IdentifyAgbBackup(CTRDG_BACKUP_TYPE_FLASH_1M) != 0) {
         return 0;
@@ -46,7 +46,7 @@ static BOOL ov97_02235D18 ()
     return 1;
 }
 
-int ov97_02235D2C (void * param0)
+int ov97_02235D2C(void *param0)
 {
     Unk_ov97_0223F440 = (UnkStruct_ov97_0223F440 *)param0;
 
@@ -80,22 +80,22 @@ int ov97_02235D2C (void * param0)
     return 0;
 }
 
-void ov97_02235DA4 (void)
+void ov97_02235DA4(void)
 {
     Unk_ov97_0223EBFC = NULL;
 }
 
-int ov97_02235DB0 ()
+int ov97_02235DB0()
 {
     return Unk_ov97_0223EBFC->unk_05;
 }
 
-int ov97_02235DBC ()
+int ov97_02235DBC()
 {
     return Unk_ov97_0223EBFC->unk_06;
 }
 
-static int ov97_02235DC8 (const UnkStruct_ov97_02235DC8 * param0, int param1)
+static int ov97_02235DC8(const UnkStruct_ov97_02235DC8 *param0, int param1)
 {
     u32 v0;
 
@@ -125,7 +125,7 @@ static int ov97_02235DC8 (const UnkStruct_ov97_02235DC8 * param0, int param1)
 
     {
         u32 v2[0xc0 / 4];
-        u8 * v3 = (u8 *)&(v2[0]);
+        u8 *v3 = (u8 *)&(v2[0]);
 
         CTRDG_CpuCopy32((void *)0x8000000, (void *)&(v2[0]), 0xc0);
 
@@ -158,7 +158,7 @@ static int ov97_02235DC8 (const UnkStruct_ov97_02235DC8 * param0, int param1)
     return 0;
 }
 
-static u16 ov97_02235E7C (u32 * param0, u16 param1)
+static u16 ov97_02235E7C(u32 *param0, u16 param1)
 {
     u16 v0;
     u32 v1;
@@ -173,12 +173,12 @@ static u16 ov97_02235E7C (u32 * param0, u16 param1)
     return (u16)(((v1 >> 16) & 0xffff) + (v1 & 0xffff));
 }
 
-static void ov97_02235EAC (int param0, void * param1)
+static void ov97_02235EAC(int param0, void *param1)
 {
     CTRDG_ReadAgbFlash((u16)param0, 0, param1, 0x1000);
 }
 
-static u16 ov97_02235EC0 (int param0)
+static u16 ov97_02235EC0(int param0)
 {
     if (param0 == 0) {
         return (u16)(Unk_ov97_0223F450.unk_88);
@@ -195,7 +195,7 @@ static u16 ov97_02235EC0 (int param0)
     return 0xf80;
 }
 
-static void * ov97_02235EF8 (int param0)
+static void *ov97_02235EF8(int param0)
 {
     if (param0 == 0) {
         return &(Unk_ov97_0223F440->unk_1000[0]);
@@ -212,12 +212,12 @@ static void * ov97_02235EF8 (int param0)
     return NULL;
 }
 
-static u16 ov97_02235F4C (int param0, void * param1, u32 * param2)
+static u16 ov97_02235F4C(int param0, void *param1, u32 *param2)
 {
     u32 v0 = 0;
     u16 v1 = 0;
     u16 v2;
-    UnkStruct_ov97_02235F4C * v3 = (UnkStruct_ov97_02235F4C *)param1;
+    UnkStruct_ov97_02235F4C *v3 = (UnkStruct_ov97_02235F4C *)param1;
     int v4;
 
     *param2 = 0;
@@ -249,7 +249,7 @@ static u16 ov97_02235F4C (int param0, void * param1, u32 * param2)
     }
 }
 
-static u16 ov97_02235FFC (void * param0, int * param1, u32 * param2)
+static u16 ov97_02235FFC(void *param0, int *param1, u32 *param2)
 {
     u16 v0, v1;
     u32 v2, v3;
@@ -319,7 +319,7 @@ static u16 ov97_02235FFC (void * param0, int * param1, u32 * param2)
 static int Unk_ov97_0223F438;
 static u32 Unk_ov97_0223F448;
 
-int ov97_022360D8 ()
+int ov97_022360D8()
 {
     u16 v0 = ov97_02235FFC((void *)Unk_ov97_0223F440->unk_00, &Unk_ov97_0223F438, &Unk_ov97_0223F448);
 
@@ -337,7 +337,7 @@ int ov97_022360D8 ()
     if ((Unk_ov97_0223F438 == 0) || (Unk_ov97_0223F438 == 1)) {
         int v1;
         u32 v2 = 0;
-        UnkStruct_ov97_02235F4C * v3 = (UnkStruct_ov97_02235F4C *)Unk_ov97_0223F440->unk_00;
+        UnkStruct_ov97_02235F4C *v3 = (UnkStruct_ov97_02235F4C *)Unk_ov97_0223F440->unk_00;
 
         for (v1 = 0; v1 < 14; v1++) {
             ov97_02235EAC(v1 + Unk_ov97_0223F438 * 14, (void *)v3);
@@ -371,9 +371,9 @@ int ov97_022360D8 ()
 int Unk_ov97_0223EC00 = -1;
 static int Unk_ov97_0223F44C = 0;
 
-static void ov97_022361B0 (int param0)
+static void ov97_022361B0(int param0)
 {
-    UnkStruct_ov97_02235F4C * v0 = (UnkStruct_ov97_02235F4C *)Unk_ov97_0223F440->unk_00;
+    UnkStruct_ov97_02235F4C *v0 = (UnkStruct_ov97_02235F4C *)Unk_ov97_0223F440->unk_00;
 
     Unk_ov97_0223F44C = 1;
 
@@ -383,7 +383,7 @@ static void ov97_022361B0 (int param0)
     v0->unk_FFC = Unk_ov97_0223F448;
     v0->unk_FF4 = (u16)param0;
     v0->unk_FF8 = 0x8012025;
-    v0->unk_FF6 = ov97_02235E7C((u32 * )v0->unk_00, ov97_02235EC0(param0));
+    v0->unk_FF6 = ov97_02235E7C((u32 *)v0->unk_00, ov97_02235EC0(param0));
 
     {
         u8 v1 = (u8)(((param0 + Unk_ov97_0223F444 + 1) % 14) + 14 * Unk_ov97_0223EC00);
@@ -391,7 +391,7 @@ static void ov97_022361B0 (int param0)
     }
 }
 
-static u32 ov97_02236244 (struct CTRDGTaskInfo_tag * param0)
+static u32 ov97_02236244(struct CTRDGTaskInfo_tag *param0)
 {
     if (param0->result == 0) {
         Unk_ov97_0223F43C++;
@@ -415,7 +415,7 @@ static u32 ov97_02236244 (struct CTRDGTaskInfo_tag * param0)
     return 0;
 }
 
-BOOL ov97_02236280 ()
+BOOL ov97_02236280()
 {
     if (Unk_ov97_0223F43C == 0) {
         if (Unk_ov97_0223F438 == 1) {
@@ -437,7 +437,7 @@ BOOL ov97_02236280 ()
     return 1;
 }
 
-int ov97_022362C8 ()
+int ov97_022362C8()
 {
     switch (Unk_ov97_0223F44C) {
     case 2:
@@ -455,7 +455,7 @@ int ov97_022362C8 ()
     }
 }
 
-int ov97_02236308 (void)
+int ov97_02236308(void)
 {
     switch (Unk_ov97_0223F44C) {
     case 2:
@@ -472,47 +472,47 @@ int ov97_02236308 (void)
     }
 }
 
-PokemonStorageGBA * ov97_02236340 (void)
+PokemonStorageGBA *ov97_02236340(void)
 {
     return &(Unk_ov97_0223F440->unk_6000);
 }
 
-void * ov97_02236350 (void)
+void *ov97_02236350(void)
 {
     return ov97_02235EF8(0);
 }
 
 static const UnkStruct_ov97_02235DC8 Unk_ov97_0223D92C[30] = {
-    {'JVXA', 0x0, 0x0, 0x1},
-    {'EVXA', 0x0, 0x0, 0x2},
-    {'FVXA', 0x0, 0x0, 0x3},
-    {'DVXA', 0x0, 0x0, 0x5},
-    {'SVXA', 0x0, 0x0, 0x7},
-    {'IVXA', 0x0, 0x0, 0x4},
-    {'JPXA', 0x0, 0x1, 0x1},
-    {'EPXA', 0x0, 0x1, 0x2},
-    {'FPXA', 0x0, 0x1, 0x3},
-    {'DPXA', 0x0, 0x1, 0x5},
-    {'SPXA', 0x0, 0x1, 0x7},
-    {'IPXA', 0x0, 0x1, 0x4},
-    {'JRPB', 0x1, 0x3, 0x1},
-    {'ERPB', 0x1, 0x3, 0x2},
-    {'FRPB', 0x1, 0x3, 0x3},
-    {'DRPB', 0x1, 0x3, 0x5},
-    {'SRPB', 0x1, 0x3, 0x7},
-    {'IRPB', 0x1, 0x3, 0x4},
-    {'JGPB', 0x1, 0x2, 0x1},
-    {'EGPB', 0x1, 0x2, 0x2},
-    {'FGPB', 0x1, 0x2, 0x3},
-    {'DGPB', 0x1, 0x2, 0x5},
-    {'SGPB', 0x1, 0x2, 0x7},
-    {'IGPB', 0x1, 0x2, 0x4},
-    {'JEPB', 0x2, 0x4, 0x1},
-    {'EEPB', 0x2, 0x4, 0x2},
-    {'FEPB', 0x2, 0x4, 0x3},
-    {'DEPB', 0x2, 0x4, 0x5},
-    {'SEPB', 0x2, 0x4, 0x7},
-    {'IEPB', 0x2, 0x4, 0x4}
+    { 'JVXA', 0x0, 0x0, 0x1 },
+    { 'EVXA', 0x0, 0x0, 0x2 },
+    { 'FVXA', 0x0, 0x0, 0x3 },
+    { 'DVXA', 0x0, 0x0, 0x5 },
+    { 'SVXA', 0x0, 0x0, 0x7 },
+    { 'IVXA', 0x0, 0x0, 0x4 },
+    { 'JPXA', 0x0, 0x1, 0x1 },
+    { 'EPXA', 0x0, 0x1, 0x2 },
+    { 'FPXA', 0x0, 0x1, 0x3 },
+    { 'DPXA', 0x0, 0x1, 0x5 },
+    { 'SPXA', 0x0, 0x1, 0x7 },
+    { 'IPXA', 0x0, 0x1, 0x4 },
+    { 'JRPB', 0x1, 0x3, 0x1 },
+    { 'ERPB', 0x1, 0x3, 0x2 },
+    { 'FRPB', 0x1, 0x3, 0x3 },
+    { 'DRPB', 0x1, 0x3, 0x5 },
+    { 'SRPB', 0x1, 0x3, 0x7 },
+    { 'IRPB', 0x1, 0x3, 0x4 },
+    { 'JGPB', 0x1, 0x2, 0x1 },
+    { 'EGPB', 0x1, 0x2, 0x2 },
+    { 'FGPB', 0x1, 0x2, 0x3 },
+    { 'DGPB', 0x1, 0x2, 0x5 },
+    { 'SGPB', 0x1, 0x2, 0x7 },
+    { 'IGPB', 0x1, 0x2, 0x4 },
+    { 'JEPB', 0x2, 0x4, 0x1 },
+    { 'EEPB', 0x2, 0x4, 0x2 },
+    { 'FEPB', 0x2, 0x4, 0x3 },
+    { 'DEPB', 0x2, 0x4, 0x5 },
+    { 'SEPB', 0x2, 0x4, 0x7 },
+    { 'IEPB', 0x2, 0x4, 0x4 }
 };
 
 static u8 Unk_ov97_0223EC04[] = {

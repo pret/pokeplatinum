@@ -1,21 +1,21 @@
+#include "unk_02024358.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_02024358.h"
-
-void sub_02024358 ()
+void sub_02024358()
 {
     if (!FS_IsAvailable()) {
         OS_Terminate();
     } else {
         static const char v0[] = "rom";
         static const int v1 = sizeof(v0) - 1;
-        const CARDRomHeader * v2;
-        FSArchive * v3;
+        const CARDRomHeader *v2;
+        FSArchive *v3;
         {
-            CARDRomHeader * const v4 = (CARDRomHeader *)0x27FF000;
-            CARDRomHeader * const v5 = (CARDRomHeader *)HW_ROM_HEADER_BUF;
-            CARDRomHeader * const v6 = (CARDRomHeader *)HW_CARD_ROM_HEADER;
+            CARDRomHeader *const v4 = (CARDRomHeader *)0x27FF000;
+            CARDRomHeader *const v5 = (CARDRomHeader *)HW_ROM_HEADER_BUF;
+            CARDRomHeader *const v6 = (CARDRomHeader *)HW_CARD_ROM_HEADER;
 
             if (v4->game_code == 0) {
                 CARD_Init();
@@ -39,7 +39,7 @@ void sub_02024358 ()
     }
 }
 
-void sub_020243E0 (const char * param0)
+void sub_020243E0(const char *param0)
 {
     FSFile v0;
     u32 v1;

@@ -1,17 +1,18 @@
+#include "overlay017/ov17_02246ECC.h"
+
 #include <nitro.h>
 #include <string.h>
 
+#include "overlay017/ov17_022413D8.h"
 #include "overlay017/struct_ov17_0223BE58.h"
 #include "overlay017/struct_ov17_02246F24.h"
 #include "overlay017/struct_ov17_022472F8.h"
 
 #include "heap.h"
-#include "pokemon.h"
 #include "move_table.h"
+#include "pokemon.h"
 #include "unk_020933F8.h"
 #include "unk_02094EDC.h"
-#include "overlay017/ov17_022413D8.h"
-#include "overlay017/ov17_02246ECC.h"
 
 typedef struct {
     u16 unk_00;
@@ -34,38 +35,38 @@ typedef struct {
     s16 unk_04[4];
 } UnkStruct_ov17_02253C30;
 
-static void ov17_02246F24(UnkStruct_ov17_02246F24 * param0, UnkStruct_ov17_02246F9C * param1, int param2);
-static void ov17_02246F9C(UnkStruct_ov17_02246F24 * param0, UnkStruct_ov17_02246F9C * param1, int param2, u16 * param3, u8 * param4);
-static int ov17_022472F8(UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4);
-static int ov17_02247308(UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4);
-static int ov17_02247320(UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4);
-static int ov17_02247338(UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4);
-static int ov17_02247350(UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4);
-static int ov17_02247368(UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4);
-static int ov17_02247380(UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4);
-static int ov17_02247398(UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4);
-static int ov17_022473B0(UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4);
-static int ov17_022473C8(UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4);
-static int ov17_022473E0(UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4);
-static int ov17_022473F8(UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4);
-static int ov17_02247424(UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4);
-static int ov17_02247454(UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4);
-static int ov17_02247474(UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4);
-static int ov17_02247490(UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4);
-static int ov17_022474D8(UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4);
-static int ov17_02247520(UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4);
-static int ov17_02247538(UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4);
-static int ov17_02247550(UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4);
-static int ov17_0224757C(UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4);
-static int ov17_022475A8(UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4);
-static int ov17_022475D4(UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4);
-static int ov17_02247600(UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4);
-static int ov17_0224762C(UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4);
-static int ov17_02247658(UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4);
-static int ov17_02247684(UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4);
-static int ov17_022476B0(UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4);
+static void ov17_02246F24(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246F9C *param1, int param2);
+static void ov17_02246F9C(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246F9C *param1, int param2, u16 *param3, u8 *param4);
+static int ov17_022472F8(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
+static int ov17_02247308(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
+static int ov17_02247320(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
+static int ov17_02247338(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
+static int ov17_02247350(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
+static int ov17_02247368(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
+static int ov17_02247380(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
+static int ov17_02247398(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
+static int ov17_022473B0(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
+static int ov17_022473C8(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
+static int ov17_022473E0(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
+static int ov17_022473F8(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
+static int ov17_02247424(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
+static int ov17_02247454(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
+static int ov17_02247474(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
+static int ov17_02247490(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
+static int ov17_022474D8(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
+static int ov17_02247520(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
+static int ov17_02247538(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
+static int ov17_02247550(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
+static int ov17_0224757C(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
+static int ov17_022475A8(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
+static int ov17_022475D4(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
+static int ov17_02247600(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
+static int ov17_0224762C(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
+static int ov17_02247658(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
+static int ov17_02247684(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
+static int ov17_022476B0(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4);
 
-static int(*const Unk_ov17_02253BBC[])(UnkStruct_ov17_022472F8 *, int, UnkStruct_ov17_02246F9C *, u8 *, int) = {
+static int (*const Unk_ov17_02253BBC[])(UnkStruct_ov17_022472F8 *, int, UnkStruct_ov17_02246F9C *, u8 *, int) = {
     NULL,
     ov17_022472F8,
     ov17_02247308,
@@ -98,1171 +99,1167 @@ static int(*const Unk_ov17_02253BBC[])(UnkStruct_ov17_022472F8 *, int, UnkStruct
 };
 
 static const UnkStruct_ov17_02253C30 Unk_ov17_02253C30[] = {
-	{
-		0x1,
-		0x14,
-		0xf0,
-		0x1,
-		{ 0x46, 0x14, 0x14, -20 },
-	},
-	{
-		0x1,
-		0x14,
-		0x16,
-		0x1,
-		{ 0x64, 0x14, 0x14, -20 },
-	},
-	{
-		0x1,
-		0x14,
-		0x8,
-		0x1,
-		{ 0x28, 0x14, 0x14, -20 },
-	},
-	{
-		0x1,
-		0x14,
-		0x17,
-		0x2,
-		{ 0xA, 0x14, 0x0, 0x0 },
-	},
-	{
-		0x1,
-		0x15,
-		0xf0,
-		0x2,
-		{ 0x0, 0x14, 0x0, 0x0 },
-	},
-	{
-		0x1,
-		0x16,
-		0x10,
-		0x1,
-		{ 0x28, 0x14, 0x14, -20 },
-	},
-	{
-		0x1,
-		0x17,
-		0xA,
-		0x0,
-		{ 0x14, 0x0, 0x0, 0x0 },
-	},
-	{
-		0x1,
-		0x18,
-		0x9,
-		0x0,
-		{ -1000, 0x14, -20, 0x0 },
-	},
-	{
-		0x1,
-		0x19,
-		0x9,
-		0x1,
-		{ 0x14, 0x14, -20, 0x0 },
-	},
-	{
-		0x1,
-		0x1A,
-		0x6,
-		0x3,
-		{ 0xA, 0x14, 0x0, 0x0 },
-	},
-	{
-		0x1,
-		0x1B,
-		0x6,
-		0x1,
-		{ 0xA, 0x14, 0x0, 0x0 },
-	},
-	{
-		0x1,
-		0x1C,
-		0xD,
-		0x1,
-		{ 0x1E, 0x0, 0x0, -20 },
-	},
-	{
-		0x1,
-		0xE,
-		0x4,
-		0x0,
-		{ 0xA, 0x0, 0x14, 0x14 },
-	},
-	{
-		0x1,
-		0xF,
-		0xf0,
-		0x0,
-		{ 0xF, 0x0, 0x14, 0x14 },
-	},
-	{
-		0x1,
-		0xF,
-		0x1,
-		0x0,
-		{ 0xA, 0x14, 0x14, 0x14 },
-	},
-	{
-		0x1,
-		0x10,
-		0xD,
-		0x1,
-		{ 0xF, 0x0, 0x0, 0x14 },
-	},
-	{
-		0x1,
-		0x11,
-		0xD,
-		0x1,
-		{ 0xA, 0x0, 0x0, 0x14 },
-	},
-	{
-		0x1,
-		0x1,
-		0xB,
-		0x0,
-		{ -1000, 0x0, 0x0, 0x0 },
-	},
-	{
-		0x1,
-		0x1,
-		0x1,
-		0x0,
-		{ -1000, 0x0, 0x0, 0x0 },
-	},
-	{
-		0x1,
-		0x1,
-		0xE,
-		0x0,
-		{ -1000, 0x0, -20, 0x0 },
-	},
-	{
-		0x1,
-		0x1,
-		0x2,
-		0x0,
-		{ -1000, 0x0, 0x0, 0x0 },
-	},
-	{
-		0x1,
-		0x2,
-		0xf1,
-		0x0,
-		{ 0x14, 0x0, 0x14, 0x0 },
-	},
-	{
-		0x1,
-		0x2,
-		0x9,
-		0x0,
-		{ 0xA, 0x14, -20, 0x14 },
-	},
-	{
-		0x1,
-		0x2,
-		0x2,
-		0x0,
-		{ -1000, 0x0, 0x0, 0x0 },
-	},
-	{
-		0x1,
-		0x2,
-		0x1,
-		0x0,
-		{ -1000, 0x0, 0x0, 0x0 },
-	},
-	{
-		0x1,
-		0x2,
-		0xE,
-		0x0,
-		{ -1000, 0x0, -20, 0x0 },
-	},
-	{
-		0x1,
-		0x2,
-		0xB,
-		0x0,
-		{ -1000, 0x0, 0x0, 0x0 },
-	},
-	{
-		0x1,
-		0x2,
-		0x17,
-		0x0,
-		{ -1000, 0x0, 0x0, 0x0 },
-	},
-	{
-		0x1,
-		0x3,
-		0x5,
-		0x0,
-		{ 0x1E, 0x0, 0x14, -20 },
-	},
-	{
-		0x1,
-		0x3,
-		0xB,
-		0x0,
-		{ 0x19, 0x14, 0x14, -20 },
-	},
-	{
-		0x1,
-		0x4,
-		0xB,
-		0x0,
-		{ 0xA, 0x14, 0x14, -20 },
-	},
-	{
-		0x1,
-		0x5,
-		0xC,
-		0x0,
-		{ -1000, 0x14, 0x0, -20 },
-	},
-	{
-		0x1,
-		0x6,
-		0x2,
-		0x0,
-		{ 0x28, 0x14, 0x0, -20 },
-	},
-	{
-		0x1,
-		0x6,
-		0xB,
-		0x0,
-		{ 0x32, 0x14, 0x0, -20 },
-	},
-	{
-		0x1,
-		0x7,
-		0x11,
-		0x0,
-		{ 0x1E, 0x0, 0x14, -20 },
-	},
-	{
-		0x1,
-		0x8,
-		0x12,
-		0x0,
-		{ -1000, 0x0, 0x0, -20 },
-	},
-	{
-		0x1,
-		0x9,
-		0x13,
-		0x0,
-		{ -1000, 0x0, 0x0, -20 },
-	},
-	{
-		0x1,
-		0xA,
-		0x14,
-		0x0,
-		{ -1000, 0x0, 0x0, -20 },
-	},
-	{
-		0x1,
-		0xB,
-		0x15,
-		0x0,
-		{ -1000, 0x0, 0x0, -20 },
-	},
-	{
-		0x1,
-		0xB,
-		0xB,
-		0x0,
-		{ 0x23, 0x14, -20, -20 },
-	},
-	{
-		0x1,
-		0xB,
-		0x2,
-		0x0,
-		{ 0x28, 0x14, -20, -20 },
-	},
-	{
-		0x1,
-		0xC,
-		0xE,
-		0x0,
-		{ 0x14, 0x14, -20, 0x14 },
-	},
-	{
-		0x1,
-		0xC,
-		0x9,
-		0x0,
-		{ 0x14, 0x14, -20, 0x14 },
-	},
-	{
-		0x1,
-		0xD,
-		0x9,
-		0x0,
-		{ 0x3C, 0x14, -20, 0x14 },
-	},
-	{
-		0x2,
-		0x14,
-		0xf0,
-		0x1,
-		{ 0x32, 0x14, 0x14, -20 },
-	},
-	{
-		0x2,
-		0x14,
-		0x16,
-		0x1,
-		{ 0x50, 0x14, 0x14, -20 },
-	},
-	{
-		0x2,
-		0x14,
-		0x8,
-		0x1,
-		{ 0x28, 0x14, 0x14, -20 },
-	},
-	{
-		0x2,
-		0x14,
-		0xC,
-		0x1,
-		{ 0x32, 0x14, -20, -20 },
-	},
-	{
-		0x2,
-		0x14,
-		0x14,
-		0x1,
-		{ 0x28, 0x14, 0x0, -20 },
-	},
-	{
-		0x2,
-		0x14,
-		0x17,
-		0x2,
-		{ 0x14, 0x14, 0x0, -20 },
-	},
-	{
-		0x2,
-		0x16,
-		0x10,
-		0x1,
-		{ 0x1E, 0x14, 0x0, -20 },
-	},
-	{
-		0x2,
-		0x17,
-		0xA,
-		0x0,
-		{ 0x14, 0x0, 0x0, -20 },
-	},
-	{
-		0x2,
-		0x18,
-		0x9,
-		0x0,
-		{ -1000, 0x14, -20, -20 },
-	},
-	{
-		0x2,
-		0x19,
-		0x9,
-		0x1,
-		{ 0x14, 0x14, -20, -20 },
-	},
-	{
-		0x2,
-		0x1A,
-		0x6,
-		0x3,
-		{ 0x1E, 0x14, -20, -20 },
-	},
-	{
-		0x2,
-		0x1B,
-		0x6,
-		0x1,
-		{ 0xA, 0x0, 0x0, -20 },
-	},
-	{
-		0x2,
-		0x1C,
-		0xD,
-		0x1,
-		{ 0x1E, 0x0, 0x0, -20 },
-	},
-	{
-		0x2,
-		0xE,
-		0x4,
-		0x0,
-		{ 0x14, 0x0, 0x14, 0x14 },
-	},
-	{
-		0x2,
-		0xF,
-		0xf0,
-		0x0,
-		{ 0xF, 0x0, 0x14, 0x14 },
-	},
-	{
-		0x2,
-		0xF,
-		0x1,
-		0x0,
-		{ 0xA, 0x0, 0x14, 0x14 },
-	},
-	{
-		0x2,
-		0x10,
-		0xD,
-		0x1,
-		{ 0xF, 0x0, 0x0, 0x14 },
-	},
-	{
-		0x2,
-		0x1,
-		0xB,
-		0x0,
-		{ -1000, 0x0, 0x0, 0x0 },
-	},
-	{
-		0x2,
-		0x1,
-		0x1,
-		0x0,
-		{ -1000, 0x0, 0x0, 0x0 },
-	},
-	{
-		0x2,
-		0x1,
-		0xE,
-		0x0,
-		{ -1000, 0x0, -20, 0x14 },
-	},
-	{
-		0x2,
-		0x1,
-		0x2,
-		0x0,
-		{ -1000, 0x0, 0x0, 0x0 },
-	},
-	{
-		0x2,
-		0x2,
-		0xf1,
-		0x0,
-		{ 0x14, 0x0, 0x14, 0x14 },
-	},
-	{
-		0x2,
-		0x2,
-		0x17,
-		0x0,
-		{ -1000, 0x0, 0x0, 0x0 },
-	},
-	{
-		0x2,
-		0x2,
-		0x9,
-		0x0,
-		{ 0xA, 0x14, -20, 0x14 },
-	},
-	{
-		0x2,
-		0x2,
-		0x2,
-		0x0,
-		{ -1000, 0x0, 0x0, 0x0 },
-	},
-	{
-		0x2,
-		0x2,
-		0x1,
-		0x0,
-		{ -1000, 0x0, 0x0, 0x0 },
-	},
-	{
-		0x2,
-		0x2,
-		0xE,
-		0x0,
-		{ -1000, 0x0, -20, 0x14 },
-	},
-	{
-		0x2,
-		0x2,
-		0xB,
-		0x0,
-		{ -1000, 0x0, 0x0, 0x0 },
-	},
-	{
-		0x2,
-		0x3,
-		0xB,
-		0x0,
-		{ 0x1E, 0x14, 0x14, -20 },
-	},
-	{
-		0x2,
-		0x4,
-		0xB,
-		0x0,
-		{ 0xA, 0x14, 0x14, -20 },
-	},
-	{
-		0x2,
-		0x6,
-		0xB,
-		0x0,
-		{ 0x32, 0x14, 0x14, -20 },
-	},
-	{
-		0x2,
-		0x6,
-		0x2,
-		0x0,
-		{ 0x28, 0x14, 0x0, -20 },
-	},
-	{
-		0x2,
-		0x6,
-		0xE,
-		0x0,
-		{ 0xA, 0x14, -20, -20 },
-	},
-	{
-		0x2,
-		0x7,
-		0x11,
-		0x0,
-		{ -1000, 0x0, -20, -20 },
-	},
-	{
-		0x2,
-		0x8,
-		0x12,
-		0x0,
-		{ -1000, 0x0, -20, -20 },
-	},
-	{
-		0x2,
-		0x9,
-		0x13,
-		0x0,
-		{ -1000, 0x0, 0x0, -20 },
-	},
-	{
-		0x2,
-		0xB,
-		0x2,
-		0x0,
-		{ 0xA, 0x0, 0x0, -20 },
-	},
-	{
-		0x2,
-		0xB,
-		0x15,
-		0x0,
-		{ -1000, 0x0, 0x0, -20 },
-	},
-	{
-		0x2,
-		0xB,
-		0xB,
-		0x0,
-		{ 0x28, 0x14, 0x0, -20 },
-	},
-	{
-		0x2,
-		0xB,
-		0xE,
-		0x0,
-		{ 0xA, 0x14, 0x0, -20 },
-	},
-	{
-		0x2,
-		0xC,
-		0xE,
-		0x0,
-		{ 0x14, 0x14, 0x0, 0x14 },
-	},
-	{
-		0x2,
-		0xC,
-		0x9,
-		0x0,
-		{ 0x14, 0x14, -20, 0x14 },
-	},
-	{
-		0x2,
-		0xD,
-		0x9,
-		0x0,
-		{ 0x3C, 0x14, -20, 0x14 },
-	},
-	{
-		0x3,
-		0x14,
-		0x10,
-		0x1,
-		{ 0x28, 0x14, 0x0, -20 },
-	},
-	{
-		0x3,
-		0x14,
-		0x14,
-		0x1,
-		{ 0x28, 0x14, 0x0, -20 },
-	},
-	{
-		0x3,
-		0x14,
-		0xC,
-		0x1,
-		{ 0x28, 0x14, -20, -20 },
-	},
-	{
-		0x3,
-		0x15,
-		0x14,
-		0x1,
-		{ 0x28, 0x14, 0x0, -20 },
-	},
-	{
-		0x3,
-		0x15,
-		0xC,
-		0x1,
-		{ 0x1E, 0x14, -20, -20 },
-	},
-	{
-		0x3,
-		0x15,
-		0xf0,
-		0x1,
-		{ 0x1E, 0x0, 0x14, -20 },
-	},
-	{
-		0x3,
-		0x17,
-		0xA,
-		0x0,
-		{ 0xA, 0x0, 0x0, -20 },
-	},
-	{
-		0x3,
-		0x18,
-		0x9,
-		0x0,
-		{ -1000, 0x14, -20, -20 },
-	},
-	{
-		0x3,
-		0x19,
-		0x9,
-		0x1,
-		{ 0x14, 0x14, -20, -20 },
-	},
-	{
-		0x3,
-		0x1A,
-		0x6,
-		0x3,
-		{ 0x1E, 0x14, 0x0, -20 },
-	},
-	{
-		0x3,
-		0x1C,
-		0xD,
-		0x1,
-		{ 0xA, 0x0, 0x0, -20 },
-	},
-	{
-		0x3,
-		0xE,
-		0x4,
-		0x0,
-		{ 0x14, 0x0, 0x14, 0x14 },
-	},
-	{
-		0x3,
-		0xF,
-		0xf0,
-		0x0,
-		{ 0xF, 0x0, 0x14, 0x14 },
-	},
-	{
-		0x3,
-		0xF,
-		0x1,
-		0x0,
-		{ 0xA, 0x14, 0x14, 0x14 },
-	},
-	{
-		0x3,
-		0x1,
-		0xB,
-		0x0,
-		{ -1000, 0x0, 0x0, 0x0 },
-	},
-	{
-		0x3,
-		0x1,
-		0x1,
-		0x0,
-		{ -1000, 0x0, 0x0, 0x0 },
-	},
-	{
-		0x3,
-		0x1,
-		0xE,
-		0x0,
-		{ -1000, 0x0, 0x0, 0x14 },
-	},
-	{
-		0x3,
-		0x1,
-		0x2,
-		0x0,
-		{ -1000, 0x0, 0x0, 0x0 },
-	},
-	{
-		0x3,
-		0x2,
-		0x17,
-		0x0,
-		{ -1000, 0x0, 0x0, 0x0 },
-	},
-	{
-		0x3,
-		0x2,
-		0x9,
-		0x0,
-		{ 0xA, 0x14, -20, 0x14 },
-	},
-	{
-		0x3,
-		0x2,
-		0x2,
-		0x0,
-		{ -1000, 0x0, 0x0, 0x0 },
-	},
-	{
-		0x3,
-		0x2,
-		0x1,
-		0x0,
-		{ -1000, 0x0, 0x0, 0x0 },
-	},
-	{
-		0x3,
-		0x2,
-		0xE,
-		0x0,
-		{ -1000, 0x0, -20, 0x14 },
-	},
-	{
-		0x3,
-		0x2,
-		0xB,
-		0x0,
-		{ -1000, 0x0, 0x0, 0x0 },
-	},
-	{
-		0x3,
-		0x2,
-		0xf1,
-		0x0,
-		{ 0xA, 0x0, 0x14, 0x0 },
-	},
-	{
-		0x3,
-		0x3,
-		0xB,
-		0x0,
-		{ 0x1E, 0x14, 0x0, -20 },
-	},
-	{
-		0x3,
-		0x4,
-		0xB,
-		0x0,
-		{ 0xA, 0x14, 0x0, -20 },
-	},
-	{
-		0x3,
-		0x6,
-		0x2,
-		0x0,
-		{ 0x28, 0x0, 0x0, -20 },
-	},
-	{
-		0x3,
-		0x6,
-		0xE,
-		0x0,
-		{ 0xA, 0x14, 0x0, -20 },
-	},
-	{
-		0x3,
-		0x6,
-		0xB,
-		0x0,
-		{ 0x14, 0x14, 0x0, -20 },
-	},
-	{
-		0x3,
-		0x7,
-		0x11,
-		0x0,
-		{ -1000, 0x0, -20, -20 },
-	},
-	{
-		0x3,
-		0x8,
-		0x12,
-		0x0,
-		{ -1000, 0x0, -20, -20 },
-	},
-	{
-		0x3,
-		0x9,
-		0x13,
-		0x0,
-		{ -1000, 0x0, 0x0, -20 },
-	},
-	{
-		0x3,
-		0xB,
-		0xE,
-		0x0,
-		{ 0xA, 0x14, -20, -20 },
-	},
-	{
-		0x3,
-		0xB,
-		0x2,
-		0x0,
-		{ 0x14, 0x14, 0x0, -20 },
-	},
-	{
-		0x3,
-		0xB,
-		0xB,
-		0x0,
-		{ 0x14, 0x14, 0x0, -20 },
-	},
-	{
-		0x3,
-		0xB,
-		0x15,
-		0x0,
-		{ 0x1E, 0x0, 0x0, -20 },
-	},
-	{
-		0x3,
-		0xC,
-		0xE,
-		0x0,
-		{ 0x14, 0x14, -20, 0x14 },
-	},
-	{
-		0x3,
-		0xC,
-		0x9,
-		0x0,
-		{ 0x14, 0x14, -20, 0x14 },
-	},
-	{
-		0x3,
-		0xD,
-		0x9,
-		0x0,
-		{ 0x3C, 0x14, -20, 0x14 },
-	},
-	{
-		0x4,
-		0x14,
-		0x10,
-		0x1,
-		{ 0x28, 0x14, 0x14, -20 },
-	},
-	{
-		0x4,
-		0x14,
-		0xC,
-		0x1,
-		{ 0x28, 0x14, -20, -20 },
-	},
-	{
-		0x4,
-		0x14,
-		0x14,
-		0x1,
-		{ 0x14, 0x14, 0x0, -20 },
-	},
-	{
-		0x4,
-		0x15,
-		0x10,
-		0x1,
-		{ 0x1E, 0x14, 0x0, -20 },
-	},
-	{
-		0x4,
-		0x15,
-		0xC,
-		0x1,
-		{ 0x1E, 0x14, -20, -20 },
-	},
-	{
-		0x4,
-		0x15,
-		0x14,
-		0x1,
-		{ 0x28, 0x14, 0x0, -20 },
-	},
-	{
-		0x4,
-		0x17,
-		0xA,
-		0x0,
-		{ 0xA, 0x0, 0x0, -20 },
-	},
-	{
-		0x4,
-		0x18,
-		0x9,
-		0x0,
-		{ -1000, 0x14, -20, -20 },
-	},
-	{
-		0x4,
-		0x19,
-		0x9,
-		0x1,
-		{ 0x14, 0x14, -20, -20 },
-	},
-	{
-		0x4,
-		0x1A,
-		0x6,
-		0x3,
-		{ 0x1E, 0x14, 0x0, -20 },
-	},
-	{
-		0x4,
-		0xE,
-		0x4,
-		0x0,
-		{ 0x14, 0x0, 0x14, 0x0 },
-	},
-	{
-		0x4,
-		0xF,
-		0xf0,
-		0x0,
-		{ 0xF, 0x0, 0x14, 0x14 },
-	},
-	{
-		0x4,
-		0xF,
-		0x1,
-		0x0,
-		{ 0xA, 0x14, 0x14, 0x14 },
-	},
-	{
-		0x4,
-		0x1,
-		0xB,
-		0x0,
-		{ -1000, 0x0, 0x0, 0x0 },
-	},
-	{
-		0x4,
-		0x1,
-		0x1,
-		0x0,
-		{ -1000, 0x0, 0x0, 0x0 },
-	},
-	{
-		0x4,
-		0x1,
-		0xE,
-		0x0,
-		{ -1000, 0x0, -20, 0x14 },
-	},
-	{
-		0x4,
-		0x1,
-		0x2,
-		0x0,
-		{ -1000, 0x0, 0x0, 0x0 },
-	},
-	{
-		0x4,
-		0x2,
-		0x17,
-		0x0,
-		{ -1000, 0x0, 0x0, 0x0 },
-	},
-	{
-		0x4,
-		0x2,
-		0x9,
-		0x0,
-		{ 0xA, 0x14, -20, 0x14 },
-	},
-	{
-		0x4,
-		0x2,
-		0x2,
-		0x0,
-		{ -1000, 0x0, 0x0, 0x0 },
-	},
-	{
-		0x4,
-		0x2,
-		0x1,
-		0x0,
-		{ -1000, 0x0, 0x0, 0x0 },
-	},
-	{
-		0x4,
-		0x2,
-		0xE,
-		0x0,
-		{ -1000, 0x0, -20, 0x14 },
-	},
-	{
-		0x4,
-		0x2,
-		0xB,
-		0x0,
-		{ -1000, 0x0, 0x0, 0x0 },
-	},
-	{
-		0x4,
-		0x2,
-		0xf1,
-		0x0,
-		{ 0xA, 0x0, 0x14, 0x14 },
-	},
-	{
-		0x4,
-		0x2,
-		0x15,
-		0x0,
-		{ 0x50, 0x14, 0x0, 0x0 },
-	},
-	{
-		0x4,
-		0x2,
-		0xF,
-		0x0,
-		{ 0x50, 0x14, 0x0, 0x0 },
-	},
-	{
-		0x4,
-		0x12,
-		0x8,
-		0x0,
-		{ -1000, 0x0, 0x0, -20 },
-	},
-	{
-		0x4,
-		0x13,
-		0xD,
-		0x0,
-		{ -1000, 0x0, 0x0, -20 },
-	},
-	{
-		0x4,
-		0x6,
-		0xB,
-		0x0,
-		{ 0x1E, 0x14, 0x0, -20 },
-	},
-	{
-		0x4,
-		0x6,
-		0xF,
-		0x0,
-		{ 0x3C, 0x14, 0x14, -20 },
-	},
-	{
-		0x4,
-		0x7,
-		0x11,
-		0x0,
-		{ -1000, 0x0, 0x0, -20 },
-	},
-	{
-		0x4,
-		0x8,
-		0x12,
-		0x0,
-		{ 0x28, 0x14, 0x14, -20 },
-	},
-	{
-		0x4,
-		0x9,
-		0x13,
-		0x0,
-		{ -1000, 0x0, 0x0, -20 },
-	},
-	{
-		0x4,
-		0xB,
-		0x15,
-		0x0,
-		{ 0x3C, 0x14, 0x14, -20 },
-	},
-	{
-		0x4,
-		0xB,
-		0xB,
-		0x0,
-		{ 0xA, 0x14, 0x0, -20 },
-	},
-	{
-		0x4,
-		0xC,
-		0xE,
-		0x0,
-		{ 0x14, 0x14, -20, 0x14 },
-	},
-	{
-		0x4,
-		0xC,
-		0x9,
-		0x0,
-		{ 0x14, 0x14, -20, 0x14 },
-	},
-	{
-		0x4,
-		0xD,
-		0x9,
-		0x0,
-		{ 0x3C, 0x14, -20, 0x14 },
-	},
+    {
+        0x1,
+        0x14,
+        0xf0,
+        0x1,
+        { 0x46, 0x14, 0x14, -20 },
+    },
+    {
+        0x1,
+        0x14,
+        0x16,
+        0x1,
+        { 0x64, 0x14, 0x14, -20 },
+    },
+    {
+        0x1,
+        0x14,
+        0x8,
+        0x1,
+        { 0x28, 0x14, 0x14, -20 },
+    },
+    {
+        0x1,
+        0x14,
+        0x17,
+        0x2,
+        { 0xA, 0x14, 0x0, 0x0 },
+    },
+    {
+        0x1,
+        0x15,
+        0xf0,
+        0x2,
+        { 0x0, 0x14, 0x0, 0x0 },
+    },
+    {
+        0x1,
+        0x16,
+        0x10,
+        0x1,
+        { 0x28, 0x14, 0x14, -20 },
+    },
+    {
+        0x1,
+        0x17,
+        0xA,
+        0x0,
+        { 0x14, 0x0, 0x0, 0x0 },
+    },
+    {
+        0x1,
+        0x18,
+        0x9,
+        0x0,
+        { -1000, 0x14, -20, 0x0 },
+    },
+    {
+        0x1,
+        0x19,
+        0x9,
+        0x1,
+        { 0x14, 0x14, -20, 0x0 },
+    },
+    {
+        0x1,
+        0x1A,
+        0x6,
+        0x3,
+        { 0xA, 0x14, 0x0, 0x0 },
+    },
+    {
+        0x1,
+        0x1B,
+        0x6,
+        0x1,
+        { 0xA, 0x14, 0x0, 0x0 },
+    },
+    {
+        0x1,
+        0x1C,
+        0xD,
+        0x1,
+        { 0x1E, 0x0, 0x0, -20 },
+    },
+    {
+        0x1,
+        0xE,
+        0x4,
+        0x0,
+        { 0xA, 0x0, 0x14, 0x14 },
+    },
+    {
+        0x1,
+        0xF,
+        0xf0,
+        0x0,
+        { 0xF, 0x0, 0x14, 0x14 },
+    },
+    {
+        0x1,
+        0xF,
+        0x1,
+        0x0,
+        { 0xA, 0x14, 0x14, 0x14 },
+    },
+    {
+        0x1,
+        0x10,
+        0xD,
+        0x1,
+        { 0xF, 0x0, 0x0, 0x14 },
+    },
+    {
+        0x1,
+        0x11,
+        0xD,
+        0x1,
+        { 0xA, 0x0, 0x0, 0x14 },
+    },
+    {
+        0x1,
+        0x1,
+        0xB,
+        0x0,
+        { -1000, 0x0, 0x0, 0x0 },
+    },
+    {
+        0x1,
+        0x1,
+        0x1,
+        0x0,
+        { -1000, 0x0, 0x0, 0x0 },
+    },
+    {
+        0x1,
+        0x1,
+        0xE,
+        0x0,
+        { -1000, 0x0, -20, 0x0 },
+    },
+    {
+        0x1,
+        0x1,
+        0x2,
+        0x0,
+        { -1000, 0x0, 0x0, 0x0 },
+    },
+    {
+        0x1,
+        0x2,
+        0xf1,
+        0x0,
+        { 0x14, 0x0, 0x14, 0x0 },
+    },
+    {
+        0x1,
+        0x2,
+        0x9,
+        0x0,
+        { 0xA, 0x14, -20, 0x14 },
+    },
+    {
+        0x1,
+        0x2,
+        0x2,
+        0x0,
+        { -1000, 0x0, 0x0, 0x0 },
+    },
+    {
+        0x1,
+        0x2,
+        0x1,
+        0x0,
+        { -1000, 0x0, 0x0, 0x0 },
+    },
+    {
+        0x1,
+        0x2,
+        0xE,
+        0x0,
+        { -1000, 0x0, -20, 0x0 },
+    },
+    {
+        0x1,
+        0x2,
+        0xB,
+        0x0,
+        { -1000, 0x0, 0x0, 0x0 },
+    },
+    {
+        0x1,
+        0x2,
+        0x17,
+        0x0,
+        { -1000, 0x0, 0x0, 0x0 },
+    },
+    {
+        0x1,
+        0x3,
+        0x5,
+        0x0,
+        { 0x1E, 0x0, 0x14, -20 },
+    },
+    {
+        0x1,
+        0x3,
+        0xB,
+        0x0,
+        { 0x19, 0x14, 0x14, -20 },
+    },
+    {
+        0x1,
+        0x4,
+        0xB,
+        0x0,
+        { 0xA, 0x14, 0x14, -20 },
+    },
+    {
+        0x1,
+        0x5,
+        0xC,
+        0x0,
+        { -1000, 0x14, 0x0, -20 },
+    },
+    {
+        0x1,
+        0x6,
+        0x2,
+        0x0,
+        { 0x28, 0x14, 0x0, -20 },
+    },
+    {
+        0x1,
+        0x6,
+        0xB,
+        0x0,
+        { 0x32, 0x14, 0x0, -20 },
+    },
+    {
+        0x1,
+        0x7,
+        0x11,
+        0x0,
+        { 0x1E, 0x0, 0x14, -20 },
+    },
+    {
+        0x1,
+        0x8,
+        0x12,
+        0x0,
+        { -1000, 0x0, 0x0, -20 },
+    },
+    {
+        0x1,
+        0x9,
+        0x13,
+        0x0,
+        { -1000, 0x0, 0x0, -20 },
+    },
+    {
+        0x1,
+        0xA,
+        0x14,
+        0x0,
+        { -1000, 0x0, 0x0, -20 },
+    },
+    {
+        0x1,
+        0xB,
+        0x15,
+        0x0,
+        { -1000, 0x0, 0x0, -20 },
+    },
+    {
+        0x1,
+        0xB,
+        0xB,
+        0x0,
+        { 0x23, 0x14, -20, -20 },
+    },
+    {
+        0x1,
+        0xB,
+        0x2,
+        0x0,
+        { 0x28, 0x14, -20, -20 },
+    },
+    {
+        0x1,
+        0xC,
+        0xE,
+        0x0,
+        { 0x14, 0x14, -20, 0x14 },
+    },
+    {
+        0x1,
+        0xC,
+        0x9,
+        0x0,
+        { 0x14, 0x14, -20, 0x14 },
+    },
+    {
+        0x1,
+        0xD,
+        0x9,
+        0x0,
+        { 0x3C, 0x14, -20, 0x14 },
+    },
+    {
+        0x2,
+        0x14,
+        0xf0,
+        0x1,
+        { 0x32, 0x14, 0x14, -20 },
+    },
+    {
+        0x2,
+        0x14,
+        0x16,
+        0x1,
+        { 0x50, 0x14, 0x14, -20 },
+    },
+    {
+        0x2,
+        0x14,
+        0x8,
+        0x1,
+        { 0x28, 0x14, 0x14, -20 },
+    },
+    {
+        0x2,
+        0x14,
+        0xC,
+        0x1,
+        { 0x32, 0x14, -20, -20 },
+    },
+    {
+        0x2,
+        0x14,
+        0x14,
+        0x1,
+        { 0x28, 0x14, 0x0, -20 },
+    },
+    {
+        0x2,
+        0x14,
+        0x17,
+        0x2,
+        { 0x14, 0x14, 0x0, -20 },
+    },
+    {
+        0x2,
+        0x16,
+        0x10,
+        0x1,
+        { 0x1E, 0x14, 0x0, -20 },
+    },
+    {
+        0x2,
+        0x17,
+        0xA,
+        0x0,
+        { 0x14, 0x0, 0x0, -20 },
+    },
+    {
+        0x2,
+        0x18,
+        0x9,
+        0x0,
+        { -1000, 0x14, -20, -20 },
+    },
+    {
+        0x2,
+        0x19,
+        0x9,
+        0x1,
+        { 0x14, 0x14, -20, -20 },
+    },
+    {
+        0x2,
+        0x1A,
+        0x6,
+        0x3,
+        { 0x1E, 0x14, -20, -20 },
+    },
+    {
+        0x2,
+        0x1B,
+        0x6,
+        0x1,
+        { 0xA, 0x0, 0x0, -20 },
+    },
+    {
+        0x2,
+        0x1C,
+        0xD,
+        0x1,
+        { 0x1E, 0x0, 0x0, -20 },
+    },
+    {
+        0x2,
+        0xE,
+        0x4,
+        0x0,
+        { 0x14, 0x0, 0x14, 0x14 },
+    },
+    {
+        0x2,
+        0xF,
+        0xf0,
+        0x0,
+        { 0xF, 0x0, 0x14, 0x14 },
+    },
+    {
+        0x2,
+        0xF,
+        0x1,
+        0x0,
+        { 0xA, 0x0, 0x14, 0x14 },
+    },
+    {
+        0x2,
+        0x10,
+        0xD,
+        0x1,
+        { 0xF, 0x0, 0x0, 0x14 },
+    },
+    {
+        0x2,
+        0x1,
+        0xB,
+        0x0,
+        { -1000, 0x0, 0x0, 0x0 },
+    },
+    {
+        0x2,
+        0x1,
+        0x1,
+        0x0,
+        { -1000, 0x0, 0x0, 0x0 },
+    },
+    {
+        0x2,
+        0x1,
+        0xE,
+        0x0,
+        { -1000, 0x0, -20, 0x14 },
+    },
+    {
+        0x2,
+        0x1,
+        0x2,
+        0x0,
+        { -1000, 0x0, 0x0, 0x0 },
+    },
+    {
+        0x2,
+        0x2,
+        0xf1,
+        0x0,
+        { 0x14, 0x0, 0x14, 0x14 },
+    },
+    {
+        0x2,
+        0x2,
+        0x17,
+        0x0,
+        { -1000, 0x0, 0x0, 0x0 },
+    },
+    {
+        0x2,
+        0x2,
+        0x9,
+        0x0,
+        { 0xA, 0x14, -20, 0x14 },
+    },
+    {
+        0x2,
+        0x2,
+        0x2,
+        0x0,
+        { -1000, 0x0, 0x0, 0x0 },
+    },
+    {
+        0x2,
+        0x2,
+        0x1,
+        0x0,
+        { -1000, 0x0, 0x0, 0x0 },
+    },
+    {
+        0x2,
+        0x2,
+        0xE,
+        0x0,
+        { -1000, 0x0, -20, 0x14 },
+    },
+    {
+        0x2,
+        0x2,
+        0xB,
+        0x0,
+        { -1000, 0x0, 0x0, 0x0 },
+    },
+    {
+        0x2,
+        0x3,
+        0xB,
+        0x0,
+        { 0x1E, 0x14, 0x14, -20 },
+    },
+    {
+        0x2,
+        0x4,
+        0xB,
+        0x0,
+        { 0xA, 0x14, 0x14, -20 },
+    },
+    {
+        0x2,
+        0x6,
+        0xB,
+        0x0,
+        { 0x32, 0x14, 0x14, -20 },
+    },
+    {
+        0x2,
+        0x6,
+        0x2,
+        0x0,
+        { 0x28, 0x14, 0x0, -20 },
+    },
+    {
+        0x2,
+        0x6,
+        0xE,
+        0x0,
+        { 0xA, 0x14, -20, -20 },
+    },
+    {
+        0x2,
+        0x7,
+        0x11,
+        0x0,
+        { -1000, 0x0, -20, -20 },
+    },
+    {
+        0x2,
+        0x8,
+        0x12,
+        0x0,
+        { -1000, 0x0, -20, -20 },
+    },
+    {
+        0x2,
+        0x9,
+        0x13,
+        0x0,
+        { -1000, 0x0, 0x0, -20 },
+    },
+    {
+        0x2,
+        0xB,
+        0x2,
+        0x0,
+        { 0xA, 0x0, 0x0, -20 },
+    },
+    {
+        0x2,
+        0xB,
+        0x15,
+        0x0,
+        { -1000, 0x0, 0x0, -20 },
+    },
+    {
+        0x2,
+        0xB,
+        0xB,
+        0x0,
+        { 0x28, 0x14, 0x0, -20 },
+    },
+    {
+        0x2,
+        0xB,
+        0xE,
+        0x0,
+        { 0xA, 0x14, 0x0, -20 },
+    },
+    {
+        0x2,
+        0xC,
+        0xE,
+        0x0,
+        { 0x14, 0x14, 0x0, 0x14 },
+    },
+    {
+        0x2,
+        0xC,
+        0x9,
+        0x0,
+        { 0x14, 0x14, -20, 0x14 },
+    },
+    {
+        0x2,
+        0xD,
+        0x9,
+        0x0,
+        { 0x3C, 0x14, -20, 0x14 },
+    },
+    {
+        0x3,
+        0x14,
+        0x10,
+        0x1,
+        { 0x28, 0x14, 0x0, -20 },
+    },
+    {
+        0x3,
+        0x14,
+        0x14,
+        0x1,
+        { 0x28, 0x14, 0x0, -20 },
+    },
+    {
+        0x3,
+        0x14,
+        0xC,
+        0x1,
+        { 0x28, 0x14, -20, -20 },
+    },
+    {
+        0x3,
+        0x15,
+        0x14,
+        0x1,
+        { 0x28, 0x14, 0x0, -20 },
+    },
+    {
+        0x3,
+        0x15,
+        0xC,
+        0x1,
+        { 0x1E, 0x14, -20, -20 },
+    },
+    {
+        0x3,
+        0x15,
+        0xf0,
+        0x1,
+        { 0x1E, 0x0, 0x14, -20 },
+    },
+    {
+        0x3,
+        0x17,
+        0xA,
+        0x0,
+        { 0xA, 0x0, 0x0, -20 },
+    },
+    {
+        0x3,
+        0x18,
+        0x9,
+        0x0,
+        { -1000, 0x14, -20, -20 },
+    },
+    {
+        0x3,
+        0x19,
+        0x9,
+        0x1,
+        { 0x14, 0x14, -20, -20 },
+    },
+    {
+        0x3,
+        0x1A,
+        0x6,
+        0x3,
+        { 0x1E, 0x14, 0x0, -20 },
+    },
+    {
+        0x3,
+        0x1C,
+        0xD,
+        0x1,
+        { 0xA, 0x0, 0x0, -20 },
+    },
+    {
+        0x3,
+        0xE,
+        0x4,
+        0x0,
+        { 0x14, 0x0, 0x14, 0x14 },
+    },
+    {
+        0x3,
+        0xF,
+        0xf0,
+        0x0,
+        { 0xF, 0x0, 0x14, 0x14 },
+    },
+    {
+        0x3,
+        0xF,
+        0x1,
+        0x0,
+        { 0xA, 0x14, 0x14, 0x14 },
+    },
+    {
+        0x3,
+        0x1,
+        0xB,
+        0x0,
+        { -1000, 0x0, 0x0, 0x0 },
+    },
+    {
+        0x3,
+        0x1,
+        0x1,
+        0x0,
+        { -1000, 0x0, 0x0, 0x0 },
+    },
+    {
+        0x3,
+        0x1,
+        0xE,
+        0x0,
+        { -1000, 0x0, 0x0, 0x14 },
+    },
+    {
+        0x3,
+        0x1,
+        0x2,
+        0x0,
+        { -1000, 0x0, 0x0, 0x0 },
+    },
+    {
+        0x3,
+        0x2,
+        0x17,
+        0x0,
+        { -1000, 0x0, 0x0, 0x0 },
+    },
+    {
+        0x3,
+        0x2,
+        0x9,
+        0x0,
+        { 0xA, 0x14, -20, 0x14 },
+    },
+    {
+        0x3,
+        0x2,
+        0x2,
+        0x0,
+        { -1000, 0x0, 0x0, 0x0 },
+    },
+    {
+        0x3,
+        0x2,
+        0x1,
+        0x0,
+        { -1000, 0x0, 0x0, 0x0 },
+    },
+    {
+        0x3,
+        0x2,
+        0xE,
+        0x0,
+        { -1000, 0x0, -20, 0x14 },
+    },
+    {
+        0x3,
+        0x2,
+        0xB,
+        0x0,
+        { -1000, 0x0, 0x0, 0x0 },
+    },
+    {
+        0x3,
+        0x2,
+        0xf1,
+        0x0,
+        { 0xA, 0x0, 0x14, 0x0 },
+    },
+    {
+        0x3,
+        0x3,
+        0xB,
+        0x0,
+        { 0x1E, 0x14, 0x0, -20 },
+    },
+    {
+        0x3,
+        0x4,
+        0xB,
+        0x0,
+        { 0xA, 0x14, 0x0, -20 },
+    },
+    {
+        0x3,
+        0x6,
+        0x2,
+        0x0,
+        { 0x28, 0x0, 0x0, -20 },
+    },
+    {
+        0x3,
+        0x6,
+        0xE,
+        0x0,
+        { 0xA, 0x14, 0x0, -20 },
+    },
+    {
+        0x3,
+        0x6,
+        0xB,
+        0x0,
+        { 0x14, 0x14, 0x0, -20 },
+    },
+    {
+        0x3,
+        0x7,
+        0x11,
+        0x0,
+        { -1000, 0x0, -20, -20 },
+    },
+    {
+        0x3,
+        0x8,
+        0x12,
+        0x0,
+        { -1000, 0x0, -20, -20 },
+    },
+    {
+        0x3,
+        0x9,
+        0x13,
+        0x0,
+        { -1000, 0x0, 0x0, -20 },
+    },
+    {
+        0x3,
+        0xB,
+        0xE,
+        0x0,
+        { 0xA, 0x14, -20, -20 },
+    },
+    {
+        0x3,
+        0xB,
+        0x2,
+        0x0,
+        { 0x14, 0x14, 0x0, -20 },
+    },
+    {
+        0x3,
+        0xB,
+        0xB,
+        0x0,
+        { 0x14, 0x14, 0x0, -20 },
+    },
+    {
+        0x3,
+        0xB,
+        0x15,
+        0x0,
+        { 0x1E, 0x0, 0x0, -20 },
+    },
+    {
+        0x3,
+        0xC,
+        0xE,
+        0x0,
+        { 0x14, 0x14, -20, 0x14 },
+    },
+    {
+        0x3,
+        0xC,
+        0x9,
+        0x0,
+        { 0x14, 0x14, -20, 0x14 },
+    },
+    {
+        0x3,
+        0xD,
+        0x9,
+        0x0,
+        { 0x3C, 0x14, -20, 0x14 },
+    },
+    {
+        0x4,
+        0x14,
+        0x10,
+        0x1,
+        { 0x28, 0x14, 0x14, -20 },
+    },
+    {
+        0x4,
+        0x14,
+        0xC,
+        0x1,
+        { 0x28, 0x14, -20, -20 },
+    },
+    {
+        0x4,
+        0x14,
+        0x14,
+        0x1,
+        { 0x14, 0x14, 0x0, -20 },
+    },
+    {
+        0x4,
+        0x15,
+        0x10,
+        0x1,
+        { 0x1E, 0x14, 0x0, -20 },
+    },
+    {
+        0x4,
+        0x15,
+        0xC,
+        0x1,
+        { 0x1E, 0x14, -20, -20 },
+    },
+    {
+        0x4,
+        0x15,
+        0x14,
+        0x1,
+        { 0x28, 0x14, 0x0, -20 },
+    },
+    {
+        0x4,
+        0x17,
+        0xA,
+        0x0,
+        { 0xA, 0x0, 0x0, -20 },
+    },
+    {
+        0x4,
+        0x18,
+        0x9,
+        0x0,
+        { -1000, 0x14, -20, -20 },
+    },
+    {
+        0x4,
+        0x19,
+        0x9,
+        0x1,
+        { 0x14, 0x14, -20, -20 },
+    },
+    {
+        0x4,
+        0x1A,
+        0x6,
+        0x3,
+        { 0x1E, 0x14, 0x0, -20 },
+    },
+    {
+        0x4,
+        0xE,
+        0x4,
+        0x0,
+        { 0x14, 0x0, 0x14, 0x0 },
+    },
+    {
+        0x4,
+        0xF,
+        0xf0,
+        0x0,
+        { 0xF, 0x0, 0x14, 0x14 },
+    },
+    {
+        0x4,
+        0xF,
+        0x1,
+        0x0,
+        { 0xA, 0x14, 0x14, 0x14 },
+    },
+    {
+        0x4,
+        0x1,
+        0xB,
+        0x0,
+        { -1000, 0x0, 0x0, 0x0 },
+    },
+    {
+        0x4,
+        0x1,
+        0x1,
+        0x0,
+        { -1000, 0x0, 0x0, 0x0 },
+    },
+    {
+        0x4,
+        0x1,
+        0xE,
+        0x0,
+        { -1000, 0x0, -20, 0x14 },
+    },
+    {
+        0x4,
+        0x1,
+        0x2,
+        0x0,
+        { -1000, 0x0, 0x0, 0x0 },
+    },
+    {
+        0x4,
+        0x2,
+        0x17,
+        0x0,
+        { -1000, 0x0, 0x0, 0x0 },
+    },
+    {
+        0x4,
+        0x2,
+        0x9,
+        0x0,
+        { 0xA, 0x14, -20, 0x14 },
+    },
+    {
+        0x4,
+        0x2,
+        0x2,
+        0x0,
+        { -1000, 0x0, 0x0, 0x0 },
+    },
+    {
+        0x4,
+        0x2,
+        0x1,
+        0x0,
+        { -1000, 0x0, 0x0, 0x0 },
+    },
+    {
+        0x4,
+        0x2,
+        0xE,
+        0x0,
+        { -1000, 0x0, -20, 0x14 },
+    },
+    {
+        0x4,
+        0x2,
+        0xB,
+        0x0,
+        { -1000, 0x0, 0x0, 0x0 },
+    },
+    {
+        0x4,
+        0x2,
+        0xf1,
+        0x0,
+        { 0xA, 0x0, 0x14, 0x14 },
+    },
+    {
+        0x4,
+        0x2,
+        0x15,
+        0x0,
+        { 0x50, 0x14, 0x0, 0x0 },
+    },
+    {
+        0x4,
+        0x2,
+        0xF,
+        0x0,
+        { 0x50, 0x14, 0x0, 0x0 },
+    },
+    {
+        0x4,
+        0x12,
+        0x8,
+        0x0,
+        { -1000, 0x0, 0x0, -20 },
+    },
+    {
+        0x4,
+        0x13,
+        0xD,
+        0x0,
+        { -1000, 0x0, 0x0, -20 },
+    },
+    {
+        0x4,
+        0x6,
+        0xB,
+        0x0,
+        { 0x1E, 0x14, 0x0, -20 },
+    },
+    {
+        0x4,
+        0x6,
+        0xF,
+        0x0,
+        { 0x3C, 0x14, 0x14, -20 },
+    },
+    {
+        0x4,
+        0x7,
+        0x11,
+        0x0,
+        { -1000, 0x0, 0x0, -20 },
+    },
+    {
+        0x4,
+        0x8,
+        0x12,
+        0x0,
+        { 0x28, 0x14, 0x14, -20 },
+    },
+    {
+        0x4,
+        0x9,
+        0x13,
+        0x0,
+        { -1000, 0x0, 0x0, -20 },
+    },
+    {
+        0x4,
+        0xB,
+        0x15,
+        0x0,
+        { 0x3C, 0x14, 0x14, -20 },
+    },
+    {
+        0x4,
+        0xB,
+        0xB,
+        0x0,
+        { 0xA, 0x14, 0x0, -20 },
+    },
+    {
+        0x4,
+        0xC,
+        0xE,
+        0x0,
+        { 0x14, 0x14, -20, 0x14 },
+    },
+    {
+        0x4,
+        0xC,
+        0x9,
+        0x0,
+        { 0x14, 0x14, -20, 0x14 },
+    },
+    {
+        0x4,
+        0xD,
+        0x9,
+        0x0,
+        { 0x3C, 0x14, -20, 0x14 },
+    },
 };
 
-
-
-
-
-void ov17_02246ECC (UnkStruct_ov17_02246F24 * param0, UnkStruct_ov17_0223BE58 * param1)
+void ov17_02246ECC(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_0223BE58 *param1)
 {
     int v0;
-    UnkStruct_ov17_02246F9C * v1;
+    UnkStruct_ov17_02246F9C *v1;
 
     v1 = Heap_AllocFromHeap(21, sizeof(UnkStruct_ov17_02246F9C));
 
@@ -1274,7 +1271,7 @@ void ov17_02246ECC (UnkStruct_ov17_02246F24 * param0, UnkStruct_ov17_0223BE58 * 
     Heap_FreeToHeap(v1);
 }
 
-static void ov17_02246F24 (UnkStruct_ov17_02246F24 * param0, UnkStruct_ov17_02246F9C * param1, int param2)
+static void ov17_02246F24(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246F9C *param1, int param2)
 {
     int v0;
 
@@ -1294,10 +1291,10 @@ static void ov17_02246F24 (UnkStruct_ov17_02246F24 * param0, UnkStruct_ov17_0224
     param1->unk_30 = param0->unk_00->unk_00.unk_FC[param2];
 }
 
-static void ov17_02246F9C (UnkStruct_ov17_02246F24 * param0, UnkStruct_ov17_02246F9C * param1, int param2, u16 * param3, u8 * param4)
+static void ov17_02246F9C(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246F9C *param1, int param2, u16 *param3, u8 *param4)
 {
     int v0, v1, v2, v3, v4;
-    UnkStruct_ov17_022472F8 * v5;
+    UnkStruct_ov17_022472F8 *v5;
     int v6;
     u8 v7[1 + 2];
 
@@ -1432,7 +1429,10 @@ static void ov17_02246F9C (UnkStruct_ov17_02246F24 * param0, UnkStruct_ov17_0224
 
             if (v16 == (1 + 2)) {
                 const u8 v20[] = {
-                    230, 128, 51, 0,
+                    230,
+                    128,
+                    51,
+                    0,
                 };
 
                 v18 = sub_02094E98(param0->unk_00) & 0xff;
@@ -1466,7 +1466,7 @@ static void ov17_02246F9C (UnkStruct_ov17_02246F24 * param0, UnkStruct_ov17_0224
     }
 }
 
-static int ov17_022472F8 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4)
+static int ov17_022472F8(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
 {
     if (param0->unk_00 == 4) {
         return 1;
@@ -1475,7 +1475,7 @@ static int ov17_022472F8 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruc
     return 0;
 }
 
-static int ov17_02247308 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4)
+static int ov17_02247308(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
 {
     if (param0->unk_30.unk_A0[param1].unk_00_16 != 0) {
         return 1;
@@ -1484,7 +1484,7 @@ static int ov17_02247308 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruc
     return 0;
 }
 
-static int ov17_02247320 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4)
+static int ov17_02247320(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
 {
     int v0;
 
@@ -1497,7 +1497,7 @@ static int ov17_02247320 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruc
     return 0;
 }
 
-static int ov17_02247338 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4)
+static int ov17_02247338(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
 {
     int v0;
 
@@ -1510,7 +1510,7 @@ static int ov17_02247338 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruc
     return 0;
 }
 
-static int ov17_02247350 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4)
+static int ov17_02247350(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
 {
     int v0;
 
@@ -1523,7 +1523,7 @@ static int ov17_02247350 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruc
     return 0;
 }
 
-static int ov17_02247368 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4)
+static int ov17_02247368(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
 {
     int v0;
 
@@ -1536,7 +1536,7 @@ static int ov17_02247368 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruc
     return 0;
 }
 
-static int ov17_02247380 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4)
+static int ov17_02247380(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
 {
     int v0;
 
@@ -1549,7 +1549,7 @@ static int ov17_02247380 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruc
     return 0;
 }
 
-static int ov17_02247398 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4)
+static int ov17_02247398(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
 {
     int v0;
 
@@ -1562,7 +1562,7 @@ static int ov17_02247398 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruc
     return 0;
 }
 
-static int ov17_022473B0 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4)
+static int ov17_022473B0(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
 {
     int v0;
 
@@ -1575,7 +1575,7 @@ static int ov17_022473B0 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruc
     return 0;
 }
 
-static int ov17_022473C8 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4)
+static int ov17_022473C8(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
 {
     int v0;
 
@@ -1588,7 +1588,7 @@ static int ov17_022473C8 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruc
     return 0;
 }
 
-static int ov17_022473E0 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4)
+static int ov17_022473E0(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
 {
     int v0;
 
@@ -1601,7 +1601,7 @@ static int ov17_022473E0 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruc
     return 0;
 }
 
-static int ov17_022473F8 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4)
+static int ov17_022473F8(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
 {
     int v0, v1;
 
@@ -1620,7 +1620,7 @@ static int ov17_022473F8 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruc
     return 0;
 }
 
-static int ov17_02247424 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4)
+static int ov17_02247424(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
 {
     int v0, v1;
 
@@ -1641,7 +1641,7 @@ static int ov17_02247424 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruc
     return 0;
 }
 
-static int ov17_02247454 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4)
+static int ov17_02247454(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
 {
     int v0;
 
@@ -1654,7 +1654,7 @@ static int ov17_02247454 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruc
     return 0;
 }
 
-static int ov17_02247474 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4)
+static int ov17_02247474(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
 {
     int v0;
 
@@ -1667,7 +1667,7 @@ static int ov17_02247474 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruc
     return 0;
 }
 
-static int ov17_02247490 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4)
+static int ov17_02247490(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
 {
     int v0, v1;
 
@@ -1697,7 +1697,7 @@ static int ov17_02247490 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruc
     return 0;
 }
 
-static int ov17_022474D8 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4)
+static int ov17_022474D8(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
 {
     int v0, v1;
 
@@ -1727,7 +1727,7 @@ static int ov17_022474D8 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruc
     return 0;
 }
 
-static int ov17_02247520 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4)
+static int ov17_02247520(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
 {
     int v0;
 
@@ -1740,7 +1740,7 @@ static int ov17_02247520 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruc
     return 0;
 }
 
-static int ov17_02247538 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4)
+static int ov17_02247538(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
 {
     int v0;
 
@@ -1753,7 +1753,7 @@ static int ov17_02247538 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruc
     return 0;
 }
 
-static int ov17_02247550 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4)
+static int ov17_02247550(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
 {
     int v0, v1;
 
@@ -1773,7 +1773,7 @@ static int ov17_02247550 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruc
     return 0;
 }
 
-static int ov17_0224757C (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4)
+static int ov17_0224757C(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
 {
     int v0, v1;
 
@@ -1793,7 +1793,7 @@ static int ov17_0224757C (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruc
     return 0;
 }
 
-static int ov17_022475A8 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4)
+static int ov17_022475A8(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
 {
     int v0, v1;
 
@@ -1813,7 +1813,7 @@ static int ov17_022475A8 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruc
     return 0;
 }
 
-static int ov17_022475D4 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4)
+static int ov17_022475D4(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
 {
     int v0, v1;
 
@@ -1830,7 +1830,7 @@ static int ov17_022475D4 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruc
     return 1;
 }
 
-static int ov17_02247600 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4)
+static int ov17_02247600(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
 {
     int v0;
 
@@ -1847,7 +1847,7 @@ static int ov17_02247600 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruc
     return 1;
 }
 
-static int ov17_0224762C (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4)
+static int ov17_0224762C(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
 {
     int v0, v1;
 
@@ -1867,7 +1867,7 @@ static int ov17_0224762C (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruc
     return 0;
 }
 
-static int ov17_02247658 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4)
+static int ov17_02247658(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
 {
     int v0, v1;
 
@@ -1887,7 +1887,7 @@ static int ov17_02247658 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruc
     return 0;
 }
 
-static int ov17_02247684 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4)
+static int ov17_02247684(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
 {
     int v0, v1;
 
@@ -1907,7 +1907,7 @@ static int ov17_02247684 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruc
     return 0;
 }
 
-static int ov17_022476B0 (UnkStruct_ov17_022472F8 * param0, int param1, UnkStruct_ov17_02246F9C * param2, u8 * param3, int param4)
+static int ov17_022476B0(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
 {
     int v0, v1;
 

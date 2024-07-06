@@ -1,83 +1,77 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
+#include "constants/gba/species.h"
+#include "constants/species.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "message.h"
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "strbuf.h"
 #include "struct_decls/struct_02024440_decl.h"
-#include "trainer_info.h"
-#include "savedata.h"
-
-#include "overlay077/const_ov77_021D742C.h"
-
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02015958.h"
-#include "touch_screen.h"
 #include "struct_defs/struct_0203CC84.h"
 #include "struct_defs/struct_0205AA50.h"
-#include "pokemon.h"
 #include "struct_defs/struct_02099F80.h"
-#include "overlay022/struct_ov22_022559F8.h"
-#include "overlay084/struct_ov84_0223BA5C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
-#include "overlay097/struct_ov97_02236340.h"
-#include "overlay097/box_pokemon_gba.h"
 
-#include "unk_02000C88.h"
-#include "unk_02002328.h"
-#include "unk_02002B7C.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
-#include "overlay_manager.h"
-#include "narc.h"
-#include "unk_02006E3C.h"
-#include "unk_020093B4.h"
-#include "unk_02009714.h"
-#include "unk_0200A328.h"
-#include "unk_0200A784.h"
-#include "message.h"
-#include "string_template.h"
-#include "unk_0200DA60.h"
-#include "unk_0200F174.h"
-#include "unk_02015920.h"
-#include "unk_02017728.h"
-#include "heap.h"
-#include "unk_02018340.h"
-#include "unk_0201D670.h"
-#include "unk_0201DBEC.h"
-#include "unk_0201E86C.h"
-#include "unk_0201F834.h"
-#include "gx_layers.h"
-#include "cell_actor.h"
-#include "strbuf.h"
-#include "savedata/save_table.h"
-#include "savedata.h"
-#include "save_player.h"
-#include "game_options.h"
-#include "unk_0202EEC0.h"
-#include "pokemon.h"
-#include "pokemon_icon.h"
-#include "item.h"
-#include "unk_0209A74C.h"
+#include "overlay022/struct_ov22_022559F8.h"
+#include "overlay077/const_ov77_021D742C.h"
+#include "overlay084/struct_ov84_0223BA5C.h"
+#include "overlay097/box_pokemon_gba.h"
 #include "overlay097/ov97_02235D18.h"
 #include "overlay097/ov97_0223635C.h"
 #include "overlay097/ov97_02236380.h"
 #include "overlay097/ov97_02237694.h"
 #include "overlay097/ov97_022392E4.h"
+#include "overlay097/struct_ov97_0222DB78.h"
+#include "overlay097/struct_ov97_02236340.h"
+#include "savedata/save_table.h"
 
-#include "constants/species.h"
-#include "constants/gba/species.h"
+#include "cell_actor.h"
+#include "core_sys.h"
+#include "game_options.h"
+#include "gx_layers.h"
+#include "heap.h"
+#include "item.h"
+#include "message.h"
+#include "narc.h"
+#include "overlay_manager.h"
+#include "pokemon.h"
+#include "pokemon_icon.h"
+#include "save_player.h"
+#include "savedata.h"
+#include "strbuf.h"
+#include "string_template.h"
+#include "touch_screen.h"
+#include "trainer_info.h"
+#include "unk_02000C88.h"
+#include "unk_02002328.h"
+#include "unk_02002B7C.h"
+#include "unk_020041CC.h"
+#include "unk_02005474.h"
+#include "unk_02006E3C.h"
+#include "unk_020093B4.h"
+#include "unk_02009714.h"
+#include "unk_0200A328.h"
+#include "unk_0200A784.h"
+#include "unk_0200DA60.h"
+#include "unk_0200F174.h"
+#include "unk_02015920.h"
+#include "unk_02017728.h"
+#include "unk_02018340.h"
+#include "unk_0201D670.h"
+#include "unk_0201DBEC.h"
+#include "unk_0201E86C.h"
+#include "unk_0201F834.h"
+#include "unk_0202EEC0.h"
+#include "unk_0209A74C.h"
 
 FS_EXTERN_OVERLAY(overlay77);
 
 typedef struct {
-    Window * unk_00;
+    Window *unk_00;
     int unk_04;
     int unk_08;
     int unk_0C;
@@ -91,21 +85,21 @@ typedef struct {
     u32 unk_2C;
     u32 unk_30;
     int unk_34;
-    u16 * unk_38;
-    Strbuf* unk_3C;
-    StringTemplate * unk_40;
+    u16 *unk_38;
+    Strbuf *unk_3C;
+    StringTemplate *unk_40;
     int unk_44;
     int unk_48;
 } UnkStruct_ov97_02233DAC;
 
 typedef struct {
-    CellActor * unk_00;
-    CellActor * unk_04;
+    CellActor *unk_00;
+    CellActor *unk_04;
     int unk_08;
 } UnkStruct_ov97_02234A2C_sub1;
 
 typedef struct {
-    CellActor * unk_00;
+    CellActor *unk_00;
     int unk_04;
     int unk_08;
 } UnkStruct_ov97_02234A2C_sub2;
@@ -113,13 +107,13 @@ typedef struct {
 typedef struct {
     int unk_00;
     int unk_04;
-    void * unk_08;
+    void *unk_08;
 } UnkStruct_ov97_02233B8C;
 
 typedef struct {
     int unk_00;
     int unk_04;
-    CellActor * unk_08;
+    CellActor *unk_08;
     u8 unk_0C[512];
 } UnkStruct_ov97_0223F434;
 
@@ -128,25 +122,25 @@ typedef struct {
     int unk_04;
     int unk_08;
     int unk_0C;
-    SaveData * unk_10;
-    TrainerInfo * unk_14;
-    Options * unk_18;
+    SaveData *unk_10;
+    TrainerInfo *unk_14;
+    Options *unk_18;
     int unk_1C;
-    BGL * unk_20;
+    BGL *unk_20;
     int unk_24;
-    CellActorCollection * unk_28;
+    CellActorCollection *unk_28;
     UnkStruct_0200C738 unk_2C;
-    UnkStruct_02009714 * unk_1B8[6];
-    UnkStruct_02009DC8 * unk_1D0[6];
+    UnkStruct_02009714 *unk_1B8[6];
+    UnkStruct_02009DC8 *unk_1D0[6];
     CellActorResourceData unk_1E8;
     UnkStruct_ov97_02234A2C_sub1 unk_20C[30];
     TouchScreenRect unk_374[34];
-    CellActor * unk_3FC[4];
-    CellActor * unk_40C[4];
-    CellActor * unk_41C[4];
+    CellActor *unk_3FC[4];
+    CellActor *unk_40C[4];
+    CellActor *unk_41C[4];
     UnkStruct_ov97_02234A2C_sub2 unk_42C[6];
     int unk_474;
-    CellActor * unk_478[6];
+    CellActor *unk_478[6];
     UnkStruct_ov97_02233DAC unk_490;
     Window unk_4DC;
     Window unk_4EC;
@@ -154,27 +148,27 @@ typedef struct {
     int unk_50C;
     int unk_510;
     u32 unk_514[14580];
-    PokemonStorageGBA * unk_E8E0;
+    PokemonStorageGBA *unk_E8E0;
     int unk_E8E4;
     int unk_E8E8;
-    UnkStruct_02015920 * unk_E8EC;
+    UnkStruct_02015920 *unk_E8EC;
     UnkStruct_ov97_02233B8C unk_E8F0;
     UnkStruct_ov97_0223F434 unk_E8FC[30];
-    void (* unk_12664)(void);
-    Strbuf* unk_12668;
-    Strbuf* unk_1266C;
+    void (*unk_12664)(void);
+    Strbuf *unk_12668;
+    Strbuf *unk_1266C;
 } UnkStruct_ov97_02234A2C;
 
-static void ov97_02234A2C(UnkStruct_ov97_02234A2C * param0, int param1);
-static void ov97_022349E0(UnkStruct_ov97_02234A2C * param0);
-static void ov97_02234ECC(UnkStruct_ov97_02234A2C * param0);
-static void ov97_02235310(UnkStruct_ov97_02234A2C * param0);
-static void ov97_02233D10(UnkStruct_ov97_02234A2C * param0);
-void Strbuf_CopyNumChars(Strbuf *param0, const u16 * param1, u32 param2);
-void Strbuf_CopyChars(Strbuf *param0, const u16 * param1);
-void BoxMonGBAToBoxMon(BoxPokemonGBA * param0, BoxPokemon * param1);
+static void ov97_02234A2C(UnkStruct_ov97_02234A2C *param0, int param1);
+static void ov97_022349E0(UnkStruct_ov97_02234A2C *param0);
+static void ov97_02234ECC(UnkStruct_ov97_02234A2C *param0);
+static void ov97_02235310(UnkStruct_ov97_02234A2C *param0);
+static void ov97_02233D10(UnkStruct_ov97_02234A2C *param0);
+void Strbuf_CopyNumChars(Strbuf *param0, const u16 *param1, u32 param2);
+void Strbuf_CopyChars(Strbuf *param0, const u16 *param1);
+void BoxMonGBAToBoxMon(BoxPokemonGBA *param0, BoxPokemon *param1);
 
-UnkStruct_ov97_0223F434 * Unk_ov97_0223F434;
+UnkStruct_ov97_0223F434 *Unk_ov97_0223F434;
 
 static int Unk_ov97_0223EA98[] = {
     0xF,
@@ -225,7 +219,7 @@ static int Unk_ov97_0223EAB8[] = {
     0x21
 };
 
-static BOOL IsGBASpeciesInvalid (int speciesGBA)
+static BOOL IsGBASpeciesInvalid(int speciesGBA)
 {
     if (speciesGBA <= SPECIES_NONE) {
         return TRUE;
@@ -240,7 +234,7 @@ static BOOL IsGBASpeciesInvalid (int speciesGBA)
     return TRUE;
 }
 
-static void ov97_02233B44 (UnkStruct_ov97_02234A2C * param0)
+static void ov97_02233B44(UnkStruct_ov97_02234A2C *param0)
 {
     switch (ov97_02235DB0()) {
     case 0:
@@ -264,13 +258,13 @@ static void ov97_02233B44 (UnkStruct_ov97_02234A2C * param0)
     }
 }
 
-static int ov97_02233B8C (UnkStruct_ov97_02234A2C * param0)
+static int ov97_02233B8C(UnkStruct_ov97_02234A2C *param0)
 {
     int v0;
     u8 v1[16];
     int v2;
-    PalParkTransfer * v3;
-    UnkStruct_ov97_02233B8C * v4 = &param0->unk_E8F0;
+    PalParkTransfer *v3;
+    UnkStruct_ov97_02233B8C *v4 = &param0->unk_E8F0;
 
     switch (v4->unk_00) {
     case 0:
@@ -364,9 +358,9 @@ static int ov97_02233B8C (UnkStruct_ov97_02234A2C * param0)
     return 10;
 }
 
-static void ov97_02233CE4 (UnkStruct_ov97_02234A2C * param0)
+static void ov97_02233CE4(UnkStruct_ov97_02234A2C *param0)
 {
-    PalParkTransfer * v0;
+    PalParkTransfer *v0;
     int v1;
 
     v0 = SaveData_PalParkTransfer(param0->unk_10);
@@ -378,14 +372,14 @@ static void ov97_02233CE4 (UnkStruct_ov97_02234A2C * param0)
     ResetUnlock(4);
 }
 
-static void ov97_02233D10 (UnkStruct_ov97_02234A2C * param0)
+static void ov97_02233D10(UnkStruct_ov97_02234A2C *param0)
 {
     int v0, v1, v2;
     u16 v3;
-    BoxPokemon * v4;
-    BoxPokemonGBA * v5;
+    BoxPokemon *v4;
+    BoxPokemonGBA *v5;
     Pokemon v6;
-    PalParkTransfer * v7;
+    PalParkTransfer *v7;
 
     v7 = SaveData_PalParkTransfer(param0->unk_10);
     v4 = Pokemon_GetBoxPokemon(&v6);
@@ -411,7 +405,7 @@ static void ov97_02233D10 (UnkStruct_ov97_02234A2C * param0)
     }
 }
 
-static int ov97_02233DAC (UnkStruct_ov97_02233DAC * param0, Strbuf *param1, int param2)
+static int ov97_02233DAC(UnkStruct_ov97_02233DAC *param0, Strbuf *param1, int param2)
 {
     int v0, v1;
 
@@ -424,13 +418,13 @@ static int ov97_02233DAC (UnkStruct_ov97_02233DAC * param0, Strbuf *param1, int 
     }
 }
 
-static void ov97_02233DD0 (UnkStruct_ov97_02234A2C * param0, UnkStruct_ov97_02233DAC * param1, int param2)
+static void ov97_02233DD0(UnkStruct_ov97_02234A2C *param0, UnkStruct_ov97_02233DAC *param1, int param2)
 {
-    Strbuf* v0;
-    StringTemplate * v1;
-    MessageLoader * v2;
+    Strbuf *v0;
+    StringTemplate *v1;
+    MessageLoader *v2;
     int v3, v4, v5;
-    Strbuf* v6;
+    Strbuf *v6;
 
     if (param1->unk_44 == 0) {
         v5 = 0xff;
@@ -502,11 +496,14 @@ static void ov97_02233DD0 (UnkStruct_ov97_02234A2C * param0, UnkStruct_ov97_0223
     }
 }
 
-static void ov97_02233F74 (void)
+static void ov97_02233F74(void)
 {
     {
         UnkStruct_ov22_022559F8 v0 = {
-            20, 2048, 2048, 78,
+            20,
+            2048,
+            2048,
+            78,
         };
 
         sub_0201E86C(&v0);
@@ -517,7 +514,7 @@ static void ov97_02233F74 (void)
     sub_0201F8E4();
 }
 
-static void ov97_02233FA4 (UnkStruct_ov97_02234A2C * param0)
+static void ov97_02233FA4(UnkStruct_ov97_02234A2C *param0)
 {
     int v0;
 
@@ -541,13 +538,13 @@ static void ov97_02233FA4 (UnkStruct_ov97_02234A2C * param0)
     sub_02006E84(19, PokeIconPalettesFileIndex(), 1, 8 * 0x20, 0, 78);
 }
 
-static void ov97_022340B0 (UnkStruct_ov97_02234A2C * param0)
+static void ov97_022340B0(UnkStruct_ov97_02234A2C *param0)
 {
     sub_020093B4(&param0->unk_1E8, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, param0->unk_1B8[0], param0->unk_1B8[1], param0->unk_1B8[2], param0->unk_1B8[3], NULL, NULL);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void ov97_022340FC (CellActorInitParamsEx * param0, UnkStruct_ov97_02234A2C * param1, CellActorResourceData * param2, int param3)
+static void ov97_022340FC(CellActorInitParamsEx *param0, UnkStruct_ov97_02234A2C *param1, CellActorResourceData *param2, int param3)
 {
     param0->collection = param1->unk_28;
     param0->resourceData = &param1->unk_1E8;
@@ -561,22 +558,22 @@ static void ov97_022340FC (CellActorInitParamsEx * param0, UnkStruct_ov97_02234A
     param0->heapID = 78;
 }
 
-static int ov97_02234124 (UnkStruct_ov97_02234A2C * param0, int param1, int param2)
+static int ov97_02234124(UnkStruct_ov97_02234A2C *param0, int param1, int param2)
 {
     return GetGBABoxMonData(&(param0->unk_E8E0->boxes[param1][param2]), 11, NULL);
 }
 
-static int ov97_02234148 (UnkStruct_ov97_02234A2C * param0, int param1, int param2)
+static int ov97_02234148(UnkStruct_ov97_02234A2C *param0, int param1, int param2)
 {
     return GetGBABoxMonData(&(param0->unk_E8E0->boxes[param1][param2]), 45, NULL);
 }
 
-static int ov97_0223416C (UnkStruct_ov97_02234A2C * param0, int param1, int param2)
+static int ov97_0223416C(UnkStruct_ov97_02234A2C *param0, int param1, int param2)
 {
     return GetGBABoxMonData(&(param0->unk_E8E0->boxes[param1][param2]), 0, NULL);
 }
 
-static void ov97_02234190 (TouchScreenRect *rect, int param1, int param2, int param3, int param4)
+static void ov97_02234190(TouchScreenRect *rect, int param1, int param2, int param3, int param4)
 {
     rect->rect.top = param2 - param4 / 2;
     rect->rect.left = param1 - param3 / 2;
@@ -584,9 +581,9 @@ static void ov97_02234190 (TouchScreenRect *rect, int param1, int param2, int pa
     rect->rect.right = param1 + param3 / 2;
 }
 
-static void * ov97_022341B4 (u32 param0, u32 param1, NNSG2dCharacterData ** param2, u32 param3)
+static void *ov97_022341B4(u32 param0, u32 param1, NNSG2dCharacterData **param2, u32 param3)
 {
-    void * v0;
+    void *v0;
 
     v0 = Heap_AllocFromHeapAtEnd(param3, 4096);
 
@@ -602,13 +599,13 @@ static void * ov97_022341B4 (u32 param0, u32 param1, NNSG2dCharacterData ** para
     return v0;
 }
 
-static void ov97_022341EC (u32 param0, NNSG2dCharacterData ** param1, void * param2, NARC * param3)
+static void ov97_022341EC(u32 param0, NNSG2dCharacterData **param1, void *param2, NARC *param3)
 {
     NARC_ReadWholeMember(param3, param0, param2);
     NNS_G2dGetUnpackedBGCharacterData(param2, param1);
 }
 
-static u8 GBASpeciesToDSFormId (int param0, u32 param1, int param2)
+static u8 GBASpeciesToDSFormId(int param0, u32 param1, int param2)
 {
     u8 v0;
 
@@ -642,11 +639,11 @@ static u8 GBASpeciesToDSFormId (int param0, u32 param1, int param2)
     return v0;
 }
 
-static void ov97_02234278 (int param0, int param1, u32 param2, int param3, int param4, CellActor * param5)
+static void ov97_02234278(int param0, int param1, u32 param2, int param3, int param4, CellActor *param5)
 {
-    u8 * v0;
+    u8 *v0;
     u8 v1;
-    NNSG2dCharacterData * v2;
+    NNSG2dCharacterData *v2;
 
     param0 = ov97_02236DD0(param0);
 
@@ -660,11 +657,11 @@ static void ov97_02234278 (int param0, int param1, u32 param2, int param3, int p
     Heap_FreeToHeap(v0);
 }
 
-static void ov97_022342E4 (int param0, int param1, int param2, int param3, CellActor * param4, void * param5, NARC * param6)
+static void ov97_022342E4(int param0, int param1, int param2, int param3, CellActor *param4, void *param5, NARC *param6)
 {
     u32 v0;
-    NNSG2dCharacterData * v1;
-    UnkStruct_ov97_0223F434 * v2 = Unk_ov97_0223F434 + param3;
+    NNSG2dCharacterData *v1;
+    UnkStruct_ov97_0223F434 *v2 = Unk_ov97_0223F434 + param3;
 
     if (param4) {
         if (IsGBASpeciesInvalid(param0) == 0) {
@@ -686,10 +683,10 @@ static void ov97_022342E4 (int param0, int param1, int param2, int param3, CellA
     }
 }
 
-static void ov97_02234364 (void)
+static void ov97_02234364(void)
 {
     int v0;
-    UnkStruct_ov97_0223F434 * v1 = Unk_ov97_0223F434;
+    UnkStruct_ov97_0223F434 *v1 = Unk_ov97_0223F434;
 
     for (v0 = 0; v0 < 30; v0++, v1++) {
         if (v1->unk_08) {
@@ -700,12 +697,12 @@ static void ov97_02234364 (void)
     }
 }
 
-static void ov97_022343A8 (UnkStruct_ov97_02234A2C * param0)
+static void ov97_022343A8(UnkStruct_ov97_02234A2C *param0)
 {
     int v0, v1, v2, v3, v4;
     u32 v5;
-    void * v6;
-    NARC * v7;
+    void *v6;
+    NARC *v7;
 
     v7 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 78);
     v6 = Heap_AllocFromHeapAtEnd(78, 4096);
@@ -742,7 +739,7 @@ static void ov97_022343A8 (UnkStruct_ov97_02234A2C * param0)
     ov97_022349E0(param0);
 }
 
-static void ov97_02234508 (UnkStruct_ov97_02234A2C * param0)
+static void ov97_02234508(UnkStruct_ov97_02234A2C *param0)
 {
     int v0, v1, v2;
     CellActorInitParamsEx v3;
@@ -790,10 +787,10 @@ static void ov97_02234508 (UnkStruct_ov97_02234A2C * param0)
     }
 }
 
-static CellActor * ov97_02234638 (UnkStruct_ov97_02234A2C * param0, int param1, int param2, int param3, int param4)
+static CellActor *ov97_02234638(UnkStruct_ov97_02234A2C *param0, int param1, int param2, int param3, int param4)
 {
     CellActorInitParamsEx v0;
-    CellActor * v1;
+    CellActor *v1;
 
     ov97_022340FC(&v0, param0, &param0->unk_1E8, NNS_G2D_VRAM_TYPE_2DMAIN);
 
@@ -811,7 +808,7 @@ static CellActor * ov97_02234638 (UnkStruct_ov97_02234A2C * param0, int param1, 
     return v1;
 }
 
-static void ov97_0223468C (UnkStruct_ov97_02234A2C * param0)
+static void ov97_0223468C(UnkStruct_ov97_02234A2C *param0)
 {
     int v0;
 
@@ -834,10 +831,10 @@ static void ov97_0223468C (UnkStruct_ov97_02234A2C * param0)
     param0->unk_474 = 0;
 }
 
-static BOOL ov97_0223474C (UnkStruct_ov97_02234A2C * param0, int param1)
+static BOOL ov97_0223474C(UnkStruct_ov97_02234A2C *param0, int param1)
 {
     int v0;
-    BoxPokemonGBA * v1 = &param0->unk_E8E0->boxes[param0->unk_E8E4][param1];
+    BoxPokemonGBA *v1 = &param0->unk_E8E0->boxes[param0->unk_E8E4][param1];
 
     if (GetGBABoxMonData(v1, 65, NULL) == 412) {
         return 1;
@@ -846,10 +843,10 @@ static BOOL ov97_0223474C (UnkStruct_ov97_02234A2C * param0, int param1)
     return 0;
 }
 
-static BOOL ov97_02234784 (UnkStruct_ov97_02234A2C * param0, int param1)
+static BOOL ov97_02234784(UnkStruct_ov97_02234A2C *param0, int param1)
 {
     int v0, v1, v2;
-    BoxPokemonGBA * v3 = &param0->unk_E8E0->boxes[param0->unk_E8E4][param1];
+    BoxPokemonGBA *v3 = &param0->unk_E8E0->boxes[param0->unk_E8E4][param1];
 
     for (v0 = 0; v0 < 4; v0++) {
         v2 = GetGBABoxMonData(v3, 13 + v0, NULL);
@@ -865,158 +862,157 @@ static BOOL ov97_02234784 (UnkStruct_ov97_02234A2C * param0, int param1)
 }
 
 u16 Unk_ov97_0223EAD8[] = {
-	0x5,
-	0x34,
-	0x35,
-	0x36,
-	0x37,
-	0x38,
-	0x39,
-	0x3A,
-	0x3B,
-	0x3C,
-	0x3D,
-	0x3E,
-	0x48,
-	0x52,
-	0x57,
-	0x58,
-	0x59,
-	0x5A,
-	0x5B,
-	0x5C,
-	0x63,
-	0x64,
-	0x65,
-	0x66,
-	0x69,
-	0x70,
-	0x71,
-	0x72,
-	0x73,
-	0x74,
-	0x75,
-	0x76,
-	0x77,
-	0x78,
-	0x79,
-	0x7A,
-	0x7B,
-	0x7C,
-	0x7D,
-	0x7E,
-	0x7F,
-	0x80,
-	0x81,
-	0x82,
-	0x83,
-	0x84,
-	0xB0,
-	0xB1,
-	0xB2,
-	0xE2,
-	0xE3,
-	0xE4,
-	0xE5,
-	0xE6,
-	0xE7,
-	0xE8,
-	0xE9,
-	0xEA,
-	0xEB,
-	0xEC,
-	0xED,
-	0xEE,
-	0xEF,
-	0xF0,
-	0xF1,
-	0xF2,
-	0xF3,
-	0xF4,
-	0xF5,
-	0xF6,
-	0xF7,
-	0xF8,
-	0xF9,
-	0xFA,
-	0xFB,
-	0xFC,
-	0xFD,
-	0x103,
-	0x104,
-	0x105,
-	0x106,
-	0x107,
-	0x108,
-	0x109,
-	0x10A,
-	0x10B,
-	0x10C,
-	0x10D,
-	0x10E,
-	0x10F,
-	0x110,
-	0x111,
-	0x112,
-	0x113,
-	0x114,
-	0x115,
-	0x116,
-	0x117,
-	0x118,
-	0x119,
-	0x11A,
-	0x11B,
-	0x11C,
-	0x11D,
-	0x11E,
-	0x11F,
-	0x120,
-	0x153,
-	0x154,
-	0x155,
-	0x156,
-	0x157,
-	0x158,
-	0x159,
-	0x15A,
-	0x15B,
-	0x15C,
-	0x15D,
-	0x15E,
-	0x15F,
-	0x160,
-	0x161,
-	0x162,
-	0x163,
-	0x164,
-	0x165,
-	0x166,
-	0x167,
-	0x168,
-	0x169,
-	0x16A,
-	0x16B,
-	0x16C,
-	0x16D,
-	0x16E,
-	0x16F,
-	0x170,
-	0x171,
-	0x172,
-	0x173,
-	0x174,
-	0x175,
-	0x176,
-	0x177,
-	0x178,
-	0x0
+    0x5,
+    0x34,
+    0x35,
+    0x36,
+    0x37,
+    0x38,
+    0x39,
+    0x3A,
+    0x3B,
+    0x3C,
+    0x3D,
+    0x3E,
+    0x48,
+    0x52,
+    0x57,
+    0x58,
+    0x59,
+    0x5A,
+    0x5B,
+    0x5C,
+    0x63,
+    0x64,
+    0x65,
+    0x66,
+    0x69,
+    0x70,
+    0x71,
+    0x72,
+    0x73,
+    0x74,
+    0x75,
+    0x76,
+    0x77,
+    0x78,
+    0x79,
+    0x7A,
+    0x7B,
+    0x7C,
+    0x7D,
+    0x7E,
+    0x7F,
+    0x80,
+    0x81,
+    0x82,
+    0x83,
+    0x84,
+    0xB0,
+    0xB1,
+    0xB2,
+    0xE2,
+    0xE3,
+    0xE4,
+    0xE5,
+    0xE6,
+    0xE7,
+    0xE8,
+    0xE9,
+    0xEA,
+    0xEB,
+    0xEC,
+    0xED,
+    0xEE,
+    0xEF,
+    0xF0,
+    0xF1,
+    0xF2,
+    0xF3,
+    0xF4,
+    0xF5,
+    0xF6,
+    0xF7,
+    0xF8,
+    0xF9,
+    0xFA,
+    0xFB,
+    0xFC,
+    0xFD,
+    0x103,
+    0x104,
+    0x105,
+    0x106,
+    0x107,
+    0x108,
+    0x109,
+    0x10A,
+    0x10B,
+    0x10C,
+    0x10D,
+    0x10E,
+    0x10F,
+    0x110,
+    0x111,
+    0x112,
+    0x113,
+    0x114,
+    0x115,
+    0x116,
+    0x117,
+    0x118,
+    0x119,
+    0x11A,
+    0x11B,
+    0x11C,
+    0x11D,
+    0x11E,
+    0x11F,
+    0x120,
+    0x153,
+    0x154,
+    0x155,
+    0x156,
+    0x157,
+    0x158,
+    0x159,
+    0x15A,
+    0x15B,
+    0x15C,
+    0x15D,
+    0x15E,
+    0x15F,
+    0x160,
+    0x161,
+    0x162,
+    0x163,
+    0x164,
+    0x165,
+    0x166,
+    0x167,
+    0x168,
+    0x169,
+    0x16A,
+    0x16B,
+    0x16C,
+    0x16D,
+    0x16E,
+    0x16F,
+    0x170,
+    0x171,
+    0x172,
+    0x173,
+    0x174,
+    0x175,
+    0x176,
+    0x177,
+    0x178,
+    0x0
 };
 
-
-static BOOL ov97_022347D8 (UnkStruct_ov97_02234A2C * param0, int param1)
+static BOOL ov97_022347D8(UnkStruct_ov97_02234A2C *param0, int param1)
 {
-    BoxPokemonGBA * v0 = &param0->unk_E8E0->boxes[param0->unk_E8E4][param1];
+    BoxPokemonGBA *v0 = &param0->unk_E8E0->boxes[param0->unk_E8E4][param1];
     int v1 = GetGBABoxMonData(v0, 12, NULL);
     int v2;
 
@@ -1029,15 +1025,15 @@ static BOOL ov97_022347D8 (UnkStruct_ov97_02234A2C * param0, int param1)
     return 0;
 }
 
-static BOOL ov97_02234828 (UnkStruct_ov97_02234A2C * param0, int param1)
+static BOOL ov97_02234828(UnkStruct_ov97_02234A2C *param0, int param1)
 {
-    BoxPokemonGBA * v0 = &param0->unk_E8E0->boxes[param0->unk_E8E4][param1];
+    BoxPokemonGBA *v0 = &param0->unk_E8E0->boxes[param0->unk_E8E4][param1];
     int v1 = GetGBABoxMonData(v0, 11, NULL);
 
     return IsGBASpeciesInvalid(v1);
 }
 
-static int ov97_02234854 (UnkStruct_ov97_02234A2C * param0, int param1)
+static int ov97_02234854(UnkStruct_ov97_02234A2C *param0, int param1)
 {
     int v0, v1;
 
@@ -1068,7 +1064,7 @@ static int ov97_02234854 (UnkStruct_ov97_02234A2C * param0, int param1)
     }
 
     if (v1 == -1) {
-        const VecFx32 * v2;
+        const VecFx32 *v2;
         VecFx32 v3;
 
         if (param0->unk_474 == 6) {
@@ -1107,7 +1103,7 @@ static int ov97_02234854 (UnkStruct_ov97_02234A2C * param0, int param1)
     return 0;
 }
 
-static void ov97_022349E0 (UnkStruct_ov97_02234A2C * param0)
+static void ov97_022349E0(UnkStruct_ov97_02234A2C *param0)
 {
     int v0;
 
@@ -1120,7 +1116,7 @@ static void ov97_022349E0 (UnkStruct_ov97_02234A2C * param0)
     }
 }
 
-static void ov97_02234A2C (UnkStruct_ov97_02234A2C * param0, int param1)
+static void ov97_02234A2C(UnkStruct_ov97_02234A2C *param0, int param1)
 {
     UnkStruct_ov97_02233DAC v0;
     u16 v1[8 + 1];
@@ -1145,9 +1141,9 @@ static void ov97_02234A2C (UnkStruct_ov97_02234A2C * param0, int param1)
     ov97_02233DD0(param0, &v0, 0x1);
 }
 
-static void ov97_02234AB4 (UnkStruct_ov97_02234A2C * param0, BoxPokemonGBA * param1)
+static void ov97_02234AB4(UnkStruct_ov97_02234A2C *param0, BoxPokemonGBA *param1)
 {
-    u16 * v0 = sub_02019FE4(param0->unk_20, 2);
+    u16 *v0 = sub_02019FE4(param0->unk_20, 2);
     u8 v1;
     int v2;
 
@@ -1170,15 +1166,15 @@ static void ov97_02234AB4 (UnkStruct_ov97_02234A2C * param0, BoxPokemonGBA * par
     sub_02019448(param0->unk_20, 2);
 }
 
-static void ov97_02234B0C (UnkStruct_ov97_02234A2C * param0, BoxPokemonGBA * param1)
+static void ov97_02234B0C(UnkStruct_ov97_02234A2C *param0, BoxPokemonGBA *param1)
 {
     int v0, v1;
     int v2, v3;
     UnkStruct_ov97_02233DAC v4;
-    MessageLoader * v5;
+    MessageLoader *v5;
     u8 v6[10 + 1];
     u16 v7[10 + 1];
-    Strbuf* v8;
+    Strbuf *v8;
 
     memset(&v4, 0, sizeof(UnkStruct_ov97_02233DAC));
 
@@ -1270,7 +1266,7 @@ static void ov97_02234B0C (UnkStruct_ov97_02234A2C * param0, BoxPokemonGBA * par
     sub_02005844(v0, 0);
 }
 
-static void ov97_02234CC4 (UnkStruct_ov97_02234A2C * param0, int param1, int param2, int * param3)
+static void ov97_02234CC4(UnkStruct_ov97_02234A2C *param0, int param1, int param2, int *param3)
 {
     sub_0200F174(0, param1, param1, 0x0, 6, 1, 78);
 
@@ -1281,7 +1277,7 @@ static void ov97_02234CC4 (UnkStruct_ov97_02234A2C * param0, int param1, int par
     param0->unk_24 = param2;
 }
 
-static void ov97_02234CF4 (UnkStruct_ov97_02234A2C * param0, int param1, int param2, int * param3)
+static void ov97_02234CF4(UnkStruct_ov97_02234A2C *param0, int param1, int param2, int *param3)
 {
     sub_0200F174(0, param1, param1, 0x7fff, 6, 1, 78);
 
@@ -1292,7 +1288,7 @@ static void ov97_02234CF4 (UnkStruct_ov97_02234A2C * param0, int param1, int par
     param0->unk_24 = param2;
 }
 
-static void ov97_02234D28 (BGL * param0)
+static void ov97_02234D28(BGL *param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -1390,7 +1386,7 @@ static void ov97_02234D28 (BGL * param0)
     }
 }
 
-static void ov97_02234DFC (UnkStruct_ov97_02234A2C * param0)
+static void ov97_02234DFC(UnkStruct_ov97_02234A2C *param0)
 {
     UnkStruct_02099F80 v0 = {
         GX_VRAM_BG_128_A,
@@ -1419,14 +1415,14 @@ static void ov97_02234DFC (UnkStruct_ov97_02234A2C * param0)
     sub_02002BB8(2, 78);
 }
 
-static void ov97_02234E7C (UnkStruct_ov97_02234A2C * param0)
+static void ov97_02234E7C(UnkStruct_ov97_02234A2C *param0)
 {
     sub_02006E60(116, 20, param0->unk_20, 2, 0, 32 * 24 * 2, 1, 78);
     sub_02019E2C(param0->unk_20, 2, 0, 0, 32, 24, Unk_ov97_0223EA60[param0->unk_00]);
     sub_02019448(param0->unk_20, 2);
 }
 
-static void ov97_02234ECC (UnkStruct_ov97_02234A2C * param0)
+static void ov97_02234ECC(UnkStruct_ov97_02234A2C *param0)
 {
     sub_02002E7C(0, 14 * 32, 78);
     sub_0200DAA4(param0->unk_20, 0, 0x3F0, 14, 0, 78);
@@ -1448,7 +1444,7 @@ static void ov97_02234ECC (UnkStruct_ov97_02234A2C * param0)
     param0->unk_490.unk_3C = NULL;
 }
 
-static void ov97_02234F88 (UnkStruct_ov97_02234A2C * param0)
+static void ov97_02234F88(UnkStruct_ov97_02234A2C *param0)
 {
     int v0, v1, v2, v3;
     u32 v4;
@@ -1501,7 +1497,7 @@ static void ov97_02234F88 (UnkStruct_ov97_02234A2C * param0)
     ov97_02233DD0(param0, &param0->unk_490, 0x8 | 0x10);
 }
 
-static void ov97_02235158 (Window * param0)
+static void ov97_02235158(Window *param0)
 {
     if (param0->unk_00) {
         sub_0200E084(param0, 0);
@@ -1510,7 +1506,7 @@ static void ov97_02235158 (Window * param0)
     }
 }
 
-static void ov97_02235178 (UnkStruct_ov97_02234A2C * param0)
+static void ov97_02235178(UnkStruct_ov97_02234A2C *param0)
 {
     int v0;
 
@@ -1533,7 +1529,7 @@ static void ov97_02235178 (UnkStruct_ov97_02234A2C * param0)
     param0->unk_474 = 0;
 }
 
-static void ov97_022351F0 (UnkStruct_ov97_02234A2C * param0)
+static void ov97_022351F0(UnkStruct_ov97_02234A2C *param0)
 {
     int v0;
 
@@ -1596,7 +1592,7 @@ static void ov97_022351F0 (UnkStruct_ov97_02234A2C * param0)
     sub_02019044(param0->unk_20, 3);
 }
 
-static void ov97_02235310 (UnkStruct_ov97_02234A2C * param0)
+static void ov97_02235310(UnkStruct_ov97_02234A2C *param0)
 {
     UnkStruct_02015958 v0;
 
@@ -1610,11 +1606,11 @@ static void ov97_02235310 (UnkStruct_ov97_02234A2C * param0)
     sub_02015958(param0->unk_E8EC, &v0);
 }
 
-static void ov97_02235344 (UnkStruct_ov97_02234A2C * param0)
+static void ov97_02235344(UnkStruct_ov97_02234A2C *param0)
 {
     UnkStruct_ov97_02233DAC v0;
-    StringTemplate * v1;
-    Strbuf* v2;
+    StringTemplate *v1;
+    Strbuf *v2;
     u16 v3[7 + 1];
 
     ov97_0223936C(ov97_02236378(), v3, 7 + 1, ov97_02235DBC());
@@ -1638,9 +1634,9 @@ static void ov97_02235344 (UnkStruct_ov97_02234A2C * param0)
     ov97_02235310(param0);
 }
 
-static void ov97_022353CC (void * param0)
+static void ov97_022353CC(void *param0)
 {
-    UnkStruct_ov97_02234A2C * v0 = (UnkStruct_ov97_02234A2C *)param0;
+    UnkStruct_ov97_02234A2C *v0 = (UnkStruct_ov97_02234A2C *)param0;
 
     if (v0->unk_12664) {
         v0->unk_12664();
@@ -1654,11 +1650,11 @@ static void ov97_022353CC (void * param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static int ov97_02235408 (UnkStruct_ov97_02234A2C * param0)
+static int ov97_02235408(UnkStruct_ov97_02234A2C *param0)
 {
     int v0;
     u32 v1;
-    PalParkTransfer * v2;
+    PalParkTransfer *v2;
 
     v2 = SaveData_PalParkTransfer(param0->unk_10);
 
@@ -1684,7 +1680,7 @@ static int ov97_02235408 (UnkStruct_ov97_02234A2C * param0)
     }
 
     {
-        BoxPokemonGBA * v3;
+        BoxPokemonGBA *v3;
         int v4, v5, v6 = 0;
 
         for (v5 = 0; v5 < GBA_TOTAL_BOXES_COUNT; v5++) {
@@ -1709,7 +1705,7 @@ static int ov97_02235408 (UnkStruct_ov97_02234A2C * param0)
     return 0;
 }
 
-static BOOL ov97_022354C4 (UnkStruct_ov97_02234A2C * param0, int param1)
+static BOOL ov97_022354C4(UnkStruct_ov97_02234A2C *param0, int param1)
 {
     if (param0->unk_04) {
         ov97_02234ECC(param0);
@@ -1728,7 +1724,7 @@ static BOOL ov97_022354C4 (UnkStruct_ov97_02234A2C * param0, int param1)
     return 0;
 }
 
-static BOOL ov97_02235528 (UnkStruct_ov97_02234A2C * param0, int param1)
+static BOOL ov97_02235528(UnkStruct_ov97_02234A2C *param0, int param1)
 {
     if (param0->unk_04) {
         ov97_02234ECC(param0);
@@ -1748,7 +1744,7 @@ static BOOL ov97_02235528 (UnkStruct_ov97_02234A2C * param0, int param1)
     return 0;
 }
 
-static BOOL ov97_02235590 (UnkStruct_ov97_02234A2C * param0, int param1)
+static BOOL ov97_02235590(UnkStruct_ov97_02234A2C *param0, int param1)
 {
     if (param0->unk_08 != -1) {
         ov97_02234ECC(param0);
@@ -1776,9 +1772,9 @@ static BOOL ov97_02235590 (UnkStruct_ov97_02234A2C * param0, int param1)
     return 0;
 }
 
-static int ov97_02235624 (OverlayManager * param0, int * param1)
+static int ov97_02235624(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov97_02234A2C * v0;
+    UnkStruct_ov97_02234A2C *v0;
 
     Heap_Create(3, 78, 0x38000);
 
@@ -1812,15 +1808,15 @@ static int ov97_02235624 (OverlayManager * param0, int * param1)
 
 extern int gIgnoreCartridgeForWake;
 
-static int ov97_022356E8 (OverlayManager * param0, int * param1)
+static int ov97_022356E8(OverlayManager *param0, int *param1)
 {
     int v0, v1, v2;
-    UnkStruct_ov97_02234A2C * v3 = OverlayManager_Data(param0);
+    UnkStruct_ov97_02234A2C *v3 = OverlayManager_Data(param0);
 
     CTRDG_IsExisting();
 
     if ((CTRDG_IsPulledOut() == TRUE) || gIgnoreCartridgeForWake) {
-        UnkStruct_ov97_02233B8C * v4 = &v3->unk_E8F0;
+        UnkStruct_ov97_02233B8C *v4 = &v3->unk_E8F0;
 
         if ((v4->unk_00 == 3) || (v4->unk_00 == 4)) {
             SaveData_SaveStateCancel(v3->unk_10);
@@ -2065,8 +2061,7 @@ static int ov97_022356E8 (OverlayManager * param0, int * param1)
             break;
         }
         break;
-    case 18:
-    {
+    case 18: {
         UnkStruct_ov97_02233DAC v5;
 
         v3->unk_490.unk_34 = 11;
@@ -2076,8 +2071,7 @@ static int ov97_022356E8 (OverlayManager * param0, int * param1)
 
         Sound_PlayEffect(1500);
         *param1 = 19;
-    }
-    break;
+    } break;
     case 19:
         v0 = sub_020159FC(v3->unk_E8EC);
 
@@ -2143,11 +2137,11 @@ static int ov97_022356E8 (OverlayManager * param0, int * param1)
     return 0;
 }
 
-static int ov97_02235CC8 (OverlayManager * param0, int * param1)
+static int ov97_02235CC8(OverlayManager *param0, int *param1)
 {
     FS_EXTERN_OVERLAY(overlay77);
 
-    UnkStruct_ov97_02234A2C * v0 = OverlayManager_Data(param0);
+    UnkStruct_ov97_02234A2C *v0 = OverlayManager_Data(param0);
 
     Strbuf_Free(v0->unk_12668);
     Strbuf_Free(v0->unk_1266C);

@@ -1,18 +1,18 @@
 #ifndef POKEPLATINUM_CELL_ACTOR_H
 #define POKEPLATINUM_CELL_ACTOR_H
 
+#include <nitro/fx/fx.h>
 #include <nitro/gx.h>
 #include <nnsys.h>
-#include <nitro/fx/fx.h>
 
 #include "constants/heap.h"
 
-#define CELL_ACTOR_FLIP_NONE        0
-#define CELL_ACTOR_FLIP_H           1
-#define CELL_ACTOR_FLIP_V           2
+#define CELL_ACTOR_FLIP_NONE 0
+#define CELL_ACTOR_FLIP_H    1
+#define CELL_ACTOR_FLIP_V    2
 
-#define CELL_ACTOR_ANIM_DATA_SIZE   29
-#define MAX_SIMULTANEOUS_SPRITES    128
+#define CELL_ACTOR_ANIM_DATA_SIZE 29
+#define MAX_SIMULTANEOUS_SPRITES  128
 
 enum CellAnimType {
     CELL_ANIM_TYPE_NONE = 0,
@@ -133,7 +133,6 @@ typedef struct CellActorInitParamsEx {
     NNS_G2D_VRAM_TYPE vramType;
     enum HeapId heapID;
 } CellActorInitParamsEx;
-
 
 CellActorCollection *CellActorCollection_New(const CellActorCollectionParams *params);
 BOOL CellActorCollection_Delete(CellActorCollection *collection);

@@ -5,8 +5,8 @@
 #include "sys_task_manager.h"
 
 typedef struct {
-    ScreenScrollManager * screenScrollMgr;
-    SysTask * unk_04;
+    ScreenScrollManager *screenScrollMgr;
+    SysTask *unk_04;
     u32 unk_08;
 } UnkStruct_ov104_0223F094;
 

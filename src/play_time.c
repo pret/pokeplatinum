@@ -1,10 +1,10 @@
-#include <nitro.h>
-
 #include "play_time.h"
 
-#define SECONDS_PER_MINUTE 60
-#define MINUTES_PER_HOUR 60
-#define PLAYTIME_MAX_HOURS 999
+#include <nitro.h>
+
+#define SECONDS_PER_MINUTE   60
+#define MINUTES_PER_HOUR     60
+#define PLAYTIME_MAX_HOURS   999
 #define PLAYTIME_MAX_MINUTES (MINUTES_PER_HOUR - 1)
 #define PLAYTIME_MAX_SECONDS (SECONDS_PER_MINUTE - 1)
 
@@ -17,8 +17,8 @@ void PlayTime_Init(PlayTime *playTime)
 
 void PlayTime_Increment(PlayTime *playTime, u32 seconds)
 {
-    if (playTime->hours == PLAYTIME_MAX_HOURS 
-        && playTime->minutes == PLAYTIME_MAX_MINUTES 
+    if (playTime->hours == PLAYTIME_MAX_HOURS
+        && playTime->minutes == PLAYTIME_MAX_MINUTES
         && playTime->seconds == PLAYTIME_MAX_SECONDS) {
         return;
     }

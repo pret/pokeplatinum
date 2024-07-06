@@ -1,14 +1,15 @@
+#include "easy3d_object.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "sys_task_manager.h"
 
-#include "unk_02006E3C.h"
-#include "sys_task.h"
-#include "easy3d_object.h"
-#include "heap.h"
 #include "easy3d.h"
+#include "heap.h"
+#include "sys_task.h"
+#include "sys_task_manager.h"
+#include "unk_02006E3C.h"
 
 static void Easy3DModel_BindTexture(SysTask *task, void *param);
 static void Easy3DModel_LoadInternal(Easy3DModel *model);

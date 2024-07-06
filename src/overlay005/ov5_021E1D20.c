@@ -1,60 +1,57 @@
+#include "overlay005/ov5_021E1D20.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "message.h"
-#include "struct_decls/struct_02018340_decl.h"
-#include "strbuf.h"
-#include "trainer_info.h"
 #include "struct_decls/pokedexdata_decl.h"
-#include "savedata.h"
-#include "overlay005/struct_ov5_021E1FF4_decl.h"
-
-#include "field/field_system.h"
+#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_02049FA8.h"
 #include "struct_defs/struct_0205AA50.h"
 
-#include "unk_02002B7C.h"
+#include "field/field_system.h"
+#include "overlay005/ov5_021EA714.h"
+#include "overlay005/struct_ov5_021E1FF4_decl.h"
+
+#include "field_overworld_state.h"
+#include "heap.h"
+#include "map_header.h"
 #include "message.h"
 #include "message_util.h"
+#include "play_time.h"
+#include "player_avatar.h"
+#include "save_player.h"
+#include "savedata.h"
+#include "strbuf.h"
 #include "string_template.h"
+#include "trainer_info.h"
+#include "unk_02002B7C.h"
 #include "unk_0200DA60.h"
-#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "strbuf.h"
-#include "savedata.h"
-#include "save_player.h"
-#include "trainer_info.h"
 #include "unk_0202631C.h"
-#include "play_time.h"
 #include "unk_020366A0.h"
-#include "map_header.h"
-#include "field_overworld_state.h"
-#include "player_avatar.h"
-#include "overlay005/ov5_021E1D20.h"
-#include "overlay005/ov5_021EA714.h"
 
 typedef struct {
     int unk_00;
     int unk_04;
-    TrainerInfo * unk_08;
+    TrainerInfo *unk_08;
     PlayTime *playTime;
 } UnkStruct_ov5_021E1D20;
 
 struct UnkStruct_ov5_021E1FF4_t {
-    FieldSystem * fieldSystem;
+    FieldSystem *fieldSystem;
     int unk_04;
     u8 unk_08;
-    BGL * unk_0C;
-    Window * unk_10;
-    StringTemplate * unk_14;
-    MessageLoader * unk_18;
+    BGL *unk_0C;
+    Window *unk_10;
+    StringTemplate *unk_14;
+    MessageLoader *unk_18;
     UnkStruct_ov5_021E1D20 unk_1C;
     int unk_2C;
     int unk_30;
 };
 
-static void ov5_021E2028(FieldSystem * fieldSystem);
+static void ov5_021E2028(FieldSystem *fieldSystem);
 
 static const int Unk_ov5_021F9CCC[] = {
     0x0,
@@ -71,11 +68,11 @@ static const int Unk_ov5_021F9CBC[] = {
     0x8
 };
 
-static void ov5_021E1D20 (UnkStruct_ov5_021E1D20 * param0, const FieldSystem * fieldSystem)
+static void ov5_021E1D20(UnkStruct_ov5_021E1D20 *param0, const FieldSystem *fieldSystem)
 {
-    SaveData * v0 = fieldSystem->saveData;
-    Location * location = sub_0203A720(SaveData_GetFieldOverworldState(v0));
-    PokedexData * v2 = SaveData_Pokedex(v0);
+    SaveData *v0 = fieldSystem->saveData;
+    Location *location = sub_0203A720(SaveData_GetFieldOverworldState(v0));
+    PokedexData *v2 = SaveData_Pokedex(v0);
 
     param0->unk_04 = MapHeader_GetMapLabelTextID(location->mapId);
 
@@ -89,7 +86,7 @@ static void ov5_021E1D20 (UnkStruct_ov5_021E1D20 * param0, const FieldSystem * f
     param0->playTime = SaveData_GetPlayTime(v0);
 }
 
-static void ov5_021E1D6C (StringTemplate * strTemplate, const UnkStruct_ov5_021E1D20 * param1)
+static void ov5_021E1D6C(StringTemplate *strTemplate, const UnkStruct_ov5_021E1D20 *param1)
 {
     int v0, v1, v2;
 
@@ -126,7 +123,7 @@ static void ov5_021E1D6C (StringTemplate * strTemplate, const UnkStruct_ov5_021E
     StringTemplate_SetNumber(strTemplate, 5, PlayTime_GetMinutes(param1->playTime), 2, 2, 1);
 }
 
-static int ov5_021E1E10 (const UnkStruct_ov5_021E1D20 * param0)
+static int ov5_021E1E10(const UnkStruct_ov5_021E1D20 *param0)
 {
     if (param0->unk_00 != 0) {
         return 10;
@@ -135,9 +132,9 @@ static int ov5_021E1E10 (const UnkStruct_ov5_021E1D20 * param0)
     }
 }
 
-static void ov5_021E1E20 (const UnkStruct_ov5_021E1FF4 * param0)
+static void ov5_021E1E20(const UnkStruct_ov5_021E1FF4 *param0)
 {
-    Strbuf* v0;
+    Strbuf *v0;
     int v1, v2;
     int v3;
     int v4;
@@ -168,7 +165,7 @@ static void ov5_021E1E20 (const UnkStruct_ov5_021E1FF4 * param0)
     }
 }
 
-void ov5_021E1F04 (UnkStruct_ov5_021E1FF4 * param0)
+void ov5_021E1F04(UnkStruct_ov5_021E1FF4 *param0)
 {
     param0->unk_10 = Heap_AllocFromHeap(param0->unk_04, sizeof(Window));
 
@@ -180,16 +177,16 @@ void ov5_021E1F04 (UnkStruct_ov5_021E1FF4 * param0)
     Window_Show(param0->unk_10, 0, 985, 11);
 }
 
-void ov5_021E1F7C (UnkStruct_ov5_021E1FF4 * param0)
+void ov5_021E1F7C(UnkStruct_ov5_021E1FF4 *param0)
 {
     Window_Clear(param0->unk_10, 0);
     BGL_DeleteWindow(param0->unk_10);
     Heap_FreeToHeap(param0->unk_10);
 }
 
-UnkStruct_ov5_021E1FF4 * ov5_021E1F98 (FieldSystem * fieldSystem, int param1, u8 param2)
+UnkStruct_ov5_021E1FF4 *ov5_021E1F98(FieldSystem *fieldSystem, int param1, u8 param2)
 {
-    UnkStruct_ov5_021E1FF4 * v0;
+    UnkStruct_ov5_021E1FF4 *v0;
 
     v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov5_021E1FF4));
 
@@ -209,14 +206,14 @@ UnkStruct_ov5_021E1FF4 * ov5_021E1F98 (FieldSystem * fieldSystem, int param1, u8
     return v0;
 }
 
-void ov5_021E1FF4 (UnkStruct_ov5_021E1FF4 * param0)
+void ov5_021E1FF4(UnkStruct_ov5_021E1FF4 *param0)
 {
     MessageLoader_Free(param0->unk_18);
     StringTemplate_Free(param0->unk_14);
     Heap_FreeToHeap(param0);
 }
 
-BOOL ov5_021E200C (FieldSystem * fieldSystem)
+BOOL ov5_021E200C(FieldSystem *fieldSystem)
 {
     ov5_021E2028(fieldSystem);
 
@@ -227,7 +224,7 @@ BOOL ov5_021E200C (FieldSystem * fieldSystem)
     }
 }
 
-static void ov5_021E2028 (FieldSystem * fieldSystem)
+static void ov5_021E2028(FieldSystem *fieldSystem)
 {
     FieldSystem_SaveObjects(fieldSystem);
     ov5_021EA714(fieldSystem, 4, 0);
@@ -238,7 +235,7 @@ static void ov5_021E2028 (FieldSystem * fieldSystem)
     fieldSystem->location->unk_10 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 }
 
-void ov5_021E2064 (FieldSystem * fieldSystem)
+void ov5_021E2064(FieldSystem *fieldSystem)
 {
     if (fieldSystem == NULL) {
         GF_ASSERT(0);

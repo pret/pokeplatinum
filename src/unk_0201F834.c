@@ -1,15 +1,15 @@
+#include "unk_0201F834.h"
+
 #include <nitro.h>
 #include <string.h>
-
 
 #include "struct_defs/struct_0200A5C8.h"
 
 #include "heap.h"
 #include "unk_0201DBEC.h"
-#include "unk_0201F834.h"
 
 typedef struct {
-    NNSG2dPaletteData * unk_00;
+    NNSG2dPaletteData *unk_00;
     NNS_G2D_VRAM_TYPE unk_04;
     u32 unk_08;
     u32 unk_0C;
@@ -20,7 +20,7 @@ typedef struct {
 } UnkStruct_0201FB20;
 
 typedef struct {
-    UnkStruct_0201FB20 * unk_00;
+    UnkStruct_0201FB20 *unk_00;
     int unk_04;
     int unk_08;
     u32 unk_0C;
@@ -33,28 +33,28 @@ typedef struct {
     u16 unk_26;
 } UnkStruct_0201FD9C;
 
-static void sub_0201FB20(UnkStruct_0201FB20 * param0);
-static BOOL sub_0201FB3C(const UnkStruct_0200A5C8 * param0, UnkStruct_0201FB20 * param1);
-static BOOL sub_0201FB94(const UnkStruct_0200A5C8 * param0, UnkStruct_0201FB20 * param1);
-static BOOL sub_0201FAEC(const UnkStruct_0200A5C8 * param0, UnkStruct_0201FB20 * param1);
-static void sub_0201FCD4(UnkStruct_0201FB20 * param0);
-static void sub_0201FCE4(void * param0);
+static void sub_0201FB20(UnkStruct_0201FB20 *param0);
+static BOOL sub_0201FB3C(const UnkStruct_0200A5C8 *param0, UnkStruct_0201FB20 *param1);
+static BOOL sub_0201FB94(const UnkStruct_0200A5C8 *param0, UnkStruct_0201FB20 *param1);
+static BOOL sub_0201FAEC(const UnkStruct_0200A5C8 *param0, UnkStruct_0201FB20 *param1);
+static void sub_0201FCD4(UnkStruct_0201FB20 *param0);
+static void sub_0201FCE4(void *param0);
 static void sub_0201FC8C(void);
-static void sub_0201FAE4(UnkStruct_0201FB20 * param0);
-static UnkStruct_0201FB20 * sub_0201FC18(int param0);
-static UnkStruct_0201FB20 * sub_0201FC50(void);
-static void sub_0201FD18(u16 * param0, int param1, int param2);
-static void sub_0201FD3C(u16 * param0, int param1, int param2);
+static void sub_0201FAE4(UnkStruct_0201FB20 *param0);
+static UnkStruct_0201FB20 *sub_0201FC18(int param0);
+static UnkStruct_0201FB20 *sub_0201FC50(void);
+static void sub_0201FD18(u16 *param0, int param1, int param2);
+static void sub_0201FD3C(u16 *param0, int param1, int param2);
 static int sub_0201FD5C(u16 param0, int param1);
-static void sub_0201FD9C(UnkStruct_0201FD9C * param0);
-static void sub_0201FDA4(UnkStruct_0201FB20 * param0);
-static void sub_0201FDE0(UnkStruct_0201FB20 * param0);
-static BOOL sub_0201FE1C(UnkStruct_0201FB20 * param0, u32 param1, u32 param2, u32 param3, u32 param4);
-static void sub_0201FE68(UnkStruct_0201FB20 * param0, u32 * param1, u32 * param2);
+static void sub_0201FD9C(UnkStruct_0201FD9C *param0);
+static void sub_0201FDA4(UnkStruct_0201FB20 *param0);
+static void sub_0201FDE0(UnkStruct_0201FB20 *param0);
+static BOOL sub_0201FE1C(UnkStruct_0201FB20 *param0, u32 param1, u32 param2, u32 param3, u32 param4);
+static void sub_0201FE68(UnkStruct_0201FB20 *param0, u32 *param1, u32 *param2);
 
-static UnkStruct_0201FD9C * Unk_021C0764 = NULL;
+static UnkStruct_0201FD9C *Unk_021C0764 = NULL;
 
-void sub_0201F834 (int param0, int param1)
+void sub_0201F834(int param0, int param1)
 {
     int v0;
 
@@ -71,7 +71,7 @@ void sub_0201F834 (int param0, int param1)
     }
 }
 
-void sub_0201F890 (u16 param0, u32 param1)
+void sub_0201F890(u16 param0, u32 param1)
 {
     if (param1 == NNS_G2D_VRAM_TYPE_2DMAIN) {
         Unk_021C0764->unk_24 |= param0;
@@ -80,7 +80,7 @@ void sub_0201F890 (u16 param0, u32 param1)
     }
 }
 
-void sub_0201F8B4 (void)
+void sub_0201F8B4(void)
 {
     if (Unk_021C0764 != NULL) {
         sub_0201FA18();
@@ -90,12 +90,12 @@ void sub_0201F8B4 (void)
     }
 }
 
-static void sub_0201F8E0 (void)
+static void sub_0201F8E0(void)
 {
     return;
 }
 
-void sub_0201F8E4 (void)
+void sub_0201F8E4(void)
 {
     Unk_021C0764->unk_0C = 0;
     Unk_021C0764->unk_10 = 0;
@@ -106,9 +106,9 @@ void sub_0201F8E4 (void)
     sub_0201FD9C(Unk_021C0764);
 }
 
-BOOL sub_0201F90C (const UnkStruct_0200A5C8 * param0)
+BOOL sub_0201F90C(const UnkStruct_0200A5C8 *param0)
 {
-    UnkStruct_0201FB20 * v0;
+    UnkStruct_0201FB20 *v0;
 
     v0 = sub_0201FC50();
 
@@ -131,9 +131,9 @@ BOOL sub_0201F90C (const UnkStruct_0200A5C8 * param0)
     return 1;
 }
 
-BOOL sub_0201F950 (const UnkStruct_0200A5C8 * param0)
+BOOL sub_0201F950(const UnkStruct_0200A5C8 *param0)
 {
-    UnkStruct_0201FB20 * v0;
+    UnkStruct_0201FB20 *v0;
 
     v0 = sub_0201FC50();
 
@@ -154,9 +154,9 @@ BOOL sub_0201F950 (const UnkStruct_0200A5C8 * param0)
     return 1;
 }
 
-void sub_0201F990 (int param0, NNSG2dPaletteData * param1)
+void sub_0201F990(int param0, NNSG2dPaletteData *param1)
 {
-    UnkStruct_0201FB20 * v0;
+    UnkStruct_0201FB20 *v0;
 
     GF_ASSERT(param1);
     v0 = sub_0201FC18(param0);
@@ -173,9 +173,9 @@ void sub_0201F990 (int param0, NNSG2dPaletteData * param1)
     }
 }
 
-BOOL sub_0201F9DC (int param0)
+BOOL sub_0201F9DC(int param0)
 {
-    UnkStruct_0201FB20 * v0;
+    UnkStruct_0201FB20 *v0;
 
     v0 = sub_0201FC18(param0);
 
@@ -186,9 +186,9 @@ BOOL sub_0201F9DC (int param0)
     return 0;
 }
 
-void sub_0201F9F0 (int param0)
+void sub_0201F9F0(int param0)
 {
-    UnkStruct_0201FB20 * v0;
+    UnkStruct_0201FB20 *v0;
 
     v0 = sub_0201FC18(param0);
 
@@ -200,7 +200,7 @@ void sub_0201F9F0 (int param0)
     }
 }
 
-void sub_0201FA18 (void)
+void sub_0201FA18(void)
 {
     int v0;
 
@@ -212,9 +212,9 @@ void sub_0201FA18 (void)
     }
 }
 
-NNSG2dImagePaletteProxy * sub_0201FA58 (int param0)
+NNSG2dImagePaletteProxy *sub_0201FA58(int param0)
 {
-    UnkStruct_0201FB20 * v0;
+    UnkStruct_0201FB20 *v0;
 
     v0 = sub_0201FC18(param0);
 
@@ -230,9 +230,9 @@ NNSG2dImagePaletteProxy * sub_0201FA58 (int param0)
     return NULL;
 }
 
-NNSG2dImagePaletteProxy * sub_0201FA80 (int param0, NNSG2dImageProxy * param1)
+NNSG2dImagePaletteProxy *sub_0201FA80(int param0, NNSG2dImageProxy *param1)
 {
-    UnkStruct_0201FB20 * v0;
+    UnkStruct_0201FB20 *v0;
 
     v0 = sub_0201FC18(param0);
 
@@ -252,7 +252,7 @@ NNSG2dImagePaletteProxy * sub_0201FA80 (int param0, NNSG2dImageProxy * param1)
     return &v0->unk_10;
 }
 
-u32 sub_0201FAB4 (const NNSG2dImagePaletteProxy * param0, u32 param1)
+u32 sub_0201FAB4(const NNSG2dImagePaletteProxy *param0, u32 param1)
 {
     u32 v0;
     u32 v1;
@@ -277,12 +277,12 @@ u32 sub_0201FAB4 (const NNSG2dImagePaletteProxy * param0, u32 param1)
     return v1;
 }
 
-static void sub_0201FAE4 (UnkStruct_0201FB20 * param0)
+static void sub_0201FAE4(UnkStruct_0201FB20 *param0)
 {
     sub_0201FB20(param0);
 }
 
-static BOOL sub_0201FAEC (const UnkStruct_0200A5C8 * param0, UnkStruct_0201FB20 * param1)
+static BOOL sub_0201FAEC(const UnkStruct_0200A5C8 *param0, UnkStruct_0201FB20 *param1)
 {
     param1->unk_00 = param0->unk_00;
 
@@ -299,17 +299,17 @@ static BOOL sub_0201FAEC (const UnkStruct_0200A5C8 * param0, UnkStruct_0201FB20 
     return 1;
 }
 
-static void sub_0201FB20 (UnkStruct_0201FB20 * param0)
+static void sub_0201FB20(UnkStruct_0201FB20 *param0)
 {
     memset(param0, 0, sizeof(UnkStruct_0201FB20));
     param0->unk_0C = 0xffffffff;
     NNS_G2dInitImagePaletteProxy(&param0->unk_10);
 }
 
-static BOOL sub_0201FB3C (const UnkStruct_0200A5C8 * param0, UnkStruct_0201FB20 * param1)
+static BOOL sub_0201FB3C(const UnkStruct_0200A5C8 *param0, UnkStruct_0201FB20 *param1)
 {
-    u32 * v0;
-    u32 * v1;
+    u32 *v0;
+    u32 *v1;
     BOOL v2 = 1;
     u32 v3;
     u32 v4;
@@ -333,7 +333,7 @@ static BOOL sub_0201FB3C (const UnkStruct_0200A5C8 * param0, UnkStruct_0201FB20 
     return v2;
 }
 
-static BOOL sub_0201FB94 (const UnkStruct_0200A5C8 * param0, UnkStruct_0201FB20 * param1)
+static BOOL sub_0201FB94(const UnkStruct_0200A5C8 *param0, UnkStruct_0201FB20 *param1)
 {
     int v0, v1;
 
@@ -373,7 +373,7 @@ static BOOL sub_0201FB94 (const UnkStruct_0200A5C8 * param0, UnkStruct_0201FB20 
     return 1;
 }
 
-static UnkStruct_0201FB20 * sub_0201FC18 (int param0)
+static UnkStruct_0201FB20 *sub_0201FC18(int param0)
 {
     int v0;
 
@@ -386,7 +386,7 @@ static UnkStruct_0201FB20 * sub_0201FC18 (int param0)
     return NULL;
 }
 
-static UnkStruct_0201FB20 * sub_0201FC50 (void)
+static UnkStruct_0201FB20 *sub_0201FC50(void)
 {
     int v0;
 
@@ -399,7 +399,7 @@ static UnkStruct_0201FB20 * sub_0201FC50 (void)
     return NULL;
 }
 
-static void sub_0201FC8C (void)
+static void sub_0201FC8C(void)
 {
     GXVRamOBJExtPltt v0;
     GXVRamSubOBJExtPltt v1;
@@ -428,15 +428,15 @@ static void sub_0201FC8C (void)
     }
 }
 
-static void sub_0201FCD4 (UnkStruct_0201FB20 * param0)
+static void sub_0201FCD4(UnkStruct_0201FB20 *param0)
 {
     param0->unk_00->szByte = param0->unk_08 * 32;
     sub_0201FCE4(param0);
 }
 
-static void sub_0201FCE4 (void * param0)
+static void sub_0201FCE4(void *param0)
 {
-    UnkStruct_0201FB20 * v0 = (UnkStruct_0201FB20 *)param0;
+    UnkStruct_0201FB20 *v0 = (UnkStruct_0201FB20 *)param0;
 
     NNS_G2dInitImagePaletteProxy(&v0->unk_10);
 
@@ -449,7 +449,7 @@ static void sub_0201FCE4 (void * param0)
     }
 }
 
-static void sub_0201FD18 (u16 * param0, int param1, int param2)
+static void sub_0201FD18(u16 *param0, int param1, int param2)
 {
     int v0;
 
@@ -458,7 +458,7 @@ static void sub_0201FD18 (u16 * param0, int param1, int param2)
     }
 }
 
-static void sub_0201FD3C (u16 * param0, int param1, int param2)
+static void sub_0201FD3C(u16 *param0, int param1, int param2)
 {
     int v0;
 
@@ -467,7 +467,7 @@ static void sub_0201FD3C (u16 * param0, int param1, int param2)
     }
 }
 
-static int sub_0201FD5C (u16 param0, int param1)
+static int sub_0201FD5C(u16 param0, int param1)
 {
     int v0, v1;
 
@@ -496,13 +496,13 @@ static int sub_0201FD5C (u16 param0, int param1)
     return v0 * 32;
 }
 
-static void sub_0201FD9C (UnkStruct_0201FD9C * param0)
+static void sub_0201FD9C(UnkStruct_0201FD9C *param0)
 {
     param0->unk_24 = 0;
     param0->unk_26 = 0;
 }
 
-static void sub_0201FDA4 (UnkStruct_0201FB20 * param0)
+static void sub_0201FDA4(UnkStruct_0201FB20 *param0)
 {
     if (param0->unk_04 & NNS_G2D_VRAM_TYPE_2DMAIN) {
         sub_0201FD18(&Unk_021C0764->unk_24, param0->unk_08, param0->unk_24 / 32);
@@ -513,7 +513,7 @@ static void sub_0201FDA4 (UnkStruct_0201FB20 * param0)
     }
 }
 
-static void sub_0201FDE0 (UnkStruct_0201FB20 * param0)
+static void sub_0201FDE0(UnkStruct_0201FB20 *param0)
 {
     if (param0->unk_04 & NNS_G2D_VRAM_TYPE_2DMAIN) {
         sub_0201FD3C(&Unk_021C0764->unk_24, param0->unk_08, param0->unk_24 / 32);
@@ -524,12 +524,12 @@ static void sub_0201FDE0 (UnkStruct_0201FB20 * param0)
     }
 }
 
-static BOOL sub_0201FE1C (UnkStruct_0201FB20 * param0, u32 param1, u32 param2, u32 param3, u32 param4)
+static BOOL sub_0201FE1C(UnkStruct_0201FB20 *param0, u32 param1, u32 param2, u32 param3, u32 param4)
 {
     BOOL v0 = 1;
 
     if (param0->unk_04 & NNS_G2D_VRAM_TYPE_2DMAIN) {
-        if ((param1 + (param0->unk_08 * 32) > param3)) {
+        if (param1 + (param0->unk_08 * 32) > param3) {
             GF_ASSERT(FALSE);
             sub_0201F8E0();
             v0 = 0;
@@ -539,7 +539,7 @@ static BOOL sub_0201FE1C (UnkStruct_0201FB20 * param0, u32 param1, u32 param2, u
     }
 
     if (param0->unk_04 & NNS_G2D_VRAM_TYPE_2DSUB) {
-        if ((param2 + (param0->unk_08 * 32) > param4)) {
+        if (param2 + (param0->unk_08 * 32) > param4) {
             GF_ASSERT(FALSE);
             sub_0201F8E0();
             v0 = 0;
@@ -551,7 +551,7 @@ static BOOL sub_0201FE1C (UnkStruct_0201FB20 * param0, u32 param1, u32 param2, u
     return v0;
 }
 
-static void sub_0201FE68 (UnkStruct_0201FB20 * param0, u32 * param1, u32 * param2)
+static void sub_0201FE68(UnkStruct_0201FB20 *param0, u32 *param1, u32 *param2)
 {
     if (param0->unk_04 & NNS_G2D_VRAM_TYPE_2DMAIN) {
         *param1 += param0->unk_08 * 32;

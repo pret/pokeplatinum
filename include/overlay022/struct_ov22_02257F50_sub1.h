@@ -7,8 +7,8 @@
 
 typedef struct {
     int unk_00;
-    UnkStruct_ov22_0225899C * unk_04;
-    UnkStruct_ov22_02259484 * unk_08;
+    UnkStruct_ov22_0225899C *unk_04;
+    UnkStruct_ov22_02259484 *unk_08;
     UnkStruct_ov22_02257F50_sub1_sub1 unk_0C[4];
     int unk_3C;
     int unk_40;

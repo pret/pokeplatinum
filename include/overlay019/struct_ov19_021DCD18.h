@@ -1,12 +1,12 @@
 #ifndef POKEPLATINUM_STRUCT_OV19_021DCD18_H
 #define POKEPLATINUM_STRUCT_OV19_021DCD18_H
 
-#include "cell_actor.h"
-
 #include <nnsys.h>
 
+#include "cell_actor.h"
+
 typedef struct {
-    CellActor * unk_00;
+    CellActor *unk_00;
     NNSG2dImageProxy unk_04;
     u32 unk_28;
     u16 unk_2C;

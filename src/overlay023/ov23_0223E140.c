@@ -1,75 +1,24 @@
+#include "overlay023/ov23_0223E140.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "consts/game_records.h"
-#include "core_sys.h"
 
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "sys_task_manager.h"
-#include "camera.h"
-#include "strbuf.h"
-#include "trainer_info.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
-#include "savedata.h"
-
 #include "struct_defs/struct_0200C738.h"
+#include "struct_defs/struct_02099F80.h"
+
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
-#include "struct_defs/struct_02099F80.h"
-#include "overlay022/struct_ov22_022559F8.h"
-#include "overlay023/struct_ov23_0224271C.h"
-#include "overlay061/struct_ov61_0222C884.h"
-#include "overlay084/struct_ov84_0223BA5C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
-
-#include "unk_02001AF4.h"
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
-#include "narc.h"
-#include "unk_02006E3C.h"
-#include "unk_020093B4.h"
-#include "unk_02009714.h"
-#include "unk_0200A328.h"
-#include "unk_0200A784.h"
-#include "unk_0200A9DC.h"
-#include "sys_task.h"
-#include "unk_0200DA60.h"
-#include "unk_0200F174.h"
-#include "unk_02017728.h"
-#include "heap.h"
-#include "unk_02018340.h"
-#include "unk_0201D15C.h"
-#include "unk_0201D670.h"
-#include "unk_0201DBEC.h"
-#include "unk_0201E86C.h"
-#include "unk_0201F834.h"
-#include "gx_layers.h"
-#include "cell_actor.h"
-#include "save_player.h"
-#include "trainer_info.h"
-#include "unk_0202631C.h"
-#include "unk_0202854C.h"
-#include "journal.h"
-#include "game_records.h"
-#include "communication_information.h"
-#include "communication_system.h"
-#include "unk_020393C8.h"
-#include "unk_02039C80.h"
-#include "field_system.h"
-#include "vars_flags.h"
-#include "unk_020508D4.h"
-#include "unk_02054D00.h"
-#include "comm_player_manager.h"
-#include "unk_0206A8DC.h"
-#include "unk_0206AFE0.h"
-#include "unk_0206CCB0.h"
 #include "overlay005/hblank_system.h"
-#include "overlay023/ov23_0223E140.h"
+#include "overlay022/struct_ov22_022559F8.h"
 #include "overlay023/ov23_022416A8.h"
 #include "overlay023/ov23_02241F74.h"
 #include "overlay023/ov23_0224340C.h"
@@ -78,6 +27,57 @@
 #include "overlay023/ov23_0224B05C.h"
 #include "overlay023/ov23_0224F294.h"
 #include "overlay023/ov23_02253D40.h"
+#include "overlay023/struct_ov23_0224271C.h"
+#include "overlay061/struct_ov61_0222C884.h"
+#include "overlay084/struct_ov84_0223BA5C.h"
+#include "overlay097/struct_ov97_0222DB78.h"
+
+#include "camera.h"
+#include "cell_actor.h"
+#include "comm_player_manager.h"
+#include "communication_information.h"
+#include "communication_system.h"
+#include "core_sys.h"
+#include "field_system.h"
+#include "game_records.h"
+#include "gx_layers.h"
+#include "heap.h"
+#include "journal.h"
+#include "narc.h"
+#include "save_player.h"
+#include "savedata.h"
+#include "strbuf.h"
+#include "sys_task.h"
+#include "sys_task_manager.h"
+#include "trainer_info.h"
+#include "unk_02001AF4.h"
+#include "unk_020041CC.h"
+#include "unk_02005474.h"
+#include "unk_02006E3C.h"
+#include "unk_020093B4.h"
+#include "unk_02009714.h"
+#include "unk_0200A328.h"
+#include "unk_0200A784.h"
+#include "unk_0200A9DC.h"
+#include "unk_0200DA60.h"
+#include "unk_0200F174.h"
+#include "unk_02017728.h"
+#include "unk_02018340.h"
+#include "unk_0201D15C.h"
+#include "unk_0201D670.h"
+#include "unk_0201DBEC.h"
+#include "unk_0201E86C.h"
+#include "unk_0201F834.h"
+#include "unk_0202631C.h"
+#include "unk_0202854C.h"
+#include "unk_020393C8.h"
+#include "unk_02039C80.h"
+#include "unk_020508D4.h"
+#include "unk_02054D00.h"
+#include "unk_0206A8DC.h"
+#include "unk_0206AFE0.h"
+#include "unk_0206CCB0.h"
+#include "vars_flags.h"
 
 typedef struct {
     u8 unk_00;
@@ -97,10 +97,10 @@ typedef struct {
     int unk_04;
     int unk_08;
     int unk_0C;
-    FieldSystem * fieldSystem;
+    FieldSystem *fieldSystem;
     int unk_14;
-    void * unk_18[4];
-    NNSG2dPaletteData * unk_28[4];
+    void *unk_18[4];
+    NNSG2dPaletteData *unk_28[4];
     int unk_38[4];
     int unk_48;
     int unk_4C;
@@ -115,7 +115,7 @@ typedef struct {
 } UnkStruct_ov23_0223E6F8;
 
 typedef struct {
-    void * unk_00;
+    void *unk_00;
     u16 unk_04;
     u16 unk_06;
     u16 unk_08;
@@ -128,7 +128,7 @@ typedef struct {
 } UnkStruct_ov23_02256EB0;
 
 typedef struct {
-    UnkStruct_ov23_02256EB0 * unk_00;
+    UnkStruct_ov23_02256EB0 *unk_00;
     u8 unk_04;
     u8 unk_05;
     u8 unk_06;
@@ -143,29 +143,29 @@ typedef struct {
 } UnkStruct_ov23_022412CC;
 
 typedef struct {
-    FieldSystem * fieldSystem;
-    BGL * unk_04;
+    FieldSystem *fieldSystem;
+    BGL *unk_04;
     MATHRandContext32 unk_08;
-    CellActorCollection * unk_20;
+    CellActorCollection *unk_20;
     UnkStruct_0200C738 unk_24;
-    UnkStruct_02009714 * unk_1B0[4];
-    UnkStruct_02009DC8 * unk_1C0[8];
+    UnkStruct_02009714 *unk_1B0[4];
+    UnkStruct_02009DC8 *unk_1C0[8];
     CellActorResourceData unk_1E0;
     CellActorResourceData unk_204[2];
-    CellActor * unk_24C[8];
+    CellActor *unk_24C[8];
     UnkStruct_ov23_0223E6F8 unk_26C[250];
-    UIControlData * unk_848;
-    UnkStruct_ov23_0223E6F8 * unk_84C[8];
+    UIControlData *unk_848;
+    UnkStruct_ov23_0223E6F8 *unk_84C[8];
     u8 unk_86C[8];
     UnkStruct_ov23_0223FC9C unk_874[8];
     u8 unk_8BC[8];
-    SysTask * unk_8C4;
-    SysTask * unk_8C8;
-    SysTask * unk_8CC;
-    UnkStruct_ov23_022412CC * unk_8D0;
+    SysTask *unk_8C4;
+    SysTask *unk_8C8;
+    SysTask *unk_8CC;
+    UnkStruct_ov23_022412CC *unk_8D0;
     UnkStruct_ov23_0224142C unk_8D4[8];
     u8 unk_8FC[8];
-    void * unk_904;
+    void *unk_904;
     u8 unk_908[8];
     u8 unk_910[8];
     u8 unk_918[8];
@@ -183,401 +183,401 @@ typedef struct {
     u8 unk_A30;
 } UnkStruct_ov23_02257740;
 
-static void ov23_02240688(BGL * param0);
-static void ov23_0223E434(MATHRandContext16 * param0, int param1);
-static UnkStruct_ov23_0223E6F8 * ov23_0223E6F8(void);
-static UnkStruct_ov23_0223E6F8 * ov23_0223E88C(u16 param0, u16 param1);
-static void ov23_0223EA38(SysTask * param0, void * param1);
-static void ov23_0223EE80(UnkStruct_ov23_0223EE80 * param0);
+static void ov23_02240688(BGL *param0);
+static void ov23_0223E434(MATHRandContext16 *param0, int param1);
+static UnkStruct_ov23_0223E6F8 *ov23_0223E6F8(void);
+static UnkStruct_ov23_0223E6F8 *ov23_0223E88C(u16 param0, u16 param1);
+static void ov23_0223EA38(SysTask *param0, void *param1);
+static void ov23_0223EE80(UnkStruct_ov23_0223EE80 *param0);
 static void ov23_0223EF98(void);
-static void ov23_0223F70C(FieldSystem * fieldSystem);
-static void ov23_0223FA3C(BGL * param0, int param1, UnkStruct_ov23_0223EE80 * param2);
-static void ov23_0223FF60(int param0, BGL * param1, int param2, UnkStruct_ov23_0223EE80 * param3);
-static void ov23_0223FF8C(BGL * param0);
-static void ov23_022401B0(BGL * param0);
-static BOOL ov23_02240CFC(UnkStruct_ov23_0223EE80 * param0);
-static void ov23_022404C8(BGL * param0);
-static void ov23_022404F8(BGL * param0, int param1, int param2, int param3);
-static BOOL ov23_02240934(UnkStruct_ov23_0223EE80 * param0);
-static BOOL ov23_022409F0(UnkStruct_ov23_0223EE80 * param0);
-static BOOL ov23_02240A90(UnkStruct_ov23_0223EE80 * param0);
+static void ov23_0223F70C(FieldSystem *fieldSystem);
+static void ov23_0223FA3C(BGL *param0, int param1, UnkStruct_ov23_0223EE80 *param2);
+static void ov23_0223FF60(int param0, BGL *param1, int param2, UnkStruct_ov23_0223EE80 *param3);
+static void ov23_0223FF8C(BGL *param0);
+static void ov23_022401B0(BGL *param0);
+static BOOL ov23_02240CFC(UnkStruct_ov23_0223EE80 *param0);
+static void ov23_022404C8(BGL *param0);
+static void ov23_022404F8(BGL *param0, int param1, int param2, int param3);
+static BOOL ov23_02240934(UnkStruct_ov23_0223EE80 *param0);
+static BOOL ov23_022409F0(UnkStruct_ov23_0223EE80 *param0);
+static BOOL ov23_02240A90(UnkStruct_ov23_0223EE80 *param0);
 static void ov23_02240E88(void);
 static void ov23_0224108C(void);
 static void ov23_0224119C(void);
-static void ov23_022411E8(void * param0);
+static void ov23_022411E8(void *param0);
 static void ov23_022413B4(void);
-static UnkStruct_ov23_0223E6F8 * ov23_0223E740(int param0, int param1);
-static void ov23_0223FDE0(UnkStruct_ov23_0223EE80 * param0);
-static void ov23_02240B84(BGL * param0);
+static UnkStruct_ov23_0223E6F8 *ov23_0223E740(int param0, int param1);
+static void ov23_0223FDE0(UnkStruct_ov23_0223EE80 *param0);
+static void ov23_02240B84(BGL *param0);
 static void ov23_022414D4(void);
 static void ov23_0223E834(void);
 
-static UnkStruct_ov23_02257740 * Unk_ov23_02257740 = NULL;
+static UnkStruct_ov23_02257740 *Unk_ov23_02257740 = NULL;
 
 static u8 Unk_ov23_02256D3A[6][3] = {
-    {'x', 'x', 'x'},
-    {'o', 'x', 'o'},
-    {'o', 'x', 'o'},
-    {'o', 'x', 'o'},
-    {'o', 'x', 'o'},
-    {'x', 'x', 'x'},
+    { 'x', 'x', 'x' },
+    { 'o', 'x', 'o' },
+    { 'o', 'x', 'o' },
+    { 'o', 'x', 'o' },
+    { 'o', 'x', 'o' },
+    { 'x', 'x', 'x' },
 };
 
 static u8 Unk_ov23_02256D4C[3][6] = {
-    {'x', 'o', 'o', 'o', 'o', 'x'},
-    {'x', 'x', 'x', 'x', 'x', 'x'},
-    {'x', 'o', 'o', 'o', 'o', 'x'},
+    { 'x', 'o', 'o', 'o', 'o', 'x' },
+    { 'x', 'x', 'x', 'x', 'x', 'x' },
+    { 'x', 'o', 'o', 'o', 'o', 'x' },
 };
 
 static u8 Unk_ov23_02256BFC[2][3] = {
-    {'x', 'x', 'x'},
-    {'o', 'x', 'o'},
+    { 'x', 'x', 'x' },
+    { 'o', 'x', 'o' },
 };
 
 static u8 Unk_ov23_02256C02[3][2] = {
-    {'o', 'x'},
-    {'x', 'x'},
-    {'o', 'x'},
+    { 'o', 'x' },
+    { 'x', 'x' },
+    { 'o', 'x' },
 };
 
 static u8 Unk_ov23_02256C20[2][3] = {
-    {'o', 'x', 'o'},
-    {'x', 'x', 'x'},
+    { 'o', 'x', 'o' },
+    { 'x', 'x', 'x' },
 };
 
 static u8 Unk_ov23_02256C1A[3][2] = {
-    {'x', 'o'},
-    {'x', 'x'},
-    {'x', 'o'},
+    { 'x', 'o' },
+    { 'x', 'x' },
+    { 'x', 'o' },
 };
 
 static u8 Unk_ov23_02256C0E[2][3] = {
-    {'x', 'x', 'o'},
-    {'o', 'x', 'x'},
+    { 'x', 'x', 'o' },
+    { 'o', 'x', 'x' },
 };
 
 static u8 Unk_ov23_02256C26[3][2] = {
-    {'o', 'x'},
-    {'x', 'x'},
-    {'x', 'o'},
+    { 'o', 'x' },
+    { 'x', 'x' },
+    { 'x', 'o' },
 };
 
 static u8 Unk_ov23_02256C08[2][3] = {
-    {'o', 'x', 'x'},
-    {'x', 'x', 'o'},
+    { 'o', 'x', 'x' },
+    { 'x', 'x', 'o' },
 };
 
 static u8 Unk_ov23_02256C14[3][2] = {
-    {'x', 'o'},
-    {'x', 'x'},
-    {'o', 'x'},
+    { 'x', 'o' },
+    { 'x', 'x' },
+    { 'o', 'x' },
 };
 
 static u8 Unk_ov23_02256D0A[4][4] = {
-    {'o', 'x', 'x', 'x'},
-    {'x', 'x', 'x', 'x'},
-    {'x', 'x', 'x', 'x'},
-    {'x', 'x', 'x', 'o'},
+    { 'o', 'x', 'x', 'x' },
+    { 'x', 'x', 'x', 'x' },
+    { 'x', 'x', 'x', 'x' },
+    { 'x', 'x', 'x', 'o' },
 };
 
 static u8 Unk_ov23_02256CBA[4][4] = {
-    {'x', 'x', 'x', 'o'},
-    {'x', 'x', 'x', 'x'},
-    {'x', 'x', 'x', 'x'},
-    {'o', 'x', 'x', 'x'},
+    { 'x', 'x', 'x', 'o' },
+    { 'x', 'x', 'x', 'x' },
+    { 'x', 'x', 'x', 'x' },
+    { 'o', 'x', 'x', 'x' },
 };
 
 static u8 Unk_ov23_02256C45[3][3] = {
-    {'o', 'x', 'x'},
-    {'x', 'x', 'x'},
-    {'x', 'x', 'o'},
+    { 'o', 'x', 'x' },
+    { 'x', 'x', 'x' },
+    { 'x', 'x', 'o' },
 };
 
 static u8 Unk_ov23_02256CDA[4][4] = {
-    {'o', 'x', 'x', 'x'},
-    {'x', 'x', 'x', 'x'},
-    {'x', 'x', 'x', 'x'},
-    {'x', 'x', 'x', 'o'},
+    { 'o', 'x', 'x', 'x' },
+    { 'x', 'x', 'x', 'x' },
+    { 'x', 'x', 'x', 'x' },
+    { 'x', 'x', 'x', 'o' },
 };
 
 static u8 Unk_ov23_02256CEA[4][4] = {
-    {'x', 'x', 'x', 'o'},
-    {'x', 'x', 'x', 'x'},
-    {'x', 'x', 'x', 'x'},
-    {'o', 'x', 'x', 'x'},
+    { 'x', 'x', 'x', 'o' },
+    { 'x', 'x', 'x', 'x' },
+    { 'x', 'x', 'x', 'x' },
+    { 'o', 'x', 'x', 'x' },
 };
 
 static u8 Unk_ov23_02256D5E[4][5] = {
-    {'x', 'x', 'x', 'x', 'x'},
-    {'x', 'x', 'x', 'x', 'x'},
-    {'x', 'x', 'x', 'x', 'x'},
-    {'o', 'x', 'x', 'x', 'o'},
+    { 'x', 'x', 'x', 'x', 'x' },
+    { 'x', 'x', 'x', 'x', 'x' },
+    { 'x', 'x', 'x', 'x', 'x' },
+    { 'o', 'x', 'x', 'x', 'o' },
 };
 
 static u8 Unk_ov23_02256C3C[3][3] = {
-    {'x', 'x', 'x'},
-    {'x', 'x', 'x'},
-    {'x', 'x', 'o'},
+    { 'x', 'x', 'x' },
+    { 'x', 'x', 'x' },
+    { 'x', 'x', 'o' },
 };
 
 static u8 Unk_ov23_02256C34[2][4] = {
-    {'o', 'x', 'x', 'x'},
-    {'x', 'x', 'x', 'o'},
+    { 'o', 'x', 'x', 'x' },
+    { 'x', 'x', 'x', 'o' },
 };
 
 static u8 Unk_ov23_02256C2C[4][2] = {
-    {'x', 'o'},
-    {'x', 'x'},
-    {'x', 'x'},
-    {'o', 'x'},
+    { 'x', 'o' },
+    { 'x', 'x' },
+    { 'x', 'x' },
+    { 'o', 'x' },
 };
 
 static u8 Unk_ov23_02256D72[5][4] = {
-    {'o', 'o', 'x', 'x'},
-    {'o', 'x', 'x', 'x'},
-    {'o', 'x', 'x', 'x'},
-    {'x', 'x', 'x', 'o'},
-    {'x', 'x', 'o', 'o'},
+    { 'o', 'o', 'x', 'x' },
+    { 'o', 'x', 'x', 'x' },
+    { 'o', 'x', 'x', 'x' },
+    { 'x', 'x', 'x', 'o' },
+    { 'x', 'x', 'o', 'o' },
 };
 
 static u8 Unk_ov23_02256D86[4][5] = {
-    {'x', 'x', 'o', 'o', 'o'},
-    {'x', 'x', 'x', 'x', 'o'},
-    {'o', 'x', 'x', 'x', 'x'},
-    {'o', 'o', 'x', 'x', 'x'},
+    { 'x', 'x', 'o', 'o', 'o' },
+    { 'x', 'x', 'x', 'x', 'o' },
+    { 'o', 'x', 'x', 'x', 'x' },
+    { 'o', 'o', 'x', 'x', 'x' },
 };
 
 static u8 Unk_ov23_02256D9A[5][4] = {
-    {'o', 'o', 'x', 'x'},
-    {'o', 'x', 'x', 'x'},
-    {'x', 'x', 'x', 'o'},
-    {'x', 'x', 'x', 'o'},
-    {'x', 'x', 'o', 'o'},
+    { 'o', 'o', 'x', 'x' },
+    { 'o', 'x', 'x', 'x' },
+    { 'x', 'x', 'x', 'o' },
+    { 'x', 'x', 'x', 'o' },
+    { 'x', 'x', 'o', 'o' },
 };
 
 static u8 Unk_ov23_02256DAE[4][5] = {
-    {'x', 'x', 'x', 'o', 'o'},
-    {'x', 'x', 'x', 'x', 'o'},
-    {'o', 'x', 'x', 'x', 'x'},
-    {'o', 'o', 'o', 'x', 'x'},
+    { 'x', 'x', 'x', 'o', 'o' },
+    { 'x', 'x', 'x', 'x', 'o' },
+    { 'o', 'x', 'x', 'x', 'x' },
+    { 'o', 'o', 'o', 'x', 'x' },
 };
 
 static u8 Unk_ov23_02256C4E[3][3] = {
-    {'o', 'x', 'o'},
-    {'x', 'x', 'x'},
-    {'x', 'x', 'x'},
+    { 'o', 'x', 'o' },
+    { 'x', 'x', 'x' },
+    { 'x', 'x', 'x' },
 };
 
 static u8 Unk_ov23_02256C57[3][3] = {
-    {'o', 'x', 'o'},
-    {'x', 'x', 'x'},
-    {'o', 'x', 'o'},
+    { 'o', 'x', 'o' },
+    { 'x', 'x', 'x' },
+    { 'o', 'x', 'o' },
 };
 
 static u8 Unk_ov23_02256C8A[3][4] = {
-    {'o', 'x', 'x', 'o'},
-    {'x', 'x', 'x', 'x'},
-    {'o', 'x', 'x', 'o'},
+    { 'o', 'x', 'x', 'o' },
+    { 'x', 'x', 'x', 'x' },
+    { 'o', 'x', 'x', 'o' },
 };
 
 static u8 Unk_ov23_02256C96[4][3] = {
-    {'o', 'x', 'o'},
-    {'x', 'x', 'x'},
-    {'x', 'x', 'x'},
-    {'o', 'x', 'o'},
+    { 'o', 'x', 'o' },
+    { 'x', 'x', 'x' },
+    { 'x', 'x', 'x' },
+    { 'o', 'x', 'o' },
 };
 
 static u8 Unk_ov23_02256DD6[5][5] = {
-    {'x', 'x', 'x', 'x', 'o'},
-    {'x', 'x', 'x', 'x', 'x'},
-    {'x', 'x', 'o', 'x', 'x'},
-    {'o', 'o', 'o', 'x', 'x'},
-    {'o', 'o', 'x', 'x', 'o'},
+    { 'x', 'x', 'x', 'x', 'o' },
+    { 'x', 'x', 'x', 'x', 'x' },
+    { 'x', 'x', 'o', 'x', 'x' },
+    { 'o', 'o', 'o', 'x', 'x' },
+    { 'o', 'o', 'x', 'x', 'o' },
 };
 
 static u8 Unk_ov23_02256DEF[5][5] = {
-    {'o', 'o', 'x', 'x', 'x'},
-    {'o', 'o', 'x', 'x', 'x'},
-    {'x', 'o', 'o', 'x', 'x'},
-    {'x', 'x', 'x', 'x', 'x'},
-    {'o', 'x', 'x', 'x', 'o'},
+    { 'o', 'o', 'x', 'x', 'x' },
+    { 'o', 'o', 'x', 'x', 'x' },
+    { 'x', 'o', 'o', 'x', 'x' },
+    { 'x', 'x', 'x', 'x', 'x' },
+    { 'o', 'x', 'x', 'x', 'o' },
 };
 
 static u8 Unk_ov23_02256E08[5][5] = {
-    {'o', 'x', 'x', 'o', 'o'},
-    {'x', 'x', 'o', 'o', 'o'},
-    {'x', 'x', 'o', 'x', 'x'},
-    {'x', 'x', 'x', 'x', 'x'},
-    {'o', 'x', 'x', 'x', 'x'},
+    { 'o', 'x', 'x', 'o', 'o' },
+    { 'x', 'x', 'o', 'o', 'o' },
+    { 'x', 'x', 'o', 'x', 'x' },
+    { 'x', 'x', 'x', 'x', 'x' },
+    { 'o', 'x', 'x', 'x', 'x' },
 };
 
 static u8 Unk_ov23_02256E21[5][5] = {
-    {'o', 'x', 'x', 'x', 'o'},
-    {'x', 'x', 'x', 'x', 'x'},
-    {'x', 'x', 'o', 'o', 'x'},
-    {'x', 'x', 'x', 'o', 'o'},
-    {'x', 'x', 'x', 'o', 'o'},
+    { 'o', 'x', 'x', 'x', 'o' },
+    { 'x', 'x', 'x', 'x', 'x' },
+    { 'x', 'x', 'o', 'o', 'x' },
+    { 'x', 'x', 'x', 'o', 'o' },
+    { 'x', 'x', 'x', 'o', 'o' },
 };
 
 static u8 Unk_ov23_02256C60[3][3] = {
-    {'x', 'x', 'x'},
-    {'x', 'x', 'o'},
-    {'x', 'x', 'x'},
+    { 'x', 'x', 'x' },
+    { 'x', 'x', 'o' },
+    { 'x', 'x', 'x' },
 };
 static u8 Unk_ov23_02256C69[3][3] = {
-    {'x', 'x', 'x'},
-    {'x', 'x', 'x'},
-    {'x', 'x', 'o'},
+    { 'x', 'x', 'x' },
+    { 'x', 'x', 'x' },
+    { 'x', 'x', 'o' },
 };
 static u8 Unk_ov23_02256CA2[3][4] = {
-    {'x', 'o', 'x', 'o'},
-    {'x', 'x', 'x', 'o'},
-    {'x', 'x', 'x', 'x'},
+    { 'x', 'o', 'x', 'o' },
+    { 'x', 'x', 'x', 'o' },
+    { 'x', 'x', 'x', 'x' },
 };
 static u8 Unk_ov23_02256CAE[3][4] = {
-    {'x', 'x', 'x', 'x'},
-    {'x', 'x', 'x', 'x'},
-    {'x', 'x', 'o', 'x'},
+    { 'x', 'x', 'x', 'x' },
+    { 'x', 'x', 'x', 'x' },
+    { 'x', 'x', 'o', 'x' },
 };
 
 static u8 Unk_ov23_02256BF0[2][2] = {
-    {'x', 'o'},
-    {'x', 'x'},
+    { 'x', 'o' },
+    { 'x', 'x' },
 };
 
 static u8 Unk_ov23_02256DC2[4][5] = {
-    {'o', 'x', 'x', 'x', 'o'},
-    {'o', 'x', 'x', 'x', 'o'},
-    {'x', 'x', 'x', 'x', 'x'},
-    {'o', 'x', 'x', 'x', 'o'},
+    { 'o', 'x', 'x', 'x', 'o' },
+    { 'o', 'x', 'x', 'x', 'o' },
+    { 'x', 'x', 'x', 'x', 'x' },
+    { 'o', 'x', 'x', 'x', 'o' },
 };
 
 static u8 Unk_ov23_02256CFA[4][4] = {
-    {'x', 'x', 'x', 'x'},
-    {'x', 'x', 'x', 'x'},
-    {'x', 'x', 'x', 'x'},
-    {'o', 'x', 'x', 'o'},
+    { 'x', 'x', 'x', 'x' },
+    { 'x', 'x', 'x', 'x' },
+    { 'x', 'x', 'x', 'x' },
+    { 'o', 'x', 'x', 'o' },
 };
 
 static u8 Unk_ov23_02256D1A[4][4] = {
-    {'x', 'o', 'x', 'o'},
-    {'x', 'x', 'x', 'x'},
-    {'x', 'x', 'x', 'x'},
-    {'o', 'x', 'o', 'x'},
+    { 'x', 'o', 'x', 'o' },
+    { 'x', 'x', 'x', 'x' },
+    { 'x', 'x', 'x', 'x' },
+    { 'o', 'x', 'o', 'x' },
 };
 
 static u8 Unk_ov23_02256D2A[4][4] = {
-    {'o', 'x', 'x', 'o'},
-    {'x', 'x', 'x', 'x'},
-    {'x', 'x', 'x', 'x'},
-    {'x', 'o', 'o', 'x'},
+    { 'o', 'x', 'x', 'o' },
+    { 'x', 'x', 'x', 'x' },
+    { 'x', 'x', 'x', 'x' },
+    { 'x', 'o', 'o', 'x' },
 };
 
 static u8 Unk_ov23_02256C72[3][4] = {
-    {'x', 'o', 'x', 'o'},
-    {'x', 'x', 'x', 'x'},
-    {'x', 'x', 'x', 'x'},
+    { 'x', 'o', 'x', 'o' },
+    { 'x', 'x', 'x', 'x' },
+    { 'x', 'x', 'x', 'x' },
 };
 
 static u8 Unk_ov23_02256CCA[4][4] = {
-    {'o', 'o', 'x', 'o'},
-    {'x', 'x', 'x', 'o'},
-    {'o', 'x', 'x', 'x'},
-    {'o', 'x', 'o', 'o'},
+    { 'o', 'o', 'x', 'o' },
+    { 'x', 'x', 'x', 'o' },
+    { 'o', 'x', 'x', 'x' },
+    { 'o', 'x', 'o', 'o' },
 };
 
 static u8 Unk_ov23_02256C7E[3][4] = {
-    {'x', 'x', 'x'},
-    {'x', 'x', 'x'},
-    {'x', 'o', 'x'},
+    { 'x', 'x', 'x' },
+    { 'x', 'x', 'x' },
+    { 'x', 'o', 'x' },
 };
 
 static UnkStruct_ov23_02256EB0 Unk_ov23_02256EB0[] = {
-    {NULL, 0x1E, 0x16, 0x1B, 0x14, 0x4, 0x4, 0x1, 0x39, 0x37},
-    {NULL, 0x16, 0x1E, 0x14, 0x1B, 0x4, 0x4, 0x2, 0x67, 0x65},
-    {NULL, 0xA7, 0xC2, 0x6E, 0xA4, 0x4, 0x4, 0x3, 0x2, 0x0},
-    {NULL, 0xC2, 0xA7, 0x96, 0x7C, 0x4, 0x4, 0x4, 0x5, 0x3},
-    {NULL, 0x96, 0x96, 0x6B, 0x6B, 0x4, 0x4, 0x5, 0x3F, 0x3D},
-    {NULL, 0xF, 0xD, 0xD, 0xA, 0x6, 0x6, 0x6, 0x38, 0x37},
-    {NULL, 0xD, 0xF, 0xA, 0xD, 0x6, 0x6, 0x7, 0x66, 0x65},
-    {NULL, 0x53, 0x60, 0x3D, 0x4B, 0x6, 0x6, 0x8, 0x1, 0x0},
-    {NULL, 0x60, 0x53, 0x4B, 0x3D, 0x6, 0x6, 0x9, 0x4, 0x3},
-    {NULL, 0x4B, 0x4B, 0x35, 0x35, 0x6, 0x6, 0xA, 0x3E, 0x3D},
-    {NULL, 0x0, 0x0, 0x0, 0x0, 0x6, 0x6, 0xB, 0x3B, 0x3C},
-    {NULL, 0x0, 0x0, 0x2, 0x2, 0x8, 0x8, 0xC, 0x2F, 0x30},
-    {Unk_ov23_02256C4E, 0x4, 0x1, 0xF, 0x3, 0x6, 0x6, 0xD, 0x6A, 0x6B},
-    {Unk_ov23_02256C57, 0x2, 0x2, 0xA, 0xA, 0x6, 0x6, 0xE, 0x68, 0x69},
-    {Unk_ov23_02256C34, 0x1, 0x2, 0x1, 0x8, 0x8, 0x4, 0xF, 0x42, 0x43},
-    {Unk_ov23_02256C2C, 0x1, 0x2, 0x2, 0x7, 0x4, 0x8, 0xF, 0x44, 0x43},
-    {NULL, 0x4, 0x4, 0x14, 0x14, 0x4, 0x4, 0x10, 0x12, 0x13},
-    {Unk_ov23_02256C45, 0x4, 0x1, 0x1E, 0x5, 0x6, 0x6, 0x11, 0x2D, 0x2E},
-    {NULL, 0x4, 0x4, 0x14, 0x14, 0x8, 0x4, 0x12, 0x32, 0x33},
-    {NULL, 0x4, 0x1, 0x1E, 0x5, 0x6, 0x6, 0x13, 0x18, 0x19},
-    {Unk_ov23_02256C3C, 0x1, 0x4, 0x5, 0x1E, 0x6, 0x6, 0x14, 0x40, 0x41},
-    {Unk_ov23_02256C96, 0x1, 0x2, 0x3, 0xF, 0x6, 0x8, 0x15, 0x60, 0x61},
-    {Unk_ov23_02256C8A, 0x1, 0x2, 0x2, 0xF, 0x8, 0x6, 0x15, 0x62, 0x61},
-    {Unk_ov23_02256D0A, 0x0, 0x0, 0x3, 0x1, 0x8, 0x8, 0x17, 0x29, 0x31},
-    {Unk_ov23_02256CBA, 0x0, 0x0, 0x3, 0x1, 0x8, 0x8, 0x17, 0x2C, 0x31},
-    {Unk_ov23_02256D0A, 0x0, 0x0, 0x3, 0x1, 0x8, 0x8, 0x17, 0x2A, 0x31},
-    {Unk_ov23_02256CBA, 0x0, 0x0, 0x3, 0x1, 0x8, 0x8, 0x17, 0x2B, 0x31},
-    {Unk_ov23_02256D5E, 0x0, 0x0, 0x1, 0xD, 0xA, 0x8, 0x18, 0x3A, 0x31},
-    {Unk_ov23_02256D72, 0x0, 0x0, 0x3, 0x1, 0x8, 0xA, 0x19, 0x6D, 0x31},
-    {Unk_ov23_02256D86, 0x0, 0x0, 0x3, 0x1, 0xA, 0x8, 0x19, 0x70, 0x31},
-    {Unk_ov23_02256D9A, 0x0, 0x0, 0x3, 0x1, 0x8, 0xA, 0x19, 0x6E, 0x31},
-    {Unk_ov23_02256DAE, 0x0, 0x0, 0x3, 0x1, 0xA, 0x8, 0x19, 0x6F, 0x31},
-    {Unk_ov23_02256DD6, 0x0, 0x0, 0x1, 0x3, 0xA, 0xA, 0x1A, 0x45, 0x31},
-    {Unk_ov23_02256DEF, 0x0, 0x0, 0x1, 0x3, 0xA, 0xA, 0x1A, 0x48, 0x31},
-    {Unk_ov23_02256E08, 0x0, 0x0, 0x1, 0x3, 0xA, 0xA, 0x1A, 0x46, 0x31},
-    {Unk_ov23_02256E21, 0x0, 0x0, 0x1, 0x3, 0xA, 0xA, 0x1A, 0x47, 0x31},
-    {Unk_ov23_02256CDA, 0x0, 0x0, 0x2, 0x2, 0x8, 0x8, 0x1B, 0x34, 0x35},
-    {Unk_ov23_02256CEA, 0x0, 0x0, 0x3, 0x3, 0x8, 0x8, 0x1B, 0x36, 0x35},
-    {Unk_ov23_02256D3A, 0x1, 0x1, 0x5, 0x5, 0x6, 0xC, 0x1C, 0xA, 0xB},
-    {Unk_ov23_02256D4C, 0x1, 0x1, 0x5, 0x5, 0xC, 0x6, 0x1C, 0xC, 0xB},
-    {Unk_ov23_02256C57, 0x8, 0x8, 0xA, 0xA, 0x6, 0x6, 0x1D, 0x11, 0xF},
-    {NULL, 0x1, 0x1, 0x2, 0x2, 0x6, 0x6, 0x1E, 0x10, 0xF},
-    {Unk_ov23_02256C60, 0xD, 0xD, 0x11, 0x11, 0x6, 0x6, 0x1F, 0x58, 0x4F},
-    {Unk_ov23_02256C69, 0xD, 0xD, 0x11, 0x11, 0x6, 0x6, 0x20, 0x4B, 0x5D},
-    {Unk_ov23_02256CA2, 0xD, 0xD, 0x11, 0x11, 0x8, 0x6, 0x21, 0x5F, 0x5C},
-    {Unk_ov23_02256CAE, 0xD, 0xD, 0x11, 0x11, 0x8, 0x6, 0x22, 0x51, 0x59},
-    {Unk_ov23_02256BF0, 0x21, 0x21, 0x1E, 0x1E, 0x4, 0x4, 0x23, 0x14, 0x15},
-    {Unk_ov23_02256DC2, 0x0, 0x19, 0x0, 0xC, 0xA, 0x8, 0x24, 0x6C, 0x31},
-    {Unk_ov23_02256CFA, 0x19, 0x0, 0xC, 0x0, 0x8, 0x8, 0x25, 0x73, 0x31},
-    {Unk_ov23_02256D1A, 0x1, 0x1, 0x5, 0x2, 0x8, 0x8, 0x26, 0x49, 0x4A},
-    {NULL, 0x1, 0x1, 0x2, 0x5, 0x6, 0x6, 0x27, 0x6, 0x7},
-    {Unk_ov23_02256D2A, 0x2, 0x1, 0xB, 0x5, 0x8, 0x8, 0x28, 0xD, 0xE},
-    {Unk_ov23_02256CCA, 0x1, 0x2, 0x5, 0xB, 0x8, 0x8, 0x29, 0x63, 0x64},
-    {Unk_ov23_02256C72, 0x2, 0x1, 0xB, 0x5, 0x8, 0x6, 0x2A, 0x16, 0x17},
-    {Unk_ov23_02256C7E, 0x1, 0x2, 0x5, 0xB, 0x6, 0x6, 0x2B, 0x71, 0x72},
-    {NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, 0x2C, 0x56, 0x4F},
-    {NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, 0x2D, 0x56, 0x5D},
-    {NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, 0x2E, 0x56, 0x5C},
-    {NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, 0x2F, 0x56, 0x59},
-    {NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, 0x30, 0x56, 0x54},
-    {NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, 0x31, 0x56, 0x50},
-    {NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, 0x32, 0x56, 0x57},
-    {NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, 0x33, 0x56, 0x53},
-    {NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, 0x34, 0x56, 0x5B},
-    {NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, 0x35, 0x56, 0x5E},
-    {NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, 0x36, 0x56, 0x4C},
-    {NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, 0x37, 0x56, 0x5A},
-    {NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, 0x38, 0x56, 0x52},
-    {NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, 0x39, 0x56, 0x4E},
-    {NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, 0x3A, 0x56, 0x4D},
-    {NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, 0x3B, 0x56, 0x55},
-    {NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x2, 0x3C, 0x1B, 0x1A},
-    {NULL, 0x1, 0x1, 0x1, 0x1, 0x2, 0x8, 0x3C, 0x1C, 0x1A},
-    {NULL, 0x1, 0x1, 0x1, 0x1, 0x4, 0x4, 0x3D, 0x1D, 0x1A},
-    {Unk_ov23_02256BFC, 0x1, 0x1, 0x1, 0x1, 0x6, 0x4, 0x3E, 0x1E, 0x1A},
-    {Unk_ov23_02256C02, 0x1, 0x1, 0x1, 0x1, 0x4, 0x6, 0x3E, 0x21, 0x1A},
-    {Unk_ov23_02256C20, 0x1, 0x1, 0x1, 0x1, 0x6, 0x4, 0x3E, 0x1F, 0x1A},
-    {Unk_ov23_02256C1A, 0x1, 0x1, 0x1, 0x1, 0x4, 0x6, 0x3E, 0x20, 0x1A},
-    {Unk_ov23_02256C0E, 0x1, 0x1, 0x1, 0x1, 0x6, 0x4, 0x3F, 0x22, 0x1A},
-    {Unk_ov23_02256C26, 0x1, 0x1, 0x1, 0x1, 0x4, 0x6, 0x3F, 0x23, 0x1A},
-    {Unk_ov23_02256C08, 0x1, 0x1, 0x1, 0x1, 0x6, 0x4, 0x40, 0x24, 0x1A},
-    {Unk_ov23_02256C14, 0x1, 0x1, 0x1, 0x1, 0x4, 0x6, 0x40, 0x25, 0x1A},
-    {NULL, 0x1, 0x1, 0x1, 0x1, 0x6, 0x6, 0x41, 0x26, 0x1A},
-    {NULL, 0x1, 0x1, 0x1, 0x1, 0x4, 0x8, 0x42, 0x27, 0x1A},
-    {NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x4, 0x42, 0x28, 0x1A}
+    { NULL, 0x1E, 0x16, 0x1B, 0x14, 0x4, 0x4, 0x1, 0x39, 0x37 },
+    { NULL, 0x16, 0x1E, 0x14, 0x1B, 0x4, 0x4, 0x2, 0x67, 0x65 },
+    { NULL, 0xA7, 0xC2, 0x6E, 0xA4, 0x4, 0x4, 0x3, 0x2, 0x0 },
+    { NULL, 0xC2, 0xA7, 0x96, 0x7C, 0x4, 0x4, 0x4, 0x5, 0x3 },
+    { NULL, 0x96, 0x96, 0x6B, 0x6B, 0x4, 0x4, 0x5, 0x3F, 0x3D },
+    { NULL, 0xF, 0xD, 0xD, 0xA, 0x6, 0x6, 0x6, 0x38, 0x37 },
+    { NULL, 0xD, 0xF, 0xA, 0xD, 0x6, 0x6, 0x7, 0x66, 0x65 },
+    { NULL, 0x53, 0x60, 0x3D, 0x4B, 0x6, 0x6, 0x8, 0x1, 0x0 },
+    { NULL, 0x60, 0x53, 0x4B, 0x3D, 0x6, 0x6, 0x9, 0x4, 0x3 },
+    { NULL, 0x4B, 0x4B, 0x35, 0x35, 0x6, 0x6, 0xA, 0x3E, 0x3D },
+    { NULL, 0x0, 0x0, 0x0, 0x0, 0x6, 0x6, 0xB, 0x3B, 0x3C },
+    { NULL, 0x0, 0x0, 0x2, 0x2, 0x8, 0x8, 0xC, 0x2F, 0x30 },
+    { Unk_ov23_02256C4E, 0x4, 0x1, 0xF, 0x3, 0x6, 0x6, 0xD, 0x6A, 0x6B },
+    { Unk_ov23_02256C57, 0x2, 0x2, 0xA, 0xA, 0x6, 0x6, 0xE, 0x68, 0x69 },
+    { Unk_ov23_02256C34, 0x1, 0x2, 0x1, 0x8, 0x8, 0x4, 0xF, 0x42, 0x43 },
+    { Unk_ov23_02256C2C, 0x1, 0x2, 0x2, 0x7, 0x4, 0x8, 0xF, 0x44, 0x43 },
+    { NULL, 0x4, 0x4, 0x14, 0x14, 0x4, 0x4, 0x10, 0x12, 0x13 },
+    { Unk_ov23_02256C45, 0x4, 0x1, 0x1E, 0x5, 0x6, 0x6, 0x11, 0x2D, 0x2E },
+    { NULL, 0x4, 0x4, 0x14, 0x14, 0x8, 0x4, 0x12, 0x32, 0x33 },
+    { NULL, 0x4, 0x1, 0x1E, 0x5, 0x6, 0x6, 0x13, 0x18, 0x19 },
+    { Unk_ov23_02256C3C, 0x1, 0x4, 0x5, 0x1E, 0x6, 0x6, 0x14, 0x40, 0x41 },
+    { Unk_ov23_02256C96, 0x1, 0x2, 0x3, 0xF, 0x6, 0x8, 0x15, 0x60, 0x61 },
+    { Unk_ov23_02256C8A, 0x1, 0x2, 0x2, 0xF, 0x8, 0x6, 0x15, 0x62, 0x61 },
+    { Unk_ov23_02256D0A, 0x0, 0x0, 0x3, 0x1, 0x8, 0x8, 0x17, 0x29, 0x31 },
+    { Unk_ov23_02256CBA, 0x0, 0x0, 0x3, 0x1, 0x8, 0x8, 0x17, 0x2C, 0x31 },
+    { Unk_ov23_02256D0A, 0x0, 0x0, 0x3, 0x1, 0x8, 0x8, 0x17, 0x2A, 0x31 },
+    { Unk_ov23_02256CBA, 0x0, 0x0, 0x3, 0x1, 0x8, 0x8, 0x17, 0x2B, 0x31 },
+    { Unk_ov23_02256D5E, 0x0, 0x0, 0x1, 0xD, 0xA, 0x8, 0x18, 0x3A, 0x31 },
+    { Unk_ov23_02256D72, 0x0, 0x0, 0x3, 0x1, 0x8, 0xA, 0x19, 0x6D, 0x31 },
+    { Unk_ov23_02256D86, 0x0, 0x0, 0x3, 0x1, 0xA, 0x8, 0x19, 0x70, 0x31 },
+    { Unk_ov23_02256D9A, 0x0, 0x0, 0x3, 0x1, 0x8, 0xA, 0x19, 0x6E, 0x31 },
+    { Unk_ov23_02256DAE, 0x0, 0x0, 0x3, 0x1, 0xA, 0x8, 0x19, 0x6F, 0x31 },
+    { Unk_ov23_02256DD6, 0x0, 0x0, 0x1, 0x3, 0xA, 0xA, 0x1A, 0x45, 0x31 },
+    { Unk_ov23_02256DEF, 0x0, 0x0, 0x1, 0x3, 0xA, 0xA, 0x1A, 0x48, 0x31 },
+    { Unk_ov23_02256E08, 0x0, 0x0, 0x1, 0x3, 0xA, 0xA, 0x1A, 0x46, 0x31 },
+    { Unk_ov23_02256E21, 0x0, 0x0, 0x1, 0x3, 0xA, 0xA, 0x1A, 0x47, 0x31 },
+    { Unk_ov23_02256CDA, 0x0, 0x0, 0x2, 0x2, 0x8, 0x8, 0x1B, 0x34, 0x35 },
+    { Unk_ov23_02256CEA, 0x0, 0x0, 0x3, 0x3, 0x8, 0x8, 0x1B, 0x36, 0x35 },
+    { Unk_ov23_02256D3A, 0x1, 0x1, 0x5, 0x5, 0x6, 0xC, 0x1C, 0xA, 0xB },
+    { Unk_ov23_02256D4C, 0x1, 0x1, 0x5, 0x5, 0xC, 0x6, 0x1C, 0xC, 0xB },
+    { Unk_ov23_02256C57, 0x8, 0x8, 0xA, 0xA, 0x6, 0x6, 0x1D, 0x11, 0xF },
+    { NULL, 0x1, 0x1, 0x2, 0x2, 0x6, 0x6, 0x1E, 0x10, 0xF },
+    { Unk_ov23_02256C60, 0xD, 0xD, 0x11, 0x11, 0x6, 0x6, 0x1F, 0x58, 0x4F },
+    { Unk_ov23_02256C69, 0xD, 0xD, 0x11, 0x11, 0x6, 0x6, 0x20, 0x4B, 0x5D },
+    { Unk_ov23_02256CA2, 0xD, 0xD, 0x11, 0x11, 0x8, 0x6, 0x21, 0x5F, 0x5C },
+    { Unk_ov23_02256CAE, 0xD, 0xD, 0x11, 0x11, 0x8, 0x6, 0x22, 0x51, 0x59 },
+    { Unk_ov23_02256BF0, 0x21, 0x21, 0x1E, 0x1E, 0x4, 0x4, 0x23, 0x14, 0x15 },
+    { Unk_ov23_02256DC2, 0x0, 0x19, 0x0, 0xC, 0xA, 0x8, 0x24, 0x6C, 0x31 },
+    { Unk_ov23_02256CFA, 0x19, 0x0, 0xC, 0x0, 0x8, 0x8, 0x25, 0x73, 0x31 },
+    { Unk_ov23_02256D1A, 0x1, 0x1, 0x5, 0x2, 0x8, 0x8, 0x26, 0x49, 0x4A },
+    { NULL, 0x1, 0x1, 0x2, 0x5, 0x6, 0x6, 0x27, 0x6, 0x7 },
+    { Unk_ov23_02256D2A, 0x2, 0x1, 0xB, 0x5, 0x8, 0x8, 0x28, 0xD, 0xE },
+    { Unk_ov23_02256CCA, 0x1, 0x2, 0x5, 0xB, 0x8, 0x8, 0x29, 0x63, 0x64 },
+    { Unk_ov23_02256C72, 0x2, 0x1, 0xB, 0x5, 0x8, 0x6, 0x2A, 0x16, 0x17 },
+    { Unk_ov23_02256C7E, 0x1, 0x2, 0x5, 0xB, 0x6, 0x6, 0x2B, 0x71, 0x72 },
+    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, 0x2C, 0x56, 0x4F },
+    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, 0x2D, 0x56, 0x5D },
+    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, 0x2E, 0x56, 0x5C },
+    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, 0x2F, 0x56, 0x59 },
+    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, 0x30, 0x56, 0x54 },
+    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, 0x31, 0x56, 0x50 },
+    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, 0x32, 0x56, 0x57 },
+    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, 0x33, 0x56, 0x53 },
+    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, 0x34, 0x56, 0x5B },
+    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, 0x35, 0x56, 0x5E },
+    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, 0x36, 0x56, 0x4C },
+    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, 0x37, 0x56, 0x5A },
+    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, 0x38, 0x56, 0x52 },
+    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, 0x39, 0x56, 0x4E },
+    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, 0x3A, 0x56, 0x4D },
+    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, 0x3B, 0x56, 0x55 },
+    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x2, 0x3C, 0x1B, 0x1A },
+    { NULL, 0x1, 0x1, 0x1, 0x1, 0x2, 0x8, 0x3C, 0x1C, 0x1A },
+    { NULL, 0x1, 0x1, 0x1, 0x1, 0x4, 0x4, 0x3D, 0x1D, 0x1A },
+    { Unk_ov23_02256BFC, 0x1, 0x1, 0x1, 0x1, 0x6, 0x4, 0x3E, 0x1E, 0x1A },
+    { Unk_ov23_02256C02, 0x1, 0x1, 0x1, 0x1, 0x4, 0x6, 0x3E, 0x21, 0x1A },
+    { Unk_ov23_02256C20, 0x1, 0x1, 0x1, 0x1, 0x6, 0x4, 0x3E, 0x1F, 0x1A },
+    { Unk_ov23_02256C1A, 0x1, 0x1, 0x1, 0x1, 0x4, 0x6, 0x3E, 0x20, 0x1A },
+    { Unk_ov23_02256C0E, 0x1, 0x1, 0x1, 0x1, 0x6, 0x4, 0x3F, 0x22, 0x1A },
+    { Unk_ov23_02256C26, 0x1, 0x1, 0x1, 0x1, 0x4, 0x6, 0x3F, 0x23, 0x1A },
+    { Unk_ov23_02256C08, 0x1, 0x1, 0x1, 0x1, 0x6, 0x4, 0x40, 0x24, 0x1A },
+    { Unk_ov23_02256C14, 0x1, 0x1, 0x1, 0x1, 0x4, 0x6, 0x40, 0x25, 0x1A },
+    { NULL, 0x1, 0x1, 0x1, 0x1, 0x6, 0x6, 0x41, 0x26, 0x1A },
+    { NULL, 0x1, 0x1, 0x1, 0x1, 0x4, 0x8, 0x42, 0x27, 0x1A },
+    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x4, 0x42, 0x28, 0x1A }
 };
 
 static const UnkStruct_ov61_0222C884 Unk_ov23_0225630E = {
@@ -590,7 +590,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov23_0225630E = {
     0x21F
 };
 
-static void ov23_0223E140 (void)
+static void ov23_0223E140(void)
 {
     int i;
 
@@ -614,10 +614,10 @@ static void ov23_0223E140 (void)
     }
 }
 
-void ov23_0223E1E4 (void * param0, FieldSystem * fieldSystem)
+void ov23_0223E1E4(void *param0, FieldSystem *fieldSystem)
 {
     int v0, v1;
-    UndergroundData * v2;
+    UndergroundData *v2;
 
     if (Unk_ov23_02257740) {
         return;
@@ -668,22 +668,22 @@ void ov23_0223E1E4 (void * param0, FieldSystem * fieldSystem)
     }
 }
 
-int ov23_0223E2E8 (void)
+int ov23_0223E2E8(void)
 {
     return sizeof(UnkStruct_ov23_02257740);
 }
 
-void ov23_0223E2F0 (void)
+void ov23_0223E2F0(void)
 {
     return;
 }
 
-void ov23_0223E2F4 (void)
+void ov23_0223E2F4(void)
 {
     return;
 }
 
-void ov23_0223E2F8 (void)
+void ov23_0223E2F8(void)
 {
     if (Unk_ov23_02257740) {
         if (Unk_ov23_02257740->unk_8C8) {
@@ -703,9 +703,9 @@ void ov23_0223E2F8 (void)
     }
 }
 
-BOOL ov23_0223E354 (int param0, UnkStruct_ov23_0224271C * param1)
+BOOL ov23_0223E354(int param0, UnkStruct_ov23_0224271C *param1)
 {
-    UnkStruct_ov23_0223E6F8 * v0 = ov23_0223E88C(param1->unk_00, param1->unk_02);
+    UnkStruct_ov23_0223E6F8 *v0 = ov23_0223E88C(param1->unk_00, param1->unk_02);
     u8 v1;
 
     v1 = param0;
@@ -725,7 +725,7 @@ BOOL ov23_0223E354 (int param0, UnkStruct_ov23_0224271C * param1)
     return 0;
 }
 
-static BOOL ov23_0223E3AC (FieldSystem * fieldSystem, int param1, int param2)
+static BOOL ov23_0223E3AC(FieldSystem *fieldSystem, int param1, int param2)
 {
     if (ov23_02242E58(param1, param2)) {
         return 0;
@@ -760,13 +760,13 @@ static BOOL ov23_0223E3AC (FieldSystem * fieldSystem, int param1, int param2)
     return 0;
 }
 
-static void ov23_0223E434 (MATHRandContext16 * param0, int param1)
+static void ov23_0223E434(MATHRandContext16 *param0, int param1)
 {
     int v0, v1, v2, v3;
     u16 v4, v5, v6;
     u16 v7, v8, v9;
-    UnkStruct_ov23_0223E6F8 * v10;
-    UndergroundData * v11 = sub_020298B0(Unk_ov23_02257740->fieldSystem->saveData);
+    UnkStruct_ov23_0223E6F8 *v10;
+    UndergroundData *v11 = sub_020298B0(Unk_ov23_02257740->fieldSystem->saveData);
 
     v6 = (sub_02039E10(Unk_ov23_02257740->fieldSystem->unk_2C) - 2) * 32;
     v9 = (sub_02039E20(Unk_ov23_02257740->fieldSystem->unk_2C) - 2) * 32;
@@ -822,12 +822,12 @@ static void ov23_0223E434 (MATHRandContext16 * param0, int param1)
     }
 }
 
-void ov23_0223E650 (int param0, int param1, MATHRandContext16 * param2)
+void ov23_0223E650(int param0, int param1, MATHRandContext16 *param2)
 {
     int v0, v1, v2, v3;
     u16 v4, v5;
-    UnkStruct_ov23_0223E6F8 * v6;
-    UndergroundData * v7 = sub_020298B0(Unk_ov23_02257740->fieldSystem->saveData);
+    UnkStruct_ov23_0223E6F8 *v6;
+    UndergroundData *v7 = sub_020298B0(Unk_ov23_02257740->fieldSystem->saveData);
 
     v3 = 0;
 
@@ -851,7 +851,7 @@ void ov23_0223E650 (int param0, int param1, MATHRandContext16 * param2)
     }
 }
 
-static UnkStruct_ov23_0223E6F8 * ov23_0223E6F8 (void)
+static UnkStruct_ov23_0223E6F8 *ov23_0223E6F8(void)
 {
     int v0;
 
@@ -864,7 +864,7 @@ static UnkStruct_ov23_0223E6F8 * ov23_0223E6F8 (void)
     return NULL;
 }
 
-static UnkStruct_ov23_0223E6F8 * ov23_0223E740 (int param0, int param1)
+static UnkStruct_ov23_0223E6F8 *ov23_0223E740(int param0, int param1)
 {
     int v0 = -1, v1, v2 = param1 * 30 * 32 + param0;
     int v3;
@@ -898,12 +898,12 @@ static UnkStruct_ov23_0223E6F8 * ov23_0223E740 (int param0, int param1)
     return &Unk_ov23_02257740->unk_26C[v0];
 }
 
-static void ov23_0223E834 (void)
+static void ov23_0223E834(void)
 {
-    UndergroundData * v0 = sub_020298B0(Unk_ov23_02257740->fieldSystem->saveData);
+    UndergroundData *v0 = sub_020298B0(Unk_ov23_02257740->fieldSystem->saveData);
     int v1;
     int v2, v3;
-    UnkStruct_ov23_0223E6F8 * v4;
+    UnkStruct_ov23_0223E6F8 *v4;
 
     for (v1 = 0; v1 < 255; v1++) {
         v2 = sub_020291CC(v0, v1);
@@ -916,7 +916,7 @@ static void ov23_0223E834 (void)
     }
 }
 
-void ov23_0223E878 (void)
+void ov23_0223E878(void)
 {
     int v0;
 
@@ -926,7 +926,7 @@ void ov23_0223E878 (void)
     }
 }
 
-static UnkStruct_ov23_0223E6F8 * ov23_0223E88C (u16 param0, u16 param1)
+static UnkStruct_ov23_0223E6F8 *ov23_0223E88C(u16 param0, u16 param1)
 {
     int v0;
 
@@ -939,7 +939,7 @@ static UnkStruct_ov23_0223E6F8 * ov23_0223E88C (u16 param0, u16 param1)
     return NULL;
 }
 
-static int ov23_0223E8CC (u16 param0, u16 param1)
+static int ov23_0223E8CC(u16 param0, u16 param1)
 {
     int v0, v1 = param1 - 80, v2 = param1 + 80, v3 = param0 - 80, v4 = param0 + 80;
     int v5 = 0, v6;
@@ -998,7 +998,7 @@ static int ov23_0223E8CC (u16 param0, u16 param1)
     return -1;
 }
 
-static void ov23_0223E99C (SysTask * param0, void * param1)
+static void ov23_0223E99C(SysTask *param0, void *param1)
 {
     if (Unk_ov23_02257740->unk_848) {
         sub_02002154(Unk_ov23_02257740->unk_848, 4);
@@ -1010,9 +1010,9 @@ static void ov23_0223E99C (SysTask * param0, void * param1)
     SysTask_Done(param0);
 }
 
-void ov23_0223E9D4 (int param0, int param1, void * param2, void * param3)
+void ov23_0223E9D4(int param0, int param1, void *param2, void *param3)
 {
-    u8 * v0 = param2;
+    u8 *v0 = param2;
 
     if ((v0[0] == CommSys_CurNetId()) && CommSys_IsSendingMovementData()) {
         Unk_ov23_02257740->unk_A24 = ov23_02253F40(ov23_0224219C(), 19, 0, NULL);
@@ -1023,7 +1023,7 @@ void ov23_0223E9D4 (int param0, int param1, void * param2, void * param3)
     }
 }
 
-static void ov23_0223EA38 (SysTask * param0, void * param1)
+static void ov23_0223EA38(SysTask *param0, void *param1)
 {
     u8 v0;
 
@@ -1055,12 +1055,12 @@ static void ov23_0223EA38 (SysTask * param0, void * param1)
     }
 }
 
-void ov23_0223EAF8 (int param0, int param1, void * param2, void * param3)
+void ov23_0223EAF8(int param0, int param1, void *param2, void *param3)
 {
-    UndergroundData * v0 = sub_020298B0(Unk_ov23_02257740->fieldSystem->saveData);
-    UnkStruct_ov23_0223E6F8 * v1 = Unk_ov23_02257740->unk_84C[param0];
+    UndergroundData *v0 = sub_020298B0(Unk_ov23_02257740->fieldSystem->saveData);
+    UnkStruct_ov23_0223E6F8 *v1 = Unk_ov23_02257740->unk_84C[param0];
     u8 v2 = param0;
-    u8 * v3 = param2;
+    u8 *v3 = param2;
 
     if ((v3[0] != 0) && v1) {
         if (v1->unk_04 == 0xff) {
@@ -1081,9 +1081,9 @@ void ov23_0223EAF8 (int param0, int param1, void * param2, void * param3)
     }
 }
 
-void ov23_0223EB8C (int param0, int param1, void * param2, void * param3)
+void ov23_0223EB8C(int param0, int param1, void *param2, void *param3)
 {
-    u8 * v0 = param2;
+    u8 *v0 = param2;
 
     if (v0[0] == CommSys_CurNetId()) {
         sub_020594FC();
@@ -1093,16 +1093,16 @@ void ov23_0223EB8C (int param0, int param1, void * param2, void * param3)
     Unk_ov23_02257740->unk_908[v0[0]] = 1;
 }
 
-void ov23_0223EBC0 (int param0, int param1, void * param2, void * param3)
+void ov23_0223EBC0(int param0, int param1, void *param2, void *param3)
 {
     Unk_ov23_02257740->unk_86C[param0] = 0;
 
     Unk_ov23_02257740->unk_8FC[param0] = 0;
 }
 
-void ov23_0223EBE4 (int param0, int param1, void * param2, void * param3)
+void ov23_0223EBE4(int param0, int param1, void *param2, void *param3)
 {
-    u8 * v0 = param2;
+    u8 *v0 = param2;
     u8 v1[3];
     int v2;
 
@@ -1113,14 +1113,14 @@ void ov23_0223EBE4 (int param0, int param1, void * param2, void * param3)
     sub_02035B48(69, v1);
 }
 
-int ov23_0223EBFC (void)
+int ov23_0223EBFC(void)
 {
     return 2;
 }
 
-void ov23_0223EC00 (int param0, int param1, void * param2, void * param3)
+void ov23_0223EC00(int param0, int param1, void *param2, void *param3)
 {
-    u8 * v0 = param2;
+    u8 *v0 = param2;
     u8 v1[3];
     int v2;
 
@@ -1132,12 +1132,12 @@ void ov23_0223EC00 (int param0, int param1, void * param2, void * param3)
     Unk_ov23_02257740->unk_918[v0[0]] = v0[2];
 }
 
-int ov23_0223EC30 (void)
+int ov23_0223EC30(void)
 {
     return 3;
 }
 
-static void ov23_0223EC34 (BGL * param0)
+static void ov23_0223EC34(BGL *param0)
 {
     {
         UnkStruct_02099F80 v0 = {
@@ -1256,11 +1256,11 @@ static void ov23_0223EC34 (BGL * param0)
     sub_02019690(0, 32, 0, 29);
 }
 
-static void ov23_0223ED68 (int param0, int param1, BOOL param2, BOOL param3, BOOL param4)
+static void ov23_0223ED68(int param0, int param1, BOOL param2, BOOL param3, BOOL param4)
 {
-    void * v0;
-    Camera * camera;
-    void * v2;
+    void *v0;
+    Camera *camera;
+    void *v2;
     VecFx32 v3;
 
     if (param2) {
@@ -1296,13 +1296,13 @@ static void ov23_0223ED68 (int param0, int param1, BOOL param2, BOOL param3, BOO
     }
 }
 
-static void ov23_0223EE80 (UnkStruct_ov23_0223EE80 * param0)
+static void ov23_0223EE80(UnkStruct_ov23_0223EE80 *param0)
 {
     int v0;
-    BGL * v1;
-    void * v2;
-    Camera * camera;
-    void * v4;
+    BGL *v1;
+    void *v2;
+    Camera *camera;
+    void *v4;
     int v5;
 
     sub_02004550(58, 0, 0);
@@ -1328,7 +1328,7 @@ static void ov23_0223EE80 (UnkStruct_ov23_0223EE80 * param0)
     sub_0200DD0C(v1, 3, (512 - (18 + 12)), 10, 0, 29);
 
     {
-        NARC * v6;
+        NARC *v6;
 
         v6 = NARC_ctor(NARC_INDEX_DATA__UG_FOSSIL, 29);
         sub_02007130(v6, 1, 0, 0, 32 * 3, 29);
@@ -1342,13 +1342,13 @@ static void ov23_0223EE80 (UnkStruct_ov23_0223EE80 * param0)
     ov23_0223FA3C(v1, v0, param0);
 }
 
-static void ov23_0223EF98 (void)
+static void ov23_0223EF98(void)
 {
     int v0;
-    BGL * v1;
-    void * v2;
-    Camera * camera;
-    void * v4;
+    BGL *v1;
+    void *v2;
+    Camera *camera;
+    void *v4;
     int v5;
 
     ov23_022404C8(Unk_ov23_02257740->unk_04);
@@ -1369,9 +1369,9 @@ static void ov23_0223EF98 (void)
     ov23_02240688(Unk_ov23_02257740->unk_04);
 }
 
-static void ov23_0223F020 (UnkStruct_ov23_0223EE80 * param0)
+static void ov23_0223F020(UnkStruct_ov23_0223EE80 *param0)
 {
-    void * v0;
+    void *v0;
     int v1;
 
     sub_02019044(Unk_ov23_02257740->unk_04, 0);
@@ -1409,10 +1409,10 @@ static void ov23_0223F020 (UnkStruct_ov23_0223EE80 * param0)
     ov23_02253E2C(ov23_0224219C(), Unk_ov23_02257740->fieldSystem->unk_08, (1024 - (18 + 12)), (((1024 - (18 + 12)) - 73) - (27 * 4)));
 }
 
-static void ov23_0223F118 (SysTask * param0, void * param1)
+static void ov23_0223F118(SysTask *param0, void *param1)
 {
-    UnkStruct_ov23_0223EE80 * v0 = param1;
-    FieldSystem * fieldSystem = v0->fieldSystem;
+    UnkStruct_ov23_0223EE80 *v0 = param1;
+    FieldSystem *fieldSystem = v0->fieldSystem;
 
     switch (v0->unk_00) {
     case 0:
@@ -1482,7 +1482,7 @@ static void ov23_0223F118 (SysTask * param0, void * param1)
         v0->unk_08++;
 
         if (v0->unk_08 > 80) {
-            UndergroundData * v2 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_02257740->fieldSystem));
+            UndergroundData *v2 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_02257740->fieldSystem));
 
             ov23_02254044(ov23_0224219C());
 
@@ -1671,10 +1671,10 @@ static void ov23_0223F118 (SysTask * param0, void * param1)
     }
 }
 
-static void ov23_0223F70C (FieldSystem * fieldSystem)
+static void ov23_0223F70C(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov23_0223EE80 * v0;
-    void * v1 = sub_0202BE14(11);
+    UnkStruct_ov23_0223EE80 *v0;
+    void *v1 = sub_0202BE14(11);
 
     sub_0202B758(fieldSystem->unk_9C, v1, 1);
     v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov23_0223EE80));
@@ -1688,7 +1688,7 @@ static void ov23_0223F70C (FieldSystem * fieldSystem)
     Unk_ov23_02257740->unk_8CC = SysTask_Start(ov23_0223F118, v0, 100);
 }
 
-static BOOL ov23_0223F768 (void)
+static BOOL ov23_0223F768(void)
 {
     int v0;
 
@@ -1701,7 +1701,7 @@ static BOOL ov23_0223F768 (void)
     return 0;
 }
 
-static int ov23_0223F78C (int param0, int param1, int param2)
+static int ov23_0223F78C(int param0, int param1, int param2)
 {
     int v0;
 
@@ -1721,9 +1721,9 @@ static int ov23_0223F78C (int param0, int param1, int param2)
     return 0;
 }
 
-static BOOL ov23_0223F804 (UnkStruct_ov23_02256EB0 * param0, int param1, int param2)
+static BOOL ov23_0223F804(UnkStruct_ov23_02256EB0 *param0, int param1, int param2)
 {
-    u8 * v0 = param0->unk_00;
+    u8 *v0 = param0->unk_00;
     int v1, v2, v3;
 
     if (v0 == NULL) {
@@ -1741,7 +1741,7 @@ static BOOL ov23_0223F804 (UnkStruct_ov23_02256EB0 * param0, int param1, int par
     return 1;
 }
 
-static BOOL ov23_0223F838 (int param0, int param1, int param2)
+static BOOL ov23_0223F838(int param0, int param1, int param2)
 {
     int v0, v1, v2, v3, v4;
 
@@ -1783,10 +1783,10 @@ static BOOL ov23_0223F838 (int param0, int param1, int param2)
     return 1;
 }
 
-static int ov23_0223F970 (UnkStruct_ov23_02256EB0 * param0)
+static int ov23_0223F970(UnkStruct_ov23_02256EB0 *param0)
 {
-    SaveData * v0 = FieldSystem_SaveData(Unk_ov23_02257740->fieldSystem);
-    UndergroundData * v1 = sub_020298B0(v0);
+    SaveData *v0 = FieldSystem_SaveData(Unk_ov23_02257740->fieldSystem);
+    UndergroundData *v1 = sub_020298B0(v0);
     BOOL v2 = TrainerInfo_ID(SaveData_GetTrainerInfo(v0)) % 2;
     BOOL v3 = sub_02027474(SaveData_Pokedex(v0));
     int v4 = 0;
@@ -1808,7 +1808,7 @@ static int ov23_0223F970 (UnkStruct_ov23_02256EB0 * param0)
     return v4;
 }
 
-static int ov23_0223F9C8 (void)
+static int ov23_0223F9C8(void)
 {
     int v0, v1 = 0;
 
@@ -1823,7 +1823,7 @@ static int ov23_0223F9C8 (void)
     return v1;
 }
 
-static int ov23_0223F9F0 (int param0)
+static int ov23_0223F9F0(int param0)
 {
     int v0, v1 = param0;
 
@@ -1843,7 +1843,7 @@ static int ov23_0223F9F0 (int param0)
     return 0;
 }
 
-static int ov23_0223FA20 (void)
+static int ov23_0223FA20(void)
 {
     int v0, v1 = 0;
 
@@ -1856,9 +1856,9 @@ static int ov23_0223FA20 (void)
     return v1;
 }
 
-static void ov23_0223FA3C (BGL * param0, int param1, UnkStruct_ov23_0223EE80 * param2)
+static void ov23_0223FA3C(BGL *param0, int param1, UnkStruct_ov23_0223EE80 *param2)
 {
-    UndergroundData * v0 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_02257740->fieldSystem));
+    UndergroundData *v0 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_02257740->fieldSystem));
     int v1, v2, v3 = ov23_0223F9C8();
     int v4, v5, v6, v7, v8 = 0, v9, v10;
     int v11 = ov23_0223FA20();
@@ -1925,10 +1925,10 @@ static void ov23_0223FA3C (BGL * param0, int param1, UnkStruct_ov23_0223EE80 * p
     ov23_0223FF60(v1, param0, param1, param2);
 }
 
-static int ov23_0223FC9C (int param0, BGL * param1, int param2, UnkStruct_ov23_0223EE80 * param3)
+static int ov23_0223FC9C(int param0, BGL *param1, int param2, UnkStruct_ov23_0223EE80 *param3)
 {
-    UnkStruct_ov23_0223FC9C * v0 = &Unk_ov23_02257740->unk_874[param0];
-    u16 * v1 = sub_02019FE4(param1, 1);
+    UnkStruct_ov23_0223FC9C *v0 = &Unk_ov23_02257740->unk_874[param0];
+    u16 *v1 = sub_02019FE4(param1, 1);
     int v2 = v0->unk_05 * 2;
     int v3 = v0->unk_06 * 2;
     int v4 = v2 + v0->unk_00->unk_0C;
@@ -1936,7 +1936,7 @@ static int ov23_0223FC9C (int param0, BGL * param1, int param2, UnkStruct_ov23_0
     int v6, v7, v8, v9 = param2;
     u32 v10;
     int v11 = param0;
-    NARC * v12;
+    NARC *v12;
 
     v12 = NARC_ctor(NARC_INDEX_DATA__UG_PARTS, 29);
 
@@ -1990,7 +1990,7 @@ static u8 Unk_ov23_02257570[] = {
     0xff
 };
 
-static void ov23_0223FDE0 (UnkStruct_ov23_0223EE80 * param0)
+static void ov23_0223FDE0(UnkStruct_ov23_0223EE80 *param0)
 {
     int v0, v1, v2, v3;
     VecFx32 v4;
@@ -2017,7 +2017,7 @@ static void ov23_0223FDE0 (UnkStruct_ov23_0223EE80 * param0)
 
     for (v0 = 0; v0 < 4; v0++) {
         if (param0->unk_38[v0]) {
-            u16 * v5 = param0->unk_28[v0]->pRawData;
+            u16 *v5 = param0->unk_28[v0]->pRawData;
             u8 v6 = Unk_ov23_02257570[param0->unk_38[v0] - 1];
 
             if (v6 == 0xff) {
@@ -2036,7 +2036,7 @@ static void ov23_0223FDE0 (UnkStruct_ov23_0223EE80 * param0)
     }
 }
 
-static void ov23_0223FF60 (int param0, BGL * param1, int param2, UnkStruct_ov23_0223EE80 * param3)
+static void ov23_0223FF60(int param0, BGL *param1, int param2, UnkStruct_ov23_0223EE80 *param3)
 {
     int v0, v1 = 512 + 24 * 3 + 32 + 1;
     u32 v2;
@@ -2047,26 +2047,26 @@ static void ov23_0223FF60 (int param0, BGL * param1, int param2, UnkStruct_ov23_
     }
 }
 
-static void ov23_0223FF8C (BGL * param0)
+static void ov23_0223FF8C(BGL *param0)
 {
     static const u8 v0 = 8;
     static const u8 v1 = 5;
     static u8 v2[v0][v0] = {
-        {0, 0, 4, 4, 4, 4, 0, 0},
-        {0, 4, 4, 4, 4, 4, 4, 0},
-        {4, 4, 4, 4, 4, 4},
-        {4, 4, 4, 4, 4, 4},
-        {4, 4, 4, 4, 4, 4},
-        {4, 4, 4, 4, 4, 4},
-        {0, 4, 4, 4, 4, 4, 4, 0},
-        {0, 0, 4, 4, 4, 4, 0, 0}
+        { 0, 0, 4, 4, 4, 4, 0, 0 },
+        { 0, 4, 4, 4, 4, 4, 4, 0 },
+        { 4, 4, 4, 4, 4, 4 },
+        { 4, 4, 4, 4, 4, 4 },
+        { 4, 4, 4, 4, 4, 4 },
+        { 4, 4, 4, 4, 4, 4 },
+        { 0, 4, 4, 4, 4, 4, 4, 0 },
+        { 0, 0, 4, 4, 4, 4, 0, 0 }
     };
     static u8 v3[v1][v1] = {
-        {0, 6, 6, 6, 0},
-        {6, 6, 6, 6, 6},
-        {6, 6, 6, 6, 6},
-        {6, 6, 6, 6, 6},
-        {0, 6, 6, 6, 0}
+        { 0, 6, 6, 6, 0 },
+        { 6, 6, 6, 6, 6 },
+        { 6, 6, 6, 6, 6 },
+        { 6, 6, 6, 6, 6 },
+        { 0, 6, 6, 6, 0 }
     };
     int v4, v5, v6, v7, v8, v9, v10;
     BOOL v11 = 1;
@@ -2154,22 +2154,22 @@ static void ov23_0223FF8C (BGL * param0)
     }
 }
 
-static void ov23_022401B0 (BGL * param0)
+static void ov23_022401B0(BGL *param0)
 {
-    static u8 v0[] = {0xe, 0xf, 0x1e, 0x1f};
-    static u8 v1[] = {0xa, 0xb, 0x1a, 0x1b};
-    static u8 v2[] = {0x8, 0x9, 0x18, 0x19};
-    static u8 v3[] = {0x6, 0x7, 0x16, 0x17};
-    static u8 v4[] = {0x4, 0x5, 0x14, 0x15};
-    static u8 v5[] = {0x2, 0x3, 0x12, 0x13};
-    static u8 v6[] = {0x0, 0x1, 0x10, 0x11};
-    static u8 * v7[] = {v0, v1, v2, v3, v4, v5, v6};
-    u16 * v8 = sub_02019FE4(param0, 2);
+    static u8 v0[] = { 0xe, 0xf, 0x1e, 0x1f };
+    static u8 v1[] = { 0xa, 0xb, 0x1a, 0x1b };
+    static u8 v2[] = { 0x8, 0x9, 0x18, 0x19 };
+    static u8 v3[] = { 0x6, 0x7, 0x16, 0x17 };
+    static u8 v4[] = { 0x4, 0x5, 0x14, 0x15 };
+    static u8 v5[] = { 0x2, 0x3, 0x12, 0x13 };
+    static u8 v6[] = { 0x0, 0x1, 0x10, 0x11 };
+    static u8 *v7[] = { v0, v1, v2, v3, v4, v5, v6 };
+    u16 *v8 = sub_02019FE4(param0, 2);
     int v9, v10, v11;
 
     for (v9 = 0; v9 < 10; v9++) {
         for (v10 = 0; v10 < 13; v10++) {
-            u8 * v12 = v7[Unk_ov23_02257740->unk_9A2[v9][v10]];
+            u8 *v12 = v7[Unk_ov23_02257740->unk_9A2[v9][v10]];
 
             v11 = v10 * 2 + ((v9 * 2 + 4) * 32);
             v8[v11] = v12[0] + 0x2001;
@@ -2182,7 +2182,7 @@ static void ov23_022401B0 (BGL * param0)
     sub_02019448(param0, 2);
 }
 
-static BOOL ov23_02240244 (int param0, int param1)
+static BOOL ov23_02240244(int param0, int param1)
 {
     int v0;
     int v1 = Unk_ov23_02257740->unk_920[param1][param0];
@@ -2200,7 +2200,7 @@ static BOOL ov23_02240244 (int param0, int param1)
     return 0;
 }
 
-static BOOL ov23_02240280 (int param0, int param1)
+static BOOL ov23_02240280(int param0, int param1)
 {
     int v0 = Unk_ov23_02257740->unk_920[param1][param0];
 
@@ -2215,12 +2215,12 @@ static BOOL ov23_02240280 (int param0, int param1)
     return 0;
 }
 
-static void ov23_022402B8 (int param0, int param1, BOOL param2, UnkStruct_ov23_0223EE80 * param3)
+static void ov23_022402B8(int param0, int param1, BOOL param2, UnkStruct_ov23_0223EE80 *param3)
 {
-    static s8 v0[] = {1, -1, -1, 1};
-    static s8 v1[] = {1, -1, 1, -1};
-    static s8 v2[] = {0, 0, -1, 1};
-    static s8 v3[] = {1, -1, 0, 0};
+    static s8 v0[] = { 1, -1, -1, 1 };
+    static s8 v1[] = { 1, -1, 1, -1 };
+    static s8 v2[] = { 0, 0, -1, 1 };
+    static s8 v3[] = { 1, -1, 0, 0 };
     int v4, v5, v6, v7;
     BOOL v8 = 0, v9 = 0;
 
@@ -2289,7 +2289,7 @@ static void ov23_022402B8 (int param0, int param1, BOOL param2, UnkStruct_ov23_0
     }
 }
 
-static void ov23_02240454 (u16 * param0, UnkStruct_ov23_02256BF8 * param1, int param2, int param3)
+static void ov23_02240454(u16 *param0, UnkStruct_ov23_02256BF8 *param1, int param2, int param3)
 {
     int v0, v1, v2, v3, v4;
 
@@ -2325,9 +2325,9 @@ static UnkStruct_ov23_02256BF8 endPos[] = {
     0x4
 };
 
-static void ov23_022404C8 (BGL * param0)
+static void ov23_022404C8(BGL *param0)
 {
-    u16 * v0;
+    u16 *v0;
 
     Unk_ov23_02257740->unk_A2A = 1;
     Unk_ov23_02257740->unk_A28 = 1;
@@ -2336,11 +2336,11 @@ static void ov23_022404C8 (BGL * param0)
     ov23_02240454(v0, Unk_ov23_02256BF4, 0x30, 54);
 }
 
-static void ov23_022404F8 (BGL * param0, int param1, int param2, int param3)
+static void ov23_022404F8(BGL *param0, int param1, int param2, int param3)
 {
     VecFx32 v0;
-    u8 * v1;
-    u16 * v2;
+    u8 *v1;
+    u16 *v2;
 
     if (param3 < 2) {
         return;
@@ -2408,7 +2408,7 @@ static void ov23_022404F8 (BGL * param0, int param1, int param2, int param3)
     sub_02019448(param0, 1);
 }
 
-static void ov23_02240660 (VecFx32 * param0)
+static void ov23_02240660(VecFx32 *param0)
 {
     int v0;
     int v1 = Unk_ov23_02257740->unk_A2B;
@@ -2416,16 +2416,16 @@ static void ov23_02240660 (VecFx32 * param0)
     v1 = (v1 / 4) * 4;
     v1 = v1 + 8;
 
-    param0->x = FX32_ONE * ((v1 + 8));
+    param0->x = FX32_ONE * (v1 + 8);
     param0->y = FX32_ONE * 16;
 }
 
-static void ov23_02240688 (BGL * param0)
+static void ov23_02240688(BGL *param0)
 {
     VecFx32 v0;
     int v1 = Unk_ov23_02257740->unk_A2B;
     int v2, v3, v4;
-    u16 * v5 = sub_02019FE4(param0, 0);
+    u16 *v5 = sub_02019FE4(param0, 0);
 
     v1 = (v1 / 4) * 4;
     v4 = 6 - (v1 % 24) / 4;
@@ -2446,7 +2446,7 @@ static void ov23_02240688 (BGL * param0)
     sub_02019448(param0, 0);
 }
 
-static void ov23_02240758 (UnkStruct_ov23_0223EE80 * param0)
+static void ov23_02240758(UnkStruct_ov23_0223EE80 *param0)
 {
     BOOL v0 = 0;
     int v1;
@@ -2475,7 +2475,7 @@ static void ov23_02240758 (UnkStruct_ov23_0223EE80 * param0)
     }
 }
 
-static int ov23_0224080C (int param0)
+static int ov23_0224080C(int param0)
 {
     int v0 = 0;
     int v1 = param0;
@@ -2502,11 +2502,11 @@ static int ov23_0224080C (int param0)
     return v0;
 }
 
-static void ov23_022408A0 (int param0, int param1)
+static void ov23_022408A0(int param0, int param1)
 {
     int v0 = param0;
-    SecretBaseRecord * v1 = SaveData_SecretBaseRecord(FieldSystem_SaveData(Unk_ov23_02257740->fieldSystem));
-    UndergroundData * v2 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_02257740->fieldSystem));
+    SecretBaseRecord *v1 = SaveData_SecretBaseRecord(FieldSystem_SaveData(Unk_ov23_02257740->fieldSystem));
+    UndergroundData *v2 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_02257740->fieldSystem));
 
     if (ov23_02241CF4(v0)) {
         ov23_0224F6E0(v0, param1);
@@ -2516,9 +2516,9 @@ static void ov23_022408A0 (int param0, int param1)
     }
 }
 
-static BOOL ov23_022408EC (int param0)
+static BOOL ov23_022408EC(int param0)
 {
-    UndergroundData * v0 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_02257740->fieldSystem));
+    UndergroundData *v0 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_02257740->fieldSystem));
 
     if (ov23_02241CF4(param0)) {
         if (40 == sub_02028C3C(v0)) {
@@ -2535,7 +2535,7 @@ static BOOL ov23_022408EC (int param0)
     }
 }
 
-static BOOL ov23_02240934 (UnkStruct_ov23_0223EE80 * param0)
+static BOOL ov23_02240934(UnkStruct_ov23_0223EE80 *param0)
 {
     int v0, v1, v2;
     BOOL v3[4];
@@ -2569,7 +2569,7 @@ static BOOL ov23_02240934 (UnkStruct_ov23_0223EE80 * param0)
     return v4;
 }
 
-static BOOL ov23_022409F0 (UnkStruct_ov23_0223EE80 * param0)
+static BOOL ov23_022409F0(UnkStruct_ov23_0223EE80 *param0)
 {
     int v0, v1;
 
@@ -2595,11 +2595,11 @@ static BOOL ov23_022409F0 (UnkStruct_ov23_0223EE80 * param0)
     return 0;
 }
 
-static BOOL ov23_02240A90 (UnkStruct_ov23_0223EE80 * param0)
+static BOOL ov23_02240A90(UnkStruct_ov23_0223EE80 *param0)
 {
     int v0, v1, v2;
-    SecretBaseRecord * v3 = SaveData_SecretBaseRecord((Unk_ov23_02257740->fieldSystem->saveData));
-    UndergroundData * v4 = sub_020298B0((Unk_ov23_02257740->fieldSystem->saveData));
+    SecretBaseRecord *v3 = SaveData_SecretBaseRecord(Unk_ov23_02257740->fieldSystem->saveData);
+    UndergroundData *v4 = sub_020298B0(Unk_ov23_02257740->fieldSystem->saveData);
 
     for (v0 = 0; v0 < param0->unk_0C; v0++) {
         if (Unk_ov23_02257740->unk_874[v0].unk_08 == 1) {
@@ -2615,7 +2615,7 @@ static BOOL ov23_02240A90 (UnkStruct_ov23_0223EE80 * param0)
                 if ((v2 >= 23) && ((28 + 1) > v2) || (v2 == 36) || (v2 == 37)) {
                     sub_02029644(v3, 1);
                     {
-                        VarsFlags * v5 = SaveData_GetVarsFlags(Unk_ov23_02257740->fieldSystem->saveData);
+                        VarsFlags *v5 = SaveData_GetVarsFlags(Unk_ov23_02257740->fieldSystem->saveData);
 
                         sub_0206B41C(v5, sub_0206B40C(v5) + 1);
                     }
@@ -2637,7 +2637,7 @@ static BOOL ov23_02240A90 (UnkStruct_ov23_0223EE80 * param0)
     return 0;
 }
 
-static void ov23_02240B84 (BGL * param0)
+static void ov23_02240B84(BGL *param0)
 {
     int v0, v1, v2;
     VecFx32 v3;
@@ -2666,7 +2666,7 @@ static void ov23_02240B84 (BGL * param0)
     CellActor_SetPosition(Unk_ov23_02257740->unk_24C[1], &v3);
 }
 
-static void ov23_02240C94 (BGL * param0)
+static void ov23_02240C94(BGL *param0)
 {
     int v0, v1, v2;
     VecFx32 v3;
@@ -2687,11 +2687,11 @@ static void ov23_02240C94 (BGL * param0)
     }
 }
 
-static BOOL ov23_02240CFC (UnkStruct_ov23_0223EE80 * param0)
+static BOOL ov23_02240CFC(UnkStruct_ov23_0223EE80 *param0)
 {
     u8 v0[2];
     int v1;
-    UndergroundData * v2 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_02257740->fieldSystem));
+    UndergroundData *v2 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_02257740->fieldSystem));
 
     if (Unk_ov23_02257740->unk_A29 == 1) {
         Unk_ov23_02257740->unk_A29 = 0;
@@ -2750,7 +2750,7 @@ static BOOL ov23_02240CFC (UnkStruct_ov23_0223EE80 * param0)
         param0->unk_08 = 25;
         param0->unk_50 = 1;
         return 1;
-    } else if ((Unk_ov23_02257740->unk_A2B == 0)) {
+    } else if (Unk_ov23_02257740->unk_A2B == 0) {
         sub_02029220(v2);
         param0->unk_50 = 0;
         param0->unk_08 = 45;
@@ -2762,16 +2762,16 @@ static BOOL ov23_02240CFC (UnkStruct_ov23_0223EE80 * param0)
     return 0;
 }
 
-static void ov23_02240E60 (UnkStruct_02009DC8 * param0)
+static void ov23_02240E60(UnkStruct_02009DC8 *param0)
 {
     Unk_ov23_02257740->unk_1C0[Unk_ov23_02257740->unk_A2F] = param0;
     Unk_ov23_02257740->unk_A2F++;
 }
 
-static void ov23_02240E88 (void)
+static void ov23_02240E88(void)
 {
     int v0;
-    NARC * v1;
+    NARC *v1;
 
     Unk_ov23_02257740->unk_A2F = 0;
 
@@ -2809,7 +2809,7 @@ static void ov23_02240E88 (void)
     NARC_dtor(v1);
 }
 
-static void ov23_0224108C (void)
+static void ov23_0224108C(void)
 {
     int v0, v1;
     CellActorInitParamsEx v2;
@@ -2847,7 +2847,7 @@ static void ov23_0224108C (void)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void ov23_0224119C (void)
+static void ov23_0224119C(void)
 {
     {
         UnkStruct_ov22_022559F8 v0 = {
@@ -2864,9 +2864,9 @@ static void ov23_0224119C (void)
     sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
 }
 
-static void ov23_022411E8 (void * param0)
+static void ov23_022411E8(void *param0)
 {
-    BGL * v0 = param0;
+    BGL *v0 = param0;
 
     ov23_02240C94(v0);
 
@@ -2875,7 +2875,7 @@ static void ov23_022411E8 (void * param0)
     sub_0200A858();
 }
 
-BOOL ov23_02241200 (int param0, int param1)
+BOOL ov23_02241200(int param0, int param1)
 {
     if (ov23_0223E88C(param0, param1)) {
         return 1;
@@ -2884,7 +2884,7 @@ BOOL ov23_02241200 (int param0, int param1)
     return 0;
 }
 
-int ov23_0224121C (int param0)
+int ov23_0224121C(int param0)
 {
     if (Unk_ov23_02257740) {
         return Unk_ov23_02257740->unk_8D4[param0].unk_00;
@@ -2893,7 +2893,7 @@ int ov23_0224121C (int param0)
     return 0;
 }
 
-int ov23_0224123C (int param0)
+int ov23_0224123C(int param0)
 {
     if (Unk_ov23_02257740) {
         return Unk_ov23_02257740->unk_8D4[param0].unk_02;
@@ -2902,7 +2902,7 @@ int ov23_0224123C (int param0)
     return 0;
 }
 
-int ov23_0224125C (int param0)
+int ov23_0224125C(int param0)
 {
     if (Unk_ov23_02257740 && Unk_ov23_02257740->unk_8D0) {
         int v0 = Unk_ov23_02257740->unk_8D0->unk_4E4;
@@ -2914,7 +2914,7 @@ int ov23_0224125C (int param0)
     return 0;
 }
 
-int ov23_02241294 (int param0)
+int ov23_02241294(int param0)
 {
     if (Unk_ov23_02257740 && Unk_ov23_02257740->unk_8D0) {
         int v0 = Unk_ov23_02257740->unk_8D0->unk_4E4;
@@ -2926,9 +2926,9 @@ int ov23_02241294 (int param0)
     return 0;
 }
 
-static void ov23_022412CC (SysTask * param0, void * param1)
+static void ov23_022412CC(SysTask *param0, void *param1)
 {
-    UnkStruct_ov23_022412CC * v0 = param1;
+    UnkStruct_ov23_022412CC *v0 = param1;
 
     v0->unk_4E4++;
 
@@ -2938,9 +2938,9 @@ static void ov23_022412CC (SysTask * param0, void * param1)
     }
 }
 
-void ov23_022412F0 (void)
+void ov23_022412F0(void)
 {
-    UnkStruct_ov23_022412CC * v0;
+    UnkStruct_ov23_022412CC *v0;
 
     GF_ASSERT(!Unk_ov23_02257740->unk_8D0);
     GF_ASSERT(!Unk_ov23_02257740->unk_8C4);
@@ -2956,7 +2956,7 @@ void ov23_022412F0 (void)
     Unk_ov23_02257740->unk_8C4 = SysTask_Start(ov23_022412CC, v0, 100);
 }
 
-void ov23_02241364 (void)
+void ov23_02241364(void)
 {
     if (Unk_ov23_02257740->unk_8C4) {
         SysTask_Done(Unk_ov23_02257740->unk_8C4);
@@ -2966,12 +2966,12 @@ void ov23_02241364 (void)
     }
 }
 
-void ov23_022413A0 (int param0, int param1, void * param2, void * param3)
+void ov23_022413A0(int param0, int param1, void *param2, void *param3)
 {
     Unk_ov23_02257740->unk_8BC[param0] = 1;
 }
 
-static void ov23_022413B4 (void)
+static void ov23_022413B4(void)
 {
     int v0, v1 = 0;
 
@@ -2980,7 +2980,7 @@ static void ov23_022413B4 (void)
 
         if (Unk_ov23_02257740->unk_8BC[v0]) {
             while (TRUE) {
-                UnkStruct_ov23_0223E6F8 * v3 = &Unk_ov23_02257740->unk_26C[v2];
+                UnkStruct_ov23_0223E6F8 *v3 = &Unk_ov23_02257740->unk_26C[v2];
 
                 if ((v3->unk_00 != 0xffff) && (v3->unk_02 != 0xffff)) {
                     UnkStruct_ov23_0224142C v4;
@@ -3006,9 +3006,9 @@ static void ov23_022413B4 (void)
     }
 }
 
-void ov23_0224142C (int param0, int param1, void * param2, void * param3)
+void ov23_0224142C(int param0, int param1, void *param2, void *param3)
 {
-    UnkStruct_ov23_0224142C * v0 = param2;
+    UnkStruct_ov23_0224142C *v0 = param2;
     int v1, v2;
 
     if (Unk_ov23_02257740 == NULL) {
@@ -3037,14 +3037,14 @@ void ov23_0224142C (int param0, int param1, void * param2, void * param3)
     }
 }
 
-int ov23_022414D0 (void)
+int ov23_022414D0(void)
 {
     return sizeof(UnkStruct_ov23_0224142C);
 }
 
-static void ov23_022414D4 (void)
+static void ov23_022414D4(void)
 {
-    UnkStruct_ov23_0223E6F8 * v0;
+    UnkStruct_ov23_0223E6F8 *v0;
     int v1, v2;
 
     for (v1 = 0; v1 < (7 + 1); v1++) {
@@ -3093,11 +3093,11 @@ static void ov23_022414D4 (void)
     }
 }
 
-BOOL ov23_022415B8 (Strbuf *param0)
+BOOL ov23_022415B8(Strbuf *param0)
 {
     int v0;
-    TrainerInfo * v1;
-    TrainerInfo * v2;
+    TrainerInfo *v1;
+    TrainerInfo *v2;
 
     if (!Unk_ov23_02257740) {
         return 0;
@@ -3117,14 +3117,14 @@ BOOL ov23_022415B8 (Strbuf *param0)
     return 0;
 }
 
-void ov23_0224160C (void)
+void ov23_0224160C(void)
 {
     if (Unk_ov23_02257740) {
         MI_CpuClear8(Unk_ov23_02257740->unk_908, (7 + 1));
     }
 }
 
-BOOL ov23_0224162C (int param0)
+BOOL ov23_0224162C(int param0)
 {
     if (Unk_ov23_02257740) {
         return Unk_ov23_02257740->unk_86C[param0];
@@ -3133,7 +3133,7 @@ BOOL ov23_0224162C (int param0)
     return 0;
 }
 
-void ov23_02241648 (int param0)
+void ov23_02241648(int param0)
 {
     if (Unk_ov23_02257740) {
         Unk_ov23_02257740->unk_86C[param0] = 0;
@@ -3141,7 +3141,7 @@ void ov23_02241648 (int param0)
     }
 }
 
-BOOL ov23_02241670 (void)
+BOOL ov23_02241670(void)
 {
     if (Unk_ov23_02257740) {
         if (Unk_ov23_02257740->unk_8CC) {
@@ -3152,7 +3152,7 @@ BOOL ov23_02241670 (void)
     return 0;
 }
 
-void ov23_02241690 (int param0, int param1)
+void ov23_02241690(int param0, int param1)
 {
     if (Unk_ov23_02257740) {
         Unk_ov23_02257740->unk_86C[param0] = param1;

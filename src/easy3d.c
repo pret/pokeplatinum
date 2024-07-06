@@ -1,12 +1,13 @@
+#include "easy3d.h"
+
 #include <nitro.h>
-#include <string.h>
 #include <nnsys.h>
+#include <string.h>
 
 #include "struct_defs/struct_0207C690.h"
 
-#include "unk_02017728.h"
-#include "easy3d.h"
 #include "gx_layers.h"
+#include "unk_02017728.h"
 #include "unk_02024220.h"
 
 #define G3X_DEPTH_MAX 0x7FFF
@@ -54,7 +55,7 @@ void Easy3D_InitRenderObjFromResource(NNSG3dRenderObj *renderObj, NNSG3dResMdl *
 
 BOOL Easy3D_IsTextureUploadedToVRAM(NNSG3dResTex *texture)
 {
-    return (texture->texInfo.flag & NNS_G3D_RESTEX_LOADED) 
+    return (texture->texInfo.flag & NNS_G3D_RESTEX_LOADED)
         || (texture->tex4x4Info.flag & NNS_G3D_RESTEX4x4_LOADED);
 }
 

@@ -3,6 +3,7 @@
 
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
+
 #include "overlay019/struct_ov19_021D3CFC.h"
 #include "overlay019/struct_ov19_021D4DE4.h"
 #include "overlay019/struct_ov19_021D4EE4.h"
@@ -14,8 +15,8 @@
 #include "overlay019/struct_ov19_021DF964.h"
 
 typedef struct {
-    const PCBoxes * unk_00;
-    const Party * unk_04;
+    const PCBoxes *unk_00;
+    const Party *unk_04;
     UnkStruct_ov19_021D3CFC unk_08;
     UnkStruct_ov19_021D5594 unk_14;
     UnkStruct_ov19_021D4F5C unk_40;

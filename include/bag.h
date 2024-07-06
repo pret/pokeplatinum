@@ -1,8 +1,9 @@
 #ifndef POKEPLATINUM_BAG_H
 #define POKEPLATINUM_BAG_H
 
-#include "savedata.h"
 #include "constants/heap.h"
+
+#include "savedata.h"
 
 #define ITEM_POCKET_SIZE        165
 #define KEY_ITEM_POCKET_SIZE    50
@@ -69,18 +70,18 @@ void Pocket_Sort(BagItem *pocket, const u32 size); // Same as Pocket_SortEmpty, 
 void *sub_0207D824(Bag *bag, const u8 *pockets, enum HeapId heapID);
 BagItem *Bag_GetItemSlot(Bag *bag, u16 pocketID, u16 slot);
 Bag *SaveData_GetBag(SaveData *saveData);
-UnkStruct_0207D99C * sub_0207D99C(u32 param0);
-void sub_0207D9B4(UnkStruct_0207D99C * param0, u32 param1, u8 * param2, u8 * param3);
-u16 sub_0207D9C4(UnkStruct_0207D99C * param0);
-void sub_0207D9C8(UnkStruct_0207D99C * param0, u32 param1, u8 param2, u8 param3);
-void sub_0207D9D4(UnkStruct_0207D99C * param0, u16 param1);
-void sub_0207D9D8(UnkStruct_0207D99C * param0, u32 param1, u8 * param2, u8 * param3);
-u16 sub_0207D9E4(UnkStruct_0207D99C * param0);
-u16 sub_0207D9E8(UnkStruct_0207D99C * param0);
-u16 sub_0207D9EC(UnkStruct_0207D99C * param0);
-void sub_0207D9F0(UnkStruct_0207D99C * param0, u32 param1, u8 param2, u8 param3);
-void sub_0207D9F8(UnkStruct_0207D99C * param0);
-void Bag_SetLastItemUsed(UnkStruct_0207D99C * param0, u16 param1, u16 param2);
-void sub_0207DA24(UnkStruct_0207D99C * param0, u16 param1);
+UnkStruct_0207D99C *sub_0207D99C(u32 param0);
+void sub_0207D9B4(UnkStruct_0207D99C *param0, u32 param1, u8 *param2, u8 *param3);
+u16 sub_0207D9C4(UnkStruct_0207D99C *param0);
+void sub_0207D9C8(UnkStruct_0207D99C *param0, u32 param1, u8 param2, u8 param3);
+void sub_0207D9D4(UnkStruct_0207D99C *param0, u16 param1);
+void sub_0207D9D8(UnkStruct_0207D99C *param0, u32 param1, u8 *param2, u8 *param3);
+u16 sub_0207D9E4(UnkStruct_0207D99C *param0);
+u16 sub_0207D9E8(UnkStruct_0207D99C *param0);
+u16 sub_0207D9EC(UnkStruct_0207D99C *param0);
+void sub_0207D9F0(UnkStruct_0207D99C *param0, u32 param1, u8 param2, u8 param3);
+void sub_0207D9F8(UnkStruct_0207D99C *param0);
+void Bag_SetLastItemUsed(UnkStruct_0207D99C *param0, u16 param1, u16 param2);
+void sub_0207DA24(UnkStruct_0207D99C *param0, u16 param1);
 
 #endif // POKEPLATINUM_BAG_H

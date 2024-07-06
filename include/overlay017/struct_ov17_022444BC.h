@@ -33,7 +33,7 @@ typedef struct {
     u32 unk_28_8 : 2;
     u32 unk_28_10 : 2;
     u32 unk_28_12 : 8;
-    u32  : 12;
+    u32 : 12;
 } UnkStruct_ov17_022444BC;
 
 #endif // POKEPLATINUM_STRUCT_OV17_022444BC_H

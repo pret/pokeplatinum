@@ -1,49 +1,47 @@
+#include "overlay005/ov5_021DC018.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "message.h"
 #include "struct_decls/struct_02013A04_decl.h"
-#include "sys_task_manager.h"
-#include "strbuf.h"
-#include "overlay005/struct_ov5_021DC1A4_decl.h"
-
 #include "struct_defs/struct_02013A04_t.h"
-#include "field/field_system.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02081CF4.h"
+
+#include "field/field_system.h"
+#include "overlay005/struct_ov5_021DC1A4_decl.h"
 #include "overlay084/struct_ov84_02240FA8.h"
 
+#include "coins.h"
+#include "core_sys.h"
+#include "heap.h"
+#include "message.h"
+#include "save_player.h"
+#include "strbuf.h"
+#include "string_template.h"
+#include "sys_task.h"
+#include "sys_task_manager.h"
+#include "trainer_info.h"
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
-#include "message.h"
-#include "string_template.h"
-#include "sys_task.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "strbuf.h"
-#include "save_player.h"
-#include "trainer_info.h"
-#include "coins.h"
 #include "unk_0202D05C.h"
-#include "overlay005/ov5_021DC018.h"
 
 struct UnkStruct_ov5_021DC1A4_t {
-    FieldSystem * fieldSystem;
-    SysTask * unk_04;
+    FieldSystem *fieldSystem;
+    SysTask *unk_04;
     Window unk_08;
-    Window * unk_18;
-    Strbuf* unk_1C[28];
-    MessageLoader * unk_8C;
-    StringTemplate * unk_90;
+    Window *unk_18;
+    Strbuf *unk_1C[28];
+    MessageLoader *unk_8C;
+    StringTemplate *unk_90;
     u8 unk_94;
     u8 unk_95;
     u8 unk_96;
@@ -56,15 +54,15 @@ struct UnkStruct_ov5_021DC1A4_t {
     u8 unk_99;
     u8 unk_9A;
     u8 unk_9B;
-    u16 * unk_9C;
-    u16 * unk_A0;
-    u16 * unk_A4;
-    u16 * unk_A8;
+    u16 *unk_9C;
+    u16 *unk_A0;
+    u16 *unk_A4;
+    u16 *unk_A8;
     UnkStruct_02081CF4 unk_AC;
-    UIControlData * unk_B8;
+    UIControlData *unk_B8;
     ResourceMetadata unk_BC[28];
     UnkStruct_ov84_02240FA8 unk_19C;
-    BmpList * unk_1BC;
+    BmpList *unk_1BC;
     u16 unk_1C0;
     u16 unk_1C2;
     ResourceMetadata unk_1C4[28];
@@ -72,38 +70,38 @@ struct UnkStruct_ov5_021DC1A4_t {
     u16 unk_2DC;
 };
 
-static void ov5_021DC018(FieldSystem * fieldSystem, UnkStruct_ov5_021DC1A4 * param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 * param6, StringTemplate * param7, Window * param8, MessageLoader * param9);
-UnkStruct_ov5_021DC1A4 * ov5_021DC150(FieldSystem * fieldSystem, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, StringTemplate * param6, Window * param7, MessageLoader * param8);
-void ov5_021DC1A4(UnkStruct_ov5_021DC1A4 * param0, u32 param1, u32 param2);
-void ov5_021DC1AC(UnkStruct_ov5_021DC1A4 * param0);
-void ov5_021DCD94(UnkStruct_ov5_021DC1A4 * param0, u8 param1);
-static void ov5_021DCE64(UnkStruct_ov5_021DC1A4 * param0, u8 param1, u8 param2);
-static void ov5_021DC290(UnkStruct_ov5_021DC1A4 * param0, u32 param1, u32 param2);
-static u32 ov5_021DC300(UnkStruct_ov5_021DC1A4 * param0);
-static void ov5_021DC33C(UnkStruct_ov5_021DC1A4 * param0);
-static void ov5_021DC3B0(SysTask * param0, void * param1);
-UnkStruct_ov5_021DC1A4 * ov5_021DC48C(FieldSystem * fieldSystem, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, StringTemplate * param6, Window * param7, MessageLoader * param8);
-void ov5_021DC4B0(UnkStruct_ov5_021DC1A4 * param0, u32 param1, u32 param2, u32 param3);
-void ov5_021DC4B8(UnkStruct_ov5_021DC1A4 * param0);
-void ov5_021DC528(UnkStruct_ov5_021DC1A4 * param0, u16 param1);
-static void ov5_021DC530(UnkStruct_ov5_021DC1A4 * param0, u32 param1);
-static void ov5_021DC708(UnkStruct_ov5_021DC1A4 * param0, u32 param1, u32 param2, u32 param3);
-static u32 ov5_021DC7A8(UnkStruct_ov5_021DC1A4 * param0);
-static void ov5_021DC7E4(UnkStruct_ov5_021DC1A4 * param0);
-static void ov5_021DC8F4(BmpList * param0, u32 param1, u8 param2);
-static void ov5_021DC918(BmpList * param0, u32 param1, u8 param2);
-static void ov5_021DC95C(SysTask * param0, void * param1);
-static void ov5_021DCA28(UnkStruct_ov5_021DC1A4 * param0);
-static void ov5_021DCA90(UnkStruct_ov5_021DC1A4 * param0, u16 param1, u32 param2);
-static void ov5_021DCAF4(UnkStruct_ov5_021DC1A4 * param0);
-static void ov5_021DCC64(SysTask * param0, void * param1);
-void ov5_021DCB24(FieldSystem * fieldSystem, u8 param1, u8 param2, u16 * param3, StringTemplate * param4, u16 param5);
-static void ov5_021DCC00(UnkStruct_ov5_021DC1A4 * param0, u16 param1, u8 param2, u8 param3);
+static void ov5_021DC018(FieldSystem *fieldSystem, UnkStruct_ov5_021DC1A4 *param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 *param6, StringTemplate *param7, Window *param8, MessageLoader *param9);
+UnkStruct_ov5_021DC1A4 *ov5_021DC150(FieldSystem *fieldSystem, u8 param1, u8 param2, u8 param3, u8 param4, u16 *param5, StringTemplate *param6, Window *param7, MessageLoader *param8);
+void ov5_021DC1A4(UnkStruct_ov5_021DC1A4 *param0, u32 param1, u32 param2);
+void ov5_021DC1AC(UnkStruct_ov5_021DC1A4 *param0);
+void ov5_021DCD94(UnkStruct_ov5_021DC1A4 *param0, u8 param1);
+static void ov5_021DCE64(UnkStruct_ov5_021DC1A4 *param0, u8 param1, u8 param2);
+static void ov5_021DC290(UnkStruct_ov5_021DC1A4 *param0, u32 param1, u32 param2);
+static u32 ov5_021DC300(UnkStruct_ov5_021DC1A4 *param0);
+static void ov5_021DC33C(UnkStruct_ov5_021DC1A4 *param0);
+static void ov5_021DC3B0(SysTask *param0, void *param1);
+UnkStruct_ov5_021DC1A4 *ov5_021DC48C(FieldSystem *fieldSystem, u8 param1, u8 param2, u8 param3, u8 param4, u16 *param5, StringTemplate *param6, Window *param7, MessageLoader *param8);
+void ov5_021DC4B0(UnkStruct_ov5_021DC1A4 *param0, u32 param1, u32 param2, u32 param3);
+void ov5_021DC4B8(UnkStruct_ov5_021DC1A4 *param0);
+void ov5_021DC528(UnkStruct_ov5_021DC1A4 *param0, u16 param1);
+static void ov5_021DC530(UnkStruct_ov5_021DC1A4 *param0, u32 param1);
+static void ov5_021DC708(UnkStruct_ov5_021DC1A4 *param0, u32 param1, u32 param2, u32 param3);
+static u32 ov5_021DC7A8(UnkStruct_ov5_021DC1A4 *param0);
+static void ov5_021DC7E4(UnkStruct_ov5_021DC1A4 *param0);
+static void ov5_021DC8F4(BmpList *param0, u32 param1, u8 param2);
+static void ov5_021DC918(BmpList *param0, u32 param1, u8 param2);
+static void ov5_021DC95C(SysTask *param0, void *param1);
+static void ov5_021DCA28(UnkStruct_ov5_021DC1A4 *param0);
+static void ov5_021DCA90(UnkStruct_ov5_021DC1A4 *param0, u16 param1, u32 param2);
+static void ov5_021DCAF4(UnkStruct_ov5_021DC1A4 *param0);
+static void ov5_021DCC64(SysTask *param0, void *param1);
+void ov5_021DCB24(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 *param3, StringTemplate *param4, u16 param5);
+static void ov5_021DCC00(UnkStruct_ov5_021DC1A4 *param0, u16 param1, u8 param2, u8 param3);
 u16 ov5_021DCCC8(int param0);
-UnkStruct_ov5_021DC1A4 * ov5_021DD250(FieldSystem * fieldSystem, u8 param1, u8 param2, u16 * param3, StringTemplate * param4, u8 param5, u8 param6, u8 param7, u8 param8);
-void ov5_021DD3A8(UnkStruct_ov5_021DC1A4 * param0);
+UnkStruct_ov5_021DC1A4 *ov5_021DD250(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 *param3, StringTemplate *param4, u8 param5, u8 param6, u8 param7, u8 param8);
+void ov5_021DD3A8(UnkStruct_ov5_021DC1A4 *param0);
 
-static void ov5_021DC018 (FieldSystem * fieldSystem, UnkStruct_ov5_021DC1A4 * param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 * param6, StringTemplate * param7, Window * param8, MessageLoader * param9)
+static void ov5_021DC018(FieldSystem *fieldSystem, UnkStruct_ov5_021DC1A4 *param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 *param6, StringTemplate *param7, Window *param8, MessageLoader *param9)
 {
     int v0;
 
@@ -154,9 +152,9 @@ static void ov5_021DC018 (FieldSystem * fieldSystem, UnkStruct_ov5_021DC1A4 * pa
     return;
 }
 
-UnkStruct_ov5_021DC1A4 * ov5_021DC150 (FieldSystem * fieldSystem, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, StringTemplate * param6, Window * param7, MessageLoader * param8)
+UnkStruct_ov5_021DC1A4 *ov5_021DC150(FieldSystem *fieldSystem, u8 param1, u8 param2, u8 param3, u8 param4, u16 *param5, StringTemplate *param6, Window *param7, MessageLoader *param8)
 {
-    UnkStruct_ov5_021DC1A4 * v0;
+    UnkStruct_ov5_021DC1A4 *v0;
     int v1;
 
     v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021DC1A4));
@@ -171,13 +169,13 @@ UnkStruct_ov5_021DC1A4 * ov5_021DC150 (FieldSystem * fieldSystem, u8 param1, u8 
     return v0;
 }
 
-void ov5_021DC1A4 (UnkStruct_ov5_021DC1A4 * param0, u32 param1, u32 param2)
+void ov5_021DC1A4(UnkStruct_ov5_021DC1A4 *param0, u32 param1, u32 param2)
 {
     ov5_021DC290(param0, param1, param2);
     return;
 }
 
-void ov5_021DC1AC (UnkStruct_ov5_021DC1A4 * param0)
+void ov5_021DC1AC(UnkStruct_ov5_021DC1A4 *param0)
 {
     u32 v0;
 
@@ -209,13 +207,13 @@ void ov5_021DC1AC (UnkStruct_ov5_021DC1A4 * param0)
     return;
 }
 
-static void ov5_021DC290 (UnkStruct_ov5_021DC1A4 * param0, u32 param1, u32 param2)
+static void ov5_021DC290(UnkStruct_ov5_021DC1A4 *param0, u32 param1, u32 param2)
 {
     int v0;
-    void * v1;
+    void *v1;
 
     {
-        Strbuf* v2 = Strbuf_Init((40 * 2), 4);
+        Strbuf *v2 = Strbuf_Init((40 * 2), 4);
 
         MessageLoader_GetStrbuf(param0->unk_8C, param1, v2);
         StringTemplate_Format(param0->unk_90, param0->unk_1C[param0->unk_9B], v2);
@@ -229,7 +227,7 @@ static void ov5_021DC290 (UnkStruct_ov5_021DC1A4 * param0, u32 param1, u32 param
     return;
 }
 
-static u32 ov5_021DC300 (UnkStruct_ov5_021DC1A4 * param0)
+static u32 ov5_021DC300(UnkStruct_ov5_021DC1A4 *param0)
 {
     int v0;
     u32 v1, v2;
@@ -252,7 +250,7 @@ static u32 ov5_021DC300 (UnkStruct_ov5_021DC1A4 * param0)
     return v2 + 12;
 }
 
-static void ov5_021DC33C (UnkStruct_ov5_021DC1A4 * param0)
+static void ov5_021DC33C(UnkStruct_ov5_021DC1A4 *param0)
 {
     param0->unk_AC.unk_00 = param0->unk_BC;
     param0->unk_AC.unk_04 = &param0->unk_08;
@@ -271,10 +269,10 @@ static void ov5_021DC33C (UnkStruct_ov5_021DC1A4 * param0)
     return;
 }
 
-static void ov5_021DC3B0 (SysTask * param0, void * param1)
+static void ov5_021DC3B0(SysTask *param0, void *param1)
 {
     u32 v0;
-    UnkStruct_ov5_021DC1A4 * v1;
+    UnkStruct_ov5_021DC1A4 *v1;
 
     v1 = (UnkStruct_ov5_021DC1A4 *)param1;
 
@@ -307,7 +305,7 @@ static void ov5_021DC3B0 (SysTask * param0, void * param1)
     return;
 }
 
-void ov5_021DC424 (UnkStruct_ov5_021DC1A4 * param0)
+void ov5_021DC424(UnkStruct_ov5_021DC1A4 *param0)
 {
     int v0;
 
@@ -330,18 +328,18 @@ void ov5_021DC424 (UnkStruct_ov5_021DC1A4 * param0)
     return;
 }
 
-UnkStruct_ov5_021DC1A4 * ov5_021DC48C (FieldSystem * fieldSystem, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, StringTemplate * param6, Window * param7, MessageLoader * param8)
+UnkStruct_ov5_021DC1A4 *ov5_021DC48C(FieldSystem *fieldSystem, u8 param1, u8 param2, u8 param3, u8 param4, u16 *param5, StringTemplate *param6, Window *param7, MessageLoader *param8)
 {
     return ov5_021DC150(fieldSystem, param1, param2, param3, param4, param5, param6, param7, param8);
 }
 
-void ov5_021DC4B0 (UnkStruct_ov5_021DC1A4 * param0, u32 param1, u32 param2, u32 param3)
+void ov5_021DC4B0(UnkStruct_ov5_021DC1A4 *param0, u32 param1, u32 param2, u32 param3)
 {
     ov5_021DC708(param0, param1, param2, param3);
     return;
 }
 
-void ov5_021DC4B8 (UnkStruct_ov5_021DC1A4 * param0)
+void ov5_021DC4B8(UnkStruct_ov5_021DC1A4 *param0)
 {
     u32 v0;
 
@@ -369,7 +367,7 @@ void ov5_021DC4B8 (UnkStruct_ov5_021DC1A4 * param0)
     return;
 }
 
-void ov5_021DC528 (UnkStruct_ov5_021DC1A4 * param0, u16 param1)
+void ov5_021DC528(UnkStruct_ov5_021DC1A4 *param0, u16 param1)
 {
     u32 v0;
 
@@ -379,7 +377,7 @@ void ov5_021DC528 (UnkStruct_ov5_021DC1A4 * param0, u16 param1)
     return;
 }
 
-static void ov5_021DC530 (UnkStruct_ov5_021DC1A4 * param0, u32 param1)
+static void ov5_021DC530(UnkStruct_ov5_021DC1A4 *param0, u32 param1)
 {
     if (param0->unk_9B > 8) {
         BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_08, 3, param0->unk_98, param0->unk_99, param1, 8 * 2, 13, ((1 + (10 * 4)) + (10 * 2)));
@@ -399,7 +397,7 @@ static void ov5_021DC530 (UnkStruct_ov5_021DC1A4 * param0, u32 param1)
     return;
 }
 
-void ov5_021DC600 (UnkStruct_ov5_021DC1A4 * param0, u16 * param1, u16 * param2)
+void ov5_021DC600(UnkStruct_ov5_021DC1A4 *param0, u16 *param1, u16 *param2)
 {
     u32 v0;
 
@@ -433,13 +431,13 @@ void ov5_021DC600 (UnkStruct_ov5_021DC1A4 * param0, u16 * param1, u16 * param2)
     return;
 }
 
-static void ov5_021DC708 (UnkStruct_ov5_021DC1A4 * param0, u32 param1, u32 param2, u32 param3)
+static void ov5_021DC708(UnkStruct_ov5_021DC1A4 *param0, u32 param1, u32 param2, u32 param3)
 {
     int v0;
-    void * v1;
+    void *v1;
 
     {
-        Strbuf* v2 = Strbuf_Init((40 * 2), 4);
+        Strbuf *v2 = Strbuf_Init((40 * 2), 4);
 
         MessageLoader_GetStrbuf(param0->unk_8C, param1, v2);
         StringTemplate_Format(param0->unk_90, param0->unk_1C[param0->unk_9B], v2);
@@ -459,7 +457,7 @@ static void ov5_021DC708 (UnkStruct_ov5_021DC1A4 * param0, u32 param1, u32 param
     return;
 }
 
-static u32 ov5_021DC7A8 (UnkStruct_ov5_021DC1A4 * param0)
+static u32 ov5_021DC7A8(UnkStruct_ov5_021DC1A4 *param0)
 {
     int v0;
     u32 v1, v2;
@@ -482,7 +480,7 @@ static u32 ov5_021DC7A8 (UnkStruct_ov5_021DC1A4 * param0)
     return v2 + 12;
 }
 
-static void ov5_021DC7E4 (UnkStruct_ov5_021DC1A4 * param0)
+static void ov5_021DC7E4(UnkStruct_ov5_021DC1A4 *param0)
 {
     param0->unk_19C.unk_00 = param0->unk_1C4;
     param0->unk_19C.unk_04 = ov5_021DC918;
@@ -507,7 +505,7 @@ static void ov5_021DC7E4 (UnkStruct_ov5_021DC1A4 * param0)
     return;
 }
 
-static void ov5_021DC8F4 (BmpList * param0, u32 param1, u8 param2)
+static void ov5_021DC8F4(BmpList *param0, u32 param1, u8 param2)
 {
     if (param1 == 0xfffffffd) {
         sub_0200147C(param0, 3, 15, 4);
@@ -516,12 +514,12 @@ static void ov5_021DC8F4 (BmpList * param0, u32 param1, u8 param2)
     }
 }
 
-static void ov5_021DC918 (BmpList * param0, u32 param1, u8 param2)
+static void ov5_021DC918(BmpList *param0, u32 param1, u8 param2)
 {
     u32 v0, v1;
     u16 v2 = 0;
     u16 v3 = 0;
-    UnkStruct_ov5_021DC1A4 * v4 = (UnkStruct_ov5_021DC1A4 *)sub_02001504(param0, 19);
+    UnkStruct_ov5_021DC1A4 *v4 = (UnkStruct_ov5_021DC1A4 *)sub_02001504(param0, 19);
 
     sub_020014DC(param0, &v2, &v3);
 
@@ -533,11 +531,11 @@ static void ov5_021DC918 (BmpList * param0, u32 param1, u8 param2)
     return;
 }
 
-static void ov5_021DC95C (SysTask * param0, void * param1)
+static void ov5_021DC95C(SysTask *param0, void *param1)
 {
     u16 v0;
     u32 v1;
-    UnkStruct_ov5_021DC1A4 * v2;
+    UnkStruct_ov5_021DC1A4 *v2;
 
     v2 = (UnkStruct_ov5_021DC1A4 *)param1;
 
@@ -583,7 +581,7 @@ static void ov5_021DC95C (SysTask * param0, void * param1)
     return;
 }
 
-static void ov5_021DCA28 (UnkStruct_ov5_021DC1A4 * param0)
+static void ov5_021DCA28(UnkStruct_ov5_021DC1A4 *param0)
 {
     int v0;
 
@@ -606,10 +604,10 @@ static void ov5_021DCA28 (UnkStruct_ov5_021DC1A4 * param0)
     return;
 }
 
-static void ov5_021DCA90 (UnkStruct_ov5_021DC1A4 * param0, u16 param1, u32 param2)
+static void ov5_021DCA90(UnkStruct_ov5_021DC1A4 *param0, u16 param1, u32 param2)
 {
-    Strbuf* v0 = Strbuf_Init((40 * 2), 4);
-    Strbuf* v1 = Strbuf_Init((40 * 2), 4);
+    Strbuf *v0 = Strbuf_Init((40 * 2), 4);
+    Strbuf *v1 = Strbuf_Init((40 * 2), 4);
 
     BGL_FillWindow(param0->unk_18, 15);
     MessageLoader_GetStrbuf(param0->unk_8C, param1, v0);
@@ -621,7 +619,7 @@ static void ov5_021DCA90 (UnkStruct_ov5_021DC1A4 * param0, u16 param1, u32 param
     return;
 }
 
-static void ov5_021DCAF4 (UnkStruct_ov5_021DC1A4 * param0)
+static void ov5_021DCAF4(UnkStruct_ov5_021DC1A4 *param0)
 {
     sub_020014D0(param0->unk_1BC, &param0->unk_1C2);
 
@@ -632,11 +630,11 @@ static void ov5_021DCAF4 (UnkStruct_ov5_021DC1A4 * param0)
     return;
 }
 
-void ov5_021DCB24 (FieldSystem * fieldSystem, u8 param1, u8 param2, u16 * param3, StringTemplate * param4, u16 param5)
+void ov5_021DCB24(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 *param3, StringTemplate *param4, u16 param5)
 {
     u8 v0;
     u32 v1, v2;
-    UnkStruct_ov5_021DC1A4 * v3;
+    UnkStruct_ov5_021DC1A4 *v3;
 
     v3 = ov5_021DC150(fieldSystem, param1, param2, 0, 0, param3, param4, NULL, NULL);
     v1 = 8 * sub_02002DF8(0, 0);
@@ -662,10 +660,10 @@ void ov5_021DCB24 (FieldSystem * fieldSystem, u8 param1, u8 param2, u16 * param3
     return;
 }
 
-static void ov5_021DCC00 (UnkStruct_ov5_021DC1A4 * param0, u16 param1, u8 param2, u8 param3)
+static void ov5_021DCC00(UnkStruct_ov5_021DC1A4 *param0, u16 param1, u8 param2, u8 param3)
 {
-    Strbuf* v0 = Strbuf_Init((40 * 2), 4);
-    Strbuf* v1 = Strbuf_Init((40 * 2), 4);
+    Strbuf *v0 = Strbuf_Init((40 * 2), 4);
+    Strbuf *v1 = Strbuf_Init((40 * 2), 4);
 
     MessageLoader_GetStrbuf(param0->unk_8C, param1, v0);
     StringTemplate_Format(param0->unk_90, v1, v0);
@@ -676,10 +674,10 @@ static void ov5_021DCC00 (UnkStruct_ov5_021DC1A4 * param0, u16 param1, u8 param2
     return;
 }
 
-static void ov5_021DCC64 (SysTask * param0, void * param1)
+static void ov5_021DCC64(SysTask *param0, void *param1)
 {
     int v0;
-    UnkStruct_ov5_021DC1A4 * v1;
+    UnkStruct_ov5_021DC1A4 *v1;
 
     v1 = (UnkStruct_ov5_021DC1A4 *)param1;
 
@@ -702,7 +700,7 @@ static void ov5_021DCC64 (SysTask * param0, void * param1)
     return;
 }
 
-u16 ov5_021DCCC8 (int param0)
+u16 ov5_021DCCC8(int param0)
 {
     u16 v0;
 
@@ -768,7 +766,7 @@ u16 ov5_021DCCC8 (int param0)
     return v0;
 }
 
-void ov5_021DCD94 (UnkStruct_ov5_021DC1A4 * param0, u8 param1)
+void ov5_021DCD94(UnkStruct_ov5_021DC1A4 *param0, u8 param1)
 {
     u32 v0;
     u8 v1;
@@ -799,7 +797,7 @@ void ov5_021DCD94 (UnkStruct_ov5_021DC1A4 * param0, u8 param1)
     return;
 }
 
-static void ov5_021DCE64 (UnkStruct_ov5_021DC1A4 * param0, u8 param1, u8 param2)
+static void ov5_021DCE64(UnkStruct_ov5_021DC1A4 *param0, u8 param1, u8 param2)
 {
     param0->unk_AC.unk_00 = param0->unk_BC;
     param0->unk_AC.unk_04 = &param0->unk_08;
@@ -812,9 +810,9 @@ static void ov5_021DCE64 (UnkStruct_ov5_021DC1A4 * param0, u8 param1, u8 param2)
     return;
 }
 
-Window * ov5_021DCEB0 (FieldSystem * fieldSystem, u8 param1, u8 param2)
+Window *ov5_021DCEB0(FieldSystem *fieldSystem, u8 param1, u8 param2)
 {
-    Window * v0 = sub_0201A778(4, 1);
+    Window *v0 = sub_0201A778(4, 1);
 
     BGL_AddWindow(fieldSystem->unk_08, v0, 3, param1, param2, 10, 4, 13, 1);
     sub_0200DAA4(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
@@ -822,8 +820,8 @@ Window * ov5_021DCEB0 (FieldSystem * fieldSystem, u8 param1, u8 param2)
     BGL_FillWindow(v0, 15);
 
     {
-        MessageLoader * v1;
-        Strbuf* v2;
+        MessageLoader *v1;
+        Strbuf *v2;
 
         v1 = MessageLoader_Init(0, 26, 543, 4);
         v2 = MessageLoader_GetNewStrbuf(v1, 18);
@@ -838,18 +836,18 @@ Window * ov5_021DCEB0 (FieldSystem * fieldSystem, u8 param1, u8 param2)
     return v0;
 }
 
-void ov5_021DCF58 (Window * param0)
+void ov5_021DCF58(Window *param0)
 {
     Window_Clear(param0, 0);
     sub_0201A928(param0, 1);
 }
 
-void ov5_021DCF6C (FieldSystem * fieldSystem, Window * param1)
+void ov5_021DCF6C(FieldSystem *fieldSystem, Window *param1)
 {
-    MessageLoader * v0;
-    StringTemplate * v1;
-    Strbuf* v2;
-    Strbuf* v3;
+    MessageLoader *v0;
+    StringTemplate *v1;
+    Strbuf *v2;
+    Strbuf *v3;
     u32 v4;
     u32 v5;
 
@@ -874,9 +872,9 @@ void ov5_021DCF6C (FieldSystem * fieldSystem, Window * param1)
     sub_0201A9A4(param1);
 }
 
-Window * ov5_021DD020 (FieldSystem * fieldSystem, u8 param1, u8 param2)
+Window *ov5_021DD020(FieldSystem *fieldSystem, u8 param1, u8 param2)
 {
-    Window * v0 = sub_0201A778(4, 1);
+    Window *v0 = sub_0201A778(4, 1);
 
     BGL_AddWindow(fieldSystem->unk_08, v0, 3, param1, param2, 10, 2, 13, (1 + (10 * 4)));
     sub_0200DAA4(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
@@ -887,18 +885,18 @@ Window * ov5_021DD020 (FieldSystem * fieldSystem, u8 param1, u8 param2)
     return v0;
 }
 
-void ov5_021DD084 (Window * param0)
+void ov5_021DD084(Window *param0)
 {
     Window_Clear(param0, 0);
     sub_0201A928(param0, 1);
 }
 
-void ov5_021DD098 (FieldSystem * fieldSystem, Window * param1)
+void ov5_021DD098(FieldSystem *fieldSystem, Window *param1)
 {
-    MessageLoader * v0;
-    StringTemplate * v1;
-    Strbuf* v2;
-    Strbuf* v3;
+    MessageLoader *v0;
+    StringTemplate *v1;
+    Strbuf *v2;
+    Strbuf *v3;
     u32 v4;
     u32 v5;
 
@@ -923,9 +921,9 @@ void ov5_021DD098 (FieldSystem * fieldSystem, Window * param1)
     sub_0201A9A4(param1);
 }
 
-Window * ov5_021DD140 (FieldSystem * fieldSystem, u8 param1, u8 param2)
+Window *ov5_021DD140(FieldSystem *fieldSystem, u8 param1, u8 param2)
 {
-    Window * v0 = sub_0201A778(4, 1);
+    Window *v0 = sub_0201A778(4, 1);
 
     BGL_AddWindow(fieldSystem->unk_08, v0, 3, param1, param2, 10, 2, 13, (1 + (10 * 4)));
     sub_0200DAA4(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
@@ -936,12 +934,12 @@ Window * ov5_021DD140 (FieldSystem * fieldSystem, u8 param1, u8 param2)
     return v0;
 }
 
-void ov5_021DD1A4 (FieldSystem * fieldSystem, Window * param1)
+void ov5_021DD1A4(FieldSystem *fieldSystem, Window *param1)
 {
-    MessageLoader * v0;
-    StringTemplate * v1;
-    Strbuf* v2;
-    Strbuf* v3;
+    MessageLoader *v0;
+    StringTemplate *v1;
+    Strbuf *v2;
+    Strbuf *v3;
     u16 v4;
     u32 v5;
 
@@ -966,9 +964,9 @@ void ov5_021DD1A4 (FieldSystem * fieldSystem, Window * param1)
     sub_0201A9A4(param1);
 }
 
-UnkStruct_ov5_021DC1A4 * ov5_021DD250 (FieldSystem * fieldSystem, u8 param1, u8 param2, u16 * param3, StringTemplate * param4, u8 param5, u8 param6, u8 param7, u8 param8)
+UnkStruct_ov5_021DC1A4 *ov5_021DD250(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 *param3, StringTemplate *param4, u8 param5, u8 param6, u8 param7, u8 param8)
 {
-    UnkStruct_ov5_021DC1A4 * v0;
+    UnkStruct_ov5_021DC1A4 *v0;
 
     v0 = ov5_021DC150(fieldSystem, param1, param2, 0, 0, param3, param4, NULL, NULL);
 
@@ -999,7 +997,7 @@ UnkStruct_ov5_021DC1A4 * ov5_021DD250 (FieldSystem * fieldSystem, u8 param1, u8 
     return v0;
 }
 
-void ov5_021DD3A8 (UnkStruct_ov5_021DC1A4 * param0)
+void ov5_021DD3A8(UnkStruct_ov5_021DC1A4 *param0)
 {
     int v0;
 
@@ -1018,12 +1016,12 @@ void ov5_021DD3A8 (UnkStruct_ov5_021DC1A4 * param0)
     return;
 }
 
-void ov5_021DD3F4 (UnkStruct_ov5_021DC1A4 * param0, BOOL param1)
+void ov5_021DD3F4(UnkStruct_ov5_021DC1A4 *param0, BOOL param1)
 {
     param0->unk_97_6 = param1;
 }
 
-void ov5_021DD410 (UnkStruct_ov5_021DC1A4 * param0, BOOL param1)
+void ov5_021DD410(UnkStruct_ov5_021DC1A4 *param0, BOOL param1)
 {
     param0->unk_97_7 = param1;
 }

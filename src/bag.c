@@ -1,23 +1,24 @@
+#include "bag.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "constants/heap.h"
 #include "constants/items.h"
-#include "consts/items.h"
 #include "constants/savedata/save_table.h"
+#include "consts/items.h"
+
 #include "struct_decls/struct_0207CB08_decl.h"
-#include "savedata.h"
 
 #include "heap.h"
+#include "item.h"
 #include "savedata.h"
 #include "unk_0207CB08.h"
-#include "item.h"
-#include "bag.h"
 
-#define BAG_SLOT_INVALID            ((u32)(-1))
+#define BAG_SLOT_INVALID ((u32)(-1))
 
-#define BAG_MAX_QUANTITY_ITEM       999
-#define BAG_MAX_QUANTITY_TMHM       99
+#define BAG_MAX_QUANTITY_ITEM 999
+#define BAG_MAX_QUANTITY_TMHM 99
 
 static u32 Bag_GetPocketForItem(Bag *bag, u16 item, BagItem **outPocket, u32 *outMax, enum HeapId heapID);
 
@@ -124,7 +125,7 @@ static BagItem *Bag_FindSlotToAddItem(Bag *bag, u16 item, u16 count, enum HeapId
 {
     BagItem *pocketItems;
     u32 pocketSize;
-    
+
     u32 pocket = Bag_GetPocketForItem(bag, item, &pocketItems, &pocketSize, heapID);
     if (pocket == POCKET_TMHMS) {
         return Pocket_FindSlotToAddItem(pocketItems, pocketSize, item, count, BAG_MAX_QUANTITY_TMHM);
@@ -322,7 +323,7 @@ void Pocket_Sort(BagItem *pocket, const u32 size)
 
 void *sub_0207D824(Bag *bag, const u8 *pockets, enum HeapId heapID)
 {
-    UnkStruct_0207CB08 * v0;
+    UnkStruct_0207CB08 *v0;
     int i;
 
     v0 = sub_0207CB08(heapID);
@@ -407,9 +408,9 @@ Bag *SaveData_GetBag(SaveData *saveData)
     return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_BAG);
 }
 
-UnkStruct_0207D99C * sub_0207D99C (u32 param0)
+UnkStruct_0207D99C *sub_0207D99C(u32 param0)
 {
-    UnkStruct_0207D99C * v0;
+    UnkStruct_0207D99C *v0;
 
     v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_0207D99C));
     MI_CpuClear16(v0, sizeof(UnkStruct_0207D99C));
@@ -417,56 +418,56 @@ UnkStruct_0207D99C * sub_0207D99C (u32 param0)
     return v0;
 }
 
-void sub_0207D9B4 (UnkStruct_0207D99C * param0, u32 param1, u8 * param2, u8 * param3)
+void sub_0207D9B4(UnkStruct_0207D99C *param0, u32 param1, u8 *param2, u8 *param3)
 {
     *param2 = param0->unk_00.unk_08[param1];
     *param3 = param0->unk_00.unk_00[param1];
 }
 
-u16 sub_0207D9C4 (UnkStruct_0207D99C * param0)
+u16 sub_0207D9C4(UnkStruct_0207D99C *param0)
 {
     return param0->unk_00.unk_10;
 }
 
-void sub_0207D9C8 (UnkStruct_0207D99C * param0, u32 param1, u8 param2, u8 param3)
+void sub_0207D9C8(UnkStruct_0207D99C *param0, u32 param1, u8 param2, u8 param3)
 {
     param0->unk_00.unk_08[param1] = param2;
     param0->unk_00.unk_00[param1] = param3;
 }
 
-void sub_0207D9D4 (UnkStruct_0207D99C * param0, u16 param1)
+void sub_0207D9D4(UnkStruct_0207D99C *param0, u16 param1)
 {
     param0->unk_00.unk_10 = param1;
 }
 
-void sub_0207D9D8 (UnkStruct_0207D99C * param0, u32 param1, u8 * param2, u8 * param3)
+void sub_0207D9D8(UnkStruct_0207D99C *param0, u32 param1, u8 *param2, u8 *param3)
 {
     *param2 = param0->unk_14.unk_05[param1];
     *param3 = param0->unk_14.unk_00[param1];
 }
 
-u16 sub_0207D9E4 (UnkStruct_0207D99C * param0)
+u16 sub_0207D9E4(UnkStruct_0207D99C *param0)
 {
     return param0->unk_14.unk_0A;
 }
 
-u16 sub_0207D9E8 (UnkStruct_0207D99C * param0)
+u16 sub_0207D9E8(UnkStruct_0207D99C *param0)
 {
     return param0->unk_14.unk_0C;
 }
 
-u16 sub_0207D9EC (UnkStruct_0207D99C * param0)
+u16 sub_0207D9EC(UnkStruct_0207D99C *param0)
 {
     return param0->unk_14.unk_0E;
 }
 
-void sub_0207D9F0 (UnkStruct_0207D99C * param0, u32 param1, u8 param2, u8 param3)
+void sub_0207D9F0(UnkStruct_0207D99C *param0, u32 param1, u8 param2, u8 param3)
 {
     param0->unk_14.unk_05[param1] = param2;
     param0->unk_14.unk_00[param1] = param3;
 }
 
-void sub_0207D9F8 (UnkStruct_0207D99C * param0)
+void sub_0207D9F8(UnkStruct_0207D99C *param0)
 {
     u32 v0;
 
@@ -477,13 +478,13 @@ void sub_0207D9F8 (UnkStruct_0207D99C * param0)
     sub_0207DA24(param0, 0);
 }
 
-void Bag_SetLastItemUsed (UnkStruct_0207D99C * param0, u16 param1, u16 param2)
+void Bag_SetLastItemUsed(UnkStruct_0207D99C *param0, u16 param1, u16 param2)
 {
     param0->unk_14.unk_0A = param1;
     param0->unk_14.unk_0C = param2;
 }
 
-void sub_0207DA24 (UnkStruct_0207D99C * param0, u16 param1)
+void sub_0207DA24(UnkStruct_0207D99C *param0, u16 param1)
 {
     param0->unk_14.unk_0E = param1;
 }

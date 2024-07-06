@@ -1,100 +1,99 @@
-#include <nitro.h>
-#include <string.h>
-#include <nitro/sinit.h>
+#include "battle/ov16_0223B140.h"
+
 #include <dwc.h>
+#include <nitro.h>
+#include <nitro/sinit.h>
+#include <string.h>
 
 #include "constants/battle.h"
-
 #include "consts/game_records.h"
-#include "struct_decls/struct_02006C24_decl.h"
-#include "message.h"
-#include "struct_decls/struct_02018340_decl.h"
-#include "sys_task_manager.h"
-#include "struct_decls/battle_system.h"
-#include "struct_decls/struct_0207AE68_decl.h"
-#include "battle/battle_context.h"
-#include "battle/struct_ov16_0225BFFC_decl.h"
 
+#include "struct_decls/battle_system.h"
+#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/struct_02018340_decl.h"
+#include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_defs/archived_sprite.h"
-#include "pokemon.h"
-#include "struct_defs/struct_0207A778.h"
 #include "struct_defs/battle_system.h"
+#include "struct_defs/struct_0207A778.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
-#include "overlay006/battle_params.h"
-#include "overlay010/struct_ov10_0221F800.h"
+
+#include "battle/battle_context.h"
+#include "battle/battle_controller.h"
+#include "battle/battle_display.h"
+#include "battle/battle_io.h"
+#include "battle/battle_io_command.h"
+#include "battle/battle_lib.h"
+#include "battle/ov16_0223DF00.h"
+#include "battle/ov16_02268520.h"
+#include "battle/ov16_0226871C.h"
+#include "battle/ov16_0226E148.h"
 #include "battle/struct_ov16_0223C2C0.h"
+#include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_022674C4.h"
+#include "overlay006/battle_params.h"
+#include "overlay010/ov10_0221F800.h"
+#include "overlay010/struct_ov10_0221F800.h"
+#include "overlay011/ov11_0221F840.h"
+#include "overlay012/ov12_0221FC20.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_02241308.h"
 #include "overlay104/struct_ov104_0224133C.h"
 
+#include "bag.h"
+#include "communication_system.h"
+#include "flags.h"
+#include "game_options.h"
+#include "game_overlay.h"
+#include "game_records.h"
+#include "gx_layers.h"
+#include "heap.h"
+#include "message.h"
+#include "narc.h"
+#include "overlay_manager.h"
+#include "party.h"
+#include "pokemon.h"
+#include "strbuf.h"
+#include "string_template.h"
+#include "sys_task.h"
+#include "sys_task_manager.h"
+#include "trainer_info.h"
 #include "unk_02002328.h"
 #include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "game_overlay.h"
-#include "overlay_manager.h"
-#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
-#include "message.h"
-#include "string_template.h"
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
-#include "sys_task.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02014000.h"
 #include "unk_0201567C.h"
 #include "unk_02015F84.h"
 #include "unk_02017728.h"
-#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
-#include "gx_layers.h"
-#include "strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_020241F0.h"
 #include "unk_02024220.h"
-#include "trainer_info.h"
 #include "unk_0202631C.h"
-#include "game_options.h"
-#include "game_records.h"
 #include "unk_0202F1D4.h"
 #include "unk_02033200.h"
-#include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_02038F8C.h"
 #include "unk_020393C8.h"
-#include "pokemon.h"
-#include "party.h"
 #include "unk_0207A6DC.h"
 #include "unk_0207AE68.h"
-#include "bag.h"
 #include "unk_0208C098.h"
-#include "flags.h"
-#include "overlay010/ov10_0221F800.h"
-#include "overlay011/ov11_0221F840.h"
-#include "overlay012/ov12_0221FC20.h"
-#include "battle/ov16_0223B140.h"
-#include "battle/ov16_0223DF00.h"
-#include "battle/battle_controller.h"
-#include "battle/battle_lib.h"
-#include "battle/battle_io_command.h"
-#include "battle/battle_display.h"
-#include "battle/battle_io.h"
-#include "battle/ov16_02268520.h"
-#include "battle/ov16_0226871C.h"
-#include "battle/ov16_0226E148.h"
 
 FS_EXTERN_OVERLAY(overlay10);
 FS_EXTERN_OVERLAY(overlay11);
@@ -105,41 +104,41 @@ FS_EXTERN_OVERLAY(overlay21);
 
 static const u32 BattleServerVersion = 0x140;
 
-void ov16_0223B384(BattleSystem * param0);
-void ov16_0223B3E4(BattleSystem * param0);
-void ov16_0223B430(BattleSystem * param0);
-void ov16_0223B53C(BattleSystem * param0);
-void ov16_0223B578(BattleSystem * param0);
+void ov16_0223B384(BattleSystem *param0);
+void ov16_0223B3E4(BattleSystem *param0);
+void ov16_0223B430(BattleSystem *param0);
+void ov16_0223B53C(BattleSystem *param0);
+void ov16_0223B578(BattleSystem *param0);
 void BattleSystem_LoadFightOverlay(BattleSystem *battleSys, int flags);
-static void ov16_0223B790(OverlayManager * param0);
-static int ov16_0223BBD0(OverlayManager * param0);
-static void ov16_0223BCB4(OverlayManager * param0);
-static BOOL ov16_0223D800(OverlayManager * param0);
-static BOOL ov16_0223D944(OverlayManager * param0);
-static BOOL ov16_0223D98C(OverlayManager * param0);
-static BOOL ov16_0223DAD4(OverlayManager * param0);
-static BOOL ov16_0223DB1C(OverlayManager * param0);
-static BOOL ov16_0223DD10(OverlayManager * param0);
-static void ov16_0223D10C(OverlayManager * param0, BattleParams * param1);
-static BOOL ov16_0223D354(OverlayManager * param0);
-static void ov16_0223D7B4(OverlayManager * param0);
-static void ov16_0223C004(BattleSystem * param0, BGL * param1);
-static void ov16_0223C210(BattleSystem * param0);
-static void ov16_0223C288(BGL * param0);
-static void ov16_0223C2BC(BattleSystem * param0);
-static void ov16_0223C2C0(BattleSystem * param0, BattleParams * param1);
+static void ov16_0223B790(OverlayManager *param0);
+static int ov16_0223BBD0(OverlayManager *param0);
+static void ov16_0223BCB4(OverlayManager *param0);
+static BOOL ov16_0223D800(OverlayManager *param0);
+static BOOL ov16_0223D944(OverlayManager *param0);
+static BOOL ov16_0223D98C(OverlayManager *param0);
+static BOOL ov16_0223DAD4(OverlayManager *param0);
+static BOOL ov16_0223DB1C(OverlayManager *param0);
+static BOOL ov16_0223DD10(OverlayManager *param0);
+static void ov16_0223D10C(OverlayManager *param0, BattleParams *param1);
+static BOOL ov16_0223D354(OverlayManager *param0);
+static void ov16_0223D7B4(OverlayManager *param0);
+static void ov16_0223C004(BattleSystem *param0, BGL *param1);
+static void ov16_0223C210(BattleSystem *param0);
+static void ov16_0223C288(BGL *param0);
+static void ov16_0223C2BC(BattleSystem *param0);
+static void ov16_0223C2C0(BattleSystem *param0, BattleParams *param1);
 static void ov16_0223CE28(void);
-static void ov16_0223CE68(void * param0);
-static void ov16_0223CF1C(void * param0);
-static void ov16_0223CF48(SysTask * param0, void * param1);
-static void ov16_0223CF8C(SysTask * param0, void * param1);
-static GenericPointerData * ov16_0223CD7C(void);
-static void ov16_0223CE20(GenericPointerData * param0);
+static void ov16_0223CE68(void *param0);
+static void ov16_0223CF1C(void *param0);
+static void ov16_0223CF48(SysTask *param0, void *param1);
+static void ov16_0223CF8C(SysTask *param0, void *param1);
+static GenericPointerData *ov16_0223CD7C(void);
+static void ov16_0223CE20(GenericPointerData *param0);
 static void ov16_0223CD9C(void);
-static void ov16_0223DD4C(BattleSystem * param0);
-static void ov16_0223D0C4(SysTask * param0, void * param1);
+static void ov16_0223DD4C(BattleSystem *param0);
+static void ov16_0223D0C4(SysTask *param0, void *param1);
 static BOOL ov16_0223CD3C(u16 param0);
-static void ov16_0223DD90(BattleSystem * param0, BattleParams * param1);
+static void ov16_0223DD90(BattleSystem *param0, BattleParams *param1);
 static void ov16_0223DECC(void);
 
 static const UnkStruct_ov104_0224133C Unk_ov16_0226E2E4 = {
@@ -170,9 +169,9 @@ const UnkStruct_ov104_02241308 Unk_ov16_0226E2B0 = {
     0x8
 };
 
-BOOL Battle_Main (OverlayManager * param0, int * param1)
+BOOL Battle_Main(OverlayManager *param0, int *param1)
 {
-    BattleParams * v0 = OverlayManager_Args(param0);
+    BattleParams *v0 = OverlayManager_Args(param0);
 
     switch (*param1) {
     case 0:
@@ -262,12 +261,11 @@ BOOL Battle_Main (OverlayManager * param0, int * param1)
     case 12:
         *param1 = 15;
         break;
-    case 13:
-    {
+    case 13: {
         int v1;
         int v2;
         int v3;
-        Pokemon * v4;
+        Pokemon *v4;
 
         v2 = ov16_0223ECC4(v0, &v1, &v3);
 
@@ -279,19 +277,16 @@ BOOL Battle_Main (OverlayManager * param0, int * param1)
         } else {
             *param1 = 15;
         }
-    }
-    break;
-    case 14:
-    {
-        UnkStruct_0207AE68 * v5 = (UnkStruct_0207AE68 *)v0->unk_170;
+    } break;
+    case 14: {
+        UnkStruct_0207AE68 *v5 = (UnkStruct_0207AE68 *)v0->unk_170;
 
         if (sub_0207B0D0(v5) == 1) {
             sub_0207B0E0(v5);
             Heap_Destroy(73);
             *param1 = 13;
         }
-    }
-    break;
+    } break;
     case 15:
         return 1;
     }
@@ -299,7 +294,7 @@ BOOL Battle_Main (OverlayManager * param0, int * param1)
     return 0;
 }
 
-void ov16_0223B384 (BattleSystem * param0)
+void ov16_0223B384(BattleSystem *param0)
 {
     ov16_02268A14(param0->unk_198);
     ov16_022687A0(param0->unk_04);
@@ -318,7 +313,7 @@ void ov16_0223B384 (BattleSystem * param0)
     Overlay_LoadByID(FS_OVERLAY_ID(overlay13), 2);
 }
 
-void ov16_0223B3E4 (BattleSystem * param0)
+void ov16_0223B3E4(BattleSystem *param0)
 {
     SetMainCallback(NULL, NULL);
     ov16_02268A14(param0->unk_198);
@@ -333,10 +328,10 @@ void ov16_0223B3E4 (BattleSystem * param0)
     sub_02002C60(2);
 }
 
-void ov16_0223B430 (BattleSystem * param0)
+void ov16_0223B430(BattleSystem *param0)
 {
-    NARC * v0;
-    NARC * v1;
+    NARC *v0;
+    NARC *v1;
 
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay13));
 
@@ -372,7 +367,7 @@ void ov16_0223B430 (BattleSystem * param0)
     sub_0200964C(sub_0200C738(param0->unk_90), 0, ((192 + 80) << FX32_SHIFT));
 }
 
-void ov16_0223B53C (BattleSystem * param0)
+void ov16_0223B53C(BattleSystem *param0)
 {
     BGL_DeleteWindow(&param0->windows[0]);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
@@ -383,7 +378,7 @@ void ov16_0223B53C (BattleSystem * param0)
     ov16_0223F3EC(param0);
 }
 
-void ov16_0223B578 (BattleSystem * param0)
+void ov16_0223B578(BattleSystem *param0)
 {
     {
         param0->unk_23FB_0 = 1;
@@ -484,7 +479,7 @@ void ov16_0223B578 (BattleSystem * param0)
     ov16_0223DD4C(param0);
 }
 
-void BattleSystem_LoadFightOverlay (BattleSystem *battleSys, int flags)
+void BattleSystem_LoadFightOverlay(BattleSystem *battleSys, int flags)
 {
     GF_ASSERT(battleSys->overlayFlags != flags);
 
@@ -500,35 +495,35 @@ void BattleSystem_LoadFightOverlay (BattleSystem *battleSys, int flags)
 }
 
 static const int Unk_ov16_0226E44C[][3] = {
-    {0x7b51, GX_RGB(30, 17, 0), GX_RGB(0, 16, 23)},
-    {0x7b51, GX_RGB(30, 17, 0), GX_RGB(0, 16, 23)},
-    {0x7b51, GX_RGB(30, 17, 0), GX_RGB(0, 16, 23)},
-    {GX_RGB(11, 21, 5), GX_RGB(11, 21, 5), GX_RGB(11, 21, 5)},
-    {0x7b51, GX_RGB(30, 17, 0), GX_RGB(0, 16, 23)},
-    {GX_RGB(31, 26, 31), GX_RGB(31, 26, 22), GX_RGB(24, 22, 22)},
-    {0x7fff, 0x7fff, 0x7fff},
-    {0x7fff, 0x7fff, 0x7fff},
-    {0x7fff, 0x7fff, 0x7fff},
-    {GX_RGB(5, 5, 7), GX_RGB(5, 5, 7), GX_RGB(5, 5, 7)},
-    {GX_RGB(5, 5, 7), GX_RGB(5, 5, 7), GX_RGB(5, 5, 7)},
-    {GX_RGB(5, 5, 7), GX_RGB(5, 5, 7), GX_RGB(5, 5, 7)},
-    {0x7fff, 0x7fff, 0x7fff},
-    {0x7fff, 0x7fff, 0x7fff},
-    {0x7fff, 0x7fff, 0x7fff},
-    {0x7fff, 0x7fff, 0x7fff},
-    {0x7fff, 0x7fff, 0x7fff},
-    {0x7fff, 0x7fff, 0x7fff},
-    {0x7fff, 0x7fff, 0x7fff},
-    {0x7fff, 0x7fff, 0x7fff},
-    {0x7fff, 0x7fff, 0x7fff},
-    {0x7fff, 0x7fff, 0x7fff},
-    {0x7fff, 0x7fff, 0x7fff},
+    { 0x7b51, GX_RGB(30, 17, 0), GX_RGB(0, 16, 23) },
+    { 0x7b51, GX_RGB(30, 17, 0), GX_RGB(0, 16, 23) },
+    { 0x7b51, GX_RGB(30, 17, 0), GX_RGB(0, 16, 23) },
+    { GX_RGB(11, 21, 5), GX_RGB(11, 21, 5), GX_RGB(11, 21, 5) },
+    { 0x7b51, GX_RGB(30, 17, 0), GX_RGB(0, 16, 23) },
+    { GX_RGB(31, 26, 31), GX_RGB(31, 26, 22), GX_RGB(24, 22, 22) },
+    { 0x7fff, 0x7fff, 0x7fff },
+    { 0x7fff, 0x7fff, 0x7fff },
+    { 0x7fff, 0x7fff, 0x7fff },
+    { GX_RGB(5, 5, 7), GX_RGB(5, 5, 7), GX_RGB(5, 5, 7) },
+    { GX_RGB(5, 5, 7), GX_RGB(5, 5, 7), GX_RGB(5, 5, 7) },
+    { GX_RGB(5, 5, 7), GX_RGB(5, 5, 7), GX_RGB(5, 5, 7) },
+    { 0x7fff, 0x7fff, 0x7fff },
+    { 0x7fff, 0x7fff, 0x7fff },
+    { 0x7fff, 0x7fff, 0x7fff },
+    { 0x7fff, 0x7fff, 0x7fff },
+    { 0x7fff, 0x7fff, 0x7fff },
+    { 0x7fff, 0x7fff, 0x7fff },
+    { 0x7fff, 0x7fff, 0x7fff },
+    { 0x7fff, 0x7fff, 0x7fff },
+    { 0x7fff, 0x7fff, 0x7fff },
+    { 0x7fff, 0x7fff, 0x7fff },
+    { 0x7fff, 0x7fff, 0x7fff },
 };
 
-static void ov16_0223B790 (OverlayManager * param0)
+static void ov16_0223B790(OverlayManager *param0)
 {
-    BattleSystem * v0 = OverlayManager_Data(param0);
-    BattleParams * v1 = OverlayManager_Args(param0);
+    BattleSystem *v0 = OverlayManager_Data(param0);
+    BattleParams *v1 = OverlayManager_Args(param0);
     ArchivedSprite v2;
     int v3;
     RTCDate v4;
@@ -567,8 +562,8 @@ static void ov16_0223B790 (OverlayManager * param0)
     sub_0201DBEC(64, 5);
 
     {
-        NARC * v6 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
-        NARC * v7 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
+        NARC *v6 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
+        NARC *v7 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
 
         v0->unk_198 = ov16_022687C8(v6, v7, v0, ov16_0223E1B4(v0, ov16_0223F6E4(v0)), v0->unk_1BC);
 
@@ -597,8 +592,8 @@ static void ov16_0223B790 (OverlayManager * param0)
     ov16_02268A88(v0->unk_198);
 
     {
-        NARC * v8;
-        NARC * v9;
+        NARC *v8;
+        NARC *v9;
 
         v8 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
         v9 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
@@ -665,9 +660,9 @@ static void ov16_0223B790 (OverlayManager * param0)
     }
 }
 
-static int ov16_0223BBD0 (OverlayManager * param0)
+static int ov16_0223BBD0(OverlayManager *param0)
 {
-    BattleSystem * v0 = OverlayManager_Data(param0);
+    BattleSystem *v0 = OverlayManager_Data(param0);
     int v1;
 
     if ((v0->battleType & 0x4) && ((v0->battleStatusMask & 0x10) == 0)) {
@@ -705,10 +700,10 @@ static int ov16_0223BBD0 (OverlayManager * param0)
     return v0->unk_23FA;
 }
 
-static void ov16_0223BCB4 (OverlayManager * param0)
+static void ov16_0223BCB4(OverlayManager *param0)
 {
-    BattleSystem * v0 = OverlayManager_Data(param0);
-    BattleParams * v1 = OverlayManager_Args(param0);
+    BattleSystem *v0 = OverlayManager_Data(param0);
+    BattleParams *v1 = OverlayManager_Args(param0);
     int v2;
 
     v1->unk_174 = v0->unk_2448;
@@ -827,7 +822,7 @@ static void ov16_0223BCB4 (OverlayManager * param0)
     }
 }
 
-static void ov16_0223C004 (BattleSystem * param0, BGL * param1)
+static void ov16_0223C004(BattleSystem *param0, BGL *param1)
 {
     GXLayers_DisableEngineALayers();
     sub_0200F338(0);
@@ -960,13 +955,13 @@ static void ov16_0223C004 (BattleSystem * param0, BGL * param1)
     SetMainCallback(ov16_0223CE68, param0);
 }
 
-static void ov16_0223C210 (BattleSystem * param0)
+static void ov16_0223C210(BattleSystem *param0)
 {
     int v0;
     int v1;
     int v2;
-    BattleContext * v3;
-    Pokemon * v4;
+    BattleContext *v3;
+    Pokemon *v4;
 
     v0 = BattleSystem_Terrain(param0);
 
@@ -984,7 +979,7 @@ static void ov16_0223C210 (BattleSystem * param0)
     ov16_0223DECC();
 }
 
-static void ov16_0223C288 (BGL * param0)
+static void ov16_0223C288(BGL *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
@@ -995,7 +990,7 @@ static void ov16_0223C288 (BGL * param0)
     ov16_022687A0(param0);
 }
 
-static void ov16_0223C2BC (BattleSystem * param0)
+static void ov16_0223C2BC(BattleSystem *param0)
 {
     int v0;
 }
@@ -1065,12 +1060,12 @@ static const u8 Unk_ov16_0226E28C[][4] = {
     },
 };
 
-static void ov16_0223C2C0 (BattleSystem * param0, BattleParams * param1)
+static void ov16_0223C2C0(BattleSystem *param0, BattleParams *param1)
 {
     int v0, v1;
     UnkStruct_ov16_0223C2C0 v2;
-    Pokemon * v3;
-    Pokemon * v4;
+    Pokemon *v3;
+    Pokemon *v4;
 
     param0->battleType = param1->battleType;
 
@@ -1410,7 +1405,7 @@ static void ov16_0223C2C0 (BattleSystem * param0, BattleParams * param1)
     }
 }
 
-static BOOL ov16_0223CD3C (u16 param0)
+static BOOL ov16_0223CD3C(u16 param0)
 {
     switch (param0) {
     case 62:
@@ -1433,15 +1428,15 @@ static BOOL ov16_0223CD3C (u16 param0)
     return 0;
 }
 
-static GenericPointerData * ov16_0223CD7C (void)
+static GenericPointerData *ov16_0223CD7C(void)
 {
-    GenericPointerData * v0;
+    GenericPointerData *v0;
 
     v0 = sub_02024220(5, 0, 2, 0, 2, ov16_0223CD9C);
     return v0;
 }
 
-static void ov16_0223CD9C (void)
+static void ov16_0223CD9C(void)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
@@ -1456,12 +1451,12 @@ static void ov16_0223CD9C (void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-static void ov16_0223CE20 (GenericPointerData * param0)
+static void ov16_0223CE20(GenericPointerData *param0)
 {
     sub_020242C4(param0);
 }
 
-static void ov16_0223CE28 (void)
+static void ov16_0223CE28(void)
 {
     NNSGfdTexKey v0;
     NNSGfdPlttKey v1;
@@ -1479,9 +1474,9 @@ static void ov16_0223CE28 (void)
     sub_02014000();
 }
 
-static void ov16_0223CE68 (void * param0)
+static void ov16_0223CE68(void *param0)
 {
-    BattleSystem * v0 = param0;
+    BattleSystem *v0 = param0;
 
     if (v0->unk_23FB_0) {
         v0->unk_23FB_0 = 0;
@@ -1538,9 +1533,9 @@ static void ov16_0223CE68 (void * param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void ov16_0223CF1C (void * param0)
+static void ov16_0223CF1C(void *param0)
 {
-    UnkStruct_0207A778 * v0 = param0;
+    UnkStruct_0207A778 *v0 = param0;
 
     sub_02003694(v0->unk_0C);
     sub_0201DCAC();
@@ -1549,9 +1544,9 @@ static void ov16_0223CF1C (void * param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void ov16_0223CF48 (SysTask * param0, void * param1)
+static void ov16_0223CF48(SysTask *param0, void *param1)
 {
-    BattleSystem * v0 = param1;
+    BattleSystem *v0 = param1;
 
     sub_02038A1C(5, v0->unk_04);
 
@@ -1567,11 +1562,11 @@ static void ov16_0223CF48 (SysTask * param0, void * param1)
     }
 }
 
-static void ov16_0223CF8C (SysTask * param0, void * param1)
+static void ov16_0223CF8C(SysTask *param0, void *param1)
 {
-    BattleSystem * v0 = param1;
-    BattlerData * v1;
-    Healthbar * v2;
+    BattleSystem *v0 = param1;
+    BattlerData *v1;
+    Healthbar *v2;
     int v3;
     int v4;
     int v5;
@@ -1632,9 +1627,9 @@ static void ov16_0223CF8C (SysTask * param0, void * param1)
     }
 }
 
-static void ov16_0223D0C4 (SysTask * param0, void * param1)
+static void ov16_0223D0C4(SysTask *param0, void *param1)
 {
-    BattleSystem * v0 = param1;
+    BattleSystem *v0 = param1;
 
     v0->unk_2434 += 3;
     sub_02019184(v0->unk_04, 1, 3, v0->unk_2434);
@@ -1644,16 +1639,16 @@ static void ov16_0223D0C4 (SysTask * param0, void * param1)
     }
 }
 
-static void NitroStaticInit (void)
+static void NitroStaticInit(void)
 {
     if (!sub_020389B8()) {
         Overlay_LoadByID(FS_OVERLAY_ID(overlay21), 2);
     }
 }
 
-static void ov16_0223D10C (OverlayManager * param0, BattleParams * param1)
+static void ov16_0223D10C(OverlayManager *param0, BattleParams *param1)
 {
-    UnkStruct_0207A778 * v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_0207A778), 5);
+    UnkStruct_0207A778 *v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_0207A778), 5);
 
     v0->unk_00 = param1;
     v0->unk_1020 = 0;
@@ -1744,8 +1739,8 @@ static void ov16_0223D10C (OverlayManager * param0, BattleParams * param1)
     sub_0200E060(v0->unk_08, 0, 1, 10);
 
     {
-        MessageLoader * v5;
-        Strbuf* v6;
+        MessageLoader *v5;
+        Strbuf *v6;
 
         v5 = MessageLoader_Init(1, 26, 368, 5);
         v6 = Strbuf_Init(0x100, 5);
@@ -1765,9 +1760,9 @@ static void ov16_0223D10C (OverlayManager * param0, BattleParams * param1)
     ov16_0223DECC();
 }
 
-static BOOL ov16_0223D354 (OverlayManager * param0)
+static BOOL ov16_0223D354(OverlayManager *param0)
 {
-    UnkStruct_0207A778 * v0 = OverlayManager_Data(param0);
+    UnkStruct_0207A778 *v0 = OverlayManager_Data(param0);
     BOOL v1;
 
     sub_02038A1C(5, v0->unk_04);
@@ -1992,9 +1987,9 @@ static BOOL ov16_0223D354 (OverlayManager * param0)
     return v1;
 }
 
-static void ov16_0223D7B4 (OverlayManager * param0)
+static void ov16_0223D7B4(OverlayManager *param0)
 {
-    UnkStruct_0207A778 * v0 = OverlayManager_Data(param0);
+    UnkStruct_0207A778 *v0 = OverlayManager_Data(param0);
 
     SetMainCallback(NULL, NULL);
     sub_0200F344(0, 0x0);
@@ -2007,10 +2002,10 @@ static void ov16_0223D7B4 (OverlayManager * param0)
     Heap_FreeToHeap(v0);
 }
 
-static BOOL ov16_0223D800 (OverlayManager * param0)
+static BOOL ov16_0223D800(OverlayManager *param0)
 {
-    BattleSystem * v0 = OverlayManager_NewData(param0, sizeof(BattleSystem), 5);
-    BattleParams * v1 = OverlayManager_Args(param0);
+    BattleSystem *v0 = OverlayManager_NewData(param0, sizeof(BattleSystem), 5);
+    BattleParams *v1 = OverlayManager_Args(param0);
     u8 v2;
 
     MI_CpuClearFast(v0, sizeof(BattleSystem));
@@ -2063,10 +2058,10 @@ static BOOL ov16_0223D800 (OverlayManager * param0)
     return 1;
 }
 
-static BOOL ov16_0223D944 (OverlayManager * param0)
+static BOOL ov16_0223D944(OverlayManager *param0)
 {
     int v0;
-    BattleSystem * v1 = OverlayManager_Data(param0);
+    BattleSystem *v1 = OverlayManager_Data(param0);
 
     if (v1->unk_1C0->unk_2B) {
         for (v0 = 0; v0 < 4; v0++) {
@@ -2082,10 +2077,10 @@ static BOOL ov16_0223D944 (OverlayManager * param0)
     return 0;
 }
 
-static BOOL ov16_0223D98C (OverlayManager * param0)
+static BOOL ov16_0223D98C(OverlayManager *param0)
 {
-    BattleSystem * v0 = OverlayManager_Data(param0);
-    BattleParams * v1 = OverlayManager_Args(param0);
+    BattleSystem *v0 = OverlayManager_Data(param0);
+    BattleParams *v1 = OverlayManager_Args(param0);
     u8 v2;
     int v3;
 
@@ -2123,10 +2118,10 @@ static BOOL ov16_0223D98C (OverlayManager * param0)
     return 1;
 }
 
-static BOOL ov16_0223DAD4 (OverlayManager * param0)
+static BOOL ov16_0223DAD4(OverlayManager *param0)
 {
     int v0;
-    BattleSystem * v1 = OverlayManager_Data(param0);
+    BattleSystem *v1 = OverlayManager_Data(param0);
 
     if (v1->unk_1C0->unk_2B) {
         for (v0 = 0; v0 < 4; v0++) {
@@ -2142,16 +2137,16 @@ static BOOL ov16_0223DAD4 (OverlayManager * param0)
     return 0;
 }
 
-static BOOL ov16_0223DB1C (OverlayManager * param0)
+static BOOL ov16_0223DB1C(OverlayManager *param0)
 {
-    BattleParams * v0 = OverlayManager_Args(param0);
-    UnkStruct_ov10_0221F800 * v1;
+    BattleParams *v0 = OverlayManager_Args(param0);
+    UnkStruct_ov10_0221F800 *v1;
     u8 v2;
     int v3;
 
     if (((v0->battleType & BATTLE_TYPE_LINK) == 0)
-            || (v0->unk_164 & 0x10)
-            || (v0->battleType & BATTLE_TYPE_FRONTIER)) {
+        || (v0->unk_164 & 0x10)
+        || (v0->battleType & BATTLE_TYPE_FRONTIER)) {
         return 0;
     }
 
@@ -2226,11 +2221,11 @@ static BOOL ov16_0223DB1C (OverlayManager * param0)
     return 1;
 }
 
-static BOOL ov16_0223DD10 (OverlayManager * param0)
+static BOOL ov16_0223DD10(OverlayManager *param0)
 {
     int v0;
-    BattleParams * v1 = OverlayManager_Args(param0);
-    UnkStruct_ov10_0221F800 * v2 = v1->unk_170;
+    BattleParams *v1 = OverlayManager_Args(param0);
+    UnkStruct_ov10_0221F800 *v2 = v1->unk_170;
 
     if (v2->unk_2B) {
         for (v0 = 0; v0 < 4; v0++) {
@@ -2246,7 +2241,7 @@ static BOOL ov16_0223DD10 (OverlayManager * param0)
     return 0;
 }
 
-static void ov16_0223DD4C (BattleSystem * param0)
+static void ov16_0223DD4C(BattleSystem *param0)
 {
     if ((param0->battleType & (0x4 | 0x400)) || (param0->battleStatusMask & 0x10)) {
         sub_02002AE4(1);
@@ -2259,7 +2254,7 @@ static void ov16_0223DD4C (BattleSystem * param0)
     }
 }
 
-static void ov16_0223DD90 (BattleSystem * param0, BattleParams * param1)
+static void ov16_0223DD90(BattleSystem *param0, BattleParams *param1)
 {
     int v0, v1, v2;
     int v3, v4;
@@ -2320,7 +2315,7 @@ static void ov16_0223DD90 (BattleSystem * param0, BattleParams * param1)
     }
 }
 
-static void ov16_0223DECC (void)
+static void ov16_0223DECC(void)
 {
     sub_02039734();
 

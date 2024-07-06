@@ -1,10 +1,11 @@
 #ifndef POKEPLATINUM_CORE_SYS_H
 #define POKEPLATINUM_CORE_SYS_H
 
-#include "sys_task_manager.h"
 #include "overlay023/funcptr_ov23_022537D4.h"
 
-typedef void (* Callback)(void *);
+#include "sys_task_manager.h"
+
+typedef void (*Callback)(void *);
 
 enum ButtonMode {
     BUTTON_MODE_NORMAL = 0,
@@ -22,11 +23,11 @@ typedef struct CoreSys {
     void *hblankCallbackData;
     UnkFuncPtr_ov23_022537D4 unk_10;
     UnkFuncPtr_ov23_022537D4 unk_14;
-    SysTaskManager * mainTaskMgr;
-    SysTaskManager * vBlankTaskMgr;
-    SysTaskManager * postVBlankTaskMgr;
-    SysTaskManager * unk_24;
-    u32 * unk_28;
+    SysTaskManager *mainTaskMgr;
+    SysTaskManager *vBlankTaskMgr;
+    SysTaskManager *postVBlankTaskMgr;
+    SysTaskManager *unk_24;
+    u32 *unk_28;
     u32 frameCounter;
     u32 unk_30;
     enum ButtonMode buttonMode;

@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV97_02233814_H
 #define POKEPLATINUM_OV97_02233814_H
 
-BOOL ov97_02233814(const void * param0, u32 param1, u16 param2);
+BOOL ov97_02233814(const void *param0, u32 param1, u16 param2);
 BOOL ov97_02233854(void);
 BOOL ov97_02233870(void);
 BOOL ov97_02233890(u32 param0);

@@ -2,6 +2,7 @@
 #define POKEPLATINUM_GAME_RECORDS_H
 
 #include "struct_decls/pokedexdata_decl.h"
+
 #include "savedata.h"
 
 #define NUM_U32_RECORDS 71
@@ -39,4 +40,3 @@ u32 GameRecords_GetTrainerScore(GameRecords *records);
 void GameRecords_IncrementTrainerScoreOnCatch(GameRecords *records, const PokedexData *pokedex, const u16 species);
 
 #endif // POKEPLATINUM_GAME_RECORDS_H
-

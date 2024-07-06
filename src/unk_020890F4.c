@@ -1,41 +1,41 @@
+#include "unk_020890F4.h"
+
+#include <dwc.h>
 #include <nitro.h>
 #include <string.h>
-#include <dwc.h>
-
-#include "core_sys.h"
 
 #include "struct_decls/struct_02018340_decl.h"
-
-#include "constdata/const_020F2DBC.h"
-
-#include "game_options.h"
 #include "struct_defs/struct_02089438.h"
 #include "struct_defs/struct_02089688.h"
 #include "struct_defs/struct_02099F80.h"
+
 #include "overlay097/struct_ov97_0222DB78.h"
 
-#include "unk_02002F38.h"
-#include "overlay_manager.h"
+#include "core_sys.h"
+#include "game_options.h"
+#include "gx_layers.h"
+#include "heap.h"
 #include "narc.h"
+#include "overlay_manager.h"
+#include "strbuf.h"
+#include "unk_02002F38.h"
 #include "unk_0200C6E4.h"
 #include "unk_02017728.h"
-#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
-#include "gx_layers.h"
-#include "strbuf.h"
 #include "unk_02023FCC.h"
 #include "unk_020393C8.h"
-#include "unk_020890F4.h"
 #include "unk_02089604.h"
 #include "unk_0208A3F4.h"
 
-static void sub_0208945C(BGL * param0);
-static void sub_020895CC(void * param0);
-static int sub_020890F4(OverlayManager * param0, int * param1);
-static int sub_0208924C(OverlayManager * param0, int * param1);
-static int sub_0208927C(OverlayManager * param0, int * param1);
+#include "constdata/const_020F2DBC.h"
+
+static void sub_0208945C(BGL *param0);
+static void sub_020895CC(void *param0);
+static int sub_020890F4(OverlayManager *param0, int *param1);
+static int sub_0208924C(OverlayManager *param0, int *param1);
+static int sub_0208927C(OverlayManager *param0, int *param1);
 
 const OverlayManagerTemplate Unk_020F2DBC = {
     sub_020890F4,
@@ -44,15 +44,15 @@ const OverlayManagerTemplate Unk_020F2DBC = {
     0xffffffff,
 };
 
-static int sub_020890F4 (OverlayManager * param0, int * param1)
+static int sub_020890F4(OverlayManager *param0, int *param1)
 {
-    UnkStruct_02089688 * v0;
+    UnkStruct_02089688 *v0;
 
     Heap_Create(3, 101, 0x40000);
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_02089688), 101);
     memset(v0, 0, sizeof(UnkStruct_02089688));
-    v0->unk_38C = *(( UnkStruct_02089438 * )OverlayManager_Args(param0));
+    v0->unk_38C = *((UnkStruct_02089438 *)OverlayManager_Args(param0));
 
     SetMainCallback(NULL, NULL);
     DisableHBlank();
@@ -94,10 +94,10 @@ static int sub_020890F4 (OverlayManager * param0, int * param1)
     return 1;
 }
 
-static int sub_0208924C (OverlayManager * param0, int * param1)
+static int sub_0208924C(OverlayManager *param0, int *param1)
 {
     BOOL v0;
-    UnkStruct_02089688 * v1;
+    UnkStruct_02089688 *v1;
 
     v1 = OverlayManager_Data(param0);
     v0 = sub_02089BEC(v1);
@@ -109,9 +109,9 @@ static int sub_0208924C (OverlayManager * param0, int * param1)
     return v0 ? 1 : 0;
 }
 
-static int sub_0208927C (OverlayManager * param0, int * param1)
+static int sub_0208927C(OverlayManager *param0, int *param1)
 {
-    UnkStruct_02089688 * v0;
+    UnkStruct_02089688 *v0;
 
     v0 = OverlayManager_Data(param0);
 
@@ -157,10 +157,10 @@ static int sub_0208927C (OverlayManager * param0, int * param1)
     return 1;
 }
 
-UnkStruct_02089438 * sub_020893B4 (int param0, int param1, int param2[], Options * param3, u32 param4, u32 param5)
+UnkStruct_02089438 *sub_020893B4(int param0, int param1, int param2[], Options *param3, u32 param4, u32 param5)
 {
     int v0;
-    UnkStruct_02089438 * v1 = NULL;
+    UnkStruct_02089438 *v1 = NULL;
 
     v1 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_02089438));
 
@@ -179,25 +179,25 @@ UnkStruct_02089438 * sub_020893B4 (int param0, int param1, int param2[], Options
     return v1;
 }
 
-UnkStruct_02089438 * sub_02089400 (int param0, int param1, int param2[], Options * param3, u32 param4, u32 param5)
+UnkStruct_02089438 *sub_02089400(int param0, int param1, int param2[], Options *param3, u32 param4, u32 param5)
 {
-    UnkStruct_02089438 * v0 = sub_020893B4(param0, param1, param2, param3, param4, param5);
+    UnkStruct_02089438 *v0 = sub_020893B4(param0, param1, param2, param3, param4, param5);
 
     v0->unk_24 = 0;
     v0->unk_28 = 0;
     return v0;
 }
 
-UnkStruct_02089438 * sub_0208941C (int param0, int param1, int param2[], Options * param3, u32 param4, u32 param5, u32 param6, u32 param7)
+UnkStruct_02089438 *sub_0208941C(int param0, int param1, int param2[], Options *param3, u32 param4, u32 param5, u32 param6, u32 param7)
 {
-    UnkStruct_02089438 * v0 = sub_020893B4(param0, param1, param2, param3, param4, param5);
+    UnkStruct_02089438 *v0 = sub_020893B4(param0, param1, param2, param3, param4, param5);
 
     v0->unk_24 = param6;
     v0->unk_28 = param7;
     return v0;
 }
 
-void sub_02089438 (UnkStruct_02089438 * param0)
+void sub_02089438(UnkStruct_02089438 *param0)
 {
     GF_ASSERT(param0->unk_1C != NULL);
     GF_ASSERT(param0 != NULL);
@@ -206,7 +206,7 @@ void sub_02089438 (UnkStruct_02089438 * param0)
     Heap_FreeToHeap(param0);
 }
 
-static void sub_0208945C (BGL * param0)
+static void sub_0208945C(BGL *param0)
 {
     GXLayers_DisableEngineALayers();
 
@@ -325,12 +325,8 @@ static void sub_0208945C (BGL * param0)
                 0,
                 0,
             },
-            {
-                0
-            },
-            {
-                0
-            },
+            { 0 },
+            { 0 },
         };
 
         sub_020183C4(param0, 4, &v2[0], 0);
@@ -354,9 +350,9 @@ static void sub_0208945C (BGL * param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void sub_020895CC (void * param0)
+static void sub_020895CC(void *param0)
 {
-    UnkStruct_02089688 * v0 = param0;
+    UnkStruct_02089688 *v0 = param0;
 
     sub_0201DCAC();
     sub_0200C800();

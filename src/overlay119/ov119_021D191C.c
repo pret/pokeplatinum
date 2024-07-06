@@ -1,10 +1,17 @@
+#include "overlay119/ov119_021D191C.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_defs/struct_0200D0F4.h"
+
+#include "overlay119/ov119_021D0D80.h"
 #include "overlay119/struct_ov119_021D0FD0.h"
 #include "overlay119/struct_ov119_021D1930.h"
 
+#include "cell_actor.h"
+#include "gx_layers.h"
+#include "pokemon.h"
 #include "unk_02001AF4.h"
 #include "unk_02002F38.h"
 #include "unk_020041CC.h"
@@ -15,26 +22,22 @@
 #include "unk_02015F84.h"
 #include "unk_0201D670.h"
 #include "unk_0201F834.h"
-#include "gx_layers.h"
-#include "cell_actor.h"
-#include "pokemon.h"
-#include "overlay119/ov119_021D0D80.h"
-#include "overlay119/ov119_021D191C.h"
 
-static BOOL ov119_021D1930(UnkStruct_ov119_021D0FD0 * param0);
-static BOOL ov119_021D1BD0(UnkStruct_ov119_021D0FD0 * param0);
-static BOOL ov119_021D1E38(UnkStruct_ov119_021D0FD0 * param0);
-static BOOL ov119_021D1E80(UnkStruct_ov119_021D0FD0 * param0);
-static BOOL ov119_021D1EF0(UnkStruct_ov119_021D0FD0 * param0);
-static BOOL ov119_021D1F48(UnkStruct_ov119_021D0FD0 * param0);
-static BOOL ov119_021D1FAC(UnkStruct_ov119_021D0FD0 * param0);
-static BOOL ov119_021D21BC(UnkStruct_ov119_021D0FD0 * param0);
+static BOOL ov119_021D1930(UnkStruct_ov119_021D0FD0 *param0);
+static BOOL ov119_021D1BD0(UnkStruct_ov119_021D0FD0 *param0);
+static BOOL ov119_021D1E38(UnkStruct_ov119_021D0FD0 *param0);
+static BOOL ov119_021D1E80(UnkStruct_ov119_021D0FD0 *param0);
+static BOOL ov119_021D1EF0(UnkStruct_ov119_021D0FD0 *param0);
+static BOOL ov119_021D1F48(UnkStruct_ov119_021D0FD0 *param0);
+static BOOL ov119_021D1FAC(UnkStruct_ov119_021D0FD0 *param0);
+static BOOL ov119_021D21BC(UnkStruct_ov119_021D0FD0 *param0);
 
-static BOOL(*const Unk_ov119_021D26AC[])(UnkStruct_ov119_021D0FD0 *) = {
-    ov119_021D1930, ov119_021D1BD0,
+static BOOL (*const Unk_ov119_021D26AC[])(UnkStruct_ov119_021D0FD0 *) = {
+    ov119_021D1930,
+    ov119_021D1BD0,
 };
 
-BOOL ov119_021D191C (UnkStruct_ov119_021D0FD0 * param0)
+BOOL ov119_021D191C(UnkStruct_ov119_021D0FD0 *param0)
 {
     BOOL v0;
 
@@ -42,7 +45,7 @@ BOOL ov119_021D191C (UnkStruct_ov119_021D0FD0 * param0)
     return v0;
 }
 
-static BOOL ov119_021D1930 (UnkStruct_ov119_021D0FD0 * param0)
+static BOOL ov119_021D1930(UnkStruct_ov119_021D0FD0 *param0)
 {
     BOOL v0 = 1;
 
@@ -52,7 +55,7 @@ static BOOL ov119_021D1930 (UnkStruct_ov119_021D0FD0 * param0)
         ov119_021D135C(param0->unk_04.unk_00, param0->unk_04.unk_04);
 
         ov119_021D1068(param0->unk_04.unk_00, param0->unk_04.unk_04, param0->unk_04.unk_10);
-        ov119_021D10F0(param0->unk_04.unk_00, &param0->unk_04.unk_14[0], 1, 2, 19, 27, 4, (((20 + (18 + 12)) + 9)), 14);
+        ov119_021D10F0(param0->unk_04.unk_00, &param0->unk_04.unk_14[0], 1, 2, 19, 27, 4, ((20 + (18 + 12)) + 9), 14);
 
         ov119_021D1514(param0);
         ov119_021D161C(param0);
@@ -81,8 +84,7 @@ static BOOL ov119_021D1930 (UnkStruct_ov119_021D0FD0 * param0)
             param0->unk_60++;
         }
         break;
-    case 3:
-    {
+    case 3: {
         BOOL v2;
 
         v2 = ov119_021D1E38(param0);
@@ -90,10 +92,8 @@ static BOOL ov119_021D1930 (UnkStruct_ov119_021D0FD0 * param0)
         if (v2 == 0) {
             param0->unk_60++;
         }
-    }
-    break;
-    case 4:
-    {
+    } break;
+    case 4: {
         BOOL v3;
 
         v3 = ov119_021D1E80(param0);
@@ -101,10 +101,8 @@ static BOOL ov119_021D1930 (UnkStruct_ov119_021D0FD0 * param0)
         if (v3 == 0) {
             param0->unk_60++;
         }
-    }
-    break;
-    case 5:
-    {
+    } break;
+    case 5: {
         BOOL v4;
 
         v4 = ov119_021D1EF0(param0);
@@ -112,10 +110,8 @@ static BOOL ov119_021D1930 (UnkStruct_ov119_021D0FD0 * param0)
         if (v4 == 0) {
             param0->unk_60++;
         }
-    }
-    break;
-    case 6:
-    {
+    } break;
+    case 6: {
         BOOL v5;
 
         v5 = ov119_021D1F48(param0);
@@ -123,10 +119,8 @@ static BOOL ov119_021D1930 (UnkStruct_ov119_021D0FD0 * param0)
         if (v5 == 0) {
             param0->unk_60++;
         }
-    }
-    break;
-    case 7:
-    {
+    } break;
+    case 7: {
         BOOL v6;
 
         v6 = ov119_021D1FAC(param0);
@@ -144,8 +138,7 @@ static BOOL ov119_021D1930 (UnkStruct_ov119_021D0FD0 * param0)
             }
             param0->unk_60++;
         }
-    }
-    break;
+    } break;
     case 8:
         if (sub_0200598C() != 0) {
             break;
@@ -179,11 +172,10 @@ static BOOL ov119_021D1930 (UnkStruct_ov119_021D0FD0 * param0)
             break;
         }
 
-        ov119_021D11E4(param0, param0->unk_04.unk_00, &param0->unk_04.unk_14[1], 1, 25, 13, 6, 4, (((((20 + (18 + 12)) + 9)) + (27 * 4))), 14);
+        ov119_021D11E4(param0, param0->unk_04.unk_00, &param0->unk_04.unk_14[1], 1, 25, 13, 6, 4, (((20 + (18 + 12)) + 9) + (27 * 4)), 14);
         param0->unk_60++;
         break;
-    case 12:
-    {
+    case 12: {
         u32 v9 = sub_02001BE0(param0->unk_04.unk_48);
 
         switch (v9) {
@@ -203,8 +195,7 @@ static BOOL ov119_021D1930 (UnkStruct_ov119_021D0FD0 * param0)
             param0->unk_60++;
             break;
         }
-    }
-    break;
+    } break;
     case 13:
         ov119_021D12CC(param0);
         param0->unk_60++;
@@ -236,7 +227,7 @@ static BOOL ov119_021D1930 (UnkStruct_ov119_021D0FD0 * param0)
     return v0;
 }
 
-static BOOL ov119_021D1BD0 (UnkStruct_ov119_021D0FD0 * param0)
+static BOOL ov119_021D1BD0(UnkStruct_ov119_021D0FD0 *param0)
 {
     BOOL v0 = 1;
 
@@ -246,7 +237,7 @@ static BOOL ov119_021D1BD0 (UnkStruct_ov119_021D0FD0 * param0)
         ov119_021D135C(param0->unk_04.unk_00, param0->unk_04.unk_04);
 
         ov119_021D1068(param0->unk_04.unk_00, param0->unk_04.unk_04, param0->unk_04.unk_10);
-        ov119_021D10F0(param0->unk_04.unk_00, &param0->unk_04.unk_14[0], 1, 2, 19, 27, 4, (((20 + (18 + 12)) + 9)), 14);
+        ov119_021D10F0(param0->unk_04.unk_00, &param0->unk_04.unk_14[0], 1, 2, 19, 27, 4, ((20 + (18 + 12)) + 9), 14);
 
         ov119_021D1514(param0);
         ov119_021D161C(param0);
@@ -275,8 +266,7 @@ static BOOL ov119_021D1BD0 (UnkStruct_ov119_021D0FD0 * param0)
             param0->unk_60++;
         }
         break;
-    case 3:
-    {
+    case 3: {
         BOOL v2;
 
         v2 = ov119_021D21BC(param0);
@@ -295,8 +285,7 @@ static BOOL ov119_021D1BD0 (UnkStruct_ov119_021D0FD0 * param0)
 
             param0->unk_60 = 8;
         }
-    }
-    break;
+    } break;
     case 4:
     case 5:
     case 6:
@@ -336,11 +325,10 @@ static BOOL ov119_021D1BD0 (UnkStruct_ov119_021D0FD0 * param0)
             break;
         }
 
-        ov119_021D11E4(param0, param0->unk_04.unk_00, &param0->unk_04.unk_14[1], 1, 25, 13, 6, 4, (((((20 + (18 + 12)) + 9)) + (27 * 4))), 14);
+        ov119_021D11E4(param0, param0->unk_04.unk_00, &param0->unk_04.unk_14[1], 1, 25, 13, 6, 4, (((20 + (18 + 12)) + 9) + (27 * 4)), 14);
         param0->unk_60++;
         break;
-    case 12:
-    {
+    case 12: {
         u32 v5 = sub_02001BE0(param0->unk_04.unk_48);
 
         switch (v5) {
@@ -360,8 +348,7 @@ static BOOL ov119_021D1BD0 (UnkStruct_ov119_021D0FD0 * param0)
             param0->unk_60++;
             break;
         }
-    }
-    break;
+    } break;
     case 13:
         ov119_021D12CC(param0);
         param0->unk_60++;
@@ -393,7 +380,7 @@ static BOOL ov119_021D1BD0 (UnkStruct_ov119_021D0FD0 * param0)
     return v0;
 }
 
-static BOOL ov119_021D1E38 (UnkStruct_ov119_021D0FD0 * param0)
+static BOOL ov119_021D1E38(UnkStruct_ov119_021D0FD0 *param0)
 {
     switch (param0->unk_68) {
     case 0:
@@ -416,7 +403,7 @@ static BOOL ov119_021D1E38 (UnkStruct_ov119_021D0FD0 * param0)
     return 1;
 }
 
-static BOOL ov119_021D1E80 (UnkStruct_ov119_021D0FD0 * param0)
+static BOOL ov119_021D1E80(UnkStruct_ov119_021D0FD0 *param0)
 {
     switch (param0->unk_68) {
     case 0:
@@ -427,8 +414,7 @@ static BOOL ov119_021D1E80 (UnkStruct_ov119_021D0FD0 * param0)
         sub_0200D3CC(param0->unk_74, 1);
         param0->unk_68++;
         break;
-    case 1:
-    {
+    case 1: {
         int v0;
 
         v0 = ov119_021D176C(param0, 0);
@@ -440,10 +426,8 @@ static BOOL ov119_021D1E80 (UnkStruct_ov119_021D0FD0 * param0)
             param0->unk_68++;
             param0->unk_64 = 0;
         }
-    }
-    break;
-    default:
-    {
+    } break;
+    default: {
         int v1;
 
         v1 = ov119_021D176C(param0, 0);
@@ -454,21 +438,19 @@ static BOOL ov119_021D1E80 (UnkStruct_ov119_021D0FD0 * param0)
             param0->unk_64 = 0;
             return 0;
         }
-    }
-    break;
+    } break;
     }
 
     return 1;
 }
 
-static BOOL ov119_021D1EF0 (UnkStruct_ov119_021D0FD0 * param0)
+static BOOL ov119_021D1EF0(UnkStruct_ov119_021D0FD0 *param0)
 {
     switch (param0->unk_68) {
     case 0:
         param0->unk_68++;
         break;
-    case 1:
-    {
+    case 1: {
         int v0;
 
         v0 = ov119_021D176C(param0, 1);
@@ -483,8 +465,7 @@ static BOOL ov119_021D1EF0 (UnkStruct_ov119_021D0FD0 * param0)
             param0->unk_64 = 0;
             param0->unk_68++;
         }
-    }
-    break;
+    } break;
     default:
         param0->unk_68 = 0;
         param0->unk_64 = 0;
@@ -494,7 +475,7 @@ static BOOL ov119_021D1EF0 (UnkStruct_ov119_021D0FD0 * param0)
     return 1;
 }
 
-static BOOL ov119_021D1F48 (UnkStruct_ov119_021D0FD0 * param0)
+static BOOL ov119_021D1F48(UnkStruct_ov119_021D0FD0 *param0)
 {
     switch (param0->unk_68) {
     case 0:
@@ -504,8 +485,7 @@ static BOOL ov119_021D1F48 (UnkStruct_ov119_021D0FD0 * param0)
 
         param0->unk_68++;
         break;
-    case 1:
-    {
+    case 1: {
         int v0;
 
         v0 = ov119_021D176C(param0, 2);
@@ -521,8 +501,7 @@ static BOOL ov119_021D1F48 (UnkStruct_ov119_021D0FD0 * param0)
             param0->unk_64 = 0;
             param0->unk_68++;
         }
-    }
-    break;
+    } break;
     default:
         param0->unk_68 = 0;
         param0->unk_64 = 0;
@@ -532,7 +511,7 @@ static BOOL ov119_021D1F48 (UnkStruct_ov119_021D0FD0 * param0)
     return 1;
 }
 
-static BOOL ov119_021D1FAC (UnkStruct_ov119_021D0FD0 * param0)
+static BOOL ov119_021D1FAC(UnkStruct_ov119_021D0FD0 *param0)
 {
     switch (param0->unk_68) {
     case 0:
@@ -544,8 +523,7 @@ static BOOL ov119_021D1FAC (UnkStruct_ov119_021D0FD0 * param0)
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
         param0->unk_68++;
         break;
-    case 1:
-    {
+    case 1: {
         int v0;
 
         v0 = ov119_021D176C(param0, 3);
@@ -562,8 +540,7 @@ static BOOL ov119_021D1FAC (UnkStruct_ov119_021D0FD0 * param0)
             param0->unk_64 = 0;
             param0->unk_68++;
         }
-    }
-    break;
+    } break;
     case 2:
         if ((++param0->unk_64) >= 10) {
             param0->unk_64 = 0;
@@ -571,7 +548,7 @@ static BOOL ov119_021D1FAC (UnkStruct_ov119_021D0FD0 * param0)
             sub_02003178(param0->unk_04.unk_04, 0x1, 0xFFFF, 0, 0, 16, 0xFFFF);
 
             {
-                NNSG2dImagePaletteProxy * v1;
+                NNSG2dImagePaletteProxy *v1;
                 int v2;
 
                 v1 = CellActor_GetPaletteProxy(param0->unk_78->unk_00);
@@ -584,8 +561,7 @@ static BOOL ov119_021D1FAC (UnkStruct_ov119_021D0FD0 * param0)
             param0->unk_68++;
         }
         break;
-    case 3:
-    {
+    case 3: {
         s16 v3, v4;
         int v5 = 0;
 
@@ -616,8 +592,7 @@ static BOOL ov119_021D1FAC (UnkStruct_ov119_021D0FD0 * param0)
         SpriteActor_EnableObject(param0->unk_7C, 0);
 
         param0->unk_68++;
-    }
-    break;
+    } break;
     case 4:
         if ((++param0->unk_64) >= 25) {
             param0->unk_64 = 0;
@@ -650,7 +625,7 @@ static BOOL ov119_021D1FAC (UnkStruct_ov119_021D0FD0 * param0)
     return 1;
 }
 
-static BOOL ov119_021D21BC (UnkStruct_ov119_021D0FD0 * param0)
+static BOOL ov119_021D21BC(UnkStruct_ov119_021D0FD0 *param0)
 {
     switch (param0->unk_68) {
     case 0:
@@ -679,7 +654,7 @@ static BOOL ov119_021D21BC (UnkStruct_ov119_021D0FD0 * param0)
             sub_02003178(param0->unk_04.unk_04, 0x1, 0xFFFF, 0, 0, 16, 0xFFFF);
 
             {
-                NNSG2dImagePaletteProxy * v0;
+                NNSG2dImagePaletteProxy *v0;
                 int v1;
 
                 v0 = CellActor_GetPaletteProxy(param0->unk_78->unk_00);
@@ -692,8 +667,7 @@ static BOOL ov119_021D21BC (UnkStruct_ov119_021D0FD0 * param0)
             param0->unk_68++;
         }
         break;
-    case 2:
-    {
+    case 2: {
         s16 v2, v3;
         int v4 = 0;
 
@@ -725,8 +699,7 @@ static BOOL ov119_021D21BC (UnkStruct_ov119_021D0FD0 * param0)
         SpriteActor_EnableObject(param0->unk_7C, 0);
 
         param0->unk_68++;
-    }
-    break;
+    } break;
     case 3:
         if ((++param0->unk_64) >= 25) {
             param0->unk_64 = 0;

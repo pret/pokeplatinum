@@ -7,7 +7,7 @@
 typedef struct {
     int unk_00;
     BOOL unk_04;
-    UnkStruct_0208737C * unk_08;
+    UnkStruct_0208737C *unk_08;
     UnkStruct_0203E2FC unk_0C;
 } UnkStruct_0209843C;
 

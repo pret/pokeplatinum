@@ -1,102 +1,99 @@
+#include "unk_020933F8.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "assert.h"
-
 #include "consts/game_records.h"
-#include "sys_task_manager.h"
-#include "struct_decls/struct_0202440C_decl.h"
-#include "trainer_info.h"
+
 #include "struct_decls/pokedexdata_decl.h"
+#include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_02029C88_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
 #include "struct_decls/struct_0202A750_decl.h"
-#include "journal.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "pokemon.h"
-#include "savedata.h"
-
-#include "constdata/const_020F55EC.h"
-#include "constdata/const_020F560C.h"
-#include "constdata/const_020F561C.h"
-#include "constdata/const_020F55DC.h"
-
-#include "field/field_system.h"
 #include "struct_defs/struct_02093800.h"
 #include "struct_defs/struct_02093BBC.h"
 #include "struct_defs/struct_02094A58.h"
 #include "struct_defs/struct_02095C48.h"
-#include "overlay006/struct_ov6_02248DD8.h"
 
-#include "unk_02005474.h"
-#include "unk_0200A9DC.h"
-#include "string_template.h"
-#include "sys_task.h"
-#include "rtc.h"
-#include "heap.h"
-#include "unk_0201D15C.h"
-#include "strbuf.h"
-#include "savedata/save_table.h"
-#include "trainer_info.h"
-#include "unk_0202631C.h"
-#include "unk_020298BC.h"
-#include "journal.h"
-#include "unk_0202CC64.h"
-#include "game_records.h"
-#include "unk_0202F108.h"
-#include "communication_information.h"
-#include "communication_system.h"
-#include "unk_020363E8.h"
-#include "vars_flags.h"
-#include "unk_020508D4.h"
-#include "unk_02055808.h"
-#include "unk_0206A8DC.h"
-#include "unk_0206CCB0.h"
-#include "pokemon.h"
-#include "party.h"
-#include "unk_020923C0.h"
-#include "unk_020933F8.h"
-#include "unk_02094EDC.h"
-#include "unk_02095AF0.h"
+#include "field/field_system.h"
 #include "overlay006/ov6_022489E4.h"
+#include "overlay006/struct_ov6_02248DD8.h"
 #include "overlay017/ov17_0223B140.h"
 #include "overlay017/ov17_0223CB1C.h"
 #include "overlay017/ov17_0223DAD0.h"
 #include "overlay017/ov17_0224F4D4.h"
 #include "overlay022/ov22_02255D44.h"
+#include "savedata/save_table.h"
+
+#include "assert.h"
+#include "communication_information.h"
+#include "communication_system.h"
+#include "game_records.h"
+#include "heap.h"
+#include "journal.h"
+#include "party.h"
+#include "pokemon.h"
+#include "rtc.h"
+#include "savedata.h"
+#include "strbuf.h"
+#include "string_template.h"
+#include "sys_task.h"
+#include "sys_task_manager.h"
+#include "trainer_info.h"
+#include "unk_02005474.h"
+#include "unk_0200A9DC.h"
+#include "unk_0201D15C.h"
+#include "unk_0202631C.h"
+#include "unk_020298BC.h"
+#include "unk_0202CC64.h"
+#include "unk_0202F108.h"
+#include "unk_020363E8.h"
+#include "unk_020508D4.h"
+#include "unk_02055808.h"
+#include "unk_0206A8DC.h"
+#include "unk_0206CCB0.h"
+#include "unk_020923C0.h"
+#include "unk_02094EDC.h"
+#include "unk_02095AF0.h"
+#include "vars_flags.h"
+
+#include "constdata/const_020F55DC.h"
+#include "constdata/const_020F55EC.h"
+#include "constdata/const_020F560C.h"
+#include "constdata/const_020F561C.h"
 
 FS_EXTERN_OVERLAY(overlay17);
 FS_EXTERN_OVERLAY(overlay22);
 
 typedef struct {
-    UnkStruct_02095C48 * unk_00;
+    UnkStruct_02095C48 *unk_00;
     int unk_04;
 } UnkStruct_020933F8;
 
-static UnkStruct_02095C48 * sub_020937C4(void);
-static void sub_020937F8(UnkStruct_02095C48 * param0);
-static void sub_02094E7C(UnkStruct_02095C48 * param0);
-u16 sub_02094E98(UnkStruct_02095C48 * param0);
-BOOL sub_020943B0(UnkStruct_02095C48 * param0);
-BOOL sub_020944CC(UnkStruct_02095C48 * param0);
-BOOL sub_020944D4(UnkStruct_02095C48 * param0);
-static void sub_02093C6C(SysTask * param0, void * param1);
-UnkStruct_02095C48 * sub_02093800(const UnkStruct_02093800 * param0);
-void sub_02093AD4(UnkStruct_02095C48 * param0);
-void sub_02094630(UnkStruct_02095C48 * param0, int param1, StringTemplate * param2, u32 param3);
-void sub_02094648(UnkStruct_02095C48 * param0, int param1, StringTemplate * param2, u32 param3);
-void sub_02094680(UnkStruct_02095C48 * param0, int param1, StringTemplate * param2, u32 param3);
-static BOOL sub_02093448(TaskManager * param0);
-static BOOL sub_020935EC(TaskManager * param0);
-void sub_02093BBC(UnkStruct_02095C48 * param0);
-void sub_02093C54(UnkStruct_02095C48 * param0);
-static void sub_020944E8(UnkStruct_02095C48 * param0);
-static void sub_0209451C(SysTask * param0, void * param1);
-static void sub_02094EB4(UnkStruct_02095C48 * param0, int param1, UnkStruct_ov6_02248DD8 * param2);
-static void sub_02094B30(SysTask * param0, void * param1);
-static int sub_02093B2C(Pokemon * param0, int param1);
-static void sub_020939E0(UnkStruct_02095C48 * param0, int param1, int param2);
-
+static UnkStruct_02095C48 *sub_020937C4(void);
+static void sub_020937F8(UnkStruct_02095C48 *param0);
+static void sub_02094E7C(UnkStruct_02095C48 *param0);
+u16 sub_02094E98(UnkStruct_02095C48 *param0);
+BOOL sub_020943B0(UnkStruct_02095C48 *param0);
+BOOL sub_020944CC(UnkStruct_02095C48 *param0);
+BOOL sub_020944D4(UnkStruct_02095C48 *param0);
+static void sub_02093C6C(SysTask *param0, void *param1);
+UnkStruct_02095C48 *sub_02093800(const UnkStruct_02093800 *param0);
+void sub_02093AD4(UnkStruct_02095C48 *param0);
+void sub_02094630(UnkStruct_02095C48 *param0, int param1, StringTemplate *param2, u32 param3);
+void sub_02094648(UnkStruct_02095C48 *param0, int param1, StringTemplate *param2, u32 param3);
+void sub_02094680(UnkStruct_02095C48 *param0, int param1, StringTemplate *param2, u32 param3);
+static BOOL sub_02093448(TaskManager *param0);
+static BOOL sub_020935EC(TaskManager *param0);
+void sub_02093BBC(UnkStruct_02095C48 *param0);
+void sub_02093C54(UnkStruct_02095C48 *param0);
+static void sub_020944E8(UnkStruct_02095C48 *param0);
+static void sub_0209451C(SysTask *param0, void *param1);
+static void sub_02094EB4(UnkStruct_02095C48 *param0, int param1, UnkStruct_ov6_02248DD8 *param2);
+static void sub_02094B30(SysTask *param0, void *param1);
+static int sub_02093B2C(Pokemon *param0, int param1);
+static void sub_020939E0(UnkStruct_02095C48 *param0, int param1, int param2);
 
 const OverlayManagerTemplate Unk_020F560C = {
     ov17_0223B140,
@@ -134,28 +131,28 @@ const OverlayManagerTemplate Unk_020F55FC = {
 };
 
 __attribute__((aligned(4))) static const u8 Unk_020F55B4[][3] = {
-    {0x14, 0x14, 0xFF},
-    {0xF, 0x19, 0xFF}
+    { 0x14, 0x14, 0xFF },
+    { 0xF, 0x19, 0xFF }
 };
 
 __attribute__((aligned(4))) static const u8 Unk_020F55BC[][4] = {
-    {0xA, 0xA, 0x1E, 0xFF},
-    {0xF, 0xF, 0xF, 0xFF}
+    { 0xA, 0xA, 0x1E, 0xFF },
+    { 0xF, 0xF, 0xF, 0xFF }
 };
 
 __attribute__((aligned(4))) static const u8 Unk_020F55C4[][5] = {
-    {0xA, 0x8, 0x14, 0x1C, 0xFF},
-    {0xF, 0xF, 0x8, 0x8, 0xFF}
+    { 0xA, 0x8, 0x14, 0x1C, 0xFF },
+    { 0xF, 0xF, 0x8, 0x8, 0xFF }
 };
 
 __attribute__((aligned(4))) static const u8 Unk_020F55D0[][6] = {
-    {0x8, 0x8, 0x8, 0x8, 0x1E, 0xFF},
-    {0xF, 0xF, 0x8, 0x8, 0x14, 0xFF}
+    { 0x8, 0x8, 0x8, 0x8, 0x1E, 0xFF },
+    { 0xF, 0xF, 0x8, 0x8, 0x14, 0xFF }
 };
 
-void sub_020933F8 (TaskManager * param0, UnkStruct_02095C48 * param1)
+void sub_020933F8(TaskManager *param0, UnkStruct_02095C48 *param1)
 {
-    UnkStruct_020933F8 * v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_020933F8));
+    UnkStruct_020933F8 *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_020933F8));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_020933F8));
     v0->unk_00 = param1;
@@ -172,10 +169,10 @@ void sub_020933F8 (TaskManager * param0, UnkStruct_02095C48 * param1)
     }
 }
 
-static BOOL sub_02093448 (TaskManager * param0)
+static BOOL sub_02093448(TaskManager *param0)
 {
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_020933F8 * v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+    UnkStruct_020933F8 *v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_04) {
     case 0:
@@ -262,10 +259,10 @@ static BOOL sub_02093448 (TaskManager * param0)
     return 0;
 }
 
-static BOOL sub_020935EC (TaskManager * param0)
+static BOOL sub_020935EC(TaskManager *param0)
 {
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_020933F8 * v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+    UnkStruct_020933F8 *v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_04) {
     case 0:
@@ -327,8 +324,7 @@ static BOOL sub_020935EC (TaskManager * param0)
 
         v1->unk_04++;
         break;
-    case 7:
-    {
+    case 7: {
         s32 v2[4];
         int v3, v4;
 
@@ -337,7 +333,7 @@ static BOOL sub_020935EC (TaskManager * param0)
         case 4:
             for (v3 = 0; v3 < 4; v3++) {
                 v2[v3] = sub_02095928(v1->unk_00, v3)
-                         + sub_0209598C(v1->unk_00, v3);
+                    + sub_0209598C(v1->unk_00, v3);
             }
             break;
         case 5:
@@ -380,9 +376,9 @@ static BOOL sub_020935EC (TaskManager * param0)
     return 0;
 }
 
-static UnkStruct_02095C48 * sub_020937C4 (void)
+static UnkStruct_02095C48 *sub_020937C4(void)
 {
-    UnkStruct_02095C48 * v0;
+    UnkStruct_02095C48 *v0;
     int v1;
 
     v0 = Heap_AllocFromHeap(20, sizeof(UnkStruct_02095C48));
@@ -395,14 +391,14 @@ static UnkStruct_02095C48 * sub_020937C4 (void)
     return v0;
 }
 
-static void sub_020937F8 (UnkStruct_02095C48 * param0)
+static void sub_020937F8(UnkStruct_02095C48 *param0)
 {
     Heap_FreeToHeap(param0);
 }
 
-UnkStruct_02095C48 * sub_02093800 (const UnkStruct_02093800 * param0)
+UnkStruct_02095C48 *sub_02093800(const UnkStruct_02093800 *param0)
 {
-    UnkStruct_02095C48 * v0;
+    UnkStruct_02095C48 *v0;
     int v1 = 4 - 1;
     int v2;
 
@@ -486,7 +482,7 @@ UnkStruct_02095C48 * sub_02093800 (const UnkStruct_02093800 * param0)
     return v0;
 }
 
-static void sub_020939E0 (UnkStruct_02095C48 * param0, int param1, int param2)
+static void sub_020939E0(UnkStruct_02095C48 *param0, int param1, int param2)
 {
     int v0 = 4 - 1;
     int v1;
@@ -524,7 +520,7 @@ static void sub_020939E0 (UnkStruct_02095C48 * param0, int param1, int param2)
     sub_020951B0(param0, 11);
 }
 
-void sub_02093AD4 (UnkStruct_02095C48 * param0)
+void sub_02093AD4(UnkStruct_02095C48 *param0)
 {
     int v0;
 
@@ -542,7 +538,7 @@ void sub_02093AD4 (UnkStruct_02095C48 * param0)
     Heap_Destroy(20);
 }
 
-static int sub_02093B2C (Pokemon * param0, int param1)
+static int sub_02093B2C(Pokemon *param0, int param1)
 {
     int v0, v1, v2;
 
@@ -580,9 +576,9 @@ static int sub_02093B2C (Pokemon * param0, int param1)
     return v0;
 }
 
-void sub_02093BBC (UnkStruct_02095C48 * param0)
+void sub_02093BBC(UnkStruct_02095C48 *param0)
 {
-    UnkStruct_02093BBC * v0;
+    UnkStruct_02093BBC *v0;
 
     sub_0202A25C(param0->unk_00.unk_E8[param0->unk_00.unk_113]);
 
@@ -609,15 +605,15 @@ void sub_02093BBC (UnkStruct_02095C48 * param0)
     param0->unk_199C = v0;
 }
 
-void sub_02093C54 (UnkStruct_02095C48 * param0)
+void sub_02093C54(UnkStruct_02095C48 *param0)
 {
     Heap_FreeToHeap(param0->unk_199C);
     param0->unk_199C = NULL;
 }
 
-static void sub_02093C6C (SysTask * param0, void * param1)
+static void sub_02093C6C(SysTask *param0, void *param1)
 {
-    UnkStruct_02095C48 * v0 = param1;
+    UnkStruct_02095C48 *v0 = param1;
 
     switch (v0->unk_15A) {
     case 0:
@@ -759,7 +755,7 @@ static void sub_02093C6C (SysTask * param0, void * param1)
         if (v0->unk_568 >= v0->unk_00.unk_117) {
             {
                 int v1;
-                const TrainerInfo * v2;
+                const TrainerInfo *v2;
 
                 for (v1 = 0; v1 < v0->unk_00.unk_117; v1++) {
                     v2 = CommInfo_TrainerInfo(v1);
@@ -869,8 +865,7 @@ static void sub_02093C6C (SysTask * param0, void * param1)
             v0->unk_15A++;
         }
         break;
-    case 38:
-    {
+    case 38: {
         UnkStruct_ov6_02248DD8 v3;
 
         sub_02094EB4(v0, 0, &v3);
@@ -878,8 +873,7 @@ static void sub_02093C6C (SysTask * param0, void * param1)
         if (ov6_02248DD8(v0, v0->unk_00.unk_113, &v3) == 1) {
             v0->unk_15A++;
         }
-    }
-    break;
+    } break;
     case 39:
         if (v0->unk_568 >= v0->unk_00.unk_117) {
             v0->unk_568 = 0;
@@ -943,17 +937,16 @@ static void sub_02093C6C (SysTask * param0, void * param1)
             v0->unk_15A++;
         }
         break;
-    default:
-    {
+    default: {
         int v5;
-        const TrainerInfo * v6;
+        const TrainerInfo *v6;
 
         for (v5 = 0; v5 < v0->unk_00.unk_117; v5++) {
             v6 = CommInfo_TrainerInfo(v5);
             v0->unk_00.unk_F8[v5] = TrainerInfo_Gender(v6);
         }
 
-        for ( ; v5 < 4; v5++) {
+        for (; v5 < 4; v5++) {
             v0->unk_00.unk_F8[v5] = v0->unk_00.unk_10[v5].unk_20_12;
         }
     }
@@ -973,7 +966,7 @@ static void sub_02093C6C (SysTask * param0, void * param1)
     }
 }
 
-BOOL sub_020943B0 (UnkStruct_02095C48 * param0)
+BOOL sub_020943B0(UnkStruct_02095C48 *param0)
 {
     int v0, v1;
 
@@ -988,7 +981,7 @@ BOOL sub_020943B0 (UnkStruct_02095C48 * param0)
 
     {
         int v2;
-        TrainerInfo * v3;
+        TrainerInfo *v3;
 
         for (v2 = 0; v2 < v0; v2++) {
             v3 = CommInfo_TrainerInfo(v2);
@@ -1045,12 +1038,12 @@ BOOL sub_020943B0 (UnkStruct_02095C48 * param0)
     return 1;
 }
 
-BOOL sub_020944CC (UnkStruct_02095C48 * param0)
+BOOL sub_020944CC(UnkStruct_02095C48 *param0)
 {
     return sub_020944D4(param0);
 }
 
-BOOL sub_020944D4 (UnkStruct_02095C48 * param0)
+BOOL sub_020944D4(UnkStruct_02095C48 *param0)
 {
     if (param0->unk_164 == NULL) {
         return 1;
@@ -1059,7 +1052,7 @@ BOOL sub_020944D4 (UnkStruct_02095C48 * param0)
     return 0;
 }
 
-static void sub_020944E8 (UnkStruct_02095C48 * param0)
+static void sub_020944E8(UnkStruct_02095C48 *param0)
 {
     GF_ASSERT(param0->unk_164 == NULL);
 
@@ -1067,9 +1060,9 @@ static void sub_020944E8 (UnkStruct_02095C48 * param0)
     param0->unk_164 = SysTask_Start(sub_0209451C, param0, 10);
 }
 
-static void sub_0209451C (SysTask * param0, void * param1)
+static void sub_0209451C(SysTask *param0, void *param1)
 {
-    UnkStruct_02095C48 * v0 = param1;
+    UnkStruct_02095C48 *v0 = param1;
 
     switch (v0->unk_15A) {
     case 0:
@@ -1126,12 +1119,12 @@ static void sub_0209451C (SysTask * param0, void * param1)
     }
 }
 
-void sub_02094630 (UnkStruct_02095C48 * param0, int param1, StringTemplate * param2, u32 param3)
+void sub_02094630(UnkStruct_02095C48 *param0, int param1, StringTemplate *param2, u32 param3)
 {
     StringTemplate_SetContestJudgeName(param2, param3, param0->unk_00.unk_C0[param1].unk_00);
 }
 
-void sub_02094648 (UnkStruct_02095C48 * param0, int param1, StringTemplate * param2, u32 param3)
+void sub_02094648(UnkStruct_02095C48 *param0, int param1, StringTemplate *param2, u32 param3)
 {
     int v0, v1;
 
@@ -1139,9 +1132,9 @@ void sub_02094648 (UnkStruct_02095C48 * param0, int param1, StringTemplate * par
     StringTemplate_SetStrbuf(param2, param3, param0->unk_00.unk_D8[v1], param0->unk_00.unk_F8[v1], 1, GAME_LANGUAGE);
 }
 
-void sub_02094680 (UnkStruct_02095C48 * param0, int param1, StringTemplate * param2, u32 param3)
+void sub_02094680(UnkStruct_02095C48 *param0, int param1, StringTemplate *param2, u32 param3)
 {
-    BoxPokemon * v0;
+    BoxPokemon *v0;
     int v1;
 
     v1 = sub_02095904(param1);
@@ -1150,7 +1143,7 @@ void sub_02094680 (UnkStruct_02095C48 * param0, int param1, StringTemplate * par
     StringTemplate_SetNickname(param2, param3, v0);
 }
 
-void sub_020946A4 (UnkStruct_02095C48 * param0, StringTemplate * param1, u32 param2)
+void sub_020946A4(UnkStruct_02095C48 *param0, StringTemplate *param1, u32 param2)
 {
     u32 v0;
 
@@ -1158,7 +1151,7 @@ void sub_020946A4 (UnkStruct_02095C48 * param0, StringTemplate * param1, u32 par
     StringTemplate_SetContestRankName(param1, param2, v0);
 }
 
-void sub_020946CC (UnkStruct_02095C48 * param0, StringTemplate * param1, u32 param2)
+void sub_020946CC(UnkStruct_02095C48 *param0, StringTemplate *param1, u32 param2)
 {
     u32 v0;
 
@@ -1166,7 +1159,7 @@ void sub_020946CC (UnkStruct_02095C48 * param0, StringTemplate * param1, u32 par
     StringTemplate_SetContestTypeName(param1, param2, v0);
 }
 
-void sub_020946F0 (UnkStruct_02095C48 * param0, StringTemplate * param1, u32 param2)
+void sub_020946F0(UnkStruct_02095C48 *param0, StringTemplate *param1, u32 param2)
 {
     int v0, v1;
     int v2;
@@ -1183,7 +1176,7 @@ void sub_020946F0 (UnkStruct_02095C48 * param0, StringTemplate * param1, u32 par
     sub_02094648(param0, v1, param1, param2);
 }
 
-void sub_02094720 (UnkStruct_02095C48 * param0, StringTemplate * param1, u32 param2)
+void sub_02094720(UnkStruct_02095C48 *param0, StringTemplate *param1, u32 param2)
 {
     int v0, v1;
     int v2;
@@ -1200,12 +1193,12 @@ void sub_02094720 (UnkStruct_02095C48 * param0, StringTemplate * param1, u32 par
     sub_02094680(param0, v1, param1, param2);
 }
 
-u32 sub_02094750 (UnkStruct_02095C48 * param0)
+u32 sub_02094750(UnkStruct_02095C48 *param0)
 {
     return 1;
 }
 
-void sub_02094754 (UnkStruct_02095C48 * param0, u8 param1)
+void sub_02094754(UnkStruct_02095C48 *param0, u8 param1)
 {
     if (param0->unk_155 == 0) {
         return;
@@ -1214,7 +1207,7 @@ void sub_02094754 (UnkStruct_02095C48 * param0, u8 param1)
     CommTiming_StartSync(param1);
 }
 
-BOOL sub_0209476C (UnkStruct_02095C48 * param0, u8 param1)
+BOOL sub_0209476C(UnkStruct_02095C48 *param0, u8 param1)
 {
     if (param0->unk_155 == 0) {
         return 1;
@@ -1227,12 +1220,12 @@ BOOL sub_0209476C (UnkStruct_02095C48 * param0, u8 param1)
     return 0;
 }
 
-int sub_02094790 (UnkStruct_02095C48 * param0)
+int sub_02094790(UnkStruct_02095C48 *param0)
 {
     return param0->unk_00.unk_118[param0->unk_00.unk_113].unk_08;
 }
 
-int sub_020947A4 (UnkStruct_02095C48 * param0)
+int sub_020947A4(UnkStruct_02095C48 *param0)
 {
     int v0;
     int v1;
@@ -1246,12 +1239,12 @@ int sub_020947A4 (UnkStruct_02095C48 * param0)
     return 0;
 }
 
-int sub_020947C8 (UnkStruct_02095C48 * param0)
+int sub_020947C8(UnkStruct_02095C48 *param0)
 {
     return sub_020958FC(param0->unk_00.unk_113);
 }
 
-int sub_020947D8 (UnkStruct_02095C48 * param0, int param1)
+int sub_020947D8(UnkStruct_02095C48 *param0, int param1)
 {
     int v0;
     int v1;
@@ -1270,7 +1263,7 @@ int sub_020947D8 (UnkStruct_02095C48 * param0, int param1)
     return v1;
 }
 
-int sub_020947F0 (UnkStruct_02095C48 * param0, int param1)
+int sub_020947F0(UnkStruct_02095C48 *param0, int param1)
 {
     int v0;
 
@@ -1278,7 +1271,7 @@ int sub_020947F0 (UnkStruct_02095C48 * param0, int param1)
     return param0->unk_00.unk_100[v0];
 }
 
-int sub_02094804 (UnkStruct_02095C48 * param0)
+int sub_02094804(UnkStruct_02095C48 *param0)
 {
     if (param0->unk_155 == 1) {
         return 1;
@@ -1291,7 +1284,7 @@ int sub_02094804 (UnkStruct_02095C48 * param0)
     return 0;
 }
 
-void sub_02094828 (UnkStruct_02095C48 * param0, u16 * param1, u16 * param2, u16 * param3, u16 * param4)
+void sub_02094828(UnkStruct_02095C48 *param0, u16 *param1, u16 *param2, u16 *param3, u16 *param4)
 {
     *param1 = param0->unk_00.unk_110;
     *param2 = param0->unk_00.unk_10F;
@@ -1299,17 +1292,17 @@ void sub_02094828 (UnkStruct_02095C48 * param0, u16 * param1, u16 * param2, u16 
     *param4 = param0->unk_197C;
 }
 
-void sub_02094850 (UnkStruct_02095C48 * param0)
+void sub_02094850(UnkStruct_02095C48 *param0)
 {
     sub_020959F4(param0->unk_155);
 }
 
-void sub_02094860 (UnkStruct_02095C48 * param0)
+void sub_02094860(UnkStruct_02095C48 *param0)
 {
     sub_02095A24();
 }
 
-BOOL sub_02094868 (UnkStruct_02095C48 * param0)
+BOOL sub_02094868(UnkStruct_02095C48 *param0)
 {
     u32 v0;
 
@@ -1322,7 +1315,7 @@ BOOL sub_02094868 (UnkStruct_02095C48 * param0)
     return 1;
 }
 
-void sub_02094898 (UnkStruct_02095C48 * param0, StringTemplate * param1, u32 param2, int param3)
+void sub_02094898(UnkStruct_02095C48 *param0, StringTemplate *param1, u32 param2, int param3)
 {
     u32 v0, v1;
 
@@ -1351,7 +1344,7 @@ void sub_02094898 (UnkStruct_02095C48 * param0, StringTemplate * param1, u32 par
     StringTemplate_SetRibbonName(param1, param2, v1);
 }
 
-u32 sub_02094904 (UnkStruct_02095C48 * param0)
+u32 sub_02094904(UnkStruct_02095C48 *param0)
 {
     u32 v0 = 100;
 
@@ -1445,8 +1438,8 @@ u32 sub_02094904 (UnkStruct_02095C48 * param0)
     GF_ASSERT(v0 != 100);
 
     {
-        UnkStruct_0202A750 * v1;
-        UnkStruct_02029D04 * v2;
+        UnkStruct_0202A750 *v1;
+        UnkStruct_02029D04 *v2;
 
         v1 = sub_0202A750(param0->unk_1970);
         v2 = sub_02029D04(v1);
@@ -1459,9 +1452,9 @@ u32 sub_02094904 (UnkStruct_02095C48 * param0)
     return v0;
 }
 
-void sub_02094A58 (UnkStruct_02095C48 * param0, int param1)
+void sub_02094A58(UnkStruct_02095C48 *param0, int param1)
 {
-    UnkStruct_02094A58 * v0;
+    UnkStruct_02094A58 *v0;
 
     GF_ASSERT(param0->unk_19A0 == NULL);
 
@@ -1499,7 +1492,7 @@ void sub_02094A58 (UnkStruct_02095C48 * param0, int param1)
     param0->unk_19A0 = v0;
 }
 
-BOOL sub_02094B1C (UnkStruct_02095C48 * param0)
+BOOL sub_02094B1C(UnkStruct_02095C48 *param0)
 {
     if (param0->unk_19A0 == NULL) {
         return 1;
@@ -1508,10 +1501,10 @@ BOOL sub_02094B1C (UnkStruct_02095C48 * param0)
     return 0;
 }
 
-static void sub_02094B30 (SysTask * param0, void * param1)
+static void sub_02094B30(SysTask *param0, void *param1)
 {
-    UnkStruct_02095C48 * v0 = param1;
-    UnkStruct_02094A58 * v1 = v0->unk_19A0;
+    UnkStruct_02095C48 *v0 = param1;
+    UnkStruct_02094A58 *v1 = v0->unk_19A0;
 
     if (sub_0200AC1C(1) == 0) {
         return;
@@ -1540,7 +1533,7 @@ static void sub_02094B30 (SysTask * param0, void * param1)
     }
 }
 
-void sub_02094BB4 (UnkStruct_02095C48 * param0, int * param1, int * param2, int * param3, int * param4, int * param5)
+void sub_02094BB4(UnkStruct_02095C48 *param0, int *param1, int *param2, int *param3, int *param4, int *param5)
 {
     int v0;
     int v1;
@@ -1579,7 +1572,7 @@ void sub_02094BB4 (UnkStruct_02095C48 * param0, int * param1, int * param2, int 
     }
 }
 
-void sub_02094C44 (UnkStruct_02095C48 * param0, SaveData * param1, u32 param2, Journal * param3)
+void sub_02094C44(UnkStruct_02095C48 *param0, SaveData *param1, u32 param2, Journal *param3)
 {
     int v0;
 
@@ -1597,7 +1590,7 @@ void sub_02094C44 (UnkStruct_02095C48 * param0, SaveData * param1, u32 param2, J
 
     if (param0->unk_155 == 0) {
         {
-            VarsFlags * v1;
+            VarsFlags *v1;
 
             v1 = SaveData_GetVarsFlags(param0->unk_1970);
 
@@ -1623,14 +1616,14 @@ void sub_02094C44 (UnkStruct_02095C48 * param0, SaveData * param1, u32 param2, J
         }
 
         {
-            TVBroadcast * v4;
+            TVBroadcast *v4;
 
             v4 = SaveData_TVBroadcast(param0->unk_1970);
             sub_0206CF14(v4, param0->unk_1974, param0->unk_00.unk_10F, param0->unk_00.unk_110, param0->unk_00.unk_118[param0->unk_00.unk_113].unk_08 + 1);
         }
 
         {
-            GameRecords * v5;
+            GameRecords *v5;
 
             v5 = SaveData_GetGameRecordsPtr(param0->unk_1970);
             GameRecords_IncrementRecordValue(v5, RECORD_UNK_090);
@@ -1647,7 +1640,7 @@ void sub_02094C44 (UnkStruct_02095C48 * param0, SaveData * param1, u32 param2, J
 
         {
             int v6;
-            PokedexData * v7;
+            PokedexData *v7;
 
             v7 = SaveData_Pokedex(param0->unk_1970);
 
@@ -1659,7 +1652,7 @@ void sub_02094C44 (UnkStruct_02095C48 * param0, SaveData * param1, u32 param2, J
         sub_0202F134(param0->unk_1970, param0->unk_00.unk_10F, param0->unk_00.unk_118[param0->unk_00.unk_113].unk_08);
 
         {
-            GameRecords * v8;
+            GameRecords *v8;
 
             v8 = SaveData_GetGameRecordsPtr(param0->unk_1970);
             GameRecords_IncrementRecordValue(v8, RECORD_UNK_091);
@@ -1671,8 +1664,8 @@ void sub_02094C44 (UnkStruct_02095C48 * param0, SaveData * param1, u32 param2, J
         }
 
         {
-            void * v9;
-            Journal * v10;
+            void *v9;
+            Journal *v10;
 
             v9 = sub_0202C1C0(param0->unk_00.unk_118[param0->unk_00.unk_113].unk_08 + 1, 11);
             v10 = SaveData_GetJournal(param0->unk_1970);
@@ -1682,8 +1675,8 @@ void sub_02094C44 (UnkStruct_02095C48 * param0, SaveData * param1, u32 param2, J
     }
 
     if (sub_02094790(param0) == 0) {
-        UnkStruct_0202A750 * v11;
-        UnkStruct_02029C88 * v12;
+        UnkStruct_0202A750 *v11;
+        UnkStruct_02029C88 *v12;
 
         v11 = sub_0202A750(param0->unk_1970);
         v12 = sub_02029CD0(v11, param0->unk_00.unk_10F);
@@ -1698,17 +1691,17 @@ void sub_02094C44 (UnkStruct_02095C48 * param0, SaveData * param1, u32 param2, J
     }
 }
 
-static void sub_02094E7C (UnkStruct_02095C48 * param0)
+static void sub_02094E7C(UnkStruct_02095C48 *param0)
 {
     LCRNG_SetSeed((GetSecondsSinceMidnight() * (LCRNG_GetSeed() + 10)) & 0xffff);
 }
 
-u16 sub_02094E98 (UnkStruct_02095C48 * param0)
+u16 sub_02094E98(UnkStruct_02095C48 *param0)
 {
     return LCRNG_Next();
 }
 
-u16 sub_02094EA0 (u32 param0, u32 * param1)
+u16 sub_02094EA0(u32 param0, u32 *param1)
 {
     u32 v0;
 
@@ -1718,7 +1711,7 @@ u16 sub_02094EA0 (u32 param0, u32 * param1)
     return v0 / 65536L;
 }
 
-static void sub_02094EB4 (UnkStruct_02095C48 * param0, int param1, UnkStruct_ov6_02248DD8 * param2)
+static void sub_02094EB4(UnkStruct_02095C48 *param0, int param1, UnkStruct_ov6_02248DD8 *param2)
 {
     param2->unk_00 = param0->unk_00.unk_F8[param1];
     param2->unk_01 = param0->unk_00.unk_FC[param1];

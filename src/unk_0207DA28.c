@@ -1,38 +1,40 @@
+#include "unk_0207DA28.h"
+
+#include <dwc.h>
 #include <nitro.h>
 #include <string.h>
-#include <dwc.h>
 
 #include "consts/game_records.h"
+
 #include "struct_decls/struct_020508D4_decl.h"
+#include "struct_defs/struct_0207DE04.h"
 
 #include "field/field_system.h"
-#include "struct_defs/struct_0207DE04.h"
-#include "overlay066/struct_ov66_02231134.h"
-#include "overlay098/struct_ov98_02247168.h"
-#include "overlay115/struct_ov115_02260440.h"
-#include "overlay117/struct_ov117_02260440.h"
-
-#include "game_overlay.h"
-#include "heap.h"
-#include "game_records.h"
-#include "communication_system.h"
-#include "unk_02038FFC.h"
-#include "field_system.h"
-#include "unk_0203D1B8.h"
-#include "vars_flags.h"
-#include "unk_020508D4.h"
-#include "unk_02050A74.h"
-#include "unk_0206A8DC.h"
-#include "unk_0207DA28.h"
-#include "unk_02099550.h"
-#include "unk_02099604.h"
-#include "unk_0209BA18.h"
 #include "overlay018/ov18_0221F800.h"
 #include "overlay065/ov65_0222DCE0.h"
 #include "overlay065/ov65_0223648C.h"
+#include "overlay066/struct_ov66_02231134.h"
+#include "overlay098/struct_ov98_02247168.h"
 #include "overlay115/ov115_02260440.h"
+#include "overlay115/struct_ov115_02260440.h"
 #include "overlay116/ov116_022604C4.h"
 #include "overlay117/ov117_02260440.h"
+#include "overlay117/struct_ov117_02260440.h"
+
+#include "communication_system.h"
+#include "field_system.h"
+#include "game_overlay.h"
+#include "game_records.h"
+#include "heap.h"
+#include "unk_02038FFC.h"
+#include "unk_0203D1B8.h"
+#include "unk_020508D4.h"
+#include "unk_02050A74.h"
+#include "unk_0206A8DC.h"
+#include "unk_02099550.h"
+#include "unk_02099604.h"
+#include "unk_0209BA18.h"
+#include "vars_flags.h"
 
 FS_EXTERN_OVERLAY(overlay65);
 FS_EXTERN_OVERLAY(overlay114);
@@ -41,26 +43,26 @@ FS_EXTERN_OVERLAY(overlay116);
 FS_EXTERN_OVERLAY(overlay117);
 
 typedef struct {
-    UnkStruct_ov98_02247168 * unk_00;
+    UnkStruct_ov98_02247168 *unk_00;
     int unk_04;
-    u16 * unk_08;
+    u16 *unk_08;
     u8 unk_0C;
     u8 unk_0D;
-    void * unk_10;
+    void *unk_10;
     u32 unk_14;
 } UnkStruct_0207DE40;
 
 void sub_02099570(void);
-static BOOL sub_0207DA28(TaskManager * param0);
-static void sub_0207DE04(UnkStruct_0207DE40 * param0, FieldSystem * fieldSystem, u32 param2, u32 param3);
-static u32 sub_0207DE40(UnkStruct_0207DE40 * param0);
-static UnkStruct_ov115_02260440 * sub_0207DE90(FieldSystem * fieldSystem, u32 param1, u32 param2);
-static void sub_0207DED8(UnkStruct_ov115_02260440 * param0);
-static UnkStruct_ov66_02231134 * sub_0207DEEC(FieldSystem * fieldSystem, u32 param1, u32 param2);
-static void sub_0207DF2C(UnkStruct_ov66_02231134 * param0);
-static UnkStruct_ov117_02260440 * sub_0207DF40(FieldSystem * fieldSystem, u32 param1, u32 param2);
-static void sub_0207DF88(UnkStruct_ov115_02260440 * param0);
-static void sub_0207DF9C(FieldSystem * fieldSystem);
+static BOOL sub_0207DA28(TaskManager *param0);
+static void sub_0207DE04(UnkStruct_0207DE40 *param0, FieldSystem *fieldSystem, u32 param2, u32 param3);
+static u32 sub_0207DE40(UnkStruct_0207DE40 *param0);
+static UnkStruct_ov115_02260440 *sub_0207DE90(FieldSystem *fieldSystem, u32 param1, u32 param2);
+static void sub_0207DED8(UnkStruct_ov115_02260440 *param0);
+static UnkStruct_ov66_02231134 *sub_0207DEEC(FieldSystem *fieldSystem, u32 param1, u32 param2);
+static void sub_0207DF2C(UnkStruct_ov66_02231134 *param0);
+static UnkStruct_ov117_02260440 *sub_0207DF40(FieldSystem *fieldSystem, u32 param1, u32 param2);
+static void sub_0207DF88(UnkStruct_ov115_02260440 *param0);
+static void sub_0207DF9C(FieldSystem *fieldSystem);
 
 static const OverlayManagerTemplate Unk_020F1B98 = {
     ov65_0222E2A8,
@@ -83,11 +85,11 @@ static const u8 Unk_020F1B64[4] = {
     0x4
 };
 
-static BOOL sub_0207DA28 (TaskManager * param0)
+static BOOL sub_0207DA28(TaskManager *param0)
 {
     int v0;
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_0207DE40 * v2 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+    UnkStruct_0207DE40 *v2 = TaskManager_Environment(param0);
 
     switch (v2->unk_04) {
     case 0:
@@ -296,9 +298,9 @@ static BOOL sub_0207DA28 (TaskManager * param0)
     return 0;
 }
 
-static UnkStruct_0207DE40 * sub_0207DD94 (void)
+static UnkStruct_0207DE40 *sub_0207DD94(void)
 {
-    UnkStruct_0207DE40 * v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0207DE40));
+    UnkStruct_0207DE40 *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0207DE40));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_0207DE40));
     v0->unk_00 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov98_02247168));
@@ -306,17 +308,17 @@ static UnkStruct_0207DE40 * sub_0207DD94 (void)
     return v0;
 }
 
-void sub_0207DDC0 (TaskManager * param0)
+void sub_0207DDC0(TaskManager *param0)
 {
-    UnkStruct_0207DE40 * v0 = sub_0207DD94();
+    UnkStruct_0207DE40 *v0 = sub_0207DD94();
 
     v0->unk_00->unk_04 = 2;
     FieldTask_Start(param0, sub_0207DA28, v0);
 }
 
-void sub_0207DDE0 (TaskManager * param0, u16 * param1)
+void sub_0207DDE0(TaskManager *param0, u16 *param1)
 {
-    UnkStruct_0207DE40 * v0 = sub_0207DD94();
+    UnkStruct_0207DE40 *v0 = sub_0207DD94();
 
     v0->unk_00->unk_04 = 1;
     v0->unk_08 = param1;
@@ -324,9 +326,9 @@ void sub_0207DDE0 (TaskManager * param0, u16 * param1)
     FieldTask_Start(param0, sub_0207DA28, v0);
 }
 
-static void sub_0207DE04 (UnkStruct_0207DE40 * param0, FieldSystem * fieldSystem, u32 param2, u32 param3)
+static void sub_0207DE04(UnkStruct_0207DE40 *param0, FieldSystem *fieldSystem, u32 param2, u32 param3)
 {
-    UnkStruct_0207DE04 * v0;
+    UnkStruct_0207DE04 *v0;
 
     v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_0207DE04));
 
@@ -342,9 +344,9 @@ static void sub_0207DE04 (UnkStruct_0207DE40 * param0, FieldSystem * fieldSystem
     sub_0203CD84(fieldSystem, &Unk_020F1B88, v0);
 }
 
-static u32 sub_0207DE40 (UnkStruct_0207DE40 * param0)
+static u32 sub_0207DE40(UnkStruct_0207DE40 *param0)
 {
-    UnkStruct_0207DE04 * v0 = param0->unk_10;
+    UnkStruct_0207DE04 *v0 = param0->unk_10;
 
     if (v0->unk_03 == 1) {
         switch (v0->unk_00) {
@@ -371,16 +373,19 @@ static u32 sub_0207DE40 (UnkStruct_0207DE40 * param0)
     return param0->unk_04;
 }
 
-static UnkStruct_ov115_02260440 * sub_0207DE90 (FieldSystem * fieldSystem, u32 param1, u32 param2)
+static UnkStruct_ov115_02260440 *sub_0207DE90(FieldSystem *fieldSystem, u32 param1, u32 param2)
 {
-    UnkStruct_ov115_02260440 * v0;
+    UnkStruct_ov115_02260440 *v0;
 
     FS_EXTERN_OVERLAY(overlay115);
     FS_EXTERN_OVERLAY(overlay114);
 
     {
         static const OverlayManagerTemplate v1 = {
-            ov115_02260440, ov115_0226048C, ov115_022608E4, FS_OVERLAY_ID(overlay115),
+            ov115_02260440,
+            ov115_0226048C,
+            ov115_022608E4,
+            FS_OVERLAY_ID(overlay115),
         };
 
         v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov115_02260440));
@@ -396,7 +401,7 @@ static UnkStruct_ov115_02260440 * sub_0207DE90 (FieldSystem * fieldSystem, u32 p
     return v0;
 }
 
-static void sub_0207DED8 (UnkStruct_ov115_02260440 * param0)
+static void sub_0207DED8(UnkStruct_ov115_02260440 *param0)
 {
     FS_EXTERN_OVERLAY(overlay114);
 
@@ -404,15 +409,18 @@ static void sub_0207DED8 (UnkStruct_ov115_02260440 * param0)
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay114));
 }
 
-static UnkStruct_ov66_02231134 * sub_0207DEEC (FieldSystem * fieldSystem, u32 param1, u32 param2)
+static UnkStruct_ov66_02231134 *sub_0207DEEC(FieldSystem *fieldSystem, u32 param1, u32 param2)
 {
-    UnkStruct_ov66_02231134 * v0;
+    UnkStruct_ov66_02231134 *v0;
 
     FS_EXTERN_OVERLAY(overlay116);
     FS_EXTERN_OVERLAY(overlay114);
     {
         static const OverlayManagerTemplate v1 = {
-            ov116_022609B4, ov116_02260CF4, ov116_0226126C, FS_OVERLAY_ID(overlay116),
+            ov116_022609B4,
+            ov116_02260CF4,
+            ov116_0226126C,
+            FS_OVERLAY_ID(overlay116),
         };
 
         v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov66_02231134));
@@ -427,7 +435,7 @@ static UnkStruct_ov66_02231134 * sub_0207DEEC (FieldSystem * fieldSystem, u32 pa
     return v0;
 }
 
-static void sub_0207DF2C (UnkStruct_ov66_02231134 * param0)
+static void sub_0207DF2C(UnkStruct_ov66_02231134 *param0)
 {
     FS_EXTERN_OVERLAY(overlay114);
 
@@ -435,16 +443,19 @@ static void sub_0207DF2C (UnkStruct_ov66_02231134 * param0)
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay114));
 }
 
-static UnkStruct_ov117_02260440 * sub_0207DF40 (FieldSystem * fieldSystem, u32 param1, u32 param2)
+static UnkStruct_ov117_02260440 *sub_0207DF40(FieldSystem *fieldSystem, u32 param1, u32 param2)
 {
-    UnkStruct_ov117_02260440 * v0;
+    UnkStruct_ov117_02260440 *v0;
 
     FS_EXTERN_OVERLAY(overlay117);
     FS_EXTERN_OVERLAY(overlay114);
 
     {
         static const OverlayManagerTemplate v1 = {
-            ov117_02260440, ov117_02260474, ov117_022605C0, FS_OVERLAY_ID(overlay117),
+            ov117_02260440,
+            ov117_02260474,
+            ov117_022605C0,
+            FS_OVERLAY_ID(overlay117),
         };
 
         v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov117_02260440));
@@ -461,7 +472,7 @@ static UnkStruct_ov117_02260440 * sub_0207DF40 (FieldSystem * fieldSystem, u32 p
     return v0;
 }
 
-static void sub_0207DF88 (UnkStruct_ov115_02260440 * param0)
+static void sub_0207DF88(UnkStruct_ov115_02260440 *param0)
 {
     FS_EXTERN_OVERLAY(overlay114);
 
@@ -469,9 +480,9 @@ static void sub_0207DF88 (UnkStruct_ov115_02260440 * param0)
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay114));
 }
 
-static void sub_0207DF9C (FieldSystem * fieldSystem)
+static void sub_0207DF9C(FieldSystem *fieldSystem)
 {
-    GameRecords * v0;
+    GameRecords *v0;
 
     v0 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
     GameRecords_IncrementTrainerScore(v0, TRAINER_SCORE_EVENT_UNK_50);

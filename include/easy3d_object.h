@@ -1,11 +1,12 @@
 #ifndef POKEPLATINUM_EASY3D_OBJECT_H
 #define POKEPLATINUM_EASY3D_OBJECT_H
 
-#include "struct_decls/struct_02006C24_decl.h"
+#include <nitro/fx/fx.h>
+#include <nnsys.h>
+
 #include "constants/heap.h"
 
-#include <nnsys.h>
-#include <nitro/fx/fx.h>
+#include "struct_decls/struct_02006C24_decl.h"
 
 enum RotationAxis {
     ROTATION_AXIS_X = 0,

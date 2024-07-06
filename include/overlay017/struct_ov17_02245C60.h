@@ -7,10 +7,10 @@
 #include "overlay017/struct_ov17_0224F30C.h"
 
 typedef struct {
-    UnkStruct_ov17_02246F24 * unk_00;
+    UnkStruct_ov17_02246F24 *unk_00;
     UnkStruct_ov17_02243C80 unk_04;
-    UnkStruct_ov17_0224F30C * unk_0C;
-    UnkStruct_ov17_0224145C * unk_10[4];
+    UnkStruct_ov17_0224F30C *unk_0C;
+    UnkStruct_ov17_0224145C *unk_10[4];
     u8 unk_20;
     u8 unk_21;
     u8 unk_22;

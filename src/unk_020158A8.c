@@ -1,18 +1,17 @@
+#include "unk_020158A8.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "strbuf.h"
-
 #include "struct_defs/struct_020158A8.h"
 
-#include "message.h"
-#include "unk_020158A8.h"
 #include "heap.h"
+#include "message.h"
 #include "strbuf.h"
 
-UnkStruct_020158A8 * sub_020158A8 (int param0)
+UnkStruct_020158A8 *sub_020158A8(int param0)
 {
-    UnkStruct_020158A8 * v0;
+    UnkStruct_020158A8 *v0;
     int v1;
 
     v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_020158A8));
@@ -28,7 +27,7 @@ UnkStruct_020158A8 * sub_020158A8 (int param0)
     return v0;
 }
 
-void sub_020158F4 (UnkStruct_020158A8 * param0)
+void sub_020158F4(UnkStruct_020158A8 *param0)
 {
     int v0;
 
@@ -40,7 +39,7 @@ void sub_020158F4 (UnkStruct_020158A8 * param0)
     Heap_FreeToHeap(param0);
 }
 
-const Strbuf* sub_02015918 (UnkStruct_020158A8 * param0, int param1)
+const Strbuf *sub_02015918(UnkStruct_020158A8 *param0, int param1)
 {
     return (const Strbuf *)param0->unk_04[param1];
 }

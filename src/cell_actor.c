@@ -1,16 +1,17 @@
+#include "cell_actor.h"
+
+#include "nitro/gx/g2_oam.h"
 #include <nitro.h>
 #include <string.h>
 
-#include "nitro/gx/g2_oam.h"
 #include "nnsys/g2d/g2d_Image.h"
 #include "nnsys/g2d/g2d_RendererCore.h"
 
-#include "unk_02017728.h"
 #include "heap.h"
-#include "cell_actor.h"
+#include "unk_02017728.h"
 
-typedef void (* CellActorDrawFunc)(const CellActorCollection *, CellActor *);
-typedef void (* CellActorAnimUpdateFunc)(CellActor *);
+typedef void (*CellActorDrawFunc)(const CellActorCollection *, CellActor *);
+typedef void (*CellActorAnimUpdateFunc)(CellActor *);
 
 static void CellActorCollection_Reset(CellActorCollection *collection);
 static enum CellAnimType CellActorResourceData_GetCellType(const CellActorResourceData *resourceData);
@@ -21,8 +22,10 @@ static void CellActor_SetMultiCellAnimBank(const NNSG2dMultiCellAnimBankData *mu
 static void CellActor_CreateCellAnim(CellActor *actor, enum HeapId heapID);
 static void CellActor_CreateVRamCellAnim(const CellActorResourceData *resourceData, CellActor *actor, enum HeapId heapID);
 static void CellActor_CreateMultiCellAnim(CellActor *actor, enum HeapId heapID);
-static BOOL CellActorCollection_InitActor(const CellActorCollection *collection, 
-    const CellActorResourceData *resourceData, CellActor *actor, enum HeapId heapID);
+static BOOL CellActorCollection_InitActor(const CellActorCollection *collection,
+    const CellActorResourceData *resourceData,
+    CellActor *actor,
+    enum HeapId heapID);
 static u32 GetPaletteIndexForProxy(const NNSG2dImagePaletteProxy *paletteProxy, u32 vramType);
 static void CellActorCollection_DrawActor(const CellActorCollection *collection, CellActor *actor);
 static void CellActorCollection_DrawActor_Stub(const CellActorCollection *collection, CellActor *actor);
@@ -194,14 +197,12 @@ CellActor *CellActorCollection_AddEx(const CellActorInitParamsEx *params)
     actor->overwriteFlags = NNS_G2D_RND_OVERWRITE_PLTTNO_OFFS | NNS_G2D_RND_OVERWRITE_PRIORITY;
 
     NNS_G2dSetRndCoreAffineOverwriteMode(
-        &params->collection->renderer->rendererCore, 
-        actor->affineOverwriteMode
-    );
+        &params->collection->renderer->rendererCore,
+        actor->affineOverwriteMode);
     NNS_G2dSetRndCoreFlipMode(
-        &params->collection->renderer->rendererCore, 
+        &params->collection->renderer->rendererCore,
         actor->flip & CELL_ACTOR_FLIP_H,
-        actor->flip & CELL_ACTOR_FLIP_V
-    );
+        actor->flip & CELL_ACTOR_FLIP_V);
 
     actor->draw = TRUE;
     actor->animate = FALSE;
@@ -646,8 +647,10 @@ u32 CellActor_GetUserAttrForCurrentAnimFrame(const CellActor *actor)
     return CellActor_GetUserAttrForAnimFrame(actor, animID, frame);
 }
 
-static BOOL CellActorCollection_InitActor(const CellActorCollection *collection, 
-    const CellActorResourceData *resourceData, CellActor *actor, enum HeapId heapID)
+static BOOL CellActorCollection_InitActor(const CellActorCollection *collection,
+    const CellActorResourceData *resourceData,
+    CellActor *actor,
+    enum HeapId heapID)
 {
     actor->type = CellActorResourceData_GetCellType(resourceData);
     actor->imageProxy = *resourceData->imageProxy;
@@ -717,10 +720,9 @@ static void CellActor_CreateCellAnim(CellActor *actor, enum HeapId heapID)
 {
     CellAnimationData *cellAnim = (CellAnimationData *)&actor->animData;
     NNS_G2dInitCellAnimation(
-        &cellAnim->anim, 
-        NNS_G2dGetAnimSequenceByIdx(cellAnim->animBank, 0), 
-        cellAnim->cellBank
-    );
+        &cellAnim->anim,
+        NNS_G2dGetAnimSequenceByIdx(cellAnim->animBank, 0),
+        cellAnim->cellBank);
 }
 
 static void CellActor_CreateVRamCellAnim(const CellActorResourceData *resourceData, CellActor *actor, enum HeapId heapID)
@@ -730,17 +732,16 @@ static void CellActor_CreateVRamCellAnim(const CellActorResourceData *resourceDa
     const NNSG2dCharacterData *charData = resourceData->charData;
 
     NNS_G2dInitCellAnimationVramTransfered(
-        &vramCellAnim->anim, 
-        NNS_G2dGetAnimSequenceByIdx(vramCellAnim->animBank, 0), 
-        vramCellAnim->cellBank, 
-        vramCellAnim->transferHandle, 
-        NNS_G2D_VRAM_ADDR_NONE, 
-        NNS_G2dGetImageLocation(&actor->imageProxy, NNS_G2D_VRAM_TYPE_2DMAIN), 
-        NNS_G2dGetImageLocation(&actor->imageProxy, NNS_G2D_VRAM_TYPE_2DSUB), 
-        charData->pRawData, 
-        NULL, 
-        charData->szByte
-    );
+        &vramCellAnim->anim,
+        NNS_G2dGetAnimSequenceByIdx(vramCellAnim->animBank, 0),
+        vramCellAnim->cellBank,
+        vramCellAnim->transferHandle,
+        NNS_G2D_VRAM_ADDR_NONE,
+        NNS_G2dGetImageLocation(&actor->imageProxy, NNS_G2D_VRAM_TYPE_2DMAIN),
+        NNS_G2dGetImageLocation(&actor->imageProxy, NNS_G2D_VRAM_TYPE_2DSUB),
+        charData->pRawData,
+        NULL,
+        charData->szByte);
 }
 
 static void CellActor_CreateMultiCellAnim(CellActor *actor, enum HeapId heapID)
@@ -752,19 +753,17 @@ static void CellActor_CreateMultiCellAnim(CellActor *actor, enum HeapId heapID)
     multiCellAnim->cellAnims = Heap_AllocFromHeap(heapID, sizeof(NNSG2dCellAnimation) * maxNodes);
 
     NNS_G2dInitMCAnimation(
-        &multiCellAnim->anim, 
-        multiCellAnim->nodes, 
-        multiCellAnim->cellAnims, 
-        maxNodes, 
-        multiCellAnim->individualAnimBank, 
-        multiCellAnim->individualCellBank, 
-        multiCellAnim->cellBank
-    );
+        &multiCellAnim->anim,
+        multiCellAnim->nodes,
+        multiCellAnim->cellAnims,
+        maxNodes,
+        multiCellAnim->individualAnimBank,
+        multiCellAnim->individualCellBank,
+        multiCellAnim->cellBank);
 
     NNS_G2dSetAnimSequenceToMCAnimation(
-        &multiCellAnim->anim, 
-        animSequence
-    );
+        &multiCellAnim->anim,
+        animSequence);
 }
 
 static u32 GetPaletteIndexForProxy(const NNSG2dImagePaletteProxy *paletteProxy, u32 vramType)
@@ -798,10 +797,9 @@ static void CellActorCollection_DrawActor(const CellActorCollection *collection,
 
     if (actor->affineOverwriteMode == NNS_G2D_RND_AFFINE_OVERWRITE_NONE) {
         NNS_G2dSetRndCoreFlipMode(
-            &collection->renderer->rendererCore, 
-            actor->flip & CELL_ACTOR_FLIP_H, 
-            actor->flip & CELL_ACTOR_FLIP_V
-        );
+            &collection->renderer->rendererCore,
+            actor->flip & CELL_ACTOR_FLIP_H,
+            actor->flip & CELL_ACTOR_FLIP_V);
     } else {
         NNS_G2dSetRndCoreFlipMode(&collection->renderer->rendererCore, FALSE, FALSE);
     }

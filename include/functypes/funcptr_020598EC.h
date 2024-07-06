@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_FUNCPTR_020598EC_H
 #define POKEPLATINUM_FUNCPTR_020598EC_H
 
-typedef void (* FieldCommTask)(void);
+typedef void (*FieldCommTask)(void);
 
 #endif // POKEPLATINUM_FUNCPTR_020598EC_H

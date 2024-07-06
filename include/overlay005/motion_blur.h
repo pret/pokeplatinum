@@ -2,8 +2,10 @@
 #define POKEPLATINUM_MOTION_BLUR_H
 
 #include <nitro/gx.h>
-#include "sys_task_manager.h"
+
 #include "constants/heap.h"
+
+#include "sys_task_manager.h"
 
 typedef struct MotionBlurParams {
     GXDispMode displayMode;

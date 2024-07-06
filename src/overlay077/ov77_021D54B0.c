@@ -1,15 +1,19 @@
+#include "overlay077/ov77_021D54B0.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
+#include "struct_defs/struct_0200C738.h"
+
+#include "overlay022/struct_ov22_022559F8.h"
+#include "overlay077/ov77_021D6670.h"
 #include "overlay077/struct_ov77_021D6734_decl.h"
 
-#include "struct_defs/struct_0200C738.h"
-#include "overlay022/struct_ov22_022559F8.h"
-
+#include "cell_actor.h"
+#include "core_sys.h"
+#include "gx_layers.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
@@ -17,23 +21,19 @@
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
-#include "gx_layers.h"
-#include "cell_actor.h"
-#include "overlay077/ov77_021D54B0.h"
-#include "overlay077/ov77_021D6670.h"
 
 SDK_COMPILER_ASSERT(((3 + 1 + 1 + 2 + 4) + 6) == 17);
 
 void include_data_ov77_021D79B8(void);
 
 typedef struct UnkStruct_ov77_021D5564_t {
-    CellActorCollection * unk_00;
+    CellActorCollection *unk_00;
     UnkStruct_0200C738 unk_04;
-    UnkStruct_02009714 * unk_190[4];
-    UnkStruct_02009DC8 * unk_1A0[11][4];
-    CellActor * unk_250[17];
+    UnkStruct_02009714 *unk_190[4];
+    UnkStruct_02009DC8 *unk_1A0[11][4];
+    CellActor *unk_250[17];
     CellActorResourceData unk_294[3];
-    NNSG2dCellTransferState * unk_300;
+    NNSG2dCellTransferState *unk_300;
 } UnkStruct_ov77_021D5564;
 
 static const u8 Unk_ov77_021D7914[4] = {
@@ -91,7 +91,7 @@ static fx32 Unk_ov77_021D79A4[2] = {
     (FX32_ONE / 2) * 11
 };
 
-static void ov77_021D54B0 ()
+static void ov77_021D54B0()
 {
     const int v0 = 76;
 
@@ -109,7 +109,7 @@ static void ov77_021D54B0 ()
     sub_0201DBEC((3 * 2), v0);
 }
 
-static void ov77_021D54E8 (const int param0, UnkStruct_ov77_021D5564 * param1, const int param2, CellActorInitParamsEx * param3, CellActorResourceData * param4, int param5, int param6)
+static void ov77_021D54E8(const int param0, UnkStruct_ov77_021D5564 *param1, const int param2, CellActorInitParamsEx *param3, CellActorResourceData *param4, int param5, int param6)
 {
     sub_020093B4(param4, param0, param0, param0, param0, 0xffffffff, 0xffffffff, param5, param2, param1->unk_190[0], param1->unk_190[1], param1->unk_190[2], param1->unk_190[3], NULL, NULL);
 
@@ -129,12 +129,12 @@ static void ov77_021D54E8 (const int param0, UnkStruct_ov77_021D5564 * param1, c
     }
 }
 
-const int ov77_021D555C (void)
+const int ov77_021D555C(void)
 {
     return sizeof(UnkStruct_ov77_021D5564);
 }
 
-void ov77_021D5564 (UnkStruct_ov77_021D5564 * param0)
+void ov77_021D5564(UnkStruct_ov77_021D5564 *param0)
 {
     int v0;
     const int v1 = 76;
@@ -206,7 +206,7 @@ void ov77_021D5564 (UnkStruct_ov77_021D5564 * param0)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-void ov77_021D5BAC (UnkStruct_ov77_021D5564 * param0)
+void ov77_021D5BAC(UnkStruct_ov77_021D5564 *param0)
 {
     u8 v0;
 
@@ -236,13 +236,18 @@ void ov77_021D5BAC (UnkStruct_ov77_021D5564 * param0)
     sub_0201DC3C();
 }
 
-void ov77_021D5C3C (UnkStruct_ov77_021D5564 * param0)
+void ov77_021D5C3C(UnkStruct_ov77_021D5564 *param0)
 {
     int v0;
     CellActorResourceData v1;
     CellActorInitParamsEx v2;
     const int v3[6] = {
-        4, 5, 6, 7, 8, 9,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
     };
     const int v4[6] = {
         (256 + 8),
@@ -368,12 +373,12 @@ void ov77_021D5C3C (UnkStruct_ov77_021D5564 * param0)
     }
 }
 
-void ov77_021D5FB4 (UnkStruct_ov77_021D5564 * param0, UnkStruct_ov77_021D6734 * param1)
+void ov77_021D5FB4(UnkStruct_ov77_021D5564 *param0, UnkStruct_ov77_021D6734 *param1)
 {
     int v0;
     CellActorResourceData v1;
     CellActorInitParamsEx v2;
-    CellActor ** v3;
+    CellActor **v3;
 
     {
         ov77_021D54E8(5, param0, 0, &v2, &v1, 0, NNS_G2D_VRAM_TYPE_2DSUB);
@@ -387,10 +392,10 @@ void ov77_021D5FB4 (UnkStruct_ov77_021D5564 * param0, UnkStruct_ov77_021D6734 * 
     }
 }
 
-void ov77_021D6000 (UnkStruct_ov77_021D5564 * param0, UnkStruct_ov77_021D6734 * param1)
+void ov77_021D6000(UnkStruct_ov77_021D5564 *param0, UnkStruct_ov77_021D6734 *param1)
 {
     int v0;
-    CellActor ** v1;
+    CellActor **v1;
 
     for (v0 = 0; v0 < 16; v0++) {
         v1 = ov77_021D6794(param1, v0);
@@ -398,7 +403,7 @@ void ov77_021D6000 (UnkStruct_ov77_021D5564 * param0, UnkStruct_ov77_021D6734 * 
     }
 }
 
-void ov77_021D6020 (UnkStruct_ov77_021D5564 * param0)
+void ov77_021D6020(UnkStruct_ov77_021D5564 *param0)
 {
     CellActorCollection_Update(param0->unk_00);
 
@@ -407,19 +412,19 @@ void ov77_021D6020 (UnkStruct_ov77_021D5564 * param0)
     }
 }
 
-void ov77_021D603C (UnkStruct_ov77_021D5564 * param0, const u8 param1, const u8 param2)
+void ov77_021D603C(UnkStruct_ov77_021D5564 *param0, const u8 param1, const u8 param2)
 {
     CellActor_SetDrawFlag(param0->unk_250[param1], param2);
 }
 
-void ov77_021D6050 (UnkStruct_ov77_021D5564 * param0, const u8 param1)
+void ov77_021D6050(UnkStruct_ov77_021D5564 *param0, const u8 param1)
 {
     CellActor_SetAnimateFlag(param0->unk_250[0], param1);
     CellActor_SetAnimateFlag(param0->unk_250[2], param1);
     CellActor_SetAnimateFlag(param0->unk_250[1], param1);
 }
 
-void ov77_021D607C (UnkStruct_ov77_021D5564 * param0)
+void ov77_021D607C(UnkStruct_ov77_021D5564 *param0)
 {
     VecFx32 v0;
 
@@ -434,7 +439,7 @@ void ov77_021D607C (UnkStruct_ov77_021D5564 * param0)
     CellActor_SetPosition(param0->unk_250[2], &v0);
 }
 
-BOOL ov77_021D60E0 (UnkStruct_ov77_021D5564 * param0, int param1)
+BOOL ov77_021D60E0(UnkStruct_ov77_021D5564 *param0, int param1)
 {
     VecFx32 v0;
 
@@ -450,8 +455,8 @@ BOOL ov77_021D60E0 (UnkStruct_ov77_021D5564 * param0, int param1)
         v0 = *CellActor_GetPosition(param0->unk_250[3]);
         v0.x += (FX32_ONE * 18);
 
-        if (v0.x >= (FX32_ONE * ((128 + 48)))) {
-            v0.x = (FX32_ONE * ((128 + 48)));
+        if (v0.x >= (FX32_ONE * (128 + 48))) {
+            v0.x = (FX32_ONE * (128 + 48));
             CellActor_SetPosition(param0->unk_250[3], &v0);
             return 1;
         }
@@ -474,7 +479,7 @@ BOOL ov77_021D60E0 (UnkStruct_ov77_021D5564 * param0, int param1)
     }
 }
 
-BOOL ov77_021D61B8 (UnkStruct_ov77_021D5564 * param0, int param1)
+BOOL ov77_021D61B8(UnkStruct_ov77_021D5564 *param0, int param1)
 {
     VecFx32 v0;
 
@@ -486,12 +491,12 @@ BOOL ov77_021D61B8 (UnkStruct_ov77_021D5564 * param0, int param1)
         ov77_021D603C(param0, 10, 1);
     }
 
-    if (param1 < ((53 * 30 - 15))) {
+    if (param1 < (53 * 30 - 15)) {
         v0 = *CellActor_GetPosition(param0->unk_250[10]);
         v0.x += (-(FX32_ONE * 18));
 
-        if (v0.x <= (FX32_ONE * ((128 - 48)))) {
-            v0.x = (FX32_ONE * ((128 - 48)));
+        if (v0.x <= (FX32_ONE * (128 - 48))) {
+            v0.x = (FX32_ONE * (128 - 48));
             CellActor_SetPosition(param0->unk_250[10], &v0);
             return 1;
         }
@@ -514,9 +519,9 @@ BOOL ov77_021D61B8 (UnkStruct_ov77_021D5564 * param0, int param1)
     }
 }
 
-void ov77_021D6290 (UnkStruct_ov77_021D5564 * param0, fx32 param1)
+void ov77_021D6290(UnkStruct_ov77_021D5564 *param0, fx32 param1)
 {
-    const VecFx32 * v0;
+    const VecFx32 *v0;
     VecFx32 v1;
     int v2, v3;
 
@@ -553,9 +558,9 @@ void ov77_021D6290 (UnkStruct_ov77_021D5564 * param0, fx32 param1)
     CellActor_SetPosition(param0->unk_250[v3 + 1], &v1);
 }
 
-void ov77_021D636C (UnkStruct_ov77_021D5564 * param0, int param1)
+void ov77_021D636C(UnkStruct_ov77_021D5564 *param0, int param1)
 {
-    const VecFx32 * v0;
+    const VecFx32 *v0;
     VecFx32 v1;
 
     if (param1 == 0) {
@@ -590,10 +595,10 @@ void ov77_021D636C (UnkStruct_ov77_021D5564 * param0, int param1)
     CellActor_SetPosition(param0->unk_250[15], &v1);
 }
 
-void ov77_021D6470 (UnkStruct_ov77_021D5564 * param0, int param1)
+void ov77_021D6470(UnkStruct_ov77_021D5564 *param0, int param1)
 {
     u16 v0;
-    const VecFx32 * v1;
+    const VecFx32 *v1;
     VecFx32 v2;
     s32 v3;
 
@@ -626,24 +631,27 @@ void ov77_021D6470 (UnkStruct_ov77_021D5564 * param0, int param1)
     }
 }
 
-void include_data_ov77_021D79B8 (void)
+void include_data_ov77_021D79B8(void)
 {
     dummy[0];
     Unk_ov77_021D79B8[0];
 }
 
-void ov77_021D6530 (UnkStruct_ov77_021D5564 * param0, const int param1)
+void ov77_021D6530(UnkStruct_ov77_021D5564 *param0, const int param1)
 {
     u8 v0;
     VecFx32 v1;
     const int v2[3] = {
-        4, 5, 6,
+        4,
+        5,
+        6,
     };
     const int v3[1] = {
         7,
     };
     const int v4[] = {
-        8, 9,
+        8,
+        9,
     };
 
     if (param1 >= (1460 - 15)) {

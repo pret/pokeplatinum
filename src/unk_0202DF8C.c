@@ -1,39 +1,37 @@
+#include "unk_0202DF8C.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "inlines.h"
-
-#include "strbuf.h"
-#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
-
 #include "struct_defs/struct_0202DF8C.h"
 #include "struct_defs/struct_0202DFA8.h"
 #include "struct_defs/struct_0202E1F4.h"
+
 #include "overlay087/struct_ov87_021D1640.h"
 
-#include "strbuf.h"
-#include "unk_0202DF8C.h"
-#include "pokemon.h"
+#include "inlines.h"
 #include "party.h"
+#include "pokemon.h"
+#include "strbuf.h"
 
-static int inline inline_0202E1A8(const HallOfFame * param0, int param1);
+static int inline inline_0202E1A8(const HallOfFame *param0, int param1);
 
-int HallOfFame_SaveSize (void)
+int HallOfFame_SaveSize(void)
 {
     return sizeof(HallOfFame);
 }
 
-void HallOfFame_Init (HallOfFame * param0)
+void HallOfFame_Init(HallOfFame *param0)
 {
     MI_CpuClear32(param0, sizeof(HallOfFame));
 }
 
-void sub_0202DFA8 (HallOfFame * param0, const Party * param1, const RTCDate * param2)
+void sub_0202DFA8(HallOfFame *param0, const Party *param1, const RTCDate *param2)
 {
-    UnkStruct_0202DFA8 * v0;
-    Pokemon * v1;
-    Strbuf* v2;
+    UnkStruct_0202DFA8 *v0;
+    Pokemon *v1;
+    Strbuf *v2;
     int v3, v4, v5;
     BOOL v6;
 
@@ -97,7 +95,7 @@ void sub_0202DFA8 (HallOfFame * param0, const Party * param1, const RTCDate * pa
     }
 }
 
-u32 sub_0202E148 (const HallOfFame * param0)
+u32 sub_0202E148(const HallOfFame *param0)
 {
     GF_ASSERT(param0 != NULL);
     GF_ASSERT(param0->unk_2AA8 < 30);
@@ -109,7 +107,7 @@ u32 sub_0202E148 (const HallOfFame * param0)
     return param0->unk_2AAC;
 }
 
-u32 sub_0202E174 (const HallOfFame * param0, int param1)
+u32 sub_0202E174(const HallOfFame *param0, int param1)
 {
     GF_ASSERT(param0 != NULL);
     GF_ASSERT(param0->unk_2AA8 < 30);
@@ -118,7 +116,7 @@ u32 sub_0202E174 (const HallOfFame * param0, int param1)
     return param0->unk_2AAC - param1;
 }
 
-u32 sub_0202E1A8 (const HallOfFame * param0, int param1)
+u32 sub_0202E1A8(const HallOfFame *param0, int param1)
 {
     u32 v0;
 
@@ -137,9 +135,9 @@ u32 sub_0202E1A8 (const HallOfFame * param0, int param1)
     return v0;
 }
 
-void sub_0202E1F4 (const HallOfFame * param0, int param1, int param2, UnkStruct_ov87_021D1640 * param3)
+void sub_0202E1F4(const HallOfFame *param0, int param1, int param2, UnkStruct_ov87_021D1640 *param3)
 {
-    const UnkStruct_0202E1F4 * v0;
+    const UnkStruct_0202E1F4 *v0;
     int v1;
 
     GF_ASSERT(param0 != NULL);
@@ -163,7 +161,7 @@ void sub_0202E1F4 (const HallOfFame * param0, int param1, int param2, UnkStruct_
     }
 }
 
-void sub_0202E274 (const HallOfFame * param0, int param1, RTCDate * param2)
+void sub_0202E274(const HallOfFame *param0, int param1, RTCDate *param2)
 {
     GF_ASSERT(param0 != NULL);
     GF_ASSERT(param0->unk_2AA8 < 30);
@@ -177,7 +175,7 @@ void sub_0202E274 (const HallOfFame * param0, int param1, RTCDate * param2)
     param2->week = 0;
 }
 
-static int inline inline_0202E1A8 (const HallOfFame * param0, int param1)
+static int inline inline_0202E1A8(const HallOfFame *param0, int param1)
 {
     int v0 = (param0->unk_2AA8 - 1 - param1);
 

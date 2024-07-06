@@ -3,6 +3,6 @@
 
 #include "struct_defs/struct_0207F248.h"
 
-typedef void (* UnkFuncPtr_0207E634)(GameWindowLayout *, int *);
+typedef void (*UnkFuncPtr_0207E634)(GameWindowLayout *, int *);
 
 #endif // POKEPLATINUM_FUNCPTR_0207E634_H

@@ -1,31 +1,32 @@
+#include "unk_0206C784.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_020508D4_decl.h"
-#include "overlay005/struct_ov5_021E1890_decl.h"
+#include "struct_defs/struct_02055130.h"
+#include "struct_defs/struct_0206C8D4.h"
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
-#include "struct_defs/struct_02055130.h"
-#include "struct_defs/struct_0206C8D4.h"
-#include "overlay005/struct_ov5_021D5894.h"
-
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
-#include "unk_0200F174.h"
-#include "heap.h"
-#include "camera.h"
-#include "unk_0203D1B8.h"
-#include "unk_020508D4.h"
-#include "field_map_change.h"
-#include "unk_02054D00.h"
-#include "unk_020553DC.h"
-#include "unk_02055808.h"
-#include "player_avatar.h"
-#include "unk_0206C784.h"
 #include "overlay005/ov5_021D37AC.h"
 #include "overlay005/ov5_021E15F4.h"
 #include "overlay005/ov5_021EF75C.h"
+#include "overlay005/struct_ov5_021D5894.h"
+#include "overlay005/struct_ov5_021E1890_decl.h"
+
+#include "camera.h"
+#include "field_map_change.h"
+#include "heap.h"
+#include "player_avatar.h"
+#include "unk_020041CC.h"
+#include "unk_02005474.h"
+#include "unk_0200F174.h"
+#include "unk_0203D1B8.h"
+#include "unk_020508D4.h"
+#include "unk_02054D00.h"
+#include "unk_020553DC.h"
+#include "unk_02055808.h"
 
 typedef struct {
     u8 unk_00;
@@ -43,22 +44,22 @@ typedef struct {
     int unk_1C;
     int unk_20;
     VecFx32 unk_24;
-    UnkStruct_ov5_021E1890 * unk_30;
+    UnkStruct_ov5_021E1890 *unk_30;
     UnkStruct_ov5_021D5894 unk_34;
     fx32 unk_7C;
 } UnkStruct_0206CAD0;
 
-static void sub_0206C8D4(FieldSystem * fieldSystem, const u8 param1, UnkStruct_ov5_021D5894 * param2);
-static BOOL sub_0206C8F8(TaskManager * param0);
-static BOOL sub_0206C964(TaskManager * param0);
-static BOOL sub_0206CAD0(UnkStruct_0206CAD0 * param0);
-static BOOL sub_0206CB8C(const fx32 * param0, const fx32 * param1, u8 * param2);
-static void sub_0206CBA0(FieldSystem * fieldSystem);
-static void sub_0206CC64(UnkStruct_0206CAD0 * param0);
+static void sub_0206C8D4(FieldSystem *fieldSystem, const u8 param1, UnkStruct_ov5_021D5894 *param2);
+static BOOL sub_0206C8F8(TaskManager *param0);
+static BOOL sub_0206C964(TaskManager *param0);
+static BOOL sub_0206CAD0(UnkStruct_0206CAD0 *param0);
+static BOOL sub_0206CB8C(const fx32 *param0, const fx32 *param1, u8 *param2);
+static void sub_0206CBA0(FieldSystem *fieldSystem);
+static void sub_0206CC64(UnkStruct_0206CAD0 *param0);
 
-void sub_0206C784 (FieldSystem * fieldSystem, const u8 param1, const u8 param2, const int param3, const int param4, const int param5)
+void sub_0206C784(FieldSystem *fieldSystem, const u8 param1, const u8 param2, const int param3, const int param4, const int param5)
 {
-    UnkStruct_0206CAD0 * v0;
+    UnkStruct_0206CAD0 *v0;
     BOOL v1;
     BOOL v2;
     UnkStruct_02055130 v3;
@@ -129,9 +130,9 @@ void sub_0206C784 (FieldSystem * fieldSystem, const u8 param1, const u8 param2, 
     FieldTask_Start(fieldSystem->unk_10, sub_0206C964, v0);
 }
 
-static void sub_0206C8D4 (FieldSystem * fieldSystem, const u8 param1, UnkStruct_ov5_021D5894 * param2)
+static void sub_0206C8D4(FieldSystem *fieldSystem, const u8 param1, UnkStruct_ov5_021D5894 *param2)
 {
-    UnkStruct_0206C8D4 * v0;
+    UnkStruct_0206C8D4 *v0;
 
     v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0206C8D4));
 
@@ -141,11 +142,11 @@ static void sub_0206C8D4 (FieldSystem * fieldSystem, const u8 param1, UnkStruct_
     FieldTask_Start(fieldSystem->unk_10, sub_0206C8F8, v0);
 }
 
-static BOOL sub_0206C8F8 (TaskManager * taskMan)
+static BOOL sub_0206C8F8(TaskManager *taskMan)
 {
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_0206C8D4 * v1 = TaskManager_Environment(taskMan);
-    int * v2 = FieldTask_GetState(taskMan);
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
+    UnkStruct_0206C8D4 *v1 = TaskManager_Environment(taskMan);
+    int *v2 = FieldTask_GetState(taskMan);
 
     switch (*v2) {
     case 0:
@@ -169,10 +170,10 @@ static BOOL sub_0206C8F8 (TaskManager * taskMan)
     return 0;
 }
 
-static BOOL sub_0206C964 (TaskManager * taskMan)
+static BOOL sub_0206C964(TaskManager *taskMan)
 {
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_0206CAD0 * v1 = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
+    UnkStruct_0206CAD0 *v1 = TaskManager_Environment(taskMan);
 
     switch (v1->unk_00) {
     case 0:
@@ -182,8 +183,7 @@ static BOOL sub_0206C964 (TaskManager * taskMan)
             v1->unk_00 = 2;
         }
         break;
-    case 1:
-    {
+    case 1: {
         BOOL v2;
 
         sub_0206CC64(v1);
@@ -200,8 +200,7 @@ static BOOL sub_0206C964 (TaskManager * taskMan)
                 v1->unk_00 = 2;
             }
         }
-    }
-    break;
+    } break;
     case 2:
         sub_0200F174(0, 0, 0, 0x0, 6, 1, 11);
         sub_0200564C(0, 6);
@@ -241,7 +240,7 @@ static BOOL sub_0206C964 (TaskManager * taskMan)
     return 0;
 }
 
-static BOOL sub_0206CAD0 (UnkStruct_0206CAD0 * param0)
+static BOOL sub_0206CAD0(UnkStruct_0206CAD0 *param0)
 {
     VecFx32 v0;
 
@@ -288,7 +287,7 @@ static BOOL sub_0206CAD0 (UnkStruct_0206CAD0 * param0)
     }
 }
 
-static BOOL sub_0206CB8C (const fx32 * param0, const fx32 * param1, u8 * param2)
+static BOOL sub_0206CB8C(const fx32 *param0, const fx32 *param1, u8 *param2)
 {
     if ((*param0) <= (*param1)) {
         (*param2) = 1;
@@ -298,21 +297,21 @@ static BOOL sub_0206CB8C (const fx32 * param0, const fx32 * param1, u8 * param2)
     }
 }
 
-static void sub_0206CBA0 (FieldSystem * fieldSystem)
+static void sub_0206CBA0(FieldSystem *fieldSystem)
 {
     u8 v0;
     BOOL v1;
-    int v2[2] = {31, 32};
-    int v3[2] = {1, 2};
+    int v2[2] = { 31, 32 };
+    int v3[2] = { 1, 2 };
 
     for (v0 = 0; v0 < 2; v0++) {
         v1 = sub_020552B4(fieldSystem, v2[v0], NULL, NULL);
 
         if (v1) {
-            NNSG3dResMdl * v4;
-            NNSG3dResFileHeader ** v5;
-            UnkStruct_ov5_021E1890 * v6;
-            NNSG3dRenderObj * v7;
+            NNSG3dResMdl *v4;
+            NNSG3dResFileHeader **v5;
+            UnkStruct_ov5_021E1890 *v6;
+            NNSG3dRenderObj *v7;
 
             v5 = ov5_021EF9E8(v2[v0], fieldSystem->unk_30);
             v4 = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*v5), 0);
@@ -328,7 +327,7 @@ static void sub_0206CBA0 (FieldSystem * fieldSystem)
     }
 }
 
-static void sub_0206CC64 (UnkStruct_0206CAD0 * param0)
+static void sub_0206CC64(UnkStruct_0206CAD0 *param0)
 {
     switch (param0->unk_01) {
     case 3:

@@ -1,10 +1,11 @@
 #ifndef POKEPLATINUM_STRUCT_OV83_0223F054_H
 #define POKEPLATINUM_STRUCT_OV83_0223F054_H
 
-#include "cell_actor.h"
+#include <nitro/fx/fx.h>
+
 #include "overlay083/struct_ov83_0223DA94.h"
 
-#include <nitro/fx/fx.h>
+#include "cell_actor.h"
 
 typedef struct {
     BOOL unk_00;
@@ -18,7 +19,7 @@ typedef struct {
     UnkStruct_ov83_0223DA94 unk_30;
     UnkStruct_ov83_0223DA94 unk_48;
     UnkStruct_ov83_0223DA94 unk_60;
-    CellActor * unk_78;
+    CellActor *unk_78;
     int unk_7C;
 } UnkStruct_ov83_0223F054;
 

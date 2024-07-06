@@ -1,23 +1,23 @@
+#include "unk_0204F04C.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "inlines.h"
-
 #include "struct_defs/struct_020300F4.h"
-#include "field_script_context.h"
 
+#include "field_script_context.h"
+#include "inlines.h"
 #include "unk_0202FF4C.h"
 #include "unk_0203061C.h"
-#include "unk_0204F04C.h"
 #include "unk_0205DFC4.h"
 
-BOOL ScrCmd_2C5(ScriptContext * param0);
+BOOL ScrCmd_2C5(ScriptContext *param0);
 
-BOOL ScrCmd_2C5 (ScriptContext * param0)
+BOOL ScrCmd_2C5(ScriptContext *param0)
 {
     u32 v0;
     u8 v1[4];
-    UnkStruct_020300F4 * v2;
+    UnkStruct_020300F4 *v2;
     u16 v3 = ScriptContext_GetVar(param0);
     u16 v4 = ScriptContext_GetVar(param0);
 

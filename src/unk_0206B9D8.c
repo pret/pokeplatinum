@@ -1,3 +1,5 @@
+#include "unk_0206B9D8.h"
+
 #include <nitro.h>
 #include <string.h>
 
@@ -8,36 +10,35 @@
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "savedata.h"
-
-#include "constdata/const_020F1E88.h"
-#include "constdata/const_020F410C.h"
-
-#include "field/field_system.h"
+#include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_0206BC70.h"
 #include "struct_defs/struct_02098C44.h"
-#include "struct_defs/pokemon_summary.h"
 
+#include "field/field_system.h"
+
+#include "bag.h"
+#include "communication_system.h"
+#include "field_system.h"
 #include "heap.h"
+#include "party.h"
+#include "pokemon_summary_app.h"
 #include "save_player.h"
+#include "savedata.h"
+#include "script_manager.h"
 #include "unk_0202854C.h"
 #include "unk_0202B37C.h"
 #include "unk_0202D05C.h"
 #include "unk_0202D778.h"
 #include "unk_0203061C.h"
-#include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_02038FFC.h"
-#include "field_system.h"
 #include "unk_0203D1B8.h"
-#include "script_manager.h"
 #include "unk_0204AEE8.h"
 #include "unk_020508D4.h"
-#include "unk_0206B9D8.h"
-#include "party.h"
 #include "unk_0207A274.h"
-#include "bag.h"
-#include "pokemon_summary_app.h"
+
+#include "constdata/const_020F1E88.h"
+#include "constdata/const_020F410C.h"
 
 typedef struct {
     int unk_00;
@@ -49,14 +50,14 @@ typedef struct {
     u8 unk_0C;
     u8 unk_0D;
     u8 unk_0E[6];
-    void ** unk_14;
+    void **unk_14;
 } UnkStruct_0206B9D8;
 
 typedef struct {
     int unk_00;
     int unk_04;
-    UnkStruct_0206BC70 * unk_08;
-    u16 ** unk_0C;
+    UnkStruct_0206BC70 *unk_08;
+    u16 **unk_0C;
     u16 unk_10;
     u16 unk_12;
     u16 unk_14;
@@ -67,11 +68,11 @@ typedef struct {
     u16 unk_02;
 } UnkStruct_0206BD88;
 
-static int sub_0206B9D8 (UnkStruct_0206B9D8 * param0, FieldSystem * fieldSystem, int param2)
+static int sub_0206B9D8(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, int param2)
 {
     u8 v0;
-    SaveData * v1;
-    PartyManagementData * v2 = Heap_AllocFromHeapAtEnd(param2, sizeof(PartyManagementData));
+    SaveData *v1;
+    PartyManagementData *v2 = Heap_AllocFromHeapAtEnd(param2, sizeof(PartyManagementData));
 
     v1 = fieldSystem->saveData;
     MI_CpuClear8(v2, sizeof(PartyManagementData));
@@ -96,10 +97,10 @@ static int sub_0206B9D8 (UnkStruct_0206B9D8 * param0, FieldSystem * fieldSystem,
     return 1;
 }
 
-static int sub_0206BA84 (UnkStruct_0206B9D8 * param0, FieldSystem * fieldSystem)
+static int sub_0206BA84(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem)
 {
     int v0;
-    PartyManagementData * v1;
+    PartyManagementData *v1;
 
     if (sub_020509B4(fieldSystem)) {
         return 1;
@@ -126,10 +127,10 @@ static int sub_0206BA84 (UnkStruct_0206B9D8 * param0, FieldSystem * fieldSystem)
     return 2;
 }
 
-static int sub_0206BAE0 (UnkStruct_0206B9D8 * param0, FieldSystem * fieldSystem, int param2)
+static int sub_0206BAE0(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, int param2)
 {
-    PokemonSummary * v0;
-    SaveData * v1;
+    PokemonSummary *v0;
+    SaveData *v1;
     static const u8 v2[] = {
         0, 1, 2, 4, 3, 5, 6, 7, 8
     };
@@ -157,9 +158,9 @@ static int sub_0206BAE0 (UnkStruct_0206B9D8 * param0, FieldSystem * fieldSystem,
     return 3;
 }
 
-static int sub_0206BB6C (UnkStruct_0206B9D8 * param0, FieldSystem * fieldSystem)
+static int sub_0206BB6C(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem)
 {
-    PokemonSummary * v0;
+    PokemonSummary *v0;
 
     if (sub_020509B4(fieldSystem)) {
         return 3;
@@ -173,10 +174,10 @@ static int sub_0206BB6C (UnkStruct_0206B9D8 * param0, FieldSystem * fieldSystem)
     return 0;
 }
 
-static BOOL sub_0206BB94 (TaskManager * param0)
+static BOOL sub_0206BB94(TaskManager *param0)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
-    UnkStruct_0206B9D8 * v1 = TaskManager_Environment(param0);
+    FieldSystem *v0 = TaskManager_FieldSystem(param0);
+    UnkStruct_0206B9D8 *v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_04) {
     case 0:
@@ -199,10 +200,10 @@ static BOOL sub_0206BB94 (TaskManager * param0)
     return 0;
 }
 
-void sub_0206BBFC (TaskManager * param0, void ** param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6, u8 param7)
+void sub_0206BBFC(TaskManager *param0, void **param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6, u8 param7)
 {
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_0206B9D8 * v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0206B9D8));
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+    UnkStruct_0206B9D8 *v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0206B9D8));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_0206B9D8));
 
@@ -217,9 +218,9 @@ void sub_0206BBFC (TaskManager * param0, void ** param1, u8 param2, u8 param3, u
     FieldTask_Start(fieldSystem->unk_10, sub_0206BB94, v1);
 }
 
-static int sub_0206BC48 (UnkStruct_0206BC48 * param0, FieldSystem * fieldSystem)
+static int sub_0206BC48(UnkStruct_0206BC48 *param0, FieldSystem *fieldSystem)
 {
-    SaveData * v0;
+    SaveData *v0;
 
     if (sub_02039074(fieldSystem->saveData)) {
         param0->unk_08 = sub_0203E1AC(fieldSystem, param0->unk_12, param0->unk_14);
@@ -230,10 +231,10 @@ static int sub_0206BC48 (UnkStruct_0206BC48 * param0, FieldSystem * fieldSystem)
     }
 }
 
-static int sub_0206BC70 (UnkStruct_0206BC48 * param0, FieldSystem * fieldSystem)
+static int sub_0206BC70(UnkStruct_0206BC48 *param0, FieldSystem *fieldSystem)
 {
     u8 v0;
-    UnkStruct_0206BC70 * v1;
+    UnkStruct_0206BC70 *v1;
 
     if (sub_020509B4(fieldSystem)) {
         return 1;
@@ -245,11 +246,11 @@ static int sub_0206BC70 (UnkStruct_0206BC48 * param0, FieldSystem * fieldSystem)
     return 2;
 }
 
-static BOOL sub_0206BC94 (TaskManager * param0)
+static BOOL sub_0206BC94(TaskManager *param0)
 {
-    u16 * v0;
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_0206BC48 * v2 = TaskManager_Environment(param0);
+    u16 *v0;
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+    UnkStruct_0206BC48 *v2 = TaskManager_Environment(param0);
 
     switch (v2->unk_04) {
     case 0:
@@ -268,10 +269,10 @@ static BOOL sub_0206BC94 (TaskManager * param0)
     return 0;
 }
 
-void sub_0206BCE4 (TaskManager * param0, u16 param1, u16 param2, u16 param3)
+void sub_0206BCE4(TaskManager *param0, u16 param1, u16 param2, u16 param3)
 {
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_0206BC48 * v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0206BC48));
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+    UnkStruct_0206BC48 *v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0206BC48));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_0206BC48));
 
@@ -282,12 +283,12 @@ void sub_0206BCE4 (TaskManager * param0, u16 param1, u16 param2, u16 param3)
     FieldTask_Start(fieldSystem->unk_10, sub_0206BC94, v1);
 }
 
-static BOOL sub_0206BD1C (TaskManager * param0)
+static BOOL sub_0206BD1C(TaskManager *param0)
 {
-    u16 * v0;
-    const void * v1;
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_0206BD88 * v3 = TaskManager_Environment(param0);
+    u16 *v0;
+    const void *v1;
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+    UnkStruct_0206BD88 *v3 = TaskManager_Environment(param0);
 
     v1 = sub_0203664C(1 - CommSys_CurNetId());
 
@@ -312,10 +313,10 @@ static BOOL sub_0206BD1C (TaskManager * param0)
     return 1;
 }
 
-void sub_0206BD88 (TaskManager * param0, u16 param1, u16 param2)
+void sub_0206BD88(TaskManager *param0, u16 param1, u16 param2)
 {
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_0206BD88 * v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0206BD88));
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+    UnkStruct_0206BD88 *v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0206BD88));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_0206BD88));
 
@@ -325,11 +326,11 @@ void sub_0206BD88 (TaskManager * param0, u16 param1, u16 param2)
     FieldTask_Start(fieldSystem->unk_10, sub_0206BD1C, v1);
 }
 
-u16 sub_0206BDBC (SaveData * param0)
+u16 sub_0206BDBC(SaveData *param0)
 {
-    UnkStruct_0203068C * v0;
-    UnkStruct_0202D750 * v1;
-    UndergroundData * v2;
+    UnkStruct_0203068C *v0;
+    UnkStruct_0202D750 *v1;
+    UndergroundData *v2;
     u16 v3;
     u8 v4, v5, v6, v7, v8, v9;
 
@@ -400,10 +401,10 @@ u16 sub_0206BDBC (SaveData * param0)
     }
 }
 
-u16 sub_0206BF04 (SaveData * param0)
+u16 sub_0206BF04(SaveData *param0)
 {
-    UnkStruct_0203068C * v0;
-    UnkStruct_0202D750 * v1;
+    UnkStruct_0203068C *v0;
+    UnkStruct_0202D750 *v1;
     u16 v2;
     u8 v3, v4, v5, v6, v7, v8;
 
@@ -461,17 +462,17 @@ u16 sub_0206BF04 (SaveData * param0)
     return 3;
 }
 
-u32 sub_0206BFF0 (u32 param0)
+u32 sub_0206BFF0(u32 param0)
 {
     return param0 * 48828125L + 1;
 }
 
-u32 sub_0206BFFC (u32 param0)
+u32 sub_0206BFFC(u32 param0)
 {
     return param0 * 1566083941 + 1;
 }
 
-u32 sub_0206C008 (SaveData * param0)
+u32 sub_0206C008(SaveData *param0)
 {
     u32 v0;
 
@@ -483,10 +484,10 @@ u32 sub_0206C008 (SaveData * param0)
     return v0;
 }
 
-u32 sub_0206C02C (SaveData * param0)
+u32 sub_0206C02C(SaveData *param0)
 {
     u32 v0, v1;
-    UnkStruct_0202D750 * v2 = sub_0202D750(param0);
+    UnkStruct_0202D750 *v2 = sub_0202D750(param0);
 
     v1 = sub_0202D474(v2);
     v1 = sub_0206BFFC(v1);
@@ -498,12 +499,12 @@ u32 sub_0206C02C (SaveData * param0)
     return v0;
 }
 
-u32 sub_0206C068 (SaveData * param0)
+u32 sub_0206C068(SaveData *param0)
 {
     int v0, v1;
     u32 v2, v3;
-    UnkStruct_0202D750 * v4 = sub_0202D750(param0);
-    UnkStruct_0202D060 * v5 = sub_0202D740(param0);
+    UnkStruct_0202D750 *v4 = sub_0202D750(param0);
+    UnkStruct_0202D060 *v5 = sub_0202D740(param0);
 
     v3 = sub_0202D474(v4);
     v2 = sub_0206BFF0(v3);
@@ -519,7 +520,7 @@ u32 sub_0206C068 (SaveData * param0)
     return v2;
 }
 
-BOOL sub_0206C0D0 (FieldSystem * fieldSystem)
+BOOL sub_0206C0D0(FieldSystem *fieldSystem)
 {
     if (fieldSystem->location->mapId == SPECIES_ARCEUS) {
         return 1;

@@ -1,17 +1,18 @@
 #ifndef POKEPLATINUM_POKETCH_SYSTEM_H
 #define POKEPLATINUM_POKETCH_SYSTEM_H
 
+#include <nnsys.h>
+
 #include "struct_decls/struct_02018340_decl.h"
+
 #include "field/field_system_decl.h"
+#include "overlay025/poketch_button.h"
+#include "overlay025/struct_ov25_02254560_1.h"
+#include "overlay025/struct_ov25_02254560_decl.h"
+
 #include "poketch_data.h"
 #include "savedata.h"
 #include "sys_task_manager.h"
-
-#include "overlay025/struct_ov25_02254560_decl.h"
-#include "overlay025/struct_ov25_02254560_1.h"
-#include "overlay025/poketch_button.h"
-
-#include <nnsys.h>
 
 #define POKETCH_PEDOMETER_MAX 99999
 
@@ -67,16 +68,16 @@ enum PoketchBorderColor {
 enum PoketchEventID {
     POKETCH_EVENT_SLEEP = 0,
     POKETCH_EVENT_PLAYER_MOVED,
-    
+
     POKETCH_EVENT_SAVE = 4,
     POKETCH_EVENT_PEDOMETER,
 };
 
 typedef struct PoketchSystem PoketchSystem;
 
-typedef BOOL (* PoketchAppInitFunction)(void **app, PoketchSystem *poketchSys, BGL *bgl, u32 appID);
-typedef void (* PoketchAppShutdownFunction)(void *app);
-typedef void (* PoketchAppSaveFunction)(void *app);
+typedef BOOL (*PoketchAppInitFunction)(void **app, PoketchSystem *poketchSys, BGL *bgl, u32 appID);
+typedef void (*PoketchAppShutdownFunction)(void *app);
+typedef void (*PoketchAppSaveFunction)(void *app);
 
 struct PoketchSystem {
     u8 systemState;
@@ -92,22 +93,22 @@ struct PoketchSystem {
     u32 appSkipTimer;
     enum PoketchAppID loadedAppID;
     FSOverlayID loadedAppOverlayID;
-    UnkStruct_ov25_02254560 * unk_1C;
+    UnkStruct_ov25_02254560 *unk_1C;
     UnkStruct_ov25_02254560_1 unk_20;
-    void * unk_24;
+    void *unk_24;
     PoketchButtonManager *buttonManager;
     u32 unk_2C;
     u32 unk_30;
-    PoketchSystem ** poketchSysPtr;
-    SysTask * unk_38;
+    PoketchSystem **poketchSysPtr;
+    SysTask *unk_38;
 
     PoketchAppInitFunction currAppInit;
     PoketchAppShutdownFunction currAppShutdown;
     PoketchAppSaveFunction currAppSave;
-    void * appSaveData;
+    void *appSaveData;
 
     BGL *bgl;
-    NNSG2dOamManagerInstance * oamManager;
+    NNSG2dOamManagerInstance *oamManager;
 
     SaveData *saveData;
     PoketchData *poketchData;
@@ -125,7 +126,7 @@ void PoketchSystem_SetAppFunctions(PoketchAppInitFunction initFunction, PoketchA
 void PoketchSystem_NotifyAppLoaded(PoketchSystem *poketchSys);
 void PoketchSystem_NotifyAppUnloaded(PoketchSystem *poketchSys);
 void PoketchSystem_SetSaveFunction(PoketchAppSaveFunction saveFunction, void *saveData);
-UnkStruct_ov25_02254560 * ov25_02254418(void);
+UnkStruct_ov25_02254560 *ov25_02254418(void);
 void PoketchSystem_PlaySoundEffect(u32 soundID);
 void ov25_02254444(u32 param0, u32 param1);
 BOOL PoketchSystem_GetDisplayHeldCoords(u32 *x, u32 *y);
@@ -134,9 +135,9 @@ BOOL ov25_0225450C(const PoketchSystem *poketchSys);
 void ov25_02254518(const PoketchSystem *poketchSys, PoketchButtonManager *buttonManager);
 BOOL PoketchSystem_IsPlayerMoving(const PoketchSystem *poketchSys);
 BOOL PoketchSystem_PedometerUpdated(const PoketchSystem *poketchSys);
-FieldSystem * PoketchSystem_GetFieldSystem(const PoketchSystem *poketchSys);
-PoketchData * PoketchSystem_GetPoketchData(const PoketchSystem *poketchSys);
-SaveData * PoketchSystem_GetSaveData(const PoketchSystem *poketchSys);
+FieldSystem *PoketchSystem_GetFieldSystem(const PoketchSystem *poketchSys);
+PoketchData *PoketchSystem_GetPoketchData(const PoketchSystem *poketchSys);
+SaveData *PoketchSystem_GetSaveData(const PoketchSystem *poketchSys);
 int PoketchSystem_GetBorderColor(const PoketchSystem *poketchSys);
 
 #endif // POKEPLATINUM_POKETCH_SYSTEM_H

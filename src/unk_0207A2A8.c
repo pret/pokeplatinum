@@ -1,33 +1,32 @@
+#include "unk_0207A2A8.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "pokemon.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_02098700_decl.h"
-
+#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0202610C.h"
 
-#include "unk_0202602C.h"
-#include "pokemon.h"
 #include "party.h"
-#include "unk_0207A2A8.h"
+#include "pokemon.h"
+#include "unk_0202602C.h"
 #include "unk_02098700.h"
 
-HeightWeightData * sub_0207A2A8 (int param0)
+HeightWeightData *sub_0207A2A8(int param0)
 {
-    HeightWeightData * v0 = Pokedex_HeightWeightData(param0);
+    HeightWeightData *v0 = Pokedex_HeightWeightData(param0);
 
     Pokedex_HeightWeightData_Load(v0, 0, param0);
     return v0;
 }
 
-void sub_0207A2C0 (HeightWeightData * param0)
+void sub_0207A2C0(HeightWeightData *param0)
 {
     Pokedex_HeightWeightData_Release(param0);
     Pokedex_HeightWeightData_Free(param0);
 }
 
-BOOL sub_0207A2D0 (const BattleRegulation * param0, Pokemon * param1, const HeightWeightData * param2)
+BOOL sub_0207A2D0(const BattleRegulation *param0, Pokemon *param1, const HeightWeightData *param2)
 {
     u16 v0 = (u16)Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
     int v1, v2, v3;
@@ -97,9 +96,9 @@ BOOL sub_0207A2D0 (const BattleRegulation * param0, Pokemon * param1, const Heig
     return 1;
 }
 
-int sub_0207A3AC (const BattleRegulation * param0, Party * param1, const HeightWeightData * param2, u8 * param3)
+int sub_0207A3AC(const BattleRegulation *param0, Party *param1, const HeightWeightData *param2, u8 *param3)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     int v1, v2 = 0, v3, v4, v5 = 0;
     u16 v6[6], v7[6];
 
@@ -172,7 +171,7 @@ int sub_0207A3AC (const BattleRegulation * param0, Party * param1, const HeightW
     return 0;
 }
 
-static BOOL sub_0207A514 (u16 * param0, u16 * param1, u16 * param2, int param3, int param4, int param5, int param6)
+static BOOL sub_0207A514(u16 *param0, u16 *param1, u16 *param2, int param3, int param4, int param5, int param6)
 {
     int v0 = param3;
     int v1;
@@ -204,9 +203,9 @@ static BOOL sub_0207A514 (u16 * param0, u16 * param1, u16 * param2, int param3, 
     return 0;
 }
 
-int sub_0207A594 (const BattleRegulation * param0, Party * param1, const HeightWeightData * param2)
+int sub_0207A594(const BattleRegulation *param0, Party *param1, const HeightWeightData *param2)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     int v1, v2, v3, v4, v5 = 0;
     u16 v6[6], v7[6], v8[6];
     int v9;

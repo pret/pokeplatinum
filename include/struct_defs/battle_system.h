@@ -1,96 +1,98 @@
 #ifndef POKEPLATINUM_STRUCT_BATTLE_SYSTEM_T_H
 #define POKEPLATINUM_STRUCT_BATTLE_SYSTEM_T_H
 
+#include <nnsys.h>
+
 #include "constants/battle.h"
 #include "constants/time.h"
 
+#include "struct_decls/pokedexdata_decl.h"
+#include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
-#include "message.h"
-#include "string_template.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "sys_task_manager.h"
-#include "strbuf.h"
-#include "trainer_info.h"
-#include "struct_decls/pokedexdata_decl.h"
-#include "game_options.h"
 #include "struct_decls/struct_02027F8C_decl.h"
-#include "struct_defs/chatot_cry.h"
-#include "poketch_data.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_decls/struct_0206D140_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_defs/trainer_data.h"
+#include "struct_defs/chatot_cry.h"
+#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
-#include "bag.h"
 #include "struct_defs/struct_0209C370.h"
-#include "overlay006/struct_ov6_02240D5C_sub1.h"
-#include "overlay010/struct_ov10_0221F800.h"
-#include "overlay012/struct_ov12_0221FCDC_decl.h"
-#include "battle/struct_ov16_0223E0C8.h"
+#include "struct_defs/trainer_data.h"
+
 #include "battle/battle_context.h"
+#include "battle/struct_ov16_0223E0C8.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_02268520.h"
 #include "battle/struct_ov16_02268A14_decl.h"
 #include "battle/struct_ov16_0226D160_decl.h"
+#include "overlay006/struct_ov6_02240D5C_sub1.h"
+#include "overlay010/struct_ov10_0221F800.h"
+#include "overlay012/struct_ov12_0221FCDC_decl.h"
 
-#include <nnsys.h>
+#include "bag.h"
+#include "game_options.h"
+#include "message.h"
+#include "poketch_data.h"
+#include "strbuf.h"
+#include "string_template.h"
+#include "sys_task_manager.h"
+#include "trainer_info.h"
 
 struct BattleSystem {
-    GenericPointerData * unk_00;
-    BGL * unk_04;
+    GenericPointerData *unk_00;
+    BGL *unk_04;
     Window *windows;
-    MessageLoader * unk_0C;
-    MessageLoader * unk_10;
+    MessageLoader *unk_0C;
+    MessageLoader *unk_10;
     StringTemplate *strFormatter;
     Strbuf *msgBuffer;
-    SysTask * unk_1C;
-    SysTask * unk_20;
-    SysTask * unk_24;
-    PaletteData * unk_28;
+    SysTask *unk_1C;
+    SysTask *unk_20;
+    SysTask *unk_24;
+    PaletteData *unk_28;
     u32 battleType;
     BattleContext *battleCtx;
     BattlerData *battlers[MAX_BATTLERS];
     int maxBattlers;
     TrainerInfo *trainerInfo[4];
-    Bag * unk_58;
-    UnkStruct_0207D99C * unk_5C;
+    Bag *unk_58;
+    UnkStruct_0207D99C *unk_5C;
     PokedexData *pokedex;
     PCBoxes *pcBoxes;
     Party *parties[4];
-    ChatotCry * unk_78[4];
-    UnkStruct_02007768 * unk_88;
-    UnkStruct_ov12_0221FCDC * unk_8C;
-    SpriteRenderer * unk_90;
-    SpriteGfxHandler * unk_94;
+    ChatotCry *unk_78[4];
+    UnkStruct_02007768 *unk_88;
+    UnkStruct_ov12_0221FCDC *unk_8C;
+    SpriteRenderer *unk_90;
+    SpriteGfxHandler *unk_94;
     PoketchData *poketchData;
-    UnkStruct_0206D140 * unk_9C;
+    UnkStruct_0206D140 *unk_9C;
     u16 trainerIDs[4];
     u8 unk_A8[4];
     TrainerData trainers[4];
     UnkStruct_ov16_02268520 unk_17C[2];
-    UnkStruct_ov16_02268A14 * unk_198;
-    PartyGauge * unk_19C[2];
-    UnkStruct_0200C440 * unk_1A4;
-    UnkStruct_0200C440 * unk_1A8;
-    void * unk_1AC;
-    Options * unk_1B0;
-    UnkStruct_02027F8C * unk_1B4;
-    void * unk_1B8;
-    UnkStruct_0209C370 * unk_1BC;
-    UnkStruct_ov10_0221F800 * unk_1C0;
-    PokemonAnimationSys * unk_1C4;
+    UnkStruct_ov16_02268A14 *unk_198;
+    PartyGauge *unk_19C[2];
+    UnkStruct_0200C440 *unk_1A4;
+    UnkStruct_0200C440 *unk_1A8;
+    void *unk_1AC;
+    Options *unk_1B0;
+    UnkStruct_02027F8C *unk_1B4;
+    void *unk_1B8;
+    UnkStruct_0209C370 *unk_1BC;
+    UnkStruct_ov10_0221F800 *unk_1C0;
+    PokemonAnimationSys *unk_1C4;
     NNSG2dCellTransferState *cellTransferState;
     UnkStruct_ov16_0223E0C8 unk_1CC[4];
     BattleParams_sub1 unk_20C;
     GameRecords *records;
-    u8 * unk_21C;
-    u16 * unk_220;
+    u8 *unk_21C;
+    u16 *unk_220;
     u8 unk_224[4096];
     u8 unk_1224[4096];
     u16 unk_2224[112];
@@ -101,8 +103,8 @@ struct BattleSystem {
     u16 unk_23EA;
     u16 unk_23EC;
     u16 unk_23EE;
-    u8 * unk_23F0;
-    u8 * unk_23F4;
+    u8 *unk_23F0;
+    u8 *unk_23F4;
     u8 unk_23F8;
     u8 unk_23F9;
     u8 unk_23FA;

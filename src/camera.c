@@ -1,16 +1,17 @@
+#include "camera.h"
+
 #include <nitro.h>
-#include <string.h>
 #include <nnsys.h>
+#include <string.h>
 
 #include "overlay115/camera_angle.h"
 
 #include "heap.h"
 #include "unk_0201E190.h"
-#include "camera.h"
 
-#define CAMERA_DEFAULT_ASPECT_RATIO     (FX32_ONE * 4 / 3)
-#define CAMERA_DEFAULT_NEAR_CLIP        (FX32_ONE * 150)
-#define CAMERA_DEFAULT_FAR_CLIP         (FX32_ONE * 900)
+#define CAMERA_DEFAULT_ASPECT_RATIO (FX32_ONE * 4 / 3)
+#define CAMERA_DEFAULT_NEAR_CLIP    (FX32_ONE * 150)
+#define CAMERA_DEFAULT_FAR_CLIP     (FX32_ONE * 900)
 
 GXBufferMode gBufferMode = GX_BUFFERMODE_W;
 
@@ -224,7 +225,7 @@ void Camera_ComputeViewMatrixWithRoll(void)
 
         VecFx32 cameraPos = sActiveCamera->lookAt.position;
         VecFx32 cameraUp = sActiveCamera->lookAt.up;
-        const VecFx32 * targetPos = sActiveCamera->targetPos;
+        const VecFx32 *targetPos = sActiveCamera->targetPos;
         fx16 cosPitch = FX_CosIdx(sActiveCamera->angle.x);
         fx16 sinYaw = FX_SinIdx(sActiveCamera->angle.y);
         fx16 cosYaw = FX_CosIdx(sActiveCamera->angle.y);
@@ -320,9 +321,9 @@ void Camera_InitWithTargetAndPosition(const VecFx32 *target, const VecFx32 *posi
     camera->distance = VEC_Mag(&distanceVector);
 
     // ROM doesn't match without these
-    VecFx32 unused0 = {0, 0, 0};
-    VecFx32 unused1 = {0, 0, 0};
-    VecFx32 v = {0, 0, 0};
+    VecFx32 unused0 = { 0, 0, 0 };
+    VecFx32 unused1 = { 0, 0, 0 };
+    VecFx32 v = { 0, 0, 0 };
     VecFx32 unit;
 
     unit.x = 0;
@@ -360,12 +361,11 @@ void Camera_ComputeProjectionMatrix(const u8 projection, Camera *camera)
 {
     if (projection == CAMERA_PROJECTION_PERSPECTIVE) {
         NNS_G3dGlbPerspective(
-            camera->perspective.sinFovY, 
-            camera->perspective.cosFovY, 
-            camera->perspective.aspectRatio, 
-            camera->perspective.nearClip, 
-            camera->perspective.farClip
-        );
+            camera->perspective.sinFovY,
+            camera->perspective.cosFovY,
+            camera->perspective.aspectRatio,
+            camera->perspective.nearClip,
+            camera->perspective.farClip);
 
         camera->projection = CAMERA_PROJECTION_PERSPECTIVE;
         gBufferMode = GX_BUFFERMODE_Z;

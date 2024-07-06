@@ -1,28 +1,28 @@
+#include "overlay022/ov22_02254DE0.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-
 #include "struct_decls/struct_02015214_decl.h"
 
-#include "touch_screen.h"
 #include "overlay021/struct_ov21_021E7F40.h"
+#include "overlay022/ov22_02255094.h"
 #include "overlay022/struct_ov22_02254DE0.h"
 #include "overlay022/struct_ov22_0225500C.h"
 #include "overlay022/struct_ov22_02255040.h"
 
-#include "unk_02015064.h"
+#include "core_sys.h"
 #include "heap.h"
-#include "overlay022/ov22_02254DE0.h"
-#include "overlay022/ov22_02255094.h"
+#include "touch_screen.h"
+#include "unk_02015064.h"
 
-static UnkStruct_ov22_02255040 * ov22_02254FE0(UnkStruct_ov22_02254DE0 * param0);
-static UnkStruct_02015214 * ov22_0225500C(UnkStruct_ov22_0225500C * param0);
-static void ov22_02255040(UnkStruct_ov22_02255040 * param0, TouchScreenHitTable *hitTable);
+static UnkStruct_ov22_02255040 *ov22_02254FE0(UnkStruct_ov22_02254DE0 *param0);
+static UnkStruct_02015214 *ov22_0225500C(UnkStruct_ov22_0225500C *param0);
+static void ov22_02255040(UnkStruct_ov22_02255040 *param0, TouchScreenHitTable *hitTable);
 
-UnkStruct_ov22_02254DE0 * ov22_02254DE0 (int param0, int param1)
+UnkStruct_ov22_02254DE0 *ov22_02254DE0(int param0, int param1)
 {
-    UnkStruct_ov22_02254DE0 * v0;
+    UnkStruct_ov22_02254DE0 *v0;
 
     v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov22_02254DE0));
     v0->unk_00 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov22_02255040) * param0);
@@ -32,16 +32,16 @@ UnkStruct_ov22_02254DE0 * ov22_02254DE0 (int param0, int param1)
     return v0;
 }
 
-void ov22_02254E0C (UnkStruct_ov22_02254DE0 * param0)
+void ov22_02254E0C(UnkStruct_ov22_02254DE0 *param0)
 {
     Heap_FreeToHeap(param0->unk_00);
     Heap_FreeToHeap(param0);
     param0 = NULL;
 }
 
-UnkStruct_ov22_02255040 * ov22_02254E20 (UnkStruct_ov22_0225500C * param0)
+UnkStruct_ov22_02255040 *ov22_02254E20(UnkStruct_ov22_0225500C *param0)
 {
-    UnkStruct_ov22_02255040 * v0;
+    UnkStruct_ov22_02255040 *v0;
 
     v0 = ov22_02254FE0(param0->unk_00);
     GF_ASSERT(v0);
@@ -52,7 +52,7 @@ UnkStruct_ov22_02255040 * ov22_02254E20 (UnkStruct_ov22_0225500C * param0)
     return v0;
 }
 
-BOOL ov22_02254E44 (UnkStruct_ov22_02255040 * param0)
+BOOL ov22_02254E44(UnkStruct_ov22_02255040 *param0)
 {
     TouchScreenHitTable v0;
 
@@ -60,7 +60,7 @@ BOOL ov22_02254E44 (UnkStruct_ov22_02255040 * param0)
     return TouchScreen_LocationHeld(&v0);
 }
 
-BOOL ov22_02254E54 (UnkStruct_ov22_02255040 * param0, int * param1, int * param2, NNSG2dCharacterData * param3)
+BOOL ov22_02254E54(UnkStruct_ov22_02255040 *param0, int *param1, int *param2, NNSG2dCharacterData *param3)
 {
     BOOL v0;
     int v1, v2;
@@ -94,7 +94,7 @@ BOOL ov22_02254E54 (UnkStruct_ov22_02255040 * param0, int * param1, int * param2
     return 0;
 }
 
-BOOL ov22_02254EDC (UnkStruct_ov22_02255040 * param0, int param1, int param2)
+BOOL ov22_02254EDC(UnkStruct_ov22_02255040 *param0, int param1, int param2)
 {
     TouchScreenHitTable v0;
 
@@ -102,12 +102,12 @@ BOOL ov22_02254EDC (UnkStruct_ov22_02255040 * param0, int param1, int param2)
     return sub_02022830(&v0, param1, param2);
 }
 
-void ov22_02254EF4 (UnkStruct_ov22_02255040 * param0, s16 param1, s16 param2)
+void ov22_02254EF4(UnkStruct_ov22_02255040 *param0, s16 param1, s16 param2)
 {
     sub_02015254(param0->unk_04, param1, param2);
 }
 
-void ov22_02254F00 (UnkStruct_ov22_02255040 * param0, int * param1, int * param2)
+void ov22_02254F00(UnkStruct_ov22_02255040 *param0, int *param1, int *param2)
 {
     NNSG2dSVec2 v0;
 
@@ -116,7 +116,7 @@ void ov22_02254F00 (UnkStruct_ov22_02255040 * param0, int * param1, int * param2
     *param2 = v0.y;
 }
 
-void ov22_02254F30 (UnkStruct_ov22_02255040 * param0, int * param1, int * param2)
+void ov22_02254F30(UnkStruct_ov22_02255040 *param0, int *param1, int *param2)
 {
     NNSG2dSVec2 v0;
 
@@ -125,22 +125,22 @@ void ov22_02254F30 (UnkStruct_ov22_02255040 * param0, int * param1, int * param2
     *param2 = v0.y;
 }
 
-void ov22_02254F60 (UnkStruct_ov22_02255040 * param0, BOOL param1)
+void ov22_02254F60(UnkStruct_ov22_02255040 *param0, BOOL param1)
 {
     sub_02015240(param0->unk_04, param1);
 }
 
-void ov22_02254F6C (UnkStruct_ov22_02255040 * param0, int param1)
+void ov22_02254F6C(UnkStruct_ov22_02255040 *param0, int param1)
 {
     sub_0201528C(param0->unk_04, param1);
 }
 
-int ov22_02254F78 (UnkStruct_ov22_02255040 * param0)
+int ov22_02254F78(UnkStruct_ov22_02255040 *param0)
 {
     return sub_02015290(param0->unk_04);
 }
 
-void ov22_02254F84 (UnkStruct_ov22_02255040 * param0, int * param1, int * param2)
+void ov22_02254F84(UnkStruct_ov22_02255040 *param0, int *param1, int *param2)
 {
     int v0, v1;
 
@@ -171,7 +171,7 @@ void ov22_02254F84 (UnkStruct_ov22_02255040 * param0, int * param1, int * param2
     }
 }
 
-static UnkStruct_ov22_02255040 * ov22_02254FE0 (UnkStruct_ov22_02254DE0 * param0)
+static UnkStruct_ov22_02255040 *ov22_02254FE0(UnkStruct_ov22_02254DE0 *param0)
 {
     int v0;
 
@@ -184,7 +184,7 @@ static UnkStruct_ov22_02255040 * ov22_02254FE0 (UnkStruct_ov22_02254DE0 * param0
     return NULL;
 }
 
-static UnkStruct_02015214 * ov22_0225500C (UnkStruct_ov22_0225500C * param0)
+static UnkStruct_02015214 *ov22_0225500C(UnkStruct_ov22_0225500C *param0)
 {
     UnkStruct_ov21_021E7F40 v0;
 
@@ -201,7 +201,7 @@ static UnkStruct_02015214 * ov22_0225500C (UnkStruct_ov22_0225500C * param0)
     return sub_02015214(&v0);
 }
 
-static void ov22_02255040 (UnkStruct_ov22_02255040 * param0, TouchScreenHitTable *hitTable)
+static void ov22_02255040(UnkStruct_ov22_02255040 *param0, TouchScreenHitTable *hitTable)
 {
     NNSG2dSVec2 v0 = sub_0201525C(param0->unk_04);
     NNSG2dSVec2 v1 = sub_02015280(param0->unk_04);

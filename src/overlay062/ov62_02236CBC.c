@@ -1,69 +1,68 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay062/ov62_const_funcptr_tables.h"
-
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0202D750_decl.h"
-
+#include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0208C06C.h"
-#include "overlay062/struct_ov62_022312B0.h"
-#include "struct_defs/sprite_template.h"
 
+#include "overlay062/ov62_0222F2C0.h"
+#include "overlay062/ov62_022300D8.h"
+#include "overlay062/ov62_02231690.h"
+#include "overlay062/ov62_const_funcptr_tables.h"
+#include "overlay062/struct_ov62_022312B0.h"
+
+#include "gx_layers.h"
+#include "heap.h"
+#include "touch_screen.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
-#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "gx_layers.h"
-#include "touch_screen.h"
 #include "unk_0202D05C.h"
 #include "unk_02030A80.h"
-#include "vars_flags.h"
 #include "unk_0206AFE0.h"
 #include "unk_0208B284.h"
-#include "overlay062/ov62_0222F2C0.h"
-#include "overlay062/ov62_022300D8.h"
-#include "overlay062/ov62_02231690.h"
+#include "vars_flags.h"
 
 typedef struct {
     int unk_00;
     f32 unk_04[5];
     int unk_18[5];
     int unk_2C[5];
-    CellActorData * unk_40[5];
-    CellActorData * unk_54[5];
-    CellActorData * unk_68[5];
-    CellActorData * unk_7C[5];
+    CellActorData *unk_40[5];
+    CellActorData *unk_54[5];
+    CellActorData *unk_68[5];
+    CellActorData *unk_7C[5];
     int unk_90;
-    CellActorData * unk_94[2];
+    CellActorData *unk_94[2];
     UnkStruct_ov62_022312B0 unk_9C[2];
     int unk_D4;
     int unk_D8;
 } UnkStruct_ov62_02236CBC;
 
-static void ov62_02236CBC(UnkStruct_0208C06C * param0, int param1);
-static void ov62_02236CF8(UnkStruct_0208C06C * param0, int param1);
-static void ov62_02236D48(UnkStruct_0208C06C * param0);
-static void ov62_02236DE8(UnkStruct_0208C06C * param0);
-static void ov62_02236E14(UnkStruct_0208C06C * param0);
-static void ov62_022370D4(u16 * param0, u16 param1, u16 param2);
-static void ov62_022371CC(UnkStruct_0208C06C * param0);
-static void ov62_022374A8(UnkStruct_0208C06C * param0);
-static BOOL ov62_022375A4(UnkStruct_0208C06C * param0);
-static BOOL ov62_022376C4(UnkStruct_0208C06C * param0);
-static void ov62_02237814(UnkStruct_0208C06C * param0);
-static BOOL ov62_02237884(UnkStruct_0208C06C * param0);
-static BOOL ov62_02237AC0(UnkStruct_0208C06C * param0);
-static BOOL ov62_02237B00(UnkStruct_0208C06C * param0);
+static void ov62_02236CBC(UnkStruct_0208C06C *param0, int param1);
+static void ov62_02236CF8(UnkStruct_0208C06C *param0, int param1);
+static void ov62_02236D48(UnkStruct_0208C06C *param0);
+static void ov62_02236DE8(UnkStruct_0208C06C *param0);
+static void ov62_02236E14(UnkStruct_0208C06C *param0);
+static void ov62_022370D4(u16 *param0, u16 param1, u16 param2);
+static void ov62_022371CC(UnkStruct_0208C06C *param0);
+static void ov62_022374A8(UnkStruct_0208C06C *param0);
+static BOOL ov62_022375A4(UnkStruct_0208C06C *param0);
+static BOOL ov62_022376C4(UnkStruct_0208C06C *param0);
+static void ov62_02237814(UnkStruct_0208C06C *param0);
+static BOOL ov62_02237884(UnkStruct_0208C06C *param0);
+static BOOL ov62_02237AC0(UnkStruct_0208C06C *param0);
+static BOOL ov62_02237B00(UnkStruct_0208C06C *param0);
 
 // clang-format off
 BOOL(*const Unk_ov62_02248C50[])(UnkStruct_0208C06C *) = {
@@ -73,9 +72,9 @@ BOOL(*const Unk_ov62_02248C50[])(UnkStruct_0208C06C *) = {
 };
 // clang-format on
 
-static void ov62_02236CBC (UnkStruct_0208C06C * param0, int param1)
+static void ov62_02236CBC(UnkStruct_0208C06C *param0, int param1)
 {
-    UnkStruct_ov62_02236CBC * v0 = param0->unk_860;
+    UnkStruct_ov62_02236CBC *v0 = param0->unk_860;
 
     if (param1 == 0) {
         SpriteActor_SetSpritePositionXY(v0->unk_9C[1].unk_08, 128, 232);
@@ -86,22 +85,22 @@ static void ov62_02236CBC (UnkStruct_0208C06C * param0, int param1)
     sub_020128C4(v0->unk_9C[1].unk_0C, 36, -8);
 }
 
-static void ov62_02236CF8 (UnkStruct_0208C06C * param0, int param1)
+static void ov62_02236CF8(UnkStruct_0208C06C *param0, int param1)
 {
-    NARC * v0 = param0->unk_14.unk_00;
-    BGL * v1 = param0->unk_14.unk_10;
-    SpriteRenderer * v2 = param0->unk_14.unk_04;
-    SpriteGfxHandler * v3 = param0->unk_14.unk_08;
-    PaletteData * v4 = param0->unk_14.unk_14;
+    NARC *v0 = param0->unk_14.unk_00;
+    BGL *v1 = param0->unk_14.unk_10;
+    SpriteRenderer *v2 = param0->unk_14.unk_04;
+    SpriteGfxHandler *v3 = param0->unk_14.unk_08;
+    PaletteData *v4 = param0->unk_14.unk_14;
 
     SpriteRenderer_LoadCharResObjFromOpenNarc(v2, v3, v0, 50, 0, param1, 11924);
     SpriteRenderer_LoadCellResObjFromOpenNarc(v2, v3, v0, 28, 0, 11924);
     SpriteRenderer_LoadAnimResObjFromOpenNarc(v2, v3, v0, 29, 0, 11924);
 }
 
-static void ov62_02236D48 (UnkStruct_0208C06C * param0)
+static void ov62_02236D48(UnkStruct_0208C06C *param0)
 {
-    UnkStruct_ov62_02236CBC * v0 = param0->unk_860;
+    UnkStruct_ov62_02236CBC *v0 = param0->unk_860;
 
     ov62_02236CF8(param0, NNS_G2D_VRAM_TYPE_2DSUB);
 
@@ -123,9 +122,9 @@ static void ov62_02236D48 (UnkStruct_0208C06C * param0)
     ov62_02236CBC(param0, 1);
 }
 
-static void ov62_02236DE8 (UnkStruct_0208C06C * param0)
+static void ov62_02236DE8(UnkStruct_0208C06C *param0)
 {
-    UnkStruct_ov62_02236CBC * v0 = param0->unk_860;
+    UnkStruct_ov62_02236CBC *v0 = param0->unk_860;
 
     ov62_022312B0(&v0->unk_9C[1]);
     sub_0200D0F4(v0->unk_9C[1].unk_08);
@@ -133,14 +132,14 @@ static void ov62_02236DE8 (UnkStruct_0208C06C * param0)
     ov62_022313BC(param0);
 }
 
-static void ov62_02236E14 (UnkStruct_0208C06C * param0)
+static void ov62_02236E14(UnkStruct_0208C06C *param0)
 {
-    UnkStruct_ov62_02236CBC * v0 = param0->unk_860;
-    NARC * v1 = param0->unk_14.unk_00;
-    BGL * v2 = param0->unk_14.unk_10;
-    SpriteRenderer * v3 = param0->unk_14.unk_04;
-    SpriteGfxHandler * v4 = param0->unk_14.unk_08;
-    PaletteData * v5 = param0->unk_14.unk_14;
+    UnkStruct_ov62_02236CBC *v0 = param0->unk_860;
+    NARC *v1 = param0->unk_14.unk_00;
+    BGL *v2 = param0->unk_14.unk_10;
+    SpriteRenderer *v3 = param0->unk_14.unk_04;
+    SpriteGfxHandler *v4 = param0->unk_14.unk_08;
+    PaletteData *v5 = param0->unk_14.unk_14;
 
     sub_020070E8(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 6, 0, 0, 0, 102);
     sub_0200710C(v1, 68, v2, 6, 0, 0, 0, 102);
@@ -155,8 +154,8 @@ static void ov62_02236E14 (UnkStruct_0208C06C * param0)
 
     {
         int v6;
-        int v7[5] = {125, 291, 297, 295, 293};
-        int v8[5] = {126, 292, 298, 296, 294};
+        int v7[5] = { 125, 291, 297, 295, 293 };
+        int v8[5] = { 126, 292, 298, 296, 294 };
         int v9 = 9;
         int v10 = 10;
 
@@ -199,7 +198,7 @@ static void ov62_02236E14 (UnkStruct_0208C06C * param0)
     }
 }
 
-static void ov62_022370D4 (u16 * param0, u16 param1, u16 param2)
+static void ov62_022370D4(u16 *param0, u16 param1, u16 param2)
 {
     int v0, v1, v2, v3;
     u32 v4;
@@ -208,7 +207,7 @@ static void ov62_022370D4 (u16 * param0, u16 param1, u16 param2)
         param0++;
     }
 
-    for ( ; v0 < param1 + param2; v0++) {
+    for (; v0 < param1 + param2; v0++) {
         v1 = ((*param0) & 0x1f);
         v2 = (((*param0) >> 5) & 0x1f);
         v3 = (((*param0) >> 10) & 0x1f);
@@ -220,18 +219,18 @@ static void ov62_022370D4 (u16 * param0, u16 param1, u16 param2)
     }
 }
 
-static void ov62_0223712C (UnkStruct_0208C06C * param0)
+static void ov62_0223712C(UnkStruct_0208C06C *param0)
 {
-    UnkStruct_ov62_02236CBC * v0 = param0->unk_860;
-    BGL * v1 = param0->unk_14.unk_10;
-    SpriteRenderer * v2 = param0->unk_14.unk_04;
-    SpriteGfxHandler * v3 = param0->unk_14.unk_08;
-    PaletteData * v4 = param0->unk_14.unk_14;
+    UnkStruct_ov62_02236CBC *v0 = param0->unk_860;
+    BGL *v1 = param0->unk_14.unk_10;
+    SpriteRenderer *v2 = param0->unk_14.unk_04;
+    SpriteGfxHandler *v3 = param0->unk_14.unk_08;
+    PaletteData *v4 = param0->unk_14.unk_14;
     int v5;
     int v6[5];
 
     {
-        VarsFlags * v7 = SaveData_GetVarsFlags(param0->unk_830);
+        VarsFlags *v7 = SaveData_GetVarsFlags(param0->unk_830);
 
         v6[0] = sub_0206B5C8(v7);
         v6[1] = sub_0206B588(v7);
@@ -242,11 +241,11 @@ static void ov62_0223712C (UnkStruct_0208C06C * param0)
 
     for (v5 = 0; v5 < 5; v5++) {
         if (v6[v5] != 0) {
-            int v8[] = {0, 1, 4, 3, 2};
+            int v8[] = { 0, 1, 4, 3, 2 };
 
             if (v6[v5] == 2) {
-                PaletteData * v9 = param0->unk_14.unk_14;
-                u16 * v10;
+                PaletteData *v9 = param0->unk_14.unk_14;
+                u16 *v10;
 
                 v10 = sub_0200316C(v9, 2);
                 ov62_022370D4(v10, (4 + v8[v5]) * 16, 16);
@@ -257,17 +256,17 @@ static void ov62_0223712C (UnkStruct_0208C06C * param0)
     sub_02003858(v4, 1);
 }
 
-static void ov62_022371CC (UnkStruct_0208C06C * param0)
+static void ov62_022371CC(UnkStruct_0208C06C *param0)
 {
     int v0;
     int v1 = 0;
     int v2[4 + 1];
     int v3[5];
-    UnkStruct_ov62_02236CBC * v4 = param0->unk_860;
-    BGL * v5 = param0->unk_14.unk_10;
-    SpriteRenderer * v6 = param0->unk_14.unk_04;
-    SpriteGfxHandler * v7 = param0->unk_14.unk_08;
-    PaletteData * v8 = param0->unk_14.unk_14;
+    UnkStruct_ov62_02236CBC *v4 = param0->unk_860;
+    BGL *v5 = param0->unk_14.unk_10;
+    SpriteRenderer *v6 = param0->unk_14.unk_04;
+    SpriteGfxHandler *v7 = param0->unk_14.unk_08;
+    PaletteData *v8 = param0->unk_14.unk_14;
     SpriteTemplate v9;
 
     v9.x = 0;
@@ -327,7 +326,7 @@ static void ov62_022371CC (UnkStruct_0208C06C * param0)
     v9.priority = 20;
 
     {
-        VarsFlags * v10 = SaveData_GetVarsFlags(param0->unk_830);
+        VarsFlags *v10 = SaveData_GetVarsFlags(param0->unk_830);
 
         v3[0] = sub_0206B5C8(v10);
         v3[1] = sub_0206B588(v10);
@@ -345,7 +344,7 @@ static void ov62_022371CC (UnkStruct_0208C06C * param0)
             SpriteActor_EnableObject(v4->unk_54[v0], 0);
             SpriteActor_EnableObject(v4->unk_40[v0], 0);
         } else {
-            int v11[] = {0, 1, 4, 3, 2};
+            int v11[] = { 0, 1, 4, 3, 2 };
 
             sub_0200D364(v4->unk_68[v0], v11[v0]);
             sub_0200D41C(v4->unk_68[v0], 4 + v11[v0]);
@@ -408,10 +407,10 @@ static void ov62_022371CC (UnkStruct_0208C06C * param0)
     }
 }
 
-static void ov62_022374A8 (UnkStruct_0208C06C * param0)
+static void ov62_022374A8(UnkStruct_0208C06C *param0)
 {
     int v0;
-    UnkStruct_ov62_02236CBC * v1 = param0->unk_860;
+    UnkStruct_ov62_02236CBC *v1 = param0->unk_860;
 
     for (v0 = 0; v0 < 5; v0++) {
         SpriteGfxHandler_UnloadCharObjById(param0->unk_14.unk_08, 18181 + v0);
@@ -452,9 +451,9 @@ static void ov62_022374A8 (UnkStruct_0208C06C * param0)
     SpriteGfxHandler_UnloadAnimObjById(param0->unk_14.unk_08, 29292);
 }
 
-static BOOL ov62_022375A4 (UnkStruct_0208C06C * param0)
+static BOOL ov62_022375A4(UnkStruct_0208C06C *param0)
 {
-    UnkStruct_ov62_02236CBC * v0 = param0->unk_860;
+    UnkStruct_ov62_02236CBC *v0 = param0->unk_860;
     int v1;
     s16 v2, v3;
     fx32 v4, v5;
@@ -495,9 +494,9 @@ static BOOL ov62_022375A4 (UnkStruct_0208C06C * param0)
     return 1;
 }
 
-static BOOL ov62_022376C4 (UnkStruct_0208C06C * param0)
+static BOOL ov62_022376C4(UnkStruct_0208C06C *param0)
 {
-    UnkStruct_ov62_02236CBC * v0 = param0->unk_860;
+    UnkStruct_ov62_02236CBC *v0 = param0->unk_860;
     int v1;
     s16 v2, v3;
     fx32 v4, v5;
@@ -545,19 +544,19 @@ static BOOL ov62_022376C4 (UnkStruct_0208C06C * param0)
     return 1;
 }
 
-static void ov62_02237814 (UnkStruct_0208C06C * param0)
+static void ov62_02237814(UnkStruct_0208C06C *param0)
 {
-    UnkStruct_ov62_02236CBC * v0 = param0->unk_860;
+    UnkStruct_ov62_02236CBC *v0 = param0->unk_860;
     int v1;
     int v2 = 0;
     s16 v3, v4;
     fx32 v5, v6;
     static s16 v7[][2] = {
-        {128, 32 + 10},
-        {189, 77 + 10},
-        {172, 124 + 10},
-        {83, 124 + 10},
-        {66, 77 + 10},
+        { 128, 32 + 10 },
+        { 189, 77 + 10 },
+        { 172, 124 + 10 },
+        { 83, 124 + 10 },
+        { 66, 77 + 10 },
     };
 
     for (v1 = 0; v1 < 5; v1++) {
@@ -571,9 +570,9 @@ static void ov62_02237814 (UnkStruct_0208C06C * param0)
     }
 }
 
-static BOOL ov62_02237884 (UnkStruct_0208C06C * param0)
+static BOOL ov62_02237884(UnkStruct_0208C06C *param0)
 {
-    UnkStruct_ov62_02236CBC * v0;
+    UnkStruct_ov62_02236CBC *v0;
 
     if (param0->unk_08 == 0) {
         v0 = Heap_AllocFromHeap(102, sizeof(UnkStruct_ov62_02236CBC));
@@ -610,7 +609,7 @@ static BOOL ov62_02237884 (UnkStruct_0208C06C * param0)
     switch (param0->unk_08) {
     case 1:
         if (ov62_02231664(&v0->unk_00, 1)) {
-            UnkStruct_0202D750 * v2 = sub_0202D750(param0->unk_830);
+            UnkStruct_0202D750 *v2 = sub_0202D750(param0->unk_830);
 
             v0->unk_90 = sub_0202D230(v2, 0, 0);
             param0->unk_08++;
@@ -647,8 +646,7 @@ static BOOL ov62_02237884 (UnkStruct_0208C06C * param0)
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
         param0->unk_08++;
         break;
-    case 4:
-    {
+    case 4: {
         BOOL v3 = ov62_022375A4(param0);
 
         ov62_022315E0(&v0->unk_D4, &v0->unk_D8, 0, 0);
@@ -660,8 +658,7 @@ static BOOL ov62_02237884 (UnkStruct_0208C06C * param0)
         }
 
         sub_02003A2C(param0->unk_14.unk_14, 3, 0xC | 0x10, v0->unk_00, param0->unk_14.unk_44);
-    }
-    break;
+    } break;
     default:
         ov62_0222FB60(param0, 1);
         break;
@@ -670,9 +667,9 @@ static BOOL ov62_02237884 (UnkStruct_0208C06C * param0)
     return 0;
 }
 
-static BOOL ov62_02237AC0 (UnkStruct_0208C06C * param0)
+static BOOL ov62_02237AC0(UnkStruct_0208C06C *param0)
 {
-    UnkStruct_ov62_02236CBC * v0 = param0->unk_860;
+    UnkStruct_ov62_02236CBC *v0 = param0->unk_860;
 
     {
         u32 v1, v2;
@@ -691,9 +688,9 @@ static BOOL ov62_02237AC0 (UnkStruct_0208C06C * param0)
     return 0;
 }
 
-static BOOL ov62_02237B00 (UnkStruct_0208C06C * param0)
+static BOOL ov62_02237B00(UnkStruct_0208C06C *param0)
 {
-    UnkStruct_ov62_02236CBC * v0 = param0->unk_860;
+    UnkStruct_ov62_02236CBC *v0 = param0->unk_860;
 
     switch (param0->unk_08) {
     case 0:

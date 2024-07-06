@@ -5,8 +5,8 @@
 #include "overlay063/struct_ov63_0222BEC0_decl.h"
 
 typedef struct {
-    const UnkStruct_ov63_0222BEC0 * unk_00;
-    UnkStruct_ov63_0222BB38 * unk_04;
+    const UnkStruct_ov63_0222BEC0 *unk_00;
+    UnkStruct_ov63_0222BB38 *unk_04;
     u16 unk_08;
     u16 unk_0A;
     u16 unk_0C;

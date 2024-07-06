@@ -1,35 +1,36 @@
+#include "overlay025/ov25_02255090.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "sys_task_manager.h"
+
+#include "overlay025/ov25_02254560.h"
+#include "overlay025/struct_ov25_0225517C.h"
 #include "overlay025/struct_ov25_02255224_decl.h"
 
-#include "overlay025/struct_ov25_0225517C.h"
-
-#include "narc.h"
-#include "unk_02006E3C.h"
-#include "sys_task.h"
 #include "heap.h"
-#include "unk_02018340.h"
+#include "narc.h"
 #include "pokemon_icon.h"
-#include "overlay025/ov25_02254560.h"
-#include "overlay025/ov25_02255090.h"
+#include "sys_task.h"
+#include "sys_task_manager.h"
+#include "unk_02006E3C.h"
+#include "unk_02018340.h"
 
 struct UnkStruct_ov25_02255224_t {
     u32 unk_00;
     u32 unk_04;
-    void * unk_08;
-    void * unk_0C;
-    const void * unk_10;
-    SysTask * unk_14;
+    void *unk_08;
+    void *unk_0C;
+    const void *unk_10;
+    SysTask *unk_14;
 };
 
-static BOOL ov25_022550B0(u32 * param0, u32 param1);
-static void ov25_022550F0(u32 * param0, u32 param1);
+static BOOL ov25_022550B0(u32 *param0, u32 param1);
+static void ov25_022550F0(u32 *param0, u32 param1);
 
-void ov25_02255090 (u32 * param0, u32 param1)
+void ov25_02255090(u32 *param0, u32 param1)
 {
     u32 v0;
 
@@ -41,7 +42,7 @@ void ov25_02255090 (u32 * param0, u32 param1)
     }
 }
 
-static BOOL ov25_022550B0 (u32 * param0, u32 param1)
+static BOOL ov25_022550B0(u32 *param0, u32 param1)
 {
     u32 v0;
 
@@ -57,7 +58,7 @@ static BOOL ov25_022550B0 (u32 * param0, u32 param1)
     return 0;
 }
 
-static void ov25_022550F0 (u32 * param0, u32 param1)
+static void ov25_022550F0(u32 *param0, u32 param1)
 {
     u32 v0;
 
@@ -73,7 +74,7 @@ static void ov25_022550F0 (u32 * param0, u32 param1)
     GF_ASSERT(0);
 }
 
-BOOL ov25_02255130 (u32 * param0, u32 param1)
+BOOL ov25_02255130(u32 *param0, u32 param1)
 {
     u32 v0;
 
@@ -86,7 +87,7 @@ BOOL ov25_02255130 (u32 * param0, u32 param1)
     return 1;
 }
 
-BOOL ov25_02255154 (u32 * param0)
+BOOL ov25_02255154(u32 *param0)
 {
     u32 v0;
 
@@ -99,13 +100,13 @@ BOOL ov25_02255154 (u32 * param0)
     return 1;
 }
 
-void ov25_0225517C (const UnkStruct_ov25_0225517C * param0, u32 param1, void * param2, const void * param3, u32 * param4, u32 param5, u32 param6)
+void ov25_0225517C(const UnkStruct_ov25_0225517C *param0, u32 param1, void *param2, const void *param3, u32 *param4, u32 param5, u32 param6)
 {
     u32 v0;
 
     for (v0 = 0; param0[v0].unk_00 != 0xffffffff; v0++) {
         if (param0[v0].unk_00 == param1) {
-            UnkStruct_ov25_02255224 * v1;
+            UnkStruct_ov25_02255224 *v1;
             u32 v2;
 
             v2 = sizeof(UnkStruct_ov25_02255224) + param0[v0].unk_08;
@@ -143,7 +144,7 @@ void ov25_0225517C (const UnkStruct_ov25_0225517C * param0, u32 param1, void * p
     GF_ASSERT(0);
 }
 
-void ov25_02255224 (u32 * param0, UnkStruct_ov25_02255224 * param1)
+void ov25_02255224(u32 *param0, UnkStruct_ov25_02255224 *param1)
 {
     ov25_022550F0(param0, param1->unk_00);
 
@@ -151,37 +152,37 @@ void ov25_02255224 (u32 * param0, UnkStruct_ov25_02255224 * param1)
     Heap_FreeToHeap(param1);
 }
 
-void * ov25_0225523C (UnkStruct_ov25_02255224 * param0)
+void *ov25_0225523C(UnkStruct_ov25_02255224 *param0)
 {
     return param0->unk_08;
 }
 
-const void * ov25_02255240 (UnkStruct_ov25_02255224 * param0)
+const void *ov25_02255240(UnkStruct_ov25_02255224 *param0)
 {
     return param0->unk_10;
 }
 
-void * ov25_02255244 (UnkStruct_ov25_02255224 * param0)
+void *ov25_02255244(UnkStruct_ov25_02255224 *param0)
 {
     return param0->unk_0C;
 }
 
-u32 ov25_02255248 (UnkStruct_ov25_02255224 * param0)
+u32 ov25_02255248(UnkStruct_ov25_02255224 *param0)
 {
     return param0->unk_04;
 }
 
-void ov25_0225524C (UnkStruct_ov25_02255224 * param0)
+void ov25_0225524C(UnkStruct_ov25_02255224 *param0)
 {
     param0->unk_04++;
 }
 
-void ov25_02255254 (UnkStruct_ov25_02255224 * param0, u32 param1)
+void ov25_02255254(UnkStruct_ov25_02255224 *param0, u32 param1)
 {
     param0->unk_04 = param1;
 }
 
-void ov25_02255258 (u16 * param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6)
+void ov25_02255258(u16 *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6)
 {
     param6 <<= 12;
     param0 += ((param3 * param2) + param1);
@@ -191,9 +192,9 @@ void ov25_02255258 (u16 * param0, u32 param1, u32 param2, u32 param3, u32 param4
     param0[param3 + 1] = param6 | (param4 + param5 + 1);
 }
 
-void ov25_02255290 (u16 * param0, u32 param1)
+void ov25_02255290(u16 *param0, u32 param1)
 {
-    u16 * v0;
+    u16 *v0;
 
     v0 = Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, 0x20);
 
@@ -223,14 +224,14 @@ void ov25_02255290 (u16 * param0, u32 param1)
     }
 }
 
-void ov25_02255308 (u32 param0, u32 param1)
+void ov25_02255308(u32 param0, u32 param1)
 {
-    u16 * v0;
+    u16 *v0;
 
     v0 = Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, 0x20);
 
     if (v0) {
-        u16 * v1 = Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, 0x20);
+        u16 *v1 = Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, 0x20);
 
         ov25_02254728(v0);
 
@@ -250,10 +251,10 @@ void ov25_02255308 (u32 param0, u32 param1)
     }
 }
 
-void ov25_02255360 (u32 param0)
+void ov25_02255360(u32 param0)
 {
-    void * v0;
-    NNSG2dPaletteData * v1;
+    void *v0;
+    NNSG2dPaletteData *v1;
 
     v0 = sub_02006F88(19, PokeIconPalettesFileIndex(), &v1, 8);
 
@@ -265,19 +266,19 @@ void ov25_02255360 (u32 param0)
     }
 }
 
-void ov25_022553A0 (u32 param0, const u32 * param1, u32 param2, BOOL param3)
+void ov25_022553A0(u32 param0, const u32 *param1, u32 param2, BOOL param3)
 {
-    static const u16 v0[2] = {512, 1024};
-    static const u16 v1[2] = {640, 1152};
-    u8 * v2;
+    static const u16 v0[2] = { 512, 1024 };
+    static const u16 v1[2] = { 640, 1152 };
+    u8 *v2;
 
     v2 = Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, v1[param3]);
 
     if (v2) {
-        NARC * v3 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 8);
+        NARC *v3 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 8);
 
         if (v3) {
-            NNSG2dCharacterData * v4;
+            NNSG2dCharacterData *v4;
             u32 v5;
 
             for (v5 = 0; v5 < param2; v5++) {
@@ -294,7 +295,7 @@ void ov25_022553A0 (u32 param0, const u32 * param1, u32 param2, BOOL param3)
     }
 }
 
-void ov25_02255440 (BGL * param0, u32 param1, u32 param2)
+void ov25_02255440(BGL *param0, u32 param1, u32 param2)
 {
     u16 v0[4];
     u32 v1;

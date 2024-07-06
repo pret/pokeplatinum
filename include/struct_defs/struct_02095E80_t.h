@@ -1,44 +1,46 @@
 #ifndef POKEPLATINUM_STRUCT_02095E80_T_H
 #define POKEPLATINUM_STRUCT_02095E80_T_H
 
+#include <nitro/fx/fx.h>
+#include <nnsys.h>
+
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "overlay_manager.h"
-#include "struct_defs/archived_sprite.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "message.h"
-#include "string_template.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "sys_task_manager.h"
-#include "strbuf.h"
-#include "struct_defs/struct_02027F8C.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
-#include "struct_defs/chatot_cry.h"
-#include "field/field_system_decl.h"
-#include "struct_defs/struct_0205AA50.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_02095E80_decl.h"
-#include "struct_defs/struct_02095E80_sub1.h"
+#include "struct_decls/struct_party_decl.h"
+#include "struct_defs/archived_sprite.h"
+#include "struct_defs/chatot_cry.h"
 #include "struct_defs/pokemon_summary.h"
-#include "savedata.h"
-#include "cell_actor.h"
+#include "struct_defs/struct_0200C738.h"
+#include "struct_defs/struct_02027F8C.h"
+#include "struct_defs/struct_0205AA50.h"
+#include "struct_defs/struct_02095E80_sub1.h"
+
+#include "field/field_system_decl.h"
 #include "overlay088/struct_ov88_0223C370.h"
 #include "overlay088/struct_ov88_0223C8AC.h"
 
-#include <nnsys.h>
-#include <nitro/fx/fx.h>
+#include "cell_actor.h"
+#include "message.h"
+#include "overlay_manager.h"
+#include "savedata.h"
+#include "strbuf.h"
+#include "string_template.h"
+#include "sys_task_manager.h"
 
 struct UnkStruct_02095E80_t {
-    FieldSystem * fieldSystem;
-    SaveData * unk_04;
-    UnkStruct_ov88_0223C370 * unk_08;
+    FieldSystem *fieldSystem;
+    SaveData *unk_04;
+    UnkStruct_ov88_0223C370 *unk_08;
     PokemonSummary unk_0C;
     int unk_3C;
-    OverlayManager * unk_40;
+    OverlayManager *unk_40;
     int unk_44;
     int unk_48;
     int unk_4C;
@@ -61,31 +63,31 @@ struct UnkStruct_02095E80_t {
     u32 unk_154[2][3];
     int unk_16C;
     int unk_170;
-    BGL * unk_174;
-    StringTemplate * unk_178;
-    StringTemplate * unk_17C;
-    StringTemplate * unk_180;
-    MessageLoader * unk_184;
-    Strbuf* unk_188;
-    Strbuf* unk_18C;
-    Strbuf* unk_190;
-    CellActorCollection * unk_194;
+    BGL *unk_174;
+    StringTemplate *unk_178;
+    StringTemplate *unk_17C;
+    StringTemplate *unk_180;
+    MessageLoader *unk_184;
+    Strbuf *unk_188;
+    Strbuf *unk_18C;
+    Strbuf *unk_190;
+    CellActorCollection *unk_194;
     UnkStruct_0200C738 unk_198;
-    UnkStruct_02009714 * unk_324[4];
-    UnkStruct_02009DC8 * unk_334[2][4];
+    UnkStruct_02009714 *unk_324[4];
+    UnkStruct_02009DC8 *unk_334[2][4];
     CellActorResourceData unk_354;
     CellActorResourceData unk_378;
-    CellActor * unk_39C[14];
-    CellActor * unk_3D4[12];
-    CellActor * unk_404[12];
-    CellActor * unk_434[12];
-    CellActor * unk_464[6];
-    CellActor * unk_47C;
-    SysTask * unk_480[7];
+    CellActor *unk_39C[14];
+    CellActor *unk_3D4[12];
+    CellActor *unk_404[12];
+    CellActor *unk_434[12];
+    CellActor *unk_464[6];
+    CellActor *unk_47C;
+    SysTask *unk_480[7];
     Window unk_49C[34];
-    UIControlData * unk_6BC;
-    ResourceMetadata * unk_6C0;
-    UIControlData * unk_6C4;
+    UIControlData *unk_6BC;
+    ResourceMetadata *unk_6C0;
+    UIControlData *unk_6C4;
     int unk_6C8;
     int unk_6CC;
     int unk_6D0;
@@ -97,19 +99,19 @@ struct UnkStruct_02095E80_t {
     int unk_7BC;
     int unk_7C0;
     int unk_7C4[7];
-    void * unk_7E0;
-    NNSG2dCharacterData * unk_7E4;
-    void * unk_7E8[12];
-    NNSG2dCharacterData * unk_818[12];
+    void *unk_7E0;
+    NNSG2dCharacterData *unk_7E4;
+    void *unk_7E8[12];
+    NNSG2dCharacterData *unk_818[12];
     u8 unk_848[2][3200];
     ArchivedSprite unk_2148[2];
     int unk_2168;
     u8 unk_216C[256];
-    int (* unk_226C)(UnkStruct_02095E80 *);
-    Party * unk_2270;
-    Party * unk_2274;
-    ChatotCry * unk_2278;
-    UnkStruct_02027F8C * unk_227C;
+    int (*unk_226C)(UnkStruct_02095E80 *);
+    Party *unk_2270;
+    Party *unk_2274;
+    ChatotCry *unk_2278;
+    UnkStruct_02027F8C *unk_227C;
     UnkStruct_02027F8C unk_2280;
     int unk_2308;
     int unk_230C;
@@ -123,17 +125,17 @@ struct UnkStruct_02095E80_t {
     int unk_3644[32];
     int unk_36C4;
     int unk_36C8;
-    StringTemplate * unk_36CC;
-    MessageLoader * unk_36D0;
-    ResourceMetadata * unk_36D4;
-    BmpList * unk_36D8;
+    StringTemplate *unk_36CC;
+    MessageLoader *unk_36D0;
+    ResourceMetadata *unk_36D4;
+    BmpList *unk_36D8;
     Window unk_36DC;
-    UnkStruct_0202B370 * unk_36EC;
+    UnkStruct_0202B370 *unk_36EC;
     int unk_36F0;
     int unk_36F4;
     int unk_36F8;
     int unk_36FC;
-    void * unk_3700;
+    void *unk_3700;
     int unk_3704;
     int unk_3708;
 };

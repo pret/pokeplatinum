@@ -1,19 +1,18 @@
+#include "overlay097/ov97_02236380.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-#include "pokemon.h"
-
-#include "overlay097/box_pokemon_gba.h"
-
-#include "pokemon.h"
-#include "item.h"
-#include "overlay097/ov97_02236380.h"
-#include "overlay097/ov97_022392E4.h"
-
-#include "constants/species.h"
 #include "constants/gba/pokemon.h"
 #include "constants/gba/species.h"
+#include "constants/species.h"
+
+#include "overlay097/box_pokemon_gba.h"
+#include "overlay097/ov97_022392E4.h"
+
+#include "core_sys.h"
+#include "item.h"
+#include "pokemon.h"
 
 typedef struct {
     u16 unk_00;
@@ -335,132 +334,132 @@ typedef struct {
     PokemonGBASubstruct0 unk_24;
 } UnkStruct_ov97_02236380_23;
 
-void BoxMonGBAToBoxMon(BoxPokemonGBA * param0, BoxPokemon * param1);
+void BoxMonGBAToBoxMon(BoxPokemonGBA *param0, BoxPokemon *param1);
 
 static u16 Unk_ov97_0223ECA0[] = {
-	0x10,
-	0x11,
-	0x12,
-	0x1D,
-	0x1E,
-	0x1F,
-	0x20,
-	0x21,
-	0x22,
-	0x23,
-	0x24,
-	0x2E,
-	0x2F,
-	0x30,
-	0x31,
-	0x34,
-	0x35,
-	0x38,
-	0x39,
-	0x42,
-	0x43,
-	0x44,
-	0x56,
-	0x57,
-	0x5A,
-	0x5B,
-	0x60,
-	0x61,
-	0x6A,
-	0x6B,
-	0x72,
-	0x73,
-	0x74,
-	0x75,
-	0x7A,
-	0x7B,
-	0x7C,
-	0x7F,
-	0x80,
-	0x85,
-	0x86,
-	0x87,
-	0x88,
-	0x89,
-	0xAD,
-	0xBB,
-	0xBC,
-	0xBD,
-	0xBF,
-	0xC0,
-	0xC4,
-	0xC5,
-	0xC6,
-	0xD2,
-	0xD4,
-	0xD5,
-	0xD8,
-	0xD9,
-	0xDC,
-	0xDD,
-	0xDF,
-	0xE0,
-	0xE6,
-	0xE9,
-	0xEA,
-	0xEB,
-	0xEC,
-	0xED,
-	0xEE,
-	0xF1,
-	0x105,
-	0x106,
-	0x107,
-	0x108,
-	0x11D,
-	0x11E,
-	0x12C,
-	0x12D,
-	0x12E,
-	0x13A,
-	0x142,
-	0x143,
-	0x147,
-	0x153,
-	0x154,
-	0x161,
-	0x162,
-	0x165,
-	0x167,
-	0x169,
-	0x16A,
-	0x16B,
-	0x16C,
-	0x16D
+    0x10,
+    0x11,
+    0x12,
+    0x1D,
+    0x1E,
+    0x1F,
+    0x20,
+    0x21,
+    0x22,
+    0x23,
+    0x24,
+    0x2E,
+    0x2F,
+    0x30,
+    0x31,
+    0x34,
+    0x35,
+    0x38,
+    0x39,
+    0x42,
+    0x43,
+    0x44,
+    0x56,
+    0x57,
+    0x5A,
+    0x5B,
+    0x60,
+    0x61,
+    0x6A,
+    0x6B,
+    0x72,
+    0x73,
+    0x74,
+    0x75,
+    0x7A,
+    0x7B,
+    0x7C,
+    0x7F,
+    0x80,
+    0x85,
+    0x86,
+    0x87,
+    0x88,
+    0x89,
+    0xAD,
+    0xBB,
+    0xBC,
+    0xBD,
+    0xBF,
+    0xC0,
+    0xC4,
+    0xC5,
+    0xC6,
+    0xD2,
+    0xD4,
+    0xD5,
+    0xD8,
+    0xD9,
+    0xDC,
+    0xDD,
+    0xDF,
+    0xE0,
+    0xE6,
+    0xE9,
+    0xEA,
+    0xEB,
+    0xEC,
+    0xED,
+    0xEE,
+    0xF1,
+    0x105,
+    0x106,
+    0x107,
+    0x108,
+    0x11D,
+    0x11E,
+    0x12C,
+    0x12D,
+    0x12E,
+    0x13A,
+    0x142,
+    0x143,
+    0x147,
+    0x153,
+    0x154,
+    0x161,
+    0x162,
+    0x165,
+    0x167,
+    0x169,
+    0x16A,
+    0x16B,
+    0x16C,
+    0x16D
 };
 
-static u32 ov97_02236380 (BoxPokemonGBA * param0, u32 param1, u8 param2)
+static u32 ov97_02236380(BoxPokemonGBA *param0, u32 param1, u8 param2)
 {
     u32 v0 = 0;
-    UnkStruct_ov97_02236380 * v1;
-    UnkStruct_ov97_02236380_1 * v2;
-    UnkStruct_ov97_02236380_2 * v3;
-    UnkStruct_ov97_02236380_3 * v4;
-    UnkStruct_ov97_02236380_4 * v5;
-    UnkStruct_ov97_02236380_5 * v6;
-    UnkStruct_ov97_02236380_6 * v7;
-    UnkStruct_ov97_02236380_7 * v8;
-    UnkStruct_ov97_02236380_8 * v9;
-    UnkStruct_ov97_02236380_9 * v10;
-    UnkStruct_ov97_02236380_10 * v11;
-    UnkStruct_ov97_02236380_11 * v12;
-    UnkStruct_ov97_02236380_12 * v13;
-    UnkStruct_ov97_02236380_13 * v14;
-    UnkStruct_ov97_02236380_14 * v15;
-    UnkStruct_ov97_02236380_15 * v16;
-    UnkStruct_ov97_02236380_16 * v17;
-    UnkStruct_ov97_02236380_17 * v18;
-    UnkStruct_ov97_02236380_18 * v19;
-    UnkStruct_ov97_02236380_19 * v20;
-    UnkStruct_ov97_02236380_20 * v21;
-    UnkStruct_ov97_02236380_21 * v22;
-    UnkStruct_ov97_02236380_22 * v23;
-    UnkStruct_ov97_02236380_23 * v24;
+    UnkStruct_ov97_02236380 *v1;
+    UnkStruct_ov97_02236380_1 *v2;
+    UnkStruct_ov97_02236380_2 *v3;
+    UnkStruct_ov97_02236380_3 *v4;
+    UnkStruct_ov97_02236380_4 *v5;
+    UnkStruct_ov97_02236380_5 *v6;
+    UnkStruct_ov97_02236380_6 *v7;
+    UnkStruct_ov97_02236380_7 *v8;
+    UnkStruct_ov97_02236380_8 *v9;
+    UnkStruct_ov97_02236380_9 *v10;
+    UnkStruct_ov97_02236380_10 *v11;
+    UnkStruct_ov97_02236380_11 *v12;
+    UnkStruct_ov97_02236380_12 *v13;
+    UnkStruct_ov97_02236380_13 *v14;
+    UnkStruct_ov97_02236380_14 *v15;
+    UnkStruct_ov97_02236380_15 *v16;
+    UnkStruct_ov97_02236380_16 *v17;
+    UnkStruct_ov97_02236380_17 *v18;
+    UnkStruct_ov97_02236380_18 *v19;
+    UnkStruct_ov97_02236380_19 *v20;
+    UnkStruct_ov97_02236380_20 *v21;
+    UnkStruct_ov97_02236380_21 *v22;
+    UnkStruct_ov97_02236380_22 *v23;
+    UnkStruct_ov97_02236380_23 *v24;
 
     switch (param1 % 24) {
     case 0:
@@ -468,16 +467,16 @@ static u32 ov97_02236380 (BoxPokemonGBA * param0, u32 param1, u8 param2)
 
         switch (param2) {
         case 0:
-            v0 = (u32) & v1->unk_00;
+            v0 = (u32)&v1->unk_00;
             break;
         case 1:
-            v0 = (u32) & v1->unk_0C;
+            v0 = (u32)&v1->unk_0C;
             break;
         case 2:
-            v0 = (u32) & v1->unk_18;
+            v0 = (u32)&v1->unk_18;
             break;
         case 3:
-            v0 = (u32) & v1->unk_24;
+            v0 = (u32)&v1->unk_24;
             break;
         }
         break;
@@ -486,16 +485,16 @@ static u32 ov97_02236380 (BoxPokemonGBA * param0, u32 param1, u8 param2)
 
         switch (param2) {
         case 0:
-            v0 = (u32) & v2->unk_00;
+            v0 = (u32)&v2->unk_00;
             break;
         case 1:
-            v0 = (u32) & v2->unk_0C;
+            v0 = (u32)&v2->unk_0C;
             break;
         case 2:
-            v0 = (u32) & v2->unk_24;
+            v0 = (u32)&v2->unk_24;
             break;
         case 3:
-            v0 = (u32) & v2->unk_18;
+            v0 = (u32)&v2->unk_18;
             break;
         }
         break;
@@ -504,16 +503,16 @@ static u32 ov97_02236380 (BoxPokemonGBA * param0, u32 param1, u8 param2)
 
         switch (param2) {
         case 0:
-            v0 = (u32) & v3->unk_00;
+            v0 = (u32)&v3->unk_00;
             break;
         case 1:
-            v0 = (u32) & v3->unk_18;
+            v0 = (u32)&v3->unk_18;
             break;
         case 2:
-            v0 = (u32) & v3->unk_0C;
+            v0 = (u32)&v3->unk_0C;
             break;
         case 3:
-            v0 = (u32) & v3->unk_24;
+            v0 = (u32)&v3->unk_24;
             break;
         }
         break;
@@ -522,16 +521,16 @@ static u32 ov97_02236380 (BoxPokemonGBA * param0, u32 param1, u8 param2)
 
         switch (param2) {
         case 0:
-            v0 = (u32) & v4->unk_00;
+            v0 = (u32)&v4->unk_00;
             break;
         case 1:
-            v0 = (u32) & v4->unk_24;
+            v0 = (u32)&v4->unk_24;
             break;
         case 2:
-            v0 = (u32) & v4->unk_0C;
+            v0 = (u32)&v4->unk_0C;
             break;
         case 3:
-            v0 = (u32) & v4->unk_18;
+            v0 = (u32)&v4->unk_18;
             break;
         }
         break;
@@ -540,16 +539,16 @@ static u32 ov97_02236380 (BoxPokemonGBA * param0, u32 param1, u8 param2)
 
         switch (param2) {
         case 0:
-            v0 = (u32) & v5->unk_00;
+            v0 = (u32)&v5->unk_00;
             break;
         case 1:
-            v0 = (u32) & v5->unk_18;
+            v0 = (u32)&v5->unk_18;
             break;
         case 2:
-            v0 = (u32) & v5->unk_24;
+            v0 = (u32)&v5->unk_24;
             break;
         case 3:
-            v0 = (u32) & v5->unk_0C;
+            v0 = (u32)&v5->unk_0C;
             break;
         }
         break;
@@ -558,16 +557,16 @@ static u32 ov97_02236380 (BoxPokemonGBA * param0, u32 param1, u8 param2)
 
         switch (param2) {
         case 0:
-            v0 = (u32) & v6->unk_00;
+            v0 = (u32)&v6->unk_00;
             break;
         case 1:
-            v0 = (u32) & v6->unk_24;
+            v0 = (u32)&v6->unk_24;
             break;
         case 2:
-            v0 = (u32) & v6->unk_18;
+            v0 = (u32)&v6->unk_18;
             break;
         case 3:
-            v0 = (u32) & v6->unk_0C;
+            v0 = (u32)&v6->unk_0C;
             break;
         }
         break;
@@ -576,16 +575,16 @@ static u32 ov97_02236380 (BoxPokemonGBA * param0, u32 param1, u8 param2)
 
         switch (param2) {
         case 0:
-            v0 = (u32) & v7->unk_0C;
+            v0 = (u32)&v7->unk_0C;
             break;
         case 1:
-            v0 = (u32) & v7->unk_00;
+            v0 = (u32)&v7->unk_00;
             break;
         case 2:
-            v0 = (u32) & v7->unk_18;
+            v0 = (u32)&v7->unk_18;
             break;
         case 3:
-            v0 = (u32) & v7->unk_24;
+            v0 = (u32)&v7->unk_24;
             break;
         }
         break;
@@ -594,16 +593,16 @@ static u32 ov97_02236380 (BoxPokemonGBA * param0, u32 param1, u8 param2)
 
         switch (param2) {
         case 0:
-            v0 = (u32) & v8->unk_0C;
+            v0 = (u32)&v8->unk_0C;
             break;
         case 1:
-            v0 = (u32) & v8->unk_00;
+            v0 = (u32)&v8->unk_00;
             break;
         case 2:
-            v0 = (u32) & v8->unk_24;
+            v0 = (u32)&v8->unk_24;
             break;
         case 3:
-            v0 = (u32) & v8->unk_18;
+            v0 = (u32)&v8->unk_18;
             break;
         }
         break;
@@ -612,16 +611,16 @@ static u32 ov97_02236380 (BoxPokemonGBA * param0, u32 param1, u8 param2)
 
         switch (param2) {
         case 0:
-            v0 = (u32) & v9->unk_18;
+            v0 = (u32)&v9->unk_18;
             break;
         case 1:
-            v0 = (u32) & v9->unk_00;
+            v0 = (u32)&v9->unk_00;
             break;
         case 2:
-            v0 = (u32) & v9->unk_0C;
+            v0 = (u32)&v9->unk_0C;
             break;
         case 3:
-            v0 = (u32) & v9->unk_24;
+            v0 = (u32)&v9->unk_24;
             break;
         }
         break;
@@ -630,16 +629,16 @@ static u32 ov97_02236380 (BoxPokemonGBA * param0, u32 param1, u8 param2)
 
         switch (param2) {
         case 0:
-            v0 = (u32) & v10->unk_24;
+            v0 = (u32)&v10->unk_24;
             break;
         case 1:
-            v0 = (u32) & v10->unk_00;
+            v0 = (u32)&v10->unk_00;
             break;
         case 2:
-            v0 = (u32) & v10->unk_0C;
+            v0 = (u32)&v10->unk_0C;
             break;
         case 3:
-            v0 = (u32) & v10->unk_18;
+            v0 = (u32)&v10->unk_18;
             break;
         }
         break;
@@ -648,16 +647,16 @@ static u32 ov97_02236380 (BoxPokemonGBA * param0, u32 param1, u8 param2)
 
         switch (param2) {
         case 0:
-            v0 = (u32) & v11->unk_18;
+            v0 = (u32)&v11->unk_18;
             break;
         case 1:
-            v0 = (u32) & v11->unk_00;
+            v0 = (u32)&v11->unk_00;
             break;
         case 2:
-            v0 = (u32) & v11->unk_24;
+            v0 = (u32)&v11->unk_24;
             break;
         case 3:
-            v0 = (u32) & v11->unk_0C;
+            v0 = (u32)&v11->unk_0C;
             break;
         }
         break;
@@ -666,16 +665,16 @@ static u32 ov97_02236380 (BoxPokemonGBA * param0, u32 param1, u8 param2)
 
         switch (param2) {
         case 0:
-            v0 = (u32) & v12->unk_24;
+            v0 = (u32)&v12->unk_24;
             break;
         case 1:
-            v0 = (u32) & v12->unk_00;
+            v0 = (u32)&v12->unk_00;
             break;
         case 2:
-            v0 = (u32) & v12->unk_18;
+            v0 = (u32)&v12->unk_18;
             break;
         case 3:
-            v0 = (u32) & v12->unk_0C;
+            v0 = (u32)&v12->unk_0C;
             break;
         }
         break;
@@ -684,16 +683,16 @@ static u32 ov97_02236380 (BoxPokemonGBA * param0, u32 param1, u8 param2)
 
         switch (param2) {
         case 0:
-            v0 = (u32) & v13->unk_0C;
+            v0 = (u32)&v13->unk_0C;
             break;
         case 1:
-            v0 = (u32) & v13->unk_18;
+            v0 = (u32)&v13->unk_18;
             break;
         case 2:
-            v0 = (u32) & v13->unk_00;
+            v0 = (u32)&v13->unk_00;
             break;
         case 3:
-            v0 = (u32) & v13->unk_24;
+            v0 = (u32)&v13->unk_24;
             break;
         }
         break;
@@ -702,16 +701,16 @@ static u32 ov97_02236380 (BoxPokemonGBA * param0, u32 param1, u8 param2)
 
         switch (param2) {
         case 0:
-            v0 = (u32) & v14->unk_0C;
+            v0 = (u32)&v14->unk_0C;
             break;
         case 1:
-            v0 = (u32) & v14->unk_24;
+            v0 = (u32)&v14->unk_24;
             break;
         case 2:
-            v0 = (u32) & v14->unk_00;
+            v0 = (u32)&v14->unk_00;
             break;
         case 3:
-            v0 = (u32) & v14->unk_18;
+            v0 = (u32)&v14->unk_18;
             break;
         }
         break;
@@ -720,16 +719,16 @@ static u32 ov97_02236380 (BoxPokemonGBA * param0, u32 param1, u8 param2)
 
         switch (param2) {
         case 0:
-            v0 = (u32) & v15->unk_18;
+            v0 = (u32)&v15->unk_18;
             break;
         case 1:
-            v0 = (u32) & v15->unk_0C;
+            v0 = (u32)&v15->unk_0C;
             break;
         case 2:
-            v0 = (u32) & v15->unk_00;
+            v0 = (u32)&v15->unk_00;
             break;
         case 3:
-            v0 = (u32) & v15->unk_24;
+            v0 = (u32)&v15->unk_24;
             break;
         }
         break;
@@ -738,16 +737,16 @@ static u32 ov97_02236380 (BoxPokemonGBA * param0, u32 param1, u8 param2)
 
         switch (param2) {
         case 0:
-            v0 = (u32) & v16->unk_24;
+            v0 = (u32)&v16->unk_24;
             break;
         case 1:
-            v0 = (u32) & v16->unk_0C;
+            v0 = (u32)&v16->unk_0C;
             break;
         case 2:
-            v0 = (u32) & v16->unk_00;
+            v0 = (u32)&v16->unk_00;
             break;
         case 3:
-            v0 = (u32) & v16->unk_18;
+            v0 = (u32)&v16->unk_18;
             break;
         }
         break;
@@ -756,16 +755,16 @@ static u32 ov97_02236380 (BoxPokemonGBA * param0, u32 param1, u8 param2)
 
         switch (param2) {
         case 0:
-            v0 = (u32) & v17->unk_18;
+            v0 = (u32)&v17->unk_18;
             break;
         case 1:
-            v0 = (u32) & v17->unk_24;
+            v0 = (u32)&v17->unk_24;
             break;
         case 2:
-            v0 = (u32) & v17->unk_00;
+            v0 = (u32)&v17->unk_00;
             break;
         case 3:
-            v0 = (u32) & v17->unk_0C;
+            v0 = (u32)&v17->unk_0C;
             break;
         }
         break;
@@ -774,16 +773,16 @@ static u32 ov97_02236380 (BoxPokemonGBA * param0, u32 param1, u8 param2)
 
         switch (param2) {
         case 0:
-            v0 = (u32) & v18->unk_24;
+            v0 = (u32)&v18->unk_24;
             break;
         case 1:
-            v0 = (u32) & v18->unk_18;
+            v0 = (u32)&v18->unk_18;
             break;
         case 2:
-            v0 = (u32) & v18->unk_00;
+            v0 = (u32)&v18->unk_00;
             break;
         case 3:
-            v0 = (u32) & v18->unk_0C;
+            v0 = (u32)&v18->unk_0C;
             break;
         }
         break;
@@ -792,16 +791,16 @@ static u32 ov97_02236380 (BoxPokemonGBA * param0, u32 param1, u8 param2)
 
         switch (param2) {
         case 0:
-            v0 = (u32) & v19->unk_0C;
+            v0 = (u32)&v19->unk_0C;
             break;
         case 1:
-            v0 = (u32) & v19->unk_18;
+            v0 = (u32)&v19->unk_18;
             break;
         case 2:
-            v0 = (u32) & v19->unk_24;
+            v0 = (u32)&v19->unk_24;
             break;
         case 3:
-            v0 = (u32) & v19->unk_00;
+            v0 = (u32)&v19->unk_00;
             break;
         }
         break;
@@ -810,16 +809,16 @@ static u32 ov97_02236380 (BoxPokemonGBA * param0, u32 param1, u8 param2)
 
         switch (param2) {
         case 0:
-            v0 = (u32) & v20->unk_0C;
+            v0 = (u32)&v20->unk_0C;
             break;
         case 1:
-            v0 = (u32) & v20->unk_24;
+            v0 = (u32)&v20->unk_24;
             break;
         case 2:
-            v0 = (u32) & v20->unk_18;
+            v0 = (u32)&v20->unk_18;
             break;
         case 3:
-            v0 = (u32) & v20->unk_00;
+            v0 = (u32)&v20->unk_00;
             break;
         }
         break;
@@ -828,16 +827,16 @@ static u32 ov97_02236380 (BoxPokemonGBA * param0, u32 param1, u8 param2)
 
         switch (param2) {
         case 0:
-            v0 = (u32) & v21->unk_18;
+            v0 = (u32)&v21->unk_18;
             break;
         case 1:
-            v0 = (u32) & v21->unk_0C;
+            v0 = (u32)&v21->unk_0C;
             break;
         case 2:
-            v0 = (u32) & v21->unk_24;
+            v0 = (u32)&v21->unk_24;
             break;
         case 3:
-            v0 = (u32) & v21->unk_00;
+            v0 = (u32)&v21->unk_00;
             break;
         }
         break;
@@ -846,16 +845,16 @@ static u32 ov97_02236380 (BoxPokemonGBA * param0, u32 param1, u8 param2)
 
         switch (param2) {
         case 0:
-            v0 = (u32) & v22->unk_24;
+            v0 = (u32)&v22->unk_24;
             break;
         case 1:
-            v0 = (u32) & v22->unk_0C;
+            v0 = (u32)&v22->unk_0C;
             break;
         case 2:
-            v0 = (u32) & v22->unk_18;
+            v0 = (u32)&v22->unk_18;
             break;
         case 3:
-            v0 = (u32) & v22->unk_00;
+            v0 = (u32)&v22->unk_00;
             break;
         }
         break;
@@ -864,16 +863,16 @@ static u32 ov97_02236380 (BoxPokemonGBA * param0, u32 param1, u8 param2)
 
         switch (param2) {
         case 0:
-            v0 = (u32) & v23->unk_18;
+            v0 = (u32)&v23->unk_18;
             break;
         case 1:
-            v0 = (u32) & v23->unk_24;
+            v0 = (u32)&v23->unk_24;
             break;
         case 2:
-            v0 = (u32) & v23->unk_0C;
+            v0 = (u32)&v23->unk_0C;
             break;
         case 3:
-            v0 = (u32) & v23->unk_00;
+            v0 = (u32)&v23->unk_00;
             break;
         }
         break;
@@ -882,16 +881,16 @@ static u32 ov97_02236380 (BoxPokemonGBA * param0, u32 param1, u8 param2)
 
         switch (param2) {
         case 0:
-            v0 = (u32) & v24->unk_24;
+            v0 = (u32)&v24->unk_24;
             break;
         case 1:
-            v0 = (u32) & v24->unk_18;
+            v0 = (u32)&v24->unk_18;
             break;
         case 2:
-            v0 = (u32) & v24->unk_0C;
+            v0 = (u32)&v24->unk_0C;
             break;
         case 3:
-            v0 = (u32) & v24->unk_00;
+            v0 = (u32)&v24->unk_00;
             break;
         }
         break;
@@ -900,10 +899,10 @@ static u32 ov97_02236380 (BoxPokemonGBA * param0, u32 param1, u8 param2)
     return v0;
 }
 
-static void GBADecryptBoxMon (BoxPokemonGBA * param0)
+static void GBADecryptBoxMon(BoxPokemonGBA *param0)
 {
     int v0;
-    u32 * v1;
+    u32 *v1;
 
     v1 = (u32 *)&param0->secure;
 
@@ -913,10 +912,10 @@ static void GBADecryptBoxMon (BoxPokemonGBA * param0)
     }
 }
 
-static void GBAEncryptBoxMon (BoxPokemonGBA * param0)
+static void GBAEncryptBoxMon(BoxPokemonGBA *param0)
 {
     int v0;
-    u32 * v1;
+    u32 *v1;
 
     v1 = (u32 *)&param0->secure;
 
@@ -926,13 +925,13 @@ static void GBAEncryptBoxMon (BoxPokemonGBA * param0)
     }
 }
 
-static u16 ov97_0223689C (BoxPokemonGBA * param0)
+static u16 ov97_0223689C(BoxPokemonGBA *param0)
 {
     int v0;
-    u16 * v1;
-    u16 * v2;
-    u16 * v3;
-    u16 * v4;
+    u16 *v1;
+    u16 *v2;
+    u16 *v3;
+    u16 *v4;
     u16 v5 = 0;
 
     v1 = (u16 *)ov97_02236380(param0, param0->personality, 0);
@@ -959,13 +958,13 @@ static u16 ov97_0223689C (BoxPokemonGBA * param0)
     return v5;
 }
 
-u32 GetGBABoxMonData (BoxPokemonGBA *boxMonGBA, int field, u8 * param2)
+u32 GetGBABoxMonData(BoxPokemonGBA *boxMonGBA, int field, u8 *param2)
 {
     u32 retVal = 0;
-    PokemonGBASubstruct0 * substruct0 = 0;
-    PokemonGBASubstruct1 * substruct1 = 0;
-    PokemonGBASubstruct2 * substruct2 = 0;
-    PokemonGBASubstruct3 * substruct3 = 0;
+    PokemonGBASubstruct0 *substruct0 = 0;
+    PokemonGBASubstruct1 *substruct1 = 0;
+    PokemonGBASubstruct2 *substruct2 = 0;
+    PokemonGBASubstruct3 *substruct3 = 0;
     u16 checksum;
 
     if (field > GBA_MON_DATA_ENCRYPT_SEPARATOR) {
@@ -992,9 +991,9 @@ u32 GetGBABoxMonData (BoxPokemonGBA *boxMonGBA, int field, u8 * param2)
         retVal = boxMonGBA->otId;
         break;
     case GBA_MON_DATA_NICKNAME:
-        if (boxMonGBA->isBadEgg)
+        if (boxMonGBA->isBadEgg) {
             retVal = 0;
-        else {
+        } else {
             for (retVal = 0; retVal < 10; retVal++) {
                 param2[retVal] = boxMonGBA->nickname[retVal];
             }
@@ -1015,8 +1014,9 @@ u32 GetGBABoxMonData (BoxPokemonGBA *boxMonGBA, int field, u8 * param2)
         retVal = boxMonGBA->isEgg;
         break;
     case GBA_MON_DATA_OT_NAME:
-        for (retVal = 0; retVal < 7; retVal++)
+        for (retVal = 0; retVal < 7; retVal++) {
             param2[retVal] = boxMonGBA->otName[retVal];
+        }
 
         param2[retVal] = 0xffff;
         break;
@@ -1030,10 +1030,11 @@ u32 GetGBABoxMonData (BoxPokemonGBA *boxMonGBA, int field, u8 * param2)
         retVal = boxMonGBA->unknown;
         break;
     case GBA_MON_DATA_SPECIES:
-        if (boxMonGBA->isBadEgg)
+        if (boxMonGBA->isBadEgg) {
             retVal = GBA_SPECIES_EGG;
-        else
+        } else {
             retVal = substruct0->species;
+        }
         break;
     case GBA_MON_DATA_HELD_ITEM:
         retVal = substruct0->heldItem;
@@ -1197,20 +1198,22 @@ u32 GetGBABoxMonData (BoxPokemonGBA *boxMonGBA, int field, u8 * param2)
     case GBA_MON_DATA_SPECIES_OR_EGG:
         retVal = substruct0->species;
 
-        if (retVal == SPECIES_NONE)
+        if (retVal == SPECIES_NONE) {
             break;
+        }
 
-        if (substruct3->isEgg || boxMonGBA->isBadEgg)
+        if (substruct3->isEgg || boxMonGBA->isBadEgg) {
             retVal = GBA_SPECIES_EGG;
+        }
 
         break;
     case GBA_MON_DATA_IVS:
         retVal = substruct3->hpIV
-              | (substruct3->attackIV << 5)
-              | (substruct3->defenseIV << 10)
-              | (substruct3->speedIV << 15)
-              | (substruct3->spAttackIV << 20)
-              | (substruct3->spDefenseIV << 25);
+            | (substruct3->attackIV << 5)
+            | (substruct3->defenseIV << 10)
+            | (substruct3->speedIV << 15)
+            | (substruct3->spAttackIV << 20)
+            | (substruct3->spDefenseIV << 25);
         break;
     }
 
@@ -1221,14 +1224,14 @@ u32 GetGBABoxMonData (BoxPokemonGBA *boxMonGBA, int field, u8 * param2)
     return retVal;
 }
 
-void SetGBABoxMonData (BoxPokemonGBA * boxMon, int field, const u8 * dataArg)
+void SetGBABoxMonData(BoxPokemonGBA *boxMon, int field, const u8 *dataArg)
 {
     int v0;
     u32 v1;
-    PokemonGBASubstruct0 * v2 = 0;
-    PokemonGBASubstruct1 * v3 = 0;
-    PokemonGBASubstruct2 * v4 = 0;
-    PokemonGBASubstruct3 * v5 = 0;
+    PokemonGBASubstruct0 *v2 = 0;
+    PokemonGBASubstruct1 *v3 = 0;
+    PokemonGBASubstruct2 *v4 = 0;
+    PokemonGBASubstruct3 *v5 = 0;
     u16 v6;
 
     if (field > GBA_MON_DATA_ENCRYPT_SEPARATOR) {
@@ -1289,7 +1292,7 @@ void SetGBABoxMonData (BoxPokemonGBA * boxMon, int field, const u8 * dataArg)
     }
 }
 
-int ov97_02236DD0 (int param0)
+int ov97_02236DD0(int param0)
 {
     int v0;
 
@@ -1306,7 +1309,7 @@ int ov97_02236DD0 (int param0)
     return param0;
 }
 
-u32 ov97_02236E00 (BoxPokemonGBA * param0)
+u32 ov97_02236E00(BoxPokemonGBA *param0)
 {
     int v0;
     u32 v1;
@@ -1317,7 +1320,7 @@ u32 ov97_02236E00 (BoxPokemonGBA * param0)
     return Pokemon_GetSpeciesLevelAt(v0, v1);
 }
 
-static int ov97_02236E28 (BoxPokemonGBA * param0, BoxPokemon * param1)
+static int ov97_02236E28(BoxPokemonGBA *param0, BoxPokemon *param1)
 {
     int v0;
     int v1;
@@ -1346,7 +1349,7 @@ static int ov97_02236E28 (BoxPokemonGBA * param0, BoxPokemon * param1)
     return v1;
 }
 
-void BoxMonGBAToBoxMon (BoxPokemonGBA * param0, BoxPokemon * param1)
+void BoxMonGBAToBoxMon(BoxPokemonGBA *param0, BoxPokemon *param1)
 {
     BOOL v0;
     u32 v1;

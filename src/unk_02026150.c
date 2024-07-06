@@ -1,22 +1,20 @@
+#include "unk_02026150.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_02026030_decl.h"
-#include "savedata.h"
-
 #include "struct_defs/struct_02026030_t.h"
 #include "struct_defs/struct_0202610C.h"
-#include "struct_defs/struct_02026030_t.h"
 
 #include "message.h"
 #include "savedata.h"
-#include "unk_0202602C.h"
-#include "unk_02026150.h"
 #include "strbuf.h"
+#include "unk_0202602C.h"
 
 BattleRegulation Unk_02100880[] = {
     {
-        {0xffff},
+        { 0xffff },
         0x0,
         0x3,
         0x32,
@@ -29,7 +27,7 @@ BattleRegulation Unk_02100880[] = {
         0x0,
     },
     {
-        {0xffff},
+        { 0xffff },
         0x50,
         0x3,
         0x1E,
@@ -42,7 +40,7 @@ BattleRegulation Unk_02100880[] = {
         0x0,
     },
     {
-        {0xffff},
+        { 0xffff },
         0x0,
         0x3,
         0x5,
@@ -55,7 +53,7 @@ BattleRegulation Unk_02100880[] = {
         0x1,
     },
     {
-        {0xffff},
+        { 0xffff },
         0x0,
         0x3,
         0x32,
@@ -68,7 +66,7 @@ BattleRegulation Unk_02100880[] = {
         0x0,
     },
     {
-        {0xffff},
+        { 0xffff },
         0x0,
         0x4,
         0x32,
@@ -83,7 +81,7 @@ BattleRegulation Unk_02100880[] = {
 };
 
 BattleRegulation Unk_02100860 = {
-    {0xffff},
+    { 0xffff },
     0x0,
     0x6,
     0x64,
@@ -96,9 +94,9 @@ BattleRegulation Unk_02100860 = {
     0x0,
 };
 
-const BattleRegulation * sub_02026150 (SaveData * param0, int param1)
+const BattleRegulation *sub_02026150(SaveData *param0, int param1)
 {
-    UnkStruct_02026030 * v0 = NULL;
+    UnkStruct_02026030 *v0 = NULL;
 
     if (param1 < NELEMS(Unk_02100880)) {
         return &Unk_02100880[param1];
@@ -108,10 +106,10 @@ const BattleRegulation * sub_02026150 (SaveData * param0, int param1)
     return &v0->unk_00[0];
 }
 
-void sub_0202616C (SaveData * param0, int param1, Strbuf *param2, int param3)
+void sub_0202616C(SaveData *param0, int param1, Strbuf *param2, int param3)
 {
-    MessageLoader * v0;
-    UnkStruct_02026030 * v1 = NULL;
+    MessageLoader *v0;
+    UnkStruct_02026030 *v1 = NULL;
 
     if (param1 < NELEMS(Unk_02100880)) {
         v0 = MessageLoader_Init(0, 26, 353, param3);
@@ -122,12 +120,12 @@ void sub_0202616C (SaveData * param0, int param1, Strbuf *param2, int param3)
     }
 }
 
-const BattleRegulation * sub_020261A8 (void)
+const BattleRegulation *sub_020261A8(void)
 {
     return &Unk_02100860;
 }
 
-int sub_020261B0 (const BattleRegulation * param0)
+int sub_020261B0(const BattleRegulation *param0)
 {
     int v0;
 

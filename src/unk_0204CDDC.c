@@ -1,45 +1,44 @@
+#include "unk_0204CDDC.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "inlines.h"
-
-#include "field_script_context.h"
-
-#include "unk_0201D15C.h"
-#include "unk_0204CDDC.h"
-#include "vars_flags.h"
-#include "unk_0206AFE0.h"
-
 #include "constants/species.h"
 
-BOOL ScrCmd_2DF(ScriptContext * param0);
-BOOL ScrCmd_2E0(ScriptContext * param0);
-BOOL ScrCmd_2E1(ScriptContext * param0);
+#include "field_script_context.h"
+#include "inlines.h"
+#include "unk_0201D15C.h"
+#include "unk_0206AFE0.h"
+#include "vars_flags.h"
 
-BOOL ScrCmd_215 (ScriptContext * param0)
+BOOL ScrCmd_2DF(ScriptContext *param0);
+BOOL ScrCmd_2E0(ScriptContext *param0);
+BOOL ScrCmd_2E1(ScriptContext *param0);
+
+BOOL ScrCmd_215(ScriptContext *param0)
 {
     sub_0206B218(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
     return 0;
 }
 
-BOOL ScrCmd_216 (ScriptContext * param0)
+BOOL ScrCmd_216(ScriptContext *param0)
 {
-    u16 * v0 = ScriptContext_GetVarPointer(param0);
+    u16 *v0 = ScriptContext_GetVarPointer(param0);
 
     *v0 = sub_0206B228(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
     return 0;
 }
 
 static const u16 Unk_020EBF84[6][10] = {
-    {0x0, 0x5, 0x15, 0x6, 0x1A, 0xD, 0x19, 0x1F, 0x10, 0x21}, // Chimchar, Monferno, Infernape
-    {0x2, 0x13, 0x14, 0x18, 0x11, 0x0, 0x17, 0x1D, 0x1C, 0xF}, // Piplup, Prinplup, Empoleon
-    {0x9, 0x8, 0x3, 0x6, 0x16, 0x1E, 0x11, 0x7, 0xE, 0x20}, // Turtwig, Grotle, Torterra
-    {0xC, 0x12, 0x15, 0xD, 0x1F, 0x8, 0x19, 0x18, 0x1B, 0x7}, // Psyduck, Buneary, Drifloon
-    {0x5, 0x3, 0x1A, 0x13, 0x14, 0x1, 0xB, 0x10, 0x16, 0xF}, // Pikachu, Clefairy, Pachirisu, Happiny
-    {0xC, 0x1E, 0x2, 0x14, 0x1D, 0x4, 0x9, 0x1B, 0xE, 0xA} // Jigglypuff, Torchic, Skitty, Shroomish
+    { 0x0, 0x5, 0x15, 0x6, 0x1A, 0xD, 0x19, 0x1F, 0x10, 0x21 }, // Chimchar, Monferno, Infernape
+    { 0x2, 0x13, 0x14, 0x18, 0x11, 0x0, 0x17, 0x1D, 0x1C, 0xF }, // Piplup, Prinplup, Empoleon
+    { 0x9, 0x8, 0x3, 0x6, 0x16, 0x1E, 0x11, 0x7, 0xE, 0x20 }, // Turtwig, Grotle, Torterra
+    { 0xC, 0x12, 0x15, 0xD, 0x1F, 0x8, 0x19, 0x18, 0x1B, 0x7 }, // Psyduck, Buneary, Drifloon
+    { 0x5, 0x3, 0x1A, 0x13, 0x14, 0x1, 0xB, 0x10, 0x16, 0xF }, // Pikachu, Clefairy, Pachirisu, Happiny
+    { 0xC, 0x1E, 0x2, 0x14, 0x1D, 0x4, 0x9, 0x1B, 0xE, 0xA } // Jigglypuff, Torchic, Skitty, Shroomish
 };
 
-BOOL ScrCmd_217 (ScriptContext * ctx)
+BOOL ScrCmd_217(ScriptContext *ctx)
 {
     u8 i, j;
     u16 rand;
@@ -132,18 +131,18 @@ static const u16 Unk_020EBF64[] = {
     0x21
 };
 
-BOOL ScrCmd_2DF (ScriptContext * param0)
+BOOL ScrCmd_2DF(ScriptContext *param0)
 {
-    u16 * v0 = ScriptContext_GetVarPointer(param0);
+    u16 *v0 = ScriptContext_GetVarPointer(param0);
 
     *v0 = (LCRNG_Next() % (NELEMS(Unk_020EBF64)));
     return 0;
 }
 
-BOOL ScrCmd_2E0 (ScriptContext * param0)
+BOOL ScrCmd_2E0(ScriptContext *param0)
 {
     u16 v0 = ScriptContext_GetVar(param0);
-    u16 * v1 = ScriptContext_GetVarPointer(param0);
+    u16 *v1 = ScriptContext_GetVarPointer(param0);
 
     if (v0 < 9) {
         *v1 = 0;
@@ -154,10 +153,10 @@ BOOL ScrCmd_2E0 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_2E1 (ScriptContext * param0)
+BOOL ScrCmd_2E1(ScriptContext *param0)
 {
     u16 v0 = ScriptContext_GetVar(param0);
-    u16 * v1 = ScriptContext_GetVarPointer(param0);
+    u16 *v1 = ScriptContext_GetVarPointer(param0);
 
     *v1 = Unk_020EBF64[v0];
     return 0;

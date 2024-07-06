@@ -5,8 +5,8 @@
 #include "struct_defs/struct_0205AA50.h"
 
 typedef struct {
-    const ResourceMetadata * unk_00;
-    Window * unk_04;
+    const ResourceMetadata *unk_00;
+    Window *unk_04;
     u8 unk_08;
     u8 unk_09;
     u8 unk_0A;

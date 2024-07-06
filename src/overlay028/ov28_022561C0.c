@@ -1,25 +1,26 @@
 #include <nitro.h>
-#include <string.h>
 #include <nitro/sinit.h>
+#include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-#include "sys_task_manager.h"
+#include "constants/species.h"
+
 #include "struct_decls/pokedexdata_decl.h"
-#include "overlay025/poketch_system.h"
+#include "struct_decls/struct_02018340_decl.h"
+
 #include "overlay025/poketch_button.h"
+#include "overlay025/poketch_system.h"
+#include "overlay028/ov28_0225697C.h"
+#include "overlay028/ov28_02256E9C.h"
+#include "overlay028/struct_ov28_0225697C_1.h"
 #include "overlay028/struct_ov28_0225697C_decl.h"
 #include "overlay028/struct_ov28_02256E9C_decl.h"
 
-#include "touch_screen.h"
-#include "overlay028/struct_ov28_0225697C_1.h"
-
-#include "constants/species.h"
-#include "sys_task.h"
 #include "heap.h"
-#include "unk_0202631C.h"
 #include "pokemon.h"
-#include "overlay028/ov28_0225697C.h"
-#include "overlay028/ov28_02256E9C.h"
+#include "sys_task.h"
+#include "sys_task_manager.h"
+#include "touch_screen.h"
+#include "unk_0202631C.h"
 
 typedef struct {
     u8 unk_00;
@@ -32,58 +33,58 @@ typedef struct {
     u32 unk_08;
     PoketchButtonManager *buttonManager;
     PoketchSystem *poketchSys;
-    UnkStruct_ov28_0225697C * unk_14;
+    UnkStruct_ov28_0225697C *unk_14;
     UnkStruct_ov28_0225697C_1 unk_18;
 } UnkStruct_ov28_02256210;
 
 static void NitroStaticInit(void);
 
-static BOOL ov28_022561D4(void ** param0, PoketchSystem *poketchSys, BGL * param2, u32 param3);
-static BOOL ov28_02256210(UnkStruct_ov28_02256210 * param0, u32 param1, BGL * param2);
-static void ov28_02256298(UnkStruct_ov28_02256210 * param0);
-static void ov28_022562CC(SysTask * param0, void * param1);
-static void ov28_02256324(void * param0);
-static void ov28_0225632C(UnkStruct_ov28_02256210 * param0, u32 param1);
-static void ov28_02256344(u32 param0, u32 param1, u32 param2, void * param3);
-static BOOL ov28_02256374(UnkStruct_ov28_02256210 * param0);
-static BOOL ov28_022563B4(UnkStruct_ov28_02256210 * param0);
-static BOOL ov28_0225648C(UnkStruct_ov28_02256210 * param0);
-static BOOL ov28_02256588(UnkStruct_ov28_02256210 * param0);
-static BOOL ov28_022566A0(UnkStruct_ov28_02256210 * param0);
-static BOOL ov28_022567A8(UnkStruct_ov28_02256210 * param0);
-static void ov28_02256868(UnkStruct_ov28_02256210 * param0);
-static BOOL ov28_02256888(UnkStruct_ov28_02256210 * param0, u32 param1);
-static BOOL ov28_022568E0(UnkStruct_ov28_02256210 * param0);
-static void ov28_02256914(UnkStruct_ov28_02256210 * param0, const UnkStruct_ov28_02256E9C * param1);
+static BOOL ov28_022561D4(void **param0, PoketchSystem *poketchSys, BGL *param2, u32 param3);
+static BOOL ov28_02256210(UnkStruct_ov28_02256210 *param0, u32 param1, BGL *param2);
+static void ov28_02256298(UnkStruct_ov28_02256210 *param0);
+static void ov28_022562CC(SysTask *param0, void *param1);
+static void ov28_02256324(void *param0);
+static void ov28_0225632C(UnkStruct_ov28_02256210 *param0, u32 param1);
+static void ov28_02256344(u32 param0, u32 param1, u32 param2, void *param3);
+static BOOL ov28_02256374(UnkStruct_ov28_02256210 *param0);
+static BOOL ov28_022563B4(UnkStruct_ov28_02256210 *param0);
+static BOOL ov28_0225648C(UnkStruct_ov28_02256210 *param0);
+static BOOL ov28_02256588(UnkStruct_ov28_02256210 *param0);
+static BOOL ov28_022566A0(UnkStruct_ov28_02256210 *param0);
+static BOOL ov28_022567A8(UnkStruct_ov28_02256210 *param0);
+static void ov28_02256868(UnkStruct_ov28_02256210 *param0);
+static BOOL ov28_02256888(UnkStruct_ov28_02256210 *param0, u32 param1);
+static BOOL ov28_022568E0(UnkStruct_ov28_02256210 *param0);
+static void ov28_02256914(UnkStruct_ov28_02256210 *param0, const UnkStruct_ov28_02256E9C *param1);
 
 static const TouchScreenHitTable Unk_ov28_02257658[] = {
-    {0x90, 0xAF, 0x20, 0x5F},
-    {0x70, 0x8F, 0x20, 0x3F},
-    {0x70, 0x8F, 0x40, 0x5F},
-    {0x70, 0x8F, 0x60, 0x7F},
-    {0x50, 0x6F, 0x20, 0x3F},
-    {0x50, 0x6F, 0x40, 0x5F},
-    {0x50, 0x6F, 0x60, 0x7F},
-    {0x30, 0x4F, 0x20, 0x3F},
-    {0x30, 0x4F, 0x40, 0x5F},
-    {0x30, 0x4F, 0x60, 0x7F},
-    {0x90, 0xAF, 0x60, 0x7F},
-    {0x50, 0x6F, 0xA0, 0xBF},
-    {0x50, 0x6F, 0x80, 0x9F},
-    {0x70, 0x8F, 0x80, 0x9F},
-    {0x70, 0x8F, 0xA0, 0xBF},
-    {0x90, 0xAF, 0x80, 0xBF},
-    {0x30, 0x4F, 0x80, 0xBF}
+    { 0x90, 0xAF, 0x20, 0x5F },
+    { 0x70, 0x8F, 0x20, 0x3F },
+    { 0x70, 0x8F, 0x40, 0x5F },
+    { 0x70, 0x8F, 0x60, 0x7F },
+    { 0x50, 0x6F, 0x20, 0x3F },
+    { 0x50, 0x6F, 0x40, 0x5F },
+    { 0x50, 0x6F, 0x60, 0x7F },
+    { 0x30, 0x4F, 0x20, 0x3F },
+    { 0x30, 0x4F, 0x40, 0x5F },
+    { 0x30, 0x4F, 0x60, 0x7F },
+    { 0x90, 0xAF, 0x60, 0x7F },
+    { 0x50, 0x6F, 0xA0, 0xBF },
+    { 0x50, 0x6F, 0x80, 0x9F },
+    { 0x70, 0x8F, 0x80, 0x9F },
+    { 0x70, 0x8F, 0xA0, 0xBF },
+    { 0x90, 0xAF, 0x80, 0xBF },
+    { 0x30, 0x4F, 0x80, 0xBF }
 };
 
-static void NitroStaticInit (void)
+static void NitroStaticInit(void)
 {
     PoketchSystem_SetAppFunctions(ov28_022561D4, ov28_02256324);
 }
 
-static BOOL ov28_022561D4 (void ** param0, PoketchSystem *poketchSys, BGL * param2, u32 param3)
+static BOOL ov28_022561D4(void **param0, PoketchSystem *poketchSys, BGL *param2, u32 param3)
 {
-    UnkStruct_ov28_02256210 * v0 = (UnkStruct_ov28_02256210 *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov28_02256210));
+    UnkStruct_ov28_02256210 *v0 = (UnkStruct_ov28_02256210 *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov28_02256210));
 
     if (v0 != NULL) {
         if (ov28_02256210(v0, param3, param2)) {
@@ -98,7 +99,7 @@ static BOOL ov28_022561D4 (void ** param0, PoketchSystem *poketchSys, BGL * para
     return 0;
 }
 
-static BOOL ov28_02256210 (UnkStruct_ov28_02256210 * param0, u32 param1, BGL * param2)
+static BOOL ov28_02256210(UnkStruct_ov28_02256210 *param0, u32 param1, BGL *param2)
 {
     if (ov28_0225697C(&(param0->unk_14), &(param0->unk_18), param2)) {
         param0->unk_00 = 0;
@@ -127,7 +128,7 @@ static BOOL ov28_02256210 (UnkStruct_ov28_02256210 * param0, u32 param1, BGL * p
     return 1;
 }
 
-static void ov28_02256298 (UnkStruct_ov28_02256210 * param0)
+static void ov28_02256298(UnkStruct_ov28_02256210 *param0)
 {
     if (param0->unk_18.unk_04) {
         ov28_02256EC0(param0->unk_18.unk_04);
@@ -148,9 +149,9 @@ static void ov28_02256298 (UnkStruct_ov28_02256210 * param0)
     ov28_022569AC(param0->unk_14);
 }
 
-static void ov28_022562CC (SysTask * param0, void * param1)
+static void ov28_022562CC(SysTask *param0, void *param1)
 {
-    static BOOL(*const v0[])(UnkStruct_ov28_02256210 *) = {
+    static BOOL (*const v0[])(UnkStruct_ov28_02256210 *) = {
         ov28_02256374,
         ov28_022563B4,
         ov28_0225648C,
@@ -160,7 +161,7 @@ static void ov28_022562CC (SysTask * param0, void * param1)
         ov28_022568E0
     };
 
-    UnkStruct_ov28_02256210 * v1 = (UnkStruct_ov28_02256210 *)param1;
+    UnkStruct_ov28_02256210 *v1 = (UnkStruct_ov28_02256210 *)param1;
 
     if (v1->unk_03) {
         ov28_0225632C(v1, 6);
@@ -181,12 +182,12 @@ static void ov28_022562CC (SysTask * param0, void * param1)
     }
 }
 
-static void ov28_02256324 (void * param0)
+static void ov28_02256324(void *param0)
 {
     ((UnkStruct_ov28_02256210 *)param0)->unk_03 = 1;
 }
 
-static void ov28_0225632C (UnkStruct_ov28_02256210 * param0, u32 param1)
+static void ov28_0225632C(UnkStruct_ov28_02256210 *param0, u32 param1)
 {
     if (param0->unk_03 == 0) {
         param0->unk_00 = param1;
@@ -198,9 +199,9 @@ static void ov28_0225632C (UnkStruct_ov28_02256210 * param0, u32 param1)
     param0->unk_01 = 0;
 }
 
-static void ov28_02256344 (u32 param0, u32 param1, u32 param2, void * param3)
+static void ov28_02256344(u32 param0, u32 param1, u32 param2, void *param3)
 {
-    UnkStruct_ov28_02256210 * v0 = (UnkStruct_ov28_02256210 *)param3;
+    UnkStruct_ov28_02256210 *v0 = (UnkStruct_ov28_02256210 *)param3;
 
     switch (param2) {
     case 0:
@@ -218,7 +219,7 @@ static void ov28_02256344 (u32 param0, u32 param1, u32 param2, void * param3)
     }
 }
 
-static BOOL ov28_02256374 (UnkStruct_ov28_02256210 * param0)
+static BOOL ov28_02256374(UnkStruct_ov28_02256210 *param0)
 {
     switch (param0->unk_01) {
     case 0:
@@ -236,7 +237,7 @@ static BOOL ov28_02256374 (UnkStruct_ov28_02256210 * param0)
     return 0;
 }
 
-static BOOL ov28_022563B4 (UnkStruct_ov28_02256210 * param0)
+static BOOL ov28_022563B4(UnkStruct_ov28_02256210 *param0)
 {
     switch (param0->unk_01) {
     case 0:
@@ -298,7 +299,7 @@ static BOOL ov28_022563B4 (UnkStruct_ov28_02256210 * param0)
     return 0;
 }
 
-static BOOL ov28_0225648C (UnkStruct_ov28_02256210 * param0)
+static BOOL ov28_0225648C(UnkStruct_ov28_02256210 *param0)
 {
     switch (param0->unk_01) {
     case 0:
@@ -368,7 +369,7 @@ static BOOL ov28_0225648C (UnkStruct_ov28_02256210 * param0)
     return 0;
 }
 
-static BOOL ov28_02256588 (UnkStruct_ov28_02256210 * param0)
+static BOOL ov28_02256588(UnkStruct_ov28_02256210 *param0)
 {
     switch (param0->unk_01) {
     case 0:
@@ -445,7 +446,7 @@ static BOOL ov28_02256588 (UnkStruct_ov28_02256210 * param0)
     return 0;
 }
 
-static BOOL ov28_022566A0 (UnkStruct_ov28_02256210 * param0)
+static BOOL ov28_022566A0(UnkStruct_ov28_02256210 *param0)
 {
     switch (param0->unk_01) {
     case 0:
@@ -519,7 +520,7 @@ static BOOL ov28_022566A0 (UnkStruct_ov28_02256210 * param0)
     return 0;
 }
 
-static BOOL ov28_022567A8 (UnkStruct_ov28_02256210 * param0)
+static BOOL ov28_022567A8(UnkStruct_ov28_02256210 *param0)
 {
     switch (param0->unk_01) {
     case 0:
@@ -577,7 +578,7 @@ static BOOL ov28_022567A8 (UnkStruct_ov28_02256210 * param0)
     return 0;
 }
 
-static void ov28_02256868 (UnkStruct_ov28_02256210 * param0)
+static void ov28_02256868(UnkStruct_ov28_02256210 *param0)
 {
     ov28_02256EC8(param0->unk_18.unk_04);
     ov28_02256EC8(param0->unk_18.unk_08);
@@ -587,7 +588,7 @@ static void ov28_02256868 (UnkStruct_ov28_02256210 * param0)
     param0->unk_04 = 0;
 }
 
-static BOOL ov28_02256888 (UnkStruct_ov28_02256210 * param0, u32 param1)
+static BOOL ov28_02256888(UnkStruct_ov28_02256210 *param0, u32 param1)
 {
     BOOL v0 = 0;
 
@@ -609,7 +610,7 @@ static BOOL ov28_02256888 (UnkStruct_ov28_02256210 * param0, u32 param1)
     return ov28_02257240(param0->unk_18.unk_0C, 10);
 }
 
-static BOOL ov28_022568E0 (UnkStruct_ov28_02256210 * param0)
+static BOOL ov28_022568E0(UnkStruct_ov28_02256210 *param0)
 {
     switch (param0->unk_01) {
     case 0:
@@ -626,12 +627,12 @@ static BOOL ov28_022568E0 (UnkStruct_ov28_02256210 * param0)
     return 0;
 }
 
-static void ov28_02256914 (UnkStruct_ov28_02256210 * param0, const UnkStruct_ov28_02256E9C * param1)
+static void ov28_02256914(UnkStruct_ov28_02256210 *param0, const UnkStruct_ov28_02256E9C *param1)
 {
     s64 v0 = ov28_02257468(param1);
 
     if ((v0 > 0) && (v0 <= NATIONAL_DEX_COUNT)) {
-        PokedexData * v1;
+        PokedexData *v1;
         u16 v2;
 
         v1 = SaveData_Pokedex(PoketchSystem_GetSaveData(param0->poketchSys));

@@ -1,9 +1,9 @@
 #ifndef POKEPLATINUM_RESOURCE_MANAGER_H
 #define POKEPLATINUM_RESOURCE_MANAGER_H
 
-#include "constants/heap.h"
-
 #include <nnsys.h>
+
+#include "constants/heap.h"
 
 // In TEX_RESOURCE_MODE_SEPARATED, texture data is stripped from the resource and stored in a separate buffer.
 // The main purpose of this is to allow freeing the texture data after the texture has been uploaded to VRAM,
@@ -54,10 +54,8 @@ int Resource_GetID(Resource *resource);
 TextureResourceManager *TextureResourceManager_New(s32 maxTextures, enum HeapId heapID);
 void TextureResourceManager_Delete(TextureResourceManager *texMgr);
 BOOL TextureResourceManager_IsIDUnused(const TextureResourceManager *texMgr, int id);
-TextureResource * TextureResourceManager_AddTexture(const TextureResourceManager *texMgr, void *data, 
-    int id, enum TextureResourceMode mode, enum HeapId heapID);
-TextureResource * TextureResourceManager_AddTextureAndAllocVRam(TextureResourceManager *texMgr, void *data, 
-    int id, enum TextureResourceMode mode, enum HeapId heapID);
+TextureResource *TextureResourceManager_AddTexture(const TextureResourceManager *texMgr, void *data, int id, enum TextureResourceMode mode, enum HeapId heapID);
+TextureResource *TextureResourceManager_AddTextureAndAllocVRam(TextureResourceManager *texMgr, void *data, int id, enum TextureResourceMode mode, enum HeapId heapID);
 void TextureResourceManager_RemoveTexture(TextureResourceManager *texMgr, TextureResource *texResource);
 void TextureResourceManager_RemoveTextureWithID(TextureResourceManager *texMgr, int id);
 void TextureResourceManager_Clear(TextureResourceManager *texMgr);

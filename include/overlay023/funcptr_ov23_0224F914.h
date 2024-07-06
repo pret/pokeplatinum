@@ -3,6 +3,6 @@
 
 #include "overlay023/struct_ov23_02250CD4.h"
 
-typedef void (* UnkFuncPtr_ov23_0224F914)(UnkStruct_ov23_02250CD4 *);
+typedef void (*UnkFuncPtr_ov23_0224F914)(UnkStruct_ov23_02250CD4 *);
 
 #endif // POKEPLATINUM_FUNCPTR_OV23_0224F914_H

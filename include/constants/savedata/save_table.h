@@ -62,8 +62,8 @@ enum ExtraSaveTableEntryID {
     EXTRA_SAVE_TABLE_ENTRY_MAX
 };
 
-#define SAVE_PAGE_MAX       32
-#define SAVE_SECTOR_SIZE    (0x1000)
+#define SAVE_PAGE_MAX    32
+#define SAVE_SECTOR_SIZE (0x1000)
 
 #define EXTRA_SAVE_TABLE_ENTRY_NONE 0xFFFFFFFF
 

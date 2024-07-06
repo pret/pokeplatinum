@@ -1,9 +1,10 @@
+#include "move_table.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "constants/moves.h"
 
-#include "move_table.h"
 #include "narc.h"
 
 static void LoadMoveEntry(int move, MoveTable *entry);

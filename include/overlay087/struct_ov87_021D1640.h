@@ -4,8 +4,8 @@
 #include "strbuf.h"
 
 typedef struct {
-    Strbuf* unk_00;
-    Strbuf* unk_04;
+    Strbuf *unk_00;
+    Strbuf *unk_04;
     u32 unk_08;
     u32 unk_0C;
     u16 unk_10;

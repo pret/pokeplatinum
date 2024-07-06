@@ -1,19 +1,20 @@
+#include "overlay019/ov19_021DA814.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "overlay019/struct_ov19_021D61B0_decl.h"
 
+#include "overlay019/ov19_021D61B0.h"
 #include "overlay019/struct_ov19_021D4DF0.h"
+#include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/struct_ov19_021DA8D8.h"
 
-#include "unk_02006E3C.h"
-#include "heap.h"
 #include "cell_actor.h"
-#include "overlay019/ov19_021D61B0.h"
-#include "overlay019/ov19_021DA814.h"
+#include "heap.h"
+#include "unk_02006E3C.h"
 
-BOOL ov19_021DA814 (UnkStruct_ov19_021DA8D8 * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, CellActorCollection * param3, NARC * param4)
+BOOL ov19_021DA814(UnkStruct_ov19_021DA8D8 *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, CellActorCollection *param3, NARC *param4)
 {
     param0->unk_44 = param1;
     param0->unk_3C = param3;
@@ -30,7 +31,7 @@ BOOL ov19_021DA814 (UnkStruct_ov19_021DA8D8 * param0, UnkStruct_ov19_021D61B0 * 
     return 1;
 }
 
-void ov19_021DA864 (UnkStruct_ov19_021DA8D8 * param0, NARC * param1)
+void ov19_021DA864(UnkStruct_ov19_021DA8D8 *param0, NARC *param1)
 {
     CellActorResourceData v0;
 
@@ -42,7 +43,7 @@ void ov19_021DA864 (UnkStruct_ov19_021DA8D8 * param0, NARC * param1)
     CellActor_SetExplicitPalette(param0->unk_04, 1);
 }
 
-void ov19_021DA8D8 (UnkStruct_ov19_021DA8D8 * param0)
+void ov19_021DA8D8(UnkStruct_ov19_021DA8D8 *param0)
 {
     if (param0->unk_08 != NULL) {
         Heap_FreeToHeap(param0->unk_08);
@@ -55,7 +56,7 @@ void ov19_021DA8D8 (UnkStruct_ov19_021DA8D8 * param0)
     }
 }
 
-void ov19_021DA8FC (UnkStruct_ov19_021DA8D8 * param0, int param1)
+void ov19_021DA8FC(UnkStruct_ov19_021DA8D8 *param0, int param1)
 {
     switch (param1) {
     case 0:

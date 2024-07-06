@@ -1,5 +1,5 @@
-#include "consts/gender.h"
 #include "constants/trainer.h"
+#include "consts/gender.h"
 
 // clang-format off
 static const u8 sTrainerClassGender[] = {

@@ -1,57 +1,56 @@
+#include "unk_02030108.h"
+
 #include <nitro.h>
 #include <string.h>
-
-#include "savedata.h"
 
 #include "struct_defs/struct_02030114.h"
 #include "struct_defs/struct_0203026C.h"
 #include "struct_defs/struct_0203068C.h"
 
 #include "savedata.h"
-#include "unk_02030108.h"
 
-void sub_02030108(UnkStruct_02030114 * param0);
-UnkStruct_02030114 * sub_02030114(SaveData * param0);
-BOOL sub_02030124(UnkStruct_02030114 * param0);
-void sub_0203012C(UnkStruct_02030114 * param0, BOOL param1);
-void sub_02030140(UnkStruct_02030114 * param0, u8 param1, u8 param2, u8 param3, const void * param4);
-u32 sub_02030198(UnkStruct_02030114 * param0, u8 param1, u8 param2, u8 param3, void * param4);
-u8 sub_020301E0(u8 param0, u8 * param1);
-void sub_02030204(u8 param0, u8 * param1, u8 param2);
-void sub_02030244(u8 * param0);
-void sub_02030260(UnkStruct_0203026C * param0);
-UnkStruct_0203026C * sub_0203026C(SaveData * param0);
-void sub_02030280(UnkStruct_0203026C * param0, u8 param1, u8 param2, u8 param3, const void * param4);
-u32 sub_020302B4(UnkStruct_0203026C * param0, u8 param1, u8 param2, u8 param3, void * param4);
+void sub_02030108(UnkStruct_02030114 *param0);
+UnkStruct_02030114 *sub_02030114(SaveData *param0);
+BOOL sub_02030124(UnkStruct_02030114 *param0);
+void sub_0203012C(UnkStruct_02030114 *param0, BOOL param1);
+void sub_02030140(UnkStruct_02030114 *param0, u8 param1, u8 param2, u8 param3, const void *param4);
+u32 sub_02030198(UnkStruct_02030114 *param0, u8 param1, u8 param2, u8 param3, void *param4);
+u8 sub_020301E0(u8 param0, u8 *param1);
+void sub_02030204(u8 param0, u8 *param1, u8 param2);
+void sub_02030244(u8 *param0);
+void sub_02030260(UnkStruct_0203026C *param0);
+UnkStruct_0203026C *sub_0203026C(SaveData *param0);
+void sub_02030280(UnkStruct_0203026C *param0, u8 param1, u8 param2, u8 param3, const void *param4);
+u32 sub_020302B4(UnkStruct_0203026C *param0, u8 param1, u8 param2, u8 param3, void *param4);
 
-void sub_02030108 (UnkStruct_02030114 * param0)
+void sub_02030108(UnkStruct_02030114 *param0)
 {
     MI_CpuClear8(param0, sizeof(UnkStruct_02030114));
     return;
 }
 
-UnkStruct_02030114 * sub_02030114 (SaveData * param0)
+UnkStruct_02030114 *sub_02030114(SaveData *param0)
 {
-    UnkStruct_0203068C * v0 = SaveData_SaveTable(param0, 23);
+    UnkStruct_0203068C *v0 = SaveData_SaveTable(param0, 23);
     return &v0->unk_8E0_val3;
 }
 
-BOOL sub_02030124 (UnkStruct_02030114 * param0)
+BOOL sub_02030124(UnkStruct_02030114 *param0)
 {
     return param0->unk_00_3;
 }
 
-void sub_0203012C (UnkStruct_02030114 * param0, BOOL param1)
+void sub_0203012C(UnkStruct_02030114 *param0, BOOL param1)
 {
     param0->unk_00_3 = param1;
     return;
 }
 
-void sub_02030140 (UnkStruct_02030114 * param0, u8 param1, u8 param2, u8 param3, const void * param4)
+void sub_02030140(UnkStruct_02030114 *param0, u8 param1, u8 param2, u8 param3, const void *param4)
 {
-    u32 * v0 = (u32 *)param4;
-    u16 * v1 = (u16 *)param4;
-    u8 * v2 = (u8 *)param4;
+    u32 *v0 = (u32 *)param4;
+    u16 *v1 = (u16 *)param4;
+    u8 *v2 = (u8 *)param4;
 
     switch (param1) {
     case 0:
@@ -77,7 +76,7 @@ void sub_02030140 (UnkStruct_02030114 * param0, u8 param1, u8 param2, u8 param3,
     return;
 }
 
-u32 sub_02030198 (UnkStruct_02030114 * param0, u8 param1, u8 param2, u8 param3, void * param4)
+u32 sub_02030198(UnkStruct_02030114 *param0, u8 param1, u8 param2, u8 param3, void *param4)
 {
     switch (param1) {
     case 0:
@@ -98,7 +97,7 @@ u32 sub_02030198 (UnkStruct_02030114 * param0, u8 param1, u8 param2, u8 param3, 
     return 0;
 }
 
-u8 sub_020301E0 (u8 param0, u8 * param1)
+u8 sub_020301E0(u8 param0, u8 *param1)
 {
     u8 v0;
     u8 v1;
@@ -111,7 +110,7 @@ u8 sub_020301E0 (u8 param0, u8 * param1)
     return v2;
 }
 
-void sub_02030204 (u8 param0, u8 * param1, u8 param2)
+void sub_02030204(u8 param0, u8 *param1, u8 param2)
 {
     u8 v0;
     u8 v1;
@@ -132,7 +131,7 @@ void sub_02030204 (u8 param0, u8 * param1, u8 param2)
     return;
 }
 
-void sub_02030244 (u8 * param0)
+void sub_02030244(u8 *param0)
 {
     int v0;
 
@@ -143,23 +142,23 @@ void sub_02030244 (u8 * param0)
     return;
 }
 
-void sub_02030260 (UnkStruct_0203026C * param0)
+void sub_02030260(UnkStruct_0203026C *param0)
 {
     MI_CpuClear8(param0, sizeof(UnkStruct_0203026C));
     return;
 }
 
-UnkStruct_0203026C * sub_0203026C (SaveData * param0)
+UnkStruct_0203026C *sub_0203026C(SaveData *param0)
 {
-    UnkStruct_0203068C * v0 = SaveData_SaveTable(param0, 23);
+    UnkStruct_0203068C *v0 = SaveData_SaveTable(param0, 23);
     return &v0->unk_1618.unk_00;
 }
 
-void sub_02030280 (UnkStruct_0203026C * param0, u8 param1, u8 param2, u8 param3, const void * param4)
+void sub_02030280(UnkStruct_0203026C *param0, u8 param1, u8 param2, u8 param3, const void *param4)
 {
-    u32 * v0 = (u32 *)param4;
-    u16 * v1 = (u16 *)param4;
-    u8 * v2 = (u8 *)param4;
+    u32 *v0 = (u32 *)param4;
+    u16 *v1 = (u16 *)param4;
+    u8 *v2 = (u8 *)param4;
 
     switch (param1) {
     case 5:
@@ -177,7 +176,7 @@ void sub_02030280 (UnkStruct_0203026C * param0, u8 param1, u8 param2, u8 param3,
     return;
 }
 
-u32 sub_020302B4 (UnkStruct_0203026C * param0, u8 param1, u8 param2, u8 param3, void * param4)
+u32 sub_020302B4(UnkStruct_0203026C *param0, u8 param1, u8 param2, u8 param3, void *param4)
 {
     switch (param1) {
     case 5:

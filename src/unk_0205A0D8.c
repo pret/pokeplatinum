@@ -1,71 +1,68 @@
+#include "unk_0205A0D8.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-
-#include "message.h"
 #include "struct_decls/struct_020149F0_decl.h"
-#include "strbuf.h"
-#include "trainer_info.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
+#include "struct_defs/pokemon_summary.h"
+#include "struct_defs/struct_0205AA50.h"
+#include "struct_defs/struct_02072014.h"
+#include "struct_defs/struct_02098C44.h"
+
+#include "field/field_system.h"
+#include "functypes/funcptr_0205AB10.h"
+#include "overlay005/ov5_021D0D80.h"
+
+#include "bag.h"
+#include "comm_player_manager.h"
+#include "communication_information.h"
+#include "communication_system.h"
+#include "core_sys.h"
+#include "field_comm_manager.h"
+#include "field_system.h"
+#include "heap.h"
+#include "map_object.h"
+#include "message.h"
+#include "party.h"
+#include "player_avatar.h"
+#include "pokemon.h"
+#include "pokemon_summary_app.h"
+#include "save_player.h"
 #include "savedata.h"
+#include "strbuf.h"
+#include "string_template.h"
+#include "trainer_info.h"
+#include "unk_02005474.h"
+#include "unk_0200DA60.h"
+#include "unk_0200F174.h"
+#include "unk_020149F0.h"
+#include "unk_02018340.h"
+#include "unk_0201D670.h"
+#include "unk_0202602C.h"
+#include "unk_0202D778.h"
+#include "unk_020363E8.h"
+#include "unk_020366A0.h"
+#include "unk_0203D1B8.h"
+#include "unk_020508D4.h"
+#include "unk_0205D8CC.h"
+#include "unk_020655F4.h"
+#include "unk_0207A274.h"
 
 #include "constdata/const_020F1E88.h"
 #include "constdata/const_020F410C.h"
 
-#include "field/field_system.h"
-#include "struct_defs/struct_0205AA50.h"
-#include "functypes/funcptr_0205AB10.h"
-#include "struct_defs/struct_02072014.h"
-#include "struct_defs/struct_02098C44.h"
-#include "struct_defs/pokemon_summary.h"
-
-#include "unk_02005474.h"
-#include "message.h"
-#include "string_template.h"
-#include "unk_0200DA60.h"
-#include "unk_0200F174.h"
-#include "unk_020149F0.h"
-#include "heap.h"
-#include "unk_02018340.h"
-#include "unk_0201D670.h"
-#include "strbuf.h"
-#include "save_player.h"
-#include "unk_0202602C.h"
-#include "unk_0202D778.h"
-#include "communication_information.h"
-#include "communication_system.h"
-#include "unk_020363E8.h"
-#include "unk_020366A0.h"
-#include "field_system.h"
-#include "unk_0203D1B8.h"
-#include "unk_020508D4.h"
-#include "comm_player_manager.h"
-#include "field_comm_manager.h"
-#include "unk_0205A0D8.h"
-#include "unk_0205D8CC.h"
-#include "player_avatar.h"
-#include "map_object.h"
-#include "unk_020655F4.h"
-#include "pokemon.h"
-#include "party.h"
-#include "unk_0207A274.h"
-#include "bag.h"
-#include "pokemon_summary_app.h"
-#include "overlay005/ov5_021D0D80.h"
-
 typedef struct {
-    PokemonSummary * unk_00;
-    PartyManagementData * unk_04;
-    UnkFuncPtr_0205AB10 * unk_08;
-    Strbuf* unk_0C;
-    Strbuf* unk_10;
+    PokemonSummary *unk_00;
+    PartyManagementData *unk_04;
+    UnkFuncPtr_0205AB10 *unk_08;
+    Strbuf *unk_0C;
+    Strbuf *unk_10;
     Window unk_14;
-    FieldSystem * fieldSystem;
-    StringTemplate * unk_28;
-    MessageLoader * unk_2C;
+    FieldSystem *fieldSystem;
+    StringTemplate *unk_28;
+    MessageLoader *unk_2C;
     int unk_30;
     int unk_34;
     int unk_38;
@@ -73,14 +70,14 @@ typedef struct {
     u8 unk_3D[6];
     u8 unk_43;
     u8 unk_44;
-    u8 * unk_48;
-    u8 * unk_4C;
-    Party * unk_50;
+    u8 *unk_48;
+    u8 *unk_4C;
+    Party *unk_50;
     Window unk_54;
     Window unk_64;
-    TrainerInfo * unk_74;
-    UnkStruct_020149F0 * unk_78;
-    Window * unk_7C;
+    TrainerInfo *unk_74;
+    UnkStruct_020149F0 *unk_78;
+    Window *unk_7C;
     u8 unk_80;
     s8 unk_81;
     u8 unk_82;
@@ -97,36 +94,36 @@ typedef struct {
 } UnkStruct_0205AD20;
 
 typedef struct {
-    Strbuf* unk_00;
-    Strbuf* unk_04;
+    Strbuf *unk_00;
+    Strbuf *unk_04;
     Window unk_08;
-    StringTemplate * unk_18;
-    MessageLoader * unk_1C;
+    StringTemplate *unk_18;
+    MessageLoader *unk_1C;
     int unk_20;
     int unk_24;
     int unk_28;
 } UnkStruct_0205B2D4;
 
-static void sub_0205AC28(UnkStruct_0205A0D8 * param0);
-static void sub_0205AC80(UnkStruct_0205A0D8 * param0, BOOL param1);
-static BOOL sub_0205ACC8(UnkStruct_0205A0D8 * param0);
-static BOOL sub_0205AD10(UnkStruct_0205A0D8 * param0);
-static void sub_0205ADF8(UnkStruct_0205A0D8 * param0, int param1);
-static int sub_0205AFE4(UnkStruct_0205A0D8 * param0);
-static void sub_0205B0B4(UnkStruct_0205A0D8 * param0);
-static BOOL sub_0205AD34(UnkStruct_0205A0D8 * param0);
-static BOOL sub_0205AD70(UnkStruct_0205A0D8 * param0);
-static void sub_0205ADAC(UnkStruct_0205A0D8 * param0);
-static void sub_0205AD80(UnkStruct_0205A0D8 * param0);
-static int sub_0205AA50(UnkStruct_0205A0D8 * param0, const Strbuf *param1);
-static void sub_0205AAA0(UnkStruct_0205A0D8 * param0, BOOL param1);
-static void sub_0205AF18(UnkStruct_0205A0D8 * param0, int param1);
-static BOOL sub_0205AD20(UnkStruct_0205A0D8 * param0);
+static void sub_0205AC28(UnkStruct_0205A0D8 *param0);
+static void sub_0205AC80(UnkStruct_0205A0D8 *param0, BOOL param1);
+static BOOL sub_0205ACC8(UnkStruct_0205A0D8 *param0);
+static BOOL sub_0205AD10(UnkStruct_0205A0D8 *param0);
+static void sub_0205ADF8(UnkStruct_0205A0D8 *param0, int param1);
+static int sub_0205AFE4(UnkStruct_0205A0D8 *param0);
+static void sub_0205B0B4(UnkStruct_0205A0D8 *param0);
+static BOOL sub_0205AD34(UnkStruct_0205A0D8 *param0);
+static BOOL sub_0205AD70(UnkStruct_0205A0D8 *param0);
+static void sub_0205ADAC(UnkStruct_0205A0D8 *param0);
+static void sub_0205AD80(UnkStruct_0205A0D8 *param0);
+static int sub_0205AA50(UnkStruct_0205A0D8 *param0, const Strbuf *param1);
+static void sub_0205AAA0(UnkStruct_0205A0D8 *param0, BOOL param1);
+static void sub_0205AF18(UnkStruct_0205A0D8 *param0, int param1);
+static BOOL sub_0205AD20(UnkStruct_0205A0D8 *param0);
 
-static void sub_0205A0D8 (UnkStruct_0205A0D8 * param0, FieldSystem * fieldSystem, Party * param2, int param3, int param4, int param5)
+static void sub_0205A0D8(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem, Party *param2, int param3, int param4, int param5)
 {
-    PokemonSummary * v0;
-    SaveData * v1;
+    PokemonSummary *v0;
+    SaveData *v1;
     static const u8 v2[] = {
         0, 1, 2, 4, 3, 5, 6, 7, 8
     };
@@ -154,10 +151,10 @@ static void sub_0205A0D8 (UnkStruct_0205A0D8 * param0, FieldSystem * fieldSystem
     param0->unk_00 = v0;
 }
 
-static void sub_0205A164 (UnkStruct_0205A0D8 * param0, int param1)
+static void sub_0205A164(UnkStruct_0205A0D8 *param0, int param1)
 {
     int v0;
-    PartyManagementData * v1 = Heap_AllocFromHeap(param1, sizeof(PartyManagementData));
+    PartyManagementData *v1 = Heap_AllocFromHeap(param1, sizeof(PartyManagementData));
 
     MI_CpuClear8(v1, sizeof(PartyManagementData));
 
@@ -187,7 +184,7 @@ static void sub_0205A164 (UnkStruct_0205A0D8 * param0, int param1)
     param0->unk_04 = v1;
 }
 
-static BOOL sub_0205A258 (UnkStruct_0205A0D8 * param0, FieldSystem * fieldSystem)
+static BOOL sub_0205A258(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem)
 {
     int v0;
 
@@ -216,9 +213,9 @@ static BOOL sub_0205A258 (UnkStruct_0205A0D8 * param0, FieldSystem * fieldSystem
     return 1;
 }
 
-static BOOL sub_0205A2B0 (UnkStruct_0205A0D8 * param0, FieldSystem * fieldSystem)
+static BOOL sub_0205A2B0(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem)
 {
-    PokemonSummary * v0;
+    PokemonSummary *v0;
 
     if (sub_020509B4(fieldSystem)) {
         return 0;
@@ -231,7 +228,7 @@ static BOOL sub_0205A2B0 (UnkStruct_0205A0D8 * param0, FieldSystem * fieldSystem
     return 1;
 }
 
-static BOOL sub_0205A2DC (UnkStruct_0205A0D8 * param0)
+static BOOL sub_0205A2DC(UnkStruct_0205A0D8 *param0)
 {
     if (sub_020509DC(param0->fieldSystem)) {
         ov5_021D1744(1);
@@ -242,7 +239,7 @@ static BOOL sub_0205A2DC (UnkStruct_0205A0D8 * param0)
     return 0;
 }
 
-static BOOL sub_0205A2FC (void)
+static BOOL sub_0205A2FC(void)
 {
     int v0, v1;
 
@@ -257,10 +254,10 @@ static BOOL sub_0205A2FC (void)
     return 0;
 }
 
-static BOOL sub_0205A324 (TaskManager * param0)
+static BOOL sub_0205A324(TaskManager *param0)
 {
-    UnkStruct_0205A0D8 * v0 = TaskManager_Environment(param0);
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
+    UnkStruct_0205A0D8 *v0 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
 
     switch (v0->unk_34) {
     case 0:
@@ -620,9 +617,9 @@ static BOOL sub_0205A324 (TaskManager * param0)
     return 0;
 }
 
-static int sub_0205AA50 (UnkStruct_0205A0D8 * param0, const Strbuf *param1)
+static int sub_0205AA50(UnkStruct_0205A0D8 *param0, const Strbuf *param1)
 {
-    Window * v0 = &(param0->unk_14);
+    Window *v0 = &(param0->unk_14);
 
     if (BGL_WindowAdded(v0) == 0) {
         FieldMessage_AddWindow(param0->fieldSystem->unk_08, v0, 3);
@@ -634,7 +631,7 @@ static int sub_0205AA50 (UnkStruct_0205A0D8 * param0, const Strbuf *param1)
     return FieldMessage_Print(v0, (Strbuf *)param1, SaveData_Options(param0->fieldSystem->saveData), 1);
 }
 
-static void sub_0205AAA0 (UnkStruct_0205A0D8 * param0, BOOL param1)
+static void sub_0205AAA0(UnkStruct_0205A0D8 *param0, BOOL param1)
 {
     if (BGL_WindowAdded(&(param0->unk_14))) {
         if (param1) {
@@ -657,10 +654,10 @@ static void sub_0205AAA0 (UnkStruct_0205A0D8 * param0, BOOL param1)
     }
 }
 
-void sub_0205AB10 (FieldSystem * fieldSystem, UnkFuncPtr_0205AB10 * param1)
+void sub_0205AB10(FieldSystem *fieldSystem, UnkFuncPtr_0205AB10 *param1)
 {
-    UnkStruct_0205A0D8 * v0;
-    TaskManager * v1 = fieldSystem->unk_10;
+    UnkStruct_0205A0D8 *v0;
+    TaskManager *v1 = fieldSystem->unk_10;
 
     if (v1) {
         return;
@@ -691,8 +688,7 @@ void sub_0205AB10 (FieldSystem * fieldSystem, UnkFuncPtr_0205AB10 * param1)
     v0->unk_74 = CommInfo_TrainerInfo(v0->unk_86 ^ 1);
 
     switch (v0->unk_88) {
-    case 3:
-    {
+    case 3: {
         u32 v2 = sub_0205B0E4();
 
         v0->unk_4C = Heap_AllocFromHeapAtEnd(11, v2);
@@ -703,8 +699,7 @@ void sub_0205AB10 (FieldSystem * fieldSystem, UnkFuncPtr_0205AB10 * param1)
 
         v0->unk_44 = 5;
         v0->unk_34 = 23;
-    }
-    break;
+    } break;
     case 4:
         v0->unk_34 = 9;
         break;
@@ -720,7 +715,7 @@ void sub_0205AB10 (FieldSystem * fieldSystem, UnkFuncPtr_0205AB10 * param1)
     FieldTask_Set(fieldSystem, sub_0205A324, v0);
 }
 
-static void sub_0205AC28 (UnkStruct_0205A0D8 * param0)
+static void sub_0205AC28(UnkStruct_0205A0D8 *param0)
 {
     if (param0->unk_50) {
         Heap_FreeToHeap(param0->unk_50);
@@ -743,16 +738,16 @@ static void sub_0205AC28 (UnkStruct_0205A0D8 * param0)
     sub_0205AAA0(param0, 1);
 }
 
-static UnkStruct_0205A0D8 * sub_0205AC74 (FieldSystem * fieldSystem)
+static UnkStruct_0205A0D8 *sub_0205AC74(FieldSystem *fieldSystem)
 {
     return TaskManager_Environment(fieldSystem->unk_10);
 }
 
-static void sub_0205AC80 (UnkStruct_0205A0D8 * param0, BOOL param1)
+static void sub_0205AC80(UnkStruct_0205A0D8 *param0, BOOL param1)
 {
-    Party * v0;
-    UnkStruct_0205AD20 * v1;
-    u8 * v2;
+    Party *v0;
+    UnkStruct_0205AD20 *v1;
+    u8 *v2;
     int v3, v4;
 
     v0 = Party_GetFromSavedata(param0->fieldSystem->saveData);
@@ -769,13 +764,13 @@ static void sub_0205AC80 (UnkStruct_0205A0D8 * param0, BOOL param1)
     }
 }
 
-static BOOL sub_0205ACC8 (UnkStruct_0205A0D8 * param0)
+static BOOL sub_0205ACC8(UnkStruct_0205A0D8 *param0)
 {
     if (param0->unk_89 & 1) {
         return 1;
     } else {
         BOOL v0;
-        u8 * v1;
+        u8 *v1;
         u32 v2;
 
         v1 = param0->unk_4C;
@@ -795,7 +790,7 @@ static BOOL sub_0205ACC8 (UnkStruct_0205A0D8 * param0)
     }
 }
 
-static BOOL sub_0205AD10 (UnkStruct_0205A0D8 * param0)
+static BOOL sub_0205AD10(UnkStruct_0205A0D8 *param0)
 {
     if (param0->unk_89 == 3) {
         return 1;
@@ -804,15 +799,15 @@ static BOOL sub_0205AD10 (UnkStruct_0205A0D8 * param0)
     return 0;
 }
 
-static BOOL sub_0205AD20 (UnkStruct_0205A0D8 * param0)
+static BOOL sub_0205AD20(UnkStruct_0205A0D8 *param0)
 {
-    UnkStruct_0205AD20 * v0;
+    UnkStruct_0205AD20 *v0;
 
     v0 = (UnkStruct_0205AD20 *)((u8 *)(param0->unk_48) + (Pokemon_GetStructSize() * 3));
     return v0->unk_00;
 }
 
-static BOOL sub_0205AD34 (UnkStruct_0205A0D8 * param0)
+static BOOL sub_0205AD34(UnkStruct_0205A0D8 *param0)
 {
     BOOL v0;
 
@@ -829,7 +824,7 @@ static BOOL sub_0205AD34 (UnkStruct_0205A0D8 * param0)
     return v0;
 }
 
-static BOOL sub_0205AD70 (UnkStruct_0205A0D8 * param0)
+static BOOL sub_0205AD70(UnkStruct_0205A0D8 *param0)
 {
     if (param0->unk_89 == 3) {
         return 1;
@@ -838,7 +833,7 @@ static BOOL sub_0205AD70 (UnkStruct_0205A0D8 * param0)
     return 0;
 }
 
-static void sub_0205AD80 (UnkStruct_0205A0D8 * param0)
+static void sub_0205AD80(UnkStruct_0205A0D8 *param0)
 {
     u32 v0;
     int v1;
@@ -851,10 +846,10 @@ static void sub_0205AD80 (UnkStruct_0205A0D8 * param0)
     }
 }
 
-static void sub_0205ADAC (UnkStruct_0205A0D8 * param0)
+static void sub_0205ADAC(UnkStruct_0205A0D8 *param0)
 {
     u32 v0;
-    u8 * v1, * v2;
+    u8 *v1, *v2;
     int v3;
 
     v0 = Pokemon_GetStructSize();
@@ -870,13 +865,13 @@ static void sub_0205ADAC (UnkStruct_0205A0D8 * param0)
     }
 }
 
-static void sub_0205ADF8 (UnkStruct_0205A0D8 * param0, int param1)
+static void sub_0205ADF8(UnkStruct_0205A0D8 *param0, int param1)
 {
-    Window * v0 = &(param0->unk_54);
+    Window *v0 = &(param0->unk_54);
 
     if (BGL_WindowAdded(v0) == 0) {
         int v1, v2, v3;
-        MessageLoader * v4;
+        MessageLoader *v4;
 
         v4 = MessageLoader_Init(1, 26, 412, 4);
         v3 = Pokemon_GetStructSize();
@@ -906,9 +901,9 @@ static void sub_0205ADF8 (UnkStruct_0205A0D8 * param0, int param1)
     param0->unk_7C = v0;
 }
 
-static void sub_0205AF18 (UnkStruct_0205A0D8 * param0, int param1)
+static void sub_0205AF18(UnkStruct_0205A0D8 *param0, int param1)
 {
-    Window * v0 = &(param0->unk_64);
+    Window *v0 = &(param0->unk_64);
 
     if (BGL_WindowAdded(v0) == 0) {
         int v1;
@@ -932,7 +927,7 @@ static void sub_0205AF18 (UnkStruct_0205A0D8 * param0, int param1)
     Window_Show(param0->unk_7C, 0, 1, 11);
 }
 
-static int sub_0205AFE4 (UnkStruct_0205A0D8 * param0)
+static int sub_0205AFE4(UnkStruct_0205A0D8 *param0)
 {
     do {
         if (gCoreSys.pressedKeys & PAD_KEY_UP) {
@@ -941,7 +936,7 @@ static int sub_0205AFE4 (UnkStruct_0205A0D8 * param0)
         }
 
         if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
-            param0->unk_81 = (param0->unk_81 == (param0->unk_80 - 1)) ?  0 : (param0->unk_81 + 1);
+            param0->unk_81 = (param0->unk_81 == (param0->unk_80 - 1)) ? 0 : (param0->unk_81 + 1);
             break;
         }
 
@@ -971,28 +966,28 @@ static int sub_0205AFE4 (UnkStruct_0205A0D8 * param0)
     return 0;
 }
 
-static void sub_0205B0B4 (UnkStruct_0205A0D8 * param0)
+static void sub_0205B0B4(UnkStruct_0205A0D8 *param0)
 {
     Window_Clear(param0->unk_7C, 1);
 }
 
-void sub_0205B0C0 (int param0, int param1, void * param2, void * param3)
+void sub_0205B0C0(int param0, int param1, void *param2, void *param3)
 {
-    UnkStruct_0205A0D8 * v0 = sub_0205AC74(param3);
+    UnkStruct_0205A0D8 *v0 = sub_0205AC74(param3);
 
     if (v0->unk_86 != param0) {
         v0->unk_89 |= 2;
     }
 }
 
-int sub_0205B0E4 (void)
+int sub_0205B0E4(void)
 {
     return Pokemon_GetStructSize() * 3 + sizeof(UnkStruct_0205AD20);
 }
 
-u8 * sub_0205B0F4 (int param0, void * param1, int param2)
+u8 *sub_0205B0F4(int param0, void *param1, int param2)
 {
-    UnkStruct_0205A0D8 * v0 = sub_0205AC74(param1);
+    UnkStruct_0205A0D8 *v0 = sub_0205AC74(param1);
 
     if (v0->unk_86 != param0) {
         return v0->unk_48;
@@ -1001,9 +996,9 @@ u8 * sub_0205B0F4 (int param0, void * param1, int param2)
     }
 }
 
-void sub_0205B110 (int param0, int param1, void * param2, void * param3)
+void sub_0205B110(int param0, int param1, void *param2, void *param3)
 {
-    UnkStruct_0205A0D8 * v0 = sub_0205AC74(param3);
+    UnkStruct_0205A0D8 *v0 = sub_0205AC74(param3);
 
     if (v0->unk_86 != param0) {
         v0->unk_85 = *((u8 *)param2);
@@ -1011,11 +1006,11 @@ void sub_0205B110 (int param0, int param1, void * param2, void * param3)
     }
 }
 
-static BOOL sub_0205B140 (TaskManager * param0)
+static BOOL sub_0205B140(TaskManager *param0)
 {
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_0205B2D4 * v1 = TaskManager_Environment(param0);
-    TrainerCard * v2 = (TrainerCard *)sub_02059EBC(v1->unk_24, NULL, 0);
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+    UnkStruct_0205B2D4 *v1 = TaskManager_Environment(param0);
+    TrainerCard *v2 = (TrainerCard *)sub_02059EBC(v1->unk_24, NULL, 0);
 
     switch (v1->unk_28) {
     case 0:
@@ -1083,7 +1078,7 @@ static BOOL sub_0205B140 (TaskManager * param0)
     return 0;
 }
 
-void sub_0205B2D4 (FieldSystem * fieldSystem)
+void sub_0205B2D4(FieldSystem *fieldSystem)
 {
     int v0;
     int v1 = CommSys_CurNetId();
@@ -1096,7 +1091,7 @@ void sub_0205B2D4 (FieldSystem * fieldSystem)
         }
 
         if ((v2 == CommPlayer_XPos(v0)) && (v3 == CommPlayer_ZPos(v0))) {
-            UnkStruct_0205B2D4 * v4 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0205B2D4));
+            UnkStruct_0205B2D4 *v4 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0205B2D4));
 
             v4->unk_24 = v0;
             v4->unk_28 = 0;

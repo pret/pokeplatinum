@@ -1,30 +1,30 @@
+#include "unk_0204E240.h"
+
 #include <nitro.h>
 #include <string.h>
 
+#include "field/field_system.h"
+
+#include "bag.h"
+#include "field_script_context.h"
 #include "inlines.h"
 
-#include "field/field_system.h"
-#include "field_script_context.h"
-
-#include "unk_0204E240.h"
-#include "bag.h"
-
 const u16 Unk_020EBFFC[7][2] = {
-    {0x67, 0x8E},
-    {0x65, 0x8A},
-    {0x66, 0x8C},
-    {0x63, 0x159},
-    {0x64, 0x15B},
-    {0x68, 0x19A},
-    {0x69, 0x198}
+    { 0x67, 0x8E },
+    { 0x65, 0x8A },
+    { 0x66, 0x8C },
+    { 0x63, 0x159 },
+    { 0x64, 0x15B },
+    { 0x68, 0x19A },
+    { 0x69, 0x198 }
 };
 
-BOOL ScrCmd_1F1 (ScriptContext * param0)
+BOOL ScrCmd_1F1(ScriptContext *param0)
 {
-    FieldSystem * fieldSystem = param0->fieldSystem;
+    FieldSystem *fieldSystem = param0->fieldSystem;
     u8 v1;
     u16 v2, v3;
-    u16 * v4 = ScriptContext_GetVarPointer(param0);
+    u16 *v4 = ScriptContext_GetVarPointer(param0);
 
     for (v1 = 0, v3 = 0; v1 < 7; v1++) {
         v3 += Bag_GetItemQuantity(SaveData_GetBag(fieldSystem->saveData), Unk_020EBFFC[v1][0], 4);
@@ -35,10 +35,10 @@ BOOL ScrCmd_1F1 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_1F4 (ScriptContext * param0)
+BOOL ScrCmd_1F4(ScriptContext *param0)
 {
     u16 v0;
-    u16 * v1 = ScriptContext_GetVarPointer(param0);
+    u16 *v1 = ScriptContext_GetVarPointer(param0);
     u16 v2 = ScriptContext_GetVar(param0);
 
     *v1 = 0;
@@ -53,13 +53,13 @@ BOOL ScrCmd_1F4 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_1F5 (ScriptContext * param0)
+BOOL ScrCmd_1F5(ScriptContext *param0)
 {
-    FieldSystem * fieldSystem = param0->fieldSystem;
+    FieldSystem *fieldSystem = param0->fieldSystem;
     u8 v1;
     u16 v2, v3;
-    u16 * v4 = ScriptContext_GetVarPointer(param0);
-    u16 * v5 = ScriptContext_GetVarPointer(param0);
+    u16 *v4 = ScriptContext_GetVarPointer(param0);
+    u16 *v5 = ScriptContext_GetVarPointer(param0);
     u16 v6 = ScriptContext_GetVar(param0);
 
     *v4 = 0;
@@ -78,12 +78,12 @@ BOOL ScrCmd_1F5 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_1F2 (ScriptContext * param0)
+BOOL ScrCmd_1F2(ScriptContext *param0)
 {
     return 0;
 }
 
-BOOL ScrCmd_1F3 (ScriptContext * param0)
+BOOL ScrCmd_1F3(ScriptContext *param0)
 {
     return 0;
 }

@@ -1,3 +1,5 @@
+#include "overlay005/ov5_021D5B40.h"
+
 #include <nitro.h>
 #include <string.h>
 
@@ -5,7 +7,6 @@
 #include "overlay115/camera_angle.h"
 
 #include "camera.h"
-#include "overlay005/ov5_021D5B40.h"
 
 typedef struct {
     fx32 unk_00;
@@ -19,9 +20,7 @@ typedef struct {
 static const UnkStruct_ov5_021F8AE4 Unk_ov5_021F8AE4[] = {
     {
         0x29aec1,
-        {
-            -0x29fe, 0, 0.
-        },
+        { -0x29fe, 0, 0. },
         0,
         0x5c1,
         FX32_ONE * 150,
@@ -29,9 +28,7 @@ static const UnkStruct_ov5_021F8AE4 Unk_ov5_021F8AE4[] = {
     },
     {
         0x29aec1,
-        {
-            -0x309e, 0, 0
-        },
+        { -0x309e, 0, 0 },
         0,
         0x5c1,
         FX32_ONE * 150,
@@ -39,9 +36,7 @@ static const UnkStruct_ov5_021F8AE4 Unk_ov5_021F8AE4[] = {
     },
     {
         0x20374c,
-        {
-            -0x26de, 0, 0
-        },
+        { -0x26de, 0, 0 },
         0,
         0x770,
         FX32_ONE * 150,
@@ -49,9 +44,7 @@ static const UnkStruct_ov5_021F8AE4 Unk_ov5_021F8AE4[] = {
     },
     {
         0x29aec1,
-        {
-            -0x29fe, 0, 0
-        },
+        { -0x29fe, 0, 0 },
         0,
         0x5c1,
         FX32_ONE * 150,
@@ -59,9 +52,7 @@ static const UnkStruct_ov5_021F8AE4 Unk_ov5_021F8AE4[] = {
     },
     {
         0x61b89b,
-        {
-            -0x239e, 0, 0
-        },
+        { -0x239e, 0, 0 },
         1,
         0x281,
         FX32_ONE * 150,
@@ -69,9 +60,7 @@ static const UnkStruct_ov5_021F8AE4 Unk_ov5_021F8AE4[] = {
     },
     {
         0x13c805,
-        {
-            -0x29fd, 0, 0
-        },
+        { -0x29fd, 0, 0 },
         0,
         0xc01,
         FX32_ONE * 10,
@@ -79,9 +68,7 @@ static const UnkStruct_ov5_021F8AE4 Unk_ov5_021F8AE4[] = {
     },
     {
         0x3628df,
-        {
-            -0x33fd, 0, 0
-        },
+        { -0x33fd, 0, 0 },
         0,
         0x481,
         FX32_ONE * 115,
@@ -89,9 +76,7 @@ static const UnkStruct_ov5_021F8AE4 Unk_ov5_021F8AE4[] = {
     },
     {
         0x29aec1,
-        {
-            -0x29fd, 0, 0
-        },
+        { -0x29fd, 0, 0 },
         0,
         0x5c1,
         FX32_ONE * 153,
@@ -99,9 +84,7 @@ static const UnkStruct_ov5_021F8AE4 Unk_ov5_021F8AE4[] = {
     },
     {
         0x296ec1,
-        {
-            -0x321d, 0, 0
-        },
+        { -0x321d, 0, 0 },
         0,
         0x701,
         FX32_ONE * 150,
@@ -109,9 +92,7 @@ static const UnkStruct_ov5_021F8AE4 Unk_ov5_021F8AE4[] = {
     },
     {
         0x1659ac,
-        {
-            -0x1cdd, 0, 0
-        },
+        { -0x1cdd, 0, 0 },
         0,
         0xab0,
         FX32_ONE * 150,
@@ -119,9 +100,7 @@ static const UnkStruct_ov5_021F8AE4 Unk_ov5_021F8AE4[] = {
     },
     {
         0x4b25b1,
-        {
-            -0x2b3d, 0, 0
-        },
+        { -0x2b3d, 0, 0 },
         0,
         0x341,
         FX32_ONE * 150,
@@ -129,9 +108,7 @@ static const UnkStruct_ov5_021F8AE4 Unk_ov5_021F8AE4[] = {
     },
     {
         0x2a3d55,
-        {
-            -0x291d, 0, 0
-        },
+        { -0x291d, 0, 0 },
         0,
         0x5c1,
         FX32_ONE * 230,
@@ -139,9 +116,7 @@ static const UnkStruct_ov5_021F8AE4 Unk_ov5_021F8AE4[] = {
     },
     {
         0x23e93f,
-        {
-            -0x2cfd, 0, 0
-        },
+        { -0x2cfd, 0, 0 },
         0,
         0x6c1,
         FX32_ONE * 150,
@@ -149,9 +124,7 @@ static const UnkStruct_ov5_021F8AE4 Unk_ov5_021F8AE4[] = {
     },
     {
         0x20374c,
-        {
-            -0x21fd, 0, 0
-        },
+        { -0x21fd, 0, 0 },
         0,
         0x770,
         FX32_ONE * 150,
@@ -159,9 +132,7 @@ static const UnkStruct_ov5_021F8AE4 Unk_ov5_021F8AE4[] = {
     },
     {
         0xa9765,
-        {
-            -0x37bc, 0, 0
-        },
+        { -0x37bc, 0, 0 },
         0,
         0x1501,
         FX32_ONE * 10,
@@ -169,9 +140,7 @@ static const UnkStruct_ov5_021F8AE4 Unk_ov5_021F8AE4[] = {
     },
     {
         0x28dedf,
-        {
-            -0x26de, 0, 0
-        },
+        { -0x26de, 0, 0 },
         0,
         0x5f0,
         FX32_ONE * 150,
@@ -179,9 +148,7 @@ static const UnkStruct_ov5_021F8AE4 Unk_ov5_021F8AE4[] = {
     },
     {
         0x14aec0,
-        {
-            -(0x10000 - 0xd602), 0, 0
-        },
+        { -(0x10000 - 0xd602), 0, 0 },
         0,
         0xb01,
         FX32_ONE * 150,
@@ -189,10 +156,10 @@ static const UnkStruct_ov5_021F8AE4 Unk_ov5_021F8AE4[] = {
     },
 };
 
-void ov5_021D5B40 (const VecFx32 * param0, FieldSystem * fieldSystem, const int param2, const BOOL param3)
+void ov5_021D5B40(const VecFx32 *param0, FieldSystem *fieldSystem, const int param2, const BOOL param3)
 {
-    const VecFx32 * v0 = param0;
-    const UnkStruct_ov5_021F8AE4 * v1 = &Unk_ov5_021F8AE4[param2];
+    const VecFx32 *v0 = param0;
+    const UnkStruct_ov5_021F8AE4 *v1 = &Unk_ov5_021F8AE4[param2];
 
     GF_ASSERT(param2 < NELEMS(Unk_ov5_021F8AE4));
 
@@ -207,7 +174,7 @@ void ov5_021D5B40 (const VecFx32 * param0, FieldSystem * fieldSystem, const int 
     }
 }
 
-void ov5_021D5BA8 (FieldSystem * fieldSystem)
+void ov5_021D5BA8(FieldSystem *fieldSystem)
 {
     Camera_ClearActive();
     Camera_DeleteHistory(fieldSystem->camera);

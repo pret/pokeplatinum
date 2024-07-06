@@ -1,30 +1,31 @@
+#include "overlay019/ov19_021D8B54.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "sys_task_manager.h"
-#include "overlay019/struct_ov19_021D5DF8_decl.h"
-#include "overlay019/struct_ov19_021D61B0_decl.h"
 
-#include "overlay019/struct_ov19_021D4DF0.h"
-#include "overlay019/struct_ov19_021D8E00.h"
-#include "overlay019/struct_ov19_021DCD18.h"
-
-#include "unk_02006E3C.h"
-#include "sys_task.h"
-#include "heap.h"
-#include "unk_0201D15C.h"
-#include "cell_actor.h"
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/ov19_021D79F8.h"
-#include "overlay019/ov19_021D8B54.h"
 #include "overlay019/ov19_021DA270.h"
 #include "overlay019/ov19_021DC5F0.h"
 #include "overlay019/ov19_021DE3E8.h"
+#include "overlay019/struct_ov19_021D4DF0.h"
+#include "overlay019/struct_ov19_021D5DF8_decl.h"
+#include "overlay019/struct_ov19_021D61B0_decl.h"
+#include "overlay019/struct_ov19_021D8E00.h"
+#include "overlay019/struct_ov19_021DCD18.h"
+
+#include "cell_actor.h"
+#include "heap.h"
+#include "sys_task.h"
+#include "sys_task_manager.h"
+#include "unk_02006E3C.h"
+#include "unk_0201D15C.h"
 
 typedef struct {
-    CellActor * unk_00;
+    CellActor *unk_00;
     u16 unk_04;
     u16 unk_06;
     u32 unk_08;
@@ -35,34 +36,34 @@ typedef struct {
     fx32 unk_1C;
     fx32 unk_20;
     fx32 unk_24;
-    UnkStruct_ov19_021D8E00 * unk_28;
+    UnkStruct_ov19_021D8E00 *unk_28;
 } UnkStruct_ov19_021D9554;
 
-static void ov19_021D8E00(UnkStruct_ov19_021D8E00 * param0);
-static void ov19_021D8EE0(const UnkStruct_ov19_021D8E00 * param0, BOOL * param1, BOOL * param2);
-static void ov19_021D9088(SysTask * param0, void * param1);
-static void ov19_021D928C(SysTask * param0, void * param1);
-static void ov19_021D93D0(SysTask * param0, void * param1);
-static void ov19_021D9554(UnkStruct_ov19_021D8E00 * param0, CellActor * param1, fx32 param2, s32 param3, u32 param4);
-static BOOL ov19_021D95E0(UnkStruct_ov19_021D8E00 * param0);
-static void ov19_021D95F4(void * param0);
-static void ov19_021D9600(SysTask * param0, void * param1);
-static void ov19_021D9718(SysTask * param0, void * param1);
-static void ov19_021D9894(SysTask * param0, void * param1);
-static void ov19_021D9B78(SysTask * param0, void * param1);
-static void ov19_021D9C18(SysTask * param0, void * param1);
-static void ov19_021D9CB4(SysTask * param0, void * param1);
-static void ov19_021D9D48(s32 * param0, s32 * param1, u8 * param2, UnkStruct_ov19_021D8E00 * param3);
-static void ov19_021D9E04(UnkStruct_ov19_021D8E00 * param0, VecFx32 * param1);
-static void ov19_021D9EB0(UnkStruct_ov19_021D8E00 * param0);
-static void ov19_021DA038(UnkStruct_ov19_021D8E00 * param0);
-static void ov19_021DA06C(UnkStruct_ov19_021D8E00 * param0);
-static void ov19_021DA110(UnkStruct_ov19_021D8E00 * param0);
-static void ov19_021DA1F8(UnkStruct_ov19_021D8E00 * param0);
-static void ov19_021DA204(UnkStruct_ov19_021D8E00 * param0);
-static CellActor * ov19_021DA224(UnkStruct_ov19_021D8E00 * param0);
+static void ov19_021D8E00(UnkStruct_ov19_021D8E00 *param0);
+static void ov19_021D8EE0(const UnkStruct_ov19_021D8E00 *param0, BOOL *param1, BOOL *param2);
+static void ov19_021D9088(SysTask *param0, void *param1);
+static void ov19_021D928C(SysTask *param0, void *param1);
+static void ov19_021D93D0(SysTask *param0, void *param1);
+static void ov19_021D9554(UnkStruct_ov19_021D8E00 *param0, CellActor *param1, fx32 param2, s32 param3, u32 param4);
+static BOOL ov19_021D95E0(UnkStruct_ov19_021D8E00 *param0);
+static void ov19_021D95F4(void *param0);
+static void ov19_021D9600(SysTask *param0, void *param1);
+static void ov19_021D9718(SysTask *param0, void *param1);
+static void ov19_021D9894(SysTask *param0, void *param1);
+static void ov19_021D9B78(SysTask *param0, void *param1);
+static void ov19_021D9C18(SysTask *param0, void *param1);
+static void ov19_021D9CB4(SysTask *param0, void *param1);
+static void ov19_021D9D48(s32 *param0, s32 *param1, u8 *param2, UnkStruct_ov19_021D8E00 *param3);
+static void ov19_021D9E04(UnkStruct_ov19_021D8E00 *param0, VecFx32 *param1);
+static void ov19_021D9EB0(UnkStruct_ov19_021D8E00 *param0);
+static void ov19_021DA038(UnkStruct_ov19_021D8E00 *param0);
+static void ov19_021DA06C(UnkStruct_ov19_021D8E00 *param0);
+static void ov19_021DA110(UnkStruct_ov19_021D8E00 *param0);
+static void ov19_021DA1F8(UnkStruct_ov19_021D8E00 *param0);
+static void ov19_021DA204(UnkStruct_ov19_021D8E00 *param0);
+static CellActor *ov19_021DA224(UnkStruct_ov19_021D8E00 *param0);
 
-BOOL ov19_021D8B54 (UnkStruct_ov19_021D8E00 * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, CellActorCollection * param3, NARC * param4)
+BOOL ov19_021D8B54(UnkStruct_ov19_021D8E00 *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, CellActorCollection *param3, NARC *param4)
 {
     param0->unk_794 = param1;
     param0->unk_790 = param2;
@@ -90,7 +91,7 @@ BOOL ov19_021D8B54 (UnkStruct_ov19_021D8E00 * param0, UnkStruct_ov19_021D61B0 * 
     return 1;
 }
 
-void ov19_021D8C1C (UnkStruct_ov19_021D8E00 * param0, NARC * param1)
+void ov19_021D8C1C(UnkStruct_ov19_021D8E00 *param0, NARC *param1)
 {
     CellActorResourceData v0;
     u32 v1, v2;
@@ -170,7 +171,7 @@ void ov19_021D8C1C (UnkStruct_ov19_021D8E00 * param0, NARC * param1)
     ov19_021D9AEC(param0);
 }
 
-static void ov19_021D8E00 (UnkStruct_ov19_021D8E00 * param0)
+static void ov19_021D8E00(UnkStruct_ov19_021D8E00 *param0)
 {
     VecFx32 v0;
     s32 v1, v2;
@@ -188,7 +189,7 @@ static void ov19_021D8E00 (UnkStruct_ov19_021D8E00 * param0)
     param0->unk_78C = 1;
 }
 
-void ov19_021D8E84 (UnkStruct_ov19_021D8E00 * param0)
+void ov19_021D8E84(UnkStruct_ov19_021D8E00 *param0)
 {
     if (param0->unk_14) {
         Heap_FreeToHeap(param0->unk_14);
@@ -221,7 +222,7 @@ void ov19_021D8E84 (UnkStruct_ov19_021D8E00 * param0)
     }
 }
 
-static void ov19_021D8EE0 (const UnkStruct_ov19_021D8E00 * param0, BOOL * param1, BOOL * param2)
+static void ov19_021D8EE0(const UnkStruct_ov19_021D8E00 *param0, BOOL *param1, BOOL *param2)
 {
     *param1 = *param2 = 0;
 
@@ -249,7 +250,7 @@ static void ov19_021D8EE0 (const UnkStruct_ov19_021D8E00 * param0, BOOL * param1
     }
 }
 
-void ov19_021D8F60 (UnkStruct_ov19_021D8E00 * param0)
+void ov19_021D8F60(UnkStruct_ov19_021D8E00 *param0)
 {
     BOOL v0, v1;
     s32 v2, v3;
@@ -306,14 +307,14 @@ void ov19_021D8F60 (UnkStruct_ov19_021D8E00 * param0)
     ov19_021D77C8(ov19_021D9088, param0, 0);
 }
 
-BOOL ov19_021D9074 (UnkStruct_ov19_021D8E00 * param0)
+BOOL ov19_021D9074(UnkStruct_ov19_021D8E00 *param0)
 {
     return param0->unk_787 == 0;
 }
 
-static void ov19_021D9088 (SysTask * param0, void * param1)
+static void ov19_021D9088(SysTask *param0, void *param1)
 {
-    UnkStruct_ov19_021D8E00 * v0 = (UnkStruct_ov19_021D8E00 *)param1;
+    UnkStruct_ov19_021D8E00 *v0 = (UnkStruct_ov19_021D8E00 *)param1;
     VecFx32 v1;
 
     v1.z = 0;
@@ -377,7 +378,7 @@ static void ov19_021D9088 (SysTask * param0, void * param1)
     SysTask_Done(param0);
 }
 
-void ov19_021D9230 (UnkStruct_ov19_021D8E00 * param0)
+void ov19_021D9230(UnkStruct_ov19_021D8E00 *param0)
 {
     CellActor_SetAnim(param0->unk_04, 1);
 
@@ -390,14 +391,14 @@ void ov19_021D9230 (UnkStruct_ov19_021D8E00 * param0)
     ov19_021D77C8(ov19_021D928C, param0, 0);
 }
 
-BOOL ov19_021D9278 (UnkStruct_ov19_021D8E00 * param0)
+BOOL ov19_021D9278(UnkStruct_ov19_021D8E00 *param0)
 {
     return param0->unk_784 == 255;
 }
 
-static void ov19_021D928C (SysTask * param0, void * param1)
+static void ov19_021D928C(SysTask *param0, void *param1)
 {
-    UnkStruct_ov19_021D8E00 * v0 = (UnkStruct_ov19_021D8E00 *)param1;
+    UnkStruct_ov19_021D8E00 *v0 = (UnkStruct_ov19_021D8E00 *)param1;
     VecFx32 v1 = *(CellActor_GetPosition(v0->unk_04));
 
     switch (v0->unk_784) {
@@ -435,7 +436,7 @@ static void ov19_021D928C (SysTask * param0, void * param1)
     }
 }
 
-void ov19_021D9368 (UnkStruct_ov19_021D8E00 * param0)
+void ov19_021D9368(UnkStruct_ov19_021D8E00 *param0)
 {
     param0->unk_780 = (12 << FX32_SHIFT) / 6;
     param0->unk_770 = (param0->unk_768 + 12);
@@ -445,7 +446,7 @@ void ov19_021D9368 (UnkStruct_ov19_021D8E00 * param0)
     ov19_021D77C8(ov19_021D93D0, param0, 0);
 }
 
-BOOL ov19_021D939C (UnkStruct_ov19_021D8E00 * param0)
+BOOL ov19_021D939C(UnkStruct_ov19_021D8E00 *param0)
 {
     if (param0->unk_784 == 255) {
         ov19_021DA06C(param0);
@@ -457,9 +458,9 @@ BOOL ov19_021D939C (UnkStruct_ov19_021D8E00 * param0)
     return 0;
 }
 
-static void ov19_021D93D0 (SysTask * param0, void * param1)
+static void ov19_021D93D0(SysTask *param0, void *param1)
 {
-    UnkStruct_ov19_021D8E00 * v0 = (UnkStruct_ov19_021D8E00 *)param1;
+    UnkStruct_ov19_021D8E00 *v0 = (UnkStruct_ov19_021D8E00 *)param1;
     VecFx32 v1 = *(CellActor_GetPosition(v0->unk_04));
 
     switch (v0->unk_784) {
@@ -501,10 +502,10 @@ static void ov19_021D93D0 (SysTask * param0, void * param1)
     }
 }
 
-void ov19_021D94B4 (UnkStruct_ov19_021D8E00 * param0)
+void ov19_021D94B4(UnkStruct_ov19_021D8E00 *param0)
 {
     VecFx32 v0;
-    CellActor * v1;
+    CellActor *v1;
 
     CellActor_SetAnim(param0->unk_04, 1);
 
@@ -520,7 +521,7 @@ void ov19_021D94B4 (UnkStruct_ov19_021D8E00 * param0)
     param0->unk_784 = 0;
 }
 
-BOOL ov19_021D9530 (UnkStruct_ov19_021D8E00 * param0)
+BOOL ov19_021D9530(UnkStruct_ov19_021D8E00 *param0)
 {
     if (ov19_021D95E0(param0)) {
         CellActor_SetAnim(param0->unk_04, 2);
@@ -531,9 +532,9 @@ BOOL ov19_021D9530 (UnkStruct_ov19_021D8E00 * param0)
     return 0;
 }
 
-static void ov19_021D9554 (UnkStruct_ov19_021D8E00 * param0, CellActor * param1, fx32 param2, s32 param3, u32 param4)
+static void ov19_021D9554(UnkStruct_ov19_021D8E00 *param0, CellActor *param1, fx32 param2, s32 param3, u32 param4)
 {
-    UnkStruct_ov19_021D9554 * v0 = Heap_AllocFromHeap(10, sizeof(UnkStruct_ov19_021D9554));
+    UnkStruct_ov19_021D9554 *v0 = Heap_AllocFromHeap(10, sizeof(UnkStruct_ov19_021D9554));
 
     if (v0) {
         VecFx32 v1;
@@ -562,20 +563,20 @@ static void ov19_021D9554 (UnkStruct_ov19_021D8E00 * param0, CellActor * param1,
     }
 }
 
-static BOOL ov19_021D95E0 (UnkStruct_ov19_021D8E00 * param0)
+static BOOL ov19_021D95E0(UnkStruct_ov19_021D8E00 *param0)
 {
     return param0->unk_788 == 0;
 }
 
-static void ov19_021D95F4 (void * param0)
+static void ov19_021D95F4(void *param0)
 {
-    UnkStruct_ov19_021D8E00 * v0 = param0;
+    UnkStruct_ov19_021D8E00 *v0 = param0;
     v0->unk_788 = 0;
 }
 
-static void ov19_021D9600 (SysTask * param0, void * param1)
+static void ov19_021D9600(SysTask *param0, void *param1)
 {
-    UnkStruct_ov19_021D9554 * v0 = (UnkStruct_ov19_021D9554 *)param1;
+    UnkStruct_ov19_021D9554 *v0 = (UnkStruct_ov19_021D9554 *)param1;
     VecFx32 v1;
 
     v1 = *CellActor_GetPosition(v0->unk_00);
@@ -606,7 +607,7 @@ static void ov19_021D9600 (SysTask * param0, void * param1)
     }
 }
 
-void ov19_021D9690 (UnkStruct_ov19_021D8E00 * param0)
+void ov19_021D9690(UnkStruct_ov19_021D8E00 *param0)
 {
     VecFx32 v0;
 
@@ -627,14 +628,14 @@ void ov19_021D9690 (UnkStruct_ov19_021D8E00 * param0)
     }
 }
 
-BOOL ov19_021D9704 (UnkStruct_ov19_021D8E00 * param0)
+BOOL ov19_021D9704(UnkStruct_ov19_021D8E00 *param0)
 {
     return param0->unk_788 == 0;
 }
 
-static void ov19_021D9718 (SysTask * param0, void * param1)
+static void ov19_021D9718(SysTask *param0, void *param1)
 {
-    UnkStruct_ov19_021D8E00 * v0 = (UnkStruct_ov19_021D8E00 *)param1;
+    UnkStruct_ov19_021D8E00 *v0 = (UnkStruct_ov19_021D8E00 *)param1;
 
     switch (v0->unk_784) {
     case 0:
@@ -652,8 +653,7 @@ static void ov19_021D9718 (SysTask * param0, void * param1)
             v0->unk_784++;
         }
         break;
-    case 1:
-    {
+    case 1: {
         VecFx32 v2 = *CellActor_GetPosition(v0->unk_04);
 
         if (v0->unk_787) {
@@ -666,12 +666,11 @@ static void ov19_021D9718 (SysTask * param0, void * param1)
             v0->unk_788 = 0;
             SysTask_Done(param0);
         }
-    }
-    break;
+    } break;
     }
 }
 
-void ov19_021D97FC (UnkStruct_ov19_021D8E00 * param0)
+void ov19_021D97FC(UnkStruct_ov19_021D8E00 *param0)
 {
     VecFx32 v0 = *CellActor_GetPosition(param0->unk_04);
 
@@ -685,7 +684,7 @@ void ov19_021D97FC (UnkStruct_ov19_021D8E00 * param0)
     }
 }
 
-BOOL ov19_021D9858 (UnkStruct_ov19_021D8E00 * param0)
+BOOL ov19_021D9858(UnkStruct_ov19_021D8E00 *param0)
 {
     if (param0->unk_788 == 0) {
         if ((param0->unk_78C == 0) && (param0->unk_78D == 0)) {
@@ -700,9 +699,9 @@ BOOL ov19_021D9858 (UnkStruct_ov19_021D8E00 * param0)
     return 0;
 }
 
-static void ov19_021D9894 (SysTask * param0, void * param1)
+static void ov19_021D9894(SysTask *param0, void *param1)
 {
-    UnkStruct_ov19_021D8E00 * v0;
+    UnkStruct_ov19_021D8E00 *v0;
     VecFx32 v1;
 
     v0 = (UnkStruct_ov19_021D8E00 *)param1;
@@ -720,7 +719,7 @@ static void ov19_021D9894 (SysTask * param0, void * param1)
     }
 }
 
-void ov19_021D9900 (UnkStruct_ov19_021D8E00 * param0)
+void ov19_021D9900(UnkStruct_ov19_021D8E00 *param0)
 {
     if (param0->unk_790->unk_110 == ov19_021D5E68(param0->unk_790)) {
         ov19_021D84E0(param0->unk_758);
@@ -730,7 +729,7 @@ void ov19_021D9900 (UnkStruct_ov19_021D8E00 * param0)
     CellActor_SetAnim(param0->unk_04, 0);
 }
 
-void ov19_021D9938 (UnkStruct_ov19_021D8E00 * param0)
+void ov19_021D9938(UnkStruct_ov19_021D8E00 *param0)
 {
     CellActor_SetAnim(param0->unk_04, 1);
     ov19_021DA7B8(param0->unk_48, param0->unk_4C, 1);
@@ -738,9 +737,9 @@ void ov19_021D9938 (UnkStruct_ov19_021D8E00 * param0)
     param0->unk_784 = 0;
 }
 
-BOOL ov19_021D995C (UnkStruct_ov19_021D8E00 * param0)
+BOOL ov19_021D995C(UnkStruct_ov19_021D8E00 *param0)
 {
-    const UnkStruct_ov19_021D5DF8 * v0 = ov19_021D7964(param0->unk_794);
+    const UnkStruct_ov19_021D5DF8 *v0 = ov19_021D7964(param0->unk_794);
 
     switch (param0->unk_784) {
     case 0:
@@ -772,7 +771,7 @@ BOOL ov19_021D995C (UnkStruct_ov19_021D8E00 * param0)
     return 0;
 }
 
-void ov19_021D99F4 (UnkStruct_ov19_021D8E00 * param0)
+void ov19_021D99F4(UnkStruct_ov19_021D8E00 *param0)
 {
     CellActor_SetExplicitPriority(param0->unk_04, 1);
 
@@ -785,7 +784,7 @@ void ov19_021D99F4 (UnkStruct_ov19_021D8E00 * param0)
     }
 }
 
-void ov19_021D9A2C (UnkStruct_ov19_021D8E00 * param0)
+void ov19_021D9A2C(UnkStruct_ov19_021D8E00 *param0)
 {
     CellActor_SetExplicitPriority(param0->unk_04, 2);
 
@@ -798,7 +797,7 @@ void ov19_021D9A2C (UnkStruct_ov19_021D8E00 * param0)
     }
 }
 
-void ov19_021D9A64 (UnkStruct_ov19_021D8E00 * param0)
+void ov19_021D9A64(UnkStruct_ov19_021D8E00 *param0)
 {
     if (param0->unk_78C) {
         u32 v0 = ov19_021D5EA0(param0->unk_790);
@@ -806,7 +805,7 @@ void ov19_021D9A64 (UnkStruct_ov19_021D8E00 * param0)
     }
 }
 
-void ov19_021D9A8C (UnkStruct_ov19_021D8E00 * param0)
+void ov19_021D9A8C(UnkStruct_ov19_021D8E00 *param0)
 {
     u32 v0 = ov19_021D5EC8(param0->unk_790);
 
@@ -815,7 +814,7 @@ void ov19_021D9A8C (UnkStruct_ov19_021D8E00 * param0)
     }
 }
 
-void ov19_021D9AB0 (UnkStruct_ov19_021D8E00 * param0, u32 param1)
+void ov19_021D9AB0(UnkStruct_ov19_021D8E00 *param0, u32 param1)
 {
     if (param0->unk_4C->unk_00 != NULL) {
         ov19_021DA690(param0->unk_48, param0->unk_4C, param1);
@@ -824,7 +823,7 @@ void ov19_021D9AB0 (UnkStruct_ov19_021D8E00 * param0, u32 param1)
     }
 }
 
-void ov19_021D9AEC (UnkStruct_ov19_021D8E00 * param0)
+void ov19_021D9AEC(UnkStruct_ov19_021D8E00 *param0)
 {
     if (ov19_021D5EE0(param0->unk_790)) {
         CellActor_SetExplicitPalette(param0->unk_04, 1);
@@ -833,17 +832,17 @@ void ov19_021D9AEC (UnkStruct_ov19_021D8E00 * param0)
     }
 }
 
-void ov19_021D9B10 (UnkStruct_ov19_021D8E00 * param0)
+void ov19_021D9B10(UnkStruct_ov19_021D8E00 *param0)
 {
     CellActor_SetAnim(param0->unk_04, 1);
 }
 
-void ov19_021D9B1C (UnkStruct_ov19_021D8E00 * param0, VecFx32 * param1)
+void ov19_021D9B1C(UnkStruct_ov19_021D8E00 *param0, VecFx32 *param1)
 {
     *param1 = *(CellActor_GetPosition(param0->unk_04));
 }
 
-void ov19_021D9B34 (UnkStruct_ov19_021D8E00 * param0)
+void ov19_021D9B34(UnkStruct_ov19_021D8E00 *param0)
 {
     param0->unk_784 = 0;
 
@@ -853,14 +852,14 @@ void ov19_021D9B34 (UnkStruct_ov19_021D8E00 * param0)
     }
 }
 
-BOOL ov19_021D9B64 (UnkStruct_ov19_021D8E00 * param0)
+BOOL ov19_021D9B64(UnkStruct_ov19_021D8E00 *param0)
 {
     return param0->unk_788 == 0;
 }
 
-static void ov19_021D9B78 (SysTask * param0, void * param1)
+static void ov19_021D9B78(SysTask *param0, void *param1)
 {
-    UnkStruct_ov19_021D8E00 * v0 = param1;
+    UnkStruct_ov19_021D8E00 *v0 = param1;
 
     switch (v0->unk_784) {
     case 0:
@@ -877,7 +876,7 @@ static void ov19_021D9B78 (SysTask * param0, void * param1)
     }
 }
 
-void ov19_021D9BD4 (UnkStruct_ov19_021D8E00 * param0)
+void ov19_021D9BD4(UnkStruct_ov19_021D8E00 *param0)
 {
     param0->unk_784 = 0;
 
@@ -887,14 +886,14 @@ void ov19_021D9BD4 (UnkStruct_ov19_021D8E00 * param0)
     }
 }
 
-BOOL ov19_021D9C04 (UnkStruct_ov19_021D8E00 * param0)
+BOOL ov19_021D9C04(UnkStruct_ov19_021D8E00 *param0)
 {
     return param0->unk_788 == 0;
 }
 
-static void ov19_021D9C18 (SysTask * param0, void * param1)
+static void ov19_021D9C18(SysTask *param0, void *param1)
 {
-    UnkStruct_ov19_021D8E00 * v0 = param1;
+    UnkStruct_ov19_021D8E00 *v0 = param1;
 
     switch (v0->unk_784) {
     case 0:
@@ -911,7 +910,7 @@ static void ov19_021D9C18 (SysTask * param0, void * param1)
     }
 }
 
-void ov19_021D9C74 (UnkStruct_ov19_021D8E00 * param0)
+void ov19_021D9C74(UnkStruct_ov19_021D8E00 *param0)
 {
     param0->unk_784 = 0;
 
@@ -920,14 +919,14 @@ void ov19_021D9C74 (UnkStruct_ov19_021D8E00 * param0)
     }
 }
 
-BOOL ov19_021D9CA0 (UnkStruct_ov19_021D8E00 * param0)
+BOOL ov19_021D9CA0(UnkStruct_ov19_021D8E00 *param0)
 {
     return param0->unk_788 == 0;
 }
 
-static void ov19_021D9CB4 (SysTask * param0, void * param1)
+static void ov19_021D9CB4(SysTask *param0, void *param1)
 {
-    UnkStruct_ov19_021D8E00 * v0 = param1;
+    UnkStruct_ov19_021D8E00 *v0 = param1;
 
     switch (v0->unk_784) {
     case 0:
@@ -944,14 +943,14 @@ static void ov19_021D9CB4 (SysTask * param0, void * param1)
     }
 }
 
-void ov19_021D9D10 (UnkStruct_ov19_021D8E00 * param0)
+void ov19_021D9D10(UnkStruct_ov19_021D8E00 *param0)
 {
     if (param0->unk_78D) {
         CellActor_SetAnim(param0->unk_04, 1);
     }
 }
 
-void ov19_021D9D28 (UnkStruct_ov19_021D8E00 * param0)
+void ov19_021D9D28(UnkStruct_ov19_021D8E00 *param0)
 {
     if (param0->unk_78D) {
         CellActor_SetAnim(param0->unk_04, 0);
@@ -959,9 +958,9 @@ void ov19_021D9D28 (UnkStruct_ov19_021D8E00 * param0)
     }
 }
 
-static void ov19_021D9D48 (s32 * param0, s32 * param1, u8 * param2, UnkStruct_ov19_021D8E00 * param3)
+static void ov19_021D9D48(s32 *param0, s32 *param1, u8 *param2, UnkStruct_ov19_021D8E00 *param3)
 {
-    const UnkStruct_ov19_021D4DF0 * v0 = param3->unk_790;
+    const UnkStruct_ov19_021D4DF0 *v0 = param3->unk_790;
 
     *param2 = ov19_021D5E10(v0);
 
@@ -970,15 +969,13 @@ static void ov19_021D9D48 (s32 * param0, s32 * param1, u8 * param2, UnkStruct_ov
         *param0 = 112 + ov19_021D7820(param3->unk_794) + ov19_021D5E14(v0) * 24 + 0;
         *param1 = 40 + ov19_021D5E1C(v0) * 24 + -16;
         break;
-    case 1:
-    {
+    case 1: {
         u32 v1 = ov19_021D5E2C(v0);
 
         ov19_021DCD30(ov19_021D77E8(param3->unk_794), v1, param0, param1);
         (*param0) += 0;
         (*param1) += -16;
-    }
-    break;
+    } break;
     case 2:
         *param0 = 168 + ov19_021D7820(param3->unk_794);
         *param1 = 8;
@@ -994,7 +991,7 @@ static void ov19_021D9D48 (s32 * param0, s32 * param1, u8 * param2, UnkStruct_ov
     }
 }
 
-static void ov19_021D9E04 (UnkStruct_ov19_021D8E00 * param0, VecFx32 * param1)
+static void ov19_021D9E04(UnkStruct_ov19_021D8E00 *param0, VecFx32 *param1)
 {
     CellActor_SetPosition(param0->unk_04, param1);
 
@@ -1023,7 +1020,7 @@ static void ov19_021D9E04 (UnkStruct_ov19_021D8E00 * param0, VecFx32 * param1)
     }
 }
 
-static void ov19_021D9EB0 (UnkStruct_ov19_021D8E00 * param0)
+static void ov19_021D9EB0(UnkStruct_ov19_021D8E00 *param0)
 {
     if (ov19_021D5E10(param0->unk_790) == 0) {
         if (ov19_021D5F20(param0->unk_790)) {
@@ -1066,7 +1063,7 @@ static void ov19_021D9EB0 (UnkStruct_ov19_021D8E00 * param0)
     }
 }
 
-static void ov19_021DA038 (UnkStruct_ov19_021D8E00 * param0)
+static void ov19_021DA038(UnkStruct_ov19_021D8E00 *param0)
 {
     int v0;
 
@@ -1077,7 +1074,7 @@ static void ov19_021DA038 (UnkStruct_ov19_021D8E00 * param0)
     param0->unk_78C = 1;
 }
 
-static void ov19_021DA06C (UnkStruct_ov19_021D8E00 * param0)
+static void ov19_021DA06C(UnkStruct_ov19_021D8E00 *param0)
 {
     if (ov19_021D5E10(param0->unk_790) == 0) {
         if (ov19_021D5F20(param0->unk_790)) {
@@ -1099,13 +1096,13 @@ static void ov19_021DA06C (UnkStruct_ov19_021D8E00 * param0)
     }
 }
 
-static void ov19_021DA110 (UnkStruct_ov19_021D8E00 * param0)
+static void ov19_021DA110(UnkStruct_ov19_021D8E00 *param0)
 {
     if (ov19_021D5E10(param0->unk_790) == 0) {
         u32 v0 = ov19_021D5E24(param0->unk_790);
 
         {
-            UnkStruct_ov19_021DCD18 * v1 = ov19_021D84C8(param0->unk_758, v0);
+            UnkStruct_ov19_021DCD18 *v1 = ov19_021D84C8(param0->unk_758, v0);
 
             ov19_021DA754(param0->unk_48, param0->unk_4C, 1520);
             ov19_021DA754(param0->unk_48, v1, 1520 + 16);
@@ -1120,7 +1117,7 @@ static void ov19_021DA110 (UnkStruct_ov19_021D8E00 * param0)
         u32 v2 = ov19_021D5E2C(param0->unk_790);
 
         {
-            UnkStruct_ov19_021DCD18 * v3 = ov19_021DCD18(param0->unk_75C, v2);
+            UnkStruct_ov19_021DCD18 *v3 = ov19_021DCD18(param0->unk_75C, v2);
 
             ov19_021DA754(param0->unk_48, param0->unk_4C, 1520);
             ov19_021DA754(param0->unk_48, v3, 1520 + 16);
@@ -1134,21 +1131,21 @@ static void ov19_021DA110 (UnkStruct_ov19_021D8E00 * param0)
     }
 }
 
-static void ov19_021DA1F8 (UnkStruct_ov19_021D8E00 * param0)
+static void ov19_021DA1F8(UnkStruct_ov19_021D8E00 *param0)
 {
     param0->unk_78C = 0;
 }
 
-static void ov19_021DA204 (UnkStruct_ov19_021D8E00 * param0)
+static void ov19_021DA204(UnkStruct_ov19_021D8E00 *param0)
 {
     ov19_021DA3F0(param0->unk_48, param0->unk_4C, 1);
     param0->unk_78C = 0;
     param0->unk_754 = 0;
 }
 
-static CellActor * ov19_021DA224 (UnkStruct_ov19_021D8E00 * param0)
+static CellActor *ov19_021DA224(UnkStruct_ov19_021D8E00 *param0)
 {
-    UnkStruct_ov19_021DCD18 * v0;
+    UnkStruct_ov19_021DCD18 *v0;
     u32 v1;
 
     if (ov19_021D5E10(param0->unk_790) == 0) {

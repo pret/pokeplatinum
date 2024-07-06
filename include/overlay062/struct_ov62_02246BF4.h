@@ -2,6 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV62_02246BF4_H
 
 #include "struct_defs/struct_0208C06C.h"
+
 #include "overlay062/struct_ov62_02246B00.h"
 #include "overlay062/struct_ov62_02246BF4_sub1.h"
 #include "overlay062/struct_ov62_02246BF4_sub2.h"
@@ -29,7 +30,7 @@ typedef struct {
     UnkStruct_ov62_02246B00 unk_2A8;
     BOOL unk_2C8;
     u64 unk_2CC;
-    UnkStruct_0208C06C * unk_2D4;
+    UnkStruct_0208C06C *unk_2D4;
 } UnkStruct_ov62_02246BF4;
 
 #endif // POKEPLATINUM_STRUCT_OV62_02246BF4_H

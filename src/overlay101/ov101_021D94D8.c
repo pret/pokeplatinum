@@ -1,28 +1,27 @@
-#include "enums.h"
-
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay101/const_ov101_021D9580.h"
-#include "overlay101/const_ov101_021D9628.h"
-#include "overlay101/const_ov101_021D9AE4.h"
-#include "overlay101/const_ov101_021D94F0.h"
-#include "overlay101/const_ov101_021D9934.h"
 #include "overlay101/const_ov101_021D94D8.h"
-#include "overlay101/const_ov101_021D9538.h"
-#include "overlay101/const_ov101_021D9784.h"
-#include "overlay101/const_ov101_021D95C8.h"
-#include "overlay101/const_ov101_021D9520.h"
-#include "overlay101/const_ov101_021D9550.h"
+#include "overlay101/const_ov101_021D94F0.h"
 #include "overlay101/const_ov101_021D9508.h"
-#include "overlay101/const_ov101_021D9598.h"
+#include "overlay101/const_ov101_021D9520.h"
+#include "overlay101/const_ov101_021D9538.h"
+#include "overlay101/const_ov101_021D9550.h"
 #include "overlay101/const_ov101_021D9568.h"
+#include "overlay101/const_ov101_021D9580.h"
+#include "overlay101/const_ov101_021D9598.h"
+#include "overlay101/const_ov101_021D95C8.h"
+#include "overlay101/const_ov101_021D9628.h"
 #include "overlay101/const_ov101_021D9688.h"
-
+#include "overlay101/const_ov101_021D9784.h"
+#include "overlay101/const_ov101_021D9934.h"
+#include "overlay101/const_ov101_021D9AE4.h"
 #include "overlay101/struct_ov101_021D95C8.h"
 #include "overlay101/struct_ov101_021D9784.h"
 #include "overlay101/struct_ov101_021D9934.h"
 #include "overlay101/struct_ov101_021D9AE4.h"
+
+#include "enums.h"
 
 const UnkEnum_ov101_021D9688 Unk_ov101_021D9688[3][21] = {
     {
@@ -162,7 +161,6 @@ const UnkStruct_ov101_021D95C8 Unk_ov101_021D95C8[6] = {
     },
 };
 
-
 const u32 Unk_ov101_021D94D8[6] = {
     0x50,
     0x50,
@@ -171,7 +169,6 @@ const u32 Unk_ov101_021D94D8[6] = {
     0x50,
     0x46
 };
-
 
 const UnkStruct_ov101_021D9934 Unk_ov101_021D9934[6][UnkEnum_ov101_021D9934_06] = {
     {

@@ -1,20 +1,22 @@
+#include "overlay005/ov5_021EF75C.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
+
+#include "overlay005/ov5_021D37AC.h"
+#include "overlay005/ov5_021D56BC.h"
 #include "overlay005/struct_ov5_021D3CAC_decl.h"
 #include "overlay005/struct_ov5_021D5778_decl.h"
 
-#include "narc.h"
-#include "heap.h"
 #include "easy3d.h"
-#include "overlay005/ov5_021D37AC.h"
-#include "overlay005/ov5_021D56BC.h"
-#include "overlay005/ov5_021EF75C.h"
+#include "heap.h"
+#include "narc.h"
 
 typedef struct {
     int unk_00;
-    UnkStruct_ov5_021D3CAC * unk_04;
+    UnkStruct_ov5_021D3CAC *unk_04;
     u16 unk_08;
     int unk_0C;
 } UnkStruct_ov5_021EF7A0;
@@ -28,15 +30,15 @@ typedef struct {
 
 typedef struct UnkStruct_ov5_021EF76C_t {
     int unk_00;
-    NNSG3dResFileHeader * unk_04[768];
-    void * unk_C04;
-    void * unk_C08;
-    NNSG3dResTex * unk_C0C;
-    NNSG3dResTex * unk_C10;
-    UnkStruct_ov5_021D5778 * unk_C14;
+    NNSG3dResFileHeader *unk_04[768];
+    void *unk_C04;
+    void *unk_C08;
+    NNSG3dResTex *unk_C0C;
+    NNSG3dResTex *unk_C10;
+    UnkStruct_ov5_021D5778 *unk_C14;
     UnkStruct_ov5_021EF76C_sub1 unk_C18;
-    UnkStruct_ov5_021EF7A0 * unk_C20;
-    u16 * unk_C24;
+    UnkStruct_ov5_021EF7A0 *unk_C20;
+    u16 *unk_C24;
 } UnkStruct_ov5_021EF76C;
 
 static const GXRgb Unk_ov5_021FF588[8] = {
@@ -61,9 +63,9 @@ static const GXRgb Unk_ov5_021FF598[8] = {
     GX_RGB(4, 4, 4)
 };
 
-static void ov5_021EF75C (void * param0, NNSG3dResTex * param1)
+static void ov5_021EF75C(void *param0, NNSG3dResTex *param1)
 {
-    u8 * v0;
+    u8 *v0;
     u32 v1;
 
     v0 = (u8 *)param1 + param1->texInfo.ofsTex;
@@ -72,9 +74,9 @@ static void ov5_021EF75C (void * param0, NNSG3dResTex * param1)
     Heap_ReallocFromHeap(param0, v1);
 }
 
-UnkStruct_ov5_021EF76C * ov5_021EF76C (const int param0, UnkStruct_ov5_021D3CAC * param1)
+UnkStruct_ov5_021EF76C *ov5_021EF76C(const int param0, UnkStruct_ov5_021D3CAC *param1)
 {
-    UnkStruct_ov5_021EF76C * v0;
+    UnkStruct_ov5_021EF76C *v0;
 
     v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021EF76C));
 
@@ -86,10 +88,10 @@ UnkStruct_ov5_021EF76C * ov5_021EF76C (const int param0, UnkStruct_ov5_021D3CAC 
     return v0;
 }
 
-void ov5_021EF7A0 (UnkStruct_ov5_021EF76C * param0)
+void ov5_021EF7A0(UnkStruct_ov5_021EF76C *param0)
 {
-    NARC * v0;
-    UnkStruct_ov5_021EF7A0 * v1 = param0->unk_C20;
+    NARC *v0;
+    UnkStruct_ov5_021EF7A0 *v1 = param0->unk_C20;
 
     NARC_ReadWholeMemberByIndexPair(&param0->unk_C18, NARC_INDEX_FIELDDATA__AREADATA__AREA_DATA, v1->unk_00);
 
@@ -153,7 +155,7 @@ void ov5_021EF7A0 (UnkStruct_ov5_021EF76C * param0)
             param0->unk_04[v6] = NARC_AllocAndReadWholeMember(v0, v6, 4);
 
             {
-                NNSG3dResMdl * v8;
+                NNSG3dResMdl *v8;
 
                 if (v6 < v7) {
                     v8 = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(param0->unk_04[v6]), 0);
@@ -172,7 +174,7 @@ void ov5_021EF7A0 (UnkStruct_ov5_021EF76C * param0)
 
     if (param0->unk_04[0] == NULL) {
         BOOL v10;
-        NNSG3dResTex * v11;
+        NNSG3dResTex *v11;
 
         param0->unk_04[0] = NARC_AllocAndReadWholeMember(v0, 0, 4);
 
@@ -209,9 +211,9 @@ void ov5_021EF7A0 (UnkStruct_ov5_021EF76C * param0)
     param0->unk_C20 = NULL;
 }
 
-NNSG3dResFileHeader ** ov5_021EF9E8 (const int param0, UnkStruct_ov5_021EF76C * const param1)
+NNSG3dResFileHeader **ov5_021EF9E8(const int param0, UnkStruct_ov5_021EF76C *const param1)
 {
-    GF_ASSERT((param1 != NULL));
+    GF_ASSERT(param1 != NULL);
 
     if (param1->unk_04[param0] == NULL) {
         GF_ASSERT(param1->unk_04[0] != NULL);
@@ -222,7 +224,7 @@ NNSG3dResFileHeader ** ov5_021EF9E8 (const int param0, UnkStruct_ov5_021EF76C * 
     return &(param1->unk_04[param0]);
 }
 
-void ov5_021EFA10 (UnkStruct_ov5_021EF76C ** param0)
+void ov5_021EFA10(UnkStruct_ov5_021EF76C **param0)
 {
     int v0;
 
@@ -243,29 +245,29 @@ void ov5_021EFA10 (UnkStruct_ov5_021EF76C ** param0)
     Heap_FreeToHeap((*param0)->unk_C08);
 
     (*param0)->unk_C08 = NULL;
-    Heap_FreeToHeap((*param0));
+    Heap_FreeToHeap(*param0);
 
     (*param0) = NULL;
 }
 
-NNSG3dResTex * ov5_021EFA8C (const UnkStruct_ov5_021EF76C * param0)
+NNSG3dResTex *ov5_021EFA8C(const UnkStruct_ov5_021EF76C *param0)
 {
-    GF_ASSERT((param0 != NULL));
+    GF_ASSERT(param0 != NULL);
     return param0->unk_C0C;
 }
 
-NNSG3dResTex * ov5_021EFAA0 (const UnkStruct_ov5_021EF76C * param0)
+NNSG3dResTex *ov5_021EFAA0(const UnkStruct_ov5_021EF76C *param0)
 {
-    GF_ASSERT((param0 != NULL));
+    GF_ASSERT(param0 != NULL);
     return param0->unk_C10;
 }
 
-const UnkStruct_ov5_021D5778 * ov5_021EFAB4 (const UnkStruct_ov5_021EF76C * param0)
+const UnkStruct_ov5_021D5778 *ov5_021EFAB4(const UnkStruct_ov5_021EF76C *param0)
 {
     return param0->unk_C14;
 }
 
-BOOL ov5_021EFAC0 (const UnkStruct_ov5_021EF76C * param0)
+BOOL ov5_021EFAC0(const UnkStruct_ov5_021EF76C *param0)
 {
     if ((param0->unk_C18.unk_06 == 0) || (param0->unk_C18.unk_06 == 3)) {
         return 1;
@@ -274,7 +276,7 @@ BOOL ov5_021EFAC0 (const UnkStruct_ov5_021EF76C * param0)
     }
 }
 
-u8 ov5_021EFAD8 (const UnkStruct_ov5_021EF76C * param0)
+u8 ov5_021EFAD8(const UnkStruct_ov5_021EF76C *param0)
 {
     u8 v0;
 
@@ -282,7 +284,7 @@ u8 ov5_021EFAD8 (const UnkStruct_ov5_021EF76C * param0)
     return v0;
 }
 
-int ov5_021EFAE8 (const UnkStruct_ov5_021EF76C * param0, const int param1)
+int ov5_021EFAE8(const UnkStruct_ov5_021EF76C *param0, const int param1)
 {
     int v0;
 
@@ -290,7 +292,7 @@ int ov5_021EFAE8 (const UnkStruct_ov5_021EF76C * param0, const int param1)
     return v0;
 }
 
-BOOL ov5_021EFAF8 (const UnkStruct_ov5_021EF76C * param0, const int param1)
+BOOL ov5_021EFAF8(const UnkStruct_ov5_021EF76C *param0, const int param1)
 {
     if (param0->unk_04[param1] == NULL) {
         return 0;

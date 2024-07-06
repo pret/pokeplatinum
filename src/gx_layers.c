@@ -1,17 +1,17 @@
-#include <nitro.h>
-#include <string.h>
-#include <nnsys.h>
+#include "gx_layers.h"
 
-#include "core_sys.h"
+#include <nitro.h>
+#include <nnsys.h>
+#include <string.h>
 
 #include "struct_defs/struct_02099F80.h"
 
-#include "gx_layers.h"
+#include "core_sys.h"
 
 static int sEngineALayers;
 static int sEngineBLayers;
 
-void GXLayers_SetBanks (const UnkStruct_02099F80 * banks)
+void GXLayers_SetBanks(const UnkStruct_02099F80 *banks)
 {
     GX_ResetBankForBG();
     GX_ResetBankForBGExtPltt();
@@ -36,12 +36,12 @@ void GXLayers_SetBanks (const UnkStruct_02099F80 * banks)
     GX_SetBankForTexPltt(banks->unk_24);
 }
 
-void GXLayers_DisableEngineALayers (void)
+void GXLayers_DisableEngineALayers(void)
 {
     sEngineALayers = 0;
 }
 
-void GXLayers_EngineAToggleLayers (u8 layerMask, u8 enable)
+void GXLayers_EngineAToggleLayers(u8 layerMask, u8 enable)
 {
     if (enable == 1) {
         if (sEngineALayers & layerMask) {
@@ -57,18 +57,18 @@ void GXLayers_EngineAToggleLayers (u8 layerMask, u8 enable)
     GX_SetVisiblePlane(sEngineALayers);
 }
 
-void GXLayers_EngineASetLayers (int layers)
+void GXLayers_EngineASetLayers(int layers)
 {
     sEngineALayers = layers;
     GX_SetVisiblePlane(sEngineALayers);
 }
 
-void GXLayers_DisableEngineBLayers (void)
+void GXLayers_DisableEngineBLayers(void)
 {
     sEngineBLayers = 0;
 }
 
-void GXLayers_EngineBToggleLayers (u8 layerMask, u8 enable)
+void GXLayers_EngineBToggleLayers(u8 layerMask, u8 enable)
 {
     if (enable == 1) {
         if (sEngineBLayers & layerMask) {
@@ -84,19 +84,19 @@ void GXLayers_EngineBToggleLayers (u8 layerMask, u8 enable)
     GXS_SetVisiblePlane(sEngineBLayers);
 }
 
-void GXLayers_EngineBSetLayers (int layers)
+void GXLayers_EngineBSetLayers(int layers)
 {
     sEngineBLayers = layers;
     GXS_SetVisiblePlane(sEngineBLayers);
 }
 
-void GXLayers_TurnBothDispOn (void)
+void GXLayers_TurnBothDispOn(void)
 {
     GX_DispOn();
     GXS_DispOn();
 }
 
-void GXLayers_SwapDisplay (void)
+void GXLayers_SwapDisplay(void)
 {
     if (gCoreSys.unk_65 == 0) {
         GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
@@ -105,7 +105,7 @@ void GXLayers_SwapDisplay (void)
     }
 }
 
-int GXLayers_EngineAGetLayers (void)
+int GXLayers_EngineAGetLayers(void)
 {
     return sEngineALayers;
 }

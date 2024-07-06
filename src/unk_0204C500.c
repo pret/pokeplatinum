@@ -1,32 +1,32 @@
+#include "unk_0204C500.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "inlines.h"
-
-#include "struct_decls/struct_02024440_decl.h"
 #include "struct_decls/pokedexdata_decl.h"
+#include "struct_decls/struct_02024440_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 
-#include "field_script_context.h"
-
-#include "heap.h"
 #include "savedata/save_table.h"
+
+#include "field_script_context.h"
+#include "heap.h"
+#include "inlines.h"
+#include "pokemon.h"
 #include "save_player.h"
 #include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "unk_0202EEC0.h"
 #include "unk_0202F180.h"
-#include "unk_0204C500.h"
-#include "vars_flags.h"
 #include "unk_020562F8.h"
 #include "unk_0206A8DC.h"
-#include "pokemon.h"
 #include "unk_020797C8.h"
 #include "unk_02092494.h"
+#include "vars_flags.h"
 
-BOOL ScrCmd_253 (ScriptContext * param0)
+BOOL ScrCmd_253(ScriptContext *param0)
 {
-    VarsFlags * v0 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
+    VarsFlags *v0 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
     u16 v1 = ScriptContext_GetVar(param0);
 
     if (v1 == 0) {
@@ -42,11 +42,11 @@ BOOL ScrCmd_253 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_254 (ScriptContext * param0)
+BOOL ScrCmd_254(ScriptContext *param0)
 {
-    PalParkTransfer * v0 = SaveData_PalParkTransfer(param0->fieldSystem->saveData);
-    Pokemon * v1 = Pokemon_New(32);
-    u16 * v2 = ScriptContext_GetVarPointer(param0);
+    PalParkTransfer *v0 = SaveData_PalParkTransfer(param0->fieldSystem->saveData);
+    Pokemon *v1 = Pokemon_New(32);
+    u16 *v2 = ScriptContext_GetVarPointer(param0);
 
     if (sub_0202F028(v0) == 6) {
         *v2 = 1;
@@ -58,13 +58,13 @@ BOOL ScrCmd_254 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_255 (ScriptContext * param0)
+BOOL ScrCmd_255(ScriptContext *param0)
 {
-    PalParkTransfer * v0 = SaveData_PalParkTransfer(param0->fieldSystem->saveData);
-    PCBoxes * v1 = SaveData_PCBoxes(param0->fieldSystem->saveData);
-    Pokemon * v2 = Pokemon_New(32);
-    TrainerInfo * v3 = SaveData_GetTrainerInfo(param0->fieldSystem->saveData);
-    PokedexData * v4 = SaveData_Pokedex(param0->fieldSystem->saveData);
+    PalParkTransfer *v0 = SaveData_PalParkTransfer(param0->fieldSystem->saveData);
+    PCBoxes *v1 = SaveData_PCBoxes(param0->fieldSystem->saveData);
+    Pokemon *v2 = Pokemon_New(32);
+    TrainerInfo *v3 = SaveData_GetTrainerInfo(param0->fieldSystem->saveData);
+    PokedexData *v4 = SaveData_Pokedex(param0->fieldSystem->saveData);
     BOOL v5;
     int v6;
 
@@ -82,10 +82,10 @@ BOOL ScrCmd_255 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_256 (ScriptContext * param0)
+BOOL ScrCmd_256(ScriptContext *param0)
 {
     u16 v0 = ScriptContext_GetVar(param0);
-    u16 * v1 = ScriptContext_GetVarPointer(param0);
+    u16 *v1 = ScriptContext_GetVarPointer(param0);
 
     switch (v0) {
     case 0:

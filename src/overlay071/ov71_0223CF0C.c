@@ -1,3 +1,5 @@
+#include "overlay071/ov71_0223CF0C.h"
+
 #include <nitro.h>
 #include <string.h>
 
@@ -6,17 +8,16 @@
 #include "overlay022/struct_ov22_022559F8.h"
 #include "overlay071/struct_ov71_0223D238.h"
 
+#include "cell_actor.h"
+#include "gx_layers.h"
+#include "heap.h"
 #include "narc.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "heap.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
-#include "gx_layers.h"
-#include "cell_actor.h"
-#include "overlay071/ov71_0223CF0C.h"
 
 typedef struct {
     int unk_00;
@@ -31,30 +32,30 @@ static const u8 Unk_ov71_0223D6C8[4] = {
 };
 
 static const UnkStruct_ov71_0223D73C Unk_ov71_0223D73C[] = {
-    {0x18, 0x28},
-    {0x50, 0x28},
-    {0x88, 0x28},
-    {0xC0, 0x28},
-    {0x18, 0x48},
-    {0x50, 0x48},
-    {0x88, 0x48},
-    {0xC0, 0x48}
+    { 0x18, 0x28 },
+    { 0x50, 0x28 },
+    { 0x88, 0x28 },
+    { 0xC0, 0x28 },
+    { 0x18, 0x48 },
+    { 0x50, 0x48 },
+    { 0x88, 0x48 },
+    { 0xC0, 0x48 }
 };
 
 static const UnkStruct_ov71_0223D73C Unk_ov71_0223D6FC[] = {
-    {0x18, 0x28},
-    {0x50, 0x28},
-    {0x88, 0x28},
-    {0xC0, 0x28},
-    {0x18, 0x60},
-    {0x50, 0x60},
-    {0x88, 0x60},
-    {0xC0, 0x60}
+    { 0x18, 0x28 },
+    { 0x50, 0x28 },
+    { 0x88, 0x28 },
+    { 0xC0, 0x28 },
+    { 0x18, 0x60 },
+    { 0x50, 0x60 },
+    { 0x88, 0x60 },
+    { 0xC0, 0x60 }
 };
 
 static void ov71_0223D2F4(void);
 
-void ov71_0223CF0C (UnkStruct_ov71_0223D238 * param0, NARC * param1)
+void ov71_0223CF0C(UnkStruct_ov71_0223D238 *param0, NARC *param1)
 {
     int v0;
 
@@ -99,7 +100,7 @@ void ov71_0223CF0C (UnkStruct_ov71_0223D238 * param0, NARC * param1)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-void ov71_0223D070 (UnkStruct_ov71_0223D238 * param0, const u8 * param1)
+void ov71_0223D070(UnkStruct_ov71_0223D238 *param0, const u8 *param1)
 {
     int v0;
     CellActorResourceData v1;
@@ -175,7 +176,7 @@ void ov71_0223D070 (UnkStruct_ov71_0223D238 * param0, const u8 * param1)
     }
 }
 
-void ov71_0223D238 (UnkStruct_ov71_0223D238 * param0)
+void ov71_0223D238(UnkStruct_ov71_0223D238 *param0)
 {
     u8 v0;
 
@@ -196,12 +197,12 @@ void ov71_0223D238 (UnkStruct_ov71_0223D238 * param0)
     sub_0201F8B4();
 }
 
-void ov71_0223D298 (UnkStruct_ov71_0223D238 * param0, const u8 param1, const u8 param2)
+void ov71_0223D298(UnkStruct_ov71_0223D238 *param0, const u8 param1, const u8 param2)
 {
-    NNSG2dImagePaletteProxy * v0;
+    NNSG2dImagePaletteProxy *v0;
     u32 v1;
     u32 v2;
-    u8 * v3;
+    u8 *v3;
 
     GF_ASSERT(param1 < 8);
     GF_ASSERT(param2 <= 3);
@@ -215,7 +216,7 @@ void ov71_0223D298 (UnkStruct_ov71_0223D238 * param0, const u8 param1, const u8 
     GX_LoadOBJPltt(&v3[param2 * 16 * 2], v1, 16 * 2);
 }
 
-static void ov71_0223D2F4 (void)
+static void ov71_0223D2F4(void)
 {
     {
         UnkStruct_ov22_022559F8 v0 = {

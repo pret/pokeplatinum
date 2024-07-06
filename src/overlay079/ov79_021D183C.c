@@ -1,35 +1,35 @@
+#include "overlay079/ov79_021D183C.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_0200112C_decl.h"
-#include "strbuf.h"
-
 #include "struct_defs/struct_0203D9B8.h"
 #include "struct_defs/struct_020989DC.h"
+
 #include "overlay061/struct_ov61_0222C884.h"
 #include "overlay079/struct_ov79_021D0E1C.h"
 #include "overlay084/struct_ov84_02240FA8.h"
 
+#include "cell_actor.h"
+#include "strbuf.h"
+#include "string_template.h"
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
 #include "unk_02002328.h"
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
-#include "string_template.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
 #include "unk_020158A8.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "cell_actor.h"
-#include "strbuf.h"
 #include "unk_02098FFC.h"
-#include "overlay079/ov79_021D183C.h"
 
-static void ov79_021D1D88(BmpList * param0, u32 param1, u8 param2);
-static void ov79_021D1D94(BmpList * param0, u32 param1, u8 param2);
-static void ov79_021D1FA8(BmpList * param0, u32 param1, u8 param2);
+static void ov79_021D1D88(BmpList *param0, u32 param1, u8 param2);
+static void ov79_021D1D94(BmpList *param0, u32 param1, u8 param2);
+static void ov79_021D1FA8(BmpList *param0, u32 param1, u8 param2);
 
 static const UnkStruct_ov84_02240FA8 Unk_ov79_021D3BB0 = {
     NULL,
@@ -75,15 +75,15 @@ static const UnkStruct_ov84_02240FA8 Unk_ov79_021D3B90 = {
     NULL
 };
 
-static void ov79_021D183C (UnkStruct_020989DC * param0)
+static void ov79_021D183C(UnkStruct_020989DC *param0)
 {
     param0->unk_04_val1_5 = 0;
     param0->unk_07 = param0->unk_06 = 0xFF;
 }
 
-static void ov79_021D1850 (UnkStruct_ov79_021D0E1C * param0, Strbuf *param1, u8 param2, u8 param3)
+static void ov79_021D1850(UnkStruct_ov79_021D0E1C *param0, Strbuf *param1, u8 param2, u8 param3)
 {
-    u32 v0 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((15 & 0xff) << 0)));
+    u32 v0 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0));
 
     if (param3) {
         sub_0200E060(&param0->unk_E8[2], 1, 1, 14);
@@ -96,11 +96,11 @@ static void ov79_021D1850 (UnkStruct_ov79_021D0E1C * param0, Strbuf *param1, u8 
     param0->unk_1F = sub_0201D78C(&param0->unk_E8[2], 1, param1, 0, 0, param2, v0, NULL);
 }
 
-static u16 ov79_021D18B4 (UnkStruct_0203D9B8 * param0, UnkStruct_ov79_021D0E1C * param1)
+static u16 ov79_021D18B4(UnkStruct_0203D9B8 *param0, UnkStruct_ov79_021D0E1C *param1)
 {
     u16 v0, v1 = 0;
     u8 v2, v3;
-    UnkStruct_020989DC * v4;
+    UnkStruct_020989DC *v4;
 
     param1->unk_1D = param1->unk_1E = 0xFF;
 
@@ -146,10 +146,10 @@ static u16 ov79_021D18B4 (UnkStruct_0203D9B8 * param0, UnkStruct_ov79_021D0E1C *
     return v1;
 }
 
-void ov79_021D196C (UnkStruct_ov79_021D0E1C * param0)
+void ov79_021D196C(UnkStruct_ov79_021D0E1C *param0)
 {
     u8 v0 = 0, v1 = 0;
-    UnkStruct_020989DC * v2;
+    UnkStruct_020989DC *v2;
 
     param0->unk_1C = ov79_021D18B4(param0->unk_20, param0);
     param0->unk_CC = sub_02013A04(param0->unk_1C, param0->unk_00);
@@ -193,7 +193,7 @@ void ov79_021D196C (UnkStruct_ov79_021D0E1C * param0)
     param0->unk_16 = 1;
 }
 
-void ov79_021D1AB8 (UnkStruct_ov79_021D0E1C * param0, BOOL param1)
+void ov79_021D1AB8(UnkStruct_ov79_021D0E1C *param0, BOOL param1)
 {
     BGL_WindowColor(&(param0->unk_E8[0]), ((0 << 4) | 0), 0, 0, 22 * 8, 12 * 8);
 
@@ -211,7 +211,7 @@ void ov79_021D1AB8 (UnkStruct_ov79_021D0E1C * param0, BOOL param1)
     param0->unk_CC = NULL;
 }
 
-void ov79_021D1B24 (UnkStruct_ov79_021D0E1C * param0, u8 param1, u8 param2)
+void ov79_021D1B24(UnkStruct_ov79_021D0E1C *param0, u8 param1, u8 param2)
 {
     switch (param2) {
     case 0:
@@ -247,10 +247,10 @@ void ov79_021D1B24 (UnkStruct_ov79_021D0E1C * param0, u8 param1, u8 param2)
     sub_0201A954(&param0->unk_E8[7 + param1]);
 }
 
-void ov79_021D1C44 (UnkStruct_ov79_021D0E1C * param0, u8 param1)
+void ov79_021D1C44(UnkStruct_ov79_021D0E1C *param0, u8 param1)
 {
     int v0;
-    u32 v1 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)));
+    u32 v1 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0));
 
     Sound_PlayEffect(1508);
 
@@ -283,7 +283,7 @@ void ov79_021D1C44 (UnkStruct_ov79_021D0E1C * param0, u8 param1)
     sub_0201D78C(&param0->unk_E8[6], 0, param0->unk_30.unk_38[param0->unk_1B], v0 / 2, 3, 0, v1, NULL);
 }
 
-static void ov79_021D1D20 (UnkStruct_ov79_021D0E1C * param0, UnkStruct_020989DC * param1)
+static void ov79_021D1D20(UnkStruct_ov79_021D0E1C *param0, UnkStruct_020989DC *param1)
 {
     u8 v0 = 0, v1 = 0x1;
 
@@ -305,22 +305,22 @@ static void ov79_021D1D20 (UnkStruct_ov79_021D0E1C * param0, UnkStruct_020989DC 
     }
 }
 
-static void ov79_021D1D88 (BmpList * param0, u32 param1, u8 param2)
+static void ov79_021D1D88(BmpList *param0, u32 param1, u8 param2)
 {
-    UnkStruct_ov79_021D0E1C * v0 = (UnkStruct_ov79_021D0E1C *)sub_02001504(param0, 19);
+    UnkStruct_ov79_021D0E1C *v0 = (UnkStruct_ov79_021D0E1C *)sub_02001504(param0, 19);
     u32 v1;
 
-    v1 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)));
+    v1 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0));
 }
 
-static void ov79_021D1D94 (BmpList * param0, u32 param1, u8 param2)
+static void ov79_021D1D94(BmpList *param0, u32 param1, u8 param2)
 {
-    UnkStruct_ov79_021D0E1C * v0 = (UnkStruct_ov79_021D0E1C *)sub_02001504(param0, 19);
+    UnkStruct_ov79_021D0E1C *v0 = (UnkStruct_ov79_021D0E1C *)sub_02001504(param0, 19);
     u32 v1;
     u16 v2, v3;
     u8 v4 = 0;
 
-    v1 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)));
+    v1 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0));
 
     if (!param2) {
         Sound_PlayEffect(1500);
@@ -366,7 +366,7 @@ static void ov79_021D1D94 (BmpList * param0, u32 param1, u8 param2)
     SpriteActor_EnableObject(v0->unk_1FC->unk_04, 1);
 }
 
-void ov79_021D1ED8 (UnkStruct_ov79_021D0E1C * param0)
+void ov79_021D1ED8(UnkStruct_ov79_021D0E1C *param0)
 {
     u8 v0 = 0;
 
@@ -388,7 +388,7 @@ void ov79_021D1ED8 (UnkStruct_ov79_021D0E1C * param0)
     param0->unk_C8 = sub_0200112C(&param0->unk_A4, 0, 0, param0->unk_00);
 }
 
-void ov79_021D1F60 (UnkStruct_ov79_021D0E1C * param0)
+void ov79_021D1F60(UnkStruct_ov79_021D0E1C *param0)
 {
     u16 v0, v1;
 
@@ -402,14 +402,14 @@ void ov79_021D1F60 (UnkStruct_ov79_021D0E1C * param0)
     param0->unk_D0 = NULL;
 }
 
-static void ov79_021D1FA8 (BmpList * param0, u32 param1, u8 param2)
+static void ov79_021D1FA8(BmpList *param0, u32 param1, u8 param2)
 {
     if (!param2) {
         Sound_PlayEffect(1500);
     }
 }
 
-void ov79_021D1FBC (UnkStruct_ov79_021D0E1C * param0)
+void ov79_021D1FBC(UnkStruct_ov79_021D0E1C *param0)
 {
     Strbuf_Clear(param0->unk_30.unk_04);
     StringTemplate_SetStrbuf(param0->unk_30.unk_00, 0, sub_02015918(param0->unk_28, param0->unk_20->unk_1C[param0->unk_1A].unk_02), 2, 1, GAME_LANGUAGE);
@@ -418,7 +418,7 @@ void ov79_021D1FBC (UnkStruct_ov79_021D0E1C * param0)
     ov79_021D1850(param0, param0->unk_30.unk_04, param0->unk_30.unk_4C, 1);
 }
 
-void ov79_021D2008 (UnkStruct_ov79_021D0E1C * param0)
+void ov79_021D2008(UnkStruct_ov79_021D0E1C *param0)
 {
     Strbuf_Clear(param0->unk_30.unk_04);
     StringTemplate_SetStrbuf(param0->unk_30.unk_00, 0, sub_02015918(param0->unk_28, param0->unk_20->unk_1C[param0->unk_1A].unk_02), 2, 1, GAME_LANGUAGE);
@@ -427,7 +427,7 @@ void ov79_021D2008 (UnkStruct_ov79_021D0E1C * param0)
     ov79_021D1850(param0, param0->unk_30.unk_04, param0->unk_30.unk_4C, 0);
 }
 
-void ov79_021D2054 (UnkStruct_ov79_021D0E1C * param0)
+void ov79_021D2054(UnkStruct_ov79_021D0E1C *param0)
 {
     static const UnkStruct_ov61_0222C884 v0 = {
         1, 26, 13, 5, 4, 13, 463
@@ -436,16 +436,16 @@ void ov79_021D2054 (UnkStruct_ov79_021D0E1C * param0)
     param0->unk_D4 = sub_02002100(param0->unk_24, &v0, 1 + 18 + 12, 15, param0->unk_00);
 }
 
-void ov79_021D2078 (UnkStruct_ov79_021D0E1C * param0)
+void ov79_021D2078(UnkStruct_ov79_021D0E1C *param0)
 {
     int v0, v1;
-    u32 v2 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)));
+    u32 v2 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0));
     u32 v3 = (u32)(((2 & 0xff) << 16) | ((3 & 0xff) << 8) | ((1 & 0xff) << 0));
 
     sub_0201D78C(&param0->unk_E8[5], 0, param0->unk_30.unk_1C, 4, 0, 0, v2, NULL);
 
     for (v1 = 0; v1 < 6; v1++) {
-        static const u8 v4[] = {2, 10, 4, 6, 10, 6};
+        static const u8 v4[] = { 2, 10, 4, 6, 10, 6 };
 
         v0 = (8 * 8) - sub_02002D7C(2, param0->unk_30.unk_20[v1], 0);
         sub_0201D78C(&param0->unk_E8[7 + v1], 2, param0->unk_30.unk_20[v1], v0 / 2, v4[v1], 0, v3, NULL);

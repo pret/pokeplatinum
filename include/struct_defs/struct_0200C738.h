@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_0200C738_H
 #define POKEPLATINUM_STRUCT_0200C738_H
 
-
 #include <nnsys.h>
 
 typedef struct {

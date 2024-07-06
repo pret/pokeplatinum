@@ -1,40 +1,40 @@
+#include "dw_warp/dw_warp.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-
-#include "struct_decls/struct_02006C24_decl.h"
-#include "sys_task_manager.h"
-
-#include "struct_defs/struct_0207C690.h"
-#include "struct_defs/struct_02099F80.h"
-#include "overlay115/camera_angle.h"
-
-#include "unk_02002328.h"
-#include "unk_02005474.h"
-#include "overlay_manager.h"
-#include "narc.h"
-#include "sys_task.h"
-#include "unk_0200F174.h"
-#include "easy3d_object.h"
-#include "unk_02017728.h"
-#include "heap.h"
-#include "unk_0201E3D8.h"
-#include "gx_layers.h"
-#include "camera.h"
-#include "unk_0202419C.h"
-#include "unk_02024220.h"
-#include "dw_warp/dw_warp.h"
-
 #include "consts/sdat.h"
 
+#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_defs/struct_0207C690.h"
+#include "struct_defs/struct_02099F80.h"
+
+#include "overlay115/camera_angle.h"
+
+#include "camera.h"
+#include "core_sys.h"
+#include "easy3d_object.h"
+#include "gx_layers.h"
+#include "heap.h"
+#include "narc.h"
+#include "overlay_manager.h"
+#include "sys_task.h"
+#include "sys_task_manager.h"
+#include "unk_02002328.h"
+#include "unk_02005474.h"
+#include "unk_0200F174.h"
+#include "unk_02017728.h"
+#include "unk_0201E3D8.h"
+#include "unk_0202419C.h"
+#include "unk_02024220.h"
+
 #define DWARP_SND_EFFECT_DELAY 15
-#define DWARP_ANM_DURATION 85
+#define DWARP_ANM_DURATION     85
 
 typedef struct DistortionWorldWarp {
-    GenericPointerData * p3DCallback;
-    Camera * camera;
-    SysTask * task;
+    GenericPointerData *p3DCallback;
+    Camera *camera;
+    SysTask *task;
     int frameCnt;
     int soundEffectCnt;
     Easy3DObject animationObj;
@@ -49,20 +49,20 @@ typedef struct DistortionWorldWarp {
     NNSFndAllocator allocator;
 } DistortionWorldWarp;
 
-static void DWWarp_Update(SysTask * task, void * data);
-static void DWWarp_VBlankIntr(void * data);
+static void DWWarp_Update(SysTask *task, void *data);
+static void DWWarp_VBlankIntr(void *data);
 static void DWWarp_VramSetBank(void);
-static void DWWarp_InitCamera(DistortionWorldWarp * warp);
-static void DWWarp_DeleteCamera(DistortionWorldWarp * warp);
-static void DWWarp_InitModel(DistortionWorldWarp * warp);
-static void DWWarp_DeleteModel(DistortionWorldWarp * warp);
-static void Model3D_Update(DistortionWorldWarp * warp);
-static GenericPointerData * DWWarp_Init3D(int heapId);
+static void DWWarp_InitCamera(DistortionWorldWarp *warp);
+static void DWWarp_DeleteCamera(DistortionWorldWarp *warp);
+static void DWWarp_InitModel(DistortionWorldWarp *warp);
+static void DWWarp_DeleteModel(DistortionWorldWarp *warp);
+static void Model3D_Update(DistortionWorldWarp *warp);
+static GenericPointerData *DWWarp_Init3D(int heapId);
 static void DWWarp_Setup3D(void);
-static void DWWarp_Exit3D(GenericPointerData * param0);
-static void DWWarp_CameraMove(DistortionWorldWarp * warp);
+static void DWWarp_Exit3D(GenericPointerData *param0);
+static void DWWarp_CameraMove(DistortionWorldWarp *warp);
 
-BOOL DWWarp_Init (OverlayManager * ovy, int * state)
+BOOL DWWarp_Init(OverlayManager *ovy, int *state)
 {
     SetMainCallback(NULL, NULL);
     DisableHBlank();
@@ -78,7 +78,7 @@ BOOL DWWarp_Init (OverlayManager * ovy, int * state)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_DISTORTION_WORLD_WARP, HEAP_SIZE_DISTORTION_WORLD_WARP);
 
-    DistortionWorldWarp* dww = OverlayManager_NewData(ovy, sizeof(DistortionWorldWarp), HEAP_ID_DISTORTION_WORLD_WARP);
+    DistortionWorldWarp *dww = OverlayManager_NewData(ovy, sizeof(DistortionWorldWarp), HEAP_ID_DISTORTION_WORLD_WARP);
     MI_CpuClear8(dww, sizeof(DistortionWorldWarp));
     dww->p3DCallback = DWWarp_Init3D(HEAP_ID_DISTORTION_WORLD_WARP);
 
@@ -112,9 +112,9 @@ enum {
     DWARP_SEQ_WAIT
 };
 
-BOOL DWWarp_Main (OverlayManager * ovy, int * state)
+BOOL DWWarp_Main(OverlayManager *ovy, int *state)
 {
-    DistortionWorldWarp * warp = OverlayManager_Data(ovy);
+    DistortionWorldWarp *warp = OverlayManager_Data(ovy);
 
     switch (*state) {
     case DWARP_SEQ_SCREENWIPE:
@@ -124,7 +124,7 @@ BOOL DWWarp_Main (OverlayManager * ovy, int * state)
         break;
     case DWARP_SEQ_LOOP:
         if (warp->soundEffectCnt == DWARP_SND_EFFECT_DELAY) {
-            Sound_PlayEffect( SEQ_SE_PL_SYUWA2 );
+            Sound_PlayEffect(SEQ_SE_PL_SYUWA2);
         }
 
         warp->soundEffectCnt++;
@@ -150,9 +150,9 @@ BOOL DWWarp_Main (OverlayManager * ovy, int * state)
     return FALSE;
 }
 
-BOOL DWWarp_Exit (OverlayManager * ovy, int * state)
+BOOL DWWarp_Exit(OverlayManager *ovy, int *state)
 {
-    DistortionWorldWarp * warp = OverlayManager_Data(ovy);
+    DistortionWorldWarp *warp = OverlayManager_Data(ovy);
 
     SysTask_Done(warp->task);
 
@@ -172,21 +172,21 @@ BOOL DWWarp_Exit (OverlayManager * ovy, int * state)
     return TRUE;
 }
 
-static void DWWarp_Update (SysTask * task, void * data)
+static void DWWarp_Update(SysTask *task, void *data)
 {
-    DistortionWorldWarp * dw = data;
+    DistortionWorldWarp *dw = data;
 
     Model3D_Update(dw);
     G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_W);
 }
 
-static void DWWarp_VBlankIntr (void * data)
+static void DWWarp_VBlankIntr(void *data)
 {
-    DistortionWorldWarp * dw = data;
+    DistortionWorldWarp *dw = data;
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void DWWarp_VramSetBank (void)
+static void DWWarp_VramSetBank(void)
 {
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -212,21 +212,21 @@ static void DWWarp_VramSetBank (void)
     MI_CpuClear32((void *)HW_DB_OBJ_VRAM, HW_DB_OBJ_VRAM_SIZE);
 }
 
-static void DWWarp_InitCamera (DistortionWorldWarp * warp)
+static void DWWarp_InitCamera(DistortionWorldWarp *warp)
 {
     static const CameraAngle DWW_CameraAngle = {
         0x10000 - 0x1c7d,
         0,
         0,
     };
-    VecFx32 target = {0, 0, 0};
+    VecFx32 target = { 0, 0, 0 };
 
     warp->camera = Camera_Alloc(HEAP_ID_DISTORTION_WORLD_WARP);
 
-    Camera_InitWithTarget(&target, (160 << FX32_SHIFT), &DWW_CameraAngle, (((22 * 0xffff) / 360)), 0, 0, warp->camera);
+    Camera_InitWithTarget(&target, (160 << FX32_SHIFT), &DWW_CameraAngle, ((22 * 0xffff) / 360), 0, 0, warp->camera);
     Camera_SetClipping(0, (FX32_ONE * 300), warp->camera);
 
-    CameraAngle angle = {0, 0, 0, 0};
+    CameraAngle angle = { 0, 0, 0, 0 };
 
     angle = Camera_GetAngle(warp->camera);
     angle.x = (0x10000 - 0x3fef);
@@ -236,16 +236,16 @@ static void DWWarp_InitCamera (DistortionWorldWarp * warp)
     Camera_SetAsActive(warp->camera);
 }
 
-static void DWWarp_DeleteCamera (DistortionWorldWarp * warp)
+static void DWWarp_DeleteCamera(DistortionWorldWarp *warp)
 {
     Camera_Delete(warp->camera);
 }
 
-static void DWWarp_InitModel (DistortionWorldWarp * warp)
+static void DWWarp_InitModel(DistortionWorldWarp *warp)
 {
     Heap_FndInitAllocatorForExpHeap(&warp->allocator, HEAP_ID_DISTORTION_WORLD_WARP, 4);
 
-    NARC * narc = NARC_ctor(NARC_INDEX_DEMO__TITLE__TITLEDEMO, HEAP_ID_DISTORTION_WORLD_WARP);
+    NARC *narc = NARC_ctor(NARC_INDEX_DEMO__TITLE__TITLEDEMO, HEAP_ID_DISTORTION_WORLD_WARP);
 
     Easy3DModel_LoadFrom(&warp->animationModel, narc, 16, HEAP_ID_DISTORTION_WORLD_WARP);
 
@@ -274,14 +274,14 @@ static void DWWarp_InitModel (DistortionWorldWarp * warp)
     warp->cameraPerspective = 60 << 8;
 }
 
-static void DWWarp_DeleteModel (DistortionWorldWarp * warp)
+static void DWWarp_DeleteModel(DistortionWorldWarp *warp)
 {
     Easy3DModel_Release(&warp->animationModel);
     Easy3DAnim_Release(&warp->animationAnimation, &warp->allocator);
     Easy3DAnim_Release(&warp->animationAnimation2, &warp->allocator);
 }
 
-static void Model3D_Update (DistortionWorldWarp * warp)
+static void Model3D_Update(DistortionWorldWarp *warp)
 {
     VecFx32 scaleVec, transVec;
     MtxFx33 rot33;
@@ -318,12 +318,12 @@ static void Model3D_Update (DistortionWorldWarp * warp)
     NNS_G3dGePopMtx(1);
 }
 
-static GenericPointerData * DWWarp_Init3D (int param0)
+static GenericPointerData *DWWarp_Init3D(int param0)
 {
     return sub_02024220(param0, 0, 2, 0, 2, DWWarp_Setup3D);
 }
 
-static void DWWarp_Setup3D (void)
+static void DWWarp_Setup3D(void)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
@@ -339,15 +339,15 @@ static void DWWarp_Setup3D (void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-static void DWWarp_Exit3D (GenericPointerData * param0)
+static void DWWarp_Exit3D(GenericPointerData *param0)
 {
     sub_020242C4(param0);
 }
 
-static void DWWarp_CameraMove (DistortionWorldWarp * warp)
+static void DWWarp_CameraMove(DistortionWorldWarp *warp)
 {
-    VecFx32 v0 = {0, 0, 0};
-    CameraAngle v1 = {0, 0, 0, 0};
+    VecFx32 v0 = { 0, 0, 0 };
+    CameraAngle v1 = { 0, 0, 0, 0 };
     int v2;
 
     Camera_AdjustFOV(-(warp->cameraPerspective >> 8), warp->camera);

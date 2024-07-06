@@ -1,15 +1,16 @@
+#include "overlay006/ov6_02242F74.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "narc.h"
 #include "heap.h"
-#include "overlay006/ov6_02242F74.h"
+#include "narc.h"
 
 static u8 ov6_02242FC0(const int param0);
 
-void ov6_02242F74 (const int param0, const BOOL param1, const int param2, int * param3, int * param4)
+void ov6_02242F74(const int param0, const BOOL param1, const int param2, int *param3, int *param4)
 {
-    int * v0;
+    int *v0;
     int v1;
     u8 v2;
     u8 v3 = ov6_02242FC0(param2);
@@ -30,7 +31,7 @@ void ov6_02242F74 (const int param0, const BOOL param1, const int param2, int * 
     Heap_FreeToHeap(v0);
 }
 
-static u8 ov6_02242FC0 (const int param0)
+static u8 ov6_02242FC0(const int param0)
 {
     u8 v0 = 0;
 

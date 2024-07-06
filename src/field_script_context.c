@@ -1,7 +1,7 @@
+#include "field_script_context.h"
+
 #include <nitro.h>
 #include <string.h>
-
-#include "field_script_context.h"
 
 enum {
     SCRIPT_STATE_STOPPED,
@@ -9,7 +9,7 @@ enum {
     SCRIPT_STATE_WAITING,
 };
 
-void ScriptContext_Init (ScriptContext * ctx, const ScrCmdFunc * cmdTable, u32 cmdTableSize)
+void ScriptContext_Init(ScriptContext *ctx, const ScrCmdFunc *cmdTable, u32 cmdTableSize)
 {
     ctx->state = SCRIPT_STATE_STOPPED;
     ctx->scriptPtr = NULL;
@@ -30,7 +30,7 @@ void ScriptContext_Init (ScriptContext * ctx, const ScrCmdFunc * cmdTable, u32 c
     ctx->taskManager = NULL;
 }
 
-BOOL ScriptContext_Start (ScriptContext * ctx, const u8 * ptr)
+BOOL ScriptContext_Start(ScriptContext *ctx, const u8 *ptr)
 {
     ctx->scriptPtr = ptr;
     ctx->state = SCRIPT_STATE_RUNNING;
@@ -38,24 +38,24 @@ BOOL ScriptContext_Start (ScriptContext * ctx, const u8 * ptr)
     return TRUE;
 }
 
-void ScriptContext_Pause (ScriptContext * ctx, ShouldResumeScriptFunc shouldResume)
+void ScriptContext_Pause(ScriptContext *ctx, ShouldResumeScriptFunc shouldResume)
 {
     ctx->state = SCRIPT_STATE_WAITING;
     ctx->shouldResume = shouldResume;
 }
 
-void ScriptContext_Stop (ScriptContext * ctx)
+void ScriptContext_Stop(ScriptContext *ctx)
 {
     ctx->state = SCRIPT_STATE_STOPPED;
     ctx->scriptPtr = NULL;
 }
 
-void ScriptContext_SetTaskManager (ScriptContext * ctx, TaskManager * taskManager)
+void ScriptContext_SetTaskManager(ScriptContext *ctx, TaskManager *taskManager)
 {
     ctx->taskManager = taskManager;
 }
 
-BOOL ScriptContext_Run (ScriptContext * ctx)
+BOOL ScriptContext_Run(ScriptContext *ctx)
 {
     if (ctx->state == SCRIPT_STATE_STOPPED) {
         return FALSE;
@@ -97,7 +97,7 @@ BOOL ScriptContext_Run (ScriptContext * ctx)
     return TRUE;
 }
 
-static BOOL ScriptContext_Push (ScriptContext * ctx, const u8 * ptr)
+static BOOL ScriptContext_Push(ScriptContext *ctx, const u8 *ptr)
 {
     if (ctx->stackPointer + 1 >= (int)NELEMS(ctx->stack)) {
         return TRUE;
@@ -109,7 +109,7 @@ static BOOL ScriptContext_Push (ScriptContext * ctx, const u8 * ptr)
     return FALSE;
 }
 
-static const u8 * ScriptContext_Pop (ScriptContext * ctx)
+static const u8 *ScriptContext_Pop(ScriptContext *ctx)
 {
     if (ctx->stackPointer == 0) {
         return NULL;
@@ -118,23 +118,23 @@ static const u8 * ScriptContext_Pop (ScriptContext * ctx)
     return ctx->stack[--ctx->stackPointer];
 }
 
-void ScriptContext_Jump (ScriptContext * ctx, const u8 * ptr)
+void ScriptContext_Jump(ScriptContext *ctx, const u8 *ptr)
 {
     ctx->scriptPtr = ptr;
 }
 
-void ScriptContext_Call (ScriptContext * ctx, const u8 * ptr)
+void ScriptContext_Call(ScriptContext *ctx, const u8 *ptr)
 {
     ScriptContext_Push(ctx, ctx->scriptPtr);
     ctx->scriptPtr = ptr;
 }
 
-void ScriptContext_Return (ScriptContext * ctx)
+void ScriptContext_Return(ScriptContext *ctx)
 {
     ctx->scriptPtr = ScriptContext_Pop(ctx);
 }
 
-u16 ScriptContext_ReadHalfWord (ScriptContext * ctx)
+u16 ScriptContext_ReadHalfWord(ScriptContext *ctx)
 {
     u16 value = ScriptContext_ReadByte(ctx);
     value += ScriptContext_ReadByte(ctx) << 8;
@@ -142,7 +142,7 @@ u16 ScriptContext_ReadHalfWord (ScriptContext * ctx)
     return value;
 }
 
-u32 ScriptContext_ReadWord (ScriptContext * ctx)
+u32 ScriptContext_ReadWord(ScriptContext *ctx)
 {
     u8 byte0 = ScriptContext_ReadByte(ctx);
     u8 byte1 = ScriptContext_ReadByte(ctx);

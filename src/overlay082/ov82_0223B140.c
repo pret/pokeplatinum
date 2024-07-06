@@ -1,22 +1,22 @@
+#include "overlay082/ov82_0223B140.h"
+
 #include <nitro.h>
 #include <string.h>
 
-
+#include "overlay004/ov4_021D0D80.h"
+#include "overlay082/ov82_0223B2E0.h"
 #include "overlay082/struct_ov82_0223B164.h"
 #include "overlay083/struct_ov83_0223C344.h"
 
-#include "overlay_manager.h"
-#include "heap.h"
+#include "bag.h"
 #include "communication_information.h"
 #include "communication_system.h"
+#include "heap.h"
+#include "overlay_manager.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
-#include "bag.h"
-#include "overlay004/ov4_021D0D80.h"
-#include "overlay082/ov82_0223B140.h"
-#include "overlay082/ov82_0223B2E0.h"
 
-BOOL ov82_0223B140 (OverlayManager ** param0)
+BOOL ov82_0223B140(OverlayManager **param0)
 {
     if (*param0) {
         if (OverlayManager_Exec(*param0)) {
@@ -29,10 +29,10 @@ BOOL ov82_0223B140 (OverlayManager ** param0)
     return 0;
 }
 
-int ov82_0223B164 (OverlayManager * param0, int * param1)
+int ov82_0223B164(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov83_0223C344 * v0 = NULL;
-    UnkStruct_ov82_0223B164 * v1 = (UnkStruct_ov82_0223B164 *)OverlayManager_Args(param0);
+    UnkStruct_ov83_0223C344 *v0 = NULL;
+    UnkStruct_ov82_0223B164 *v1 = (UnkStruct_ov82_0223B164 *)OverlayManager_Args(param0);
 
     Heap_Create(3, 55, 0x20000);
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov83_0223C344), 55);
@@ -56,11 +56,11 @@ int ov82_0223B164 (OverlayManager * param0, int * param1)
     return 1;
 }
 
-int ov82_0223B1D4 (OverlayManager * param0, int * param1)
+int ov82_0223B1D4(OverlayManager *param0, int *param1)
 {
     int v0;
-    UnkStruct_ov83_0223C344 * v1 = OverlayManager_Data(param0);
-    UnkStruct_ov82_0223B164 * v2 = (UnkStruct_ov82_0223B164 *)OverlayManager_Args(param0);
+    UnkStruct_ov83_0223C344 *v1 = OverlayManager_Data(param0);
+    UnkStruct_ov82_0223B164 *v2 = (UnkStruct_ov82_0223B164 *)OverlayManager_Args(param0);
 
     v0 = *param1;
 
@@ -88,11 +88,11 @@ int ov82_0223B1D4 (OverlayManager * param0, int * param1)
     return 0;
 }
 
-int ov82_0223B24C (OverlayManager * param0, int * param1)
+int ov82_0223B24C(OverlayManager *param0, int *param1)
 {
     int v0 = 0;
-    UnkStruct_ov83_0223C344 * v1 = OverlayManager_Data(param0);
-    UnkStruct_ov82_0223B164 * v2 = (UnkStruct_ov82_0223B164 *)OverlayManager_Args(param0);
+    UnkStruct_ov83_0223C344 *v1 = OverlayManager_Data(param0);
+    UnkStruct_ov82_0223B164 *v2 = (UnkStruct_ov82_0223B164 *)OverlayManager_Args(param0);
 
     switch (*param1) {
     case 0:

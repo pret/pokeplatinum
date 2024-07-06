@@ -1,3 +1,5 @@
+#include "overlay006/ov6_02248050.h"
+
 #include <nitro.h>
 #include <string.h>
 
@@ -5,21 +7,20 @@
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "overlay005/struct_ov5_021D1BEC_decl.h"
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
+#include "overlay005/ov5_021D1A94.h"
+#include "overlay005/struct_ov5_021D1BEC_decl.h"
 #include "overlay006/struct_ov6_0223E6EC.h"
 
-#include "unk_02005474.h"
-#include "narc.h"
-#include "unk_02006E3C.h"
 #include "easy3d_object.h"
 #include "heap.h"
-#include "player_avatar.h"
 #include "map_object.h"
-#include "overlay005/ov5_021D1A94.h"
-#include "overlay006/ov6_02248050.h"
+#include "narc.h"
+#include "player_avatar.h"
+#include "unk_02005474.h"
+#include "unk_02006E3C.h"
 
 typedef struct {
     Easy3DObject unk_00;
@@ -55,8 +56,8 @@ typedef struct {
 typedef struct {
     Easy3DModel unk_00;
     UnkStruct_ov6_022486B4 unk_10[16];
-    void * unk_CD0[4];
-    FieldSystem * fieldSystem;
+    void *unk_CD0[4];
+    FieldSystem *fieldSystem;
     int unk_CE4;
     fx32 unk_CE8;
     fx32 unk_CEC;
@@ -65,12 +66,12 @@ typedef struct {
     u32 unk_D0C;
 } UnkStruct_ov6_022487F8;
 
-static void ov6_02248050 (MapObjectManager * param0, u32 param1, Easy3DObject * param2)
+static void ov6_02248050(MapObjectManager *param0, u32 param1, Easy3DObject *param2)
 {
     int v0;
     int v1, v2;
     VecFx32 v3;
-    MapObject * v4;
+    MapObject *v4;
 
     v4 = MapObjMan_LocalMapObjByIndex(param0, param1);
 
@@ -101,7 +102,7 @@ static void ov6_02248050 (MapObjectManager * param0, u32 param1, Easy3DObject * 
     Easy3DObject_SetPosition(param2, (((v1) << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1), v3.y, (((v2) << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1));
 }
 
-static void ov6_022480BC (PlayerAvatar * const playerAvatar, Easy3DObject * param1)
+static void ov6_022480BC(PlayerAvatar *const playerAvatar, Easy3DObject *param1)
 {
     int v0;
     int v1, v2;
@@ -134,7 +135,7 @@ static void ov6_022480BC (PlayerAvatar * const playerAvatar, Easy3DObject * para
     Easy3DObject_SetPosition(param1, (((v1) << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1), v3.y, (((v2) << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1));
 }
 
-static void ov6_02248124 (PlayerAvatar * const playerAvatar, Easy3DObject * param1)
+static void ov6_02248124(PlayerAvatar *const playerAvatar, Easy3DObject *param1)
 {
     VecFx32 v0;
 
@@ -142,7 +143,7 @@ static void ov6_02248124 (PlayerAvatar * const playerAvatar, Easy3DObject * para
     Easy3DObject_SetPosition(param1, v0.x, v0.y, v0.z);
 }
 
-static void ov6_02248140 (UnkStruct_ov6_02248140 * param0, NARC * param1, u32 param2, u32 param3, int param4, NNSFndAllocator * param5)
+static void ov6_02248140(UnkStruct_ov6_02248140 *param0, NARC *param1, u32 param2, u32 param3, int param4, NNSFndAllocator *param5)
 {
     int v0;
 
@@ -159,7 +160,7 @@ static void ov6_02248140 (UnkStruct_ov6_02248140 * param0, NARC * param1, u32 pa
     }
 }
 
-static void ov6_022481BC (UnkStruct_ov6_02248140 * param0, NNSFndAllocator * param1)
+static void ov6_022481BC(UnkStruct_ov6_02248140 *param0, NNSFndAllocator *param1)
 {
     int v0;
 
@@ -170,7 +171,7 @@ static void ov6_022481BC (UnkStruct_ov6_02248140 * param0, NNSFndAllocator * par
     }
 }
 
-static BOOL ov6_022481F0 (UnkStruct_ov6_02248140 * param0)
+static BOOL ov6_022481F0(UnkStruct_ov6_02248140 *param0)
 {
     int v0;
     BOOL v1;
@@ -184,7 +185,7 @@ static BOOL ov6_022481F0 (UnkStruct_ov6_02248140 * param0)
     return v1;
 }
 
-static void ov6_02248224 (UnkStruct_ov6_02248140 * param0)
+static void ov6_02248224(UnkStruct_ov6_02248140 *param0)
 {
     int v0;
 
@@ -193,16 +194,16 @@ static void ov6_02248224 (UnkStruct_ov6_02248140 * param0)
     }
 }
 
-static void ov6_02248254 (UnkStruct_ov6_02248140 * param0)
+static void ov6_02248254(UnkStruct_ov6_02248140 *param0)
 {
     Easy3DObject_Draw(&param0->unk_00);
 }
 
-static void ov6_0224825C (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSystem, void * param2)
+static void ov6_0224825C(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2)
 {
-    UnkStruct_ov6_0224825C * v0 = param2;
+    UnkStruct_ov6_0224825C *v0 = param2;
     int v1;
-    NARC * v2;
+    NARC *v2;
 
     memset(v0, 0, sizeof(UnkStruct_ov6_0224825C));
     Heap_FndInitAllocatorForExpHeap(&v0->unk_DC, 4, 32);
@@ -218,15 +219,15 @@ static void ov6_0224825C (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
     v0->unk_EC = 0;
 }
 
-static void ov6_022482BC (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSystem, void * param2)
+static void ov6_022482BC(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2)
 {
-    UnkStruct_ov6_0224825C * v0 = param2;
+    UnkStruct_ov6_0224825C *v0 = param2;
     ov6_022481BC(&v0->unk_00, &v0->unk_DC);
 }
 
-static void ov6_022482CC (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSystem, void * param2)
+static void ov6_022482CC(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2)
 {
-    UnkStruct_ov6_0224825C * v0 = param2;
+    UnkStruct_ov6_0224825C *v0 = param2;
     int v1;
     BOOL v2;
 
@@ -246,31 +247,31 @@ static void ov6_022482CC (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
     }
 }
 
-static void ov6_02248300 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSystem, void * param2)
+static void ov6_02248300(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2)
 {
-    UnkStruct_ov6_0224825C * v0 = param2;
+    UnkStruct_ov6_0224825C *v0 = param2;
     ov6_02248254(&v0->unk_00);
 }
 
-UnkStruct_ov5_021D1BEC * ov6_0224830C (FieldSystem * fieldSystem)
+UnkStruct_ov5_021D1BEC *ov6_0224830C(FieldSystem *fieldSystem)
 {
     static const UnkStruct_ov6_0223E6EC v0 = {
         1024, sizeof(UnkStruct_ov6_0224825C), ov6_0224825C, ov6_022482BC, ov6_022482CC, ov6_02248300
     };
-    UnkStruct_ov5_021D1BEC * v1;
+    UnkStruct_ov5_021D1BEC *v1;
 
     v1 = ov5_021D1B6C(fieldSystem->unk_04->unk_04, &v0);
     return v1;
 }
 
-void ov6_02248320 (UnkStruct_ov5_021D1BEC * param0)
+void ov6_02248320(UnkStruct_ov5_021D1BEC *param0)
 {
     ov5_021D1BEC(param0);
 }
 
-BOOL ov6_02248328 (UnkStruct_ov5_021D1BEC * param0)
+BOOL ov6_02248328(UnkStruct_ov5_021D1BEC *param0)
 {
-    UnkStruct_ov6_0224825C * v0 = ov5_021D1C2C(param0);
+    UnkStruct_ov6_0224825C *v0 = ov5_021D1C2C(param0);
 
     if (v0->unk_EC == 1) {
         return 1;
@@ -279,11 +280,11 @@ BOOL ov6_02248328 (UnkStruct_ov5_021D1BEC * param0)
     return 0;
 }
 
-static void ov6_02248340 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSystem, void * param2)
+static void ov6_02248340(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2)
 {
-    UnkStruct_ov6_02248340 * v0 = param2;
+    UnkStruct_ov6_02248340 *v0 = param2;
     int v1;
-    NARC * v2;
+    NARC *v2;
 
     memset(v0, 0, sizeof(UnkStruct_ov6_02248340));
     Heap_FndInitAllocatorForExpHeap(&v0->unk_DC, 4, 32);
@@ -299,11 +300,11 @@ static void ov6_02248340 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
     v0->unk_EC = 0;
 }
 
-static void ov6_022483A0 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSystem, void * param2)
+static void ov6_022483A0(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2)
 {
-    UnkStruct_ov6_02248340 * v0 = param2;
+    UnkStruct_ov6_02248340 *v0 = param2;
     int v1;
-    NARC * v2;
+    NARC *v2;
 
     memset(v0, 0, sizeof(UnkStruct_ov6_02248340));
     Heap_FndInitAllocatorForExpHeap(&v0->unk_DC, 4, 32);
@@ -319,15 +320,15 @@ static void ov6_022483A0 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
     v0->unk_EC = 0;
 }
 
-static void ov6_02248400 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSystem, void * param2)
+static void ov6_02248400(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2)
 {
-    UnkStruct_ov6_02248340 * v0 = param2;
+    UnkStruct_ov6_02248340 *v0 = param2;
     ov6_022481BC(&v0->unk_00, &v0->unk_DC);
 }
 
-static void ov6_02248410 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSystem, void * param2)
+static void ov6_02248410(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2)
 {
-    UnkStruct_ov6_02248340 * v0 = param2;
+    UnkStruct_ov6_02248340 *v0 = param2;
     int v1;
     BOOL v2;
 
@@ -347,13 +348,13 @@ static void ov6_02248410 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
     }
 }
 
-static void ov6_02248444 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSystem, void * param2)
+static void ov6_02248444(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2)
 {
-    UnkStruct_ov6_02248340 * v0 = param2;
+    UnkStruct_ov6_02248340 *v0 = param2;
     ov6_02248254(&v0->unk_00);
 }
 
-UnkStruct_ov5_021D1BEC * ov6_02248450 (FieldSystem * fieldSystem)
+UnkStruct_ov5_021D1BEC *ov6_02248450(FieldSystem *fieldSystem)
 {
     static const UnkStruct_ov6_0223E6EC v0 = {
         1024,
@@ -363,13 +364,13 @@ UnkStruct_ov5_021D1BEC * ov6_02248450 (FieldSystem * fieldSystem)
         ov6_02248410,
         ov6_02248444
     };
-    UnkStruct_ov5_021D1BEC * v1;
+    UnkStruct_ov5_021D1BEC *v1;
 
     v1 = ov5_021D1B6C(fieldSystem->unk_04->unk_04, &v0);
     return v1;
 }
 
-UnkStruct_ov5_021D1BEC * ov6_02248464 (FieldSystem * fieldSystem)
+UnkStruct_ov5_021D1BEC *ov6_02248464(FieldSystem *fieldSystem)
 {
     static const UnkStruct_ov6_0223E6EC v0 = {
         1024,
@@ -379,20 +380,20 @@ UnkStruct_ov5_021D1BEC * ov6_02248464 (FieldSystem * fieldSystem)
         ov6_02248410,
         ov6_02248444
     };
-    UnkStruct_ov5_021D1BEC * v1;
+    UnkStruct_ov5_021D1BEC *v1;
 
     v1 = ov5_021D1B6C(fieldSystem->unk_04->unk_04, &v0);
     return v1;
 }
 
-void ov6_02248478 (UnkStruct_ov5_021D1BEC * param0)
+void ov6_02248478(UnkStruct_ov5_021D1BEC *param0)
 {
     ov5_021D1BEC(param0);
 }
 
-BOOL ov6_02248480 (UnkStruct_ov5_021D1BEC * param0)
+BOOL ov6_02248480(UnkStruct_ov5_021D1BEC *param0)
 {
-    UnkStruct_ov6_02248340 * v0 = ov5_021D1C2C(param0);
+    UnkStruct_ov6_02248340 *v0 = ov5_021D1C2C(param0);
 
     if (v0->unk_EC == 1) {
         return 1;
@@ -401,11 +402,11 @@ BOOL ov6_02248480 (UnkStruct_ov5_021D1BEC * param0)
     return 0;
 }
 
-static void ov6_02248498 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSystem, void * param2)
+static void ov6_02248498(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2)
 {
-    UnkStruct_ov6_02248498 * v0 = param2;
+    UnkStruct_ov6_02248498 *v0 = param2;
     int v1;
-    NARC * v2;
+    NARC *v2;
 
     memset(v0, 0, sizeof(UnkStruct_ov6_02248498));
     Heap_FndInitAllocatorForExpHeap(&v0->unk_1B8, 4, 32);
@@ -421,9 +422,9 @@ static void ov6_02248498 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
     v0->unk_1C8 = 0;
 }
 
-static void ov6_02248500 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSystem, void * param2)
+static void ov6_02248500(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2)
 {
-    UnkStruct_ov6_02248498 * v0 = param2;
+    UnkStruct_ov6_02248498 *v0 = param2;
     int v1;
 
     for (v1 = 0; v1 < 2; v1++) {
@@ -431,11 +432,11 @@ static void ov6_02248500 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
     }
 }
 
-static void ov6_02248520 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSystem, void * param2)
+static void ov6_02248520(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2)
 {
-    UnkStruct_ov6_02248498 * v0 = param2;
+    UnkStruct_ov6_02248498 *v0 = param2;
     BOOL v1;
-    NARC * v2;
+    NARC *v2;
 
     switch (v0->unk_1C8) {
     case 0:
@@ -465,9 +466,9 @@ static void ov6_02248520 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
     }
 }
 
-static void ov6_022485DC (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSystem, void * param2)
+static void ov6_022485DC(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2)
 {
-    UnkStruct_ov6_02248498 * v0 = param2;
+    UnkStruct_ov6_02248498 *v0 = param2;
     int v1;
 
     for (v1 = 0; v1 < 2; v1++) {
@@ -475,7 +476,7 @@ static void ov6_022485DC (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
     }
 }
 
-UnkStruct_ov5_021D1BEC * ov6_022485F4 (FieldSystem * fieldSystem)
+UnkStruct_ov5_021D1BEC *ov6_022485F4(FieldSystem *fieldSystem)
 {
     static const UnkStruct_ov6_0223E6EC v0 = {
         1024,
@@ -485,18 +486,18 @@ UnkStruct_ov5_021D1BEC * ov6_022485F4 (FieldSystem * fieldSystem)
         ov6_02248520,
         ov6_022485DC
     };
-    UnkStruct_ov5_021D1BEC * v1;
+    UnkStruct_ov5_021D1BEC *v1;
 
     v1 = ov5_021D1B6C(fieldSystem->unk_04->unk_04, &v0);
     return v1;
 }
 
-void ov6_02248608 (UnkStruct_ov5_021D1BEC * param0)
+void ov6_02248608(UnkStruct_ov5_021D1BEC *param0)
 {
     ov5_021D1BEC(param0);
 }
 
-static void ov6_02248610 (UnkStruct_ov6_022486B4 * param0, PlayerAvatar * const playerAvatar, fx32 param2, fx32 param3)
+static void ov6_02248610(UnkStruct_ov6_022486B4 *param0, PlayerAvatar *const playerAvatar, fx32 param2, fx32 param3)
 {
     VecFx32 v0;
     int v1;
@@ -516,7 +517,7 @@ static void ov6_02248610 (UnkStruct_ov6_022486B4 * param0, PlayerAvatar * const 
     Sound_PlayEffect(1575);
 }
 
-static void ov6_02248678 (UnkStruct_ov6_022486B4 * param0)
+static void ov6_02248678(UnkStruct_ov6_022486B4 *param0)
 {
     int v0;
     BOOL v1;
@@ -537,7 +538,7 @@ static void ov6_02248678 (UnkStruct_ov6_022486B4 * param0)
     }
 }
 
-static void ov6_022486B4 (UnkStruct_ov6_022486B4 * param0, Easy3DModel * param1, NNSFndAllocator * param2, void ** param3)
+static void ov6_022486B4(UnkStruct_ov6_022486B4 *param0, Easy3DModel *param1, NNSFndAllocator *param2, void **param3)
 {
     int v0;
 
@@ -552,7 +553,7 @@ static void ov6_022486B4 (UnkStruct_ov6_022486B4 * param0, Easy3DModel * param1,
     Easy3DObject_SetVisibility(&param0->unk_00, 0);
 }
 
-static void ov6_02248700 (UnkStruct_ov6_022486B4 * param0, NNSFndAllocator * param1)
+static void ov6_02248700(UnkStruct_ov6_022486B4 *param0, NNSFndAllocator *param1)
 {
     int v0;
 
@@ -563,7 +564,7 @@ static void ov6_02248700 (UnkStruct_ov6_022486B4 * param0, NNSFndAllocator * par
     memset(param0, 0, sizeof(UnkStruct_ov6_022486B4));
 }
 
-static void ov6_02248728 (UnkStruct_ov6_022487F8 * param0)
+static void ov6_02248728(UnkStruct_ov6_022487F8 *param0)
 {
     VecFx32 v0;
 
@@ -571,16 +572,16 @@ static void ov6_02248728 (UnkStruct_ov6_022487F8 * param0)
 
     if (((v0.x - param0->unk_CF0.x) == 0) && (v0.y < param0->unk_CF0.y) && (v0.z > param0->unk_CF0.z)) {
         param0->unk_CE8 = 0;
-        param0->unk_CEC = ((16 * FX32_ONE)) * 2;
+        param0->unk_CEC = (16 * FX32_ONE) * 2;
     } else {
         param0->unk_CE8 = ((16 * FX32_ONE) * 2);
-        param0->unk_CEC = ((16 * FX32_ONE));
+        param0->unk_CEC = (16 * FX32_ONE);
     }
 
     param0->unk_CF0 = v0;
 }
 
-static void ov6_02248798 (UnkStruct_ov6_022487F8 * param0)
+static void ov6_02248798(UnkStruct_ov6_022487F8 *param0)
 {
     int v0;
 
@@ -596,7 +597,7 @@ static void ov6_02248798 (UnkStruct_ov6_022487F8 * param0)
     GF_ASSERT(0);
 }
 
-static void ov6_022487E0 (UnkStruct_ov6_022487F8 * param0)
+static void ov6_022487E0(UnkStruct_ov6_022487F8 *param0)
 {
     int v0;
 
@@ -605,11 +606,11 @@ static void ov6_022487E0 (UnkStruct_ov6_022487F8 * param0)
     }
 }
 
-static void ov6_022487F8 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSystem, void * param2)
+static void ov6_022487F8(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2)
 {
-    UnkStruct_ov6_022487F8 * v0 = param2;
+    UnkStruct_ov6_022487F8 *v0 = param2;
     int v1;
-    NARC * v2;
+    NARC *v2;
 
     memset(v0, 0, sizeof(UnkStruct_ov6_022487F8));
     Heap_FndInitAllocatorForExpHeap(&v0->unk_CFC, 4, 32);
@@ -633,9 +634,9 @@ static void ov6_022487F8 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
     NARC_dtor(v2);
 }
 
-static void ov6_0224889C (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSystem, void * param2)
+static void ov6_0224889C(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2)
 {
-    UnkStruct_ov6_022487F8 * v0 = param2;
+    UnkStruct_ov6_022487F8 *v0 = param2;
     int v1;
 
     for (v1 = 0; v1 < 16; v1++) {
@@ -649,9 +650,9 @@ static void ov6_0224889C (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
     }
 }
 
-static void ov6_022488D8 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSystem, void * param2)
+static void ov6_022488D8(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2)
 {
-    UnkStruct_ov6_022487F8 * v0 = param2;
+    UnkStruct_ov6_022487F8 *v0 = param2;
 
     switch (v0->unk_D0C) {
     case 0:
@@ -669,9 +670,9 @@ static void ov6_022488D8 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
     }
 }
 
-static void ov6_02248914 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSystem, void * param2)
+static void ov6_02248914(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2)
 {
-    UnkStruct_ov6_022487F8 * v0 = param2;
+    UnkStruct_ov6_022487F8 *v0 = param2;
     int v1;
 
     for (v1 = 0; v1 < 16; v1++) {
@@ -679,7 +680,7 @@ static void ov6_02248914 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
     }
 }
 
-UnkStruct_ov5_021D1BEC * ov6_0224892C (FieldSystem * fieldSystem)
+UnkStruct_ov5_021D1BEC *ov6_0224892C(FieldSystem *fieldSystem)
 {
     static const UnkStruct_ov6_0223E6EC v0 = {
         1024,
@@ -689,13 +690,13 @@ UnkStruct_ov5_021D1BEC * ov6_0224892C (FieldSystem * fieldSystem)
         ov6_022488D8,
         ov6_02248914
     };
-    UnkStruct_ov5_021D1BEC * v1;
+    UnkStruct_ov5_021D1BEC *v1;
 
     v1 = ov5_021D1B6C(fieldSystem->unk_04->unk_04, &v0);
     return v1;
 }
 
-void ov6_02248940 (UnkStruct_ov5_021D1BEC * param0)
+void ov6_02248940(UnkStruct_ov5_021D1BEC *param0)
 {
     ov5_021D1BEC(param0);
 }

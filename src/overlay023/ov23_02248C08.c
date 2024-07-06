@@ -1,29 +1,29 @@
+#include "overlay023/ov23_02248C08.h"
+
 #include <nitro.h>
 #include <string.h>
-
-#include "core_sys.h"
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
-
 #include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_0205AA50.h"
-#include "overlay023/struct_ov23_02248D20.h"
+
 #include "overlay023/funcptr_ov23_02248D20.h"
+#include "overlay023/struct_ov23_02248D20.h"
 #include "overlay084/struct_ov84_02240FA8.h"
 
+#include "core_sys.h"
+#include "heap.h"
 #include "unk_0200112C.h"
 #include "unk_02005474.h"
 #include "unk_02013A04.h"
 #include "unk_020149F0.h"
-#include "heap.h"
 #include "unk_0202854C.h"
-#include "overlay023/ov23_02248C08.h"
 
-UnkStruct_ov23_02248D20 * ov23_02248C08 (UnkStruct_ov84_02240FA8 * param0, u16 param1, u16 param2, u8 param3, UnkFuncPtr_ov23_02248D20 param4, UndergroundData * param5, BOOL param6)
+UnkStruct_ov23_02248D20 *ov23_02248C08(UnkStruct_ov84_02240FA8 *param0, u16 param1, u16 param2, u8 param3, UnkFuncPtr_ov23_02248D20 param4, UndergroundData *param5, BOOL param6)
 {
-    UnkStruct_ov23_02248D20 * v0 = (UnkStruct_ov23_02248D20 *)Heap_AllocFromHeap(param3, sizeof(UnkStruct_ov23_02248D20));
+    UnkStruct_ov23_02248D20 *v0 = (UnkStruct_ov23_02248D20 *)Heap_AllocFromHeap(param3, sizeof(UnkStruct_ov23_02248D20));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_ov23_02248D20));
 
@@ -39,7 +39,7 @@ UnkStruct_ov23_02248D20 * ov23_02248C08 (UnkStruct_ov84_02240FA8 * param0, u16 p
         v0->unk_1D = param3;
 
         {
-            ResourceMetadata * v1 = sub_02013A04(param0->unk_10, v0->unk_1D);
+            ResourceMetadata *v1 = sub_02013A04(param0->unk_10, v0->unk_1D);
             int v2;
 
             for (v2 = 0; v2 < param0->unk_10; v2++) {
@@ -57,7 +57,7 @@ UnkStruct_ov23_02248D20 * ov23_02248C08 (UnkStruct_ov84_02240FA8 * param0, u16 p
     return v0;
 }
 
-static void ov23_02248CA4 (u16 param0, u16 param1, UnkStruct_ov23_02248D20 * param2)
+static void ov23_02248CA4(u16 param0, u16 param1, UnkStruct_ov23_02248D20 *param2)
 {
     u16 v0 = param2->unk_14 + param2->unk_16;
     u16 v1 = sub_02001504(param2->unk_0C, 3);
@@ -77,19 +77,19 @@ static void ov23_02248CA4 (u16 param0, u16 param1, UnkStruct_ov23_02248D20 * par
         int v2 = sub_02001504(param2->unk_0C, 7);
         u8 v3 = sub_02001504(param2->unk_0C, 9);
         int v4 = (v0 - param0) * v3 + sub_02001504(param2->unk_0C, 8);
-        Window * v5 = (Window *)sub_02001504(param2->unk_0C, 18);
+        Window *v5 = (Window *)sub_02001504(param2->unk_0C, 18);
 
         sub_02014A58(param2->unk_10, v5, v2, v4);
     }
 }
 
-u32 ov23_02248D20 (UnkStruct_ov23_02248D20 * param0)
+u32 ov23_02248D20(UnkStruct_ov23_02248D20 *param0)
 {
-    BmpList * v0 = param0->unk_0C;
+    BmpList *v0 = param0->unk_0C;
     u16 v1, v2, v3;
     int v4, v5;
     u32 v6;
-    ResourceMetadata * v7;
+    ResourceMetadata *v7;
 
     if (param0->unk_00) {
         int v8 = sub_02001504(v0, 2);
@@ -204,9 +204,9 @@ u32 ov23_02248D20 (UnkStruct_ov23_02248D20 * param0)
     return v6;
 }
 
-void ov23_02248EF8 (UnkStruct_ov23_02248D20 * param0, u16 * param1, u16 * param2)
+void ov23_02248EF8(UnkStruct_ov23_02248D20 *param0, u16 *param1, u16 *param2)
 {
-    BmpList * v0 = param0->unk_0C;
+    BmpList *v0 = param0->unk_0C;
 
     sub_02001384(v0, param1, param2);
 

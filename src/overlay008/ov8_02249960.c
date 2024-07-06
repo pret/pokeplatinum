@@ -1,24 +1,13 @@
+#include "overlay008/ov8_02249960.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-
-#include "message.h"
-#include "sys_task_manager.h"
-#include "strbuf.h"
 #include "struct_decls/struct_02027860_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "overlay005/struct_ov5_021D3CAC_decl.h"
-#include "overlay005/struct_ov5_021D3CE4_decl.h"
-#include "overlay005/struct_ov5_021D57D8_decl.h"
-#include "overlay005/struct_ov5_021E1890_decl.h"
-#include "overlay101/struct_ov101_021D5D90_decl.h"
-
-#include "field/field_system.h"
-#include "field/field_system_sub2_t.h"
 #include "struct_defs/struct_02055130.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02071B10.h"
@@ -27,36 +16,9 @@
 #include "struct_defs/struct_02071BD0.h"
 #include "struct_defs/struct_02071BF8.h"
 #include "struct_defs/struct_02071C18.h"
-#include "overlay008/struct_ov8_02249FB8.h"
 
-#include "unk_02005474.h"
-#include "message.h"
-#include "sys_task.h"
-#include "unk_0200DA60.h"
-#include "heap.h"
-#include "unk_02018340.h"
-#include "unk_0201D15C.h"
-#include "camera.h"
-#include "save_player.h"
-#include "trainer_info.h"
-#include "savedata_misc.h"
-#include "unk_02027F50.h"
-#include "map_header_data.h"
-#include "field_system.h"
-#include "script_manager.h"
-#include "vars_flags.h"
-#include "unk_020508D4.h"
-#include "unk_02054D00.h"
-#include "unk_0205D8CC.h"
-#include "unk_0205DAC8.h"
-#include "player_avatar.h"
-#include "unk_0205F180.h"
-#include "map_object.h"
-#include "map_object_move.h"
-#include "unk_020655F4.h"
-#include "unk_02067A84.h"
-#include "unk_0206AFE0.h"
-#include "unk_020711EC.h"
+#include "field/field_system.h"
+#include "field/field_system_sub2_t.h"
 #include "overlay005/ov5_021D37AC.h"
 #include "overlay005/ov5_021D57BC.h"
 #include "overlay005/ov5_021DF440.h"
@@ -67,7 +29,44 @@
 #include "overlay005/ov5_021F428C.h"
 #include "overlay005/ov5_021F47B0.h"
 #include "overlay005/ov5_021F5A10.h"
-#include "overlay008/ov8_02249960.h"
+#include "overlay005/struct_ov5_021D3CAC_decl.h"
+#include "overlay005/struct_ov5_021D3CE4_decl.h"
+#include "overlay005/struct_ov5_021D57D8_decl.h"
+#include "overlay005/struct_ov5_021E1890_decl.h"
+#include "overlay008/struct_ov8_02249FB8.h"
+#include "overlay101/struct_ov101_021D5D90_decl.h"
+
+#include "camera.h"
+#include "core_sys.h"
+#include "field_system.h"
+#include "heap.h"
+#include "map_header_data.h"
+#include "map_object.h"
+#include "map_object_move.h"
+#include "message.h"
+#include "player_avatar.h"
+#include "save_player.h"
+#include "savedata_misc.h"
+#include "script_manager.h"
+#include "strbuf.h"
+#include "sys_task.h"
+#include "sys_task_manager.h"
+#include "trainer_info.h"
+#include "unk_02005474.h"
+#include "unk_0200DA60.h"
+#include "unk_02018340.h"
+#include "unk_0201D15C.h"
+#include "unk_02027F50.h"
+#include "unk_020508D4.h"
+#include "unk_02054D00.h"
+#include "unk_0205D8CC.h"
+#include "unk_0205DAC8.h"
+#include "unk_0205F180.h"
+#include "unk_020655F4.h"
+#include "unk_02067A84.h"
+#include "unk_0206AFE0.h"
+#include "unk_020711EC.h"
+#include "vars_flags.h"
 
 typedef struct {
     int unk_00;
@@ -80,7 +79,7 @@ typedef struct {
 } UnkStruct_ov8_0224A1E4_sub1;
 
 typedef struct {
-    FieldSystem * fieldSystem;
+    FieldSystem *fieldSystem;
     int unk_04;
     int unk_08;
     int unk_0C;
@@ -103,7 +102,7 @@ typedef struct {
 } UnkStruct_ov8_0224CB68;
 
 typedef struct {
-    FieldSystem * fieldSystem;
+    FieldSystem *fieldSystem;
     u8 unk_04[13];
     u8 unk_11;
     u8 unk_12;
@@ -133,7 +132,7 @@ typedef struct {
 
 typedef struct {
     int unk_00;
-    const u8 * unk_04[4];
+    const u8 *unk_04[4];
 } UnkStruct_ov8_0224E740;
 
 typedef struct {
@@ -151,7 +150,7 @@ typedef struct {
     VecFx32 unk_00;
     u32 unk_0C;
     u16 unk_10;
-    UnkStruct_ov5_021E1890 * unk_14;
+    UnkStruct_ov5_021E1890 *unk_14;
 } UnkStruct_ov8_0224AF58;
 
 typedef struct {
@@ -159,7 +158,7 @@ typedef struct {
     fx32 unk_04;
     int unk_08;
     UnkStruct_ov8_0224AF58 unk_0C[2];
-    FieldSystem * fieldSystem;
+    FieldSystem *fieldSystem;
 } UnkStruct_ov8_0224AF00;
 
 typedef struct {
@@ -171,7 +170,7 @@ typedef struct {
     int unk_14;
     int unk_18;
     int unk_1C;
-    MapObject * unk_20;
+    MapObject *unk_20;
 } UnkStruct_ov8_0224B28C;
 
 typedef struct {
@@ -179,14 +178,14 @@ typedef struct {
     int unk_04;
     fx32 unk_08;
     fx32 unk_0C;
-    FieldSystem * fieldSystem;
-    UnkStruct_02071BD0 * unk_14;
-    UnkStruct_ov8_0224AF00 * unk_18;
+    FieldSystem *fieldSystem;
+    UnkStruct_02071BD0 *unk_14;
+    UnkStruct_ov8_0224AF00 *unk_18;
     UnkStruct_ov8_0224B28C unk_1C;
     u32 unk_40;
-    Window * unk_44;
-    MessageLoader * unk_48;
-    Strbuf* unk_4C;
+    Window *unk_44;
+    MessageLoader *unk_48;
+    Strbuf *unk_4C;
 } UnkStruct_ov8_0224B67C;
 
 typedef struct {
@@ -197,8 +196,8 @@ typedef struct {
 typedef struct {
     int unk_00;
     int unk_04;
-    MapObject * unk_08;
-    UnkStruct_ov101_021D5D90 * unk_0C;
+    MapObject *unk_08;
+    UnkStruct_ov101_021D5D90 *unk_0C;
 } UnkStruct_ov8_0224B80C;
 
 typedef struct {
@@ -214,7 +213,7 @@ typedef struct {
 } UnkStruct_ov8_0224B8A0;
 
 typedef struct {
-    FieldSystem * fieldSystem;
+    FieldSystem *fieldSystem;
     UnkStruct_ov8_0224B8A0 unk_04[11];
     UnkStruct_ov8_0224BCA8 unk_10C[9];
 } UnkStruct_ov8_0224B8D0;
@@ -232,8 +231,8 @@ typedef struct {
     int unk_24;
     int unk_28;
     int unk_2C;
-    MapObject * unk_30;
-    FieldSystem * fieldSystem;
+    MapObject *unk_30;
+    FieldSystem *fieldSystem;
 } UnkStruct_ov8_0224C0C4;
 
 typedef struct {
@@ -248,9 +247,9 @@ typedef struct {
     VecFx32 unk_20;
     fx32 unk_2C;
     fx32 unk_30;
-    UnkStruct_ov8_0224BCA8 * unk_34;
-    UnkStruct_ov8_0224B8A0 * unk_38;
-    UnkStruct_ov8_0224B8D0 * unk_3C;
+    UnkStruct_ov8_0224BCA8 *unk_34;
+    UnkStruct_ov8_0224B8A0 *unk_38;
+    UnkStruct_ov8_0224B8D0 *unk_3C;
     UnkStruct_ov8_0224C0C4 unk_40;
 } UnkStruct_ov8_0224C098;
 
@@ -265,7 +264,7 @@ typedef struct {
 } UnkStruct_ov8_0224C8D4;
 
 typedef struct {
-    UnkStruct_ov5_021D57D8 * unk_00;
+    UnkStruct_ov5_021D57D8 *unk_00;
     int unk_04;
     u8 unk_08;
     u8 unk_09;
@@ -286,50 +285,50 @@ typedef struct {
     int unk_00;
     int unk_04;
     int unk_08;
-    SysTask * unk_0C;
-    UnkStruct_ov101_021D5D90 * unk_10;
-    MapObject * unk_14;
-    UnkStruct_ov8_0224C444 * unk_18;
+    SysTask *unk_0C;
+    UnkStruct_ov101_021D5D90 *unk_10;
+    MapObject *unk_14;
+    UnkStruct_ov8_0224C444 *unk_18;
 } UnkStruct_ov8_0224C4F8;
 
 typedef struct UnkStruct_ov8_0224C444_t {
-    FieldSystem * fieldSystem;
+    FieldSystem *fieldSystem;
     UnkStruct_ov8_0224C4F8 unk_04[16];
     UnkStruct_ov8_0224C3B4 unk_1C4;
     u32 unk_1F0;
-    SysTask * unk_1F4;
+    SysTask *unk_1F4;
 } UnkStruct_ov8_0224C444;
 
 void include_ov8_02249960(void);
 
 static u8 ov8_02249960(const u8 param0, const int param1);
-static void ov8_0224996C(const u8 param0, int * param1);
-static BOOL ov8_02249A94(TaskManager * param0);
-static BOOL ov8_02249B74(TaskManager * param0);
-static BOOL ov8_02249CD8(TaskManager * param0);
-static void ov8_02249F14(const u8 param0, UnkStruct_ov5_021D3CAC * param1);
-static BOOL ov8_0224A018(TaskManager * param0);
-static BOOL ov8_0224A0E8(TaskManager * param0);
-static BOOL ov8_0224A4FC(TaskManager * param0);
-static BOOL ov8_0224A620(TaskManager * param0);
-static BOOL ov8_0224A770(TaskManager * param0);
-static BOOL ov8_0224ADE8(TaskManager * param0);
-static void ov8_0224B8D0(UnkStruct_ov8_0224B8D0 * param0);
-static void ov8_0224B958(UnkStruct_ov8_0224B8D0 * param0);
-static void ov8_0224BFCC(FieldSystem * fieldSystem, UnkStruct_ov8_0224C098 * param1, UnkStruct_ov8_0224B80C * param2, int param3);
-static void ov8_0224C098(UnkStruct_ov8_0224C098 * param0);
-static BOOL ov8_0224C0C4(UnkStruct_ov8_0224C098 * param0);
-static BOOL ov8_0224C0C8(UnkStruct_ov8_0224C098 * param0, UnkStruct_ov8_0224B80C * param1, int param2);
-static void ov8_0224C0FC(UnkStruct_ov8_0224C098 * param0, int param1);
-static void ov8_0224C11C(UnkStruct_ov8_0224C098 * param0, int param1);
-static void ov8_0224C170(UnkStruct_ov8_0224C098 * param0, fx32 param1);
-static void ov8_0224C3B0(SysTask * param0, void * param1);
-static void ov8_0224C3B4(UnkStruct_ov8_0224C444 * param0);
-static void ov8_0224C444(UnkStruct_ov8_0224C444 * param0);
-static void ov8_0224C4F8(UnkStruct_ov8_0224C444 * param0);
-static void ov8_0224C518(SysTask * param0, void * param1);
+static void ov8_0224996C(const u8 param0, int *param1);
+static BOOL ov8_02249A94(TaskManager *param0);
+static BOOL ov8_02249B74(TaskManager *param0);
+static BOOL ov8_02249CD8(TaskManager *param0);
+static void ov8_02249F14(const u8 param0, UnkStruct_ov5_021D3CAC *param1);
+static BOOL ov8_0224A018(TaskManager *param0);
+static BOOL ov8_0224A0E8(TaskManager *param0);
+static BOOL ov8_0224A4FC(TaskManager *param0);
+static BOOL ov8_0224A620(TaskManager *param0);
+static BOOL ov8_0224A770(TaskManager *param0);
+static BOOL ov8_0224ADE8(TaskManager *param0);
+static void ov8_0224B8D0(UnkStruct_ov8_0224B8D0 *param0);
+static void ov8_0224B958(UnkStruct_ov8_0224B8D0 *param0);
+static void ov8_0224BFCC(FieldSystem *fieldSystem, UnkStruct_ov8_0224C098 *param1, UnkStruct_ov8_0224B80C *param2, int param3);
+static void ov8_0224C098(UnkStruct_ov8_0224C098 *param0);
+static BOOL ov8_0224C0C4(UnkStruct_ov8_0224C098 *param0);
+static BOOL ov8_0224C0C8(UnkStruct_ov8_0224C098 *param0, UnkStruct_ov8_0224B80C *param1, int param2);
+static void ov8_0224C0FC(UnkStruct_ov8_0224C098 *param0, int param1);
+static void ov8_0224C11C(UnkStruct_ov8_0224C098 *param0, int param1);
+static void ov8_0224C170(UnkStruct_ov8_0224C098 *param0, fx32 param1);
+static void ov8_0224C3B0(SysTask *param0, void *param1);
+static void ov8_0224C3B4(UnkStruct_ov8_0224C444 *param0);
+static void ov8_0224C444(UnkStruct_ov8_0224C444 *param0);
+static void ov8_0224C4F8(UnkStruct_ov8_0224C444 *param0);
+static void ov8_0224C518(SysTask *param0, void *param1);
 
-static u8 ov8_02249960 (const u8 param0, const int param1)
+static u8 ov8_02249960(const u8 param0, const int param1)
 {
     u8 v0;
 
@@ -337,18 +336,18 @@ static u8 ov8_02249960 (const u8 param0, const int param1)
     return v0;
 }
 
-static void ov8_0224996C (const u8 param0, int * param1)
+static void ov8_0224996C(const u8 param0, int *param1)
 {
     (*param1) ^= (0x1 << param0);
 }
 
-void ov8_0224997C (FieldSystem * fieldSystem)
+void ov8_0224997C(FieldSystem *fieldSystem)
 {
     UnkStruct_02055130 v0;
     int v1, v2;
     BOOL v3;
     int v4;
-    int v5[] = {239, 240, 241};
+    int v5[] = { 239, 240, 241 };
 
     v1 = Player_GetXPos(fieldSystem->playerAvatar);
     v2 = Player_GetZPos(fieldSystem->playerAvatar);
@@ -358,9 +357,9 @@ void ov8_0224997C (FieldSystem * fieldSystem)
     v3 = sub_02055208(fieldSystem, v5, NELEMS(v5), &v0, NULL, &v4);
 
     if (v3) {
-        UnkStruct_ov8_0224997C * v6;
-        UnkStruct_02027860 * v7;
-        UnkStruct_02071B10 * v8;
+        UnkStruct_ov8_0224997C *v6;
+        UnkStruct_02027860 *v7;
+        UnkStruct_02071B10 *v8;
 
         v7 = sub_02027860(FieldSystem_SaveData(fieldSystem));
         v8 = (UnkStruct_02071B10 *)sub_02027F6C(v7, 1);
@@ -383,7 +382,7 @@ void ov8_0224997C (FieldSystem * fieldSystem)
     }
 }
 
-BOOL ov8_02249A40 (FieldSystem * fieldSystem, const int param1, const int param2, const fx32 param3, BOOL * param4)
+BOOL ov8_02249A40(FieldSystem *fieldSystem, const int param1, const int param2, const fx32 param3, BOOL *param4)
 {
     u8 v0;
 
@@ -410,11 +409,11 @@ BOOL ov8_02249A40 (FieldSystem * fieldSystem, const int param1, const int param2
     return 0;
 }
 
-static BOOL ov8_02249A94 (TaskManager * taskMan)
+static BOOL ov8_02249A94(TaskManager *taskMan)
 {
-    UnkStruct_ov5_021E1890 * v0;
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_ov8_0224997C * v2 = TaskManager_Environment(taskMan);
+    UnkStruct_ov5_021E1890 *v0;
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
+    UnkStruct_ov8_0224997C *v2 = TaskManager_Environment(taskMan);
 
     switch (v2->unk_00) {
     case 0:
@@ -422,11 +421,10 @@ static BOOL ov8_02249A94 (TaskManager * taskMan)
         ov8_02249F14(0, fieldSystem->unk_50);
         (v2->unk_00)++;
         break;
-    case 1:
-    {
-        UnkStruct_ov5_021D3CE4 * v3;
-        UnkStruct_ov5_021D3CE4 * v4;
-        UnkStruct_ov5_021D3CE4 * v5;
+    case 1: {
+        UnkStruct_ov5_021D3CE4 *v3;
+        UnkStruct_ov5_021D3CE4 *v4;
+        UnkStruct_ov5_021D3CE4 *v5;
 
         v3 = ov5_021D3DA0(1, fieldSystem->unk_50);
         v4 = ov5_021D3DA0(2, fieldSystem->unk_50);
@@ -449,8 +447,7 @@ static BOOL ov8_02249A94 (TaskManager * taskMan)
                 ov5_021E18A4(v0, &v6);
             }
         }
-    }
-    break;
+    } break;
     case 2:
         ov5_021EF388(0, (FX32_ONE * 16 * 0), fieldSystem->unk_A0);
         sub_020057A4(1626, 0);
@@ -464,22 +461,21 @@ static BOOL ov8_02249A94 (TaskManager * taskMan)
     return 0;
 }
 
-static BOOL ov8_02249B74 (TaskManager * taskMan)
+static BOOL ov8_02249B74(TaskManager *taskMan)
 {
-    UnkStruct_ov5_021E1890 * v0;
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_ov8_0224997C * v2 = TaskManager_Environment(taskMan);
+    UnkStruct_ov5_021E1890 *v0;
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
+    UnkStruct_ov8_0224997C *v2 = TaskManager_Environment(taskMan);
 
     switch (v2->unk_00) {
     case 0:
         ov8_02249F14(1, fieldSystem->unk_50);
         (v2->unk_00)++;
         break;
-    case 1:
-    {
-        UnkStruct_ov5_021D3CE4 * v3;
-        UnkStruct_ov5_021D3CE4 * v4;
-        UnkStruct_ov5_021D3CE4 * v5;
+    case 1: {
+        UnkStruct_ov5_021D3CE4 *v3;
+        UnkStruct_ov5_021D3CE4 *v4;
+        UnkStruct_ov5_021D3CE4 *v5;
 
         v3 = ov5_021D3DA0(1, fieldSystem->unk_50);
         v4 = ov5_021D3DA0(2, fieldSystem->unk_50);
@@ -504,8 +500,7 @@ static BOOL ov8_02249B74 (TaskManager * taskMan)
                 }
             }
         }
-    }
-    break;
+    } break;
     case 2:
         v0 = ov5_021E18CC(fieldSystem->unk_A4, 242);
 
@@ -553,22 +548,21 @@ static BOOL ov8_02249B74 (TaskManager * taskMan)
     return 0;
 }
 
-static BOOL ov8_02249CD8 (TaskManager * taskMan)
+static BOOL ov8_02249CD8(TaskManager *taskMan)
 {
-    UnkStruct_ov5_021E1890 * v0;
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_ov8_0224997C * v2 = TaskManager_Environment(taskMan);
+    UnkStruct_ov5_021E1890 *v0;
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
+    UnkStruct_ov8_0224997C *v2 = TaskManager_Environment(taskMan);
 
     switch (v2->unk_00) {
     case 0:
         ov8_02249F14(2, fieldSystem->unk_50);
         (v2->unk_00)++;
         break;
-    case 1:
-    {
-        UnkStruct_ov5_021D3CE4 * v3;
-        UnkStruct_ov5_021D3CE4 * v4;
-        UnkStruct_ov5_021D3CE4 * v5;
+    case 1: {
+        UnkStruct_ov5_021D3CE4 *v3;
+        UnkStruct_ov5_021D3CE4 *v4;
+        UnkStruct_ov5_021D3CE4 *v5;
 
         v3 = ov5_021D3DA0(1, fieldSystem->unk_50);
         v4 = ov5_021D3DA0(2, fieldSystem->unk_50);
@@ -591,8 +585,7 @@ static BOOL ov8_02249CD8 (TaskManager * taskMan)
                 ov5_021E18A4(v0, &v6);
             }
         }
-    }
-    break;
+    } break;
     case 2:
         ov5_021EF388(0, (FX32_ONE * 16 * 4), fieldSystem->unk_A0);
         sub_020057A4(1626, 0);
@@ -606,21 +599,21 @@ static BOOL ov8_02249CD8 (TaskManager * taskMan)
     return 0;
 }
 
-void ov8_02249DBC (FieldSystem * fieldSystem)
+void ov8_02249DBC(FieldSystem *fieldSystem)
 {
     u8 v0;
-    UnkStruct_ov5_021E1890 * v1;
+    UnkStruct_ov5_021E1890 *v1;
     fx32 v2;
     fx32 v3;
     BOOL v4, v5, v6;
-    UnkStruct_02027860 * v7;
-    UnkStruct_02071B10 * v8;
+    UnkStruct_02027860 *v7;
+    UnkStruct_02071B10 *v8;
 
     v7 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     v8 = (UnkStruct_02071B10 *)sub_02027F6C(v7, 1);
 
     {
-        VecFx32 v9 = {FX32_ONE * 16 * 16, 0, FX32_ONE * 16 * 16};
+        VecFx32 v9 = { FX32_ONE * 16 * 16, 0, FX32_ONE * 16 * 16 };
         ov5_021E19CC(fieldSystem->unk_A4, fieldSystem->unk_30, 242, &v9, NULL, fieldSystem->unk_50);
     }
 
@@ -673,7 +666,7 @@ void ov8_02249DBC (FieldSystem * fieldSystem)
     ov5_021EF388(0, v3, fieldSystem->unk_A0);
 
     {
-        UnkStruct_ov5_021D3CE4 * v11;
+        UnkStruct_ov5_021D3CE4 *v11;
 
         v11 = ov5_021D3DE4(239, 0, fieldSystem->unk_50);
 
@@ -701,9 +694,9 @@ void ov8_02249DBC (FieldSystem * fieldSystem)
     }
 }
 
-static void ov8_02249F14 (const u8 param0, UnkStruct_ov5_021D3CAC * param1)
+static void ov8_02249F14(const u8 param0, UnkStruct_ov5_021D3CAC *param1)
 {
-    UnkStruct_ov5_021D3CE4 * v0;
+    UnkStruct_ov5_021D3CE4 *v0;
     int v1, v2, v3;
 
     if (param0 == 2) {
@@ -746,23 +739,23 @@ static void ov8_02249F14 (const u8 param0, UnkStruct_ov5_021D3CAC * param1)
     Sound_PlayEffect(1626);
 }
 
-void include_ov8_02249960 (void)
+void include_ov8_02249960(void)
 {
-    VecFx32 dummy = {FX32_ONE * (16 * 9 + 8), 0, FX32_ONE * (16 * 13 + 8)};
-    VecFx32 * dummy2 = &dummy;
+    VecFx32 dummy = { FX32_ONE * (16 * 9 + 8), 0, FX32_ONE * (16 * 13 + 8) };
+    VecFx32 *dummy2 = &dummy;
 }
 
-void ov8_02249FB8 (FieldSystem * fieldSystem)
+void ov8_02249FB8(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov8_0224997C * v0;
+    UnkStruct_ov8_0224997C *v0;
 
     v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov8_0224997C));
     v0->unk_00 = 0;
 
     {
         VecFx32 v1;
-        UnkStruct_02027860 * v2;
-        UnkStruct_ov8_02249FB8 * v3;
+        UnkStruct_02027860 *v2;
+        UnkStruct_ov8_02249FB8 *v3;
 
         v2 = sub_02027860(FieldSystem_SaveData(fieldSystem));
         v3 = (UnkStruct_ov8_02249FB8 *)sub_02027F6C(v2, 2);
@@ -779,11 +772,11 @@ void ov8_02249FB8 (FieldSystem * fieldSystem)
     }
 }
 
-static BOOL ov8_0224A018 (TaskManager * taskMan)
+static BOOL ov8_0224A018(TaskManager *taskMan)
 {
-    UnkStruct_ov5_021E1890 * v0;
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_ov8_0224997C * v2 = TaskManager_Environment(taskMan);
+    UnkStruct_ov5_021E1890 *v0;
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
+    UnkStruct_ov8_0224997C *v2 = TaskManager_Environment(taskMan);
 
     switch (v2->unk_00) {
     case 0:
@@ -791,8 +784,7 @@ static BOOL ov8_0224A018 (TaskManager * taskMan)
         Sound_PlayEffect(1553);
         (v2->unk_00)++;
         break;
-    case 1:
-    {
+    case 1: {
         v0 = ov5_021E18CC(fieldSystem->unk_A4, 258);
 
         {
@@ -811,8 +803,7 @@ static BOOL ov8_0224A018 (TaskManager * taskMan)
             sub_0205ED0C(fieldSystem->playerAvatar, v3.y);
             ov5_021E18A4(v0, &v3);
         }
-    }
-    break;
+    } break;
     case 2:
         ov5_021EF388(0, (FX32_ONE * 16 * 10), fieldSystem->unk_A0);
         sub_0205ED48(fieldSystem->playerAvatar, 1);
@@ -827,11 +818,11 @@ static BOOL ov8_0224A018 (TaskManager * taskMan)
     return 0;
 }
 
-static BOOL ov8_0224A0E8 (TaskManager * taskMan)
+static BOOL ov8_0224A0E8(TaskManager *taskMan)
 {
-    UnkStruct_ov5_021E1890 * v0;
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_ov8_0224997C * v2 = TaskManager_Environment(taskMan);
+    UnkStruct_ov5_021E1890 *v0;
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
+    UnkStruct_ov8_0224997C *v2 = TaskManager_Environment(taskMan);
 
     switch (v2->unk_00) {
     case 0:
@@ -839,8 +830,7 @@ static BOOL ov8_0224A0E8 (TaskManager * taskMan)
         Sound_PlayEffect(1553);
         (v2->unk_00)++;
         break;
-    case 1:
-    {
+    case 1: {
         v0 = ov5_021E18CC(fieldSystem->unk_A4, 258);
 
         {
@@ -858,8 +848,7 @@ static BOOL ov8_0224A0E8 (TaskManager * taskMan)
             sub_0205ED0C(fieldSystem->playerAvatar, v3.y);
             ov5_021E18A4(v0, &v3);
         }
-    }
-    break;
+    } break;
     case 2:
         ov5_021EF388(0, (FX32_ONE * 16 * 0), fieldSystem->unk_A0);
         sub_0205ED48(fieldSystem->playerAvatar, 1);
@@ -1018,201 +1007,201 @@ static const u8 Unk_ov8_0224D035[4][1024] = {
 static const UnkStruct_ov8_0224CB68 Unk_ov8_0224CB68[24] = {
     {
         0x129,
-        {0x10, 0x0, 0x9},
-        {0x10, 0x1E, 0x9},
+        { 0x10, 0x0, 0x9 },
+        { 0x10, 0x1E, 0x9 },
         0,
         3,
         0x0,
     },
     {
         0x128,
-        {0xB, 0x0, 0xD},
-        {0xB, 0xA, 0xD},
+        { 0xB, 0x0, 0xD },
+        { 0xB, 0xA, 0xD },
         0,
         1,
         0x0,
     },
     {
         0x128,
-        {0xF, 0x0, 0xD},
-        {0xF, 0xA, 0xD},
+        { 0xF, 0x0, 0xD },
+        { 0xF, 0xA, 0xD },
         0,
         1,
         0x0,
     },
     {
         0x128,
-        {0x13, 0x0, 0xD},
-        {0x13, 0xA, 0xD},
+        { 0x13, 0x0, 0xD },
+        { 0x13, 0xA, 0xD },
         0,
         1,
         0x0,
     },
     {
         0x128,
-        {0x18, 0x0, 0xD},
-        {0x18, 0xA, 0xD},
+        { 0x18, 0x0, 0xD },
+        { 0x18, 0xA, 0xD },
         0,
         1,
         0x0,
     },
     {
         0x128,
-        {0x15, 0x0, 0x16},
-        {0x15, 0xA, 0x16},
+        { 0x15, 0x0, 0x16 },
+        { 0x15, 0xA, 0x16 },
         0,
         1,
         0x0,
     },
     {
         0x128,
-        {0x19, 0x0, 0x9},
-        {0x19, 0xA, 0x9},
-        0,
-        1,
-        0x1,
-    },
-    {
-        0x128,
-        {0x19, 0x0, 0x16},
-        {0x19, 0xA, 0x16},
+        { 0x19, 0x0, 0x9 },
+        { 0x19, 0xA, 0x9 },
         0,
         1,
         0x1,
     },
     {
         0x128,
-        {0x1D, 0x0, 0x16},
-        {0x1D, 0xA, 0x16},
+        { 0x19, 0x0, 0x16 },
+        { 0x19, 0xA, 0x16 },
         0,
         1,
         0x1,
     },
     {
         0x128,
-        {0x5, 0xA, 0x1A},
-        {0x5, 0x14, 0x1A},
+        { 0x1D, 0x0, 0x16 },
+        { 0x1D, 0xA, 0x16 },
+        0,
+        1,
+        0x1,
+    },
+    {
+        0x128,
+        { 0x5, 0xA, 0x1A },
+        { 0x5, 0x14, 0x1A },
         1,
         2,
         0x0,
     },
     {
         0x127,
-        {0xB, 0xA, 0x16},
-        {0x12, 0xA, 0x16},
+        { 0xB, 0xA, 0x16 },
+        { 0x12, 0xA, 0x16 },
         1,
         1,
         0x1,
     },
     {
         0x128,
-        {0x1D, 0xA, 0x9},
-        {0x1D, 0x14, 0x9},
+        { 0x1D, 0xA, 0x9 },
+        { 0x1D, 0x14, 0x9 },
         1,
         2,
         0x1,
     },
     {
         0x127,
-        {0xA, 0x14, 0x4},
-        {0xE, 0x14, 0x4},
+        { 0xA, 0x14, 0x4 },
+        { 0xE, 0x14, 0x4 },
         2,
         2,
         0x0,
     },
     {
         0x127,
-        {0x13, 0x14, 0x4},
-        {0x16, 0x14, 0x4},
+        { 0x13, 0x14, 0x4 },
+        { 0x16, 0x14, 0x4 },
         2,
         2,
         0x0,
     },
     {
         0x127,
-        {0x7, 0x14, 0xC},
-        {0x16, 0x14, 0xC},
+        { 0x7, 0x14, 0xC },
+        { 0x16, 0x14, 0xC },
         2,
         2,
         0x0,
     },
     {
         0x127,
-        {0x9, 0x14, 0x1A},
-        {0x15, 0x14, 0x1A},
+        { 0x9, 0x14, 0x1A },
+        { 0x15, 0x14, 0x1A },
         2,
         2,
         0x0,
     },
     {
         0x126,
-        {0x2, 0x14, 0x13},
-        {0x2, 0x14, 0x16},
+        { 0x2, 0x14, 0x13 },
+        { 0x2, 0x14, 0x16 },
         2,
         2,
         0x1,
     },
     {
         0x126,
-        {0x1A, 0x14, 0x10},
-        {0x1A, 0x14, 0x16},
+        { 0x1A, 0x14, 0x10 },
+        { 0x1A, 0x14, 0x16 },
         2,
         2,
         0x0,
     },
     {
         0x126,
-        {0x1D, 0x14, 0x10},
-        {0x1D, 0x14, 0x16},
+        { 0x1D, 0x14, 0x10 },
+        { 0x1D, 0x14, 0x16 },
         2,
         2,
         0x1,
     },
     {
         0x129,
-        {0x7, 0x0, 0x9},
-        {0x7, 0x1E, 0x9},
+        { 0x7, 0x0, 0x9 },
+        { 0x7, 0x1E, 0x9 },
         0,
         3,
         0x1,
     },
     {
         0x127,
-        {0x13, 0x1E, 0x4},
-        {0x1A, 0x1E, 0x4},
+        { 0x13, 0x1E, 0x4 },
+        { 0x1A, 0x1E, 0x4 },
         3,
         3,
         0x0,
     },
     {
         0x127,
-        {0x5, 0x1E, 0x1A},
-        {0x1A, 0x1E, 0x1A},
+        { 0x5, 0x1E, 0x1A },
+        { 0x1A, 0x1E, 0x1A },
         3,
         3,
         0x1,
     },
     {
         0x126,
-        {0x1D, 0x1E, 0x7},
-        {0x1D, 0x1E, 0x17},
+        { 0x1D, 0x1E, 0x7 },
+        { 0x1D, 0x1E, 0x17 },
         3,
         3,
         0x0,
     },
     {
         0x126,
-        {0x2, 0x1E, 0xC},
-        {0x2, 0x1E, 0x17},
+        { 0x2, 0x1E, 0xC },
+        { 0x2, 0x1E, 0x17 },
         3,
         3,
         0x1,
     },
 };
 
-static void ov8_0224A1B4 (const UnkStruct_ov8_0224A1E4 * param0, const BOOL param1, const int param2)
+static void ov8_0224A1B4(const UnkStruct_ov8_0224A1E4 *param0, const BOOL param1, const int param2)
 {
-    UnkStruct_ov5_021E1890 * v0;
+    UnkStruct_ov5_021E1890 *v0;
     int v1;
 
     for (v1 = 0; v1 < 24; v1++) {
@@ -1223,7 +1212,7 @@ static void ov8_0224A1B4 (const UnkStruct_ov8_0224A1E4 * param0, const BOOL para
     }
 }
 
-static u8 ov8_0224A1E4 (UnkStruct_ov8_0224A1E4 * param0)
+static u8 ov8_0224A1E4(UnkStruct_ov8_0224A1E4 *param0)
 {
     u8 v0;
     u8 v1;
@@ -1248,13 +1237,13 @@ static u8 ov8_0224A1E4 (UnkStruct_ov8_0224A1E4 * param0)
     return 24;
 }
 
-static void ov8_0224A254 (UnkStruct_ov8_0224A1E4 * param0, const u8 param1)
+static void ov8_0224A254(UnkStruct_ov8_0224A1E4 *param0, const u8 param1)
 {
     int v0;
     u8 v1;
-    UnkStruct_ov8_0224997C * v2;
-    UnkStruct_02027860 * v3;
-    UnkStruct_02071B30 * v4;
+    UnkStruct_ov8_0224997C *v2;
+    UnkStruct_02027860 *v3;
+    UnkStruct_02071B30 *v4;
 
     v3 = sub_02027860(FieldSystem_SaveData(param0->fieldSystem));
     v4 = (UnkStruct_02071B30 *)sub_02027F6C(v3, 3);
@@ -1308,11 +1297,11 @@ static void ov8_0224A254 (UnkStruct_ov8_0224A1E4 * param0, const u8 param1)
     }
 }
 
-static void ov8_0224A434 (UnkStruct_ov8_0224A1E4 * param0, const fx32 param1)
+static void ov8_0224A434(UnkStruct_ov8_0224A1E4 *param0, const fx32 param1)
 {
-    UnkStruct_ov5_021E1890 * v0;
-    UnkStruct_ov5_021E1890 * v1;
-    UnkStruct_ov5_021E1890 * v2;
+    UnkStruct_ov5_021E1890 *v0;
+    UnkStruct_ov5_021E1890 *v1;
+    UnkStruct_ov5_021E1890 *v2;
 
     v0 = ov5_021E18C4(param0->fieldSystem->unk_A4, param0->unk_04);
     v1 = ov5_021E18C4(param0->fieldSystem->unk_A4, param0->unk_08);
@@ -1343,12 +1332,12 @@ static void ov8_0224A434 (UnkStruct_ov8_0224A1E4 * param0, const fx32 param1)
     }
 }
 
-static BOOL ov8_0224A4FC (TaskManager * taskMan)
+static BOOL ov8_0224A4FC(TaskManager *taskMan)
 {
-    UnkStruct_ov5_021E1890 * v0;
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_ov8_0224997C * v2 = TaskManager_Environment(taskMan);
-    UnkStruct_ov8_0224A1E4 * v3;
+    UnkStruct_ov5_021E1890 *v0;
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
+    UnkStruct_ov8_0224997C *v2 = TaskManager_Environment(taskMan);
+    UnkStruct_ov8_0224A1E4 *v3;
 
     v3 = (UnkStruct_ov8_0224A1E4 *)fieldSystem->unk_04->unk_24;
 
@@ -1358,8 +1347,7 @@ static BOOL ov8_0224A4FC (TaskManager * taskMan)
         Sound_PlayEffect(1553);
         (v2->unk_00)++;
         break;
-    case 1:
-    {
+    case 1: {
         int v4;
 
         v4 = v3->unk_28[v3->unk_E8];
@@ -1396,8 +1384,7 @@ static BOOL ov8_0224A4FC (TaskManager * taskMan)
             ov5_021E18A4(v0, &v5);
             ov8_0224A434(v3, v5.y);
         }
-    }
-    break;
+    } break;
     case 2:
         sub_0205ED48(fieldSystem->playerAvatar, 1);
         Sound_PlayEffect(1562);
@@ -1411,13 +1398,13 @@ static BOOL ov8_0224A4FC (TaskManager * taskMan)
     return 0;
 }
 
-static BOOL ov8_0224A620 (TaskManager * taskMan)
+static BOOL ov8_0224A620(TaskManager *taskMan)
 {
-    UnkStruct_ov5_021E1890 * v0;
-    MapObject * v1;
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_ov8_0224997C * v3 = TaskManager_Environment(taskMan);
-    UnkStruct_ov8_0224A1E4 * v4;
+    UnkStruct_ov5_021E1890 *v0;
+    MapObject *v1;
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
+    UnkStruct_ov8_0224997C *v3 = TaskManager_Environment(taskMan);
+    UnkStruct_ov8_0224A1E4 *v4;
 
     v4 = (UnkStruct_ov8_0224A1E4 *)fieldSystem->unk_04->unk_24;
     v1 = Player_MapObject(fieldSystem->playerAvatar);
@@ -1431,8 +1418,7 @@ static BOOL ov8_0224A620 (TaskManager * taskMan)
             (v3->unk_00)++;
         }
         break;
-    case 1:
-    {
+    case 1: {
         int v5;
 
         v5 = v4->unk_28[v4->unk_E8];
@@ -1473,8 +1459,7 @@ static BOOL ov8_0224A620 (TaskManager * taskMan)
 
             ov5_021E18A4(v0, &v6);
         }
-    }
-    break;
+    } break;
     case 2:
         if (LocalMapObj_IsAnimationSet(v1) == 1) {
             LocalMapObj_SetAnimationCode(v1, 0x4a);
@@ -1495,13 +1480,13 @@ static BOOL ov8_0224A620 (TaskManager * taskMan)
     return 0;
 }
 
-static BOOL ov8_0224A770 (TaskManager * taskMan)
+static BOOL ov8_0224A770(TaskManager *taskMan)
 {
-    UnkStruct_ov5_021E1890 * v0;
-    MapObject * v1;
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_ov8_0224997C * v3 = TaskManager_Environment(taskMan);
-    UnkStruct_ov8_0224A1E4 * v4;
+    UnkStruct_ov5_021E1890 *v0;
+    MapObject *v1;
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
+    UnkStruct_ov8_0224997C *v3 = TaskManager_Environment(taskMan);
+    UnkStruct_ov8_0224A1E4 *v4;
 
     v4 = (UnkStruct_ov8_0224A1E4 *)fieldSystem->unk_04->unk_24;
     v1 = Player_MapObject(fieldSystem->playerAvatar);
@@ -1515,8 +1500,7 @@ static BOOL ov8_0224A770 (TaskManager * taskMan)
             (v3->unk_00)++;
         }
         break;
-    case 1:
-    {
+    case 1: {
         int v5;
 
         v5 = v4->unk_28[v4->unk_E8];
@@ -1557,17 +1541,15 @@ static BOOL ov8_0224A770 (TaskManager * taskMan)
 
             ov5_021E18A4(v0, &v6);
         }
-    }
-    break;
+    } break;
     case 2:
         if (LocalMapObj_IsAnimationSet(v1) == 1) {
             LocalMapObj_SetAnimationCode(v1, 0x4a);
             (v3->unk_00)++;
         }
         break;
-    case 3:
-    {
-        MapObject * v8;
+    case 3: {
+        MapObject *v8;
 
         v8 = Player_MapObject(fieldSystem->playerAvatar);
 
@@ -1576,8 +1558,7 @@ static BOOL ov8_0224A770 (TaskManager * taskMan)
             Sound_PlayEffect(1562);
             (v3->unk_00)++;
         }
-    }
-    break;
+    } break;
     case 4:
         Heap_FreeToHeap(v3);
         return 1;
@@ -1586,11 +1567,11 @@ static BOOL ov8_0224A770 (TaskManager * taskMan)
     return 0;
 }
 
-void ov8_0224A8C8 (FieldSystem * fieldSystem)
+void ov8_0224A8C8(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov8_0224A1E4 * v0;
-    UnkStruct_02027860 * v1;
-    UnkStruct_02071B30 * v2;
+    UnkStruct_ov8_0224A1E4 *v0;
+    UnkStruct_02027860 *v1;
+    UnkStruct_02071B30 *v2;
 
     v1 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     v2 = (UnkStruct_02071B30 *)sub_02027F6C(v1, 3);
@@ -1601,7 +1582,7 @@ void ov8_0224A8C8 (FieldSystem * fieldSystem)
     v0->fieldSystem = fieldSystem;
 
     {
-        VecFx32 v3 = {FX32_ONE * (16 * 16), 0, FX32_ONE * (16 * 16)};
+        VecFx32 v3 = { FX32_ONE * (16 * 16), 0, FX32_ONE * (16 * 16) };
 
         v3.y = (FX32_ONE * 16) * 10;
         v0->unk_04 = ov5_021E19CC(fieldSystem->unk_A4, fieldSystem->unk_30, 300, &v3, NULL, fieldSystem->unk_50);
@@ -1666,14 +1647,14 @@ void ov8_0224A8C8 (FieldSystem * fieldSystem)
     }
 }
 
-BOOL ov8_0224AAA8 (FieldSystem * fieldSystem)
+BOOL ov8_0224AAA8(FieldSystem *fieldSystem)
 {
     u8 v0;
-    UnkStruct_ov8_0224A1E4 * v1;
+    UnkStruct_ov8_0224A1E4 *v1;
 
     {
         int v2;
-        UnkStruct_02027860 * v3;
+        UnkStruct_02027860 *v3;
 
         v3 = sub_02027860(FieldSystem_SaveData(fieldSystem));
         v2 = sub_02027F80(v3);
@@ -1699,19 +1680,19 @@ BOOL ov8_0224AAA8 (FieldSystem * fieldSystem)
     return 0;
 }
 
-void ov8_0224AAE8 (FieldSystem * fieldSystem)
+void ov8_0224AAE8(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov8_0224A1E4 * v0;
+    UnkStruct_ov8_0224A1E4 *v0;
 
     v0 = (UnkStruct_ov8_0224A1E4 *)fieldSystem->unk_04->unk_24;
     Heap_FreeToHeap(v0);
     fieldSystem->unk_04->unk_24 = NULL;
 }
 
-BOOL ov8_0224AAFC (FieldSystem * fieldSystem, const int param1, const int param2, const fx32 param3, BOOL * param4)
+BOOL ov8_0224AAFC(FieldSystem *fieldSystem, const int param1, const int param2, const fx32 param3, BOOL *param4)
 {
     u8 v0;
-    const u8 * v1;
+    const u8 *v1;
     int v2;
 
     v0 = (param3 / (FX32_ONE * 16)) / 10;
@@ -1727,122 +1708,122 @@ BOOL ov8_0224AAFC (FieldSystem * fieldSystem, const int param1, const int param2
 }
 
 static const UnkStruct_ov8_0224C788 Unk_ov8_0224C788[3] = {
-    {0x1CB, 0x3, 0x0, 0x8, 0x1, 0x0, 0x0},
-    {0x1CC, 0x8, 0x0, 0x8, 0x2, 0x1, 0x0},
-    {0x1CB, 0xD, 0x0, 0x8, 0x0, 0x0, 0x0}
+    { 0x1CB, 0x3, 0x0, 0x8, 0x1, 0x0, 0x0 },
+    { 0x1CC, 0x8, 0x0, 0x8, 0x2, 0x1, 0x0 },
+    { 0x1CB, 0xD, 0x0, 0x8, 0x0, 0x0, 0x0 }
 };
 
 static const UnkStruct_ov8_0224C788 Unk_ov8_0224C874[6] = {
-    {0x1CB, 0x6, 0x0, 0x8, 0x1, 0x0, 0x0},
-    {0x1CA, 0xB, 0x0, 0x8, 0x3, 0x1, 0x0},
-    {0x1CF, 0xF, 0x3, 0x8, 0x1, 0x1, 0x1},
-    {0x1CF, 0x2, 0x3, 0xD, 0x1, 0x0, 0x1},
-    {0x1CA, 0x6, 0x0, 0xD, 0x2, 0x1, 0x0},
-    {0x1CD, 0xB, 0x0, 0xD, 0x2, 0x0, 0x0}
+    { 0x1CB, 0x6, 0x0, 0x8, 0x1, 0x0, 0x0 },
+    { 0x1CA, 0xB, 0x0, 0x8, 0x3, 0x1, 0x0 },
+    { 0x1CF, 0xF, 0x3, 0x8, 0x1, 0x1, 0x1 },
+    { 0x1CF, 0x2, 0x3, 0xD, 0x1, 0x0, 0x1 },
+    { 0x1CA, 0x6, 0x0, 0xD, 0x2, 0x1, 0x0 },
+    { 0x1CD, 0xB, 0x0, 0xD, 0x2, 0x0, 0x0 }
 };
 
 static const UnkStruct_ov8_0224C788 Unk_ov8_0224C9F4[13] = {
-    {0x1CD, 0x6, 0x6, 0x8, 0x1, 0x0, 0x0},
-    {0x1CC, 0xB, 0x6, 0x8, 0x0, 0x1, 0x0},
-    {0x1CE, 0x10, 0x6, 0x8, 0x0, 0x0, 0x0},
-    {0x1CF, 0x2, 0x3, 0xD, 0x0, 0x1, 0x1},
-    {0x1CC, 0x6, 0x6, 0xD, 0x1, 0x1, 0x0},
-    {0x1CD, 0xB, 0x6, 0xD, 0x3, 0x0, 0x0},
-    {0x1CE, 0x10, 0x6, 0xD, 0x3, 0x1, 0x0},
-    {0x1CF, 0x14, 0x3, 0xD, 0x1, 0x0, 0x1},
-    {0x1D0, 0x2, 0x3, 0x12, 0x0, 0x0, 0x1},
-    {0x1CB, 0x6, 0x0, 0x12, 0x1, 0x1, 0x0},
-    {0x1CE, 0xB, 0x0, 0x12, 0x3, 0x0, 0x0},
-    {0x1CD, 0x10, 0x0, 0x12, 0x0, 0x1, 0x0},
-    {0x1D0, 0x14, 0x3, 0x12, 0x1, 0x1, 0x1}
+    { 0x1CD, 0x6, 0x6, 0x8, 0x1, 0x0, 0x0 },
+    { 0x1CC, 0xB, 0x6, 0x8, 0x0, 0x1, 0x0 },
+    { 0x1CE, 0x10, 0x6, 0x8, 0x0, 0x0, 0x0 },
+    { 0x1CF, 0x2, 0x3, 0xD, 0x0, 0x1, 0x1 },
+    { 0x1CC, 0x6, 0x6, 0xD, 0x1, 0x1, 0x0 },
+    { 0x1CD, 0xB, 0x6, 0xD, 0x3, 0x0, 0x0 },
+    { 0x1CE, 0x10, 0x6, 0xD, 0x3, 0x1, 0x0 },
+    { 0x1CF, 0x14, 0x3, 0xD, 0x1, 0x0, 0x1 },
+    { 0x1D0, 0x2, 0x3, 0x12, 0x0, 0x0, 0x1 },
+    { 0x1CB, 0x6, 0x0, 0x12, 0x1, 0x1, 0x0 },
+    { 0x1CE, 0xB, 0x0, 0x12, 0x3, 0x0, 0x0 },
+    { 0x1CD, 0x10, 0x0, 0x12, 0x0, 0x1, 0x0 },
+    { 0x1D0, 0x14, 0x3, 0x12, 0x1, 0x1, 0x1 }
 };
 
-static const UnkStruct_ov8_0224C788 * const Unk_ov8_0224C740[3] = {
+static const UnkStruct_ov8_0224C788 *const Unk_ov8_0224C740[3] = {
     Unk_ov8_0224C788,
     Unk_ov8_0224C874,
     Unk_ov8_0224C9F4
 };
 
 static const UnkStruct_ov8_0224C8A4 Unk_ov8_0224C8A4[12] = {
-    {0x1, 0x8, 0x2, 0x1},
-    {0x3, 0x6, 0x1, 0x2},
-    {0x4, 0x8, 0x2, 0x1},
-    {0x3, 0x9, 0x1, 0x2},
-    {0x6, 0x8, 0x2, 0x1},
-    {0x8, 0x6, 0x1, 0x2},
-    {0x9, 0x8, 0x2, 0x1},
-    {0x8, 0x9, 0x1, 0x2},
-    {0xB, 0x8, 0x2, 0x1},
-    {0xD, 0x6, 0x1, 0x2},
-    {0xE, 0x8, 0x2, 0x1},
-    {0xD, 0x9, 0x1, 0x2}
+    { 0x1, 0x8, 0x2, 0x1 },
+    { 0x3, 0x6, 0x1, 0x2 },
+    { 0x4, 0x8, 0x2, 0x1 },
+    { 0x3, 0x9, 0x1, 0x2 },
+    { 0x6, 0x8, 0x2, 0x1 },
+    { 0x8, 0x6, 0x1, 0x2 },
+    { 0x9, 0x8, 0x2, 0x1 },
+    { 0x8, 0x9, 0x1, 0x2 },
+    { 0xB, 0x8, 0x2, 0x1 },
+    { 0xD, 0x6, 0x1, 0x2 },
+    { 0xE, 0x8, 0x2, 0x1 },
+    { 0xD, 0x9, 0x1, 0x2 }
 };
 
 static const UnkStruct_ov8_0224C8A4 Unk_ov8_0224C954[18] = {
-    {0x4, 0x8, 0x2, 0x1},
-    {0x6, 0x6, 0x1, 0x2},
-    {0x7, 0x8, 0x2, 0x1},
-    {0x6, 0x9, 0x1, 0x2},
-    {0x9, 0x8, 0x2, 0x1},
-    {0xB, 0x6, 0x1, 0x2},
-    {0xC, 0x8, 0x2, 0x1},
-    {0xB, 0x9, 0x1, 0x2},
-    {0xF, 0x6, 0x1, 0x5},
-    {0x2, 0xB, 0x1, 0x5},
-    {0x4, 0xD, 0x2, 0x1},
-    {0x6, 0xB, 0x1, 0x2},
-    {0x7, 0xD, 0x2, 0x1},
-    {0x6, 0xE, 0x1, 0x2},
-    {0x9, 0xD, 0x2, 0x1},
-    {0xB, 0xB, 0x1, 0x2},
-    {0xC, 0xD, 0x2, 0x1},
-    {0xB, 0xE, 0x1, 0x2}
+    { 0x4, 0x8, 0x2, 0x1 },
+    { 0x6, 0x6, 0x1, 0x2 },
+    { 0x7, 0x8, 0x2, 0x1 },
+    { 0x6, 0x9, 0x1, 0x2 },
+    { 0x9, 0x8, 0x2, 0x1 },
+    { 0xB, 0x6, 0x1, 0x2 },
+    { 0xC, 0x8, 0x2, 0x1 },
+    { 0xB, 0x9, 0x1, 0x2 },
+    { 0xF, 0x6, 0x1, 0x5 },
+    { 0x2, 0xB, 0x1, 0x5 },
+    { 0x4, 0xD, 0x2, 0x1 },
+    { 0x6, 0xB, 0x1, 0x2 },
+    { 0x7, 0xD, 0x2, 0x1 },
+    { 0x6, 0xE, 0x1, 0x2 },
+    { 0x9, 0xD, 0x2, 0x1 },
+    { 0xB, 0xB, 0x1, 0x2 },
+    { 0xC, 0xD, 0x2, 0x1 },
+    { 0xB, 0xE, 0x1, 0x2 }
 };
 
 static const UnkStruct_ov8_0224C8A4 Unk_ov8_0224CAC5[40] = {
-    {0x4, 0x8, 0x2, 0x1},
-    {0x6, 0x6, 0x1, 0x2},
-    {0x7, 0x8, 0x2, 0x1},
-    {0x6, 0x9, 0x1, 0x2},
-    {0x9, 0x8, 0x2, 0x1},
-    {0xB, 0x6, 0x1, 0x2},
-    {0xC, 0x8, 0x2, 0x1},
-    {0xB, 0x9, 0x1, 0x2},
-    {0xE, 0x8, 0x2, 0x1},
-    {0x10, 0x6, 0x1, 0x2},
-    {0x11, 0x8, 0x2, 0x1},
-    {0x10, 0x9, 0x1, 0x2},
-    {0x2, 0xB, 0x1, 0x5},
-    {0x4, 0xD, 0x2, 0x1},
-    {0x6, 0xB, 0x1, 0x2},
-    {0x7, 0xD, 0x2, 0x1},
-    {0x6, 0xE, 0x1, 0x2},
-    {0x9, 0xD, 0x2, 0x1},
-    {0xB, 0xB, 0x1, 0x2},
-    {0xC, 0xD, 0x2, 0x1},
-    {0xB, 0xE, 0x1, 0x2},
-    {0xE, 0xD, 0x2, 0x1},
-    {0x10, 0xB, 0x1, 0x2},
-    {0x11, 0xD, 0x2, 0x1},
-    {0x10, 0xE, 0x1, 0x2},
-    {0x14, 0xB, 0x1, 0x5},
-    {0x2, 0x10, 0x1, 0x5},
-    {0x4, 0x12, 0x2, 0x1},
-    {0x6, 0x10, 0x1, 0x2},
-    {0x7, 0x12, 0x2, 0x1},
-    {0x6, 0x13, 0x1, 0x2},
-    {0x9, 0x12, 0x2, 0x1},
-    {0xB, 0x10, 0x1, 0x2},
-    {0xC, 0x12, 0x2, 0x1},
-    {0xB, 0x13, 0x1, 0x2},
-    {0xE, 0x12, 0x2, 0x1},
-    {0x10, 0x10, 0x1, 0x2},
-    {0x11, 0x12, 0x2, 0x1},
-    {0x10, 0x13, 0x1, 0x2},
-    {0x14, 0x10, 0x1, 0x5}
+    { 0x4, 0x8, 0x2, 0x1 },
+    { 0x6, 0x6, 0x1, 0x2 },
+    { 0x7, 0x8, 0x2, 0x1 },
+    { 0x6, 0x9, 0x1, 0x2 },
+    { 0x9, 0x8, 0x2, 0x1 },
+    { 0xB, 0x6, 0x1, 0x2 },
+    { 0xC, 0x8, 0x2, 0x1 },
+    { 0xB, 0x9, 0x1, 0x2 },
+    { 0xE, 0x8, 0x2, 0x1 },
+    { 0x10, 0x6, 0x1, 0x2 },
+    { 0x11, 0x8, 0x2, 0x1 },
+    { 0x10, 0x9, 0x1, 0x2 },
+    { 0x2, 0xB, 0x1, 0x5 },
+    { 0x4, 0xD, 0x2, 0x1 },
+    { 0x6, 0xB, 0x1, 0x2 },
+    { 0x7, 0xD, 0x2, 0x1 },
+    { 0x6, 0xE, 0x1, 0x2 },
+    { 0x9, 0xD, 0x2, 0x1 },
+    { 0xB, 0xB, 0x1, 0x2 },
+    { 0xC, 0xD, 0x2, 0x1 },
+    { 0xB, 0xE, 0x1, 0x2 },
+    { 0xE, 0xD, 0x2, 0x1 },
+    { 0x10, 0xB, 0x1, 0x2 },
+    { 0x11, 0xD, 0x2, 0x1 },
+    { 0x10, 0xE, 0x1, 0x2 },
+    { 0x14, 0xB, 0x1, 0x5 },
+    { 0x2, 0x10, 0x1, 0x5 },
+    { 0x4, 0x12, 0x2, 0x1 },
+    { 0x6, 0x10, 0x1, 0x2 },
+    { 0x7, 0x12, 0x2, 0x1 },
+    { 0x6, 0x13, 0x1, 0x2 },
+    { 0x9, 0x12, 0x2, 0x1 },
+    { 0xB, 0x10, 0x1, 0x2 },
+    { 0xC, 0x12, 0x2, 0x1 },
+    { 0xB, 0x13, 0x1, 0x2 },
+    { 0xE, 0x12, 0x2, 0x1 },
+    { 0x10, 0x10, 0x1, 0x2 },
+    { 0x11, 0x12, 0x2, 0x1 },
+    { 0x10, 0x13, 0x1, 0x2 },
+    { 0x14, 0x10, 0x1, 0x5 }
 };
 
-static const UnkStruct_ov8_0224C8A4 * const Unk_ov8_0224C74C[3] = {
+static const UnkStruct_ov8_0224C8A4 *const Unk_ov8_0224C74C[3] = {
     Unk_ov8_0224C8A4,
     Unk_ov8_0224C954,
     Unk_ov8_0224CAC5
@@ -2038,7 +2019,7 @@ UnkStruct_ov8_0224E740 Unk_ov8_0224E740[3] = {
     },
 };
 
-static u8 ov8_0224AB40 (const u8 param0)
+static u8 ov8_0224AB40(const u8 param0)
 {
     u8 v0;
 
@@ -2060,9 +2041,9 @@ static u8 ov8_0224AB40 (const u8 param0)
     return v0;
 }
 
-static void ov8_0224AB64 (const UnkStruct_ov8_0224C788 * param0, const u8 param1, VecFx32 * param2)
+static void ov8_0224AB64(const UnkStruct_ov8_0224C788 *param0, const u8 param1, VecFx32 *param2)
 {
-    fx32 * v0 = NULL;
+    fx32 *v0 = NULL;
     fx16 v1, v2;
 
     switch (param0->unk_07_3) {
@@ -2095,11 +2076,11 @@ static void ov8_0224AB64 (const UnkStruct_ov8_0224C788 * param0, const u8 param1
     (*v0) = v1;
 }
 
-void ov8_0224ABD4 (FieldSystem * fieldSystem)
+void ov8_0224ABD4(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov8_0224ABD4 * v0;
-    UnkStruct_02027860 * v1;
-    UnkStruct_02071B6C * v2;
+    UnkStruct_ov8_0224ABD4 *v0;
+    UnkStruct_02027860 *v1;
+    UnkStruct_02071B6C *v2;
 
     v1 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     v2 = (UnkStruct_02071B6C *)sub_02027F6C(v1, 5);
@@ -2120,7 +2101,7 @@ void ov8_0224ABD4 (FieldSystem * fieldSystem)
         v6 = ov8_0224AB40(v2->unk_04);
 
         for (v5 = 0; v5 < v6; v5++) {
-            const UnkStruct_ov8_0224C788 * v7;
+            const UnkStruct_ov8_0224C788 *v7;
 
             v7 = Unk_ov8_0224C740[v2->unk_04];
 
@@ -2148,22 +2129,22 @@ void ov8_0224ABD4 (FieldSystem * fieldSystem)
     }
 }
 
-void ov8_0224ACAC (FieldSystem * fieldSystem)
+void ov8_0224ACAC(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov8_0224ABD4 * v0;
+    UnkStruct_ov8_0224ABD4 *v0;
 
     v0 = (UnkStruct_ov8_0224ABD4 *)fieldSystem->unk_04->unk_24;
     Heap_FreeToHeap(v0);
     fieldSystem->unk_04->unk_24 = NULL;
 }
 
-BOOL ov8_0224ACC0 (FieldSystem * fieldSystem, const int param1, const int param2, const fx32 param3, BOOL * param4)
+BOOL ov8_0224ACC0(FieldSystem *fieldSystem, const int param1, const int param2, const fx32 param3, BOOL *param4)
 {
     int v0, v1, v2;
-    u8 const * v3;
+    u8 const *v3;
     u8 v4;
-    UnkStruct_ov8_0224C8A4 const * v5;
-    UnkStruct_ov8_0224ABD4 * v6;
+    UnkStruct_ov8_0224C8A4 const *v5;
+    UnkStruct_ov8_0224ABD4 *v6;
 
     v6 = (UnkStruct_ov8_0224ABD4 *)fieldSystem->unk_04->unk_24;
     v1 = Unk_ov8_0224E740[v6->unk_11].unk_00;
@@ -2183,12 +2164,12 @@ BOOL ov8_0224ACC0 (FieldSystem * fieldSystem, const int param1, const int param2
     return 0;
 }
 
-void ov8_0224AD34 (FieldSystem * fieldSystem, const u8 param1)
+void ov8_0224AD34(FieldSystem *fieldSystem, const u8 param1)
 {
-    UnkStruct_ov8_0224997C * v0;
-    UnkStruct_ov8_0224ABD4 * v1;
-    UnkStruct_02027860 * v2;
-    UnkStruct_02071B6C * v3;
+    UnkStruct_ov8_0224997C *v0;
+    UnkStruct_ov8_0224ABD4 *v1;
+    UnkStruct_02027860 *v2;
+    UnkStruct_02071B6C *v3;
 
     v2 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     v3 = (UnkStruct_02071B6C *)sub_02027F6C(v2, 5);
@@ -2231,18 +2212,17 @@ void ov8_0224AD34 (FieldSystem * fieldSystem, const u8 param1)
     }
 }
 
-static BOOL ov8_0224ADE8 (TaskManager * param0)
+static BOOL ov8_0224ADE8(TaskManager *param0)
 {
-    UnkStruct_ov5_021E1890 * v0;
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov8_0224997C * v2 = TaskManager_Environment(param0);
-    UnkStruct_ov8_0224ABD4 * v3;
+    UnkStruct_ov5_021E1890 *v0;
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+    UnkStruct_ov8_0224997C *v2 = TaskManager_Environment(param0);
+    UnkStruct_ov8_0224ABD4 *v3;
 
     v3 = (UnkStruct_ov8_0224ABD4 *)fieldSystem->unk_04->unk_24;
 
     switch (v2->unk_00) {
-    case 0:
-    {
+    case 0: {
         u8 v4;
         u16 v5;
         u16 v6;
@@ -2267,13 +2247,13 @@ static BOOL ov8_0224ADE8 (TaskManager * param0)
             v0 = ov5_021E18C4(fieldSystem->unk_A4, v7);
 
             {
-                VecFx32 * v8;
+                VecFx32 *v8;
 
                 v8 = ov5_021E1890(v0);
 
                 {
-                    const UnkStruct_ov8_0224C788 * v9;
-                    fx32 * v10;
+                    const UnkStruct_ov8_0224C788 *v9;
+                    fx32 *v10;
                     u16 v11, v12;
 
                     v9 = Unk_ov8_0224C740[v3->unk_11];
@@ -2305,8 +2285,7 @@ static BOOL ov8_0224ADE8 (TaskManager * param0)
         if (v3->unk_16 >= v3->unk_18) {
             (v2->unk_00)++;
         }
-    }
-    break;
+    } break;
     case 1:
         Heap_FreeToHeap(v2);
         return 1;
@@ -2321,16 +2300,12 @@ static const u32 Unk_ov8_0224C700[2] = {
 };
 
 static const VecFx32 Unk_ov8_0224C7A0[2] = {
-    {
-        ((11 << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1),
+    { ((11 << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1),
         FX32_ONE * 12,
-        ((13 << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1)
-    },
-    {
-        ((11 << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1),
-        ((FX32_ONE * 13)),
-        ((13 << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1)
-    }
+        ((13 << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1) },
+    { ((11 << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1),
+        (FX32_ONE * 13),
+        ((13 << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1) }
 };
 
 static const u16 Unk_ov8_0224C7B8[12] = {
@@ -2349,120 +2324,50 @@ static const u16 Unk_ov8_0224C7B8[12] = {
 };
 
 static const UnkStruct_ov8_0224C774 Unk_ov8_0224C774[5] = {
-    {0x7, 0x19},
-    {0x6, 0xF},
-    {0x9, 0xF},
-    {0x0, 0x2D},
-    {0x0, 0x1E}
+    { 0x7, 0x19 },
+    { 0x6, 0xF },
+    { 0x9, 0xF },
+    { 0x0, 0x2D },
+    { 0x0, 0x1E }
 };
 
 static const UnkStruct_ov8_0224C7F0 Unk_ov8_0224C7F0[5] = {
-    {-1, -1, 2},
-    {0xB, 0x12, 1},
-    {0x6, 0xD, 0},
-    {0xB, 0x8, 1},
-    {0xB, 0x8, 1}
+    { -1, -1, 2 },
+    { 0xB, 0x12, 1 },
+    { 0x6, 0xD, 0 },
+    { 0xB, 0x8, 1 },
+    { 0xB, 0x8, 1 }
 };
 
 static __attribute__((aligned(4))) const u8 Unk_ov8_0224CCE8[5][169] = {
-    {
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-        0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0
-    },
-    {
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
-        1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0,
-        1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0,
-        1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0,
-        1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0,
-        1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0,
-        1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1,
-        1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1,
-        0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0
-    },
-    {
-        0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-        0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
-        0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
-        0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0,
-        0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
-        0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-        0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0
-    },
-    {
-        0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0,
-        1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1,
-        1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1,
-        0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0,
-        0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0,
-        0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0,
-        0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0,
-        0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
-        0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-        0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0
-    },
-    {
-        0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0,
-        1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1,
-        1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1,
-        0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0,
-        0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0,
-        0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0,
-        0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0,
-        0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0,
-        0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0,
-        0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0,
-        1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1,
-        1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1,
-        0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0
-    },
+    { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0 },
+    { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0 },
+    { 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0 },
+    { 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0 },
+    { 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0 },
 };
 
 static __attribute__((aligned(4))) const u8 Unk_ov8_0224CA5C[5][21] = {
-    {1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1},
-    {1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1},
-    {1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+    { 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 },
+    { 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 },
+    { 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
 };
 
-static void ov8_0224AEDC (FieldSystem * fieldSystem, u16 param1)
+static void ov8_0224AEDC(FieldSystem *fieldSystem, u16 param1)
 {
-    VarsFlags * v0 = SaveData_GetVarsFlags(fieldSystem->saveData);
+    VarsFlags *v0 = SaveData_GetVarsFlags(fieldSystem->saveData);
     sub_0206B46C(v0, param1);
 }
 
-static u32 ov8_0224AEF0 (FieldSystem * fieldSystem)
+static u32 ov8_0224AEF0(FieldSystem *fieldSystem)
 {
-    VarsFlags * v0 = SaveData_GetVarsFlags(fieldSystem->saveData);
+    VarsFlags *v0 = SaveData_GetVarsFlags(fieldSystem->saveData);
     return sub_0206B47C(v0);
 }
 
-static void ov8_0224AF00 (UnkStruct_ov8_0224AF00 * param0, fx32 param1)
+static void ov8_0224AF00(UnkStruct_ov8_0224AF00 *param0, fx32 param1)
 {
     param0->unk_04 += param1;
 
@@ -2479,20 +2384,20 @@ static void ov8_0224AF00 (UnkStruct_ov8_0224AF00 * param0, fx32 param1)
     param0->unk_00 %= (FX32_ONE * 12);
 }
 
-static void ov8_0224AF58 (UnkStruct_ov8_0224AF58 * param0)
+static void ov8_0224AF58(UnkStruct_ov8_0224AF58 *param0)
 {
     VecFx32 v0 = param0->unk_00;
-    VecFx32 * v1 = ov5_021E1890(param0->unk_14);
+    VecFx32 *v1 = ov5_021E1890(param0->unk_14);
 
     v1->x = param0->unk_00.x;
     v1->y = (0x10000 - param0->unk_00.y) % 0x10000;
     v1->z = param0->unk_00.z;
 }
 
-static void ov8_0224AF84 (UnkStruct_ov8_0224AF00 * param0)
+static void ov8_0224AF84(UnkStruct_ov8_0224AF00 *param0)
 {
     int v0, v1;
-    UnkStruct_ov8_0224AF58 * v2;
+    UnkStruct_ov8_0224AF58 *v2;
 
     v2 = &param0->unk_0C[1];
     v1 = ((param0->unk_04) / FX32_ONE);
@@ -2522,11 +2427,11 @@ static void ov8_0224AF84 (UnkStruct_ov8_0224AF00 * param0)
     ov8_0224AF58(v2);
 }
 
-void ov8_0224B020 (FieldSystem * fieldSystem)
+void ov8_0224B020(FieldSystem *fieldSystem)
 {
-    UnkStruct_02027860 * v0;
-    UnkStruct_02071BD0 * v1;
-    UnkStruct_ov8_0224AF00 * v2;
+    UnkStruct_02027860 *v0;
+    UnkStruct_02071BD0 *v1;
+    UnkStruct_ov8_0224AF00 *v2;
 
     v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     v1 = sub_02027F6C(v0, 8);
@@ -2541,10 +2446,10 @@ void ov8_0224B020 (FieldSystem * fieldSystem)
 
     {
         int v3;
-        UnkStruct_ov8_0224AF58 * v4 = v2->unk_0C;
-        const u32 * v5 = Unk_ov8_0224C700;
-        const VecFx32 * v6 = Unk_ov8_0224C7A0;
-        const VecFx32 v7 = {0, 0, 0};
+        UnkStruct_ov8_0224AF58 *v4 = v2->unk_0C;
+        const u32 *v5 = Unk_ov8_0224C700;
+        const VecFx32 *v6 = Unk_ov8_0224C7A0;
+        const VecFx32 v7 = { 0, 0, 0 };
 
         for (v3 = 0; v3 < 2; v3++, v4++, v5++, v6++) {
             v4->unk_0C = *v5;
@@ -2557,12 +2462,12 @@ void ov8_0224B020 (FieldSystem * fieldSystem)
     }
 
     {
-        int v8[3] = {2, 2, 0};
+        int v8[3] = { 2, 2, 0 };
 
         v1->unk_00 = ov8_0224AEF0(fieldSystem);
 
         {
-            const UnkStruct_ov8_0224C774 * v9 = &Unk_ov8_0224C774[v1->unk_00];
+            const UnkStruct_ov8_0224C774 *v9 = &Unk_ov8_0224C774[v1->unk_00];
 
             v2->unk_00 = (FX32_ONE * (v9->unk_00));
             v2->unk_04 = (FX32_ONE * (v9->unk_02));
@@ -2576,20 +2481,20 @@ void ov8_0224B020 (FieldSystem * fieldSystem)
     }
 }
 
-void ov8_0224B0FC (FieldSystem * fieldSystem)
+void ov8_0224B0FC(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov8_0224AF00 * v0 = fieldSystem->unk_04->unk_24;
+    UnkStruct_ov8_0224AF00 *v0 = fieldSystem->unk_04->unk_24;
 
     Heap_FreeToHeap(v0);
     fieldSystem->unk_04->unk_24 = NULL;
 }
 
-BOOL ov8_0224B110 (FieldSystem * fieldSystem, const int param1, const int param2, const fx32 param3, BOOL * param4)
+BOOL ov8_0224B110(FieldSystem *fieldSystem, const int param1, const int param2, const fx32 param3, BOOL *param4)
 {
     BOOL v0;
     int v1, v2, v3;
-    UnkStruct_02027860 * v4;
-    UnkStruct_02071BD0 * v5;
+    UnkStruct_02027860 *v4;
+    UnkStruct_02071BD0 *v5;
 
     v4 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     v5 = sub_02027F6C(v4, 8);
@@ -2615,10 +2520,10 @@ BOOL ov8_0224B110 (FieldSystem * fieldSystem, const int param1, const int param2
     return v0;
 }
 
-static void ov8_0224B18C (FieldSystem * fieldSystem, UnkStruct_ov8_0224B28C * param1, int param2, int param3)
+static void ov8_0224B18C(FieldSystem *fieldSystem, UnkStruct_ov8_0224B28C *param1, int param2, int param3)
 {
     int v0, v1, v2, v3;
-    const VecFx32 * v4;
+    const VecFx32 *v4;
 
     v0 = Player_GetXPos(fieldSystem->playerAvatar);
     v1 = Player_GetZPos(fieldSystem->playerAvatar);
@@ -2669,10 +2574,10 @@ static void ov8_0224B18C (FieldSystem * fieldSystem, UnkStruct_ov8_0224B28C * pa
     Camera_TrackTarget(v4, fieldSystem->camera);
 }
 
-static void ov8_0224B240 (UnkStruct_ov8_0224B28C * param0, int param1, int param2)
+static void ov8_0224B240(UnkStruct_ov8_0224B28C *param0, int param1, int param2)
 {
     int v0, v1, v2, v3;
-    const VecFx32 * v4;
+    const VecFx32 *v4;
 
     param0->unk_10 = param0->unk_08;
     param0->unk_14 = param0->unk_0C;
@@ -2708,7 +2613,7 @@ static void ov8_0224B240 (UnkStruct_ov8_0224B28C * param0, int param1, int param
     }
 }
 
-static void ov8_0224B28C (UnkStruct_ov8_0224B28C * param0)
+static void ov8_0224B28C(UnkStruct_ov8_0224B28C *param0)
 {
     param0->unk_04 ^= 1;
     param0->unk_08 = param0->unk_10;
@@ -2717,7 +2622,7 @@ static void ov8_0224B28C (UnkStruct_ov8_0224B28C * param0)
     param0->unk_1C = Direction_GetOpposite(param0->unk_1C);
 }
 
-static void ov8_0224B2B4 (UnkStruct_ov8_0224B28C * param0, int param1, int param2, int param3, int param4, int param5)
+static void ov8_0224B2B4(UnkStruct_ov8_0224B28C *param0, int param1, int param2, int param3, int param4, int param5)
 {
     param0->unk_04 = param1;
     param0->unk_08 = param2;
@@ -2726,18 +2631,18 @@ static void ov8_0224B2B4 (UnkStruct_ov8_0224B28C * param0, int param1, int param
     param0->unk_1C = param5;
 }
 
-static void ov8_0224B2C4 (FieldSystem * fieldSystem, UnkStruct_ov8_0224B28C * param1)
+static void ov8_0224B2C4(FieldSystem *fieldSystem, UnkStruct_ov8_0224B28C *param1)
 {
-    const VecFx32 * v0 = PlayerAvatar_PosVector(fieldSystem->playerAvatar);
+    const VecFx32 *v0 = PlayerAvatar_PosVector(fieldSystem->playerAvatar);
 
     ov5_021E931C(v0, fieldSystem->unk_28);
     Camera_TrackTarget(v0, fieldSystem->camera);
     MapObject_Delete(param1->unk_20);
 }
 
-static BOOL ov8_0224B2E8 (UnkStruct_ov8_0224B28C * param0)
+static BOOL ov8_0224B2E8(UnkStruct_ov8_0224B28C *param0)
 {
-    MapObject * v0 = param0->unk_20;
+    MapObject *v0 = param0->unk_20;
 
     if (LocalMapObj_IsAnimationSet(param0->unk_20) == 1) {
         int v1 = 0x9a;
@@ -2770,7 +2675,7 @@ static BOOL ov8_0224B2E8 (UnkStruct_ov8_0224B28C * param0)
     return 0;
 }
 
-static BOOL ov8_0224B370 (UnkStruct_ov8_0224AF00 * param0, const fx32 param1, const fx32 param2)
+static BOOL ov8_0224B370(UnkStruct_ov8_0224AF00 *param0, const fx32 param1, const fx32 param2)
 {
     BOOL v0 = 1;
     fx32 v1 = param0->unk_00;
@@ -2789,10 +2694,10 @@ static BOOL ov8_0224B370 (UnkStruct_ov8_0224AF00 * param0, const fx32 param1, co
                 fx32 v5 = v4 + (FX32_ONE * 60);
                 fx32 v6 = param2 + (FX32_ONE * 60);
 
-                if (((v2 < v6) && (v5 > v6))) {
+                if ((v2 < v6) && (v5 > v6)) {
                     v4 = param2;
                 }
-            } else if (((v2 < param2) && (v4 > param2))) {
+            } else if ((v2 < param2) && (v4 > param2)) {
                 v4 = param2;
             }
         }
@@ -2808,13 +2713,13 @@ static BOOL ov8_0224B370 (UnkStruct_ov8_0224AF00 * param0, const fx32 param1, co
     return v0;
 }
 
-static BOOL ov8_0224B3D4 (TaskManager * param0)
+static BOOL ov8_0224B3D4(TaskManager *param0)
 {
     BOOL v0;
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov8_0224B67C * v2 = TaskManager_Environment(param0);
-    UnkStruct_02071BD0 * v3 = v2->unk_14;
-    UnkStruct_ov8_0224AF00 * v4 = v2->unk_18;
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+    UnkStruct_ov8_0224B67C *v2 = TaskManager_Environment(param0);
+    UnkStruct_02071BD0 *v3 = v2->unk_14;
+    UnkStruct_ov8_0224AF00 *v4 = v2->unk_18;
 
     switch (v2->unk_00) {
     case 0:
@@ -2846,7 +2751,7 @@ static BOOL ov8_0224B3D4 (TaskManager * param0)
         v0 = ov8_0224B370(v4, v2->unk_08, v2->unk_0C);
 
         if (v3->unk_00 == 4) {
-            const UnkStruct_ov8_0224C774 * v5 = &Unk_ov8_0224C774[v3->unk_00];
+            const UnkStruct_ov8_0224C774 *v5 = &Unk_ov8_0224C774[v3->unk_00];
 
             v4->unk_00 = (FX32_ONE * (v5->unk_00));
         }
@@ -2970,10 +2875,10 @@ static BOOL ov8_0224B3D4 (TaskManager * param0)
     return 0;
 }
 
-BOOL ov8_0224B67C (FieldSystem * fieldSystem, Window * param1, MessageLoader * param2, Strbuf *param3)
+BOOL ov8_0224B67C(FieldSystem *fieldSystem, Window *param1, MessageLoader *param2, Strbuf *param3)
 {
-    UnkStruct_02027860 * v0;
-    UnkStruct_02071BD0 * v1;
+    UnkStruct_02027860 *v0;
+    UnkStruct_02071BD0 *v1;
 
     v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     v1 = sub_02027F6C(v0, 8);
@@ -2986,9 +2891,9 @@ BOOL ov8_0224B67C (FieldSystem * fieldSystem, Window * param1, MessageLoader * p
     ov8_0224AEDC(fieldSystem, v1->unk_00);
 
     {
-        UnkStruct_ov8_0224B67C * v2;
-        UnkStruct_ov8_0224AF00 * v3 = fieldSystem->unk_04->unk_24;
-        const UnkStruct_ov8_0224C774 * v4 = &Unk_ov8_0224C774[v1->unk_00];
+        UnkStruct_ov8_0224B67C *v2;
+        UnkStruct_ov8_0224AF00 *v3 = fieldSystem->unk_04->unk_24;
+        const UnkStruct_ov8_0224C774 *v4 = &Unk_ov8_0224C774[v1->unk_00];
 
         v2 = Heap_AllocFromHeap(11, sizeof(UnkStruct_ov8_0224B67C));
         memset(v2, 0, sizeof(UnkStruct_ov8_0224B67C));
@@ -3008,11 +2913,11 @@ BOOL ov8_0224B67C (FieldSystem * fieldSystem, Window * param1, MessageLoader * p
     return 1;
 }
 
-BOOL ov8_0224B714 (FieldSystem * fieldSystem, int param1, int param2, int param3)
+BOOL ov8_0224B714(FieldSystem *fieldSystem, int param1, int param2, int param3)
 {
-    UnkStruct_02027860 * v0;
-    UnkStruct_02071BD0 * v1;
-    const UnkStruct_ov8_0224C7F0 * v2;
+    UnkStruct_02027860 *v0;
+    UnkStruct_02071BD0 *v1;
+    const UnkStruct_ov8_0224C7F0 *v2;
 
     v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     v1 = sub_02027F6C(v0, 8);
@@ -3028,64 +2933,33 @@ BOOL ov8_0224B714 (FieldSystem * fieldSystem, int param1, int param2, int param3
 }
 
 static const UnkStruct_ov8_0224C90C Unk_ov8_0224C90C[9] = {
-    {0x3, 0xC},
-    {0x4, 0x18},
-    {0x8, 0x9},
-    {0x8, 0x16},
-    {0xF, 0x1C},
-    {0x10, 0xC},
-    {0x14, 0x13},
-    {0x15, 0x1A},
-    {0x17, 0xD}
+    { 0x3, 0xC },
+    { 0x4, 0x18 },
+    { 0x8, 0x9 },
+    { 0x8, 0x16 },
+    { 0xF, 0x1C },
+    { 0x10, 0xC },
+    { 0x14, 0x13 },
+    { 0x15, 0x1A },
+    { 0x17, 0xD }
 };
 
 static const UnkStruct_ov8_0224C90C Unk_ov8_0224C99C[11] = {
-    {0x3, 0x17},
-    {0x8, 0xC},
-    {0x8, 0xE},
-    {0x8, 0x10},
-    {0xC, 0x9},
-    {0xC, 0xC},
-    {0x13, 0xC},
-    {0x14, 0xD},
-    {0x14, 0x1C},
-    {0x16, 0x9},
-    {0x17, 0x1E}
+    { 0x3, 0x17 },
+    { 0x8, 0xC },
+    { 0x8, 0xE },
+    { 0x8, 0x10 },
+    { 0xC, 0x9 },
+    { 0xC, 0xC },
+    { 0x13, 0xC },
+    { 0x14, 0xD },
+    { 0x14, 0x1C },
+    { 0x16, 0x9 },
+    { 0x17, 0x1E }
 };
 
 static __attribute__((aligned(4))) const u8 Unk_ov8_0224E33C[1024] = {
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 4, 0, 0, 4, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 3, 5, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 3, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 4, 0, 0, 4, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 5, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 };
 
 static const int Unk_ov8_0224C764[4] = {
@@ -3097,11 +2971,11 @@ static const int Unk_ov8_0224C764[4] = {
 
 static int (*const Unk_ov8_0224C818[11])(UnkStruct_ov8_0224C098 *);
 
-void ov8_0224B764 (FieldSystem * fieldSystem)
+void ov8_0224B764(FieldSystem *fieldSystem)
 {
-    UnkStruct_02027860 * v0;
-    UnkStruct_02071BF8 * v1;
-    UnkStruct_ov8_0224B8D0 * v2;
+    UnkStruct_02027860 *v0;
+    UnkStruct_02071BF8 *v1;
+    UnkStruct_ov8_0224B8D0 *v2;
 
     v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     v1 = sub_02027F6C(v0, 4);
@@ -3124,22 +2998,22 @@ void ov8_0224B764 (FieldSystem * fieldSystem)
     v1->unk_00 = 1;
 }
 
-void ov8_0224B7C0 (FieldSystem * fieldSystem)
+void ov8_0224B7C0(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov8_0224B8D0 * v0 = fieldSystem->unk_04->unk_24;
+    UnkStruct_ov8_0224B8D0 *v0 = fieldSystem->unk_04->unk_24;
 
     Heap_FreeToHeap(v0);
     fieldSystem->unk_04->unk_24 = NULL;
 }
 
-BOOL ov8_0224B7D4 (FieldSystem * fieldSystem, const int param1, const int param2, const fx32 param3, BOOL * param4)
+BOOL ov8_0224B7D4(FieldSystem *fieldSystem, const int param1, const int param2, const fx32 param3, BOOL *param4)
 {
     return 0;
 }
 
-static MapObject * ov8_0224B7D8 (FieldSystem * fieldSystem, int param1, int param2, int param3)
+static MapObject *ov8_0224B7D8(FieldSystem *fieldSystem, int param1, int param2, int param3)
 {
-    MapObject * v0;
+    MapObject *v0;
 
     v0 = MapObjectMan_AddMapObject(fieldSystem->mapObjMan, param1, param2, 0, 0x2000, 0x0, fieldSystem->location->mapId);
 
@@ -3149,7 +3023,7 @@ static MapObject * ov8_0224B7D8 (FieldSystem * fieldSystem, int param1, int para
     return v0;
 }
 
-static void ov8_0224B80C (UnkStruct_ov8_0224B80C * param0, MapObject * param1, FieldSystem * fieldSystem)
+static void ov8_0224B80C(UnkStruct_ov8_0224B80C *param0, MapObject *param1, FieldSystem *fieldSystem)
 {
     param0->unk_08 = param1;
     param0->unk_00 = MapObject_GetXPos(param1);
@@ -3162,10 +3036,10 @@ static void ov8_0224B80C (UnkStruct_ov8_0224B80C * param0, MapObject * param1, F
     }
 }
 
-static UnkStruct_ov8_0224BCA8 * ov8_0224B854 (UnkStruct_ov8_0224B8D0 * param0, int param1, int param2)
+static UnkStruct_ov8_0224BCA8 *ov8_0224B854(UnkStruct_ov8_0224B8D0 *param0, int param1, int param2)
 {
     int v0 = 0;
-    UnkStruct_ov8_0224BCA8 * v1 = param0->unk_10C;
+    UnkStruct_ov8_0224BCA8 *v1 = param0->unk_10C;
 
     do {
         if ((v1->unk_08.unk_00 == param1) && (v1->unk_08.unk_04 == param2)) {
@@ -3179,10 +3053,10 @@ static UnkStruct_ov8_0224BCA8 * ov8_0224B854 (UnkStruct_ov8_0224B8D0 * param0, i
     return NULL;
 }
 
-static UnkStruct_ov8_0224B8A0 * ov8_0224B878 (UnkStruct_ov8_0224B8D0 * param0, int param1, int param2)
+static UnkStruct_ov8_0224B8A0 *ov8_0224B878(UnkStruct_ov8_0224B8D0 *param0, int param1, int param2)
 {
     int v0 = 0;
-    UnkStruct_ov8_0224B8A0 * v1 = param0->unk_04;
+    UnkStruct_ov8_0224B8A0 *v1 = param0->unk_04;
 
     do {
         if (v1->unk_00) {
@@ -3198,7 +3072,7 @@ static UnkStruct_ov8_0224B8A0 * ov8_0224B878 (UnkStruct_ov8_0224B8D0 * param0, i
     return NULL;
 }
 
-static void ov8_0224B8A0 (UnkStruct_ov8_0224B8A0 * param0)
+static void ov8_0224B8A0(UnkStruct_ov8_0224B8A0 *param0)
 {
     GF_ASSERT(param0);
     GF_ASSERT(param0->unk_08.unk_0C);
@@ -3210,14 +3084,14 @@ static void ov8_0224B8A0 (UnkStruct_ov8_0224B8A0 * param0)
     param0->unk_00 = 0;
 }
 
-static void ov8_0224B8D0 (UnkStruct_ov8_0224B8D0 * param0)
+static void ov8_0224B8D0(UnkStruct_ov8_0224B8D0 *param0)
 {
     int v0;
-    MapObject * v1;
-    const UnkStruct_ov8_0224C90C * v2;
-    FieldSystem * fieldSystem = param0->fieldSystem;
-    UnkStruct_ov8_0224B8A0 * v4 = param0->unk_04;
-    UnkStruct_ov8_0224BCA8 * v5 = param0->unk_10C;
+    MapObject *v1;
+    const UnkStruct_ov8_0224C90C *v2;
+    FieldSystem *fieldSystem = param0->fieldSystem;
+    UnkStruct_ov8_0224B8A0 *v4 = param0->unk_04;
+    UnkStruct_ov8_0224BCA8 *v5 = param0->unk_10C;
 
     memset((u8 *)v4, 0, sizeof(UnkStruct_ov8_0224B8A0) * 11);
     memset((u8 *)v5, 0, sizeof(UnkStruct_ov8_0224BCA8) * 9);
@@ -3235,14 +3109,14 @@ static void ov8_0224B8D0 (UnkStruct_ov8_0224B8D0 * param0)
     }
 }
 
-static void ov8_0224B958 (UnkStruct_ov8_0224B8D0 * param0)
+static void ov8_0224B958(UnkStruct_ov8_0224B8D0 *param0)
 {
     int v0 = 0, v1 = 0;
-    MapObject * v2;
-    FieldSystem * fieldSystem = param0->fieldSystem;
-    MapObjectManager * mapObjMan = fieldSystem->mapObjMan;
-    UnkStruct_ov8_0224B8A0 * v5 = param0->unk_04;
-    UnkStruct_ov8_0224BCA8 * v6 = param0->unk_10C;
+    MapObject *v2;
+    FieldSystem *fieldSystem = param0->fieldSystem;
+    MapObjectManager *mapObjMan = fieldSystem->mapObjMan;
+    UnkStruct_ov8_0224B8A0 *v5 = param0->unk_04;
+    UnkStruct_ov8_0224BCA8 *v6 = param0->unk_10C;
 
     while (sub_020625B0(mapObjMan, &v2, &v0, (1 << 0)) == 1) {
         if (MapObject_Id(v2) == 0xfd) {
@@ -3262,7 +3136,7 @@ static void ov8_0224B958 (UnkStruct_ov8_0224B8D0 * param0)
     }
 }
 
-static int ov8_0224B9D8 (int param0, int param1)
+static int ov8_0224B9D8(int param0, int param1)
 {
     GF_ASSERT(param0 >= 0);
     GF_ASSERT(param0 < 32);
@@ -3275,7 +3149,7 @@ static int ov8_0224B9D8 (int param0, int param1)
     }
 }
 
-static u32 ov8_0224BA0C (UnkStruct_ov8_0224B8D0 * param0, int param1, int param2, int param3)
+static u32 ov8_0224BA0C(UnkStruct_ov8_0224B8D0 *param0, int param1, int param2, int param3)
 {
     u32 v0 = 0;
     int v1, v2;
@@ -3319,7 +3193,7 @@ static u32 ov8_0224BA0C (UnkStruct_ov8_0224B8D0 * param0, int param1, int param2
     return v0;
 }
 
-static u32 ov8_0224BAA0 (UnkStruct_ov8_0224B8D0 * param0, int param1, int param2, int param3, int * param4)
+static u32 ov8_0224BAA0(UnkStruct_ov8_0224B8D0 *param0, int param1, int param2, int param3, int *param4)
 {
     u32 v0;
 
@@ -3340,12 +3214,12 @@ static u32 ov8_0224BAA0 (UnkStruct_ov8_0224B8D0 * param0, int param1, int param2
     return v0;
 }
 
-static BOOL ov8_0224BAF4 (TaskManager * taskMan)
+static BOOL ov8_0224BAF4(TaskManager *taskMan)
 {
-    MapObject * v0;
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_ov8_0224C098 * v2 = TaskManager_Environment(taskMan);
-    UnkStruct_ov8_0224B8D0 * v3 = v2->unk_3C;
+    MapObject *v0;
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
+    UnkStruct_ov8_0224C098 *v2 = TaskManager_Environment(taskMan);
+    UnkStruct_ov8_0224B8D0 *v3 = v2->unk_3C;
 
     v0 = Player_MapObject(fieldSystem->playerAvatar);
 
@@ -3369,10 +3243,10 @@ static BOOL ov8_0224BAF4 (TaskManager * taskMan)
     return 0;
 }
 
-static BOOL ov8_0224BB78 (TaskManager * taskMan)
+static BOOL ov8_0224BB78(TaskManager *taskMan)
 {
     int v0;
-    UnkStruct_ov8_0224C098 * v1;
+    UnkStruct_ov8_0224C098 *v1;
 
     v1 = TaskManager_Environment(taskMan);
 
@@ -3387,10 +3261,10 @@ static BOOL ov8_0224BB78 (TaskManager * taskMan)
     return 0;
 }
 
-static int ov8_0224BBA0 (UnkStruct_ov8_0224C098 * param0)
+static int ov8_0224BBA0(UnkStruct_ov8_0224C098 *param0)
 {
     u32 v0;
-    UnkStruct_ov8_0224B80C * v1 = &param0->unk_34->unk_08;
+    UnkStruct_ov8_0224B80C *v1 = &param0->unk_34->unk_08;
     int v2 = v1->unk_00;
     int v3 = v1->unk_04;
 
@@ -3403,9 +3277,9 @@ static int ov8_0224BBA0 (UnkStruct_ov8_0224C098 * param0)
     return 0;
 }
 
-static int ov8_0224BBD0 (UnkStruct_ov8_0224C098 * param0)
+static int ov8_0224BBD0(UnkStruct_ov8_0224C098 *param0)
 {
-    MapObject * v0;
+    MapObject *v0;
 
     v0 = Player_MapObject(param0->unk_3C->fieldSystem->playerAvatar);
 
@@ -3416,8 +3290,8 @@ static int ov8_0224BBD0 (UnkStruct_ov8_0224C098 * param0)
     LocalMapObj_SetAnimationCode(v0, sub_02065838(param0->unk_08, 0x1c));
 
     {
-        UnkStruct_ov8_0224BCA8 * v1 = param0->unk_34;
-        UnkStruct_ov101_021D5D90 * v2 = v1->unk_08.unk_0C;
+        UnkStruct_ov8_0224BCA8 *v1 = param0->unk_34;
+        UnkStruct_ov101_021D5D90 *v2 = v1->unk_08.unk_0C;
 
         ov5_021F4698(v2, param0->unk_08, 1);
 
@@ -3434,7 +3308,7 @@ static int ov8_0224BBD0 (UnkStruct_ov8_0224C098 * param0)
     return 1;
 }
 
-static int ov8_0224BC48 (UnkStruct_ov8_0224C098 * param0)
+static int ov8_0224BC48(UnkStruct_ov8_0224C098 *param0)
 {
     VecFx32_StepDirection(param0->unk_08, &param0->unk_20, param0->unk_2C);
     sub_020715D4(param0->unk_34->unk_08.unk_0C, &param0->unk_20);
@@ -3455,9 +3329,9 @@ static int ov8_0224BC48 (UnkStruct_ov8_0224C098 * param0)
     return 0;
 }
 
-static int ov8_0224BCA8 (UnkStruct_ov8_0224C098 * param0)
+static int ov8_0224BCA8(UnkStruct_ov8_0224C098 *param0)
 {
-    UnkStruct_ov8_0224BCA8 * v0 = param0->unk_34;
+    UnkStruct_ov8_0224BCA8 *v0 = param0->unk_34;
 
     VecFx32_StepDirection(param0->unk_08, &param0->unk_20, param0->unk_2C);
     sub_020715D4(v0->unk_08.unk_0C, &param0->unk_20);
@@ -3517,7 +3391,7 @@ static int ov8_0224BCA8 (UnkStruct_ov8_0224C098 * param0)
     return 0;
 }
 
-static int ov8_0224BDD0 (UnkStruct_ov8_0224C098 * param0)
+static int ov8_0224BDD0(UnkStruct_ov8_0224C098 *param0)
 {
     ov8_0224C170(param0, param0->unk_2C);
     param0->unk_04++;
@@ -3532,7 +3406,7 @@ static int ov8_0224BDD0 (UnkStruct_ov8_0224C098 * param0)
     return 0;
 }
 
-static int ov8_0224BE04 (UnkStruct_ov8_0224C098 * param0)
+static int ov8_0224BE04(UnkStruct_ov8_0224C098 *param0)
 {
     ov8_0224C170(param0, param0->unk_2C);
 
@@ -3550,7 +3424,7 @@ static int ov8_0224BE04 (UnkStruct_ov8_0224C098 * param0)
     return 0;
 }
 
-static int ov8_0224BE38 (UnkStruct_ov8_0224C098 * param0)
+static int ov8_0224BE38(UnkStruct_ov8_0224C098 *param0)
 {
     ov8_0224C170(param0, param0->unk_2C);
 
@@ -3562,7 +3436,7 @@ static int ov8_0224BE38 (UnkStruct_ov8_0224C098 * param0)
     return 0;
 }
 
-static int ov8_0224BE68 (UnkStruct_ov8_0224C098 * param0)
+static int ov8_0224BE68(UnkStruct_ov8_0224C098 *param0)
 {
     ov8_0224C11C(param0, 0x10);
 
@@ -3574,7 +3448,7 @@ static int ov8_0224BE68 (UnkStruct_ov8_0224C098 * param0)
     return 0;
 }
 
-static int ov8_0224BE8C (UnkStruct_ov8_0224C098 * param0)
+static int ov8_0224BE8C(UnkStruct_ov8_0224C098 *param0)
 {
     if (ov5_021F4720(param0->unk_34->unk_08.unk_0C) == 1) {
         param0->unk_00 = 9;
@@ -3583,9 +3457,9 @@ static int ov8_0224BE8C (UnkStruct_ov8_0224C098 * param0)
     return 0;
 }
 
-static int ov8_0224BEA4 (UnkStruct_ov8_0224C098 * param0)
+static int ov8_0224BEA4(UnkStruct_ov8_0224C098 *param0)
 {
-    MapObject * v0;
+    MapObject *v0;
 
     v0 = Player_MapObject(param0->unk_3C->fieldSystem->playerAvatar);
 
@@ -3597,13 +3471,13 @@ static int ov8_0224BEA4 (UnkStruct_ov8_0224C098 * param0)
     return 0;
 }
 
-static int ov8_0224BECC (UnkStruct_ov8_0224C098 * param0)
+static int ov8_0224BECC(UnkStruct_ov8_0224C098 *param0)
 {
     Heap_FreeToHeap(param0);
     return 2;
 }
 
-static int(*const Unk_ov8_0224C818[11])(UnkStruct_ov8_0224C098 *) = {
+static int (*const Unk_ov8_0224C818[11])(UnkStruct_ov8_0224C098 *) = {
     ov8_0224BBA0,
     ov8_0224BBD0,
     ov8_0224BC48,
@@ -3617,9 +3491,9 @@ static int(*const Unk_ov8_0224C818[11])(UnkStruct_ov8_0224C098 *) = {
     ov8_0224BECC
 };
 
-static UnkStruct_ov8_0224C098 * ov8_0224BED8 (UnkStruct_ov8_0224B8D0 * param0, UnkStruct_ov8_0224BCA8 * param1, int param2)
+static UnkStruct_ov8_0224C098 *ov8_0224BED8(UnkStruct_ov8_0224B8D0 *param0, UnkStruct_ov8_0224BCA8 *param1, int param2)
 {
-    UnkStruct_ov8_0224C098 * v0;
+    UnkStruct_ov8_0224C098 *v0;
 
     v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov8_0224C098));
     GF_ASSERT(v0 != NULL);
@@ -3635,21 +3509,21 @@ static UnkStruct_ov8_0224C098 * ov8_0224BED8 (UnkStruct_ov8_0224B8D0 * param0, U
     return v0;
 }
 
-static void ov8_0224BF0C (FieldSystem * fieldSystem, UnkStruct_ov8_0224B8D0 * param1, UnkStruct_ov8_0224BCA8 * param2, int param3)
+static void ov8_0224BF0C(FieldSystem *fieldSystem, UnkStruct_ov8_0224B8D0 *param1, UnkStruct_ov8_0224BCA8 *param2, int param3)
 {
-    UnkStruct_ov8_0224C098 * v0 = ov8_0224BED8(param1, param2, param3);
+    UnkStruct_ov8_0224C098 *v0 = ov8_0224BED8(param1, param2, param3);
     FieldTask_Set(fieldSystem, ov8_0224BAF4, v0);
 }
 
-static void ov8_0224BF2C (FieldSystem * fieldSystem, UnkStruct_ov8_0224B8D0 * param1, UnkStruct_ov8_0224BCA8 * param2, int param3)
+static void ov8_0224BF2C(FieldSystem *fieldSystem, UnkStruct_ov8_0224B8D0 *param1, UnkStruct_ov8_0224BCA8 *param2, int param3)
 {
-    UnkStruct_ov8_0224C098 * v0 = ov8_0224BED8(param1, param2, param3);
+    UnkStruct_ov8_0224C098 *v0 = ov8_0224BED8(param1, param2, param3);
     FieldTask_Set(fieldSystem, ov8_0224BB78, v0);
 }
 
-BOOL ov8_0224BF4C (FieldSystem * fieldSystem)
+BOOL ov8_0224BF4C(FieldSystem *fieldSystem)
 {
-    UnkStruct_02027860 * v0;
+    UnkStruct_02027860 *v0;
 
     v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
 
@@ -3659,9 +3533,9 @@ BOOL ov8_0224BF4C (FieldSystem * fieldSystem)
 
     {
         int v1, v2, v3;
-        UnkStruct_ov8_0224BCA8 * v4;
+        UnkStruct_ov8_0224BCA8 *v4;
         int v5 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
-        UnkStruct_ov8_0224B8D0 * v6 = fieldSystem->unk_04->unk_24;
+        UnkStruct_ov8_0224B8D0 *v6 = fieldSystem->unk_04->unk_24;
 
         sub_0206157C(fieldSystem->playerAvatar, v5, &v1, &v2);
         v4 = ov8_0224B854(v6, v1, v2);
@@ -3682,11 +3556,11 @@ BOOL ov8_0224BF4C (FieldSystem * fieldSystem)
     return 1;
 }
 
-static void ov8_0224BFCC (FieldSystem * fieldSystem, UnkStruct_ov8_0224C098 * param1, UnkStruct_ov8_0224B80C * param2, int param3)
+static void ov8_0224BFCC(FieldSystem *fieldSystem, UnkStruct_ov8_0224C098 *param1, UnkStruct_ov8_0224B80C *param2, int param3)
 {
     int v0, v1;
-    const VecFx32 * v2;
-    UnkStruct_ov8_0224C0C4 * v3;
+    const VecFx32 *v2;
+    UnkStruct_ov8_0224C0C4 *v3;
 
     v3 = &param1->unk_40;
     memset(v3, 0, sizeof(UnkStruct_ov8_0224C0C4));
@@ -3723,23 +3597,23 @@ static void ov8_0224BFCC (FieldSystem * fieldSystem, UnkStruct_ov8_0224C098 * pa
     Camera_TrackTarget(v2, fieldSystem->camera);
 }
 
-static void ov8_0224C098 (UnkStruct_ov8_0224C098 * param0)
+static void ov8_0224C098(UnkStruct_ov8_0224C098 *param0)
 {
-    UnkStruct_ov8_0224C0C4 * v0 = &param0->unk_40;
-    const VecFx32 * v1 = PlayerAvatar_PosVector(v0->fieldSystem->playerAvatar);
+    UnkStruct_ov8_0224C0C4 *v0 = &param0->unk_40;
+    const VecFx32 *v1 = PlayerAvatar_PosVector(v0->fieldSystem->playerAvatar);
 
     ov5_021E931C(v1, v0->fieldSystem->unk_28);
     Camera_TrackTarget(v1, v0->fieldSystem->camera);
     MapObject_Delete(v0->unk_30);
 }
 
-static BOOL ov8_0224C0C4 (UnkStruct_ov8_0224C098 * param0)
+static BOOL ov8_0224C0C4(UnkStruct_ov8_0224C098 *param0)
 {
-    UnkStruct_ov8_0224C0C4 * v0 = &param0->unk_40;
+    UnkStruct_ov8_0224C0C4 *v0 = &param0->unk_40;
     return v0->unk_2C;
 }
 
-static BOOL ov8_0224C0C8 (UnkStruct_ov8_0224C098 * param0, UnkStruct_ov8_0224B80C * param1, int param2)
+static BOOL ov8_0224C0C8(UnkStruct_ov8_0224C098 *param0, UnkStruct_ov8_0224B80C *param1, int param2)
 {
     int v0;
     int v1 = param1->unk_00;
@@ -3754,9 +3628,9 @@ static BOOL ov8_0224C0C8 (UnkStruct_ov8_0224C098 * param0, UnkStruct_ov8_0224B80
     return 0;
 }
 
-static void ov8_0224C0FC (UnkStruct_ov8_0224C098 * param0, int param1)
+static void ov8_0224C0FC(UnkStruct_ov8_0224C098 *param0, int param1)
 {
-    UnkStruct_ov8_0224C0C4 * v0 = &param0->unk_40;
+    UnkStruct_ov8_0224C0C4 *v0 = &param0->unk_40;
 
     v0->unk_28 = 0;
     v0->unk_00 = 1;
@@ -3767,9 +3641,9 @@ static void ov8_0224C0FC (UnkStruct_ov8_0224C098 * param0, int param1)
     }
 }
 
-static void ov8_0224C11C (UnkStruct_ov8_0224C098 * param0, int param1)
+static void ov8_0224C11C(UnkStruct_ov8_0224C098 *param0, int param1)
 {
-    UnkStruct_ov8_0224C0C4 * v0 = &param0->unk_40;
+    UnkStruct_ov8_0224C0C4 *v0 = &param0->unk_40;
 
     switch (v0->unk_00) {
     case 0:
@@ -3792,7 +3666,7 @@ static void ov8_0224C11C (UnkStruct_ov8_0224C098 * param0, int param1)
     }
 }
 
-static void ov8_0224C170 (UnkStruct_ov8_0224C098 * param0, fx32 param1)
+static void ov8_0224C170(UnkStruct_ov8_0224C098 *param0, fx32 param1)
 {
     if (param0->unk_18 == 1) {
         int v0 = ((param1) / FX32_ONE);
@@ -3812,75 +3686,49 @@ static void ov8_0224C170 (UnkStruct_ov8_0224C098 * param0, fx32 param1)
 }
 
 static const UnkStruct_ov8_0224C8D4 Unk_ov8_0224C8D4[2] = {
-    {0x59, 0x0, 0x3, 0x1, 0x3, 0xF, 0x8},
-    {0x5A, 0x3, 0x5, 0x1, 0x3, 0x1B, 0x14}
+    { 0x59, 0x0, 0x3, 0x1, 0x3, 0xF, 0x8 },
+    { 0x5A, 0x3, 0x5, 0x1, 0x3, 0x1B, 0x14 }
 };
 
 static __attribute__((aligned(4))) const u8 Unk_ov8_0224E0A8[120] = {
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1,
-    0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0,
-    0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0,
-    0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0,
-    0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 };
 
 static __attribute__((aligned(4))) const u8 Unk_ov8_0224E120[540] = {
-    0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
-    0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
-    0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0,
-    0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0,
-    0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0,
-    0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0,
-    0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0,
-    1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0,
-    1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0,
-    0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1,
-    0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
-    1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+    0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 };
 
-static const u8 * const Unk_ov8_0224C6F8[2] = {
+static const u8 *const Unk_ov8_0224C6F8[2] = {
     Unk_ov8_0224E0A8,
     Unk_ov8_0224E120
 };
 
 static const UnkStruct_ov8_0224C7D0 Unk_ov8_0224C7D0[] = {
-    {0x0, 0x4, 0x2},
-    {0x1, 0x8, 0x2},
-    {0x2, 0xC, 0x2},
-    {8, 0x0, 0x0}
+    { 0x0, 0x4, 0x2 },
+    { 0x1, 0x8, 0x2 },
+    { 0x2, 0xC, 0x2 },
+    { 8, 0x0, 0x0 }
 };
 
 static const UnkStruct_ov8_0224C7D0 Unk_ov8_0224C844[] = {
-    {0x3, 0x4, 0x2},
-    {0x4, 0x9, 0x2},
-    {0x5, 0xE, 0x2},
-    {0x6, 0x13, 0x2},
-    {0x7, 0x18, 0x2},
-    {8, 0x0, 0x0}
+    { 0x3, 0x4, 0x2 },
+    { 0x4, 0x9, 0x2 },
+    { 0x5, 0xE, 0x2 },
+    { 0x6, 0x13, 0x2 },
+    { 0x7, 0x18, 0x2 },
+    { 8, 0x0, 0x0 }
 };
 
-static const UnkStruct_ov8_0224C7D0 * const Unk_ov8_0224C708[2] = {
+static const UnkStruct_ov8_0224C7D0 *const Unk_ov8_0224C708[2] = {
     Unk_ov8_0224C7D0,
     Unk_ov8_0224C844
 };
 
-void ov8_0224C198 (FieldSystem * fieldSystem)
+void ov8_0224C198(FieldSystem *fieldSystem)
 {
-    UnkStruct_02027860 * v0;
-    UnkStruct_02071C18 * v1;
-    UnkStruct_ov8_0224C444 * v2;
+    UnkStruct_02027860 *v0;
+    UnkStruct_02071C18 *v1;
+    UnkStruct_ov8_0224C444 *v2;
 
     v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     v1 = sub_02027F6C(v0, 2);
@@ -3897,8 +3745,8 @@ void ov8_0224C198 (FieldSystem * fieldSystem)
 
     {
         int v3 = 0xd2;
-        PlayerAvatar * playerAvatar = fieldSystem->playerAvatar;
-        MapObject * v5 = Player_MapObject(playerAvatar);
+        PlayerAvatar *playerAvatar = fieldSystem->playerAvatar;
+        MapObject *v5 = Player_MapObject(playerAvatar);
 
         if (PlayerAvatar_Gender(fieldSystem->playerAvatar) == 1) {
             v3 = 0xd3;
@@ -3913,7 +3761,7 @@ void ov8_0224C198 (FieldSystem * fieldSystem)
     {
         int v6 = 0;
         int v7 = fieldSystem->location->mapId;
-        const UnkStruct_ov8_0224C8D4 * v8 = Unk_ov8_0224C8D4;
+        const UnkStruct_ov8_0224C8D4 *v8 = Unk_ov8_0224C8D4;
 
         do {
             if (v8->unk_00 == v7) {
@@ -3929,7 +3777,7 @@ void ov8_0224C198 (FieldSystem * fieldSystem)
             v1->unk_02 = 8;
 
             if (v6 != 2) {
-                const u8 * v9 = Unk_ov8_0224C6F8[v6];
+                const u8 *v9 = Unk_ov8_0224C6F8[v6];
                 int v10 = MTRNG_Next() % v8->unk_08;
 
                 v1->unk_02 = v10 + v8->unk_04;
@@ -3953,7 +3801,7 @@ void ov8_0224C198 (FieldSystem * fieldSystem)
 
         if (v1->unk_02 != 8) {
             int v11;
-            const UnkStruct_ov8_0224C7D0 * v12 = Unk_ov8_0224C708[v6];
+            const UnkStruct_ov8_0224C7D0 *v12 = Unk_ov8_0224C708[v6];
 
             while (v12->unk_00 != 8) {
                 if (v12->unk_00 != v1->unk_02) {
@@ -3972,9 +3820,9 @@ void ov8_0224C198 (FieldSystem * fieldSystem)
     v2->unk_1F4 = SysTask_Start(ov8_0224C3B0, v2, 0);
 }
 
-void ov8_0224C388 (FieldSystem * fieldSystem)
+void ov8_0224C388(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov8_0224C444 * v0 = fieldSystem->unk_04->unk_24;
+    UnkStruct_ov8_0224C444 *v0 = fieldSystem->unk_04->unk_24;
 
     SysTask_Done(v0->unk_1F4);
     ov8_0224C4F8(v0);
@@ -3983,15 +3831,15 @@ void ov8_0224C388 (FieldSystem * fieldSystem)
     fieldSystem->unk_04->unk_24 = NULL;
 }
 
-static void ov8_0224C3B0 (SysTask * task, void * param1)
+static void ov8_0224C3B0(SysTask *task, void *param1)
 {
     return;
 }
 
-static void ov8_0224C3B4 (UnkStruct_ov8_0224C444 * param0)
+static void ov8_0224C3B4(UnkStruct_ov8_0224C444 *param0)
 {
-    UnkStruct_ov8_0224C3B4 * v0 = &param0->unk_1C4;
-    UnkStruct_ov5_021D57D8 * v1 = param0->fieldSystem->unk_48;
+    UnkStruct_ov8_0224C3B4 *v0 = &param0->unk_1C4;
+    UnkStruct_ov5_021D57D8 *v1 = param0->fieldSystem->unk_48;
 
     v0->unk_00 = v1;
     v0->unk_04 = 10;
@@ -4018,12 +3866,12 @@ static void ov8_0224C3B4 (UnkStruct_ov8_0224C444 * param0)
     ov5_021D585C(v1, v0->unk_0C);
 }
 
-static void ov8_0224C444 (UnkStruct_ov8_0224C444 * param0)
+static void ov8_0224C444(UnkStruct_ov8_0224C444 *param0)
 {
     int v0, v1, v2, v3, v4;
-    MapObject * v5;
-    UnkStruct_ov8_0224C4F8 * v6 = param0->unk_04;
-    const MapObjectManager * mapObjMan = param0->fieldSystem->mapObjMan;
+    MapObject *v5;
+    UnkStruct_ov8_0224C4F8 *v6 = param0->unk_04;
+    const MapObjectManager *mapObjMan = param0->fieldSystem->mapObjMan;
 
     v0 = 0;
     v1 = 0;
@@ -4054,10 +3902,10 @@ static void ov8_0224C444 (UnkStruct_ov8_0224C444 * param0)
     }
 }
 
-static void ov8_0224C4F8 (UnkStruct_ov8_0224C444 * param0)
+static void ov8_0224C4F8(UnkStruct_ov8_0224C444 *param0)
 {
     int v0;
-    UnkStruct_ov8_0224C4F8 * v1 = param0->unk_04;
+    UnkStruct_ov8_0224C4F8 *v1 = param0->unk_04;
 
     for (v0 = 0; v0 < 16; v0++, v1++) {
         if (v1->unk_00) {
@@ -4067,19 +3915,19 @@ static void ov8_0224C4F8 (UnkStruct_ov8_0224C444 * param0)
     }
 }
 
-static void ov8_0224C518 (SysTask * param0, void * param1)
+static void ov8_0224C518(SysTask *param0, void *param1)
 {
     return;
 }
 
-BOOL ov8_0224C51C (FieldSystem * fieldSystem)
+BOOL ov8_0224C51C(FieldSystem *fieldSystem)
 {
     int v0, v1, v2, v3;
-    UnkStruct_02027860 * v4;
-    PlayerAvatar * playerAvatar;
-    MapObjectManager * mapObjMan;
-    MapObject * v7;
-    MapObject * v8;
+    UnkStruct_02027860 *v4;
+    PlayerAvatar *playerAvatar;
+    MapObjectManager *mapObjMan;
+    MapObject *v7;
+    MapObject *v8;
 
     v4 = sub_02027860(FieldSystem_SaveData(fieldSystem));
 
@@ -4112,9 +3960,9 @@ BOOL ov8_0224C51C (FieldSystem * fieldSystem)
     return 0;
 }
 
-BOOL ov8_0224C5DC (FieldSystem * fieldSystem, void * param1)
+BOOL ov8_0224C5DC(FieldSystem *fieldSystem, void *param1)
 {
-    UnkStruct_02027860 * v0;
+    UnkStruct_02027860 *v0;
 
     v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
 
@@ -4123,7 +3971,7 @@ BOOL ov8_0224C5DC (FieldSystem * fieldSystem, void * param1)
     }
 
     {
-        MapObject * v1 = param1;
+        MapObject *v1 = param1;
 
         MapObject_SetXInitial(v1, MapObject_GetXPos(v1));
         MapObject_SetZInitial(v1, MapObject_GetZPos(v1));
@@ -4137,14 +3985,14 @@ BOOL ov8_0224C5DC (FieldSystem * fieldSystem, void * param1)
     return 0;
 }
 
-BOOL ov8_0224C62C (FieldSystem * fieldSystem, int param1, int param2, int * param3)
+BOOL ov8_0224C62C(FieldSystem *fieldSystem, int param1, int param2, int *param3)
 {
     if ((*param3) != 0) {
         return 0;
     }
 
     {
-        UnkStruct_02027860 * v0;
+        UnkStruct_02027860 *v0;
 
         v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
 
@@ -4153,7 +4001,7 @@ BOOL ov8_0224C62C (FieldSystem * fieldSystem, int param1, int param2, int * para
         }
 
         {
-            UnkStruct_02071C18 * v1;
+            UnkStruct_02071C18 *v1;
 
             v1 = sub_02027F6C(v0, 2);
 
@@ -4164,8 +4012,8 @@ BOOL ov8_0224C62C (FieldSystem * fieldSystem, int param1, int param2, int * para
             {
                 int v2 = 0;
                 int v3 = fieldSystem->location->mapId;
-                const UnkStruct_ov8_0224C8D4 * v4 = Unk_ov8_0224C8D4;
-                const UnkStruct_ov8_0224C7D0 * v5;
+                const UnkStruct_ov8_0224C8D4 *v4 = Unk_ov8_0224C8D4;
+                const UnkStruct_ov8_0224C7D0 *v5;
 
                 do {
                     if (v4->unk_00 == v3) {

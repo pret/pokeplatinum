@@ -1,15 +1,15 @@
+#include "touch_screen.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "core_sys.h"
 
-#include "touch_screen.h"
-
 static int sub_02022594(const TouchScreenRect *rect, u32 param1, u32 param2);
 static BOOL sub_020225E0(const TouchScreenHitTable *hitTable, u32 param1, u32 param2);
 static BOOL sub_0202260C(const TouchScreenHitTable *hitTable, u32 param1, u32 param2);
 
-static int sub_02022594 (const TouchScreenRect *rect, u32 param1, u32 param2)
+static int sub_02022594(const TouchScreenRect *rect, u32 param1, u32 param2)
 {
     int v0;
 
@@ -22,7 +22,7 @@ static int sub_02022594 (const TouchScreenRect *rect, u32 param1, u32 param2)
     return 0xffffffff;
 }
 
-static BOOL sub_020225E0 (const TouchScreenHitTable *hitTable, u32 param1, u32 param2)
+static BOOL sub_020225E0(const TouchScreenHitTable *hitTable, u32 param1, u32 param2)
 {
     param1 = (hitTable->circle.x - param1) * (hitTable->circle.x - param1);
     param2 = (hitTable->circle.y - param2) * (hitTable->circle.y - param2);
@@ -34,7 +34,7 @@ static BOOL sub_020225E0 (const TouchScreenHitTable *hitTable, u32 param1, u32 p
     return 0;
 }
 
-static BOOL sub_0202260C (const TouchScreenHitTable *hitTable, u32 param1, u32 param2)
+static BOOL sub_0202260C(const TouchScreenHitTable *hitTable, u32 param1, u32 param2)
 {
     if (((u32)(param1 - hitTable->rect.left) < (u32)(hitTable->rect.right - hitTable->rect.left)) & ((u32)(param2 - hitTable->rect.top) < (u32)(hitTable->rect.bottom - hitTable->rect.top))) {
         return 1;
@@ -43,7 +43,7 @@ static BOOL sub_0202260C (const TouchScreenHitTable *hitTable, u32 param1, u32 p
     return 0;
 }
 
-int sub_02022644 (const TouchScreenRect *rect)
+int sub_02022644(const TouchScreenRect *rect)
 {
     if (gCoreSys.touchHeld) {
         return sub_02022594(rect, gCoreSys.touchX, gCoreSys.touchY);
@@ -52,7 +52,7 @@ int sub_02022644 (const TouchScreenRect *rect)
     return 0xffffffff;
 }
 
-int sub_02022664 (const TouchScreenRect *rect)
+int sub_02022664(const TouchScreenRect *rect)
 {
     if (gCoreSys.touchPressed) {
         return sub_02022594(rect, gCoreSys.touchX, gCoreSys.touchY);
@@ -61,7 +61,7 @@ int sub_02022664 (const TouchScreenRect *rect)
     return 0xffffffff;
 }
 
-int sub_02022684 (const TouchScreenHitTable *hitTable)
+int sub_02022684(const TouchScreenHitTable *hitTable)
 {
     if (gCoreSys.touchHeld) {
         int v0;
@@ -82,7 +82,7 @@ int sub_02022684 (const TouchScreenHitTable *hitTable)
     return 0xffffffff;
 }
 
-int sub_020226DC (const TouchScreenHitTable *hitTable)
+int sub_020226DC(const TouchScreenHitTable *hitTable)
 {
     if (gCoreSys.touchPressed) {
         int v0;
@@ -150,7 +150,7 @@ BOOL TouchScreen_GetHoldState(u32 *x, u32 *y)
     return FALSE;
 }
 
-BOOL TouchScreen_GetTapState(u32 * x, u32 * y)
+BOOL TouchScreen_GetTapState(u32 *x, u32 *y)
 {
     if (gCoreSys.touchPressed) {
         *x = gCoreSys.touchX;
@@ -161,7 +161,7 @@ BOOL TouchScreen_GetTapState(u32 * x, u32 * y)
     return FALSE;
 }
 
-int sub_020227DC (const TouchScreenHitTable *hitTable, u32 param1, u32 param2)
+int sub_020227DC(const TouchScreenHitTable *hitTable, u32 param1, u32 param2)
 {
     int v0;
 
@@ -180,7 +180,7 @@ int sub_020227DC (const TouchScreenHitTable *hitTable, u32 param1, u32 param2)
     return 0xffffffff;
 }
 
-BOOL sub_02022830 (const TouchScreenHitTable *hitTable, u32 param1, u32 param2)
+BOOL sub_02022830(const TouchScreenHitTable *hitTable, u32 param1, u32 param2)
 {
     if (hitTable->circle.code == TOUCHSCREEN_USE_CIRCLE) {
         return sub_020225E0(hitTable, param1, param2);

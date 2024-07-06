@@ -1,3 +1,5 @@
+#include "overlay022/ov22_022597BC.h"
+
 #include <nitro.h>
 #include <string.h>
 
@@ -8,18 +10,17 @@
 #include "overlay022/struct_ov22_022599A0.h"
 #include "overlay022/struct_ov22_0225AF44.h"
 
+#include "heap.h"
+#include "sys_task.h"
+#include "sys_task_manager.h"
 #include "unk_0200679C.h"
 #include "unk_02006E3C.h"
-#include "sys_task.h"
-#include "heap.h"
 #include "unk_02018340.h"
-#include "sys_task_manager.h"
-#include "overlay022/ov22_022597BC.h"
 
 typedef struct {
-    UnkStruct_ov22_022597BC * unk_00;
+    UnkStruct_ov22_022597BC *unk_00;
     UnkStruct_ov22_022599A0 unk_04;
-    BOOL * unk_34;
+    BOOL *unk_34;
     int unk_38;
     int unk_3C;
     int unk_40;
@@ -28,31 +29,31 @@ typedef struct {
 } UnkStruct_ov22_022598F4;
 
 typedef struct {
-    BGL * unk_00;
-    NNSG2dCharacterData * unk_04;
-    void * unk_08;
+    BGL *unk_00;
+    NNSG2dCharacterData *unk_04;
+    void *unk_08;
     int unk_0C;
     int unk_10;
 } UnkStruct_ov22_02259B3C;
 
 typedef struct {
-    NNSG2dPaletteData * unk_00;
-    void * unk_04;
+    NNSG2dPaletteData *unk_00;
+    void *unk_04;
     int unk_08;
     int unk_0C;
     int unk_10;
 } UnkStruct_ov22_02259B8C;
 
-static void ov22_02259980(const NNSG2dScreenData * param0, int param1);
-static void ov22_022599A0(UnkStruct_ov22_022599A0 * param0, int * param1, int * param2);
-static void ov22_02259A4C(SysTask * param0, void * param1);
-static void ov22_02259ABC(BGL * param0, int param1, const NNSG2dScreenData * param2, int param3, int param4, int param5, int param6, int param7, int param8);
-static void ov22_02259B3C(u32 param0, u32 param1, BGL * param2, u32 param3, u32 param4, u32 param5);
+static void ov22_02259980(const NNSG2dScreenData *param0, int param1);
+static void ov22_022599A0(UnkStruct_ov22_022599A0 *param0, int *param1, int *param2);
+static void ov22_02259A4C(SysTask *param0, void *param1);
+static void ov22_02259ABC(BGL *param0, int param1, const NNSG2dScreenData *param2, int param3, int param4, int param5, int param6, int param7, int param8);
+static void ov22_02259B3C(u32 param0, u32 param1, BGL *param2, u32 param3, u32 param4, u32 param5);
 static void ov22_02259B8C(u32 param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5);
-static void ov22_02259BD4(SysTask * param0, void * param1);
-static void ov22_02259C10(SysTask * param0, void * param1);
+static void ov22_02259BD4(SysTask *param0, void *param1);
+static void ov22_02259C10(SysTask *param0, void *param1);
 
-void ov22_022597BC (UnkStruct_ov22_022597BC * param0, UnkStruct_ov22_022599A0 * param1)
+void ov22_022597BC(UnkStruct_ov22_022597BC *param0, UnkStruct_ov22_022599A0 *param1)
 {
     param0->unk_00 = param1->unk_00;
     param0->unk_0C = param1->unk_14 / 8;
@@ -67,13 +68,13 @@ void ov22_022597BC (UnkStruct_ov22_022597BC * param0, UnkStruct_ov22_022599A0 * 
     ov22_022599A0(param1, &param0->unk_14, &param0->unk_18);
 }
 
-void ov22_02259804 (UnkStruct_ov22_022597BC * param0)
+void ov22_02259804(UnkStruct_ov22_022597BC *param0)
 {
     sub_02019EBC(param0->unk_00, param0->unk_1C);
     memset(param0, 0, sizeof(UnkStruct_ov22_022597BC));
 }
 
-void ov22_02259820 (UnkStruct_ov22_02259820 * param0, UnkStruct_ov22_0225AF44 * param1)
+void ov22_02259820(UnkStruct_ov22_02259820 *param0, UnkStruct_ov22_0225AF44 *param1)
 {
     param0->unk_00 = param1->unk_00;
     param0->unk_04 = param1->unk_04;
@@ -83,10 +84,10 @@ void ov22_02259820 (UnkStruct_ov22_02259820 * param0, UnkStruct_ov22_0225AF44 * 
     param0->unk_14 = param1->unk_0C;
 }
 
-void ov22_02259838 (UnkStruct_ov22_02259820 * param0, int param1)
+void ov22_02259838(UnkStruct_ov22_02259820 *param0, int param1)
 {
-    NNSG2dScreenData * v0;
-    void * v1;
+    NNSG2dScreenData *v0;
+    void *v1;
     int v2;
 
     param0->unk_0C += param1;
@@ -109,10 +110,10 @@ void ov22_02259838 (UnkStruct_ov22_02259820 * param0, int param1)
     }
 }
 
-void ov22_022598A0 (UnkStruct_ov22_02259820 * param0)
+void ov22_022598A0(UnkStruct_ov22_02259820 *param0)
 {
-    NNSG2dScreenData * v0;
-    void * v1;
+    NNSG2dScreenData *v0;
+    void *v1;
 
     v1 = sub_02006F6C(param0->unk_00->unk_04, param0->unk_00->unk_08, 0, &v0, param0->unk_14);
 
@@ -122,10 +123,10 @@ void ov22_022598A0 (UnkStruct_ov22_02259820 * param0)
     memset(param0, 0, sizeof(UnkStruct_ov22_02259820));
 }
 
-void ov22_022598F4 (UnkStruct_ov22_022597BC * param0, UnkStruct_ov22_022599A0 * param1, int param2, int param3, int param4, BOOL * param5)
+void ov22_022598F4(UnkStruct_ov22_022597BC *param0, UnkStruct_ov22_022599A0 *param1, int param2, int param3, int param4, BOOL *param5)
 {
-    UnkStruct_ov22_022598F4 * v0;
-    SysTask * v1;
+    UnkStruct_ov22_022598F4 *v0;
+    SysTask *v1;
 
     v1 = SysTask_StartAndAllocateParam(ov22_02259A4C, sizeof(UnkStruct_ov22_022598F4), 0, 13);
     v0 = SysTask_GetParam(v1);
@@ -148,10 +149,10 @@ void ov22_022598F4 (UnkStruct_ov22_022597BC * param0, UnkStruct_ov22_022599A0 * 
     ov22_022599A0(param1, NULL, NULL);
 }
 
-static void ov22_02259980 (const NNSG2dScreenData * param0, int param1)
+static void ov22_02259980(const NNSG2dScreenData *param0, int param1)
 {
     int v0;
-    u16 * v1;
+    u16 *v1;
     int v2 = param0->szByte / 2;
 
     v1 = (u16 *)param0->rawData;
@@ -161,11 +162,11 @@ static void ov22_02259980 (const NNSG2dScreenData * param0, int param1)
     }
 }
 
-static void ov22_022599A0 (UnkStruct_ov22_022599A0 * param0, int * param1, int * param2)
+static void ov22_022599A0(UnkStruct_ov22_022599A0 *param0, int *param1, int *param2)
 {
     int v0;
-    NNSG2dScreenData * v1;
-    void * v2;
+    NNSG2dScreenData *v1;
+    void *v2;
     int v3, v4;
     int v5, v6;
 
@@ -198,9 +199,9 @@ static void ov22_022599A0 (UnkStruct_ov22_022599A0 * param0, int * param1, int *
     }
 }
 
-static void ov22_02259A4C (SysTask * param0, void * param1)
+static void ov22_02259A4C(SysTask *param0, void *param1)
 {
-    UnkStruct_ov22_022598F4 * v0 = param1;
+    UnkStruct_ov22_022598F4 *v0 = param1;
 
     v0->unk_38--;
 
@@ -220,7 +221,7 @@ static void ov22_02259A4C (SysTask * param0, void * param1)
     }
 }
 
-static void ov22_02259ABC (BGL * param0, int param1, const NNSG2dScreenData * param2, int param3, int param4, int param5, int param6, int param7, int param8)
+static void ov22_02259ABC(BGL *param0, int param1, const NNSG2dScreenData *param2, int param3, int param4, int param5, int param6, int param7, int param8)
 {
     ov22_02259980(param2, param7);
     sub_020198E8(param0, param1, param5, param6, param3, param4, param2->rawData, 0, 0, param3, param4);
@@ -228,9 +229,9 @@ static void ov22_02259ABC (BGL * param0, int param1, const NNSG2dScreenData * pa
     sub_0201C3C0(param0, param1);
 }
 
-static void ov22_02259B3C (u32 param0, u32 param1, BGL * param2, u32 param3, u32 param4, u32 param5)
+static void ov22_02259B3C(u32 param0, u32 param1, BGL *param2, u32 param3, u32 param4, u32 param5)
 {
-    UnkStruct_ov22_02259B3C * v0;
+    UnkStruct_ov22_02259B3C *v0;
 
     v0 = Heap_AllocFromHeap(param5, sizeof(UnkStruct_ov22_02259B3C));
     memset(v0, 0, sizeof(UnkStruct_ov22_02259B3C));
@@ -243,9 +244,9 @@ static void ov22_02259B3C (u32 param0, u32 param1, BGL * param2, u32 param3, u32
     SysTask_ExecuteAfterVBlank(ov22_02259BD4, v0, 128);
 }
 
-static void ov22_02259B8C (u32 param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5)
+static void ov22_02259B8C(u32 param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5)
 {
-    UnkStruct_ov22_02259B8C * v0;
+    UnkStruct_ov22_02259B8C *v0;
 
     v0 = Heap_AllocFromHeap(param5, sizeof(UnkStruct_ov22_02259B8C));
     memset(v0, 0, sizeof(UnkStruct_ov22_02259B8C));
@@ -258,9 +259,9 @@ static void ov22_02259B8C (u32 param0, u32 param1, int param2, u32 param3, u32 p
     SysTask_ExecuteAfterVBlank(ov22_02259C10, v0, 128);
 }
 
-static void ov22_02259BD4 (SysTask * param0, void * param1)
+static void ov22_02259BD4(SysTask *param0, void *param1)
 {
-    UnkStruct_ov22_02259B3C * v0 = param1;
+    UnkStruct_ov22_02259B3C *v0 = param1;
 
     DC_FlushRange(v0->unk_04->pRawData, v0->unk_04->szByte);
 
@@ -270,9 +271,9 @@ static void ov22_02259BD4 (SysTask * param0, void * param1)
     Heap_FreeToHeap(v0);
 }
 
-static void ov22_02259C10 (SysTask * param0, void * param1)
+static void ov22_02259C10(SysTask *param0, void *param1)
 {
-    UnkStruct_ov22_02259B8C * v0 = param1;
+    UnkStruct_ov22_02259B8C *v0 = param1;
 
     DC_FlushRange(v0->unk_00->pRawData, v0->unk_10);
 

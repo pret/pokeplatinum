@@ -30,4 +30,3 @@ typedef struct MovesetMask {
 } MovesetMask;
 
 #endif // POKEPLATINUM_TUTOR_MOVESETS_H
-

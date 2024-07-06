@@ -1,38 +1,36 @@
+#include "unk_0208BA78.h"
+
+#include <dwc.h>
 #include <nitro.h>
 #include <string.h>
-#include <dwc.h>
 
-#include "inlines.h"
-
-#include "journal.h"
-#include "vars_flags.h"
-#include "savedata.h"
-
-#include "constdata/const_020EA358.h"
-#include "constdata/const_020F3060.h"
-#include "constdata/const_020F3050.h"
-#include "constdata/const_020F2FCC.h"
-
-#include "field/field_system.h"
 #include "struct_defs/struct_0208BA84.h"
 #include "struct_defs/struct_0208C06C.h"
-#include "overlay006/battle_params.h"
 
-#include "unk_020041CC.h"
+#include "field/field_system.h"
+#include "overlay006/battle_params.h"
+#include "overlay062/ov62_02248408.h"
+
+#include "bag.h"
 #include "game_overlay.h"
-#include "overlay_manager.h"
-#include "heap.h"
-#include "journal.h"
 #include "game_records.h"
+#include "heap.h"
+#include "inlines.h"
+#include "journal.h"
+#include "overlay_manager.h"
+#include "savedata.h"
+#include "unk_020041CC.h"
 #include "unk_0202F1D4.h"
-#include "vars_flags.h"
 #include "unk_02051D8C.h"
 #include "unk_020553DC.h"
-#include "bag.h"
-#include "unk_0208BA78.h"
 #include "unk_0208C010.h"
 #include "unk_02099550.h"
-#include "overlay062/ov62_02248408.h"
+#include "vars_flags.h"
+
+#include "constdata/const_020EA358.h"
+#include "constdata/const_020F2FCC.h"
+#include "constdata/const_020F3050.h"
+#include "constdata/const_020F3060.h"
 
 FS_EXTERN_OVERLAY(overlay61);
 FS_EXTERN_OVERLAY(overlay62);
@@ -40,53 +38,53 @@ FS_EXTERN_OVERLAY(overlay62);
 typedef struct {
     int unk_00;
     int unk_04;
-    OverlayManager * unk_08;
-    SaveData * saveData;
-    BattleParams * unk_10;
-    UnkStruct_0208C06C * unk_14;
+    OverlayManager *unk_08;
+    SaveData *saveData;
+    BattleParams *unk_10;
+    UnkStruct_0208C06C *unk_14;
     UnkStruct_0208BA84 unk_18;
-    FieldSystem * fieldSystem;
+    FieldSystem *fieldSystem;
 } UnkStruct_0208BC3C;
 
-static void sub_0208BAAC(OverlayManager * param0, int param1);
-static int sub_0208BB6C(OverlayManager * param0, int * param1);
-static int sub_0208BB78(OverlayManager * param0, int * param1);
-static int sub_0208BB84(OverlayManager * param0, int * param1);
-static int sub_0208BB90(OverlayManager * param0, int * param1);
-static int sub_0208BB9C(OverlayManager * param0, int * param1);
-static int sub_0208BBA8(OverlayManager * param0, int * param1);
-static int sub_0208BBB4(OverlayManager * param0, int * param1);
-static int sub_0208BBC0(OverlayManager * param0, int * param1);
-static int sub_0208BC08(OverlayManager * param0, int * param1);
-static BOOL sub_0208BC3C(UnkStruct_0208BC3C * param0, int param1);
-static BOOL sub_0208BC8C(UnkStruct_0208BC3C * param0, int param1);
+static void sub_0208BAAC(OverlayManager *param0, int param1);
+static int sub_0208BB6C(OverlayManager *param0, int *param1);
+static int sub_0208BB78(OverlayManager *param0, int *param1);
+static int sub_0208BB84(OverlayManager *param0, int *param1);
+static int sub_0208BB90(OverlayManager *param0, int *param1);
+static int sub_0208BB9C(OverlayManager *param0, int *param1);
+static int sub_0208BBA8(OverlayManager *param0, int *param1);
+static int sub_0208BBB4(OverlayManager *param0, int *param1);
+static int sub_0208BBC0(OverlayManager *param0, int *param1);
+static int sub_0208BC08(OverlayManager *param0, int *param1);
+static BOOL sub_0208BC3C(UnkStruct_0208BC3C *param0, int param1);
+static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int param1);
 static BOOL sub_0208BE80(int param0);
 
-UnkStruct_0208C06C * sub_0208BA78 (OverlayManager * param0)
+UnkStruct_0208C06C *sub_0208BA78(OverlayManager *param0)
 {
-    UnkStruct_0208C06C * v0;
-    UnkStruct_0208BC3C * v1 = OverlayManager_Args(param0);
+    UnkStruct_0208C06C *v0;
+    UnkStruct_0208BC3C *v1 = OverlayManager_Args(param0);
 
     return v1->unk_14;
 }
 
-void sub_0208BA84 (UnkStruct_0208BA84 * param0, BOOL param1, int param2)
+void sub_0208BA84(UnkStruct_0208BA84 *param0, BOOL param1, int param2)
 {
     param0->unk_00 = param1;
     param0->unk_04 = param2;
 }
 
-static void sub_0208BA8C (SaveData * param0, int param1, u32 param2)
+static void sub_0208BA8C(SaveData *param0, int param1, u32 param2)
 {
-    Journal * v0 = SaveData_GetJournal(param0);
-    void * v1 = sub_0202C244(param1, param2);
+    Journal *v0 = SaveData_GetJournal(param0);
+    void *v1 = sub_0202C244(param1, param2);
 
     sub_0202B758(v0, v1, 4);
 }
 
-static void sub_0208BAAC (OverlayManager * param0, int param1)
+static void sub_0208BAAC(OverlayManager *param0, int param1)
 {
-    UnkStruct_0208BC3C * v0;
+    UnkStruct_0208BC3C *v0;
 
     Heap_Create(3, 119, 0x10000);
 
@@ -131,52 +129,52 @@ static void sub_0208BAAC (OverlayManager * param0, int param1)
     }
 }
 
-static int sub_0208BB6C (OverlayManager * param0, int * param1)
+static int sub_0208BB6C(OverlayManager *param0, int *param1)
 {
     sub_0208BAAC(param0, 0);
     return 1;
 }
 
-static int sub_0208BB78 (OverlayManager * param0, int * param1)
+static int sub_0208BB78(OverlayManager *param0, int *param1)
 {
     sub_0208BAAC(param0, 1);
     return 1;
 }
 
-static int sub_0208BB84 (OverlayManager * param0, int * param1)
+static int sub_0208BB84(OverlayManager *param0, int *param1)
 {
     sub_0208BAAC(param0, 2);
     return 1;
 }
 
-static int sub_0208BB90 (OverlayManager * param0, int * param1)
+static int sub_0208BB90(OverlayManager *param0, int *param1)
 {
     sub_0208BAAC(param0, 3);
     return 1;
 }
 
-static int sub_0208BB9C (OverlayManager * param0, int * param1)
+static int sub_0208BB9C(OverlayManager *param0, int *param1)
 {
     sub_0208BAAC(param0, 4);
     return 1;
 }
 
-static int sub_0208BBA8 (OverlayManager * param0, int * param1)
+static int sub_0208BBA8(OverlayManager *param0, int *param1)
 {
     sub_0208BAAC(param0, 5);
     return 1;
 }
 
-static int sub_0208BBB4 (OverlayManager * param0, int * param1)
+static int sub_0208BBB4(OverlayManager *param0, int *param1)
 {
     sub_0208BAAC(param0, 6);
     return 1;
 }
 
-static int sub_0208BBC0 (OverlayManager * param0, int * param1)
+static int sub_0208BBC0(OverlayManager *param0, int *param1)
 {
     BOOL v0;
-    UnkStruct_0208BC3C * v1 = OverlayManager_Data(param0);
+    UnkStruct_0208BC3C *v1 = OverlayManager_Data(param0);
 
     switch (*param1) {
     case 0:
@@ -204,9 +202,9 @@ static int sub_0208BBC0 (OverlayManager * param0, int * param1)
     return 0;
 }
 
-static int sub_0208BC08 (OverlayManager * param0, int * param1)
+static int sub_0208BC08(OverlayManager *param0, int *param1)
 {
-    UnkStruct_0208BC3C * v0 = OverlayManager_Data(param0);
+    UnkStruct_0208BC3C *v0 = OverlayManager_Data(param0);
 
     if (sub_0202F250() == 1) {
         sub_0202F22C();
@@ -220,7 +218,7 @@ static int sub_0208BC08 (OverlayManager * param0, int * param1)
     return 1;
 }
 
-static BOOL sub_0208BC3C (UnkStruct_0208BC3C * param0, int param1)
+static BOOL sub_0208BC3C(UnkStruct_0208BC3C *param0, int param1)
 {
     switch (param0->unk_00) {
     case 0:
@@ -244,7 +242,7 @@ static BOOL sub_0208BC3C (UnkStruct_0208BC3C * param0, int param1)
     return 0;
 }
 
-static BOOL sub_0208BC8C (UnkStruct_0208BC3C * param0, int param1)
+static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int param1)
 {
     switch (param0->unk_00) {
     case 0:
@@ -255,8 +253,7 @@ static BOOL sub_0208BC8C (UnkStruct_0208BC3C * param0, int param1)
 
         param0->unk_00++;
         break;
-    case 1:
-    {
+    case 1: {
         int v0;
 
         param0->unk_10 = sub_02051D8C(param1, 0x0);
@@ -286,10 +283,8 @@ static BOOL sub_0208BC8C (UnkStruct_0208BC3C * param0, int param1)
         } else {
             param0->unk_00++;
         }
-    }
-    break;
-    case 2:
-    {
+    } break;
+    case 2: {
         sub_0200544C(1, 127);
         sub_02005464(1);
 
@@ -393,7 +388,7 @@ const OverlayManagerTemplate Unk_020F2FDC = {
     0xffffffff,
 };
 
-static const OverlayManagerTemplate * Unk_02100CF0[] = {
+static const OverlayManagerTemplate *Unk_02100CF0[] = {
     &Unk_020F2FCC,
     &Unk_020F302C,
     &Unk_020F301C,
@@ -403,27 +398,31 @@ static const OverlayManagerTemplate * Unk_02100CF0[] = {
     &Unk_020F2FDC,
 };
 
-const OverlayManagerTemplate * sub_0208BE5C (int param0)
+const OverlayManagerTemplate *sub_0208BE5C(int param0)
 {
-    const OverlayManagerTemplate * v0;
+    const OverlayManagerTemplate *v0;
 
     v0 = Unk_02100CF0[param0];
     return v0;
 }
 
-BOOL sub_0208BE68 (UnkStruct_0208C06C * param0)
+BOOL sub_0208BE68(UnkStruct_0208C06C *param0)
 {
-    VarsFlags * v0;
+    VarsFlags *v0;
 
     v0 = SaveData_GetVarsFlags(param0->unk_830);
     return inline_0208BE68(v0, 53);
 }
 
-static BOOL sub_0208BE80 (int param0)
+static BOOL sub_0208BE80(int param0)
 {
     int v0;
     const int v1[] = {
-        97, 99, 100, 101, 102,
+        97,
+        99,
+        100,
+        101,
+        102,
     };
 
     for (v0 = 0; v0 < NELEMS(v1); v0++) {

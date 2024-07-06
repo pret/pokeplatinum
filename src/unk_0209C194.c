@@ -1,25 +1,27 @@
+#include "unk_0209C194.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "field/field_system.h"
-#include "struct_defs/struct_02098C44.h"
 #include "struct_defs/pokemon_summary.h"
+#include "struct_defs/struct_02098C44.h"
 #include "struct_defs/struct_0209C194.h"
 #include "struct_defs/struct_0209C194_1.h"
 
-#include "heap.h"
-#include "save_player.h"
-#include "game_options.h"
-#include "journal.h"
-#include "game_records.h"
-#include "unk_020366A0.h"
+#include "field/field_system.h"
+#include "overlay109/ov109_021D0D80.h"
+#include "overlay109/ov109_021D3D50.h"
+
 #include "field_system.h"
+#include "game_options.h"
+#include "game_records.h"
+#include "heap.h"
+#include "journal.h"
+#include "save_player.h"
+#include "unk_020366A0.h"
 #include "unk_0203D1B8.h"
 #include "unk_020508D4.h"
 #include "unk_0209BDF8.h"
-#include "unk_0209C194.h"
-#include "overlay109/ov109_021D0D80.h"
-#include "overlay109/ov109_021D3D50.h"
 
 FS_EXTERN_OVERLAY(overlay109);
 
@@ -27,19 +29,19 @@ typedef struct {
     int unk_00;
     int unk_04;
     UnkStruct_0209C194_1 unk_08;
-    UnkStruct_0209C194 * unk_28;
-    FieldSystem * fieldSystem;
-    PartyManagementData * unk_30;
-    PokemonSummary * unk_34;
+    UnkStruct_0209C194 *unk_28;
+    FieldSystem *fieldSystem;
+    PartyManagementData *unk_30;
+    PokemonSummary *unk_34;
 } UnkStruct_0209C1EC;
 
-static BOOL(*const Unk_020F951C[6])(UnkStruct_0209C1EC *);
+static BOOL (*const Unk_020F951C[6])(UnkStruct_0209C1EC *);
 static const OverlayManagerTemplate Unk_020F94FC;
 static const OverlayManagerTemplate Unk_020F950C;
 
-UnkStruct_0209C194 * sub_0209C194 (UnkStruct_0209C194_1 * param0, u32 param1)
+UnkStruct_0209C194 *sub_0209C194(UnkStruct_0209C194_1 *param0, u32 param1)
 {
-    UnkStruct_0209C194 * v0;
+    UnkStruct_0209C194 *v0;
 
     v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_0209C194));
     memset(v0, 0, sizeof(UnkStruct_0209C194));
@@ -49,21 +51,21 @@ UnkStruct_0209C194 * sub_0209C194 (UnkStruct_0209C194_1 * param0, u32 param1)
     return v0;
 }
 
-void sub_0209C1D0 (UnkStruct_0209C194 * param0)
+void sub_0209C1D0(UnkStruct_0209C194 *param0)
 {
     sub_0209BE64(param0->unk_34);
     sub_0209BE38(param0->unk_34);
     Heap_FreeToHeap(param0);
 }
 
-BOOL sub_0209C1E8 (UnkStruct_0209C194 * param0)
+BOOL sub_0209C1E8(UnkStruct_0209C194 *param0)
 {
     return param0->unk_10;
 }
 
-void * sub_0209C1EC (FieldSystem * fieldSystem)
+void *sub_0209C1EC(FieldSystem *fieldSystem)
 {
-    UnkStruct_0209C1EC * v0;
+    UnkStruct_0209C1EC *v0;
 
     v0 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0209C1EC));
     memset(v0, 0, sizeof(UnkStruct_0209C1EC));
@@ -80,9 +82,9 @@ void * sub_0209C1EC (FieldSystem * fieldSystem)
     return v0;
 }
 
-BOOL sub_0209C238 (void * param0)
+BOOL sub_0209C238(void *param0)
 {
-    UnkStruct_0209C1EC * v0 = param0;
+    UnkStruct_0209C1EC *v0 = param0;
 
     if (Unk_020F951C[v0->unk_00](v0) == 1) {
         Heap_FreeToHeap(v0);
@@ -92,7 +94,7 @@ BOOL sub_0209C238 (void * param0)
     return 0;
 }
 
-static BOOL sub_0209C25C (UnkStruct_0209C1EC * param0)
+static BOOL sub_0209C25C(UnkStruct_0209C1EC *param0)
 {
     param0->unk_28 = sub_0209C194(&param0->unk_08, 11);
     param0->unk_00 = 1;
@@ -100,7 +102,7 @@ static BOOL sub_0209C25C (UnkStruct_0209C1EC * param0)
     return 0;
 }
 
-static BOOL sub_0209C280 (UnkStruct_0209C1EC * param0)
+static BOOL sub_0209C280(UnkStruct_0209C1EC *param0)
 {
     if (sub_020509B4(param0->fieldSystem) == 0) {
         if (sub_0209C1E8(param0->unk_28) == 0) {
@@ -117,7 +119,7 @@ static BOOL sub_0209C280 (UnkStruct_0209C1EC * param0)
     return 0;
 }
 
-static BOOL sub_0209C2C0 (UnkStruct_0209C1EC * param0)
+static BOOL sub_0209C2C0(UnkStruct_0209C1EC *param0)
 {
     if (sub_020509B4(param0->fieldSystem) == 0) {
         int v0 = param0->unk_30->unk_22;
@@ -141,7 +143,7 @@ static BOOL sub_0209C2C0 (UnkStruct_0209C1EC * param0)
     return 0;
 }
 
-static BOOL sub_0209C324 (UnkStruct_0209C1EC * param0)
+static BOOL sub_0209C324(UnkStruct_0209C1EC *param0)
 {
     if (sub_020509B4(param0->fieldSystem) == 0) {
         Heap_FreeToHeap(param0->unk_34);
@@ -152,7 +154,7 @@ static BOOL sub_0209C324 (UnkStruct_0209C1EC * param0)
     return 0;
 }
 
-static BOOL sub_0209C34C (UnkStruct_0209C1EC * param0)
+static BOOL sub_0209C34C(UnkStruct_0209C1EC *param0)
 {
     if (sub_020509B4(param0->fieldSystem) == 0) {
         param0->unk_00 = 5;
@@ -161,13 +163,13 @@ static BOOL sub_0209C34C (UnkStruct_0209C1EC * param0)
     return 0;
 }
 
-static BOOL sub_0209C364 (UnkStruct_0209C1EC * param0)
+static BOOL sub_0209C364(UnkStruct_0209C1EC *param0)
 {
     sub_0209C1D0(param0->unk_28);
     return 1;
 }
 
-static BOOL(*const Unk_020F951C[6])(UnkStruct_0209C1EC *) = {
+static BOOL (*const Unk_020F951C[6])(UnkStruct_0209C1EC *) = {
     sub_0209C25C,
     sub_0209C280,
     sub_0209C2C0,
@@ -175,7 +177,6 @@ static BOOL(*const Unk_020F951C[6])(UnkStruct_0209C1EC *) = {
     sub_0209C34C,
     sub_0209C364,
 };
-
 
 static const OverlayManagerTemplate Unk_020F94FC = {
     ov109_021D3D50,

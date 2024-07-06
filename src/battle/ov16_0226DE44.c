@@ -1,3 +1,5 @@
+#include "battle/ov16_0226DE44.h"
+
 #include <nitro.h>
 #include <string.h>
 
@@ -5,21 +7,19 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "sys_task_manager.h"
-
-#include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/sprite_template.h"
+#include "struct_defs/struct_0200D0F4.h"
 
-#include "narc.h"
-#include "unk_0200C6E4.h"
-#include "sys_task.h"
 #include "heap.h"
+#include "narc.h"
+#include "sys_task.h"
+#include "sys_task_manager.h"
+#include "unk_0200C6E4.h"
 #include "unk_0201D15C.h"
-#include "battle/ov16_0226DE44.h"
 
 typedef struct UnkStruct_ov16_0226DEEC_t {
-    CellActorData * unk_00;
-    SysTask * unk_04;
+    CellActorData *unk_00;
+    SysTask *unk_04;
     int unk_08;
     int unk_0C;
     int unk_10;
@@ -32,14 +32,14 @@ typedef struct UnkStruct_ov16_0226DEEC_t {
     u8 unk_1E;
 } UnkStruct_ov16_0226DEEC;
 
-void ov16_0226DE44(SpriteRenderer * param0, SpriteGfxHandler * param1, u32 param2, PaletteData * param3, u32 param4, u32 param5, u32 param6, u32 param7);
-void ov16_0226DEC4(SpriteGfxHandler * param0, u32 param1, u32 param2, u32 param3, u32 param4);
-UnkStruct_ov16_0226DEEC * ov16_0226DEEC(SpriteRenderer * param0, SpriteGfxHandler * param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8);
-void ov16_0226DF68(UnkStruct_ov16_0226DEEC * param0);
-void ov16_0226DFB0(UnkStruct_ov16_0226DEEC * param0, int param1, int param2);
-void ov16_0226DFBC(UnkStruct_ov16_0226DEEC * param0);
-static void ov16_0226DFD8(SysTask * param0, void * param1);
-static void ov16_0226E13C(UnkStruct_ov16_0226DEEC * param0);
+void ov16_0226DE44(SpriteRenderer *param0, SpriteGfxHandler *param1, u32 param2, PaletteData *param3, u32 param4, u32 param5, u32 param6, u32 param7);
+void ov16_0226DEC4(SpriteGfxHandler *param0, u32 param1, u32 param2, u32 param3, u32 param4);
+UnkStruct_ov16_0226DEEC *ov16_0226DEEC(SpriteRenderer *param0, SpriteGfxHandler *param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8);
+void ov16_0226DF68(UnkStruct_ov16_0226DEEC *param0);
+void ov16_0226DFB0(UnkStruct_ov16_0226DEEC *param0, int param1, int param2);
+void ov16_0226DFBC(UnkStruct_ov16_0226DEEC *param0);
+static void ov16_0226DFD8(SysTask *param0, void *param1);
+static void ov16_0226E13C(UnkStruct_ov16_0226DEEC *param0);
 
 static const SpriteTemplate Unk_ov16_02270AD8 = {
     0x0,
@@ -49,14 +49,14 @@ static const SpriteTemplate Unk_ov16_02270AD8 = {
     0x0,
     0x0,
     NNS_G2D_VRAM_TYPE_2DSUB,
-    {0x0, 0x0, 0x0, 0x0, 0xFFFFFFFF, 0xFFFFFFFF},
+    { 0x0, 0x0, 0x0, 0x0, 0xFFFFFFFF, 0xFFFFFFFF },
     0x0,
     0x0
 };
 
-void ov16_0226DE44 (SpriteRenderer * param0, SpriteGfxHandler * param1, u32 param2, PaletteData * param3, u32 param4, u32 param5, u32 param6, u32 param7)
+void ov16_0226DE44(SpriteRenderer *param0, SpriteGfxHandler *param1, u32 param2, PaletteData *param3, u32 param4, u32 param5, u32 param6, u32 param7)
 {
-    NARC * v0 = NARC_ctor(NARC_INDEX_GRAPHIC__EV_POKESELECT, param2);
+    NARC *v0 = NARC_ctor(NARC_INDEX_GRAPHIC__EV_POKESELECT, param2);
 
     SpriteRenderer_LoadPalette(param3, 3, param0, param1, v0, 11, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, param5);
     SpriteRenderer_LoadCharResObjFromOpenNarc(param0, param1, v0, 10, 0, NNS_G2D_VRAM_TYPE_2DSUB, param4);
@@ -65,7 +65,7 @@ void ov16_0226DE44 (SpriteRenderer * param0, SpriteGfxHandler * param1, u32 para
     NARC_dtor(v0);
 }
 
-void ov16_0226DEC4 (SpriteGfxHandler * param0, u32 param1, u32 param2, u32 param3, u32 param4)
+void ov16_0226DEC4(SpriteGfxHandler *param0, u32 param1, u32 param2, u32 param3, u32 param4)
 {
     SpriteGfxHandler_UnloadCharObjById(param0, param1);
     SpriteGfxHandler_UnloadPlttObjById(param0, param2);
@@ -73,9 +73,9 @@ void ov16_0226DEC4 (SpriteGfxHandler * param0, u32 param1, u32 param2, u32 param
     SpriteGfxHandler_UnloadAnimObjById(param0, param4);
 }
 
-UnkStruct_ov16_0226DEEC * ov16_0226DEEC (SpriteRenderer * param0, SpriteGfxHandler * param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)
+UnkStruct_ov16_0226DEEC *ov16_0226DEEC(SpriteRenderer *param0, SpriteGfxHandler *param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)
 {
-    UnkStruct_ov16_0226DEEC * v0;
+    UnkStruct_ov16_0226DEEC *v0;
     SpriteTemplate v1;
 
     v1 = Unk_ov16_02270AD8;
@@ -99,14 +99,14 @@ UnkStruct_ov16_0226DEEC * ov16_0226DEEC (SpriteRenderer * param0, SpriteGfxHandl
     return v0;
 }
 
-void ov16_0226DF68 (UnkStruct_ov16_0226DEEC * param0)
+void ov16_0226DF68(UnkStruct_ov16_0226DEEC *param0)
 {
     sub_0200D0F4(param0->unk_00);
     SysTask_Done(param0->unk_04);
     Heap_FreeToHeap(param0);
 }
 
-void ov16_0226DF80 (UnkStruct_ov16_0226DEEC * param0, int param1, int param2, fx32 param3)
+void ov16_0226DF80(UnkStruct_ov16_0226DEEC *param0, int param1, int param2, fx32 param3)
 {
     ov16_0226E13C(param0);
 
@@ -118,30 +118,30 @@ void ov16_0226DF80 (UnkStruct_ov16_0226DEEC * param0, int param1, int param2, fx
     SpriteActor_EnableObject(param0->unk_00, 1);
 }
 
-void ov16_0226DFB0 (UnkStruct_ov16_0226DEEC * param0, int param1, int param2)
+void ov16_0226DFB0(UnkStruct_ov16_0226DEEC *param0, int param1, int param2)
 {
     ov16_0226DF80(param0, param1, param2, (192 << FX32_SHIFT));
 }
 
-void ov16_0226DFBC (UnkStruct_ov16_0226DEEC * param0)
+void ov16_0226DFBC(UnkStruct_ov16_0226DEEC *param0)
 {
     SpriteActor_EnableObject(param0->unk_00, 0);
     ov16_0226E13C(param0);
 }
 
-void ov16_0226DFD0 (UnkStruct_ov16_0226DEEC * param0, int param1)
+void ov16_0226DFD0(UnkStruct_ov16_0226DEEC *param0, int param1)
 {
     param0->unk_18 = param1;
 }
 
-BOOL ov16_0226DFD4 (UnkStruct_ov16_0226DEEC * param0)
+BOOL ov16_0226DFD4(UnkStruct_ov16_0226DEEC *param0)
 {
     return param0->unk_1B;
 }
 
-static void ov16_0226DFD8 (SysTask * param0, void * param1)
+static void ov16_0226DFD8(SysTask *param0, void *param1)
 {
-    UnkStruct_ov16_0226DEEC * v0 = param1;
+    UnkStruct_ov16_0226DEEC *v0 = param1;
 
     if (v0->unk_1B == 1) {
         v0->unk_1B = 0;
@@ -220,7 +220,7 @@ static void ov16_0226DFD8 (SysTask * param0, void * param1)
     sub_0200D330(v0->unk_00);
 }
 
-static void ov16_0226E13C (UnkStruct_ov16_0226DEEC * param0)
+static void ov16_0226E13C(UnkStruct_ov16_0226DEEC *param0)
 {
     param0->unk_10 = 0;
     param0->unk_1C = 0;

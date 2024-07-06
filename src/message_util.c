@@ -1,18 +1,18 @@
+#include "message_util.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "message.h"
-#include "strbuf.h"
-
-#include "message.h"
-#include "message_util.h"
-#include "string_template.h"
-#include "strbuf.h"
 #include "constants/heap.h"
 #include "constants/narc.h"
+
 #include "text/pl_msg.naix"
 
-Strbuf* MessageUtil_ExpandedStrbuf (StringTemplate *template, MessageLoader *loader, u32 entryID, u32 heapID)
+#include "message.h"
+#include "strbuf.h"
+#include "string_template.h"
+
+Strbuf *MessageUtil_ExpandedStrbuf(StringTemplate *template, MessageLoader *loader, u32 entryID, u32 heapID)
 {
     Strbuf *ret = NULL;
     Strbuf *buf = Strbuf_Init(EXPANDED_STRING_SIZE, HEAP_ID_SYSTEM);
@@ -32,7 +32,7 @@ Strbuf* MessageUtil_ExpandedStrbuf (StringTemplate *template, MessageLoader *loa
     return ret;
 }
 
-Strbuf* MessageUtil_MoveName (u32 moveID, u32 heapID)
+Strbuf *MessageUtil_MoveName(u32 moveID, u32 heapID)
 {
     MessageLoader *loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_move_names, heapID);
 
@@ -50,7 +50,7 @@ Strbuf* MessageUtil_MoveName (u32 moveID, u32 heapID)
     return NULL;
 }
 
-Strbuf* MessageUtil_SpeciesName (u32 species, u32 heapID)
+Strbuf *MessageUtil_SpeciesName(u32 species, u32 heapID)
 {
     MessageLoader *loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_species_names, heapID);
 

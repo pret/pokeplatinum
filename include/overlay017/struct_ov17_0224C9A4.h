@@ -6,8 +6,8 @@
 struct UnkStruct_ov17_0224DF54_t;
 
 typedef struct {
-    struct UnkStruct_ov17_0224DF54_t * unk_00;
-    SysTask * unk_04;
+    struct UnkStruct_ov17_0224DF54_t *unk_00;
+    SysTask *unk_04;
     u16 unk_08;
     u8 unk_0A;
     u8 unk_0B;

@@ -1,65 +1,64 @@
+#include "constants/pokemon.h"
+
 #include <nitro.h>
 #include <string.h>
-
-#include "consts/abilities.h"
-#include "consts/gender.h"
 
 #include "constants/charcode.h"
 #include "constants/heap.h"
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "constants/narc.h"
-#include "constants/pokemon.h"
 #include "constants/sound.h"
 #include "constants/species.h"
+#include "consts/abilities.h"
+#include "consts/gender.h"
 
-#include "inlines.h"
-
+#include "struct_decls/pokemon_animation_sys_decl.h"
+#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_defs/chatot_cry.h"
 #include "struct_decls/struct_party_decl.h"
-
-#include "struct_defs/sprite_animation_frame.h"
+#include "struct_defs/archived_poke_sprite_data.h"
 #include "struct_defs/archived_sprite.h"
+#include "struct_defs/chatot_cry.h"
+#include "struct_defs/poke_animation_settings.h"
+#include "struct_defs/sprite_animation_frame.h"
+#include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0202818C.h"
 #include "struct_defs/struct_0202CA28.h"
-#include "struct_defs/archived_poke_sprite_data.h"
-#include "struct_defs/poke_animation_settings.h"
 #include "struct_defs/struct_02078B40.h"
-#include "overlay005/struct_ov5_021DE5D0.h"
-#include "struct_defs/sprite_template.h"
 
+#include "overlay005/struct_ov5_021DE5D0.h"
+
+#include "cell_actor.h"
+#include "flags.h"
+#include "heap.h"
+#include "inlines.h"
+#include "item.h"
+#include "message.h"
+#include "message_util.h"
+#include "move_table.h"
+#include "narc.h"
+#include "party.h"
+#include "pokemon.h"
+#include "rtc.h"
+#include "strbuf.h"
+#include "trainer_data.h"
+#include "trainer_info.h"
 #include "unk_020021B0.h"
 #include "unk_02005474.h"
 #include "unk_02006224.h"
-#include "narc.h"
-#include "message.h"
-#include "message_util.h"
 #include "unk_0200C6E4.h"
-#include "rtc.h"
 #include "unk_02015F84.h"
 #include "unk_02017038.h"
-#include "heap.h"
 #include "unk_0201D15C.h"
-#include "cell_actor.h"
-#include "strbuf.h"
-#include "trainer_info.h"
 #include "unk_02028124.h"
 #include "unk_0202C9F4.h"
-#include "pokemon.h"
-#include "move_table.h"
-#include "trainer_data.h"
-#include "party.h"
-#include "item.h"
 #include "unk_02092494.h"
-#include "flags.h"
 
 #define FATEFUL_ENCOUNTER_LOCATION 3002
 
@@ -167,7 +166,7 @@ int Pokemon_StructSize(void)
 
 Pokemon *Pokemon_New(u32 heapID)
 {
-    Pokemon * mon = Heap_AllocFromHeap(heapID, sizeof(Pokemon));
+    Pokemon *mon = Heap_AllocFromHeap(heapID, sizeof(Pokemon));
     Pokemon_Init(mon);
     return mon;
 }
@@ -436,7 +435,7 @@ void Pokemon_CalcStats(Pokemon *mon)
     int monCurrentHp;
     int monHpIV, monAtkIV, monDefIV, monSpeedIV, monSpAtkIV, monSpDefIV;
     int monHpEV, monAtkEV, monDefEV, monSpeedEV, monSpAtkEV, monSpDefEV;
-    
+
     BOOL reencrypt = Pokemon_EnterDecryptionContext(mon);
 
     int monLevel = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
@@ -456,7 +455,7 @@ void Pokemon_CalcStats(Pokemon *mon)
     monSpAtkEV = Pokemon_GetValue(mon, MON_DATA_SPATK_EV, NULL);
     monSpDefIV = Pokemon_GetValue(mon, MON_DATA_SPDEF_IV, NULL);
     monSpDefEV = Pokemon_GetValue(mon, MON_DATA_SPDEF_EV, NULL);
-    
+
     int monForm = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
     int monSpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     PokemonPersonalData *monPersonalData = Heap_AllocFromHeap(0, sizeof(PokemonPersonalData));
@@ -630,7 +629,7 @@ static inline u32 GetRibbon(u64 mask, enum PokemonDataParam param, enum PokemonD
     return (mask & (bit << (param - ribbonStart))) != 0;
 }
 
-static u32 BoxPokemon_GetDataInternal (BoxPokemon *boxMon, enum PokemonDataParam param, void *dest)
+static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam param, void *dest)
 {
     u32 result = 0;
 
@@ -682,7 +681,7 @@ static u32 BoxPokemon_GetDataInternal (BoxPokemon *boxMon, enum PokemonDataParam
         if (result != SPECIES_NONE && (monDataBlockB->isEgg || boxMon->invalidData)) {
             result = SPECIES_EGG;
         }
-        
+
         break;
 
     case MON_DATA_LEVEL:
@@ -1080,7 +1079,7 @@ static u32 BoxPokemon_GetDataInternal (BoxPokemon *boxMon, enum PokemonDataParam
 
     case MON_DATA_NIDORAN_HAS_NICKNAME:
         if ((monDataBlockA->species == SPECIES_NIDORAN_F || monDataBlockA->species == SPECIES_NIDORAN_M)
-                && monDataBlockB->hasNickname == FALSE) {
+            && monDataBlockB->hasNickname == FALSE) {
             result = FALSE;
         } else {
             result = TRUE;
@@ -1265,7 +1264,7 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
     case MON_DATA_FRIENDSHIP:
         monDataBlockA->friendship = *u8Value;
         break;
-        
+
     case MON_DATA_ABILITY:
         monDataBlockA->ability = *u8Value;
         break;
@@ -2290,31 +2289,31 @@ u8 Pokemon_GetNatureOf(u32 monPersonality)
 
 // TODO enum here?
 static const s8 sNatureStatAffinities[][5] = {
-    {0, 0, 0, 0, 0},
-    {1, -1, 0, 0, 0},
-    {1, 0, -1, 0, 0},
-    {1, 0, 0, -1, 0},
-    {1, 0, 0, 0, -1},
-    {-1, 1, 0, 0, 0},
-    {0, 0, 0, 0, 0},
-    {0, 1, -1, 0, 0},
-    {0, 1, 0, -1, 0},
-    {0, 1, 0, 0, -1},
-    {-1, 0, 1, 0, 0},
-    {0, -1, 1, 0, 0},
-    {0, 0, 0, 0, 0},
-    {0, 0, 1, -1, 0},
-    {0, 0, 1, 0, -1},
-    {-1, 0, 0, 1, 0},
-    {0, -1, 0, 1, 0},
-    {0, 0, -1, 1, 0},
-    {0, 0, 0, 0, 0},
-    {0, 0, 0, 1, -1},
-    {-1, 0, 0, 0, 1},
-    {0, -1, 0, 0, 1},
-    {0, 0, -1, 0, 1},
-    {0, 0, 0, -1, 1},
-    {0, 0, 0, 0, 0}
+    { 0, 0, 0, 0, 0 },
+    { 1, -1, 0, 0, 0 },
+    { 1, 0, -1, 0, 0 },
+    { 1, 0, 0, -1, 0 },
+    { 1, 0, 0, 0, -1 },
+    { -1, 1, 0, 0, 0 },
+    { 0, 0, 0, 0, 0 },
+    { 0, 1, -1, 0, 0 },
+    { 0, 1, 0, -1, 0 },
+    { 0, 1, 0, 0, -1 },
+    { -1, 0, 1, 0, 0 },
+    { 0, -1, 1, 0, 0 },
+    { 0, 0, 0, 0, 0 },
+    { 0, 0, 1, -1, 0 },
+    { 0, 0, 1, 0, -1 },
+    { -1, 0, 0, 1, 0 },
+    { 0, -1, 0, 1, 0 },
+    { 0, 0, -1, 1, 0 },
+    { 0, 0, 0, 0, 0 },
+    { 0, 0, 0, 1, -1 },
+    { -1, 0, 0, 0, 1 },
+    { 0, -1, 0, 0, 1 },
+    { 0, 0, -1, 0, 1 },
+    { 0, 0, 0, -1, 1 },
+    { 0, 0, 0, 0, 0 }
 };
 
 static u16 Pokemon_GetNatureStatValue(u8 monNature, u16 monStatValue, u8 statType)
@@ -2347,16 +2346,16 @@ s8 Pokemon_GetStatAffinityOf(u8 monNature, u8 statType)
 }
 
 static const s8 Unk_020F05A0[][3] = {
-    {5, 3, 2}, // ??? in battle overlay
-    {5, 3, 2}, // unused?
-    {1, 1, 0}, // unused?
-    {3, 2, 1}, // ??? in battle overlay
-    {1, 1, 0}, // ??? in unk_02084B70.c
-    {1, 1, 1}, // walking 128 steps
-    {-1, -1, -1}, // fainting (opponent level difference < 30)
-    {-5, -5, -10}, // letting poison tick mon to 1HP
-    {-5, -5, -10}, // fainting (opponent level difference >= 30)
-    {3, 2, 1} // ??? in unk_020933F8.c
+    { 5, 3, 2 }, // ??? in battle overlay
+    { 5, 3, 2 }, // unused?
+    { 1, 1, 0 }, // unused?
+    { 3, 2, 1 }, // ??? in battle overlay
+    { 1, 1, 0 }, // ??? in unk_02084B70.c
+    { 1, 1, 1 }, // walking 128 steps
+    { -1, -1, -1 }, // fainting (opponent level difference < 30)
+    { -5, -5, -10 }, // letting poison tick mon to 1HP
+    { -5, -5, -10 }, // fainting (opponent level difference >= 30)
+    { 3, 2, 1 } // ??? in unk_020933F8.c
 };
 
 void Pokemon_UpdateFriendship(Pokemon *mon, u8 param1, u16 param2)
@@ -2443,7 +2442,7 @@ u8 Pokemon_GetGenderOf(u16 monSpecies, u32 monPersonality)
 }
 
 u8 PokemonPersonalData_GetGenderOf(PokemonPersonalData *monPersonalData, u16 unused_monSpecies, u32 monPersonality)
-{   
+{
     u8 monGender = PokemonPersonalData_GetValue(monPersonalData, MON_DATA_PERSONAL_GENDER);
 
     switch (monGender) {
@@ -2477,7 +2476,8 @@ static u8 BoxPokemon_IsShiny(BoxPokemon *boxMon)
     return Pokemon_IsPersonalityShiny(monOTID, monPersonality);
 }
 
-static inline BOOL Pokemon_InlineIsPersonalityShiny(u32 monOTID, u32 monPersonality) {
+static inline BOOL Pokemon_InlineIsPersonalityShiny(u32 monOTID, u32 monPersonality)
+{
     return (((monOTID & 0xFFFF0000) >> 16) ^ (monOTID & 0xFFFF) ^ ((monPersonality & 0xFFFF0000) >> 16) ^ (monPersonality & 0xFFFF)) < 8;
 }
 
@@ -2602,7 +2602,7 @@ void BuildArchivedPokemonSprite(ArchivedSprite *sprite, u16 species, u8 gender, 
         sprite->character = 96 + (face / 2) + form * 2;
         sprite->palette = 190 + shiny + form * 2;
         break;
-        
+
     case SPECIES_CASTFORM:
         sprite->archive = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
         sprite->character = 64 + (face * 2) + form;
@@ -2742,13 +2742,13 @@ u8 Pokemon_SanitizeFormId(u16 monSpecies, u8 monForm)
 /**
  * @brief Build an ArchivedSprite for a Pokemon sprite, preferring sprites from
  * Diamond/Pearl over Platinum.
- * 
+ *
  * This routine will still use sprites from Platinum for Pokemon variants which
  * did not exist in Diamond/Pearl, namely:
  * - Giratina-Origin
  * - Shaymin-Sky
  * - Rotom appliances
- * 
+ *
  * @param sprite        Pointer to the sprite structure to be populated
  * @param species       The Pokemon's species
  * @param gender        The Pokemon's gender
@@ -3000,7 +3000,7 @@ u8 LoadPokemonSpriteYOffset(u16 species, u8 gender, u8 face, u8 form, u32 person
         break;
     }
 
-    u8 result;    
+    u8 result;
     NARC_ReadWholeMemberByIndexPair(&result, narcIndex, memberIndex);
     return result;
 }
@@ -3127,7 +3127,7 @@ static const SpriteTemplate Unk_020F05E4 = {
     0x0,
     0x0,
     NNS_G2D_VRAM_TYPE_2DMAIN,
-    {0x4E2F, 0x4E2A, 0x4E27, 0x4E27, 0xffffffff, 0xffffffff},
+    { 0x4E2F, 0x4E2A, 0x4E27, 0x4E27, 0xffffffff, 0xffffffff },
     0x2,
     0x1
 };
@@ -3262,7 +3262,7 @@ BOOL Pokemon_ShouldLevelUp(Pokemon *mon)
 u16 sub_02076B94(Party *party, Pokemon *mon, u8 evoTypeList, u16 evoParam, int *evoTypeResult)
 {
     u16 targetSpecies = SPECIES_NONE;
-    
+
     u16 monSpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     u16 monHeldItem = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
     u32 monPersonality = Pokemon_GetValue(mon, MON_DATA_PERSONALITY, NULL);
@@ -3270,7 +3270,7 @@ u16 sub_02076B94(Party *party, Pokemon *mon, u8 evoTypeList, u16 evoParam, int *
 
     int i;
     u16 monFriendship;
-    
+
     u16 monPersonalityUpper = (monPersonality & 0xffff0000) >> 16;
     u8 itemHoldEffect = Item_LoadParam(monHeldItem, ITEM_PARAM_HOLD_EFFECT, 0);
 
@@ -3296,31 +3296,31 @@ u16 sub_02076B94(Party *party, Pokemon *mon, u8 evoTypeList, u16 evoParam, int *
 
         for (i = 0; i < 7; i++) {
             switch (monEvolutionData->methods[i].type) {
-            case 1:  // high friendship
+            case 1: // high friendship
                 if (220 <= monFriendship) {
                     targetSpecies = monEvolutionData->methods[i].targetSpecies;
                     evoTypeResult[0] = 1;
                 }
                 break;
-            case 2:  // high friendship && daytime
+            case 2: // high friendship && daytime
                 if (IsNight() == 0 && 220 <= monFriendship) {
                     targetSpecies = monEvolutionData->methods[i].targetSpecies;
                     evoTypeResult[0] = 2;
                 }
                 break;
-            case 3:  // high friendship && nighttime
+            case 3: // high friendship && nighttime
                 if (IsNight() == 1 && 220 <= monFriendship) {
                     targetSpecies = monEvolutionData->methods[i].targetSpecies;
                     evoTypeResult[0] = 3;
                 }
                 break;
-            case 4:  // above level param
+            case 4: // above level param
                 if (monEvolutionData->methods[i].param <= monLevel) {
                     targetSpecies = monEvolutionData->methods[i].targetSpecies;
                     evoTypeResult[0] = 4;
                 }
                 break;
-            case 8:  // tyrogue evo to hitmonlee: above level param && attack > defense
+            case 8: // tyrogue evo to hitmonlee: above level param && attack > defense
                 if (monEvolutionData->methods[i].param <= monLevel) {
                     if (Pokemon_GetValue(mon, MON_DATA_ATK, NULL) > Pokemon_GetValue(mon, MON_DATA_DEF, NULL)) {
                         targetSpecies = monEvolutionData->methods[i].targetSpecies;
@@ -3328,7 +3328,7 @@ u16 sub_02076B94(Party *party, Pokemon *mon, u8 evoTypeList, u16 evoParam, int *
                     }
                 }
                 break;
-            case 9:  // tyrogue evo to hitmontop: above level param && attack == defense
+            case 9: // tyrogue evo to hitmontop: above level param && attack == defense
                 if (monEvolutionData->methods[i].param <= monLevel) {
                     if (Pokemon_GetValue(mon, MON_DATA_ATK, NULL) == Pokemon_GetValue(mon, MON_DATA_DEF, NULL)) {
                         targetSpecies = monEvolutionData->methods[i].targetSpecies;
@@ -3336,7 +3336,7 @@ u16 sub_02076B94(Party *party, Pokemon *mon, u8 evoTypeList, u16 evoParam, int *
                     }
                 }
                 break;
-            case 10:  // tyrogue evo to hitmonchan: above level param && attack < defense
+            case 10: // tyrogue evo to hitmonchan: above level param && attack < defense
                 if (monEvolutionData->methods[i].param <= monLevel) {
                     if (Pokemon_GetValue(mon, MON_DATA_ATK, NULL) < Pokemon_GetValue(mon, MON_DATA_DEF, NULL)) {
                         targetSpecies = monEvolutionData->methods[i].targetSpecies;
@@ -3344,7 +3344,7 @@ u16 sub_02076B94(Party *party, Pokemon *mon, u8 evoTypeList, u16 evoParam, int *
                     }
                 }
                 break;
-            case 11:  // wurmple evo to silcoon: above level param && upper16 of personality % 10 < 5
+            case 11: // wurmple evo to silcoon: above level param && upper16 of personality % 10 < 5
                 if (monEvolutionData->methods[i].param <= monLevel) {
                     if (monPersonalityUpper % 10 < 5) {
                         targetSpecies = monEvolutionData->methods[i].targetSpecies;
@@ -3352,7 +3352,7 @@ u16 sub_02076B94(Party *party, Pokemon *mon, u8 evoTypeList, u16 evoParam, int *
                     }
                 }
                 break;
-            case 12:  // wurmple evo to cascoon: above level param && upper16 of personality % 10 >= 5
+            case 12: // wurmple evo to cascoon: above level param && upper16 of personality % 10 >= 5
                 if (monEvolutionData->methods[i].param <= monLevel) {
                     if (monPersonalityUpper % 10 >= 5) {
                         targetSpecies = monEvolutionData->methods[i].targetSpecies;
@@ -3360,40 +3360,40 @@ u16 sub_02076B94(Party *party, Pokemon *mon, u8 evoTypeList, u16 evoParam, int *
                     }
                 }
                 break;
-            case 13:  // nincada evo to ninjask: above level param
+            case 13: // nincada evo to ninjask: above level param
                 if (monEvolutionData->methods[i].param <= monLevel) {
                     targetSpecies = monEvolutionData->methods[i].targetSpecies;
                     evoTypeResult[0] = 13;
                 }
                 break;
-            case 14:  // nincada evo to shedinja: ???
+            case 14: // nincada evo to shedinja: ???
                 evoTypeResult[0] = 14;
                 break;
-            case 15:  // feebas evo: beauty > param
+            case 15: // feebas evo: beauty > param
                 if (monEvolutionData->methods[i].param <= monBeauty) {
                     targetSpecies = monEvolutionData->methods[i].targetSpecies;
                     evoTypeResult[0] = 15;
                 }
                 break;
-            case 18:  // happiny evo: hold param && daytime
+            case 18: // happiny evo: hold param && daytime
                 if (IsNight() == 0 && monEvolutionData->methods[i].param == monHeldItem) {
                     targetSpecies = monEvolutionData->methods[i].targetSpecies;
                     evoTypeResult[0] = 18;
                 }
                 break;
-            case 19:  // sneasel and gligar evo: hold param && nighttime
+            case 19: // sneasel and gligar evo: hold param && nighttime
                 if (IsNight() == 1 && monEvolutionData->methods[i].param == monHeldItem) {
                     targetSpecies = monEvolutionData->methods[i].targetSpecies;
                     evoTypeResult[0] = 19;
                 }
                 break;
-            case 20:  // lickitung, tangela etc. evo: after param learned
+            case 20: // lickitung, tangela etc. evo: after param learned
                 if (Pokemon_HasMove(mon, monEvolutionData->methods[i].param) == 1) {
                     targetSpecies = monEvolutionData->methods[i].targetSpecies;
                     evoTypeResult[0] = 20;
                 }
                 break;
-            case 21:  // mantyke evo: have param in party
+            case 21: // mantyke evo: have param in party
                 if (party != NULL) {
                     if (Party_HasSpecies(party, monEvolutionData->methods[i].param) == 1) {
                         targetSpecies = monEvolutionData->methods[i].targetSpecies;
@@ -3401,31 +3401,31 @@ u16 sub_02076B94(Party *party, Pokemon *mon, u8 evoTypeList, u16 evoParam, int *
                     }
                 }
                 break;
-            case 22:  // burmy evo to mothim: above level param && male
+            case 22: // burmy evo to mothim: above level param && male
                 if (Pokemon_GetValue(mon, MON_DATA_GENDER, NULL) == 0 && monEvolutionData->methods[i].param <= monLevel) {
                     targetSpecies = monEvolutionData->methods[i].targetSpecies;
                     evoTypeResult[0] = 22;
                 }
                 break;
-            case 23:  // burmy evo to wormadam, combee evo to vespiquen: above level param && female
+            case 23: // burmy evo to wormadam, combee evo to vespiquen: above level param && female
                 if (Pokemon_GetValue(mon, MON_DATA_GENDER, NULL) == 1 && monEvolutionData->methods[i].param <= monLevel) {
                     targetSpecies = monEvolutionData->methods[i].targetSpecies;
                     evoTypeResult[0] = 23;
                 }
                 break;
-            case 24:  // magneton and nosepass evo: custom check
+            case 24: // magneton and nosepass evo: custom check
                 if (monEvolutionData->methods[i].type == evoParam) {
                     targetSpecies = monEvolutionData->methods[i].targetSpecies;
                     evoTypeResult[0] = 24;
                 }
                 break;
-            case 25:  // eevee evo to leafeon: custom check
+            case 25: // eevee evo to leafeon: custom check
                 if (monEvolutionData->methods[i].type == evoParam) {
                     targetSpecies = monEvolutionData->methods[i].targetSpecies;
                     evoTypeResult[0] = 25;
                 }
                 break;
-            case 26:  // eevee evo to glaceon: custom check
+            case 26: // eevee evo to glaceon: custom check
                 if (monEvolutionData->methods[i].type == evoParam) {
                     targetSpecies = monEvolutionData->methods[i].targetSpecies;
                     evoTypeResult[0] = 26;
@@ -3441,11 +3441,11 @@ u16 sub_02076B94(Party *party, Pokemon *mon, u8 evoTypeList, u16 evoParam, int *
     case 1:
         for (i = 0; i < 7; i++) {
             switch (monEvolutionData->methods[i].type) {
-            case 5:  // kadabra etc. evo: trade
+            case 5: // kadabra etc. evo: trade
                 targetSpecies = monEvolutionData->methods[i].targetSpecies;
                 evoTypeResult[0] = 5;
                 break;
-            case 6:  // poliwhirl evo to politoed etc.: trade holding param
+            case 6: // poliwhirl evo to politoed etc.: trade holding param
                 if (monEvolutionData->methods[i].param == monHeldItem) {
                     targetSpecies = monEvolutionData->methods[i].targetSpecies;
                     evoTypeResult[0] = 6;
@@ -3532,7 +3532,7 @@ static void BoxPokemon_SetDefaultMoves(BoxPokemon *boxMon)
     u16 *monLevelUpMoves = Heap_AllocFromHeap(0, 44);
 
     reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
-    
+
     u16 monSpecies = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, 0);
     int monForm = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, 0);
     u8 monLevel = BoxPokemon_GetLevel(boxMon);
@@ -3593,7 +3593,7 @@ static u16 BoxPokemon_AddMove(BoxPokemon *boxMon, u16 moveID)
     return result;
 }
 
-void Pokemon_ReplaceMove (Pokemon *mon, u16 moveID)
+void Pokemon_ReplaceMove(Pokemon *mon, u16 moveID)
 {
     BoxPokemon *boxMon = Pokemon_GetBoxPokemon(mon);
     BoxPokemon_ReplaceMove(boxMon, moveID);
@@ -3602,7 +3602,7 @@ void Pokemon_ReplaceMove (Pokemon *mon, u16 moveID)
 static void BoxPokemon_ReplaceMove(BoxPokemon *boxMon, u16 moveID)
 {
     BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
-    
+
     u16 moveIDs[4];
     u8 movePPs[4];
     u8 movePPUps[4];
@@ -3954,7 +3954,7 @@ void Party_UpdatePokerusStatus(Party *party, s32 param1)
 
     for (int i = 0; i < currentPartyCount; i++) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
-        
+
         if (Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL)) {
             u8 monPokerus = Pokemon_GetValue(mon, MON_DATA_POKERUS, NULL);
 
@@ -4201,13 +4201,13 @@ BOOL Pokemon_CanShayminSkyForm(Pokemon *mon)
     RTCTime rtcTime;
     GetCurrentTime(&rtcTime);
 
-    return (monSpecies == SPECIES_SHAYMIN
-            && monForm == 0
-            && monCurrentHP > 0
-            && monFatefulEncounter == TRUE
-            && (v2 & 0x20) == 0
-            && rtcTime.hour >= 4
-            && rtcTime.hour < 20);
+    return monSpecies == SPECIES_SHAYMIN
+        && monForm == 0
+        && monCurrentHP > 0
+        && monFatefulEncounter == TRUE
+        && (v2 & 0x20) == 0
+        && rtcTime.hour >= 4
+        && rtcTime.hour < 20;
 }
 
 void Party_SetShayminLandForm(Party *party)
@@ -4354,7 +4354,7 @@ void Pokemon_PlayCry(ChatotCry *chatotCry, enum PokemonCryMod crymod, u16 specie
 
         return;
     }
-    
+
     Sound_PlayPokemonCry(crymod, species, pan, volume, heapID, form);
 }
 
@@ -4374,7 +4374,7 @@ void Pokemon_PlayDelayedCry(ChatotCry *chatotCry, enum PokemonCryMod crymod, u16
 
         return;
     }
-    
+
     Sound_PlayDelayedPokemonCry(crymod, species, pan, volume, heapID, delay, form);
 }
 
@@ -4418,8 +4418,8 @@ static void PostCaptureBoxPokemonProcessing(BoxPokemon *boxMon, TrainerInfo *par
 }
 
 static const u16 sHeldItemChance[][2] = {
-    {45, 95},
-    {20, 80}
+    { 45, 95 },
+    { 20, 80 }
 };
 
 void Pokemon_GiveHeldItem(Pokemon *mon, u32 param1, int param2)
@@ -4587,26 +4587,25 @@ static u16 Pokemon_GetDataChecksum(void *data, u32 bytes)
     return checksum;
 }
 
-#define DATA_BLOCK_SHUFFLE_CASE(v1, v2, v3, v4)                         \
-{                                                                       \
-        PokemonDataBlock *dataBlocks = boxMon->dataBlocks;              \
-        switch (dataBlockID)                                            \
-        {                                                               \
-        case DATA_BLOCK_A:                                              \
-            result = &dataBlocks[v1];                                   \
-            break;                                                      \
-        case DATA_BLOCK_B:                                              \
-            result = &dataBlocks[v2];                                   \
-            break;                                                      \
-        case DATA_BLOCK_C:                                              \
-            result = &dataBlocks[v3];                                   \
-            break;                                                      \
-        case DATA_BLOCK_D:                                              \
-            result = &dataBlocks[v4];                                   \
-            break;                                                      \
-        }                                                               \
-        break;                                                          \
-}
+#define DATA_BLOCK_SHUFFLE_CASE(v1, v2, v3, v4)            \
+    {                                                      \
+        PokemonDataBlock *dataBlocks = boxMon->dataBlocks; \
+        switch (dataBlockID) {                             \
+        case DATA_BLOCK_A:                                 \
+            result = &dataBlocks[v1];                      \
+            break;                                         \
+        case DATA_BLOCK_B:                                 \
+            result = &dataBlocks[v2];                      \
+            break;                                         \
+        case DATA_BLOCK_C:                                 \
+            result = &dataBlocks[v3];                      \
+            break;                                         \
+        case DATA_BLOCK_D:                                 \
+            result = &dataBlocks[v4];                      \
+            break;                                         \
+        }                                                  \
+        break;                                             \
+    }
 
 static void *BoxPokemon_GetDataBlock(BoxPokemon *boxMon, u32 personality, enum PokemonDataBlockID dataBlockID)
 {
@@ -4617,60 +4616,60 @@ static void *BoxPokemon_GetDataBlock(BoxPokemon *boxMon, u32 personality, enum P
     switch (personality) {
     case 0:
     case 24:
-        DATA_BLOCK_SHUFFLE_CASE(0,1,2,3)
+        DATA_BLOCK_SHUFFLE_CASE(0, 1, 2, 3)
     case 1:
     case 25:
-        DATA_BLOCK_SHUFFLE_CASE(0,1,3,2)
+        DATA_BLOCK_SHUFFLE_CASE(0, 1, 3, 2)
     case 2:
     case 26:
-        DATA_BLOCK_SHUFFLE_CASE(0,2,1,3)
-    case  3:
+        DATA_BLOCK_SHUFFLE_CASE(0, 2, 1, 3)
+    case 3:
     case 27:
-        DATA_BLOCK_SHUFFLE_CASE(0,3,1,2)
-    case  4:
+        DATA_BLOCK_SHUFFLE_CASE(0, 3, 1, 2)
+    case 4:
     case 28:
-        DATA_BLOCK_SHUFFLE_CASE(0,2,3,1)
-    case  5:
+        DATA_BLOCK_SHUFFLE_CASE(0, 2, 3, 1)
+    case 5:
     case 29:
-        DATA_BLOCK_SHUFFLE_CASE(0,3,2,1)
-    case  6:
+        DATA_BLOCK_SHUFFLE_CASE(0, 3, 2, 1)
+    case 6:
     case 30:
-        DATA_BLOCK_SHUFFLE_CASE(1,0,2,3)
-    case  7:
+        DATA_BLOCK_SHUFFLE_CASE(1, 0, 2, 3)
+    case 7:
     case 31:
-        DATA_BLOCK_SHUFFLE_CASE(1,0,3,2)
-    case  8:
-        DATA_BLOCK_SHUFFLE_CASE(2,0,1,3)
-    case  9:
-        DATA_BLOCK_SHUFFLE_CASE(3,0,1,2)
+        DATA_BLOCK_SHUFFLE_CASE(1, 0, 3, 2)
+    case 8:
+        DATA_BLOCK_SHUFFLE_CASE(2, 0, 1, 3)
+    case 9:
+        DATA_BLOCK_SHUFFLE_CASE(3, 0, 1, 2)
     case 10:
-        DATA_BLOCK_SHUFFLE_CASE(2,0,3,1)
+        DATA_BLOCK_SHUFFLE_CASE(2, 0, 3, 1)
     case 11:
-        DATA_BLOCK_SHUFFLE_CASE(3,0,2,1)
+        DATA_BLOCK_SHUFFLE_CASE(3, 0, 2, 1)
     case 12:
-        DATA_BLOCK_SHUFFLE_CASE(1,2,0,3)
+        DATA_BLOCK_SHUFFLE_CASE(1, 2, 0, 3)
     case 13:
-        DATA_BLOCK_SHUFFLE_CASE(1,3,0,2)
+        DATA_BLOCK_SHUFFLE_CASE(1, 3, 0, 2)
     case 14:
-        DATA_BLOCK_SHUFFLE_CASE(2,1,0,3)
+        DATA_BLOCK_SHUFFLE_CASE(2, 1, 0, 3)
     case 15:
-        DATA_BLOCK_SHUFFLE_CASE(3,1,0,2)
+        DATA_BLOCK_SHUFFLE_CASE(3, 1, 0, 2)
     case 16:
-        DATA_BLOCK_SHUFFLE_CASE(2,3,0,1)
+        DATA_BLOCK_SHUFFLE_CASE(2, 3, 0, 1)
     case 17:
-        DATA_BLOCK_SHUFFLE_CASE(3,2,0,1)
+        DATA_BLOCK_SHUFFLE_CASE(3, 2, 0, 1)
     case 18:
-        DATA_BLOCK_SHUFFLE_CASE(1,2,3,0)
+        DATA_BLOCK_SHUFFLE_CASE(1, 2, 3, 0)
     case 19:
-        DATA_BLOCK_SHUFFLE_CASE(1,3,2,0)
+        DATA_BLOCK_SHUFFLE_CASE(1, 3, 2, 0)
     case 20:
-        DATA_BLOCK_SHUFFLE_CASE(2,1,3,0)
+        DATA_BLOCK_SHUFFLE_CASE(2, 1, 3, 0)
     case 21:
-        DATA_BLOCK_SHUFFLE_CASE(3,1,2,0)
+        DATA_BLOCK_SHUFFLE_CASE(3, 1, 2, 0)
     case 22:
-        DATA_BLOCK_SHUFFLE_CASE(2,3,1,0)
+        DATA_BLOCK_SHUFFLE_CASE(2, 3, 1, 0)
     case 23:
-        DATA_BLOCK_SHUFFLE_CASE(3,2,1,0)
+        DATA_BLOCK_SHUFFLE_CASE(3, 2, 1, 0)
     }
 
     return result;

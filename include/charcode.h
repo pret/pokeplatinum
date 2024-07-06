@@ -9,4 +9,3 @@ BOOL CharCode_IsFormatArg(const charcode_t *cstr);
 u32 CharCode_FormatArgParam(const charcode_t *cstr, u32 paramIdx);
 
 #endif // POKEPLATINUM_CHARCODE_H
-

@@ -1,68 +1,66 @@
+#include "overlay102/ov102_021D0D80.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-
-#include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "strbuf.h"
-#include "trainer_info.h"
-#include "savedata.h"
-
 #include "struct_defs/struct_0203E53C.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
+
 #include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 
+#include "core_sys.h"
+#include "gx_layers.h"
+#include "heap.h"
+#include "message.h"
+#include "overlay_manager.h"
+#include "save_player.h"
+#include "savedata.h"
+#include "strbuf.h"
+#include "string_template.h"
+#include "trainer_info.h"
 #include "unk_02000C88.h"
 #include "unk_02002B7C.h"
-#include "overlay_manager.h"
 #include "unk_02006E3C.h"
-#include "message.h"
-#include "string_template.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "gx_layers.h"
-#include "strbuf.h"
-#include "save_player.h"
-#include "overlay102/ov102_021D0D80.h"
 
 typedef struct {
     int unk_00;
     int unk_04;
-    SaveData * unk_08;
-    TrainerInfo * unk_0C;
-    BGL * unk_10;
+    SaveData *unk_08;
+    TrainerInfo *unk_0C;
+    BGL *unk_10;
     Window unk_14;
     Window unk_24;
-    MessageLoader * unk_34;
-    StringTemplate * unk_38;
+    MessageLoader *unk_34;
+    StringTemplate *unk_38;
     s16 unk_3C;
     int unk_40;
 } UnkStruct_ov102_021D0F8C;
 
-void sub_02000EC4(FSOverlayID param0, const OverlayManagerTemplate * param1);
-int ov102_021D0D80(OverlayManager * param0, int * param1);
-int ov102_021D0E2C(OverlayManager * param0, int * param1);
-int ov102_021D0F50(OverlayManager * param0, int * param1);
-static void ov102_021D0F80(void * param0);
-static void ov102_021D0F8C(UnkStruct_ov102_021D0F8C * param0);
-static void ov102_021D10F8(UnkStruct_ov102_021D0F8C * param0);
-static void ov102_021D1174(UnkStruct_ov102_021D0F8C * param0);
-static void ov102_021D1204(UnkStruct_ov102_021D0F8C * param0);
-static void ov102_021D1224(UnkStruct_ov102_021D0F8C * param0);
-static void ov102_021D1230(UnkStruct_ov102_021D0F8C * param0);
-static void ov102_021D1274(UnkStruct_ov102_021D0F8C * param0);
-static void ov102_021D1420(UnkStruct_ov102_021D0F8C * param0);
+void sub_02000EC4(FSOverlayID param0, const OverlayManagerTemplate *param1);
+int ov102_021D0D80(OverlayManager *param0, int *param1);
+int ov102_021D0E2C(OverlayManager *param0, int *param1);
+int ov102_021D0F50(OverlayManager *param0, int *param1);
+static void ov102_021D0F80(void *param0);
+static void ov102_021D0F8C(UnkStruct_ov102_021D0F8C *param0);
+static void ov102_021D10F8(UnkStruct_ov102_021D0F8C *param0);
+static void ov102_021D1174(UnkStruct_ov102_021D0F8C *param0);
+static void ov102_021D1204(UnkStruct_ov102_021D0F8C *param0);
+static void ov102_021D1224(UnkStruct_ov102_021D0F8C *param0);
+static void ov102_021D1230(UnkStruct_ov102_021D0F8C *param0);
+static void ov102_021D1274(UnkStruct_ov102_021D0F8C *param0);
+static void ov102_021D1420(UnkStruct_ov102_021D0F8C *param0);
 
-int ov102_021D0D80 (OverlayManager * param0, int * param1)
+int ov102_021D0D80(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov102_021D0F8C * v0;
+    UnkStruct_ov102_021D0F8C *v0;
     int v1 = 84;
 
     Heap_Create(3, v1, 0x20000);
@@ -72,7 +70,7 @@ int ov102_021D0D80 (OverlayManager * param0, int * param1)
     v0->unk_00 = v1;
 
     {
-        UnkStruct_0203E53C * v2 = (UnkStruct_0203E53C *)OverlayManager_Args(param0);
+        UnkStruct_0203E53C *v2 = (UnkStruct_0203E53C *)OverlayManager_Args(param0);
 
         v0->unk_08 = v2->unk_00;
         v0->unk_04 = v2->unk_04;
@@ -100,9 +98,9 @@ int ov102_021D0D80 (OverlayManager * param0, int * param1)
     return 1;
 }
 
-int ov102_021D0E2C (OverlayManager * param0, int * param1)
+int ov102_021D0E2C(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov102_021D0F8C * v0 = OverlayManager_Data(param0);
+    UnkStruct_ov102_021D0F8C *v0 = OverlayManager_Data(param0);
     int v1 = 0;
 
     switch (*param1) {
@@ -111,12 +109,18 @@ int ov102_021D0E2C (OverlayManager * param0, int * param1)
         ov102_021D1274(v0);
         ov102_021D1420(v0);
 
-        sub_02019120(0, 1);;
-        sub_02019120(1, 1);;
-        sub_02019120(3, 1);;
-        sub_02019120(4, 1);;
-        sub_02019120(5, 1);;
-        sub_02019120(7, 1);;
+        sub_02019120(0, 1);
+        ;
+        sub_02019120(1, 1);
+        ;
+        sub_02019120(3, 1);
+        ;
+        sub_02019120(4, 1);
+        ;
+        sub_02019120(5, 1);
+        ;
+        sub_02019120(7, 1);
+        ;
         sub_0200F174(0, 1, 1, 0x0, 6, 1, v0->unk_00);
         *param1 = 1;
         break;
@@ -134,7 +138,7 @@ int ov102_021D0E2C (OverlayManager * param0, int * param1)
         }
         break;
     case 3:
-        if ((v0->unk_3C > -8 * 24)) {
+        if (v0->unk_3C > -8 * 24) {
             v0->unk_3C -= 4;
             ov102_021D1230(v0);
         } else {
@@ -144,7 +148,7 @@ int ov102_021D0E2C (OverlayManager * param0, int * param1)
         }
         break;
     case 4:
-        if ((((gCoreSys.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A)) || (((gCoreSys.pressedKeys & PAD_BUTTON_B) == PAD_BUTTON_B)) || (gCoreSys.touchPressed)) {
+        if (((gCoreSys.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A) || ((gCoreSys.pressedKeys & PAD_BUTTON_B) == PAD_BUTTON_B) || (gCoreSys.touchPressed)) {
             sub_0200F174(0, 0, 0, 0x0, 6, 1, v0->unk_00);
             *param1 = 5;
         }
@@ -159,9 +163,9 @@ int ov102_021D0E2C (OverlayManager * param0, int * param1)
     return v1;
 }
 
-int ov102_021D0F50 (OverlayManager * param0, int * param1)
+int ov102_021D0F50(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov102_021D0F8C * v0 = OverlayManager_Data(param0);
+    UnkStruct_ov102_021D0F8C *v0 = OverlayManager_Data(param0);
     int v1 = v0->unk_00;
 
     ov102_021D1204(v0);
@@ -174,23 +178,24 @@ int ov102_021D0F50 (OverlayManager * param0, int * param1)
     return 1;
 }
 
-static void ov102_021D0F80 (void * param0)
+static void ov102_021D0F80(void *param0)
 {
-    UnkStruct_ov102_021D0F8C * v0 = param0;
+    UnkStruct_ov102_021D0F8C *v0 = param0;
 
     sub_0201C2B8(v0->unk_10);
 }
 
-#define BGCONTSET(frame, scr, cgx, scrsiz, bufsiz) {                   \
-        v2.unk_12 = scr;                                      \
-        v2.unk_13 = cgx;                                      \
-        v2.unk_08 = bufsiz;                                   \
-        v2.unk_10 = scrsiz;                                   \
-        sub_020183C4(param0->unk_10, frame, &v2, 0);    \
-        sub_02019EBC(param0->unk_10, frame);                                  \
-}
+#define BGCONTSET(frame, scr, cgx, scrsiz, bufsiz)   \
+    {                                                \
+        v2.unk_12 = scr;                             \
+        v2.unk_13 = cgx;                             \
+        v2.unk_08 = bufsiz;                          \
+        v2.unk_10 = scrsiz;                          \
+        sub_020183C4(param0->unk_10, frame, &v2, 0); \
+        sub_02019EBC(param0->unk_10, frame);         \
+    }
 
-static void ov102_021D0F8C (UnkStruct_ov102_021D0F8C * param0)
+static void ov102_021D0F8C(UnkStruct_ov102_021D0F8C *param0)
 {
     {
         UnkStruct_02099F80 v0 = {
@@ -230,7 +235,8 @@ static void ov102_021D0F8C (UnkStruct_ov102_021D0F8C * param0)
 
         v2.unk_12 = GX_BG_SCRBASE_0x0000;
         v2.unk_13 = GX_BG_CHARBASE_0x10000;
-        v2.unk_08 = 0x1000; v2.unk_10 = 2;
+        v2.unk_08 = 0x1000;
+        v2.unk_10 = 2;
 
         sub_020183C4(param0->unk_10, 0, &v2, 0);
         sub_02019EBC(param0->unk_10, 0);
@@ -286,7 +292,7 @@ static void ov102_021D0F8C (UnkStruct_ov102_021D0F8C * param0)
     sub_02019120(7, 0);
 }
 
-static void ov102_021D10F8 (UnkStruct_ov102_021D0F8C * param0)
+static void ov102_021D10F8(UnkStruct_ov102_021D0F8C *param0)
 {
     sub_02019120(0, 0);
     sub_02019120(1, 0);
@@ -306,9 +312,9 @@ static void ov102_021D10F8 (UnkStruct_ov102_021D0F8C * param0)
     Heap_FreeToHeap(param0->unk_10);
 }
 
-static void ov102_021D1174 (UnkStruct_ov102_021D0F8C * param0)
+static void ov102_021D1174(UnkStruct_ov102_021D0F8C *param0)
 {
-    UnkStruct_ov61_0222C884 v0 = {0, 0, 0, 32, 24, 2, 1};
+    UnkStruct_ov61_0222C884 v0 = { 0, 0, 0, 32, 24, 2, 1 };
 
     sub_0201D710();
 
@@ -326,7 +332,7 @@ static void ov102_021D1174 (UnkStruct_ov102_021D0F8C * param0)
     BGL_WindowColor(&param0->unk_24, 0, 0, 0, 32 * 8, 24 * 8);
 }
 
-static void ov102_021D1204 (UnkStruct_ov102_021D0F8C * param0)
+static void ov102_021D1204(UnkStruct_ov102_021D0F8C *param0)
 {
     BGL_DeleteWindow(&param0->unk_24);
     BGL_DeleteWindow(&param0->unk_14);
@@ -334,13 +340,13 @@ static void ov102_021D1204 (UnkStruct_ov102_021D0F8C * param0)
     MessageLoader_Free(param0->unk_34);
 }
 
-static void ov102_021D1224 (UnkStruct_ov102_021D0F8C * param0)
+static void ov102_021D1224(UnkStruct_ov102_021D0F8C *param0)
 {
     param0->unk_3C = 0;
     ov102_021D1230(param0);
 }
 
-static void ov102_021D1230 (UnkStruct_ov102_021D0F8C * param0)
+static void ov102_021D1230(UnkStruct_ov102_021D0F8C *param0)
 {
     sub_02019184(param0->unk_10, 1, 3, param0->unk_3C);
     sub_02019184(param0->unk_10, 5, 3, param0->unk_3C + (8 * 24));
@@ -348,7 +354,7 @@ static void ov102_021D1230 (UnkStruct_ov102_021D0F8C * param0)
     sub_02019184(param0->unk_10, 4, 3, param0->unk_3C + (8 * 24));
 }
 
-static void ov102_021D1274 (UnkStruct_ov102_021D0F8C * param0)
+static void ov102_021D1274(UnkStruct_ov102_021D0F8C *param0)
 {
     int v0, v1, v2;
     int v3, v4, v5;
@@ -393,12 +399,12 @@ static void ov102_021D1274 (UnkStruct_ov102_021D0F8C * param0)
     sub_02002E7C(4, 2 * (2 * 16), param0->unk_00);
 }
 
-static void ov102_021D1420 (UnkStruct_ov102_021D0F8C * param0)
+static void ov102_021D1420(UnkStruct_ov102_021D0F8C *param0)
 {
-    Strbuf* v0 = Strbuf_Init(0x200, param0->unk_00);
+    Strbuf *v0 = Strbuf_Init(0x200, param0->unk_00);
 
     {
-        Strbuf* v1 = Strbuf_Init(0x200, param0->unk_00);
+        Strbuf *v1 = Strbuf_Init(0x200, param0->unk_00);
 
         MessageLoader_GetStrbuf(param0->unk_34, 0, v1);
         StringTemplate_SetPlayerName(param0->unk_38, 0, param0->unk_0C);

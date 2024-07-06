@@ -1,67 +1,64 @@
+#include "overlay022/ov22_0225B660.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-
-#include "message.h"
-#include "strbuf.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029C88_decl.h"
-#include "pokemon.h"
-#include "overlay022/struct_ov22_0225B1BC_decl.h"
-
 #include "struct_defs/struct_02041DC8.h"
 #include "struct_defs/struct_0205AA50.h"
-#include "overlay022/struct_ov22_0225A0E4.h"
-#include "overlay022/struct_ov22_0225AF8C.h"
 
-#include "unk_02002B7C.h"
-#include "overlay_manager.h"
-#include "unk_02006E3C.h"
-#include "message.h"
-#include "string_template.h"
-#include "unk_0200F174.h"
-#include "unk_02017728.h"
-#include "heap.h"
-#include "unk_02018340.h"
-#include "unk_0201D670.h"
-#include "gx_layers.h"
-#include "cell_actor.h"
-#include "strbuf.h"
-#include "unk_0202419C.h"
-#include "unk_020298BC.h"
-#include "pokemon.h"
-#include "unk_02094EDC.h"
 #include "overlay022/ov22_02255094.h"
 #include "overlay022/ov22_0225AF8C.h"
-#include "overlay022/ov22_0225B660.h"
+#include "overlay022/struct_ov22_0225A0E4.h"
+#include "overlay022/struct_ov22_0225AF8C.h"
+#include "overlay022/struct_ov22_0225B1BC_decl.h"
+
+#include "cell_actor.h"
+#include "core_sys.h"
+#include "gx_layers.h"
+#include "heap.h"
+#include "message.h"
+#include "overlay_manager.h"
+#include "pokemon.h"
+#include "strbuf.h"
+#include "string_template.h"
+#include "unk_02002B7C.h"
+#include "unk_02006E3C.h"
+#include "unk_0200F174.h"
+#include "unk_02017728.h"
+#include "unk_02018340.h"
+#include "unk_0201D670.h"
+#include "unk_0202419C.h"
+#include "unk_020298BC.h"
+#include "unk_02094EDC.h"
 
 typedef struct {
-    const UnkStruct_02029C68 * unk_00;
-    const UnkStruct_02029C88 * unk_04;
+    const UnkStruct_02029C68 *unk_00;
+    const UnkStruct_02029C88 *unk_04;
     u32 unk_08;
     u32 unk_0C;
-    UnkStruct_ov22_0225B1BC * unk_10;
+    UnkStruct_ov22_0225B1BC *unk_10;
     UnkStruct_ov22_0225A0E4 unk_14;
-    CellActor * unk_1FC;
-    Window * unk_200;
+    CellActor *unk_1FC;
+    Window *unk_200;
 } UnkStruct_ov22_0225B85C;
 
-static void ov22_0225B848(void * param0);
-static void ov22_0225B85C(UnkStruct_ov22_0225B85C * param0);
-static void ov22_0225B910(UnkStruct_ov22_0225B85C * param0);
-static void ov22_0225B964(UnkStruct_ov22_0225B85C * param0);
-static void ov22_0225BA00(UnkStruct_ov22_0225B85C * param0);
-static void ov22_0225BA40(UnkStruct_ov22_0225B85C * param0);
-static void ov22_0225BAA8(UnkStruct_ov22_0225B85C * param0);
-static void ov22_0225BAD0(UnkStruct_ov22_0225B85C * param0);
-static void ov22_0225BB00(UnkStruct_ov22_0225B85C * param0);
-static void ov22_0225BC18(UnkStruct_ov22_0225B85C * param0);
+static void ov22_0225B848(void *param0);
+static void ov22_0225B85C(UnkStruct_ov22_0225B85C *param0);
+static void ov22_0225B910(UnkStruct_ov22_0225B85C *param0);
+static void ov22_0225B964(UnkStruct_ov22_0225B85C *param0);
+static void ov22_0225BA00(UnkStruct_ov22_0225B85C *param0);
+static void ov22_0225BA40(UnkStruct_ov22_0225B85C *param0);
+static void ov22_0225BAA8(UnkStruct_ov22_0225B85C *param0);
+static void ov22_0225BAD0(UnkStruct_ov22_0225B85C *param0);
+static void ov22_0225BB00(UnkStruct_ov22_0225B85C *param0);
+static void ov22_0225BC18(UnkStruct_ov22_0225B85C *param0);
 
-int ov22_0225B660 (OverlayManager * param0, int * param1)
+int ov22_0225B660(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov22_0225B85C * v0;
-    UnkStruct_02041DC8 * v1;
+    UnkStruct_ov22_0225B85C *v0;
+    UnkStruct_02041DC8 *v1;
 
     Heap_Create(3, 13, 0x20000);
     Heap_Create(3, 14, 0x40000);
@@ -112,9 +109,9 @@ int ov22_0225B660 (OverlayManager * param0, int * param1)
     return 1;
 }
 
-int ov22_0225B738 (OverlayManager * param0, int * param1)
+int ov22_0225B738(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov22_0225B85C * v0 = OverlayManager_Data(param0);
+    UnkStruct_ov22_0225B85C *v0 = OverlayManager_Data(param0);
 
     {
         sub_020241B4();
@@ -158,9 +155,9 @@ int ov22_0225B738 (OverlayManager * param0, int * param1)
     return 0;
 }
 
-int ov22_0225B7FC (OverlayManager * param0, int * param1)
+int ov22_0225B7FC(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov22_0225B85C * v0 = OverlayManager_Data(param0);
+    UnkStruct_ov22_0225B85C *v0 = OverlayManager_Data(param0);
 
     ov22_0225B020(v0->unk_10);
     ov22_0225BA00(v0);
@@ -177,18 +174,18 @@ int ov22_0225B7FC (OverlayManager * param0, int * param1)
     return 1;
 }
 
-static void ov22_0225B848 (void * param0)
+static void ov22_0225B848(void *param0)
 {
-    UnkStruct_ov22_0225B85C * v0 = param0;
+    UnkStruct_ov22_0225B85C *v0 = param0;
 
     ov22_0225B06C(v0->unk_10);
     ov22_0225561C(&v0->unk_14);
 }
 
-static void ov22_0225B85C (UnkStruct_ov22_0225B85C * param0)
+static void ov22_0225B85C(UnkStruct_ov22_0225B85C *param0)
 {
-    void * v0;
-    NNSG2dScreenData * v1;
+    void *v0;
+    NNSG2dScreenData *v1;
     int v2;
     int v3;
 
@@ -211,14 +208,14 @@ static void ov22_0225B85C (UnkStruct_ov22_0225B85C * param0)
     sub_0201C3C0(param0->unk_14.unk_40, 1);
 }
 
-static void ov22_0225B910 (UnkStruct_ov22_0225B85C * param0)
+static void ov22_0225B910(UnkStruct_ov22_0225B85C *param0)
 {
     sub_02006E84(12, 12, 4, 0, 32, 14);
     sub_02006E60(12, 11, param0->unk_14.unk_40, 4, 0, 0, 1, 14);
     sub_02006E3C(12, 10, param0->unk_14.unk_40, 4, 0, 0, 1, 14);
 }
 
-static void ov22_0225B964 (UnkStruct_ov22_0225B85C * param0)
+static void ov22_0225B964(UnkStruct_ov22_0225B85C *param0)
 {
     ov22_02255248(&param0->unk_14, param0->unk_14.unk_5C, 233, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1000);
     ov22_02255268(&param0->unk_14, param0->unk_14.unk_5C, 234, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 6, 1000);
@@ -230,7 +227,7 @@ static void ov22_0225B964 (UnkStruct_ov22_0225B85C * param0)
     CellActor_SetExplicitPriority(param0->unk_1FC, 1);
 }
 
-static void ov22_0225BA00 (UnkStruct_ov22_0225B85C * param0)
+static void ov22_0225BA00(UnkStruct_ov22_0225B85C *param0)
 {
     ov22_022552C4(&param0->unk_14, 1000);
     ov22_022552D8(&param0->unk_14, 1000);
@@ -239,7 +236,7 @@ static void ov22_0225BA00 (UnkStruct_ov22_0225B85C * param0)
     CellActor_Delete(param0->unk_1FC);
 }
 
-static void ov22_0225BA40 (UnkStruct_ov22_0225B85C * param0)
+static void ov22_0225BA40(UnkStruct_ov22_0225B85C *param0)
 {
     param0->unk_200 = sub_0201A778(14, 1);
 
@@ -251,14 +248,14 @@ static void ov22_0225BA40 (UnkStruct_ov22_0225B85C * param0)
     sub_02019184(param0->unk_14.unk_40, 3, 3, 0);
 }
 
-static void ov22_0225BAA8 (UnkStruct_ov22_0225B85C * param0)
+static void ov22_0225BAA8(UnkStruct_ov22_0225B85C *param0)
 {
     sub_0201ACF4(param0->unk_200);
     BGL_DeleteWindow(param0->unk_200);
     sub_0201A928(param0->unk_200, 1);
 }
 
-static void ov22_0225BAD0 (UnkStruct_ov22_0225B85C * param0)
+static void ov22_0225BAD0(UnkStruct_ov22_0225B85C *param0)
 {
     BGL_FillWindow(param0->unk_200, 0);
 
@@ -271,16 +268,16 @@ static void ov22_0225BAD0 (UnkStruct_ov22_0225B85C * param0)
     sub_0201A954(param0->unk_200);
 }
 
-static void ov22_0225BB00 (UnkStruct_ov22_0225B85C * param0)
+static void ov22_0225BB00(UnkStruct_ov22_0225B85C *param0)
 {
     VecFx32 v0;
     int v1, v2;
     int v3;
     u16 v4;
-    StringTemplate * v5;
-    Strbuf* v6;
-    Strbuf* v7;
-    MessageLoader * v8;
+    StringTemplate *v5;
+    Strbuf *v6;
+    Strbuf *v7;
+    MessageLoader *v8;
 
     v8 = MessageLoader_Init(0, 26, 385, 13);
     GF_ASSERT(v8);
@@ -320,16 +317,16 @@ static void ov22_0225BB00 (UnkStruct_ov22_0225B85C * param0)
     StringTemplate_Free(v5);
 }
 
-static void ov22_0225BC18 (UnkStruct_ov22_0225B85C * param0)
+static void ov22_0225BC18(UnkStruct_ov22_0225B85C *param0)
 {
     int v0;
-    StringTemplate * v1;
-    Strbuf* v2;
-    Strbuf* v3;
+    StringTemplate *v1;
+    Strbuf *v2;
+    Strbuf *v3;
     int v4;
-    Pokemon * v5;
-    BoxPokemon * v6;
-    MessageLoader * v7;
+    Pokemon *v5;
+    BoxPokemon *v6;
+    MessageLoader *v7;
     int v8, v9;
     int v10;
 

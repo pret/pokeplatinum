@@ -1,34 +1,32 @@
+#include "error_message_reset.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-
-#include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "strbuf.h"
-
 #include "struct_defs/struct_02017E74.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
+
 #include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 
+#include "communication_system.h"
+#include "core_sys.h"
+#include "gx_layers.h"
+#include "heap.h"
+#include "message.h"
+#include "strbuf.h"
 #include "unk_02000C88.h"
 #include "unk_02002B7C.h"
 #include "unk_0200A9DC.h"
-#include "message.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "gx_layers.h"
-#include "strbuf.h"
-#include "communication_system.h"
 #include "unk_020366A0.h"
-#include "error_message_reset.h"
 
 static const UnkStruct_02099F80 sErrorMessageBanksConfig = {
     GX_VRAM_BG_256_AB,
@@ -77,26 +75,24 @@ static const UnkStruct_ov61_0222C884 sErrorMessageWindowTemplate = {
 };
 
 static const HeapParam sErrorMessageHeapParams[] = {
-    {
-        .size = 0x20000,
-        .arena = OS_ARENA_MAIN
-    }
+    { .size = 0x20000,
+        .arena = OS_ARENA_MAIN }
 };
 
 static BOOL sErrorMessagePrinterLock;
 
-static void VBlankIntr (void)
+static void VBlankIntr(void)
 {
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
     MI_WaitDma(GX_DEFAULT_DMAID);
 }
 
-void ErrorMessageReset_PrintErrorAndReset (void)
+void ErrorMessageReset_PrintErrorAndReset(void)
 {
-    BGL * bgConfig;
+    BGL *bgConfig;
     Window window;
-    MessageLoader * errorMsgData;
-    Strbuf* errorString;
+    MessageLoader *errorMsgData;
+    Strbuf *errorString;
     int v4;
     int v5 = 0;
 

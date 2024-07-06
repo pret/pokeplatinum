@@ -1,9 +1,8 @@
 #ifndef POKEPLATINUM_STRUCT_OV5_021D52F4_H
 #define POKEPLATINUM_STRUCT_OV5_021D52F4_H
 
-
-#include <nitro/gx.h>
 #include <nitro/fx/fx.h>
+#include <nitro/gx.h>
 
 typedef struct {
     u32 unk_00;

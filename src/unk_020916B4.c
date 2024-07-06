@@ -1,5 +1,6 @@
 
 
+#include "unk_020916B4.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -7,17 +8,17 @@
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/pokemon_summary_app.h"
 #include "struct_defs/struct_02091850.h"
+
 #include "overlay115/camera_angle.h"
 
-#include "unk_0200762C.h"
-#include "unk_02015F84.h"
-#include "gx_layers.h"
 #include "camera.h"
-#include "unk_0202419C.h"
+#include "gx_layers.h"
 #include "pokemon.h"
 #include "pokemon_summary_app.h"
+#include "unk_0200762C.h"
+#include "unk_02015F84.h"
+#include "unk_0202419C.h"
 #include "unk_0208EA44.h"
-#include "unk_020916B4.h"
 
 typedef struct {
     VecFx16 unk_00;
@@ -25,104 +26,104 @@ typedef struct {
     VecFx16 unk_0C;
 } UnkStruct_02091B78;
 
-static void sub_02091850(UnkStruct_02091850 * param0);
-static void sub_020918CC(VecFx16 * param0, VecFx16 * param1);
-static void sub_020918EC(PokemonSummaryApp * param0);
-static void sub_02091B78(const UnkStruct_02091B78 * param0, VecFx16 * param1, u8 param2);
-static void sub_02091BD4(VecFx16 * param0, VecFx16 * param1, VecFx16 * param2);
+static void sub_02091850(UnkStruct_02091850 *param0);
+static void sub_020918CC(VecFx16 *param0, VecFx16 *param1);
+static void sub_020918EC(PokemonSummaryApp *param0);
+static void sub_02091B78(const UnkStruct_02091B78 *param0, VecFx16 *param1, u8 param2);
+static void sub_02091BD4(VecFx16 *param0, VecFx16 *param1, VecFx16 *param2);
 
 static const UnkStruct_02091B78 Unk_020F4FFC[][4] = {
     {
         {
-            {0x1412, 0xEC8, 0x0},
-            {0x1412, 0x2DF, 0x0},
-            {0x0, 0xC, 0x0},
+            { 0x1412, 0xEC8, 0x0 },
+            { 0x1412, 0x2DF, 0x0 },
+            { 0x0, 0xC, 0x0 },
         },
         {
-            {0x2098, 0x3C5, 0x0},
-            {0x15A2, 0x17F, 0x0},
-            {0xB, 0x2, 0x0},
+            { 0x2098, 0x3C5, 0x0 },
+            { 0x15A2, 0x17F, 0x0 },
+            { 0xB, 0x2, 0x0 },
         },
         {
-            {0x1BA7, 0xFFFFFFFFFFFFF475, 0x0},
-            {0x1504, 0xFFFFFFFFFFFFFF96, 0x0},
-            {0x7, 0xFFFFFFFFFFFFFFF5, 0x0},
+            { 0x1BA7, 0xFFFFFFFFFFFFF475, 0x0 },
+            { 0x1504, 0xFFFFFFFFFFFFFF96, 0x0 },
+            { 0x7, 0xFFFFFFFFFFFFFFF5, 0x0 },
         },
         {
-            {0x1412, 0x12C, 0x0},
-            {0x1412, 0x12C, 0x0},
-            {0x0, 0x0, 0x0},
-        },
-    },
-    {
-        {
-            {0x733, 0x3C5, 0x0},
-            {0x1225, 0x17F, 0x0},
-            {0xFFFFFFFFFFFFFFF5, 0x2, 0x0},
-        },
-        {
-            {0x13B5, 0xEC8, 0x0},
-            {0x13B5, 0x2DF, 0x0},
-            {0x0, 0xC, 0x0},
-        },
-        {
-            {0x13B5, 0x12C, 0x0},
-            {0x13B5, 0x12C, 0x0},
-            {0x0, 0x0, 0x0},
-        },
-        {
-            {0xC22, 0xFFFFFFFFFFFFF475, 0x0},
-            {0x12C3, 0xFFFFFFFFFFFFFF96, 0x0},
-            {0xFFFFFFFFFFFFFFF9, 0xFFFFFFFFFFFFFFF5, 0x0},
+            { 0x1412, 0x12C, 0x0 },
+            { 0x1412, 0x12C, 0x0 },
+            { 0x0, 0x0, 0x0 },
         },
     },
     {
         {
-            {0x733, 0x3C5, 0x0},
-            {0x1225, 0x17F, 0x0},
-            {0xFFFFFFFFFFFFFFF5, 0x2, 0x0},
+            { 0x733, 0x3C5, 0x0 },
+            { 0x1225, 0x17F, 0x0 },
+            { 0xFFFFFFFFFFFFFFF5, 0x2, 0x0 },
         },
         {
-            {0x13B5, 0x12C, 0x0},
-            {0x13B5, 0x12C, 0x0},
-            {0x0, 0x0, 0x0},
+            { 0x13B5, 0xEC8, 0x0 },
+            { 0x13B5, 0x2DF, 0x0 },
+            { 0x0, 0xC, 0x0 },
         },
         {
-            {0x1BA7, 0xFFFFFFFFFFFFF475, 0x0},
-            {0x14B3, 0xFFFFFFFFFFFFFF96, 0x0},
-            {0x7, 0xFFFFFFFFFFFFFFF5, 0x0},
+            { 0x13B5, 0x12C, 0x0 },
+            { 0x13B5, 0x12C, 0x0 },
+            { 0x0, 0x0, 0x0 },
         },
         {
-            {0xC22, 0xFFFFFFFFFFFFF475, 0x0},
-            {0x12C3, 0xFFFFFFFFFFFFFF96, 0x0},
-            {0xFFFFFFFFFFFFFFF9, 0xFFFFFFFFFFFFFFF5, 0x0},
+            { 0xC22, 0xFFFFFFFFFFFFF475, 0x0 },
+            { 0x12C3, 0xFFFFFFFFFFFFFF96, 0x0 },
+            { 0xFFFFFFFFFFFFFFF9, 0xFFFFFFFFFFFFFFF5, 0x0 },
         },
     },
     {
         {
-            {0x1412, 0x12C, 0x0},
-            {0x1412, 0x12C, 0x0},
-            {0x0, 0x0, 0x0},
+            { 0x733, 0x3C5, 0x0 },
+            { 0x1225, 0x17F, 0x0 },
+            { 0xFFFFFFFFFFFFFFF5, 0x2, 0x0 },
         },
         {
-            {0x2098, 0x3C5, 0x0},
-            {0x15A2, 0x17F, 0x0},
-            {0xB, 0x2, 0x0},
+            { 0x13B5, 0x12C, 0x0 },
+            { 0x13B5, 0x12C, 0x0 },
+            { 0x0, 0x0, 0x0 },
         },
         {
-            {0x1BA7, 0xFFFFFFFFFFFFF475, 0x0},
-            {0x1504, 0xFFFFFFFFFFFFFF96, 0x0},
-            {0x7, 0xFFFFFFFFFFFFFFF5, 0x0},
+            { 0x1BA7, 0xFFFFFFFFFFFFF475, 0x0 },
+            { 0x14B3, 0xFFFFFFFFFFFFFF96, 0x0 },
+            { 0x7, 0xFFFFFFFFFFFFFFF5, 0x0 },
         },
         {
-            {0xC22, 0xFFFFFFFFFFFFF475, 0x0},
-            {0x1314, 0xFFFFFFFFFFFFFF96, 0x0},
-            {0xFFFFFFFFFFFFFFF9, 0xFFFFFFFFFFFFFFF5, 0x0},
+            { 0xC22, 0xFFFFFFFFFFFFF475, 0x0 },
+            { 0x12C3, 0xFFFFFFFFFFFFFF96, 0x0 },
+            { 0xFFFFFFFFFFFFFFF9, 0xFFFFFFFFFFFFFFF5, 0x0 },
+        },
+    },
+    {
+        {
+            { 0x1412, 0x12C, 0x0 },
+            { 0x1412, 0x12C, 0x0 },
+            { 0x0, 0x0, 0x0 },
+        },
+        {
+            { 0x2098, 0x3C5, 0x0 },
+            { 0x15A2, 0x17F, 0x0 },
+            { 0xB, 0x2, 0x0 },
+        },
+        {
+            { 0x1BA7, 0xFFFFFFFFFFFFF475, 0x0 },
+            { 0x1504, 0xFFFFFFFFFFFFFF96, 0x0 },
+            { 0x7, 0xFFFFFFFFFFFFFFF5, 0x0 },
+        },
+        {
+            { 0xC22, 0xFFFFFFFFFFFFF475, 0x0 },
+            { 0x1314, 0xFFFFFFFFFFFFFF96, 0x0 },
+            { 0xFFFFFFFFFFFFFFF9, 0xFFFFFFFFFFFFFFF5, 0x0 },
         },
     },
 };
 
-void sub_020916B4 (PokemonSummaryApp * param0)
+void sub_020916B4(PokemonSummaryApp *param0)
 {
     NNS_G3dInit();
 
@@ -143,7 +144,7 @@ void sub_020916B4 (PokemonSummaryApp * param0)
     G2_SetBG0Priority(2);
 }
 
-void sub_02091750 (PokemonSummaryApp * param0)
+void sub_02091750(PokemonSummaryApp *param0)
 {
     if (param0->page == 4) {
         sub_020241B4();
@@ -166,7 +167,7 @@ void sub_02091750 (PokemonSummaryApp * param0)
     G3_SwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 }
 
-void sub_020917B0 (PokemonSummaryApp * param0)
+void sub_020917B0(PokemonSummaryApp *param0)
 {
     Camera_Delete(param0->monSpriteData.camera);
     sub_02016114(param0->monSpriteData.animationSys, 0);
@@ -174,10 +175,10 @@ void sub_020917B0 (PokemonSummaryApp * param0)
     sub_02007B6C(param0->monSpriteData.spriteManager);
 }
 
-void sub_020917E0 (PokemonSummaryApp * param0)
+void sub_020917E0(PokemonSummaryApp *param0)
 {
-    VecFx32 v0 = {0, 0, 0x10000};
-    CameraAngle v1 = {0, 0, 0};
+    VecFx32 v0 = { 0, 0, 0x10000 };
+    CameraAngle v1 = { 0, 0, 0 };
     fx32 v2 = 0x10000;
     u16 v3 = 0x5c1;
 
@@ -189,7 +190,7 @@ void sub_020917E0 (PokemonSummaryApp * param0)
     Camera_SetAsActive(param0->monSpriteData.camera);
 }
 
-static void sub_02091850 (UnkStruct_02091850 * param0)
+static void sub_02091850(UnkStruct_02091850 *param0)
 {
     G3_PolygonAttr(GX_LIGHTMASK_NONE, GX_POLYGONMODE_MODULATE, GX_CULL_NONE, 18, 20, 0);
     G3_Begin(GX_BEGIN_QUADS);
@@ -212,14 +213,14 @@ static void sub_02091850 (UnkStruct_02091850 * param0)
     G3_End();
 }
 
-static void sub_020918CC (VecFx16 * param0, VecFx16 * param1)
+static void sub_020918CC(VecFx16 *param0, VecFx16 *param1)
 {
     param0->x += param1->x;
     param0->y += param1->y;
     param0->z += param1->z;
 }
 
-static void sub_020918EC (PokemonSummaryApp * param0)
+static void sub_020918EC(PokemonSummaryApp *param0)
 {
     u32 v0;
 
@@ -250,7 +251,7 @@ static void sub_020918EC (PokemonSummaryApp * param0)
     }
 }
 
-void sub_020919E8 (PokemonSummaryApp * param0)
+void sub_020919E8(PokemonSummaryApp *param0)
 {
     u32 v0;
 
@@ -281,7 +282,7 @@ void sub_020919E8 (PokemonSummaryApp * param0)
     sub_02091D50(param0);
 }
 
-static void sub_02091B78 (const UnkStruct_02091B78 * param0, VecFx16 * param1, u8 param2)
+static void sub_02091B78(const UnkStruct_02091B78 *param0, VecFx16 *param1, u8 param2)
 {
     if (param2 == 0xff) {
         *param1 = param0->unk_00;
@@ -294,14 +295,14 @@ static void sub_02091B78 (const UnkStruct_02091B78 * param0, VecFx16 * param1, u
     }
 }
 
-static void sub_02091BD4 (VecFx16 * param0, VecFx16 * param1, VecFx16 * param2)
+static void sub_02091BD4(VecFx16 *param0, VecFx16 *param1, VecFx16 *param2)
 {
     param2->x = FX_F32_TO_FX16(FX_FX16_TO_F32(param1->x - param0->x) / 4);
     param2->y = FX_F32_TO_FX16(FX_FX16_TO_F32(param1->y - param0->y) / 4);
     param2->z = FX_F32_TO_FX16(FX_FX16_TO_F32(param1->z - param0->z) / 4);
 }
 
-void sub_02091D50 (PokemonSummaryApp * param0)
+void sub_02091D50(PokemonSummaryApp *param0)
 {
     u32 v0;
 
@@ -335,10 +336,10 @@ void sub_02091D50 (PokemonSummaryApp * param0)
     param0->unk_410 = 0;
 }
 
-void sub_02091F8C (PokemonSummaryApp * param0)
+void sub_02091F8C(PokemonSummaryApp *param0)
 {
     ArchivedSprite v0;
-    void * v1;
+    void *v1;
 
     param0->monSpriteData.spriteManager = sub_0200762C(19);
 
@@ -358,7 +359,7 @@ void sub_02091F8C (PokemonSummaryApp * param0)
     sub_02007DEC(param0->monSpriteData.sprite, 35, param0->monSpriteData.flip);
 }
 
-void sub_02092028 (PokemonSummaryApp * param0)
+void sub_02092028(PokemonSummaryApp *param0)
 {
     if (param0->monData.isEgg != 0) {
         PokeSprite_LoadAnimation(param0->narcPlPokeData, param0->monSpriteData.animationSys, param0->monSpriteData.sprite, 0, 2, param0->monSpriteData.flip, 0);
@@ -368,7 +369,7 @@ void sub_02092028 (PokemonSummaryApp * param0)
     }
 }
 
-void sub_02092098 (PokemonSummaryApp * param0)
+void sub_02092098(PokemonSummaryApp *param0)
 {
     sub_02016114(param0->monSpriteData.animationSys, 0);
     sub_02007B6C(param0->monSpriteData.spriteManager);
