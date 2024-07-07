@@ -3,7 +3,6 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "sprite_resource.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -22,6 +21,7 @@
 #include "message.h"
 #include "overlay_manager.h"
 #include "savedata.h"
+#include "sprite_resource.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 

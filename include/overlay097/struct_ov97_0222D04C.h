@@ -4,7 +4,6 @@
 #include <dwc.h>
 
 #include "struct_decls/struct_0200112C_decl.h"
-#include "sprite_resource.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0200C738.h"
@@ -17,6 +16,7 @@
 #include "game_options.h"
 #include "message.h"
 #include "savedata.h"
+#include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
 

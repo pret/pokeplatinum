@@ -3,13 +3,12 @@
 
 #include <nitro/gx.h>
 
-#include "struct_decls/struct_02009714_decl.h"
 #include "struct_defs/struct_02009508.h"
 #include "struct_defs/struct_02009508_1.h"
-#include "sprite_resource.h"
 #include "struct_defs/struct_0200C738.h"
 
 #include "cell_actor.h"
+#include "sprite_resource.h"
 
 void sub_020093B4(CellActorResourceData *param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, SpriteResourceCollection *param9, SpriteResourceCollection *param10, SpriteResourceCollection *param11, SpriteResourceCollection *param12, SpriteResourceCollection *param13, SpriteResourceCollection *param14);
 void sub_020094F0(CellActorResourceData *param0);

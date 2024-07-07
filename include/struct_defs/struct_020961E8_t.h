@@ -4,7 +4,6 @@
 #include <nnsys.h>
 
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "sprite_resource.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0203DE34.h"
@@ -17,6 +16,7 @@
 #include "cell_actor.h"
 #include "message.h"
 #include "savedata.h"
+#include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"

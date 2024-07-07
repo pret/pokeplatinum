@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV22_0225A428_H
 #define POKEPLATINUM_STRUCT_OV22_0225A428_H
 
-#include "sprite_resource.h"
 #include "struct_defs/struct_0205AA50.h"
 
 #include "overlay022/struct_ov22_022597BC.h"
@@ -9,6 +8,7 @@
 #include "overlay022/struct_ov22_0225AB54.h"
 
 #include "cell_actor.h"
+#include "sprite_resource.h"
 #include "strbuf.h"
 
 typedef struct {

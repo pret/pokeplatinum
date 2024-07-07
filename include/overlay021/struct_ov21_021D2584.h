@@ -1,9 +1,8 @@
 #ifndef POKEPLATINUM_STRUCT_OV21_021D2584_H
 #define POKEPLATINUM_STRUCT_OV21_021D2584_H
 
-#include "sprite_resource.h"
-
 #include "cell_actor.h"
+#include "sprite_resource.h"
 
 typedef struct {
     CellActor *unk_00[4];

@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_0200112C_decl.h"
-#include "sprite_resource.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0202442C_decl.h"
@@ -35,6 +34,7 @@
 #include "pokemon_icon.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"

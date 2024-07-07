@@ -15,8 +15,8 @@
 
 #include "cell_actor.h"
 #include "heap.h"
-#include "unk_020093B4.h"
 #include "sprite_resource.h"
+#include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_02017728.h"
 

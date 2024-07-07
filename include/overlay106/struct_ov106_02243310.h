@@ -1,10 +1,10 @@
 #ifndef POKEPLATINUM_STRUCT_OV106_02243310_H
 #define POKEPLATINUM_STRUCT_OV106_02243310_H
 
-#include "sprite_resource.h"
 #include "struct_defs/struct_0200C738.h"
 
 #include "cell_actor.h"
+#include "sprite_resource.h"
 
 typedef struct {
     CellActorCollection *unk_00;

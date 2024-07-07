@@ -3,11 +3,10 @@
 
 #include <nitro/fx/fx.h>
 
-#include "sprite_resource.h"
-
 #include "overlay021/struct_ov21_021D4CA0.h"
 
 #include "cell_actor.h"
+#include "sprite_resource.h"
 
 typedef struct {
     CellActor *unk_00;

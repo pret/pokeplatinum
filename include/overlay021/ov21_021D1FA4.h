@@ -6,7 +6,6 @@
 
 #include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "sprite_resource.h"
 #include "struct_decls/struct_02018340_decl.h"
 
 #include "overlay021/struct_ov21_021D13FC.h"
@@ -18,6 +17,7 @@
 #include "overlay021/struct_ov21_021D4EE4_decl.h"
 
 #include "cell_actor.h"
+#include "sprite_resource.h"
 
 void ov21_021D1FA4(UnkStruct_ov21_021D13FC *param0, int param1);
 void ov21_021D2098(UnkStruct_ov21_021D13FC *param0);

@@ -4,7 +4,6 @@
 #include <nnsys.h>
 #include <string.h>
 
-#include "sprite_resource.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0209ACBC_decl.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -59,6 +58,7 @@
 #include "message.h"
 #include "overlay_manager.h"
 #include "pokemon.h"
+#include "sprite_resource.h"
 #include "strbuf.h"
 #include "touch_screen.h"
 #include "unk_020041CC.h"

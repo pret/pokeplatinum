@@ -1,9 +1,8 @@
 #ifndef POKEPLATINUM_STRUCT_OV5_021DE5A4_H
 #define POKEPLATINUM_STRUCT_OV5_021DE5A4_H
 
-#include "sprite_resource.h"
-
 #include "cell_actor.h"
+#include "sprite_resource.h"
 
 typedef struct {
     SpriteResource *unk_00[4];

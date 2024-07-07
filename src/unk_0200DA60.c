@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/sprite_template.h"
@@ -21,13 +20,13 @@
 #include "heap.h"
 #include "narc.h"
 #include "pokemon.h"
+#include "sprite_resource.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02002328.h"
 #include "unk_0200679C.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
-#include "sprite_resource.h"
 #include "unk_0200A328.h"
 #include "unk_0200C6E4.h"
 #include "unk_020131EC.h"

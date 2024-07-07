@@ -5,7 +5,6 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
-#include "sprite_resource.h"
 #include "struct_decls/struct_02015064_decl.h"
 #include "struct_decls/struct_02015128_decl.h"
 #include "struct_decls/struct_020151A4_decl.h"
@@ -14,6 +13,7 @@
 
 #include "cell_actor.h"
 #include "resource_collection.h"
+#include "sprite_resource.h"
 
 typedef struct {
     UnkStruct_02015064 *unk_00;

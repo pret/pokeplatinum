@@ -2,11 +2,11 @@
 #define POKEPLATINUM_STRUCT_0209903C_H
 
 #include "struct_defs/struct_02009508.h"
-#include "sprite_resource.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0209903C_sub1.h"
 
 #include "cell_actor.h"
+#include "sprite_resource.h"
 
 typedef struct {
     int unk_00;

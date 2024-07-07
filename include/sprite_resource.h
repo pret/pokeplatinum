@@ -1,12 +1,13 @@
 #ifndef POKEPLATINUM_SPRITE_RESOURCE_H
 #define POKEPLATINUM_SPRITE_RESOURCE_H
 
+#include <nnsys.h>
+
 #include "constants/heap.h"
-#include "resource_collection.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
 
-#include <nnsys.h>
+#include "resource_collection.h"
 
 enum SpriteResourceType {
     SPRITE_RESOURCE_TILES = 0,
