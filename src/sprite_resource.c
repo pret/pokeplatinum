@@ -58,7 +58,7 @@ static void SpriteResourceCollection_InitRes(SpriteResourceCollection *spriteRes
 static void SpriteResourceCollection_InitResFromNARC(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, NARC *narc, int memberIdx, BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum SpriteResourceType type, enum HeapId heapID, u32 param10);
 static void *SpriteUtil_ReadNARCMember(NARC *narc, u32 memberIdx, BOOL compressed, u32 heapID, u32 param4);
 static void SpriteResource_UnpackData(SpriteResource *spriteRes, enum SpriteResourceType type, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum HeapId heapID);
-static TileResourceData *SpriteUtil_UnpacktileResource(void *rawData, NNS_G2D_VRAM_TYPE vramType, enum HeapId heapID);
+static TileResourceData *SpriteUtil_UnpackTileResource(void *rawData, NNS_G2D_VRAM_TYPE vramType, enum HeapId heapID);
 static PaletteResourceData *SpriteUtil_UnpackPaletteResource(void *rawData, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum HeapId heapID);
 static SpriteResourceData *SpriteUtil_UnpackSpriteResource(void *rawData, enum HeapId heapID);
 static SpriteAnimResourceData *SpriteUtil_UnpackSpriteAnimResource(void *rawData, enum HeapId heapID);
@@ -730,7 +730,7 @@ static void SpriteResource_UnpackData(SpriteResource *spriteRes, enum SpriteReso
 
     switch (type) {
     case SPRITE_RESOURCE_TILES:
-        spriteRes->data = SpriteUtil_UnpacktileResource(rawData, vramType, heapID);
+        spriteRes->data = SpriteUtil_UnpackTileResource(rawData, vramType, heapID);
         break;
     case SPRITE_RESOURCE_PALETTE:
         spriteRes->data = SpriteUtil_UnpackPaletteResource(rawData, vramType, paletteIdx, heapID);
@@ -750,7 +750,7 @@ static void SpriteResource_UnpackData(SpriteResource *spriteRes, enum SpriteReso
     }
 }
 
-static TileResourceData *SpriteUtil_UnpacktileResource(void *rawData, NNS_G2D_VRAM_TYPE vramType, enum HeapId heapID)
+static TileResourceData *SpriteUtil_UnpackTileResource(void *rawData, NNS_G2D_VRAM_TYPE vramType, enum HeapId heapID)
 {
     TileResourceData *tileData = Heap_AllocFromHeap(heapID, sizeof(TileResourceData));
     NNS_G2dGetUnpackedCharacterData(rawData, &tileData->tileData);
