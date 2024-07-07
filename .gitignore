@@ -99,3 +99,17 @@ __pycache__
 .python-version
 
 compile_commands.json
+
+# Save files
+*.dsv
+*.sav
+
+# Savestate files
+*.ds[0-9]
+*.dst
+*.ml[0-9]
+*.mln
+
+# Cheat files
+*.dct
+*.mch
