@@ -49,7 +49,7 @@ if [ "$(uname -s)" = "Linux" ]; then
         cross_file="cross_unix.ini"
     fi
 elif [ "$(uname -s)" = "Darwin" ]; then
-    native_file="native_unix.ini"
+    native_file="native_macos.ini"  # using gcc-14/g++-14 to avoid apple clang
     cross_file="cross_unix.ini"
 else
     native_file="native.ini"
