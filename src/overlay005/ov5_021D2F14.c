@@ -61,7 +61,7 @@ void ov5_021D2F14(UnkStruct_ov5_021D30A8 *param0, const UnkStruct_ov7_0224F2EC *
         v0 = SpriteResourceTable_GetArrayElement(v1, v4);
         v3 = SpriteResourceTable_GetCount(v0);
         param0->unk_1AC[v4] = SpriteResourceList_New(v3, param3);
-        SpriteResourceCollection_AddTable(param0->unk_194[v4], v0, param0->unk_1AC[v4], param3);
+        SpriteResourceCollection_Extend(param0->unk_194[v4], v0, param0->unk_1AC[v4], param3);
     }
 
     for (v4 = 0; v4 < param0->unk_1C4; v4++) {

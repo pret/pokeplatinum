@@ -270,7 +270,7 @@ BOOL sub_0200C8F0(SpriteRenderer *param0, SpriteGfxHandler *param1, const UnkStr
         v2 = SpriteResourceTable_GetCount(v3);
 
         param1->unk_24[v0] = SpriteResourceList_New(v2, param0->unk_00);
-        param1->unk_3C[v0] = SpriteResourceCollection_AddTable(param1->unk_0C[v0], v3, param1->unk_24[v0], param0->unk_00);
+        param1->unk_3C[v0] = SpriteResourceCollection_Extend(param1->unk_0C[v0], v3, param1->unk_24[v0], param0->unk_00);
     }
 
     sub_0200A368(param1->unk_24[0]);

@@ -483,7 +483,7 @@ static int sub_0205D1C4(SpriteResourceCollection *param0, SpriteResourceList **p
         v1 = NULL;
     }
 
-    v2 = SpriteResourceCollection_AddTable(param0, v0, v1, 4);
+    v2 = SpriteResourceCollection_Extend(param0, v0, v1, 4);
 
     SpriteResourceTable_Clear(v0);
     Heap_FreeToHeap(v0);

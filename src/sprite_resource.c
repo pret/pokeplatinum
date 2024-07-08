@@ -54,9 +54,9 @@ typedef struct SpriteResourceTableBinary {
 
 static SpriteResource *SpriteResourceCollection_AllocResource(SpriteResourceCollection *spriteResources);
 static void SpriteResourceCollection_InitResFromFile(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, const char *filename, int id, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum SpriteResourceType type, enum HeapId heapID);
-static void SpriteResourceCollection_InitRes(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, int narcIdx, int memberIdx, BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum SpriteResourceType type, enum HeapId heapID, u32 param10);
-static void SpriteResourceCollection_InitResFromNARC(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, NARC *narc, int memberIdx, BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum SpriteResourceType type, enum HeapId heapID, u32 param10);
-static void *SpriteUtil_ReadNARCMember(NARC *narc, u32 memberIdx, BOOL compressed, u32 heapID, u32 param4);
+static void SpriteResourceCollection_InitRes(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, int narcIdx, int memberIdx, BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum SpriteResourceType type, enum HeapId heapID, BOOL allocAtEnd);
+static void SpriteResourceCollection_InitResFromNARC(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, NARC *narc, int memberIdx, BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum SpriteResourceType type, enum HeapId heapID, BOOL allocAtEnd);
+static void *SpriteUtil_ReadNARCMember(NARC *narc, u32 memberIdx, BOOL compressed, u32 heapID, BOOL allocAtEnd);
 static void SpriteResource_UnpackData(SpriteResource *spriteRes, enum SpriteResourceType type, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum HeapId heapID);
 static TileResourceData *SpriteUtil_UnpackTileResource(void *rawData, NNS_G2D_VRAM_TYPE vramType, enum HeapId heapID);
 static PaletteResourceData *SpriteUtil_UnpackPaletteResource(void *rawData, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum HeapId heapID);
@@ -101,10 +101,7 @@ void SpriteResourceCollection_Delete(SpriteResourceCollection *spriteResources)
     spriteResources = NULL;
 }
 
-SpriteResource *SpriteResourceCollection_AddFromTable(SpriteResourceCollection *spriteResources,
-    const SpriteResourceTable *table,
-    int index,
-    enum HeapId heapID)
+SpriteResource *SpriteResourceCollection_AddFromTable(SpriteResourceCollection *spriteResources, const SpriteResourceTable *table, int index, enum HeapId heapID)
 {
     GF_ASSERT(spriteResources);
     GF_ASSERT(table);
@@ -114,7 +111,7 @@ SpriteResource *SpriteResourceCollection_AddFromTable(SpriteResourceCollection *
     SpriteResource *spriteRes = SpriteResourceCollection_AllocResource(spriteResources);
     GF_ASSERT(spriteRes);
 
-    if (table->isNARC == FALSE) {
+    if (table->loadFromNARC == FALSE) {
         SpriteResourceTableEntryFile *fileEntry = (SpriteResourceTableEntryFile *)table->entries + index;
         GF_ASSERT(SpriteResourceCollection_IsIDUnused(spriteResources, fileEntry->id) == TRUE);
         SpriteResourceCollection_InitResFromFile(
@@ -140,7 +137,7 @@ SpriteResource *SpriteResourceCollection_AddFromTable(SpriteResourceCollection *
             narcEntry->paletteIndex,
             table->type,
             heapID,
-            0);
+            FALSE);
     }
 
     spriteResources->count++;
@@ -166,7 +163,7 @@ SpriteResource *SpriteResourceCollection_AddTiles(SpriteResourceCollection *spri
         0,
         SPRITE_RESOURCE_TILES,
         heapID,
-        0);
+        FALSE);
 
     spriteResources->count++;
     return spriteRes;
@@ -191,7 +188,7 @@ SpriteResource *SpriteResourceCollection_AddPalette(SpriteResourceCollection *sp
         paletteIdx,
         SPRITE_RESOURCE_PALETTE,
         heapID,
-        0);
+        FALSE);
 
     spriteResources->count++;
     return spriteRes;
@@ -204,7 +201,7 @@ SpriteResource *SpriteResourceCollection_Add(SpriteResourceCollection *spriteRes
     SpriteResource *spriteRes = SpriteResourceCollection_AllocResource(spriteResources);
     GF_ASSERT(spriteRes);
 
-    SpriteResourceCollection_InitRes(spriteResources, spriteRes, narcIdx, memberIdx, compressed, id, 0, 0, type, heapID, 0);
+    SpriteResourceCollection_InitRes(spriteResources, spriteRes, narcIdx, memberIdx, compressed, id, 0, 0, type, heapID, FALSE);
 
     spriteResources->count++;
     return spriteRes;
@@ -221,7 +218,7 @@ void SpriteResourceCollection_ModifyTiles(SpriteResourceCollection *spriteResour
     NNS_G2D_VRAM_TYPE vramType = SpriteResource_GetVRAMType(spriteRes);
 
     SpriteResourceCollection_Remove(spriteResources, spriteRes);
-    SpriteResourceCollection_InitRes(spriteResources, spriteRes, narcIdx, memberIdx, compressed, id, vramType, 0, SPRITE_RESOURCE_TILES, heapID, 0);
+    SpriteResourceCollection_InitRes(spriteResources, spriteRes, narcIdx, memberIdx, compressed, id, vramType, 0, SPRITE_RESOURCE_TILES, heapID, FALSE);
 }
 
 void SpriteResourceCollection_ModifyPalette(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, int narcIdx, int memberIdx, BOOL compressed, enum HeapId heapID)
@@ -248,7 +245,7 @@ void SpriteResourceCollection_ModifyPalette(SpriteResourceCollection *spriteReso
         paletteIdx,
         SPRITE_RESOURCE_PALETTE,
         heapID,
-        0);
+        FALSE);
 }
 
 SpriteResource *SpriteResourceCollection_AddTilesFrom(SpriteResourceCollection *spriteResources, NARC *narc, int memberIdx, BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, enum HeapId heapID)
@@ -270,13 +267,13 @@ SpriteResource *SpriteResourceCollection_AddTilesFrom(SpriteResourceCollection *
         0,
         SPRITE_RESOURCE_TILES,
         heapID,
-        0);
+        FALSE);
 
     spriteResources->count++;
     return spriteRes;
 }
 
-SpriteResource *SpriteResourceCollection_AddTilesFromEx(SpriteResourceCollection *spriteResources, NARC *narc, int memberIdx, BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, enum HeapId heapID, int param7)
+SpriteResource *SpriteResourceCollection_AddTilesFromEx(SpriteResourceCollection *spriteResources, NARC *narc, int memberIdx, BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, enum HeapId heapID, BOOL allocAtEnd)
 {
     GF_ASSERT(spriteResources);
     GF_ASSERT(spriteResources->type == SPRITE_RESOURCE_TILES);
@@ -295,7 +292,7 @@ SpriteResource *SpriteResourceCollection_AddTilesFromEx(SpriteResourceCollection
         0,
         SPRITE_RESOURCE_TILES,
         heapID,
-        param7);
+        allocAtEnd);
 
     spriteResources->count++;
     return spriteRes;
@@ -320,13 +317,13 @@ SpriteResource *SpriteResourceCollection_AddPaletteFrom(SpriteResourceCollection
         paletteIdx,
         SPRITE_RESOURCE_PALETTE,
         heapID,
-        0);
+        FALSE);
 
     spriteResources->count++;
     return spriteRes;
 }
 
-SpriteResource *SpriteResourceCollection_AddPaletteFromEx(SpriteResourceCollection *spriteResources, NARC *narc, int memberIdx, BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum HeapId heapID, int param8)
+SpriteResource *SpriteResourceCollection_AddPaletteFromEx(SpriteResourceCollection *spriteResources, NARC *narc, int memberIdx, BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum HeapId heapID, BOOL allocAtEnd)
 {
     GF_ASSERT(spriteResources);
     GF_ASSERT(spriteResources->type == SPRITE_RESOURCE_PALETTE);
@@ -345,7 +342,7 @@ SpriteResource *SpriteResourceCollection_AddPaletteFromEx(SpriteResourceCollecti
         paletteIdx,
         SPRITE_RESOURCE_PALETTE,
         heapID,
-        param8);
+        allocAtEnd);
 
     spriteResources->count++;
     return spriteRes;
@@ -369,7 +366,7 @@ SpriteResource *SpriteResourceCollection_AddFrom(SpriteResourceCollection *sprit
         0,
         type,
         heapID,
-        0);
+        FALSE);
 
     spriteResources->count++;
     return spriteRes;
@@ -397,19 +394,19 @@ void SpriteResourceCollection_ModifyTilesFrom(SpriteResourceCollection *spriteRe
         0,
         SPRITE_RESOURCE_TILES,
         heapID,
-        0);
+        FALSE);
 }
 
-int SpriteResourceCollection_AddTable(SpriteResourceCollection *spriteResources, const SpriteResourceTable *table, SpriteResourceList *outList, enum HeapId heapID)
+int SpriteResourceCollection_Extend(SpriteResourceCollection *spriteResources, const SpriteResourceTable *table, SpriteResourceList *outList, enum HeapId heapID)
 {
     GF_ASSERT(spriteResources);
     GF_ASSERT(table);
 
-    SpriteResoureCollection_AddTableEx(spriteResources, table, 0, table->count, outList, heapID);
+    SpriteResoureCollection_ExtendEx(spriteResources, table, 0, table->count, outList, heapID);
     return table->count;
 }
 
-void SpriteResoureCollection_AddTableEx(SpriteResourceCollection *spriteResources, const SpriteResourceTable *table, int first, int count, SpriteResourceList *outList, enum HeapId heapID)
+void SpriteResoureCollection_ExtendEx(SpriteResourceCollection *spriteResources, const SpriteResourceTable *table, int first, int count, SpriteResourceList *outList, enum HeapId heapID)
 {
     for (int i = first; i < first + count; i++) {
         SpriteResource *spriteRes = SpriteResourceCollection_AddFromTable(spriteResources, table, i, heapID);
@@ -611,7 +608,7 @@ void SpriteResourceTable_LoadFromBinary(const void *data, SpriteResourceTable *t
 
     const SpriteResourceTableBinary *tableBin = data;
     table->type = tableBin->type;
-    table->isNARC = TRUE;
+    table->loadFromNARC = TRUE;
     table->count = SpriteResourceTableEntryNARC_GetEntryCount(tableBin->narcEntries);
 
     if (table->count > 0) {
@@ -646,7 +643,7 @@ int SpriteResourceTable_GetEntryID(const SpriteResourceTable *table, int index)
     GF_ASSERT(table);
     GF_ASSERT(table->count > index);
 
-    if (table->isNARC == FALSE) {
+    if (table->loadFromNARC == FALSE) {
         SpriteResourceTableEntryFile *fileEntries = table->entries;
         return fileEntries[index].id;
     } else {
@@ -662,7 +659,7 @@ int SpriteResourceTable_GetNARCEntryMemberIndex(const SpriteResourceTable *table
     GF_ASSERT(table);
     GF_ASSERT(table->count > index);
 
-    if (table->isNARC == TRUE) {
+    if (table->loadFromNARC == TRUE) {
         SpriteResourceTableEntryNARC *narcEntries = table->entries;
         memberIdx = narcEntries[index].memberIndex;
     }
@@ -677,7 +674,7 @@ BOOL SpriteResourceTable_IsNARCEntryCompressed(const SpriteResourceTable *table,
     GF_ASSERT(table);
     GF_ASSERT(table->count > index);
 
-    if (table->isNARC == TRUE) {
+    if (table->loadFromNARC == TRUE) {
         SpriteResourceTableEntryNARC *narcEntries = table->entries;
         compressed = narcEntries[index].compressed;
     }
@@ -690,7 +687,7 @@ NNS_G2D_VRAM_TYPE SpriteResourceTable_GetEntryVRAMType(const SpriteResourceTable
     GF_ASSERT(table);
     GF_ASSERT(table->count > index);
 
-    if (table->isNARC == FALSE) {
+    if (table->loadFromNARC == FALSE) {
         SpriteResourceTableEntryFile *fileEntries = table->entries;
         return fileEntries[index].vramType;
     } else {
@@ -704,7 +701,7 @@ int SpriteResourceTable_GetPaletteIndex(const SpriteResourceTable *table, int in
     GF_ASSERT(table);
     GF_ASSERT(table->count > index);
 
-    if (table->isNARC == FALSE) {
+    if (table->loadFromNARC == FALSE) {
         SpriteResourceTableEntryFile *fileEntries = table->entries;
         return fileEntries[index].paletteIndex;
     } else {
@@ -827,9 +824,9 @@ static void SpriteResourceCollection_InitResFromFile(SpriteResourceCollection *s
     SpriteResource_UnpackData(spriteRes, type, vramType, paletteIdx, heapID);
 }
 
-static void SpriteResourceCollection_InitRes(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, int narcIdx, int memberIdx, BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum SpriteResourceType type, enum HeapId heapID, u32 param10)
+static void SpriteResourceCollection_InitRes(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, int narcIdx, int memberIdx, BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum SpriteResourceType type, enum HeapId heapID, BOOL allocAtEnd)
 {
-    void *data = sub_02006FE8(narcIdx, memberIdx, compressed, heapID, param10);
+    void *data = sub_02006FE8(narcIdx, memberIdx, compressed, heapID, allocAtEnd);
 
     spriteRes->rawResource = ResourceCollection_Add(spriteResources->collection, data, id);
     spriteRes->type = type;
@@ -837,9 +834,9 @@ static void SpriteResourceCollection_InitRes(SpriteResourceCollection *spriteRes
     SpriteResource_UnpackData(spriteRes, type, vramType, paletteIdx, heapID);
 }
 
-static void SpriteResourceCollection_InitResFromNARC(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, NARC *narc, int memberIdx, BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum SpriteResourceType type, enum HeapId heapID, u32 param10)
+static void SpriteResourceCollection_InitResFromNARC(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, NARC *narc, int memberIdx, BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum SpriteResourceType type, enum HeapId heapID, BOOL allocAtEnd)
 {
-    void *data = SpriteUtil_ReadNARCMember(narc, memberIdx, compressed, heapID, param10);
+    void *data = SpriteUtil_ReadNARCMember(narc, memberIdx, compressed, heapID, allocAtEnd);
 
     spriteRes->rawResource = ResourceCollection_Add(spriteResources->collection, data, id);
     spriteRes->type = type;
@@ -857,7 +854,7 @@ static int SpriteResourceTableEntryNARC_GetEntryCount(const SpriteResourceTableE
     return i;
 }
 
-static void *SpriteUtil_ReadNARCMember(NARC *narc, u32 memberIdx, BOOL compressed, u32 heapID, u32 param4)
+static void *SpriteUtil_ReadNARCMember(NARC *narc, u32 memberIdx, BOOL compressed, u32 heapID, BOOL allocAtEnd)
 {
     void *data = NARC_AllocAndReadWholeMember(narc, memberIdx, heapID);
 
@@ -865,7 +862,7 @@ static void *SpriteUtil_ReadNARCMember(NARC *narc, u32 memberIdx, BOOL compresse
         if (compressed) {
             void *decompressed;
 
-            if (param4 == 0) {
+            if (allocAtEnd == FALSE) {
                 decompressed = Heap_AllocFromHeap(heapID, MI_GetUncompressedSize(data));
             } else {
                 decompressed = Heap_AllocFromHeapAtEnd(heapID, MI_GetUncompressedSize(data));
