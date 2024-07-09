@@ -104,15 +104,23 @@ xcode-select --install
 
 You will also need the following packages:
 
+* gcc (14.x.x)
 * meson (>= 1.3.0)
 * wine (to run the mwcc executables)
+* libpng
+* pkg-config
 
 These can be installed using Homebrew; if you do not have Homebrew installed, refer to the instructions [here](https://brew.sh/). Once Homebrew is installed, run:
 
 ```
 brew update
-brew install meson arm-none-eabi-binutils
+brew install gcc@14 meson libpng pkg-config arm-none-eabi-binutils
 brew install --cask wine-stable
+```
+
+On macOS Monterey (12) or earlier, you may also need GNU Coreutils installed to run the build script.
+```
+brew install coreutils
 ```
 
 ## Linux
