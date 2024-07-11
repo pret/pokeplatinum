@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02009714_decl.h"
-#include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0205B43C_decl.h"
@@ -27,6 +25,7 @@
 #include "message.h"
 #include "message_util.h"
 #include "save_player.h"
+#include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
@@ -37,7 +36,6 @@
 #include "unk_0200679C.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_02014A84.h"
 #include "unk_02017728.h"
@@ -79,8 +77,8 @@ struct UnkStruct_ov56_02256468_t {
     NNSG2dScreenData *unk_24;
     CellActorCollection *unk_28;
     UnkStruct_0200C738 unk_2C;
-    UnkStruct_02009714 *unk_1B8[4];
-    UnkStruct_02009DC8 *unk_1C8[4];
+    SpriteResourceCollection *unk_1B8[4];
+    SpriteResource *unk_1C8[4];
     CellActorResourceData unk_1D8;
     CellActor *unk_1FC[8];
     int unk_21C;
@@ -257,7 +255,7 @@ void ov56_02256468(UnkStruct_ov56_02256468 *param0)
         sub_0200A6DC(param0->unk_1C8[1]);
 
         for (v1 = 0; v1 < 4; v1++) {
-            sub_02009754(param0->unk_1B8[v1]);
+            SpriteResourceCollection_Delete(param0->unk_1B8[v1]);
         }
 
         CellActorCollection_Delete(param0->unk_28);
@@ -386,13 +384,13 @@ static void ov56_02256634(UnkStruct_ov56_02256468 *param0)
     param0->unk_28 = sub_020095C4(10, &param0->unk_2C, 4);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_1B8[v0] = sub_02009714(1, v0, 4);
+        param0->unk_1B8[v0] = SpriteResourceCollection_New(1, v0, 4);
     }
 
-    param0->unk_1C8[0] = sub_0200985C(param0->unk_1B8[0], 74, 5, 1, 999, NNS_G2D_VRAM_TYPE_2DSUB, 4);
-    param0->unk_1C8[1] = sub_020098B8(param0->unk_1B8[1], 74, 1, 0, 999, NNS_G2D_VRAM_TYPE_2DSUB, 1, 4);
-    param0->unk_1C8[2] = sub_02009918(param0->unk_1B8[2], 74, 6, 1, 999, 2, 4);
-    param0->unk_1C8[3] = sub_02009918(param0->unk_1B8[3], 74, 7, 1, 999, 3, 4);
+    param0->unk_1C8[0] = SpriteResourceCollection_AddTiles(param0->unk_1B8[0], 74, 5, 1, 999, NNS_G2D_VRAM_TYPE_2DSUB, 4);
+    param0->unk_1C8[1] = SpriteResourceCollection_AddPalette(param0->unk_1B8[1], 74, 1, 0, 999, NNS_G2D_VRAM_TYPE_2DSUB, 1, 4);
+    param0->unk_1C8[2] = SpriteResourceCollection_Add(param0->unk_1B8[2], 74, 6, 1, 999, 2, 4);
+    param0->unk_1C8[3] = SpriteResourceCollection_Add(param0->unk_1B8[3], 74, 7, 1, 999, 3, 4);
 
     sub_0200A3DC(param0->unk_1C8[0]);
     sub_0200A640(param0->unk_1C8[1]);

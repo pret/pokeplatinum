@@ -7,7 +7,6 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/struct_02081CF4.h"
 
@@ -35,6 +34,7 @@
 #include "narc.h"
 #include "player_avatar.h"
 #include "save_player.h"
+#include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "trainer_info.h"
@@ -43,7 +43,6 @@
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
-#include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
@@ -1500,21 +1499,21 @@ static void ov7_0224EB38(UnkStruct_ov7_0224D008 *param0, u8 param1)
 
 static void ov7_0224EB7C(UnkStruct_ov7_0224D008 *param0, u16 param1)
 {
-    UnkStruct_02009DC8 *v0;
+    SpriteResource *v0;
 
     if ((param0->unk_2A9 != 0) && (param0->unk_2A9 != 3)) {
         CellActor_SetDrawFlag(param0->unk_25C[3], 0);
         return;
     }
 
-    v0 = sub_02009DC8(param0->unk_94.unk_194[0], 2);
+    v0 = SpriteResourceCollection_Find(param0->unk_94.unk_194[0], 2);
 
-    sub_02009968(param0->unk_94.unk_194[0], v0, 16, Item_FileID(param1, 1), 0, 11);
+    SpriteResourceCollection_ModifyTiles(param0->unk_94.unk_194[0], v0, 16, Item_FileID(param1, 1), 0, 11);
     sub_0200A4C0(v0);
 
-    v0 = sub_02009DC8(param0->unk_94.unk_194[1], 1);
+    v0 = SpriteResourceCollection_Find(param0->unk_94.unk_194[1], 1);
 
-    sub_020099D4(param0->unk_94.unk_194[1], v0, 16, Item_FileID(param1, 2), 0, 11);
+    SpriteResourceCollection_ModifyPalette(param0->unk_94.unk_194[1], v0, 16, Item_FileID(param1, 2), 0, 11);
     sub_0200A6B8(v0);
 }
 

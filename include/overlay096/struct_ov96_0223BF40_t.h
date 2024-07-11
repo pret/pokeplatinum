@@ -5,8 +5,6 @@
 #include <nnsys.h>
 
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02009714_decl.h"
-#include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -21,6 +19,7 @@
 #include "cell_actor.h"
 #include "message.h"
 #include "pokemon.h"
+#include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
 
@@ -62,8 +61,8 @@ struct UnkStruct_ov96_0223BF40_t {
     int unk_BF0;
     CellActorCollection *unk_BF4;
     UnkStruct_0200C738 unk_BF8;
-    UnkStruct_02009714 *unk_D84[4];
-    UnkStruct_02009DC8 *unk_D94[3][4];
+    SpriteResourceCollection *unk_D84[4];
+    SpriteResource *unk_D94[3][4];
     CellActorResourceData unk_DC4;
     CellActorResourceData unk_DE8;
     CellActorResourceData unk_E0C;

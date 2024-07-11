@@ -49,6 +49,7 @@
 #include "pokemon_summary_app.h"
 #include "rtc.h"
 #include "savedata.h"
+#include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "touch_screen.h"
@@ -62,7 +63,6 @@
 #include "unk_02006224.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_0200A9DC.h"
@@ -851,7 +851,7 @@ static void ov88_0223BF7C(UnkStruct_02095E80 *param0)
     sub_0200A6DC(param0->unk_334[1][1]);
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02009754(param0->unk_324[v0]);
+        SpriteResourceCollection_Delete(param0->unk_324[v0]);
     }
 
     CellActorCollection_Delete(param0->unk_194);
@@ -1252,17 +1252,17 @@ static void ov88_0223C66C(UnkStruct_02095E80 *param0, NARC *param1)
     param0->unk_194 = sub_020095C4((2 + 12 + 12 + 12 + 2 + 2 + 2 + 1), &param0->unk_198, 26);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_324[v0] = sub_02009714(2, v0, 26);
+        param0->unk_324[v0] = SpriteResourceCollection_New(2, v0, 26);
     }
 
-    param0->unk_334[0][0] = sub_02009A4C(param0->unk_324[0], param1, 7, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 26);
-    param0->unk_334[0][1] = sub_02009B04(param0->unk_324[1], param1, 0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 9, 26);
-    param0->unk_334[0][2] = sub_02009BC4(param0->unk_324[2], param1, 8, 1, 0, 2, 26);
-    param0->unk_334[0][3] = sub_02009BC4(param0->unk_324[3], param1, 9, 1, 0, 3, 26);
-    param0->unk_334[1][0] = sub_02009A4C(param0->unk_324[0], param1, 10, 1, 1, NNS_G2D_VRAM_TYPE_2DSUB, 26);
-    param0->unk_334[1][1] = sub_02009B04(param0->unk_324[1], param1, 0, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 10, 26);
-    param0->unk_334[1][2] = sub_02009BC4(param0->unk_324[2], param1, 11, 1, 1, 2, 26);
-    param0->unk_334[1][3] = sub_02009BC4(param0->unk_324[3], param1, 12, 1, 1, 3, 26);
+    param0->unk_334[0][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_324[0], param1, 7, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 26);
+    param0->unk_334[0][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_324[1], param1, 0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 9, 26);
+    param0->unk_334[0][2] = SpriteResourceCollection_AddFrom(param0->unk_324[2], param1, 8, 1, 0, 2, 26);
+    param0->unk_334[0][3] = SpriteResourceCollection_AddFrom(param0->unk_324[3], param1, 9, 1, 0, 3, 26);
+    param0->unk_334[1][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_324[0], param1, 10, 1, 1, NNS_G2D_VRAM_TYPE_2DSUB, 26);
+    param0->unk_334[1][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_324[1], param1, 0, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 10, 26);
+    param0->unk_334[1][2] = SpriteResourceCollection_AddFrom(param0->unk_324[2], param1, 11, 1, 1, 2, 26);
+    param0->unk_334[1][3] = SpriteResourceCollection_AddFrom(param0->unk_324[3], param1, 12, 1, 1, 3, 26);
 
     sub_0200A328(param0->unk_334[0][0]);
     sub_0200A328(param0->unk_334[1][0]);

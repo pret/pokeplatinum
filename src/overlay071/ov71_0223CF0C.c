@@ -12,8 +12,8 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "narc.h"
+#include "sprite_resource.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_0201E86C.h"
@@ -66,13 +66,13 @@ void ov71_0223CF0C(UnkStruct_ov71_0223D238 *param0, NARC *param1)
     param0->unk_00 = sub_020095C4((8 + 8 + 8 + 1), &param0->unk_04, 25);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_190[v0] = sub_02009714(Unk_ov71_0223D6C8[v0], v0, 25);
+        param0->unk_190[v0] = SpriteResourceCollection_New(Unk_ov71_0223D6C8[v0], v0, 25);
     }
 
-    param0->unk_1A0[0][0] = sub_02009A4C(param0->unk_190[0], param1, 33, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 25);
-    param0->unk_1A0[0][1] = sub_02009B04(param0->unk_190[1], param1, 14, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 9, 25);
-    param0->unk_1A0[0][2] = sub_02009BC4(param0->unk_190[2], param1, 44, 0, 1, 2, 25);
-    param0->unk_1A0[0][3] = sub_02009BC4(param0->unk_190[3], param1, 46, 0, 1, 3, 25);
+    param0->unk_1A0[0][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_190[0], param1, 33, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 25);
+    param0->unk_1A0[0][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_190[1], param1, 14, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 9, 25);
+    param0->unk_1A0[0][2] = SpriteResourceCollection_AddFrom(param0->unk_190[2], param1, 44, 0, 1, 2, 25);
+    param0->unk_1A0[0][3] = SpriteResourceCollection_AddFrom(param0->unk_190[3], param1, 46, 0, 1, 3, 25);
 
     sub_0200A328(param0->unk_1A0[0][0]);
     sub_0200A5C8(param0->unk_1A0[0][1]);
@@ -188,7 +188,7 @@ void ov71_0223D238(UnkStruct_ov71_0223D238 *param0)
     sub_0200A6DC(param0->unk_1A0[0][1]);
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02009754(param0->unk_190[v0]);
+        SpriteResourceCollection_Delete(param0->unk_190[v0]);
     }
 
     CellActorCollection_Delete(param0->unk_00);

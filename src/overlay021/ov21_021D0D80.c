@@ -4,7 +4,6 @@
 #include <nnsys.h>
 #include <string.h>
 
-#include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0209ACBC_decl.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -59,6 +58,7 @@
 #include "message.h"
 #include "overlay_manager.h"
 #include "pokemon.h"
+#include "sprite_resource.h"
 #include "strbuf.h"
 #include "touch_screen.h"
 #include "unk_020041CC.h"
@@ -722,7 +722,7 @@ void ov21_021D1778(UnkStruct_ov21_021D13FC *param0, const UnkStruct_ov21_021D332
     CellActor *v1;
     UnkStruct_ov21_021D4CB8 v2;
     Window *v3;
-    UnkStruct_02009DC8 *v4;
+    SpriteResource *v4;
     VecFx32 v5;
     const UnkStruct_ov21_021D37DC *v6;
     u32 v7 = ov21_021D36D8(param1);

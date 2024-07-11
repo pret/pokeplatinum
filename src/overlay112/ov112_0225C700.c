@@ -6,7 +6,6 @@
 #include "core_sys.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02009714_decl.h"
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
@@ -30,7 +29,7 @@
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
+#include "sprite_resource.h"
 #include "unk_0200A784.h"
 #include "message.h"
 #include "unk_0200F174.h"
@@ -125,7 +124,7 @@ typedef struct {
     BGL * unk_00;
     CellActorCollection * unk_04;
     UnkStruct_0200C738 unk_08;
-    UnkStruct_02009714 * unk_194[4];
+    SpriteResourceCollection * unk_194[4];
     NARC * unk_1A4;
 } UnkStruct_ov112_0225C9BC;
 
@@ -574,7 +573,7 @@ static void ov112_0225CB98 (UnkStruct_ov112_0225C9BC * param0, u32 param1)
     sub_0200964C(&param0->unk_08, 0, (FX32_CONST(256)));
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_194[v0] = sub_02009714(32, v0, param1);
+        param0->unk_194[v0] = SpriteResourceCollection_New(32, v0, param1);
     }
 
     sub_02039734();
@@ -589,7 +588,7 @@ static void ov112_0225CC38 (UnkStruct_ov112_0225C9BC * param0)
     CellActorCollection_Delete(param0->unk_04);
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02009754(param0->unk_194[v0]);
+        SpriteResourceCollection_Delete(param0->unk_194[v0]);
     }
 
     sub_0201E958();

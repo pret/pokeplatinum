@@ -1,12 +1,11 @@
 #ifndef POKEPLATINUM_STRUCT_OV22_0225A914_H
 #define POKEPLATINUM_STRUCT_OV22_0225A914_H
 
-#include "struct_decls/struct_02009DC8_decl.h"
-
 #include "cell_actor.h"
+#include "sprite_resource.h"
 
 typedef struct {
-    UnkStruct_02009DC8 *unk_00[4];
+    SpriteResource *unk_00[4];
     CellActor *unk_10[20];
     int unk_60;
     int unk_64;

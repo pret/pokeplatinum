@@ -4,8 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02009714_decl.h"
-#include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
@@ -37,6 +35,7 @@
 #include "narc.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -47,7 +46,6 @@
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_0200DA60.h"
@@ -77,12 +75,12 @@ typedef struct {
 
 typedef struct {
     BOOL unk_00;
-    UnkStruct_02009DC8 *unk_04[4];
+    SpriteResource *unk_04[4];
     CellActorResourceData unk_14;
 } UnkStruct_ov114_0225CDB4;
 
 typedef struct {
-    UnkStruct_02009714 *unk_00[4];
+    SpriteResourceCollection *unk_00[4];
     UnkStruct_ov114_0225CDB4 *unk_10;
     u32 unk_14;
 } UnkStruct_ov114_0225CCD0;
@@ -1137,7 +1135,7 @@ void ov114_0225CB38(UnkStruct_ov114_0225CAD4 *param0)
 
 int ov114_0225CB74(UnkStruct_ov114_0225CAD4 *param0)
 {
-    UnkStruct_02009DC8 *v0 = sub_02009DC8(param0->unk_10.unk_00[1], 5000);
+    SpriteResource *v0 = SpriteResourceCollection_Find(param0->unk_10.unk_00[1], 5000);
     return sub_0200A760(v0, NNS_G2D_VRAM_TYPE_2DMAIN);
 }
 
@@ -1232,7 +1230,7 @@ static void ov114_0225CCD0(UnkStruct_ov114_0225CCD0 *param0, u32 param1, u32 par
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_00[v0] = sub_02009714(param1, v0, param2);
+        param0->unk_00[v0] = SpriteResourceCollection_New(param1, v0, param2);
     }
 
     param0->unk_10 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_ov114_0225CDB4) * param1);
@@ -1251,7 +1249,7 @@ static void ov114_0225CD10(UnkStruct_ov114_0225CCD0 *param0)
     }
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02009754(param0->unk_00[v0]);
+        SpriteResourceCollection_Delete(param0->unk_00[v0]);
     }
 
     Heap_FreeToHeap(param0->unk_10);
@@ -1298,20 +1296,20 @@ static void ov114_0225CDE0(UnkStruct_ov114_0225CCD0 *param0, UnkStruct_ov114_022
     GF_ASSERT(param1->unk_00 == 0);
 
     param1->unk_00 = 1;
-    param1->unk_04[0] = sub_02009A4C(param0->unk_00[0], param2, param5, 0, param8, NNS_G2D_VRAM_TYPE_2DMAIN, param9);
-    param1->unk_04[1] = sub_02009B04(param0->unk_00[1], param2, param3, 0, param8, NNS_G2D_VRAM_TYPE_2DMAIN, param4, param9);
-    param1->unk_04[2] = sub_02009BC4(param0->unk_00[2], param2, param6, 0, param8, 2, param9);
-    param1->unk_04[3] = sub_02009BC4(param0->unk_00[3], param2, param7, 0, param8, 3, param9);
+    param1->unk_04[0] = SpriteResourceCollection_AddTilesFrom(param0->unk_00[0], param2, param5, 0, param8, NNS_G2D_VRAM_TYPE_2DMAIN, param9);
+    param1->unk_04[1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_00[1], param2, param3, 0, param8, NNS_G2D_VRAM_TYPE_2DMAIN, param4, param9);
+    param1->unk_04[2] = SpriteResourceCollection_AddFrom(param0->unk_00[2], param2, param6, 0, param8, 2, param9);
+    param1->unk_04[3] = SpriteResourceCollection_AddFrom(param0->unk_00[3], param2, param7, 0, param8, 3, param9);
 
     v0 = sub_0200A3DC(param1->unk_04[0]);
     GF_ASSERT(v0);
 
-    sub_02009D4C(param1->unk_04[0]);
+    SpriteResource_ReleaseData(param1->unk_04[0]);
 
     v0 = sub_0200A640(param1->unk_04[1]);
     GF_ASSERT(v0);
 
-    sub_02009D4C(param1->unk_04[1]);
+    SpriteResource_ReleaseData(param1->unk_04[1]);
     sub_020093B4(&param1->unk_14, param8, param8, param8, param8, 0xffffffff, 0xffffffff, 0, 1, param0->unk_00[0], param0->unk_00[1], param0->unk_00[2], param0->unk_00[3], NULL, NULL);
 }
 
@@ -1327,7 +1325,7 @@ static void ov114_0225CEB8(UnkStruct_ov114_0225CCD0 *param0, UnkStruct_ov114_022
     sub_0200A6DC(param1->unk_04[1]);
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02009D68(param0->unk_00[v0], param1->unk_04[v0]);
+        SpriteResourceCollection_Remove(param0->unk_00[v0], param1->unk_04[v0]);
     }
 }
 

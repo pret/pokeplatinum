@@ -37,13 +37,13 @@
 #include "heap.h"
 #include "narc.h"
 #include "pokemon.h"
+#include "sprite_resource.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02002F38.h"
 #include "unk_0200679C.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_02014000.h"
 #include "unk_02018340.h"
@@ -737,7 +737,7 @@ void ov5_021DE47C(UnkStruct_ov5_021DE47C *param0, int param1, int param2)
     param0->unk_00 = sub_020095C4(param1, &param0->unk_04, 4);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_190[v0] = sub_02009714(param2, v0, 4);
+        param0->unk_190[v0] = SpriteResourceCollection_New(param2, v0, 4);
     }
 }
 
@@ -748,19 +748,19 @@ void ov5_021DE4AC(UnkStruct_ov5_021DE47C *param0)
     CellActorCollection_Delete(param0->unk_00);
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02009754(param0->unk_190[v0]);
+        SpriteResourceCollection_Delete(param0->unk_190[v0]);
     }
 }
 
 void ov5_021DE4CC(NARC *param0, UnkStruct_ov5_021DE47C *param1, UnkStruct_ov5_021DE5A4 *param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)
 {
-    param2->unk_00[0] = sub_02009AA8(param1->unk_190[0], param0, param5, 0, param8, NNS_G2D_VRAM_TYPE_2DMAIN, 4, 1);
-    param2->unk_00[1] = sub_02009B04(param1->unk_190[1], param0, param3, 0, param8, NNS_G2D_VRAM_TYPE_2DMAIN, param4, 4);
-    param2->unk_00[2] = sub_02009BC4(param1->unk_190[2], param0, param6, 0, param8, 2, 4);
-    param2->unk_00[3] = sub_02009BC4(param1->unk_190[3], param0, param7, 0, param8, 3, 4);
+    param2->unk_00[0] = SpriteResourceCollection_AddTilesFromEx(param1->unk_190[0], param0, param5, 0, param8, NNS_G2D_VRAM_TYPE_2DMAIN, 4, 1);
+    param2->unk_00[1] = SpriteResourceCollection_AddPaletteFrom(param1->unk_190[1], param0, param3, 0, param8, NNS_G2D_VRAM_TYPE_2DMAIN, param4, 4);
+    param2->unk_00[2] = SpriteResourceCollection_AddFrom(param1->unk_190[2], param0, param6, 0, param8, 2, 4);
+    param2->unk_00[3] = SpriteResourceCollection_AddFrom(param1->unk_190[3], param0, param7, 0, param8, 3, 4);
 
     sub_0200A3DC(param2->unk_00[0]);
-    sub_02009D4C(param2->unk_00[0]);
+    SpriteResource_ReleaseData(param2->unk_00[0]);
     sub_0200A640(param2->unk_00[1]);
     sub_020093B4(&param2->unk_10, param8, param8, param8, param8, 0xffffffff, 0xffffffff, 0, 0, param1->unk_190[0], param1->unk_190[1], param1->unk_190[2], param1->unk_190[3], NULL, NULL);
 }
@@ -773,7 +773,7 @@ void ov5_021DE5A4(UnkStruct_ov5_021DE47C *param0, UnkStruct_ov5_021DE5A4 *param1
     sub_0200A6DC(param1->unk_00[1]);
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02009D68(param0->unk_190[v0], param1->unk_00[v0]);
+        SpriteResourceCollection_Remove(param0->unk_190[v0], param1->unk_00[v0]);
     }
 }
 

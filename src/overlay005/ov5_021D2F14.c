@@ -4,11 +4,8 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_02009F38_decl.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_02009508.h"
-#include "struct_defs/struct_02009CFC.h"
 #include "struct_defs/struct_0200D0F4.h"
 
 #include "overlay005/struct_ov5_021D30A8.h"
@@ -18,19 +15,19 @@
 
 #include "cell_actor.h"
 #include "heap.h"
+#include "sprite_resource.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_02017728.h"
 
-static BOOL ov5_021D3478(UnkStruct_02009CFC *param0, UnkStruct_02009DC8 *param1);
+static BOOL ov5_021D3478(SpriteResourceList *param0, SpriteResource *param1);
 static void ov5_021D34AC(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, int param3, int param4, int param5);
 static void ov5_021D3518(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, int param3, int param4, int param5);
 
 void ov5_021D2F14(UnkStruct_ov5_021D30A8 *param0, const UnkStruct_ov7_0224F2EC *param1, u32 param2, u32 param3)
 {
-    UnkStruct_02009F38 *v0;
-    UnkStruct_02009F38 *v1;
+    SpriteResourceTable *v0;
+    SpriteResourceTable *v1;
     void *v2;
     u32 v3;
     u32 v4;
@@ -44,32 +41,32 @@ void ov5_021D2F14(UnkStruct_ov5_021D30A8 *param0, const UnkStruct_ov7_0224F2EC *
         param0->unk_1C4 = 6;
     }
 
-    v1 = Heap_AllocFromHeap(param3, sub_02009F34() * param0->unk_1C4);
+    v1 = Heap_AllocFromHeap(param3, SpriteResourceTable_Size() * param0->unk_1C4);
 
     for (v4 = 0; v4 < param0->unk_1C4; v4++) {
-        v0 = sub_02009F38(v1, v4);
+        v0 = SpriteResourceTable_GetArrayElement(v1, v4);
         v2 = ReadFileToHeap(param3, param1->val1[v4]);
 
-        sub_02009F40(v2, v0, param3);
+        SpriteResourceTable_LoadFromBinary(v2, v0, param3);
         Heap_FreeToHeap(v2);
     }
 
     for (v4 = 0; v4 < param0->unk_1C4; v4++) {
-        v0 = sub_02009F38(v1, v4);
-        v3 = sub_02009FA4(v0);
-        param0->unk_194[v4] = sub_02009714(v3, v4, param3);
+        v0 = SpriteResourceTable_GetArrayElement(v1, v4);
+        v3 = SpriteResourceTable_GetCount(v0);
+        param0->unk_194[v4] = SpriteResourceCollection_New(v3, v4, param3);
     }
 
     for (v4 = 0; v4 < param0->unk_1C4; v4++) {
-        v0 = sub_02009F38(v1, v4);
-        v3 = sub_02009FA4(v0);
-        param0->unk_1AC[v4] = sub_02009CFC(v3, param3);
-        sub_02009C80(param0->unk_194[v4], v0, param0->unk_1AC[v4], param3);
+        v0 = SpriteResourceTable_GetArrayElement(v1, v4);
+        v3 = SpriteResourceTable_GetCount(v0);
+        param0->unk_1AC[v4] = SpriteResourceList_New(v3, param3);
+        SpriteResourceCollection_Extend(param0->unk_194[v4], v0, param0->unk_1AC[v4], param3);
     }
 
     for (v4 = 0; v4 < param0->unk_1C4; v4++) {
-        v0 = sub_02009F38(v1, v4);
-        sub_02009F8C(v0);
+        v0 = SpriteResourceTable_GetArrayElement(v1, v4);
+        SpriteResourceTable_Clear(v0);
     }
 
     Heap_FreeToHeap(v1);
@@ -92,8 +89,8 @@ void ov5_021D30A8(UnkStruct_ov5_021D30A8 *param0)
     sub_0200A700(param0->unk_1AC[1]);
 
     for (v0 = 0; v0 < param0->unk_1C4; v0++) {
-        sub_02009D20(param0->unk_1AC[v0]);
-        sub_02009754(param0->unk_194[v0]);
+        SpriteResourceList_Delete(param0->unk_1AC[v0]);
+        SpriteResourceCollection_Delete(param0->unk_194[v0]);
     }
 }
 
@@ -128,8 +125,8 @@ CellActor *ov5_021D3104(UnkStruct_ov5_021D30A8 *param0, const UnkStruct_ov7_0224
 
 void ov5_021D3190(UnkStruct_ov5_021D30A8 *param0, UnkStruct_ov104_02241308 *param1, u32 param2, u32 param3)
 {
-    UnkStruct_02009F38 *v0;
-    UnkStruct_02009F38 *v1;
+    SpriteResourceTable *v0;
+    SpriteResourceTable *v1;
     void *v2;
     u32 v3;
     u32 v4, v5;
@@ -146,7 +143,7 @@ void ov5_021D3190(UnkStruct_ov5_021D30A8 *param0, UnkStruct_ov104_02241308 *para
     }
 
     for (v4 = 0; v4 < param0->unk_1C4; v4++) {
-        param0->unk_194[v4] = sub_02009714(param1->val1[v4], v4, param3);
+        param0->unk_194[v4] = SpriteResourceCollection_New(param1->val1[v4], v4, param3);
     }
 
     for (v4 = 0; v4 < param0->unk_1C4; v4++) {
@@ -154,25 +151,25 @@ void ov5_021D3190(UnkStruct_ov5_021D30A8 *param0, UnkStruct_ov104_02241308 *para
             continue;
         }
 
-        param0->unk_1AC[v4] = sub_02009CFC(param1->val1[v4], param3);
+        param0->unk_1AC[v4] = SpriteResourceList_New(param1->val1[v4], param3);
 
-        for (v5 = 0; v5 < param0->unk_1AC[v4]->unk_04; v5++) {
-            param0->unk_1AC[v4]->unk_00[v5] = NULL;
+        for (v5 = 0; v5 < param0->unk_1AC[v4]->capacity; v5++) {
+            param0->unk_1AC[v4]->resources[v5] = NULL;
         }
     }
 }
 
 void ov5_021D3270(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, int param3, int param4, int param5, int param6)
 {
-    UnkStruct_02009DC8 *v0;
+    SpriteResource *v0;
     int v1;
 
-    if (sub_02009D34(param0->unk_194[1], param6) == 0) {
+    if (SpriteResourceCollection_IsIDUnused(param0->unk_194[1], param6) == 0) {
         GF_ASSERT(0);
         return;
     }
 
-    v0 = sub_020098B8(param0->unk_194[1], param1, param2, param3, param6, param5, param4, param0->unk_1C6);
+    v0 = SpriteResourceCollection_AddPalette(param0->unk_194[1], param1, param2, param3, param6, param5, param4, param0->unk_1C6);
 
     if (v0 != NULL) {
         v1 = sub_0200A640(v0);
@@ -188,15 +185,15 @@ void ov5_021D3270(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, int pa
 
 void ov5_021D32E8(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, int param3, int param4, int param5, int param6)
 {
-    UnkStruct_02009DC8 *v0;
+    SpriteResource *v0;
     int v1;
 
-    if (sub_02009D34(param0->unk_194[1], param6) == 0) {
+    if (SpriteResourceCollection_IsIDUnused(param0->unk_194[1], param6) == 0) {
         GF_ASSERT(0);
         return;
     }
 
-    v0 = sub_02009B04(param0->unk_194[1], param1, param2, param3, param6, param5, param4, param0->unk_1C6);
+    v0 = SpriteResourceCollection_AddPaletteFrom(param0->unk_194[1], param1, param2, param3, param6, param5, param4, param0->unk_1C6);
 
     if (v0 != NULL) {
         v1 = sub_0200A640(v0);
@@ -232,14 +229,14 @@ void ov5_021D339C(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, int 
 
 void ov5_021D33B0(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, BOOL param3, int param4, int param5)
 {
-    UnkStruct_02009DC8 *v0;
+    SpriteResource *v0;
 
-    if (sub_02009D34(param0->unk_194[0], param5) == 0) {
+    if (SpriteResourceCollection_IsIDUnused(param0->unk_194[0], param5) == 0) {
         GF_ASSERT(0);
         return;
     }
 
-    v0 = sub_0200985C(param0->unk_194[0], param1, param2, param3, param5, param4, param0->unk_1C6);
+    v0 = SpriteResourceCollection_AddTiles(param0->unk_194[0], param1, param2, param3, param5, param4, param0->unk_1C6);
 
     if (v0 != NULL) {
         sub_0200A3DC(v0);
@@ -252,14 +249,14 @@ void ov5_021D33B0(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, BOOL p
 
 void ov5_021D3414(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, BOOL param3, int param4, int param5)
 {
-    UnkStruct_02009DC8 *v0;
+    SpriteResource *v0;
 
-    if (sub_02009D34(param0->unk_194[0], param5) == 0) {
+    if (SpriteResourceCollection_IsIDUnused(param0->unk_194[0], param5) == 0) {
         GF_ASSERT(0);
         return;
     }
 
-    v0 = sub_02009A4C(param0->unk_194[0], param1, param2, param3, param5, param4, param0->unk_1C6);
+    v0 = SpriteResourceCollection_AddTilesFrom(param0->unk_194[0], param1, param2, param3, param5, param4, param0->unk_1C6);
 
     if (v0 != NULL) {
         sub_0200A3DC(v0);
@@ -271,17 +268,17 @@ void ov5_021D3414(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, BOOL
     GF_ASSERT(0);
 }
 
-static BOOL ov5_021D3478(UnkStruct_02009CFC *param0, UnkStruct_02009DC8 *param1)
+static BOOL ov5_021D3478(SpriteResourceList *param0, SpriteResource *param1)
 {
     int v0;
 
-    for (v0 = 0; v0 < param0->unk_04; v0++) {
-        if (param0->unk_00[v0] != NULL) {
+    for (v0 = 0; v0 < param0->capacity; v0++) {
+        if (param0->resources[v0] != NULL) {
             continue;
         }
 
-        param0->unk_00[v0] = param1;
-        param0->unk_08++;
+        param0->resources[v0] = param1;
+        param0->count++;
 
         return 1;
     }
@@ -291,15 +288,15 @@ static BOOL ov5_021D3478(UnkStruct_02009CFC *param0, UnkStruct_02009DC8 *param1)
 
 static void ov5_021D34AC(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, int param3, int param4, int param5)
 {
-    UnkStruct_02009DC8 *v0;
+    SpriteResource *v0;
     int v1;
 
-    if (sub_02009D34(param0->unk_194[param4], param5) == 0) {
+    if (SpriteResourceCollection_IsIDUnused(param0->unk_194[param4], param5) == 0) {
         GF_ASSERT(0);
         return;
     }
 
-    v0 = sub_02009918(param0->unk_194[param4], param1, param2, param3, param5, param4, param0->unk_1C6);
+    v0 = SpriteResourceCollection_Add(param0->unk_194[param4], param1, param2, param3, param5, param4, param0->unk_1C6);
 
     if (v0 != NULL) {
         v1 = ov5_021D3478(param0->unk_1AC[param4], v0);
@@ -312,15 +309,15 @@ static void ov5_021D34AC(UnkStruct_ov5_021D30A8 *param0, int param1, int param2,
 
 static void ov5_021D3518(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, int param3, int param4, int param5)
 {
-    UnkStruct_02009DC8 *v0;
+    SpriteResource *v0;
     int v1;
 
-    if (sub_02009D34(param0->unk_194[param4], param5) == 0) {
+    if (SpriteResourceCollection_IsIDUnused(param0->unk_194[param4], param5) == 0) {
         GF_ASSERT(0);
         return;
     }
 
-    v0 = sub_02009BC4(param0->unk_194[param4], param1, param2, param3, param5, param4, param0->unk_1C6);
+    v0 = SpriteResourceCollection_AddFrom(param0->unk_194[param4], param1, param2, param3, param5, param4, param0->unk_1C6);
 
     if (v0 != NULL) {
         v1 = ov5_021D3478(param0->unk_1AC[param4], v0);
@@ -354,11 +351,11 @@ CellActorData *ov5_021D3584(UnkStruct_ov5_021D30A8 *param0, const SpriteTemplate
         v4[4] = 0xffffffff;
         v4[5] = 0xffffffff;
     } else {
-        if ((v4[4] != 0xffffffff) && (sub_02009D34(param0->unk_194[4], v4[4]) == 0)) {
+        if ((v4[4] != 0xffffffff) && (SpriteResourceCollection_IsIDUnused(param0->unk_194[4], v4[4]) == 0)) {
             v4[4] = 0xffffffff;
         }
 
-        if ((v4[5] != 0xffffffff) && (sub_02009D34(param0->unk_194[5], v4[5]) == 0)) {
+        if ((v4[5] != 0xffffffff) && (SpriteResourceCollection_IsIDUnused(param0->unk_194[5], v4[5]) == 0)) {
             v4[5] = 0xffffffff;
         }
     }
@@ -405,7 +402,7 @@ void ov5_021D375C(UnkStruct_ov5_021D30A8 *param0)
     sub_0200A700(param0->unk_1AC[1]);
 
     for (v0 = 0; v0 < param0->unk_1C4; v0++) {
-        sub_02009D20(param0->unk_1AC[v0]);
-        sub_02009754(param0->unk_194[v0]);
+        SpriteResourceList_Delete(param0->unk_1AC[v0]);
+        SpriteResourceCollection_Delete(param0->unk_194[v0]);
     }
 }

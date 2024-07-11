@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02009DC8_decl.h"
 #include "message.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "strbuf.h"
@@ -21,7 +20,7 @@
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
+#include "sprite_resource.h"
 #include "unk_0200A328.h"
 #include "message.h"
 #include "unk_02012744.h"
@@ -413,7 +412,7 @@ asm static void ov22_0225A154 (UnkStruct_ov22_0225A154 * param0, int param1, Unk
     str r2, [sp, #0x90]
     str r0, [sp, #0xa0]
     ldr r0, [r4, #0x4c]
-    bl sub_02009DC8
+    bl SpriteResourceCollection_Find
     mov r1, #0
     bl sub_0200A72C
     str r0, [sp, #0x98]

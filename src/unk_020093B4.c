@@ -3,29 +3,27 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02009714_decl.h"
-#include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_defs/struct_02009508.h"
 #include "struct_defs/struct_02009508_1.h"
 #include "struct_defs/struct_0200C738.h"
 
 #include "cell_actor.h"
 #include "heap.h"
-#include "unk_02009714.h"
+#include "sprite_resource.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "unk_0202309C.h"
 
-void sub_020093B4(CellActorResourceData *param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, UnkStruct_02009714 *param9, UnkStruct_02009714 *param10, UnkStruct_02009714 *param11, UnkStruct_02009714 *param12, UnkStruct_02009714 *param13, UnkStruct_02009714 *param14)
+void sub_020093B4(CellActorResourceData *param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, SpriteResourceCollection *param9, SpriteResourceCollection *param10, SpriteResourceCollection *param11, SpriteResourceCollection *param12, SpriteResourceCollection *param13, SpriteResourceCollection *param14)
 {
-    UnkStruct_02009DC8 *v0;
-    UnkStruct_02009DC8 *v1;
-    UnkStruct_02009DC8 *v2;
-    UnkStruct_02009DC8 *v3 = NULL;
-    UnkStruct_02009DC8 *v4 = NULL;
-    UnkStruct_02009DC8 *v5 = NULL;
+    SpriteResource *v0;
+    SpriteResource *v1;
+    SpriteResource *v2;
+    SpriteResource *v3 = NULL;
+    SpriteResource *v4 = NULL;
+    SpriteResource *v5 = NULL;
     NNSG2dImageProxy *v6;
 
     GF_ASSERT(param9);
@@ -34,29 +32,29 @@ void sub_020093B4(CellActorResourceData *param0, int param1, int param2, int par
     GF_ASSERT(param11);
     GF_ASSERT(param0);
 
-    v0 = sub_02009DC8(param9, param1);
+    v0 = SpriteResourceCollection_Find(param9, param1);
     GF_ASSERT(v0);
 
-    v1 = sub_02009DC8(param10, param2);
+    v1 = SpriteResourceCollection_Find(param10, param2);
     GF_ASSERT(v1);
 
-    v2 = sub_02009DC8(param11, param3);
+    v2 = SpriteResourceCollection_Find(param11, param3);
     GF_ASSERT(v2);
 
     if (param12) {
         if (param4 != 0xffffffff) {
-            v3 = sub_02009DC8(param12, param4);
+            v3 = SpriteResourceCollection_Find(param12, param4);
             GF_ASSERT(v3);
         }
     }
 
     if (param13 != NULL) {
         if (param5 != 0xffffffff) {
-            v4 = sub_02009DC8(param13, param5);
+            v4 = SpriteResourceCollection_Find(param13, param5);
         }
 
         if (param6 != 0xffffffff) {
-            v5 = sub_02009DC8(param14, param6);
+            v5 = SpriteResourceCollection_Find(param14, param6);
         }
     }
 
@@ -64,7 +62,7 @@ void sub_020093B4(CellActorResourceData *param0, int param1, int param2, int par
         v6 = sub_0200A558(v0, v2);
         GF_ASSERT(v6);
 
-        param0->charData = sub_02009E1C(v0);
+        param0->charData = SpriteResource_GetTileData(v0);
     } else {
         v6 = sub_0200A534(v0);
         GF_ASSERT(v6);
@@ -73,17 +71,17 @@ void sub_020093B4(CellActorResourceData *param0, int param1, int param2, int par
 
     param0->paletteProxy = sub_0200A72C(v1, v6);
     param0->imageProxy = v6;
-    param0->cellBank = sub_02009E4C(v2);
+    param0->cellBank = SpriteResource_GetSpriteData(v2);
 
     if (v3) {
-        param0->cellAnimBank = sub_02009E64(v3);
+        param0->cellAnimBank = SpriteResource_GetSpriteAnimData(v3);
     } else {
         param0->cellAnimBank = NULL;
     }
 
     if (v4) {
-        param0->multiCellBank = sub_02009E7C(v4);
-        param0->multiCellAnimBank = sub_02009E94(v5);
+        param0->multiCellBank = SpriteResource_GetMultiSpriteData(v4);
+        param0->multiCellAnimBank = SpriteResource_GetMultiSpriteAnimData(v5);
     } else {
         param0->multiCellBank = NULL;
         param0->multiCellAnimBank = NULL;
@@ -99,7 +97,7 @@ void sub_020094F0(CellActorResourceData *param0)
     memset(param0, 0, sizeof(CellActorResourceData));
 }
 
-UnkStruct_02009508 *sub_02009508(const UnkStruct_02009508_1 *param0, int param1, UnkStruct_02009714 *param2, UnkStruct_02009714 *param3, UnkStruct_02009714 *param4, UnkStruct_02009714 *param5, UnkStruct_02009714 *param6, UnkStruct_02009714 *param7)
+UnkStruct_02009508 *sub_02009508(const UnkStruct_02009508_1 *param0, int param1, SpriteResourceCollection *param2, SpriteResourceCollection *param3, SpriteResourceCollection *param4, SpriteResourceCollection *param5, SpriteResourceCollection *param6, SpriteResourceCollection *param7)
 {
     int v0;
     int v1;

@@ -7,8 +7,6 @@
 
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02009714_decl.h"
-#include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
@@ -46,6 +44,7 @@
 #include "narc.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sprite_resource.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -55,7 +54,6 @@
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_0200A9DC.h"
@@ -148,8 +146,8 @@ typedef struct {
     MATHRandContext32 unk_08;
     CellActorCollection *unk_20;
     UnkStruct_0200C738 unk_24;
-    UnkStruct_02009714 *unk_1B0[4];
-    UnkStruct_02009DC8 *unk_1C0[8];
+    SpriteResourceCollection *unk_1B0[4];
+    SpriteResource *unk_1C0[8];
     CellActorResourceData unk_1E0;
     CellActorResourceData unk_204[2];
     CellActor *unk_24C[8];
@@ -1384,7 +1382,7 @@ static void ov23_0223F020(UnkStruct_ov23_0223EE80 *param0)
     sub_0200A6DC(Unk_ov23_02257740->unk_1C0[5]);
 
     for (v1 = 0; v1 < 4; v1++) {
-        sub_02009754(Unk_ov23_02257740->unk_1B0[v1]);
+        SpriteResourceCollection_Delete(Unk_ov23_02257740->unk_1B0[v1]);
     }
 
     for (v1 = 0; v1 < 4; v1++) {
@@ -2762,7 +2760,7 @@ static BOOL ov23_02240CFC(UnkStruct_ov23_0223EE80 *param0)
     return 0;
 }
 
-static void ov23_02240E60(UnkStruct_02009DC8 *param0)
+static void ov23_02240E60(SpriteResource *param0)
 {
     Unk_ov23_02257740->unk_1C0[Unk_ov23_02257740->unk_A2F] = param0;
     Unk_ov23_02257740->unk_A2F++;
@@ -2785,27 +2783,27 @@ static void ov23_02240E88(void)
     sub_0200964C(&Unk_ov23_02257740->unk_24, 0, (192 << FX32_SHIFT) * 2);
 
     for (v0 = 0; v0 < 4; v0++) {
-        Unk_ov23_02257740->unk_1B0[v0] = sub_02009714(2, v0, 29);
+        Unk_ov23_02257740->unk_1B0[v0] = SpriteResourceCollection_New(2, v0, 29);
     }
 
     v1 = NARC_ctor(NARC_INDEX_DATA__UG_ANIM, 29);
 
-    ov23_02240E60(sub_02009A4C(Unk_ov23_02257740->unk_1B0[0], v1, 6, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 29));
+    ov23_02240E60(SpriteResourceCollection_AddTilesFrom(Unk_ov23_02257740->unk_1B0[0], v1, 6, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 29));
     sub_0200A328(Unk_ov23_02257740->unk_1C0[Unk_ov23_02257740->unk_A2F - 1]);
-    ov23_02240E60(sub_02009B04(Unk_ov23_02257740->unk_1B0[1], v1, 7, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1, 29));
+    ov23_02240E60(SpriteResourceCollection_AddPaletteFrom(Unk_ov23_02257740->unk_1B0[1], v1, 7, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1, 29));
 
     sub_0200A640(Unk_ov23_02257740->unk_1C0[Unk_ov23_02257740->unk_A2F - 1]);
 
-    ov23_02240E60(sub_02009BC4(Unk_ov23_02257740->unk_1B0[2], v1, 5, 0, 0, 2, 29));
-    ov23_02240E60(sub_02009BC4(Unk_ov23_02257740->unk_1B0[3], v1, 4, 0, 0, 3, 29));
-    ov23_02240E60(sub_02009A4C(Unk_ov23_02257740->unk_1B0[0], v1, 3, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 29));
+    ov23_02240E60(SpriteResourceCollection_AddFrom(Unk_ov23_02257740->unk_1B0[2], v1, 5, 0, 0, 2, 29));
+    ov23_02240E60(SpriteResourceCollection_AddFrom(Unk_ov23_02257740->unk_1B0[3], v1, 4, 0, 0, 3, 29));
+    ov23_02240E60(SpriteResourceCollection_AddTilesFrom(Unk_ov23_02257740->unk_1B0[0], v1, 3, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 29));
 
     sub_0200A328(Unk_ov23_02257740->unk_1C0[Unk_ov23_02257740->unk_A2F - 1]);
-    ov23_02240E60(sub_020098B8(Unk_ov23_02257740->unk_1B0[1], 52, 1, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 29));
+    ov23_02240E60(SpriteResourceCollection_AddPalette(Unk_ov23_02257740->unk_1B0[1], 52, 1, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 29));
     sub_0200A640(Unk_ov23_02257740->unk_1C0[Unk_ov23_02257740->unk_A2F - 1]);
 
-    ov23_02240E60(sub_02009BC4(Unk_ov23_02257740->unk_1B0[2], v1, 2, 0, 1, 2, 29));
-    ov23_02240E60(sub_02009BC4(Unk_ov23_02257740->unk_1B0[3], v1, 1, 0, 1, 3, 29));
+    ov23_02240E60(SpriteResourceCollection_AddFrom(Unk_ov23_02257740->unk_1B0[2], v1, 2, 0, 1, 2, 29));
+    ov23_02240E60(SpriteResourceCollection_AddFrom(Unk_ov23_02257740->unk_1B0[3], v1, 1, 0, 1, 3, 29));
     NARC_dtor(v1);
 }
 

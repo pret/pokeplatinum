@@ -4,8 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02009714_decl.h"
-#include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02087A10_decl.h"
 #include "struct_defs/struct_0200C738.h"
@@ -28,6 +26,7 @@
 #include "overlay_manager.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
+#include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
@@ -38,7 +37,6 @@
 #include "unk_0200679C.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_0200DA60.h"
@@ -94,8 +92,8 @@ struct UnkStruct_02087A10_t {
     Strbuf *unk_184;
     CellActorCollection *unk_188;
     UnkStruct_0200C738 unk_18C;
-    UnkStruct_02009714 *unk_318[4];
-    UnkStruct_02009DC8 *unk_328[2][4];
+    SpriteResourceCollection *unk_318[4];
+    SpriteResource *unk_328[2][4];
     CellActorResourceData unk_348;
     CellActorResourceData unk_36C;
     CellActor *unk_390[14];
@@ -1154,7 +1152,7 @@ static int sub_02086F3C(OverlayManager *param0, int *param1)
     sub_0200A6DC(v0->unk_328[1][1]);
 
     for (v2 = 0; v2 < 4; v2++) {
-        sub_02009754(v0->unk_318[v2]);
+        SpriteResourceCollection_Delete(v0->unk_318[v2]);
     }
 
     CellActorCollection_Delete(v0->unk_188);
@@ -1552,13 +1550,13 @@ static void sub_020877F4(UnkStruct_02087A10 *param0, NARC *param1)
     sub_0200964C(&param0->unk_18C, 0, (256 * FX32_ONE));
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_318[v0] = sub_02009714(2, v0, 18);
+        param0->unk_318[v0] = SpriteResourceCollection_New(2, v0, 18);
     }
 
-    param0->unk_328[0][0] = sub_02009A4C(param0->unk_318[0], param1, 10, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 18);
-    param0->unk_328[0][1] = sub_02009B04(param0->unk_318[1], param1, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 9, 18);
-    param0->unk_328[0][2] = sub_02009BC4(param0->unk_318[2], param1, 12, 1, 0, 2, 18);
-    param0->unk_328[0][3] = sub_02009BC4(param0->unk_318[3], param1, 14, 1, 0, 3, 18);
+    param0->unk_328[0][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_318[0], param1, 10, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 18);
+    param0->unk_328[0][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_318[1], param1, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 9, 18);
+    param0->unk_328[0][2] = SpriteResourceCollection_AddFrom(param0->unk_318[2], param1, 12, 1, 0, 2, 18);
+    param0->unk_328[0][3] = SpriteResourceCollection_AddFrom(param0->unk_318[3], param1, 14, 1, 0, 3, 18);
 
     if (param0->unk_00 == 1) {
         param0->unk_518 = sub_02006F50(19, PokeIconSpriteIndex(param0->unk_04, 0, param0->unk_08), 0, &param0->unk_51C, 18);
@@ -1568,10 +1566,10 @@ static void sub_020877F4(UnkStruct_02087A10 *param0, NARC *param1)
         DC_FlushRange(param0->unk_524, 0x20 * 4);
     }
 
-    param0->unk_328[1][0] = sub_02009A4C(param0->unk_318[0], param1, 11, 1, 1, NNS_G2D_VRAM_TYPE_2DSUB, 18);
-    param0->unk_328[1][1] = sub_02009B04(param0->unk_318[1], param1, 1, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 3, 18);
-    param0->unk_328[1][2] = sub_02009BC4(param0->unk_318[2], param1, 13, 1, 1, 2, 18);
-    param0->unk_328[1][3] = sub_02009BC4(param0->unk_318[3], param1, 15, 1, 1, 3, 18);
+    param0->unk_328[1][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_318[0], param1, 11, 1, 1, NNS_G2D_VRAM_TYPE_2DSUB, 18);
+    param0->unk_328[1][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_318[1], param1, 1, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 3, 18);
+    param0->unk_328[1][2] = SpriteResourceCollection_AddFrom(param0->unk_318[2], param1, 13, 1, 1, 2, 18);
+    param0->unk_328[1][3] = SpriteResourceCollection_AddFrom(param0->unk_318[3], param1, 15, 1, 1, 3, 18);
 
     sub_0200A328(param0->unk_328[0][0]);
     sub_0200A328(param0->unk_328[1][0]);

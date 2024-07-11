@@ -5,8 +5,6 @@
 #include "constants/species.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02009714_decl.h"
-#include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02024440_decl.h"
@@ -42,6 +40,7 @@
 #include "pokemon_icon.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "touch_screen.h"
@@ -53,7 +52,6 @@
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_0200DA60.h"
@@ -130,8 +128,8 @@ typedef struct {
     int unk_24;
     CellActorCollection *unk_28;
     UnkStruct_0200C738 unk_2C;
-    UnkStruct_02009714 *unk_1B8[6];
-    UnkStruct_02009DC8 *unk_1D0[6];
+    SpriteResourceCollection *unk_1B8[6];
+    SpriteResource *unk_1D0[6];
     CellActorResourceData unk_1E8;
     UnkStruct_ov97_02234A2C_sub1 unk_20C[30];
     TouchScreenRect unk_374[34];
@@ -525,13 +523,13 @@ static void ov97_02233FA4(UnkStruct_ov97_02234A2C *param0)
     sub_0200964C(&param0->unk_2C, 0, (256 * FX32_ONE));
 
     for (v0 = 0; v0 < 6; v0++) {
-        param0->unk_1B8[v0] = sub_02009714(3, v0, 78);
+        param0->unk_1B8[v0] = SpriteResourceCollection_New(3, v0, 78);
     }
 
-    param0->unk_1D0[0] = sub_0200985C(param0->unk_1B8[0], 116, 26, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 78);
-    param0->unk_1D0[1] = sub_020098B8(param0->unk_1B8[1], 116, 23, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4, 78);
-    param0->unk_1D0[2] = sub_02009918(param0->unk_1B8[2], 116, 25, 1, 0, 2, 78);
-    param0->unk_1D0[3] = sub_02009918(param0->unk_1B8[3], 116, 24, 1, 0, 3, 78);
+    param0->unk_1D0[0] = SpriteResourceCollection_AddTiles(param0->unk_1B8[0], 116, 26, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 78);
+    param0->unk_1D0[1] = SpriteResourceCollection_AddPalette(param0->unk_1B8[1], 116, 23, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4, 78);
+    param0->unk_1D0[2] = SpriteResourceCollection_Add(param0->unk_1B8[2], 116, 25, 1, 0, 2, 78);
+    param0->unk_1D0[3] = SpriteResourceCollection_Add(param0->unk_1B8[3], 116, 24, 1, 0, 3, 78);
 
     sub_0200A328(param0->unk_1D0[0]);
     sub_0200A5C8(param0->unk_1D0[1]);
@@ -1572,7 +1570,7 @@ static void ov97_022351F0(UnkStruct_ov97_02234A2C *param0)
     sub_0200A6DC(param0->unk_1D0[1]);
 
     for (v0 = 0; v0 < 6; v0++) {
-        sub_02009754(param0->unk_1B8[v0]);
+        SpriteResourceCollection_Delete(param0->unk_1B8[v0]);
     }
 
     CellActorCollection_Delete(param0->unk_28);

@@ -4,8 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02009714_decl.h"
-#include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0200C738.h"
 
@@ -13,17 +11,17 @@
 #include "heap.h"
 #include "narc.h"
 #include "pokemon.h"
+#include "sprite_resource.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_020131EC.h"
 #include "unk_0201D15C.h"
 
 typedef struct UnkStruct_ov6_022426B8_t {
-    UnkStruct_02009714 *unk_00[4];
-    UnkStruct_02009DC8 *unk_10[4];
+    SpriteResourceCollection *unk_00[4];
+    SpriteResource *unk_10[4];
     void *unk_20;
     void *unk_24;
     ArchivedSprite unk_28;
@@ -36,7 +34,7 @@ typedef struct UnkStruct_ov6_022426B8_t {
 
 static void ov6_022428F8(UnkStruct_ov6_022426B8 *param0);
 static void ov6_02242860(SysTask *param0, void *param1);
-static void ov6_02242880(UnkStruct_02009714 *param0, UnkStruct_02009714 *param1, void *param2, void *param3);
+static void ov6_02242880(SpriteResourceCollection *param0, SpriteResourceCollection *param1, void *param2, void *param3);
 
 static const u8 Unk_ov6_02249030[] = {
     0x1,
@@ -96,14 +94,14 @@ void ov6_022426C0(UnkStruct_ov6_022426B8 *param0, const int param1)
     v1 = NARC_ctor(NARC_INDEX_DATA__FIELD_CUTIN, 4);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_00[v0] = sub_02009714(Unk_ov6_02249030[v0], v0, 4);
+        param0->unk_00[v0] = SpriteResourceCollection_New(Unk_ov6_02249030[v0], v0, 4);
     }
 
     {
-        param0->unk_10[0] = sub_02009A4C(param0->unk_00[0], v1, 5, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
-        param0->unk_10[1] = sub_02009B04(param0->unk_00[1], v1, 3, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 1, 4);
-        param0->unk_10[2] = sub_02009BC4(param0->unk_00[2], v1, 6, 0, 2, 2, 4);
-        param0->unk_10[3] = sub_02009BC4(param0->unk_00[3], v1, 12, 0, 3, 3, 4);
+        param0->unk_10[0] = SpriteResourceCollection_AddTilesFrom(param0->unk_00[0], v1, 5, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
+        param0->unk_10[1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_00[1], v1, 3, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 1, 4);
+        param0->unk_10[2] = SpriteResourceCollection_AddFrom(param0->unk_00[2], v1, 6, 0, 2, 2, 4);
+        param0->unk_10[3] = SpriteResourceCollection_AddFrom(param0->unk_00[3], v1, 12, 0, 3, 3, 4);
     }
 
     param0->unk_20 = sub_0201363C(param0->unk_28.archive, param0->unk_28.character, 4);
@@ -141,7 +139,7 @@ void ov6_02242828(UnkStruct_ov6_022426B8 *param0)
     sub_0200A6DC(param0->unk_10[1]);
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02009754(param0->unk_00[v0]);
+        SpriteResourceCollection_Delete(param0->unk_00[v0]);
     }
 
     CellActorCollection_Delete(param0->unk_38);
@@ -161,17 +159,17 @@ static void ov6_02242860(SysTask *param0, void *param1)
     }
 }
 
-static void ov6_02242880(UnkStruct_02009714 *param0, UnkStruct_02009714 *param1, void *param2, void *param3)
+static void ov6_02242880(SpriteResourceCollection *param0, SpriteResourceCollection *param1, void *param2, void *param3)
 {
     int v0;
     u32 v1, v2;
-    UnkStruct_02009DC8 *v3;
-    UnkStruct_02009DC8 *v4;
+    SpriteResource *v3;
+    SpriteResource *v4;
     NNSG2dImageProxy *v5;
     const NNSG2dImagePaletteProxy *v6;
 
-    v3 = sub_02009DC8(param0, 0);
-    v4 = sub_02009DC8(param1, 1);
+    v3 = SpriteResourceCollection_Find(param0, 0);
+    v4 = SpriteResourceCollection_Find(param1, 1);
 
     sub_0200A3DC(v3);
     sub_0200A640(v4);

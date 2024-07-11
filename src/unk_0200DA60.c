@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/sprite_template.h"
@@ -21,13 +20,13 @@
 #include "heap.h"
 #include "narc.h"
 #include "pokemon.h"
+#include "sprite_resource.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02002328.h"
 #include "unk_0200679C.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
-#include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200C6E4.h"
 #include "unk_020131EC.h"
@@ -668,9 +667,9 @@ static void sub_0200EE98(UnkStruct_ov5_021D30A8 *param0, ArchivedSprite *param1)
 {
     u8 *v0;
     u32 v1;
-    UnkStruct_02009DC8 *v2;
+    SpriteResource *v2;
     NNSG2dImageProxy *v3;
-    UnkStruct_02009DC8 *v4;
+    SpriteResource *v4;
     const NNSG2dImagePaletteProxy *v5;
 
     v0 = Heap_AllocFromHeap(param0->unk_1C6, ((32 * 10 * 10) * 2));
@@ -684,7 +683,7 @@ static void sub_0200EE98(UnkStruct_ov5_021D30A8 *param0, ArchivedSprite *param1)
         sub_020135F0(param1->archive, param1->character, param0->unk_1C6, &v7, &v0[(32 * 10 * 10)]);
     }
 
-    v2 = sub_02009DC8(param0->unk_194[0], 89301);
+    v2 = SpriteResourceCollection_Find(param0->unk_194[0], 89301);
     v3 = sub_0200A534(v2);
     v1 = NNS_G2dGetImageLocation(v3, NNS_G2D_VRAM_TYPE_2DMAIN);
 
@@ -694,7 +693,7 @@ static void sub_0200EE98(UnkStruct_ov5_021D30A8 *param0, ArchivedSprite *param1)
     Heap_FreeToHeap(v0);
 
     v0 = sub_02013660(param1->archive, param1->palette, param0->unk_1C6);
-    v4 = sub_02009DC8(param0->unk_194[1], 89301);
+    v4 = SpriteResourceCollection_Find(param0->unk_194[1], 89301);
     v5 = sub_0200A72C(v4, v3);
     v1 = NNS_G2dGetImagePaletteLocation(v5, NNS_G2D_VRAM_TYPE_2DMAIN);
 

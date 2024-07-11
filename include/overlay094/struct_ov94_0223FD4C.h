@@ -6,8 +6,6 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02009714_decl.h"
-#include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
@@ -33,6 +31,7 @@
 #include "message.h"
 #include "overlay_manager.h"
 #include "pokemon.h"
+#include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
@@ -102,8 +101,8 @@ typedef struct UnkStruct_ov94_0223FD4C_t {
     int unk_BE0;
     CellActorCollection *unk_BE4;
     UnkStruct_0200C738 unk_BE8;
-    UnkStruct_02009714 *unk_D74[4];
-    UnkStruct_02009DC8 *unk_D84[3][4];
+    SpriteResourceCollection *unk_D74[4];
+    SpriteResource *unk_D84[3][4];
     CellActorResourceData unk_DB4;
     CellActorResourceData unk_DD8;
     CellActorResourceData unk_DFC;

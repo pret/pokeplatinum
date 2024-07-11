@@ -4,8 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02009714_decl.h"
-#include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
@@ -39,6 +37,7 @@
 #include "overlay_manager.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -47,7 +46,6 @@
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_0200DA60.h"
@@ -116,7 +114,7 @@ typedef struct {
     BGL *unk_00;
     CellActorCollection *unk_04;
     UnkStruct_0200C738 unk_08;
-    UnkStruct_02009714 *unk_194[4];
+    SpriteResourceCollection *unk_194[4];
     GenericPointerData *unk_1A4;
     NARC *unk_1A8;
 } UnkStruct_ov69_0225D35C;
@@ -189,7 +187,7 @@ typedef struct {
     u8 unk_34[4];
     u8 unk_38[4];
     CellActor *unk_3C[12];
-    UnkStruct_02009DC8 *unk_6C[12][4];
+    SpriteResource *unk_6C[12][4];
 } UnkStruct_ov69_0225EB60;
 
 typedef struct {
@@ -1491,7 +1489,7 @@ static void ov69_0225D53C(UnkStruct_ov69_0225D35C *param0, u32 param1)
     sub_0200964C(&param0->unk_08, 0, (FX32_CONST(256)));
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_194[v0] = sub_02009714(32, v0, param1);
+        param0->unk_194[v0] = SpriteResourceCollection_New(32, v0, param1);
     }
 
     sub_02039734();
@@ -1506,7 +1504,7 @@ static void ov69_0225D5D8(UnkStruct_ov69_0225D35C *param0)
     CellActorCollection_Delete(param0->unk_04);
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02009754(param0->unk_194[v0]);
+        SpriteResourceCollection_Delete(param0->unk_194[v0]);
     }
 
     sub_0201E958();
@@ -2643,20 +2641,20 @@ static void ov69_0225E960(UnkStruct_ov69_0225EB60 *param0, UnkStruct_ov69_0225D3
     v3.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
     v3.heapID = param3;
 
-    param0->unk_6C[0][1] = sub_02009B04(param1->unk_194[1], param1->unk_1A8, 20, 0, 0, NNS_G2D_VRAM_TYPE_2DSUB, 12, param3);
+    param0->unk_6C[0][1] = SpriteResourceCollection_AddPaletteFrom(param1->unk_194[1], param1->unk_1A8, 20, 0, 0, NNS_G2D_VRAM_TYPE_2DSUB, 12, param3);
     v2 = sub_0200A640(param0->unk_6C[0][1]);
     GF_ASSERT(v2);
-    sub_02009D4C(param0->unk_6C[0][1]);
+    SpriteResource_ReleaseData(param0->unk_6C[0][1]);
 
     for (v0 = 0; v0 < 12; v0++) {
-        param0->unk_6C[v0][0] = sub_02009A4C(param1->unk_194[0], param1->unk_1A8, (21 + ((v0) * 3)), 0, v0, NNS_G2D_VRAM_TYPE_2DSUB, param3);
-        param0->unk_6C[v0][2] = sub_02009BC4(param1->unk_194[2], param1->unk_1A8, (22 + ((v0) * 3)), 0, v0, 2, param3);
-        param0->unk_6C[v0][3] = sub_02009BC4(param1->unk_194[3], param1->unk_1A8, (23 + ((v0) * 3)), 0, v0, 3, param3);
+        param0->unk_6C[v0][0] = SpriteResourceCollection_AddTilesFrom(param1->unk_194[0], param1->unk_1A8, (21 + ((v0) * 3)), 0, v0, NNS_G2D_VRAM_TYPE_2DSUB, param3);
+        param0->unk_6C[v0][2] = SpriteResourceCollection_AddFrom(param1->unk_194[2], param1->unk_1A8, (22 + ((v0) * 3)), 0, v0, 2, param3);
+        param0->unk_6C[v0][3] = SpriteResourceCollection_AddFrom(param1->unk_194[3], param1->unk_1A8, (23 + ((v0) * 3)), 0, v0, 3, param3);
 
         v2 = sub_0200A3DC(param0->unk_6C[v0][0]);
         GF_ASSERT(v2);
 
-        sub_02009D4C(param0->unk_6C[v0][0]);
+        SpriteResource_ReleaseData(param0->unk_6C[v0][0]);
         sub_020093B4(&v1, v0, 0, v0, v0, 0xffffffff, 0xffffffff, 0, 1, param1->unk_194[0], param1->unk_194[1], param1->unk_194[2], param1->unk_194[3], NULL, NULL);
 
         param0->unk_3C[v0] = CellActorCollection_Add(&v3);
@@ -2681,12 +2679,12 @@ static void ov69_0225EAE8(UnkStruct_ov69_0225EB60 *param0, UnkStruct_ov69_0225D3
 
         if (v0 == 0) {
             sub_0200A6DC(param0->unk_6C[v0][1]);
-            sub_02009D68(param1->unk_194[1], param0->unk_6C[v0][1]);
+            SpriteResourceCollection_Remove(param1->unk_194[1], param0->unk_6C[v0][1]);
         }
 
         for (v1 = 0; v1 < 4; v1++) {
             if (v1 != 1) {
-                sub_02009D68(param1->unk_194[v1], param0->unk_6C[v0][v1]);
+                SpriteResourceCollection_Remove(param1->unk_194[v1], param0->unk_6C[v0][v1]);
             }
         }
     }

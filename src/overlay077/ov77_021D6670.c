@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02009714_decl.h"
-#include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_defs/struct_0200C738.h"
 
 #include "overlay022/struct_ov22_022559F8.h"
@@ -12,10 +10,10 @@
 #include "cell_actor.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "sprite_resource.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_0201D15C.h"
@@ -53,8 +51,8 @@ typedef struct {
 typedef struct {
     CellActorCollection *unk_00;
     UnkStruct_0200C738 unk_04;
-    UnkStruct_02009714 *unk_190[4];
-    UnkStruct_02009DC8 *unk_1A0[4];
+    SpriteResourceCollection *unk_190[4];
+    SpriteResource *unk_1A0[4];
     UnkStruct_ov77_021D6ADC unk_1B0[10];
 } UnkStruct_ov77_021D6800;
 
@@ -203,13 +201,13 @@ static void ov77_021D6800(UnkStruct_ov77_021D6800 *param0)
     param0->unk_00 = sub_020095C4(10, &param0->unk_04, v1);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_190[v0] = sub_02009714(Unk_ov77_021D7930[v0], v0, v1);
+        param0->unk_190[v0] = SpriteResourceCollection_New(Unk_ov77_021D7930[v0], v0, v1);
     }
 
-    param0->unk_1A0[0] = sub_0200985C(param0->unk_190[0], 128, 4, 0, 0, NNS_G2D_VRAM_TYPE_MAX, v1);
-    param0->unk_1A0[1] = sub_020098B8(param0->unk_190[1], 128, 3, 0, 0, NNS_G2D_VRAM_TYPE_MAX, 1, v1);
-    param0->unk_1A0[2] = sub_02009918(param0->unk_190[2], 128, 5, 0, 0, 2, v1);
-    param0->unk_1A0[3] = sub_02009918(param0->unk_190[3], 128, 6, 0, 0, 3, v1);
+    param0->unk_1A0[0] = SpriteResourceCollection_AddTiles(param0->unk_190[0], 128, 4, 0, 0, NNS_G2D_VRAM_TYPE_MAX, v1);
+    param0->unk_1A0[1] = SpriteResourceCollection_AddPalette(param0->unk_190[1], 128, 3, 0, 0, NNS_G2D_VRAM_TYPE_MAX, 1, v1);
+    param0->unk_1A0[2] = SpriteResourceCollection_Add(param0->unk_190[2], 128, 5, 0, 0, 2, v1);
+    param0->unk_1A0[3] = SpriteResourceCollection_Add(param0->unk_190[3], 128, 6, 0, 0, 3, v1);
 
     sub_0200A328(param0->unk_1A0[0]);
     sub_0200A5C8(param0->unk_1A0[1]);
@@ -226,7 +224,7 @@ static void ov77_021D691C(UnkStruct_ov77_021D6800 *param0)
     sub_0200A6DC(param0->unk_1A0[1]);
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02009754(param0->unk_190[v0]);
+        SpriteResourceCollection_Delete(param0->unk_190[v0]);
     }
 
     CellActorCollection_Delete(param0->unk_00);

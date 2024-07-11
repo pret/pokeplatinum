@@ -6,8 +6,6 @@
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02009714_decl.h"
-#include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
@@ -28,6 +26,7 @@
 #include "narc.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "unk_0200112C.h"
@@ -35,7 +34,6 @@
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200DA60.h"
 #include "unk_02018340.h"
@@ -103,8 +101,8 @@ typedef struct {
     u16 unk_12E;
     void *unk_130;
     void (*unk_134)(void *, u32);
-    UnkStruct_02009714 *unk_138[4];
-    UnkStruct_02009DC8 *unk_148[4];
+    SpriteResourceCollection *unk_138[4];
+    SpriteResource *unk_148[4];
     CellActor *unk_158[2];
 } UnkStruct_ov7_0224C768;
 
@@ -635,7 +633,7 @@ static void ov7_0224C768(UnkStruct_ov7_0224C768 *param0, BGL *param1, u32 param2
     Window_Show(param0->unk_04, 0, (1 + (18 + 12)), 11);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_138[v0] = sub_02009714(1, v0, param2);
+        param0->unk_138[v0] = SpriteResourceCollection_New(1, v0, param2);
     }
 
     ov7_0224CA54(&v2, param0, param2);
@@ -726,10 +724,10 @@ static void ov7_0224CA54(CellActorResourceData *param0, UnkStruct_ov7_0224C768 *
 {
     NARC *v0 = NARC_ctor(NARC_INDEX_GRAPHIC__SHOP_GRA, param2);
 
-    param1->unk_148[0] = sub_02009A4C(param1->unk_138[0], v0, 4, 0, 5000, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
-    param1->unk_148[1] = sub_02009B04(param1->unk_138[1], v0, 10, 0, 5000, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param2);
-    param1->unk_148[2] = sub_02009BC4(param1->unk_138[2], v0, 5, 0, 5000, 2, param2);
-    param1->unk_148[3] = sub_02009BC4(param1->unk_138[3], v0, 6, 0, 5000, 3, param2);
+    param1->unk_148[0] = SpriteResourceCollection_AddTilesFrom(param1->unk_138[0], v0, 4, 0, 5000, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
+    param1->unk_148[1] = SpriteResourceCollection_AddPaletteFrom(param1->unk_138[1], v0, 10, 0, 5000, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param2);
+    param1->unk_148[2] = SpriteResourceCollection_AddFrom(param1->unk_138[2], v0, 5, 0, 5000, 2, param2);
+    param1->unk_148[3] = SpriteResourceCollection_AddFrom(param1->unk_138[3], v0, 6, 0, 5000, 3, param2);
 
     NARC_dtor(v0);
     sub_0200A3DC(param1->unk_148[0]);
@@ -745,7 +743,7 @@ static void ov7_0224CB40(UnkStruct_ov7_0224C768 *param0)
     sub_0200A6DC(param0->unk_148[1]);
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02009754(param0->unk_138[v0]);
+        SpriteResourceCollection_Delete(param0->unk_138[v0]);
     }
 }
 

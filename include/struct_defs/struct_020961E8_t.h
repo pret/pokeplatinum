@@ -4,8 +4,6 @@
 #include <nnsys.h>
 
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02009714_decl.h"
-#include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0203DE34.h"
@@ -18,6 +16,7 @@
 #include "cell_actor.h"
 #include "message.h"
 #include "savedata.h"
+#include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
@@ -38,8 +37,8 @@ struct UnkStruct_020961E8_t {
     int unk_4C;
     CellActorCollection *unk_50;
     UnkStruct_0200C738 unk_54;
-    UnkStruct_02009714 *unk_1E0[4];
-    UnkStruct_02009DC8 *unk_1F0[3][4];
+    SpriteResourceCollection *unk_1E0[4];
+    SpriteResource *unk_1F0[3][4];
     CellActorResourceData unk_220;
     CellActorResourceData unk_244;
     CellActorResourceData unk_268;

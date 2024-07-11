@@ -11,8 +11,6 @@
 #include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
-#include "struct_decls/struct_02009714_decl.h"
-#include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02015064_decl.h"
 #include "struct_decls/struct_02015128_decl.h"
 #include "struct_decls/struct_020151A4_decl.h"
@@ -44,6 +42,7 @@
 #include "message.h"
 #include "overlay_manager.h"
 #include "pokemon.h"
+#include "sprite_resource.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -55,7 +54,6 @@
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_0200DA60.h"
@@ -168,7 +166,7 @@ typedef struct ChooseStarterRotation {
 
 typedef struct ChooseStarterCursor {
     CellActor *unk_00;
-    UnkStruct_02009DC8 *unk_04[6];
+    SpriteResource *unk_04[6];
     VecFx32 unk_1C;
     SysTask *unk_28;
     ChooseStarterRotation unk_2C;
@@ -218,7 +216,7 @@ typedef struct ChooseStarterApp {
     UIControlData *unk_B8;
     UnkStruct_0200C738 unk_BC;
     CellActorCollection *unk_248;
-    UnkStruct_02009714 *unk_24C[6];
+    SpriteResourceCollection *unk_24C[6];
     UnkStruct_02007768 *spriteManager;
     Sprite *sprites[NUM_STARTER_OPTIONS];
     StarterPreviewGraphics unk_274;
@@ -754,10 +752,10 @@ static void ov78_021D1518(ChooseStarterApp *param0)
 static void MakeCellActors(ChooseStarterApp *param0, int param1)
 {
     param0->unk_248 = sub_020095C4(2, &param0->unk_BC, param1);
-    param0->unk_24C[0] = sub_02009714(2, 0, param1);
-    param0->unk_24C[1] = sub_02009714(2, 1, param1);
-    param0->unk_24C[2] = sub_02009714(2, 2, param1);
-    param0->unk_24C[3] = sub_02009714(2, 3, param1);
+    param0->unk_24C[0] = SpriteResourceCollection_New(2, 0, param1);
+    param0->unk_24C[1] = SpriteResourceCollection_New(2, 1, param1);
+    param0->unk_24C[2] = SpriteResourceCollection_New(2, 2, param1);
+    param0->unk_24C[3] = SpriteResourceCollection_New(2, 3, param1);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -766,10 +764,10 @@ static void MakeCellActors(ChooseStarterApp *param0, int param1)
 static void ov78_021D1594(ChooseStarterApp *param0)
 {
     CellActorCollection_Delete(param0->unk_248);
-    sub_02009754(param0->unk_24C[0]);
-    sub_02009754(param0->unk_24C[1]);
-    sub_02009754(param0->unk_24C[2]);
-    sub_02009754(param0->unk_24C[3]);
+    SpriteResourceCollection_Delete(param0->unk_24C[0]);
+    SpriteResourceCollection_Delete(param0->unk_24C[1]);
+    SpriteResourceCollection_Delete(param0->unk_24C[2]);
+    SpriteResourceCollection_Delete(param0->unk_24C[3]);
 }
 
 static void ov78_021D15CC(ChooseStarter3DGraphics *param0, int param1, int param2, int param3, NNSFndAllocator *param4)
@@ -1433,18 +1431,18 @@ static BOOL ov78_021D2200(ChooseStarterCameraMovement *param0)
 
 static void MakeCursorOAM(ChooseStarterApp *param0, ChooseStarterCursor *param1, int param2)
 {
-    param1->unk_04[0] = sub_0200985C(param0->unk_24C[0], 82, 10, 0, 10, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
+    param1->unk_04[0] = SpriteResourceCollection_AddTiles(param0->unk_24C[0], 82, 10, 0, 10, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
 
     sub_0200A3DC(param1->unk_04[0]);
-    sub_02009D4C(param1->unk_04[0]);
+    SpriteResource_ReleaseData(param1->unk_04[0]);
 
-    param1->unk_04[1] = sub_020098B8(param0->unk_24C[1], 82, 11, 0, 11, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param2);
+    param1->unk_04[1] = SpriteResourceCollection_AddPalette(param0->unk_24C[1], 82, 11, 0, 11, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param2);
 
     sub_0200A640(param1->unk_04[1]);
-    sub_02009D4C(param1->unk_04[1]);
+    SpriteResource_ReleaseData(param1->unk_04[1]);
 
-    param1->unk_04[2] = sub_02009918(param0->unk_24C[2], 82, 12, 0, 12, 2, param2);
-    param1->unk_04[3] = sub_02009918(param0->unk_24C[3], 82, 13, 0, 13, 3, param2);
+    param1->unk_04[2] = SpriteResourceCollection_Add(param0->unk_24C[2], 82, 12, 0, 12, 2, param2);
+    param1->unk_04[3] = SpriteResourceCollection_Add(param0->unk_24C[3], 82, 13, 0, 13, 3, param2);
 }
 
 static void ov78_021D2290(ChooseStarterApp *param0, ChooseStarterCursor *param1)
@@ -1452,10 +1450,10 @@ static void ov78_021D2290(ChooseStarterApp *param0, ChooseStarterCursor *param1)
     sub_0200A4E4(param1->unk_04[0]);
     sub_0200A6DC(param1->unk_04[1]);
 
-    sub_02009D68(param0->unk_24C[0], param1->unk_04[0]);
-    sub_02009D68(param0->unk_24C[1], param1->unk_04[1]);
-    sub_02009D68(param0->unk_24C[2], param1->unk_04[2]);
-    sub_02009D68(param0->unk_24C[3], param1->unk_04[3]);
+    SpriteResourceCollection_Remove(param0->unk_24C[0], param1->unk_04[0]);
+    SpriteResourceCollection_Remove(param0->unk_24C[1], param1->unk_04[1]);
+    SpriteResourceCollection_Remove(param0->unk_24C[2], param1->unk_04[2]);
+    SpriteResourceCollection_Remove(param0->unk_24C[3], param1->unk_04[3]);
 }
 
 static void AttachCursorCellActor(ChooseStarterApp *param0, ChooseStarterCursor *param1, int param2)

@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0202442C_decl.h"
 #include "struct_decls/struct_02025CCC_decl.h"
@@ -41,6 +40,7 @@
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -52,7 +52,6 @@
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -101,7 +100,7 @@ typedef struct {
     s8 unk_08;
     UnkStruct_ov97_02237AEC *unk_0C;
     CellActorResourceData unk_10[2];
-    UnkStruct_02009DC8 *unk_58[2][6];
+    SpriteResource *unk_58[2][6];
     UnkStruct_ov97_0222EEB8 unk_88[80];
     UnkStruct_ov97_0222EEB8 unk_1848[80];
     UnkStruct_ov97_0222EEB8 unk_3008;
@@ -1134,20 +1133,20 @@ static void ov97_0222E398(UnkStruct_ov97_0222E398 *param0)
         v6 = NNS_G2D_VRAM_TYPE_2DMAIN;
         v7 = 20000 + v6;
 
-        param0->unk_58[v9 + 0][0] = sub_0200985C(param0->unk_0C->unk_190[0], v0, v1, v5, v7, v6, v8);
-        param0->unk_58[v9 + 0][1] = sub_020098B8(param0->unk_0C->unk_190[1], v0, v2, 0, v7, v6, 1, v8);
-        param0->unk_58[v9 + 0][2] = sub_02009918(param0->unk_0C->unk_190[2], v0, v3, v5, v7, 2, v8);
-        param0->unk_58[v9 + 0][3] = sub_02009918(param0->unk_0C->unk_190[3], v0, v4, v5, v7, 3, v8);
+        param0->unk_58[v9 + 0][0] = SpriteResourceCollection_AddTiles(param0->unk_0C->unk_190[0], v0, v1, v5, v7, v6, v8);
+        param0->unk_58[v9 + 0][1] = SpriteResourceCollection_AddPalette(param0->unk_0C->unk_190[1], v0, v2, 0, v7, v6, 1, v8);
+        param0->unk_58[v9 + 0][2] = SpriteResourceCollection_Add(param0->unk_0C->unk_190[2], v0, v3, v5, v7, 2, v8);
+        param0->unk_58[v9 + 0][3] = SpriteResourceCollection_Add(param0->unk_0C->unk_190[3], v0, v4, v5, v7, 3, v8);
     }
 
     {
         v6 = NNS_G2D_VRAM_TYPE_2DSUB;
         v7 = 20000 + v6;
 
-        param0->unk_58[v9 + 1][0] = sub_0200985C(param0->unk_0C->unk_190[0], v0, v1, v5, v7, v6, v8);
-        param0->unk_58[v9 + 1][1] = sub_020098B8(param0->unk_0C->unk_190[1], v0, v2, 0, v7, v6, 1, v8);
-        param0->unk_58[v9 + 1][2] = sub_02009918(param0->unk_0C->unk_190[2], v0, v3, v5, v7, 2, v8);
-        param0->unk_58[v9 + 1][3] = sub_02009918(param0->unk_0C->unk_190[3], v0, v4, v5, v7, 3, v8);
+        param0->unk_58[v9 + 1][0] = SpriteResourceCollection_AddTiles(param0->unk_0C->unk_190[0], v0, v1, v5, v7, v6, v8);
+        param0->unk_58[v9 + 1][1] = SpriteResourceCollection_AddPalette(param0->unk_0C->unk_190[1], v0, v2, 0, v7, v6, 1, v8);
+        param0->unk_58[v9 + 1][2] = SpriteResourceCollection_Add(param0->unk_0C->unk_190[2], v0, v3, v5, v7, 2, v8);
+        param0->unk_58[v9 + 1][3] = SpriteResourceCollection_Add(param0->unk_0C->unk_190[3], v0, v4, v5, v7, 3, v8);
     }
 
     sub_0200A328(param0->unk_58[v9 + 0][0]);

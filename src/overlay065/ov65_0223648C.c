@@ -5,7 +5,6 @@
 
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -44,6 +43,7 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "save_player.h"
+#include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "trainer_info.h"
@@ -53,7 +53,6 @@
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
 #include "unk_0200A784.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -113,7 +112,7 @@ typedef struct {
     u16 unk_16;
     CellActorCollection *unk_18;
     UnkStruct_0200C738 unk_1C;
-    UnkStruct_02009714 *unk_1A8[4];
+    SpriteResourceCollection *unk_1A8[4];
     UnkStruct_ov63_0222BE18 *unk_1B8;
     UnkStruct_ov63_0222CD2C *unk_1BC;
     UnkStruct_ov65_02237908 unk_1C0[4];
@@ -862,7 +861,7 @@ static void ov65_02236D50(UnkStruct_ov65_02236840 *param0, u32 param1)
     param0->unk_18 = sub_020095C4(4, &param0->unk_1C, param1);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_1A8[v0] = sub_02009714(4, v0, param1);
+        param0->unk_1A8[v0] = SpriteResourceCollection_New(4, v0, param1);
     }
 
     param0->unk_1B8 = ov63_0222BE18(4, param1);
@@ -879,7 +878,7 @@ static void ov65_02236E04(UnkStruct_ov65_02236840 *param0)
     CellActorCollection_Delete(param0->unk_18);
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02009754(param0->unk_1A8[v0]);
+        SpriteResourceCollection_Delete(param0->unk_1A8[v0]);
     }
 
     sub_0201E958();

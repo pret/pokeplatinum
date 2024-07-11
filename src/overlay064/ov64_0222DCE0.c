@@ -10,8 +10,6 @@
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02009714_decl.h"
-#include "struct_decls/struct_02009DC8_decl.h"
 #include "message.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -49,7 +47,7 @@
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
+#include "sprite_resource.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "message.h"
@@ -137,7 +135,7 @@ typedef struct {
     CellActorCollection * unk_04;
     NNSG2dRenderSurface unk_08;
     UnkStruct_0200C738 unk_78;
-    UnkStruct_02009714 * unk_204[4];
+    SpriteResourceCollection * unk_204[4];
     StringTemplate * unk_214;
     MessageLoader * unk_218;
     NARC * unk_21C;
@@ -146,7 +144,7 @@ typedef struct {
     Strbuf* unk_234;
     u32 unk_238;
     CellActorResourceData unk_23C;
-    UnkStruct_02009DC8 * unk_260[4];
+    SpriteResource * unk_260[4];
     CellActor * unk_270[2];
     UnkStruct_ov64_022300E4 unk_278;
 } UnkStruct_ov64_0222E21C;
@@ -1014,13 +1012,13 @@ static void ov64_0222E3D8 (UnkStruct_ov64_0222E21C * param0, u32 param1)
     sub_0200A8B0(&param0->unk_08, &Unk_ov64_02232460, NNS_G2D_SURFACETYPE_MAIN2D, &param0->unk_78.unk_00);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_204[v0] = sub_02009714(64, v0, param1);
+        param0->unk_204[v0] = SpriteResourceCollection_New(64, v0, param1);
     }
 
-    param0->unk_260[0] = sub_02009A4C(param0->unk_204[0], param0->unk_21C, 15, 0, 100, NNS_G2D_VRAM_TYPE_2DMAIN, param1);
-    param0->unk_260[1] = sub_02009B04(param0->unk_204[1], param0->unk_21C, 0, 0, 100, NNS_G2D_VRAM_TYPE_2DMAIN, 5, param1);
-    param0->unk_260[2] = sub_02009BC4(param0->unk_204[2], param0->unk_21C, 16, 0, 100, 2, param1);
-    param0->unk_260[3] = sub_02009BC4(param0->unk_204[3], param0->unk_21C, 17, 0, 100, 3, param1);
+    param0->unk_260[0] = SpriteResourceCollection_AddTilesFrom(param0->unk_204[0], param0->unk_21C, 15, 0, 100, NNS_G2D_VRAM_TYPE_2DMAIN, param1);
+    param0->unk_260[1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_204[1], param0->unk_21C, 0, 0, 100, NNS_G2D_VRAM_TYPE_2DMAIN, 5, param1);
+    param0->unk_260[2] = SpriteResourceCollection_AddFrom(param0->unk_204[2], param0->unk_21C, 16, 0, 100, 2, param1);
+    param0->unk_260[3] = SpriteResourceCollection_AddFrom(param0->unk_204[3], param0->unk_21C, 17, 0, 100, 3, param1);
 
     v1 = sub_0200A3DC(param0->unk_260[0]);
     GF_ASSERT(v1);
@@ -1028,8 +1026,8 @@ static void ov64_0222E3D8 (UnkStruct_ov64_0222E21C * param0, u32 param1)
     v1 = sub_0200A640(param0->unk_260[1]);
     GF_ASSERT(v1);
 
-    sub_02009D4C(param0->unk_260[0]);
-    sub_02009D4C(param0->unk_260[1]);
+    SpriteResource_ReleaseData(param0->unk_260[0]);
+    SpriteResource_ReleaseData(param0->unk_260[1]);
     sub_020093B4(&param0->unk_23C, 100, 100, 100, 100, 0xffffffff, 0xffffffff, 0, 0, param0->unk_204[0], param0->unk_204[1], param0->unk_204[2], param0->unk_204[3], NULL, NULL);
 }
 
@@ -1041,11 +1039,11 @@ static void ov64_0222E570 (UnkStruct_ov64_0222E21C * param0)
     sub_0200A6DC(param0->unk_260[1]);
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02009D68(param0->unk_204[v0], param0->unk_260[v0]);
+        SpriteResourceCollection_Remove(param0->unk_204[v0], param0->unk_260[v0]);
     }
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02009754(param0->unk_204[v0]);
+        SpriteResourceCollection_Delete(param0->unk_204[v0]);
     }
 
     CellActorCollection_Delete(param0->unk_04);

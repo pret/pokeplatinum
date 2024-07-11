@@ -15,8 +15,8 @@
 #include "party.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
+#include "sprite_resource.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_0201DBEC.h"
@@ -53,7 +53,7 @@ void ov108_02243030(UnkStruct_ov108_02243030 *param0, Party *param1, Party *para
     param0->unk_00 = sub_020095C4(((4 * 4) + 1 + 8 + 8 + 1), &param0->unk_04, 103);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_190[v0] = sub_02009714(Unk_ov108_02243760[v0], v0, 103);
+        param0->unk_190[v0] = SpriteResourceCollection_New(Unk_ov108_02243760[v0], v0, 103);
     }
 
     ov108_02243490(param0);
@@ -128,7 +128,7 @@ void ov108_02243194(UnkStruct_ov108_02243030 *param0)
     }
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02009754(param0->unk_190[v0]);
+        SpriteResourceCollection_Delete(param0->unk_190[v0]);
     }
 
     CellActorCollection_Delete(param0->unk_00);
@@ -158,10 +158,10 @@ static void ov108_022431FC(void)
 
 static void ov108_02243230(UnkStruct_ov108_02243030 *param0)
 {
-    param0->unk_1A0[1][0] = sub_0200985C(param0->unk_190[0], 151, 18, 1, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 103);
-    param0->unk_1A0[1][1] = sub_020098B8(param0->unk_190[1], 151, 40, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 8, 103);
-    param0->unk_1A0[1][2] = sub_02009918(param0->unk_190[2], 151, 20, 1, 1, 2, 103);
-    param0->unk_1A0[1][3] = sub_02009918(param0->unk_190[3], 151, 19, 1, 1, 3, 103);
+    param0->unk_1A0[1][0] = SpriteResourceCollection_AddTiles(param0->unk_190[0], 151, 18, 1, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 103);
+    param0->unk_1A0[1][1] = SpriteResourceCollection_AddPalette(param0->unk_190[1], 151, 40, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 8, 103);
+    param0->unk_1A0[1][2] = SpriteResourceCollection_Add(param0->unk_190[2], 151, 20, 1, 1, 2, 103);
+    param0->unk_1A0[1][3] = SpriteResourceCollection_Add(param0->unk_190[3], 151, 19, 1, 1, 3, 103);
 
     return;
 }
@@ -173,10 +173,10 @@ static void ov108_022432B4(UnkStruct_ov108_02243030 *param0)
 
     v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, 103);
 
-    param0->unk_1A0[2][0] = sub_02009A4C(param0->unk_190[0], v0, sub_02081930(), 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 103);
-    param0->unk_1A0[2][1] = sub_020098B8(param0->unk_190[1], 20, sub_02081934(), 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 103);
-    param0->unk_1A0[2][2] = sub_02009BC4(param0->unk_190[2], v0, sub_02081938(), 0, 2, 2, 103);
-    param0->unk_1A0[2][3] = sub_02009BC4(param0->unk_190[3], v0, sub_0208193C(), 0, 2, 3, 103);
+    param0->unk_1A0[2][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_190[0], v0, sub_02081930(), 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 103);
+    param0->unk_1A0[2][1] = SpriteResourceCollection_AddPalette(param0->unk_190[1], 20, sub_02081934(), 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 103);
+    param0->unk_1A0[2][2] = SpriteResourceCollection_AddFrom(param0->unk_190[2], v0, sub_02081938(), 0, 2, 2, 103);
+    param0->unk_1A0[2][3] = SpriteResourceCollection_AddFrom(param0->unk_190[3], v0, sub_0208193C(), 0, 2, 3, 103);
 
     NARC_dtor(v0);
     return;
@@ -191,9 +191,9 @@ static void ov108_02243360(UnkStruct_ov108_02243030 *param0, Party *param1, Part
 
     v2 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 103);
 
-    param0->unk_1A0[3][1] = sub_020098B8(param0->unk_190[1], 19, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 103);
-    param0->unk_1A0[3][2] = sub_02009BC4(param0->unk_190[2], v2, PokeIcon32KCellsFileIndex(), 0, 3, 2, 103);
-    param0->unk_1A0[3][3] = sub_02009BC4(param0->unk_190[3], v2, PokeIcon32KAnimationFileIndex(), 0, 3, 3, 103);
+    param0->unk_1A0[3][1] = SpriteResourceCollection_AddPalette(param0->unk_190[1], 19, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 103);
+    param0->unk_1A0[3][2] = SpriteResourceCollection_AddFrom(param0->unk_190[2], v2, PokeIcon32KCellsFileIndex(), 0, 3, 2, 103);
+    param0->unk_1A0[3][3] = SpriteResourceCollection_AddFrom(param0->unk_190[3], v2, PokeIcon32KAnimationFileIndex(), 0, 3, 3, 103);
 
     for (v3 = 0; v3 < (2 * 2); v3++) {
         if (v3 == 3) {
@@ -209,8 +209,8 @@ static void ov108_02243360(UnkStruct_ov108_02243030 *param0, Party *param1, Part
             v1 = Party_GetPokemonBySlotIndex(param2, v3);
         }
 
-        param0->unk_1A0[3 + v3][0] = sub_02009A4C(param0->unk_190[0], v2, Pokemon_IconSpriteIndex(v0), 0, 3 + v3, NNS_G2D_VRAM_TYPE_2DMAIN, 103);
-        param0->unk_1A0[7 + v3][0] = sub_02009A4C(param0->unk_190[0], v2, Pokemon_IconSpriteIndex(v1), 0, 7 + v3, NNS_G2D_VRAM_TYPE_2DMAIN, 103);
+        param0->unk_1A0[3 + v3][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_190[0], v2, Pokemon_IconSpriteIndex(v0), 0, 3 + v3, NNS_G2D_VRAM_TYPE_2DMAIN, 103);
+        param0->unk_1A0[7 + v3][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_190[0], v2, Pokemon_IconSpriteIndex(v1), 0, 7 + v3, NNS_G2D_VRAM_TYPE_2DMAIN, 103);
     }
 
     NARC_dtor(v2);
@@ -219,10 +219,10 @@ static void ov108_02243360(UnkStruct_ov108_02243030 *param0, Party *param1, Part
 
 static void ov108_02243490(UnkStruct_ov108_02243030 *param0)
 {
-    param0->unk_1A0[0][0] = sub_0200985C(param0->unk_190[0], 151, 21, 1, 0, NNS_G2D_VRAM_TYPE_2DSUB, 103);
-    param0->unk_1A0[0][1] = sub_020098B8(param0->unk_190[1], 151, 41, 0, 0, NNS_G2D_VRAM_TYPE_2DSUB, 2, 103);
-    param0->unk_1A0[0][2] = sub_02009918(param0->unk_190[2], 151, 23, 1, 0, 2, 103);
-    param0->unk_1A0[0][3] = sub_02009918(param0->unk_190[3], 151, 22, 1, 0, 3, 103);
+    param0->unk_1A0[0][0] = SpriteResourceCollection_AddTiles(param0->unk_190[0], 151, 21, 1, 0, NNS_G2D_VRAM_TYPE_2DSUB, 103);
+    param0->unk_1A0[0][1] = SpriteResourceCollection_AddPalette(param0->unk_190[1], 151, 41, 0, 0, NNS_G2D_VRAM_TYPE_2DSUB, 2, 103);
+    param0->unk_1A0[0][2] = SpriteResourceCollection_Add(param0->unk_190[2], 151, 23, 1, 0, 2, 103);
+    param0->unk_1A0[0][3] = SpriteResourceCollection_Add(param0->unk_190[3], 151, 22, 1, 0, 3, 103);
 
     return;
 }

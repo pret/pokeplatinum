@@ -3,7 +3,6 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -22,6 +21,7 @@
 #include "message.h"
 #include "overlay_manager.h"
 #include "savedata.h"
+#include "sprite_resource.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 
@@ -51,7 +51,7 @@ struct UnkStruct_ov65_0222EBE0_t {
     void *unk_188;
     CellActorCollection *unk_18C;
     UnkStruct_0200C738 unk_190;
-    UnkStruct_02009714 *unk_31C[4];
+    SpriteResourceCollection *unk_31C[4];
     UnkStruct_02012744 *unk_32C;
     Window unk_330;
     Window unk_340;

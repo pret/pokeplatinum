@@ -4,8 +4,6 @@
 #include <dwc.h>
 
 #include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02009714_decl.h"
-#include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0200C738.h"
@@ -18,6 +16,7 @@
 #include "game_options.h"
 #include "message.h"
 #include "savedata.h"
+#include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
 
@@ -47,8 +46,8 @@ typedef struct {
     int unk_440;
     CellActorCollection *unk_444;
     UnkStruct_0200C738 unk_448;
-    UnkStruct_02009714 *unk_5D4[6];
-    UnkStruct_02009DC8 *unk_5EC[6];
+    SpriteResourceCollection *unk_5D4[6];
+    SpriteResource *unk_5EC[6];
     CellActorResourceData unk_604;
     CellActor *unk_628;
     int unk_62C;

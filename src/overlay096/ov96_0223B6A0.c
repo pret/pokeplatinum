@@ -25,11 +25,11 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "sprite_resource.h"
 #include "string_template.h"
 #include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_0200F174.h"
@@ -268,13 +268,13 @@ static void ov96_0223B9D0(UnkStruct_ov96_0223BF40 *param0)
     sub_0200964C(&param0->unk_BF8, 0, (256 * FX32_ONE));
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_D84[v0] = sub_02009714(2, v0, 68);
+        param0->unk_D84[v0] = SpriteResourceCollection_New(2, v0, 68);
     }
 
-    param0->unk_D94[0][0] = sub_02009A4C(param0->unk_D84[0], v1, 35, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 68);
-    param0->unk_D94[0][1] = sub_02009B04(param0->unk_D84[1], v1, 9, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 68);
-    param0->unk_D94[0][2] = sub_02009BC4(param0->unk_D84[2], v1, 36, 1, 0, 2, 68);
-    param0->unk_D94[0][3] = sub_02009BC4(param0->unk_D84[3], v1, 37, 1, 0, 3, 68);
+    param0->unk_D94[0][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_D84[0], v1, 35, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 68);
+    param0->unk_D94[0][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_D84[1], v1, 9, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 68);
+    param0->unk_D94[0][2] = SpriteResourceCollection_AddFrom(param0->unk_D84[2], v1, 36, 1, 0, 2, 68);
+    param0->unk_D94[0][3] = SpriteResourceCollection_AddFrom(param0->unk_D84[3], v1, 37, 1, 0, 3, 68);
 
     sub_0200A328(param0->unk_D94[0][0]);
     sub_0200A5C8(param0->unk_D94[0][1]);
@@ -414,7 +414,7 @@ static void ov96_0223BC8C(UnkStruct_ov96_0223BF40 *param0)
     sub_0200A6DC(param0->unk_D94[0][1]);
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02009754(param0->unk_D84[v0]);
+        SpriteResourceCollection_Delete(param0->unk_D84[v0]);
     }
 
     CellActorCollection_Delete(param0->unk_BF4);

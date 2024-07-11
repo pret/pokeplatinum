@@ -4,8 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02009714_decl.h"
-#include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_02027860_decl.h"
 #include "struct_decls/struct_02039E30_decl.h"
@@ -55,11 +53,11 @@
 #include "resource_collection.h"
 #include "savedata_misc.h"
 #include "script_manager.h"
+#include "sprite_resource.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_02018340.h"
 #include "unk_0201CED8.h"
@@ -99,14 +97,14 @@ typedef struct {
 typedef struct {
     CellActorCollection *unk_00;
     UnkStruct_0200C738 unk_04;
-    UnkStruct_02009714 *unk_190;
-    UnkStruct_02009714 *unk_194;
-    UnkStruct_02009714 *unk_198;
-    UnkStruct_02009714 *unk_19C;
-    UnkStruct_02009DC8 *unk_1A0[7];
-    UnkStruct_02009DC8 *unk_1BC[1];
-    UnkStruct_02009DC8 *unk_1C0[7];
-    UnkStruct_02009DC8 *unk_1DC[7];
+    SpriteResourceCollection *unk_190;
+    SpriteResourceCollection *unk_194;
+    SpriteResourceCollection *unk_198;
+    SpriteResourceCollection *unk_19C;
+    SpriteResource *unk_1A0[7];
+    SpriteResource *unk_1BC[1];
+    SpriteResource *unk_1C0[7];
+    SpriteResource *unk_1DC[7];
     SysTask *unk_1F8;
 } UnkStruct_ov9_0224B064;
 
@@ -2645,25 +2643,25 @@ static void ov9_0224AEE4(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224B064 
 {
     param1->unk_00 = sub_020095C4(16, &param1->unk_04, 4);
     sub_0200962C(&param1->unk_04, (FX32_ONE * 0), (FX32_ONE * -512));
-    param1->unk_190 = sub_02009714(7, 0, 4);
-    param1->unk_194 = sub_02009714(1, 1, 4);
-    param1->unk_198 = sub_02009714(7, 2, 4);
-    param1->unk_19C = sub_02009714(7, 3, 4);
+    param1->unk_190 = SpriteResourceCollection_New(7, 0, 4);
+    param1->unk_194 = SpriteResourceCollection_New(1, 1, 4);
+    param1->unk_198 = SpriteResourceCollection_New(7, 2, 4);
+    param1->unk_19C = SpriteResourceCollection_New(7, 3, 4);
 
     {
         int v0;
 
         for (v0 = 0; v0 < 7; v0++) {
-            param1->unk_1A0[v0] = sub_02009A4C(param1->unk_190, param2, Unk_ov9_02251E58[v0], 0, ((v0) + 0xff), NNS_G2D_VRAM_TYPE_2DMAIN, 4);
+            param1->unk_1A0[v0] = SpriteResourceCollection_AddTilesFrom(param1->unk_190, param2, Unk_ov9_02251E58[v0], 0, ((v0) + 0xff), NNS_G2D_VRAM_TYPE_2DMAIN, 4);
             sub_0200A3DC(param1->unk_1A0[v0]);
         }
 
-        param1->unk_1BC[0] = sub_02009B04(param1->unk_194, param2, Unk_ov9_02251210[0], 0, (0 + 0xff), NNS_G2D_VRAM_TYPE_2DMAIN, 5, 4);
+        param1->unk_1BC[0] = SpriteResourceCollection_AddPaletteFrom(param1->unk_194, param2, Unk_ov9_02251210[0], 0, (0 + 0xff), NNS_G2D_VRAM_TYPE_2DMAIN, 5, 4);
 
         {
             NNSG2dPaletteData *v1;
 
-            v1 = sub_02009E34(param1->unk_1BC[0]);
+            v1 = SpriteResource_GetPaletteData(param1->unk_1BC[0]);
             {
                 int v2 = 0;
                 UnkStruct_ov9_0224ADC0 *v3 = &param0->unk_1D00;
@@ -2681,11 +2679,11 @@ static void ov9_0224AEE4(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224B064 
         sub_0200A640(param1->unk_1BC[0]);
 
         for (v0 = 0; v0 < 7; v0++) {
-            param1->unk_1C0[v0] = sub_02009BC4(param1->unk_198, param2, Unk_ov9_02251E90[v0], 0, ((v0) + 0xff), 2, 4);
+            param1->unk_1C0[v0] = SpriteResourceCollection_AddFrom(param1->unk_198, param2, Unk_ov9_02251E90[v0], 0, ((v0) + 0xff), 2, 4);
         }
 
         for (v0 = 0; v0 < 7; v0++) {
-            param1->unk_1DC[v0] = sub_02009BC4(param1->unk_19C, param2, Unk_ov9_02251EAC[v0], 0, ((v0) + 0xff), 3, 4);
+            param1->unk_1DC[v0] = SpriteResourceCollection_AddFrom(param1->unk_19C, param2, Unk_ov9_02251EAC[v0], 0, ((v0) + 0xff), 3, 4);
         }
     }
 
@@ -2714,24 +2712,24 @@ static void ov9_0224B064(UnkStruct_ov9_0224B064 *param0)
 
     for (v0 = 0; v0 < 7; v0++) {
         if (param0->unk_1C0[v0] != NULL) {
-            sub_02009D4C(param0->unk_1C0[v0]);
-            sub_02009D68(
+            SpriteResource_ReleaseData(param0->unk_1C0[v0]);
+            SpriteResourceCollection_Remove(
                 param0->unk_198, param0->unk_1C0[v0]);
         }
     }
 
     for (v0 = 0; v0 < 7; v0++) {
         if (param0->unk_1DC[v0] != NULL) {
-            sub_02009D4C(param0->unk_1DC[v0]);
-            sub_02009D68(
+            SpriteResource_ReleaseData(param0->unk_1DC[v0]);
+            SpriteResourceCollection_Remove(
                 param0->unk_19C, param0->unk_1DC[v0]);
         }
     }
 
-    sub_02009754(param0->unk_190);
-    sub_02009754(param0->unk_194);
-    sub_02009754(param0->unk_198);
-    sub_02009754(param0->unk_19C);
+    SpriteResourceCollection_Delete(param0->unk_190);
+    SpriteResourceCollection_Delete(param0->unk_194);
+    SpriteResourceCollection_Delete(param0->unk_198);
+    SpriteResourceCollection_Delete(param0->unk_19C);
 
     CellActorCollection_DeleteAll(param0->unk_00);
     CellActorCollection_Delete(param0->unk_00);
@@ -7835,7 +7833,7 @@ static void ov9_0224F804(UnkStruct_ov9_02249B04 *param0)
         {
             u32 v1;
             UnkStruct_ov9_0224B064 *v2;
-            UnkStruct_02009DC8 *v3;
+            SpriteResource *v3;
             const NNSG2dImagePaletteProxy *v4;
 
             v2 = &param0->unk_1A8;

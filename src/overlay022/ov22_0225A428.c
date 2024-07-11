@@ -4,8 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02009714_decl.h"
-#include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02095C60.h"
@@ -23,12 +21,12 @@
 #include "cell_actor.h"
 #include "game_options.h"
 #include "message.h"
+#include "sprite_resource.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200DA60.h"
 #include "unk_02018340.h"
@@ -44,11 +42,11 @@ static s32 ov22_0225A7CC(Window *param0, int param1, int param2, int param3, int
 static s32 ov22_0225A814(Window *param0, int param1, int param2, int param3, int param4, int param5, u32 param6, Strbuf **param7);
 static s32 ov22_0225A860(Window *param0, int param1, int param2, int param3, int param4, int param5, u32 param6, u32 param7);
 static s32 ov22_0225A8B4(Window *param0, int param1, int param2, int param3, int param4, int param5, u32 param6, u32 param7, Strbuf **param8);
-static void ov22_0225A914(UnkStruct_ov22_0225A914 *param0, CellActorCollection *param1, UnkStruct_02009714 **param2, int param3, NARC *param4);
+static void ov22_0225A914(UnkStruct_ov22_0225A914 *param0, CellActorCollection *param1, SpriteResourceCollection **param2, int param3, NARC *param4);
 static void ov22_0225A9C8(UnkStruct_ov22_0225A914 *param0, int param1);
-static void ov22_0225AA10(UnkStruct_ov22_0225A914 *param0, UnkStruct_02009714 **param1);
-static void ov22_0225AB54(UnkStruct_ov22_0225AB54 *param0, CellActorCollection *param1, UnkStruct_02009714 **param2, int param3, BGL *param4, UnkStruct_02095C60 *param5, NARC *param6);
-static void ov22_0225AC58(UnkStruct_ov22_0225AB54 *param0, UnkStruct_02009714 **param1);
+static void ov22_0225AA10(UnkStruct_ov22_0225A914 *param0, SpriteResourceCollection **param1);
+static void ov22_0225AB54(UnkStruct_ov22_0225AB54 *param0, CellActorCollection *param1, SpriteResourceCollection **param2, int param3, BGL *param4, UnkStruct_02095C60 *param5, NARC *param6);
+static void ov22_0225AC58(UnkStruct_ov22_0225AB54 *param0, SpriteResourceCollection **param1);
 static void ov22_0225AC8C(UnkStruct_ov22_0225AB54 *param0);
 static void ov22_0225AD5C(UnkStruct_ov22_0225AB54 *param0);
 static void ov22_0225ACBC(UnkStruct_ov22_0225AB54 *param0);
@@ -56,9 +54,9 @@ static void ov22_0225ACE4(UnkStruct_ov22_0225AB54 *param0);
 static void ov22_0225ADC0(UnkStruct_ov22_0225AB54 *param0, UnkStruct_ov22_0225AE9C *param1);
 static void ov22_0225AE9C(UnkStruct_ov22_0225AE9C *param0);
 static BOOL ov22_0225AF34(const UnkStruct_ov22_0225AE9C *param0);
-static void ov22_0225AA34(UnkStruct_02009DC8 **param0, UnkStruct_02009714 **param1, int param2, NARC *param3, int param4, int param5, int param6, int param7, int param8, int param9);
-static void ov22_0225AAC0(UnkStruct_02009DC8 **param0, UnkStruct_02009714 **param1);
-static void ov22_0225AAF4(UnkStruct_02009DC8 **param0, UnkStruct_02009714 **param1, CellActorResourceData *param2, int param3);
+static void ov22_0225AA34(SpriteResource **param0, SpriteResourceCollection **param1, int param2, NARC *param3, int param4, int param5, int param6, int param7, int param8, int param9);
+static void ov22_0225AAC0(SpriteResource **param0, SpriteResourceCollection **param1);
+static void ov22_0225AAF4(SpriteResource **param0, SpriteResourceCollection **param1, CellActorResourceData *param2, int param3);
 static void ov22_0225AD68(UnkStruct_ov22_0225AD68 *param0, fx32 param1, fx32 param2, int param3);
 static BOOL ov22_0225AD78(UnkStruct_ov22_0225AD68 *param0);
 
@@ -287,7 +285,7 @@ static s32 ov22_0225A8B4(Window *param0, int param1, int param2, int param3, int
     return v1;
 }
 
-static void ov22_0225A914(UnkStruct_ov22_0225A914 *param0, CellActorCollection *param1, UnkStruct_02009714 **param2, int param3, NARC *param4)
+static void ov22_0225A914(UnkStruct_ov22_0225A914 *param0, CellActorCollection *param1, SpriteResourceCollection **param2, int param3, NARC *param4)
 {
     CellActorResourceData v0;
     CellActorInitParams v1;
@@ -338,7 +336,7 @@ static void ov22_0225A9C8(UnkStruct_ov22_0225A914 *param0, int param1)
     param0->unk_60 = param1;
 }
 
-static void ov22_0225AA10(UnkStruct_ov22_0225A914 *param0, UnkStruct_02009714 **param1)
+static void ov22_0225AA10(UnkStruct_ov22_0225A914 *param0, SpriteResourceCollection **param1)
 {
     int v0;
 
@@ -349,38 +347,38 @@ static void ov22_0225AA10(UnkStruct_ov22_0225A914 *param0, UnkStruct_02009714 **
     ov22_0225AAC0(param0->unk_00, param1);
 }
 
-static void ov22_0225AA34(UnkStruct_02009DC8 **param0, UnkStruct_02009714 **param1, int param2, NARC *param3, int param4, int param5, int param6, int param7, int param8, int param9)
+static void ov22_0225AA34(SpriteResource **param0, SpriteResourceCollection **param1, int param2, NARC *param3, int param4, int param5, int param6, int param7, int param8, int param9)
 {
-    param0[0] = sub_02009A4C(param1[0], param3, param4, 0, param9 + param4, NNS_G2D_VRAM_TYPE_2DSUB, param2);
+    param0[0] = SpriteResourceCollection_AddTilesFrom(param1[0], param3, param4, 0, param9 + param4, NNS_G2D_VRAM_TYPE_2DSUB, param2);
 
     sub_0200A3DC(param0[0]);
-    sub_02009D4C(param0[0]);
+    SpriteResource_ReleaseData(param0[0]);
 
-    param0[1] = sub_02009B04(param1[1], param3, param5, 0, param9 + param5, NNS_G2D_VRAM_TYPE_2DSUB, param8, param2);
+    param0[1] = SpriteResourceCollection_AddPaletteFrom(param1[1], param3, param5, 0, param9 + param5, NNS_G2D_VRAM_TYPE_2DSUB, param8, param2);
 
     sub_0200A640(param0[1]);
-    sub_02009D4C(param0[1]);
+    SpriteResource_ReleaseData(param0[1]);
 
-    param0[2] = sub_02009BC4(param1[2], param3, param6, 0, param9 + param6, 2, param2);
-    param0[3] = sub_02009BC4(param1[3], param3, param7, 0, param9 + param7, 3, param2);
+    param0[2] = SpriteResourceCollection_AddFrom(param1[2], param3, param6, 0, param9 + param6, 2, param2);
+    param0[3] = SpriteResourceCollection_AddFrom(param1[3], param3, param7, 0, param9 + param7, 3, param2);
 }
 
-static void ov22_0225AAC0(UnkStruct_02009DC8 **param0, UnkStruct_02009714 **param1)
+static void ov22_0225AAC0(SpriteResource **param0, SpriteResourceCollection **param1)
 {
     sub_0200A4E4(param0[0]);
     sub_0200A6DC(param0[1]);
-    sub_02009D68(param1[0], param0[0]);
-    sub_02009D68(param1[1], param0[1]);
-    sub_02009D68(param1[2], param0[2]);
-    sub_02009D68(param1[3], param0[3]);
+    SpriteResourceCollection_Remove(param1[0], param0[0]);
+    SpriteResourceCollection_Remove(param1[1], param0[1]);
+    SpriteResourceCollection_Remove(param1[2], param0[2]);
+    SpriteResourceCollection_Remove(param1[3], param0[3]);
 }
 
-static void ov22_0225AAF4(UnkStruct_02009DC8 **param0, UnkStruct_02009714 **param1, CellActorResourceData *param2, int param3)
+static void ov22_0225AAF4(SpriteResource **param0, SpriteResourceCollection **param1, CellActorResourceData *param2, int param3)
 {
-    sub_020093B4(param2, sub_02009E08(param0[0]), sub_02009E08(param0[1]), sub_02009E08(param0[2]), sub_02009E08(param0[3]), 0xffffffff, 0xffffffff, 0, param3, param1[0], param1[1], param1[2], param1[3], NULL, NULL);
+    sub_020093B4(param2, SpriteResource_GetID(param0[0]), SpriteResource_GetID(param0[1]), SpriteResource_GetID(param0[2]), SpriteResource_GetID(param0[3]), 0xffffffff, 0xffffffff, 0, param3, param1[0], param1[1], param1[2], param1[3], NULL, NULL);
 }
 
-static void ov22_0225AB54(UnkStruct_ov22_0225AB54 *param0, CellActorCollection *param1, UnkStruct_02009714 **param2, int param3, BGL *param4, UnkStruct_02095C60 *param5, NARC *param6)
+static void ov22_0225AB54(UnkStruct_ov22_0225AB54 *param0, CellActorCollection *param1, SpriteResourceCollection **param2, int param3, BGL *param4, UnkStruct_02095C60 *param5, NARC *param6)
 {
     CellActorResourceData v0;
     CellActorInitParams v1;
@@ -421,7 +419,7 @@ static void ov22_0225AB54(UnkStruct_ov22_0225AB54 *param0, CellActorCollection *
     sub_0201A954(param0->unk_18);
 }
 
-static void ov22_0225AC58(UnkStruct_ov22_0225AB54 *param0, UnkStruct_02009714 **param1)
+static void ov22_0225AC58(UnkStruct_ov22_0225AB54 *param0, SpriteResourceCollection **param1)
 {
     if (param0->unk_24) {
         SysTask_Done(param0->unk_24);

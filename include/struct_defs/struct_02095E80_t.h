@@ -6,8 +6,6 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02009714_decl.h"
-#include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02027F8C_decl.h"
@@ -30,6 +28,7 @@
 #include "message.h"
 #include "overlay_manager.h"
 #include "savedata.h"
+#include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
@@ -73,8 +72,8 @@ struct UnkStruct_02095E80_t {
     Strbuf *unk_190;
     CellActorCollection *unk_194;
     UnkStruct_0200C738 unk_198;
-    UnkStruct_02009714 *unk_324[4];
-    UnkStruct_02009DC8 *unk_334[2][4];
+    SpriteResourceCollection *unk_324[4];
+    SpriteResource *unk_334[2][4];
     CellActorResourceData unk_354;
     CellActorResourceData unk_378;
     CellActor *unk_39C[14];

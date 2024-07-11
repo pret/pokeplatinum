@@ -2,8 +2,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02009714_decl.h"
-#include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0202442C_decl.h"
@@ -36,6 +34,7 @@
 #include "pokemon_icon.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -103,8 +102,8 @@ typedef struct {
     int unk_2CA0;
     CellActorCollection *unk_2CA4;
     UnkStruct_0200C738 unk_2CA8;
-    UnkStruct_02009714 *unk_2E34[6];
-    UnkStruct_02009DC8 *unk_2E4C[6];
+    SpriteResourceCollection *unk_2E34[6];
+    SpriteResource *unk_2E4C[6];
     CellActorResourceData unk_2E64;
     CellActor *unk_2E88[2];
     CellActor *unk_2E90[3];
