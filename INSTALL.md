@@ -94,7 +94,7 @@ You now have the choice between two different environments to use to build the p
 
 Continue with the [building instructions](#Downloading_the_repository)
 
-## Mac OSX (<= 10.14)
+## macOS
 
 Apple bundles a number of the requisite utilities into Xcode Command Line Tools; to install these, run:
 

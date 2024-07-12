@@ -59,7 +59,7 @@ fi
 touch "$build/.mwconfig"
 export MWCONFIG="$(realpath -- "$build/.mwconfig")"
 
-if [ "$native_file" = "native_unix.ini" ]; then
+if [ "$native_file" = "native_unix.ini" ] || [ "$native_file" = "native_macos.ini" ]; then
     wrap_wine="$(command -v "${WINELOADER:-wine}")"
     wrap_path_unx="$PWD"
     wrap_path_win="$("$wrap_wine" winepath -w "$wrap_path_unx")"
