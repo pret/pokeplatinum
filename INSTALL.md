@@ -34,12 +34,21 @@ You now have the choice between two different environments to use to build the p
     echo 'export MINGW_PACKAGE_PREFIX=mingw-w64-x86_64-' >> ~/.bashrc
     echo 'export PATH=${PATH}:/mingw64/bin' >> ~/.bashrc
     source ~/.bashrc
-    pacman -S git meson gcc "${MINGW_PACKAGE_PREFIX}arm-none-eabi-binutils"
+    pacman -S git gcc ninja "${MINGW_PACKAGE_PREFIX}-arm-none-eabi-binutils"
     ```
 
     Press 'Y' when prompted to confirm the installation.
 
-4. Continue with the [building instructions](#Downloading_the_repository). Make sure to always use the plain MSYS environment, other environments will not work.
+4. The version of Meson provided by `pacman` (1.5.0) is non-functional for our use case. So, we will install it via `pip`:
+
+    ```
+    echo 'export PATH=${PATH}:~/.local/bin' >> ~/.bashrc
+    source ~/.bashrc
+    pacman -S python-pip
+    pip install --break-system-packages --user meson==1.4.1
+    ```
+
+5. Continue with the [building instructions](#Downloading_the_repository). Make sure to always use the plain MSYS environment, other environments will not work.
 
 ### Windows Subsystem for Linux
 
@@ -80,11 +89,11 @@ You now have the choice between two different environments to use to build the p
     sudo apt install git build-essential binutils-arm-none-eabi
     ```
 
-    We are not done yet, the 'meson' package is also necessary, but the version provided by apt is too outdated. To get the most recent meson version, run:
+    We are not done yet, the 'meson' package is also necessary, but the version provided by apt is too outdated. To get the most recent known-working meson version, run:
 
     ```
     sudo apt-get install pip
-    pip install --user meson
+    pip install --user meson==1.4.1
     ```
 
 8. Change to a directory accessible from Windows where you'll store the files, for example:
@@ -105,7 +114,7 @@ xcode-select --install
 You will also need the following packages:
 
 * gcc (14.x.x)
-* meson (>= 1.3.0)
+* meson (>= 1.3.0, < 1.5.0)
 * wine (to run the mwcc executables)
 * libpng
 * pkg-config
@@ -114,8 +123,14 @@ These can be installed using Homebrew; if you do not have Homebrew installed, re
 
 ```
 brew update
-brew install gcc@14 meson libpng pkg-config arm-none-eabi-binutils
+brew install gcc@14 libpng pkg-config arm-none-eabi-binutils
 brew install --cask wine-stable
+```
+
+In order to install a functional version of Meson that works with our project, you will need to install it using `pip`:
+
+```
+pip install --user meson==1.4.1
 ```
 
 On macOS Monterey (12) or earlier, you may also need GNU Coreutils installed to run the build script.
@@ -128,19 +143,19 @@ brew install coreutils
 Building the ROM requires the following packages. If you cannot find one or more of these using your package distribution, it may be under a different name.
 
 * git
-* meson (>= 1.3.0)
+* meson (>= 1.3.0, < 1.5.0)
 * build-essentials (build-essential on Ubuntu)
 * binutils-arm-none-eabi (arm-none-eabi-binutils on Arch Linux)
 * wine (to run the mwcc executables)
 * pkg-config
 
-NOTE: On some distros, the meson package provided by the package manager will be out of date. To check your meson version, run:
+NOTE: On some distros, the meson package provided by the package manager will be out of date or will be a version that is unsupported. To check your meson version, run:
 
 ```
 meson --version
 ```
 
-If your mesion version is older than 1.2.0, follow the instructions at: https://mesonbuild.com/Getting-meson.html to get the most recent version of Meson
+If your meson version is older than 1.3.0, follow the instructions at: https://mesonbuild.com/Getting-meson.html to get a specific version of meson.
 
 # 2. Downloading the repository
 
