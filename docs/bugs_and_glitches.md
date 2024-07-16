@@ -76,7 +76,7 @@ or Uproar is in effect.
      UpdateVar OPCODE_ADD, BTLVAR_FAINTED_MON, BATTLER_ENEMY_SLOT_1
      UpdateVar OPCODE_RIGHT_SHIFT, BTLVAR_CALC_TEMP, 0x00000001
      CompareVarToValue OPCODE_NEQ, BTLVAR_CALC_TEMP, 0x00000000, _208
--    ; BUG: Acid Rain (see docs/bugs_and_glitches.md)
+-    // BUG: Acid Rain (see docs/bugs_and_glitches.md)
 -    UpdateVarFromVar OPCODE_SUB_TO_ZERO, BTLVAR_FIELD_CONDITIONS, BTLVAR_SCRIPT_TEMP
 +    UpdateVarFromVar OPCODE_SET, BTLVAR_FAINTED_MON, BTLVAR_SCRIPT_TEMP
      Call BATTLE_SUBSCRIPT_POP_ATTACKER_AND_DEFENDER
