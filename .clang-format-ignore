@@ -21,3 +21,7 @@ src/overlay062/ov62_0223DFA8.c
 src/overlay062/ov62_0223CAEC.c
 src/overlay062/ov62_02231690.c
 src/overlay062/ov62_02237D24.c
+
+# Do not format any .s or .inc file
+*.s
+*.inc
