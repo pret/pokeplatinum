@@ -8,14 +8,12 @@ help() {
     echo "  -a | --assembler    path to the assembler executable"
     echo "  -o | --objcopy      path to the objcopy executable for data extraction"
     echo "  -d | --out-dir      directory for output files (default: current directory)"
-    echo "  -m | --mwrap        if set, will treat the assembler as mwrap"
 }
 
 INCLUDE_ARGS=()
 SCRIPT_FILES=()
-AS=""
+AS="arm-none-eabi-gcc"
 OBJCOPY="arm-none-eabi-objcopy"
-MWRAP=false
 OUTDIR="."
 
 while [[ $# -gt 0 ]] ; do
@@ -25,7 +23,7 @@ while [[ $# -gt 0 ]] ; do
             exit 0
             ;;
         -i|--include)
-            INCLUDE_ARGS+=("-i" "$2")
+            INCLUDE_ARGS+=("-I$2")
             shift
             shift
             ;;
@@ -44,10 +42,6 @@ while [[ $# -gt 0 ]] ; do
             shift
             shift
             ;;
-        -m|--mwrap)
-            MWRAP=true
-            shift
-            ;;
         *)
             SCRIPT_FILES+=("$1")
             shift
@@ -55,13 +49,7 @@ while [[ $# -gt 0 ]] ; do
     esac
 done
 
-MWRAP_ARG=""
-if $MWRAP ; then
-    MWRAP_ARG=" mwasmarm"
-fi
-
 for script_file in "${SCRIPT_FILES[@]}" ; do
-    script_dir=${script_file%/*}
     script_fname=${script_file##*/}
     script_noext=${script_fname%.*}
 
@@ -70,7 +58,7 @@ for script_file in "${SCRIPT_FILES[@]}" ; do
     script_bin="$OUTDIR/$script_noext"
 
     # Convert + clean-up
-    $AS$MWRAP_ARG ${INCLUDE_ARGS[@]} -gccinc -o $script_obj $script_file
-    $OBJCOPY -O binary --file-alignment 4 $script_obj $script_bin
-    rm $script_obj
+    $AS -c -x assembler-with-cpp "${INCLUDE_ARGS[@]}" -o "$script_obj" "$script_file"
+    $OBJCOPY -O binary --file-alignment 4 "$script_obj" "$script_bin"
+    rm "$script_obj"
 done

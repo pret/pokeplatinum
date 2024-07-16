@@ -31,10 +31,9 @@ You now have the choice between two different environments to use to build the p
 3. Reopen an MSYS terminal (pink icon) and enter the following commands to install the necessary packages:
 
     ```
-    echo 'export MINGW_PACKAGE_PREFIX=mingw-w64-x86_64-' >> ~/.bashrc
     echo 'export PATH=${PATH}:/mingw64/bin' >> ~/.bashrc
     source ~/.bashrc
-    pacman -S git meson gcc "${MINGW_PACKAGE_PREFIX}arm-none-eabi-binutils"
+    pacman -S git meson gcc mingw-w64-x86_64-arm-none-eabi-{binutils,gcc}
     ```
 
     Press 'Y' when prompted to confirm the installation.
@@ -77,7 +76,7 @@ You now have the choice between two different environments to use to build the p
 7. Certain packages are required to build the repository. Install these packages by running the following command:
 
     ```bash
-    sudo apt install git build-essential binutils-arm-none-eabi
+    sudo apt install git build-essential binutils-arm-none-eabi gcc-arm-none-eabi
     ```
 
     We are not done yet, the 'meson' package is also necessary, but the version provided by apt is too outdated. To get the most recent meson version, run:
@@ -114,7 +113,7 @@ These can be installed using Homebrew; if you do not have Homebrew installed, re
 
 ```
 brew update
-brew install gcc@14 meson libpng pkg-config arm-none-eabi-binutils
+brew install gcc@14 meson libpng pkg-config arm-none-eabi-binutils arm-none-eabi-gcc
 brew install --cask wine-stable
 ```
 
@@ -131,6 +130,7 @@ Building the ROM requires the following packages. If you cannot find one or more
 * meson (>= 1.3.0)
 * build-essentials (build-essential on Ubuntu)
 * binutils-arm-none-eabi (arm-none-eabi-binutils on Arch Linux)
+* gcc-arm-none-eabi (arm-none-eabi-gcc on Arch Linux)
 * wine (to run the mwcc executables)
 * pkg-config
 

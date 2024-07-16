@@ -2,8 +2,6 @@
     .include "consts/scrcmd.inc"
     .include "consts/sdat.inc"
 
-    .option alignment off
-
     .macro Noop
     .short 0
     .endm
