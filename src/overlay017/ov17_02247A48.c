@@ -976,7 +976,7 @@ static void ov17_02248860(SysTask *param0, void *param1)
     }
 }
 
-static void ov17_02248990(UnkSPLStruct6 *param0)
+static void ov17_02248990(SPLEmitter *param0)
 {
     {
         VecFx32 v0 = { 0, 0, 0 };

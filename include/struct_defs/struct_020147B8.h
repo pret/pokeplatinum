@@ -3,11 +3,11 @@
 
 #include <nitro/fx/fx.h>
 
-typedef struct UnkSPLStruct8_t UnkSPLStruct8;
-struct UnkSPLStruct6_t;
+typedef struct SPLParticle_t SPLParticle;
+struct SPLEmitter_t;
 
 typedef struct {
-    void (*unk_00)(const void *, UnkSPLStruct8 *, VecFx32 *, struct UnkSPLStruct6_t *);
+    void (*unk_00)(const void *, SPLParticle *, VecFx32 *, struct SPLEmitter_t *);
     const void *unk_04;
 } UnkStruct_020147B8;
 

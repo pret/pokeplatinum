@@ -5,7 +5,7 @@
 
 #include "spl.h"
 
-void ov12_02224F14(UnkSPLStruct6 *param0);
+void ov12_02224F14(SPLEmitter *param0);
 s8 ov12_02224FC4(UnkStruct_ov12_02225640 *param0);
 
 #endif // POKEPLATINUM_OV12_0222421C_H

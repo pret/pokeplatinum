@@ -41,7 +41,7 @@ typedef struct {
 } UnkStruct_ov77_021D7940;
 
 static void ov77_021D725C(void);
-static void ov77_021D7268(UnkSPLStruct6 *param0);
+static void ov77_021D7268(SPLEmitter *param0);
 static BOOL ov77_021D7004(UnkStruct_ov77_021D6CFC *param0, const u8 param1);
 static BOOL ov77_021D7074(UnkStruct_ov77_021D6CFC *param0, const u8 param1);
 static BOOL ov77_021D70CC(UnkStruct_ov77_021D6CFC *param0, const u8 param1);
@@ -99,7 +99,7 @@ UnkStruct_02014014 *ov77_021D6CBC(UnkStruct_ov77_021D6CFC *param0)
     return param0->unk_18;
 }
 
-UnkSPLStruct6 *ov77_021D6CD0(UnkStruct_ov77_021D6CFC *param0, int param1)
+SPLEmitter *ov77_021D6CD0(UnkStruct_ov77_021D6CFC *param0, int param1)
 {
     GF_ASSERT(param0 != NULL && param0->unk_18 != NULL);
 
@@ -376,7 +376,7 @@ static void ov77_021D725C(void)
     sub_020146C0();
 }
 
-static void ov77_021D7268(UnkSPLStruct6 *param0)
+static void ov77_021D7268(SPLEmitter *param0)
 {
     Sprite *v0 = sub_02014764();
     VecFx32 v1 = { 0, 0, 0 };

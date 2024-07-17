@@ -1,12 +1,12 @@
 libspl_srcs = files(
-    'asm/unk_0209C400.s',
-    'asm/unk_0209CF00.s',
+    'src/unk_0209C400.c',
+    'src/unk_0209CF00.c',
     'asm/unk_0209DD54.s',
-    'asm/unk_020A05BC.s',
-    'asm/unk_020A19F0.s',
-    'asm/unk_020A1E30.s',
-    'asm/unk_020A2238.s',
-    'asm/unk_020A2354.s'
+    'src/unk_020A05BC.c',
+    'src/unk_020A19F0.c',
+    'src/unk_020A1E30.c',
+    'src/unk_020A2238.c',
+    'src/unk_020A2354.c'
 )
 
 libspl_public_includes = include_directories('include')

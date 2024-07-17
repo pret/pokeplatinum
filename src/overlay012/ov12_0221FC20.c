@@ -71,7 +71,7 @@ typedef struct UnkStruct_ov12_02223178_t {
     u16 unk_16;
     int unk_18;
     UnkStruct_02014014 *unk_1C[16];
-    UnkSPLStruct6 *unk_5C[20];
+    SPLEmitter *unk_5C[20];
     SpriteRenderer *unk_AC;
     UnkStruct_ov16_0223E0C8 *unk_B0[4];
     u8 unk_C0[4];
@@ -729,9 +729,9 @@ UnkStruct_02014014 *ov12_02220260(UnkStruct_ov12_0221FCDC *param0, int param1)
     return param0->unk_BC->unk_1C[param1];
 }
 
-UnkSPLStruct6 *ov12_0222026C(UnkStruct_ov12_0221FCDC *param0, int param1)
+SPLEmitter *ov12_0222026C(UnkStruct_ov12_0221FCDC *param0, int param1)
 {
-    UnkSPLStruct6 *v0;
+    SPLEmitter *v0;
 
     v0 = param0->unk_BC->unk_5C[param1];
     return v0;

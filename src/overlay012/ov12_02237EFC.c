@@ -22,7 +22,7 @@ typedef struct UnkStruct_ov12_02238004_t {
     int unk_04;
     UnkStruct_ov12_02237F38 unk_08;
     UnkStruct_02014014 *unk_10;
-    UnkSPLStruct6 *unk_14;
+    SPLEmitter *unk_14;
     SysTask *unk_18;
     int unk_1C;
     BOOL unk_20;
@@ -36,7 +36,7 @@ typedef struct UnkStruct_ov12_02237F98_t {
 
 static void ov12_02238030(SysTask *param0, void *param1);
 static void ov12_02238054(UnkStruct_ov12_02238004 *param0, UnkFuncPtr_020146F4 param1);
-static void ov12_02238080(UnkSPLStruct6 *param0);
+static void ov12_02238080(SPLEmitter *param0);
 static int ov12_02238088(int param0);
 
 UnkStruct_ov12_02237F98 *ov12_02237EFC(int param0, UnkStruct_ov12_02237EFC *param1)
@@ -195,7 +195,7 @@ static void ov12_02238054(UnkStruct_ov12_02238004 *param0, UnkFuncPtr_020146F4 p
     sub_02014788(param0->unk_10, param0->unk_08.unk_04);
 }
 
-static void ov12_02238080(UnkSPLStruct6 *param0)
+static void ov12_02238080(SPLEmitter *param0)
 {
     UnkStruct_ov12_02238004 *v0;
 

@@ -58,7 +58,7 @@ typedef struct UnkStruct_ov12_02235FE0_t {
     UnkStruct_02014014 *unk_14[9];
     UnkStruct_0202CA64 *unk_38[9];
     BOOL unk_5C[9];
-    UnkSPLStruct6 *unk_80;
+    SPLEmitter *unk_80;
     SysTask *unk_84;
     BOOL unk_88;
     NARC *unk_8C;
@@ -71,7 +71,7 @@ typedef struct UnkStruct_ov12_02235FE0_t {
 
 typedef struct UnkStruct_ov12_02236648_t {
     UnkStruct_ov12_02236690 unk_00;
-    UnkSPLStruct6 *unk_14;
+    SPLEmitter *unk_14;
     UnkStruct_02014014 *unk_18;
     int unk_1C;
     int unk_20;
@@ -116,8 +116,8 @@ typedef struct BallRotation {
 
 static void ov12_022363CC(SysTask *param0, void *param1);
 static void ov12_0223646C(UnkStruct_ov12_02235FE0 *param0, UnkFuncPtr_020146F4 param1);
-static void ov12_02236598(UnkSPLStruct6 *param0);
-static void ov12_022365D4(UnkSPLStruct6 *param0);
+static void ov12_02236598(SPLEmitter *param0);
+static void ov12_022365D4(SPLEmitter *param0);
 static void ov12_02237C54(BallRotation *param0);
 static void ov12_02237D8C(BallRotation *param0);
 static void ov12_022378A0(BallRotation *param0);
@@ -755,7 +755,7 @@ static void ov12_02236520(int param0, VecFx32 *param1)
     }
 }
 
-static void ov12_02236598(UnkSPLStruct6 *param0)
+static void ov12_02236598(SPLEmitter *param0)
 {
     int v0;
     UnkStruct_ov12_02235FE0 *v1;
@@ -771,7 +771,7 @@ static void ov12_02236598(UnkSPLStruct6 *param0)
     }
 }
 
-static void ov12_022365D4(UnkSPLStruct6 *param0)
+static void ov12_022365D4(SPLEmitter *param0)
 {
     VecFx32 v0;
     int v1;
@@ -824,7 +824,7 @@ static void ov12_022365D4(UnkSPLStruct6 *param0)
     SPL_UnkInline1(param0, &v0);
 }
 
-static void ov12_02236648(UnkSPLStruct6 *param0)
+static void ov12_02236648(SPLEmitter *param0)
 {
     UnkStruct_ov12_02236648 *v0 = sub_02014764();
 
