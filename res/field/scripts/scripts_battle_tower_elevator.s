@@ -46,7 +46,7 @@ _00A6:
     ScrCmd_1F8
     ScrCmd_2C4 5
     ScrCmd_0A1
-    ScrCmd_0BE 0x146, 0, 15, 6, 0
+    Warp 0x146, 0, 15, 6, 0
     End
 
 _00E9:
@@ -55,13 +55,13 @@ _00E9:
     ScrCmd_1F8
     ScrCmd_2C4 6
     ScrCmd_0A1
-    ScrCmd_0BE 0x146, 0, 11, 6, 0
+    Warp 0x146, 0, 11, 6, 0
     End
 
 _010A:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BE 0x1ED, 0, 8, 2, 1
+    Warp 0x1ED, 0, 8, 2, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll
@@ -154,7 +154,7 @@ _01F8:
     ScrCmd_1F8
     ScrCmd_2C4 5
     ScrCmd_0A1
-    ScrCmd_0BE 0x146, 0, 19, 6, 0
+    Warp 0x146, 0, 19, 6, 0
     End
 
     .byte 0

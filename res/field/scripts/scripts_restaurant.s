@@ -173,7 +173,7 @@ _02DF:
     ReleaseAll
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BE 0x150, 0, 0x2C2, 0x317, 1
+    Warp 0x150, 0, 0x2C2, 0x317, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End

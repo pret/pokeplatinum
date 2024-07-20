@@ -109,7 +109,7 @@ _0183:
     SetFlag 0x125
     Message 5
     CloseMessage
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     CallIfEq 0x8005, 7, _01D5
     CallIfEq 0x8005, 8, _01E9
     CallIfEq 0x8005, 9, _01FD
@@ -209,7 +209,7 @@ _02B4:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     SetVar 0x4001, 0x4021
     GoToIfSet 5, _034D
     Call _118A
@@ -284,7 +284,7 @@ _03CA:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     SetVar 0x4001, 0x4022
     GoToIfSet 6, _034D
     Call _118A
@@ -310,7 +310,7 @@ _0457:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     SetVar 0x4001, 0x4023
     GoToIfSet 7, _034D
     Call _118A
@@ -336,7 +336,7 @@ _04E4:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     SetVar 0x4001, 0x4024
     GoToIfSet 8, _034D
     Call _118A

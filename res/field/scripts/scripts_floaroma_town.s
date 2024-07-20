@@ -142,7 +142,7 @@ _0141:
     GoToIfEq 0x800C, 0xFF, _019D
     ScrCmd_1C0 0x800C, 0x1EC
     GoToIfEq 0x800C, 0, _019D
-    ScrCmd_07E 0x1D2, 1, 0x800C
+    CheckItem 0x1D2, 1, 0x800C
     GoToIfNe 0x800C, 0, _01A8
     Message 9
     SetVar 0x8004, 0x1D2

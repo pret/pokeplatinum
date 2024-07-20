@@ -27,7 +27,7 @@ _003E:
     ScrCmd_070 100
     ScrCmd_074
     PlayFanfare SEQ_SE_DP_REGI
-    ScrCmd_04B 0x644
+    WaitFanfare 0x644
     ScrCmd_073
     ScrCmd_206
     ReleaseAll

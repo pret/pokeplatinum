@@ -63,7 +63,7 @@ _0105:
     CloseMessage
     ApplyMovement 0, _017C
     WaitMovement
-    ScrCmd_04B 0x5DC
+    WaitFanfare 0x5DC
     ScrCmd_23C 0x8004, 4
     Return
 

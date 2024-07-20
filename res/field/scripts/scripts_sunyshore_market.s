@@ -19,17 +19,17 @@ _001A:
     ScrCmd_247 0x8000
     ScrCmd_230 0x800C, 0x8000, 24
     GoToIfEq 0x800C, 1, _0086
-    ScrCmd_0D0 0, 0x8000
+    BufferPartyMonSpecies 0, 0x8000
     Message 0
     ScrCmd_233 0x800C, 0x8000
     GoToIfLt 0x800C, 0x1FE, _007B
     Message 1
     ScrCmd_231 0x8000, 24
-    ScrCmd_04E 0x483
-    ScrCmd_0CD 1
+    PlaySound 0x483
+    BufferPlayerName 1
     Message 2
-    ScrCmd_04F
-    ScrCmd_0D0 0, 0x8000
+    WaitSound
+    BufferPartyMonSpecies 0, 0x8000
     Message 3
     WaitABXPadPress
     CloseMessage
@@ -44,7 +44,7 @@ _007B:
     End
 
 _0086:
-    ScrCmd_0D0 0, 0x8000
+    BufferPartyMonSpecies 0, 0x8000
     Message 5
     WaitABXPadPress
     CloseMessage
@@ -65,7 +65,7 @@ _00A9:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_07E 0x1B2, 1, 0x800C
+    CheckItem 0x1B2, 1, 0x800C
     GoToIfEq 0x800C, 0, _00D9
     Message 7
     CallCommonScript 0x7E3

@@ -74,7 +74,7 @@ _00E2:
     End
 
 _00ED:
-    ScrCmd_0D7 0, 7
+    BufferPoketchAppName 0, 7
     Message 5
     WaitABXPadPress
     CloseMessage
@@ -124,8 +124,8 @@ _0180:
     CallIfEq 0x8000, 3, _02C7
     ScrCmd_074
     PlayFanfare SEQ_SE_DP_REGI
-    ScrCmd_07B 0x8001, 1, 0x800C
-    ScrCmd_0D1 0, 0x8001
+    AddItem 0x8001, 1, 0x800C
+    BufferItemName 0, 0x8001
     Message 10
     Message 8
     GoTo _0229

@@ -31,7 +31,7 @@ _0025:
 _0066:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BE 0x14A, 0, 7, 6, 0
+    Warp 0x14A, 0, 7, 6, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll

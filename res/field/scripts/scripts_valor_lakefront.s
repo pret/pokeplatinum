@@ -202,8 +202,8 @@ _0248:
     CallIfEq 0x8000, 1, _0480
     CallIfEq 0x8000, 2, _0494
     CallIfEq 0x8000, 3, _04A8
-    ScrCmd_0CD 0
-    ScrCmd_0CE 1
+    BufferPlayerName 0
+    BufferRivalName 1
     Message 5
     ApplyMovement 10, _0574
     WaitMovement
@@ -494,7 +494,7 @@ _0632:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_07E 0x1C3, 1, 0x800C
+    CheckItem 0x1C3, 1, 0x800C
     GoToIfEq 0x800C, 1, _065A
     Message 18
     WaitABXPadPress
@@ -505,7 +505,7 @@ _0632:
 _065A:
     Message 19
     CloseMessage
-    ScrCmd_07C 0x1C3, 1, 0x800C
+    RemoveItem 0x1C3, 1, 0x800C
     ApplyMovement 8, _06A8
     WaitMovement
     ScrCmd_168 22, 24, 11, 13, 77
@@ -554,7 +554,7 @@ _06E2:
     LockAll
     ApplyMovement 9, _07A8
     WaitMovement
-    ScrCmd_069 0x8000, 0x8001
+    GetPlayerXZPos 0x8000, 0x8001
     CallIfEq 0x8001, 0x315, _075D
     CallIfEq 0x8001, 0x316, _0769
     CallIfEq 0x8001, 0x317, _0775

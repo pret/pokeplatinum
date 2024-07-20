@@ -173,8 +173,8 @@ _029C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
+    BufferRivalName 0
+    BufferPlayerName 1
     CallIfEq 0x405A, 0, _02F3
     CallIfEq 0x405A, 1, _02F8
     CallIfEq 0x405A, 2, _02FD
@@ -207,7 +207,7 @@ _030C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_0CD 1
+    BufferPlayerName 1
     CallIfEq 0x405A, 0, _0360
     CallIfEq 0x405A, 1, _0380
     CallIfEq 0x405A, 2, _03A0
@@ -322,8 +322,8 @@ _049C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
+    BufferRivalName 0
+    BufferPlayerName 1
     CallIfEq 0x405A, 0, _04F3
     CallIfEq 0x405A, 1, _04F8
     CallIfEq 0x405A, 2, _04FD
@@ -453,7 +453,7 @@ _064A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_0CD 1
+    BufferPlayerName 1
     CallIfEq 0x405A, 0, _06AB
     CallIfEq 0x405A, 1, _06B0
     CallIfEq 0x405A, 2, _06B5
@@ -495,7 +495,7 @@ _06C4:
     End
 
 _0715:
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 60
     Return
 
@@ -504,7 +504,7 @@ _071D:
     Return
 
 _0722:
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 62
     Return
 
@@ -744,7 +744,7 @@ _0A39:
 _0A50:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_0CD 1
+    BufferPlayerName 1
     ApplyMovement 10, _0AE0
     ApplyMovement 7, _0AD8
     WaitMovement
@@ -802,7 +802,7 @@ _0AF4:
     ScrCmd_188 6, 14
     ScrCmd_189 6, 0
     ScrCmd_064 6
-    ScrCmd_04B 0x605
+    WaitFanfare 0x605
     ApplyMovement 0xFF, _0B3C
     ApplyMovement 6, _0B4C
     WaitMovement
@@ -833,7 +833,7 @@ _0B5C:
     ScrCmd_188 9, 14
     ScrCmd_189 9, 0
     ScrCmd_064 9
-    ScrCmd_04B 0x605
+    WaitFanfare 0x605
     ApplyMovement 0xFF, _0BAC
     ApplyMovement 9, _0BA4
     WaitMovement
@@ -862,7 +862,7 @@ _0BBC:
     ScrCmd_188 10, 14
     ScrCmd_189 10, 0
     ScrCmd_064 10
-    ScrCmd_04B 0x605
+    WaitFanfare 0x605
     ApplyMovement 0xFF, _0C14
     ApplyMovement 10, _0C04
     WaitMovement
@@ -893,7 +893,7 @@ _0C24:
     ScrCmd_188 12, 14
     ScrCmd_189 12, 0
     ScrCmd_064 12
-    ScrCmd_04B 0x605
+    WaitFanfare 0x605
     ApplyMovement 0xFF, _0C78
     ApplyMovement 12, _0C6C
     WaitMovement
@@ -960,7 +960,7 @@ _0CDD:
 _0CEE:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_050 0x4AE
+    PlayMusic 0x4AE
     Message 105
     GoTo _0E5D
     End
@@ -990,7 +990,7 @@ _0D30:
 _0D41:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 109
     GoTo _0E5D
     End
@@ -1054,7 +1054,7 @@ _0DE2:
 _0DF3:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_050 0x4AD
+    PlayMusic 0x4AD
     Message 113
     GoTo _0E5D
     End
@@ -1187,7 +1187,7 @@ _0F7C:
     CallIfEq 0x8002, 18, _21E1
     CallIfEq 0x8002, 19, _21F5
     ScrCmd_074
-    ScrCmd_04B 0x644
+    WaitFanfare 0x644
     ScrCmd_073
     ScrCmd_30D 0x8002
     Return
@@ -1197,7 +1197,7 @@ _1092:
     ClearFlag 0x2C7
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BE 0x1D0, 0, 10, 6, 1
+    Warp 0x1D0, 0, 10, 6, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x8002, 0, _1485
@@ -1300,8 +1300,8 @@ _1263:
     SetVar 0x404E, 0xFF
     ApplyMovement 0xFF, _1454
     WaitMovement
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
+    BufferRivalName 0
+    BufferPlayerName 1
     Message 9
     CloseMessage
     ApplyMovement 1, _1468
@@ -1314,7 +1314,7 @@ _12A3:
     ClearFlag 0x2A7
     ScrCmd_064 1
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
-    ScrCmd_04B 0x605
+    WaitFanfare 0x605
     ApplyMovement 1, _145C
     WaitMovement
     Return
@@ -1323,8 +1323,8 @@ _12BF:
     CallIfNe 0x404E, 1, _1316
     SetFlag 0x9AB
     SetVar 0x404E, 1
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
+    BufferRivalName 0
+    BufferPlayerName 1
     ScrCmd_14D 0x800C
     GoToIfEq 0x800C, 0, _12FC
     GoToIfEq 0x800C, 1, _1307
@@ -1348,7 +1348,7 @@ _1316:
     ClearFlag 0x2A8
     ScrCmd_064 0
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
-    ScrCmd_04B 0x605
+    WaitFanfare 0x605
     ApplyMovement 0, _145C
     WaitMovement
     Return
@@ -1359,8 +1359,8 @@ _1332:
     SetFlag 0x9AB
     SetFlag 0x2AA
     SetVar 0x404E, 2
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
+    BufferRivalName 0
+    BufferPlayerName 1
     Message 12
     CloseMessage
     Return
@@ -1373,7 +1373,7 @@ _1374:
     ClearFlag 0x2A9
     ScrCmd_064 2
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
-    ScrCmd_04B 0x605
+    WaitFanfare 0x605
     ApplyMovement 2, _145C
     WaitMovement
     Return
@@ -1384,8 +1384,8 @@ _1390:
     SetFlag 0x9AB
     SetFlag 0x2B2
     SetVar 0x404E, 5
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
+    BufferRivalName 0
+    BufferPlayerName 1
     Message 13
     CloseMessage
     Return
@@ -1398,7 +1398,7 @@ _13D2:
     ClearFlag 0x2AE
     ScrCmd_064 5
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
-    ScrCmd_04B 0x605
+    WaitFanfare 0x605
     ApplyMovement 5, _145C
     WaitMovement
     Return
@@ -1410,8 +1410,8 @@ _13EE:
     SetVar 0x404E, 12
     SetVar 0x400F, 0
     SetFlag 0x9AC
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
+    BufferRivalName 0
+    BufferPlayerName 1
     Message 14
     CloseMessage
     Return
@@ -1424,7 +1424,7 @@ _1436:
     ClearFlag 0x2B8
     ScrCmd_064 12
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
-    ScrCmd_04B 0x605
+    WaitFanfare 0x605
     ApplyMovement 12, _145C
     WaitMovement
     Return
@@ -1571,7 +1571,7 @@ _1624:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     ScrCmd_072 21, 1
-    ScrCmd_0CD 1
+    BufferPlayerName 1
     Message 119
     Call _18F8
     GoToIfEq 0x800C, 1, _1651

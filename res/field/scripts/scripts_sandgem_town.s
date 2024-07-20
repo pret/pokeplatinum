@@ -41,7 +41,7 @@ _0085:
     LockAll
     ApplyMovement 4, _03AC
     WaitMovement
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x34B, _00E7
     GoToIfEq 0x8005, 0x34C, _00FF
     GoToIfEq 0x8005, 0x34D, _010F
@@ -92,12 +92,12 @@ _0169:
     End
 
 _0189:
-    ScrCmd_0CF 0
+    BufferCounterpartName 0
     Message 0
     GoTo _01A1
 
 _0195:
-    ScrCmd_0CF 0
+    BufferCounterpartName 0
     Message 2
     GoTo _01A1
 
@@ -176,8 +176,8 @@ _02B5:
     ApplyMovement 3, _0564
     WaitMovement
     CallCommonScript 0x7FA
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
+    BufferRivalName 0
+    BufferPlayerName 1
     Message 5
     CloseMessage
     ApplyMovement 0xFF, _0548
@@ -192,13 +192,13 @@ _02B5:
     End
 
 _0344:
-    ScrCmd_0CF 0
+    BufferCounterpartName 0
     Message 6
     GoTo _035E
     End
 
 _0352:
-    ScrCmd_0CF 0
+    BufferCounterpartName 0
     Message 7
     GoTo _035E
 
@@ -214,7 +214,7 @@ _035E:
     SetVar 0x4071, 1
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BE 0x1A6, 0, 7, 15, 0
+    Warp 0x1A6, 0, 7, 15, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End
@@ -456,7 +456,7 @@ _057C:
     ScrCmd_064 14
     ApplyMovement 14, _0798
     WaitMovement
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 8
     CloseMessage
     ApplyMovement 0xFF, _07AC
@@ -502,14 +502,14 @@ _062A:
     End
 
 _065C:
-    ScrCmd_0CF 0
-    ScrCmd_0CD 1
+    BufferCounterpartName 0
+    BufferPlayerName 1
     Message 13
     GoTo _067A
 
 _066B:
-    ScrCmd_0CF 0
-    ScrCmd_0CD 1
+    BufferCounterpartName 0
+    BufferPlayerName 1
     Message 17
     GoTo _067A
 
@@ -525,14 +525,14 @@ _067A:
     End
 
 _06B2:
-    ScrCmd_0CF 0
-    ScrCmd_0CD 1
+    BufferCounterpartName 0
+    BufferPlayerName 1
     Message 14
     GoTo _06D0
 
 _06C1:
-    ScrCmd_0CF 0
-    ScrCmd_0CD 1
+    BufferCounterpartName 0
+    BufferPlayerName 1
     Message 18
     GoTo _06D0
 
@@ -547,12 +547,12 @@ _06D0:
     End
 
 _0704:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 15
     GoTo _071C
 
 _0710:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 19
     GoTo _071C
 
@@ -569,12 +569,12 @@ _071C:
     End
 
 _075A:
-    ScrCmd_0CD 1
+    BufferPlayerName 1
     Message 16
     GoTo _0772
 
 _0766:
-    ScrCmd_0CD 1
+    BufferPlayerName 1
     Message 20
     GoTo _0772
 
@@ -733,7 +733,7 @@ _08A3:
     End
 
 _08BA:
-    ScrCmd_0CF 0
+    BufferCounterpartName 0
     ScrCmd_036 27, 2, 0, 0x800C
     ScrCmd_038 3
     ScrCmd_039

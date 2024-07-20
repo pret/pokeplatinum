@@ -42,7 +42,7 @@ _0057:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_04B 0x5DC
+    WaitFanfare 0x5DC
     ScrCmd_04C 25, 0
     Message 2
     ScrCmd_04D

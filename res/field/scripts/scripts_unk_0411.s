@@ -9,7 +9,7 @@
     .short 0xFD13
 
 _0012:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 0
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 1, _0031
@@ -32,7 +32,7 @@ _003E:
     End
 
 _004C:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     ScrCmd_14D 0x800C
     CallIfEq 0x800C, 0, _0086
     CallIfEq 0x800C, 1, _008B
@@ -89,10 +89,10 @@ _00E8:
     CallIfEq 0x800C, 1, _0120
 _0104:
     ScrCmd_11E 0x8004
-    ScrCmd_0D5 0, 0x8004
+    BufferNumber 0, 0x8004
     Message 1
     ScrCmd_123 0, 0x800C
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     MessageVar 0x800C
     WaitABPress
     Return
@@ -104,10 +104,10 @@ _0120:
 _0126:
     ScrCmd_121 0x8004
     ScrCmd_14D 0x8005
-    ScrCmd_0D5 0, 0x8004
+    BufferNumber 0, 0x8004
     Message 20
     ScrCmd_123 1, 0x800C
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     MessageVar 0x800C
     WaitABPress
     Return

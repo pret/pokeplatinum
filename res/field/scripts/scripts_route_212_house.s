@@ -67,7 +67,7 @@ _007E:
     GoToIfEq 0x8001, 0, _0259
     ScrCmd_2E5 0x8000, 0, 0x800C
     GoToIfEq 0x800C, 0, _026F
-    ScrCmd_0D6 0, 0x8000
+    BufferPartyMonNickname 0, 0x8000
     Message 5
     ScrCmd_2E6 0x8000, 0, 0x800C
     SetVar 0x8003, 0x800C
@@ -81,7 +81,7 @@ _007E:
     End
 
 _012F:
-    ScrCmd_0D6 0, 0x8000
+    BufferPartyMonNickname 0, 0x8000
     ScrCmd_0D4 1, 0x8003
     Message 9
     ScrCmd_03E 0x800C
@@ -100,25 +100,25 @@ _012F:
     Message 12
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 1, _01E9
-    ScrCmd_0D6 0, 0x8000
+    BufferPartyMonNickname 0, 0x8000
     ScrCmd_1CA 0x800C, 0x8000, 0x8002
     ScrCmd_0D4 1, 0x800C
     Message 13
     PlayFanfare SEQ_SE_DP_KON
-    ScrCmd_04B 0x5E6
+    WaitFanfare 0x5E6
     WaitTime 30, 0x800C
     Message 14
     WaitTime 32, 0x800C
-    ScrCmd_04E 0x483
+    PlaySound 0x483
     ScrCmd_0D4 1, 0x8003
     Message 15
-    ScrCmd_04F
+    WaitSound
     WaitTime 16, 0x800C
     GoTo _0245
     End
 
 _01E9:
-    ScrCmd_0D6 0, 0x8000
+    BufferPartyMonNickname 0, 0x8000
     ScrCmd_0D4 1, 0x8003
     Message 10
     ScrCmd_03E 0x800C
@@ -127,18 +127,18 @@ _01E9:
     End
 
 _020F:
-    ScrCmd_0D6 0, 0x8000
+    BufferPartyMonNickname 0, 0x8000
     ScrCmd_0D4 1, 0x8003
     Message 11
     GoTo _0264
     End
 
 _0224:
-    ScrCmd_0D6 0, 0x8000
+    BufferPartyMonNickname 0, 0x8000
     ScrCmd_0D4 1, 0x8003
     Message 8
-    ScrCmd_04E 0x483
-    ScrCmd_04F
+    PlaySound 0x483
+    WaitSound
     WaitTime 16, 0x800C
     GoTo _0245
     End

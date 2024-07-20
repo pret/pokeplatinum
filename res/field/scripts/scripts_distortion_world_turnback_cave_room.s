@@ -21,14 +21,14 @@ _000E:
     End
 
 _002E:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 1
     CloseMessage
     PlayFanfare SEQ_SE_PL_SYUWA
     ScrCmd_328 0
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BE 0x10E, 0, 11, 15, 1
+    Warp 0x10E, 0, 11, 15, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End

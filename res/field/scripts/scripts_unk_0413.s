@@ -82,7 +82,7 @@ _0146:
 _0158:
     ScrCmd_1BD 0x800C
     GoToIfNe 0x800C, 0, _0186
-    ScrCmd_07E 0x1C0, 1, 0x800C
+    CheckItem 0x1C0, 1, 0x800C
     GoToIfEq 0x800C, 0, _0186
     SetVar 0x800C, 1
     Return
@@ -92,13 +92,13 @@ _0186:
     Return
 
 _018E:
-    ScrCmd_07E 95, 1, 0x800C
+    CheckItem 95, 1, 0x800C
     GoToIfEq 0x800C, 1, _01EA
-    ScrCmd_07E 96, 1, 0x800C
+    CheckItem 96, 1, 0x800C
     GoToIfEq 0x800C, 1, _01EA
-    ScrCmd_07E 97, 1, 0x800C
+    CheckItem 97, 1, 0x800C
     GoToIfEq 0x800C, 1, _01EA
-    ScrCmd_07E 98, 1, 0x800C
+    CheckItem 98, 1, 0x800C
     GoToIfEq 0x800C, 1, _01EA
     SetVar 0x800C, 0
     Return
@@ -119,7 +119,7 @@ _01F2:
     GoTo _053A
 
 _021B:
-    ScrCmd_0D5 1, 0x8001
+    BufferNumber 1, 0x8001
     GoToIfGt 0x8001, 1, _023B
     ScrCmd_33C 0, 0x8000
     Message 35
@@ -133,9 +133,9 @@ _0243:
     GoToIfEq 0x800C, 1, _02F7
     ScrCmd_07D 0x8000, 0x8001, 0x800C
     GoToIfEq 0x800C, 0, _02CF
-    ScrCmd_0D5 1, 0x8001
+    BufferNumber 1, 0x8001
     GoToIfGt 0x8001, 1, _0289
-    ScrCmd_0D1 0, 0x8000
+    BufferItemName 0, 0x8000
     Message 37
     GoTo _0291
 
@@ -143,26 +143,26 @@ _0289:
     ScrCmd_33D 0, 0x8000
     Message 25
 _0291:
-    ScrCmd_04E 0x48F
-    ScrCmd_04F
+    PlaySound 0x48F
+    WaitSound
     ScrCmd_185
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     GoToIfGt 0x8001, 1, _02B4
-    ScrCmd_0D1 1, 0x8000
+    BufferItemName 1, 0x8000
     GoTo _02B9
 
 _02B4:
     ScrCmd_33D 1, 0x8000
 _02B9:
     GetItemPocket 0x8000, 0x800C
-    ScrCmd_0D2 3, 0x800C
+    BufferPocketName 3, 0x800C
     Message 27
     WaitABXPadPress
     GoTo _053A
 
 _02CF:
     GoToIfGt 0x8001, 1, _02E7
-    ScrCmd_0D1 0, 0x8000
+    BufferItemName 0, 0x8000
     GoTo _02EC
 
 _02E7:
@@ -178,9 +178,9 @@ _02F7:
     GoTo _01F2
 
 _0310:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     GoToIfGt 0x8001, 1, _032E
-    ScrCmd_0D1 1, 0x8000
+    BufferItemName 1, 0x8000
     Message 36
     GoTo _0336
 
@@ -197,7 +197,7 @@ _033E:
     ScrCmd_17A 4, 0x800C
     GoToIfEq 0x800C, 0, _054B
     ScrCmd_17F 0x800C
-    ScrCmd_0D1 0, 0x800C
+    BufferItemName 0, 0x800C
     Message 1
     GoTo _04DA
 
@@ -250,16 +250,16 @@ _042D:
     GoTo _053C
 
 _049D:
-    ScrCmd_07C 0x8005, 1, 0x8004
+    RemoveItem 0x8005, 1, 0x8004
     ScrCmd_182 0x8005
     ScrCmd_17A 4, 0x800C
     GoToIfEq 0x800C, 0, _04CA
-    ScrCmd_0D1 0, 0x8005
+    BufferItemName 0, 0x8005
     Message 11
     GoTo _04DA
 
 _04CA:
-    ScrCmd_0D1 0, 0x8005
+    BufferItemName 0, 0x8005
     Message 30
     WaitABXPadPress
     GoTo _053A
@@ -278,10 +278,10 @@ _04EE:
     WaitFadeScreen
     ScrCmd_179 0x800C
     GoToIfEq 0x800C, 0, _053C
-    ScrCmd_0D1 0, 0x800C
+    BufferItemName 0, 0x800C
     Message 12
     WaitABXPadPress
-    ScrCmd_07C 0x800C, 1, 0x8004
+    RemoveItem 0x800C, 1, 0x8004
     ScrCmd_183 0x800C
     GoTo _053A
 
@@ -298,7 +298,7 @@ _0540:
 
 _054B:
     ScrCmd_17F 0x800C
-    ScrCmd_0D1 0, 0x800C
+    BufferItemName 0, 0x800C
     Message 29
     WaitABXPadPress
     GoTo _053A
@@ -307,11 +307,11 @@ _055F:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_0D1 0, 0x8000
+    BufferItemName 0, 0x8000
     Message 12
     WaitABXPadPress
     CloseMessage
-    ScrCmd_07C 0x8000, 1, 0x8004
+    RemoveItem 0x8000, 1, 0x8004
     ScrCmd_183 0x8000
     ReleaseAll
     End

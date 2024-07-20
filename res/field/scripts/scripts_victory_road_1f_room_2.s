@@ -18,10 +18,10 @@ _001F:
 
 _0027:
     LockAll
-    ScrCmd_0C8 0
+    SetPlayerBike 0
     ApplyMovement 28, _0140
     WaitMovement
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     GoToIfEq 0x8005, 55, _008C
     GoToIfEq 0x8005, 56, _009C
     GoToIfEq 0x8005, 57, _00AC
@@ -61,13 +61,13 @@ _00DC:
     GoTo _00EC
 
 _00EC:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     CallIfUnset 223, _0134
     CallIfSet 223, _0139
-    ScrCmd_0CD 0
-    ScrCmd_04E 0x481
+    BufferPlayerName 0
+    PlaySound 0x481
     Message 1
-    ScrCmd_04F
+    WaitSound
     SetFlag 223
     SetVar 0x4090, 1
     Message 2
@@ -138,7 +138,7 @@ _0190:
     SetVar 0x4090, 0
     ScrCmd_162
     ScrCmd_06D 28, 14
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     GoToIfEq 0x8005, 55, _020D
     GoToIfEq 0x8005, 56, _021D
     GoToIfEq 0x8005, 57, _022D
@@ -249,7 +249,7 @@ _02E4:
     WaitMovement
     Message 5
     CloseMessage
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     GoToIfEq 0x8004, 51, _0341
     GoToIfEq 0x8004, 52, _0359
     GoToIfEq 0x8004, 53, _0371

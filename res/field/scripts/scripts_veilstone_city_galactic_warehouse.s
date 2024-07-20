@@ -23,7 +23,7 @@ _003B:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_07E 0x1CF, 1, 0x800C
+    CheckItem 0x1CF, 1, 0x800C
     GoToIfEq 0x800C, 1, _0063
     Message 7
     WaitABXPadPress
@@ -40,11 +40,11 @@ _0063:
 
 _0086:
     SetFlag 0x10E
-    ScrCmd_07C 0x1CF, 1, 0x800C
-    ScrCmd_0CD 0
+    RemoveItem 0x1CF, 1, 0x800C
+    BufferPlayerName 0
     Message 9
     WaitABXPadPress
-    ScrCmd_04B 0x5DC
+    WaitFanfare 0x5DC
     PlayFanfare SEQ_SE_DP_DOOR10
     ApplyMovement 2, _00C8
     ApplyMovement 3, _00D0
@@ -79,7 +79,7 @@ _00D8:
     ApplyMovement 0xFF, _0168
     ApplyMovement 4, _0134
     WaitMovement
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 1
     CloseMessage
     ApplyMovement 0xFF, _0174
@@ -147,7 +147,7 @@ _0197:
     ScrCmd_189 4, 0
     ClearFlag 0x20D
     ScrCmd_064 4
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     CallIfEq 0x8004, 8, _025A
     CallIfEq 0x8004, 9, _026E
     Message 4
@@ -157,7 +157,7 @@ _0197:
     Message 5
     CloseMessage
     SetFlag 0x10E
-    ScrCmd_04B 0x5DC
+    WaitFanfare 0x5DC
     PlayFanfare SEQ_SE_DP_DOOR10
     ApplyMovement 2, _00C8
     ApplyMovement 3, _00D0

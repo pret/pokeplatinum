@@ -32,7 +32,7 @@ _003E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_0D1 0, 24
+    BufferItemName 0, 24
     Message 0
     WaitABXPadPress
     CloseMessage
@@ -43,7 +43,7 @@ _0056:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_0D1 0, 57
+    BufferItemName 0, 57
     Message 1
     WaitABXPadPress
     CloseMessage

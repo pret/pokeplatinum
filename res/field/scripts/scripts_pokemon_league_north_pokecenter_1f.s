@@ -40,8 +40,8 @@ _006D:
     GoToIfSet 175, _00F7
     Message 2
     CloseMessage
-    ScrCmd_04E 0x489
-    ScrCmd_04F
+    PlaySound 0x489
+    WaitSound
     ScrCmd_1BD 0x800C
     GoToIfEq 0x800C, 0, _00B8
     GoToIfEq 0x800C, 2, _00C8
@@ -121,7 +121,7 @@ _0154:
     ClearFlag 0x21D
     ScrCmd_064 5
     CallCommonScript 0x7FA
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     GoToIfEq 0x8004, 10, _0191
     GoToIfEq 0x8004, 11, _01A1
     GoToIfEq 0x8004, 12, _01B1
@@ -145,7 +145,7 @@ _01B1:
 _01C1:
     ApplyMovement 0xFF, _02B8
     WaitMovement
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 0
     CloseMessage
     ScrCmd_0DE 0x800C
@@ -168,11 +168,11 @@ _020F:
 _021B:
     ScrCmd_0EC 0x800C
     GoToIfEq 0x800C, 0, _02AC
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
+    BufferRivalName 0
+    BufferPlayerName 1
     Message 1
     CloseMessage
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     GoToIfEq 0x8004, 10, _0266
     GoToIfEq 0x8004, 11, _0276
     GoToIfEq 0x8004, 12, _0286
@@ -196,7 +196,7 @@ _0286:
 _0296:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 5
-    ScrCmd_04B 0x603
+    WaitFanfare 0x603
     SetVar 0x40EF, 1
     ReleaseAll
     End

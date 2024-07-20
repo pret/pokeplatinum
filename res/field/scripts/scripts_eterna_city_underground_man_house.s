@@ -377,7 +377,7 @@ _057A:
     Return
 
 _057F:
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     GoToIfEq 0x8004, 5, _05B2
     GoToIfEq 0x8004, 7, _05BE
     GoToIfEq 0x8005, 4, _05CA

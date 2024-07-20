@@ -110,8 +110,8 @@ _00D8:
     WaitMovement
     ApplyMovement 0xFF, _03DC
     WaitMovement
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
+    BufferRivalName 0
+    BufferPlayerName 1
     Message 0
     CloseMessage
     CallCommonScript 0x800
@@ -131,7 +131,7 @@ _00D8:
     End
 
 _014E:
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 2
     CloseMessage
     ApplyMovement 0xFF, _03F8
@@ -172,7 +172,7 @@ _0198:
     ApplyMovement 7, _0378
     ApplyMovement 0xFF, _0400
     WaitMovement
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 12
     ClearFlag 0x1E3
     ScrCmd_064 26
@@ -187,13 +187,13 @@ _0198:
     WaitMovement
     Message 14
     CloseMessage
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 15
     CloseMessage
     ApplyMovement 7, _039C
     WaitMovement
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
+    BufferRivalName 0
+    BufferPlayerName 1
     Message 16
     Message 17
     CloseMessage
@@ -201,8 +201,8 @@ _0198:
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 26
-    ScrCmd_04B 0x603
-    ScrCmd_0CE 0
+    WaitFanfare 0x603
+    BufferRivalName 0
     Message 18
     Message 19
     Message 20
@@ -234,7 +234,7 @@ _02E0:
 _02EE:
     ApplyMovement 7, _03AC
     WaitMovement
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 3
     WaitABXPadPress
     CloseMessage
@@ -537,7 +537,7 @@ _0521:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_0D1 0, 0x1BF
+    BufferItemName 0, 0x1BF
     GoToIfSet 107, _057A
     Message 42
     ScrCmd_03E 0x800C
@@ -695,7 +695,7 @@ _06F0:
     CallIfEq 0x8004, 2, _077A
     CallIfEq 0x8004, 1, _0786
     CallIfEq 0x8004, 0, _0792
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 4
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 1, _02EE

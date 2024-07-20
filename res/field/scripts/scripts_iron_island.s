@@ -92,7 +92,7 @@ _00FC:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 0
     SetVar 0x8004, 0x1A7
     SetVar 0x8005, 1
@@ -118,7 +118,7 @@ _014B:
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 1
-    ScrCmd_04B 0x603
+    WaitFanfare 0x603
     ReleaseAll
     End
 

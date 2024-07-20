@@ -135,7 +135,7 @@ _0171:
 
 _0184:
     LockAll
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     CallIfEq 0x8005, 0x1D8, _0266
     CallIfEq 0x8005, 0x1D9, _0272
     CallIfEq 0x8005, 0x1DA, _0274
@@ -166,7 +166,7 @@ _0184:
     SetVar 0x404E, 0xFF
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BE 0x1D0, 0, 10, 6, 2
+    Warp 0x1D0, 0, 10, 6, 2
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End
@@ -205,7 +205,7 @@ _02A8:
 _02BC:
     Message 8
     CloseMessage
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     CallIfEq 0x8005, 0x1D8, _02F2
     CallIfEq 0x8005, 0x1D9, _0306
     CallIfEq 0x8005, 0x1DA, _0312
@@ -328,7 +328,7 @@ _03D4:
     SetFlag 0x9AB
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BE 0x1D0, 0, 11, 11, 0
+    Warp 0x1D0, 0, 11, 11, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End
@@ -358,7 +358,7 @@ _043C:
     SetFlag 0x9AB
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BE 0x1D0, 0, 11, 11, 0
+    Warp 0x1D0, 0, 11, 11, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End
@@ -382,7 +382,7 @@ _049C:
     SetFlag 0x9AB
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BE 0x1D0, 0, 11, 11, 0
+    Warp 0x1D0, 0, 11, 11, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End
@@ -406,7 +406,7 @@ _04FC:
     SetFlag 0x9AB
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BE 0x1D0, 0, 11, 11, 0
+    Warp 0x1D0, 0, 11, 11, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End
@@ -430,7 +430,7 @@ _055C:
     SetFlag 0x9AB
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BE 0x1D0, 0, 11, 11, 0
+    Warp 0x1D0, 0, 11, 11, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End

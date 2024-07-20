@@ -40,12 +40,12 @@ _005A:
     End
 
 _007A:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 2
     GoTo _0092
 
 _0086:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 3
     GoTo _0092
 
@@ -60,7 +60,7 @@ _009A:
     GoToIfSet 240, _00C4
     SetFlag 240
     ScrCmd_21B
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 4
     WaitABXPadPress
     CloseMessage
@@ -68,7 +68,7 @@ _009A:
     End
 
 _00C4:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     ScrCmd_0E3 0x4001, 0x4000
     ScrCmd_0E2 1, 0x4001
     ScrCmd_0DA 2, 0x4000, 0, 1
@@ -82,7 +82,7 @@ _00FA:
     GoTo _010F
 
 _0103:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 6
     GoTo _010F
 

@@ -29,7 +29,7 @@ _0021:
     CloseMessage
     ApplyMovement 0, _00B8
     WaitMovement
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 2
     WaitABXPadPress
     CloseMessage

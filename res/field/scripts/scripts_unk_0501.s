@@ -46,10 +46,10 @@ _0083:
     End
 
 _009F:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 5
-    ScrCmd_04E 0x486
-    ScrCmd_04F
+    PlaySound 0x486
+    WaitSound
     WaitABPress
     Message 6
     WaitABXPadPress
@@ -287,10 +287,10 @@ _03FE:
     ScrCmd_1A3 0x8004
     ScrCmd_074
     PlayFanfare SEQ_SE_DP_REGI
-    ScrCmd_04B 0x644
+    WaitFanfare 0x644
     Message 29
     ScrCmd_04C 0x8002, 0
-    ScrCmd_0CD 1
+    BufferPlayerName 1
     Message 30
     ScrCmd_04D
     ScrCmd_16E 0x800C

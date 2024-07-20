@@ -64,10 +64,10 @@ _00BB:
     ScrCmd_0EC 0x800C
     GoToIfEq 0x800C, 0, _0248
     Message 1
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 2
-    ScrCmd_04E 0x489
-    ScrCmd_04F
+    PlaySound 0x489
+    WaitSound
     ScrCmd_15C 4
     ScrCmd_260 23
     SetTrainerFlag 0x10A
@@ -92,7 +92,7 @@ _0158:
     GoToIfEq 0x800C, 0, _0196
     CallCommonScript 0x7FC
     SetFlag 125
-    ScrCmd_0D1 0, 0x8004
+    BufferItemName 0, 0x8004
     ScrCmd_0D3 1, 0x8004
     Message 4
     WaitABXPadPress

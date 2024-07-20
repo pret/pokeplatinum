@@ -141,8 +141,8 @@ _00FF:
     WaitMovement
     ApplyMovement 2, _0408
     WaitMovement
-    ScrCmd_0D5 0, 0x404C
-    ScrCmd_0D5 1, 0x8005
+    BufferNumber 0, 0x404C
+    BufferNumber 1, 0x8005
     Message 6
     CloseMessage
     ApplyMovement 2, _03FC
@@ -162,8 +162,8 @@ _00FF:
     ScrCmd_065 5
     ApplyMovement 2, _0408
     WaitMovement
-    ScrCmd_0D5 0, 0x404C
-    ScrCmd_0D5 1, 0x8005
+    BufferNumber 0, 0x404C
+    BufferNumber 1, 0x8005
     Message 7
     GoToIfNe 0x8005, 0x404C, _044C
     ScrCmd_1B7 0x8006, 2
@@ -296,12 +296,12 @@ _044C:
 
 _045A:
     Message 2
-    ScrCmd_0D5 0, 0x404C
+    BufferNumber 0, 0x404C
     Message 3
     Return
 
 _0467:
-    ScrCmd_0D5 0, 0x404C
+    BufferNumber 0, 0x404C
     Message 3
     Return
 

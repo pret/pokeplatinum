@@ -19,12 +19,12 @@ _0017:
 _0025:
     LockAll
     PlayFanfare SEQ_SE_CONFIRM
-    ScrCmd_04B 0x5DC
+    WaitFanfare 0x5DC
     GoToIfSet 0x11A, _0081
     ScrCmd_26B 0x800C
     GoToIfEq 0x800C, 0, _0073
     SetFlag 0x11A
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 1
     CloseMessage
     ScrCmd_063 0
@@ -34,7 +34,7 @@ _0025:
     End
 
 _0073:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 0
     WaitABXPadPress
     CloseMessage

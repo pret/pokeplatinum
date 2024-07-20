@@ -148,9 +148,9 @@ _0191:
     CallIfEq 0x8000, 1, _0175
     CallIfEq 0x8000, 2, _0183
     ScrCmd_074
-    ScrCmd_0D1 0, 0x8001
+    BufferItemName 0, 0x8001
     PlayFanfare SEQ_SE_DP_JIHANKI
-    ScrCmd_0D1 0, 0x8001
+    BufferItemName 0, 0x8001
     Message 7
     SetVar 0x8004, 0x8001
     SetVar 0x8005, 1
@@ -160,7 +160,7 @@ _0191:
     ScrCmd_07D 0x8001, 1, 0x800C
     GoToIfEq 0x800C, 0, _0280
     PlayFanfare SEQ_SE_DP_JIHANKI
-    ScrCmd_0D1 0, 0x8001
+    BufferItemName 0, 0x8001
     Message 8
     SetVar 0x8004, 0x8001
     SetVar 0x8005, 1

@@ -35,17 +35,17 @@ _0060:
 
 _0064:
     LockAll
-    ScrCmd_0C8 0
-    ScrCmd_069 0x8004, 0x8005
+    SetPlayerBike 0
+    GetPlayerXZPos 0x8004, 0x8005
     CallIfEq 0x8005, 2, _00D1
     CallIfEq 0x8005, 3, _00DD
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     CallIfUnset 225, _00E9
     CallIfSet 225, _00EE
-    ScrCmd_0CD 0
-    ScrCmd_04E 0x481
+    BufferPlayerName 0
+    PlaySound 0x481
     Message 1
-    ScrCmd_04F
+    WaitSound
     SetFlag 225
     SetVar 0x4092, 1
     Message 2
@@ -85,7 +85,7 @@ _00F3:
     SetVar 0x4092, 0
     ScrCmd_162
     ScrCmd_06D 4, 16
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     CallIfEq 0x8005, 2, _013E
     CallIfEq 0x8005, 3, _014A
     ReleaseAll
@@ -153,7 +153,7 @@ _01AA:
     LockAll
     ScrCmd_162
     ScrCmd_06D 4, 16
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     CallIfEq 0x8005, 40, _0291
     CallIfEq 0x8005, 41, _02A5
     Message 5
@@ -168,7 +168,7 @@ _01AA:
     CloseMessage
     ApplyMovement 4, _040C
     WaitMovement
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 8
     CloseMessage
     ScrCmd_161
@@ -190,7 +190,7 @@ _01AA:
     ScrCmd_065 6
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     CallIfEq 0x8005, 40, _02D1
     CallIfEq 0x8005, 41, _02E5
     Call _02F9
@@ -257,8 +257,8 @@ _02F9:
 _031C:
     ScrCmd_177 0x800C
     GoToIfEq 0x800C, 6, _0353
-    ScrCmd_04E 0x486
-    ScrCmd_04F
+    PlaySound 0x486
+    WaitSound
     Message 12
     ScrCmd_097 0x1BF, 10
     SetFlag 0x1E5
@@ -459,7 +459,7 @@ _0468:
     GoToIfEq 0x40E3, 3, _04E0
     GoToIfEq 0x40E3, 2, _04D5
     GoToIfEq 0x40E3, 1, _04CA
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 18
     GoTo _04F6
     End

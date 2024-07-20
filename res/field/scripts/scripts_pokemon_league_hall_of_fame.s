@@ -25,12 +25,12 @@ _0006:
     End
 
 _0074:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 4
     GoTo _008C
 
 _0080:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 5
     GoTo _008C
 

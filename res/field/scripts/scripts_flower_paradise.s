@@ -11,7 +11,7 @@ _000E:
     SetFlag 0x9D5
     ScrCmd_22D 2, 0x4000
     GoToIfEq 0x4000, 0, _005C
-    ScrCmd_07E 0x1C4, 1, 0x4000
+    CheckItem 0x1C4, 1, 0x4000
     GoToIfEq 0x4000, 0, _005C
     ScrCmd_28B 1, 0x4000
     GoToIfEq 0x4000, 0, _005C

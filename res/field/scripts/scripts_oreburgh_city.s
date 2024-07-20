@@ -31,8 +31,8 @@ _005A:
     LockAll
     FacePlayer
     GoToIfSet 138, _0082
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
+    BufferRivalName 0
+    BufferPlayerName 1
     Message 0
     WaitABXPadPress
     SetFlag 138
@@ -41,7 +41,7 @@ _005A:
     End
 
 _0082:
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 1
     WaitABXPadPress
     CloseMessage
@@ -80,7 +80,7 @@ _00D7:
     ClearFlag 0x17C
     ScrCmd_188 3, 16
     ScrCmd_189 3, 2
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x2EC, _011E
     GoToIfEq 0x8005, 0x2ED, _0144
     GoToIfEq 0x8005, 0x2EE, _016A
@@ -128,8 +128,8 @@ _01B6:
     Message 2
     CloseMessage
     CallCommonScript 0x7FA
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
+    BufferRivalName 0
+    BufferPlayerName 1
     Message 3
     CloseMessage
     ApplyMovement 3, _0340
@@ -139,7 +139,7 @@ _01B6:
     WaitMovement
     Message 5
     CloseMessage
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x2EC, _021F
     GoToIfEq 0x8005, 0x2ED, _0239
     GoToIfEq 0x8005, 0x2EE, _0253
@@ -332,7 +332,7 @@ _03E5:
 
 _03F8:
     LockAll
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x2EC, _042F
     GoToIfEq 0x8005, 0x2ED, _0449
     GoToIfEq 0x8005, 0x2EE, _0463
@@ -371,7 +371,7 @@ _0497:
     Message 6
     CloseMessage
     CallCommonScript 0x800
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x2EC, _04DC
     GoToIfEq 0x8005, 0x2ED, _04F6
     GoToIfEq 0x8005, 0x2EE, _0510
@@ -602,7 +602,7 @@ _0703:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_04B 0x5DC
+    WaitFanfare 0x5DC
     ScrCmd_04C 66, 0
     Message 24
     ScrCmd_04D
@@ -625,7 +625,7 @@ _0735:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_04B 0x5DC
+    WaitFanfare 0x5DC
     ScrCmd_04C 66, 0
     Message 25
     ScrCmd_04D
@@ -638,7 +638,7 @@ _0754:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_04B 0x5DC
+    WaitFanfare 0x5DC
     ScrCmd_04C 66, 0
     Message 26
     ScrCmd_04D

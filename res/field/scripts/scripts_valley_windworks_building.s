@@ -68,7 +68,7 @@ _00AC:
 
 _00BF:
     LockAll
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     GoToIfEq 0x8005, 6, _00E3
     GoToIfEq 0x8005, 7, _00F5
     End
@@ -117,7 +117,7 @@ _0107:
     SetFlag 0xAA8
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     GoToIfEq 0x8005, 6, _01B7
     GoToIfEq 0x8005, 7, _01C9
     End
@@ -142,7 +142,7 @@ _01DB:
     ScrCmd_188 5, 16
     ScrCmd_064 5
     ScrCmd_062 5
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     GoToIfEq 0x8005, 6, _0218
     GoToIfEq 0x8005, 7, _0232
     End
@@ -164,7 +164,7 @@ _0232:
 _024C:
     Message 8
     CloseMessage
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     GoToIfEq 0x8005, 6, _0273
     GoToIfEq 0x8005, 7, _0285
     End

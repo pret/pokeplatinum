@@ -44,7 +44,7 @@ _000E:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BE 186, 0, 5, 23, 0
+    Warp 186, 0, 5, 23, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll

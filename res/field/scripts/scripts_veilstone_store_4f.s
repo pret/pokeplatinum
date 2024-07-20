@@ -26,7 +26,7 @@ _001E:
     GoTo _00B7
 
 _005F:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 1
     ScrCmd_040 1, 1, 0, 1, 0x800C
     ScrCmd_042 229, 0

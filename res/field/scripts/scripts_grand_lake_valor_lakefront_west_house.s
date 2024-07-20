@@ -29,8 +29,8 @@ _0057:
     SetFlag 171
     SetFlag 1
     Message 1
-    ScrCmd_04E 0x486
-    ScrCmd_04F
+    PlaySound 0x486
+    WaitSound
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -46,8 +46,8 @@ _0095:
     SetFlag 172
     SetFlag 1
     Message 2
-    ScrCmd_04E 0x486
-    ScrCmd_04F
+    PlaySound 0x486
+    WaitSound
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen

@@ -29,7 +29,7 @@ _0023:
 
 _0036:
     LockAll
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     SetVar 0x40A9, 2
     ScrCmd_186 5, 20, 25
     ScrCmd_188 5, 16

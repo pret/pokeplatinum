@@ -16,7 +16,7 @@ _0015:
     LockAll
     FacePlayer
     ScrCmd_1BD 0x8004
-    ScrCmd_07E 0x1C5, 1, 0x800C
+    CheckItem 0x1C5, 1, 0x800C
     GoToIfEq 0x800C, 1, _0052
     Message 1
     ScrCmd_03E 0x800C

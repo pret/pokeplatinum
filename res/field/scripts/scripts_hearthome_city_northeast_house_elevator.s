@@ -20,7 +20,7 @@ _0038:
     Call _009C
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BE 113, 0, 18, 3, 1
+    Warp 113, 0, 18, 3, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End
@@ -30,13 +30,13 @@ _006A:
     Call _009C
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BE 112, 0, 18, 3, 1
+    Warp 112, 0, 18, 3, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End
 
 _009C:
-    ScrCmd_04B 0x5DC
+    WaitFanfare 0x5DC
     ScrCmd_23C 0x8004, 4
     ApplyMovement 0xFF, _00C4
     WaitMovement

@@ -20,21 +20,21 @@ _0032:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_0CD 0
-    ScrCmd_0CE 1
+    BufferPlayerName 0
+    BufferRivalName 1
     Message 0
-    ScrCmd_04E 0x486
-    ScrCmd_0CD 0
+    PlaySound 0x486
+    BufferPlayerName 0
     Message 1
-    ScrCmd_04F
-    ScrCmd_07C 0x1CB, 1, 0x800C
-    ScrCmd_0CD 0
-    ScrCmd_0CE 1
+    WaitSound
+    RemoveItem 0x1CB, 1, 0x800C
+    BufferPlayerName 0
+    BufferRivalName 1
     Message 2
     SetVar 0x8004, 0x1BA
     SetVar 0x8005, 1
     CallCommonScript 0x7FC
-    ScrCmd_0CE 1
+    BufferRivalName 1
     Message 3
     CloseMessage
     ScrCmd_1BD 0x800C
@@ -68,7 +68,7 @@ _00D8:
 _00F2:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 1
-    ScrCmd_04B 0x603
+    WaitFanfare 0x603
     SetVar 0x40E7, 1
     SetFlag 241
     ClearFlag 0x1F6

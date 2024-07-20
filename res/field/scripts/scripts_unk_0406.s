@@ -166,7 +166,7 @@ _037A:
     ScrCmd_03E 0x800C
     GoToIfNe 0x800C, 0, _0261
     ScrCmd_21D 5, 0x8004
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     ScrCmd_21D 2, 0x8004, 1
     Message 9
     WaitABXPadPress

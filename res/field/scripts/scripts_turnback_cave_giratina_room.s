@@ -26,7 +26,7 @@ _0029:
 _0037:
     LockAll
     PlayFanfare SEQ_SE_CONFIRM
-    ScrCmd_04B 0x5DC
+    WaitFanfare 0x5DC
     ScrCmd_04C 0x1E7, 0
     Message 0
     CloseMessage
@@ -108,14 +108,14 @@ _0127:
     End
 
 _0149:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 3
     CloseMessage
     PlayFanfare SEQ_SE_PL_SYUWA
     ScrCmd_328 1
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BE 0x247, 0, 116, 75, 1
+    Warp 0x247, 0, 116, 75, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End

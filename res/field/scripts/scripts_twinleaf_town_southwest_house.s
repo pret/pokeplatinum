@@ -28,7 +28,7 @@ _0033:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     GoToIfSet 144, _0054
     Message 2
     WaitABXPadPress

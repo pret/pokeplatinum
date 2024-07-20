@@ -27,7 +27,7 @@ _0046:
 
 _004E:
     LockAll
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     ScrCmd_186 18, 0x14B, 0x8005
     Call _008E
     ApplyMovement 18, _0194
@@ -52,7 +52,7 @@ _009C:
     GoTo _00F1
 
 _00B3:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 0
     ScrCmd_044 30, 13, 0, 0, 0x800C
     ScrCmd_33A 1
@@ -67,7 +67,7 @@ _00B3:
     GoTo _0156
 
 _00F1:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 4
     ScrCmd_044 30, 13, 0, 0, 0x800C
     ScrCmd_33A 1
@@ -91,7 +91,7 @@ _012F:
 _0145:
     SetVar 0x8004, 6
     CallCommonScript 0x7D9
-    ScrCmd_0D7 1, 6
+    BufferPoketchAppName 1, 6
     Return
 
 _0156:

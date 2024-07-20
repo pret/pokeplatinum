@@ -67,13 +67,13 @@ _00CB:
     End
 
 _0104:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 3
     GoTo _0120
     End
 
 _0112:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 5
     GoTo _0120
     End
@@ -86,8 +86,8 @@ _0120:
 
 _0128:
     FacePlayer
-    ScrCmd_0CD 0
-    ScrCmd_0CE 1
+    BufferPlayerName 0
+    BufferRivalName 1
     Message 14
     WaitABXPadPress
     CloseMessage
@@ -105,13 +105,13 @@ _013B:
     End
 
 _0167:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 7
     GoTo _0183
     End
 
 _0175:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 8
     GoTo _0183
     End
@@ -129,13 +129,13 @@ _018B:
     End
 
 _01A4:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 15
     GoTo _01C0
     End
 
 _01B2:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 16
     GoTo _01C0
     End
@@ -161,13 +161,13 @@ _01D0:
     End
 
 _01F5:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 0
     GoTo _0211
     End
 
 _0203:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 1
     GoTo _0211
     End
@@ -220,7 +220,7 @@ _0230:
     SetFlag 186
     ClearFlag 0x1BA
     SetVar 0x40D3, 1
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 13
     WaitABXPadPress
     CloseMessage

@@ -34,7 +34,7 @@ _0069:
     GoToIfUnset 0x145, _005F
     GoToIfSet 208, _00BC
     GoToIfGe 0x40C4, 1, _00BC
-    ScrCmd_07E 135, 1, 0x4001
+    CheckItem 135, 1, 0x4001
     GoToIfEq 0x4001, 1, _0104
     ScrCmd_32F 135, 0x4001
     GoToIfEq 0x4001, 1, _0104
@@ -44,7 +44,7 @@ _0069:
 _00BC:
     GoToIfSet 209, _005F
     GoToIfGe 0x40C5, 1, _005F
-    ScrCmd_07E 136, 1, 0x4001
+    CheckItem 136, 1, 0x4001
     GoToIfEq 0x4001, 1, _010E
     ScrCmd_32F 136, 0x4001
     GoToIfEq 0x4001, 1, _010E

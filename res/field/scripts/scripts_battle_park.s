@@ -18,7 +18,7 @@
 
 _0032:
     LockAll
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     CallIfEq 0x8004, 23, _01A8
     CallIfEq 0x8004, 24, _01BA
     CallIfEq 0x8004, 25, _01CC
@@ -30,7 +30,7 @@ _0032:
     ApplyMovement 0xFF, _0290
     WaitMovement
     PlayFanfare SEQ_SE_DP_WALL_HIT2
-    ScrCmd_0CD 1
+    BufferPlayerName 1
     Message 0
     CloseMessage
     WaitTime 30, 0x800C
@@ -45,7 +45,7 @@ _0032:
     WaitMovement
     Message 3
     CloseMessage
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     CallIfEq 0x8004, 23, _01F0
     CallIfEq 0x8004, 24, _0204
     CallIfEq 0x8004, 25, _0218
@@ -58,15 +58,15 @@ _0032:
     ApplyMovement 0xFF, _0290
     WaitMovement
     PlayFanfare SEQ_SE_DP_WALL_HIT2
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
+    BufferRivalName 0
+    BufferPlayerName 1
     Message 4
     CloseMessage
     WaitTime 30, 0x800C
     CallIfLt 0x409E, 1, _019E
     CallIfGe 0x409E, 1, _01A3
     CloseMessage
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     CallIfEq 0x8004, 23, _0240
     CallIfEq 0x8004, 24, _0254
     CallIfEq 0x8004, 25, _0268

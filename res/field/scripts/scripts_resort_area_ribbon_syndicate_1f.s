@@ -28,7 +28,7 @@ _003F:
     GoToIfLt 0x8004, 10, _0078
     SetVar 0x40A7, 1
     SetFlag 250
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 1
     CloseMessage
     ApplyMovement 0, _00AC
@@ -42,7 +42,7 @@ _0078:
     WaitTime 20, 0x800C
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BE 0x1C9, 0, 0x338, 0x1C6, 1
+    Warp 0x1C9, 0, 0x338, 0x1C6, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll
@@ -57,7 +57,7 @@ _00AC:
     EndMovement
 
 _00C0:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -72,8 +72,8 @@ _00D6:
     LockAll
     FacePlayer
     ScrCmd_247 0x8000
-    ScrCmd_0CD 0
-    ScrCmd_0D0 2, 0x8000
+    BufferPlayerName 0
+    BufferPartyMonSpecies 2, 0x8000
     ScrCmd_230 0x800C, 0x8000, 68
     GoToIfEq 0x800C, 1, _0244
     ScrCmd_230 0x800C, 0x8000, 67
@@ -93,7 +93,7 @@ _012F:
     ScrCmd_070 0x2710
     ScrCmd_074
     PlayFanfare SEQ_SE_DP_REGI
-    ScrCmd_04B 0x644
+    WaitFanfare 0x644
     Message 7
     Message 8
     WaitABXPadPress
@@ -114,7 +114,7 @@ _018A:
     ScrCmd_070 0x186A0
     ScrCmd_074
     PlayFanfare SEQ_SE_DP_REGI
-    ScrCmd_04B 0x644
+    WaitFanfare 0x644
     Message 9
     Message 10
     WaitABXPadPress
@@ -135,7 +135,7 @@ _01E7:
     ScrCmd_070 0xF423F
     ScrCmd_074
     PlayFanfare SEQ_SE_DP_REGI
-    ScrCmd_04B 0x644
+    WaitFanfare 0x644
     Message 11
     Message 12
     WaitABXPadPress
@@ -205,7 +205,7 @@ _02BA:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_04B 0x5DC
+    WaitFanfare 0x5DC
     ScrCmd_04C 0x12C, 0
     Message 18
     ScrCmd_04D
@@ -218,7 +218,7 @@ _02D9:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_04B 0x5DC
+    WaitFanfare 0x5DC
     ScrCmd_04C 54, 0
     Message 19
     ScrCmd_04D

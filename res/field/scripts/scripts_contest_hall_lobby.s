@@ -23,7 +23,7 @@ _002E:
     CloseMessage
     ApplyMovement 5, _0174
     WaitMovement
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 1
     CloseMessage
     ApplyMovement 0xFF, _0138
@@ -31,7 +31,7 @@ _002E:
     ApplyMovement 6, _014C
     WaitMovement
     Message 2
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 3
     Message 4
     SetVar 0x8004, 49
@@ -51,10 +51,10 @@ _002E:
     ApplyMovement 5, _0190
     ApplyMovement 0xFF, _01E4
     WaitMovement
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 7
     CloseMessage
-    ScrCmd_04E 0x486
+    PlaySound 0x486
     ScrCmd_14D 0x800C
     GoToIfEq 0x800C, 0, _00EE
     GoTo _00F9
@@ -71,7 +71,7 @@ _00F9:
     End
 
 _0104:
-    ScrCmd_04F
+    WaitSound
     Message 10
     CloseMessage
     WaitTime 15, 0x800C
@@ -80,7 +80,7 @@ _0104:
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 5
-    ScrCmd_04B 0x603
+    WaitFanfare 0x603
     SetFlag 0x978
     ReleaseAll
     End
@@ -313,7 +313,7 @@ _037F:
     End
 
 _038A:
-    ScrCmd_07E 0x1C1, 1, 0x800C
+    CheckItem 0x1C1, 1, 0x800C
     GoToIfEq 0x800C, 0, _037F
     Message 13
     ScrCmd_28A 0x800C
@@ -335,7 +335,7 @@ _03C8:
 
 _03D3:
     SetFlag 0x159
-    ScrCmd_07E 0x1C1, 1, 0x800C
+    CheckItem 0x1C1, 1, 0x800C
     GoToIfEq 0x800C, 0, _0428
     Message 13
     ScrCmd_28A 0x800C
@@ -364,10 +364,10 @@ _0428:
 
 _0437:
     ScrCmd_289 0x800C, 60, 30, 30, 30, 30, 40
-    ScrCmd_04E 0x486
-    ScrCmd_0CD 0
+    PlaySound 0x486
+    BufferPlayerName 0
     Message 14
-    ScrCmd_04F
+    WaitSound
     Message 15
     Return
 
@@ -473,7 +473,7 @@ _05B9:
 _05D3:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 10
-    ScrCmd_04B 0x603
+    WaitFanfare 0x603
     SetFlag 0x18D
     ReleaseAll
     End

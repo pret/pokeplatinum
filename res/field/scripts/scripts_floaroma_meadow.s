@@ -119,7 +119,7 @@ _010E:
     WaitFadeScreen
     ClearFlag 0x19E
     ScrCmd_064 3
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     CallIfEq 0x8004, 12, _01BA
     CallIfEq 0x8004, 13, _01C6
     ScrCmd_065 3
@@ -211,7 +211,7 @@ _0293:
     ScrCmd_1A3 0x8006
     ScrCmd_074
     PlayFanfare SEQ_SE_DP_REGI
-    ScrCmd_04B 0x644
+    WaitFanfare 0x644
     CallCommonScript 0x7E0
     ScrCmd_073
     CloseMessage

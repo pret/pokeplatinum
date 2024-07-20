@@ -28,7 +28,7 @@ _0022:
     End
 
 _0048:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 14
     WaitABXPadPress
     CloseMessage
@@ -40,8 +40,8 @@ _0056:
     LockAll
     ScrCmd_15B 1, 0x800C
     GoToIfEq 0x800C, 1, _0080
-    ScrCmd_0CE 0
-    ScrCmd_0CE 1
+    BufferRivalName 0
+    BufferRivalName 1
     Message 15
     WaitABXPadPress
     CloseMessage
@@ -49,9 +49,9 @@ _0056:
     End
 
 _0080:
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
-    ScrCmd_0CE 2
+    BufferRivalName 0
+    BufferPlayerName 1
+    BufferRivalName 2
     Message 16
     WaitABXPadPress
     CloseMessage
@@ -71,10 +71,10 @@ _0094:
     ScrCmd_0EC 0x800C
     GoToIfEq 0x800C, 0, _01C3
     Message 1
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 2
-    ScrCmd_04E 0x489
-    ScrCmd_04F
+    PlaySound 0x489
+    WaitSound
     ScrCmd_15C 1
     ScrCmd_260 23
     SetTrainerFlag 0x103
@@ -94,7 +94,7 @@ _0119:
     GoToIfEq 0x800C, 0, _0157
     CallCommonScript 0x7FC
     SetFlag 116
-    ScrCmd_0D1 0, 0x8004
+    BufferItemName 0, 0x8004
     ScrCmd_0D3 1, 0x8004
     Message 4
     WaitABXPadPress
@@ -123,7 +123,7 @@ _0177:
     GoToIfEq 0x800C, 0, _01B7
     CallCommonScript 0x7FC
     SetFlag 116
-    ScrCmd_0D1 0, 0x8004
+    BufferItemName 0, 0x8004
     ScrCmd_0D3 1, 0x8004
     Message 4
     WaitABXPadPress

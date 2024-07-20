@@ -47,7 +47,7 @@ _008E:
 _00AE:
     ScrCmd_09A 0x800C, 15
     SetVar 0x8004, 0x800C
-    ScrCmd_0D6 0, 0x800C
+    BufferPartyMonNickname 0, 0x800C
     Message 1
     CloseMessage
     ScrCmd_0C5 0x8004
@@ -64,7 +64,7 @@ _00E8:
 
 _0103:
     LockAll
-    ScrCmd_0D6 0, 0x8000
+    BufferPartyMonNickname 0, 0x8000
     Message 1
     CloseMessage
     ScrCmd_0C5 0x8000
@@ -89,7 +89,7 @@ _014A:
 
 _017F:
     SetVar 0x800C, 0
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     GoToIfEq 0x8004, 73, _01CE
     GoToIfEq 0x8004, 74, _01DD
     GoToIfEq 0x8004, 75, _01EC
@@ -148,7 +148,7 @@ _0275:
     End
 
 _0284:
-    ScrCmd_0D6 0, 0x8004
+    BufferPartyMonNickname 0, 0x8004
     Message 5
     CloseMessage
     ScrCmd_0C5 0x8004
@@ -165,7 +165,7 @@ _02B2:
 
 _02CD:
     LockAll
-    ScrCmd_0D6 0, 0x8000
+    BufferPartyMonNickname 0, 0x8000
     Message 5
     CloseMessage
     ScrCmd_0C5 0x8000
@@ -208,7 +208,7 @@ _0381:
     ScrCmd_1CF 1
     ScrCmd_09A 0x800C, 70
     SetVar 0x8004, 0x800C
-    ScrCmd_0D6 0, 0x800C
+    BufferPartyMonNickname 0, 0x800C
     Message 10
     ScrCmd_0C5 0x8004
     CloseMessage
@@ -232,7 +232,7 @@ _03CC:
     ScrCmd_1CF 2, 0x800C
     GoToIfEq 0x800C, 1, _03BD
     ScrCmd_1CF 1
-    ScrCmd_0D6 0, 0x8000
+    BufferPartyMonNickname 0, 0x8000
     Message 10
     CloseMessage
     ScrCmd_0C5 0x8000
@@ -276,7 +276,7 @@ _0478:
 _0487:
     ScrCmd_09A 0x800C, 0x1AF
     SetVar 0x8004, 0x800C
-    ScrCmd_0D6 0, 0x800C
+    BufferPartyMonNickname 0, 0x800C
     Message 19
     CloseMessage
     ScrCmd_0BF 0x8004
@@ -287,7 +287,7 @@ _0487:
 
 _04B9:
     LockAll
-    ScrCmd_0D6 0, 0x8000
+    BufferPartyMonNickname 0, 0x8000
     Message 19
     CloseMessage
     ScrCmd_0BF 0x8000
@@ -317,7 +317,7 @@ _0512:
 _051F:
     ScrCmd_09A 0x800C, 57
     SetVar 0x8004, 0x800C
-    ScrCmd_0D6 0, 0x800C
+    BufferPartyMonNickname 0, 0x800C
     Message 13
     CloseMessage
     ScrCmd_0C0 0x8004
@@ -328,7 +328,7 @@ _051F:
 
 _0551:
     LockAll
-    ScrCmd_0D6 0, 0x8000
+    BufferPartyMonNickname 0, 0x8000
     Message 13
     CloseMessage
     ScrCmd_063 0xFF
@@ -361,7 +361,7 @@ _05B4:
 _05C3:
     ScrCmd_09A 0x800C, 0x1B0
     SetVar 0x8004, 0x800C
-    ScrCmd_0D6 0, 0x800C
+    BufferPartyMonNickname 0, 0x800C
     Message 16
     CloseMessage
     ScrCmd_0C5 0x8004
@@ -378,7 +378,7 @@ _0606:
 
 _060C:
     LockAll
-    ScrCmd_0D6 0, 0x8000
+    BufferPartyMonNickname 0, 0x8000
     Message 16
     CloseMessage
     ScrCmd_0C5 0x8000
@@ -393,7 +393,7 @@ _060C:
 
 _064C:
     LockAll
-    ScrCmd_0D6 0, 0x8000
+    BufferPartyMonNickname 0, 0x8000
     Message 26
     CloseMessage
     ScrCmd_0C5 0x8000
@@ -438,7 +438,7 @@ _06C3:
 _06D2:
     ScrCmd_09A 0x800C, 127
     SetVar 0x8004, 0x800C
-    ScrCmd_0D6 0, 0x800C
+    BufferPartyMonNickname 0, 0x800C
     Message 23
     CloseMessage
     ScrCmd_0C1 0x8004
@@ -449,7 +449,7 @@ _06D2:
 
 _0704:
     LockAll
-    ScrCmd_0D6 0, 0x8000
+    BufferPartyMonNickname 0, 0x8000
     Message 23
     CloseMessage
     ScrCmd_063 0xFF

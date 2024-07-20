@@ -15,8 +15,8 @@ _0012:
     GoToIfSet 0xAA5, _00E2
     GoToIfEq 0x400A, 1, _00E2
     ScrCmd_247 0x4000
-    ScrCmd_0CD 0
-    ScrCmd_0D6 1, 0x4000
+    BufferPlayerName 0
+    BufferPartyMonNickname 1, 0x4000
     Message 0
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 1, _0058
@@ -100,7 +100,7 @@ _0135:
     Return
 
 _0146:
-    ScrCmd_04B 0x662
+    WaitFanfare 0x662
     SetFlag 0xAA5
     SetVar 0x400A, 1
     ApplyMovement 1, _02DC
@@ -108,7 +108,7 @@ _0146:
     Return
 
 _0160:
-    ScrCmd_069 0x8005, 0x8006
+    GetPlayerXZPos 0x8005, 0x8006
     GoToIfEq 0x8005, 11, _0193
     GoToIfEq 0x8005, 13, _01AB
     GoToIfEq 0x8006, 4, _01C3

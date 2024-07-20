@@ -31,7 +31,7 @@ _0025:
 _0038:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 3
     CloseMessage
     ScrCmd_27A

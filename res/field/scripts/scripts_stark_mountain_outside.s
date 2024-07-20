@@ -44,7 +44,7 @@ _002F:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 6
     ScrCmd_065 7
-    ScrCmd_04B 0x603
+    WaitFanfare 0x603
     SetVar 0x40A0, 1
     ReleaseAll
     End
@@ -123,14 +123,14 @@ _0118:
     WaitMovement
     ApplyMovement 4, _01CC
     WaitMovement
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 6
     CloseMessage
     WaitTime 15, 0x800C
     ApplyMovement 5, _0204
     ApplyMovement 4, _01DC
     WaitMovement
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 7
     CloseMessage
     ApplyMovement 5, _0214
@@ -140,7 +140,7 @@ _0118:
     ApplyMovement 4, _01E8
     ApplyMovement 0xFF, _0240
     WaitMovement
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 8
     CloseMessage
     FadeScreen 6, 1, 0, 0

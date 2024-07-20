@@ -56,7 +56,7 @@ _00B7:
     GoToIfEq 0x800C, 1, _060E
 _00E5:
     GoToIfGe 0x4071, 2, _0100
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 18
     WaitABXPadPress
     CloseMessage
@@ -68,7 +68,7 @@ _0100:
     End
 
 _0106:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 55
     WaitABXPadPress
     CloseMessage
@@ -78,7 +78,7 @@ _0106:
 _0114:
     LockAll
     CallIfEq 0x40AA, 2, _00AF
-    ScrCmd_0CD 1
+    BufferPlayerName 1
     Message 51
     CloseMessage
     ApplyMovement 3, _019C
@@ -89,20 +89,20 @@ _0114:
     End
 
 _014E:
-    ScrCmd_0CD 1
+    BufferPlayerName 1
     Message 52
     GoTo _016A
     End
 
 _015C:
-    ScrCmd_0CD 1
+    BufferPlayerName 1
     Message 53
     GoTo _016A
     End
 
 _016A:
     ScrCmd_11E 0x800C
-    ScrCmd_0D5 1, 0x800C
+    BufferNumber 1, 0x800C
     Message 54
     WaitABXPadPress
     CloseMessage
@@ -130,11 +130,11 @@ _01AE:
     ApplyMovement 3, _0484
     ApplyMovement 0xFF, _04A8
     WaitMovement
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 0
     CloseMessage
-    ScrCmd_0CB 0x100
-    ScrCmd_0CC
+    SetPlayerState 0x100
+    ChangePlayerState
     ApplyMovement 0xFF, _04E0
     WaitMovement
     SetVar 0x8004, 0
@@ -157,9 +157,9 @@ _022B:
     CloseMessage
     ApplyMovement 0xFF, _04E8
     WaitMovement
-    ScrCmd_0CB 1
-    ScrCmd_0CC
-    ScrCmd_0D0 0, 0
+    SetPlayerState 1
+    ChangePlayerState
+    BufferPartyMonSpecies 0, 0
     Message 3
     Message 4
     ScrCmd_03E 0x800C
@@ -188,8 +188,8 @@ _02B6:
     Return
 
 _02BC:
-    ScrCmd_0D0 0, 0
-    ScrCmd_0CE 1
+    BufferPartyMonSpecies 0, 0
+    BufferRivalName 1
     Message 6
     CloseMessage
     ApplyMovement 3, _0498
@@ -203,7 +203,7 @@ _02BC:
     End
 
 _02FC:
-    ScrCmd_0CF 0
+    BufferCounterpartName 0
     Message 7
     CloseMessage
     ApplyMovement 3, _04D0
@@ -212,7 +212,7 @@ _02FC:
     End
 
 _0316:
-    ScrCmd_0CF 0
+    BufferCounterpartName 0
     Message 8
     CloseMessage
     ApplyMovement 3, _04D0
@@ -221,13 +221,13 @@ _0316:
     End
 
 _0330:
-    ScrCmd_054 0, 40
+    FadeOutMusic 0, 40
     ApplyMovement 0, _047C
     ApplyMovement 0xFF, _04B4
     WaitMovement
     WaitTime 35, 0x800C
     SetFlag 0x993
-    ScrCmd_050 0x44A
+    PlayMusic 0x44A
     Message 9
     Message 10
     ScrCmd_03E 0x800C
@@ -236,7 +236,7 @@ _0330:
     End
 
 _0375:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 11
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 1, _0375
@@ -247,11 +247,11 @@ _0394:
     Message 12
     ScrCmd_158
     SetFlag 144
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 13
-    ScrCmd_04E 0x486
-    ScrCmd_04F
-    ScrCmd_0CD 0
+    PlaySound 0x486
+    WaitSound
+    BufferPlayerName 0
     Message 14
     CloseMessage
     ApplyMovement 3, _04A0
@@ -263,19 +263,19 @@ _0394:
     End
 
 _03DA:
-    ScrCmd_0CF 0
+    BufferCounterpartName 0
     Message 15
     GoTo _03F6
     End
 
 _03E8:
-    ScrCmd_0CF 0
+    BufferCounterpartName 0
     Message 16
     GoTo _03F6
     End
 
 _03F6:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 17
     CloseMessage
     ApplyMovement 3, _04A0
@@ -288,14 +288,14 @@ _03F6:
     End
 
 _042B:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     ScrCmd_342 1
     Message 19
     GoTo _044D
     End
 
 _043C:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     ScrCmd_0DC 1
     Message 20
     GoTo _044D
@@ -395,7 +395,7 @@ _04F0:
     GoToIfEq 0x8006, 1, _0539
     ScrCmd_22D 2, 0x800C
     GoToIfEq 0x800C, 1, _052B
-    ScrCmd_0CF 0
+    BufferCounterpartName 0
     Message 21
     WaitABXPadPress
     CloseMessage
@@ -403,7 +403,7 @@ _04F0:
     End
 
 _052B:
-    ScrCmd_0CF 0
+    BufferCounterpartName 0
     Message 49
     WaitABXPadPress
     CloseMessage
@@ -485,7 +485,7 @@ _05C7:
     End
 
 _05D8:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 46
@@ -518,14 +518,14 @@ _060E:
     End
 
 _0621:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 31
     CloseMessage
     GoTo _0677
     End
 
 _0631:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 27
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 1, _0650
@@ -541,9 +541,9 @@ _0650:
 
 _065B:
     ScrCmd_11E 0x800C
-    ScrCmd_0D5 0, 0x800C
+    BufferNumber 0, 0x800C
     Message 28
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 30
     CloseMessage
     GoTo _0677
@@ -576,14 +576,14 @@ _0677:
     CallIfSet 0x964, _07A2
     CallIfGe 0x4081, 2, _079C
     ScrCmd_22D 1, 0x800C
-    ScrCmd_0CD 0
-    ScrCmd_04E 0x486
+    BufferPlayerName 0
+    PlaySound 0x486
     Message 36
-    ScrCmd_04F
+    WaitSound
     Message 37
     Message 38
     Message 39
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     ScrCmd_14D 0x8004
     CallIfEq 0x8004, 0, _07A4
     CallIfEq 0x8004, 1, _07A9
@@ -596,7 +596,7 @@ _0677:
     WaitTime 15, 0x800C
     ApplyMovement 0xFF, _0878
     WaitMovement
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 43
     SetVar 0x8004, 0x1AF
     SetVar 0x8005, 1

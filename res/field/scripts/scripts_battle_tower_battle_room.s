@@ -37,8 +37,8 @@ _0058:
 
 _0070:
     Message 0
-    ScrCmd_04E 0x48E
-    ScrCmd_04F
+    PlaySound 0x48E
+    WaitSound
     ScrCmd_14E
     Return
 
@@ -51,7 +51,7 @@ _007D:
     GoToIfEq 0x8008, 5, _00D9
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BE 0x146, 0, 11, 6, 0
+    Warp 0x146, 0, 11, 6, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll
@@ -60,7 +60,7 @@ _007D:
 _00D9:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BE 0x146, 0, 15, 6, 0
+    Warp 0x146, 0, 15, 6, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll
@@ -116,7 +116,7 @@ _01AC:
     ScrCmd_12D 0x800C
     ScrCmd_18E
     PlayFanfare SEQ_SE_DP_SAVE
-    ScrCmd_04B 0x61B
+    WaitFanfare 0x61B
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     CloseMessage
@@ -145,7 +145,7 @@ _0201:
 
 _0241:
     ScrCmd_1DD 33, 0, 0x8004
-    ScrCmd_0D5 0, 0x8004
+    BufferNumber 0, 0x8004
     Message 1
     ScrCmd_044 31, 11, 0, 0, 0x800C
     ScrCmd_33A 1
@@ -213,8 +213,8 @@ _0395:
     Call _04CE
     ScrCmd_1DD 36, 0, 0x800C
     GoToIfEq 0x800C, 48, _041E
-    ScrCmd_0CD 0
-    ScrCmd_0CE 1
+    BufferPlayerName 0
+    BufferRivalName 1
     Message 15
 _03C7:
     CloseMessage

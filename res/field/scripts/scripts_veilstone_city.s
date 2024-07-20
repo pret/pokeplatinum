@@ -69,7 +69,7 @@ _00F6:
     ApplyMovement 6, _0444
     WaitMovement
     CallCommonScript 0x7F8
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     CallIfEq 0x8004, 0x2A9, _02E1
     CallIfEq 0x8004, 0x2AA, _02ED
     CallIfEq 0x8004, 0x2AB, _02F9
@@ -95,7 +95,7 @@ _00F6:
     CloseMessage
     ApplyMovement 25, _056C
     WaitMovement
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     CallIfEq 0x8004, 0x2A9, _0311
     CallIfEq 0x8004, 0x2AA, _032D
     CallIfEq 0x8004, 0x2AB, _0349
@@ -103,7 +103,7 @@ _00F6:
     Message 5
     Message 6
     CloseMessage
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     CallIfEq 0x8004, 0x2A9, _0381
     CallIfEq 0x8004, 0x2AA, _039D
     CallIfEq 0x8004, 0x2AB, _03B9
@@ -114,7 +114,7 @@ _00F6:
     CallIfEq 0x8004, 0, _02A7
     CallIfEq 0x8004, 1, _02C4
     CloseMessage
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     CallIfEq 0x8004, 0x2A9, _03F1
     CallIfEq 0x8004, 0x2AA, _0405
     CallIfEq 0x8004, 0x2AB, _0419
@@ -125,17 +125,17 @@ _00F6:
     End
 
 _0297:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 2
     Return
 
 _029F:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 3
     Return
 
 _02A7:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 7
     CloseMessage
     WaitTime 15, 0x800C
@@ -145,7 +145,7 @@ _02A7:
     Return
 
 _02C4:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 9
     CloseMessage
     WaitTime 15, 0x800C
@@ -465,7 +465,7 @@ _05CC:
     End
 
 _05F4:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 19
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 0, _0611
@@ -483,7 +483,7 @@ _061A:
     End
 
 _0625:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 24
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 0, _0642
@@ -511,19 +511,19 @@ _0656:
     ScrCmd_0EC 0x800C
     GoToIfEq 0x800C, 0, _0A73
     Message 16
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     CallIfEq 0x8005, 0x253, _09DB
     CallIfEq 0x8005, 0x255, _09E7
     Message 17
     CloseMessage
     WaitTime 15, 0x800C
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     CallIfEq 0x8005, 0x253, _09F3
     CallIfEq 0x8005, 0x255, _09FF
     ScrCmd_065 7
     Message 18
     CloseMessage
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     CallIfEq 0x8005, 0x253, _0A0B
     CallIfEq 0x8005, 0x255, _0A17
     ScrCmd_065 20
@@ -531,11 +531,11 @@ _0656:
     CallIfEq 0x8004, 0, _0A23
     CallIfEq 0x8004, 1, _0A28
     CloseMessage
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     CallIfEq 0x8005, 0x253, _0A4B
     CallIfEq 0x8005, 0x255, _0A5F
     WaitTime 10, 0x800C
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     ScrCmd_14D 0x8004
     CallIfEq 0x8004, 0, _0A2D
     CallIfEq 0x8004, 1, _0A32
@@ -564,7 +564,7 @@ _0656:
     ApplyMovement 26, _0A88
     WaitMovement
     ScrCmd_065 6
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x253, _083A
     GoToIfEq 0x8005, 0x255, _0854
     End
@@ -586,7 +586,7 @@ _0854:
 _086E:
     Message 35
     CloseMessage
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x253, _08A9
     GoToIfEq 0x8005, 0x255, _08C3
     End
@@ -634,7 +634,7 @@ _08DD:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BE 143, 0, 8, 11, 0
+    Warp 143, 0, 8, 11, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End
@@ -1371,7 +1371,7 @@ _0FB0:
     FacePlayer
     ApplyMovement 26, _0FE0
     WaitMovement
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 41
     CallCommonScript 0x807
     GoToIfSet 155, _0EF4
@@ -1544,12 +1544,12 @@ _1184:
     End
 
 _11D6:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 0
     Return
 
 _11DE:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 1
     Return
 

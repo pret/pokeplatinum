@@ -20,17 +20,17 @@ _001E:
     GoTo _0074
 
 _003E:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 1
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_04E 0x48E
-    ScrCmd_04F
+    PlaySound 0x48E
+    WaitSound
     ScrCmd_14E
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 2
     WaitABXPadPress
     CloseMessage
@@ -102,7 +102,7 @@ _00CF:
     End
 
 _010A:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 4
     GoTo _0118
     End

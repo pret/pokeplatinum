@@ -29,8 +29,8 @@ _0028:
     End
 
 _003E:
-    ScrCmd_0D1 0, 26
-    ScrCmd_0D1 1, 0x14A
+    BufferItemName 0, 26
+    BufferItemName 1, 0x14A
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer

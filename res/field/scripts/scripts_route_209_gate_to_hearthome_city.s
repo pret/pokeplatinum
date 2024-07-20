@@ -21,14 +21,14 @@ _001D:
     ApplyMovement 1, _0264
     WaitMovement
     CallCommonScript 0x7FA
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     CallIfEq 0x8005, 5, _014E
     CallIfEq 0x8005, 6, _015A
     CallIfEq 0x8005, 7, _0166
     CallIfEq 0x8005, 8, _0172
     CallIfEq 0x8005, 9, _017E
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
+    BufferRivalName 0
+    BufferPlayerName 1
     Message 1
     CloseMessage
     ScrCmd_0DE 0x800C
@@ -55,11 +55,11 @@ _00C1:
 _00CF:
     ScrCmd_0EC 0x800C
     GoToIfEq 0x800C, 0, _0148
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
+    BufferRivalName 0
+    BufferPlayerName 1
     Message 2
     CloseMessage
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     CallIfEq 0x8005, 5, _018A
     CallIfEq 0x8005, 6, _0196
     CallIfEq 0x8005, 7, _01A2
@@ -67,7 +67,7 @@ _00CF:
     CallIfEq 0x8005, 9, _01BA
     PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 1
-    ScrCmd_04B 0x603
+    WaitFanfare 0x603
     SetVar 0x407B, 2
     ReleaseAll
     End

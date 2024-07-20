@@ -9,13 +9,13 @@
 
 _000E:
     LockAll
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 0
     CloseMessage
     ApplyMovement 0, _0060
     WaitMovement
     CallCommonScript 0x7FA
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 1
     CloseMessage
     ApplyMovement 0, _006C
@@ -63,7 +63,7 @@ _0090:
 _00A1:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 3
     WaitABXPadPress
     CloseMessage

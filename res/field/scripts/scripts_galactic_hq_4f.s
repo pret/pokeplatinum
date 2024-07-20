@@ -18,7 +18,7 @@ _0012:
     WaitMovement
     Message 1
     CloseMessage
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     GoToIfEq 0x8004, 8, _0054
     GoToIfEq 0x8004, 9, _0064
     End
@@ -103,7 +103,7 @@ _012C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_07E 0x1B8, 1, 0x800C
+    CheckItem 0x1B8, 1, 0x800C
     GoToIfEq 0x800C, 1, _0154
     Message 5
     WaitABXPadPress
@@ -119,10 +119,10 @@ _0154:
     End
 
 _0177:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 7
     WaitABXPadPress
-    ScrCmd_04B 0x5DC
+    WaitFanfare 0x5DC
     PlayFanfare SEQ_SE_DP_DOOR10
     ApplyMovement 1, _01B4
     ApplyMovement 2, _01BC

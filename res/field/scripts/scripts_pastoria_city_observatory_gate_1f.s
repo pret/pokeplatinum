@@ -21,7 +21,7 @@ _0022:
     LockAll
     ApplyMovement 0xFF, _0194
     WaitMovement
-    ScrCmd_069 0x4000, 0x4001
+    GetPlayerXZPos 0x4000, 0x4001
     CallIfEq 0x4000, 5, _017D
     ScrCmd_072 20, 2
     Message 0
@@ -43,12 +43,12 @@ _008C:
     ScrCmd_070 0x1F4
     ScrCmd_074
     Message 2
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 3
     Message 4
     CloseMessage
     ScrCmd_073
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     GoToIfEq 0x8004, 4, _00E2
     GoToIfEq 0x8004, 5, _00F2
     End
@@ -70,7 +70,7 @@ _0102:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BE 0x1FD, 0, 68, 116, 0
+    Warp 0x1FD, 0, 68, 116, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End
@@ -179,7 +179,7 @@ _024E:
     WaitMovement
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BE 0x1FD, 0, 68, 116, 0
+    Warp 0x1FD, 0, 68, 116, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End

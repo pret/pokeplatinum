@@ -16,7 +16,7 @@ _000E:
 
 _0027:
     GoToIfUnset 167, _0040
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 15
     WaitABXPadPress
     CloseMessage
@@ -24,7 +24,7 @@ _0027:
     End
 
 _0040:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 0
     CloseMessage
     SetFlag 167
@@ -33,7 +33,7 @@ _0040:
     ScrCmd_189 0, 0
     ScrCmd_188 0, 14
     ScrCmd_064 0
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     CallIfEq 0x8004, 9, _0110
     CallIfEq 0x8004, 10, _0126
     Message 1
@@ -50,7 +50,7 @@ _0040:
     ScrCmd_189 1, 0
     ScrCmd_188 1, 14
     ScrCmd_064 1
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     CallIfEq 0x8004, 9, _0285
     CallIfEq 0x8004, 10, _0291
     Message 4
@@ -78,7 +78,7 @@ _0126:
 _013C:
     Message 10
     CloseMessage
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     CallIfEq 0x8004, 9, _0165
     CallIfEq 0x8004, 10, _0181
     ReleaseAll
@@ -119,7 +119,7 @@ _01C3:
     ScrCmd_065 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     CallIfEq 0x8004, 8, _029D
     CallIfEq 0x8004, 9, _02B1
     CallIfEq 0x8004, 10, _02FA
@@ -133,7 +133,7 @@ _01C3:
     SetFlag 0x98D
     Message 14
     CloseMessage
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     CallIfEq 0x8004, 9, _0357
     CallIfEq 0x8004, 10, _036B
     CallIfEq 0x8004, 11, _037F
@@ -495,11 +495,11 @@ _0596:
     ClearFlag 0x1A6
     ScrCmd_186 2, 4, 11
     ScrCmd_064 2
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     CallIfEq 0x8004, 9, _06CF
     CallIfEq 0x8004, 10, _06E5
     Message 16
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     CallIfEq 0x8004, 9, _0713
     CallIfEq 0x8004, 10, _071F
     Message 17
@@ -511,7 +511,7 @@ _0596:
     WaitMovement
     WaitTime 15, 0x800C
     Message 18
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     CallIfEq 0x8004, 9, _0713
     CallIfEq 0x8004, 10, _071F
     CallIfEq 0x8004, 9, _06FB
@@ -525,7 +525,7 @@ _0596:
     WaitMovement
     Message 20
     CloseMessage
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     CallIfEq 0x8004, 9, _072B
     CallIfEq 0x8004, 10, _073F
     Message 21
@@ -588,7 +588,7 @@ _0753:
 
 _075E:
     CloseMessage
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     CallIfEq 0x8004, 9, _0788
     CallIfEq 0x8004, 10, _079C
     ScrCmd_065 2

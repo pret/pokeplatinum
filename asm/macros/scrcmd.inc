@@ -273,7 +273,7 @@
     .endm
 
     ; Opens a message box window without printing anything
-    .macro ScrCmd_033
+    .macro OpenMessage
     .short 51
     .endm
 
@@ -414,7 +414,7 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_04B sdatID
+    .macro WaitFanfare sdatID
     .short 75
     .short \sdatID
     .endm
@@ -429,26 +429,26 @@
     .short 77
     .endm
 
-    .macro ScrCmd_04E sdatID
+    .macro PlaySound sdatID
     .short 78
     .short \sdatID
     .endm
 
-    .macro ScrCmd_04F
+    .macro WaitSound
     .short 79
     .endm
 
-    .macro ScrCmd_050 sdatID
+    .macro PlayMusic sdatID
     .short 80
     .short \sdatID
     .endm
 
-    .macro ScrCmd_051 dummy
+    .macro StopMusic dummy
     .short 81
     .short \dummy
     .endm
 
-    .macro ScrCmd_052
+    .macro PlayDefaultMusic
     .short 82
     .endm
 
@@ -457,7 +457,7 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_054 targetVolume, frames
+    .macro FadeOutMusic targetVolume, frames
     .short 84
     .short \targetVolume
     .short \frames
@@ -558,7 +558,7 @@
     .short 104
     .endm
 
-    .macro ScrCmd_069 destVarIDX, destVarIDZ
+    .macro GetPlayerXZPos destVarIDX, destVarIDZ
     .short 105
     .short \destVarIDX
     .short \destVarIDZ
@@ -654,7 +654,7 @@
     .endm
 
     ; If the player has no space left in the bag, resultVar will be set to FALSE 
-    .macro ScrCmd_07B item, count, resultVar
+    .macro AddItem item, count, resultVar
     .short 123
     .short \item
     .short \count
@@ -662,7 +662,7 @@
     .endm
 
     ; resultVar will be set to TRUE if the player had at least 'count' items of the specified type in their bag
-    .macro ScrCmd_07C item, count, resultVar
+    .macro RemoveItem item, count, resultVar
     .short 124
     .short \item
     .short \count
@@ -677,7 +677,7 @@
     .endm
 
     ; resultVar will be set to TRUE if the player has at least 'count' items of the specified type in their bag
-    .macro ScrCmd_07E item, count, resultVar
+    .macro CheckItem item, count, resultVar
     .short 126
     .short \item
     .short \count
@@ -934,7 +934,7 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_0A9
+    .macro SealCapsuleEditor
     .short 169
     .endm
 
@@ -1035,7 +1035,7 @@
     .short 189
     .endm
 
-    .macro ScrCmd_0BE mapID, dummy, x, z, direction
+    .macro Warp mapID, dummy, x, z, direction
     .short 190
     .short \mapID
     .short \dummy
@@ -1083,14 +1083,14 @@
     .short 198
     .endm
 
-    .macro ScrCmd_0C7 destVarID
+    .macro CheckPlayerOnBike destVarID
     .short 199
     .short \destVarID
     .endm
 
     ; If rideBike == TRUE, sets the player on the bike.
     ; If rideBike == FALSE, removes the player from the bike.
-    .macro ScrCmd_0C8 rideBike
+    .macro SetPlayerBike rideBike
     .short 200
     .byte \rideBike
     .endm
@@ -1100,48 +1100,48 @@
     .byte \arg0
     .endm
 
-    .macro ScrCmd_0CA destVarID
+    .macro GetPlayerState destVarID
     .short 202
     .short \destVarID
     .endm
 
-    .macro ScrCmd_0CB state
+    .macro SetPlayerState state
     .short 203
     .short \state
     .endm
 
-    .macro ScrCmd_0CC
+    .macro ChangePlayerState
     .short 204
     .endm
 
-    .macro ScrCmd_0CD strbufIndex
+    .macro BufferPlayerName strbufIndex
     .short 205
     .byte \strbufIndex
     .endm
 
-    .macro ScrCmd_0CE strbufIndex
+    .macro BufferRivalName strbufIndex
     .short 206
     .byte \strbufIndex
     .endm
 
-    .macro ScrCmd_0CF strbufIndex
+    .macro BufferCounterpartName strbufIndex
     .short 207
     .byte \strbufIndex
     .endm
 
-    .macro ScrCmd_0D0 strbufIndex, partySlot
+    .macro BufferPartyMonSpecies strbufIndex, partySlot
     .short 208
     .byte \strbufIndex
     .short \partySlot
     .endm
 
-    .macro ScrCmd_0D1 strbufIndex, item
+    .macro BufferItemName strbufIndex, item
     .short 209
     .byte \strbufIndex
     .short \item
     .endm
 
-    .macro ScrCmd_0D2 strbufIndex, pocket
+    .macro BufferPocketName strbufIndex, pocket
     .short 210
     .byte \strbufIndex
     .short \pocket
@@ -1159,19 +1159,19 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_0D5 strbufIndex, number
+    .macro BufferNumber strbufIndex, number
     .short 213
     .byte \strbufIndex
     .short \number
     .endm
 
-    .macro ScrCmd_0D6 strbufIndex, partySlot
+    .macro BufferPartyMonNickname strbufIndex, partySlot
     .short 214
     .byte \strbufIndex
     .short \partySlot
     .endm
 
-    .macro ScrCmd_0D7 strbufIndex, appID
+    .macro BufferPoketchAppName strbufIndex, appID
     .short 215
     .byte \strbufIndex
     .short \appID

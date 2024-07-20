@@ -34,11 +34,11 @@ _0039:
     ScrCmd_07D 0x8000, 1, 0x800C
     GoToIfEq 0x800C, 0, _00E5
     Message 4
-    ScrCmd_07B 0x8000, 1, 0x800C
+    AddItem 0x8000, 1, 0x800C
     ScrCmd_2A8 0x8001
     ScrCmd_077
     PlayFanfare SEQ_SE_DP_REGI
-    ScrCmd_04B 0x644
+    WaitFanfare 0x644
     GoTo _0039
     End
 
@@ -51,7 +51,7 @@ _00D8:
     End
 
 _00E5:
-    ScrCmd_0D1 0, 0x8000
+    BufferItemName 0, 0x8000
     Message 6
     GoTo _0039
     End
@@ -62,12 +62,12 @@ _00F5:
     End
 
 _0100:
-    ScrCmd_0D1 0, 0x8000
+    BufferItemName 0, 0x8000
     Message 2
     Return
 
 _010A:
-    ScrCmd_0D1 0, 0x8000
+    BufferItemName 0, 0x8000
     ScrCmd_0D3 1, 0x8000
     Message 3
     Return
@@ -81,7 +81,7 @@ _0119:
 
 _0135:
     ScrCmd_2A6 0x8008, 0x8000, 0x8001
-    ScrCmd_0D1 0, 0x8000
+    BufferItemName 0, 0x8000
     ScrCmd_280 1, 0x8001, 1, 5
     ScrCmd_046 168, 0xFF, 0x8008
     AddVar 0x8008, 1

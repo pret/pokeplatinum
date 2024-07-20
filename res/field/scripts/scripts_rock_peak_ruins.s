@@ -32,7 +32,7 @@ _003D:
     GoToIfEq 0x800C, 0, _011A
     GoToIfEq 0x406B, 0x10E, _00AE
     GoToIfLt 0x406B, 0x104, _011A
-    ScrCmd_04B 0x5DC
+    WaitFanfare 0x5DC
     ScrCmd_29F 1
     SetVar 0x406B, 0x10E
     Message 1
@@ -129,7 +129,7 @@ _01CF:
 
 _01EA:
     LockAll
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     ScrCmd_32C 0x406B, 0x250, 0x8004, 0x8005
     GoToIfGe 0x406B, 0x104, _020F
     ReleaseAll
@@ -140,7 +140,7 @@ _020D:
 
 _020F:
     GoToIfUnset 0x964, _020D
-    ScrCmd_04B 0x5DC
+    WaitFanfare 0x5DC
     ScrCmd_29F 1
     SetVar 0x406B, 0x10E
     Message 1

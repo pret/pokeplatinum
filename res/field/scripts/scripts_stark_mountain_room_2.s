@@ -20,13 +20,13 @@ _0029:
 
 _0031:
     LockAll
-    ScrCmd_0C8 0
+    SetPlayerBike 0
     CallIfUnset 221, _007D
     CallIfSet 221, _00B7
-    ScrCmd_0CD 0
-    ScrCmd_04E 0x481
+    BufferPlayerName 0
+    PlaySound 0x481
     Message 1
-    ScrCmd_04F
+    WaitSound
     SetFlag 221
     SetVar 0x4094, 1
     Message 2
@@ -51,7 +51,7 @@ _007D:
     WaitMovement
     ApplyMovement 0xFF, _00EC
     WaitMovement
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 0
     CloseMessage
     Return
@@ -154,15 +154,15 @@ _0191:
 _01AB:
     ApplyMovement 14, _0204
     WaitMovement
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 5
     CloseMessage
     ApplyMovement 14, _0214
     WaitMovement
-    ScrCmd_04B 0x5DC
+    WaitFanfare 0x5DC
     PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 14
-    ScrCmd_04B 0x603
+    WaitFanfare 0x603
     SetVar 0x4094, 2
     ReleaseAll
     End

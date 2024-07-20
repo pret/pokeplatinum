@@ -15,9 +15,9 @@ _0010:
     LockAll
     FacePlayer
     ScrCmd_247 0x8002
-    ScrCmd_0D0 0, 0x8002
-    ScrCmd_0CD 1
-    ScrCmd_0D6 2, 0x8002
+    BufferPartyMonSpecies 0, 0x8002
+    BufferPlayerName 1
+    BufferPartyMonNickname 2, 0x8002
     ScrCmd_23A 0x8000, 0x8001, 0x8002
     GoToIfSet 249, _004B
     SetFlag 249
@@ -42,7 +42,7 @@ _0056:
     GoTo _0150
 
 _008A:
-    ScrCmd_069 0x8005, 0x8006
+    GetPlayerXZPos 0x8005, 0x8006
     GoToIfEq 0x8005, 4, _00BD
     GoToIfEq 0x8005, 6, _00C9
     GoToIfEq 0x8006, 5, _00D5
@@ -69,7 +69,7 @@ _00E1:
     Return
 
 _00ED:
-    ScrCmd_069 0x8005, 0x8006
+    GetPlayerXZPos 0x8005, 0x8006
     GoToIfEq 0x8005, 4, _0120
     GoToIfEq 0x8005, 6, _012C
     GoToIfEq 0x8006, 5, _0138
@@ -399,9 +399,9 @@ _0602:
     Call _00ED
     WaitTime 10, 0x800C
     Message 5
-    ScrCmd_04E 0x483
+    PlaySound 0x483
     Message 8
-    ScrCmd_04F
+    WaitSound
     ScrCmd_231 0x8002, 69
     Message 9
     WaitABXPadPress
@@ -415,9 +415,9 @@ _0633:
     Call _00ED
     WaitTime 10, 0x800C
     Message 6
-    ScrCmd_04E 0x483
+    PlaySound 0x483
     Message 8
-    ScrCmd_04F
+    WaitSound
     ScrCmd_231 0x8002, 69
     Message 9
     WaitABXPadPress
@@ -431,9 +431,9 @@ _0664:
     Call _00ED
     WaitTime 10, 0x800C
     Message 7
-    ScrCmd_04E 0x483
+    PlaySound 0x483
     Message 8
-    ScrCmd_04F
+    WaitSound
     ScrCmd_231 0x8002, 69
     Message 9
     WaitABXPadPress

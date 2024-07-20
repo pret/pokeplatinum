@@ -34,7 +34,7 @@ _0032:
     GoToIfEq 0x800C, 0, _00BE
     ScrCmd_199 0x8005, 0x800C
     GoToIfEq 0x800C, 1, _00C9
-    ScrCmd_0D6 0, 0x8005
+    BufferPartyMonNickname 0, 0x8005
     Message 2
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 0, _00D9
@@ -56,7 +56,7 @@ _00BE:
     End
 
 _00C9:
-    ScrCmd_0D6 0, 0x8005
+    BufferPartyMonNickname 0, 0x8005
     Message 7
     WaitABXPadPress
     CloseMessage
@@ -76,7 +76,7 @@ _00D9:
     GoToIfEq 0x800C, 1, _0129
     ScrCmd_2B8 0x8005
     ScrCmd_1E5 49
-    ScrCmd_0D6 0, 0x8005
+    BufferPartyMonNickname 0, 0x8005
     Message 4
     WaitABXPadPress
     CloseMessage
@@ -84,7 +84,7 @@ _00D9:
     End
 
 _0129:
-    ScrCmd_0D6 0, 0x8005
+    BufferPartyMonNickname 0, 0x8005
     Message 6
     WaitABXPadPress
     CloseMessage

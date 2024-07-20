@@ -102,7 +102,7 @@ _00DF:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_07E 0x1B8, 1, 0x800C
+    CheckItem 0x1B8, 1, 0x800C
     GoToIfEq 0x800C, 1, _0107
     Message 9
     WaitABXPadPress
@@ -118,10 +118,10 @@ _0107:
     End
 
 _012A:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 11
     WaitABXPadPress
-    ScrCmd_04B 0x5DC
+    WaitFanfare 0x5DC
     PlayFanfare SEQ_SE_DP_DOOR10
     ApplyMovement 5, _0164
     ApplyMovement 6, _016C

@@ -30,7 +30,7 @@ _0022:
     End
 
 _0048:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 1
     WaitABXPadPress
     CloseMessage
@@ -50,8 +50,8 @@ _0056:
 
 _007A:
     GoToIfGe 0x40EF, 1, _0098
-    ScrCmd_0CD 0
-    ScrCmd_0CE 1
+    BufferPlayerName 0
+    BufferRivalName 1
     Message 3
     WaitABXPadPress
     CloseMessage
@@ -59,8 +59,8 @@ _007A:
     End
 
 _0098:
-    ScrCmd_0CD 0
-    ScrCmd_0CE 1
+    BufferPlayerName 0
+    BufferRivalName 1
     Message 4
     WaitABXPadPress
     CloseMessage

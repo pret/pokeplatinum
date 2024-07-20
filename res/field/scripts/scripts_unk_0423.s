@@ -188,7 +188,7 @@ _02A9:
 _02AF:
     Message 10
     CloseMessage
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     ApplyMovement 0xFF, _03B8
     WaitMovement
     GoTo _02CC
@@ -409,7 +409,7 @@ _0526:
     SetVar 0x4003, 0
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BE 0x24A, 0, 20, 11, 0
+    Warp 0x24A, 0, 20, 11, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End

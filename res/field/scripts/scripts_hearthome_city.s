@@ -123,7 +123,7 @@ _011C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_04B 0x5DC
+    WaitFanfare 0x5DC
     ScrCmd_04C 0x1A1, 0
     Message 22
     ScrCmd_04D
@@ -547,7 +547,7 @@ _0753:
     LockAll
     ApplyMovement 0xFF, _087C
     WaitMovement
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x2D5, _07A8
     GoToIfEq 0x8005, 0x2D6, _07C0
     GoToIfEq 0x8005, 0x2D7, _07D8

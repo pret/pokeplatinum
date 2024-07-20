@@ -146,7 +146,7 @@ _0168:
     ApplyMovement 0xFF, _0218
     WaitMovement
     CallCommonScript 0x7FA
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     ScrCmd_186 18, 0x8004, 0x295
     ClearFlag 0x21E
     ScrCmd_064 18
@@ -158,8 +158,8 @@ _0168:
     CloseMessage
     ApplyMovement 18, _01F0
     WaitMovement
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
+    BufferRivalName 0
+    BufferPlayerName 1
     Message 1
     ApplyMovement 18, _0208
     WaitMovement

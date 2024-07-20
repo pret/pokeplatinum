@@ -137,7 +137,7 @@ _01CE:
     CallIfEq 0x4000, 0, _0C50
     CallIfEq 0x4000, 1, _0D36
     GoToIfEq 0x800C, 0, _026D
-    ScrCmd_0D6 0, 0x400A
+    BufferPartyMonNickname 0, 0x400A
     GoToIfEq 0x400C, 0, _0229
     GoToIfNe 0x400C, 0, _024B
     End
@@ -428,7 +428,7 @@ _05BE:
     End
 
 _05DD:
-    ScrCmd_0D6 0, 0x409D
+    BufferPartyMonNickname 0, 0x409D
     ScrCmd_04C 0x409A, 0
     GoToIfEq 0x409A, 0x184, _0719
     GoToIfEq 0x409A, 0x185, _0719
@@ -572,7 +572,7 @@ _080E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_0D6 0, 0x409D
+    BufferPartyMonNickname 0, 0x409D
     ScrCmd_1B7 0x800C, 6
     CallIfEq 0x800C, 0, _0884
     CallIfEq 0x800C, 1, _0889
@@ -648,7 +648,7 @@ _08EB:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_04B 0x5DC
+    WaitFanfare 0x5DC
     ScrCmd_04C 0x1A9, 0
     Message 29
     ScrCmd_04D
@@ -691,7 +691,7 @@ _0943:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_04B 0x5DC
+    WaitFanfare 0x5DC
     ScrCmd_04C 25, 0
     Message 33
     ScrCmd_04D
@@ -714,7 +714,7 @@ _0975:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_04B 0x5DC
+    WaitFanfare 0x5DC
     ScrCmd_04C 35, 0
     Message 35
     ScrCmd_04D
@@ -988,7 +988,7 @@ _1084:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_0D6 0, 0x409D
+    BufferPartyMonNickname 0, 0x409D
     ScrCmd_216 0x800C
     GoToIfGe 0x800C, 200, _04D8
     GoTo _05DD
@@ -1007,19 +1007,19 @@ _10AA:
     End
 
 _10E1:
-    ScrCmd_0D1 0, 0x8004
+    BufferItemName 0, 0x8004
     Message 37
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 1, _1161
     SetVar 0x8005, 5
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _1172
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     ScrCmd_33D 1, 0x8004
-    ScrCmd_04E 0x486
+    PlaySound 0x486
     Message 40
-    ScrCmd_04F
-    ScrCmd_07B 0x8004, 0x8005, 0x800C
+    WaitSound
+    AddItem 0x8004, 0x8005, 0x800C
     GoTo _117C
     End
 

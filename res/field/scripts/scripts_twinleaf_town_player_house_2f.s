@@ -26,11 +26,11 @@ _0041:
     LockAll
     SetVar 0x40F9, 1
     Message 0
-    ScrCmd_04E 0x482
+    PlaySound 0x482
     Message 1
-    ScrCmd_04F
+    WaitSound
     CloseMessage
-    ScrCmd_052
+    PlayDefaultMusic
     ReleaseAll
     End
 
@@ -46,7 +46,7 @@ _005D:
 _006E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 5
     WaitABXPadPress
     CloseMessage
@@ -97,14 +97,14 @@ _00E0:
     ApplyMovement 0, _0394
     WaitMovement
     CallCommonScript 0x7FA
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 6
     CloseMessage
     CallIfEq 0x4000, 0, _0249
     CallIfEq 0x4000, 1, _025D
     CallIfEq 0x4000, 2, _0271
     CallIfEq 0x4000, 3, _027D
-    ScrCmd_0CD 1
+    BufferPlayerName 1
     Message 7
     CloseMessage
     ApplyMovement 0, _03E0
@@ -119,14 +119,14 @@ _00E0:
     CallIfEq 0x4000, 1, _02ED
     CallIfEq 0x4000, 2, _02F9
     CallIfEq 0x4000, 3, _0305
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 9
     CloseMessage
     CallIfEq 0x4000, 0, _0311
     CallIfEq 0x4000, 1, _031D
     CallIfEq 0x4000, 2, _0329
     CallIfEq 0x4000, 3, _0335
-    ScrCmd_0CD 1
+    BufferPlayerName 1
     Message 10
     CloseMessage
     CallIfEq 0x4000, 0, _0341
@@ -136,7 +136,7 @@ _00E0:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 0
     CallCommonScript 0x7FB
-    ScrCmd_04B 0x603
+    WaitFanfare 0x603
     SetFlag 0x173
     SetVar 0x40A5, 1
     ReleaseAll

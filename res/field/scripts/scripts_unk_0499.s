@@ -12,13 +12,13 @@ _0006:
     ScrCmd_294 21, 1
     GoToIfSet 114, _0031
     SetFlag 114
-    ScrCmd_0D5 0, 1
+    BufferNumber 0, 1
     Message 15
     GoTo _0041
     End
 
 _0031:
-    ScrCmd_0D5 0, 1
+    BufferNumber 0, 1
     Message 0
     GoTo _0041
     End
@@ -38,7 +38,7 @@ _0041:
     End
 
 _0085:
-    ScrCmd_0D5 2, 1
+    BufferNumber 2, 1
     Message 7
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 1, _0152
@@ -62,7 +62,7 @@ _0085:
     SetVar 0x8000, 0
     Call _017A
     GoToIfEq 0x8000, 0, _01AB
-    ScrCmd_0D5 0, 0x8000
+    BufferNumber 0, 0x8000
     Message 11
     CallIfNe 0x4001, 0, _01B6
     CallIfNe 0x4003, 0, _0200
@@ -116,53 +116,53 @@ _01AB:
 
 _01B6:
     GoToIfGt 0x4001, 1, _01CE
-    ScrCmd_0D1 0, 0x4000
+    BufferItemName 0, 0x4000
     GoTo _01D3
 
 _01CE:
     ScrCmd_33D 0, 0x4000
 _01D3:
-    ScrCmd_0D5 1, 0x4001
+    BufferNumber 1, 0x4001
     ScrCmd_07D 0x4000, 0x4001, 0x800C
     GoToIfEq 0x800C, 0, _0294
-    ScrCmd_04E 0x486
+    PlaySound 0x486
     Message 13
-    ScrCmd_07B 0x4000, 0x4001, 0x800C
-    ScrCmd_04F
+    AddItem 0x4000, 0x4001, 0x800C
+    WaitSound
     Return
 
 _0200:
     GoToIfGt 0x4003, 1, _0218
-    ScrCmd_0D1 0, 0x4002
+    BufferItemName 0, 0x4002
     GoTo _021D
 
 _0218:
     ScrCmd_33D 0, 0x4002
 _021D:
-    ScrCmd_0D5 1, 0x4003
+    BufferNumber 1, 0x4003
     ScrCmd_07D 0x4002, 0x4003, 0x800C
     GoToIfEq 0x800C, 0, _0294
-    ScrCmd_04E 0x486
+    PlaySound 0x486
     Message 13
-    ScrCmd_07B 0x4002, 0x4003, 0x800C
-    ScrCmd_04F
+    AddItem 0x4002, 0x4003, 0x800C
+    WaitSound
     Return
 
 _024A:
     GoToIfGt 0x4005, 1, _0262
-    ScrCmd_0D1 0, 0x4004
+    BufferItemName 0, 0x4004
     GoTo _0267
 
 _0262:
     ScrCmd_33D 0, 0x4004
 _0267:
-    ScrCmd_0D5 1, 0x4005
+    BufferNumber 1, 0x4005
     ScrCmd_07D 0x4004, 0x4005, 0x800C
     GoToIfEq 0x800C, 0, _0294
-    ScrCmd_04E 0x486
+    PlaySound 0x486
     Message 13
-    ScrCmd_07B 0x4004, 0x4005, 0x800C
-    ScrCmd_04F
+    AddItem 0x4004, 0x4005, 0x800C
+    WaitSound
     Return
 
 _0294:

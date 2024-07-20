@@ -111,7 +111,7 @@ _0150:
     End
 
 _016C:
-    ScrCmd_0D1 0, 0x1B6
+    BufferItemName 0, 0x1B6
     Message 6
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 1, _01A2

@@ -55,7 +55,7 @@ _0073:
     CallCommonScript 0x7FC
     Message 5
     CloseMessage
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerXZPos 0x8004, 0x8005
     GoToIfEq 0x8005, 3, _00CC
     GoToIfEq 0x8005, 4, _00DE
     GoToIfEq 0x8005, 5, _00F0

@@ -46,7 +46,7 @@ _005E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_04B 0x5DC
+    WaitFanfare 0x5DC
     ScrCmd_04C 0x1AB, 0
     Message 3
     ScrCmd_04D
@@ -63,7 +63,7 @@ _007D:
     ScrCmd_134 5, 0x800C
     GoToIfEq 0x800C, 0, _00D9
     ScrCmd_247 0x8000
-    ScrCmd_0D0 0, 0x8000
+    BufferPartyMonSpecies 0, 0x8000
     Message 6
     ScrCmd_1B9 0x800C, 0x8000
     GoToIfGe 0x800C, 120, _00FF
