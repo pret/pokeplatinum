@@ -78,28 +78,24 @@ BOOL sub_02005474(u16 param0)
     return v0;
 }
 
-BOOL Sound_PlayBGM(u16 param0)
+BOOL Sound_PlayBGM(u16 sdatID)
 {
     int v0;
-    u8 v1 = sub_02004B18(param0);
+    u8 v1 = sub_02004B18(sdatID);
     int v2 = sub_020040F0(v1);
 
     if (v1 == 7) {
-        v0 = sub_02005508(param0, v1, v2);
+        v0 = sub_02005508(sdatID, v1, v2);
     } else if (v1 == 1) {
-        v0 = sub_02005538(param0, v1, v2);
+        v0 = sub_02005538(sdatID, v1, v2);
     } else {
         GF_ASSERT(FALSE);
-        return 0;
+        return FALSE;
     }
 
     sub_0200501C(0);
 
-    if (v0 == 0) {
-        (void)0;
-    }
-
-    sub_020054EC(param0, v2);
+    sub_020054EC(sdatID, v2);
     return v0;
 }
 
@@ -215,27 +211,23 @@ void sub_0200560C(int param0, int param1, int param2)
     return;
 }
 
-void sub_0200564C(int param0, int param1)
+void sub_0200564C(int targetVolume, int frames)
 {
-    u8 v0;
-    int v1;
     u16 v2 = sub_020041FC();
-
-    v0 = sub_02004B18(v2);
+    u8 v0 = sub_02004B18(v2);
 
     if (v0 == 0xff) {
         return;
     }
 
     if (Sound_CheckFade() == 0) {
-        v1 = sub_020040F0(v0);
+        int v1 = sub_020040F0(v0);
 
-        sub_02004A54(v1, param0, param1);
-        sub_02004FCC(param1);
+        sub_02004A54(v1, targetVolume, frames);
+        sub_02004FCC(frames);
     }
 
     sub_02003D0C(4);
-    return;
 }
 
 int Sound_CheckFade()

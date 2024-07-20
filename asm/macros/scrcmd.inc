@@ -272,6 +272,7 @@
     .short 50
     .endm
 
+    ; Opens a message box window without printing anything
     .macro ScrCmd_033
     .short 51
     .endm
@@ -413,9 +414,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_04B arg0
+    .macro ScrCmd_04B sdatID
     .short 75
-    .short \arg0
+    .short \sdatID
     .endm
 
     .macro ScrCmd_04C arg0, arg1
@@ -428,23 +429,23 @@
     .short 77
     .endm
 
-    .macro ScrCmd_04E arg0
+    .macro ScrCmd_04E sdatID
     .short 78
-    .short \arg0
+    .short \sdatID
     .endm
 
     .macro ScrCmd_04F
     .short 79
     .endm
 
-    .macro ScrCmd_050 arg0
+    .macro ScrCmd_050 sdatID
     .short 80
-    .short \arg0
+    .short \sdatID
     .endm
 
-    .macro ScrCmd_051 arg0
+    .macro ScrCmd_051 dummy
     .short 81
-    .short \arg0
+    .short \dummy
     .endm
 
     .macro ScrCmd_052
@@ -456,10 +457,10 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_054 arg0, arg1
+    .macro ScrCmd_054 targetVolume, frames
     .short 84
-    .short \arg0
-    .short \arg1
+    .short \targetVolume
+    .short \frames
     .endm
 
     .macro ScrCmd_055 arg0
@@ -557,10 +558,10 @@
     .short 104
     .endm
 
-    .macro ScrCmd_069 arg0, arg1
+    .macro ScrCmd_069 destVarIDX, destVarIDZ
     .short 105
-    .short \arg0
-    .short \arg1
+    .short \destVarIDX
+    .short \destVarIDZ
     .endm
 
     .macro ScrCmd_06A arg0, arg1, arg2
@@ -652,18 +653,20 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_07B arg0, arg1, arg2
+    ; If the player has no space left in the bag, resultVar will be set to FALSE 
+    .macro ScrCmd_07B item, count, resultVar
     .short 123
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \item
+    .short \count
+    .short \resultVar
     .endm
 
-    .macro ScrCmd_07C arg0, arg1, arg2
+    ; resultVar will be set to TRUE if the player had at least 'count' items of the specified type in their bag
+    .macro ScrCmd_07C item, count, resultVar
     .short 124
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \item
+    .short \count
+    .short \resultVar
     .endm
 
     .macro ScrCmd_07D arg0, arg1, arg2
@@ -673,11 +676,12 @@
     .short \arg2
     .endm
 
-    .macro ScrCmd_07E arg0, arg1, arg2
+    ; resultVar will be set to TRUE if the player has at least 'count' items of the specified type in their bag
+    .macro ScrCmd_07E item, count, resultVar
     .short 126
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \item
+    .short \count
+    .short \resultVar
     .endm
 
     .macro ScrCmd_07F arg0, arg1
@@ -1031,13 +1035,13 @@
     .short 189
     .endm
 
-    .macro ScrCmd_0BE arg0, arg1, arg2, arg3, arg4
+    .macro ScrCmd_0BE mapID, dummy, x, z, direction
     .short 190
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
-    .short \arg4
+    .short \mapID
+    .short \dummy
+    .short \x
+    .short \z
+    .short \direction
     .endm
 
     .macro ScrCmd_0BF arg0
@@ -1079,14 +1083,16 @@
     .short 198
     .endm
 
-    .macro ScrCmd_0C7 arg0
+    .macro ScrCmd_0C7 destVarID
     .short 199
-    .short \arg0
+    .short \destVarID
     .endm
 
-    .macro ScrCmd_0C8 arg0
+    ; If rideBike == TRUE, sets the player on the bike.
+    ; If rideBike == FALSE, removes the player from the bike.
+    .macro ScrCmd_0C8 rideBike
     .short 200
-    .byte \arg0
+    .byte \rideBike
     .endm
 
     .macro ScrCmd_0C9 arg0
@@ -1094,51 +1100,51 @@
     .byte \arg0
     .endm
 
-    .macro ScrCmd_0CA arg0
+    .macro ScrCmd_0CA destVarID
     .short 202
-    .short \arg0
+    .short \destVarID
     .endm
 
-    .macro ScrCmd_0CB arg0
+    .macro ScrCmd_0CB state
     .short 203
-    .short \arg0
+    .short \state
     .endm
 
     .macro ScrCmd_0CC
     .short 204
     .endm
 
-    .macro ScrCmd_0CD arg0
+    .macro ScrCmd_0CD strbufIndex
     .short 205
-    .byte \arg0
+    .byte \strbufIndex
     .endm
 
-    .macro ScrCmd_0CE arg0
+    .macro ScrCmd_0CE strbufIndex
     .short 206
-    .byte \arg0
+    .byte \strbufIndex
     .endm
 
-    .macro ScrCmd_0CF arg0
+    .macro ScrCmd_0CF strbufIndex
     .short 207
-    .byte \arg0
+    .byte \strbufIndex
     .endm
 
-    .macro ScrCmd_0D0 arg0, arg1
+    .macro ScrCmd_0D0 strbufIndex, partySlot
     .short 208
-    .byte \arg0
-    .short \arg1
+    .byte \strbufIndex
+    .short \partySlot
     .endm
 
-    .macro ScrCmd_0D1 arg0, arg1
+    .macro ScrCmd_0D1 strbufIndex, item
     .short 209
-    .byte \arg0
-    .short \arg1
+    .byte \strbufIndex
+    .short \item
     .endm
 
-    .macro ScrCmd_0D2 arg0, arg1
+    .macro ScrCmd_0D2 strbufIndex, pocket
     .short 210
-    .byte \arg0
-    .short \arg1
+    .byte \strbufIndex
+    .short \pocket
     .endm
 
     .macro ScrCmd_0D3 arg0, arg1
@@ -1153,22 +1159,22 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_0D5 arg0, arg1
+    .macro ScrCmd_0D5 strbufIndex, number
     .short 213
-    .byte \arg0
-    .short \arg1
+    .byte \strbufIndex
+    .short \number
     .endm
 
-    .macro ScrCmd_0D6 arg0, arg1
+    .macro ScrCmd_0D6 strbufIndex, partySlot
     .short 214
-    .byte \arg0
-    .short \arg1
+    .byte \strbufIndex
+    .short \partySlot
     .endm
 
-    .macro ScrCmd_0D7 arg0, arg1
+    .macro ScrCmd_0D7 strbufIndex, appID
     .short 215
-    .byte \arg0
-    .short \arg1
+    .byte \strbufIndex
+    .short \appID
     .endm
 
     .macro ScrCmd_0D8 arg0, arg1

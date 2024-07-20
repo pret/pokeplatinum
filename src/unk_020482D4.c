@@ -12,27 +12,20 @@
 #include "unk_0202CC64.h"
 #include "unk_020553DC.h"
 
-static BOOL sub_02048378(ScriptContext *param0);
-static BOOL sub_02048454(ScriptContext *param0);
+static BOOL ScriptContext_IsSoundFadeFinished(ScriptContext *ctx);
+static BOOL ScriptContext_IsFanfareFinished(ScriptContext *ctx);
 static BOOL sub_020484B0(ScriptContext *param0);
-static BOOL sub_020484E4(ScriptContext *param0);
-BOOL ScrCmd_050(ScriptContext *param0);
-BOOL ScrCmd_051(ScriptContext *param0);
-BOOL ScrCmd_052(ScriptContext *param0);
+static BOOL ScriptContext_IsSoundFinished(ScriptContext *ctx);
 BOOL ScrCmd_053(ScriptContext *param0);
-BOOL ScrCmd_054(ScriptContext *param0);
-BOOL sub_02048378(ScriptContext *param0);
+BOOL ScrCmd_FadeOutMusic(ScriptContext *ctx);
+BOOL ScriptContext_IsSoundFadeFinished(ScriptContext *ctx);
 BOOL ScrCmd_055(ScriptContext *param0);
 BOOL ScrCmd_056(ScriptContext *param0);
 BOOL ScrCmd_057(ScriptContext *param0);
 BOOL ScrCmd_058(ScriptContext *param0);
-BOOL ScrCmd_PlayFanfare(ScriptContext *ctx);
 BOOL ScrCmd_04A(ScriptContext *param0);
-BOOL ScrCmd_04B(ScriptContext *param0);
 BOOL ScrCmd_04C(ScriptContext *param0);
 BOOL ScrCmd_04D(ScriptContext *param0);
-BOOL ScrCmd_04E(ScriptContext *param0);
-BOOL ScrCmd_04F(ScriptContext *param0);
 BOOL ScrCmd_059(ScriptContext *param0);
 BOOL ScrCmd_05A(ScriptContext *param0);
 BOOL ScrCmd_05B(ScriptContext *param0);
@@ -53,29 +46,24 @@ BOOL ScrCmd_2AE(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_050(ScriptContext *param0)
+BOOL ScrCmd_PlayMusic(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_ReadHalfWord(param0);
-
-    Sound_PlayBGM(v0);
-    return 0;
+    Sound_PlayBGM(ScriptContext_ReadHalfWord(ctx));
+    return FALSE;
 }
 
-BOOL ScrCmd_051(ScriptContext *param0)
+BOOL ScrCmd_StopMusic(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_ReadHalfWord(param0);
+    u16 dummy = ScriptContext_ReadHalfWord(ctx);
 
     sub_020055D0(sub_020041FC(), 0);
-    return 0;
+    return FALSE;
 }
 
-BOOL ScrCmd_052(ScriptContext *param0)
+BOOL ScrCmd_PlayDefaultMusic(ScriptContext *ctx)
 {
-    int v0 = param0->fieldSystem->location->mapId;
-    u16 v1 = sub_020554A4(param0->fieldSystem, v0);
-
-    Sound_PlayBGM(v1);
-    return 0;
+    Sound_PlayBGM(sub_020554A4(ctx->fieldSystem, ctx->fieldSystem->location->mapId));
+    return FALSE;
 }
 
 BOOL ScrCmd_053(ScriptContext *param0)
@@ -84,23 +72,19 @@ BOOL ScrCmd_053(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_054(ScriptContext *param0)
+BOOL ScrCmd_FadeOutMusic(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_ReadHalfWord(param0);
-    u16 v1 = ScriptContext_ReadHalfWord(param0);
+    u16 targetVolume = ScriptContext_ReadHalfWord(ctx);
+    u16 frames = ScriptContext_ReadHalfWord(ctx);
 
-    sub_0200564C(v0, v1);
-    ScriptContext_Pause(param0, sub_02048378);
-    return 1;
+    sub_0200564C(targetVolume, frames);
+    ScriptContext_Pause(ctx, ScriptContext_IsSoundFadeFinished);
+    return TRUE;
 }
 
-static BOOL sub_02048378(ScriptContext *param0)
+static BOOL ScriptContext_IsSoundFadeFinished(ScriptContext *ctx)
 {
-    if (Sound_CheckFade() == 0) {
-        return 1;
-    }
-
-    return 0;
+    return Sound_CheckFade() == 0;
 }
 
 BOOL ScrCmd_055(ScriptContext *param0)
@@ -108,7 +92,7 @@ BOOL ScrCmd_055(ScriptContext *param0)
     u16 v0 = ScriptContext_ReadHalfWord(param0);
 
     sub_0200560C(127, v0, 0);
-    ScriptContext_Pause(param0, sub_02048378);
+    ScriptContext_Pause(param0, ScriptContext_IsSoundFadeFinished);
 
     return 1;
 }
@@ -146,21 +130,17 @@ BOOL ScrCmd_04A(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_04B(ScriptContext *param0)
+BOOL ScrCmd_WaitFanfare(ScriptContext *ctx)
 {
-    param0->data[0] = ScriptContext_GetVar(param0);
+    ctx->data[0] = ScriptContext_GetVar(ctx);
 
-    ScriptContext_Pause(param0, sub_02048454);
-    return 1;
+    ScriptContext_Pause(ctx, ScriptContext_IsFanfareFinished);
+    return TRUE;
 }
 
-static BOOL sub_02048454(ScriptContext *param0)
+static BOOL ScriptContext_IsFanfareFinished(ScriptContext *ctx)
 {
-    if (Sound_IsEffectPlaying(param0->data[0]) == 0) {
-        return 1;
-    }
-
-    return 0;
+    return Sound_IsEffectPlaying(ctx->data[0]) == FALSE;
 }
 
 BOOL ScrCmd_04C(ScriptContext *param0)
@@ -190,29 +170,21 @@ static BOOL sub_020484B0(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_04E(ScriptContext *param0)
+BOOL ScrCmd_PlaySound(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-
-    sub_02006150(ScriptContext_ReadHalfWord(param0));
-    return 0;
+    sub_02006150(ScriptContext_ReadHalfWord(ctx));
+    return FALSE;
 }
 
-BOOL ScrCmd_04F(ScriptContext *param0)
+BOOL ScrCmd_WaitSound(ScriptContext *ctx)
 {
-    ScriptContext_Pause(param0, sub_020484E4);
-    return 1;
+    ScriptContext_Pause(ctx, ScriptContext_IsSoundFinished);
+    return TRUE;
 }
 
-static BOOL sub_020484E4(ScriptContext *param0)
+static BOOL ScriptContext_IsSoundFinished(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-
-    if (sub_020061E4() == 0) {
-        return 1;
-    }
-
-    return 0;
+    return sub_020061E4() == FALSE;
 }
 
 BOOL ScrCmd_059(ScriptContext *param0)
