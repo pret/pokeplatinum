@@ -374,7 +374,7 @@ _0360:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    Warp 0x233, 0, 25, 9, 2
+    Warp MAP_HEADER_BATTLE_HALL, 0, 25, 9, 2
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End
@@ -391,7 +391,7 @@ _03A0:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    Warp 0x234, 0, 21, 9, 2
+    Warp MAP_HEADER_BATTLE_CASTLE, 0, 21, 9, 2
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End
@@ -408,7 +408,7 @@ _03E0:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    Warp 0x235, 0, 1, 6, 3
+    Warp MAP_HEADER_BATTLE_ARCADE, 0, 1, 6, 3
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End
@@ -425,7 +425,7 @@ _0420:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    Warp 0x232, 0, 1, 7, 3
+    Warp MAP_HEADER_BATTLE_FACTORY, 0, 1, 7, 3
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End

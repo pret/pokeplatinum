@@ -54,7 +54,7 @@ _002E:
     BufferPlayerName 0
     Message 7
     CloseMessage
-    PlaySound 0x486
+    PlaySound SEQ_FANFA4
     ScrCmd_14D 0x800C
     GoToIfEq 0x800C, 0, _00EE
     GoTo _00F9
@@ -80,7 +80,7 @@ _0104:
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 5
-    WaitFanfare 0x603
+    WaitFanfare SEQ_SE_DP_KAIDAN2
     SetFlag 0x978
     ReleaseAll
     End
@@ -313,7 +313,7 @@ _037F:
     End
 
 _038A:
-    CheckItem 0x1C1, 1, 0x800C
+    CheckItem ITEM_POFFIN_CASE, 1, 0x800C
     GoToIfEq 0x800C, 0, _037F
     Message 13
     ScrCmd_28A 0x800C
@@ -335,7 +335,7 @@ _03C8:
 
 _03D3:
     SetFlag 0x159
-    CheckItem 0x1C1, 1, 0x800C
+    CheckItem ITEM_POFFIN_CASE, 1, 0x800C
     GoToIfEq 0x800C, 0, _0428
     Message 13
     ScrCmd_28A 0x800C
@@ -364,7 +364,7 @@ _0428:
 
 _0437:
     ScrCmd_289 0x800C, 60, 30, 30, 30, 30, 40
-    PlaySound 0x486
+    PlaySound SEQ_FANFA4
     BufferPlayerName 0
     Message 14
     WaitSound
@@ -473,7 +473,7 @@ _05B9:
 _05D3:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 10
-    WaitFanfare 0x603
+    WaitFanfare SEQ_SE_DP_KAIDAN2
     SetFlag 0x18D
     ReleaseAll
     End

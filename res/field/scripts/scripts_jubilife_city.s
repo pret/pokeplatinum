@@ -776,7 +776,7 @@ _097F:
     End
 
 _0994:
-    CheckItem 0x1B5, 1, 0x800C
+    CheckItem ITEM_PAL_PAD, 1, 0x800C
     GoToIfEq 0x800C, 1, _09BD
     Message 36
     CloseMessage
@@ -1561,9 +1561,9 @@ _121B:
 
 _1223:
     Message 42
-    RemoveItem 0x1CC, 1, 0x800C
-    RemoveItem 0x1CD, 1, 0x800C
-    RemoveItem 0x1CE, 1, 0x800C
+    RemoveItem ITEM_COUPON_1, 1, 0x800C
+    RemoveItem ITEM_COUPON_2, 1, 0x800C
+    RemoveItem ITEM_COUPON_3, 1, 0x800C
     ScrCmd_131
     SetVar 0x4077, 2
     ScrCmd_133 0
@@ -1572,7 +1572,7 @@ _1223:
     ScrCmd_133 4
     BufferPlayerName 0
     Message 43
-    PlaySound 0x486
+    PlaySound SEQ_FANFA4
     WaitSound
     Message 44
     CloseMessage

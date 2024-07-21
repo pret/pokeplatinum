@@ -289,7 +289,7 @@
     .short 0xFD13
 
 _0472:
-    WaitFanfare 0x5DC
+    WaitFanfare SEQ_SE_CONFIRM
     SetVar 0x8004, 0x8000
     SetVar 0x8005, 0x8001
     SetVar 0x8006, 0x8002

@@ -69,7 +69,7 @@ _00E4:
     ScrCmd_1A3 0x8006
     ScrCmd_074
     PlayFanfare SEQ_SE_DP_REGI
-    WaitFanfare 0x644
+    WaitFanfare SEQ_SE_DP_REGI
     CallIfEq 0x8006, 0x1F4, _0139
     CallIfEq 0x8006, 0x1770, _013E
     CallCommonScript 0x7E0

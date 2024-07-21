@@ -2298,7 +2298,7 @@ _1EAE:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    WaitFanfare 0x5DC
+    WaitFanfare SEQ_SE_CONFIRM
     SetVar 0x8004, 0x8008
     SetVar 0x8005, 0x8009
     ScrCmd_07D 0x8004, 0x8005, 0x800C

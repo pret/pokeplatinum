@@ -45,7 +45,7 @@ _0061:
     PlayFanfare SEQ_SE_PL_SYUWA
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    Warp 0x10B, 0, 32, 17, 1
+    Warp MAP_HEADER_SENDOFF_SPRING, 0, 32, 17, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End
@@ -53,7 +53,7 @@ _0061:
 _009E:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    Warp 0x245, 0, 89, 57, 1
+    Warp MAP_HEADER_DISTORTION_WORLD_B7F, 0, 89, 57, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End

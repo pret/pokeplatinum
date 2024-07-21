@@ -38,7 +38,7 @@ _0039:
     ScrCmd_2A8 0x8001
     ScrCmd_077
     PlayFanfare SEQ_SE_DP_REGI
-    WaitFanfare 0x644
+    WaitFanfare SEQ_SE_DP_REGI
     GoTo _0039
     End
 

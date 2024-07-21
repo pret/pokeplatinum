@@ -579,7 +579,7 @@ _08DB:
     ScrCmd_12D 0x800C
     ScrCmd_18E
     PlayFanfare SEQ_SE_DP_SAVE
-    WaitFanfare 0x61B
+    WaitFanfare SEQ_SE_DP_SAVE
     Return
 
 _08ED:
@@ -604,7 +604,7 @@ _093E:
     Message 13
     BufferPlayerName 0
     Message 15
-    PlaySound 0x486
+    PlaySound SEQ_FANFA4
     WaitSound
     SetVar 0x4051, 2
     Return
@@ -613,7 +613,7 @@ _0955:
     Message 13
     BufferPlayerName 0
     Message 14
-    PlaySound 0x486
+    PlaySound SEQ_FANFA4
     WaitSound
     SetVar 0x4051, 4
     CallCommonScript 0x806
@@ -691,7 +691,7 @@ _09D1:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    WaitFanfare 0x5DC
+    WaitFanfare SEQ_SE_CONFIRM
     ScrCmd_04C 0x1A1, 0
     Message 62
     ScrCmd_04D
@@ -762,7 +762,7 @@ _0A4F:
     BufferPlayerName 0
     Message 69
     Message 70
-    PlaySound 0x4C5
+    PlaySound SEQ_PL_POINTGET3
     Message 72
     WaitSound
     GoTo _0AE6

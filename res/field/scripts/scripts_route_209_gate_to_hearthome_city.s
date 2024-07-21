@@ -67,7 +67,7 @@ _00CF:
     CallIfEq 0x8005, 9, _01BA
     PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 1
-    WaitFanfare 0x603
+    WaitFanfare SEQ_SE_DP_KAIDAN2
     SetVar 0x407B, 2
     ReleaseAll
     End

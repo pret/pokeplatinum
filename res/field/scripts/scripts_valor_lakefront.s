@@ -494,7 +494,7 @@ _0632:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckItem 0x1C3, 1, 0x800C
+    CheckItem ITEM_SUITE_KEY, 1, 0x800C
     GoToIfEq 0x800C, 1, _065A
     Message 18
     WaitABXPadPress
@@ -505,7 +505,7 @@ _0632:
 _065A:
     Message 19
     CloseMessage
-    RemoveItem 0x1C3, 1, 0x800C
+    RemoveItem ITEM_SUITE_KEY, 1, 0x800C
     ApplyMovement 8, _06A8
     WaitMovement
     ScrCmd_168 22, 24, 11, 13, 77

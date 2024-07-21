@@ -22,7 +22,7 @@ _002C:
     End
 
 _0040:
-    CheckItem 0x1C6, 1, 0x4000
+    CheckItem ITEM_MEMBER_CARD, 1, 0x4000
     GoToIfEq 0x4000, 1, _0057
     End
 
@@ -71,7 +71,7 @@ _0093:
     FadeScreen 6, 6, 0, 0
     WaitFadeScreen
     WaitTime 120, 0x800C
-    Warp 0x140, 0, 152, 0x115, 1
+    Warp MAP_HEADER_NEWMOON_ISLAND, 0, 152, 0x115, 1
     FadeScreen 6, 6, 1, 0
     WaitFadeScreen
     ReleaseAll
@@ -99,7 +99,7 @@ _0160:
     LockAll
     Call _0184
     ScrCmd_2B5 33, 58, 0x2CA
-    PlaySound 0x48E
+    PlaySound SEQ_ASA
     WaitSound
     BufferPlayerName 0
     Message 2

@@ -166,7 +166,7 @@ _0184:
     SetVar 0x404E, 0xFF
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    Warp 0x1D0, 0, 10, 6, 2
+    Warp MAP_HEADER_VILLA, 0, 10, 6, 2
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End
@@ -328,7 +328,7 @@ _03D4:
     SetFlag 0x9AB
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    Warp 0x1D0, 0, 11, 11, 0
+    Warp MAP_HEADER_VILLA, 0, 11, 11, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End
@@ -358,7 +358,7 @@ _043C:
     SetFlag 0x9AB
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    Warp 0x1D0, 0, 11, 11, 0
+    Warp MAP_HEADER_VILLA, 0, 11, 11, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End
@@ -382,7 +382,7 @@ _049C:
     SetFlag 0x9AB
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    Warp 0x1D0, 0, 11, 11, 0
+    Warp MAP_HEADER_VILLA, 0, 11, 11, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End
@@ -406,7 +406,7 @@ _04FC:
     SetFlag 0x9AB
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    Warp 0x1D0, 0, 11, 11, 0
+    Warp MAP_HEADER_VILLA, 0, 11, 11, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End
@@ -430,7 +430,7 @@ _055C:
     SetFlag 0x9AB
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    Warp 0x1D0, 0, 11, 11, 0
+    Warp MAP_HEADER_VILLA, 0, 11, 11, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End

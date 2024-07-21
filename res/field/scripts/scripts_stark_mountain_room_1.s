@@ -54,7 +54,7 @@ _0014:
     ApplyMovement 0xFF, _01A4
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    WaitFanfare 0x603
+    WaitFanfare SEQ_SE_DP_KAIDAN2
     ApplyMovement 4, _01DC
     WaitMovement
     Message 7
@@ -62,7 +62,7 @@ _0014:
     ApplyMovement 4, _01E4
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    WaitFanfare 0x603
+    WaitFanfare SEQ_SE_DP_KAIDAN2
     ApplyMovement 14, _0200
     ApplyMovement 0xFF, _01B4
     WaitMovement

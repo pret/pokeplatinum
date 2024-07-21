@@ -101,7 +101,7 @@ _00D0:
 _00E6:
     LockAll
     PlayFanfare SEQ_SE_CONFIRM
-    WaitFanfare 0x5DC
+    WaitFanfare SEQ_SE_CONFIRM
     CallIfUnset 215, _0174
     SetVar 0x409E, 2
     ScrCmd_04C 0x1E5, 0
@@ -178,7 +178,7 @@ _019C:
     LockAll
     Message 0
     CloseMessage
-    WaitFanfare 0x5DC
+    WaitFanfare SEQ_SE_CONFIRM
     PlayFanfare SEQ_SE_DP_FW089
     ScrCmd_29F 0
     ScrCmd_04A 0x65C
@@ -280,7 +280,7 @@ _019C:
     ClearFlag 0x22E
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    Warp 0x106, 0, 0x2EF, 233, 0
+    Warp MAP_HEADER_STARK_MOUNTAIN_OUTSIDE, 0, 0x2EF, 233, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End

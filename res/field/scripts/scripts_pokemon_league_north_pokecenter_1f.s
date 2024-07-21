@@ -40,7 +40,7 @@ _006D:
     GoToIfSet 175, _00F7
     Message 2
     CloseMessage
-    PlaySound 0x489
+    PlaySound SEQ_BADGE
     WaitSound
     ScrCmd_1BD 0x800C
     GoToIfEq 0x800C, 0, _00B8
@@ -196,7 +196,7 @@ _0286:
 _0296:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 5
-    WaitFanfare 0x603
+    WaitFanfare SEQ_SE_DP_KAIDAN2
     SetVar 0x40EF, 1
     ReleaseAll
     End

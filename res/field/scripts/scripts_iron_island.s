@@ -118,7 +118,7 @@ _014B:
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 1
-    WaitFanfare 0x603
+    WaitFanfare SEQ_SE_DP_KAIDAN2
     ReleaseAll
     End
 

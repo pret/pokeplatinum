@@ -211,7 +211,7 @@ _0293:
     ScrCmd_1A3 0x8006
     ScrCmd_074
     PlayFanfare SEQ_SE_DP_REGI
-    WaitFanfare 0x644
+    WaitFanfare SEQ_SE_DP_REGI
     CallCommonScript 0x7E0
     ScrCmd_073
     CloseMessage

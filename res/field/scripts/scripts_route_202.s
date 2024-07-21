@@ -385,7 +385,7 @@ _04C4:
     CallIfEq 0x8000, 0, _0653
     CallIfEq 0x8000, 1, _0658
     CloseMessage
-    PlayMusic 0x47E
+    PlayMusic SEQ_POKERADAR
     ScrCmd_308 189, 0x332
     ApplyMovement 241, _06F8
     WaitMovement

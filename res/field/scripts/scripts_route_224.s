@@ -17,7 +17,7 @@ _001A:
     GoToIfEq 0x4000, 0, _0080
     ScrCmd_22D 2, 0x4000
     GoToIfEq 0x4000, 0, _0080
-    CheckItem 0x1C4, 1, 0x4000
+    CheckItem ITEM_OAKS_LETTER, 1, 0x4000
     GoToIfEq 0x4000, 0, _0080
     ScrCmd_28B 1, 0x4000
     GoToIfEq 0x4000, 0, _0080
@@ -102,7 +102,7 @@ _0124:
     WaitFadeScreen
     ScrCmd_270 3, 1
     ScrCmd_333 0
-    Warp 0x18F, 0, 0x38C, 0x1EC, 0
+    Warp MAP_HEADER_ROUTE_224, 0, 0x38C, 0x1EC, 0
     WaitTime 15, 0x800C
     FadeScreen 6, 6, 1, 0x7FFF
     WaitFadeScreen

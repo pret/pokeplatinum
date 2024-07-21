@@ -50,7 +50,7 @@ _0096:
 _00A2:
     ScrCmd_23E 3, 0x800C
     GoToIfEq 0x800C, 0, _00D8
-    PlaySound 0x486
+    PlaySound SEQ_FANFA4
     ScrCmd_23E 5, 0x8005, 0x8006
     ScrCmd_1FB 0x8005, 0x8006
     WaitSound

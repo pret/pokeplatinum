@@ -119,7 +119,7 @@ _01D4:
     SetVar 0x40D8, 3
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    Warp 0x146, 0, 11, 6, 0
+    Warp MAP_HEADER_BATTLE_TOWER, 0, 11, 6, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End
@@ -133,7 +133,7 @@ _0204:
     SetVar 0x40DB, 2
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    Warp 0x147, 0, 3, 6, 0
+    Warp MAP_HEADER_BATTLE_TOWER_ELEVATOR, 0, 3, 6, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll
@@ -337,7 +337,7 @@ _0500:
     WaitMovement
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    Warp 0x1ED, 0, 8, 4, 0
+    Warp MAP_HEADER_BATTLE_TOWER_BATTLE_SALON, 0, 8, 4, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll

@@ -34,7 +34,7 @@ _0020:
     ScrCmd_253 0
     SetVar 0x40F3, 1
     SetFlag 0x995
-    PlayMusic 0x42D
+    PlayMusic SEQ_D_SAFARI
     CloseMessage
     ReleaseAll
     End
@@ -64,8 +64,8 @@ _008D:
     PlayFanfare SEQ_SE_DP_PINPON
     BufferPlayerName 0
     Message 5
-    PlayMusic 0x3EA
-    PlaySound 0x486
+    PlayMusic SEQ_SILENCE_DUNGEON
+    PlaySound SEQ_FANFA4
     WaitSound
     CloseMessage
     ReleaseAll
@@ -162,7 +162,7 @@ _01C0:
     ScrCmd_253 1
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    Warp 0x189, 0, 7, 7, 1
+    Warp MAP_HEADER_PAL_PARK_LOBBY, 0, 7, 7, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     Return

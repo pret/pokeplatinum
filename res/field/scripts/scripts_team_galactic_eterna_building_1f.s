@@ -111,7 +111,7 @@ _0110:
     EndMovement
 
 _0134:
-    CheckItem 0x1D3, 1, 0x800C
+    CheckItem ITEM_SECRET_KEY, 1, 0x800C
     GoToIfEq 0x800C, 0, _01AA
     ScrCmd_28B 3, 0x800C
     GoToIfEq 0x800C, 0, _01AA
@@ -127,7 +127,7 @@ _0134:
     FadeScreen 6, 1, 0, 0x7FFF
     WaitFadeScreen
     ScrCmd_065 6
-    WaitFanfare 0x5FB
+    WaitFanfare SEQ_SE_DP_W062
     FadeScreen 6, 1, 1, 0x7FFF
     WaitFadeScreen
     Message 7

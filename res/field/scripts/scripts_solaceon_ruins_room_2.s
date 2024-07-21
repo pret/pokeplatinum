@@ -11,7 +11,7 @@ _0006:
     FacePlayer
     GoToIfSet 210, _00C7
     GoToIfSet 232, _004F
-    CheckItem 0x1A8, 1, 0x800C
+    CheckItem ITEM_HM05, 1, 0x800C
     GoToIfEq 0x800C, 1, _0044
     Message 0
     WaitABXPadPress

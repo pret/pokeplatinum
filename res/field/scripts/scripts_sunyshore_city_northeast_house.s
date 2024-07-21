@@ -78,7 +78,7 @@ _010E:
     BufferPartyMonSpecies 1, 0x8002
     BufferPlayerName 2
     Message 4
-    PlaySound 0x483
+    PlaySound SEQ_FANFA1
     Message 5
     WaitSound
     Message 6

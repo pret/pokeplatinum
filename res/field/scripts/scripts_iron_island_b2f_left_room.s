@@ -43,7 +43,7 @@ _0064:
     CallIfUnset 225, _00E9
     CallIfSet 225, _00EE
     BufferPlayerName 0
-    PlaySound 0x481
+    PlaySound SEQ_GONIN
     Message 1
     WaitSound
     SetFlag 225
@@ -257,7 +257,7 @@ _02F9:
 _031C:
     ScrCmd_177 0x800C
     GoToIfEq 0x800C, 6, _0353
-    PlaySound 0x486
+    PlaySound SEQ_FANFA4
     WaitSound
     Message 12
     ScrCmd_097 0x1BF, 10

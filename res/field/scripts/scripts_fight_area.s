@@ -201,7 +201,7 @@ _0198:
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 26
-    WaitFanfare 0x603
+    WaitFanfare SEQ_SE_DP_KAIDAN2
     BufferRivalName 0
     Message 18
     Message 19

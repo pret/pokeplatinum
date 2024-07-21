@@ -634,7 +634,7 @@ _08DD:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    Warp 143, 0, 8, 11, 0
+    Warp MAP_HEADER_VEILSTONE_CITY_GALACTIC_WAREHOUSE, 0, 8, 11, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End

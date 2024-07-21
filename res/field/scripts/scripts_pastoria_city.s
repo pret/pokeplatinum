@@ -172,7 +172,7 @@ _01E5:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    WaitFanfare 0x5DC
+    WaitFanfare SEQ_SE_CONFIRM
     ScrCmd_04C 35, 0
     Message 36
     ScrCmd_04D
@@ -842,7 +842,7 @@ _086F:
     PlayFanfare SEQ_SE_DP_FW291
     WaitTime 4, 0x800C
     Message 19
-    WaitFanfare 0x5DC
+    WaitFanfare SEQ_SE_CONFIRM
     ScrCmd_29F 1
     CloseMessage
     ClearFlag 0x20C
@@ -1166,7 +1166,7 @@ _0C22:
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 28
-    WaitFanfare 0x603
+    WaitFanfare SEQ_SE_DP_KAIDAN2
     ReleaseAll
     End
 

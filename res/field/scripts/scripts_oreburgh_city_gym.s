@@ -22,7 +22,7 @@ _000E:
     Message 1
     BufferPlayerName 0
     Message 2
-    PlaySound 0x489
+    PlaySound SEQ_BADGE
     WaitSound
     SetTrainerFlag 244
     SetTrainerFlag 245

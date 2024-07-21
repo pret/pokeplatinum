@@ -45,19 +45,19 @@ _0055:
     GoToIfEq 0x800C, 1, _03E7
     GoToIfEq 0x8000, 1, _03BC
     SetVar 0x8001, 0
-    CheckItem 103, 1, 0x800C
+    CheckItem ITEM_OLD_AMBER, 1, 0x800C
     AddVar 0x8001, 0x800C
-    CheckItem 101, 1, 0x800C
+    CheckItem ITEM_HELIX_FOSSIL, 1, 0x800C
     AddVar 0x8001, 0x800C
-    CheckItem 102, 1, 0x800C
+    CheckItem ITEM_DOME_FOSSIL, 1, 0x800C
     AddVar 0x8001, 0x800C
-    CheckItem 99, 1, 0x800C
+    CheckItem ITEM_ROOT_FOSSIL, 1, 0x800C
     AddVar 0x8001, 0x800C
-    CheckItem 100, 1, 0x800C
+    CheckItem ITEM_CLAW_FOSSIL, 1, 0x800C
     AddVar 0x8001, 0x800C
-    CheckItem 104, 1, 0x800C
+    CheckItem ITEM_ARMOR_FOSSIL, 1, 0x800C
     AddVar 0x8001, 0x800C
-    CheckItem 105, 1, 0x800C
+    CheckItem ITEM_SKULL_FOSSIL, 1, 0x800C
     AddVar 0x8001, 0x800C
     GoToIfEq 0x8001, 1, _03BC
     SetVar 0x8004, 0
@@ -227,7 +227,7 @@ _03F2:
     GoToIfEq 0x800C, 6, _04A0
     ScrCmd_0DA 1, 0x40B4, 0, 0
     BufferPlayerName 0
-    PlaySound 0x486
+    PlaySound SEQ_FANFA4
     Message 8
     WaitSound
     ScrCmd_096 0x40B4, 20, 0, 0x800C

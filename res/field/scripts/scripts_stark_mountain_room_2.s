@@ -24,7 +24,7 @@ _0031:
     CallIfUnset 221, _007D
     CallIfSet 221, _00B7
     BufferPlayerName 0
-    PlaySound 0x481
+    PlaySound SEQ_GONIN
     Message 1
     WaitSound
     SetFlag 221
@@ -159,10 +159,10 @@ _01AB:
     CloseMessage
     ApplyMovement 14, _0214
     WaitMovement
-    WaitFanfare 0x5DC
+    WaitFanfare SEQ_SE_CONFIRM
     PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 14
-    WaitFanfare 0x603
+    WaitFanfare SEQ_SE_DP_KAIDAN2
     SetVar 0x4094, 2
     ReleaseAll
     End

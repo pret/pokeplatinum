@@ -531,7 +531,7 @@ _0652:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckItem 0x1B3, 1, 0x800C
+    CheckItem ITEM_FASHION_CASE, 1, 0x800C
     GoToIfEq 0x800C, 0, _0696
     GoToIfSet 0xAC3, _06FD
     GoToIfSet 207, _06F2

@@ -17,7 +17,7 @@ _001A:
 _001E:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    Warp 0x246, 0, 15, 25, 0
+    Warp MAP_HEADER_DISTORTION_WORLD_GIRATINA_ROOM, 0, 15, 25, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End
@@ -97,7 +97,7 @@ _016D:
 _017D:
     BufferPlayerName 0
     Message 8
-    PlaySound 0x48E
+    PlaySound SEQ_ASA
     WaitSound
     ScrCmd_14E
     WaitMovement

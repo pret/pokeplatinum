@@ -20,7 +20,7 @@ _0038:
     Call _009C
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    Warp 113, 0, 18, 3, 1
+    Warp MAP_HEADER_HEARTHOME_CITY_NORTHEAST_HOUSE_2F, 0, 18, 3, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End
@@ -30,13 +30,13 @@ _006A:
     Call _009C
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    Warp 112, 0, 18, 3, 1
+    Warp MAP_HEADER_HEARTHOME_CITY_NORTHEAST_HOUSE_1F, 0, 18, 3, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End
 
 _009C:
-    WaitFanfare 0x5DC
+    WaitFanfare SEQ_SE_CONFIRM
     ScrCmd_23C 0x8004, 4
     ApplyMovement 0xFF, _00C4
     WaitMovement

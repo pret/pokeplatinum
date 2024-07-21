@@ -802,7 +802,7 @@ _0AF4:
     ScrCmd_188 6, 14
     ScrCmd_189 6, 0
     ScrCmd_064 6
-    WaitFanfare 0x605
+    WaitFanfare SEQ_SE_DP_DOOR_OPEN
     ApplyMovement 0xFF, _0B3C
     ApplyMovement 6, _0B4C
     WaitMovement
@@ -833,7 +833,7 @@ _0B5C:
     ScrCmd_188 9, 14
     ScrCmd_189 9, 0
     ScrCmd_064 9
-    WaitFanfare 0x605
+    WaitFanfare SEQ_SE_DP_DOOR_OPEN
     ApplyMovement 0xFF, _0BAC
     ApplyMovement 9, _0BA4
     WaitMovement
@@ -862,7 +862,7 @@ _0BBC:
     ScrCmd_188 10, 14
     ScrCmd_189 10, 0
     ScrCmd_064 10
-    WaitFanfare 0x605
+    WaitFanfare SEQ_SE_DP_DOOR_OPEN
     ApplyMovement 0xFF, _0C14
     ApplyMovement 10, _0C04
     WaitMovement
@@ -893,7 +893,7 @@ _0C24:
     ScrCmd_188 12, 14
     ScrCmd_189 12, 0
     ScrCmd_064 12
-    WaitFanfare 0x605
+    WaitFanfare SEQ_SE_DP_DOOR_OPEN
     ApplyMovement 0xFF, _0C78
     ApplyMovement 12, _0C6C
     WaitMovement
@@ -960,7 +960,7 @@ _0CDD:
 _0CEE:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    PlayMusic 0x4AE
+    PlayMusic SEQ_PL_AUDIO
     Message 105
     GoTo _0E5D
     End
@@ -1054,7 +1054,7 @@ _0DE2:
 _0DF3:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    PlayMusic 0x4AD
+    PlayMusic SEQ_PL_PIANO
     Message 113
     GoTo _0E5D
     End
@@ -1187,7 +1187,7 @@ _0F7C:
     CallIfEq 0x8002, 18, _21E1
     CallIfEq 0x8002, 19, _21F5
     ScrCmd_074
-    WaitFanfare 0x644
+    WaitFanfare SEQ_SE_DP_REGI
     ScrCmd_073
     ScrCmd_30D 0x8002
     Return
@@ -1197,7 +1197,7 @@ _1092:
     ClearFlag 0x2C7
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    Warp 0x1D0, 0, 10, 6, 1
+    Warp MAP_HEADER_VILLA, 0, 10, 6, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x8002, 0, _1485
@@ -1314,7 +1314,7 @@ _12A3:
     ClearFlag 0x2A7
     ScrCmd_064 1
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
-    WaitFanfare 0x605
+    WaitFanfare SEQ_SE_DP_DOOR_OPEN
     ApplyMovement 1, _145C
     WaitMovement
     Return
@@ -1348,7 +1348,7 @@ _1316:
     ClearFlag 0x2A8
     ScrCmd_064 0
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
-    WaitFanfare 0x605
+    WaitFanfare SEQ_SE_DP_DOOR_OPEN
     ApplyMovement 0, _145C
     WaitMovement
     Return
@@ -1373,7 +1373,7 @@ _1374:
     ClearFlag 0x2A9
     ScrCmd_064 2
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
-    WaitFanfare 0x605
+    WaitFanfare SEQ_SE_DP_DOOR_OPEN
     ApplyMovement 2, _145C
     WaitMovement
     Return
@@ -1398,7 +1398,7 @@ _13D2:
     ClearFlag 0x2AE
     ScrCmd_064 5
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
-    WaitFanfare 0x605
+    WaitFanfare SEQ_SE_DP_DOOR_OPEN
     ApplyMovement 5, _145C
     WaitMovement
     Return
@@ -1424,7 +1424,7 @@ _1436:
     ClearFlag 0x2B8
     ScrCmd_064 12
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
-    WaitFanfare 0x605
+    WaitFanfare SEQ_SE_DP_DOOR_OPEN
     ApplyMovement 12, _145C
     WaitMovement
     Return

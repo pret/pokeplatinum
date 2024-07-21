@@ -409,7 +409,7 @@ _05D7:
     ScrCmd_12D 0x800C
     ScrCmd_18E
     PlayFanfare SEQ_SE_DP_SAVE
-    WaitFanfare 0x61B
+    WaitFanfare SEQ_SE_DP_SAVE
     Return
 
 _05E9:
@@ -434,7 +434,7 @@ _063C:
     Message 13
     BufferPlayerName 0
     Message 15
-    PlaySound 0x486
+    PlaySound SEQ_FANFA4
     WaitSound
     SetVar 0x4050, 2
     Return
@@ -443,7 +443,7 @@ _0653:
     Message 13
     BufferPlayerName 0
     Message 14
-    PlaySound 0x486
+    PlaySound SEQ_FANFA4
     WaitSound
     SetVar 0x4050, 4
     CallCommonScript 0x806

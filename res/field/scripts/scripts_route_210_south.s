@@ -34,7 +34,7 @@ _0079:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckItem 0x1D0, 1, 0x800C
+    CheckItem ITEM_SECRETPOTION, 1, 0x800C
     GoToIfEq 0x800C, 1, _00A1
     Message 0
     WaitABXPadPress

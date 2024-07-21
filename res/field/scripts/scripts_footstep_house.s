@@ -399,7 +399,7 @@ _0602:
     Call _00ED
     WaitTime 10, 0x800C
     Message 5
-    PlaySound 0x483
+    PlaySound SEQ_FANFA1
     Message 8
     WaitSound
     ScrCmd_231 0x8002, 69
@@ -415,7 +415,7 @@ _0633:
     Call _00ED
     WaitTime 10, 0x800C
     Message 6
-    PlaySound 0x483
+    PlaySound SEQ_FANFA1
     Message 8
     WaitSound
     ScrCmd_231 0x8002, 69
@@ -431,7 +431,7 @@ _0664:
     Call _00ED
     WaitTime 10, 0x800C
     Message 7
-    PlaySound 0x483
+    PlaySound SEQ_FANFA1
     Message 8
     WaitSound
     ScrCmd_231 0x8002, 69

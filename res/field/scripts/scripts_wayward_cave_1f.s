@@ -27,7 +27,7 @@ _002B:
     CallIfUnset 224, _008B
     CallIfSet 224, _0090
     BufferPlayerName 0
-    PlaySound 0x481
+    PlaySound SEQ_GONIN
     Message 1
     WaitSound
     SetFlag 224

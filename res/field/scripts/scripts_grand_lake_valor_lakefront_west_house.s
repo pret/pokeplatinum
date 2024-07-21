@@ -29,7 +29,7 @@ _0057:
     SetFlag 171
     SetFlag 1
     Message 1
-    PlaySound 0x486
+    PlaySound SEQ_FANFA4
     WaitSound
     CloseMessage
     FadeScreen 6, 1, 0, 0
@@ -46,7 +46,7 @@ _0095:
     SetFlag 172
     SetFlag 1
     Message 2
-    PlaySound 0x486
+    PlaySound SEQ_FANFA4
     WaitSound
     CloseMessage
     FadeScreen 6, 1, 0, 0

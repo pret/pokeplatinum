@@ -1,4 +1,6 @@
     .include "macros/movement.inc"
+    .include "consts/items.inc"
+    .include "consts/map.inc"
     .include "consts/scrcmd.inc"
     .include "consts/sdat.inc"
 

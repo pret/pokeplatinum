@@ -76,7 +76,7 @@ _00C5:
     End
 
 _00D0:
-    CheckItem 0x1C1, 1, 0x800C
+    CheckItem ITEM_POFFIN_CASE, 1, 0x800C
     GoToIfEq 0x800C, 0, _00AF
     ScrCmd_1D8 0x800C
     GoToIfEq 0x800C, 1, _00BA
@@ -89,7 +89,7 @@ _00D0:
     End
 
 _0121:
-    CheckItem 0x1C1, 1, 0x800C
+    CheckItem ITEM_POFFIN_CASE, 1, 0x800C
     GoToIfEq 0x800C, 0, _00AF
     ScrCmd_1D8 0x800C
     GoToIfEq 0x800C, 1, _00BA

@@ -602,7 +602,7 @@ _0703:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    WaitFanfare 0x5DC
+    WaitFanfare SEQ_SE_CONFIRM
     ScrCmd_04C 66, 0
     Message 24
     ScrCmd_04D
@@ -625,7 +625,7 @@ _0735:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    WaitFanfare 0x5DC
+    WaitFanfare SEQ_SE_CONFIRM
     ScrCmd_04C 66, 0
     Message 25
     ScrCmd_04D
@@ -638,7 +638,7 @@ _0754:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    WaitFanfare 0x5DC
+    WaitFanfare SEQ_SE_CONFIRM
     ScrCmd_04C 66, 0
     Message 26
     ScrCmd_04D

@@ -63,7 +63,7 @@ _00C9:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    Warp 187, 0, 8, 15, 0
+    Warp MAP_HEADER_POKEMON_LEAGUE_HALL_OF_FAME, 0, 8, 15, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll

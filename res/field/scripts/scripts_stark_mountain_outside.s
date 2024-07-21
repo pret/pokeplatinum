@@ -44,7 +44,7 @@ _002F:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 6
     ScrCmd_065 7
-    WaitFanfare 0x603
+    WaitFanfare SEQ_SE_DP_KAIDAN2
     SetVar 0x40A0, 1
     ReleaseAll
     End

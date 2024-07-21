@@ -100,7 +100,7 @@ _013D:
 _0151:
     ScrCmd_1C0 0x800C, 0x1DF
     GoToIfEq 0x800C, 0, _06DE
-    CheckItem 0x1D3, 1, 0x800C
+    CheckItem ITEM_SECRET_KEY, 1, 0x800C
     GoToIfEq 0x800C, 0, _06DE
     ScrCmd_28B 3, 0x800C
     GoToIfEq 0x800C, 0, _06DE
@@ -166,7 +166,7 @@ _02B6:
 _0325:
     GetPlayerXZPos 0x8006, 0x8007
     ScrCmd_1BD 0x800C
-    Warp 0x23B, 0, 0x8006, 0x8007, 0x800C
+    Warp MAP_HEADER_ROTOMS_ROOM, 0, 0x8006, 0x8007, 0x800C
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End
@@ -312,11 +312,11 @@ _0541:
     ScrCmd_0D4 1, 0x800C
     Message 4
     PlayFanfare SEQ_SE_DP_KON
-    WaitFanfare 0x5E6
+    WaitFanfare SEQ_SE_DP_KON
     WaitTime 30, 0x800C
     Message 5
     WaitTime 32, 0x800C
-    PlaySound 0x483
+    PlaySound SEQ_FANFA1
     ScrCmd_0D4 1, 0x8001
     Message 6
     WaitSound
@@ -520,7 +520,7 @@ _081E:
     ClearFlag 0x2C0
     PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_064 6
-    WaitFanfare 0x603
+    WaitFanfare SEQ_SE_DP_KAIDAN2
     ApplyMovement 0xFF, _08AC
     ApplyMovement 6, _08D4
     WaitMovement
@@ -542,7 +542,7 @@ _081E:
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 6
-    WaitFanfare 0x603
+    WaitFanfare SEQ_SE_DP_KAIDAN2
     SetVar 0x411B, 2
     ReleaseAll
     End

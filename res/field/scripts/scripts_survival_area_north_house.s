@@ -80,11 +80,11 @@ _00FD:
     ScrCmd_0D4 1, 0x800C
     Message 13
     PlayFanfare SEQ_SE_DP_KON
-    WaitFanfare 0x5E6
+    WaitFanfare SEQ_SE_DP_KON
     WaitTime 30, 0x800C
     Message 14
     WaitTime 32, 0x800C
-    PlaySound 0x483
+    PlaySound SEQ_FANFA1
     ScrCmd_0D4 1, 0x8003
     Message 15
     WaitSound
@@ -112,7 +112,7 @@ _01F2:
     BufferPartyMonNickname 0, 0x8000
     ScrCmd_0D4 1, 0x8003
     Message 8
-    PlaySound 0x483
+    PlaySound SEQ_FANFA1
     WaitSound
     WaitTime 16, 0x800C
     GoTo _0213

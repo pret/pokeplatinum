@@ -25,7 +25,7 @@ _001A:
     GoToIfLt 0x800C, 0x1FE, _007B
     Message 1
     ScrCmd_231 0x8000, 24
-    PlaySound 0x483
+    PlaySound SEQ_FANFA1
     BufferPlayerName 1
     Message 2
     WaitSound
@@ -65,7 +65,7 @@ _00A9:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckItem 0x1B2, 1, 0x800C
+    CheckItem ITEM_SEAL_CASE, 1, 0x800C
     GoToIfEq 0x800C, 0, _00D9
     Message 7
     CallCommonScript 0x7E3

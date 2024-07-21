@@ -31,7 +31,7 @@ _0025:
 _0066:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    Warp 0x14A, 0, 7, 6, 0
+    Warp MAP_HEADER_BATTLE_TOWER_BATTLE_ROOM, 0, 7, 6, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll

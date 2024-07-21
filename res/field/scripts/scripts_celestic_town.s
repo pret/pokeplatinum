@@ -94,10 +94,10 @@ _0166:
     Message 5
     BufferPlayerName 0
     BufferItemName 1, 0x1B7
-    PlaySound 0x486
+    PlaySound SEQ_FANFA4
     Message 6
     WaitSound
-    RemoveItem 0x1B7, 1, 0x800C
+    RemoveItem ITEM_OLD_CHARM, 1, 0x800C
     SetFlag 166
     Message 7
     WaitABXPadPress

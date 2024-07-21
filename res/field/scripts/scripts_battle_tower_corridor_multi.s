@@ -43,7 +43,7 @@ _008D:
     Call _014F
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    Warp 0x14B, 0, 7, 5, 0
+    Warp MAP_HEADER_BATTLE_TOWER_MULTI_BATTLE_ROOM, 0, 7, 5, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll

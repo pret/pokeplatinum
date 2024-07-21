@@ -153,12 +153,12 @@ _018F:
     End
 
 _01CE:
-    AddItem 42, 0x8004, 0x800C
+    AddItem ITEM_LAVA_COOKIE, 0x8004, 0x800C
     PlayFanfare SEQ_SE_DP_REGI
     ScrCmd_334 35, 0x8005
     ScrCmd_1A3 0x8005
     ScrCmd_074
-    WaitFanfare 0x644
+    WaitFanfare SEQ_SE_DP_REGI
     CallIfLt 0x4042, 0x2710, _0700
     GoTo _0220
     End
@@ -197,7 +197,7 @@ _022A:
     End
 
 _025B:
-    CheckItem 0x1C1, 1, 0x800C
+    CheckItem ITEM_POFFIN_CASE, 1, 0x800C
     GoToIfEq 0x800C, 0, _0537
     Call _0697
     SetVar 0x8008, 0x800C

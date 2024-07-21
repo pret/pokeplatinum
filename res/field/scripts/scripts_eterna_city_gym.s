@@ -73,7 +73,7 @@ _0094:
     Message 1
     BufferPlayerName 0
     Message 2
-    PlaySound 0x489
+    PlaySound SEQ_BADGE
     WaitSound
     ScrCmd_15C 1
     ScrCmd_260 23

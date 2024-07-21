@@ -10,7 +10,7 @@
 _000E:
     ScrCmd_22D 2, 0x4000
     GoToIfEq 0x4000, 0, _0058
-    CheckItem 0x1C6, 1, 0x4000
+    CheckItem ITEM_MEMBER_CARD, 1, 0x4000
     GoToIfEq 0x4000, 0, _0058
     ScrCmd_28B 0, 0x4000
     GoToIfEq 0x4000, 0, _0058
@@ -35,7 +35,7 @@ _006B:
 _0079:
     LockAll
     PlayFanfare SEQ_SE_CONFIRM
-    WaitFanfare 0x5DC
+    WaitFanfare SEQ_SE_CONFIRM
     Message 0
     CloseMessage
     SetFlag 142
@@ -75,7 +75,7 @@ _00E3:
     FadeScreen 6, 6, 0, 0
     WaitFadeScreen
     WaitTime 120, 0x800C
-    Warp 43, 0, 8, 6, 1
+    Warp MAP_HEADER_CANALAVE_CITY_HARBOR_INN, 0, 8, 6, 1
     FadeScreen 6, 6, 1, 0
     WaitFadeScreen
     ReleaseAll

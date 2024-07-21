@@ -32,7 +32,7 @@ _005B:
     ScrCmd_177 0x800C
     GoToIfEq 0x800C, 6, _00F3
     Message 2
-    PlaySound 0x486
+    PlaySound SEQ_FANFA4
     BufferPlayerName 0
     Message 3
     WaitSound

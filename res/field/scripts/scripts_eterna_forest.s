@@ -46,7 +46,7 @@ _008E:
     CallIfUnset 139, _00D8
     CallIfSet 139, _00E0
     BufferPlayerName 0
-    PlaySound 0x481
+    PlaySound SEQ_GONIN
     Message 1
     WaitSound
     SetFlag 139
@@ -209,7 +209,7 @@ _02CB:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_162
     ScrCmd_065 0
-    WaitFanfare 0x603
+    WaitFanfare SEQ_SE_DP_KAIDAN2
     SetFlag 227
     SetVar 0x40B1, 2
     ReleaseAll

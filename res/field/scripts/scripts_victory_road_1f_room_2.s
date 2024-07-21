@@ -65,7 +65,7 @@ _00EC:
     CallIfUnset 223, _0134
     CallIfSet 223, _0139
     BufferPlayerName 0
-    PlaySound 0x481
+    PlaySound SEQ_GONIN
     Message 1
     WaitSound
     SetFlag 223

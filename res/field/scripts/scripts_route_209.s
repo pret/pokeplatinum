@@ -50,7 +50,7 @@ _00A4:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     GoToIfEq 0x408A, 1, _0102
-    CheckItem 111, 1, 0x800C
+    CheckItem ITEM_ODD_KEYSTONE, 1, 0x800C
     GoToIfEq 0x800C, 0, _01BC
     Message 2
     ScrCmd_03E 0x800C
@@ -63,7 +63,7 @@ _00E6:
     BufferPlayerName 0
     Message 3
     WaitABXPadPress
-    RemoveItem 111, 1, 0x800C
+    RemoveItem ITEM_ODD_KEYSTONE, 1, 0x800C
     SetVar 0x408A, 1
     CloseMessage
     ReleaseAll
@@ -79,7 +79,7 @@ _0102:
     GoTo _0185
 
 _014D:
-    WaitFanfare 0x5DC
+    WaitFanfare SEQ_SE_CONFIRM
     ScrCmd_04C 0x1BA, 0
     Message 9
     ScrCmd_04D

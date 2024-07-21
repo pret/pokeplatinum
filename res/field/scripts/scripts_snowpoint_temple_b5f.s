@@ -19,7 +19,7 @@ _0017:
 _0025:
     LockAll
     PlayFanfare SEQ_SE_CONFIRM
-    WaitFanfare 0x5DC
+    WaitFanfare SEQ_SE_CONFIRM
     GoToIfSet 0x11A, _0081
     ScrCmd_26B 0x800C
     GoToIfEq 0x800C, 0, _0073

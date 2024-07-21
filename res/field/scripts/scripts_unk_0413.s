@@ -82,7 +82,7 @@ _0146:
 _0158:
     ScrCmd_1BD 0x800C
     GoToIfNe 0x800C, 0, _0186
-    CheckItem 0x1C0, 1, 0x800C
+    CheckItem ITEM_SPRAYDUCK, 1, 0x800C
     GoToIfEq 0x800C, 0, _0186
     SetVar 0x800C, 1
     Return
@@ -92,13 +92,13 @@ _0186:
     Return
 
 _018E:
-    CheckItem 95, 1, 0x800C
+    CheckItem ITEM_GROWTH_MULCH, 1, 0x800C
     GoToIfEq 0x800C, 1, _01EA
-    CheckItem 96, 1, 0x800C
+    CheckItem ITEM_DAMP_MULCH, 1, 0x800C
     GoToIfEq 0x800C, 1, _01EA
-    CheckItem 97, 1, 0x800C
+    CheckItem ITEM_STABLE_MULCH, 1, 0x800C
     GoToIfEq 0x800C, 1, _01EA
-    CheckItem 98, 1, 0x800C
+    CheckItem ITEM_GOOEY_MULCH, 1, 0x800C
     GoToIfEq 0x800C, 1, _01EA
     SetVar 0x800C, 0
     Return
@@ -143,7 +143,7 @@ _0289:
     ScrCmd_33D 0, 0x8000
     Message 25
 _0291:
-    PlaySound 0x48F
+    PlaySound SEQ_KINOMI
     WaitSound
     ScrCmd_185
     BufferPlayerName 0

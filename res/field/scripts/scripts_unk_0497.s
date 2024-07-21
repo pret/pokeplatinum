@@ -39,7 +39,7 @@ _0062:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    Warp 125, 0, 5, 2, 1
+    Warp MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F, 0, 5, 2, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     SetVar 0x40DA, 2
@@ -62,7 +62,7 @@ _00AF:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    Warp 125, 0, 5, 2, 1
+    Warp MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F, 0, 5, 2, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     SetVar 0x40DA, 2
@@ -78,7 +78,7 @@ _00ED:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    Warp 125, 0, 5, 2, 1
+    Warp MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F, 0, 5, 2, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     SetVar 0x40DA, 2
@@ -94,7 +94,7 @@ _012B:
     GoToIfNe 0x800C, 0, _0174
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    Warp 125, 0, 5, 2, 1
+    Warp MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F, 0, 5, 2, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     SetVar 0x40DA, 2

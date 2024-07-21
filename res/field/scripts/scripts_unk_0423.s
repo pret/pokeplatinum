@@ -409,7 +409,7 @@ _0526:
     SetVar 0x4003, 0
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    Warp 0x24A, 0, 20, 11, 0
+    Warp MAP_HEADER_WIFI_PLAZA_ENTRANCE, 0, 20, 11, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End

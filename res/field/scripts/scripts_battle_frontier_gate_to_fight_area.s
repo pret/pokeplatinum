@@ -31,7 +31,7 @@ _0038:
     Call _02F5
     Message 1
     BufferPlayerName 0
-    PlaySound 0x486
+    PlaySound SEQ_FANFA4
     Message 2
     WaitSound
     Message 3

@@ -132,7 +132,7 @@ _017C:
     ScrCmd_15A
     BufferPlayerName 0
     Message 8
-    PlaySound 0x486
+    PlaySound SEQ_FANFA4
     WaitSound
     Message 9
     WaitABXPadPress
@@ -297,7 +297,7 @@ _03CA:
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
     ClearFlag 0x1F1
     ScrCmd_064 1
-    WaitFanfare 0x605
+    WaitFanfare SEQ_SE_DP_DOOR_OPEN
     ApplyMovement 0, _07B4
     ApplyMovement 0xFF, _0864
     WaitMovement
@@ -469,7 +469,7 @@ _0688:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    PlaySound 0x48E
+    PlaySound SEQ_ASA
     WaitSound
     ScrCmd_14E
     FadeScreen 6, 1, 1, 0

@@ -100,7 +100,7 @@ _0135:
     Return
 
 _0146:
-    WaitFanfare 0x662
+    WaitFanfare SEQ_SE_DP_FW367
     SetFlag 0xAA5
     SetVar 0x400A, 1
     ApplyMovement 1, _02DC

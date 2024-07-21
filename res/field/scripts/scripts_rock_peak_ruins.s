@@ -32,7 +32,7 @@ _003D:
     GoToIfEq 0x800C, 0, _011A
     GoToIfEq 0x406B, 0x10E, _00AE
     GoToIfLt 0x406B, 0x104, _011A
-    WaitFanfare 0x5DC
+    WaitFanfare SEQ_SE_CONFIRM
     ScrCmd_29F 1
     SetVar 0x406B, 0x10E
     Message 1
@@ -140,7 +140,7 @@ _020D:
 
 _020F:
     GoToIfUnset 0x964, _020D
-    WaitFanfare 0x5DC
+    WaitFanfare SEQ_SE_CONFIRM
     ScrCmd_29F 1
     SetVar 0x406B, 0x10E
     Message 1

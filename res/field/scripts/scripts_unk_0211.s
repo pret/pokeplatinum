@@ -265,19 +265,19 @@ _0356:
     End
 
 _03CC:
-    PlaySound 0x486
+    PlaySound SEQ_FANFA4
     Return
 
 _03D2:
-    PlaySound 0x48B
+    PlaySound SEQ_WAZA
     Return
 
 _03D8:
-    PlaySound 0x485
+    PlaySound SEQ_FANFA3
     Return
 
 _03DE:
-    PlaySound 0x488
+    PlaySound SEQ_FANFA2
     Return
 
     .byte 21
@@ -397,7 +397,7 @@ _057D:
     BufferPlayerName 0
     Message 16
     PlayFanfare SEQ_SE_DP_SAVE
-    WaitFanfare 0x61B
+    WaitFanfare SEQ_SE_DP_SAVE
     WaitABPressTime 30
     ScrCmd_2C2
     Return
@@ -437,7 +437,7 @@ _05D1:
 _05EA:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    CheckItem 94, 1, 0x800C
+    CheckItem ITEM_HONEY, 1, 0x800C
     GoToIfNe 0x800C, 0, _0632
     ScrCmd_128 0x800C
     GoToIfEq 0x800C, 1, _065F
@@ -503,7 +503,7 @@ _067E:
     .byte 0
 
 _06A2:
-    CheckItem 94, 1, 0x800C
+    CheckItem ITEM_HONEY, 1, 0x800C
     GoToIfNe 0x800C, 0, _06BB
     ReleaseAll
     End
@@ -517,7 +517,7 @@ _06BB:
     End
 
 _06D5:
-    RemoveItem 94, 1, 0x800C
+    RemoveItem ITEM_HONEY, 1, 0x800C
     ScrCmd_260 1
     ScrCmd_127
     WaitTime 10, 0x800C
@@ -548,7 +548,7 @@ _0719:
 _0723:
     BufferPlayerName 0
     BufferPoketchAppName 1, 0x8004
-    PlaySound 0x48A
+    PlaySound SEQ_POCKETCH
     Message 24
     WaitSound
     Message 26
@@ -697,7 +697,7 @@ _0910:
     End
 
 _091D:
-    PlaySound 0x486
+    PlaySound SEQ_FANFA4
     ScrCmd_083 0x8004, 0x8005, 0x800C
     ScrCmd_33E 0, 0x8004
     Message 108
@@ -711,7 +711,7 @@ _093A:
     End
 
 _0944:
-    PlaySound 0x486
+    PlaySound SEQ_FANFA4
     ScrCmd_087 0x8004, 0x8005, 0x800C
     ScrCmd_0E0 0, 0x8004
     Message 80
@@ -724,7 +724,7 @@ _095C:
     End
 
 _0966:
-    PlaySound 0x486
+    PlaySound SEQ_FANFA4
     ScrCmd_08F 0x8004, 0x8005, 0x800C
     ScrCmd_0E1 0, 0x8004
     BufferNumber 1, 0x8005
@@ -746,7 +746,7 @@ _0992:
     End
 
 _099F:
-    PlaySound 0x48C
+    PlaySound SEQ_ACCE
     ScrCmd_1D2 0x8004, 0x8005
     ScrCmd_261 0, 0x8004
     Message 25
@@ -769,7 +769,7 @@ _09CC:
     End
 
 _09D9:
-    PlaySound 0x486
+    PlaySound SEQ_FANFA4
     ScrCmd_1D5 0x8004
     ScrCmd_273 0, 0x8004
     Message 25
@@ -1174,7 +1174,7 @@ _0FCA:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     CloseMessage
-    PlaySound 0x48E
+    PlaySound SEQ_ASA
     WaitSound
     ScrCmd_14E
     FadeScreen 6, 1, 1, 0
@@ -1421,7 +1421,7 @@ _12E0:
     End
 
 _12F3:
-    CheckItem 0x1C2, 1, 0x800C
+    CheckItem ITEM_BICYCLE, 1, 0x800C
     GoToIfEq 0x800C, 0, _135F
     LockAll
     PlayFanfare SEQ_SE_CONFIRM
@@ -1578,12 +1578,12 @@ _14AC:
     Message 123
     CloseMessage
     WaitTime 30, 0x800C
-    PlayMusic 0x447
+    PlayMusic SEQ_FUE
     WaitTime 0x21C, 0x800C
     GetPlayerXZPos 0x8004, 0x8005
     FadeScreen 6, 6, 0, 0x7FFF
     WaitFadeScreen
-    Warp 0x1FE, 0, 0x8004, 0x8005, 0
+    Warp MAP_HEADER_HALL_OF_ORIGIN, 0, 0x8004, 0x8005, 0
     FadeScreen 6, 6, 1, 0x7FFF
     WaitFadeScreen
     Message 124

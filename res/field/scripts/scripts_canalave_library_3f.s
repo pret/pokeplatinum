@@ -129,7 +129,7 @@ _0184:
     WaitMovement
     BufferPlayerName 0
     Message 18
-    WaitFanfare 0x5DC
+    WaitFanfare SEQ_SE_CONFIRM
     MessageInstant 19
     ScrCmd_29F 1
     Message 20

@@ -103,7 +103,7 @@ _012C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckItem 0x1B8, 1, 0x800C
+    CheckItem ITEM_GALACTIC_KEY, 1, 0x800C
     GoToIfEq 0x800C, 1, _0154
     Message 5
     WaitABXPadPress
@@ -122,7 +122,7 @@ _0177:
     BufferPlayerName 0
     Message 7
     WaitABXPadPress
-    WaitFanfare 0x5DC
+    WaitFanfare SEQ_SE_CONFIRM
     PlayFanfare SEQ_SE_DP_DOOR10
     ApplyMovement 1, _01B4
     ApplyMovement 2, _01BC

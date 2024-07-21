@@ -26,7 +26,7 @@ _0041:
     LockAll
     SetVar 0x40F9, 1
     Message 0
-    PlaySound 0x482
+    PlaySound SEQ_TV_END
     Message 1
     WaitSound
     CloseMessage
@@ -136,7 +136,7 @@ _00E0:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 0
     CallCommonScript 0x7FB
-    WaitFanfare 0x603
+    WaitFanfare SEQ_SE_DP_KAIDAN2
     SetFlag 0x173
     SetVar 0x40A5, 1
     ReleaseAll

@@ -48,7 +48,7 @@ _0083:
 _009F:
     BufferPlayerName 0
     Message 5
-    PlaySound 0x486
+    PlaySound SEQ_FANFA4
     WaitSound
     WaitABPress
     Message 6
@@ -287,7 +287,7 @@ _03FE:
     ScrCmd_1A3 0x8004
     ScrCmd_074
     PlayFanfare SEQ_SE_DP_REGI
-    WaitFanfare 0x644
+    WaitFanfare SEQ_SE_DP_REGI
     Message 29
     ScrCmd_04C 0x8002, 0
     BufferPlayerName 1

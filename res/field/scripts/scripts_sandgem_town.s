@@ -214,7 +214,7 @@ _035E:
     SetVar 0x4071, 1
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    Warp 0x1A6, 0, 7, 15, 0
+    Warp MAP_HEADER_SANDGEM_TOWN_POKEMON_RESEARCH_LAB, 0, 7, 15, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End

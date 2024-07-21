@@ -28,7 +28,7 @@ _002E:
     ScrCmd_328 0
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    Warp 0x10E, 0, 11, 15, 1
+    Warp MAP_HEADER_TURNBACK_CAVE_GIRATINA_ROOM, 0, 11, 15, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End

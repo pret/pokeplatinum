@@ -23,7 +23,7 @@ _003B:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckItem 0x1CF, 1, 0x800C
+    CheckItem ITEM_STORAGE_KEY, 1, 0x800C
     GoToIfEq 0x800C, 1, _0063
     Message 7
     WaitABXPadPress
@@ -40,11 +40,11 @@ _0063:
 
 _0086:
     SetFlag 0x10E
-    RemoveItem 0x1CF, 1, 0x800C
+    RemoveItem ITEM_STORAGE_KEY, 1, 0x800C
     BufferPlayerName 0
     Message 9
     WaitABXPadPress
-    WaitFanfare 0x5DC
+    WaitFanfare SEQ_SE_CONFIRM
     PlayFanfare SEQ_SE_DP_DOOR10
     ApplyMovement 2, _00C8
     ApplyMovement 3, _00D0
@@ -157,7 +157,7 @@ _0197:
     Message 5
     CloseMessage
     SetFlag 0x10E
-    WaitFanfare 0x5DC
+    WaitFanfare SEQ_SE_CONFIRM
     PlayFanfare SEQ_SE_DP_DOOR10
     ApplyMovement 2, _00C8
     ApplyMovement 3, _00D0

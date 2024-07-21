@@ -70,7 +70,7 @@ _0102:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    Warp 0x1FD, 0, 68, 116, 0
+    Warp MAP_HEADER_GREAT_MARSH_6, 0, 68, 116, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End
@@ -179,7 +179,7 @@ _024E:
     WaitMovement
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    Warp 0x1FD, 0, 68, 116, 0
+    Warp MAP_HEADER_GREAT_MARSH_6, 0, 68, 116, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End

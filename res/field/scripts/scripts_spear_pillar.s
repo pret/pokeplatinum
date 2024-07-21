@@ -34,7 +34,7 @@ _0062:
     GoToIfEq 0x4000, 0, _00C5
     ScrCmd_22D 2, 0x4000
     GoToIfEq 0x4000, 0, _00C5
-    CheckItem 0x1C7, 1, 0x4000
+    CheckItem ITEM_AZURE_FLUTE, 1, 0x4000
     GoToIfEq 0x4000, 0, _00C5
     ScrCmd_28B 2, 0x4000
     GoToIfEq 0x4000, 0, _00C5
@@ -222,7 +222,7 @@ _0249:
     BufferRivalName 0
     BufferPlayerName 1
     Message 10
-    PlaySound 0x48E
+    PlaySound SEQ_ASA
     WaitSound
     ScrCmd_14E
     Message 11
@@ -459,7 +459,7 @@ _0508:
     WaitTime 10, 0x800C
     PlayFanfare SEQ_SE_PL_KUSARI
     WaitTime 20, 0x800C
-    PlayMusic 0x478
+    PlayMusic SEQ_THE_EVENT02
     ScrCmd_05D
     GoTo _0567
     End
@@ -479,7 +479,7 @@ _0567:
     ScrCmd_31A 0x1E3
     ScrCmd_31A 0x1E4
     ScrCmd_067
-    Warp 221, 0, 30, 30, 0
+    Warp MAP_HEADER_SPEAR_PILLAR_DISTORTED, 0, 30, 30, 0
     End
 
     .balign 4, 0

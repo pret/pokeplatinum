@@ -15,7 +15,7 @@ _0012:
     GoToIfEq 0x4000, 0, _0075
     ScrCmd_22D 2, 0x4000
     GoToIfEq 0x4000, 0, _0075
-    CheckItem 0x1C7, 1, 0x4000
+    CheckItem ITEM_AZURE_FLUTE, 1, 0x4000
     GoToIfEq 0x4000, 0, _0075
     ScrCmd_28B 2, 0x4000
     GoToIfEq 0x4000, 0, _0075

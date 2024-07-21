@@ -26,7 +26,7 @@ _0029:
 _0037:
     LockAll
     PlayFanfare SEQ_SE_CONFIRM
-    WaitFanfare 0x5DC
+    WaitFanfare SEQ_SE_CONFIRM
     ScrCmd_04C 0x1E7, 0
     Message 0
     CloseMessage
@@ -115,7 +115,7 @@ _0149:
     ScrCmd_328 1
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    Warp 0x247, 0, 116, 75, 1
+    Warp MAP_HEADER_DISTORTION_WORLD_TURNBACK_CAVE_ROOM, 0, 116, 75, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End

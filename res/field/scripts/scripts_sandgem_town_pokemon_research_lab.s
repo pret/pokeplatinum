@@ -227,7 +227,7 @@ _0330:
     WaitMovement
     WaitTime 35, 0x800C
     SetFlag 0x993
-    PlayMusic 0x44A
+    PlayMusic SEQ_OPENING2
     Message 9
     Message 10
     ScrCmd_03E 0x800C
@@ -249,7 +249,7 @@ _0394:
     SetFlag 144
     BufferPlayerName 0
     Message 13
-    PlaySound 0x486
+    PlaySound SEQ_FANFA4
     WaitSound
     BufferPlayerName 0
     Message 14
@@ -577,7 +577,7 @@ _0677:
     CallIfGe 0x4081, 2, _079C
     ScrCmd_22D 1, 0x800C
     BufferPlayerName 0
-    PlaySound 0x486
+    PlaySound SEQ_FANFA4
     Message 36
     WaitSound
     Message 37

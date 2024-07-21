@@ -103,17 +103,17 @@ _0145:
 _0158:
     GoToIfUnset 0x133, _01EA
     GoToIfUnset 0x11F, _01D9
-    CheckItem 0x1C5, 1, 0x800C
+    CheckItem ITEM_LUNAR_WING, 1, 0x800C
     GoToIfEq 0x800C, 0, _01D9
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     SetFlag 0x12C
     SetVar 0x4106, 3
-    RemoveItem 0x1C5, 1, 0x800C
+    RemoveItem ITEM_LUNAR_WING, 1, 0x800C
     BufferPlayerName 0
     Message 2
     Message 3
-    PlaySound 0x48E
+    PlaySound SEQ_ASA
     WaitSound
     CloseMessage
     WaitTime 15, 0x800C
@@ -145,7 +145,7 @@ _01EA:
 
 _01FC:
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    WaitFanfare 0x603
+    WaitFanfare SEQ_SE_DP_KAIDAN2
     ClearFlag 0x25B
     ScrCmd_064 2
     WaitTime 5, 0x800C
@@ -180,7 +180,7 @@ _026E:
     SetFlag 0x25B
     ScrCmd_065 2
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    WaitFanfare 0x603
+    WaitFanfare SEQ_SE_DP_KAIDAN2
     Return
 
     .balign 4, 0

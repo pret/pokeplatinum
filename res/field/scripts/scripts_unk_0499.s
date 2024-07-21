@@ -125,7 +125,7 @@ _01D3:
     BufferNumber 1, 0x4001
     ScrCmd_07D 0x4000, 0x4001, 0x800C
     GoToIfEq 0x800C, 0, _0294
-    PlaySound 0x486
+    PlaySound SEQ_FANFA4
     Message 13
     AddItem 0x4000, 0x4001, 0x800C
     WaitSound
@@ -142,7 +142,7 @@ _021D:
     BufferNumber 1, 0x4003
     ScrCmd_07D 0x4002, 0x4003, 0x800C
     GoToIfEq 0x800C, 0, _0294
-    PlaySound 0x486
+    PlaySound SEQ_FANFA4
     Message 13
     AddItem 0x4002, 0x4003, 0x800C
     WaitSound
@@ -159,7 +159,7 @@ _0267:
     BufferNumber 1, 0x4005
     ScrCmd_07D 0x4004, 0x4005, 0x800C
     GoToIfEq 0x800C, 0, _0294
-    PlaySound 0x486
+    PlaySound SEQ_FANFA4
     Message 13
     AddItem 0x4004, 0x4005, 0x800C
     WaitSound

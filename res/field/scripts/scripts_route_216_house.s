@@ -21,7 +21,7 @@ _0039:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    PlaySound 0x48E
+    PlaySound SEQ_ASA
     WaitSound
     ScrCmd_14E
     FadeScreen 6, 1, 1, 0
@@ -64,7 +64,7 @@ _00AD:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    PlaySound 0x48E
+    PlaySound SEQ_ASA
     WaitSound
     ScrCmd_14E
     FadeScreen 6, 1, 1, 0

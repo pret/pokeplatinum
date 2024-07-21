@@ -31,7 +31,7 @@ _003A:
     ScrCmd_328 0
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    Warp 221, 0, 31, 33, 1
+    Warp MAP_HEADER_SPEAR_PILLAR_DISTORTED, 0, 31, 33, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End

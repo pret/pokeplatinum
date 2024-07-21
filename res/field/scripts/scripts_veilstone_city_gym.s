@@ -30,7 +30,7 @@ _0022:
     Message 1
     BufferPlayerName 0
     Message 2
-    PlaySound 0x489
+    PlaySound SEQ_BADGE
     WaitSound
     ScrCmd_15C 2
     ScrCmd_260 23

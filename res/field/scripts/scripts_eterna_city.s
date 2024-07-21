@@ -34,12 +34,12 @@
 
 _0072:
     CallIfEq 0x407A, 4, _00B5
-    CheckItem 0x1C2, 1, 0x4000
+    CheckItem ITEM_BICYCLE, 1, 0x4000
     GoToIfEq 0x4000, 1, _0096
     End
 
 _0096:
-    CheckItem 0x1AC, 1, 0x4000
+    CheckItem ITEM_EXPLORER_KIT, 1, 0x4000
     GoToIfEq 0x4000, 1, _00AD
     End
 
@@ -1173,7 +1173,7 @@ _0DF6:
     End
 
 _0E4B:
-    PlaySound 0x486
+    PlaySound SEQ_FANFA4
     WaitSound
     Message 10
     Message 16

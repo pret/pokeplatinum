@@ -90,7 +90,7 @@ _0168:
     GoToIfUnset 0x964, _01CA
     ScrCmd_22D 2, 0x4000
     GoToIfEq 0x4000, 0, _01CA
-    CheckItem 0x1C6, 1, 0x4000
+    CheckItem ITEM_MEMBER_CARD, 1, 0x4000
     GoToIfEq 0x4000, 0, _01CA
     ScrCmd_28B 0, 0x4000
     GoToIfEq 0x4000, 0, _01CA
@@ -663,7 +663,7 @@ _08F0:
     EndMovement
 
 _0900:
-    CheckItem 0x1C5, 1, 0x800C
+    CheckItem ITEM_LUNAR_WING, 1, 0x800C
     GoToIfEq 0x800C, 1, _094E
     Message 31
     ScrCmd_03E 0x800C
@@ -725,7 +725,7 @@ _09BC:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckItem 0x1A7, 1, 0x800C
+    CheckItem ITEM_HM04, 1, 0x800C
     GoToIfEq 0x800C, 1, _09FA
     ScrCmd_09A 0x800C, 70
     GoToIfNe 0x800C, 6, _09FA

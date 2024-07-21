@@ -23,11 +23,11 @@ _0032:
     BufferPlayerName 0
     BufferRivalName 1
     Message 0
-    PlaySound 0x486
+    PlaySound SEQ_FANFA4
     BufferPlayerName 0
     Message 1
     WaitSound
-    RemoveItem 0x1CB, 1, 0x800C
+    RemoveItem ITEM_PARCEL, 1, 0x800C
     BufferPlayerName 0
     BufferRivalName 1
     Message 2
@@ -68,7 +68,7 @@ _00D8:
 _00F2:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 1
-    WaitFanfare 0x603
+    WaitFanfare SEQ_SE_DP_KAIDAN2
     SetVar 0x40E7, 1
     SetFlag 241
     ClearFlag 0x1F6

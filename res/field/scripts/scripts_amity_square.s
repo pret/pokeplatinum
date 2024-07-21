@@ -648,7 +648,7 @@ _08EB:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    WaitFanfare 0x5DC
+    WaitFanfare SEQ_SE_CONFIRM
     ScrCmd_04C 0x1A9, 0
     Message 29
     ScrCmd_04D
@@ -691,7 +691,7 @@ _0943:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    WaitFanfare 0x5DC
+    WaitFanfare SEQ_SE_CONFIRM
     ScrCmd_04C 25, 0
     Message 33
     ScrCmd_04D
@@ -714,7 +714,7 @@ _0975:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    WaitFanfare 0x5DC
+    WaitFanfare SEQ_SE_CONFIRM
     ScrCmd_04C 35, 0
     Message 35
     ScrCmd_04D
@@ -1016,7 +1016,7 @@ _10E1:
     GoToIfEq 0x800C, 0, _1172
     BufferPlayerName 0
     ScrCmd_33D 1, 0x8004
-    PlaySound 0x486
+    PlaySound SEQ_FANFA4
     Message 40
     WaitSound
     AddItem 0x8004, 0x8005, 0x800C

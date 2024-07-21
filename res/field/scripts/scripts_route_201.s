@@ -118,7 +118,7 @@ _016F:
     ApplyMovement 0xFF, _0730
     ApplyMovement 2, _0730
     WaitMovement
-    PlayMusic 0x44A
+    PlayMusic SEQ_OPENING2
     ClearFlag 0x178
     ScrCmd_064 5
     ScrCmd_062 5
@@ -404,7 +404,7 @@ _0618:
     FadeScreen 6, 3, 0, 0
     WaitFadeScreen
     ScrCmd_14E
-    Warp 0x19E, 0, 2, 6, 0
+    Warp MAP_HEADER_TWINLEAF_TOWN_PLAYER_HOUSE_1F, 0, 2, 6, 0
     FadeScreen 6, 3, 1, 0
     WaitFadeScreen
     ReleaseAll
@@ -1082,7 +1082,7 @@ _0CF1:
     WaitTime 30, 0x800C
     FadeScreen 6, 3, 0, 0
     WaitFadeScreen
-    Warp 0x19E, 0, 2, 6, 0
+    Warp MAP_HEADER_TWINLEAF_TOWN_PLAYER_HOUSE_1F, 0, 2, 6, 0
     FadeScreen 6, 3, 1, 0
     WaitFadeScreen
     ReleaseAll

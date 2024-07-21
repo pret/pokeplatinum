@@ -57,7 +57,7 @@ _00F0:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    Warp 0x137, 0, 46, 54, 0
+    Warp MAP_HEADER_LAKE_VERITY_LOW_WATER, 0, 46, 54, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End

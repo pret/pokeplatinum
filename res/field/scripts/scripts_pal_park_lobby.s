@@ -160,7 +160,7 @@ _0259:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    Warp 251, 0, 24, 47, 0
+    Warp MAP_HEADER_PAL_PARK, 0, 24, 47, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll
@@ -405,7 +405,7 @@ _04F6:
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 1
-    WaitFanfare 0x603
+    WaitFanfare SEQ_SE_DP_KAIDAN2
     SetVar 0x40C6, 1
     ReleaseAll
     End
