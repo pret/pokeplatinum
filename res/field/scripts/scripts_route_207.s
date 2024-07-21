@@ -91,7 +91,7 @@ _012F:
 _0145:
     SetVar 0x8004, 6
     CallCommonScript 0x7D9
-    BufferPoketchAppName 1, 6
+    BufferPoketchAppName 1, POKETCH_APPID_DOWSINGMACHINE
     Return
 
 _0156:

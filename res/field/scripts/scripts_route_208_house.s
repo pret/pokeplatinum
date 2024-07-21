@@ -74,7 +74,7 @@ _00E2:
     End
 
 _00ED:
-    BufferPoketchAppName 0, 7
+    BufferPoketchAppName 0, POKETCH_APPID_BERRYSEARCHER
     Message 5
     WaitABXPadPress
     CloseMessage

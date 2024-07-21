@@ -473,7 +473,7 @@ _05FB:
     End
 
 _062C:
-    BufferPoketchAppName 0, 20
+    BufferPoketchAppName 0, POKETCH_APPID_KITCHENTIMER
     Message 12
     WaitABXPadPress
     CloseMessage
@@ -481,7 +481,7 @@ _062C:
     End
 
 _063C:
-    BufferPoketchAppName 0, 21
+    BufferPoketchAppName 0, POKETCH_APPID_COLORCHANGER
     Message 15
     WaitABXPadPress
     CloseMessage
