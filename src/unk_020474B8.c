@@ -48,9 +48,9 @@ BOOL ScrCmd_BufferPlayerName(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 strbufIndex = ScriptContext_ReadByte(ctx);
+    u8 templateArg = ScriptContext_ReadByte(ctx);
 
-    StringTemplate_SetPlayerName(*strTemplate, strbufIndex, SaveData_GetTrainerInfo(FieldSystem_SaveData(fieldSystem)));
+    StringTemplate_SetPlayerName(*strTemplate, templateArg, SaveData_GetTrainerInfo(FieldSystem_SaveData(fieldSystem)));
     return FALSE;
 }
 
@@ -58,9 +58,9 @@ BOOL ScrCmd_BufferRivalName(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 strbufIndex = ScriptContext_ReadByte(ctx);
+    u8 templateArg = ScriptContext_ReadByte(ctx);
 
-    StringTemplate_SetRivalName(*strTemplate, strbufIndex, fieldSystem->saveData);
+    StringTemplate_SetRivalName(*strTemplate, templateArg, fieldSystem->saveData);
     return FALSE;
 }
 
@@ -68,9 +68,9 @@ BOOL ScrCmd_BufferCounterpartName(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 strbufIndex = ScriptContext_ReadByte(ctx);
+    u8 templateArg = ScriptContext_ReadByte(ctx);
 
-    StringTemplate_SetCounterpartName(*strTemplate, strbufIndex, fieldSystem->saveData);
+    StringTemplate_SetCounterpartName(*strTemplate, templateArg, fieldSystem->saveData);
     return FALSE;
 }
 
@@ -78,11 +78,11 @@ BOOL ScrCmd_BufferPartyMonSpecies(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 strbufIndex = ScriptContext_ReadByte(ctx);
+    u8 templateArg = ScriptContext_ReadByte(ctx);
     u16 partySlot = ScriptContext_GetVar(ctx);
 
     Pokemon *mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), partySlot);
-    StringTemplate_SetSpeciesName(*strTemplate, strbufIndex, (BoxPokemon *)mon);
+    StringTemplate_SetSpeciesName(*strTemplate, templateArg, (BoxPokemon *)mon);
     return FALSE;
 }
 
@@ -101,10 +101,10 @@ BOOL ScrCmd_BufferItemName(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 strbufIndex = ScriptContext_ReadByte(ctx);
+    u8 templateArg = ScriptContext_ReadByte(ctx);
     u16 item = ScriptContext_GetVar(ctx);
 
-    StringTemplate_SetItemName(*strTemplate, strbufIndex, item);
+    StringTemplate_SetItemName(*strTemplate, templateArg, item);
     return FALSE;
 }
 
@@ -112,10 +112,10 @@ BOOL ScrCmd_BufferPocketName(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 strbufIndex = ScriptContext_ReadByte(ctx);
+    u8 templateArg = ScriptContext_ReadByte(ctx);
     u16 pocket = ScriptContext_GetVar(ctx);
 
-    StringTemplate_SetBagPocketName(*strTemplate, strbufIndex, pocket);
+    StringTemplate_SetBagPocketName(*strTemplate, templateArg, pocket);
     return FALSE;
 }
 
@@ -148,10 +148,10 @@ BOOL ScrCmd_BufferNumber(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 strbufIndex = ScriptContext_ReadByte(ctx);
+    u8 templateArg = ScriptContext_ReadByte(ctx);
     u16 number = ScriptContext_GetVar(ctx);
 
-    StringTemplate_SetNumber(*strTemplate, strbufIndex, number, sub_0205DFC4(number), PADDING_MODE_SPACES, CHARSET_MODE_EN);
+    StringTemplate_SetNumber(*strTemplate, templateArg, number, sub_0205DFC4(number), PADDING_MODE_SPACES, CHARSET_MODE_EN);
     return FALSE;
 }
 
@@ -193,11 +193,11 @@ BOOL ScrCmd_BufferPartyMonNickname(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 strbufIndex = ScriptContext_ReadByte(ctx);
+    u8 templateArg = ScriptContext_ReadByte(ctx);
     u16 partySlot = ScriptContext_GetVar(ctx);
 
     Pokemon *mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), partySlot);
-    StringTemplate_SetNickname(*strTemplate, strbufIndex, (BoxPokemon *)mon);
+    StringTemplate_SetNickname(*strTemplate, templateArg, (BoxPokemon *)mon);
 
     return FALSE;
 }
@@ -224,10 +224,10 @@ BOOL ScrCmd_BufferPoketchAppName(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 strbufIndex = ScriptContext_ReadByte(ctx);
+    u8 templateArg = ScriptContext_ReadByte(ctx);
     u16 appID = ScriptContext_GetVar(ctx);
 
-    StringTemplate_SetPoketchAppName(*strTemplate, strbufIndex, appID);
+    StringTemplate_SetPoketchAppName(*strTemplate, templateArg, appID);
     return FALSE;
 }
 

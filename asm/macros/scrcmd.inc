@@ -1120,36 +1120,36 @@
     .short 204
     .endm
 
-    .macro BufferPlayerName strbufIndex
+    .macro BufferPlayerName templateArg
     .short 205
-    .byte \strbufIndex
+    .byte \templateArg
     .endm
 
-    .macro BufferRivalName strbufIndex
+    .macro BufferRivalName templateArg
     .short 206
-    .byte \strbufIndex
+    .byte \templateArg
     .endm
 
-    .macro BufferCounterpartName strbufIndex
+    .macro BufferCounterpartName templateArg
     .short 207
-    .byte \strbufIndex
+    .byte \templateArg
     .endm
 
-    .macro BufferPartyMonSpecies strbufIndex, partySlot
+    .macro BufferPartyMonSpecies templateArg, partySlot
     .short 208
-    .byte \strbufIndex
+    .byte \templateArg
     .short \partySlot
     .endm
 
-    .macro BufferItemName strbufIndex, item
+    .macro BufferItemName templateArg, item
     .short 209
-    .byte \strbufIndex
+    .byte \templateArg
     .short \item
     .endm
 
-    .macro BufferPocketName strbufIndex, pocket
+    .macro BufferPocketName templateArg, pocket
     .short 210
-    .byte \strbufIndex
+    .byte \templateArg
     .short \pocket
     .endm
 
@@ -1165,21 +1165,21 @@
     .short \arg1
     .endm
 
-    .macro BufferNumber strbufIndex, number
+    .macro BufferNumber templateArg, number
     .short 213
-    .byte \strbufIndex
+    .byte \templateArg
     .short \number
     .endm
 
-    .macro BufferPartyMonNickname strbufIndex, partySlot
+    .macro BufferPartyMonNickname templateArg, partySlot
     .short 214
-    .byte \strbufIndex
+    .byte \templateArg
     .short \partySlot
     .endm
 
-    .macro BufferPoketchAppName strbufIndex, appID
+    .macro BufferPoketchAppName templateArg, appID
     .short 215
-    .byte \strbufIndex
+    .byte \templateArg
     .short \appID
     .endm
 
