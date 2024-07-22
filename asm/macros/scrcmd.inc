@@ -275,7 +275,7 @@
     .short 50
     .endm
 
-    ; Opens a message box window without printing anything
+    // Opens a message box window without printing anything
     .macro OpenMessage
     .short 51
     .endm
@@ -656,7 +656,7 @@
     .short \arg0
     .endm
 
-    ; If the player has no space left in the bag, resultVar will be set to FALSE 
+    // If the player has no space left in the bag, resultVar will be set to FALSE 
     .macro AddItem item, count, resultVar
     .short 123
     .short \item
@@ -664,7 +664,7 @@
     .short \resultVar
     .endm
 
-    ; resultVar will be set to TRUE if the player had at least 'count' items of the specified type in their bag
+    // resultVar will be set to TRUE if the player had at least 'count' items of the specified type in their bag
     .macro RemoveItem item, count, resultVar
     .short 124
     .short \item
@@ -679,7 +679,7 @@
     .short \arg2
     .endm
 
-    ; resultVar will be set to TRUE if the player has at least 'count' items of the specified type in their bag
+    // resultVar will be set to TRUE if the player has at least 'count' items of the specified type in their bag
     .macro CheckItem item, count, resultVar
     .short 126
     .short \item
@@ -1091,8 +1091,8 @@
     .short \destVarID
     .endm
 
-    ; If rideBike == TRUE, sets the player on the bike.
-    ; If rideBike == FALSE, removes the player from the bike.
+    // If rideBike == TRUE, sets the player on the bike.
+    // If rideBike == FALSE, removes the player from the bike.
     .macro SetPlayerBike rideBike
     .short 200
     .byte \rideBike
