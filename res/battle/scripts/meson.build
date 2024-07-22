@@ -2,35 +2,12 @@ subdir('effects')
 subdir('moves')
 subdir('subscripts')
 
-relative_source_root = fs.relative_to(meson.project_source_root(), meson.project_build_root())
 relative_build_dir = fs.relative_to(meson.current_build_dir(), meson.project_build_root())
-
-s_to_bin_gen = generator(make_script_bin_sh,
-    arguments: [
-        '--mwrap',
-        '-i', relative_source_root / 'include',
-        '-i', relative_source_root / 'asm',
-        '-i', '.' / 'res' / 'text',
-        '-i', '.' / 'res',
-        '-i', '.',
-        '--assembler', mwrap_exe.full_path(),
-        '--objcopy', arm_none_eabi_objcopy_exe.full_path(),
-        '@EXTRA_ARGS@',
-        '@INPUT@',
-    ],
-    depends: [
-        message_banks_narc, # for GMM headers
-        asm_consts_generators, # for ASM headers
-        c_consts_generators, # for C headers
-    ],
-    output: '@BASENAME@'
-)
-
-sub_seq_basename = 'sub_seq'
 
 be_seq_target_name = 'be_seq.narc'
 waza_seq_target_name = 'waza_seq.narc'
 
+sub_seq_basename = 'sub_seq'
 sub_seq_narc_name = sub_seq_basename + '.narc'
 sub_seq_naix_name = sub_seq_basename + '.naix'
 

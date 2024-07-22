@@ -18,8 +18,8 @@
     .include "consts/moves.inc"
     .include "consts/pokemon.inc"
 
-    .equ FALSE 0
-    .equ TRUE 1
+    .equ FALSE, 0
+    .equ TRUE, 1
 
     .macro PlayEncounterAnimation
     .long 0
@@ -1235,4 +1235,4 @@
     .long 222
     .endm
 
-    .endif ; ASM_BATTLE_SCRIPT_INC
+    .endif // ASM_BATTLE_SCRIPT_INC

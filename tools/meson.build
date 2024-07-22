@@ -13,6 +13,7 @@ makelcf_exe = find_program('makelcf', native: true)
 makerom_exe = find_program('makerom', native: true)
 
 # ARM binutils
+arm_none_eabi_gcc_exe = find_program('arm-none-eabi-gcc', native: true)
 arm_none_eabi_objcopy_exe = find_program('arm-none-eabi-objcopy', native: true)
 
 # External tools

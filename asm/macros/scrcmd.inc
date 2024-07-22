@@ -2,8 +2,6 @@
     .include "consts/scrcmd.inc"
     .include "consts/sdat.inc"
 
-    .option alignment off
-
     .macro Noop
     .short 0
     .endm
@@ -102,9 +100,9 @@
 
     .macro CompareVar varID, valueOrVarID
     .if \valueOrVarID < 0x4000
-        .short 17 ; CompareVarToValue
+        .short 17 /* CompareVarToValue */
     .else
-        .short 18 ; CompareVarToVar
+        .short 18 /* CompareVarToVar */
     .endif
     .short \varID
     .short \valueOrVarID
@@ -223,9 +221,9 @@
 
     .macro SetVar destVarID, valueOrVarID
     .if \valueOrVarID < 0x4000
-        .short 40 ; SetVarFromValue
+        .short 40 /* SetVarFromValue */
     .else
-        .short 41 ; SetVarFromVar
+        .short 41 /* SetVarFromVar */
     .endif
     .short \destVarID
     .short \valueOrVarID
@@ -2695,8 +2693,8 @@
     .macro ScrCmd_1F8
     .short 504
     .endm
-    
-    ; this is a dummy function that doesn't do anything
+
+    /* this is a dummy function that doesn't do anything */
     .macro Dummy1 dummy
     .short 505
     .short \dummy
@@ -3735,7 +3733,7 @@
     .short \arg1
     .endm
 
-    ; this is unused, but the underlying function is called from LockAll
+    /* this is unused, but the underlying function is called from LockAll */
     .macro LockLastTalked
     .short 692
     .endm
