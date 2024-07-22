@@ -10,7 +10,7 @@
 
 _0012:
     LockAll
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 0x2E3, _00E7
     ApplyMovement 4, _0188
     ApplyMovement 3, _0154

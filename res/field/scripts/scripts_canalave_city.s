@@ -114,7 +114,7 @@ _01E7:
 
 _01F9:
     LockAll
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x2D3, _0244
     GoToIfEq 0x8005, 0x2D4, _0252
     GoToIfEq 0x8005, 0x2D5, _0260

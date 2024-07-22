@@ -21,7 +21,7 @@ _001D:
     ApplyMovement 1, _0264
     WaitMovement
     CallCommonScript 0x7FA
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8005, 5, _014E
     CallIfEq 0x8005, 6, _015A
     CallIfEq 0x8005, 7, _0166
@@ -59,7 +59,7 @@ _00CF:
     BufferPlayerName 1
     Message 2
     CloseMessage
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8005, 5, _018A
     CallIfEq 0x8005, 6, _0196
     CallIfEq 0x8005, 7, _01A2

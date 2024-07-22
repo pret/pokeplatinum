@@ -39,7 +39,7 @@ _0062:
     ApplyMovement 4, _0364
     ApplyMovement 0xFF, _0310
     WaitMovement
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     ScrCmd_066 0x8004, 0x8005
     ApplyMovement 241, _0340
     WaitMovement
@@ -144,7 +144,7 @@ _0184:
     ScrCmd_067
     ScrCmd_310
     ScrCmd_0A1
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     ScrCmd_066 0x8004, 0x8005
     ApplyMovement 241, _0340
     WaitMovement

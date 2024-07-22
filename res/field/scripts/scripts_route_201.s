@@ -40,7 +40,7 @@ _0072:
     WaitMovement
     Message 0
     CloseMessage
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 110, _00BF
     GoToIfEq 0x8004, 111, _00EB
     GoToIfEq 0x8004, 112, _0117
@@ -844,7 +844,7 @@ _09E0:
     BufferPlayerName 1
     Message 52
     CloseMessage
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 110, _0A3B
     GoToIfEq 0x8004, 111, _0A3B
     GoToIfEq 0x8004, 112, _0A3B
@@ -971,7 +971,7 @@ _0AF4:
 
 _0B24:
     LockAll
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x355, _0B55
     GoToIfEq 0x8005, 0x356, _0B89
     GoToIfEq 0x8005, 0x357, _0BBB
@@ -1259,7 +1259,7 @@ _0EB4:
     BufferPlayerName 1
     Message 50
     CloseMessage
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 110, _0F07
     GoToIfEq 0x8004, 111, _0F19
     GoToIfEq 0x8004, 112, _0F2B

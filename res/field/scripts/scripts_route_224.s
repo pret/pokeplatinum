@@ -155,7 +155,7 @@ _022D:
     End
 
 _0240:
-    GetPlayerXZPos 0x8000, 0x8001
+    GetPlayerMapPos 0x8000, 0x8001
     SetVar 0x8008, 0x8000
     GoToIfEq 0x8008, 0x38D, _0272
     GoToIfEq 0x8008, 0x38E, _0286
@@ -338,7 +338,7 @@ _0448:
 _0458:
     LockAll
     ClearFlag 0x2CA
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x1F0, _048D
     GoToIfEq 0x8005, 0x1F1, _04AF
     GoToIfEq 0x8005, 0x1F2, _04D1
@@ -376,7 +376,7 @@ _04F3:
     WaitMovement
     Message 9
     CloseMessage
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x1F0, _0531
     GoToIfEq 0x8005, 0x1F1, _054B
     GoToIfEq 0x8005, 0x1F2, _0565

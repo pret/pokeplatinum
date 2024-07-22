@@ -7,7 +7,7 @@
 
 _0006:
     LockAll
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     ScrCmd_066 0x8004, 0x8005
     ApplyMovement 241, _0228
     WaitMovement
@@ -21,19 +21,19 @@ _0006:
     WaitMovement
     Message 1
     CloseMessage
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 14, _0136
     CallIfEq 0x8004, 15, _0154
     ScrCmd_067
     Message 2
     CloseMessage
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 14, _0168
     CallIfEq 0x8004, 15, _0174
     PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 1
     WaitFanfare SEQ_SE_DP_KAIDAN2
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 14, _0180
     CallIfEq 0x8004, 15, _018C
     ApplyMovement 2, _01CC

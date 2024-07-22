@@ -564,7 +564,7 @@
     .short 104
     .endm
 
-    .macro GetPlayerXZPos destVarIDX, destVarIDZ
+    .macro GetPlayerMapPos destVarIDX, destVarIDZ
     .short 105
     .short \destVarIDX
     .short \destVarIDZ

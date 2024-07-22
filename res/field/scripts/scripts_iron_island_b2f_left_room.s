@@ -36,7 +36,7 @@ _0060:
 _0064:
     LockAll
     SetPlayerBike 0
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8005, 2, _00D1
     CallIfEq 0x8005, 3, _00DD
     BufferPlayerName 0
@@ -85,7 +85,7 @@ _00F3:
     SetVar 0x4092, 0
     ScrCmd_162
     ScrCmd_06D 4, 16
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8005, 2, _013E
     CallIfEq 0x8005, 3, _014A
     ReleaseAll
@@ -153,7 +153,7 @@ _01AA:
     LockAll
     ScrCmd_162
     ScrCmd_06D 4, 16
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8005, 40, _0291
     CallIfEq 0x8005, 41, _02A5
     Message 5
@@ -190,7 +190,7 @@ _01AA:
     ScrCmd_065 6
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8005, 40, _02D1
     CallIfEq 0x8005, 41, _02E5
     Call _02F9

@@ -45,7 +45,7 @@ _0083:
 
 _009A:
     LockAll
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     ScrCmd_066 0x8004, 0x8005
     ApplyMovement 241, _00E8
     WaitMovement

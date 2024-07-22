@@ -71,7 +71,7 @@ _00C7:
     ApplyMovement 3, _03C4
     ApplyMovement 0xFF, _04A0
     WaitMovement
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x339, _0124
     GoToIfEq 0x8005, 0x33A, _0134
     GoToIfEq 0x8005, 0x33B, _0144

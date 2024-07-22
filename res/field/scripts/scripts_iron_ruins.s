@@ -129,7 +129,7 @@ _01CF:
 
 _01EA:
     LockAll
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     ScrCmd_32C 0x4069, 0x24C, 0x8004, 0x8005
     GoToIfGe 0x4069, 0x104, _020F
     ReleaseAll

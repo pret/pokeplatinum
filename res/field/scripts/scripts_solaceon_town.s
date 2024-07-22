@@ -146,7 +146,7 @@ _0168:
     ApplyMovement 0xFF, _0218
     WaitMovement
     CallCommonScript 0x7FA
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     ScrCmd_186 18, 0x8004, 0x295
     ClearFlag 0x21E
     ScrCmd_064 18

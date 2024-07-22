@@ -47,7 +47,7 @@ _0099:
     ClearFlag 0x255
     ScrCmd_064 20
     ScrCmd_062 20
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 0x355, _00FA
     GoToIfEq 0x8004, 0x356, _0114
     GoToIfEq 0x8004, 0x357, _012E
@@ -447,7 +447,7 @@ _0577:
 
 _0593:
     LockAll
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x316, _05B7
     GoToIfEq 0x8005, 0x317, _05C7
     End

@@ -21,7 +21,7 @@ _0027:
     SetPlayerBike 0
     ApplyMovement 28, _0140
     WaitMovement
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 55, _008C
     GoToIfEq 0x8005, 56, _009C
     GoToIfEq 0x8005, 57, _00AC
@@ -138,7 +138,7 @@ _0190:
     SetVar 0x4090, 0
     ScrCmd_162
     ScrCmd_06D 28, 14
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 55, _020D
     GoToIfEq 0x8005, 56, _021D
     GoToIfEq 0x8005, 57, _022D
@@ -249,7 +249,7 @@ _02E4:
     WaitMovement
     Message 5
     CloseMessage
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 51, _0341
     GoToIfEq 0x8004, 52, _0359
     GoToIfEq 0x8004, 53, _0371

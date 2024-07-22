@@ -7,7 +7,7 @@
 
 _0006:
     LockAll
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     ApplyMovement 3, _0234
     WaitMovement
     Message 0

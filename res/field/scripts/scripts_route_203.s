@@ -57,7 +57,7 @@ _0085:
     ApplyMovement 5, _0268
     WaitMovement
     CallCommonScript 0x7FA
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x2F5, _00D1
     GoToIfEq 0x8005, 0x2F6, _00E1
     GoToIfEq 0x8005, 0x2F7, _00F1
@@ -112,7 +112,7 @@ _0164:
     BufferRivalName 0
     Message 1
     CloseMessage
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x2F5, _01B9
     GoToIfEq 0x8005, 0x2F6, _01C9
     GoToIfEq 0x8005, 0x2F7, _01D9

@@ -27,7 +27,7 @@ _003F:
 _0047:
     LockAll
     SetPlayerBike 0
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 28, _006E
     GoToIfEq 0x8004, 29, _007E
     End
@@ -94,7 +94,7 @@ _0108:
     WaitMovement
     Message 4
     CloseMessage
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 28, _0148
     GoToIfEq 0x8004, 29, _0158
     End
@@ -154,7 +154,7 @@ _01DB:
 
 _01EA:
     CloseMessage
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 34, _023B
     GoToIfEq 0x8005, 35, _0253
     GoToIfEq 0x8005, 36, _026B

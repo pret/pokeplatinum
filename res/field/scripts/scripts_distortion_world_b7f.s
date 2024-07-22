@@ -60,7 +60,7 @@ _0096:
     SetVar 0x4055, 10
     Message 6
     CloseMessage
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 86, _00E6
     ApplyMovement 0xFF, _0210
     GoTo _00EE
@@ -74,7 +74,7 @@ _00EE:
     ScrCmd_312 129
     ApplyMovement 128, _02BC
     WaitMovement
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 74, _012F
     ApplyMovement 0xFF, _0254
     GoTo _013F
@@ -85,7 +85,7 @@ _012F:
 _013F:
     Message 7
     WaitMovement
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 74, _016D
     ApplyMovement 128, _02F8
     ApplyMovement 0xFF, _0274
@@ -104,7 +104,7 @@ _017D:
     Message 9
     CloseMessage
     ApplyMovement 128, _02C8
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 74, _01BB
     ApplyMovement 0xFF, _0220
     GoTo _01C3

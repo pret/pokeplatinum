@@ -21,7 +21,7 @@ _0022:
     LockAll
     ApplyMovement 0xFF, _0194
     WaitMovement
-    GetPlayerXZPos 0x4000, 0x4001
+    GetPlayerMapPos 0x4000, 0x4001
     CallIfEq 0x4000, 5, _017D
     ScrCmd_072 20, 2
     Message 0
@@ -48,7 +48,7 @@ _008C:
     Message 4
     CloseMessage
     ScrCmd_073
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 4, _00E2
     GoToIfEq 0x8004, 5, _00F2
     End

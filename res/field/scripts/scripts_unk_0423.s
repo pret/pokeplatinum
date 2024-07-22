@@ -188,7 +188,7 @@ _02A9:
 _02AF:
     Message 10
     CloseMessage
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     ApplyMovement 0xFF, _03B8
     WaitMovement
     GoTo _02CC

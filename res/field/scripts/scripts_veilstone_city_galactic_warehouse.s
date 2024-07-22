@@ -147,7 +147,7 @@ _0197:
     ScrCmd_189 4, 0
     ClearFlag 0x20D
     ScrCmd_064 4
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 8, _025A
     CallIfEq 0x8004, 9, _026E
     Message 4

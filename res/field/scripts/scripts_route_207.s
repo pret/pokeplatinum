@@ -27,7 +27,7 @@ _0046:
 
 _004E:
     LockAll
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     ScrCmd_186 18, 0x14B, 0x8005
     Call _008E
     ApplyMovement 18, _0194

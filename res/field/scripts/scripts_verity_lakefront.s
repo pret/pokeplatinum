@@ -36,7 +36,7 @@ _0066:
     BufferRivalName 0
     Message 0
     CloseMessage
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 80, _00D8
     GoToIfEq 0x8004, 81, _00D8
     GoToIfEq 0x8004, 82, _00D8

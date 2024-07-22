@@ -62,7 +62,7 @@ _00E0:
 
 _00E8:
     LockAll
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 173, _0119
     GoToIfEq 0x8004, 174, _0129
     GoToIfEq 0x8004, 175, _0139
@@ -192,7 +192,7 @@ _02BB:
 
 _02DB:
     CloseMessage
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 173, _030C
     GoToIfEq 0x8004, 174, _0320
     GoToIfEq 0x8004, 175, _0334
@@ -467,7 +467,7 @@ _05BD:
 
 _05D0:
     LockAll
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x30B, _0601
     GoToIfEq 0x8005, 0x30C, _062A
     GoToIfEq 0x8005, 0x30D, _0653
@@ -565,7 +565,7 @@ _06F8:
 
 _0700:
     LockAll
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x2F5, _073E
     GoToIfEq 0x8005, 0x2F6, _0758
     GoToIfEq 0x8005, 0x2F7, _0772
@@ -606,7 +606,7 @@ _07A6:
     ApplyMovement 0xFF, _08AC
     ApplyMovement 31, _0914
     WaitMovement
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x2F5, _0846
     GoToIfEq 0x8005, 0x2F6, _0858
     GoToIfEq 0x8005, 0x2F7, _086A
@@ -804,7 +804,7 @@ _09DC:
     WaitMovement
     Message 64
     CloseMessage
-    GetPlayerXZPos 0x8000, 0x8001
+    GetPlayerMapPos 0x8000, 0x8001
     GoToIfEq 0x8000, 173, _0A1C
     GoToIfEq 0x8000, 174, _0A36
     GoToIfEq 0x8000, 175, _0A50
@@ -1453,7 +1453,7 @@ _10C4:
     ApplyMovement 23, _1178
     ApplyMovement 0xFF, _1170
     WaitMovement
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 172, _1133
     CallIfEq 0x8004, 173, _113F
     CallIfEq 0x8004, 174, _114B
@@ -1778,7 +1778,7 @@ _14BC:
 
 _14CF:
     LockAll
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     ScrCmd_186 31, 179, 0x8005
     ScrCmd_189 31, 3
     ScrCmd_188 31, 17

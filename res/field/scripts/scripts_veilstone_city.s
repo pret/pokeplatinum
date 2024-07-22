@@ -69,7 +69,7 @@ _00F6:
     ApplyMovement 6, _0444
     WaitMovement
     CallCommonScript 0x7F8
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 0x2A9, _02E1
     CallIfEq 0x8004, 0x2AA, _02ED
     CallIfEq 0x8004, 0x2AB, _02F9
@@ -95,7 +95,7 @@ _00F6:
     CloseMessage
     ApplyMovement 25, _056C
     WaitMovement
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 0x2A9, _0311
     CallIfEq 0x8004, 0x2AA, _032D
     CallIfEq 0x8004, 0x2AB, _0349
@@ -103,7 +103,7 @@ _00F6:
     Message 5
     Message 6
     CloseMessage
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 0x2A9, _0381
     CallIfEq 0x8004, 0x2AA, _039D
     CallIfEq 0x8004, 0x2AB, _03B9
@@ -114,7 +114,7 @@ _00F6:
     CallIfEq 0x8004, 0, _02A7
     CallIfEq 0x8004, 1, _02C4
     CloseMessage
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 0x2A9, _03F1
     CallIfEq 0x8004, 0x2AA, _0405
     CallIfEq 0x8004, 0x2AB, _0419
@@ -511,19 +511,19 @@ _0656:
     ScrCmd_0EC 0x800C
     GoToIfEq 0x800C, 0, _0A73
     Message 16
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8005, 0x253, _09DB
     CallIfEq 0x8005, 0x255, _09E7
     Message 17
     CloseMessage
     WaitTime 15, 0x800C
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8005, 0x253, _09F3
     CallIfEq 0x8005, 0x255, _09FF
     ScrCmd_065 7
     Message 18
     CloseMessage
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8005, 0x253, _0A0B
     CallIfEq 0x8005, 0x255, _0A17
     ScrCmd_065 20
@@ -531,7 +531,7 @@ _0656:
     CallIfEq 0x8004, 0, _0A23
     CallIfEq 0x8004, 1, _0A28
     CloseMessage
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8005, 0x253, _0A4B
     CallIfEq 0x8005, 0x255, _0A5F
     WaitTime 10, 0x800C
@@ -564,7 +564,7 @@ _0656:
     ApplyMovement 26, _0A88
     WaitMovement
     ScrCmd_065 6
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x253, _083A
     GoToIfEq 0x8005, 0x255, _0854
     End
@@ -586,7 +586,7 @@ _0854:
 _086E:
     Message 35
     CloseMessage
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x253, _08A9
     GoToIfEq 0x8005, 0x255, _08C3
     End

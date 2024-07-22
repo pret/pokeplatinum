@@ -18,7 +18,7 @@ _0012:
     WaitMovement
     Message 1
     CloseMessage
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 8, _0054
     GoToIfEq 0x8004, 9, _0064
     End

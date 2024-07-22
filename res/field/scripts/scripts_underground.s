@@ -39,7 +39,7 @@ _00BE:
     End
 
 _00CD:
-    GetPlayerXZPos 0x4000, 0x4001
+    GetPlayerMapPos 0x4000, 0x4001
     AddVar 0x4000, 1
     ScrCmd_187 16, 0x4000, 1, 0x4001, 1
     End

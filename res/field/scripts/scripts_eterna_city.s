@@ -157,7 +157,7 @@ _01A8:
 
 _01BF:
     LockAll
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x20A, _01FD
     GoToIfEq 0x8005, 0x20B, _0256
     GoToIfEq 0x8005, 0x20C, _0266
@@ -217,7 +217,7 @@ _0286:
     CallCommonScript 0x7FC
     Message 8
     CloseMessage
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x20A, _0322
     GoToIfEq 0x8005, 0x20B, _03DD
     GoToIfEq 0x8005, 0x20C, _03F7
@@ -484,7 +484,7 @@ _059D:
 
 _05B0:
     LockAll
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 0x12F, _0657
     CallIfEq 0x8004, 0x130, _0663
     CallIfEq 0x8004, 0x131, _066F
@@ -659,7 +659,7 @@ _07A5:
 
 _07BA:
     LockAll
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8005, 0x214, _0823
     CallIfEq 0x8005, 0x215, _082F
     CallIfEq 0x8005, 0x216, _083B
@@ -802,7 +802,7 @@ _0954:
     ClearFlag 0x18C
     ScrCmd_064 33
     ScrCmd_062 33
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x20B, _099D
     GoToIfEq 0x8005, 0x20C, _09B7
     GoToIfEq 0x8005, 0x20D, _09D1
@@ -838,7 +838,7 @@ _09EB:
     BufferPlayerName 1
     Message 1
     CloseMessage
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x20B, _0A32
     GoToIfEq 0x8005, 0x20C, _0A5E
     GoToIfEq 0x8005, 0x20D, _0A8A
@@ -1104,7 +1104,7 @@ _0D00:
     LockAll
     ScrCmd_189 12, 3
     ScrCmd_188 12, 17
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x21C, _0D64
     GoToIfEq 0x8005, 0x21D, _0D7A
     GoToIfEq 0x8005, 0x21E, _0D90
@@ -1300,7 +1300,7 @@ _0FCD:
 
 _0FDC:
     LockAll
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x21C, _1034
     GoToIfEq 0x8005, 0x21D, _1046
     GoToIfEq 0x8005, 0x21E, _1058

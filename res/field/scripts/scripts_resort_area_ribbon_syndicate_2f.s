@@ -108,7 +108,7 @@ _0146:
     Return
 
 _0160:
-    GetPlayerXZPos 0x8005, 0x8006
+    GetPlayerMapPos 0x8005, 0x8006
     GoToIfEq 0x8005, 11, _0193
     GoToIfEq 0x8005, 13, _01AB
     GoToIfEq 0x8006, 4, _01C3

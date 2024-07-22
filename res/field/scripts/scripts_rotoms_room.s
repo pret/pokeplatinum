@@ -164,7 +164,7 @@ _02B6:
     End
 
 _0325:
-    GetPlayerXZPos 0x8006, 0x8007
+    GetPlayerMapPos 0x8006, 0x8007
     ScrCmd_1BD 0x800C
     Warp MAP_HEADER_ROTOMS_ROOM, 0, 0x8006, 0x8007, 0x800C
     FadeScreen 6, 1, 1, 0
@@ -527,7 +527,7 @@ _081E:
     BufferPlayerName 0
     Message 35
     CloseMessage
-    GetPlayerXZPos 0x8006, 0x8007
+    GetPlayerMapPos 0x8006, 0x8007
     CallIfGe 0x8006, 10, _08A8
     CallIfLe 0x8006, 4, _08AA
     ApplyMovement 6, _08DC

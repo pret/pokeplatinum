@@ -11,7 +11,7 @@
     .short 0xFD13
 
 _001A:
-    GetPlayerXZPos 0x4004, 0x4005
+    GetPlayerMapPos 0x4004, 0x4005
     CallIfGe 0x4005, 12, _0035
     SetVar 0x4003, 1
     End

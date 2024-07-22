@@ -244,7 +244,7 @@ _02D0:
 
 _02DC:
     ClearFlag 0x1C5
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     SetVar 0x8008, 0x8004
     GoToIfEq 0x8008, 30, _0315
     GoToIfEq 0x8008, 31, _0333
@@ -276,7 +276,7 @@ _0351:
     Return
 
 _036F:
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     SetVar 0x8008, 0x8004
     GoToIfEq 0x8008, 30, _03A4
     GoToIfEq 0x8008, 31, _03BE
@@ -345,7 +345,7 @@ _0454:
     Return
 
 _0456:
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     SetVar 0x8008, 0x8004
     GoToIfEq 0x8008, 30, _048B
     GoToIfEq 0x8008, 31, _0499
@@ -445,7 +445,7 @@ _0500:
 _0508:
     ApplyMovement 0xFF, _05B8
     WaitMovement
-    GetPlayerXZPos 0x8000, 0x8001
+    GetPlayerMapPos 0x8000, 0x8001
     ScrCmd_066 0x8000, 0x8001
     Call _05C0
     WaitMovement
@@ -488,7 +488,7 @@ _05B8:
     EndMovement
 
 _05C0:
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     SetVar 0x8008, 0x8004
     GoToIfEq 0x8008, 29, _060F
     GoToIfEq 0x8008, 30, _0619

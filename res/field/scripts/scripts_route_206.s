@@ -22,7 +22,7 @@ _001C:
 
 _0047:
     GoToIfSet 3, _009D
-    GetPlayerXZPos 0x4000, 0x4001
+    GetPlayerMapPos 0x4000, 0x4001
     GoToIfLt 0x4000, 0x12B, _009D
     GoToIfGt 0x4000, 0x132, _009D
     GoToIfEq 0x4001, 0x240, _008E

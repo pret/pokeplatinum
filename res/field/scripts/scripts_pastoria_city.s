@@ -880,7 +880,7 @@ _091C:
     ApplyMovement 0xFF, _099C
     WaitMovement
     ScrCmd_065 27
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 0x261, _0981
     CallIfEq 0x8004, 0x263, _098D
     CallIfEq 0x8004, 0x264, _0981
@@ -915,7 +915,7 @@ _09A8:
     LockAll
     FacePlayer
     Call _086F
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 0x263, _0A31
     CallIfEq 0x8004, 0x264, _0A55
     Call _08D9
@@ -926,7 +926,7 @@ _09A8:
     WaitMovement
     Call _08FA
     Message 23
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 0x263, _0A79
     CallIfEq 0x8004, 0x264, _0A8D
     Call _091C

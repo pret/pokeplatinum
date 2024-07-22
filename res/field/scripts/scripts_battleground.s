@@ -109,7 +109,7 @@ _0183:
     SetFlag 0x125
     Message 5
     CloseMessage
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8005, 7, _01D5
     CallIfEq 0x8005, 8, _01E9
     CallIfEq 0x8005, 9, _01FD

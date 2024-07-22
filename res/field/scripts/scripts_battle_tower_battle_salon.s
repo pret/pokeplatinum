@@ -345,7 +345,7 @@ _0500:
 
 _055C:
     SetVar 0x4000, 1
-    GetPlayerXZPos 0x8000, 0x8001
+    GetPlayerMapPos 0x8000, 0x8001
     GoToIfEq 0x8000, 12, _057D
     GoTo _058F
     End
@@ -364,7 +364,7 @@ _058F:
 
 _05A1:
     SetVar 0x4000, 2
-    GetPlayerXZPos 0x8000, 0x8001
+    GetPlayerMapPos 0x8000, 0x8001
     GoToIfEq 0x8000, 4, _05C2
     GoTo _05D4
     End
@@ -383,7 +383,7 @@ _05D4:
 
 _05E6:
     SetVar 0x4000, 3
-    GetPlayerXZPos 0x8000, 0x8001
+    GetPlayerMapPos 0x8000, 0x8001
     GoToIfEq 0x8001, 7, _0607
     GoTo _0619
     End
@@ -402,7 +402,7 @@ _0619:
 
 _062B:
     SetVar 0x4000, 4
-    GetPlayerXZPos 0x8000, 0x8001
+    GetPlayerMapPos 0x8000, 0x8001
     GoToIfEq 0x8001, 9, _064C
     GoTo _065E
     End
@@ -421,7 +421,7 @@ _065E:
 
 _0670:
     SetVar 0x4000, 5
-    GetPlayerXZPos 0x8000, 0x8001
+    GetPlayerMapPos 0x8000, 0x8001
     GoToIfEq 0x8000, 8, _0691
     GoTo _06A3
     End

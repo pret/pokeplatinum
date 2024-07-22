@@ -121,7 +121,7 @@ _0154:
     ClearFlag 0x21D
     ScrCmd_064 5
     CallCommonScript 0x7FA
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 10, _0191
     GoToIfEq 0x8004, 11, _01A1
     GoToIfEq 0x8004, 12, _01B1
@@ -172,7 +172,7 @@ _021B:
     BufferPlayerName 1
     Message 1
     CloseMessage
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 10, _0266
     GoToIfEq 0x8004, 11, _0276
     GoToIfEq 0x8004, 12, _0286

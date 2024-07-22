@@ -348,7 +348,7 @@ static BOOL ScrCmd_067(ScriptContext *ctx);
 static BOOL ScrCmd_308(ScriptContext *ctx);
 static BOOL ScrCmd_309(ScriptContext *ctx);
 static BOOL ScrCmd_FacePlayer(ScriptContext *ctx);
-static BOOL ScrCmd_GetPlayerXZPos(ScriptContext *ctx);
+static BOOL ScrCmd_GetPlayerMapPos(ScriptContext *ctx);
 static BOOL ScrCmd_06A(ScriptContext *ctx);
 static BOOL ScrCmd_1BD(ScriptContext *ctx);
 static BOOL ScrCmd_06B(ScriptContext *ctx);
@@ -873,7 +873,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_066,
     ScrCmd_067,
     ScrCmd_FacePlayer,
-    ScrCmd_GetPlayerXZPos,
+    ScrCmd_GetPlayerMapPos,
     ScrCmd_06A,
     ScrCmd_06B,
     ScrCmd_06C,
@@ -3385,7 +3385,7 @@ static BOOL ScrCmd_FacePlayer(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_GetPlayerXZPos(ScriptContext *ctx)
+static BOOL ScrCmd_GetPlayerMapPos(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 

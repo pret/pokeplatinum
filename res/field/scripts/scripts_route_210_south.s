@@ -76,7 +76,7 @@ _00CA:
     ScrCmd_065 26
     ScrCmd_065 19
     WaitTime 45, 0x800C
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 0x230, _015B
     GoToIfEq 0x8004, 0x231, _016F
     End
@@ -118,7 +118,7 @@ _01E9:
     CallCommonScript 0x7FC
     Message 4
     CloseMessage
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 0x230, _0220
     GoToIfEq 0x8004, 0x231, _0230
     End

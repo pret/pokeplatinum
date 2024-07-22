@@ -135,7 +135,7 @@ _0171:
 
 _0184:
     LockAll
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8005, 0x1D8, _0266
     CallIfEq 0x8005, 0x1D9, _0272
     CallIfEq 0x8005, 0x1DA, _0274
@@ -205,7 +205,7 @@ _02A8:
 _02BC:
     Message 8
     CloseMessage
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8005, 0x1D8, _02F2
     CallIfEq 0x8005, 0x1D9, _0306
     CallIfEq 0x8005, 0x1DA, _0312

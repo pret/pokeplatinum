@@ -74,7 +74,7 @@ _00CD:
     LockAll
     ApplyMovement 3, _03B0
     WaitMovement
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 108, _0140
     GoToIfEq 0x8004, 109, _0158
     GoToIfEq 0x8004, 110, _0170

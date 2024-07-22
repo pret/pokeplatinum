@@ -39,7 +39,7 @@ _0047:
     End
 
 _006A:
-    GetPlayerXZPos 0x8005, 0x8006
+    GetPlayerMapPos 0x8005, 0x8006
     GoToIfEq 0x8006, 5, _00AC
     GoToIfEq 0x8006, 6, _00B8
     GoToIfEq 0x8006, 7, _00C4
@@ -73,7 +73,7 @@ _00DC:
     Return
 
 _00E8:
-    GetPlayerXZPos 0x8005, 0x8006
+    GetPlayerMapPos 0x8005, 0x8006
     GoToIfEq 0x8006, 5, _012A
     GoToIfEq 0x8006, 6, _0136
     GoToIfEq 0x8006, 7, _0142

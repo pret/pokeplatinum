@@ -119,7 +119,7 @@ _010E:
     WaitFadeScreen
     ClearFlag 0x19E
     ScrCmd_064 3
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 12, _01BA
     CallIfEq 0x8004, 13, _01C6
     ScrCmd_065 3

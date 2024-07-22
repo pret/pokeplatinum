@@ -107,7 +107,7 @@ _016E:
     Message 5
 _0194:
     CloseMessage
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     ScrCmd_066 0x8004, 0x8005
     ApplyMovement 241, _0280
     ApplyMovement 130, _026C

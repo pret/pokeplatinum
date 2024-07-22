@@ -554,7 +554,7 @@ _06E2:
     LockAll
     ApplyMovement 9, _07A8
     WaitMovement
-    GetPlayerXZPos 0x8000, 0x8001
+    GetPlayerMapPos 0x8000, 0x8001
     CallIfEq 0x8001, 0x315, _075D
     CallIfEq 0x8001, 0x316, _0769
     CallIfEq 0x8001, 0x317, _0775

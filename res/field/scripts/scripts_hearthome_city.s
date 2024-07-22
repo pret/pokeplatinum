@@ -547,7 +547,7 @@ _0753:
     LockAll
     ApplyMovement 0xFF, _087C
     WaitMovement
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x2D5, _07A8
     GoToIfEq 0x8005, 0x2D6, _07C0
     GoToIfEq 0x8005, 0x2D7, _07D8

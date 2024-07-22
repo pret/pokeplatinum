@@ -89,7 +89,7 @@ _014A:
 
 _017F:
     SetVar 0x800C, 0
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 73, _01CE
     GoToIfEq 0x8004, 74, _01DD
     GoToIfEq 0x8004, 75, _01EC

@@ -14,7 +14,7 @@ _001A:
     End
 
 _001C:
-    GetPlayerXZPos 0x4004, 0x4005
+    GetPlayerMapPos 0x4004, 0x4005
     CallIfLe 0x4005, 3, _0037
     SetVar 0x4003, 1
     End

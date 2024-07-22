@@ -80,7 +80,7 @@ _00D7:
     ClearFlag 0x17C
     ScrCmd_188 3, 16
     ScrCmd_189 3, 2
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x2EC, _011E
     GoToIfEq 0x8005, 0x2ED, _0144
     GoToIfEq 0x8005, 0x2EE, _016A
@@ -139,7 +139,7 @@ _01B6:
     WaitMovement
     Message 5
     CloseMessage
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x2EC, _021F
     GoToIfEq 0x8005, 0x2ED, _0239
     GoToIfEq 0x8005, 0x2EE, _0253
@@ -332,7 +332,7 @@ _03E5:
 
 _03F8:
     LockAll
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x2EC, _042F
     GoToIfEq 0x8005, 0x2ED, _0449
     GoToIfEq 0x8005, 0x2EE, _0463
@@ -371,7 +371,7 @@ _0497:
     Message 6
     CloseMessage
     CallCommonScript 0x800
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x2EC, _04DC
     GoToIfEq 0x8005, 0x2ED, _04F6
     GoToIfEq 0x8005, 0x2EE, _0510

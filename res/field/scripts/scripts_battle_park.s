@@ -18,7 +18,7 @@
 
 _0032:
     LockAll
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 23, _01A8
     CallIfEq 0x8004, 24, _01BA
     CallIfEq 0x8004, 25, _01CC
@@ -45,7 +45,7 @@ _0032:
     WaitMovement
     Message 3
     CloseMessage
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 23, _01F0
     CallIfEq 0x8004, 24, _0204
     CallIfEq 0x8004, 25, _0218
@@ -66,7 +66,7 @@ _0032:
     CallIfLt 0x409E, 1, _019E
     CallIfGe 0x409E, 1, _01A3
     CloseMessage
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 23, _0240
     CallIfEq 0x8004, 24, _0254
     CallIfEq 0x8004, 25, _0268

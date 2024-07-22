@@ -1560,7 +1560,7 @@ _1477:
     End
 
 _14AC:
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfNe 0x8004, 31, _1570
     GoToIfNe 0x8005, 52, _1570
     ScrCmd_166 0x4000
@@ -1580,7 +1580,7 @@ _14AC:
     WaitTime 30, 0x800C
     PlayMusic SEQ_FUE
     WaitTime 0x21C, 0x800C
-    GetPlayerXZPos 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     FadeScreen 6, 6, 0, 0x7FFF
     WaitFadeScreen
     Warp MAP_HEADER_HALL_OF_ORIGIN, 0, 0x8004, 0x8005, 0

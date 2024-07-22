@@ -42,7 +42,7 @@ _0056:
     GoTo _0150
 
 _008A:
-    GetPlayerXZPos 0x8005, 0x8006
+    GetPlayerMapPos 0x8005, 0x8006
     GoToIfEq 0x8005, 4, _00BD
     GoToIfEq 0x8005, 6, _00C9
     GoToIfEq 0x8006, 5, _00D5
@@ -69,7 +69,7 @@ _00E1:
     Return
 
 _00ED:
-    GetPlayerXZPos 0x8005, 0x8006
+    GetPlayerMapPos 0x8005, 0x8006
     GoToIfEq 0x8005, 4, _0120
     GoToIfEq 0x8005, 6, _012C
     GoToIfEq 0x8006, 5, _0138
