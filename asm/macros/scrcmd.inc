@@ -407,6 +407,7 @@
     .byte \arg0
     .endm
 
+    // Plays a sound effect without interrupting the current music
     .macro PlayFanfare sdatID
     .short 73
     .short \sdatID
@@ -432,6 +433,7 @@
     .short 77
     .endm
 
+    // Pauses the current music and then plays a sound effect
     .macro PlaySound sdatID
     .short 78
     .short \sdatID
@@ -451,6 +453,7 @@
     .short \dummy
     .endm
 
+    // Plays the default music track based on the player's current location
     .macro PlayDefaultMusic
     .short 82
     .endm
@@ -937,7 +940,7 @@
     .short \arg1
     .endm
 
-    .macro SealCapsuleEditor
+    .macro OpenSealCapsuleEditor
     .short 169
     .endm
 

@@ -384,7 +384,7 @@ static BOOL ScrCmd_0A8(ScriptContext *ctx);
 static BOOL ScrCmd_12E(ScriptContext *ctx);
 static BOOL ScrCmd_12F(ScriptContext *ctx);
 static BOOL ScrCmd_130(ScriptContext *ctx);
-static BOOL ScrCmd_SealCapsuleEditor(ScriptContext *ctx);
+static BOOL ScrCmd_OpenSealCapsuleEditor(ScriptContext *ctx);
 static BOOL ScrCmd_0AA(ScriptContext *ctx);
 static BOOL ScrCmd_1D7(ScriptContext *ctx);
 static BOOL ScrCmd_1D8(ScriptContext *ctx);
@@ -937,7 +937,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_0A6,
     ScrCmd_0A7,
     ScrCmd_0A8,
-    ScrCmd_SealCapsuleEditor,
+    ScrCmd_OpenSealCapsuleEditor,
     ScrCmd_0AA,
     ScrCmd_0AB,
     ScrCmd_0AC,
@@ -2357,12 +2357,12 @@ static BOOL ScriptContext_CheckABPadPress(ScriptContext *ctx)
 static BOOL ScrCmd_OpenMessage(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u8 *msgBoxOpen = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_IS_MSG_BOX_OPEN);
+    u8 *isMsgBoxOpen = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_IS_MSG_BOX_OPEN);
 
     FieldMessage_AddWindow(fieldSystem->unk_08, FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW), 3);
     FieldMessage_DrawWindow(FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW), SaveData_Options(ctx->fieldSystem->saveData));
 
-    *msgBoxOpen = TRUE;
+    *isMsgBoxOpen = TRUE;
     return FALSE;
 }
 
@@ -4238,7 +4238,7 @@ static BOOL ScrCmd_310(ScriptContext *ctx)
     return 1;
 }
 
-static BOOL ScrCmd_SealCapsuleEditor(ScriptContext *ctx)
+static BOOL ScrCmd_OpenSealCapsuleEditor(ScriptContext *ctx)
 {
     sub_020980DC(ctx->taskManager, ctx->fieldSystem->saveData);
     return TRUE;

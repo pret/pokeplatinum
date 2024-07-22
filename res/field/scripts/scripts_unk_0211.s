@@ -1092,7 +1092,7 @@ _0EE0:
     GoToIfEq 0x800C, 0, _0F01
     CloseMessage
     Call _0F94
-    SealCapsuleEditor
+    OpenSealCapsuleEditor
     GoTo _0F0A
 
 _0F01:
@@ -1152,7 +1152,7 @@ _0FA5:
 _0FA7:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    SealCapsuleEditor
+    OpenSealCapsuleEditor
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End

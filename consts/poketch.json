@@ -26,8 +26,8 @@
                 "POKETCH_APPID_KITCHENTIMER",
                 "POKETCH_APPID_COLORCHANGER",
                 "POKETCH_APPID_MATCHUPCHECKER",
-                "POKETCH_APPID_STOPWATCH",
-                "POKETCH_APPID_ALARMCLOCK",
+                "POKETCH_APPID_UNUSED_STOPWATCH",
+                "POKETCH_APPID_UNUSED_ALARMCLOCK",
                 "POKETCH_APPID_MAX",
                 "POKETCH_APPID_NONE"
             ],
