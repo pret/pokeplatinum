@@ -4291,11 +4291,11 @@
     .short 790
     .endm
 
-    .macro ScrCmd_317 arg0, arg1, arg2
+    .macro GetPlayer3DPos destVarIDX, destVarIDY, destVarIDZ
     .short 791
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \destVarIDX
+    .short \destVarIDY
+    .short \destVarIDZ
     .endm
 
     .macro ScrCmd_318 arg0, arg1

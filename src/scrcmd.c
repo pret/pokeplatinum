@@ -521,7 +521,7 @@ static BOOL ScrCmd_176(ScriptContext *ctx);
 static BOOL ScrCmd_2C9(ScriptContext *ctx);
 static BOOL ScrCmd_2F0(ScriptContext *ctx);
 static BOOL ScrCmd_2F2(ScriptContext *ctx);
-static BOOL ScrCmd_317(ScriptContext *ctx);
+static BOOL ScrCmd_GetPlayer3DPos(ScriptContext *ctx);
 static BOOL ScrCmd_178(ScriptContext *ctx);
 static BOOL ScrCmd_179(ScriptContext *ctx);
 static BOOL ScrCmd_17A(ScriptContext *ctx);
@@ -1559,7 +1559,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_314,
     ScrCmd_315,
     ScrCmd_316,
-    ScrCmd_317,
+    ScrCmd_GetPlayer3DPos,
     ScrCmd_318,
     ScrCmd_319,
     ScrCmd_31A,
@@ -5876,24 +5876,21 @@ static BOOL ScrCmd_2F2(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_317(ScriptContext *ctx)
+static BOOL ScrCmd_GetPlayer3DPos(ScriptContext *ctx)
 {
-    u16 *v0, *v1, *v2;
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    v0 = ScriptContext_GetVarPointer(ctx);
-    v2 = ScriptContext_GetVarPointer(ctx);
-    v1 = ScriptContext_GetVarPointer(ctx);
+    u16 *destVarX = ScriptContext_GetVarPointer(ctx);
+    u16 *destVarY = ScriptContext_GetVarPointer(ctx);
+    u16 *destVarZ = ScriptContext_GetVarPointer(ctx);
 
-    {
-        MapObject *v4 = Player_MapObject(fieldSystem->playerAvatar);
+    MapObject *player = Player_MapObject(fieldSystem->playerAvatar);
 
-        *v0 = MapObject_GetXPos(v4);
-        *v2 = (MapObject_GetYPos(v4) / 2);
-        *v1 = MapObject_GetZPos(v4);
-    }
+    *destVarX = MapObject_GetXPos(player);
+    *destVarY = MapObject_GetYPos(player) / 2;
+    *destVarZ = MapObject_GetZPos(player);
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_1AC(ScriptContext *ctx)

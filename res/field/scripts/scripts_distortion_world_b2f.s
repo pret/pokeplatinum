@@ -15,7 +15,7 @@ _0012:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     GoToIfEq 0x4055, 5, _0084
-    ScrCmd_317 0x8004, 0x8005, 0x8006
+    GetPlayer3DPos 0x8004, 0x8005, 0x8006
     GoToIfEq 0x8005, 232, _0059
     ApplyMovement 128, _00DC
     WaitMovement
@@ -39,7 +39,7 @@ _007A:
     End
 
 _0084:
-    ScrCmd_317 0x8004, 0x8005, 0x8006
+    GetPlayer3DPos 0x8004, 0x8005, 0x8006
     GoToIfEq 0x8005, 231, _00B6
     GoToIfEq 0x8005, 232, _00C6
     ApplyMovement 128, _0104
