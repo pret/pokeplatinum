@@ -1,6 +1,7 @@
-#include "spl.h"
-
 #include <nitro/fx/fx.h>
+#include <nitro/fx/fx_const.h>
+
+#include "spl.h"
 
 void sub_020A19F0(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate)
 {
@@ -42,10 +43,6 @@ void sub_020A1AF8(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate)
 
     ptcl->unk_2E.unk_00_5 = x * (255 - ((int)(alphaAnim->unk_02.unk_00_0 * rng_next(0x18)) >> 8)) >> 8;
 }
-
-#define GX_RGB_R(RGB) (((RGB) >> GX_RGB_R_SHIFT) & 31)
-#define GX_RGB_G(RGB) (((RGB) >> GX_RGB_G_SHIFT) & 31)
-#define GX_RGB_B(RGB) (((RGB) >> GX_RGB_B_SHIFT) & 31)
 
 void sub_020A1BD4(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate)
 {

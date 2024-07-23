@@ -13,8 +13,8 @@ libspl_public_includes = include_directories('include')
 
 libspl = static_library('spl',
     sources: libspl_srcs,
-    c_args: c_args,
     nasm_args: asm_args,
     include_directories: [public_includes, libspl_public_includes],
+    dependencies: [ nitrosdk_dep, nitrosystem_dep ],
     pic: false
 )

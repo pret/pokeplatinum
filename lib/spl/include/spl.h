@@ -2,11 +2,16 @@
 #define POKEPLATINUM_SPL_H
 
 #include "nitro/types.h"
+#include <nitro/gx/gxcommon.h>
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 #include "struct_defs/struct_020147B8.h"
+
+#define GX_RGB_R(RGB) (((RGB) >> GX_RGB_R_SHIFT) & 31)
+#define GX_RGB_G(RGB) (((RGB) >> GX_RGB_G_SHIFT) & 31)
+#define GX_RGB_B(RGB) (((RGB) >> GX_RGB_B_SHIFT) & 31)
 
 typedef void * (* UnkFuncPtr_0209CD00)(u32);
 
