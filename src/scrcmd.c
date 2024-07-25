@@ -304,7 +304,7 @@ static BOOL ScrCmd_WaitABXPadPress(ScriptContext *ctx);
 static BOOL ScriptContext_CheckABXPadPress(ScriptContext *ctx);
 static BOOL ScrCmd_WaitABPadPress(ScriptContext *ctx);
 static BOOL ScriptContext_CheckABPadPress(ScriptContext *ctx);
-static BOOL ScrCmd_033(ScriptContext *ctx);
+static BOOL ScrCmd_OpenMessage(ScriptContext *ctx);
 static BOOL ScrCmd_CloseMessage(ScriptContext *ctx);
 static BOOL ScrCmd_035(ScriptContext *ctx);
 static BOOL ScrCmd_036(ScriptContext *ctx);
@@ -348,7 +348,7 @@ static BOOL ScrCmd_067(ScriptContext *ctx);
 static BOOL ScrCmd_308(ScriptContext *ctx);
 static BOOL ScrCmd_309(ScriptContext *ctx);
 static BOOL ScrCmd_FacePlayer(ScriptContext *ctx);
-static BOOL ScrCmd_069(ScriptContext *ctx);
+static BOOL ScrCmd_GetPlayerMapPos(ScriptContext *ctx);
 static BOOL ScrCmd_06A(ScriptContext *ctx);
 static BOOL ScrCmd_1BD(ScriptContext *ctx);
 static BOOL ScrCmd_06B(ScriptContext *ctx);
@@ -384,7 +384,7 @@ static BOOL ScrCmd_0A8(ScriptContext *ctx);
 static BOOL ScrCmd_12E(ScriptContext *ctx);
 static BOOL ScrCmd_12F(ScriptContext *ctx);
 static BOOL ScrCmd_130(ScriptContext *ctx);
-static BOOL ScrCmd_0A9(ScriptContext *ctx);
+static BOOL ScrCmd_OpenSealCapsuleEditor(ScriptContext *ctx);
 static BOOL ScrCmd_0AA(ScriptContext *ctx);
 static BOOL ScrCmd_1D7(ScriptContext *ctx);
 static BOOL ScrCmd_1D8(ScriptContext *ctx);
@@ -407,7 +407,7 @@ static BOOL ScrCmd_271(ScriptContext *ctx);
 static BOOL ScrCmd_FadeScreen(ScriptContext *ctx);
 static BOOL ScrCmd_WaitFadeScreen(ScriptContext *ctx);
 static BOOL ScriptContext_ScreenWipeDone(ScriptContext *ctx);
-static BOOL ScrCmd_0BE(ScriptContext *ctx);
+static BOOL ScrCmd_Warp(ScriptContext *ctx);
 static BOOL ScrCmd_0BF(ScriptContext *ctx);
 static BOOL ScrCmd_0C0(ScriptContext *ctx);
 static BOOL ScrCmd_0C1(ScriptContext *ctx);
@@ -417,12 +417,12 @@ static BOOL ScrCmd_0C4(ScriptContext *ctx);
 static BOOL ScrCmd_0C5(ScriptContext *ctx);
 static BOOL sub_02042C80(ScriptContext *ctx);
 static BOOL ScrCmd_0C6(ScriptContext *ctx);
-static BOOL ScrCmd_0C7(ScriptContext *ctx);
-static BOOL ScrCmd_0C8(ScriptContext *ctx);
+static BOOL ScrCmd_CheckPlayerOnBike(ScriptContext *ctx);
+static BOOL ScrCmd_SetPlayerBike(ScriptContext *ctx);
 static BOOL ScrCmd_0C9(ScriptContext *ctx);
-static BOOL ScrCmd_0CA(ScriptContext *ctx);
-static BOOL ScrCmd_0CB(ScriptContext *ctx);
-static BOOL ScrCmd_0CC(ScriptContext *ctx);
+static BOOL ScrCmd_GetPlayerState(ScriptContext *ctx);
+static BOOL ScrCmd_SetPlayerState(ScriptContext *ctx);
+static BOOL ScrCmd_ChangePlayerState(ScriptContext *ctx);
 static BOOL ScrCmd_0DE(ScriptContext *ctx);
 static BOOL ScrCmd_0E3(ScriptContext *ctx);
 static BOOL ScrCmd_0E6(ScriptContext *ctx);
@@ -521,7 +521,7 @@ static BOOL ScrCmd_176(ScriptContext *ctx);
 static BOOL ScrCmd_2C9(ScriptContext *ctx);
 static BOOL ScrCmd_2F0(ScriptContext *ctx);
 static BOOL ScrCmd_2F2(ScriptContext *ctx);
-static BOOL ScrCmd_317(ScriptContext *ctx);
+static BOOL ScrCmd_GetPlayer3DPos(ScriptContext *ctx);
 static BOOL ScrCmd_178(ScriptContext *ctx);
 static BOOL ScrCmd_179(ScriptContext *ctx);
 static BOOL ScrCmd_17A(ScriptContext *ctx);
@@ -819,7 +819,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_WaitABPress,
     ScrCmd_WaitABXPadPress,
     ScrCmd_WaitABPadPress,
-    ScrCmd_033,
+    ScrCmd_OpenMessage,
     ScrCmd_CloseMessage,
     ScrCmd_035,
     ScrCmd_036,
@@ -843,16 +843,16 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_048,
     ScrCmd_PlayFanfare,
     ScrCmd_04A,
-    ScrCmd_04B,
+    ScrCmd_WaitFanfare,
     ScrCmd_04C,
     ScrCmd_04D,
-    ScrCmd_04E,
-    ScrCmd_04F,
-    ScrCmd_050,
-    ScrCmd_051,
-    ScrCmd_052,
+    ScrCmd_PlaySound,
+    ScrCmd_WaitSound,
+    ScrCmd_PlayMusic,
+    ScrCmd_StopMusic,
+    ScrCmd_PlayDefaultMusic,
     ScrCmd_053,
-    ScrCmd_054,
+    ScrCmd_FadeOutMusic,
     ScrCmd_055,
     ScrCmd_056,
     ScrCmd_057,
@@ -873,7 +873,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_066,
     ScrCmd_067,
     ScrCmd_FacePlayer,
-    ScrCmd_069,
+    ScrCmd_GetPlayerMapPos,
     ScrCmd_06A,
     ScrCmd_06B,
     ScrCmd_06C,
@@ -891,10 +891,10 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_078,
     ScrCmd_079,
     ScrCmd_07A,
-    ScrCmd_07B,
-    ScrCmd_07C,
+    ScrCmd_AddItem,
+    ScrCmd_RemoveItem,
     ScrCmd_07D,
-    ScrCmd_07E,
+    ScrCmd_CheckItem,
     ScrCmd_07F,
     ScrCmd_GetItemPocket,
     ScrCmd_081,
@@ -937,7 +937,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_0A6,
     ScrCmd_0A7,
     ScrCmd_0A8,
-    ScrCmd_0A9,
+    ScrCmd_OpenSealCapsuleEditor,
     ScrCmd_0AA,
     ScrCmd_0AB,
     ScrCmd_0AC,
@@ -958,7 +958,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_0BB,
     ScrCmd_FadeScreen,
     ScrCmd_WaitFadeScreen,
-    ScrCmd_0BE,
+    ScrCmd_Warp,
     ScrCmd_0BF,
     ScrCmd_0C0,
     ScrCmd_0C1,
@@ -967,23 +967,23 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_0C4,
     ScrCmd_0C5,
     ScrCmd_0C6,
-    ScrCmd_0C7,
-    ScrCmd_0C8,
+    ScrCmd_CheckPlayerOnBike,
+    ScrCmd_SetPlayerBike,
     ScrCmd_0C9,
-    ScrCmd_0CA,
-    ScrCmd_0CB,
-    ScrCmd_0CC,
-    ScrCmd_0CD,
-    ScrCmd_0CE,
-    ScrCmd_0CF,
-    ScrCmd_0D0,
-    ScrCmd_0D1,
-    ScrCmd_0D2,
+    ScrCmd_GetPlayerState,
+    ScrCmd_SetPlayerState,
+    ScrCmd_ChangePlayerState,
+    ScrCmd_BufferPlayerName,
+    ScrCmd_BufferRivalName,
+    ScrCmd_BufferCounterpartName,
+    ScrCmd_BufferPartyMonSpecies,
+    ScrCmd_BufferItemName,
+    ScrCmd_BufferPocketName,
     ScrCmd_0D3,
     ScrCmd_0D4,
-    ScrCmd_0D5,
-    ScrCmd_0D6,
-    ScrCmd_0D7,
+    ScrCmd_BufferNumber,
+    ScrCmd_BufferPartyMonNickname,
+    ScrCmd_BufferPoketchAppName,
     ScrCmd_0D8,
     ScrCmd_0D9,
     ScrCmd_0DA,
@@ -1559,7 +1559,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_314,
     ScrCmd_315,
     ScrCmd_316,
-    ScrCmd_317,
+    ScrCmd_GetPlayer3DPos,
     ScrCmd_318,
     ScrCmd_319,
     ScrCmd_31A,
@@ -2354,16 +2354,16 @@ static BOOL ScriptContext_CheckABPadPress(ScriptContext *ctx)
     return (gCoreSys.pressedKeys & PAD_KEY) != FALSE;
 }
 
-static BOOL ScrCmd_033(ScriptContext *ctx)
+static BOOL ScrCmd_OpenMessage(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u8 *v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_IS_MSG_BOX_OPEN);
+    u8 *isMsgBoxOpen = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_IS_MSG_BOX_OPEN);
 
-    FieldMessage_AddWindow(fieldSystem->unk_08, FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW), SCRIPT_MANAGER_MESSAGE_ID);
+    FieldMessage_AddWindow(fieldSystem->unk_08, FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW), 3);
     FieldMessage_DrawWindow(FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW), SaveData_Options(ctx->fieldSystem->saveData));
 
-    *v1 = 1;
-    return 0;
+    *isMsgBoxOpen = TRUE;
+    return FALSE;
 }
 
 static BOOL ScrCmd_CloseMessage(ScriptContext *ctx)
@@ -3385,17 +3385,17 @@ static BOOL ScrCmd_FacePlayer(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_069(ScriptContext *ctx)
+static BOOL ScrCmd_GetPlayerMapPos(ScriptContext *ctx)
 {
-    u16 *v0, *v1;
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    v0 = ScriptContext_GetVarPointer(ctx);
-    v1 = ScriptContext_GetVarPointer(ctx);
-    *v0 = Player_GetXPos(fieldSystem->playerAvatar);
-    *v1 = Player_GetZPos(fieldSystem->playerAvatar);
+    u16 *destVarX = ScriptContext_GetVarPointer(ctx);
+    u16 *destVarZ = ScriptContext_GetVarPointer(ctx);
 
-    return 0;
+    *destVarX = Player_GetXPos(fieldSystem->playerAvatar);
+    *destVarZ = Player_GetZPos(fieldSystem->playerAvatar);
+
+    return FALSE;
 }
 
 static BOOL ScrCmd_06A(ScriptContext *ctx)
@@ -4238,10 +4238,10 @@ static BOOL ScrCmd_310(ScriptContext *ctx)
     return 1;
 }
 
-static BOOL ScrCmd_0A9(ScriptContext *ctx)
+static BOOL ScrCmd_OpenSealCapsuleEditor(ScriptContext *ctx)
 {
     sub_020980DC(ctx->taskManager, ctx->fieldSystem->saveData);
-    return 1;
+    return TRUE;
 }
 
 static BOOL ScrCmd_0AA(ScriptContext *ctx)
@@ -4600,21 +4600,16 @@ static BOOL ScriptContext_ScreenWipeDone(ScriptContext *ctx)
     return ScreenWipe_Done() == TRUE;
 }
 
-static BOOL ScrCmd_0BE(ScriptContext *ctx)
+static BOOL ScrCmd_Warp(ScriptContext *ctx)
 {
-    u16 v0, v1, v2, v3;
-    s16 v4;
-    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 mapID = ScriptContext_GetVar(ctx);
+    s16 dummy = ScriptContext_ReadHalfWord(ctx);
+    u16 x = ScriptContext_GetVar(ctx);
+    u16 z = ScriptContext_GetVar(ctx);
+    u16 direction = ScriptContext_GetVar(ctx);
 
-    v0 = ScriptContext_GetVar(ctx);
-    v4 = ScriptContext_ReadHalfWord(ctx);
-    v1 = ScriptContext_GetVar(ctx);
-    v2 = ScriptContext_GetVar(ctx);
-    v3 = ScriptContext_GetVar(ctx);
-    v4 = -1;
-
-    sub_02053A80(ctx->taskManager, v0, v4, v1, v2, v3);
-    return 1;
+    sub_02053A80(ctx->taskManager, mapID, -1, x, z, direction);
+    return TRUE;
 }
 
 static BOOL ScrCmd_203(ScriptContext *ctx)
@@ -4753,24 +4748,18 @@ static BOOL ScrCmd_0C6(ScriptContext *ctx)
     return 1;
 }
 
-static BOOL ScrCmd_0C7(ScriptContext *ctx)
+static BOOL ScrCmd_CheckPlayerOnBike(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(ctx);
-
-    if (PlayerAvatar_GetPlayerState(ctx->fieldSystem->playerAvatar) == 0x1) {
-        *v0 = 1;
-    } else {
-        *v0 = 0;
-    }
-
-    return 0;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    *destVar = PlayerAvatar_GetPlayerState(ctx->fieldSystem->playerAvatar) == 0x1;
+    return FALSE;
 }
 
-static BOOL ScrCmd_0C8(ScriptContext *ctx)
+static BOOL ScrCmd_SetPlayerBike(ScriptContext *ctx)
 {
-    u8 v0 = ScriptContext_ReadByte(ctx);
+    u8 rideBike = ScriptContext_ReadByte(ctx);
 
-    if (v0 == 1) {
+    if (rideBike == TRUE) {
         sub_020553F0(ctx->fieldSystem, 1152);
         sub_02055554(ctx->fieldSystem, 1152, 1);
         PlayerAvatar_SetRequestStateBit(ctx->fieldSystem->playerAvatar, (1 << 1));
@@ -4782,7 +4771,7 @@ static BOOL ScrCmd_0C8(ScriptContext *ctx)
         sub_02055554(ctx->fieldSystem, sub_02055428(ctx->fieldSystem, ctx->fieldSystem->location->mapId), 1);
     }
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_2BF(ScriptContext *ctx)
@@ -4797,26 +4786,26 @@ static BOOL ScrCmd_0C9(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_0CA(ScriptContext *ctx)
+static BOOL ScrCmd_GetPlayerState(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v0 = PlayerAvatar_GetPlayerState(ctx->fieldSystem->playerAvatar);
-    return 0;
+    *destVar = PlayerAvatar_GetPlayerState(ctx->fieldSystem->playerAvatar);
+    return FALSE;
 }
 
-static BOOL ScrCmd_0CB(ScriptContext *ctx)
+static BOOL ScrCmd_SetPlayerState(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_ReadHalfWord(ctx);
+    u16 state = ScriptContext_ReadHalfWord(ctx);
 
-    PlayerAvatar_TurnOnRequestStateBit(ctx->fieldSystem->playerAvatar, v0);
-    return 1;
+    PlayerAvatar_TurnOnRequestStateBit(ctx->fieldSystem->playerAvatar, state);
+    return TRUE;
 }
 
-static BOOL ScrCmd_0CC(ScriptContext *ctx)
+static BOOL ScrCmd_ChangePlayerState(ScriptContext *ctx)
 {
     PlayerAvatar_RequestChangeState(ctx->fieldSystem->playerAvatar);
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_0E3(ScriptContext *ctx)
@@ -5887,24 +5876,21 @@ static BOOL ScrCmd_2F2(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_317(ScriptContext *ctx)
+static BOOL ScrCmd_GetPlayer3DPos(ScriptContext *ctx)
 {
-    u16 *v0, *v1, *v2;
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    v0 = ScriptContext_GetVarPointer(ctx);
-    v2 = ScriptContext_GetVarPointer(ctx);
-    v1 = ScriptContext_GetVarPointer(ctx);
+    u16 *destVarX = ScriptContext_GetVarPointer(ctx);
+    u16 *destVarY = ScriptContext_GetVarPointer(ctx);
+    u16 *destVarZ = ScriptContext_GetVarPointer(ctx);
 
-    {
-        MapObject *v4 = Player_MapObject(fieldSystem->playerAvatar);
+    MapObject *player = Player_MapObject(fieldSystem->playerAvatar);
 
-        *v0 = MapObject_GetXPos(v4);
-        *v2 = (MapObject_GetYPos(v4) / 2);
-        *v1 = MapObject_GetZPos(v4);
-    }
+    *destVarX = MapObject_GetXPos(player);
+    *destVarY = MapObject_GetYPos(player) / 2;
+    *destVarZ = MapObject_GetZPos(player);
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_1AC(ScriptContext *ctx)

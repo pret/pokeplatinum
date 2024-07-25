@@ -34,7 +34,7 @@ _0079:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_07E 0x1D0, 1, 0x800C
+    CheckItem ITEM_SECRETPOTION, 1, 0x800C
     GoToIfEq 0x800C, 1, _00A1
     Message 0
     WaitABXPadPress
@@ -55,8 +55,8 @@ _00C4:
     End
 
 _00CA:
-    ScrCmd_0CD 0
-    ScrCmd_0D1 1, 0x1D0
+    BufferPlayerName 0
+    BufferItemName 1, 0x1D0
     Message 2
     CloseMessage
     ScrCmd_04C 54, 0
@@ -76,7 +76,7 @@ _00CA:
     ScrCmd_065 26
     ScrCmd_065 19
     WaitTime 45, 0x800C
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 0x230, _015B
     GoToIfEq 0x8004, 0x231, _016F
     End
@@ -118,7 +118,7 @@ _01E9:
     CallCommonScript 0x7FC
     Message 4
     CloseMessage
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 0x230, _0220
     GoToIfEq 0x8004, 0x231, _0230
     End

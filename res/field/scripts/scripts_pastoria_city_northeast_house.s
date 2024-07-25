@@ -54,8 +54,8 @@ _00D7:
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _00CC
-    ScrCmd_0D0 0, 0x8000
-    ScrCmd_0D1 1, 0x104
+    BufferPartyMonSpecies 0, 0x8000
+    BufferItemName 1, 0x104
     Message 4
     CallCommonScript 0x7FC
     SetFlag 0x140
@@ -70,8 +70,8 @@ _0118:
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _00CC
-    ScrCmd_0D0 0, 0x8000
-    ScrCmd_0D1 1, 0x105
+    BufferPartyMonSpecies 0, 0x8000
+    BufferItemName 1, 0x105
     Message 4
     CallCommonScript 0x7FC
     SetFlag 0x141
@@ -86,8 +86,8 @@ _0159:
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _00CC
-    ScrCmd_0D0 0, 0x8000
-    ScrCmd_0D1 1, 0x106
+    BufferPartyMonSpecies 0, 0x8000
+    BufferItemName 1, 0x106
     Message 4
     CallCommonScript 0x7FC
     SetFlag 0x142
@@ -102,8 +102,8 @@ _019A:
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _00CC
-    ScrCmd_0D0 0, 0x8000
-    ScrCmd_0D1 1, 0x107
+    BufferPartyMonSpecies 0, 0x8000
+    BufferItemName 1, 0x107
     Message 4
     CallCommonScript 0x7FC
     SetFlag 0x143
@@ -118,8 +118,8 @@ _01DB:
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _00CC
-    ScrCmd_0D0 0, 0x8000
-    ScrCmd_0D1 1, 0x108
+    BufferPartyMonSpecies 0, 0x8000
+    BufferItemName 1, 0x108
     Message 4
     CallCommonScript 0x7FC
     SetFlag 0x144
@@ -198,7 +198,7 @@ _031F:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_04B 0x5DC
+    WaitFanfare SEQ_SE_CONFIRM
     ScrCmd_04C 0x1A1, 0
     Message 12
     ScrCmd_04D

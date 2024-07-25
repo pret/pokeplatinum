@@ -30,13 +30,13 @@ _004D:
 
 _005D:
     GoToIfEq 0x40E0, 0x7D0, _0074
-    ScrCmd_0CD 1
-    ScrCmd_0D5 2, 0x40E0
+    BufferPlayerName 1
+    BufferNumber 2, 0x40E0
     Return
 
 _0074:
-    ScrCmd_0CE 1
-    ScrCmd_0D5 2, 0x40E0
+    BufferRivalName 1
+    BufferNumber 2, 0x40E0
     Return
 
 _007E:
@@ -50,7 +50,7 @@ _007E:
 _009D:
     GoToIfSet 211, _01D6
     SetFlag 211
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 21
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 0, _0107
@@ -60,7 +60,7 @@ _009D:
 _00D2:
     GoToIfSet 211, _01E2
     SetFlag 211
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 22
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 0, _0107
@@ -118,12 +118,12 @@ _01CB:
     End
 
 _01D6:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 30
     GoTo _01EE
 
 _01E2:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 31
     GoTo _01EE
 
@@ -140,14 +140,14 @@ _01EE:
 
 _0231:
     Call _005D
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 32
     CloseMessage
     GoTo _0259
 
 _0245:
     Call _005D
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 33
     CloseMessage
     GoTo _0259
@@ -160,7 +160,7 @@ _0259:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BE 251, 0, 24, 47, 0
+    Warp MAP_HEADER_PAL_PARK, 0, 24, 47, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll
@@ -214,13 +214,13 @@ _02F8:
     ApplyMovement 0xFF, _03EC
     WaitMovement
     ScrCmd_256 0, 0x800C
-    ScrCmd_0D5 0, 0x800C
+    BufferNumber 0, 0x800C
     ScrCmd_256 1, 0x800C
-    ScrCmd_0D5 1, 0x800C
+    BufferNumber 1, 0x800C
     ScrCmd_256 2, 0x800C
-    ScrCmd_0D5 2, 0x800C
+    BufferNumber 2, 0x800C
     ScrCmd_256 3, 0x800C
-    ScrCmd_0D5 3, 0x800C
+    BufferNumber 3, 0x800C
     Message 38
     ScrCmd_256 3, 0x800C
     GoToIfGt 0x800C, 0x40E0, _035B
@@ -301,7 +301,7 @@ _0413:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     GoToIfEq 0x800C, 2, _0454
     GoToIfEq 0x800C, 1, _0449
     GoTo _043E
@@ -328,7 +328,7 @@ _0454:
     End
 
 _045F:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -376,7 +376,7 @@ _04B4:
     ApplyMovement 1, _0548
     WaitMovement
     ScrCmd_14D 0x4000
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     GoToIfEq 0x4000, 0, _04E4
     GoTo _04ED
 
@@ -405,7 +405,7 @@ _04F6:
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 1
-    ScrCmd_04B 0x603
+    WaitFanfare SEQ_SE_DP_KAIDAN2
     SetVar 0x40C6, 1
     ReleaseAll
     End
@@ -473,7 +473,7 @@ _05FB:
     End
 
 _062C:
-    ScrCmd_0D7 0, 20
+    BufferPoketchAppName 0, POKETCH_APPID_KITCHENTIMER
     Message 12
     WaitABXPadPress
     CloseMessage
@@ -481,7 +481,7 @@ _062C:
     End
 
 _063C:
-    ScrCmd_0D7 0, 21
+    BufferPoketchAppName 0, POKETCH_APPID_COLORCHANGER
     Message 15
     WaitABXPadPress
     CloseMessage

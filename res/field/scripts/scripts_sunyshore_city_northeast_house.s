@@ -75,12 +75,12 @@ _0104:
     Return
 
 _010E:
-    ScrCmd_0D0 1, 0x8002
-    ScrCmd_0CD 2
+    BufferPartyMonSpecies 1, 0x8002
+    BufferPlayerName 2
     Message 4
-    ScrCmd_04E 0x483
+    PlaySound SEQ_FANFA1
     Message 5
-    ScrCmd_04F
+    WaitSound
     Message 6
     GoTo _012B
 
@@ -92,7 +92,7 @@ _012B:
     End
 
 _0136:
-    ScrCmd_0D0 1, 0x8002
+    BufferPartyMonSpecies 1, 0x8002
     Message 8
     WaitABXPadPress
     CloseMessage

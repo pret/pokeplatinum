@@ -31,10 +31,10 @@ _0057:
     ScrCmd_177 0x800C
     GoToIfEq 0x800C, 6, _00EF
     Message 2
-    ScrCmd_04E 0x486
-    ScrCmd_0CD 0
+    PlaySound SEQ_FANFA4
+    BufferPlayerName 0
     Message 3
-    ScrCmd_04F
+    WaitSound
     ScrCmd_096 133, 20, 0, 0x800C
     SetFlag 0x131
     Message 4

@@ -953,7 +953,7 @@ _0E86:
 
 _0F01:
     ScrCmd_0EA 0x8004
-    ScrCmd_033
+    OpenMessage
     ScrCmd_0E7 0x8000, 0x8001, 0x8002
     ScrCmd_0E6 0x8004, 0x8000
     GoTo _0F1D
@@ -976,7 +976,7 @@ _0F40:
     End
 
 _0F5B:
-    ScrCmd_033
+    OpenMessage
     ScrCmd_0E7 0x8000, 0x8001, 0x8002
     ScrCmd_0E6 0x8004, 0x8001
     WaitABXPadPress
@@ -995,7 +995,7 @@ _0F73:
 
 _0FA3:
     ScrCmd_0EA 0x8004
-    ScrCmd_033
+    OpenMessage
     ScrCmd_0E8 0x8000, 0x8001, 0x8002
     ScrCmd_0E6 0x8004, 0x8000
     SetVar 0x8004, 0x8007
@@ -1009,7 +1009,7 @@ _0FC5:
 
 _0FCB:
     ScrCmd_0E4 0x8004
-    ScrCmd_033
+    OpenMessage
     ScrCmd_0E7 0x8000, 0x8001, 0x8002
     ScrCmd_0E6 0x8004, 0x8002
     WaitABPress
@@ -1064,7 +1064,7 @@ _1083:
     Call _10DE
     ScrCmd_0B9 0, 0x800C
     SetVar 0x8004, 0x800C
-    ScrCmd_033
+    OpenMessage
     ScrCmd_0E6 0x8004, 0
     CloseMessage
     ScrCmd_0E5 0x8004, 0
@@ -1090,12 +1090,12 @@ _10F3:
     Call _1178
     ScrCmd_0B9 0, 0x800C
     SetVar 0x8004, 0x800C
-    ScrCmd_033
+    OpenMessage
     ScrCmd_0E6 0x8004, 3
     CloseMessage
     ScrCmd_0B9 1, 0x800C
     SetVar 0x8005, 0x800C
-    ScrCmd_033
+    OpenMessage
     ScrCmd_0E6 0x8005, 7
     CloseMessage
     ScrCmd_0E5 0x8004, 0x8005
@@ -1125,7 +1125,7 @@ _11A0:
     Call _123B
     ScrCmd_0B9 0, 0x800C
     SetVar 0x8004, 0x800C
-    ScrCmd_033
+    OpenMessage
     ScrCmd_0E6 0x8004, 0
     CloseMessage
     ScrCmd_0B9 1, 0x800C
@@ -1135,7 +1135,7 @@ _11A0:
     Call _1250
     ScrCmd_0B9 1, 0x800C
     SetVar 0x8005, 0x800C
-    ScrCmd_033
+    OpenMessage
     ScrCmd_0E6 0x8005, 0
     CloseMessage
     ScrCmd_0E5 0x8004, 0x8005

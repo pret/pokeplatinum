@@ -111,7 +111,7 @@ _0110:
     EndMovement
 
 _0134:
-    ScrCmd_07E 0x1D3, 1, 0x800C
+    CheckItem ITEM_SECRET_KEY, 1, 0x800C
     GoToIfEq 0x800C, 0, _01AA
     ScrCmd_28B 3, 0x800C
     GoToIfEq 0x800C, 0, _01AA
@@ -119,15 +119,15 @@ _0134:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_0CD 0
-    ScrCmd_0D1 1, 0x1D3
+    BufferPlayerName 0
+    BufferItemName 1, 0x1D3
     Message 6
     CloseMessage
     PlayFanfare SEQ_SE_DP_W062
     FadeScreen 6, 1, 0, 0x7FFF
     WaitFadeScreen
     ScrCmd_065 6
-    ScrCmd_04B 0x5FB
+    WaitFanfare SEQ_SE_DP_W062
     FadeScreen 6, 1, 1, 0x7FFF
     WaitFadeScreen
     Message 7

@@ -38,7 +38,7 @@ _0048:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_04B 0x5DC
+    WaitFanfare SEQ_SE_CONFIRM
     ScrCmd_04C 54, 0
     Message 4
     ScrCmd_04D
@@ -58,7 +58,7 @@ _0067:
     CallIfEq 0x8000, 1, _00C8
     CallIfEq 0x8000, 2, _00D4
     CallIfEq 0x8000, 3, _00E0
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 0
     WaitABXPadPress
     CloseMessage
@@ -81,7 +81,7 @@ _00E0:
     Return
 
 _00EC:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 1
     WaitABXPadPress
     CloseMessage

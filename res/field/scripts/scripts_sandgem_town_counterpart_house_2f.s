@@ -8,7 +8,7 @@
 _0006:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 0
     WaitABXPadPress
     CloseMessage

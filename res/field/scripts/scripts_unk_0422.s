@@ -15,7 +15,7 @@ _001A:
     LockAll
     FacePlayer
     GoToIfGe 0x4086, 3, _003D
-    ScrCmd_0CD 1
+    BufferPlayerName 1
     Message 1
     WaitABXPadPress
     CloseMessage
@@ -28,7 +28,7 @@ _003D:
     GoToIfEq 0x40CA, 3, _00BA
     GoToIfEq 0x40CA, 2, _00CA
     GoToIfEq 0x40CA, 1, _00DD
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 2
     WaitABXPadPress
     GoTo _00ED
@@ -51,7 +51,7 @@ _003D:
     .byte 0
 
 _009C:
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 7
     WaitABXPadPress
     CloseMessage
@@ -59,21 +59,21 @@ _009C:
     End
 
 _00AA:
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 6
     WaitABXPadPress
     GoTo _00ED
     End
 
 _00BA:
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 5
     WaitABXPadPress
     GoTo _00ED
     End
 
 _00CA:
-    ScrCmd_0CE 0
+    BufferRivalName 0
     ScrCmd_0DC 1
     Message 4
     WaitABXPadPress
@@ -81,7 +81,7 @@ _00CA:
     End
 
 _00DD:
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 3
     WaitABXPadPress
     GoTo _00ED
@@ -99,19 +99,19 @@ _00F9:
     FacePlayer
     GoToIfGe 0x40CB, 2, _0126
     GoToIfEq 0x40CB, 1, _0131
-    ScrCmd_0CE 0
+    BufferRivalName 0
     GoTo _013C
     End
 
 _0126:
-    ScrCmd_0CE 0
+    BufferRivalName 0
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0131:
-    ScrCmd_0CE 0
+    BufferRivalName 0
     GoTo _013C
     End
 
@@ -128,7 +128,7 @@ _014A:
     FacePlayer
     GoToIfGe 0x40E8, 2, _0185
     GoToIfEq 0x40E8, 1, _017A
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 12
     GoTo _0193
     End
@@ -139,7 +139,7 @@ _017A:
     End
 
 _0185:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 14
     WaitABXPadPress
     CloseMessage
@@ -160,7 +160,7 @@ _01A1:
     GoToIfGe 0x40E1, 3, _01F4
     GoToIfEq 0x40E1, 2, _01E9
     GoToIfEq 0x40E1, 1, _01DE
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 42
     GoTo _01FF
     End
@@ -195,7 +195,7 @@ _020D:
     FacePlayer
     GoToIfGe 0x40E2, 2, _0248
     GoToIfEq 0x40E2, 1, _023D
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 19
     GoTo _0256
     End
@@ -206,7 +206,7 @@ _023D:
     End
 
 _0248:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 21
     WaitABXPadPress
     CloseMessage
@@ -226,7 +226,7 @@ _0266:
     LockAll
     FacePlayer
     GoToIfGe 0x40E4, 1, _0289
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 38
     GoTo _0294
     End

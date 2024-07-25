@@ -13,7 +13,7 @@ _000A:
     GoToIfSet 0x137, _0114
     GoToIfSet 0xAAE, _016F
     ScrCmd_277 0x8000
-    ScrCmd_0D5 0, 0x8000
+    BufferNumber 0, 0x8000
     ScrCmd_177 0x8002
     SetVar 0x8003, 0
 _003B:
@@ -28,8 +28,8 @@ _006D:
     CallIfEq 0x4108, 0, _00ED
     CallIfEq 0x4108, 1, _00F5
     CallIfEq 0x4108, 2, _00FD
-    ScrCmd_0D0 1, 0x8003
-    ScrCmd_0D1 2, 0x8004
+    BufferPartyMonSpecies 1, 0x8003
+    BufferItemName 2, 0x8004
     Message 1
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
@@ -72,7 +72,7 @@ _0114:
     CallIfEq 0x4108, 0, _00ED
     CallIfEq 0x4108, 1, _00F5
     CallIfEq 0x4108, 2, _00FD
-    ScrCmd_0D1 2, 0x8004
+    BufferItemName 2, 0x8004
     Message 3
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C

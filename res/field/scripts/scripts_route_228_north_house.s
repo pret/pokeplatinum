@@ -43,7 +43,7 @@ _0055:
     GoToIfEq 0x800C, 1, _02BB
     ScrCmd_1B9 0x800C, 0x8000
     GoToIfLt 0x800C, 0xFF, _02B0
-    ScrCmd_0D0 0, 0x8000
+    BufferPartyMonSpecies 0, 0x8000
     GoToIfEq 0x8002, 1, _00FE
     GoToIfEq 0x8002, 2, _011E
     GoTo _013E

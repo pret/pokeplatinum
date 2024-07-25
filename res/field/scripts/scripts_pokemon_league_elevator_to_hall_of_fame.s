@@ -27,13 +27,13 @@ _000A:
     WaitMovement
     ApplyMovement 0xFF, _0190
     WaitMovement
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 1
     CloseMessage
     ApplyMovement 0, _0144
     WaitMovement
     Message 2
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 3
     ApplyMovement 0, _0150
     WaitMovement
@@ -44,12 +44,12 @@ _000A:
     End
 
 _00B1:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 5
     GoTo _00C9
 
 _00BD:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 6
     GoTo _00C9
 
@@ -63,7 +63,7 @@ _00C9:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BE 187, 0, 8, 15, 0
+    Warp MAP_HEADER_POKEMON_LEAGUE_HALL_OF_FAME, 0, 8, 15, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll

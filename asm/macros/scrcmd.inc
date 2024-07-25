@@ -1,4 +1,7 @@
     .include "macros/movement.inc"
+    .include "consts/items.inc"
+    .include "consts/map.inc"
+    .include "consts/poketch.inc"
     .include "consts/scrcmd.inc"
     .include "consts/sdat.inc"
 
@@ -272,7 +275,8 @@
     .short 50
     .endm
 
-    .macro ScrCmd_033
+    // Opens a message box window without printing anything
+    .macro OpenMessage
     .short 51
     .endm
 
@@ -403,6 +407,7 @@
     .byte \arg0
     .endm
 
+    // Plays a sound effect without interrupting the current music
     .macro PlayFanfare sdatID
     .short 73
     .short \sdatID
@@ -413,9 +418,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_04B arg0
+    .macro WaitFanfare sdatID
     .short 75
-    .short \arg0
+    .short \sdatID
     .endm
 
     .macro ScrCmd_04C arg0, arg1
@@ -428,26 +433,28 @@
     .short 77
     .endm
 
-    .macro ScrCmd_04E arg0
+    // Pauses the current music and then plays a sound effect
+    .macro PlaySound sdatID
     .short 78
-    .short \arg0
+    .short \sdatID
     .endm
 
-    .macro ScrCmd_04F
+    .macro WaitSound
     .short 79
     .endm
 
-    .macro ScrCmd_050 arg0
+    .macro PlayMusic sdatID
     .short 80
-    .short \arg0
+    .short \sdatID
     .endm
 
-    .macro ScrCmd_051 arg0
+    .macro StopMusic dummy
     .short 81
-    .short \arg0
+    .short \dummy
     .endm
 
-    .macro ScrCmd_052
+    // Plays the default music track based on the player's current location
+    .macro PlayDefaultMusic
     .short 82
     .endm
 
@@ -456,10 +463,10 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_054 arg0, arg1
+    .macro FadeOutMusic targetVolume, frames
     .short 84
-    .short \arg0
-    .short \arg1
+    .short \targetVolume
+    .short \frames
     .endm
 
     .macro ScrCmd_055 arg0
@@ -557,10 +564,10 @@
     .short 104
     .endm
 
-    .macro ScrCmd_069 arg0, arg1
+    .macro GetPlayerMapPos destVarIDX, destVarIDZ
     .short 105
-    .short \arg0
-    .short \arg1
+    .short \destVarIDX
+    .short \destVarIDZ
     .endm
 
     .macro ScrCmd_06A arg0, arg1, arg2
@@ -652,18 +659,20 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_07B arg0, arg1, arg2
+    // If the player has no space left in the bag, resultVar will be set to FALSE 
+    .macro AddItem item, count, resultVar
     .short 123
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \item
+    .short \count
+    .short \resultVar
     .endm
 
-    .macro ScrCmd_07C arg0, arg1, arg2
+    // resultVar will be set to TRUE if the player had at least 'count' items of the specified type in their bag
+    .macro RemoveItem item, count, resultVar
     .short 124
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \item
+    .short \count
+    .short \resultVar
     .endm
 
     .macro ScrCmd_07D arg0, arg1, arg2
@@ -673,11 +682,12 @@
     .short \arg2
     .endm
 
-    .macro ScrCmd_07E arg0, arg1, arg2
+    // resultVar will be set to TRUE if the player has at least 'count' items of the specified type in their bag
+    .macro CheckItem item, count, resultVar
     .short 126
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \item
+    .short \count
+    .short \resultVar
     .endm
 
     .macro ScrCmd_07F arg0, arg1
@@ -930,7 +940,7 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_0A9
+    .macro OpenSealCapsuleEditor
     .short 169
     .endm
 
@@ -1031,13 +1041,13 @@
     .short 189
     .endm
 
-    .macro ScrCmd_0BE arg0, arg1, arg2, arg3, arg4
+    .macro Warp mapID, dummy, x, z, direction
     .short 190
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
-    .short \arg4
+    .short \mapID
+    .short \dummy
+    .short \x
+    .short \z
+    .short \direction
     .endm
 
     .macro ScrCmd_0BF arg0
@@ -1079,14 +1089,16 @@
     .short 198
     .endm
 
-    .macro ScrCmd_0C7 arg0
+    .macro CheckPlayerOnBike destVarID
     .short 199
-    .short \arg0
+    .short \destVarID
     .endm
 
-    .macro ScrCmd_0C8 arg0
+    // If rideBike == TRUE, sets the player on the bike.
+    // If rideBike == FALSE, removes the player from the bike.
+    .macro SetPlayerBike rideBike
     .short 200
-    .byte \arg0
+    .byte \rideBike
     .endm
 
     .macro ScrCmd_0C9 arg0
@@ -1094,51 +1106,51 @@
     .byte \arg0
     .endm
 
-    .macro ScrCmd_0CA arg0
+    .macro GetPlayerState destVarID
     .short 202
-    .short \arg0
+    .short \destVarID
     .endm
 
-    .macro ScrCmd_0CB arg0
+    .macro SetPlayerState state
     .short 203
-    .short \arg0
+    .short \state
     .endm
 
-    .macro ScrCmd_0CC
+    .macro ChangePlayerState
     .short 204
     .endm
 
-    .macro ScrCmd_0CD arg0
+    .macro BufferPlayerName templateArg
     .short 205
-    .byte \arg0
+    .byte \templateArg
     .endm
 
-    .macro ScrCmd_0CE arg0
+    .macro BufferRivalName templateArg
     .short 206
-    .byte \arg0
+    .byte \templateArg
     .endm
 
-    .macro ScrCmd_0CF arg0
+    .macro BufferCounterpartName templateArg
     .short 207
-    .byte \arg0
+    .byte \templateArg
     .endm
 
-    .macro ScrCmd_0D0 arg0, arg1
+    .macro BufferPartyMonSpecies templateArg, partySlot
     .short 208
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \partySlot
     .endm
 
-    .macro ScrCmd_0D1 arg0, arg1
+    .macro BufferItemName templateArg, item
     .short 209
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \item
     .endm
 
-    .macro ScrCmd_0D2 arg0, arg1
+    .macro BufferPocketName templateArg, pocket
     .short 210
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \pocket
     .endm
 
     .macro ScrCmd_0D3 arg0, arg1
@@ -1153,22 +1165,22 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_0D5 arg0, arg1
+    .macro BufferNumber templateArg, number
     .short 213
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \number
     .endm
 
-    .macro ScrCmd_0D6 arg0, arg1
+    .macro BufferPartyMonNickname templateArg, partySlot
     .short 214
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \partySlot
     .endm
 
-    .macro ScrCmd_0D7 arg0, arg1
+    .macro BufferPoketchAppName templateArg, appID
     .short 215
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \appID
     .endm
 
     .macro ScrCmd_0D8 arg0, arg1
@@ -4279,11 +4291,11 @@
     .short 790
     .endm
 
-    .macro ScrCmd_317 arg0, arg1, arg2
+    .macro GetPlayer3DPos destVarIDX, destVarIDY, destVarIDZ
     .short 791
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \destVarIDX
+    .short \destVarIDY
+    .short \destVarIDZ
     .endm
 
     .macro ScrCmd_318 arg0, arg1

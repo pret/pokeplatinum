@@ -21,7 +21,7 @@ _001D:
     LockAll
     FacePlayer
     SetVar 0x8004, 0x1BD
-    ScrCmd_0D1 0, 0x8004
+    BufferItemName 0, 0x8004
     GoToIfSet 132, _005E
     Message 1
     ScrCmd_03E 0x800C
@@ -30,7 +30,7 @@ _001D:
     End
 
 _005E:
-    ScrCmd_0D1 0, 0x8004
+    BufferItemName 0, 0x8004
     Message 3
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 0, _0086
@@ -59,7 +59,7 @@ _009C:
     End
 
 _00A7:
-    ScrCmd_0D1 0, 0x8004
+    BufferItemName 0, 0x8004
     Message 2
     SetVar 0x8005, 1
     CallCommonScript 0x7FC

@@ -47,8 +47,8 @@ _009E:
 
 _00BE:
     Message 2
-    ScrCmd_04E 0x48E
-    ScrCmd_04F
+    PlaySound SEQ_ASA
+    WaitSound
     ScrCmd_14E
     Return
 
@@ -59,7 +59,7 @@ _00CB:
     SetVar 0x40D8, 1
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BE 0x146, 0, 7, 6, 0
+    Warp MAP_HEADER_BATTLE_TOWER, 0, 7, 6, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll
@@ -75,7 +75,7 @@ _0114:
     ScrCmd_136
     ScrCmd_135 8
     ScrCmd_150
-    ScrCmd_0BE 0x146, 0, 7, 6, 0
+    Warp MAP_HEADER_BATTLE_TOWER, 0, 7, 6, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll
@@ -155,7 +155,7 @@ _025B:
     ScrCmd_12D 0x800C
     ScrCmd_18E
     PlayFanfare SEQ_SE_DP_SAVE
-    ScrCmd_04B 0x61B
+    WaitFanfare SEQ_SE_DP_SAVE
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     CloseMessage
@@ -181,7 +181,7 @@ _02B0:
     Call _00BE
 _02E8:
     ScrCmd_1DD 33, 0, 0x8004
-    ScrCmd_0D5 0, 0x8004
+    BufferNumber 0, 0x8004
     Message 3
     ScrCmd_044 31, 11, 0, 0, 0x800C
     ScrCmd_33A 1
@@ -228,7 +228,7 @@ _039E:
     Call _00BE
 _03D6:
     ScrCmd_1DD 33, 0, 0x8004
-    ScrCmd_0D5 0, 0x8004
+    BufferNumber 0, 0x8004
     Message 3
     ScrCmd_044 31, 13, 0, 0, 0x800C
     ScrCmd_33A 1

@@ -84,14 +84,14 @@ _00A4:
     SetFlag 0x185
     Message 0
     FacePlayer
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 1
     GoTo _00E0
     End
 
 _00D0:
     FacePlayer
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 1
     GoTo _00E0
     End
@@ -153,12 +153,12 @@ _018F:
     End
 
 _01CE:
-    ScrCmd_07B 42, 0x8004, 0x800C
+    AddItem ITEM_LAVA_COOKIE, 0x8004, 0x800C
     PlayFanfare SEQ_SE_DP_REGI
     ScrCmd_334 35, 0x8005
     ScrCmd_1A3 0x8005
     ScrCmd_074
-    ScrCmd_04B 0x644
+    WaitFanfare SEQ_SE_DP_REGI
     CallIfLt 0x4042, 0x2710, _0700
     GoTo _0220
     End
@@ -197,7 +197,7 @@ _022A:
     End
 
 _025B:
-    ScrCmd_07E 0x1C1, 1, 0x800C
+    CheckItem ITEM_POFFIN_CASE, 1, 0x800C
     GoToIfEq 0x800C, 0, _0537
     Call _0697
     SetVar 0x8008, 0x800C

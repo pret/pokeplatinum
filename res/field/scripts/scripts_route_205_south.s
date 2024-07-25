@@ -144,7 +144,7 @@ _014D:
 
 _015D:
     LockAll
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x293, _01A8
     GoToIfEq 0x8005, 0x294, _01C2
     GoToIfEq 0x8005, 0x295, _01DC

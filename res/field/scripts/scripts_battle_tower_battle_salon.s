@@ -104,7 +104,7 @@ _01AC:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 1
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 0, _01D4
@@ -119,7 +119,7 @@ _01D4:
     SetVar 0x40D8, 3
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BE 0x146, 0, 11, 6, 0
+    Warp MAP_HEADER_BATTLE_TOWER, 0, 11, 6, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End
@@ -133,7 +133,7 @@ _0204:
     SetVar 0x40DB, 2
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BE 0x147, 0, 3, 6, 0
+    Warp MAP_HEADER_BATTLE_TOWER_ELEVATOR, 0, 3, 6, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll
@@ -187,7 +187,7 @@ _02FE:
     GoToIfEq 0x40DF, 2, _0336
     SetVar 0x4009, 1
     Call _0245
-    ScrCmd_0CD 4
+    BufferPlayerName 4
     Message 15
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 0, _0341
@@ -201,7 +201,7 @@ _0336:
 _0341:
     ScrCmd_1DD 50, 0x4009, 0
     SetVar 0x40DF, 2
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 17
     CloseMessage
     ReleaseAll
@@ -337,7 +337,7 @@ _0500:
     WaitMovement
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BE 0x1ED, 0, 8, 4, 0
+    Warp MAP_HEADER_BATTLE_TOWER_BATTLE_SALON, 0, 8, 4, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll
@@ -345,7 +345,7 @@ _0500:
 
 _055C:
     SetVar 0x4000, 1
-    ScrCmd_069 0x8000, 0x8001
+    GetPlayerMapPos 0x8000, 0x8001
     GoToIfEq 0x8000, 12, _057D
     GoTo _058F
     End
@@ -364,7 +364,7 @@ _058F:
 
 _05A1:
     SetVar 0x4000, 2
-    ScrCmd_069 0x8000, 0x8001
+    GetPlayerMapPos 0x8000, 0x8001
     GoToIfEq 0x8000, 4, _05C2
     GoTo _05D4
     End
@@ -383,7 +383,7 @@ _05D4:
 
 _05E6:
     SetVar 0x4000, 3
-    ScrCmd_069 0x8000, 0x8001
+    GetPlayerMapPos 0x8000, 0x8001
     GoToIfEq 0x8001, 7, _0607
     GoTo _0619
     End
@@ -402,7 +402,7 @@ _0619:
 
 _062B:
     SetVar 0x4000, 4
-    ScrCmd_069 0x8000, 0x8001
+    GetPlayerMapPos 0x8000, 0x8001
     GoToIfEq 0x8001, 9, _064C
     GoTo _065E
     End
@@ -421,7 +421,7 @@ _065E:
 
 _0670:
     SetVar 0x4000, 5
-    ScrCmd_069 0x8000, 0x8001
+    GetPlayerMapPos 0x8000, 0x8001
     GoToIfEq 0x8000, 8, _0691
     GoTo _06A3
     End

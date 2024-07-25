@@ -10,7 +10,7 @@ _0006:
     LockAll
     FacePlayer
     GoToIfSet 222, _0039
-    ScrCmd_07E 0x1AB, 1, 0x800C
+    CheckItem ITEM_HM08, 1, 0x800C
     GoToIfEq 0x800C, 1, _0044
     Message 0
     WaitABXPadPress

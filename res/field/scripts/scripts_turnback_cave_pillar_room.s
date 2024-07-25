@@ -21,8 +21,8 @@ _0026:
     LockAll
     SetVar 0x8004, 0x410B
     SetVar 0x8005, 0x410C
-    ScrCmd_0D5 0, 0x8004
-    ScrCmd_0D5 1, 0x8005
+    BufferNumber 0, 0x8004
+    BufferNumber 1, 0x8005
     Message 0
     WaitABXPadPress
     CloseMessage

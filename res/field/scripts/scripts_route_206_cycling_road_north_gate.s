@@ -11,7 +11,7 @@
     .short 0xFD13
 
 _001A:
-    ScrCmd_069 0x4004, 0x4005
+    GetPlayerMapPos 0x4004, 0x4005
     CallIfGe 0x4005, 12, _0035
     SetVar 0x4003, 1
     End
@@ -40,7 +40,7 @@ _004E:
 
 _0061:
     LockAll
-    ScrCmd_0C7 0x800C
+    CheckPlayerOnBike 0x800C
     GoToIfEq 0x800C, 1, _0091
     ApplyMovement 1, _00A0
     WaitMovement
@@ -79,8 +79,8 @@ _00C0:
     LockAll
     FacePlayer
     GoToIfSet 0x10B, _0154
-    ScrCmd_0CD 0
-    ScrCmd_0CF 1
+    BufferPlayerName 0
+    BufferCounterpartName 1
     ScrCmd_14D 0x4000
     GoToIfEq 0x4000, 0, _00F0
     GoTo _00F9
@@ -95,7 +95,7 @@ _00F9:
 
 _0102:
     ScrCmd_120 0x8004
-    ScrCmd_0D5 1, 0x8004
+    BufferNumber 1, 0x8004
     GoToIfLt 0x8004, 35, _015F
     Message 5
     SetVar 0x8004, 216

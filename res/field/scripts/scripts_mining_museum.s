@@ -45,19 +45,19 @@ _0055:
     GoToIfEq 0x800C, 1, _03E7
     GoToIfEq 0x8000, 1, _03BC
     SetVar 0x8001, 0
-    ScrCmd_07E 103, 1, 0x800C
+    CheckItem ITEM_OLD_AMBER, 1, 0x800C
     AddVar 0x8001, 0x800C
-    ScrCmd_07E 101, 1, 0x800C
+    CheckItem ITEM_HELIX_FOSSIL, 1, 0x800C
     AddVar 0x8001, 0x800C
-    ScrCmd_07E 102, 1, 0x800C
+    CheckItem ITEM_DOME_FOSSIL, 1, 0x800C
     AddVar 0x8001, 0x800C
-    ScrCmd_07E 99, 1, 0x800C
+    CheckItem ITEM_ROOT_FOSSIL, 1, 0x800C
     AddVar 0x8001, 0x800C
-    ScrCmd_07E 100, 1, 0x800C
+    CheckItem ITEM_CLAW_FOSSIL, 1, 0x800C
     AddVar 0x8001, 0x800C
-    ScrCmd_07E 104, 1, 0x800C
+    CheckItem ITEM_ARMOR_FOSSIL, 1, 0x800C
     AddVar 0x8001, 0x800C
-    ScrCmd_07E 105, 1, 0x800C
+    CheckItem ITEM_SKULL_FOSSIL, 1, 0x800C
     AddVar 0x8001, 0x800C
     GoToIfEq 0x8001, 1, _03BC
     SetVar 0x8004, 0
@@ -105,42 +105,42 @@ _0225:
     CallIfEq 0x8003, 6, _03B4
     ScrCmd_1F4 0x40B4, 0x8002
     GoToIfEq 0x40B4, 0, _03E7
-    ScrCmd_07C 0x8002, 1, 0x800C
+    RemoveItem 0x8002, 1, 0x800C
     GoTo _03D8
 
 _02DC:
     SetVar 0x4000, 103
-    ScrCmd_07E 0x4000, 1, 0x800C
+    CheckItem 0x4000, 1, 0x800C
     Return
 
 _02EC:
     SetVar 0x4000, 101
-    ScrCmd_07E 0x4000, 1, 0x800C
+    CheckItem 0x4000, 1, 0x800C
     Return
 
 _02FC:
     SetVar 0x4000, 102
-    ScrCmd_07E 0x4000, 1, 0x800C
+    CheckItem 0x4000, 1, 0x800C
     Return
 
 _030C:
     SetVar 0x4000, 99
-    ScrCmd_07E 0x4000, 1, 0x800C
+    CheckItem 0x4000, 1, 0x800C
     Return
 
 _031C:
     SetVar 0x4000, 100
-    ScrCmd_07E 0x4000, 1, 0x800C
+    CheckItem 0x4000, 1, 0x800C
     Return
 
 _032C:
     SetVar 0x4000, 104
-    ScrCmd_07E 0x4000, 1, 0x800C
+    CheckItem 0x4000, 1, 0x800C
     Return
 
 _033C:
     SetVar 0x4000, 105
-    ScrCmd_07E 0x4000, 1, 0x800C
+    CheckItem 0x4000, 1, 0x800C
     Return
 
 _034C:
@@ -202,7 +202,7 @@ _03B4:
 _03BC:
     ScrCmd_1F5 0x8002, 0x8004, 1
     ScrCmd_1F4 0x40B4, 0x8002
-    ScrCmd_07C 0x8002, 1, 0x800C
+    RemoveItem 0x8002, 1, 0x800C
     GoTo _03D8
 
 _03D8:
@@ -226,10 +226,10 @@ _03F2:
     ScrCmd_177 0x800C
     GoToIfEq 0x800C, 6, _04A0
     ScrCmd_0DA 1, 0x40B4, 0, 0
-    ScrCmd_0CD 0
-    ScrCmd_04E 0x486
+    BufferPlayerName 0
+    PlaySound SEQ_FANFA4
     Message 8
-    ScrCmd_04F
+    WaitSound
     ScrCmd_096 0x40B4, 20, 0, 0x800C
     ScrCmd_1E5 115
     SetVar 0x40B4, 0

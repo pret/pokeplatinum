@@ -45,13 +45,13 @@ _0083:
 
 _009A:
     LockAll
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     ScrCmd_066 0x8004, 0x8005
     ApplyMovement 241, _00E8
     WaitMovement
     WaitTime 15, 0x800C
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
+    BufferRivalName 0
+    BufferPlayerName 1
     Message 0
     CloseMessage
     ApplyMovement 2, _00F8

@@ -36,7 +36,7 @@ _0062:
     End
 
 _006A:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 4
     GoTo _0062
     End
@@ -46,8 +46,8 @@ _0078:
     LockAll
     ScrCmd_15B 4, 0x800C
     GoToIfEq 0x800C, 1, _00A2
-    ScrCmd_0CE 0
-    ScrCmd_0CE 1
+    BufferRivalName 0
+    BufferRivalName 1
     Message 5
     WaitABXPadPress
     CloseMessage
@@ -55,9 +55,9 @@ _0078:
     End
 
 _00A2:
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
-    ScrCmd_0CE 2
+    BufferRivalName 0
+    BufferPlayerName 1
+    BufferRivalName 2
     Message 6
     WaitABXPadPress
     CloseMessage

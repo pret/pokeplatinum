@@ -32,10 +32,10 @@ _000E:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     PlayFanfare SEQ_SE_DP_FW367
-    ScrCmd_04B 0x662
+    WaitFanfare SEQ_SE_DP_FW367
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    ScrCmd_0D6 0, 0x4000
+    BufferPartyMonNickname 0, 0x4000
     Message 4
     SetFlag 0xAAC
     ScrCmd_1BA 3, 0x4000
@@ -88,7 +88,7 @@ _0114:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_04B 0x5DC
+    WaitFanfare SEQ_SE_CONFIRM
     ScrCmd_04C 0x1A1, 0
     Message 10
     ScrCmd_04D

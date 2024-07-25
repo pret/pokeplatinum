@@ -33,10 +33,10 @@ _0066:
     ApplyMovement 242, _0124
     ApplyMovement 0xFF, _0144
     WaitMovement
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 0
     CloseMessage
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 80, _00D8
     GoToIfEq 0x8004, 81, _00D8
     GoToIfEq 0x8004, 82, _00D8
@@ -57,7 +57,7 @@ _00F0:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BE 0x137, 0, 46, 54, 0
+    Warp MAP_HEADER_LAKE_VERITY_LOW_WATER, 0, 46, 54, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End

@@ -84,7 +84,7 @@ _00F5:
     End
 
 _0100:
-    ScrCmd_0D6 0, 0x8001
+    BufferPartyMonNickname 0, 0x8001
     Message 6
     GoTo _011C
 
@@ -170,7 +170,7 @@ _0246:
     End
 
 _0257:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 16
     SetVar 0x8002, 0x40F2
     GoTo _0194

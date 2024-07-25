@@ -7,38 +7,38 @@
 
 _0006:
     LockAll
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     ScrCmd_066 0x8004, 0x8005
     ApplyMovement 241, _0228
     WaitMovement
     WaitTime 15, 0x800C
     ApplyMovement 2, _01C4
     WaitMovement
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 0
     CloseMessage
     ApplyMovement 1, _01EC
     WaitMovement
     Message 1
     CloseMessage
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 14, _0136
     CallIfEq 0x8004, 15, _0154
     ScrCmd_067
     Message 2
     CloseMessage
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 14, _0168
     CallIfEq 0x8004, 15, _0174
     PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 1
-    ScrCmd_04B 0x603
-    ScrCmd_069 0x8004, 0x8005
+    WaitFanfare SEQ_SE_DP_KAIDAN2
+    GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 14, _0180
     CallIfEq 0x8004, 15, _018C
     ApplyMovement 2, _01CC
     WaitMovement
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 3
     CloseMessage
     ApplyMovement 2, _01D4
@@ -55,7 +55,7 @@ _0006:
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 2
-    ScrCmd_04B 0x603
+    WaitFanfare SEQ_SE_DP_KAIDAN2
     SetFlag 0x98F
     ClearFlag 0x223
     SetVar 0x40D3, 2

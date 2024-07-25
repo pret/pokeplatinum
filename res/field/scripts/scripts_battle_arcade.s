@@ -90,8 +90,8 @@ _014D:
 _015E:
     SetVar 0x40BE, 0
     ScrCmd_2D9 0, 3, 0x800C
-    ScrCmd_0D5 0, 3
-    ScrCmd_0D5 1, 3
+    BufferNumber 0, 3
+    BufferNumber 1, 3
     GoToIfEq 0x800C, 0, _01E5
     GoTo _020B
     End
@@ -99,8 +99,8 @@ _015E:
 _018B:
     SetVar 0x40BE, 1
     ScrCmd_2D9 0, 3, 0x800C
-    ScrCmd_0D5 0, 3
-    ScrCmd_0D5 1, 3
+    BufferNumber 0, 3
+    BufferNumber 1, 3
     GoToIfEq 0x800C, 0, _01E5
     GoTo _020B
     End
@@ -108,8 +108,8 @@ _018B:
 _01B8:
     SetVar 0x40BE, 2
     ScrCmd_2D9 0, 2, 0x800C
-    ScrCmd_0D5 0, 2
-    ScrCmd_0D5 1, 2
+    BufferNumber 0, 2
+    BufferNumber 1, 2
     GoToIfEq 0x800C, 0, _01F8
     GoTo _020B
     End
@@ -242,22 +242,22 @@ _0448:
 
 _0450:
     Call _049F
-    ScrCmd_0D0 0, 0x4002
+    BufferPartyMonSpecies 0, 0x4002
     Message 29
     GoTo _0497
     End
 
 _0466:
     Call _049F
-    ScrCmd_0D0 0, 0x4005
+    BufferPartyMonSpecies 0, 0x4005
     Message 29
     GoTo _0497
     End
 
 _047C:
     Call _049F
-    ScrCmd_0D0 0, 0x4002
-    ScrCmd_0D0 1, 0x4005
+    BufferPartyMonSpecies 0, 0x4002
+    BufferPartyMonSpecies 1, 0x4005
     Message 30
     GoTo _0497
     End
@@ -457,7 +457,7 @@ _06DF:
     ScrCmd_12D 0x800C
     ScrCmd_18E
     PlayFanfare SEQ_SE_DP_SAVE
-    ScrCmd_04B 0x61B
+    WaitFanfare SEQ_SE_DP_SAVE
     Return
 
 _06F1:
@@ -480,19 +480,19 @@ _073C:
 
 _0742:
     Message 35
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 37
-    ScrCmd_04E 0x486
-    ScrCmd_04F
+    PlaySound SEQ_FANFA4
+    WaitSound
     SetVar 0x4053, 2
     Return
 
 _0759:
     Message 35
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 36
-    ScrCmd_04E 0x486
-    ScrCmd_04F
+    PlaySound SEQ_FANFA4
+    WaitSound
     SetVar 0x4053, 4
     CallCommonScript 0x806
     Return

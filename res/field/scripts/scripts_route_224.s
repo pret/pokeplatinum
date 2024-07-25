@@ -17,7 +17,7 @@ _001A:
     GoToIfEq 0x4000, 0, _0080
     ScrCmd_22D 2, 0x4000
     GoToIfEq 0x4000, 0, _0080
-    ScrCmd_07E 0x1C4, 1, 0x4000
+    CheckItem ITEM_OAKS_LETTER, 1, 0x4000
     GoToIfEq 0x4000, 0, _0080
     ScrCmd_28B 1, 0x4000
     GoToIfEq 0x4000, 0, _0080
@@ -72,14 +72,14 @@ _00E4:
     LockAll
     FacePlayer
     SetVar 0x408D, 1
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     ScrCmd_14D 0x800C
     GoToIfEq 0x800C, 1, _0219
     Message 0
 _0114:
     CloseMessage
     Call _0240
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 2
     CloseMessage
 _0124:
@@ -89,7 +89,7 @@ _0124:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x800C, 1, _0222
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     ScrCmd_272 1
     Message 3
     ScrCmd_03E 0x800C
@@ -97,12 +97,12 @@ _0124:
     GoToIfEq 0x800C, 1, _0124
     Call _029A
     WaitTime 15, 0x800C
-    ScrCmd_054 0, 10
+    FadeOutMusic 0, 10
     FadeScreen 6, 6, 0, 0x7FFF
     WaitFadeScreen
     ScrCmd_270 3, 1
     ScrCmd_333 0
-    ScrCmd_0BE 0x18F, 0, 0x38C, 0x1EC, 0
+    Warp MAP_HEADER_ROUTE_224, 0, 0x38C, 0x1EC, 0
     WaitTime 15, 0x800C
     FadeScreen 6, 6, 1, 0x7FFF
     WaitFadeScreen
@@ -155,7 +155,7 @@ _022D:
     End
 
 _0240:
-    ScrCmd_069 0x8000, 0x8001
+    GetPlayerMapPos 0x8000, 0x8001
     SetVar 0x8008, 0x8000
     GoToIfEq 0x8008, 0x38D, _0272
     GoToIfEq 0x8008, 0x38E, _0286
@@ -338,7 +338,7 @@ _0448:
 _0458:
     LockAll
     ClearFlag 0x2CA
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x1F0, _048D
     GoToIfEq 0x8005, 0x1F1, _04AF
     GoToIfEq 0x8005, 0x1F2, _04D1
@@ -376,7 +376,7 @@ _04F3:
     WaitMovement
     Message 9
     CloseMessage
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x1F0, _0531
     GoToIfEq 0x8005, 0x1F1, _054B
     GoToIfEq 0x8005, 0x1F2, _0565

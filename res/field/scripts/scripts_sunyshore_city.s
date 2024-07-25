@@ -47,7 +47,7 @@ _0099:
     ClearFlag 0x255
     ScrCmd_064 20
     ScrCmd_062 20
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 0x355, _00FA
     GoToIfEq 0x8004, 0x356, _0114
     GoToIfEq 0x8004, 0x357, _012E
@@ -91,8 +91,8 @@ _0162:
     End
 
 _017C:
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
+    BufferRivalName 0
+    BufferPlayerName 1
     Message 10
     ApplyMovement 20, _04A0
     WaitMovement
@@ -447,7 +447,7 @@ _0577:
 
 _0593:
     LockAll
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x316, _05B7
     GoToIfEq 0x8005, 0x317, _05C7
     End

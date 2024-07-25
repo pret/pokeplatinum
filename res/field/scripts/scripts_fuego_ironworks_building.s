@@ -27,7 +27,7 @@ _0010:
     End
 
 _0062:
-    ScrCmd_07E 91, 1, 0x800C
+    CheckItem ITEM_STAR_PIECE, 1, 0x800C
     GoToIfEq 0x800C, 1, _0082
     Message 1
     GoTo _00EC
@@ -42,7 +42,7 @@ _0082:
     End
 
 _00A9:
-    ScrCmd_07E 91, 1, 0x800C
+    CheckItem ITEM_STAR_PIECE, 1, 0x800C
     GoToIfEq 0x800C, 0, _00E1
     Message 4
     ScrCmd_03E 0x800C
@@ -74,11 +74,11 @@ _00FF:
 
 _011A:
     ScrCmd_1E5 70
-    ScrCmd_07C 91, 1, 0x800C
-    ScrCmd_07B 72, 1, 0x800C
-    ScrCmd_07B 73, 1, 0x800C
-    ScrCmd_07B 74, 1, 0x800C
-    ScrCmd_07B 75, 1, 0x800C
+    RemoveItem ITEM_STAR_PIECE, 1, 0x800C
+    AddItem ITEM_RED_SHARD, 1, 0x800C
+    AddItem ITEM_BLUE_SHARD, 1, 0x800C
+    AddItem ITEM_YELLOW_SHARD, 1, 0x800C
+    AddItem ITEM_GREEN_SHARD, 1, 0x800C
     GoTo _01E5
     End
 
@@ -100,11 +100,11 @@ _014E:
 _019E:
     SubVar 0x8007, 1
     ScrCmd_1E5 70
-    ScrCmd_07B 72, 1, 0x800C
-    ScrCmd_07B 73, 1, 0x800C
-    ScrCmd_07B 74, 1, 0x800C
-    ScrCmd_07B 75, 1, 0x800C
-    ScrCmd_07C 91, 1, 0x800C
+    AddItem ITEM_RED_SHARD, 1, 0x800C
+    AddItem ITEM_BLUE_SHARD, 1, 0x800C
+    AddItem ITEM_YELLOW_SHARD, 1, 0x800C
+    AddItem ITEM_GREEN_SHARD, 1, 0x800C
+    RemoveItem ITEM_STAR_PIECE, 1, 0x800C
     GoToIfEq 0x8007, 0, _01E5
     GoTo _019E
     End

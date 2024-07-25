@@ -36,8 +36,8 @@ _0064:
     ApplyMovement 0, _00B0
     WaitMovement
     SetFlag 135
-    ScrCmd_0CD 0
-    ScrCmd_0CE 1
+    BufferPlayerName 0
+    BufferRivalName 1
     Message 0
     CloseMessage
     WaitTime 15, 0x800C
@@ -82,8 +82,8 @@ _0110:
     ApplyMovement 0xFF, _0164
     ApplyMovement 0, _0170
     WaitMovement
-    ScrCmd_0CD 0
-    ScrCmd_0CE 1
+    BufferPlayerName 0
+    BufferRivalName 1
     ScrCmd_22D 2, 0x800C
     CallIfEq 0x800C, 1, _014F
     CallIfEq 0x800C, 0, _0158
@@ -122,18 +122,18 @@ _017C:
     ApplyMovement 0xFF, _01F8
     WaitMovement
     WaitTime 30, 0x800C
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
+    BufferRivalName 0
+    BufferPlayerName 1
     Message 6
     CloseMessage
     WaitTime 30, 0x800C
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 7
     ScrCmd_15A
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 8
-    ScrCmd_04E 0x486
-    ScrCmd_04F
+    PlaySound SEQ_FANFA4
+    WaitSound
     Message 9
     WaitABXPadPress
     CloseMessage
@@ -177,8 +177,8 @@ _0214:
     GoToIfGe 0x40A4, 2, _0768
     GoToIfSet 135, _077A
     SetFlag 135
-    ScrCmd_0CD 0
-    ScrCmd_0CE 1
+    BufferPlayerName 0
+    BufferRivalName 1
     Message 0
     WaitABXPadPress
     CloseMessage
@@ -218,32 +218,32 @@ _02C4:
 
 _0300:
     GoToIfGe 0x40AA, 2, _02C4
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 41
     GoTo _0356
     End
 
 _031B:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 37
     GoTo _0356
     End
 
 _0329:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 38
     GoTo _0356
     End
 
 _0337:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 39
     GoTo _0356
     End
 
 _0345:
-    ScrCmd_0CD 0
-    ScrCmd_0CE 1
+    BufferPlayerName 0
+    BufferRivalName 1
     Message 40
     GoTo _0356
     End
@@ -255,7 +255,7 @@ _0356:
     End
 
 _035E:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 28
     WaitABXPadPress
     CloseMessage
@@ -264,7 +264,7 @@ _035E:
 
 _036C:
     Call _0688
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 15
     SetVar 0x8004, 0x1B1
     SetVar 0x8005, 1
@@ -291,27 +291,27 @@ _03B8:
 _03CA:
     Message 17
     FacePlayer
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 18
     CloseMessage
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
     ClearFlag 0x1F1
     ScrCmd_064 1
-    ScrCmd_04B 0x605
+    WaitFanfare SEQ_SE_DP_DOOR_OPEN
     ApplyMovement 0, _07B4
     ApplyMovement 0xFF, _0864
     WaitMovement
     ApplyMovement 1, _07FC
     WaitMovement
     CallIfEq 0x8007, 0, _0465
-    ScrCmd_0CE 1
+    BufferRivalName 1
     Message 19
     ApplyMovement 0, _07C0
     WaitMovement
     Message 20
-    ScrCmd_0CE 1
+    BufferRivalName 1
     Message 21
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 22
     GoToIfEq 0x8007, 0, _0471
     GoToIfEq 0x8007, 1, _048B
@@ -390,8 +390,8 @@ _0562:
     End
 
 _057C:
-    ScrCmd_0CD 0
-    ScrCmd_0CE 1
+    BufferPlayerName 0
+    BufferRivalName 1
     ScrCmd_14D 0x800C
     GoToIfEq 0x800C, 0, _059B
     GoTo _05A6
@@ -413,7 +413,7 @@ _05B1:
     CallCommonScript 0x7FC
     SetFlag 143
     Message 27
-    ScrCmd_0CE 1
+    BufferRivalName 1
     Message 26
     CloseMessage
     GoToIfEq 0x8007, 0, _0606
@@ -459,7 +459,7 @@ _0676:
     End
 
 _0688:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     GetTimeOfDay 0x800C
     CallIfEq 0x800C, 0, _06F8
     CallIfEq 0x800C, 1, _06FD
@@ -469,8 +469,8 @@ _0688:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_04E 0x48E
-    ScrCmd_04F
+    PlaySound SEQ_ASA
+    WaitSound
     ScrCmd_14E
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
@@ -568,7 +568,7 @@ _0711:
     .byte 0
 
 _075A:
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 5
     WaitABXPadPress
     CloseMessage
@@ -577,7 +577,7 @@ _075A:
 
 _0768:
     SetFlag 248
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 2
     WaitABXPadPress
     CloseMessage
@@ -585,7 +585,7 @@ _0768:
     End
 
 _077A:
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 1
     WaitABXPadPress
     CloseMessage
@@ -810,7 +810,7 @@ _08EA:
 
 _0904:
     SetVar 0x40A4, 2
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 4
     WaitABXPadPress
     CloseMessage
@@ -859,7 +859,7 @@ _0930:
     .byte 0
 
 _0948:
-    ScrCmd_0CE 1
+    BufferRivalName 1
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer

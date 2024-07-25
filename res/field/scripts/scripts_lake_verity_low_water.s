@@ -43,7 +43,7 @@ _006F:
     ApplyMovement 5, _0298
     ApplyMovement 0xFF, _0368
     WaitMovement
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 0
     CloseMessage
     ScrCmd_066 46, 53
@@ -70,14 +70,14 @@ _006F:
     ApplyMovement 0xFF, _0378
     ApplyMovement 5, _02AC
     WaitMovement
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 3
     CloseMessage
     ApplyMovement 5, _02B8
     ApplyMovement 0xFF, _0380
     WaitMovement
     WaitTime 30, 0x800C
-    ScrCmd_0CD 1
+    BufferPlayerName 1
     Message 4
     ScrCmd_04C 0x1E1, 0
     Message 5
@@ -89,14 +89,14 @@ _006F:
     WaitTime 15, 0x800C
     ApplyMovement 5, _02F0
     WaitMovement
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
+    BufferRivalName 0
+    BufferPlayerName 1
     Message 6
     CloseMessage
     ApplyMovement 5, _02E8
     WaitMovement
     WaitTime 15, 0x800C
-    ScrCmd_0CD 1
+    BufferPlayerName 1
     Message 7
     CloseMessage
     ApplyMovement 5, _02F8
@@ -631,7 +631,7 @@ _0418:
     FacePlayer
     GoToIfSet 184, _043D
     SetFlag 184
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 8
     WaitABXPadPress
     CloseMessage
@@ -639,7 +639,7 @@ _0418:
     End
 
 _043D:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 9
     WaitABXPadPress
     CloseMessage
@@ -655,12 +655,12 @@ _044B:
     GoTo _0476
 
 _046A:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 10
     GoTo _0482
 
 _0476:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 11
     GoTo _0482
 

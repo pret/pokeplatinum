@@ -33,7 +33,7 @@ _0038:
     LockAll
     FacePlayer
     GoToIfSet 192, _008C
-    ScrCmd_0D1 0, 13
+    BufferItemName 0, 13
     Message 2
     SetVar 0x8004, 13
     SetVar 0x8005, 1
@@ -62,7 +62,7 @@ _0097:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_04B 0x5DC
+    WaitFanfare SEQ_SE_CONFIRM
     ScrCmd_04C 54, 0
     Message 4
     ScrCmd_04D

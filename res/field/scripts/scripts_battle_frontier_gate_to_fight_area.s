@@ -30,10 +30,10 @@ _0038:
     CloseMessage
     Call _02F5
     Message 1
-    ScrCmd_0CD 0
-    ScrCmd_04E 0x486
+    BufferPlayerName 0
+    PlaySound SEQ_FANFA4
     Message 2
-    ScrCmd_04F
+    WaitSound
     Message 3
     Call _0095
     Message 10

@@ -2298,7 +2298,7 @@ _1EAE:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_04B 0x5DC
+    WaitFanfare SEQ_SE_CONFIRM
     SetVar 0x8004, 0x8008
     SetVar 0x8005, 0x8009
     ScrCmd_07D 0x8004, 0x8005, 0x800C
@@ -2314,7 +2314,7 @@ _1EEA:
 _1EF0:
     CallCommonScript 0x7D1
     ScrCmd_065 0x800D
-    ScrCmd_07B 0x8004, 0x8005, 0x800C
+    AddItem 0x8004, 0x8005, 0x800C
     ScrCmd_2A2 0x8004
     CallIfEq 0x8004, 0x1CF, _20C0
     ScrCmd_07F 0x8004, 0x800C
@@ -2323,11 +2323,11 @@ _1EF0:
     End
 
 _1F33:
-    ScrCmd_04F
+    WaitSound
     ScrCmd_2A7 0x8004, 0x800C
     CallIfEq 0x800C, 1, _20C6
-    ScrCmd_0CD 0
-    ScrCmd_0D1 1, 0x8004
+    BufferPlayerName 0
+    BufferItemName 1, 0x8004
     GetItemPocket 0x8004, 0x800C
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 7, _1FD9
@@ -2342,49 +2342,49 @@ _1F33:
 
 _1FC6:
     GetItemPocket 0x8004, 0x800C
-    ScrCmd_0D2 2, 0x800C
+    BufferPocketName 2, 0x800C
     GoTo _205E
     End
 
 _1FD9:
     GetItemPocket 0x8004, 0x800C
-    ScrCmd_0D2 2, 0x800C
+    BufferPocketName 2, 0x800C
     GoTo _205E
     End
 
 _1FEC:
     GetItemPocket 0x8004, 0x800C
-    ScrCmd_0D2 2, 0x800C
+    BufferPocketName 2, 0x800C
     GoTo _205E
     End
 
 _1FFF:
     GetItemPocket 0x8004, 0x800C
-    ScrCmd_0D2 2, 0x800C
+    BufferPocketName 2, 0x800C
     GoTo _205E
     End
 
 _2012:
     GetItemPocket 0x8004, 0x800C
-    ScrCmd_0D2 2, 0x800C
+    BufferPocketName 2, 0x800C
     GoTo _205E
     End
 
 _2025:
     GetItemPocket 0x8004, 0x800C
-    ScrCmd_0D2 2, 0x800C
+    BufferPocketName 2, 0x800C
     GoTo _205E
     End
 
 _2038:
     GetItemPocket 0x8004, 0x800C
-    ScrCmd_0D2 2, 0x800C
+    BufferPocketName 2, 0x800C
     GoTo _205E
     End
 
 _204B:
     GetItemPocket 0x8004, 0x800C
-    ScrCmd_0D2 2, 0x800C
+    BufferPocketName 2, 0x800C
     GoTo _205E
     End
 
@@ -2397,7 +2397,7 @@ _205E:
     End
 
 _207D:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     ScrCmd_33C 1, 0x8004
     ScrCmd_0D3 2, 0x8004
     Message 6
@@ -2405,14 +2405,14 @@ _207D:
     End
 
 _2095:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     ScrCmd_33C 1, 0x8004
     Message 3
     GoTo _1F33
     End
 
 _20A8:
-    ScrCmd_0D1 0, 0x8004
+    BufferItemName 0, 0x8004
     Message 4
     WaitABXPadPress
     SetVar 0x800C, 0

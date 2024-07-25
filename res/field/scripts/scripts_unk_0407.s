@@ -33,27 +33,27 @@ _0035:
     GoTo _0096
 
 _007E:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 0
     GoTo _00A2
 
 _008A:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 1
     GoTo _00A2
 
 _0096:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 2
     GoTo _00A2
 
 _00A2:
     ScrCmd_23E 3, 0x800C
     GoToIfEq 0x800C, 0, _00D8
-    ScrCmd_04E 0x486
+    PlaySound SEQ_FANFA4
     ScrCmd_23E 5, 0x8005, 0x8006
     ScrCmd_1FB 0x8005, 0x8006
-    ScrCmd_04F
+    WaitSound
     Message 18
     WaitABXPadPress
     ScrCmd_23E 4

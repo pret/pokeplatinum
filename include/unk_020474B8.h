@@ -4,21 +4,21 @@
 #include "field_script_context.h"
 
 BOOL ScrCmd_2EF(ScriptContext *param0);
-BOOL ScrCmd_0CD(ScriptContext *param0);
-BOOL ScrCmd_0CE(ScriptContext *param0);
-BOOL ScrCmd_0CF(ScriptContext *param0);
-BOOL ScrCmd_0D0(ScriptContext *param0);
+BOOL ScrCmd_BufferPlayerName(ScriptContext *ctx);
+BOOL ScrCmd_BufferRivalName(ScriptContext *ctx);
+BOOL ScrCmd_BufferCounterpartName(ScriptContext *ctx);
+BOOL ScrCmd_BufferPartyMonSpecies(ScriptContext *ctx);
 BOOL ScrCmd_2FD(ScriptContext *param0);
-BOOL ScrCmd_0D1(ScriptContext *param0);
-BOOL ScrCmd_0D2(ScriptContext *param0);
+BOOL ScrCmd_BufferItemName(ScriptContext *ctx);
+BOOL ScrCmd_BufferPocketName(ScriptContext *ctx);
 BOOL ScrCmd_0D3(ScriptContext *param0);
 BOOL ScrCmd_0D4(ScriptContext *param0);
-BOOL ScrCmd_0D5(ScriptContext *param0);
+BOOL ScrCmd_BufferNumber(ScriptContext *ctx);
 BOOL ScrCmd_280(ScriptContext *param0);
 BOOL ScrCmd_2F5(ScriptContext *param0);
-BOOL ScrCmd_0D6(ScriptContext *param0);
+BOOL ScrCmd_BufferPartyMonNickname(ScriptContext *ctx);
 BOOL ScrCmd_251(ScriptContext *param0);
-BOOL ScrCmd_0D7(ScriptContext *param0);
+BOOL ScrCmd_BufferPoketchAppName(ScriptContext *ctx);
 BOOL ScrCmd_0D8(ScriptContext *param0);
 BOOL ScrCmd_0D9(ScriptContext *param0);
 BOOL ScrCmd_0DA(ScriptContext *param0);

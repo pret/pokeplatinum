@@ -11,7 +11,7 @@ _0006:
     FacePlayer
     GoToIfSet 169, _002B
     SetFlag 169
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 0
     WaitABXPadPress
     CloseMessage
@@ -19,7 +19,7 @@ _0006:
     End
 
 _002B:
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 1
     WaitABXPadPress
     CloseMessage

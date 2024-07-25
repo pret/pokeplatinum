@@ -150,19 +150,19 @@ _022E:
     End
 
 _0239:
-    ScrCmd_0D5 0, 20
+    BufferNumber 0, 20
     SetVar 0x8004, 85
     GoTo _0272
     End
 
 _024C:
-    ScrCmd_0D5 0, 50
+    BufferNumber 0, 50
     SetVar 0x8004, 86
     GoTo _0272
     End
 
 _025F:
-    ScrCmd_0D5 0, 100
+    BufferNumber 0, 100
     SetVar 0x8004, 87
     GoTo _0272
     End
@@ -352,7 +352,7 @@ _05B9:
     GoToIfEq 0x800C, 0, _077E
     ScrCmd_1DD 10, 0, 0x800C
     SetVar 0x8000, 0x800C
-    ScrCmd_0D5 0, 0x8000
+    BufferNumber 0, 0x8000
     Message 65
     GoTo _077E
     End
@@ -440,7 +440,7 @@ _0734:
     ScrCmd_12D 0x800C
     ScrCmd_18E
     PlayFanfare SEQ_SE_DP_SAVE
-    ScrCmd_04B 0x61B
+    WaitFanfare SEQ_SE_DP_SAVE
     Return
 
 _0746:
@@ -448,7 +448,7 @@ _0746:
     ScrCmd_1CD 36, 0, 0, 0, 0
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BE 0x147, 0, 3, 6, 0
+    Warp MAP_HEADER_BATTLE_TOWER_ELEVATOR, 0, 3, 6, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll
@@ -635,7 +635,7 @@ _0A5A:
     Call _097F
     GoToIfNe 0x800C, 0, _0784
     ScrCmd_1E3 0x8004, 0x8005
-    ScrCmd_0D5 0, 0x8004
+    BufferNumber 0, 0x8004
     ScrCmd_280 1, 0x8005, 2, 3
     Message 52
     WaitABPress
@@ -820,7 +820,7 @@ _0D72:
 _0DE7:
     Call _0E4E
     ScrCmd_1DD 53, 0, 0x800C
-    ScrCmd_0D0 0, 0x800C
+    BufferPartyMonSpecies 0, 0x800C
     Message 33
     GoTo _077E
     End
@@ -828,7 +828,7 @@ _0DE7:
 _0E05:
     Call _0E4E
     ScrCmd_1DD 53, 1, 0x800C
-    ScrCmd_0D0 0, 0x800C
+    BufferPartyMonSpecies 0, 0x800C
     Message 33
     GoTo _077E
     End
@@ -836,9 +836,9 @@ _0E05:
 _0E23:
     Call _0E4E
     ScrCmd_1DD 53, 0, 0x800C
-    ScrCmd_0D0 0, 0x800C
+    BufferPartyMonSpecies 0, 0x800C
     ScrCmd_1DD 53, 1, 0x800C
-    ScrCmd_0D0 1, 0x800C
+    BufferPartyMonSpecies 1, 0x800C
     Message 34
     GoTo _077E
     End
@@ -909,8 +909,8 @@ _0F53:
 
 _0F73:
     Message 73
-    ScrCmd_04E 0x483
-    ScrCmd_04F
+    PlaySound SEQ_FANFA1
+    WaitSound
     Return
 
 _0F7E:
@@ -928,8 +928,8 @@ _0F7E:
 _0FD6:
     Message 12
     Message 73
-    ScrCmd_04E 0x483
-    ScrCmd_04F
+    PlaySound SEQ_FANFA1
+    WaitSound
     GoTo _1177
     End
 
@@ -943,8 +943,8 @@ _0FEA:
 _100A:
     ScrCmd_1DD 10, 0, 0x800C
     SetVar 0x4000, 0x800C
-    ScrCmd_0CD 0
-    ScrCmd_0D5 1, 0x4000
+    BufferPlayerName 0
+    BufferNumber 1, 0x4000
     Message 55
     GoTo _102B
     End
@@ -956,10 +956,10 @@ _102B:
     End
 
 _1048:
-    ScrCmd_0D5 0, 0x4000
+    BufferNumber 0, 0x4000
     Message 70
-    ScrCmd_04E 0x483
-    ScrCmd_04F
+    PlaySound SEQ_FANFA1
+    WaitSound
     GoTo _11F5
     End
 
@@ -970,10 +970,10 @@ _105E:
     End
 
 _107B:
-    ScrCmd_0D5 0, 0x4000
+    BufferNumber 0, 0x4000
     Message 132
-    ScrCmd_04E 0x483
-    ScrCmd_04F
+    PlaySound SEQ_FANFA1
+    WaitSound
     GoTo _11F5
     End
 
@@ -1007,26 +1007,26 @@ _10F5:
     ScrCmd_1DD 48, 0, 0x800C
     GoToIfEq 0x800C, 0, _10BC
     Message 84
-    ScrCmd_04E 0x483
-    ScrCmd_04F
+    PlaySound SEQ_FANFA1
+    WaitSound
     GoTo _10BC
     End
 
 _1135:
     Message 85
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 87
-    ScrCmd_04E 0x486
-    ScrCmd_04F
+    PlaySound SEQ_FANFA4
+    WaitSound
     SetVar 0x404F, 2
     Return
 
 _114C:
     Message 85
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 86
-    ScrCmd_04E 0x486
-    ScrCmd_04F
+    PlaySound SEQ_FANFA4
+    WaitSound
     SetVar 0x404F, 4
     CallCommonScript 0x806
     Return
@@ -1067,7 +1067,7 @@ _11BA:
 _11D7:
     ScrCmd_1DD 10, 0, 0x800C
     SetVar 0x8000, 0x800C
-    ScrCmd_0D5 0, 0x8000
+    BufferNumber 0, 0x8000
     Message 65
     GoTo _11F5
     End
@@ -1251,7 +1251,7 @@ _13AF:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_04B 0x5DC
+    WaitFanfare SEQ_SE_CONFIRM
     ScrCmd_04C 25, 0
     Message 81
     ScrCmd_04D

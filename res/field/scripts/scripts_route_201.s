@@ -40,7 +40,7 @@ _0072:
     WaitMovement
     Message 0
     CloseMessage
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 110, _00BF
     GoToIfEq 0x8004, 111, _00EB
     GoToIfEq 0x8004, 112, _0117
@@ -50,7 +50,7 @@ _0072:
 _00BF:
     ApplyMovement 2, _0670
     WaitMovement
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 1
     CloseMessage
     ApplyMovement 2, _06A8
@@ -62,7 +62,7 @@ _00BF:
 _00EB:
     ApplyMovement 2, _0680
     WaitMovement
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 1
     CloseMessage
     ApplyMovement 2, _06C0
@@ -74,7 +74,7 @@ _00EB:
 _0117:
     ApplyMovement 2, _0690
     WaitMovement
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 1
     CloseMessage
     ApplyMovement 2, _06D8
@@ -86,7 +86,7 @@ _0117:
 _0143:
     ApplyMovement 2, _0698
     WaitMovement
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 1
     CloseMessage
     ApplyMovement 2, _06F0
@@ -96,7 +96,7 @@ _0143:
     End
 
 _016F:
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 2
     CloseMessage
     ApplyMovement 2, _0708
@@ -118,20 +118,20 @@ _016F:
     ApplyMovement 0xFF, _0730
     ApplyMovement 2, _0730
     WaitMovement
-    ScrCmd_050 0x44A
+    PlayMusic SEQ_OPENING2
     ClearFlag 0x178
     ScrCmd_064 5
     ScrCmd_062 5
     ApplyMovement 5, _07C0
     WaitMovement
     Message 6
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 7
     Message 8
     ApplyMovement 2, _0740
     WaitMovement
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
+    BufferRivalName 0
+    BufferPlayerName 1
     Message 9
     CloseMessage
     ApplyMovement 2, _0748
@@ -151,7 +151,7 @@ _016F:
 _0259:
     ApplyMovement 2, _0750
     WaitMovement
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 12
     CloseMessage
     ApplyMovement 2, _0758
@@ -165,7 +165,7 @@ _0259:
 _0298:
     ApplyMovement 2, _0758
     WaitMovement
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 14
     Message 15
     GoTo _02B3
@@ -174,13 +174,13 @@ _0298:
 _02B3:
     ApplyMovement 2, _0768
     WaitMovement
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 16
     ApplyMovement 2, _0770
     WaitMovement
     ApplyMovement 0xFF, _088C
     WaitMovement
-    ScrCmd_0CD 1
+    BufferPlayerName 1
     Message 17
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 0, _030B
@@ -188,7 +188,7 @@ _02B3:
     End
 
 _02FD:
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 18
     GoTo _02B3
     End
@@ -198,7 +198,7 @@ _030B:
     ApplyMovement 2, _0768
     ApplyMovement 0xFF, _0894
     WaitMovement
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 20
     Message 21
     CloseMessage
@@ -257,11 +257,11 @@ _03DE:
     Message 31
     ApplyMovement 2, _0778
     WaitMovement
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 33
     ApplyMovement 2, _0780
     WaitMovement
-    ScrCmd_0CD 1
+    BufferPlayerName 1
     Message 34
     WaitABXPadPress
     CloseMessage
@@ -288,7 +288,7 @@ _042E:
     ApplyMovement 2, _0760
     ApplyMovement 0xFF, _0884
     WaitMovement
-    ScrCmd_0CE 0
+    BufferRivalName 0
     ScrCmd_0DC 2
     Message 36
     Message 37
@@ -333,7 +333,7 @@ _0512:
     WaitMovement
     SetFlag 0x179
     ScrCmd_065 6
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 43
     CloseMessage
     WaitTime 40, 0x800C
@@ -344,7 +344,7 @@ _0512:
     End
 
 _0554:
-    ScrCmd_0CD 1
+    BufferPlayerName 1
     Message 44
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 0, _057A
@@ -352,8 +352,8 @@ _0554:
     End
 
 _057A:
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
+    BufferRivalName 0
+    BufferPlayerName 1
     Message 47
     CloseMessage
     ScrCmd_06D 2, 15
@@ -379,8 +379,8 @@ _05CF:
     ScrCmd_0EC 0x800C
     GoToIfEq 0x800C, 0, _05F5
     ScrCmd_062 2
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
+    BufferRivalName 0
+    BufferPlayerName 1
     Message 48
     GoTo _0618
     End
@@ -390,8 +390,8 @@ _05F5:
     ScrCmd_062 2
     FadeScreen 6, 3, 1, 0
     WaitFadeScreen
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
+    BufferRivalName 0
+    BufferPlayerName 1
     Message 49
     GoTo _0618
     End
@@ -404,14 +404,14 @@ _0618:
     FadeScreen 6, 3, 0, 0
     WaitFadeScreen
     ScrCmd_14E
-    ScrCmd_0BE 0x19E, 0, 2, 6, 0
+    Warp MAP_HEADER_TWINLEAF_TOWN_PLAYER_HOUSE_1F, 0, 2, 6, 0
     FadeScreen 6, 3, 1, 0
     WaitFadeScreen
     ReleaseAll
     End
 
 _0656:
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 45
     GoTo _0554
     End
@@ -774,8 +774,8 @@ _0935:
     End
 
 _0967:
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
+    BufferRivalName 0
+    BufferPlayerName 1
     Message 53
     CloseMessage
     ScrCmd_162
@@ -840,11 +840,11 @@ _09E0:
     ApplyMovement 0xFF, _0A84
     ApplyMovement 2, _0A74
     WaitMovement
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
+    BufferRivalName 0
+    BufferPlayerName 1
     Message 52
     CloseMessage
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 110, _0A3B
     GoToIfEq 0x8004, 111, _0A3B
     GoToIfEq 0x8004, 112, _0A3B
@@ -889,7 +889,7 @@ _0A8C:
     LockAll
     ApplyMovement 2, _0AE4
     WaitMovement
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 35
     CloseMessage
     ScrCmd_1BD 0x800C
@@ -971,7 +971,7 @@ _0AF4:
 
 _0B24:
     LockAll
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x355, _0B55
     GoToIfEq 0x8005, 0x356, _0B89
     GoToIfEq 0x8005, 0x357, _0BBB
@@ -981,7 +981,7 @@ _0B55:
     ApplyMovement 254, _0DBC
     ApplyMovement 5, _0D48
     WaitMovement
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 53
     CloseMessage
     ApplyMovement 5, _0D50
@@ -994,7 +994,7 @@ _0B89:
     ApplyMovement 254, _0DBC
     ApplyMovement 5, _0D48
     WaitMovement
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 53
     CloseMessage
     ApplyMovement 5, _0D5C
@@ -1007,7 +1007,7 @@ _0BBB:
     ApplyMovement 254, _0DCC
     ApplyMovement 5, _0D48
     WaitMovement
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 53
     CloseMessage
     ApplyMovement 5, _0D5C
@@ -1016,7 +1016,7 @@ _0BBB:
     GoTo _0BF5
 
 _0BF5:
-    ScrCmd_0CF 0
+    BufferCounterpartName 0
     ScrCmd_0DB 1
     ScrCmd_0DC 2
     ApplyMovement 5, _0D70
@@ -1082,7 +1082,7 @@ _0CF1:
     WaitTime 30, 0x800C
     FadeScreen 6, 3, 0, 0
     WaitFadeScreen
-    ScrCmd_0BE 0x19E, 0, 2, 6, 0
+    Warp MAP_HEADER_TWINLEAF_TOWN_PLAYER_HOUSE_1F, 0, 2, 6, 0
     FadeScreen 6, 3, 1, 0
     WaitFadeScreen
     ReleaseAll
@@ -1255,11 +1255,11 @@ _0EB4:
     LockAll
     ApplyMovement 2, _0664
     WaitMovement
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
+    BufferRivalName 0
+    BufferPlayerName 1
     Message 50
     CloseMessage
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 110, _0F07
     GoToIfEq 0x8004, 111, _0F19
     GoToIfEq 0x8004, 112, _0F2B
@@ -1291,7 +1291,7 @@ _0F3D:
     End
 
 _0F4F:
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 51
     WaitABXPadPress
     CloseMessage

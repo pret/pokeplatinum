@@ -22,7 +22,7 @@ _002C:
     End
 
 _0040:
-    ScrCmd_07E 0x1C6, 1, 0x4000
+    CheckItem ITEM_MEMBER_CARD, 1, 0x4000
     GoToIfEq 0x4000, 1, _0057
     End
 
@@ -53,7 +53,7 @@ _0093:
     ApplyMovement 0xFF, _0130
     WaitMovement
     WaitTime 15, 0x800C
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 1
     CloseMessage
     PlayFanfare SEQ_SE_DP_MAZYO2
@@ -71,7 +71,7 @@ _0093:
     FadeScreen 6, 6, 0, 0
     WaitFadeScreen
     WaitTime 120, 0x800C
-    ScrCmd_0BE 0x140, 0, 152, 0x115, 1
+    Warp MAP_HEADER_NEWMOON_ISLAND, 0, 152, 0x115, 1
     FadeScreen 6, 6, 1, 0
     WaitFadeScreen
     ReleaseAll
@@ -99,9 +99,9 @@ _0160:
     LockAll
     Call _0184
     ScrCmd_2B5 33, 58, 0x2CA
-    ScrCmd_04E 0x48E
-    ScrCmd_04F
-    ScrCmd_0CD 0
+    PlaySound SEQ_ASA
+    WaitSound
+    BufferPlayerName 0
     Message 2
     WaitABXPadPress
     CloseMessage

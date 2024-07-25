@@ -34,7 +34,7 @@ _0062:
     GoToIfEq 0x4000, 0, _00C5
     ScrCmd_22D 2, 0x4000
     GoToIfEq 0x4000, 0, _00C5
-    ScrCmd_07E 0x1C7, 1, 0x4000
+    CheckItem ITEM_AZURE_FLUTE, 1, 0x4000
     GoToIfEq 0x4000, 0, _00C5
     ScrCmd_28B 2, 0x4000
     GoToIfEq 0x4000, 0, _00C5
@@ -208,7 +208,7 @@ _0249:
     Message 4
     CloseMessage
     Call _02DC
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 5
     Message 7
     Message 8
@@ -219,11 +219,11 @@ _0249:
     ScrCmd_0EC 0x800C
     GoToIfEq 0x800C, 0, _02D0
     Call _0456
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
+    BufferRivalName 0
+    BufferPlayerName 1
     Message 10
-    ScrCmd_04E 0x48E
-    ScrCmd_04F
+    PlaySound SEQ_ASA
+    WaitSound
     ScrCmd_14E
     Message 11
     Message 12
@@ -244,7 +244,7 @@ _02D0:
 
 _02DC:
     ClearFlag 0x1C5
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     SetVar 0x8008, 0x8004
     GoToIfEq 0x8008, 30, _0315
     GoToIfEq 0x8008, 31, _0333
@@ -276,7 +276,7 @@ _0351:
     Return
 
 _036F:
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     SetVar 0x8008, 0x8004
     GoToIfEq 0x8008, 30, _03A4
     GoToIfEq 0x8008, 31, _03BE
@@ -345,7 +345,7 @@ _0454:
     Return
 
 _0456:
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     SetVar 0x8008, 0x8004
     GoToIfEq 0x8008, 30, _048B
     GoToIfEq 0x8008, 31, _0499
@@ -445,7 +445,7 @@ _0500:
 _0508:
     ApplyMovement 0xFF, _05B8
     WaitMovement
-    ScrCmd_069 0x8000, 0x8001
+    GetPlayerMapPos 0x8000, 0x8001
     ScrCmd_066 0x8000, 0x8001
     Call _05C0
     WaitMovement
@@ -454,12 +454,12 @@ _0508:
     Call _0109
     MessageVar 0x8004
     CloseMessage
-    ScrCmd_054 0, 30
+    FadeOutMusic 0, 30
     ScrCmd_20D 0, 0x800C
     WaitTime 10, 0x800C
     PlayFanfare SEQ_SE_PL_KUSARI
     WaitTime 20, 0x800C
-    ScrCmd_050 0x478
+    PlayMusic SEQ_THE_EVENT02
     ScrCmd_05D
     GoTo _0567
     End
@@ -479,7 +479,7 @@ _0567:
     ScrCmd_31A 0x1E3
     ScrCmd_31A 0x1E4
     ScrCmd_067
-    ScrCmd_0BE 221, 0, 30, 30, 0
+    Warp MAP_HEADER_SPEAR_PILLAR_DISTORTED, 0, 30, 30, 0
     End
 
     .balign 4, 0
@@ -488,7 +488,7 @@ _05B8:
     EndMovement
 
 _05C0:
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     SetVar 0x8008, 0x8004
     GoToIfEq 0x8008, 29, _060F
     GoToIfEq 0x8008, 30, _0619

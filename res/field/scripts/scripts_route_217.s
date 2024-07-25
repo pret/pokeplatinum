@@ -39,10 +39,10 @@ _004D:
     LockAll
     ClearFlag 0x297
     ScrCmd_064 15
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 0x12E, _00CA
     CallIfEq 0x8004, 0x12F, _00D6
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 0
     CloseMessage
     ApplyMovement 0xFF, _010C
@@ -51,7 +51,7 @@ _004D:
     WaitMovement
     Message 1
     CloseMessage
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 0x12E, _00E2
     CallIfEq 0x8004, 0x12F, _00F6
     ScrCmd_065 15

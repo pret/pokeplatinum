@@ -21,8 +21,8 @@ _0039:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_04E 0x48E
-    ScrCmd_04F
+    PlaySound SEQ_ASA
+    WaitSound
     ScrCmd_14E
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
@@ -59,17 +59,17 @@ _0084:
     End
 
 _00AD:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 5
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_04E 0x48E
-    ScrCmd_04F
+    PlaySound SEQ_ASA
+    WaitSound
     ScrCmd_14E
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 6
     WaitABXPadPress
     CloseMessage

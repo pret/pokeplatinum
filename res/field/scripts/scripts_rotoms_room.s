@@ -100,7 +100,7 @@ _013D:
 _0151:
     ScrCmd_1C0 0x800C, 0x1DF
     GoToIfEq 0x800C, 0, _06DE
-    ScrCmd_07E 0x1D3, 1, 0x800C
+    CheckItem ITEM_SECRET_KEY, 1, 0x800C
     GoToIfEq 0x800C, 0, _06DE
     ScrCmd_28B 3, 0x800C
     GoToIfEq 0x800C, 0, _06DE
@@ -148,7 +148,7 @@ _0295:
     End
 
 _02B6:
-    ScrCmd_0D6 0, 0x8000
+    BufferPartyMonNickname 0, 0x8000
     Message 11
     ScrCmd_304 0x8000, 0, 0, 0
     FadeScreen 6, 1, 0, 0
@@ -164,9 +164,9 @@ _02B6:
     End
 
 _0325:
-    ScrCmd_069 0x8006, 0x8007
+    GetPlayerMapPos 0x8006, 0x8007
     ScrCmd_1BD 0x800C
-    ScrCmd_0BE 0x23B, 0, 0x8006, 0x8007, 0x800C
+    Warp MAP_HEADER_ROTOMS_ROOM, 0, 0x8006, 0x8007, 0x800C
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End
@@ -278,13 +278,13 @@ _04FD:
     End
 
 _050B:
-    ScrCmd_0D6 0, 0x8000
+    BufferPartyMonNickname 0, 0x8000
     Message 10
     GoTo _0613
     End
 
 _051B:
-    ScrCmd_0D6 0, 0x8000
+    BufferPartyMonNickname 0, 0x8000
     ScrCmd_0D4 1, 0x8001
     Message 0
     ScrCmd_03E 0x800C
@@ -307,19 +307,19 @@ _0541:
     Message 3
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 1, _05FE
-    ScrCmd_0D6 0, 0x8000
+    BufferPartyMonNickname 0, 0x8000
     ScrCmd_1CA 0x800C, 0x8000, 0x8002
     ScrCmd_0D4 1, 0x800C
     Message 4
     PlayFanfare SEQ_SE_DP_KON
-    ScrCmd_04B 0x5E6
+    WaitFanfare SEQ_SE_DP_KON
     WaitTime 30, 0x800C
     Message 5
     WaitTime 32, 0x800C
-    ScrCmd_04E 0x483
+    PlaySound SEQ_FANFA1
     ScrCmd_0D4 1, 0x8001
     Message 6
-    ScrCmd_04F
+    WaitSound
     WaitTime 16, 0x800C
     GoTo _0613
     End
@@ -333,7 +333,7 @@ _05DD:
     End
 
 _05FE:
-    ScrCmd_0D6 0, 0x8000
+    BufferPartyMonNickname 0, 0x8000
     ScrCmd_0D4 1, 0x8001
     Message 2
     GoTo _07A2
@@ -520,14 +520,14 @@ _081E:
     ClearFlag 0x2C0
     PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_064 6
-    ScrCmd_04B 0x603
+    WaitFanfare SEQ_SE_DP_KAIDAN2
     ApplyMovement 0xFF, _08AC
     ApplyMovement 6, _08D4
     WaitMovement
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 35
     CloseMessage
-    ScrCmd_069 0x8006, 0x8007
+    GetPlayerMapPos 0x8006, 0x8007
     CallIfGe 0x8006, 10, _08A8
     CallIfLe 0x8006, 4, _08AA
     ApplyMovement 6, _08DC
@@ -542,7 +542,7 @@ _081E:
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 6
-    ScrCmd_04B 0x603
+    WaitFanfare SEQ_SE_DP_KAIDAN2
     SetVar 0x411B, 2
     ReleaseAll
     End

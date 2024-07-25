@@ -12,14 +12,14 @@ _000A:
     FacePlayer
     ScrCmd_33C 4, 93
     GoToIfUnset 233, _003D
-    ScrCmd_07E 93, 1, 0x800C
+    CheckItem ITEM_HEART_SCALE, 1, 0x800C
     GoToIfEq 0x800C, 0, _005F
     GoTo _006A
 
 _003D:
     SetFlag 233
     Message 0
-    ScrCmd_07E 93, 1, 0x800C
+    CheckItem ITEM_HEART_SCALE, 1, 0x800C
     GoToIfEq 0x800C, 0, _005F
     GoTo _006A
 
@@ -56,8 +56,8 @@ _006A:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x800C, 0xFF, _005F
-    ScrCmd_07C 93, 1, 0x800C
-    ScrCmd_0CD 3
+    RemoveItem ITEM_HEART_SCALE, 1, 0x800C
+    BufferPlayerName 3
     Message 16
     WaitABXPadPress
     CloseMessage

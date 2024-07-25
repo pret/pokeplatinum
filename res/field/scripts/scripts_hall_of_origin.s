@@ -82,7 +82,7 @@ _00F8:
     EndMovement
 
 _0104:
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     SetVar 0x8008, 0x8004
     GoToIfEq 0x8008, 30, _0139
     GoToIfEq 0x8008, 31, _014B

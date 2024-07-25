@@ -9,8 +9,8 @@
 _000A:
     LockAll
     Call _006A
-    ScrCmd_0CD 0
-    ScrCmd_0CF 1
+    BufferPlayerName 0
+    BufferCounterpartName 1
     ScrCmd_14D 0x800C
     GoToIfEq 0x800C, 0, _0031
     GoTo _003C
@@ -39,7 +39,7 @@ _0047:
     End
 
 _006A:
-    ScrCmd_069 0x8005, 0x8006
+    GetPlayerMapPos 0x8005, 0x8006
     GoToIfEq 0x8006, 5, _00AC
     GoToIfEq 0x8006, 6, _00B8
     GoToIfEq 0x8006, 7, _00C4
@@ -73,7 +73,7 @@ _00DC:
     Return
 
 _00E8:
-    ScrCmd_069 0x8005, 0x8006
+    GetPlayerMapPos 0x8005, 0x8006
     GoToIfEq 0x8006, 5, _012A
     GoToIfEq 0x8006, 6, _0136
     GoToIfEq 0x8006, 7, _0142

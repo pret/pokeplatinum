@@ -182,7 +182,7 @@ _01C7:
 _01FB:
     SetVar 0x410D, 0
     PlayFanfare SEQ_SE_DP_BUTTON3
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 11
     CloseMessage
     ClearFlag 0x295

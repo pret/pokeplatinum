@@ -92,12 +92,12 @@ _013C:
 
 _0166:
     Message 5
-    ScrCmd_0CD 0
-    ScrCmd_0D1 1, 0x1B7
-    ScrCmd_04E 0x486
+    BufferPlayerName 0
+    BufferItemName 1, 0x1B7
+    PlaySound SEQ_FANFA4
     Message 6
-    ScrCmd_04F
-    ScrCmd_07C 0x1B7, 1, 0x800C
+    WaitSound
+    RemoveItem ITEM_OLD_CHARM, 1, 0x800C
     SetFlag 166
     Message 7
     WaitABXPadPress

@@ -44,7 +44,7 @@ _000E:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BE 186, 0, 5, 23, 0
+    Warp MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_HALL_OF_FAME, 0, 5, 23, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll

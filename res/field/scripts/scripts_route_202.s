@@ -71,7 +71,7 @@ _00C7:
     ApplyMovement 3, _03C4
     ApplyMovement 0xFF, _04A0
     WaitMovement
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x339, _0124
     GoToIfEq 0x8005, 0x33A, _0134
     GoToIfEq 0x8005, 0x33B, _0144
@@ -113,15 +113,15 @@ _0174:
 
 _019F:
     CallCommonScript 0x7F8
-    ScrCmd_0CF 0
-    ScrCmd_0CD 1
+    BufferCounterpartName 0
+    BufferPlayerName 1
     Message 2
     GoTo _01C5
 
 _01B2:
     CallCommonScript 0x7F8
-    ScrCmd_0CF 0
-    ScrCmd_0CD 1
+    BufferCounterpartName 0
+    BufferPlayerName 1
     Message 7
     GoTo _01C5
 
@@ -139,12 +139,12 @@ _01C5:
     End
 
 _0205:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 3
     GoTo _021D
 
 _0211:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 8
     GoTo _021D
 
@@ -158,7 +158,7 @@ _021D:
     End
 
 _024D:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 4
     GoTo _0262
 
@@ -182,8 +182,8 @@ _027C:
     End
 
 _029C:
-    ScrCmd_0CF 0
-    ScrCmd_0CD 1
+    BufferCounterpartName 0
+    BufferPlayerName 1
     CallIfUnset 0x115, _02BE
     CallIfSet 0x115, _02C3
     GoTo _02F4
@@ -197,8 +197,8 @@ _02C3:
     Return
 
 _02C8:
-    ScrCmd_0CF 0
-    ScrCmd_0CD 1
+    BufferCounterpartName 0
+    BufferPlayerName 1
     CallIfUnset 0x115, _02EA
     CallIfSet 0x115, _02EF
     GoTo _02F4
@@ -379,13 +379,13 @@ _04C4:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     ScrCmd_1BD 0x8002
     ScrCmd_14D 0x8000
     CallIfEq 0x8000, 0, _0653
     CallIfEq 0x8000, 1, _0658
     CloseMessage
-    ScrCmd_050 0x47E
+    PlayMusic SEQ_POKERADAR
     ScrCmd_308 189, 0x332
     ApplyMovement 241, _06F8
     WaitMovement
@@ -398,7 +398,7 @@ _04C4:
     CallIfEq 0x8000, 1, _0662
     CloseMessage
     WaitTime 15, 0x800C
-    ScrCmd_052
+    PlayDefaultMusic
     CallIfEq 0x8002, 0, _05D1
     CallIfEq 0x8002, 1, _05E5
     CallIfEq 0x8002, 2, _05F9

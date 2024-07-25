@@ -579,7 +579,7 @@ _08DB:
     ScrCmd_12D 0x800C
     ScrCmd_18E
     PlayFanfare SEQ_SE_DP_SAVE
-    ScrCmd_04B 0x61B
+    WaitFanfare SEQ_SE_DP_SAVE
     Return
 
 _08ED:
@@ -602,19 +602,19 @@ _0938:
 
 _093E:
     Message 13
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 15
-    ScrCmd_04E 0x486
-    ScrCmd_04F
+    PlaySound SEQ_FANFA4
+    WaitSound
     SetVar 0x4051, 2
     Return
 
 _0955:
     Message 13
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 14
-    ScrCmd_04E 0x486
-    ScrCmd_04F
+    PlaySound SEQ_FANFA4
+    WaitSound
     SetVar 0x4051, 4
     CallCommonScript 0x806
     Return
@@ -691,7 +691,7 @@ _09D1:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_04B 0x5DC
+    WaitFanfare SEQ_SE_CONFIRM
     ScrCmd_04C 0x1A1, 0
     Message 62
     ScrCmd_04D
@@ -759,12 +759,12 @@ _0A4F:
     GoToIfEq 0x800C, 0, _0AAD
     GoToIfEq 0x800C, 2, _0AB8
     GoToIfEq 0x800C, 3, _0AC9
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 69
     Message 70
-    ScrCmd_04E 0x4C5
+    PlaySound SEQ_PL_POINTGET3
     Message 72
-    ScrCmd_04F
+    WaitSound
     GoTo _0AE6
     End
 
@@ -774,14 +774,14 @@ _0AAD:
     End
 
 _0AB8:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 73
     Message 71
     GoTo _0AE6
     End
 
 _0AC9:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 74
     GoTo _0AE6
     End
@@ -808,7 +808,7 @@ _0AEE:
     End
 
 _0B0F:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     ScrCmd_325 0x8005
     GoToIfGe 0x8005, 0x1DB, _0B96
     GoToIfGe 0x8005, 0x15F, _0BA1
@@ -884,7 +884,7 @@ _0C01:
     End
 
 _0C22:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     ScrCmd_325 0x8005
     GoToIfGe 0x8005, 0x1DB, _0CA9
     GoToIfGe 0x8005, 0x15F, _0CB4
@@ -954,7 +954,7 @@ _0D14:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     SetVar 0x4001, 0x4021
     GoToIfEq 0x4001, 0, _0D68
     GoToIfEq 0x4001, 97, _0D73

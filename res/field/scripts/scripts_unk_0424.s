@@ -23,7 +23,7 @@ _0031:
     End
 
 _0054:
-    ScrCmd_054 42, 10
+    FadeOutMusic 42, 10
     Message 1
     ScrCmd_05A 0x800C
     SetVar 0x8004, 0x800C
@@ -36,7 +36,7 @@ _0054:
     ScrCmd_05C
     WaitTime 1, 0x800C
     ScrCmd_28D
-    ScrCmd_0D6 0, 0x8005
+    BufferPartyMonNickname 0, 0x8005
     Message 2
     ScrCmd_28E 0x800C
     ScrCmd_04C 0x1B9, 0
@@ -51,7 +51,7 @@ _00B2:
     End
 
 _00BA:
-    ScrCmd_0D6 0, 0x8005
+    BufferPartyMonNickname 0, 0x8005
     Message 3
     Message 4
     ScrCmd_03E 0x800C

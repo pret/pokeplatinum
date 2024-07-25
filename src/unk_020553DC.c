@@ -181,29 +181,29 @@ u16 sub_02055428(FieldSystem *fieldSystem, int param1)
     return v2;
 }
 
-u16 sub_020554A4(FieldSystem *fieldSystem, int param1)
+u16 sub_020554A4(FieldSystem *fieldSystem, int headerID)
 {
-    u16 v0, v1;
+    u16 sdatID;
 
-    if (IsNight() == 0) {
-        v0 = MapHeader_GetDayMusicID(param1);
+    if (IsNight() == FALSE) {
+        sdatID = MapHeader_GetDayMusicID(headerID);
     } else {
-        v0 = MapHeader_GetNightMusicID(param1);
+        sdatID = MapHeader_GetNightMusicID(headerID);
     }
 
-    v1 = sub_0206AB68(SaveData_GetVarsFlags(fieldSystem->saveData), param1);
+    u16 v1 = sub_0206AB68(SaveData_GetVarsFlags(fieldSystem->saveData), headerID);
 
     if (v1 != 0) {
-        v0 = v1;
+        sdatID = v1;
     }
 
-    v1 = sub_020554E8(fieldSystem, param1);
+    v1 = sub_020554E8(fieldSystem, headerID);
 
     if (v1 != 0) {
-        v0 = v1;
+        sdatID = v1;
     }
 
-    return v0;
+    return sdatID;
 }
 
 static u16 sub_020554E8(FieldSystem *fieldSystem, int param1)

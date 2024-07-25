@@ -96,7 +96,7 @@ _00BC:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_04B 0x5DC
+    WaitFanfare SEQ_SE_CONFIRM
     ScrCmd_04C 25, 0
     Message 8
     ScrCmd_04D

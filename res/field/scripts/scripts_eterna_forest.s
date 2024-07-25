@@ -26,8 +26,8 @@ _003F:
 
 _0047:
     LockAll
-    ScrCmd_0C8 0
-    ScrCmd_069 0x8004, 0x8005
+    SetPlayerBike 0
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 28, _006E
     GoToIfEq 0x8004, 29, _007E
     End
@@ -45,10 +45,10 @@ _007E:
 _008E:
     CallIfUnset 139, _00D8
     CallIfSet 139, _00E0
-    ScrCmd_0CD 0
-    ScrCmd_04E 0x481
+    BufferPlayerName 0
+    PlaySound SEQ_GONIN
     Message 1
-    ScrCmd_04F
+    WaitSound
     SetFlag 139
     SetVar 0x40B1, 1
     Message 2
@@ -62,12 +62,12 @@ _008E:
     End
 
 _00D8:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 0
     Return
 
 _00E0:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 3
     Return
 
@@ -94,7 +94,7 @@ _0108:
     WaitMovement
     Message 4
     CloseMessage
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 28, _0148
     GoToIfEq 0x8004, 29, _0158
     End
@@ -137,7 +137,7 @@ _0198:
     ApplyMovement 0, _0300
     ApplyMovement 0xFF, _0368
     WaitMovement
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 5
     SetVar 0x8004, 218
     SetVar 0x8005, 1
@@ -154,7 +154,7 @@ _01DB:
 
 _01EA:
     CloseMessage
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 34, _023B
     GoToIfEq 0x8005, 35, _0253
     GoToIfEq 0x8005, 36, _026B
@@ -209,7 +209,7 @@ _02CB:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_162
     ScrCmd_065 0
-    ScrCmd_04B 0x603
+    WaitFanfare SEQ_SE_DP_KAIDAN2
     SetFlag 227
     SetVar 0x40B1, 2
     ReleaseAll
@@ -324,13 +324,13 @@ _03D8:
 
 _03EC:
     LockAll
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     ReleaseAll
     End
 
 _03F5:
     LockAll
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     ReleaseAll
     End
 

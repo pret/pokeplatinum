@@ -582,13 +582,13 @@ _086A:
     End
 
 _0892:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     ScrCmd_02F 66
     GoTo _08AE
     End
 
 _08A0:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     ScrCmd_02F 67
     GoTo _08AE
     End
@@ -609,7 +609,7 @@ _08CD:
     ScrCmd_101
     ScrCmd_110 0x8004, 0x8005, 0x8007, 0x4002
     SetVar 0x40CC, 0
-    ScrCmd_0BE 117, 0, 28, 3, 1
+    Warp MAP_HEADER_CONTEST_HALL_LOBBY, 0, 28, 3, 1
     LockAll
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
@@ -639,7 +639,7 @@ _0947:
     ClearFlag 0x204
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BE 118, 0, 29, 7, 0
+    Warp MAP_HEADER_CONTEST_HALL_STAGE_ONGOING_CONTEST, 0, 29, 7, 0
     ScrCmd_117
     ScrCmd_10C 0x4003
     ScrCmd_113
@@ -739,8 +739,8 @@ _0B1B:
     ApplyMovement 5, _0E54
     WaitMovement
     WaitTime 15, 0x800C
-    ScrCmd_04E 0x483
-    ScrCmd_04F
+    PlaySound SEQ_FANFA1
+    WaitSound
     ApplyMovement 0, _0E6C
     ApplyMovement 5, _0E6C
     WaitMovement
@@ -769,7 +769,7 @@ _0B50:
     ScrCmd_0FB 0x4002
     SetVar 0x40CC, 0
     GoToIfEq 0x4003, 0, _0BF2
-    ScrCmd_0BE 117, 0, 7, 3, 1
+    Warp MAP_HEADER_CONTEST_HALL_LOBBY, 0, 7, 3, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     SetVar 0x800C, 7
@@ -779,14 +779,14 @@ _0B50:
     GoTo _0C45
 
 _0BF2:
-    ScrCmd_0BE 117, 0, 18, 3, 1
+    Warp MAP_HEADER_CONTEST_HALL_LOBBY, 0, 18, 3, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     SetVar 0x800C, 19
     Call _0052
     Call _007F
     GoToIfEq 0x8004, -1, _0C3E
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     ScrCmd_261 1, 0x8004
     Message 80
     SetVar 0x8005, 1
@@ -809,34 +809,34 @@ _0C47:
 
 _0C8E:
     PlayFanfare SEQ_SE_DP_CON_015
-    ScrCmd_04B 0x646
+    WaitFanfare SEQ_SE_DP_CON_015
     Return
 
 _0C98:
     PlayFanfare SEQ_SE_DP_CON_015
     WaitTime 5, 0x800C
     PlayFanfare SEQ_SE_DP_CON_015
-    ScrCmd_04B 0x646
+    WaitFanfare SEQ_SE_DP_CON_015
     Return
 
 _0CAC:
     PlayFanfare SEQ_SE_DP_CON_015
-    ScrCmd_04B 0x646
+    WaitFanfare SEQ_SE_DP_CON_015
     PlayFanfare SEQ_SE_DP_CON_015
     WaitTime 5, 0x800C
     PlayFanfare SEQ_SE_DP_CON_015
-    ScrCmd_04B 0x646
+    WaitFanfare SEQ_SE_DP_CON_015
     Return
 
 _0CC8:
     PlayFanfare SEQ_SE_DP_CON_015
     WaitTime 5, 0x800C
     PlayFanfare SEQ_SE_DP_CON_015
-    ScrCmd_04B 0x646
+    WaitFanfare SEQ_SE_DP_CON_015
     PlayFanfare SEQ_SE_DP_CON_015
     WaitTime 5, 0x800C
     PlayFanfare SEQ_SE_DP_CON_015
-    ScrCmd_04B 0x646
+    WaitFanfare SEQ_SE_DP_CON_015
     Return
 
 _0CEE:
@@ -849,7 +849,7 @@ _0CEE:
     PlayFanfare SEQ_SE_DP_CON_015
     WaitTime 5, 0x800C
     PlayFanfare SEQ_SE_DP_CON_015
-    ScrCmd_04B 0x646
+    WaitFanfare SEQ_SE_DP_CON_015
     Return
 
 _0D20:

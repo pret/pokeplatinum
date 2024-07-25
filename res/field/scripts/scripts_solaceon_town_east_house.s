@@ -32,7 +32,7 @@ _0067:
     AddVar 0x8007, 0x8006
     ScrCmd_093 0x8007, 0x800C
     GoToIfEq 0x800C, 99, _00EB
-    ScrCmd_0D0 0, 0x8004
+    BufferPartyMonSpecies 0, 0x8004
     Message 1
     SetVar 0x8000, 10
     ScrCmd_093 0x8007, 0x800C

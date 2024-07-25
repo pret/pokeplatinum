@@ -17,7 +17,7 @@ _001A:
 _001E:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BE 0x246, 0, 15, 25, 0
+    Warp MAP_HEADER_DISTORTION_WORLD_GIRATINA_ROOM, 0, 15, 25, 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End
@@ -60,7 +60,7 @@ _0096:
     SetVar 0x4055, 10
     Message 6
     CloseMessage
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 86, _00E6
     ApplyMovement 0xFF, _0210
     GoTo _00EE
@@ -74,7 +74,7 @@ _00EE:
     ScrCmd_312 129
     ApplyMovement 128, _02BC
     WaitMovement
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 74, _012F
     ApplyMovement 0xFF, _0254
     GoTo _013F
@@ -85,7 +85,7 @@ _012F:
 _013F:
     Message 7
     WaitMovement
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 74, _016D
     ApplyMovement 128, _02F8
     ApplyMovement 0xFF, _0274
@@ -95,16 +95,16 @@ _016D:
     ApplyMovement 128, _0300
     ApplyMovement 0xFF, _0280
 _017D:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 8
-    ScrCmd_04E 0x48E
-    ScrCmd_04F
+    PlaySound SEQ_ASA
+    WaitSound
     ScrCmd_14E
     WaitMovement
     Message 9
     CloseMessage
     ApplyMovement 128, _02C8
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 74, _01BB
     ApplyMovement 0xFF, _0220
     GoTo _01C3

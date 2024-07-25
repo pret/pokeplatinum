@@ -32,33 +32,33 @@ _005A:
 
 _0062:
     LockAll
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
+    BufferRivalName 0
+    BufferPlayerName 1
     Message 0
     CloseMessage
     ApplyMovement 4, _0364
     ApplyMovement 0xFF, _0310
     WaitMovement
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     ScrCmd_066 0x8004, 0x8005
     ApplyMovement 241, _0340
     WaitMovement
     WaitTime 30, 0x800C
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
+    BufferRivalName 0
+    BufferPlayerName 1
     Message 1
     CloseMessage
     ApplyMovement 4, _0350
     WaitMovement
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 2
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 3
     CloseMessage
     ApplyMovement 4, _035C
     WaitMovement
     WaitTime 10, 0x800C
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 4
     CloseMessage
     ApplyMovement 2, _02C8
@@ -68,7 +68,7 @@ _0062:
     ApplyMovement 2, _02D4
     WaitMovement
     Message 6
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 7
     Message 8
     ScrCmd_14D 0x800C
@@ -77,13 +77,13 @@ _0062:
     End
 
 _0116:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 9
     GoTo _0132
     End
 
 _0124:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 10
     GoTo _0132
     End
@@ -101,14 +101,14 @@ _0132:
 
 _0162:
     Message 12
-    ScrCmd_0CF 0
+    BufferCounterpartName 0
     Message 13
     GoTo _0184
     End
 
 _0173:
     Message 14
-    ScrCmd_0CF 0
+    BufferCounterpartName 0
     Message 15
     GoTo _0184
     End
@@ -118,7 +118,7 @@ _0184:
     ApplyMovement 2, _02E8
     ApplyMovement 3, _03E0
     WaitMovement
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 16
     CloseMessage
     ApplyMovement 4, _039C
@@ -127,13 +127,13 @@ _0184:
     CloseMessage
     ApplyMovement 4, _03A4
     WaitMovement
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 18
-    ScrCmd_04B 0x5DC
+    WaitFanfare SEQ_SE_CONFIRM
     MessageInstant 19
     ScrCmd_29F 1
     Message 20
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 21
     CloseMessage
     ApplyMovement 4, _03AC
@@ -144,7 +144,7 @@ _0184:
     ScrCmd_067
     ScrCmd_310
     ScrCmd_0A1
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     ScrCmd_066 0x8004, 0x8005
     ApplyMovement 241, _0340
     WaitMovement
@@ -155,7 +155,7 @@ _0184:
     WaitTime 15, 0x800C
     ApplyMovement 4, _03B4
     WaitMovement
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 23
     ApplyMovement 0xFF, _0338
     WaitMovement
@@ -378,7 +378,7 @@ _043A:
     End
 
 _0463:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 31
     WaitABXPadPress
     CloseMessage
@@ -402,7 +402,7 @@ _047C:
     End
 
 _04A5:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 34
     WaitABXPadPress
     CloseMessage
@@ -426,7 +426,7 @@ _04BE:
     End
 
 _04E7:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 37
     WaitABXPadPress
     CloseMessage
@@ -450,7 +450,7 @@ _0500:
     End
 
 _0529:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 40
     WaitABXPadPress
     CloseMessage
@@ -480,7 +480,7 @@ _056A:
     End
 
 _0593:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 45
     WaitABXPadPress
     CloseMessage
@@ -510,7 +510,7 @@ _05D4:
     End
 
 _05FD:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 50
     WaitABXPadPress
     CloseMessage
@@ -563,7 +563,7 @@ _0689:
     End
 
 _0694:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 54
     WaitABXPadPress
     CloseMessage

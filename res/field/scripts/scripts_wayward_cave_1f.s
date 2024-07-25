@@ -21,15 +21,15 @@ _002B:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_0C8 0
+    SetPlayerBike 0
     GoToIfGe 0x4091, 1, _0095
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     CallIfUnset 224, _008B
     CallIfSet 224, _0090
-    ScrCmd_0CD 0
-    ScrCmd_04E 0x481
+    BufferPlayerName 0
+    PlaySound SEQ_GONIN
     Message 1
-    ScrCmd_04F
+    WaitSound
     SetFlag 224
     SetVar 0x4091, 1
     Message 2
@@ -52,7 +52,7 @@ _0090:
 _0095:
     GoToIfGe 0x40E2, 2, _00C4
     GoToIfEq 0x40E2, 1, _00BB
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 9
     GoTo _00D2
 
@@ -61,7 +61,7 @@ _00BB:
     GoTo _00D2
 
 _00C4:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 11
     WaitABXPadPress
     CloseMessage
@@ -99,7 +99,7 @@ _011B:
     GoTo _0133
 
 _0133:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 5
     CloseMessage
     ScrCmd_1BD 0x800C

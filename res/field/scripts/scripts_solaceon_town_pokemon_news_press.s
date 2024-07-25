@@ -166,7 +166,7 @@ _025C:
 _0283:
     ScrCmd_0DA 0, 0x40E5, 0, 0
     ScrCmd_21A 0x800C
-    ScrCmd_0D5 1, 0x800C
+    BufferNumber 1, 0x800C
     Message 8
     WaitABXPadPress
     CloseMessage

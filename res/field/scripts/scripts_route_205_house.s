@@ -20,8 +20,8 @@ _0035:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_04E 0x48E
-    ScrCmd_04F
+    PlaySound SEQ_ASA
+    WaitSound
     ScrCmd_14E
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen

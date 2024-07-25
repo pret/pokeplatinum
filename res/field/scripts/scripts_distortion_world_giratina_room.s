@@ -37,7 +37,7 @@ _0041:
     End
 
 _0061:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 14
     CloseMessage
     ScrCmd_270 2, 1
@@ -45,7 +45,7 @@ _0061:
     PlayFanfare SEQ_SE_PL_SYUWA
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BE 0x10B, 0, 32, 17, 1
+    Warp MAP_HEADER_SENDOFF_SPRING, 0, 32, 17, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End
@@ -53,7 +53,7 @@ _0061:
 _009E:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BE 0x245, 0, 89, 57, 1
+    Warp MAP_HEADER_DISTORTION_WORLD_B7F, 0, 89, 57, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End
@@ -107,7 +107,7 @@ _016E:
     Message 5
 _0194:
     CloseMessage
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     ScrCmd_066 0x8004, 0x8005
     ApplyMovement 241, _0280
     ApplyMovement 130, _026C
@@ -161,7 +161,7 @@ _021D:
 
 _0232:
     LockAll
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 1
     WaitABPadPress
     CloseMessage

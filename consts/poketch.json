@@ -1,0 +1,39 @@
+{
+    "definitions": {
+        "@PoketchAppID": {
+            "type": "enum",
+            "values": [
+                "POKETCH_APPID_DIGITALWATCH",
+                "POKETCH_APPID_CALCULATOR",
+                "POKETCH_APPID_MEMOPAD",
+                "POKETCH_APPID_PEDOMETER",
+                "POKETCH_APPID_PARTYSTATUS",
+                "POKETCH_APPID_FRIENDSHIPCHECKER",
+                "POKETCH_APPID_DOWSINGMACHINE",
+                "POKETCH_APPID_BERRYSEARCHER",
+                "POKETCH_APPID_DAYCARECHECKER",
+                "POKETCH_APPID_POKEMONHISTORY",
+                "POKETCH_APPID_COUNTER",
+                "POKETCH_APPID_ANALOGWATCH",
+                "POKETCH_APPID_MARKINGMAP",
+                "POKETCH_APPID_LINKSEARCHER",
+                "POKETCH_APPID_COINTOSS",
+                "POKETCH_APPID_MOVETESTER",
+                "POKETCH_APPID_CALENDAR",
+                "POKETCH_APPID_DOTART",
+                "POKETCH_APPID_ROULETTE",
+                "POKETCH_APPID_RADARCHAINCOUNTER",
+                "POKETCH_APPID_KITCHENTIMER",
+                "POKETCH_APPID_COLORCHANGER",
+                "POKETCH_APPID_MATCHUPCHECKER",
+                "POKETCH_APPID_UNUSED_STOPWATCH",
+                "POKETCH_APPID_UNUSED_ALARMCLOCK",
+                "POKETCH_APPID_MAX",
+                "POKETCH_APPID_NONE"
+            ],
+            "overrides": {
+                "POKETCH_APPID_NONE": -1
+            }
+        }
+    }
+}

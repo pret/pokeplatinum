@@ -56,7 +56,7 @@ _0098:
     LockAll
     FacePlayer
     ScrCmd_247 0x8000
-    ScrCmd_0D6 0, 0x8000
+    BufferPartyMonNickname 0, 0x8000
     Message 3
     ScrCmd_1B9 0x800C, 0x8000
     GoToIfGe 0x800C, 0xFF, _0108
@@ -121,7 +121,7 @@ _0155:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_04B 0x5DC
+    WaitFanfare SEQ_SE_CONFIRM
     ScrCmd_04C 54, 0
     Message 11
     ScrCmd_04D
@@ -134,7 +134,7 @@ _0174:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_04B 0x5DC
+    WaitFanfare SEQ_SE_CONFIRM
     ScrCmd_04C 0x1AB, 0
     Message 12
     ScrCmd_04D
@@ -147,7 +147,7 @@ _0193:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_04B 0x5DC
+    WaitFanfare SEQ_SE_CONFIRM
     ScrCmd_04C 35, 0
     Message 13
     ScrCmd_04D

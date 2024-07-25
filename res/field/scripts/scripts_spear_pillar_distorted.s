@@ -68,7 +68,7 @@ _00FD:
     ScrCmd_320
     ScrCmd_0A1
     ScrCmd_328 1
-    ScrCmd_0BE 0x23D, 0, 55, 40, 1
+    Warp MAP_HEADER_DISTORTION_WORLD_1F, 0, 55, 40, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End

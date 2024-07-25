@@ -90,7 +90,7 @@ _0168:
     GoToIfUnset 0x964, _01CA
     ScrCmd_22D 2, 0x4000
     GoToIfEq 0x4000, 0, _01CA
-    ScrCmd_07E 0x1C6, 1, 0x4000
+    CheckItem ITEM_MEMBER_CARD, 1, 0x4000
     GoToIfEq 0x4000, 0, _01CA
     ScrCmd_28B 0, 0x4000
     GoToIfEq 0x4000, 0, _01CA
@@ -114,7 +114,7 @@ _01E7:
 
 _01F9:
     LockAll
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x2D3, _0244
     GoToIfEq 0x8005, 0x2D4, _0252
     GoToIfEq 0x8005, 0x2D5, _0260
@@ -151,8 +151,8 @@ _028A:
     CallCommonScript 0x7FA
     ApplyMovement 11, _0354
     WaitMovement
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
+    BufferRivalName 0
+    BufferPlayerName 1
     Message 0
     CloseMessage
     ScrCmd_0DE 0x800C
@@ -175,7 +175,7 @@ _02F7:
 _0303:
     ScrCmd_0EC 0x800C
     GoToIfEq 0x800C, 0, _0334
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 1
     CloseMessage
     ApplyMovement 11, _035C
@@ -221,8 +221,8 @@ _0364:
 
 _0377:
     LockAll
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
+    BufferRivalName 0
+    BufferPlayerName 1
     Message 2
     CloseMessage
     ApplyMovement 11, _03AC
@@ -265,7 +265,7 @@ _03C8:
     ScrCmd_065 14
     ApplyMovement 11, _04C0
     WaitMovement
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 7
     CloseMessage
     ApplyMovement 11, _04C8
@@ -273,8 +273,8 @@ _03C8:
     ScrCmd_065 11
     ApplyMovement 13, _04A0
     WaitMovement
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
+    BufferRivalName 0
+    BufferPlayerName 1
     Message 8
     CloseMessage
     ApplyMovement 12, _0490
@@ -285,7 +285,7 @@ _03C8:
     GoTo _046A
 
 _045E:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 9
     GoTo _0473
 
@@ -663,7 +663,7 @@ _08F0:
     EndMovement
 
 _0900:
-    ScrCmd_07E 0x1C5, 1, 0x800C
+    CheckItem ITEM_LUNAR_WING, 1, 0x800C
     GoToIfEq 0x800C, 1, _094E
     Message 31
     ScrCmd_03E 0x800C
@@ -725,11 +725,11 @@ _09BC:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_07E 0x1A7, 1, 0x800C
+    CheckItem ITEM_HM04, 1, 0x800C
     GoToIfEq 0x800C, 1, _09FA
     ScrCmd_09A 0x800C, 70
     GoToIfNe 0x800C, 6, _09FA
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 3
     WaitABXPadPress
     CloseMessage
@@ -737,7 +737,7 @@ _09BC:
     End
 
 _09FA:
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 4
     CloseMessage
     ApplyMovement 18, _0A38

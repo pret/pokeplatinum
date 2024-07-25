@@ -455,7 +455,7 @@ _0546:
     SetVar 0x8000, 0
     ScrCmd_198 0x8000, 0x800C
     GoToIfEq 0x800C, 0, _05CB
-    ScrCmd_0D0 0, 0
+    BufferPartyMonSpecies 0, 0
     Message 18
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 0, _05AB
@@ -474,7 +474,7 @@ _05AB:
     End
 
 _05B8:
-    ScrCmd_0D0 0, 0
+    BufferPartyMonSpecies 0, 0
     Message 21
     GoTo _05F9
 
@@ -531,7 +531,7 @@ _0652:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_07E 0x1B3, 1, 0x800C
+    CheckItem ITEM_FASHION_CASE, 1, 0x800C
     GoToIfEq 0x800C, 0, _0696
     GoToIfSet 0xAC3, _06FD
     GoToIfSet 207, _06F2

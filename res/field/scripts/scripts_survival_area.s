@@ -91,7 +91,7 @@ _00D5:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 0
     CloseMessage
     ApplyMovement 8, _011C
@@ -135,8 +135,8 @@ _0141:
     ScrCmd_234 0x4000
     GoToIfEq 0x4000, 0, _01BE
     GoToIfEq 0x4000, 6, _01BE
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
+    BufferRivalName 0
+    BufferPlayerName 1
     SetVar 0x8008, 0x40C2
     GoToIfEq 0x8008, 0, _0195
     GoToIfEq 0x8008, 1, _01A0
@@ -166,8 +166,8 @@ _01B6:
 
 _01BE:
     GoToIfSet 0xAB2, _02CB
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
+    BufferRivalName 0
+    BufferPlayerName 1
     Message 2
     CloseMessage
     ScrCmd_0DE 0x800C
@@ -232,8 +232,8 @@ _02AE:
     End
 
 _02CB:
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
+    BufferRivalName 0
+    BufferPlayerName 1
     Message 3
     WaitABXPadPress
     CloseMessage

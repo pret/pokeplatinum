@@ -62,7 +62,7 @@ _00E0:
 
 _00E8:
     LockAll
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 173, _0119
     GoToIfEq 0x8004, 174, _0129
     GoToIfEq 0x8004, 175, _0139
@@ -98,15 +98,15 @@ _0149:
     End
 
 _018D:
-    ScrCmd_0CF 0
-    ScrCmd_0CD 1
+    BufferCounterpartName 0
+    BufferPlayerName 1
     Message 0
     ScrCmd_177 0x800C
-    ScrCmd_0D5 0, 0x800C
+    BufferNumber 0, 0x800C
     CallIfGe 0x800C, 4, _021A
     CallIfLe 0x800C, 3, _021F
-    ScrCmd_0CD 0
-    ScrCmd_0CE 1
+    BufferPlayerName 0
+    BufferRivalName 1
     Message 3
     Call _02DB
     Message 8
@@ -120,11 +120,11 @@ _018D:
     Message 23
     CloseMessage
     WaitTime 30, 0x800C
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Call _041B
     Message 24
     CloseMessage
-    ScrCmd_0CE 1
+    BufferRivalName 1
     Call _042F
     Message 25
     CloseMessage
@@ -140,15 +140,15 @@ _021F:
     Return
 
 _0224:
-    ScrCmd_0CF 0
-    ScrCmd_0CD 1
+    BufferCounterpartName 0
+    BufferPlayerName 1
     Message 4
     ScrCmd_177 0x800C
-    ScrCmd_0D5 0, 0x800C
+    BufferNumber 0, 0x800C
     CallIfGe 0x800C, 4, _02B1
     CallIfLe 0x800C, 3, _02B6
-    ScrCmd_0CD 0
-    ScrCmd_0CE 1
+    BufferPlayerName 0
+    BufferRivalName 1
     Message 7
     Call _02DB
     Message 10
@@ -162,11 +162,11 @@ _0224:
     Message 26
     CloseMessage
     WaitTime 15, 0x800C
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Call _041B
     Message 27
     CloseMessage
-    ScrCmd_0CE 1
+    BufferRivalName 1
     Call _042F
     Message 28
     CloseMessage
@@ -192,7 +192,7 @@ _02BB:
 
 _02DB:
     CloseMessage
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 173, _030C
     GoToIfEq 0x8004, 174, _0320
     GoToIfEq 0x8004, 175, _0334
@@ -467,7 +467,7 @@ _05BD:
 
 _05D0:
     LockAll
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x30B, _0601
     GoToIfEq 0x8005, 0x30C, _062A
     GoToIfEq 0x8005, 0x30D, _0653
@@ -565,7 +565,7 @@ _06F8:
 
 _0700:
     LockAll
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x2F5, _073E
     GoToIfEq 0x8005, 0x2F6, _0758
     GoToIfEq 0x8005, 0x2F7, _0772
@@ -606,7 +606,7 @@ _07A6:
     ApplyMovement 0xFF, _08AC
     ApplyMovement 31, _0914
     WaitMovement
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x2F5, _0846
     GoToIfEq 0x8005, 0x2F6, _0858
     GoToIfEq 0x8005, 0x2F7, _086A
@@ -776,7 +776,7 @@ _097F:
     End
 
 _0994:
-    ScrCmd_07E 0x1B5, 1, 0x800C
+    CheckItem ITEM_PAL_PAD, 1, 0x800C
     GoToIfEq 0x800C, 1, _09BD
     Message 36
     CloseMessage
@@ -804,7 +804,7 @@ _09DC:
     WaitMovement
     Message 64
     CloseMessage
-    ScrCmd_069 0x8000, 0x8001
+    GetPlayerMapPos 0x8000, 0x8001
     GoToIfEq 0x8000, 173, _0A1C
     GoToIfEq 0x8000, 174, _0A36
     GoToIfEq 0x8000, 175, _0A50
@@ -832,8 +832,8 @@ _0A50:
     End
 
 _0A6A:
-    ScrCmd_0CD 0
-    ScrCmd_0CF 1
+    BufferPlayerName 0
+    BufferCounterpartName 1
     Message 65
     ApplyMovement 18, _0E94
     WaitMovement
@@ -857,15 +857,15 @@ _0A6A:
     End
 
 _0ADC:
-    ScrCmd_0CF 0
-    ScrCmd_0CD 1
+    BufferCounterpartName 0
+    BufferPlayerName 1
     Message 71
     GoTo _0AFE
     End
 
 _0AED:
-    ScrCmd_0CF 0
-    ScrCmd_0CD 1
+    BufferCounterpartName 0
+    BufferPlayerName 1
     Message 72
     GoTo _0AFE
     End
@@ -894,7 +894,7 @@ _0AFE:
     ApplyMovement 16, _0EF8
     ApplyMovement 7, _0E54
     WaitMovement
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 74
     ApplyMovement 7, _0E60
     WaitMovement
@@ -931,21 +931,21 @@ _0C2E:
     Return
 
 _0C30:
-    ScrCmd_0CF 0
-    ScrCmd_0CD 1
+    BufferCounterpartName 0
+    BufferPlayerName 1
     Message 75
     GoTo _0C52
     End
 
 _0C41:
-    ScrCmd_0CF 0
-    ScrCmd_0CD 1
+    BufferCounterpartName 0
+    BufferPlayerName 1
     Message 76
     GoTo _0C52
     End
 
 _0C52:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 77
     CloseMessage
     ApplyMovement 7, _0E68
@@ -1453,7 +1453,7 @@ _10C4:
     ApplyMovement 23, _1178
     ApplyMovement 0xFF, _1170
     WaitMovement
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 172, _1133
     CallIfEq 0x8004, 173, _113F
     CallIfEq 0x8004, 174, _114B
@@ -1561,19 +1561,19 @@ _121B:
 
 _1223:
     Message 42
-    ScrCmd_07C 0x1CC, 1, 0x800C
-    ScrCmd_07C 0x1CD, 1, 0x800C
-    ScrCmd_07C 0x1CE, 1, 0x800C
+    RemoveItem ITEM_COUPON_1, 1, 0x800C
+    RemoveItem ITEM_COUPON_2, 1, 0x800C
+    RemoveItem ITEM_COUPON_3, 1, 0x800C
     ScrCmd_131
     SetVar 0x4077, 2
     ScrCmd_133 0
     ScrCmd_133 1
     ScrCmd_133 3
     ScrCmd_133 4
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 43
-    ScrCmd_04E 0x486
-    ScrCmd_04F
+    PlaySound SEQ_FANFA4
+    WaitSound
     Message 44
     CloseMessage
     ScrCmd_1BD 0x800C
@@ -1778,7 +1778,7 @@ _14BC:
 
 _14CF:
     LockAll
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     ScrCmd_186 31, 179, 0x8005
     ScrCmd_189 31, 3
     ScrCmd_188 31, 17

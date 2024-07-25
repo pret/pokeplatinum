@@ -289,7 +289,7 @@
     .short 0xFD13
 
 _0472:
-    ScrCmd_04B 0x5DC
+    WaitFanfare SEQ_SE_CONFIRM
     SetVar 0x8004, 0x8000
     SetVar 0x8005, 0x8001
     SetVar 0x8006, 0x8002
@@ -305,18 +305,18 @@ _04AC:
 _04B0:
     CallCommonScript 0x7D1
     ScrCmd_236 0x8004
-    ScrCmd_07B 0x8004, 0x8005, 0x800C
+    AddItem 0x8004, 0x8005, 0x800C
     ScrCmd_07F 0x8004, 0x800C
     GoToIfEq 0x800C, 1, _0624
     GoToIfEq 0x800C, 0, _063C
     End
 
 _04E2:
-    ScrCmd_04F
+    WaitSound
     ScrCmd_2A7 0x8004, 0x800C
     CallIfEq 0x800C, 1, _0667
-    ScrCmd_0CD 0
-    ScrCmd_0D1 1, 0x8004
+    BufferPlayerName 0
+    BufferItemName 1, 0x8004
     GetItemPocket 0x8004, 0x800C
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 7, _0588
@@ -331,49 +331,49 @@ _04E2:
 
 _0575:
     GetItemPocket 0x8004, 0x800C
-    ScrCmd_0D2 2, 0x800C
+    BufferPocketName 2, 0x800C
     GoTo _060D
     End
 
 _0588:
     GetItemPocket 0x8004, 0x800C
-    ScrCmd_0D2 2, 0x800C
+    BufferPocketName 2, 0x800C
     GoTo _060D
     End
 
 _059B:
     GetItemPocket 0x8004, 0x800C
-    ScrCmd_0D2 2, 0x800C
+    BufferPocketName 2, 0x800C
     GoTo _060D
     End
 
 _05AE:
     GetItemPocket 0x8004, 0x800C
-    ScrCmd_0D2 2, 0x800C
+    BufferPocketName 2, 0x800C
     GoTo _060D
     End
 
 _05C1:
     GetItemPocket 0x8004, 0x800C
-    ScrCmd_0D2 2, 0x800C
+    BufferPocketName 2, 0x800C
     GoTo _060D
     End
 
 _05D4:
     GetItemPocket 0x8004, 0x800C
-    ScrCmd_0D2 2, 0x800C
+    BufferPocketName 2, 0x800C
     GoTo _060D
     End
 
 _05E7:
     GetItemPocket 0x8004, 0x800C
-    ScrCmd_0D2 2, 0x800C
+    BufferPocketName 2, 0x800C
     GoTo _060D
     End
 
 _05FA:
     GetItemPocket 0x8004, 0x800C
-    ScrCmd_0D2 2, 0x800C
+    BufferPocketName 2, 0x800C
     GoTo _060D
     End
 
@@ -386,7 +386,7 @@ _060D:
     End
 
 _0624:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     ScrCmd_33C 1, 0x8004
     ScrCmd_0D3 2, 0x8004
     Message 6
@@ -394,14 +394,14 @@ _0624:
     End
 
 _063C:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     ScrCmd_33C 1, 0x8004
     Message 3
     GoTo _04E2
     End
 
 _064F:
-    ScrCmd_0D1 0, 0x8004
+    BufferItemName 0, 0x8004
     Message 4
     WaitABXPadPress
     SetVar 0x800C, 0

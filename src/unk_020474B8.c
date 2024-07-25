@@ -44,48 +44,46 @@ BOOL ScrCmd_2EF(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_0CD(ScriptContext *param0)
+BOOL ScrCmd_BufferPlayerName(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 v2 = ScriptContext_ReadByte(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u8 templateArg = ScriptContext_ReadByte(ctx);
 
-    StringTemplate_SetPlayerName(*v1, v2, SaveData_GetTrainerInfo(FieldSystem_SaveData(fieldSystem)));
-    return 0;
+    StringTemplate_SetPlayerName(*strTemplate, templateArg, SaveData_GetTrainerInfo(FieldSystem_SaveData(fieldSystem)));
+    return FALSE;
 }
 
-BOOL ScrCmd_0CE(ScriptContext *param0)
+BOOL ScrCmd_BufferRivalName(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 v2 = ScriptContext_ReadByte(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u8 templateArg = ScriptContext_ReadByte(ctx);
 
-    StringTemplate_SetRivalName(*v1, v2, fieldSystem->saveData);
-    return 0;
+    StringTemplate_SetRivalName(*strTemplate, templateArg, fieldSystem->saveData);
+    return FALSE;
 }
 
-BOOL ScrCmd_0CF(ScriptContext *param0)
+BOOL ScrCmd_BufferCounterpartName(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 v2 = ScriptContext_ReadByte(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u8 templateArg = ScriptContext_ReadByte(ctx);
 
-    StringTemplate_SetCounterpartName(*v1, v2, fieldSystem->saveData);
-    return 0;
+    StringTemplate_SetCounterpartName(*strTemplate, templateArg, fieldSystem->saveData);
+    return FALSE;
 }
 
-BOOL ScrCmd_0D0(ScriptContext *param0)
+BOOL ScrCmd_BufferPartyMonSpecies(ScriptContext *ctx)
 {
-    Pokemon *v0;
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    StringTemplate **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 v3 = ScriptContext_ReadByte(param0);
-    u16 v4 = ScriptContext_GetVar(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u8 templateArg = ScriptContext_ReadByte(ctx);
+    u16 partySlot = ScriptContext_GetVar(ctx);
 
-    v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v4);
-    StringTemplate_SetSpeciesName(*v2, v3, (BoxPokemon *)v0);
-
-    return 0;
+    Pokemon *mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), partySlot);
+    StringTemplate_SetSpeciesName(*strTemplate, templateArg, (BoxPokemon *)mon);
+    return FALSE;
 }
 
 BOOL ScrCmd_2FD(ScriptContext *param0)
@@ -99,27 +97,26 @@ BOOL ScrCmd_2FD(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_0D1(ScriptContext *param0)
+BOOL ScrCmd_BufferItemName(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 v2 = ScriptContext_ReadByte(param0);
-    u16 v3 = ScriptContext_GetVar(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u8 templateArg = ScriptContext_ReadByte(ctx);
+    u16 item = ScriptContext_GetVar(ctx);
 
-    StringTemplate_SetItemName(*v1, v2, v3);
-    return 0;
+    StringTemplate_SetItemName(*strTemplate, templateArg, item);
+    return FALSE;
 }
 
-BOOL ScrCmd_0D2(ScriptContext *param0)
+BOOL ScrCmd_BufferPocketName(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 v2 = ScriptContext_ReadByte(param0);
-    u16 v3 = ScriptContext_GetVar(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u8 templateArg = ScriptContext_ReadByte(ctx);
+    u16 pocket = ScriptContext_GetVar(ctx);
 
-    StringTemplate_SetBagPocketName(*v1, v2, v3);
-
-    return 0;
+    StringTemplate_SetBagPocketName(*strTemplate, templateArg, pocket);
+    return FALSE;
 }
 
 BOOL ScrCmd_0D3(ScriptContext *param0)
@@ -147,15 +144,15 @@ BOOL ScrCmd_0D4(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_0D5(ScriptContext *param0)
+BOOL ScrCmd_BufferNumber(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 v2 = ScriptContext_ReadByte(param0);
-    u16 v3 = ScriptContext_GetVar(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u8 templateArg = ScriptContext_ReadByte(ctx);
+    u16 number = ScriptContext_GetVar(ctx);
 
-    StringTemplate_SetNumber(*v1, v2, v3, sub_0205DFC4(v3), 1, 1);
-    return 0;
+    StringTemplate_SetNumber(*strTemplate, templateArg, number, sub_0205DFC4(number), PADDING_MODE_SPACES, CHARSET_MODE_EN);
+    return FALSE;
 }
 
 BOOL ScrCmd_280(ScriptContext *param0)
@@ -192,18 +189,17 @@ BOOL ScrCmd_2F5(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_0D6(ScriptContext *param0)
+BOOL ScrCmd_BufferPartyMonNickname(ScriptContext *ctx)
 {
-    Pokemon *v0;
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    StringTemplate **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 v3 = ScriptContext_ReadByte(param0);
-    u16 v4 = ScriptContext_GetVar(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u8 templateArg = ScriptContext_ReadByte(ctx);
+    u16 partySlot = ScriptContext_GetVar(ctx);
 
-    v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v4);
-    StringTemplate_SetNickname(*v2, v3, (BoxPokemon *)v0);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), partySlot);
+    StringTemplate_SetNickname(*strTemplate, templateArg, (BoxPokemon *)mon);
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_251(ScriptContext *param0)
@@ -224,16 +220,15 @@ BOOL ScrCmd_251(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_0D7(ScriptContext *param0)
+BOOL ScrCmd_BufferPoketchAppName(ScriptContext *ctx)
 {
-    Pokemon *v0;
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    StringTemplate **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 v3 = ScriptContext_ReadByte(param0);
-    u16 v4 = ScriptContext_GetVar(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u8 templateArg = ScriptContext_ReadByte(ctx);
+    u16 appID = ScriptContext_GetVar(ctx);
 
-    StringTemplate_SetPoketchAppName(*v2, v3, v4);
-    return 0;
+    StringTemplate_SetPoketchAppName(*strTemplate, templateArg, appID);
+    return FALSE;
 }
 
 BOOL ScrCmd_0D8(ScriptContext *param0)

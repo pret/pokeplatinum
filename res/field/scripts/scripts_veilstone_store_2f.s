@@ -27,7 +27,7 @@ _0022:
     GoTo _00BB
 
 _0063:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 1
     ScrCmd_040 1, 1, 0, 1, 0x800C
     ScrCmd_042 229, 0

@@ -15,7 +15,7 @@ _0006:
     Message 1
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 1, _0096
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 2
     CloseMessage
     ScrCmd_04C 0x1DF, 0

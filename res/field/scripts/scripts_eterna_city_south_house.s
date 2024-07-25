@@ -14,7 +14,7 @@ _0006:
     GoToIfEq 0x800C, 1, _0106
     GoToIfSet 153, _00B3
     GoToIfSet 0x119, _008B
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 0
     CloseMessage
     ApplyMovement 0, _0158

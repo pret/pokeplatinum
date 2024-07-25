@@ -79,16 +79,16 @@ _011E:
     WaitMovement
     ApplyMovement 0xFF, _01B0
     WaitMovement
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 2
     CloseMessage
     ApplyMovement 1, _0198
     WaitMovement
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 3
     ScrCmd_134 12, 0x800C
     CallIfEq 0x800C, 0, _017F
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 5
     CloseMessage
     ApplyMovement 1, _01A8

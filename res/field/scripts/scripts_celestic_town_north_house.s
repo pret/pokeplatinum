@@ -82,7 +82,7 @@ _00B4:
     End
 
 _00C5:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer

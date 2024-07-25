@@ -77,7 +77,7 @@ _00DE:
 _00EA:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_07E 0x1BC, 1, 0x800C
+    CheckItem ITEM_COIN_CASE, 1, 0x800C
     GoToIfEq 0x800C, 0, _0133
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -101,7 +101,7 @@ _013E:
     LockAll
     FacePlayer
     Message 0
-    ScrCmd_07E 0x1BC, 1, 0x800C
+    CheckItem ITEM_COIN_CASE, 1, 0x800C
     GoToIfEq 0x800C, 0, _018D
     GoToIfSet 0x130, _0198
     GoToIfSet 0x165, _02CA
@@ -142,11 +142,11 @@ _01E3:
     ScrCmd_334 35, 0x3E8
     ScrCmd_070 0x3E8
     ScrCmd_074
-    ScrCmd_04B 0x644
+    WaitFanfare SEQ_SE_DP_REGI
     PlayFanfare SEQ_SE_PL_COIN
     ScrCmd_079 50
     ScrCmd_077
-    ScrCmd_04B 0x5D5
+    WaitFanfare SEQ_SE_PL_COIN
     Message 3
     WaitTime 30, 0x800C
     GoTo _01A4
@@ -161,11 +161,11 @@ _0240:
     ScrCmd_334 35, 0x2710
     ScrCmd_070 0x2710
     ScrCmd_074
-    ScrCmd_04B 0x644
+    WaitFanfare SEQ_SE_DP_REGI
     PlayFanfare SEQ_SE_PL_COIN
     ScrCmd_079 0x1F4
     ScrCmd_077
-    ScrCmd_04B 0x5D5
+    WaitFanfare SEQ_SE_PL_COIN
     Message 3
     WaitTime 30, 0x800C
     GoTo _01A4
@@ -244,19 +244,19 @@ _0346:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_07E 0x1BC, 1, 0x800C
+    CheckItem ITEM_COIN_CASE, 1, 0x800C
     GoToIfEq 0x800C, 0, _03A1
     GoToIfSet 0x12E, _03AC
     ScrCmd_276 0x800C, 20
     Noop
     GoToIfEq 0x800C, 0, _03AC
     SetFlag 0x12E
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 14
     WaitABXPadPress
     PlayFanfare SEQ_SE_PL_COIN
     ScrCmd_079 20
-    ScrCmd_04B 0x5D5
+    WaitFanfare SEQ_SE_PL_COIN
     CloseMessage
     ReleaseAll
     End
@@ -279,19 +279,19 @@ _03B7:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_07E 0x1BC, 1, 0x800C
+    CheckItem ITEM_COIN_CASE, 1, 0x800C
     GoToIfEq 0x800C, 0, _0412
     GoToIfSet 0x12F, _041D
     ScrCmd_276 0x800C, 50
     Noop
     GoToIfEq 0x800C, 0, _041D
     SetFlag 0x12F
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 17
     WaitABXPadPress
     PlayFanfare SEQ_SE_PL_COIN
     ScrCmd_079 50
-    ScrCmd_04B 0x5D5
+    WaitFanfare SEQ_SE_PL_COIN
     CloseMessage
     ReleaseAll
     End
@@ -352,7 +352,7 @@ _0461:
 
 _0474:
     GoToIfGt 0x4040, 0x3E7, _0497
-    ScrCmd_0D5 0, 0x4040
+    BufferNumber 0, 0x4040
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 25
@@ -362,7 +362,7 @@ _0474:
     End
 
 _0497:
-    ScrCmd_0D5 0, 0x3E7
+    BufferNumber 0, 0x3E7
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 25

@@ -38,8 +38,8 @@ _0067:
     GoToIfSet 144, _00A3
     GoToIfGe 0x4095, 1, _00AE
     GoToIfSet 234, _00BC
-    ScrCmd_0CD 0
-    ScrCmd_0CE 1
+    BufferPlayerName 0
+    BufferRivalName 1
     Message 4
     WaitABXPadPress
     CloseMessage
@@ -54,7 +54,7 @@ _00A3:
     End
 
 _00AE:
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 6
     WaitABXPadPress
     CloseMessage
@@ -62,8 +62,8 @@ _00AE:
     End
 
 _00BC:
-    ScrCmd_0CD 0
-    ScrCmd_0CE 1
+    BufferPlayerName 0
+    BufferRivalName 1
     Message 5
     WaitABXPadPress
     CloseMessage
@@ -74,7 +74,7 @@ _00CD:
     LockAll
     ApplyMovement 3, _03B0
     WaitMovement
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 108, _0140
     GoToIfEq 0x8004, 109, _0158
     GoToIfEq 0x8004, 110, _0170
@@ -133,8 +133,8 @@ _01E8:
     GoTo _0200
 
 _0200:
-    ScrCmd_0CD 0
-    ScrCmd_0CE 1
+    BufferPlayerName 0
+    BufferRivalName 1
     Message 3
     CloseMessage
     GoToIfEq 0x8004, 108, _026C
@@ -401,15 +401,15 @@ _04D0:
     CallCommonScript 0x7FA
     ApplyMovement 2, _059C
     WaitMovement
-    ScrCmd_0CE 0
-    ScrCmd_0CD 1
+    BufferRivalName 0
+    BufferPlayerName 1
     Message 1
     CloseMessage
     ApplyMovement 0xFF, _0570
     ApplyMovement 2, _05B0
     WaitMovement
     WaitTime 15, 0x800C
-    ScrCmd_0CE 0
+    BufferRivalName 0
     Message 2
     CloseMessage
     ApplyMovement 2, _05C8
@@ -512,7 +512,7 @@ _0628:
     End
 
 _063F:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     ScrCmd_036 13, 2, 0, 0x800C
     ScrCmd_038 3
     ScrCmd_039
@@ -521,7 +521,7 @@ _063F:
     End
 
 _0659:
-    ScrCmd_0CE 0
+    BufferRivalName 0
     ScrCmd_036 14, 2, 0, 0x800C
     ScrCmd_038 3
     ScrCmd_039

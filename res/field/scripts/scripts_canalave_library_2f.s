@@ -52,7 +52,7 @@ _007A:
     End
 
 _0082:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 13
     GoTo _007A
     End

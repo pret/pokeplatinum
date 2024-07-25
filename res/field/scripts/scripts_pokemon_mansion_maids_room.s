@@ -56,17 +56,17 @@ _007B:
     End
 
 _009D:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 4
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_04E 0x48E
-    ScrCmd_04F
+    PlaySound SEQ_ASA
+    WaitSound
     ScrCmd_14E
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 5
     WaitABXPadPress
     CloseMessage

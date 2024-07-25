@@ -10,29 +10,29 @@
 
 _0012:
     LockAll
-    ScrCmd_069 0x8004, 0x8005
+    GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 0x2E3, _00E7
     ApplyMovement 4, _0188
     ApplyMovement 3, _0154
     ApplyMovement 0xFF, _0100
     WaitMovement
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 5
     CloseMessage
     ApplyMovement 3, _0160
     WaitMovement
     WaitTime 15, 0x800C
-    ScrCmd_0CE 1
+    BufferRivalName 1
     Message 6
     CloseMessage
     ApplyMovement 4, _0194
     WaitMovement
     Message 7
-    ScrCmd_0CE 1
+    BufferRivalName 1
     Message 8
     ApplyMovement 4, _019C
     WaitMovement
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 9
     CloseMessage
     ApplyMovement 4, _01B8
@@ -44,7 +44,7 @@ _0012:
     ApplyMovement 0xFF, _0108
     WaitMovement
     WaitTime 5, 0x800C
-    ScrCmd_0CE 1
+    BufferRivalName 1
     Message 10
     Message 11
     CloseMessage
@@ -237,7 +237,7 @@ _01F6:
     End
 
 _0212:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 0
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 0, _0243

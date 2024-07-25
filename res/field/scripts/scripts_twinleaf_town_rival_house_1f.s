@@ -19,14 +19,14 @@ _0006:
     End
 
 _005C:
-    ScrCmd_0CD 0
-    ScrCmd_0CE 1
+    BufferPlayerName 0
+    BufferRivalName 1
     Message 0
     GoTo _007A
 
 _006B:
-    ScrCmd_0CD 0
-    ScrCmd_0CE 1
+    BufferPlayerName 0
+    BufferRivalName 1
     Message 1
     GoTo _007A
 
@@ -37,7 +37,7 @@ _007A:
     End
 
 _0082:
-    ScrCmd_0CE 1
+    BufferRivalName 1
     Message 4
     WaitABXPadPress
     CloseMessage
@@ -45,7 +45,7 @@ _0082:
     End
 
 _0090:
-    ScrCmd_0CE 1
+    BufferRivalName 1
     Message 3
     WaitABXPadPress
     CloseMessage
@@ -54,7 +54,7 @@ _0090:
 
 _009E:
     SetFlag 110
-    ScrCmd_0CE 1
+    BufferRivalName 1
     Message 2
     WaitABXPadPress
     CloseMessage
@@ -62,7 +62,7 @@ _009E:
     End
 
 _00B0:
-    ScrCmd_0CE 1
+    BufferRivalName 1
     Message 5
     WaitABXPadPress
     CloseMessage

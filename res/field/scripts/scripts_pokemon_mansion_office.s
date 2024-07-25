@@ -71,7 +71,7 @@ _00FB:
     ScrCmd_1ED 0x8000
     ScrCmd_0DA 0, 0x8000, 0, 0
     Message 6
-    ScrCmd_069 0x8001, 0x8002
+    GetPlayerMapPos 0x8001, 0x8002
     ApplyMovement 2, _01D4
     WaitMovement
     Message 7
@@ -321,7 +321,7 @@ _03FC:
     End
 
 _0408:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 22
     GoTo _0416
     End

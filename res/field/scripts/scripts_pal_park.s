@@ -34,7 +34,7 @@ _0020:
     ScrCmd_253 0
     SetVar 0x40F3, 1
     SetFlag 0x995
-    ScrCmd_050 0x42D
+    PlayMusic SEQ_D_SAFARI
     CloseMessage
     ReleaseAll
     End
@@ -62,11 +62,11 @@ _008D:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     PlayFanfare SEQ_SE_DP_PINPON
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 5
-    ScrCmd_050 0x3EA
-    ScrCmd_04E 0x486
-    ScrCmd_04F
+    PlayMusic SEQ_SILENCE_DUNGEON
+    PlaySound SEQ_FANFA4
+    WaitSound
     CloseMessage
     ReleaseAll
     SetVar 0x40F3, 1
@@ -140,14 +140,14 @@ _0170:
     GoToIfEq 0x800C, 0, _01B5
     ScrCmd_14D 0x800C
     GoToIfEq 0x800C, 1, _01A5
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 2
     WaitABXPadPress
     SetVar 0x800C, 0
     Return
 
 _01A5:
-    ScrCmd_0CD 0
+    BufferPlayerName 0
     Message 3
     WaitABXPadPress
     SetVar 0x800C, 0
@@ -162,7 +162,7 @@ _01C0:
     ScrCmd_253 1
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0BE 0x189, 0, 7, 7, 1
+    Warp MAP_HEADER_PAL_PARK_LOBBY, 0, 7, 7, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     Return

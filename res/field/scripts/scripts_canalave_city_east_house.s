@@ -59,8 +59,8 @@ _0054:
 _0105:
     ScrCmd_1C9 0x8002, 0x8001
     Message 8
-    ScrCmd_04E 0x48D
-    ScrCmd_04F
+    PlaySound SEQ_WASURE
+    WaitSound
     WaitABXPadPress
     CloseMessage
     End
