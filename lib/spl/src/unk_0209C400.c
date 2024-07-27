@@ -4,6 +4,8 @@
 #include <nnsys/gfd/VramManager/gfd_TexVramMan_Types.h>
 #include <nitro/fx/fx.h>
 
+#define DECODE_WH(X) ((u16)(1 << ((X) + 3)))
+
 void SPL_0209C400(SPLManager *p0)
 {
     SPLEmitter *next;
@@ -146,7 +148,7 @@ int SPL_0209C7E0(SPLManager *mgr)
 
 int SPL_0209C7F4(SPLManager *mgr)
 {
-    return SPL_0209C8BC(mgr, sub_0209CEB4);
+    return SPL_0209C8BC(mgr, sub_0209CEC8);
 }
 
 BOOL SPL_0209C808(SPLManager *mgr, u32 (*func)(u32, BOOL))
@@ -200,234 +202,135 @@ BOOL SPL_0209C8BC(SPLManager *mgr, u32 (*func)(u32, BOOL))
     return TRUE;
 }
 
-asm static void SPL_0209C988(SPLManager *mgr, void *spa)
+void SPL_0209C988(SPLManager *mgr, const void *p_spa)
 {
-    stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
-    sub sp, sp, #0x2c
-    mov sb, r1
-    ldrh r1, [sb, #8]
-    mov sl, r0
-    mov r8, #0x20
-    strh r1, [sl, #0x30]
-    ldrh r0, [sb, #0xa]
-    strh r0, [sl, #0x32]
-    ldrh r0, [sl, #0x30]
-    ldr r1, [sl]
-    mov r0, r0, lsl #5
-    blx r1
-    str r0, [sl, #0x28]
-    ldrh r2, [sl, #0x30]
-    ldr r0, [sl, #0x28]
-    mov r1, #0
-    mov r2, r2, lsl #5
-    bl MI_CpuFill8
-    ldrh r1, [sl, #0x30]
-    mov r0, #0
-    str r0, [sp]
-    cmp r1, #0
-    ble _0209CC28
-    mov r6, r0
-    str r0, [sp, #0x10]
-    str r0, [sp, #0x14]
-    str r0, [sp, #0x18]
-    str r0, [sp, #0x1c]
-    str r0, [sp, #0x20]
-    str r0, [sp, #0x24]
-_0209CA04:
-    ldr r1, [sl, #0x28]
-    add r0, sb, r8
-    str r0, [r1, r6]
-    ldr r0, [r1, r6]
-    add r8, r8, #0x58
-    ldr r0, [r0, #0]
-    add r7, r1, r6
-    str r0, [sp, #0x28]
-    mov r0, r0, lsl #0x17
-    movs r0, r0, lsr #0x1f
-    addne r0, sb, r8
-    strne r0, [r7, #4]
-    ldreq r0, [sp, #0x10]
-    addne r8, r8, #0xc
-    streq r0, [r7, #4]
-    ldr r0, [sp, #0x28]
-    mov r0, r0, lsl #0x16
-    movs r0, r0, lsr #0x1f
-    addne r0, sb, r8
-    strne r0, [r7, #8]
-    ldreq r0, [sp, #0x14]
-    addne r8, r8, #0xc
-    streq r0, [r7, #8]
-    ldr r0, [sp, #0x28]
-    mov r0, r0, lsl #0x15
-    movs r0, r0, lsr #0x1f
-    addne r0, sb, r8
-    strne r0, [r7, #0xc]
-    ldreq r0, [sp, #0x18]
-    addne r8, r8, #8
-    streq r0, [r7, #0xc]
-    ldr r0, [sp, #0x28]
-    mov r0, r0, lsl #0x14
-    movs r0, r0, lsr #0x1f
-    addne r0, sb, r8
-    strne r0, [r7, #0x10]
-    ldreq r0, [sp, #0x1c]
-    addne r8, r8, #0xc
-    streq r0, [r7, #0x10]
-    ldr r0, [sp, #0x28]
-    mov r0, r0, lsl #0xf
-    movs r0, r0, lsr #0x1f
-    addne r0, sb, r8
-    strne r0, [r7, #0x14]
-    ldreq r0, [sp, #0x20]
-    addne r8, r8, #0x14
-    streq r0, [r7, #0x14]
-    ldr r0, [sp, #0x28]
-    mov r1, r0, lsl #7
-    mov r2, r0, lsl #6
-    mov r5, r1, lsr #0x1f
-    mov r4, r2, lsr #0x1f
-    add r1, r5, r2, lsr #31
-    mov r2, r0, lsl #5
-    add r1, r1, r2, lsr #31
-    mov r3, r0, lsl #4
-    mov fp, r2, lsr #0x1f
-    add r2, r1, r3, lsr #31
-    mov r1, r3, lsr #0x1f
-    mov ip, r0, lsl #3
-    str r1, [sp, #4]
-    mov r3, r0, lsl #2
-    mov r0, ip, lsr #0x1f
-    add r1, r2, ip, lsr #31
-    str r0, [sp, #8]
-    add r0, r1, r3, lsr #31
-    strh r0, [r7, #0x1c]
-    mov r0, r3, lsr #0x1f
-    str r0, [sp, #0xc]
-    ldrh r0, [r7, #0x1c]
-    cmp r0, #0
-    beq _0209CC04
-    mov r0, r0, lsl #3
-    ldr r1, [sl]
-    blx r1
-    str r0, [r7, #0x18]
-    cmp r5, #0
-    ldr r0, [r7, #0x18]
-    beq _0209CB58
-    add r1, sb, r8
-    str r1, [r0, #4]
-    ldr r1, _0209CCE8
-    add r8, r8, #8
-    str r1, [r0, #0]
-    add r0, r0, #8
-_0209CB58:
-    cmp r4, #0
-    beq _0209CB78
-    add r1, sb, r8
-    str r1, [r0, #4]
-    ldr r1, _0209CCEC
-    add r8, r8, #8
-    str r1, [r0, #0]
-    add r0, r0, #8
-_0209CB78:
-    cmp fp, #0
-    beq _0209CB98
-    add r1, sb, r8
-    str r1, [r0, #4]
-    ldr r1, _0209CCF0
-    add r8, r8, #0x10
-    str r1, [r0, #0]
-    add r0, r0, #8
-_0209CB98:
-    ldr r1, [sp, #4]
-    cmp r1, #0
-    beq _0209CBBC
-    add r1, sb, r8
-    str r1, [r0, #4]
-    ldr r1, _0209CCF4
-    add r8, r8, #4
-    str r1, [r0, #0]
-    add r0, r0, #8
-_0209CBBC:
-    ldr r1, [sp, #8]
-    cmp r1, #0
-    beq _0209CBE0
-    add r1, sb, r8
-    str r1, [r0, #4]
-    ldr r1, _0209CCF8
-    add r8, r8, #8
-    str r1, [r0, #0]
-    add r0, r0, #8
-_0209CBE0:
-    ldr r1, [sp, #0xc]
-    cmp r1, #0
-    beq _0209CC0C
-    add r1, sb, r8
-    str r1, [r0, #4]
-    ldr r1, _0209CCFC
-    add r8, r8, #0x10
-    str r1, [r0, #0]
-    b _0209CC0C
-_0209CC04:
-    ldr r0, [sp, #0x24]
-    str r0, [r7, #0x18]
-_0209CC0C:
-    ldr r0, [sp]
-    ldrh r1, [sl, #0x30]
-    add r0, r0, #1
-    add r6, r6, #0x20
-    str r0, [sp]
-    cmp r0, r1
-    blt _0209CA04
-_0209CC28:
-    ldrh r2, [sl, #0x32]
-    mov r0, #0x14
-    ldr r1, [sl]
-    mul r0, r2, r0
-    blx r1
-    str r0, [sl, #0x2c]
-    ldrh r3, [sl, #0x32]
-    mov r1, #0x14
-    ldr r0, [sl, #0x2c]
-    mul r2, r3, r1
-    mov r1, #0
-    bl MI_CpuFill8
-    ldrh r0, [sl, #0x32]
-    mov r3, #0
-    cmp r0, #0
-    addle sp, sp, #0x2c
-    ldmleia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
-    bxle lr
-    mov r4, r3
-    mov r0, #1
-_0209CC78:
-    ldr r2, [sl, #0x2c]
-    add r1, sb, r8
-    str r1, [r2, r4]
-    ldr r5, [r1, #4]
-    add r2, r2, r4
-    mov r5, r5, lsl #0x18
-    mov r5, r5, lsr #0x1c
-    add r5, r5, #3
-    mov r5, r0, lsl r5
-    strh r5, [r2, #0x10]
-    ldr r5, [r1, #4]
-    add r3, r3, #1
-    mov r5, r5, lsl #0x14
-    mov r5, r5, lsr #0x1c
-    add r5, r5, #3
-    mov r5, r0, lsl r5
-    strh r5, [r2, #0x12]
-    ldr r5, [r1, #4]
-    add r4, r4, #0x14
-    str r5, [r2, #0xc]
-    ldrh r2, [sl, #0x32]
-    ldr r1, [r1, #0x1c]
-    cmp r3, r2
-    add r8, r8, r1
-    blt _0209CC78
-    add sp, sp, #0x2c
-    ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
-    bx lr
+    int i;
+    int offset;
+    SPLArcHdr *spa;
+    UnkSPLStruct4 *p_res;
+    UnkSPLUnion1 flag;
+    UnkStruct_020147B8 *fld;
+    UnkSPLStruct5 *p_tex;
+    UnkSPLStruct15 *p_tex_hdr;
+
+    spa = (SPLArcHdr *)p_spa;
+    offset = sizeof(SPLArcHdr);
+
+    mgr->unk_30 = spa->res_num;
+    mgr->unk_32 = spa->tex_num;
+
+    mgr->unk_28 = mgr->unk_00(mgr->unk_30 * sizeof(UnkSPLStruct4));
+
+    MI_CpuFill8(mgr->unk_28, 0, mgr->unk_30 * sizeof(UnkSPLStruct4));
+
+    for (i = 0; i < mgr->unk_30; ++i) {
+        p_res = mgr->unk_28 + i;
+        p_res->unk_00 = (UnkSPLStruct9 *)((u8 *)spa + offset);
+        
+        offset += sizeof(UnkSPLStruct9);
+        flag = p_res->unk_00->unk_00;
+        
+        if (flag.unk_05_0) { // Has scaleAnim
+            p_res->unk_04 = (UnkSPLStruct10 *)((u8 *)spa + offset);
+            offset += sizeof(UnkSPLStruct10);
+        } else {
+            p_res->unk_04 = NULL;
+        }
+
+        if (flag.unk_05_1) { // Has colorAnim
+            p_res->unk_08 = (UnkSPLStruct11 *)((u8 *)spa + offset);
+            offset += sizeof(UnkSPLStruct11);
+        } else {
+            p_res->unk_08 = NULL;
+        }
+
+        if (flag.unk_05_2) { // Has alphaAnim
+            p_res->unk_0C = (UnkSPLStruct12 *)((u8 *)spa + offset);
+            offset += sizeof(UnkSPLStruct12);
+        } else {
+            p_res->unk_0C = NULL;
+        }
+
+        if (flag.unk_05_3) { // Has texAnim
+            p_res->unk_10 = (UnkSPLStruct13 *)((u8 *)spa + offset);
+            offset += sizeof(UnkSPLStruct13);
+        } else {
+            p_res->unk_10 = NULL;
+        }
+
+        if (flag.unk_06_0) { // Has child
+            p_res->unk_14 = (UnkSPLStruct14 *)((u8 *)spa + offset);
+            offset += sizeof(UnkSPLStruct14);
+        } else {
+            p_res->unk_14 = NULL;
+        }
+
+        // Sum up all fields
+        p_res->unk_1C = flag.unk_07_0 + flag.unk_07_1 + flag.unk_07_2 
+            + flag.unk_07_3 + flag.unk_07_4 + flag.unk_07_5;
+
+        if (p_res->unk_1C != 0) {
+            p_res->unk_18 = (UnkStruct_020147B8 *)mgr->unk_00(p_res->unk_1C * sizeof(UnkStruct_020147B8));
+            fld = p_res->unk_18;
+
+            if (flag.unk_07_0) {
+                fld->unk_04 = (const void *)((u8 *)spa + offset);
+                fld->unk_00 = SPL_020A2204;
+                offset += sizeof(SPLGravity);
+                fld++;
+            }
+
+            if (flag.unk_07_1) {
+                fld->unk_04 = (const void *)((u8 *)spa + offset);
+                fld->unk_00 = SPL_020A213C;
+                offset += sizeof(SPLRandom);
+                fld++;
+            }
+
+            if (flag.unk_07_2) {
+                fld->unk_04 = (const void *)((u8 *)spa + offset);
+                fld->unk_00 = SPL_020A20B8;
+                offset += sizeof(SPLMagnet);
+                fld++;
+            }
+
+            if (flag.unk_07_3) {
+                fld->unk_04 = (const void *)((u8 *)spa + offset);
+                fld->unk_00 = SPL_020A1FE0;
+                offset += sizeof(SPLSpin);
+                fld++;
+            }
+
+            if (flag.unk_07_4) {
+                fld->unk_04 = (const void *)((u8 *)spa + offset);
+                fld->unk_00 = SPL_020A1EC4;
+                offset += sizeof(SPLSimpleCollisionField);
+                fld++;
+            }
+
+            if (flag.unk_07_5) {
+                fld->unk_04 = (void *)((u8 *)spa + offset);
+                fld->unk_00 = SPL_020A1E30;
+                offset += sizeof(SPLConvergence);
+            }
+        } else {
+            p_res->unk_18 = NULL;
+        }
+    }
+
+    mgr->unk_2C = (UnkSPLStruct5 *)mgr->unk_00(mgr->unk_32 * sizeof(UnkSPLStruct5));
+
+    MI_CpuFill8(mgr->unk_2C, 0, mgr->unk_32 * sizeof(UnkSPLStruct5));
+
+    for (i = 0; i < mgr->unk_32; ++i) {
+        p_tex = &mgr->unk_2C[i];
+        p_tex_hdr = (UnkSPLStruct15 *)((u8 *)spa + offset);
+        p_tex->unk_00 = p_tex_hdr;
+        p_tex->unk_10 = DECODE_WH(p_tex_hdr->unk_04.val2_00_4);
+        p_tex->unk_12 = DECODE_WH(p_tex_hdr->unk_04.val2_01_0);
+        p_tex->unk_0C = p_tex_hdr->unk_04;
+        offset += p_tex_hdr->unk_1C;
+    }
 }
 
 SPLManager *SPL_0209CD00(void *(*alloc)(u32), u16 max_emtr, u16 max_ptcl, u16 fixPolyID, u16 minPolyID, u16 maxPolyID)

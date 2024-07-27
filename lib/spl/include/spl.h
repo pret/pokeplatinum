@@ -13,6 +13,10 @@ extern "C" {
 #define GX_RGB_G(RGB) (((RGB) >> GX_RGB_G_SHIFT) & 31)
 #define GX_RGB_B(RGB) (((RGB) >> GX_RGB_B_SHIFT) & 31)
 
+#define GX_RGB_R_(rgb) (rgb & GX_RGB_R_MASK)
+#define GX_RGB_G_(rgb) (rgb & GX_RGB_G_MASK)
+#define GX_RGB_B_(rgb) (rgb & GX_RGB_B_MASK)
+
 typedef void * (* UnkFuncPtr_0209CD00)(u32);
 
 typedef union {
@@ -433,6 +437,29 @@ typedef struct SPLList {
 	SPLNode* p_end;
 } SPLList;
 
+typedef struct FieldFunc {
+    void(*func)(SPLParticle *, UnkSPLStruct4 *, int);
+    BOOL loop;
+} FieldFunc;
+
+typedef struct FieldFunc8 {
+    void(*func)(SPLParticle *, UnkSPLStruct4 *, u8);
+    BOOL loop;
+} FieldFunc8;
+
+typedef struct SPLArcHdr
+{
+    u32 id;
+    u32 ver;
+    u16 res_num;
+    u16 tex_num;
+    u32 reserved0;
+    u32 res_size;
+    u32 tex_size;
+    u32 tex_offset;
+    u32 reserved1;
+} SPLArcHdr;
+
 void SPL_0209C400(SPLManager * param0);
 void SPL_0209C444(SPLManager * param0, SPLEmitter * param1);
 SPLEmitter * SPL_0209C4D8(SPLManager * param0, int param1, void (* param2)(struct SPLEmitter_t *));
@@ -453,6 +480,23 @@ void SPL_020A20B8(const void * param0, SPLParticle * param1, VecFx32 * param2, s
 void SPL_020A213C(const void * param0, SPLParticle * param1, VecFx32 * param2, struct SPLEmitter_t * param3);
 void SPL_020A2204(const void * param0, SPLParticle * param1, VecFx32 * param2, struct SPLEmitter_t * param3);
 
+void sub_020A1DA0(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate); // spl_scl_in_out
+void sub_020A1BD4(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate); // spl_clr_in_out
+void sub_020A1AF8(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate); // spl_alp_in_out
+void sub_020A1A94(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate); // spl_tex_ptn_anm
+void sub_020A1A48(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate); // spl_chld_scl_out
+void sub_020A19F0(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate); // spl_chld_alp_out
+
+void sub_020A08DC(SPLEmitter *emtr, SPLList *list);
+void sub_020A05BC(SPLParticle *ptcl, SPLEmitter *emtr, SPLList *list);
+
+void sub_020A1768(SPLEmitter *emtr);
+void sub_020A1608(VecFx32 *ptclPos, VecFx32 *pos, SPLEmitter *emtr);
+
+void sub_020A2354(VecFx32 *vec);
+void sub_020A23B0(VecFx32 *vec);
+
+
 void sub_0209D998(SPLEmitter *emtr, UnkSPLStruct4 *res, const VecFx32 *param2);
 void sub_0209CF00(SPLManager *mgr);
 void sub_0209D150(SPLManager *mgr, SPLEmitter *emtr);
@@ -462,7 +506,7 @@ void sub_020A2304(SPLList *list, SPLNode *node);
 SPLNode *sub_020A2238(SPLList *list, SPLNode *node);
 
 u32 sub_0209CE90(u32 param0, BOOL param1);
-u32 sub_0209CEB4(u32 param0, BOOL param1);
+u32 sub_0209CEC8(u32 param0, BOOL param1);
 
 void sub_0209D064(SPLManager *mgr);
 void sub_0209CF7C(SPLManager *mgr);
@@ -482,6 +526,12 @@ void sub_0209E1D4(SPLManager *mgr, SPLParticle *ptcl); // spl_draw_dpl
 
 void sub_0209DC68(UnkSPLStruct5 *tex); // spl_set_tex
 void sub_0209DC64(UnkSPLStruct5 *tex); // spl_set_tex_dummy
+
+void sub_020A0358(fx32 sin, fx32 cos, MtxFx43 *mat);
+void sub_020A0398(fx32 sin, fx32 cos, MtxFx43 *mat);
+
+void sub_020A0444(fx16 s, fx16 t, fx16 offsetX, fx16 offsetZ);
+void sub_020A0500(fx16 s, fx16 t, fx16 offsetX, fx16 offsetY);
 
 static inline void SPL_UnkInline1 (SPLEmitter * param0, const VecFx32 * param1)
 {

@@ -1,7 +1,8 @@
 #include "spl.h"
 
 #include <nitro/fx/fx.h>
-
+#include <nitro/fx/fx_trig.h>
+#include <nitro/fx/fx_mtx33.h>
 
 void SPL_020A1E30(const void *obj, SPLParticle *ptcl, VecFx32 *pos, SPLEmitter *emtr)
 {

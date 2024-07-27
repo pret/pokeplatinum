@@ -1,7 +1,9 @@
 #include "spl.h"
 
 #include <nitro/fx/fx.h>
-
+#include <nitro/fx/fx_const.h>
+#include <nitro/gx/g3.h>
+#include <nitro/gx/g3imm.h>
 
 void sub_0209CF00(SPLManager *mgr)
 {
@@ -87,565 +89,199 @@ void sub_0209D064(SPLManager *mgr)
     }
 }
 
-asm void sub_0209D150(SPLManager *mgr, SPLEmitter *emtr)
+void sub_0209D150(SPLManager *mgr, SPLEmitter *emtr)
 {
-    stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
-	sub sp, sp, #0x74
-	mov sb, r1
-	ldr r8, [sb, #0x20]
-	mov sl, r0
-	ldr r0, [r8, #0x14]
-	ldr r4, [r8]
-	str r0, [sp, #4]
-	ldr r0, [r4, #0]
-	mov r6, #0
-	str r0, [sp, #0x24]
-	ldrb r0, [r4, #0x46]
-	ldr r2, [sb, #0x90]
-	ldrh r7, [r8, #0x1c]
-	add r0, r0, #0x180
-	cmp r2, #0
-	str r0, [sp, #8]
-	beq _0209D1A4
-	mov r0, sb
-	mov r1, r6
-	blx r2
-_0209D1A4:
-	ldrh r1, [r4, #0x3c]
-	cmp r1, #0
-	beq _0209D1BC
-	ldrh r0, [sb, #0x4c]
-	cmp r0, r1
-	bhs _0209D204
-_0209D1BC:
-	ldrh r0, [sb, #0x4c]
-	ldrb r1, [sb, #0x80]
-	bl _s32_div_f
-	cmp r1, #0
-	bne _0209D204
-	ldr r1, [sb, #0x24]
-	mov r0, r1, lsl #0x1f
-	movs r0, r0, lsr #0x1f
-	bne _0209D204
-	mov r0, r1, lsl #0x1e
-	movs r0, r0, lsr #0x1f
-	bne _0209D204
-	mov r0, r1, lsl #0x1b
-	movs r0, r0, lsr #0x1f
-	beq _0209D204
-	mov r0, sb
-	add r1, sl, #0x1c
-	bl sub_020A08DC
-_0209D204:
-	ldr r0, [sp, #0x24]
-	mov r0, r0, lsl #0x17
-	movs r0, r0, lsr #0x1f
-	beq _0209D234
-	ldr r0, _0209D980 // =sub_020A1DA0
-	add r6, r6, #1
-	str r0, [sp, #0x28]
-	ldr r0, [r8, #4]
-	ldrh r0, [r0, #8]
-	mov r0, r0, lsl #0x1f
-	mov r0, r0, lsr #0x1f
-	str r0, [sp, #0x2c]
-_0209D234:
-	ldr r0, [sp, #0x24]
-	mov r0, r0, lsl #0x16
-	movs r0, r0, lsr #0x1f
-	beq _0209D280
-	ldr r3, [r8, #8]
-	ldrh r0, [r3, #8]
-	mov r0, r0, lsl #0x1f
-	movs r0, r0, lsr #0x1f
-	bne _0209D280
-	ldr r2, _0209D984 // =sub_020A1BD4
-	add r1, sp, #0x28
-	str r2, [r1, r6, lsl #3]
-	ldrh r1, [r3, #8]
-	mov r2, r6, lsl #3
-	add r0, sp, #0x2c
-	mov r1, r1, lsl #0x1e
-	mov r1, r1, lsr #0x1f
-	add r6, r6, #1
-	str r1, [r0, r2]
-_0209D280:
-	ldr r0, [sp, #0x24]
-	mov r0, r0, lsl #0x15
-	movs r0, r0, lsr #0x1f
-	beq _0209D2BC
-	ldr r2, _0209D988 // =sub_020A1AF8
-	add r1, sp, #0x28
-	str r2, [r1, r6, lsl #3]
-	ldr r1, [r8, #0xc]
-	mov r2, r6, lsl #3
-	ldrh r1, [r1, #2]
-	add r0, sp, #0x2c
-	add r6, r6, #1
-	mov r1, r1, lsl #0x17
-	mov r1, r1, lsr #0x1f
-	str r1, [r0, r2]
-_0209D2BC:
-	ldr r0, [sp, #0x24]
-	mov r0, r0, lsl #0x14
-	movs r0, r0, lsr #0x1f
-	beq _0209D304
-	ldr r3, [r8, #0x10]
-	ldr r0, [r3, #8]
-	mov r0, r0, lsl #0xf
-	movs r0, r0, lsr #0x1f
-	bne _0209D304
-	ldr r2, _0209D98C // =sub_020A1A94
-	add r1, sp, #0x28
-	str r2, [r1, r6, lsl #3]
-	ldr r1, [r3, #8]
-	add r0, sp, #0x2c
-	mov r1, r1, lsl #0xe
-	mov r1, r1, lsr #0x1f
-	str r1, [r0, r6, lsl #3]
-	add r6, r6, #1
-_0209D304:
-	ldr r4, [sb, #8]
-	cmp r4, #0
-	beq _0209D640
-	ldr r0, [sp, #0x24]
-	add fp, sp, #0x28
-	mov r2, r0, lsl #0x10
-	mov r1, r0, lsl #0xf
-	mov r0, r2, lsr #0x1f
-	str r0, [sp, #0xc]
-	mov r0, r1, lsr #0x1f
-	str r0, [sp, #0x10]
-	mov r0, #0
-	str r0, [sp, #0x18]
-_0209D338:
-	ldr r0, [r4, #0]
-	ldrh r1, [r4, #0x2a]
-	str r0, [sp]
-	ldrh r0, [r4, #0x26]
-	cmp r6, #0
-	ldr r5, [sp, #0x18]
-	mul r2, r1, r0
-	mov r1, r2, asr #8
-	strb r1, [sp, #0x20]
-	ldrh r1, [r4, #0x28]
-	ldrb r2, [r4, #0x2d]
-	mul r0, r1, r0
-	add r0, r2, r0, asr #8
-	strb r0, [sp, #0x21]
-	ble _0209D3A0
-_0209D374:
-	add r2, fp, r5, lsl #3
-	ldr ip, [r2, #4]
-	add r2, sp, #0x20
-	ldrb r2, [r2, ip]
-	ldr r3, [fp, r5, lsl #3]
-	mov r0, r4
-	mov r1, r8
-	blx r3
-	add r5, r5, #1
-	cmp r5, r6
-	blt _0209D374
-_0209D3A0:
-	ldr r0, [sp, #0x18]
-	ldr r5, [sp, #0x18]
-	str r0, [sp, #0x70]
-	str r0, [sp, #0x6c]
-	str r0, [sp, #0x68]
-	ldr r0, [sp, #0xc]
-	cmp r0, #0
-	addne r0, sb, #0x28
-	addne r3, r4, #0x38
-	ldmneia r0, {r0, r1, r2}
-	stmneia r3, {r0, r1, r2}
-	cmp r7, #0
-	ble _0209D400
-_0209D3D4:
-	ldr r2, [r8, #0x18]
-	mov r1, r4
-	add r0, r2, r5, lsl #3
-	ldr ip, [r2, r5, lsl #3]
-	ldr r0, [r0, #4]
-	add r2, sp, #0x68
-	mov r3, sb
-	blx ip
-	add r5, r5, #1
-	cmp r5, r7
-	blt _0209D3D4
-_0209D400:
-	ldr r0, [sp, #0x10]
-	ldrh r1, [r4, #0x20]
-	cmp r0, #0
-	ldrsh r0, [r4, #0x22]
-	add r0, r1, r0
-	strh r0, [r4, #0x20]
-	ldr r1, [r4, #0x14]
-	ldr r0, [sp, #8]
-	mul r0, r1, r0
-	mov r0, r0, asr #9
-	str r0, [r4, #0x14]
-	ldr r1, [r4, #0x18]
-	ldr r0, [sp, #8]
-	mul r0, r1, r0
-	mov r0, r0, asr #9
-	str r0, [r4, #0x18]
-	ldr r1, [r4, #0x1c]
-	ldr r0, [sp, #8]
-	mul r0, r1, r0
-	mov r0, r0, asr #9
-	str r0, [r4, #0x1c]
-	ldr r1, [r4, #0x14]
-	ldr r0, [sp, #0x68]
-	add r0, r1, r0
-	str r0, [r4, #0x14]
-	ldr r1, [r4, #0x18]
-	ldr r0, [sp, #0x6c]
-	add r0, r1, r0
-	str r0, [r4, #0x18]
-	ldr r1, [r4, #0x1c]
-	ldr r0, [sp, #0x70]
-	add r0, r1, r0
-	str r0, [r4, #0x1c]
-	ldr r1, [r4, #0x14]
-	ldr r0, [sb, #0x34]
-	ldr r2, [r4, #8]
-	add r0, r1, r0
-	add r0, r2, r0
-	str r0, [r4, #8]
-	ldr r1, [r4, #0x18]
-	ldr r0, [sb, #0x38]
-	ldr r2, [r4, #0xc]
-	add r0, r1, r0
-	add r0, r2, r0
-	str r0, [r4, #0xc]
-	ldr r1, [r4, #0x1c]
-	ldr r0, [sb, #0x3c]
-	ldr r2, [r4, #0x10]
-	add r0, r1, r0
-	add r0, r2, r0
-	str r0, [r4, #0x10]
-	beq _0209D538
-	ldr r0, [sp, #4]
-	ldrh r2, [r4, #0x24]
-	ldrb r1, [r0, #0xd]
-	ldrh r3, [r4, #0x26]
-	mov r2, r2, lsl #0xc
-	mov r1, r1, lsl #0xc
-	mov r0, r3, lsl #0xc
-	smull r5, r3, r2, r1
-	mov r1, #0x800
-	adds r2, r5, r1
-	adc r1, r3, #0
-	mov r2, r2, lsr #0xc
-	orr r2, r2, r1, lsl #20
-	mov r1, r2, asr #8
-	subs r0, r0, r1
-	bmi _0209D538
-	ldr r1, [sp, #4]
-	mov r0, r0, asr #0xc
-	ldrb r1, [r1, #0xe]
-	bl _s32_div_f
-	cmp r1, #0
-	bne _0209D538
-	mov r0, r4
-	mov r1, sb
-	add r2, sl, #0x1c
-	bl sub_020A05BC
-_0209D538:
-	ldr r0, [sb, #0x20]
-	ldr r0, [r0, #0]
-	ldr r0, [r0, #0]
-	mov r0, r0, lsl #1
-	movs r0, r0, lsr #0x1f
-	beq _0209D57C
-	ldrh r0, [r4, #0x2e]
-	ldr r1, [sl, #0x38]
-	bic r0, r0, #0xfc00
-	mov r1, r1, lsl #8
-	mov r1, r1, lsr #0x1a
-	mov r1, r1, lsl #0x10
-	mov r1, r1, lsr #0x10
-	and r1, r1, #0x3f
-	orr r0, r0, r1, lsl #10
-	strh r0, [r4, #0x2e]
-	b _0209D5FC
-_0209D57C:
-	ldrh r0, [r4, #0x2e]
-	ldr r2, [sl, #0x38]
-	add r1, sl, #0x38
-	bic r0, r0, #0xfc00
-	mov r2, r2, lsl #0xe
-	mov r2, r2, lsr #0x1a
-	mov r2, r2, lsl #0x10
-	mov r2, r2, lsr #0x10
-	and r2, r2, #0x3f
-	orr r0, r0, r2, lsl #10
-	strh r0, [r4, #0x2e]
-	ldr r2, [sl, #0x38]
-	bic r0, r2, #0x3f000
-	mov r2, r2, lsl #0xe
-	mov r2, r2, lsr #0x1a
-	add r2, r2, #1
-	and r2, r2, #0x3f
-	orr r0, r0, r2, lsl #12
-	str r0, [sl, #0x38]
-	ldr r2, [sl, #0x38]
-	mov r0, r2, lsl #0xe
-	mov r3, r0, lsr #0x1a
-	mov r0, r2, lsl #0x14
-	cmp r3, r0, lsr #26
-	bls _0209D5FC
-	mov r0, r2, lsl #0x1a
-	mov r0, r0, lsr #0x1a
-	and r0, r0, #0x3f
-	ldr r2, [r1, #0]
-	bic r2, r2, #0x3f000
-	orr r0, r2, r0, lsl #12
-	str r0, [r1, #0]
-_0209D5FC:
-	ldrh r0, [r4, #0x26]
-	add r0, r0, #1
-	strh r0, [r4, #0x26]
-	ldrh r1, [r4, #0x26]
-	ldrh r0, [r4, #0x24]
-	cmp r1, r0
-	bls _0209D630
-	mov r1, r4
-	add r0, sb, #8
-	bl sub_020A2238
-	mov r1, r0
-	add r0, sl, #0x1c
-	bl sub_020A2304
-_0209D630:
-	ldr r0, [sp]
-	cmp r0, #0
-	mov r4, r0
-	bne _0209D338
-_0209D640:
-	ldr r0, [sp, #0x24]
-	mov r0, r0, lsl #0xf
-	movs r0, r0, lsr #0x1f
-	beq _0209D948
-	ldr r0, [sp, #4]
-	mov r6, #0
-	ldrh r0, [r0]
-	mov r0, r0, lsl #0x1e
-	movs r0, r0, lsr #0x1f
-	ldrne r0, _0209D990 // =sub_020A1A48
-	strne r6, [sp, #0x4c]
-	strne r0, [sp, #0x48]
-	ldr r0, [sp, #4]
-	addne r6, r6, #1
-	ldrh r0, [r0]
-	mov r0, r0, lsl #0x1d
-	movs r0, r0, lsr #0x1f
-	beq _0209D6A4
-	ldr r2, _0209D994 // =sub_020A19F0
-	add r1, sp, #0x48
-	str r2, [r1, r6, lsl #3]
-	add r0, sp, #0x4c
-	mov r1, #0
-	str r1, [r0, r6, lsl #3]
-	add r6, r6, #1
-_0209D6A4:
-	ldr r0, [sp, #4]
-	ldr r5, [sb, #0x14]
-	ldrh r0, [r0]
-	mov r0, r0, lsl #0x1f
-	movs r0, r0, lsr #0x1f
-	moveq r7, #0
-	cmp r5, #0
-	beq _0209D948
-	mov r0, #0
-	str r0, [sp, #0x1c]
-_0209D6CC:
-	ldrh r2, [r5, #0x26]
-	ldr r0, [r5, #0]
-	ldrh r1, [r5, #0x24]
-	str r0, [sp, #0x14]
-	mov r0, r2, lsl #8
-	bl _s32_div_f
-	ldr r4, [sp, #0x1c]
-	strb r0, [sp, #0x20]
-	cmp r6, #0
-	ble _0209D71C
-	ldrb fp, [sp, #0x20]
-_0209D6F8:
-	add r3, sp, #0x48
-	ldr r3, [r3, r4, lsl #3]
-	mov r0, r5
-	mov r1, r8
-	mov r2, fp
-	blx r3
-	add r4, r4, #1
-	cmp r4, r6
-	blt _0209D6F8
-_0209D71C:
-	ldr r0, [sp, #0x1c]
-	ldr r4, [sp, #0x1c]
-	str r0, [sp, #0x70]
-	str r0, [sp, #0x6c]
-	str r0, [sp, #0x68]
-	ldr r0, [sp, #4]
-	ldrh r0, [r0]
-	mov r0, r0, lsl #0x1a
-	movs r0, r0, lsr #0x1f
-	addne r0, sb, #0x28
-	addne r3, r5, #0x38
-	ldmneia r0, {r0, r1, r2}
-	stmneia r3, {r0, r1, r2}
-	cmp r7, #0
-	ble _0209D784
-_0209D758:
-	ldr r2, [r8, #0x18]
-	mov r1, r5
-	add r0, r2, r4, lsl #3
-	ldr fp, [r2, r4, lsl #3]
-	ldr r0, [r0, #4]
-	add r2, sp, #0x68
-	mov r3, sb
-	blx fp
-	add r4, r4, #1
-	cmp r4, r7
-	blt _0209D758
-_0209D784:
-	ldrh r1, [r5, #0x20]
-	ldrsh r0, [r5, #0x22]
-	add r0, r1, r0
-	strh r0, [r5, #0x20]
-	ldr r1, [r5, #0x14]
-	ldr r0, [sp, #8]
-	mul r0, r1, r0
-	mov r0, r0, asr #9
-	str r0, [r5, #0x14]
-	ldr r1, [r5, #0x18]
-	ldr r0, [sp, #8]
-	mul r0, r1, r0
-	mov r0, r0, asr #9
-	str r0, [r5, #0x18]
-	ldr r1, [r5, #0x1c]
-	ldr r0, [sp, #8]
-	mul r0, r1, r0
-	mov r0, r0, asr #9
-	str r0, [r5, #0x1c]
-	ldr r1, [r5, #0x14]
-	ldr r0, [sp, #0x68]
-	add r0, r1, r0
-	str r0, [r5, #0x14]
-	ldr r1, [r5, #0x18]
-	ldr r0, [sp, #0x6c]
-	add r0, r1, r0
-	str r0, [r5, #0x18]
-	ldr r1, [r5, #0x1c]
-	ldr r0, [sp, #0x70]
-	add r0, r1, r0
-	str r0, [r5, #0x1c]
-	ldr r1, [r5, #0x14]
-	ldr r0, [sb, #0x34]
-	ldr r2, [r5, #8]
-	add r0, r1, r0
-	add r0, r2, r0
-	str r0, [r5, #8]
-	ldr r1, [r5, #0x18]
-	ldr r0, [sb, #0x38]
-	ldr r2, [r5, #0xc]
-	add r0, r1, r0
-	add r0, r2, r0
-	str r0, [r5, #0xc]
-	ldr r1, [r5, #0x1c]
-	ldr r0, [sb, #0x3c]
-	ldr r2, [r5, #0x10]
-	add r0, r1, r0
-	add r0, r2, r0
-	str r0, [r5, #0x10]
-	ldr r0, [sb, #0x20]
-	ldr r0, [r0, #0]
-	ldr r0, [r0, #0]
-	movs r0, r0, lsr #0x1f
-	beq _0209D888
-	ldr r0, [sl, #0x38]
-	ldrh r1, [r5, #0x2e]
-	mov r0, r0, lsl #8
-	mov r0, r0, lsr #0x1a
-	bic r1, r1, #0xfc00
-	mov r0, r0, lsl #0x10
-	mov r0, r0, lsr #0x10
-	and r0, r0, #0x3f
-	orr r0, r1, r0, lsl #10
-	strh r0, [r5, #0x2e]
-	b _0209D908
-_0209D888:
-	ldr r0, [sl, #0x38]
-	ldrh r1, [r5, #0x2e]
-	mov r0, r0, lsl #0xe
-	mov r0, r0, lsr #0x1a
-	bic r1, r1, #0xfc00
-	mov r0, r0, lsl #0x10
-	mov r0, r0, lsr #0x10
-	and r0, r0, #0x3f
-	orr r0, r1, r0, lsl #10
-	strh r0, [r5, #0x2e]
-	ldr r1, [sl, #0x38]
-	add r0, sl, #0x38
-	bic r2, r1, #0x3f000
-	mov r1, r1, lsl #0xe
-	mov r1, r1, lsr #0x1a
-	add r1, r1, #1
-	and r1, r1, #0x3f
-	orr r1, r2, r1, lsl #12
-	str r1, [sl, #0x38]
-	ldr r2, [sl, #0x38]
-	mov r1, r2, lsl #0xe
-	mov r3, r1, lsr #0x1a
-	mov r1, r2, lsl #0x14
-	cmp r3, r1, lsr #26
-	bls _0209D908
-	mov r1, r2, lsl #0x1a
-	mov r1, r1, lsr #0x1a
-	and r1, r1, #0x3f
-	ldr r2, [r0, #0]
-	bic r2, r2, #0x3f000
-	orr r1, r2, r1, lsl #12
-	str r1, [r0, #0]
-_0209D908:
-	ldrh r0, [r5, #0x26]
-	add r0, r0, #1
-	strh r0, [r5, #0x26]
-	ldrh r1, [r5, #0x26]
-	ldrh r0, [r5, #0x24]
-	cmp r1, r0
-	bls _0209D93C
-	mov r1, r5
-	add r0, sb, #0x14
-	bl sub_020A2238
-	mov r1, r0
-	add r0, sl, #0x1c
-	bl sub_020A2304
-_0209D93C:
-	ldr r5, [sp, #0x14]
-	movs r0, r5
-	bne _0209D6CC
-_0209D948:
-	ldrh r0, [sb, #0x4c]
-	add r0, r0, #1
-	strh r0, [sb, #0x4c]
-	ldr r2, [sb, #0x90]
-	cmp r2, #0
-	addeq sp, sp, #0x74
-	ldmeqia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
-	bxeq lr
-	mov r0, sb
-	mov r1, #1
-	blx r2
-	add sp, sp, #0x74
-	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
-	bx lr
-_0209D980: .word sub_020A1DA0
-_0209D984: .word sub_020A1BD4
-_0209D988: .word sub_020A1AF8
-_0209D98C: .word sub_020A1A94
-_0209D990: .word sub_020A1A48
-_0209D994: .word sub_020A19F0
+    SPLParticle *ptcl;
+    SPLParticle *next;
+    UnkSPLStruct4 *res;
+    UnkSPLStruct9 *resBase;
+    UnkSPLStruct14 *child;
+    UnkSPLUnion1 resFlags;
+    FieldFunc fieldFuncs[4];
+    FieldFunc fieldFuncs2[4];
+    int i, fieldIndex, fldNum;
+    int airResistance;
+    u8 lifeRates[2];
+    VecFx32 vec;
+    int idx;
+
+    res = emtr->p_res;
+    child = res->unk_14;
+    fieldIndex = 0;
+    resBase = res->unk_00;
+    resFlags = resBase->unk_00;
+    fldNum = res->unk_1C;
+    airResistance = resBase->unk_48.unk_02_0 + 0x180;
+
+    if (emtr->unk_100) {
+        emtr->unk_100(emtr, FALSE);
+    }
+
+    if (resBase->unk_3C == 0 || emtr->unk_BC < resBase->unk_3C) {
+        if (emtr->unk_BC % emtr->unk_F0.unk_00_0 == 0) {
+            if (!emtr->unk_94.terminate && !emtr->unk_94.stop_generate && emtr->unk_94.started) {
+                sub_020A08DC(emtr, (SPLList *)(&mgr->unk_1C));
+            }
+        }
+    }
+
+    if (resFlags.unk_05_0) { // ScaleAnim
+        fieldFuncs[fieldIndex].func = sub_020A1DA0;
+        fieldFuncs[fieldIndex++].loop = res->unk_04->unk_08.unk_00_0;
+    }
+
+    if (resFlags.unk_05_1 && !res->unk_08->unk_08.unk_00_0) { // ColorAnim
+        fieldFuncs[fieldIndex].func = sub_020A1BD4;
+        fieldFuncs[fieldIndex++].loop = res->unk_08->unk_08.unk_00_1;
+    }
+
+    if (resFlags.unk_05_2) { // AlphaAnim
+        fieldFuncs[fieldIndex].func = sub_020A1AF8;
+        fieldFuncs[fieldIndex++].loop = res->unk_0C->unk_02.unk_01_0;
+    }
+
+    if (resFlags.unk_05_3 && !res->unk_10->unk_08.unk_02_0) { // TexAnim
+        fieldFuncs[fieldIndex].func = sub_020A1A94;
+        fieldFuncs[fieldIndex++].loop = res->unk_10->unk_08.unk_02_1;
+    }
+
+    
+    for (ptcl = emtr->unk_08.unk_00; ptcl != NULL; ptcl = next) {
+        next = ptcl->unk_00;
+        lifeRates[0] = ptcl->unk_2A * ptcl->unk_26 >> 8;
+        lifeRates[1] = ptcl->unk_2C.unk_01 + (ptcl->unk_28 * ptcl->unk_26 >> 8);
+
+        for (i = 0; i < fieldIndex; i++) {
+            fieldFuncs[i].func(ptcl, res, lifeRates[fieldFuncs[i].loop]);
+        }
+
+        vec.x = vec.y = vec.z = 0;
+
+        if (resFlags.unk_05_7) {
+            ptcl->unk_38 = emtr->unk_98;
+        }
+
+        for (i = 0; i < fldNum; i++) {
+            res->unk_18[i].unk_00(res->unk_18[i].unk_04, ptcl, &vec, emtr);
+        }
+
+        ptcl->unk_20 += ptcl->unk_22;
+
+        ptcl->unk_14.x = (ptcl->unk_14.x * airResistance >> 9);
+        ptcl->unk_14.y = (ptcl->unk_14.y * airResistance >> 9);
+        ptcl->unk_14.z = (ptcl->unk_14.z * airResistance >> 9);
+
+        ptcl->unk_14.x += vec.x;
+        ptcl->unk_14.y += vec.y;
+        ptcl->unk_14.z += vec.z;
+
+        ptcl->unk_08.x += ptcl->unk_14.x + emtr->unk_A4.x;
+        ptcl->unk_08.y += ptcl->unk_14.y + emtr->unk_A4.y;
+        ptcl->unk_08.z += ptcl->unk_14.z + emtr->unk_A4.z;
+
+        if (resFlags.unk_06_0) {
+            fx32 x = FX_MUL((fx32)ptcl->unk_24 << FX32_SHIFT, (fx32)child->unk_0C.unk_01_0 << FX32_SHIFT);
+            fx32 a = (fx32)ptcl->unk_26 * FX32_ONE;
+            fx32 diff = a - (x >> 8);
+
+            if (diff >= 0) {
+                if ((diff >> FX32_SHIFT) % child->unk_0C.unk_02_0 == 0) {
+                    sub_020A05BC(ptcl, emtr, (SPLList *)&mgr->unk_1C);
+                }
+            }
+        }
+
+        if (emtr->p_res->unk_00->unk_00.unk_07_6) {
+            ptcl->unk_2E.unk_01_2 = mgr->unk_38.unk_02_2;
+        } else {
+            ptcl->unk_2E.unk_01_2 = mgr->unk_38.unk_01_4;
+            mgr->unk_38.unk_01_4 += 1;
+
+            if (mgr->unk_38.unk_01_4 > mgr->unk_38.unk_00_6) {
+                mgr->unk_38.unk_01_4 = mgr->unk_38.unk_00_0;
+            }
+        }
+
+        ptcl->unk_26 += 1;
+
+        if (ptcl->unk_26 > ptcl->unk_24) {
+            SPLNode *node = sub_020A2238((SPLList *)(&emtr->unk_08), (SPLNode *)ptcl);
+            sub_020A2304((SPLList *)&mgr->unk_1C, node);
+        }
+    }
+
+    if (resFlags.unk_06_0) {
+        fieldIndex = 0;
+        if (child->unk_00.unk_02_1) {
+            fieldFuncs2[fieldIndex].func = sub_020A1A48;
+            fieldFuncs2[fieldIndex++].loop = FALSE;
+        }
+
+        if (child->unk_00.unk_02_2) {
+            fieldFuncs2[fieldIndex].func = sub_020A19F0;
+            fieldFuncs2[fieldIndex++].loop = FALSE;
+        }
+
+        if (!child->unk_00.unk_02_0) {
+            fldNum = 0;
+        }
+
+        for (ptcl = emtr->unk_4C.unk_00; ptcl != NULL; ptcl = next) {
+            next = ptcl->unk_00;
+            lifeRates[0] = (ptcl->unk_26 << 8) / ptcl->unk_24;
+            for (i = 0; i < fieldIndex; i++) {
+                u8 lifeRate = lifeRates[0];
+                fieldFuncs2[i].func(ptcl, res, lifeRate);
+            }
+
+            vec.x = vec.y = vec.z = 0;
+
+            if (child->unk_00.unk_02_5) {
+                ptcl->unk_38 = emtr->unk_98;
+            }
+
+            for (i = 0; i < fldNum; i++) {
+                res->unk_18[i].unk_00(res->unk_18[i].unk_04, ptcl, &vec, emtr);
+            }
+
+            ptcl->unk_20 += ptcl->unk_22;
+
+            ptcl->unk_14.x = ptcl->unk_14.x * airResistance >> 9;
+            ptcl->unk_14.y = ptcl->unk_14.y * airResistance >> 9;
+            ptcl->unk_14.z = ptcl->unk_14.z * airResistance >> 9;
+
+            ptcl->unk_14.x += vec.x;
+            ptcl->unk_14.y += vec.y;
+            ptcl->unk_14.z += vec.z;
+    
+            ptcl->unk_08.x += ptcl->unk_14.x + emtr->unk_A4.x;
+            ptcl->unk_08.y += ptcl->unk_14.y + emtr->unk_A4.y;
+            ptcl->unk_08.z += ptcl->unk_14.z + emtr->unk_A4.z;
+    
+            if (emtr->p_res->unk_00->unk_00.unk_07_7) {
+                ptcl->unk_2E.unk_01_2 = mgr->unk_38.unk_02_2;
+            } else {
+                ptcl->unk_2E.unk_01_2 = mgr->unk_38.unk_01_4;
+                mgr->unk_38.unk_01_4 += 1;
+    
+                if (mgr->unk_38.unk_01_4 > mgr->unk_38.unk_00_6) {
+                    mgr->unk_38.unk_01_4 = mgr->unk_38.unk_00_0;
+                }
+            }
+    
+            ptcl->unk_26 += 1;
+    
+            if (ptcl->unk_26 > ptcl->unk_24) {
+                sub_020A2304((SPLList *)&mgr->unk_1C, sub_020A2238((SPLList *)(&emtr->unk_4C), (SPLNode *)ptcl));
+            }
+        }
+    }
+
+    emtr->unk_BC += 1;
+
+    if (emtr->unk_100) {
+        emtr->unk_100(emtr, TRUE);
+    }
 }
 
 void sub_0209D998(SPLEmitter *emtr, UnkSPLStruct4 *res, const VecFx32 *pos)
@@ -715,66 +351,24 @@ void sub_0209D998(SPLEmitter *emtr, UnkSPLStruct4 *res, const VecFx32 *pos)
 
 void sub_0209DC64(UnkSPLStruct5 *tex) { }
 
-asm void sub_0209DC68(UnkSPLStruct5 *tex)
+void sub_0209DC68(UnkSPLStruct5 *tex)
 {
-    stmfd sp!, {r4, r5, r6, r7, lr}
-	sub sp, sp, #4
-	ldr r7, [r0, #0xc]
-	ldr r3, _0209DD40 // =0x040004A8
-	str r7, [sp]
-	ldr r1, [r0, #4]
-	mov r2, r7, lsl #0x1c
-	mov lr, r2, lsr #0x1c
-	mov r1, r1, lsr #3
-	orr ip, r1, lr, lsl #26
-	mov r4, r7, lsl #0x18
-	mov r5, r7, lsl #0x14
-	mov r2, r7, lsl #0xf
-	mov r4, r4, lsr #0x1c
-	orr ip, ip, #0x40000000
-	mov r6, r7, lsl #0x12
-	orr ip, ip, r4, lsl #20
-	mov r5, r5, lsr #0x1c
-	mov r1, r7, lsl #0x10
-	orr ip, ip, r5, lsl #23
-	mov r4, r6, lsr #0x1e
-	mov r5, r1, lsr #0x1e
-	orr r1, ip, r4, lsl #16
-	mov r2, r2, lsr #0x1f
-	orr r1, r1, r5, lsl #18
-	orr r1, r1, r2, lsl #29
-	str r1, [r3, #0]
-	cmp lr, #2
-	moveq r1, #1
-	movne r1, #0
-	ldr r2, [r0, #8]
-	rsb r1, r1, #4
-	mov r2, r2, lsr r1
-	ldr r1, _0209DD44 // =0x040004AC
-	ldr ip, _0209DD48 // =0x04000440
-	str r2, [r1, #0]
-	mov r2, #3
-	ldr r1, _0209DD4C // =0x04000454
-	str r2, [ip]
-	mov r3, #0
-	str r3, [r1, #0]
-	ldrh r1, [r0, #0x10]
-	ldrh r2, [r0, #0x12]
-	ldr r0, _0209DD50 // =0x0400046C
-	mov r1, r1, lsl #0xc
-	str r1, [r0, #0]
-	mov r1, r2, lsl #0xc
-	str r1, [r0, #0]
-	str r3, [r0, #0]
-	mov r0, #1
-	str r0, [ip]
-	add sp, sp, #4
-	ldmia sp!, {r4, r5, r6, r7, lr}
-	bx lr
-	// .align 2, 0
-_0209DD40: .word 0x040004A8
-_0209DD44: .word 0x040004AC
-_0209DD48: .word 0x04000440
-_0209DD4C: .word 0x04000454
-_0209DD50: .word 0x0400046C
+    UnkSPLUnion5 param = tex->unk_0C;
+
+    G3_TexImageParam(
+        param.val2_00_0,
+        GX_TEXGEN_TEXCOORD,
+        param.val2_00_4,
+        param.val2_01_0,
+        param.val2_01_4,
+        param.val2_01_6,
+        param.val2_02_0,
+        tex->unk_04
+    );
+
+    G3_TexPlttBase(tex->unk_08, param.val2_00_0);
+    G3_MtxMode(GX_MTXMODE_TEXTURE);
+    G3_Identity();
+    G3_Scale(tex->unk_10 * FX32_ONE, tex->unk_12 * FX32_ONE, 0);
+    G3_MtxMode(GX_MTXMODE_POSITION);
 }

@@ -2,6 +2,8 @@
 
 #include <nitro/fx/fx.h>
 
+u32 Unk_021C3A38;
+
 void sub_020A2354(VecFx32 *vec)
 {
     vec->x = rng_next(8);
