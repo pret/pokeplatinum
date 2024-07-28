@@ -222,18 +222,17 @@ void sub_0209FAB8(SPLManager *mgr, SPLParticle *ptcl)
     cmr = mgr->unk_40.unk_04;
     aspect = mgr->unk_40.unk_00->p_res->unk_00->unk_30;
 
-    u32 polygonID = ptcl->unk_2E.unk_01_2 << REG_G3_POLYGON_ATTR_ID_SHIFT;
-    u32 cullMode = GX_CULL_NONE << REG_G3_POLYGON_ATTR_BK_SHIFT;
     fx32 alpha = (fx32)(ptcl->unk_2E.unk_00_0 * (ptcl->unk_2E.unk_00_5 + 1)) >> 5;
 
-    reg_G3_POLYGON_ATTR = (u32)((0 << REG_G3_POLYGON_ATTR_LE_SHIFT)
-        | (GX_POLYGONMODE_MODULATE << REG_G3_POLYGON_ATTR_PM_SHIFT)
-        | (cullMode)
-        | (mgr->unk_3C)
-        | (polygonID)
-        | (alpha << REG_G3_POLYGON_ATTR_ALPHA_SHIFT));
+    G3_PolygonAttr(
+        GX_LIGHTMASK_NONE,
+        GX_POLYGONMODE_MODULATE,
+        GX_CULL_NONE,
+        ptcl->unk_2E.unk_01_2,
+        alpha,
+        mgr->unk_3C);
 
-    u32 polygonAttr = reg_G3_POLYGON_ATTR;
+    reg_G3_POLYGON_ATTR;
 
     if (alpha == 0) {
         return;
@@ -278,8 +277,7 @@ void sub_0209FAB8(SPLManager *mgr, SPLParticle *ptcl)
         load._31 = trs.y;
         load._32 = trs.z;
 
-        reg_G3_MTX_IDENTITY = 0;
-
+        G3_Identity();
         G3_MultMtx43(&load);
     } else {
         trs.x = ptcl->unk_08.x + ptcl->unk_38.x - mgr->unk_40.unk_00->p_res->unk_00->unk_04.x;
@@ -302,23 +300,19 @@ void sub_0209FAB8(SPLManager *mgr, SPLParticle *ptcl)
         load._31 = trs.y;
         load._32 = trs.z;
 
-        reg_G3_MTX_IDENTITY = 0;
+        G3_Identity();
 
         UnkSPLStruct9 *resBase = mgr->unk_40.unk_00->p_res->unk_00;
-        fx32 px = resBase->unk_04.x, pz = resBase->unk_04.z, py = resBase->unk_04.y;
-        reg_G3_MTX_TRANS = px;
-        reg_G3_MTX_TRANS = py;
-        reg_G3_MTX_TRANS = pz;
-
+        G3_Translate(resBase->unk_04.x, resBase->unk_04.y, resBase->unk_04.z);
         G3_MultMtx43(&load);
     }
 
     GXRgb colA = ptcl->unk_36;
     GXRgb colB = mgr->unk_40.unk_00->unk_E2;
-    reg_G3_COLOR = GX_RGB(
+    G3_Color(GX_RGB(
         GX_RGB_R_(colA) * GX_RGB_R_(colB) >> 5,
         GX_RGB_G_(colA) * GX_RGB_G_(colB) >> 15,
-        GX_RGB_B_(colA) * GX_RGB_B_(colB) >> 25);
+        GX_RGB_B_(colA) * GX_RGB_B_(colB) >> 25));
 
     SPLEmitter *emtr = mgr->unk_40.unk_00;
     sub_020A0500(emtr->unk_EC, emtr->unk_EE, 0, 0);
@@ -339,181 +333,17 @@ void sub_0209F3D0(SPLManager *mgr, SPLParticle *ptcl)
     cmr = mgr->unk_40.unk_04;
     aspect = mgr->unk_40.unk_00->p_res->unk_00->unk_30;
 
-    u32 polygonID = ptcl->unk_2E.unk_01_2 << REG_G3_POLYGON_ATTR_ID_SHIFT;
-    u32 cullMode = GX_CULL_NONE << REG_G3_POLYGON_ATTR_BK_SHIFT;
     fx32 alpha = (fx32)(ptcl->unk_2E.unk_00_0 * (ptcl->unk_2E.unk_00_5 + 1)) >> 5;
 
-    reg_G3_POLYGON_ATTR = (u32)((0 << REG_G3_POLYGON_ATTR_LE_SHIFT)
-        | (GX_POLYGONMODE_MODULATE << REG_G3_POLYGON_ATTR_PM_SHIFT)
-        | (cullMode)
-        | (mgr->unk_3C)
-        | (polygonID)
-        | (alpha << REG_G3_POLYGON_ATTR_ALPHA_SHIFT));
+    G3_PolygonAttr(
+        GX_LIGHTMASK_NONE,
+        GX_POLYGONMODE_MODULATE,
+        GX_CULL_NONE,
+        ptcl->unk_2E.unk_01_2,
+        alpha,
+        mgr->unk_3C);
 
-    u32 polygonAttr = reg_G3_POLYGON_ATTR;
-
-    if (alpha == 0) {
-        return;
-    }
-
-    sclY = ptcl->unk_30;
-    sclX = FX_MUL(sclY, aspect);
-
-    switch (mgr->unk_40.unk_00->p_res->unk_00->unk_48.unk_07_4) {
-    case 0:
-        sclX = FX_MUL(sclX, ptcl->unk_34);
-        sclY = FX_MUL(sclY, ptcl->unk_34);
-        break;
-
-    case 1:
-        sclX = FX_MUL(sclX, ptcl->unk_34);
-        break;
-
-    case 2:
-        sclY = FX_MUL(sclY, ptcl->unk_34);
-        break;
-    }
-
-    if (!mgr->unk_40.unk_00->p_res->unk_00->unk_00.unk_06_7) {
-        trs.x = ptcl->unk_08.x + ptcl->unk_38.x;
-        trs.y = ptcl->unk_08.y + ptcl->unk_38.y;
-        trs.z = ptcl->unk_08.z + ptcl->unk_38.z;
-
-        dir = ptcl->unk_14;
-
-        look.x = cmr->_02;
-        look.y = cmr->_12;
-        look.z = cmr->_22;
-
-        VEC_CrossProduct(&dir, &look, &dir);
-        if (dir.x == 0 && dir.y == 0 && dir.z == 0) {
-            return;
-        }
-
-        VEC_Normalize(&dir, &dir);
-        MI_Copy36B(cmr, &mtx);
-        MTX_MultVec33(&dir, &mtx, &dir);
-        MTX_MultVec43(&trs, cmr, &trs);
-
-        vel_dir = ptcl->unk_14;
-        VEC_Normalize(&vel_dir, &vel_dir);
-
-        dot = FX_MUL(vel_dir.x, -cmr->_02) + FX_MUL(vel_dir.y, -cmr->_12) + FX_MUL(vel_dir.z, -cmr->_22);
-        if (dot < 0) {
-            dot = -dot;
-        }
-
-        // dot = FX_MUL(FX32_ONE - dot, mgr->unk_40.unk_00->p_res->unk_00->unk_48.unk_05_0) + FX32_ONE
-        dot = FX_MUL(sclY, FX_MUL(FX32_ONE - dot, (fx32)mgr->unk_40.unk_00->p_res->unk_00->unk_48.unk_05_0) + FX32_ONE);
-        // fx32 x = FX_MUL(dir.x, sclX);
-        /* 54 */ load._00 = FX_MUL(dir.x, sclX);
-        /* 48 */ load._10 = FX_MUL(-dir.y, dot);
-        /* 30 */ load._30 = trs.x;
-        /* 2C */ load._31 = trs.y;
-        /* 50 */ load._01 = FX_MUL(dir.y, sclX);
-        /* 44 */ load._11 = FX_MUL(dir.x, dot);
-        /* 3C */ load._20 = 0;
-        /* 38 */ load._21 = 0;
-        /* 4C */ load._02 = 0;
-        /* 40 */ load._12 = 0;
-        /* 34 */ load._22 = FX32_ONE;
-        /* 28 */ load._32 = trs.z;
-
-        reg_G3_MTX_IDENTITY = 0;
-
-        G3_MultMtx43(&load);
-    } else {
-        trs.x = ptcl->unk_08.x + ptcl->unk_38.x - mgr->unk_40.unk_00->p_res->unk_00->unk_04.x;
-        trs.y = ptcl->unk_08.y + ptcl->unk_38.y - mgr->unk_40.unk_00->p_res->unk_00->unk_04.y;
-        trs.z = ptcl->unk_08.z + ptcl->unk_38.z - mgr->unk_40.unk_00->p_res->unk_00->unk_04.z;
-
-        dir = ptcl->unk_14;
-
-        look.x = cmr->_02;
-        look.y = cmr->_12;
-        look.z = cmr->_22;
-
-        VEC_CrossProduct(&dir, &look, &dir);
-        if (dir.x == 0 && dir.y == 0 && dir.z == 0) {
-            return;
-        }
-
-        VEC_Normalize(&dir, &dir);
-        MI_Copy36B(cmr, &mtx);
-        MTX_MultVec33(&dir, &mtx, &dir);
-        MTX_MultVec43(&trs, cmr, &trs);
-
-        vel_dir = ptcl->unk_14;
-        VEC_Normalize(&vel_dir, &vel_dir);
-
-        dot = FX_MUL(vel_dir.x, -cmr->_02) + FX_MUL(vel_dir.y, -cmr->_12) + FX_MUL(vel_dir.z, -cmr->_22);
-        if (dot < 0) {
-            dot = -dot;
-        }
-
-        dot = FX_MUL(sclY, FX_MUL(FX32_ONE - dot, (fx32)mgr->unk_40.unk_00->p_res->unk_00->unk_48.unk_05_0) + FX32_ONE);
-        /* 54 */ load._00 = FX_MUL(dir.x, sclX);
-        /* 48 */ load._10 = FX_MUL(-dir.y, dot);
-        /* 40 */ load._20 = 0;
-        /* 30 */ load._30 = trs.x;
-        /* 50 */ load._01 = FX_MUL(dir.y, sclX);
-        /* 3C */ load._11 = FX_MUL(dir.x, dot);
-        /* 38 */ load._21 = 0;
-        /* 2C */ load._31 = trs.y;
-        /* 4C */ load._02 = 0;
-        /* 44 */ load._12 = 0;
-        /* 34 */ load._22 = FX32_ONE;
-        /* 28 */ load._32 = trs.z;
-
-        reg_G3_MTX_IDENTITY = 0;
-
-        UnkSPLStruct9 *resBase = mgr->unk_40.unk_00->p_res->unk_00;
-        fx32 px = resBase->unk_04.x, pz = resBase->unk_04.z, py = resBase->unk_04.y;
-        reg_G3_MTX_TRANS = px;
-        reg_G3_MTX_TRANS = py;
-        reg_G3_MTX_TRANS = pz;
-
-        G3_MultMtx43(&load);
-    }
-
-    GXRgb colA = ptcl->unk_36;
-    GXRgb colB = mgr->unk_40.unk_00->unk_E2;
-    reg_G3_COLOR = GX_RGB(
-        GX_RGB_R_(colA) * GX_RGB_R_(colB) >> 5,
-        GX_RGB_G_(colA) * GX_RGB_G_(colB) >> 15,
-        GX_RGB_B_(colA) * GX_RGB_B_(colB) >> 25);
-
-    SPLEmitter *emtr = mgr->unk_40.unk_00;
-    sub_020A0500(emtr->unk_E8, emtr->unk_EA, emtr->p_res->unk_00->unk_54, emtr->p_res->unk_00->unk_56);
-}
-
-void sub_0209ECF0(SPLManager *mgr, SPLParticle *ptcl)
-{
-    fx32 aspect;
-    const MtxFx43 *cmr;
-    VecFx32 vel_dir;
-    fx32 dot;
-    VecFx32 trs;
-    fx32 sclX, sclY;
-    VecFx32 dir, look;
-    MtxFx33 mtx;
-    MtxFx43 load;
-
-    cmr = mgr->unk_40.unk_04;
-    aspect = mgr->unk_40.unk_00->p_res->unk_00->unk_30;
-
-    u32 polygonID = ptcl->unk_2E.unk_01_2 << REG_G3_POLYGON_ATTR_ID_SHIFT;
-    u32 cullMode = GX_CULL_NONE << REG_G3_POLYGON_ATTR_BK_SHIFT;
-    fx32 alpha = (fx32)(ptcl->unk_2E.unk_00_0 * (ptcl->unk_2E.unk_00_5 + 1)) >> 5;
-
-    reg_G3_POLYGON_ATTR = (u32)((0 << REG_G3_POLYGON_ATTR_LE_SHIFT)
-        | (GX_POLYGONMODE_MODULATE << REG_G3_POLYGON_ATTR_PM_SHIFT)
-        | (cullMode)
-        | (mgr->unk_3C)
-        | (polygonID)
-        | (alpha << REG_G3_POLYGON_ATTR_ALPHA_SHIFT));
-
-    u32 polygonAttr = reg_G3_POLYGON_ATTR;
+    reg_G3_POLYGON_ATTR;
 
     if (alpha == 0) {
         return;
@@ -580,8 +410,7 @@ void sub_0209ECF0(SPLManager *mgr, SPLParticle *ptcl)
         load._22 = FX32_ONE;
         load._32 = trs.z;
 
-        reg_G3_MTX_IDENTITY = 0;
-
+        G3_Identity();
         G3_MultMtx43(&load);
     } else {
         trs.x = ptcl->unk_08.x + ptcl->unk_38.x - mgr->unk_40.unk_00->p_res->unk_00->unk_04.x;
@@ -613,36 +442,187 @@ void sub_0209ECF0(SPLManager *mgr, SPLParticle *ptcl)
         }
 
         dot = FX_MUL(sclY, FX_MUL(FX32_ONE - dot, (fx32)mgr->unk_40.unk_00->p_res->unk_00->unk_48.unk_05_0) + FX32_ONE);
-        /* 54 */ load._00 = FX_MUL(dir.x, sclX);
-        /* 48 */ load._10 = FX_MUL(-dir.y, dot);
-        /* 40 */ load._20 = 0;
-        /* 30 */ load._30 = trs.x;
-        /* 50 */ load._01 = FX_MUL(dir.y, sclX);
-        /* 3C */ load._11 = FX_MUL(dir.x, dot);
-        /* 38 */ load._21 = 0;
-        /* 2C */ load._31 = trs.y;
-        /* 4C */ load._02 = 0;
-        /* 44 */ load._12 = 0;
-        /* 34 */ load._22 = FX32_ONE;
-        /* 28 */ load._32 = trs.z;
+        load._00 = FX_MUL(dir.x, sclX);
+        load._10 = FX_MUL(-dir.y, dot);
+        load._20 = 0;
+        load._30 = trs.x;
+        load._01 = FX_MUL(dir.y, sclX);
+        load._11 = FX_MUL(dir.x, dot);
+        load._21 = 0;
+        load._31 = trs.y;
+        load._02 = 0;
+        load._12 = 0;
+        load._22 = FX32_ONE;
+        load._32 = trs.z;
 
-        reg_G3_MTX_IDENTITY = 0;
+        G3_Identity();
 
         UnkSPLStruct9 *resBase = mgr->unk_40.unk_00->p_res->unk_00;
-        fx32 px = resBase->unk_04.x, pz = resBase->unk_04.z, py = resBase->unk_04.y;
-        reg_G3_MTX_TRANS = px;
-        reg_G3_MTX_TRANS = py;
-        reg_G3_MTX_TRANS = pz;
-
+        G3_Translate(resBase->unk_04.x, resBase->unk_04.y, resBase->unk_04.z);
         G3_MultMtx43(&load);
     }
 
     GXRgb colA = ptcl->unk_36;
     GXRgb colB = mgr->unk_40.unk_00->unk_E2;
-    reg_G3_COLOR = GX_RGB(
+    G3_Color(GX_RGB(
         GX_RGB_R_(colA) * GX_RGB_R_(colB) >> 5,
         GX_RGB_G_(colA) * GX_RGB_G_(colB) >> 15,
-        GX_RGB_B_(colA) * GX_RGB_B_(colB) >> 25);
+        GX_RGB_B_(colA) * GX_RGB_B_(colB) >> 25));
+
+    SPLEmitter *emtr = mgr->unk_40.unk_00;
+    sub_020A0500(emtr->unk_E8, emtr->unk_EA, emtr->p_res->unk_00->unk_54, emtr->p_res->unk_00->unk_56);
+}
+
+void sub_0209ECF0(SPLManager *mgr, SPLParticle *ptcl)
+{
+    fx32 aspect;
+    const MtxFx43 *cmr;
+    VecFx32 vel_dir;
+    fx32 dot;
+    VecFx32 trs;
+    fx32 sclX, sclY;
+    VecFx32 dir, look;
+    MtxFx33 mtx;
+    MtxFx43 load;
+
+    cmr = mgr->unk_40.unk_04;
+    aspect = mgr->unk_40.unk_00->p_res->unk_00->unk_30;
+
+    fx32 alpha = (fx32)(ptcl->unk_2E.unk_00_0 * (ptcl->unk_2E.unk_00_5 + 1)) >> 5;
+
+    G3_PolygonAttr(
+        GX_LIGHTMASK_NONE,
+        GX_POLYGONMODE_MODULATE,
+        GX_CULL_NONE,
+        ptcl->unk_2E.unk_01_2,
+        alpha,
+        mgr->unk_3C);
+
+    reg_G3_POLYGON_ATTR;
+
+    if (alpha == 0) {
+        return;
+    }
+
+    sclY = ptcl->unk_30;
+    sclX = FX_MUL(sclY, aspect);
+
+    switch (mgr->unk_40.unk_00->p_res->unk_00->unk_48.unk_07_4) {
+    case 0:
+        sclX = FX_MUL(sclX, ptcl->unk_34);
+        sclY = FX_MUL(sclY, ptcl->unk_34);
+        break;
+
+    case 1:
+        sclX = FX_MUL(sclX, ptcl->unk_34);
+        break;
+
+    case 2:
+        sclY = FX_MUL(sclY, ptcl->unk_34);
+        break;
+    }
+
+    if (!mgr->unk_40.unk_00->p_res->unk_00->unk_00.unk_06_7) {
+        trs.x = ptcl->unk_08.x + ptcl->unk_38.x;
+        trs.y = ptcl->unk_08.y + ptcl->unk_38.y;
+        trs.z = ptcl->unk_08.z + ptcl->unk_38.z;
+
+        dir = ptcl->unk_14;
+
+        look.x = cmr->_02;
+        look.y = cmr->_12;
+        look.z = cmr->_22;
+
+        VEC_CrossProduct(&dir, &look, &dir);
+        if (dir.x == 0 && dir.y == 0 && dir.z == 0) {
+            return;
+        }
+
+        VEC_Normalize(&dir, &dir);
+        MI_Copy36B(cmr, &mtx);
+        MTX_MultVec33(&dir, &mtx, &dir);
+        MTX_MultVec43(&trs, cmr, &trs);
+
+        vel_dir = ptcl->unk_14;
+        VEC_Normalize(&vel_dir, &vel_dir);
+
+        dot = FX_MUL(vel_dir.x, -cmr->_02) + FX_MUL(vel_dir.y, -cmr->_12) + FX_MUL(vel_dir.z, -cmr->_22);
+        if (dot < 0) {
+            dot = -dot;
+        }
+
+        dot = FX_MUL(sclY, FX_MUL(FX32_ONE - dot, (fx32)mgr->unk_40.unk_00->p_res->unk_00->unk_48.unk_05_0) + FX32_ONE);
+        load._00 = FX_MUL(dir.x, sclX);
+        load._10 = FX_MUL(-dir.y, dot);
+        load._30 = trs.x;
+        load._31 = trs.y;
+        load._01 = FX_MUL(dir.y, sclX);
+        load._11 = FX_MUL(dir.x, dot);
+        load._20 = 0;
+        load._21 = 0;
+        load._02 = 0;
+        load._12 = 0;
+        load._22 = FX32_ONE;
+        load._32 = trs.z;
+
+        G3_Identity();
+        G3_MultMtx43(&load);
+    } else {
+        trs.x = ptcl->unk_08.x + ptcl->unk_38.x - mgr->unk_40.unk_00->p_res->unk_00->unk_04.x;
+        trs.y = ptcl->unk_08.y + ptcl->unk_38.y - mgr->unk_40.unk_00->p_res->unk_00->unk_04.y;
+        trs.z = ptcl->unk_08.z + ptcl->unk_38.z - mgr->unk_40.unk_00->p_res->unk_00->unk_04.z;
+
+        dir = ptcl->unk_14;
+
+        look.x = cmr->_02;
+        look.y = cmr->_12;
+        look.z = cmr->_22;
+
+        VEC_CrossProduct(&dir, &look, &dir);
+        if (dir.x == 0 && dir.y == 0 && dir.z == 0) {
+            return;
+        }
+
+        VEC_Normalize(&dir, &dir);
+        MI_Copy36B(cmr, &mtx);
+        MTX_MultVec33(&dir, &mtx, &dir);
+        MTX_MultVec43(&trs, cmr, &trs);
+
+        vel_dir = ptcl->unk_14;
+        VEC_Normalize(&vel_dir, &vel_dir);
+
+        dot = FX_MUL(vel_dir.x, -cmr->_02) + FX_MUL(vel_dir.y, -cmr->_12) + FX_MUL(vel_dir.z, -cmr->_22);
+        if (dot < 0) {
+            dot = -dot;
+        }
+
+        dot = FX_MUL(sclY, FX_MUL(FX32_ONE - dot, (fx32)mgr->unk_40.unk_00->p_res->unk_00->unk_48.unk_05_0) + FX32_ONE);
+        load._00 = FX_MUL(dir.x, sclX);
+        load._10 = FX_MUL(-dir.y, dot);
+        load._20 = 0;
+        load._30 = trs.x;
+        load._01 = FX_MUL(dir.y, sclX);
+        load._11 = FX_MUL(dir.x, dot);
+        load._21 = 0;
+        load._31 = trs.y;
+        load._02 = 0;
+        load._12 = 0;
+        load._22 = FX32_ONE;
+        load._32 = trs.z;
+
+        G3_Identity();
+
+        UnkSPLStruct9 *resBase = mgr->unk_40.unk_00->p_res->unk_00;
+        G3_Translate(resBase->unk_04.x, resBase->unk_04.y, resBase->unk_04.z);
+        G3_MultMtx43(&load);
+    }
+
+    GXRgb colA = ptcl->unk_36;
+    GXRgb colB = mgr->unk_40.unk_00->unk_E2;
+    G3_Color(GX_RGB(
+        GX_RGB_R_(colA) * GX_RGB_R_(colB) >> 5,
+        GX_RGB_G_(colA) * GX_RGB_G_(colB) >> 15,
+        GX_RGB_B_(colA) * GX_RGB_B_(colB) >> 25));
 
     SPLEmitter *emtr = mgr->unk_40.unk_00;
     sub_020A0500(emtr->unk_EC, emtr->unk_EE, 0, 0);
@@ -658,27 +638,23 @@ void sub_0209E9A0(SPLManager *mgr, SPLParticle *ptcl)
     fx32 alpha;
     UnkSPLStruct9 *resBase;
 
-    alpha = ptcl->unk_2E.unk_00_0 * (ptcl->unk_2E.unk_00_5 + 1) >> 5;
-    polygonID = ptcl->unk_2E.unk_01_2 << REG_G3_POLYGON_ATTR_ID_SHIFT;
-    cullMode = GX_CULL_NONE << REG_G3_POLYGON_ATTR_BK_SHIFT;
+    alpha = (fx32)(ptcl->unk_2E.unk_00_0 * (ptcl->unk_2E.unk_00_5 + 1)) >> 5;
 
-    reg_G3_POLYGON_ATTR = (u32)((0 << REG_G3_POLYGON_ATTR_LE_SHIFT)
-        | (GX_POLYGONMODE_MODULATE << REG_G3_POLYGON_ATTR_PM_SHIFT)
-        | (cullMode)
-        | (mgr->unk_3C)
-        | (polygonID)
-        | (alpha << REG_G3_POLYGON_ATTR_ALPHA_SHIFT));
+    G3_PolygonAttr(
+        GX_LIGHTMASK_NONE,
+        GX_POLYGONMODE_MODULATE,
+        GX_CULL_NONE,
+        ptcl->unk_2E.unk_01_2,
+        alpha,
+        mgr->unk_3C);
 
-    u32 polygonAttr = reg_G3_POLYGON_ATTR;
+    reg_G3_POLYGON_ATTR;
 
     if (alpha == 0) {
         return;
     }
 
-    Unk_02100DA8[mgr->unk_40.unk_00->p_res->unk_00->unk_00.unk_06_1](
-        FX_SinIdx(ptcl->unk_20),
-        FX_CosIdx(ptcl->unk_20),
-        &rotMtx);
+    Unk_02100DA8[mgr->unk_40.unk_00->p_res->unk_00->unk_00.unk_06_1](FX_SinIdx(ptcl->unk_20), FX_CosIdx(ptcl->unk_20), &rotMtx);
 
     sclY = ptcl->unk_30;
     resBase = mgr->unk_40.unk_00->p_res->unk_00;
@@ -714,13 +690,10 @@ void sub_0209E9A0(SPLManager *mgr, SPLParticle *ptcl)
         load._31 = ptcl->unk_08.y + ptcl->unk_38.y - mgr->unk_40.unk_00->p_res->unk_00->unk_04.y;
         load._32 = ptcl->unk_08.z + ptcl->unk_38.z - mgr->unk_40.unk_00->p_res->unk_00->unk_04.z;
 
-        reg_G3_MTX_IDENTITY = 0;
+        G3_Identity();
 
         resBase = mgr->unk_40.unk_00->p_res->unk_00;
-        fx32 x = resBase->unk_04.x, z = resBase->unk_04.z, y = resBase->unk_04.y;
-        reg_G3_MTX_TRANS = x;
-        reg_G3_MTX_TRANS = y;
-        reg_G3_MTX_TRANS = z;
+        G3_Translate(resBase->unk_04.x, resBase->unk_04.y, resBase->unk_04.z);
 
         G3_MultMtx43(mgr->unk_40.unk_04);
         G3_MultMtx43(&load);
@@ -728,10 +701,10 @@ void sub_0209E9A0(SPLManager *mgr, SPLParticle *ptcl)
 
     GXRgb colA = ptcl->unk_36;
     GXRgb colB = mgr->unk_40.unk_00->unk_E2;
-    reg_G3_COLOR = GX_RGB(
+    G3_Color(GX_RGB(
         GX_RGB_R_(colA) * GX_RGB_R_(colB) >> 5,
         GX_RGB_G_(colA) * GX_RGB_G_(colB) >> 15,
-        GX_RGB_B_(colA) * GX_RGB_B_(colB) >> 25);
+        GX_RGB_B_(colA) * GX_RGB_B_(colB) >> 25));
 
     SPLEmitter *emtr = mgr->unk_40.unk_00;
     resBase = emtr->p_res->unk_00;
@@ -749,26 +722,22 @@ void sub_0209E650(SPLManager *mgr, SPLParticle *ptcl)
     UnkSPLStruct9 *resBase;
 
     alpha = ptcl->unk_2E.unk_00_0 * (ptcl->unk_2E.unk_00_5 + 1) >> 5;
-    polygonID = ptcl->unk_2E.unk_01_2 << REG_G3_POLYGON_ATTR_ID_SHIFT;
-    cullMode = GX_CULL_NONE << REG_G3_POLYGON_ATTR_BK_SHIFT;
 
-    reg_G3_POLYGON_ATTR = (u32)((0 << REG_G3_POLYGON_ATTR_LE_SHIFT)
-        | (GX_POLYGONMODE_MODULATE << REG_G3_POLYGON_ATTR_PM_SHIFT)
-        | (cullMode)
-        | (mgr->unk_3C)
-        | (polygonID)
-        | (alpha << REG_G3_POLYGON_ATTR_ALPHA_SHIFT));
+    G3_PolygonAttr(
+        GX_LIGHTMASK_NONE,
+        GX_POLYGONMODE_MODULATE,
+        GX_CULL_NONE,
+        ptcl->unk_2E.unk_01_2,
+        alpha,
+        mgr->unk_3C);
 
-    u32 polygonAttr = reg_G3_POLYGON_ATTR;
+    reg_G3_POLYGON_ATTR;
 
     if (alpha == 0) {
         return;
     }
 
-    Unk_02100DA8[mgr->unk_40.unk_00->p_res->unk_14->unk_00.unk_03_1](
-        FX_SinIdx(ptcl->unk_20),
-        FX_CosIdx(ptcl->unk_20),
-        &rotMtx);
+    Unk_02100DA8[mgr->unk_40.unk_00->p_res->unk_14->unk_00.unk_03_1](FX_SinIdx(ptcl->unk_20), FX_CosIdx(ptcl->unk_20), &rotMtx);
 
     sclY = ptcl->unk_30;
     resBase = mgr->unk_40.unk_00->p_res->unk_00;
@@ -792,7 +761,6 @@ void sub_0209E650(SPLManager *mgr, SPLParticle *ptcl)
     MTX_Scale43(&sclMtx, sclX, sclY, sclY);
     MTX_Concat43(&rotMtx, &sclMtx, &load);
 
-    // resBase = mgr->unk_40.unk_00->p_res->unk_00;
     if (!mgr->unk_40.unk_00->p_res->unk_00->unk_00.unk_06_7) {
         load._30 = ptcl->unk_08.x + ptcl->unk_38.x;
         load._31 = ptcl->unk_08.y + ptcl->unk_38.y;
@@ -804,24 +772,20 @@ void sub_0209E650(SPLManager *mgr, SPLParticle *ptcl)
         load._31 = ptcl->unk_08.y + ptcl->unk_38.y - mgr->unk_40.unk_00->p_res->unk_00->unk_04.y;
         load._32 = ptcl->unk_08.z + ptcl->unk_38.z - mgr->unk_40.unk_00->p_res->unk_00->unk_04.z;
 
-        reg_G3_MTX_IDENTITY = 0;
+        G3_Identity();
 
         resBase = mgr->unk_40.unk_00->p_res->unk_00;
-        fx32 x = resBase->unk_04.x, z = resBase->unk_04.z, y = resBase->unk_04.y;
-        reg_G3_MTX_TRANS = x;
-        reg_G3_MTX_TRANS = y;
-        reg_G3_MTX_TRANS = z;
-
+        G3_Translate(resBase->unk_04.x, resBase->unk_04.y, resBase->unk_04.z);
         G3_MultMtx43(mgr->unk_40.unk_04);
         G3_MultMtx43(&load);
     }
 
     GXRgb colA = ptcl->unk_36;
     GXRgb colB = mgr->unk_40.unk_00->unk_E2;
-    reg_G3_COLOR = GX_RGB(
+    G3_Color(GX_RGB(
         GX_RGB_R_(colA) * GX_RGB_R_(colB) >> 5,
         GX_RGB_G_(colA) * GX_RGB_G_(colB) >> 15,
-        GX_RGB_B_(colA) * GX_RGB_B_(colB) >> 25);
+        GX_RGB_B_(colA) * GX_RGB_B_(colB) >> 25));
 
     SPLEmitter *emtr = mgr->unk_40.unk_00;
     Unk_02100DA0[emtr->p_res->unk_14->unk_00.unk_03_3](emtr->unk_EC, emtr->unk_EE, 0, 0);
@@ -834,35 +798,28 @@ void sub_0209E1D4(SPLManager *mgr, SPLParticle *ptcl)
     MtxFx43 sclMat;
     VecFx32 vec1, vec2, vec3, vec4, axis;
     MtxFx43 mat;
-    u32 polygonID, cullMode;
     fx32 dot, scaleX, scaleY, alpha, tmp;
     UnkSPLStruct9 *resBase;
     SPLEmitter *emtr;
-    int rotation;
-    RotFunc rot;
-    DrawPlaneFunc drawPlane;
     GXRgb colA, colB;
 
     alpha = ptcl->unk_2E.unk_00_0 * (ptcl->unk_2E.unk_00_5 + 1) >> 5;
-    polygonID = ptcl->unk_2E.unk_01_2 << REG_G3_POLYGON_ATTR_ID_SHIFT;
-    cullMode = GX_CULL_NONE << REG_G3_POLYGON_ATTR_BK_SHIFT;
 
-    reg_G3_POLYGON_ATTR = (u32)((0 << REG_G3_POLYGON_ATTR_LE_SHIFT)
-        | (GX_POLYGONMODE_MODULATE << REG_G3_POLYGON_ATTR_PM_SHIFT)
-        | (cullMode)
-        | (mgr->unk_3C)
-        | (polygonID)
-        | (alpha << REG_G3_POLYGON_ATTR_ALPHA_SHIFT));
+    G3_PolygonAttr(
+        GX_LIGHTMASK_NONE,
+        GX_POLYGONMODE_MODULATE,
+        GX_CULL_NONE,
+        ptcl->unk_2E.unk_01_2,
+        alpha,
+        mgr->unk_3C);
 
-    u32 polygonAttr = reg_G3_POLYGON_ATTR;
+    reg_G3_POLYGON_ATTR;
 
     if (alpha == 0) {
         return;
     }
 
-    rotation = ptcl->unk_20;
-    rot = Unk_02100DA8[mgr->unk_40.unk_00->p_res->unk_00->unk_00.unk_06_1];
-    rot(FX_SinIdx(rotation), FX_CosIdx(rotation), &rotMat);
+    Unk_02100DA8[mgr->unk_40.unk_00->p_res->unk_00->unk_00.unk_06_1](FX_SinIdx(ptcl->unk_20), FX_CosIdx(ptcl->unk_20), &rotMat);
 
     MTX_Identity43(&mat);
 
@@ -880,7 +837,7 @@ void sub_0209E1D4(SPLManager *mgr, SPLParticle *ptcl)
     axis.z = 0;
 
     dot = VEC_DotProduct(&vec1, &axis);
-    if (dot > FX32_CONST(0.800049) || dot < FX32_CONST(-0.800049)) {
+    if (dot > FX32_CONST(0.8) || dot < FX32_CONST(-0.8)) {
         axis.x = FX32_ONE;
         axis.y = 0;
         axis.z = 0;
@@ -889,9 +846,6 @@ void sub_0209E1D4(SPLManager *mgr, SPLParticle *ptcl)
     VEC_CrossProduct(&vec1, &axis, &vec2);
     VEC_CrossProduct(&vec1, &vec2, &vec3);
 
-    // vec2: sp + 0x9C
-    // vec1: sp + 0x90
-    // vec3: sp + 0xA8
     mat._00 = vec2.x;
     mat._01 = vec2.y;
     mat._02 = vec2.z;
@@ -899,9 +853,8 @@ void sub_0209E1D4(SPLManager *mgr, SPLParticle *ptcl)
     mat._11 = vec1.y;
     mat._12 = vec1.z;
     mat._20 = vec3.x;
-    tmp = vec3.z;
     mat._21 = vec3.y;
-    mat._22 = tmp;
+    mat._22 = vec3.z;
     MTX_Concat43(&rotMat, &mat, &rotMat);
 
     resBase = mgr->unk_40.unk_00->p_res->unk_00;
@@ -938,29 +891,24 @@ void sub_0209E1D4(SPLManager *mgr, SPLParticle *ptcl)
         transform._31 = ptcl->unk_08.y + ptcl->unk_38.y - mgr->unk_40.unk_00->p_res->unk_00->unk_04.y;
         transform._32 = ptcl->unk_08.z + ptcl->unk_38.z - mgr->unk_40.unk_00->p_res->unk_00->unk_04.z;
 
-        reg_G3_MTX_IDENTITY = 0;
+        G3_Identity();
 
         resBase = mgr->unk_40.unk_00->p_res->unk_00;
-        fx32 x = resBase->unk_04.x, z = resBase->unk_04.z, y = resBase->unk_04.y;
-        reg_G3_MTX_TRANS = x;
-        reg_G3_MTX_TRANS = y;
-        reg_G3_MTX_TRANS = z;
-
+        G3_Translate(resBase->unk_04.x, resBase->unk_04.y, resBase->unk_04.z);
         G3_MultMtx43(mgr->unk_40.unk_04);
         G3_MultMtx43(&transform);
     }
 
     colA = ptcl->unk_36;
     colB = mgr->unk_40.unk_00->unk_E2;
-    reg_G3_COLOR = GX_RGB(
+    G3_Color(GX_RGB(
         GX_RGB_R_(colA) * GX_RGB_R_(colB) >> 5,
         GX_RGB_G_(colA) * GX_RGB_G_(colB) >> 15,
-        GX_RGB_B_(colA) * GX_RGB_B_(colB) >> 25);
+        GX_RGB_B_(colA) * GX_RGB_B_(colB) >> 25));
 
     emtr = mgr->unk_40.unk_00;
     resBase = emtr->p_res->unk_00;
-    drawPlane = Unk_02100DA0[resBase->unk_00.unk_06_3];
-    drawPlane(emtr->unk_E8, emtr->unk_EA, resBase->unk_54, resBase->unk_56);
+    Unk_02100DA0[resBase->unk_00.unk_06_3](emtr->unk_E8, emtr->unk_EA, resBase->unk_54, resBase->unk_56);
 }
 
 void sub_0209DD54(SPLManager *mgr, SPLParticle *ptcl)
@@ -971,29 +919,25 @@ void sub_0209DD54(SPLManager *mgr, SPLParticle *ptcl)
     VecFx32 vec1, vec2, vec3, vec4, axis;
     MtxFx43 mat;
     fx32 dot, scaleX, scaleY, scaleZ, alpha, tmp;
-    u32 polygonID, cullMode;
     UnkSPLStruct9 *resBase;
 
     alpha = ptcl->unk_2E.unk_00_0 * (ptcl->unk_2E.unk_00_5 + 1) >> 5;
-    polygonID = ptcl->unk_2E.unk_01_2 << REG_G3_POLYGON_ATTR_ID_SHIFT;
-    cullMode = GX_CULL_NONE << REG_G3_POLYGON_ATTR_BK_SHIFT;
 
-    reg_G3_POLYGON_ATTR = (u32)((0 << REG_G3_POLYGON_ATTR_LE_SHIFT)
-        | (GX_POLYGONMODE_MODULATE << REG_G3_POLYGON_ATTR_PM_SHIFT)
-        | (cullMode)
-        | (mgr->unk_3C)
-        | (polygonID)
-        | (alpha << REG_G3_POLYGON_ATTR_ALPHA_SHIFT));
+    G3_PolygonAttr(
+        GX_LIGHTMASK_NONE,
+        GX_POLYGONMODE_MODULATE,
+        GX_CULL_NONE,
+        ptcl->unk_2E.unk_01_2,
+        alpha,
+        mgr->unk_3C);
 
-    u32 polygonAttr = reg_G3_POLYGON_ATTR;
+    reg_G3_POLYGON_ATTR;
 
     if (alpha == 0) {
         return;
     }
 
-    int rotation = ptcl->unk_20;
-    RotFunc rot = Unk_02100DA8[mgr->unk_40.unk_00->p_res->unk_14->unk_00.unk_03_1];
-    rot(FX_SinIdx(rotation), FX_CosIdx(rotation), &rotMtx);
+    Unk_02100DA8[mgr->unk_40.unk_00->p_res->unk_14->unk_00.unk_03_1](FX_SinIdx(ptcl->unk_20), FX_CosIdx(ptcl->unk_20), &rotMtx);
 
     MTX_Identity43(&mat);
 
@@ -1011,7 +955,7 @@ void sub_0209DD54(SPLManager *mgr, SPLParticle *ptcl)
     axis.z = 0;
 
     dot = VEC_DotProduct(&vec1, &axis);
-    if (dot > FX32_CONST(0.800049) || dot < FX32_CONST(-0.800049)) {
+    if (dot > FX32_CONST(0.8) || dot < FX32_CONST(-0.8)) {
         axis.x = FX32_ONE;
         axis.y = 0;
         axis.z = 0;
@@ -1023,14 +967,12 @@ void sub_0209DD54(SPLManager *mgr, SPLParticle *ptcl)
     mat._00 = vec2.x;
     mat._01 = vec2.y;
     mat._02 = vec2.z;
-    scaleY = vec1.x;
-    mat._10 = scaleY;
+    mat._10 = vec1.x;
     mat._11 = vec1.y;
     mat._12 = vec1.z;
     mat._20 = vec3.x;
-    tmp = vec3.z;
     mat._21 = vec3.y;
-    mat._22 = tmp;
+    mat._22 = vec3.z;
     MTX_Concat43(&rotMtx, &mat, &rotMtx);
 
     resBase = mgr->unk_40.unk_00->p_res->unk_00;
@@ -1067,26 +1009,21 @@ void sub_0209DD54(SPLManager *mgr, SPLParticle *ptcl)
         transform._31 = ptcl->unk_08.y + ptcl->unk_38.y - mgr->unk_40.unk_00->p_res->unk_00->unk_04.y;
         transform._32 = ptcl->unk_08.z + ptcl->unk_38.z - mgr->unk_40.unk_00->p_res->unk_00->unk_04.z;
 
-        reg_G3_MTX_IDENTITY = 0;
+        G3_Identity();
 
         resBase = mgr->unk_40.unk_00->p_res->unk_00;
-        fx32 x = resBase->unk_04.x, z = resBase->unk_04.z, y = resBase->unk_04.y;
-        reg_G3_MTX_TRANS = x;
-        reg_G3_MTX_TRANS = y;
-        reg_G3_MTX_TRANS = z;
-
+        G3_Translate(resBase->unk_04.x, resBase->unk_04.y, resBase->unk_04.z);
         G3_MultMtx43(mgr->unk_40.unk_04);
         G3_MultMtx43(&transform);
     }
 
     GXRgb colA = ptcl->unk_36;
     GXRgb colB = mgr->unk_40.unk_00->unk_E2;
-    reg_G3_COLOR = GX_RGB(
+    G3_Color(GX_RGB(
         GX_RGB_R_(colA) * GX_RGB_R_(colB) >> 5,
         GX_RGB_G_(colA) * GX_RGB_G_(colB) >> 15,
-        GX_RGB_B_(colA) * GX_RGB_B_(colB) >> 25);
+        GX_RGB_B_(colA) * GX_RGB_B_(colB) >> 25));
 
     SPLEmitter *emtr = mgr->unk_40.unk_00;
-    DrawPlaneFunc drawPlane = Unk_02100DA0[emtr->p_res->unk_14->unk_00.unk_03_3];
-    drawPlane(emtr->unk_EC, emtr->unk_EE, 0, 0);
+    Unk_02100DA0[emtr->p_res->unk_14->unk_00.unk_03_3](emtr->unk_EC, emtr->unk_EE, 0, 0);
 }

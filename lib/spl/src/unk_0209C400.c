@@ -303,7 +303,8 @@ void SPL_0209C5E0(SPLManager *mgr, const MtxFx43 *cmr)
 {
     SPLEmitter *emtr;
 
-    reg_G3X_DISP3DCNT = (reg_G3X_DISP3DCNT & ~(REG_G3X_DISP3DCNT_GO_MASK | REG_G3X_DISP3DCNT_RO_MASK)) | REG_G3X_DISP3DCNT_ABE_MASK;
+    G3X_AlphaBlend(TRUE);
+
     mgr->unk_40.unk_04 = cmr;
     if (!mgr->unk_38.unk_03_0) {
         emtr = mgr->unk_04.unk_00;

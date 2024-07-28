@@ -6,6 +6,8 @@
 
 VecFx16 Unk_02100DB0 = { 0, FX16_ONE, 0 };
 
+#define IS_IN_RANGE(x, min, max) (((x) - (min)) <= ((max) - (min)))
+
 void sub_020A1768(SPLEmitter *emtr)
 {
     VecFx16 vec, axis;
@@ -67,7 +69,6 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
 {
     UnkSPLStruct4 *res;
     UnkSPLStruct9 *resBase;
-    // fx32 genNum;
     int i, curGenNum;
     SPLParticle *ptcl;
 
@@ -78,10 +79,10 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
 
     int temp = emtr->unk_C8 + FX32_CAST(emtr->unk_BE);
     curGenNum = temp >> FX32_SHIFT;
-    emtr->unk_BE = (temp & FX32_DEC_MASK);
+    emtr->unk_BE = temp & FX32_DEC_MASK;
 
     u32 initType = resBase->unk_00.unk_04_0;
-    if (initType == 2 || initType == 3 || (initType - 5 <= 4)) {
+    if (initType == 2 || initType == 3 || IS_IN_RANGE(initType, 5, 9)) {
         sub_020A1768(emtr);
     }
 
