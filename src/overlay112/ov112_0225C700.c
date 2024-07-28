@@ -1127,168 +1127,56 @@ static void ov112_0225D4F8 (const UnkStruct_ov112_0225D44C * param0, Window * pa
     sub_0201A9A4(param1);
 }
 
-// clang-format off
-asm static void ov112_0225D57C (UnkStruct_ov112_0225D6DC * param0, UnkStruct_ov112_0225C9BC * param1, u32 param2)
+static void ov112_0225D57C(UnkStruct_ov112_0225D6DC *param0, UnkStruct_ov112_0225C9BC *param1, u32 param2)
 {
-    push {r3, r4, r5, r6, r7, lr}
-    sub sp, #0x40
-    str r1, [sp, #0x18]
-    str r2, [sp, #0x1c]
-    mov r1, #0
-    mov r2, #0x70
-    str r0, [sp, #0x14]
-    bl memset
-    ldr r2, = 0x28D
-    ldr r3, [sp, #0x1c]
-    mov r0, #0
-    mov r1, #0x1a
-    bl MessageLoader_Init
-    str r0, [sp, #0x38]
-    ldr r1, [sp, #0x1c]
-    mov r0, #0x80
-    bl Strbuf_Init
-    str r0, [sp, #0x34]
-    mov r0, #0
-    str r0, [sp, #0x3c]
-    ldr r0, = Unk_ov112_0225D968
-    ldr r5, = Unk_ov112_0225D880
-    str r0, [sp, #0x28]
-    ldr r0, = Unk_ov112_0225D960
-    str r0, [sp, #0x24]
-    ldr r0, [sp, #0x14]
-    str r0, [sp, #0x20]
-    add r0, #0x40
-    str r0, [sp, #0x20]
- _0225D5BC:
-    ldr r1, [sp, #0x24]
-    ldr r2, [sp, #0x28]
-    ldrh r1, [r1]
-    ldr r0, [sp, #0x20]
-    ldr r2, [r2, #0]
-    bl ov112_0225D73C
-    ldrb r0, [r5, #1]
-    ldr r1, [sp, #0x14]
-    mov r2, #0
-    str r0, [sp]
-    ldrb r0, [r5, #2]
-    str r0, [sp, #4]
-    ldrb r0, [r5, #3]
-    str r0, [sp, #8]
-    ldrb r0, [r5, #6]
-    str r0, [sp, #0xc]
-    ldrh r0, [r5, #4]
-    str r0, [sp, #0x10]
-    ldr r0, [sp, #0x18]
-    ldrb r3, [r5]
-    ldr r0, [r0, #0]
-    bl BGL_AddWindow
-    ldr r0, [sp, #0x14]
-    mov r1, #0
-    bl BGL_FillWindow
-    ldr r0, [sp, #0x38]
-    ldr r1, [sp, #0x3c]
-    ldr r2, [sp, #0x34]
-    bl MessageLoader_GetStrbuf
-    ldr r0, [sp, #0x34]
-    bl Strbuf_NumLines
-    str r0, [sp, #0x30]
-    ldr r0, [sp, #0x34]
-    ldrb r6, [r5, #8]
-    bl Strbuf_Length
-    ldr r1, [sp, #0x1c]
-    add r0, r0, #1
-    bl Strbuf_Init
-    add r4, r0, #0
-    ldr r0, [sp, #0x30]
-    mov r7, #0
-    cmp r0, #0
-    bls _0225D68A
- _0225D620:
-    ldr r1, [sp, #0x34]
-    add r0, r4, #0
-    add r2, r7, #0
-    bl Strbuf_CopyLineNum
-    ldrb r0, [r5, #9]
-    cmp r0, #0
-    beq _0225D63A
-    cmp r0, #1
-    beq _0225D640
-    cmp r0, #2
-    beq _0225D656
-    b _0225D666
- _0225D63A:
-    ldrb r0, [r5, #7]
-    str r0, [sp, #0x2c]
-    b _0225D666
- _0225D640:
-    mov r0, #0
-    add r1, r4, #0
-    add r2, r0, #0
-    bl Font_CalcMaxLineWidth
-    add r0, r0, #1
-    ldrb r1, [r5, #7]
-    lsr r0, r0, #1
-    sub r0, r1, r0
-    str r0, [sp, #0x2c]
-    b _0225D666
- _0225D656:
-    mov r0, #0
-    add r1, r4, #0
-    add r2, r0, #0
-    bl Font_CalcMaxLineWidth
-    ldrb r1, [r5, #7]
-    sub r0, r1, r0
-    str r0, [sp, #0x2c]
- _0225D666:
-    str r6, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    ldr r0, [r5, #0xc]
-    ldr r3, [sp, #0x2c]
-    str r0, [sp, #8]
-    mov r0, #0
-    str r0, [sp, #0xc]
-    ldr r0, [sp, #0x14]
-    mov r1, #0
-    add r2, r4, #0
-    bl Text_AddPrinterWithParamsAndColor
-    ldr r0, [sp, #0x30]
-    add r7, r7, #1
-    add r6, #0x10
-    cmp r7, r0
-    blo _0225D620
- _0225D68A:
-    add r0, r4, #0
-    bl Strbuf_Free
-    ldr r0, [sp, #0x14]
-    bl sub_0201A9A4
-    ldr r0, [sp, #0x28]
-    add r5, #0x10
-    add r0, r0, #4
-    str r0, [sp, #0x28]
-    ldr r0, [sp, #0x24]
-    add r0, r0, #2
-    str r0, [sp, #0x24]
-    ldr r0, [sp, #0x20]
-    add r0, #0xc
-    str r0, [sp, #0x20]
-    ldr r0, [sp, #0x14]
-    add r0, #0x10
-    str r0, [sp, #0x14]
-    ldr r0, [sp, #0x3c]
-    add r0, r0, #1
-    str r0, [sp, #0x3c]
-    cmp r0, #4
-    blt _0225D5BC
-    ldr r0, [sp, #0x34]
-    bl Strbuf_Free
-    ldr r0, [sp, #0x38]
-    bl MessageLoader_Free
-    add sp, #0x40
-    pop {r3, r4, r5, r6, r7, pc}
-    nop
+    int v0;
+    MessageLoader *v1;
+    Strbuf *v2;
+    u32 v3;
+    Strbuf *v4;
+    u32 v5;
+    u32 v6, v7;
+
+    memset(param0, 0, sizeof(UnkStruct_ov112_0225D6DC));
+
+    v1 = MessageLoader_Init(0, 26, 653, param2);
+    v2 = Strbuf_Init(128, param2);
+
+    for (v0 = 0; v0 < 4; v0++) {
+        ov112_0225D73C(&param0->unk_40[v0], Unk_ov112_0225D960[v0], Unk_ov112_0225D968[v0]);
+
+        BGL_AddWindow(param1->unk_00, &param0->unk_00[v0], 0, Unk_ov112_0225D880[v0].unk_00, Unk_ov112_0225D880[v0].unk_01, Unk_ov112_0225D880[v0].unk_02, Unk_ov112_0225D880[v0].unk_03, Unk_ov112_0225D880[v0].unk_06, Unk_ov112_0225D880[v0].unk_04);
+
+        BGL_FillWindow(&param0->unk_00[v0], 0);
+
+        MessageLoader_GetStrbuf(v1, 0 + v0, v2);
+
+        v3 = Strbuf_NumLines(v2);
+        v7 = Unk_ov112_0225D880[v0].unk_08;
+        v4 = Strbuf_Init(Strbuf_Length(v2) + 1, param2);
+        for (v5 = 0; v5 < v3; v5++) {
+            Strbuf_CopyLineNum(v4, v2, v5);
+            switch (Unk_ov112_0225D880[v0].unk_09) {
+            case 0:
+                v6 = Unk_ov112_0225D880[v0].unk_07;
+                break;
+            case 1:
+                v6 = Unk_ov112_0225D880[v0].unk_07 - (Font_CalcMaxLineWidth(0, v4, 0) + 1) / 2;
+                break;
+            case 2:
+                v6 = Unk_ov112_0225D880[v0].unk_07 - Font_CalcMaxLineWidth(0, v4, 0);
+                break;
+            }
+            Text_AddPrinterWithParamsAndColor(&param0->unk_00[v0], 0, v4, v6, v7, 0xFF, Unk_ov112_0225D880[v0].unk_0C, NULL);
+            v7 += 16;
+        }
+        Strbuf_Free(v4);
+
+        sub_0201A9A4(&param0->unk_00[v0]);
+    }
+    Strbuf_Free(v2);
+    MessageLoader_Free(v1);
 }
-// clang-format on
 
 static void ov112_0225D6DC (UnkStruct_ov112_0225D6DC * param0)
 {
