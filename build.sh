@@ -25,3 +25,6 @@ elif [ "$target" = rom ]; then
 else
     "${MESON:-meson}" compile -C build "$target" "$@"
 fi
+
+# remap incorrect source paths due to Wine build process
+python3 fixup_elf2.py
