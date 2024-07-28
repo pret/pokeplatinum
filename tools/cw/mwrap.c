@@ -50,6 +50,7 @@ struct args {
 
     bool wrap_dbg;
     _TCHAR *wrap_ver;
+    bool wrap_noipa;
 };
 
 struct args parse_args(int argc, _TCHAR *argv[], int *out_argc, _TCHAR ***out_argv)
@@ -60,7 +61,8 @@ struct args parse_args(int argc, _TCHAR *argv[], int *out_argc, _TCHAR ***out_ar
         .M = false,
         .MD = false,
         .wrap_dbg = false,
-        .wrap_ver = NULL
+        .wrap_ver = NULL,
+        .wrap_noipa = false
     };
 
     int new_argc = 0;
@@ -92,6 +94,9 @@ struct args parse_args(int argc, _TCHAR *argv[], int *out_argc, _TCHAR ***out_ar
                 argc >= 2) {
             args.wrap_ver = argv[1];
             skip = 2;
+        } else if (_tcscmp(argv[0], _T("-wrap:noipa")) == 0) {
+            args.wrap_noipa = true;
+            skip = 1;
         } else {
             copy = 1;
         }
@@ -509,7 +514,7 @@ int _tmain(int argc, _TCHAR *argv[])
 
     if (args.wrap_ver) tool_ver = args.wrap_ver;
 
-    if (_tcscmp(tool_ver, _T("1.2/base_b73")) == 0) {
+    if (args.wrap_noipa) {
         remove_ipa_arguments(&new_argc, new_argv);
     }
 

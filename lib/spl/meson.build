@@ -1,7 +1,8 @@
 
 libspl_c_args = [
     '-nothumb',
-    '-wrap:ver', '1.2/base_b73'
+    '-wrap:ver', '1.2/base_b73',
+    '-wrap:noipa'
 ]
 
 libspl_link_args = [
