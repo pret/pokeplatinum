@@ -2,27 +2,26 @@
 
 #include <nitro/fx/fx.h>
 
-SPLNode *sub_020A2238(SPLList *list, SPLNode *node)
+void sub_020A2304(SPLList *list, SPLNode *node)
 {
-    SPLNode *next = node->p_next;
-    if (next == NULL) {
-        if (list->p_begin == node) {
-            list->p_begin = NULL;
-            list->p_end = NULL;
-        } else {
-            node->p_prev->p_next = NULL;
-            list->p_end = list->p_end->p_prev;
-        }
-    } else if (list->p_begin == node) {
-        list->p_begin = next;
-        list->p_begin->p_prev = NULL;
+    if (list->p_begin == NULL) {
+        list->p_begin = node;
+        list->p_end = node;
+        node->p_next = NULL;
+        node->p_prev = node->p_next;
     } else {
-        next->p_prev = node->p_prev;
-        node->p_prev->p_next = node->p_next;
+        node->p_next = list->p_begin;
+        node->p_prev = NULL;
+        list->p_begin->p_prev = node;
+        list->p_begin = node;
     }
 
-    list->node_num -= 1;
-    return node;
+    list->node_num += 1;
+}
+
+void spl_push_back(SPLList *list, SPLNode *node)
+{
+    return;
 }
 
 SPLNode *sub_020A22B8(SPLList *list)
@@ -49,19 +48,30 @@ SPLNode *sub_020A22B8(SPLList *list)
     return node;
 }
 
-void sub_020A2304(SPLList *list, SPLNode *node)
+SPLNode *spl_pop_back(SPLList *list)
 {
-    if (list->p_begin == NULL) {
-        list->p_begin = node;
-        list->p_end = node;
-        node->p_next = NULL;
-        node->p_prev = node->p_next;
+    return NULL;
+}
+
+SPLNode *sub_020A2238(SPLList *list, SPLNode *node)
+{
+    SPLNode *next = node->p_next;
+    if (next == NULL) {
+        if (list->p_begin == node) {
+            list->p_begin = NULL;
+            list->p_end = NULL;
+        } else {
+            node->p_prev->p_next = NULL;
+            list->p_end = list->p_end->p_prev;
+        }
+    } else if (list->p_begin == node) {
+        list->p_begin = next;
+        list->p_begin->p_prev = NULL;
     } else {
-        node->p_next = list->p_begin;
-        node->p_prev = NULL;
-        list->p_begin->p_prev = node;
-        list->p_begin = node;
+        next->p_prev = node->p_prev;
+        node->p_prev->p_next = node->p_next;
     }
 
-    list->node_num += 1;
+    list->node_num -= 1;
+    return node;
 }

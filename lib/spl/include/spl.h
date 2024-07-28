@@ -438,17 +438,16 @@ typedef struct SPLList {
 } SPLList;
 
 typedef struct FieldFunc {
-    void(*func)(SPLParticle *, UnkSPLStruct4 *, int);
+    void (*func)(SPLParticle *, UnkSPLStruct4 *, int);
     BOOL loop;
 } FieldFunc;
 
 typedef struct FieldFunc8 {
-    void(*func)(SPLParticle *, UnkSPLStruct4 *, u8);
+    void (*func)(SPLParticle *, UnkSPLStruct4 *, u8);
     BOOL loop;
 } FieldFunc8;
 
-typedef struct SPLArcHdr
-{
+typedef struct SPLArcHdr {
     u32 id;
     u32 ver;
     u16 res_num;
@@ -459,6 +458,8 @@ typedef struct SPLArcHdr
     u32 tex_offset;
     u32 reserved1;
 } SPLArcHdr;
+
+typedef void (*UnkSPLFuncPtr0)(SPLEmitter *, void *);
 
 void SPL_0209C400(SPLManager * param0);
 void SPL_0209C444(SPLManager * param0, SPLEmitter * param1);
@@ -496,7 +497,6 @@ void sub_020A1608(VecFx32 *ptclPos, VecFx32 *pos, SPLEmitter *emtr);
 void sub_020A2354(VecFx32 *vec);
 void sub_020A23B0(VecFx32 *vec);
 
-
 void sub_0209D998(SPLEmitter *emtr, UnkSPLStruct4 *res, const VecFx32 *param2);
 void sub_0209CF00(SPLManager *mgr);
 void sub_0209D150(SPLManager *mgr, SPLEmitter *emtr);
@@ -533,6 +533,8 @@ void sub_020A0398(fx32 sin, fx32 cos, MtxFx43 *mat);
 void sub_020A0444(fx16 s, fx16 t, fx16 offsetX, fx16 offsetZ);
 void sub_020A0500(fx16 s, fx16 t, fx16 offsetX, fx16 offsetY);
 
+void spl_generate(SPLEmitter *emtr, SPLList *list);
+
 static inline void SPL_UnkInline1 (SPLEmitter * param0, const VecFx32 * param1)
 {
     param0->unk_98.x = param1->x + param0->p_res->unk_00->unk_04.x;
@@ -566,6 +568,11 @@ static inline u32 rng_next(u32 shift)
 {
     Unk_021C3A38 = Unk_021C3A38 * 0x5eedf715 + 0x1b0cb173;
     return Unk_021C3A38 >> shift;
+}
+
+static inline s32 rng_next_s32(u32 shift)
+{
+    return (s32)rng_next(shift);
 }
 
 #ifdef __cplusplus

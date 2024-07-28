@@ -1,7 +1,22 @@
+
+libspl_c_args = [
+    '-nothumb',
+    '-wrap:ver', '1.2/base_b73'
+]
+
+libspl_link_args = [
+    '-library',
+    '-nothumb',
+    '-main', '""',
+    '-nostdlib',
+]
+
+libspl_public_includes = include_directories('include')
+
 libspl_srcs = files(
     'src/unk_0209C400.c',
     'src/unk_0209CF00.c',
-    'asm/unk_0209DD54.s',
+    'src/unk_0209DD54.c',
     'src/unk_020A05BC.c',
     'src/unk_020A19F0.c',
     'src/unk_020A1E30.c',
@@ -9,11 +24,11 @@ libspl_srcs = files(
     'src/unk_020A2354.c'
 )
 
-libspl_public_includes = include_directories('include')
-
 libspl = static_library('spl',
     sources: libspl_srcs,
     nasm_args: asm_args,
+    c_args: libspl_c_args,
+    link_args: libspl_link_args,
     include_directories: [public_includes, libspl_public_includes],
     dependencies: [ nitrosdk_dep, nitrosystem_dep ],
     pic: false

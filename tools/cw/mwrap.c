@@ -465,6 +465,25 @@ char *replace_str(char *str, char *orig, char *rep, int start)
     return str;
 }
 
+void remove_ipa_arguments(int *argc, _TCHAR **argv)
+{
+    int new_argc = 0;
+    for (int i = 0; i < *argc; i++) {
+        if (argv[i] && _tcscmp(argv[i], _T("-ipa")) == 0 && (i + 1) < *argc) {
+            // Skip the current "-ipa" argument and the following argument.
+            i++; // Increment to skip the next argument.
+        } else {
+            // Keep this argument, by moving it down if necessary.
+            argv[new_argc] = argv[i];
+            new_argc++;
+        }
+    }
+
+    // Update the original argc to the new count of arguments.
+    *argc = new_argc;
+    argv[*argc] = NULL;
+}
+
 int _tmain(int argc, _TCHAR *argv[])
 {
     if (argc < 2) {
@@ -489,6 +508,10 @@ int _tmain(int argc, _TCHAR *argv[])
     struct args args = parse_args(argc - 2, argv + 2, &new_argc, &new_argv);
 
     if (args.wrap_ver) tool_ver = args.wrap_ver;
+
+    if (_tcscmp(tool_ver, _T("1.2/base_b73")) == 0) {
+        remove_ipa_arguments(&new_argc, new_argv);
+    }
 
     // Make a path of the chosen tool
     size_t tool_size = _tcslen(tool_dir) + 1 + _tcslen(tool_ver) + 1 +

@@ -3,45 +3,27 @@
 
 #include "spl.h"
 
-void sub_020A19F0(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate)
+void sub_020A1DA0(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate)
 {
-    ptcl->unk_2E.unk_00_5 = ((255 - lifeRate) * 31) / 255;
-}
+    UnkSPLStruct10 *scaleAnim;
+    int in, out;
+    fx16 start, n, end;
 
-void sub_020A1A48(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate)
-{
-    ptcl->unk_34 = res->unk_14->unk_04 + ((res->unk_14->unk_04 - FX16_ONE) * (lifeRate - 255)) / 255;
-}
+    scaleAnim = res->unk_04;
+    in = scaleAnim->unk_06.val2_00;
+    out = scaleAnim->unk_06.val2_01;
 
-void sub_020A1A94(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate)
-{
-    UnkSPLStruct13 *texAnim = res->unk_10;
-    for (int i = 0; i < texAnim->unk_08.unk_00_0; i++) {
-        if (lifeRate < texAnim->unk_08.unk_01_0 * (i + 1)) {
-            ptcl->unk_2C.unk_00 = texAnim->unk_00[i];
-            return;
-        }
-    }
-}
-
-void sub_020A1AF8(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate)
-{
-    u32 x;
-    UnkSPLStruct12 *alphaAnim = res->unk_0C;
-    int maxA = alphaAnim->unk_04.val2_00;
-    int maxB = alphaAnim->unk_04.val2_01;
-    
-    if (lifeRate < maxA) {
-        x = ((lifeRate * (alphaAnim->unk_00.val2_00_5 - alphaAnim->unk_00.val2_00_0)) / alphaAnim->unk_04.val2_00);
-        x += alphaAnim->unk_00.val2_00_0;
-    } else if (lifeRate < maxB) {
-        x = alphaAnim->unk_00.val2_00_5;
+    if (lifeRate < in) {
+        start = scaleAnim->unk_00;
+        n = scaleAnim->unk_02;
+        ptcl->unk_34 = start + ((lifeRate * (n - start)) / in);
+    } else if (lifeRate >= out) {
+        end = scaleAnim->unk_04;
+        n = scaleAnim->unk_02;
+        ptcl->unk_34 = end + (((lifeRate - 255) * (end - n)) / (255 - out));
     } else {
-        x = ((lifeRate - 255) * (alphaAnim->unk_00.val2_01_2 - alphaAnim->unk_00.val2_00_5)) / (255 - alphaAnim->unk_04.val2_01);
-        x += alphaAnim->unk_00.val2_01_2;
+        ptcl->unk_34 = scaleAnim->unk_02;
     }
-
-    ptcl->unk_2E.unk_00_5 = x * (255 - ((int)(alphaAnim->unk_02.unk_00_0 * rng_next(0x18)) >> 8)) >> 8;
 }
 
 void sub_020A1BD4(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate)
@@ -107,25 +89,43 @@ void sub_020A1BD4(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate)
     }
 }
 
-void sub_020A1DA0(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate)
+void sub_020A1AF8(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate)
 {
-    UnkSPLStruct10 *scaleAnim;
-    int in, out;
-    fx16 start, n, end;
+    u32 x;
+    UnkSPLStruct12 *alphaAnim = res->unk_0C;
+    int maxA = alphaAnim->unk_04.val2_00;
+    int maxB = alphaAnim->unk_04.val2_01;
 
-    scaleAnim = res->unk_04;
-    in = scaleAnim->unk_06.val2_00;
-    out = scaleAnim->unk_06.val2_01;
-
-    if (lifeRate < in) {
-        start = scaleAnim->unk_00;
-        n = scaleAnim->unk_02;
-        ptcl->unk_34 = start + ((lifeRate * (n - start)) / in);
-    } else if (lifeRate >= out) {
-        end = scaleAnim->unk_04;
-        n = scaleAnim->unk_02;
-        ptcl->unk_34 = end + (((lifeRate - 255) * (end - n)) / (255 - out));
+    if (lifeRate < maxA) {
+        x = ((lifeRate * (alphaAnim->unk_00.val2_00_5 - alphaAnim->unk_00.val2_00_0)) / alphaAnim->unk_04.val2_00);
+        x += alphaAnim->unk_00.val2_00_0;
+    } else if (lifeRate < maxB) {
+        x = alphaAnim->unk_00.val2_00_5;
     } else {
-        ptcl->unk_34 = scaleAnim->unk_02;
+        x = ((lifeRate - 255) * (alphaAnim->unk_00.val2_01_2 - alphaAnim->unk_00.val2_00_5)) / (255 - alphaAnim->unk_04.val2_01);
+        x += alphaAnim->unk_00.val2_01_2;
     }
+
+    ptcl->unk_2E.unk_00_5 = x * (255 - ((int)(alphaAnim->unk_02.unk_00_0 * rng_next(0x18)) >> 8)) >> 8;
+}
+
+void sub_020A1A94(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate)
+{
+    UnkSPLStruct13 *texAnim = res->unk_10;
+    for (int i = 0; i < texAnim->unk_08.unk_00_0; i++) {
+        if (lifeRate < texAnim->unk_08.unk_01_0 * (i + 1)) {
+            ptcl->unk_2C.unk_00 = texAnim->unk_00[i];
+            return;
+        }
+    }
+}
+
+void sub_020A1A48(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate)
+{
+    ptcl->unk_34 = res->unk_14->unk_04 + ((res->unk_14->unk_04 - FX16_ONE) * (lifeRate - 255)) / 255;
+}
+
+void sub_020A19F0(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate)
+{
+    ptcl->unk_2E.unk_00_5 = ((255 - lifeRate) * 31) / 255;
 }
