@@ -984,273 +984,44 @@ static u32 ov117_02261668 (u32 param0, BOOL param1)
     return NNS_GfdGetPlttKeyAddr(v0);
 }
 
-// clang-format off
-asm static void ov117_0226168C (UnkStruct_ov117_02261280 * param0, NARC * param1)
+static void ov117_0226168C(UnkStruct_ov117_02261280 *param0, NARC *param1)
 {
-    push {r4, r5, r6, r7, lr}
-    sub sp, #0x3c
-    add r5, r0, #0
-    str r1, [sp]
-    mov r0, #0x1b
-    str r0, [sp, #4]
-    mov r0, #0
-    str r0, [sp, #8]
-    mov r0, #1
-    str r0, [sp, #0xc]
-    str r0, [sp, #0x10]
-    ldr r0, = 0x2713
-    str r1, [sp, #0x2c]
-    str r0, [sp, #0x14]
-    add r0, r5, #0
-    add r0, #0x8c
-    ldr r0, [r0, #0]
-    ldr r2, [r5, #0x24]
-    ldr r3, [r5, #0x28]
-    mov r1, #2
-    bl SpriteRenderer_LoadPalette
-    add r0, r5, #0
-    add r0, #0x80
-    ldr r0, [r0, #0]
-    mov r1, #2
-    bl MessageLoader_GetNewStrbuf
-    add r6, r0, #0
-    mov r0, #0
-    add r1, r6, #0
-    add r2, r0, #0
-    bl Font_CalcStrbufWidth
-    mov r1, #0x1e
-    sub r0, r1, r0
-    lsr r0, r0, #1
-    add r4, r0, #6
-    add r2, r5, #0
-    ldr r3, = 0x169C
-    str r6, [sp]
-    mov r0, #0
-    ldr r1, = 0xE0F00
-    str r0, [sp, #4]
-    str r1, [sp, #8]
-    ldr r1, = 0x2713
-    str r0, [sp, #0xc]
-    str r1, [sp, #0x10]
-    add r1, r4, #0
-    add r1, #0x24
-    str r1, [sp, #0x14]
-    mov r1, #0xa8
-    str r1, [sp, #0x18]
-    str r0, [sp, #0x1c]
-    mov r0, #1
-    str r0, [sp, #0x20]
-    mov r0, #0xc
-    str r0, [sp, #0x24]
-    mov r0, #2
-    str r0, [sp, #0x28]
-    add r2, #0x90
-    ldr r0, [r5, #0x2c]
-    ldr r1, [r5, #0x28]
-    ldr r2, [r2, #0]
-    add r3, r5, r3
-    bl ov117_02265DB8
-    add r0, r6, #0
-    bl Strbuf_Free
-    add r0, r5, #0
-    add r0, #0x80
-    ldr r0, [r0, #0]
-    mov r1, #0
-    bl MessageLoader_GetNewStrbuf
-    str r0, [sp, #0x30]
-    add r0, r5, #0
-    add r0, #0x80
-    ldr r0, [r0, #0]
-    mov r1, #1
-    bl MessageLoader_GetNewStrbuf
-    str r0, [sp, #0x38]
-    mov r0, #0
-    str r0, [sp, #0x34]
-    ldr r0, = 0x15AC
-    add r7, r5, r0
-    add r0, #0x14
-    add r6, r5, r0
- _02261740:
-    ldr r0, [sp, #0x30]
-    add r2, r5, #0
-    str r0, [sp]
-    mov r0, #0
-    str r0, [sp, #4]
-    ldr r0, = 0xE0F00
-    add r2, #0x90
-    str r0, [sp, #8]
-    mov r0, #0
-    str r0, [sp, #0xc]
-    ldr r0, = 0x2713
-    add r3, r7, #0
-    str r0, [sp, #0x10]
-    str r4, [sp, #0x14]
-    mov r0, #0xa8
-    str r0, [sp, #0x18]
-    mov r0, #0
-    str r0, [sp, #0x1c]
-    mov r0, #3
-    str r0, [sp, #0x20]
-    mov r0, #0xc
-    str r0, [sp, #0x24]
-    mov r0, #0xa
-    str r0, [sp, #0x28]
-    ldr r0, [r5, #0x2c]
-    ldr r1, [r5, #0x28]
-    ldr r2, [r2, #0]
-    bl ov117_02265DB8
-    ldr r0, [sp, #0x38]
-    add r2, r5, #0
-    str r0, [sp]
-    mov r0, #0
-    str r0, [sp, #4]
-    ldr r0, = 0xE0F00
-    add r2, #0x90
-    str r0, [sp, #8]
-    mov r0, #0
-    str r0, [sp, #0xc]
-    ldr r0, = 0x2713
-    add r3, r6, #0
-    str r0, [sp, #0x10]
-    str r4, [sp, #0x14]
-    mov r0, #0xa8
-    str r0, [sp, #0x18]
-    mov r0, #0
-    str r0, [sp, #0x1c]
-    mov r0, #3
-    str r0, [sp, #0x20]
-    mov r0, #0xc
-    str r0, [sp, #0x24]
-    mov r0, #0xa
-    str r0, [sp, #0x28]
-    ldr r0, [r5, #0x2c]
-    ldr r1, [r5, #0x28]
-    ldr r2, [r2, #0]
-    bl ov117_02265DB8
-    ldr r0, [sp, #0x34]
-    add r4, r4, #6
-    add r0, r0, #1
-    add r7, #0x28
-    add r6, #0x28
-    str r0, [sp, #0x34]
-    cmp r0, #6
-    blt _02261740
-    ldr r0, [sp, #0x30]
-    bl Strbuf_Free
-    ldr r0, [sp, #0x38]
-    bl Strbuf_Free
-    ldr r0, = 0x15A8
-    add r0, r5, r0
-    bl ov117_02265EC8
-    add r0, r5, #0
-    bl ov117_02266150
-    ldr r0, [sp, #0x2c]
-    mov r1, #2
-    str r0, [sp]
-    mov r0, #0x1b
-    str r0, [sp, #4]
-    mov r0, #0
-    str r0, [sp, #8]
-    mov r0, #1
-    str r0, [sp, #0xc]
-    str r0, [sp, #0x10]
-    ldr r0, = 0x2714
-    str r0, [sp, #0x14]
-    add r0, r5, #0
-    add r0, #0x8c
-    ldr r0, [r0, #0]
-    ldr r2, [r5, #0x24]
-    ldr r3, [r5, #0x28]
-    bl SpriteRenderer_LoadPalette
-    mov r0, #0
-    str r0, [sp]
-    mov r0, #1
-    str r0, [sp, #4]
-    ldr r0, = 0x2712
-    ldr r2, [sp, #0x2c]
-    str r0, [sp, #8]
-    ldr r0, [r5, #0x24]
-    ldr r1, [r5, #0x28]
-    mov r3, #0x18
-    bl SpriteRenderer_LoadCharResObjFromOpenNarc
-    mov r0, #0
-    str r0, [sp]
-    ldr r0, = 0x2712
-    ldr r2, [sp, #0x2c]
-    str r0, [sp, #4]
-    ldr r0, [r5, #0x24]
-    ldr r1, [r5, #0x28]
-    mov r3, #0x1a
-    bl SpriteRenderer_LoadCellResObjFromOpenNarc
-    mov r0, #0
-    str r0, [sp]
-    ldr r0, = 0x2712
-    ldr r2, [sp, #0x2c]
-    str r0, [sp, #4]
-    ldr r0, [r5, #0x24]
-    ldr r1, [r5, #0x28]
-    mov r3, #0x19
-    bl SpriteRenderer_LoadAnimResObjFromOpenNarc
-    add r0, r5, #0
-    bl ov117_02266130
-    ldr r1, = 0x15A8
-    str r0, [r5, r1]
-    mov r0, #0xab
-    str r0, [sp]
-    mov r0, #0x14
-    str r0, [sp, #4]
-    mov r0, #0
-    str r0, [sp, #8]
-    mov r0, #1
-    str r0, [sp, #0xc]
-    str r0, [sp, #0x10]
-    ldr r0, = 0x2712
-    mov r1, #2
-    str r0, [sp, #0x14]
-    add r0, r5, #0
-    add r0, #0x8c
-    ldr r0, [r0, #0]
-    ldr r2, [r5, #0x24]
-    ldr r3, [r5, #0x28]
-    bl sub_0200CD7C
-    mov r0, #0
-    str r0, [sp]
-    mov r0, #1
-    str r0, [sp, #4]
-    ldr r0, = 0x2711
-    mov r2, #0xab
-    str r0, [sp, #8]
-    ldr r0, [r5, #0x24]
-    ldr r1, [r5, #0x28]
-    mov r3, #0x15
-    bl sub_0200CBDC
-    mov r0, #0
-    str r0, [sp]
-    ldr r0, = 0x2711
-    mov r2, #0xab
-    str r0, [sp, #4]
-    ldr r0, [r5, #0x24]
-    ldr r1, [r5, #0x28]
-    mov r3, #0x16
-    bl sub_0200CE0C
-    mov r0, #0
-    str r0, [sp]
-    ldr r0, = 0x2711
-    mov r2, #0xab
-    str r0, [sp, #4]
-    ldr r0, [r5, #0x24]
-    ldr r1, [r5, #0x28]
-    mov r3, #0x17
-    bl sub_0200CE3C
-    add r0, r5, #0
-    bl ov117_02266244
-    ldr r1, = 0x174C
-    str r0, [r5, r1]
-    add sp, #0x3c
-    pop {r4, r5, r6, r7, pc}
-    nop
+    int v0;
+    Strbuf *v1, *v2;
+    int v3;
+
+    SpriteRenderer_LoadPalette(param0->unk_8C, 2, param0->unk_24, param0->unk_28, param1, 27, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 10003);
+
+    v1 = MessageLoader_GetNewStrbuf(param0->unk_80, 2);
+    v0 = 6 + ((30 - Font_CalcStrbufWidth(0, v1, 0)) / 2);
+    ov117_02265DB8(param0->unk_2C, param0->unk_28, param0->unk_90, &param0->unk_15A8.unk_F4, v1, 0, ((u32)((((0xe) & (0xff)) << 16) | (((0xf) & (0xff)) << 8) | ((0 & (0xff)) << 0))), 0, 10003, v0 + 6 * 6, 168, 0, 1, 12, 2);
+    Strbuf_Free(v1);
+
+    v1 = MessageLoader_GetNewStrbuf(param0->unk_80, 0);
+    v2 = MessageLoader_GetNewStrbuf(param0->unk_80, 1);
+    for (v3 = 0; v3 < 6; v3++) {
+        ov117_02265DB8(param0->unk_2C, param0->unk_28, param0->unk_90, &param0->unk_15A8.unk_04[v3][0], v1, 0, ((u32)((((0xe) & (0xff)) << 16) | (((0xf) & (0xff)) << 8) | ((0 & (0xff)) << 0))), 0, 10003, v0 + 6 * v3, 168, 0, 3, 12, 2 * 5);
+        ov117_02265DB8(param0->unk_2C, param0->unk_28, param0->unk_90, &param0->unk_15A8.unk_04[v3][1], v2, 0, ((u32)((((0xe) & (0xff)) << 16) | (((0xf) & (0xff)) << 8) | ((0 & (0xff)) << 0))), 0, 10003, v0 + 6 * v3, 168, 0, 3, 12, 2 * 5);
+    }
+    Strbuf_Free(v1);
+    Strbuf_Free(v2);
+
+    ov117_02265EC8(&param0->unk_15A8);
+
+    ov117_02266150(param0);
+
+    SpriteRenderer_LoadPalette(param0->unk_8C, 2, param0->unk_24, param0->unk_28, param1, 27, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 10004);
+    SpriteRenderer_LoadCharResObjFromOpenNarc(param0->unk_24, param0->unk_28, param1, 24, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 10002);
+    SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_24, param0->unk_28, param1, 26, 0, 10002);
+    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_24, param0->unk_28, param1, 25, 0, 10002);
+    param0->unk_15A8.unk_00 = ov117_02266130(param0);
+
+    sub_0200CD7C(param0->unk_8C, 2, param0->unk_24, param0->unk_28, 171, 20, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 10002);
+    sub_0200CBDC(param0->unk_24, param0->unk_28, 171, 21, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 10001);
+    sub_0200CE0C(param0->unk_24, param0->unk_28, 171, 22, 0, 10001);
+    sub_0200CE3C(param0->unk_24, param0->unk_28, 171, 23, 0, 10001);
+    param0->unk_174C.unk_00 = ov117_02266244(param0);
 }
-// clang-format on
 
 static void ov117_022618E8 (UnkStruct_ov117_02261280 * param0)
 {
