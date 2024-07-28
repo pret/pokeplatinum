@@ -564,15 +564,25 @@ static inline void SPL_UnkInline5 (SPLEmitter * param0, const VecFx16 * param1)
 
 extern u32 Unk_021C3A38;
 
-static inline u32 rng_next(u32 shift)
+static inline u32 rng_next()
 {
     Unk_021C3A38 = Unk_021C3A38 * 0x5eedf715 + 0x1b0cb173;
-    return Unk_021C3A38 >> shift;
+    return Unk_021C3A38;
+}
+
+static inline u32 rng_next_u32(u32 shift)
+{
+    return rng_next() >> shift;
 }
 
 static inline s32 rng_next_s32(u32 shift)
 {
-    return (s32)rng_next(shift);
+    return (s32)rng_next_u32(shift);
+}
+
+static inline fx32 rng_next_fx32(u32 shift)
+{
+    return (fx32)rng_next() >> shift;
 }
 
 #ifdef __cplusplus
