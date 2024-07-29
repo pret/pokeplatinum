@@ -351,7 +351,7 @@ typedef struct {
     int unk_2C;
     int unk_30;
     UnkStruct_02014014 *unk_34;
-    UnkSPLStruct6 *unk_38;
+    SPLEmitter *unk_38;
     UnkStruct_ov12_0223595C unk_3C;
     UnkStruct_ov12_02235998 unk_58[4];
     UnkStruct_ov12_02225F6C unk_A8[2];
@@ -373,7 +373,7 @@ typedef struct {
     int unk_2C;
     int unk_30;
     UnkStruct_02014014 *unk_34;
-    UnkSPLStruct6 *unk_38;
+    SPLEmitter *unk_38;
     UnkStruct_ov12_0223595C unk_3C;
     UnkStruct_ov12_02225F6C unk_58;
     VecFx32 unk_7C;
@@ -2859,14 +2859,14 @@ static void ov12_02229980(UnkStruct_ov12_0221FCDC *param0, UnkStruct_ov12_022299
     }
 }
 
-static BOOL ov12_02229A50(UnkSPLStruct6 *param0)
+static BOOL ov12_02229A50(SPLEmitter *param0)
 {
     BOOL v0;
 
     v0 = 0;
 
     {
-        UnkSPLStruct8 *v1;
+        SPLParticle *v1;
         int v2;
         int v3;
 

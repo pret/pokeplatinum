@@ -1,1 +1,0 @@
-.public VEC_Normalize

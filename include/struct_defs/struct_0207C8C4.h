@@ -8,7 +8,7 @@
 
 typedef struct {
     UnkStruct_0207C894 unk_00;
-    UnkSPLStruct6 *unk_08;
+    SPLEmitter *unk_08;
     UnkStruct_02014014 *unk_0C;
 } UnkStruct_0207C8C4;
 

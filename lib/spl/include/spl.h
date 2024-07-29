@@ -1,11 +1,21 @@
 #ifndef POKEPLATINUM_SPL_H
 #define POKEPLATINUM_SPL_H
 
+#include "nitro/types.h"
+#include <nitro/gx/gxcommon.h>
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 #include "struct_defs/struct_020147B8.h"
+
+#define GX_RGB_R(RGB) (((RGB) >> GX_RGB_R_SHIFT) & 31)
+#define GX_RGB_G(RGB) (((RGB) >> GX_RGB_G_SHIFT) & 31)
+#define GX_RGB_B(RGB) (((RGB) >> GX_RGB_B_SHIFT) & 31)
+
+#define GX_RGB_R_(rgb) (rgb & GX_RGB_R_MASK)
+#define GX_RGB_G_(rgb) (rgb & GX_RGB_G_MASK)
+#define GX_RGB_B_(rgb) (rgb & GX_RGB_B_MASK)
 
 typedef void * (* UnkFuncPtr_0209CD00)(u32);
 
@@ -90,9 +100,9 @@ typedef union {
     };
 } UnkSPLUnion5;
 
-typedef struct UnkSPLStruct8_t {
-    struct UnkSPLStruct8_t * unk_00;
-    struct UnkSPLStruct8_t * unk_04;
+typedef struct SPLParticle_t {
+    struct SPLParticle_t * unk_00;
+    struct SPLParticle_t * unk_04;
     VecFx32 unk_08;
     VecFx32 unk_14;
     u16 unk_20;
@@ -114,15 +124,29 @@ typedef struct UnkSPLStruct8_t {
     fx16 unk_34;
     GXRgb unk_36;
     VecFx32 unk_38;
-} UnkSPLStruct8; // size=0x44
+} SPLParticle; // size=0x44
 
 typedef struct UnkSPLStruct3_t {
-    UnkSPLStruct8 * unk_00;
-    u8 padding_04[8];
+    SPLParticle * unk_00;
+    int unk_04;
+    SPLParticle * unk_08;
 } UnkSPLStruct3; // size=0xc
 
 typedef struct {
-    u8 padding_00[4];
+    union
+    {
+        u32 all;
+        u8 padding_00[4];
+        struct
+        {
+            u32 terminate:1;
+            u32 stop_generate:1;
+            u32 stop_calc:1;
+            u32 stop_draw:1;
+            u32 started: 1 ;
+            u32 reserved0:27;
+        };
+    };
 } UnkSPLStruct7;
 
 typedef struct UnkSPLStruct9_t {
@@ -286,12 +310,12 @@ typedef struct UnkSPLStruct5_t {
     u16 unk_12;
 } UnkSPLStruct5;
 
-typedef struct UnkSPLStruct6_t {
-    struct UnkSPLStruct6_t * unk_00;
-    struct UnkSPLStruct6_t * unk_04;
+typedef struct SPLEmitter_t {
+    struct SPLEmitter_t * unk_00;
+    struct SPLEmitter_t * unk_04;
     UnkSPLStruct3 unk_08;
     UnkSPLStruct3 unk_4C;
-    UnkSPLStruct4 * unk_90;
+    UnkSPLStruct4 * p_res;
     UnkSPLStruct7 unk_94;
     VecFx32 unk_98;
     VecFx32 unk_A4;
@@ -321,22 +345,22 @@ typedef struct UnkSPLStruct6_t {
     } unk_F0;
     VecFx16 unk_F4;
     VecFx16 unk_FA;
-    void (* unk_100)(struct UnkSPLStruct6_t *, unsigned int);
+    void (* unk_100)(struct SPLEmitter_t *, unsigned int);
     void * unk_104;
     union {
         u32 unk_108_val1;
         u16 unk_108_val2[2];
         u8 unk_108_val3[4];
     } unk_108;
-} UnkSPLStruct6;
+} SPLEmitter;
 
 typedef struct UnkSPLStruct2_t {
-    UnkSPLStruct6 * unk_00;
+    SPLEmitter * unk_00;
     int unk_04;
-    UnkSPLStruct6 * unk_08;
+    SPLEmitter * unk_08;
 } UnkSPLStruct2; // size=0xc
 
-typedef struct UnkSPLStruct1_t {
+typedef struct SPLManager_t {
     UnkFuncPtr_0209CD00 unk_00;
     UnkSPLStruct2 unk_04;
     UnkSPLStruct2 unk_10;
@@ -357,60 +381,209 @@ typedef struct UnkSPLStruct1_t {
     } unk_38;
     s32 unk_3C;
     struct {
-        UnkSPLStruct6 * unk_00;
+        SPLEmitter * unk_00;
         const MtxFx43 * unk_04;
     } unk_40;
     u16 unk_48;
     u16 unk_4A;
-} UnkSPLStruct1; // size=0x4c
+} SPLManager; // size=0x4c
 
-void SPL_0209C400(UnkSPLStruct1 * param0);
-void SPL_0209C444(UnkSPLStruct1 * param0, UnkSPLStruct6 * param1);
-UnkSPLStruct6 * SPL_0209C4D8(UnkSPLStruct1 * param0, int param1, void (* param2)(struct UnkSPLStruct6_t *));
-void SPL_0209C5E0(UnkSPLStruct1 * param0, const MtxFx43 * param1);
-UnkSPLStruct6 * SPL_0209C56C(UnkSPLStruct1 * param0, int param1, const VecFx32 * param2);
-void SPL_0209C6A8(UnkSPLStruct1 * param0);
-BOOL SPL_0209C7E0(UnkSPLStruct1 * param0);
-BOOL SPL_0209C7F4(UnkSPLStruct1 * param0);
-BOOL SPL_0209C808(UnkSPLStruct1 * param0, u32 (* param1)(u32, BOOL));
-BOOL SPL_0209C8BC(UnkSPLStruct1 * param0, u32 (* param1)(u32, BOOL));
-void SPL_0209C988(UnkSPLStruct1 * param0, const void * param1);
-UnkSPLStruct1 * SPL_0209CD00(UnkFuncPtr_0209CD00 param0, u16 param1, u16 param2, u16 param3, u16 param4, u16 param5);
+typedef struct SPLGravity {
+    VecFx16 mag;
+    u16 reserved0;
+} SPLGravity;
 
-void SPL_020A1E30(const void * param0, UnkSPLStruct8 * param1, VecFx32 * param2, struct UnkSPLStruct6_t * param3);
-void SPL_020A1EC4(const void * param0, UnkSPLStruct8 * param1, VecFx32 * param2, struct UnkSPLStruct6_t * param3);
-void SPL_020A1FE0(const void * param0, UnkSPLStruct8 * param1, VecFx32 * param2, struct UnkSPLStruct6_t * param3);
-void SPL_020A20B8(const void * param0, UnkSPLStruct8 * param1, VecFx32 * param2, struct UnkSPLStruct6_t * param3);
-void SPL_020A213C(const void * param0, UnkSPLStruct8 * param1, VecFx32 * param2, struct UnkSPLStruct6_t * param3);
-void SPL_020A2204(const void * param0, UnkSPLStruct8 * param1, VecFx32 * param2, struct UnkSPLStruct6_t * param3);
+typedef struct SPLRandom {
+    VecFx16 mag;
+    u16 intvl;
+} SPLRandom;
 
-static inline void SPL_UnkInline1 (UnkSPLStruct6 * param0, const VecFx32 * param1)
+typedef struct SPLMagnet {
+    VecFx32 pos;
+    fx16 mag;
+    u16 reserved0;
+} SPLMagnet;
+
+typedef struct SPLSpin {
+    u16 radian;
+    u16 axis_type;
+} SPLSpin;
+
+typedef struct SPLSimpleCollisionField {
+    fx32 y;
+    fx16 coeff_bounce;
+    
+    struct {
+        u16 eventtype : 2;
+        u16 global : 1;
+        u16 reserved : 13;
+    } etc;
+} SPLSimpleCollisionField;
+
+typedef struct SPLConvergence {
+    VecFx32 pos;
+    fx16 ratio;
+    u16 reserved0;
+} SPLConvergence;
+
+typedef struct SPLNode {
+	struct SPLNode* p_next;
+	struct SPLNode* p_prev;
+} SPLNode;
+
+typedef struct SPLList {
+	SPLNode* p_begin;
+	int node_num;
+	SPLNode* p_end;
+} SPLList;
+
+typedef struct FieldFunc {
+    void (*func)(SPLParticle *, UnkSPLStruct4 *, int);
+    BOOL loop;
+} FieldFunc;
+
+typedef struct FieldFunc8 {
+    void (*func)(SPLParticle *, UnkSPLStruct4 *, u8);
+    BOOL loop;
+} FieldFunc8;
+
+typedef struct SPLArcHdr {
+    u32 id;
+    u32 ver;
+    u16 res_num;
+    u16 tex_num;
+    u32 reserved0;
+    u32 res_size;
+    u32 tex_size;
+    u32 tex_offset;
+    u32 reserved1;
+} SPLArcHdr;
+
+typedef void (*UnkSPLFuncPtr0)(SPLEmitter *, void *);
+
+void SPL_0209C400(SPLManager * param0);
+void SPL_0209C444(SPLManager * param0, SPLEmitter * param1);
+SPLEmitter * SPL_0209C4D8(SPLManager * param0, int param1, void (* param2)(struct SPLEmitter_t *));
+void SPL_0209C5E0(SPLManager * param0, const MtxFx43 * param1);
+SPLEmitter * SPL_0209C56C(SPLManager * param0, int param1, const VecFx32 * param2);
+void SPL_0209C6A8(SPLManager * param0);
+BOOL SPL_0209C7E0(SPLManager * param0);
+BOOL SPL_0209C7F4(SPLManager * param0);
+BOOL SPL_0209C808(SPLManager * param0, u32 (* param1)(u32, BOOL));
+BOOL SPL_0209C8BC(SPLManager * param0, u32 (* param1)(u32, BOOL));
+void SPL_0209C988(SPLManager * param0, const void * param1);
+SPLManager * SPL_0209CD00(UnkFuncPtr_0209CD00 param0, u16 param1, u16 param2, u16 param3, u16 param4, u16 param5);
+
+void SPL_020A1E30(const void * param0, SPLParticle * param1, VecFx32 * param2, struct SPLEmitter_t * param3);
+void SPL_020A1EC4(const void * param0, SPLParticle * param1, VecFx32 * param2, struct SPLEmitter_t * param3);
+void SPL_020A1FE0(const void * param0, SPLParticle * param1, VecFx32 * param2, struct SPLEmitter_t * param3);
+void SPL_020A20B8(const void * param0, SPLParticle * param1, VecFx32 * param2, struct SPLEmitter_t * param3);
+void SPL_020A213C(const void * param0, SPLParticle * param1, VecFx32 * param2, struct SPLEmitter_t * param3);
+void SPL_020A2204(const void * param0, SPLParticle * param1, VecFx32 * param2, struct SPLEmitter_t * param3);
+
+void sub_020A1DA0(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate); // spl_scl_in_out
+void sub_020A1BD4(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate); // spl_clr_in_out
+void sub_020A1AF8(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate); // spl_alp_in_out
+void sub_020A1A94(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate); // spl_tex_ptn_anm
+void sub_020A1A48(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate); // spl_chld_scl_out
+void sub_020A19F0(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate); // spl_chld_alp_out
+
+void sub_020A08DC(SPLEmitter *emtr, SPLList *list);
+void sub_020A05BC(SPLParticle *ptcl, SPLEmitter *emtr, SPLList *list);
+
+void sub_020A1768(SPLEmitter *emtr);
+void sub_020A1608(VecFx32 *ptclPos, VecFx32 *pos, SPLEmitter *emtr);
+
+void sub_020A2354(VecFx32 *vec);
+void sub_020A23B0(VecFx32 *vec);
+
+void sub_0209D998(SPLEmitter *emtr, UnkSPLStruct4 *res, const VecFx32 *param2);
+void sub_0209CF00(SPLManager *mgr);
+void sub_0209D150(SPLManager *mgr, SPLEmitter *emtr);
+
+SPLNode *sub_020A22B8(SPLList *list);
+void sub_020A2304(SPLList *list, SPLNode *node);
+SPLNode *sub_020A2238(SPLList *list, SPLNode *node);
+
+u32 sub_0209CE90(u32 param0, BOOL param1);
+u32 sub_0209CEC8(u32 param0, BOOL param1);
+
+void sub_0209D064(SPLManager *mgr);
+void sub_0209CF7C(SPLManager *mgr);
+
+typedef void(*DrawFunc)(SPLManager *mgr, SPLParticle *ptcl);
+typedef void(*SetTexFunc)(UnkSPLStruct5 *tex);
+
+void sub_0209FAB8(SPLManager *mgr, SPLParticle *ptcl); // spl_draw_chld_bb
+void sub_0209ECF0(SPLManager *mgr, SPLParticle *ptcl); // spl_draw_chld_dbb
+void sub_0209E650(SPLManager *mgr, SPLParticle *ptcl); // spl_draw_chld_pol
+void sub_0209DD54(SPLManager *mgr, SPLParticle *ptcl); // spl_draw_chld_dpl
+
+void sub_0209FF0C(SPLManager *mgr, SPLParticle *ptcl); // spl_draw_bb
+void sub_0209F3D0(SPLManager *mgr, SPLParticle *ptcl); // spl_draw_dbb
+void sub_0209E9A0(SPLManager *mgr, SPLParticle *ptcl); // spl_draw_pol
+void sub_0209E1D4(SPLManager *mgr, SPLParticle *ptcl); // spl_draw_dpl
+
+void sub_0209DC68(UnkSPLStruct5 *tex); // spl_set_tex
+void sub_0209DC64(UnkSPLStruct5 *tex); // spl_set_tex_dummy
+
+void sub_020A0358(fx32 sin, fx32 cos, MtxFx43 *mat);
+void sub_020A0398(fx32 sin, fx32 cos, MtxFx43 *mat);
+
+void sub_020A0444(fx16 s, fx16 t, fx16 offsetX, fx16 offsetZ);
+void sub_020A0500(fx16 s, fx16 t, fx16 offsetX, fx16 offsetY);
+
+void spl_generate(SPLEmitter *emtr, SPLList *list);
+
+static inline void SPL_UnkInline1 (SPLEmitter * param0, const VecFx32 * param1)
 {
-    param0->unk_98.x = param1->x + param0->unk_90->unk_00->unk_04.x;
-    param0->unk_98.y = param1->y + param0->unk_90->unk_00->unk_04.y;
-    param0->unk_98.z = param1->z + param0->unk_90->unk_00->unk_04.z;
+    param0->unk_98.x = param1->x + param0->p_res->unk_00->unk_04.x;
+    param0->unk_98.y = param1->y + param0->p_res->unk_00->unk_04.y;
+    param0->unk_98.z = param1->z + param0->p_res->unk_00->unk_04.z;
 }
 
-static inline void SPL_UnkInline2 (UnkSPLStruct6 * param0, fx32 param1)
+static inline void SPL_UnkInline2 (SPLEmitter * param0, fx32 param1)
 {
-    param0->unk_98.x = param1 + param0->unk_90->unk_00->unk_04.x;
+    param0->unk_98.x = param1 + param0->p_res->unk_00->unk_04.x;
 }
 
-static inline void SPL_UnkInline3 (UnkSPLStruct6 * param0, fx32 param1)
+static inline void SPL_UnkInline3 (SPLEmitter * param0, fx32 param1)
 {
-    param0->unk_98.y = param1 + param0->unk_90->unk_00->unk_04.y;
+    param0->unk_98.y = param1 + param0->p_res->unk_00->unk_04.y;
 }
 
-static inline void SPL_UnkInline4 (UnkSPLStruct6 * param0, fx32 param1)
+static inline void SPL_UnkInline4 (SPLEmitter * param0, fx32 param1)
 {
-    param0->unk_98.z = param1 + param0->unk_90->unk_00->unk_04.z;
+    param0->unk_98.z = param1 + param0->p_res->unk_00->unk_04.z;
 }
 
-static inline void SPL_UnkInline5 (UnkSPLStruct6 * param0, const VecFx16 * param1)
+static inline void SPL_UnkInline5 (SPLEmitter * param0, const VecFx16 * param1)
 {
     param0->unk_C0 = *param1;
 }
 
+extern u32 Unk_021C3A38;
+
+static inline u32 rng_next()
+{
+    Unk_021C3A38 = Unk_021C3A38 * 0x5eedf715 + 0x1b0cb173;
+    return Unk_021C3A38;
+}
+
+static inline u32 rng_next_u32(u32 shift)
+{
+    return rng_next() >> shift;
+}
+
+static inline s32 rng_next_s32(u32 shift)
+{
+    return (s32)rng_next_u32(shift);
+}
+
+static inline fx32 rng_next_fx32(u32 shift)
+{
+    return (fx32)rng_next() >> shift;
+}
 
 #ifdef __cplusplus
 }

@@ -23,16 +23,16 @@ typedef struct {
     int unk_08;
 } UnkStruct_ov12_022396AC;
 
-static void ov12_0222421C(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1);
-static void ov12_022242E0(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1);
-static void ov12_02224614(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1);
-static void ov12_02224E74(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1);
-static void ov12_02224EA8(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1);
-static void ov12_02224EB8(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1);
+static void ov12_0222421C(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1);
+static void ov12_022242E0(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1);
+static void ov12_02224614(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1);
+static void ov12_02224E74(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1);
+static void ov12_02224EA8(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1);
+static void ov12_02224EB8(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1);
 static void ov12_02225008(UnkStruct_ov12_02225640 *param0, int param1, VecFx32 *param2);
 static void ov12_02225094(UnkStruct_ov12_02225640 *param0, VecFx32 *param1);
 
-static void ov12_0222421C(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1)
+static void ov12_0222421C(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 {
     if (param1->unk_0C[2] != 0) {
         ov12_022242E0(param0, param1);
@@ -53,7 +53,7 @@ static void ov12_0222421C(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1
     }
 }
 
-static void ov12_02224260(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1, VecFx32 *param2)
+static void ov12_02224260(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1, VecFx32 *param2)
 {
     UnkStruct_ov12_0221FCDC *v0;
     UnkStruct_02014014 *v1;
@@ -78,7 +78,7 @@ static void ov12_02224260(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1
     ov12_02235448(v3, param2, ov12_0221FDD4(v0), v2);
 }
 
-static void ov12_022242A0(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1, VecFx32 *param2)
+static void ov12_022242A0(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1, VecFx32 *param2)
 {
     UnkStruct_ov12_0221FCDC *v0;
     UnkStruct_02014014 *v1;
@@ -103,7 +103,7 @@ static void ov12_022242A0(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1
     ov12_02235448(v4, param2, ov12_0221FDD4(v0), v3);
 }
 
-static void ov12_022242E0(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1)
+static void ov12_022242E0(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 {
     VecFx32 v0;
 
@@ -296,7 +296,7 @@ static const UnkStruct_ov12_022396AC Unk_ov12_0223934C[6][6];
 static const UnkStruct_ov12_022396AC Unk_ov12_02239A0C[6][6];
 static const UnkStruct_ov12_022396AC Unk_ov12_02239BBC[6][6];
 
-static void ov12_02224614(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1)
+static void ov12_02224614(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 {
     int v0;
     int v1;
@@ -599,7 +599,7 @@ static void ov12_02224614(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1
     SPL_UnkInline5(param0, &v2);
 }
 
-static void ov12_02224E74(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1)
+static void ov12_02224E74(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 {
     int v0;
     int v1;
@@ -618,12 +618,12 @@ static void ov12_02224E74(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1
     }
 }
 
-static void ov12_02224EA8(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1)
+static void ov12_02224EA8(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 {
     ov12_0222584C(param1->unk_0C[5], param0, param1);
 }
 
-static void ov12_02224EB8(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1)
+static void ov12_02224EB8(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 {
     fx32 v0;
     int v1;
@@ -670,7 +670,7 @@ static void ov12_02224EB8(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1
     SPL_UnkInline4(param0, v0);
 }
 
-void ov12_02224F14(UnkSPLStruct6 *param0)
+void ov12_02224F14(SPLEmitter *param0)
 {
     UnkStruct_ov12_0221FCDC *v0;
     UnkStruct_ov12_02225640 *v1;

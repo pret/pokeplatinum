@@ -13,17 +13,17 @@
 #include "unk_02014000.h"
 
 static void ov12_02225640(UnkStruct_ov12_02225640 *param0, int param1[]);
-static BOOL ov12_0222564C(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1);
-static BOOL ov12_02225670(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1);
-static BOOL ov12_022256AC(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1);
-static BOOL ov12_022256E8(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1);
-static BOOL ov12_02225724(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1);
-static BOOL ov12_02225784(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1);
-static BOOL ov12_022257C0(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1);
-static BOOL ov12_022257FC(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1);
-static BOOL ov12_02225824(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1);
+static BOOL ov12_0222564C(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1);
+static BOOL ov12_02225670(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1);
+static BOOL ov12_022256AC(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1);
+static BOOL ov12_022256E8(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1);
+static BOOL ov12_02225724(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1);
+static BOOL ov12_02225784(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1);
+static BOOL ov12_022257C0(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1);
+static BOOL ov12_022257FC(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1);
+static BOOL ov12_02225824(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1);
 
-static BOOL (*const Unk_ov12_02239E10[])(UnkSPLStruct6 *, UnkStruct_ov12_02225640 *) = {
+static BOOL (*const Unk_ov12_02239E10[])(SPLEmitter *, UnkStruct_ov12_02225640 *) = {
     ov12_0222564C,
     ov12_02225670,
     ov12_022256AC,
@@ -40,7 +40,7 @@ static void ov12_02225640(UnkStruct_ov12_02225640 *param0, int param1[])
     ov12_0222325C(param0->unk_00, param1, 4);
 }
 
-static BOOL ov12_0222564C(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1)
+static BOOL ov12_0222564C(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 {
     Camera *camera;
     CameraAngle v1 = { 0, 0, 0 };
@@ -51,7 +51,7 @@ static BOOL ov12_0222564C(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1
     return 1;
 }
 
-static BOOL ov12_02225670(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1)
+static BOOL ov12_02225670(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 {
     Camera *camera;
     CameraAngle v1 = { (0x1000 * 2), (0x1000 * 2), 0 };
@@ -64,7 +64,7 @@ static BOOL ov12_02225670(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1
     return 1;
 }
 
-static BOOL ov12_022256AC(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1)
+static BOOL ov12_022256AC(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 {
     int v0[4];
     CameraAngle v1 = { 0, 0, 0, 0 };
@@ -82,7 +82,7 @@ static BOOL ov12_022256AC(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1
     return 1;
 }
 
-static BOOL ov12_022256E8(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1)
+static BOOL ov12_022256E8(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 {
     Camera *camera;
     CameraAngle v1 = { -(0x1000 * 3), (0x1000 * 2), 0x1000 };
@@ -95,7 +95,7 @@ static BOOL ov12_022256E8(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1
     return 1;
 }
 
-static BOOL ov12_02225724(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1)
+static BOOL ov12_02225724(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 {
     Camera *camera;
     CameraAngle v1 = { 49664, 5952, 4096 };
@@ -113,7 +113,7 @@ static BOOL ov12_02225724(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1
     return 1;
 }
 
-static BOOL ov12_02225784(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1)
+static BOOL ov12_02225784(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 {
     Camera *camera;
     CameraAngle v1 = { 49664, 5952, 4096 };
@@ -126,7 +126,7 @@ static BOOL ov12_02225784(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1
     return 1;
 }
 
-static BOOL ov12_022257C0(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1)
+static BOOL ov12_022257C0(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 {
     Camera *camera;
     CameraAngle v1 = { 0, 0, -6000 };
@@ -139,7 +139,7 @@ static BOOL ov12_022257C0(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1
     return 1;
 }
 
-static BOOL ov12_022257FC(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1)
+static BOOL ov12_022257FC(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 {
     VecFx32 v0;
     Camera *camera;
@@ -152,7 +152,7 @@ static BOOL ov12_022257FC(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1
     return 1;
 }
 
-static BOOL ov12_02225824(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1)
+static BOOL ov12_02225824(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 {
     VecFx32 v0;
     Camera *camera;
@@ -165,7 +165,7 @@ static BOOL ov12_02225824(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1
     return 1;
 }
 
-void ov12_0222584C(int param0, UnkSPLStruct6 *param1, UnkStruct_ov12_02225640 *param2)
+void ov12_0222584C(int param0, SPLEmitter *param1, UnkStruct_ov12_02225640 *param2)
 {
     BOOL v0;
 

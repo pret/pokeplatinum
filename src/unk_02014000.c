@@ -29,9 +29,9 @@ enum {
 };
 
 typedef struct UnkStruct_02014014_t {
-    UnkSPLStruct1 *unk_00;
+    SPLManager *unk_00;
     void *unk_04;
-    UnkSPLStruct6 *unk_08;
+    SPLEmitter *unk_08;
     void *unk_0C;
     void *unk_10;
     void *unk_14;
@@ -566,9 +566,9 @@ int sub_020146C0(void)
     return count;
 }
 
-UnkSPLStruct6 *sub_020146E4(UnkStruct_02014014 *param0, int param1, const VecFx32 *param2)
+SPLEmitter *sub_020146E4(UnkStruct_02014014 *param0, int param1, const VecFx32 *param2)
 {
-    UnkSPLStruct6 *v0;
+    SPLEmitter *v0;
 
     v0 = SPL_0209C56C(param0->unk_00, param1, param2);
     param0->unk_08 = v0;
@@ -576,9 +576,9 @@ UnkSPLStruct6 *sub_020146E4(UnkStruct_02014014 *param0, int param1, const VecFx3
     return v0;
 }
 
-UnkSPLStruct6 *sub_020146F4(UnkStruct_02014014 *param0, int param1, UnkFuncPtr_020146F4 param2, void *param3)
+SPLEmitter *sub_020146F4(UnkStruct_02014014 *param0, int param1, UnkFuncPtr_020146F4 param2, void *param3)
 {
-    UnkSPLStruct6 *v0;
+    SPLEmitter *v0;
 
     Unk_021BF614 = param3;
     v0 = SPL_0209C4D8(param0->unk_00, param1, param2);
@@ -598,7 +598,7 @@ void sub_02014718(UnkStruct_02014014 *param0)
     SPL_0209C400(param0->unk_00);
 }
 
-void sub_02014724(UnkStruct_02014014 *param0, UnkSPLStruct6 *param1)
+void sub_02014724(UnkStruct_02014014 *param0, SPLEmitter *param1)
 {
     SPL_0209C444(param0->unk_00, param1);
 }
@@ -644,14 +644,14 @@ u8 sub_02014790(UnkStruct_02014014 *param0)
     return param0->unk_DB;
 }
 
-void sub_02014798(UnkSPLStruct6 *param0, VecFx16 *param1)
+void sub_02014798(SPLEmitter *param0, VecFx16 *param1)
 {
     *param1 = param0->unk_C0;
 }
 
-void sub_020147B0(UnkSPLStruct6 *param0, fx32 param1)
+void sub_020147B0(SPLEmitter *param0, fx32 param1)
 {
-    param0->unk_90->unk_00->unk_10 = param1;
+    param0->p_res->unk_00->unk_10 = param1;
 }
 
 enum {
@@ -663,20 +663,20 @@ enum {
     SPL_FLD_TYPE_CONVERGENCE,
 };
 
-static const void *sub_020147B8(UnkSPLStruct6 *param0, int param1)
+static const void *sub_020147B8(SPLEmitter *param0, int param1)
 {
     int v0;
     int v1;
     UnkStruct_020147B8 *v2;
 
-    v1 = param0->unk_90->unk_1C;
+    v1 = param0->p_res->unk_1C;
 
     if (v1 == 0) {
         return NULL;
     }
 
     for (v0 = 0; v0 < v1; v0++) {
-        v2 = &param0->unk_90->unk_18[v0];
+        v2 = &param0->p_res->unk_18[v0];
 
         if (v2 == NULL) {
             continue;
@@ -721,7 +721,7 @@ static const void *sub_020147B8(UnkSPLStruct6 *param0, int param1)
     return NULL;
 }
 
-void sub_02014874(UnkSPLStruct6 *param0, VecFx16 *param1)
+void sub_02014874(SPLEmitter *param0, VecFx16 *param1)
 {
     UnkStruct_02014874 *v0;
 
@@ -734,7 +734,7 @@ void sub_02014874(UnkSPLStruct6 *param0, VecFx16 *param1)
     v0->unk_00 = *param1;
 }
 
-void sub_02014890(UnkSPLStruct6 *param0, VecFx32 *param1)
+void sub_02014890(SPLEmitter *param0, VecFx32 *param1)
 {
     UnkStruct_02014890 *v0;
 
@@ -747,7 +747,7 @@ void sub_02014890(UnkSPLStruct6 *param0, VecFx32 *param1)
     v0->unk_00 = *param1;
 }
 
-void sub_020148A8(UnkSPLStruct6 *param0, VecFx32 *param1)
+void sub_020148A8(SPLEmitter *param0, VecFx32 *param1)
 {
     UnkStruct_02014890 *v0;
 
@@ -762,7 +762,7 @@ void sub_020148A8(UnkSPLStruct6 *param0, VecFx32 *param1)
     *param1 = v0->unk_00;
 }
 
-void sub_020148DC(UnkSPLStruct6 *param0, fx16 *param1)
+void sub_020148DC(SPLEmitter *param0, fx16 *param1)
 {
     UnkStruct_02014890 *v0;
 
@@ -775,7 +775,7 @@ void sub_020148DC(UnkSPLStruct6 *param0, fx16 *param1)
     v0->unk_0C = *param1;
 }
 
-void sub_020148F4(UnkSPLStruct6 *param0, fx16 *param1)
+void sub_020148F4(SPLEmitter *param0, fx16 *param1)
 {
     UnkStruct_02014890 *v0;
 
@@ -789,7 +789,7 @@ void sub_020148F4(UnkSPLStruct6 *param0, fx16 *param1)
     *param1 = v0->unk_0C;
 }
 
-void sub_02014910(UnkSPLStruct6 *param0, u16 *param1)
+void sub_02014910(SPLEmitter *param0, u16 *param1)
 {
     UnkStruct_02014910 *v0;
 
@@ -802,7 +802,7 @@ void sub_02014910(UnkSPLStruct6 *param0, u16 *param1)
     v0->unk_00 = *param1;
 }
 
-void sub_02014924(UnkSPLStruct6 *param0, u16 *param1)
+void sub_02014924(SPLEmitter *param0, u16 *param1)
 {
     UnkStruct_02014910 *v0;
 
@@ -816,7 +816,7 @@ void sub_02014924(UnkSPLStruct6 *param0, u16 *param1)
     *param1 = v0->unk_00;
 }
 
-void sub_02014940(UnkSPLStruct6 *param0, u16 *param1)
+void sub_02014940(SPLEmitter *param0, u16 *param1)
 {
     UnkStruct_02014910 *v0;
 
@@ -829,7 +829,7 @@ void sub_02014940(UnkSPLStruct6 *param0, u16 *param1)
     v0->unk_02 = *param1;
 }
 
-void sub_02014954(UnkSPLStruct6 *param0, u16 *param1)
+void sub_02014954(SPLEmitter *param0, u16 *param1)
 {
     UnkStruct_02014910 *v0;
 
@@ -843,7 +843,7 @@ void sub_02014954(UnkSPLStruct6 *param0, u16 *param1)
     *param1 = v0->unk_02;
 }
 
-void sub_02014970(UnkSPLStruct6 *param0, VecFx32 *param1)
+void sub_02014970(SPLEmitter *param0, VecFx32 *param1)
 {
     UnkStruct_02014970 *v0;
 
@@ -856,7 +856,7 @@ void sub_02014970(UnkSPLStruct6 *param0, VecFx32 *param1)
     v0->unk_00 = *param1;
 }
 
-void sub_02014988(UnkSPLStruct6 *param0, VecFx32 *param1)
+void sub_02014988(SPLEmitter *param0, VecFx32 *param1)
 {
     UnkStruct_02014970 *v0;
 
@@ -871,7 +871,7 @@ void sub_02014988(UnkSPLStruct6 *param0, VecFx32 *param1)
     *param1 = v0->unk_00;
 }
 
-void sub_020149BC(UnkSPLStruct6 *param0, fx16 *param1)
+void sub_020149BC(SPLEmitter *param0, fx16 *param1)
 {
     UnkStruct_02014970 *v0;
 
@@ -884,7 +884,7 @@ void sub_020149BC(UnkSPLStruct6 *param0, fx16 *param1)
     v0->unk_0C = *param1;
 }
 
-void sub_020149D4(UnkSPLStruct6 *param0, fx16 *param1)
+void sub_020149D4(SPLEmitter *param0, fx16 *param1)
 {
     UnkStruct_02014970 *v0;
 

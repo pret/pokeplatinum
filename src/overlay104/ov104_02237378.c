@@ -72,7 +72,7 @@ BOOL ov104_022360A8(UnkStruct_ov104_0222E930 *param0);
 BOOL ov104_022360C0(UnkStruct_ov104_0222E930 *param0);
 BOOL ov104_02237D84(UnkStruct_ov104_0222E930 *param0);
 BOOL ov104_02237D98(UnkStruct_ov104_0222E930 *param0);
-static void ov104_02237C30(UnkSPLStruct6 *param0);
+static void ov104_02237C30(SPLEmitter *param0);
 static void ov104_02237C0C(UnkStruct_ov104_0222E930 *param0, UnkStruct_ov104_0223BFFC *param1, u16 param2);
 static void ov104_0223770C(void *param0);
 
@@ -580,7 +580,7 @@ static void ov104_02237C0C(UnkStruct_ov104_0222E930 *param0, UnkStruct_ov104_022
     return;
 }
 
-static void ov104_02237C30(UnkSPLStruct6 *param0)
+static void ov104_02237C30(SPLEmitter *param0)
 {
     VecFx32 v0;
     VecFx16 v1;

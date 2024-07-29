@@ -45,7 +45,7 @@ static int ov118_021D10E8(void);
 static void ov118_021D110C(OverlayMetadata *param0);
 static u32 ov118_021D1128(u32 param0, BOOL param1);
 static u32 ov118_021D114C(u32 param0, BOOL param1);
-static void ov118_021D10B0(UnkSPLStruct6 *param0);
+static void ov118_021D10B0(SPLEmitter *param0);
 
 static const fx32 Unk_ov118_021D1170[][2] = {
     { 0xFFFFFFFFFFFFBF8C, 0x2EE0 },
@@ -217,7 +217,7 @@ static void ov118_021D1028(OverlayMetadata *param0)
     }
 }
 
-static void ov118_021D10B0(UnkSPLStruct6 *param0)
+static void ov118_021D10B0(SPLEmitter *param0)
 {
     OverlayMetadata *v0;
 

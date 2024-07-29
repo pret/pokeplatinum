@@ -9,7 +9,7 @@
 
 typedef struct {
     UnkStruct_ov119_021D1930 unk_00;
-    UnkSPLStruct6 *unk_08;
+    SPLEmitter *unk_08;
     UnkStruct_02014014 *unk_0C;
 } UnkStruct_ov119_021D14DC;
 
