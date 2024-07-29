@@ -68,34 +68,34 @@ void sub_020A0398(fx32 sin, fx32 cos, MtxFx43 *mat)
     Sp = C - FX_MUL(sin, FX32_SQRT1_3);
     C += cos;
 
-    mat->_00 = C;
-    mat->_10 = Sm;
-    mat->_20 = Sp;
-    mat->_30 = 0;
-    mat->_01 = Sp;
-    mat->_11 = C;
-    mat->_21 = Sm;
-    mat->_31 = 0;
-    mat->_02 = Sm;
-    mat->_12 = Sp;
-    mat->_22 = C;
-    mat->_32 = 0;
+    mat->m[0][0] = C;
+    mat->m[1][0] = Sm;
+    mat->m[2][0] = Sp;
+    mat->m[3][0] = 0;
+    mat->m[0][1] = Sp;
+    mat->m[1][1] = C;
+    mat->m[2][1] = Sm;
+    mat->m[3][1] = 0;
+    mat->m[0][2] = Sm;
+    mat->m[1][2] = Sp;
+    mat->m[2][2] = C;
+    mat->m[3][2] = 0;
 }
 
 void sub_020A0358(fx32 sin, fx32 cos, MtxFx43 *mat)
 {
-    mat->_00 = cos;
-    mat->_10 = 0;
-    mat->_20 = sin;
-    mat->_30 = 0;
-    mat->_01 = 0;
-    mat->_11 = FX32_ONE;
-    mat->_21 = 0;
-    mat->_31 = 0;
-    mat->_02 = -sin;
-    mat->_12 = 0;
-    mat->_22 = cos;
-    mat->_32 = 0;
+    mat->m[0][0] = cos;
+    mat->m[1][0] = 0;
+    mat->m[2][0] = sin;
+    mat->m[3][0] = 0;
+    mat->m[0][1] = 0;
+    mat->m[1][1] = FX32_ONE;
+    mat->m[2][1] = 0;
+    mat->m[3][1] = 0;
+    mat->m[0][2] = -sin;
+    mat->m[1][2] = 0;
+    mat->m[2][2] = cos;
+    mat->m[3][2] = 0;
 }
 
 void sub_0209FF0C(SPLManager *mgr, SPLParticle *ptcl)
@@ -158,18 +158,18 @@ void sub_0209FF0C(SPLManager *mgr, SPLParticle *ptcl)
 
         sin = FX_SinIdx(ptcl->unk_20);
         fx32 cos = FX_CosIdx(ptcl->unk_20);
-        load._00 = FX_MUL(cos, sclX);
-        load._01 = FX_MUL(sin, sclX);
-        load._02 = 0;
-        load._10 = FX_MUL(-sin, sclY);
-        load._11 = FX_MUL(cos, sclY);
-        load._12 = 0;
-        load._20 = 0;
-        load._21 = 0;
-        load._22 = FX32_ONE;
-        load._30 = trs.x;
-        load._31 = trs.y;
-        load._32 = trs.z;
+        load.m[0][0] = FX_MUL(cos, sclX);
+        load.m[0][1] = FX_MUL(sin, sclX);
+        load.m[0][2] = 0;
+        load.m[1][0] = FX_MUL(-sin, sclY);
+        load.m[1][1] = FX_MUL(cos, sclY);
+        load.m[1][2] = 0;
+        load.m[2][0] = 0;
+        load.m[2][1] = 0;
+        load.m[2][2] = FX32_ONE;
+        load.m[3][0] = trs.x;
+        load.m[3][1] = trs.y;
+        load.m[3][2] = trs.z;
 
         G3_Identity();
         G3_MultMtx43(&load);
@@ -181,18 +181,18 @@ void sub_0209FF0C(SPLManager *mgr, SPLParticle *ptcl)
 
         sin = FX_SinIdx(ptcl->unk_20);
         fx32 cos = FX_CosIdx(ptcl->unk_20);
-        load._00 = FX_MUL(cos, sclX);
-        load._01 = FX_MUL(sin, sclX);
-        load._02 = 0;
-        load._10 = FX_MUL(-sin, sclY);
-        load._11 = FX_MUL(cos, sclY);
-        load._12 = 0;
-        load._20 = 0;
-        load._21 = 0;
-        load._22 = FX32_ONE;
-        load._30 = trs.x;
-        load._31 = trs.y;
-        load._32 = trs.z;
+        load.m[0][0] = FX_MUL(cos, sclX);
+        load.m[0][1] = FX_MUL(sin, sclX);
+        load.m[0][2] = 0;
+        load.m[1][0] = FX_MUL(-sin, sclY);
+        load.m[1][1] = FX_MUL(cos, sclY);
+        load.m[1][2] = 0;
+        load.m[2][0] = 0;
+        load.m[2][1] = 0;
+        load.m[2][2] = FX32_ONE;
+        load.m[3][0] = trs.x;
+        load.m[3][1] = trs.y;
+        load.m[3][2] = trs.z;
 
         G3_Identity();
 
@@ -264,18 +264,18 @@ void sub_0209FAB8(SPLManager *mgr, SPLParticle *ptcl)
 
         sin = FX_SinIdx(ptcl->unk_20);
         fx32 cos = FX_CosIdx(ptcl->unk_20);
-        load._00 = FX_MUL(cos, sclX);
-        load._01 = FX_MUL(sin, sclX);
-        load._02 = 0;
-        load._10 = FX_MUL(-sin, sclY);
-        load._11 = FX_MUL(cos, sclY);
-        load._12 = 0;
-        load._20 = 0;
-        load._21 = 0;
-        load._22 = FX32_ONE;
-        load._30 = trs.x;
-        load._31 = trs.y;
-        load._32 = trs.z;
+        load.m[0][0] = FX_MUL(cos, sclX);
+        load.m[0][1] = FX_MUL(sin, sclX);
+        load.m[0][2] = 0;
+        load.m[1][0] = FX_MUL(-sin, sclY);
+        load.m[1][1] = FX_MUL(cos, sclY);
+        load.m[1][2] = 0;
+        load.m[2][0] = 0;
+        load.m[2][1] = 0;
+        load.m[2][2] = FX32_ONE;
+        load.m[3][0] = trs.x;
+        load.m[3][1] = trs.y;
+        load.m[3][2] = trs.z;
 
         G3_Identity();
         G3_MultMtx43(&load);
@@ -287,18 +287,18 @@ void sub_0209FAB8(SPLManager *mgr, SPLParticle *ptcl)
 
         sin = FX_SinIdx(ptcl->unk_20);
         fx32 cos = FX_CosIdx(ptcl->unk_20);
-        load._00 = FX_MUL(cos, sclX);
-        load._01 = FX_MUL(sin, sclX);
-        load._02 = 0;
-        load._10 = FX_MUL(-sin, sclY);
-        load._11 = FX_MUL(cos, sclY);
-        load._12 = 0;
-        load._20 = 0;
-        load._21 = 0;
-        load._22 = FX32_ONE;
-        load._30 = trs.x;
-        load._31 = trs.y;
-        load._32 = trs.z;
+        load.m[0][0] = FX_MUL(cos, sclX);
+        load.m[0][1] = FX_MUL(sin, sclX);
+        load.m[0][2] = 0;
+        load.m[1][0] = FX_MUL(-sin, sclY);
+        load.m[1][1] = FX_MUL(cos, sclY);
+        load.m[1][2] = 0;
+        load.m[2][0] = 0;
+        load.m[2][1] = 0;
+        load.m[2][2] = FX32_ONE;
+        load.m[3][0] = trs.x;
+        load.m[3][1] = trs.y;
+        load.m[3][2] = trs.z;
 
         G3_Identity();
 
@@ -374,9 +374,9 @@ void sub_0209F3D0(SPLManager *mgr, SPLParticle *ptcl)
 
         dir = ptcl->unk_14;
 
-        look.x = cmr->_02;
-        look.y = cmr->_12;
-        look.z = cmr->_22;
+        look.x = cmr->m[0][2];
+        look.y = cmr->m[1][2];
+        look.z = cmr->m[2][2];
 
         VEC_CrossProduct(&dir, &look, &dir);
         if (dir.x == 0 && dir.y == 0 && dir.z == 0) {
@@ -391,24 +391,24 @@ void sub_0209F3D0(SPLManager *mgr, SPLParticle *ptcl)
         vel_dir = ptcl->unk_14;
         VEC_Normalize(&vel_dir, &vel_dir);
 
-        dot = FX_MUL(vel_dir.x, -cmr->_02) + FX_MUL(vel_dir.y, -cmr->_12) + FX_MUL(vel_dir.z, -cmr->_22);
+        dot = FX_MUL(vel_dir.x, -cmr->m[0][2]) + FX_MUL(vel_dir.y, -cmr->m[1][2]) + FX_MUL(vel_dir.z, -cmr->m[2][2]);
         if (dot < 0) {
             dot = -dot;
         }
 
         dot = FX_MUL(sclY, FX_MUL(FX32_ONE - dot, (fx32)mgr->unk_40.unk_00->p_res->unk_00->unk_48.unk_05_0) + FX32_ONE);
-        load._00 = FX_MUL(dir.x, sclX);
-        load._10 = FX_MUL(-dir.y, dot);
-        load._30 = trs.x;
-        load._31 = trs.y;
-        load._01 = FX_MUL(dir.y, sclX);
-        load._11 = FX_MUL(dir.x, dot);
-        load._20 = 0;
-        load._21 = 0;
-        load._02 = 0;
-        load._12 = 0;
-        load._22 = FX32_ONE;
-        load._32 = trs.z;
+        load.m[0][0] = FX_MUL(dir.x, sclX);
+        load.m[1][0] = FX_MUL(-dir.y, dot);
+        load.m[3][0] = trs.x;
+        load.m[3][1] = trs.y;
+        load.m[0][1] = FX_MUL(dir.y, sclX);
+        load.m[1][1] = FX_MUL(dir.x, dot);
+        load.m[2][0] = 0;
+        load.m[2][1] = 0;
+        load.m[0][2] = 0;
+        load.m[1][2] = 0;
+        load.m[2][2] = FX32_ONE;
+        load.m[3][2] = trs.z;
 
         G3_Identity();
         G3_MultMtx43(&load);
@@ -419,9 +419,9 @@ void sub_0209F3D0(SPLManager *mgr, SPLParticle *ptcl)
 
         dir = ptcl->unk_14;
 
-        look.x = cmr->_02;
-        look.y = cmr->_12;
-        look.z = cmr->_22;
+        look.x = cmr->m[0][2];
+        look.y = cmr->m[1][2];
+        look.z = cmr->m[2][2];
 
         VEC_CrossProduct(&dir, &look, &dir);
         if (dir.x == 0 && dir.y == 0 && dir.z == 0) {
@@ -436,24 +436,24 @@ void sub_0209F3D0(SPLManager *mgr, SPLParticle *ptcl)
         vel_dir = ptcl->unk_14;
         VEC_Normalize(&vel_dir, &vel_dir);
 
-        dot = FX_MUL(vel_dir.x, -cmr->_02) + FX_MUL(vel_dir.y, -cmr->_12) + FX_MUL(vel_dir.z, -cmr->_22);
+        dot = FX_MUL(vel_dir.x, -cmr->m[0][2]) + FX_MUL(vel_dir.y, -cmr->m[1][2]) + FX_MUL(vel_dir.z, -cmr->m[2][2]);
         if (dot < 0) {
             dot = -dot;
         }
 
         dot = FX_MUL(sclY, FX_MUL(FX32_ONE - dot, (fx32)mgr->unk_40.unk_00->p_res->unk_00->unk_48.unk_05_0) + FX32_ONE);
-        load._00 = FX_MUL(dir.x, sclX);
-        load._10 = FX_MUL(-dir.y, dot);
-        load._20 = 0;
-        load._30 = trs.x;
-        load._01 = FX_MUL(dir.y, sclX);
-        load._11 = FX_MUL(dir.x, dot);
-        load._21 = 0;
-        load._31 = trs.y;
-        load._02 = 0;
-        load._12 = 0;
-        load._22 = FX32_ONE;
-        load._32 = trs.z;
+        load.m[0][0] = FX_MUL(dir.x, sclX);
+        load.m[1][0] = FX_MUL(-dir.y, dot);
+        load.m[2][0] = 0;
+        load.m[3][0] = trs.x;
+        load.m[0][1] = FX_MUL(dir.y, sclX);
+        load.m[1][1] = FX_MUL(dir.x, dot);
+        load.m[2][1] = 0;
+        load.m[3][1] = trs.y;
+        load.m[0][2] = 0;
+        load.m[1][2] = 0;
+        load.m[2][2] = FX32_ONE;
+        load.m[3][2] = trs.z;
 
         G3_Identity();
 
@@ -529,9 +529,9 @@ void sub_0209ECF0(SPLManager *mgr, SPLParticle *ptcl)
 
         dir = ptcl->unk_14;
 
-        look.x = cmr->_02;
-        look.y = cmr->_12;
-        look.z = cmr->_22;
+        look.x = cmr->m[0][2];
+        look.y = cmr->m[1][2];
+        look.z = cmr->m[2][2];
 
         VEC_CrossProduct(&dir, &look, &dir);
         if (dir.x == 0 && dir.y == 0 && dir.z == 0) {
@@ -546,24 +546,24 @@ void sub_0209ECF0(SPLManager *mgr, SPLParticle *ptcl)
         vel_dir = ptcl->unk_14;
         VEC_Normalize(&vel_dir, &vel_dir);
 
-        dot = FX_MUL(vel_dir.x, -cmr->_02) + FX_MUL(vel_dir.y, -cmr->_12) + FX_MUL(vel_dir.z, -cmr->_22);
+        dot = FX_MUL(vel_dir.x, -cmr->m[0][2]) + FX_MUL(vel_dir.y, -cmr->m[1][2]) + FX_MUL(vel_dir.z, -cmr->m[2][2]);
         if (dot < 0) {
             dot = -dot;
         }
 
         dot = FX_MUL(sclY, FX_MUL(FX32_ONE - dot, (fx32)mgr->unk_40.unk_00->p_res->unk_00->unk_48.unk_05_0) + FX32_ONE);
-        load._00 = FX_MUL(dir.x, sclX);
-        load._10 = FX_MUL(-dir.y, dot);
-        load._30 = trs.x;
-        load._31 = trs.y;
-        load._01 = FX_MUL(dir.y, sclX);
-        load._11 = FX_MUL(dir.x, dot);
-        load._20 = 0;
-        load._21 = 0;
-        load._02 = 0;
-        load._12 = 0;
-        load._22 = FX32_ONE;
-        load._32 = trs.z;
+        load.m[0][0] = FX_MUL(dir.x, sclX);
+        load.m[1][0] = FX_MUL(-dir.y, dot);
+        load.m[3][0] = trs.x;
+        load.m[3][1] = trs.y;
+        load.m[0][1] = FX_MUL(dir.y, sclX);
+        load.m[1][1] = FX_MUL(dir.x, dot);
+        load.m[2][0] = 0;
+        load.m[2][1] = 0;
+        load.m[0][2] = 0;
+        load.m[1][2] = 0;
+        load.m[2][2] = FX32_ONE;
+        load.m[3][2] = trs.z;
 
         G3_Identity();
         G3_MultMtx43(&load);
@@ -574,9 +574,9 @@ void sub_0209ECF0(SPLManager *mgr, SPLParticle *ptcl)
 
         dir = ptcl->unk_14;
 
-        look.x = cmr->_02;
-        look.y = cmr->_12;
-        look.z = cmr->_22;
+        look.x = cmr->m[0][2];
+        look.y = cmr->m[1][2];
+        look.z = cmr->m[2][2];
 
         VEC_CrossProduct(&dir, &look, &dir);
         if (dir.x == 0 && dir.y == 0 && dir.z == 0) {
@@ -591,24 +591,24 @@ void sub_0209ECF0(SPLManager *mgr, SPLParticle *ptcl)
         vel_dir = ptcl->unk_14;
         VEC_Normalize(&vel_dir, &vel_dir);
 
-        dot = FX_MUL(vel_dir.x, -cmr->_02) + FX_MUL(vel_dir.y, -cmr->_12) + FX_MUL(vel_dir.z, -cmr->_22);
+        dot = FX_MUL(vel_dir.x, -cmr->m[0][2]) + FX_MUL(vel_dir.y, -cmr->m[1][2]) + FX_MUL(vel_dir.z, -cmr->m[2][2]);
         if (dot < 0) {
             dot = -dot;
         }
 
         dot = FX_MUL(sclY, FX_MUL(FX32_ONE - dot, (fx32)mgr->unk_40.unk_00->p_res->unk_00->unk_48.unk_05_0) + FX32_ONE);
-        load._00 = FX_MUL(dir.x, sclX);
-        load._10 = FX_MUL(-dir.y, dot);
-        load._20 = 0;
-        load._30 = trs.x;
-        load._01 = FX_MUL(dir.y, sclX);
-        load._11 = FX_MUL(dir.x, dot);
-        load._21 = 0;
-        load._31 = trs.y;
-        load._02 = 0;
-        load._12 = 0;
-        load._22 = FX32_ONE;
-        load._32 = trs.z;
+        load.m[0][0] = FX_MUL(dir.x, sclX);
+        load.m[1][0] = FX_MUL(-dir.y, dot);
+        load.m[2][0] = 0;
+        load.m[3][0] = trs.x;
+        load.m[0][1] = FX_MUL(dir.y, sclX);
+        load.m[1][1] = FX_MUL(dir.x, dot);
+        load.m[2][1] = 0;
+        load.m[3][1] = trs.y;
+        load.m[0][2] = 0;
+        load.m[1][2] = 0;
+        load.m[2][2] = FX32_ONE;
+        load.m[3][2] = trs.z;
 
         G3_Identity();
 
@@ -680,15 +680,15 @@ void sub_0209E9A0(SPLManager *mgr, SPLParticle *ptcl)
 
     // resBase = mgr->unk_40.unk_00->p_res->unk_00;
     if (!mgr->unk_40.unk_00->p_res->unk_00->unk_00.unk_06_7) {
-        load._30 = ptcl->unk_08.x + ptcl->unk_38.x;
-        load._31 = ptcl->unk_08.y + ptcl->unk_38.y;
-        load._32 = ptcl->unk_08.z + ptcl->unk_38.z;
+        load.m[3][0] = ptcl->unk_08.x + ptcl->unk_38.x;
+        load.m[3][1] = ptcl->unk_08.y + ptcl->unk_38.y;
+        load.m[3][2] = ptcl->unk_08.z + ptcl->unk_38.z;
         G3_LoadMtx43(mgr->unk_40.unk_04);
         G3_MultMtx43(&load);
     } else {
-        load._30 = ptcl->unk_08.x + ptcl->unk_38.x - mgr->unk_40.unk_00->p_res->unk_00->unk_04.x;
-        load._31 = ptcl->unk_08.y + ptcl->unk_38.y - mgr->unk_40.unk_00->p_res->unk_00->unk_04.y;
-        load._32 = ptcl->unk_08.z + ptcl->unk_38.z - mgr->unk_40.unk_00->p_res->unk_00->unk_04.z;
+        load.m[3][0] = ptcl->unk_08.x + ptcl->unk_38.x - mgr->unk_40.unk_00->p_res->unk_00->unk_04.x;
+        load.m[3][1] = ptcl->unk_08.y + ptcl->unk_38.y - mgr->unk_40.unk_00->p_res->unk_00->unk_04.y;
+        load.m[3][2] = ptcl->unk_08.z + ptcl->unk_38.z - mgr->unk_40.unk_00->p_res->unk_00->unk_04.z;
 
         G3_Identity();
 
@@ -762,15 +762,15 @@ void sub_0209E650(SPLManager *mgr, SPLParticle *ptcl)
     MTX_Concat43(&rotMtx, &sclMtx, &load);
 
     if (!mgr->unk_40.unk_00->p_res->unk_00->unk_00.unk_06_7) {
-        load._30 = ptcl->unk_08.x + ptcl->unk_38.x;
-        load._31 = ptcl->unk_08.y + ptcl->unk_38.y;
-        load._32 = ptcl->unk_08.z + ptcl->unk_38.z;
+        load.m[3][0] = ptcl->unk_08.x + ptcl->unk_38.x;
+        load.m[3][1] = ptcl->unk_08.y + ptcl->unk_38.y;
+        load.m[3][2] = ptcl->unk_08.z + ptcl->unk_38.z;
         G3_LoadMtx43(mgr->unk_40.unk_04);
         G3_MultMtx43(&load);
     } else {
-        load._30 = ptcl->unk_08.x + ptcl->unk_38.x - mgr->unk_40.unk_00->p_res->unk_00->unk_04.x;
-        load._31 = ptcl->unk_08.y + ptcl->unk_38.y - mgr->unk_40.unk_00->p_res->unk_00->unk_04.y;
-        load._32 = ptcl->unk_08.z + ptcl->unk_38.z - mgr->unk_40.unk_00->p_res->unk_00->unk_04.z;
+        load.m[3][0] = ptcl->unk_08.x + ptcl->unk_38.x - mgr->unk_40.unk_00->p_res->unk_00->unk_04.x;
+        load.m[3][1] = ptcl->unk_08.y + ptcl->unk_38.y - mgr->unk_40.unk_00->p_res->unk_00->unk_04.y;
+        load.m[3][2] = ptcl->unk_08.z + ptcl->unk_38.z - mgr->unk_40.unk_00->p_res->unk_00->unk_04.z;
 
         G3_Identity();
 
@@ -846,15 +846,15 @@ void sub_0209E1D4(SPLManager *mgr, SPLParticle *ptcl)
     VEC_CrossProduct(&vec1, &axis, &vec2);
     VEC_CrossProduct(&vec1, &vec2, &vec3);
 
-    mat._00 = vec2.x;
-    mat._01 = vec2.y;
-    mat._02 = vec2.z;
-    mat._10 = vec1.x;
-    mat._11 = vec1.y;
-    mat._12 = vec1.z;
-    mat._20 = vec3.x;
-    mat._21 = vec3.y;
-    mat._22 = vec3.z;
+    mat.m[0][0] = vec2.x;
+    mat.m[0][1] = vec2.y;
+    mat.m[0][2] = vec2.z;
+    mat.m[1][0] = vec1.x;
+    mat.m[1][1] = vec1.y;
+    mat.m[1][2] = vec1.z;
+    mat.m[2][0] = vec3.x;
+    mat.m[2][1] = vec3.y;
+    mat.m[2][2] = vec3.z;
     MTX_Concat43(&rotMat, &mat, &rotMat);
 
     resBase = mgr->unk_40.unk_00->p_res->unk_00;
@@ -881,15 +881,15 @@ void sub_0209E1D4(SPLManager *mgr, SPLParticle *ptcl)
 
     resBase = mgr->unk_40.unk_00->p_res->unk_00;
     if (!resBase->unk_00.unk_06_7) {
-        transform._30 = ptcl->unk_08.x + ptcl->unk_38.x;
-        transform._31 = ptcl->unk_08.y + ptcl->unk_38.y;
-        transform._32 = ptcl->unk_08.z + ptcl->unk_38.z;
+        transform.m[3][0] = ptcl->unk_08.x + ptcl->unk_38.x;
+        transform.m[3][1] = ptcl->unk_08.y + ptcl->unk_38.y;
+        transform.m[3][2] = ptcl->unk_08.z + ptcl->unk_38.z;
         G3_LoadMtx43(mgr->unk_40.unk_04);
         G3_MultMtx43(&transform);
     } else {
-        transform._30 = ptcl->unk_08.x + ptcl->unk_38.x - resBase->unk_04.x;
-        transform._31 = ptcl->unk_08.y + ptcl->unk_38.y - mgr->unk_40.unk_00->p_res->unk_00->unk_04.y;
-        transform._32 = ptcl->unk_08.z + ptcl->unk_38.z - mgr->unk_40.unk_00->p_res->unk_00->unk_04.z;
+        transform.m[3][0] = ptcl->unk_08.x + ptcl->unk_38.x - resBase->unk_04.x;
+        transform.m[3][1] = ptcl->unk_08.y + ptcl->unk_38.y - mgr->unk_40.unk_00->p_res->unk_00->unk_04.y;
+        transform.m[3][2] = ptcl->unk_08.z + ptcl->unk_38.z - mgr->unk_40.unk_00->p_res->unk_00->unk_04.z;
 
         G3_Identity();
 
@@ -964,15 +964,15 @@ void sub_0209DD54(SPLManager *mgr, SPLParticle *ptcl)
     VEC_CrossProduct(&vec1, &axis, &vec2);
     VEC_CrossProduct(&vec1, &vec2, &vec3);
 
-    mat._00 = vec2.x;
-    mat._01 = vec2.y;
-    mat._02 = vec2.z;
-    mat._10 = vec1.x;
-    mat._11 = vec1.y;
-    mat._12 = vec1.z;
-    mat._20 = vec3.x;
-    mat._21 = vec3.y;
-    mat._22 = vec3.z;
+    mat.m[0][0] = vec2.x;
+    mat.m[0][1] = vec2.y;
+    mat.m[0][2] = vec2.z;
+    mat.m[1][0] = vec1.x;
+    mat.m[1][1] = vec1.y;
+    mat.m[1][2] = vec1.z;
+    mat.m[2][0] = vec3.x;
+    mat.m[2][1] = vec3.y;
+    mat.m[2][2] = vec3.z;
     MTX_Concat43(&rotMtx, &mat, &rotMtx);
 
     resBase = mgr->unk_40.unk_00->p_res->unk_00;
@@ -999,15 +999,15 @@ void sub_0209DD54(SPLManager *mgr, SPLParticle *ptcl)
 
     resBase = mgr->unk_40.unk_00->p_res->unk_00;
     if (!resBase->unk_00.unk_06_7) {
-        transform._30 = ptcl->unk_08.x + ptcl->unk_38.x;
-        transform._31 = ptcl->unk_08.y + ptcl->unk_38.y;
-        transform._32 = ptcl->unk_08.z + ptcl->unk_38.z;
+        transform.m[3][0] = ptcl->unk_08.x + ptcl->unk_38.x;
+        transform.m[3][1] = ptcl->unk_08.y + ptcl->unk_38.y;
+        transform.m[3][2] = ptcl->unk_08.z + ptcl->unk_38.z;
         G3_LoadMtx43(mgr->unk_40.unk_04);
         G3_MultMtx43(&transform);
     } else {
-        transform._30 = ptcl->unk_08.x + ptcl->unk_38.x - resBase->unk_04.x;
-        transform._31 = ptcl->unk_08.y + ptcl->unk_38.y - mgr->unk_40.unk_00->p_res->unk_00->unk_04.y;
-        transform._32 = ptcl->unk_08.z + ptcl->unk_38.z - mgr->unk_40.unk_00->p_res->unk_00->unk_04.z;
+        transform.m[3][0] = ptcl->unk_08.x + ptcl->unk_38.x - resBase->unk_04.x;
+        transform.m[3][1] = ptcl->unk_08.y + ptcl->unk_38.y - mgr->unk_40.unk_00->p_res->unk_00->unk_04.y;
+        transform.m[3][2] = ptcl->unk_08.z + ptcl->unk_38.z - mgr->unk_40.unk_00->p_res->unk_00->unk_04.z;
 
         G3_Identity();
 
