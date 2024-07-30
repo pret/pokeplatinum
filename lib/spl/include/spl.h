@@ -7,6 +7,7 @@
 #include "struct_defs/struct_020147B8.h"
 
 #include "spl_list.h"
+#include "spl_random.h"
 
 #define GX_RGB_R(RGB) (((RGB) >> GX_RGB_R_SHIFT) & 31)
 #define GX_RGB_G(RGB) (((RGB) >> GX_RGB_G_SHIFT) & 31)
@@ -482,9 +483,6 @@ void sub_020A05BC(SPLParticle *ptcl, SPLEmitter *emtr, SPLList *list);
 void sub_020A1768(SPLEmitter *emtr);
 void sub_020A1608(VecFx32 *ptclPos, VecFx32 *pos, SPLEmitter *emtr);
 
-void sub_020A2354(VecFx32 *vec);
-void sub_020A23B0(VecFx32 *vec);
-
 void sub_0209D998(SPLEmitter *emtr, UnkSPLStruct4 *res, const VecFx32 *param2);
 void sub_0209CF00(SPLManager *mgr);
 void sub_0209D150(SPLManager *mgr, SPLEmitter *emtr);
@@ -546,12 +544,10 @@ static inline void SPL_UnkInline5 (SPLEmitter * param0, const VecFx16 * param1)
     param0->unk_C0 = *param1;
 }
 
-extern u32 Unk_021C3A38;
-
 static inline u32 rng_next()
 {
-    Unk_021C3A38 = Unk_021C3A38 * 0x5eedf715 + 0x1b0cb173;
-    return Unk_021C3A38;
+    gSPLRandomState = gSPLRandomState * 0x5eedf715 + 0x1b0cb173;
+    return gSPLRandomState;
 }
 
 static inline u32 rng_next_u32(u32 shift)
