@@ -90,13 +90,13 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
     if (i < curGenNum) {
         fx32 genNum = 0;
         do {
-            ptcl = (SPLParticle *)sub_020A22B8(list);
+            ptcl = (SPLParticle *)SPLList_PopFront(list);
 
             if (ptcl == NULL) {
                 return;
             }
 
-            sub_020A2304((SPLList *)&emtr->unk_08, (SPLNode *)ptcl);
+            SPLList_PushFront((SPLList *)&emtr->unk_08, (SPLNode *)ptcl);
 
             switch (resBase->unk_00.unk_04_0) {
             case 0:
@@ -289,11 +289,11 @@ void sub_020A05BC(SPLParticle *ptcl, SPLEmitter *emtr, SPLList *list)
     fx32 vel = FX_MUL((fx32)(chldRes->unk_08.unk_00_0 << FX32_SHIFT), FX32_CONST(1 / 256.0f));
 
     for (i = 0; i < chldRes->unk_0C.unk_00_0; i++) {
-        chld = (SPLParticle *)sub_020A22B8(list);
+        chld = (SPLParticle *)SPLList_PopFront(list);
         if (chld == NULL) {
             return;
         }
-        sub_020A2304((SPLList *)&emtr->unk_4C, (SPLNode *)chld);
+        SPLList_PushFront((SPLList *)&emtr->unk_4C, (SPLNode *)chld);
 
         chld->unk_08 = ptcl->unk_08;
 

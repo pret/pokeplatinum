@@ -210,8 +210,8 @@ void sub_0209D150(SPLManager *mgr, SPLEmitter *emtr)
         ptcl->unk_26 += 1;
 
         if (ptcl->unk_26 > ptcl->unk_24) {
-            SPLNode *node = sub_020A2238((SPLList *)(&emtr->unk_08), (SPLNode *)ptcl);
-            sub_020A2304((SPLList *)&mgr->unk_1C, node);
+            SPLNode *node = SPLList_Erase((SPLList *)(&emtr->unk_08), (SPLNode *)ptcl);
+            SPLList_PushFront((SPLList *)&mgr->unk_1C, node);
         }
     }
 
@@ -277,7 +277,7 @@ void sub_0209D150(SPLManager *mgr, SPLEmitter *emtr)
             ptcl->unk_26 += 1;
 
             if (ptcl->unk_26 > ptcl->unk_24) {
-                sub_020A2304((SPLList *)&mgr->unk_1C, sub_020A2238((SPLList *)(&emtr->unk_4C), (SPLNode *)ptcl));
+                SPLList_PushFront((SPLList *)&mgr->unk_1C, SPLList_Erase((SPLList *)(&emtr->unk_4C), (SPLNode *)ptcl));
             }
         }
     }

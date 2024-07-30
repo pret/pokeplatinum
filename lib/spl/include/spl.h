@@ -3,11 +3,10 @@
 
 #include "nitro/types.h"
 #include <nitro/gx/gxcommon.h>
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #include "struct_defs/struct_020147B8.h"
+
+#include "spl_list.h"
 
 #define GX_RGB_R(RGB) (((RGB) >> GX_RGB_R_SHIFT) & 31)
 #define GX_RGB_G(RGB) (((RGB) >> GX_RGB_G_SHIFT) & 31)
@@ -426,17 +425,6 @@ typedef struct SPLConvergence {
     u16 reserved0;
 } SPLConvergence;
 
-typedef struct SPLNode {
-	struct SPLNode* p_next;
-	struct SPLNode* p_prev;
-} SPLNode;
-
-typedef struct SPLList {
-	SPLNode* p_begin;
-	int node_num;
-	SPLNode* p_end;
-} SPLList;
-
 typedef struct FieldFunc {
     void (*func)(SPLParticle *, UnkSPLStruct4 *, int);
     BOOL loop;
@@ -500,10 +488,6 @@ void sub_020A23B0(VecFx32 *vec);
 void sub_0209D998(SPLEmitter *emtr, UnkSPLStruct4 *res, const VecFx32 *param2);
 void sub_0209CF00(SPLManager *mgr);
 void sub_0209D150(SPLManager *mgr, SPLEmitter *emtr);
-
-SPLNode *sub_020A22B8(SPLList *list);
-void sub_020A2304(SPLList *list, SPLNode *node);
-SPLNode *sub_020A2238(SPLList *list, SPLNode *node);
 
 u32 sub_0209CE90(u32 param0, BOOL param1);
 u32 sub_0209CEC8(u32 param0, BOOL param1);
@@ -584,9 +568,5 @@ static inline fx32 rng_next_fx32(u32 shift)
 {
     return (fx32)rng_next() >> shift;
 }
-
-#ifdef __cplusplus
-}
-#endif
 
 #endif // POKEPLATINUM_SPL_H
