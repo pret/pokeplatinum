@@ -89,7 +89,7 @@ void sub_0209D998(SPLEmitter *emtr, UnkSPLStruct4 *res, const VecFx32 *pos)
     emtr->unk_F0.unk_01_0 = emtr->p_res->unk_00->unk_48.unk_01_0;
     emtr->unk_F0.unk_02_0 = 0;
     emtr->unk_F0.unk_02_3 = 0;
-    emtr->unk_E4 = FX32_MIN;
+    emtr->collisionPlaneHeight = FX32_MIN;
     emtr->unk_E8 = FX32_ONE << emtr->p_res->unk_00->unk_48.unk_07_0;
     emtr->unk_EA = FX32_ONE << emtr->p_res->unk_00->unk_48.unk_07_2;
 
@@ -180,8 +180,8 @@ void sub_0209D150(SPLManager *mgr, SPLEmitter *emtr)
 
     for (ptcl = emtr->unk_08.unk_00; ptcl != NULL; ptcl = next) {
         next = ptcl->unk_00;
-        lifeRates[0] = ptcl->unk_2A * ptcl->unk_26 >> 8;
-        lifeRates[1] = ptcl->unk_2C.unk_01 + (ptcl->unk_28 * ptcl->unk_26 >> 8);
+        lifeRates[0] = ptcl->unk_2A * ptcl->age >> 8;
+        lifeRates[1] = ptcl->unk_2C.unk_01 + (ptcl->unk_28 * ptcl->age >> 8);
 
         for (i = 0; i < fieldIndex; i++) {
             fieldFuncs[i].func(ptcl, res, lifeRates[fieldFuncs[i].loop]);
@@ -190,7 +190,7 @@ void sub_0209D150(SPLManager *mgr, SPLEmitter *emtr)
         vec.x = vec.y = vec.z = 0;
 
         if (resFlags.unk_05_7) {
-            ptcl->unk_38 = emtr->unk_98;
+            ptcl->emitterPos = emtr->unk_98;
         }
 
         for (i = 0; i < fldNum; i++) {
@@ -199,21 +199,21 @@ void sub_0209D150(SPLManager *mgr, SPLEmitter *emtr)
 
         ptcl->unk_20 += ptcl->unk_22;
 
-        ptcl->unk_14.x = (ptcl->unk_14.x * airResistance >> 9);
-        ptcl->unk_14.y = (ptcl->unk_14.y * airResistance >> 9);
-        ptcl->unk_14.z = (ptcl->unk_14.z * airResistance >> 9);
+        ptcl->velocity.x = (ptcl->velocity.x * airResistance >> 9);
+        ptcl->velocity.y = (ptcl->velocity.y * airResistance >> 9);
+        ptcl->velocity.z = (ptcl->velocity.z * airResistance >> 9);
 
-        ptcl->unk_14.x += vec.x;
-        ptcl->unk_14.y += vec.y;
-        ptcl->unk_14.z += vec.z;
+        ptcl->velocity.x += vec.x;
+        ptcl->velocity.y += vec.y;
+        ptcl->velocity.z += vec.z;
 
-        ptcl->unk_08.x += ptcl->unk_14.x + emtr->unk_A4.x;
-        ptcl->unk_08.y += ptcl->unk_14.y + emtr->unk_A4.y;
-        ptcl->unk_08.z += ptcl->unk_14.z + emtr->unk_A4.z;
+        ptcl->position.x += ptcl->velocity.x + emtr->unk_A4.x;
+        ptcl->position.y += ptcl->velocity.y + emtr->unk_A4.y;
+        ptcl->position.z += ptcl->velocity.z + emtr->unk_A4.z;
 
         if (resFlags.unk_06_0) {
-            fx32 x = FX_MUL((fx32)ptcl->unk_24 << FX32_SHIFT, (fx32)child->unk_0C.unk_01_0 << FX32_SHIFT);
-            fx32 a = (fx32)ptcl->unk_26 * FX32_ONE;
+            fx32 x = FX_MUL((fx32)ptcl->lifeTime << FX32_SHIFT, (fx32)child->unk_0C.unk_01_0 << FX32_SHIFT);
+            fx32 a = (fx32)ptcl->age * FX32_ONE;
             fx32 diff = a - (x >> 8);
 
             if (diff >= 0) {
@@ -234,9 +234,9 @@ void sub_0209D150(SPLManager *mgr, SPLEmitter *emtr)
             }
         }
 
-        ptcl->unk_26 += 1;
+        ptcl->age += 1;
 
-        if (ptcl->unk_26 > ptcl->unk_24) {
+        if (ptcl->age > ptcl->lifeTime) {
             SPLNode *node = SPLList_Erase((SPLList *)(&emtr->unk_08), (SPLNode *)ptcl);
             SPLList_PushFront((SPLList *)&mgr->unk_1C, node);
         }
@@ -260,7 +260,7 @@ void sub_0209D150(SPLManager *mgr, SPLEmitter *emtr)
 
         for (ptcl = emtr->unk_4C.unk_00; ptcl != NULL; ptcl = next) {
             next = ptcl->unk_00;
-            lifeRates[0] = (ptcl->unk_26 << 8) / ptcl->unk_24;
+            lifeRates[0] = (ptcl->age << 8) / ptcl->lifeTime;
             for (i = 0; i < fieldIndex; i++) {
                 u8 lifeRate = lifeRates[0];
                 fieldFuncs2[i].func(ptcl, res, lifeRate);
@@ -269,7 +269,7 @@ void sub_0209D150(SPLManager *mgr, SPLEmitter *emtr)
             vec.x = vec.y = vec.z = 0;
 
             if (child->unk_00.unk_02_5) {
-                ptcl->unk_38 = emtr->unk_98;
+                ptcl->emitterPos = emtr->unk_98;
             }
 
             for (i = 0; i < fldNum; i++) {
@@ -278,17 +278,17 @@ void sub_0209D150(SPLManager *mgr, SPLEmitter *emtr)
 
             ptcl->unk_20 += ptcl->unk_22;
 
-            ptcl->unk_14.x = ptcl->unk_14.x * airResistance >> 9;
-            ptcl->unk_14.y = ptcl->unk_14.y * airResistance >> 9;
-            ptcl->unk_14.z = ptcl->unk_14.z * airResistance >> 9;
+            ptcl->velocity.x = ptcl->velocity.x * airResistance >> 9;
+            ptcl->velocity.y = ptcl->velocity.y * airResistance >> 9;
+            ptcl->velocity.z = ptcl->velocity.z * airResistance >> 9;
 
-            ptcl->unk_14.x += vec.x;
-            ptcl->unk_14.y += vec.y;
-            ptcl->unk_14.z += vec.z;
+            ptcl->velocity.x += vec.x;
+            ptcl->velocity.y += vec.y;
+            ptcl->velocity.z += vec.z;
 
-            ptcl->unk_08.x += ptcl->unk_14.x + emtr->unk_A4.x;
-            ptcl->unk_08.y += ptcl->unk_14.y + emtr->unk_A4.y;
-            ptcl->unk_08.z += ptcl->unk_14.z + emtr->unk_A4.z;
+            ptcl->position.x += ptcl->velocity.x + emtr->unk_A4.x;
+            ptcl->position.y += ptcl->velocity.y + emtr->unk_A4.y;
+            ptcl->position.z += ptcl->velocity.z + emtr->unk_A4.z;
 
             if (emtr->p_res->unk_00->unk_00.unk_07_7) {
                 ptcl->unk_2E.unk_01_2 = mgr->unk_38.unk_02_2;
@@ -301,9 +301,9 @@ void sub_0209D150(SPLManager *mgr, SPLEmitter *emtr)
                 }
             }
 
-            ptcl->unk_26 += 1;
+            ptcl->age += 1;
 
-            if (ptcl->unk_26 > ptcl->unk_24) {
+            if (ptcl->age > ptcl->lifeTime) {
                 SPLList_PushFront((SPLList *)&mgr->unk_1C, SPLList_Erase((SPLList *)(&emtr->unk_4C), (SPLNode *)ptcl));
             }
         }

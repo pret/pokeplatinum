@@ -153,42 +153,42 @@ void SPL_0209C988(SPLManager *mgr, const void *p_spa)
 
             if (flag.unk_07_0) {
                 fld->unk_04 = (const void *)((u8 *)spa + offset);
-                fld->unk_00 = SPL_020A2204;
+                fld->unk_00 = SPLBehavior_ApplyGravity;
                 offset += sizeof(SPLGravityBehavior);
                 fld++;
             }
 
             if (flag.unk_07_1) {
                 fld->unk_04 = (const void *)((u8 *)spa + offset);
-                fld->unk_00 = SPL_020A213C;
+                fld->unk_00 = SPLBehavior_ApplyRandom;
                 offset += sizeof(SPLRandomBehavior);
                 fld++;
             }
 
             if (flag.unk_07_2) {
                 fld->unk_04 = (const void *)((u8 *)spa + offset);
-                fld->unk_00 = SPL_020A20B8;
+                fld->unk_00 = SPLBehavior_ApplyMagnet;
                 offset += sizeof(SPLMagnetBehavior);
                 fld++;
             }
 
             if (flag.unk_07_3) {
                 fld->unk_04 = (const void *)((u8 *)spa + offset);
-                fld->unk_00 = SPL_020A1FE0;
+                fld->unk_00 = SPLBehavior_ApplySpin;
                 offset += sizeof(SPLSpinBehavior);
                 fld++;
             }
 
             if (flag.unk_07_4) {
                 fld->unk_04 = (const void *)((u8 *)spa + offset);
-                fld->unk_00 = SPL_020A1EC4;
-                offset += sizeof(SPLCollisionBehavior);
+                fld->unk_00 = SPLBehavior_ApplyCollisionPlane;
+                offset += sizeof(SPLCollisionPlaneBehavior);
                 fld++;
             }
 
             if (flag.unk_07_5) {
                 fld->unk_04 = (void *)((u8 *)spa + offset);
-                fld->unk_00 = SPL_020A1E30;
+                fld->unk_00 = SPLBehavior_ApplyConvergence;
                 offset += sizeof(SPLConvergenceBehavior);
             }
         } else {

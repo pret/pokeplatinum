@@ -684,32 +684,32 @@ static const void *sub_020147B8(SPLEmitter *param0, int param1)
 
         switch (param1) {
         case SPL_FLD_TYPE_GRAVITY:
-            if (v2->unk_00 == SPL_020A2204) {
+            if (v2->unk_00 == SPLBehavior_ApplyGravity) {
                 return v2->unk_04;
             }
             continue;
         case SPL_FLD_TYPE_RANDOM:
-            if (v2->unk_00 == SPL_020A213C) {
+            if (v2->unk_00 == SPLBehavior_ApplyRandom) {
                 return v2->unk_04;
             }
             continue;
         case SPL_FLD_TYPE_MAGNET:
-            if (v2->unk_00 == SPL_020A20B8) {
+            if (v2->unk_00 == SPLBehavior_ApplyMagnet) {
                 return v2->unk_04;
             }
             continue;
         case SPL_FLD_TYPE_SPIN:
-            if (v2->unk_00 == SPL_020A1FE0) {
+            if (v2->unk_00 == SPLBehavior_ApplySpin) {
                 return v2->unk_04;
             }
             continue;
         case SPL_FLD_TYPE_SIMPLE_COLL:
-            if (v2->unk_00 == SPL_020A1EC4) {
+            if (v2->unk_00 == SPLBehavior_ApplyCollisionPlane) {
                 return v2->unk_04;
             }
             break;
         case SPL_FLD_TYPE_CONVERGENCE:
-            if (v2->unk_00 == SPL_020A1E30) {
+            if (v2->unk_00 == SPLBehavior_ApplyConvergence) {
                 return v2->unk_04;
             }
             continue;

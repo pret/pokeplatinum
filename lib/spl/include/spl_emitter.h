@@ -45,7 +45,7 @@ typedef struct SPLEmitter {
     fx32 unk_DC;
     u16 unk_E0;
     GXRgb unk_E2;
-    fx32 unk_E4;
+    fx32 collisionPlaneHeight;
     fx16 unk_E8;
     fx16 unk_EA;
     fx16 unk_EC;

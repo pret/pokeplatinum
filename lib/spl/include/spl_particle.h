@@ -8,12 +8,12 @@
 typedef struct SPLParticle_t {
     struct SPLParticle_t *unk_00;
     struct SPLParticle_t *unk_04;
-    VecFx32 unk_08;
-    VecFx32 unk_14;
+    VecFx32 position;
+    VecFx32 velocity;
     u16 unk_20;
     s16 unk_22;
-    u16 unk_24;
-    u16 unk_26;
+    u16 lifeTime;
+    u16 age;
     u16 unk_28;
     u16 unk_2A;
     struct {
@@ -28,7 +28,7 @@ typedef struct SPLParticle_t {
     fx32 unk_30;
     fx16 unk_34;
     GXRgb unk_36;
-    VecFx32 unk_38;
+    VecFx32 emitterPos;
 } SPLParticle; // size=0x44
 
 typedef struct UnkSPLStruct3_t {
