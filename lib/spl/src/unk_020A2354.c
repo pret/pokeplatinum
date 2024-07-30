@@ -2,7 +2,7 @@
 
 #include <nitro/fx/fx.h>
 
-u32 Unk_021C3A38;
+u32 gSPLRandomState;
 
 void sub_020A23B0(VecFx32 *vec)
 {
