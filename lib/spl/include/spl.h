@@ -8,6 +8,7 @@
 
 #include "spl_list.h"
 #include "spl_random.h"
+#include "spl_behavior.h"
 
 #define GX_RGB_R(RGB) (((RGB) >> GX_RGB_R_SHIFT) & 31)
 #define GX_RGB_G(RGB) (((RGB) >> GX_RGB_G_SHIFT) & 31)
@@ -388,44 +389,6 @@ typedef struct SPLManager_t {
     u16 unk_4A;
 } SPLManager; // size=0x4c
 
-typedef struct SPLGravity {
-    VecFx16 mag;
-    u16 reserved0;
-} SPLGravity;
-
-typedef struct SPLRandom {
-    VecFx16 mag;
-    u16 intvl;
-} SPLRandom;
-
-typedef struct SPLMagnet {
-    VecFx32 pos;
-    fx16 mag;
-    u16 reserved0;
-} SPLMagnet;
-
-typedef struct SPLSpin {
-    u16 radian;
-    u16 axis_type;
-} SPLSpin;
-
-typedef struct SPLSimpleCollisionField {
-    fx32 y;
-    fx16 coeff_bounce;
-    
-    struct {
-        u16 eventtype : 2;
-        u16 global : 1;
-        u16 reserved : 13;
-    } etc;
-} SPLSimpleCollisionField;
-
-typedef struct SPLConvergence {
-    VecFx32 pos;
-    fx16 ratio;
-    u16 reserved0;
-} SPLConvergence;
-
 typedef struct FieldFunc {
     void (*func)(SPLParticle *, UnkSPLStruct4 *, int);
     BOOL loop;
@@ -463,12 +426,7 @@ BOOL SPL_0209C8BC(SPLManager * param0, u32 (* param1)(u32, BOOL));
 void SPL_0209C988(SPLManager * param0, const void * param1);
 SPLManager * SPL_0209CD00(UnkFuncPtr_0209CD00 param0, u16 param1, u16 param2, u16 param3, u16 param4, u16 param5);
 
-void SPL_020A1E30(const void * param0, SPLParticle * param1, VecFx32 * param2, struct SPLEmitter_t * param3);
-void SPL_020A1EC4(const void * param0, SPLParticle * param1, VecFx32 * param2, struct SPLEmitter_t * param3);
-void SPL_020A1FE0(const void * param0, SPLParticle * param1, VecFx32 * param2, struct SPLEmitter_t * param3);
-void SPL_020A20B8(const void * param0, SPLParticle * param1, VecFx32 * param2, struct SPLEmitter_t * param3);
-void SPL_020A213C(const void * param0, SPLParticle * param1, VecFx32 * param2, struct SPLEmitter_t * param3);
-void SPL_020A2204(const void * param0, SPLParticle * param1, VecFx32 * param2, struct SPLEmitter_t * param3);
+
 
 void sub_020A1DA0(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate); // spl_scl_in_out
 void sub_020A1BD4(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate); // spl_clr_in_out

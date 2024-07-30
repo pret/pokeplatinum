@@ -3,11 +3,12 @@
 #include <nitro/fx/fx_trig.h>
 
 #include "spl.h"
+#include "spl_behavior.h"
 #include "spl_random.h"
 
 void SPL_020A2204(const void *obj, SPLParticle *ptcl, VecFx32 *pos, SPLEmitter *emtr)
 {
-    SPLGravity *gravity = (SPLGravity *)obj;
+    SPLGravityBehavior *gravity = (SPLGravityBehavior *)obj;
     pos->x += gravity->mag.x;
     pos->y += gravity->mag.y;
     pos->z += gravity->mag.z;
@@ -15,7 +16,7 @@ void SPL_020A2204(const void *obj, SPLParticle *ptcl, VecFx32 *pos, SPLEmitter *
 
 void SPL_020A213C(const void *obj, SPLParticle *ptcl, VecFx32 *acc, SPLEmitter *emtr)
 {
-    SPLRandom *rng = (SPLRandom *)obj;
+    SPLRandomBehavior *rng = (SPLRandomBehavior *)obj;
     if ((ptcl->unk_26 % rng->intvl) == 0) {
         acc->x += SPLRandom_RangeFX32(rng->mag.x);
         acc->y += SPLRandom_RangeFX32(rng->mag.y);
@@ -25,7 +26,7 @@ void SPL_020A213C(const void *obj, SPLParticle *ptcl, VecFx32 *acc, SPLEmitter *
 
 void SPL_020A20B8(const void *obj, SPLParticle *ptcl, VecFx32 *pos, SPLEmitter *emtr)
 {
-    SPLMagnet *magnet = (SPLMagnet *)obj;
+    SPLMagnetBehavior *magnet = (SPLMagnetBehavior *)obj;
     pos->x += (magnet->mag * ((magnet->pos.x - ptcl->unk_08.x) - ptcl->unk_14.x)) >> FX32_SHIFT;
     pos->y += (magnet->mag * ((magnet->pos.y - ptcl->unk_08.y) - ptcl->unk_14.y)) >> FX32_SHIFT;
     pos->z += (magnet->mag * ((magnet->pos.z - ptcl->unk_08.z) - ptcl->unk_14.z)) >> FX32_SHIFT;
@@ -33,7 +34,7 @@ void SPL_020A20B8(const void *obj, SPLParticle *ptcl, VecFx32 *pos, SPLEmitter *
 
 void SPL_020A1FE0(const void *obj, SPLParticle *ptcl, VecFx32 *pos, SPLEmitter *emtr)
 {
-    SPLSpin *spin = (SPLSpin *)obj;
+    SPLSpinBehavior *spin = (SPLSpinBehavior *)obj;
     MtxFx33 rot;
     switch (spin->axis_type) {
     case 0:
@@ -50,9 +51,9 @@ void SPL_020A1FE0(const void *obj, SPLParticle *ptcl, VecFx32 *pos, SPLEmitter *
     MTX_MultVec33(&ptcl->unk_08, &rot, &ptcl->unk_08);
 }
 
-void SPL_020A1EC4(const void *obj,SPLParticle *ptcl,VecFx32 *pos,SPLEmitter *emtr)
+void SPL_020A1EC4(const void *obj, SPLParticle *ptcl, VecFx32 *pos, SPLEmitter *emtr)
 {
-    SPLSimpleCollisionField *fld = (SPLSimpleCollisionField *)obj;
+    SPLCollisionBehavior *fld = (SPLCollisionBehavior *)obj;
     fx32 y = fld->y;
     fx32 ey;
     
@@ -93,7 +94,7 @@ void SPL_020A1EC4(const void *obj,SPLParticle *ptcl,VecFx32 *pos,SPLEmitter *emt
 
 void SPL_020A1E30(const void *obj, SPLParticle *ptcl, VecFx32 *pos, SPLEmitter *emtr)
 {
-    SPLConvergence *conv = (SPLConvergence *)obj;
+    SPLConvergenceBehavior *conv = (SPLConvergenceBehavior *)obj;
     ptcl->unk_08.x += FX32_CAST(FX_MUL(conv->ratio, (conv->pos.x - ptcl->unk_08.x)));
     ptcl->unk_08.y += FX32_CAST(FX_MUL(conv->ratio, (conv->pos.y - ptcl->unk_08.y)));
     ptcl->unk_08.z += FX32_CAST(FX_MUL(conv->ratio, (conv->pos.z - ptcl->unk_08.z)));
