@@ -1,4 +1,5 @@
 #include "spl.h"
+#include "spl_behavior.h"
 
 #include <nnsys/gfd/VramManager/gfd_PlttVramMan_Types.h>
 #include <nnsys/gfd/VramManager/gfd_TexVramMan_Types.h>
@@ -144,42 +145,42 @@ void SPL_0209C988(SPLManager *mgr, const void *p_spa)
             if (flag.unk_07_0) {
                 fld->unk_04 = (const void *)((u8 *)spa + offset);
                 fld->unk_00 = SPL_020A2204;
-                offset += sizeof(SPLGravity);
+                offset += sizeof(SPLGravityBehavior);
                 fld++;
             }
 
             if (flag.unk_07_1) {
                 fld->unk_04 = (const void *)((u8 *)spa + offset);
                 fld->unk_00 = SPL_020A213C;
-                offset += sizeof(SPLRandom);
+                offset += sizeof(SPLRandomBehavior);
                 fld++;
             }
 
             if (flag.unk_07_2) {
                 fld->unk_04 = (const void *)((u8 *)spa + offset);
                 fld->unk_00 = SPL_020A20B8;
-                offset += sizeof(SPLMagnet);
+                offset += sizeof(SPLMagnetBehavior);
                 fld++;
             }
 
             if (flag.unk_07_3) {
                 fld->unk_04 = (const void *)((u8 *)spa + offset);
                 fld->unk_00 = SPL_020A1FE0;
-                offset += sizeof(SPLSpin);
+                offset += sizeof(SPLSpinBehavior);
                 fld++;
             }
 
             if (flag.unk_07_4) {
                 fld->unk_04 = (const void *)((u8 *)spa + offset);
                 fld->unk_00 = SPL_020A1EC4;
-                offset += sizeof(SPLSimpleCollisionField);
+                offset += sizeof(SPLCollisionBehavior);
                 fld++;
             }
 
             if (flag.unk_07_5) {
                 fld->unk_04 = (void *)((u8 *)spa + offset);
                 fld->unk_00 = SPL_020A1E30;
-                offset += sizeof(SPLConvergence);
+                offset += sizeof(SPLConvergenceBehavior);
             }
         } else {
             p_res->unk_18 = NULL;

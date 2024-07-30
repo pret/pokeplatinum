@@ -20,7 +20,7 @@ libspl_srcs = files(
     'src/unk_0209DD54.c',
     'src/unk_020A05BC.c',
     'src/unk_020A19F0.c',
-    'src/unk_020A1E30.c',
+    'src/spl_behavior.c',
     'src/spl_list.c',
     'src/spl_random.c'
 )
