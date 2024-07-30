@@ -1,11 +1,20 @@
 # Contributing to pret/pokeplatinum
 
 <!--toc:start-->
+- [My Build is Failing After Merging from Main](#my-build-is-failing-after-merging-from-main)
 - [Editor Enhancements](#editor-enhancements)
 - [Code Formatting](#code-formatting)
 <!--toc:end-->
 
 This document provides a synopsis and loose guidelines for how to contribute to this project. It is a work in progress. Maintainers should expand this document.
+
+## My Build is Failing After Merging from Main
+
+It is likely that your subprojects are out of date; update them with the following command and re-build:
+
+```
+meson subprojects update
+```
 
 ## Editor Enhancements
 
