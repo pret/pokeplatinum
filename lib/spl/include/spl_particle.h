@@ -5,9 +5,9 @@
 #include <nitro/gx/gxcommon.h>
 
 
-typedef struct SPLParticle_t {
-    struct SPLParticle_t *unk_00;
-    struct SPLParticle_t *unk_04;
+typedef struct SPLParticle {
+    struct SPLParticle *next;
+    struct SPLParticle *prev;
     VecFx32 position;
     VecFx32 velocity;
     u16 unk_20;
@@ -31,10 +31,10 @@ typedef struct SPLParticle_t {
     VecFx32 emitterPos;
 } SPLParticle; // size=0x44
 
-typedef struct UnkSPLStruct3_t {
-    SPLParticle *unk_00;
-    int unk_04;
-    SPLParticle *unk_08;
-} UnkSPLStruct3; // size=0xc
+typedef struct SPLParticleList {
+    SPLParticle *first;
+    int count;
+    SPLParticle *last;
+} SPLParticleList; // size=0xc
 
 #endif // SPL_PARTICLE_H

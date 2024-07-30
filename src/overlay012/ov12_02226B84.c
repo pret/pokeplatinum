@@ -2870,12 +2870,12 @@ static BOOL ov12_02229A50(SPLEmitter *param0)
         int v2;
         int v3;
 
-        v1 = param0->unk_08.unk_00;
+        v1 = param0->unk_08.first;
 
         while (v1 != NULL) {
             v2 = v1->age;
             v3 = v1->lifeTime;
-            v1 = v1->unk_00;
+            v1 = v1->next;
         }
 
         if (v2 != v3) {
