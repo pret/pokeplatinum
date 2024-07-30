@@ -104,7 +104,7 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
                 break;
 
             case 1:
-                sub_020A23B0(&ptcl->unk_08);
+                SPLRandom_VecFx32(&ptcl->unk_08);
                 ptcl->unk_08.x = FX_MUL(ptcl->unk_08.x, emtr->unk_CC);
                 ptcl->unk_08.y = FX_MUL(ptcl->unk_08.y, emtr->unk_CC);
                 ptcl->unk_08.z = FX_MUL(ptcl->unk_08.z, emtr->unk_CC);
@@ -112,7 +112,7 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
 
             case 2: {
                 VecFx32 pos;
-                sub_020A2354(&pos);
+                SPLRandom_VecFx32_XY(&pos);
                 pos.x = FX_MUL(pos.x, emtr->unk_CC);
                 pos.y = FX_MUL(pos.y, emtr->unk_CC);
                 pos.z = 0;
@@ -132,7 +132,7 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
             } break;
 
             case 4:
-                sub_020A23B0(&ptcl->unk_08);
+                SPLRandom_VecFx32(&ptcl->unk_08);
                 ptcl->unk_08.x = FX_MUL(FX_MUL(ptcl->unk_08.x, emtr->unk_CC), (rng_next_s32(0x17) * FX32_ONE - 0x100000) >> 8);
                 ptcl->unk_08.y = FX_MUL(FX_MUL(ptcl->unk_08.y, emtr->unk_CC), (rng_next_s32(0x17) * FX32_ONE - 0x100000) >> 8);
                 ptcl->unk_08.z = FX_MUL(FX_MUL(ptcl->unk_08.z, emtr->unk_CC), (rng_next_s32(0x17) * FX32_ONE - 0x100000) >> 8);
@@ -140,7 +140,7 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
 
             case 5: {
                 VecFx32 pos;
-                sub_020A2354(&pos);
+                SPLRandom_VecFx32_XY(&pos);
                 pos.x = FX_MUL(FX_MUL(pos.x, emtr->unk_CC), ((fx32)rng_next_s32(0x17) * FX32_ONE - 0x100000) >> 8);
                 pos.y = FX_MUL(FX_MUL(pos.y, emtr->unk_CC), ((fx32)rng_next_s32(0x17) * FX32_ONE - 0x100000) >> 8);
                 sub_020A1608(&ptcl->unk_08, &pos, emtr);
@@ -149,7 +149,7 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
             case 8: {
                 VecFx32 pos;
                 VecFx16 tmpUnitVec;
-                sub_020A23B0(&ptcl->unk_08);
+                SPLRandom_VecFx32(&ptcl->unk_08);
                 VEC_Fx16CrossProduct(&emtr->unk_F4, &emtr->unk_FA, &tmpUnitVec);
                 pos.x = tmpUnitVec.x;
                 pos.y = tmpUnitVec.y;
@@ -168,7 +168,7 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
             case 9: {
                 VecFx32 pos;
                 VecFx16 tmpUnitVec;
-                sub_020A23B0(&ptcl->unk_08);
+                SPLRandom_VecFx32(&ptcl->unk_08);
                 VEC_Fx16CrossProduct(&emtr->unk_F4, &emtr->unk_FA, &tmpUnitVec);
                 pos.x = tmpUnitVec.x;
                 pos.y = tmpUnitVec.y;
@@ -186,7 +186,7 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
 
             case 6: {
                 VecFx32 pos;
-                sub_020A2354(&ptcl->unk_14);
+                SPLRandom_VecFx32_XY(&ptcl->unk_14);
                 pos.x = FX_MUL(ptcl->unk_14.x, emtr->unk_CC);
                 pos.y = FX_MUL(ptcl->unk_14.y, emtr->unk_CC);
                 pos.z = (emtr->unk_D0 * rng_next_s32(0x17) - emtr->unk_D0 * 256) >> 8;
@@ -195,7 +195,7 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
 
             case 7: {
                 VecFx32 pos;
-                sub_020A2354(&ptcl->unk_14);
+                SPLRandom_VecFx32_XY(&ptcl->unk_14);
                 pos.x = FX_MUL(FX_MUL(ptcl->unk_14.x, emtr->unk_CC), ((fx32)rng_next_s32(0x17) * FX32_ONE - 0x100000) >> 8);
                 pos.y = FX_MUL(FX_MUL(ptcl->unk_14.y, emtr->unk_CC), ((fx32)rng_next_s32(0x17) * FX32_ONE - 0x100000) >> 8);
                 pos.z = (emtr->unk_D0 * (fx32)rng_next_s32(0x17) - emtr->unk_D0 * 256) >> 8;
@@ -215,7 +215,7 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
 
                 VEC_Normalize(&tmp, &posNorm);
             } else if (ptcl->unk_08.x == 0 && ptcl->unk_08.y == 0 && ptcl->unk_08.z == 0) {
-                sub_020A23B0(&posNorm);
+                SPLRandom_VecFx32(&posNorm);
             } else {
                 VEC_Normalize(&ptcl->unk_08, &posNorm);
             }
