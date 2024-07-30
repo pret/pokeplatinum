@@ -2,14 +2,21 @@
 #include <nitro/fx/fx_const.h>
 #include <nitro/fx/fx_trig.h>
 
-#include "spl.h"
+#include "spl_emitter.h"
+#include "spl_list.h"
 #include "spl_random.h"
 
-VecFx16 Unk_02100DB0 = { 0, FX16_ONE, 0 };
 
 #define IS_IN_RANGE(x, min, max) (((x) - (min)) <= ((max) - (min)))
 
-void sub_020A1768(SPLEmitter *emtr)
+
+static void sub_020A1768(SPLEmitter *emtr);
+static void sub_020A1608(VecFx32 *ptclPos, VecFx32 *pos, SPLEmitter *emtr);
+
+VecFx16 Unk_02100DB0 = { 0, FX16_ONE, 0 };
+
+
+static void sub_020A1768(SPLEmitter *emtr)
 {
     VecFx16 vec, axis;
 
@@ -55,7 +62,7 @@ void sub_020A1768(SPLEmitter *emtr)
     VEC_Fx16Normalize(&emtr->unk_FA, &emtr->unk_FA);
 }
 
-void sub_020A1608(VecFx32 *ptclPos, VecFx32 *pos, SPLEmitter *emtr)
+static void sub_020A1608(VecFx32 *ptclPos, VecFx32 *pos, SPLEmitter *emtr)
 {
     VecFx16 vec;
     VEC_Fx16CrossProduct(&emtr->unk_F4, &emtr->unk_FA, &vec);

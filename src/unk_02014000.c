@@ -16,7 +16,7 @@
 #include "camera.h"
 #include "heap.h"
 #include "narc.h"
-#include "spl.h"
+#include "spl_behavior.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 

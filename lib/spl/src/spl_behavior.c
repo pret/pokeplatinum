@@ -2,9 +2,9 @@
 #include <nitro/fx/fx_mtx33.h>
 #include <nitro/fx/fx_trig.h>
 
-#include "spl.h"
 #include "spl_behavior.h"
 #include "spl_random.h"
+
 
 void SPL_020A2204(const void *obj, SPLParticle *ptcl, VecFx32 *pos, SPLEmitter *emtr)
 {

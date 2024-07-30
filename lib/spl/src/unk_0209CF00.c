@@ -3,9 +3,36 @@
 #include <nitro/gx/g3.h>
 #include <nitro/gx/g3imm.h>
 
-#include "spl.h"
+#include "spl_emitter.h"
+#include "spl_texture.h"
+#include "spl_manager.h"
+#include "spl_particle.h"
+#include "spl_internal.h"
+#include "spl_list.h"
 
-void sub_0209DC68(UnkSPLStruct5 *tex)
+
+typedef void(*DrawFunc)(SPLManager *mgr, SPLParticle *ptcl);
+typedef void(*SetTexFunc)(UnkSPLStruct5 *tex);
+
+typedef struct FieldFunc {
+    void (*func)(SPLParticle *, UnkSPLStruct4 *, int);
+    BOOL loop;
+} FieldFunc;
+
+typedef struct FieldFunc8 {
+    void (*func)(SPLParticle *, UnkSPLStruct4 *, u8);
+    BOOL loop;
+} FieldFunc8;
+
+static void sub_0209DC68(UnkSPLStruct5 *tex); // spl_set_tex
+static void sub_0209DC64(UnkSPLStruct5 *tex); // spl_set_tex_dummy
+static void sub_0209D064(SPLManager *mgr);
+static void sub_0209CF7C(SPLManager *mgr);
+void sub_0209D998(SPLEmitter *emtr, UnkSPLStruct4 *res, const VecFx32 *param2);
+void sub_0209CF00(SPLManager *mgr);
+void sub_0209D150(SPLManager *mgr, SPLEmitter *emtr);
+
+static void sub_0209DC68(UnkSPLStruct5 *tex)
 {
     UnkSPLUnion5 param = tex->unk_0C;
 
@@ -26,7 +53,7 @@ void sub_0209DC68(UnkSPLStruct5 *tex)
     G3_MtxMode(GX_MTXMODE_POSITION);
 }
 
-void sub_0209DC64(UnkSPLStruct5 *tex)
+static void sub_0209DC64(UnkSPLStruct5 *tex)
 {
 }
 
@@ -289,7 +316,7 @@ void sub_0209D150(SPLManager *mgr, SPLEmitter *emtr)
     }
 }
 
-void sub_0209D064(SPLManager *mgr)
+static void sub_0209D064(SPLManager *mgr)
 {
     SPLEmitter *emtr;
     UnkSPLStruct9 *resBase;
@@ -331,7 +358,7 @@ void sub_0209D064(SPLManager *mgr)
     }
 }
 
-void sub_0209CF7C(SPLManager *mgr)
+static void sub_0209CF7C(SPLManager *mgr)
 {
     SPLEmitter *emtr;
     UnkSPLStruct4 *res;
