@@ -1,10 +1,8 @@
 #include "spl.h"
 
-#include <nitro/fx/fx.h>
-
 u32 gSPLRandomState;
 
-void sub_020A23B0(VecFx32 *vec)
+void SPLRandom_VecFx32(VecFx32 *vec)
 {
     vec->x = rng_next_fx32(8);
     vec->y = rng_next_fx32(8);
@@ -12,7 +10,7 @@ void sub_020A23B0(VecFx32 *vec)
     VEC_Normalize(vec, vec);
 }
 
-void sub_020A2354(VecFx32 *vec)
+void SPLRandom_VecFx32_XY(VecFx32 *vec)
 {
     vec->x = rng_next_fx32(8);
     vec->y = rng_next_fx32(8);

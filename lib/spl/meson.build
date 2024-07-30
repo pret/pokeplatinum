@@ -22,7 +22,7 @@ libspl_srcs = files(
     'src/unk_020A19F0.c',
     'src/unk_020A1E30.c',
     'src/spl_list.c',
-    'src/unk_020A2354.c'
+    'src/spl_random.c'
 )
 
 libspl = static_library('spl',
