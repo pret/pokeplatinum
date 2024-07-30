@@ -53,14 +53,14 @@ SPLManager *SPL_0209CD00(void *(*alloc)(u32), u16 max_emtr, u16 max_ptcl, u16 fi
     MI_CpuFill8(emtr, 0, max_emtr * sizeof(SPLEmitter));
 
     for (i = 0; i < max_emtr; ++i) {
-        sub_020A2304((SPLList *)&mgr->unk_10, (SPLNode *)&emtr[i]);
+        SPLList_PushFront((SPLList *)&mgr->unk_10, (SPLNode *)&emtr[i]);
     }
 
     ptcl = alloc(max_ptcl * sizeof(SPLParticle));
     MI_CpuFill8(ptcl, 0, max_ptcl * sizeof(SPLParticle));
 
     for (i = 0; i < max_ptcl; ++i) {
-        sub_020A2304((SPLList *)&mgr->unk_1C, (SPLNode *)&ptcl[i]);
+        SPLList_PushFront((SPLList *)&mgr->unk_1C, (SPLNode *)&ptcl[i]);
     }
 
     mgr->unk_28 = NULL;
@@ -286,8 +286,8 @@ void SPL_0209C6A8(SPLManager *mgr)
         if (((base->unk_00.unk_05_6 && base->unk_3C != 0 && emtr->unk_94.started && emtr->unk_BC > base->unk_3C)
                 || emtr->unk_94.terminate)
             && emtr->unk_08.unk_04 == 0 && emtr->unk_4C.unk_04 == 0) {
-            SPLEmitter *e0 = (SPLEmitter *)sub_020A2238((SPLList *)&mgr->unk_04, (SPLNode *)emtr);
-            sub_020A2304((SPLList *)&mgr->unk_10, (SPLNode *)e0);
+            SPLEmitter *e0 = (SPLEmitter *)SPLList_Erase((SPLList *)&mgr->unk_04, (SPLNode *)emtr);
+            SPLList_PushFront((SPLList *)&mgr->unk_10, (SPLNode *)e0);
         }
 
         emtr = next;
@@ -335,9 +335,9 @@ SPLEmitter *SPL_0209C56C(SPLManager *mgr, int resno, const VecFx32 *pos)
     SPLEmitter *emtr = NULL;
 
     if (mgr->unk_10.unk_00 != NULL) {
-        emtr = (SPLEmitter *)sub_020A22B8((SPLList *)&mgr->unk_10);
+        emtr = (SPLEmitter *)SPLList_PopFront((SPLList *)&mgr->unk_10);
         sub_0209D998(emtr, mgr->unk_28 + resno, pos);
-        sub_020A2304((SPLList *)&mgr->unk_04, (SPLNode *)emtr);
+        SPLList_PushFront((SPLList *)&mgr->unk_04, (SPLNode *)emtr);
         if (emtr->p_res->unk_00->unk_00.unk_05_6) {
             emtr = NULL;
         }
@@ -353,12 +353,12 @@ SPLEmitter *SPL_0209C4D8(SPLManager *mgr, int resno, void (*fpcb)(SPLEmitter *))
     emtr = NULL;
     if (mgr->unk_10.unk_00 != NULL) {
         VecFx32 v0 = { 0, 0, 0 };
-        emtr = (SPLEmitter *)sub_020A22B8((SPLList *)&mgr->unk_10);
+        emtr = (SPLEmitter *)SPLList_PopFront((SPLList *)&mgr->unk_10);
         sub_0209D998(emtr, mgr->unk_28 + resno, &v0);
         if (fpcb != NULL) {
             fpcb(emtr);
         }
-        sub_020A2304((SPLList *)&mgr->unk_04, (SPLNode *)emtr);
+        SPLList_PushFront((SPLList *)&mgr->unk_04, (SPLNode *)emtr);
         if (emtr->p_res->unk_00->unk_00.unk_05_6) {
             emtr = NULL;
         }
@@ -373,13 +373,13 @@ SPLEmitter *SPL_CreateWithInitializeEx(SPLManager *mgr, int resNo, VecFx32 *pos,
 
     emtr = NULL;
     if (mgr->unk_10.unk_00 != NULL) {
-        emtr = (SPLEmitter *)sub_020A22B8((SPLList *)&mgr->unk_10);
+        emtr = (SPLEmitter *)SPLList_PopFront((SPLList *)&mgr->unk_10);
         sub_0209D998(emtr, mgr->unk_28 + resNo, pos);
         if (cb != NULL) {
             cb(emtr, pvoid);
         }
 
-        sub_020A2304((SPLList *)&mgr->unk_04, (SPLNode *)emtr);
+        SPLList_PushFront((SPLList *)&mgr->unk_04, (SPLNode *)emtr);
         if (emtr->p_res->unk_00->unk_00.unk_05_6) {
             emtr = NULL;
         }
@@ -390,22 +390,22 @@ SPLEmitter *SPL_CreateWithInitializeEx(SPLManager *mgr, int resNo, VecFx32 *pos,
 
 void SPL_0209C444(SPLManager *p0, SPLEmitter *p1)
 {
-    SPLEmitter *v0 = (SPLEmitter *)sub_020A22B8((SPLList *)&p1->unk_08);
+    SPLEmitter *v0 = (SPLEmitter *)SPLList_PopFront((SPLList *)&p1->unk_08);
     if (v0 != NULL) {
         do {
-            sub_020A2304((SPLList *)&p0->unk_1C, (SPLNode *)v0);
-            v0 = (SPLEmitter *)sub_020A22B8((SPLList *)&p1->unk_08);
+            SPLList_PushFront((SPLList *)&p0->unk_1C, (SPLNode *)v0);
+            v0 = (SPLEmitter *)SPLList_PopFront((SPLList *)&p1->unk_08);
         } while (v0 != NULL);
     }
-    v0 = (SPLEmitter *)sub_020A22B8((SPLList *)&p1->unk_4C);
+    v0 = (SPLEmitter *)SPLList_PopFront((SPLList *)&p1->unk_4C);
     if (v0 != NULL) {
         do {
-            sub_020A2304((SPLList *)&p0->unk_1C, (SPLNode *)v0);
-            v0 = (SPLEmitter *)sub_020A22B8((SPLList *)&p1->unk_4C);
+            SPLList_PushFront((SPLList *)&p0->unk_1C, (SPLNode *)v0);
+            v0 = (SPLEmitter *)SPLList_PopFront((SPLList *)&p1->unk_4C);
         } while (v0 != NULL);
     }
-    sub_020A2238((SPLList *)&p0->unk_04, (SPLNode *)p1);
-    sub_020A2304((SPLList *)&p0->unk_10, (SPLNode *)p1);
+    SPLList_Erase((SPLList *)&p0->unk_04, (SPLNode *)p1);
+    SPLList_PushFront((SPLList *)&p0->unk_10, (SPLNode *)p1);
 }
 
 void SPL_0209C400(SPLManager *p0)
