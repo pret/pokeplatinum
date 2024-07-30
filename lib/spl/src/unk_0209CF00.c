@@ -115,8 +115,8 @@ void sub_0209D998(SPLEmitter *emtr, UnkSPLStruct4 *res, const VecFx32 *pos)
     }
 
     emtr->unk_00 = emtr->unk_04 = NULL;
-    emtr->unk_08.unk_00 = emtr->unk_4C.unk_00 = NULL;
-    emtr->unk_08.unk_04 = emtr->unk_4C.unk_04 = 0;
+    emtr->unk_08.first = emtr->unk_4C.first = NULL;
+    emtr->unk_08.count = emtr->unk_4C.count = 0;
     emtr->unk_100 = NULL;
     emtr->unk_104 = NULL;
     emtr->unk_108.unk_108_val1 = 0;
@@ -153,7 +153,7 @@ void sub_0209D150(SPLManager *mgr, SPLEmitter *emtr)
     if (resBase->unk_3C == 0 || emtr->unk_BC < resBase->unk_3C) {
         if (emtr->unk_BC % emtr->unk_F0.unk_00_0 == 0) {
             if (!emtr->unk_94.terminate && !emtr->unk_94.stop_generate && emtr->unk_94.started) {
-                sub_020A08DC(emtr, (SPLList *)(&mgr->unk_1C));
+                sub_020A08DC(emtr, (SPLList *)(&mgr->inactiveParticles));
             }
         }
     }
@@ -178,8 +178,8 @@ void sub_0209D150(SPLManager *mgr, SPLEmitter *emtr)
         fieldFuncs[fieldIndex++].loop = res->unk_10->unk_08.unk_02_1;
     }
 
-    for (ptcl = emtr->unk_08.unk_00; ptcl != NULL; ptcl = next) {
-        next = ptcl->unk_00;
+    for (ptcl = emtr->unk_08.first; ptcl != NULL; ptcl = next) {
+        next = ptcl->next;
         lifeRates[0] = ptcl->unk_2A * ptcl->age >> 8;
         lifeRates[1] = ptcl->unk_2C.unk_01 + (ptcl->unk_28 * ptcl->age >> 8);
 
@@ -218,19 +218,19 @@ void sub_0209D150(SPLManager *mgr, SPLEmitter *emtr)
 
             if (diff >= 0) {
                 if ((diff >> FX32_SHIFT) % child->unk_0C.unk_02_0 == 0) {
-                    sub_020A05BC(ptcl, emtr, (SPLList *)&mgr->unk_1C);
+                    sub_020A05BC(ptcl, emtr, (SPLList *)&mgr->inactiveParticles);
                 }
             }
         }
 
         if (emtr->p_res->unk_00->unk_00.unk_07_6) {
-            ptcl->unk_2E.unk_01_2 = mgr->unk_38.unk_02_2;
+            ptcl->unk_2E.unk_01_2 = mgr->polygonID.fix;
         } else {
-            ptcl->unk_2E.unk_01_2 = mgr->unk_38.unk_01_4;
-            mgr->unk_38.unk_01_4 += 1;
+            ptcl->unk_2E.unk_01_2 = mgr->polygonID.current;
+            mgr->polygonID.current += 1;
 
-            if (mgr->unk_38.unk_01_4 > mgr->unk_38.unk_00_6) {
-                mgr->unk_38.unk_01_4 = mgr->unk_38.unk_00_0;
+            if (mgr->polygonID.current > mgr->polygonID.max) {
+                mgr->polygonID.current = mgr->polygonID.min;
             }
         }
 
@@ -238,7 +238,7 @@ void sub_0209D150(SPLManager *mgr, SPLEmitter *emtr)
 
         if (ptcl->age > ptcl->lifeTime) {
             SPLNode *node = SPLList_Erase((SPLList *)(&emtr->unk_08), (SPLNode *)ptcl);
-            SPLList_PushFront((SPLList *)&mgr->unk_1C, node);
+            SPLList_PushFront((SPLList *)&mgr->inactiveParticles, node);
         }
     }
 
@@ -258,8 +258,8 @@ void sub_0209D150(SPLManager *mgr, SPLEmitter *emtr)
             fldNum = 0;
         }
 
-        for (ptcl = emtr->unk_4C.unk_00; ptcl != NULL; ptcl = next) {
-            next = ptcl->unk_00;
+        for (ptcl = emtr->unk_4C.first; ptcl != NULL; ptcl = next) {
+            next = ptcl->next;
             lifeRates[0] = (ptcl->age << 8) / ptcl->lifeTime;
             for (i = 0; i < fieldIndex; i++) {
                 u8 lifeRate = lifeRates[0];
@@ -291,20 +291,20 @@ void sub_0209D150(SPLManager *mgr, SPLEmitter *emtr)
             ptcl->position.z += ptcl->velocity.z + emtr->unk_A4.z;
 
             if (emtr->p_res->unk_00->unk_00.unk_07_7) {
-                ptcl->unk_2E.unk_01_2 = mgr->unk_38.unk_02_2;
+                ptcl->unk_2E.unk_01_2 = mgr->polygonID.fix;
             } else {
-                ptcl->unk_2E.unk_01_2 = mgr->unk_38.unk_01_4;
-                mgr->unk_38.unk_01_4 += 1;
+                ptcl->unk_2E.unk_01_2 = mgr->polygonID.current;
+                mgr->polygonID.current += 1;
 
-                if (mgr->unk_38.unk_01_4 > mgr->unk_38.unk_00_6) {
-                    mgr->unk_38.unk_01_4 = mgr->unk_38.unk_00_0;
+                if (mgr->polygonID.current > mgr->polygonID.max) {
+                    mgr->polygonID.current = mgr->polygonID.min;
                 }
             }
 
             ptcl->age += 1;
 
             if (ptcl->age > ptcl->lifeTime) {
-                SPLList_PushFront((SPLList *)&mgr->unk_1C, SPLList_Erase((SPLList *)(&emtr->unk_4C), (SPLNode *)ptcl));
+                SPLList_PushFront((SPLList *)&mgr->inactiveParticles, SPLList_Erase((SPLList *)(&emtr->unk_4C), (SPLNode *)ptcl));
             }
         }
     }
@@ -349,12 +349,12 @@ static void sub_0209D064(SPLManager *mgr)
     }
 
     setTexFunc = resBase->unk_00.unk_05_3 ? sub_0209DC68 : sub_0209DC64;
-    ptcl = emtr->unk_08.unk_00;
+    ptcl = emtr->unk_08.first;
 
     while (ptcl != NULL) {
         setTexFunc(mgr->unk_2C + ptcl->unk_2C.unk_00);
         drawFunc(mgr, ptcl);
-        ptcl = ptcl->unk_00;
+        ptcl = ptcl->next;
     }
 }
 
@@ -393,10 +393,10 @@ static void sub_0209CF7C(SPLManager *mgr)
         break;
     }
 
-    ptcl = emtr->unk_4C.unk_00;
+    ptcl = emtr->unk_4C.first;
     while (ptcl != NULL) {
         drawFunc(mgr, ptcl);
-        ptcl = ptcl->unk_00;
+        ptcl = ptcl->next;
     }
 }
 

@@ -3,7 +3,7 @@
 
 #include <nitro/fx/fx.h>
 
-typedef struct SPLParticle_t SPLParticle;
+typedef struct SPLParticle SPLParticle;
 struct SPLEmitter;
 
 typedef struct {

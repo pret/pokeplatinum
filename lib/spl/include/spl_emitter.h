@@ -26,8 +26,8 @@ typedef struct UnkSPLStruct7 {
 typedef struct SPLEmitter {
     struct SPLEmitter * unk_00;
     struct SPLEmitter * unk_04;
-    UnkSPLStruct3 unk_08;
-    UnkSPLStruct3 unk_4C;
+    SPLParticleList unk_08;
+    SPLParticleList unk_4C;
     UnkSPLStruct4 * p_res;
     UnkSPLStruct7 unk_94;
     VecFx32 unk_98;
@@ -67,10 +67,10 @@ typedef struct SPLEmitter {
     } unk_108;
 } SPLEmitter;
 
-typedef struct UnkSPLStruct2_t {
-    SPLEmitter * unk_00;
-    int unk_04;
-    SPLEmitter * unk_08;
-} UnkSPLStruct2; // size=0xc
+typedef struct SPLEmitterList {
+    SPLEmitter *first;
+    int count;
+    SPLEmitter *last;
+} SPLEmitterList; // size=0xc
 
 #endif // SPL_EMITTER_H

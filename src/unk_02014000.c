@@ -99,7 +99,7 @@ void sub_0201411C(UnkStruct_02014014 *param0);
 void sub_02014718(UnkStruct_02014014 *param0);
 void sub_020144CC(UnkStruct_02014014 *param0, void *param1, int param2, int param3);
 
-static const UnkFuncPtr_0209CD00 Unk_020E5454[] = {
+static const SPLAllocFunc Unk_020E5454[] = {
     sub_02014204,
     sub_02014230,
     sub_0201425C,
@@ -173,7 +173,7 @@ UnkStruct_02014014 *sub_02014014(UnkFuncPtr_02014014 param0, UnkFuncPtr_02014014
         }
     }
 
-    v0->unk_00 = SPL_0209CD00(Unk_020E5454[v1], EMIT_MAX, PARTICLE_MAX, FIX_POLYGON_ID, MIN_POLYGON_ID, MAX_POLYGON_ID);
+    v0->unk_00 = SPLManager_New(Unk_020E5454[v1], EMIT_MAX, PARTICLE_MAX, FIX_POLYGON_ID, MIN_POLYGON_ID, MAX_POLYGON_ID);
 
     sub_02014744(v0, &Unk_020E5430);
 
@@ -590,7 +590,7 @@ SPLEmitter *sub_020146F4(UnkStruct_02014014 *param0, int param1, UnkFuncPtr_0201
 
 s32 sub_02014710(UnkStruct_02014014 *param0)
 {
-    return param0->unk_00->unk_04.unk_04;
+    return param0->unk_00->activeEmitters.count;
 }
 
 void sub_02014718(UnkStruct_02014014 *param0)
