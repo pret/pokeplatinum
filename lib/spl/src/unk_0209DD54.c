@@ -6,10 +6,28 @@
 #include <nitro/gx/g3.h>
 #include <nitro/gx/g3imm.h>
 
-#include "spl.h"
+#include "spl_particle.h"
+#include "spl_manager.h"
+#include "spl_internal.h"
 
 typedef void (*RotFunc)(fx32 sin, fx32 cos, MtxFx43 *rot);
 typedef void (*DrawPlaneFunc)(fx16 s, fx16 t, fx16 offsetX, fx16 offsetY);
+
+void sub_0209FAB8(SPLManager *mgr, SPLParticle *ptcl); // spl_draw_chld_bb
+void sub_0209ECF0(SPLManager *mgr, SPLParticle *ptcl); // spl_draw_chld_dbb
+void sub_0209E650(SPLManager *mgr, SPLParticle *ptcl); // spl_draw_chld_pol
+void sub_0209DD54(SPLManager *mgr, SPLParticle *ptcl); // spl_draw_chld_dpl
+
+void sub_0209FF0C(SPLManager *mgr, SPLParticle *ptcl); // spl_draw_bb
+void sub_0209F3D0(SPLManager *mgr, SPLParticle *ptcl); // spl_draw_dbb
+void sub_0209E9A0(SPLManager *mgr, SPLParticle *ptcl); // spl_draw_pol
+void sub_0209E1D4(SPLManager *mgr, SPLParticle *ptcl); // spl_draw_dpl
+
+static void sub_020A0500(fx16 s, fx16 t, fx16 offsetX, fx16 offsetY);
+static void sub_020A0444(fx16 s, fx16 t, fx16 offsetX, fx16 offsetZ);
+
+static void sub_020A0398(fx32 sin, fx32 cos, MtxFx43 *mat);
+static void sub_020A0358(fx32 sin, fx32 cos, MtxFx43 *mat);
 
 static DrawPlaneFunc Unk_02100DA0[2] = {
     sub_020A0500,
@@ -21,7 +39,7 @@ static RotFunc Unk_02100DA8[2] = {
     sub_020A0398,
 };
 
-void sub_020A0500(fx16 s, fx16 t, fx16 offsetX, fx16 offsetY)
+static void sub_020A0500(fx16 s, fx16 t, fx16 offsetX, fx16 offsetY)
 {
     G3_Begin(GX_BEGIN_QUADS);
 
@@ -40,7 +58,7 @@ void sub_020A0500(fx16 s, fx16 t, fx16 offsetX, fx16 offsetY)
     G3_End();
 }
 
-void sub_020A0444(fx16 s, fx16 t, fx16 offsetX, fx16 offsetZ)
+static void sub_020A0444(fx16 s, fx16 t, fx16 offsetX, fx16 offsetZ)
 {
     G3_Begin(GX_BEGIN_QUADS);
 
@@ -59,7 +77,7 @@ void sub_020A0444(fx16 s, fx16 t, fx16 offsetX, fx16 offsetZ)
     G3_End();
 }
 
-void sub_020A0398(fx32 sin, fx32 cos, MtxFx43 *mat)
+static void sub_020A0398(fx32 sin, fx32 cos, MtxFx43 *mat)
 {
     fx32 C, Sm, Sp;
 
@@ -82,7 +100,7 @@ void sub_020A0398(fx32 sin, fx32 cos, MtxFx43 *mat)
     mat->m[3][2] = 0;
 }
 
-void sub_020A0358(fx32 sin, fx32 cos, MtxFx43 *mat)
+static void sub_020A0358(fx32 sin, fx32 cos, MtxFx43 *mat)
 {
     mat->m[0][0] = cos;
     mat->m[1][0] = 0;

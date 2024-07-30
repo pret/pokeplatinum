@@ -4,10 +4,10 @@
 #include <nitro/fx/fx.h>
 
 typedef struct SPLParticle_t SPLParticle;
-struct SPLEmitter_t;
+struct SPLEmitter;
 
 typedef struct {
-    void (*unk_00)(const void *, SPLParticle *, VecFx32 *, struct SPLEmitter_t *);
+    void (*unk_00)(const void *, SPLParticle *, VecFx32 *, struct SPLEmitter *);
     const void *unk_04;
 } UnkStruct_020147B8;
 

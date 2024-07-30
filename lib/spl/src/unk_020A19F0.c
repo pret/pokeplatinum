@@ -1,8 +1,9 @@
 #include <nitro/fx/fx.h>
 #include <nitro/fx/fx_const.h>
 
-#include "spl.h"
 #include "spl_random.h"
+#include "spl_internal.h"
+
 
 void sub_020A1DA0(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate)
 {

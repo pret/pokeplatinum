@@ -3,7 +3,7 @@
 
 #include <nitro/types.h>
 
-#include "spl.h"
+#include "spl_emitter.h"
 
 typedef struct SPLGravityBehavior {
     VecFx16 mag;
@@ -44,11 +44,11 @@ typedef struct SPLConvergenceBehavior {
 } SPLConvergenceBehavior;
 
 
-void SPL_020A2204(const void *param0, SPLParticle *param1, VecFx32 *param2, struct SPLEmitter_t *param3);
-void SPL_020A213C(const void *param0, SPLParticle *param1, VecFx32 *param2, struct SPLEmitter_t *param3);
-void SPL_020A20B8(const void *param0, SPLParticle *param1, VecFx32 *param2, struct SPLEmitter_t *param3);
-void SPL_020A1FE0(const void *param0, SPLParticle *param1, VecFx32 *param2, struct SPLEmitter_t *param3);
-void SPL_020A1EC4(const void *param0, SPLParticle *param1, VecFx32 *param2, struct SPLEmitter_t *param3);
-void SPL_020A1E30(const void *param0, SPLParticle *param1, VecFx32 *param2, struct SPLEmitter_t *param3);
+void SPL_020A2204(const void *param0, SPLParticle *param1, VecFx32 *param2, struct SPLEmitter *param3);
+void SPL_020A213C(const void *param0, SPLParticle *param1, VecFx32 *param2, struct SPLEmitter *param3);
+void SPL_020A20B8(const void *param0, SPLParticle *param1, VecFx32 *param2, struct SPLEmitter *param3);
+void SPL_020A1FE0(const void *param0, SPLParticle *param1, VecFx32 *param2, struct SPLEmitter *param3);
+void SPL_020A1EC4(const void *param0, SPLParticle *param1, VecFx32 *param2, struct SPLEmitter *param3);
+void SPL_020A1E30(const void *param0, SPLParticle *param1, VecFx32 *param2, struct SPLEmitter *param3);
 
 #endif // SPL_BEHAVIOR_H

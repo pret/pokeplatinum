@@ -1,18 +1,27 @@
-#include "spl.h"
-#include "spl_behavior.h"
-
 #include <nnsys/gfd/VramManager/gfd_PlttVramMan_Types.h>
 #include <nnsys/gfd/VramManager/gfd_TexVramMan_Types.h>
 #include <nitro/fx/fx.h>
 
+#include "spl_list.h"
+#include "spl_manager.h"
+#include "spl_behavior.h"
+#include "spl_internal.h"
+
 #define DECODE_WH(X) ((u16)(1 << ((X) + 3)))
 
-u32 sub_0209CEC8(u32 size, BOOL is4x4)
+typedef void (*UnkSPLFuncPtr0)(SPLEmitter *, void *);
+
+
+static u32 sub_0209CE90(u32 param0, BOOL param1);
+static u32 sub_0209CEC8(u32 param0, BOOL param1);
+
+
+static u32 sub_0209CEC8(u32 size, BOOL is4x4)
 {
     return (NNS_GfdAllocTexVram(size, is4x4, 0) & 0xFFFF) * 8;
 }
 
-u32 sub_0209CE90(u32 size, BOOL is4Pltt)
+static u32 sub_0209CE90(u32 size, BOOL is4Pltt)
 {
     return (NNS_GfdAllocPlttVram(size, is4Pltt, 0) & 0xFFFF) * 8;
 }
