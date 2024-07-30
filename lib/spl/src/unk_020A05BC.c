@@ -108,14 +108,14 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
 
             switch (resBase->unk_00.unk_04_0) {
             case 0:
-                ptcl->unk_08.x = ptcl->unk_08.y = ptcl->unk_08.z = 0;
+                ptcl->position.x = ptcl->position.y = ptcl->position.z = 0;
                 break;
 
             case 1:
-                SPLRandom_VecFx32(&ptcl->unk_08);
-                ptcl->unk_08.x = FX_MUL(ptcl->unk_08.x, emtr->unk_CC);
-                ptcl->unk_08.y = FX_MUL(ptcl->unk_08.y, emtr->unk_CC);
-                ptcl->unk_08.z = FX_MUL(ptcl->unk_08.z, emtr->unk_CC);
+                SPLRandom_VecFx32(&ptcl->position);
+                ptcl->position.x = FX_MUL(ptcl->position.x, emtr->unk_CC);
+                ptcl->position.y = FX_MUL(ptcl->position.y, emtr->unk_CC);
+                ptcl->position.z = FX_MUL(ptcl->position.z, emtr->unk_CC);
                 break;
 
             case 2: {
@@ -124,7 +124,7 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
                 pos.x = FX_MUL(pos.x, emtr->unk_CC);
                 pos.y = FX_MUL(pos.y, emtr->unk_CC);
                 pos.z = 0;
-                sub_020A1608(&ptcl->unk_08, &pos, emtr);
+                sub_020A1608(&ptcl->position, &pos, emtr);
             } break;
 
             case 3: {
@@ -136,14 +136,14 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
                 pos.x = FX_MUL(sin, emtr->unk_CC);
                 pos.y = FX_MUL(cos, emtr->unk_CC);
                 pos.z = 0;
-                sub_020A1608(&ptcl->unk_08, &pos, emtr);
+                sub_020A1608(&ptcl->position, &pos, emtr);
             } break;
 
             case 4:
-                SPLRandom_VecFx32(&ptcl->unk_08);
-                ptcl->unk_08.x = FX_MUL(FX_MUL(ptcl->unk_08.x, emtr->unk_CC), SPLRandom_RangeFX32(FX32_ONE));
-                ptcl->unk_08.y = FX_MUL(FX_MUL(ptcl->unk_08.y, emtr->unk_CC), SPLRandom_RangeFX32(FX32_ONE));
-                ptcl->unk_08.z = FX_MUL(FX_MUL(ptcl->unk_08.z, emtr->unk_CC), SPLRandom_RangeFX32(FX32_ONE));
+                SPLRandom_VecFx32(&ptcl->position);
+                ptcl->position.x = FX_MUL(FX_MUL(ptcl->position.x, emtr->unk_CC), SPLRandom_RangeFX32(FX32_ONE));
+                ptcl->position.y = FX_MUL(FX_MUL(ptcl->position.y, emtr->unk_CC), SPLRandom_RangeFX32(FX32_ONE));
+                ptcl->position.z = FX_MUL(FX_MUL(ptcl->position.z, emtr->unk_CC), SPLRandom_RangeFX32(FX32_ONE));
                 break;
 
             case 5: {
@@ -151,63 +151,63 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
                 SPLRandom_VecFx32_XY(&pos);
                 pos.x = FX_MUL(FX_MUL(pos.x, emtr->unk_CC), SPLRandom_RangeFX32(FX32_ONE));
                 pos.y = FX_MUL(FX_MUL(pos.y, emtr->unk_CC), SPLRandom_RangeFX32(FX32_ONE));
-                sub_020A1608(&ptcl->unk_08, &pos, emtr);
+                sub_020A1608(&ptcl->position, &pos, emtr);
             } break;
 
             case 8: {
                 VecFx32 pos;
                 VecFx16 tmpUnitVec;
-                SPLRandom_VecFx32(&ptcl->unk_08);
+                SPLRandom_VecFx32(&ptcl->position);
                 VEC_Fx16CrossProduct(&emtr->unk_F4, &emtr->unk_FA, &tmpUnitVec);
                 pos.x = tmpUnitVec.x;
                 pos.y = tmpUnitVec.y;
                 pos.z = tmpUnitVec.z;
-                if (VEC_DotProduct(&pos, &ptcl->unk_08) <= 0) {
-                    ptcl->unk_08.x = -ptcl->unk_08.x;
-                    ptcl->unk_08.y = -ptcl->unk_08.y;
-                    ptcl->unk_08.z = -ptcl->unk_08.z;
+                if (VEC_DotProduct(&pos, &ptcl->position) <= 0) {
+                    ptcl->position.x = -ptcl->position.x;
+                    ptcl->position.y = -ptcl->position.y;
+                    ptcl->position.z = -ptcl->position.z;
                 }
 
-                ptcl->unk_08.x = FX_MUL(ptcl->unk_08.x, emtr->unk_CC);
-                ptcl->unk_08.y = FX_MUL(ptcl->unk_08.y, emtr->unk_CC);
-                ptcl->unk_08.z = FX_MUL(ptcl->unk_08.z, emtr->unk_CC);
+                ptcl->position.x = FX_MUL(ptcl->position.x, emtr->unk_CC);
+                ptcl->position.y = FX_MUL(ptcl->position.y, emtr->unk_CC);
+                ptcl->position.z = FX_MUL(ptcl->position.z, emtr->unk_CC);
             } break;
 
             case 9: {
                 VecFx32 pos;
                 VecFx16 tmpUnitVec;
-                SPLRandom_VecFx32(&ptcl->unk_08);
+                SPLRandom_VecFx32(&ptcl->position);
                 VEC_Fx16CrossProduct(&emtr->unk_F4, &emtr->unk_FA, &tmpUnitVec);
                 pos.x = tmpUnitVec.x;
                 pos.y = tmpUnitVec.y;
                 pos.z = tmpUnitVec.z;
-                if (VEC_DotProduct(&pos, &ptcl->unk_08) < 0) {
-                    ptcl->unk_08.x = -ptcl->unk_08.x;
-                    ptcl->unk_08.y = -ptcl->unk_08.y;
-                    ptcl->unk_08.z = -ptcl->unk_08.z;
+                if (VEC_DotProduct(&pos, &ptcl->position) < 0) {
+                    ptcl->position.x = -ptcl->position.x;
+                    ptcl->position.y = -ptcl->position.y;
+                    ptcl->position.z = -ptcl->position.z;
                 }
 
-                ptcl->unk_08.x = FX_MUL(FX_MUL(ptcl->unk_08.x, emtr->unk_CC), (SPLRandom_RangeFX32(FX32_ONE) >> 1) + FX32_HALF);
-                ptcl->unk_08.y = FX_MUL(FX_MUL(ptcl->unk_08.y, emtr->unk_CC), (SPLRandom_RangeFX32(FX32_ONE) >> 1) + FX32_HALF);
-                ptcl->unk_08.z = FX_MUL(FX_MUL(ptcl->unk_08.z, emtr->unk_CC), (SPLRandom_RangeFX32(FX32_ONE) >> 1) + FX32_HALF);
+                ptcl->position.x = FX_MUL(FX_MUL(ptcl->position.x, emtr->unk_CC), (SPLRandom_RangeFX32(FX32_ONE) >> 1) + FX32_HALF);
+                ptcl->position.y = FX_MUL(FX_MUL(ptcl->position.y, emtr->unk_CC), (SPLRandom_RangeFX32(FX32_ONE) >> 1) + FX32_HALF);
+                ptcl->position.z = FX_MUL(FX_MUL(ptcl->position.z, emtr->unk_CC), (SPLRandom_RangeFX32(FX32_ONE) >> 1) + FX32_HALF);
             } break;
 
             case 6: {
                 VecFx32 pos;
-                SPLRandom_VecFx32_XY(&ptcl->unk_14);
-                pos.x = FX_MUL(ptcl->unk_14.x, emtr->unk_CC);
-                pos.y = FX_MUL(ptcl->unk_14.y, emtr->unk_CC);
+                SPLRandom_VecFx32_XY(&ptcl->velocity);
+                pos.x = FX_MUL(ptcl->velocity.x, emtr->unk_CC);
+                pos.y = FX_MUL(ptcl->velocity.y, emtr->unk_CC);
                 pos.z = SPLRandom_RangeFX32(emtr->unk_D0);
-                sub_020A1608(&ptcl->unk_08, &pos, emtr);
+                sub_020A1608(&ptcl->position, &pos, emtr);
             } break;
 
             case 7: {
                 VecFx32 pos;
-                SPLRandom_VecFx32_XY(&ptcl->unk_14);
-                pos.x = FX_MUL(FX_MUL(ptcl->unk_14.x, emtr->unk_CC), SPLRandom_RangeFX32(FX32_ONE));
-                pos.y = FX_MUL(FX_MUL(ptcl->unk_14.y, emtr->unk_CC), SPLRandom_RangeFX32(FX32_ONE));
+                SPLRandom_VecFx32_XY(&ptcl->velocity);
+                pos.x = FX_MUL(FX_MUL(ptcl->velocity.x, emtr->unk_CC), SPLRandom_RangeFX32(FX32_ONE));
+                pos.y = FX_MUL(FX_MUL(ptcl->velocity.y, emtr->unk_CC), SPLRandom_RangeFX32(FX32_ONE));
                 pos.z = SPLRandom_RangeFX32(emtr->unk_D0);
-                sub_020A1608(&ptcl->unk_08, &pos, emtr);
+                sub_020A1608(&ptcl->position, &pos, emtr);
             } break;
             }
 
@@ -217,22 +217,22 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
             VecFx32 posNorm;
             if (resBase->unk_00.unk_04_0 == 6) {
                 VecFx32 tmp;
-                tmp.x = FX_MUL(ptcl->unk_14.x, emtr->unk_F4.x) + FX_MUL(ptcl->unk_14.y, emtr->unk_FA.x);
-                tmp.y = FX_MUL(ptcl->unk_14.x, emtr->unk_F4.y) + FX_MUL(ptcl->unk_14.y, emtr->unk_FA.y);
-                tmp.z = FX_MUL(ptcl->unk_14.x, emtr->unk_F4.z) + FX_MUL(ptcl->unk_14.y, emtr->unk_FA.z);
+                tmp.x = FX_MUL(ptcl->velocity.x, emtr->unk_F4.x) + FX_MUL(ptcl->velocity.y, emtr->unk_FA.x);
+                tmp.y = FX_MUL(ptcl->velocity.x, emtr->unk_F4.y) + FX_MUL(ptcl->velocity.y, emtr->unk_FA.y);
+                tmp.z = FX_MUL(ptcl->velocity.x, emtr->unk_F4.z) + FX_MUL(ptcl->velocity.y, emtr->unk_FA.z);
 
                 VEC_Normalize(&tmp, &posNorm);
-            } else if (ptcl->unk_08.x == 0 && ptcl->unk_08.y == 0 && ptcl->unk_08.z == 0) {
+            } else if (ptcl->position.x == 0 && ptcl->position.y == 0 && ptcl->position.z == 0) {
                 SPLRandom_VecFx32(&posNorm);
             } else {
-                VEC_Normalize(&ptcl->unk_08, &posNorm);
+                VEC_Normalize(&ptcl->position, &posNorm);
             }
 
-            ptcl->unk_14.x = FX_MUL(posNorm.x, magPos) + FX_MUL(emtr->unk_C0.x, magAxis) + emtr->unk_B0.x;
-            ptcl->unk_14.y = FX_MUL(posNorm.y, magPos) + FX_MUL(emtr->unk_C0.y, magAxis) + emtr->unk_B0.y;
-            ptcl->unk_14.z = FX_MUL(posNorm.z, magPos) + FX_MUL(emtr->unk_C0.z, magAxis) + emtr->unk_B0.z;
+            ptcl->velocity.x = FX_MUL(posNorm.x, magPos) + FX_MUL(emtr->unk_C0.x, magAxis) + emtr->unk_B0.x;
+            ptcl->velocity.y = FX_MUL(posNorm.y, magPos) + FX_MUL(emtr->unk_C0.y, magAxis) + emtr->unk_B0.y;
+            ptcl->velocity.z = FX_MUL(posNorm.z, magPos) + FX_MUL(emtr->unk_C0.z, magAxis) + emtr->unk_B0.z;
 
-            ptcl->unk_38 = emtr->unk_98;
+            ptcl->emitterPos = emtr->unk_98;
 
             ptcl->unk_30 = SPLRandom_DoubleScaledRangeFX32(emtr->unk_DC, resBase->unk_44.unk_00_0);
             ptcl->unk_34 = FX32_ONE;
@@ -263,8 +263,8 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
                 ptcl->unk_22 = 0;
             }
 
-            ptcl->unk_24 = SPLRandom_ScaledRangeFX32(emtr->unk_E0, resBase->unk_44.unk_01_0) + 1;
-            ptcl->unk_26 = 0;
+            ptcl->lifeTime = SPLRandom_ScaledRangeFX32(emtr->unk_E0, resBase->unk_44.unk_01_0) + 1;
+            ptcl->age = 0;
 
             if (resBase->unk_00.unk_05_3 && res->unk_10->unk_08.unk_02_0) {
                 ptcl->unk_2C.unk_00 = res->unk_10->unk_00[SPLRandom_U32(12) % res->unk_10->unk_08.unk_00_0];
@@ -275,7 +275,7 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
             }
 
             ptcl->unk_28 = 0xFFFF / res->unk_00->unk_48.unk_04_0;
-            ptcl->unk_2A = 0xFFFF / ptcl->unk_24;
+            ptcl->unk_2A = 0xFFFF / ptcl->lifeTime;
 
             ptcl->unk_2C.unk_01 = 0;
 
@@ -303,21 +303,21 @@ void sub_020A05BC(SPLParticle *ptcl, SPLEmitter *emtr, SPLList *list)
         }
         SPLList_PushFront((SPLList *)&emtr->unk_4C, (SPLNode *)chld);
 
-        chld->unk_08 = ptcl->unk_08;
+        chld->position = ptcl->position;
 
-        velBase = FX_MUL(ptcl->unk_14.x, vel);
+        velBase = FX_MUL(ptcl->velocity.x, vel);
         velRand = SPLRandom_RangeFX32(chldRes->unk_02);
-        chld->unk_14.x = velBase + velRand;
+        chld->velocity.x = velBase + velRand;
 
-        velBase = FX_MUL(ptcl->unk_14.y, vel);
+        velBase = FX_MUL(ptcl->velocity.y, vel);
         velRand = SPLRandom_RangeFX32(chldRes->unk_02);
-        chld->unk_14.y = velBase + velRand;
+        chld->velocity.y = velBase + velRand;
 
-        velBase = FX_MUL(ptcl->unk_14.z, vel);
+        velBase = FX_MUL(ptcl->velocity.z, vel);
         velRand = SPLRandom_RangeFX32(chldRes->unk_02);
-        chld->unk_14.z = velBase + velRand;
+        chld->velocity.z = velBase + velRand;
 
-        chld->unk_38 = ptcl->unk_38;
+        chld->emitterPos = ptcl->emitterPos;
 
         // `unk_08.unk_00_0` and `unk_08.unk_01_0` in `UnkSPLStruct14`
         // could just be `u8 unk_08;` and `u8 unk_09;`
@@ -351,12 +351,12 @@ void sub_020A05BC(SPLParticle *ptcl, SPLEmitter *emtr, SPLList *list)
             break;
         }
 
-        chld->unk_24 = chldRes->unk_06;
-        chld->unk_26 = 0;
+        chld->lifeTime = chldRes->unk_06;
+        chld->age = 0;
         chld->unk_2C.unk_00 = chldRes->unk_0C.unk_03_0;
 
-        chld->unk_28 = 0xFFFF / (ptcl->unk_24 / 2);
-        chld->unk_2A = 0xFFFF / ptcl->unk_24;
+        chld->unk_28 = 0xFFFF / (ptcl->lifeTime / 2);
+        chld->unk_2A = 0xFFFF / ptcl->lifeTime;
         chld->unk_2C.unk_01 = 0;
     }
 }
