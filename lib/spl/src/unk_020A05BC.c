@@ -3,6 +3,7 @@
 #include <nitro/fx/fx_trig.h>
 
 #include "spl.h"
+#include "spl_random.h"
 
 VecFx16 Unk_02100DB0 = { 0, FX16_ONE, 0 };
 
@@ -71,9 +72,9 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
     UnkSPLStruct9 *resBase;
     int i, curGenNum;
     SPLParticle *ptcl;
-
     fx32 magPos;
     fx32 magAxis;
+
     res = emtr->p_res;
     resBase = res->unk_00;
 
@@ -133,16 +134,16 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
 
             case 4:
                 SPLRandom_VecFx32(&ptcl->unk_08);
-                ptcl->unk_08.x = FX_MUL(FX_MUL(ptcl->unk_08.x, emtr->unk_CC), (rng_next_s32(0x17) * FX32_ONE - 0x100000) >> 8);
-                ptcl->unk_08.y = FX_MUL(FX_MUL(ptcl->unk_08.y, emtr->unk_CC), (rng_next_s32(0x17) * FX32_ONE - 0x100000) >> 8);
-                ptcl->unk_08.z = FX_MUL(FX_MUL(ptcl->unk_08.z, emtr->unk_CC), (rng_next_s32(0x17) * FX32_ONE - 0x100000) >> 8);
+                ptcl->unk_08.x = FX_MUL(FX_MUL(ptcl->unk_08.x, emtr->unk_CC), SPLRandom_RangeFX32(FX32_ONE));
+                ptcl->unk_08.y = FX_MUL(FX_MUL(ptcl->unk_08.y, emtr->unk_CC), SPLRandom_RangeFX32(FX32_ONE));
+                ptcl->unk_08.z = FX_MUL(FX_MUL(ptcl->unk_08.z, emtr->unk_CC), SPLRandom_RangeFX32(FX32_ONE));
                 break;
 
             case 5: {
                 VecFx32 pos;
                 SPLRandom_VecFx32_XY(&pos);
-                pos.x = FX_MUL(FX_MUL(pos.x, emtr->unk_CC), ((fx32)rng_next_s32(0x17) * FX32_ONE - 0x100000) >> 8);
-                pos.y = FX_MUL(FX_MUL(pos.y, emtr->unk_CC), ((fx32)rng_next_s32(0x17) * FX32_ONE - 0x100000) >> 8);
+                pos.x = FX_MUL(FX_MUL(pos.x, emtr->unk_CC), SPLRandom_RangeFX32(FX32_ONE));
+                pos.y = FX_MUL(FX_MUL(pos.y, emtr->unk_CC), SPLRandom_RangeFX32(FX32_ONE));
                 sub_020A1608(&ptcl->unk_08, &pos, emtr);
             } break;
 
@@ -179,9 +180,9 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
                     ptcl->unk_08.z = -ptcl->unk_08.z;
                 }
 
-                ptcl->unk_08.x = FX_MUL(FX_MUL(ptcl->unk_08.x, emtr->unk_CC), (((fx32)rng_next_s32(0x17) * FX32_ONE - 0x100000) >> 9) + 0x800);
-                ptcl->unk_08.y = FX_MUL(FX_MUL(ptcl->unk_08.y, emtr->unk_CC), (((fx32)rng_next_s32(0x17) * FX32_ONE - 0x100000) >> 9) + 0x800);
-                ptcl->unk_08.z = FX_MUL(FX_MUL(ptcl->unk_08.z, emtr->unk_CC), (((fx32)rng_next_s32(0x17) * FX32_ONE - 0x100000) >> 9) + 0x800);
+                ptcl->unk_08.x = FX_MUL(FX_MUL(ptcl->unk_08.x, emtr->unk_CC), (SPLRandom_RangeFX32(FX32_ONE) >> 1) + FX32_HALF);
+                ptcl->unk_08.y = FX_MUL(FX_MUL(ptcl->unk_08.y, emtr->unk_CC), (SPLRandom_RangeFX32(FX32_ONE) >> 1) + FX32_HALF);
+                ptcl->unk_08.z = FX_MUL(FX_MUL(ptcl->unk_08.z, emtr->unk_CC), (SPLRandom_RangeFX32(FX32_ONE) >> 1) + FX32_HALF);
             } break;
 
             case 6: {
@@ -189,22 +190,22 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
                 SPLRandom_VecFx32_XY(&ptcl->unk_14);
                 pos.x = FX_MUL(ptcl->unk_14.x, emtr->unk_CC);
                 pos.y = FX_MUL(ptcl->unk_14.y, emtr->unk_CC);
-                pos.z = (emtr->unk_D0 * rng_next_s32(0x17) - emtr->unk_D0 * 256) >> 8;
+                pos.z = SPLRandom_RangeFX32(emtr->unk_D0);
                 sub_020A1608(&ptcl->unk_08, &pos, emtr);
             } break;
 
             case 7: {
                 VecFx32 pos;
                 SPLRandom_VecFx32_XY(&ptcl->unk_14);
-                pos.x = FX_MUL(FX_MUL(ptcl->unk_14.x, emtr->unk_CC), ((fx32)rng_next_s32(0x17) * FX32_ONE - 0x100000) >> 8);
-                pos.y = FX_MUL(FX_MUL(ptcl->unk_14.y, emtr->unk_CC), ((fx32)rng_next_s32(0x17) * FX32_ONE - 0x100000) >> 8);
-                pos.z = (emtr->unk_D0 * (fx32)rng_next_s32(0x17) - emtr->unk_D0 * 256) >> 8;
+                pos.x = FX_MUL(FX_MUL(ptcl->unk_14.x, emtr->unk_CC), SPLRandom_RangeFX32(FX32_ONE));
+                pos.y = FX_MUL(FX_MUL(ptcl->unk_14.y, emtr->unk_CC), SPLRandom_RangeFX32(FX32_ONE));
+                pos.z = SPLRandom_RangeFX32(emtr->unk_D0);
                 sub_020A1608(&ptcl->unk_08, &pos, emtr);
             } break;
             }
 
-            magPos = emtr->unk_D4 * ((resBase->unk_44.unk_02_0 + 0xFF) - ((fx32)(resBase->unk_44.unk_02_0 * rng_next_s32(0x18)) >> 7)) >> 8;
-            magAxis = emtr->unk_D8 * ((resBase->unk_44.unk_02_0 + 0xFF) - ((fx32)(resBase->unk_44.unk_02_0 * rng_next_s32(0x18)) >> 7)) >> 8;
+            magPos = SPLRandom_DoubleScaledRangeFX32(emtr->unk_D4, resBase->unk_44.unk_02_0);
+            magAxis = SPLRandom_DoubleScaledRangeFX32(emtr->unk_D8, resBase->unk_44.unk_02_0);
 
             VecFx32 posNorm;
             if (resBase->unk_00.unk_04_0 == 6) {
@@ -226,16 +227,16 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
 
             ptcl->unk_38 = emtr->unk_98;
 
-            ptcl->unk_30 = emtr->unk_DC * ((resBase->unk_44.unk_00_0 + 0xFF) - ((resBase->unk_44.unk_00_0 * (fx32)rng_next_s32(0x18)) >> 7)) >> 8;
+            ptcl->unk_30 = SPLRandom_DoubleScaledRangeFX32(emtr->unk_DC, resBase->unk_44.unk_00_0);
             ptcl->unk_34 = FX32_ONE;
 
             if (resBase->unk_00.unk_05_1 && res->unk_08->unk_08.unk_00_0) {
                 u16 clr[3];
-                u32 indxx = rng_next_s32(0x14);
+                u32 index = SPLRandom_S32(12);
                 clr[0] = res->unk_08->unk_00;
                 clr[1] = resBase->unk_22;
                 clr[2] = res->unk_08->unk_02;
-                ptcl->unk_36 = clr[indxx % 3];
+                ptcl->unk_36 = clr[index % 3];
             } else {
                 ptcl->unk_36 = resBase->unk_22;
             }
@@ -244,22 +245,22 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
             ptcl->unk_2E.unk_00_5 = 31;
 
             if (resBase->unk_00.unk_05_5) {
-                ptcl->unk_20 = rng_next_s32(0);
+                ptcl->unk_20 = SPLRandom_S32(32);
             } else {
                 ptcl->unk_20 = emtr->unk_C6;
             }
 
             if (resBase->unk_00.unk_05_4) {
-                ptcl->unk_22 = ((resBase->unk_36 - resBase->unk_34) * (u32)rng_next_s32(0x14) + (fx32)resBase->unk_34 * FX32_ONE) >> FX32_SHIFT;
+                ptcl->unk_22 = (u32)SPLRandom_BetweenFX32(resBase->unk_34, resBase->unk_36) >> FX32_SHIFT;
             } else {
                 ptcl->unk_22 = 0;
             }
 
-            ptcl->unk_24 = (emtr->unk_E0 * (0xFF - (resBase->unk_44.unk_01_0 * rng_next_s32(0x18) >> 8)) >> 8) + 1;
+            ptcl->unk_24 = SPLRandom_ScaledRangeFX32(emtr->unk_E0, resBase->unk_44.unk_01_0) + 1;
             ptcl->unk_26 = 0;
 
             if (resBase->unk_00.unk_05_3 && res->unk_10->unk_08.unk_02_0) {
-                ptcl->unk_2C.unk_00 = res->unk_10->unk_00[rng_next_u32(0x14) % res->unk_10->unk_08.unk_00_0];
+                ptcl->unk_2C.unk_00 = res->unk_10->unk_00[SPLRandom_U32(12) % res->unk_10->unk_08.unk_00_0];
             } else if (resBase->unk_00.unk_05_3 && !res->unk_10->unk_08.unk_02_0) {
                 ptcl->unk_2C.unk_00 = res->unk_10->unk_00[0];
             } else {
@@ -272,7 +273,7 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
             ptcl->unk_2C.unk_01 = 0;
 
             if (resBase->unk_00.unk_06_4) {
-                ptcl->unk_2C.unk_01 = (u8)rng_next_s32(0x18);
+                ptcl->unk_2C.unk_01 = (u8)SPLRandom_S32(8);
             }
             i++;
         } while (i < curGenNum);
@@ -298,15 +299,15 @@ void sub_020A05BC(SPLParticle *ptcl, SPLEmitter *emtr, SPLList *list)
         chld->unk_08 = ptcl->unk_08;
 
         velBase = FX_MUL(ptcl->unk_14.x, vel);
-        velRand = (fx32)(chldRes->unk_02 * rng_next_s32(0x17) - chldRes->unk_02 * 256) >> 8;
+        velRand = SPLRandom_RangeFX32(chldRes->unk_02);
         chld->unk_14.x = velBase + velRand;
 
         velBase = FX_MUL(ptcl->unk_14.y, vel);
-        velRand = (fx32)(chldRes->unk_02 * rng_next_s32(0x17) - chldRes->unk_02 * 256) >> 8;
+        velRand = SPLRandom_RangeFX32(chldRes->unk_02);
         chld->unk_14.y = velBase + velRand;
 
         velBase = FX_MUL(ptcl->unk_14.z, vel);
-        velRand = (fx32)(chldRes->unk_02 * rng_next_s32(0x17) - chldRes->unk_02 * 256) >> 8;
+        velRand = SPLRandom_RangeFX32(chldRes->unk_02);
         chld->unk_14.z = velBase + velRand;
 
         chld->unk_38 = ptcl->unk_38;

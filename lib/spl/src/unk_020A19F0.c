@@ -2,6 +2,7 @@
 #include <nitro/fx/fx_const.h>
 
 #include "spl.h"
+#include "spl_random.h"
 
 void sub_020A1DA0(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate)
 {
@@ -106,7 +107,7 @@ void sub_020A1AF8(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate)
         x += alphaAnim->unk_00.val2_01_2;
     }
 
-    ptcl->unk_2E.unk_00_5 = x * (255 - ((int)(alphaAnim->unk_02.unk_00_0 * rng_next_u32(0x18)) >> 8)) >> 8;
+    ptcl->unk_2E.unk_00_5 = SPLRandom_ScaledRangeFX32(x, alphaAnim->unk_02.unk_00_0);
 }
 
 void sub_020A1A94(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate)

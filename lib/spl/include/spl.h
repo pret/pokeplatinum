@@ -544,25 +544,4 @@ static inline void SPL_UnkInline5 (SPLEmitter * param0, const VecFx16 * param1)
     param0->unk_C0 = *param1;
 }
 
-static inline u32 rng_next()
-{
-    gSPLRandomState = gSPLRandomState * 0x5eedf715 + 0x1b0cb173;
-    return gSPLRandomState;
-}
-
-static inline u32 rng_next_u32(u32 shift)
-{
-    return rng_next() >> shift;
-}
-
-static inline s32 rng_next_s32(u32 shift)
-{
-    return (s32)rng_next_u32(shift);
-}
-
-static inline fx32 rng_next_fx32(u32 shift)
-{
-    return (fx32)rng_next() >> shift;
-}
-
 #endif // POKEPLATINUM_SPL_H

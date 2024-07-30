@@ -3,6 +3,7 @@
 #include <nitro/fx/fx_trig.h>
 
 #include "spl.h"
+#include "spl_random.h"
 
 void SPL_020A2204(const void *obj, SPLParticle *ptcl, VecFx32 *pos, SPLEmitter *emtr)
 {
@@ -16,9 +17,9 @@ void SPL_020A213C(const void *obj, SPLParticle *ptcl, VecFx32 *acc, SPLEmitter *
 {
     SPLRandom *rng = (SPLRandom *)obj;
     if ((ptcl->unk_26 % rng->intvl) == 0) {
-        acc->x += (((fx32)(rng->mag.x * rng_next_u32(0x17))) - rng->mag.x * 256) >> 8;
-        acc->y += (((fx32)(rng->mag.y * rng_next_u32(0x17))) - rng->mag.y * 256) >> 8;
-        acc->z += (((fx32)(rng->mag.z * rng_next_u32(0x17))) - rng->mag.z * 256) >> 8;
+        acc->x += SPLRandom_RangeFX32(rng->mag.x);
+        acc->y += SPLRandom_RangeFX32(rng->mag.y);
+        acc->z += SPLRandom_RangeFX32(rng->mag.z);
     }
 }
 
