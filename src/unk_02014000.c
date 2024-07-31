@@ -17,6 +17,7 @@
 #include "heap.h"
 #include "narc.h"
 #include "spl_behavior.h"
+#include "spl_manager.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 
@@ -511,7 +512,7 @@ void sub_02014638(UnkStruct_02014014 *param0)
     NNS_G3dGlbFlush();
 
     v0 = NNS_G3dGlbGetCameraMtx();
-    SPL_0209C5E0(param0->unk_00, v0);
+    SPLManager_Draw(param0->unk_00, v0);
 
     if (param0->camera != NULL) {
         Camera_ClearActive();
@@ -570,7 +571,7 @@ SPLEmitter *sub_020146E4(UnkStruct_02014014 *param0, int param1, const VecFx32 *
 {
     SPLEmitter *v0;
 
-    v0 = SPL_0209C56C(param0->unk_00, param1, param2);
+    v0 = SPLManager_CreateEmitter(param0->unk_00, param1, param2);
     param0->unk_08 = v0;
 
     return v0;
@@ -581,7 +582,7 @@ SPLEmitter *sub_020146F4(UnkStruct_02014014 *param0, int param1, UnkFuncPtr_0201
     SPLEmitter *v0;
 
     Unk_021BF614 = param3;
-    v0 = SPL_0209C4D8(param0->unk_00, param1, param2);
+    v0 = SPLManager_CreateEmitterWithCallback(param0->unk_00, param1, param2);
     Unk_021BF614 = NULL;
     param0->unk_08 = v0;
 
@@ -595,12 +596,12 @@ s32 sub_02014710(UnkStruct_02014014 *param0)
 
 void sub_02014718(UnkStruct_02014014 *param0)
 {
-    SPL_0209C400(param0->unk_00);
+    SPLManager_DeleteAllEmitters(param0->unk_00);
 }
 
 void sub_02014724(UnkStruct_02014014 *param0, SPLEmitter *param1)
 {
-    SPL_0209C444(param0->unk_00, param1);
+    SPLManager_DeleteEmitter(param0->unk_00, param1);
 }
 
 void *sub_02014730(UnkStruct_02014014 *param0)

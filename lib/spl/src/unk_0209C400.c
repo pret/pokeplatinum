@@ -12,7 +12,7 @@
 #define DECODE_WH(X) ((u16)(1 << ((X) + 3)))
 #define EMITTER_SHOULD_TERMINATE(emtr, header) \
     ((\
-        (header->flags.selfTerminate && header->emitterLifeTime != 0 && emtr->state.started && emtr->age > header->emitterLifeTime) \
+        (header->flags.selfMaintaining && header->emitterLifeTime != 0 && emtr->state.started && emtr->age > header->emitterLifeTime) \
         || emtr->state.terminate \
     ) && emtr->particles.count == 0 && emtr->childParticles.count == 0)
 
@@ -279,7 +279,7 @@ void SPLManager_Update(SPLManager *mgr)
     emtr = mgr->activeEmitters.first;
     while (emtr != NULL) {
         SPLResourceHeader *header = emtr->resource->header;
-        next = emtr->unk_00;
+        next = emtr->next;
 
         if (!emtr->state.started && emtr->age >= header->startDelay) {
             emtr->state.started = TRUE;
@@ -306,43 +306,46 @@ void SPLManager_Update(SPLManager *mgr)
     }
 }
 
-void SPL_0209C5E0(SPLManager *mgr, const MtxFx43 *cmr)
+void SPLManager_Draw(SPLManager *mgr, const MtxFx43 *viewMatrix)
 {
     G3X_AlphaBlend(TRUE);
 
-    mgr->unk_40.unk_04 = cmr;
+    mgr->renderState.viewMatrix = viewMatrix;
     if (mgr->polygonID.drawOrder == SPL_DRAW_ORDER_REVERSE) {
         SPLEmitter *emtr = mgr->activeEmitters.first;
 
         while (emtr != NULL) {
-            mgr->unk_40.unk_00 = emtr;
-            if (!emtr->state.stop_draw) {
+            mgr->renderState.emitter = emtr;
+            if (!emtr->state.renderingDisabled) {
                 sub_0209CF00(mgr);
             }
-            emtr = emtr->unk_00;
+
+            emtr = emtr->next;
         }
     } else {
         SPLEmitter *emtr = mgr->activeEmitters.last;
 
         while (emtr != NULL) {
-            mgr->unk_40.unk_00 = emtr;
-            if (!emtr->state.stop_draw) {
+            mgr->renderState.emitter = emtr;
+            if (!emtr->state.renderingDisabled) {
                 sub_0209CF00(mgr);
             }
-            emtr = emtr->unk_04;
+
+            emtr = emtr->prev;
         }
     }
 }
 
-SPLEmitter *SPL_0209C56C(SPLManager *mgr, int resno, const VecFx32 *pos)
+SPLEmitter *SPLManager_CreateEmitter(SPLManager *mgr, int resourceID, const VecFx32 *pos)
 {
     SPLEmitter *emtr = NULL;
 
     if (mgr->inactiveEmitters.first != NULL) {
-        emtr = (SPLEmitter *)SPLList_PopFront((SPLList *)&mgr->inactiveEmitters);
-        sub_0209D998(emtr, mgr->resources + resno, pos);
-        SPLList_PushFront((SPLList *)&mgr->activeEmitters, (SPLNode *)emtr);
-        if (emtr->resource->header->flags.selfTerminate) {
+        emtr = SPLEmitterList_PopFront(&mgr->inactiveEmitters);
+        sub_0209D998(emtr, mgr->resources + resourceID, pos);
+        SPLEmitterList_PushFront(&mgr->activeEmitters, emtr);
+
+        if (emtr->resource->header->flags.selfMaintaining) { // Self-maintaining emitters are not returned to the user
             emtr = NULL;
         }
     }
@@ -350,20 +353,21 @@ SPLEmitter *SPL_0209C56C(SPLManager *mgr, int resno, const VecFx32 *pos)
     return emtr;
 }
 
-SPLEmitter *SPL_0209C4D8(SPLManager *mgr, int resno, EmitterCallback fpcb)
+SPLEmitter *SPLManager_CreateEmitterWithCallback(SPLManager *mgr, int resourceID, SPLEmitterCallback initCallback)
 {
-    SPLEmitter *emtr;
-
-    emtr = NULL;
+    SPLEmitter *emtr = NULL;
     if (mgr->inactiveEmitters.first != NULL) {
-        VecFx32 v0 = { 0, 0, 0 };
-        emtr = (SPLEmitter *)SPLList_PopFront((SPLList *)&mgr->inactiveEmitters);
-        sub_0209D998(emtr, mgr->resources + resno, &v0);
-        if (fpcb != NULL) {
-            fpcb(emtr);
+        VecFx32 pos = { 0, 0, 0 };
+        emtr = SPLEmitterList_PopFront(&mgr->inactiveEmitters);
+        sub_0209D998(emtr, mgr->resources + resourceID, &pos);
+
+        if (initCallback != NULL) {
+            initCallback(emtr);
         }
-        SPLList_PushFront((SPLList *)&mgr->activeEmitters, (SPLNode *)emtr);
-        if (emtr->resource->header->flags.selfTerminate) {
+
+        SPLEmitterList_PushFront(&mgr->activeEmitters, emtr);
+
+        if (emtr->resource->header->flags.selfMaintaining) { // Self-maintaining emitters are not returned to the user
             emtr = NULL;
         }
     }
@@ -371,20 +375,20 @@ SPLEmitter *SPL_0209C4D8(SPLManager *mgr, int resno, EmitterCallback fpcb)
     return emtr;
 }
 
-SPLEmitter *SPL_CreateWithInitializeEx(SPLManager *mgr, int resNo, VecFx32 *pos, void *pvoid, EmitterCallbackEx cb)
+SPLEmitter *SPLManager_CreateEmitterWithCallbackEx(SPLManager *mgr, int resourceID, VecFx32 *pos, void *param, SPLEmitterCallbackEx initCallback)
 {
-    SPLEmitter *emtr;
-
-    emtr = NULL;
+    SPLEmitter *emtr = NULL;
     if (mgr->inactiveEmitters.first != NULL) {
-        emtr = (SPLEmitter *)SPLList_PopFront((SPLList *)&mgr->inactiveEmitters);
-        sub_0209D998(emtr, mgr->resources + resNo, pos);
-        if (cb != NULL) {
-            cb(emtr, pvoid);
+        emtr = SPLEmitterList_PopFront(&mgr->inactiveEmitters);
+        sub_0209D998(emtr, mgr->resources + resourceID, pos);
+
+        if (initCallback != NULL) {
+            initCallback(emtr, param);
         }
 
-        SPLList_PushFront((SPLList *)&mgr->activeEmitters, (SPLNode *)emtr);
-        if (emtr->resource->header->flags.selfTerminate) {
+        SPLEmitterList_PushFront(&mgr->activeEmitters, emtr);
+
+        if (emtr->resource->header->flags.selfMaintaining) { // Self-maintaining emitters are not returned to the user
             emtr = NULL;
         }
     }
@@ -392,34 +396,30 @@ SPLEmitter *SPL_CreateWithInitializeEx(SPLManager *mgr, int resNo, VecFx32 *pos,
     return emtr;
 }
 
-void SPL_0209C444(SPLManager *p0, SPLEmitter *p1)
+void SPLManager_DeleteEmitter(SPLManager *mgr, SPLEmitter *emtr)
 {
-    SPLEmitter *v0 = (SPLEmitter *)SPLList_PopFront((SPLList *)&p1->particles);
-    if (v0 != NULL) {
-        do {
-            SPLList_PushFront((SPLList *)&p0->inactiveParticles, (SPLNode *)v0);
-            v0 = (SPLEmitter *)SPLList_PopFront((SPLList *)&p1->particles);
-        } while (v0 != NULL);
+    SPLParticle *ptcl = SPLParticleList_PopFront(&emtr->particles);
+    while (ptcl != NULL) {
+        SPLParticleList_PushFront(&mgr->inactiveParticles, ptcl);
+        ptcl = SPLParticleList_PopFront(&emtr->particles);
     }
-    v0 = (SPLEmitter *)SPLList_PopFront((SPLList *)&p1->childParticles);
-    if (v0 != NULL) {
-        do {
-            SPLList_PushFront((SPLList *)&p0->inactiveParticles, (SPLNode *)v0);
-            v0 = (SPLEmitter *)SPLList_PopFront((SPLList *)&p1->childParticles);
-        } while (v0 != NULL);
+
+    ptcl = SPLParticleList_PopFront(&emtr->childParticles);
+    while (ptcl != NULL) {
+        SPLParticleList_PushFront(&mgr->inactiveParticles, ptcl);
+        ptcl = SPLParticleList_PopFront(&emtr->childParticles);
     }
-    SPLList_Erase((SPLList *)&p0->activeEmitters, (SPLNode *)p1);
-    SPLList_PushFront((SPLList *)&p0->inactiveEmitters, (SPLNode *)p1);
+
+    SPLEmitterList_Erase(&mgr->activeEmitters, emtr);
+    SPLEmitterList_PushFront(&mgr->inactiveEmitters, emtr);
 }
 
-void SPL_0209C400(SPLManager *p0)
+void SPLManager_DeleteAllEmitters(SPLManager *mgr)
 {
-    SPLEmitter *next;
-    SPLEmitter *emtr = p0->activeEmitters.first;
-
+    SPLEmitter *emtr = mgr->activeEmitters.first;
     while (emtr != NULL) {
-        next = emtr->unk_00;
-        SPL_0209C444(p0, emtr);
+        SPLEmitter *next = emtr->next;
+        SPLManager_DeleteEmitter(mgr, emtr);
         emtr = next;
     }
 }

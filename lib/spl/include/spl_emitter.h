@@ -16,7 +16,7 @@ typedef struct UnkSPLStruct7 {
             u32 terminate:1;
             u32 stop_generate:1;
             u32 paused:1;
-            u32 stop_draw:1;
+            u32 renderingDisabled:1;
             u32 started: 1 ;
             u32 reserved0:27;
         };
@@ -24,8 +24,8 @@ typedef struct UnkSPLStruct7 {
 } UnkSPLStruct7;
 
 typedef struct SPLEmitter {
-    struct SPLEmitter * unk_00;
-    struct SPLEmitter * unk_04;
+    struct SPLEmitter *next;
+    struct SPLEmitter *prev;
     SPLParticleList particles;
     SPLParticleList childParticles;
     SPLResource *resource;
