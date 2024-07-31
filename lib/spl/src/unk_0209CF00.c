@@ -114,7 +114,7 @@ void sub_0209D998(SPLEmitter *emtr, SPLResource *res, const VecFx32 *pos)
         }
     }
 
-    emtr->unk_00 = emtr->unk_04 = NULL;
+    emtr->next = emtr->prev = NULL;
     emtr->particles.first = emtr->childParticles.first = NULL;
     emtr->particles.count = emtr->childParticles.count = 0;
     emtr->unk_100 = NULL;
@@ -324,7 +324,7 @@ static void sub_0209D064(SPLManager *mgr)
     DrawFunc drawFunc;
     SetTexFunc setTexFunc;
 
-    emtr = mgr->unk_40.unk_00;
+    emtr = mgr->renderState.emitter;
     resBase = emtr->resource->header;
     drawFunc = NULL;
 
@@ -365,7 +365,7 @@ static void sub_0209CF7C(SPLManager *mgr)
     DrawFunc drawFunc;
     SPLParticle *ptcl;
 
-    emtr = mgr->unk_40.unk_00;
+    emtr = mgr->renderState.emitter;
     drawFunc = NULL;
     res = emtr->resource;
 
@@ -404,7 +404,7 @@ void sub_0209CF00(SPLManager *mgr)
 {
     SPLResourceHeader *resBase;
 
-    resBase = mgr->unk_40.unk_00->resource->header;
+    resBase = mgr->renderState.emitter->resource->header;
     if (resBase->flags.unk_06_5) {
         sub_0209CF7C(mgr);
 

@@ -30,8 +30,10 @@ typedef union {
         u32 hasTexAnim : 1;
         u32 unk_05_4 : 1;
         u32 unk_05_5 : 1;
-        // If set, the emitter will terminate when it reaches the end of its life and all of its particles have died
-        u32 selfTerminate : 1;
+        // Whether the emitter manages itself or not.
+        // If set, the emitter will automatically terminate when it reaches the end of its life
+        // and all of its particles have died
+        u32 selfMaintaining : 1;
         u32 unk_05_7 : 1;
         u32 hasChildResource : 1;
         u32 unk_06_1 : 2;
