@@ -66,7 +66,7 @@ PlayerAvatar *PlayerAvatar_Init(const MapObjectManager *mapObjMan, int x, int z,
     return playerAvatar;
 }
 
-PlayerAvatar *sub_0205E820(const MapObjectManager *mapObjMan, PlayerData *param1, int param2)
+PlayerAvatar *sub_0205E820(const MapObjectManager *mapObjMan, PlayerData *param1, int gender)
 {
     int v0;
     PlayerAvatar *playerAvatar;
@@ -75,10 +75,10 @@ PlayerAvatar *sub_0205E820(const MapObjectManager *mapObjMan, PlayerData *param1
     playerAvatar = PlayerAvatar_Alloc();
     v0 = sub_0205EC94(param1);
 
-    sub_0205E91C(playerAvatar, v0, param2, param1);
+    sub_0205E91C(playerAvatar, v0, gender, param1);
     mapObj = sub_0205EA64(mapObjMan);
 
-    sub_0206291C(mapObj, Player_MoveStateFromGender(v0, param2));
+    sub_0206291C(mapObj, Player_MoveStateFromGender(v0, gender));
     MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_10 | MAP_OBJ_STATUS_13);
     MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_LOCK_DIR | MAP_OBJ_STATUS_PAUSE_ANIMATION);
     sub_02062F90(mapObj, 1);

@@ -298,7 +298,7 @@ void *sub_0203D20C(FieldSystem *fieldSystem, UnkStruct_020684D0 *param1)
     v1 = sub_0207D824(v0, Unk_020EA164, 11);
 
     sub_0207CB2C(v1, fieldSystem->saveData, 0, fieldSystem->unk_98);
-    sub_0207CB78(v1, fieldSystem->unk_70);
+    sub_0207CB78(v1, fieldSystem->mapLoadType);
 
     if (PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar) == 0x1) {
         sub_0207CB58(v1);

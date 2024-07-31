@@ -10,6 +10,6 @@ typedef struct {
     u32 unk_00_20 : 4;
     u32 unk_00_24 : 8;
     u32 unk_04;
-} UnkStruct_020EC3A8;
+} MapLoadMode;
 
 #endif // POKEPLATINUM_STRUCT_020EC3A8_H

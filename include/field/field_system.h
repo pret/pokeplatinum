@@ -75,8 +75,8 @@ typedef struct FieldSystem_t {
     UnkStruct_ov5_021E1B20 *unk_64;
     BOOL unk_68;
     UnkStruct_ov23_0224942C *unk_6C;
-    int unk_70;
-    const UnkStruct_020EC3A8 *unk_74;
+    int mapLoadType;
+    const MapLoadMode *unk_74;
     FieldSystem_sub3 unk_78;
     UnkStruct_0205B43C *unk_7C;
     UnkStruct_0205C22C *unk_80;

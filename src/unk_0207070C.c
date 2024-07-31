@@ -41,6 +41,8 @@
 #include "unk_02071B10.h"
 #include "vars_flags.h"
 
+#include "constants/field/map_load.h"
+
 typedef struct {
     UnkFuncPtr_0203B7C0 unk_00;
     UnkFuncPtr_02084808 unk_04;
@@ -146,7 +148,7 @@ static inline BOOL inline_020710A4(const UnkStruct_02070950 *param0)
 
 static inline BOOL inline_02070AF0(const UnkStruct_02070950 *param0)
 {
-    if ((param0->fieldSystem->unk_70 == 3) || (param0->fieldSystem->unk_70 == 2)) {
+    if ((param0->fieldSystem->mapLoadType == MAP_LOAD_TYPE_COLOSSEUM) || (param0->fieldSystem->mapLoadType == MAP_LOAD_TYPE_UNION)) {
         return 0;
     }
 

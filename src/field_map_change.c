@@ -76,6 +76,8 @@
 #include "unk_02070428.h"
 #include "vars_flags.h"
 
+#include "constants/field/map_load.h"
+
 FS_EXTERN_OVERLAY(overlay23);
 
 typedef struct {
@@ -85,7 +87,7 @@ typedef struct {
 } UnkStruct_02053900;
 
 typedef struct {
-    int unk_00;
+    int state;
     Location unk_04;
 } UnkStruct_02053A80;
 
@@ -159,7 +161,7 @@ static BOOL sub_02053E08(TaskManager *taskMan);
 static void sub_02053E5C(TaskManager *taskMan);
 static BOOL sub_0205444C(TaskManager *taskMan, int param1);
 
-static const UnkStruct_020EC3A8 Unk_020EC3A8[] = {
+static const MapLoadMode sMapLoadMode[] = {
     { 0x1, 0x0, 0x0, 0x0, 0x0, 0x1, 0x0, 0xC4000 },
     { 0x2, 0x1, 0x1, 0x1, 0x1, 0x0, 0x10, 0xC4000 },
     { 0x3, 0x0, 0x0, 0x0, 0x0, 0x1, 0x0, 0xC4000 },
@@ -195,12 +197,12 @@ static void sub_020530C8(FieldSystem *fieldSystem)
         inBattleTower = FALSE;
     }
 
-    if (!inBattleTower && fieldSystem->unk_70 == 4) {
-        fieldSystem->unk_70 = 0;
+    if (!inBattleTower && fieldSystem->mapLoadType == MAP_LOAD_TYPE_BATTLE_TOWER) {
+        fieldSystem->mapLoadType = MAP_LOAD_TYPE_OVERWORLD;
     }
 
     if (inBattleTower) {
-        fieldSystem->unk_70 = 4;
+        fieldSystem->mapLoadType = MAP_LOAD_TYPE_BATTLE_TOWER;
     }
 }
 
@@ -234,7 +236,7 @@ static void FieldMapChange_SetNewLocation(FieldSystem *fieldSystem, const Locati
 
 void sub_020531A0(FieldSystem *fieldSystem)
 {
-    GF_ASSERT(fieldSystem->unk_70 < 5);
+    GF_ASSERT(fieldSystem->mapLoadType < MAP_LOAD_TYPE_MAX);
     gCoreSys.unk_65 = fieldSystem->unk_74->unk_00_12;
 }
 
@@ -362,9 +364,9 @@ static void FieldMapChange_LoadObjects(FieldSystem *fieldSystem)
 
     FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
     PlayerData *playerData = FieldOverworldState_GetPlayerData(fieldState);
-    int v2 = TrainerInfo_Gender(SaveData_GetTrainerInfo(fieldSystem->saveData));
+    int gender = TrainerInfo_Gender(SaveData_GetTrainerInfo(fieldSystem->saveData));
 
-    fieldSystem->playerAvatar = sub_0205E820(fieldSystem->mapObjMan, playerData, v2);
+    fieldSystem->playerAvatar = sub_0205E820(fieldSystem->mapObjMan, playerData, gender);
 
     MapObjectMan_StopAllMovement(fieldSystem->mapObjMan);
 }
@@ -383,9 +385,9 @@ static void sub_020533CC(FieldSystem *fieldSystem)
         sub_02039F8C(fieldSystem->unk_2C);
     }
 
-    GF_ASSERT(fieldSystem->unk_70 < 5);
+    GF_ASSERT(fieldSystem->mapLoadType < MAP_LOAD_TYPE_MAX);
 
-    fieldSystem->unk_74 = &Unk_020EC3A8[fieldSystem->unk_70];
+    fieldSystem->unk_74 = &sMapLoadMode[fieldSystem->mapLoadType];
     fieldSystem->unk_60 = fieldSystem->unk_74->unk_00_4;
     fieldSystem->unk_18 = fieldSystem->unk_74->unk_00_0;
 
@@ -476,7 +478,7 @@ static BOOL FieldTask_LoadNewGameSpawn(TaskManager *taskMan)
 
 void FieldSystem_SetLoadNewGameSpawnTask(FieldSystem *fieldSystem)
 {
-    fieldSystem->unk_70 = 0;
+    fieldSystem->mapLoadType = MAP_LOAD_TYPE_OVERWORLD;
     FieldSystem_InitNewGameState(fieldSystem);
     FieldTask_Set(fieldSystem, FieldTask_LoadNewGameSpawn, NULL);
 }
@@ -540,7 +542,7 @@ static BOOL FieldTask_LoadSavedGameMap(TaskManager *taskMan)
 
 void FieldSystem_SetLoadSavedGameMapTask(FieldSystem *fieldSystem)
 {
-    fieldSystem->unk_70 = 0;
+    fieldSystem->mapLoadType = MAP_LOAD_TYPE_OVERWORLD;
     FieldTask_Set(fieldSystem, FieldTask_LoadSavedGameMap, NULL);
 }
 
@@ -611,7 +613,7 @@ void FieldSystem_StartLoadMapFromErrorTask(FieldSystem *fieldSystem)
     v1->unk_00 = 0;
 
     Location_Set(&v1->unk_04, 466, -1, 8, 14, 0);
-    fieldSystem->unk_70 = 2;
+    fieldSystem->mapLoadType = MAP_LOAD_TYPE_UNION;
     FieldTask_Set(fieldSystem, FieldTask_LoadMapFromError, v1);
 }
 
@@ -664,18 +666,18 @@ static BOOL FieldTask_ChangeMapSub(TaskManager *taskMan)
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_02053A80 *v2 = TaskManager_Environment(taskMan);
 
-    switch (v2->unk_00) {
+    switch (v2->state) {
     case 0:
         FieldMapChange_DeleteObjects(fieldSystem);
         sub_02053468(fieldSystem);
-        (v2->unk_00)++;
+        (v2->state)++;
         break;
     case 1:
         FieldMapChange_SetNewLocation(fieldSystem, &v2->unk_04);
         sub_020533CC(fieldSystem);
         FieldMapChange_UpdateGameData(fieldSystem, 0);
         RadarChain_Clear(fieldSystem->chain);
-        (v2->unk_00)++;
+        (v2->state)++;
         break;
     case 2:
         FieldMapChange_CreateObjects(fieldSystem);
@@ -696,7 +698,7 @@ void sub_020539A0(TaskManager *taskMan, const Location *param1)
         return;
     }
 
-    v1->unk_00 = 0;
+    v1->state = 0;
     v1->unk_04 = *param1;
 
     FieldTask_Start(taskMan, FieldTask_ChangeMapSub, v1);
@@ -716,15 +718,15 @@ static BOOL FieldTask_ChangeMapFull(TaskManager *taskMan)
     UnkStruct_02053A80 *v1 = TaskManager_Environment(taskMan);
     Location *v2 = &v1->unk_04;
 
-    switch (v1->unk_00) {
+    switch (v1->state) {
     case 0:
         Sound_TryFadeInBGM(fieldSystem, v2->mapId);
         sub_02055820(taskMan);
-        (v1->unk_00)++;
+        (v1->state)++;
         break;
     case 1:
         sub_020539A0(taskMan, &v1->unk_04);
-        (v1->unk_00)++;
+        (v1->state)++;
         break;
     case 2:
         if (Sound_CheckFade() != 0) {
@@ -733,7 +735,7 @@ static BOOL FieldTask_ChangeMapFull(TaskManager *taskMan)
 
         Sound_PlayMapBGM(fieldSystem, v2->mapId);
         sub_02055868(taskMan);
-        (v1->unk_00)++;
+        (v1->state)++;
         break;
     case 3:
         Heap_FreeToHeap(v1);
@@ -747,7 +749,7 @@ void sub_02053A80(TaskManager *taskMan, int mapId, int param2, int x, int z, int
 {
     UnkStruct_02053A80 *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02053A80));
 
-    v0->unk_00 = 0;
+    v0->state = 0;
 
     Location_Set(&v0->unk_04, mapId, param2, x, z, param5);
     FieldTask_Start(taskMan, FieldTask_ChangeMapFull, v0);
@@ -1084,7 +1086,7 @@ void *sub_02053FAC(FieldSystem *fieldSystem)
     v0->unk_00 = 0;
     v0->unk_04 = 0;
 
-    if (fieldSystem->unk_70 == 1) {
+    if (fieldSystem->mapLoadType == MAP_LOAD_TYPE_UNDERGROUND) {
         v0->unk_08 = v1->mapId;
         v0->unk_0C = -1;
         v0->unk_10 = v1->x;
@@ -1220,7 +1222,7 @@ BOOL sub_02054084(TaskManager *taskMan)
         (v1->unk_00)++;
         break;
     case 9:
-        fieldSystem->unk_70 = 1;
+        fieldSystem->mapLoadType = MAP_LOAD_TYPE_UNDERGROUND;
         Overlay_LoadByID(FS_OVERLAY_ID(overlay23), 2);
         ov23_022499E8(fieldSystem);
         sub_020539E8(taskMan, v1->unk_08, -1, v1->unk_10, v1->unk_14, 1);
@@ -1288,7 +1290,7 @@ BOOL sub_0205430C(TaskManager *taskMan)
         (v1->unk_00)++;
         break;
     case 4:
-        fieldSystem->unk_70 = 0;
+        fieldSystem->mapLoadType = MAP_LOAD_TYPE_OVERWORLD;
         Overlay_UnloadByID(FS_OVERLAY_ID(overlay23));
         sub_020539E8(taskMan, v1->unk_08, -1, v1->unk_10, v1->unk_14, 1);
         (v1->unk_00)++;
@@ -1319,9 +1321,9 @@ BOOL sub_0205430C(TaskManager *taskMan)
 
 FieldTask sub_02054428(const FieldSystem *fieldSystem)
 {
-    if (fieldSystem->unk_70 == 0) {
+    if (fieldSystem->mapLoadType == MAP_LOAD_TYPE_OVERWORLD) {
         return sub_02054084;
-    } else if (fieldSystem->unk_70 == 1) {
+    } else if (fieldSystem->mapLoadType == MAP_LOAD_TYPE_UNDERGROUND) {
         return sub_0205430C;
     } else {
         GF_ASSERT(0);
@@ -1357,15 +1359,15 @@ static BOOL sub_02054494(TaskManager *taskMan)
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_02053A80 *v1 = TaskManager_Environment(taskMan);
 
-    switch (v1->unk_00) {
+    switch (v1->state) {
     case 0:
         FieldMapChange_DeleteObjects(fieldSystem);
-        (v1->unk_00)++;
+        (v1->state)++;
         break;
     case 1:
         FieldMapChange_SetNewLocation(fieldSystem, &v1->unk_04);
         sub_0203F5C0(fieldSystem, 2);
-        (v1->unk_00)++;
+        (v1->state)++;
         break;
     case 2:
         FieldMapChange_CreateObjects(fieldSystem);
@@ -1386,7 +1388,7 @@ void sub_020544F0(TaskManager *taskMan, const Location *param1)
         return;
     }
 
-    v1->unk_00 = 0;
+    v1->state = 0;
     v1->unk_04 = *param1;
 
     FieldTask_Start(taskMan, sub_02054494, v1);
@@ -1446,7 +1448,7 @@ void sub_020545EC(FieldSystem *fieldSystem)
     v1->unk_08 = *v0;
     sub_0205B388(fieldSystem);
     sub_0205C2E0(fieldSystem->unk_80);
-    fieldSystem->unk_70 = 0;
+    fieldSystem->mapLoadType = MAP_LOAD_TYPE_OVERWORLD;
 
     FieldTask_Set(fieldSystem, sub_02054538, v1);
     fieldSystem->unk_7C = NULL;
@@ -1513,7 +1515,7 @@ void sub_02054708(TaskManager *taskMan)
 
     fieldSystem->unk_7C = sub_0205B33C(fieldSystem);
     fieldSystem->unk_80 = sub_0205C22C(fieldSystem->unk_7C);
-    fieldSystem->unk_70 = 2;
+    fieldSystem->mapLoadType = MAP_LOAD_TYPE_UNION;
 
     FieldTask_Start(taskMan, sub_02054648, v2);
 }
@@ -1552,7 +1554,7 @@ static BOOL sub_02054778(TaskManager *taskMan)
     return 0;
 }
 
-void sub_02054800(TaskManager *taskMan, int param1, int param2, int param3, int param4, int param5)
+void sub_02054800(TaskManager *taskMan, int mapId, int param2, int x, int z, int param5)
 {
     Location v0;
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
@@ -1560,11 +1562,11 @@ void sub_02054800(TaskManager *taskMan, int param1, int param2, int param3, int 
 
     Location_SetToPlayerLocation(v2, fieldSystem);
 
-    fieldSystem->unk_70 = 3;
+    fieldSystem->mapLoadType = MAP_LOAD_TYPE_COLOSSEUM;
 
     UnkStruct_02053900 *v3 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02053900));
 
-    Location_Set(&v0, param1, param2, param3, param4, param5);
+    Location_Set(&v0, mapId, param2, x, z, param5);
 
     v3->unk_00 = 0;
     v3->unk_04 = v0;
@@ -1577,6 +1579,6 @@ void sub_02054864(TaskManager *taskMan)
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     Location *v1 = sub_0203A730(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
-    fieldSystem->unk_70 = 0;
+    fieldSystem->mapLoadType = MAP_LOAD_TYPE_OVERWORLD;
     FieldSystem_StartChangeMapTask(fieldSystem->unk_10, v1);
 }

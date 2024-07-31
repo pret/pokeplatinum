@@ -88,6 +88,8 @@
 #include "unk_0205D8CC.h"
 #include "unk_02068344.h"
 
+#include "constants/field/map_load.h"
+
 FS_EXTERN_OVERLAY(overlay6);
 FS_EXTERN_OVERLAY(overlay7);
 FS_EXTERN_OVERLAY(overlay8);
@@ -832,7 +834,7 @@ static void ov5_021D17EC(FieldSystem *fieldSystem)
     fieldSystem->unk_A0 = ov5_021EF28C(8, 4);
     fieldSystem->unk_A8 = ov5_021EFB0C();
 
-    if (fieldSystem->unk_70 == 0) {
+    if (fieldSystem->mapLoadType == MAP_LOAD_TYPE_OVERWORLD) {
         ov5_021E9630(fieldSystem->unk_28, ov5_021F0030, fieldSystem);
     }
 
@@ -855,14 +857,14 @@ static void ov5_021D1878(FieldSystem *fieldSystem)
 
     ov5_021DF488(fieldSystem->unk_40, 4, 32, 32, 32, 32, (0x500 * (32 / 2)), (0x80 * (32 / 2)), (0x800 * 32));
 
-    if ((fieldSystem->unk_70 == 1) || (fieldSystem->unk_70 == 2)) {
+    if ((fieldSystem->mapLoadType == MAP_LOAD_TYPE_UNDERGROUND) || (fieldSystem->mapLoadType == MAP_LOAD_TYPE_UNION)) {
         sub_02062CCC(fieldSystem->mapObjMan, 0);
     }
 
     {
         const u32 *v1;
 
-        if (fieldSystem->unk_70 == 1) {
+        if (fieldSystem->mapLoadType == MAP_LOAD_TYPE_UNDERGROUND) {
             v1 = Unk_ov5_021FF7D0;
         } else {
             if (FieldMap_InDistortionWorld(fieldSystem) == 1) {
@@ -878,7 +880,7 @@ static void ov5_021D1878(FieldSystem *fieldSystem)
     {
         int v2 = 10;
 
-        if (fieldSystem->unk_70 == 2) {
+        if (fieldSystem->mapLoadType == MAP_LOAD_TYPE_UNION) {
             v2 = 5;
         }
 

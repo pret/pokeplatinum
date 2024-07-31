@@ -332,9 +332,9 @@ void sub_0203AB00(FieldSystem *fieldSystem)
         menu->unk_224 = sub_0203AC28(fieldSystem);
     } else if (sub_0206C0D0(fieldSystem) == 1) {
         menu->unk_224 = sub_0203AC2C(fieldSystem);
-    } else if (fieldSystem->unk_70 == 3) {
+    } else if (fieldSystem->mapLoadType == 3) {
         menu->unk_224 = sub_0203AC3C(fieldSystem);
-    } else if (fieldSystem->unk_70 == 2) {
+    } else if (fieldSystem->mapLoadType == 2) {
         menu->unk_224 = sub_0203AC34(fieldSystem);
         menu->unk_228 = 1;
     } else {
