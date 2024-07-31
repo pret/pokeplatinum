@@ -37,16 +37,16 @@ static void sub_0209DC68(SPLTexture *tex)
     SPLTextureParam param = tex->param;
 
     G3_TexImageParam(
-        param.val2_00_0,
+        param.format,
         GX_TEXGEN_TEXCOORD,
         param.s,
         param.t,
         param.val2_01_4,
         param.val2_01_6,
         param.val2_02_0,
-        tex->unk_04);
+        tex->texAddr);
 
-    G3_TexPlttBase(tex->unk_08, param.val2_00_0);
+    G3_TexPlttBase(tex->palAddr, param.format);
     G3_MtxMode(GX_MTXMODE_TEXTURE);
     G3_Identity();
     G3_Scale(tex->width * FX32_ONE, tex->height * FX32_ONE, 0);

@@ -431,18 +431,18 @@ void sub_020144CC(UnkStruct_02014014 *param0, void *param1, int param2, int para
 
 static void sub_02014560(UnkStruct_02014014 *param0)
 {
-    SPL_0209C988(param0->unk_00, param0->unk_04);
+    SPLManager_LoadResource(param0->unk_00, param0->unk_04);
 
     Unk_021BF610 = param0;
     if (param0->unk_18 == NULL) {
-        (void)SPL_0209C7F4(param0->unk_00);
+        (void)SPLManager_UploadTextures(param0->unk_00);
     } else {
-        SPL_0209C8BC(param0->unk_00, param0->unk_18);
+        SPLManager_UploadTexturesEx(param0->unk_00, param0->unk_18);
     }
     if (param0->unk_1C == NULL) {
-        (void)SPL_0209C7E0(param0->unk_00);
+        (void)SPLManager_UploadPalettes(param0->unk_00);
     } else {
-        SPL_0209C808(param0->unk_00, param0->unk_1C);
+        SPLManager_UploadPalettesEx(param0->unk_00, param0->unk_1C);
     }
     Unk_021BF610 = NULL;
 
