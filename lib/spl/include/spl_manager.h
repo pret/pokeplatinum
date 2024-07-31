@@ -45,6 +45,8 @@ typedef struct SPLManager {
 typedef void(* EmitterCallback)(SPLEmitter *);
 typedef void(* EmitterCallbackEx)(SPLEmitter *, void *);
 
+typedef u32(* SPLTexVRAMAllocFunc)(u32 size, BOOL is4x4comp);
+typedef u32(* SPLPalVRAMAllocFunc)(u32 size, BOOL is4pal);
 
 SPLManager *SPLManager_New(SPLAllocFunc alloc, u16 maxEmitters, u16 maxParticles, u16 fixPolyID, u16 minPolyID, u16 maxPolyID);
 void SPL_0209C400(SPLManager * param0);
@@ -54,10 +56,10 @@ SPLEmitter *SPL_CreateWithInitializeEx(SPLManager *mgr, int resNo, VecFx32 *pos,
 void SPL_0209C5E0(SPLManager * param0, const MtxFx43 * param1);
 SPLEmitter * SPL_0209C56C(SPLManager * param0, int param1, const VecFx32 * param2);
 void SPL_0209C6A8(SPLManager * param0);
-BOOL SPL_0209C7E0(SPLManager * param0);
-BOOL SPL_0209C7F4(SPLManager * param0);
-BOOL SPL_0209C808(SPLManager * param0, u32 (* param1)(u32, BOOL));
-BOOL SPL_0209C8BC(SPLManager * param0, u32 (* param1)(u32, BOOL));
-void SPL_0209C988(SPLManager * param0, const void * param1);
+BOOL SPLManager_UploadPalettes(SPLManager * param0);
+BOOL SPLManager_UploadTextures(SPLManager * param0);
+BOOL SPLManager_UploadPalettesEx(SPLManager * param0, u32 (* param1)(u32, BOOL));
+BOOL SPLManager_UploadTexturesEx(SPLManager * param0, u32 (* param1)(u32, BOOL));
+void SPLManager_LoadResource(SPLManager * param0, const void * param1);
 
 #endif // SPL_MANAGER_H

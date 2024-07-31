@@ -5,35 +5,40 @@
 
 
 typedef union SPLTextureParam {
-    u32 val1;
+    u32 all;
     struct {
-        u32 val2_00_0 : 4;
+        u32 format : 4; // Maps to GXTexFmt
         u32 s : 4;
         u32 t : 4;
         u32 val2_01_4 : 2;
         u32 val2_01_6 : 2;
         u32 val2_02_0 : 1;
         u32 val2_02_1 : 1;
-        u32 val2_02_2 : 8;
+        u32 sharedTexID : 8;
         u32 val2_03_2 : 6;
     };
 } SPLTextureParam;
 
 typedef struct SPLTextureResource {
-    u32 unk_00;
+    u32 id;
     SPLTextureParam param;
-    u32 unk_08;
-    u32 unk_0C;
-    u32 unk_10;
+    u32 textureSize; // size of the texture data
+    u32 paletteOffset; // offset to the palette data from the start of the header
+    u32 paletteSize; // size of the palette data
     u32 unk_14;
     u32 unk_18;
-    u32 resourceSize; // size of the texture data
+    u32 resourceSize; // total size of the resource (header + data)
 } SPLTextureResource;
 
+static inline const void *SPLTextureResource_GetTexData(const SPLTextureResource *resource)
+{
+    return (const void *)(resource + 1);
+}
+
 typedef struct SPLTexture {
-    const void * resource;
-    u32 unk_04;
-    u32 unk_08;
+    const void *resource;
+    u32 texAddr; // VRAM address of the texture
+    u32 palAddr; // VRAM address of the palette
     SPLTextureParam param;
     u16 width;
     u16 height;

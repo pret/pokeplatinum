@@ -6,7 +6,7 @@
 struct SPLParticle;
 struct SPLEmitter;
 
-typedef struct {
+typedef struct SPLBehavior {
     void (*apply)(const void *, struct SPLParticle *, VecFx32 *, struct SPLEmitter *);
     const void *object;
 } SPLBehavior;

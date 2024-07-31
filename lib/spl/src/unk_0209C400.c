@@ -76,7 +76,7 @@ SPLManager *SPLManager_New(SPLAllocFunc alloc, u16 maxEmitters, u16 maxParticles
     return mgr;
 }
 
-void SPL_0209C988(SPLManager *mgr, const void *data)
+void SPLManager_LoadResource(SPLManager *mgr, const void *data)
 {
     // Required to match
     int i, offset;
@@ -206,24 +206,22 @@ void SPL_0209C988(SPLManager *mgr, const void *data)
     }
 }
 
-BOOL SPL_0209C8BC(SPLManager *mgr, u32 (*func)(u32, BOOL))
+BOOL SPLManager_UploadTexturesEx(SPLManager *mgr, SPLTexVRAMAllocFunc vramAlloc)
 {
-    int i;
-    u32 addr;
-
     GX_BeginLoadTex();
 
-    for (i = 0; i < mgr->texCount; i++) {
+    for (int i = 0; i < mgr->texCount; i++) {
         SPLTexture *textures = mgr->textures;
         SPLTexture *tex = &textures[i];
-        SPLTextureResource *hdr = (SPLTextureResource *)tex->resource;
+        SPLTextureResource *texRes = (SPLTextureResource *)tex->resource;
 
-        if (hdr->param.val2_02_1) {
-            tex->unk_04 = textures[hdr->param.val2_02_2].unk_04;
+        if (texRes->param.val2_02_1) {
+            tex->texAddr = textures[texRes->param.sharedTexID].texAddr;
         } else {
-            addr = func(hdr->unk_08, hdr->param.val2_00_0 == 5);
-            GX_LoadTex(((SPLTextureResource *)tex->resource) + 1, addr, hdr->unk_08);
-            tex->unk_04 = addr;
+            u32 addr = vramAlloc(texRes->textureSize, texRes->param.format == GX_TEXFMT_COMP4x4);
+            const void *data = SPLTextureResource_GetTexData((SPLTextureResource *)tex->resource);
+            GX_LoadTex(data, addr, texRes->textureSize);
+            tex->texAddr = addr;
         }
     }
 
@@ -231,40 +229,40 @@ BOOL SPL_0209C8BC(SPLManager *mgr, u32 (*func)(u32, BOOL))
     return TRUE;
 }
 
-BOOL SPL_0209C808(SPLManager *mgr, u32 (*func)(u32, BOOL))
+BOOL SPLManager_UploadPalettesEx(SPLManager *mgr, SPLPalVRAMAllocFunc vramAlloc)
 {
+    // Required to match
     s32 i;
     SPLTexture *tex;
-    SPLTextureResource *hdr;
-    u32 ofs;
+    SPLTextureResource *texRes;
 
     GX_BeginLoadTexPltt();
 
     for (i = 0; i < mgr->texCount; i++) {
-        ofs = 0;
+        u32 addr = 0;
         tex = &mgr->textures[i];
-        hdr = (SPLTextureResource *)tex->resource;
+        texRes = (SPLTextureResource *)tex->resource;
 
-        if (hdr->unk_10 != 0) {
-            ofs = func(hdr->unk_10, hdr->param.val2_00_0 == 2);
-            GX_LoadTexPltt((u8 *)tex->resource + hdr->unk_0C, ofs, hdr->unk_10);
+        if (texRes->paletteSize != 0) {
+            addr = vramAlloc(texRes->paletteSize, texRes->param.format == GX_TEXFMT_PLTT4);
+            GX_LoadTexPltt((u8 *)tex->resource + texRes->paletteOffset, addr, texRes->paletteSize);
         }
 
-        tex->unk_08 = ofs;
+        tex->palAddr = addr;
     }
 
     GX_EndLoadTexPltt();
     return TRUE;
 }
 
-int SPL_0209C7F4(SPLManager *mgr)
+BOOL SPLManager_UploadTextures(SPLManager *mgr)
 {
-    return SPL_0209C8BC(mgr, SPLUtil_AllocTextureVRAM);
+    return SPLManager_UploadTexturesEx(mgr, SPLUtil_AllocTextureVRAM);
 }
 
-int SPL_0209C7E0(SPLManager *mgr)
+BOOL SPLManager_UploadPalettes(SPLManager *mgr)
 {
-    return SPL_0209C808(mgr, SPLUtil_AllocPaletteVRAM);
+    return SPLManager_UploadPalettesEx(mgr, SPLUtil_AllocPaletteVRAM);
 }
 
 void SPL_0209C6A8(SPLManager *mgr)
