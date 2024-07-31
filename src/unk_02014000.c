@@ -651,7 +651,7 @@ void sub_02014798(SPLEmitter *param0, VecFx16 *param1)
 
 void sub_020147B0(SPLEmitter *param0, fx32 param1)
 {
-    param0->p_res->unk_00->unk_10 = param1;
+    param0->p_res->header->unk_10 = param1;
 }
 
 enum {
@@ -667,16 +667,16 @@ static const void *sub_020147B8(SPLEmitter *param0, int param1)
 {
     int v0;
     int v1;
-    UnkStruct_020147B8 *v2;
+    SPLBehavior *v2;
 
-    v1 = param0->p_res->unk_1C;
+    v1 = param0->p_res->behaviorCount;
 
     if (v1 == 0) {
         return NULL;
     }
 
     for (v0 = 0; v0 < v1; v0++) {
-        v2 = &param0->p_res->unk_18[v0];
+        v2 = &param0->p_res->behaviors[v0];
 
         if (v2 == NULL) {
             continue;
@@ -684,33 +684,33 @@ static const void *sub_020147B8(SPLEmitter *param0, int param1)
 
         switch (param1) {
         case SPL_FLD_TYPE_GRAVITY:
-            if (v2->unk_00 == SPLBehavior_ApplyGravity) {
-                return v2->unk_04;
+            if (v2->apply == SPLBehavior_ApplyGravity) {
+                return v2->object;
             }
             continue;
         case SPL_FLD_TYPE_RANDOM:
-            if (v2->unk_00 == SPLBehavior_ApplyRandom) {
-                return v2->unk_04;
+            if (v2->apply == SPLBehavior_ApplyRandom) {
+                return v2->object;
             }
             continue;
         case SPL_FLD_TYPE_MAGNET:
-            if (v2->unk_00 == SPLBehavior_ApplyMagnet) {
-                return v2->unk_04;
+            if (v2->apply == SPLBehavior_ApplyMagnet) {
+                return v2->object;
             }
             continue;
         case SPL_FLD_TYPE_SPIN:
-            if (v2->unk_00 == SPLBehavior_ApplySpin) {
-                return v2->unk_04;
+            if (v2->apply == SPLBehavior_ApplySpin) {
+                return v2->object;
             }
             continue;
         case SPL_FLD_TYPE_SIMPLE_COLL:
-            if (v2->unk_00 == SPLBehavior_ApplyCollisionPlane) {
-                return v2->unk_04;
+            if (v2->apply == SPLBehavior_ApplyCollisionPlane) {
+                return v2->object;
             }
             break;
         case SPL_FLD_TYPE_CONVERGENCE:
-            if (v2->unk_00 == SPLBehavior_ApplyConvergence) {
-                return v2->unk_04;
+            if (v2->apply == SPLBehavior_ApplyConvergence) {
+                return v2->object;
             }
             continue;
         default:

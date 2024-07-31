@@ -19,10 +19,10 @@ typedef struct SPLManager {
     SPLEmitterList activeEmitters;
     SPLEmitterList inactiveEmitters;
     SPLParticleList inactiveParticles;
-    UnkSPLStruct4 * unk_28;
-    UnkSPLStruct5 * unk_2C;
-    u16 unk_30;
-    u16 unk_32;
+    SPLResource * resources;
+    SPLTexture * textures;
+    u16 resCount;
+    u16 texCount;
     u16 unk_34;
     u16 unk_36;
     struct {

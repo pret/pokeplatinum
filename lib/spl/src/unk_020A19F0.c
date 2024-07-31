@@ -5,13 +5,13 @@
 #include "spl_internal.h"
 
 
-void sub_020A1DA0(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate)
+void sub_020A1DA0(SPLParticle *ptcl, SPLResource *res, int lifeRate)
 {
-    UnkSPLStruct10 *scaleAnim;
+    SPLScaleAnim *scaleAnim;
     int in, out;
     fx16 start, n, end;
 
-    scaleAnim = res->unk_04;
+    scaleAnim = res->scaleAnim;
     in = scaleAnim->unk_06.val2_00;
     out = scaleAnim->unk_06.val2_01;
 
@@ -28,14 +28,14 @@ void sub_020A1DA0(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate)
     }
 }
 
-void sub_020A1BD4(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate)
+void sub_020A1BD4(SPLParticle *ptcl, SPLResource *res, int lifeRate)
 {
-    UnkSPLStruct9 *resBase;
-    UnkSPLStruct11 *colorAnim;
+    SPLResourceHeader *resBase;
+    SPLColorAnim *colorAnim;
     int in, peak, out;
     
-    colorAnim = res->unk_08;
-    resBase = res->unk_00;
+    colorAnim = res->colorAnim;
+    resBase = res->header;
     peak = colorAnim->unk_04.unk_05_0;
     out = colorAnim->unk_04.unk_06_0;
     in = colorAnim->unk_04.unk_04_0;
@@ -91,10 +91,10 @@ void sub_020A1BD4(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate)
     }
 }
 
-void sub_020A1AF8(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate)
+void sub_020A1AF8(SPLParticle *ptcl, SPLResource *res, int lifeRate)
 {
     u32 x;
-    UnkSPLStruct12 *alphaAnim = res->unk_0C;
+    SPLAlphaAnim *alphaAnim = res->alphaAnim;
     int maxA = alphaAnim->unk_04.val2_00;
     int maxB = alphaAnim->unk_04.val2_01;
 
@@ -111,9 +111,9 @@ void sub_020A1AF8(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate)
     ptcl->unk_2E.unk_00_5 = SPLRandom_ScaledRangeFX32(x, alphaAnim->unk_02.unk_00_0);
 }
 
-void sub_020A1A94(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate)
+void sub_020A1A94(SPLParticle *ptcl, SPLResource *res, int lifeRate)
 {
-    UnkSPLStruct13 *texAnim = res->unk_10;
+    SPLTexAnim *texAnim = res->texAnim;
     for (int i = 0; i < texAnim->unk_08.unk_00_0; i++) {
         if (lifeRate < texAnim->unk_08.unk_01_0 * (i + 1)) {
             ptcl->unk_2C.unk_00 = texAnim->unk_00[i];
@@ -122,12 +122,12 @@ void sub_020A1A94(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate)
     }
 }
 
-void sub_020A1A48(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate)
+void sub_020A1A48(SPLParticle *ptcl, SPLResource *res, int lifeRate)
 {
-    ptcl->unk_34 = res->unk_14->unk_04 + ((res->unk_14->unk_04 - FX16_ONE) * (lifeRate - 255)) / 255;
+    ptcl->unk_34 = res->childResource->unk_04 + ((res->childResource->unk_04 - FX16_ONE) * (lifeRate - 255)) / 255;
 }
 
-void sub_020A19F0(SPLParticle *ptcl, UnkSPLStruct4 *res, int lifeRate)
+void sub_020A19F0(SPLParticle *ptcl, SPLResource *res, int lifeRate)
 {
     ptcl->unk_2E.unk_00_5 = ((255 - lifeRate) * 31) / 255;
 }
