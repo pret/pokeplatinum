@@ -15,7 +15,7 @@ typedef struct UnkSPLStruct7 {
         {
             u32 terminate:1;
             u32 stop_generate:1;
-            u32 stop_calc:1;
+            u32 paused:1;
             u32 stop_draw:1;
             u32 started: 1 ;
             u32 reserved0:27;
@@ -26,14 +26,14 @@ typedef struct UnkSPLStruct7 {
 typedef struct SPLEmitter {
     struct SPLEmitter * unk_00;
     struct SPLEmitter * unk_04;
-    SPLParticleList unk_08;
-    SPLParticleList unk_4C;
-    SPLResource * p_res;
-    UnkSPLStruct7 unk_94;
+    SPLParticleList particles;
+    SPLParticleList childParticles;
+    SPLResource *resource;
+    UnkSPLStruct7 state;
     VecFx32 unk_98;
     VecFx32 unk_A4;
     VecFx32 unk_B0;
-    u16 unk_BC;
+    u16 age;
     fx16 unk_BE;
     VecFx16 unk_C0;
     u16 unk_C6;
@@ -53,9 +53,9 @@ typedef struct SPLEmitter {
     struct {
         u32 unk_00_0 : 8;
         u32 unk_01_0 : 8;
-        u32 unk_02_0 : 3;
+        u32 updateCycle : 3; // 0 = every frame, 1 = cycle A, 2 = cycle B, cycles A and B alternate
         u32 unk_02_3 : 13;
-    } unk_F0;
+    } misc;
     VecFx16 unk_F4;
     VecFx16 unk_FA;
     void (* unk_100)(struct SPLEmitter *, unsigned int);

@@ -2870,7 +2870,7 @@ static BOOL ov12_02229A50(SPLEmitter *param0)
         int v2;
         int v3;
 
-        v1 = param0->unk_08.first;
+        v1 = param0->particles.first;
 
         while (v1 != NULL) {
             v2 = v1->age;

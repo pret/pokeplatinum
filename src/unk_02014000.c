@@ -522,7 +522,7 @@ void sub_02014638(UnkStruct_02014014 *param0)
 
 void sub_02014674(UnkStruct_02014014 *param0)
 {
-    SPL_0209C6A8(param0->unk_00);
+    SPLManager_Update(param0->unk_00);
 }
 
 int sub_02014680(void)
@@ -651,7 +651,7 @@ void sub_02014798(SPLEmitter *param0, VecFx16 *param1)
 
 void sub_020147B0(SPLEmitter *param0, fx32 param1)
 {
-    param0->p_res->header->unk_10 = param1;
+    param0->resource->header->unk_10 = param1;
 }
 
 enum {
@@ -669,14 +669,14 @@ static const void *sub_020147B8(SPLEmitter *param0, int param1)
     int v1;
     SPLBehavior *v2;
 
-    v1 = param0->p_res->behaviorCount;
+    v1 = param0->resource->behaviorCount;
 
     if (v1 == 0) {
         return NULL;
     }
 
     for (v0 = 0; v0 < v1; v0++) {
-        v2 = &param0->p_res->behaviors[v0];
+        v2 = &param0->resource->behaviors[v0];
 
         if (v2 == NULL) {
             continue;
