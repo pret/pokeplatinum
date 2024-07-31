@@ -69,136 +69,140 @@ SPLManager *SPLManager_New(SPLAllocFunc alloc, u16 maxEmitters, u16 maxParticles
         SPLParticleList_PushFront(&mgr->inactiveParticles, &ptcl[i]);
     }
 
-    mgr->unk_28 = NULL;
-    mgr->unk_2C = NULL;
-    mgr->unk_30 = mgr->unk_32 = 0;
+    mgr->resources = NULL;
+    mgr->textures = NULL;
+    mgr->resCount = mgr->texCount = 0;
 
     return mgr;
 }
 
 void SPL_0209C988(SPLManager *mgr, const void *data)
 {
-    int i; // Required to match
-    int offset;
-    SPLArcHdr *spa;
+    // Required to match
+    int i, offset;
+    SPLFileHeader *spa;
 
-    spa = (SPLArcHdr *)data;
-    offset = sizeof(SPLArcHdr);
+    spa = (SPLFileHeader *)data;
+    offset = sizeof(SPLFileHeader);
 
-    mgr->unk_30 = spa->res_num;
-    mgr->unk_32 = spa->tex_num;
+    mgr->resCount = spa->resCount;
+    mgr->texCount = spa->texCount;
 
-    mgr->unk_28 = mgr->alloc(mgr->unk_30 * sizeof(UnkSPLStruct4));
+    mgr->resources = mgr->alloc(mgr->resCount * sizeof(SPLResource));
 
-    MI_CpuFill8(mgr->unk_28, 0, mgr->unk_30 * sizeof(UnkSPLStruct4));
+    MI_CpuFill8(mgr->resources, 0, mgr->resCount * sizeof(SPLResource));
 
-    for (i = 0; i < mgr->unk_30; ++i) {
-        UnkSPLStruct4 *p_res = mgr->unk_28 + i;
-        p_res->unk_00 = (UnkSPLStruct9 *)((u8 *)spa + offset);
+    for (i = 0; i < mgr->resCount; ++i) {
+        SPLResource *res = mgr->resources + i;
+        res->header = (SPLResourceHeader *)((u8 *)spa + offset);
 
-        offset += sizeof(UnkSPLStruct9);
-        UnkSPLUnion1 flag = p_res->unk_00->unk_00;
+        offset += sizeof(SPLResourceHeader);
+        SPLResourceFlags flags = res->header->flags;
 
-        if (flag.unk_05_0) { // Has scaleAnim
-            p_res->unk_04 = (UnkSPLStruct10 *)((u8 *)spa + offset);
-            offset += sizeof(UnkSPLStruct10);
+        if (flags.hasScaleAnim) {
+            res->scaleAnim = (SPLScaleAnim *)((u8 *)spa + offset);
+            offset += sizeof(SPLScaleAnim);
         } else {
-            p_res->unk_04 = NULL;
+            res->scaleAnim = NULL;
         }
 
-        if (flag.unk_05_1) { // Has colorAnim
-            p_res->unk_08 = (UnkSPLStruct11 *)((u8 *)spa + offset);
-            offset += sizeof(UnkSPLStruct11);
+        if (flags.hasColorAnim) {
+            res->colorAnim = (SPLColorAnim *)((u8 *)spa + offset);
+            offset += sizeof(SPLColorAnim);
         } else {
-            p_res->unk_08 = NULL;
+            res->colorAnim = NULL;
         }
 
-        if (flag.unk_05_2) { // Has alphaAnim
-            p_res->unk_0C = (UnkSPLStruct12 *)((u8 *)spa + offset);
-            offset += sizeof(UnkSPLStruct12);
+        if (flags.hasAlphaAnim) {
+            res->alphaAnim = (SPLAlphaAnim *)((u8 *)spa + offset);
+            offset += sizeof(SPLAlphaAnim);
         } else {
-            p_res->unk_0C = NULL;
+            res->alphaAnim = NULL;
         }
 
-        if (flag.unk_05_3) { // Has texAnim
-            p_res->unk_10 = (UnkSPLStruct13 *)((u8 *)spa + offset);
-            offset += sizeof(UnkSPLStruct13);
+        if (flags.hasTexAnim) {
+            res->texAnim = (SPLTexAnim *)((u8 *)spa + offset);
+            offset += sizeof(SPLTexAnim);
         } else {
-            p_res->unk_10 = NULL;
+            res->texAnim = NULL;
         }
 
-        if (flag.unk_06_0) { // Has child
-            p_res->unk_14 = (UnkSPLStruct14 *)((u8 *)spa + offset);
-            offset += sizeof(UnkSPLStruct14);
+        if (flags.hasChildResource) {
+            res->childResource = (SPLChildResource *)((u8 *)spa + offset);
+            offset += sizeof(SPLChildResource);
         } else {
-            p_res->unk_14 = NULL;
+            res->childResource = NULL;
         }
 
-        // Sum up all fields
-        p_res->unk_1C = flag.unk_07_0 + flag.unk_07_1 + flag.unk_07_2
-            + flag.unk_07_3 + flag.unk_07_4 + flag.unk_07_5;
+        // Sum up all behaviors
+        res->behaviorCount = flags.hasGravityBehavior 
+            + flags.hasRandomBehavior 
+            + flags.hasMagnetBehavior
+            + flags.hasSpinBehavior 
+            + flags.hasCollisionPlaneBehavior 
+            + flags.hasConvergenceBehavior;
 
-        if (p_res->unk_1C != 0) {
-            p_res->unk_18 = (UnkStruct_020147B8 *)mgr->alloc(p_res->unk_1C * sizeof(UnkStruct_020147B8));
-            UnkStruct_020147B8 *fld = p_res->unk_18;
+        if (res->behaviorCount != 0) {
+            res->behaviors = (SPLBehavior *)mgr->alloc(res->behaviorCount * sizeof(SPLBehavior));
+            SPLBehavior *behavior = res->behaviors;
 
-            if (flag.unk_07_0) {
-                fld->unk_04 = (const void *)((u8 *)spa + offset);
-                fld->unk_00 = SPLBehavior_ApplyGravity;
+            if (flags.hasGravityBehavior) {
+                behavior->object = (const void *)((u8 *)spa + offset);
+                behavior->apply = SPLBehavior_ApplyGravity;
                 offset += sizeof(SPLGravityBehavior);
-                fld++;
+                behavior++;
             }
 
-            if (flag.unk_07_1) {
-                fld->unk_04 = (const void *)((u8 *)spa + offset);
-                fld->unk_00 = SPLBehavior_ApplyRandom;
+            if (flags.hasRandomBehavior) {
+                behavior->object = (const void *)((u8 *)spa + offset);
+                behavior->apply = SPLBehavior_ApplyRandom;
                 offset += sizeof(SPLRandomBehavior);
-                fld++;
+                behavior++;
             }
 
-            if (flag.unk_07_2) {
-                fld->unk_04 = (const void *)((u8 *)spa + offset);
-                fld->unk_00 = SPLBehavior_ApplyMagnet;
+            if (flags.hasMagnetBehavior) {
+                behavior->object = (const void *)((u8 *)spa + offset);
+                behavior->apply = SPLBehavior_ApplyMagnet;
                 offset += sizeof(SPLMagnetBehavior);
-                fld++;
+                behavior++;
             }
 
-            if (flag.unk_07_3) {
-                fld->unk_04 = (const void *)((u8 *)spa + offset);
-                fld->unk_00 = SPLBehavior_ApplySpin;
+            if (flags.hasSpinBehavior) {
+                behavior->object = (const void *)((u8 *)spa + offset);
+                behavior->apply = SPLBehavior_ApplySpin;
                 offset += sizeof(SPLSpinBehavior);
-                fld++;
+                behavior++;
             }
 
-            if (flag.unk_07_4) {
-                fld->unk_04 = (const void *)((u8 *)spa + offset);
-                fld->unk_00 = SPLBehavior_ApplyCollisionPlane;
+            if (flags.hasCollisionPlaneBehavior) {
+                behavior->object = (const void *)((u8 *)spa + offset);
+                behavior->apply = SPLBehavior_ApplyCollisionPlane;
                 offset += sizeof(SPLCollisionPlaneBehavior);
-                fld++;
+                behavior++;
             }
 
-            if (flag.unk_07_5) {
-                fld->unk_04 = (void *)((u8 *)spa + offset);
-                fld->unk_00 = SPLBehavior_ApplyConvergence;
+            if (flags.hasConvergenceBehavior) {
+                behavior->object = (void *)((u8 *)spa + offset);
+                behavior->apply = SPLBehavior_ApplyConvergence;
                 offset += sizeof(SPLConvergenceBehavior);
             }
         } else {
-            p_res->unk_18 = NULL;
+            res->behaviors = NULL;
         }
     }
 
-    mgr->unk_2C = (UnkSPLStruct5 *)mgr->alloc(mgr->unk_32 * sizeof(UnkSPLStruct5));
+    mgr->textures = (SPLTexture *)mgr->alloc(mgr->texCount * sizeof(SPLTexture));
 
-    MI_CpuFill8(mgr->unk_2C, 0, mgr->unk_32 * sizeof(UnkSPLStruct5));
+    MI_CpuFill8(mgr->textures, 0, mgr->texCount * sizeof(SPLTexture));
 
-    for (i = 0; i < mgr->unk_32; ++i) {
-        UnkSPLStruct5 *p_tex = &mgr->unk_2C[i];
-        UnkSPLStruct15 *p_tex_hdr = (UnkSPLStruct15 *)((u8 *)spa + offset);
-        p_tex->unk_00 = p_tex_hdr;
-        p_tex->unk_10 = DECODE_WH(p_tex_hdr->unk_04.val2_00_4);
-        p_tex->unk_12 = DECODE_WH(p_tex_hdr->unk_04.val2_01_0);
-        p_tex->unk_0C = p_tex_hdr->unk_04;
-        offset += p_tex_hdr->unk_1C;
+    for (i = 0; i < mgr->texCount; ++i) {
+        SPLTexture *texture = &mgr->textures[i];
+        SPLTextureResource *texRes = (SPLTextureResource *)((u8 *)spa + offset);
+        texture->resource = texRes;
+        texture->width = DECODE_WH(texRes->param.s);
+        texture->height = DECODE_WH(texRes->param.t);
+        texture->param = texRes->param;
+        offset += texRes->resourceSize;
     }
 }
 
@@ -209,16 +213,16 @@ BOOL SPL_0209C8BC(SPLManager *mgr, u32 (*func)(u32, BOOL))
 
     GX_BeginLoadTex();
 
-    for (i = 0; i < mgr->unk_32; i++) {
-        UnkSPLStruct5 *textures = mgr->unk_2C;
-        UnkSPLStruct5 *tex = &textures[i];
-        UnkSPLStruct15 *hdr = (UnkSPLStruct15 *)tex->unk_00;
+    for (i = 0; i < mgr->texCount; i++) {
+        SPLTexture *textures = mgr->textures;
+        SPLTexture *tex = &textures[i];
+        SPLTextureResource *hdr = (SPLTextureResource *)tex->resource;
 
-        if (hdr->unk_04.val2_02_1) {
-            tex->unk_04 = textures[hdr->unk_04.val2_02_2].unk_04;
+        if (hdr->param.val2_02_1) {
+            tex->unk_04 = textures[hdr->param.val2_02_2].unk_04;
         } else {
-            addr = func(hdr->unk_08, hdr->unk_04.val2_00_0 == 5);
-            GX_LoadTex(((UnkSPLStruct15 *)tex->unk_00) + 1, addr, hdr->unk_08);
+            addr = func(hdr->unk_08, hdr->param.val2_00_0 == 5);
+            GX_LoadTex(((SPLTextureResource *)tex->resource) + 1, addr, hdr->unk_08);
             tex->unk_04 = addr;
         }
     }
@@ -230,20 +234,20 @@ BOOL SPL_0209C8BC(SPLManager *mgr, u32 (*func)(u32, BOOL))
 BOOL SPL_0209C808(SPLManager *mgr, u32 (*func)(u32, BOOL))
 {
     s32 i;
-    UnkSPLStruct5 *tex;
-    UnkSPLStruct15 *hdr;
+    SPLTexture *tex;
+    SPLTextureResource *hdr;
     u32 ofs;
 
     GX_BeginLoadTexPltt();
 
-    for (i = 0; i < mgr->unk_32; i++) {
+    for (i = 0; i < mgr->texCount; i++) {
         ofs = 0;
-        tex = &mgr->unk_2C[i];
-        hdr = (UnkSPLStruct15 *)tex->unk_00;
+        tex = &mgr->textures[i];
+        hdr = (SPLTextureResource *)tex->resource;
 
         if (hdr->unk_10 != 0) {
-            ofs = func(hdr->unk_10, hdr->unk_04.val2_00_0 == 2);
-            GX_LoadTexPltt((u8 *)tex->unk_00 + hdr->unk_0C, ofs, hdr->unk_10);
+            ofs = func(hdr->unk_10, hdr->param.val2_00_0 == 2);
+            GX_LoadTexPltt((u8 *)tex->resource + hdr->unk_0C, ofs, hdr->unk_10);
         }
 
         tex->unk_08 = ofs;
@@ -270,7 +274,7 @@ void SPL_0209C6A8(SPLManager *mgr)
 
     emtr = mgr->activeEmitters.first;
     while (emtr != NULL) {
-        UnkSPLStruct9 *base = emtr->p_res->unk_00;
+        SPLResourceHeader *base = emtr->p_res->header;
         next = emtr->unk_00;
 
         if (!emtr->unk_94.started && emtr->unk_BC >= base->unk_32) {
@@ -284,7 +288,7 @@ void SPL_0209C6A8(SPLManager *mgr)
             }
         }
 
-        if (((base->unk_00.unk_05_6 && base->unk_3C != 0 && emtr->unk_94.started && emtr->unk_BC > base->unk_3C)
+        if (((base->flags.unk_05_6 && base->unk_3C != 0 && emtr->unk_94.started && emtr->unk_BC > base->unk_3C)
                 || emtr->unk_94.terminate)
             && emtr->unk_08.count == 0 && emtr->unk_4C.count == 0) {
             SPLEmitter *e0 = (SPLEmitter *)SPLList_Erase((SPLList *)&mgr->activeEmitters, (SPLNode *)emtr);
@@ -336,9 +340,9 @@ SPLEmitter *SPL_0209C56C(SPLManager *mgr, int resno, const VecFx32 *pos)
 
     if (mgr->inactiveEmitters.first != NULL) {
         emtr = (SPLEmitter *)SPLList_PopFront((SPLList *)&mgr->inactiveEmitters);
-        sub_0209D998(emtr, mgr->unk_28 + resno, pos);
+        sub_0209D998(emtr, mgr->resources + resno, pos);
         SPLList_PushFront((SPLList *)&mgr->activeEmitters, (SPLNode *)emtr);
-        if (emtr->p_res->unk_00->unk_00.unk_05_6) {
+        if (emtr->p_res->header->flags.unk_05_6) {
             emtr = NULL;
         }
     }
@@ -354,12 +358,12 @@ SPLEmitter *SPL_0209C4D8(SPLManager *mgr, int resno, EmitterCallback fpcb)
     if (mgr->inactiveEmitters.first != NULL) {
         VecFx32 v0 = { 0, 0, 0 };
         emtr = (SPLEmitter *)SPLList_PopFront((SPLList *)&mgr->inactiveEmitters);
-        sub_0209D998(emtr, mgr->unk_28 + resno, &v0);
+        sub_0209D998(emtr, mgr->resources + resno, &v0);
         if (fpcb != NULL) {
             fpcb(emtr);
         }
         SPLList_PushFront((SPLList *)&mgr->activeEmitters, (SPLNode *)emtr);
-        if (emtr->p_res->unk_00->unk_00.unk_05_6) {
+        if (emtr->p_res->header->flags.unk_05_6) {
             emtr = NULL;
         }
     }
@@ -374,13 +378,13 @@ SPLEmitter *SPL_CreateWithInitializeEx(SPLManager *mgr, int resNo, VecFx32 *pos,
     emtr = NULL;
     if (mgr->inactiveEmitters.first != NULL) {
         emtr = (SPLEmitter *)SPLList_PopFront((SPLList *)&mgr->inactiveEmitters);
-        sub_0209D998(emtr, mgr->unk_28 + resNo, pos);
+        sub_0209D998(emtr, mgr->resources + resNo, pos);
         if (cb != NULL) {
             cb(emtr, pvoid);
         }
 
         SPLList_PushFront((SPLList *)&mgr->activeEmitters, (SPLNode *)emtr);
-        if (emtr->p_res->unk_00->unk_00.unk_05_6) {
+        if (emtr->p_res->header->flags.unk_05_6) {
             emtr = NULL;
         }
     }
@@ -427,8 +431,8 @@ void SPL_Emit(SPLManager *mgr, SPLEmitter *emtr)
 
 void SPL_EmitAt(SPLManager *mgr, SPLEmitter *emtr, VecFx32 *pos)
 {
-    emtr->unk_98.x = pos->x + emtr->p_res->unk_00->unk_04.x;
-    emtr->unk_98.y = pos->y + emtr->p_res->unk_00->unk_04.y;
-    emtr->unk_98.z = pos->z + emtr->p_res->unk_00->unk_04.z;
+    emtr->unk_98.x = pos->x + emtr->p_res->header->unk_04.x;
+    emtr->unk_98.y = pos->y + emtr->p_res->header->unk_04.y;
+    emtr->unk_98.z = pos->z + emtr->p_res->header->unk_04.z;
     spl_generate(emtr, (SPLList *)&mgr->inactiveParticles);
 }

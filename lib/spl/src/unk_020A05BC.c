@@ -22,7 +22,7 @@ static void sub_020A1768(SPLEmitter *emtr)
 
     vec = Unk_02100DB0;
 
-    switch (emtr->p_res->unk_00->unk_00.unk_04_6) {
+    switch (emtr->p_res->header->flags.unk_04_6) {
     case 2:
         axis.x = FX32_ONE;
         axis.y = 0;
@@ -75,21 +75,21 @@ static void sub_020A1608(VecFx32 *ptclPos, VecFx32 *pos, SPLEmitter *emtr)
 
 void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
 {
-    UnkSPLStruct4 *res;
-    UnkSPLStruct9 *resBase;
+    SPLResource *res;
+    SPLResourceHeader *resBase;
     int i, curGenNum;
     SPLParticle *ptcl;
     fx32 magPos;
     fx32 magAxis;
 
     res = emtr->p_res;
-    resBase = res->unk_00;
+    resBase = res->header;
 
     int temp = emtr->unk_C8 + FX32_CAST(emtr->unk_BE);
     curGenNum = temp >> FX32_SHIFT;
     emtr->unk_BE = temp & FX32_DEC_MASK;
 
-    u32 initType = resBase->unk_00.unk_04_0;
+    u32 initType = resBase->flags.unk_04_0;
     if (initType == 2 || initType == 3 || IS_IN_RANGE(initType, 5, 9)) {
         sub_020A1768(emtr);
     }
@@ -106,7 +106,7 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
 
             SPLList_PushFront((SPLList *)&emtr->unk_08, (SPLNode *)ptcl);
 
-            switch (resBase->unk_00.unk_04_0) {
+            switch (resBase->flags.unk_04_0) {
             case 0:
                 ptcl->position.x = ptcl->position.y = ptcl->position.z = 0;
                 break;
@@ -215,7 +215,7 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
             magAxis = SPLRandom_DoubleScaledRangeFX32(emtr->unk_D8, resBase->unk_44.unk_02_0);
 
             VecFx32 posNorm;
-            if (resBase->unk_00.unk_04_0 == 6) {
+            if (resBase->flags.unk_04_0 == 6) {
                 VecFx32 tmp;
                 tmp.x = FX_MUL(ptcl->velocity.x, emtr->unk_F4.x) + FX_MUL(ptcl->velocity.y, emtr->unk_FA.x);
                 tmp.y = FX_MUL(ptcl->velocity.x, emtr->unk_F4.y) + FX_MUL(ptcl->velocity.y, emtr->unk_FA.y);
@@ -237,12 +237,12 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
             ptcl->unk_30 = SPLRandom_DoubleScaledRangeFX32(emtr->unk_DC, resBase->unk_44.unk_00_0);
             ptcl->unk_34 = FX32_ONE;
 
-            if (resBase->unk_00.unk_05_1 && res->unk_08->unk_08.unk_00_0) {
+            if (resBase->flags.hasColorAnim && res->colorAnim->unk_08.unk_00_0) {
                 u16 clr[3];
                 u32 index = SPLRandom_S32(12);
-                clr[0] = res->unk_08->unk_00;
+                clr[0] = res->colorAnim->unk_00;
                 clr[1] = resBase->unk_22;
-                clr[2] = res->unk_08->unk_02;
+                clr[2] = res->colorAnim->unk_02;
                 ptcl->unk_36 = clr[index % 3];
             } else {
                 ptcl->unk_36 = resBase->unk_22;
@@ -251,13 +251,13 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
             ptcl->unk_2E.unk_00_0 = emtr->unk_F0.unk_01_0;
             ptcl->unk_2E.unk_00_5 = 31;
 
-            if (resBase->unk_00.unk_05_5) {
+            if (resBase->flags.unk_05_5) {
                 ptcl->unk_20 = SPLRandom_S32(32);
             } else {
                 ptcl->unk_20 = emtr->unk_C6;
             }
 
-            if (resBase->unk_00.unk_05_4) {
+            if (resBase->flags.unk_05_4) {
                 ptcl->unk_22 = (u32)SPLRandom_BetweenFX32(resBase->unk_34, resBase->unk_36) >> FX32_SHIFT;
             } else {
                 ptcl->unk_22 = 0;
@@ -266,20 +266,20 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
             ptcl->lifeTime = SPLRandom_ScaledRangeFX32(emtr->unk_E0, resBase->unk_44.unk_01_0) + 1;
             ptcl->age = 0;
 
-            if (resBase->unk_00.unk_05_3 && res->unk_10->unk_08.unk_02_0) {
-                ptcl->unk_2C.unk_00 = res->unk_10->unk_00[SPLRandom_U32(12) % res->unk_10->unk_08.unk_00_0];
-            } else if (resBase->unk_00.unk_05_3 && !res->unk_10->unk_08.unk_02_0) {
-                ptcl->unk_2C.unk_00 = res->unk_10->unk_00[0];
+            if (resBase->flags.hasTexAnim && res->texAnim->unk_08.unk_02_0) {
+                ptcl->unk_2C.unk_00 = res->texAnim->unk_00[SPLRandom_U32(12) % res->texAnim->unk_08.unk_00_0];
+            } else if (resBase->flags.hasTexAnim && !res->texAnim->unk_08.unk_02_0) {
+                ptcl->unk_2C.unk_00 = res->texAnim->unk_00[0];
             } else {
                 ptcl->unk_2C.unk_00 = resBase->unk_48.unk_03_0;
             }
 
-            ptcl->unk_28 = 0xFFFF / res->unk_00->unk_48.unk_04_0;
+            ptcl->unk_28 = 0xFFFF / res->header->unk_48.unk_04_0;
             ptcl->unk_2A = 0xFFFF / ptcl->lifeTime;
 
             ptcl->unk_2C.unk_01 = 0;
 
-            if (resBase->unk_00.unk_06_4) {
+            if (resBase->flags.unk_06_4) {
                 ptcl->unk_2C.unk_01 = (u8)SPLRandom_S32(8);
             }
             i++;
@@ -293,7 +293,7 @@ void sub_020A05BC(SPLParticle *ptcl, SPLEmitter *emtr, SPLList *list)
     fx32 velBase, velRand;
     u32 rng;
     int i;
-    UnkSPLStruct14 *chldRes = emtr->p_res->unk_14;
+    SPLChildResource *chldRes = emtr->p_res->childResource;
     fx32 vel = FX_MUL((fx32)(chldRes->unk_08.unk_00_0 << FX32_SHIFT), FX32_CONST(1 / 256.0f));
 
     for (i = 0; i < chldRes->unk_0C.unk_00_0; i++) {

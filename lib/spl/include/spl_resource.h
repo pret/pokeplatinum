@@ -7,48 +7,48 @@
 
 
 typedef struct SPLArcHdr {
-    u32 id;
-    u32 ver;
-    u16 res_num;
-    u16 tex_num;
+    u32 magic;
+    u32 version;
+    u16 resCount;
+    u16 texCount;
     u32 reserved0;
-    u32 res_size;
-    u32 tex_size;
-    u32 tex_offset;
+    u32 resSize;
+    u32 texSize;
+    u32 texOffset;
     u32 reserved1;
-} SPLArcHdr;
+} SPLFileHeader;
 
 typedef union {
-    u32 unk_00;
+    u32 all;
     struct {
         u32 unk_04_0 : 4;
         u32 unk_04_4 : 2;
         u32 unk_04_6 : 2;
-        u32 unk_05_0 : 1;
-        u32 unk_05_1 : 1;
-        u32 unk_05_2 : 1;
-        u32 unk_05_3 : 1;
+        u32 hasScaleAnim : 1;
+        u32 hasColorAnim : 1;
+        u32 hasAlphaAnim : 1;
+        u32 hasTexAnim : 1;
         u32 unk_05_4 : 1;
         u32 unk_05_5 : 1;
         u32 unk_05_6 : 1;
         u32 unk_05_7 : 1;
-        u32 unk_06_0 : 1;
+        u32 hasChildResource : 1;
         u32 unk_06_1 : 2;
         u32 unk_06_3 : 1;
         u32 unk_06_4 : 1;
         u32 unk_06_5 : 1;
         u32 unk_06_6 : 1;
         u32 unk_06_7 : 1;
-        u32 unk_07_0 : 1;
-        u32 unk_07_1 : 1;
-        u32 unk_07_2 : 1;
-        u32 unk_07_3 : 1;
-        u32 unk_07_4 : 1;
-        u32 unk_07_5 : 1;
+        u32 hasGravityBehavior : 1;
+        u32 hasRandomBehavior : 1;
+        u32 hasMagnetBehavior : 1;
+        u32 hasSpinBehavior : 1;
+        u32 hasCollisionPlaneBehavior : 1;
+        u32 hasConvergenceBehavior : 1;
         u32 unk_07_6 : 1;
         u32 unk_07_7 : 1;
     };
-} UnkSPLUnion1; // size=0x4
+} SPLResourceFlags; // size=0x4
 
 typedef union {
     u16 unk_00;
@@ -85,7 +85,7 @@ typedef union {
 } UnkSPLUnion4; // size=0x4
 
 typedef struct UnkSPLStruct9_t {
-    UnkSPLUnion1 unk_00;
+    SPLResourceFlags flags;
     VecFx32 unk_04;
     fx32 unk_10;
     fx32 unk_14;
@@ -132,7 +132,7 @@ typedef struct UnkSPLStruct9_t {
         u32 unk_00_0 : 8;
         u32 reserved_01_0 : 24;
     } unk_58;
-} UnkSPLStruct9; // size=0x5C
+} SPLResourceHeader; // size=0x5C
 
 typedef struct UnkSPLStruct10_t {
     fx16 unk_00;
@@ -144,7 +144,7 @@ typedef struct UnkSPLStruct10_t {
         u16 reserved_00_1 : 15;
     } unk_08;
     u16 reserved_0A;
-} UnkSPLStruct10; // size=0xc
+} SPLScaleAnim; // size=0xc
 
 typedef struct UnkSPLStruct11_t {
     GXRgb unk_00;
@@ -157,7 +157,7 @@ typedef struct UnkSPLStruct11_t {
         u16 unk_00_3 : 13;
     } unk_08;
     u16 reserved_0A;
-} UnkSPLStruct11;
+} SPLColorAnim;
 
 typedef struct UnkSPLStruct12_t {
     union {
@@ -176,7 +176,7 @@ typedef struct UnkSPLStruct12_t {
     } unk_02;
     UnkSPLUnion3 unk_04;
     u16 reserved_06;
-} UnkSPLStruct12; // size=0x8
+} SPLAlphaAnim; // size=0x8
 
 typedef struct UnkSPLStruct13_t {
     u8 unk_00[8];
@@ -187,7 +187,7 @@ typedef struct UnkSPLStruct13_t {
         u32 unk_02_1 : 1;
         u32 reserved_02_2 : 14;
     } unk_08;
-} UnkSPLStruct13;
+} SPLTexAnim;
 
 typedef struct UnkSPLStruct14_t {
     UnkSPLUnion2 unk_00;
@@ -211,18 +211,18 @@ typedef struct UnkSPLStruct14_t {
         u32 unk_04_6 : 1;
         u32 reserved_04_7 : 25;
     } unk_0C;
-} UnkSPLStruct14;
+} SPLChildResource;
 
-typedef struct UnkSPLStruct4_t {
-    UnkSPLStruct9 * unk_00;
-    UnkSPLStruct10 * unk_04;
-    UnkSPLStruct11 * unk_08;
-    UnkSPLStruct12 * unk_0C;
-    UnkSPLStruct13 * unk_10;
-    UnkSPLStruct14 * unk_14;
-    UnkStruct_020147B8 * unk_18;
-    u16 unk_1C;
+typedef struct SPLResource {
+    SPLResourceHeader *header;
+    SPLScaleAnim *scaleAnim;
+    SPLColorAnim *colorAnim;
+    SPLAlphaAnim *alphaAnim;
+    SPLTexAnim *texAnim;
+    SPLChildResource *childResource;
+    SPLBehavior *behaviors;
+    u16 behaviorCount;
     u16 reserved_1E;
-} UnkSPLStruct4;
+} SPLResource;
 
 #endif // SPL_RESOURCE_H

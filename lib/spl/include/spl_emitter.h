@@ -28,7 +28,7 @@ typedef struct SPLEmitter {
     struct SPLEmitter * unk_04;
     SPLParticleList unk_08;
     SPLParticleList unk_4C;
-    UnkSPLStruct4 * p_res;
+    SPLResource * p_res;
     UnkSPLStruct7 unk_94;
     VecFx32 unk_98;
     VecFx32 unk_A4;
