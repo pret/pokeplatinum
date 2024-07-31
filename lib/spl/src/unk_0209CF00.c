@@ -59,64 +59,64 @@ static void sub_0209DC64(SPLTexture *tex)
 
 void sub_0209D998(SPLEmitter *emtr, SPLResource *res, const VecFx32 *pos)
 {
-    emtr->p_res = res;
-    emtr->unk_94.all = 0;
+    emtr->resource = res;
+    emtr->state.all = 0;
 
-    emtr->unk_98.x = pos->x + emtr->p_res->header->unk_04.x;
-    emtr->unk_98.y = pos->y + emtr->p_res->header->unk_04.y;
-    emtr->unk_98.z = pos->z + emtr->p_res->header->unk_04.z;
+    emtr->unk_98.x = pos->x + emtr->resource->header->unk_04.x;
+    emtr->unk_98.y = pos->y + emtr->resource->header->unk_04.y;
+    emtr->unk_98.z = pos->z + emtr->resource->header->unk_04.z;
 
     emtr->unk_B0.x = 0;
     emtr->unk_B0.y = 0;
     emtr->unk_B0.z = 0;
     emtr->unk_A4.x = emtr->unk_A4.y = emtr->unk_A4.z = 0;
 
-    emtr->unk_BC = 0;
+    emtr->age = 0;
     emtr->unk_BE = 0;
 
-    emtr->unk_C0 = emtr->p_res->header->unk_1C;
-    emtr->unk_C6 = emtr->p_res->header->unk_38;
-    emtr->unk_C8 = emtr->p_res->header->unk_10;
-    emtr->unk_CC = emtr->p_res->header->unk_14;
-    emtr->unk_D0 = emtr->p_res->header->unk_18;
-    emtr->unk_D4 = emtr->p_res->header->unk_24;
-    emtr->unk_D8 = emtr->p_res->header->unk_28;
-    emtr->unk_DC = emtr->p_res->header->unk_2C;
-    emtr->unk_E0 = emtr->p_res->header->unk_40;
+    emtr->unk_C0 = emtr->resource->header->unk_1C;
+    emtr->unk_C6 = emtr->resource->header->unk_38;
+    emtr->unk_C8 = emtr->resource->header->unk_10;
+    emtr->unk_CC = emtr->resource->header->unk_14;
+    emtr->unk_D0 = emtr->resource->header->unk_18;
+    emtr->unk_D4 = emtr->resource->header->unk_24;
+    emtr->unk_D8 = emtr->resource->header->unk_28;
+    emtr->unk_DC = emtr->resource->header->unk_2C;
+    emtr->unk_E0 = emtr->resource->header->particleLifeTime;
 
     emtr->unk_E2 = GX_RGB(31, 31, 31);
-    emtr->unk_F0.unk_00_0 = emtr->p_res->header->unk_48.unk_00_0;
-    emtr->unk_F0.unk_01_0 = emtr->p_res->header->unk_48.unk_01_0;
-    emtr->unk_F0.unk_02_0 = 0;
-    emtr->unk_F0.unk_02_3 = 0;
+    emtr->misc.unk_00_0 = emtr->resource->header->unk_48.unk_00_0;
+    emtr->misc.unk_01_0 = emtr->resource->header->unk_48.unk_01_0;
+    emtr->misc.updateCycle = 0;
+    emtr->misc.unk_02_3 = 0;
     emtr->collisionPlaneHeight = FX32_MIN;
-    emtr->unk_E8 = FX32_ONE << emtr->p_res->header->unk_48.unk_07_0;
-    emtr->unk_EA = FX32_ONE << emtr->p_res->header->unk_48.unk_07_2;
+    emtr->unk_E8 = FX32_ONE << emtr->resource->header->unk_48.unk_07_0;
+    emtr->unk_EA = FX32_ONE << emtr->resource->header->unk_48.unk_07_2;
 
-    if (emtr->p_res->header->unk_48.unk_08_0) {
+    if (emtr->resource->header->unk_48.unk_08_0) {
         emtr->unk_E8 *= -1;
     }
 
-    if (emtr->p_res->header->unk_48.unk_08_1) {
+    if (emtr->resource->header->unk_48.unk_08_1) {
         emtr->unk_EA *= -1;
     }
 
-    if (emtr->p_res->header->flags.hasChildResource) {
-        emtr->unk_EC = FX32_ONE << emtr->p_res->childResource->unk_0C.unk_04_0;
-        emtr->unk_EE = FX32_ONE << emtr->p_res->childResource->unk_0C.unk_04_2;
+    if (emtr->resource->header->flags.hasChildResource) {
+        emtr->unk_EC = FX32_ONE << emtr->resource->childResource->unk_0C.unk_04_0;
+        emtr->unk_EE = FX32_ONE << emtr->resource->childResource->unk_0C.unk_04_2;
 
-        if (emtr->p_res->childResource->unk_0C.unk_04_4) {
+        if (emtr->resource->childResource->unk_0C.unk_04_4) {
             emtr->unk_EC *= -1;
         }
 
-        if (emtr->p_res->childResource->unk_0C.unk_04_5) {
+        if (emtr->resource->childResource->unk_0C.unk_04_5) {
             emtr->unk_EE *= -1;
         }
     }
 
     emtr->unk_00 = emtr->unk_04 = NULL;
-    emtr->unk_08.first = emtr->unk_4C.first = NULL;
-    emtr->unk_08.count = emtr->unk_4C.count = 0;
+    emtr->particles.first = emtr->childParticles.first = NULL;
+    emtr->particles.count = emtr->childParticles.count = 0;
     emtr->unk_100 = NULL;
     emtr->unk_104 = NULL;
     emtr->unk_108.unk_108_val1 = 0;
@@ -138,7 +138,7 @@ void sub_0209D150(SPLManager *mgr, SPLEmitter *emtr)
     VecFx32 vec;
     int idx;
 
-    res = emtr->p_res;
+    res = emtr->resource;
     child = res->childResource;
     fieldIndex = 0;
     resBase = res->header;
@@ -150,9 +150,9 @@ void sub_0209D150(SPLManager *mgr, SPLEmitter *emtr)
         emtr->unk_100(emtr, FALSE);
     }
 
-    if (resBase->unk_3C == 0 || emtr->unk_BC < resBase->unk_3C) {
-        if (emtr->unk_BC % emtr->unk_F0.unk_00_0 == 0) {
-            if (!emtr->unk_94.terminate && !emtr->unk_94.stop_generate && emtr->unk_94.started) {
+    if (resBase->emitterLifeTime == 0 || emtr->age < resBase->emitterLifeTime) {
+        if (emtr->age % emtr->misc.unk_00_0 == 0) {
+            if (!emtr->state.terminate && !emtr->state.stop_generate && emtr->state.started) {
                 sub_020A08DC(emtr, (SPLList *)(&mgr->inactiveParticles));
             }
         }
@@ -178,7 +178,7 @@ void sub_0209D150(SPLManager *mgr, SPLEmitter *emtr)
         fieldFuncs[fieldIndex++].loop = res->texAnim->unk_08.unk_02_1;
     }
 
-    for (ptcl = emtr->unk_08.first; ptcl != NULL; ptcl = next) {
+    for (ptcl = emtr->particles.first; ptcl != NULL; ptcl = next) {
         next = ptcl->next;
         lifeRates[0] = ptcl->unk_2A * ptcl->age >> 8;
         lifeRates[1] = ptcl->unk_2C.unk_01 + (ptcl->unk_28 * ptcl->age >> 8);
@@ -223,7 +223,7 @@ void sub_0209D150(SPLManager *mgr, SPLEmitter *emtr)
             }
         }
 
-        if (emtr->p_res->header->flags.unk_07_6) {
+        if (emtr->resource->header->flags.unk_07_6) {
             ptcl->unk_2E.unk_01_2 = mgr->polygonID.fix;
         } else {
             ptcl->unk_2E.unk_01_2 = mgr->polygonID.current;
@@ -237,7 +237,7 @@ void sub_0209D150(SPLManager *mgr, SPLEmitter *emtr)
         ptcl->age += 1;
 
         if (ptcl->age > ptcl->lifeTime) {
-            SPLNode *node = SPLList_Erase((SPLList *)(&emtr->unk_08), (SPLNode *)ptcl);
+            SPLNode *node = SPLList_Erase((SPLList *)(&emtr->particles), (SPLNode *)ptcl);
             SPLList_PushFront((SPLList *)&mgr->inactiveParticles, node);
         }
     }
@@ -258,7 +258,7 @@ void sub_0209D150(SPLManager *mgr, SPLEmitter *emtr)
             fldNum = 0;
         }
 
-        for (ptcl = emtr->unk_4C.first; ptcl != NULL; ptcl = next) {
+        for (ptcl = emtr->childParticles.first; ptcl != NULL; ptcl = next) {
             next = ptcl->next;
             lifeRates[0] = (ptcl->age << 8) / ptcl->lifeTime;
             for (i = 0; i < fieldIndex; i++) {
@@ -290,7 +290,7 @@ void sub_0209D150(SPLManager *mgr, SPLEmitter *emtr)
             ptcl->position.y += ptcl->velocity.y + emtr->unk_A4.y;
             ptcl->position.z += ptcl->velocity.z + emtr->unk_A4.z;
 
-            if (emtr->p_res->header->flags.unk_07_7) {
+            if (emtr->resource->header->flags.unk_07_7) {
                 ptcl->unk_2E.unk_01_2 = mgr->polygonID.fix;
             } else {
                 ptcl->unk_2E.unk_01_2 = mgr->polygonID.current;
@@ -304,12 +304,12 @@ void sub_0209D150(SPLManager *mgr, SPLEmitter *emtr)
             ptcl->age += 1;
 
             if (ptcl->age > ptcl->lifeTime) {
-                SPLList_PushFront((SPLList *)&mgr->inactiveParticles, SPLList_Erase((SPLList *)(&emtr->unk_4C), (SPLNode *)ptcl));
+                SPLList_PushFront((SPLList *)&mgr->inactiveParticles, SPLList_Erase((SPLList *)(&emtr->childParticles), (SPLNode *)ptcl));
             }
         }
     }
 
-    emtr->unk_BC += 1;
+    emtr->age += 1;
 
     if (emtr->unk_100) {
         emtr->unk_100(emtr, TRUE);
@@ -325,7 +325,7 @@ static void sub_0209D064(SPLManager *mgr)
     SetTexFunc setTexFunc;
 
     emtr = mgr->unk_40.unk_00;
-    resBase = emtr->p_res->header;
+    resBase = emtr->resource->header;
     drawFunc = NULL;
 
     sub_0209DC68(mgr->textures + resBase->unk_48.unk_03_0);
@@ -349,7 +349,7 @@ static void sub_0209D064(SPLManager *mgr)
     }
 
     setTexFunc = resBase->flags.hasTexAnim ? sub_0209DC68 : sub_0209DC64;
-    ptcl = emtr->unk_08.first;
+    ptcl = emtr->particles.first;
 
     while (ptcl != NULL) {
         setTexFunc(mgr->textures + ptcl->unk_2C.unk_00);
@@ -367,7 +367,7 @@ static void sub_0209CF7C(SPLManager *mgr)
 
     emtr = mgr->unk_40.unk_00;
     drawFunc = NULL;
-    res = emtr->p_res;
+    res = emtr->resource;
 
     if (!res->header->flags.hasChildResource) {
         return;
@@ -393,7 +393,7 @@ static void sub_0209CF7C(SPLManager *mgr)
         break;
     }
 
-    ptcl = emtr->unk_4C.first;
+    ptcl = emtr->childParticles.first;
     while (ptcl != NULL) {
         drawFunc(mgr, ptcl);
         ptcl = ptcl->next;
@@ -404,7 +404,7 @@ void sub_0209CF00(SPLManager *mgr)
 {
     SPLResourceHeader *resBase;
 
-    resBase = mgr->unk_40.unk_00->p_res->header;
+    resBase = mgr->unk_40.unk_00->resource->header;
     if (resBase->flags.unk_06_5) {
         sub_0209CF7C(mgr);
 
@@ -429,7 +429,7 @@ void SPL_Util_SetCylinderEmiterDirection(SPLEmitter *emtr, VecFx32 *p1, VecFx32 
 {
     VecFx32 vex;
 
-    if (emtr->p_res->header->flags.unk_04_0 == 6 || emtr->p_res->header->flags.unk_04_0 == 7) {
+    if (emtr->resource->header->flags.unk_04_0 == 6 || emtr->resource->header->flags.unk_04_0 == 7) {
         emtr->unk_98.x = (p2->x + p1->x) / 2;
         emtr->unk_98.y = (p2->y + p1->y) / 2;
         emtr->unk_98.z = (p2->z + p1->z) / 2;

@@ -22,7 +22,7 @@ static void sub_020A1768(SPLEmitter *emtr)
 
     vec = Unk_02100DB0;
 
-    switch (emtr->p_res->header->flags.unk_04_6) {
+    switch (emtr->resource->header->flags.unk_04_6) {
     case 2:
         axis.x = FX32_ONE;
         axis.y = 0;
@@ -82,7 +82,7 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
     fx32 magPos;
     fx32 magAxis;
 
-    res = emtr->p_res;
+    res = emtr->resource;
     resBase = res->header;
 
     int temp = emtr->unk_C8 + FX32_CAST(emtr->unk_BE);
@@ -104,7 +104,7 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
                 return;
             }
 
-            SPLList_PushFront((SPLList *)&emtr->unk_08, (SPLNode *)ptcl);
+            SPLList_PushFront((SPLList *)&emtr->particles, (SPLNode *)ptcl);
 
             switch (resBase->flags.unk_04_0) {
             case 0:
@@ -248,7 +248,7 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
                 ptcl->unk_36 = resBase->unk_22;
             }
 
-            ptcl->unk_2E.unk_00_0 = emtr->unk_F0.unk_01_0;
+            ptcl->unk_2E.unk_00_0 = emtr->misc.unk_01_0;
             ptcl->unk_2E.unk_00_5 = 31;
 
             if (resBase->flags.unk_05_5) {
@@ -293,7 +293,7 @@ void sub_020A05BC(SPLParticle *ptcl, SPLEmitter *emtr, SPLList *list)
     fx32 velBase, velRand;
     u32 rng;
     int i;
-    SPLChildResource *chldRes = emtr->p_res->childResource;
+    SPLChildResource *chldRes = emtr->resource->childResource;
     fx32 vel = FX_MUL((fx32)(chldRes->unk_08.unk_00_0 << FX32_SHIFT), FX32_CONST(1 / 256.0f));
 
     for (i = 0; i < chldRes->unk_0C.unk_00_0; i++) {
@@ -301,7 +301,7 @@ void sub_020A05BC(SPLParticle *ptcl, SPLEmitter *emtr, SPLList *list)
         if (chld == NULL) {
             return;
         }
-        SPLList_PushFront((SPLList *)&emtr->unk_4C, (SPLNode *)chld);
+        SPLList_PushFront((SPLList *)&emtr->childParticles, (SPLNode *)chld);
 
         chld->position = ptcl->position;
 

@@ -38,7 +38,7 @@ typedef struct SPLManager {
         SPLEmitter * unk_00;
         const MtxFx43 * unk_04;
     } unk_40;
-    u16 unk_48;
+    u16 currentCycle;
     u16 unk_4A;
 } SPLManager; // size=0x4c
 
@@ -55,7 +55,7 @@ SPLEmitter * SPL_0209C4D8(SPLManager * param0, int param1, EmitterCallback cb);
 SPLEmitter *SPL_CreateWithInitializeEx(SPLManager *mgr, int resNo, VecFx32 *pos, void *pvoid, EmitterCallbackEx cb);
 void SPL_0209C5E0(SPLManager * param0, const MtxFx43 * param1);
 SPLEmitter * SPL_0209C56C(SPLManager * param0, int param1, const VecFx32 * param2);
-void SPL_0209C6A8(SPLManager * param0);
+void SPLManager_Update(SPLManager * param0);
 BOOL SPLManager_UploadPalettes(SPLManager * param0);
 BOOL SPLManager_UploadTextures(SPLManager * param0);
 BOOL SPLManager_UploadPalettesEx(SPLManager * param0, u32 (* param1)(u32, BOOL));

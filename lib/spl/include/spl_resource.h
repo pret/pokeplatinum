@@ -30,7 +30,8 @@ typedef union {
         u32 hasTexAnim : 1;
         u32 unk_05_4 : 1;
         u32 unk_05_5 : 1;
-        u32 unk_05_6 : 1;
+        // If set, the emitter will terminate when it reaches the end of its life and all of its particles have died
+        u32 selfTerminate : 1;
         u32 unk_05_7 : 1;
         u32 hasChildResource : 1;
         u32 unk_06_1 : 2;
@@ -96,13 +97,13 @@ typedef struct UnkSPLStruct9_t {
     fx32 unk_28;
     fx32 unk_2C;
     fx16 unk_30;
-    u16 unk_32;
+    u16 startDelay; // Delay, in frames, before the emitter starts emitting particles
     s16 unk_34;
     s16 unk_36;
     u16 unk_38;
     u16 reserved_3A;
-    u16 unk_3C;
-    u16 unk_40;
+    u16 emitterLifeTime;
+    u16 particleLifeTime;
     struct {
         u32 unk_00_0 : 8;
         u32 unk_01_0 : 8;

@@ -2,6 +2,7 @@
 #include <nnsys/gfd/VramManager/gfd_TexVramMan_Types.h>
 #include <nitro/fx/fx.h>
 
+#include "spl_emitter.h"
 #include "spl_list.h"
 #include "spl_manager.h"
 #include "spl_behavior.h"
@@ -9,7 +10,11 @@
 #include "spl_particle.h"
 
 #define DECODE_WH(X) ((u16)(1 << ((X) + 3)))
-
+#define EMITTER_SHOULD_TERMINATE(emtr, header) \
+    ((\
+        (header->flags.selfTerminate && header->emitterLifeTime != 0 && emtr->state.started && emtr->age > header->emitterLifeTime) \
+        || emtr->state.terminate \
+    ) && emtr->particles.count == 0 && emtr->childParticles.count == 0)
 
 static u32 SPLUtil_AllocTextureVRAM(u32 size, BOOL is4x4);
 static u32 SPLUtil_AllocPaletteVRAM(u32 size, BOOL is4Pltt);
@@ -53,7 +58,7 @@ SPLManager *SPLManager_New(SPLAllocFunc alloc, u16 maxEmitters, u16 maxParticles
     mgr->inactiveParticles.first = NULL;
 
     mgr->unk_3C = 0;
-    mgr->unk_48 = 0;
+    mgr->currentCycle = 0;
 
     SPLEmitter *emtr = alloc(maxEmitters * sizeof(SPLEmitter));
     MI_CpuFill8(emtr, 0, maxEmitters * sizeof(SPLEmitter));
@@ -265,66 +270,63 @@ BOOL SPLManager_UploadPalettes(SPLManager *mgr)
     return SPLManager_UploadPalettesEx(mgr, SPLUtil_AllocPaletteVRAM);
 }
 
-void SPL_0209C6A8(SPLManager *mgr)
+void SPLManager_Update(SPLManager *mgr)
 {
+    // Required to match
     SPLEmitter *emtr;
     SPLEmitter *next;
 
     emtr = mgr->activeEmitters.first;
     while (emtr != NULL) {
-        SPLResourceHeader *base = emtr->p_res->header;
+        SPLResourceHeader *header = emtr->resource->header;
         next = emtr->unk_00;
 
-        if (!emtr->unk_94.started && emtr->unk_BC >= base->unk_32) {
-            emtr->unk_94.started = TRUE;
-            emtr->unk_BC = 0;
+        if (!emtr->state.started && emtr->age >= header->startDelay) {
+            emtr->state.started = TRUE;
+            emtr->age = 0;
         }
 
-        if (!emtr->unk_94.stop_calc) {
-            if (emtr->unk_F0.unk_02_0 == 0 || mgr->unk_48 == emtr->unk_F0.unk_02_0 - 1) {
+        if (!emtr->state.paused) {
+            if (emtr->misc.updateCycle == 0 || mgr->currentCycle == emtr->misc.updateCycle - 1) {
                 sub_0209D150(mgr, emtr);
             }
         }
 
-        if (((base->flags.unk_05_6 && base->unk_3C != 0 && emtr->unk_94.started && emtr->unk_BC > base->unk_3C)
-                || emtr->unk_94.terminate)
-            && emtr->unk_08.count == 0 && emtr->unk_4C.count == 0) {
-            SPLEmitter *e0 = (SPLEmitter *)SPLList_Erase((SPLList *)&mgr->activeEmitters, (SPLNode *)emtr);
-            SPLList_PushFront((SPLList *)&mgr->inactiveEmitters, (SPLNode *)e0);
+        if (EMITTER_SHOULD_TERMINATE(emtr, header)) {
+            SPLEmitter *terminatedEmitter = SPLEmitterList_Erase(&mgr->activeEmitters, emtr);
+            SPLEmitterList_PushFront(&mgr->inactiveEmitters, terminatedEmitter);
         }
 
         emtr = next;
     }
 
-    mgr->unk_48 += 1;
-    if (mgr->unk_48 > 1) {
-        mgr->unk_48 = 0;
+    mgr->currentCycle += 1;
+    if (mgr->currentCycle > 1) {
+        mgr->currentCycle = 0;
     }
 }
 
 void SPL_0209C5E0(SPLManager *mgr, const MtxFx43 *cmr)
 {
-    SPLEmitter *emtr;
-
     G3X_AlphaBlend(TRUE);
 
     mgr->unk_40.unk_04 = cmr;
     if (mgr->polygonID.drawOrder == SPL_DRAW_ORDER_REVERSE) {
-        emtr = mgr->activeEmitters.first;
+        SPLEmitter *emtr = mgr->activeEmitters.first;
 
         while (emtr != NULL) {
             mgr->unk_40.unk_00 = emtr;
-            if (!emtr->unk_94.stop_draw) {
+            if (!emtr->state.stop_draw) {
                 sub_0209CF00(mgr);
             }
             emtr = emtr->unk_00;
         }
     } else {
-        emtr = mgr->activeEmitters.last;
+        SPLEmitter *emtr = mgr->activeEmitters.last;
 
         while (emtr != NULL) {
             mgr->unk_40.unk_00 = emtr;
-            if (!emtr->unk_94.stop_draw) {
+            if (!emtr->state.stop_draw) {
                 sub_0209CF00(mgr);
             }
             emtr = emtr->unk_04;
@@ -340,7 +342,7 @@ SPLEmitter *SPL_0209C56C(SPLManager *mgr, int resno, const VecFx32 *pos)
         emtr = (SPLEmitter *)SPLList_PopFront((SPLList *)&mgr->inactiveEmitters);
         sub_0209D998(emtr, mgr->resources + resno, pos);
         SPLList_PushFront((SPLList *)&mgr->activeEmitters, (SPLNode *)emtr);
-        if (emtr->p_res->header->flags.unk_05_6) {
+        if (emtr->resource->header->flags.selfTerminate) {
             emtr = NULL;
         }
     }
@@ -361,7 +363,7 @@ SPLEmitter *SPL_0209C4D8(SPLManager *mgr, int resno, EmitterCallback fpcb)
             fpcb(emtr);
         }
         SPLList_PushFront((SPLList *)&mgr->activeEmitters, (SPLNode *)emtr);
-        if (emtr->p_res->header->flags.unk_05_6) {
+        if (emtr->resource->header->flags.selfTerminate) {
             emtr = NULL;
         }
     }
@@ -382,7 +384,7 @@ SPLEmitter *SPL_CreateWithInitializeEx(SPLManager *mgr, int resNo, VecFx32 *pos,
         }
 
         SPLList_PushFront((SPLList *)&mgr->activeEmitters, (SPLNode *)emtr);
-        if (emtr->p_res->header->flags.unk_05_6) {
+        if (emtr->resource->header->flags.selfTerminate) {
             emtr = NULL;
         }
     }
@@ -392,18 +394,18 @@ SPLEmitter *SPL_CreateWithInitializeEx(SPLManager *mgr, int resNo, VecFx32 *pos,
 
 void SPL_0209C444(SPLManager *p0, SPLEmitter *p1)
 {
-    SPLEmitter *v0 = (SPLEmitter *)SPLList_PopFront((SPLList *)&p1->unk_08);
+    SPLEmitter *v0 = (SPLEmitter *)SPLList_PopFront((SPLList *)&p1->particles);
     if (v0 != NULL) {
         do {
             SPLList_PushFront((SPLList *)&p0->inactiveParticles, (SPLNode *)v0);
-            v0 = (SPLEmitter *)SPLList_PopFront((SPLList *)&p1->unk_08);
+            v0 = (SPLEmitter *)SPLList_PopFront((SPLList *)&p1->particles);
         } while (v0 != NULL);
     }
-    v0 = (SPLEmitter *)SPLList_PopFront((SPLList *)&p1->unk_4C);
+    v0 = (SPLEmitter *)SPLList_PopFront((SPLList *)&p1->childParticles);
     if (v0 != NULL) {
         do {
             SPLList_PushFront((SPLList *)&p0->inactiveParticles, (SPLNode *)v0);
-            v0 = (SPLEmitter *)SPLList_PopFront((SPLList *)&p1->unk_4C);
+            v0 = (SPLEmitter *)SPLList_PopFront((SPLList *)&p1->childParticles);
         } while (v0 != NULL);
     }
     SPLList_Erase((SPLList *)&p0->activeEmitters, (SPLNode *)p1);
@@ -429,8 +431,8 @@ void SPL_Emit(SPLManager *mgr, SPLEmitter *emtr)
 
 void SPL_EmitAt(SPLManager *mgr, SPLEmitter *emtr, VecFx32 *pos)
 {
-    emtr->unk_98.x = pos->x + emtr->p_res->header->unk_04.x;
-    emtr->unk_98.y = pos->y + emtr->p_res->header->unk_04.y;
-    emtr->unk_98.z = pos->z + emtr->p_res->header->unk_04.z;
+    emtr->unk_98.x = pos->x + emtr->resource->header->unk_04.x;
+    emtr->unk_98.y = pos->y + emtr->resource->header->unk_04.y;
+    emtr->unk_98.z = pos->z + emtr->resource->header->unk_04.z;
     spl_generate(emtr, (SPLList *)&mgr->inactiveParticles);
 }
