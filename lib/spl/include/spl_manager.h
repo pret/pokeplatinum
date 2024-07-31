@@ -19,8 +19,8 @@ typedef struct SPLManager {
     SPLEmitterList activeEmitters;
     SPLEmitterList inactiveEmitters;
     SPLParticleList inactiveParticles;
-    SPLResource * resources;
-    SPLTexture * textures;
+    SPLResource *resources;
+    SPLTexture *textures;
     u16 resCount;
     u16 texCount;
     u16 unk_34;
@@ -42,24 +42,26 @@ typedef struct SPLManager {
     u16 unk_4A;
 } SPLManager; // size=0x4c
 
-typedef void(* SPLEmitterCallback)(SPLEmitter *);
-typedef void(* SPLEmitterCallbackEx)(SPLEmitter *, void *);
+typedef void(* SPLEmitterCallback)(SPLEmitter *emtr);
+typedef void(* SPLEmitterCallbackEx)(SPLEmitter *emtr, void *param);
 
 typedef u32(* SPLTexVRAMAllocFunc)(u32 size, BOOL is4x4comp);
 typedef u32(* SPLPalVRAMAllocFunc)(u32 size, BOOL is4pal);
 
 SPLManager *SPLManager_New(SPLAllocFunc alloc, u16 maxEmitters, u16 maxParticles, u16 fixPolyID, u16 minPolyID, u16 maxPolyID);
-void SPLManager_DeleteAllEmitters(SPLManager * param0);
-void SPLManager_DeleteEmitter(SPLManager * param0, SPLEmitter * param1);
-SPLEmitter * SPLManager_CreateEmitterWithCallback(SPLManager * param0, int param1, SPLEmitterCallback cb);
-SPLEmitter *SPLManager_CreateEmitterWithCallbackEx(SPLManager *mgr, int resNo, VecFx32 *pos, void *pvoid, SPLEmitterCallbackEx cb);
-void SPLManager_Draw(SPLManager * param0, const MtxFx43 * param1);
-SPLEmitter * SPLManager_CreateEmitter(SPLManager * param0, int param1, const VecFx32 * param2);
-void SPLManager_Update(SPLManager * param0);
-BOOL SPLManager_UploadPalettes(SPLManager * param0);
-BOOL SPLManager_UploadTextures(SPLManager * param0);
-BOOL SPLManager_UploadPalettesEx(SPLManager * param0, u32 (* param1)(u32, BOOL));
-BOOL SPLManager_UploadTexturesEx(SPLManager * param0, u32 (* param1)(u32, BOOL));
-void SPLManager_LoadResource(SPLManager * param0, const void * param1);
+void SPLManager_LoadResource(SPLManager *mgr, const void *data);
+BOOL SPLManager_UploadTexturesEx(SPLManager *mgr, SPLTexVRAMAllocFunc vramAlloc);
+BOOL SPLManager_UploadPalettesEx(SPLManager *mgr, SPLPalVRAMAllocFunc vramAlloc);
+BOOL SPLManager_UploadTextures(SPLManager *mgr);
+BOOL SPLManager_UploadPalettes(SPLManager *mgr);
+void SPLManager_Update(SPLManager *mgr);
+void SPLManager_Draw(SPLManager *mgr, const MtxFx43 *viewMatrix);
+SPLEmitter *SPLManager_CreateEmitter(SPLManager *mgr, int resourceID, const VecFx32 *pos);
+SPLEmitter *SPLManager_CreateEmitterWithCallback(SPLManager *mgr, int resourceID, SPLEmitterCallback initCallback);
+SPLEmitter *SPLManager_CreateEmitterWithCallbackEx(SPLManager *mgr, int resourceID, VecFx32 *pos, void *param, SPLEmitterCallbackEx initCallback);
+void SPLManager_DeleteEmitter(SPLManager *mgr, SPLEmitter *emtr);
+void SPLManager_DeleteAllEmitters(SPLManager *mgr);
+void SPL_Emit(SPLManager *mgr, SPLEmitter *emtr);
+void SPL_EmitAt(SPLManager *mgr, SPLEmitter *emtr, VecFx32 *pos);
 
 #endif // SPL_MANAGER_H

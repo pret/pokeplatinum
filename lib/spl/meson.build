@@ -15,7 +15,7 @@ libspl_link_args = [
 libspl_public_includes = include_directories('include')
 
 libspl_srcs = files(
-    'src/unk_0209C400.c',
+    'src/spl_manager.c',
     'src/unk_0209CF00.c',
     'src/unk_0209DD54.c',
     'src/unk_020A05BC.c',
