@@ -40,9 +40,9 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list);
 void sub_020A05BC(SPLParticle *ptcl, SPLEmitter *emtr, SPLList *list);
 
 void SPLEmitter_Update(SPLManager *mgr, SPLEmitter *emtr);
-void sub_0209CF00(SPLManager *mgr);
+void SPLManager_DoDraw(SPLManager *mgr);
 void SPLEmitter_Init(SPLEmitter *emtr, SPLResource *res, const VecFx32 *pos);
-void spl_generate(SPLEmitter *emtr, SPLList *list);
+void SPLEmitter_Emit(SPLEmitter *emtr, SPLList *list);
 
 static inline void SPLParticleList_PushFront(SPLParticleList *list, SPLParticle *ptcl)
 {

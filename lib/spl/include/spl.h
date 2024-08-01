@@ -28,7 +28,7 @@ static inline void SPL_UnkInline4 (SPLEmitter * param0, fx32 param1)
 
 static inline void SPL_UnkInline5 (SPLEmitter * param0, const VecFx16 * param1)
 {
-    param0->unk_C0 = *param1;
+    param0->axis = *param1;
 }
 
 #endif // POKEPLATINUM_SPL_H

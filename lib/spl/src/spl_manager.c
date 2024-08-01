@@ -317,7 +317,7 @@ void SPLManager_Draw(SPLManager *mgr, const MtxFx43 *viewMatrix)
         while (emtr != NULL) {
             mgr->renderState.emitter = emtr;
             if (!emtr->state.renderingDisabled) {
-                sub_0209CF00(mgr);
+                SPLManager_DoDraw(mgr);
             }
 
             emtr = emtr->next;
@@ -328,7 +328,7 @@ void SPLManager_Draw(SPLManager *mgr, const MtxFx43 *viewMatrix)
         while (emtr != NULL) {
             mgr->renderState.emitter = emtr;
             if (!emtr->state.renderingDisabled) {
-                sub_0209CF00(mgr);
+                SPLManager_DoDraw(mgr);
             }
 
             emtr = emtr->prev;
@@ -426,7 +426,7 @@ void SPLManager_DeleteAllEmitters(SPLManager *mgr)
 
 void SPL_Emit(SPLManager *mgr, SPLEmitter *emtr)
 {
-    spl_generate(emtr, (SPLList *)&mgr->inactiveParticles);
+    SPLEmitter_Emit(emtr, (SPLList *)&mgr->inactiveParticles);
 }
 
 void SPL_EmitAt(SPLManager *mgr, SPLEmitter *emtr, VecFx32 *pos)
@@ -434,5 +434,5 @@ void SPL_EmitAt(SPLManager *mgr, SPLEmitter *emtr, VecFx32 *pos)
     emtr->position.x = pos->x + emtr->resource->header->emitterBasePos.x;
     emtr->position.y = pos->y + emtr->resource->header->emitterBasePos.y;
     emtr->position.z = pos->z + emtr->resource->header->emitterBasePos.z;
-    spl_generate(emtr, (SPLList *)&mgr->inactiveParticles);
+    SPLEmitter_Emit(emtr, (SPLList *)&mgr->inactiveParticles);
 }
