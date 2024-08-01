@@ -232,7 +232,7 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
             ptcl->velocity.y = FX_MUL(posNorm.y, magPos) + FX_MUL(emtr->unk_C0.y, magAxis) + emtr->unk_B0.y;
             ptcl->velocity.z = FX_MUL(posNorm.z, magPos) + FX_MUL(emtr->unk_C0.z, magAxis) + emtr->unk_B0.z;
 
-            ptcl->emitterPos = emtr->unk_98;
+            ptcl->emitterPos = emtr->position;
 
             ptcl->unk_30 = SPLRandom_DoubleScaledRangeFX32(emtr->unk_DC, resBase->unk_44.unk_00_0);
             ptcl->unk_34 = FX32_ONE;
@@ -252,35 +252,35 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
             ptcl->unk_2E.unk_00_5 = 31;
 
             if (resBase->flags.unk_05_5) {
-                ptcl->unk_20 = SPLRandom_S32(32);
+                ptcl->rotation = SPLRandom_S32(32);
             } else {
-                ptcl->unk_20 = emtr->unk_C6;
+                ptcl->rotation = emtr->unk_C6;
             }
 
             if (resBase->flags.unk_05_4) {
-                ptcl->unk_22 = (u32)SPLRandom_BetweenFX32(resBase->unk_34, resBase->unk_36) >> FX32_SHIFT;
+                ptcl->angularVelocity = (u32)SPLRandom_BetweenFX32(resBase->unk_34, resBase->unk_36) >> FX32_SHIFT;
             } else {
-                ptcl->unk_22 = 0;
+                ptcl->angularVelocity = 0;
             }
 
-            ptcl->lifeTime = SPLRandom_ScaledRangeFX32(emtr->unk_E0, resBase->unk_44.unk_01_0) + 1;
+            ptcl->lifeTime = SPLRandom_ScaledRangeFX32(emtr->particleLifeTime, resBase->unk_44.unk_01_0) + 1;
             ptcl->age = 0;
 
             if (resBase->flags.hasTexAnim && res->texAnim->unk_08.unk_02_0) {
-                ptcl->unk_2C.unk_00 = res->texAnim->unk_00[SPLRandom_U32(12) % res->texAnim->unk_08.unk_00_0];
+                ptcl->misc.unk_00 = res->texAnim->unk_00[SPLRandom_U32(12) % res->texAnim->unk_08.unk_00_0];
             } else if (resBase->flags.hasTexAnim && !res->texAnim->unk_08.unk_02_0) {
-                ptcl->unk_2C.unk_00 = res->texAnim->unk_00[0];
+                ptcl->misc.unk_00 = res->texAnim->unk_00[0];
             } else {
-                ptcl->unk_2C.unk_00 = resBase->unk_48.unk_03_0;
+                ptcl->misc.unk_00 = resBase->misc.unk_03_0;
             }
 
-            ptcl->unk_28 = 0xFFFF / res->header->unk_48.unk_04_0;
-            ptcl->unk_2A = 0xFFFF / ptcl->lifeTime;
+            ptcl->loopTimeFactor = 0xFFFF / res->header->misc.unk_04_0;
+            ptcl->lifeTimeFactor = 0xFFFF / ptcl->lifeTime;
 
-            ptcl->unk_2C.unk_01 = 0;
+            ptcl->misc.lifeRateOffset = 0;
 
             if (resBase->flags.unk_06_4) {
-                ptcl->unk_2C.unk_01 = (u8)SPLRandom_S32(8);
+                ptcl->misc.lifeRateOffset = (u8)SPLRandom_S32(8);
             }
             i++;
         } while (i < curGenNum);
@@ -296,7 +296,7 @@ void sub_020A05BC(SPLParticle *ptcl, SPLEmitter *emtr, SPLList *list)
     SPLChildResource *chldRes = emtr->resource->childResource;
     fx32 vel = FX_MUL((fx32)(chldRes->unk_08.unk_00_0 << FX32_SHIFT), FX32_CONST(1 / 256.0f));
 
-    for (i = 0; i < chldRes->unk_0C.unk_00_0; i++) {
+    for (i = 0; i < chldRes->misc.unk_00_0; i++) {
         chld = (SPLParticle *)SPLList_PopFront(list);
         if (chld == NULL) {
             return;
@@ -327,7 +327,7 @@ void sub_020A05BC(SPLParticle *ptcl, SPLEmitter *emtr, SPLList *list)
 
         chld->unk_34 = FX32_ONE;
 
-        if (chldRes->unk_00.unk_02_6) {
+        if (chldRes->flags.unk_02_6) {
             chld->unk_36 = chldRes->unk_0A;
         } else {
             chld->unk_36 = ptcl->unk_36;
@@ -336,27 +336,27 @@ void sub_020A05BC(SPLParticle *ptcl, SPLEmitter *emtr, SPLList *list)
         chld->unk_2E.unk_00_0 = (ptcl->unk_2E.unk_00_0 * (ptcl->unk_2E.unk_00_5 + 1)) >> 5;
         chld->unk_2E.unk_00_5 = 31;
 
-        switch (chldRes->unk_00.unk_02_3) {
+        switch (chldRes->flags.unk_02_3) {
         case 0:
-            chld->unk_20 = 0;
-            chld->unk_22 = 0;
+            chld->rotation = 0;
+            chld->angularVelocity = 0;
             break;
         case 1:
-            chld->unk_20 = ptcl->unk_20;
-            chld->unk_22 = 0;
+            chld->rotation = ptcl->rotation;
+            chld->angularVelocity = 0;
             break;
         case 2:
-            chld->unk_20 = ptcl->unk_20;
-            chld->unk_22 = ptcl->unk_22;
+            chld->rotation = ptcl->rotation;
+            chld->angularVelocity = ptcl->angularVelocity;
             break;
         }
 
         chld->lifeTime = chldRes->unk_06;
         chld->age = 0;
-        chld->unk_2C.unk_00 = chldRes->unk_0C.unk_03_0;
+        chld->misc.unk_00 = chldRes->misc.unk_03_0;
 
-        chld->unk_28 = 0xFFFF / (ptcl->lifeTime / 2);
-        chld->unk_2A = 0xFFFF / ptcl->lifeTime;
-        chld->unk_2C.unk_01 = 0;
+        chld->loopTimeFactor = 0xFFFF / (ptcl->lifeTime / 2);
+        chld->lifeTimeFactor = 0xFFFF / ptcl->lifeTime;
+        chld->misc.lifeRateOffset = 0;
     }
 }

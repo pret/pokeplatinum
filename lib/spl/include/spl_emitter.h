@@ -6,6 +6,13 @@
 #include "spl_particle.h"
 #include "spl_resource.h"
 
+enum SPLUpdateCallbackType {
+    SPL_CALLBACK_PRE_UPDATE = 0,
+    SPL_CALLBACK_POST_UPDATE = 1,
+};
+
+typedef void(* SPLEmitterUpdateCallback)(struct SPLEmitter *emitter, enum SPLUpdateCallbackType type);
+
 typedef struct UnkSPLStruct7 {
     union
     {
@@ -13,12 +20,12 @@ typedef struct UnkSPLStruct7 {
         u8 padding_00[4];
         struct
         {
-            u32 terminate:1;
-            u32 stop_generate:1;
-            u32 paused:1;
-            u32 renderingDisabled:1;
+            u32 terminate : 1;
+            u32 emissionPaused : 1;
+            u32 paused : 1;
+            u32 renderingDisabled : 1;
             u32 started: 1 ;
-            u32 reserved0:27;
+            u32 : 27;
         };
     };
 } UnkSPLStruct7;
@@ -30,8 +37,8 @@ typedef struct SPLEmitter {
     SPLParticleList childParticles;
     SPLResource *resource;
     UnkSPLStruct7 state;
-    VecFx32 unk_98;
-    VecFx32 unk_A4;
+    VecFx32 position;
+    VecFx32 velocity;
     VecFx32 unk_B0;
     u16 age;
     fx16 unk_BE;
@@ -43,22 +50,22 @@ typedef struct SPLEmitter {
     fx32 unk_D4;
     fx32 unk_D8;
     fx32 unk_DC;
-    u16 unk_E0;
-    GXRgb unk_E2;
+    u16 particleLifeTime;
+    GXRgb color;
     fx32 collisionPlaneHeight;
     fx16 unk_E8;
     fx16 unk_EA;
     fx16 unk_EC;
     fx16 unk_EE;
     struct {
-        u32 unk_00_0 : 8;
+        u32 emissionInterval : 8; // number of frames between particle emissions
         u32 unk_01_0 : 8;
         u32 updateCycle : 3; // 0 = every frame, 1 = cycle A, 2 = cycle B, cycles A and B alternate
         u32 unk_02_3 : 13;
     } misc;
     VecFx16 unk_F4;
     VecFx16 unk_FA;
-    void (* unk_100)(struct SPLEmitter *, unsigned int);
+    SPLEmitterUpdateCallback updateCallback;
     void * unk_104;
     union {
         u32 unk_108_val1;

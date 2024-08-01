@@ -10,20 +10,29 @@ typedef struct SPLParticle {
     struct SPLParticle *prev;
     VecFx32 position;
     VecFx32 velocity;
-    u16 unk_20;
-    s16 unk_22;
+    u16 rotation;
+    s16 angularVelocity;
     u16 lifeTime;
     u16 age;
-    u16 unk_28;
-    u16 unk_2A;
+
+    // These two values are essentially 1.0f / lifeTime (or 1.0f / loopTime), represented as an integer
+    // They are used to map between age/lifeTime and a [0, 255] range
+    // Mainly just to lower the amount of divisions needed in the update functions
+    u16 loopTimeFactor;
+    u16 lifeTimeFactor;
+
     struct {
         u16 unk_00 : 8;
-        u16 unk_01 : 8;
-    } unk_2C;
+
+        // A value between 0 and 255 that is added to the life rate of the particle.
+        // This is used only for looping particles, so particles spawned at the same time
+        // don't have aren't all in sync (animation-wise)
+        u16 lifeRateOffset : 8;
+    } misc;
     struct {
         u16 unk_00_0 : 5;
         u16 unk_00_5 : 5;
-        u16 unk_01_2 : 6;
+        u16 currentPolygonID : 6;
     } unk_2E;
     fx32 unk_30;
     fx16 unk_34;

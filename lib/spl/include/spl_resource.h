@@ -34,7 +34,7 @@ typedef union {
         // If set, the emitter will automatically terminate when it reaches the end of its life
         // and all of its particles have died
         u32 selfMaintaining : 1;
-        u32 unk_05_7 : 1;
+        u32 followEmitter : 1;
         u32 hasChildResource : 1;
         u32 unk_06_1 : 2;
         u32 unk_06_3 : 1;
@@ -48,26 +48,26 @@ typedef union {
         u32 hasSpinBehavior : 1;
         u32 hasCollisionPlaneBehavior : 1;
         u32 hasConvergenceBehavior : 1;
-        u32 unk_07_6 : 1;
-        u32 unk_07_7 : 1;
+        u32 hasFixedPolygonID : 1;
+        u32 childHasFixedPolygonID : 1;
     };
 } SPLResourceFlags; // size=0x4
 
 typedef union {
-    u16 unk_00;
+    u16 all;
     struct {
-        u16 unk_02_0 : 1;
-        u16 unk_02_1 : 1;
-        u16 unk_02_2 : 1;
+        u16 usesBehaviors : 1;
+        u16 hasScaleAnim : 1;
+        u16 hasAlphaAnim : 1;
         u16 unk_02_3 : 2;
-        u16 unk_02_5 : 1;
+        u16 followEmitter : 1;
         u16 unk_02_6 : 1;
         u16 unk_02_7 : 2;
         u16 unk_03_1 : 2;
         u16 unk_03_3 : 1;
         u16 reserved_03_4 : 4;
     };
-} UnkSPLUnion2; // size=0x2
+} SPLChildResourceFlags; // size=0x2
 
 typedef union {
     u16 val1;
@@ -87,9 +87,9 @@ typedef union {
     };
 } UnkSPLUnion4; // size=0x4
 
-typedef struct UnkSPLStruct9_t {
+typedef struct SPLResourceHeader {
     SPLResourceFlags flags;
-    VecFx32 unk_04;
+    VecFx32 emitterBasePos;
     fx32 unk_10;
     fx32 unk_14;
     fx32 unk_18;
@@ -116,7 +116,7 @@ typedef struct UnkSPLStruct9_t {
     struct {
         u32 unk_00_0 : 8;
         u32 unk_01_0 : 8;
-        u32 unk_02_0 : 8;
+        u32 airResistance : 8;
         u32 unk_03_0 : 8;
         u32 unk_04_0 : 8;
         u32 unk_05_0 : 16;
@@ -128,7 +128,7 @@ typedef struct UnkSPLStruct9_t {
         u32 unk_08_1 : 1;
         u32 unk_08_2 : 3;
         u32 unk_08_5 : 27;
-    } unk_48;
+    } misc;
     fx16 unk_54;
     fx16 unk_56;
     struct {
@@ -137,7 +137,7 @@ typedef struct UnkSPLStruct9_t {
     } unk_58;
 } SPLResourceHeader; // size=0x5C
 
-typedef struct UnkSPLStruct10_t {
+typedef struct SPLScaleAnim {
     fx16 unk_00;
     fx16 unk_02;
     fx16 unk_04;
@@ -149,7 +149,7 @@ typedef struct UnkSPLStruct10_t {
     u16 reserved_0A;
 } SPLScaleAnim; // size=0xc
 
-typedef struct UnkSPLStruct11_t {
+typedef struct SPLColorAnim {
     GXRgb unk_00;
     GXRgb unk_02;
     UnkSPLUnion4 unk_04;
@@ -162,7 +162,7 @@ typedef struct UnkSPLStruct11_t {
     u16 reserved_0A;
 } SPLColorAnim;
 
-typedef struct UnkSPLStruct12_t {
+typedef struct SPLAlphaAnim {
     union {
         u16 val1;
         struct {
@@ -181,7 +181,7 @@ typedef struct UnkSPLStruct12_t {
     u16 reserved_06;
 } SPLAlphaAnim; // size=0x8
 
-typedef struct UnkSPLStruct13_t {
+typedef struct SPLTexAnim {
     u8 unk_00[8];
     struct {
         u32 unk_00_0 : 8;
@@ -192,8 +192,8 @@ typedef struct UnkSPLStruct13_t {
     } unk_08;
 } SPLTexAnim;
 
-typedef struct UnkSPLStruct14_t {
-    UnkSPLUnion2 unk_00;
+typedef struct SPLChildResource {
+    SPLChildResourceFlags flags;
     fx16 unk_02;
     fx16 unk_04;
     u16 unk_06;
@@ -204,8 +204,8 @@ typedef struct UnkSPLStruct14_t {
     GXRgb unk_0A;
     struct {
         u32 unk_00_0 : 8;
-        u32 unk_01_0 : 8;
-        u32 unk_02_0 : 8;
+        u32 emissionDelay : 8; // Delay, as a fraction of the particle's lifetime, before the particle starts emitting
+        u32 emissionInterval : 8;
         u32 unk_03_0 : 8;
         u32 unk_04_0 : 2;
         u32 unk_04_2 : 2;
@@ -213,7 +213,7 @@ typedef struct UnkSPLStruct14_t {
         u32 unk_04_5 : 1;
         u32 unk_04_6 : 1;
         u32 reserved_04_7 : 25;
-    } unk_0C;
+    } misc;
 } SPLChildResource;
 
 typedef struct SPLResource {
