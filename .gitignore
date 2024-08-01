@@ -4,6 +4,13 @@
 /tools/cw/mwrap
 /tools/cw/mwrap.exe
 
+# Metroskrew Installation
+/metroskrew/
+
+# Generated cross-compilation files
+/meson/cross.ini
+/meson/cross_unix.ini
+
 # Wrapped subprojects folders
 /subprojects/libvct-*/
 /subprojects/NitroDWC-*/

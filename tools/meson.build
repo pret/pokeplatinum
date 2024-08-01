@@ -7,7 +7,6 @@ subdir('postconf')
 subdir('scripts')
 
 # Prebuilt tools
-mwrap_exe = find_program('cw/mwrap', native: true)
 makebanner_exe = find_program('makebanner', native: true)
 makelcf_exe = find_program('makelcf', native: true)
 makerom_exe = find_program('makerom', native: true)

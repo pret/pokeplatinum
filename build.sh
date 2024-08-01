@@ -7,6 +7,12 @@ if [ "$#" -ge 1 ]; then
     shift
 fi
 
+build="build"
+if [ "$#" -ge 1 ]; then
+    build="$1"
+    shift
+fi
+
 # Set up env variable to show % of completion during ninja build
 export NINJA_STATUS="[%p %f/%t] "
 
@@ -17,11 +23,15 @@ export NINJA_STATUS="[%p %f/%t] "
 # TODO: https://github.com/mesonbuild/meson/issues/13414
 export MESON_RSP_THRESHOLD=16387
 
+# Set up environment variables pointing to MSL libc
+export MWCIncludes="$PWD/tools/cw/include/MSL_C;$PWD/tools/cw/include/MSL_Extras"
+export MWLibraries="$PWD/tools/cw/lib"
+
 # Build the project
 if [ "$target" = test ]; then
-    "${MESON:-meson}" test -C build "$@"
+    "${MESON:-meson}" test -C "$build" "$@"
 elif [ "$target" = rom ]; then
-    "${MESON:-meson}" compile -C build "pokeplatinum.us.nds"
+    "${MESON:-meson}" compile -C "$build" "pokeplatinum.us.nds"
 else
-    "${MESON:-meson}" compile -C build "$target" "$@"
+    "${MESON:-meson}" compile -C "$build" "$target" "$@"
 fi

@@ -23,17 +23,17 @@ jobs:
           sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/$(lsb_release -cs)/winehq-$(lsb_release -cs).sources
           sudo dpkg --add-architecture i386
           sudo apt-get update -y
-          sudo apt-get install -y --install-recommends python3-pip ninja-build winehq-stable binutils-arm-none-eabi gcc-arm-none-eabi
+          sudo apt-get install -y --install-recommends python3-pip ninja-build winehq-stable binutils-arm-none-eabi gcc-arm-none-eabi gcc-multilib
           pip install --user meson pyelftools
 
       - name: Checkout Repo
         uses: actions/checkout@v2
 
       - name: Configure Repo
-        run: ./config.sh /var/tmp/pokeplatinum
+        run: ./config.sh skrew /var/tmp/pokeplatinum
 
       - name: Build Repo
-        run: meson test -C /var/tmp/pokeplatinum
+        run: ./build.sh test /var/tmp/pokeplatinum
 
       - name: Webhook
         if: ${{ github.event_name == 'push' }}
