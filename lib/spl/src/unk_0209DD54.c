@@ -136,9 +136,9 @@ void sub_0209FF0C(SPLManager *mgr, SPLParticle *ptcl)
     animScale = ptcl->unk_34;
 
     ptclCol = ptcl->unk_36;
-    emtrCol = emtr->unk_E2;
+    emtrCol = emtr->color;
 
-    scaleAnimDirect = resBase->unk_48.unk_07_4;
+    scaleAnimDirect = resBase->misc.unk_07_4;
 
     fx32 alpha = ptcl->unk_2E.unk_00_0 * (ptcl->unk_2E.unk_00_5 + 1) >> 5;
 
@@ -146,7 +146,7 @@ void sub_0209FF0C(SPLManager *mgr, SPLParticle *ptcl)
         GX_LIGHTMASK_NONE,
         GX_POLYGONMODE_MODULATE,
         GX_CULL_NONE,
-        ptcl->unk_2E.unk_01_2,
+        ptcl->unk_2E.currentPolygonID,
         alpha,
         mgr->unk_3C);
 
@@ -174,8 +174,8 @@ void sub_0209FF0C(SPLManager *mgr, SPLParticle *ptcl)
         trs.z = ptcl->position.z + ptcl->emitterPos.z;
         MTX_MultVec43(&trs, cmr, &trs);
 
-        sin = FX_SinIdx(ptcl->unk_20);
-        fx32 cos = FX_CosIdx(ptcl->unk_20);
+        sin = FX_SinIdx(ptcl->rotation);
+        fx32 cos = FX_CosIdx(ptcl->rotation);
         load.m[0][0] = FX_MUL(cos, sclX);
         load.m[0][1] = FX_MUL(sin, sclX);
         load.m[0][2] = 0;
@@ -192,13 +192,13 @@ void sub_0209FF0C(SPLManager *mgr, SPLParticle *ptcl)
         G3_Identity();
         G3_MultMtx43(&load);
     } else {
-        trs.x = ptcl->position.x + ptcl->emitterPos.x - mgr->renderState.emitter->resource->header->unk_04.x;
-        trs.y = ptcl->position.y + ptcl->emitterPos.y - mgr->renderState.emitter->resource->header->unk_04.y;
-        trs.z = ptcl->position.z + ptcl->emitterPos.z - mgr->renderState.emitter->resource->header->unk_04.z;
+        trs.x = ptcl->position.x + ptcl->emitterPos.x - mgr->renderState.emitter->resource->header->emitterBasePos.x;
+        trs.y = ptcl->position.y + ptcl->emitterPos.y - mgr->renderState.emitter->resource->header->emitterBasePos.y;
+        trs.z = ptcl->position.z + ptcl->emitterPos.z - mgr->renderState.emitter->resource->header->emitterBasePos.z;
         MTX_MultVec43(&trs, cmr, &trs);
 
-        sin = FX_SinIdx(ptcl->unk_20);
-        fx32 cos = FX_CosIdx(ptcl->unk_20);
+        sin = FX_SinIdx(ptcl->rotation);
+        fx32 cos = FX_CosIdx(ptcl->rotation);
         load.m[0][0] = FX_MUL(cos, sclX);
         load.m[0][1] = FX_MUL(sin, sclX);
         load.m[0][2] = 0;
@@ -215,7 +215,7 @@ void sub_0209FF0C(SPLManager *mgr, SPLParticle *ptcl)
         G3_Identity();
 
         SPLResourceHeader *resBase = mgr->renderState.emitter->resource->header;
-        G3_Translate(resBase->unk_04.x, resBase->unk_04.y, resBase->unk_04.z);
+        G3_Translate(resBase->emitterBasePos.x, resBase->emitterBasePos.y, resBase->emitterBasePos.z);
         G3_MultMtx43(&load);
     }
 
@@ -246,7 +246,7 @@ void sub_0209FAB8(SPLManager *mgr, SPLParticle *ptcl)
         GX_LIGHTMASK_NONE,
         GX_POLYGONMODE_MODULATE,
         GX_CULL_NONE,
-        ptcl->unk_2E.unk_01_2,
+        ptcl->unk_2E.currentPolygonID,
         alpha,
         mgr->unk_3C);
 
@@ -259,7 +259,7 @@ void sub_0209FAB8(SPLManager *mgr, SPLParticle *ptcl)
     sclY = ptcl->unk_30;
     sclX = FX_MUL(sclY, aspect);
 
-    switch (mgr->renderState.emitter->resource->header->unk_48.unk_07_4) {
+    switch (mgr->renderState.emitter->resource->header->misc.unk_07_4) {
     case 0:
         sclX = FX_MUL(sclX, ptcl->unk_34);
         sclY = FX_MUL(sclY, ptcl->unk_34);
@@ -280,8 +280,8 @@ void sub_0209FAB8(SPLManager *mgr, SPLParticle *ptcl)
         trs.z = ptcl->position.z + ptcl->emitterPos.z;
         MTX_MultVec43(&trs, cmr, &trs);
 
-        sin = FX_SinIdx(ptcl->unk_20);
-        fx32 cos = FX_CosIdx(ptcl->unk_20);
+        sin = FX_SinIdx(ptcl->rotation);
+        fx32 cos = FX_CosIdx(ptcl->rotation);
         load.m[0][0] = FX_MUL(cos, sclX);
         load.m[0][1] = FX_MUL(sin, sclX);
         load.m[0][2] = 0;
@@ -298,13 +298,13 @@ void sub_0209FAB8(SPLManager *mgr, SPLParticle *ptcl)
         G3_Identity();
         G3_MultMtx43(&load);
     } else {
-        trs.x = ptcl->position.x + ptcl->emitterPos.x - mgr->renderState.emitter->resource->header->unk_04.x;
-        trs.y = ptcl->position.y + ptcl->emitterPos.y - mgr->renderState.emitter->resource->header->unk_04.y;
-        trs.z = ptcl->position.z + ptcl->emitterPos.z - mgr->renderState.emitter->resource->header->unk_04.z;
+        trs.x = ptcl->position.x + ptcl->emitterPos.x - mgr->renderState.emitter->resource->header->emitterBasePos.x;
+        trs.y = ptcl->position.y + ptcl->emitterPos.y - mgr->renderState.emitter->resource->header->emitterBasePos.y;
+        trs.z = ptcl->position.z + ptcl->emitterPos.z - mgr->renderState.emitter->resource->header->emitterBasePos.z;
         MTX_MultVec43(&trs, cmr, &trs);
 
-        sin = FX_SinIdx(ptcl->unk_20);
-        fx32 cos = FX_CosIdx(ptcl->unk_20);
+        sin = FX_SinIdx(ptcl->rotation);
+        fx32 cos = FX_CosIdx(ptcl->rotation);
         load.m[0][0] = FX_MUL(cos, sclX);
         load.m[0][1] = FX_MUL(sin, sclX);
         load.m[0][2] = 0;
@@ -321,12 +321,12 @@ void sub_0209FAB8(SPLManager *mgr, SPLParticle *ptcl)
         G3_Identity();
 
         SPLResourceHeader *resBase = mgr->renderState.emitter->resource->header;
-        G3_Translate(resBase->unk_04.x, resBase->unk_04.y, resBase->unk_04.z);
+        G3_Translate(resBase->emitterBasePos.x, resBase->emitterBasePos.y, resBase->emitterBasePos.z);
         G3_MultMtx43(&load);
     }
 
     GXRgb colA = ptcl->unk_36;
-    GXRgb colB = mgr->renderState.emitter->unk_E2;
+    GXRgb colB = mgr->renderState.emitter->color;
     G3_Color(GX_RGB(
         GX_RGB_R_(colA) * GX_RGB_R_(colB) >> 5,
         GX_RGB_G_(colA) * GX_RGB_G_(colB) >> 15,
@@ -357,7 +357,7 @@ void sub_0209F3D0(SPLManager *mgr, SPLParticle *ptcl)
         GX_LIGHTMASK_NONE,
         GX_POLYGONMODE_MODULATE,
         GX_CULL_NONE,
-        ptcl->unk_2E.unk_01_2,
+        ptcl->unk_2E.currentPolygonID,
         alpha,
         mgr->unk_3C);
 
@@ -370,7 +370,7 @@ void sub_0209F3D0(SPLManager *mgr, SPLParticle *ptcl)
     sclY = ptcl->unk_30;
     sclX = FX_MUL(sclY, aspect);
 
-    switch (mgr->renderState.emitter->resource->header->unk_48.unk_07_4) {
+    switch (mgr->renderState.emitter->resource->header->misc.unk_07_4) {
     case 0:
         sclX = FX_MUL(sclX, ptcl->unk_34);
         sclY = FX_MUL(sclY, ptcl->unk_34);
@@ -414,7 +414,7 @@ void sub_0209F3D0(SPLManager *mgr, SPLParticle *ptcl)
             dot = -dot;
         }
 
-        dot = FX_MUL(sclY, FX_MUL(FX32_ONE - dot, (fx32)mgr->renderState.emitter->resource->header->unk_48.unk_05_0) + FX32_ONE);
+        dot = FX_MUL(sclY, FX_MUL(FX32_ONE - dot, (fx32)mgr->renderState.emitter->resource->header->misc.unk_05_0) + FX32_ONE);
         load.m[0][0] = FX_MUL(dir.x, sclX);
         load.m[1][0] = FX_MUL(-dir.y, dot);
         load.m[3][0] = trs.x;
@@ -431,9 +431,9 @@ void sub_0209F3D0(SPLManager *mgr, SPLParticle *ptcl)
         G3_Identity();
         G3_MultMtx43(&load);
     } else {
-        trs.x = ptcl->position.x + ptcl->emitterPos.x - mgr->renderState.emitter->resource->header->unk_04.x;
-        trs.y = ptcl->position.y + ptcl->emitterPos.y - mgr->renderState.emitter->resource->header->unk_04.y;
-        trs.z = ptcl->position.z + ptcl->emitterPos.z - mgr->renderState.emitter->resource->header->unk_04.z;
+        trs.x = ptcl->position.x + ptcl->emitterPos.x - mgr->renderState.emitter->resource->header->emitterBasePos.x;
+        trs.y = ptcl->position.y + ptcl->emitterPos.y - mgr->renderState.emitter->resource->header->emitterBasePos.y;
+        trs.z = ptcl->position.z + ptcl->emitterPos.z - mgr->renderState.emitter->resource->header->emitterBasePos.z;
 
         dir = ptcl->velocity;
 
@@ -459,7 +459,7 @@ void sub_0209F3D0(SPLManager *mgr, SPLParticle *ptcl)
             dot = -dot;
         }
 
-        dot = FX_MUL(sclY, FX_MUL(FX32_ONE - dot, (fx32)mgr->renderState.emitter->resource->header->unk_48.unk_05_0) + FX32_ONE);
+        dot = FX_MUL(sclY, FX_MUL(FX32_ONE - dot, (fx32)mgr->renderState.emitter->resource->header->misc.unk_05_0) + FX32_ONE);
         load.m[0][0] = FX_MUL(dir.x, sclX);
         load.m[1][0] = FX_MUL(-dir.y, dot);
         load.m[2][0] = 0;
@@ -476,12 +476,12 @@ void sub_0209F3D0(SPLManager *mgr, SPLParticle *ptcl)
         G3_Identity();
 
         SPLResourceHeader *resBase = mgr->renderState.emitter->resource->header;
-        G3_Translate(resBase->unk_04.x, resBase->unk_04.y, resBase->unk_04.z);
+        G3_Translate(resBase->emitterBasePos.x, resBase->emitterBasePos.y, resBase->emitterBasePos.z);
         G3_MultMtx43(&load);
     }
 
     GXRgb colA = ptcl->unk_36;
-    GXRgb colB = mgr->renderState.emitter->unk_E2;
+    GXRgb colB = mgr->renderState.emitter->color;
     G3_Color(GX_RGB(
         GX_RGB_R_(colA) * GX_RGB_R_(colB) >> 5,
         GX_RGB_G_(colA) * GX_RGB_G_(colB) >> 15,
@@ -512,7 +512,7 @@ void sub_0209ECF0(SPLManager *mgr, SPLParticle *ptcl)
         GX_LIGHTMASK_NONE,
         GX_POLYGONMODE_MODULATE,
         GX_CULL_NONE,
-        ptcl->unk_2E.unk_01_2,
+        ptcl->unk_2E.currentPolygonID,
         alpha,
         mgr->unk_3C);
 
@@ -525,7 +525,7 @@ void sub_0209ECF0(SPLManager *mgr, SPLParticle *ptcl)
     sclY = ptcl->unk_30;
     sclX = FX_MUL(sclY, aspect);
 
-    switch (mgr->renderState.emitter->resource->header->unk_48.unk_07_4) {
+    switch (mgr->renderState.emitter->resource->header->misc.unk_07_4) {
     case 0:
         sclX = FX_MUL(sclX, ptcl->unk_34);
         sclY = FX_MUL(sclY, ptcl->unk_34);
@@ -569,7 +569,7 @@ void sub_0209ECF0(SPLManager *mgr, SPLParticle *ptcl)
             dot = -dot;
         }
 
-        dot = FX_MUL(sclY, FX_MUL(FX32_ONE - dot, (fx32)mgr->renderState.emitter->resource->header->unk_48.unk_05_0) + FX32_ONE);
+        dot = FX_MUL(sclY, FX_MUL(FX32_ONE - dot, (fx32)mgr->renderState.emitter->resource->header->misc.unk_05_0) + FX32_ONE);
         load.m[0][0] = FX_MUL(dir.x, sclX);
         load.m[1][0] = FX_MUL(-dir.y, dot);
         load.m[3][0] = trs.x;
@@ -586,9 +586,9 @@ void sub_0209ECF0(SPLManager *mgr, SPLParticle *ptcl)
         G3_Identity();
         G3_MultMtx43(&load);
     } else {
-        trs.x = ptcl->position.x + ptcl->emitterPos.x - mgr->renderState.emitter->resource->header->unk_04.x;
-        trs.y = ptcl->position.y + ptcl->emitterPos.y - mgr->renderState.emitter->resource->header->unk_04.y;
-        trs.z = ptcl->position.z + ptcl->emitterPos.z - mgr->renderState.emitter->resource->header->unk_04.z;
+        trs.x = ptcl->position.x + ptcl->emitterPos.x - mgr->renderState.emitter->resource->header->emitterBasePos.x;
+        trs.y = ptcl->position.y + ptcl->emitterPos.y - mgr->renderState.emitter->resource->header->emitterBasePos.y;
+        trs.z = ptcl->position.z + ptcl->emitterPos.z - mgr->renderState.emitter->resource->header->emitterBasePos.z;
 
         dir = ptcl->velocity;
 
@@ -614,7 +614,7 @@ void sub_0209ECF0(SPLManager *mgr, SPLParticle *ptcl)
             dot = -dot;
         }
 
-        dot = FX_MUL(sclY, FX_MUL(FX32_ONE - dot, (fx32)mgr->renderState.emitter->resource->header->unk_48.unk_05_0) + FX32_ONE);
+        dot = FX_MUL(sclY, FX_MUL(FX32_ONE - dot, (fx32)mgr->renderState.emitter->resource->header->misc.unk_05_0) + FX32_ONE);
         load.m[0][0] = FX_MUL(dir.x, sclX);
         load.m[1][0] = FX_MUL(-dir.y, dot);
         load.m[2][0] = 0;
@@ -631,12 +631,12 @@ void sub_0209ECF0(SPLManager *mgr, SPLParticle *ptcl)
         G3_Identity();
 
         SPLResourceHeader *resBase = mgr->renderState.emitter->resource->header;
-        G3_Translate(resBase->unk_04.x, resBase->unk_04.y, resBase->unk_04.z);
+        G3_Translate(resBase->emitterBasePos.x, resBase->emitterBasePos.y, resBase->emitterBasePos.z);
         G3_MultMtx43(&load);
     }
 
     GXRgb colA = ptcl->unk_36;
-    GXRgb colB = mgr->renderState.emitter->unk_E2;
+    GXRgb colB = mgr->renderState.emitter->color;
     G3_Color(GX_RGB(
         GX_RGB_R_(colA) * GX_RGB_R_(colB) >> 5,
         GX_RGB_G_(colA) * GX_RGB_G_(colB) >> 15,
@@ -662,7 +662,7 @@ void sub_0209E9A0(SPLManager *mgr, SPLParticle *ptcl)
         GX_LIGHTMASK_NONE,
         GX_POLYGONMODE_MODULATE,
         GX_CULL_NONE,
-        ptcl->unk_2E.unk_01_2,
+        ptcl->unk_2E.currentPolygonID,
         alpha,
         mgr->unk_3C);
 
@@ -672,13 +672,13 @@ void sub_0209E9A0(SPLManager *mgr, SPLParticle *ptcl)
         return;
     }
 
-    Unk_02100DA8[mgr->renderState.emitter->resource->header->flags.unk_06_1](FX_SinIdx(ptcl->unk_20), FX_CosIdx(ptcl->unk_20), &rotMtx);
+    Unk_02100DA8[mgr->renderState.emitter->resource->header->flags.unk_06_1](FX_SinIdx(ptcl->rotation), FX_CosIdx(ptcl->rotation), &rotMtx);
 
     sclY = ptcl->unk_30;
     resBase = mgr->renderState.emitter->resource->header;
     sclX = FX_MUL(sclY, resBase->unk_30);
 
-    switch (resBase->unk_48.unk_07_4) {
+    switch (resBase->misc.unk_07_4) {
     case 0:
         sclX = FX_MUL(sclX, ptcl->unk_34);
         sclY = FX_MUL(sclY, ptcl->unk_34);
@@ -704,21 +704,21 @@ void sub_0209E9A0(SPLManager *mgr, SPLParticle *ptcl)
         G3_LoadMtx43(mgr->renderState.viewMatrix);
         G3_MultMtx43(&load);
     } else {
-        load.m[3][0] = ptcl->position.x + ptcl->emitterPos.x - mgr->renderState.emitter->resource->header->unk_04.x;
-        load.m[3][1] = ptcl->position.y + ptcl->emitterPos.y - mgr->renderState.emitter->resource->header->unk_04.y;
-        load.m[3][2] = ptcl->position.z + ptcl->emitterPos.z - mgr->renderState.emitter->resource->header->unk_04.z;
+        load.m[3][0] = ptcl->position.x + ptcl->emitterPos.x - mgr->renderState.emitter->resource->header->emitterBasePos.x;
+        load.m[3][1] = ptcl->position.y + ptcl->emitterPos.y - mgr->renderState.emitter->resource->header->emitterBasePos.y;
+        load.m[3][2] = ptcl->position.z + ptcl->emitterPos.z - mgr->renderState.emitter->resource->header->emitterBasePos.z;
 
         G3_Identity();
 
         resBase = mgr->renderState.emitter->resource->header;
-        G3_Translate(resBase->unk_04.x, resBase->unk_04.y, resBase->unk_04.z);
+        G3_Translate(resBase->emitterBasePos.x, resBase->emitterBasePos.y, resBase->emitterBasePos.z);
 
         G3_MultMtx43(mgr->renderState.viewMatrix);
         G3_MultMtx43(&load);
     }
 
     GXRgb colA = ptcl->unk_36;
-    GXRgb colB = mgr->renderState.emitter->unk_E2;
+    GXRgb colB = mgr->renderState.emitter->color;
     G3_Color(GX_RGB(
         GX_RGB_R_(colA) * GX_RGB_R_(colB) >> 5,
         GX_RGB_G_(colA) * GX_RGB_G_(colB) >> 15,
@@ -745,7 +745,7 @@ void sub_0209E650(SPLManager *mgr, SPLParticle *ptcl)
         GX_LIGHTMASK_NONE,
         GX_POLYGONMODE_MODULATE,
         GX_CULL_NONE,
-        ptcl->unk_2E.unk_01_2,
+        ptcl->unk_2E.currentPolygonID,
         alpha,
         mgr->unk_3C);
 
@@ -755,13 +755,13 @@ void sub_0209E650(SPLManager *mgr, SPLParticle *ptcl)
         return;
     }
 
-    Unk_02100DA8[mgr->renderState.emitter->resource->childResource->unk_00.unk_03_1](FX_SinIdx(ptcl->unk_20), FX_CosIdx(ptcl->unk_20), &rotMtx);
+    Unk_02100DA8[mgr->renderState.emitter->resource->childResource->flags.unk_03_1](FX_SinIdx(ptcl->rotation), FX_CosIdx(ptcl->rotation), &rotMtx);
 
     sclY = ptcl->unk_30;
     resBase = mgr->renderState.emitter->resource->header;
     sclX = FX_MUL(sclY, resBase->unk_30);
 
-    switch (resBase->unk_48.unk_07_4) {
+    switch (resBase->misc.unk_07_4) {
     case 0:
         sclX = FX_MUL(sclX, ptcl->unk_34);
         sclY = FX_MUL(sclY, ptcl->unk_34);
@@ -786,27 +786,27 @@ void sub_0209E650(SPLManager *mgr, SPLParticle *ptcl)
         G3_LoadMtx43(mgr->renderState.viewMatrix);
         G3_MultMtx43(&load);
     } else {
-        load.m[3][0] = ptcl->position.x + ptcl->emitterPos.x - mgr->renderState.emitter->resource->header->unk_04.x;
-        load.m[3][1] = ptcl->position.y + ptcl->emitterPos.y - mgr->renderState.emitter->resource->header->unk_04.y;
-        load.m[3][2] = ptcl->position.z + ptcl->emitterPos.z - mgr->renderState.emitter->resource->header->unk_04.z;
+        load.m[3][0] = ptcl->position.x + ptcl->emitterPos.x - mgr->renderState.emitter->resource->header->emitterBasePos.x;
+        load.m[3][1] = ptcl->position.y + ptcl->emitterPos.y - mgr->renderState.emitter->resource->header->emitterBasePos.y;
+        load.m[3][2] = ptcl->position.z + ptcl->emitterPos.z - mgr->renderState.emitter->resource->header->emitterBasePos.z;
 
         G3_Identity();
 
         resBase = mgr->renderState.emitter->resource->header;
-        G3_Translate(resBase->unk_04.x, resBase->unk_04.y, resBase->unk_04.z);
+        G3_Translate(resBase->emitterBasePos.x, resBase->emitterBasePos.y, resBase->emitterBasePos.z);
         G3_MultMtx43(mgr->renderState.viewMatrix);
         G3_MultMtx43(&load);
     }
 
     GXRgb colA = ptcl->unk_36;
-    GXRgb colB = mgr->renderState.emitter->unk_E2;
+    GXRgb colB = mgr->renderState.emitter->color;
     G3_Color(GX_RGB(
         GX_RGB_R_(colA) * GX_RGB_R_(colB) >> 5,
         GX_RGB_G_(colA) * GX_RGB_G_(colB) >> 15,
         GX_RGB_B_(colA) * GX_RGB_B_(colB) >> 25));
 
     SPLEmitter *emtr = mgr->renderState.emitter;
-    Unk_02100DA0[emtr->resource->childResource->unk_00.unk_03_3](emtr->unk_EC, emtr->unk_EE, 0, 0);
+    Unk_02100DA0[emtr->resource->childResource->flags.unk_03_3](emtr->unk_EC, emtr->unk_EE, 0, 0);
 }
 
 void sub_0209E1D4(SPLManager *mgr, SPLParticle *ptcl)
@@ -827,7 +827,7 @@ void sub_0209E1D4(SPLManager *mgr, SPLParticle *ptcl)
         GX_LIGHTMASK_NONE,
         GX_POLYGONMODE_MODULATE,
         GX_CULL_NONE,
-        ptcl->unk_2E.unk_01_2,
+        ptcl->unk_2E.currentPolygonID,
         alpha,
         mgr->unk_3C);
 
@@ -837,11 +837,11 @@ void sub_0209E1D4(SPLManager *mgr, SPLParticle *ptcl)
         return;
     }
 
-    Unk_02100DA8[mgr->renderState.emitter->resource->header->flags.unk_06_1](FX_SinIdx(ptcl->unk_20), FX_CosIdx(ptcl->unk_20), &rotMat);
+    Unk_02100DA8[mgr->renderState.emitter->resource->header->flags.unk_06_1](FX_SinIdx(ptcl->rotation), FX_CosIdx(ptcl->rotation), &rotMat);
 
     MTX_Identity43(&mat);
 
-    if (!mgr->renderState.emitter->resource->header->unk_48.unk_07_7) {
+    if (!mgr->renderState.emitter->resource->header->misc.unk_07_7) {
         VEC_Normalize(&ptcl->velocity, &vec1);
     } else {
         VEC_Normalize(&ptcl->position, &vec1);
@@ -879,7 +879,7 @@ void sub_0209E1D4(SPLManager *mgr, SPLParticle *ptcl)
     scaleY = ptcl->unk_30;
     scaleX = FX_MUL(scaleY, resBase->unk_30);
 
-    switch (resBase->unk_48.unk_07_4) {
+    switch (resBase->misc.unk_07_4) {
     case 0:
         scaleX = FX_MUL(scaleX, ptcl->unk_34);
         scaleY = FX_MUL(scaleY, ptcl->unk_34);
@@ -905,20 +905,20 @@ void sub_0209E1D4(SPLManager *mgr, SPLParticle *ptcl)
         G3_LoadMtx43(mgr->renderState.viewMatrix);
         G3_MultMtx43(&transform);
     } else {
-        transform.m[3][0] = ptcl->position.x + ptcl->emitterPos.x - resBase->unk_04.x;
-        transform.m[3][1] = ptcl->position.y + ptcl->emitterPos.y - mgr->renderState.emitter->resource->header->unk_04.y;
-        transform.m[3][2] = ptcl->position.z + ptcl->emitterPos.z - mgr->renderState.emitter->resource->header->unk_04.z;
+        transform.m[3][0] = ptcl->position.x + ptcl->emitterPos.x - resBase->emitterBasePos.x;
+        transform.m[3][1] = ptcl->position.y + ptcl->emitterPos.y - mgr->renderState.emitter->resource->header->emitterBasePos.y;
+        transform.m[3][2] = ptcl->position.z + ptcl->emitterPos.z - mgr->renderState.emitter->resource->header->emitterBasePos.z;
 
         G3_Identity();
 
         resBase = mgr->renderState.emitter->resource->header;
-        G3_Translate(resBase->unk_04.x, resBase->unk_04.y, resBase->unk_04.z);
+        G3_Translate(resBase->emitterBasePos.x, resBase->emitterBasePos.y, resBase->emitterBasePos.z);
         G3_MultMtx43(mgr->renderState.viewMatrix);
         G3_MultMtx43(&transform);
     }
 
     colA = ptcl->unk_36;
-    colB = mgr->renderState.emitter->unk_E2;
+    colB = mgr->renderState.emitter->color;
     G3_Color(GX_RGB(
         GX_RGB_R_(colA) * GX_RGB_R_(colB) >> 5,
         GX_RGB_G_(colA) * GX_RGB_G_(colB) >> 15,
@@ -945,7 +945,7 @@ void sub_0209DD54(SPLManager *mgr, SPLParticle *ptcl)
         GX_LIGHTMASK_NONE,
         GX_POLYGONMODE_MODULATE,
         GX_CULL_NONE,
-        ptcl->unk_2E.unk_01_2,
+        ptcl->unk_2E.currentPolygonID,
         alpha,
         mgr->unk_3C);
 
@@ -955,11 +955,11 @@ void sub_0209DD54(SPLManager *mgr, SPLParticle *ptcl)
         return;
     }
 
-    Unk_02100DA8[mgr->renderState.emitter->resource->childResource->unk_00.unk_03_1](FX_SinIdx(ptcl->unk_20), FX_CosIdx(ptcl->unk_20), &rotMtx);
+    Unk_02100DA8[mgr->renderState.emitter->resource->childResource->flags.unk_03_1](FX_SinIdx(ptcl->rotation), FX_CosIdx(ptcl->rotation), &rotMtx);
 
     MTX_Identity43(&mat);
 
-    if (!mgr->renderState.emitter->resource->childResource->unk_0C.unk_04_6) {
+    if (!mgr->renderState.emitter->resource->childResource->misc.unk_04_6) {
         VEC_Normalize(&ptcl->velocity, &vec1);
     } else {
         VEC_Normalize(&ptcl->position, &vec1);
@@ -997,7 +997,7 @@ void sub_0209DD54(SPLManager *mgr, SPLParticle *ptcl)
     scaleY = ptcl->unk_30;
     scaleX = FX_MUL(scaleY, resBase->unk_30);
 
-    switch (resBase->unk_48.unk_07_4) {
+    switch (resBase->misc.unk_07_4) {
     case 0:
         scaleX = FX_MUL(scaleX, ptcl->unk_34);
         scaleY = FX_MUL(scaleY, ptcl->unk_34);
@@ -1023,25 +1023,25 @@ void sub_0209DD54(SPLManager *mgr, SPLParticle *ptcl)
         G3_LoadMtx43(mgr->renderState.viewMatrix);
         G3_MultMtx43(&transform);
     } else {
-        transform.m[3][0] = ptcl->position.x + ptcl->emitterPos.x - resBase->unk_04.x;
-        transform.m[3][1] = ptcl->position.y + ptcl->emitterPos.y - mgr->renderState.emitter->resource->header->unk_04.y;
-        transform.m[3][2] = ptcl->position.z + ptcl->emitterPos.z - mgr->renderState.emitter->resource->header->unk_04.z;
+        transform.m[3][0] = ptcl->position.x + ptcl->emitterPos.x - resBase->emitterBasePos.x;
+        transform.m[3][1] = ptcl->position.y + ptcl->emitterPos.y - mgr->renderState.emitter->resource->header->emitterBasePos.y;
+        transform.m[3][2] = ptcl->position.z + ptcl->emitterPos.z - mgr->renderState.emitter->resource->header->emitterBasePos.z;
 
         G3_Identity();
 
         resBase = mgr->renderState.emitter->resource->header;
-        G3_Translate(resBase->unk_04.x, resBase->unk_04.y, resBase->unk_04.z);
+        G3_Translate(resBase->emitterBasePos.x, resBase->emitterBasePos.y, resBase->emitterBasePos.z);
         G3_MultMtx43(mgr->renderState.viewMatrix);
         G3_MultMtx43(&transform);
     }
 
     GXRgb colA = ptcl->unk_36;
-    GXRgb colB = mgr->renderState.emitter->unk_E2;
+    GXRgb colB = mgr->renderState.emitter->color;
     G3_Color(GX_RGB(
         GX_RGB_R_(colA) * GX_RGB_R_(colB) >> 5,
         GX_RGB_G_(colA) * GX_RGB_G_(colB) >> 15,
         GX_RGB_B_(colA) * GX_RGB_B_(colB) >> 25));
 
     SPLEmitter *emtr = mgr->renderState.emitter;
-    Unk_02100DA0[emtr->resource->childResource->unk_00.unk_03_3](emtr->unk_EC, emtr->unk_EE, 0, 0);
+    Unk_02100DA0[emtr->resource->childResource->flags.unk_03_3](emtr->unk_EC, emtr->unk_EE, 0, 0);
 }

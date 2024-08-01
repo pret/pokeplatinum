@@ -288,7 +288,7 @@ void SPLManager_Update(SPLManager *mgr)
 
         if (!emtr->state.paused) {
             if (emtr->misc.updateCycle == 0 || mgr->currentCycle == emtr->misc.updateCycle - 1) {
-                sub_0209D150(mgr, emtr);
+                SPLEmitter_Update(mgr, emtr);
             }
         }
 
@@ -342,7 +342,7 @@ SPLEmitter *SPLManager_CreateEmitter(SPLManager *mgr, int resourceID, const VecF
 
     if (mgr->inactiveEmitters.first != NULL) {
         emtr = SPLEmitterList_PopFront(&mgr->inactiveEmitters);
-        sub_0209D998(emtr, mgr->resources + resourceID, pos);
+        SPLEmitter_Init(emtr, mgr->resources + resourceID, pos);
         SPLEmitterList_PushFront(&mgr->activeEmitters, emtr);
 
         if (emtr->resource->header->flags.selfMaintaining) { // Self-maintaining emitters are not returned to the user
@@ -359,7 +359,7 @@ SPLEmitter *SPLManager_CreateEmitterWithCallback(SPLManager *mgr, int resourceID
     if (mgr->inactiveEmitters.first != NULL) {
         VecFx32 pos = { 0, 0, 0 };
         emtr = SPLEmitterList_PopFront(&mgr->inactiveEmitters);
-        sub_0209D998(emtr, mgr->resources + resourceID, &pos);
+        SPLEmitter_Init(emtr, mgr->resources + resourceID, &pos);
 
         if (initCallback != NULL) {
             initCallback(emtr);
@@ -380,7 +380,7 @@ SPLEmitter *SPLManager_CreateEmitterWithCallbackEx(SPLManager *mgr, int resource
     SPLEmitter *emtr = NULL;
     if (mgr->inactiveEmitters.first != NULL) {
         emtr = SPLEmitterList_PopFront(&mgr->inactiveEmitters);
-        sub_0209D998(emtr, mgr->resources + resourceID, pos);
+        SPLEmitter_Init(emtr, mgr->resources + resourceID, pos);
 
         if (initCallback != NULL) {
             initCallback(emtr, param);
@@ -431,8 +431,8 @@ void SPL_Emit(SPLManager *mgr, SPLEmitter *emtr)
 
 void SPL_EmitAt(SPLManager *mgr, SPLEmitter *emtr, VecFx32 *pos)
 {
-    emtr->unk_98.x = pos->x + emtr->resource->header->unk_04.x;
-    emtr->unk_98.y = pos->y + emtr->resource->header->unk_04.y;
-    emtr->unk_98.z = pos->z + emtr->resource->header->unk_04.z;
+    emtr->position.x = pos->x + emtr->resource->header->emitterBasePos.x;
+    emtr->position.y = pos->y + emtr->resource->header->emitterBasePos.y;
+    emtr->position.z = pos->z + emtr->resource->header->emitterBasePos.z;
     spl_generate(emtr, (SPLList *)&mgr->inactiveParticles);
 }

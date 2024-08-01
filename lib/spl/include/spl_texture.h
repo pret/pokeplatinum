@@ -8,11 +8,11 @@ typedef union SPLTextureParam {
     u32 all;
     struct {
         u32 format : 4; // Maps to GXTexFmt
-        u32 s : 4;
-        u32 t : 4;
-        u32 val2_01_4 : 2;
-        u32 val2_01_6 : 2;
-        u32 val2_02_0 : 1;
+        u32 s : 4; // Maps to GXTexSizeS
+        u32 t : 4; // Maps to GXTexSizeT
+        u32 repeat : 2; // Maps to GXTexRepeat
+        u32 flip : 2; // Maps to GXTexFlip
+        u32 palColor0 : 1; // Maps to GXTexPlttColor0
         u32 val2_02_1 : 1;
         u32 sharedTexID : 8;
         u32 val2_03_2 : 6;

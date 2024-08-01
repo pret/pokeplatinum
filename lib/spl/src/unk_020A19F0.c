@@ -116,7 +116,7 @@ void sub_020A1A94(SPLParticle *ptcl, SPLResource *res, int lifeRate)
     SPLTexAnim *texAnim = res->texAnim;
     for (int i = 0; i < texAnim->unk_08.unk_00_0; i++) {
         if (lifeRate < texAnim->unk_08.unk_01_0 * (i + 1)) {
-            ptcl->unk_2C.unk_00 = texAnim->unk_00[i];
+            ptcl->misc.unk_00 = texAnim->unk_00[i];
             return;
         }
     }
