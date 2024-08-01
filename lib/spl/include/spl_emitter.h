@@ -42,11 +42,11 @@ typedef struct SPLEmitter {
     VecFx32 unk_B0;
     u16 age;
     fx16 unk_BE;
-    VecFx16 unk_C0;
+    VecFx16 axis;
     u16 unk_C6;
     fx32 unk_C8;
     fx32 unk_CC;
-    fx32 unk_D0;
+    fx32 length;
     fx32 unk_D4;
     fx32 unk_D8;
     fx32 unk_DC;

@@ -39,7 +39,7 @@ static void sub_020A1768(SPLEmitter *emtr)
         axis.z = FX32_ONE;
         break;
     default:
-        VEC_Fx16Normalize(&emtr->unk_C0, &axis);
+        VEC_Fx16Normalize(&emtr->axis, &axis);
         break;
     }
 
@@ -197,7 +197,7 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
                 SPLRandom_VecFx32_XY(&ptcl->velocity);
                 pos.x = FX_MUL(ptcl->velocity.x, emtr->unk_CC);
                 pos.y = FX_MUL(ptcl->velocity.y, emtr->unk_CC);
-                pos.z = SPLRandom_RangeFX32(emtr->unk_D0);
+                pos.z = SPLRandom_RangeFX32(emtr->length);
                 sub_020A1608(&ptcl->position, &pos, emtr);
             } break;
 
@@ -206,7 +206,7 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
                 SPLRandom_VecFx32_XY(&ptcl->velocity);
                 pos.x = FX_MUL(FX_MUL(ptcl->velocity.x, emtr->unk_CC), SPLRandom_RangeFX32(FX32_ONE));
                 pos.y = FX_MUL(FX_MUL(ptcl->velocity.y, emtr->unk_CC), SPLRandom_RangeFX32(FX32_ONE));
-                pos.z = SPLRandom_RangeFX32(emtr->unk_D0);
+                pos.z = SPLRandom_RangeFX32(emtr->length);
                 sub_020A1608(&ptcl->position, &pos, emtr);
             } break;
             }
@@ -228,9 +228,9 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
                 VEC_Normalize(&ptcl->position, &posNorm);
             }
 
-            ptcl->velocity.x = FX_MUL(posNorm.x, magPos) + FX_MUL(emtr->unk_C0.x, magAxis) + emtr->unk_B0.x;
-            ptcl->velocity.y = FX_MUL(posNorm.y, magPos) + FX_MUL(emtr->unk_C0.y, magAxis) + emtr->unk_B0.y;
-            ptcl->velocity.z = FX_MUL(posNorm.z, magPos) + FX_MUL(emtr->unk_C0.z, magAxis) + emtr->unk_B0.z;
+            ptcl->velocity.x = FX_MUL(posNorm.x, magPos) + FX_MUL(emtr->axis.x, magAxis) + emtr->unk_B0.x;
+            ptcl->velocity.y = FX_MUL(posNorm.y, magPos) + FX_MUL(emtr->axis.y, magAxis) + emtr->unk_B0.y;
+            ptcl->velocity.z = FX_MUL(posNorm.z, magPos) + FX_MUL(emtr->axis.z, magAxis) + emtr->unk_B0.z;
 
             ptcl->emitterPos = emtr->position;
 
@@ -271,7 +271,7 @@ void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
             } else if (resBase->flags.hasTexAnim && !res->texAnim->unk_08.unk_02_0) {
                 ptcl->misc.unk_00 = res->texAnim->unk_00[0];
             } else {
-                ptcl->misc.unk_00 = resBase->misc.unk_03_0;
+                ptcl->misc.unk_00 = resBase->misc.textureIndex;
             }
 
             ptcl->loopTimeFactor = 0xFFFF / res->header->misc.unk_04_0;
@@ -353,7 +353,7 @@ void sub_020A05BC(SPLParticle *ptcl, SPLEmitter *emtr, SPLList *list)
 
         chld->lifeTime = chldRes->unk_06;
         chld->age = 0;
-        chld->misc.unk_00 = chldRes->misc.unk_03_0;
+        chld->misc.unk_00 = chldRes->misc.textureIndex;
 
         chld->loopTimeFactor = 0xFFFF / (ptcl->lifeTime / 2);
         chld->lifeTimeFactor = 0xFFFF / ptcl->lifeTime;

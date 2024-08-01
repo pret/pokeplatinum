@@ -4,17 +4,17 @@
 #include <nitro/gx/g3imm.h>
 
 #include "spl_emitter.h"
-#include "spl_texture.h"
-#include "spl_manager.h"
-#include "spl_particle.h"
 #include "spl_internal.h"
 #include "spl_list.h"
+#include "spl_manager.h"
+#include "spl_particle.h"
+#include "spl_texture.h"
 
-#define ANIM_FUNC_NO_LOOP   0
-#define ANIM_FUNC_LOOP      1
+#define ANIM_FUNC_NO_LOOP 0
+#define ANIM_FUNC_LOOP    1
 
-typedef void(*DrawFunc)(SPLManager *mgr, SPLParticle *ptcl);
-typedef void(*SetTexFunc)(SPLTexture *tex);
+typedef void (*DrawFunc)(SPLManager *mgr, SPLParticle *ptcl);
+typedef void (*SetTexFunc)(SPLTexture *tex);
 
 typedef struct FieldFunc {
     void (*func)(SPLParticle *, SPLResource *, int);
@@ -28,10 +28,10 @@ typedef struct FieldFunc8 {
 
 static void SPLUtil_SetTexture(SPLTexture *tex); // spl_set_tex
 static void SPLUtil_SetTexture_Stub(SPLTexture *tex); // spl_set_tex_dummy
-static void sub_0209D064(SPLManager *mgr);
-static void sub_0209CF7C(SPLManager *mgr);
+static void SPLManager_DrawParticles(SPLManager *mgr);
+static void SPLManager_DrawChildParticles(SPLManager *mgr);
 void SPLEmitter_Init(SPLEmitter *emtr, SPLResource *res, const VecFx32 *param2);
-void sub_0209CF00(SPLManager *mgr);
+void SPLManager_DoDraw(SPLManager *mgr);
 void SPLEmitter_Update(SPLManager *mgr, SPLEmitter *emtr);
 
 static void SPLUtil_SetTexture(SPLTexture *tex)
@@ -76,11 +76,11 @@ void SPLEmitter_Init(SPLEmitter *emtr, SPLResource *res, const VecFx32 *pos)
     emtr->age = 0;
     emtr->unk_BE = 0;
 
-    emtr->unk_C0 = emtr->resource->header->unk_1C;
+    emtr->axis = emtr->resource->header->unk_1C;
     emtr->unk_C6 = emtr->resource->header->unk_38;
     emtr->unk_C8 = emtr->resource->header->unk_10;
     emtr->unk_CC = emtr->resource->header->unk_14;
-    emtr->unk_D0 = emtr->resource->header->unk_18;
+    emtr->length = emtr->resource->header->unk_18;
     emtr->unk_D4 = emtr->resource->header->unk_24;
     emtr->unk_D8 = emtr->resource->header->unk_28;
     emtr->unk_DC = emtr->resource->header->unk_2C;
@@ -326,21 +326,15 @@ void SPLEmitter_Update(SPLManager *mgr, SPLEmitter *emtr)
     }
 }
 
-static void sub_0209D064(SPLManager *mgr)
+static void SPLManager_DrawParticles(SPLManager *mgr)
 {
-    SPLEmitter *emtr;
-    SPLResourceHeader *resBase;
-    SPLParticle *ptcl;
-    DrawFunc drawFunc;
-    SetTexFunc setTexFunc;
+    SPLEmitter *emtr = mgr->renderState.emitter;
+    SPLResourceHeader *header = emtr->resource->header;
+    DrawFunc drawFunc = NULL;
 
-    emtr = mgr->renderState.emitter;
-    resBase = emtr->resource->header;
-    drawFunc = NULL;
+    SPLUtil_SetTexture(mgr->textures + header->misc.textureIndex);
 
-    SPLUtil_SetTexture(mgr->textures + resBase->misc.unk_03_0);
-
-    switch (resBase->flags.unk_04_4) {
+    switch (header->flags.drawType) {
     case 0:
         drawFunc = sub_0209FF0C;
         break;
@@ -358,34 +352,27 @@ static void sub_0209D064(SPLManager *mgr)
         break;
     }
 
-    setTexFunc = resBase->flags.hasTexAnim ? SPLUtil_SetTexture : SPLUtil_SetTexture_Stub;
-    ptcl = emtr->particles.first;
+    SetTexFunc setTexFunc = header->flags.hasTexAnim ? SPLUtil_SetTexture : SPLUtil_SetTexture_Stub;
 
-    while (ptcl != NULL) {
+    for (SPLParticle *ptcl = emtr->particles.first; ptcl != NULL; ptcl = ptcl->next) {
         setTexFunc(mgr->textures + ptcl->misc.unk_00);
         drawFunc(mgr, ptcl);
-        ptcl = ptcl->next;
     }
 }
 
-static void sub_0209CF7C(SPLManager *mgr)
+static void SPLManager_DrawChildParticles(SPLManager *mgr)
 {
-    SPLEmitter *emtr;
-    SPLResource *res;
-    DrawFunc drawFunc;
-    SPLParticle *ptcl;
-
-    emtr = mgr->renderState.emitter;
-    drawFunc = NULL;
-    res = emtr->resource;
+    SPLEmitter *emtr = mgr->renderState.emitter;
+    SPLResource *res = emtr->resource;
+    DrawFunc drawFunc = NULL;
 
     if (!res->header->flags.hasChildResource) {
         return;
     }
 
-    SPLUtil_SetTexture(mgr->textures + res->childResource->misc.unk_03_0);
+    SPLUtil_SetTexture(mgr->textures + res->childResource->misc.textureIndex);
 
-    switch (res->childResource->flags.unk_02_7) {
+    switch (res->childResource->flags.drawType) {
     case 0:
         drawFunc = sub_0209FAB8;
         break;
@@ -403,39 +390,36 @@ static void sub_0209CF7C(SPLManager *mgr)
         break;
     }
 
-    ptcl = emtr->childParticles.first;
-    while (ptcl != NULL) {
+    for (SPLParticle *ptcl = emtr->childParticles.first; ptcl != NULL; ptcl = ptcl->next) {
         drawFunc(mgr, ptcl);
-        ptcl = ptcl->next;
     }
 }
 
-void sub_0209CF00(SPLManager *mgr)
+void SPLManager_DoDraw(SPLManager *mgr)
 {
-    SPLResourceHeader *resBase;
+    SPLResourceHeader *header = mgr->renderState.emitter->resource->header;
 
-    resBase = mgr->renderState.emitter->resource->header;
-    if (resBase->flags.unk_06_5) {
-        sub_0209CF7C(mgr);
+    if (header->flags.drawChildrenFirst) {
+        SPLManager_DrawChildParticles(mgr);
 
-        if (!resBase->flags.unk_06_6) {
-            sub_0209D064(mgr);
+        if (!header->flags.hideParent) {
+            SPLManager_DrawParticles(mgr);
         }
     } else {
-        if (!resBase->flags.unk_06_6) {
-            sub_0209D064(mgr);
+        if (!header->flags.hideParent) {
+            SPLManager_DrawParticles(mgr);
         }
 
-        sub_0209CF7C(mgr);
+        SPLManager_DrawChildParticles(mgr);
     }
 }
 
-void spl_generate(SPLEmitter *emtr, SPLList *list)
+void SPLEmitter_Emit(SPLEmitter *emtr, SPLList *list)
 {
     sub_020A08DC(emtr, list);
 }
 
-void SPL_Util_SetCylinderEmiterDirection(SPLEmitter *emtr, VecFx32 *p1, VecFx32 *p2)
+void SPLUtil_SetCylinderEmitterDir(SPLEmitter *emtr, VecFx32 *p1, VecFx32 *p2)
 {
     VecFx32 vex;
 
@@ -443,15 +427,15 @@ void SPL_Util_SetCylinderEmiterDirection(SPLEmitter *emtr, VecFx32 *p1, VecFx32 
         emtr->position.x = (p2->x + p1->x) / 2;
         emtr->position.y = (p2->y + p1->y) / 2;
         emtr->position.z = (p2->z + p1->z) / 2;
-        emtr->unk_D0 = VEC_Distance(p1, p2) / 2;
+        emtr->length = VEC_Distance(p1, p2) / 2;
 
         vex.x = p2->x - p1->x;
         vex.y = p2->y - p1->y;
         vex.z = p2->z - p1->z;
         VEC_Normalize(&vex, &vex);
 
-        emtr->unk_C0.x = (fx16)vex.x;
-        emtr->unk_C0.y = (fx16)vex.y;
-        emtr->unk_C0.z = (fx16)vex.z;
+        emtr->axis.x = (fx16)vex.x;
+        emtr->axis.y = (fx16)vex.y;
+        emtr->axis.z = (fx16)vex.z;
     }
 }

@@ -18,11 +18,11 @@ typedef struct SPLArcHdr {
     u32 reserved1;
 } SPLFileHeader;
 
-typedef union {
+typedef union SPLResourceFlags {
     u32 all;
     struct {
         u32 unk_04_0 : 4;
-        u32 unk_04_4 : 2;
+        u32 drawType : 2;
         u32 unk_04_6 : 2;
         u32 hasScaleAnim : 1;
         u32 hasColorAnim : 1;
@@ -39,8 +39,8 @@ typedef union {
         u32 unk_06_1 : 2;
         u32 unk_06_3 : 1;
         u32 unk_06_4 : 1;
-        u32 unk_06_5 : 1;
-        u32 unk_06_6 : 1;
+        u32 drawChildrenFirst : 1; // If set, child particles will be rendered before parent particles
+        u32 hideParent : 1; // If set, only child particles will be rendered
         u32 unk_06_7 : 1;
         u32 hasGravityBehavior : 1;
         u32 hasRandomBehavior : 1;
@@ -51,9 +51,9 @@ typedef union {
         u32 hasFixedPolygonID : 1;
         u32 childHasFixedPolygonID : 1;
     };
-} SPLResourceFlags; // size=0x4
+} SPLResourceFlags;
 
-typedef union {
+typedef union SPLChildResourceFlags {
     u16 all;
     struct {
         u16 usesBehaviors : 1;
@@ -62,12 +62,12 @@ typedef union {
         u16 unk_02_3 : 2;
         u16 followEmitter : 1;
         u16 unk_02_6 : 1;
-        u16 unk_02_7 : 2;
+        u16 drawType : 2;
         u16 unk_03_1 : 2;
         u16 unk_03_3 : 1;
         u16 reserved_03_4 : 4;
     };
-} SPLChildResourceFlags; // size=0x2
+} SPLChildResourceFlags;
 
 typedef union {
     u16 val1;
@@ -117,7 +117,7 @@ typedef struct SPLResourceHeader {
         u32 unk_00_0 : 8;
         u32 unk_01_0 : 8;
         u32 airResistance : 8;
-        u32 unk_03_0 : 8;
+        u32 textureIndex : 8;
         u32 unk_04_0 : 8;
         u32 unk_05_0 : 16;
         u32 unk_07_0 : 2;
@@ -206,7 +206,7 @@ typedef struct SPLChildResource {
         u32 unk_00_0 : 8;
         u32 emissionDelay : 8; // Delay, as a fraction of the particle's lifetime, before the particle starts emitting
         u32 emissionInterval : 8;
-        u32 unk_03_0 : 8;
+        u32 textureIndex : 8;
         u32 unk_04_0 : 2;
         u32 unk_04_2 : 2;
         u32 unk_04_4 : 1;

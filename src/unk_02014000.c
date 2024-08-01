@@ -647,7 +647,7 @@ u8 sub_02014790(UnkStruct_02014014 *param0)
 
 void sub_02014798(SPLEmitter *param0, VecFx16 *param1)
 {
-    *param1 = param0->unk_C0;
+    *param1 = param0->axis;
 }
 
 void sub_020147B0(SPLEmitter *param0, fx32 param1)
