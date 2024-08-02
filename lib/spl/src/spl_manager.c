@@ -57,7 +57,7 @@ SPLManager *SPLManager_New(SPLAllocFunc alloc, u16 maxEmitters, u16 maxParticles
     mgr->inactiveEmitters.first = NULL;
     mgr->inactiveParticles.first = NULL;
 
-    mgr->unk_3C = 0;
+    mgr->miscPolygonAttr = 0;
     mgr->currentCycle = 0;
 
     SPLEmitter *emtr = alloc(maxEmitters * sizeof(SPLEmitter));

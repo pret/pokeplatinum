@@ -10,17 +10,18 @@
 #include "spl_particle.h"
 #include "spl_manager.h"
 #include "spl_internal.h"
+#include "spl_resource.h"
 
 typedef void (*RotFunc)(fx32 sin, fx32 cos, MtxFx43 *rot);
 typedef void (*DrawPlaneFunc)(fx16 s, fx16 t, fx16 offsetX, fx16 offsetY);
 
 void SPLDraw_Child_Billboard(SPLManager *mgr, SPLParticle *ptcl); // spl_draw_chld_bb
-void sub_0209ECF0(SPLManager *mgr, SPLParticle *ptcl); // spl_draw_chld_dbb
+void SPLDraw_Child_DirectionalBillboard(SPLManager *mgr, SPLParticle *ptcl); // spl_draw_chld_dbb
 void sub_0209E650(SPLManager *mgr, SPLParticle *ptcl); // spl_draw_chld_pol
 void sub_0209DD54(SPLManager *mgr, SPLParticle *ptcl); // spl_draw_chld_dpl
 
 void SPLDraw_Billboard(SPLManager *mgr, SPLParticle *ptcl); // spl_draw_bb
-void sub_0209F3D0(SPLManager *mgr, SPLParticle *ptcl); // spl_draw_dbb
+void SPLDraw_DirectionalBillboard(SPLManager *mgr, SPLParticle *ptcl); // spl_draw_dbb
 void sub_0209E9A0(SPLManager *mgr, SPLParticle *ptcl); // spl_draw_pol
 void sub_0209E1D4(SPLManager *mgr, SPLParticle *ptcl); // spl_draw_dpl
 
@@ -51,7 +52,7 @@ static inline BOOL SPLDraw_Setup(const SPLParticle *ptcl, const SPLManager *mgr)
         GX_CULL_NONE,
         ptcl->visibility.currentPolygonID,
         alpha,
-        mgr->unk_3C);
+        mgr->miscPolygonAttr);
 
     reg_G3_POLYGON_ATTR; // No idea why but this is needed to match
 
@@ -301,34 +302,19 @@ void SPLDraw_Child_Billboard(SPLManager *mgr, SPLParticle *ptcl)
     SPLUtil_DrawXYPlane(mgr->renderState.emitter->childTextureS, mgr->renderState.emitter->childTextureT, 0, 0);
 }
 
-void sub_0209F3D0(SPLManager *mgr, SPLParticle *ptcl)
+void SPLDraw_DirectionalBillboard(SPLManager *mgr, SPLParticle *ptcl)
 {
-    fx32 aspect;
-    const MtxFx43 *cmr;
     VecFx32 vel_dir;
-    fx32 dot;
     VecFx32 trs;
     fx32 sclX, sclY;
     VecFx32 dir, look;
     MtxFx33 mtx;
     MtxFx43 load;
 
-    cmr = mgr->renderState.viewMatrix;
-    aspect = mgr->renderState.emitter->resource->header->aspectRatio;
+    const MtxFx43 *cmr = mgr->renderState.viewMatrix;
+    fx32 aspect = mgr->renderState.emitter->resource->header->aspectRatio;
 
-    fx32 alpha = (fx32)(ptcl->visibility.baseAlpha * (ptcl->visibility.animAlpha + 1)) >> 5;
-
-    G3_PolygonAttr(
-        GX_LIGHTMASK_NONE,
-        GX_POLYGONMODE_MODULATE,
-        GX_CULL_NONE,
-        ptcl->visibility.currentPolygonID,
-        alpha,
-        mgr->unk_3C);
-
-    reg_G3_POLYGON_ATTR;
-
-    if (alpha == 0) {
+    if (SPLDraw_Setup(ptcl, mgr)) {
         return;
     }
 
@@ -336,16 +322,16 @@ void sub_0209F3D0(SPLManager *mgr, SPLParticle *ptcl)
     sclX = FX_MUL(sclY, aspect);
 
     switch (mgr->renderState.emitter->resource->header->misc.scaleAnimDir) {
-    case 0:
+    case SPL_SCALE_ANIM_DIR_XY:
         sclX = FX_MUL(sclX, ptcl->animScale);
         sclY = FX_MUL(sclY, ptcl->animScale);
         break;
 
-    case 1:
+    case SPL_SCALE_ANIM_DIR_X:
         sclX = FX_MUL(sclX, ptcl->animScale);
         break;
 
-    case 2:
+    case SPL_SCALE_ANIM_DIR_Y:
         sclY = FX_MUL(sclY, ptcl->animScale);
         break;
     }
@@ -374,12 +360,12 @@ void sub_0209F3D0(SPLManager *mgr, SPLParticle *ptcl)
         vel_dir = ptcl->velocity;
         VEC_Normalize(&vel_dir, &vel_dir);
 
-        dot = FX_MUL(vel_dir.x, -cmr->m[0][2]) + FX_MUL(vel_dir.y, -cmr->m[1][2]) + FX_MUL(vel_dir.z, -cmr->m[2][2]);
+        fx32 dot = FX_MUL(vel_dir.x, -cmr->m[0][2]) + FX_MUL(vel_dir.y, -cmr->m[1][2]) + FX_MUL(vel_dir.z, -cmr->m[2][2]);
         if (dot < 0) {
             dot = -dot;
         }
 
-        dot = FX_MUL(sclY, FX_MUL(FX32_ONE - dot, (fx32)mgr->renderState.emitter->resource->header->misc.unk_05_0) + FX32_ONE);
+        dot = FX_MUL(sclY, FX_MUL(FX32_ONE - dot, (fx32)mgr->renderState.emitter->resource->header->misc.dbbScale) + FX32_ONE);
         load.m[0][0] = FX_MUL(dir.x, sclX);
         load.m[1][0] = FX_MUL(-dir.y, dot);
         load.m[2][0] = 0;
@@ -419,12 +405,12 @@ void sub_0209F3D0(SPLManager *mgr, SPLParticle *ptcl)
         vel_dir = ptcl->velocity;
         VEC_Normalize(&vel_dir, &vel_dir);
 
-        dot = FX_MUL(vel_dir.x, -cmr->m[0][2]) + FX_MUL(vel_dir.y, -cmr->m[1][2]) + FX_MUL(vel_dir.z, -cmr->m[2][2]);
+        fx32 dot = FX_MUL(vel_dir.x, -cmr->m[0][2]) + FX_MUL(vel_dir.y, -cmr->m[1][2]) + FX_MUL(vel_dir.z, -cmr->m[2][2]);
         if (dot < 0) {
             dot = -dot;
         }
 
-        dot = FX_MUL(sclY, FX_MUL(FX32_ONE - dot, (fx32)mgr->renderState.emitter->resource->header->misc.unk_05_0) + FX32_ONE);
+        dot = FX_MUL(sclY, FX_MUL(FX32_ONE - dot, (fx32)mgr->renderState.emitter->resource->header->misc.dbbScale) + FX32_ONE);
         load.m[0][0] = FX_MUL(dir.x, sclX);
         load.m[1][0] = FX_MUL(-dir.y, dot);
         load.m[2][0] = 0;
@@ -439,51 +425,39 @@ void sub_0209F3D0(SPLManager *mgr, SPLParticle *ptcl)
         load.m[3][2] = trs.z;
 
         G3_Identity();
-
-        SPLResourceHeader *resBase = mgr->renderState.emitter->resource->header;
-        G3_Translate(resBase->emitterBasePos.x, resBase->emitterBasePos.y, resBase->emitterBasePos.z);
+        G3_Translate(
+            mgr->renderState.emitter->resource->header->emitterBasePos.x, 
+            mgr->renderState.emitter->resource->header->emitterBasePos.y, 
+            mgr->renderState.emitter->resource->header->emitterBasePos.z);
         G3_MultMtx43(&load);
     }
 
-    GXRgb colA = ptcl->color;
-    GXRgb colB = mgr->renderState.emitter->color;
     G3_Color(GX_RGB(
-        GX_RGB_R_(colA) * GX_RGB_R_(colB) >> 5,
-        GX_RGB_G_(colA) * GX_RGB_G_(colB) >> 15,
-        GX_RGB_B_(colA) * GX_RGB_B_(colB) >> 25));
+        GX_RGB_R_(ptcl->color) * GX_RGB_R_(mgr->renderState.emitter->color) >> 5,
+        GX_RGB_G_(ptcl->color) * GX_RGB_G_(mgr->renderState.emitter->color) >> 15,
+        GX_RGB_B_(ptcl->color) * GX_RGB_B_(mgr->renderState.emitter->color) >> 25));
 
     SPLEmitter *emtr = mgr->renderState.emitter;
-    SPLUtil_DrawXYPlane(emtr->textureS, emtr->textureT, emtr->resource->header->polygonX, emtr->resource->header->polygonY);
+    SPLUtil_DrawXYPlane(
+        emtr->textureS, 
+        emtr->textureT, 
+        emtr->resource->header->polygonX, 
+        emtr->resource->header->polygonY);
 }
 
-void sub_0209ECF0(SPLManager *mgr, SPLParticle *ptcl)
+void SPLDraw_Child_DirectionalBillboard(SPLManager *mgr, SPLParticle *ptcl)
 {
-    fx32 aspect;
-    const MtxFx43 *cmr;
     VecFx32 vel_dir;
-    fx32 dot;
     VecFx32 trs;
     fx32 sclX, sclY;
     VecFx32 dir, look;
     MtxFx33 mtx;
     MtxFx43 load;
 
-    cmr = mgr->renderState.viewMatrix;
-    aspect = mgr->renderState.emitter->resource->header->aspectRatio;
+    const MtxFx43 *cmr = mgr->renderState.viewMatrix;
+    fx32 aspect = mgr->renderState.emitter->resource->header->aspectRatio;
 
-    fx32 alpha = (fx32)(ptcl->visibility.baseAlpha * (ptcl->visibility.animAlpha + 1)) >> 5;
-
-    G3_PolygonAttr(
-        GX_LIGHTMASK_NONE,
-        GX_POLYGONMODE_MODULATE,
-        GX_CULL_NONE,
-        ptcl->visibility.currentPolygonID,
-        alpha,
-        mgr->unk_3C);
-
-    reg_G3_POLYGON_ATTR;
-
-    if (alpha == 0) {
+    if (SPLDraw_Setup(ptcl, mgr)) {
         return;
     }
 
@@ -491,16 +465,16 @@ void sub_0209ECF0(SPLManager *mgr, SPLParticle *ptcl)
     sclX = FX_MUL(sclY, aspect);
 
     switch (mgr->renderState.emitter->resource->header->misc.scaleAnimDir) {
-    case 0:
+    case SPL_SCALE_ANIM_DIR_XY:
         sclX = FX_MUL(sclX, ptcl->animScale);
         sclY = FX_MUL(sclY, ptcl->animScale);
         break;
 
-    case 1:
+    case SPL_SCALE_ANIM_DIR_X:
         sclX = FX_MUL(sclX, ptcl->animScale);
         break;
 
-    case 2:
+    case SPL_SCALE_ANIM_DIR_Y:
         sclY = FX_MUL(sclY, ptcl->animScale);
         break;
     }
@@ -529,12 +503,12 @@ void sub_0209ECF0(SPLManager *mgr, SPLParticle *ptcl)
         vel_dir = ptcl->velocity;
         VEC_Normalize(&vel_dir, &vel_dir);
 
-        dot = FX_MUL(vel_dir.x, -cmr->m[0][2]) + FX_MUL(vel_dir.y, -cmr->m[1][2]) + FX_MUL(vel_dir.z, -cmr->m[2][2]);
+        fx32 dot = FX_MUL(vel_dir.x, -cmr->m[0][2]) + FX_MUL(vel_dir.y, -cmr->m[1][2]) + FX_MUL(vel_dir.z, -cmr->m[2][2]);
         if (dot < 0) {
             dot = -dot;
         }
 
-        dot = FX_MUL(sclY, FX_MUL(FX32_ONE - dot, (fx32)mgr->renderState.emitter->resource->header->misc.unk_05_0) + FX32_ONE);
+        dot = FX_MUL(sclY, FX_MUL(FX32_ONE - dot, (fx32)mgr->renderState.emitter->resource->header->misc.dbbScale) + FX32_ONE);
         load.m[0][0] = FX_MUL(dir.x, sclX);
         load.m[1][0] = FX_MUL(-dir.y, dot);
         load.m[2][0] = 0;
@@ -574,12 +548,12 @@ void sub_0209ECF0(SPLManager *mgr, SPLParticle *ptcl)
         vel_dir = ptcl->velocity;
         VEC_Normalize(&vel_dir, &vel_dir);
 
-        dot = FX_MUL(vel_dir.x, -cmr->m[0][2]) + FX_MUL(vel_dir.y, -cmr->m[1][2]) + FX_MUL(vel_dir.z, -cmr->m[2][2]);
+        fx32 dot = FX_MUL(vel_dir.x, -cmr->m[0][2]) + FX_MUL(vel_dir.y, -cmr->m[1][2]) + FX_MUL(vel_dir.z, -cmr->m[2][2]);
         if (dot < 0) {
             dot = -dot;
         }
 
-        dot = FX_MUL(sclY, FX_MUL(FX32_ONE - dot, (fx32)mgr->renderState.emitter->resource->header->misc.unk_05_0) + FX32_ONE);
+        dot = FX_MUL(sclY, FX_MUL(FX32_ONE - dot, (fx32)mgr->renderState.emitter->resource->header->misc.dbbScale) + FX32_ONE);
         load.m[0][0] = FX_MUL(dir.x, sclX);
         load.m[1][0] = FX_MUL(-dir.y, dot);
         load.m[2][0] = 0;
@@ -594,21 +568,19 @@ void sub_0209ECF0(SPLManager *mgr, SPLParticle *ptcl)
         load.m[3][2] = trs.z;
 
         G3_Identity();
-
-        SPLResourceHeader *resBase = mgr->renderState.emitter->resource->header;
-        G3_Translate(resBase->emitterBasePos.x, resBase->emitterBasePos.y, resBase->emitterBasePos.z);
+        G3_Translate(
+            mgr->renderState.emitter->resource->header->emitterBasePos.x, 
+            mgr->renderState.emitter->resource->header->emitterBasePos.y, 
+            mgr->renderState.emitter->resource->header->emitterBasePos.z);
         G3_MultMtx43(&load);
     }
 
-    GXRgb colA = ptcl->color;
-    GXRgb colB = mgr->renderState.emitter->color;
     G3_Color(GX_RGB(
-        GX_RGB_R_(colA) * GX_RGB_R_(colB) >> 5,
-        GX_RGB_G_(colA) * GX_RGB_G_(colB) >> 15,
-        GX_RGB_B_(colA) * GX_RGB_B_(colB) >> 25));
+        GX_RGB_R_(ptcl->color) * GX_RGB_R_(mgr->renderState.emitter->color) >> 5,
+        GX_RGB_G_(ptcl->color) * GX_RGB_G_(mgr->renderState.emitter->color) >> 15,
+        GX_RGB_B_(ptcl->color) * GX_RGB_B_(mgr->renderState.emitter->color) >> 25));
 
-    SPLEmitter *emtr = mgr->renderState.emitter;
-    SPLUtil_DrawXYPlane(emtr->childTextureS, emtr->childTextureT, 0, 0);
+    SPLUtil_DrawXYPlane(mgr->renderState.emitter->childTextureS, mgr->renderState.emitter->childTextureT, 0, 0);
 }
 
 void sub_0209E9A0(SPLManager *mgr, SPLParticle *ptcl)
@@ -629,7 +601,7 @@ void sub_0209E9A0(SPLManager *mgr, SPLParticle *ptcl)
         GX_CULL_NONE,
         ptcl->visibility.currentPolygonID,
         alpha,
-        mgr->unk_3C);
+        mgr->miscPolygonAttr);
 
     reg_G3_POLYGON_ATTR;
 
@@ -712,7 +684,7 @@ void sub_0209E650(SPLManager *mgr, SPLParticle *ptcl)
         GX_CULL_NONE,
         ptcl->visibility.currentPolygonID,
         alpha,
-        mgr->unk_3C);
+        mgr->miscPolygonAttr);
 
     reg_G3_POLYGON_ATTR;
 
@@ -794,7 +766,7 @@ void sub_0209E1D4(SPLManager *mgr, SPLParticle *ptcl)
         GX_CULL_NONE,
         ptcl->visibility.currentPolygonID,
         alpha,
-        mgr->unk_3C);
+        mgr->miscPolygonAttr);
 
     reg_G3_POLYGON_ATTR;
 
@@ -912,7 +884,7 @@ void sub_0209DD54(SPLManager *mgr, SPLParticle *ptcl)
         GX_CULL_NONE,
         ptcl->visibility.currentPolygonID,
         alpha,
-        mgr->unk_3C);
+        mgr->miscPolygonAttr);
 
     reg_G3_POLYGON_ATTR;
 

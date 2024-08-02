@@ -338,7 +338,7 @@ static void SPLManager_DrawParticles(SPLManager *mgr)
         drawFunc = SPLDraw_Billboard;
         break;
     case 1:
-        drawFunc = sub_0209F3D0;
+        drawFunc = SPLDraw_DirectionalBillboard;
         break;
     case 2:
         drawFunc = sub_0209E9A0;
@@ -376,7 +376,7 @@ static void SPLManager_DrawChildParticles(SPLManager *mgr)
         drawFunc = SPLDraw_Child_Billboard;
         break;
     case 1:
-        drawFunc = sub_0209ECF0;
+        drawFunc = SPLDraw_Child_DirectionalBillboard;
         break;
     case 2:
         drawFunc = sub_0209E650;
