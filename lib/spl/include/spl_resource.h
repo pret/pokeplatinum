@@ -33,6 +33,12 @@ enum SPLChildRotationType {
     SPL_CHILD_ROT_INHERIT_ANGLE_AND_VELOCITY = 2,
 };
 
+enum SPLScaleAnimDir {
+    SPL_SCALE_ANIM_DIR_XY = 0,
+    SPL_SCALE_ANIM_DIR_X = 1,
+    SPL_SCALE_ANIM_DIR_Y = 2,
+};
+
 typedef struct SPLArcHdr {
     u32 magic;
     u32 version;
@@ -68,7 +74,7 @@ typedef union SPLResourceFlags {
         u32 randomizeLoopedAnim : 1;
         u32 drawChildrenFirst : 1; // If set, child particles will be rendered before parent particles
         u32 hideParent : 1; // If set, only child particles will be rendered
-        u32 unk_06_7 : 1;
+        u32 useViewSpace : 1; // If set, the rendering calculations will be done in view space
         u32 hasGravityBehavior : 1;
         u32 hasRandomBehavior : 1;
         u32 hasMagnetBehavior : 1;
@@ -125,7 +131,7 @@ typedef struct SPLResourceHeader {
     fx32 unk_24;
     fx32 unk_28;
     fx32 unk_2C;
-    fx16 unk_30;
+    fx16 aspectRatio;
     u16 startDelay; // Delay, in frames, before the emitter starts emitting particles
     s16 minRotation;
     s16 maxRotation;
@@ -153,15 +159,15 @@ typedef struct SPLResourceHeader {
         u32 unk_05_0 : 16;
         u32 unk_07_0 : 2;
         u32 unk_07_2 : 2;
-        u32 unk_07_4 : 3;
+        u32 scaleAnimDir : 3; // Maps to SPLScaleAnimDir
         u32 unk_07_7 : 1;
         u32 unk_08_0 : 1;
         u32 unk_08_1 : 1;
         u32 unk_08_2 : 3;
         u32 unk_08_5 : 27;
     } misc;
-    fx16 unk_54;
-    fx16 unk_56;
+    fx16 polygonX;
+    fx16 polygonY;
     struct {
         u32 unk_00_0 : 8;
         u32 reserved_01_0 : 24;

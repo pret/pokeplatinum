@@ -220,7 +220,7 @@ BOOL SPLManager_UploadTexturesEx(SPLManager *mgr, SPLTexVRAMAllocFunc vramAlloc)
         SPLTexture *tex = &textures[i];
         SPLTextureResource *texRes = (SPLTextureResource *)tex->resource;
 
-        if (texRes->param.val2_02_1) {
+        if (texRes->param.useSharedTexture) {
             tex->texAddr = textures[texRes->param.sharedTexID].texAddr;
         } else {
             u32 addr = vramAlloc(texRes->textureSize, texRes->param.format == GX_TEXFMT_COMP4x4);

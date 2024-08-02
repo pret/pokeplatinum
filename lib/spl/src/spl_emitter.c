@@ -91,27 +91,27 @@ void SPLEmitter_Init(SPLEmitter *emtr, SPLResource *res, const VecFx32 *pos)
     emtr->misc.updateCycle = 0;
     emtr->misc.unk_02_3 = 0;
     emtr->collisionPlaneHeight = FX32_MIN;
-    emtr->unk_E8 = FX32_ONE << emtr->resource->header->misc.unk_07_0;
-    emtr->unk_EA = FX32_ONE << emtr->resource->header->misc.unk_07_2;
+    emtr->textureS = FX32_ONE << emtr->resource->header->misc.unk_07_0;
+    emtr->textureT = FX32_ONE << emtr->resource->header->misc.unk_07_2;
 
     if (emtr->resource->header->misc.unk_08_0) {
-        emtr->unk_E8 *= -1;
+        emtr->textureS *= -1;
     }
 
     if (emtr->resource->header->misc.unk_08_1) {
-        emtr->unk_EA *= -1;
+        emtr->textureT *= -1;
     }
 
     if (emtr->resource->header->flags.hasChildResource) {
-        emtr->unk_EC = FX32_ONE << emtr->resource->childResource->misc.unk_04_0;
-        emtr->unk_EE = FX32_ONE << emtr->resource->childResource->misc.unk_04_2;
+        emtr->childTextureS = FX32_ONE << emtr->resource->childResource->misc.unk_04_0;
+        emtr->childTextureT = FX32_ONE << emtr->resource->childResource->misc.unk_04_2;
 
         if (emtr->resource->childResource->misc.unk_04_4) {
-            emtr->unk_EC *= -1;
+            emtr->childTextureS *= -1;
         }
 
         if (emtr->resource->childResource->misc.unk_04_5) {
-            emtr->unk_EE *= -1;
+            emtr->childTextureT *= -1;
         }
     }
 
@@ -335,7 +335,7 @@ static void SPLManager_DrawParticles(SPLManager *mgr)
 
     switch (header->flags.drawType) {
     case 0:
-        drawFunc = sub_0209FF0C;
+        drawFunc = SPLDraw_Billboard;
         break;
     case 1:
         drawFunc = sub_0209F3D0;
@@ -373,7 +373,7 @@ static void SPLManager_DrawChildParticles(SPLManager *mgr)
 
     switch (res->childResource->flags.drawType) {
     case 0:
-        drawFunc = sub_0209FAB8;
+        drawFunc = SPLDraw_Child_Billboard;
         break;
     case 1:
         drawFunc = sub_0209ECF0;
