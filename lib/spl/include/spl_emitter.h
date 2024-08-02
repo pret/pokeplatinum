@@ -61,17 +61,19 @@ typedef struct SPLEmitter {
         u32 emissionInterval : 8; // number of frames between particle emissions
         u32 baseAlpha : 8;
         u32 updateCycle : 3; // 0 = every frame, 1 = cycle A, 2 = cycle B, cycles A and B alternate
-        u32 unk_02_3 : 13;
+        u32 reserved : 13;
     } misc;
     VecFx16 crossAxis1;
     VecFx16 crossAxis2;
     SPLEmitterUpdateCallback updateCallback;
-    void * unk_104;
+
+    // Fields that the game can use for custom data
+    void *userDataPtr;
     union {
-        u32 unk_108_val1;
-        u16 unk_108_val2[2];
-        u8 unk_108_val3[4];
-    } unk_108;
+        u32 u32;
+        u16 u16[2];
+        u8 u8[4];
+    } userData;
 } SPLEmitter;
 
 typedef struct SPLEmitterList {

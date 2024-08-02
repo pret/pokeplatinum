@@ -124,18 +124,18 @@ typedef struct SPLResourceHeader {
     SPLResourceFlags flags;
     VecFx32 emitterBasePos;
     fx32 emissionCount; // Number of particles to emit per emission interval
-    fx32 unk_14;
-    fx32 unk_18;
-    VecFx16 unk_1C;
+    fx32 radius; // Used for circle, sphere, and cylinder emissions
+    fx32 length; // Used for cylinder emission
+    VecFx16 axis;
     GXRgb color;
-    fx32 unk_24;
-    fx32 unk_28;
-    fx32 unk_2C;
+    fx32 initVelPosAmplifier;
+    fx32 initVelAxisAmplifier;
+    fx32 baseScale;
     fx16 aspectRatio;
     u16 startDelay; // Delay, in frames, before the emitter starts emitting particles
     s16 minRotation;
     s16 maxRotation;
-    u16 unk_38;
+    u16 initAngle;
     u16 reserved_3A;
     u16 emitterLifeTime;
     u16 particleLifeTime;
@@ -151,18 +151,18 @@ typedef struct SPLResourceHeader {
     } randomAttenuation;
 
     struct {
-        u32 unk_00_0 : 8;
-        u32 unk_01_0 : 8;
+        u32 emissionInterval : 8;
+        u32 baseAlpha : 8;
         u32 airResistance : 8;
         u32 textureIndex : 8;
         u32 loopFrames : 8;
         u32 unk_05_0 : 16;
-        u32 unk_07_0 : 2;
-        u32 unk_07_2 : 2;
+        u32 textureTileCountS : 2; // Number of times to tile the texture in the S direction
+        u32 textureTileCountT : 2; // Number of times to tile the texture in the T direction
         u32 scaleAnimDir : 3; // Maps to SPLScaleAnimDir
         u32 unk_07_7 : 1;
-        u32 unk_08_0 : 1;
-        u32 unk_08_1 : 1;
+        u32 flipTextureS : 1;
+        u32 flipTextureT : 1;
         u32 unk_08_2 : 3;
         u32 unk_08_5 : 27;
     } misc;
@@ -242,10 +242,10 @@ typedef struct SPLChildResource {
         u32 emissionDelay : 8; // Delay, as a fraction of the particle's lifetime, before the particle starts emitting
         u32 emissionInterval : 8;
         u32 textureIndex : 8;
-        u32 unk_04_0 : 2;
-        u32 unk_04_2 : 2;
-        u32 unk_04_4 : 1;
-        u32 unk_04_5 : 1;
+        u32 textureTileCountS : 2;
+        u32 textureTileCountT : 2;
+        u32 flipTextureS : 1;
+        u32 flipTextureT : 1;
         u32 unk_04_6 : 1;
         u32 reserved_04_7 : 25;
     } misc;
