@@ -135,18 +135,18 @@ void sub_0209FF0C(SPLManager *mgr, SPLParticle *ptcl)
     aspect = mgr->renderState.emitter->resource->header->unk_30;
     animScale = ptcl->unk_34;
 
-    ptclCol = ptcl->unk_36;
+    ptclCol = ptcl->color;
     emtrCol = emtr->color;
 
     scaleAnimDirect = resBase->misc.unk_07_4;
 
-    fx32 alpha = ptcl->unk_2E.unk_00_0 * (ptcl->unk_2E.unk_00_5 + 1) >> 5;
+    fx32 alpha = ptcl->visibility.baseAlpha * (ptcl->visibility.animAlpha + 1) >> 5;
 
     G3_PolygonAttr(
         GX_LIGHTMASK_NONE,
         GX_POLYGONMODE_MODULATE,
         GX_CULL_NONE,
-        ptcl->unk_2E.currentPolygonID,
+        ptcl->visibility.currentPolygonID,
         alpha,
         mgr->unk_3C);
 
@@ -156,7 +156,7 @@ void sub_0209FF0C(SPLManager *mgr, SPLParticle *ptcl)
         return;
     }
 
-    sclY = ptcl->unk_30;
+    sclY = ptcl->baseScale;
     sclX = FX_MUL(sclY, aspect);
 
     if (scaleAnimDirect == 0) {
@@ -240,13 +240,13 @@ void sub_0209FAB8(SPLManager *mgr, SPLParticle *ptcl)
     cmr = mgr->renderState.viewMatrix;
     aspect = mgr->renderState.emitter->resource->header->unk_30;
 
-    fx32 alpha = (fx32)(ptcl->unk_2E.unk_00_0 * (ptcl->unk_2E.unk_00_5 + 1)) >> 5;
+    fx32 alpha = (fx32)(ptcl->visibility.baseAlpha * (ptcl->visibility.animAlpha + 1)) >> 5;
 
     G3_PolygonAttr(
         GX_LIGHTMASK_NONE,
         GX_POLYGONMODE_MODULATE,
         GX_CULL_NONE,
-        ptcl->unk_2E.currentPolygonID,
+        ptcl->visibility.currentPolygonID,
         alpha,
         mgr->unk_3C);
 
@@ -256,7 +256,7 @@ void sub_0209FAB8(SPLManager *mgr, SPLParticle *ptcl)
         return;
     }
 
-    sclY = ptcl->unk_30;
+    sclY = ptcl->baseScale;
     sclX = FX_MUL(sclY, aspect);
 
     switch (mgr->renderState.emitter->resource->header->misc.unk_07_4) {
@@ -325,7 +325,7 @@ void sub_0209FAB8(SPLManager *mgr, SPLParticle *ptcl)
         G3_MultMtx43(&load);
     }
 
-    GXRgb colA = ptcl->unk_36;
+    GXRgb colA = ptcl->color;
     GXRgb colB = mgr->renderState.emitter->color;
     G3_Color(GX_RGB(
         GX_RGB_R_(colA) * GX_RGB_R_(colB) >> 5,
@@ -351,13 +351,13 @@ void sub_0209F3D0(SPLManager *mgr, SPLParticle *ptcl)
     cmr = mgr->renderState.viewMatrix;
     aspect = mgr->renderState.emitter->resource->header->unk_30;
 
-    fx32 alpha = (fx32)(ptcl->unk_2E.unk_00_0 * (ptcl->unk_2E.unk_00_5 + 1)) >> 5;
+    fx32 alpha = (fx32)(ptcl->visibility.baseAlpha * (ptcl->visibility.animAlpha + 1)) >> 5;
 
     G3_PolygonAttr(
         GX_LIGHTMASK_NONE,
         GX_POLYGONMODE_MODULATE,
         GX_CULL_NONE,
-        ptcl->unk_2E.currentPolygonID,
+        ptcl->visibility.currentPolygonID,
         alpha,
         mgr->unk_3C);
 
@@ -367,7 +367,7 @@ void sub_0209F3D0(SPLManager *mgr, SPLParticle *ptcl)
         return;
     }
 
-    sclY = ptcl->unk_30;
+    sclY = ptcl->baseScale;
     sclX = FX_MUL(sclY, aspect);
 
     switch (mgr->renderState.emitter->resource->header->misc.unk_07_4) {
@@ -480,7 +480,7 @@ void sub_0209F3D0(SPLManager *mgr, SPLParticle *ptcl)
         G3_MultMtx43(&load);
     }
 
-    GXRgb colA = ptcl->unk_36;
+    GXRgb colA = ptcl->color;
     GXRgb colB = mgr->renderState.emitter->color;
     G3_Color(GX_RGB(
         GX_RGB_R_(colA) * GX_RGB_R_(colB) >> 5,
@@ -506,13 +506,13 @@ void sub_0209ECF0(SPLManager *mgr, SPLParticle *ptcl)
     cmr = mgr->renderState.viewMatrix;
     aspect = mgr->renderState.emitter->resource->header->unk_30;
 
-    fx32 alpha = (fx32)(ptcl->unk_2E.unk_00_0 * (ptcl->unk_2E.unk_00_5 + 1)) >> 5;
+    fx32 alpha = (fx32)(ptcl->visibility.baseAlpha * (ptcl->visibility.animAlpha + 1)) >> 5;
 
     G3_PolygonAttr(
         GX_LIGHTMASK_NONE,
         GX_POLYGONMODE_MODULATE,
         GX_CULL_NONE,
-        ptcl->unk_2E.currentPolygonID,
+        ptcl->visibility.currentPolygonID,
         alpha,
         mgr->unk_3C);
 
@@ -522,7 +522,7 @@ void sub_0209ECF0(SPLManager *mgr, SPLParticle *ptcl)
         return;
     }
 
-    sclY = ptcl->unk_30;
+    sclY = ptcl->baseScale;
     sclX = FX_MUL(sclY, aspect);
 
     switch (mgr->renderState.emitter->resource->header->misc.unk_07_4) {
@@ -635,7 +635,7 @@ void sub_0209ECF0(SPLManager *mgr, SPLParticle *ptcl)
         G3_MultMtx43(&load);
     }
 
-    GXRgb colA = ptcl->unk_36;
+    GXRgb colA = ptcl->color;
     GXRgb colB = mgr->renderState.emitter->color;
     G3_Color(GX_RGB(
         GX_RGB_R_(colA) * GX_RGB_R_(colB) >> 5,
@@ -656,13 +656,13 @@ void sub_0209E9A0(SPLManager *mgr, SPLParticle *ptcl)
     fx32 alpha;
     SPLResourceHeader *resBase;
 
-    alpha = (fx32)(ptcl->unk_2E.unk_00_0 * (ptcl->unk_2E.unk_00_5 + 1)) >> 5;
+    alpha = (fx32)(ptcl->visibility.baseAlpha * (ptcl->visibility.animAlpha + 1)) >> 5;
 
     G3_PolygonAttr(
         GX_LIGHTMASK_NONE,
         GX_POLYGONMODE_MODULATE,
         GX_CULL_NONE,
-        ptcl->unk_2E.currentPolygonID,
+        ptcl->visibility.currentPolygonID,
         alpha,
         mgr->unk_3C);
 
@@ -674,7 +674,7 @@ void sub_0209E9A0(SPLManager *mgr, SPLParticle *ptcl)
 
     Unk_02100DA8[mgr->renderState.emitter->resource->header->flags.unk_06_1](FX_SinIdx(ptcl->rotation), FX_CosIdx(ptcl->rotation), &rotMtx);
 
-    sclY = ptcl->unk_30;
+    sclY = ptcl->baseScale;
     resBase = mgr->renderState.emitter->resource->header;
     sclX = FX_MUL(sclY, resBase->unk_30);
 
@@ -717,7 +717,7 @@ void sub_0209E9A0(SPLManager *mgr, SPLParticle *ptcl)
         G3_MultMtx43(&load);
     }
 
-    GXRgb colA = ptcl->unk_36;
+    GXRgb colA = ptcl->color;
     GXRgb colB = mgr->renderState.emitter->color;
     G3_Color(GX_RGB(
         GX_RGB_R_(colA) * GX_RGB_R_(colB) >> 5,
@@ -739,13 +739,13 @@ void sub_0209E650(SPLManager *mgr, SPLParticle *ptcl)
     fx32 alpha;
     SPLResourceHeader *resBase;
 
-    alpha = ptcl->unk_2E.unk_00_0 * (ptcl->unk_2E.unk_00_5 + 1) >> 5;
+    alpha = ptcl->visibility.baseAlpha * (ptcl->visibility.animAlpha + 1) >> 5;
 
     G3_PolygonAttr(
         GX_LIGHTMASK_NONE,
         GX_POLYGONMODE_MODULATE,
         GX_CULL_NONE,
-        ptcl->unk_2E.currentPolygonID,
+        ptcl->visibility.currentPolygonID,
         alpha,
         mgr->unk_3C);
 
@@ -757,7 +757,7 @@ void sub_0209E650(SPLManager *mgr, SPLParticle *ptcl)
 
     Unk_02100DA8[mgr->renderState.emitter->resource->childResource->flags.unk_03_1](FX_SinIdx(ptcl->rotation), FX_CosIdx(ptcl->rotation), &rotMtx);
 
-    sclY = ptcl->unk_30;
+    sclY = ptcl->baseScale;
     resBase = mgr->renderState.emitter->resource->header;
     sclX = FX_MUL(sclY, resBase->unk_30);
 
@@ -798,7 +798,7 @@ void sub_0209E650(SPLManager *mgr, SPLParticle *ptcl)
         G3_MultMtx43(&load);
     }
 
-    GXRgb colA = ptcl->unk_36;
+    GXRgb colA = ptcl->color;
     GXRgb colB = mgr->renderState.emitter->color;
     G3_Color(GX_RGB(
         GX_RGB_R_(colA) * GX_RGB_R_(colB) >> 5,
@@ -821,13 +821,13 @@ void sub_0209E1D4(SPLManager *mgr, SPLParticle *ptcl)
     SPLEmitter *emtr;
     GXRgb colA, colB;
 
-    alpha = ptcl->unk_2E.unk_00_0 * (ptcl->unk_2E.unk_00_5 + 1) >> 5;
+    alpha = ptcl->visibility.baseAlpha * (ptcl->visibility.animAlpha + 1) >> 5;
 
     G3_PolygonAttr(
         GX_LIGHTMASK_NONE,
         GX_POLYGONMODE_MODULATE,
         GX_CULL_NONE,
-        ptcl->unk_2E.currentPolygonID,
+        ptcl->visibility.currentPolygonID,
         alpha,
         mgr->unk_3C);
 
@@ -876,7 +876,7 @@ void sub_0209E1D4(SPLManager *mgr, SPLParticle *ptcl)
     MTX_Concat43(&rotMat, &mat, &rotMat);
 
     resBase = mgr->renderState.emitter->resource->header;
-    scaleY = ptcl->unk_30;
+    scaleY = ptcl->baseScale;
     scaleX = FX_MUL(scaleY, resBase->unk_30);
 
     switch (resBase->misc.unk_07_4) {
@@ -917,7 +917,7 @@ void sub_0209E1D4(SPLManager *mgr, SPLParticle *ptcl)
         G3_MultMtx43(&transform);
     }
 
-    colA = ptcl->unk_36;
+    colA = ptcl->color;
     colB = mgr->renderState.emitter->color;
     G3_Color(GX_RGB(
         GX_RGB_R_(colA) * GX_RGB_R_(colB) >> 5,
@@ -939,13 +939,13 @@ void sub_0209DD54(SPLManager *mgr, SPLParticle *ptcl)
     fx32 dot, scaleX, scaleY, scaleZ, alpha, tmp;
     SPLResourceHeader *resBase;
 
-    alpha = ptcl->unk_2E.unk_00_0 * (ptcl->unk_2E.unk_00_5 + 1) >> 5;
+    alpha = ptcl->visibility.baseAlpha * (ptcl->visibility.animAlpha + 1) >> 5;
 
     G3_PolygonAttr(
         GX_LIGHTMASK_NONE,
         GX_POLYGONMODE_MODULATE,
         GX_CULL_NONE,
-        ptcl->unk_2E.currentPolygonID,
+        ptcl->visibility.currentPolygonID,
         alpha,
         mgr->unk_3C);
 
@@ -994,7 +994,7 @@ void sub_0209DD54(SPLManager *mgr, SPLParticle *ptcl)
     MTX_Concat43(&rotMtx, &mat, &rotMtx);
 
     resBase = mgr->renderState.emitter->resource->header;
-    scaleY = ptcl->unk_30;
+    scaleY = ptcl->baseScale;
     scaleX = FX_MUL(scaleY, resBase->unk_30);
 
     switch (resBase->misc.unk_07_4) {
@@ -1035,7 +1035,7 @@ void sub_0209DD54(SPLManager *mgr, SPLParticle *ptcl)
         G3_MultMtx43(&transform);
     }
 
-    GXRgb colA = ptcl->unk_36;
+    GXRgb colA = ptcl->color;
     GXRgb colB = mgr->renderState.emitter->color;
     G3_Color(GX_RGB(
         GX_RGB_R_(colA) * GX_RGB_R_(colB) >> 5,

@@ -68,27 +68,27 @@ void SPLEmitter_Init(SPLEmitter *emtr, SPLResource *res, const VecFx32 *pos)
     emtr->position.y = pos->y + emtr->resource->header->emitterBasePos.y;
     emtr->position.z = pos->z + emtr->resource->header->emitterBasePos.z;
 
-    emtr->unk_B0.x = 0;
-    emtr->unk_B0.y = 0;
-    emtr->unk_B0.z = 0;
+    emtr->particleInitVelocity.x = 0;
+    emtr->particleInitVelocity.y = 0;
+    emtr->particleInitVelocity.z = 0;
     emtr->velocity.x = emtr->velocity.y = emtr->velocity.z = 0;
 
     emtr->age = 0;
-    emtr->unk_BE = 0;
+    emtr->emissionCountFractional = 0;
 
     emtr->axis = emtr->resource->header->unk_1C;
     emtr->unk_C6 = emtr->resource->header->unk_38;
-    emtr->unk_C8 = emtr->resource->header->unk_10;
-    emtr->unk_CC = emtr->resource->header->unk_14;
+    emtr->emissionCount = emtr->resource->header->emissionCount;
+    emtr->radius = emtr->resource->header->unk_14;
     emtr->length = emtr->resource->header->unk_18;
-    emtr->unk_D4 = emtr->resource->header->unk_24;
-    emtr->unk_D8 = emtr->resource->header->unk_28;
-    emtr->unk_DC = emtr->resource->header->unk_2C;
+    emtr->initVelPositionAmplifier = emtr->resource->header->unk_24;
+    emtr->initVelAxisAmplifier = emtr->resource->header->unk_28;
+    emtr->baseScale = emtr->resource->header->unk_2C;
     emtr->particleLifeTime = emtr->resource->header->particleLifeTime;
 
     emtr->color = GX_RGB(31, 31, 31);
     emtr->misc.emissionInterval = emtr->resource->header->misc.unk_00_0;
-    emtr->misc.unk_01_0 = emtr->resource->header->misc.unk_01_0;
+    emtr->misc.baseAlpha = emtr->resource->header->misc.unk_01_0;
     emtr->misc.updateCycle = 0;
     emtr->misc.unk_02_3 = 0;
     emtr->collisionPlaneHeight = FX32_MIN;
@@ -154,7 +154,7 @@ void SPLEmitter_Update(SPLManager *mgr, SPLEmitter *emtr)
     if (header->emitterLifeTime == 0 || emtr->age < header->emitterLifeTime) {
         if (emtr->age % emtr->misc.emissionInterval == 0) {
             if (!emtr->state.terminate && !emtr->state.emissionPaused && emtr->state.started) {
-                sub_020A08DC(emtr, (SPLList *)(&mgr->inactiveParticles));
+                SPLEmitter_EmitParticles(emtr, &mgr->inactiveParticles);
             }
         }
     }
@@ -174,9 +174,9 @@ void SPLEmitter_Update(SPLManager *mgr, SPLEmitter *emtr)
         animFuncs[animCount++].loop = res->alphaAnim->unk_02.unk_01_0;
     }
 
-    if (resFlags.hasTexAnim && !res->texAnim->unk_08.unk_02_0) { // TexAnim
+    if (resFlags.hasTexAnim && !res->texAnim->param.randomizeInit) { // TexAnim
         animFuncs[animCount].func = sub_020A1A94;
-        animFuncs[animCount++].loop = res->texAnim->unk_08.unk_02_1;
+        animFuncs[animCount++].loop = res->texAnim->param.unk_02_1;
     }
 
     for (ptcl = emtr->particles.first; ptcl != NULL; ptcl = next) {
@@ -231,9 +231,9 @@ void SPLEmitter_Update(SPLManager *mgr, SPLEmitter *emtr)
         }
 
         if (emtr->resource->header->flags.hasFixedPolygonID) {
-            ptcl->unk_2E.currentPolygonID = mgr->polygonID.fix;
+            ptcl->visibility.currentPolygonID = mgr->polygonID.fix;
         } else {
-            ptcl->unk_2E.currentPolygonID = mgr->polygonID.current;
+            ptcl->visibility.currentPolygonID = mgr->polygonID.current;
             mgr->polygonID.current += 1;
 
             if (mgr->polygonID.current > mgr->polygonID.max) {
@@ -300,9 +300,9 @@ void SPLEmitter_Update(SPLManager *mgr, SPLEmitter *emtr)
             ptcl->position.z += ptcl->velocity.z + emtr->velocity.z;
 
             if (emtr->resource->header->flags.childHasFixedPolygonID) {
-                ptcl->unk_2E.currentPolygonID = mgr->polygonID.fix;
+                ptcl->visibility.currentPolygonID = mgr->polygonID.fix;
             } else {
-                ptcl->unk_2E.currentPolygonID = mgr->polygonID.current;
+                ptcl->visibility.currentPolygonID = mgr->polygonID.current;
                 mgr->polygonID.current += 1;
 
                 if (mgr->polygonID.current > mgr->polygonID.max) {
@@ -355,7 +355,7 @@ static void SPLManager_DrawParticles(SPLManager *mgr)
     SetTexFunc setTexFunc = header->flags.hasTexAnim ? SPLUtil_SetTexture : SPLUtil_SetTexture_Stub;
 
     for (SPLParticle *ptcl = emtr->particles.first; ptcl != NULL; ptcl = ptcl->next) {
-        setTexFunc(mgr->textures + ptcl->misc.unk_00);
+        setTexFunc(mgr->textures + ptcl->misc.texture);
         drawFunc(mgr, ptcl);
     }
 }
@@ -414,16 +414,16 @@ void SPLManager_DoDraw(SPLManager *mgr)
     }
 }
 
-void SPLEmitter_Emit(SPLEmitter *emtr, SPLList *list)
+void SPLEmitter_Emit(SPLEmitter *emtr, SPLParticleList *list)
 {
-    sub_020A08DC(emtr, list);
+    SPLEmitter_EmitParticles(emtr, list);
 }
 
 void SPLUtil_SetCylinderEmitterDir(SPLEmitter *emtr, VecFx32 *p1, VecFx32 *p2)
 {
     VecFx32 vex;
 
-    if (emtr->resource->header->flags.unk_04_0 == 6 || emtr->resource->header->flags.unk_04_0 == 7) {
+    if (emtr->resource->header->flags.emissionType == 6 || emtr->resource->header->flags.emissionType == 7) {
         emtr->position.x = (p2->x + p1->x) / 2;
         emtr->position.y = (p2->y + p1->y) / 2;
         emtr->position.z = (p2->z + p1->z) / 2;

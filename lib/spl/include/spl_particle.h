@@ -8,7 +8,7 @@
 typedef struct SPLParticle {
     struct SPLParticle *next;
     struct SPLParticle *prev;
-    VecFx32 position;
+    VecFx32 position; // position of the particle, relative to the emitter
     VecFx32 velocity;
     u16 rotation;
     s16 angularVelocity;
@@ -22,7 +22,7 @@ typedef struct SPLParticle {
     u16 lifeTimeFactor;
 
     struct {
-        u16 unk_00 : 8;
+        u16 texture : 8; // Index of the current texture in the resource
 
         // A value between 0 and 255 that is added to the life rate of the particle.
         // This is used only for looping particles, so particles spawned at the same time
@@ -30,13 +30,13 @@ typedef struct SPLParticle {
         u16 lifeRateOffset : 8;
     } misc;
     struct {
-        u16 unk_00_0 : 5;
-        u16 unk_00_5 : 5;
+        u16 baseAlpha : 5;
+        u16 animAlpha : 5;
         u16 currentPolygonID : 6;
-    } unk_2E;
-    fx32 unk_30;
+    } visibility;
+    fx32 baseScale;
     fx16 unk_34;
-    GXRgb unk_36;
+    GXRgb color;
     VecFx32 emitterPos;
 } SPLParticle; // size=0x44
 

@@ -652,7 +652,7 @@ void sub_02014798(SPLEmitter *param0, VecFx16 *param1)
 
 void sub_020147B0(SPLEmitter *param0, fx32 param1)
 {
-    param0->resource->header->unk_10 = param1;
+    param0->resource->header->emissionCount = param1;
 }
 
 enum {

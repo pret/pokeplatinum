@@ -426,7 +426,7 @@ void SPLManager_DeleteAllEmitters(SPLManager *mgr)
 
 void SPL_Emit(SPLManager *mgr, SPLEmitter *emtr)
 {
-    SPLEmitter_Emit(emtr, (SPLList *)&mgr->inactiveParticles);
+    SPLEmitter_Emit(emtr, &mgr->inactiveParticles);
 }
 
 void SPL_EmitAt(SPLManager *mgr, SPLEmitter *emtr, VecFx32 *pos)
@@ -434,5 +434,5 @@ void SPL_EmitAt(SPLManager *mgr, SPLEmitter *emtr, VecFx32 *pos)
     emtr->position.x = pos->x + emtr->resource->header->emitterBasePos.x;
     emtr->position.y = pos->y + emtr->resource->header->emitterBasePos.y;
     emtr->position.z = pos->z + emtr->resource->header->emitterBasePos.z;
-    SPLEmitter_Emit(emtr, (SPLList *)&mgr->inactiveParticles);
+    SPLEmitter_Emit(emtr, &mgr->inactiveParticles);
 }

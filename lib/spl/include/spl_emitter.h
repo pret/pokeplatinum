@@ -39,17 +39,17 @@ typedef struct SPLEmitter {
     UnkSPLStruct7 state;
     VecFx32 position;
     VecFx32 velocity;
-    VecFx32 unk_B0;
+    VecFx32 particleInitVelocity;
     u16 age;
-    fx16 unk_BE;
+    fx16 emissionCountFractional; // fractional part of the number of particles to emit (doesn't seem to be used)
     VecFx16 axis;
     u16 unk_C6;
-    fx32 unk_C8;
-    fx32 unk_CC;
+    fx32 emissionCount;
+    fx32 radius;
     fx32 length;
-    fx32 unk_D4;
-    fx32 unk_D8;
-    fx32 unk_DC;
+    fx32 initVelPositionAmplifier; // amplifies the initial velocity of the particles based on their position
+    fx32 initVelAxisAmplifier; // amplifies the initial velocity of the particles based on the emitter's axis
+    fx32 baseScale; // base scale of the particles
     u16 particleLifeTime;
     GXRgb color;
     fx32 collisionPlaneHeight;
@@ -59,12 +59,12 @@ typedef struct SPLEmitter {
     fx16 unk_EE;
     struct {
         u32 emissionInterval : 8; // number of frames between particle emissions
-        u32 unk_01_0 : 8;
+        u32 baseAlpha : 8;
         u32 updateCycle : 3; // 0 = every frame, 1 = cycle A, 2 = cycle B, cycles A and B alternate
         u32 unk_02_3 : 13;
     } misc;
-    VecFx16 unk_F4;
-    VecFx16 unk_FA;
+    VecFx16 crossAxis1;
+    VecFx16 crossAxis2;
     SPLEmitterUpdateCallback updateCallback;
     void * unk_104;
     union {
