@@ -156,7 +156,7 @@ typedef struct SPLResourceHeader {
         u32 airResistance : 8;
         u32 textureIndex : 8;
         u32 loopFrames : 8;
-        u32 unk_05_0 : 16;
+        u32 dbbScale : 16;
         u32 textureTileCountS : 2; // Number of times to tile the texture in the S direction
         u32 textureTileCountT : 2; // Number of times to tile the texture in the T direction
         u32 scaleAnimDir : 3; // Maps to SPLScaleAnimDir

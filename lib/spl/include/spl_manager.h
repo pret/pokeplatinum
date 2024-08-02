@@ -33,7 +33,7 @@ typedef struct SPLManager {
         u32 drawOrder : 1;
         u32 unused : 7;
     } polygonID;
-    s32 unk_3C;
+    s32 miscPolygonAttr;
     struct {
         SPLEmitter *emitter; // current emitter being processed
         const MtxFx43 *viewMatrix; // current view matrix

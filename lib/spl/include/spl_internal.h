@@ -21,11 +21,11 @@
 
 
 void SPLDraw_Child_Billboard(SPLManager *mgr, SPLParticle *ptcl);
-void sub_0209ECF0(SPLManager *mgr, SPLParticle *ptcl);
+void SPLDraw_Child_DirectionalBillboard(SPLManager *mgr, SPLParticle *ptcl);
 void sub_0209E650(SPLManager *mgr, SPLParticle *ptcl);
 void sub_0209DD54(SPLManager *mgr, SPLParticle *ptcl);
 void SPLDraw_Billboard(SPLManager *mgr, SPLParticle *ptcl);
-void sub_0209F3D0(SPLManager *mgr, SPLParticle *ptcl);
+void SPLDraw_DirectionalBillboard(SPLManager *mgr, SPLParticle *ptcl);
 void sub_0209E9A0(SPLManager *mgr, SPLParticle *ptcl);
 void sub_0209E1D4(SPLManager *mgr, SPLParticle *ptcl);
 
