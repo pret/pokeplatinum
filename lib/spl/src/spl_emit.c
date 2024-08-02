@@ -237,12 +237,12 @@ void SPLEmitter_EmitParticles(SPLEmitter *emtr, SPLParticleList *list)
         ptcl->baseScale = SPLRandom_DoubleScaledRangeFX32(emtr->baseScale, header->randomAttenuation.baseScale);
         ptcl->animScale = FX32_ONE;
 
-        if (header->flags.hasColorAnim && res->colorAnim->unk_08.unk_00_0) {
+        if (header->flags.hasColorAnim && res->colorAnim->flags.randomStartColor) {
             u16 clr[3];
             u32 index = SPLRandom_S32(12);
-            clr[0] = res->colorAnim->startColor;
+            clr[0] = res->colorAnim->start;
             clr[1] = header->color;
-            clr[2] = res->colorAnim->endColor;
+            clr[2] = res->colorAnim->end;
             ptcl->color = clr[index % 3];
         } else {
             ptcl->color = header->color;
@@ -251,10 +251,10 @@ void SPLEmitter_EmitParticles(SPLEmitter *emtr, SPLParticleList *list)
         ptcl->visibility.baseAlpha = emtr->misc.baseAlpha;
         ptcl->visibility.animAlpha = 31;
 
-        if (header->flags.unk_05_5) {
+        if (header->flags.randomInitAngle) {
             ptcl->rotation = SPLRandom_S32(32);
         } else {
-            ptcl->rotation = emtr->unk_C6;
+            ptcl->rotation = emtr->initAngle;
         }
 
         if (header->flags.hasRotation) {

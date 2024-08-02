@@ -29,12 +29,12 @@ void sub_0209F3D0(SPLManager *mgr, SPLParticle *ptcl);
 void sub_0209E9A0(SPLManager *mgr, SPLParticle *ptcl);
 void sub_0209E1D4(SPLManager *mgr, SPLParticle *ptcl);
 
-void sub_020A1DA0(SPLParticle *ptcl, SPLResource *res, int lifeRate); // spl_scl_in_out
-void sub_020A1BD4(SPLParticle *ptcl, SPLResource *res, int lifeRate); // spl_clr_in_out
-void sub_020A1AF8(SPLParticle *ptcl, SPLResource *res, int lifeRate); // spl_alp_in_out
-void sub_020A1A94(SPLParticle *ptcl, SPLResource *res, int lifeRate); // spl_tex_ptn_anm
-void sub_020A1A48(SPLParticle *ptcl, SPLResource *res, int lifeRate); // spl_chld_scl_out
-void sub_020A19F0(SPLParticle *ptcl, SPLResource *res, int lifeRate); // spl_chld_alp_out
+void SPLAnim_Scale(SPLParticle *ptcl, SPLResource *res, int lifeRate); // spl_scl_in_out
+void SPLAnim_Color(SPLParticle *ptcl, SPLResource *res, int lifeRate); // spl_clr_in_out
+void SPLAnim_Alpha(SPLParticle *ptcl, SPLResource *res, int lifeRate); // spl_alp_in_out
+void SPLAnim_Texture(SPLParticle *ptcl, SPLResource *res, int lifeRate); // spl_tex_ptn_anm
+void SPLAnim_ChildScale(SPLParticle *ptcl, SPLResource *res, int lifeRate); // spl_chld_scl_out
+void SPLAnim_ChildAlpha(SPLParticle *ptcl, SPLResource *res, int lifeRate); // spl_chld_alp_out
 
 void SPLEmitter_EmitParticles(SPLEmitter *emtr, SPLParticleList *list);
 void SPLEmitter_EmitChildren(SPLParticle *ptcl, SPLEmitter *emtr, SPLParticleList *list);

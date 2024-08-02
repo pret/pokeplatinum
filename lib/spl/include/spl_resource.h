@@ -56,7 +56,7 @@ typedef union SPLResourceFlags {
         u32 hasAlphaAnim : 1;
         u32 hasTexAnim : 1;
         u32 hasRotation : 1;
-        u32 unk_05_5 : 1;
+        u32 randomInitAngle : 1;
         // Whether the emitter manages itself or not.
         // If set, the emitter will automatically terminate when it reaches the end of its life
         // and all of its particles have died
@@ -96,23 +96,23 @@ typedef union SPLChildResourceFlags {
     };
 } SPLChildResourceFlags;
 
-typedef union {
-    u16 val1;
+typedef union SPLCurveInOut {
+    u16 all;
     struct {
-        u16 val2_00 : 8;
-        u16 val2_01 : 8;
+        u16 in : 8;
+        u16 out : 8;
     };
-} UnkSPLUnion3; // size=0x2
+} SPLCurveInOut;
 
-typedef union {
-    u32 unk_00;
+typedef union SPLCurveInPeakOut {
+    u32 all;
     struct {
-        u32 unk_04_0 : 8;
-        u32 unk_05_0 : 8;
-        u32 unk_06_0 : 8;
-        u32 unk_07_0 : 8;
+        u32 in : 8;
+        u32 peak : 8;
+        u32 out : 8;
+        u32 : 8;
     };
-} UnkSPLUnion4; // size=0x4
+} SPLCurveInPeakOut;
 
 typedef struct SPLResourceHeader {
     SPLResourceFlags flags;
@@ -169,46 +169,46 @@ typedef struct SPLResourceHeader {
 } SPLResourceHeader; // size=0x5C
 
 typedef struct SPLScaleAnim {
-    fx16 unk_00;
-    fx16 unk_02;
-    fx16 unk_04;
-    UnkSPLUnion3 unk_06;
+    fx16 start;
+    fx16 mid;
+    fx16 end;
+    SPLCurveInOut curve;
     struct {
-        u16 unk_00_0 : 1;
-        u16 reserved_00_1 : 15;
-    } unk_08;
-    u16 reserved_0A;
+        u16 loop : 1;
+        u16 : 15;
+    } flags;
+    u16 padding;
 } SPLScaleAnim; // size=0xc
 
 typedef struct SPLColorAnim {
-    GXRgb startColor;
-    GXRgb endColor;
-    UnkSPLUnion4 unk_04;
+    GXRgb start;
+    GXRgb end;
+    SPLCurveInPeakOut curve;
     struct {
-        u16 unk_00_0 : 1;
-        u16 unk_00_1 : 1;
-        u16 unk_00_2 : 1;
-        u16 unk_00_3 : 13;
-    } unk_08;
-    u16 reserved_0A;
+        u16 randomStartColor : 1;
+        u16 loop : 1;
+        u16 interpolate : 1;
+        u16 : 13;
+    } flags;
+    u16 padding;
 } SPLColorAnim;
 
 typedef struct SPLAlphaAnim {
     union {
-        u16 val1;
+        u16 all;
         struct {
-            u16 val2_00_0 : 5;
-            u16 val2_00_5 : 5;
-            u16 val2_01_2 : 5;
-            u16 val2_reserved_01_7 : 1;
+            u16 start : 5;
+            u16 mid : 5;
+            u16 end : 5;
+            u16 : 1;
         };
-    } unk_00;
+    } alpha;
     struct {
-        u16 unk_00_0 : 8;
-        u16 unk_01_0 : 1;
-        u16 unk_01_1 : 7;
-    } unk_02;
-    UnkSPLUnion3 unk_04;
+        u16 randomRange : 8;
+        u16 loop : 1;
+        u16 : 7;
+    } flags;
+    SPLCurveInOut curve;
     u16 reserved_06;
 } SPLAlphaAnim; // size=0x8
 
@@ -216,17 +216,17 @@ typedef struct SPLTexAnim {
     u8 textures[SPL_TEX_ANIM_MAX_FRAMES];
     struct {
         u32 frameCount : 8;
-        u32 unk_01_0 : 8;
+        u32 step : 8; // Number of frames between each texture frame
         u32 randomizeInit : 1; // Randomize the initial texture frame
-        u32 unk_02_1 : 1;
-        u32 reserved_02_2 : 14;
+        u32 loop : 1;
+        u32 : 14;
     } param;
 } SPLTexAnim;
 
 typedef struct SPLChildResource {
     SPLChildResourceFlags flags;
     fx16 randomInitVelMag; // Randomization factor for the initial velocity magnitude (0 = no randomization)
-    fx16 unk_04;
+    fx16 endScale; // For scaling animations
     u16 lifeTime;
     u8 velocityRatio; // Ratio of the parent particle's velocity to inherit (255 = 100%)
     u8 scaleRatio; // Ratio of the parent particle's scale to inherit (255 = 100%)

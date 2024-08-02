@@ -43,7 +43,7 @@ typedef struct SPLEmitter {
     u16 age;
     fx16 emissionCountFractional; // fractional part of the number of particles to emit (doesn't seem to be used)
     VecFx16 axis;
-    u16 unk_C6;
+    u16 initAngle;
     fx32 emissionCount;
     fx32 radius;
     fx32 length;

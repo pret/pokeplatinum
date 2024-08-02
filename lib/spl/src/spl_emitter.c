@@ -5,7 +5,6 @@
 
 #include "spl_emitter.h"
 #include "spl_internal.h"
-#include "spl_list.h"
 #include "spl_manager.h"
 #include "spl_particle.h"
 #include "spl_texture.h"
@@ -77,7 +76,7 @@ void SPLEmitter_Init(SPLEmitter *emtr, SPLResource *res, const VecFx32 *pos)
     emtr->emissionCountFractional = 0;
 
     emtr->axis = emtr->resource->header->unk_1C;
-    emtr->unk_C6 = emtr->resource->header->unk_38;
+    emtr->initAngle = emtr->resource->header->unk_38;
     emtr->emissionCount = emtr->resource->header->emissionCount;
     emtr->radius = emtr->resource->header->unk_14;
     emtr->length = emtr->resource->header->unk_18;
@@ -159,24 +158,24 @@ void SPLEmitter_Update(SPLManager *mgr, SPLEmitter *emtr)
         }
     }
 
-    if (resFlags.hasScaleAnim) { // ScaleAnim
-        animFuncs[animCount].func = sub_020A1DA0;
-        animFuncs[animCount++].loop = res->scaleAnim->unk_08.unk_00_0;
+    if (resFlags.hasScaleAnim) {
+        animFuncs[animCount].func = SPLAnim_Scale;
+        animFuncs[animCount++].loop = res->scaleAnim->flags.loop;
     }
 
-    if (resFlags.hasColorAnim && !res->colorAnim->unk_08.unk_00_0) { // ColorAnim
-        animFuncs[animCount].func = sub_020A1BD4;
-        animFuncs[animCount++].loop = res->colorAnim->unk_08.unk_00_1;
+    if (resFlags.hasColorAnim && !res->colorAnim->flags.randomStartColor) {
+        animFuncs[animCount].func = SPLAnim_Color;
+        animFuncs[animCount++].loop = res->colorAnim->flags.loop;
     }
 
-    if (resFlags.hasAlphaAnim) { // AlphaAnim
-        animFuncs[animCount].func = sub_020A1AF8;
-        animFuncs[animCount++].loop = res->alphaAnim->unk_02.unk_01_0;
+    if (resFlags.hasAlphaAnim) {
+        animFuncs[animCount].func = SPLAnim_Alpha;
+        animFuncs[animCount++].loop = res->alphaAnim->flags.loop;
     }
 
-    if (resFlags.hasTexAnim && !res->texAnim->param.randomizeInit) { // TexAnim
-        animFuncs[animCount].func = sub_020A1A94;
-        animFuncs[animCount++].loop = res->texAnim->param.unk_02_1;
+    if (resFlags.hasTexAnim && !res->texAnim->param.randomizeInit) {
+        animFuncs[animCount].func = SPLAnim_Texture;
+        animFuncs[animCount++].loop = res->texAnim->param.loop;
     }
 
     for (ptcl = emtr->particles.first; ptcl != NULL; ptcl = next) {
@@ -252,12 +251,12 @@ void SPLEmitter_Update(SPLManager *mgr, SPLEmitter *emtr)
     if (resFlags.hasChildResource) {
         animCount = 0;
         if (child->flags.hasScaleAnim) {
-            childAnimFuncs[animCount].func = sub_020A1A48;
+            childAnimFuncs[animCount].func = SPLAnim_ChildScale;
             childAnimFuncs[animCount++].loop = FALSE;
         }
 
         if (child->flags.hasAlphaAnim) {
-            childAnimFuncs[animCount].func = sub_020A19F0;
+            childAnimFuncs[animCount].func = SPLAnim_ChildAlpha;
             childAnimFuncs[animCount++].loop = FALSE;
         }
 
