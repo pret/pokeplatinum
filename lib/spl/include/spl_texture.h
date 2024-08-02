@@ -13,9 +13,9 @@ typedef union SPLTextureParam {
         u32 repeat : 2; // Maps to GXTexRepeat
         u32 flip : 2; // Maps to GXTexFlip
         u32 palColor0 : 1; // Maps to GXTexPlttColor0
-        u32 val2_02_1 : 1;
+        u32 useSharedTexture : 1;
         u32 sharedTexID : 8;
-        u32 val2_03_2 : 6;
+        u32 : 6;
     };
 } SPLTextureParam;
 

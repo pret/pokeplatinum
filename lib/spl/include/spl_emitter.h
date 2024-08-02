@@ -53,10 +53,10 @@ typedef struct SPLEmitter {
     u16 particleLifeTime;
     GXRgb color;
     fx32 collisionPlaneHeight;
-    fx16 unk_E8;
-    fx16 unk_EA;
-    fx16 unk_EC;
-    fx16 unk_EE;
+    fx16 textureS;
+    fx16 textureT;
+    fx16 childTextureS;
+    fx16 childTextureT;
     struct {
         u32 emissionInterval : 8; // number of frames between particle emissions
         u32 baseAlpha : 8;
