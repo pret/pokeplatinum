@@ -27,6 +27,12 @@ enum SPLEmissionType {
     SPL_EMISSION_TYPE_HEMISPHERE, // Any point inside a hemisphere (direction specified by flags)
 };
 
+enum SPLChildRotationType {
+    SPL_CHILD_ROT_NONE = 0,
+    SPL_CHILD_ROT_INHERIT_ANGLE = 1,
+    SPL_CHILD_ROT_INHERIT_ANGLE_AND_VELOCITY = 2,
+};
+
 typedef struct SPLArcHdr {
     u32 magic;
     u32 version;
@@ -80,9 +86,9 @@ typedef union SPLChildResourceFlags {
         u16 usesBehaviors : 1;
         u16 hasScaleAnim : 1;
         u16 hasAlphaAnim : 1;
-        u16 unk_02_3 : 2;
+        u16 rotationType : 2;
         u16 followEmitter : 1;
-        u16 unk_02_6 : 1;
+        u16 useChildColor : 1;
         u16 drawType : 2;
         u16 unk_03_1 : 2;
         u16 unk_03_3 : 1;
@@ -219,16 +225,14 @@ typedef struct SPLTexAnim {
 
 typedef struct SPLChildResource {
     SPLChildResourceFlags flags;
-    fx16 unk_02;
+    fx16 randomInitVelMag; // Randomization factor for the initial velocity magnitude (0 = no randomization)
     fx16 unk_04;
-    u16 unk_06;
+    u16 lifeTime;
+    u8 velocityRatio; // Ratio of the parent particle's velocity to inherit (255 = 100%)
+    u8 scaleRatio; // Ratio of the parent particle's scale to inherit (255 = 100%)
+    GXRgb color;
     struct {
-        u16 unk_00_0 : 8;
-        u16 unk_01_0 : 8;
-    } unk_08;
-    GXRgb unk_0A;
-    struct {
-        u32 unk_00_0 : 8;
+        u32 emissionCount : 8; // Number of particles to emit per emission interval
         u32 emissionDelay : 8; // Delay, as a fraction of the particle's lifetime, before the particle starts emitting
         u32 emissionInterval : 8;
         u32 textureIndex : 8;

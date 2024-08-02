@@ -37,7 +37,7 @@ void sub_020A1A48(SPLParticle *ptcl, SPLResource *res, int lifeRate); // spl_chl
 void sub_020A19F0(SPLParticle *ptcl, SPLResource *res, int lifeRate); // spl_chld_alp_out
 
 void SPLEmitter_EmitParticles(SPLEmitter *emtr, SPLParticleList *list);
-void sub_020A05BC(SPLParticle *ptcl, SPLEmitter *emtr, SPLList *list);
+void SPLEmitter_EmitChildren(SPLParticle *ptcl, SPLEmitter *emtr, SPLParticleList *list);
 
 void SPLEmitter_Update(SPLManager *mgr, SPLEmitter *emtr);
 void SPLManager_DoDraw(SPLManager *mgr);

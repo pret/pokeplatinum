@@ -18,13 +18,13 @@ void sub_020A1DA0(SPLParticle *ptcl, SPLResource *res, int lifeRate)
     if (lifeRate < in) {
         start = scaleAnim->unk_00;
         n = scaleAnim->unk_02;
-        ptcl->unk_34 = start + ((lifeRate * (n - start)) / in);
+        ptcl->animScale = start + ((lifeRate * (n - start)) / in);
     } else if (lifeRate >= out) {
         end = scaleAnim->unk_04;
         n = scaleAnim->unk_02;
-        ptcl->unk_34 = end + (((lifeRate - 255) * (end - n)) / (255 - out));
+        ptcl->animScale = end + (((lifeRate - 255) * (end - n)) / (255 - out));
     } else {
-        ptcl->unk_34 = scaleAnim->unk_02;
+        ptcl->animScale = scaleAnim->unk_02;
     }
 }
 
@@ -124,7 +124,7 @@ void sub_020A1A94(SPLParticle *ptcl, SPLResource *res, int lifeRate)
 
 void sub_020A1A48(SPLParticle *ptcl, SPLResource *res, int lifeRate)
 {
-    ptcl->unk_34 = res->childResource->unk_04 + ((res->childResource->unk_04 - FX16_ONE) * (lifeRate - 255)) / 255;
+    ptcl->animScale = res->childResource->unk_04 + ((res->childResource->unk_04 - FX16_ONE) * (lifeRate - 255)) / 255;
 }
 
 void sub_020A19F0(SPLParticle *ptcl, SPLResource *res, int lifeRate)
