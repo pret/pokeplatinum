@@ -133,7 +133,7 @@ void sub_0209FF0C(SPLManager *mgr, SPLParticle *ptcl)
 
     cmr = mgr->renderState.viewMatrix;
     aspect = mgr->renderState.emitter->resource->header->unk_30;
-    animScale = ptcl->unk_34;
+    animScale = ptcl->animScale;
 
     ptclCol = ptcl->color;
     emtrCol = emtr->color;
@@ -261,16 +261,16 @@ void sub_0209FAB8(SPLManager *mgr, SPLParticle *ptcl)
 
     switch (mgr->renderState.emitter->resource->header->misc.unk_07_4) {
     case 0:
-        sclX = FX_MUL(sclX, ptcl->unk_34);
-        sclY = FX_MUL(sclY, ptcl->unk_34);
+        sclX = FX_MUL(sclX, ptcl->animScale);
+        sclY = FX_MUL(sclY, ptcl->animScale);
         break;
 
     case 1:
-        sclX = FX_MUL(sclX, ptcl->unk_34);
+        sclX = FX_MUL(sclX, ptcl->animScale);
         break;
 
     case 2:
-        sclY = FX_MUL(sclY, ptcl->unk_34);
+        sclY = FX_MUL(sclY, ptcl->animScale);
         break;
     }
 
@@ -372,16 +372,16 @@ void sub_0209F3D0(SPLManager *mgr, SPLParticle *ptcl)
 
     switch (mgr->renderState.emitter->resource->header->misc.unk_07_4) {
     case 0:
-        sclX = FX_MUL(sclX, ptcl->unk_34);
-        sclY = FX_MUL(sclY, ptcl->unk_34);
+        sclX = FX_MUL(sclX, ptcl->animScale);
+        sclY = FX_MUL(sclY, ptcl->animScale);
         break;
 
     case 1:
-        sclX = FX_MUL(sclX, ptcl->unk_34);
+        sclX = FX_MUL(sclX, ptcl->animScale);
         break;
 
     case 2:
-        sclY = FX_MUL(sclY, ptcl->unk_34);
+        sclY = FX_MUL(sclY, ptcl->animScale);
         break;
     }
 
@@ -527,16 +527,16 @@ void sub_0209ECF0(SPLManager *mgr, SPLParticle *ptcl)
 
     switch (mgr->renderState.emitter->resource->header->misc.unk_07_4) {
     case 0:
-        sclX = FX_MUL(sclX, ptcl->unk_34);
-        sclY = FX_MUL(sclY, ptcl->unk_34);
+        sclX = FX_MUL(sclX, ptcl->animScale);
+        sclY = FX_MUL(sclY, ptcl->animScale);
         break;
 
     case 1:
-        sclX = FX_MUL(sclX, ptcl->unk_34);
+        sclX = FX_MUL(sclX, ptcl->animScale);
         break;
 
     case 2:
-        sclY = FX_MUL(sclY, ptcl->unk_34);
+        sclY = FX_MUL(sclY, ptcl->animScale);
         break;
     }
 
@@ -680,16 +680,16 @@ void sub_0209E9A0(SPLManager *mgr, SPLParticle *ptcl)
 
     switch (resBase->misc.unk_07_4) {
     case 0:
-        sclX = FX_MUL(sclX, ptcl->unk_34);
-        sclY = FX_MUL(sclY, ptcl->unk_34);
+        sclX = FX_MUL(sclX, ptcl->animScale);
+        sclY = FX_MUL(sclY, ptcl->animScale);
         break;
 
     case 1:
-        sclX = FX_MUL(sclX, ptcl->unk_34);
+        sclX = FX_MUL(sclX, ptcl->animScale);
         break;
 
     case 2:
-        sclY = FX_MUL(sclY, ptcl->unk_34);
+        sclY = FX_MUL(sclY, ptcl->animScale);
         break;
     }
 
@@ -763,16 +763,16 @@ void sub_0209E650(SPLManager *mgr, SPLParticle *ptcl)
 
     switch (resBase->misc.unk_07_4) {
     case 0:
-        sclX = FX_MUL(sclX, ptcl->unk_34);
-        sclY = FX_MUL(sclY, ptcl->unk_34);
+        sclX = FX_MUL(sclX, ptcl->animScale);
+        sclY = FX_MUL(sclY, ptcl->animScale);
         break;
 
     case 1:
-        sclX = FX_MUL(sclX, ptcl->unk_34);
+        sclX = FX_MUL(sclX, ptcl->animScale);
         break;
 
     case 2:
-        sclY = FX_MUL(sclY, ptcl->unk_34);
+        sclY = FX_MUL(sclY, ptcl->animScale);
         break;
     }
 
@@ -881,16 +881,16 @@ void sub_0209E1D4(SPLManager *mgr, SPLParticle *ptcl)
 
     switch (resBase->misc.unk_07_4) {
     case 0:
-        scaleX = FX_MUL(scaleX, ptcl->unk_34);
-        scaleY = FX_MUL(scaleY, ptcl->unk_34);
+        scaleX = FX_MUL(scaleX, ptcl->animScale);
+        scaleY = FX_MUL(scaleY, ptcl->animScale);
         break;
 
     case 1:
-        scaleX = FX_MUL(scaleX, ptcl->unk_34);
+        scaleX = FX_MUL(scaleX, ptcl->animScale);
         break;
 
     case 2:
-        scaleY = FX_MUL(scaleY, ptcl->unk_34);
+        scaleY = FX_MUL(scaleY, ptcl->animScale);
         break;
     }
 
@@ -999,16 +999,16 @@ void sub_0209DD54(SPLManager *mgr, SPLParticle *ptcl)
 
     switch (resBase->misc.unk_07_4) {
     case 0:
-        scaleX = FX_MUL(scaleX, ptcl->unk_34);
-        scaleY = FX_MUL(scaleY, ptcl->unk_34);
+        scaleX = FX_MUL(scaleX, ptcl->animScale);
+        scaleY = FX_MUL(scaleY, ptcl->animScale);
         break;
 
     case 1:
-        scaleX = FX_MUL(scaleX, ptcl->unk_34);
+        scaleX = FX_MUL(scaleX, ptcl->animScale);
         break;
 
     case 2:
-        scaleY = FX_MUL(scaleY, ptcl->unk_34);
+        scaleY = FX_MUL(scaleY, ptcl->animScale);
         break;
     }
 

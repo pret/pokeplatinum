@@ -225,7 +225,7 @@ void SPLEmitter_Update(SPLManager *mgr, SPLEmitter *emtr)
 
             if (diff >= 0) {
                 if ((diff >> FX32_SHIFT) % child->misc.emissionInterval == 0) {
-                    sub_020A05BC(ptcl, emtr, (SPLList *)&mgr->inactiveParticles);
+                    SPLEmitter_EmitChildren(ptcl, emtr, &mgr->inactiveParticles);
                 }
             }
         }

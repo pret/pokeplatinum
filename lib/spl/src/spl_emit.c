@@ -235,7 +235,7 @@ void SPLEmitter_EmitParticles(SPLEmitter *emtr, SPLParticleList *list)
         ptcl->emitterPos = emtr->position;
 
         ptcl->baseScale = SPLRandom_DoubleScaledRangeFX32(emtr->baseScale, header->randomAttenuation.baseScale);
-        ptcl->unk_34 = FX32_ONE;
+        ptcl->animScale = FX32_ONE;
 
         if (header->flags.hasColorAnim && res->colorAnim->unk_08.unk_00_0) {
             u16 clr[3];
@@ -285,76 +285,71 @@ void SPLEmitter_EmitParticles(SPLEmitter *emtr, SPLParticleList *list)
     }
 }
 
-void sub_020A05BC(SPLParticle *ptcl, SPLEmitter *emtr, SPLList *list)
+void SPLEmitter_EmitChildren(SPLParticle *ptcl, SPLEmitter *emtr, SPLParticleList *list)
 {
-    SPLParticle *chld;
-    fx32 velBase, velRand;
-    u32 rng;
-    int i;
-    SPLChildResource *chldRes = emtr->resource->childResource;
-    fx32 vel = FX_MUL((fx32)(chldRes->unk_08.unk_00_0 << FX32_SHIFT), FX32_CONST(1 / 256.0f));
+    SPLParticle *child;
 
-    for (i = 0; i < chldRes->misc.unk_00_0; i++) {
-        chld = (SPLParticle *)SPLList_PopFront(list);
-        if (chld == NULL) {
+    SPLChildResource *childRes = emtr->resource->childResource;
+    fx32 velRatio = FX_MUL(childRes->velocityRatio * FX32_ONE, FX32_CONST(1 / 256.0f));
+
+    for (int i = 0; i < childRes->misc.emissionCount; i++) {
+        child = (SPLParticle *)SPLList_PopFront((SPLList *)list); // SPLParticleList_PopFront doesn't match here for some reason
+        if (child == NULL) {
             return;
         }
-        SPLList_PushFront((SPLList *)&emtr->childParticles, (SPLNode *)chld);
 
-        chld->position = ptcl->position;
+        SPLParticleList_PushFront(&emtr->childParticles, child);
 
-        velBase = FX_MUL(ptcl->velocity.x, vel);
-        velRand = SPLRandom_RangeFX32(chldRes->unk_02);
-        chld->velocity.x = velBase + velRand;
+        child->position = ptcl->position;
 
-        velBase = FX_MUL(ptcl->velocity.y, vel);
-        velRand = SPLRandom_RangeFX32(chldRes->unk_02);
-        chld->velocity.y = velBase + velRand;
+        fx32 velBase = FX_MUL(ptcl->velocity.x, velRatio);
+        fx32 velRand = SPLRandom_RangeFX32(childRes->randomInitVelMag);
+        child->velocity.x = velBase + velRand;
 
-        velBase = FX_MUL(ptcl->velocity.z, vel);
-        velRand = SPLRandom_RangeFX32(chldRes->unk_02);
-        chld->velocity.z = velBase + velRand;
+        velBase = FX_MUL(ptcl->velocity.y, velRatio);
+        velRand = SPLRandom_RangeFX32(childRes->randomInitVelMag);
+        child->velocity.y = velBase + velRand;
 
-        chld->emitterPos = ptcl->emitterPos;
+        velBase = FX_MUL(ptcl->velocity.z, velRatio);
+        velRand = SPLRandom_RangeFX32(childRes->randomInitVelMag);
+        child->velocity.z = velBase + velRand;
 
-        // `unk_08.unk_00_0` and `unk_08.unk_01_0` in `UnkSPLStruct14`
-        // could just be `u8 unk_08;` and `u8 unk_09;`
-        // instead of an inner struct
-        int idk = ptcl->baseScale * ptcl->unk_34 >> FX32_SHIFT;
-        chld->baseScale = idk * (chldRes->unk_08.unk_01_0 + 1) >> 6;
+        child->emitterPos = ptcl->emitterPos;
 
-        chld->unk_34 = FX32_ONE;
+        fx32 parentScale = ptcl->baseScale * ptcl->animScale >> FX32_SHIFT;
+        child->baseScale = parentScale * (childRes->scaleRatio + 1) >> 6;
+        child->animScale = FX32_ONE;
 
-        if (chldRes->flags.unk_02_6) {
-            chld->color = chldRes->unk_0A;
+        if (childRes->flags.useChildColor) {
+            child->color = childRes->color;
         } else {
-            chld->color = ptcl->color;
+            child->color = ptcl->color;
         }
 
-        chld->visibility.baseAlpha = (ptcl->visibility.baseAlpha * (ptcl->visibility.animAlpha + 1)) >> 5;
-        chld->visibility.animAlpha = 31;
+        child->visibility.baseAlpha = (ptcl->visibility.baseAlpha * (ptcl->visibility.animAlpha + 1)) >> 5;
+        child->visibility.animAlpha = 31;
 
-        switch (chldRes->flags.unk_02_3) {
-        case 0:
-            chld->rotation = 0;
-            chld->angularVelocity = 0;
+        switch (childRes->flags.rotationType) {
+        case SPL_CHILD_ROT_NONE:
+            child->rotation = 0;
+            child->angularVelocity = 0;
             break;
-        case 1:
-            chld->rotation = ptcl->rotation;
-            chld->angularVelocity = 0;
+        case SPL_CHILD_ROT_INHERIT_ANGLE:
+            child->rotation = ptcl->rotation;
+            child->angularVelocity = 0;
             break;
-        case 2:
-            chld->rotation = ptcl->rotation;
-            chld->angularVelocity = ptcl->angularVelocity;
+        case SPL_CHILD_ROT_INHERIT_ANGLE_AND_VELOCITY:
+            child->rotation = ptcl->rotation;
+            child->angularVelocity = ptcl->angularVelocity;
             break;
         }
 
-        chld->lifeTime = chldRes->unk_06;
-        chld->age = 0;
-        chld->misc.texture = chldRes->misc.textureIndex;
+        child->lifeTime = childRes->lifeTime;
+        child->age = 0;
+        child->misc.texture = childRes->misc.textureIndex;
 
-        chld->loopTimeFactor = 0xFFFF / (ptcl->lifeTime / 2);
-        chld->lifeTimeFactor = 0xFFFF / ptcl->lifeTime;
-        chld->misc.lifeRateOffset = 0;
+        child->loopTimeFactor = 0xFFFF / (ptcl->lifeTime / 2);
+        child->lifeTimeFactor = 0xFFFF / ptcl->lifeTime;
+        child->misc.lifeRateOffset = 0;
     }
 }

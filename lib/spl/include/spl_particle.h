@@ -35,7 +35,7 @@ typedef struct SPLParticle {
         u16 currentPolygonID : 6;
     } visibility;
     fx32 baseScale;
-    fx16 unk_34;
+    fx16 animScale;
     GXRgb color;
     VecFx32 emitterPos;
 } SPLParticle; // size=0x44
