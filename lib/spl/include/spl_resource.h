@@ -5,6 +5,27 @@
 
 #include "struct_defs/struct_020147B8.h"
 
+#define SPL_TEX_ANIM_MAX_FRAMES 8
+
+enum SPLCircleAxis {
+    SPL_CIRCLE_AXIS_Z = 0,
+    SPL_CIRCLE_AXIS_Y = 1,
+    SPL_CIRCLE_AXIS_X = 2,
+    SPL_CIRCLE_AXIS_EMITTER = 3, // The emitter's axis
+};
+
+enum SPLEmissionType {
+    SPL_EMISSION_TYPE_POINT = 0, // A single point
+    SPL_EMISSION_TYPE_SPHERE_SURFACE, // Any point on the surface of a sphere
+    SPL_EMISSION_TYPE_CIRCLE_BORDER, // Any point on a circle around an axis (specified by flags)
+    SPL_EMISSION_TYPE_CIRCLE_BORDER_UNIFORM, // Uniform distribution of points on a circle around an axis (specified by flags)
+    SPL_EMISSION_TYPE_SPHERE, // Any point inside a sphere
+    SPL_EMISSION_TYPE_CIRCLE, // Any point inside a circle around an axis (specified by flags)
+    SPL_EMISSION_TYPE_CYLINDER_SURFACE, // Any point on the surface of a cylinder
+    SPL_EMISSION_TYPE_CYLINDER, // Any point inside a cylinder
+    SPL_EMISSION_TYPE_HEMISPHERE_SURFACE, // Any point on the surface of a hemisphere (direction specified by flags)
+    SPL_EMISSION_TYPE_HEMISPHERE, // Any point inside a hemisphere (direction specified by flags)
+};
 
 typedef struct SPLArcHdr {
     u32 magic;
@@ -21,14 +42,14 @@ typedef struct SPLArcHdr {
 typedef union SPLResourceFlags {
     u32 all;
     struct {
-        u32 unk_04_0 : 4;
+        u32 emissionType : 4; // Maps to SPLEmissionType
         u32 drawType : 2;
-        u32 unk_04_6 : 2;
+        u32 circleAxis : 2; // Maps to SPLCircleAxis
         u32 hasScaleAnim : 1;
         u32 hasColorAnim : 1;
         u32 hasAlphaAnim : 1;
         u32 hasTexAnim : 1;
-        u32 unk_05_4 : 1;
+        u32 hasRotation : 1;
         u32 unk_05_5 : 1;
         // Whether the emitter manages itself or not.
         // If set, the emitter will automatically terminate when it reaches the end of its life
@@ -38,7 +59,7 @@ typedef union SPLResourceFlags {
         u32 hasChildResource : 1;
         u32 unk_06_1 : 2;
         u32 unk_06_3 : 1;
-        u32 unk_06_4 : 1;
+        u32 randomizeLoopedAnim : 1;
         u32 drawChildrenFirst : 1; // If set, child particles will be rendered before parent particles
         u32 hideParent : 1; // If set, only child particles will be rendered
         u32 unk_06_7 : 1;
@@ -90,35 +111,39 @@ typedef union {
 typedef struct SPLResourceHeader {
     SPLResourceFlags flags;
     VecFx32 emitterBasePos;
-    fx32 unk_10;
+    fx32 emissionCount; // Number of particles to emit per emission interval
     fx32 unk_14;
     fx32 unk_18;
     VecFx16 unk_1C;
-    GXRgb unk_22;
+    GXRgb color;
     fx32 unk_24;
     fx32 unk_28;
     fx32 unk_2C;
     fx16 unk_30;
     u16 startDelay; // Delay, in frames, before the emitter starts emitting particles
-    s16 unk_34;
-    s16 unk_36;
+    s16 minRotation;
+    s16 maxRotation;
     u16 unk_38;
     u16 reserved_3A;
     u16 emitterLifeTime;
     u16 particleLifeTime;
+
+    // All of these values are mapped to the range [0, 1]
+    // They are used to attenuate the particle's properties at initialization,
+    // acting as a sort of randomization factor which scales down the initial values
     struct {
-        u32 unk_00_0 : 8;
-        u32 unk_01_0 : 8;
-        u32 unk_02_0 : 8;
-        u32 reserved_03_0 : 8;
-    } unk_44;
+        u32 baseScale : 8; // Damping factor for the base scale of the particles (0 = no damping)
+        u32 lifeTime : 8;
+        u32 initVel : 8; // Attenuation factor for the initial velocity of the particles (0 = no attenuation)
+        u32 : 8;
+    } randomAttenuation;
 
     struct {
         u32 unk_00_0 : 8;
         u32 unk_01_0 : 8;
         u32 airResistance : 8;
         u32 textureIndex : 8;
-        u32 unk_04_0 : 8;
+        u32 loopFrames : 8;
         u32 unk_05_0 : 16;
         u32 unk_07_0 : 2;
         u32 unk_07_2 : 2;
@@ -150,8 +175,8 @@ typedef struct SPLScaleAnim {
 } SPLScaleAnim; // size=0xc
 
 typedef struct SPLColorAnim {
-    GXRgb unk_00;
-    GXRgb unk_02;
+    GXRgb startColor;
+    GXRgb endColor;
     UnkSPLUnion4 unk_04;
     struct {
         u16 unk_00_0 : 1;
@@ -182,14 +207,14 @@ typedef struct SPLAlphaAnim {
 } SPLAlphaAnim; // size=0x8
 
 typedef struct SPLTexAnim {
-    u8 unk_00[8];
+    u8 textures[SPL_TEX_ANIM_MAX_FRAMES];
     struct {
-        u32 unk_00_0 : 8;
+        u32 frameCount : 8;
         u32 unk_01_0 : 8;
-        u32 unk_02_0 : 1;
+        u32 randomizeInit : 1; // Randomize the initial texture frame
         u32 unk_02_1 : 1;
         u32 reserved_02_2 : 14;
-    } unk_08;
+    } param;
 } SPLTexAnim;
 
 typedef struct SPLChildResource {

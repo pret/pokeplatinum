@@ -41,53 +41,53 @@ void sub_020A1BD4(SPLParticle *ptcl, SPLResource *res, int lifeRate)
     in = colorAnim->unk_04.unk_04_0;
 
     if (lifeRate < in) {
-        ptcl->unk_36 = colorAnim->unk_00;
+        ptcl->color = colorAnim->startColor;
     } else if (lifeRate < peak) {
-        int peakR = GX_RGB_R(resBase->unk_22);
-        int startR = GX_RGB_R(colorAnim->unk_00);
+        int peakR = GX_RGB_R(resBase->color);
+        int startR = GX_RGB_R(colorAnim->startColor);
         
-        int peakG = GX_RGB_G(resBase->unk_22);
-        int startG = GX_RGB_G(colorAnim->unk_00);
+        int peakG = GX_RGB_G(resBase->color);
+        int startG = GX_RGB_G(colorAnim->startColor);
     
-        int peakB = GX_RGB_B(resBase->unk_22);
-        int startB = GX_RGB_B(colorAnim->unk_00);
+        int peakB = GX_RGB_B(resBase->color);
+        int startB = GX_RGB_B(colorAnim->startColor);
         
         if (colorAnim->unk_08.unk_00_2) { // interpolate
             int a = lifeRate - in;
             int b = peak - in;
     
-            ptcl->unk_36 = GX_RGB(
+            ptcl->color = GX_RGB(
                 startR + (a * (int)(peakR - startR)) / b, 
                 startG + (a * (int)(peakG - startG)) / b, 
                 startB + (a * (int)(peakB - startB)) / b
             );
         } else {
-            ptcl->unk_36 = GX_RGB(peakR, peakG, peakB);
+            ptcl->color = GX_RGB(peakR, peakG, peakB);
         }
     } else if (lifeRate < out) {
-        int peakR = GX_RGB_R(resBase->unk_22);
-        int endR = GX_RGB_R(colorAnim->unk_02);
+        int peakR = GX_RGB_R(resBase->color);
+        int endR = GX_RGB_R(colorAnim->endColor);
         
-        int peakG = GX_RGB_G(resBase->unk_22);
-        int endG = GX_RGB_G(colorAnim->unk_02);
+        int peakG = GX_RGB_G(resBase->color);
+        int endG = GX_RGB_G(colorAnim->endColor);
         
-        int peakB = GX_RGB_B(resBase->unk_22);
-        int endB = GX_RGB_B(colorAnim->unk_02);
+        int peakB = GX_RGB_B(resBase->color);
+        int endB = GX_RGB_B(colorAnim->endColor);
     
         if (colorAnim->unk_08.unk_00_2) { // interpolate
             int a = lifeRate - peak;
             int b = out - peak;
     
-            ptcl->unk_36 = GX_RGB(
+            ptcl->color = GX_RGB(
                 peakR + (a * (int)(endR - peakR)) / b, 
                 peakG + (a * (int)(endG - peakG)) / b, 
                 peakB + (a * (int)(endB - peakB)) / b
             );
         } else {
-            ptcl->unk_36 = GX_RGB(endR, endG, endB);
+            ptcl->color = GX_RGB(endR, endG, endB);
         }
     } else {
-        ptcl->unk_36 = colorAnim->unk_02;
+        ptcl->color = colorAnim->endColor;
     }
 }
 
@@ -108,15 +108,15 @@ void sub_020A1AF8(SPLParticle *ptcl, SPLResource *res, int lifeRate)
         x += alphaAnim->unk_00.val2_01_2;
     }
 
-    ptcl->unk_2E.unk_00_5 = SPLRandom_ScaledRangeFX32(x, alphaAnim->unk_02.unk_00_0);
+    ptcl->visibility.animAlpha = SPLRandom_ScaledRangeFX32(x, alphaAnim->unk_02.unk_00_0);
 }
 
 void sub_020A1A94(SPLParticle *ptcl, SPLResource *res, int lifeRate)
 {
     SPLTexAnim *texAnim = res->texAnim;
-    for (int i = 0; i < texAnim->unk_08.unk_00_0; i++) {
-        if (lifeRate < texAnim->unk_08.unk_01_0 * (i + 1)) {
-            ptcl->misc.unk_00 = texAnim->unk_00[i];
+    for (int i = 0; i < texAnim->param.frameCount; i++) {
+        if (lifeRate < texAnim->param.unk_01_0 * (i + 1)) {
+            ptcl->misc.texture = texAnim->textures[i];
             return;
         }
     }
@@ -129,5 +129,5 @@ void sub_020A1A48(SPLParticle *ptcl, SPLResource *res, int lifeRate)
 
 void sub_020A19F0(SPLParticle *ptcl, SPLResource *res, int lifeRate)
 {
-    ptcl->unk_2E.unk_00_5 = ((255 - lifeRate) * 31) / 255;
+    ptcl->visibility.animAlpha = ((255 - lifeRate) * 31) / 255;
 }

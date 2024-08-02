@@ -36,13 +36,13 @@ void sub_020A1A94(SPLParticle *ptcl, SPLResource *res, int lifeRate); // spl_tex
 void sub_020A1A48(SPLParticle *ptcl, SPLResource *res, int lifeRate); // spl_chld_scl_out
 void sub_020A19F0(SPLParticle *ptcl, SPLResource *res, int lifeRate); // spl_chld_alp_out
 
-void sub_020A08DC(SPLEmitter *emtr, SPLList *list);
+void SPLEmitter_EmitParticles(SPLEmitter *emtr, SPLParticleList *list);
 void sub_020A05BC(SPLParticle *ptcl, SPLEmitter *emtr, SPLList *list);
 
 void SPLEmitter_Update(SPLManager *mgr, SPLEmitter *emtr);
 void SPLManager_DoDraw(SPLManager *mgr);
 void SPLEmitter_Init(SPLEmitter *emtr, SPLResource *res, const VecFx32 *pos);
-void SPLEmitter_Emit(SPLEmitter *emtr, SPLList *list);
+void SPLEmitter_Emit(SPLEmitter *emtr, SPLParticleList *list);
 
 static inline void SPLParticleList_PushFront(SPLParticleList *list, SPLParticle *ptcl)
 {

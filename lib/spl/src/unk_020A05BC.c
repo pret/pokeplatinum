@@ -1,44 +1,45 @@
+#include "nitro/types.h"
 #include <nitro/fx/fx.h>
 #include <nitro/fx/fx_const.h>
 #include <nitro/fx/fx_trig.h>
 
 #include "spl_emitter.h"
+#include "spl_internal.h"
 #include "spl_list.h"
+#include "spl_particle.h"
 #include "spl_random.h"
+#include "spl_resource.h"
 
 
-#define IS_IN_RANGE(x, min, max) (((x) - (min)) <= ((max) - (min)))
+static void SPLEmitter_ComputeOrthogonalAxes(SPLEmitter *emtr);
+static void SPLUtil_TiltCoordinates(VecFx32 *ptclPos, VecFx32 *pos, SPLEmitter *emtr);
+
+static VecFx16 sUpVector = { 0, FX16_ONE, 0 };
 
 
-static void sub_020A1768(SPLEmitter *emtr);
-static void sub_020A1608(VecFx32 *ptclPos, VecFx32 *pos, SPLEmitter *emtr);
-
-VecFx16 Unk_02100DB0 = { 0, FX16_ONE, 0 };
-
-
-static void sub_020A1768(SPLEmitter *emtr)
+static void SPLEmitter_ComputeOrthogonalAxes(SPLEmitter *emtr)
 {
     VecFx16 vec, axis;
 
-    vec = Unk_02100DB0;
+    vec = sUpVector;
 
-    switch (emtr->resource->header->flags.unk_04_6) {
-    case 2:
+    switch (emtr->resource->header->flags.circleAxis) {
+    case SPL_CIRCLE_AXIS_X:
         axis.x = FX32_ONE;
         axis.y = 0;
         axis.z = 0;
         break;
-    case 1:
+    case SPL_CIRCLE_AXIS_Y:
         axis.x = 0;
         axis.y = FX32_ONE;
         axis.z = 0;
         break;
-    case 0:
+    case SPL_CIRCLE_AXIS_Z:
         axis.x = 0;
         axis.y = 0;
         axis.z = FX32_ONE;
         break;
-    default:
+    default: // SPL_CIRCLE_AXIS_EMITTER
         VEC_Fx16Normalize(&emtr->axis, &axis);
         break;
     }
@@ -50,240 +51,237 @@ static void sub_020A1768(SPLEmitter *emtr)
         vec.z = 0;
     }
 
-    emtr->unk_F4.x = FX_MUL(axis.y, vec.z) - FX_MUL(axis.z, vec.y);
-    emtr->unk_F4.y = FX_MUL(axis.z, vec.x) - FX_MUL(axis.x, vec.z);
-    emtr->unk_F4.z = FX_MUL(axis.x, vec.y) - FX_MUL(axis.y, vec.x);
+    emtr->crossAxis1.x = FX_MUL(axis.y, vec.z) - FX_MUL(axis.z, vec.y);
+    emtr->crossAxis1.y = FX_MUL(axis.z, vec.x) - FX_MUL(axis.x, vec.z);
+    emtr->crossAxis1.z = FX_MUL(axis.x, vec.y) - FX_MUL(axis.y, vec.x);
 
-    emtr->unk_FA.x = FX_MUL(axis.y, emtr->unk_F4.z) - FX_MUL(axis.z, emtr->unk_F4.y);
-    emtr->unk_FA.y = FX_MUL(axis.z, emtr->unk_F4.x) - FX_MUL(axis.x, emtr->unk_F4.z);
-    emtr->unk_FA.z = FX_MUL(axis.x, emtr->unk_F4.y) - FX_MUL(axis.y, emtr->unk_F4.x);
+    emtr->crossAxis2.x = FX_MUL(axis.y, emtr->crossAxis1.z) - FX_MUL(axis.z, emtr->crossAxis1.y);
+    emtr->crossAxis2.y = FX_MUL(axis.z, emtr->crossAxis1.x) - FX_MUL(axis.x, emtr->crossAxis1.z);
+    emtr->crossAxis2.z = FX_MUL(axis.x, emtr->crossAxis1.y) - FX_MUL(axis.y, emtr->crossAxis1.x);
 
-    VEC_Fx16Normalize(&emtr->unk_F4, &emtr->unk_F4);
-    VEC_Fx16Normalize(&emtr->unk_FA, &emtr->unk_FA);
+    VEC_Fx16Normalize(&emtr->crossAxis1, &emtr->crossAxis1);
+    VEC_Fx16Normalize(&emtr->crossAxis2, &emtr->crossAxis2);
 }
 
-static void sub_020A1608(VecFx32 *ptclPos, VecFx32 *pos, SPLEmitter *emtr)
+// Tilt the coordinates of a particle based on the emitter's axis
+static void SPLUtil_TiltCoordinates(VecFx32 *ptclPos, VecFx32 *pos, SPLEmitter *emtr)
 {
     VecFx16 vec;
-    VEC_Fx16CrossProduct(&emtr->unk_F4, &emtr->unk_FA, &vec);
+    VEC_Fx16CrossProduct(&emtr->crossAxis1, &emtr->crossAxis2, &vec);
     VEC_Fx16Normalize(&vec, &vec);
 
-    ptclPos->x = FX_MUL(pos->x, emtr->unk_F4.x) + FX_MUL(pos->y, emtr->unk_FA.x) + FX_MUL(pos->z, vec.x);
-    ptclPos->y = FX_MUL(pos->x, emtr->unk_F4.y) + FX_MUL(pos->y, emtr->unk_FA.y) + FX_MUL(pos->z, vec.y);
-    ptclPos->z = FX_MUL(pos->x, emtr->unk_F4.z) + FX_MUL(pos->y, emtr->unk_FA.z) + FX_MUL(pos->z, vec.z);
+    ptclPos->x = FX_MUL(pos->x, emtr->crossAxis1.x) + FX_MUL(pos->y, emtr->crossAxis2.x) + FX_MUL(pos->z, vec.x);
+    ptclPos->y = FX_MUL(pos->x, emtr->crossAxis1.y) + FX_MUL(pos->y, emtr->crossAxis2.y) + FX_MUL(pos->z, vec.y);
+    ptclPos->z = FX_MUL(pos->x, emtr->crossAxis1.z) + FX_MUL(pos->y, emtr->crossAxis2.z) + FX_MUL(pos->z, vec.z);
 }
 
-void sub_020A08DC(SPLEmitter *emtr, SPLList *list)
+void SPLEmitter_EmitParticles(SPLEmitter *emtr, SPLParticleList *list)
 {
-    SPLResource *res;
-    SPLResourceHeader *resBase;
-    int i, curGenNum;
-    SPLParticle *ptcl;
-    fx32 magPos;
-    fx32 magAxis;
+    SPLResource *res = emtr->resource;
+    SPLResourceHeader *header = res->header;
 
-    res = emtr->resource;
-    resBase = res->header;
+    int i = 0;
+    int emitCountDec = emtr->emissionCount + FX32_CAST(emtr->emissionCountFractional);
+    int totalEmissions = emitCountDec >> FX32_SHIFT;
+    int emission = 0;
+    emtr->emissionCountFractional = emitCountDec & FX32_DEC_MASK;
 
-    int temp = emtr->unk_C8 + FX32_CAST(emtr->unk_BE);
-    curGenNum = temp >> FX32_SHIFT;
-    emtr->unk_BE = temp & FX32_DEC_MASK;
-
-    u32 initType = resBase->flags.unk_04_0;
-    if (initType == 2 || initType == 3 || IS_IN_RANGE(initType, 5, 9)) {
-        sub_020A1768(emtr);
+    enum SPLEmissionType emitType = header->flags.emissionType;
+    if (emitType == SPL_EMISSION_TYPE_CIRCLE_BORDER || 
+        emitType == SPL_EMISSION_TYPE_CIRCLE_BORDER_UNIFORM || 
+        emitType == SPL_EMISSION_TYPE_CIRCLE || 
+        emitType == SPL_EMISSION_TYPE_CYLINDER_SURFACE ||
+        emitType == SPL_EMISSION_TYPE_CYLINDER || 
+        emitType == SPL_EMISSION_TYPE_HEMISPHERE_SURFACE || 
+        emitType == SPL_EMISSION_TYPE_HEMISPHERE) {
+        SPLEmitter_ComputeOrthogonalAxes(emtr);
     }
 
-    i = 0;
-    if (i < curGenNum) {
-        fx32 genNum = 0;
-        do {
-            ptcl = (SPLParticle *)SPLList_PopFront(list);
+    for (i = 0; i < totalEmissions; i++) {
+        SPLParticle *ptcl = SPLParticleList_PopFront(list);
+        if (ptcl == NULL) {
+            return;
+        }
 
-            if (ptcl == NULL) {
-                return;
+        SPLParticleList_PushFront(&emtr->particles, ptcl);
+
+        switch (header->flags.emissionType) {
+        case SPL_EMISSION_TYPE_POINT:
+            ptcl->position.x = ptcl->position.y = ptcl->position.z = 0;
+            break;
+
+        case SPL_EMISSION_TYPE_SPHERE_SURFACE:
+            SPLRandom_VecFx32(&ptcl->position);
+            ptcl->position.x = FX_MUL(ptcl->position.x, emtr->radius);
+            ptcl->position.y = FX_MUL(ptcl->position.y, emtr->radius);
+            ptcl->position.z = FX_MUL(ptcl->position.z, emtr->radius);
+            break;
+
+        case SPL_EMISSION_TYPE_CIRCLE_BORDER: {
+            VecFx32 pos;
+            SPLRandom_VecFx32_XY(&pos);
+            pos.x = FX_MUL(pos.x, emtr->radius);
+            pos.y = FX_MUL(pos.y, emtr->radius);
+            pos.z = 0;
+            SPLUtil_TiltCoordinates(&ptcl->position, &pos, emtr);
+        } break;
+
+        case SPL_EMISSION_TYPE_CIRCLE_BORDER_UNIFORM: {
+            VecFx32 pos;
+            int idx = (emission * FX32_CONST(16)) / totalEmissions;
+            emission += 1;
+
+            fx32 sin = FX_SinIdx(idx);
+            fx32 cos = FX_CosIdx(idx);
+            pos.x = FX_MUL(sin, emtr->radius);
+            pos.y = FX_MUL(cos, emtr->radius);
+            pos.z = 0;
+            SPLUtil_TiltCoordinates(&ptcl->position, &pos, emtr);
+        } break;
+
+        case SPL_EMISSION_TYPE_SPHERE:
+            SPLRandom_VecFx32(&ptcl->position);
+            ptcl->position.x = FX_MUL(FX_MUL(ptcl->position.x, emtr->radius), SPLRandom_RangeFX32(FX32_ONE));
+            ptcl->position.y = FX_MUL(FX_MUL(ptcl->position.y, emtr->radius), SPLRandom_RangeFX32(FX32_ONE));
+            ptcl->position.z = FX_MUL(FX_MUL(ptcl->position.z, emtr->radius), SPLRandom_RangeFX32(FX32_ONE));
+            break;
+
+        case SPL_EMISSION_TYPE_CIRCLE: {
+            VecFx32 pos;
+            SPLRandom_VecFx32_XY(&pos);
+            pos.x = FX_MUL(FX_MUL(pos.x, emtr->radius), SPLRandom_RangeFX32(FX32_ONE));
+            pos.y = FX_MUL(FX_MUL(pos.y, emtr->radius), SPLRandom_RangeFX32(FX32_ONE));
+            SPLUtil_TiltCoordinates(&ptcl->position, &pos, emtr);
+        } break;
+
+        case SPL_EMISSION_TYPE_HEMISPHERE_SURFACE: {
+            VecFx32 pos;
+            VecFx16 emitterUp;
+            SPLRandom_VecFx32(&ptcl->position);
+            VEC_Fx16CrossProduct(&emtr->crossAxis1, &emtr->crossAxis2, &emitterUp);
+            pos.x = emitterUp.x;
+            pos.y = emitterUp.y;
+            pos.z = emitterUp.z;
+            if (VEC_DotProduct(&pos, &ptcl->position) <= 0) {
+                ptcl->position.x = -ptcl->position.x;
+                ptcl->position.y = -ptcl->position.y;
+                ptcl->position.z = -ptcl->position.z;
             }
 
-            SPLList_PushFront((SPLList *)&emtr->particles, (SPLNode *)ptcl);
+            ptcl->position.x = FX_MUL(ptcl->position.x, emtr->radius);
+            ptcl->position.y = FX_MUL(ptcl->position.y, emtr->radius);
+            ptcl->position.z = FX_MUL(ptcl->position.z, emtr->radius);
+        } break;
 
-            switch (resBase->flags.unk_04_0) {
-            case 0:
-                ptcl->position.x = ptcl->position.y = ptcl->position.z = 0;
-                break;
-
-            case 1:
-                SPLRandom_VecFx32(&ptcl->position);
-                ptcl->position.x = FX_MUL(ptcl->position.x, emtr->unk_CC);
-                ptcl->position.y = FX_MUL(ptcl->position.y, emtr->unk_CC);
-                ptcl->position.z = FX_MUL(ptcl->position.z, emtr->unk_CC);
-                break;
-
-            case 2: {
-                VecFx32 pos;
-                SPLRandom_VecFx32_XY(&pos);
-                pos.x = FX_MUL(pos.x, emtr->unk_CC);
-                pos.y = FX_MUL(pos.y, emtr->unk_CC);
-                pos.z = 0;
-                sub_020A1608(&ptcl->position, &pos, emtr);
-            } break;
-
-            case 3: {
-                VecFx32 pos;
-                int idx = genNum / curGenNum;
-                genNum += 0x10000;
-                fx32 sin = FX_SinIdx(idx);
-                fx32 cos = FX_CosIdx(idx);
-                pos.x = FX_MUL(sin, emtr->unk_CC);
-                pos.y = FX_MUL(cos, emtr->unk_CC);
-                pos.z = 0;
-                sub_020A1608(&ptcl->position, &pos, emtr);
-            } break;
-
-            case 4:
-                SPLRandom_VecFx32(&ptcl->position);
-                ptcl->position.x = FX_MUL(FX_MUL(ptcl->position.x, emtr->unk_CC), SPLRandom_RangeFX32(FX32_ONE));
-                ptcl->position.y = FX_MUL(FX_MUL(ptcl->position.y, emtr->unk_CC), SPLRandom_RangeFX32(FX32_ONE));
-                ptcl->position.z = FX_MUL(FX_MUL(ptcl->position.z, emtr->unk_CC), SPLRandom_RangeFX32(FX32_ONE));
-                break;
-
-            case 5: {
-                VecFx32 pos;
-                SPLRandom_VecFx32_XY(&pos);
-                pos.x = FX_MUL(FX_MUL(pos.x, emtr->unk_CC), SPLRandom_RangeFX32(FX32_ONE));
-                pos.y = FX_MUL(FX_MUL(pos.y, emtr->unk_CC), SPLRandom_RangeFX32(FX32_ONE));
-                sub_020A1608(&ptcl->position, &pos, emtr);
-            } break;
-
-            case 8: {
-                VecFx32 pos;
-                VecFx16 tmpUnitVec;
-                SPLRandom_VecFx32(&ptcl->position);
-                VEC_Fx16CrossProduct(&emtr->unk_F4, &emtr->unk_FA, &tmpUnitVec);
-                pos.x = tmpUnitVec.x;
-                pos.y = tmpUnitVec.y;
-                pos.z = tmpUnitVec.z;
-                if (VEC_DotProduct(&pos, &ptcl->position) <= 0) {
-                    ptcl->position.x = -ptcl->position.x;
-                    ptcl->position.y = -ptcl->position.y;
-                    ptcl->position.z = -ptcl->position.z;
-                }
-
-                ptcl->position.x = FX_MUL(ptcl->position.x, emtr->unk_CC);
-                ptcl->position.y = FX_MUL(ptcl->position.y, emtr->unk_CC);
-                ptcl->position.z = FX_MUL(ptcl->position.z, emtr->unk_CC);
-            } break;
-
-            case 9: {
-                VecFx32 pos;
-                VecFx16 tmpUnitVec;
-                SPLRandom_VecFx32(&ptcl->position);
-                VEC_Fx16CrossProduct(&emtr->unk_F4, &emtr->unk_FA, &tmpUnitVec);
-                pos.x = tmpUnitVec.x;
-                pos.y = tmpUnitVec.y;
-                pos.z = tmpUnitVec.z;
-                if (VEC_DotProduct(&pos, &ptcl->position) < 0) {
-                    ptcl->position.x = -ptcl->position.x;
-                    ptcl->position.y = -ptcl->position.y;
-                    ptcl->position.z = -ptcl->position.z;
-                }
-
-                ptcl->position.x = FX_MUL(FX_MUL(ptcl->position.x, emtr->unk_CC), (SPLRandom_RangeFX32(FX32_ONE) >> 1) + FX32_HALF);
-                ptcl->position.y = FX_MUL(FX_MUL(ptcl->position.y, emtr->unk_CC), (SPLRandom_RangeFX32(FX32_ONE) >> 1) + FX32_HALF);
-                ptcl->position.z = FX_MUL(FX_MUL(ptcl->position.z, emtr->unk_CC), (SPLRandom_RangeFX32(FX32_ONE) >> 1) + FX32_HALF);
-            } break;
-
-            case 6: {
-                VecFx32 pos;
-                SPLRandom_VecFx32_XY(&ptcl->velocity);
-                pos.x = FX_MUL(ptcl->velocity.x, emtr->unk_CC);
-                pos.y = FX_MUL(ptcl->velocity.y, emtr->unk_CC);
-                pos.z = SPLRandom_RangeFX32(emtr->length);
-                sub_020A1608(&ptcl->position, &pos, emtr);
-            } break;
-
-            case 7: {
-                VecFx32 pos;
-                SPLRandom_VecFx32_XY(&ptcl->velocity);
-                pos.x = FX_MUL(FX_MUL(ptcl->velocity.x, emtr->unk_CC), SPLRandom_RangeFX32(FX32_ONE));
-                pos.y = FX_MUL(FX_MUL(ptcl->velocity.y, emtr->unk_CC), SPLRandom_RangeFX32(FX32_ONE));
-                pos.z = SPLRandom_RangeFX32(emtr->length);
-                sub_020A1608(&ptcl->position, &pos, emtr);
-            } break;
+        case SPL_EMISSION_TYPE_HEMISPHERE: {
+            VecFx32 pos;
+            VecFx16 tmpUnitVec;
+            SPLRandom_VecFx32(&ptcl->position);
+            VEC_Fx16CrossProduct(&emtr->crossAxis1, &emtr->crossAxis2, &tmpUnitVec);
+            pos.x = tmpUnitVec.x;
+            pos.y = tmpUnitVec.y;
+            pos.z = tmpUnitVec.z;
+            if (VEC_DotProduct(&pos, &ptcl->position) < 0) {
+                ptcl->position.x = -ptcl->position.x;
+                ptcl->position.y = -ptcl->position.y;
+                ptcl->position.z = -ptcl->position.z;
             }
 
-            magPos = SPLRandom_DoubleScaledRangeFX32(emtr->unk_D4, resBase->unk_44.unk_02_0);
-            magAxis = SPLRandom_DoubleScaledRangeFX32(emtr->unk_D8, resBase->unk_44.unk_02_0);
+            ptcl->position.x = FX_MUL(FX_MUL(ptcl->position.x, emtr->radius), (SPLRandom_RangeFX32(FX32_ONE) >> 1) + FX32_HALF);
+            ptcl->position.y = FX_MUL(FX_MUL(ptcl->position.y, emtr->radius), (SPLRandom_RangeFX32(FX32_ONE) >> 1) + FX32_HALF);
+            ptcl->position.z = FX_MUL(FX_MUL(ptcl->position.z, emtr->radius), (SPLRandom_RangeFX32(FX32_ONE) >> 1) + FX32_HALF);
+        } break;
 
-            VecFx32 posNorm;
-            if (resBase->flags.unk_04_0 == 6) {
-                VecFx32 tmp;
-                tmp.x = FX_MUL(ptcl->velocity.x, emtr->unk_F4.x) + FX_MUL(ptcl->velocity.y, emtr->unk_FA.x);
-                tmp.y = FX_MUL(ptcl->velocity.x, emtr->unk_F4.y) + FX_MUL(ptcl->velocity.y, emtr->unk_FA.y);
-                tmp.z = FX_MUL(ptcl->velocity.x, emtr->unk_F4.z) + FX_MUL(ptcl->velocity.y, emtr->unk_FA.z);
+        case SPL_EMISSION_TYPE_CYLINDER_SURFACE: {
+            VecFx32 pos;
+            SPLRandom_VecFx32_XY(&ptcl->velocity);
+            pos.x = FX_MUL(ptcl->velocity.x, emtr->radius);
+            pos.y = FX_MUL(ptcl->velocity.y, emtr->radius);
+            pos.z = SPLRandom_RangeFX32(emtr->length);
+            SPLUtil_TiltCoordinates(&ptcl->position, &pos, emtr);
+        } break;
 
-                VEC_Normalize(&tmp, &posNorm);
-            } else if (ptcl->position.x == 0 && ptcl->position.y == 0 && ptcl->position.z == 0) {
-                SPLRandom_VecFx32(&posNorm);
-            } else {
-                VEC_Normalize(&ptcl->position, &posNorm);
-            }
+        case SPL_EMISSION_TYPE_CYLINDER: {
+            VecFx32 pos;
+            SPLRandom_VecFx32_XY(&ptcl->velocity);
+            pos.x = FX_MUL(FX_MUL(ptcl->velocity.x, emtr->radius), SPLRandom_RangeFX32(FX32_ONE));
+            pos.y = FX_MUL(FX_MUL(ptcl->velocity.y, emtr->radius), SPLRandom_RangeFX32(FX32_ONE));
+            pos.z = SPLRandom_RangeFX32(emtr->length);
+            SPLUtil_TiltCoordinates(&ptcl->position, &pos, emtr);
+        } break;
+        }
 
-            ptcl->velocity.x = FX_MUL(posNorm.x, magPos) + FX_MUL(emtr->axis.x, magAxis) + emtr->unk_B0.x;
-            ptcl->velocity.y = FX_MUL(posNorm.y, magPos) + FX_MUL(emtr->axis.y, magAxis) + emtr->unk_B0.y;
-            ptcl->velocity.z = FX_MUL(posNorm.z, magPos) + FX_MUL(emtr->axis.z, magAxis) + emtr->unk_B0.z;
+        fx32 magPos = SPLRandom_DoubleScaledRangeFX32(emtr->initVelPositionAmplifier, header->randomAttenuation.initVel);
+        fx32 magAxis = SPLRandom_DoubleScaledRangeFX32(emtr->initVelAxisAmplifier, header->randomAttenuation.initVel);
 
-            ptcl->emitterPos = emtr->position;
+        VecFx32 posNorm;
+        if (header->flags.emissionType == SPL_EMISSION_TYPE_CYLINDER_SURFACE) {
+            VecFx32 tmp;
+            tmp.x = FX_MUL(ptcl->velocity.x, emtr->crossAxis1.x) + FX_MUL(ptcl->velocity.y, emtr->crossAxis2.x);
+            tmp.y = FX_MUL(ptcl->velocity.x, emtr->crossAxis1.y) + FX_MUL(ptcl->velocity.y, emtr->crossAxis2.y);
+            tmp.z = FX_MUL(ptcl->velocity.x, emtr->crossAxis1.z) + FX_MUL(ptcl->velocity.y, emtr->crossAxis2.z);
 
-            ptcl->unk_30 = SPLRandom_DoubleScaledRangeFX32(emtr->unk_DC, resBase->unk_44.unk_00_0);
-            ptcl->unk_34 = FX32_ONE;
+            VEC_Normalize(&tmp, &posNorm);
+        } else if (ptcl->position.x == 0 && ptcl->position.y == 0 && ptcl->position.z == 0) {
+            SPLRandom_VecFx32(&posNorm);
+        } else {
+            VEC_Normalize(&ptcl->position, &posNorm);
+        }
 
-            if (resBase->flags.hasColorAnim && res->colorAnim->unk_08.unk_00_0) {
-                u16 clr[3];
-                u32 index = SPLRandom_S32(12);
-                clr[0] = res->colorAnim->unk_00;
-                clr[1] = resBase->unk_22;
-                clr[2] = res->colorAnim->unk_02;
-                ptcl->unk_36 = clr[index % 3];
-            } else {
-                ptcl->unk_36 = resBase->unk_22;
-            }
+        ptcl->velocity.x = FX_MUL(posNorm.x, magPos) + FX_MUL(emtr->axis.x, magAxis) + emtr->particleInitVelocity.x;
+        ptcl->velocity.y = FX_MUL(posNorm.y, magPos) + FX_MUL(emtr->axis.y, magAxis) + emtr->particleInitVelocity.y;
+        ptcl->velocity.z = FX_MUL(posNorm.z, magPos) + FX_MUL(emtr->axis.z, magAxis) + emtr->particleInitVelocity.z;
 
-            ptcl->unk_2E.unk_00_0 = emtr->misc.unk_01_0;
-            ptcl->unk_2E.unk_00_5 = 31;
+        ptcl->emitterPos = emtr->position;
 
-            if (resBase->flags.unk_05_5) {
-                ptcl->rotation = SPLRandom_S32(32);
-            } else {
-                ptcl->rotation = emtr->unk_C6;
-            }
+        ptcl->baseScale = SPLRandom_DoubleScaledRangeFX32(emtr->baseScale, header->randomAttenuation.baseScale);
+        ptcl->unk_34 = FX32_ONE;
 
-            if (resBase->flags.unk_05_4) {
-                ptcl->angularVelocity = (u32)SPLRandom_BetweenFX32(resBase->unk_34, resBase->unk_36) >> FX32_SHIFT;
-            } else {
-                ptcl->angularVelocity = 0;
-            }
+        if (header->flags.hasColorAnim && res->colorAnim->unk_08.unk_00_0) {
+            u16 clr[3];
+            u32 index = SPLRandom_S32(12);
+            clr[0] = res->colorAnim->startColor;
+            clr[1] = header->color;
+            clr[2] = res->colorAnim->endColor;
+            ptcl->color = clr[index % 3];
+        } else {
+            ptcl->color = header->color;
+        }
 
-            ptcl->lifeTime = SPLRandom_ScaledRangeFX32(emtr->particleLifeTime, resBase->unk_44.unk_01_0) + 1;
-            ptcl->age = 0;
+        ptcl->visibility.baseAlpha = emtr->misc.baseAlpha;
+        ptcl->visibility.animAlpha = 31;
 
-            if (resBase->flags.hasTexAnim && res->texAnim->unk_08.unk_02_0) {
-                ptcl->misc.unk_00 = res->texAnim->unk_00[SPLRandom_U32(12) % res->texAnim->unk_08.unk_00_0];
-            } else if (resBase->flags.hasTexAnim && !res->texAnim->unk_08.unk_02_0) {
-                ptcl->misc.unk_00 = res->texAnim->unk_00[0];
-            } else {
-                ptcl->misc.unk_00 = resBase->misc.textureIndex;
-            }
+        if (header->flags.unk_05_5) {
+            ptcl->rotation = SPLRandom_S32(32);
+        } else {
+            ptcl->rotation = emtr->unk_C6;
+        }
 
-            ptcl->loopTimeFactor = 0xFFFF / res->header->misc.unk_04_0;
-            ptcl->lifeTimeFactor = 0xFFFF / ptcl->lifeTime;
+        if (header->flags.hasRotation) {
+            ptcl->angularVelocity = (u32)SPLRandom_BetweenFX32(header->minRotation, header->maxRotation) >> FX32_SHIFT;
+        } else {
+            ptcl->angularVelocity = 0;
+        }
 
-            ptcl->misc.lifeRateOffset = 0;
+        ptcl->lifeTime = SPLRandom_ScaledRangeFX32(emtr->particleLifeTime, header->randomAttenuation.lifeTime) + 1; // Life is always at least 1 frame
+        ptcl->age = 0;
 
-            if (resBase->flags.unk_06_4) {
-                ptcl->misc.lifeRateOffset = (u8)SPLRandom_S32(8);
-            }
-            i++;
-        } while (i < curGenNum);
+        if (header->flags.hasTexAnim && res->texAnim->param.randomizeInit) {
+            ptcl->misc.texture = res->texAnim->textures[SPLRandom_U32(12) % res->texAnim->param.frameCount];
+        } else if (header->flags.hasTexAnim && !res->texAnim->param.randomizeInit) {
+            ptcl->misc.texture = res->texAnim->textures[0];
+        } else {
+            ptcl->misc.texture = header->misc.textureIndex;
+        }
+        
+        ptcl->loopTimeFactor = 0xFFFF / res->header->misc.loopFrames;
+        ptcl->lifeTimeFactor = 0xFFFF / ptcl->lifeTime;
+
+        ptcl->misc.lifeRateOffset = 0;
+
+        if (header->flags.randomizeLoopedAnim) {
+            ptcl->misc.lifeRateOffset = (u8)SPLRandom_S32(8);
+        }
     }
 }
 
@@ -322,19 +320,19 @@ void sub_020A05BC(SPLParticle *ptcl, SPLEmitter *emtr, SPLList *list)
         // `unk_08.unk_00_0` and `unk_08.unk_01_0` in `UnkSPLStruct14`
         // could just be `u8 unk_08;` and `u8 unk_09;`
         // instead of an inner struct
-        int idk = ptcl->unk_30 * ptcl->unk_34 >> FX32_SHIFT;
-        chld->unk_30 = idk * (chldRes->unk_08.unk_01_0 + 1) >> 6;
+        int idk = ptcl->baseScale * ptcl->unk_34 >> FX32_SHIFT;
+        chld->baseScale = idk * (chldRes->unk_08.unk_01_0 + 1) >> 6;
 
         chld->unk_34 = FX32_ONE;
 
         if (chldRes->flags.unk_02_6) {
-            chld->unk_36 = chldRes->unk_0A;
+            chld->color = chldRes->unk_0A;
         } else {
-            chld->unk_36 = ptcl->unk_36;
+            chld->color = ptcl->color;
         }
 
-        chld->unk_2E.unk_00_0 = (ptcl->unk_2E.unk_00_0 * (ptcl->unk_2E.unk_00_5 + 1)) >> 5;
-        chld->unk_2E.unk_00_5 = 31;
+        chld->visibility.baseAlpha = (ptcl->visibility.baseAlpha * (ptcl->visibility.animAlpha + 1)) >> 5;
+        chld->visibility.animAlpha = 31;
 
         switch (chldRes->flags.unk_02_3) {
         case 0:
@@ -353,7 +351,7 @@ void sub_020A05BC(SPLParticle *ptcl, SPLEmitter *emtr, SPLList *list)
 
         chld->lifeTime = chldRes->unk_06;
         chld->age = 0;
-        chld->misc.unk_00 = chldRes->misc.textureIndex;
+        chld->misc.texture = chldRes->misc.textureIndex;
 
         chld->loopTimeFactor = 0xFFFF / (ptcl->lifeTime / 2);
         chld->lifeTimeFactor = 0xFFFF / ptcl->lifeTime;
