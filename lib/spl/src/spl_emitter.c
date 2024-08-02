@@ -75,42 +75,42 @@ void SPLEmitter_Init(SPLEmitter *emtr, SPLResource *res, const VecFx32 *pos)
     emtr->age = 0;
     emtr->emissionCountFractional = 0;
 
-    emtr->axis = emtr->resource->header->unk_1C;
-    emtr->initAngle = emtr->resource->header->unk_38;
+    emtr->axis = emtr->resource->header->axis;
+    emtr->initAngle = emtr->resource->header->initAngle;
     emtr->emissionCount = emtr->resource->header->emissionCount;
-    emtr->radius = emtr->resource->header->unk_14;
-    emtr->length = emtr->resource->header->unk_18;
-    emtr->initVelPositionAmplifier = emtr->resource->header->unk_24;
-    emtr->initVelAxisAmplifier = emtr->resource->header->unk_28;
-    emtr->baseScale = emtr->resource->header->unk_2C;
+    emtr->radius = emtr->resource->header->radius;
+    emtr->length = emtr->resource->header->length;
+    emtr->initVelPositionAmplifier = emtr->resource->header->initVelPosAmplifier;
+    emtr->initVelAxisAmplifier = emtr->resource->header->initVelAxisAmplifier;
+    emtr->baseScale = emtr->resource->header->baseScale;
     emtr->particleLifeTime = emtr->resource->header->particleLifeTime;
 
     emtr->color = GX_RGB(31, 31, 31);
-    emtr->misc.emissionInterval = emtr->resource->header->misc.unk_00_0;
-    emtr->misc.baseAlpha = emtr->resource->header->misc.unk_01_0;
+    emtr->misc.emissionInterval = emtr->resource->header->misc.emissionInterval;
+    emtr->misc.baseAlpha = emtr->resource->header->misc.baseAlpha;
     emtr->misc.updateCycle = 0;
-    emtr->misc.unk_02_3 = 0;
+    emtr->misc.reserved = 0;
     emtr->collisionPlaneHeight = FX32_MIN;
-    emtr->textureS = FX32_ONE << emtr->resource->header->misc.unk_07_0;
-    emtr->textureT = FX32_ONE << emtr->resource->header->misc.unk_07_2;
+    emtr->textureS = FX32_ONE << emtr->resource->header->misc.textureTileCountS;
+    emtr->textureT = FX32_ONE << emtr->resource->header->misc.textureTileCountT;
 
-    if (emtr->resource->header->misc.unk_08_0) {
+    if (emtr->resource->header->misc.flipTextureS) {
         emtr->textureS *= -1;
     }
 
-    if (emtr->resource->header->misc.unk_08_1) {
+    if (emtr->resource->header->misc.flipTextureT) {
         emtr->textureT *= -1;
     }
 
     if (emtr->resource->header->flags.hasChildResource) {
-        emtr->childTextureS = FX32_ONE << emtr->resource->childResource->misc.unk_04_0;
-        emtr->childTextureT = FX32_ONE << emtr->resource->childResource->misc.unk_04_2;
+        emtr->childTextureS = FX32_ONE << emtr->resource->childResource->misc.textureTileCountS;
+        emtr->childTextureT = FX32_ONE << emtr->resource->childResource->misc.textureTileCountT;
 
-        if (emtr->resource->childResource->misc.unk_04_4) {
+        if (emtr->resource->childResource->misc.flipTextureS) {
             emtr->childTextureS *= -1;
         }
 
-        if (emtr->resource->childResource->misc.unk_04_5) {
+        if (emtr->resource->childResource->misc.flipTextureT) {
             emtr->childTextureT *= -1;
         }
     }
@@ -119,8 +119,8 @@ void SPLEmitter_Init(SPLEmitter *emtr, SPLResource *res, const VecFx32 *pos)
     emtr->particles.first = emtr->childParticles.first = NULL;
     emtr->particles.count = emtr->childParticles.count = 0;
     emtr->updateCallback = NULL;
-    emtr->unk_104 = NULL;
-    emtr->unk_108.unk_108_val1 = 0;
+    emtr->userDataPtr = NULL;
+    emtr->userData.u32 = 0;
 }
 
 void SPLEmitter_Update(SPLManager *mgr, SPLEmitter *emtr)
