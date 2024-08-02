@@ -9,9 +9,9 @@
 
 enum SPLCircleAxis {
     SPL_CIRCLE_AXIS_Z = 0,
-    SPL_CIRCLE_AXIS_Y = 1,
-    SPL_CIRCLE_AXIS_X = 2,
-    SPL_CIRCLE_AXIS_EMITTER = 3, // The emitter's axis
+    SPL_CIRCLE_AXIS_Y,
+    SPL_CIRCLE_AXIS_X,
+    SPL_CIRCLE_AXIS_EMITTER, // The emitter's axis
 };
 
 enum SPLEmissionType {
@@ -29,14 +29,19 @@ enum SPLEmissionType {
 
 enum SPLChildRotationType {
     SPL_CHILD_ROT_NONE = 0,
-    SPL_CHILD_ROT_INHERIT_ANGLE = 1,
-    SPL_CHILD_ROT_INHERIT_ANGLE_AND_VELOCITY = 2,
+    SPL_CHILD_ROT_INHERIT_ANGLE,
+    SPL_CHILD_ROT_INHERIT_ANGLE_AND_VELOCITY,
 };
 
 enum SPLScaleAnimDir {
     SPL_SCALE_ANIM_DIR_XY = 0,
-    SPL_SCALE_ANIM_DIR_X = 1,
-    SPL_SCALE_ANIM_DIR_Y = 2,
+    SPL_SCALE_ANIM_DIR_X,
+    SPL_SCALE_ANIM_DIR_Y,
+};
+
+enum SPLPolygonRotAxis {
+    SPL_POLYGON_ROT_AXIS_Y = 0,
+    SPL_POLYGON_ROT_AXIS_XYZ,
 };
 
 typedef struct SPLArcHdr {
@@ -69,8 +74,8 @@ typedef union SPLResourceFlags {
         u32 selfMaintaining : 1;
         u32 followEmitter : 1;
         u32 hasChildResource : 1;
-        u32 unk_06_1 : 2;
-        u32 unk_06_3 : 1;
+        u32 polygonRotAxis : 2; // The axis to rotate the polygon around when using the 'polygon' draw types
+        u32 polygonReferencePlane : 1;
         u32 randomizeLoopedAnim : 1;
         u32 drawChildrenFirst : 1; // If set, child particles will be rendered before parent particles
         u32 hideParent : 1; // If set, only child particles will be rendered
@@ -96,8 +101,8 @@ typedef union SPLChildResourceFlags {
         u16 followEmitter : 1;
         u16 useChildColor : 1;
         u16 drawType : 2;
-        u16 unk_03_1 : 2;
-        u16 unk_03_3 : 1;
+        u16 polygonRotAxis : 2;
+        u16 polygonReferencePlane : 1;
         u16 reserved_03_4 : 4;
     };
 } SPLChildResourceFlags;
@@ -160,7 +165,7 @@ typedef struct SPLResourceHeader {
         u32 textureTileCountS : 2; // Number of times to tile the texture in the S direction
         u32 textureTileCountT : 2; // Number of times to tile the texture in the T direction
         u32 scaleAnimDir : 3; // Maps to SPLScaleAnimDir
-        u32 unk_07_7 : 1;
+        u32 dpolFaceEmitter : 1; // If set, the polygon will face the emitter
         u32 flipTextureS : 1;
         u32 flipTextureT : 1;
         u32 unk_08_2 : 3;
@@ -246,7 +251,7 @@ typedef struct SPLChildResource {
         u32 textureTileCountT : 2;
         u32 flipTextureS : 1;
         u32 flipTextureT : 1;
-        u32 unk_04_6 : 1;
+        u32 dpolFaceEmitter : 1; // If set, the polygon will face the emitter
         u32 reserved_04_7 : 25;
     } misc;
 } SPLChildResource;

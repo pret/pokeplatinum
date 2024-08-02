@@ -341,13 +341,13 @@ static void SPLManager_DrawParticles(SPLManager *mgr)
         drawFunc = SPLDraw_DirectionalBillboard;
         break;
     case 2:
-        drawFunc = sub_0209E9A0;
+        drawFunc = SPLDraw_Polygon;
         break;
     case 3:
-        drawFunc = sub_0209E1D4;
+        drawFunc = SPLDraw_DirectionalPolygon;
         break;
     case 4:
-        drawFunc = sub_0209E1D4;
+        drawFunc = SPLDraw_DirectionalPolygon;
         break;
     }
 
@@ -379,13 +379,13 @@ static void SPLManager_DrawChildParticles(SPLManager *mgr)
         drawFunc = SPLDraw_Child_DirectionalBillboard;
         break;
     case 2:
-        drawFunc = sub_0209E650;
+        drawFunc = SPLDraw_Child_Polygon;
         break;
     case 3:
-        drawFunc = sub_0209DD54;
+        drawFunc = SPLDraw_Child_DirectionalPolygon;
         break;
     case 4:
-        drawFunc = sub_0209DD54;
+        drawFunc = SPLDraw_Child_DirectionalPolygon;
         break;
     }
 

@@ -22,12 +22,12 @@
 
 void SPLDraw_Child_Billboard(SPLManager *mgr, SPLParticle *ptcl);
 void SPLDraw_Child_DirectionalBillboard(SPLManager *mgr, SPLParticle *ptcl);
-void sub_0209E650(SPLManager *mgr, SPLParticle *ptcl);
-void sub_0209DD54(SPLManager *mgr, SPLParticle *ptcl);
+void SPLDraw_Child_Polygon(SPLManager *mgr, SPLParticle *ptcl);
+void SPLDraw_Child_DirectionalPolygon(SPLManager *mgr, SPLParticle *ptcl);
 void SPLDraw_Billboard(SPLManager *mgr, SPLParticle *ptcl);
 void SPLDraw_DirectionalBillboard(SPLManager *mgr, SPLParticle *ptcl);
-void sub_0209E9A0(SPLManager *mgr, SPLParticle *ptcl);
-void sub_0209E1D4(SPLManager *mgr, SPLParticle *ptcl);
+void SPLDraw_Polygon(SPLManager *mgr, SPLParticle *ptcl);
+void SPLDraw_DirectionalPolygon(SPLManager *mgr, SPLParticle *ptcl);
 
 void SPLAnim_Scale(SPLParticle *ptcl, SPLResource *res, int lifeRate); // spl_scl_in_out
 void SPLAnim_Color(SPLParticle *ptcl, SPLResource *res, int lifeRate); // spl_clr_in_out
