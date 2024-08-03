@@ -591,8 +591,8 @@ static void ov104_02237C30(SPLEmitter *param0)
         sub_02014798(param0, &v1);
         v1.x *= -1;
 
-        SPL_UnkInline5(param0, &v1);
-        SPL_UnkInline1(param0, v3);
+        SPLEmitter_SetAxis(param0, &v1);
+        SPLEmitter_SetPos(param0, v3);
     }
 
     return;

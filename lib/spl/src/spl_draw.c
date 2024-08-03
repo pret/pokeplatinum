@@ -7,27 +7,24 @@
 #include <nitro/gx/g3.h>
 #include <nitro/gx/g3imm.h>
 
-#include "spl_particle.h"
-#include "spl_manager.h"
 #include "spl_internal.h"
+#include "spl_manager.h"
+#include "spl_particle.h"
 #include "spl_resource.h"
 
 typedef void (*RotFunc)(fx32 sin, fx32 cos, MtxFx43 *rot);
 typedef void (*DrawPlaneFunc)(fx16 s, fx16 t, fx16 offsetX, fx16 offsetY);
 
-void SPLDraw_Child_Billboard(SPLManager *mgr, SPLParticle *ptcl); // spl_draw_chld_bb
-void SPLDraw_Child_DirectionalBillboard(SPLManager *mgr, SPLParticle *ptcl); // spl_draw_chld_dbb
-void SPLDraw_Child_Polygon(SPLManager *mgr, SPLParticle *ptcl); // spl_draw_chld_pol
-void SPLDraw_Child_DirectionalPolygon(SPLManager *mgr, SPLParticle *ptcl); // spl_draw_chld_dpl
-
-void SPLDraw_Billboard(SPLManager *mgr, SPLParticle *ptcl); // spl_draw_bb
-void SPLDraw_DirectionalBillboard(SPLManager *mgr, SPLParticle *ptcl); // spl_draw_dbb
-void SPLDraw_Polygon(SPLManager *mgr, SPLParticle *ptcl); // spl_draw_pol
-void SPLDraw_DirectionalPolygon(SPLManager *mgr, SPLParticle *ptcl); // spl_draw_dpl
-
+void SPLDraw_Billboard(SPLManager *mgr, SPLParticle *ptcl);
+void SPLDraw_Child_Billboard(SPLManager *mgr, SPLParticle *ptcl);
+void SPLDraw_DirectionalBillboard(SPLManager *mgr, SPLParticle *ptcl);
+void SPLDraw_Child_DirectionalBillboard(SPLManager *mgr, SPLParticle *ptcl);
+void SPLDraw_Polygon(SPLManager *mgr, SPLParticle *ptcl);
+void SPLDraw_Child_Polygon(SPLManager *mgr, SPLParticle *ptcl);
+void SPLDraw_DirectionalPolygon(SPLManager *mgr, SPLParticle *ptcl);
+void SPLDraw_Child_DirectionalPolygon(SPLManager *mgr, SPLParticle *ptcl);
 static void SPLUtil_DrawXYPlane(fx16 s, fx16 t, fx16 offsetX, fx16 offsetY);
 static void SPLUtil_DrawXZPlane(fx16 s, fx16 t, fx16 offsetX, fx16 offsetZ);
-
 static void SPLUtil_RotateXYZ(fx32 sin, fx32 cos, MtxFx43 *mat);
 static void SPLUtil_RotateY(fx32 sin, fx32 cos, MtxFx43 *mat);
 
@@ -106,16 +103,34 @@ static void SPLUtil_RotateXYZ(fx32 sin, fx32 cos, MtxFx43 *mat)
     Sp = C - FX_MUL(sin, FX32_SQRT1_3);
     C += cos;
 
-    mat->m[0][0] = C;   mat->m[1][0] = Sm;  mat->m[2][0] = Sp;  mat->m[3][0] = 0;
-    mat->m[0][1] = Sp;  mat->m[1][1] = C;   mat->m[2][1] = Sm;  mat->m[3][1] = 0;
-    mat->m[0][2] = Sm;  mat->m[1][2] = Sp;  mat->m[2][2] = C;   mat->m[3][2] = 0;
+    mat->m[0][0] = C;
+    mat->m[1][0] = Sm;
+    mat->m[2][0] = Sp;
+    mat->m[3][0] = 0;
+    mat->m[0][1] = Sp;
+    mat->m[1][1] = C;
+    mat->m[2][1] = Sm;
+    mat->m[3][1] = 0;
+    mat->m[0][2] = Sm;
+    mat->m[1][2] = Sp;
+    mat->m[2][2] = C;
+    mat->m[3][2] = 0;
 }
 
 static void SPLUtil_RotateY(fx32 sin, fx32 cos, MtxFx43 *mat)
 {
-    mat->m[0][0] = cos;     mat->m[1][0] = 0;           mat->m[2][0] = sin;     mat->m[3][0] = 0;
-    mat->m[0][1] = 0;       mat->m[1][1] = FX32_ONE;    mat->m[2][1] = 0;       mat->m[3][1] = 0;
-    mat->m[0][2] = -sin;    mat->m[1][2] = 0;           mat->m[2][2] = cos;     mat->m[3][2] = 0;
+    mat->m[0][0] = cos;
+    mat->m[1][0] = 0;
+    mat->m[2][0] = sin;
+    mat->m[3][0] = 0;
+    mat->m[0][1] = 0;
+    mat->m[1][1] = FX32_ONE;
+    mat->m[2][1] = 0;
+    mat->m[3][1] = 0;
+    mat->m[0][2] = -sin;
+    mat->m[1][2] = 0;
+    mat->m[2][2] = cos;
+    mat->m[3][2] = 0;
 }
 
 void SPLDraw_Billboard(SPLManager *mgr, SPLParticle *ptcl)
@@ -193,8 +208,8 @@ void SPLDraw_Billboard(SPLManager *mgr, SPLParticle *ptcl)
 
         G3_Identity();
         G3_Translate(
-            mgr->renderState.emitter->resource->header->emitterBasePos.x, 
-            mgr->renderState.emitter->resource->header->emitterBasePos.y, 
+            mgr->renderState.emitter->resource->header->emitterBasePos.x,
+            mgr->renderState.emitter->resource->header->emitterBasePos.y,
             mgr->renderState.emitter->resource->header->emitterBasePos.z);
         G3_MultMtx43(&load);
     }
@@ -205,9 +220,9 @@ void SPLDraw_Billboard(SPLManager *mgr, SPLParticle *ptcl)
         GX_RGB_B_(ptclCol) * GX_RGB_B_(emtrCol) >> 25));
 
     SPLUtil_DrawXYPlane(
-        mgr->renderState.emitter->textureS, 
-        mgr->renderState.emitter->textureT, 
-        mgr->renderState.emitter->resource->header->polygonX, 
+        mgr->renderState.emitter->textureS,
+        mgr->renderState.emitter->textureT,
+        mgr->renderState.emitter->resource->header->polygonX,
         mgr->renderState.emitter->resource->header->polygonY);
 }
 
@@ -288,8 +303,8 @@ void SPLDraw_Child_Billboard(SPLManager *mgr, SPLParticle *ptcl)
 
         G3_Identity();
         G3_Translate(
-            mgr->renderState.emitter->resource->header->emitterBasePos.x, 
-            mgr->renderState.emitter->resource->header->emitterBasePos.y, 
+            mgr->renderState.emitter->resource->header->emitterBasePos.x,
+            mgr->renderState.emitter->resource->header->emitterBasePos.y,
             mgr->renderState.emitter->resource->header->emitterBasePos.z);
         G3_MultMtx43(&load);
     }
@@ -426,8 +441,8 @@ void SPLDraw_DirectionalBillboard(SPLManager *mgr, SPLParticle *ptcl)
 
         G3_Identity();
         G3_Translate(
-            mgr->renderState.emitter->resource->header->emitterBasePos.x, 
-            mgr->renderState.emitter->resource->header->emitterBasePos.y, 
+            mgr->renderState.emitter->resource->header->emitterBasePos.x,
+            mgr->renderState.emitter->resource->header->emitterBasePos.y,
             mgr->renderState.emitter->resource->header->emitterBasePos.z);
         G3_MultMtx43(&load);
     }
@@ -439,9 +454,9 @@ void SPLDraw_DirectionalBillboard(SPLManager *mgr, SPLParticle *ptcl)
 
     SPLEmitter *emtr = mgr->renderState.emitter;
     SPLUtil_DrawXYPlane(
-        emtr->textureS, 
-        emtr->textureT, 
-        emtr->resource->header->polygonX, 
+        emtr->textureS,
+        emtr->textureT,
+        emtr->resource->header->polygonX,
         emtr->resource->header->polygonY);
 }
 
@@ -569,8 +584,8 @@ void SPLDraw_Child_DirectionalBillboard(SPLManager *mgr, SPLParticle *ptcl)
 
         G3_Identity();
         G3_Translate(
-            mgr->renderState.emitter->resource->header->emitterBasePos.x, 
-            mgr->renderState.emitter->resource->header->emitterBasePos.y, 
+            mgr->renderState.emitter->resource->header->emitterBasePos.x,
+            mgr->renderState.emitter->resource->header->emitterBasePos.y,
             mgr->renderState.emitter->resource->header->emitterBasePos.z);
         G3_MultMtx43(&load);
     }
@@ -596,8 +611,8 @@ void SPLDraw_Polygon(SPLManager *mgr, SPLParticle *ptcl)
     }
 
     sRotationFunctions[mgr->renderState.emitter->resource->header->flags.polygonRotAxis](
-        FX_SinIdx(ptcl->rotation), 
-        FX_CosIdx(ptcl->rotation), 
+        FX_SinIdx(ptcl->rotation),
+        FX_CosIdx(ptcl->rotation),
         &rotMat);
 
     sclY = ptcl->baseScale;
@@ -635,8 +650,8 @@ void SPLDraw_Polygon(SPLManager *mgr, SPLParticle *ptcl)
 
         G3_Identity();
         G3_Translate(
-            mgr->renderState.emitter->resource->header->emitterBasePos.x, 
-            mgr->renderState.emitter->resource->header->emitterBasePos.y, 
+            mgr->renderState.emitter->resource->header->emitterBasePos.x,
+            mgr->renderState.emitter->resource->header->emitterBasePos.y,
             mgr->renderState.emitter->resource->header->emitterBasePos.z);
         G3_MultMtx43(mgr->renderState.viewMatrix);
         G3_MultMtx43(&load);
@@ -648,9 +663,9 @@ void SPLDraw_Polygon(SPLManager *mgr, SPLParticle *ptcl)
         GX_RGB_B_(ptcl->color) * GX_RGB_B_(mgr->renderState.emitter->color) >> 25));
 
     sPlaneDrawingFunctions[mgr->renderState.emitter->resource->header->flags.polygonReferencePlane](
-        mgr->renderState.emitter->textureS, 
-        mgr->renderState.emitter->textureT, 
-        mgr->renderState.emitter->resource->header->polygonX, 
+        mgr->renderState.emitter->textureS,
+        mgr->renderState.emitter->textureT,
+        mgr->renderState.emitter->resource->header->polygonX,
         mgr->renderState.emitter->resource->header->polygonY);
 }
 
@@ -666,8 +681,8 @@ void SPLDraw_Child_Polygon(SPLManager *mgr, SPLParticle *ptcl)
     }
 
     sRotationFunctions[mgr->renderState.emitter->resource->childResource->flags.polygonRotAxis](
-        FX_SinIdx(ptcl->rotation), 
-        FX_CosIdx(ptcl->rotation), 
+        FX_SinIdx(ptcl->rotation),
+        FX_CosIdx(ptcl->rotation),
         &rotMat);
 
     sclY = ptcl->baseScale;
@@ -705,8 +720,8 @@ void SPLDraw_Child_Polygon(SPLManager *mgr, SPLParticle *ptcl)
 
         G3_Identity();
         G3_Translate(
-            mgr->renderState.emitter->resource->header->emitterBasePos.x, 
-            mgr->renderState.emitter->resource->header->emitterBasePos.y, 
+            mgr->renderState.emitter->resource->header->emitterBasePos.x,
+            mgr->renderState.emitter->resource->header->emitterBasePos.y,
             mgr->renderState.emitter->resource->header->emitterBasePos.z);
         G3_MultMtx43(mgr->renderState.viewMatrix);
         G3_MultMtx43(&load);
@@ -718,9 +733,9 @@ void SPLDraw_Child_Polygon(SPLManager *mgr, SPLParticle *ptcl)
         GX_RGB_B_(ptcl->color) * GX_RGB_B_(mgr->renderState.emitter->color) >> 25));
 
     sPlaneDrawingFunctions[mgr->renderState.emitter->resource->childResource->flags.polygonReferencePlane](
-        mgr->renderState.emitter->childTextureS, 
-        mgr->renderState.emitter->childTextureT, 
-        0, 
+        mgr->renderState.emitter->childTextureS,
+        mgr->renderState.emitter->childTextureT,
+        0,
         0);
 }
 
@@ -810,8 +825,8 @@ void SPLDraw_DirectionalPolygon(SPLManager *mgr, SPLParticle *ptcl)
 
         G3_Identity();
         G3_Translate(
-            mgr->renderState.emitter->resource->header->emitterBasePos.x, 
-            mgr->renderState.emitter->resource->header->emitterBasePos.y, 
+            mgr->renderState.emitter->resource->header->emitterBasePos.x,
+            mgr->renderState.emitter->resource->header->emitterBasePos.y,
             mgr->renderState.emitter->resource->header->emitterBasePos.z);
         G3_MultMtx43(mgr->renderState.viewMatrix);
         G3_MultMtx43(&load);
@@ -823,9 +838,9 @@ void SPLDraw_DirectionalPolygon(SPLManager *mgr, SPLParticle *ptcl)
         GX_RGB_B_(ptcl->color) * GX_RGB_B_(mgr->renderState.emitter->color) >> 25));
 
     sPlaneDrawingFunctions[mgr->renderState.emitter->resource->header->flags.polygonReferencePlane](
-        mgr->renderState.emitter->textureS, 
-        mgr->renderState.emitter->textureT, 
-        mgr->renderState.emitter->resource->header->polygonX, 
+        mgr->renderState.emitter->textureS,
+        mgr->renderState.emitter->textureT,
+        mgr->renderState.emitter->resource->header->polygonX,
         mgr->renderState.emitter->resource->header->polygonY);
 }
 
@@ -843,8 +858,8 @@ void SPLDraw_Child_DirectionalPolygon(SPLManager *mgr, SPLParticle *ptcl)
     }
 
     sRotationFunctions[mgr->renderState.emitter->resource->childResource->flags.polygonRotAxis](
-        FX_SinIdx(ptcl->rotation), 
-        FX_CosIdx(ptcl->rotation), 
+        FX_SinIdx(ptcl->rotation),
+        FX_CosIdx(ptcl->rotation),
         &rotMat);
 
     MTX_Identity43(&mat);
@@ -918,8 +933,8 @@ void SPLDraw_Child_DirectionalPolygon(SPLManager *mgr, SPLParticle *ptcl)
 
         G3_Identity();
         G3_Translate(
-            mgr->renderState.emitter->resource->header->emitterBasePos.x, 
-            mgr->renderState.emitter->resource->header->emitterBasePos.y, 
+            mgr->renderState.emitter->resource->header->emitterBasePos.x,
+            mgr->renderState.emitter->resource->header->emitterBasePos.y,
             mgr->renderState.emitter->resource->header->emitterBasePos.z);
         G3_MultMtx43(mgr->renderState.viewMatrix);
         G3_MultMtx43(&load);
@@ -931,8 +946,8 @@ void SPLDraw_Child_DirectionalPolygon(SPLManager *mgr, SPLParticle *ptcl)
         GX_RGB_B_(ptcl->color) * GX_RGB_B_(mgr->renderState.emitter->color) >> 25));
 
     sPlaneDrawingFunctions[mgr->renderState.emitter->resource->childResource->flags.polygonReferencePlane](
-        mgr->renderState.emitter->childTextureS, 
-        mgr->renderState.emitter->childTextureT, 
-        0, 
+        mgr->renderState.emitter->childTextureS,
+        mgr->renderState.emitter->childTextureT,
+        0,
         0);
 }

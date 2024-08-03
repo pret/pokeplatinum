@@ -17,7 +17,7 @@ libspl_public_includes = include_directories('include')
 libspl_srcs = files(
     'src/spl_manager.c',
     'src/spl_emitter.c',
-    'src/unk_0209DD54.c',
+    'src/spl_draw.c',
     'src/spl_emit.c',
     'src/spl_anim.c',
     'src/spl_behavior.c',

@@ -5,12 +5,12 @@
 
 #include "spl_emitter.h"
 
-#define SPL_SPIN_BEHAVIOR_AXIS_X            0
-#define SPL_SPIN_BEHAVIOR_AXIS_Y            1
-#define SPL_SPIN_BEHAVIOR_AXIS_Z            2
+#define SPL_SPIN_BEHAVIOR_AXIS_X 0
+#define SPL_SPIN_BEHAVIOR_AXIS_Y 1
+#define SPL_SPIN_BEHAVIOR_AXIS_Z 2
 
-#define SPL_COLLISION_BEHAVIOR_TYPE_KILL    0   // Kills the particle when it collides with the plane
-#define SPL_COLLISION_BEHAVIOR_TYPE_BOUNCE  1   // Bounces the particle off the plane
+#define SPL_COLLISION_BEHAVIOR_TYPE_KILL   0 // Kills the particle when it collides with the plane
+#define SPL_COLLISION_BEHAVIOR_TYPE_BOUNCE 1 // Bounces the particle off the plane
 
 // Applies a gravity behavior to particles
 typedef struct SPLGravityBehavior {
@@ -41,7 +41,7 @@ typedef struct SPLSpinBehavior {
 typedef struct SPLCollisionPlaneBehavior {
     fx32 y; // The Y position of the collision plane
     fx16 elasticity; // The elasticity of the collision, 1.0 being perfectly elastic and 0.0 being perfectly inelastic
-    
+
     struct {
         u16 collisionType : 2;
         u16 : 14;
@@ -55,7 +55,6 @@ typedef struct SPLConvergenceBehavior {
     fx16 force;
     u16 padding;
 } SPLConvergenceBehavior;
-
 
 void SPLBehavior_ApplyGravity(const void *param0, SPLParticle *param1, VecFx32 *param2, struct SPLEmitter *param3);
 void SPLBehavior_ApplyRandom(const void *param0, SPLParticle *param1, VecFx32 *param2, struct SPLEmitter *param3);

@@ -7,11 +7,19 @@
 
 #define SPL_TEX_ANIM_MAX_FRAMES 8
 
+enum SPLDrawType {
+    SPL_DRAW_TYPE_BILLBOARD = 0,
+    SPL_DRAW_TYPE_DIRECTIONAL_BILLBOARD,
+    SPL_DRAW_TYPE_POLYGON,
+    SPL_DRAW_TYPE_DIRECTIONAL_POLYGON,
+    SPL_DRAW_TYPE_DIRECTIONAL_POLYGON_CENTER,
+};
+
 enum SPLCircleAxis {
     SPL_CIRCLE_AXIS_Z = 0,
     SPL_CIRCLE_AXIS_Y,
     SPL_CIRCLE_AXIS_X,
-    SPL_CIRCLE_AXIS_EMITTER, // The emitter's axis
+    SPL_CIRCLE_AXIS_EMITTER,
 };
 
 enum SPLEmissionType {
@@ -44,7 +52,7 @@ enum SPLPolygonRotAxis {
     SPL_POLYGON_ROT_AXIS_XYZ,
 };
 
-typedef struct SPLArcHdr {
+typedef struct SPLFileHeader {
     u32 magic;
     u32 version;
     u16 resCount;
@@ -103,7 +111,7 @@ typedef union SPLChildResourceFlags {
         u16 drawType : 2;
         u16 polygonRotAxis : 2;
         u16 polygonReferencePlane : 1;
-        u16 reserved_03_4 : 4;
+        u16 : 4;
     };
 } SPLChildResourceFlags;
 
@@ -141,7 +149,7 @@ typedef struct SPLResourceHeader {
     s16 minRotation;
     s16 maxRotation;
     u16 initAngle;
-    u16 reserved_3A;
+    u16 reserved;
     u16 emitterLifeTime;
     u16 particleLifeTime;
 
@@ -168,16 +176,15 @@ typedef struct SPLResourceHeader {
         u32 dpolFaceEmitter : 1; // If set, the polygon will face the emitter
         u32 flipTextureS : 1;
         u32 flipTextureT : 1;
-        u32 unk_08_2 : 3;
-        u32 unk_08_5 : 27;
+        u32 : 30;
     } misc;
     fx16 polygonX;
     fx16 polygonY;
     struct {
-        u32 unk_00_0 : 8;
-        u32 reserved_01_0 : 24;
-    } unk_58;
-} SPLResourceHeader; // size=0x5C
+        u32 flags : 8;
+        u32 : 24;
+    } userData;
+} SPLResourceHeader;
 
 typedef struct SPLScaleAnim {
     fx16 start;
@@ -189,7 +196,7 @@ typedef struct SPLScaleAnim {
         u16 : 15;
     } flags;
     u16 padding;
-} SPLScaleAnim; // size=0xc
+} SPLScaleAnim;
 
 typedef struct SPLColorAnim {
     GXRgb start;
@@ -220,8 +227,8 @@ typedef struct SPLAlphaAnim {
         u16 : 7;
     } flags;
     SPLCurveInOut curve;
-    u16 reserved_06;
-} SPLAlphaAnim; // size=0x8
+    u16 padding;
+} SPLAlphaAnim;
 
 typedef struct SPLTexAnim {
     u8 textures[SPL_TEX_ANIM_MAX_FRAMES];
@@ -246,13 +253,13 @@ typedef struct SPLChildResource {
         u32 emissionCount : 8; // Number of particles to emit per emission interval
         u32 emissionDelay : 8; // Delay, as a fraction of the particle's lifetime, before the particle starts emitting
         u32 emissionInterval : 8;
-        u32 textureIndex : 8;
+        u32 texture : 8;
         u32 textureTileCountS : 2;
         u32 textureTileCountT : 2;
         u32 flipTextureS : 1;
         u32 flipTextureT : 1;
         u32 dpolFaceEmitter : 1; // If set, the polygon will face the emitter
-        u32 reserved_04_7 : 25;
+        u32 : 25;
     } misc;
 } SPLChildResource;
 
@@ -265,7 +272,7 @@ typedef struct SPLResource {
     SPLChildResource *childResource;
     SPLBehavior *behaviors;
     u16 behaviorCount;
-    u16 reserved_1E;
+    u16 reserved;
 } SPLResource;
 
 #endif // SPL_RESOURCE_H

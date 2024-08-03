@@ -3,11 +3,11 @@
 
 #include <nitro/types.h>
 
-#include "spl_particle.h"
 #include "spl_emitter.h"
+#include "spl_particle.h"
 #include "spl_texture.h"
 
-typedef void *(* SPLAllocFunc)(u32);
+typedef void *(*SPLAllocFunc)(u32);
 
 enum SPLDrawOrder {
     SPL_DRAW_ORDER_REVERSE = 0,
@@ -23,8 +23,8 @@ typedef struct SPLManager {
     SPLTexture *textures;
     u16 resCount;
     u16 texCount;
-    u16 unk_34;
-    u16 unk_36;
+    u16 maxEmitters;
+    u16 maxParticles;
     struct {
         u32 min : 6;
         u32 max : 6;
@@ -33,20 +33,20 @@ typedef struct SPLManager {
         u32 drawOrder : 1;
         u32 unused : 7;
     } polygonID;
-    s32 miscPolygonAttr;
+    GXPolygonAttrMisc miscPolygonAttr;
     struct {
         SPLEmitter *emitter; // current emitter being processed
         const MtxFx43 *viewMatrix; // current view matrix
     } renderState;
     u16 currentCycle;
-    u16 unk_4A;
-} SPLManager; // size=0x4c
+    u16 reserved;
+} SPLManager;
 
-typedef void(* SPLEmitterCallback)(SPLEmitter *emtr);
-typedef void(* SPLEmitterCallbackEx)(SPLEmitter *emtr, void *param);
+typedef void (*SPLEmitterCallback)(SPLEmitter *emtr);
+typedef void (*SPLEmitterCallbackEx)(SPLEmitter *emtr, void *param);
 
-typedef u32(* SPLTexVRAMAllocFunc)(u32 size, BOOL is4x4comp);
-typedef u32(* SPLPalVRAMAllocFunc)(u32 size, BOOL is4pal);
+typedef u32 (*SPLTexVRAMAllocFunc)(u32 size, BOOL is4x4comp);
+typedef u32 (*SPLPalVRAMAllocFunc)(u32 size, BOOL is4pal);
 
 SPLManager *SPLManager_New(SPLAllocFunc alloc, u16 maxEmitters, u16 maxParticles, u16 fixPolyID, u16 minPolyID, u16 maxPolyID);
 void SPLManager_LoadResource(SPLManager *mgr, const void *data);

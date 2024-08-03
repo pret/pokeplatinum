@@ -1,24 +1,23 @@
+#include "spl_manager.h"
+
+#include <nitro/fx/fx.h>
 #include <nnsys/gfd/VramManager/gfd_PlttVramMan_Types.h>
 #include <nnsys/gfd/VramManager/gfd_TexVramMan_Types.h>
-#include <nitro/fx/fx.h>
 
-#include "spl_emitter.h"
-#include "spl_list.h"
-#include "spl_manager.h"
 #include "spl_behavior.h"
+#include "spl_emitter.h"
 #include "spl_internal.h"
 #include "spl_particle.h"
 
 #define DECODE_WH(X) ((u16)(1 << ((X) + 3)))
-#define EMITTER_SHOULD_TERMINATE(emtr, header) \
-    ((\
-        (header->flags.selfMaintaining && header->emitterLifeTime != 0 && emtr->state.started && emtr->age > header->emitterLifeTime) \
-        || emtr->state.terminate \
-    ) && emtr->particles.count == 0 && emtr->childParticles.count == 0)
+#define EMITTER_SHOULD_TERMINATE(emtr, header)                                                                                         \
+    ((                                                                                                                                 \
+         (header->flags.selfMaintaining && header->emitterLifeTime != 0 && emtr->state.started && emtr->age > header->emitterLifeTime) \
+         || emtr->state.terminate)                                                                                                     \
+        && emtr->particles.count == 0 && emtr->childParticles.count == 0)
 
 static u32 SPLUtil_AllocTextureVRAM(u32 size, BOOL is4x4);
 static u32 SPLUtil_AllocPaletteVRAM(u32 size, BOOL is4Pltt);
-
 
 static u32 SPLUtil_AllocTextureVRAM(u32 size, BOOL is4x4)
 {
@@ -37,8 +36,8 @@ SPLManager *SPLManager_New(SPLAllocFunc alloc, u16 maxEmitters, u16 maxParticles
     SPLManager *mgr = alloc(sizeof(SPLManager));
     MI_CpuFill8(mgr, 0, sizeof(SPLManager));
 
-    mgr->unk_34 = maxEmitters;
-    mgr->unk_36 = maxParticles;
+    mgr->maxEmitters = maxEmitters;
+    mgr->maxParticles = maxParticles;
 
     mgr->polygonID.min = minPolyID;
     mgr->polygonID.max = maxPolyID;
@@ -57,7 +56,7 @@ SPLManager *SPLManager_New(SPLAllocFunc alloc, u16 maxEmitters, u16 maxParticles
     mgr->inactiveEmitters.first = NULL;
     mgr->inactiveParticles.first = NULL;
 
-    mgr->miscPolygonAttr = 0;
+    mgr->miscPolygonAttr = GX_POLYGON_ATTR_MISC_NONE;
     mgr->currentCycle = 0;
 
     SPLEmitter *emtr = alloc(maxEmitters * sizeof(SPLEmitter));
@@ -140,11 +139,11 @@ void SPLManager_LoadResource(SPLManager *mgr, const void *data)
         }
 
         // Sum up all behaviors
-        res->behaviorCount = flags.hasGravityBehavior 
-            + flags.hasRandomBehavior 
+        res->behaviorCount = flags.hasGravityBehavior
+            + flags.hasRandomBehavior
             + flags.hasMagnetBehavior
-            + flags.hasSpinBehavior 
-            + flags.hasCollisionPlaneBehavior 
+            + flags.hasSpinBehavior
+            + flags.hasCollisionPlaneBehavior
             + flags.hasConvergenceBehavior;
 
         if (res->behaviorCount != 0) {
@@ -187,7 +186,7 @@ void SPLManager_LoadResource(SPLManager *mgr, const void *data)
             }
 
             if (flags.hasConvergenceBehavior) {
-                behavior->object = (void *)((u8 *)spa + offset);
+                behavior->object = (const void *)((u8 *)spa + offset);
                 behavior->apply = SPLBehavior_ApplyConvergence;
                 offset += sizeof(SPLConvergenceBehavior);
             }
