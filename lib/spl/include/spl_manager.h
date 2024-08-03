@@ -2,6 +2,7 @@
 #define SPL_MANAGER_H
 
 #include <nitro/types.h>
+#include <nitro/gx/g3.h>
 
 #include "spl_emitter.h"
 #include "spl_particle.h"
@@ -49,7 +50,7 @@ typedef u32 (*SPLTexVRAMAllocFunc)(u32 size, BOOL is4x4comp);
 typedef u32 (*SPLPalVRAMAllocFunc)(u32 size, BOOL is4pal);
 
 SPLManager *SPLManager_New(SPLAllocFunc alloc, u16 maxEmitters, u16 maxParticles, u16 fixPolyID, u16 minPolyID, u16 maxPolyID);
-void SPLManager_LoadResource(SPLManager *mgr, const void *data);
+void SPLManager_LoadResources(SPLManager *mgr, const void *data);
 BOOL SPLManager_UploadTexturesEx(SPLManager *mgr, SPLTexVRAMAllocFunc vramAlloc);
 BOOL SPLManager_UploadPalettesEx(SPLManager *mgr, SPLPalVRAMAllocFunc vramAlloc);
 BOOL SPLManager_UploadTextures(SPLManager *mgr);
