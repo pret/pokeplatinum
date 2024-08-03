@@ -311,26 +311,18 @@ void SPLManager_Draw(SPLManager *mgr, const MtxFx43 *viewMatrix)
 
     mgr->renderState.viewMatrix = viewMatrix;
     if (mgr->polygonID.drawOrder == SPL_DRAW_ORDER_REVERSE) {
-        SPLEmitter *emtr = mgr->activeEmitters.first;
-
-        while (emtr != NULL) {
+        for (SPLEmitter *emtr = mgr->activeEmitters.first; emtr != NULL; emtr = emtr->next) {
             mgr->renderState.emitter = emtr;
             if (!emtr->state.renderingDisabled) {
                 SPLManager_DoDraw(mgr);
             }
-
-            emtr = emtr->next;
         }
     } else {
-        SPLEmitter *emtr = mgr->activeEmitters.last;
-
-        while (emtr != NULL) {
+        for (SPLEmitter *emtr = mgr->activeEmitters.last; emtr != NULL; emtr = emtr->prev) {
             mgr->renderState.emitter = emtr;
             if (!emtr->state.renderingDisabled) {
                 SPLManager_DoDraw(mgr);
             }
-
-            emtr = emtr->prev;
         }
     }
 }
@@ -423,12 +415,12 @@ void SPLManager_DeleteAllEmitters(SPLManager *mgr)
     }
 }
 
-void SPL_Emit(SPLManager *mgr, SPLEmitter *emtr)
+void SPLManager_Emit(SPLManager *mgr, SPLEmitter *emtr)
 {
     SPLEmitter_Emit(emtr, &mgr->inactiveParticles);
 }
 
-void SPL_EmitAt(SPLManager *mgr, SPLEmitter *emtr, VecFx32 *pos)
+void SPLManager_EmitAt(SPLManager *mgr, SPLEmitter *emtr, VecFx32 *pos)
 {
     emtr->position.x = pos->x + emtr->resource->header->emitterBasePos.x;
     emtr->position.y = pos->y + emtr->resource->header->emitterBasePos.y;
