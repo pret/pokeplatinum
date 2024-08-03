@@ -223,8 +223,8 @@ static void ov118_021D10B0(SPLEmitter *param0)
 
     v0 = sub_02014764();
 
-    SPL_UnkInline2(param0, Unk_ov118_021D1170[v0->unk_14][0]);
-    SPL_UnkInline3(param0, Unk_ov118_021D1170[v0->unk_14][1]);
+    SPLEmitter_SetPosX(param0, Unk_ov118_021D1170[v0->unk_14][0]);
+    SPLEmitter_SetPosY(param0, Unk_ov118_021D1170[v0->unk_14][1]);
 }
 
 static int ov118_021D10E8(void)

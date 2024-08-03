@@ -282,9 +282,9 @@ static void ov12_022242E0(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 
     param1->unk_2C = v0;
 
-    SPL_UnkInline2(param0, v0.x);
-    SPL_UnkInline3(param0, v0.y);
-    SPL_UnkInline4(param0, v0.z);
+    SPLEmitter_SetPosX(param0, v0.x);
+    SPLEmitter_SetPosY(param0, v0.y);
+    SPLEmitter_SetPosZ(param0, v0.z);
 }
 
 static const UnkStruct_ov12_022396AC Unk_ov12_022396AC[6][6];
@@ -596,7 +596,7 @@ static void ov12_02224614(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
     } break;
     }
 
-    SPL_UnkInline5(param0, &v2);
+    SPLEmitter_SetAxis(param0, &v2);
 }
 
 static void ov12_02224E74(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
@@ -667,7 +667,7 @@ static void ov12_02224EB8(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
         break;
     }
 
-    SPL_UnkInline4(param0, v0);
+    SPLEmitter_SetPosZ(param0, v0);
 }
 
 void ov12_02224F14(SPLEmitter *param0)

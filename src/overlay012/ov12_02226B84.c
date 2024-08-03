@@ -2870,12 +2870,12 @@ static BOOL ov12_02229A50(SPLEmitter *param0)
         int v2;
         int v3;
 
-        v1 = param0->unk_08.unk_00;
+        v1 = param0->particles.first;
 
         while (v1 != NULL) {
-            v2 = v1->unk_26;
-            v3 = v1->unk_24;
-            v1 = v1->unk_00;
+            v2 = v1->age;
+            v3 = v1->lifeTime;
+            v1 = v1->next;
         }
 
         if (v2 != v3) {
@@ -2909,12 +2909,12 @@ static void ov12_02229A6C(SysTask *param0, void *param1)
             return;
         }
 
-        SPL_UnkInline2(v0->unk_38, v0->unk_A8[0].unk_00 * 172);
-        SPL_UnkInline3(v0->unk_38, v0->unk_A8[0].unk_02 * 172);
+        SPLEmitter_SetPosX(v0->unk_38, v0->unk_A8[0].unk_00 * 172);
+        SPLEmitter_SetPosY(v0->unk_38, v0->unk_A8[0].unk_02 * 172);
 
         if (v0->unk_30) {
             v0->unk_2C += (360 / (v0->unk_06));
-            SPL_UnkInline3(v0->unk_38, (v0->unk_A8[0].unk_02 * 172) + sub_0201D250(v0->unk_2C));
+            SPLEmitter_SetPosY(v0->unk_38, (v0->unk_A8[0].unk_02 * 172) + sub_0201D250(v0->unk_2C));
         }
     }
 }
@@ -2954,8 +2954,8 @@ void ov12_02229B28(UnkStruct_ov12_0221FCDC *param0)
             v3->unk_1C = v3->unk_24 + 1;
         }
 
-        SPL_UnkInline2(v3->unk_38, v3->unk_A8[0].unk_00 * 172);
-        SPL_UnkInline3(v3->unk_38, v3->unk_A8[0].unk_02 * 172);
+        SPLEmitter_SetPosX(v3->unk_38, v3->unk_A8[0].unk_00 * 172);
+        SPLEmitter_SetPosY(v3->unk_38, v3->unk_A8[0].unk_02 * 172);
     }
 
     ov12_022201E8(v3->unk_3C.unk_04, ov12_02229A6C, v3);
@@ -3035,8 +3035,8 @@ void ov12_02229C5C(UnkStruct_ov12_0221FCDC *param0)
             v3->unk_1C = v3->unk_24 + 1;
         }
 
-        SPL_UnkInline2(v3->unk_38, v3->unk_A8[0].unk_00 * 172);
-        SPL_UnkInline3(v3->unk_38, (v3->unk_A8[0].unk_02 * 172));
+        SPLEmitter_SetPosX(v3->unk_38, v3->unk_A8[0].unk_00 * 172);
+        SPLEmitter_SetPosY(v3->unk_38, (v3->unk_A8[0].unk_02 * 172));
     }
 
     ov12_022201E8(v3->unk_3C.unk_04, ov12_02229A6C, v3);
@@ -3056,8 +3056,8 @@ static void ov12_02229DF0(SysTask *param0, void *param1)
         (v0) = NULL;
         return;
     } else {
-        SPL_UnkInline2(v0->unk_38, v0->unk_A8[0].unk_00 * 172);
-        SPL_UnkInline3(v0->unk_38, v0->unk_A8[0].unk_02 * 172);
+        SPLEmitter_SetPosX(v0->unk_38, v0->unk_A8[0].unk_00 * 172);
+        SPLEmitter_SetPosY(v0->unk_38, v0->unk_A8[0].unk_02 * 172);
     }
 }
 
@@ -3096,8 +3096,8 @@ void ov12_02229E54(UnkStruct_ov12_0221FCDC *param0)
             v3->unk_1C = v3->unk_24 + 1;
         }
 
-        SPL_UnkInline2(v3->unk_38, v3->unk_A8[0].unk_00 * 172);
-        SPL_UnkInline3(v3->unk_38, v3->unk_A8[0].unk_02 * 172);
+        SPLEmitter_SetPosX(v3->unk_38, v3->unk_A8[0].unk_00 * 172);
+        SPLEmitter_SetPosY(v3->unk_38, v3->unk_A8[0].unk_02 * 172);
     }
 
     ov12_022201E8(v3->unk_3C.unk_04, ov12_02229DF0, v3);
@@ -3120,8 +3120,8 @@ static void ov12_02229F9C(SysTask *param0, void *param1)
         v2.x = v0->unk_88.x + (v0->unk_58.unk_00 * 172);
         v2.y = v0->unk_88.y + (v0->unk_58.unk_02 * 172);
 
-        SPL_UnkInline2(v0->unk_38, v2.x);
-        SPL_UnkInline3(v0->unk_38, v2.y);
+        SPLEmitter_SetPosX(v0->unk_38, v2.x);
+        SPLEmitter_SetPosY(v0->unk_38, v2.y);
     }
 }
 
@@ -3164,8 +3164,8 @@ void ov12_0222A00C(UnkStruct_ov12_0221FCDC *param0)
         v1.x = v0->unk_88.x + (v0->unk_58.unk_00 * 172);
         v1.y = v0->unk_88.y + (v0->unk_58.unk_02 * 172);
 
-        SPL_UnkInline2(v0->unk_38, v1.x);
-        SPL_UnkInline3(v0->unk_38, v1.y);
+        SPLEmitter_SetPosX(v0->unk_38, v1.x);
+        SPLEmitter_SetPosY(v0->unk_38, v1.y);
     }
 
     ov12_022201E8(v0->unk_3C.unk_04, ov12_02229F9C, v0);
