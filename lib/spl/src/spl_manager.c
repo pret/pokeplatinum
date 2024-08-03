@@ -80,7 +80,7 @@ SPLManager *SPLManager_New(SPLAllocFunc alloc, u16 maxEmitters, u16 maxParticles
     return mgr;
 }
 
-void SPLManager_LoadResource(SPLManager *mgr, const void *data)
+void SPLManager_LoadResources(SPLManager *mgr, const void *data)
 {
     // Required to match
     int i, offset;

@@ -432,7 +432,7 @@ void sub_020144CC(UnkStruct_02014014 *param0, void *param1, int param2, int para
 
 static void sub_02014560(UnkStruct_02014014 *param0)
 {
-    SPLManager_LoadResource(param0->unk_00, param0->unk_04);
+    SPLManager_LoadResources(param0->unk_00, param0->unk_04);
 
     Unk_021BF610 = param0;
     if (param0->unk_18 == NULL) {
