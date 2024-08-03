@@ -1,9 +1,8 @@
 #ifndef SPL_PARTICLE_H
 #define SPL_PARTICLE_H
 
-#include <nitro/types.h>
 #include <nitro/gx/gxcommon.h>
-
+#include <nitro/types.h>
 
 typedef struct SPLParticle {
     struct SPLParticle *next;
@@ -21,14 +20,13 @@ typedef struct SPLParticle {
     u16 loopTimeFactor;
     u16 lifeTimeFactor;
 
-    struct {
-        u16 texture : 8; // Index of the current texture in the resource
+    u8 texture; // Index of the current texture in the resource
 
-        // A value between 0 and 255 that is added to the life rate of the particle.
-        // This is used only for looping particles, so particles spawned at the same time
-        // don't have aren't all in sync (animation-wise)
-        u16 lifeRateOffset : 8;
-    } misc;
+    // A value between 0 and 255 that is added to the life rate of the particle.
+    // This is used only for looping particles, so particles spawned at the same time
+    // don't have aren't all in sync (animation-wise)
+    u8 lifeRateOffset;
+
     struct {
         u16 baseAlpha : 5;
         u16 animAlpha : 5;
@@ -38,12 +36,12 @@ typedef struct SPLParticle {
     fx16 animScale;
     GXRgb color;
     VecFx32 emitterPos;
-} SPLParticle; // size=0x44
+} SPLParticle;
 
 typedef struct SPLParticleList {
     SPLParticle *first;
     int count;
     SPLParticle *last;
-} SPLParticleList; // size=0xc
+} SPLParticleList;
 
 #endif // SPL_PARTICLE_H

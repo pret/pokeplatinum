@@ -1,12 +1,14 @@
+#include "spl_emitter.h"
+
 #include <nitro/fx/fx.h>
 #include <nitro/fx/fx_const.h>
 #include <nitro/gx/g3.h>
 #include <nitro/gx/g3imm.h>
 
-#include "spl_emitter.h"
 #include "spl_internal.h"
 #include "spl_manager.h"
 #include "spl_particle.h"
+#include "spl_resource.h"
 #include "spl_texture.h"
 
 #define ANIM_FUNC_NO_LOOP 0
@@ -186,7 +188,7 @@ void SPLEmitter_Update(SPLManager *mgr, SPLEmitter *emtr)
         // For looping particles, it's a fraction of the number of frames in the loop
         // See the SPLParticle struct for more info
         lifeRates[ANIM_FUNC_NO_LOOP] = (ptcl->lifeTimeFactor * ptcl->age) >> 8;
-        lifeRates[ANIM_FUNC_LOOP] = ptcl->misc.lifeRateOffset + ((ptcl->loopTimeFactor * ptcl->age) >> 8);
+        lifeRates[ANIM_FUNC_LOOP] = ptcl->lifeRateOffset + ((ptcl->loopTimeFactor * ptcl->age) >> 8);
 
         for (i = 0; i < animCount; i++) {
             animFuncs[i].func(ptcl, res, lifeRates[animFuncs[i].loop]);
@@ -334,19 +336,19 @@ static void SPLManager_DrawParticles(SPLManager *mgr)
     SPLUtil_SetTexture(mgr->textures + header->misc.textureIndex);
 
     switch (header->flags.drawType) {
-    case 0:
+    case SPL_DRAW_TYPE_BILLBOARD:
         drawFunc = SPLDraw_Billboard;
         break;
-    case 1:
+    case SPL_DRAW_TYPE_DIRECTIONAL_BILLBOARD:
         drawFunc = SPLDraw_DirectionalBillboard;
         break;
-    case 2:
+    case SPL_DRAW_TYPE_POLYGON:
         drawFunc = SPLDraw_Polygon;
         break;
-    case 3:
+    case SPL_DRAW_TYPE_DIRECTIONAL_POLYGON:
         drawFunc = SPLDraw_DirectionalPolygon;
         break;
-    case 4:
+    case SPL_DRAW_TYPE_DIRECTIONAL_POLYGON_CENTER:
         drawFunc = SPLDraw_DirectionalPolygon;
         break;
     }
@@ -354,7 +356,7 @@ static void SPLManager_DrawParticles(SPLManager *mgr)
     SetTexFunc setTexFunc = header->flags.hasTexAnim ? SPLUtil_SetTexture : SPLUtil_SetTexture_Stub;
 
     for (SPLParticle *ptcl = emtr->particles.first; ptcl != NULL; ptcl = ptcl->next) {
-        setTexFunc(mgr->textures + ptcl->misc.texture);
+        setTexFunc(mgr->textures + ptcl->texture);
         drawFunc(mgr, ptcl);
     }
 }
@@ -369,22 +371,22 @@ static void SPLManager_DrawChildParticles(SPLManager *mgr)
         return;
     }
 
-    SPLUtil_SetTexture(mgr->textures + res->childResource->misc.textureIndex);
+    SPLUtil_SetTexture(mgr->textures + res->childResource->misc.texture);
 
     switch (res->childResource->flags.drawType) {
-    case 0:
+    case SPL_DRAW_TYPE_BILLBOARD:
         drawFunc = SPLDraw_Child_Billboard;
         break;
-    case 1:
+    case SPL_DRAW_TYPE_DIRECTIONAL_BILLBOARD:
         drawFunc = SPLDraw_Child_DirectionalBillboard;
         break;
-    case 2:
+    case SPL_DRAW_TYPE_POLYGON:
         drawFunc = SPLDraw_Child_Polygon;
         break;
-    case 3:
+    case SPL_DRAW_TYPE_DIRECTIONAL_POLYGON:
         drawFunc = SPLDraw_Child_DirectionalPolygon;
         break;
-    case 4:
+    case SPL_DRAW_TYPE_DIRECTIONAL_POLYGON_CENTER:
         drawFunc = SPLDraw_Child_DirectionalPolygon;
         break;
     }

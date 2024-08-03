@@ -94,9 +94,9 @@ void ov12_022238E0(SPLEmitter *param0)
         }
     }
 
-    SPL_UnkInline2(param0, v5.x);
-    SPL_UnkInline3(param0, v5.y);
-    SPL_UnkInline4(param0, v5.z);
+    SPLEmitter_SetPosX(param0, v5.x);
+    SPLEmitter_SetPosY(param0, v5.y);
+    SPLEmitter_SetPosZ(param0, v5.z);
 
     ov12_02235760(v2, &v7);
 
@@ -135,9 +135,9 @@ void ov12_02223998(SPLEmitter *param0)
 
     ov12_02235508(v0, 0, &v3);
 
-    SPL_UnkInline2(param0, v3.x);
-    SPL_UnkInline3(param0, v3.y);
-    SPL_UnkInline4(param0, v3.z);
+    SPLEmitter_SetPosX(param0, v3.x);
+    SPLEmitter_SetPosY(param0, v3.y);
+    SPLEmitter_SetPosZ(param0, v3.z);
 
     ov12_02235760(v2, &v4);
     sub_02014744(v1, &v4);
@@ -154,9 +154,9 @@ void ov12_022239F4(SPLEmitter *param0)
 
     ov12_02235508(v0, v1, &v2);
 
-    SPL_UnkInline2(param0, v2.x);
-    SPL_UnkInline3(param0, v2.y);
-    SPL_UnkInline4(param0, v2.z);
+    SPLEmitter_SetPosX(param0, v2.x);
+    SPLEmitter_SetPosY(param0, v2.y);
+    SPLEmitter_SetPosZ(param0, v2.z);
 }
 
 void ov12_02223A38(SPLEmitter *param0)
@@ -170,9 +170,9 @@ void ov12_02223A38(SPLEmitter *param0)
 
     ov12_02235508(v0, v1, &v2);
 
-    SPL_UnkInline2(param0, v2.x);
-    SPL_UnkInline3(param0, v2.y);
-    SPL_UnkInline4(param0, v2.z);
+    SPLEmitter_SetPosX(param0, v2.x);
+    SPLEmitter_SetPosY(param0, v2.y);
+    SPLEmitter_SetPosZ(param0, v2.z);
 }
 
 void ov12_02223A7C(SPLEmitter *param0)
@@ -188,9 +188,9 @@ void ov12_02223A7C(SPLEmitter *param0)
 
     ov12_02235508(v0, v1, &v3);
 
-    SPL_UnkInline2(param0, v3.x);
-    SPL_UnkInline3(param0, v3.y);
-    SPL_UnkInline4(param0, v3.z);
+    SPLEmitter_SetPosX(param0, v3.x);
+    SPLEmitter_SetPosY(param0, v3.y);
+    SPLEmitter_SetPosZ(param0, v3.z);
 }
 
 void ov12_02223AC8(SPLEmitter *param0)
@@ -217,9 +217,9 @@ void ov12_02223AC8(SPLEmitter *param0)
 
     ov12_02235448(v4, &v1, ov12_0221FDD4(v0), v3);
 
-    SPL_UnkInline2(param0, v1.x);
-    SPL_UnkInline3(param0, v1.y);
-    SPL_UnkInline4(param0, v1.z);
+    SPLEmitter_SetPosX(param0, v1.x);
+    SPLEmitter_SetPosY(param0, v1.y);
+    SPLEmitter_SetPosZ(param0, v1.z);
 }
 
 void ov12_02223B30(SPLEmitter *param0)
@@ -247,9 +247,9 @@ void ov12_02223B30(SPLEmitter *param0)
 
     ov12_02235448(v5, &v1, ov12_0221FDD4(v0), v4);
 
-    SPL_UnkInline2(param0, v1.x);
-    SPL_UnkInline3(param0, v1.y);
-    SPL_UnkInline4(param0, v1.z);
+    SPLEmitter_SetPosX(param0, v1.x);
+    SPLEmitter_SetPosY(param0, v1.y);
+    SPLEmitter_SetPosZ(param0, v1.z);
 }
 
 void ov12_02223B98(SPLEmitter *param0)
@@ -290,9 +290,9 @@ void ov12_02223B98(SPLEmitter *param0)
 
     VEC_Set(&v7, v5, v6, 0);
 
-    SPL_UnkInline2(param0, v7.x);
-    SPL_UnkInline3(param0, v7.y);
-    SPL_UnkInline4(param0, v7.z);
+    SPLEmitter_SetPosX(param0, v7.x);
+    SPLEmitter_SetPosY(param0, v7.y);
+    SPLEmitter_SetPosZ(param0, v7.z);
 }
 
 static void ov12_02223C40(int param0, s8 param1, VecFx32 *param2)
@@ -500,9 +500,9 @@ static void ov12_02223E74(UnkStruct_ov12_0221FCDC *param0, SPLEmitter *param1, i
         if ((v13[0] == 0) && (v13[1] == 0) && (v13[2] == 0)) {
             v1 = v14;
 
-            SPL_UnkInline2(param1, v14.x);
-            SPL_UnkInline3(param1, v14.y);
-            SPL_UnkInline4(param1, v14.z);
+            SPLEmitter_SetPosX(param1, v14.x);
+            SPLEmitter_SetPosY(param1, v14.y);
+            SPLEmitter_SetPosZ(param1, v14.z);
         } else {
             VEC_Set(&v1, v13[0], v13[1], v13[2]);
 
@@ -514,9 +514,9 @@ static void ov12_02223E74(UnkStruct_ov12_0221FCDC *param0, SPLEmitter *param1, i
             v1.y *= v5;
             v1.z = v14.z * v5;
 
-            SPL_UnkInline2(param1, v1.x);
-            SPL_UnkInline3(param1, v1.y);
-            SPL_UnkInline4(param1, v1.z);
+            SPLEmitter_SetPosX(param1, v1.x);
+            SPLEmitter_SetPosY(param1, v1.y);
+            SPLEmitter_SetPosZ(param1, v1.z);
         }
     }
 
@@ -533,7 +533,7 @@ static void ov12_02223E74(UnkStruct_ov12_0221FCDC *param0, SPLEmitter *param1, i
         }
     }
 
-    SPL_UnkInline5(param1, &v4);
+    SPLEmitter_SetAxis(param1, &v4);
 }
 
 static void ov12_02224138(SPLEmitter *param0, int param1, int param2)

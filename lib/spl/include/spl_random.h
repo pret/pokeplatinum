@@ -1,8 +1,8 @@
 #ifndef SPL_RANDOM_H
 #define SPL_RANDOM_H
 
-#include <nitro/types.h>
 #include <nitro/fx/fx_vec.h>
+#include <nitro/types.h>
 
 extern u32 gSPLRandomState;
 

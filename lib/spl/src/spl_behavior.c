@@ -1,10 +1,10 @@
+#include "spl_behavior.h"
+
 #include <nitro/fx/fx.h>
 #include <nitro/fx/fx_mtx33.h>
 #include <nitro/fx/fx_trig.h>
 
-#include "spl_behavior.h"
 #include "spl_random.h"
-
 
 void SPLBehavior_ApplyGravity(const void *obj, SPLParticle *ptcl, VecFx32 *acc, SPLEmitter *emtr)
 {
@@ -56,7 +56,7 @@ void SPLBehavior_ApplyCollisionPlane(const void *obj, SPLParticle *ptcl, VecFx32
     SPLCollisionPlaneBehavior *plane = (SPLCollisionPlaneBehavior *)obj;
     fx32 y = plane->y;
     fx32 ey;
-    
+
     if (emtr->collisionPlaneHeight != FX32_MIN) {
         y = emtr->collisionPlaneHeight;
     }

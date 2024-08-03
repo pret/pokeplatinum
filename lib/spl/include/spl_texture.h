@@ -3,7 +3,6 @@
 
 #include <nitro/types.h>
 
-
 typedef union SPLTextureParam {
     u32 all;
     struct {
@@ -25,8 +24,8 @@ typedef struct SPLTextureResource {
     u32 textureSize; // size of the texture data
     u32 paletteOffset; // offset to the palette data from the start of the header
     u32 paletteSize; // size of the palette data
-    u32 unk_14;
-    u32 unk_18;
+    u32 unused0;
+    u32 unused1;
     u32 resourceSize; // total size of the resource (header + data)
 } SPLTextureResource;
 

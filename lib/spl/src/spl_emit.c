@@ -10,12 +10,10 @@
 #include "spl_random.h"
 #include "spl_resource.h"
 
-
 static void SPLEmitter_ComputeOrthogonalAxes(SPLEmitter *emtr);
 static void SPLUtil_TiltCoordinates(VecFx32 *ptclPos, VecFx32 *pos, SPLEmitter *emtr);
 
 static VecFx16 sUpVector = { 0, FX16_ONE, 0 };
-
 
 static void SPLEmitter_ComputeOrthogonalAxes(SPLEmitter *emtr)
 {
@@ -87,13 +85,7 @@ void SPLEmitter_EmitParticles(SPLEmitter *emtr, SPLParticleList *list)
     emtr->emissionCountFractional = emitCountDec & FX32_DEC_MASK;
 
     enum SPLEmissionType emitType = header->flags.emissionType;
-    if (emitType == SPL_EMISSION_TYPE_CIRCLE_BORDER || 
-        emitType == SPL_EMISSION_TYPE_CIRCLE_BORDER_UNIFORM || 
-        emitType == SPL_EMISSION_TYPE_CIRCLE || 
-        emitType == SPL_EMISSION_TYPE_CYLINDER_SURFACE ||
-        emitType == SPL_EMISSION_TYPE_CYLINDER || 
-        emitType == SPL_EMISSION_TYPE_HEMISPHERE_SURFACE || 
-        emitType == SPL_EMISSION_TYPE_HEMISPHERE) {
+    if (emitType == SPL_EMISSION_TYPE_CIRCLE_BORDER || emitType == SPL_EMISSION_TYPE_CIRCLE_BORDER_UNIFORM || emitType == SPL_EMISSION_TYPE_CIRCLE || emitType == SPL_EMISSION_TYPE_CYLINDER_SURFACE || emitType == SPL_EMISSION_TYPE_CYLINDER || emitType == SPL_EMISSION_TYPE_HEMISPHERE_SURFACE || emitType == SPL_EMISSION_TYPE_HEMISPHERE) {
         SPLEmitter_ComputeOrthogonalAxes(emtr);
     }
 
@@ -267,20 +259,20 @@ void SPLEmitter_EmitParticles(SPLEmitter *emtr, SPLParticleList *list)
         ptcl->age = 0;
 
         if (header->flags.hasTexAnim && res->texAnim->param.randomizeInit) {
-            ptcl->misc.texture = res->texAnim->textures[SPLRandom_U32(12) % res->texAnim->param.frameCount];
+            ptcl->texture = res->texAnim->textures[SPLRandom_U32(12) % res->texAnim->param.frameCount];
         } else if (header->flags.hasTexAnim && !res->texAnim->param.randomizeInit) {
-            ptcl->misc.texture = res->texAnim->textures[0];
+            ptcl->texture = res->texAnim->textures[0];
         } else {
-            ptcl->misc.texture = header->misc.textureIndex;
+            ptcl->texture = header->misc.textureIndex;
         }
-        
+
         ptcl->loopTimeFactor = 0xFFFF / res->header->misc.loopFrames;
         ptcl->lifeTimeFactor = 0xFFFF / ptcl->lifeTime;
 
-        ptcl->misc.lifeRateOffset = 0;
+        ptcl->lifeRateOffset = 0;
 
         if (header->flags.randomizeLoopedAnim) {
-            ptcl->misc.lifeRateOffset = (u8)SPLRandom_S32(8);
+            ptcl->lifeRateOffset = (u8)SPLRandom_S32(8);
         }
     }
 }
@@ -346,10 +338,10 @@ void SPLEmitter_EmitChildren(SPLParticle *ptcl, SPLEmitter *emtr, SPLParticleLis
 
         child->lifeTime = childRes->lifeTime;
         child->age = 0;
-        child->misc.texture = childRes->misc.textureIndex;
+        child->texture = childRes->misc.texture;
 
         child->loopTimeFactor = 0xFFFF / (ptcl->lifeTime / 2);
         child->lifeTimeFactor = 0xFFFF / ptcl->lifeTime;
-        child->misc.lifeRateOffset = 0;
+        child->lifeRateOffset = 0;
     }
 }

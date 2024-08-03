@@ -1,9 +1,8 @@
 #include <nitro/fx/fx.h>
 #include <nitro/fx/fx_const.h>
 
-#include "spl_random.h"
 #include "spl_internal.h"
-
+#include "spl_random.h"
 
 void SPLAnim_Scale(SPLParticle *ptcl, SPLResource *res, int lifeRate)
 {
@@ -37,44 +36,42 @@ void SPLAnim_Color(SPLParticle *ptcl, SPLResource *res, int lifeRate)
     } else if (lifeRate < peak) {
         int peakR = GX_RGB_R(header->color);
         int startR = GX_RGB_R(colorAnim->start);
-        
+
         int peakG = GX_RGB_G(header->color);
         int startG = GX_RGB_G(colorAnim->start);
-    
+
         int peakB = GX_RGB_B(header->color);
         int startB = GX_RGB_B(colorAnim->start);
-        
+
         if (colorAnim->flags.interpolate) {
             int a = lifeRate - in;
             int b = peak - in;
-    
+
             ptcl->color = GX_RGB(
-                startR + (a * (int)(peakR - startR)) / b, 
-                startG + (a * (int)(peakG - startG)) / b, 
-                startB + (a * (int)(peakB - startB)) / b
-            );
+                startR + (a * (int)(peakR - startR)) / b,
+                startG + (a * (int)(peakG - startG)) / b,
+                startB + (a * (int)(peakB - startB)) / b);
         } else {
             ptcl->color = GX_RGB(peakR, peakG, peakB);
         }
     } else if (lifeRate < out) {
         int peakR = GX_RGB_R(header->color);
         int endR = GX_RGB_R(colorAnim->end);
-        
+
         int peakG = GX_RGB_G(header->color);
         int endG = GX_RGB_G(colorAnim->end);
-        
+
         int peakB = GX_RGB_B(header->color);
         int endB = GX_RGB_B(colorAnim->end);
-    
+
         if (colorAnim->flags.interpolate) {
             int a = lifeRate - peak;
             int b = out - peak;
-    
+
             ptcl->color = GX_RGB(
-                peakR + (a * (int)(endR - peakR)) / b, 
-                peakG + (a * (int)(endG - peakG)) / b, 
-                peakB + (a * (int)(endB - peakB)) / b
-            );
+                peakR + (a * (int)(endR - peakR)) / b,
+                peakG + (a * (int)(endG - peakG)) / b,
+                peakB + (a * (int)(endB - peakB)) / b);
         } else {
             ptcl->color = GX_RGB(endR, endG, endB);
         }
@@ -108,7 +105,7 @@ void SPLAnim_Texture(SPLParticle *ptcl, SPLResource *res, int lifeRate)
     SPLTexAnim *texAnim = res->texAnim;
     for (int i = 0; i < texAnim->param.frameCount; i++) {
         if (lifeRate < texAnim->param.step * (i + 1)) {
-            ptcl->misc.texture = texAnim->textures[i];
+            ptcl->texture = texAnim->textures[i];
             return;
         }
     }
