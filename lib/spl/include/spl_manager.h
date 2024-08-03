@@ -62,7 +62,7 @@ SPLEmitter *SPLManager_CreateEmitterWithCallback(SPLManager *mgr, int resourceID
 SPLEmitter *SPLManager_CreateEmitterWithCallbackEx(SPLManager *mgr, int resourceID, VecFx32 *pos, void *param, SPLEmitterCallbackEx initCallback);
 void SPLManager_DeleteEmitter(SPLManager *mgr, SPLEmitter *emtr);
 void SPLManager_DeleteAllEmitters(SPLManager *mgr);
-void SPL_Emit(SPLManager *mgr, SPLEmitter *emtr);
-void SPL_EmitAt(SPLManager *mgr, SPLEmitter *emtr, VecFx32 *pos);
+void SPLManager_Emit(SPLManager *mgr, SPLEmitter *emtr);
+void SPLManager_EmitAt(SPLManager *mgr, SPLEmitter *emtr, VecFx32 *pos);
 
 #endif // SPL_MANAGER_H
