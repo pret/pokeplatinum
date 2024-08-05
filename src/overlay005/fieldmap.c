@@ -168,7 +168,7 @@ static BOOL FieldMap_Init(OverlayManager *overlayMan, int *param1)
         ov5_021D173C(fieldSystem);
         sub_020531A0(fieldSystem);
 
-        if (fieldSystem->unk_74->unk_00_20) {
+        if (fieldSystem->mapLoadMode->unk_00_20) {
             Overlay_LoadByID(FS_OVERLAY_ID(overlay6), 2);
 
             switch (ov5_021D1178(fieldSystem)) {
@@ -184,7 +184,7 @@ static BOOL FieldMap_Init(OverlayManager *overlayMan, int *param1)
             }
         }
 
-        Heap_Create(3, 4, fieldSystem->unk_74->unk_04);
+        Heap_Create(3, 4, fieldSystem->mapLoadMode->unk_04);
         GF_ASSERT(fieldSystem->unk_04 == NULL);
 
         fieldSystem->unk_04 = Heap_AllocFromHeap(4, sizeof(FieldSystem_sub2));
@@ -346,7 +346,7 @@ static BOOL FieldMap_Exit(OverlayManager *overlayMan, int *param1)
 
             Heap_Destroy(4);
 
-            if (fieldSystem->unk_74->unk_00_20) {
+            if (fieldSystem->mapLoadMode->unk_00_20) {
                 Overlay_UnloadByID(FS_OVERLAY_ID(overlay6));
                 Overlay_UnloadByID(FS_OVERLAY_ID(overlay8));
                 Overlay_UnloadByID(FS_OVERLAY_ID(overlay7));

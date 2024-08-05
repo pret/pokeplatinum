@@ -763,7 +763,7 @@ static BOOL sub_02071050(TaskManager *param0)
 
     {
         void *v3 = sub_0202BE00((29 - 19), fieldSystem->location->mapId, 4);
-        sub_0202B758(fieldSystem->unk_9C, v3, 1);
+        Journal_SaveData(fieldSystem->journal, v3, 1);
     }
 
     Heap_FreeToHeap(v1);
@@ -804,7 +804,7 @@ static void sub_020710D4(UnkStruct_020709CC *param0, const UnkStruct_02070950 *p
     v1->state = FIELD_MENU_STATE_10;
 
     v4 = sub_0202BE00((30 - 19), fieldSystem->location->mapId, 11);
-    sub_0202B758(fieldSystem->unk_9C, v4, 1);
+    Journal_SaveData(fieldSystem->journal, v4, 1);
 }
 
 static int sub_02071130(const UnkStruct_02070950 *param0)

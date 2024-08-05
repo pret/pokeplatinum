@@ -984,7 +984,7 @@ static void sub_02051988(FieldSystem *fieldSystem, BattleParams *param1)
             if (fieldSystem->unk_78.unk_02 >= 5) {
                 v0 = Party_GetPokemonBySlotIndex(param1->parties[1], 0);
                 v3 = sub_0202BECC(SaveData_GetPlayTime(fieldSystem->saveData), Pokemon_GetValue(v0, MON_DATA_SPECIES, 0), Pokemon_GetValue(v0, MON_DATA_GENDER, 0), param1->unk_138, 11);
-                sub_0202B758(fieldSystem->unk_9C, v3, 2);
+                Journal_SaveData(fieldSystem->journal, v3, 2);
             }
         } else if (v2 == 0x4) {
             int v4;
@@ -993,11 +993,11 @@ static void sub_02051988(FieldSystem *fieldSystem, BattleParams *param1)
             v0 = Party_GetPokemonBySlotIndex(param1->parties[v4], 0);
             v3 = sub_0202BE4C(SaveData_GetPlayTime(fieldSystem->saveData), Pokemon_GetValue(v0, MON_DATA_SPECIES, 0), Pokemon_GetValue(v0, MON_DATA_GENDER, 0), param1->unk_138, 11);
 
-            sub_0202B758(fieldSystem->unk_9C, v3, 2);
+            Journal_SaveData(fieldSystem->journal, v3, 2);
         }
     } else if ((v1 & BATTLE_TYPE_TRAINER) || (v1 & BATTLE_TYPE_TAG)) {
         if (v2 == 0x1) {
-            sub_0202C720(fieldSystem->unk_9C, fieldSystem->location->mapId, param1->trainerIDs[1], 11);
+            sub_0202C720(fieldSystem->journal, fieldSystem->location->mapId, param1->trainerIDs[1], 11);
         }
     }
 }

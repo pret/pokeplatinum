@@ -1670,7 +1670,7 @@ void sub_02094C44(UnkStruct_02095C48 *param0, SaveData *param1, u32 param2, Jour
             v9 = sub_0202C1C0(param0->unk_00.unk_118[param0->unk_00.unk_113].unk_08 + 1, 11);
             v10 = SaveData_GetJournal(param0->unk_1970);
 
-            sub_0202B758(param3, v9, 4);
+            Journal_SaveData(param3, v9, 4);
         }
     }
 

@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_020EC3A8_H
 
 typedef struct {
-    u32 unk_00_0 : 4;
+    u32 fieldBottomScreen : 4;
     u32 unk_00_4 : 4;
     u32 unk_00_8 : 4;
     u32 unk_00_12 : 4;

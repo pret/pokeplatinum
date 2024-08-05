@@ -237,7 +237,7 @@ static void FieldMapChange_SetNewLocation(FieldSystem *fieldSystem, const Locati
 void sub_020531A0(FieldSystem *fieldSystem)
 {
     GF_ASSERT(fieldSystem->mapLoadType < MAP_LOAD_TYPE_MAX);
-    gCoreSys.unk_65 = fieldSystem->unk_74->unk_00_12;
+    gCoreSys.unk_65 = fieldSystem->mapLoadMode->unk_00_12;
 }
 
 void FieldMapChange_UpdateGameData(FieldSystem *fieldSystem, BOOL noWarp)
@@ -387,14 +387,14 @@ static void sub_020533CC(FieldSystem *fieldSystem)
 
     GF_ASSERT(fieldSystem->mapLoadType < MAP_LOAD_TYPE_MAX);
 
-    fieldSystem->unk_74 = &sMapLoadMode[fieldSystem->mapLoadType];
-    fieldSystem->unk_60 = fieldSystem->unk_74->unk_00_4;
-    fieldSystem->unk_18 = fieldSystem->unk_74->unk_00_0;
+    fieldSystem->mapLoadMode = &sMapLoadMode[fieldSystem->mapLoadType];
+    fieldSystem->unk_60 = fieldSystem->mapLoadMode->unk_00_4;
+    fieldSystem->unk_18 = fieldSystem->mapLoadMode->fieldBottomScreen;
 
-    sub_02054F44(&fieldSystem->unk_5C, fieldSystem->unk_74->unk_00_8);
+    sub_02054F44(&fieldSystem->unk_5C, fieldSystem->mapLoadMode->unk_00_8);
 
-    if (fieldSystem->unk_74->unk_00_16) {
-        sub_02054BD0(fieldSystem, fieldSystem->unk_74->unk_00_24);
+    if (fieldSystem->mapLoadMode->unk_00_16) {
+        sub_02054BD0(fieldSystem, fieldSystem->mapLoadMode->unk_00_24);
     }
 }
 
@@ -405,30 +405,30 @@ static void sub_02053468(FieldSystem *fieldSystem)
     fieldSystem->unk_5C = NULL;
     fieldSystem->unk_18 = 5;
 
-    if (fieldSystem->unk_74->unk_00_16) {
+    if (fieldSystem->mapLoadMode->unk_00_16) {
         sub_02054BF8(fieldSystem);
     }
 
-    fieldSystem->unk_74 = NULL;
+    fieldSystem->mapLoadMode = NULL;
 }
 
 void sub_02053494(FieldSystem *fieldSystem)
 {
-    if (fieldSystem->unk_9C != NULL) {
+    if (fieldSystem->journal != NULL) {
         void *v0;
 
         v0 = sub_0202BC58(fieldSystem->location->mapId, 11);
-        sub_0202B758(fieldSystem->unk_9C, v0, 0);
+        Journal_SaveData(fieldSystem->journal, v0, 0);
     }
 }
 
 static void sub_020534BC(FieldSystem *fieldSystem)
 {
-    if (fieldSystem->unk_9C != NULL) {
-        FieldOverworldState *v0 = SaveData_GetFieldOverworldState(fieldSystem->saveData);
-        Location *location = sub_0203A730(v0);
+    if (fieldSystem->journal != NULL) {
+        FieldOverworldState *owState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
+        Location *location = sub_0203A730(owState);
         void *v2 = sub_0202BC58(location->mapId, 11);
-        sub_0202B758(fieldSystem->unk_9C, v2, 0);
+        Journal_SaveData(fieldSystem->journal, v2, 0);
     }
 }
 
@@ -499,7 +499,7 @@ static BOOL FieldTask_LoadSavedGameMap(TaskManager *taskMan)
             break;
         }
     case 1:
-        fieldSystem->unk_9C = Journal_GetSavedPage(SaveData_GetJournal(fieldSystem->saveData), inline_020535E8(varsFlags));
+        fieldSystem->journal = Journal_GetSavedPage(SaveData_GetJournal(fieldSystem->saveData), inline_020535E8(varsFlags));
 
         if (CommClub_IsAvailable(varsFlags)) {
             FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
@@ -558,7 +558,7 @@ static BOOL FieldTask_LoadMapFromError(TaskManager *taskMan)
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);
         sub_0202878C(fieldSystem->saveData);
-        fieldSystem->unk_9C = Journal_GetSavedPage(SaveData_GetJournal(fieldSystem->saveData), inline_020535E8(v2));
+        fieldSystem->journal = Journal_GetSavedPage(SaveData_GetJournal(fieldSystem->saveData), inline_020535E8(v2));
         (*state)++;
         break;
     case 1:
