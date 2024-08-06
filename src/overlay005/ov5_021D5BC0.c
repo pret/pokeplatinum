@@ -38,19 +38,19 @@ static const UnkStruct_ov5_021F8C7C Unk_ov5_021F8C7C[] = {
     { ov5_021EA830, NULL, ov5_021EA848, ov5_021EA854 }
 };
 
-static int ov5_021D5BC0(FieldSystem *fieldSystem)
+static int FieldSystem_GetBottomScreenIndex(FieldSystem *fieldSystem)
 {
-    int v0 = fieldSystem->unk_18;
+    int fieldBottomScreen = fieldSystem->bottomScreen;
 
-    GF_ASSERT(v0 != 0);
-    GF_ASSERT(v0 < 5);
+    GF_ASSERT(fieldBottomScreen != 0);
+    GF_ASSERT(fieldBottomScreen < 5);
 
-    return v0 - 1;
+    return fieldBottomScreen - 1;
 }
 
 void ov5_021D5BD8(FieldSystem *fieldSystem)
 {
-    Unk_ov5_021F8C7C[ov5_021D5BC0(fieldSystem)].unk_00(fieldSystem);
+    Unk_ov5_021F8C7C[FieldSystem_GetBottomScreenIndex(fieldSystem)].unk_00(fieldSystem);
 }
 
 BOOL ov5_021D5BF4(FieldSystem *fieldSystem)
@@ -59,7 +59,7 @@ BOOL ov5_021D5BF4(FieldSystem *fieldSystem)
     BOOL (* v0)(FieldSystem *);
     // clang-format on
 
-    v0 = Unk_ov5_021F8C7C[ov5_021D5BC0(fieldSystem)].unk_04;
+    v0 = Unk_ov5_021F8C7C[FieldSystem_GetBottomScreenIndex(fieldSystem)].unk_04;
 
     if (v0 == NULL) {
         return 1;
@@ -70,12 +70,12 @@ BOOL ov5_021D5BF4(FieldSystem *fieldSystem)
 
 void ov5_021D5C14(FieldSystem *fieldSystem)
 {
-    Unk_ov5_021F8C7C[ov5_021D5BC0(fieldSystem)].unk_08(fieldSystem);
+    Unk_ov5_021F8C7C[FieldSystem_GetBottomScreenIndex(fieldSystem)].unk_08(fieldSystem);
 }
 
 BOOL ov5_021D5C30(FieldSystem *fieldSystem)
 {
-    return Unk_ov5_021F8C7C[ov5_021D5BC0(fieldSystem)].unk_0C(fieldSystem);
+    return Unk_ov5_021F8C7C[FieldSystem_GetBottomScreenIndex(fieldSystem)].unk_0C(fieldSystem);
 }
 
 static void ov5_021D5C4C(FieldSystem *fieldSystem)

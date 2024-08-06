@@ -135,7 +135,7 @@ BOOL ScrCmd_1DD(ScriptContext *param0)
         sub_0204A660(v6, param0->fieldSystem->saveData);
         break;
     case (30 + 8):
-        sub_0204A7A4(v6, param0->fieldSystem->saveData, param0->fieldSystem->unk_9C);
+        sub_0204A7A4(v6, param0->fieldSystem->saveData, param0->fieldSystem->journal);
         break;
     case (30 + 9):
         sub_0204A8C8(v6);

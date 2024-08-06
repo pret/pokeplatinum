@@ -14,7 +14,7 @@
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
 PlayerAvatar *PlayerAvatar_Init(const MapObjectManager *param0, int param1, int param2, int param3, int param4, int param5, int param6, PlayerData *param7);
-PlayerAvatar *sub_0205E820(const MapObjectManager *param0, PlayerData *param1, int param2);
+PlayerAvatar *sub_0205E820(const MapObjectManager *param0, PlayerData *param1, int gender);
 void PlayerAvatar_InitDraw(PlayerAvatar *playerAvatar, int param1);
 void Player_Delete(PlayerAvatar *playerAvatar);
 void Player_DeleteAll(PlayerAvatar *playerAvatar);

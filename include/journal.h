@@ -8,11 +8,11 @@
 typedef struct Journal_t Journal;
 
 int Journal_SaveSize(void);
-void Journal_Init(Journal *param0);
+void Journal_Init10(Journal *param0);
 Journal *SaveData_GetJournal(SaveData *param0);
 Journal *Journal_GetSavedPage(Journal *param0, BOOL param1);
 BOOL Journal_CheckOpenOnContinue(Journal *param0, BOOL param1);
-void sub_0202B758(Journal *param0, void *param1, u8 param2);
+void Journal_SaveData(Journal *param0, void *param1, u8 param2);
 void *sub_0202BC58(u16 param0, u32 param1);
 void *sub_0202BCE4(u32 param0);
 void *sub_0202BCF0(u32 param0);

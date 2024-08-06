@@ -58,7 +58,7 @@ UnkStruct_ov82_0223B164 *sub_02099674(FieldSystem *fieldSystem, int param1, int 
 {
     UnkStruct_ov82_0223B164 *v0;
 
-    v0 = sub_02099604(param1, FieldSystem_SaveData(fieldSystem), param2, fieldSystem->unk_9C);
+    v0 = sub_02099604(param1, FieldSystem_SaveData(fieldSystem), param2, fieldSystem->journal);
     sub_0209964C(fieldSystem, v0);
 
     return v0;
@@ -68,7 +68,7 @@ UnkStruct_ov82_0223B164 *sub_020996A0(FieldSystem *fieldSystem, int param1, BOOL
 {
     UnkStruct_ov82_0223B164 *v0;
 
-    v0 = sub_02099604(1, FieldSystem_SaveData(fieldSystem), param1, fieldSystem->unk_9C);
+    v0 = sub_02099604(1, FieldSystem_SaveData(fieldSystem), param1, fieldSystem->journal);
     v0->unk_20 = 1;
     v0->unk_24 = param2;
 

@@ -131,7 +131,7 @@ BOOL ScrCmd_0FB(ScriptContext *param0)
     u16 v2 = ScriptContext_GetVar(param0);
     u32 v3 = MapHeader_GetMapLabelTextID(param0->fieldSystem->location->mapId);
 
-    sub_02094C44(*v1, param0->fieldSystem->saveData, v3, param0->fieldSystem->unk_9C);
+    sub_02094C44(*v1, param0->fieldSystem->saveData, v3, param0->fieldSystem->journal);
     sub_02093AD4(*v1);
 
     return 0;

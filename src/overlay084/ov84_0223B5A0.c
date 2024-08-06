@@ -59,6 +59,8 @@
 #include "unk_0207CB08.h"
 #include "unk_0208C098.h"
 
+#include "constants/field/map_load.h"
+
 typedef struct {
     const u8 *unk_00;
     const TouchScreenRect *unk_04;
@@ -1981,7 +1983,7 @@ static void ov84_0223D5AC(UnkStruct_ov84_0223B5A0 *param0)
             v1++;
         }
 
-        if ((param0->unk_C4->unk_76_1 == 3) || (param0->unk_C4->unk_76_1 == 2)) {
+        if ((param0->unk_C4->mapLoadType == MAP_LOAD_TYPE_COLOSSEUM) || (param0->unk_C4->mapLoadType == MAP_LOAD_TYPE_UNION)) {
             if (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08 == 5) {
                 v3[v1] = 2;
                 v1++;

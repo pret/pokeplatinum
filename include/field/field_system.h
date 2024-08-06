@@ -53,7 +53,7 @@ typedef struct FieldSystem_t {
     SaveData *saveData;
     TaskManager *unk_10;
     MapHeaderData *mapHeaderData;
-    int unk_18;
+    int bottomScreen;
     Location *location;
     int unk_20;
     Camera *camera;
@@ -70,13 +70,13 @@ typedef struct FieldSystem_t {
     UnkStruct_ov5_021D3CAC *unk_50;
     UnkStruct_ov5_021D41B4 *unk_54;
     UnkStruct_02054C18 *unk_58;
-    const UnkStruct_02054F44 *unk_5C;
+    const TerrainCollisionManager *unk_5C;
     int unk_60;
     UnkStruct_ov5_021E1B20 *unk_64;
     BOOL unk_68;
     UnkStruct_ov23_0224942C *unk_6C;
-    int unk_70;
-    const UnkStruct_020EC3A8 *unk_74;
+    int mapLoadType;
+    const MapLoadMode *mapLoadMode;
     FieldSystem_sub3 unk_78;
     UnkStruct_0205B43C *unk_7C;
     UnkStruct_0205C22C *unk_80;
@@ -86,7 +86,7 @@ typedef struct FieldSystem_t {
     int unk_90;
     RadarChain *chain;
     UnkStruct_0207D99C *unk_98;
-    Journal *unk_9C;
+    Journal *journal;
     UnkStruct_ov5_021EF300 *unk_A0;
     UnkStruct_ov5_021E1608 *unk_A4;
     UnkStruct_ov5_021EFB30 *unk_A8;

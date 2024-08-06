@@ -390,7 +390,7 @@ static void sub_02068710(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 
     sub_020509D4(fieldSystem);
 
-    v1->unk_22C = sub_02054084;
+    v1->unk_22C = FieldTask_MapChangeToUnderground;
     v1->unk_25C = sub_02053FAC(fieldSystem);
     v1->state = FIELD_MENU_STATE_10;
 
@@ -402,7 +402,7 @@ static BOOL sub_02068750(UnkStruct_02068870 *param0)
     void *v0 = sub_02053FAC(param0->fieldSystem);
 
     MapObjectMan_PauseAllMovement(param0->fieldSystem->mapObjMan);
-    FieldTask_Set(param0->fieldSystem, sub_02054084, v0);
+    FieldTask_Set(param0->fieldSystem, FieldTask_MapChangeToUnderground, v0);
 
     param0->fieldSystem->unk_90 = 0;
     return 0;

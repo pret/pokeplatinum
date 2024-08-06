@@ -71,9 +71,9 @@ void sub_0207CB70(UnkStruct_0207CB08 *param0, u8 param1)
     param0->unk_74 = param1;
 }
 
-void sub_0207CB78(UnkStruct_0207CB08 *param0, u16 param1)
+void sub_0207CB78(UnkStruct_0207CB08 *param0, u16 mapLoadType)
 {
-    param0->unk_76_1 = param1;
+    param0->mapLoadType = mapLoadType;
 }
 
 u16 sub_0207CB94(UnkStruct_0207CB08 *param0)

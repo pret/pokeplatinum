@@ -2478,7 +2478,7 @@ static void ov10_022227A4(UnkStruct_ov10_0221F800 *param0)
         }
     }
 
-    sub_0202B758(param0->unk_00->unk_120, v0, 4);
+    Journal_SaveData(param0->unk_00->unk_120, v0, 4);
 }
 
 static void ov10_022229D4(UnkStruct_ov10_0221FB28 *param0)
