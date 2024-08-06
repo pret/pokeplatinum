@@ -53,7 +53,7 @@ typedef struct FieldSystem_t {
     SaveData *saveData;
     TaskManager *unk_10;
     MapHeaderData *mapHeaderData;
-    int unk_18;
+    int bottomScreen;
     Location *location;
     int unk_20;
     Camera *camera;
@@ -70,7 +70,7 @@ typedef struct FieldSystem_t {
     UnkStruct_ov5_021D3CAC *unk_50;
     UnkStruct_ov5_021D41B4 *unk_54;
     UnkStruct_02054C18 *unk_58;
-    const UnkStruct_02054F44 *unk_5C;
+    const TerrainCollisionManager *unk_5C;
     int unk_60;
     UnkStruct_ov5_021E1B20 *unk_64;
     BOOL unk_68;
