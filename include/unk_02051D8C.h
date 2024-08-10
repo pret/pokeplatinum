@@ -31,8 +31,8 @@ void sub_020526CC(BattleParams *param0, const FieldSystem *fieldSystem, const u8
 void sub_020526E8(const BattleParams *param0, FieldSystem *fieldSystem);
 void sub_02052754(const BattleParams *param0, FieldSystem *fieldSystem);
 void sub_0205285C(BattleParams *param0);
-BOOL sub_02052868(u32 param0);
-BOOL sub_02052878(u32 param0);
-BOOL sub_02052888(u32 param0);
+BOOL BattleParams_PlayerWon(u32 battleResult);
+BOOL BattleParams_PlayerLost(u32 battleResult);
+BOOL BattleParams_PlayerDidNotCapture(u32 battleResult);
 
 #endif // POKEPLATINUM_UNK_02051D8C_H

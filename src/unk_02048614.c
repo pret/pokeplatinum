@@ -266,7 +266,7 @@ BOOL ScrCmd_CheckWonBattle(ScriptContext *ctx)
     BOOL *battleResult = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_BATTLE_RESULT);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *destVar = sub_02052868(*battleResult);
+    *destVar = BattleParams_PlayerWon(*battleResult);
     return TRUE;
 }
 
@@ -275,7 +275,7 @@ BOOL ScrCmd_CheckLostBattle(ScriptContext *ctx)
     BOOL *battleResult = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_BATTLE_RESULT);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *destVar = sub_02052878(*battleResult);
+    *destVar = BattleParams_PlayerLost(*battleResult);
     return TRUE;
 }
 
@@ -284,7 +284,7 @@ BOOL ScrCmd_CheckDidNotCapture(ScriptContext *ctx)
     BOOL *battleResult = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_BATTLE_RESULT);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *destVar = sub_02052888(*battleResult);
+    *destVar = BattleParams_PlayerDidNotCapture(*battleResult);
     return TRUE;
 }
 

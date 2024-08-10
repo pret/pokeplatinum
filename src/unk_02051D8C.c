@@ -535,8 +535,7 @@ void sub_0205285C(BattleParams *param0)
     param0->unk_12C = 7;
 }
 
-// BattleParams_PlayerWon
-BOOL sub_02052868(u32 battleResult)
+BOOL BattleParams_PlayerWon(u32 battleResult)
 {
     switch (battleResult) {
     case BATTLE_RESULT_LOSE:
@@ -547,8 +546,7 @@ BOOL sub_02052868(u32 battleResult)
     }
 }
 
-// BattleParams_PlayerLost
-BOOL sub_02052878(u32 battleResult)
+BOOL BattleParams_PlayerLost(u32 battleResult)
 {
     switch (battleResult) {
     case BATTLE_RESULT_WIN:
@@ -559,8 +557,7 @@ BOOL sub_02052878(u32 battleResult)
     }
 }
 
-// BattleParams_PlayerDidNotCapture
-BOOL sub_02052888(u32 battleResult)
+BOOL BattleParams_PlayerDidNotCapture(u32 battleResult)
 {
     switch (battleResult) {
     case BATTLE_RESULT_CAPTURED_MON:
