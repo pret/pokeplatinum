@@ -1299,14 +1299,14 @@
     .short 235
     .endm
 
-    .macro ScrCmd_0EC arg0
+    .macro ScrCmd_0EC destVarID
     .short 236
-    .short \arg0
+    .short \destVarID
     .endm
 
-    .macro ScrCmd_0ED arg0
+    .macro ScrCmd_0ED destVarID
     .short 237
-    .short \arg0
+    .short \destVarID
     .endm
 
     .macro ScrCmd_0EE arg0
@@ -3788,9 +3788,9 @@
     .short 699
     .endm
 
-    .macro ScrCmd_2BC arg0
+    .macro ScrCmd_2BC destVarID
     .short 700
-    .short \arg0
+    .short \destVarID
     .endm
 
     .macro ScrCmd_2BD arg0, arg1

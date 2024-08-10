@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/battle.h"
 #include "constants/pokemon.h"
 
 #include "struct_decls/pokedexdata_decl.h"
@@ -534,35 +535,38 @@ void sub_0205285C(BattleParams *param0)
     param0->unk_12C = 7;
 }
 
-BOOL sub_02052868(u32 param0)
+// BattleParams_PlayerWon
+BOOL sub_02052868(u32 battleResult)
 {
-    switch (param0) {
-    case 0x2:
-    case 0x3:
-        return 0;
+    switch (battleResult) {
+    case BATTLE_RESULT_LOSE:
+    case BATTLE_RESULT_DRAW:
+        return FALSE;
     default:
-        return 1;
+        return TRUE;
     }
 }
 
-BOOL sub_02052878(u32 param0)
+// BattleParams_PlayerLost
+BOOL sub_02052878(u32 battleResult)
 {
-    switch (param0) {
-    case 0x1:
-    case 0x4:
-        return 0;
+    switch (battleResult) {
+    case BATTLE_RESULT_WIN:
+    case BATTLE_RESULT_CAPTURED_MON:
+        return FALSE;
     default:
-        return 1;
+        return TRUE;
     }
 }
 
-BOOL sub_02052888(u32 param0)
+// BattleParams_PlayerDidNotCapture
+BOOL sub_02052888(u32 battleResult)
 {
-    switch (param0) {
-    case 0x4:
-        return 0;
+    switch (battleResult) {
+    case BATTLE_RESULT_CAPTURED_MON:
+        return FALSE;
     default:
-        return 1;
+        return TRUE;
     }
 }
 

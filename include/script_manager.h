@@ -39,7 +39,7 @@ enum ScriptManagerMember {
     SCRIPT_MANAGER_DATA_PTR = 20,
 
     SCRIPT_MANAGER_PLAYER_TASK = 22,
-    SCRIPT_MANAGER_PLAYER_WON_BATTLE,
+    SCRIPT_MANAGER_BATTLE_RESULT,
     SCRIPT_MANAGER_TRAINER_0_SIGHT_RANGE,
     SCRIPT_MANAGER_TRAINER_0_DIRECTION,
     SCRIPT_MANAGER_TRAINER_0_SCRIPT_ID,
@@ -114,7 +114,7 @@ typedef struct ScriptManager {
     u8 isMsgBoxOpen;
     u8 numActiveContexts;
     u16 scriptID;
-    BOOL playerWonBattle;
+    BOOL battleResult;
     UnkStruct_ov5_021DC1A4 *unk_10; // appears to be used for multichoice windows
     Window window;
     UIControlData *ctrlUI;
