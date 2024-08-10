@@ -267,6 +267,8 @@
     .short 48
     .endm
 
+    // This also sets the player's direction appropriately when a pad 
+    // button is pressed, unlike the WaitABPadPress command.
     .macro WaitABXPadPress
     .short 49
     .endm
@@ -1153,16 +1155,16 @@
     .short \pocket
     .endm
 
-    .macro ScrCmd_0D3 arg0, arg1
+    .macro ScrCmd_0D3 templateArg, item
     .short 211
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \item
     .endm
 
-    .macro ScrCmd_0D4 arg0, arg1
+    .macro ScrCmd_0D4 templateArg, move
     .short 212
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \move
     .endm
 
     .macro BufferNumber templateArg, number
@@ -1222,22 +1224,22 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_0DF arg0, arg1
+    .macro ScrCmd_0DF templateArg, goods
     .short 223
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \goods
     .endm
 
-    .macro ScrCmd_0E0 arg0, arg1
+    .macro ScrCmd_0E0 templateArg, trap
     .short 224
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \trap
     .endm
 
-    .macro ScrCmd_0E1 arg0, arg1
+    .macro ScrCmd_0E1 templateArg, item
     .short 225
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \item
     .endm
 
     .macro ScrCmd_0E2 arg0, arg1
@@ -1528,9 +1530,9 @@
     .short 280
     .endm
 
-    .macro ScrCmd_119 arg0
+    .macro ScrCmd_119 destVarID
     .short 281
-    .short \arg0
+    .short \destVarID
     .endm
 
     .macro ScrCmd_11A arg0, arg1
@@ -1663,9 +1665,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_133 arg0
+    .macro ScrCmd_133 appID
     .short 307
-    .short \arg0
+    .short \appID
     .endm
 
     .macro ScrCmd_134 arg0, arg1
@@ -1790,9 +1792,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_14D arg0
+    .macro ScrCmd_14D destVarID
     .short 333
-    .short \arg0
+    .short \destVarID
     .endm
 
     .macro ScrCmd_14E
@@ -1853,10 +1855,10 @@
     .short 346
     .endm
 
-    .macro ScrCmd_15B arg0, arg1
+    .macro ScrCmd_15B badgeNum, destVarID
     .short 347
-    .short \arg0
-    .short \arg1
+    .short \badgeNum
+    .short \destVarID
     .endm
 
     .macro ScrCmd_15C arg0
@@ -1985,9 +1987,9 @@
     .byte \arg0
     .endm
 
-    .macro ScrCmd_177 arg0
+    .macro ScrCmd_177 destVarID
     .short 375
-    .short \arg0
+    .short \destVarID
     .endm
 
     .macro ScrCmd_178 arg0

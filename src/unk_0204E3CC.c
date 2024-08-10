@@ -60,15 +60,15 @@ BOOL ScrCmd_15A(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_15B(ScriptContext *param0)
+BOOL ScrCmd_CheckBadge(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(param0);
-    u16 *v1 = ScriptContext_GetVarPointer(param0);
+    u16 badgeNum = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    GF_ASSERT(v0 < 8);
-    *v1 = TrainerInfo_HasBadge(SaveData_GetTrainerInfo(param0->fieldSystem->saveData), v0);
+    GF_ASSERT(badgeNum < 8);
+    *destVar = TrainerInfo_HasBadge(SaveData_GetTrainerInfo(ctx->fieldSystem->saveData), badgeNum);
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_15C(ScriptContext *param0)

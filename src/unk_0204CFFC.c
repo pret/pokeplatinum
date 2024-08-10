@@ -390,17 +390,13 @@ BOOL ScrCmd_248(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_177(ScriptContext *param0)
+BOOL ScrCmd_GetPartyCount(ScriptContext *ctx)
 {
-    int v0;
-    Pokemon *v1;
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    u16 *v3 = ScriptContext_GetVarPointer(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    v0 = Party_GetCurrentCount(Party_GetFromSavedata(fieldSystem->saveData));
-    *v3 = v0;
-
-    return 0;
+    *destVar = Party_GetCurrentCount(Party_GetFromSavedata(fieldSystem->saveData));
+    return FALSE;
 }
 
 BOOL ScrCmd_19A(ScriptContext *param0)
@@ -502,30 +498,24 @@ BOOL ScrCmd_19D(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_119(ScriptContext *param0)
+BOOL ScrCmd_CheckPartyPokerus(ScriptContext *ctx)
 {
-    u16 v0, v1;
-    u16 *v2;
-    u32 v3;
-    Pokemon *v4;
-    FieldSystem *fieldSystem = param0->fieldSystem;
+    u16 i, partyCount;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    partyCount = Party_GetCurrentCount(Party_GetFromSavedata(fieldSystem->saveData));
+    *destVar = FALSE;
 
-    v2 = ScriptContext_GetVarPointer(param0);
-    v1 = Party_GetCurrentCount(Party_GetFromSavedata(fieldSystem->saveData));
-    *v2 = 0;
+    for (i = 0; i < partyCount; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), i);
 
-    for (v0 = 0; v0 < v1; v0++) {
-        v4 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v0);
-
-        v3 = Pokemon_GetValue(v4, MON_DATA_POKERUS, NULL);
-
-        if (v3 != 0) {
-            *v2 = 1;
+        if (Pokemon_GetValue(mon, MON_DATA_POKERUS, NULL) != FALSE) {
+            *destVar = TRUE;
             break;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_11A(ScriptContext *param0)

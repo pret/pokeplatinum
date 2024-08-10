@@ -457,7 +457,7 @@ static BOOL ScrCmd_CheckSaveType(ScriptContext *ctx);
 static BOOL ScrCmd_12D(ScriptContext *ctx);
 static BOOL ScrCmd_131(ScriptContext *ctx);
 static BOOL ScrCmd_132(ScriptContext *ctx);
-static BOOL ScrCmd_133(ScriptContext *ctx);
+static BOOL ScrCmd_RegisterPoketchApp(ScriptContext *ctx);
 static BOOL ScrCmd_134(ScriptContext *ctx);
 static BOOL ScrCmd_135(ScriptContext *ctx);
 static BOOL sub_02043678(ScriptContext *ctx);
@@ -490,8 +490,8 @@ static BOOL ScrCmd_156(ScriptContext *ctx);
 static BOOL ScrCmd_2BA(ScriptContext *ctx);
 static BOOL ScrCmd_14B(ScriptContext *ctx);
 static BOOL ScrCmd_14C(ScriptContext *ctx);
-static BOOL ScrCmd_14D(ScriptContext *ctx);
-static BOOL ScrCmd_14E(ScriptContext *ctx);
+static BOOL ScrCmd_GetPlayerGender(ScriptContext *ctx);
+static BOOL ScrCmd_HealParty(ScriptContext *ctx);
 static BOOL ScrCmd_14F(ScriptContext *ctx);
 static BOOL ScrCmd_150(ScriptContext *ctx);
 static BOOL sub_02043C70(ScriptContext *ctx);
@@ -979,8 +979,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_BufferPartyMonSpecies,
     ScrCmd_BufferItemName,
     ScrCmd_BufferPocketName,
-    ScrCmd_0D3,
-    ScrCmd_0D4,
+    ScrCmd_BufferTMHMMoveName,
+    ScrCmd_BufferMoveName,
     ScrCmd_BufferNumber,
     ScrCmd_BufferPartyMonNickname,
     ScrCmd_BufferPoketchAppName,
@@ -991,9 +991,9 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_0DC,
     ScrCmd_0DD,
     ScrCmd_0DE,
-    ScrCmd_0DF,
-    ScrCmd_0E0,
-    ScrCmd_0E1,
+    ScrCmd_BufferUndergroundGoodsName,
+    ScrCmd_BufferUndergroundTrapName,
+    ScrCmd_BufferUndergroundItemName,
     ScrCmd_0E2,
     ScrCmd_0E3,
     ScrCmd_0E4,
@@ -1049,7 +1049,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_116,
     ScrCmd_117,
     ScrCmd_118,
-    ScrCmd_119,
+    ScrCmd_CheckPartyPokerus,
     ScrCmd_11A,
     ScrCmd_11B,
     ScrCmd_11C,
@@ -1075,7 +1075,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_130,
     ScrCmd_131,
     ScrCmd_132,
-    ScrCmd_133,
+    ScrCmd_RegisterPoketchApp,
     ScrCmd_134,
     ScrCmd_135,
     ScrCmd_136,
@@ -1101,8 +1101,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_14A,
     ScrCmd_14B,
     ScrCmd_14C,
-    ScrCmd_14D,
-    ScrCmd_14E,
+    ScrCmd_GetPlayerGender,
+    ScrCmd_HealParty,
     ScrCmd_14F,
     ScrCmd_150,
     ScrCmd_151,
@@ -1115,7 +1115,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_158,
     ScrCmd_159,
     ScrCmd_15A,
-    ScrCmd_15B,
+    ScrCmd_CheckBadge,
     ScrCmd_15C,
     ScrCmd_15D,
     ScrCmd_15E,
@@ -1143,7 +1143,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_174,
     ScrCmd_175,
     ScrCmd_176,
-    ScrCmd_177,
+    ScrCmd_GetPartyCount,
     ScrCmd_178,
     ScrCmd_179,
     ScrCmd_17A,
@@ -5199,13 +5199,13 @@ static BOOL ScrCmd_132(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_133(ScriptContext *ctx)
+static BOOL ScrCmd_RegisterPoketchApp(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 v1 = ScriptContext_GetVar(ctx);
+    u16 appID = ScriptContext_GetVar(ctx);
 
-    PoketchData_RegisterApp(SaveData_PoketchData(fieldSystem->saveData), v1);
-    return 0;
+    PoketchData_RegisterApp(SaveData_PoketchData(fieldSystem->saveData), appID);
+    return FALSE;
 }
 
 static BOOL ScrCmd_134(ScriptContext *ctx)
@@ -5555,21 +5555,21 @@ static BOOL ScrCmd_14C(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_14D(ScriptContext *ctx)
+static BOOL ScrCmd_GetPlayerGender(ScriptContext *ctx)
 {
-    TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(ctx->fieldSystem));
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
+    TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_SaveData(ctx->fieldSystem));
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = TrainerInfo_Gender(v0);
-    return 0;
+    *destVar = TrainerInfo_Gender(trainerInfo);
+    return FALSE;
 }
 
-static BOOL ScrCmd_14E(ScriptContext *ctx)
+static BOOL ScrCmd_HealParty(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(ctx->taskManager);
 
     HealAllPokemonInParty(Party_GetFromSavedata(fieldSystem->saveData));
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_14F(ScriptContext *ctx)
