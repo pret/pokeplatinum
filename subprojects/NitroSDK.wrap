@@ -6,3 +6,4 @@ directory = NitroSDK-4.2.30001
 
 [provide]
 dependency_names = NitroSDK
+program_names = makelcf

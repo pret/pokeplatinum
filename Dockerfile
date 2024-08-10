@@ -9,6 +9,8 @@ RUN apt-get install -y \
         python3-venv \
         python3-pip \
         python-is-python3 \
+        flex \
+        bison \
         binutils-arm-none-eabi \
         gcc-arm-none-eabi \
         wget
