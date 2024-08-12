@@ -2180,15 +2180,17 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_19A arg0
+    .macro ScrCmd_19A destVarID
     .short 410
-    .short \arg0
+    .short \destVarID
     .endm
 
-    .macro ScrCmd_19B arg0, arg1
+    // Counts alive mons in the party and stores the result in the destVar, 
+    // but excludes the one at the party slot provided.
+    .macro ScrCmd_19B destVarID, partySlot
     .short 411
-    .short \arg0
-    .short \arg1
+    .short \destVarID
+    .short \partySlot
     .endm
 
     .macro ScrCmd_19C arg0
@@ -2276,9 +2278,9 @@
     .short 428
     .endm
 
-    .macro ScrCmd_1AD arg0
+    .macro ScrCmd_1AD dummy
     .short 429
-    .short \arg0
+    .short \dummy
     .endm
 
     .macro ScrCmd_1AE arg0, arg1
@@ -2603,9 +2605,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_1E5 arg0
+    .macro ScrCmd_1E5 recordID
     .short 485
-    .short \arg0
+    .short \recordID
     .endm
 
     .macro ScrCmd_1E6 arg0, arg1, arg2
@@ -2698,17 +2700,17 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_1F7 arg0, arg1
+    .macro ScrCmd_1F7 destVarID, partySlot
     .short 503
-    .short \arg0
-    .short \arg1
+    .short \destVarID
+    .short \partySlot
     .endm
 
     .macro ScrCmd_1F8
     .short 504
     .endm
 
-    /* this is a dummy function that doesn't do anything */
+    // this is a dummy function that doesn't do anything
     .macro Dummy1 dummy
     .short 505
     .short \dummy

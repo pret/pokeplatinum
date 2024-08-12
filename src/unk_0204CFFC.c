@@ -175,18 +175,14 @@ BOOL ScrCmd_09A(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_1F7(ScriptContext *param0)
+BOOL ScrCmd_SurvivePoison(ScriptContext *ctx)
 {
-    Pokemon *v0;
-    u16 v1;
-    u16 *v2;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    u16 partySlot = ScriptContext_GetVar(ctx);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(ctx->fieldSystem->saveData), partySlot);
+    *destVar = Pokemon_TrySurvivePoison(mon);
 
-    v2 = ScriptContext_GetVarPointer(param0);
-    v1 = ScriptContext_GetVar(param0);
-    v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->fieldSystem->saveData), v1);
-    *v2 = sub_02054B94(v0);
-
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_1F6(ScriptContext *param0)
@@ -399,55 +395,48 @@ BOOL ScrCmd_GetPartyCount(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_19A(ScriptContext *param0)
+BOOL ScrCmd_GetPartyCountHatched(ScriptContext *ctx)
 {
-    int v0, v1, v2;
-    Pokemon *v3;
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    u16 *v5 = ScriptContext_GetVarPointer(param0);
+    int hatchedCount, i;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    int partyCount = Party_GetCurrentCount(Party_GetFromSavedata(fieldSystem->saveData));
 
-    v0 = Party_GetCurrentCount(Party_GetFromSavedata(fieldSystem->saveData));
+    for (i = 0, hatchedCount = 0; i < partyCount; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), i);
 
-    for (v2 = 0, v1 = 0; v2 < v0; v2++) {
-        v3 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v2);
-
-        if (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) {
-            v1++;
+        if (!Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL)) {
+            hatchedCount++;
         }
     }
 
-    *v5 = v1;
-
-    return 0;
+    *destVar = hatchedCount;
+    return FALSE;
 }
 
-BOOL ScrCmd_19B(ScriptContext *param0)
+BOOL ScrCmd_CountAliveMonsExcept(ScriptContext *ctx)
 {
-    int v0, v1, v2;
-    Pokemon *v3;
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    u16 *v5 = ScriptContext_GetVarPointer(param0);
-    u16 v6 = ScriptContext_GetVar(param0);
+    int partyCount, aliveCount, i;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    u16 partySlot = ScriptContext_GetVar(ctx);
+    partyCount = Party_GetCurrentCount(Party_GetFromSavedata(fieldSystem->saveData));
 
-    v0 = Party_GetCurrentCount(Party_GetFromSavedata(fieldSystem->saveData));
-
-    for (v2 = 0, v1 = 0; v2 < v0; v2++) {
-        if (v2 == v6) {
+    for (i = 0, aliveCount = 0; i < partyCount; i++) {
+        if (i == partySlot) {
             continue;
         }
 
-        v3 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v2);
+        Pokemon *mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), i);
 
-        if (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) {
-            if (Pokemon_GetValue(v3, MON_DATA_CURRENT_HP, NULL) != 0) {
-                v1++;
-            }
+        if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE
+            && Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL) != 0) {
+            aliveCount++;
         }
     }
 
-    *v5 = v1;
-
-    return 0;
+    *destVar = aliveCount;
+    return FALSE;
 }
 
 BOOL ScrCmd_19C(ScriptContext *param0)

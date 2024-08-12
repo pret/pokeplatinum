@@ -579,7 +579,7 @@ static BOOL ScrCmd_1EB(ScriptContext *ctx);
 static BOOL ScrCmd_1EC(ScriptContext *ctx);
 static BOOL ScrCmd_1ED(ScriptContext *ctx);
 static BOOL ScrCmd_1EF(ScriptContext *ctx);
-static BOOL ScrCmd_1E5(ScriptContext *ctx);
+static BOOL ScrCmd_IncrementGameRecord(ScriptContext *ctx);
 static BOOL ScrCmd_1E6(ScriptContext *ctx);
 static BOOL ScrCmd_1E7(ScriptContext *ctx);
 static BOOL ScrCmd_334(ScriptContext *ctx);
@@ -1178,8 +1178,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_197,
     ScrCmd_198,
     ScrCmd_199,
-    ScrCmd_19A,
-    ScrCmd_19B,
+    ScrCmd_GetPartyCountHatched,
+    ScrCmd_CountAliveMonsExcept,
     ScrCmd_19C,
     ScrCmd_19D,
     ScrCmd_19E,
@@ -1197,7 +1197,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_1AA,
     ScrCmd_1AB,
     ScrCmd_1AC,
-    ScrCmd_1AD,
+    ScrCmd_Dummy1AD,
     ScrCmd_1AE,
     ScrCmd_1AF,
     ScrCmd_1B0,
@@ -1253,7 +1253,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_1E2,
     ScrCmd_1E3,
     ScrCmd_1E4,
-    ScrCmd_1E5,
+    ScrCmd_IncrementGameRecord,
     ScrCmd_1E6,
     ScrCmd_1E7,
     ScrCmd_1E8,
@@ -1271,7 +1271,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_1F4,
     ScrCmd_1F5,
     ScrCmd_1F6,
-    ScrCmd_1F7,
+    ScrCmd_SurvivePoison,
     ScrCmd_1F8,
     ScrCmd_Dummy1,
     ScrCmd_1FA,
@@ -6316,12 +6316,12 @@ static BOOL ScrCmd_1EF(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_1E5(ScriptContext *ctx)
+static BOOL ScrCmd_IncrementGameRecord(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_ReadHalfWord(ctx);
+    u16 recordID = ScriptContext_ReadHalfWord(ctx);
 
-    GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(ctx->fieldSystem->saveData), v0);
-    return 0;
+    GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(ctx->fieldSystem->saveData), recordID);
+    return FALSE;
 }
 
 static BOOL ScrCmd_1E6(ScriptContext *ctx)
