@@ -1,7 +1,6 @@
 # These files still contain inline-ASM functions; ignore them for formatting for now
 src/overlay110/ov110_021D0D80.c
 src/unk_0208A3F4.c
-src/unk_02089604.c
 src/overlay073/ov73_021D3250.c
 src/overlay107/ov107_02245EB0.c
 src/overlay107/ov107_02241AE0.c
