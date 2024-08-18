@@ -56,7 +56,7 @@ _007C:
     End
 
 _0087:
-    ScrCmd_0D4 0, 0x1B2
+    BufferMoveName 0, MOVE_DRACO_METEOR
     Message 8
     WaitABXPadPress
     CloseMessage

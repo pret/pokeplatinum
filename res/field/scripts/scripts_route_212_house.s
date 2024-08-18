@@ -82,7 +82,7 @@ _007E:
 
 _012F:
     BufferPartyMonNickname 0, 0x8000
-    ScrCmd_0D4 1, 0x8003
+    BufferMoveName 1, 0x8003
     Message 9
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 1, _01E9
@@ -96,13 +96,13 @@ _012F:
     WaitFadeScreen
     GoToIfEq 0x8002, 4, _01E9
     ScrCmd_1CA 0x800C, 0x8000, 0x8002
-    ScrCmd_0D4 1, 0x800C
+    BufferMoveName 1, 0x800C
     Message 12
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 1, _01E9
     BufferPartyMonNickname 0, 0x8000
     ScrCmd_1CA 0x800C, 0x8000, 0x8002
-    ScrCmd_0D4 1, 0x800C
+    BufferMoveName 1, 0x800C
     Message 13
     PlayFanfare SEQ_SE_DP_KON
     WaitFanfare SEQ_SE_DP_KON
@@ -110,7 +110,7 @@ _012F:
     Message 14
     WaitTime 32, 0x800C
     PlaySound SEQ_FANFA1
-    ScrCmd_0D4 1, 0x8003
+    BufferMoveName 1, 0x8003
     Message 15
     WaitSound
     WaitTime 16, 0x800C
@@ -119,7 +119,7 @@ _012F:
 
 _01E9:
     BufferPartyMonNickname 0, 0x8000
-    ScrCmd_0D4 1, 0x8003
+    BufferMoveName 1, 0x8003
     Message 10
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 0, _020F
@@ -128,14 +128,14 @@ _01E9:
 
 _020F:
     BufferPartyMonNickname 0, 0x8000
-    ScrCmd_0D4 1, 0x8003
+    BufferMoveName 1, 0x8003
     Message 11
     GoTo _0264
     End
 
 _0224:
     BufferPartyMonNickname 0, 0x8000
-    ScrCmd_0D4 1, 0x8003
+    BufferMoveName 1, 0x8003
     Message 8
     PlaySound SEQ_FANFA1
     WaitSound

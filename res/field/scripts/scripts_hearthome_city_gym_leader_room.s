@@ -93,7 +93,7 @@ _0158:
     CallCommonScript 0x7FC
     SetFlag 125
     BufferItemName 0, 0x8004
-    ScrCmd_0D3 1, 0x8004
+    BufferTMHMMoveName 1, 0x8004
     Message 4
     WaitABXPadPress
     CloseMessage

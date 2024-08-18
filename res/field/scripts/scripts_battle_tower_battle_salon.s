@@ -142,10 +142,10 @@ _0204:
 _0245:
     ScrCmd_1DE 0x4009, 0, 0x8004, 0x8005
     ScrCmd_0DA 0, 0x8004, 0, 0
-    ScrCmd_0D4 1, 0x8005
+    BufferMoveName 1, 0x8005
     ScrCmd_1DE 0x4009, 1, 0x8004, 0x8005
     ScrCmd_0DA 2, 0x8004, 0, 0
-    ScrCmd_0D4 3, 0x8005
+    BufferMoveName 3, 0x8005
     Return
 
 _0275:
@@ -156,10 +156,10 @@ _0275:
     SetVar 0x4009, 0
     ScrCmd_1DE 0x4009, 0, 0x8004, 0x8005
     ScrCmd_341 0, 0x8004, 0, 0
-    ScrCmd_0D4 1, 0x8005
+    BufferMoveName 1, 0x8005
     ScrCmd_1DE 0x4009, 1, 0x8004, 0x8005
     ScrCmd_341 2, 0x8004, 0, 0
-    ScrCmd_0D4 3, 0x8005
+    BufferMoveName 3, 0x8005
     Message 6
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 0, _02DD

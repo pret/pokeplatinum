@@ -1,6 +1,7 @@
     .include "macros/movement.inc"
     .include "consts/items.inc"
     .include "consts/map.inc"
+    .include "consts/moves.inc"
     .include "consts/poketch.inc"
     .include "consts/scrcmd.inc"
     .include "consts/sdat.inc"
@@ -1155,13 +1156,13 @@
     .short \pocket
     .endm
 
-    .macro ScrCmd_0D3 templateArg, item
+    .macro BufferTMHMMoveName templateArg, item
     .short 211
     .byte \templateArg
     .short \item
     .endm
 
-    .macro ScrCmd_0D4 templateArg, move
+    .macro BufferMoveName templateArg, move
     .short 212
     .byte \templateArg
     .short \move
@@ -1224,19 +1225,19 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_0DF templateArg, goods
+    .macro BufferUndergroundGoodsName templateArg, goods
     .short 223
     .byte \templateArg
     .short \goods
     .endm
 
-    .macro ScrCmd_0E0 templateArg, trap
+    .macro BufferUndergroundTrapName templateArg, trap
     .short 224
     .byte \templateArg
     .short \trap
     .endm
 
-    .macro ScrCmd_0E1 templateArg, item
+    .macro BufferUndergroundItemName templateArg, item
     .short 225
     .byte \templateArg
     .short \item

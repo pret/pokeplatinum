@@ -701,7 +701,7 @@ _091D:
     ScrCmd_083 0x8004, 0x8005, 0x800C
     ScrCmd_33E 0, 0x8004
     Message 108
-    ScrCmd_0DF 0, 0x8004
+    BufferUndergroundGoodsName 0, 0x8004
     WaitSound
     Return
 
@@ -713,7 +713,7 @@ _093A:
 _0944:
     PlaySound SEQ_FANFA4
     ScrCmd_087 0x8004, 0x8005, 0x800C
-    ScrCmd_0E0 0, 0x8004
+    BufferUndergroundTrapName 0, 0x8004
     Message 80
     WaitSound
     Return
@@ -726,7 +726,7 @@ _095C:
 _0966:
     PlaySound SEQ_FANFA4
     ScrCmd_08F 0x8004, 0x8005, 0x800C
-    ScrCmd_0E1 0, 0x8004
+    BufferUndergroundItemName 0, 0x8004
     BufferNumber 1, 0x8005
     Message 81
     WaitSound

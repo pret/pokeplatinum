@@ -95,7 +95,7 @@ _0119:
     CallCommonScript 0x7FC
     SetFlag 116
     BufferItemName 0, 0x8004
-    ScrCmd_0D3 1, 0x8004
+    BufferTMHMMoveName 1, 0x8004
     Message 4
     WaitABXPadPress
     CloseMessage
@@ -124,7 +124,7 @@ _0177:
     CallCommonScript 0x7FC
     SetFlag 116
     BufferItemName 0, 0x8004
-    ScrCmd_0D3 1, 0x8004
+    BufferTMHMMoveName 1, 0x8004
     Message 4
     WaitABXPadPress
     CloseMessage
