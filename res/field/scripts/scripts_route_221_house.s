@@ -14,7 +14,7 @@ _000A:
     GoToIfSet 0xAAE, _016F
     ScrCmd_277 0x8000
     BufferNumber 0, 0x8000
-    ScrCmd_177 0x8002
+    GetPartyCount 0x8002
     SetVar 0x8003, 0
 _003B:
     ScrCmd_278 0x8001, 0x8003

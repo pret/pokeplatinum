@@ -444,7 +444,7 @@ _0734:
     Return
 
 _0746:
-    ScrCmd_1E5 58
+    IncrementGameRecord RECORD_UNK_058
     ScrCmd_1CD 36, 0, 0, 0, 0
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen

@@ -8,7 +8,7 @@
 _0006:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_1E5 48
+    IncrementGameRecord RECORD_UNK_048
     ScrCmd_235 0, 0x800C
     Dummy1 0x800C
     SetVar 0x8008, 0x800C

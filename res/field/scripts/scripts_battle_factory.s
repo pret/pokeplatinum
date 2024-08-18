@@ -235,7 +235,7 @@ _03C1:
     CallIfEq 0x40B8, 0, _048A
     CallIfEq 0x40B8, 1, _049E
     CallIfEq 0x40B8, 2, _04B2
-    ScrCmd_1E5 58
+    IncrementGameRecord RECORD_UNK_058
     ScrCmd_1CD 37, 0, 0, 0, 0
     ScrCmd_1F8
     ScrCmd_2C4 3

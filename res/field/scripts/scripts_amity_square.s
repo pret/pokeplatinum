@@ -126,7 +126,7 @@ _01A3:
 
 _01B6:
     SetVar 0x400A, 0
-    ScrCmd_177 0x400B
+    GetPartyCount 0x400B
     SetVar 0x400C, 0
     GoTo _01CE
     End
@@ -394,7 +394,7 @@ _054D:
     Message 22
     ScrCmd_04D
     ScrCmd_27C 1, 0x8004
-    ScrCmd_1E5 51
+    IncrementGameRecord RECORD_UNK_051
     CallCommonScript 0x7E0
     CloseMessage
     ReleaseAll
@@ -421,7 +421,7 @@ _05BE:
     Message 22
     ScrCmd_04D
     ScrCmd_27C 2, 0x8004
-    ScrCmd_1E5 51
+    IncrementGameRecord RECORD_UNK_051
     CallCommonScript 0x7DF
     CloseMessage
     ReleaseAll

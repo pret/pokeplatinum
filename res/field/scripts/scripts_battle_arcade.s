@@ -286,7 +286,7 @@ _04DC:
     CallIfEq 0x40BE, 0, _05A5
     CallIfEq 0x40BE, 1, _05B9
     CallIfEq 0x40BE, 2, _05CD
-    ScrCmd_1E5 58
+    IncrementGameRecord RECORD_UNK_058
     ScrCmd_1CD 40, 0, 0, 0, 0
     ScrCmd_1F8
     ScrCmd_2C4 15

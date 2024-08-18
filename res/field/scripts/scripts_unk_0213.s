@@ -136,7 +136,7 @@ _01DE:
 
 _01F2:
     SetVar 0x8004, 2
-    ScrCmd_19A 0x800C
+    GetPartyCountHatched 0x800C
     GoToIfLt 0x800C, 2, _020F
     GoTo _026A
 
@@ -149,7 +149,7 @@ _020F:
 
 _021A:
     SetVar 0x8004, 3
-    ScrCmd_19A 0x800C
+    GetPartyCountHatched 0x800C
     GoToIfLt 0x800C, 3, _0237
     GoTo _0290
 
@@ -162,7 +162,7 @@ _0237:
 
 _0242:
     SetVar 0x8004, 4
-    ScrCmd_19A 0x800C
+    GetPartyCountHatched 0x800C
     GoToIfLt 0x800C, 3, _025F
     GoTo _0290
 

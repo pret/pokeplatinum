@@ -73,7 +73,7 @@ _00FF:
     End
 
 _011A:
-    ScrCmd_1E5 70
+    IncrementGameRecord RECORD_UNK_070
     RemoveItem ITEM_STAR_PIECE, 1, 0x800C
     AddItem ITEM_RED_SHARD, 1, 0x800C
     AddItem ITEM_BLUE_SHARD, 1, 0x800C
@@ -99,7 +99,7 @@ _014E:
 
 _019E:
     SubVar 0x8007, 1
-    ScrCmd_1E5 70
+    IncrementGameRecord RECORD_UNK_070
     AddItem ITEM_RED_SHARD, 1, 0x800C
     AddItem ITEM_BLUE_SHARD, 1, 0x800C
     AddItem ITEM_YELLOW_SHARD, 1, 0x800C

@@ -101,7 +101,7 @@ _018D:
     BufferCounterpartName 0
     BufferPlayerName 1
     Message 0
-    ScrCmd_177 0x800C
+    GetPartyCount 0x800C
     BufferNumber 0, 0x800C
     CallIfGe 0x800C, 4, _021A
     CallIfLe 0x800C, 3, _021F
@@ -143,7 +143,7 @@ _0224:
     BufferCounterpartName 0
     BufferPlayerName 1
     Message 4
-    ScrCmd_177 0x800C
+    GetPartyCount 0x800C
     BufferNumber 0, 0x800C
     CallIfGe 0x800C, 4, _02B1
     CallIfLe 0x800C, 3, _02B6

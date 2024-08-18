@@ -120,7 +120,7 @@ _01BC:
 _01C1:
     ApplyMovement 0x8007, _1260
     WaitMovement
-    ScrCmd_19A 0x8006
+    GetPartyCountHatched 0x8006
     ScrCmd_23B 0x8006
     ApplyMovement 0x8007, _1278
     WaitMovement
@@ -287,17 +287,17 @@ _03DE:
 
 _03E8:
     LockAll
-    ScrCmd_177 0x8004
+    GetPartyCount 0x8004
     SetVar 0x8005, 0
 _03F4:
-    ScrCmd_1F7 0x800C, 0x8005
+    SurvivePoison 0x800C, 0x8005
     GoToIfEq 0x800C, 0, _040F
     BufferPartyMonNickname 0, 0x8005
     Message 66
 _040F:
     AddVar 0x8005, 1
     GoToIfNe 0x8004, 0x8005, _03F4
-    ScrCmd_19B 0x800C, 6
+    CountAliveMonsExcept 0x800C, 6
     GoToIfEq 0x800C, 0, _0457
     CloseMessage
     ReleaseAll
@@ -528,7 +528,7 @@ _06D5:
     End
 
 _06F4:
-    ScrCmd_1E5 117
+    IncrementGameRecord RECORD_UNK_117
     ScrCmd_129
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0713

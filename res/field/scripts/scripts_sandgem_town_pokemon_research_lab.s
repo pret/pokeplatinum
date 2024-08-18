@@ -184,7 +184,7 @@ _0261:
     End
 
 _02B6:
-    ScrCmd_1E5 49
+    IncrementGameRecord RECORD_UNK_049
     Return
 
 _02BC:

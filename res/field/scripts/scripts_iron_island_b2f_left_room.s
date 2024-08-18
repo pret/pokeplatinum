@@ -255,7 +255,7 @@ _02F9:
     End
 
 _031C:
-    ScrCmd_177 0x800C
+    GetPartyCount 0x800C
     GoToIfEq 0x800C, 6, _0353
     PlaySound SEQ_FANFA4
     WaitSound

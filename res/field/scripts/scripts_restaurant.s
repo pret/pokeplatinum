@@ -193,7 +193,7 @@ _0331:
     LockAll
     CheckTrainerFlag 0x218
     GoToIfDefeated 0x218, _046C
-    ScrCmd_19B 0x800C, 6
+    CountAliveMonsExcept 0x800C, 6
     GoToIfEq 0x800C, 1, _04BC
     SetVar 0x8008, 0x40FB
     GoToIfEq 0x8008, 0, _038A
@@ -315,7 +315,7 @@ _04DB:
     LockAll
     CheckTrainerFlag 0x227
     GoToIfDefeated 0x227, _0616
-    ScrCmd_19B 0x800C, 6
+    CountAliveMonsExcept 0x800C, 6
     GoToIfEq 0x800C, 1, _0666
     SetVar 0x8008, 0x40FB
     GoToIfEq 0x8008, 0, _0534
@@ -437,7 +437,7 @@ _0685:
     LockAll
     CheckTrainerFlag 0x221
     GoToIfDefeated 0x221, _07C0
-    ScrCmd_19B 0x800C, 6
+    CountAliveMonsExcept 0x800C, 6
     GoToIfEq 0x800C, 1, _0810
     SetVar 0x8008, 0x40FC
     GoToIfEq 0x8008, 0, _06DE
@@ -559,7 +559,7 @@ _082F:
     LockAll
     CheckTrainerFlag 0x222
     GoToIfDefeated 0x222, _096A
-    ScrCmd_19B 0x800C, 6
+    CountAliveMonsExcept 0x800C, 6
     GoToIfEq 0x800C, 1, _09BA
     SetVar 0x8008, 0x40FC
     GoToIfEq 0x8008, 0, _0888
@@ -681,7 +681,7 @@ _09D9:
     LockAll
     CheckTrainerFlag 0x21E
     GoToIfDefeated 0x21E, _0B14
-    ScrCmd_19B 0x800C, 6
+    CountAliveMonsExcept 0x800C, 6
     GoToIfEq 0x800C, 1, _0B64
     SetVar 0x8008, 0x40FD
     GoToIfEq 0x8008, 0, _0A32
@@ -803,7 +803,7 @@ _0B83:
     LockAll
     CheckTrainerFlag 0x21F
     GoToIfDefeated 0x21F, _0CBE
-    ScrCmd_19B 0x800C, 6
+    CountAliveMonsExcept 0x800C, 6
     GoToIfEq 0x800C, 1, _0D0E
     SetVar 0x8008, 0x40FD
     GoToIfEq 0x8008, 0, _0BDC
@@ -925,7 +925,7 @@ _0D2D:
     LockAll
     CheckTrainerFlag 0x21B
     GoToIfDefeated 0x21B, _0E68
-    ScrCmd_19B 0x800C, 6
+    CountAliveMonsExcept 0x800C, 6
     GoToIfEq 0x800C, 1, _0EB8
     SetVar 0x8008, 0x40FE
     GoToIfEq 0x8008, 0, _0D86
@@ -1047,7 +1047,7 @@ _0ED7:
     LockAll
     CheckTrainerFlag 0x217
     GoToIfDefeated 0x217, _1012
-    ScrCmd_19B 0x800C, 6
+    CountAliveMonsExcept 0x800C, 6
     GoToIfEq 0x800C, 1, _1062
     SetVar 0x8008, 0x40FE
     GoToIfEq 0x8008, 0, _0F30
@@ -1169,7 +1169,7 @@ _1081:
     LockAll
     CheckTrainerFlag 0x224
     GoToIfDefeated 0x224, _11BC
-    ScrCmd_19B 0x800C, 6
+    CountAliveMonsExcept 0x800C, 6
     GoToIfEq 0x800C, 1, _120C
     SetVar 0x8008, 0x40FF
     GoToIfEq 0x8008, 0, _10DA
@@ -1291,7 +1291,7 @@ _122B:
     LockAll
     CheckTrainerFlag 0x21C
     GoToIfDefeated 0x21C, _1366
-    ScrCmd_19B 0x800C, 6
+    CountAliveMonsExcept 0x800C, 6
     GoToIfEq 0x800C, 1, _13B6
     SetVar 0x8008, 0x40FF
     GoToIfEq 0x8008, 0, _1284
@@ -1413,7 +1413,7 @@ _13D5:
     LockAll
     CheckTrainerFlag 0x228
     GoToIfDefeated 0x228, _1510
-    ScrCmd_19B 0x800C, 6
+    CountAliveMonsExcept 0x800C, 6
     GoToIfEq 0x800C, 1, _1560
     SetVar 0x8008, 0x4100
     GoToIfEq 0x8008, 0, _142E
@@ -1535,7 +1535,7 @@ _157F:
     LockAll
     CheckTrainerFlag 0x220
     GoToIfDefeated 0x220, _16BA
-    ScrCmd_19B 0x800C, 6
+    CountAliveMonsExcept 0x800C, 6
     GoToIfEq 0x800C, 1, _170A
     SetVar 0x8008, 0x4100
     GoToIfEq 0x8008, 0, _15D8
@@ -1657,7 +1657,7 @@ _1729:
     LockAll
     CheckTrainerFlag 0x21A
     GoToIfDefeated 0x21A, _1864
-    ScrCmd_19B 0x800C, 6
+    CountAliveMonsExcept 0x800C, 6
     GoToIfEq 0x800C, 1, _18B4
     SetVar 0x8008, 0x4101
     GoToIfEq 0x8008, 0, _1782
@@ -1779,7 +1779,7 @@ _18D3:
     LockAll
     CheckTrainerFlag 0x223
     GoToIfDefeated 0x223, _1A0E
-    ScrCmd_19B 0x800C, 6
+    CountAliveMonsExcept 0x800C, 6
     GoToIfEq 0x800C, 1, _1A5E
     SetVar 0x8008, 0x4101
     GoToIfEq 0x8008, 0, _192C
@@ -1901,7 +1901,7 @@ _1A7D:
     LockAll
     CheckTrainerFlag 0x21D
     GoToIfDefeated 0x21D, _1BB8
-    ScrCmd_19B 0x800C, 6
+    CountAliveMonsExcept 0x800C, 6
     GoToIfEq 0x800C, 1, _1C08
     SetVar 0x8008, 0x4102
     GoToIfEq 0x8008, 0, _1AD6
@@ -2023,7 +2023,7 @@ _1C27:
     LockAll
     CheckTrainerFlag 0x226
     GoToIfDefeated 0x226, _1D62
-    ScrCmd_19B 0x800C, 6
+    CountAliveMonsExcept 0x800C, 6
     GoToIfEq 0x800C, 1, _1DB2
     SetVar 0x8008, 0x4102
     GoToIfEq 0x8008, 0, _1C80
@@ -2145,7 +2145,7 @@ _1DD1:
     LockAll
     CheckTrainerFlag 0x225
     GoToIfDefeated 0x225, _1F0C
-    ScrCmd_19B 0x800C, 6
+    CountAliveMonsExcept 0x800C, 6
     GoToIfEq 0x800C, 1, _1F5C
     SetVar 0x8008, 0x4103
     GoToIfEq 0x8008, 0, _1E2A
@@ -2267,7 +2267,7 @@ _1F7B:
     LockAll
     CheckTrainerFlag 0x219
     GoToIfDefeated 0x219, _20B6
-    ScrCmd_19B 0x800C, 6
+    CountAliveMonsExcept 0x800C, 6
     GoToIfEq 0x800C, 1, _2106
     SetVar 0x8008, 0x4103
     GoToIfEq 0x8008, 0, _1FD4

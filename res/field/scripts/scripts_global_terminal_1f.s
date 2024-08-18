@@ -149,7 +149,7 @@ _01DE:
     End
 
 _01E9:
-    ScrCmd_19A 0x800C
+    GetPartyCountHatched 0x800C
     GoToIfLt 0x800C, 2, _0202
     GoTo _0306
     End
@@ -220,7 +220,7 @@ _02FB:
     End
 
 _0306:
-    ScrCmd_177 0x800C
+    GetPartyCount 0x800C
     GoToIfEq 0x800C, 6, _031F
     GoTo _020D
     End

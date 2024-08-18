@@ -28,7 +28,7 @@ _003E:
     End
 
 _0057:
-    ScrCmd_177 0x800C
+    GetPartyCount 0x800C
     GoToIfEq 0x800C, 6, _00EF
     Message 2
     PlaySound SEQ_FANFA4
@@ -45,7 +45,7 @@ _0057:
 
 _00A8:
     CloseMessage
-    ScrCmd_177 0x4000
+    GetPartyCount 0x4000
     SubVar 0x4000, 1
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -57,7 +57,7 @@ _00A8:
     End
 
 _00E3:
-    ScrCmd_1E5 49
+    IncrementGameRecord RECORD_UNK_049
     Return
 
 _00E9:

@@ -1,4 +1,5 @@
     .include "macros/movement.inc"
+    .include "consts/game_records.inc"
     .include "consts/items.inc"
     .include "consts/map.inc"
     .include "consts/moves.inc"
@@ -1988,7 +1989,7 @@
     .byte \arg0
     .endm
 
-    .macro ScrCmd_177 destVarID
+    .macro GetPartyCount destVarID
     .short 375
     .short \destVarID
     .endm
@@ -2181,14 +2182,14 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_19A destVarID
+    .macro GetPartyCountHatched destVarID
     .short 410
     .short \destVarID
     .endm
 
     // Counts alive mons in the party and stores the result in the destVar, 
     // but excludes the one at the party slot provided.
-    .macro ScrCmd_19B destVarID, partySlot
+    .macro CountAliveMonsExcept destVarID, partySlot
     .short 411
     .short \destVarID
     .short \partySlot
@@ -2279,7 +2280,7 @@
     .short 428
     .endm
 
-    .macro ScrCmd_1AD dummy
+    .macro Dummy1AD dummy
     .short 429
     .short \dummy
     .endm
@@ -2606,7 +2607,7 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_1E5 recordID
+    .macro IncrementGameRecord recordID
     .short 485
     .short \recordID
     .endm
@@ -2701,7 +2702,7 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_1F7 destVarID, partySlot
+    .macro SurvivePoison destVarID, partySlot
     .short 503
     .short \destVarID
     .short \partySlot
