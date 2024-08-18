@@ -231,7 +231,7 @@ _032F:
     ScrCmd_1E5 57
     Call _0605
     ScrCmd_0E5 0x4005, 0
-    ScrCmd_0EC 0x8000
+    CheckWonBattle 0x8000
     Return
 
 _034D:

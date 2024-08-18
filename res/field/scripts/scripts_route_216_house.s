@@ -23,7 +23,7 @@ _0039:
     WaitFadeScreen
     PlaySound SEQ_ASA
     WaitSound
-    ScrCmd_14E
+    HealParty
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     Message 1
@@ -66,7 +66,7 @@ _00AD:
     WaitFadeScreen
     PlaySound SEQ_ASA
     WaitSound
-    ScrCmd_14E
+    HealParty
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     BufferPlayerName 0

@@ -22,9 +22,9 @@ _0006:
     ScrCmd_04D
     SetFlag 0xAB0
     ScrCmd_124 0x1DF, 20
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _00A7
-    ScrCmd_2BC 0x800C
+    CheckDidNotCapture 0x800C
     GoToIfEq 0x800C, 1, _008B
     SetFlag 0x149
     ReleaseAll

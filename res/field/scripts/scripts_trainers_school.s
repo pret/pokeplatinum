@@ -190,7 +190,7 @@ _022E:
     End
 
 _023C:
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _02DE
     SetFlag 0x10C
     GoToIfSet 0x10D, _0274
@@ -284,7 +284,7 @@ _0361:
     End
 
 _036F:
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _03D3
     SetFlag 0x10D
     GoToIfSet 0x10C, _03BD

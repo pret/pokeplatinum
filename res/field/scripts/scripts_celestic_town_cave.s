@@ -102,7 +102,7 @@ _019D:
     Message 8
     CloseMessage
     ScrCmd_0E5 0x391, 0
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0393
     Call _01C3
     ReleaseAll
@@ -467,7 +467,7 @@ _0538:
     Message 8
     CloseMessage
     ScrCmd_0E5 0x391, 0
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0393
     Call _01C3
     ReleaseAll

@@ -96,7 +96,7 @@ _00FF:
     Message 15
     CloseMessage
     ScrCmd_0E5 0x381, 0
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0484
     AddVar 0x8005, 0x404D
     Message 16
@@ -108,7 +108,7 @@ _00FF:
     Message 17
     CloseMessage
     ScrCmd_0E5 0x382, 0
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0484
     AddVar 0x8005, 0x404D
     Message 18
@@ -120,7 +120,7 @@ _00FF:
     Message 19
     CloseMessage
     ScrCmd_0E5 0x383, 0
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0484
     AddVar 0x8005, 0x404D
     Message 20
@@ -132,7 +132,7 @@ _00FF:
     Message 21
     CloseMessage
     ScrCmd_0E5 0x384, 0
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0484
     AddVar 0x8005, 0x404D
     Message 22
@@ -152,7 +152,7 @@ _00FF:
     Message 23
     CloseMessage
     ScrCmd_0E5 0x385, 0
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0484
     AddVar 0x8005, 0x404D
     Message 24
@@ -180,7 +180,7 @@ _00FF:
     CallIfEq 0x8006, 1, _03D2
     CloseMessage
     ScrCmd_0E5 0x8007, 0
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0484
     SetTrainerFlag 0x37C
     SetTrainerFlag 0x37D

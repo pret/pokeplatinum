@@ -13,7 +13,7 @@
 
 _001E:
     CallIfGe 0x4087, 2, _005B
-    ScrCmd_14D 0x4000
+    GetPlayerGender 0x4000
     GoToIfEq 0x4000, 0, _004B
     GoToIfEq 0x4000, 1, _0053
     End
@@ -106,7 +106,7 @@ _0164:
 
 _0174:
     GoToIfUnset 143, _027C
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _019F
     GoToIfEq 0x800C, 1, _01B2
     End
@@ -133,7 +133,7 @@ _01C5:
     ScrCmd_126
     ApplyMovement 3, _0490
     WaitMovement
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _0205
     GoToIfEq 0x800C, 1, _0211
     End
@@ -152,7 +152,7 @@ _021D:
     SetVar 0x8004, 4
     SetVar 0x8005, 5
     CallCommonScript 0x7FC
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _024D
     GoToIfEq 0x800C, 1, _0259
     End
@@ -176,7 +176,7 @@ _0262:
     End
 
 _027C:
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _029C
     GoToIfEq 0x800C, 1, _02C8
     End
@@ -381,7 +381,7 @@ _04C4:
     FacePlayer
     BufferPlayerName 0
     ScrCmd_1BD 0x8002
-    ScrCmd_14D 0x8000
+    GetPlayerGender 0x8000
     CallIfEq 0x8000, 0, _0653
     CallIfEq 0x8000, 1, _0658
     CloseMessage

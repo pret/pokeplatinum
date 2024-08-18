@@ -16,7 +16,7 @@ _000A:
     CloseMessage
     CallIfUnset 214, _007A
     CallIfSet 214, _0082
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _00A6
     SetFlag 176
     PlayFanfare SEQ_SE_DP_KI_GASYAN

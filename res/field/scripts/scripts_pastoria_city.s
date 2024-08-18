@@ -593,7 +593,7 @@ _0557:
     GoTo _0563
 
 _0563:
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0597
     BufferRivalName 0
     BufferPlayerName 1

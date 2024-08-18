@@ -170,7 +170,7 @@ _026D:
     End
 
 _0299:
-    ScrCmd_14E
+    HealParty
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     SetVar 0x409D, 0x400A

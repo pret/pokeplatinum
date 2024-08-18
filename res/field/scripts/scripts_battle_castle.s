@@ -153,7 +153,7 @@ _0297:
     CallIfEq 0x40BD, 0, _043C
     CallIfEq 0x40BD, 1, _043C
     SetVar 0x4000, 0
-    ScrCmd_14E
+    HealParty
     CallCommonScript 0x7D6
     SetVar 0x800C, 0x4000
     GoToIfEq 0x800C, 0, _0139

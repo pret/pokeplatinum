@@ -19,7 +19,7 @@ _0006:
     ApplyMovement 0, _015C
     WaitMovement
     WaitTime 15, 0x800C
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _0074
     GoToIfEq 0x800C, 1, _0080
     End

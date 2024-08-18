@@ -174,7 +174,7 @@ _01AA:
     ScrCmd_161
     ScrCmd_0E5 0x343, 0x344
     ScrCmd_162
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _037D
     ApplyMovement 5, _0394
     WaitMovement

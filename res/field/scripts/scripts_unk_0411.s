@@ -33,7 +33,7 @@ _003E:
 
 _004C:
     BufferPlayerName 0
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     CallIfEq 0x800C, 0, _0086
     CallIfEq 0x800C, 1, _008B
     ScrCmd_03E 0x800C
@@ -103,7 +103,7 @@ _0120:
 
 _0126:
     ScrCmd_121 0x8004
-    ScrCmd_14D 0x8005
+    GetPlayerGender 0x8005
     BufferNumber 0, 0x8004
     Message 20
     ScrCmd_123 1, 0x800C

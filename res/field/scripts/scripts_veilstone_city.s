@@ -39,7 +39,7 @@
 _0082:
     CallIfSet 0x155, _00E0
     CallIfGe 0x411A, 2, _00BA
-    ScrCmd_14D 0x4000
+    GetPlayerGender 0x4000
     GoToIfEq 0x4000, 0, _00D0
     GoToIfEq 0x4000, 1, _00D8
     End
@@ -74,7 +74,7 @@ _00F6:
     CallIfEq 0x8004, 0x2AA, _02ED
     CallIfEq 0x8004, 0x2AB, _02F9
     CallIfEq 0x8004, 0x2AC, _0305
-    ScrCmd_14D 0x8004
+    GetPlayerGender 0x8004
     CallIfEq 0x8004, 0, _0297
     CallIfEq 0x8004, 1, _029F
     CloseMessage
@@ -110,7 +110,7 @@ _00F6:
     CallIfEq 0x8004, 0x2AC, _03D5
     ScrCmd_065 25
     WaitTime 20, 0x800C
-    ScrCmd_14D 0x8004
+    GetPlayerGender 0x8004
     CallIfEq 0x8004, 0, _02A7
     CallIfEq 0x8004, 1, _02C4
     CloseMessage
@@ -459,7 +459,7 @@ _05CC:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_14D 0x8004
+    GetPlayerGender 0x8004
     GoToIfEq 0x8004, 0, _05F4
     GoToIfEq 0x8004, 1, _0625
     End
@@ -508,7 +508,7 @@ _0656:
     CallIfEq 0x800C, 0, _09C7
     Call _0919
     ScrCmd_2A0 0x8004, 0x350, 0x351
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0A73
     Message 16
     GetPlayerMapPos 0x8004, 0x8005
@@ -527,7 +527,7 @@ _0656:
     CallIfEq 0x8005, 0x253, _0A0B
     CallIfEq 0x8005, 0x255, _0A17
     ScrCmd_065 20
-    ScrCmd_14D 0x8004
+    GetPlayerGender 0x8004
     CallIfEq 0x8004, 0, _0A23
     CallIfEq 0x8004, 1, _0A28
     CloseMessage
@@ -536,7 +536,7 @@ _0656:
     CallIfEq 0x8005, 0x255, _0A5F
     WaitTime 10, 0x800C
     BufferPlayerName 0
-    ScrCmd_14D 0x8004
+    GetPlayerGender 0x8004
     CallIfEq 0x8004, 0, _0A2D
     CallIfEq 0x8004, 1, _0A32
     CloseMessage
@@ -552,11 +552,11 @@ _0656:
     ApplyMovement 6, _0B3C
     ApplyMovement 0xFF, _0B9C
     WaitMovement
-    ScrCmd_14D 0x8004
+    GetPlayerGender 0x8004
     CallIfEq 0x8004, 0, _0A37
     CallIfEq 0x8004, 1, _0A3C
     Message 32
-    ScrCmd_14D 0x8004
+    GetPlayerGender 0x8004
     CallIfEq 0x8004, 0, _0A41
     CallIfEq 0x8004, 1, _0A46
     CloseMessage
@@ -640,7 +640,7 @@ _08DD:
     End
 
 _0919:
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _0939
     GoToIfEq 0x800C, 1, _096B
     End
@@ -1529,7 +1529,7 @@ _1184:
     LockAll
     ApplyMovement 6, _11E8
     WaitMovement
-    ScrCmd_14D 0x8004
+    GetPlayerGender 0x8004
     CallIfEq 0x8004, 0, _11D6
     CallIfEq 0x8004, 1, _11DE
     CloseMessage

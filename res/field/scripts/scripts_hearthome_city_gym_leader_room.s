@@ -61,7 +61,7 @@ _00BB:
     SetFlag 142
     ScrCmd_0E5 0x13E, 0
     ClearFlag 142
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0248
     Message 1
     BufferPlayerName 0

@@ -35,7 +35,7 @@
 _0072:
     CallIfEq 0x4077, 0, _00AC
     CallIfGe 0x4077, 3, _00C2
-    ScrCmd_14D 0x4000
+    GetPlayerGender 0x4000
     GoToIfEq 0x4000, 0, _00D8
     GoToIfEq 0x4000, 1, _00E0
     End
@@ -92,7 +92,7 @@ _0149:
     ApplyMovement 7, _044C
     WaitMovement
     CallCommonScript 0x7F8
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _018D
     GoToIfEq 0x800C, 1, _0224
     End
@@ -851,7 +851,7 @@ _0A6A:
     Message 70
     ApplyMovement 7, _0E44
     WaitMovement
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _0ADC
     GoToIfEq 0x800C, 1, _0AED
     End
@@ -879,7 +879,7 @@ _0AFE:
     WaitMovement
     Call _0BAA
     ScrCmd_2A0 0x8004, 0x19E, 0x19F
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0DB7
     ApplyMovement 18, _0EB4
     WaitMovement
@@ -898,13 +898,13 @@ _0AFE:
     Message 74
     ApplyMovement 7, _0E60
     WaitMovement
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _0C30
     GoToIfEq 0x800C, 1, _0C41
     End
 
 _0BAA:
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _0BCA
     GoToIfEq 0x800C, 1, _0BFC
     End
@@ -1566,10 +1566,10 @@ _1223:
     RemoveItem ITEM_COUPON_3, 1, 0x800C
     ScrCmd_131
     SetVar 0x4077, 2
-    ScrCmd_133 0
-    ScrCmd_133 1
-    ScrCmd_133 3
-    ScrCmd_133 4
+    RegisterPoketchApp POKETCH_APPID_DIGITALWATCH
+    RegisterPoketchApp POKETCH_APPID_CALCULATOR
+    RegisterPoketchApp POKETCH_APPID_PEDOMETER
+    RegisterPoketchApp POKETCH_APPID_PARTYSTATUS
     BufferPlayerName 0
     Message 43
     PlaySound SEQ_FANFA4

@@ -17,7 +17,7 @@ _000E:
     Message 0
     CloseMessage
     ScrCmd_0E5 246, 0
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0119
     Message 1
     BufferPlayerName 0

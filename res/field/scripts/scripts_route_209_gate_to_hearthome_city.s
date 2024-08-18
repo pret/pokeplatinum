@@ -53,7 +53,7 @@ _00C1:
     End
 
 _00CF:
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0148
     BufferRivalName 0
     BufferPlayerName 1

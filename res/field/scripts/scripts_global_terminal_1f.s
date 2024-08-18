@@ -165,7 +165,7 @@ _020D:
     CallCommonScript 0x7D6
     SetVar 0x800C, 0x4000
     GoToIfEq 0x800C, 0, _02EA
-    ScrCmd_14E
+    HealParty
     SetVar 0x40D5, 6
     Message 7
     CloseMessage

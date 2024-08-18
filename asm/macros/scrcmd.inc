@@ -1300,12 +1300,12 @@
     .short 235
     .endm
 
-    .macro ScrCmd_0EC destVarID
+    .macro CheckWonBattle destVarID
     .short 236
     .short \destVarID
     .endm
 
-    .macro ScrCmd_0ED destVarID
+    .macro CheckLostBattle destVarID
     .short 237
     .short \destVarID
     .endm
@@ -1531,7 +1531,7 @@
     .short 280
     .endm
 
-    .macro ScrCmd_119 destVarID
+    .macro CheckPartyPokerus destVarID
     .short 281
     .short \destVarID
     .endm
@@ -1666,7 +1666,7 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_133 appID
+    .macro RegisterPoketchApp appID
     .short 307
     .short \appID
     .endm
@@ -1793,12 +1793,12 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_14D destVarID
+    .macro GetPlayerGender destVarID
     .short 333
     .short \destVarID
     .endm
 
-    .macro ScrCmd_14E
+    .macro HealParty
     .short 334
     .endm
 
@@ -3791,7 +3791,7 @@
     .short 699
     .endm
 
-    .macro ScrCmd_2BC destVarID
+    .macro CheckDidNotCapture destVarID
     .short 700
     .short \destVarID
     .endm

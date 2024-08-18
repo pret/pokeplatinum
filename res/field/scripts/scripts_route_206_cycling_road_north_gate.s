@@ -81,7 +81,7 @@ _00C0:
     GoToIfSet 0x10B, _0154
     BufferPlayerName 0
     BufferCounterpartName 1
-    ScrCmd_14D 0x4000
+    GetPlayerGender 0x4000
     GoToIfEq 0x4000, 0, _00F0
     GoTo _00F9
 

@@ -43,7 +43,7 @@ _007E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _009D
     GoTo _00D2
 
@@ -106,7 +106,7 @@ _0186:
     SetVar 0x800C, 0
     ScrCmd_254 0x800C
     GoToIfEq 0x800C, 0, _0299
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _0231
     GoTo _0245
 
@@ -375,7 +375,7 @@ _04B4:
     SetVar 0x40E0, 0x7D0
     ApplyMovement 1, _0548
     WaitMovement
-    ScrCmd_14D 0x4000
+    GetPlayerGender 0x4000
     BufferPlayerName 0
     GoToIfEq 0x4000, 0, _04E4
     GoTo _04ED

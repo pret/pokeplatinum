@@ -166,7 +166,7 @@ _020F:
     GoTo _021B
 
 _021B:
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _02AC
     BufferRivalName 0
     BufferPlayerName 1

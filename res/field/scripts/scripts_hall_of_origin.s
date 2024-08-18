@@ -43,9 +43,9 @@ _0056:
     SetFlag 142
     ScrCmd_2BD 0x1ED, 80
     ClearFlag 142
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _00DF
-    ScrCmd_2BC 0x800C
+    CheckDidNotCapture 0x800C
     GoToIfEq 0x800C, 1, _00D0
     CallIfEq 0x4056, 0, _00C8
     SetFlag 0x11E

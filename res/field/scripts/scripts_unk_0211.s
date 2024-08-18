@@ -124,7 +124,7 @@ _01C1:
     ScrCmd_23B 0x8006
     ApplyMovement 0x8007, _1278
     WaitMovement
-    ScrCmd_14E
+    HealParty
     Return
 
 _01E1:
@@ -159,7 +159,7 @@ _0218:
     End
 
 _0242:
-    ScrCmd_119 0x8006
+    CheckPartyPokerus 0x8006
     GoToIfEq 0x8006, 1, _0259
     GoTo _01E1
 
@@ -530,7 +530,7 @@ _06D5:
 _06F4:
     ScrCmd_1E5 117
     ScrCmd_129
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0713
     ScrCmd_12A
     GoTo _06A2
@@ -552,7 +552,7 @@ _0723:
     Message 24
     WaitSound
     Message 26
-    ScrCmd_133 0x8004
+    RegisterPoketchApp 0x8004
     CallIfEq 0x8004, 0, _0882
     CallIfEq 0x8004, 1, _0887
     CallIfEq 0x8004, 2, _088C
@@ -1176,7 +1176,7 @@ _0FCA:
     CloseMessage
     PlaySound SEQ_ASA
     WaitSound
-    ScrCmd_14E
+    HealParty
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     CallIfSet 144, _1030
@@ -1606,7 +1606,7 @@ _157B:
 
 _1581:
     StopMusic 0
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     CallIfEq 0x800C, 0, _15A7
     CallIfEq 0x800C, 1, _15AD
     ReturnCommonScript

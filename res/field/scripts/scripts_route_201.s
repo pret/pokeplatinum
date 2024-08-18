@@ -21,7 +21,7 @@
     .short 0xFD13
 
 _0042:
-    ScrCmd_14D 0x4000
+    GetPlayerGender 0x4000
     GoToIfEq 0x4000, 0, _0062
     GoToIfEq 0x4000, 1, _006A
     End
@@ -211,7 +211,7 @@ _030B:
     CallCommonScript 0x7F8
     ApplyMovement 6, _08C8
     WaitMovement
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _036E
     GoTo _03A6
     End
@@ -300,7 +300,7 @@ _042E:
     WaitMovement
     SetFlag 0x178
     ScrCmd_065 5
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _04CA
     GoTo _04EE
     End
@@ -376,7 +376,7 @@ _05C5:
     GoTo _05CF
 
 _05CF:
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _05F5
     ScrCmd_062 2
     BufferRivalName 0
@@ -403,7 +403,7 @@ _0618:
     WaitTime 30, 0x800C
     FadeScreen 6, 3, 0, 0
     WaitFadeScreen
-    ScrCmd_14E
+    HealParty
     Warp MAP_HEADER_TWINLEAF_TOWN_PLAYER_HOUSE_1F, 0, 2, 6, 0
     FadeScreen 6, 3, 1, 0
     WaitFadeScreen
@@ -1046,7 +1046,7 @@ _0C6E:
     GoTo _0C86
 
 _0C86:
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _0C9D
     GoTo _0CA3
 

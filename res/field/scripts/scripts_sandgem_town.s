@@ -18,7 +18,7 @@
 
 _0032:
     CallIfEq 0x4071, 1, _005F
-    ScrCmd_14D 0x4000
+    GetPlayerGender 0x4000
     GoToIfEq 0x4000, 0, _0075
     GoToIfEq 0x4000, 1, _007D
     End
@@ -86,7 +86,7 @@ _014F:
     End
 
 _0169:
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _0189
     GoToIfEq 0x800C, 1, _0195
     End
@@ -148,7 +148,7 @@ _026B:
     GoTo _0283
 
 _0283:
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _02A3
     GoToIfEq 0x800C, 1, _02AC
     End
@@ -186,7 +186,7 @@ _02B5:
     WaitMovement
     ScrCmd_065 3
     CallCommonScript 0x7FB
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _0344
     GoToIfEq 0x800C, 1, _0352
     End
@@ -475,7 +475,7 @@ _057C:
     ScrCmd_16A 77
     ScrCmd_065 14
     WaitTime 30, 0x800C
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _0610
     GoToIfEq 0x800C, 1, _061D
     End
@@ -496,7 +496,7 @@ _062A:
     ApplyMovement 0xFF, _07B8
     ApplyMovement 4, _0800
     WaitMovement
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _065C
     GoToIfEq 0x800C, 1, _066B
     End
@@ -519,7 +519,7 @@ _067A:
     ApplyMovement 4, _0808
     ApplyMovement 0xFF, _07C0
     WaitMovement
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _06B2
     GoToIfEq 0x800C, 1, _06C1
     End
@@ -541,7 +541,7 @@ _06D0:
     ApplyMovement 4, _0814
     ApplyMovement 0xFF, _07D0
     WaitMovement
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _0704
     GoToIfEq 0x800C, 1, _0710
     End
@@ -563,7 +563,7 @@ _071C:
     WaitMovement
     ApplyMovement 4, _0828
     WaitMovement
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _075A
     GoToIfEq 0x800C, 1, _0766
     End

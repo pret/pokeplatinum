@@ -40,10 +40,10 @@ _0077:
     ScrCmd_04D
     CloseMessage
     ScrCmd_2BD 0x1E4, 70
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _00E8
     SetVar 0x40C5, 1
-    ScrCmd_2BC 0x800C
+    CheckDidNotCapture 0x800C
     CallIfEq 0x800C, 0, _00EE
     ReleaseAll
     End

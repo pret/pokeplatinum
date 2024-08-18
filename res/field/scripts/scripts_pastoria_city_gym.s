@@ -49,7 +49,7 @@ _0076:
     Message 0
     CloseMessage
     ScrCmd_0E5 0x13C, 0
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _016B
     Message 1
     BufferPlayerName 0

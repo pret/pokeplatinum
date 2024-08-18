@@ -174,7 +174,7 @@ _026C:
 _0277:
     ScrCmd_31D 0x800C
     GoToIfEq 0x800C, 0xFF, _02A9
-    ScrCmd_14E
+    HealParty
     CallCommonScript 0x7D6
     SetVar 0x800C, 0x4000
     GoToIfEq 0x800C, 1, _02AF
@@ -384,7 +384,7 @@ _051B:
     End
 
 _0526:
-    ScrCmd_14E
+    HealParty
     CallCommonScript 0x7D6
     SetVar 0x800C, 0x4000
     GoToIfEq 0x800C, 0, _0508

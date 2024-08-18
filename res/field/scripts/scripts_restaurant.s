@@ -229,7 +229,7 @@ _03C8:
 _03E7:
     CloseMessage
     ScrCmd_0E5 0x218, 0x227
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _2125
     SetTrainerFlag 0x218
     SetTrainerFlag 0x227
@@ -351,7 +351,7 @@ _0572:
 _0591:
     CloseMessage
     ScrCmd_0E5 0x218, 0x227
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _2125
     SetTrainerFlag 0x218
     SetTrainerFlag 0x227
@@ -473,7 +473,7 @@ _071C:
 _073B:
     CloseMessage
     ScrCmd_0E5 0x221, 0x222
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _2125
     SetTrainerFlag 0x221
     SetTrainerFlag 0x222
@@ -595,7 +595,7 @@ _08C6:
 _08E5:
     CloseMessage
     ScrCmd_0E5 0x221, 0x222
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _2125
     SetTrainerFlag 0x221
     SetTrainerFlag 0x222
@@ -717,7 +717,7 @@ _0A70:
 _0A8F:
     CloseMessage
     ScrCmd_0E5 0x21E, 0x21F
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _2125
     SetTrainerFlag 0x21E
     SetTrainerFlag 0x21F
@@ -839,7 +839,7 @@ _0C1A:
 _0C39:
     CloseMessage
     ScrCmd_0E5 0x21E, 0x21F
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _2125
     SetTrainerFlag 0x21E
     SetTrainerFlag 0x21F
@@ -961,7 +961,7 @@ _0DC4:
 _0DE3:
     CloseMessage
     ScrCmd_0E5 0x21B, 0x217
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _2125
     SetTrainerFlag 0x21B
     SetTrainerFlag 0x217
@@ -1083,7 +1083,7 @@ _0F6E:
 _0F8D:
     CloseMessage
     ScrCmd_0E5 0x21B, 0x217
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _2125
     SetTrainerFlag 0x21B
     SetTrainerFlag 0x217
@@ -1205,7 +1205,7 @@ _1118:
 _1137:
     CloseMessage
     ScrCmd_0E5 0x224, 0x21C
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _2125
     SetTrainerFlag 0x224
     SetTrainerFlag 0x21C
@@ -1327,7 +1327,7 @@ _12C2:
 _12E1:
     CloseMessage
     ScrCmd_0E5 0x224, 0x21C
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _2125
     SetTrainerFlag 0x224
     SetTrainerFlag 0x21C
@@ -1449,7 +1449,7 @@ _146C:
 _148B:
     CloseMessage
     ScrCmd_0E5 0x228, 0x220
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _2125
     SetTrainerFlag 0x228
     SetTrainerFlag 0x220
@@ -1571,7 +1571,7 @@ _1616:
 _1635:
     CloseMessage
     ScrCmd_0E5 0x228, 0x220
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _2125
     SetTrainerFlag 0x228
     SetTrainerFlag 0x220
@@ -1693,7 +1693,7 @@ _17C0:
 _17DF:
     CloseMessage
     ScrCmd_0E5 0x21A, 0x223
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _2125
     SetTrainerFlag 0x21A
     SetTrainerFlag 0x223
@@ -1815,7 +1815,7 @@ _196A:
 _1989:
     CloseMessage
     ScrCmd_0E5 0x21A, 0x223
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _2125
     SetTrainerFlag 0x21A
     SetTrainerFlag 0x223
@@ -1937,7 +1937,7 @@ _1B14:
 _1B33:
     CloseMessage
     ScrCmd_0E5 0x21D, 0x226
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _2125
     SetTrainerFlag 0x21D
     SetTrainerFlag 0x226
@@ -2059,7 +2059,7 @@ _1CBE:
 _1CDD:
     CloseMessage
     ScrCmd_0E5 0x21D, 0x226
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _2125
     SetTrainerFlag 0x21D
     SetTrainerFlag 0x226
@@ -2181,7 +2181,7 @@ _1E68:
 _1E87:
     CloseMessage
     ScrCmd_0E5 0x225, 0x219
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _2125
     SetTrainerFlag 0x225
     SetTrainerFlag 0x219
@@ -2303,7 +2303,7 @@ _2012:
 _2031:
     CloseMessage
     ScrCmd_0E5 0x225, 0x219
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _2125
     SetTrainerFlag 0x225
     SetTrainerFlag 0x219
