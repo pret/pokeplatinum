@@ -1856,9 +1856,9 @@
     .short 346
     .endm
 
-    .macro ScrCmd_15B badgeNum, destVarID
+    .macro CheckBadge badgeID, destVarID
     .short 347
-    .short \badgeNum
+    .short \badgeID
     .short \destVarID
     .endm
 

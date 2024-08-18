@@ -43,7 +43,7 @@ _0076:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_15B 3, 0x800C
+    CheckBadge BADGE_ID_FEN, 0x800C
     GoToIfEq 0x800C, 1, _0155
     ScrCmd_1CD 9, 122, 0, 0, 0
     Message 0
@@ -110,7 +110,7 @@ _0171:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_15B 3, 0x800C
+    CheckBadge BADGE_ID_FEN, 0x800C
     GoToIfEq 0x800C, 1, _0197
     Message 6
     WaitABXPadPress
@@ -129,7 +129,7 @@ _0197:
 _01A5:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_15B 3, 0x800C
+    CheckBadge BADGE_ID_FEN, 0x800C
     GoToIfEq 0x800C, 1, _01CF
     BufferRivalName 0
     BufferRivalName 1

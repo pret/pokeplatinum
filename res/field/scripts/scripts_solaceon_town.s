@@ -42,7 +42,7 @@ _0062:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_15B 4, 0x800C
+    CheckBadge BADGE_ID_RELIC, 0x800C
     GoToIfEq 0x800C, 1, _0088
     Message 4
     WaitABXPadPress

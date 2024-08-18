@@ -396,7 +396,7 @@ _054D:
     LockAll
     FacePlayer
     GoToIfSet 168, _0586
-    ScrCmd_15B 5, 0x800C
+    CheckBadge BADGE_ID_MINE, 0x800C
     GoToIfEq 0x800C, 1, _0591
     GoTo _057B
     End

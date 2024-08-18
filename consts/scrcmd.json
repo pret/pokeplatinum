@@ -8,6 +8,19 @@
                 "SAVE_TYPE_FULL_SAVE",
                 "SAVE_TYPE_QUICK_SAVE"
             ]
+        },
+        "@BadgeID": {
+            "type": "enum",
+            "values": [
+                "BADGE_ID_COAL",
+                "BADGE_ID_FOREST",
+                "BADGE_ID_COBBLE",
+                "BADGE_ID_FEN",
+                "BADGE_ID_RELIC",
+                "BADGE_ID_MINE",
+                "BADGE_ID_ICICLE",
+                "BADGE_ID_BEACON"
+            ]
         }
     }
 }

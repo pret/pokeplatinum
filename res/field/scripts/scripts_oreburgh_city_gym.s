@@ -11,7 +11,7 @@ _000E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_15B 0, 0x800C
+    CheckBadge BADGE_ID_COAL, 0x800C
     GoToIfEq 0x800C, 1, _0103
     ScrCmd_1CD 9, 47, 0, 0, 0
     Message 0
@@ -82,7 +82,7 @@ _011F:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_15B 0, 0x800C
+    CheckBadge BADGE_ID_COAL, 0x800C
     GoToIfEq 0x800C, 1, _0145
     Message 6
     WaitABXPadPress
@@ -101,7 +101,7 @@ _0145:
 _0153:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_15B 0, 0x800C
+    CheckBadge BADGE_ID_COAL, 0x800C
     GoToIfEq 0x800C, 1, _017D
     BufferRivalName 0
     BufferRivalName 1
