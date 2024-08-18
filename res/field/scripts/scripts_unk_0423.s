@@ -321,7 +321,7 @@ _0430:
     End
 
 _043C:
-    Dummy1 0x40B8
+    Dummy1F9 0x40B8
     SetVar 0x40DD, 0
     SetVar 0x40DE, 0
     SetVar 0x40B8, 0
@@ -334,7 +334,7 @@ _043C:
     SetVar 0x40BC, 0
     SetVar 0x40BA, 0
     SetVar 0x40BF, 0
-    Dummy1 0x40B8
+    Dummy1F9 0x40B8
     End
 
 _048E:

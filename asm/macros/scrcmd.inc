@@ -2713,7 +2713,7 @@
     .endm
 
     // this is a dummy function that doesn't do anything
-    .macro Dummy1 dummy
+    .macro Dummy1F9 dummy
     .short 505
     .short \dummy
     .endm
