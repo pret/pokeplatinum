@@ -1,5 +1,6 @@
 consts_manifest_basenames = [
     'abilities',
+    'badges',
     'battle',
     'battle_subscripts',
     'btlcmd',

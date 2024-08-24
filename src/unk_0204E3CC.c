@@ -4,6 +4,8 @@
 #include <nitro/code16.h>
 #include <string.h>
 
+#include "consts/badges.h"
+
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_defs/struct_0205EC34.h"
@@ -65,7 +67,7 @@ BOOL ScrCmd_CheckBadge(ScriptContext *ctx)
     u16 badgeNum = ScriptContext_GetVar(ctx);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    GF_ASSERT(badgeNum < 8);
+    GF_ASSERT(badgeNum < MAX_BADGES);
     *destVar = TrainerInfo_HasBadge(SaveData_GetTrainerInfo(ctx->fieldSystem->saveData), badgeNum);
 
     return FALSE;

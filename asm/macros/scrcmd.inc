@@ -1,4 +1,5 @@
     .include "macros/movement.inc"
+    .include "consts/badges.inc"
     .include "consts/game_records.inc"
     .include "consts/items.inc"
     .include "consts/map.inc"
