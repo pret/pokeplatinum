@@ -12,7 +12,7 @@
     .short 0xFD13
 
 _001E:
-    ScrCmd_14D 0x4000
+    GetPlayerGender 0x4000
     GoToIfEq 0x4000, 0, _003E
     GoToIfEq 0x4000, 1, _0046
     End
@@ -47,7 +47,7 @@ _008E:
     Return
 
 _009C:
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _00B3
     GoTo _00F1
 

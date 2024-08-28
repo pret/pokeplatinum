@@ -83,7 +83,7 @@ _0114:
     CloseMessage
     ApplyMovement 3, _019C
     WaitMovement
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _014E
     GoTo _015C
     End
@@ -184,7 +184,7 @@ _0261:
     End
 
 _02B6:
-    ScrCmd_1E5 49
+    IncrementGameRecord RECORD_UNK_049
     Return
 
 _02BC:
@@ -197,7 +197,7 @@ _02BC:
     ApplyMovement 0xFF, _04BC
     WaitMovement
     WaitTime 15, 0x800C
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _02FC
     GoTo _0316
     End
@@ -257,7 +257,7 @@ _0394:
     ApplyMovement 3, _04A0
     WaitMovement
     WaitTime 15, 0x800C
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _03DA
     GoTo _03E8
     End
@@ -282,7 +282,7 @@ _03F6:
     WaitMovement
     ApplyMovement 0xFF, _04BC
     WaitMovement
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _042B
     GoTo _043C
     End
@@ -584,7 +584,7 @@ _0677:
     Message 38
     Message 39
     BufferPlayerName 0
-    ScrCmd_14D 0x8004
+    GetPlayerGender 0x8004
     CallIfEq 0x8004, 0, _07A4
     CallIfEq 0x8004, 1, _07A9
     CloseMessage

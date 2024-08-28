@@ -138,7 +138,7 @@ _0170:
     Message 0
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 0, _01B5
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 1, _01A5
     BufferPlayerName 0
     Message 2

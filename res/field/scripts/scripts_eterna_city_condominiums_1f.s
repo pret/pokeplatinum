@@ -75,7 +75,7 @@ _00D9:
     WaitFadeScreen
     GoToIfEq 0x800C, 1, _0129
     ScrCmd_2B8 0x8005
-    ScrCmd_1E5 49
+    IncrementGameRecord RECORD_UNK_049
     BufferPartyMonNickname 0, 0x8005
     Message 4
     WaitABXPadPress

@@ -68,7 +68,7 @@ _00C4:
     SetFlag 142
     ScrCmd_319 0x1E7, 47
     ClearFlag 142
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     ScrCmd_314 0x800C
     GoToIfEq 0x800C, 2, _0204
     GoToIfEq 0x800C, 3, _0204

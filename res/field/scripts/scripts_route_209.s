@@ -85,7 +85,7 @@ _014D:
     ScrCmd_04D
     CloseMessage
     ScrCmd_124 0x1BA, 25
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _017F
     SetVar 0x408A, 0
     ScrCmd_26F

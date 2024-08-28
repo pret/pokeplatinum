@@ -1,6 +1,9 @@
     .include "macros/movement.inc"
+    .include "consts/badges.inc"
+    .include "consts/game_records.inc"
     .include "consts/items.inc"
     .include "consts/map.inc"
+    .include "consts/moves.inc"
     .include "consts/poketch.inc"
     .include "consts/scrcmd.inc"
     .include "consts/sdat.inc"
@@ -267,6 +270,8 @@
     .short 48
     .endm
 
+    // This also sets the player's direction appropriately when a pad 
+    // button is pressed, unlike the WaitABPadPress command.
     .macro WaitABXPadPress
     .short 49
     .endm
@@ -1153,16 +1158,16 @@
     .short \pocket
     .endm
 
-    .macro ScrCmd_0D3 arg0, arg1
+    .macro BufferTMHMMoveName templateArg, item
     .short 211
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \item
     .endm
 
-    .macro ScrCmd_0D4 arg0, arg1
+    .macro BufferMoveName templateArg, move
     .short 212
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \move
     .endm
 
     .macro BufferNumber templateArg, number
@@ -1222,22 +1227,22 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_0DF arg0, arg1
+    .macro BufferUndergroundGoodsName templateArg, goods
     .short 223
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \goods
     .endm
 
-    .macro ScrCmd_0E0 arg0, arg1
+    .macro BufferUndergroundTrapName templateArg, trap
     .short 224
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \trap
     .endm
 
-    .macro ScrCmd_0E1 arg0, arg1
+    .macro BufferUndergroundItemName templateArg, item
     .short 225
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \item
     .endm
 
     .macro ScrCmd_0E2 arg0, arg1
@@ -1297,14 +1302,14 @@
     .short 235
     .endm
 
-    .macro ScrCmd_0EC arg0
+    .macro CheckWonBattle destVarID
     .short 236
-    .short \arg0
+    .short \destVarID
     .endm
 
-    .macro ScrCmd_0ED arg0
+    .macro CheckLostBattle destVarID
     .short 237
-    .short \arg0
+    .short \destVarID
     .endm
 
     .macro ScrCmd_0EE arg0
@@ -1528,9 +1533,9 @@
     .short 280
     .endm
 
-    .macro ScrCmd_119 arg0
+    .macro CheckPartyPokerus destVarID
     .short 281
-    .short \arg0
+    .short \destVarID
     .endm
 
     .macro ScrCmd_11A arg0, arg1
@@ -1663,9 +1668,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_133 arg0
+    .macro RegisterPoketchApp appID
     .short 307
-    .short \arg0
+    .short \appID
     .endm
 
     .macro ScrCmd_134 arg0, arg1
@@ -1790,12 +1795,12 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_14D arg0
+    .macro GetPlayerGender destVarID
     .short 333
-    .short \arg0
+    .short \destVarID
     .endm
 
-    .macro ScrCmd_14E
+    .macro HealParty
     .short 334
     .endm
 
@@ -1853,10 +1858,10 @@
     .short 346
     .endm
 
-    .macro ScrCmd_15B arg0, arg1
+    .macro CheckBadge badgeID, destVarID
     .short 347
-    .short \arg0
-    .short \arg1
+    .short \badgeID
+    .short \destVarID
     .endm
 
     .macro ScrCmd_15C arg0
@@ -1985,9 +1990,9 @@
     .byte \arg0
     .endm
 
-    .macro ScrCmd_177 arg0
+    .macro GetPartyCount destVarID
     .short 375
-    .short \arg0
+    .short \destVarID
     .endm
 
     .macro ScrCmd_178 arg0
@@ -2178,15 +2183,17 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_19A arg0
+    .macro GetPartyCountHatched destVarID
     .short 410
-    .short \arg0
+    .short \destVarID
     .endm
 
-    .macro ScrCmd_19B arg0, arg1
+    // Counts alive mons in the party and stores the result in the destVar, 
+    // but excludes the one at the party slot provided.
+    .macro CountAliveMonsExcept destVarID, partySlot
     .short 411
-    .short \arg0
-    .short \arg1
+    .short \destVarID
+    .short \partySlot
     .endm
 
     .macro ScrCmd_19C arg0
@@ -2274,9 +2281,9 @@
     .short 428
     .endm
 
-    .macro ScrCmd_1AD arg0
+    .macro Dummy1AD dummy
     .short 429
-    .short \arg0
+    .short \dummy
     .endm
 
     .macro ScrCmd_1AE arg0, arg1
@@ -2601,9 +2608,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_1E5 arg0
+    .macro IncrementGameRecord recordID
     .short 485
-    .short \arg0
+    .short \recordID
     .endm
 
     .macro ScrCmd_1E6 arg0, arg1, arg2
@@ -2696,18 +2703,18 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_1F7 arg0, arg1
+    .macro SurvivePoison destVarID, partySlot
     .short 503
-    .short \arg0
-    .short \arg1
+    .short \destVarID
+    .short \partySlot
     .endm
 
     .macro ScrCmd_1F8
     .short 504
     .endm
 
-    /* this is a dummy function that doesn't do anything */
-    .macro Dummy1 dummy
+    // this is a dummy function that doesn't do anything
+    .macro Dummy1F9 dummy
     .short 505
     .short \dummy
     .endm
@@ -3786,9 +3793,9 @@
     .short 699
     .endm
 
-    .macro ScrCmd_2BC arg0
+    .macro CheckDidNotCapture destVarID
     .short 700
-    .short \arg0
+    .short \destVarID
     .endm
 
     .macro ScrCmd_2BD arg0, arg1

@@ -40,7 +40,7 @@ _0059:
     Message 0
     CloseMessage
     ScrCmd_0E5 0x199, 0
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _011F
     SetFlag 173
     SetVar 0x410D, 1

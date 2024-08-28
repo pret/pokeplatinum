@@ -267,7 +267,7 @@ _03B0:
 _045C:
     Call _0158
     ScrCmd_1DD 5, 0, 0
-    ScrCmd_14E
+    HealParty
     Call _049C
     GoToIfEq 0x800C, 0, _077E
     ScrCmd_1DD 57, 0, 0x800C
@@ -444,7 +444,7 @@ _0734:
     Return
 
 _0746:
-    ScrCmd_1E5 58
+    IncrementGameRecord RECORD_UNK_058
     ScrCmd_1CD 36, 0, 0, 0, 0
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -594,12 +594,12 @@ _097F:
     Return
 
 _09B3:
-    ScrCmd_14E
+    HealParty
     Call _049C
     GoToIfEq 0x800C, 0, _077E
     Call _0158
     ScrCmd_1DD 5, 0, 0
-    ScrCmd_14E
+    HealParty
     CloseMessage
     SetVar 0x4001, 0
     Call _097F
@@ -723,7 +723,7 @@ _0B94:
     GoToIfEq 0x4001, 1, _0C53
     Call _0172
     ScrCmd_1DD 5, 0, 0
-    ScrCmd_14E
+    HealParty
     Call _049C
     GoToIfEq 0x800C, 0, _077E
     ScrCmd_1DD 57, 0, 0x800C
@@ -733,7 +733,7 @@ _0B94:
     End
 
 _0C53:
-    ScrCmd_14E
+    HealParty
     Call _049C
     GoToIfEq 0x800C, 0, _077E
     GoTo _0C70
@@ -852,7 +852,7 @@ _0E4E:
 _0E58:
     Call _0172
     ScrCmd_1DD 5, 0, 0
-    ScrCmd_14E
+    HealParty
     Message 69
     Call _0734
     ScrCmd_330

@@ -53,7 +53,7 @@ _00AB:
     GoTo _00BB
 
 _00BB:
-    ScrCmd_15B 4, 0x800C
+    CheckBadge BADGE_ID_RELIC, 0x800C
     GoToIfEq 0x800C, 1, _01A0
     ScrCmd_1CD 9, 91, 0, 0, 0
     Message 0
@@ -61,7 +61,7 @@ _00BB:
     SetFlag 142
     ScrCmd_0E5 0x13E, 0
     ClearFlag 142
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0248
     Message 1
     BufferPlayerName 0
@@ -93,7 +93,7 @@ _0158:
     CallCommonScript 0x7FC
     SetFlag 125
     BufferItemName 0, 0x8004
-    ScrCmd_0D3 1, 0x8004
+    BufferTMHMMoveName 1, 0x8004
     Message 4
     WaitABXPadPress
     CloseMessage

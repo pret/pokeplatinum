@@ -35,7 +35,7 @@ _0064:
 
 _0074:
     ScrCmd_0E5 0x193, 0
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _00E1
     Message 2
     SetVar 0x8004, 1

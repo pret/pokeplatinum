@@ -107,7 +107,7 @@ _0158:
     GoTo _0164
 
 _0164:
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0207
     BufferRivalName 0
     Message 1

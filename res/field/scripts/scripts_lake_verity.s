@@ -15,7 +15,7 @@ _001E:
     CallIfSet 186, _009D
     CallIfUnset 186, _0087
     CallIfEq 0x4097, 0, _0071
-    ScrCmd_14D 0x4000
+    GetPlayerGender 0x4000
     GoToIfEq 0x4000, 0, _0061
     GoToIfEq 0x4000, 1, _0069
     End
@@ -61,7 +61,7 @@ _00CB:
     WaitMovement
     Message 2
     FacePlayer
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _0104
     GoTo _0112
     End
@@ -99,7 +99,7 @@ _013B:
     LockAll
     FacePlayer
     GoToIfSet 186, _018B
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _0167
     GoTo _0175
     End
@@ -123,7 +123,7 @@ _0183:
     End
 
 _018B:
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _01A4
     GoTo _01B2
     End
@@ -155,7 +155,7 @@ _01D0:
     LockAll
     ApplyMovement 5, _0220
     WaitMovement
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _01F5
     GoTo _0203
     End
@@ -195,7 +195,7 @@ _0230:
     Message 9
     CloseMessage
     ScrCmd_0E5 0x195, 0
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _02DB
     Message 10
     Message 11

@@ -8,9 +8,9 @@
 _0006:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_1E5 48
+    IncrementGameRecord RECORD_UNK_048
     ScrCmd_235 0, 0x800C
-    Dummy1 0x800C
+    Dummy1F9 0x800C
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _005C
     GoToIfEq 0x8008, 1, _0074
@@ -48,8 +48,8 @@ _00AA:
 
 _00C5:
     ScrCmd_235 1, 3, 0x8004, 0x8005
-    Dummy1 0x8004
-    Dummy1 0x8005
+    Dummy1F9 0x8004
+    Dummy1F9 0x8005
     ScrCmd_1FB 0x8004, 0x8005
     ScrCmd_235 2
     WaitABXPadPress
@@ -58,13 +58,13 @@ _00C5:
 
 _00EB:
     ScrCmd_235 1, 1, 0x8004, 0x8005
-    Dummy1 0x8004
-    Dummy1 0x8005
+    Dummy1F9 0x8004
+    Dummy1F9 0x8005
     ScrCmd_1FB 0x8004, 0x8005
     ScrCmd_235 3, 0x8006, 0x8004, 0x8005
-    Dummy1 0x8006
-    Dummy1 0x8004
-    Dummy1 0x8005
+    Dummy1F9 0x8006
+    Dummy1F9 0x8004
+    Dummy1F9 0x8005
     ScrCmd_1FB 0x8004, 0x8005
     WaitABXPadPress
     GoTo _0129

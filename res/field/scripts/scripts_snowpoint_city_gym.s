@@ -20,13 +20,13 @@ _0025:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_15B 6, 0x800C
+    CheckBadge BADGE_ID_ICICLE, 0x800C
     GoToIfEq 0x800C, 1, _00F8
     ScrCmd_1CD 9, 167, 0, 0, 0
     Message 0
     CloseMessage
     ScrCmd_0E5 0x13F, 0
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _010E
     Message 1
     BufferPlayerName 0
@@ -54,7 +54,7 @@ _00B0:
     CallCommonScript 0x7FC
     SetFlag 158
     BufferItemName 0, 0x8004
-    ScrCmd_0D3 1, 0x8004
+    BufferTMHMMoveName 1, 0x8004
     Message 4
     WaitABXPadPress
     CloseMessage
@@ -84,7 +84,7 @@ _0114:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_15B 6, 0x800C
+    CheckBadge BADGE_ID_ICICLE, 0x800C
     GoToIfEq 0x800C, 1, _013A
     Message 6
     WaitABXPadPress
@@ -103,7 +103,7 @@ _013A:
 _0148:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_15B 6, 0x800C
+    CheckBadge BADGE_ID_ICICLE, 0x800C
     GoToIfEq 0x800C, 1, _0172
     BufferRivalName 0
     BufferRivalName 1

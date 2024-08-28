@@ -19,6 +19,6 @@ Pokemon *Party_FindFirstHatchedMon(const Party *party);
 BOOL Party_HasTwoAliveMons(const Party *party);
 void Party_GiveChampionRibbons(Party *party);
 int sub_02054B04(Party *param0, u16 param1);
-BOOL sub_02054B94(Pokemon *param0);
+BOOL Pokemon_TrySurvivePoison(Pokemon *mon);
 
 #endif // POKEPLATINUM_UNK_02054884_H

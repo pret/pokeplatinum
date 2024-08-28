@@ -228,10 +228,10 @@ _02B4:
 _032F:
     Call _0811
     CloseMessage
-    ScrCmd_1E5 57
+    IncrementGameRecord RECORD_UNK_057
     Call _0605
     ScrCmd_0E5 0x4005, 0
-    ScrCmd_0EC 0x8000
+    CheckWonBattle 0x8000
     Return
 
 _034D:

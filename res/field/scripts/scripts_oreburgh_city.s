@@ -52,7 +52,7 @@ _0090:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_15B 0, 0x800C
+    CheckBadge BADGE_ID_COAL, 0x800C
     GoToIfEq 0x800C, 1, _00C1
     GoToIfSet 122, _00CC
     Message 8

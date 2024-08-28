@@ -73,7 +73,7 @@ _00E4:
     FacePlayer
     SetVar 0x408D, 1
     BufferPlayerName 0
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 1, _0219
     Message 0
 _0114:

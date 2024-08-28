@@ -33,7 +33,7 @@ _0022:
 _006A:
     ScrCmd_252 0x800C
     GoToIfNe 0x800C, 0, _008C
-    ScrCmd_177 0x800C
+    GetPartyCount 0x800C
     GoToIfEq 0x800C, 6, _0168
 _008C:
     Message 1

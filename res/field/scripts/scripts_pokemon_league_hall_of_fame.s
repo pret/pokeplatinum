@@ -19,7 +19,7 @@ _0006:
     ApplyMovement 0, _015C
     WaitMovement
     WaitTime 15, 0x800C
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _0074
     GoToIfEq 0x800C, 1, _0080
     End
@@ -46,7 +46,7 @@ _008C:
     ScrCmd_22D 2, 0x800C
     CallIfEq 0x800C, 1, _010A
     CallIfEq 0x40F4, 0, _0102
-    ScrCmd_177 0x800C
+    GetPartyCount 0x800C
     ScrCmd_25A 0x800C
     FadeScreen 6, 3, 0, 0
     WaitFadeScreen

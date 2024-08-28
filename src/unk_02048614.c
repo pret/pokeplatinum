@@ -35,9 +35,6 @@ BOOL ScrCmd_0E8(ScriptContext *param0);
 BOOL ScrCmd_0E9(ScriptContext *param0);
 BOOL ScrCmd_0EA(ScriptContext *param0);
 BOOL ScrCmd_0EB(ScriptContext *param0);
-BOOL ScrCmd_0EC(ScriptContext *param0);
-BOOL ScrCmd_0ED(ScriptContext *param0);
-BOOL ScrCmd_2BC(ScriptContext *param0);
 BOOL ScrCmd_0EE(ScriptContext *param0);
 BOOL ScrCmd_0EF(ScriptContext *param0);
 BOOL ScrCmd_0F0(ScriptContext *param0);
@@ -144,7 +141,7 @@ BOOL ScrCmd_0E5(ScriptContext *param0)
     u32 v0;
     FieldSystem *fieldSystem = param0->fieldSystem;
     u16 *v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_SCRIPT_ID);
-    BOOL *v3 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_PLAYER_WON_BATTLE);
+    BOOL *v3 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_BATTLE_RESULT);
     u16 v4 = ScriptContext_GetVar(param0);
     u16 v5 = ScriptContext_GetVar(param0);
     u16 v6;
@@ -162,7 +159,7 @@ BOOL ScrCmd_0E5(ScriptContext *param0)
 BOOL ScrCmd_2A0(ScriptContext *param0)
 {
     FieldSystem *fieldSystem = param0->fieldSystem;
-    BOOL *v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_PLAYER_WON_BATTLE);
+    BOOL *v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_BATTLE_RESULT);
     u16 v2 = ScriptContext_GetVar(param0);
     u16 v3 = ScriptContext_GetVar(param0);
     u16 v4 = ScriptContext_GetVar(param0);
@@ -264,31 +261,31 @@ BOOL ScrCmd_0EB(ScriptContext *param0)
     return 1;
 }
 
-BOOL ScrCmd_0EC(ScriptContext *param0)
+BOOL ScrCmd_CheckWonBattle(ScriptContext *ctx)
 {
-    BOOL *v0 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_PLAYER_WON_BATTLE);
-    u16 *v1 = ScriptContext_GetVarPointer(param0);
+    BOOL *battleResult = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_BATTLE_RESULT);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = sub_02052868(*v0);
-    return 1;
+    *destVar = BattleParams_PlayerWon(*battleResult);
+    return TRUE;
 }
 
-BOOL ScrCmd_0ED(ScriptContext *param0)
+BOOL ScrCmd_CheckLostBattle(ScriptContext *ctx)
 {
-    BOOL *v0 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_PLAYER_WON_BATTLE);
-    u16 *v1 = ScriptContext_GetVarPointer(param0);
+    BOOL *battleResult = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_BATTLE_RESULT);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = sub_02052878(*v0);
-    return 1;
+    *destVar = BattleParams_PlayerLost(*battleResult);
+    return TRUE;
 }
 
-BOOL ScrCmd_2BC(ScriptContext *param0)
+BOOL ScrCmd_CheckDidNotCapture(ScriptContext *ctx)
 {
-    BOOL *v0 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_PLAYER_WON_BATTLE);
-    u16 *v1 = ScriptContext_GetVarPointer(param0);
+    BOOL *battleResult = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_BATTLE_RESULT);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = sub_02052888(*v0);
-    return 1;
+    *destVar = BattleParams_PlayerDidNotCapture(*battleResult);
+    return TRUE;
 }
 
 BOOL ScrCmd_0EE(ScriptContext *param0)
@@ -302,7 +299,7 @@ BOOL ScrCmd_0EE(ScriptContext *param0)
 BOOL ScrCmd_0EF(ScriptContext *param0)
 {
     FieldSystem *fieldSystem = param0->fieldSystem;
-    BOOL *v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_PLAYER_WON_BATTLE);
+    BOOL *v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_BATTLE_RESULT);
 
     sub_020515CC(param0->taskManager, 1, 0, 0, 11, v1);
 
@@ -341,7 +338,7 @@ BOOL ScrCmd_0F1(ScriptContext *param0)
 
 BOOL ScrCmd_314(ScriptContext *param0)
 {
-    BOOL *v0 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_PLAYER_WON_BATTLE);
+    BOOL *v0 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_BATTLE_RESULT);
     u16 *v1 = ScriptContext_GetVarPointer(param0);
 
     *v1 = *v0;

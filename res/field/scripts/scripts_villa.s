@@ -50,7 +50,7 @@
 
 _00B2:
     ScrCmd_2F0
-    ScrCmd_14D 0x4000
+    GetPlayerGender 0x4000
     CallIfEq 0x4000, 0, _01EF
     CallIfEq 0x4000, 1, _01F7
     GoToIfSet 0x9AC, _01ED
@@ -217,31 +217,31 @@ _030C:
     End
 
 _0360:
-    ScrCmd_14D 0x4000
+    GetPlayerGender 0x4000
     CallIfEq 0x4000, 0, _0400
     CallIfEq 0x4000, 1, _0405
     Return
 
 _0380:
-    ScrCmd_14D 0x4000
+    GetPlayerGender 0x4000
     CallIfEq 0x4000, 0, _040A
     CallIfEq 0x4000, 1, _040F
     Return
 
 _03A0:
-    ScrCmd_14D 0x4000
+    GetPlayerGender 0x4000
     CallIfEq 0x4000, 0, _0414
     CallIfEq 0x4000, 1, _0419
     Return
 
 _03C0:
-    ScrCmd_14D 0x4000
+    GetPlayerGender 0x4000
     CallIfEq 0x4000, 0, _041E
     CallIfEq 0x4000, 1, _0423
     Return
 
 _03E0:
-    ScrCmd_14D 0x4000
+    GetPlayerGender 0x4000
     CallIfEq 0x4000, 0, _0428
     CallIfEq 0x4000, 1, _042D
     Return
@@ -1017,10 +1017,10 @@ _0D6E:
 _0D88:
     AddVar 0x8007, 1
     WaitTime 1, 0x800C
-    Dummy1 0x8007
+    Dummy1F9 0x8007
     ScrCmd_2FC 0x800C
     GoToIfEq 0x800C, 1, _0DC2
-    Dummy1 0x8007
+    Dummy1F9 0x8007
     GoToIfEq 0x8007, 0x258, _0DC2
     GoTo _0D88
     End
@@ -1325,7 +1325,7 @@ _12BF:
     SetVar 0x404E, 1
     BufferRivalName 0
     BufferPlayerName 1
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _12FC
     GoToIfEq 0x800C, 1, _1307
     End

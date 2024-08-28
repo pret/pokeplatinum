@@ -13,7 +13,7 @@ _0006:
     GoToIfGe 0x4095, 1, _0082
     GoToIfSet 110, _0090
     GoToIfSet 234, _009E
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _005C
     GoToIfEq 0x800C, 1, _006B
     End

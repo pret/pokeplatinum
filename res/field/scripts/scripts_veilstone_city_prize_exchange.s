@@ -68,7 +68,7 @@ _0100:
 
 _010A:
     BufferItemName 0, 0x8000
-    ScrCmd_0D3 1, 0x8000
+    BufferTMHMMoveName 1, 0x8000
     Message 3
     Return
 

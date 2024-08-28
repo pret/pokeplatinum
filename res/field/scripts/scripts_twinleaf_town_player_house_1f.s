@@ -392,7 +392,7 @@ _0562:
 _057C:
     BufferPlayerName 0
     BufferRivalName 1
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _059B
     GoTo _05A6
     End
@@ -471,7 +471,7 @@ _0688:
     WaitFadeScreen
     PlaySound SEQ_ASA
     WaitSound
-    ScrCmd_14E
+    HealParty
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     SetFlag 2

@@ -963,7 +963,7 @@ _0F1D:
     CloseMessage
     ScrCmd_20B
     ScrCmd_0E5 0x8004, 0
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0FC5
     SetTrainerFlag 0x8004
     ReleaseAll
@@ -1068,7 +1068,7 @@ _1083:
     ScrCmd_0E6 0x8004, 0
     CloseMessage
     ScrCmd_0E5 0x8004, 0
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0FC5
     ScrCmd_0B9 0, 0x800C
     SetVar 0x8004, 0x800C
@@ -1099,7 +1099,7 @@ _10F3:
     ScrCmd_0E6 0x8005, 7
     CloseMessage
     ScrCmd_0E5 0x8004, 0x8005
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0FC5
     ScrCmd_0B9 0, 0x800C
     SetVar 0x8004, 0x800C
@@ -1139,7 +1139,7 @@ _11A0:
     ScrCmd_0E6 0x8005, 0
     CloseMessage
     ScrCmd_0E5 0x8004, 0x8005
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0FC5
     ScrCmd_0B9 0, 0x800C
     SetVar 0x8004, 0x800C

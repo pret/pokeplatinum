@@ -1163,7 +1163,7 @@ _0DF6:
     Message 9
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 1, _0E75
-    ScrCmd_177 0x800C
+    GetPartyCount 0x800C
     GoToIfGe 0x800C, 6, _0E67
     Call _0E4B
     ApplyMovement 12, _0EA0
@@ -1228,7 +1228,7 @@ _0ECD:
     Message 14
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 1, _0FAC
-    ScrCmd_177 0x800C
+    GetPartyCount 0x800C
     GoToIfGe 0x800C, 6, _0F9E
     Call _0E4B
     ScrCmd_1BD 0x800C

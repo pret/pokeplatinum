@@ -417,7 +417,7 @@ _0530:
     FacePlayer
     GoToIfSet 154, _056C
     Message 8
-    ScrCmd_15B 7, 0x800C
+    CheckBadge BADGE_ID_BEACON, 0x800C
     GoToIfEq 0x800C, 0, _0561
     GoTo _056C
     End

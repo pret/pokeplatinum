@@ -7,7 +7,7 @@ BOOL ScrCmd_157(ScriptContext *param0);
 BOOL ScrCmd_158(ScriptContext *param0);
 BOOL ScrCmd_159(ScriptContext *param0);
 BOOL ScrCmd_15A(ScriptContext *param0);
-BOOL ScrCmd_15B(ScriptContext *param0);
+BOOL ScrCmd_CheckBadge(ScriptContext *ctx);
 BOOL ScrCmd_15C(ScriptContext *param0);
 BOOL ScrCmd_15E(ScriptContext *param0);
 BOOL ScrCmd_15D(ScriptContext *param0);

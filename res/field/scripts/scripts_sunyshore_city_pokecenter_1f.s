@@ -27,7 +27,7 @@ _0031:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_15B 7, 0x800C
+    CheckBadge BADGE_ID_BEACON, 0x800C
     GoToIfEq 0x800C, 1, _0057
     Message 1
     WaitABXPadPress

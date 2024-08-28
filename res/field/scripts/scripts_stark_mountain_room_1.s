@@ -20,7 +20,7 @@ _0014:
     ApplyMovement 0, _0160
     WaitMovement
     ScrCmd_0E5 0x39E, 0
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0150
     Message 1
     CloseMessage
@@ -33,7 +33,7 @@ _0014:
     ApplyMovement 4, _01CC
     WaitMovement
     ScrCmd_0E5 0x39F, 0
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0150
     Message 3
     CloseMessage

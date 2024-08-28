@@ -39,7 +39,7 @@ _0070:
     Message 0
     PlaySound SEQ_ASA
     WaitSound
-    ScrCmd_14E
+    HealParty
     Return
 
 _007D:
@@ -93,7 +93,7 @@ _015D:
     CloseMessage
     Call _047E
     ScrCmd_1DD 42, 0, 0
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     SetVar 0x8004, 0x800C
     Return
 
@@ -220,7 +220,7 @@ _03C7:
     CloseMessage
     Call _047E
     ScrCmd_1DD 42, 0, 0
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     SetVar 0x8004, 0x800C
     GoToIfEq 0x8004, 0, _018C
     ScrCmd_1DD 36, 0, 0x800C

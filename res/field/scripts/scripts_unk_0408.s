@@ -388,7 +388,7 @@ _060D:
 _0624:
     BufferPlayerName 0
     ScrCmd_33C 1, 0x8004
-    ScrCmd_0D3 2, 0x8004
+    BufferTMHMMoveName 2, 0x8004
     Message 6
     GoTo _04E2
     End

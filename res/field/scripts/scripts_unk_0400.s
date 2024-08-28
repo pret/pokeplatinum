@@ -252,7 +252,7 @@ _0631:
 _0687:
     CloseMessage
     ScrCmd_0E5 0x8005, 0
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0822
     GoTo _06A8
     End

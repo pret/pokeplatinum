@@ -16,7 +16,7 @@ _001A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_0D3 0, 0x1A6
+    BufferTMHMMoveName 0, ITEM_HM03
     Message 0
     WaitABXPadPress
     CloseMessage

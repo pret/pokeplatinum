@@ -9,7 +9,7 @@ _0006:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_14D 0x8004
+    GetPlayerGender 0x8004
     GoToIfEq 0x40A6, 3, _0027
     GoTo _006C
     End

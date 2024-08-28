@@ -111,7 +111,7 @@ _019C:
     Return
 
 _01A6:
-    ScrCmd_14D 0x4000
+    GetPlayerGender 0x4000
     CallIfEq 0x4000, 0, _025D
     CallIfEq 0x4000, 1, _0265
     Call _01DF
@@ -127,7 +127,7 @@ _01DF:
     Return
 
 _0215:
-    ScrCmd_14D 0x4009
+    GetPlayerGender 0x4009
     GoToIfEq 0x4009, 0, _0235
     GoToIfEq 0x4009, 1, _023D
     Return
@@ -299,7 +299,7 @@ _04FC:
     CallIfEq 0x40BB, 0, _0673
     CallIfEq 0x40BB, 1, _0673
     SetVar 0x4000, 0
-    ScrCmd_14E
+    HealParty
     CallCommonScript 0x7D6
     SetVar 0x800C, 0x4000
     GoToIfEq 0x800C, 0, _034D
@@ -402,7 +402,7 @@ _06C3:
     CallIfEq 0x40BB, 0, _078C
     CallIfEq 0x40BB, 1, _07A0
     CallIfEq 0x40BB, 2, _07B4
-    ScrCmd_1E5 58
+    IncrementGameRecord RECORD_UNK_058
     ScrCmd_1CD 39, 0, 0, 0, 0
     ScrCmd_1F8
     ScrCmd_2C4 9
@@ -802,7 +802,7 @@ _0AEE:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _0C22
     GoTo _0B0F
     End
@@ -878,7 +878,7 @@ _0C01:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 1, _0B0F
     GoTo _0C22
     End

@@ -38,7 +38,7 @@ _0056:
     WaitFadeScreen
     Call _008A
     WaitTime 20, 0x800C
-    ScrCmd_1E5 116
+    IncrementGameRecord RECORD_UNK_116
     GoTo _0150
 
 _008A:
