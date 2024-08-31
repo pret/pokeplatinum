@@ -114,5 +114,16 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
-    }
+    },
+    "height": 2,
+    "weight": 6,
+    "body_shape": "SHAPE_BIPEDAL_TAILLESS",
+    "trainer_scale_f": 272,
+    "pokemon_scale_f": 376,
+    "trainer_scale_m": 256,
+    "pokemon_scale_m": 376,
+    "trainer_pos_f": 8,
+    "pokemon_pos_f": 65527,
+    "trainer_pos_m": 9,
+    "pokemon_pos_m": 65527
 }

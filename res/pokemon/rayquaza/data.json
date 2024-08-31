@@ -133,5 +133,16 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
-    }
+    },
+    "height": 70,
+    "weight": 2065,
+    "body_shape": "SHAPE_SERPENTINE",
+    "trainer_scale_f": 545,
+    "pokemon_scale_f": 256,
+    "trainer_scale_m": 512,
+    "pokemon_scale_m": 256,
+    "trainer_pos_f": 22,
+    "pokemon_pos_f": 0,
+    "trainer_pos_m": 22,
+    "pokemon_pos_m": 0
 }

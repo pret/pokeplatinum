@@ -120,5 +120,16 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
-    }
+    },
+    "height": 17,
+    "weight": 2300,
+    "body_shape": "SHAPE_BIPEDAL_TAILLESS",
+    "trainer_scale_f": 296,
+    "pokemon_scale_f": 226,
+    "trainer_scale_m": 290,
+    "pokemon_scale_m": 226,
+    "trainer_pos_f": 11,
+    "pokemon_pos_f": 1,
+    "trainer_pos_m": 12,
+    "pokemon_pos_m": 1
 }
