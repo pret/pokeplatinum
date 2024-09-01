@@ -178,7 +178,6 @@
         },
         "@PokemonBodyShape": {
             "type": "enum",
-            "as_preproc": true,
             "values": [
                 "SHAPE_QUADRUPED",
                 "SHAPE_BIPEDAL_TAILLESS",

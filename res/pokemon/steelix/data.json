@@ -128,15 +128,17 @@
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
     },
-    "height": 92,
-    "weight": 4000,
-    "body_shape": "SHAPE_SERPENTINE",
-    "trainer_scale_f": 604,
-    "pokemon_scale_f": 256,
-    "trainer_scale_m": 588,
-    "pokemon_scale_m": 256,
-    "trainer_pos_f": 21,
-    "pokemon_pos_f": 4,
-    "trainer_pos_m": 21,
-    "pokemon_pos_m": 4
+    "pokedex_data": {
+        "height": 92,
+        "weight": 4000,
+        "body_shape": "SHAPE_SERPENTINE",
+        "trainer_scale_f": 604,
+        "pokemon_scale_f": 256,
+        "trainer_scale_m": 588,
+        "pokemon_scale_m": 256,
+        "trainer_pos_f": 21,
+        "pokemon_pos_f": 4,
+        "trainer_pos_m": 21,
+        "pokemon_pos_m": 4
+    }
 }

@@ -117,15 +117,17 @@
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_LARGE"
     },
-    "height": 20,
-    "weight": 1000,
-    "body_shape": "SHAPE_QUADRUPED",
-    "trainer_scale_f": 308,
-    "pokemon_scale_f": 241,
-    "trainer_scale_m": 298,
-    "pokemon_scale_m": 241,
-    "trainer_pos_f": 9,
-    "pokemon_pos_f": 1,
-    "trainer_pos_m": 8,
-    "pokemon_pos_m": 1
+    "pokedex_data": {
+        "height": 20,
+        "weight": 1000,
+        "body_shape": "SHAPE_QUADRUPED",
+        "trainer_scale_f": 308,
+        "pokemon_scale_f": 241,
+        "trainer_scale_m": 298,
+        "pokemon_scale_m": 241,
+        "trainer_pos_f": 9,
+        "pokemon_pos_f": 1,
+        "trainer_pos_m": 8,
+        "pokemon_pos_m": 1
+    }
 }

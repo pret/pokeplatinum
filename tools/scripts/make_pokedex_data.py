@@ -26,6 +26,8 @@ argparser.add_argument('-o', '--output-dir',
                        help='Path to the output directory (where the NARC will be made)')
 argparser.add_argument('pokedex',
                        help='List of pokemon in the Sinnoh Pokedex')
+argparser.add_argument('giratina_form',
+                       help='String of either giratina_origin or giratina_altered')
 args = argparser.parse_args()
 
 source_dir = pathlib.Path(args.source_dir)
@@ -90,20 +92,26 @@ for i, species in enumerate(PokemonSpecies):
     
     with open(source_dir / '../../../../pokemon' / subdir / 'data.json', 'r') as data_file:
         pkdata = json.load(data_file)
+    pkdexdata = pkdata['pokedex_data']
+    if subdir == 'giratina':
+        if args.giratina_form == 'giratina_origin':
+            pkdexdata = pkdexdata[0]
+        if args.giratina_form == 'giratina_altered':
+            pkdexdata = pkdexdata[1]
     
     for j in range(11):
         dataSize = DataSize(j)
         if j == 2:
-            binData[2] = binData[2] + PokemonBodyShape[pkdata['body_shape']].value.to_bytes(1, 'little')
+            binData[2] = binData[2] + PokemonBodyShape[pkdexdata['body_shape']].value.to_bytes(1, 'little')
         else:
-            binData[j] = binData[j] + pkdata[data_names[j]].to_bytes(dataSize, 'little')
+            binData[j] = binData[j] + pkdexdata[data_names[j]].to_bytes(dataSize, 'little')
 
     if i > 0:
         # national dex order
         binData[11] = binData[11] + i.to_bytes(2, 'little')
 
         # body shape
-        body_idx = PokemonBodyShape[pkdata['body_shape']].value + 44
+        body_idx = PokemonBodyShape[pkdexdata['body_shape']].value + 44
         binData[body_idx] = binData[body_idx] + i.to_bytes(2, 'little')
 
         # pokemon types
@@ -112,8 +120,8 @@ for i, species in enumerate(PokemonSpecies):
                 binData[j+27] = binData[j+27] + i.to_bytes(2, 'little')
         
         # store for later
-        heightData[i-1] = pkdata['height']
-        weightData[i-1] = pkdata['weight']
+        heightData[i-1] = pkdexdata['height']
+        weightData[i-1] = pkdexdata['weight']
         nameData[i-1] = subdir.replace('porygon2','porygon_z2')
 
 # sinnoh dex order
@@ -157,9 +165,14 @@ for idx in shortest:
     binData[17] = binData[17] + (idx+1).to_bytes(2, 'little')
 
 # save data
+if args.giratina_form == 'giratina_origin':
+    output_name = 'zukan_data'
+if args.giratina_form == 'giratina_altered':
+    output_name = 'zukan_data_gira'
+
 for i in range(58):
-    target_fname = private_dir / f'zukan_data_{i:02}.bin'
+    target_fname = str(private_dir / output_name) + f'_{i:02}.bin'
     with open(target_fname, 'wb+') as target_file:
         target_file.write(binData[i])
 
-subprocess.run([args.knarc, '-d', private_dir, '-p', output_dir / 'zukan_data.narc'])
+subprocess.run([args.knarc, '-d', private_dir, '-p', str(output_dir / output_name) + '.narc'])

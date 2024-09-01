@@ -110,15 +110,17 @@
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
     },
-    "height": 9,
-    "weight": 455,
-    "body_shape": "SHAPE_TENTACLES",
-    "trainer_scale_f": 272,
-    "pokemon_scale_f": 303,
-    "trainer_scale_m": 256,
-    "pokemon_scale_m": 303,
-    "trainer_pos_f": 8,
-    "pokemon_pos_f": 65533,
-    "trainer_pos_m": 9,
-    "pokemon_pos_m": 65533
+    "pokedex_data": {
+        "height": 9,
+        "weight": 455,
+        "body_shape": "SHAPE_TENTACLES",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 303,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 303,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 65533,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 65533
+    }
 }

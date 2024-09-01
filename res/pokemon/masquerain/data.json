@@ -115,15 +115,17 @@
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
     },
-    "height": 8,
-    "weight": 36,
-    "body_shape": "SHAPE_MULTI_WINGED",
-    "trainer_scale_f": 272,
-    "pokemon_scale_f": 366,
-    "trainer_scale_m": 256,
-    "pokemon_scale_m": 366,
-    "trainer_pos_f": 8,
-    "pokemon_pos_f": 65533,
-    "trainer_pos_m": 9,
-    "pokemon_pos_m": 65533
+    "pokedex_data": {
+        "height": 8,
+        "weight": 36,
+        "body_shape": "SHAPE_MULTI_WINGED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 366,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 366,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 65533,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 65533
+    }
 }
