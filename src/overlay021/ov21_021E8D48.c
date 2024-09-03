@@ -31,6 +31,7 @@
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
+#include "pokedex_data_index.h"
 #include "pokemon.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
@@ -46,7 +47,6 @@
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
-#include "pokedex_data_index.h"
 
 typedef struct {
     CellActor *unk_00;

@@ -27,6 +27,8 @@
 #include "message.h"
 #include "message_util.h"
 #include "narc.h"
+#include "pokedex_data_index.h"
+#include "pokedex_heightweight.h"
 #include "pokemon_icon.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
@@ -40,8 +42,6 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
-#include "pokedex_heightweight.h"
-#include "pokedex_data_index.h"
 
 typedef struct {
     int unk_00;

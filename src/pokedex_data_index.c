@@ -1,8 +1,9 @@
 #include "pokedex_data_index.h"
-#include "narc.h"
 
 #include <nitro.h>
 #include <string.h>
+
+#include "narc.h"
 
 static u32 pokedex_data_narc_index = NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_DATA;
 static u32 weight_message_bank_index = 707;

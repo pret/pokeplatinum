@@ -57,6 +57,7 @@
 #include "heap.h"
 #include "message.h"
 #include "overlay_manager.h"
+#include "pokedex_data_index.h"
 #include "pokemon.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
@@ -76,7 +77,6 @@
 #include "unk_0201F834.h"
 #include "unk_0202419C.h"
 #include "unk_0202631C.h"
-#include "pokedex_data_index.h"
 #include "unk_0209ACBC.h"
 
 typedef struct UnkStruct_ov21_021D0F60_t {

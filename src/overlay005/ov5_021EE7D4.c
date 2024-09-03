@@ -8,12 +8,12 @@
 #include "field/field_system.h"
 
 #include "party.h"
+#include "pokedex_heightweight.h"
 #include "pokemon.h"
 #include "script_manager.h"
 #include "string_template.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206CCB0.h"
-#include "pokedex_heightweight.h"
 #include "vars_flags.h"
 
 typedef struct {

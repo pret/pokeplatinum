@@ -28,6 +28,7 @@
 #include "cell_actor.h"
 #include "heap.h"
 #include "message.h"
+#include "pokedex_data_index.h"
 #include "pokemon.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
@@ -39,7 +40,6 @@
 #include "unk_02012744.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "pokedex_data_index.h"
 
 typedef struct {
     UnkStruct_ov21_021D13FC *unk_00;

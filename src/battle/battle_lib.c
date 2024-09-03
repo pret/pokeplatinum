@@ -37,6 +37,8 @@
 #include "move_table.h"
 #include "narc.h"
 #include "party.h"
+#include "pokedex_data_index.h"
+#include "pokedex_heightweight.h"
 #include "pokemon.h"
 #include "strbuf.h"
 #include "trainer_data.h"
@@ -44,8 +46,6 @@
 #include "unk_020021B0.h"
 #include "unk_020366A0.h"
 #include "unk_0208C098.h"
-#include "pokedex_heightweight.h"
-#include "pokedex_data_index.h"
 
 static BOOL BasicTypeMulApplies(BattleContext *battleCtx, int attacker, int defender, int chartEntry);
 static int MapSideEffectToSubscript(BattleContext *battleCtx, enum SideEffectType type, u32 effect);

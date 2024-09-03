@@ -8,9 +8,9 @@
 #include "struct_defs/struct_0202610C.h"
 
 #include "party.h"
+#include "pokedex_heightweight.h"
 #include "pokemon.h"
 #include "unk_0202602C.h"
-#include "pokedex_heightweight.h"
 
 HeightWeightData *sub_0207A2A8(int param0)
 {

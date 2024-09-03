@@ -12,12 +12,12 @@
 
 #include "core_sys.h"
 #include "heap.h"
+#include "pokedex_data_index.h"
+#include "pokedex_heightweight.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "unk_02006E3C.h"
 #include "unk_0202631C.h"
-#include "pokedex_heightweight.h"
-#include "pokedex_data_index.h"
 
 static void ov21_021D39A4(u16 *param0, int *param1, const PokedexData *param2, const u16 *param3, int param4);
 static void ov21_021D39E4(u16 *param0, int *param1, const u16 *param2, int param3, const u16 *param4, int param5, BOOL param6, const PokedexData *param7);
@@ -720,20 +720,20 @@ static void Pokedex_Sort_HeightWeight(int param0, u16 *param1, int *param2, cons
         pokedex_sorted_array = NULL;
         break;
     case 1:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 2, &pokedex_length);// alphabetical
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 2, &pokedex_length); // alphabetical
         v2 = 1;
         break;
     case 2:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 3, &pokedex_length);// heaviest
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 3, &pokedex_length); // heaviest
         break;
     case 3:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 4, &pokedex_length);// lightest
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 4, &pokedex_length); // lightest
         break;
     case 4:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 5, &pokedex_length);// tallest
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 5, &pokedex_length); // tallest
         break;
     case 5:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 6, &pokedex_length);// shortest
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 6, &pokedex_length); // shortest
         break;
     default:
         GF_ASSERT(0);
@@ -759,31 +759,31 @@ static void Pokedex_Sort_FirstLetter(int param0, u16 *param1, int *param2, const
         pokedex_sorted_array = NULL;
         break;
     case 1:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 7, &pokedex_length);// ABC
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 7, &pokedex_length); // ABC
         break;
     case 2:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 8, &pokedex_length);// DEF
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 8, &pokedex_length); // DEF
         break;
     case 3:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 9, &pokedex_length);// GHI
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 9, &pokedex_length); // GHI
         break;
     case 4:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 10, &pokedex_length);// JKL
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 10, &pokedex_length); // JKL
         break;
     case 5:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 11, &pokedex_length);// MNO
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 11, &pokedex_length); // MNO
         break;
     case 6:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 12, &pokedex_length);// PQR
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 12, &pokedex_length); // PQR
         break;
     case 7:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 13, &pokedex_length);// STU
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 13, &pokedex_length); // STU
         break;
     case 8:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 14, &pokedex_length);// VWX
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 14, &pokedex_length); // VWX
         break;
     case 9:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 15, &pokedex_length);// YZ
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 15, &pokedex_length); // YZ
         break;
     default:
         GF_ASSERT(0);
@@ -809,55 +809,55 @@ static void Pokedex_Sort_Type(int param0, u16 *param1, int *param2, const u16 *p
         pokedex_sorted_array = NULL;
         break;
     case 1:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 16, &pokedex_length);// normal
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 16, &pokedex_length); // normal
         break;
     case 2:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 17, &pokedex_length);// fighting
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 17, &pokedex_length); // fighting
         break;
     case 3:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 18, &pokedex_length);// flying
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 18, &pokedex_length); // flying
         break;
     case 4:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 19, &pokedex_length);// poison
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 19, &pokedex_length); // poison
         break;
     case 5:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 20, &pokedex_length);// ground
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 20, &pokedex_length); // ground
         break;
     case 6:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 21, &pokedex_length);// rock
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 21, &pokedex_length); // rock
         break;
     case 7:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 22, &pokedex_length);// bug
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 22, &pokedex_length); // bug
         break;
     case 8:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 23, &pokedex_length);// ghost
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 23, &pokedex_length); // ghost
         break;
     case 9:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 24, &pokedex_length);// steel
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 24, &pokedex_length); // steel
         break;
     case 10:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 25, &pokedex_length);// fire
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 25, &pokedex_length); // fire
         break;
     case 11:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 26, &pokedex_length);// water
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 26, &pokedex_length); // water
         break;
     case 12:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 27, &pokedex_length);// grass
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 27, &pokedex_length); // grass
         break;
     case 13:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 28, &pokedex_length);// electric
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 28, &pokedex_length); // electric
         break;
     case 14:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 29, &pokedex_length);// psychic
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 29, &pokedex_length); // psychic
         break;
     case 15:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 30, &pokedex_length);// ice
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 30, &pokedex_length); // ice
         break;
     case 16:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 31, &pokedex_length);// dragon
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 31, &pokedex_length); // dragon
         break;
     case 17:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 32, &pokedex_length);// dark
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 32, &pokedex_length); // dark
         break;
     default:
         GF_ASSERT(0);
@@ -883,46 +883,46 @@ static void Pokedex_Sort_BodyShape(int param0, u16 *param1, int *param2, const u
         pokedex_sorted_array = NULL;
         break;
     case 1:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 33, &pokedex_length);// quadruped
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 33, &pokedex_length); // quadruped
         break;
     case 2:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 34, &pokedex_length);// bidedal tailless
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 34, &pokedex_length); // bidedal tailless
         break;
     case 3:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 35, &pokedex_length);// bipedal tailed
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 35, &pokedex_length); // bipedal tailed
         break;
     case 4:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 36, &pokedex_length);// serpentine
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 36, &pokedex_length); // serpentine
         break;
     case 5:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 37, &pokedex_length);// multi winged
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 37, &pokedex_length); // multi winged
         break;
     case 6:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 38, &pokedex_length);// winged
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 38, &pokedex_length); // winged
         break;
     case 7:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 39, &pokedex_length);// insectoid
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 39, &pokedex_length); // insectoid
         break;
     case 8:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 40, &pokedex_length);// head base
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 40, &pokedex_length); // head base
         break;
     case 9:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 41, &pokedex_length);// head arms
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 41, &pokedex_length); // head arms
         break;
     case 10:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 42, &pokedex_length);// head legs
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 42, &pokedex_length); // head legs
         break;
     case 11:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 43, &pokedex_length);// tentacles
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 43, &pokedex_length); // tentacles
         break;
     case 12:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 44, &pokedex_length);// fins
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 44, &pokedex_length); // fins
         break;
     case 13:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 45, &pokedex_length);// head
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 45, &pokedex_length); // head
         break;
     case 14:
-        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 46, &pokedex_length);// multi-body
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 46, &pokedex_length); // multi-body
         break;
     default:
         GF_ASSERT(0);
