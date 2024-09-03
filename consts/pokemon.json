@@ -192,7 +192,8 @@
                 "SHAPE_TENTACLES",
                 "SHAPE_FINS",
                 "SHAPE_HEAD",
-                "SHAPE_MULTI_BODY"
+                "SHAPE_MULTI_BODY",
+                "NUMBER_OF_BODY_SHAPES"
             ]
         }
     }

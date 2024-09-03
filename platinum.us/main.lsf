@@ -341,8 +341,8 @@ Static main
 	Object main.nef.p/src_unk_02098218.c.o
 	Object main.nef.p/src_unk_020985E4.c.o
 	Object main.nef.p/src_unk_020986CC.c.o
-	Object main.nef.p/src_unk_02098700.c.o
-	Object main.nef.p/src_unk_02098988.c.o
+	Object main.nef.p/src_Pokedex_HeightWeight.c.o
+	Object main.nef.p/src_pokedex_data_index.c.o
 	Object main.nef.p/src_unk_020F6824.c.o
 	Object main.nef.p/src_unk_020989DC.c.o
 	Object main.nef.p/src_unk_02098FFC.c.o

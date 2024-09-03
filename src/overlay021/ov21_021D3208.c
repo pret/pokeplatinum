@@ -16,8 +16,8 @@
 #include "trainer_info.h"
 #include "unk_02006E3C.h"
 #include "unk_0202631C.h"
-#include "unk_02098700.h"
-#include "unk_02098988.h"
+#include "pokedex_heightweight.h"
+#include "pokedex_data_index.h"
 
 static void ov21_021D39A4(u16 *param0, int *param1, const PokedexData *param2, const u16 *param3, int param4);
 static void ov21_021D39E4(u16 *param0, int *param1, const u16 *param2, int param3, const u16 *param4, int param5, BOOL param6, const PokedexData *param7);
@@ -25,11 +25,11 @@ static void ov21_021D3A60(UnkStruct_ov21_021D3A60 *param0, const PokedexData *pa
 static void ov21_021D3AB8(UnkStruct_ov21_021D3A60 *param0, const u16 *param1, int param2);
 static void ov21_021D3B28(UnkStruct_ov21_021D3A60 *param0);
 static void ov21_021D3FA8(UnkStruct_ov21_021D3A60 *param0, int *param1, int *param2);
-static u16 *ov21_021D3B64(int param0, int param1, int *param2);
-static void ov21_021D3B98(int param0, u16 *param1, int *param2, const u16 *param3, int param4, int param5, const PokedexData *param6);
-static void ov21_021D3C48(int param0, u16 *param1, int *param2, const u16 *param3, int param4, int param5, const PokedexData *param6);
-static void ov21_021D3D2C(int param0, u16 *param1, int *param2, const u16 *param3, int param4, int param5, const PokedexData *param6);
-static void ov21_021D3E80(int param0, u16 *param1, int *param2, const u16 *param3, int param4, int param5, const PokedexData *param6);
+static u16 *Pokedex_Sorted_Array(int param0, int param1, int *param2);
+static void Pokedex_Sort_HeightWeight(int param0, u16 *param1, int *param2, const u16 *param3, int param4, int param5, const PokedexData *param6);
+static void Pokedex_Sort_FirstLetter(int param0, u16 *param1, int *param2, const u16 *param3, int param4, int param5, const PokedexData *param6);
+static void Pokedex_Sort_Type(int param0, u16 *param1, int *param2, const u16 *param3, int param4, int param5, const PokedexData *param6);
+static void Pokedex_Sort_BodyShape(int param0, u16 *param1, int *param2, const u16 *param3, int param4, int param5, const PokedexData *param6);
 
 void ov21_021D3208(UnkStruct_ov21_021D3320 *param0, UnkStruct_ov21_021D3208 *param1, int param2)
 {
@@ -238,7 +238,7 @@ BOOL ov21_021D3464(UnkStruct_ov21_021D3320 *param0, int param1, int param2, int 
     u16 *v2;
     int v3;
     u16 *v4;
-    int v5;
+    int pokedex_length;
     BOOL v6;
 
     v0 = Heap_AllocFromHeapAtEnd(param7, sizeof(u16) * NATIONAL_DEX_COUNT);
@@ -255,14 +255,14 @@ BOOL ov21_021D3464(UnkStruct_ov21_021D3320 *param0, int param1, int param2, int 
     v3 = 0;
 
     if (param6 == 0) {
-        v4 = ov21_021D3B64(param7, 1, &v5);
-        ov21_021D39A4(v0, &v1, param0->unk_00, v4, v5);
+        v4 = Pokedex_Sorted_Array(param7, 1, &pokedex_length);
+        ov21_021D39A4(v0, &v1, param0->unk_00, v4, pokedex_length);
     } else {
-        v4 = ov21_021D3B64(param7, 0, &v5);
-        ov21_021D39A4(v0, &v1, param0->unk_00, v4, v5);
+        v4 = Pokedex_Sorted_Array(param7, 0, &pokedex_length);
+        ov21_021D39A4(v0, &v1, param0->unk_00, v4, pokedex_length);
     }
 
-    ov21_021D3B98(param1, v2, &v3, v0, v1, param7, param0->unk_00);
+    Pokedex_Sort_HeightWeight(param1, v2, &v3, v0, v1, param7, param0->unk_00);
 
     memcpy(v0, v2, sizeof(u16) * v3);
     v1 = v3;
@@ -271,7 +271,7 @@ BOOL ov21_021D3464(UnkStruct_ov21_021D3320 *param0, int param1, int param2, int 
     v3 = 0;
 
     do {
-        ov21_021D3C48(param2, v2, &v3, v0, v1, param7, param0->unk_00);
+        Pokedex_Sort_FirstLetter(param2, v2, &v3, v0, v1, param7, param0->unk_00);
 
         if (v3 == 0) {
             v6 = 0;
@@ -284,7 +284,7 @@ BOOL ov21_021D3464(UnkStruct_ov21_021D3320 *param0, int param1, int param2, int 
         memset(v2, 0, sizeof(u16) * v3);
         v3 = 0;
 
-        ov21_021D3D2C(param3, v2, &v3, v0, v1, param7, param0->unk_00);
+        Pokedex_Sort_Type(param3, v2, &v3, v0, v1, param7, param0->unk_00);
 
         if (v3 == 0) {
             v6 = 0;
@@ -297,7 +297,7 @@ BOOL ov21_021D3464(UnkStruct_ov21_021D3320 *param0, int param1, int param2, int 
         memset(v2, 0, sizeof(u16) * v3);
         v3 = 0;
 
-        ov21_021D3D2C(param4, v2, &v3, v0, v1, param7, param0->unk_00);
+        Pokedex_Sort_Type(param4, v2, &v3, v0, v1, param7, param0->unk_00);
 
         if (v3 == 0) {
             v6 = 0;
@@ -310,7 +310,7 @@ BOOL ov21_021D3464(UnkStruct_ov21_021D3320 *param0, int param1, int param2, int 
         memset(v2, 0, sizeof(u16) * v3);
         v3 = 0;
 
-        ov21_021D3E80(param5, v2, &v3, v0, v1, param7, param0->unk_00);
+        Pokedex_Sort_BodyShape(param5, v2, &v3, v0, v1, param7, param0->unk_00);
 
         if (v3 == 0) {
             v6 = 0;
@@ -330,7 +330,7 @@ BOOL ov21_021D3464(UnkStruct_ov21_021D3320 *param0, int param1, int param2, int 
         }
 
         if (param8 == 0) {
-            ov21_021D3AB8(&param0->unk_04, v4, v5);
+            ov21_021D3AB8(&param0->unk_04, v4, pokedex_length);
         } else {
             ov21_021D3B28(&param0->unk_04);
         }
@@ -694,244 +694,244 @@ static void ov21_021D3B28(UnkStruct_ov21_021D3A60 *param0)
     }
 }
 
-static u16 *ov21_021D3B64(int param0, int param1, int *param2)
+static u16 *Pokedex_Sorted_Array(int param0, int pokedex_sort, int *pokedex_length)
 {
     u32 v0;
-    u16 *v1;
-    u32 v2;
+    u16 *pokedex_sorted_array;
+    u32 pokedex_data_narc_index;
 
-    GF_ASSERT(47 > param1);
+    GF_ASSERT(47 > pokedex_sort);
 
-    v2 = sub_020989B8();
-    v1 = sub_02007068(v2, 11 + param1, 0, param0, 0, &v0);
-    *param2 = v0 / (sizeof(u16));
+    pokedex_data_narc_index = Pokedex_Data_NARC_Index();
+    pokedex_sorted_array = sub_02007068(pokedex_data_narc_index, 11 + pokedex_sort, 0, param0, 0, &v0);
+    *pokedex_length = v0 / (sizeof(u16));
 
-    return v1;
+    return pokedex_sorted_array;
 }
 
-static void ov21_021D3B98(int param0, u16 *param1, int *param2, const u16 *param3, int param4, int param5, const PokedexData *param6)
+static void Pokedex_Sort_HeightWeight(int param0, u16 *param1, int *param2, const u16 *param3, int param4, int param5, const PokedexData *param6)
 {
-    u16 *v0;
-    int v1;
+    u16 *pokedex_sorted_array;
+    int pokedex_length;
     BOOL v2 = 0;
 
     switch (param0) {
     case 0:
-        v0 = NULL;
+        pokedex_sorted_array = NULL;
         break;
     case 1:
-        v0 = ov21_021D3B64(param5, 2, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 2, &pokedex_length);// alphabetical
         v2 = 1;
         break;
     case 2:
-        v0 = ov21_021D3B64(param5, 3, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 3, &pokedex_length);// heaviest
         break;
     case 3:
-        v0 = ov21_021D3B64(param5, 4, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 4, &pokedex_length);// lightest
         break;
     case 4:
-        v0 = ov21_021D3B64(param5, 5, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 5, &pokedex_length);// tallest
         break;
     case 5:
-        v0 = ov21_021D3B64(param5, 6, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 6, &pokedex_length);// shortest
         break;
     default:
         GF_ASSERT(0);
         break;
     }
 
-    if (v0 != NULL) {
-        ov21_021D39E4(param1, param2, v0, v1, param3, param4, v2, param6);
-        Heap_FreeToHeap(v0);
+    if (pokedex_sorted_array != NULL) {
+        ov21_021D39E4(param1, param2, pokedex_sorted_array, pokedex_length, param3, param4, v2, param6);
+        Heap_FreeToHeap(pokedex_sorted_array);
     } else {
         memcpy(param1, param3, (sizeof(u16)) * param4);
         *param2 = param4;
     }
 }
 
-static void ov21_021D3C48(int param0, u16 *param1, int *param2, const u16 *param3, int param4, int param5, const PokedexData *param6)
+static void Pokedex_Sort_FirstLetter(int param0, u16 *param1, int *param2, const u16 *param3, int param4, int param5, const PokedexData *param6)
 {
-    u16 *v0;
-    int v1;
+    u16 *pokedex_sorted_array;
+    int pokedex_length;
 
     switch (param0) {
     case 0:
-        v0 = NULL;
+        pokedex_sorted_array = NULL;
         break;
     case 1:
-        v0 = ov21_021D3B64(param5, 7, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 7, &pokedex_length);// ABC
         break;
     case 2:
-        v0 = ov21_021D3B64(param5, 8, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 8, &pokedex_length);// DEF
         break;
     case 3:
-        v0 = ov21_021D3B64(param5, 9, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 9, &pokedex_length);// GHI
         break;
     case 4:
-        v0 = ov21_021D3B64(param5, 10, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 10, &pokedex_length);// JKL
         break;
     case 5:
-        v0 = ov21_021D3B64(param5, 11, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 11, &pokedex_length);// MNO
         break;
     case 6:
-        v0 = ov21_021D3B64(param5, 12, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 12, &pokedex_length);// PQR
         break;
     case 7:
-        v0 = ov21_021D3B64(param5, 13, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 13, &pokedex_length);// STU
         break;
     case 8:
-        v0 = ov21_021D3B64(param5, 14, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 14, &pokedex_length);// VWX
         break;
     case 9:
-        v0 = ov21_021D3B64(param5, 15, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 15, &pokedex_length);// YZ
         break;
     default:
         GF_ASSERT(0);
         break;
     }
 
-    if (v0 != NULL) {
-        ov21_021D39E4(param1, param2, param3, param4, v0, v1, 1, param6);
-        Heap_FreeToHeap(v0);
+    if (pokedex_sorted_array != NULL) {
+        ov21_021D39E4(param1, param2, param3, param4, pokedex_sorted_array, pokedex_length, 1, param6);
+        Heap_FreeToHeap(pokedex_sorted_array);
     } else {
         memcpy(param1, param3, (sizeof(u16)) * param4);
         *param2 = param4;
     }
 }
 
-static void ov21_021D3D2C(int param0, u16 *param1, int *param2, const u16 *param3, int param4, int param5, const PokedexData *param6)
+static void Pokedex_Sort_Type(int param0, u16 *param1, int *param2, const u16 *param3, int param4, int param5, const PokedexData *param6)
 {
-    u16 *v0;
-    int v1;
+    u16 *pokedex_sorted_array;
+    int pokedex_length;
 
     switch (param0) {
     case 0:
-        v0 = NULL;
+        pokedex_sorted_array = NULL;
         break;
     case 1:
-        v0 = ov21_021D3B64(param5, 16, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 16, &pokedex_length);// normal
         break;
     case 2:
-        v0 = ov21_021D3B64(param5, 17, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 17, &pokedex_length);// fighting
         break;
     case 3:
-        v0 = ov21_021D3B64(param5, 18, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 18, &pokedex_length);// flying
         break;
     case 4:
-        v0 = ov21_021D3B64(param5, 19, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 19, &pokedex_length);// poison
         break;
     case 5:
-        v0 = ov21_021D3B64(param5, 20, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 20, &pokedex_length);// ground
         break;
     case 6:
-        v0 = ov21_021D3B64(param5, 21, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 21, &pokedex_length);// rock
         break;
     case 7:
-        v0 = ov21_021D3B64(param5, 22, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 22, &pokedex_length);// bug
         break;
     case 8:
-        v0 = ov21_021D3B64(param5, 23, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 23, &pokedex_length);// ghost
         break;
     case 9:
-        v0 = ov21_021D3B64(param5, 24, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 24, &pokedex_length);// steel
         break;
     case 10:
-        v0 = ov21_021D3B64(param5, 25, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 25, &pokedex_length);// fire
         break;
     case 11:
-        v0 = ov21_021D3B64(param5, 26, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 26, &pokedex_length);// water
         break;
     case 12:
-        v0 = ov21_021D3B64(param5, 27, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 27, &pokedex_length);// grass
         break;
     case 13:
-        v0 = ov21_021D3B64(param5, 28, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 28, &pokedex_length);// electric
         break;
     case 14:
-        v0 = ov21_021D3B64(param5, 29, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 29, &pokedex_length);// psychic
         break;
     case 15:
-        v0 = ov21_021D3B64(param5, 30, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 30, &pokedex_length);// ice
         break;
     case 16:
-        v0 = ov21_021D3B64(param5, 31, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 31, &pokedex_length);// dragon
         break;
     case 17:
-        v0 = ov21_021D3B64(param5, 32, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 32, &pokedex_length);// dark
         break;
     default:
         GF_ASSERT(0);
         break;
     }
 
-    if (v0 != NULL) {
-        ov21_021D39E4(param1, param2, param3, param4, v0, v1, 0, param6);
-        Heap_FreeToHeap(v0);
+    if (pokedex_sorted_array != NULL) {
+        ov21_021D39E4(param1, param2, param3, param4, pokedex_sorted_array, pokedex_length, 0, param6);
+        Heap_FreeToHeap(pokedex_sorted_array);
     } else {
         memcpy(param1, param3, (sizeof(u16)) * param4);
         *param2 = param4;
     }
 }
 
-static void ov21_021D3E80(int param0, u16 *param1, int *param2, const u16 *param3, int param4, int param5, const PokedexData *param6)
+static void Pokedex_Sort_BodyShape(int param0, u16 *param1, int *param2, const u16 *param3, int param4, int param5, const PokedexData *param6)
 {
-    u16 *v0;
-    int v1;
+    u16 *pokedex_sorted_array;
+    int pokedex_length;
 
     switch (param0) {
     case 0:
-        v0 = NULL;
+        pokedex_sorted_array = NULL;
         break;
     case 1:
-        v0 = ov21_021D3B64(param5, 33, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 33, &pokedex_length);// quadruped
         break;
     case 2:
-        v0 = ov21_021D3B64(param5, 34, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 34, &pokedex_length);// bidedal tailless
         break;
     case 3:
-        v0 = ov21_021D3B64(param5, 35, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 35, &pokedex_length);// bipedal tailed
         break;
     case 4:
-        v0 = ov21_021D3B64(param5, 36, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 36, &pokedex_length);// serpentine
         break;
     case 5:
-        v0 = ov21_021D3B64(param5, 37, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 37, &pokedex_length);// multi winged
         break;
     case 6:
-        v0 = ov21_021D3B64(param5, 38, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 38, &pokedex_length);// winged
         break;
     case 7:
-        v0 = ov21_021D3B64(param5, 39, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 39, &pokedex_length);// insectoid
         break;
     case 8:
-        v0 = ov21_021D3B64(param5, 40, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 40, &pokedex_length);// head base
         break;
     case 9:
-        v0 = ov21_021D3B64(param5, 41, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 41, &pokedex_length);// head arms
         break;
     case 10:
-        v0 = ov21_021D3B64(param5, 42, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 42, &pokedex_length);// head legs
         break;
     case 11:
-        v0 = ov21_021D3B64(param5, 43, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 43, &pokedex_length);// tentacles
         break;
     case 12:
-        v0 = ov21_021D3B64(param5, 44, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 44, &pokedex_length);// fins
         break;
     case 13:
-        v0 = ov21_021D3B64(param5, 45, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 45, &pokedex_length);// head
         break;
     case 14:
-        v0 = ov21_021D3B64(param5, 46, &v1);
+        pokedex_sorted_array = Pokedex_Sorted_Array(param5, 46, &pokedex_length);// multi-body
         break;
     default:
         GF_ASSERT(0);
         break;
     }
 
-    if (v0 != NULL) {
-        ov21_021D39E4(param1, param2, param3, param4, v0, v1, 1, param6);
-        Heap_FreeToHeap(v0);
+    if (pokedex_sorted_array != NULL) {
+        ov21_021D39E4(param1, param2, param3, param4, pokedex_sorted_array, pokedex_length, 1, param6);
+        Heap_FreeToHeap(pokedex_sorted_array);
     } else {
         memcpy(param1, param3, (sizeof(u16)) * param4);
         *param2 = param4;

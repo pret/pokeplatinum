@@ -13,7 +13,7 @@
 #include "string_template.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206CCB0.h"
-#include "unk_02098700.h"
+#include "pokedex_heightweight.h"
 #include "vars_flags.h"
 
 typedef struct {
@@ -86,7 +86,7 @@ static u32 ov5_021EE8A8(u16 param0, u16 param1)
     v6 = Pokedex_HeightWeightData(4);
     Pokedex_HeightWeightData_Load(v6, 0, 4);
 
-    v3 = sub_02098808((const HeightWeightData *)v6, param0);
+    v3 = Pokedex_HeightWeightData_Height((const HeightWeightData *)v6, param0);
     Pokedex_HeightWeightData_Release(v6);
     Pokedex_HeightWeightData_Free(v6);
 

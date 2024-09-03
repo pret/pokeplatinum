@@ -46,7 +46,7 @@
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
-#include "unk_02098988.h"
+#include "pokedex_data_index.h"
 
 typedef struct {
     CellActor *unk_00;

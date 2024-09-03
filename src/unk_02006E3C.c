@@ -247,18 +247,18 @@ void *sub_02007220(NARC *param0, u32 param1, BOOL param2, NNSG2dAnimBankData **p
     return sub_02007610(v0, param3);
 }
 
-void *sub_0200723C(NARC *param0, u32 param1, BOOL param2, u32 param3, int param4)
+void *sub_0200723C(NARC *narc, u32 narc_file_index, BOOL param2, u32 param3, int param4)
 {
     u32 v0;
 
-    return sub_02007250(param0, param1, param2, param3, param4, &v0);
+    return sub_02007250(narc, narc_file_index, param2, param3, param4, &v0);
 }
 
-void *sub_02007250(NARC *param0, u32 param1, BOOL param2, u32 param3, int param4, u32 *param5)
+void *sub_02007250(NARC *narc, u32 narc_file_index, BOOL param2, u32 param3, int param4, u32 *param5)
 {
     void *v0;
 
-    *param5 = NARC_GetMemberSize(param0, param1);
+    *param5 = NARC_GetMemberSize(narc, narc_file_index);
 
     if (param2 || (param4 == 1)) {
         v0 = Heap_AllocFromHeapAtEnd(param3, *param5);
@@ -267,7 +267,7 @@ void *sub_02007250(NARC *param0, u32 param1, BOOL param2, u32 param3, int param4
     }
 
     if (v0 != NULL) {
-        NARC_ReadWholeMember(param0, param1, v0);
+        NARC_ReadWholeMember(narc, narc_file_index, v0);
 
         if (param2) {
             void *v1;

@@ -30,8 +30,8 @@
 #include "unk_0200A328.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_02098700.h"
-#include "unk_02098988.h"
+#include "pokedex_heightweight.h"
+#include "pokedex_data_index.h"
 
 typedef struct {
     int *unk_00;
@@ -418,8 +418,8 @@ static void ov21_021E6518(UnkStruct_ov21_021E6274 *param0, UnkStruct_ov21_021E61
     v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
     v1.heapID = param3;
 
-    v4 = sub_02098848(param2->unk_04->unk_1748, v6);
-    v5 = sub_02098888(param2->unk_04->unk_1748, v6);
+    v4 = Pokedex_HeightWeightData_TrainerPos(param2->unk_04->unk_1748, v6);
+    v5 = Pokedex_HeightWeightData_TrainerScale(param2->unk_04->unk_1748, v6);
 
     v1.position.x = 168 << FX32_SHIFT;
     v1.position.y = (88 + v4) << FX32_SHIFT;
@@ -477,10 +477,10 @@ static void ov21_021E66B0(UnkStruct_ov21_021E6118 *param0, const UnkStruct_ov21_
     MessageLoader *v1;
     int v2 = ov21_021D37BC(param1->unk_04);
     Strbuf *v3 = MessageUtil_SpeciesName(v2, param2);
-    int v4;
+    int height_message_bank_index;
 
-    v4 = sub_020989D0();
-    v1 = MessageLoader_Init(0, 26, v4, param2);
+    height_message_bank_index = Height_Message_Bank_Index();
+    v1 = MessageLoader_Init(0, 26, height_message_bank_index, param2);
 
     sub_0201D78C(&param0->unk_00->unk_04, 0, v3, 26, 152, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     MessageLoader_GetStrbuf(v1, v2, v0);
@@ -519,8 +519,8 @@ static void ov21_021E67C8(UnkStruct_ov21_021E6118 *param0, const UnkStruct_ov21_
     short v2;
     int v3 = ov21_021D37BC(param1->unk_04);
 
-    v1 = sub_02098868(param1->unk_04->unk_1748, v3);
-    v2 = sub_020988A8(param1->unk_04->unk_1748, v3);
+    v1 = Pokedex_HeightWeightData_PokemonPos(param1->unk_04->unk_1748, v3);
+    v2 = Pokedex_HeightWeightData_PokemonScale(param1->unk_04->unk_1748, v3);
 
     ov21_021D1890(param0->unk_00, param1->unk_04, v3, 2, 88, 88 + v1);
 

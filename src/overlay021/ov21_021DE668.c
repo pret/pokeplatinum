@@ -39,7 +39,7 @@
 #include "unk_02012744.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_02098988.h"
+#include "pokedex_data_index.h"
 
 typedef struct {
     UnkStruct_ov21_021D13FC *unk_00;
@@ -446,10 +446,10 @@ static void ov21_021DEC2C(Window *param0, int param1, int param2, u32 param3)
 {
     Strbuf *v0 = Strbuf_Init(64, param1);
     MessageLoader *v1;
-    int v2;
+    int height_message_bank_index;
 
-    v2 = sub_020989D0();
-    v1 = MessageLoader_Init(0, 26, v2, param1);
+    height_message_bank_index = Height_Message_Bank_Index();
+    v1 = MessageLoader_Init(0, 26, height_message_bank_index, param1);
 
     MessageLoader_GetStrbuf(v1, param2, v0);
     sub_0201D78C(param0, 0, v0, 184, 88, 0, param3, NULL);
@@ -461,10 +461,10 @@ static void ov21_021DEC80(Window *param0, int param1, int param2, u32 param3)
 {
     Strbuf *v0 = Strbuf_Init(64, param1);
     MessageLoader *v1;
-    int v2;
+    int weight_messsage_bank_index;
 
-    v2 = sub_020989C4();
-    v1 = MessageLoader_Init(0, 26, v2, param1);
+    weight_messsage_bank_index = Weight_Message_Bank_Index();
+    v1 = MessageLoader_Init(0, 26, weight_messsage_bank_index, param1);
 
     MessageLoader_GetStrbuf(v1, param2, v0);
     sub_0201D78C(param0, 0, v0, 184, 104, 0, param3, NULL);

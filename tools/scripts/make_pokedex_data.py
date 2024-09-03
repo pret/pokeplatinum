@@ -5,6 +5,7 @@ import pathlib
 import subprocess
 
 from consts.species import PokemonSpecies
+from consts.pokemon import PokemonType
 from consts.pokemon import PokemonBodyShape
 
 
@@ -36,26 +37,6 @@ output_dir = pathlib.Path(args.output_dir)
 
 private_dir.mkdir(parents=True, exist_ok=True)
 
-pokemon_types = [
-    'TYPE_NORMAL',
-    'TYPE_FIGHTING',
-    'TYPE_FLYING',
-    'TYPE_POISON',
-    'TYPE_GROUND',
-    'TYPE_ROCK',
-    'TYPE_BUG',
-    'TYPE_GHOST',
-    'TYPE_STEEL',
-    'TYPE_FIRE',
-    'TYPE_WATER',
-    'TYPE_GRASS',
-    'TYPE_ELECTRIC',
-    'TYPE_PSYCHIC',
-    'TYPE_ICE',
-    'TYPE_DRAGON',
-    'TYPE_DARK',
-]
-
 data_names = [
     'height',
     'weight',
@@ -77,10 +58,14 @@ def DataSize(num):
         return 1
     return 2
 
-binData = [bytes() for f in range(58)]
-heightData = [0 for i in range(len(PokemonSpecies)-3)]
-weightData = [0 for i in range(len(PokemonSpecies)-3)]
-nameData = ['' for i in range(len(PokemonSpecies)-3)]
+NUM_FILES = 26 + PokemonType['NUMBER_OF_MON_TYPES'].value + PokemonBodyShape['NUMBER_OF_BODY_SHAPES'].value
+NUM_POKEMON = len(PokemonSpecies)-3
+
+binData = [bytes() for f in range(NUM_FILES)]
+heightData = [0 for i in range(NUM_POKEMON)]
+weightData = [0 for i in range(NUM_POKEMON)]
+nameData = ['' for i in range(NUM_POKEMON)]
+
 for i, species in enumerate(PokemonSpecies):
     subdir = species.name
     subdir = subdir[8:].lower()
@@ -111,13 +96,17 @@ for i, species in enumerate(PokemonSpecies):
         binData[11] = binData[11] + i.to_bytes(2, 'little')
 
         # body shape
-        body_idx = PokemonBodyShape[pkdexdata['body_shape']].value + 44
+        body_idx = PokemonBodyShape[pkdexdata['body_shape']].value + PokemonType['NUMBER_OF_MON_TYPES'].value + 26
         binData[body_idx] = binData[body_idx] + i.to_bytes(2, 'little')
 
         # pokemon types
-        for j in range(len(pokemon_types)):
-            if pokemon_types[j] in pkdata['types']:
-                binData[j+27] = binData[j+27] + i.to_bytes(2, 'little')
+        type_idx = 27
+        for type in PokemonType:
+            if type.name in ['TYPE_MYSTERY', 'NUMBER_OF_MON_TYPES']:
+                continue
+            if type.name in pkdata['types']:
+                binData[type_idx] = binData[type_idx] + i.to_bytes(2, 'little')
+            type_idx += 1
         
         # store for later
         heightData[i-1] = pkdexdata['height']
@@ -125,7 +114,6 @@ for i, species in enumerate(PokemonSpecies):
         nameData[i-1] = subdir.replace('porygon2','porygon_z2')
 
 # sinnoh dex order
-pokedex = [0 for i in range(len(PokemonSpecies)-2)]
 with open(args.pokedex) as data_file:
     dex_data = json.load(data_file)
     for mon in dex_data:
@@ -170,7 +158,7 @@ if args.giratina_form == 'giratina_origin':
 if args.giratina_form == 'giratina_altered':
     output_name = 'zukan_data_gira'
 
-for i in range(58):
+for i in range(NUM_FILES):
     target_fname = str(private_dir / output_name) + f'_{i:02}.bin'
     with open(target_fname, 'wb+') as target_file:
         target_file.write(binData[i])
