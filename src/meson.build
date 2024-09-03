@@ -325,7 +325,7 @@ pokeplatinum_c = files(
     'unk_02098218.c',
     'unk_020985E4.c',
     'unk_020986CC.c',
-    'Pokedex_HeightWeight.c',
+    'pokedex_heightweight.c',
     'pokedex_data_index.c',
     'unk_020989DC.c',
     'unk_02098FFC.c',
