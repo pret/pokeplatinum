@@ -130,6 +130,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 6,
         "trainer_pos_m": 8,
-        "pokemon_pos_m": 7
+        "pokemon_pos_m": 7,
+        "entry_text": "Staring at its antlers creates\\nan odd sensation as if one were\\nbeing drawn into their centers.",
+        "category": "Big Horn Pok\u00e9mon"
     }
 }

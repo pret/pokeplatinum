@@ -137,6 +137,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 25
+        "pokemon_pos_m": 25,
+        "entry_text": "Attached to its head is a huge\\nset of jaws formed by horns.\\nIt can chew through iron beams.",
+        "category": "Deceiver Pok\u00e9mon"
     }
 }

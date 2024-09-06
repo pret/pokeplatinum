@@ -180,6 +180,8 @@
         "trainer_pos_f": 23,
         "pokemon_pos_f": 0,
         "trainer_pos_m": 23,
-        "pokemon_pos_m": 0
+        "pokemon_pos_m": 0,
+        "entry_text": "It is said to have emerged from an\\negg in a place where there was\\nnothing, then shaped the world.",
+        "category": "Alpha Pok\u00e9mon"
     }
 }

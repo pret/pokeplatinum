@@ -131,6 +131,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 7,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 7
+        "pokemon_pos_m": 7,
+        "entry_text": "It happily carries heavy cargo to\\ntoughen up. It willingly does hard\\nwork for people.",
+        "category": "Superpower Pok\u00e9mon"
     }
 }

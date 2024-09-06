@@ -130,6 +130,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 9,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 9
+        "pokemon_pos_m": 9,
+        "entry_text": "The flames it breathes when angry\\ncontain toxins. If they cause a\\nburn, it will hurt forever.",
+        "category": "Dark Pok\u00e9mon"
     }
 }

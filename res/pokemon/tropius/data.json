@@ -128,6 +128,8 @@
         "trainer_pos_f": 15,
         "pokemon_pos_f": 0,
         "trainer_pos_m": 15,
-        "pokemon_pos_m": 0
+        "pokemon_pos_m": 0,
+        "entry_text": "Delicious fruits grew out from\\naround its neck because it always\\nate the same kind of fruit.",
+        "category": "Fruit Pok\u00e9mon"
     }
 }

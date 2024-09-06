@@ -123,6 +123,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 20,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 20
+        "pokemon_pos_m": 20,
+        "entry_text": "A Pok\u00e9mon with a loyal nature.\\nIt will remain motionless until it is\\ngiven an order by its Trainer.",
+        "category": "Puppy Pok\u00e9mon"
     }
 }

@@ -127,6 +127,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 2,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 2
+        "pokemon_pos_m": 2,
+        "entry_text": "LANTURN\u2019s light can shine up from\\ngreat depths. It is nicknamed\\n\u201cThe Deep-Sea Star.\u201d",
+        "category": "Light Pok\u00e9mon"
     }
 }

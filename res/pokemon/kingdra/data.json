@@ -121,6 +121,8 @@
         "trainer_pos_f": 11,
         "pokemon_pos_f": 2,
         "trainer_pos_m": 12,
-        "pokemon_pos_m": 2
+        "pokemon_pos_m": 2,
+        "entry_text": "It lives in caves on the seafloor\\nand creates giant whirlpools\\nevery time it moves.",
+        "category": "Dragon Pok\u00e9mon"
     }
 }

@@ -112,6 +112,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 25
+        "pokemon_pos_m": 25,
+        "entry_text": "If it senses strong sunlight, it\\nopens its folded petals to absorb\\nthe sun\u2019s rays with its whole body.",
+        "category": "Blossom Pok\u00e9mon"
     }
 }

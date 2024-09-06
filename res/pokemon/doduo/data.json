@@ -117,6 +117,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 12,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 12
+        "pokemon_pos_m": 12,
+        "entry_text": "The brains in its two heads appear\\nto communicate emotions to each\\nother with a telepathic power.",
+        "category": "Twin Bird Pok\u00e9mon"
     }
 }

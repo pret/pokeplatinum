@@ -136,6 +136,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 65527,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 65527
+        "pokemon_pos_m": 65527,
+        "entry_text": "A Pok\u00e9mon that startles people in\\nthe middle of the night. It gathers\\nfear as its energy.",
+        "category": "Screech Pok\u00e9mon"
     }
 }

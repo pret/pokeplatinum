@@ -142,6 +142,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 65535,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 65535
+        "pokemon_pos_m": 65535,
+        "entry_text": "The long tongue is always soggy\\nwith slobber. The saliva contains\\na solvent that causes numbness.",
+        "category": "Licking Pok\u00e9mon"
     }
 }

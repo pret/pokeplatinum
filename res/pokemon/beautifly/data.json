@@ -115,6 +115,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 65526,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 65526
+        "pokemon_pos_m": 65526,
+        "entry_text": "Despite its looks, it is aggressive.\\nIt jabs with its long, thin mouth if\\ndisturbed while collecting pollen.",
+        "category": "Butterfly Pok\u00e9mon"
     }
 }

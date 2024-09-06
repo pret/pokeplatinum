@@ -125,6 +125,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 25
+        "pokemon_pos_m": 25,
+        "entry_text": "While it does not prefer to fight,\\neven one drop of the poison it\\nsecretes from barbs can be fatal.",
+        "category": "Poison Pin Pok\u00e9mon"
     }
 }

@@ -65,6 +65,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 30,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 30
+        "pokemon_pos_m": 30,
+        "entry_text": "It has the ability to reconstitute\\nits entire cellular structure to\\ntransform into whatever it sees.",
+        "category": "Transform Pok\u00e9mon"
     }
 }

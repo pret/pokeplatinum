@@ -133,6 +133,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 65534,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 65534
+        "pokemon_pos_m": 65534,
+        "entry_text": "It shares many blessings with\\npeople who respect one another\u2019s\\nrights and avoid needless strife.",
+        "category": "Jubilee Pok\u00e9mon"
     }
 }

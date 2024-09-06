@@ -136,6 +136,8 @@
         "trainer_pos_f": 16,
         "pokemon_pos_f": 65535,
         "trainer_pos_m": 15,
-        "pokemon_pos_m": 65535
+        "pokemon_pos_m": 65535,
+        "entry_text": "Its fangs rip through sheet iron.\\nIt swims at 75 mph and is known as\\n\u201cThe Bully of the Sea.\u201d",
+        "category": "Brutal Pok\u00e9mon"
     }
 }

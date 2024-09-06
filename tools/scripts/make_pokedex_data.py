@@ -10,7 +10,7 @@ from consts.pokemon import PokemonBodyShape
 
 
 argparser = argparse.ArgumentParser(
-    prog='make_zukan_data_py',
+    prog='make_pokedex_data_py',
     description='Packs the archive containing Pokedex sorting'
 )
 argparser.add_argument('-k', '--knarc',
@@ -18,7 +18,7 @@ argparser.add_argument('-k', '--knarc',
                        help='Path to knarc executable')
 argparser.add_argument('-s', '--source-dir',
                        required=True,
-                       help='Path to the source directory (res/pokemon)')
+                       help='Path to the source directory (res/prebuilt/application/zukanlist/zkn_data)')
 argparser.add_argument('-p', '--private-dir',
                        required=True,
                        help='Path to the private directory (where binaries will be made)')

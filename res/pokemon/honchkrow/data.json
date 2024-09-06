@@ -125,6 +125,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 18,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 18
+        "pokemon_pos_m": 18,
+        "entry_text": "If one utters a deep cry, many\\nMURKROW gather quickly. For this,\\nit is called \u201cSummoner of Night.\u201d",
+        "category": "Big Boss Pok\u00e9mon"
     }
 }

@@ -142,6 +142,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 18,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 18
+        "pokemon_pos_m": 18,
+        "entry_text": "The mother puts its offspring to\\nsleep by curling up around them.\\nIt corners foes with speed.",
+        "category": "Long Body Pok\u00e9mon"
     }
 }

@@ -137,6 +137,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 14,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 14
+        "pokemon_pos_m": 14,
+        "entry_text": "It lives in dense jungles. While \\nclosing in on its prey, it leaps\\nfrom branch to branch.",
+        "category": "Wood Gecko Pok\u00e9mon"
     }
 }

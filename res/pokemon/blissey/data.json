@@ -152,6 +152,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 2,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 6
+        "pokemon_pos_m": 6,
+        "entry_text": "The eggs it lays are filled with\\nhappiness. Eating even one bite\\nwill bring a smile to anyone.",
+        "category": "Happiness Pok\u00e9mon"
     }
 }

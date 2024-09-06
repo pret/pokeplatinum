@@ -142,6 +142,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 12,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 12
+        "pokemon_pos_m": 12,
+        "entry_text": "A well-trained one can sense auras\\nto identify and take in the feelings\\nof creatures over half a mile away.",
+        "category": "Aura Pok\u00e9mon"
     }
 }

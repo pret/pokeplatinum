@@ -129,6 +129,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 19,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 19
+        "pokemon_pos_m": 19,
+        "entry_text": "If its body is torn, it can grow\\nback if the red core remains.\\nThe core flashes at midnight.",
+        "category": "Star Shape Pok\u00e9mon"
     }
 }

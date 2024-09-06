@@ -119,6 +119,8 @@
         "trainer_pos_f": 5,
         "pokemon_pos_f": 6,
         "trainer_pos_m": 4,
-        "pokemon_pos_m": 6
+        "pokemon_pos_m": 6,
+        "entry_text": "For many generations, it has\\nfeuded with ZANGOOSE. It whets its\\nbladed tail on rocks for battle.",
+        "category": "Fang Snake Pok\u00e9mon"
     }
 }

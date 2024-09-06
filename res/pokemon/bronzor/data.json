@@ -133,6 +133,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 65528,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 65528
+        "pokemon_pos_m": 65528,
+        "entry_text": "There are researchers who believe\\nthis Pok\u00e9mon reflected like a mirror\\nin the distant past.",
+        "category": "Bronze Pok\u00e9mon"
     }
 }

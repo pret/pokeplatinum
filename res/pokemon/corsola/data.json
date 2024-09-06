@@ -129,6 +129,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 23
+        "pokemon_pos_m": 23,
+        "entry_text": "Many live in the clean seas of the\\nsouth. They apparently can\u2019t live\\nin polluted waters.",
+        "category": "Coral Pok\u00e9mon"
     }
 }

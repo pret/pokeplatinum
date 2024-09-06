@@ -127,6 +127,8 @@
         "trainer_pos_f": 15,
         "pokemon_pos_f": 9,
         "trainer_pos_m": 15,
-        "pokemon_pos_m": 9
+        "pokemon_pos_m": 9,
+        "entry_text": "It races around the world to\\npurify fouled water. It dashes\\naway with the north wind.",
+        "category": "Aurora Pok\u00e9mon"
     }
 }

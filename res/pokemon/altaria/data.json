@@ -134,6 +134,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 0,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 0
+        "pokemon_pos_m": 0,
+        "entry_text": "If it bonds with a person, it will\\ngently envelop the friend with its\\nsoft wings, then hum.",
+        "category": "Humming Pok\u00e9mon"
     }
 }

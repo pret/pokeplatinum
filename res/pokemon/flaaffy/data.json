@@ -124,6 +124,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 18,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 18
+        "pokemon_pos_m": 18,
+        "entry_text": "If its coat becomes fully charged\\nwith electricity, its tail lights up.\\nIt fires hair that zaps on impact.",
+        "category": "Wool Pok\u00e9mon"
     }
 }

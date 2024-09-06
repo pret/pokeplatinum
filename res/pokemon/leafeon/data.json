@@ -126,6 +126,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 14,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 14
+        "pokemon_pos_m": 14,
+        "entry_text": "It basically does not fight. With\\ncells similar to those of plants, it\\ncan perform photosynthesis.",
+        "category": "Verdant Pok\u00e9mon"
     }
 }

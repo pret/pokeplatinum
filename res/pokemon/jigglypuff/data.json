@@ -146,6 +146,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 22,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 22
+        "pokemon_pos_m": 22,
+        "entry_text": "When it wavers its big, round\\neyes, it begins singing a lullaby\\nthat makes everyone drowsy.",
+        "category": "Balloon Pok\u00e9mon"
     }
 }

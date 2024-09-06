@@ -133,6 +133,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 11,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 11
+        "pokemon_pos_m": 11,
+        "entry_text": "It is said that kids who drink\\nMILTANK\u2019s milk grow up to become\\nhearty, healthy adults.",
+        "category": "Milk Cow Pok\u00e9mon"
     }
 }

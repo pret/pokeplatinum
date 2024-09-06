@@ -118,6 +118,8 @@
         "trainer_pos_f": 10,
         "pokemon_pos_f": 3,
         "trainer_pos_m": 10,
-        "pokemon_pos_m": 3
+        "pokemon_pos_m": 3,
+        "entry_text": "It is surprisingly quick to anger.\\nIt holds its mouth agape as a\\ndisplay of its strength.",
+        "category": "Heavyweight Pok\u00e9mon"
     }
 }

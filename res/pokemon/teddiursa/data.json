@@ -140,6 +140,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 23
+        "pokemon_pos_m": 23,
+        "entry_text": "It lets honey soak into its paws\\nso it can lick them all the time.\\nEvery set of paws tastes unique.",
+        "category": "Little Bear Pok\u00e9mon"
     }
 }

@@ -134,6 +134,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 21,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 21
+        "pokemon_pos_m": 21,
+        "entry_text": "Overwhelmed by enigmatic abilities,\\nit suffers a constant headache. It\\nsometimes uses mysterious powers.",
+        "category": "Duck Pok\u00e9mon"
     }
 }

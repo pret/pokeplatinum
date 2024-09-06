@@ -155,6 +155,8 @@
         "trainer_pos_f": 17,
         "pokemon_pos_f": 3,
         "trainer_pos_m": 17,
-        "pokemon_pos_m": 3
+        "pokemon_pos_m": 3,
+        "entry_text": "It can launch a rock held in its\\nhand like a missile by tightening\\nthen expanding muscles instantly.",
+        "category": "Drill Pok\u00e9mon"
     }
 }

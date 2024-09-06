@@ -129,6 +129,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 27,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 27
+        "pokemon_pos_m": 27,
+        "entry_text": "It occasionally uses an electric\\nshock to recharge a fellow PIKACHU\\nthat is in a weakened state.",
+        "category": "Mouse Pok\u00e9mon"
     }
 }

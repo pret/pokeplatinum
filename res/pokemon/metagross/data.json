@@ -140,6 +140,8 @@
         "trainer_pos_f": 14,
         "pokemon_pos_f": 9,
         "trainer_pos_m": 14,
-        "pokemon_pos_m": 9
+        "pokemon_pos_m": 9,
+        "entry_text": "METANG combined to form it.\\nWith four brains, it has the\\nintelligence of a supercomputer.",
+        "category": "Iron Leg Pok\u00e9mon"
     }
 }

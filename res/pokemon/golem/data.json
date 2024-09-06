@@ -133,6 +133,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 7,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 7
+        "pokemon_pos_m": 7,
+        "entry_text": "Even dynamite can\u2019t harm its hard,\\nboulderlike body. It sheds its hide\\njust once a year.",
+        "category": "Megaton Pok\u00e9mon"
     }
 }

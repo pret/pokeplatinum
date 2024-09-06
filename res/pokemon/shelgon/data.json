@@ -130,6 +130,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 14,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 14
+        "pokemon_pos_m": 14,
+        "entry_text": "Within its rugged shell, its cells\\nhave begun changing. The shell\\npeels off the instant it evolves.",
+        "category": "Endurance Pok\u00e9mon"
     }
 }

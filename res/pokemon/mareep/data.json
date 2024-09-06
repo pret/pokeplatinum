@@ -113,6 +113,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 19,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 19
+        "pokemon_pos_m": 19,
+        "entry_text": "Its fluffy coat swells to double\\nwhen static electricity builds up.\\nTouching it can be shocking.",
+        "category": "Wool Pok\u00e9mon"
     }
 }

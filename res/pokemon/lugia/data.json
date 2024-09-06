@@ -150,6 +150,8 @@
         "trainer_pos_f": 27,
         "pokemon_pos_f": 0,
         "trainer_pos_m": 26,
-        "pokemon_pos_m": 0
+        "pokemon_pos_m": 0,
+        "entry_text": "It sleeps in a deep-sea trench.\\nIf it flaps its wings, it is said to\\ncause a 40-day storm.",
+        "category": "Diving Pok\u00e9mon"
     }
 }

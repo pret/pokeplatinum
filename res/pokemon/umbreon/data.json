@@ -122,6 +122,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 15,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 15
+        "pokemon_pos_m": 15,
+        "entry_text": "When exposed to the moon\u2019s aura,\\nthe rings on its body glow faintly\\nand it gains a mysterious power.",
+        "category": "Moonlight Pok\u00e9mon"
     }
 }

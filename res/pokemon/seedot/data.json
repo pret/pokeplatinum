@@ -113,6 +113,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 24,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 24
+        "pokemon_pos_m": 24,
+        "entry_text": "When it dangles from a tree\\nbranch, it looks just like an acorn.\\nIt enjoys scaring other Pok\u00e9mon.",
+        "category": "Acorn Pok\u00e9mon"
     }
 }

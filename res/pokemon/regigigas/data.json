@@ -127,6 +127,8 @@
         "trainer_pos_f": 23,
         "pokemon_pos_f": 1,
         "trainer_pos_m": 23,
-        "pokemon_pos_m": 1
+        "pokemon_pos_m": 1,
+        "entry_text": "It is said to have made Pok\u00e9mon\\nthat look like itself from a special\\nice mountain, rocks, and magma.",
+        "category": "Colossal Pok\u00e9mon"
     }
 }

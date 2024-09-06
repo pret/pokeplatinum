@@ -139,6 +139,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 9,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 9
+        "pokemon_pos_m": 9,
+        "entry_text": "It is thought that this Pok\u00e9mon\\ncame onto land because its\\nprey adapted to life on land.",
+        "category": "Shellfish Pok\u00e9mon"
     }
 }

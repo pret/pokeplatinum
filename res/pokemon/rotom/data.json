@@ -120,6 +120,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 65528,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 65528
+        "pokemon_pos_m": 65528,
+        "entry_text": "Its electric-like body can enter\\nsome kinds of machines and take\\ncontrol in order to make mischief.",
+        "category": "Plasma Pok\u00e9mon"
     }
 }

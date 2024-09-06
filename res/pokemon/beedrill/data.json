@@ -122,6 +122,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 65529,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 65529
+        "pokemon_pos_m": 65529,
+        "entry_text": "Its best attack involves flying\\naround at high speed, striking with\\npoison needles, then flying off.",
+        "category": "Poison Bee Pok\u00e9mon"
     }
 }

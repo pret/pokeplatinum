@@ -138,6 +138,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 7,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 7
+        "pokemon_pos_m": 7,
+        "entry_text": "It brought rains by opening portals\\nto another world. It was revered\\nas a bringer of plentiful harvests.",
+        "category": "Bronze Bell Pok\u00e9mon"
     }
 }

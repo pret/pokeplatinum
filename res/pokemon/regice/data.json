@@ -132,6 +132,8 @@
         "trainer_pos_f": 12,
         "pokemon_pos_f": 2,
         "trainer_pos_m": 12,
-        "pokemon_pos_m": 2
+        "pokemon_pos_m": 2,
+        "entry_text": "Its body is made of ice from the\\nice age. It controls frigid air of\\n-328 degrees Fahrenheit.",
+        "category": "Iceberg Pok\u00e9mon"
     }
 }

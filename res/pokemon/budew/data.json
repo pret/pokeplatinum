@@ -113,6 +113,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 29,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 29
+        "pokemon_pos_m": 29,
+        "entry_text": "Sensitive to changing temperature,\\nthe bud is said to bloom when it\\nfeels the sun\u2019s warm touch.",
+        "category": "Bud Pok\u00e9mon"
     }
 }

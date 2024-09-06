@@ -141,6 +141,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 21,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 21
+        "pokemon_pos_m": 21,
+        "entry_text": "A lifelong jungle dweller from 100\\nmillion years ago, it would snap\\nobstructing trees with head butts.",
+        "category": "Head Butt Pok\u00e9mon"
     }
 }

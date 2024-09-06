@@ -126,6 +126,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 65527,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 65527
+        "pokemon_pos_m": 65527,
+        "entry_text": "There is an orb inside its mouth.\\nWhen it hops, the orb bounces all\\nover and makes a ringing sound.",
+        "category": "Bell Pok\u00e9mon"
     }
 }

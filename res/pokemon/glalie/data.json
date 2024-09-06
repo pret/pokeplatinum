@@ -124,6 +124,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 65535,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 65535
+        "pokemon_pos_m": 65535,
+        "entry_text": "It prevents prey from escaping by\\ninstantaneously freezing moisture\\nin the air.",
+        "category": "Face Pok\u00e9mon"
     }
 }

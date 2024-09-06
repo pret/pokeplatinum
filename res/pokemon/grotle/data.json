@@ -127,6 +127,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 14,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 14
+        "pokemon_pos_m": 14,
+        "entry_text": "It knows where pure water wells\\nup. It carries fellow Pok\u00e9mon there\\non its back.",
+        "category": "Grove Pok\u00e9mon"
     }
 }

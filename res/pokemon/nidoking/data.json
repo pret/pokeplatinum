@@ -144,6 +144,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 9,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 9
+        "pokemon_pos_m": 9,
+        "entry_text": "One swing of its mighty tail can\\nsnap a telephone pole as if it were\\na matchstick.",
+        "category": "Drill Pok\u00e9mon"
     }
 }

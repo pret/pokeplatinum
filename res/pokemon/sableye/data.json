@@ -144,6 +144,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 25
+        "pokemon_pos_m": 25,
+        "entry_text": "It hides in the darkness of caves.\\nIts diet of gems has transformed\\nits eyes into gemstones.",
+        "category": "Darkness Pok\u00e9mon"
     }
 }

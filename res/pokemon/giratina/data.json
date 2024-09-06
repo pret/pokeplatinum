@@ -143,7 +143,9 @@
             "trainer_pos_f": 24,
             "pokemon_pos_f": 1,
             "trainer_pos_m": 23,
-            "pokemon_pos_m": 1
+            "pokemon_pos_m": 1,
+            "entry_text": "It was banished for its violence.\\nIt silently gazed upon the old\\nworld from the Distortion World.",
+            "category": "Renegade Pok\u00e9mon"
         },
         {
             "height": 45,
@@ -156,7 +158,8 @@
             "trainer_pos_f": 26,
             "pokemon_pos_f": 3,
             "trainer_pos_m": 26,
-            "pokemon_pos_m": 3
+            "pokemon_pos_m": 3,
+            "entry_text": "It was banished for its violence.\\nIt silently gazed upon the old\\nworld from the Distortion World."
         }
     ]
 }

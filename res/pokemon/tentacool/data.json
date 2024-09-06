@@ -121,6 +121,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 65533,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 65533
+        "pokemon_pos_m": 65533,
+        "entry_text": "Because its body is almost entirely\\ncomposed of water, it shrivels up if\\nit is washed ashore.",
+        "category": "Jellyfish Pok\u00e9mon"
     }
 }

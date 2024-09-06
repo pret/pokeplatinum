@@ -112,6 +112,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 9,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 9
+        "pokemon_pos_m": 9,
+        "entry_text": "Its nine tails are said to be\\nimbued with a mystic power.\\nIt can live for a thousand years.",
+        "category": "Fox Pok\u00e9mon"
     }
 }

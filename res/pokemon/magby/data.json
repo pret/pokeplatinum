@@ -122,6 +122,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 20,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 20
+        "pokemon_pos_m": 20,
+        "entry_text": "Its magma-like blood circulates\\nthroughout its body. Its body\u2019s\\nheat can top 1,100 degrees F.",
+        "category": "Live Coal Pok\u00e9mon"
     }
 }

@@ -125,6 +125,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 65531,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 65531
+        "pokemon_pos_m": 65531,
+        "entry_text": "It crawls along the seafloor using\\nits long front fins like legs. It\\ncompetes for food with LANTURN.",
+        "category": "Neon Pok\u00e9mon"
     }
 }

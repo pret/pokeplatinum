@@ -127,6 +127,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 17
+        "pokemon_pos_m": 17,
+        "entry_text": "When the bud on its back starts\\nswelling, a sweet aroma wafts to\\nindicate the flower\u2019s coming bloom.",
+        "category": "Seed Pok\u00e9mon"
     }
 }

@@ -128,6 +128,8 @@
         "trainer_pos_f": 7,
         "pokemon_pos_f": 1,
         "trainer_pos_m": 7,
-        "pokemon_pos_m": 1
+        "pokemon_pos_m": 1,
+        "entry_text": "Its body is made of rugged steel.\\nHowever, it is partially melted in\\nspots because of its own heat.",
+        "category": "Lava Dome Pok\u00e9mon"
     }
 }

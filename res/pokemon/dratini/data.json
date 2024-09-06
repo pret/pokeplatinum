@@ -128,6 +128,8 @@
         "trainer_pos_f": 6,
         "pokemon_pos_f": 6,
         "trainer_pos_m": 5,
-        "pokemon_pos_m": 6
+        "pokemon_pos_m": 6,
+        "entry_text": "It is called the \u201cMirage Pok\u00e9mon\u201d\\nbecause so few have seen it.\\nIts shed skin has been found.",
+        "category": "Dragon Pok\u00e9mon"
     }
 }

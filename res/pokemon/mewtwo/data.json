@@ -165,6 +165,8 @@
         "trainer_pos_f": 16,
         "pokemon_pos_f": 6,
         "trainer_pos_m": 16,
-        "pokemon_pos_m": 6
+        "pokemon_pos_m": 6,
+        "entry_text": "A Pok\u00e9mon created by recombining\\nMEW\u2019s genes. It\u2019s said to have the\\nmost savage heart among Pok\u00e9mon.",
+        "category": "Genetic Pok\u00e9mon"
     }
 }

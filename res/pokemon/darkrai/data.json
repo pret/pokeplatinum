@@ -146,6 +146,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 4,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 4
+        "pokemon_pos_m": 4,
+        "entry_text": "To protect itself, it afflicts those\\naround it with nightmares. However,\\nit means no harm.",
+        "category": "Pitch-Black Pok\u00e9mon"
     }
 }

@@ -118,6 +118,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 12,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 12
+        "pokemon_pos_m": 12,
+        "entry_text": "It never stops attacking even\\nif it is injured. It fusses over the\\nshape of its comb.",
+        "category": "Predator Pok\u00e9mon"
     }
 }

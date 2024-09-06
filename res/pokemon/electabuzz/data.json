@@ -133,6 +133,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 6,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 6
+        "pokemon_pos_m": 6,
+        "entry_text": "It windmills its arms to slightly\\nboost its punches. Foes have been\\nknown to escape in the meantime.",
+        "category": "Electric Pok\u00e9mon"
     }
 }

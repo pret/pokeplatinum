@@ -126,6 +126,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 16,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 16
+        "pokemon_pos_m": 16,
+        "entry_text": "Seemingly curious about people,\\nthey gather around footsteps they\\nfind on snowy mountains.",
+        "category": "Frost Tree Pok\u00e9mon"
     }
 }

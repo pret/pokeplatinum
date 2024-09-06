@@ -141,6 +141,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 31,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 31
+        "pokemon_pos_m": 31,
+        "entry_text": "It picks food from cactus plants,\\ndeftly avoiding buds and spines.\\nIt seems to skip about to move.",
+        "category": "Tiny Bird Pok\u00e9mon"
     }
 }

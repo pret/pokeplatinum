@@ -147,6 +147,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 19,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 19
+        "pokemon_pos_m": 19,
+        "entry_text": "Although slow, it is skilled at\\nfishing with its tail. It does not\\nfeel pain if its tail is bitten.",
+        "category": "Dopey Pok\u00e9mon"
     }
 }

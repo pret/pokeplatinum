@@ -132,6 +132,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 23
+        "pokemon_pos_m": 23,
+        "entry_text": "At rest, it looks just like a rock.\\nCarelessly stepping on it will make\\nit swing its fists angrily.",
+        "category": "Rock Pok\u00e9mon"
     }
 }

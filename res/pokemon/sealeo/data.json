@@ -129,6 +129,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 15,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 15
+        "pokemon_pos_m": 15,
+        "entry_text": "It habitually spins things on its\\nnose. By doing so, it learns\\ntextures and odors.",
+        "category": "Ball Roll Pok\u00e9mon"
     }
 }

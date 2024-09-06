@@ -126,6 +126,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 1,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 1
+        "pokemon_pos_m": 1,
+        "entry_text": "It blooms when the weather warms.\\nIt floats in the sky to soak up as\\nmuch sunlight as possible.",
+        "category": "Cottonweed Pok\u00e9mon"
     }
 }

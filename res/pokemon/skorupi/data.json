@@ -131,6 +131,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 20,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 20
+        "pokemon_pos_m": 20,
+        "entry_text": "As soon as the tail claws close,\\nits needle tips secrete poison.\\nIt can survive a year without food.",
+        "category": "Scorpion Pok\u00e9mon"
     }
 }

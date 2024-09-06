@@ -75,6 +75,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 23
+        "pokemon_pos_m": 23,
+        "entry_text": "While awaiting evolution, it\\nhides from predators under\\nleaves and in nooks of branches.",
+        "category": "Cocoon Pok\u00e9mon"
     }
 }

@@ -124,6 +124,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 65529,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 65529
+        "pokemon_pos_m": 65529,
+        "entry_text": "It flies over its wide territory in\\nsearch of prey, downing it\\nwith its highly developed claws.",
+        "category": "Bird Pok\u00e9mon"
     }
 }

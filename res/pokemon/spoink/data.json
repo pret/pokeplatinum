@@ -135,6 +135,8 @@
         "trainer_pos_f": 8,
         "pokemon_pos_f": 20,
         "trainer_pos_m": 9,
-        "pokemon_pos_m": 20
+        "pokemon_pos_m": 20,
+        "entry_text": "It bounces constantly, using its\\ntail like a spring. The shock of\\nbouncing keeps its heart beating.",
+        "category": "Bounce Pok\u00e9mon"
     }
 }

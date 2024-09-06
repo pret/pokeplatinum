@@ -146,6 +146,8 @@
         "trainer_pos_f": 15,
         "pokemon_pos_f": 6,
         "trainer_pos_m": 15,
-        "pokemon_pos_m": 6
+        "pokemon_pos_m": 6,
+        "entry_text": "It is said to take lost spirits\\ninto its pliant body and guide\\nthem home.",
+        "category": "Gripper Pok\u00e9mon"
     }
 }
