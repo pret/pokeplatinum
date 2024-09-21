@@ -7,7 +7,7 @@ struct SPLParticle;
 struct SPLEmitter;
 
 typedef struct SPLBehavior {
-    void (*apply)(const void *, struct SPLParticle *, VecFx32 *, struct SPLEmitter *);
+    void (*applyFunc)(const void *, struct SPLParticle *, VecFx32 *, struct SPLEmitter *);
     const void *object;
 } SPLBehavior;
 

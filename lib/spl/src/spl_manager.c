@@ -10,11 +10,10 @@
 #include "spl_particle.h"
 
 #define DECODE_WH(X) ((u16)(1 << ((X) + 3)))
-#define EMITTER_SHOULD_TERMINATE(emtr, header)                                                                                         \
-    ((                                                                                                                                 \
-         (header->flags.selfMaintaining && header->emitterLifeTime != 0 && emtr->state.started && emtr->age > header->emitterLifeTime) \
-         || emtr->state.terminate)                                                                                                     \
-        && emtr->particles.count == 0 && emtr->childParticles.count == 0)
+#define EMITTER_SHOULD_TERMINATE(emtr, header)                                                                                      \
+    (((header->flags.selfMaintaining && header->emitterLifeTime != 0 && emtr->state.started && emtr->age > header->emitterLifeTime) \
+    || emtr->state.terminate)                                                                                                       \
+    && emtr->particles.count == 0 && emtr->childParticles.count == 0)
 
 static u32 SPLUtil_AllocTextureVRAM(u32 size, BOOL is4x4);
 static u32 SPLUtil_AllocPaletteVRAM(u32 size, BOOL is4Pltt);
@@ -152,42 +151,42 @@ void SPLManager_LoadResources(SPLManager *mgr, const void *data)
 
             if (flags.hasGravityBehavior) {
                 behavior->object = (const void *)((u8 *)spa + offset);
-                behavior->apply = SPLBehavior_ApplyGravity;
+                behavior->applyFunc = SPLBehavior_ApplyGravity;
                 offset += sizeof(SPLGravityBehavior);
                 behavior++;
             }
 
             if (flags.hasRandomBehavior) {
                 behavior->object = (const void *)((u8 *)spa + offset);
-                behavior->apply = SPLBehavior_ApplyRandom;
+                behavior->applyFunc = SPLBehavior_ApplyRandom;
                 offset += sizeof(SPLRandomBehavior);
                 behavior++;
             }
 
             if (flags.hasMagnetBehavior) {
                 behavior->object = (const void *)((u8 *)spa + offset);
-                behavior->apply = SPLBehavior_ApplyMagnet;
+                behavior->applyFunc = SPLBehavior_ApplyMagnet;
                 offset += sizeof(SPLMagnetBehavior);
                 behavior++;
             }
 
             if (flags.hasSpinBehavior) {
                 behavior->object = (const void *)((u8 *)spa + offset);
-                behavior->apply = SPLBehavior_ApplySpin;
+                behavior->applyFunc = SPLBehavior_ApplySpin;
                 offset += sizeof(SPLSpinBehavior);
                 behavior++;
             }
 
             if (flags.hasCollisionPlaneBehavior) {
                 behavior->object = (const void *)((u8 *)spa + offset);
-                behavior->apply = SPLBehavior_ApplyCollisionPlane;
+                behavior->applyFunc = SPLBehavior_ApplyCollisionPlane;
                 offset += sizeof(SPLCollisionPlaneBehavior);
                 behavior++;
             }
 
             if (flags.hasConvergenceBehavior) {
                 behavior->object = (const void *)((u8 *)spa + offset);
-                behavior->apply = SPLBehavior_ApplyConvergence;
+                behavior->applyFunc = SPLBehavior_ApplyConvergence;
                 offset += sizeof(SPLConvergenceBehavior);
             }
         } else {

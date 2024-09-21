@@ -78,14 +78,20 @@ void SPLEmitter_EmitParticles(SPLEmitter *emtr, SPLParticleList *list)
     SPLResource *res = emtr->resource;
     SPLResourceHeader *header = res->header;
 
-    int i = 0;
+    int i = 0; // Required for matching
     int emitCountDec = emtr->emissionCount + FX32_CAST(emtr->emissionCountFractional);
     int totalEmissions = emitCountDec >> FX32_SHIFT;
     int emission = 0;
     emtr->emissionCountFractional = emitCountDec & FX32_DEC_MASK;
 
     enum SPLEmissionType emitType = header->flags.emissionType;
-    if (emitType == SPL_EMISSION_TYPE_CIRCLE_BORDER || emitType == SPL_EMISSION_TYPE_CIRCLE_BORDER_UNIFORM || emitType == SPL_EMISSION_TYPE_CIRCLE || emitType == SPL_EMISSION_TYPE_CYLINDER_SURFACE || emitType == SPL_EMISSION_TYPE_CYLINDER || emitType == SPL_EMISSION_TYPE_HEMISPHERE_SURFACE || emitType == SPL_EMISSION_TYPE_HEMISPHERE) {
+    if (emitType == SPL_EMISSION_TYPE_CIRCLE_BORDER 
+        || emitType == SPL_EMISSION_TYPE_CIRCLE_BORDER_UNIFORM 
+        || emitType == SPL_EMISSION_TYPE_CIRCLE 
+        || emitType == SPL_EMISSION_TYPE_CYLINDER_SURFACE 
+        || emitType == SPL_EMISSION_TYPE_CYLINDER 
+        || emitType == SPL_EMISSION_TYPE_HEMISPHERE_SURFACE 
+        || emitType == SPL_EMISSION_TYPE_HEMISPHERE) {
         SPLEmitter_ComputeOrthogonalAxes(emtr);
     }
 

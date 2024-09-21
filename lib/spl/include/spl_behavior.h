@@ -41,11 +41,7 @@ typedef struct SPLSpinBehavior {
 typedef struct SPLCollisionPlaneBehavior {
     fx32 y; // The Y position of the collision plane
     fx16 elasticity; // The elasticity of the collision, 1.0 being perfectly elastic and 0.0 being perfectly inelastic
-
-    struct {
-        u16 collisionType : 2;
-        u16 : 14;
-    } flags;
+    u16 collisionType : 2;
 } SPLCollisionPlaneBehavior;
 
 // Applies a convergence behavior to particles
@@ -56,11 +52,11 @@ typedef struct SPLConvergenceBehavior {
     u16 padding;
 } SPLConvergenceBehavior;
 
-void SPLBehavior_ApplyGravity(const void *param0, SPLParticle *param1, VecFx32 *param2, struct SPLEmitter *param3);
-void SPLBehavior_ApplyRandom(const void *param0, SPLParticle *param1, VecFx32 *param2, struct SPLEmitter *param3);
-void SPLBehavior_ApplyMagnet(const void *param0, SPLParticle *param1, VecFx32 *param2, struct SPLEmitter *param3);
-void SPLBehavior_ApplySpin(const void *param0, SPLParticle *param1, VecFx32 *param2, struct SPLEmitter *param3);
-void SPLBehavior_ApplyCollisionPlane(const void *param0, SPLParticle *param1, VecFx32 *param2, struct SPLEmitter *param3);
-void SPLBehavior_ApplyConvergence(const void *param0, SPLParticle *param1, VecFx32 *param2, struct SPLEmitter *param3);
+void SPLBehavior_ApplyGravity(const void *obj, SPLParticle *ptcl, VecFx32 *acc, struct SPLEmitter *emtr);
+void SPLBehavior_ApplyRandom(const void *obj, SPLParticle *ptcl, VecFx32 *acc, struct SPLEmitter *emtr);
+void SPLBehavior_ApplyMagnet(const void *obj, SPLParticle *ptcl, VecFx32 *acc, struct SPLEmitter *emtr);
+void SPLBehavior_ApplySpin(const void *obj, SPLParticle *ptcl, VecFx32 *acc, struct SPLEmitter *emtr);
+void SPLBehavior_ApplyCollisionPlane(const void *obj, SPLParticle *ptcl, VecFx32 *acc, struct SPLEmitter *emtr);
+void SPLBehavior_ApplyConvergence(const void *obj, SPLParticle *ptcl, VecFx32 *acc, struct SPLEmitter *emtr);
 
 #endif // SPL_BEHAVIOR_H

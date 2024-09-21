@@ -61,7 +61,7 @@ void SPLBehavior_ApplyCollisionPlane(const void *obj, SPLParticle *ptcl, VecFx32
         y = emtr->collisionPlaneHeight;
     }
 
-    switch (plane->flags.collisionType) {
+    switch (plane->collisionType) {
     case SPL_COLLISION_BEHAVIOR_TYPE_KILL:
         ey = ptcl->emitterPos.y;
         if (ey < y && ey + ptcl->position.y > y) {

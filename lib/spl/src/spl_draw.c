@@ -15,14 +15,6 @@
 typedef void (*RotFunc)(fx32 sin, fx32 cos, MtxFx43 *rot);
 typedef void (*DrawPlaneFunc)(fx16 s, fx16 t, fx16 offsetX, fx16 offsetY);
 
-void SPLDraw_Billboard(SPLManager *mgr, SPLParticle *ptcl);
-void SPLDraw_Child_Billboard(SPLManager *mgr, SPLParticle *ptcl);
-void SPLDraw_DirectionalBillboard(SPLManager *mgr, SPLParticle *ptcl);
-void SPLDraw_Child_DirectionalBillboard(SPLManager *mgr, SPLParticle *ptcl);
-void SPLDraw_Polygon(SPLManager *mgr, SPLParticle *ptcl);
-void SPLDraw_Child_Polygon(SPLManager *mgr, SPLParticle *ptcl);
-void SPLDraw_DirectionalPolygon(SPLManager *mgr, SPLParticle *ptcl);
-void SPLDraw_Child_DirectionalPolygon(SPLManager *mgr, SPLParticle *ptcl);
 static void SPLUtil_DrawXYPlane(fx16 s, fx16 t, fx16 offsetX, fx16 offsetY);
 static void SPLUtil_DrawXZPlane(fx16 s, fx16 t, fx16 offsetX, fx16 offsetZ);
 static void SPLUtil_RotateXYZ(fx32 sin, fx32 cos, MtxFx43 *mat);

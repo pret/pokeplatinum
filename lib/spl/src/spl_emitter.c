@@ -27,13 +27,10 @@ typedef struct FieldFunc8 {
     BOOL loop;
 } FieldFunc8;
 
-static void SPLUtil_SetTexture(SPLTexture *tex); // spl_set_tex
-static void SPLUtil_SetTexture_Stub(SPLTexture *tex); // spl_set_tex_dummy
+static void SPLUtil_SetTexture(SPLTexture *tex);
+static void SPLUtil_SetTexture_Stub(SPLTexture *tex);
 static void SPLManager_DrawParticles(SPLManager *mgr);
 static void SPLManager_DrawChildParticles(SPLManager *mgr);
-void SPLEmitter_Init(SPLEmitter *emtr, SPLResource *res, const VecFx32 *param2);
-void SPLManager_DoDraw(SPLManager *mgr);
-void SPLEmitter_Update(SPLManager *mgr, SPLEmitter *emtr);
 
 static void SPLUtil_SetTexture(SPLTexture *tex)
 {
@@ -201,7 +198,7 @@ void SPLEmitter_Update(SPLManager *mgr, SPLEmitter *emtr)
         }
 
         for (i = 0; i < behaviorCount; i++) {
-            res->behaviors[i].apply(res->behaviors[i].object, ptcl, &acc, emtr);
+            res->behaviors[i].applyFunc(res->behaviors[i].object, ptcl, &acc, emtr);
         }
 
         ptcl->rotation += ptcl->angularVelocity;
@@ -224,10 +221,8 @@ void SPLEmitter_Update(SPLManager *mgr, SPLEmitter *emtr)
             // The >> 8 here is a division by 256 because emissionDelay is a fraction of the particle's lifetime represented as a u8
             fx32 diff = ((fx32)ptcl->age * FX32_ONE) - (emissionDelay >> 8);
 
-            if (diff >= 0) {
-                if ((diff >> FX32_SHIFT) % child->misc.emissionInterval == 0) {
-                    SPLEmitter_EmitChildren(ptcl, emtr, &mgr->inactiveParticles);
-                }
+            if (diff >= 0 && ((diff >> FX32_SHIFT) % child->misc.emissionInterval == 0)) {
+                SPLEmitter_EmitChildren(ptcl, emtr, &mgr->inactiveParticles);
             }
         }
 
@@ -283,7 +278,7 @@ void SPLEmitter_Update(SPLManager *mgr, SPLEmitter *emtr)
             }
 
             for (i = 0; i < behaviorCount; i++) {
-                res->behaviors[i].apply(res->behaviors[i].object, ptcl, &acc, emtr);
+                res->behaviors[i].applyFunc(res->behaviors[i].object, ptcl, &acc, emtr);
             }
 
             ptcl->rotation += ptcl->angularVelocity;
