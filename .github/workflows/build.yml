@@ -50,7 +50,7 @@ jobs:
 
       - name: Post error upload
         if: failure()
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: pokeplatinum-failure-${{ github.run_id }}
           path: failure.tar.gz
