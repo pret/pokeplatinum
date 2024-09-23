@@ -104,7 +104,7 @@
         "pokemon_pos_f": 65535,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65535,
-        "entry_text": "It is a shabby and ugly Pok\u00e9mon.\\nHowever, it is very hardy and\\ncan survive on little water.",
-        "category": "Fish Pok\u00e9mon"
+        "entry_text": "It is a shabby and ugly Pokémon.\nHowever, it is very hardy and\ncan survive on little water.",
+        "category": "Fish Pokémon"
     }
 }

@@ -445,11 +445,9 @@ void ov21_021DEB8C(Window *param0, int param1, int param2, int param3, u32 param
 static void ov21_021DEC2C(Window *param0, int param1, int param2, u32 param3)
 {
     Strbuf *v0 = Strbuf_Init(64, param1);
-    MessageLoader *v1;
-    int height_message_bank_index;
 
-    height_message_bank_index = Height_Message_Bank_Index();
-    v1 = MessageLoader_Init(0, 26, height_message_bank_index, param1);
+    int heightMessageBankIndex = Height_Message_Bank_Index();
+    MessageLoader *v1 = MessageLoader_Init(0, 26, heightMessageBankIndex, param1);
 
     MessageLoader_GetStrbuf(v1, param2, v0);
     sub_0201D78C(param0, 0, v0, 184, 88, 0, param3, NULL);
@@ -460,11 +458,9 @@ static void ov21_021DEC2C(Window *param0, int param1, int param2, u32 param3)
 static void ov21_021DEC80(Window *param0, int param1, int param2, u32 param3)
 {
     Strbuf *v0 = Strbuf_Init(64, param1);
-    MessageLoader *v1;
-    int weight_messsage_bank_index;
 
-    weight_messsage_bank_index = Weight_Message_Bank_Index();
-    v1 = MessageLoader_Init(0, 26, weight_messsage_bank_index, param1);
+    int weightMessageBankIndex = Weight_Message_Bank_Index();
+    MessageLoader *v1 = MessageLoader_Init(0, 26, weightMessageBankIndex, param1);
 
     MessageLoader_GetStrbuf(v1, param2, v0);
     sub_0201D78C(param0, 0, v0, 184, 104, 0, param3, NULL);

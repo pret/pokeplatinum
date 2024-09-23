@@ -26,7 +26,7 @@ void ov94_0224226C(Window *param0, MessageLoader *param1, int param2, int param3
 void ov94_022422B8(Window *param0, MessageLoader *param1, int param2, int param3, int param4, u32 param5, int param6);
 void ov94_022422D4(MessageLoader *param0, MessageLoader *param1, StringTemplate *param2, Window param3[], int param4, int param5, int param6);
 void ov94_02242368(MessageLoader *param0, MessageLoader *param1, StringTemplate *param2, Window param3[], int param4, int param5, int param6);
-u16 *ov94_02242524(int param0, int param1, int *param2);
+u16 *ov94_Pokedex_Alphabetical(int heapID, int unused, int *pokedexLength);
 u8 *ov94_02242548(int param0);
 void ov94_022425A8(UnkStruct_ov94_0223BA88 *param0, UnkStruct_ov94_0223FD4C *param1);
 BmpList *ov94_022426A8(UnkStruct_ov94_0223FD4C *param0, ResourceMetadata **param1, Window *param2, MessageLoader *param3);

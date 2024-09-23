@@ -75,7 +75,7 @@ for i, species in enumerate(PokemonSpecies):
     if subdir in ['egg', 'bad_egg']:
         continue
     
-    with open(source_dir / '../../../../pokemon' / subdir / 'data.json', 'r') as data_file:
+    with open(source_dir / '../../../../pokemon' / subdir / 'data.json', 'r', encoding='utf-8') as data_file:
         pkdata = json.load(data_file)
     pkdexdata = pkdata['pokedex_data']
     if subdir == 'giratina':

@@ -158,15 +158,15 @@ void ov62_022318E8 (UnkStruct_0208C06C * param0)
     sub_02003A2C(param0->unk_14.unk_14, 1, 0xFFFF, 0, param0->unk_14.unk_44);
 }
 
-u16 * ov62_02231948 (int param0, int param1, int * param2)
+u16 * ov62_Pokedex_Alphabetical (int heapID, int unused, int * pokedexLength)
 {
-    u32 v0;
-    u16 * v1;
+    u32 pokedexSize;
+    u16 * pokedexAlphabetical;
 
-    v1 = sub_02007068(75, 13, 0, param0, 0, &v0);
-    *param2 = v0 / sizeof(u16);
+    pokedexAlphabetical = sub_02007068(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_DATA, 13, 0, heapID, 0, &pokedexSize);
+    *pokedexLength = pokedexSize / sizeof(u16);
 
-    return v1;
+    return pokedexAlphabetical;
 }
 
 void ov62_0223196C (UnkStruct_0208C06C * param0, BOOL param1)

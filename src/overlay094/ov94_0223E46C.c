@@ -387,7 +387,7 @@ static void ov94_0223E9B8(UnkStruct_ov94_0223FD4C *param0)
 
     MI_CpuClearFast(param0->unk_10E4, sizeof(UnkStruct_ov94_0223FD4C_sub3));
 
-    param0->unk_10E4->unk_18 = ov94_02242524(62, 0, &param0->unk_10E4->unk_1C);
+    param0->unk_10E4->unk_18 = ov94_Pokedex_Alphabetical(62, 0, &param0->unk_10E4->unk_1C);
     param0->unk_10E4->unk_14 = ov94_02242548(62);
 
     ov94_02242AAC(&param0->unk_111C);

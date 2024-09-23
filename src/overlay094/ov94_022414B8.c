@@ -32,6 +32,7 @@
 #include "heap.h"
 #include "message.h"
 #include "message_util.h"
+#include "narc.h"
 #include "pokemon.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -505,7 +506,7 @@ static void ov94_022418B8(UnkStruct_ov94_0223FD4C *param0)
 
     MI_CpuClearFast(param0->unk_10E4, sizeof(UnkStruct_ov94_0223FD4C_sub3));
 
-    param0->unk_10E4->unk_18 = ov94_02242524(62, 0, &param0->unk_10E4->unk_1C);
+    param0->unk_10E4->unk_18 = ov94_Pokedex_Alphabetical(62, 0, &param0->unk_10E4->unk_1C);
     param0->unk_10E4->unk_14 = ov94_02242548(62);
 
     ov94_02242AAC(&param0->unk_111C);
@@ -1010,15 +1011,15 @@ static void ov94_022423FC(MessageLoader *param0, StringTemplate *param1, Window 
     Strbuf_Free(v0);
 }
 
-u16 *ov94_02242524(int param0, int param1, int *param2)
+u16 *ov94_Pokedex_Alphabetical(int heapID, int unused, int *pokedexLength)
 {
-    u32 v0;
-    u16 *v1;
+    u32 pokedexSize;
+    u16 *pokedexAlphabetical;
 
-    v1 = sub_02007068(75, 13, 0, param0, 0, &v0);
-    *param2 = v0 / (sizeof(u16));
+    pokedexAlphabetical = sub_02007068(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_DATA, 13, 0, heapID, 0, &pokedexSize);
+    *pokedexLength = pokedexSize / (sizeof(u16));
 
-    return v1;
+    return pokedexAlphabetical;
 }
 
 u8 *ov94_02242548(int param0)
@@ -1029,7 +1030,7 @@ u8 *ov94_02242548(int param0)
 
     MI_CpuClearFast(v4, NATIONAL_DEX_COUNT + 1);
 
-    v3 = sub_02007068(75, 12, 0, param0, 0, &v0);
+    v3 = sub_02007068(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_DATA, 12, 0, param0, 0, &v0);
     v1 = v0 / (sizeof(u16));
 
     for (v2 = 0; v2 < v1; v2++) {

@@ -25,7 +25,7 @@ int ov62_022316D0(UnkStruct_0208C06C *param0);
 int ov62_02231710(UnkStruct_0208C06C *param0, int param1);
 void ov62_022317CC(UnkStruct_0208C06C *param0, int param1);
 void ov62_022318E8(UnkStruct_0208C06C *param0);
-u16 *ov62_02231948(int param0, int param1, int *param2);
+u16 *ov62_Pokedex_Alphabetical(int heapID, int unused, int *pokedexLength);
 void ov62_0223196C(UnkStruct_0208C06C *param0, BOOL param1);
 BOOL ov62_02231974(UnkStruct_0208C06C *param0);
 void ov62_0223197C(UnkStruct_0208C06C *param0, int param1);

@@ -474,13 +474,11 @@ static void ov21_021E6600(UnkStruct_ov21_021E6118 *param0, int param1)
 static void ov21_021E66B0(UnkStruct_ov21_021E6118 *param0, const UnkStruct_ov21_021E6104 *param1, int param2)
 {
     Strbuf *v0 = Strbuf_Init(32, param2);
-    MessageLoader *v1;
     int v2 = ov21_021D37BC(param1->unk_04);
     Strbuf *v3 = MessageUtil_SpeciesName(v2, param2);
-    int height_message_bank_index;
 
-    height_message_bank_index = Height_Message_Bank_Index();
-    v1 = MessageLoader_Init(0, 26, height_message_bank_index, param2);
+    int heightMessageBankIndex = Height_Message_Bank_Index();
+    MessageLoader *v1 = MessageLoader_Init(0, 26, heightMessageBankIndex, param2);
 
     sub_0201D78C(&param0->unk_00->unk_04, 0, v3, 26, 152, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     MessageLoader_GetStrbuf(v1, v2, v0);

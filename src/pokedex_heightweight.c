@@ -13,162 +13,153 @@
 typedef struct HeightWeightData {
     int *height;
     int *weight;
-    short *trainer_pos;
-    short *pokemon_pos;
-    short *trainer_scale;
-    short *pokemon_scale;
+    short *trainerPos;
+    short *pokemonPos;
+    short *trainerScale;
+    short *pokemonScale;
 } HeightWeightData;
 
-static int *Pokedex_Height_Array(NARC *pokedex_data_narc, int param1);
-static int *Pokedex_Weight_Array(NARC *pokedex_data_narc, int param1);
-static void Pokedex_Comparison_Pos_M_Array(NARC *pokedex_data_narc, short **trainer_pos, short **pokemon_pos, int param3);
-static void Pokedex_Comparison_Pos_F_Array(NARC *pokedex_data_narc, short **trainer_pos, short **pokemon_pos, int param3);
-static void Pokedex_Comparison_Scale_M_Array(NARC *pokedex_data_narc, short **trainer_scale, short **pokemon_scale, int param3);
-static void Pokedex_Comparison_Scale_F_Array(NARC *pokedex_data_narc, short **trainer_scale, short **pokemon_scale, int param3);
+static int *Pokedex_Height_Array(NARC *pokedexDataNARC, int param1);
+static int *Pokedex_Weight_Array(NARC *pokedexDataNARC, int param1);
+static void Pokedex_Comparison_Pos_M_Array(NARC *pokedexDataNARC, short **trainerPos, short **pokemonPos, int param3);
+static void Pokedex_Comparison_Pos_F_Array(NARC *pokedexDataNARC, short **trainerPos, short **pokemonPos, int param3);
+static void Pokedex_Comparison_Scale_M_Array(NARC *pokedexDataNARC, short **trainerScale, short **pokemonScale, int param3);
+static void Pokedex_Comparison_Scale_F_Array(NARC *pokedexDataNARC, short **trainerScale, short **pokemonScale, int param3);
 
-HeightWeightData *Pokedex_HeightWeightData(int param0)
+HeightWeightData *Pokedex_HeightWeightData(int heapID)
 {
-    HeightWeightData *hw_data;
+    HeightWeightData *HWData = Heap_AllocFromHeap(heapID, sizeof(HeightWeightData));
+    memset(HWData, 0, sizeof(HeightWeightData));
 
-    hw_data = Heap_AllocFromHeap(param0, sizeof(HeightWeightData));
-    memset(hw_data, 0, sizeof(HeightWeightData));
-
-    return hw_data;
+    return HWData;
 }
 
-void Pokedex_HeightWeightData_Free(HeightWeightData *hw_data)
+void Pokedex_HeightWeightData_Free(HeightWeightData *HWData)
 {
-    GF_ASSERT(hw_data);
+    GF_ASSERT(HWData);
 
-    Heap_FreeToHeap(hw_data);
-    hw_data = NULL;
+    Heap_FreeToHeap(HWData);
+    HWData = NULL;
 }
 
-void Pokedex_HeightWeightData_Load(HeightWeightData *hw_data, int trainer_isgirl, int param2)
+void Pokedex_HeightWeightData_Load(HeightWeightData *HWData, int trainerIsGirl, int param2)
 {
-    NARC *pokedex_data_narc;
-    u32 pokedex_data_narc_index;
+    GF_ASSERT(HWData);
+    GF_ASSERT(HWData->height == NULL);
+    GF_ASSERT(HWData->weight == NULL);
 
-    GF_ASSERT(hw_data);
-    GF_ASSERT(hw_data->height == NULL);
-    GF_ASSERT(hw_data->weight == NULL);
+    u32 pokedex_data_narc_index = Pokedex_Data_NARC_Index();
+    NARC *pokedexDataNARC = NARC_ctor(pokedex_data_narc_index, param2);
 
-    pokedex_data_narc_index = Pokedex_Data_NARC_Index();
-    pokedex_data_narc = NARC_ctor(pokedex_data_narc_index, param2);
+    HWData->height = Pokedex_Height_Array(pokedexDataNARC, param2);
+    HWData->weight = Pokedex_Weight_Array(pokedexDataNARC, param2);
 
-    hw_data->height = Pokedex_Height_Array(pokedex_data_narc, param2);
-    hw_data->weight = Pokedex_Weight_Array(pokedex_data_narc, param2);
-
-    if (trainer_isgirl == 0) {
-        Pokedex_Comparison_Pos_M_Array(pokedex_data_narc, &hw_data->trainer_pos, &hw_data->pokemon_pos, param2);
-        Pokedex_Comparison_Scale_M_Array(pokedex_data_narc, &hw_data->trainer_scale, &hw_data->pokemon_scale, param2);
+    if (trainerIsGirl == 0) {
+        Pokedex_Comparison_Pos_M_Array(pokedexDataNARC, &HWData->trainerPos, &HWData->pokemonPos, param2);
+        Pokedex_Comparison_Scale_M_Array(pokedexDataNARC, &HWData->trainerScale, &HWData->pokemonScale, param2);
     } else {
-        Pokedex_Comparison_Pos_F_Array(pokedex_data_narc, &hw_data->trainer_pos, &hw_data->pokemon_pos, param2);
-        Pokedex_Comparison_Scale_F_Array(pokedex_data_narc, &hw_data->trainer_scale, &hw_data->pokemon_scale, param2);
+        Pokedex_Comparison_Pos_F_Array(pokedexDataNARC, &HWData->trainerPos, &HWData->pokemonPos, param2);
+        Pokedex_Comparison_Scale_F_Array(pokedexDataNARC, &HWData->trainerScale, &HWData->pokemonScale, param2);
     }
 
-    NARC_dtor(pokedex_data_narc);
+    NARC_dtor(pokedexDataNARC);
 }
 
-void Pokedex_HeightWeightData_Release(HeightWeightData *hw_data)
+void Pokedex_HeightWeightData_Release(HeightWeightData *HWData)
 {
-    GF_ASSERT(hw_data->height);
-    GF_ASSERT(hw_data->weight);
+    GF_ASSERT(HWData->height);
+    GF_ASSERT(HWData->weight);
 
-    Heap_FreeToHeap(hw_data->height);
-    Heap_FreeToHeap(hw_data->weight);
+    Heap_FreeToHeap(HWData->height);
+    Heap_FreeToHeap(HWData->weight);
 
-    Heap_FreeToHeap(hw_data->trainer_pos);
-    Heap_FreeToHeap(hw_data->pokemon_pos);
-    Heap_FreeToHeap(hw_data->trainer_scale);
-    Heap_FreeToHeap(hw_data->pokemon_scale);
+    Heap_FreeToHeap(HWData->trainerPos);
+    Heap_FreeToHeap(HWData->pokemonPos);
+    Heap_FreeToHeap(HWData->trainerScale);
+    Heap_FreeToHeap(HWData->pokemonScale);
 
-    hw_data->height = NULL;
-    hw_data->weight = NULL;
-    hw_data->trainer_pos = NULL;
-    hw_data->pokemon_pos = NULL;
-    hw_data->trainer_scale = NULL;
-    hw_data->pokemon_scale = NULL;
+    HWData->height = NULL;
+    HWData->weight = NULL;
+    HWData->trainerPos = NULL;
+    HWData->pokemonPos = NULL;
+    HWData->trainerScale = NULL;
+    HWData->pokemonScale = NULL;
 }
 
-int Pokedex_HeightWeightData_Height(const HeightWeightData *hw_data, int dex_number)
+int Pokedex_HeightWeightData_Height(const HeightWeightData *HWData, int dexNumber)
 {
-    GF_ASSERT(hw_data);
-    GF_ASSERT(hw_data->height);
-    return hw_data->height[dex_number];
+    GF_ASSERT(HWData);
+    GF_ASSERT(HWData->height);
+    return HWData->height[dexNumber];
 }
 
-int Pokedex_HeightWeightData_Weight(const HeightWeightData *hw_data, int dex_number)
+int Pokedex_HeightWeightData_Weight(const HeightWeightData *HWData, int dexNumber)
 {
-    GF_ASSERT(hw_data);
-    GF_ASSERT(hw_data->weight);
-    return hw_data->weight[dex_number];
+    GF_ASSERT(HWData);
+    GF_ASSERT(HWData->weight);
+    return HWData->weight[dexNumber];
 }
 
-short Pokedex_HeightWeightData_TrainerPos(const HeightWeightData *hw_data, int dex_number)
+short Pokedex_HeightWeightData_TrainerPos(const HeightWeightData *HWData, int dexNumber)
 {
-    GF_ASSERT(hw_data);
-    GF_ASSERT(hw_data->trainer_pos);
-    return hw_data->trainer_pos[dex_number];
+    GF_ASSERT(HWData);
+    GF_ASSERT(HWData->trainerPos);
+    return HWData->trainerPos[dexNumber];
 }
 
-short Pokedex_HeightWeightData_PokemonPos(const HeightWeightData *hw_data, int dex_number)
+short Pokedex_HeightWeightData_PokemonPos(const HeightWeightData *HWData, int dexNumber)
 {
-    GF_ASSERT(hw_data);
-    GF_ASSERT(hw_data->pokemon_pos);
-    return hw_data->pokemon_pos[dex_number];
+    GF_ASSERT(HWData);
+    GF_ASSERT(HWData->pokemonPos);
+    return HWData->pokemonPos[dexNumber];
 }
 
-short Pokedex_HeightWeightData_TrainerScale(const HeightWeightData *hw_data, int dex_number)
+short Pokedex_HeightWeightData_TrainerScale(const HeightWeightData *HWData, int dexNumber)
 {
-    GF_ASSERT(hw_data);
-    GF_ASSERT(hw_data->trainer_scale);
-    return hw_data->trainer_scale[dex_number];
+    GF_ASSERT(HWData);
+    GF_ASSERT(HWData->trainerScale);
+    return HWData->trainerScale[dexNumber];
 }
 
-short Pokedex_HeightWeightData_PokemonScale(const HeightWeightData *hw_data, int dex_number)
+short Pokedex_HeightWeightData_PokemonScale(const HeightWeightData *HWData, int dexNumber)
 {
-    GF_ASSERT(hw_data);
-    GF_ASSERT(hw_data->pokemon_scale);
-    return hw_data->pokemon_scale[dex_number];
+    GF_ASSERT(HWData);
+    GF_ASSERT(HWData->pokemonScale);
+    return HWData->pokemonScale[dexNumber];
 }
 
-static int *Pokedex_Height_Array(NARC *pokedex_data_narc, int param1)
+static int *Pokedex_Height_Array(NARC *pokedexDataNARC, int param1)
 {
-    void *height;
-
-    height = sub_0200723C(pokedex_data_narc, 0, 0, param1, 0);
+    void *height = sub_0200723C(pokedexDataNARC, 0, 0, param1, 0);
     return (int *)height;
 }
 
-static int *Pokedex_Weight_Array(NARC *pokedex_data_narc, int param1)
+static int *Pokedex_Weight_Array(NARC *pokedexDataNARC, int param1)
 {
-    void *weight;
-
-    weight = sub_0200723C(pokedex_data_narc, 1, 0, param1, 0);
+    void *weight = sub_0200723C(pokedexDataNARC, 1, 0, param1, 0);
     return (int *)weight;
 }
 
-static void Pokedex_Comparison_Pos_M_Array(NARC *pokedex_data_narc, short **trainer_pos, short **pokemon_pos, int param3)
+static void Pokedex_Comparison_Pos_M_Array(NARC *pokedexDataNARC, short **trainerPos, short **pokemonPos, int param3)
 {
-    *trainer_pos = (short *)sub_0200723C(pokedex_data_narc, 9, 0, param3, 0);
-    *pokemon_pos = (short *)sub_0200723C(pokedex_data_narc, 10, 0, param3, 0);
+    *trainerPos = (short *)sub_0200723C(pokedexDataNARC, 9, 0, param3, 0);
+    *pokemonPos = (short *)sub_0200723C(pokedexDataNARC, 10, 0, param3, 0);
 }
 
-static void Pokedex_Comparison_Pos_F_Array(NARC *pokedex_data_narc, short **trainer_pos, short **pokemon_pos, int param3)
+static void Pokedex_Comparison_Pos_F_Array(NARC *pokedexDataNARC, short **trainerPos, short **pokemonPos, int param3)
 {
-    *trainer_pos = (short *)sub_0200723C(pokedex_data_narc, 7, 0, param3, 0);
-    *pokemon_pos = (short *)sub_0200723C(pokedex_data_narc, 8, 0, param3, 0);
+    *trainerPos = (short *)sub_0200723C(pokedexDataNARC, 7, 0, param3, 0);
+    *pokemonPos = (short *)sub_0200723C(pokedexDataNARC, 8, 0, param3, 0);
 }
 
-static void Pokedex_Comparison_Scale_M_Array(NARC *pokedex_data_narc, short **trainer_scale, short **pokemon_scale, int param3)
+static void Pokedex_Comparison_Scale_M_Array(NARC *pokedexDataNARC, short **trainerScale, short **pokemonScale, int param3)
 {
-    *trainer_scale = (short *)sub_0200723C(pokedex_data_narc, 5, 0, param3, 0);
-    *pokemon_scale = (short *)sub_0200723C(pokedex_data_narc, 6, 0, param3, 0);
+    *trainerScale = (short *)sub_0200723C(pokedexDataNARC, 5, 0, param3, 0);
+    *pokemonScale = (short *)sub_0200723C(pokedexDataNARC, 6, 0, param3, 0);
 }
 
-static void Pokedex_Comparison_Scale_F_Array(NARC *pokedex_data_narc, short **trainer_scale, short **pokemon_scale, int param3)
+static void Pokedex_Comparison_Scale_F_Array(NARC *pokedexDataNARC, short **trainerScale, short **pokemonScale, int param3)
 {
-    *trainer_scale = (short *)sub_0200723C(pokedex_data_narc, 3, 0, param3, 0);
-    *pokemon_scale = (short *)sub_0200723C(pokedex_data_narc, 4, 0, param3, 0);
+    *trainerScale = (short *)sub_0200723C(pokedexDataNARC, 3, 0, param3, 0);
+    *pokemonScale = (short *)sub_0200723C(pokedexDataNARC, 4, 0, param3, 0);
 }

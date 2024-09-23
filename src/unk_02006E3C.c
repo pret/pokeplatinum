@@ -142,30 +142,30 @@ void *sub_02006FE8(u32 param0, u32 param1, BOOL param2, u32 param3, int param4)
     return v0;
 }
 
-void *sub_02007068(u32 param0, u32 param1, BOOL param2, u32 param3, int param4, u32 *param5)
+void *sub_02007068(u32 narcIndex, u32 fileIndex, BOOL param2, u32 heapID, int param4, u32 *fileSize)
 {
     void *v0;
 
-    *param5 = NARC_GetMemberSizeByIndexPair(param0, param1);
+    *fileSize = NARC_GetMemberSizeByIndexPair(narcIndex, fileIndex);
 
     if (param2 || (param4 == 1)) {
-        v0 = Heap_AllocFromHeapAtEnd(param3, *param5);
+        v0 = Heap_AllocFromHeapAtEnd(heapID, *fileSize);
     } else {
-        v0 = Heap_AllocFromHeap(param3, *param5);
+        v0 = Heap_AllocFromHeap(heapID, *fileSize);
     }
 
     if (v0 != NULL) {
-        NARC_ReadWholeMemberByIndexPair(v0, param0, param1);
+        NARC_ReadWholeMemberByIndexPair(v0, narcIndex, fileIndex);
 
         if (param2) {
             void *v1;
 
-            *param5 = MI_GetUncompressedSize(v0);
+            *fileSize = MI_GetUncompressedSize(v0);
 
             if (param4 == 0) {
-                v1 = Heap_AllocFromHeap(param3, *param5);
+                v1 = Heap_AllocFromHeap(heapID, *fileSize);
             } else {
-                v1 = Heap_AllocFromHeapAtEnd(param3, *param5);
+                v1 = Heap_AllocFromHeapAtEnd(heapID, *fileSize);
             }
 
             if (v1) {
@@ -247,18 +247,18 @@ void *sub_02007220(NARC *param0, u32 param1, BOOL param2, NNSG2dAnimBankData **p
     return sub_02007610(v0, param3);
 }
 
-void *sub_0200723C(NARC *narc, u32 narc_file_index, BOOL param2, u32 param3, int param4)
+void *sub_0200723C(NARC *narc, u32 NarcFileIndex, BOOL param2, u32 param3, int param4)
 {
     u32 v0;
 
-    return sub_02007250(narc, narc_file_index, param2, param3, param4, &v0);
+    return sub_02007250(narc, NarcFileIndex, param2, param3, param4, &v0);
 }
 
-void *sub_02007250(NARC *narc, u32 narc_file_index, BOOL param2, u32 param3, int param4, u32 *param5)
+void *sub_02007250(NARC *narc, u32 NarcFileIndex, BOOL param2, u32 param3, int param4, u32 *param5)
 {
     void *v0;
 
-    *param5 = NARC_GetMemberSize(narc, narc_file_index);
+    *param5 = NARC_GetMemberSize(narc, NarcFileIndex);
 
     if (param2 || (param4 == 1)) {
         v0 = Heap_AllocFromHeapAtEnd(param3, *param5);
@@ -267,7 +267,7 @@ void *sub_02007250(NARC *narc, u32 narc_file_index, BOOL param2, u32 param3, int
     }
 
     if (v0 != NULL) {
-        NARC_ReadWholeMember(narc, narc_file_index, v0);
+        NARC_ReadWholeMember(narc, NarcFileIndex, v0);
 
         if (param2) {
             void *v1;

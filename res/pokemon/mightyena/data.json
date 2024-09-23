@@ -124,7 +124,7 @@
         "pokemon_pos_f": 10,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 10,
-        "entry_text": "It chases down prey in a pack.\\nIt will never disobey the commands\\nof a skilled Trainer.",
-        "category": "Bite Pok\u00e9mon"
+        "entry_text": "It chases down prey in a pack.\nIt will never disobey the commands\nof a skilled Trainer.",
+        "category": "Bite Pokémon"
     }
 }

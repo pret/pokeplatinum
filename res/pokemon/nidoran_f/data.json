@@ -1,5 +1,5 @@
 {
-    "name": "Nidoran\u00e2\u2122\u20ac",
+    "name": "Nidoran♀",
     "base_stats": {
         "hp": 55,
         "attack": 47,
@@ -126,7 +126,7 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "entry_text": "While it does not prefer to fight,\\neven one drop of the poison it\\nsecretes from barbs can be fatal.",
-        "category": "Poison Pin Pok\u00e9mon"
+        "entry_text": "While it does not prefer to fight,\neven one drop of the poison it\nsecretes from barbs can be fatal.",
+        "category": "Poison Pin Pokémon"
     }
 }

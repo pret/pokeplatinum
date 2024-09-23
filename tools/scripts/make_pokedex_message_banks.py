@@ -2,7 +2,6 @@
 import argparse
 import json
 import pathlib
-import subprocess
 import xml.etree.ElementTree as ET
 
 from consts.species import PokemonSpecies
@@ -72,14 +71,11 @@ for i, species in enumerate(PokemonSpecies):
     if subdir == 'none':
         subdir = '000'
     
-    with open(source_dir / '../../pokemon' / subdir / 'data.json', 'r') as data_file:
+    with open(source_dir / '../../pokemon' / subdir / 'data.json', 'r', encoding='utf-8') as data_file:
         pkdata = json.load(data_file)
 
     if subdir not in ['egg', 'bad_egg']:
         pokemon_name = pkdata['name'].upper()
-        pokemon_name = pokemon_name.replace('Â™€', '♀')
-        pokemon_name = pokemon_name.replace('Â™‚', '♂')
-        pokemon_name = pokemon_name.replace('Â€™', '’')
     else:
         pokemon_name = pkdata['name']
     
@@ -103,7 +99,7 @@ for i, species in enumerate(PokemonSpecies):
     else:
         heights_gira[i] = Convert_Height(pkdexdata['height'])
         weights_gira[i] = Convert_weight(pkdexdata['weight'])
-    dex_entry[i] = pkdexdata['entry_text']
+    dex_entry[i] = str(pkdexdata['entry_text']).replace('\n','\\n')
     dex_category[i] = pkdexdata['category']
     heights[i] = Convert_Height(pkdexdata['height'])
     weights[i] = Convert_weight(pkdexdata['weight'])
@@ -118,15 +114,15 @@ for i, species in enumerate(PokemonSpecies):
 fileNames = [
     'message_bank_species_names.gmm',
     'message_bank_species_names_with_articles.gmm',
-    'message_bank_unk_0706.gmm',
-    'message_bank_unk_0707.gmm',
-    'message_bank_unk_0708.gmm',
-    'message_bank_unk_0709.gmm',
-    'message_bank_unk_0710.gmm',
-    'message_bank_unk_0712.gmm',
-    'message_bank_unk_0715.gmm',
-    'message_bank_unk_0716.gmm',
-    'message_bank_unk_0718.gmm'
+    'message_bank_species_dex_entry.gmm',
+    'message_bank_species_weight.gmm',
+    'message_bank_species_weight_gira.gmm',
+    'message_bank_species_height.gmm',
+    'message_bank_species_height_gira.gmm',
+    'message_bank_species_name_number_1.gmm',
+    'message_bank_species_name_number_2.gmm',
+    'message_bank_species_name_number_3.gmm',
+    'message_bank_species_category.gmm'
 ]
 fileKeys = [
     '30764',
@@ -183,7 +179,7 @@ for file in range(len(fileNames)):
 
         attribute = ET.SubElement(row, 'attribute')
         attribute.set('name', 'window_context_name')
-        if (((fileNames[file] == 'message_bank_species_names_with_articles.gmm') or (fileNames[file] == 'message_bank_unk_0706.gmm')) and (i == 0)):
+        if (((fileNames[file] == 'message_bank_species_names_with_articles.gmm') or (fileNames[file] == 'message_bank_species_dex_entry.gmm')) and (i == 0)):
             attribute.text = 'garbage'
             language = ET.SubElement(row, 'language')
             language.set('name', 'English')

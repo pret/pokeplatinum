@@ -29,6 +29,7 @@
 #include "inlines.h"
 #include "map_object.h"
 #include "message.h"
+#include "narc.h"
 #include "party.h"
 #include "player_avatar.h"
 #include "pokemon.h"
@@ -195,15 +196,15 @@ static BOOL ov5_021F65D4(ScriptContext *ctx)
     return 1;
 }
 
-static u16 *ov5_021F65FC(int param0, int param1, int *param2)
+static u16 *ov5_021F65FC(int heapID, int fileIndex, int *pokedexLength)
 {
-    u32 v0;
-    u16 *v1;
+    u32 pokedexSize;
+    u16 *pokedex;
 
-    v1 = sub_02007068(75, param1, 0, param0, 0, &v0);
-    *param2 = v0 / (sizeof(u16));
+    pokedex = sub_02007068(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_DATA, fileIndex, 0, heapID, 0, &pokedexSize);
+    *pokedexLength = pokedexSize / (sizeof(u16));
 
-    return v1;
+    return pokedex;
 }
 
 static void ov5_021F661C(UnkStruct_ov5_021F6704 *param0, MessageLoader *param1)
