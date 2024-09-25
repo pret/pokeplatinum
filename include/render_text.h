@@ -6,6 +6,12 @@
 #include "charcode.h"
 #include "strbuf.h"
 
+typedef struct TextGlyph {
+    u8 gfx[128];
+    u8 width;
+    u8 height;
+} TextGlyph;
+
 union StringToPrint {
     const charcode_t *raw;
     const Strbuf *strbuf;

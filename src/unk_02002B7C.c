@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02023350_decl.h"
-#include "struct_defs/struct_02002328.h"
 #include "struct_defs/struct_0201D670.h"
 
 #include "heap.h"
@@ -15,7 +14,7 @@
 #include "unk_020232E0.h"
 
 typedef struct {
-    UnkStruct_02002328 unk_00;
+    TextGlyph unk_00;
     void *unk_84[4];
     UnkStruct_02023350 *unk_94[4];
 } UnkStruct_02101D4C;
@@ -109,7 +108,7 @@ void sub_02002C60(int param0)
     }
 }
 
-const UnkStruct_02002328 *sub_02002CFC(int param0, u16 param1)
+const TextGlyph *sub_02002CFC(int param0, u16 param1)
 {
     sub_020234A0(Unk_02101D48->unk_94[param0], param1, &Unk_02101D48->unk_00);
     return &(Unk_02101D48->unk_00);

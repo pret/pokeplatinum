@@ -3,9 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02002328.h"
-#include "struct_defs/struct_02101D44.h"
-
 #include "charcode.h"
 #include "core_sys.h"
 #include "render_text.h"
@@ -14,11 +11,22 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 
-static UnkStruct_02101D44 Unk_02101D44;
+typedef struct RenderControlFlags {
+    u8 canABSpeedUpPrint : 1;
+    u8 : 1;
+    u8 autoScroll : 1;
+    u8 : 1;
+    u8 speedUpOnTouch : 1;
+    u8 speedUpAutoScroll : 1;
+    u8 speedUpBattle : 1;
+    u8 waitBattle : 1;
+} RenderControlFlags;
+
+static RenderControlFlags Unk_02101D44;
 
 int sub_02002328(TextPrinter *param0)
 {
-    const UnkStruct_02002328 *v0;
+    const TextGlyph *v0;
     TextPrinterSubstruct *v1;
     int v2, v3;
     u16 v4;
@@ -27,19 +35,19 @@ int sub_02002328(TextPrinter *param0)
 
     switch (param0->state) {
     case 0:
-        if (((gCoreSys.heldKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) && (v1->speedUp)) || ((gCoreSys.touchHeld) && (Unk_02101D44.unk_00_4))) {
+        if (((gCoreSys.heldKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) && (v1->speedUp)) || ((gCoreSys.touchHeld) && (Unk_02101D44.speedUpOnTouch))) {
             param0->delayCounter = 0;
 
             if (param0->textSpeedLow != 0) {
-                Unk_02101D44.unk_00_6 = 1;
+                Unk_02101D44.speedUpBattle = 1;
             }
         }
 
         if ((param0->delayCounter) && (param0->textSpeedLow)) {
             (param0->delayCounter)--;
 
-            if (Unk_02101D44.unk_00_0) {
-                if ((gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) || ((gCoreSys.touchPressed) && (Unk_02101D44.unk_00_4))) {
+            if (Unk_02101D44.canABSpeedUpPrint) {
+                if ((gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) || ((gCoreSys.touchPressed) && (Unk_02101D44.speedUpOnTouch))) {
                     v1->speedUp = 1;
                     param0->delayCounter = 0;
                 }
@@ -163,8 +171,8 @@ int sub_02002328(TextPrinter *param0)
 
         v0 = sub_02002CFC(v1->fontID, v4);
 
-        sub_0201AED0(param0->template.window, v0->unk_00, v0->unk_80, v0->unk_81, param0->template.currX, param0->template.currY, param0->template.glyphTable);
-        param0->template.currX += (v0->unk_80 + param0->template.letterSpacing);
+        sub_0201AED0(param0->template.window, v0->gfx, v0->width, v0->height, param0->template.currX, param0->template.currY, param0->template.glyphTable);
+        param0->template.currX += (v0->width + param0->template.letterSpacing);
 
         return 0;
     case 1:
@@ -242,7 +250,7 @@ void sub_020027B4(TextPrinter *param0)
 
     v0 = (TextPrinterSubstruct *)&(param0->substruct[0]);
 
-    if (Unk_02101D44.unk_00_2) {
+    if (Unk_02101D44.autoScroll) {
         v0->autoScrollDelay = 0;
     } else {
         v0->scrollArrowYPosIdx = 0;
@@ -264,7 +272,7 @@ void sub_020027E0(TextPrinter *param0)
 
     v0 = (TextPrinterSubstruct *)&(param0->substruct[0]);
 
-    if (Unk_02101D44.unk_00_2) {
+    if (Unk_02101D44.autoScroll) {
         return;
     }
 
@@ -312,9 +320,9 @@ void sub_02002968(TextPrinter *param0)
 
 static BOOL sub_020029FC(TextPrinter *param0)
 {
-    if ((gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) || ((gCoreSys.touchPressed) && (Unk_02101D44.unk_00_4))) {
+    if ((gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) || ((gCoreSys.touchPressed) && (Unk_02101D44.speedUpOnTouch))) {
         Sound_PlayEffect(1500);
-        Unk_02101D44.unk_00_7 = 1;
+        Unk_02101D44.waitBattle = 1;
         return 1;
     }
 
@@ -335,7 +343,7 @@ BOOL sub_02002A44(TextPrinter *param0)
 
     v0->autoScrollDelay++;
 
-    if (Unk_02101D44.unk_00_5) {
+    if (Unk_02101D44.speedUpAutoScroll) {
         return sub_020029FC(param0);
     }
 
@@ -346,7 +354,7 @@ BOOL sub_02002A80(TextPrinter *param0)
 {
     BOOL v0 = 0;
 
-    if (Unk_02101D44.unk_00_2) {
+    if (Unk_02101D44.autoScroll) {
         v0 = sub_02002A44(param0);
     } else {
         sub_020027E0(param0);
@@ -360,7 +368,7 @@ BOOL sub_02002AA4(TextPrinter *param0)
 {
     u8 v0 = 0;
 
-    if (Unk_02101D44.unk_00_2) {
+    if (Unk_02101D44.autoScroll) {
         v0 = sub_02002A44(param0);
     } else {
         v0 = sub_020029FC(param0);
@@ -371,36 +379,36 @@ BOOL sub_02002AA4(TextPrinter *param0)
 
 void sub_02002AC8(int param0)
 {
-    Unk_02101D44.unk_00_0 = param0;
+    Unk_02101D44.canABSpeedUpPrint = param0;
 }
 
 void sub_02002AE4(int param0)
 {
-    Unk_02101D44.unk_00_2 = (param0 & 1);
-    Unk_02101D44.unk_00_5 = ((param0 >> 1) & 1);
+    Unk_02101D44.autoScroll = (param0 & 1);
+    Unk_02101D44.speedUpAutoScroll = ((param0 >> 1) & 1);
 }
 
 void sub_02002B20(int param0)
 {
-    Unk_02101D44.unk_00_4 = param0;
+    Unk_02101D44.speedUpOnTouch = param0;
 }
 
 u8 sub_02002B3C(void)
 {
-    return Unk_02101D44.unk_00_6;
+    return Unk_02101D44.speedUpBattle;
 }
 
 void sub_02002B4C(void)
 {
-    Unk_02101D44.unk_00_6 = 0;
+    Unk_02101D44.speedUpBattle = 0;
 }
 
 u8 sub_02002B5C(void)
 {
-    return Unk_02101D44.unk_00_7;
+    return Unk_02101D44.waitBattle;
 }
 
 void sub_02002B6C(void)
 {
-    Unk_02101D44.unk_00_7 = 0;
+    Unk_02101D44.waitBattle = 0;
 }

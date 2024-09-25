@@ -4,14 +4,14 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_defs/struct_02002328.h"
 
 #include "charcode.h"
 #include "heap.h"
 #include "narc.h"
+#include "render_text.h"
 #include "unk_0201D670.h"
 
-typedef void (*UnkFuncPtr_02023350)(const UnkStruct_02023350 *, u16, UnkStruct_02002328 *);
+typedef void (*UnkFuncPtr_02023350)(const UnkStruct_02023350 *, u16, TextGlyph *);
 typedef u8 (*UnkFuncPtr_02023350_1)(const UnkStruct_02023350 *, u32);
 
 typedef struct {
@@ -47,8 +47,8 @@ static void sub_0202346C(UnkStruct_02023350 *param0, u32 param1);
 static void sub_02023478(UnkStruct_02023350 *param0);
 static void sub_0202348C(UnkStruct_02023350 *param0);
 static void sub_0202349C(UnkStruct_02023350 *param0);
-static void sub_020234BC(const UnkStruct_02023350 *param0, u16 param1, UnkStruct_02002328 *param2);
-static void sub_02023564(const UnkStruct_02023350 *param0, u16 param1, UnkStruct_02002328 *param2);
+static void sub_020234BC(const UnkStruct_02023350 *param0, u16 param1, TextGlyph *param2);
+static void sub_02023564(const UnkStruct_02023350 *param0, u16 param1, TextGlyph *param2);
 static u8 sub_020236B0(const UnkStruct_02023350 *param0, u32 param1);
 static u8 sub_020236C8(const UnkStruct_02023350 *param0, u32 param1);
 
@@ -174,7 +174,7 @@ static void sub_0202349C(UnkStruct_02023350 *param0)
     (void)0;
 }
 
-void sub_020234A0(const UnkStruct_02023350 *param0, u16 param1, UnkStruct_02002328 *param2)
+void sub_020234A0(const UnkStruct_02023350 *param0, u16 param1, TextGlyph *param2)
 {
     if (param1 <= param0->unk_5C.unk_08) {
         param1--;
@@ -185,7 +185,7 @@ void sub_020234A0(const UnkStruct_02023350 *param0, u16 param1, UnkStruct_020023
     param0->unk_04(param0, param1, param2);
 }
 
-static void sub_020234BC(const UnkStruct_02023350 *param0, u16 param1, UnkStruct_02002328 *param2)
+static void sub_020234BC(const UnkStruct_02023350 *param0, u16 param1, TextGlyph *param2)
 {
     u32 v0;
 
@@ -193,29 +193,29 @@ static void sub_020234BC(const UnkStruct_02023350 *param0, u16 param1, UnkStruct
 
     switch (param0->unk_08) {
     case 0:
-        sub_0201DAA0(v0 + 0x10 * 0, ((u32)param2->unk_00) + 0x20 * 0);
+        sub_0201DAA0(v0 + 0x10 * 0, ((u32)param2->gfx) + 0x20 * 0);
         break;
     case 1:
-        sub_0201DAA0(v0 + 0x10 * 0, ((u32)param2->unk_00) + 0x20 * 0);
-        sub_0201DAA0(v0 + 0x10 * 1, ((u32)param2->unk_00) + 0x20 * 2);
+        sub_0201DAA0(v0 + 0x10 * 0, ((u32)param2->gfx) + 0x20 * 0);
+        sub_0201DAA0(v0 + 0x10 * 1, ((u32)param2->gfx) + 0x20 * 2);
         break;
     case 2:
-        sub_0201DAA0(v0 + 0x10 * 0, ((u32)param2->unk_00) + 0x20 * 0);
-        sub_0201DAA0(v0 + 0x10 * 1, ((u32)param2->unk_00) + 0x20 * 1);
+        sub_0201DAA0(v0 + 0x10 * 0, ((u32)param2->gfx) + 0x20 * 0);
+        sub_0201DAA0(v0 + 0x10 * 1, ((u32)param2->gfx) + 0x20 * 1);
         break;
     case 3:
-        sub_0201DAA0(v0 + 0x10 * 0, ((u32)param2->unk_00) + 0x20 * 0);
-        sub_0201DAA0(v0 + 0x10 * 1, ((u32)param2->unk_00) + 0x20 * 1);
-        sub_0201DAA0(v0 + 0x10 * 2, ((u32)param2->unk_00) + 0x20 * 2);
-        sub_0201DAA0(v0 + 0x10 * 3, ((u32)param2->unk_00) + 0x20 * 3);
+        sub_0201DAA0(v0 + 0x10 * 0, ((u32)param2->gfx) + 0x20 * 0);
+        sub_0201DAA0(v0 + 0x10 * 1, ((u32)param2->gfx) + 0x20 * 1);
+        sub_0201DAA0(v0 + 0x10 * 2, ((u32)param2->gfx) + 0x20 * 2);
+        sub_0201DAA0(v0 + 0x10 * 3, ((u32)param2->gfx) + 0x20 * 3);
         break;
     }
 
-    param2->unk_80 = param0->unk_70(param0, param1);
-    param2->unk_81 = param0->unk_5C.unk_0D;
+    param2->width = param0->unk_70(param0, param1);
+    param2->height = param0->unk_5C.unk_0D;
 }
 
-static void sub_02023564(const UnkStruct_02023350 *param0, u16 param1, UnkStruct_02002328 *param2)
+static void sub_02023564(const UnkStruct_02023350 *param0, u16 param1, TextGlyph *param2)
 {
     u32 v0;
 
@@ -223,26 +223,26 @@ static void sub_02023564(const UnkStruct_02023350 *param0, u16 param1, UnkStruct
 
     switch (param0->unk_08) {
     case 0:
-        sub_0201DAA0((u32)(&(param0->unk_14[0x10 * 0])), ((u32)param2->unk_00) + 0x20 * 0);
+        sub_0201DAA0((u32)(&(param0->unk_14[0x10 * 0])), ((u32)param2->gfx) + 0x20 * 0);
         break;
     case 1:
-        sub_0201DAA0((u32)(&(param0->unk_14[0x10 * 0])), ((u32)param2->unk_00) + 0x20 * 0);
-        sub_0201DAA0((u32)(&(param0->unk_14[0x10 * 1])), ((u32)param2->unk_00) + 0x20 * 2);
+        sub_0201DAA0((u32)(&(param0->unk_14[0x10 * 0])), ((u32)param2->gfx) + 0x20 * 0);
+        sub_0201DAA0((u32)(&(param0->unk_14[0x10 * 1])), ((u32)param2->gfx) + 0x20 * 2);
         break;
     case 2:
-        sub_0201DAA0((u32)(&(param0->unk_14[0x10 * 0])), ((u32)param2->unk_00) + 0x20 * 0);
-        sub_0201DAA0((u32)(&(param0->unk_14[0x10 * 1])), ((u32)param2->unk_00) + 0x20 * 1);
+        sub_0201DAA0((u32)(&(param0->unk_14[0x10 * 0])), ((u32)param2->gfx) + 0x20 * 0);
+        sub_0201DAA0((u32)(&(param0->unk_14[0x10 * 1])), ((u32)param2->gfx) + 0x20 * 1);
         break;
     case 3:
-        sub_0201DAA0((u32)(&(param0->unk_14[0x10 * 0])), ((u32)param2->unk_00) + 0x20 * 0);
-        sub_0201DAA0((u32)(&(param0->unk_14[0x10 * 1])), ((u32)param2->unk_00) + 0x20 * 1);
-        sub_0201DAA0((u32)(&(param0->unk_14[0x10 * 2])), ((u32)param2->unk_00) + 0x20 * 2);
-        sub_0201DAA0((u32)(&(param0->unk_14[0x10 * 3])), ((u32)param2->unk_00) + 0x20 * 3);
+        sub_0201DAA0((u32)(&(param0->unk_14[0x10 * 0])), ((u32)param2->gfx) + 0x20 * 0);
+        sub_0201DAA0((u32)(&(param0->unk_14[0x10 * 1])), ((u32)param2->gfx) + 0x20 * 1);
+        sub_0201DAA0((u32)(&(param0->unk_14[0x10 * 2])), ((u32)param2->gfx) + 0x20 * 2);
+        sub_0201DAA0((u32)(&(param0->unk_14[0x10 * 3])), ((u32)param2->gfx) + 0x20 * 3);
         break;
     }
 
-    param2->unk_80 = param0->unk_70(param0, param1);
-    param2->unk_81 = param0->unk_5C.unk_0D;
+    param2->width = param0->unk_70(param0, param1);
+    param2->height = param0->unk_5C.unk_0D;
 }
 
 u32 sub_02023620(const UnkStruct_02023350 *param0, const u16 *param1, u32 param2)
