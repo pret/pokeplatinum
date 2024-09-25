@@ -74,7 +74,7 @@ static void sub_0207C460(BGL *param0);
 static void sub_0207C498(UnkStruct_0207AE68 *param0);
 static void sub_0207C520(void *param0);
 static u8 sub_0207C584(UnkStruct_0207AE68 *param0, int param1);
-static BOOL sub_0207C5CC(UnkStruct_0201D738 *param0, u16 param1);
+static BOOL sub_0207C5CC(TextPrinterTemplate *param0, u16 param1);
 static void sub_0207C624(UnkStruct_0207AE68 *param0);
 
 static const UnkStruct_ov61_0222C884 Unk_020F0A30 = {
@@ -986,7 +986,7 @@ static u8 sub_0207C584(UnkStruct_0207AE68 *param0, int param1)
     return PrintStringSimple(param0->unk_04, 1, param0->unk_10, 0, 0, Options_TextFrameDelay(param0->unk_2C), sub_0207C5CC);
 }
 
-static BOOL sub_0207C5CC(UnkStruct_0201D738 *param0, u16 param1)
+static BOOL sub_0207C5CC(TextPrinterTemplate *param0, u16 param1)
 {
     BOOL v0;
 

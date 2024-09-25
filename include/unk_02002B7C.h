@@ -12,7 +12,7 @@ void sub_02002BEC(int param0, u32 param1);
 void sub_02002C28(int param0);
 void sub_02002C60(int param0);
 const UnkStruct_02002328 *sub_02002CFC(int param0, u16 param1);
-int sub_02002D18(int param0, UnkStruct_0201D834 *param1);
+int sub_02002D18(int param0, TextPrinter *param1);
 u32 sub_02002D48(int param0, const u16 *param1, u32 param2);
 u32 sub_02002D7C(int param0, const Strbuf *param1, u32 param2);
 u32 sub_02002DB4(int param0, Strbuf *param1, Strbuf *param2);

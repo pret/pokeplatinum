@@ -15,12 +15,12 @@
 #include "unk_02006E3C.h"
 #include "unk_02018340.h"
 
-static int sub_0201D9E8(UnkStruct_0201D834 *param0);
+static int sub_0201D9E8(TextPrinter *param0);
 static void sub_0201D97C(SysTask *param0, void *param1);
 static u8 sub_0201D67C(SysTaskFunc param0, void *param1, u32 param2);
 static void sub_0201D6B0(u8 param0);
-static void sub_0201DB48(UnkStruct_0201D834 *param0);
-static void sub_0201DBD8(UnkStruct_0201D834 *param0);
+static void sub_0201DB48(TextPrinter *param0);
+static void sub_0201DBD8(TextPrinter *param0);
 static u8 *sub_0201DB50(void);
 
 static const UnkStruct_0201D670 *Unk_02100840 = NULL;
@@ -58,7 +58,7 @@ static void sub_0201D6B0(u8 param0)
     GF_ASSERT(Unk_021C04E0[param0] != NULL);
 
     if ((param0 < 8) && (Unk_021C04E0[param0] != NULL)) {
-        UnkStruct_0201D834 *v0 = SysTask_GetParam(Unk_021C04E0[param0]);
+        TextPrinter *v0 = SysTask_GetParam(Unk_021C04E0[param0]);
 
         if (v0) {
             sub_0201DBD8(v0);
@@ -94,120 +94,120 @@ void PrintString_ForceStop(u8 param0)
     sub_0201D6B0(param0);
 }
 
-u8 PrintStringSimple(Window *window, u32 fontID, const Strbuf *strbuf, u32 xOffset, u32 yOffset, u32 renderDelay, UnkFuncPtr_0201D834 callback)
+u8 PrintStringSimple(Window *window, u32 fontID, const Strbuf *strbuf, u32 xOffset, u32 yOffset, u32 renderDelay, TextPrinterCallback callback)
 {
-    UnkStruct_0201D738 v0;
+    TextPrinterTemplate v0;
 
-    v0.unk_00_val2 = strbuf;
-    v0.unk_04 = window;
-    v0.unk_09 = fontID;
-    v0.unk_0A = xOffset;
-    v0.unk_0B = yOffset;
-    v0.unk_0C = xOffset;
-    v0.unk_0E = yOffset;
-    v0.unk_10 = Unk_02100840[fontID].unk_02;
-    v0.unk_12 = Unk_02100840[fontID].unk_03;
-    v0.unk_14 = Unk_02100840[fontID].unk_04;
-    v0.unk_15 = Unk_02100840[fontID].unk_05;
-    v0.unk_16 = Unk_02100840[fontID].unk_06;
-    v0.unk_17 = Unk_02100840[fontID].unk_07;
-    v0.unk_18 = 0;
-    v0.unk_1A = 0;
-    v0.unk_1B = 0xFF;
+    v0.toPrint.strbuf = strbuf;
+    v0.window = window;
+    v0.fontID = fontID;
+    v0.x = xOffset;
+    v0.y = yOffset;
+    v0.currX = xOffset;
+    v0.currY = yOffset;
+    v0.letterSpacing = Unk_02100840[fontID].unk_02;
+    v0.lineSpacing = Unk_02100840[fontID].unk_03;
+    v0.dummy14 = Unk_02100840[fontID].unk_04;
+    v0.fgColor = Unk_02100840[fontID].unk_05;
+    v0.bgColor = Unk_02100840[fontID].unk_06;
+    v0.shadowColor = Unk_02100840[fontID].unk_07;
+    v0.glyphTable = 0;
+    v0.dummy1A = 0;
+    v0.dummy1B = 0xFF;
 
     return sub_0201D834(&v0, renderDelay, callback);
 }
 
-u8 sub_0201D78C(Window *param0, u32 param1, const Strbuf *param2, u32 param3, u32 param4, u32 param5, u32 param6, UnkFuncPtr_0201D834 param7)
+u8 sub_0201D78C(Window *param0, u32 param1, const Strbuf *param2, u32 param3, u32 param4, u32 param5, u32 param6, TextPrinterCallback param7)
 {
-    UnkStruct_0201D738 v0;
+    TextPrinterTemplate v0;
 
-    v0.unk_00_val2 = param2;
-    v0.unk_04 = param0;
-    v0.unk_09 = param1;
-    v0.unk_0A = param3;
-    v0.unk_0B = param4;
-    v0.unk_0C = param3;
-    v0.unk_0E = param4;
-    v0.unk_10 = Unk_02100840[param1].unk_02;
-    v0.unk_12 = Unk_02100840[param1].unk_03;
-    v0.unk_14 = Unk_02100840[param1].unk_04;
-    v0.unk_15 = (((param6) >> 16) & 0xff);
-    v0.unk_17 = (((param6) >> 8) & 0xff);
-    v0.unk_16 = (((param6) >> 0) & 0xff);
-    v0.unk_18 = 0;
-    v0.unk_1A = 0;
-    v0.unk_1B = 0xFF;
+    v0.toPrint.strbuf = param2;
+    v0.window = param0;
+    v0.fontID = param1;
+    v0.x = param3;
+    v0.y = param4;
+    v0.currX = param3;
+    v0.currY = param4;
+    v0.letterSpacing = Unk_02100840[param1].unk_02;
+    v0.lineSpacing = Unk_02100840[param1].unk_03;
+    v0.dummy14 = Unk_02100840[param1].unk_04;
+    v0.fgColor = (((param6) >> 16) & 0xff);
+    v0.shadowColor = (((param6) >> 8) & 0xff);
+    v0.bgColor = (((param6) >> 0) & 0xff);
+    v0.glyphTable = 0;
+    v0.dummy1A = 0;
+    v0.dummy1B = 0xFF;
 
     return sub_0201D834(&v0, param5, param7);
 }
 
-u8 PrintStringWithColorAndMargins(Window *param0, u32 param1, const Strbuf *param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, UnkFuncPtr_0201D834 param9)
+u8 PrintStringWithColorAndMargins(Window *param0, u32 param1, const Strbuf *param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, TextPrinterCallback param9)
 {
-    UnkStruct_0201D738 v0;
+    TextPrinterTemplate v0;
 
-    v0.unk_00_val2 = param2;
-    v0.unk_04 = param0;
-    v0.unk_09 = param1;
-    v0.unk_0A = param3;
-    v0.unk_0B = param4;
-    v0.unk_0C = param3;
-    v0.unk_0E = param4;
-    v0.unk_10 = param7;
-    v0.unk_12 = param8;
-    v0.unk_14 = Unk_02100840[param1].unk_04;
-    v0.unk_15 = (((param6) >> 16) & 0xff);
-    v0.unk_17 = (((param6) >> 8) & 0xff);
-    v0.unk_16 = (((param6) >> 0) & 0xff);
-    v0.unk_18 = 0;
-    v0.unk_1A = 0;
-    v0.unk_1B = 0xFF;
+    v0.toPrint.strbuf = param2;
+    v0.window = param0;
+    v0.fontID = param1;
+    v0.x = param3;
+    v0.y = param4;
+    v0.currX = param3;
+    v0.currY = param4;
+    v0.letterSpacing = param7;
+    v0.lineSpacing = param8;
+    v0.dummy14 = Unk_02100840[param1].unk_04;
+    v0.fgColor = (((param6) >> 16) & 0xff);
+    v0.shadowColor = (((param6) >> 8) & 0xff);
+    v0.bgColor = (((param6) >> 0) & 0xff);
+    v0.glyphTable = 0;
+    v0.dummy1A = 0;
+    v0.dummy1B = 0xFF;
 
     return sub_0201D834(&v0, param5, param9);
 }
 
-u8 sub_0201D834(const UnkStruct_0201D738 *param0, u32 param1, UnkFuncPtr_0201D834 param2)
+u8 sub_0201D834(const TextPrinterTemplate *param0, u32 param1, TextPrinterCallback param2)
 {
-    UnkStruct_0201D834 *v0;
+    TextPrinter *v0;
     int v1;
 
     if (Unk_02100840 == NULL) {
         return 0xff;
     }
 
-    v0 = Heap_AllocFromHeap(0, sizeof(UnkStruct_0201D834));
+    v0 = Heap_AllocFromHeap(0, sizeof(TextPrinter));
 
-    v0->unk_27 = 1;
-    v0->unk_28 = 0;
-    v0->unk_29_0 = param1;
-    v0->unk_2A = 0;
-    v0->unk_2B = 0;
-    v0->unk_2D = 0;
+    v0->active = 1;
+    v0->state = 0;
+    v0->textSpeedLow = param1;
+    v0->delayCounter = 0;
+    v0->scrollDistance = 0;
+    v0->callbackResult = 0;
 
     for (v1 = 0; v1 < 7; v1++) {
-        v0->unk_20[v1] = 0;
+        v0->substruct[v1] = 0;
     }
 
-    v0->unk_00 = *param0;
-    v0->unk_00.unk_00_val1 = Strbuf_GetData(v0->unk_00.unk_00_val2);
-    v0->unk_1C = param2;
+    v0->template = *param0;
+    v0->template.toPrint.raw = Strbuf_GetData(v0->template.toPrint.strbuf);
+    v0->callback = param2;
 
     Unk_021C04D8 = 0;
     sub_0201DB48(v0);
 
     if ((param1 != 0xff) && (param1 != 0)) {
-        v0->unk_29_0--;
-        v0->unk_29_7 = 1;
-        v0->unk_2C = sub_0201D67C(sub_0201D97C, v0, 1);
-        return v0->unk_2C;
+        v0->textSpeedLow--;
+        v0->textSpeedHigh = 1;
+        v0->id = sub_0201D67C(sub_0201D97C, v0, 1);
+        return v0->id;
     } else {
         u32 v2;
 
-        v0->unk_29_0 = 0;
-        v0->unk_29_7 = 0;
+        v0->textSpeedLow = 0;
+        v0->textSpeedHigh = 0;
 
         v2 = 0;
-        sub_0201D9FC(param0->unk_15, param0->unk_16, param0->unk_17);
+        sub_0201D9FC(param0->fgColor, param0->bgColor, param0->shadowColor);
 
         while (v2 < 1024) {
             if (sub_0201D9E8(v0) == 1) {
@@ -218,7 +218,7 @@ u8 sub_0201D834(const UnkStruct_0201D738 *param0, u32 param1, UnkFuncPtr_0201D83
         }
 
         if (param1 != 0xff) {
-            sub_0201A954(v0->unk_00.unk_04);
+            sub_0201A954(v0->template.window);
         }
 
         sub_0201DBD8(v0);
@@ -230,44 +230,44 @@ u8 sub_0201D834(const UnkStruct_0201D738 *param0, u32 param1, UnkFuncPtr_0201D83
 
 static void sub_0201D97C(SysTask *param0, void *param1)
 {
-    UnkStruct_0201D834 *v0;
+    TextPrinter *v0;
     int v1;
 
     if (Unk_021C04D8) {
         return;
     }
 
-    v0 = (UnkStruct_0201D834 *)param1;
+    v0 = (TextPrinter *)param1;
 
-    if (v0->unk_2D == 0) {
-        v0->unk_2E = 0;
-        sub_0201D9FC(v0->unk_00.unk_15, v0->unk_00.unk_16, v0->unk_00.unk_17);
+    if (v0->callbackResult == 0) {
+        v0->callbackParam = 0;
+        sub_0201D9FC(v0->template.fgColor, v0->template.bgColor, v0->template.shadowColor);
 
         v1 = sub_0201D9E8(v0);
 
         switch (v1) {
         case 0:
-            sub_0201A954(v0->unk_00.unk_04);
+            sub_0201A954(v0->template.window);
         case 3:
-            if (v0->unk_1C != NULL) {
-                v0->unk_2D = (v0->unk_1C)(&(v0->unk_00), v0->unk_2E);
+            if (v0->callback != NULL) {
+                v0->callbackResult = (v0->callback)(&(v0->template), v0->callbackParam);
             }
             break;
         case 1:
-            sub_0201D6B0(v0->unk_2C);
+            sub_0201D6B0(v0->id);
             break;
         }
     } else {
-        v0->unk_2D = (v0->unk_1C)(&(v0->unk_00), v0->unk_2E);
+        v0->callbackResult = (v0->callback)(&(v0->template), v0->callbackParam);
     }
 }
 
-static int sub_0201D9E8(UnkStruct_0201D834 *param0)
+static int sub_0201D9E8(TextPrinter *param0)
 {
     int v0;
 
     do {
-        v0 = sub_02002D18(param0->unk_00.unk_09, param0);
+        v0 = sub_02002D18(param0->template.fontID, param0);
     } while (v0 == 2);
 
     return v0;
@@ -361,9 +361,9 @@ void sub_0201DAA0(u32 param0, u32 param1)
     *v2 = Unk_021C0500[v0];
 }
 
-static void sub_0201DB48(UnkStruct_0201D834 *param0)
+static void sub_0201DB48(TextPrinter *param0)
 {
-    param0->unk_30 = NULL;
+    param0->iconGfx = NULL;
 }
 
 static u8 *sub_0201DB50(void)
@@ -381,16 +381,16 @@ static u8 *sub_0201DB50(void)
     return v2;
 }
 
-void sub_0201DB8C(UnkStruct_0201D834 *param0, u16 param1, u16 param2, u16 param3)
+void sub_0201DB8C(TextPrinter *param0, u16 param1, u16 param2, u16 param3)
 {
-    Window *v0 = param0->unk_00.unk_04;
+    Window *v0 = param0->template.window;
     u8 *v1;
 
-    if (param0->unk_30 == NULL) {
-        param0->unk_30 = sub_0201DB50();
+    if (param0->iconGfx == NULL) {
+        param0->iconGfx = sub_0201DB50();
     }
 
-    v1 = param0->unk_30;
+    v1 = param0->iconGfx;
     v1 = &v1[param3 * 12 * 0x20];
 
     param1 = (sub_0201C294(v0) - 3) * 8;
@@ -399,10 +399,10 @@ void sub_0201DB8C(UnkStruct_0201D834 *param0, u16 param1, u16 param2, u16 param3
     sub_0201ADDC(v0, v1, 0, 0, 24, 32, param1, param2, 24, 32);
 }
 
-static void sub_0201DBD8(UnkStruct_0201D834 *param0)
+static void sub_0201DBD8(TextPrinter *param0)
 {
-    if (param0->unk_30) {
-        Heap_FreeToHeap(param0->unk_30);
-        param0->unk_30 = NULL;
+    if (param0->iconGfx) {
+        Heap_FreeToHeap(param0->iconGfx);
+        param0->iconGfx = NULL;
     }
 }

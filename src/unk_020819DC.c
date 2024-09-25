@@ -34,7 +34,7 @@ static void sub_02082810(GameWindowLayout *param0, u8 param1, u8 param2);
 static void sub_02082880(GameWindowLayout *param0, u8 param1, u8 param2);
 static void sub_02082900(GameWindowLayout *param0, u8 param1, u8 param2);
 static void sub_02082964(GameWindowLayout *param0, u8 param1, u8 param2);
-static BOOL sub_0208279C(UnkStruct_0201D738 *param0, u16 param1);
+static BOOL sub_0208279C(TextPrinterTemplate *param0, u16 param1);
 
 static const UnkStruct_ov61_0222C884 Unk_020F1F08[] = {
     { 0x1, 0x6, 0x1, 0x9, 0x2, 0x0, 0x28 },
@@ -621,7 +621,7 @@ void sub_0208274C(GameWindowLayout *param0)
         &param0->unk_04[34], 1, param0->unk_6A4, 0, 0, Options_TextFrameDelay(param0->unk_5A4->unk_0C), sub_0208279C);
 }
 
-static BOOL sub_0208279C(UnkStruct_0201D738 *param0, u16 param1)
+static BOOL sub_0208279C(TextPrinterTemplate *param0, u16 param1)
 {
     switch (param1) {
     case 1:

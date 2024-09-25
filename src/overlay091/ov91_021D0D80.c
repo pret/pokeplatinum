@@ -122,7 +122,7 @@ static void ov91_021D1A68(UnkStruct_ov91_021D0ED8 *param0, u32 param1);
 static void ov91_021D1BBC(UnkStruct_ov91_021D0ED8 *param0, u16 param1);
 static void ov91_021D1C10(UnkStruct_ov91_021D0ED8 *param0, u32 param1);
 static void ov91_021D1DF8(UnkStruct_ov91_021D0ED8 *param0, u32 param1);
-static BOOL ov91_021D1E50(UnkStruct_0201D738 *param0, u16 param1);
+static BOOL ov91_021D1E50(TextPrinterTemplate *param0, u16 param1);
 static u16 ov91_021D1DD0(UnkStruct_ov91_021D0ED8 *param0);
 static u16 ov91_021D1DE0(UnkStruct_ov91_021D0ED8 *param0);
 static u8 ov91_021D1EA0(UnkStruct_ov91_021D0ED8 *param0);
@@ -1166,7 +1166,7 @@ static void ov91_021D1DF8(UnkStruct_ov91_021D0ED8 *param0, u32 param1)
     param0->unk_185 = PrintStringSimple(&param0->unk_08[12], 1, param0->unk_100, 0, 0, Options_TextFrameDelay(param0->unk_00->unk_08), ov91_021D1E50);
 }
 
-static BOOL ov91_021D1E50(UnkStruct_0201D738 *param0, u16 param1)
+static BOOL ov91_021D1E50(TextPrinterTemplate *param0, u16 param1)
 {
     switch (param1) {
     case 1:

@@ -5,7 +5,6 @@
 
 #include "struct_decls/struct_02023350_decl.h"
 #include "struct_defs/struct_02002328.h"
-#include "struct_defs/struct_02002D18.h"
 #include "struct_defs/struct_0201D670.h"
 
 #include "heap.h"
@@ -116,15 +115,15 @@ const UnkStruct_02002328 *sub_02002CFC(int param0, u16 param1)
     return &(Unk_02101D48->unk_00);
 }
 
-int sub_02002D18(int param0, UnkStruct_0201D834 *param1)
+int sub_02002D18(int param0, TextPrinter *param1)
 {
-    UnkStruct_02002D18 *v0;
+    TextPrinterSubstruct *v0;
 
-    v0 = (UnkStruct_02002D18 *)&(param1->unk_20[0]);
+    v0 = (TextPrinterSubstruct *)&(param1->substruct[0]);
 
-    if (!v0->unk_01_7) {
-        v0->unk_00_0 = param0;
-        v0->unk_01_7 = 1;
+    if (!v0->fontIDSet) {
+        v0->fontID = param0;
+        v0->fontIDSet = 1;
     }
 
     return sub_02002328(param1);
