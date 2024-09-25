@@ -2399,9 +2399,9 @@ static void ov17_0224CAC0(SPLEmitter *param0)
     v0 = sub_02014764();
     v1 = &v0->unk_1064;
 
-    SPL_UnkInline2(param0, v1->unk_00);
-    SPL_UnkInline3(param0, v1->unk_04);
-    SPL_UnkInline4(param0, v1->unk_08);
+    SPLEmitter_SetPosX(param0, v1->unk_00);
+    SPLEmitter_SetPosY(param0, v1->unk_04);
+    SPLEmitter_SetPosZ(param0, v1->unk_08);
 
     sub_020147B0(param0, v1->unk_0C);
 }

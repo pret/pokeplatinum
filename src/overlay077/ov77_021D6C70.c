@@ -385,5 +385,5 @@ static void ov77_021D7268(SPLEmitter *param0)
     v1.y = 172 * (sub_020080C0(v0, 1) - 96);
     v1.z = 0x40;
 
-    SPL_UnkInline1(param0, &v1);
+    SPLEmitter_SetPos(param0, &v1);
 }

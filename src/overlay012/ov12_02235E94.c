@@ -767,7 +767,7 @@ static void ov12_02236598(SPLEmitter *param0)
         VecFx32 v2;
 
         ov12_02236520(v0, &v2);
-        SPL_UnkInline1(param0, &v2);
+        SPLEmitter_SetPos(param0, &v2);
     }
 }
 
@@ -821,7 +821,7 @@ static void ov12_022365D4(SPLEmitter *param0)
         }
     }
 
-    SPL_UnkInline1(param0, &v0);
+    SPLEmitter_SetPos(param0, &v0);
 }
 
 static void ov12_02236648(SPLEmitter *param0)
@@ -839,7 +839,7 @@ static void ov12_02236648(SPLEmitter *param0)
         v3 = v5 * 172;
 
         VEC_Set(&v1, v2, v3, 0);
-        SPL_UnkInline1(param0, &v1);
+        SPLEmitter_SetPos(param0, &v1);
     }
 }
 

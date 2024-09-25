@@ -478,7 +478,7 @@ static void ov119_021D1474(SPLEmitter *param0)
 {
     VecFx32 v0 = { 0, 0, 0 };
 
-    SPL_UnkInline1(param0, &v0);
+    SPLEmitter_SetPos(param0, &v0);
 }
 
 UnkStruct_ov119_021D14DC *ov119_021D14AC(UnkStruct_ov119_021D1930 *param0)

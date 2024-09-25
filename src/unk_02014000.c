@@ -16,7 +16,8 @@
 #include "camera.h"
 #include "heap.h"
 #include "narc.h"
-#include "spl.h"
+#include "spl_behavior.h"
+#include "spl_manager.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 
@@ -99,7 +100,7 @@ void sub_0201411C(UnkStruct_02014014 *param0);
 void sub_02014718(UnkStruct_02014014 *param0);
 void sub_020144CC(UnkStruct_02014014 *param0, void *param1, int param2, int param3);
 
-static const UnkFuncPtr_0209CD00 Unk_020E5454[] = {
+static const SPLAllocFunc Unk_020E5454[] = {
     sub_02014204,
     sub_02014230,
     sub_0201425C,
@@ -173,7 +174,7 @@ UnkStruct_02014014 *sub_02014014(UnkFuncPtr_02014014 param0, UnkFuncPtr_02014014
         }
     }
 
-    v0->unk_00 = SPL_0209CD00(Unk_020E5454[v1], EMIT_MAX, PARTICLE_MAX, FIX_POLYGON_ID, MIN_POLYGON_ID, MAX_POLYGON_ID);
+    v0->unk_00 = SPLManager_New(Unk_020E5454[v1], EMIT_MAX, PARTICLE_MAX, FIX_POLYGON_ID, MIN_POLYGON_ID, MAX_POLYGON_ID);
 
     sub_02014744(v0, &Unk_020E5430);
 
@@ -431,18 +432,18 @@ void sub_020144CC(UnkStruct_02014014 *param0, void *param1, int param2, int para
 
 static void sub_02014560(UnkStruct_02014014 *param0)
 {
-    SPL_0209C988(param0->unk_00, param0->unk_04);
+    SPLManager_LoadResources(param0->unk_00, param0->unk_04);
 
     Unk_021BF610 = param0;
     if (param0->unk_18 == NULL) {
-        (void)SPL_0209C7F4(param0->unk_00);
+        (void)SPLManager_UploadTextures(param0->unk_00);
     } else {
-        SPL_0209C8BC(param0->unk_00, param0->unk_18);
+        SPLManager_UploadTexturesEx(param0->unk_00, param0->unk_18);
     }
     if (param0->unk_1C == NULL) {
-        (void)SPL_0209C7E0(param0->unk_00);
+        (void)SPLManager_UploadPalettes(param0->unk_00);
     } else {
-        SPL_0209C808(param0->unk_00, param0->unk_1C);
+        SPLManager_UploadPalettesEx(param0->unk_00, param0->unk_1C);
     }
     Unk_021BF610 = NULL;
 
@@ -511,7 +512,7 @@ void sub_02014638(UnkStruct_02014014 *param0)
     NNS_G3dGlbFlush();
 
     v0 = NNS_G3dGlbGetCameraMtx();
-    SPL_0209C5E0(param0->unk_00, v0);
+    SPLManager_Draw(param0->unk_00, v0);
 
     if (param0->camera != NULL) {
         Camera_ClearActive();
@@ -522,7 +523,7 @@ void sub_02014638(UnkStruct_02014014 *param0)
 
 void sub_02014674(UnkStruct_02014014 *param0)
 {
-    SPL_0209C6A8(param0->unk_00);
+    SPLManager_Update(param0->unk_00);
 }
 
 int sub_02014680(void)
@@ -570,7 +571,7 @@ SPLEmitter *sub_020146E4(UnkStruct_02014014 *param0, int param1, const VecFx32 *
 {
     SPLEmitter *v0;
 
-    v0 = SPL_0209C56C(param0->unk_00, param1, param2);
+    v0 = SPLManager_CreateEmitter(param0->unk_00, param1, param2);
     param0->unk_08 = v0;
 
     return v0;
@@ -581,7 +582,7 @@ SPLEmitter *sub_020146F4(UnkStruct_02014014 *param0, int param1, UnkFuncPtr_0201
     SPLEmitter *v0;
 
     Unk_021BF614 = param3;
-    v0 = SPL_0209C4D8(param0->unk_00, param1, param2);
+    v0 = SPLManager_CreateEmitterWithCallback(param0->unk_00, param1, param2);
     Unk_021BF614 = NULL;
     param0->unk_08 = v0;
 
@@ -590,17 +591,17 @@ SPLEmitter *sub_020146F4(UnkStruct_02014014 *param0, int param1, UnkFuncPtr_0201
 
 s32 sub_02014710(UnkStruct_02014014 *param0)
 {
-    return param0->unk_00->unk_04.unk_04;
+    return param0->unk_00->activeEmitters.count;
 }
 
 void sub_02014718(UnkStruct_02014014 *param0)
 {
-    SPL_0209C400(param0->unk_00);
+    SPLManager_DeleteAllEmitters(param0->unk_00);
 }
 
 void sub_02014724(UnkStruct_02014014 *param0, SPLEmitter *param1)
 {
-    SPL_0209C444(param0->unk_00, param1);
+    SPLManager_DeleteEmitter(param0->unk_00, param1);
 }
 
 void *sub_02014730(UnkStruct_02014014 *param0)
@@ -646,12 +647,12 @@ u8 sub_02014790(UnkStruct_02014014 *param0)
 
 void sub_02014798(SPLEmitter *param0, VecFx16 *param1)
 {
-    *param1 = param0->unk_C0;
+    *param1 = param0->axis;
 }
 
 void sub_020147B0(SPLEmitter *param0, fx32 param1)
 {
-    param0->p_res->unk_00->unk_10 = param1;
+    param0->resource->header->emissionCount = param1;
 }
 
 enum {
@@ -667,16 +668,16 @@ static const void *sub_020147B8(SPLEmitter *param0, int param1)
 {
     int v0;
     int v1;
-    UnkStruct_020147B8 *v2;
+    SPLBehavior *v2;
 
-    v1 = param0->p_res->unk_1C;
+    v1 = param0->resource->behaviorCount;
 
     if (v1 == 0) {
         return NULL;
     }
 
     for (v0 = 0; v0 < v1; v0++) {
-        v2 = &param0->p_res->unk_18[v0];
+        v2 = &param0->resource->behaviors[v0];
 
         if (v2 == NULL) {
             continue;
@@ -684,33 +685,33 @@ static const void *sub_020147B8(SPLEmitter *param0, int param1)
 
         switch (param1) {
         case SPL_FLD_TYPE_GRAVITY:
-            if (v2->unk_00 == SPL_020A2204) {
-                return v2->unk_04;
+            if (v2->applyFunc == SPLBehavior_ApplyGravity) {
+                return v2->object;
             }
             continue;
         case SPL_FLD_TYPE_RANDOM:
-            if (v2->unk_00 == SPL_020A213C) {
-                return v2->unk_04;
+            if (v2->applyFunc == SPLBehavior_ApplyRandom) {
+                return v2->object;
             }
             continue;
         case SPL_FLD_TYPE_MAGNET:
-            if (v2->unk_00 == SPL_020A20B8) {
-                return v2->unk_04;
+            if (v2->applyFunc == SPLBehavior_ApplyMagnet) {
+                return v2->object;
             }
             continue;
         case SPL_FLD_TYPE_SPIN:
-            if (v2->unk_00 == SPL_020A1FE0) {
-                return v2->unk_04;
+            if (v2->applyFunc == SPLBehavior_ApplySpin) {
+                return v2->object;
             }
             continue;
         case SPL_FLD_TYPE_SIMPLE_COLL:
-            if (v2->unk_00 == SPL_020A1EC4) {
-                return v2->unk_04;
+            if (v2->applyFunc == SPLBehavior_ApplyCollisionPlane) {
+                return v2->object;
             }
             break;
         case SPL_FLD_TYPE_CONVERGENCE:
-            if (v2->unk_00 == SPL_020A1E30) {
-                return v2->unk_04;
+            if (v2->applyFunc == SPLBehavior_ApplyConvergence) {
+                return v2->object;
             }
             continue;
         default:
