@@ -125,5 +125,20 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
+    },
+    "pokedex_data": {
+        "height": 13,
+        "weight": 1,
+        "body_shape": "SHAPE_HEAD",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 211,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 211,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 65534,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 65534,
+        "entry_text": "Born from gases, anyone would\nfaint if engulfed by its gaseous\nbody, which contains poison.",
+        "category": "Gas Pokémon"
     }
 }

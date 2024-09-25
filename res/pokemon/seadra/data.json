@@ -114,5 +114,20 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
+    },
+    "pokedex_data": {
+        "height": 12,
+        "weight": 250,
+        "body_shape": "SHAPE_HEAD_BASE",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 240,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 240,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 65532,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 65532,
+        "entry_text": "Its spines provide protection.\nIts fins and bones are prized as\ntraditional medicine ingredients.",
+        "category": "Dragon Pokémon"
     }
 }

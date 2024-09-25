@@ -115,5 +115,20 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
+    },
+    "pokedex_data": {
+        "height": 8,
+        "weight": 550,
+        "body_shape": "SHAPE_SERPENTINE",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 274,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 274,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 14,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 14,
+        "entry_text": "Its body temperature is roughly\n18,000 degrees F. Flames spout\nfrom gaps in its hardened shell.",
+        "category": "Lava Pokémon"
     }
 }

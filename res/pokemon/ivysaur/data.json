@@ -115,5 +115,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
+    },
+    "pokedex_data": {
+        "height": 10,
+        "weight": 130,
+        "body_shape": "SHAPE_QUADRUPED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 287,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 287,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 17,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 17,
+        "entry_text": "When the bud on its back starts\nswelling, a sweet aroma wafts to\nindicate the flower’s coming bloom.",
+        "category": "Seed Pokémon"
     }
 }

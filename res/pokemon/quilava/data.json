@@ -112,5 +112,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
+    },
+    "pokedex_data": {
+        "height": 9,
+        "weight": 190,
+        "body_shape": "SHAPE_QUADRUPED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 300,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 300,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 19,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 19,
+        "entry_text": "It intimidates foes with the heat\nof its flames. The fire burns more\nstrongly when it readies to fight.",
+        "category": "Volcano Pokémon"
     }
 }

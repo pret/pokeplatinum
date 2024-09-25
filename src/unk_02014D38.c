@@ -341,16 +341,16 @@ void sub_02014F98(UnkStruct_02014EC4 *param0, int param1)
     SaveData_SetChecksum(34);
 }
 
-UnkStruct_02014FB0 *sub_02014FB0(u32 param0)
+UnkStruct_02014FB0 *sub_02014FB0(u32 heapID)
 {
     UnkStruct_02014FB0 *v0;
-    u32 v1;
+    u32 fileSize;
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_02014FB0));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02014FB0));
     memset(v0, 0, sizeof(UnkStruct_02014FB0));
 
-    v0->unk_04 = sub_02007068(191, 0, 0, param0, 0, &v1);
-    v0->unk_00 = v1 / sizeof(u32);
+    v0->unk_04 = sub_02007068(NARC_INDEX_RESOURCE__ENG__PMS_AIKOTOBA__PMS_AIKOTOBA, 0, 0, heapID, 0, &fileSize);
+    v0->unk_00 = fileSize / sizeof(u32);
 
     return v0;
 }

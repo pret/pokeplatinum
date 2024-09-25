@@ -175,6 +175,26 @@
                 "FOOTPRINT_MEDIUM",
                 "FOOTPRINT_LARGE"
             ]
+        },
+        "@PokemonBodyShape": {
+            "type": "enum",
+            "values": [
+                "SHAPE_QUADRUPED",
+                "SHAPE_BIPEDAL_TAILLESS",
+                "SHAPE_BIPEDAL_TAILED",
+                "SHAPE_SERPENTINE",
+                "SHAPE_MULTI_WINGED",
+                "SHAPE_WINGED",
+                "SHAPE_INSECTOID",
+                "SHAPE_HEAD_BASE",
+                "SHAPE_HEAD_ARMS",
+                "SHAPE_HEAD_LEGS",
+                "SHAPE_TENTACLES",
+                "SHAPE_FINS",
+                "SHAPE_HEAD",
+                "SHAPE_MULTI_BODY",
+                "NUMBER_OF_BODY_SHAPES"
+            ]
         }
     }
 }

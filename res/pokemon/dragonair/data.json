@@ -118,5 +118,20 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
+    },
+    "pokedex_data": {
+        "height": 40,
+        "weight": 165,
+        "body_shape": "SHAPE_SERPENTINE",
+        "trainer_scale_f": 335,
+        "pokemon_scale_f": 245,
+        "trainer_scale_m": 335,
+        "pokemon_scale_m": 245,
+        "trainer_pos_f": 16,
+        "pokemon_pos_f": 4,
+        "trainer_pos_m": 15,
+        "pokemon_pos_m": 4,
+        "entry_text": "If its body takes on an aura, the\nweather changes instantly. It is\nsaid to live in seas and lakes.",
+        "category": "Dragon Pokémon"
     }
 }

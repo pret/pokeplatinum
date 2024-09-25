@@ -114,5 +114,20 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
+    },
+    "pokedex_data": {
+        "height": 6,
+        "weight": 10,
+        "body_shape": "SHAPE_HEAD",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 350,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 350,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 65526,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 65526,
+        "entry_text": "Lighter-than-air gases in its body\nkeep it aloft. The gases not only\nsmell, they are also explosive.",
+        "category": "Poison Gas Pokémon"
     }
 }

@@ -100,5 +100,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
+    },
+    "pokedex_data": {
+        "height": 3,
+        "weight": 63,
+        "body_shape": "SHAPE_INSECTOID",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 469,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 469,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 25,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 25,
+        "entry_text": "Beware of pushing strongly on\nits squishy body, as it makes a\nmysterious purple fluid ooze out.",
+        "category": "Sea Slug Pokémon"
     }
 }

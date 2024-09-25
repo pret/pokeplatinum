@@ -107,5 +107,20 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
+    },
+    "pokedex_data": {
+        "height": 3,
+        "weight": 8,
+        "body_shape": "SHAPE_HEAD",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 471,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 471,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 65523,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 65523,
+        "entry_text": "Its appearance changes with the\nweather. Recently, its molecules\nwere found to be just like water.",
+        "category": "Weather Pokémon"
     }
 }

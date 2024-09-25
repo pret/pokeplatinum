@@ -116,5 +116,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
+    },
+    "pokedex_data": {
+        "height": 4,
+        "weight": 75,
+        "body_shape": "SHAPE_TENTACLES",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 388,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 388,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 28,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 28,
+        "entry_text": "A Pokémon that was resurrected\nfrom a fossil using modern science.\nIt swam in ancient seas.",
+        "category": "Spiral Pokémon"
     }
 }

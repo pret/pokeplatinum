@@ -25,6 +25,7 @@
 #include "communication_system.h"
 #include "core_sys.h"
 #include "heap.h"
+#include "narc.h"
 #include "overlay_manager.h"
 #include "unk_02006E3C.h"
 #include "unk_0200F174.h"
@@ -528,7 +529,7 @@ static void ov115_02260ADC(UnkStruct_ov115_0226095C *param0, u32 param1)
     u32 v0;
     int v1;
 
-    param0->unk_48.unk_04 = sub_02007068(189, 0, 0, param1, 0, &v0);
+    param0->unk_48.unk_04 = sub_02007068(NARC_INDEX_APPLICATION__BUCKET__BALLSLOW_DATA, 0, 0, param1, 0, &v0);
     param0->unk_48.unk_00 = v0 / sizeof(UnkStruct_ov115_02262DC4);
 
     for (v1 = 0; v1 < param0->unk_08.unk_08; v1++) {

@@ -122,5 +122,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
+    },
+    "pokedex_data": {
+        "height": 4,
+        "weight": 600,
+        "body_shape": "SHAPE_QUADRUPED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 329,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 329,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 25,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 25,
+        "entry_text": "It usually lives deep in mountains.\nHowever, hunger may drive it to\neat railroad tracks and cars.",
+        "category": "Iron Armor Pokémon"
     }
 }

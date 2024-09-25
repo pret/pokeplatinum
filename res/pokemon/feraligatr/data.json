@@ -131,5 +131,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
+    },
+    "pokedex_data": {
+        "height": 23,
+        "weight": 888,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 358,
+        "pokemon_scale_f": 256,
+        "trainer_scale_m": 333,
+        "pokemon_scale_m": 256,
+        "trainer_pos_f": 15,
+        "pokemon_pos_f": 2,
+        "trainer_pos_m": 15,
+        "pokemon_pos_m": 2,
+        "entry_text": "It usually moves slowly, but it\ngoes at blinding speed when it\nattacks and bites prey.",
+        "category": "Big Jaw Pokémon"
     }
 }

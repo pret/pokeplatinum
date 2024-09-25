@@ -62,5 +62,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
+    },
+    "pokedex_data": {
+        "height": 12,
+        "weight": 580,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 292,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 292,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 15,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 15,
+        "entry_text": "It marks its territory by using its\ntail like a paintbrush. There are\nmore than 5,000 different marks.",
+        "category": "Painter Pokémon"
     }
 }

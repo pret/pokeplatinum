@@ -99,5 +99,20 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
+    },
+    "pokedex_data": {
+        "height": 15,
+        "weight": 1325,
+        "body_shape": "SHAPE_HEAD",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 233,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 233,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 9,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 9,
+        "entry_text": "It fights by keeping its shell\ntightly shut for protection and\nby shooting spikes to repel foes.",
+        "category": "Bivalve Pokémon"
     }
 }

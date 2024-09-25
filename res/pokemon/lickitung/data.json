@@ -133,5 +133,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
+    },
+    "pokedex_data": {
+        "height": 12,
+        "weight": 655,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 235,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 235,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 10,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 10,
+        "entry_text": "When it extends its over-six-foot-\nlong tongue, its tail quivers. There\nis a possibility they are connected.",
+        "category": "Licking Pokémon"
     }
 }

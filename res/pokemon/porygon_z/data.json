@@ -119,5 +119,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
+    },
+    "pokedex_data": {
+        "height": 9,
+        "weight": 340,
+        "body_shape": "SHAPE_HEAD_ARMS",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 325,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 325,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 65531,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 65531,
+        "entry_text": "Its programming was modified to\nenable work in alien dimensions.\nIt did not work as planned.",
+        "category": "Virtual Pokémon"
     }
 }

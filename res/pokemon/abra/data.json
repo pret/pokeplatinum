@@ -114,5 +114,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
+    },
+    "pokedex_data": {
+        "height": 9,
+        "weight": 195,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 364,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 364,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 25,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 25,
+        "entry_text": "Using its psychic power is such a\nstrain on its brain that it needs\nto sleep for 18 hours a day.",
+        "category": "Psi Pokémon"
     }
 }

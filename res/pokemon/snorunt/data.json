@@ -110,5 +110,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
+    },
+    "pokedex_data": {
+        "height": 7,
+        "weight": 168,
+        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 301,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 301,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 17,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 17,
+        "entry_text": "It is said that several SNORUNT\ngather under giant leaves and\nlive together in harmony.",
+        "category": "Snow Hat Pokémon"
     }
 }

@@ -168,5 +168,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
+    },
+    "pokedex_data": {
+        "height": 32,
+        "weight": 3200,
+        "body_shape": "SHAPE_QUADRUPED",
+        "trainer_scale_f": 512,
+        "pokemon_scale_f": 256,
+        "trainer_scale_m": 487,
+        "pokemon_scale_m": 256,
+        "trainer_pos_f": 23,
+        "pokemon_pos_f": 0,
+        "trainer_pos_m": 23,
+        "pokemon_pos_m": 0,
+        "entry_text": "It is said to have emerged from an\negg in a place where there was\nnothing, then shaped the world.",
+        "category": "Alpha Pokémon"
     }
 }

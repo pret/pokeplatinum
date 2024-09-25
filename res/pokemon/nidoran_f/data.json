@@ -113,5 +113,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
+    },
+    "pokedex_data": {
+        "height": 4,
+        "weight": 70,
+        "body_shape": "SHAPE_QUADRUPED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 377,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 377,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 25,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 25,
+        "entry_text": "While it does not prefer to fight,\neven one drop of the poison it\nsecretes from barbs can be fatal.",
+        "category": "Poison Pin Pokémon"
     }
 }

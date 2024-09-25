@@ -129,5 +129,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
+    },
+    "pokedex_data": {
+        "height": 7,
+        "weight": 230,
+        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 320,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 320,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 22,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 22,
+        "entry_text": "It rarely fights fairly, but that is\nstrictly to ensure survival. It is\npopular as a mascot.",
+        "category": "Toxic Mouth Pokémon"
     }
 }

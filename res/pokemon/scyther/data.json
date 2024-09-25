@@ -119,5 +119,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
+    },
+    "pokedex_data": {
+        "height": 15,
+        "weight": 560,
+        "body_shape": "SHAPE_MULTI_WINGED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 223,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 223,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 7,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 7,
+        "entry_text": "The sharp scythes on its forearms\nbecome increasingly sharp by\ncutting through hard objects.",
+        "category": "Mantis Pokémon"
     }
 }

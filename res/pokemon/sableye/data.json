@@ -132,5 +132,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
+    },
+    "pokedex_data": {
+        "height": 5,
+        "weight": 110,
+        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 414,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 414,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 25,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 25,
+        "entry_text": "It hides in the darkness of caves.\nIts diet of gems has transformed\nits eyes into gemstones.",
+        "category": "Darkness Pokémon"
     }
 }

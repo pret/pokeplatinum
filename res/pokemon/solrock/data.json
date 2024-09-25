@@ -125,5 +125,20 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
+    },
+    "pokedex_data": {
+        "height": 12,
+        "weight": 1540,
+        "body_shape": "SHAPE_HEAD",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 310,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 310,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 65528,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 65528,
+        "entry_text": "A new Pokémon species, rumored\nto be from the sun. It gives off\nlight while spinning.",
+        "category": "Meteorite Pokémon"
     }
 }

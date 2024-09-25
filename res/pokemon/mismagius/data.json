@@ -113,5 +113,20 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
+    },
+    "pokedex_data": {
+        "height": 9,
+        "weight": 44,
+        "body_shape": "SHAPE_HEAD",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 401,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 401,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 65529,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 65529,
+        "entry_text": "Its cry sounds like an incantation.\nIt is said the cry may rarely be\nimbued with happiness-giving power.",
+        "category": "Magical Pokémon"
     }
 }

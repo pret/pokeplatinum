@@ -8,9 +8,9 @@
 #include "struct_defs/struct_0202610C.h"
 
 #include "party.h"
+#include "pokedex_heightweight.h"
 #include "pokemon.h"
 #include "unk_0202602C.h"
-#include "unk_02098700.h"
 
 HeightWeightData *sub_0207A2A8(int param0)
 {
@@ -56,7 +56,7 @@ BOOL sub_0207A2D0(const BattleRegulation *param0, Pokemon *param1, const HeightW
     v1 = sub_02026074(param0, 5);
 
     if (v1 != 0) {
-        v2 = sub_02098808(param2, v0);
+        v2 = Pokedex_HeightWeightData_Height(param2, v0);
 
         if (v1 > 0) {
             if (v2 < v1) {

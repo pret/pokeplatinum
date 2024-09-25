@@ -128,5 +128,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_LARGE"
+    },
+    "pokedex_data": {
+        "height": 17,
+        "weight": 522,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 228,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 228,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 1,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 1,
+        "entry_text": "The leaves that grow on its arms\ncan slice down thick trees. It is\nwithout peer in jungle combat.",
+        "category": "Forest Pokémon"
     }
 }

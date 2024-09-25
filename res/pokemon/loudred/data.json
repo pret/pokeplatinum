@@ -126,5 +126,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
+    },
+    "pokedex_data": {
+        "height": 10,
+        "weight": 405,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 300,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 300,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 13,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 13,
+        "entry_text": "The shock waves from its cries can\ntip over trucks. It stamps its\nfeet to power up.",
+        "category": "Big Voice Pokémon"
     }
 }

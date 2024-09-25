@@ -115,5 +115,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
+    },
+    "pokedex_data": {
+        "height": 6,
+        "weight": 95,
+        "body_shape": "SHAPE_WINGED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 326,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 326,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 65534,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 65534,
+        "entry_text": "It soars high in the sky, riding on\nupdrafts like a glider. It carries\nfood tucked in its bill.",
+        "category": "Seagull Pokémon"
     }
 }

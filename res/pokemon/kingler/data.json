@@ -118,5 +118,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
+    },
+    "pokedex_data": {
+        "height": 13,
+        "weight": 600,
+        "body_shape": "SHAPE_INSECTOID",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 256,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 256,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 11,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 11,
+        "entry_text": "The larger pincer has 10,000-\nhorsepower strength. However, it\nis so heavy, it is difficult to aim.",
+        "category": "Pincer Pokémon"
     }
 }

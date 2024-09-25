@@ -129,5 +129,20 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
+    },
+    "pokedex_data": {
+        "height": 16,
+        "weight": 1,
+        "body_shape": "SHAPE_HEAD_ARMS",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 214,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 214,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 65530,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 65530,
+        "entry_text": "It likes to lurk in the dark and tap\nshoulders with a gaseous hand. Its\ntouch causes endless shuddering.",
+        "category": "Gas Pokémon"
     }
 }

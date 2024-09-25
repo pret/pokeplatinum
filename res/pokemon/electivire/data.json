@@ -124,5 +124,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
+    },
+    "pokedex_data": {
+        "height": 18,
+        "weight": 1386,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 311,
+        "pokemon_scale_f": 256,
+        "trainer_scale_m": 310,
+        "pokemon_scale_m": 256,
+        "trainer_pos_f": 14,
+        "pokemon_pos_f": 7,
+        "trainer_pos_m": 13,
+        "pokemon_pos_m": 7,
+        "entry_text": "Heedless of enemy attacks, it\ncloses in, shoves its tails onto the\nfoe, then looses high voltage.",
+        "category": "Thunderbolt Pokémon"
     }
 }

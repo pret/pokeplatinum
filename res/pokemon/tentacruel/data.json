@@ -108,5 +108,20 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
+    },
+    "pokedex_data": {
+        "height": 16,
+        "weight": 550,
+        "body_shape": "SHAPE_TENTACLES",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 245,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 245,
+        "trainer_pos_f": 5,
+        "pokemon_pos_f": 65535,
+        "trainer_pos_m": 4,
+        "pokemon_pos_m": 65535,
+        "entry_text": "It extends its 80 tentacles to\nform an encircling poisonous net\nthat is difficult to escape.",
+        "category": "Jellyfish Pokémon"
     }
 }

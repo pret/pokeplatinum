@@ -117,5 +117,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
+    },
+    "pokedex_data": {
+        "height": 7,
+        "weight": 177,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 342,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 342,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 21,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 21,
+        "entry_text": "It communicates with others by\nlighting up its rear at night. It\nloves ILLUMISE’s sweet aroma.",
+        "category": "Firefly Pokémon"
     }
 }

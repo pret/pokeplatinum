@@ -107,5 +107,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
+    },
+    "pokedex_data": {
+        "height": 4,
+        "weight": 42,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 479,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 479,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 28,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 28,
+        "entry_text": "It cheers on friends with pom-poms\nmade of sparks. It drains power\nfrom telephone poles.",
+        "category": "Cheering Pokémon"
     }
 }

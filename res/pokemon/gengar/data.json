@@ -132,5 +132,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
+    },
+    "pokedex_data": {
+        "height": 15,
+        "weight": 405,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 191,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 191,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 65535,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 65535,
+        "entry_text": "The leer that floats in darkness\nbelongs to a GENGAR delighting in\ncasting curses on people.",
+        "category": "Shadow Pokémon"
     }
 }

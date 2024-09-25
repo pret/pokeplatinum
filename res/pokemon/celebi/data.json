@@ -129,5 +129,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
+    },
+    "pokedex_data": {
+        "height": 6,
+        "weight": 50,
+        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 390,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 390,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 65535,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 65535,
+        "entry_text": "It has the power to travel across\ntime, but it is said to appear only\nin peaceful times.",
+        "category": "Time Travel Pokémon"
     }
 }

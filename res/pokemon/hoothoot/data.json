@@ -118,5 +118,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
+    },
+    "pokedex_data": {
+        "height": 7,
+        "weight": 212,
+        "body_shape": "SHAPE_WINGED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 350,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 350,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 21,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 21,
+        "entry_text": "It marks time precisely. Some\ncountries consider it to be a wise\nfriend, versed in the world’s ways.",
+        "category": "Owl Pokémon"
     }
 }
