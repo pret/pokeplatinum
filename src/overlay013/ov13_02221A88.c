@@ -1548,7 +1548,7 @@ void ov13_022240E0(UnkStruct_ov13_022213F0 *param0)
 
 void ov13_02224108(UnkStruct_ov13_022213F0 *param0)
 {
-    sub_02002AC8(1);
+    RenderControlFlags_SetCanABSpeedUpPrint(1);
     param0->unk_2077 = PrintStringSimple(&param0->unk_204C[1], 1, param0->unk_1FAC, 0, 0, BattleSystem_TextSpeed(param0->unk_00->unk_08), NULL);
 }
 

@@ -164,7 +164,7 @@ UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Opt
 
     sub_02015738(v0->unk_58, 1);
     SysTask_Start(sub_0207B0A0, v0, 0);
-    sub_02002AC8(1);
+    RenderControlFlags_SetCanABSpeedUpPrint(1);
     sub_02039734();
 
     return v0;
@@ -214,7 +214,7 @@ void sub_0207B0E0(UnkStruct_0207AE68 *param0)
     Heap_FreeToHeap(param0->unk_00);
     NARC_dtor(param0->unk_80);
     Heap_FreeToHeap(param0);
-    sub_02002AC8(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(0);
 }
 
 static void sub_0207B180(UnkStruct_0207AE68 *param0)

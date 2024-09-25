@@ -589,8 +589,8 @@ u8 ov84_022400A0(UnkStruct_ov84_0223B5A0 *param0)
 {
     u8 v0;
 
-    sub_02002AC8(1);
-    sub_02002AE4(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(1);
+    RenderControlFlags_SetAutoScrollFlags(0);
     v0 = PrintStringSimple(&param0->unk_04[6], 1, param0->unk_3F8, 0, 0, Options_TextFrameDelay(param0->unk_D0), ov84_022400E0);
 
     return v0;

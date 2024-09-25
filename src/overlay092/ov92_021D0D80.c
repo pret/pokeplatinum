@@ -361,9 +361,9 @@ int ov92_021D0D80(OverlayManager *param0, int *param1)
 
     GXLayers_SwapDisplay();
     SetAutorepeat(4, 8);
-    sub_02002AC8(1);
-    sub_02002AE4(0);
-    sub_02002B20(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(1);
+    RenderControlFlags_SetAutoScrollFlags(0);
+    RenderControlFlags_SetSpeedUpOnTouch(0);
 
     ov92_021D1530(v0);
 

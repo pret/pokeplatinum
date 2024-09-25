@@ -888,9 +888,9 @@ static void ov64_0222E1A4 (UnkStruct_ov64_0222E21C * param0, const UnkStruct_ov6
     ov64_0222E6D8(param0, param2);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    sub_02002AC8(1);
-    sub_02002AE4(0);
-    sub_02002B20(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(1);
+    RenderControlFlags_SetAutoScrollFlags(0);
+    RenderControlFlags_SetSpeedUpOnTouch(0);
 }
 
 static void ov64_0222E21C (UnkStruct_ov64_0222E21C * param0)

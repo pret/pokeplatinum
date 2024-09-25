@@ -448,9 +448,9 @@ int ov113_0225C700(OverlayManager *param0, int *param1)
     GXLayers_TurnBothDispOn();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
-    sub_02002AC8(1);
-    sub_02002AE4(0);
-    sub_02002B20(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(1);
+    RenderControlFlags_SetAutoScrollFlags(0);
+    RenderControlFlags_SetSpeedUpOnTouch(0);
 
     v0->unk_18 = SysTask_Start(ov113_0225CEF0, v0, 60000);
 
@@ -669,9 +669,9 @@ int ov113_0225CDFC(OverlayManager *param0, int *param1)
     DisableHBlank();
     sub_0201DC3C();
     sub_0201E530();
-    sub_02002AC8(0);
-    sub_02002AE4(0);
-    sub_02002B20(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(0);
+    RenderControlFlags_SetAutoScrollFlags(0);
+    RenderControlFlags_SetSpeedUpOnTouch(0);
     sub_02039794();
     OverlayManager_FreeData(param0);
     Heap_Destroy(118);

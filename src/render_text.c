@@ -24,7 +24,7 @@ typedef struct RenderControlFlags {
 
 static RenderControlFlags Unk_02101D44;
 
-int sub_02002328(TextPrinter *param0)
+int RenderText(TextPrinter *param0)
 {
     const TextGlyph *v0;
     TextPrinterSubstruct *v1;
@@ -145,12 +145,12 @@ int sub_02002328(TextPrinter *param0)
                 switch (v9) {
                 case 0xfe01:
                     param0->state = 2;
-                    sub_020027B4(param0);
+                    TextPrinter_InitScrollArrowAnim(param0);
                     param0->template.toPrint.raw = CharCode_SkipFormatArg(param0->template.toPrint.raw);
                     return 3;
                 case 0xfe00:
                     param0->state = 3;
-                    sub_020027B4(param0);
+                    TextPrinter_InitScrollArrowAnim(param0);
                     param0->template.toPrint.raw = CharCode_SkipFormatArg(param0->template.toPrint.raw);
                     return 3;
                 }
@@ -161,11 +161,11 @@ int sub_02002328(TextPrinter *param0)
             return 2;
         case 0x25bc:
             param0->state = 2;
-            sub_020027B4(param0);
+            TextPrinter_InitScrollArrowAnim(param0);
             return 3;
         case 0x25bd:
             param0->state = 3;
-            sub_020027B4(param0);
+            TextPrinter_InitScrollArrowAnim(param0);
             return 3;
         }
 
@@ -176,15 +176,15 @@ int sub_02002328(TextPrinter *param0)
 
         return 0;
     case 1:
-        if (sub_02002AA4(param0)) {
-            sub_02002968(param0);
+        if (TextPrinter_Wait(param0)) {
+            TextPrinter_ClearScrollArrow(param0);
             param0->state = 0;
         }
 
         return 3;
     case 2:
-        if (sub_02002A80(param0)) {
-            sub_02002968(param0);
+        if (TextPrinter_WaitWithScrollArrow(param0)) {
+            TextPrinter_ClearScrollArrow(param0);
             BGL_FillWindow(param0->template.window, param0->template.bgColor);
 
             param0->template.currX = param0->template.x;
@@ -194,8 +194,8 @@ int sub_02002328(TextPrinter *param0)
 
         return 3;
     case 3:
-        if (sub_02002A80(param0)) {
-            sub_02002968(param0);
+        if (TextPrinter_WaitWithScrollArrow(param0)) {
+            TextPrinter_ClearScrollArrow(param0);
 
             param0->scrollDistance = (sub_02002DF8(param0->template.fontID, 1) + param0->template.lineSpacing);
             param0->template.currX = param0->template.x;
@@ -239,12 +239,12 @@ int sub_02002328(TextPrinter *param0)
 
 static u16 Unk_02101D46 = 0;
 
-void sub_020027A8(u16 param0)
+void TextPrinter_SetScrollArrowBaseTile(u16 param0)
 {
     Unk_02101D46 = param0;
 }
 
-void sub_020027B4(TextPrinter *param0)
+void TextPrinter_InitScrollArrowAnim(TextPrinter *param0)
 {
     TextPrinterSubstruct *v0;
 
@@ -265,7 +265,7 @@ static const u8 Unk_020E4CD0[] = {
     0x1
 };
 
-void sub_020027E0(TextPrinter *param0)
+void TextPrinter_DrawScrollArrow(TextPrinter *param0)
 {
     TextPrinterSubstruct *v0;
     void *v1;
@@ -302,7 +302,7 @@ void sub_020027E0(TextPrinter *param0)
     }
 }
 
-void sub_02002968(TextPrinter *param0)
+void TextPrinter_ClearScrollArrow(TextPrinter *param0)
 {
     u16 v0;
     u8 v1, v2, v3, v4;
@@ -318,7 +318,7 @@ void sub_02002968(TextPrinter *param0)
     sub_02019448(param0->template.window->unk_00, v1);
 }
 
-static BOOL sub_020029FC(TextPrinter *param0)
+static BOOL TextPrinter_Continue(TextPrinter *param0)
 {
     if ((gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) || ((gCoreSys.touchPressed) && (Unk_02101D44.speedUpOnTouch))) {
         Sound_PlayEffect(1500);
@@ -329,7 +329,7 @@ static BOOL sub_020029FC(TextPrinter *param0)
     return 0;
 }
 
-BOOL sub_02002A44(TextPrinter *param0)
+BOOL TextPrinter_WaitAutoMode(TextPrinter *param0)
 {
     TextPrinterSubstruct *v0;
     u16 v1;
@@ -344,71 +344,71 @@ BOOL sub_02002A44(TextPrinter *param0)
     v0->autoScrollDelay++;
 
     if (Unk_02101D44.speedUpAutoScroll) {
-        return sub_020029FC(param0);
+        return TextPrinter_Continue(param0);
     }
 
     return 0;
 }
 
-BOOL sub_02002A80(TextPrinter *param0)
+BOOL TextPrinter_WaitWithScrollArrow(TextPrinter *param0)
 {
     BOOL v0 = 0;
 
     if (Unk_02101D44.autoScroll) {
-        v0 = sub_02002A44(param0);
+        v0 = TextPrinter_WaitAutoMode(param0);
     } else {
-        sub_020027E0(param0);
-        v0 = sub_020029FC(param0);
+        TextPrinter_DrawScrollArrow(param0);
+        v0 = TextPrinter_Continue(param0);
     }
 
     return v0;
 }
 
-BOOL sub_02002AA4(TextPrinter *param0)
+BOOL TextPrinter_Wait(TextPrinter *param0)
 {
     u8 v0 = 0;
 
     if (Unk_02101D44.autoScroll) {
-        v0 = sub_02002A44(param0);
+        v0 = TextPrinter_WaitAutoMode(param0);
     } else {
-        v0 = sub_020029FC(param0);
+        v0 = TextPrinter_Continue(param0);
     }
 
     return v0;
 }
 
-void sub_02002AC8(int param0)
+void RenderControlFlags_SetCanABSpeedUpPrint(int param0)
 {
     Unk_02101D44.canABSpeedUpPrint = param0;
 }
 
-void sub_02002AE4(int param0)
+void RenderControlFlags_SetAutoScrollFlags(int param0)
 {
     Unk_02101D44.autoScroll = (param0 & 1);
     Unk_02101D44.speedUpAutoScroll = ((param0 >> 1) & 1);
 }
 
-void sub_02002B20(int param0)
+void RenderControlFlags_SetSpeedUpOnTouch(int param0)
 {
     Unk_02101D44.speedUpOnTouch = param0;
 }
 
-u8 sub_02002B3C(void)
+u8 RenderControlFlags_GetSpeedUpBattle(void)
 {
     return Unk_02101D44.speedUpBattle;
 }
 
-void sub_02002B4C(void)
+void RenderControlFlags_ZeroSpeedUpBattle(void)
 {
     Unk_02101D44.speedUpBattle = 0;
 }
 
-u8 sub_02002B5C(void)
+u8 RenderControlFlags_GetWaitBattle(void)
 {
     return Unk_02101D44.waitBattle;
 }
 
-void sub_02002B6C(void)
+void RenderControlFlags_ZeroWaitBattle(void)
 {
     Unk_02101D44.waitBattle = 0;
 }

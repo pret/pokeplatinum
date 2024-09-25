@@ -1084,8 +1084,8 @@ static void sub_020732C4(UnkStruct_02072334 *param0, int param1, u8 param2, u8 p
     }
 
     BGL_WindowColor(&param0->unk_184, ((15 << 4) | 15), 0, 0, 27 * 8, 4 * 8);
-    sub_02002AC8(1);
-    sub_02002AE4(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(1);
+    RenderControlFlags_SetAutoScrollFlags(0);
 
     if (param1 == 0) {
         Strbuf_Clear(param0->unk_110.unk_04);

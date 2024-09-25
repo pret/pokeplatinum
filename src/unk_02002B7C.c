@@ -125,7 +125,7 @@ int sub_02002D18(int param0, TextPrinter *param1)
         v0->fontIDSet = 1;
     }
 
-    return sub_02002328(param1);
+    return RenderText(param1);
 }
 
 u32 sub_02002D48(int param0, const u16 *param1, u32 param2)

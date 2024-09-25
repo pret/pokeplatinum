@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_02002328_H
-#define POKEPLATINUM_UNK_02002328_H
+#ifndef POKEPLATINUM_RENDER_TEXT_H
+#define POKEPLATINUM_RENDER_TEXT_H
 
 #include "struct_defs/struct_0205AA50.h"
 
@@ -65,20 +65,20 @@ typedef struct TextPrinter {
     void *iconGfx;
 } TextPrinter;
 
-int sub_02002328(TextPrinter *param0);
-void sub_020027A8(u16 param0);
-void sub_020027B4(TextPrinter *param0);
-void sub_020027E0(TextPrinter *param0);
-void sub_02002968(TextPrinter *param0);
-BOOL sub_02002A44(TextPrinter *param0);
-BOOL sub_02002A80(TextPrinter *param0);
-BOOL sub_02002AA4(TextPrinter *param0);
-void sub_02002AC8(int param0);
-void sub_02002AE4(int param0);
-void sub_02002B20(int param0);
-u8 sub_02002B3C(void);
-void sub_02002B4C(void);
-u8 sub_02002B5C(void);
-void sub_02002B6C(void);
+int RenderText(TextPrinter *printer);
+void TextPrinter_SetScrollArrowBaseTile(u16 tile);
+void TextPrinter_InitScrollArrowAnim(TextPrinter *printer);
+void TextPrinter_DrawScrollArrow(TextPrinter *printer);
+void TextPrinter_ClearScrollArrow(TextPrinter *printer);
+BOOL TextPrinter_WaitAutoMode(TextPrinter *printer);
+BOOL TextPrinter_WaitWithScrollArrow(TextPrinter *printer);
+BOOL TextPrinter_Wait(TextPrinter *printer);
+void RenderControlFlags_SetCanABSpeedUpPrint(BOOL val);
+void RenderControlFlags_SetAutoScrollFlags(int flags);
+void RenderControlFlags_SetSpeedUpOnTouch(BOOL val);
+u8 RenderControlFlags_GetSpeedUpBattle(void);
+void RenderControlFlags_ZeroSpeedUpBattle(void);
+u8 RenderControlFlags_GetWaitBattle(void);
+void RenderControlFlags_ZeroWaitBattle(void);
 
-#endif // POKEPLATINUM_UNK_02002328_H
+#endif // POKEPLATINUM_RENDER_TEXT_H

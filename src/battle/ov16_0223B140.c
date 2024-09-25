@@ -362,7 +362,7 @@ void ov16_0223B430(BattleSystem *param0)
     ov16_02268D40(v1, param0->unk_198);
     NARC_dtor(v0);
     NARC_dtor(v1);
-    sub_020027A8(1);
+    TextPrinter_SetScrollArrowBaseTile(1);
     ov16_0223DD4C(param0);
     sub_0200964C(sub_0200C738(param0->unk_90), 0, ((192 + 80) << FX32_SHIFT));
 }
@@ -782,9 +782,9 @@ static void ov16_0223BCB4(OverlayManager *param0)
         ov16_0223B3E4(v0);
     }
 
-    sub_02002AC8(0);
-    sub_02002AE4(0);
-    sub_02002B20(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(0);
+    RenderControlFlags_SetAutoScrollFlags(0);
+    RenderControlFlags_SetSpeedUpOnTouch(0);
     sub_0201A928(v0->windows, 3);
     Heap_FreeToHeap(v0->unk_04);
     Heap_FreeToHeap(v0->unk_21C);
@@ -2244,13 +2244,13 @@ static BOOL ov16_0223DD10(OverlayManager *param0)
 static void ov16_0223DD4C(BattleSystem *param0)
 {
     if ((param0->battleType & (0x4 | 0x400)) || (param0->battleStatusMask & 0x10)) {
-        sub_02002AE4(1);
-        sub_02002AC8(1);
-        sub_02002B20(0);
+        RenderControlFlags_SetAutoScrollFlags(1);
+        RenderControlFlags_SetCanABSpeedUpPrint(1);
+        RenderControlFlags_SetSpeedUpOnTouch(0);
     } else {
-        sub_02002AE4(3);
-        sub_02002AC8(1);
-        sub_02002B20(1);
+        RenderControlFlags_SetAutoScrollFlags(3);
+        RenderControlFlags_SetCanABSpeedUpPrint(1);
+        RenderControlFlags_SetSpeedUpOnTouch(1);
     }
 }
 

@@ -581,11 +581,11 @@ asm static void CommClubTask_SelectServerList (SysTask * task, void * param1)
     add r0, #0x40
     bl FieldMessage_DrawWindow
     mov r0, #1
-    bl sub_02002AC8
+    bl RenderControlFlags_SetCanABSpeedUpPrint
     mov r0, #0
-    bl sub_02002AE4
+    bl RenderControlFlags_SetAutoScrollFlags
     mov r0, #0
-    bl sub_02002B20
+    bl RenderControlFlags_SetSpeedUpOnTouch
     ldr r0, = sCommClubMan
               mov r3, #0
     ldr r2, [r0, #0]

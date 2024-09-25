@@ -4762,8 +4762,8 @@ static void ov65_02232B58 (UnkStruct_ov65_0222EBE0 * param0, int param1, BOOL pa
     StringTemplate_Format(param0->unk_164, param0->unk_174, param0->unk_170);
     BGL_FillWindow(&param0->unk_330, 15);
     sub_0200E060(&param0->unk_330, 1, (512 - (18 + 12)), 10);
-    sub_02002AC8(1);
-    sub_02002AE4(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(1);
+    RenderControlFlags_SetAutoScrollFlags(0);
 
     param0->unk_180 = PrintStringSimple(&param0->unk_330, 1, param0->unk_174, 0, 0, v0, NULL);
 

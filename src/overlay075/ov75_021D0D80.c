@@ -145,7 +145,7 @@ int ov75_021D0D80(OverlayManager *param0, int *param1)
     v1->unk_10 = Options_TextFrameDelay(v1->unk_1C->unk_04);
     v1->unk_0A = Options_Frame(v1->unk_1C->unk_04);
 
-    sub_02002AC8(1);
+    RenderControlFlags_SetCanABSpeedUpPrint(1);
     return 1;
 }
 
@@ -165,7 +165,7 @@ int ov75_021D0E10(OverlayManager *param0, int *param1)
     UnkStruct_ov75_021D1184 *v0 = (UnkStruct_ov75_021D1184 *)OverlayManager_Data(param0);
     int v1;
 
-    sub_02002AC8(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(0);
 
     v1 = v0->unk_00;
 

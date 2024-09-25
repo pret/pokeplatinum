@@ -271,9 +271,9 @@ int ov117_02260668 (OverlayManager * param0, int * param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 
     {
-        sub_02002AE4(1);
-        sub_02002AC8(0);
-        sub_02002B20(0);
+        RenderControlFlags_SetAutoScrollFlags(1);
+        RenderControlFlags_SetCanABSpeedUpPrint(0);
+        RenderControlFlags_SetSpeedUpOnTouch(0);
     }
 
     v0->unk_1C = ov114_0225CAD4(sub_0200D9B0(v0->unk_28), 110);
@@ -483,9 +483,9 @@ int ov117_02260C10 (OverlayManager * param0, int * param1)
     ov117_02260EB8(v0->unk_98);
     sub_0201E530();
     OverlayManager_FreeData(param0);
-    sub_02002AC8(0);
-    sub_02002AE4(0);
-    sub_02002B20(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(0);
+    RenderControlFlags_SetAutoScrollFlags(0);
+    RenderControlFlags_SetSpeedUpOnTouch(0);
     sub_02039794();
 
     return 1;

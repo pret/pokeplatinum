@@ -271,7 +271,7 @@ static void sub_0200E130(Window *param0, u16 param1)
 
     sub_0200E0EC(v3, 4, 0, 12, 16 * 3, v1, 12, 16 * 3, 1, 0, 12, 16 * 3);
     sub_0201958C(param0->unk_00, v5, v1, (0x20 * 4 * 3), param1 + 18);
-    sub_020027A8(param1);
+    TextPrinter_SetScrollArrowBaseTile(param1);
     Heap_FreeToHeap(v4);
     Heap_FreeToHeap(v1);
 }

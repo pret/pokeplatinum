@@ -195,9 +195,9 @@ int ov61_0222BF44(OverlayManager *param0, int *param1)
     gCoreSys.unk_65 = 0;
 
     GXLayers_SwapDisplay();
-    sub_02002AC8(1);
-    sub_02002AE4(0);
-    sub_02002B20(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(1);
+    RenderControlFlags_SetAutoScrollFlags(0);
+    RenderControlFlags_SetSpeedUpOnTouch(0);
     SetMainCallback(ov61_0222C1FC, v0);
 
     if (v0->unk_00->unk_10) {
@@ -271,9 +271,9 @@ int ov61_0222C160(OverlayManager *param0, int *param1)
     DisableHBlank();
     sub_0201DC3C();
     sub_0201E530();
-    sub_02002AC8(0);
-    sub_02002AE4(0);
-    sub_02002B20(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(0);
+    RenderControlFlags_SetAutoScrollFlags(0);
+    RenderControlFlags_SetSpeedUpOnTouch(0);
     sub_02039794();
     OverlayManager_FreeData(param0);
     Heap_Destroy(117);

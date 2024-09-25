@@ -615,8 +615,8 @@ void sub_02082708(GameWindowLayout *param0, u32 param1, u8 param2)
 
 void sub_0208274C(GameWindowLayout *param0)
 {
-    sub_02002AC8(1);
-    sub_02002AE4(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(1);
+    RenderControlFlags_SetAutoScrollFlags(0);
     param0->unk_B10 = PrintStringSimple(
         &param0->unk_04[34], 1, param0->unk_6A4, 0, 0, Options_TextFrameDelay(param0->unk_5A4->unk_0C), sub_0208279C);
 }

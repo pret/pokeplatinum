@@ -90,8 +90,8 @@ static void ov79_021D1850(UnkStruct_ov79_021D0E1C *param0, Strbuf *param1, u8 pa
     }
 
     BGL_WindowColor(&(param0->unk_E8[2]), ((15 << 4) | 15), 0, 0, 27 * 8, 4 * 8);
-    sub_02002AC8(1);
-    sub_02002AE4(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(1);
+    RenderControlFlags_SetAutoScrollFlags(0);
 
     param0->unk_1F = sub_0201D78C(&param0->unk_E8[2], 1, param1, 0, 0, param2, v0, NULL);
 }

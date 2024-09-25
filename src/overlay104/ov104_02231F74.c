@@ -191,9 +191,9 @@ static void ov104_02232034(UnkStruct_ov104_022320B4 *param0, const MessageLoader
 
 static void ov104_02232050(UnkStruct_ov104_022320B4 *param0, int param1, int param2, int param3, int param4)
 {
-    sub_02002AC8(param3);
-    sub_02002AE4(param4);
-    sub_02002B20(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(param3);
+    RenderControlFlags_SetAutoScrollFlags(param4);
+    RenderControlFlags_SetSpeedUpOnTouch(0);
     param0->unk_50 = PrintStringSimple(&param0->unk_64, param1, param0->unk_48, 0, 0, param2, NULL);
 }
 

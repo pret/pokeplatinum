@@ -428,7 +428,7 @@ int ov84_0223B5A0(OverlayManager *param0, int *param1)
     sub_0201E450(4);
 
     ov84_0223F040(v0);
-    sub_02002B20(1);
+    RenderControlFlags_SetSpeedUpOnTouch(1);
     ov84_0223F1F8(v0);
     ov84_0223F25C(v0);
     ov84_0223F2FC(v0);

@@ -1160,8 +1160,8 @@ static void ov91_021D1DF8(UnkStruct_ov91_021D0ED8 *param0, u32 param1)
 {
     BGL_FillWindow(&param0->unk_08[12], 15);
     ov91_021D1C10(param0, param1);
-    sub_02002AC8(1);
-    sub_02002AE4(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(1);
+    RenderControlFlags_SetAutoScrollFlags(0);
 
     param0->unk_185 = PrintStringSimple(&param0->unk_08[12], 1, param0->unk_100, 0, 0, Options_TextFrameDelay(param0->unk_00->unk_08), ov91_021D1E50);
 }

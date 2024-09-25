@@ -257,7 +257,7 @@ int ov22_02255E50(OverlayManager *param0, int *param1)
         break;
     case 3:
         if (v2->unk_1C == 1) {
-            sub_02002B20(1);
+            RenderControlFlags_SetSpeedUpOnTouch(1);
 
             v0->unk_73C = ov22_0225A660(&v0->unk_5C4, 26, 385, 47);
             (*param1)++;
@@ -274,7 +274,7 @@ int ov22_02255E50(OverlayManager *param0, int *param1)
     case 5:
         if ((gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) | (gCoreSys.touchPressed)) {
             ov22_0225A628(&v0->unk_5C4, 26, 385, 48);
-            sub_02002B20(0);
+            RenderControlFlags_SetSpeedUpOnTouch(0);
             (*param1)++;
         }
         break;

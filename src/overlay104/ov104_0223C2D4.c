@@ -192,9 +192,9 @@ UnkStruct_ov104_0223C4CC *ov104_0223C2D4(UnkStruct_0209B75C *param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     sub_02004550(4, ov104_0222EA90(v2, 3), 1);
 
-    sub_02002AE4(1);
-    sub_02002AC8(0);
-    sub_02002B20(0);
+    RenderControlFlags_SetAutoScrollFlags(1);
+    RenderControlFlags_SetCanABSpeedUpPrint(0);
+    RenderControlFlags_SetSpeedUpOnTouch(0);
 
     SetMainCallback(ov104_0223C6EC, v0);
     v0->unk_A0 = SysTask_ExecuteOnVBlank(ov104_0223C71C, v0, 10);
@@ -252,9 +252,9 @@ void ov104_0223C4CC(UnkStruct_ov104_0223C4CC *param0)
     DisableHBlank();
     Heap_Destroy(94);
 
-    sub_02002AC8(0);
-    sub_02002AE4(0);
-    sub_02002B20(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(0);
+    RenderControlFlags_SetAutoScrollFlags(0);
+    RenderControlFlags_SetSpeedUpOnTouch(0);
 
     sub_02039794();
 
