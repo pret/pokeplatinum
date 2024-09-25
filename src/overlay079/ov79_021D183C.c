@@ -12,11 +12,11 @@
 #include "overlay084/struct_ov84_02240FA8.h"
 
 #include "cell_actor.h"
+#include "render_text.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
-#include "unk_02002328.h"
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"

@@ -7,8 +7,8 @@
 #include "struct_defs/struct_0205AA50.h"
 
 #include "game_options.h"
+#include "render_text.h"
 #include "strbuf.h"
-#include "unk_02002328.h"
 #include "unk_02002B7C.h"
 #include "unk_0200DA60.h"
 #include "unk_02018340.h"

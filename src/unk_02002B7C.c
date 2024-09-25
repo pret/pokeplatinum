@@ -10,8 +10,8 @@
 #include "struct_defs/struct_0201D834.h"
 
 #include "heap.h"
+#include "render_text.h"
 #include "strbuf.h"
-#include "unk_02002328.h"
 #include "unk_02006E3C.h"
 #include "unk_0201D670.h"
 #include "unk_020232E0.h"
