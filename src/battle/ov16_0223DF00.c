@@ -25,7 +25,6 @@
 #include "struct_defs/battle_system.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_0200D0F4.h"
-#include "struct_defs/struct_0201D738.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/trainer_data.h"
 
@@ -59,6 +58,7 @@
 #include "party.h"
 #include "pokemon.h"
 #include "poketch_data.h"
+#include "render_text.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "trainer_data.h"

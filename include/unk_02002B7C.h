@@ -2,8 +2,8 @@
 #define POKEPLATINUM_UNK_02002B7C_H
 
 #include "struct_defs/struct_02002328.h"
-#include "struct_defs/struct_0201D834.h"
 
+#include "render_text.h"
 #include "strbuf.h"
 
 void sub_02002B7C(void);

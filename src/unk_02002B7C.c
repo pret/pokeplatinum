@@ -7,7 +7,6 @@
 #include "struct_defs/struct_02002328.h"
 #include "struct_defs/struct_02002D18.h"
 #include "struct_defs/struct_0201D670.h"
-#include "struct_defs/struct_0201D834.h"
 
 #include "heap.h"
 #include "render_text.h"

@@ -5,11 +5,11 @@
 
 #include "struct_defs/struct_02002328.h"
 #include "struct_defs/struct_02002D18.h"
-#include "struct_defs/struct_0201D834.h"
 #include "struct_defs/struct_02101D44.h"
 
 #include "charcode.h"
 #include "core_sys.h"
+#include "render_text.h"
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
 #include "unk_02018340.h"

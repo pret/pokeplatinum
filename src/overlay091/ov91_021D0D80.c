@@ -14,7 +14,6 @@
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/struct_0201D738.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_020997B8.h"
 #include "struct_defs/struct_02099F80.h"

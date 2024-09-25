@@ -4,13 +4,10 @@
 #include <string.h>
 
 #include "struct_defs/struct_0201D670.h"
-#include "struct_defs/struct_0201D738.h"
-#include "struct_defs/struct_0201D834.h"
 #include "struct_defs/struct_0205AA50.h"
 
-#include "functypes/funcptr_0201D834.h"
-
 #include "heap.h"
+#include "render_text.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
