@@ -61,8 +61,8 @@ typedef struct TextPrinter {
     u8 substruct[7];
     u8 active;
     u8 state;
-    u8 textSpeedLow : 7;
-    u8 textSpeedHigh : 1;
+    u8 textSpeedBottom : 7;
+    u8 textSpeedTop : 1;
     u8 delayCounter;
     u8 scrollDistance;
     u8 id;

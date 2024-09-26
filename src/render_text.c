@@ -50,12 +50,12 @@ enum RenderResult RenderText(TextPrinter *printer)
         if ((JOY_HELD(PAD_BUTTON_A | PAD_BUTTON_B) && substruct->speedUp) || SPEED_UP_ON_TOUCH_HOLD) {
             printer->delayCounter = 0;
 
-            if (printer->textSpeedLow != 0) {
+            if (printer->textSpeedBottom != 0) {
                 sRenderControlFlags.speedUpBattle = TRUE;
             }
         }
 
-        if (printer->delayCounter && printer->textSpeedLow) {
+        if (printer->delayCounter && printer->textSpeedBottom) {
             printer->delayCounter--;
 
             if (sRenderControlFlags.canABSpeedUpPrint
@@ -67,7 +67,7 @@ enum RenderResult RenderText(TextPrinter *printer)
             return RENDER_UPDATE;
         }
 
-        printer->delayCounter = printer->textSpeedLow;
+        printer->delayCounter = printer->textSpeedBottom;
         currChar = *printer->template.toPrint.raw;
         printer->template.toPrint.raw++;
 
@@ -123,7 +123,7 @@ enum RenderResult RenderText(TextPrinter *printer)
                 u16 screen = CharCode_FormatArgParam(printer->template.toPrint.raw, 0);
                 sub_0201DB8C(printer, printer->template.currX, printer->template.currY, screen);
 
-                if (printer->textSpeedHigh != 0) {
+                if (printer->textSpeedTop != 0) {
                     sub_0201A954(printer->template.window);
                 }
             } break;

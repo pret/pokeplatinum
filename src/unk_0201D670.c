@@ -179,7 +179,7 @@ u8 sub_0201D834(const TextPrinterTemplate *param0, u32 param1, TextPrinterCallba
 
     v0->active = 1;
     v0->state = 0;
-    v0->textSpeedLow = param1;
+    v0->textSpeedBottom = param1;
     v0->delayCounter = 0;
     v0->scrollDistance = 0;
     v0->callbackResult = 0;
@@ -196,15 +196,15 @@ u8 sub_0201D834(const TextPrinterTemplate *param0, u32 param1, TextPrinterCallba
     sub_0201DB48(v0);
 
     if ((param1 != 0xff) && (param1 != 0)) {
-        v0->textSpeedLow--;
-        v0->textSpeedHigh = 1;
+        v0->textSpeedBottom--;
+        v0->textSpeedTop = 1;
         v0->id = sub_0201D67C(sub_0201D97C, v0, 1);
         return v0->id;
     } else {
         u32 v2;
 
-        v0->textSpeedLow = 0;
-        v0->textSpeedHigh = 0;
+        v0->textSpeedBottom = 0;
+        v0->textSpeedTop = 0;
 
         v2 = 0;
         sub_0201D9FC(param0->fgColor, param0->bgColor, param0->shadowColor);
