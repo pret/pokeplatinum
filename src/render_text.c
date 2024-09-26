@@ -3,6 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/charcode.h"
+#include "consts/sdat.h"
+
 #include "charcode.h"
 #include "core_sys.h"
 #include "render_text.h"
@@ -10,6 +13,9 @@
 #include "unk_02005474.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
+
+#define SPEED_UP_ON_TOUCH_PRESS (gCoreSys.touchPressed && sRenderControlFlags.speedUpOnTouch)
+#define SPEED_UP_ON_TOUCH_HOLD  (gCoreSys.touchHeld && sRenderControlFlags.speedUpOnTouch)
 
 typedef struct RenderControlFlags {
     u8 canABSpeedUpPrint : 1;
@@ -22,393 +28,435 @@ typedef struct RenderControlFlags {
     u8 waitBattle : 1;
 } RenderControlFlags;
 
-static RenderControlFlags Unk_02101D44;
+static RenderControlFlags sRenderControlFlags;
 
-int RenderText(TextPrinter *param0)
+enum RenderState {
+    RENDER_STATE_HANDLE_CHAR = 0,
+    RENDER_STATE_WAIT,
+    RENDER_STATE_CLEAR,
+    RENDER_STATE_START_SCROLL,
+    RENDER_STATE_SCROLL,
+    RENDER_STATE_DUMMY,
+    RENDER_STATE_PAUSE,
+};
+
+enum RenderResult RenderText(TextPrinter *printer)
 {
-    const TextGlyph *v0;
-    TextPrinterSubstruct *v1;
-    int v2, v3;
-    u16 v4;
+    TextPrinterSubstruct *substruct = (TextPrinterSubstruct *)printer->substruct;
+    charcode_t currChar;
 
-    v1 = (TextPrinterSubstruct *)&(param0->substruct[0]);
+    switch (printer->state) {
+    case RENDER_STATE_HANDLE_CHAR:
+        if ((JOY_HELD(PAD_BUTTON_A | PAD_BUTTON_B) && substruct->speedUp) || SPEED_UP_ON_TOUCH_HOLD) {
+            printer->delayCounter = 0;
 
-    switch (param0->state) {
-    case 0:
-        if (((gCoreSys.heldKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) && (v1->speedUp)) || ((gCoreSys.touchHeld) && (Unk_02101D44.speedUpOnTouch))) {
-            param0->delayCounter = 0;
-
-            if (param0->textSpeedLow != 0) {
-                Unk_02101D44.speedUpBattle = 1;
+            if (printer->textSpeedLow != 0) {
+                sRenderControlFlags.speedUpBattle = TRUE;
             }
         }
 
-        if ((param0->delayCounter) && (param0->textSpeedLow)) {
-            (param0->delayCounter)--;
+        if (printer->delayCounter && printer->textSpeedLow) {
+            printer->delayCounter--;
 
-            if (Unk_02101D44.canABSpeedUpPrint) {
-                if ((gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) || ((gCoreSys.touchPressed) && (Unk_02101D44.speedUpOnTouch))) {
-                    v1->speedUp = 1;
-                    param0->delayCounter = 0;
-                }
+            if (sRenderControlFlags.canABSpeedUpPrint
+                && (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B) || SPEED_UP_ON_TOUCH_PRESS)) {
+                substruct->speedUp = TRUE;
+                printer->delayCounter = 0;
             }
 
-            return 3;
+            return RENDER_UPDATE;
         }
 
-        param0->delayCounter = param0->textSpeedLow;
-        v4 = *(u16 *)(param0->template.toPrint.raw);
-        param0->template.toPrint.raw++;
+        printer->delayCounter = printer->textSpeedLow;
+        currChar = *printer->template.toPrint.raw;
+        printer->template.toPrint.raw++;
 
-        GF_ASSERT(v4 != 0xF100);
+        GF_ASSERT(currChar != CHAR_COMPRESSED_MARK);
 
-        switch (v4) {
-        case 0xffff:
-            return 1;
-        case 0xe000:
-            param0->template.currX = param0->template.x;
-            param0->template.currY += (sub_02002DF8(param0->template.fontID, 1) + param0->template.lineSpacing);
-            return 2;
-        case 0xf0fd:
-            param0->template.toPrint.raw++;
-            return 2;
-        case 0xfffe:
-            param0->template.toPrint.raw--;
-            v4 = CharCode_FormatArgType(param0->template.toPrint.raw);
+        switch (currChar) {
+        case CHAR_EOS:
+            return RENDER_FINISH;
 
-            switch (v4) {
-            case 0xff00: {
-                u16 v5 = CharCode_FormatArgParam(param0->template.toPrint.raw, 0);
+        case CHAR_CR:
+            printer->template.currX = printer->template.x;
+            printer->template.currY += sub_02002DF8(printer->template.fontID, 1) + printer->template.lineSpacing;
+            return RENDER_REPEAT;
 
-                if (v5 == 255) {
-                    u8 v6 = param0->template.dummy1B;
+        case CHAR_PLACEHOLDER_BEGIN:
+            printer->template.toPrint.raw++;
+            return RENDER_REPEAT;
 
-                    param0->template.dummy1B = (param0->template.fgColor - 1) / 2 + 100;
+        case CHAR_FORMAT_ARG:
+            printer->template.toPrint.raw--;
+            currChar = CharCode_FormatArgType(printer->template.toPrint.raw);
 
-                    if (!(v6 >= 100 && v6 < (100 + 7))) {
+            switch (currChar) {
+            case CHAR_CONTROL_SET_COLOR: {
+                u16 color = CharCode_FormatArgParam(printer->template.toPrint.raw, 0);
+
+                if (color == CHAR_CONTROL_SET_COLOR_FROM_CACHE) {
+                    u8 cacheColor = printer->template.cacheColor;
+
+                    printer->template.cacheColor = (printer->template.fgColor - 1) / 2 + COLOR_CACHE_OFFSET;
+
+                    if (!COLOR_CACHE_IS_VALID(cacheColor)) {
                         break;
                     }
 
-                    v5 = v6 - 100;
-                } else if (v5 >= 100) {
-                    param0->template.dummy1B = v5;
+                    color = cacheColor - COLOR_CACHE_OFFSET;
+                } else if (color >= COLOR_CACHE_OFFSET) {
+                    printer->template.cacheColor = color;
                     break;
                 }
 
-                param0->template.fgColor = 1 + (v5 * 2);
-                param0->template.shadowColor = 1 + (v5 * 2) + 1;
+                printer->template.fgColor = color * 2 + 1;
+                printer->template.shadowColor = color * 2 + 2;
 
-                sub_0201D9FC(param0->template.fgColor, param0->template.bgColor, param0->template.shadowColor);
+                sub_0201D9FC(printer->template.fgColor, printer->template.bgColor, printer->template.shadowColor);
             } break;
-            case 0x200: {
-                u16 v7 = CharCode_FormatArgParam(param0->template.toPrint.raw, 0);
-                sub_0201DB8C(param0, param0->template.currX, param0->template.currY, v7);
+
+            case CHAR_CONTROL_SCREEN_INDICATOR: {
+                // 0 -> touch the bottom screen
+                // 1 -> look at the bottom screen
+                // 2 -> respond to the top screen
+                // 3 -> look at the top screen
+                u16 screen = CharCode_FormatArgParam(printer->template.toPrint.raw, 0);
+                sub_0201DB8C(printer, printer->template.currX, printer->template.currY, screen);
+
+                if (printer->textSpeedHigh != 0) {
+                    sub_0201A954(printer->template.window);
+                }
+            } break;
+
+            case CHAR_CONTROL_PAUSE: {
+                printer->delayCounter = CharCode_FormatArgParam(printer->template.toPrint.raw, 0);
+                printer->template.toPrint.raw = CharCode_SkipFormatArg(printer->template.toPrint.raw);
+                printer->state = RENDER_STATE_PAUSE;
+                return RENDER_UPDATE;
+            } break;
+
+            case CHAR_CONTROL_CALLBACK:
+                printer->callbackParam = CharCode_FormatArgParam(printer->template.toPrint.raw, 0);
+                printer->template.toPrint.raw = CharCode_SkipFormatArg(printer->template.toPrint.raw);
+                return RENDER_UPDATE;
+
+            case CHAR_CONTROL_CURSOR_X:
+                printer->template.currX = CharCode_FormatArgParam(printer->template.toPrint.raw, 0);
+                break;
+
+            case CHAR_CONTROL_CURSOR_Y:
+                printer->template.currY = CharCode_FormatArgParam(printer->template.toPrint.raw, 0);
+                break;
+
+            case CHAR_CONTROL_SET_SIZE: {
+                u16 percentScale = CharCode_FormatArgParam(printer->template.toPrint.raw, 0);
+
+                switch (percentScale) {
+                case 100:
+                    printer->template.glyphTable = 0;
+                    printer->template.dummy1A = 0;
+                    break;
+                case 200:
+                    printer->template.glyphTable = 0xfffc;
+                    printer->template.dummy1A = 0;
+                    break;
+                }
+            } break;
+
+            case CHAR_CONTROL_MOVE: {
+                u16 param = CharCode_FormatArgParam(printer->template.toPrint.raw, 0);
+
+                switch (param) {
+                case 0xFE01: // wait to scroll
+                    printer->state = RENDER_STATE_CLEAR;
+                    TextPrinter_InitScrollArrowAnim(printer);
+                    printer->template.toPrint.raw = CharCode_SkipFormatArg(printer->template.toPrint.raw);
+                    return RENDER_UPDATE;
+                case 0xFE00: // scroll
+                    printer->state = RENDER_STATE_START_SCROLL;
+                    TextPrinter_InitScrollArrowAnim(printer);
+                    printer->template.toPrint.raw = CharCode_SkipFormatArg(printer->template.toPrint.raw);
+                    return RENDER_UPDATE;
+                }
+            } break;
             }
 
-                if (param0->textSpeedHigh != 0) {
-                    sub_0201A954(param0->template.window);
-                }
-                break;
-            case 0x201: {
-                param0->delayCounter = CharCode_FormatArgParam(param0->template.toPrint.raw, 0);
-                param0->template.toPrint.raw = CharCode_SkipFormatArg(param0->template.toPrint.raw);
-                param0->state = 6;
-                return 3;
-            } break;
-            case 0x202:
-                param0->callbackParam = CharCode_FormatArgParam(param0->template.toPrint.raw, 0);
-                param0->template.toPrint.raw = CharCode_SkipFormatArg(param0->template.toPrint.raw);
-                return 3;
-            case 0x203:
-                param0->template.currX = CharCode_FormatArgParam(param0->template.toPrint.raw, 0);
-                break;
-            case 0x204:
-                param0->template.currY = CharCode_FormatArgParam(param0->template.toPrint.raw, 0);
-                break;
-            case 0xff01: {
-                u16 v8 = CharCode_FormatArgParam(param0->template.toPrint.raw, 0);
+            printer->template.toPrint.raw = CharCode_SkipFormatArg(printer->template.toPrint.raw);
+            return RENDER_REPEAT;
 
-                switch (v8) {
-                case 0x64:
-                    param0->template.glyphTable = 0;
-                    param0->template.dummy1A = 0;
-                    break;
-                case 0xc8:
-                    param0->template.glyphTable = 0xfffc;
-                    param0->template.dummy1A = 0;
-                    break;
-                }
-            } break;
-            case 0xfe06: {
-                u16 v9 = CharCode_FormatArgParam(param0->template.toPrint.raw, 0);
+        case CHAR_CONTROL_CLEAR:
+            printer->state = RENDER_STATE_CLEAR;
+            TextPrinter_InitScrollArrowAnim(printer);
+            return RENDER_UPDATE;
 
-                switch (v9) {
-                case 0xfe01:
-                    param0->state = 2;
-                    TextPrinter_InitScrollArrowAnim(param0);
-                    param0->template.toPrint.raw = CharCode_SkipFormatArg(param0->template.toPrint.raw);
-                    return 3;
-                case 0xfe00:
-                    param0->state = 3;
-                    TextPrinter_InitScrollArrowAnim(param0);
-                    param0->template.toPrint.raw = CharCode_SkipFormatArg(param0->template.toPrint.raw);
-                    return 3;
-                }
-            } break;
-            }
-
-            param0->template.toPrint.raw = CharCode_SkipFormatArg(param0->template.toPrint.raw);
-            return 2;
-        case 0x25bc:
-            param0->state = 2;
-            TextPrinter_InitScrollArrowAnim(param0);
-            return 3;
-        case 0x25bd:
-            param0->state = 3;
-            TextPrinter_InitScrollArrowAnim(param0);
-            return 3;
+        case CHAR_CONTROL_SCROLL:
+            printer->state = RENDER_STATE_START_SCROLL;
+            TextPrinter_InitScrollArrowAnim(printer);
+            return RENDER_UPDATE;
         }
 
-        v0 = sub_02002CFC(v1->fontID, v4);
+        const TextGlyph *glyph = sub_02002CFC(substruct->fontID, currChar);
+        sub_0201AED0(printer->template.window,
+            glyph->gfx,
+            glyph->width,
+            glyph->height,
+            printer->template.currX,
+            printer->template.currY,
+            printer->template.glyphTable);
 
-        sub_0201AED0(param0->template.window, v0->gfx, v0->width, v0->height, param0->template.currX, param0->template.currY, param0->template.glyphTable);
-        param0->template.currX += (v0->width + param0->template.letterSpacing);
+        printer->template.currX += glyph->width + printer->template.letterSpacing;
+        return RENDER_PRINT;
 
-        return 0;
-    case 1:
-        if (TextPrinter_Wait(param0)) {
-            TextPrinter_ClearScrollArrow(param0);
-            param0->state = 0;
+    case RENDER_STATE_WAIT:
+        if (TextPrinter_Wait(printer)) {
+            TextPrinter_ClearScrollArrow(printer);
+            printer->state = RENDER_STATE_HANDLE_CHAR;
         }
 
-        return 3;
-    case 2:
-        if (TextPrinter_WaitWithScrollArrow(param0)) {
-            TextPrinter_ClearScrollArrow(param0);
-            BGL_FillWindow(param0->template.window, param0->template.bgColor);
+        return RENDER_UPDATE;
 
-            param0->template.currX = param0->template.x;
-            param0->template.currY = param0->template.y;
-            param0->state = 0;
+    case RENDER_STATE_CLEAR:
+        if (TextPrinter_WaitWithScrollArrow(printer)) {
+            TextPrinter_ClearScrollArrow(printer);
+            BGL_FillWindow(printer->template.window, printer->template.bgColor);
+
+            printer->template.currX = printer->template.x;
+            printer->template.currY = printer->template.y;
+            printer->state = RENDER_STATE_HANDLE_CHAR;
         }
 
-        return 3;
-    case 3:
-        if (TextPrinter_WaitWithScrollArrow(param0)) {
-            TextPrinter_ClearScrollArrow(param0);
+        return RENDER_UPDATE;
 
-            param0->scrollDistance = (sub_02002DF8(param0->template.fontID, 1) + param0->template.lineSpacing);
-            param0->template.currX = param0->template.x;
-            param0->state = 4;
+    case RENDER_STATE_START_SCROLL:
+        if (TextPrinter_WaitWithScrollArrow(printer)) {
+            TextPrinter_ClearScrollArrow(printer);
+
+            printer->scrollDistance = (sub_02002DF8(printer->template.fontID, 1) + printer->template.lineSpacing);
+            printer->template.currX = printer->template.x;
+            printer->state = RENDER_STATE_SCROLL;
         }
 
-        return 3;
-    case 4:
-        if (param0->scrollDistance) {
-            v3 = 0x4;
+        return RENDER_UPDATE;
 
-            if (param0->scrollDistance < v3) {
-                sub_0201C04C(param0->template.window, 0, param0->scrollDistance, (param0->template.bgColor << 4) | param0->template.bgColor);
-                param0->scrollDistance = 0;
+    case RENDER_STATE_SCROLL:
+        if (printer->scrollDistance) {
+            // This cast here is ugly, but is necessary to match without declaring a separate variable just for 4.
+            if ((int)printer->scrollDistance < 4) {
+                sub_0201C04C(printer->template.window, 0, printer->scrollDistance, (printer->template.bgColor << 4) | printer->template.bgColor);
+                printer->scrollDistance = 0;
             } else {
-                sub_0201C04C(param0->template.window, 0, v3, (param0->template.bgColor << 4) | param0->template.bgColor);
-                param0->scrollDistance -= v3;
+                sub_0201C04C(printer->template.window, 0, 4, (printer->template.bgColor << 4) | printer->template.bgColor);
+                printer->scrollDistance -= 4;
             }
 
-            sub_0201A954(param0->template.window);
+            sub_0201A954(printer->template.window);
         } else {
-            param0->state = 0;
+            printer->state = RENDER_STATE_HANDLE_CHAR;
         }
 
-        return 3;
-    case 5:
-        param0->state = 0;
-        return 3;
-    case 6:
-        if (param0->delayCounter) {
-            param0->delayCounter--;
+        return RENDER_UPDATE;
+
+    case RENDER_STATE_DUMMY:
+        printer->state = RENDER_STATE_HANDLE_CHAR;
+        return RENDER_UPDATE;
+
+    case RENDER_STATE_PAUSE:
+        if (printer->delayCounter) {
+            printer->delayCounter--;
         } else {
-            param0->state = 0;
+            printer->state = RENDER_STATE_HANDLE_CHAR;
         }
 
-        return 3;
+        return RENDER_UPDATE;
     }
 
-    return 1;
+    return RENDER_FINISH;
 }
 
-static u16 Unk_02101D46 = 0;
+static u16 sScrollArrowBaseTile = 0;
 
-void TextPrinter_SetScrollArrowBaseTile(u16 param0)
+void TextPrinter_SetScrollArrowBaseTile(u16 tile)
 {
-    Unk_02101D46 = param0;
+    sScrollArrowBaseTile = tile;
 }
 
-void TextPrinter_InitScrollArrowAnim(TextPrinter *param0)
+void TextPrinter_InitScrollArrowAnim(TextPrinter *printer)
 {
-    TextPrinterSubstruct *v0;
+    TextPrinterSubstruct *substruct = (TextPrinterSubstruct *)printer->substruct;
 
-    v0 = (TextPrinterSubstruct *)&(param0->substruct[0]);
-
-    if (Unk_02101D44.autoScroll) {
-        v0->autoScrollDelay = 0;
+    if (sRenderControlFlags.autoScroll) {
+        substruct->autoScrollDelay = 0;
     } else {
-        v0->scrollArrowYPosIdx = 0;
-        v0->scrollArrowDelay = 0;
+        substruct->scrollArrowYPosIdx = 0;
+        substruct->scrollArrowDelay = 0;
     }
 }
 
-static const u8 Unk_020E4CD0[] = {
-    0x0,
-    0x1,
-    0x2,
-    0x1
-};
+static const u8 sScrollArrowTileOffsets[] = { 0, 1, 2, 1 };
 
-void TextPrinter_DrawScrollArrow(TextPrinter *param0)
+void TextPrinter_DrawScrollArrow(TextPrinter *printer)
 {
-    TextPrinterSubstruct *v0;
-    void *v1;
+    TextPrinterSubstruct *substruct = (TextPrinterSubstruct *)printer->substruct;
 
-    v0 = (TextPrinterSubstruct *)&(param0->substruct[0]);
-
-    if (Unk_02101D44.autoScroll) {
+    if (sRenderControlFlags.autoScroll) {
         return;
     }
 
-    if (v0->scrollArrowDelay) {
-        v0->scrollArrowDelay--;
+    if (substruct->scrollArrowDelay) {
+        substruct->scrollArrowDelay--;
         return;
     }
 
-    {
-        u16 v2;
-        u8 v3, v4, v5, v6;
+    u8 bgID = sub_0201C290(printer->template.window);
+    u8 x = sub_0201C29C(printer->template.window);
+    u8 y = sub_0201C2A0(printer->template.window);
+    u8 width = sub_0201C294(printer->template.window);
+    u16 baseTile = sScrollArrowBaseTile;
 
-        v3 = sub_0201C290(param0->template.window);
-        v4 = sub_0201C29C(param0->template.window);
-        v5 = sub_0201C2A0(param0->template.window);
-        v6 = sub_0201C294(param0->template.window);
-        v2 = Unk_02101D46;
+    sub_02019CB8(printer->template.window->unk_00,
+        bgID,
+        baseTile + 18 + (sScrollArrowTileOffsets[substruct->scrollArrowYPosIdx] * 4),
+        x + width + 1,
+        y + 2,
+        1,
+        1,
+        16);
+    sub_02019CB8(printer->template.window->unk_00,
+        bgID,
+        baseTile + 19 + (sScrollArrowTileOffsets[substruct->scrollArrowYPosIdx] * 4),
+        x + width + 2,
+        y + 2,
+        1,
+        1,
+        16);
+    sub_02019CB8(printer->template.window->unk_00,
+        bgID,
+        baseTile + 20 + (sScrollArrowTileOffsets[substruct->scrollArrowYPosIdx] * 4),
+        x + width + 1,
+        y + 3,
+        1,
+        1,
+        16);
+    sub_02019CB8(printer->template.window->unk_00,
+        bgID,
+        baseTile + 21 + (sScrollArrowTileOffsets[substruct->scrollArrowYPosIdx] * 4),
+        x + width + 2,
+        y + 3,
+        1,
+        1,
+        16);
 
-        sub_02019CB8(param0->template.window->unk_00, v3, v2 + 18 + (Unk_020E4CD0[v0->scrollArrowYPosIdx] * 4), v4 + v6 + 1, v5 + 2, 1, 1, 16);
-        sub_02019CB8(param0->template.window->unk_00, v3, v2 + 19 + (Unk_020E4CD0[v0->scrollArrowYPosIdx] * 4), v4 + v6 + 2, v5 + 2, 1, 1, 16);
-        sub_02019CB8(param0->template.window->unk_00, v3, v2 + 20 + (Unk_020E4CD0[v0->scrollArrowYPosIdx] * 4), v4 + v6 + 1, v5 + 3, 1, 1, 16);
-        sub_02019CB8(param0->template.window->unk_00, v3, v2 + 21 + (Unk_020E4CD0[v0->scrollArrowYPosIdx] * 4), v4 + v6 + 2, v5 + 3, 1, 1, 16);
-        sub_02019448(param0->template.window->unk_00, v3);
-
-        v0->scrollArrowDelay = 8;
-        v0->scrollArrowYPosIdx++;
-    }
+    sub_02019448(printer->template.window->unk_00, bgID);
+    substruct->scrollArrowDelay = 8;
+    substruct->scrollArrowYPosIdx++;
 }
 
-void TextPrinter_ClearScrollArrow(TextPrinter *param0)
+void TextPrinter_ClearScrollArrow(TextPrinter *printer)
 {
-    u16 v0;
-    u8 v1, v2, v3, v4;
+    u8 bgID = sub_0201C290(printer->template.window);
+    u8 x = sub_0201C29C(printer->template.window);
+    u8 y = sub_0201C2A0(printer->template.window);
+    u8 width = sub_0201C294(printer->template.window);
+    u16 baseTile = sScrollArrowBaseTile;
 
-    v1 = sub_0201C290(param0->template.window);
-    v2 = sub_0201C29C(param0->template.window);
-    v3 = sub_0201C2A0(param0->template.window);
-    v4 = sub_0201C294(param0->template.window);
-    v0 = Unk_02101D46;
-
-    sub_02019CB8(param0->template.window->unk_00, v1, v0 + 10, v2 + v4 + 1, v3 + 2, 1, 2, 16);
-    sub_02019CB8(param0->template.window->unk_00, v1, v0 + 11, v2 + v4 + 2, v3 + 2, 1, 2, 16);
-    sub_02019448(param0->template.window->unk_00, v1);
+    sub_02019CB8(printer->template.window->unk_00,
+        bgID,
+        baseTile + 10,
+        x + width + 1,
+        y + 2,
+        1,
+        2,
+        16);
+    sub_02019CB8(printer->template.window->unk_00,
+        bgID,
+        baseTile + 11,
+        x + width + 2,
+        y + 2,
+        1,
+        2,
+        16);
+    sub_02019448(printer->template.window->unk_00, bgID);
 }
 
-static BOOL TextPrinter_Continue(TextPrinter *param0)
+static BOOL TextPrinter_Continue(TextPrinter *printer)
 {
-    if ((gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) || ((gCoreSys.touchPressed) && (Unk_02101D44.speedUpOnTouch))) {
-        Sound_PlayEffect(1500);
-        Unk_02101D44.waitBattle = 1;
-        return 1;
-    }
-
-    return 0;
-}
-
-BOOL TextPrinter_WaitAutoMode(TextPrinter *param0)
-{
-    TextPrinterSubstruct *v0;
-    u16 v1;
-
-    v0 = (TextPrinterSubstruct *)&(param0->substruct[0]);
-    v1 = 100;
-
-    if (v0->autoScrollDelay == v1) {
-        return 1;
-    }
-
-    v0->autoScrollDelay++;
-
-    if (Unk_02101D44.speedUpAutoScroll) {
-        return TextPrinter_Continue(param0);
-    }
-
-    return 0;
-}
-
-BOOL TextPrinter_WaitWithScrollArrow(TextPrinter *param0)
-{
-    BOOL v0 = 0;
-
-    if (Unk_02101D44.autoScroll) {
-        v0 = TextPrinter_WaitAutoMode(param0);
-    } else {
-        TextPrinter_DrawScrollArrow(param0);
-        v0 = TextPrinter_Continue(param0);
-    }
-
-    return v0;
-}
-
-BOOL TextPrinter_Wait(TextPrinter *param0)
-{
-    u8 v0 = 0;
-
-    if (Unk_02101D44.autoScroll) {
-        v0 = TextPrinter_WaitAutoMode(param0);
-    } else {
-        v0 = TextPrinter_Continue(param0);
+    if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)
+        || (gCoreSys.touchPressed && sRenderControlFlags.speedUpOnTouch)) {
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
+        sRenderControlFlags.waitBattle = TRUE;
+        return TRUE;
     }
 
-    return v0;
+    return FALSE;
 }
 
-void RenderControlFlags_SetCanABSpeedUpPrint(int param0)
+BOOL TextPrinter_WaitAutoMode(TextPrinter *printer)
 {
-    Unk_02101D44.canABSpeedUpPrint = param0;
+    TextPrinterSubstruct *substruct = (TextPrinterSubstruct *)printer->substruct;
+    if (substruct->autoScrollDelay == 100) {
+        return TRUE;
+    }
+
+    substruct->autoScrollDelay++;
+    if (sRenderControlFlags.speedUpAutoScroll) {
+        return TextPrinter_Continue(printer);
+    }
+
+    return FALSE;
 }
 
-void RenderControlFlags_SetAutoScrollFlags(int param0)
+BOOL TextPrinter_WaitWithScrollArrow(TextPrinter *printer)
 {
-    Unk_02101D44.autoScroll = (param0 & 1);
-    Unk_02101D44.speedUpAutoScroll = ((param0 >> 1) & 1);
+    if (sRenderControlFlags.autoScroll) {
+        return TextPrinter_WaitAutoMode(printer);
+    }
+
+    TextPrinter_DrawScrollArrow(printer);
+    return TextPrinter_Continue(printer);
 }
 
-void RenderControlFlags_SetSpeedUpOnTouch(int param0)
+BOOL TextPrinter_Wait(TextPrinter *printer)
 {
-    Unk_02101D44.speedUpOnTouch = param0;
+    // Ugly casts here are necessary to match. GF moment.
+    if (sRenderControlFlags.autoScroll) {
+        return (u8)TextPrinter_WaitAutoMode(printer);
+    }
+
+    return (u8)TextPrinter_Continue(printer);
 }
 
-u8 RenderControlFlags_GetSpeedUpBattle(void)
+void RenderControlFlags_SetCanABSpeedUpPrint(BOOL val)
 {
-    return Unk_02101D44.speedUpBattle;
+    sRenderControlFlags.canABSpeedUpPrint = val;
 }
 
-void RenderControlFlags_ZeroSpeedUpBattle(void)
+void RenderControlFlags_SetAutoScrollFlags(int flags)
 {
-    Unk_02101D44.speedUpBattle = 0;
+    sRenderControlFlags.autoScroll = flags & 1;
+    sRenderControlFlags.speedUpAutoScroll = (flags >> 1) & 1;
 }
 
-u8 RenderControlFlags_GetWaitBattle(void)
+void RenderControlFlags_SetSpeedUpOnTouch(BOOL val)
 {
-    return Unk_02101D44.waitBattle;
+    sRenderControlFlags.speedUpOnTouch = val;
 }
 
-void RenderControlFlags_ZeroWaitBattle(void)
+u8 RenderControlFlags_GetSpeedUpBattle()
 {
-    Unk_02101D44.waitBattle = 0;
+    return sRenderControlFlags.speedUpBattle;
+}
+
+void RenderControlFlags_ZeroSpeedUpBattle()
+{
+    sRenderControlFlags.speedUpBattle = FALSE;
+}
+
+u8 RenderControlFlags_GetWaitBattle()
+{
+    return sRenderControlFlags.waitBattle;
+}
+
+void RenderControlFlags_ZeroWaitBattle()
+{
+    sRenderControlFlags.waitBattle = FALSE;
 }

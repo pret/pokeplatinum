@@ -113,7 +113,7 @@ u8 PrintStringSimple(Window *window, u32 fontID, const Strbuf *strbuf, u32 xOffs
     v0.shadowColor = Unk_02100840[fontID].unk_07;
     v0.glyphTable = 0;
     v0.dummy1A = 0;
-    v0.dummy1B = 0xFF;
+    v0.cacheColor = 0xFF;
 
     return sub_0201D834(&v0, renderDelay, callback);
 }
@@ -137,7 +137,7 @@ u8 sub_0201D78C(Window *param0, u32 param1, const Strbuf *param2, u32 param3, u3
     v0.bgColor = (((param6) >> 0) & 0xff);
     v0.glyphTable = 0;
     v0.dummy1A = 0;
-    v0.dummy1B = 0xFF;
+    v0.cacheColor = 0xFF;
 
     return sub_0201D834(&v0, param5, param7);
 }
@@ -161,7 +161,7 @@ u8 PrintStringWithColorAndMargins(Window *param0, u32 param1, const Strbuf *para
     v0.bgColor = (((param6) >> 0) & 0xff);
     v0.glyphTable = 0;
     v0.dummy1A = 0;
-    v0.dummy1B = 0xFF;
+    v0.cacheColor = 0xFF;
 
     return sub_0201D834(&v0, param5, param9);
 }

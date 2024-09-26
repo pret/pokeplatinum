@@ -6,6 +6,12 @@
 #include "charcode.h"
 #include "strbuf.h"
 
+#define COLOR_CACHE_OFFSET                100
+#define COLOR_CACHE_RANGE                 7
+#define COLOR_CACHE_MAX                   (COLOR_CACHE_OFFSET + COLOR_CACHE_RANGE)
+#define COLOR_CACHE_IS_VALID(param)       (param >= COLOR_CACHE_OFFSET && param < COLOR_CACHE_MAX)
+#define CHAR_CONTROL_SET_COLOR_FROM_CACHE 0xFF
+
 typedef struct TextGlyph {
     u8 gfx[128];
     u8 width;
@@ -34,7 +40,7 @@ typedef struct TextPrinterTemplate {
     u8 shadowColor;
     u16 glyphTable;
     u8 dummy1A;
-    u8 dummy1B;
+    u8 cacheColor;
 } TextPrinterTemplate;
 
 typedef BOOL (*TextPrinterCallback)(TextPrinterTemplate *, u16);
@@ -65,7 +71,14 @@ typedef struct TextPrinter {
     void *iconGfx;
 } TextPrinter;
 
-int RenderText(TextPrinter *printer);
+enum RenderResult {
+    RENDER_PRINT,
+    RENDER_FINISH,
+    RENDER_REPEAT, // Run render function again, if e.g. a control code is encountered.
+    RENDER_UPDATE,
+};
+
+enum RenderResult RenderText(TextPrinter *printer);
 void TextPrinter_SetScrollArrowBaseTile(u16 tile);
 void TextPrinter_InitScrollArrowAnim(TextPrinter *printer);
 void TextPrinter_DrawScrollArrow(TextPrinter *printer);
