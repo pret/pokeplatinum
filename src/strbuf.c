@@ -417,8 +417,8 @@ void Strbuf_AppendChar(Strbuf *dst, charcode_t c)
     GF_ASSERT(FALSE);
 }
 
-#define COMPRESSED_MASK   (0x01FF)
-#define COMPRESSED_EOS    (0x01FF) // 0xFFFF & 0x01FF
+#define COMPRESSED_MASK (0x01FF)
+#define COMPRESSED_EOS  (0x01FF) // 0xFFFF & 0x01FF
 
 BOOL Strbuf_IsTrainerName(Strbuf *strbuf)
 {
