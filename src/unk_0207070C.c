@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field/map_load.h"
+
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_0203D8AC.h"
@@ -40,8 +42,6 @@
 #include "unk_020711C8.h"
 #include "unk_02071B10.h"
 #include "vars_flags.h"
-
-#include "constants/field/map_load.h"
 
 typedef struct {
     UnkFuncPtr_0203B7C0 unk_00;

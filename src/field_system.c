@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field/map_load.h"
+
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0203CC84.h"
 
@@ -36,8 +38,6 @@
 #include "unk_0205F180.h"
 #include "unk_0209ACBC.h"
 #include "unk_0209C370.h"
-
-#include "constants/field/map_load.h"
 
 FS_EXTERN_OVERLAY(overlay5);
 FS_EXTERN_OVERLAY(overlay77);

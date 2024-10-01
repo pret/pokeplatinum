@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field/map_load.h"
+
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0202D7B0.h"
@@ -58,8 +60,6 @@
 #include "unk_020683F4.h"
 #include "unk_0207CB08.h"
 #include "unk_0208C098.h"
-
-#include "constants/field/map_load.h"
 
 typedef struct {
     const u8 *unk_00;

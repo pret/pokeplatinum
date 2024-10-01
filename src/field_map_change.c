@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field/map_load.h"
 #include "constants/overworld_weather.h"
 #include "consts/map.h"
 
@@ -76,8 +77,6 @@
 #include "unk_02070428.h"
 #include "vars_flags.h"
 
-#include "constants/field/map_load.h"
-
 FS_EXTERN_OVERLAY(overlay23);
 
 typedef struct {
@@ -88,8 +87,8 @@ typedef struct {
 
 typedef struct {
     int state;
-    Location unk_04;
-} UnkStruct_02053A80;
+    Location nextLocation;
+} MapChangeSubData;
 
 typedef struct {
     int unk_00;
@@ -662,44 +661,44 @@ void FieldSystem_StartChangeMapTask(TaskManager *taskMan, const Location *nextLo
 static BOOL FieldTask_ChangeMapSub(TaskManager *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_02053A80 *v2 = TaskManager_Environment(taskMan);
+    MapChangeSubData *mapChangeSub = TaskManager_Environment(taskMan);
 
-    switch (v2->state) {
+    switch (mapChangeSub->state) {
     case 0:
         FieldMapChange_DeleteObjects(fieldSystem);
         sub_02053468(fieldSystem);
-        (v2->state)++;
+        (mapChangeSub->state)++;
         break;
     case 1:
-        FieldMapChange_SetNewLocation(fieldSystem, &v2->unk_04);
+        FieldMapChange_SetNewLocation(fieldSystem, &mapChangeSub->nextLocation);
         FieldMapChange_InitTerrainCollisionManager(fieldSystem);
         FieldMapChange_UpdateGameData(fieldSystem, 0);
         RadarChain_Clear(fieldSystem->chain);
-        (v2->state)++;
+        (mapChangeSub->state)++;
         break;
     case 2:
         FieldMapChange_CreateObjects(fieldSystem);
-        Heap_FreeToHeap(v2);
+        Heap_FreeToHeap(mapChangeSub);
         return 1;
     }
 
     return 0;
 }
 
-void sub_020539A0(TaskManager *taskMan, const Location *param1)
+void sub_020539A0(TaskManager *taskMan, const Location *nextLocation)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_02053A80 *v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02053A80));
+    MapChangeSubData *mapChangeSub = Heap_AllocFromHeapAtEnd(11, sizeof(MapChangeSubData));
 
     if (sub_0203CD4C(fieldSystem)) {
         GF_ASSERT(FALSE);
         return;
     }
 
-    v1->state = 0;
-    v1->unk_04 = *param1;
+    mapChangeSub->state = 0;
+    mapChangeSub->nextLocation = *nextLocation;
 
-    FieldTask_Start(taskMan, FieldTask_ChangeMapSub, v1);
+    FieldTask_Start(taskMan, FieldTask_ChangeMapSub, mapChangeSub);
 }
 
 void sub_020539E8(TaskManager *taskMan, int param1, int param2, int param3, int param4, int param5)
@@ -713,30 +712,30 @@ void sub_020539E8(TaskManager *taskMan, int param1, int param2, int param3, int 
 static BOOL FieldTask_ChangeMapFull(TaskManager *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_02053A80 *v1 = TaskManager_Environment(taskMan);
-    Location *v2 = &v1->unk_04;
+    MapChangeSubData *mapChangeSub = TaskManager_Environment(taskMan);
+    Location *nextLocation = &mapChangeSub->nextLocation;
 
-    switch (v1->state) {
+    switch (mapChangeSub->state) {
     case 0:
-        Sound_TryFadeInBGM(fieldSystem, v2->mapId);
+        Sound_TryFadeInBGM(fieldSystem, nextLocation->mapId);
         sub_02055820(taskMan);
-        (v1->state)++;
+        (mapChangeSub->state)++;
         break;
     case 1:
-        sub_020539A0(taskMan, &v1->unk_04);
-        (v1->state)++;
+        sub_020539A0(taskMan, &mapChangeSub->nextLocation);
+        (mapChangeSub->state)++;
         break;
     case 2:
         if (Sound_CheckFade() != 0) {
             break;
         }
 
-        Sound_PlayMapBGM(fieldSystem, v2->mapId);
+        Sound_PlayMapBGM(fieldSystem, nextLocation->mapId);
         sub_02055868(taskMan);
-        (v1->state)++;
+        (mapChangeSub->state)++;
         break;
     case 3:
-        Heap_FreeToHeap(v1);
+        Heap_FreeToHeap(mapChangeSub);
         return 1;
     }
 
@@ -745,12 +744,12 @@ static BOOL FieldTask_ChangeMapFull(TaskManager *taskMan)
 
 void sub_02053A80(TaskManager *taskMan, int mapId, int param2, int x, int z, int param5)
 {
-    UnkStruct_02053A80 *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02053A80));
+    MapChangeSubData *mapChangeSub = Heap_AllocFromHeapAtEnd(11, sizeof(MapChangeSubData));
 
-    v0->state = 0;
+    mapChangeSub->state = 0;
 
-    Location_Set(&v0->unk_04, mapId, param2, x, z, param5);
-    FieldTask_Start(taskMan, FieldTask_ChangeMapFull, v0);
+    Location_Set(&mapChangeSub->nextLocation, mapId, param2, x, z, param5);
+    FieldTask_Start(taskMan, FieldTask_ChangeMapFull, mapChangeSub);
 }
 
 void sub_02053AB4(FieldSystem *fieldSystem, int param1, int param2, int param3, int param4, int param5)
@@ -1353,31 +1352,31 @@ static BOOL sub_0205444C(TaskManager *taskMan, int param1)
 static BOOL sub_02054494(TaskManager *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_02053A80 *v1 = TaskManager_Environment(taskMan);
+    MapChangeSubData *mapChangeSub = TaskManager_Environment(taskMan);
 
-    switch (v1->state) {
+    switch (mapChangeSub->state) {
     case 0:
         FieldMapChange_DeleteObjects(fieldSystem);
-        (v1->state)++;
+        (mapChangeSub->state)++;
         break;
     case 1:
-        FieldMapChange_SetNewLocation(fieldSystem, &v1->unk_04);
+        FieldMapChange_SetNewLocation(fieldSystem, &mapChangeSub->nextLocation);
         sub_0203F5C0(fieldSystem, 2);
-        (v1->state)++;
+        (mapChangeSub->state)++;
         break;
     case 2:
         FieldMapChange_CreateObjects(fieldSystem);
-        Heap_FreeToHeap(v1);
+        Heap_FreeToHeap(mapChangeSub);
         return 1;
     }
 
     return 0;
 }
 
-void sub_020544F0(TaskManager *taskMan, const Location *param1)
+void sub_020544F0(TaskManager *taskMan, const Location *nextLocation)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_02053A80 *v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02053A80));
+    MapChangeSubData *v1 = Heap_AllocFromHeapAtEnd(11, sizeof(MapChangeSubData));
 
     if (sub_0203CD4C(fieldSystem)) {
         GF_ASSERT(FALSE);
@@ -1385,7 +1384,7 @@ void sub_020544F0(TaskManager *taskMan, const Location *param1)
     }
 
     v1->state = 0;
-    v1->unk_04 = *param1;
+    v1->nextLocation = *nextLocation;
 
     FieldTask_Start(taskMan, sub_02054494, v1);
 }
