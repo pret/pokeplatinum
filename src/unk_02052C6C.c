@@ -188,7 +188,7 @@ void sub_02052E58(TaskManager *param0)
     v5 = Heap_AllocFromHeap(32, sizeof(UnkStruct_0205300C));
     v3 = SaveData_GetVarsFlags(fieldSystem->saveData);
     v4 = SaveData_GetTrainerInfo(fieldSystem->saveData);
-    v1 = sub_0203A730(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+    v1 = FieldOverworldState_GetSpecialLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));
     v2 = sub_0203A72C(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     v5->unk_00 = sub_0206A954(v3);

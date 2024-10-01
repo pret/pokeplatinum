@@ -164,7 +164,7 @@ static BOOL sub_02050B30(TaskManager *taskMan)
         (*v2)++;
         break;
     case 1:
-        sub_02055820(taskMan);
+        FieldTask_FinishFieldMap(taskMan);
         (*v2)++;
         break;
     case 2:
@@ -192,7 +192,7 @@ static BOOL sub_02050B30(TaskManager *taskMan)
         sub_020518B0(fieldSystem, v1->unk_10);
         sub_02051988(fieldSystem, v1->unk_10);
         sub_0206B48C(SaveData_GetVarsFlags(fieldSystem->saveData), v1->unk_10->unk_18C);
-        sub_02055868(taskMan);
+        FieldTask_StartFieldMap(taskMan);
         (*v2)++;
         break;
     case 4:
@@ -247,7 +247,7 @@ static BOOL sub_02050CA8(TaskManager *taskMan)
         (*v2)++;
         break;
     case 1:
-        sub_02055820(taskMan);
+        FieldTask_FinishFieldMap(taskMan);
         (*v2)++;
         break;
     case 2:
@@ -263,7 +263,7 @@ static BOOL sub_02050CA8(TaskManager *taskMan)
             GameRecords_IncrementTrainerScore(v3, TRAINER_SCORE_EVENT_UNK_21);
         }
 
-        sub_02055868(taskMan);
+        FieldTask_StartFieldMap(taskMan);
         (*v2)++;
         break;
     case 4:
@@ -384,7 +384,7 @@ static BOOL sub_02050EE0(TaskManager *taskMan)
         v1->unk_00++;
         break;
     case 1:
-        sub_02055820(taskMan);
+        FieldTask_FinishFieldMap(taskMan);
         v1->unk_00++;
         break;
     case 2:
@@ -419,7 +419,7 @@ static BOOL sub_02050EE0(TaskManager *taskMan)
             }
         }
 
-        sub_02055868(taskMan);
+        FieldTask_StartFieldMap(taskMan);
         v1->unk_00++;
         break;
     case 4:
@@ -467,7 +467,7 @@ static BOOL sub_02051074(TaskManager *taskMan)
         (*v2)++;
         break;
     case 1:
-        sub_02055820(taskMan);
+        FieldTask_FinishFieldMap(taskMan);
         (*v2)++;
         break;
     case 2:
@@ -489,15 +489,15 @@ static BOOL sub_02051074(TaskManager *taskMan)
         if (((*v3) == 0) && (v1->unk_10->unk_14 != 0x4)) {
             Location *v6;
 
-            v6 = sub_0203A730(SaveData_GetFieldOverworldState(fieldSystem->saveData));
-            sub_020539A0(taskMan, v6);
+            v6 = FieldOverworldState_GetSpecialLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+            FieldTask_ChangeMapByLocation(taskMan, v6);
         }
 
         sub_02051988(fieldSystem, v1->unk_10);
         (*v2)++;
         break;
     case 4:
-        sub_02055868(taskMan);
+        FieldTask_StartFieldMap(taskMan);
         (*v2)++;
         break;
     case 5:
@@ -622,7 +622,7 @@ static BOOL sub_0205136C(TaskManager *taskMan)
         (*v2)++;
         break;
     case 1:
-        sub_02055820(taskMan);
+        FieldTask_FinishFieldMap(taskMan);
         (*v2)++;
         break;
     case 2:
@@ -636,7 +636,7 @@ static BOOL sub_0205136C(TaskManager *taskMan)
         (*v2)++;
         break;
     case 4:
-        sub_02055868(taskMan);
+        FieldTask_StartFieldMap(taskMan);
         (*v2)++;
         break;
     case 5:
@@ -701,7 +701,7 @@ static BOOL sub_020514E8(TaskManager *taskMan)
         (*v2)++;
         break;
     case 1:
-        sub_02055820(taskMan);
+        FieldTask_FinishFieldMap(taskMan);
         (*v2)++;
         break;
     case 2:
@@ -712,7 +712,7 @@ static BOOL sub_020514E8(TaskManager *taskMan)
         (*v2)++;
         break;
     case 4:
-        sub_02055868(taskMan);
+        FieldTask_StartFieldMap(taskMan);
         (*v2)++;
         break;
     case 5:

@@ -1026,7 +1026,7 @@ BOOL sub_0203DBF0(TaskManager *param0)
     switch (v2->unk_00) {
     case 0:
         if (!sub_020389B8()) {
-            sub_02055820(param0);
+            FieldTask_FinishFieldMap(param0);
         }
 
         v2->unk_00++;
@@ -1188,7 +1188,7 @@ static BOOL sub_0203DE98(TaskManager *param0)
 
     switch (v2->unk_00) {
     case 0:
-        sub_02055820(param0);
+        FieldTask_FinishFieldMap(param0);
         v2->unk_00++;
         break;
     case 1:
@@ -1196,7 +1196,7 @@ static BOOL sub_0203DE98(TaskManager *param0)
         v2->unk_00++;
         break;
     case 2:
-        sub_02055868(param0);
+        FieldTask_StartFieldMap(param0);
         v2->unk_00++;
         break;
     case 3:

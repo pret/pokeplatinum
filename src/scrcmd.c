@@ -3930,13 +3930,13 @@ BOOL sub_02041D60(ScriptContext *ctx)
 
 static BOOL ScrCmd_0A1(ScriptContext *ctx)
 {
-    sub_02055868(ctx->fieldSystem->unk_10);
+    FieldTask_StartFieldMap(ctx->fieldSystem->unk_10);
     return 1;
 }
 
 static BOOL ScrCmd_1F8(ScriptContext *ctx)
 {
-    sub_02055820(ctx->fieldSystem->unk_10);
+    FieldTask_FinishFieldMap(ctx->fieldSystem->unk_10);
     return 1;
 }
 
@@ -4608,7 +4608,7 @@ static BOOL ScrCmd_Warp(ScriptContext *ctx)
     u16 z = ScriptContext_GetVar(ctx);
     u16 direction = ScriptContext_GetVar(ctx);
 
-    sub_02053A80(ctx->taskManager, mapID, -1, x, z, direction);
+    FieldTask_StartMapChangeFull(ctx->taskManager, mapID, -1, x, z, direction);
     return TRUE;
 }
 
@@ -4963,7 +4963,7 @@ static BOOL ScrCmd_11C(ScriptContext *ctx)
     Location *location;
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
 
-    location = sub_0203A730(SaveData_GetFieldOverworldState(ctx->fieldSystem->saveData));
+    location = FieldOverworldState_GetSpecialLocation(SaveData_GetFieldOverworldState(ctx->fieldSystem->saveData));
     *v1 = ov5_021DCCC8(location->mapId);
 
     return 0;

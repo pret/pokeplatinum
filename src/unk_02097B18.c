@@ -318,7 +318,7 @@ static BOOL sub_02097F38(TaskManager *param0)
     switch (v0->unk_14) {
     case 0:
 
-        sub_02055820(param0);
+        FieldTask_FinishFieldMap(param0);
         v1->unk_20 = sub_0202CA1C(v0->unk_10);
         sub_02097F20(v1, 0);
 
@@ -404,7 +404,7 @@ static BOOL sub_02097F38(TaskManager *param0)
         v0->unk_14 = 1;
         break;
     case 5:
-        sub_02055868(param0);
+        FieldTask_StartFieldMap(param0);
         v0->unk_14 = 6;
         break;
     case 6:

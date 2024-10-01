@@ -176,7 +176,7 @@ static BOOL sub_02093448(TaskManager *param0)
 
     switch (v1->unk_04) {
     case 0:
-        sub_02055820(param0);
+        FieldTask_FinishFieldMap(param0);
         v1->unk_04++;
         break;
     case 1:
@@ -246,7 +246,7 @@ static BOOL sub_02093448(TaskManager *param0)
         v1->unk_04++;
         break;
     case 12:
-        sub_02055868(param0);
+        FieldTask_StartFieldMap(param0);
         v1->unk_04++;
         break;
     default:
@@ -266,7 +266,7 @@ static BOOL sub_020935EC(TaskManager *param0)
 
     switch (v1->unk_04) {
     case 0:
-        sub_02055820(param0);
+        FieldTask_FinishFieldMap(param0);
         v1->unk_04++;
         break;
     case 1:
@@ -363,7 +363,7 @@ static BOOL sub_020935EC(TaskManager *param0)
         v1->unk_04++;
         break;
     case 8:
-        sub_02055868(param0);
+        FieldTask_StartFieldMap(param0);
         v1->unk_04++;
         break;
     default:

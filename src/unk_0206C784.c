@@ -216,7 +216,7 @@ static BOOL sub_0206C964(TaskManager *taskMan)
             ov5_021D42B0(fieldSystem->unk_50, fieldSystem->unk_54, 2);
         }
 
-        sub_02055820(taskMan);
+        FieldTask_FinishFieldMap(taskMan);
         v1->unk_00 = 4;
         break;
     case 4:

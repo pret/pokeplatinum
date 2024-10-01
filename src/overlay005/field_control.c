@@ -1012,7 +1012,7 @@ static BOOL Field_MapConnection(const FieldSystem *fieldSystem, int playerX, int
 
     if (v0->destWarpID == 0x100) {
         GF_ASSERT(v0->destHeaderID == 0xfff);
-        *nextMap = *(sub_0203A730(SaveData_GetFieldOverworldState(fieldSystem->saveData)));
+        *nextMap = *(FieldOverworldState_GetSpecialLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData)));
     } else {
         Location_Set(nextMap, v0->destHeaderID, v0->destWarpID, v0->x, v0->z, 1);
     }

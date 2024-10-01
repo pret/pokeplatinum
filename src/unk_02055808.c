@@ -23,7 +23,7 @@ static BOOL sub_02055808(TaskManager *param0)
     return 0;
 }
 
-void sub_02055820(TaskManager *param0)
+void FieldTask_FinishFieldMap(TaskManager *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
 
@@ -47,7 +47,7 @@ static BOOL sub_02055850(TaskManager *param0)
     return 0;
 }
 
-void sub_02055868(TaskManager *param0)
+void FieldTask_StartFieldMap(TaskManager *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
 
@@ -109,7 +109,7 @@ static BOOL sub_02055934(TaskManager *param0)
         (*v0)++;
         break;
     case 1:
-        sub_02055820(param0);
+        FieldTask_FinishFieldMap(param0);
         (*v0)++;
         break;
     case 2:
@@ -131,7 +131,7 @@ static BOOL sub_02055984(TaskManager *param0)
 
     switch (*v0) {
     case 0:
-        sub_02055868(param0);
+        FieldTask_StartFieldMap(param0);
         (*v0)++;
         break;
     case 1:

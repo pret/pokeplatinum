@@ -227,7 +227,7 @@ BOOL sub_02052B2C(TaskManager *param0)
 
             sub_0203A824(v4, &v2);
             sub_0203A7F0(v4, sub_0203A72C(v3));
-            sub_020539A0(param0, &v2);
+            FieldTask_ChangeMapByLocation(param0, &v2);
             sub_020705B4(fieldSystem);
         }
         (*v1)++;
@@ -249,7 +249,7 @@ BOOL sub_02052B2C(TaskManager *param0)
         (*v1)++;
         break;
     case 4:
-        sub_02055868(param0);
+        FieldTask_StartFieldMap(param0);
         (*v1)++;
         break;
     case 5:

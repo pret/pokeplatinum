@@ -84,7 +84,7 @@ Location *sub_0203A72C(FieldOverworldState *fieldState)
     return &fieldState->unk_50;
 }
 
-Location *sub_0203A730(FieldOverworldState *fieldState)
+Location *FieldOverworldState_GetSpecialLocation(FieldOverworldState *fieldState)
 {
     return &fieldState->unk_3C;
 }
