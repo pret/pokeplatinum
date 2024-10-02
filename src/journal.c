@@ -119,7 +119,7 @@ int Journal_SaveSize(void)
     return sizeof(Journal) * 10;
 }
 
-static void Jounral_Init(Journal *journal)
+static void Journal_Init(Journal *journal)
 {
     memset(journal, 0, sizeof(Journal));
 }
@@ -150,7 +150,7 @@ Journal *Journal_GetSavedPage(Journal *journal, BOOL param1)
             journal[v1] = journal[v1 - 1];
         }
 
-        Jounral_Init(&journal[0]);
+        Journal_Init(&journal[0]);
     }
 
     return &journal[0];

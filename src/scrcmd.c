@@ -4693,7 +4693,7 @@ static BOOL ScrCmd_0C2(ScriptContext *ctx)
     v1 = ScriptContext_GetVar(ctx);
     v2 = ScriptContext_GetVar(ctx);
 
-    sub_02053AB4(ctx->fieldSystem, v0, -1, v1, v2, 1);
+    FieldTask_StartMapChangeFly(ctx->fieldSystem, v0, -1, v1, v2, 1);
     return 1;
 }
 

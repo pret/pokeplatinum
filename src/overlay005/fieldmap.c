@@ -166,7 +166,7 @@ static BOOL FieldMap_Init(OverlayManager *overlayMan, int *param1)
         sub_0200F32C(0);
         sub_0200F32C(1);
         ov5_021D173C(fieldSystem);
-        sub_020531A0(fieldSystem);
+        FieldMapChange_Set3DDisplay(fieldSystem);
 
         if (fieldSystem->mapLoadMode->unk_00_20) {
             Overlay_LoadByID(FS_OVERLAY_ID(overlay6), 2);

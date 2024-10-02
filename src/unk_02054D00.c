@@ -277,7 +277,7 @@ BOOL FieldSystem_CheckCollision(const FieldSystem *fieldSystem, const int param1
     BOOL v0;
     u16 v1;
 
-    v0 = fieldSystem->unk_5C->getAttrFunc(fieldSystem, param1, param2, &v1);
+    v0 = fieldSystem->terrainCollisionMan->getAttrFunc(fieldSystem, param1, param2, &v1);
 
     if (v0) {
         u8 v2;
@@ -298,7 +298,7 @@ u8 sub_02054F94(const FieldSystem *fieldSystem, const int param1, const int para
     BOOL v0;
     u16 v1;
 
-    v0 = fieldSystem->unk_5C->getAttrFunc(fieldSystem, param1, param2, &v1);
+    v0 = fieldSystem->terrainCollisionMan->getAttrFunc(fieldSystem, param1, param2, &v1);
 
     if (v0) {
         u8 v2;
@@ -317,7 +317,7 @@ const fx32 sub_02054FBC(const FieldSystem *fieldSystem, const fx32 param1, const
     BOOL v0;
     fx32 v1;
 
-    v1 = fieldSystem->unk_5C->getHeightFunc(fieldSystem, param1, param2, param3, param4);
+    v1 = fieldSystem->terrainCollisionMan->getHeightFunc(fieldSystem, param1, param2, param3, param4);
 
     return v1;
 }

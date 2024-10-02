@@ -303,7 +303,7 @@ void ov5_021DDA78(UnkStruct_ov5_021DD9C8 *param0)
     }
 }
 
-void ov5_021DDAA4(FieldSystem *fieldSystem)
+void FieldSystem_RequestLocationName(FieldSystem *fieldSystem)
 {
     int v0;
     int v1;

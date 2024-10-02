@@ -153,10 +153,10 @@ static int ov6_02247288(TaskManager *taskMan, FieldSystem *fieldSystem, UnkStruc
 
         v1 = FieldOverworldState_GetWarpId(v0);
         sub_0203A7F0(v1, &v2);
-        sub_02053CD4(taskMan, &v2, param2->unk_08);
+        FieldTask_ChangeMapChangeByDig(taskMan, &v2, param2->unk_08);
     } else {
         Location *v3 = sub_0203A72C(v0);
-        sub_02053CD4(taskMan, v3, param2->unk_08);
+        FieldTask_ChangeMapChangeByDig(taskMan, v3, param2->unk_08);
     }
 
     return 2;

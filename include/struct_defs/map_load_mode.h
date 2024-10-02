@@ -1,7 +1,7 @@
-#ifndef POKEPLATINUM_STRUCT_020EC3A8_H
-#define POKEPLATINUM_STRUCT_020EC3A8_H
+#ifndef POKEPLATINUM_STRUCT_MAP_LOAD_MODE_H
+#define POKEPLATINUM_STRUCT_MAP_LOAD_MODE_H
 
-typedef struct {
+typedef struct MapLoadMode {
     u32 fieldBottomScreen : 4;
     u32 unk_00_4 : 4;
     u32 unk_00_8 : 4;
@@ -12,4 +12,4 @@ typedef struct {
     u32 unk_04;
 } MapLoadMode;
 
-#endif // POKEPLATINUM_STRUCT_020EC3A8_H
+#endif // POKEPLATINUM_STRUCT_MAP_LOAD_MODE_H

@@ -110,13 +110,13 @@ void sub_0207056C(FieldSystem *fieldSystem)
     sub_0206C354(sub_0202D834(fieldSystem->saveData));
 }
 
-void sub_02070588(FieldSystem *fieldSystem)
+void FieldSystem_SetTeleportFlags(FieldSystem *fieldSystem)
 {
     sub_0206AE4C(SaveData_GetVarsFlags(fieldSystem->saveData));
     sub_0206C354(sub_0202D834(fieldSystem->saveData));
 }
 
-void sub_020705A4(FieldSystem *fieldSystem)
+void FieldSystem_SetEscapeFlags(FieldSystem *fieldSystem)
 {
     sub_0206AE4C(SaveData_GetVarsFlags(fieldSystem->saveData));
 }

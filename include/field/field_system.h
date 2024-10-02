@@ -12,11 +12,11 @@
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02095E80_decl.h"
 #include "struct_decls/struct_0209ACBC_decl.h"
+#include "struct_defs/map_load_mode.h"
 #include "struct_defs/struct_0202610C.h"
 #include "struct_defs/struct_02049FA8.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_0209C370.h"
-#include "struct_defs/struct_020EC3A8.h"
 
 #include "field/field_system_sub1_decl.h"
 #include "field/field_system_sub2_decl.h"
@@ -70,7 +70,7 @@ typedef struct FieldSystem_t {
     UnkStruct_ov5_021D3CAC *unk_50;
     UnkStruct_ov5_021D41B4 *unk_54;
     UnkStruct_02054C18 *unk_58;
-    const TerrainCollisionManager *unk_5C;
+    const TerrainCollisionManager *terrainCollisionMan;
     int unk_60;
     UnkStruct_ov5_021E1B20 *unk_64;
     BOOL unk_68;

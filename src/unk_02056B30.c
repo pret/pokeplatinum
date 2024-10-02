@@ -240,7 +240,7 @@ static BOOL sub_02056CFC(TaskManager *taskMan)
         }
 
         Sound_PlayMapBGM(fieldSystem, v2->mapId);
-        ov5_021DDAA4(fieldSystem);
+        FieldSystem_RequestLocationName(fieldSystem);
 
         v1->unk_04 = 0;
         FieldTask_Start(taskMan, Unk_020EC544[v1->unk_20], v1);

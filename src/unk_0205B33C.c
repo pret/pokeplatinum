@@ -104,7 +104,7 @@ static int sub_0205BCD4(int param0, int param1, StringTemplate *param2);
 static void sub_0205B408(UnkStruct_0205B43C *param0);
 static void sub_0205BFF0(UnkStruct_0205B4F8 *param0);
 
-UnkStruct_0205B43C *sub_0205B33C(FieldSystem *fieldSystem)
+UnkStruct_0205B43C *FieldSystem_InitCommUnionRoom(FieldSystem *fieldSystem)
 {
     UnkStruct_0205B43C *v0 = NULL;
 

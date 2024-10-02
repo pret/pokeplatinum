@@ -119,7 +119,7 @@ static BOOL sub_02055934(TaskManager *param0)
     return 0;
 }
 
-void sub_02055974(TaskManager *param0)
+void FieldTask_FinishFadeOut(TaskManager *param0)
 {
     FieldTask_Start(param0, sub_02055934, NULL);
 }
@@ -135,7 +135,7 @@ static BOOL sub_02055984(TaskManager *param0)
         (*v0)++;
         break;
     case 1:
-        ov5_021DDAA4(fieldSystem);
+        FieldSystem_RequestLocationName(fieldSystem);
         sub_020558F0(param0);
         (*v0)++;
         break;
