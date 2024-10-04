@@ -63,7 +63,7 @@ void LoadOverlayGDB(const FSOverlayID overlayID)
     // and the size field is not correct compared to what's stored in the NEF.
     // the standard overlay manager in GDB bases comparisons on VMA and LMA, so it's not viable here.
     // requires a custom GDB build which uses section name and which can override section size.
-    // see 
+    // see https://github.com/joshua-smith-12/binutils-gdb-nds
     _ovly_table[overlayID].vma = overlayInfo.header.ram_address;
     _ovly_table[overlayID].lma = 0;
     _ovly_table[overlayID].size = overlayInfo.header.ram_size; 
