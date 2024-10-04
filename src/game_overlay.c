@@ -34,6 +34,38 @@ BOOL Overlay_LoadByID(const FSOverlayID param0, int param1);
 
 static UnkStruct_021BF370 Unk_021BF370;
 
+/* Added to support GDB overlay debugging. */
+const char _ovly_name[] = "overlay%d";
+unsigned long _novlys = MAX_OVERLAYS;
+struct_overlayTable _ovly_table[MAX_OVERLAYS] = {};
+static void _ovly_debug_event(void) {}
+void UnloadOverlayGDB(const FSOverlayID overlayID)
+{
+    GF_ASSERT(overlayID < _novlys);
+    _ovly_table[overlayID].mapped = 0;
+    _ovly_debug_event();
+}
+void LoadOverlayGDB(const FSOverlayID overlayID)
+{
+    FSOverlayInfo overlayInfo;
+
+    // dummies to force symbols to exist
+    GF_ASSERT(overlayID < _novlys);
+    strcmp(_ovly_name, _ovly_name);
+
+    if(_ovly_table[overlayID].mapped != 0) return;
+
+    // 1. fetch overlay info to identify vma/lma
+    GF_ASSERT(FS_LoadOverlayInfo(&overlayInfo, MI_PROCESSOR_ARM9, overlayID) == TRUE);
+
+    // 2. add entry to _ovly_table
+    _ovly_table[overlayID].vma = overlayInfo.header.ram_address;
+    _ovly_table[overlayID].lma = 0;
+    _ovly_table[overlayID].size = overlayInfo.header.ram_size;
+    _ovly_table[overlayID].mapped = 1;
+    _ovly_debug_event();
+}
+
 static void FreeOverlayAllocation(PMiLoadedOverlay *param0)
 {
     GF_ASSERT(param0->isActive == 1);
@@ -52,6 +84,7 @@ void Overlay_UnloadByID(const FSOverlayID overlayID)
     for (i = 0; i < 8; i++) {
         if ((table[i].isActive == 1) && (table[i].id == overlayID)) {
             FreeOverlayAllocation(&table[i]);
+            UnloadOverlayGDB(overlayID);
             return;
         }
     }
@@ -195,6 +228,7 @@ static BOOL GetOverlayRamBounds(const FSOverlayID overlayID, u32 *start, u32 *en
 
 static BOOL LoadOverlayNormal(MIProcessor proc, FSOverlayID overlayID)
 {
+    LoadOverlayGDB(overlayID);
     return FS_LoadOverlay(proc, overlayID);
 }
 
@@ -210,6 +244,8 @@ static BOOL LoadOverlayNoInit(MIProcessor proc, FSOverlayID overlayID)
         return FALSE;
     }
 
+    LoadOverlayGDB(overlayID);
+
     FS_StartOverlay(&info);
     return TRUE;
 }
@@ -222,6 +258,8 @@ static BOOL LoadOverlayNoInitAsync(MIProcessor proc, FSOverlayID overlayID)
     if (!FS_LoadOverlayInfo(&info, proc, overlayID)) {
         return FALSE;
     }
+
+    LoadOverlayGDB(overlayID);
 
     FS_InitFile(&file);
     FS_LoadOverlayImageAsync(&info, &file);
