@@ -21,10 +21,7 @@ export MESON_RSP_THRESHOLD=16387
 if [ "$target" = test ]; then
     "${MESON:-meson}" test -C build "$@"
 elif [ "$target" = rom ]; then
-    "${MESON:-meson}" compile -C build "pokeplatinum.us.nds"
+    "${MESON:-meson}" compile -C build "pokeplatinum.us.nds" "debug.nef"
 else
     "${MESON:-meson}" compile -C build "$target" "$@"
 fi
-
-# remap incorrect source paths due to Wine build process
-python3 fixup_elf2.py

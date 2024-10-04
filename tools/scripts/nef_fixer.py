@@ -1,15 +1,24 @@
+#!/usr/bin/env python3
 import subprocess
 import os
+import shutil
+import sys
 
 try:
-    os.remove("build/sources.txt")
+    os.remove("sources.txt")
 except:
     pass
 
-print("Retrieving source file list via debugedit")
-subprocess.run(["debugedit", "-l", "build/sources.txt", "build/main.nef"])
+source = sys.argv[1]
+dest = sys.argv[2]
 
-with open("build/sources.txt") as f:
+print(f"Copying {source} to {dest}")
+shutil.copyfile(source, dest)
+
+print("Retrieving source file list via debugedit")
+subprocess.run(["debugedit", "-l", "sources.txt", dest])
+
+with open("sources.txt") as f:
     content = f.read()
     all_sources = content.split('\0')
 
@@ -29,4 +38,4 @@ print(f"Identified {len(source_paths)} unique source directories from source fil
 for source in source_paths:
     remapped = source.replace("\\", "/")[2:]
     print(f"Remapping source path from {source} to {remapped} using debugedit.")
-    subprocess.run(["debugedit", "-b", source, "-d", remapped, "build/main.nef"])
+    subprocess.run(["debugedit", "-b", source, "-d", remapped, dest])

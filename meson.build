@@ -228,6 +228,22 @@ pokeplatinum_nds = custom_target('pokeplatinum.us.nds',
     build_by_default: true
 )
 
+############################################################
+###                     NEF FIXER                        ###
+############################################################
+nef_fixer = custom_target('debug.nef',
+    output: [
+        'debug.nef'
+    ],
+    input: [
+        main
+    ],
+    command : [
+        nef_fixer_py, '@INPUT@', '@OUTPUT@'
+    ],
+    build_by_default: true
+)
+
 
 ############################################################
 ###                        TESTS                         ###
