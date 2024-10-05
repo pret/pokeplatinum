@@ -71,7 +71,7 @@ for i, species in enumerate(PokemonSpecies):
     if subdir == 'none':
         subdir = '000'
     
-    with open(source_dir / '../../pokemon' / subdir / 'data.json', 'r', encoding='utf-8') as data_file:
+    with open(source_dir / '../pokemon' / subdir / 'data.json', 'r', encoding='utf-8') as data_file:
         pkdata = json.load(data_file)
 
     if subdir not in ['egg', 'bad_egg']:
@@ -129,8 +129,7 @@ fileKeys = [
     '59681',
     '63572',
     '25297',
-    '64639',
-    '5013',
+    '64639', '5013',
     '28660',
     '32249',
     '32250',
