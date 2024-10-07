@@ -103,5 +103,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
+    },
+    "pokedex_data": {
+        "height": 5,
+        "weight": 54,
+        "body_shape": "SHAPE_HEAD_LEGS",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 376,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 376,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 27,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 27,
+        "entry_text": "It often plants its root feet in the\nground during the day and sows\nseeds as it walks about at night.",
+        "category": "Weed Pokémon"
     }
 }

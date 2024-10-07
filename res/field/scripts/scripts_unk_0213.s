@@ -136,7 +136,7 @@ _01DE:
 
 _01F2:
     SetVar 0x8004, 2
-    ScrCmd_19A 0x800C
+    GetPartyCountHatched 0x800C
     GoToIfLt 0x800C, 2, _020F
     GoTo _026A
 
@@ -149,7 +149,7 @@ _020F:
 
 _021A:
     SetVar 0x8004, 3
-    ScrCmd_19A 0x800C
+    GetPartyCountHatched 0x800C
     GoToIfLt 0x800C, 3, _0237
     GoTo _0290
 
@@ -162,7 +162,7 @@ _0237:
 
 _0242:
     SetVar 0x8004, 4
-    ScrCmd_19A 0x800C
+    GetPartyCountHatched 0x800C
     GoToIfLt 0x800C, 3, _025F
     GoTo _0290
 
@@ -258,7 +258,7 @@ _0290:
     .byte 0
 
 _02E4:
-    ScrCmd_14E
+    HealParty
     CallCommonScript 0x7D6
     SetVar 0x800C, 0x4000
     GoToIfEq 0x800C, 1, _0305
@@ -452,7 +452,7 @@ _05B3:
 
 _05CF:
     SetVar 0x8004, 9
-    ScrCmd_14E
+    HealParty
     Message 124
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 1, _01D3

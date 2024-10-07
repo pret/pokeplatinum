@@ -223,7 +223,7 @@ _03E7:
 _03F2:
     ScrCmd_0DA 0, 0x40B4, 0, 0
     Message 7
-    ScrCmd_177 0x800C
+    GetPartyCount 0x800C
     GoToIfEq 0x800C, 6, _04A0
     ScrCmd_0DA 1, 0x40B4, 0, 0
     BufferPlayerName 0
@@ -231,7 +231,7 @@ _03F2:
     Message 8
     WaitSound
     ScrCmd_096 0x40B4, 20, 0, 0x800C
-    ScrCmd_1E5 115
+    IncrementGameRecord RECORD_UNK_115
     SetVar 0x40B4, 0
     Message 9
     ScrCmd_03E 0x800C
@@ -241,7 +241,7 @@ _03F2:
 
 _0459:
     CloseMessage
-    ScrCmd_177 0x4000
+    GetPartyCount 0x4000
     SubVar 0x4000, 1
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -253,7 +253,7 @@ _0459:
     End
 
 _0494:
-    ScrCmd_1E5 49
+    IncrementGameRecord RECORD_UNK_049
     Return
 
 _049A:

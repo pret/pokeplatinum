@@ -132,5 +132,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_LARGE"
+    },
+    "pokedex_data": {
+        "height": 13,
+        "weight": 600,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 268,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 268,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 9,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 9,
+        "entry_text": "Its entire body is armored with\nhard scales. It will protect the\nyoung in its burrow with its life.",
+        "category": "Drill Pokémon"
     }
 }

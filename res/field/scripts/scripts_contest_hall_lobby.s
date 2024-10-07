@@ -55,7 +55,7 @@ _002E:
     Message 7
     CloseMessage
     PlaySound SEQ_FANFA4
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _00EE
     GoTo _00F9
     End

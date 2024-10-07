@@ -107,5 +107,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
+    },
+    "pokedex_data": {
+        "height": 3,
+        "weight": 23,
+        "body_shape": "SHAPE_WINGED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 483,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 483,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 65519,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 65519,
+        "entry_text": "It has a gutsy spirit that makes\nit bravely take on tough foes. It\nflies in search of warm climates.",
+        "category": "TinySwallow Pokémon"
     }
 }

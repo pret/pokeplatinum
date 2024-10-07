@@ -16,7 +16,7 @@ _0022:
     SetFlag 0x9C7
     Call _00C7
     Call _0062
-    ScrCmd_14D 0x4000
+    GetPlayerGender 0x4000
     GoToIfEq 0x4000, 0, _0052
     GoToIfEq 0x4000, 1, _005A
     End
@@ -47,7 +47,7 @@ _00C5:
     Return
 
 _00C7:
-    Dummy1 0x4098
+    Dummy1F9 0x4098
     GoToIfEq 0x4098, 0, _0101
     GoToIfEq 0x4098, 1, _0101
     GoToIfEq 0x4098, 2, _0101
@@ -137,7 +137,7 @@ _01CA:
     Message 0
     CloseMessage
     ScrCmd_0E5 0x209, 0x20F
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     Return
 
 _01DB:
@@ -216,7 +216,7 @@ _0249:
     CloseMessage
     Call _0424
     ScrCmd_2A0 0x8004, 0x210, 0x197
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _02D0
     Call _0456
     BufferRivalName 0
@@ -224,7 +224,7 @@ _0249:
     Message 10
     PlaySound SEQ_ASA
     WaitSound
-    ScrCmd_14E
+    HealParty
     Message 11
     Message 12
     CloseMessage

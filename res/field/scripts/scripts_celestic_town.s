@@ -41,7 +41,7 @@ _006E:
     Message 2
     CloseMessage
     ScrCmd_0E5 0x1A0, 0
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0191
     Message 4
     CloseMessage

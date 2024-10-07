@@ -120,5 +120,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
+    },
+    "pokedex_data": {
+        "height": 8,
+        "weight": 230,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 347,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 347,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 18,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 18,
+        "entry_text": "Because every PRINPLUP considers\nitself to be the most important,\nthey can never form a group.",
+        "category": "Penguin Pokémon"
     }
 }

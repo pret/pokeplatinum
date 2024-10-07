@@ -33,7 +33,7 @@ You now have the choice between two different environments to use to build the p
     ```
     echo 'export PATH=${PATH}:/mingw64/bin' >> ~/.bashrc
     source ~/.bashrc
-    pacman -S git meson gcc mingw-w64-x86_64-arm-none-eabi-{binutils,gcc}
+    pacman -S git meson gcc flex bison mingw-w64-x86_64-arm-none-eabi-{binutils,gcc}
     ```
 
     Press 'Y' when prompted to confirm the installation.
@@ -78,7 +78,7 @@ You now have the choice between two different environments to use to build the p
 7. Certain packages are required to build the repository. Install these packages by running the following command:
 
     ```bash
-    sudo apt install git build-essential binutils-arm-none-eabi gcc-arm-none-eabi ninja-build
+    sudo apt install git flex bison build-essential binutils-arm-none-eabi gcc-arm-none-eabi ninja-build
     ```
 
     We are not done yet, the 'meson' package is also necessary, but the version provided by apt is too outdated. To get the most recent meson version, run:
@@ -117,6 +117,8 @@ You will also need the following packages:
 
 * gcc (14.x.x)
 * meson (>= 1.3.0)
+* flex
+* bison
 * wine (to run the mwcc executables)
 * libpng
 * pkg-config
@@ -147,6 +149,8 @@ Building the ROM requires the following packages. If you cannot find one or more
 
 * git
 * meson (>= 1.3.0)
+* flex
+* bison
 * build-essentials (build-essential on Ubuntu)
 * binutils-arm-none-eabi (arm-none-eabi-binutils on Arch Linux)
 * gcc-arm-none-eabi (arm-none-eabi-gcc on Arch Linux)

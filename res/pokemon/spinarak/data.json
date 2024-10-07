@@ -105,5 +105,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
+    },
+    "pokedex_data": {
+        "height": 5,
+        "weight": 85,
+        "body_shape": "SHAPE_INSECTOID",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 274,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 274,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 26,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 26,
+        "entry_text": "It sets a trap by spinning a web\nwith thin but strong silk. It waits\nmotionlessly for prey to arrive.",
+        "category": "String Spit Pokémon"
     }
 }

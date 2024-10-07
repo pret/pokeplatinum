@@ -108,5 +108,20 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
+    },
+    "pokedex_data": {
+        "height": 12,
+        "weight": 666,
+        "body_shape": "SHAPE_HEAD",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 222,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 222,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 11,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 11,
+        "entry_text": "It is known to drift on winds if it\nis bloated to bursting with stored\nelectricity.",
+        "category": "Ball Pokémon"
     }
 }

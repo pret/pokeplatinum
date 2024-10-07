@@ -101,5 +101,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
+    },
+    "pokedex_data": {
+        "height": 2,
+        "weight": 12,
+        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 698,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 698,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 29,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 29,
+        "entry_text": "Sensitive to changing temperature,\nthe bud is said to bloom when it\nfeels the sun’s warm touch.",
+        "category": "Bud Pokémon"
     }
 }

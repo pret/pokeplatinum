@@ -76,7 +76,7 @@ _00EE:
     GoToIfGe 0x800C, 4, _027A
     SetVar 0x8004, 0
     GetTimeOfDay 0x800C
-    Dummy1 0x800C
+    Dummy1F9 0x800C
     SetVar 0x8004, 120
     GoToIfEq 0x800C, 0, _0141
     SetVar 0x8004, 121
@@ -120,11 +120,11 @@ _01BC:
 _01C1:
     ApplyMovement 0x8007, _1260
     WaitMovement
-    ScrCmd_19A 0x8006
+    GetPartyCountHatched 0x8006
     ScrCmd_23B 0x8006
     ApplyMovement 0x8007, _1278
     WaitMovement
-    ScrCmd_14E
+    HealParty
     Return
 
 _01E1:
@@ -159,7 +159,7 @@ _0218:
     End
 
 _0242:
-    ScrCmd_119 0x8006
+    CheckPartyPokerus 0x8006
     GoToIfEq 0x8006, 1, _0259
     GoTo _01E1
 
@@ -287,17 +287,17 @@ _03DE:
 
 _03E8:
     LockAll
-    ScrCmd_177 0x8004
+    GetPartyCount 0x8004
     SetVar 0x8005, 0
 _03F4:
-    ScrCmd_1F7 0x800C, 0x8005
+    SurvivePoison 0x800C, 0x8005
     GoToIfEq 0x800C, 0, _040F
     BufferPartyMonNickname 0, 0x8005
     Message 66
 _040F:
     AddVar 0x8005, 1
     GoToIfNe 0x8004, 0x8005, _03F4
-    ScrCmd_19B 0x800C, 6
+    CountAliveMonsExcept 0x800C, 6
     GoToIfEq 0x800C, 0, _0457
     CloseMessage
     ReleaseAll
@@ -528,9 +528,9 @@ _06D5:
     End
 
 _06F4:
-    ScrCmd_1E5 117
+    IncrementGameRecord RECORD_UNK_117
     ScrCmd_129
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0713
     ScrCmd_12A
     GoTo _06A2
@@ -552,7 +552,7 @@ _0723:
     Message 24
     WaitSound
     Message 26
-    ScrCmd_133 0x8004
+    RegisterPoketchApp 0x8004
     CallIfEq 0x8004, 0, _0882
     CallIfEq 0x8004, 1, _0887
     CallIfEq 0x8004, 2, _088C
@@ -701,7 +701,7 @@ _091D:
     ScrCmd_083 0x8004, 0x8005, 0x800C
     ScrCmd_33E 0, 0x8004
     Message 108
-    ScrCmd_0DF 0, 0x8004
+    BufferUndergroundGoodsName 0, 0x8004
     WaitSound
     Return
 
@@ -713,7 +713,7 @@ _093A:
 _0944:
     PlaySound SEQ_FANFA4
     ScrCmd_087 0x8004, 0x8005, 0x800C
-    ScrCmd_0E0 0, 0x8004
+    BufferUndergroundTrapName 0, 0x8004
     Message 80
     WaitSound
     Return
@@ -726,7 +726,7 @@ _095C:
 _0966:
     PlaySound SEQ_FANFA4
     ScrCmd_08F 0x8004, 0x8005, 0x800C
-    ScrCmd_0E1 0, 0x8004
+    BufferUndergroundItemName 0, 0x8004
     BufferNumber 1, 0x8005
     Message 81
     WaitSound
@@ -1176,7 +1176,7 @@ _0FCA:
     CloseMessage
     PlaySound SEQ_ASA
     WaitSound
-    ScrCmd_14E
+    HealParty
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     CallIfSet 144, _1030
@@ -1205,7 +1205,7 @@ _103A:
     Message 43
     Call _10C7
     Call _01C1
-    ScrCmd_15B 0, 0x800C
+    CheckBadge BADGE_ID_COAL, 0x800C
     GoToIfEq 0x800C, 1, _10A2
     Message 44
     ApplyMovement 0xFF, _02F4
@@ -1606,7 +1606,7 @@ _157B:
 
 _1581:
     StopMusic 0
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     CallIfEq 0x800C, 0, _15A7
     CallIfEq 0x800C, 1, _15AD
     ReturnCommonScript

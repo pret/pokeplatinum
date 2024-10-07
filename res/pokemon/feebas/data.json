@@ -91,5 +91,20 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
+    },
+    "pokedex_data": {
+        "height": 6,
+        "weight": 74,
+        "body_shape": "SHAPE_FINS",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 357,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 357,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 65535,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 65535,
+        "entry_text": "It is a shabby and ugly Pokémon.\nHowever, it is very hardy and\ncan survive on little water.",
+        "category": "Fish Pokémon"
     }
 }

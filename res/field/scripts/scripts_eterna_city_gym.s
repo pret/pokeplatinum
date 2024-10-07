@@ -19,7 +19,7 @@ _0022:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_15B 1, 0x800C
+    CheckBadge BADGE_ID_FOREST, 0x800C
     GoToIfEq 0x800C, 1, _0048
     Message 13
     WaitABXPadPress
@@ -38,7 +38,7 @@ _0048:
 _0056:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_15B 1, 0x800C
+    CheckBadge BADGE_ID_FOREST, 0x800C
     GoToIfEq 0x800C, 1, _0080
     BufferRivalName 0
     BufferRivalName 1
@@ -62,13 +62,13 @@ _0094:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_15B 1, 0x800C
+    CheckBadge BADGE_ID_FOREST, 0x800C
     GoToIfEq 0x800C, 1, _0161
     ScrCmd_1CD 9, 67, 0, 0, 0
     Message 0
     CloseMessage
     ScrCmd_0E5 0x13B, 0
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _01C3
     Message 1
     BufferPlayerName 0
@@ -95,7 +95,7 @@ _0119:
     CallCommonScript 0x7FC
     SetFlag 116
     BufferItemName 0, 0x8004
-    ScrCmd_0D3 1, 0x8004
+    BufferTMHMMoveName 1, 0x8004
     Message 4
     WaitABXPadPress
     CloseMessage
@@ -124,7 +124,7 @@ _0177:
     CallCommonScript 0x7FC
     SetFlag 116
     BufferItemName 0, 0x8004
-    ScrCmd_0D3 1, 0x8004
+    BufferTMHMMoveName 1, 0x8004
     Message 4
     WaitABXPadPress
     CloseMessage
@@ -153,7 +153,7 @@ _01C9:
     Message 6
     CloseMessage
     ScrCmd_0E5 0x144, 0
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _01C3
     Message 7
     WaitABXPadPress
@@ -181,7 +181,7 @@ _021C:
     Message 8
     CloseMessage
     ScrCmd_0E5 0x103, 0
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _01C3
     Message 9
     WaitABXPadPress
@@ -209,7 +209,7 @@ _027B:
     Message 10
     CloseMessage
     ScrCmd_0E5 0x104, 0
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _01C3
     Message 11
     WaitABXPadPress

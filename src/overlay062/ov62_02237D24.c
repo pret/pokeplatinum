@@ -1632,13 +1632,13 @@ static BOOL ov62_02239984 (UnkStruct_0208C06C * param0, int param1)
     int v2;
     int v3;
     int v4;
-    int v5;
+    int pokedexLength;
     UnkStruct_ov62_02237D24 * v6 = param0->unk_860;
 
     v4 = Unk_ov62_022497D4[param1 + 1];
     v3 = Unk_ov62_022497D4[param1];
     v2 = v4 - v3;
-    v1 = ov62_02231948(102, 0, &v5);
+    v1 = ov62_Pokedex_Alphabetical(102, 0, &pokedexLength);
 
     {
         int v7;
@@ -1681,8 +1681,8 @@ static void ov62_02239A0C (UnkStruct_0208C06C * param0, int param1)
     v2 = Unk_ov62_022497D4[param1];
     v1 = v3 - v2;
 
-    v4->unk_1D4.unk_08 = ov62_02231948(102, 0, &v4->unk_1D4.unk_04);
-    v0 = ov62_02231948(102, 0, &v4->unk_1D4.unk_04);
+    v4->unk_1D4.unk_08 = ov62_Pokedex_Alphabetical(102, 0, &v4->unk_1D4.unk_04);
+    v0 = ov62_Pokedex_Alphabetical(102, 0, &v4->unk_1D4.unk_04);
 
     {
         int v5;

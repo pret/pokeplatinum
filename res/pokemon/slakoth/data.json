@@ -120,5 +120,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
+    },
+    "pokedex_data": {
+        "height": 8,
+        "weight": 240,
+        "body_shape": "SHAPE_QUADRUPED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 258,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 281,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 21,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 22,
+        "entry_text": "It spends nearly all its time in a\nday sprawled out. Just seeing it\nmakes one drowsy.",
+        "category": "Slacker Pokémon"
     }
 }

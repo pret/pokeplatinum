@@ -134,7 +134,7 @@ static BOOL sub_02050B04(UnkStruct_02050ACC *param0)
         *(param0->unk_00) = param0->unk_10->unk_14;
     }
 
-    v0 = sub_02052868(param0->unk_10->unk_14);
+    v0 = BattleParams_PlayerWon(param0->unk_10->unk_14);
     return v0;
 }
 
@@ -395,7 +395,7 @@ static BOOL sub_02050EE0(TaskManager *taskMan)
         sub_02050B1C(v1->unk_10, fieldSystem);
         sub_0206D1B8(fieldSystem, v1->unk_10->unk_10C, v1->unk_10->unk_14);
 
-        if (sub_02052868(v1->unk_10->unk_14) == 0) {
+        if (BattleParams_PlayerWon(v1->unk_10->unk_14) == 0) {
             sub_02050DFC(v1);
             RadarChain_Clear(fieldSystem->chain);
             FieldTask_Change(taskMan, sub_02052B2C, NULL);

@@ -86,7 +86,7 @@ _00FE:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_15B 3, 0x800C
+    CheckBadge BADGE_ID_FEN, 0x800C
     GoToIfEq 0x800C, 1, _0124
     Message 33
     WaitABXPadPress
@@ -593,7 +593,7 @@ _0557:
     GoTo _0563
 
 _0563:
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0597
     BufferRivalName 0
     BufferPlayerName 1

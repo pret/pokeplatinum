@@ -120,5 +120,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
+    },
+    "pokedex_data": {
+        "height": 18,
+        "weight": 1750,
+        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
+        "trainer_scale_f": 308,
+        "pokemon_scale_f": 222,
+        "trainer_scale_m": 298,
+        "pokemon_scale_m": 222,
+        "trainer_pos_f": 12,
+        "pokemon_pos_f": 2,
+        "trainer_pos_m": 12,
+        "pokemon_pos_m": 2,
+        "entry_text": "Its body is made of ice from the\nice age. It controls frigid air of\n-328 degrees Fahrenheit.",
+        "category": "Iceberg Pokémon"
     }
 }

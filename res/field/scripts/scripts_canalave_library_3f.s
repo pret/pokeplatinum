@@ -17,7 +17,7 @@
     .short 0xFD13
 
 _0032:
-    ScrCmd_14D 0x4000
+    GetPlayerGender 0x4000
     GoToIfEq 0x4000, 0, _0052
     GoToIfEq 0x4000, 1, _005A
     End
@@ -71,7 +71,7 @@ _0062:
     BufferRivalName 0
     Message 7
     Message 8
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _0116
     GoTo _0124
     End
@@ -94,7 +94,7 @@ _0132:
     ApplyMovement 2, _02E0
     ApplyMovement 3, _03D8
     WaitMovement
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _0162
     GoTo _0173
     End

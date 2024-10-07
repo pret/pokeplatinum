@@ -114,5 +114,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
+    },
+    "pokedex_data": {
+        "height": 8,
+        "weight": 86,
+        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 307,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 307,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 19,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 19,
+        "entry_text": "The honey it drools from its mouth\nsmells so atrocious, it can curl\nnoses more than a mile away.",
+        "category": "Weed Pokémon"
     }
 }

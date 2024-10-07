@@ -129,5 +129,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
+    },
+    "pokedex_data": {
+        "height": 42,
+        "weight": 3360,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 603,
+        "pokemon_scale_f": 256,
+        "trainer_scale_m": 597,
+        "pokemon_scale_m": 256,
+        "trainer_pos_f": 26,
+        "pokemon_pos_f": 2,
+        "trainer_pos_m": 26,
+        "pokemon_pos_m": 2,
+        "entry_text": "A legendary Pokémon of Sinnoh.\nIt is said that space becomes more\nstable with PALKIA’s every breath.",
+        "category": "Spatial Pokémon"
     }
 }

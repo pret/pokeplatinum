@@ -55,7 +55,7 @@ _0096:
     Message 5
     CloseMessage
     ScrCmd_0E5 0x194, 0
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _01CE
     SetVar 0x4055, 10
     Message 6
@@ -99,7 +99,7 @@ _017D:
     Message 8
     PlaySound SEQ_ASA
     WaitSound
-    ScrCmd_14E
+    HealParty
     WaitMovement
     Message 9
     CloseMessage

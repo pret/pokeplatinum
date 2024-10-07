@@ -411,8 +411,6 @@ message_bank_files = files(
     'message_bank_unk_0409.gmm',
     'message_bank_unk_0410.gmm',
     'message_bank_unk_0411.gmm',
-    'message_bank_species_names.gmm',
-    'message_bank_species_names_with_articles.gmm',
     'message_bank_month_names.gmm',
     'message_bank_unk_0415.gmm',
     'message_bank_unk_0416.gmm',
@@ -705,19 +703,10 @@ message_bank_files = files(
     'message_bank_unk_0703.gmm',
     'message_bank_unk_0704.gmm',
     'message_bank_unk_0705.gmm',
-    'message_bank_unk_0706.gmm',
-    'message_bank_unk_0707.gmm',
-    'message_bank_unk_0708.gmm',
-    'message_bank_unk_0709.gmm',
-    'message_bank_unk_0710.gmm',
     'message_bank_unk_0711.gmm',
-    'message_bank_unk_0712.gmm',
     'message_bank_unk_0713.gmm',
     'message_bank_unk_0714.gmm',
-    'message_bank_unk_0715.gmm',
-    'message_bank_unk_0716.gmm',
     'message_bank_unk_0717.gmm',
-    'message_bank_unk_0718.gmm',
     'message_bank_unk_0719.gmm',
     'message_bank_unk_0720.gmm',
     'message_bank_unk_0721.gmm',
@@ -752,6 +741,32 @@ gmm_to_bin_gen = generator(msgenc_exe,
     depends: [ charmap_txt, gmm_header_dir ],
     output: '@BASENAME@'
 )
+
+pokedex_message_banks = custom_target('pokedex_message_banks',
+    output: [
+        'message_bank_species_names.gmm',
+        'message_bank_species_names_with_articles.gmm',
+        'message_bank_species_dex_entry.gmm',
+        'message_bank_species_weight.gmm',
+        'message_bank_species_weight_gira.gmm',
+        'message_bank_species_height.gmm',
+        'message_bank_species_height_gira.gmm',
+        'message_bank_species_name_number_1.gmm',
+        'message_bank_species_name_number_2.gmm',
+        'message_bank_species_name_number_3.gmm',
+        'message_bank_species_category.gmm'
+    ],
+    input: message_banks_narc_order,
+    env: json2bin_env,
+    depends: [ py_consts_generators ],
+    command: [
+        make_pokedex_message_banks_py,
+        '--source-dir', '@CURRENT_SOURCE_DIR@',
+        '--output-dir', '@OUTDIR@'
+    ]
+)
+
+message_bank_files += pokedex_message_banks
 
 message_banks_narc = custom_target('pl_msg.narc',
     output: 'pl_msg.narc',

@@ -45,9 +45,9 @@ _00AE:
     ScrCmd_04D
     CloseMessage
     ScrCmd_2BD 0x17B, 30
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0109
-    ScrCmd_2BC 0x800C
+    CheckDidNotCapture 0x800C
     GoToIfEq 0x800C, 1, _00F8
     SetVar 0x4069, 0x122
     ReleaseAll

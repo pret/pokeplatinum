@@ -146,7 +146,7 @@ _014E:
     CloseMessage
     Call _030C
     ScrCmd_2A0 0x8004, 0x399, 0x39A
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     Return
 
 _0198:

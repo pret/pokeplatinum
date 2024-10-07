@@ -110,11 +110,11 @@ _00E6:
     SetFlag 142
     ScrCmd_2BD 0x1E5, 50
     ClearFlag 142
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0168
-    ScrCmd_0ED 0x800C
+    CheckLostBattle 0x800C
     CallIfEq 0x800C, 0, _017A
-    ScrCmd_2BC 0x800C
+    CheckDidNotCapture 0x800C
     GoToIfEq 0x800C, 1, _015D
     GoTo _0155
     End

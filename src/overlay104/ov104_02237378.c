@@ -157,7 +157,7 @@ BOOL ov104_02237460(UnkStruct_ov104_0222E930 *param0)
     v10 = v9->unk_0C;
 
     v9->unk_1D = ov104_02238538(v9, v10->parties[0], v10->parties[2], v10->unk_18C);
-    v9->unk_28 = sub_02052868(v10->unk_14);
+    v9->unk_28 = BattleParams_PlayerWon(v10->unk_14);
 
     if (v9->unk_13 == 27) {
         v2 = 1;
@@ -591,8 +591,8 @@ static void ov104_02237C30(SPLEmitter *param0)
         sub_02014798(param0, &v1);
         v1.x *= -1;
 
-        SPL_UnkInline5(param0, &v1);
-        SPL_UnkInline1(param0, v3);
+        SPLEmitter_SetAxis(param0, &v1);
+        SPLEmitter_SetPos(param0, v3);
     }
 
     return;

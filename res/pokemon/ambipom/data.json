@@ -130,5 +130,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
+    },
+    "pokedex_data": {
+        "height": 12,
+        "weight": 203,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 282,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 282,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 7,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 7,
+        "entry_text": "Split into two, the tails are so\nadept at handling and doing things,\nAMBIPOM rarely uses its hands.",
+        "category": "Long Tail Pokémon"
     }
 }

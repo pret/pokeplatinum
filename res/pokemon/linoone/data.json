@@ -123,5 +123,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
+    },
+    "pokedex_data": {
+        "height": 5,
+        "weight": 325,
+        "body_shape": "SHAPE_QUADRUPED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 341,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 341,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 14,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 14,
+        "entry_text": "It charges prey at speeds over\n60 mph. However, because it can\nonly run straight, it often fails.",
+        "category": "Rushing Pokémon"
     }
 }

@@ -64,7 +64,7 @@ _00D5:
     End
 
 _00F5:
-    ScrCmd_177 0x800C
+    GetPartyCount 0x800C
     GoToIfEq 0x800C, 1, _0115
     GoToIfNe 0x800C, 1, _0121
     End
@@ -182,7 +182,7 @@ _02C7:
     WaitFadeScreen
     GoToIfEq 0x800C, 0, _0328
     ScrCmd_130 0x8004
-    ScrCmd_1E5 54
+    IncrementGameRecord RECORD_UNK_054
     ScrCmd_316
     ScrCmd_245 0, 0x8004
     Message 8

@@ -37,7 +37,7 @@ _004A:
     End
 
 _0083:
-    ScrCmd_177 0x800C
+    GetPartyCount 0x800C
     GoToIfNe 0x800C, 6, _009F
     Message 4
     WaitABXPadPress
@@ -116,7 +116,7 @@ _0124:
     End
 
 _017E:
-    ScrCmd_19A 0x800C
+    GetPartyCountHatched 0x800C
     GoToIfEq 0x800C, 1, _02BB
     ScrCmd_19C 0x800C
     GoToIfEq 0x800C, 2, _02D5
@@ -144,7 +144,7 @@ _01DE:
     GoToIfEq 0x800C, 0xFF, _04EF
     ScrCmd_198 0x8000, 0x800C
     GoToIfEq 0x800C, 0, _0285
-    ScrCmd_19B 0x800C, 0x8000
+    CountAliveMonsExcept 0x800C, 0x8000
     GoToIfEq 0x800C, 0, _02C8
     ScrCmd_1AF 0, 0x8000, 0x8001
     ScrCmd_1B0 0x8000
@@ -246,7 +246,7 @@ _0309:
     GoTo _0292
 
 _0346:
-    ScrCmd_177 0x800C
+    GetPartyCount 0x800C
     GoToIfEq 0x800C, 6, _045E
     ScrCmd_16E 0x800C
     SetVar 0x8001, 0

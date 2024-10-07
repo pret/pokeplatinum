@@ -123,5 +123,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
+    },
+    "pokedex_data": {
+        "height": 12,
+        "weight": 392,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 258,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 258,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 8,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 8,
+        "entry_text": "Its short arms stretch when it\nthrows punches. Its technique is\nequal to that of pro boxers.",
+        "category": "Mushroom Pokémon"
     }
 }

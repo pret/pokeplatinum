@@ -206,10 +206,9 @@ BOOL ScrCmd_1A7(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_1AD(ScriptContext *param0)
+BOOL ScrCmd_Dummy1AD(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    u16 *v1 = ScriptContext_GetVarPointer(param0);
-
-    return 0;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 *dummy = ScriptContext_GetVarPointer(ctx);
+    return FALSE;
 }

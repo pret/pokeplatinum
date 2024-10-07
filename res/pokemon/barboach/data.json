@@ -112,5 +112,20 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
+    },
+    "pokedex_data": {
+        "height": 4,
+        "weight": 19,
+        "body_shape": "SHAPE_FINS",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 464,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 464,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 65531,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 65531,
+        "entry_text": "Its slimy body is hard to grasp. In\none region, it is said to have been\nborn from hardened mud.",
+        "category": "Whiskers Pokémon"
     }
 }

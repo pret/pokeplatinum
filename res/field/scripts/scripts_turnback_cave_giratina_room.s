@@ -33,9 +33,9 @@ _0037:
     SetFlag 142
     ScrCmd_2BD 0x1E7, 47
     ClearFlag 142
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _009B
-    ScrCmd_2BC 0x800C
+    CheckDidNotCapture 0x800C
     GoToIfEq 0x800C, 1, _0090
     GoTo _0084
     End

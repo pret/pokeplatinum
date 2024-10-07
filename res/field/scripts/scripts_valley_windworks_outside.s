@@ -64,7 +64,7 @@ _00CF:
     Message 0
     CloseMessage
     ScrCmd_0E5 0x34B, 0
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0133
     Message 1
     CloseMessage
@@ -148,7 +148,7 @@ _01BF:
     SetFlag 142
     ScrCmd_2BD 0x1A9, 15
     ClearFlag 142
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _01FB
     SetFlag 0xAA8
     ReleaseAll

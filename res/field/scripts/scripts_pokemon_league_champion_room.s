@@ -20,7 +20,7 @@ _000E:
     SetFlag 0x98B
     CallIfUnset 214, _00F5
     CallIfSet 214, _00FD
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0121
     Message 1
     SetFlag 180

@@ -49,9 +49,9 @@ _0081:
     SetFlag 142
     ScrCmd_2BD 0x1E6, 1
     ClearFlag 142
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _00D1
-    ScrCmd_2BC 0x800C
+    CheckDidNotCapture 0x800C
     GoToIfEq 0x800C, 1, _00C6
     SetFlag 0x11B
     ReleaseAll

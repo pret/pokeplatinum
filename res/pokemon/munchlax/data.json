@@ -131,5 +131,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
+    },
+    "pokedex_data": {
+        "height": 6,
+        "weight": 1050,
+        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 380,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 380,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 26,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 26,
+        "entry_text": "In its desperation to gulp down\nfood, it forgets about the food it\nhas hidden under its fur.",
+        "category": "Big Eater Pokémon"
     }
 }

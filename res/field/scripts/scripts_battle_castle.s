@@ -153,7 +153,7 @@ _0297:
     CallIfEq 0x40BD, 0, _043C
     CallIfEq 0x40BD, 1, _043C
     SetVar 0x4000, 0
-    ScrCmd_14E
+    HealParty
     CallCommonScript 0x7D6
     SetVar 0x800C, 0x4000
     GoToIfEq 0x800C, 0, _0139
@@ -283,7 +283,7 @@ _04D0:
     CallIfEq 0x40BD, 0, _0599
     CallIfEq 0x40BD, 1, _05AD
     CallIfEq 0x40BD, 2, _05C1
-    ScrCmd_1E5 58
+    IncrementGameRecord RECORD_UNK_058
     ScrCmd_1CD 38, 0, 0, 0, 0
     ScrCmd_1F8
     ScrCmd_2C4 11

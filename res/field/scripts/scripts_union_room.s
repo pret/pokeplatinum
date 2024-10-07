@@ -106,7 +106,7 @@ _019F:
     End
 
 _01EB:
-    ScrCmd_19A 0x800C
+    GetPartyCountHatched 0x800C
     GoToIfLt 0x800C, 2, _0262
     ScrCmd_143 0, 3
     ScrCmd_13F 9, 0x800C
@@ -557,7 +557,7 @@ _08C7:
     Message 26
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 1, _093A
-    ScrCmd_19A 0x800C
+    GetPartyCountHatched 0x800C
     GoToIfLt 0x800C, 2, _094B
     ScrCmd_143 1, 0
     CloseMessage

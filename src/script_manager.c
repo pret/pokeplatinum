@@ -360,8 +360,8 @@ void *ScriptManager_GetMemberPtr(ScriptManager *scriptManager, u32 member)
         return &scriptManager->unk_B0;
     case SCRIPT_MANAGER_PLAYER_TASK:
         return &scriptManager->playerTask;
-    case SCRIPT_MANAGER_PLAYER_WON_BATTLE:
-        return &scriptManager->playerWonBattle;
+    case SCRIPT_MANAGER_BATTLE_RESULT:
+        return &scriptManager->battleResult;
     case SCRIPT_MANAGER_TRAINER_0_SIGHT_RANGE:
         trainer = &scriptManager->trainers[0];
         return &trainer->sightRange;

@@ -111,5 +111,20 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
+    },
+    "pokedex_data": {
+        "height": 20,
+        "weight": 1300,
+        "body_shape": "SHAPE_FINS",
+        "trainer_scale_f": 358,
+        "pokemon_scale_f": 184,
+        "trainer_scale_m": 334,
+        "pokemon_scale_m": 184,
+        "trainer_pos_f": 16,
+        "pokemon_pos_f": 9,
+        "trainer_pos_m": 16,
+        "pokemon_pos_m": 9,
+        "entry_text": "On sunny days, it lands on beaches\nto bounce like a ball and play.\nIt spouts water from its nose.",
+        "category": "Ball Whale Pokémon"
     }
 }

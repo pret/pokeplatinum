@@ -115,5 +115,20 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
+    },
+    "pokedex_data": {
+        "height": 12,
+        "weight": 225,
+        "body_shape": "SHAPE_FINS",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 304,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 304,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 2,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 2,
+        "entry_text": "LANTURN’s light can shine up from\ngreat depths. It is nicknamed\n\u201cThe Deep-Sea Star.\u201d",
+        "category": "Light Pokémon"
     }
 }

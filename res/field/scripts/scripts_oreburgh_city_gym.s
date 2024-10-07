@@ -11,13 +11,13 @@ _000E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_15B 0, 0x800C
+    CheckBadge BADGE_ID_COAL, 0x800C
     GoToIfEq 0x800C, 1, _0103
     ScrCmd_1CD 9, 47, 0, 0, 0
     Message 0
     CloseMessage
     ScrCmd_0E5 246, 0
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0119
     Message 1
     BufferPlayerName 0
@@ -52,7 +52,7 @@ _00BB:
     CallCommonScript 0x7FC
     SetFlag 117
     BufferItemName 0, 0x8004
-    ScrCmd_0D3 1, 0x8004
+    BufferTMHMMoveName 1, 0x8004
     Message 4
     WaitABXPadPress
     CloseMessage
@@ -82,7 +82,7 @@ _011F:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_15B 0, 0x800C
+    CheckBadge BADGE_ID_COAL, 0x800C
     GoToIfEq 0x800C, 1, _0145
     Message 6
     WaitABXPadPress
@@ -101,7 +101,7 @@ _0145:
 _0153:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_15B 0, 0x800C
+    CheckBadge BADGE_ID_COAL, 0x800C
     GoToIfEq 0x800C, 1, _017D
     BufferRivalName 0
     BufferRivalName 1

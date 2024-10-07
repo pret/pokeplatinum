@@ -109,5 +109,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
+    },
+    "pokedex_data": {
+        "height": 8,
+        "weight": 30,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 354,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 354,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 65529,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 65529,
+        "entry_text": "Blown by seasonal winds, it\ncircles the globe, scattering\ncotton spores as it goes.",
+        "category": "Cottonweed Pokémon"
     }
 }

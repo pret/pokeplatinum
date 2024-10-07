@@ -21,7 +21,7 @@ _0014:
     WaitFadeScreen
     PlaySound SEQ_ASA
     WaitSound
-    ScrCmd_14E
+    HealParty
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     Message 1

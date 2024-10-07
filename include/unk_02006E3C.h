@@ -21,7 +21,7 @@ void *sub_02006FA0(u32 param0, u32 param1, BOOL param2, NNSG2dCellDataBank **par
 void *sub_02006FBC(u32 param0, u32 param1, BOOL param2, NNSG2dAnimBankData **param3, u32 param4);
 void *sub_02006FD8(u32 param0, u32 param1, u32 param2);
 void *sub_02006FE8(u32 param0, u32 param1, BOOL param2, u32 param3, int param4);
-void *sub_02007068(u32 param0, u32 param1, BOOL param2, u32 param3, int param4, u32 *param5);
+void *sub_02007068(u32 narcIndex, u32 fileIndex, BOOL param2, u32 heapID, int param4, u32 *fileSize);
 u32 sub_020070E8(NARC *param0, u32 param1, BGL *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7);
 void sub_0200710C(NARC *param0, u32 param1, BGL *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7);
 void sub_02007130(NARC *param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5);

@@ -225,7 +225,7 @@ _02A0:
     End
 
 _02AE:
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _02DC
     SetFlag 0xAB2
     GoTo _02CB

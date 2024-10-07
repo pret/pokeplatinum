@@ -125,5 +125,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
+    },
+    "pokedex_data": {
+        "height": 6,
+        "weight": 112,
+        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 406,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 406,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 25,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 25,
+        "entry_text": "It always trains deep in mountains.\nIt levitates when it heightens its\nspiritual power through meditation.",
+        "category": "Meditate Pokémon"
     }
 }

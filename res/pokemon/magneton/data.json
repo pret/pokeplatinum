@@ -117,5 +117,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
+    },
+    "pokedex_data": {
+        "height": 10,
+        "weight": 600,
+        "body_shape": "SHAPE_MULTI_BODY",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 256,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 256,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 0,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 0,
+        "entry_text": "Many mysteriously appear when more\nsunspots dot the sun. They stop\nTV sets from displaying properly.",
+        "category": "Magnet Pokémon"
     }
 }

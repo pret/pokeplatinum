@@ -104,5 +104,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
+    },
+    "pokedex_data": {
+        "height": 8,
+        "weight": 495,
+        "body_shape": "SHAPE_QUADRUPED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 265,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 265,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 16,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 16,
+        "entry_text": "It shuts its nostrils tight then\ntravels through sand as if walking.\nThey form colonies of around ten.",
+        "category": "Hippo Pokémon"
     }
 }

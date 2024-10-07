@@ -63,5 +63,20 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
+    },
+    "pokedex_data": {
+        "height": 7,
+        "weight": 99,
+        "body_shape": "SHAPE_SERPENTINE",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 352,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 352,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 23,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 23,
+        "entry_text": "A steel-hard shell protects its\ntender body. It quietly endures\nhardships while awaiting evolution.",
+        "category": "Cocoon Pokémon"
     }
 }

@@ -119,29 +119,27 @@ BOOL ScrCmd_BufferPocketName(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_0D3(ScriptContext *param0)
+BOOL ScrCmd_BufferTMHMMoveName(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 v2 = ScriptContext_ReadByte(param0);
-    u16 v3 = ScriptContext_GetVar(param0);
-    u16 v4;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u8 templateArg = ScriptContext_ReadByte(ctx);
+    u16 item = ScriptContext_GetVar(ctx);
+    u16 move = Item_MoveForTMHM(item);
 
-    v4 = Item_MoveForTMHM(v3);
-    StringTemplate_SetMoveName(*v1, v2, v4);
-
-    return 0;
+    StringTemplate_SetMoveName(*strTemplate, templateArg, move);
+    return FALSE;
 }
 
-BOOL ScrCmd_0D4(ScriptContext *param0)
+BOOL ScrCmd_BufferMoveName(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 v2 = ScriptContext_ReadByte(param0);
-    u16 v3 = ScriptContext_GetVar(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u8 templateArg = ScriptContext_ReadByte(ctx);
+    u16 move = ScriptContext_GetVar(ctx);
 
-    StringTemplate_SetMoveName(*v1, v2, v3);
-    return 0;
+    StringTemplate_SetMoveName(*strTemplate, templateArg, move);
+    return FALSE;
 }
 
 BOOL ScrCmd_BufferNumber(ScriptContext *ctx)
@@ -323,37 +321,37 @@ BOOL ScrCmd_0DD(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_0DF(ScriptContext *param0)
+BOOL ScrCmd_BufferUndergroundGoodsName(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 v2 = ScriptContext_ReadByte(param0);
-    u16 v3 = ScriptContext_GetVar(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u8 templateArg = ScriptContext_ReadByte(ctx);
+    u16 goods = ScriptContext_GetVar(ctx);
 
-    StringTemplate_SetUndergroundGoodsName(*v1, v2, v3);
-    return 0;
+    StringTemplate_SetUndergroundGoodsName(*strTemplate, templateArg, goods);
+    return FALSE;
 }
 
-BOOL ScrCmd_0E0(ScriptContext *param0)
+BOOL ScrCmd_BufferUndergroundTrapName(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 v2 = ScriptContext_ReadByte(param0);
-    u16 v3 = ScriptContext_GetVar(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u8 templateArg = ScriptContext_ReadByte(ctx);
+    u16 trap = ScriptContext_GetVar(ctx);
 
-    StringTemplate_SetUndergroundTrapName(*v1, v2, v3);
-    return 0;
+    StringTemplate_SetUndergroundTrapName(*strTemplate, templateArg, trap);
+    return FALSE;
 }
 
-BOOL ScrCmd_0E1(ScriptContext *param0)
+BOOL ScrCmd_BufferUndergroundItemName(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 v2 = ScriptContext_ReadByte(param0);
-    u16 v3 = ScriptContext_GetVar(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u8 templateArg = ScriptContext_ReadByte(ctx);
+    u16 item = ScriptContext_GetVar(ctx);
 
-    StringTemplate_SetUndergroundItemName(*v1, v2, v3);
-    return 0;
+    StringTemplate_SetUndergroundItemName(*strTemplate, templateArg, item);
+    return FALSE;
 }
 
 BOOL ScrCmd_0E2(ScriptContext *param0)

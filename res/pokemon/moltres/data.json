@@ -112,5 +112,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
+    },
+    "pokedex_data": {
+        "height": 20,
+        "weight": 600,
+        "body_shape": "SHAPE_WINGED",
+        "trainer_scale_f": 334,
+        "pokemon_scale_f": 256,
+        "trainer_scale_m": 325,
+        "pokemon_scale_m": 256,
+        "trainer_pos_f": 16,
+        "pokemon_pos_f": 1,
+        "trainer_pos_m": 15,
+        "pokemon_pos_m": 1,
+        "entry_text": "One of the legendary bird Pokémon.\nIt is said that its appearance\nindicates the coming of spring.",
+        "category": "Flame Pokémon"
     }
 }

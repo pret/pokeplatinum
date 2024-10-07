@@ -115,5 +115,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
+    },
+    "pokedex_data": {
+        "height": 4,
+        "weight": 12,
+        "body_shape": "SHAPE_WINGED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 426,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 426,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 65522,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 65522,
+        "entry_text": "It can’t relax if it or its\nsurroundings are not clean.\nIt wipes off dirt with its wings.",
+        "category": "Cotton Bird Pokémon"
     }
 }

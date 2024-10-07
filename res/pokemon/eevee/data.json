@@ -126,5 +126,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
+    },
+    "pokedex_data": {
+        "height": 3,
+        "weight": 65,
+        "body_shape": "SHAPE_QUADRUPED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 542,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 542,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 29,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 29,
+        "entry_text": "Because its genetic makeup is\nirregular, it quickly changes its\nform due to a variety of causes.",
+        "category": "Evolution Pokémon"
     }
 }

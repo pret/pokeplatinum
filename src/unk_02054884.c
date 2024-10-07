@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/battle/condition.h"
+
 #include "struct_decls/struct_party_decl.h"
 
 #include "overlay005/ov5_021E622C.h"
@@ -213,14 +215,15 @@ int sub_02054B04(Party *param0, u16 param1)
     }
 }
 
-BOOL sub_02054B94(Pokemon *param0)
+BOOL Pokemon_TrySurvivePoison(Pokemon *mon)
 {
-    if ((Pokemon_GetValue(param0, MON_DATA_STATUS_CONDITION, NULL) & (0x80 | 0x8)) && (Pokemon_GetValue(param0, MON_DATA_CURRENT_HP, NULL) == 1)) {
-        u32 v0 = 0;
+    if (Pokemon_GetValue(mon, MON_DATA_STATUS_CONDITION, NULL) & (MON_CONDITION_TOXIC | MON_CONDITION_POISON)
+        && Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL) == 1) {
+        u32 condition = MON_CONDITION_NONE;
 
-        Pokemon_SetValue(param0, 160, &v0);
-        return 1;
+        Pokemon_SetValue(mon, MON_DATA_STATUS_CONDITION, &condition);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }

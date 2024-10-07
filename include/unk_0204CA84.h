@@ -18,6 +18,6 @@ BOOL ScrCmd_1BF(ScriptContext *param0);
 BOOL ScrCmd_1A5(ScriptContext *param0);
 BOOL ScrCmd_1A6(ScriptContext *param0);
 BOOL ScrCmd_1A7(ScriptContext *param0);
-BOOL ScrCmd_1AD(ScriptContext *param0);
+BOOL ScrCmd_Dummy1AD(ScriptContext *ctx);
 
 #endif // POKEPLATINUM_UNK_0204CA84_H

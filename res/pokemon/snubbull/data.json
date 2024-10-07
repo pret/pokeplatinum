@@ -127,5 +127,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
+    },
+    "pokedex_data": {
+        "height": 6,
+        "weight": 78,
+        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 351,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 351,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 22,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 22,
+        "entry_text": "Small Pokémon flee from its scary\nface. It is, however, considered\nby women to be cute.",
+        "category": "Fairy Pokémon"
     }
 }

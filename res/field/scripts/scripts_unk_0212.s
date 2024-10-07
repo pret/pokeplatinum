@@ -226,7 +226,7 @@ _02A8:
     End
 
 _02BD:
-    ScrCmd_14E
+    HealParty
     ClearFlag 0x966
     CallCommonScript 0x7D6
     SetVar 0x800C, 0x4000
@@ -576,7 +576,7 @@ _0830:
 _086A:
     GoToIfEq 0x4003, 2, _08CD
     ScrCmd_0C6
-    ScrCmd_14D 0x800C
+    GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _0892
     GoTo _08A0
     End

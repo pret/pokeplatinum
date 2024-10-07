@@ -128,5 +128,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_MEDIUM"
+    },
+    "pokedex_data": {
+        "height": 14,
+        "weight": 465,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 221,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 221,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 1,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 1,
+        "entry_text": "Its heart beats at a tenfold\ntempo, so it cannot sit still for\neven a moment.",
+        "category": "Wild Monkey Pokémon"
     }
 }

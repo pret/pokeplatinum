@@ -58,5 +58,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
+    },
+    "pokedex_data": {
+        "height": 13,
+        "weight": 285,
+        "body_shape": "SHAPE_HEAD_BASE",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 219,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 219,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 8,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 8,
+        "entry_text": "It desperately tries to keep its\nblack tail hidden. It is said to be\nproof the tail hides a secret.",
+        "category": "Patient Pokémon"
     }
 }

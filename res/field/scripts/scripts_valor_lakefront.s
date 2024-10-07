@@ -85,7 +85,7 @@ _013A:
     Message 2
     CloseMessage
     ScrCmd_0E5 0x34F, 0
-    ScrCmd_0EC 0x800C
+    CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _01D9
     Message 3
     CloseMessage

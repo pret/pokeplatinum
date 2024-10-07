@@ -112,5 +112,20 @@
     "footprint": {
         "has_footprint": false,
         "footprint_size": "FOOTPRINT_LARGE"
+    },
+    "pokedex_data": {
+        "height": 6,
+        "weight": 72,
+        "body_shape": "SHAPE_HEAD",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 347,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 347,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 2,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 2,
+        "entry_text": "It looks just like a pinecone.\nIts shell protects it from bird\nPokémon that peck it by mistake.",
+        "category": "Bagworm Pokémon"
     }
 }

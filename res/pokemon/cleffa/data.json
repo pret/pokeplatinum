@@ -117,5 +117,20 @@
     "footprint": {
         "has_footprint": true,
         "footprint_size": "FOOTPRINT_SMALL"
+    },
+    "pokedex_data": {
+        "height": 3,
+        "weight": 30,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 427,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 427,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 29,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 29,
+        "entry_text": "It is often seen when shooting\nstars fill the night skies. It’s said\nto arrive riding on a shooting star.",
+        "category": "Star Shape Pokémon"
     }
 }

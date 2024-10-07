@@ -457,7 +457,7 @@ static BOOL ScrCmd_CheckSaveType(ScriptContext *ctx);
 static BOOL ScrCmd_12D(ScriptContext *ctx);
 static BOOL ScrCmd_131(ScriptContext *ctx);
 static BOOL ScrCmd_132(ScriptContext *ctx);
-static BOOL ScrCmd_133(ScriptContext *ctx);
+static BOOL ScrCmd_RegisterPoketchApp(ScriptContext *ctx);
 static BOOL ScrCmd_134(ScriptContext *ctx);
 static BOOL ScrCmd_135(ScriptContext *ctx);
 static BOOL sub_02043678(ScriptContext *ctx);
@@ -490,8 +490,8 @@ static BOOL ScrCmd_156(ScriptContext *ctx);
 static BOOL ScrCmd_2BA(ScriptContext *ctx);
 static BOOL ScrCmd_14B(ScriptContext *ctx);
 static BOOL ScrCmd_14C(ScriptContext *ctx);
-static BOOL ScrCmd_14D(ScriptContext *ctx);
-static BOOL ScrCmd_14E(ScriptContext *ctx);
+static BOOL ScrCmd_GetPlayerGender(ScriptContext *ctx);
+static BOOL ScrCmd_HealParty(ScriptContext *ctx);
 static BOOL ScrCmd_14F(ScriptContext *ctx);
 static BOOL ScrCmd_150(ScriptContext *ctx);
 static BOOL sub_02043C70(ScriptContext *ctx);
@@ -579,12 +579,12 @@ static BOOL ScrCmd_1EB(ScriptContext *ctx);
 static BOOL ScrCmd_1EC(ScriptContext *ctx);
 static BOOL ScrCmd_1ED(ScriptContext *ctx);
 static BOOL ScrCmd_1EF(ScriptContext *ctx);
-static BOOL ScrCmd_1E5(ScriptContext *ctx);
+static BOOL ScrCmd_IncrementGameRecord(ScriptContext *ctx);
 static BOOL ScrCmd_1E6(ScriptContext *ctx);
 static BOOL ScrCmd_1E7(ScriptContext *ctx);
 static BOOL ScrCmd_334(ScriptContext *ctx);
 static BOOL ScrCmd_335(ScriptContext *ctx);
-static BOOL ScrCmd_Dummy1(ScriptContext *ctx);
+static BOOL ScrCmd_Dummy1F9(ScriptContext *ctx);
 static BOOL ScrCmd_200(ScriptContext *ctx);
 static BOOL ScrCmd_201(ScriptContext *ctx);
 static BOOL ScrCmd_202(ScriptContext *ctx);
@@ -979,8 +979,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_BufferPartyMonSpecies,
     ScrCmd_BufferItemName,
     ScrCmd_BufferPocketName,
-    ScrCmd_0D3,
-    ScrCmd_0D4,
+    ScrCmd_BufferTMHMMoveName,
+    ScrCmd_BufferMoveName,
     ScrCmd_BufferNumber,
     ScrCmd_BufferPartyMonNickname,
     ScrCmd_BufferPoketchAppName,
@@ -991,9 +991,9 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_0DC,
     ScrCmd_0DD,
     ScrCmd_0DE,
-    ScrCmd_0DF,
-    ScrCmd_0E0,
-    ScrCmd_0E1,
+    ScrCmd_BufferUndergroundGoodsName,
+    ScrCmd_BufferUndergroundTrapName,
+    ScrCmd_BufferUndergroundItemName,
     ScrCmd_0E2,
     ScrCmd_0E3,
     ScrCmd_0E4,
@@ -1004,8 +1004,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_0E9,
     ScrCmd_0EA,
     ScrCmd_0EB,
-    ScrCmd_0EC,
-    ScrCmd_0ED,
+    ScrCmd_CheckWonBattle,
+    ScrCmd_CheckLostBattle,
     ScrCmd_0EE,
     ScrCmd_0EF,
     ScrCmd_0F0,
@@ -1049,7 +1049,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_116,
     ScrCmd_117,
     ScrCmd_118,
-    ScrCmd_119,
+    ScrCmd_CheckPartyPokerus,
     ScrCmd_11A,
     ScrCmd_11B,
     ScrCmd_11C,
@@ -1075,7 +1075,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_130,
     ScrCmd_131,
     ScrCmd_132,
-    ScrCmd_133,
+    ScrCmd_RegisterPoketchApp,
     ScrCmd_134,
     ScrCmd_135,
     ScrCmd_136,
@@ -1101,8 +1101,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_14A,
     ScrCmd_14B,
     ScrCmd_14C,
-    ScrCmd_14D,
-    ScrCmd_14E,
+    ScrCmd_GetPlayerGender,
+    ScrCmd_HealParty,
     ScrCmd_14F,
     ScrCmd_150,
     ScrCmd_151,
@@ -1115,7 +1115,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_158,
     ScrCmd_159,
     ScrCmd_15A,
-    ScrCmd_15B,
+    ScrCmd_CheckBadge,
     ScrCmd_15C,
     ScrCmd_15D,
     ScrCmd_15E,
@@ -1143,7 +1143,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_174,
     ScrCmd_175,
     ScrCmd_176,
-    ScrCmd_177,
+    ScrCmd_GetPartyCount,
     ScrCmd_178,
     ScrCmd_179,
     ScrCmd_17A,
@@ -1178,8 +1178,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_197,
     ScrCmd_198,
     ScrCmd_199,
-    ScrCmd_19A,
-    ScrCmd_19B,
+    ScrCmd_GetPartyCountHatched,
+    ScrCmd_CountAliveMonsExcept,
     ScrCmd_19C,
     ScrCmd_19D,
     ScrCmd_19E,
@@ -1197,7 +1197,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_1AA,
     ScrCmd_1AB,
     ScrCmd_1AC,
-    ScrCmd_1AD,
+    ScrCmd_Dummy1AD,
     ScrCmd_1AE,
     ScrCmd_1AF,
     ScrCmd_1B0,
@@ -1253,7 +1253,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_1E2,
     ScrCmd_1E3,
     ScrCmd_1E4,
-    ScrCmd_1E5,
+    ScrCmd_IncrementGameRecord,
     ScrCmd_1E6,
     ScrCmd_1E7,
     ScrCmd_1E8,
@@ -1271,9 +1271,9 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_1F4,
     ScrCmd_1F5,
     ScrCmd_1F6,
-    ScrCmd_1F7,
+    ScrCmd_SurvivePoison,
     ScrCmd_1F8,
-    ScrCmd_Dummy1,
+    ScrCmd_Dummy1F9,
     ScrCmd_1FA,
     ScrCmd_1FB,
     ScrCmd_1FC,
@@ -1468,7 +1468,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2B9,
     ScrCmd_2BA,
     ScrCmd_2BB,
-    ScrCmd_2BC,
+    ScrCmd_CheckDidNotCapture,
     ScrCmd_2BD,
     ScrCmd_2BE,
     ScrCmd_2BF,
@@ -1653,7 +1653,7 @@ static BOOL ScriptContext_DecrementTimer(ScriptContext *ctx)
     return *frames == 0;
 }
 
-static BOOL ScrCmd_Dummy1(ScriptContext *ctx)
+static BOOL ScrCmd_Dummy1F9(ScriptContext *ctx)
 {
     u16 dummy = ScriptContext_GetVar(ctx);
     return FALSE;
@@ -5046,7 +5046,7 @@ static BOOL ScrCmd_123(ScriptContext *ctx)
 
 static BOOL ScrCmd_124(ScriptContext *ctx)
 {
-    BOOL *v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PLAYER_WON_BATTLE);
+    BOOL *v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_BATTLE_RESULT);
     u16 v1 = ScriptContext_GetVar(ctx);
     u8 v2 = (u8)ScriptContext_GetVar(ctx);
 
@@ -5057,7 +5057,7 @@ static BOOL ScrCmd_124(ScriptContext *ctx)
 
 static BOOL ScrCmd_2BD(ScriptContext *ctx)
 {
-    BOOL *v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PLAYER_WON_BATTLE);
+    BOOL *v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_BATTLE_RESULT);
     u16 v1 = ScriptContext_GetVar(ctx);
     u8 v2 = (u8)ScriptContext_GetVar(ctx);
 
@@ -5068,7 +5068,7 @@ static BOOL ScrCmd_2BD(ScriptContext *ctx)
 
 static BOOL ScrCmd_319(ScriptContext *ctx)
 {
-    BOOL *v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PLAYER_WON_BATTLE);
+    BOOL *v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_BATTLE_RESULT);
     u16 v1 = ScriptContext_GetVar(ctx);
     u8 v2 = (u8)ScriptContext_GetVar(ctx);
 
@@ -5078,7 +5078,7 @@ static BOOL ScrCmd_319(ScriptContext *ctx)
 
 static BOOL ScrCmd_318(ScriptContext *ctx)
 {
-    BOOL *v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PLAYER_WON_BATTLE);
+    BOOL *v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_BATTLE_RESULT);
     u16 v1 = ScriptContext_GetVar(ctx);
     u8 v2 = (u8)ScriptContext_GetVar(ctx);
 
@@ -5089,7 +5089,7 @@ static BOOL ScrCmd_318(ScriptContext *ctx)
 static BOOL ScrCmd_125(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    BOOL *v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_PLAYER_WON_BATTLE);
+    BOOL *v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_BATTLE_RESULT);
     u16 v2 = ScriptContext_GetVar(ctx);
 
     sub_02051480(ctx->taskManager, v2, 11, v1);
@@ -5122,7 +5122,7 @@ static BOOL ScrCmd_128(ScriptContext *ctx)
 static BOOL ScrCmd_129(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    BOOL *v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_PLAYER_WON_BATTLE);
+    BOOL *v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_BATTLE_RESULT);
 
     sub_0205120C(ctx->taskManager, v1);
     return 1;
@@ -5199,13 +5199,13 @@ static BOOL ScrCmd_132(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_133(ScriptContext *ctx)
+static BOOL ScrCmd_RegisterPoketchApp(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 v1 = ScriptContext_GetVar(ctx);
+    u16 appID = ScriptContext_GetVar(ctx);
 
-    PoketchData_RegisterApp(SaveData_PoketchData(fieldSystem->saveData), v1);
-    return 0;
+    PoketchData_RegisterApp(SaveData_PoketchData(fieldSystem->saveData), appID);
+    return FALSE;
 }
 
 static BOOL ScrCmd_134(ScriptContext *ctx)
@@ -5555,21 +5555,21 @@ static BOOL ScrCmd_14C(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_14D(ScriptContext *ctx)
+static BOOL ScrCmd_GetPlayerGender(ScriptContext *ctx)
 {
-    TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(ctx->fieldSystem));
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
+    TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_SaveData(ctx->fieldSystem));
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = TrainerInfo_Gender(v0);
-    return 0;
+    *destVar = TrainerInfo_Gender(trainerInfo);
+    return FALSE;
 }
 
-static BOOL ScrCmd_14E(ScriptContext *ctx)
+static BOOL ScrCmd_HealParty(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(ctx->taskManager);
 
     HealAllPokemonInParty(Party_GetFromSavedata(fieldSystem->saveData));
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_14F(ScriptContext *ctx)
@@ -6316,12 +6316,12 @@ static BOOL ScrCmd_1EF(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_1E5(ScriptContext *ctx)
+static BOOL ScrCmd_IncrementGameRecord(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_ReadHalfWord(ctx);
+    u16 recordID = ScriptContext_ReadHalfWord(ctx);
 
-    GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(ctx->fieldSystem->saveData), v0);
-    return 0;
+    GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(ctx->fieldSystem->saveData), recordID);
+    return FALSE;
 }
 
 static BOOL ScrCmd_1E6(ScriptContext *ctx)

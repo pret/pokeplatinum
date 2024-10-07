@@ -175,7 +175,7 @@ static void sub_0207C854(SPLEmitter *param0)
     VecFx32 v0 = { 0, 0, 0 };
 
     VEC_Set(&v0, 0, (8 * 172), 0);
-    SPL_UnkInline1(param0, &v0);
+    SPLEmitter_SetPos(param0, &v0);
 }
 
 UnkStruct_0207C8C4 *sub_0207C894(UnkStruct_0207C894 *param0)
