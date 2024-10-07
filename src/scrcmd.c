@@ -4954,7 +4954,7 @@ static BOOL ScrCmd_11B(ScriptContext *ctx)
     location.z = ScriptContext_GetVar(ctx);
     location.unk_10 = ScriptContext_GetVar(ctx);
 
-    sub_0203A734(SaveData_GetFieldOverworldState(ctx->fieldSystem->saveData), &location);
+    FieldOverworldState_SetSpecialLocation(SaveData_GetFieldOverworldState(ctx->fieldSystem->saveData), &location);
     return 0;
 }
 

@@ -20,14 +20,6 @@
 #include "unk_0205DAC8.h"
 #include "unk_02068344.h"
 
-typedef const fx32 (*GetTerrainHeightFunc)(const FieldSystem *, const fx32, const fx32, const fx32, u8 *);
-typedef BOOL (*GetTerrainAttributeFunc)(const FieldSystem *, const int, const int, u16 *);
-
-typedef struct TerrainCollisionManager_t {
-    GetTerrainHeightFunc getHeightFunc;
-    GetTerrainAttributeFunc getAttrFunc;
-} TerrainCollisionManager;
-
 static const fx32 sub_02054D0C(const FieldSystem *fieldSystem, const fx32 param1, const fx32 param2, const fx32 param3, u8 *param4);
 static const fx32 sub_02054E50(const FieldSystem *fieldSystem, const fx32 param1, const fx32 param2, const fx32 param3, u8 *param4);
 static BOOL sub_02054E84(const FieldSystem *fieldSystem, const int param1, const int param2, u16 *param3);

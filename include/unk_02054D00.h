@@ -3,7 +3,7 @@
 
 #include <nitro/fx/fx.h>
 
-#include "struct_decls/struct_02054F44_decl.h"
+#include "struct_decls/terrain_collision_manager_decl.h"
 #include "struct_defs/struct_02055130.h"
 
 #include "field/field_system_decl.h"
