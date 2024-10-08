@@ -36,7 +36,7 @@ For contacts and other pret projects, see [pret.github.io](https://pret.github.i
                 },
                 {
                     "description": "Set architecture",
-                    "text": "set architecture auto"
+                    "text": "set architecture armv5te"
                 },
                 {
                     "description": "Enable overlays",
@@ -53,3 +53,5 @@ For contacts and other pret projects, see [pret.github.io](https://pret.github.i
 3. Launch melonDS with GDB stub enabled and launch the pokeplatinum ROM (you may need to fiddle with the config file to make this work, melonDS GDB stub config is off and may not actually enable properly through the UI)
 
 4. Run debugger through VS Code, it should connect to melonDS automatically.
+
+5. Pause the debugger and run `-exec overlay section-map build/overlay.map` (this cannot currently be included in setupCommands due to issues with architecture loading).

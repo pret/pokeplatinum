@@ -229,7 +229,7 @@ pokeplatinum_nds = custom_target('pokeplatinum.us.nds',
 )
 
 ############################################################
-###                     NEF FIXER                        ###
+###                   GDB HELPERS                        ###
 ############################################################
 nef_fixer = custom_target('debug.nef',
     output: [
@@ -240,6 +240,19 @@ nef_fixer = custom_target('debug.nef',
     ],
     command : [
         nef_fixer_py, '@INPUT@', '@OUTPUT@'
+    ],
+    build_by_default: true
+)
+
+ovly_mapper = custom_target('overlay.map',
+    output: [
+        'overlay.map'
+    ],
+    input: [
+        main_lsf
+    ],
+    command : [
+        overlay_mapper_py, '@INPUT@', '@OUTPUT@'
     ],
     build_by_default: true
 )

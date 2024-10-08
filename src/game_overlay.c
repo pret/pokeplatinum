@@ -35,7 +35,6 @@ BOOL Overlay_LoadByID(const FSOverlayID param0, int param1);
 static UnkStruct_021BF370 Unk_021BF370;
 
 /* Added to support GDB overlay debugging. */
-const char _ovly_name[] = "overlay%d";
 unsigned long _novlys = MAX_OVERLAYS;
 struct_overlayTable _ovly_table[MAX_OVERLAYS] = {};
 static void _ovly_debug_event(void) {}
@@ -48,25 +47,26 @@ void UnloadOverlayGDB(const FSOverlayID overlayID)
 void LoadOverlayGDB(const FSOverlayID overlayID)
 {
     FSOverlayInfo overlayInfo;
+    FSFileID fileInfo;
 
-    // dummies to force symbols to exist
+    // dummy to force symbols to exist
     GF_ASSERT(overlayID < _novlys);
-    strcmp(_ovly_name, _ovly_name);
 
     if(_ovly_table[overlayID].mapped != 0) return;
 
-    // 1. fetch overlay info to identify vma/lma
+    // 1. fetch overlay info to identify vma
     GF_ASSERT(FS_LoadOverlayInfo(&overlayInfo, MI_PROCESSOR_ARM9, overlayID) == TRUE);
+    fileInfo = FS_GetOverlayFileID(&overlayInfo);
 
     // 2. add entry to _ovly_table
     // note that this is a little hacky. the VMA is correct but the LMA is not exposed by the OverlayManager
     // and the size field is not correct compared to what's stored in the NEF.
     // the standard overlay manager in GDB bases comparisons on VMA and LMA, so it's not viable here.
-    // requires a custom GDB build which uses section name and which can override section size.
+    // requires a custom GDB build which uses overlay mappings and which can override section size.
     // see https://github.com/joshua-smith-12/binutils-gdb-nds
     _ovly_table[overlayID].vma = overlayInfo.header.ram_address;
-    _ovly_table[overlayID].lma = 0;
-    _ovly_table[overlayID].size = overlayInfo.header.ram_size; 
+    _ovly_table[overlayID].ovly_id = overlayID;
+    _ovly_table[overlayID].size = overlayInfo.header.ram_size;
     _ovly_table[overlayID].mapped = 1;
     _ovly_debug_event();
 }

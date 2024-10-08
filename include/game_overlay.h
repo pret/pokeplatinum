@@ -16,14 +16,13 @@ BOOL Overlay_LoadByID(const FSOverlayID param0, int param1);
 typedef struct {
     unsigned long vma;
     unsigned long size;
-    unsigned long lma;
+    FSOverlayID ovly_id;
     unsigned long mapped;
 } struct_overlayTable;
 
 #define MAX_OVERLAYS 128
 
 extern unsigned long _novlys;
-extern const char _ovly_name[];
 extern struct_overlayTable _ovly_table[MAX_OVERLAYS];
 
 static void _ovly_debug_event(void);
