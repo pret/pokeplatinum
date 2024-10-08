@@ -30,7 +30,7 @@ UnkStruct_ov104_02230BE4 *sub_0209BA18(FieldSystem *fieldSystem, void *param1)
     v0->unk_00 = param1;
     v0->unk_04 = SaveData_Options(fieldSystem->saveData);
     v0->unk_08 = fieldSystem->saveData;
-    v0->unk_0C = fieldSystem->unk_9C;
+    v0->unk_0C = fieldSystem->journal;
     v0->unk_10 = fieldSystem->unk_98;
     v0->unk_20 = fieldSystem->unk_BC;
     v0->unk_14 = 0;

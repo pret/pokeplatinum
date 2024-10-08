@@ -1674,7 +1674,7 @@ static void ov23_0223F70C(FieldSystem *fieldSystem)
     UnkStruct_ov23_0223EE80 *v0;
     void *v1 = sub_0202BE14(11);
 
-    sub_0202B758(fieldSystem->unk_9C, v1, 1);
+    Journal_SaveData(fieldSystem->journal, v1, 1);
     v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov23_0223EE80));
 
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_0223EE80));

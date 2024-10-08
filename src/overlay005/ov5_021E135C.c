@@ -127,7 +127,7 @@ static void ov5_021E1470(SysTask *param0, void *param1)
     }
 }
 
-void ov5_021E15A8(FieldSystem *fieldSystem, BOOL param1, BOOL *param2)
+void FieldSystem_StartWarpAnimation(FieldSystem *fieldSystem, BOOL param1, BOOL *param2)
 {
     UnkStruct_ov5_021E135C *v0 = Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov5_021E135C));
 

@@ -110,13 +110,13 @@ void sub_0207056C(FieldSystem *fieldSystem)
     sub_0206C354(sub_0202D834(fieldSystem->saveData));
 }
 
-void sub_02070588(FieldSystem *fieldSystem)
+void FieldSystem_SetTeleportFlags(FieldSystem *fieldSystem)
 {
     sub_0206AE4C(SaveData_GetVarsFlags(fieldSystem->saveData));
     sub_0206C354(sub_0202D834(fieldSystem->saveData));
 }
 
-void sub_020705A4(FieldSystem *fieldSystem)
+void FieldSystem_SetEscapeFlags(FieldSystem *fieldSystem)
 {
     sub_0206AE4C(SaveData_GetVarsFlags(fieldSystem->saveData));
 }
@@ -139,7 +139,7 @@ static BOOL sub_020705DC(FieldSystem *fieldSystem)
     int v0 = sub_0203A87C(fieldSystem->location->mapId);
 
     if ((v0 != 0) && (sub_0203A920(fieldSystem, v0) == 0)) {
-        sub_0202C704(fieldSystem->unk_9C, fieldSystem->location->mapId, 32);
+        sub_0202C704(fieldSystem->journal, fieldSystem->location->mapId, 32);
         return TRUE;
     }
 
@@ -151,7 +151,7 @@ static BOOL sub_02070610(FieldSystem *fieldSystem)
     Location *location = FieldOverworldState_GetPrevLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     if (location->mapId != fieldSystem->location->mapId) {
-        sub_0202C5C4(SaveData_GetTrainerInfo(fieldSystem->saveData), fieldSystem->unk_9C, fieldSystem->location->mapId, location->mapId, 32);
+        sub_0202C5C4(SaveData_GetTrainerInfo(fieldSystem->saveData), fieldSystem->journal, fieldSystem->location->mapId, location->mapId, 32);
         return TRUE;
     }
 

@@ -18,7 +18,7 @@ typedef struct UnkStruct_0207CB08_t {
     u8 unk_74;
     u8 unk_75;
     u16 unk_76_0 : 1;
-    u16 unk_76_1 : 15;
+    u16 mapLoadType : 15;
 } UnkStruct_0207CB08;
 
 #endif // POKEPLATINUM_STRUCT_0207CB08_H

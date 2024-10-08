@@ -64,7 +64,7 @@ const SaveTableEntry gSaveTable[] = {
     { SAVE_TABLE_ENTRY_MAIL, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Mail_SaveSize, (SaveEntryInitFunc)Mail_Init },
     { SAVE_TABLE_ENTRY_POFFINS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Poffin_SaveSize, (SaveEntryInitFunc)Poffin_Init },
     { SAVE_TABLE_ENTRY_RANDOM_GROUP, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)RandomGroup_SaveSize, (SaveEntryInitFunc)RandomGroup_Init },
-    { SAVE_TABLE_ENTRY_JOURNAL, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Journal_SaveSize, (SaveEntryInitFunc)Journal_Init },
+    { SAVE_TABLE_ENTRY_JOURNAL, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Journal_SaveSize, (SaveEntryInitFunc)Journal_Init10 },
     { SAVE_TABLE_ENTRY_TRAINER_CARD, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)TrainerCard_SaveSize, (SaveEntryInitFunc)TrainerCard_Init },
     { SAVE_TABLE_ENTRY_GAME_RECORDS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)GameRecords_SaveSize, (SaveEntryInitFunc)GameRecords_Init },
     { SAVE_TABLE_ENTRY_BALL_SEALS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)BallSeal_SaveSize, (SaveEntryInitFunc)BallSeal_Init },

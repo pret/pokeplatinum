@@ -1,6 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field/map_load.h"
+
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02020C44_decl.h"
 #include "struct_decls/struct_02027860_decl.h"
@@ -164,9 +166,9 @@ static BOOL FieldMap_Init(OverlayManager *overlayMan, int *param1)
         sub_0200F32C(0);
         sub_0200F32C(1);
         ov5_021D173C(fieldSystem);
-        sub_020531A0(fieldSystem);
+        FieldMapChange_Set3DDisplay(fieldSystem);
 
-        if (fieldSystem->unk_74->unk_00_20) {
+        if (fieldSystem->mapLoadMode->unk_00_20) {
             Overlay_LoadByID(FS_OVERLAY_ID(overlay6), 2);
 
             switch (ov5_021D1178(fieldSystem)) {
@@ -182,7 +184,7 @@ static BOOL FieldMap_Init(OverlayManager *overlayMan, int *param1)
             }
         }
 
-        Heap_Create(3, 4, fieldSystem->unk_74->unk_04);
+        Heap_Create(3, 4, fieldSystem->mapLoadMode->unk_04);
         GF_ASSERT(fieldSystem->unk_04 == NULL);
 
         fieldSystem->unk_04 = Heap_AllocFromHeap(4, sizeof(FieldSystem_sub2));
@@ -344,7 +346,7 @@ static BOOL FieldMap_Exit(OverlayManager *overlayMan, int *param1)
 
             Heap_Destroy(4);
 
-            if (fieldSystem->unk_74->unk_00_20) {
+            if (fieldSystem->mapLoadMode->unk_00_20) {
                 Overlay_UnloadByID(FS_OVERLAY_ID(overlay6));
                 Overlay_UnloadByID(FS_OVERLAY_ID(overlay8));
                 Overlay_UnloadByID(FS_OVERLAY_ID(overlay7));
@@ -832,7 +834,7 @@ static void ov5_021D17EC(FieldSystem *fieldSystem)
     fieldSystem->unk_A0 = ov5_021EF28C(8, 4);
     fieldSystem->unk_A8 = ov5_021EFB0C();
 
-    if (fieldSystem->unk_70 == 0) {
+    if (fieldSystem->mapLoadType == MAP_LOAD_TYPE_OVERWORLD) {
         ov5_021E9630(fieldSystem->unk_28, ov5_021F0030, fieldSystem);
     }
 
@@ -855,14 +857,14 @@ static void ov5_021D1878(FieldSystem *fieldSystem)
 
     ov5_021DF488(fieldSystem->unk_40, 4, 32, 32, 32, 32, (0x500 * (32 / 2)), (0x80 * (32 / 2)), (0x800 * 32));
 
-    if ((fieldSystem->unk_70 == 1) || (fieldSystem->unk_70 == 2)) {
+    if ((fieldSystem->mapLoadType == MAP_LOAD_TYPE_UNDERGROUND) || (fieldSystem->mapLoadType == MAP_LOAD_TYPE_UNION)) {
         sub_02062CCC(fieldSystem->mapObjMan, 0);
     }
 
     {
         const u32 *v1;
 
-        if (fieldSystem->unk_70 == 1) {
+        if (fieldSystem->mapLoadType == MAP_LOAD_TYPE_UNDERGROUND) {
             v1 = Unk_ov5_021FF7D0;
         } else {
             if (FieldMap_InDistortionWorld(fieldSystem) == 1) {
@@ -878,7 +880,7 @@ static void ov5_021D1878(FieldSystem *fieldSystem)
     {
         int v2 = 10;
 
-        if (fieldSystem->unk_70 == 2) {
+        if (fieldSystem->mapLoadType == MAP_LOAD_TYPE_UNION) {
             v2 = 5;
         }
 

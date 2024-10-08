@@ -298,7 +298,7 @@ void *sub_0203D20C(FieldSystem *fieldSystem, UnkStruct_020684D0 *param1)
     v1 = sub_0207D824(v0, Unk_020EA164, 11);
 
     sub_0207CB2C(v1, fieldSystem->saveData, 0, fieldSystem->unk_98);
-    sub_0207CB78(v1, fieldSystem->unk_70);
+    sub_0207CB78(v1, fieldSystem->mapLoadType);
 
     if (PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar) == 0x1) {
         sub_0207CB58(v1);
@@ -990,7 +990,7 @@ static void sub_0203DB38(UnkStruct_ov88_0223C370 *param0, FieldSystem *fieldSyst
     param0->unk_24 = SaveData_Pokedex(fieldSystem->saveData);
     param0->unk_30 = sub_0207A274(fieldSystem->saveData);
     param0->unk_10 = fieldSystem->saveData;
-    param0->unk_1C = fieldSystem->unk_9C;
+    param0->unk_1C = fieldSystem->journal;
     param0->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
     param0->unk_38 = Heap_AllocFromHeap(32, TrainerInfo_Size());
     param0->unk_3C = Heap_AllocFromHeap(32, Pokemon_GetStructSize());
@@ -1026,7 +1026,7 @@ BOOL sub_0203DBF0(TaskManager *param0)
     switch (v2->unk_00) {
     case 0:
         if (!sub_020389B8()) {
-            sub_02055820(param0);
+            FieldTask_FinishFieldMap(param0);
         }
 
         v2->unk_00++;
@@ -1142,7 +1142,7 @@ void sub_0203DDFC(FieldSystem *fieldSystem)
     UnkStruct_0203DDFC *v0 = Heap_AllocFromHeap(32, sizeof(UnkStruct_0203DDFC));
 
     v0->unk_00 = fieldSystem->unk_80;
-    v0->unk_04 = fieldSystem->unk_9C;
+    v0->unk_04 = fieldSystem->journal;
     v0->unk_08 = SaveData_Options(fieldSystem->saveData);
 
     sub_0203CD84(fieldSystem, &Unk_020EA258, v0);
@@ -1156,7 +1156,7 @@ void *sub_0203DE34(FieldSystem *fieldSystem)
     v0->unk_04 = fieldSystem->unk_80;
     v0->unk_08 = SaveData_Options(fieldSystem->saveData);
     v0->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
-    v0->unk_10 = fieldSystem->unk_9C;
+    v0->unk_10 = fieldSystem->journal;
 
     sub_0203CD84(fieldSystem, &Unk_020EA248, v0);
 
@@ -1188,7 +1188,7 @@ static BOOL sub_0203DE98(TaskManager *param0)
 
     switch (v2->unk_00) {
     case 0:
-        sub_02055820(param0);
+        FieldTask_FinishFieldMap(param0);
         v2->unk_00++;
         break;
     case 1:
@@ -1196,7 +1196,7 @@ static BOOL sub_0203DE98(TaskManager *param0)
         v2->unk_00++;
         break;
     case 2:
-        sub_02055868(param0);
+        FieldTask_StartFieldMap(param0);
         v2->unk_00++;
         break;
     case 3:
@@ -1380,7 +1380,7 @@ void sub_0203E0FC(FieldSystem *fieldSystem, int param1)
     v0->unk_1C = SaveData_GetTrainerInfo(fieldSystem->saveData);
     v0->unk_24 = SaveData_Options(fieldSystem->saveData);
     v0->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
-    v0->unk_2C = fieldSystem->unk_9C;
+    v0->unk_2C = fieldSystem->journal;
     v0->unk_3C = PokemonSummary_ShowContestData(fieldSystem->saveData);
     v0->unk_20 = fieldSystem->saveData;
     v0->unk_34 = sub_0207A274(fieldSystem->saveData);

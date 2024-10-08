@@ -186,7 +186,7 @@ BattleParams *sub_02051F4C(int param0, const FieldSystem *fieldSystem)
     v4->unk_E4 = fieldSystem->unk_98;
     v4->unk_190 = NULL;
     v4->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
-    v4->unk_120 = fieldSystem->unk_9C;
+    v4->unk_120 = fieldSystem->journal;
     v4->mapHeaderID = fieldSystem->location->mapId;
 
     sub_02052894(v4);
@@ -295,7 +295,7 @@ void sub_020521B8(BattleParams *param0, const FieldSystem *fieldSystem, SaveData
 
 void sub_02052314(BattleParams *battleParams, const FieldSystem *fieldSystem)
 {
-    sub_020521B8(battleParams, fieldSystem, fieldSystem->saveData, fieldSystem->location->mapId, fieldSystem->unk_9C, fieldSystem->unk_98, fieldSystem->unk_BC);
+    sub_020521B8(battleParams, fieldSystem, fieldSystem->saveData, fieldSystem->location->mapId, fieldSystem->journal, fieldSystem->unk_98, fieldSystem->unk_BC);
     sub_02052894(battleParams);
 }
 
@@ -344,7 +344,7 @@ void sub_02052348(BattleParams *param0, const FieldSystem *fieldSystem, int para
     param0->poketchData = SaveData_PoketchData(fieldSystem->saveData);
     param0->unk_104 = sub_0202C878(fieldSystem->saveData);
     param0->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
-    param0->unk_120 = fieldSystem->unk_9C;
+    param0->unk_120 = fieldSystem->journal;
     param0->unk_124 = sub_02027F8C(fieldSystem->saveData);
     param0->mapHeaderID = fieldSystem->location->mapId;
     param0->unk_198 = fieldSystem->saveData;
@@ -413,7 +413,7 @@ void sub_020524E4(BattleParams *param0, const FieldSystem *fieldSystem, const Pa
     param0->unk_190 = fieldSystem->unk_BC;
     param0->unk_104 = sub_0202C878(fieldSystem->saveData);
     param0->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
-    param0->unk_120 = fieldSystem->unk_9C;
+    param0->unk_120 = fieldSystem->journal;
     param0->mapHeaderID = fieldSystem->location->mapId;
     param0->unk_124 = sub_02027F8C(fieldSystem->saveData);
     param0->unk_198 = fieldSystem->saveData;

@@ -216,15 +216,15 @@ static BOOL sub_02056CFC(TaskManager *taskMan)
         (v1->unk_00)++;
         break;
     case 1:
-        sub_02055820(taskMan);
+        FieldTask_FinishFieldMap(taskMan);
         (v1->unk_00)++;
         break;
     case 2:
-        sub_020539A0(taskMan, &v1->unk_08);
+        FieldTask_ChangeMapByLocation(taskMan, &v1->unk_08);
         (v1->unk_00)++;
         break;
     case 3:
-        sub_02055868(taskMan);
+        FieldTask_StartFieldMap(taskMan);
         (v1->unk_00)++;
         break;
     case 4:
@@ -240,7 +240,7 @@ static BOOL sub_02056CFC(TaskManager *taskMan)
         }
 
         Sound_PlayMapBGM(fieldSystem, v2->mapId);
-        ov5_021DDAA4(fieldSystem);
+        FieldSystem_RequestLocationName(fieldSystem);
 
         v1->unk_04 = 0;
         FieldTask_Start(taskMan, Unk_020EC544[v1->unk_20], v1);

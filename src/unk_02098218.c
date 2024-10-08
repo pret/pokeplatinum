@@ -201,7 +201,7 @@ static BOOL sub_0209843C(TaskManager *param0)
     switch (v0->unk_00) {
     case 0:
         ov5_021E771C(v0->unk_0C.unk_00, 11);
-        sub_02055820(param0);
+        FieldTask_FinishFieldMap(param0);
         v0->unk_00++;
         break;
     case 1:
@@ -262,7 +262,7 @@ static BOOL sub_0209843C(TaskManager *param0)
         v0->unk_00++;
         break;
     case 5:
-        sub_02055868(param0);
+        FieldTask_StartFieldMap(param0);
         v0->unk_00++;
         break;
     case 6:

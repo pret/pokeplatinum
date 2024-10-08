@@ -63,7 +63,7 @@ static BOOL sub_020505A0(TaskManager *taskMan)
         v1->unk_08++;
         break;
     case 1:
-        sub_02055820(taskMan);
+        FieldTask_FinishFieldMap(taskMan);
         v1->unk_08++;
         break;
     case 2:
@@ -73,12 +73,12 @@ static BOOL sub_020505A0(TaskManager *taskMan)
             Location v3;
 
             Location_Set(&v3, 172, -1, 847, 561, 1);
-            sub_020539A0(taskMan, &v3);
+            FieldTask_ChangeMapByLocation(taskMan, &v3);
         }
         v1->unk_08++;
         break;
     case 3:
-        sub_02055868(taskMan);
+        FieldTask_StartFieldMap(taskMan);
         v1->unk_08++;
         break;
     case 4:
@@ -99,7 +99,7 @@ static BOOL sub_020505A0(TaskManager *taskMan)
         v1->unk_08++;
         break;
     case 7:
-        sub_02055820(taskMan);
+        FieldTask_FinishFieldMap(taskMan);
         v1->unk_08++;
         break;
     case 8:
@@ -109,12 +109,12 @@ static BOOL sub_020505A0(TaskManager *taskMan)
             Location v4;
 
             Location_Set(&v4, 164, -1, v1->unk_04, v1->unk_06, 0);
-            sub_020539A0(taskMan, &v4);
+            FieldTask_ChangeMapByLocation(taskMan, &v4);
         }
         v1->unk_08++;
         break;
     case 9:
-        sub_02055868(taskMan);
+        FieldTask_StartFieldMap(taskMan);
         v1->unk_08++;
         break;
     case 10:

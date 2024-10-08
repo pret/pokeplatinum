@@ -3892,7 +3892,7 @@ static BOOL sub_02041CF4(ScriptContext *ctx)
         void *v3;
 
         v3 = sub_0202BCFC(11);
-        sub_0202B758(fieldSystem->unk_9C, v3, 1);
+        Journal_SaveData(fieldSystem->journal, v3, 1);
     }
 
     Heap_FreeToHeap(*v0);
@@ -3930,13 +3930,13 @@ BOOL sub_02041D60(ScriptContext *ctx)
 
 static BOOL ScrCmd_0A1(ScriptContext *ctx)
 {
-    sub_02055868(ctx->fieldSystem->unk_10);
+    FieldTask_StartFieldMap(ctx->fieldSystem->unk_10);
     return 1;
 }
 
 static BOOL ScrCmd_1F8(ScriptContext *ctx)
 {
-    sub_02055820(ctx->fieldSystem->unk_10);
+    FieldTask_FinishFieldMap(ctx->fieldSystem->unk_10);
     return 1;
 }
 
@@ -4608,7 +4608,7 @@ static BOOL ScrCmd_Warp(ScriptContext *ctx)
     u16 z = ScriptContext_GetVar(ctx);
     u16 direction = ScriptContext_GetVar(ctx);
 
-    sub_02053A80(ctx->taskManager, mapID, -1, x, z, direction);
+    FieldTask_StartMapChangeFull(ctx->taskManager, mapID, -1, x, z, direction);
     return TRUE;
 }
 
@@ -4693,7 +4693,7 @@ static BOOL ScrCmd_0C2(ScriptContext *ctx)
     v1 = ScriptContext_GetVar(ctx);
     v2 = ScriptContext_GetVar(ctx);
 
-    sub_02053AB4(ctx->fieldSystem, v0, -1, v1, v2, 1);
+    FieldTask_StartMapChangeFly(ctx->fieldSystem, v0, -1, v1, v2, 1);
     return 1;
 }
 
@@ -4954,7 +4954,7 @@ static BOOL ScrCmd_11B(ScriptContext *ctx)
     location.z = ScriptContext_GetVar(ctx);
     location.unk_10 = ScriptContext_GetVar(ctx);
 
-    sub_0203A734(SaveData_GetFieldOverworldState(ctx->fieldSystem->saveData), &location);
+    FieldOverworldState_SetSpecialLocation(SaveData_GetFieldOverworldState(ctx->fieldSystem->saveData), &location);
     return 0;
 }
 
@@ -4963,7 +4963,7 @@ static BOOL ScrCmd_11C(ScriptContext *ctx)
     Location *location;
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
 
-    location = sub_0203A730(SaveData_GetFieldOverworldState(ctx->fieldSystem->saveData));
+    location = FieldOverworldState_GetSpecialLocation(SaveData_GetFieldOverworldState(ctx->fieldSystem->saveData));
     *v1 = ov5_021DCCC8(location->mapId);
 
     return 0;
@@ -6112,7 +6112,7 @@ static BOOL ScrCmd_1CC(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
     inline_02044528(SaveData_GetVarsFlags(fieldSystem->saveData));
-    fieldSystem->unk_9C = Journal_GetSavedPage(SaveData_GetJournal(fieldSystem->saveData), 1);
+    fieldSystem->journal = Journal_GetSavedPage(SaveData_GetJournal(fieldSystem->saveData), 1);
     sub_02053494(fieldSystem);
 
     return 0;
@@ -6163,7 +6163,7 @@ static BOOL ScrCmd_1CD(ScriptContext *ctx)
         return 1;
     }
 
-    sub_0202B758(ctx->fieldSystem->unk_9C, *v6, v0);
+    Journal_SaveData(ctx->fieldSystem->journal, *v6, v0);
     return 1;
 }
 
@@ -6410,7 +6410,7 @@ static BOOL ScrCmd_202(ScriptContext *ctx)
         {
             void *v6 = sub_0202BDE0(4);
 
-            sub_0202B758(ctx->fieldSystem->unk_9C, v6, 1);
+            Journal_SaveData(ctx->fieldSystem->journal, v6, 1);
         }
         *v0 = 0;
         *v1 = 0;
@@ -7797,7 +7797,7 @@ static BOOL ScrCmd_2C4(ScriptContext *ctx)
     v2->unk_24 = v1;
     v2->unk_08 = ctx->fieldSystem->saveData;
     v2->unk_1C = ctx->fieldSystem->location->mapId;
-    v2->unk_0C = ctx->fieldSystem->unk_9C;
+    v2->unk_0C = ctx->fieldSystem->journal;
     v2->unk_10 = ctx->fieldSystem->unk_98;
     v2->unk_20 = ctx->fieldSystem->unk_BC;
 

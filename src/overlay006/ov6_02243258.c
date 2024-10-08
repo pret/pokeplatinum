@@ -2892,7 +2892,7 @@ static const UnkStruct_ov101_021D86B0 dummy_field_cutin = {
 
 int (*const Unk_ov6_02249270[])(UnkStruct_ov6_02249270 *);
 
-SysTask *ov6_02245CCC(FieldSystem *fieldSystem, int param1)
+SysTask *FieldTask_InitFlyLandingTask(FieldSystem *fieldSystem, int param1)
 {
     UnkStruct_ov6_02249270 *v0 = ov6_02245F44(4, (sizeof(UnkStruct_ov6_02249270)));
 

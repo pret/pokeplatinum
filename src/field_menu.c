@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field/map_load.h"
+
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
@@ -332,9 +334,9 @@ void sub_0203AB00(FieldSystem *fieldSystem)
         menu->unk_224 = sub_0203AC28(fieldSystem);
     } else if (sub_0206C0D0(fieldSystem) == 1) {
         menu->unk_224 = sub_0203AC2C(fieldSystem);
-    } else if (fieldSystem->unk_70 == 3) {
+    } else if (fieldSystem->mapLoadType == MAP_LOAD_TYPE_COLOSSEUM) {
         menu->unk_224 = sub_0203AC3C(fieldSystem);
-    } else if (fieldSystem->unk_70 == 2) {
+    } else if (fieldSystem->mapLoadType == MAP_LOAD_TYPE_UNION) {
         menu->unk_224 = sub_0203AC34(fieldSystem);
         menu->unk_228 = 1;
     } else {
@@ -1758,7 +1760,7 @@ BOOL sub_0203C434(TaskManager *taskMan)
         v5 = sub_0207064C(11, fieldSystem, v4, v2->unk_1C, v2->unk_14 * 32 + 16, v2->unk_18 * 32 + 16);
         v6 = sub_0202BE00((20 - 19), v2->unk_1C, 11);
 
-        sub_0202B758(fieldSystem->unk_9C, v6, 1);
+        Journal_SaveData(fieldSystem->journal, v6, 1);
         Heap_FreeToHeapExplicit(11, menu->unk_25C);
         sub_020509D4(fieldSystem);
 

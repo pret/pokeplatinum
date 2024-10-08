@@ -176,7 +176,7 @@ static BOOL sub_02093448(TaskManager *param0)
 
     switch (v1->unk_04) {
     case 0:
-        sub_02055820(param0);
+        FieldTask_FinishFieldMap(param0);
         v1->unk_04++;
         break;
     case 1:
@@ -246,7 +246,7 @@ static BOOL sub_02093448(TaskManager *param0)
         v1->unk_04++;
         break;
     case 12:
-        sub_02055868(param0);
+        FieldTask_StartFieldMap(param0);
         v1->unk_04++;
         break;
     default:
@@ -266,7 +266,7 @@ static BOOL sub_020935EC(TaskManager *param0)
 
     switch (v1->unk_04) {
     case 0:
-        sub_02055820(param0);
+        FieldTask_FinishFieldMap(param0);
         v1->unk_04++;
         break;
     case 1:
@@ -363,7 +363,7 @@ static BOOL sub_020935EC(TaskManager *param0)
         v1->unk_04++;
         break;
     case 8:
-        sub_02055868(param0);
+        FieldTask_StartFieldMap(param0);
         v1->unk_04++;
         break;
     default:
@@ -1670,7 +1670,7 @@ void sub_02094C44(UnkStruct_02095C48 *param0, SaveData *param1, u32 param2, Jour
             v9 = sub_0202C1C0(param0->unk_00.unk_118[param0->unk_00.unk_113].unk_08 + 1, 11);
             v10 = SaveData_GetJournal(param0->unk_1970);
 
-            sub_0202B758(param3, v9, 4);
+            Journal_SaveData(param3, v9, 4);
         }
     }
 

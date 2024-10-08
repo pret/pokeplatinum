@@ -224,7 +224,7 @@ BOOL sub_02049FA0(UnkStruct_0202D060 *param0)
 
 void sub_02049FA8(FieldSystem *fieldSystem)
 {
-    Location *v0 = sub_0203A730(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+    Location *v0 = FieldOverworldState_GetSpecialLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     Location_Set(v0, fieldSystem->location->mapId, -1, Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), 0);
     sub_0206AD9C(SaveData_GetVarsFlags(fieldSystem->saveData));
@@ -704,7 +704,7 @@ void sub_0204A7A4(UnkStruct_0204AFC4 *param0, SaveData *param1, Journal *param2)
 
     if (param0->unk_0F == 4) {
         v2 = sub_0202C238(param0->unk_04);
-        sub_0202B758(param2, v2, 4);
+        Journal_SaveData(param2, v2, 4);
     }
 }
 

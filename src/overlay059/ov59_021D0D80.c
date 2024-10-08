@@ -1091,7 +1091,7 @@ static int ov59_021D1DC8(UnkStruct_020961E8 *param0, int param1)
     gCoreSys.inhibitReset = 1;
     v0 = sub_0202C1B4(51);
 
-    sub_0202B758(param0->unk_08->unk_10, v0, 4);
+    Journal_SaveData(param0->unk_08->unk_10, v0, 4);
     GameRecords_IncrementTrainerScore(param0->unk_08->records, TRAINER_SCORE_EVENT_UNK_20);
     sub_02038ED4(&param0->unk_404);
 
