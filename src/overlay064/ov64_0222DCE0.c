@@ -1,88 +1,84 @@
-#include "enums.h"
+#include "overlay064/ov64_0222DCE0.h"
 
+#include <dwc.h>
 #include <nitro.h>
 #include <string.h>
-#include <dwc.h>
-
-#include "core_sys.h"
-#include "inlines.h"
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "message.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "strbuf.h"
-#include "trainer_info.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
-#include "savedata.h"
-#include "overlay063/struct_ov63_0222AE60_decl.h"
-#include "overlay063/struct_ov63_0222BB38_decl.h"
-
-#include "constdata/const_020F2DAC.h"
-#include "constdata/const_020F2DBC.h"
-
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/struct_02089438.h"
 #include "struct_defs/struct_02099F80.h"
+
 #include "overlay022/struct_ov22_022559F8.h"
 #include "overlay061/struct_ov61_0222C884.h"
+#include "overlay063/ov63_0222AE60.h"
+#include "overlay063/struct_ov63_0222AE60_decl.h"
+#include "overlay063/struct_ov63_0222BB38_decl.h"
 #include "overlay064/struct_ov64_022302EC.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay084/struct_ov84_02240FA8.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 
-#include "unk_0200112C.h"
-#include "unk_02001AF4.h"
-#include "unk_02002328.h"
-#include "unk_02002B7C.h"
-#include "unk_02005474.h"
+#include "ascii_util.h"
+#include "bag.h"
+#include "cell_actor.h"
+#include "core_sys.h"
+#include "enums.h"
+#include "game_options.h"
 #include "game_overlay.h"
-#include "overlay_manager.h"
-#include "narc.h"
-#include "unk_02006E3C.h"
-#include "unk_020093B4.h"
-#include "sprite_resource.h"
-#include "unk_0200A328.h"
-#include "unk_0200A784.h"
+#include "gx_layers.h"
+#include "heap.h"
+#include "inlines.h"
 #include "message.h"
 #include "message_util.h"
+#include "narc.h"
+#include "overlay_manager.h"
+#include "pokemon.h"
+#include "render_text.h"
+#include "save_player.h"
+#include "savedata.h"
+#include "sprite_resource.h"
+#include "strbuf.h"
 #include "string_template.h"
+#include "trainer_info.h"
+#include "unk_0200112C.h"
+#include "unk_02001AF4.h"
+#include "unk_02002B7C.h"
+#include "unk_02005474.h"
+#include "unk_02006E3C.h"
+#include "unk_020093B4.h"
+#include "unk_0200A328.h"
+#include "unk_0200A784.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_02013A04.h"
 #include "unk_02017728.h"
-#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
-#include "ascii_util.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
-#include "gx_layers.h"
-#include "cell_actor.h"
 #include "unk_0202309C.h"
-#include "strbuf.h"
-#include "save_player.h"
-#include "trainer_info.h"
-#include "game_options.h"
 #include "unk_0202ACE0.h"
 #include "unk_0203061C.h"
 #include "unk_0203909C.h"
-#include "vars_flags.h"
 #include "unk_0205C980.h"
-#include "pokemon.h"
-#include "bag.h"
 #include "unk_0208694C.h"
 #include "unk_020890F4.h"
-#include "overlay063/ov63_0222AE60.h"
-#include "overlay064/ov64_0222DCE0.h"
+#include "vars_flags.h"
+
+#include "constdata/const_020F2DAC.h"
+#include "constdata/const_020F2DBC.h"
 
 FS_EXTERN_OVERLAY(overlay63);
 
@@ -892,9 +888,9 @@ static void ov64_0222E1A4 (UnkStruct_ov64_0222E21C * param0, const UnkStruct_ov6
     ov64_0222E6D8(param0, param2);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    sub_02002AC8(1);
-    sub_02002AE4(0);
-    sub_02002B20(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(1);
+    RenderControlFlags_SetAutoScrollFlags(0);
+    RenderControlFlags_SetSpeedUpOnTouch(0);
 }
 
 static void ov64_0222E21C (UnkStruct_ov64_0222E21C * param0)

@@ -18,8 +18,8 @@
 #include "message.h"
 #include "narc.h"
 #include "pokemon.h"
+#include "render_text.h"
 #include "strbuf.h"
-#include "unk_02002328.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "unk_020131EC.h"
@@ -1003,21 +1003,21 @@ int sub_0209598C(UnkStruct_02095C48 *param0, int param1)
 void sub_020959F4(int param0)
 {
     if (param0 == 0) {
-        sub_02002AC8(1);
-        sub_02002AE4(3);
-        sub_02002B20(1);
+        RenderControlFlags_SetCanABSpeedUpPrint(1);
+        RenderControlFlags_SetAutoScrollFlags(3);
+        RenderControlFlags_SetSpeedUpOnTouch(1);
     } else {
-        sub_02002AE4(1);
-        sub_02002AC8(0);
-        sub_02002B20(0);
+        RenderControlFlags_SetAutoScrollFlags(1);
+        RenderControlFlags_SetCanABSpeedUpPrint(0);
+        RenderControlFlags_SetSpeedUpOnTouch(0);
     }
 }
 
 void sub_02095A24(void)
 {
-    sub_02002AC8(0);
-    sub_02002AE4(0);
-    sub_02002B20(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(0);
+    RenderControlFlags_SetAutoScrollFlags(0);
+    RenderControlFlags_SetSpeedUpOnTouch(0);
 }
 
 u32 sub_02095A3C(int param0, int param1)

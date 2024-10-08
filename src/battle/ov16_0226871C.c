@@ -45,12 +45,12 @@
 #include "move_table.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
+#include "render_text.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
-#include "unk_02002328.h"
 #include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
@@ -1167,8 +1167,8 @@ void *ov16_022687C8(NARC *param0, NARC *param1, BattleSystem *param2, int param3
         }
 
         Heap_FreeToHeap(v14);
-        sub_02002B4C();
-        sub_02002B6C();
+        RenderControlFlags_ZeroSpeedUpBattle();
+        RenderControlFlags_ZeroWaitBattle();
 
         v0->unk_64 = SysTask_Start(ov16_0226BD74, v0, 55000);
     }
@@ -3747,11 +3747,11 @@ static void ov16_0226BD74(SysTask *param0, void *param1)
     int v3;
     int v4, v5;
 
-    v4 = sub_02002B3C();
-    v5 = sub_02002B5C();
+    v4 = RenderControlFlags_GetSpeedUpBattle();
+    v5 = RenderControlFlags_GetWaitBattle();
 
-    sub_02002B4C();
-    sub_02002B6C();
+    RenderControlFlags_ZeroSpeedUpBattle();
+    RenderControlFlags_ZeroWaitBattle();
 
     v1 = BattleSystem_PaletteSys(v0->unk_00);
 

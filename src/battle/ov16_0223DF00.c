@@ -25,7 +25,6 @@
 #include "struct_defs/battle_system.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_0200D0F4.h"
-#include "struct_defs/struct_0201D738.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/trainer_data.h"
 
@@ -59,6 +58,7 @@
 #include "party.h"
 #include "pokemon.h"
 #include "poketch_data.h"
+#include "render_text.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "trainer_data.h"
@@ -209,7 +209,7 @@ u8 BattleMessage_PrintToWindow(BattleSystem *param0, Window *param1, MessageLoad
 static void BattleMessage_CheckSide(BattleSystem *battleSys, BattleMessage *battleMsg);
 static void BattleMessage_FillFormatBuffers(BattleSystem *battleSys, BattleMessage *battleMsg);
 static void BattleMessage_Format(BattleSystem *battleSys, MessageLoader *msgLoader, BattleMessage *battleMsg);
-static BOOL BattleMessage_Callback(UnkStruct_0201D738 *param0, u16 param1);
+static BOOL BattleMessage_Callback(TextPrinterTemplate *param0, u16 param1);
 static void BattleMessage_Nickname(BattleSystem *param0, u32 param1, int param2);
 static void BattleMessage_MoveName(BattleSystem *param0, u32 param1, int param2);
 static void BattleMessage_ItemName(BattleSystem *param0, u32 param1, int param2);
@@ -2443,7 +2443,7 @@ static void BattleMessage_Format(BattleSystem *battleSys, MessageLoader *msgLoad
     Strbuf_Free(strbuf);
 }
 
-static BOOL BattleMessage_Callback(UnkStruct_0201D738 *param0, u16 param1)
+static BOOL BattleMessage_Callback(TextPrinterTemplate *param0, u16 param1)
 {
     BOOL v0;
 

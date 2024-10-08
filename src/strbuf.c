@@ -417,13 +417,12 @@ void Strbuf_AppendChar(Strbuf *dst, charcode_t c)
     GF_ASSERT(FALSE);
 }
 
-#define COMPRESSED_LEADER (0xF100)
-#define COMPRESSED_MASK   (0x01FF)
-#define COMPRESSED_EOS    (0x01FF) // 0xFFFF & 0x01FF
+#define COMPRESSED_MASK (0x01FF)
+#define COMPRESSED_EOS  (0x01FF) // 0xFFFF & 0x01FF
 
 BOOL Strbuf_IsTrainerName(Strbuf *strbuf)
 {
-    return strbuf->size > 0 && strbuf->data[0] == COMPRESSED_LEADER;
+    return strbuf->size > 0 && strbuf->data[0] == CHAR_COMPRESSED_MARK;
 }
 
 void Strbuf_ConcatTrainerName(Strbuf *dst, Strbuf *src)

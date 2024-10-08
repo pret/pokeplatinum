@@ -19,9 +19,9 @@
 #include "party.h"
 #include "pokemon.h"
 #include "pokemon_summary_app.h"
+#include "render_text.h"
 #include "strbuf.h"
 #include "string_template.h"
-#include "unk_02002328.h"
 #include "unk_02002B7C.h"
 #include "unk_0200C440.h"
 #include "unk_0200DA60.h"
@@ -1548,7 +1548,7 @@ void ov13_022240E0(UnkStruct_ov13_022213F0 *param0)
 
 void ov13_02224108(UnkStruct_ov13_022213F0 *param0)
 {
-    sub_02002AC8(1);
+    RenderControlFlags_SetCanABSpeedUpPrint(1);
     param0->unk_2077 = PrintStringSimple(&param0->unk_204C[1], 1, param0->unk_1FAC, 0, 0, BattleSystem_TextSpeed(param0->unk_00->unk_08), NULL);
 }
 

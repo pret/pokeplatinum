@@ -24,9 +24,9 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "render_text.h"
 #include "strbuf.h"
 #include "unk_02001AF4.h"
-#include "unk_02002328.h"
 #include "unk_02002B7C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
@@ -117,7 +117,7 @@ int ov74_021D0D80(OverlayManager *param0, int *param1)
     v0->unk_00 = 38;
     v0->unk_1C = v1;
 
-    sub_02002AC8(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(0);
 
     return 1;
 }
@@ -143,7 +143,7 @@ int ov74_021D0E58(OverlayManager *param0, int *param1)
     Options_SetFrame(v0->unk_1C, v0->unk_18.unk_00_10);
     sub_02004FB8(v0->unk_18.unk_00_4);
     Options_SetSystemButtonMode(NULL, v0->unk_18.unk_00_8);
-    sub_02002AC8(1);
+    RenderControlFlags_SetCanABSpeedUpPrint(1);
     OverlayManager_FreeData(param0);
     Heap_Destroy(v0->unk_00);
 
@@ -187,12 +187,12 @@ int ov74_021D0F60(OverlayManager *param0, int *param1)
         ov74_021D1A24(v0);
         return 0;
     case 3:
-        sub_02002AC8(1);
+        RenderControlFlags_SetCanABSpeedUpPrint(1);
         ov74_021D1968(v0, 49, 0);
         break;
     case 4:
         if (ov74_021D1A08(v0)) {
-            sub_02002AC8(0);
+            RenderControlFlags_SetCanABSpeedUpPrint(0);
             ov74_021D1BA8(v0);
             v0->unk_04 = 5;
         }

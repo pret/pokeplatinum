@@ -26,6 +26,7 @@
 #include "message.h"
 #include "overlay_manager.h"
 #include "pokemon.h"
+#include "render_text.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "savedata_misc.h"
@@ -35,7 +36,6 @@
 #include "trainer_info.h"
 #include "unk_02000C88.h"
 #include "unk_0200112C.h"
-#include "unk_02002328.h"
 #include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_020041CC.h"
@@ -708,8 +708,8 @@ static BOOL ov73_021D1510(UnkStruct_ov73_021D1058 *param0, u32 param1, int param
         sub_0201A8D4(param0->unk_18, &param0->unk_1C, &Unk_ov72_021D37EC);
         BGL_WindowColor(&param0->unk_1C, 15, 0, 0, 27 * 8, 4 * 8);
         sub_0200E060(&param0->unk_1C, 0, (0x400 - (18 + 12)), 4);
-        sub_02002AC8(1);
-        sub_02002AE4(0);
+        RenderControlFlags_SetCanABSpeedUpPrint(1);
+        RenderControlFlags_SetAutoScrollFlags(0);
 
         {
             Strbuf *v1 = Strbuf_Init(0x400, param0->unk_00);

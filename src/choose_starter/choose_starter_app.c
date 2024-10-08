@@ -42,12 +42,12 @@
 #include "message.h"
 #include "overlay_manager.h"
 #include "pokemon.h"
+#include "render_text.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02001AF4.h"
-#include "unk_02002328.h"
 #include "unk_02002B7C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
@@ -346,9 +346,9 @@ BOOL ChooseStarter_Init(OverlayManager *param0, int *param1)
     sub_0201E3D8();
     GF_ASSERT(sub_0201E450(4) == 1);
 
-    sub_02002AC8(1);
-    sub_02002AE4(0);
-    sub_02002B20(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(1);
+    RenderControlFlags_SetAutoScrollFlags(0);
+    RenderControlFlags_SetSpeedUpOnTouch(0);
 
     SetupDrawing(app, HEAP_ID_CHOOSE_STARTER_APP);
 

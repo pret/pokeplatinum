@@ -14,7 +14,6 @@
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/struct_0201D738.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_020997B8.h"
 #include "struct_defs/struct_02099F80.h"
@@ -38,11 +37,11 @@
 #include "overlay_manager.h"
 #include "pokemon.h"
 #include "pokemon_summary_app.h"
+#include "render_text.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
-#include "unk_02002328.h"
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
@@ -123,7 +122,7 @@ static void ov91_021D1A68(UnkStruct_ov91_021D0ED8 *param0, u32 param1);
 static void ov91_021D1BBC(UnkStruct_ov91_021D0ED8 *param0, u16 param1);
 static void ov91_021D1C10(UnkStruct_ov91_021D0ED8 *param0, u32 param1);
 static void ov91_021D1DF8(UnkStruct_ov91_021D0ED8 *param0, u32 param1);
-static BOOL ov91_021D1E50(UnkStruct_0201D738 *param0, u16 param1);
+static BOOL ov91_021D1E50(TextPrinterTemplate *param0, u16 param1);
 static u16 ov91_021D1DD0(UnkStruct_ov91_021D0ED8 *param0);
 static u16 ov91_021D1DE0(UnkStruct_ov91_021D0ED8 *param0);
 static u8 ov91_021D1EA0(UnkStruct_ov91_021D0ED8 *param0);
@@ -1161,13 +1160,13 @@ static void ov91_021D1DF8(UnkStruct_ov91_021D0ED8 *param0, u32 param1)
 {
     BGL_FillWindow(&param0->unk_08[12], 15);
     ov91_021D1C10(param0, param1);
-    sub_02002AC8(1);
-    sub_02002AE4(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(1);
+    RenderControlFlags_SetAutoScrollFlags(0);
 
     param0->unk_185 = PrintStringSimple(&param0->unk_08[12], 1, param0->unk_100, 0, 0, Options_TextFrameDelay(param0->unk_00->unk_08), ov91_021D1E50);
 }
 
-static BOOL ov91_021D1E50(UnkStruct_0201D738 *param0, u16 param1)
+static BOOL ov91_021D1E50(TextPrinterTemplate *param0, u16 param1)
 {
     switch (param1) {
     case 1:

@@ -24,6 +24,7 @@
 #include "field_system.h"
 #include "heap.h"
 #include "message.h"
+#include "render_text.h"
 #include "save_player.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -32,7 +33,6 @@
 #include "trainer_info.h"
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
-#include "unk_02002328.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
@@ -581,11 +581,11 @@ asm static void CommClubTask_SelectServerList (SysTask * task, void * param1)
     add r0, #0x40
     bl FieldMessage_DrawWindow
     mov r0, #1
-    bl sub_02002AC8
+    bl RenderControlFlags_SetCanABSpeedUpPrint
     mov r0, #0
-    bl sub_02002AE4
+    bl RenderControlFlags_SetAutoScrollFlags
     mov r0, #0
-    bl sub_02002B20
+    bl RenderControlFlags_SetSpeedUpOnTouch
     ldr r0, = sCommClubMan
               mov r3, #0
     ldr r2, [r0, #0]

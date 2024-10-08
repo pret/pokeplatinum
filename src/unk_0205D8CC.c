@@ -7,8 +7,8 @@
 #include "struct_defs/struct_0205AA50.h"
 
 #include "game_options.h"
+#include "render_text.h"
 #include "strbuf.h"
-#include "unk_02002328.h"
 #include "unk_02002B7C.h"
 #include "unk_0200DA60.h"
 #include "unk_02018340.h"
@@ -49,9 +49,9 @@ u8 FieldMessage_Print(Window *param0, Strbuf *param1, const Options *param2, u8 
 {
     u8 v0;
 
-    sub_02002AC8(param3);
-    sub_02002AE4(0);
-    sub_02002B20(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(param3);
+    RenderControlFlags_SetAutoScrollFlags(0);
+    RenderControlFlags_SetSpeedUpOnTouch(0);
 
     v0 = PrintStringSimple(param0, 1, param1, 0, 0, Options_TextFrameDelay(param2), NULL);
     return v0;
@@ -59,9 +59,9 @@ u8 FieldMessage_Print(Window *param0, Strbuf *param1, const Options *param2, u8 
 
 u8 sub_0205D9CC(Window *param0, Strbuf *param1, int param2, int param3, u8 param4, int param5)
 {
-    sub_02002AC8(param4);
-    sub_02002AE4(param5);
-    sub_02002B20(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(param4);
+    RenderControlFlags_SetAutoScrollFlags(param5);
+    RenderControlFlags_SetSpeedUpOnTouch(0);
 
     return PrintStringSimple(param0, param2, param1, 0, 0, param3, NULL);
 }

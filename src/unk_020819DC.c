@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_defs/struct_0201D738.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207F248.h"
 #include "struct_defs/struct_02081CF4.h"
@@ -15,10 +14,10 @@
 #include "message.h"
 #include "party.h"
 #include "pokemon.h"
+#include "render_text.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "unk_02001AF4.h"
-#include "unk_02002328.h"
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
 #include "unk_0200C440.h"
@@ -35,7 +34,7 @@ static void sub_02082810(GameWindowLayout *param0, u8 param1, u8 param2);
 static void sub_02082880(GameWindowLayout *param0, u8 param1, u8 param2);
 static void sub_02082900(GameWindowLayout *param0, u8 param1, u8 param2);
 static void sub_02082964(GameWindowLayout *param0, u8 param1, u8 param2);
-static BOOL sub_0208279C(UnkStruct_0201D738 *param0, u16 param1);
+static BOOL sub_0208279C(TextPrinterTemplate *param0, u16 param1);
 
 static const UnkStruct_ov61_0222C884 Unk_020F1F08[] = {
     { 0x1, 0x6, 0x1, 0x9, 0x2, 0x0, 0x28 },
@@ -616,13 +615,13 @@ void sub_02082708(GameWindowLayout *param0, u32 param1, u8 param2)
 
 void sub_0208274C(GameWindowLayout *param0)
 {
-    sub_02002AC8(1);
-    sub_02002AE4(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(1);
+    RenderControlFlags_SetAutoScrollFlags(0);
     param0->unk_B10 = PrintStringSimple(
         &param0->unk_04[34], 1, param0->unk_6A4, 0, 0, Options_TextFrameDelay(param0->unk_5A4->unk_0C), sub_0208279C);
 }
 
-static BOOL sub_0208279C(UnkStruct_0201D738 *param0, u16 param1)
+static BOOL sub_0208279C(TextPrinterTemplate *param0, u16 param1)
 {
     switch (param1) {
     case 1:

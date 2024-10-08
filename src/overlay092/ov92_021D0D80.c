@@ -29,13 +29,13 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "render_text.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
-#include "unk_02002328.h"
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
@@ -361,9 +361,9 @@ int ov92_021D0D80(OverlayManager *param0, int *param1)
 
     GXLayers_SwapDisplay();
     SetAutorepeat(4, 8);
-    sub_02002AC8(1);
-    sub_02002AE4(0);
-    sub_02002B20(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(1);
+    RenderControlFlags_SetAutoScrollFlags(0);
+    RenderControlFlags_SetSpeedUpOnTouch(0);
 
     ov92_021D1530(v0);
 

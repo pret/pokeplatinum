@@ -38,6 +38,7 @@
 #include "overlay_manager.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
+#include "render_text.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "sprite_resource.h"
@@ -46,7 +47,6 @@
 #include "touch_screen.h"
 #include "trainer_info.h"
 #include "unk_02000C88.h"
-#include "unk_02002328.h"
 #include "unk_02002B7C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
@@ -1707,14 +1707,14 @@ static BOOL ov97_022354C4(UnkStruct_ov97_02234A2C *param0, int param1)
 {
     if (param0->unk_04) {
         ov97_02234ECC(param0);
-        sub_02002B20(1);
+        RenderControlFlags_SetSpeedUpOnTouch(1);
         param0->unk_490.unk_34 = Unk_ov97_0223EAB8[param1];
         param0->unk_490.unk_44 = 1;
         ov97_02233DD0(param0, &param0->unk_490, 0x8 | 0x10);
         param0->unk_04 = 0;
     } else {
         if (Message_Printing(param0->unk_490.unk_48) == 0) {
-            sub_02002B20(0);
+            RenderControlFlags_SetSpeedUpOnTouch(0);
             return 1;
         }
     }
@@ -1726,7 +1726,7 @@ static BOOL ov97_02235528(UnkStruct_ov97_02234A2C *param0, int param1)
 {
     if (param0->unk_04) {
         ov97_02234ECC(param0);
-        sub_02002B20(1);
+        RenderControlFlags_SetSpeedUpOnTouch(1);
         param0->unk_490.unk_34 = Unk_ov97_0223EAB8[param1];
         param0->unk_490.unk_44 = 1;
         ov97_02233DD0(param0, &param0->unk_490, 0x8 | 0x10);
@@ -1734,7 +1734,7 @@ static BOOL ov97_02235528(UnkStruct_ov97_02234A2C *param0, int param1)
     } else {
         if (Message_Printing(param0->unk_490.unk_48) == 0) {
             ov97_02235310(param0);
-            sub_02002B20(0);
+            RenderControlFlags_SetSpeedUpOnTouch(0);
             return 1;
         }
     }
@@ -1746,7 +1746,7 @@ static BOOL ov97_02235590(UnkStruct_ov97_02234A2C *param0, int param1)
 {
     if (param0->unk_08 != -1) {
         ov97_02234ECC(param0);
-        sub_02002B20(1);
+        RenderControlFlags_SetSpeedUpOnTouch(1);
         param0->unk_490.unk_34 = param0->unk_08;
         param0->unk_490.unk_44 = param1;
         ov97_02233DD0(param0, &param0->unk_490, 0x8 | 0x10);
@@ -1755,12 +1755,12 @@ static BOOL ov97_02235590(UnkStruct_ov97_02234A2C *param0, int param1)
     } else {
         if (param1) {
             if (Message_Printing(param0->unk_490.unk_48) == 0) {
-                sub_02002B20(0);
+                RenderControlFlags_SetSpeedUpOnTouch(0);
                 return 1;
             }
         } else {
             if (gCoreSys.touchPressed || gCoreSys.pressedKeys) {
-                sub_02002B20(0);
+                RenderControlFlags_SetSpeedUpOnTouch(0);
                 Sound_PlayEffect(1500);
                 return 1;
             }

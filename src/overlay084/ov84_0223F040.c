@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0201D738.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207CB08.h"
 #include "struct_defs/struct_02081CF4.h"
@@ -23,11 +22,11 @@
 #include "move_table.h"
 #include "narc.h"
 #include "poffin.h"
+#include "render_text.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "trainer_info.h"
 #include "unk_02001AF4.h"
-#include "unk_02002328.h"
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
 #include "unk_0200C440.h"
@@ -37,7 +36,7 @@
 #include "unk_0201D670.h"
 
 static void ov84_0223F9B0(UnkStruct_ov84_0223B5A0 *param0, u32 param1);
-static BOOL ov84_022400E0(UnkStruct_0201D738 *param0, u16 param1);
+static BOOL ov84_022400E0(TextPrinterTemplate *param0, u16 param1);
 
 static const UnkStruct_ov61_0222C884 Unk_ov84_02241150 = {
     0x0,
@@ -590,14 +589,14 @@ u8 ov84_022400A0(UnkStruct_ov84_0223B5A0 *param0)
 {
     u8 v0;
 
-    sub_02002AC8(1);
-    sub_02002AE4(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(1);
+    RenderControlFlags_SetAutoScrollFlags(0);
     v0 = PrintStringSimple(&param0->unk_04[6], 1, param0->unk_3F8, 0, 0, Options_TextFrameDelay(param0->unk_D0), ov84_022400E0);
 
     return v0;
 }
 
-static BOOL ov84_022400E0(UnkStruct_0201D738 *param0, u16 param1)
+static BOOL ov84_022400E0(TextPrinterTemplate *param0, u16 param1)
 {
     switch (param1) {
     case 1:

@@ -24,9 +24,9 @@
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
+#include "render_text.h"
 #include "savedata_misc.h"
 #include "sys_task.h"
-#include "unk_02002328.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
@@ -82,7 +82,7 @@ void ov62_0222F2C0(UnkStruct_0208C06C *param0)
         param0->unk_14.unk_30 = 1;
 
         ov62_0222FF40(param0);
-        sub_02002B20(1);
+        RenderControlFlags_SetSpeedUpOnTouch(1);
     }
 
     SetMainCallback(ov62_0222F8E4, param0);
@@ -183,7 +183,7 @@ void ov62_0222F514(UnkStruct_0208C06C *param0)
         v1 = sub_0201E530();
 
         sub_02024034(param0->unk_14.unk_18);
-        sub_02002B20(0);
+        RenderControlFlags_SetSpeedUpOnTouch(0);
     }
 
     {

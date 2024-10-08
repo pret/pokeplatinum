@@ -4,20 +4,17 @@
 #include <string.h>
 
 #include "struct_decls/struct_02023350_decl.h"
-#include "struct_defs/struct_02002328.h"
-#include "struct_defs/struct_02002D18.h"
 #include "struct_defs/struct_0201D670.h"
-#include "struct_defs/struct_0201D834.h"
 
 #include "heap.h"
+#include "render_text.h"
 #include "strbuf.h"
-#include "unk_02002328.h"
 #include "unk_02006E3C.h"
 #include "unk_0201D670.h"
 #include "unk_020232E0.h"
 
 typedef struct {
-    UnkStruct_02002328 unk_00;
+    TextGlyph unk_00;
     void *unk_84[4];
     UnkStruct_02023350 *unk_94[4];
 } UnkStruct_02101D4C;
@@ -111,24 +108,24 @@ void sub_02002C60(int param0)
     }
 }
 
-const UnkStruct_02002328 *sub_02002CFC(int param0, u16 param1)
+const TextGlyph *sub_02002CFC(int param0, u16 param1)
 {
     sub_020234A0(Unk_02101D48->unk_94[param0], param1, &Unk_02101D48->unk_00);
     return &(Unk_02101D48->unk_00);
 }
 
-int sub_02002D18(int param0, UnkStruct_0201D834 *param1)
+int sub_02002D18(int param0, TextPrinter *param1)
 {
-    UnkStruct_02002D18 *v0;
+    TextPrinterSubstruct *v0;
 
-    v0 = (UnkStruct_02002D18 *)&(param1->unk_20[0]);
+    v0 = (TextPrinterSubstruct *)&(param1->substruct[0]);
 
-    if (!v0->unk_01_7) {
-        v0->unk_00_0 = param0;
-        v0->unk_01_7 = 1;
+    if (!v0->fontIDSet) {
+        v0->fontID = param0;
+        v0->fontIDSet = 1;
     }
 
-    return sub_02002328(param1);
+    return RenderText(param1);
 }
 
 u32 sub_02002D48(int param0, const u16 *param1, u32 param2)
