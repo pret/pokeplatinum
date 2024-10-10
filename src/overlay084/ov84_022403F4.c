@@ -448,10 +448,10 @@ void ov84_02240D5C(UnkStruct_ov84_0223B5A0 *param0, u16 param1, u8 param2)
     v1 = MoveTable_LoadParam(v0, MOVEATTRIBUTE_TYPE);
     v2 = MoveTable_LoadParam(v0, MOVEATTRIBUTE_CLASS);
 
-    sub_0200D948(param0->unk_D8, param0->unk_DC, sub_0207C944(), sub_0207C908(v1), 1, 49409);
-    sub_0200D41C(param0->unk_E0[10], sub_0207C92C(v1) + 6);
-    sub_0200D948(param0->unk_D8, param0->unk_DC, sub_0207CAC0(), sub_0207CA90(v2), 1, 49410);
-    sub_0200D41C(param0->unk_E0[11], sub_0207CAA8(v2) + 6);
+    sub_0200D948(param0->unk_D8, param0->unk_DC, Battle_Obj_GetNARCIndex(), Battle_Obj_TypeIndexToIconNARCMember(v1), 1, 49409);
+    sub_0200D41C(param0->unk_E0[10], Battle_Obj_TypeIndexToPaletteIndex(v1) + 6);
+    sub_0200D948(param0->unk_D8, param0->unk_DC, Battle_Obj_GetMoveTypeNARCIndex(), Battle_Obj_MoveTypeIndexToIconNARCMember(v2), 1, 49410);
+    sub_0200D41C(param0->unk_E0[11], Battle_Obj_MoveTypeIndexToPaletteIndex(v2) + 6);
 }
 
 void ov84_02240E24(UnkStruct_ov84_0223B5A0 *param0, s16 param1, s16 param2)
