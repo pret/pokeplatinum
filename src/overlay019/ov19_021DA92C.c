@@ -38,12 +38,12 @@ typedef struct {
     UnkStruct_ov19_021DA9E0 *unk_08;
 } UnkStruct_ov19_021DAE2C;
 
-u32 sub_0207C908(int param0);
-u32 sub_0207C920(void);
+u32 Battle_Obj_TypeIndexToIconNARCMember(int param0);
+u32 Battle_Obj_GetPaletteNARCMember(void);
 u32 sub_0207C924(void);
 u32 sub_0207C928(void);
-u8 sub_0207C92C(int param0);
-u32 sub_0207C944(void);
+u8 Battle_Obj_TypeIndexToPaletteIndex(int param0);
+u32 Battle_Obj_GetNARCIndex(void);
 void sub_0201AA10(Window *param0, u32 param1, u32 param2);
 static void ov19_021DAB44(UnkStruct_ov19_021DA9E0 *param0);
 static void ov19_021DAC4C(UnkStruct_ov19_021DA9E0 *param0);
@@ -81,7 +81,7 @@ BOOL ov19_021DA92C(UnkStruct_ov19_021DA9E0 *param0, UnkStruct_ov19_021D61B0 *par
     param0->unk_30 = NULL;
     param0->unk_44 = MessageLoader_GetNewStrbuf(param5, 21);
     param0->unk_48 = MessageLoader_GetNewStrbuf(param5, 22);
-    param0->unk_34 = sub_02006FA0(sub_0207C944(), sub_0207C924(), 1, &(param0->unk_38), 10);
+    param0->unk_34 = sub_02006FA0(Battle_Obj_GetNARCIndex(), sub_0207C924(), 1, &(param0->unk_38), 10);
 
     for (v0 = 0; v0 < 2; v0++) {
         param0->unk_3C[v0] = NULL;
@@ -218,10 +218,10 @@ static void ov19_021DAB44(UnkStruct_ov19_021DA9E0 *param0)
     CellActorResourceData v1;
     u32 v2, v3, v4;
 
-    v2 = sub_0207C944();
-    v3 = sub_0207C908(2);
+    v2 = Battle_Obj_GetNARCIndex();
+    v3 = Battle_Obj_TypeIndexToIconNARCMember(2);
 
-    sub_02006E84(v2, sub_0207C920(), 1, 10 * 0x20, 0x20 * 3, 10);
+    sub_02006E84(v2, Battle_Obj_GetPaletteNARCMember(), 1, 10 * 0x20, 0x20 * 3, 10);
 
     for (v4 = 0; v4 < 2; v4++) {
         NNS_G2dInitImageProxy(&v0);
@@ -416,25 +416,25 @@ static void ov19_021DAE60(Window *param0, UnkStruct_ov19_021DA9E0 *param1, u32 p
         VecFx32 v2;
         u32 v3, v4;
 
-        v3 = sub_0207C944();
-        v4 = sub_0207C908(param1->unk_10->unk_4C.unk_0C);
+        v3 = Battle_Obj_GetNARCIndex();
+        v4 = Battle_Obj_TypeIndexToIconNARCMember(param1->unk_10->unk_4C.unk_0C);
 
-        sub_02006EC0(sub_0207C944(), sub_0207C908(param1->unk_10->unk_4C.unk_0C), 0, 1504 * 0x20, 0, 1, 10);
+        sub_02006EC0(Battle_Obj_GetNARCIndex(), Battle_Obj_TypeIndexToIconNARCMember(param1->unk_10->unk_4C.unk_0C), 0, 1504 * 0x20, 0, 1, 10);
 
         v2 = *CellActor_GetPosition(param1->unk_3C[0]);
         v2.y = (176 + (16 * param3)) << FX32_SHIFT;
 
         CellActor_SetPosition(param1->unk_3C[0], &v2);
-        CellActor_SetExplicitPalette(param1->unk_3C[0], 10 + sub_0207C92C(param1->unk_10->unk_4C.unk_0C));
+        CellActor_SetExplicitPalette(param1->unk_3C[0], 10 + Battle_Obj_TypeIndexToPaletteIndex(param1->unk_10->unk_4C.unk_0C));
         CellActor_SetDrawFlag(param1->unk_3C[0], 1);
 
         if (param1->unk_10->unk_4C.unk_0C != param1->unk_10->unk_4C.unk_0D) {
-            sub_02006EC0(sub_0207C944(), sub_0207C908(param1->unk_10->unk_4C.unk_0D), 0, (1504 + 8) * 0x20, 0, 1, 10);
+            sub_02006EC0(Battle_Obj_GetNARCIndex(), Battle_Obj_TypeIndexToIconNARCMember(param1->unk_10->unk_4C.unk_0D), 0, (1504 + 8) * 0x20, 0, 1, 10);
 
             v2.x += (36 << FX32_SHIFT);
 
             CellActor_SetPosition(param1->unk_3C[1], &v2);
-            CellActor_SetExplicitPalette(param1->unk_3C[1], 10 + sub_0207C92C(param1->unk_10->unk_4C.unk_0D));
+            CellActor_SetExplicitPalette(param1->unk_3C[1], 10 + Battle_Obj_TypeIndexToPaletteIndex(param1->unk_10->unk_4C.unk_0D));
             CellActor_SetDrawFlag(param1->unk_3C[1], 1);
         } else {
             CellActor_SetDrawFlag(param1->unk_3C[1], 0);

@@ -247,7 +247,13 @@ RomSpec
 	File battle/graphic/batt_obj.narc
 	File battle/graphic/pl_b_plist_gra.narc
 	File battle/graphic/pl_batt_bg.narc
-	File battle/graphic/pl_batt_obj.narc
+
+	Root /
+	HostRoot res
+	File battle/graphic/pl_batt_obj/pl_batt_obj.narc
+
+	Root /
+	HostRoot res/prebuilt
 	File battle/graphic/vs_demo_gra.narc
 	File wazaeffect/we.arc
 	File wazaeffect/we_sub.narc
