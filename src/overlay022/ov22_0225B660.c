@@ -16,6 +16,7 @@
 
 #include "cell_actor.h"
 #include "core_sys.h"
+#include "font.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
@@ -23,7 +24,6 @@
 #include "pokemon.h"
 #include "strbuf.h"
 #include "string_template.h"
-#include "unk_02002B7C.h"
 #include "unk_02006E3C.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"

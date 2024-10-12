@@ -24,6 +24,7 @@
 #include "overlay097/struct_ov97_0222DB78.h"
 
 #include "cell_actor.h"
+#include "font.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "narc.h"
@@ -31,7 +32,6 @@
 #include "sprite_resource.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02002B7C.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"

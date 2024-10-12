@@ -8,8 +8,8 @@
 
 #include "charcode.h"
 #include "core_sys.h"
+#include "font.h"
 #include "render_text.h"
-#include "unk_02002B7C.h"
 #include "unk_02005474.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"

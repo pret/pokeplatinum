@@ -15,6 +15,7 @@
 #include "overlay084/struct_ov84_0223C920.h"
 
 #include "bag.h"
+#include "font.h"
 #include "game_options.h"
 #include "heap.h"
 #include "item.h"
@@ -27,7 +28,6 @@
 #include "string_template.h"
 #include "trainer_info.h"
 #include "unk_02001AF4.h"
-#include "unk_02002B7C.h"
 #include "unk_02005474.h"
 #include "unk_0200C440.h"
 #include "unk_0200DA60.h"

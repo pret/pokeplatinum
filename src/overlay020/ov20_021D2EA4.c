@@ -16,11 +16,11 @@
 
 #include "cell_actor.h"
 #include "charcode.h"
+#include "font.h"
 #include "heap.h"
 #include "message.h"
 #include "strbuf.h"
 #include "string_template.h"
-#include "unk_02002B7C.h"
 #include "unk_02006E3C.h"
 #include "unk_0200DA60.h"
 #include "unk_020149F0.h"

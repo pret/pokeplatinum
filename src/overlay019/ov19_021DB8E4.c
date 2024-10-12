@@ -17,6 +17,7 @@
 #include "overlay061/struct_ov61_0222C884.h"
 
 #include "cell_actor.h"
+#include "font.h"
 #include "heap.h"
 #include "item.h"
 #include "message.h"
@@ -24,7 +25,6 @@
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02002B7C.h"
 #include "unk_02006E3C.h"
 #include "unk_0200C440.h"
 #include "unk_02018340.h"

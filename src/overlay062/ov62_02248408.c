@@ -11,13 +11,13 @@
 #include "overlay006/battle_params.h"
 #include "savedata/save_table.h"
 
+#include "font.h"
 #include "heap.h"
 #include "message.h"
 #include "party.h"
 #include "pokemon.h"
 #include "savedata.h"
 #include "strbuf.h"
-#include "unk_02002B7C.h"
 #include "unk_02017728.h"
 #include "unk_0202F1D4.h"
 

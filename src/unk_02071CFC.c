@@ -5,10 +5,10 @@
 
 #include "field/field_system_sub2_t.h"
 
+#include "font.h"
 #include "map_header.h"
 #include "message.h"
 #include "strbuf.h"
-#include "unk_02002B7C.h"
 
 u32 sub_02071CFC(MessageLoader *param0, const int param1, Strbuf *param2)
 {

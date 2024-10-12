@@ -1,28 +1,28 @@
+#include "overlay020/ov20_021D4728.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "sys_task_manager.h"
-#include "strbuf.h"
 #include "struct_decls/struct_020998EC_decl.h"
+#include "struct_defs/struct_0205AA50.h"
+
+#include "overlay020/ov20_021D0D80.h"
+#include "overlay020/ov20_021D2098.h"
 #include "overlay020/struct_ov20_021D16E8_decl.h"
 #include "overlay020/struct_ov20_021D2128_decl.h"
 
-#include "struct_defs/struct_0205AA50.h"
-
-#include "unk_02002B7C.h"
-#include "unk_02006E3C.h"
-#include "message.h"
-#include "sys_task.h"
+#include "cell_actor.h"
+#include "font.h"
 #include "heap.h"
+#include "message.h"
+#include "strbuf.h"
+#include "sys_task.h"
+#include "sys_task_manager.h"
+#include "unk_02006E3C.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "cell_actor.h"
-#include "strbuf.h"
-#include "overlay020/ov20_021D0D80.h"
-#include "overlay020/ov20_021D2098.h"
-#include "overlay020/ov20_021D4728.h"
 
 typedef struct {
     void * unk_00;

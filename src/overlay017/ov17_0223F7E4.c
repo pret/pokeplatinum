@@ -29,6 +29,7 @@
 
 #include "assert.h"
 #include "core_sys.h"
+#include "font.h"
 #include "heap.h"
 #include "message.h"
 #include "message_util.h"
@@ -39,7 +40,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
-#include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"

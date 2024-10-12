@@ -6,12 +6,12 @@
 #include "struct_defs/struct_0201D670.h"
 #include "struct_defs/struct_0205AA50.h"
 
+#include "font.h"
 #include "heap.h"
 #include "render_text.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02002B7C.h"
 #include "unk_02006E3C.h"
 #include "unk_02018340.h"
 

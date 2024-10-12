@@ -8,12 +8,12 @@
 
 #include "overlay099/struct_ov99_021D3E78_decl.h"
 
+#include "font.h"
 #include "heap.h"
 #include "message.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02002B7C.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 

@@ -43,6 +43,7 @@
 #include "overlay068/struct_ov68_0225DC74.h"
 
 #include "enums.h"
+#include "font.h"
 #include "game_records.h"
 #include "heap.h"
 #include "inlines.h"
@@ -54,7 +55,6 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "unk_02002B7C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_02014D38.h"

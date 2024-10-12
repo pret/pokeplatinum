@@ -19,7 +19,7 @@ pokeplatinum_c = files(
     'unk_02001AF4.c',
     'unk_020021B0.c',
     'render_text.c',
-    'unk_02002B7C.c',
+    'font.c',
     'unk_02002F38.c',
     'unk_02003B60.c',
     'unk_020041CC.c',

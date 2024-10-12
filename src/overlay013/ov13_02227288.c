@@ -9,12 +9,12 @@
 #include "overlay013/struct_ov13_02227244.h"
 #include "overlay061/struct_ov61_0222C884.h"
 
+#include "font.h"
 #include "item.h"
 #include "message.h"
 #include "render_text.h"
 #include "strbuf.h"
 #include "string_template.h"
-#include "unk_02002B7C.h"
 #include "unk_0200DA60.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"

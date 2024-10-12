@@ -22,11 +22,11 @@
 
 #include "core_sys.h"
 #include "easy3d_object.h"
+#include "font.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
 #include "strbuf.h"
-#include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_02006E3C.h"
 #include "unk_0200A9DC.h"

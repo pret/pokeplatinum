@@ -12,12 +12,12 @@
 #include "overlay097/struct_ov97_0222DB78.h"
 
 #include "core_sys.h"
+#include "font.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
 #include "strbuf.h"
 #include "string_template.h"
-#include "unk_02002B7C.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"

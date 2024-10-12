@@ -23,6 +23,7 @@
 #include "overlay022/struct_ov22_02255800.h"
 
 #include "cell_actor.h"
+#include "font.h"
 #include "heap.h"
 #include "message.h"
 #include "message_util.h"
@@ -34,7 +35,6 @@
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"

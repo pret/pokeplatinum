@@ -36,10 +36,10 @@
 
 #include "communication_system.h"
 #include "error_handling.h"
+#include "font.h"
 #include "message.h"
 #include "narc.h"
 #include "strbuf.h"
-#include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"

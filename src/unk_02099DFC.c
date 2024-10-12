@@ -12,6 +12,7 @@
 #include "overlay097/struct_ov97_0222DB78.h"
 
 #include "core_sys.h"
+#include "font.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
@@ -20,7 +21,6 @@
 #include "strbuf.h"
 #include "unk_02000C88.h"
 #include "unk_02001AF4.h"
-#include "unk_02002B7C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"

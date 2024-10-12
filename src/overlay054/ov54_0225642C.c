@@ -19,12 +19,12 @@
 #include "overlay054/struct_ov54_0225642C_decl.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 
+#include "font.h"
 #include "heap.h"
 #include "message.h"
 #include "pokemon_icon.h"
 #include "strbuf.h"
 #include "sys_task_manager.h"
-#include "unk_02002B7C.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 

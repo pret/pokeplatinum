@@ -20,6 +20,7 @@
 #include "overlay097/struct_ov97_0222DB78.h"
 
 #include "core_sys.h"
+#include "font.h"
 #include "game_options.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -36,7 +37,6 @@
 #include "trainer_info.h"
 #include "unk_02000C88.h"
 #include "unk_0200112C.h"
-#include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"

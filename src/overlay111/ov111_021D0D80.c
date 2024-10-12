@@ -25,6 +25,7 @@
 #include "overlay111/struct_ov111_021D3620.h"
 
 #include "cell_actor.h"
+#include "font.h"
 #include "game_options.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -36,7 +37,6 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "touch_screen.h"
-#include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"

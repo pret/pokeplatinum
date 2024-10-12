@@ -1,40 +1,38 @@
+#include "unk_0208A3F4.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "inlines.h"
-
+#include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "message.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "strbuf.h"
-
+#include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02089688.h"
 #include "struct_defs/struct_0208AF44.h"
-#include "struct_defs/sprite_template.h"
+
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_02241308.h"
 #include "overlay104/struct_ov104_0224133C.h"
 
-#include "unk_02002B7C.h"
+#include "font.h"
+#include "game_options.h"
+#include "inlines.h"
+#include "message.h"
+#include "strbuf.h"
 #include "unk_02002F38.h"
 #include "unk_02006E3C.h"
-#include "message.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
 #include "unk_02012744.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201E86C.h"
-#include "strbuf.h"
-#include "game_options.h"
-#include "unk_0208A3F4.h"
 
 void sub_0208A3F4 (UnkStruct_02089688 * param0)
 {

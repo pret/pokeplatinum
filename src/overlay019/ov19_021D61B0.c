@@ -41,12 +41,12 @@
 
 #include "cell_actor.h"
 #include "enums.h"
+#include "font.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "narc.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02002B7C.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"

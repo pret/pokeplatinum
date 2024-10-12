@@ -25,6 +25,7 @@
 #include "overlay097/struct_ov97_0222DB78.h"
 #include "savedata/save_table.h"
 
+#include "font.h"
 #include "game_options.h"
 #include "game_records.h"
 #include "gx_layers.h"
@@ -36,7 +37,6 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
-#include "unk_02002B7C.h"
 #include "unk_02006E3C.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"

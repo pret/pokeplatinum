@@ -13,10 +13,10 @@
 #include "overlay021/struct_ov21_021D4CB8.h"
 
 #include "cell_actor.h"
+#include "font.h"
 #include "heap.h"
 #include "message.h"
 #include "strbuf.h"
-#include "unk_02002B7C.h"
 #include "unk_02012744.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"

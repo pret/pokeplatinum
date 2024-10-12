@@ -1,13 +1,14 @@
+#include "overlay022/ov22_02259C58.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "message.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "strbuf.h"
-
 #include "struct_defs/struct_020127E8.h"
-#include "touch_screen.h"
 #include "struct_defs/struct_0205AA50.h"
+
+#include "overlay022/funcptr_ov22_02259D78.h"
+#include "overlay022/ov22_02255094.h"
 #include "overlay022/struct_ov22_02259C58.h"
 #include "overlay022/struct_ov22_02259C58_1.h"
 #include "overlay022/struct_ov22_02259C9C.h"
@@ -15,25 +16,22 @@
 #include "overlay022/struct_ov22_0225A0E4.h"
 #include "overlay022/struct_ov22_0225A154.h"
 
-#include "overlay022/funcptr_ov22_02259D78.h"
-
-#include "unk_02002B7C.h"
+#include "cell_actor.h"
+#include "error_handling.h"
+#include "font.h"
+#include "message.h"
+#include "sprite_resource.h"
+#include "strbuf.h"
+#include "touch_screen.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
-#include "sprite_resource.h"
 #include "unk_0200A328.h"
-#include "message.h"
 #include "unk_02012744.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
-#include "cell_actor.h"
-#include "error_handling.h"
-#include "strbuf.h"
 #include "unk_02023FCC.h"
-#include "overlay022/ov22_02255094.h"
-#include "overlay022/ov22_02259C58.h"
 
 static void ov22_02259D94(UnkStruct_ov22_02259C58 * param0, void * param1);
 static void ov22_0225A0E4(UnkStruct_ov22_02259C58 * param0, int param1, UnkStruct_ov22_0225A0E4 * param2, int param3, int param4, int param5, int param6);

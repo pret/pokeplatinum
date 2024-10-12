@@ -13,6 +13,7 @@
 #include "overlay005/struct_ov5_021E1FF4_decl.h"
 
 #include "field_overworld_state.h"
+#include "font.h"
 #include "heap.h"
 #include "map_header.h"
 #include "message.h"
@@ -24,7 +25,6 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "trainer_info.h"
-#include "unk_02002B7C.h"
 #include "unk_0200DA60.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"

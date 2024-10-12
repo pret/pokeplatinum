@@ -27,6 +27,7 @@
 
 #include "cell_actor.h"
 #include "core_sys.h"
+#include "font.h"
 #include "game_options.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -37,7 +38,6 @@
 #include "save_player.h"
 #include "strbuf.h"
 #include "string_template.h"
-#include "unk_02002B7C.h"
 #include "unk_02005474.h"
 #include "unk_0200A784.h"
 #include "unk_0200C6E4.h"

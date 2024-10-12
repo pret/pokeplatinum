@@ -23,6 +23,7 @@
 #include "overlay017/struct_ov17_0223F6E8.h"
 #include "overlay017/struct_ov17_0223F744.h"
 
+#include "font.h"
 #include "game_overlay.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -31,7 +32,6 @@
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02002B7C.h"
 #include "unk_02005474.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200C6E4.h"

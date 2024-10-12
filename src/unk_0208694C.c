@@ -17,6 +17,7 @@
 
 #include "cell_actor.h"
 #include "core_sys.h"
+#include "font.h"
 #include "game_options.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -31,7 +32,6 @@
 #include "string_template.h"
 #include "sys_task_manager.h"
 #include "unk_020021B0.h"
-#include "unk_02002B7C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200679C.h"

@@ -11,8 +11,8 @@
 #include "overlay084/struct_ov84_02240FA8.h"
 
 #include "core_sys.h"
+#include "font.h"
 #include "heap.h"
-#include "unk_02002B7C.h"
 #include "unk_020149F0.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"

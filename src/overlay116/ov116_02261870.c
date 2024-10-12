@@ -20,12 +20,12 @@
 
 #include "camera.h"
 #include "easy3d_object.h"
+#include "font.h"
 #include "inlines.h"
 #include "message.h"
 #include "narc.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_02006E3C.h"
 #include "unk_0200C6E4.h"

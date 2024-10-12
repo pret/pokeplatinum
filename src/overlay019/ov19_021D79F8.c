@@ -19,12 +19,12 @@
 #include "overlay019/struct_ov19_021DCD18.h"
 
 #include "cell_actor.h"
+#include "font.h"
 #include "heap.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02002B7C.h"
 #include "unk_02006E3C.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"

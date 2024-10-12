@@ -28,6 +28,7 @@
 #include "overlay104/struct_ov104_0224133C.h"
 
 #include "cell_actor.h"
+#include "font.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
@@ -38,7 +39,6 @@
 #include "sys_task_manager.h"
 #include "touch_screen.h"
 #include "unk_02001AF4.h"
-#include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_02006E3C.h"
 #include "unk_0200C6E4.h"

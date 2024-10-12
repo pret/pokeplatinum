@@ -16,6 +16,7 @@
 #include "overlay084/struct_ov84_02240FA8.h"
 
 #include "core_sys.h"
+#include "font.h"
 #include "heap.h"
 #include "message.h"
 #include "party.h"
@@ -23,7 +24,6 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "unk_0200112C.h"
-#include "unk_02002B7C.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"

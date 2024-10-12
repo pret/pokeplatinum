@@ -9,6 +9,7 @@
 
 #include "overlay061/struct_ov61_0222C884.h"
 
+#include "font.h"
 #include "heap.h"
 #include "message.h"
 #include "move_table.h"
@@ -16,7 +17,6 @@
 #include "pokemon_summary_app.h"
 #include "strbuf.h"
 #include "string_template.h"
-#include "unk_02002B7C.h"
 #include "unk_0200C440.h"
 #include "unk_0200DA60.h"
 #include "unk_02018340.h"
