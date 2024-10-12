@@ -539,7 +539,7 @@ static void ov97_0222B53C(Window *param0, MessageLoader *param1, StringTemplate 
     Strbuf *v2;
 
     v2 = MessageUtil_ExpandedStrbuf(param2, param1, param4, 81);
-    v0 = sub_02002D7C(0, v2, sub_02002DF8(0, 2));
+    v0 = sub_02002D7C(0, v2, Font_GetAttribute(0, 2));
     v1 = sub_0201C294(param0) * 8 - (v0 + 32);
 
     sub_0201D78C(param0, 0, v2, v1, param5, 0xff, param3, NULL);

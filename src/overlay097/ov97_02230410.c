@@ -330,7 +330,7 @@ static void ov97_022305EC(Window *param0, int param1)
     MessageLoader *v1 = MessageLoader_Init(1, 26, 421, 87);
     StringTemplate *v2 = StringTemplate_Default(87);
 
-    BGL_FillWindow(param0, sub_02002DF8(1, 6));
+    BGL_FillWindow(param0, Font_GetAttribute(1, 6));
 
     v0 = MessageUtil_ExpandedStrbuf(v2, v1, param1, 87);
     sub_0201D78C(param0, 1, v0, 0, 0, 0xff, 66048, NULL);
@@ -609,7 +609,7 @@ static void ov97_02230C44(UnkStruct_ov97_02230868 *param0, int param1, int param
                 BGL_AddWindow(param0->unk_2A5C, &param0->unk_2A68[v0], 0, v4[v0].unk_04, v4[v0].unk_08, v4[v0].unk_0C, v4[v0].unk_10, 15, v1);
             }
 
-            BGL_FillWindow(&param0->unk_2A68[v0], sub_02002DF8(v4[v0].unk_14, v4[v0].unk_1C));
+            BGL_FillWindow(&param0->unk_2A68[v0], Font_GetAttribute(v4[v0].unk_14, v4[v0].unk_1C));
             v3 = v4[v0].unk_18;
 
             if (v4[v0].unk_24(param0, &param0->unk_2A68[v0], v3) == 1) {

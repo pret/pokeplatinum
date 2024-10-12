@@ -637,7 +637,7 @@ void ov5_021DCB24(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 *param3, S
     UnkStruct_ov5_021DC1A4 *v3;
 
     v3 = ov5_021DC150(fieldSystem, param1, param2, 0, 0, param3, param4, NULL, NULL);
-    v1 = 8 * sub_02002DF8(0, 0);
+    v1 = 8 * Font_GetAttribute(0, 0);
 
     if ((v1 % 8) == 0) {
         v1 = (v1 / 8);

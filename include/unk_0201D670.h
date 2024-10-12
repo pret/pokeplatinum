@@ -1,13 +1,13 @@
 #ifndef POKEPLATINUM_UNK_0201D670_H
 #define POKEPLATINUM_UNK_0201D670_H
 
-#include "struct_defs/struct_0201D670.h"
 #include "struct_defs/struct_0205AA50.h"
 
+#include "font.h"
 #include "render_text.h"
 #include "strbuf.h"
 
-void sub_0201D670(const UnkStruct_0201D670 *param0);
+void SetFontAttributesPtr(const FontAttributes *fontAttributes);
 void sub_0201D710(void);
 u8 Message_Printing(u8 param0);
 void PrintString_ForceStop(u8 param0);

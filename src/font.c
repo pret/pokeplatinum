@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02023350_decl.h"
-#include "struct_defs/struct_0201D670.h"
 
 #include "heap.h"
 #include "render_text.h"
@@ -29,12 +28,43 @@ static const struct {
     { 0x3, 0x0 }
 };
 
-static const UnkStruct_0201D670 Unk_020E4CE4[] = {
-    { 0xB, 0x10, 0x0, 0x0, 0x0, 0x1, 0xF, 0x2 },
-    { 0xB, 0x10, 0x0, 0x0, 0x0, 0x1, 0xF, 0x2 },
-    { 0xB, 0x10, 0x0, 0x0, 0x0, 0x1, 0xF, 0x2 },
-    { 0xB, 0x10, 0x0, 0x0, 0x0, 0x1, 0xF, 0x2 },
-    { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
+static const FontAttributes sFontAttributes[5] = {
+    [0] = {
+        .maxLetterWidth = 11,
+        .maxLetterHeight = 16,
+        .letterSpacing = 0,
+        .lineSpacing = 0,
+        .fgColor = 1,
+        .bgColor = 15,
+        .shadowColor = 2,
+    },
+    [1] = {
+        .maxLetterWidth = 11,
+        .maxLetterHeight = 16,
+        .letterSpacing = 0,
+        .lineSpacing = 0,
+        .fgColor = 1,
+        .bgColor = 15,
+        .shadowColor = 2,
+    },
+    [2] = {
+        .maxLetterWidth = 11,
+        .maxLetterHeight = 16,
+        .letterSpacing = 0,
+        .lineSpacing = 0,
+        .fgColor = 1,
+        .bgColor = 15,
+        .shadowColor = 2,
+    },
+    [3] = {
+        .maxLetterWidth = 11,
+        .maxLetterHeight = 16,
+        .letterSpacing = 0,
+        .lineSpacing = 0,
+        .fgColor = 1,
+        .bgColor = 15,
+        .shadowColor = 2,
+    },
 };
 
 static UnkStruct_02101D4C Unk_02101D4C = {
@@ -54,7 +84,7 @@ void sub_02002B7C(void)
         Unk_02101D48->unk_94[v0] = NULL;
     }
 
-    sub_0201D670(Unk_020E4CE4);
+    SetFontAttributesPtr(sFontAttributes);
 }
 
 void sub_02002BB8(int param0, u32 param1)
@@ -150,34 +180,34 @@ u32 sub_02002DB4(int param0, Strbuf *param1, Strbuf *param2)
     return sub_0202366C(Unk_02101D48->unk_94[param0], Strbuf_GetData(param2));
 }
 
-u8 sub_02002DF8(u8 param0, u8 param1)
+u8 Font_GetAttribute(u8 param0, u8 param1)
 {
     u8 v0 = 0;
 
     switch (param1) {
     case 0:
-        v0 = Unk_020E4CE4[param0].unk_00;
+        v0 = sFontAttributes[param0].maxLetterWidth;
         break;
     case 1:
-        v0 = Unk_020E4CE4[param0].unk_01;
+        v0 = sFontAttributes[param0].maxLetterHeight;
         break;
     case 2:
-        v0 = Unk_020E4CE4[param0].unk_02;
+        v0 = sFontAttributes[param0].letterSpacing;
         break;
     case 3:
-        v0 = Unk_020E4CE4[param0].unk_03;
+        v0 = sFontAttributes[param0].lineSpacing;
         break;
     case 4:
-        v0 = Unk_020E4CE4[param0].unk_04;
+        v0 = sFontAttributes[param0].dummy;
         break;
     case 5:
-        v0 = Unk_020E4CE4[param0].unk_05;
+        v0 = sFontAttributes[param0].fgColor;
         break;
     case 6:
-        v0 = Unk_020E4CE4[param0].unk_06;
+        v0 = sFontAttributes[param0].bgColor;
         break;
     case 7:
-        v0 = Unk_020E4CE4[param0].unk_07;
+        v0 = sFontAttributes[param0].shadowColor;
         break;
     }
 

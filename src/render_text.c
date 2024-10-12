@@ -79,7 +79,7 @@ enum RenderResult RenderText(TextPrinter *printer)
 
         case CHAR_CR:
             printer->template.currX = printer->template.x;
-            printer->template.currY += sub_02002DF8(printer->template.fontID, 1) + printer->template.lineSpacing;
+            printer->template.currY += Font_GetAttribute(printer->template.fontID, 1) + printer->template.lineSpacing;
             return RENDER_REPEAT;
 
         case CHAR_PLACEHOLDER_BEGIN:
@@ -231,7 +231,7 @@ enum RenderResult RenderText(TextPrinter *printer)
         if (TextPrinter_WaitWithScrollArrow(printer)) {
             TextPrinter_ClearScrollArrow(printer);
 
-            printer->scrollDistance = (sub_02002DF8(printer->template.fontID, 1) + printer->template.lineSpacing);
+            printer->scrollDistance = (Font_GetAttribute(printer->template.fontID, 1) + printer->template.lineSpacing);
             printer->template.currX = printer->template.x;
             printer->state = RENDER_STATE_SCROLL;
         }

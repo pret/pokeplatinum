@@ -139,7 +139,7 @@ static void ov5_021E1E20(const UnkStruct_ov5_021E1FF4 *param0)
     int v3;
     int v4;
 
-    v3 = sub_02002DF8(0, 1) + sub_02002DF8(0, 3);
+    v3 = Font_GetAttribute(0, 1) + Font_GetAttribute(0, 3);
     v2 = 0;
     v0 = MessageUtil_ExpandedStrbuf(param0->unk_14, param0->unk_18, Unk_ov5_021F9CCC[0], param0->unk_04);
 
@@ -158,7 +158,7 @@ static void ov5_021E1E20(const UnkStruct_ov5_021E1FF4 *param0)
         Strbuf_Free(v0);
 
         v0 = MessageUtil_ExpandedStrbuf(param0->unk_14, param0->unk_18, Unk_ov5_021F9CBC[v4 - 1], param0->unk_04);
-        v1 = 13 * 8 - sub_02002D7C(0, v0, sub_02002DF8(0, 2));
+        v1 = 13 * 8 - sub_02002D7C(0, v0, Font_GetAttribute(0, 2));
 
         PrintStringSimple(param0->unk_10, 0, v0, v1, v2, 0xff, NULL);
         Strbuf_Free(v0);
@@ -171,7 +171,7 @@ void ov5_021E1F04(UnkStruct_ov5_021E1FF4 *param0)
 
     BGL_AddWindow(param0->unk_0C, param0->unk_10, param0->unk_08, 1, 1, param0->unk_2C, param0->unk_30, 13, 393);
     sub_0200DAA4(param0->unk_0C, param0->unk_08, 985, 11, 0, param0->unk_04);
-    BGL_FillWindow(param0->unk_10, sub_02002DF8(0, 6));
+    BGL_FillWindow(param0->unk_10, Font_GetAttribute(0, 6));
 
     ov5_021E1E20(param0);
     Window_Show(param0->unk_10, 0, 985, 11);

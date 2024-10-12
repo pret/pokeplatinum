@@ -270,7 +270,7 @@ u32 sub_02001504(BmpList *param0, u8 param1)
         v0 = (u32)param0->unk_00.unk_17_0;
         break;
     case 9:
-        v0 = (u32)sub_02002DF8(param0->unk_00.unk_1A_9, 1) + param0->unk_00.unk_1A_3;
+        v0 = (u32)Font_GetAttribute(param0->unk_00.unk_1A_9, 1) + param0->unk_00.unk_1A_3;
         break;
     case 10:
         v0 = (u32)param0->unk_00.unk_17_4;
@@ -332,7 +332,7 @@ static void sub_02001688(BmpList *param0, u16 param1, u16 param2, u16 param3)
     int v0;
     u8 v1, v2, v3;
 
-    v3 = sub_02002DF8(param0->unk_00.unk_1A_9, 1) + param0->unk_00.unk_1A_3;
+    v3 = Font_GetAttribute(param0->unk_00.unk_1A_9, 1) + param0->unk_00.unk_1A_3;
 
     for (v0 = 0; v0 < param3; v0++) {
         if (param0->unk_00.unk_00[param1].unk_04 != 0xfffffffd) {
@@ -356,7 +356,7 @@ static void sub_02001720(BmpList *param0)
 {
     u8 v0, v1, v2;
 
-    v2 = sub_02002DF8(param0->unk_00.unk_1A_9, 1) + param0->unk_00.unk_1A_3;
+    v2 = Font_GetAttribute(param0->unk_00.unk_1A_9, 1) + param0->unk_00.unk_1A_3;
     v0 = param0->unk_00.unk_16;
     v1 = (u8)((param0->unk_2A * v2) + param0->unk_00.unk_17_0);
 
@@ -379,7 +379,7 @@ static void sub_02001778(BmpList *param0, u16 param1)
 
     switch (param0->unk_00.unk_1A_15) {
     case 0:
-        v0 = sub_02002DF8(param0->unk_00.unk_1A_9, 1) + param0->unk_00.unk_1A_3;
+        v0 = Font_GetAttribute(param0->unk_00.unk_1A_9, 1) + param0->unk_00.unk_1A_3;
         BGL_WindowColor(param0->unk_00.unk_0C, (u8)param0->unk_00.unk_18_0, param0->unk_00.unk_16, (u16)(param1 * v0 + param0->unk_00.unk_17_0), 8, 16);
         break;
     case 1:
@@ -478,7 +478,7 @@ static void sub_02001900(BmpList *param0, u8 param1, u8 param2)
         return;
     }
 
-    v0 = sub_02002DF8(param0->unk_00.unk_1A_9, 1) + param0->unk_00.unk_1A_3;
+    v0 = Font_GetAttribute(param0->unk_00.unk_1A_9, 1) + param0->unk_00.unk_1A_3;
 
     if (param2 == 0) {
         sub_0201C04C(param0->unk_00.unk_0C, 1, (u8)(param1 * v0), (u8)((param0->unk_00.unk_18_0 << 4) | param0->unk_00.unk_18_0));

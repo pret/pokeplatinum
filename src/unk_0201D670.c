@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0201D670.h"
 #include "struct_defs/struct_0205AA50.h"
 
 #include "font.h"
@@ -23,12 +22,12 @@ static void sub_0201DB48(TextPrinter *param0);
 static void sub_0201DBD8(TextPrinter *param0);
 static u8 *sub_0201DB50(void);
 
-static const UnkStruct_0201D670 *Unk_02100840 = NULL;
+static const FontAttributes *sFontAttributesPtr = NULL;
 static u8 Unk_021C04D8 = 0;
 
-void sub_0201D670(const UnkStruct_0201D670 *param0)
+void SetFontAttributesPtr(const FontAttributes *fontAttributes)
 {
-    Unk_02100840 = param0;
+    sFontAttributesPtr = fontAttributes;
 }
 
 static SysTask *Unk_021C04E0[8] = { 0 };
@@ -105,12 +104,12 @@ u8 PrintStringSimple(Window *window, u32 fontID, const Strbuf *strbuf, u32 xOffs
     v0.y = yOffset;
     v0.currX = xOffset;
     v0.currY = yOffset;
-    v0.letterSpacing = Unk_02100840[fontID].unk_02;
-    v0.lineSpacing = Unk_02100840[fontID].unk_03;
-    v0.dummy14 = Unk_02100840[fontID].unk_04;
-    v0.fgColor = Unk_02100840[fontID].unk_05;
-    v0.bgColor = Unk_02100840[fontID].unk_06;
-    v0.shadowColor = Unk_02100840[fontID].unk_07;
+    v0.letterSpacing = sFontAttributesPtr[fontID].letterSpacing;
+    v0.lineSpacing = sFontAttributesPtr[fontID].lineSpacing;
+    v0.dummy14 = sFontAttributesPtr[fontID].dummy;
+    v0.fgColor = sFontAttributesPtr[fontID].fgColor;
+    v0.bgColor = sFontAttributesPtr[fontID].bgColor;
+    v0.shadowColor = sFontAttributesPtr[fontID].shadowColor;
     v0.glyphTable = 0;
     v0.dummy1A = 0;
     v0.cacheColor = 0xFF;
@@ -129,9 +128,9 @@ u8 sub_0201D78C(Window *param0, u32 param1, const Strbuf *param2, u32 param3, u3
     v0.y = param4;
     v0.currX = param3;
     v0.currY = param4;
-    v0.letterSpacing = Unk_02100840[param1].unk_02;
-    v0.lineSpacing = Unk_02100840[param1].unk_03;
-    v0.dummy14 = Unk_02100840[param1].unk_04;
+    v0.letterSpacing = sFontAttributesPtr[param1].letterSpacing;
+    v0.lineSpacing = sFontAttributesPtr[param1].lineSpacing;
+    v0.dummy14 = sFontAttributesPtr[param1].dummy;
     v0.fgColor = (((param6) >> 16) & 0xff);
     v0.shadowColor = (((param6) >> 8) & 0xff);
     v0.bgColor = (((param6) >> 0) & 0xff);
@@ -155,7 +154,7 @@ u8 PrintStringWithColorAndMargins(Window *param0, u32 param1, const Strbuf *para
     v0.currY = param4;
     v0.letterSpacing = param7;
     v0.lineSpacing = param8;
-    v0.dummy14 = Unk_02100840[param1].unk_04;
+    v0.dummy14 = sFontAttributesPtr[param1].dummy;
     v0.fgColor = (((param6) >> 16) & 0xff);
     v0.shadowColor = (((param6) >> 8) & 0xff);
     v0.bgColor = (((param6) >> 0) & 0xff);
@@ -171,7 +170,7 @@ u8 sub_0201D834(const TextPrinterTemplate *param0, u32 param1, TextPrinterCallba
     TextPrinter *v0;
     int v1;
 
-    if (Unk_02100840 == NULL) {
+    if (sFontAttributesPtr == NULL) {
         return 0xff;
     }
 

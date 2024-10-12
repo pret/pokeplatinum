@@ -59,8 +59,8 @@ UIControlData *sub_02001AF4(const UnkStruct_02081CF4 *param0, u8 param1, u8 para
     v0->unk_1C = param4;
     v0->unk_17 = param1;
     v0->unk_18 = param2;
-    v0->unk_19 = sub_02002DF8(param0->unk_08, 0) + sub_02002DF8(param0->unk_08, 2);
-    v0->unk_1A = sub_02002DF8(param0->unk_08, 1) + sub_02002DF8(param0->unk_08, 3);
+    v0->unk_19 = Font_GetAttribute(param0->unk_08, 0) + Font_GetAttribute(param0->unk_08, 2);
+    v0->unk_1A = Font_GetAttribute(param0->unk_08, 1) + Font_GetAttribute(param0->unk_08, 3);
 
     sub_02001F5C(v0);
     sub_02001FE8(v0);
@@ -78,7 +78,7 @@ UIControlData *sub_02001B7C(const UnkStruct_02081CF4 *param0, u8 param1, u8 para
 
 UIControlData *sub_02001B9C(const UnkStruct_02081CF4 *param0, u8 param1, u8 param2)
 {
-    return sub_02001B7C(param0, sub_02002DF8(param0->unk_08, 0), 0, param1, param2, PAD_BUTTON_B);
+    return sub_02001B7C(param0, Font_GetAttribute(param0->unk_08, 0), 0, param1, param2, PAD_BUTTON_B);
 }
 
 void sub_02001BC4(UIControlData *param0, u8 *param1)
@@ -237,7 +237,7 @@ static BOOL sub_02001DCC(UIControlData *param0, u8 param1, u16 param2)
         u8 v1, v2;
         u8 v3;
 
-        v3 = sub_02002DF8(param0->unk_00.unk_08, 6);
+        v3 = Font_GetAttribute(param0->unk_00.unk_08, 6);
 
         sub_02002018(param0, &v1, &v2, v0);
         BGL_WindowColor(param0->unk_00.unk_04, v3, v1, v2, 8, param0->unk_1A);
@@ -341,7 +341,7 @@ static void sub_02001F5C(UIControlData *param0)
     u8 v1, v2, v3;
     u8 v4, v5;
 
-    BGL_FillWindow(param0->unk_00.unk_04, sub_02002DF8(param0->unk_00.unk_08, 6));
+    BGL_FillWindow(param0->unk_00.unk_04, Font_GetAttribute(param0->unk_00.unk_08, 6));
 
     v1 = param0->unk_17;
     v3 = param0->unk_16 + param0->unk_19 * 2;
