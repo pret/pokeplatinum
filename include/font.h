@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_FONT_H
 #define POKEPLATINUM_FONT_H
 
+#include "constants/font.h"
+
 #include "render_text.h"
 #include "strbuf.h"
 

@@ -12,10 +12,10 @@ typedef u32 FONT_COLOR;
     | ((shadow & FONT_COLOR_MASK) << FONT_COLOR_SHADOW_SHIFT)                                                     \
     | ((bg & FONT_COLOR_MASK) << FONT_COLOR_BG_SHIFT)))
 
-enum FontType {
+enum Font {
     FONT_SYSTEM = 0,
-    FONT_NPC_TALK,
-    FONT_BUTTONS,
+    FONT_MESSAGE,
+    FONT_SUBSCREEN,
     FONT_UNK,
 
     FONT_MAX,

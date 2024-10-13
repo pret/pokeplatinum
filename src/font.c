@@ -13,75 +13,80 @@
 #include "unk_020232E0.h"
 
 typedef struct {
-    TextGlyph unk_00;
-    void *unk_84[4];
+    TextGlyph curGlyph;
+    void *data[4];
     UnkStruct_02023350 *unk_94[4];
-} UnkStruct_02101D4C;
+} FontWork;
 
 static const struct {
-    u16 unk_00;
+    u16 arcFileIdx;
     u16 unk_02;
-} Unk_020E4CD4[] = {
-    { 0x0, 0x0 },
-    { 0x1, 0x0 },
-    { 0x2, 0x0 },
-    { 0x3, 0x0 }
-};
-
-static const FontAttributes sFontAttributes[5] = {
-    [0] = {
-        .maxLetterWidth = 11,
-        .maxLetterHeight = 16,
-        .letterSpacing = 0,
-        .lineSpacing = 0,
-        .fgColor = 1,
-        .bgColor = 15,
-        .shadowColor = 2,
+} sFontArchiveData[FONT_MAX] = {
+    [FONT_SYSTEM] = {
+        .arcFileIdx = 0,
     },
-    [1] = {
-        .maxLetterWidth = 11,
-        .maxLetterHeight = 16,
-        .letterSpacing = 0,
-        .lineSpacing = 0,
-        .fgColor = 1,
-        .bgColor = 15,
-        .shadowColor = 2,
+    [FONT_MESSAGE] = {
+        .arcFileIdx = 1,
     },
-    [2] = {
-        .maxLetterWidth = 11,
-        .maxLetterHeight = 16,
-        .letterSpacing = 0,
-        .lineSpacing = 0,
-        .fgColor = 1,
-        .bgColor = 15,
-        .shadowColor = 2,
+    [FONT_SUBSCREEN] = {
+        .arcFileIdx = 2,
     },
-    [3] = {
-        .maxLetterWidth = 11,
-        .maxLetterHeight = 16,
-        .letterSpacing = 0,
-        .lineSpacing = 0,
-        .fgColor = 1,
-        .bgColor = 15,
-        .shadowColor = 2,
+    [FONT_UNK] = {
+        .arcFileIdx = 3,
     },
 };
 
-static UnkStruct_02101D4C Unk_02101D4C = {
-    0x0
+static const FontAttributes sFontAttributes[FONT_MAX + 1] = {
+    [FONT_SYSTEM] = {
+        .maxLetterWidth = 11,
+        .maxLetterHeight = 16,
+        .letterSpacing = 0,
+        .lineSpacing = 0,
+        .fgColor = 1,
+        .bgColor = 15,
+        .shadowColor = 2,
+    },
+    [FONT_MESSAGE] = {
+        .maxLetterWidth = 11,
+        .maxLetterHeight = 16,
+        .letterSpacing = 0,
+        .lineSpacing = 0,
+        .fgColor = 1,
+        .bgColor = 15,
+        .shadowColor = 2,
+    },
+    [FONT_SUBSCREEN] = {
+        .maxLetterWidth = 11,
+        .maxLetterHeight = 16,
+        .letterSpacing = 0,
+        .lineSpacing = 0,
+        .fgColor = 1,
+        .bgColor = 15,
+        .shadowColor = 2,
+    },
+    [FONT_UNK] = {
+        .maxLetterWidth = 11,
+        .maxLetterHeight = 16,
+        .letterSpacing = 0,
+        .lineSpacing = 0,
+        .fgColor = 1,
+        .bgColor = 15,
+        .shadowColor = 2,
+    },
 };
 
-static UnkStruct_02101D4C *Unk_02101D48 = NULL;
+static FontWork *sFontWork = NULL;
 
 void sub_02002B7C(void)
 {
     u32 v0;
+    static FontWork work;
 
-    Unk_02101D48 = &Unk_02101D4C;
+    sFontWork = &work;
 
-    for (v0 = 0; v0 < NELEMS(Unk_020E4CD4); v0++) {
-        Unk_02101D48->unk_84[v0] = NULL;
-        Unk_02101D48->unk_94[v0] = NULL;
+    for (v0 = 0; v0 < NELEMS(sFontArchiveData); v0++) {
+        sFontWork->data[v0] = NULL;
+        sFontWork->unk_94[v0] = NULL;
     }
 
     SetFontAttributesPtr(sFontAttributes);
@@ -89,59 +94,59 @@ void sub_02002B7C(void)
 
 void sub_02002BB8(int param0, u32 param1)
 {
-    Unk_02101D48->unk_94[param0] = sub_020232E0(14, Unk_020E4CD4[param0].unk_00, 1, Unk_020E4CD4[param0].unk_02, param1);
+    sFontWork->unk_94[param0] = sub_020232E0(14, sFontArchiveData[param0].arcFileIdx, 1, sFontArchiveData[param0].unk_02, param1);
 }
 
 void sub_02002BEC(int param0, u32 param1)
 {
     GF_ASSERT(param0 < 4);
-    GF_ASSERT(Unk_02101D48->unk_94[param0]);
+    GF_ASSERT(sFontWork->unk_94[param0]);
 
-    sub_02023330(Unk_02101D48->unk_94[param0], 0, param1);
+    sub_02023330(sFontWork->unk_94[param0], 0, param1);
 }
 
 void sub_02002C28(int param0)
 {
     GF_ASSERT(param0 < 4);
-    GF_ASSERT(Unk_02101D48->unk_94[param0]);
+    GF_ASSERT(sFontWork->unk_94[param0]);
 
-    sub_02023330(Unk_02101D48->unk_94[param0], 1, 0);
+    sub_02023330(sFontWork->unk_94[param0], 1, 0);
 }
 
 void sub_02002C60(int param0)
 {
     GF_ASSERT(param0 < 4);
 
-    if (Unk_02101D48->unk_84[param0] != NULL) {
+    if (sFontWork->data[param0] != NULL) {
         int v0;
 
-        for (v0 = 0; v0 < NELEMS(Unk_020E4CD4); v0++) {
+        for (v0 = 0; v0 < NELEMS(sFontArchiveData); v0++) {
             if (v0 == param0) {
                 continue;
             }
 
-            if ((Unk_020E4CD4[v0].unk_00 == Unk_020E4CD4[param0].unk_00) && (Unk_02101D48->unk_94[v0] != NULL)) {
-                Unk_02101D48->unk_84[v0] = Unk_02101D48->unk_84[param0];
+            if ((sFontArchiveData[v0].arcFileIdx == sFontArchiveData[param0].arcFileIdx) && (sFontWork->unk_94[v0] != NULL)) {
+                sFontWork->data[v0] = sFontWork->data[param0];
                 break;
             }
         }
 
-        if (v0 == NELEMS(Unk_020E4CD4)) {
-            Heap_FreeToHeap(Unk_02101D48->unk_84[param0]);
-            Unk_02101D48->unk_84[param0] = NULL;
+        if (v0 == NELEMS(sFontArchiveData)) {
+            Heap_FreeToHeap(sFontWork->data[param0]);
+            sFontWork->data[param0] = NULL;
         }
     }
 
-    if (Unk_02101D48->unk_94[param0] != NULL) {
-        sub_02023318(Unk_02101D48->unk_94[param0]);
-        Unk_02101D48->unk_94[param0] = NULL;
+    if (sFontWork->unk_94[param0] != NULL) {
+        sub_02023318(sFontWork->unk_94[param0]);
+        sFontWork->unk_94[param0] = NULL;
     }
 }
 
 const TextGlyph *sub_02002CFC(int param0, u16 param1)
 {
-    sub_020234A0(Unk_02101D48->unk_94[param0], param1, &Unk_02101D48->unk_00);
-    return &(Unk_02101D48->unk_00);
+    sub_020234A0(sFontWork->unk_94[param0], param1, &sFontWork->curGlyph);
+    return &(sFontWork->curGlyph);
 }
 
 int sub_02002D18(int param0, TextPrinter *param1)
@@ -160,24 +165,24 @@ int sub_02002D18(int param0, TextPrinter *param1)
 
 u32 sub_02002D48(int param0, const u16 *param1, u32 param2)
 {
-    GF_ASSERT(Unk_02101D48->unk_94[param0] != NULL);
-    return sub_02023620(Unk_02101D48->unk_94[param0], param1, param2);
+    GF_ASSERT(sFontWork->unk_94[param0] != NULL);
+    return sub_02023620(sFontWork->unk_94[param0], param1, param2);
 }
 
 u32 sub_02002D7C(int param0, const Strbuf *param1, u32 param2)
 {
-    GF_ASSERT(Unk_02101D48->unk_94[param0] != NULL);
-    return sub_02023620(Unk_02101D48->unk_94[param0], Strbuf_GetData(param1), param2);
+    GF_ASSERT(sFontWork->unk_94[param0] != NULL);
+    return sub_02023620(sFontWork->unk_94[param0], Strbuf_GetData(param1), param2);
 }
 
 u32 sub_02002DB4(int param0, Strbuf *param1, Strbuf *param2)
 {
-    GF_ASSERT(Unk_02101D48->unk_94[param0] != NULL);
+    GF_ASSERT(sFontWork->unk_94[param0] != NULL);
 
     Strbuf_Clear(param2);
     Strbuf_ConcatTrainerName(param2, param1);
 
-    return sub_0202366C(Unk_02101D48->unk_94[param0], Strbuf_GetData(param2));
+    return sub_0202366C(sFontWork->unk_94[param0], Strbuf_GetData(param2));
 }
 
 u8 Font_GetAttribute(u8 param0, u8 param1)
@@ -226,8 +231,8 @@ void sub_02002E98(u32 param0, u32 param1, u32 param2)
 
 u32 sub_02002EB4(int param0, const Strbuf *param1, u32 param2)
 {
-    GF_ASSERT(Unk_02101D48->unk_94[param0] != NULL);
-    return sub_020236D0(Unk_02101D48->unk_94[param0], Strbuf_GetData(param1), param2);
+    GF_ASSERT(sFontWork->unk_94[param0] != NULL);
+    return sub_020236D0(sFontWork->unk_94[param0], Strbuf_GetData(param1), param2);
 }
 
 u32 sub_02002EEC(int param0, const Strbuf *param1, u32 param2, u32 param3)
@@ -239,6 +244,6 @@ u32 sub_02002EEC(int param0, const Strbuf *param1, u32 param2, u32 param3)
 
 u32 sub_02002F04(int param0, const Strbuf *param1)
 {
-    GF_ASSERT(Unk_02101D48->unk_94[param0] != NULL);
-    return sub_02023738(Unk_02101D48->unk_94[param0], Strbuf_GetData(param1));
+    GF_ASSERT(sFontWork->unk_94[param0] != NULL);
+    return sub_02023738(sFontWork->unk_94[param0], Strbuf_GetData(param1));
 }
