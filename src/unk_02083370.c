@@ -21,13 +21,13 @@
 #include "party.h"
 #include "pokemon.h"
 #include "string_template.h"
+#include "text.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0207070C.h"
 #include "unk_0207E0B8.h"
 #include "unk_020819DC.h"
@@ -216,7 +216,7 @@ static void sub_020834B0(GameWindowLayout *param0, int *param1)
 
 int sub_02083658(GameWindowLayout *param0)
 {
-    if (Message_Printing(param0->unk_B10) == 0) {
+    if (Text_IsPrinterActive(param0->unk_B10) == 0) {
         if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             sub_0200E084(&param0->unk_04[34], 1);
             sub_020826E0(param0, 29, 1);
@@ -230,7 +230,7 @@ int sub_02083658(GameWindowLayout *param0)
 
 int sub_020836A8(GameWindowLayout *param0)
 {
-    if (Message_Printing(param0->unk_B10) == 0) {
+    if (Text_IsPrinterActive(param0->unk_B10) == 0) {
         if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             sub_0200E084(&param0->unk_04[34], 1);
             LoadOverlay118(param0);

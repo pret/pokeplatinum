@@ -43,6 +43,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "trainer_info.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
@@ -55,7 +56,6 @@
 #include "unk_02014000.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
@@ -847,7 +847,7 @@ static void ov117_02261368 (UnkStruct_ov117_02261280 * param0)
     Window_Show(&param0->unk_30[4], 1, ((((((0x8000 - 0x2000) / 32) + (10 * 2)) + (10 * 2)) + (10 * 2)) + (10 * 2)), 6);
 
     v0 = MessageLoader_GetNewStrbuf(param0->unk_80, 3);
-    sub_0201D78C(&param0->unk_30[4], 0, v0, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_30[4], 0, v0, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
 
     sub_0201A9A4(&param0->unk_30[4]);
@@ -889,7 +889,7 @@ static void ov117_022613EC (UnkStruct_ov117_02261280 * param0)
                 v7--;
             }
 
-            sub_0201D78C(&param0->unk_30[Unk_ov117_02266968[param0->unk_00->unk_30][v1]], 0, v3, v7, 0, 0, v5, NULL);
+            Text_AddPrinterWithParamsAndColor(&param0->unk_30[Unk_ov117_02266968[param0->unk_00->unk_30][v1]], 0, v3, v7, 0, 0, v5, NULL);
             Heap_FreeToHeap(v3);
         }
     }

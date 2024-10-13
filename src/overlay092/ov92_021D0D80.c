@@ -35,6 +35,7 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
@@ -45,7 +46,6 @@
 #include "unk_02017728.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "unk_0201D670.h"
 #include "unk_0202419C.h"
 #include "unk_0202C858.h"
 #include "unk_020996D0.h"
@@ -351,7 +351,7 @@ int ov92_021D0D80(OverlayManager *param0, int *param1)
     v0->unk_B810 = sub_02018340(v0->unk_00);
 
     GXLayers_TurnBothDispOn();
-    sub_0201D710();
+    Text_ResetAllPrinters();
 
     v0->unk_B870 = StringTemplate_New(8, 64, v0->unk_00);
     v0->camera = Camera_Alloc(v0->unk_00);
@@ -974,7 +974,7 @@ static void ov92_021D1888(UnkStruct_ov92_021D1B24 *param0, NARC *param1)
             u32 v5;
 
             v5 = Font_CalcCenterAlignment(FONT_SUBSCREEN, v0, 0, 6 * 8);
-            PrintStringSimple(&param0->unk_B834, 2, v0, v5, 0, 0xff, NULL);
+            Text_AddPrinterWithParams(&param0->unk_B834, 2, v0, v5, 0, 0xff, NULL);
         }
 
         Strbuf_Free(v0);
@@ -1001,11 +1001,11 @@ static BOOL ov92_021D1B70(UnkStruct_ov92_021D1B24 *param0, u32 param1, int param
         BGL_WindowColor(&param0->unk_B814, 15, 0, 0, 27 * 8, 4 * 8);
         param0->unk_B86C = Strbuf_Init(0x400, param0->unk_00);
         MessageLoader_GetStrbuf(param0->unk_B860, param1, param0->unk_B86C);
-        param0->unk_B868 = PrintStringSimple(&param0->unk_B814, 1, param0->unk_B86C, 0, 0, Options_TextFrameDelay(param0->unk_08), NULL);
+        param0->unk_B868 = Text_AddPrinterWithParams(&param0->unk_B814, 1, param0->unk_B86C, 0, 0, Options_TextFrameDelay(param0->unk_08), NULL);
         param0->unk_B864 = 1;
         break;
     case 1:
-        if (!(Message_Printing(param0->unk_B868))) {
+        if (!(Text_IsPrinterActive(param0->unk_B868))) {
             Strbuf_Free(param0->unk_B86C);
             param0->unk_B864 = 2;
         }
@@ -1100,7 +1100,7 @@ static void ov92_021D1DEC(UnkStruct_ov92_021D1B24 *param0)
     MessageLoader_GetStrbuf(param0->unk_B860, 13, v1);
     StringTemplate_Format(param0->unk_B870, v0, v1);
 
-    PrintStringSimple(&param0->unk_B844, 0, v0, 0, 0, 0, NULL);
+    Text_AddPrinterWithParams(&param0->unk_B844, 0, v0, 0, 0, 0, NULL);
 
     Strbuf_Free(v1);
     Strbuf_Free(v0);
@@ -1120,10 +1120,10 @@ static void ov92_021D1EBC(UnkStruct_ov92_021D1B24 *param0, int param1, int param
     ov92_021D27E8(param1, param2, v0, v1, param0->unk_00);
 
     if (param2 != 0) {
-        PrintStringSimple(&param0->unk_B844, 0, v1, 0, 16, 0xff, NULL);
+        Text_AddPrinterWithParams(&param0->unk_B844, 0, v1, 0, 16, 0xff, NULL);
     }
 
-    PrintStringSimple(&param0->unk_B844, 0, v0, 0, 0, 0, NULL);
+    Text_AddPrinterWithParams(&param0->unk_B844, 0, v0, 0, 0, 0, NULL);
     Strbuf_Free(v1);
     Strbuf_Free(v0);
     sub_0201A954(&param0->unk_B844);
@@ -1143,7 +1143,7 @@ static void ov92_021D1F90(UnkStruct_ov92_021D1B24 *param0)
 
             BGL_WindowColor(&param0->unk_B814, 15, 0, 0, 27 * 8, 6 * 8);
             MessageLoader_GetStrbuf(param0->unk_B860, 14, v0);
-            PrintStringSimple(&param0->unk_B814, 1, v0, 0, 0, 0, NULL);
+            Text_AddPrinterWithParams(&param0->unk_B814, 1, v0, 0, 0, 0, NULL);
             Strbuf_Free(v0);
         }
     } else {
@@ -1188,10 +1188,10 @@ static void ov92_021D1F90(UnkStruct_ov92_021D1B24 *param0)
                 ov92_021D27E8(param0->unk_0C.unk_04[v8].unk_2A, param0->unk_0C.unk_04[v8].unk_2C, v12, v13, param0->unk_00);
 
                 if (param0->unk_0C.unk_04[v8].unk_2C != 0) {
-                    PrintStringSimple(&param0->unk_B814, 1, v13, 0, 16, 0xff, NULL);
+                    Text_AddPrinterWithParams(&param0->unk_B814, 1, v13, 0, 16, 0xff, NULL);
                 }
 
-                PrintStringSimple(&param0->unk_B814, 1, v12, 0, 0, 0, NULL);
+                Text_AddPrinterWithParams(&param0->unk_B814, 1, v12, 0, 0, 0, NULL);
                 Strbuf_Free(v13);
                 Strbuf_Free(v12);
 

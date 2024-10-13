@@ -23,12 +23,12 @@
 #include "narc.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "unk_02001AF4.h"
 #include "unk_02006E3C.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_02025CB0.h"
 #include "unk_0202ACE0.h"
 #include "unk_02030CE8.h"
@@ -840,7 +840,7 @@ static int ov94_022456CC(UnkStruct_ov94_0223FD4C *param0)
         param0->unk_14E0++;
         break;
     case 1:
-        if (Message_Printing(param0->unk_BE0) == 0) {
+        if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
             sub_0203848C();
             DWC_CleanupInet();
             param0->unk_14E0++;
@@ -851,7 +851,7 @@ static int ov94_022456CC(UnkStruct_ov94_0223FD4C *param0)
         param0->unk_14E0++;
         break;
     case 3:
-        if (Message_Printing(param0->unk_BE0) == 0) {
+        if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
             param0->unk_14E0++;
         }
         break;
@@ -870,7 +870,7 @@ static int ov94_022456CC(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_0224579C(UnkStruct_ov94_0223FD4C *param0)
 {
-    if (Message_Printing(param0->unk_BE0) == 0) {
+    if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
         param0->unk_2C = param0->unk_30;
     }
 
@@ -879,7 +879,7 @@ static int ov94_0224579C(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_022457BC(UnkStruct_ov94_0223FD4C *param0)
 {
-    if (Message_Printing(param0->unk_BE0) == 0) {
+    if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
         if (param0->unk_10E0 > 30) {
             param0->unk_2C = param0->unk_30;
         }
@@ -892,7 +892,7 @@ static int ov94_022457BC(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_022457F0(UnkStruct_ov94_0223FD4C *param0)
 {
-    if (Message_Printing(param0->unk_BE0) == 0) {
+    if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
         param0->unk_10D0 = ov94_0223C3C0(param0->unk_04, 13, (((((1 + (18 + 12)) + 9) + 27 * 4) + 23 * 16) + 24 * 2));
         param0->unk_2C = param0->unk_30;
     }
@@ -911,7 +911,7 @@ void ov94_02245824(UnkStruct_ov94_0223FD4C *param0, MessageLoader *param1, int p
     BGL_FillWindow(&param0->unk_F5C, 0xf0f);
     sub_0200E060(&param0->unk_F5C, 0, 1, 10);
 
-    param0->unk_BE0 = PrintStringSimple(&param0->unk_F5C, 1, param0->unk_BAC, 0, 0, param3, NULL);
+    param0->unk_BE0 = Text_AddPrinterWithParams(&param0->unk_F5C, 1, param0->unk_BAC, 0, 0, param3, NULL);
     param0->unk_10E0 = 0;
 }
 
@@ -936,13 +936,13 @@ static int ov94_02245894(Window *param0, Strbuf *param1, int param2, int param3,
 void ov94_022458CC(Window *param0, Strbuf *param1, int param2, int param3, int param4, u32 param5)
 {
     param2 = ov94_02245894(param0, param1, param2, param4, param5, 1);
-    sub_0201D78C(param0, 1, param1, param2, param3, 0, param5, NULL);
+    Text_AddPrinterWithParamsAndColor(param0, 1, param1, param2, param3, 0, param5, NULL);
 }
 
 void ov94_02245900(Window *param0, Strbuf *param1, int param2, int param3, int param4, u32 param5)
 {
     param2 = ov94_02245894(param0, param1, param2, param4, param5, 0);
-    sub_0201D78C(param0, 0, param1, param2, param3, 0, param5, NULL);
+    Text_AddPrinterWithParamsAndColor(param0, 0, param1, param2, param3, 0, param5, NULL);
 }
 
 void ov94_02245934(UnkStruct_ov94_0223FD4C *param0)
@@ -960,7 +960,7 @@ static void ov94_0224593C(UnkStruct_ov94_0223FD4C *param0, int param1)
     BGL_FillWindow(&param0->unk_F8C, 15);
     Window_Show(&param0->unk_F8C, 1, (1 + (18 + 12)), 11);
 
-    param0->unk_BE0 = PrintStringSimple(&param0->unk_F8C, 1, param0->unk_BDC, 0, 0, 0, NULL);
+    param0->unk_BE0 = Text_AddPrinterWithParams(&param0->unk_F8C, 1, param0->unk_BDC, 0, 0, 0, NULL);
 
     Strbuf_Free(v0);
 }

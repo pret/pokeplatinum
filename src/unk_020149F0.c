@@ -8,8 +8,8 @@
 
 #include "heap.h"
 #include "strbuf.h"
+#include "text.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 
 struct UnkStruct_020149F0_t {
     u32 unk_00;
@@ -57,6 +57,6 @@ void sub_02014A40(UnkStruct_020149F0 *param0, u32 param1)
 
 void sub_02014A58(const UnkStruct_020149F0 *param0, Window *param1, u32 param2, u32 param3)
 {
-    sub_0201D78C(param1, 0, param0->unk_04, param2, param3, 0xff, param0->unk_00, NULL);
+    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_04, param2, param3, 0xff, param0->unk_00, NULL);
     sub_0201ACCC(param1);
 }

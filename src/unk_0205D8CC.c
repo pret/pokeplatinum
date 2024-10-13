@@ -10,14 +10,14 @@
 #include "game_options.h"
 #include "render_text.h"
 #include "strbuf.h"
+#include "text.h"
 #include "unk_0200DA60.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 
 void sub_0205D8CC(u32 param0, u32 param1)
 {
     if (param1 == 1) {
-        sub_0201D710();
+        Text_ResetAllPrinters();
     }
 
     Font_LoadTextPalette(param0, 13 * 32, 4);
@@ -53,7 +53,7 @@ u8 FieldMessage_Print(Window *param0, Strbuf *param1, const Options *param2, u8 
     RenderControlFlags_SetAutoScrollFlags(0);
     RenderControlFlags_SetSpeedUpOnTouch(0);
 
-    v0 = PrintStringSimple(param0, 1, param1, 0, 0, Options_TextFrameDelay(param2), NULL);
+    v0 = Text_AddPrinterWithParams(param0, 1, param1, 0, 0, Options_TextFrameDelay(param2), NULL);
     return v0;
 }
 
@@ -63,12 +63,12 @@ u8 sub_0205D9CC(Window *param0, Strbuf *param1, int param2, int param3, u8 param
     RenderControlFlags_SetAutoScrollFlags(param5);
     RenderControlFlags_SetSpeedUpOnTouch(0);
 
-    return PrintStringSimple(param0, param2, param1, 0, 0, param3, NULL);
+    return Text_AddPrinterWithParams(param0, param2, param1, 0, 0, param3, NULL);
 }
 
 u8 FieldMessage_FinishedPrinting(u8 param0)
 {
-    if (Message_Printing(param0) == 0) {
+    if (Text_IsPrinterActive(param0) == 0) {
         return 1;
     }
 

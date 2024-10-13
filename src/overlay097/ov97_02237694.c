@@ -34,6 +34,7 @@
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
@@ -44,7 +45,6 @@
 #include "unk_020131EC.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
@@ -241,13 +241,13 @@ static int ov97_02237870(UnkStruct_ov97_02237808 *param0, int param1)
             v1 = MessageUtil_ExpandedStrbuf(v2, v3, param0->unk_4C, v4->unk_08);
 
             if (param0->unk_0C == 0) {
-                v0 = sub_0201D78C(param0->unk_10, param0->unk_40, v1, param0->unk_20, param0->unk_24, param0->unk_50, param0->unk_44, NULL);
+                v0 = Text_AddPrinterWithParamsAndColor(param0->unk_10, param0->unk_40, v1, param0->unk_20, param0->unk_24, param0->unk_50, param0->unk_44, NULL);
             } else {
                 int v5, v6;
 
                 v5 = Font_CalcStrbufWidth(param0->unk_40, v1, Font_GetAttribute(param0->unk_40, 2));
                 v6 = sub_0201C294(param0->unk_10) * 8 - v5;
-                v0 = sub_0201D78C(param0->unk_10, param0->unk_40, v1, v6, param0->unk_24, param0->unk_50, param0->unk_44, NULL);
+                v0 = Text_AddPrinterWithParamsAndColor(param0->unk_10, param0->unk_40, v1, v6, param0->unk_24, param0->unk_50, param0->unk_44, NULL);
 
                 param0->unk_0C = 0;
             }

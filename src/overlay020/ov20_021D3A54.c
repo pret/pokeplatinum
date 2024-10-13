@@ -24,9 +24,9 @@
 #include "message.h"
 #include "strbuf.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "unk_02006E3C.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_020998EC.h"
 
 typedef struct UnkStruct_ov20_021D3E0C_t {
@@ -133,7 +133,7 @@ static u32 ov20_021D3B74(UnkStruct_ov20_021D3E0C *param0, BGL *param1, u32 param
 
         v7 = ((9 * 8) - Font_CalcStrbufWidth(FONT_SYSTEM, v5, 0)) / 2;
 
-        sub_0201D78C(&v3, 0, v5, v7, 0, 0xff, v6, NULL);
+        Text_AddPrinterWithParamsAndColor(&v3, 0, v5, v7, 0, 0xff, v6, NULL);
         sub_0201A9F4(&v3);
         sub_0201ACCC(&v3);
         Strbuf_Free(v5);
@@ -175,7 +175,7 @@ static u32 ov20_021D3C78(UnkStruct_ov20_021D3E0C *param0, BGL *param1, u32 param
             v2 = (u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((15 & 0xff) << 0));
         }
 
-        sub_0201D78C(&v0, 0, v1, v5 + 3, v6, 0xff, v2, NULL);
+        Text_AddPrinterWithParamsAndColor(&v0, 0, v1, v5 + 3, v6, 0xff, v2, NULL);
     }
 
     sub_0201ACCC(&v0);
@@ -210,7 +210,7 @@ static u32 ov20_021D3D44(UnkStruct_ov20_021D3E0C *param0, BGL *param1, u32 param
 
         BGL_AddWindow(param1, &v1, 1, v0[v4].unk_00, v0[v4].unk_02, 8, 2, 11, param2);
         BGL_FillWindow(&v1, 15);
-        sub_0201D78C(&v1, 0, v3, v5, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0)), NULL);
+        Text_AddPrinterWithParamsAndColor(&v1, 0, v3, v5, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0)), NULL);
         sub_0201A9F4(&v1);
         sub_0201ACCC(&v1);
         BGL_DeleteWindow(&v1);

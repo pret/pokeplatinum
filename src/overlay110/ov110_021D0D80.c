@@ -29,12 +29,12 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "unk_02002F38.h"
 #include "unk_02006E3C.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0202D05C.h"
 #include "unk_0202FF4C.h"
 #include "unk_020302D0.h"
@@ -493,8 +493,8 @@ static u8 ov110_021D1324 (UnkStruct_ov110_021D0F78 * param0, Window * param1, in
         param3 -= Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_118, 0);
         break;
     }
-    
-    sub_0201D78C(param1, param8, param0->unk_118, param3, param4, 0, ((((u32)(param5) & 0xFF) << 16) | (((param6) & 0xFF) << 8) | (((param7) & 0xFF))), NULL);
+
+    Text_AddPrinterWithParamsAndColor(param1, param8, param0->unk_118, param3, param4, 0, ((((u32)(param5) & 0xFF) << 16) | (((param6) & 0xFF) << 8) | ((param7) & 0xFF)), NULL);
 }
 
 static u8 ov110_021D13CC (UnkStruct_ov110_021D0F78 * param0, Window * param1, int param2, u8 param3)

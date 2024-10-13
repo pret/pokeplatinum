@@ -31,6 +31,7 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "unk_020021B0.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
@@ -46,7 +47,6 @@
 #include "unk_02017728.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
@@ -987,12 +987,12 @@ static int sub_02086B64(OverlayManager *param0, int *param1)
             sub_02087544(v0, param0);
             BGL_FillWindow(&v0->unk_41C[9], 0xf0f);
             sub_0200E060(&v0->unk_41C[9], 0, (32 * 8), 10);
-            v0->unk_4BC = PrintStringSimple(&v0->unk_41C[9], 1, v0->unk_180, 0, 0, 1, NULL);
+            v0->unk_4BC = Text_AddPrinterWithParams(&v0->unk_41C[9], 1, v0->unk_180, 0, 0, 1, NULL);
             sub_0201A954(&v0->unk_41C[9]);
             v0->unk_4C0 = 6;
             break;
         case 6:
-            if (Message_Printing(v0->unk_4BC) == 0) {
+            if (Text_IsPrinterActive(v0->unk_4BC) == 0) {
                 Sound_PlayEffect(1506);
                 v0->unk_4F4[6]++;
                 v0->unk_630 = 0;
@@ -1810,7 +1810,7 @@ static void sub_02087D64(BGL *param0, Window *param1, int *param2, int param3, i
 static void sub_02087F48(Window *param0, int param1, Strbuf *param2)
 {
     sub_0200E060(param0, 0, (32 * 8), 10);
-    PrintStringSimple(param0, 1, param2, 0, 0, 0, NULL);
+    Text_AddPrinterWithParams(param0, 1, param2, 0, 0, 0, NULL);
     sub_0201A954(param0);
 }
 
@@ -1824,7 +1824,7 @@ static void sub_02087F78(Window *param0, int param1, Strbuf *param2)
     }
 
     BGL_FillWindow(param0, 0x101);
-    sub_0201D78C(param0, 0, param2, v0, 0, 0, (u32)(((0xe & 0xff) << 16) | ((0xf & 0xff) << 8) | ((1 & 0xff) << 0)), NULL);
+    Text_AddPrinterWithParamsAndColor(param0, 0, param2, v0, 0, 0, (u32)(((0xe & 0xff) << 16) | ((0xf & 0xff) << 8) | ((1 & 0xff) << 0)), NULL);
     sub_0201A954(param0);
 }
 
@@ -2093,7 +2093,7 @@ static void sub_02088554(Window *param0, const u16 *param1, int param2, int para
             v2 = param2 + v0 * param4 + ((param4 - v1) / 2);
 
             Strbuf_CopyChars(v4, v3);
-            sub_0201D78C(param0, 0, v4, v2, param3, param5, param6, NULL);
+            Text_AddPrinterWithParamsAndColor(param0, 0, v4, v2, param3, param5, param6, NULL);
         }
 
         v0++;
@@ -2111,7 +2111,7 @@ static const u8 Unk_020F24D8[] = {
 
 static void *sub_02088654(Window *param0, Strbuf *param1, u8 param2, const u32 param3)
 {
-    sub_0201D78C(param0, param2, param1, 0, 0, 0xff, param3, NULL);
+    Text_AddPrinterWithParamsAndColor(param0, param2, param1, 0, 0, 0xff, param3, NULL);
     return param0->unk_0C;
 }
 

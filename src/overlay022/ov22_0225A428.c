@@ -25,12 +25,12 @@
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "sys_task.h"
+#include "text.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200DA60.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_02095AF0.h"
 
 static void ov22_0225A6E0(UnkStruct_ov22_022597BC *param0, BGL *param1);
@@ -260,7 +260,7 @@ static s32 ov22_0225A860(Window *param0, int param1, int param2, int param3, int
     GF_ASSERT(v0);
 
     v1 = MessageLoader_GetNewStrbuf(v0, param3);
-    v2 = sub_0201D78C(param0, 1, v1, param4, param5, param7, param6, NULL);
+    v2 = Text_AddPrinterWithParamsAndColor(param0, 1, v1, param4, param5, param7, param6, NULL);
 
     Strbuf_Free(v1);
     MessageLoader_Free(v0);
@@ -278,7 +278,7 @@ static s32 ov22_0225A8B4(Window *param0, int param1, int param2, int param3, int
     v0 = MessageLoader_Init(0, param1, param2, 13);
     GF_ASSERT(v0);
     *param8 = MessageLoader_GetNewStrbuf(v0, param3);
-    v1 = sub_0201D78C(param0, 1, *param8, param4, param5, param7, param6, NULL);
+    v1 = Text_AddPrinterWithParamsAndColor(param0, 1, *param8, param4, param5, param7, param6, NULL);
 
     MessageLoader_Free(v0);
 

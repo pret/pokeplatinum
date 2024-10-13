@@ -17,10 +17,10 @@
 #include "pokemon_summary_app.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "unk_0200C440.h"
 #include "unk_0200DA60.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0207A274.h"
 #include "unk_0208EA44.h"
 #include "unk_020923C0.h"
@@ -243,7 +243,7 @@ void sub_0208FEA4(PokemonSummaryApp *param0)
     v0 = &param0->staticWindows[34];
 
     BGL_FillWindow(v0, 0);
-    sub_0201D78C(v0, 0, param0->monData.nickname, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(v0, 0, param0->monData.nickname, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
     if (param0->monData.showGender == 0) {
         if (param0->monData.gender == 0) {
@@ -275,7 +275,7 @@ void sub_0208FF3C(PokemonSummaryApp *param0)
         StringTemplate_SetNumber(param0->strFormatter, 0, param0->monData.level, 3, 0, 1);
         StringTemplate_Format(param0->strFormatter, param0->strbuf, v1);
         Strbuf_Free(v1);
-        sub_0201D78C(v0, 0, param0->strbuf, 16, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(v0, 0, param0->strbuf, 16, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
     sub_0201A9A4(v0);
@@ -339,7 +339,7 @@ static void sub_020900D8(PokemonSummaryApp *param0, Window *param1, u32 param2, 
         break;
     }
 
-    sub_0201D78C(param1, 0, param0->strbuf, v2, 0, 0xff, param2, NULL);
+    Text_AddPrinterWithParamsAndColor(param1, 0, param0->strbuf, v2, 0, 0xff, param2, NULL);
 }
 
 static void sub_02090158(PokemonSummaryApp *param0, u32 param1, u32 param2, u32 param3, u32 param4)
@@ -376,14 +376,14 @@ static void sub_020901D0(PokemonSummaryApp *param0, u32 param1, u32 param2, u32 
     v2 = param8 - v1 / 2;
     v3 = v2 + v1;
 
-    sub_0201D78C(v0, 0, param0->strbuf, v2, param9, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(v0, 0, param0->strbuf, v2, param9, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     sub_02090184(param0, param3, param5, param7, 0);
 
     v1 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->strbuf, 0);
 
-    sub_0201D78C(v0, 0, param0->strbuf, v2 - v1, param9, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(v0, 0, param0->strbuf, v2 - v1, param9, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     sub_02090184(param0, param4, param6, param7, 0);
-    sub_0201D78C(v0, 0, param0->strbuf, v3, param9, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(v0, 0, param0->strbuf, v3, param9, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 }
 
 static void sub_020902B0(PokemonSummaryApp *param0)
@@ -413,7 +413,7 @@ static void sub_020902B0(PokemonSummaryApp *param0)
 
     {
         MessageLoader_GetStrbuf(param0->msgLoader, 146, param0->strbuf);
-        sub_0201D78C(&param0->staticWindows[24], 0, param0->strbuf, 0, 2, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->staticWindows[24], 0, param0->strbuf, 0, 2, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
     sub_02090158(param0, 25, 149, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
@@ -497,7 +497,7 @@ static void sub_02090578(PokemonSummaryApp *param0)
         u32 v1 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->monData.speciesName, 0);
         u32 v2 = (param0->extraWindows[1].unk_07 * 8 - v1) / 2;
 
-        sub_0201D78C(&param0->extraWindows[1], 0, param0->monData.speciesName, v2, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->extraWindows[1], 0, param0->monData.speciesName, v2, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
     {
@@ -505,10 +505,10 @@ static void sub_02090578(PokemonSummaryApp *param0)
         u32 v4 = (param0->extraWindows[2].unk_07 * 8 - v3) / 2;
 
         if (param0->monData.OTGender == 0) {
-            sub_0201D78C(
+            Text_AddPrinterWithParamsAndColor(
                 &param0->extraWindows[2], 0, param0->monData.OTName, v4, 0, 0xff, ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         } else {
-            sub_0201D78C(
+            Text_AddPrinterWithParamsAndColor(
                 &param0->extraWindows[2], 0, param0->monData.OTName, v4, 0, 0xff, ((u32)(((5 & 0xff) << 16) | ((6 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         }
     }
@@ -538,23 +538,23 @@ static void sub_02090800(Window *param0, Pokemon *param1, BOOL param2)
     PokemonInfoDisplayStruct *v0 = sub_02092494(param1, param2, 19);
 
     if (v0->unk_14.unk_04 != NULL) {
-        sub_0201D78C(param0, 0, v0->unk_14.unk_04, 0, 0 + (v0->unk_14.unk_00 - 1) * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(param0, 0, v0->unk_14.unk_04, 0, 0 + (v0->unk_14.unk_00 - 1) * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
     if (v0->unk_1C.unk_04 != NULL) {
-        sub_0201D78C(param0, 0, v0->unk_1C.unk_04, 0, 0 + (v0->unk_1C.unk_00 - 1) * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(param0, 0, v0->unk_1C.unk_04, 0, 0 + (v0->unk_1C.unk_00 - 1) * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
     if (v0->unk_24.unk_04 != NULL) {
-        sub_0201D78C(param0, 0, v0->unk_24.unk_04, 0, 0 + (v0->unk_24.unk_00 - 1) * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(param0, 0, v0->unk_24.unk_04, 0, 0 + (v0->unk_24.unk_00 - 1) * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
     if (v0->unk_2C.unk_04 != NULL) {
-        sub_0201D78C(param0, 0, v0->unk_2C.unk_04, 0, 0 + (v0->unk_2C.unk_00 - 1) * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(param0, 0, v0->unk_2C.unk_04, 0, 0 + (v0->unk_2C.unk_00 - 1) * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
     if (v0->unk_34.unk_04 != NULL) {
-        sub_0201D78C(param0, 0, v0->unk_34.unk_04, 0, 0 + (v0->unk_34.unk_00 - 1) * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(param0, 0, v0->unk_34.unk_04, 0, 0 + (v0->unk_34.unk_00 - 1) * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
     sub_0209282C(v0);
@@ -663,7 +663,7 @@ static void sub_02090BDC(PokemonSummaryApp *param0)
     MessageLoader_GetStrbuf(param0->msgLoader, 165, param0->strbuf);
     sub_020900D8(param0, &param0->extraWindows[1], ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
     MessageLoader_GetStrbuf(param0->msgLoader, 166 + param0->monData.preferredFlavor, param0->strbuf);
-    sub_0201D78C(&param0->extraWindows[1], 0, param0->strbuf, 0, 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->extraWindows[1], 0, param0->strbuf, 0, 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     sub_0201A9A4(&param0->extraWindows[1]);
 
     if (param0->data->mode == 3) {
@@ -763,7 +763,7 @@ static void sub_02090EC8(PokemonSummaryApp *param0)
     sub_020900D8(param0, &param0->extraWindows[1], ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
 
     MessageLoader_GetStrbuf(param0->msgLoader, 166 + param0->monData.preferredFlavor, param0->strbuf);
-    sub_0201D78C(&param0->extraWindows[1], 0, param0->strbuf, 0, 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->extraWindows[1], 0, param0->strbuf, 0, 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
     sub_0201A9A4(&param0->extraWindows[1]);
 }
@@ -785,13 +785,13 @@ void sub_02090F84(PokemonSummaryApp *param0)
     v2 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->strbuf, 0);
     v1 = 7 * 8 - v2;
 
-    sub_0201D78C(&param0->extraWindows[1], 0, param0->strbuf, v1, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->extraWindows[1], 0, param0->strbuf, v1, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
     v0 = MessageLoader_GetNewStrbuf(param0->msgLoader, 185);
     v2 = Font_CalcStrbufWidth(FONT_SYSTEM, v0, 0);
     v1 -= v2;
 
-    sub_0201D78C(&param0->extraWindows[1], 0, v0, v1, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->extraWindows[1], 0, v0, v1, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
 
     v0 = MessageLoader_GetNewStrbuf(param0->msgLoader, 184);
@@ -803,7 +803,7 @@ void sub_02090F84(PokemonSummaryApp *param0)
     v2 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->strbuf, 0);
     v1 -= v2;
 
-    sub_0201D78C(&param0->extraWindows[1], 0, param0->strbuf, v1, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->extraWindows[1], 0, param0->strbuf, v1, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     sub_0201A9A4(&param0->extraWindows[1]);
 }
 
@@ -843,16 +843,16 @@ static void sub_02091188(PokemonSummaryApp *param0, u32 param1)
     }
 
     MessageLoader_GetStrbuf(param0->moveNameLoader, v3, param0->strbuf);
-    sub_0201D78C(v0, 0, param0->strbuf, 1, 2, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(v0, 0, param0->strbuf, 1, 2, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
     if (v3 != 0) {
         MessageLoader_GetStrbuf(param0->msgLoader, 135, param0->strbuf);
-        sub_0201D78C(v0, 0, param0->strbuf, 16, 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(v0, 0, param0->strbuf, 16, 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         sub_020901D0(param0, 0 + param1, 117, 136 + param1, 141 + param1, v4, v5, 2, (40 + 20), 16);
     } else {
         MessageLoader_GetStrbuf(param0->msgLoader, 153, param0->strbuf);
         v2 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->strbuf, 0);
-        sub_0201D78C(v0, 0, param0->strbuf, (40 + 20) - v2 / 2, 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(v0, 0, param0->strbuf, (40 + 20) - v2 / 2, 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 }
 
@@ -972,7 +972,7 @@ void sub_02091570(PokemonSummaryApp *param0, u32 param1)
     v0 = MessageLoader_Init(0, 26, 210, 19);
 
     MessageLoader_GetStrbuf(v0, v2, param0->strbuf);
-    sub_0201D78C(&param0->extraWindows[5], 0, param0->strbuf, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->extraWindows[5], 0, param0->strbuf, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
     MessageLoader_Free(v0);
 
@@ -1019,6 +1019,6 @@ void sub_02091610(PokemonSummaryApp *param0, u8 param1)
     sub_0200E060(v0, 1, (1024 - (18 + 12)), 13);
     BGL_FillWindow(v0, 15);
     MessageLoader_GetStrbuf(param0->msgLoader, v1, param0->strbuf);
-    sub_0201D78C(v0, 1, param0->strbuf, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(v0, 1, param0->strbuf, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     sub_0201A9A4(v0);
 }

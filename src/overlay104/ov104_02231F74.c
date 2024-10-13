@@ -52,6 +52,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
 #include "unk_02002F38.h"
@@ -62,7 +63,6 @@
 #include "unk_020131EC.h"
 #include "unk_02014A84.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201F834.h"
 #include "unk_0207E0B8.h"
 #include "unk_0209B6F8.h"
@@ -194,7 +194,7 @@ static void ov104_02232050(UnkStruct_ov104_022320B4 *param0, int param1, int par
     RenderControlFlags_SetCanABSpeedUpPrint(param3);
     RenderControlFlags_SetAutoScrollFlags(param4);
     RenderControlFlags_SetSpeedUpOnTouch(0);
-    param0->unk_50 = PrintStringSimple(&param0->unk_64, param1, param0->unk_48, 0, 0, param2, NULL);
+    param0->unk_50 = Text_AddPrinterWithParams(&param0->unk_64, param1, param0->unk_48, 0, 0, param2, NULL);
 }
 
 void ov104_02232088(UnkStruct_ov104_022320B4 *param0)
@@ -715,7 +715,7 @@ static void ov104_02232AC4(UnkStruct_ov104_02232B5C *param0, u16 param1, u32 par
 
     StringTemplate_Format(param0->unk_90, v1, v0);
 
-    PrintStringSimple(param0->unk_18, 1, v1, 0, 0, param2, NULL);
+    Text_AddPrinterWithParams(param0->unk_18, 1, v1, 0, 0, param2, NULL);
 
     Strbuf_Free(v0);
     Strbuf_Free(v1);
@@ -1109,7 +1109,7 @@ void ov104_0223310C(UnkStruct_ov104_0222E930 *param0, u16 *param1, u32 param2)
 
 static BOOL ov104_02233184(UnkStruct_ov104_0222E930 *param0)
 {
-    if (Message_Printing(param0->unk_00->unk_50) == 0) {
+    if (Text_IsPrinterActive(param0->unk_00->unk_50) == 0) {
         return 1;
     }
 

@@ -24,6 +24,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "trainer_info.h"
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
@@ -31,7 +32,6 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0202D05C.h"
 
 struct UnkStruct_ov5_021DC1A4_t {
@@ -612,7 +612,7 @@ static void ov5_021DCA90(UnkStruct_ov5_021DC1A4 *param0, u16 param1, u32 param2)
     BGL_FillWindow(param0->unk_18, 15);
     MessageLoader_GetStrbuf(param0->unk_8C, param1, v0);
     StringTemplate_Format(param0->unk_90, v1, v0);
-    PrintStringSimple(param0->unk_18, 1, v1, 0, 0, param2, NULL);
+    Text_AddPrinterWithParams(param0->unk_18, 1, v1, 0, 0, param2, NULL);
     Strbuf_Free(v0);
     Strbuf_Free(v1);
 
@@ -667,7 +667,7 @@ static void ov5_021DCC00(UnkStruct_ov5_021DC1A4 *param0, u16 param1, u8 param2, 
 
     MessageLoader_GetStrbuf(param0->unk_8C, param1, v0);
     StringTemplate_Format(param0->unk_90, v1, v0);
-    PrintStringSimple(&param0->unk_08, 0, v1, param2, param3, 0xff, NULL);
+    Text_AddPrinterWithParams(&param0->unk_08, 0, v1, param2, param3, 0xff, NULL);
     Strbuf_Free(v0);
     Strbuf_Free(v1);
 
@@ -826,7 +826,7 @@ Window *ov5_021DCEB0(FieldSystem *fieldSystem, u8 param1, u8 param2)
         v1 = MessageLoader_Init(0, 26, 543, 4);
         v2 = MessageLoader_GetNewStrbuf(v1, 18);
 
-        PrintStringSimple(v0, 0, v2, 0, 0, 0xff, NULL);
+        Text_AddPrinterWithParams(v0, 0, v2, 0, 0, 0xff, NULL);
         MessageLoader_Free(v1);
         Strbuf_Free(v2);
     }
@@ -864,7 +864,7 @@ void ov5_021DCF6C(FieldSystem *fieldSystem, Window *param1)
 
     v5 = (10 * 8) - Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
 
-    PrintStringSimple(param1, 0, v2, v5, 16, 0xff, NULL);
+    Text_AddPrinterWithParams(param1, 0, v2, v5, 16, 0xff, NULL);
     Strbuf_Free(v3);
     Strbuf_Free(v2);
     StringTemplate_Free(v1);
@@ -913,7 +913,7 @@ void ov5_021DD098(FieldSystem *fieldSystem, Window *param1)
 
     v5 = (10 * 8) - Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
 
-    PrintStringSimple(param1, 0, v2, v5, 0, 0xff, NULL);
+    Text_AddPrinterWithParams(param1, 0, v2, v5, 0, 0xff, NULL);
     Strbuf_Free(v3);
     Strbuf_Free(v2);
     StringTemplate_Free(v1);
@@ -956,7 +956,7 @@ void ov5_021DD1A4(FieldSystem *fieldSystem, Window *param1)
 
     v5 = (10 * 8) - Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
 
-    PrintStringSimple(param1, 0, v2, v5, 0, 0xff, NULL);
+    Text_AddPrinterWithParams(param1, 0, v2, v5, 0, 0xff, NULL);
     Strbuf_Free(v3);
     Strbuf_Free(v2);
     StringTemplate_Free(v1);

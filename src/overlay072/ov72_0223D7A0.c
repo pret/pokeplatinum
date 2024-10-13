@@ -39,6 +39,7 @@
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "touch_screen.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
@@ -53,7 +54,6 @@
 #include "unk_02017728.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_0201E86C.h"
@@ -558,7 +558,7 @@ static void *ov72_0223E060(Window *param0, Strbuf *param1, int param2, u8 param3
     v1 = Font_CalcStrbufWidth(FONT_SUBSCREEN, param1, 0);
     v0 = ((param0->unk_07 * 8) - v1) / 2;
 
-    sub_0201D78C(param0, param3, param1, v0, param2, 0xff, param4, NULL);
+    Text_AddPrinterWithParamsAndColor(param0, param3, param1, v0, param2, 0xff, param4, NULL);
 
     return param0->unk_0C;
 }
@@ -594,7 +594,7 @@ static void ov72_0223E0A0(UnkStruct_ov72_0223DB98 *param0, OverlayManager *param
         int v3 = (28 * 8 - v2) / 2;
 
         BGL_FillWindow(&param0->unk_358, 0x0);
-        sub_0201D78C(&param0->unk_358, 1, param0->unk_30, v3, 0, 0, (u32)(((0x1 & 0xff) << 16) | ((0x2 & 0xff) << 8) | ((0x0 & 0xff) << 0)), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_358, 1, param0->unk_30, v3, 0, 0, (u32)(((0x1 & 0xff) << 16) | ((0x2 & 0xff) << 8) | ((0x0 & 0xff) << 0)), NULL);
     }
 
     {
@@ -1092,7 +1092,7 @@ static void ov72_0223E910(Window *param0, int param1, u32 param2, UnkStruct_ov72
     }
 
     for (v0 = 0; v0 < 5; v0++) {
-        sub_0201D78C(&param0[v0], 1, param3->unk_18[v0], 0, 0, 0xff, (u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((15 & 0xff) << 0)), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0[v0], 1, param3->unk_18[v0], 0, 0, 0xff, (u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((15 & 0xff) << 0)), NULL);
         sub_0201A954(&param0[v0]);
     }
 }
@@ -1114,12 +1114,12 @@ static void ov72_0223E930(UnkStruct_ov72_0223DB98 *param0, int param1)
     BGL_FillWindow(&param0->unk_338, 0xf0f);
     sub_0200E060(&param0->unk_338, 0, 1, 10);
 
-    param0->unk_38 = PrintStringSimple(&param0->unk_338, 1, param0->unk_34, 0, 0, Options_TextFrameDelay(param0->unk_0C), NULL);
+    param0->unk_38 = Text_AddPrinterWithParams(&param0->unk_338, 1, param0->unk_34, 0, 0, Options_TextFrameDelay(param0->unk_0C), NULL);
 }
 
 static int ov72_0223E99C(int param0)
 {
-    if (Message_Printing(param0) == 0) {
+    if (Text_IsPrinterActive(param0) == 0) {
         return 1;
     }
 

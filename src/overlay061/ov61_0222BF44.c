@@ -35,6 +35,7 @@
 #include "save_player.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "unk_02001AF4.h"
 #include "unk_02006E3C.h"
 #include "unk_0200A784.h"
@@ -42,7 +43,6 @@
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_02025CB0.h"
@@ -498,7 +498,7 @@ static int ov61_0222C728(Window *param0, Strbuf *param1, int param2, int param3,
 void ov61_0222C760(Window *param0, Strbuf *param1, int param2, int param3, int param4, u32 param5)
 {
     param2 = ov61_0222C728(param0, param1, param2, param4, param5, 1);
-    sub_0201D78C(param0, 1, param1, param2, param3, 0, param5, NULL);
+    Text_AddPrinterWithParamsAndColor(param0, 1, param1, param2, param3, 0, param5, NULL);
 }
 
 static void ov61_0222C794(UnkStruct_ov61_0222C664 *param0, int param1)
@@ -510,7 +510,7 @@ static void ov61_0222C794(UnkStruct_ov61_0222C664 *param0, int param1)
     BGL_FillWindow(&param0->unk_64, 15);
     Window_Show(&param0->unk_64, 1, (1 + (18 + 12)), 11);
 
-    param0->unk_40 = PrintStringSimple(&param0->unk_64, 1, param0->unk_3C, 0, 0, 0, NULL);
+    param0->unk_40 = Text_AddPrinterWithParams(&param0->unk_64, 1, param0->unk_3C, 0, 0, 0, NULL);
     param0->unk_40 = 0xff;
 
     Strbuf_Free(v0);
@@ -534,7 +534,7 @@ static void ov61_0222C7F8(UnkStruct_ov61_0222C664 *param0, int param1, int param
 
 static int ov61_0222C834(int param0)
 {
-    if ((param0 == 0xff) || (Message_Printing(param0) == 0)) {
+    if ((param0 == 0xff) || (Text_IsPrinterActive(param0) == 0)) {
         return 0;
     }
 
@@ -578,7 +578,7 @@ static void ov61_0222C8B8(UnkStruct_ov61_0222C664 *param0, MessageLoader *param1
     BGL_FillWindow(&param0->unk_44, 0xf0f);
     sub_0200E060(&param0->unk_44, 0, 1, 10);
 
-    param0->unk_40 = PrintStringSimple(&param0->unk_44, 1, param0->unk_34, 0, 0, param3, NULL);
+    param0->unk_40 = Text_AddPrinterWithParams(&param0->unk_44, 1, param0->unk_34, 0, 0, param3, NULL);
     param0->unk_8C = 0;
 
     if ((param3 == 0xff) || (param3 == 0)) {

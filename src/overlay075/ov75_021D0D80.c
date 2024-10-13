@@ -36,6 +36,7 @@
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "unk_02001AF4.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
@@ -46,7 +47,6 @@
 #include "unk_02014A84.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_020393C8.h"
 
@@ -279,7 +279,7 @@ static int ov75_021D0FA0(UnkStruct_ov75_021D1184 *param0)
         v0 = Strbuf_Init((19 * 2 * 2), param0->unk_00);
 
         MessageLoader_GetStrbuf(param0->unk_20, 2, v0);
-        sub_0201D78C(&param0->unk_44[5], 1, v0, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_44[5], 1, v0, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
         Strbuf_Free(v0);
         break;
     case 1:
@@ -336,7 +336,7 @@ static int ov75_021D108C(UnkStruct_ov75_021D1184 *param0)
 
         v1 = Strbuf_Init((19 * 2 * 2), param0->unk_00);
         MessageLoader_GetStrbuf(param0->unk_20, 3, v1);
-        param0->unk_0F = sub_0201D78C(&param0->unk_44[5], 1, v1, 0, 0, param0->unk_10, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+        param0->unk_0F = Text_AddPrinterWithParamsAndColor(&param0->unk_44[5], 1, v1, 0, 0, param0->unk_10, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
 
         Strbuf_Free(v1);
         sub_020039B0(param0->unk_30, 0, 34 + param0->unk_17, 1, 0, 0x7FFF);
@@ -346,7 +346,7 @@ static int ov75_021D108C(UnkStruct_ov75_021D1184 *param0)
         param0->unk_14 = 0;
         break;
     case 1:
-        if (Message_Printing(param0->unk_0F)) {
+        if (Text_IsPrinterActive(param0->unk_0F)) {
             return 0;
         }
 
@@ -835,7 +835,7 @@ static void ov75_021D19C8(UnkStruct_ov75_021D1184 *param0)
 
         v1 = sub_02014B34(&param0->unk_1C->unk_1A[v0], param0->unk_00);
 
-        sub_0201D78C(&param0->unk_44[0 + v0], 1, v1, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_44[0 + v0], 1, v1, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         Strbuf_Free(v1);
         sub_0201A954(&param0->unk_44[0 + v0]);
     }
@@ -855,13 +855,13 @@ static void ov75_021D19C8(UnkStruct_ov75_021D1184 *param0)
             v3 = (8 * 8) - Font_CalcStrbufWidth(FONT_MESSAGE, v2, 0);
             v3 /= 2;
 
-            sub_0201D78C(&param0->unk_44[3 + v0], 1, v2, v3, 2, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+            Text_AddPrinterWithParamsAndColor(&param0->unk_44[3 + v0], 1, v2, v3, 2, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
             sub_0201A954(&param0->unk_44[3 + v0]);
         }
 
         Strbuf_Free(v2);
     } else {
-        sub_0201D78C(&param0->unk_44[3], 1, param0->unk_1C->unk_10, 0, 2, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_44[3], 1, param0->unk_1C->unk_10, 0, 2, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         sub_0201A954(&param0->unk_44[3]);
     }
 }

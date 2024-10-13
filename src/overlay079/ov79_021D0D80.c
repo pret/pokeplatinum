@@ -25,6 +25,7 @@
 #include "overlay_manager.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "touch_screen.h"
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
@@ -35,7 +36,6 @@
 #include "unk_020158A8.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_0208C098.h"
@@ -347,7 +347,7 @@ static int ov79_021D10B8(UnkStruct_ov79_021D0E1C *param0)
 
 static int ov79_021D114C(UnkStruct_ov79_021D0E1C *param0)
 {
-    if (Message_Printing(param0->unk_1F)) {
+    if (Text_IsPrinterActive(param0->unk_1F)) {
         return 0;
     }
 
@@ -376,7 +376,7 @@ static int ov79_021D116C(UnkStruct_ov79_021D0E1C *param0)
 
 static int ov79_021D11C0(UnkStruct_ov79_021D0E1C *param0)
 {
-    if (Message_Printing(param0->unk_1F)) {
+    if (Text_IsPrinterActive(param0->unk_1F)) {
         return 0;
     }
 

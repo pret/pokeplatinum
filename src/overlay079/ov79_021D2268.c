@@ -38,6 +38,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
 #include "unk_0200A784.h"
@@ -47,7 +48,6 @@
 #include "unk_02017728.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_020393C8.h"
 #include "unk_0208C098.h"
@@ -744,7 +744,7 @@ static int ov79_021D2B94(UnkStruct_ov79_021D2928 *param0)
     StringTemplate_SetStrbuf(param0->unk_1C.unk_00, 0, param0->unk_30.unk_0C, 2, 1, GAME_LANGUAGE);
     StringTemplate_Format(param0->unk_1C.unk_00, param0->unk_1C.unk_04, param0->unk_1C.unk_08[param0->unk_30.unk_09]);
 
-    param0->unk_0C = sub_0201D78C(&param0->unk_6C, 1, param0->unk_1C.unk_04, 0, 0, param0->unk_10->unk_0A, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+    param0->unk_0C = Text_AddPrinterWithParamsAndColor(&param0->unk_6C, 1, param0->unk_1C.unk_04, 0, 0, param0->unk_10->unk_0A, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     param0->unk_0E = 0;
 
     return 7;
@@ -752,7 +752,7 @@ static int ov79_021D2B94(UnkStruct_ov79_021D2928 *param0)
 
 static int ov79_021D2C08(UnkStruct_ov79_021D2928 *param0)
 {
-    if (Message_Printing(param0->unk_0C)) {
+    if (Text_IsPrinterActive(param0->unk_0C)) {
         return 7;
     }
 

@@ -11,8 +11,8 @@
 #include "heap.h"
 #include "render_text.h"
 #include "strbuf.h"
+#include "text.h"
 #include "unk_02006E3C.h"
-#include "unk_0201D670.h"
 
 typedef struct {
     TextGlyph curGlyph;
@@ -93,7 +93,7 @@ void Fonts_Init(void)
         sFontWork->fontManagers[i] = NULL;
     }
 
-    SetFontAttributesPtr(sFontAttributes);
+    Text_SetFontAttributesPtr(sFontAttributes);
 }
 
 void Font_InitManager(enum Font font, u32 heapID)

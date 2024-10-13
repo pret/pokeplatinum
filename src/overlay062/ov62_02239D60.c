@@ -43,6 +43,7 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "touch_screen.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
@@ -51,7 +52,6 @@
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_02023FCC.h"
 #include "unk_02030A80.h"
 #include "unk_020797C8.h"
@@ -917,7 +917,7 @@ static void ov62_0223AB14(UnkStruct_0208C06C *param0)
         v4 = ov62_0223429C(v1, v5);
 
         BGL_FillWindow(v1, Unk_ov62_02248D78[0]);
-        sub_0201D78C(v1, 0, v5, v4, 0, 0xff, Unk_ov62_02248D90[0], NULL);
+        Text_AddPrinterWithParamsAndColor(v1, 0, v5, v4, 0, 0xff, Unk_ov62_02248D90[0], NULL);
         sub_0201A9A4(v1);
         Strbuf_Free(v5);
 
@@ -960,7 +960,7 @@ static void ov62_0223AC0C(UnkStruct_0208C06C *param0, int param1)
     v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
 
     BGL_FillWindow(v1, Unk_ov62_02248D78[2]);
-    sub_0201D78C(v1, 0, v2, 0, Unk_ov62_02248DA8[2], 0xff, Unk_ov62_02248D90[2], NULL);
+    Text_AddPrinterWithParamsAndColor(v1, 0, v2, 0, Unk_ov62_02248DA8[2], 0xff, Unk_ov62_02248D90[2], NULL);
     sub_0201A9A4(v1);
     Strbuf_Free(v2);
 }
@@ -986,7 +986,7 @@ static void ov62_0223AC58(UnkStruct_0208C06C *param0, int param1)
     StringTemplate_SetStrbuf(v5, 0, v3, 0, 1, GAME_LANGUAGE);
     StringTemplate_Format(v5, v4, v2);
     BGL_FillWindow(v1, Unk_ov62_02248D78[2]);
-    sub_0201D78C(v1, 0, v4, 0, Unk_ov62_02248DA8[2], 0xff, Unk_ov62_02248D90[2], NULL);
+    Text_AddPrinterWithParamsAndColor(v1, 0, v4, 0, Unk_ov62_02248DA8[2], 0xff, Unk_ov62_02248D90[2], NULL);
     sub_0201A9A4(v1);
     Strbuf_Free(v2);
     Strbuf_Free(v3);
@@ -1009,7 +1009,7 @@ static void ov62_0223AD20(UnkStruct_0208C06C *param0)
 
     v3 = ov62_0223429C(v1, v2);
 
-    sub_0201D78C(v1, 0, v2, v3, Unk_ov62_02248DA8[1], 0xff, Unk_ov62_02248D90[1], NULL);
+    Text_AddPrinterWithParamsAndColor(v1, 0, v2, v3, Unk_ov62_02248DA8[1], 0xff, Unk_ov62_02248D90[1], NULL);
     sub_0201A9A4(v1);
     Strbuf_Free(v2);
 }
@@ -1062,7 +1062,7 @@ static void ov62_0223ADC0(UnkStruct_0208C06C *param0, int param1)
 
     v3 = ov62_0223429C(v1, v2);
 
-    sub_0201D78C(v1, 0, v2, v3, Unk_ov62_02248DA8[0], 0xff, Unk_ov62_02248D90[0], NULL);
+    Text_AddPrinterWithParamsAndColor(v1, 0, v2, v3, Unk_ov62_02248DA8[0], 0xff, Unk_ov62_02248D90[0], NULL);
     sub_0201A9A4(v1);
     Strbuf_Free(v2);
 }
@@ -1482,7 +1482,7 @@ static void ov62_0223B6AC(UnkStruct_0208C06C *param0)
         v6 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, v5[v3]);
         v4 = ov62_0223429C(v1, v6);
 
-        sub_0201D78C(v1, 0, v6, v4, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(v1, 0, v6, v4, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         sub_0201A9A4(v1);
         v2 += (Unk_ov62_02248D5C[v3][2] * Unk_ov62_02248D5C[v3][3]);
         Strbuf_Free(v6);
@@ -1503,7 +1503,7 @@ static void ov62_0223B768(UnkStruct_0208C06C *param0, int param1)
     v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
     v3 = ov62_0223429C(v1, v2);
 
-    sub_0201D78C(v1, 0, v2, v3, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(v1, 0, v2, v3, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v2);
     sub_0201A9A4(v1);
 }
@@ -1528,7 +1528,7 @@ static void ov62_0223B7C0(UnkStruct_0208C06C *param0)
 
         {
             u32 v6 = (64 - Font_CalcMaxLineWidth(FONT_SYSTEM, v5, 0)) / 2;
-            sub_0201D78C(v1, 0, v5, v6, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+            Text_AddPrinterWithParamsAndColor(v1, 0, v5, v6, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         }
 
         sub_0201A9A4(v1);
@@ -1584,7 +1584,7 @@ static void ov62_0223B888(UnkStruct_0208C06C *param0)
         }
 
         if (v7) {
-            sub_0201D78C(v1, 0, v7, v4, v5, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+            Text_AddPrinterWithParamsAndColor(v1, 0, v7, v4, v5, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
             Strbuf_Free(v7);
         }
 

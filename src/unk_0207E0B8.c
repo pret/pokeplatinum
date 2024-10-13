@@ -35,6 +35,7 @@
 #include "pokemon_summary_app.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "touch_screen.h"
 #include "unk_02001AF4.h"
 #include "unk_020041CC.h"
@@ -47,7 +48,6 @@
 #include "unk_02013A04.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E010.h"
 #include "unk_0201E3D8.h"
@@ -583,7 +583,7 @@ static int sub_0207E634(GameWindowLayout *param0)
 
 static int sub_0207E6C0(GameWindowLayout *param0)
 {
-    if (Message_Printing(param0->unk_B10) == 0) {
+    if (Text_IsPrinterActive(param0->unk_B10) == 0) {
         return param0->unk_B0E;
     }
 
@@ -2735,7 +2735,7 @@ static void SwapPokemonItem(GameWindowLayout *param0, Pokemon *param1, u32 param
 
 static int HandleMessageCompletion(GameWindowLayout *param0)
 {
-    if (Message_Printing(param0->unk_B10) == 0) {
+    if (Text_IsPrinterActive(param0->unk_B10) == 0) {
         if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             return ResetWindowOnInput(param0);
         }
@@ -2746,7 +2746,7 @@ static int HandleMessageCompletion(GameWindowLayout *param0)
 
 static int ProcessMessageResult(GameWindowLayout *param0)
 {
-    if (Message_Printing(param0->unk_B10) == 0) {
+    if (Text_IsPrinterActive(param0->unk_B10) == 0) {
         if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             sub_0200E084(&param0->unk_04[34], 1);
             LoadOverlay118(param0);
@@ -2770,7 +2770,7 @@ static int HandleOverlayCompletion(GameWindowLayout *param0)
 
 static int FinalizeMessageProcessing(GameWindowLayout *param0)
 {
-    if (Message_Printing(param0->unk_B10) == 0) {
+    if (Text_IsPrinterActive(param0->unk_B10) == 0) {
         sub_020827EC(param0);
         return 10;
     }

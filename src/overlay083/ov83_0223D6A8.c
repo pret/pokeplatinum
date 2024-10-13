@@ -50,6 +50,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
@@ -59,7 +60,6 @@
 #include "unk_02015920.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "unk_0201D670.h"
 #include "unk_0201E3BC.h"
 #include "unk_02098FFC.h"
 
@@ -678,7 +678,7 @@ static void ov83_0223E208(UnkStruct_ov83_0223E138 *param0)
 
 static void ov83_0223E21C(Window *param0, Strbuf *param1, int param2, int param3)
 {
-    sub_0201D78C(param0, 1, param1, param2, param3, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param0, 1, param1, param2, param3, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
 }
 
 void ov83_0223E244(UnkStruct_ov83_0223E244 *param0)
@@ -1124,7 +1124,7 @@ void ov83_0223E908(UnkStruct_ov83_0223E824 *param0, u32 param1)
 
     {
         u32 v0 = Font_CalcCenterAlignment(FONT_MESSAGE, param0->unk_1C->unk_38[param1], 0, 128);
-        sub_0201D78C(param0->unk_08[0], 1, param0->unk_1C->unk_38[param1], v0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(param0->unk_08[0], 1, param0->unk_1C->unk_38[param1], v0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     }
 
     sub_0201A954(param0->unk_08[0]);
@@ -1175,12 +1175,12 @@ static void ov83_0223E9E4(UnkStruct_ov83_0223E824 *param0)
 
     {
         u32 v0 = Font_CalcCenterAlignment(FONT_SYSTEM, param0->unk_1C->unk_34, 0, 224);
-        sub_0201D78C(param0->unk_08[1], 0, param0->unk_1C->unk_34, v0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(param0->unk_08[1], 0, param0->unk_1C->unk_34, v0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     }
 
     Window_Show(param0->unk_08[1], 0, (1 + (18 + 12)), 1);
     BGL_FillWindow(param0->unk_08[2], 15);
-    sub_0201D78C(param0->unk_08[2], 0, param0->unk_1C->unk_4C[6], 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param0->unk_08[2], 0, param0->unk_1C->unk_4C[6], 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     Window_Show(param0->unk_08[2], 0, (1 + (18 + 12)), 1);
     sub_0201A9A4(param0->unk_08[1]);
     sub_0201A9A4(param0->unk_08[2]);
@@ -1188,13 +1188,13 @@ static void ov83_0223E9E4(UnkStruct_ov83_0223E824 *param0)
 
 static void ov83_0223EA6C(UnkStruct_ov83_0223E824 *param0)
 {
-    sub_0201D78C(param0->unk_08[1], 0, param0->unk_1C->unk_4C[0], 0, 24, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param0->unk_08[1], 0, param0->unk_1C->unk_4C[0], 0, 24, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     StringTemplate_SetNumber(param0->unk_1C->unk_04, 0, param0->unk_24->unk_58.unk_0E, 2, 2, 1);
     StringTemplate_SetNumber(param0->unk_1C->unk_04, 1, param0->unk_24->unk_58.unk_0F, 2, 2, 1);
     StringTemplate_SetNumber(param0->unk_1C->unk_04, 2, param0->unk_24->unk_58.unk_10, 2, 2, 1);
     StringTemplate_Format(param0->unk_1C->unk_04, param0->unk_1C->unk_08, param0->unk_1C->unk_4C[1]);
-    sub_0201D78C(param0->unk_08[1], 0, param0->unk_1C->unk_08, 160, 24, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
-    sub_0201D78C(param0->unk_08[1], 0, param0->unk_1C->unk_4C[2], 0, 48, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param0->unk_08[1], 0, param0->unk_1C->unk_08, 160, 24, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param0->unk_08[1], 0, param0->unk_1C->unk_4C[2], 0, 48, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     StringTemplate_SetNumber(param0->unk_1C->unk_04, 0, param0->unk_24->unk_58.unk_00, 4, 0, 1);
 
     {
@@ -1202,8 +1202,8 @@ static void ov83_0223EA6C(UnkStruct_ov83_0223E824 *param0)
         StringTemplate_Format(param0->unk_1C->unk_04, param0->unk_1C->unk_08, param0->unk_1C->unk_4C[v0]);
     }
 
-    sub_0201D78C(param0->unk_08[1], 0, param0->unk_1C->unk_08, 160, 48, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
-    sub_0201D78C(param0->unk_08[1], 0, param0->unk_1C->unk_4C[4], 0, 68, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param0->unk_08[1], 0, param0->unk_1C->unk_08, 160, 48, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param0->unk_08[1], 0, param0->unk_1C->unk_4C[4], 0, 68, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     StringTemplate_SetNumber(param0->unk_1C->unk_04, 0, param0->unk_24->unk_58.unk_04, 4, 0, 1);
 
     {
@@ -1211,7 +1211,7 @@ static void ov83_0223EA6C(UnkStruct_ov83_0223E824 *param0)
         StringTemplate_Format(param0->unk_1C->unk_04, param0->unk_1C->unk_08, param0->unk_1C->unk_4C[v1]);
     }
 
-    sub_0201D78C(param0->unk_08[1], 0, param0->unk_1C->unk_08, 160, 68, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param0->unk_08[1], 0, param0->unk_1C->unk_08, 160, 68, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     sub_0201A9A4(param0->unk_08[1]);
 }
 
@@ -1221,7 +1221,7 @@ static void ov83_0223EBD8(UnkStruct_ov83_0223E824 *param0)
     StringTemplate_SetNumber(param0->unk_1C->unk_04, 1, param0->unk_24->unk_58.unk_0D, 2, 2, 1);
     StringTemplate_SetNumber(param0->unk_1C->unk_04, 2, param0->unk_20, 2, 2, 1);
     StringTemplate_Format(param0->unk_1C->unk_04, param0->unk_1C->unk_08, param0->unk_1C->unk_4C[7]);
-    sub_0201D78C(param0->unk_08[2], 0, param0->unk_1C->unk_08, 16, 24, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param0->unk_08[2], 0, param0->unk_1C->unk_08, 16, 24, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     sub_0201A9A4(param0->unk_08[2]);
 }
 
@@ -1281,7 +1281,7 @@ void ov83_0223EC8C(UnkStruct_ov83_0223E824 *param0, u32 param1)
         break;
     }
 
-    sub_0201D78C(param0->unk_08[3], 1, v0, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param0->unk_08[3], 1, v0, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     sub_0200E060(param0->unk_08[3], 0, 1, 0);
     sub_0201A9A4(param0->unk_08[3]);
 }

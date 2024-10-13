@@ -37,6 +37,7 @@
 #include "pokemon.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "trainer_info.h"
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
@@ -47,7 +48,6 @@
 #include "unk_0200F174.h"
 #include "unk_02013A04.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0202631C.h"
 #include "unk_0202C858.h"
 #include "unk_020393C8.h"
@@ -333,7 +333,7 @@ static void ov94_0224158C(UnkStruct_ov94_0223FD4C *param0, int param1, int param
     BGL_FillWindow(&param0->unk_F5C, 0xf0f);
     sub_0200E060(&param0->unk_F5C, 0, 1, 10);
 
-    param0->unk_BE0 = PrintStringSimple(&param0->unk_F5C, 1, param0->unk_BAC, 0, 0, param2, NULL);
+    param0->unk_BE0 = Text_AddPrinterWithParams(&param0->unk_F5C, 1, param0->unk_BAC, 0, 0, param2, NULL);
 
     Strbuf_Free(v0);
 }
@@ -825,7 +825,7 @@ static int ov94_022420E4(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_02242138(UnkStruct_ov94_0223FD4C *param0)
 {
-    if (Message_Printing(param0->unk_BE0) == 0) {
+    if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
         param0->unk_2C = param0->unk_30;
     }
 

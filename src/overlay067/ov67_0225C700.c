@@ -38,6 +38,7 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_02006E3C.h"
@@ -45,7 +46,6 @@
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 
@@ -647,14 +647,14 @@ static void ov67_0225D188(UnkStruct_ov67_0225D210 *param0, BGL *param1, u32 para
 
 static void ov67_0225D210(UnkStruct_ov67_0225D210 *param0, u32 param1)
 {
-    if (Message_Printing(param0->unk_2C)) {
-        PrintString_ForceStop(param0->unk_2C);
+    if (Text_IsPrinterActive(param0->unk_2C)) {
+        Text_RemovePrinter(param0->unk_2C);
     }
 
     BGL_FillWindow(&param0->unk_08, 15);
     MessageLoader_GetStrbuf(param0->unk_04, param1, param0->unk_1C);
     StringTemplate_Format(param0->unk_00, param0->unk_18, param0->unk_1C);
-    PrintStringSimple(&param0->unk_08, 1, param0->unk_18, 0, 0, 0xff, NULL);
+    Text_AddPrinterWithParams(&param0->unk_08, 1, param0->unk_18, 0, 0, 0xff, NULL);
 
     if (param0->unk_20 == 0) {
         Window_Show(&param0->unk_08, 1, (1 + (18 + 12)), 14);
@@ -667,8 +667,8 @@ static void ov67_0225D210(UnkStruct_ov67_0225D210 *param0, u32 param1)
 
 static void ov67_0225D294(UnkStruct_ov67_0225D210 *param0)
 {
-    if (Message_Printing(param0->unk_2C)) {
-        PrintString_ForceStop(param0->unk_2C);
+    if (Text_IsPrinterActive(param0->unk_2C)) {
+        Text_RemovePrinter(param0->unk_2C);
     }
 
     if (param0->unk_20 == 0) {
@@ -703,8 +703,8 @@ static void ov67_0225D310(UnkStruct_ov67_0225D210 *param0)
 
 static void ov67_0225D330(UnkStruct_ov67_0225D210 *param0)
 {
-    if (Message_Printing(param0->unk_2C)) {
-        PrintString_ForceStop(param0->unk_2C);
+    if (Text_IsPrinterActive(param0->unk_2C)) {
+        Text_RemovePrinter(param0->unk_2C);
     }
 
     if (param0->unk_24) {
@@ -723,7 +723,7 @@ static void ov67_0225D37C(UnkStruct_ov67_0225D210 *param0, u32 param1)
     BGL_FillWindow(&param0->unk_08, 0);
     MessageLoader_GetStrbuf(param0->unk_04, param1, param0->unk_1C);
     StringTemplate_Format(param0->unk_00, param0->unk_18, param0->unk_1C);
-    sub_0201D78C(&param0->unk_08, 1, param0->unk_18, Font_CalcCenterAlignment(FONT_SYSTEM, param0->unk_18, 0, 0xB0), 0, 0, 0xF0E00, 0);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_08, 1, param0->unk_18, Font_CalcCenterAlignment(FONT_SYSTEM, param0->unk_18, 0, 0xB0), 0, 0, 0xF0E00, 0);
 }
 
 static void ov67_0225D3D0(UnkStruct_ov67_0225D210 *param0, u32 param1)

@@ -39,6 +39,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
@@ -46,7 +47,6 @@
 #include "unk_0200F174.h"
 #include "unk_02013A04.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_02028124.h"
 #include "unk_0203D1B8.h"
 #include "unk_020508D4.h"
@@ -735,7 +735,7 @@ static void sub_020729B4(UnkStruct_02072334 *param0)
     param0->unk_160 = sub_0200112C(&(param0->unk_140), param0->unk_13C, param0->unk_13E, param0->unk_00);
 
     Window_Show(&param0->unk_174, 0, (1024 - (18 + 12) - 9), 11);
-    sub_0201D78C(&param0->unk_194, 0, param0->unk_110.unk_0C, 2, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_194, 0, param0->unk_110.unk_0C, 2, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     Window_Show(&param0->unk_194, 0, (1024 - (18 + 12) - 9), 11);
     sub_0201C3C0(param0->unk_170, 3);
 
@@ -1097,7 +1097,7 @@ static void sub_020732C4(UnkStruct_02072334 *param0, int param1, u8 param2, u8 p
         v0 = param0->unk_110.unk_10[param1];
     }
 
-    param0->unk_138 = sub_0201D78C(&param0->unk_184, 1, v0, 0, 0, param2, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+    param0->unk_138 = Text_AddPrinterWithParamsAndColor(&param0->unk_184, 1, v0, 0, 0, param2, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     sub_0201A954(&param0->unk_184);
     param0->unk_139 = param3;
 }
@@ -1110,7 +1110,7 @@ static void sub_02073398(UnkStruct_02072334 *param0)
 
 static BOOL sub_020733B4(UnkStruct_02072334 *param0)
 {
-    if (Message_Printing(param0->unk_138)) {
+    if (Text_IsPrinterActive(param0->unk_138)) {
         return 0;
     }
 

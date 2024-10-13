@@ -13,9 +13,9 @@
 #include "core_sys.h"
 #include "font.h"
 #include "heap.h"
+#include "text.h"
 #include "unk_020149F0.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 
 typedef struct {
     u8 unk_00_0 : 4;
@@ -321,9 +321,9 @@ static void sub_020015D0(BmpList *param0, void *param1, u8 param2, u8 param3)
     }
 
     if (param0->unk_1F.unk_04_7) {
-        PrintStringWithColorAndMargins(param0->unk_00.unk_0C, param0->unk_1F.unk_04_0, param1, param2, param3, 0xff, (u32)((((param0->unk_1F.unk_00_0) & 0xff) << 16) | (((param0->unk_1F.unk_01_0) & 0xff) << 8) | (((param0->unk_1F.unk_00_4) & 0xff) << 0)), param0->unk_1F.unk_02_0, 0, NULL);
+        Text_AddPrinterWithParamsColorAndSpacing(param0->unk_00.unk_0C, param0->unk_1F.unk_04_0, param1, param2, param3, 0xff, (u32)((((param0->unk_1F.unk_00_0) & 0xff) << 16) | (((param0->unk_1F.unk_01_0) & 0xff) << 8) | (((param0->unk_1F.unk_00_4) & 0xff) << 0)), param0->unk_1F.unk_02_0, 0, NULL);
     } else {
-        PrintStringWithColorAndMargins(param0->unk_00.unk_0C, param0->unk_00.unk_1A_9, param1, param2, param3, 0xff, (u32)((((param0->unk_00.unk_17_4) & 0xff) << 16) | (((param0->unk_00.unk_18_4) & 0xff) << 8) | (((param0->unk_00.unk_18_0) & 0xff) << 0)), param0->unk_00.unk_1A_0, 0, NULL);
+        Text_AddPrinterWithParamsColorAndSpacing(param0->unk_00.unk_0C, param0->unk_00.unk_1A_9, param1, param2, param3, 0xff, (u32)((((param0->unk_00.unk_17_4) & 0xff) << 16) | (((param0->unk_00.unk_18_4) & 0xff) << 8) | (((param0->unk_00.unk_18_0) & 0xff) << 0)), param0->unk_00.unk_1A_0, 0, NULL);
     }
 }
 

@@ -46,6 +46,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "unk_02000C88.h"
 #include "unk_0200112C.h"
 #include "unk_020041CC.h"
@@ -59,7 +60,6 @@
 #include "unk_02017728.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "unk_0201D670.h"
 #include "unk_0202DAB4.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
@@ -857,7 +857,7 @@ static void ov97_0222DE78(OverlayManager *param0, Window *param1, u32 param2)
         v0 = MessageUtil_ExpandedStrbuf(v1->unk_0C, v1->unk_10, param2, 86);
     }
 
-    v1->unk_6C = sub_0201D78C(param1, 1, v0, 0, 0, v1->unk_68, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+    v1->unk_6C = Text_AddPrinterWithParamsAndColor(param1, 1, v0, 0, 0, v1->unk_68, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
 
     if (v1->unk_14 == NULL) {
         Strbuf_Free(v0);
@@ -879,7 +879,7 @@ static void ov97_0222DF10(OverlayManager *param0, Window *param1, u16 *param2)
 
     Strbuf_CopyNumChars(v0, param2, 36);
     BGL_FillWindow(param1, Font_GetAttribute(FONT_SYSTEM, FONTATTR_BG_COLOR));
-    sub_0201D78C(param1, 0, v0, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, 0, v0, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     Window_Show(param1, 0, (1 + (18 + 12)), 3);
     Strbuf_Free(v0);
 }
@@ -926,7 +926,7 @@ static BOOL ov97_0222DFD4(OverlayManager *param0, UnkStruct_ov97_0222D04C *param
 {
     int v0;
 
-    sub_0201D710();
+    Text_ResetAllPrinters();
     Font_LoadTextPalette(0, 0 * 32, 86);
     Font_LoadTextPalette(0, 1 * 32, 86);
 
@@ -1048,7 +1048,7 @@ static int ov97_0222E228(OverlayManager *param0, Window *param1, int param2, int
         StringTemplate_Free(v0);
         MessageLoader_Free(v1);
     } else {
-        if (Message_Printing(v2->unk_6C) == 0) {
+        if (Text_IsPrinterActive(v2->unk_6C) == 0) {
             Strbuf_Free(v2->unk_14);
             v2->unk_14 = NULL;
             v2->unk_68 = 0;

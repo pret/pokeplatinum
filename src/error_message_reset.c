@@ -19,13 +19,13 @@
 #include "heap.h"
 #include "message.h"
 #include "strbuf.h"
+#include "text.h"
 #include "unk_02000C88.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_020366A0.h"
 
 static const UnkStruct_02099F80 sErrorMessageBanksConfig = {
@@ -147,13 +147,13 @@ void ErrorMessageReset_PrintErrorAndReset(void)
     errorMsgData = MessageLoader_Init(1, 26, 214, v5);
     errorString = Strbuf_Init(0x180, v5);
 
-    sub_0201D710();
+    Text_ResetAllPrinters();
 
     sub_0201A8D4(bgConfig, &window, &sErrorMessageWindowTemplate);
     BGL_WindowColor(&window, 15, 0, 0, 26 * 8, 18 * 8);
     Window_Show(&window, 0, (512 - 9), 2);
     MessageLoader_GetStrbuf(errorMsgData, v4, errorString);
-    PrintStringSimple(&window, 0, errorString, 0, 0, 0, NULL);
+    Text_AddPrinterWithParams(&window, 0, errorString, 0, 0, 0, NULL);
     Strbuf_Free(errorString);
 
     GXLayers_TurnBothDispOn();

@@ -24,6 +24,7 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "strbuf.h"
+#include "text.h"
 #include "unk_02000C88.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
@@ -33,7 +34,6 @@
 #include "unk_02017728.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "unk_0201D670.h"
 #include "unk_0201E190.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
@@ -1273,7 +1273,7 @@ static void ov77_021D2214(BGL *param0, int param1, UnkStruct_ov77_021D1568 *para
 
         v6 = Font_CalcCenterAlignment(FONT_SYSTEM, v5, 1, param2->unk_22C.unk_07 * 8);
 
-        PrintStringWithColorAndMargins(&param2->unk_22C, 0, v5, v6, 0, 0, (u32)(((1 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0)), 1, 0, NULL);
+        Text_AddPrinterWithParamsColorAndSpacing(&param2->unk_22C, 0, v5, v6, 0, 0, (u32)(((1 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0)), 1, 0, NULL);
         Strbuf_Free(v5);
         MessageLoader_Free(v4);
 

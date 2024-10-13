@@ -9,7 +9,7 @@
 #include "heap.h"
 #include "narc.h"
 #include "render_text.h"
-#include "unk_0201D670.h"
+#include "text.h"
 
 static void FontManager_Init(FontManager *fontManager, u32 narcID, u32 arcFileIdx, BOOL isMonospace, u32 heapID);
 static void FontManager_FreeWidthsAndNARC(FontManager *fontManager);
@@ -168,24 +168,24 @@ static void DecompressGlyph_FromRAM(const FontManager *fontManager, charcode_t c
 
     switch (fontManager->glyphShape) {
     case GLYPH_SHAPE_8x8:
-        DecompressTextGlyph(tiles + 0x00, outGlyph->gfx + 0x00);
+        Text_DecompressGlyph(tiles + 0x00, outGlyph->gfx + 0x00);
         break;
 
     case GLYPH_SHAPE_8x16:
-        DecompressTextGlyph(tiles + 0x00, outGlyph->gfx + 0x00);
-        DecompressTextGlyph(tiles + 0x10, outGlyph->gfx + 0x40);
+        Text_DecompressGlyph(tiles + 0x00, outGlyph->gfx + 0x00);
+        Text_DecompressGlyph(tiles + 0x10, outGlyph->gfx + 0x40);
         break;
 
     case GLYPH_SHAPE_16x8:
-        DecompressTextGlyph(tiles + 0x00, outGlyph->gfx + 0x00);
-        DecompressTextGlyph(tiles + 0x10, outGlyph->gfx + 0x20);
+        Text_DecompressGlyph(tiles + 0x00, outGlyph->gfx + 0x00);
+        Text_DecompressGlyph(tiles + 0x10, outGlyph->gfx + 0x20);
         break;
 
     case GLYPH_SHAPE_16x16:
-        DecompressTextGlyph(tiles + 0x00, outGlyph->gfx + 0x00);
-        DecompressTextGlyph(tiles + 0x10, outGlyph->gfx + 0x20);
-        DecompressTextGlyph(tiles + 0x20, outGlyph->gfx + 0x40);
-        DecompressTextGlyph(tiles + 0x30, outGlyph->gfx + 0x60);
+        Text_DecompressGlyph(tiles + 0x00, outGlyph->gfx + 0x00);
+        Text_DecompressGlyph(tiles + 0x10, outGlyph->gfx + 0x20);
+        Text_DecompressGlyph(tiles + 0x20, outGlyph->gfx + 0x40);
+        Text_DecompressGlyph(tiles + 0x30, outGlyph->gfx + 0x60);
         break;
     }
 
@@ -199,24 +199,24 @@ static void DecompressGlyph_FromNARC(const FontManager *fontManager, charcode_t 
 
     switch (fontManager->glyphShape) {
     case GLYPH_SHAPE_8x8:
-        DecompressTextGlyph(fontManager->glyphBuf + 0x00, outGlyph->gfx + 0x00);
+        Text_DecompressGlyph(fontManager->glyphBuf + 0x00, outGlyph->gfx + 0x00);
         break;
 
     case GLYPH_SHAPE_8x16:
-        DecompressTextGlyph(fontManager->glyphBuf + 0x00, outGlyph->gfx + 0x00);
-        DecompressTextGlyph(fontManager->glyphBuf + 0x10, outGlyph->gfx + 0x40);
+        Text_DecompressGlyph(fontManager->glyphBuf + 0x00, outGlyph->gfx + 0x00);
+        Text_DecompressGlyph(fontManager->glyphBuf + 0x10, outGlyph->gfx + 0x40);
         break;
 
     case GLYPH_SHAPE_16x8:
-        DecompressTextGlyph(fontManager->glyphBuf + 0x00, outGlyph->gfx + 0x00);
-        DecompressTextGlyph(fontManager->glyphBuf + 0x10, outGlyph->gfx + 0x20);
+        Text_DecompressGlyph(fontManager->glyphBuf + 0x00, outGlyph->gfx + 0x00);
+        Text_DecompressGlyph(fontManager->glyphBuf + 0x10, outGlyph->gfx + 0x20);
         break;
 
     case GLYPH_SHAPE_16x16:
-        DecompressTextGlyph(fontManager->glyphBuf + 0x00, outGlyph->gfx + 0x00);
-        DecompressTextGlyph(fontManager->glyphBuf + 0x10, outGlyph->gfx + 0x20);
-        DecompressTextGlyph(fontManager->glyphBuf + 0x20, outGlyph->gfx + 0x40);
-        DecompressTextGlyph(fontManager->glyphBuf + 0x30, outGlyph->gfx + 0x60);
+        Text_DecompressGlyph(fontManager->glyphBuf + 0x00, outGlyph->gfx + 0x00);
+        Text_DecompressGlyph(fontManager->glyphBuf + 0x10, outGlyph->gfx + 0x20);
+        Text_DecompressGlyph(fontManager->glyphBuf + 0x20, outGlyph->gfx + 0x40);
+        Text_DecompressGlyph(fontManager->glyphBuf + 0x30, outGlyph->gfx + 0x60);
         break;
     }
 

@@ -19,10 +19,10 @@
 #include "message.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 
 __attribute__((aligned(4))) static const u16 Unk_ov113_02260D6C[][2] = {
     { 0x4210, 0x6f7b },
@@ -104,7 +104,7 @@ void ov113_02260620(MessageLoader *param0, StringTemplate *param1, Window param2
         v9 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0));
     }
 
-    sub_0201D78C(&param2[v7], 0, v3, 0, 0, 0, v9, NULL);
+    Text_AddPrinterWithParamsAndColor(&param2[v7], 0, v3, 0, 0, 0, v9, NULL);
     sub_0201A954(&param2[v7]);
     Strbuf_Free(v4);
     Strbuf_Free(v2);

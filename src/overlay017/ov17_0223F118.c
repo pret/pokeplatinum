@@ -32,12 +32,12 @@
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201E86C.h"
 #include "unk_02024220.h"
 
@@ -133,7 +133,7 @@ void ov17_0223F1E8(int param0, BGL *param1, SpriteGfxHandler *param2, UnkStruct_
     {
         Window_Init(&v1);
         BGL_AddFramelessWindow(param1, &v1, v6, 16 / 8, 0, 0);
-        PrintStringWithColorAndMargins(&v1, param6, param5, 0, 0, 0xff, param7, v7, 0, NULL);
+        Text_AddPrinterWithParamsColorAndSpacing(&v1, param6, param5, 0, 0, 0xff, param7, v7, 0, NULL);
     }
 
     v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DMAIN, param0);

@@ -16,9 +16,9 @@
 #include "script_manager.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "unk_02014A84.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0205D8CC.h"
 
 typedef struct {
@@ -171,5 +171,5 @@ static void ov5_021DD6B4(UnkStruct_ov5_021DD648 *param0, int param1, int param2,
 
 static void ov5_021DD6DC(UnkStruct_ov5_021DD648 *param0, int param1)
 {
-    *(param0->unk_14) = PrintStringSimple(param0->unk_0C, param1, param0->unk_00, 0, 0, 0, NULL);
+    *(param0->unk_14) = Text_AddPrinterWithParams(param0->unk_0C, param1, param0->unk_00, 0, 0, 0, NULL);
 }

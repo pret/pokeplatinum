@@ -23,12 +23,12 @@
 #include "save_player.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "unk_0200112C.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0202602C.h"
 #include "unk_02026150.h"
 #include "unk_020508D4.h"
@@ -344,11 +344,11 @@ static void ov7_0224B8DC(UnkStruct_ov7_0224B4E8 *param0)
 
     MessageLoader_GetStrbuf(v0, 95, v2);
     StringTemplate_Format(v1, v3, v2);
-    PrintStringSimple(v4, 0, v3, v10 + v12, 0, 0xff, NULL);
+    Text_AddPrinterWithParams(v4, 0, v3, v10 + v12, 0, 0xff, NULL);
 
     for (v5 = 0; v5 < 9; v5++) {
         MessageLoader_GetStrbuf(v0, 75 + v5, v2);
-        PrintStringSimple(v4, 0, v2, v10, v9 + v11 * v5, 0xff, NULL);
+        Text_AddPrinterWithParams(v4, 0, v2, v10, v9 + v11 * v5, 0xff, NULL);
     }
 
     for (v5 = 0; v5 < 9; v5++) {
@@ -409,7 +409,7 @@ static void ov7_0224B8DC(UnkStruct_ov7_0224B4E8 *param0)
             int v14 = Font_CalcStrbufWidth(FONT_SYSTEM, v3, 0);
             int v15 = v13 - v14;
 
-            PrintStringSimple(v4, 0, v3, v15, v9 + v11 * v5, 0xff, NULL);
+            Text_AddPrinterWithParams(v4, 0, v3, v15, v9 + v11 * v5, 0xff, NULL);
         }
     }
 

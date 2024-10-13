@@ -25,13 +25,13 @@
 #include "inlines.h"
 #include "message.h"
 #include "strbuf.h"
+#include "text.h"
 #include "unk_02002F38.h"
 #include "unk_02006E3C.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
 #include "unk_02012744.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201E86C.h"
 
 void sub_0208A3F4 (UnkStruct_02089688 * param0)
@@ -713,7 +713,7 @@ void sub_0208B090 (UnkStruct_02089688 * param0, int param1, int param2, int para
     {
         Window_Init(&v7);
         BGL_AddFramelessWindow(param0->unk_2C0.unk_0C, &v7, 10, 2, 0, 0);
-        sub_0201D78C(&v7, 2, v3, Font_CalcCenterAlignment(FONT_SUBSCREEN, v3, 0, 80), 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((2 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&v7, 2, v3, Font_CalcCenterAlignment(FONT_SUBSCREEN, v3, 0, 80), 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((2 & 0xff) << 0))), NULL);
     }
 
     v4 = 1003;
@@ -768,7 +768,7 @@ void sub_0208B230 (Window * param0, int param1)
     v1 = MessageLoader_GetNewStrbuf(v0, param1);
 
     BGL_FillWindow(param0, 15);
-    PrintStringSimple(param0, 1, v1, 0, 0, 0, NULL);
+    Text_AddPrinterWithParams(param0, 1, v1, 0, 0, 0, NULL);
     sub_0201A954(param0);
 
     Strbuf_Free(v1);

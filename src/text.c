@@ -1,4 +1,4 @@
-#include "unk_0201D670.h"
+#include "text.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -25,7 +25,7 @@ static u8 *sub_0201DB50(void);
 static const FontAttributes *sFontAttributesPtr = NULL;
 static u8 Unk_021C04D8 = 0;
 
-void SetFontAttributesPtr(const FontAttributes *fontAttributes)
+void Text_SetFontAttributesPtr(const FontAttributes *fontAttributes)
 {
     sFontAttributesPtr = fontAttributes;
 }
@@ -74,7 +74,7 @@ static BOOL sub_0201D6F8(u8 param0)
     return Unk_021C04E0[param0] != NULL;
 }
 
-void sub_0201D710(void)
+void Text_ResetAllPrinters(void)
 {
     int v0;
 
@@ -83,17 +83,17 @@ void sub_0201D710(void)
     }
 }
 
-u8 Message_Printing(u8 param0)
+u8 Text_IsPrinterActive(u8 param0)
 {
     return sub_0201D6F8(param0);
 }
 
-void PrintString_ForceStop(u8 param0)
+void Text_RemovePrinter(u8 param0)
 {
     sub_0201D6B0(param0);
 }
 
-u8 PrintStringSimple(Window *window, u32 fontID, const Strbuf *strbuf, u32 xOffset, u32 yOffset, u32 renderDelay, TextPrinterCallback callback)
+u8 Text_AddPrinterWithParams(Window *window, u32 fontID, const Strbuf *strbuf, u32 xOffset, u32 yOffset, u32 renderDelay, TextPrinterCallback callback)
 {
     TextPrinterTemplate v0;
 
@@ -114,10 +114,10 @@ u8 PrintStringSimple(Window *window, u32 fontID, const Strbuf *strbuf, u32 xOffs
     v0.dummy1A = 0;
     v0.cacheColor = 0xFF;
 
-    return sub_0201D834(&v0, renderDelay, callback);
+    return Text_AddPrinter(&v0, renderDelay, callback);
 }
 
-u8 sub_0201D78C(Window *param0, u32 param1, const Strbuf *param2, u32 param3, u32 param4, u32 param5, u32 param6, TextPrinterCallback param7)
+u8 Text_AddPrinterWithParamsAndColor(Window *param0, u32 param1, const Strbuf *param2, u32 param3, u32 param4, u32 param5, u32 param6, TextPrinterCallback param7)
 {
     TextPrinterTemplate v0;
 
@@ -138,10 +138,10 @@ u8 sub_0201D78C(Window *param0, u32 param1, const Strbuf *param2, u32 param3, u3
     v0.dummy1A = 0;
     v0.cacheColor = 0xFF;
 
-    return sub_0201D834(&v0, param5, param7);
+    return Text_AddPrinter(&v0, param5, param7);
 }
 
-u8 PrintStringWithColorAndMargins(Window *param0, u32 param1, const Strbuf *param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, TextPrinterCallback param9)
+u8 Text_AddPrinterWithParamsColorAndSpacing(Window *param0, u32 param1, const Strbuf *param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, TextPrinterCallback param9)
 {
     TextPrinterTemplate v0;
 
@@ -162,10 +162,10 @@ u8 PrintStringWithColorAndMargins(Window *param0, u32 param1, const Strbuf *para
     v0.dummy1A = 0;
     v0.cacheColor = 0xFF;
 
-    return sub_0201D834(&v0, param5, param9);
+    return Text_AddPrinter(&v0, param5, param9);
 }
 
-u8 sub_0201D834(const TextPrinterTemplate *param0, u32 param1, TextPrinterCallback param2)
+u8 Text_AddPrinter(const TextPrinterTemplate *param0, u32 param1, TextPrinterCallback param2)
 {
     TextPrinter *v0;
     int v1;
@@ -206,7 +206,7 @@ u8 sub_0201D834(const TextPrinterTemplate *param0, u32 param1, TextPrinterCallba
         v0->textSpeedTop = 0;
 
         v2 = 0;
-        sub_0201D9FC(param0->fgColor, param0->bgColor, param0->shadowColor);
+        Text_GenerateFontHalfRowLookupTable(param0->fgColor, param0->bgColor, param0->shadowColor);
 
         while (v2 < 1024) {
             if (sub_0201D9E8(v0) == 1) {
@@ -240,7 +240,7 @@ static void sub_0201D97C(SysTask *param0, void *param1)
 
     if (v0->callbackResult == 0) {
         v0->callbackParam = 0;
-        sub_0201D9FC(v0->template.fgColor, v0->template.bgColor, v0->template.shadowColor);
+        Text_GenerateFontHalfRowLookupTable(v0->template.fgColor, v0->template.bgColor, v0->template.shadowColor);
 
         v1 = sub_0201D9E8(v0);
 
@@ -275,7 +275,7 @@ static int sub_0201D9E8(TextPrinter *param0)
 static u16 Unk_021C0500[256];
 static u16 Unk_021C04DE, Unk_021C04DA, Unk_021C04DC;
 
-void sub_0201D9FC(u8 param0, u8 param1, u8 param2)
+void Text_GenerateFontHalfRowLookupTable(u8 param0, u8 param1, u8 param2)
 {
     int v0, v1, v2, v3, v4;
     u32 v5[4];
@@ -302,7 +302,7 @@ void sub_0201D9FC(u8 param0, u8 param1, u8 param2)
     }
 }
 
-void DecompressTextGlyph(u32 param0, u32 param1)
+void Text_DecompressGlyph(u32 param0, u32 param1)
 {
     u32 v0;
     u16 *v1;
@@ -380,7 +380,7 @@ static u8 *sub_0201DB50(void)
     return v2;
 }
 
-void sub_0201DB8C(TextPrinter *param0, u16 param1, u16 param2, u16 param3)
+void Text_RenderScreenIndicator(TextPrinter *param0, u16 param1, u16 param2, u16 param3)
 {
     Window *v0 = param0->template.window;
     u8 *v1;

@@ -41,6 +41,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
@@ -54,7 +55,6 @@
 #include "unk_02017728.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
@@ -1505,7 +1505,7 @@ static void ov114_0225D1C8(UnkStruct_ov114_0225D084 *param0, u32 param1, Window 
         v1 = 0;
     }
 
-    sub_0201D78C(param2, 0, param0->unk_08, v1, param4, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param2, 0, param0->unk_08, v1, param4, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 }
 
 static u32 ov114_0225D218(UnkStruct_ov114_0225D084 *param0, u32 param1, Window *param2, Strbuf *param3, u32 param4)
@@ -1513,14 +1513,14 @@ static u32 ov114_0225D218(UnkStruct_ov114_0225D084 *param0, u32 param1, Window *
     MessageLoader_GetStrbuf(param0->unk_00, param1, param0->unk_0C);
     StringTemplate_Format(param0->unk_04, param3, param0->unk_0C);
 
-    return sub_0201D78C(param2, 1, param3, 0, 0, param4, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+    return Text_AddPrinterWithParamsAndColor(param2, 1, param3, 0, 0, param4, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
 }
 
 static void ov114_0225D254(UnkStruct_ov114_0225D084 *param0, u32 param1, Window *param2, u8 param3, u8 param4, u32 param5)
 {
     MessageLoader_GetStrbuf(param0->unk_00, param1, param0->unk_0C);
     StringTemplate_Format(param0->unk_04, param0->unk_08, param0->unk_0C);
-    sub_0201D78C(param2, 0, param0->unk_08, param3, param4, 0xff, param5, NULL);
+    Text_AddPrinterWithParamsAndColor(param2, 0, param0->unk_08, param3, param4, 0xff, param5, NULL);
 }
 
 static void ov114_0225D290(UnkStruct_ov114_0225D338 *param0, UnkStruct_ov114_0225CEF0 *param1, SaveData *param2, BOOL param3, u32 param4)
@@ -1577,8 +1577,8 @@ static void ov114_0225D368(UnkStruct_ov114_0225D338 *param0, UnkStruct_ov114_022
         }
     }
 
-    if (Message_Printing(param0->unk_20[param3])) {
-        PrintString_ForceStop(param0->unk_20[param3]);
+    if (Text_IsPrinterActive(param0->unk_20[param3])) {
+        Text_RemovePrinter(param0->unk_20[param3]);
     }
 
     ov114_0225D474(param0, param3);
@@ -1592,8 +1592,8 @@ static void ov114_0225D400(UnkStruct_ov114_0225D338 *param0, u32 param1)
 {
     ov114_0225D474(param0, param1);
 
-    if (Message_Printing(param0->unk_20[param1])) {
-        PrintString_ForceStop(param0->unk_20[param1]);
+    if (Text_IsPrinterActive(param0->unk_20[param1])) {
+        Text_RemovePrinter(param0->unk_20[param1]);
     }
 
     sub_0200E084(&param0->unk_00[param1], 1);
@@ -1604,7 +1604,7 @@ static BOOL ov114_0225D43C(const UnkStruct_ov114_0225D338 *param0, u32 param1)
 {
     u32 v0;
 
-    v0 = Message_Printing(param0->unk_20[param1]);
+    v0 = Text_IsPrinterActive(param0->unk_20[param1]);
 
     if (v0 == 0) {
         return 1;
@@ -2327,7 +2327,7 @@ static void ov114_0225E244(UnkStruct_ov114_0225E1A4 *param0, UnkStruct_ov114_022
     v0 = Font_CalcStrbufWidth(FONT_SUBSCREEN, param0->unk_14, 0);
     v1 = ((20 * 8) / 2) - (v0 / 2);
 
-    sub_0201D78C(&param0->unk_00, 2, param0->unk_14, v1, 0, 0, Unk_ov114_022600F8[param0->unk_10], NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_00, 2, param0->unk_14, v1, 0, 0, Unk_ov114_022600F8[param0->unk_10], NULL);
     Font_Free(FONT_SUBSCREEN);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 }

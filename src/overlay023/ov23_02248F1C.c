@@ -23,6 +23,7 @@
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "unk_0200679C.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
@@ -31,7 +32,6 @@
 #include "unk_0200F174.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "unk_0201D670.h"
 #include "unk_0205D8CC.h"
 
 typedef struct {
@@ -471,7 +471,7 @@ static void ov23_0224966C(BGL *param0, Window *param1, int *param2, int *param3,
     switch (*param3) {
     case 0:
         if ((v0 = ov23_022498C4(param5)) != NULL) {
-            *param2 = PrintStringSimple(
+            *param2 = Text_AddPrinterWithParams(
                 param1, 1, v0, 0, 16, 1, NULL);
             *param3 = 1;
         }

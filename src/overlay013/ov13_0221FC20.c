@@ -34,6 +34,7 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "touch_screen.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
@@ -43,7 +44,6 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0208C098.h"
 #include "unk_02094EDC.h"
 
@@ -846,7 +846,7 @@ static u8 ov13_02220834(UnkStruct_ov13_022213F0 *param0)
 
 static u8 ov13_02220848(UnkStruct_ov13_022213F0 *param0)
 {
-    if (Message_Printing(param0->unk_2077) == 0) {
+    if (Text_IsPrinterActive(param0->unk_2077) == 0) {
         return 18;
     }
 

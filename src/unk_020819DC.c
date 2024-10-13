@@ -18,13 +18,13 @@
 #include "render_text.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200C440.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0207E0B8.h"
 #include "unk_02083370.h"
 #include "unk_02084B70.h"
@@ -285,7 +285,7 @@ void sub_02081F2C(GameWindowLayout *param0, u8 param1)
 
     v0 = &param0->unk_04[0 + param1 * 5];
 
-    sub_0201D78C(v0, 0, param0->unk_704[param1].unk_00, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(v0, 0, param0->unk_704[param1].unk_00, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
     if (param0->unk_704[param1].unk_10 == 1) {
         sub_0201A9A4(v0);
@@ -295,11 +295,11 @@ void sub_02081F2C(GameWindowLayout *param0, u8 param1)
     if (param0->unk_704[param1].unk_0E_12 == 0) {
         if (param0->unk_704[param1].unk_0E_13 == 0) {
             MessageLoader_GetStrbuf(param0->unk_69C, 27, param0->unk_6A8);
-            sub_0201D78C(
+            Text_AddPrinterWithParamsAndColor(
                 v0, 0, param0->unk_6A8, (9 * 8 - 8), 0, 0xff, ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         } else if (param0->unk_704[param1].unk_0E_13 == 1) {
             MessageLoader_GetStrbuf(param0->unk_69C, 28, param0->unk_6A8);
-            sub_0201D78C(
+            Text_AddPrinterWithParamsAndColor(
                 v0, 0, param0->unk_6A8, (9 * 8 - 8), 0, 0xff, ((u32)(((5 & 0xff) << 16) | ((6 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         }
     }
@@ -558,14 +558,14 @@ void sub_020825B4(GameWindowLayout *param0, u8 param1)
     if (param1 & 1) {
         MessageLoader_GetStrbuf(param0->unk_69C, 0, param0->unk_6A8);
         v0 = sub_020825A4(0, param0->unk_6A8, param0->unk_04[30].unk_07 * 8);
-        sub_0201D78C(&param0->unk_04[30], 0, param0->unk_6A8, v0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_04[30], 0, param0->unk_6A8, v0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         sub_0201A9A4(&param0->unk_04[30]);
     }
 
     if (param1 & 2) {
         MessageLoader_GetStrbuf(param0->unk_69C, 1, param0->unk_6A8);
         v0 = sub_020825A4(0, param0->unk_6A8, param0->unk_04[31].unk_07 * 8);
-        sub_0201D78C(&param0->unk_04[31], 0, param0->unk_6A8, v0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_04[31], 0, param0->unk_6A8, v0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         sub_0201A9A4(&param0->unk_04[31]);
     }
 }
@@ -582,7 +582,7 @@ static void sub_02082680(GameWindowLayout *param0, Window *param1, u32 param2, u
         MessageLoader_GetStrbuf(param0->unk_69C, param2, param0->unk_6A4);
     }
 
-    PrintStringSimple(param1, 1, param0->unk_6A4, 0, 0, 0xff, NULL);
+    Text_AddPrinterWithParams(param1, 1, param0->unk_6A4, 0, 0, 0xff, NULL);
     sub_0201A9A4(param1);
 }
 
@@ -617,7 +617,7 @@ void sub_0208274C(GameWindowLayout *param0)
 {
     RenderControlFlags_SetCanABSpeedUpPrint(1);
     RenderControlFlags_SetAutoScrollFlags(0);
-    param0->unk_B10 = PrintStringSimple(
+    param0->unk_B10 = Text_AddPrinterWithParams(
         &param0->unk_04[34], 1, param0->unk_6A4, 0, 0, Options_TextFrameDelay(param0->unk_5A4->unk_0C), sub_0208279C);
 }
 
@@ -665,7 +665,7 @@ static void sub_02082810(GameWindowLayout *param0, u8 param1, u8 param2)
         break;
     }
 
-    sub_0201D78C(v0, 0, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(v0, 0, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v1);
     sub_0201A9A4(v0);
 }
@@ -691,7 +691,7 @@ static void sub_02082880(GameWindowLayout *param0, u8 param1, u8 param2)
         break;
     }
 
-    sub_0201D78C(v0, 0, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(v0, 0, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v1);
     sub_0201A9A4(v0);
 }
@@ -711,7 +711,7 @@ static void sub_02082900(GameWindowLayout *param0, u8 param1, u8 param2)
         v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 180);
     }
 
-    sub_0201D78C(v0, 0, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(v0, 0, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v1);
     sub_0201A9A4(v0);
 }
@@ -733,7 +733,7 @@ static void sub_02082964(GameWindowLayout *param0, u8 param1, u8 param2)
         v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 168);
     }
 
-    sub_0201D78C(v0, 0, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(v0, 0, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v1);
     sub_0201A9A4(v0);
 }
@@ -760,7 +760,7 @@ void sub_020829DC(GameWindowLayout *param0)
 
     for (v2 = 0; v2 < 6; v2++) {
         v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 185 + v2);
-        PrintStringSimple(&param0->unk_254[0], 0, v1, 0, 16 * v2, 0xff, NULL);
+        Text_AddPrinterWithParams(&param0->unk_254[0], 0, v1, 0, 16 * v2, 0xff, NULL);
         Strbuf_Free(v1);
 
         v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 191);
@@ -771,7 +771,7 @@ void sub_020829DC(GameWindowLayout *param0)
 
         {
             u32 v4 = 14 * 8 - 8 - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_6A4, 0);
-            PrintStringSimple(&param0->unk_254[0], 0, param0->unk_6A4, v4, 16 * v2, 0xff, NULL);
+            Text_AddPrinterWithParams(&param0->unk_254[0], 0, param0->unk_6A4, v4, 16 * v2, 0xff, NULL);
         }
 
         param0->unk_B14[v2] = v3[v2];
@@ -795,7 +795,7 @@ void sub_02082B58(GameWindowLayout *param0)
 
         v1 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_6A4, 0);
 
-        PrintStringSimple(&param0->unk_254[0], 0, param0->unk_6A4, 14 * 8 - v1 - 8, 16 * v2, 0xff, NULL);
+        Text_AddPrinterWithParams(&param0->unk_254[0], 0, param0->unk_6A4, 14 * 8 - v1 - 8, 16 * v2, 0xff, NULL);
     }
 
     Strbuf_Free(v0);

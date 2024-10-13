@@ -17,13 +17,13 @@
 #include "heap.h"
 #include "message.h"
 #include "strbuf.h"
+#include "text.h"
 #include "unk_02000C88.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 
 static const UnkStruct_02099F80 Unk_020F8AF8 = {
     GX_VRAM_BG_256_AB,
@@ -113,12 +113,12 @@ void sub_0209A74C(int param0)
     v2 = MessageLoader_Init(1, 26, 5, param0);
     v3 = Strbuf_Init(384, param0);
 
-    sub_0201D710();
+    Text_ResetAllPrinters();
     sub_0201A8D4(v0, &v1, &Unk_020F8AC4);
     BGL_WindowColor(&v1, 15, 0, 0, 26 * 8, 18 * 8);
     Window_Show(&v1, 0, 512 - 9, 2);
     MessageLoader_GetStrbuf(v2, v4, v3);
-    PrintStringSimple(&v1, 0, v3, 0, 0, 0, NULL);
+    Text_AddPrinterWithParams(&v1, 0, v3, 0, 0, 0, NULL);
     Strbuf_Free(v3);
     GXLayers_TurnBothDispOn();
     sub_0200F338(0);
@@ -187,12 +187,12 @@ void sub_0209A8E0(int param0)
     v2 = MessageLoader_Init(1, 26, 5, param0);
     v3 = Strbuf_Init(0x180, param0);
 
-    sub_0201D710();
+    Text_ResetAllPrinters();
     sub_0201A8D4(v0, &v1, &Unk_020F8AC4);
     BGL_WindowColor(&v1, 15, 0, 0, 26 * 8, 18 * 8);
     Window_Show(&v1, 0, (512 - 9), 2);
     MessageLoader_GetStrbuf(v2, v4, v3);
-    PrintStringSimple(&v1, 0, v3, 0, 0, 0, NULL);
+    Text_AddPrinterWithParams(&v1, 0, v3, 0, 0, 0, NULL);
     Strbuf_Free(v3);
     GXLayers_TurnBothDispOn();
     sub_0200F338(0);

@@ -32,6 +32,7 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "trainer_info.h"
 #include "unk_02000C88.h"
 #include "unk_020041CC.h"
@@ -42,7 +43,6 @@
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_02024358.h"
 #include "unk_02025CB0.h"
@@ -466,7 +466,7 @@ static void ov97_0222B2EC(UnkStruct_0222AE60 *param0)
     G2_SetBG2Priority(0);
     sub_02019690(2, 32, 0, 81);
 
-    sub_0201D710();
+    Text_ResetAllPrinters();
     Font_LoadTextPalette(0, 1 * 32, 81);
     Font_LoadTextPalette(0, 0 * 32, 81);
 
@@ -542,7 +542,7 @@ static void ov97_0222B53C(Window *param0, MessageLoader *param1, StringTemplate 
     v0 = Font_CalcStrbufWidth(FONT_SYSTEM, v2, Font_GetAttribute(FONT_SYSTEM, FONTATTR_LETTER_SPACING));
     v1 = sub_0201C294(param0) * 8 - (v0 + 32);
 
-    sub_0201D78C(param0, 0, v2, v1, param5, 0xff, param3, NULL);
+    Text_AddPrinterWithParamsAndColor(param0, 0, v2, v1, param5, 0xff, param3, NULL);
     Strbuf_Free(v2);
 }
 
@@ -590,7 +590,7 @@ static BOOL ov97_0222B5C0(void *param0, int param1, UnkStruct_ov97_02237808 *par
         }
 
         v3 = MessageUtil_ExpandedStrbuf(v4, v5, Unk_ov97_0223DF40[v0], 81);
-        sub_0201D78C(param2->unk_10, 0, v3, 32, v0 * 16, 0xff, v7, NULL);
+        Text_AddPrinterWithParamsAndColor(param2->unk_10, 0, v3, 32, v0 * 16, 0xff, v7, NULL);
         Strbuf_Free(v3);
     }
 

@@ -25,8 +25,8 @@
 #include "pokemon_icon.h"
 #include "strbuf.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 
 struct UnkStruct_ov54_0225642C_t {
     const UnkStruct_ov54_0225642C_1 *unk_00;
@@ -134,7 +134,7 @@ static void ov54_022564BC(SysTask *param0, void *param1)
         Strbuf *v5 = MessageBank_GetNewStrbufFromNARC(26, 458, 0, 8);
 
         if (v5) {
-            sub_0201D78C(&v4, 0, v5, (192 - Font_CalcStrbufWidth(FONT_SYSTEM, v5, 0)) / 2, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((8 & 0xff) << 8) | ((4 & 0xff) << 0)), NULL);
+            Text_AddPrinterWithParamsAndColor(&v4, 0, v5, (192 - Font_CalcStrbufWidth(FONT_SYSTEM, v5, 0)) / 2, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((8 & 0xff) << 8) | ((4 & 0xff) << 0)), NULL);
             sub_0201ACCC(&v4);
             Strbuf_Free(v5);
         }

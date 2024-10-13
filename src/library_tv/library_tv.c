@@ -17,11 +17,11 @@
 #include "heap.h"
 #include "message.h"
 #include "overlay_manager.h"
+#include "text.h"
 #include "unk_02006E3C.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 
 #define LIBRARY_TV_DURATION 90 + 150
 
@@ -259,7 +259,7 @@ static void LibraryTV_ReleaseVramBank(LibraryTV *ltv)
 static void LibraryTV_SetMsgLdr(LibraryTV *ltv)
 {
     ltv->msgLdr = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, 26, 607, ltv->heapID);
-    sub_0201D710();
+    Text_ResetAllPrinters();
     ltv->tvState = 0;
 }
 

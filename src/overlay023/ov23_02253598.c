@@ -1,43 +1,40 @@
+#include "overlay023/ov23_02253598.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-
 #include "struct_decls/struct_0200112C_decl.h"
-#include "message.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "sys_task_manager.h"
-#include "strbuf.h"
-#include "trainer_info.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
-#include "savedata.h"
-#include "overlay023/struct_ov23_02253598_decl.h"
-
 #include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_0205AA50.h"
+
 #include "overlay023/funcptr_ov23_0224DCB8.h"
 #include "overlay023/funcptr_ov23_02253834.h"
+#include "overlay023/ov23_02241F74.h"
+#include "overlay023/ov23_02253D40.h"
+#include "overlay023/struct_ov23_02253598_decl.h"
 #include "overlay084/struct_ov84_02240FA8.h"
 
-#include "unk_02005474.h"
+#include "comm_player_manager.h"
+#include "communication_system.h"
+#include "core_sys.h"
+#include "game_records.h"
+#include "heap.h"
 #include "message.h"
+#include "savedata.h"
+#include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
-#include "unk_0200DA60.h"
-#include "heap.h"
-#include "unk_02018340.h"
-#include "unk_0201D670.h"
-#include "strbuf.h"
+#include "sys_task_manager.h"
+#include "text.h"
 #include "trainer_info.h"
+#include "unk_02005474.h"
+#include "unk_0200DA60.h"
+#include "unk_02018340.h"
 #include "unk_0202854C.h"
-#include "game_records.h"
-#include "communication_system.h"
-#include "comm_player_manager.h"
-#include "overlay023/ov23_02241F74.h"
-#include "overlay023/ov23_02253598.h"
-#include "overlay023/ov23_02253D40.h"
 
 typedef int (* UnkFuncPtr_ov23_022576EC)(const SecretBaseRecord *);
 
@@ -119,6 +116,7 @@ static UnkFuncPtr_ov23_022576EC Unk_ov23_022576EC[] = {
     sub_020295B8
 };
 
+// clang-format off
 asm static void ov23_0225360C (Window * param0, MessageLoader * param1, TrainerInfo * param2, const SecretBaseRecord * param3)
 {
     push {r3, r4, r5, r6, r7, lr}
@@ -151,7 +149,7 @@ asm static void ov23_0225360C (Window * param0, MessageLoader * param1, TrainerI
     add r2, r4, #0
     mov r3, #2
     str r1, [sp, #8]
-    bl PrintStringSimple
+    bl Text_AddPrinterWithParams
     ldr r0, [sp, #0xc]
     mov r1, #1
     add r2, r4, #0
@@ -165,7 +163,7 @@ asm static void ov23_0225360C (Window * param0, MessageLoader * param1, TrainerI
     add r2, r4, #0
     mov r3, #2
     str r1, [sp, #8]
-    bl PrintStringSimple
+    bl Text_AddPrinterWithParams
     ldr r0, [sp, #0xc]
     mov r1, #2
     add r2, r4, #0
@@ -179,7 +177,7 @@ asm static void ov23_0225360C (Window * param0, MessageLoader * param1, TrainerI
     add r2, r4, #0
     mov r3, #0x84
     str r1, [sp, #8]
-    bl PrintStringSimple
+    bl Text_AddPrinterWithParams
     add r0, r5, #0
     bl TrainerInfo_ID_LowHalf
     add r2, r0, #0
@@ -208,7 +206,7 @@ asm static void ov23_0225360C (Window * param0, MessageLoader * param1, TrainerI
     add r0, r7, #0
     mov r3, #0x94
     str r1, [sp, #8]
-    bl PrintStringSimple
+    bl Text_AddPrinterWithParams
     ldr r0, [sp, #0x1c]
     mov r1, #0
     add r2, r5, #0
@@ -230,7 +228,7 @@ asm static void ov23_0225360C (Window * param0, MessageLoader * param1, TrainerI
     add r0, r7, #0
     mov r3, #0x39
     str r1, [sp, #8]
-    bl PrintStringSimple
+    bl Text_AddPrinterWithParams
     ldr r0, [sp, #0x10]
     bl sub_0202958C
     add r1, r0, #0
@@ -247,7 +245,7 @@ asm static void ov23_0225360C (Window * param0, MessageLoader * param1, TrainerI
     add r2, r4, #0
     mov r3, #0x39
     str r1, [sp, #8]
-    bl PrintStringSimple
+    bl Text_AddPrinterWithParams
     mov r5, #0
     mov r6, #0x27
  _02253738:
@@ -264,7 +262,7 @@ asm static void ov23_0225360C (Window * param0, MessageLoader * param1, TrainerI
     mov r1, #0
     add r2, r4, #0
     mov r3, #2
-    bl PrintStringSimple
+    bl Text_AddPrinterWithParams
     add r5, r5, #1
     add r6, #0x10
     cmp r5, #7
@@ -302,7 +300,7 @@ asm static void ov23_0225360C (Window * param0, MessageLoader * param1, TrainerI
     add r0, r7, #0
     mov r1, #0
     mov r3, #0x94
-    bl PrintStringSimple
+    bl Text_AddPrinterWithParams
     ldr r0, [sp, #0x14]
     add r6, r6, #4
     add r0, r0, #1
@@ -320,6 +318,7 @@ asm static void ov23_0225360C (Window * param0, MessageLoader * param1, TrainerI
     pop {r3, r4, r5, r6, r7, pc}
     nop
 }
+// clang-format on
 
 static void ov23_022537D4 (SysTask * param0, void * param1)
 {
@@ -495,18 +494,18 @@ static void ov23_02253A78 (Window * param0, MessageLoader * param1, TrainerInfo 
     StringTemplate_SetPlayerName(v0, 1, param2);
     MessageLoader_GetStrbuf(param1, 12, v1);
     StringTemplate_Format(v0, v2, v1);
-    PrintStringSimple(param0, 0, v2, v7, 1, 0xff, NULL);
+    Text_AddPrinterWithParams(param0, 0, v2, v7, 1, 0xff, NULL);
 
     MessageLoader_GetStrbuf(param1, 13, v1);
-    PrintStringSimple(param0, 0, v1, v7, 1 + v8, 0xff, NULL);
+    Text_AddPrinterWithParams(param0, 0, v1, v7, 1 + v8, 0xff, NULL);
 
     StringTemplate_SetNumber(v0, 6, sub_020295B8(param3), 6, 1, 1);
     MessageLoader_GetStrbuf(param1, 14, v1);
     StringTemplate_Format(v0, v2, v1);
-    PrintStringSimple(param0, 0, v2, v7 + 100, 1 + v8, 0xff, NULL);
+    Text_AddPrinterWithParams(param0, 0, v2, v7 + 100, 1 + v8, 0xff, NULL);
 
     MessageLoader_GetStrbuf(param1, 15, v1);
-    PrintStringSimple(param0, 0, v1, v7, 1 + v8 * 3, 0xff, NULL);
+    Text_AddPrinterWithParams(param0, 0, v1, v7, 1 + v8 * 3, 0xff, NULL);
 
     for (v3 = 0; v3 < 5; v3++) {
         TrainerInfo * v13 = sub_020288C8(param4, 4, v3);
@@ -515,19 +514,19 @@ static void ov23_02253A78 (Window * param0, MessageLoader * param1, TrainerInfo 
             StringTemplate_SetPlayerName(v0, 0, v13);
             MessageLoader_GetStrbuf(param1, 16, v1);
             StringTemplate_Format(v0, v2, v1);
-            PrintStringSimple(param0, 0, v2, v7, 1 + v8 * (4 + v3), 0xff, NULL);
+            Text_AddPrinterWithParams(param0, 0, v2, v7, 1 + v8 * (4 + v3), 0xff, NULL);
 
             StringTemplate_SetNumber(v0, 5, TrainerInfo_ID_LowHalf(v13), 5, 2, 1);
             MessageLoader_GetStrbuf(param1, 17, v1);
             StringTemplate_Format(v0, v2, v1);
 
-            PrintStringSimple(param0, 0, v2, v7 + v12, 1 + v8 * (4 + v3), 0xff, NULL);
+            Text_AddPrinterWithParams(param0, 0, v2, v7 + v12, 1 + v8 * (4 + v3), 0xff, NULL);
             Heap_FreeToHeap(v13);
         } else {
             MessageLoader_GetStrbuf(param1, 51, v1);
-            PrintStringSimple(param0, 0, v1, v7, 1 + v8 * (4 + v3), 0xff, NULL);
+            Text_AddPrinterWithParams(param0, 0, v1, v7, 1 + v8 * (4 + v3), 0xff, NULL);
             MessageLoader_GetStrbuf(param1, 52, v1);
-            PrintStringSimple(param0, 0, v1, v7 + v12, 1 + v8 * (4 + v3), 0xff, NULL);
+            Text_AddPrinterWithParams(param0, 0, v1, v7 + v12, 1 + v8 * (4 + v3), 0xff, NULL);
         }
     }
 

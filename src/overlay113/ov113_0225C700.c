@@ -64,6 +64,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
@@ -75,7 +76,6 @@
 #include "unk_02015920.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E190.h"
 #include "unk_0201E3D8.h"
@@ -514,11 +514,11 @@ int ov113_0225CA04(OverlayManager *param0, int *param1)
         BGL_FillWindow(&v0->unk_B4, 0xf);
         sub_0200E060(&v0->unk_B4, 0, 1, 14);
         MessageLoader_GetStrbuf(v0->unk_30, 2, v0->unk_C4);
-        v0->unk_C8 = PrintStringSimple(&v0->unk_B4, 1, v0->unk_C4, 0, 0, Options_TextFrameDelay(SaveData_Options(v0->unk_04)), NULL);
+        v0->unk_C8 = Text_AddPrinterWithParams(&v0->unk_B4, 1, v0->unk_C4, 0, 0, Options_TextFrameDelay(SaveData_Options(v0->unk_04)), NULL);
         (*param1)++;
         break;
     case 4:
-        if (Message_Printing(v0->unk_C8) == 0) {
+        if (Text_IsPrinterActive(v0->unk_C8) == 0) {
             UnkStruct_02015958 v3;
 
             v3.unk_00 = v0->unk_08;
@@ -564,11 +564,11 @@ int ov113_0225CA04(OverlayManager *param0, int *param1)
         BGL_FillWindow(&v0->unk_B4, 0xf);
         sub_0200E060(&v0->unk_B4, 0, 1, 14);
         MessageLoader_GetStrbuf(v0->unk_30, 3, v0->unk_C4);
-        v0->unk_C8 = PrintStringSimple(&v0->unk_B4, 1, v0->unk_C4, 0, 0, Options_TextFrameDelay(SaveData_Options(v0->unk_04)), NULL);
+        v0->unk_C8 = Text_AddPrinterWithParams(&v0->unk_B4, 1, v0->unk_C4, 0, 0, Options_TextFrameDelay(SaveData_Options(v0->unk_04)), NULL);
         (*param1)++;
         break;
     case 7:
-        if (Message_Printing(v0->unk_C8) == 0) {
+        if (Text_IsPrinterActive(v0->unk_C8) == 0) {
             (*param1)++;
         }
         break;
@@ -1527,7 +1527,7 @@ static void ov113_0225E15C(UnkStruct_ov113_0225DBCC *param0, UnkStruct_ov113_022
 
     Window_Init(&v1);
     BGL_AddFramelessWindow(v5, &v1, v8, 16 / 8, 0, 0);
-    PrintStringWithColorAndMargins(&v1, param3, param2, 0, 0, 0xff, param4, 0, 0, NULL);
+    Text_AddPrinterWithParamsColorAndSpacing(&v1, param3, param2, 0, 0, 0xff, param4, 0, 0, NULL);
 
     v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DMAIN, 118);
     sub_0201ED94(v3, 1, NNS_G2D_VRAM_TYPE_2DMAIN, &v2);

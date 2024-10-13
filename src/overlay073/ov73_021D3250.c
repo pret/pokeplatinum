@@ -16,13 +16,13 @@
 #include "message.h"
 #include "overlay_manager.h"
 #include "strbuf.h"
+#include "text.h"
 #include "unk_02002F38.h"
 #include "unk_020041CC.h"
 #include "unk_02006E3C.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_020241F0.h"
 
 typedef struct {
@@ -332,7 +332,7 @@ static void ov73_021D366C (UnkStruct_ov73_021D342C * param0)
 {
     param0->unk_08 = MessageLoader_Init(1, 26, 607, param0->unk_00);
 
-    sub_0201D710();
+    Text_ResetAllPrinters();
     param0->unk_0C = 0;
 }
 
@@ -424,7 +424,7 @@ asm static BOOL ov73_021D3698 (UnkStruct_ov73_021D342C * param0, int param1, int
     add r2, r5, #0
     add r3, r7, #0
     str r1, [sp, #0xc]
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
     add r0, r5, #0
     bl Strbuf_Free
     add r0, r4, #0

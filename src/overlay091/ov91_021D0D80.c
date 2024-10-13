@@ -41,6 +41,7 @@
 #include "render_text.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
@@ -51,7 +52,6 @@
 #include "unk_02013A04.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0207C908.h"
 #include "unk_0208C098.h"
@@ -721,7 +721,7 @@ static int ov91_021D122C(UnkStruct_ov91_021D0ED8 *param0)
 
 static int ov91_021D134C(UnkStruct_ov91_021D0ED8 *param0)
 {
-    if (Message_Printing(param0->unk_185) == 0) {
+    if (Text_IsPrinterActive(param0->unk_185) == 0) {
         return param0->unk_180;
     }
 
@@ -858,7 +858,7 @@ static void ov91_021D1580(UnkStruct_ov91_021D0ED8 *param0, u32 param1, u32 param
         break;
     }
 
-    sub_0201D78C(&param0->unk_08[param1], param2, param0->unk_100, v2, 0, 0xff, param3, NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_08[param1], param2, param0->unk_100, v2, 0, 0xff, param3, NULL);
 }
 
 static void ov91_021D1618(UnkStruct_ov91_021D0ED8 *param0, u32 param1, u32 param2, u8 param3, u8 param4)
@@ -1045,7 +1045,7 @@ static void ov91_021D1A68(UnkStruct_ov91_021D0ED8 *param0, u32 param1)
         v0 = MessageLoader_Init(0, 26, 210, 67);
 
         MessageLoader_GetStrbuf(v0, v2, param0->unk_100);
-        sub_0201D78C(&param0->unk_08[11], 0, param0->unk_100, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_08[11], 0, param0->unk_100, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         MessageLoader_Free(v0);
         ov91_021D1BBC(param0, (u16)param1);
         sub_0201A9A4(&param0->unk_08[6]);
@@ -1163,7 +1163,7 @@ static void ov91_021D1DF8(UnkStruct_ov91_021D0ED8 *param0, u32 param1)
     RenderControlFlags_SetCanABSpeedUpPrint(1);
     RenderControlFlags_SetAutoScrollFlags(0);
 
-    param0->unk_185 = PrintStringSimple(&param0->unk_08[12], 1, param0->unk_100, 0, 0, Options_TextFrameDelay(param0->unk_00->unk_08), ov91_021D1E50);
+    param0->unk_185 = Text_AddPrinterWithParams(&param0->unk_08[12], 1, param0->unk_100, 0, 0, Options_TextFrameDelay(param0->unk_00->unk_08), ov91_021D1E50);
 }
 
 static BOOL ov91_021D1E50(TextPrinterTemplate *param0, u16 param1)

@@ -35,6 +35,7 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
@@ -42,7 +43,6 @@
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0202E840.h"
 #include "unk_020508D4.h"
 
@@ -395,12 +395,12 @@ static int sub_0206F658(UnkStruct_0206F7F8 *param0)
     switch (param0->unk_0C) {
     case 0:
         BGL_FillWindow(&param0->unk_E4, ((15 << 4) | 15));
-        param0->unk_1E = sub_0201D78C(&param0->unk_E4, 1, param0->unk_2C.unk_68[1], 0, 0, param0->unk_1A, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+        param0->unk_1E = Text_AddPrinterWithParamsAndColor(&param0->unk_E4, 1, param0->unk_2C.unk_68[1], 0, 0, param0->unk_1A, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
         sub_0200D41C(param0->unk_2FC[0], 2);
         param0->unk_0C++;
         break;
     case 1:
-        if (Message_Printing(param0->unk_1E)) {
+        if (Text_IsPrinterActive(param0->unk_1E)) {
             break;
         }
 
@@ -441,12 +441,12 @@ static int sub_0206F748(UnkStruct_0206F7F8 *param0)
     case 0:
         Sound_PlayEffect(1522);
         BGL_FillWindow(&param0->unk_E4, ((15 << 4) | 15));
-        param0->unk_1E = sub_0201D78C(&param0->unk_E4, 1, param0->unk_2C.unk_68[2], 0, 0, param0->unk_1A, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+        param0->unk_1E = Text_AddPrinterWithParamsAndColor(&param0->unk_E4, 1, param0->unk_2C.unk_68[2], 0, 0, param0->unk_1A, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
         sub_0200D41C(param0->unk_2FC[0], 2);
         param0->unk_0C++;
         break;
     case 1:
-        if (Message_Printing(param0->unk_1E)) {
+        if (Text_IsPrinterActive(param0->unk_1E)) {
             break;
         }
 
@@ -714,7 +714,7 @@ static void sub_0206FDC0(UnkStruct_0206F7F8 *param0, u16 param1, u16 param2)
     Window_Show(&param0->unk_D4, 0, (1024 - (18 + 12) - 9), 11);
     sub_0200E060(&param0->unk_E4, 1, (1024 - (18 + 12)), 10);
     BGL_FillWindow(&param0->unk_E4, ((15 << 4) | 15));
-    sub_0201D78C(&param0->unk_E4, 1, param0->unk_2C.unk_10, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_E4, 1, param0->unk_2C.unk_10, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     SpriteActor_EnableObject(param0->unk_2FC[0], 1);
     sub_0201C3C0(param0->unk_D0, 3);
 }
@@ -748,7 +748,7 @@ static void sub_0206FF60(BmpList *param0, u32 param1, u8 param2)
 static void sub_0206FFB4(UnkStruct_0206F7F8 *param0)
 {
     BGL_FillWindow(&param0->unk_E4, ((15 << 4) | 15));
-    sub_0201D78C(&param0->unk_E4, 1, param0->unk_2C.unk_68[0], 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_E4, 1, param0->unk_2C.unk_68[0], 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
 }
 
 static void sub_0206FFE4(UnkStruct_0206F7F8 *param0)
@@ -761,7 +761,7 @@ static void sub_0206FFE4(UnkStruct_0206F7F8 *param0)
 static void sub_02070010(UnkStruct_0206F7F8 *param0)
 {
     BGL_FillWindow(&param0->unk_E4, ((15 << 4) | 15));
-    sub_0201D78C(&param0->unk_E4, 1, param0->unk_2C.unk_50[param0->unk_1F], 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_E4, 1, param0->unk_2C.unk_50[param0->unk_1F], 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     SpriteActor_EnableObject(param0->unk_2FC[0], 0);
 }
 
@@ -799,10 +799,10 @@ static void sub_02070050(UnkStruct_0206F7F8 *param0, BOOL param1)
         StringTemplate_SetNumber(param0->unk_2C.unk_04, 0, v2, 1, 1, 1);
         StringTemplate_SetStrbuf(param0->unk_2C.unk_04, 1, v6->unk_04[v0].unk_00->unk_08, 2, 1, GAME_LANGUAGE);
         StringTemplate_Format(param0->unk_2C.unk_04, param0->unk_2C.unk_08, param0->unk_2C.unk_18);
-        sub_0201D78C(&param0->unk_D4, 0, param0->unk_2C.unk_08, 8, v3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_D4, 0, param0->unk_2C.unk_08, 8, v3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
         StringTemplate_SetNumber(param0->unk_2C.unk_04, 0, v4, v7->unk_04, 1, 1);
         StringTemplate_Format(param0->unk_2C.unk_04, param0->unk_2C.unk_08, param0->unk_2C.unk_1C[v7->unk_06 - 15]);
-        sub_0201D78C(&param0->unk_D4, 0, param0->unk_2C.unk_08, (24 * 8) - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_2C.unk_08, 0) - 8, v3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_D4, 0, param0->unk_2C.unk_08, (24 * 8) - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_2C.unk_08, 0) - 8, v3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
 
         param0->unk_32C[v3] = v0;
         v5 = v4;
@@ -835,7 +835,7 @@ static void sub_020701DC(UnkStruct_0206F7F8 *param0, u16 param1)
     SpriteActor_EnableObject(param0->unk_2FC[1], 1);
     BGL_AddWindow(param0->unk_D0, &param0->unk_F4, 3, 8, 14, 8, 2, 13, ((((1024 - (18 + 12) - 9) - 27 * 4) - 6 * 4) - (8 * 2)));
     BGL_FillWindow(&param0->unk_F4, ((0 << 4) | 0));
-    sub_0201D78C(&param0->unk_F4, 0, param0->unk_2C.unk_14, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_F4, 0, param0->unk_2C.unk_14, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     sub_0201C3C0(param0->unk_D0, 3);
 }
 

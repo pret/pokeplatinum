@@ -43,6 +43,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
@@ -54,7 +55,6 @@
 #include "unk_02017728.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
@@ -1842,7 +1842,7 @@ static void ov69_0225DBB4(UnkStruct_ov69_0225DC48 *param0, UnkStruct_ov69_0225D3
         Font_InitManager(FONT_SUBSCREEN, param3);
         {
             u32 v1 = Font_CalcCenterAlignment(FONT_SUBSCREEN, v0, 0, 48);
-            sub_0201D78C(&param0->unk_1C, 2, v0, v1, 0, 0xff, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+            Text_AddPrinterWithParamsAndColor(&param0->unk_1C, 2, v0, v1, 0, 0xff, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
         }
 
         Font_Free(FONT_SUBSCREEN);
@@ -1964,8 +1964,8 @@ static void ov69_0225DD60(UnkStruct_ov69_0225DDC8 *param0, UnkStruct_ov69_0225D3
 
 static void ov69_0225DDC8(UnkStruct_ov69_0225DDC8 *param0)
 {
-    if (Message_Printing(param0->unk_04) != 0) {
-        PrintString_ForceStop(param0->unk_04);
+    if (Text_IsPrinterActive(param0->unk_04) != 0) {
+        Text_RemovePrinter(param0->unk_04);
     }
 
     Strbuf_Free(param0->unk_0C);
@@ -1979,7 +1979,7 @@ static void ov69_0225DDFC(UnkStruct_ov69_0225DDC8 *param0)
     sub_0200E060(&param0->unk_10, 1, 1, 2);
     sub_0201A9A4(&param0->unk_10);
 
-    param0->unk_04 = PrintStringSimple(&param0->unk_10, 1, param0->unk_0C, 0, 0, param0->unk_08, NULL);
+    param0->unk_04 = Text_AddPrinterWithParams(&param0->unk_10, 1, param0->unk_0C, 0, 0, param0->unk_08, NULL);
     param0->unk_00 = 0;
 }
 
@@ -1991,7 +1991,7 @@ static u32 ov69_0225DE40(UnkStruct_ov69_0225DDC8 *param0)
     case 0:
         v0 = 0;
 
-        if (Message_Printing(param0->unk_04) == 0) {
+        if (Text_IsPrinterActive(param0->unk_04) == 0) {
             UnkStruct_02015958 v1;
 
             v1 = Unk_ov69_0225F074;
@@ -2037,7 +2037,7 @@ static void ov69_0225DEC0(UnkStruct_ov69_0225E084 *param0, UnkStruct_ov69_0225D3
 
         v1 = ov69_0225EF74(param2, 0);
 
-        PrintStringSimple(&param0->unk_1A8, 1, v1, 0, 0, 0xff, NULL);
+        Text_AddPrinterWithParams(&param0->unk_1A8, 1, v1, 0, 0, 0xff, NULL);
         sub_0200E060(&param0->unk_1A8, 0, 10, 10);
     }
 
@@ -2491,17 +2491,17 @@ static void ov69_0225E644(UnkStruct_ov69_0225E084 *param0, u32 param1, const Unk
 
     {
         v0 = ov69_0225EF74(param3, 2);
-        sub_0201D78C(v1, 1, v0, 0, 0, 0xff, Unk_ov69_0225F088[v2], NULL);
+        Text_AddPrinterWithParamsAndColor(v1, 1, v0, 0, 0, 0xff, Unk_ov69_0225F088[v2], NULL);
     }
 
     {
         v0 = ov69_0225EF90(param3, param2->unk_04);
-        sub_0201D78C(v1, 1, v0, 0, 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(v1, 1, v0, 0, 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
     {
         v0 = ov69_0225EFB8(param3, param2->unk_04, param2->unk_08);
-        sub_0201D78C(v1, 1, v0, 0, 32, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(v1, 1, v0, 0, 32, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 }
 

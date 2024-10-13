@@ -32,6 +32,7 @@
 #include "overlay_manager.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
+#include "text.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
@@ -40,7 +41,6 @@
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
@@ -1075,7 +1075,7 @@ static void ov112_0225D460 (UnkStruct_ov112_0225D44C * param0, const Strbuf *par
     GF_ASSERT((180 * 8) >= param0->unk_06);
 
     BGL_FillWindow(&param0->unk_0C, 0);
-    PrintStringSimple(&param0->unk_0C, 1, param0->unk_08, 0, 0, 0xff, NULL);
+    Text_AddPrinterWithParams(&param0->unk_0C, 1, param0->unk_08, 0, 0, 0xff, NULL);
 
     param0->unk_1C = *param3;
 
@@ -1251,7 +1251,7 @@ asm static void ov112_0225D57C (UnkStruct_ov112_0225D6DC * param0, UnkStruct_ov1
     ldr r0, [sp, #0x14]
     mov r1, #0
     add r2, r4, #0
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
     ldr r0, [sp, #0x30]
     add r7, r7, #1
     add r6, #0x10

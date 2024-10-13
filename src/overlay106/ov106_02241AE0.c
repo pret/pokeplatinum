@@ -46,6 +46,7 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "trainer_info.h"
 #include "unk_02001AF4.h"
 #include "unk_02002F38.h"
@@ -58,7 +59,6 @@
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_02030108.h"
 #include "unk_020363E8.h"
@@ -510,7 +510,7 @@ static BOOL ov106_02241E5C(UnkStruct_ov106_02243118 *param0)
         param0->unk_08 = 5;
         break;
     case 5:
-        if (Message_Printing(param0->unk_0A) == 0) {
+        if (Text_IsPrinterActive(param0->unk_0A) == 0) {
             param0->unk_1E = 1;
             ov106_022432D4(param0);
             ov106_022436B0(param0->unk_280, 1);
@@ -1067,7 +1067,7 @@ static u8 ov106_02242918(UnkStruct_ov106_02243118 *param0, Window *param1, int p
     MessageLoader_GetStrbuf(param0->unk_20, param2, param0->unk_2C);
     StringTemplate_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
 
-    return sub_0201D78C(param1, param9, param0->unk_28, param3, param4, param5, (u32)((((param6) & 0xff) << 16) | (((param7) & 0xff) << 8) | (((param8) & 0xff) << 0)), NULL);
+    return Text_AddPrinterWithParamsAndColor(param1, param9, param0->unk_28, param3, param4, param5, (u32)((((param6) & 0xff) << 16) | (((param7) & 0xff) << 8) | (((param8) & 0xff) << 0)), NULL);
 }
 
 static u8 ov106_02242978(UnkStruct_ov106_02243118 *param0, int param1, u8 param2)
@@ -1147,7 +1147,7 @@ static void ov106_02242AC4(UnkStruct_ov106_02243118 *param0, Window *param1, u32
 
     v4 = Strbuf_Init((10 + 1), 98);
     Strbuf_CopyChars(v4, v6);
-    sub_0201D78C(param1, param7, v4, param2, param3, 0, (u32)((((param4) & 0xff) << 16) | (((param5) & 0xff) << 8) | (((param6) & 0xff) << 0)), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, param7, v4, param2, param3, 0, (u32)((((param4) & 0xff) << 16) | (((param5) & 0xff) << 8) | (((param6) & 0xff) << 0)), NULL);
     Strbuf_Free(v4);
     sub_0201A954(param1);
 
@@ -1170,7 +1170,7 @@ static void ov106_02242B38(UnkStruct_ov106_02243118 *param0, Window *param1, u8 
             if (ov104_0223B5A4(v0 * 4 + v1) != 0xfe) {
                 Strbuf_Clear(v2);
                 MessageLoader_GetStrbuf(v3, ov104_0223B5A4(v0 * 4 + v1), v2);
-                sub_0201D78C(param1, param5, v2, 1 + (64 * v1), 16 + (36 * v0), 0, (u32)((((param2) & 0xff) << 16) | (((param3) & 0xff) << 8) | (((param4) & 0xff) << 0)), NULL);
+                Text_AddPrinterWithParamsAndColor(param1, param5, v2, 1 + (64 * v1), 16 + (36 * v0), 0, (u32)((((param2) & 0xff) << 16) | (((param3) & 0xff) << 8) | (((param4) & 0xff) << 0)), NULL);
             }
         }
     }

@@ -29,13 +29,13 @@
 #include "script_manager.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0203A7D8.h"
 #include "unk_020508D4.h"
 #include "unk_020553DC.h"
@@ -198,7 +198,7 @@ static void sub_02052AA4(UnkStruct_02052AA4 *param0, u16 param1, u8 param2, u8 p
         param2 = (u8)(param0->unk_0C.unk_07 * 8 - v2) / 2 - 4;
     }
 
-    sub_0201D78C(&param0->unk_0C, 0, v1, param2, param3, 0xff, (u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_0C, 0, v1, param2, param3, 0xff, (u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
     Strbuf_Free(v0);
     Strbuf_Free(v1);
 

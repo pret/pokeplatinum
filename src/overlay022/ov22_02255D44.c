@@ -63,6 +63,7 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
@@ -74,7 +75,6 @@
 #include "unk_02015920.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201E3D8.h"
 #include "unk_020298BC.h"
 #include "unk_020363E8.h"
@@ -266,7 +266,7 @@ int ov22_02255E50(OverlayManager *param0, int *param1)
         }
         break;
     case 4:
-        if (Message_Printing(v0->unk_73C) == 0) {
+        if (Text_IsPrinterActive(v0->unk_73C) == 0) {
             ov22_0225A6A0(&v0->unk_5C4);
             (*param1)++;
         }
@@ -503,7 +503,7 @@ int ov22_022562EC(OverlayManager *param0, int *param1)
         break;
     case 3:
 
-        if (Message_Printing(v0->unk_73C) == 0) {
+        if (Text_IsPrinterActive(v0->unk_73C) == 0) {
             ov22_02257540(v0);
             (*param1)++;
         }
@@ -513,7 +513,7 @@ int ov22_022562EC(OverlayManager *param0, int *param1)
         (*param1)++;
         break;
     case 5:
-        if (Message_Printing(v0->unk_73C) == 0) {
+        if (Text_IsPrinterActive(v0->unk_73C) == 0) {
             ov22_02257540(v0);
             (*param1)++;
         }
@@ -528,7 +528,7 @@ int ov22_022562EC(OverlayManager *param0, int *param1)
         (*param1)++;
         break;
     case 7:
-        if (Message_Printing(v0->unk_73C) == 0) {
+        if (Text_IsPrinterActive(v0->unk_73C) == 0) {
             ov22_02257540(v0);
             (*param1)++;
         }
@@ -1350,7 +1350,7 @@ static void ov22_022572A0(UnkStruct_ov22_02255D44 *param0, u32 param1, u8 param2
     v0 = MessageLoader_Init(0, 26, 385, 13);
     v1 = MessageLoader_GetNewStrbuf(v0, param1);
 
-    sub_0201D78C(param0->unk_718, 1, v1, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param0->unk_718, 1, v1, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     Strbuf_Free(v1);
     MessageLoader_Free(v0);
     sub_0201A954(param0->unk_718);
@@ -1369,7 +1369,7 @@ static void ov22_02257368(UnkStruct_ov22_02255D44 *param0, u32 param1)
     v1 = Strbuf_Init(256, 13);
 
     StringTemplate_Format(param0->unk_744, v1, v2);
-    sub_0201D78C(param0->unk_718, 1, v1, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param0->unk_718, 1, v1, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     Strbuf_Free(v1);
     Strbuf_Free(v2);
     MessageLoader_Free(v0);
@@ -1399,7 +1399,7 @@ static u32 ov22_022573EC(UnkStruct_ov22_02255D44 *param0, u32 param1)
         v2 = 1;
     }
 
-    v0 = sub_0201D78C(param0->unk_718, 1, param0->unk_740, 0, 0, v2, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+    v0 = Text_AddPrinterWithParamsAndColor(param0->unk_718, 1, param0->unk_740, 0, 0, v2, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
 
     Strbuf_Free(v3);
     MessageLoader_Free(v1);

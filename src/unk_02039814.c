@@ -18,12 +18,12 @@
 #include "message.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 
 void sub_02039834(int param0, int param1, int param2);
 
@@ -153,7 +153,7 @@ void sub_02039834(int param0, int param1, int param2)
     v2 = MessageLoader_Init(1, 26, 214, param0);
     v3 = Strbuf_Init(0x180, param0);
     v4 = Strbuf_Init(0x180, param0);
-    sub_0201D710();
+    Text_ResetAllPrinters();
     v5 = StringTemplate_Default(param0);
 
     sub_0201A8D4(v0, &v1, &Unk_020E5EC8);
@@ -164,7 +164,7 @@ void sub_02039834(int param0, int param1, int param2)
     MessageLoader_GetStrbuf(v2, v6, v4);
     StringTemplate_Format(v5, v3, v4);
 
-    PrintStringSimple(&v1, 0, v3, 0, 0, 0, NULL);
+    Text_AddPrinterWithParams(&v1, 0, v3, 0, 0, 0, NULL);
     Strbuf_Free(v3);
 
     GXLayers_TurnBothDispOn();

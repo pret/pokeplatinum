@@ -25,10 +25,10 @@
 #include "core_sys.h"
 #include "easy3d.h"
 #include "heap.h"
+#include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201D670.h"
 #include "unk_0202854C.h"
 #include "unk_020508D4.h"
 #include "unk_020573FC.h"
@@ -248,7 +248,7 @@ static BOOL ov23_02254AD4(TaskManager *param0)
         FieldTask_Start(param0, ov23_02255850, v1);
         break;
     case 8:
-        if (Message_Printing(v1->unk_08) == 0) {
+        if (Text_IsPrinterActive(v1->unk_08) == 0) {
             if ((v1->unk_51E++) >= 30) {
                 ov23_0224D3B0();
                 ov23_02255EBC(3, v1);
@@ -497,7 +497,7 @@ static BOOL ov23_02254DF8(TaskManager *param0)
         }
         break;
     case 3:
-        if (Message_Printing(v6->unk_08) == 0) {
+        if (Text_IsPrinterActive(v6->unk_08) == 0) {
             if ((v6->unk_51E++) >= 30) {
                 ov23_0224D3B0();
                 v6->unk_04 = 2;
@@ -505,7 +505,7 @@ static BOOL ov23_02254DF8(TaskManager *param0)
         }
         break;
     case 4:
-        if (Message_Printing(v6->unk_08) == 0) {
+        if (Text_IsPrinterActive(v6->unk_08) == 0) {
             if ((v6->unk_51E++) >= 30) {
                 ov23_0224D3B0();
                 ov23_02255EBC(3, v6);
@@ -514,7 +514,7 @@ static BOOL ov23_02254DF8(TaskManager *param0)
         }
         break;
     case 5:
-        if (Message_Printing(v6->unk_08) == 0) {
+        if (Text_IsPrinterActive(v6->unk_08) == 0) {
             if ((v6->unk_51E++) >= 30) {
                 ov23_0224D3B0();
                 v6->unk_04 = 0;
@@ -697,7 +697,7 @@ static BOOL ov23_02255100(TaskManager *param0)
         }
         break;
     case 2:
-        if (Message_Printing(v7->unk_08) == 0) {
+        if (Text_IsPrinterActive(v7->unk_08) == 0) {
             if ((v7->unk_51E++) >= 30) {
                 int v18;
 
@@ -716,7 +716,7 @@ static BOOL ov23_02255100(TaskManager *param0)
         }
         break;
     case 3:
-        if (Message_Printing(v7->unk_08) == 0) {
+        if (Text_IsPrinterActive(v7->unk_08) == 0) {
             if ((v7->unk_51E++) >= 30) {
                 ov23_0224D3B0();
                 v7->unk_04 = 0;
@@ -725,7 +725,7 @@ static BOOL ov23_02255100(TaskManager *param0)
         }
         break;
     case 4:
-        if (Message_Printing(v7->unk_08) == 0) {
+        if (Text_IsPrinterActive(v7->unk_08) == 0) {
             if ((v7->unk_51E++) >= 30) {
                 ov23_0224D3B0();
                 v7->unk_04 = 1;
@@ -750,7 +750,7 @@ static BOOL ov23_02255100(TaskManager *param0)
         }
         break;
     case 6:
-        if (Message_Printing(v7->unk_08) == 0) {
+        if (Text_IsPrinterActive(v7->unk_08) == 0) {
             if ((v7->unk_51E++) >= 30) {
                 ov23_0224D3B0();
                 ov23_02255EBC(3, v7);
@@ -904,7 +904,7 @@ static BOOL ov23_02255580(TaskManager *param0)
         }
         break;
     case 2:
-        if (Message_Printing(v7->unk_08) == 0) {
+        if (Text_IsPrinterActive(v7->unk_08) == 0) {
             if ((v7->unk_51E++) >= 30) {
                 ov23_0224D3B0();
                 v7->unk_04 = 1;
@@ -1015,7 +1015,7 @@ static BOOL ov23_02255850(TaskManager *param0)
         }
         break;
     case 2:
-        if (Message_Printing(v6->unk_08) == 0) {
+        if (Text_IsPrinterActive(v6->unk_08) == 0) {
             if ((v6->unk_51E++) >= 30) {
                 ov23_0224D3B0();
                 v6->unk_04 = 1;
@@ -1023,7 +1023,7 @@ static BOOL ov23_02255850(TaskManager *param0)
         }
         break;
     case 3:
-        if (Message_Printing(v6->unk_08) == 0) {
+        if (Text_IsPrinterActive(v6->unk_08) == 0) {
             if ((v6->unk_51E++) >= 30) {
                 ov23_0224D3B0();
                 ov23_02255EBC(6, v6);

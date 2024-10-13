@@ -51,6 +51,7 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "trainer_info.h"
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
@@ -65,7 +66,6 @@
 #include "unk_02013A04.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_020302D0.h"
 #include "unk_0203061C.h"
@@ -1493,8 +1493,8 @@ static u8 ov107_02247680 (UnkStruct_ov107_02246170 * param0, Window * param1, in
         param3 -= Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_28, 0);
         break;
     }
-    
-    v0 = sub_0201D78C(param1, param9, param0->unk_28, param3, param4, param5, (u32)((((param6) & 0xFF) << 16) | (((param7) & 0xFF) << 8) | ((param8) & 0xFF)), NULL);
+
+    v0 = Text_AddPrinterWithParamsAndColor(param1, param9, param0->unk_28, param3, param4, param5, (u32)((((param6) & 0xFF) << 16) | (((param7) & 0xFF) << 8) | ((param8) & 0xFF)), NULL);
     sub_0201A9A4(param1);
     
     return v0;
@@ -1519,8 +1519,8 @@ static u8 ov107_02247744 (UnkStruct_ov107_02246170 * param0, Window * param1, in
         param3 -= Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_28, 0);
         break;
     }
-    
-    v0 = sub_0201D78C(param1, param9, param0->unk_28, param3, param4, param5, (u32)((((param6) & 0xFF) << 16) | (((param7) & 0xFF) << 8) | ((param8) & 0xFF)), NULL);
+
+    v0 = Text_AddPrinterWithParamsAndColor(param1, param9, param0->unk_28, param3, param4, param5, (u32)((((param6) & 0xFF) << 16) | (((param7) & 0xFF) << 8) | ((param8) & 0xFF)), NULL);
     sub_0201A9A4(param1);
     
     return v0;
@@ -2153,7 +2153,7 @@ static void ov107_0224812C (UnkStruct_ov107_02246170 * param0, Window * param1, 
         v0 = ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | (((0 & 0xff) << 0))));
     }
 
-    sub_0201D78C(param1, param4, v2, param2, param3, 0xff, v0, NULL);
+    Text_AddPrinterWithParamsAndColor(param1, param4, v2, param2, param3, 0xff, v0, NULL);
     Strbuf_Free(v2);
 
     return;

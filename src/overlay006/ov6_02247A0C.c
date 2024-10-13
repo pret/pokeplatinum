@@ -18,9 +18,9 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "unk_0200DA60.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0202F108.h"
 #include "unk_020508D4.h"
 
@@ -156,26 +156,26 @@ void *ov6_02247A90(void *param0)
 
     v4 = ov6_02247CF4(v3, 0, 1, (15 * 8));
 
-    PrintStringSimple(&v0->unk_00, 0, v3, v4, (8 * 0), 0xff, NULL);
+    Text_AddPrinterWithParams(&v0->unk_00, 0, v3, v4, (8 * 0), 0xff, NULL);
     Strbuf_Free(v2);
 
     v2 = MessageLoader_GetNewStrbuf(v0->unk_10, 1);
     v4 = ov6_02247CF4(v2, 0, 1, (15 * 8));
 
-    PrintStringSimple(&v0->unk_00, 0, v2, v4, (8 * 2), 0xff, NULL);
+    Text_AddPrinterWithParams(&v0->unk_00, 0, v2, v4, (8 * 2), 0xff, NULL);
     Strbuf_Free(v2);
 
     for (v6 = 0; v6 < 5; v6++) {
         v2 = MessageLoader_GetNewStrbuf(v0->unk_10, Unk_ov6_022496F4[v6].unk_00);
         v4 = ov6_02247CF4(v2, 0, 0, Unk_ov6_022496F4[v6].unk_04);
-        PrintStringSimple(&v0->unk_00, 0, v2, v4, Unk_ov6_022496F4[v6].unk_06, 0xff, NULL);
+        Text_AddPrinterWithParams(&v0->unk_00, 0, v2, v4, Unk_ov6_022496F4[v6].unk_06, 0xff, NULL);
         Strbuf_Free(v2);
     }
 
     for (v6 = 0; v6 < 4; v6++) {
         v2 = MessageLoader_GetNewStrbuf(v0->unk_10, Unk_ov6_022496D4[v6].unk_00);
         v4 = ov6_02247CF4(v2, 0, 2, Unk_ov6_022496D4[v6].unk_04);
-        PrintStringSimple(&v0->unk_00, 0, v2, v4, Unk_ov6_022496D4[v6].unk_06, 0xff, NULL);
+        Text_AddPrinterWithParams(&v0->unk_00, 0, v2, v4, Unk_ov6_022496D4[v6].unk_06, 0xff, NULL);
         Strbuf_Free(v2);
     }
 
@@ -186,7 +186,7 @@ void *ov6_02247A90(void *param0)
             StringTemplate_SetNumber(v0->unk_14, 0, v5, 4, 1, 1);
             StringTemplate_Format(v0->unk_14, v3, v2);
             v4 = ov6_02247CF4(v3, 0, 2, Unk_ov6_0224971C[v7][v6].unk_04);
-            PrintStringSimple(&v0->unk_00, 0, v3, v4, Unk_ov6_0224971C[v7][v6].unk_06, 0xff, NULL);
+            Text_AddPrinterWithParams(&v0->unk_00, 0, v3, v4, Unk_ov6_0224971C[v7][v6].unk_06, 0xff, NULL);
             Strbuf_Free(v2);
         }
     }

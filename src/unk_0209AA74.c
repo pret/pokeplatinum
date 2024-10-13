@@ -17,13 +17,13 @@
 #include "heap.h"
 #include "message.h"
 #include "strbuf.h"
+#include "text.h"
 #include "unk_02000C88.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 
 void sub_0201777C(void);
 
@@ -123,12 +123,12 @@ void sub_0209AA74(int param0, int param1)
     v2 = MessageLoader_Init(1, 26, 6, param0);
     v3 = Strbuf_Init(0x180, param0);
 
-    sub_0201D710();
+    Text_ResetAllPrinters();
     sub_0201A8D4(v0, &v1, &Unk_020F8B20);
     BGL_WindowColor(&v1, 15, 0, 0, 26 * 8, 18 * 8);
     Window_Show(&v1, 0, (512 - 9), 2);
     MessageLoader_GetStrbuf(v2, v4, v3);
-    PrintStringSimple(&v1, 0, v3, 0, 0, 0, NULL);
+    Text_AddPrinterWithParams(&v1, 0, v3, 0, 0, 0, NULL);
     Strbuf_Free(v3);
     GXLayers_TurnBothDispOn();
     sub_0200F338(0);

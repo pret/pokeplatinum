@@ -30,6 +30,7 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
@@ -40,7 +41,6 @@
 #include "unk_02014A84.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_02027F84.h"
 #include "unk_02033200.h"
 #include "unk_020508D4.h"
@@ -464,13 +464,13 @@ static void ov56_022567FC(UnkStruct_ov56_02256468 *param0, int param1, UnkStruct
     BGL_FillWindow(&param0->unk_22C[param1].unk_00, 0x0);
     BGL_FillWindow(&param0->unk_22C[param1].unk_10, 0x0);
     BGL_FillWindow(&param0->unk_22C[param1].unk_20, 0x0);
-    sub_0201D78C(&param0->unk_22C[param1].unk_00, 1, param2->unk_00, 0, 1, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
-    sub_0201D78C(&param0->unk_22C[param1].unk_10, 1, param2->unk_04, 0, 6, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_22C[param1].unk_00, 1, param2->unk_00, 0, 1, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_22C[param1].unk_10, 1, param2->unk_04, 0, 6, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
     sub_0201A9A4(&param0->unk_22C[param1].unk_00);
     sub_0201A9A4(&param0->unk_22C[param1].unk_10);
 
     if (param2->unk_08) {
-        sub_0201D78C(&param0->unk_22C[param1].unk_20, 1, param2->unk_08, 0, 1, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_22C[param1].unk_20, 1, param2->unk_08, 0, 1, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
     }
 
     sub_0201A9A4(&param0->unk_22C[param1].unk_20);

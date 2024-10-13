@@ -20,9 +20,9 @@
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "unk_02006E3C.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 
 typedef struct {
     void * unk_00;
@@ -277,7 +277,7 @@ asm static void ov20_021D498C (Window * param0, BGL * param1, const Strbuf *para
     mov r0, #0
     str r0, [sp, #0xc]
     ldr r0, [sp, #0x10]
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
     add r4, r4, #1
     add r5, r5, #2
     cmp r4, #4

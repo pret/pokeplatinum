@@ -45,6 +45,7 @@
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
 #include "unk_02000C88.h"
@@ -59,7 +60,6 @@
 #include "unk_02015920.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
@@ -456,7 +456,7 @@ static void ov97_02233DD0(UnkStruct_ov97_02234A2C *param0, UnkStruct_ov97_02233D
         Strbuf_Free(v6);
 
         v3 = ov97_02233DAC(param1, v0, param2);
-        param1->unk_48 = sub_0201D78C(param1->unk_00, param1->unk_28, v0, v3, param1->unk_1C, v5, param1->unk_2C, NULL);
+        param1->unk_48 = Text_AddPrinterWithParamsAndColor(param1->unk_00, param1->unk_28, v0, v3, param1->unk_1C, v5, param1->unk_2C, NULL);
 
         if (param1->unk_40 == NULL) {
             StringTemplate_Free(v1);
@@ -470,14 +470,14 @@ static void ov97_02233DD0(UnkStruct_ov97_02234A2C *param0, UnkStruct_ov97_02233D
         v0 = param0->unk_1266C;
         Strbuf_CopyNumChars(v0, param1->unk_38, 64);
         v3 = ov97_02233DAC(param1, v0, param2);
-        param1->unk_48 = sub_0201D78C(param1->unk_00, param1->unk_28, v0, v3, param1->unk_1C, v5, param1->unk_2C, NULL);
+        param1->unk_48 = Text_AddPrinterWithParamsAndColor(param1->unk_00, param1->unk_28, v0, v3, param1->unk_1C, v5, param1->unk_2C, NULL);
         param1->unk_38 = NULL;
     }
 
     if (param1->unk_3C) {
         v3 = ov97_02233DAC(param1, param1->unk_3C, param2);
 
-        param1->unk_48 = sub_0201D78C(param1->unk_00, param1->unk_28, param1->unk_3C, v3, param1->unk_1C, v5, param1->unk_2C, NULL);
+        param1->unk_48 = Text_AddPrinterWithParamsAndColor(param1->unk_00, param1->unk_28, param1->unk_3C, v3, param1->unk_1C, v5, param1->unk_2C, NULL);
         param1->unk_3C = NULL;
     }
 
@@ -1405,7 +1405,7 @@ static void ov97_02234DFC(UnkStruct_ov97_02234A2C *param0)
     gCoreSys.unk_65 = 1;
 
     GXLayers_SwapDisplay();
-    sub_0201D710();
+    Text_ResetAllPrinters();
 
     Font_LoadTextPalette(0, 15 * 32, 78);
     sub_02006E84(116, 19, 0, 0, 32 * 6, 78);
@@ -1713,7 +1713,7 @@ static BOOL ov97_022354C4(UnkStruct_ov97_02234A2C *param0, int param1)
         ov97_02233DD0(param0, &param0->unk_490, 0x8 | 0x10);
         param0->unk_04 = 0;
     } else {
-        if (Message_Printing(param0->unk_490.unk_48) == 0) {
+        if (Text_IsPrinterActive(param0->unk_490.unk_48) == 0) {
             RenderControlFlags_SetSpeedUpOnTouch(0);
             return 1;
         }
@@ -1732,7 +1732,7 @@ static BOOL ov97_02235528(UnkStruct_ov97_02234A2C *param0, int param1)
         ov97_02233DD0(param0, &param0->unk_490, 0x8 | 0x10);
         param0->unk_04 = 0;
     } else {
-        if (Message_Printing(param0->unk_490.unk_48) == 0) {
+        if (Text_IsPrinterActive(param0->unk_490.unk_48) == 0) {
             ov97_02235310(param0);
             RenderControlFlags_SetSpeedUpOnTouch(0);
             return 1;
@@ -1754,7 +1754,7 @@ static BOOL ov97_02235590(UnkStruct_ov97_02234A2C *param0, int param1)
         Sound_PlayEffect(1500);
     } else {
         if (param1) {
-            if (Message_Printing(param0->unk_490.unk_48) == 0) {
+            if (Text_IsPrinterActive(param0->unk_490.unk_48) == 0) {
                 RenderControlFlags_SetSpeedUpOnTouch(0);
                 return 1;
             }

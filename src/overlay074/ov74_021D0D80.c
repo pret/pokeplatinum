@@ -27,6 +27,7 @@
 #include "overlay_manager.h"
 #include "render_text.h"
 #include "strbuf.h"
+#include "text.h"
 #include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
@@ -35,7 +36,6 @@
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_020393C8.h"
 
@@ -215,8 +215,8 @@ int ov74_021D0F60(OverlayManager *param0, int *param1)
 
         return 0;
     case 6:
-        if (Message_Printing(v0->unk_2AC)) {
-            PrintString_ForceStop(v0->unk_2AC);
+        if (Text_IsPrinterActive(v0->unk_2AC)) {
+            Text_RemovePrinter(v0->unk_2AC);
         }
 
         sub_0200F174(3, 0, 0, 0x0, 6, 1, v0->unk_00);
@@ -565,14 +565,14 @@ static void ov74_021D1668(UnkStruct_ov74_021D0D80 *param0)
     MessageLoader_GetStrbuf(param0->unk_20, 0, v6);
 
     v1 = 2;
-    sub_0201D78C(&param0->unk_2C[0], 0, v6, v1, 2, 0, v5, NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_2C[0], 0, v6, v1, 2, 0, v5, NULL);
 
     v1 = 4;
 
     for (v2 = 0; v2 < 7; v2++) {
         Strbuf_Clear(v6);
         MessageLoader_GetStrbuf(param0->unk_20, v8[v2], v6);
-        sub_0201D78C(&param0->unk_2C[1], 0, v6, v1, 16 * v2, 0xff, v3, NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_2C[1], 0, v6, v1, 16 * v2, 0xff, v3, NULL);
     }
 
     for (v2 = 0; v2 < 7; v2++) {
@@ -633,7 +633,7 @@ static void ov74_021D17CC(UnkStruct_ov74_021D0D80 *param0, u16 param1)
     BGL_WindowColor(&(param0->unk_2C[1]), WINCLR_COL(15), (12 * 8 + 4) + v6[param1], 0 + param1 * 16, (48 * 8), 16);
 
     if (param1 == 5) {
-        sub_0201D78C(&param0->unk_2C[1], 0, param0->unk_5C[param1].unk_04[param0->unk_5C[param1].unk_02], 1 * 48 + (12 * 8 + 4), 16 * param1 + 0, 0xff, v1, NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_2C[1], 0, param0->unk_5C[param1].unk_04[param0->unk_5C[param1].unk_02], 1 * 48 + (12 * 8 + 4), 16 * param1 + 0, 0xff, v1, NULL);
         sub_0201A954(&param0->unk_2C[1]);
         param0->unk_10_21 = 1;
         return;
@@ -664,10 +664,10 @@ static void ov74_021D17CC(UnkStruct_ov74_021D0D80 *param0, u16 param1)
         }
 
         if (param1 == 4) {
-            sub_0201D78C(&param0->unk_2C[1], 0, param0->unk_5C[param1].unk_04[v3], (12 * 8 + 4) - 0 + v5, 16 * param1 + 0, v4, v2, NULL);
+            Text_AddPrinterWithParamsAndColor(&param0->unk_2C[1], 0, param0->unk_5C[param1].unk_04[v3], (12 * 8 + 4) - 0 + v5, 16 * param1 + 0, v4, v2, NULL);
             v5 += Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_5C[param1].unk_04[v3], 0) + 12;
         } else {
-            sub_0201D78C(&param0->unk_2C[1], 0, param0->unk_5C[param1].unk_04[v3], v3 * 48 + (12 * 8 + 4) + v6[param1], 16 * param1 + 0, v4, v2, NULL);
+            Text_AddPrinterWithParamsAndColor(&param0->unk_2C[1], 0, param0->unk_5C[param1].unk_04[v3], v3 * 48 + (12 * 8 + 4) + v6[param1], 16 * param1 + 0, v4, v2, NULL);
         }
     }
 
@@ -681,7 +681,7 @@ static void ov74_021D1968(UnkStruct_ov74_021D0D80 *param0, u16 param1, BOOL para
     u8 v2;
 
     if (ov74_021D1A08(param0) == 0) {
-        PrintString_ForceStop(param0->unk_2AC);
+        Text_RemovePrinter(param0->unk_2AC);
     }
 
     v2 = Options_TextFrameDelay(param0->unk_1C);
@@ -694,9 +694,9 @@ static void ov74_021D1968(UnkStruct_ov74_021D0D80 *param0, u16 param1, BOOL para
     MessageLoader_GetStrbuf(param0->unk_20, param1, v1);
 
     if (param2 == 0) {
-        param0->unk_2AC = sub_0201D78C(&param0->unk_2C[2], 1, v1, 4, 0, v2, v0, NULL);
+        param0->unk_2AC = Text_AddPrinterWithParamsAndColor(&param0->unk_2C[2], 1, v1, 4, 0, v2, v0, NULL);
     } else {
-        sub_0201D78C(&param0->unk_2C[2], 1, v1, 4, 0, 0xff, v0, NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_2C[2], 1, v1, 4, 0, 0xff, v0, NULL);
         sub_0201A9A4(&param0->unk_2C[2]);
     }
 
@@ -705,7 +705,7 @@ static void ov74_021D1968(UnkStruct_ov74_021D0D80 *param0, u16 param1, BOOL para
 
 static BOOL ov74_021D1A08(const UnkStruct_ov74_021D0D80 *param0)
 {
-    if (Message_Printing(param0->unk_2AC) == 0) {
+    if (Text_IsPrinterActive(param0->unk_2AC) == 0) {
         return 1;
     }
 

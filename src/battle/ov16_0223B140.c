@@ -61,6 +61,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "trainer_info.h"
 #include "unk_02002F38.h"
 #include "unk_020041CC.h"
@@ -78,7 +79,6 @@
 #include "unk_02017728.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
@@ -1746,7 +1746,7 @@ static void ov16_0223D10C(OverlayManager *param0, BattleParams *param1)
         v6 = Strbuf_Init(0x100, 5);
 
         MessageLoader_GetStrbuf(v5, 923, v6);
-        PrintStringSimple(v0->unk_08, 1, v6, 0, 0, NULL, NULL);
+        Text_AddPrinterWithParams(v0->unk_08, 1, v6, 0, 0, NULL, NULL);
 
         Strbuf_Free(v6);
         MessageLoader_Free(v5);

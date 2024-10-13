@@ -37,6 +37,7 @@
 #include "message.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "touch_screen.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
@@ -45,7 +46,6 @@
 #include "unk_02012744.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_02023FCC.h"
 #include "unk_0202419C.h"
@@ -1248,7 +1248,7 @@ static void ov62_02239440 (UnkStruct_0208C06C * param0, int param1)
     v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
     v3 = ov62_0223429C(v1, v2);
 
-    sub_0201D78C(v1, 0, v2, v3, 0, 0xff, (((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0)))), NULL);
+    Text_AddPrinterWithParamsAndColor(v1, 0, v2, v3, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v2);
     sub_0201A9A4(v1);
 }
@@ -1466,7 +1466,7 @@ asm static void ov62_02239724 (UnkStruct_0208C06C * param0)
     str r0, [sp, #0xc]
     ldr r0, [sp, #0x20]
     add r2, r4, #0
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
     ldr r0, [sp, #0x14]
     add r5, r5, #1
     add r6, #0x10
@@ -1603,7 +1603,7 @@ asm static void ov62_02239854 (UnkStruct_0208C06C * param0, int param1)
     str r0, [sp, #0xc]
     ldr r0, [sp, #0x20]
     add r2, r4, #0
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
     ldr r0, [sp, #0x14]
     add r5, r5, #1
     add r6, #0x10
@@ -1760,6 +1760,7 @@ static void ov62_02239BAC (u32 param0, u32 param1, void * param2)
     ov62_02239A0C(v0, param0);
 }
 
+// clang-format off
 asm static void ov62_02239BD8 (UnkStruct_0208C06C * param0)
 {
     push {r4, r5, r6, r7, lr}
@@ -1851,7 +1852,7 @@ asm static void ov62_02239BD8 (UnkStruct_0208C06C * param0)
     str r0, [sp, #0xc]
     add r0, r4, #0
     mov r1, #0
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
     b _02239CB6
  _02239C9A:
     ldr r0, [sp, #0x18]
@@ -1866,7 +1867,7 @@ asm static void ov62_02239BD8 (UnkStruct_0208C06C * param0)
     str r0, [sp, #0xc]
     add r0, r4, #0
     mov r1, #0
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
  _02239CB6:
     add r0, r4, #0
     bl sub_0201A9A4
@@ -1886,6 +1887,7 @@ asm static void ov62_02239BD8 (UnkStruct_0208C06C * param0)
     add sp, #0x34
     pop {r4, r5, r6, r7, pc}
 }
+// clang-format on
 
 static void ov62_02239CE8 (UnkStruct_0208C06C * param0)
 {
