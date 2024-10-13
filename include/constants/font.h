@@ -21,7 +21,7 @@ enum Font {
     FONT_SYSTEM = 0,
     FONT_MESSAGE,
     FONT_SUBSCREEN,
-    FONT_UNK,
+    FONT_UNOWN,
 
     FONT_MAX,
 };

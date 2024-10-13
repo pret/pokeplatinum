@@ -93,7 +93,7 @@ static void FontManager_Init(FontManager *fontManager, u32 narcID, u32 arcFileId
         fontManager->glyphWidths = Heap_AllocFromHeap(heapID, fontManager->header.numGlyphs);
         fontManager->glyphWidthFunc = GlyphWidthFunc_VariableWidth;
 
-        NARC_ReadFromMember(fontManager->narc, arcFileIdx, fontManager->header.widthTableOffset, fontManager->header.numGlyphs, (void *)(fontManager->glyphWidths));
+        NARC_ReadFromMember(fontManager->narc, arcFileIdx, fontManager->header.widthTableOffset, fontManager->header.numGlyphs, fontManager->glyphWidths);
     }
 
     GF_ASSERT(fontManager->header.glyphWidth <= 2 && fontManager->header.glyphHeight <= 2);

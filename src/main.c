@@ -79,7 +79,7 @@ void NitroMain(void)
     Fonts_Init();
     Font_InitManager(FONT_SYSTEM, HEAP_ID_APPLICATION);
     Font_InitManager(FONT_MESSAGE, HEAP_ID_APPLICATION);
-    Font_InitManager(FONT_UNK, HEAP_ID_APPLICATION);
+    Font_InitManager(FONT_UNOWN, HEAP_ID_APPLICATION);
 
     Unk_02101D28.unk_10.unk_00 = -1;
     Unk_02101D28.unk_10.unk_08 = SaveData_Init();

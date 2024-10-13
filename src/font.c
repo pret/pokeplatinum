@@ -36,7 +36,7 @@ static const struct {
         .arcFileIdx = 2,
         .isMonospace = FALSE,
     },
-    [FONT_UNK] = {
+    [FONT_UNOWN] = {
         .arcFileIdx = 3,
         .isMonospace = FALSE,
     },
@@ -70,7 +70,7 @@ static const FontAttributes sFontAttributes[FONT_MAX + 1] = {
         .bgColor = 15,
         .shadowColor = 2,
     },
-    [FONT_UNK] = {
+    [FONT_UNOWN] = {
         .maxLetterWidth = 11,
         .maxLetterHeight = 16,
         .letterSpacing = 0,
