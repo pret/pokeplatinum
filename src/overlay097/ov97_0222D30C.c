@@ -849,7 +849,7 @@ static void ov97_0222DE78(OverlayManager *param0, Window *param1, u32 param2)
     v1->unk_10 = MessageLoader_Init(1, 26, 421, 86);
     v1->unk_0C = StringTemplate_Default(86);
 
-    BGL_FillWindow(param1, Font_GetAttribute(1, 6));
+    BGL_FillWindow(param1, Font_GetAttribute(FONT_MESSAGE, FONTATTR_BG_COLOR));
 
     if (v1->unk_14) {
         v0 = v1->unk_14;
@@ -878,7 +878,7 @@ static void ov97_0222DF10(OverlayManager *param0, Window *param1, u16 *param2)
     v0 = Strbuf_Init(36 + 1, 86);
 
     Strbuf_CopyNumChars(v0, param2, 36);
-    BGL_FillWindow(param1, Font_GetAttribute(0, 6));
+    BGL_FillWindow(param1, Font_GetAttribute(FONT_SYSTEM, FONTATTR_BG_COLOR));
     sub_0201D78C(param1, 0, v0, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     Window_Show(param1, 0, (1 + (18 + 12)), 3);
     Strbuf_Free(v0);

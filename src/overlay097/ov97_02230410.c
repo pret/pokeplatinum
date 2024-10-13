@@ -330,7 +330,7 @@ static void ov97_022305EC(Window *param0, int param1)
     MessageLoader *v1 = MessageLoader_Init(1, 26, 421, 87);
     StringTemplate *v2 = StringTemplate_Default(87);
 
-    BGL_FillWindow(param0, Font_GetAttribute(1, 6));
+    BGL_FillWindow(param0, Font_GetAttribute(FONT_MESSAGE, FONTATTR_BG_COLOR));
 
     v0 = MessageUtil_ExpandedStrbuf(v2, v1, param1, 87);
     sub_0201D78C(param0, 1, v0, 0, 0, 0xff, 66048, NULL);

@@ -635,7 +635,7 @@ static void ov97_0222C578(UnkStruct_ov97_0222C388 *param0)
 
     ov97_0223795C(param0->unk_04, &param0->unk_F0, 3, 13, 66);
     param0->unk_F0.unk_08 = 0;
-    ov97_02237868(&param0->unk_F0, 0, Font_GetAttribute(0, 1));
+    ov97_02237868(&param0->unk_F0, 0, Font_GetAttribute(FONT_SYSTEM, FONTATTR_MAX_LETTER_HEIGHT));
     ov97_0223795C(param0->unk_04, &param0->unk_F0, -1, -1, 68);
 
     OS_GetMacAddress(v4);
