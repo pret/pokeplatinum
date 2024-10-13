@@ -55,19 +55,19 @@ PokedexData *sub_02026324(u32 param0)
     return v0;
 }
 
-void sub_02026338(const PokedexData *param0, PokedexData *param1)
+void sub_02026338(const PokedexData *dexData, PokedexData *param1)
 {
-    MI_CpuCopy8(param0, param1, sizeof(PokedexData));
+    MI_CpuCopy8(dexData, param1, sizeof(PokedexData));
 }
 
-static inline void CheckPokedexIntegrity(const PokedexData *param0)
+static inline void CheckPokedexIntegrity(const PokedexData *dexData)
 {
-    GF_ASSERT(param0->magic == 3203386110);
+    GF_ASSERT(dexData->magic == 3203386110);
 }
 
-static BOOL sub_02026344(u16 param0)
+static BOOL Pokedex_InvalidSpecies(u16 species)
 {
-    if ((param0 == 0) || (param0 > NATIONAL_DEX_COUNT)) {
+    if ((species == 0) || (species > NATIONAL_DEX_COUNT)) {
         GF_ASSERT(0);
         return 1;
     } else {
@@ -110,26 +110,26 @@ static inline void inline_020267B8(u8 *param0, u8 param1, u16 param2)
     param0[param2 >> 2] |= param1 << ((param2 & 3) * 2);
 }
 
-static inline void inline_0202736C(PokedexData *param0, u16 param1)
+static inline void Write_SeenSpecies(PokedexData *dexData, u16 species)
 {
-    WriteBit((u8 *)param0->seenPokemon, param1);
+    WriteBit((u8 *)dexData->seenPokemon, species);
 }
 
-static inline void inline_sub_0202736C_1(PokedexData *param0, u16 param1)
+static inline void Write_CaughtSpecies(PokedexData *dexData, u16 species)
 {
-    WriteBit((u8 *)param0->caughtPokemon, param1);
+    WriteBit((u8 *)dexData->caughtPokemon, species);
 }
 
-static void sub_02026360(PokedexData *param0, u8 param1, u8 param2, u16 param3)
+static void sub_02026360(PokedexData *dexData, u8 param1, u8 param2, u16 param3)
 {
     if (param2 == 0) {
-        inline_02026360((u8 *)param0->recordedGenders[1], param1, param3);
+        inline_02026360((u8 *)dexData->recordedGenders[1], param1, param3);
     }
 
-    inline_02026360((u8 *)param0->recordedGenders[param2], param1, param3);
+    inline_02026360((u8 *)dexData->recordedGenders[param2], param1, param3);
 }
 
-static void sub_020263D8(PokedexData *param0, u8 param1, u8 param2, u16 param3)
+static void sub_020263D8(PokedexData *dexData, u8 param1, u8 param2, u16 param3)
 {
     GF_ASSERT(param1 <= 2);
 
@@ -137,37 +137,37 @@ static void sub_020263D8(PokedexData *param0, u8 param1, u8 param2, u16 param3)
         param1 = 0;
     }
 
-    sub_02026360(param0, param1, param2, param3);
+    sub_02026360(dexData, param1, param2, param3);
 }
 
-static inline BOOL inline_02026FE8(const PokedexData *param0, u16 param1)
+static inline BOOL Read_SeenSpecies(const PokedexData *dexData, u16 species)
 {
-    return ReadBit((const u8 *)param0->seenPokemon, param1);
+    return ReadBit((const u8 *)dexData->seenPokemon, species);
 }
 
-static inline BOOL inline_02026F9C(const PokedexData *param0, u16 param1)
+static inline BOOL Read_CaughtSpecies(const PokedexData *dexData, u16 species)
 {
-    return ReadBit((const u8 *)param0->caughtPokemon, param1);
+    return ReadBit((const u8 *)dexData->caughtPokemon, species);
 }
 
-static inline u8 inline_02026BAC(const PokedexData *param0, u16 param1, u8 param2)
+static inline u8 inline_02026BAC(const PokedexData *dexData, u16 param1, u8 param2)
 {
-    return ReadBit((const u8 *)param0->recordedGenders[param2], param1);
+    return ReadBit((const u8 *)dexData->recordedGenders[param2], param1);
 }
 
-static inline void inline_0202736C_1(PokedexData *param0, u16 param1, u32 param2)
+static inline void inline_0202736C_1(PokedexData *dexData, u16 param1, u32 param2)
 {
     if (param1 == 327) {
-        param0->unk_104 = param2;
+        dexData->unk_104 = param2;
     }
 }
 
-static int sub_02026400(const PokedexData *param0)
+static int sub_02026400(const PokedexData *dexData)
 {
     int v0;
 
     for (v0 = 0; v0 < UNOWN_COUNT; v0++) {
-        if (param0->unk_10C[v0] == 0xff) {
+        if (dexData->unk_10C[v0] == 0xff) {
             break;
         }
     }
@@ -175,12 +175,12 @@ static int sub_02026400(const PokedexData *param0)
     return v0;
 }
 
-static BOOL sub_02026418(const PokedexData *param0, u8 param1)
+static BOOL sub_02026418(const PokedexData *dexData, u8 param1)
 {
     int v0;
 
     for (v0 = 0; v0 < UNOWN_COUNT; v0++) {
-        if (param0->unk_10C[v0] == param1) {
+        if (dexData->unk_10C[v0] == param1) {
             return 1;
         }
     }
@@ -188,22 +188,22 @@ static BOOL sub_02026418(const PokedexData *param0, u8 param1)
     return 0;
 }
 
-static void sub_0202643C(PokedexData *param0, int param1)
+static void sub_0202643C(PokedexData *dexData, int param1)
 {
     int v0;
 
-    if (sub_02026418(param0, param1)) {
+    if (sub_02026418(dexData, param1)) {
         return;
     }
 
-    v0 = sub_02026400(param0);
+    v0 = sub_02026400(dexData);
 
     if (v0 < UNOWN_COUNT) {
-        param0->unk_10C[v0] = param1;
+        dexData->unk_10C[v0] = param1;
     }
 }
 
-static int sub_02026464(const PokedexData *param0, u32 param1)
+static int sub_02026464(const PokedexData *dexData, u32 param1)
 {
     u32 v0;
     u32 v1;
@@ -211,22 +211,22 @@ static int sub_02026464(const PokedexData *param0, u32 param1)
 
     GF_ASSERT((param1 == 422) || (param1 == 423) || (param1 == 492) || (param1 == 487));
 
-    if (sub_02026FE8(param0, param1) == 0) {
+    if (Pokedex_EncounteredSpecies(dexData, param1) == 0) {
         return 0;
     }
 
     switch (param1) {
     case 422:
-        v2 = &param0->unk_108;
+        v2 = &dexData->unk_108;
         break;
     case 423:
-        v2 = &param0->unk_109;
+        v2 = &dexData->unk_109;
         break;
     case 492:
-        v2 = &param0->unk_320;
+        v2 = &dexData->unk_320;
         break;
     case 487:
-        v2 = &param0->unk_321;
+        v2 = &dexData->unk_321;
         break;
     }
 
@@ -240,7 +240,7 @@ static int sub_02026464(const PokedexData *param0, u32 param1)
     return 2;
 }
 
-static BOOL sub_02026514(const PokedexData *param0, u32 param1, u8 param2)
+static BOOL sub_02026514(const PokedexData *dexData, u32 param1, u8 param2)
 {
     u32 v0;
     u32 v1;
@@ -249,26 +249,26 @@ static BOOL sub_02026514(const PokedexData *param0, u32 param1, u8 param2)
 
     GF_ASSERT((param1 == 422) || (param1 == 423) || (param1 == 492) || (param1 == 487));
 
-    if (sub_02026FE8(param0, param1) == 0) {
+    if (Pokedex_EncounteredSpecies(dexData, param1) == 0) {
         return 0;
     }
 
     switch (param1) {
     case 422:
-        v3 = &param0->unk_108;
+        v3 = &dexData->unk_108;
         break;
     case 423:
-        v3 = &param0->unk_109;
+        v3 = &dexData->unk_109;
         break;
     case 492:
-        v3 = &param0->unk_320;
+        v3 = &dexData->unk_320;
         break;
     case 487:
-        v3 = &param0->unk_321;
+        v3 = &dexData->unk_321;
         break;
     }
 
-    v2 = sub_02026464(param0, param1);
+    v2 = sub_02026464(dexData, param1);
 
     for (v1 = 0; v1 < v2; v1++) {
         v0 = ReadBit(v3, v1 + 1);
@@ -281,33 +281,33 @@ static BOOL sub_02026514(const PokedexData *param0, u32 param1, u8 param2)
     return 0;
 }
 
-static void sub_020265E8(PokedexData *param0, u32 param1, int param2)
+static void sub_020265E8(PokedexData *dexData, u32 param1, int param2)
 {
     int v0;
     u8 *v1;
 
     GF_ASSERT((param1 == 422) || (param1 == 423) || (param1 == 492) || (param1 == 487));
 
-    if (sub_02026514(param0, param1, param2)) {
+    if (sub_02026514(dexData, param1, param2)) {
         return;
     }
 
     switch (param1) {
     case 422:
-        v1 = &param0->unk_108;
+        v1 = &dexData->unk_108;
         break;
     case 423:
-        v1 = &param0->unk_109;
+        v1 = &dexData->unk_109;
         break;
     case 492:
-        v1 = &param0->unk_320;
+        v1 = &dexData->unk_320;
         break;
     case 487:
-        v1 = &param0->unk_321;
+        v1 = &dexData->unk_321;
         break;
     }
 
-    v0 = sub_02026464(param0, param1);
+    v0 = sub_02026464(dexData, param1);
 
     if (v0 < 2) {
         inline_02026360(v1, param2, v0 + 1);
@@ -318,7 +318,7 @@ static void sub_020265E8(PokedexData *param0, u32 param1, int param2)
     }
 }
 
-static int sub_020266F8(const PokedexData *param0, u32 param1)
+static int sub_020266F8(const PokedexData *dexData, u32 param1)
 {
     u32 v0;
     int v1;
@@ -326,14 +326,14 @@ static int sub_020266F8(const PokedexData *param0, u32 param1)
 
     GF_ASSERT((param1 == 412) || (param1 == 413));
 
-    if (sub_02026FE8(param0, param1) == 0) {
+    if (Pokedex_EncounteredSpecies(dexData, param1) == 0) {
         return 0;
     }
 
     if (param1 == 412) {
-        v2 = &param0->unk_10A;
+        v2 = &dexData->unk_10A;
     } else {
-        v2 = &param0->unk_10B;
+        v2 = &dexData->unk_10B;
     }
 
     for (v1 = 0; v1 < 3; v1++) {
@@ -347,7 +347,7 @@ static int sub_020266F8(const PokedexData *param0, u32 param1)
     return v1;
 }
 
-static BOOL sub_02026754(const PokedexData *param0, u32 param1, u8 param2)
+static BOOL sub_02026754(const PokedexData *dexData, u32 param1, u8 param2)
 {
     u32 v0;
     int v1;
@@ -355,14 +355,14 @@ static BOOL sub_02026754(const PokedexData *param0, u32 param1, u8 param2)
 
     GF_ASSERT((param1 == 412) || (param1 == 413));
 
-    if (sub_02026FE8(param0, param1) == 0) {
+    if (Pokedex_EncounteredSpecies(dexData, param1) == 0) {
         return 0;
     }
 
     if (param1 == 412) {
-        v2 = &param0->unk_10A;
+        v2 = &dexData->unk_10A;
     } else {
-        v2 = &param0->unk_10B;
+        v2 = &dexData->unk_10B;
     }
 
     for (v1 = 0; v1 < 3; v1++) {
@@ -376,24 +376,24 @@ static BOOL sub_02026754(const PokedexData *param0, u32 param1, u8 param2)
     return 0;
 }
 
-static void sub_020267B8(PokedexData *param0, u32 param1, int param2)
+static void sub_020267B8(PokedexData *dexData, u32 param1, int param2)
 {
     int v0;
     u8 *v1;
 
     GF_ASSERT((param1 == 412) || (param1 == 413));
 
-    if (sub_02026754(param0, param1, param2)) {
+    if (sub_02026754(dexData, param1, param2)) {
         return;
     }
 
     if (param1 == 412) {
-        v1 = &param0->unk_10A;
+        v1 = &dexData->unk_10A;
     } else {
-        v1 = &param0->unk_10B;
+        v1 = &dexData->unk_10B;
     }
 
-    v0 = sub_020266F8(param0, param1);
+    v0 = sub_020266F8(dexData, param1);
 
     if (v0 < 3) {
         inline_020267B8(v1, param2, v0);
@@ -409,15 +409,15 @@ static void sub_02026834(u32 *param0, u8 param1, u8 param2)
     param0[16 - 1] |= (param1 << v0);
 }
 
-static void sub_02026850(PokedexData *param0, u8 param1, u8 param2)
+static void sub_02026850(PokedexData *dexData, u8 param1, u8 param2)
 {
     GF_ASSERT(param2 < 4);
     GF_ASSERT(param1 <= 15);
 
     if (param2 < 2) {
-        sub_02026834(param0->caughtPokemon, param1, param2);
+        sub_02026834(dexData->caughtPokemon, param1, param2);
     } else {
-        sub_02026834(param0->seenPokemon, param1, param2 - 2);
+        sub_02026834(dexData->seenPokemon, param1, param2 - 2);
     }
 }
 
@@ -429,25 +429,25 @@ static inline u32 inline_0202688C(const u32 *param0, u8 param1)
     return v1;
 }
 
-static u32 sub_0202688C(const PokedexData *param0, u8 param1)
+static u32 sub_0202688C(const PokedexData *dexData, u8 param1)
 {
     u32 v0;
 
     if (param1 < 2) {
-        v0 = inline_0202688C(param0->caughtPokemon, param1);
+        v0 = inline_0202688C(dexData->caughtPokemon, param1);
     } else {
-        v0 = inline_0202688C(param0->seenPokemon, param1 - 2);
+        v0 = inline_0202688C(dexData->seenPokemon, param1 - 2);
     }
 
     return v0;
 }
 
-static u32 sub_020268B8(const PokedexData *param0)
+static u32 sub_020268B8(const PokedexData *dexData)
 {
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (sub_0202688C(param0, v0) == 15) {
+        if (sub_0202688C(dexData, v0) == 15) {
             break;
         }
     }
@@ -455,12 +455,12 @@ static u32 sub_020268B8(const PokedexData *param0)
     return v0;
 }
 
-static BOOL sub_020268D8(const PokedexData *param0, u32 param1)
+static BOOL sub_020268D8(const PokedexData *dexData, u32 param1)
 {
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (sub_0202688C(param0, v0) == param1) {
+        if (sub_0202688C(dexData, v0) == param1) {
             return 1;
         }
     }
@@ -468,25 +468,25 @@ static BOOL sub_020268D8(const PokedexData *param0, u32 param1)
     return 0;
 }
 
-static void sub_020268FC(PokedexData *param0, u16 param1, Pokemon *param2)
+static void sub_020268FC(PokedexData *dexData, u16 param1, Pokemon *param2)
 {
     u8 v0 = Pokemon_GetValue(param2, MON_DATA_FORM, NULL);
     u32 v1;
 
     if (param1 == 386) {
-        if (sub_020268D8(param0, v0) == 0) {
-            v1 = sub_020268B8(param0);
-            sub_02026850(param0, v0, v1);
+        if (sub_020268D8(dexData, v0) == 0) {
+            v1 = sub_020268B8(dexData);
+            sub_02026850(dexData, v0, v1);
         }
     }
 }
 
-static void sub_0202693C(PokedexData *param0)
+static void sub_0202693C(PokedexData *dexData)
 {
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02026850(param0, 0xf, v0);
+        sub_02026850(dexData, 0xf, v0);
     }
 }
 
@@ -503,21 +503,21 @@ static inline void inline_02026A00(u32 *param0, u32 param1, u32 param2)
     (*param0) |= (param2 << (param1 * 3));
 }
 
-static int sub_02026958(const PokedexData *param0, u32 param1)
+static int sub_02026958(const PokedexData *dexData, u32 param1)
 {
     u32 v0;
     int v1, v2;
 
     GF_ASSERT(param1 == 479);
 
-    if (sub_02026FE8(param0, param1) == 0) {
+    if (Pokedex_EncounteredSpecies(dexData, param1) == 0) {
         return 0;
     }
 
     v2 = 0;
 
     for (v1 = 0; v1 < 6; v1++) {
-        v0 = inline_02026958(param0->unk_31C, v1);
+        v0 = inline_02026958(dexData->unk_31C, v1);
 
         if (v0 != 0x7) {
             v2++;
@@ -529,7 +529,7 @@ static int sub_02026958(const PokedexData *param0, u32 param1)
     return v2;
 }
 
-static BOOL sub_020269A4(const PokedexData *param0, u32 param1, u8 param2)
+static BOOL sub_020269A4(const PokedexData *dexData, u32 param1, u8 param2)
 {
     int v0;
     u32 v1;
@@ -537,14 +537,14 @@ static BOOL sub_020269A4(const PokedexData *param0, u32 param1, u8 param2)
 
     GF_ASSERT(param1 == 479);
 
-    if (sub_02026FE8(param0, param1) == 0) {
+    if (Pokedex_EncounteredSpecies(dexData, param1) == 0) {
         return 0;
     }
 
-    v1 = sub_02026958(param0, param1);
+    v1 = sub_02026958(dexData, param1);
 
     for (v0 = 0; v0 < v1; v0++) {
-        v2 = inline_02026958(param0->unk_31C, v0);
+        v2 = inline_02026958(dexData->unk_31C, v0);
 
         if (v2 == param2) {
             return 1;
@@ -554,69 +554,69 @@ static BOOL sub_020269A4(const PokedexData *param0, u32 param1, u8 param2)
     return 0;
 }
 
-static void sub_02026A00(PokedexData *param0, u32 param1, int param2)
+static void sub_02026A00(PokedexData *dexData, u32 param1, int param2)
 {
     int v0;
 
     GF_ASSERT(param1 == 479);
 
-    if (sub_020269A4(param0, param1, param2)) {
+    if (sub_020269A4(dexData, param1, param2)) {
         return;
     }
 
-    v0 = sub_02026958(param0, param1);
+    v0 = sub_02026958(dexData, param1);
 
     if (v0 < 6) {
-        inline_02026A00(&param0->unk_31C, v0, param2);
+        inline_02026A00(&dexData->unk_31C, v0, param2);
     }
 }
 
-static void sub_02026A60(PokedexData *param0, u16 param1, Pokemon *param2)
+static void sub_02026A60(PokedexData *dexData, u16 param1, Pokemon *param2)
 {
     int v0;
 
     switch (param1) {
     case 201:
         v0 = Pokemon_GetForm(param2);
-        sub_0202643C(param0, v0);
+        sub_0202643C(dexData, v0);
         break;
     case 412:
         v0 = Pokemon_GetValue(param2, MON_DATA_FORM, NULL);
-        sub_020267B8(param0, param1, v0);
+        sub_020267B8(dexData, param1, v0);
         break;
     case 413:
         v0 = Pokemon_GetValue(param2, MON_DATA_FORM, NULL);
-        sub_020267B8(param0, param1, v0);
+        sub_020267B8(dexData, param1, v0);
         break;
     case 422:
         v0 = Pokemon_GetValue(param2, MON_DATA_FORM, NULL);
-        sub_020265E8(param0, param1, v0);
+        sub_020265E8(dexData, param1, v0);
         break;
     case 423:
         v0 = Pokemon_GetValue(param2, MON_DATA_FORM, NULL);
-        sub_020265E8(param0, param1, v0);
+        sub_020265E8(dexData, param1, v0);
         break;
     case 386:
-        sub_020268FC(param0, param1, param2);
+        sub_020268FC(dexData, param1, param2);
         break;
     case 492:
         v0 = Pokemon_GetValue(param2, MON_DATA_FORM, NULL);
-        sub_020265E8(param0, param1, v0);
+        sub_020265E8(dexData, param1, v0);
         break;
     case 487:
         v0 = Pokemon_GetValue(param2, MON_DATA_FORM, NULL);
-        sub_020265E8(param0, param1, v0);
+        sub_020265E8(dexData, param1, v0);
         break;
     case 479:
         v0 = Pokemon_GetValue(param2, MON_DATA_FORM, NULL);
-        sub_02026A00(param0, param1, v0);
+        sub_02026A00(dexData, param1, v0);
         break;
     default:
         break;
     }
 }
 
-static void sub_02026B88(PokedexData *param0, u16 param1, u32 param2)
+static void sub_02026B88(PokedexData *dexData, u16 param1, u32 param2)
 {
     int v0;
     int v1;
@@ -628,10 +628,10 @@ static void sub_02026B88(PokedexData *param0, u16 param1, u32 param2)
         return;
     }
 
-    param0->recordedLanguages[v0] |= 1 << v1;
+    dexData->recordedLanguages[v0] |= 1 << v1;
 }
 
-static u32 sub_02026BAC(const PokedexData *param0, u16 param1, int param2)
+static u32 sub_02026BAC(const PokedexData *dexData, u16 param1, int param2)
 {
     u32 v0, v1;
     u32 v2;
@@ -644,10 +644,10 @@ static u32 sub_02026BAC(const PokedexData *param0, u16 param1, int param2)
         }
     }
 
-    v0 = inline_02026BAC(param0, param1, 0);
+    v0 = inline_02026BAC(dexData, param1, 0);
 
     if (param2 == 1) {
-        v1 = inline_02026BAC(param0, param1, 1);
+        v1 = inline_02026BAC(dexData, param1, 1);
 
         if (v1 == v0) {
             v2 = -1;
@@ -661,12 +661,12 @@ static u32 sub_02026BAC(const PokedexData *param0, u16 param1, int param2)
     return v2;
 }
 
-static inline int inline_020270AC(const PokedexData *param0, int param1)
+static inline int inline_020270AC(const PokedexData *dexData, int param1)
 {
-    return param0->unk_10C[param1];
+    return dexData->unk_10C[param1];
 }
 
-static int sub_02026C24(const PokedexData *param0, u32 param1, int param2)
+static int sub_02026C24(const PokedexData *dexData, u32 param1, int param2)
 {
     const u8 *v0;
 
@@ -675,31 +675,31 @@ static int sub_02026C24(const PokedexData *param0, u32 param1, int param2)
 
     switch (param1) {
     case 422:
-        v0 = &param0->unk_108;
+        v0 = &dexData->unk_108;
         break;
     case 423:
-        v0 = &param0->unk_109;
+        v0 = &dexData->unk_109;
         break;
     case 492:
-        v0 = &param0->unk_320;
+        v0 = &dexData->unk_320;
         break;
     case 487:
-        v0 = &param0->unk_321;
+        v0 = &dexData->unk_321;
         break;
     }
 
     return ReadBit(v0, param2 + 1);
 }
 
-static int sub_02026CCC(const PokedexData *param0, u32 param1, int param2)
+static int sub_02026CCC(const PokedexData *dexData, u32 param1, int param2)
 {
     GF_ASSERT(param1 == 479);
     GF_ASSERT(param2 < 6);
 
-    return inline_02026958(param0->unk_31C, param2);
+    return inline_02026958(dexData->unk_31C, param2);
 }
 
-static int sub_02026CFC(const PokedexData *param0, u32 param1, int param2)
+static int sub_02026CFC(const PokedexData *dexData, u32 param1, int param2)
 {
     const u8 *v0;
 
@@ -707,9 +707,9 @@ static int sub_02026CFC(const PokedexData *param0, u32 param1, int param2)
     GF_ASSERT(param2 < 3);
 
     if (param1 == 412) {
-        v0 = &param0->unk_10A;
+        v0 = &dexData->unk_10A;
     } else {
-        v0 = &param0->unk_10B;
+        v0 = &dexData->unk_10B;
     }
 
     return inline_020266F8(v0, param2);
@@ -749,36 +749,36 @@ static BOOL sub_02026D68(u16 param0)
     return 1;
 }
 
-void Pokedex_Init(PokedexData *param0)
+void Pokedex_Init(PokedexData *dexData)
 {
-    memset(param0, 0, sizeof(PokedexData));
+    memset(dexData, 0, sizeof(PokedexData));
 
-    param0->magic = 3203386110;
-    param0->nationalDexObtained = FALSE;
+    dexData->magic = 3203386110;
+    dexData->nationalDexObtained = FALSE;
 
-    memset(param0->unk_10C, 0xff, sizeof(u8) * UNOWN_COUNT);
+    memset(dexData->unk_10C, 0xff, sizeof(u8) * UNOWN_COUNT);
 
-    param0->unk_108 = 0xff;
-    param0->unk_109 = 0xff;
-    param0->unk_10A = 0xff;
-    param0->unk_10B = 0xff;
-    param0->unk_31C = 0xffffffff;
-    param0->unk_320 = 0xff;
-    param0->unk_321 = 0xff;
+    dexData->unk_108 = 0xff;
+    dexData->unk_109 = 0xff;
+    dexData->unk_10A = 0xff;
+    dexData->unk_10B = 0xff;
+    dexData->unk_31C = 0xffffffff;
+    dexData->unk_320 = 0xff;
+    dexData->unk_321 = 0xff;
 
-    sub_0202693C(param0);
+    sub_0202693C(dexData);
 }
 
-u16 sub_02026DD0(const PokedexData *param0)
+u16 sub_02026DD0(const PokedexData *dexData)
 {
     int v0;
     int v1;
 
-    CheckPokedexIntegrity(param0);
+    CheckPokedexIntegrity(dexData);
     v1 = 0;
 
     for (v0 = 1; v0 <= NATIONAL_DEX_COUNT; v0++) {
-        if (Pokedex_CaughtSpecies(param0, v0) == 1) {
+        if (Pokedex_CaughtSpecies(dexData, v0) == 1) {
             v1++;
         }
     }
@@ -786,16 +786,16 @@ u16 sub_02026DD0(const PokedexData *param0)
     return v1;
 }
 
-u16 sub_02026E0C(const PokedexData *param0)
+u16 sub_02026E0C(const PokedexData *dexData)
 {
     int v0;
     int v1;
 
-    CheckPokedexIntegrity(param0);
+    CheckPokedexIntegrity(dexData);
     v1 = 0;
 
     for (v0 = 1; v0 <= NATIONAL_DEX_COUNT; v0++) {
-        if (sub_02026FE8(param0, v0) == 1) {
+        if (Pokedex_EncounteredSpecies(dexData, v0) == 1) {
             v1++;
         }
     }
@@ -803,25 +803,25 @@ u16 sub_02026E0C(const PokedexData *param0)
     return v1;
 }
 
-u16 sub_02026E48(const PokedexData *param0)
+u16 sub_02026E48(const PokedexData *dexData)
 {
-    if (sub_02027474(param0)) {
-        return sub_02026E0C(param0);
+    if (Pokedex_NationalUnlocked(dexData)) {
+        return sub_02026E0C(dexData);
     }
 
-    return sub_02026EAC(param0);
+    return sub_02026EAC(dexData);
 }
 
-u16 sub_02026E64(const PokedexData *param0)
+u16 sub_02026E64(const PokedexData *dexData)
 {
     int v0;
     int v1;
 
-    CheckPokedexIntegrity(param0);
+    CheckPokedexIntegrity(dexData);
     v1 = 0;
 
     for (v0 = 1; v0 <= NATIONAL_DEX_COUNT; v0++) {
-        if (Pokedex_CaughtSpecies(param0, v0) == 1) {
+        if (Pokedex_CaughtSpecies(dexData, v0) == 1) {
             if (Pokemon_SinnohDexNumber(v0) != 0) {
                 v1++;
             }
@@ -831,16 +831,16 @@ u16 sub_02026E64(const PokedexData *param0)
     return v1;
 }
 
-u16 sub_02026EAC(const PokedexData *param0)
+u16 sub_02026EAC(const PokedexData *dexData)
 {
     int v0;
     int v1;
 
-    CheckPokedexIntegrity(param0);
+    CheckPokedexIntegrity(dexData);
     v1 = 0;
 
     for (v0 = 1; v0 <= NATIONAL_DEX_COUNT; v0++) {
-        if (sub_02026FE8(param0, v0) == 1) {
+        if (Pokedex_EncounteredSpecies(dexData, v0) == 1) {
             if (Pokemon_SinnohDexNumber(v0) != 0) {
                 v1++;
             }
@@ -850,11 +850,11 @@ u16 sub_02026EAC(const PokedexData *param0)
     return v1;
 }
 
-BOOL sub_02026EF4(const PokedexData *param0)
+BOOL sub_02026EF4(const PokedexData *dexData)
 {
     u16 v0;
 
-    v0 = sub_02026F20(param0);
+    v0 = sub_02026F20(dexData);
 
     if (v0 >= 482) {
         return 1;
@@ -863,11 +863,11 @@ BOOL sub_02026EF4(const PokedexData *param0)
     return 0;
 }
 
-BOOL sub_02026F0C(const PokedexData *param0)
+BOOL sub_02026F0C(const PokedexData *dexData)
 {
     u16 v0;
 
-    v0 = sub_02026F58(param0);
+    v0 = sub_02026F58(dexData);
 
     if (v0 >= LOCAL_DEX_COUNT) {
         return 1;
@@ -876,7 +876,7 @@ BOOL sub_02026F0C(const PokedexData *param0)
     return 0;
 }
 
-u16 sub_02026F20(const PokedexData *param0)
+u16 sub_02026F20(const PokedexData *dexData)
 {
     int v0;
     u16 v1;
@@ -884,7 +884,7 @@ u16 sub_02026F20(const PokedexData *param0)
     v1 = 0;
 
     for (v0 = 1; v0 <= NATIONAL_DEX_COUNT; v0++) {
-        if (Pokedex_CaughtSpecies(param0, v0) == 1) {
+        if (Pokedex_CaughtSpecies(dexData, v0) == 1) {
             if (sub_02026D44(v0) == 1) {
                 v1++;
             }
@@ -894,7 +894,7 @@ u16 sub_02026F20(const PokedexData *param0)
     return v1;
 }
 
-u16 sub_02026F58(const PokedexData *param0)
+u16 sub_02026F58(const PokedexData *dexData)
 {
     int v0;
     u16 v1;
@@ -903,7 +903,7 @@ u16 sub_02026F58(const PokedexData *param0)
     v1 = 0;
 
     for (v0 = 1; v0 <= NATIONAL_DEX_COUNT; v0++) {
-        if (sub_02026FE8(param0, v0) == 1) {
+        if (Pokedex_EncounteredSpecies(dexData, v0) == 1) {
             v2 = Pokemon_SinnohDexNumber(v0);
 
             if (v2 != 0) {
@@ -917,41 +917,41 @@ u16 sub_02026F58(const PokedexData *param0)
     return v1;
 }
 
-BOOL Pokedex_CaughtSpecies(const PokedexData *param0, u16 param1)
+BOOL Pokedex_CaughtSpecies(const PokedexData *dexData, u16 species)
 {
-    CheckPokedexIntegrity(param0);
+    CheckPokedexIntegrity(dexData);
 
-    if (sub_02026344(param1)) {
+    if (Pokedex_InvalidSpecies(species)) {
         return 0;
     }
 
-    if (inline_02026F9C(param0, param1) && inline_02026FE8(param0, param1)) {
+    if (Read_CaughtSpecies(dexData, species) && Read_SeenSpecies(dexData, species)) {
         return 1;
     } else {
         return 0;
     }
 }
 
-BOOL sub_02026FE8(const PokedexData *param0, u16 param1)
+BOOL Pokedex_EncounteredSpecies(const PokedexData *dexData, u16 species)
 {
-    CheckPokedexIntegrity(param0);
+    CheckPokedexIntegrity(dexData);
 
-    if (sub_02026344(param1)) {
+    if (Pokedex_InvalidSpecies(species)) {
         return 0;
     }
 
-    return inline_02026FE8(param0, param1);
+    return Read_SeenSpecies(dexData, species);
 }
 
-u32 sub_0202702C(const PokedexData *param0, u8 param1)
+u32 sub_0202702C(const PokedexData *dexData, u8 param1)
 {
     u32 v0;
 
-    CheckPokedexIntegrity(param0);
+    CheckPokedexIntegrity(dexData);
 
     switch (param1) {
     case 0:
-        v0 = param0->unk_104;
+        v0 = dexData->unk_104;
         break;
     default:
         GF_ASSERT(0);
@@ -961,236 +961,236 @@ u32 sub_0202702C(const PokedexData *param0, u8 param1)
     return v0;
 }
 
-u32 sub_02027058(const PokedexData *param0, u16 param1, int param2)
+u32 sub_02027058(const PokedexData *dexData, u16 species, int param2)
 {
-    CheckPokedexIntegrity(param0);
+    CheckPokedexIntegrity(dexData);
 
-    if (sub_02026344(param1)) {
+    if (Pokedex_InvalidSpecies(species)) {
         return -1;
     }
 
-    if (!inline_02026FE8(param0, param1)) {
+    if (!Read_SeenSpecies(dexData, species)) {
         return -1;
     }
 
-    return sub_02026BAC(param0, param1, param2);
+    return sub_02026BAC(dexData, species, param2);
 }
 
-u32 sub_020270AC(const PokedexData *param0, int param1)
+u32 sub_020270AC(const PokedexData *dexData, int param1)
 {
-    CheckPokedexIntegrity(param0);
+    CheckPokedexIntegrity(dexData);
 
-    if (sub_02026400(param0) <= param1) {
+    if (sub_02026400(dexData) <= param1) {
         return -1;
     }
 
-    return inline_020270AC(param0, param1);
+    return inline_020270AC(dexData, param1);
 }
 
-u32 sub_020270DC(const PokedexData *param0)
+u32 sub_020270DC(const PokedexData *dexData)
 {
-    CheckPokedexIntegrity(param0);
-    return sub_02026400(param0);
+    CheckPokedexIntegrity(dexData);
+    return sub_02026400(dexData);
 }
 
-u32 sub_020270F8(const PokedexData *param0, int param1)
+u32 sub_020270F8(const PokedexData *dexData, int param1)
 {
-    CheckPokedexIntegrity(param0);
+    CheckPokedexIntegrity(dexData);
 
-    if (sub_02026464(param0, 422) <= param1) {
+    if (sub_02026464(dexData, 422) <= param1) {
         return -1;
     }
 
-    return sub_02026C24(param0, 422, param1);
+    return sub_02026C24(dexData, 422, param1);
 }
 
-u32 sub_02027130(const PokedexData *param0)
+u32 sub_02027130(const PokedexData *dexData)
 {
-    CheckPokedexIntegrity(param0);
-    return sub_02026464(param0, 422);
+    CheckPokedexIntegrity(dexData);
+    return sub_02026464(dexData, 422);
 }
 
-u32 sub_02027154(const PokedexData *param0, int param1)
+u32 sub_02027154(const PokedexData *dexData, int param1)
 {
-    CheckPokedexIntegrity(param0);
+    CheckPokedexIntegrity(dexData);
 
-    if (sub_02026464(param0, 423) <= param1) {
+    if (sub_02026464(dexData, 423) <= param1) {
         return -1;
     }
 
-    return sub_02026C24(param0, 423, param1);
+    return sub_02026C24(dexData, 423, param1);
 }
 
-u32 sub_0202718C(const PokedexData *param0)
+u32 sub_0202718C(const PokedexData *dexData)
 {
-    CheckPokedexIntegrity(param0);
-    return sub_02026464(param0, 423);
+    CheckPokedexIntegrity(dexData);
+    return sub_02026464(dexData, 423);
 }
 
-u32 sub_020271B0(const PokedexData *param0, int param1)
+u32 sub_020271B0(const PokedexData *dexData, int param1)
 {
-    CheckPokedexIntegrity(param0);
+    CheckPokedexIntegrity(dexData);
 
-    if (sub_020266F8(param0, 412) <= param1) {
+    if (sub_020266F8(dexData, 412) <= param1) {
         return -1;
     }
 
-    return sub_02026CFC(param0, 412, param1);
+    return sub_02026CFC(dexData, 412, param1);
 }
 
-u32 sub_020271E8(const PokedexData *param0)
+u32 sub_020271E8(const PokedexData *dexData)
 {
-    CheckPokedexIntegrity(param0);
-    return sub_020266F8(param0, 412);
+    CheckPokedexIntegrity(dexData);
+    return sub_020266F8(dexData, 412);
 }
 
-u32 sub_02027208(const PokedexData *param0, int param1)
+u32 sub_02027208(const PokedexData *dexData, int param1)
 {
-    CheckPokedexIntegrity(param0);
+    CheckPokedexIntegrity(dexData);
 
-    if (sub_020266F8(param0, 413) <= param1) {
+    if (sub_020266F8(dexData, 413) <= param1) {
         return -1;
     }
 
-    return sub_02026CFC(param0, 413, param1);
+    return sub_02026CFC(dexData, 413, param1);
 }
 
-u32 sub_02027240(const PokedexData *param0)
+u32 sub_02027240(const PokedexData *dexData)
 {
-    CheckPokedexIntegrity(param0);
-    return sub_020266F8(param0, 413);
+    CheckPokedexIntegrity(dexData);
+    return sub_020266F8(dexData, 413);
 }
 
-u32 sub_02027264(const PokedexData *param0, int param1)
+u32 sub_02027264(const PokedexData *dexData, int param1)
 {
-    CheckPokedexIntegrity(param0);
-    return sub_0202688C(param0, param1);
+    CheckPokedexIntegrity(dexData);
+    return sub_0202688C(dexData, param1);
 }
 
-u32 sub_02027288(const PokedexData *param0)
+u32 sub_02027288(const PokedexData *dexData)
 {
-    CheckPokedexIntegrity(param0);
-    return sub_020268B8(param0);
+    CheckPokedexIntegrity(dexData);
+    return sub_020268B8(dexData);
 }
 
-void sub_020272A4(PokedexData *param0, Pokemon *pokemon)
+void sub_020272A4(PokedexData *dexData, Pokemon *pokemon)
 {
-    u16 v0 = Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
+    u16 species = Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
     u32 v1 = Pokemon_GetValue(pokemon, MON_DATA_PERSONALITY, NULL);
     u32 v2 = Pokemon_GetGender(pokemon);
     u32 v3;
 
-    CheckPokedexIntegrity(param0);
+    CheckPokedexIntegrity(dexData);
 
-    if (sub_02026344(v0)) {
+    if (Pokedex_InvalidSpecies(species)) {
         return;
     }
 
-    if (!inline_02026FE8(param0, v0)) {
-        inline_0202736C_1(param0, v0, v1);
-        sub_020263D8(param0, v2, 0, v0);
+    if (!Read_SeenSpecies(dexData, species)) {
+        inline_0202736C_1(dexData, species, v1);
+        sub_020263D8(dexData, v2, 0, species);
     } else {
-        v3 = inline_02026BAC(param0, v0, 0);
+        v3 = inline_02026BAC(dexData, species, 0);
 
         if (v3 != v2) {
-            sub_020263D8(param0, v2, 1, v0);
+            sub_020263D8(dexData, v2, 1, species);
         }
     }
 
-    sub_02026A60(param0, v0, pokemon);
-    inline_0202736C(param0, v0);
+    sub_02026A60(dexData, species, pokemon);
+    Write_SeenSpecies(dexData, species);
 }
 
-void sub_0202736C(PokedexData *param0, Pokemon *param1)
+void sub_0202736C(PokedexData *dexData, Pokemon *param1)
 {
-    u16 v0 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
+    u16 species = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
     u32 v1 = Pokemon_GetValue(param1, MON_DATA_LANGUAGE, NULL);
     u32 v2 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
     u32 v3 = Pokemon_GetGender(param1);
     u32 v4;
 
-    CheckPokedexIntegrity(param0);
+    CheckPokedexIntegrity(dexData);
 
-    if (sub_02026344(v0)) {
+    if (Pokedex_InvalidSpecies(species)) {
         return;
     }
 
-    if (!inline_02026FE8(param0, v0)) {
-        inline_0202736C_1(param0, v0, v2);
-        sub_020263D8(param0, v3, 0, v0);
+    if (!Read_SeenSpecies(dexData, species)) {
+        inline_0202736C_1(dexData, species, v2);
+        sub_020263D8(dexData, v3, 0, species);
     } else {
-        v4 = inline_02026BAC(param0, v0, 0);
+        v4 = inline_02026BAC(dexData, species, 0);
 
         if (v4 != v3) {
-            sub_020263D8(param0, v3, 1, v0);
+            sub_020263D8(dexData, v3, 1, species);
         }
     }
 
-    sub_02026A60(param0, v0, param1);
-    sub_02026B88(param0, v0, v1);
+    sub_02026A60(dexData, species, param1);
+    sub_02026B88(dexData, species, v1);
 
-    inline_sub_0202736C_1(param0, v0);
-    inline_0202736C(param0, v0);
+    Write_CaughtSpecies(dexData, species);
+    Write_SeenSpecies(dexData, species);
 }
 
-void sub_02027454(PokedexData *param0)
+void sub_02027454(PokedexData *dexData)
 {
-    CheckPokedexIntegrity(param0);
-    param0->nationalDexObtained = 1;
+    CheckPokedexIntegrity(dexData);
+    dexData->nationalDexObtained = 1;
 }
 
-BOOL sub_02027474(const PokedexData *param0)
+BOOL Pokedex_NationalUnlocked(const PokedexData *dexData)
 {
-    CheckPokedexIntegrity(param0);
-    return param0->nationalDexObtained;
+    CheckPokedexIntegrity(dexData);
+    return dexData->nationalDexObtained;
 }
 
-BOOL sub_02027494(const PokedexData *param0)
+BOOL Pokedex_CanDetectForms(const PokedexData *dexData)
 {
-    CheckPokedexIntegrity(param0);
-    return param0->canDetectForms;
+    CheckPokedexIntegrity(dexData);
+    return dexData->canDetectForms;
 }
 
-void sub_020274B0(PokedexData *param0)
+void Pokedex_CanDetectForms_True(PokedexData *dexData)
 {
-    CheckPokedexIntegrity(param0);
-    param0->canDetectForms = 1;
+    CheckPokedexIntegrity(dexData);
+    dexData->canDetectForms = 1;
 }
 
-BOOL sub_020274D0(const PokedexData *param0, u16 param1, u32 param2)
+BOOL sub_020274D0(const PokedexData *dexData, u16 species, u32 param2)
 {
-    int v0;
+    int speciesInt;
 
     GF_ASSERT(param2 < 8);
 
-    CheckPokedexIntegrity(param0);
+    CheckPokedexIntegrity(dexData);
 
-    v0 = param1;
+    speciesInt = species;
     param2 = sub_020986CC(param2);
 
-    return param0->recordedLanguages[v0] & (1 << param2);
+    return dexData->recordedLanguages[speciesInt] & (1 << param2);
 }
 
-void sub_02027508(PokedexData *param0)
+void sub_02027508(PokedexData *dexData)
 {
-    param0->unk_319 = 1;
+    dexData->unk_319 = 1;
 }
 
-BOOL sub_02027514(const PokedexData *param0)
+BOOL sub_02027514(const PokedexData *dexData)
 {
-    return param0->unk_319;
+    return dexData->unk_319;
 }
 
-BOOL sub_02027520(const PokedexData *param0)
+BOOL sub_02027520(const PokedexData *dexData)
 {
-    CheckPokedexIntegrity(param0);
-    return param0->pokedexObtained;
+    CheckPokedexIntegrity(dexData);
+    return dexData->pokedexObtained;
 }
 
-void sub_02027540(PokedexData *param0)
+void sub_02027540(PokedexData *dexData)
 {
-    CheckPokedexIntegrity(param0);
-    param0->pokedexObtained = 1;
+    CheckPokedexIntegrity(dexData);
+    dexData->pokedexObtained = 1;
 }
 
 PokedexData *SaveData_Pokedex(SaveData *param0)
@@ -1201,54 +1201,54 @@ PokedexData *SaveData_Pokedex(SaveData *param0)
     return v0;
 }
 
-u32 sub_0202756C(const PokedexData *param0, int param1, int param2)
+u32 sub_0202756C(const PokedexData *dexData, int species, int param2)
 {
-    CheckPokedexIntegrity(param0);
+    CheckPokedexIntegrity(dexData);
 
-    switch (param1) {
-    case 201:
-        if (param2 < sub_020270DC(param0)) {
-            return sub_020270AC(param0, param2);
+    switch (species) {
+    case SPECIES_UNOWN:
+        if (param2 < sub_020270DC(dexData)) {
+            return sub_020270AC(dexData, param2);
         }
         break;
-    case 422:
-        if (param2 < sub_02027130(param0)) {
-            return sub_020270F8(param0, param2);
+    case SPECIES_SHELLOS:
+        if (param2 < sub_02027130(dexData)) {
+            return sub_020270F8(dexData, param2);
         }
         break;
-    case 423:
-        if (param2 < sub_0202718C(param0)) {
-            return sub_02027154(param0, param2);
+    case SPECIES_GASTRODON:
+        if (param2 < sub_0202718C(dexData)) {
+            return sub_02027154(dexData, param2);
         }
         break;
-    case 412:
-        if (param2 < sub_020271E8(param0)) {
-            return sub_020271B0(param0, param2);
+    case SPECIES_BURMY:
+        if (param2 < sub_020271E8(dexData)) {
+            return sub_020271B0(dexData, param2);
         }
         break;
-    case 413:
-        if (param2 < sub_02027240(param0)) {
-            return sub_02027208(param0, param2);
+    case SPECIES_WORMADAM:
+        if (param2 < sub_02027240(dexData)) {
+            return sub_02027208(dexData, param2);
         }
         break;
-    case 386:
-        if (param2 < sub_02027288(param0)) {
-            return sub_02027264(param0, param2);
+    case SPECIES_DEOXYS:
+        if (param2 < sub_02027288(dexData)) {
+            return sub_02027264(dexData, param2);
         }
         break;
-    case 492:
-        if (param2 < sub_02026464(param0, 492)) {
-            return sub_02026C24(param0, 492, param2);
+    case SPECIES_SHAYMIN:
+        if (param2 < sub_02026464(dexData, SPECIES_SHAYMIN)) {
+            return sub_02026C24(dexData, SPECIES_SHAYMIN, param2);
         }
         break;
-    case 487:
-        if (param2 < sub_02026464(param0, 487)) {
-            return sub_02026C24(param0, 487, param2);
+    case SPECIES_GIRATINA:
+        if (param2 < sub_02026464(dexData, SPECIES_GIRATINA)) {
+            return sub_02026C24(dexData, SPECIES_GIRATINA, param2);
         }
         break;
-    case 479:
-        if (param2 < sub_02026958(param0, 479)) {
-            return sub_02026CCC(param0, 479, param2);
+    case SPECIES_ROTOM:
+        if (param2 < sub_02026958(dexData, SPECIES_ROTOM)) {
+            return sub_02026CCC(dexData, SPECIES_ROTOM, param2);
         }
         break;
     default:

@@ -3,7 +3,7 @@
 
 typedef struct {
     int unk_00;
-    int unk_04;
+    int heapID;
     void *unk_08;
 } UnkStruct_ov21_021E6B20;
 

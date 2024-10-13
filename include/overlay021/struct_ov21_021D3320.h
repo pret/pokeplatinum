@@ -9,25 +9,25 @@
 #include "strbuf.h"
 
 typedef struct {
-    const PokedexData *unk_00;
-    UnkStruct_ov21_021D3A60 unk_04;
-    int unk_1730;
-    BOOL unk_1734;
-    int unk_1738;
-    int unk_173C;
+    const PokedexData *dexData;
+    pokedexCompletionStruct pokedexCompletion;
+    int isNationalDex;
+    BOOL nationalDexUnlocked;
+    int numEncountered;
+    int numCaught;
     int unk_1740;
-    int unk_1744;
-    HeightWeightData *unk_1748;
-    u32 unk_174C;
-    u32 unk_1750;
-    Strbuf *unk_1754;
+    int timeOfDay;
+    HeightWeightData *HWData;
+    u32 TrainerGameCode;
+    u32 TrainerGender;
+    Strbuf *trainerName;
     int unk_1758;
     u16 unk_175C;
     u16 unk_175E;
-    BOOL unk_1760;
-    BOOL unk_1764;
-    BOOL unk_1768;
-    BOOL unk_176C;
-} UnkStruct_ov21_021D3320;
+    BOOL pokedexSFlag_1;
+    BOOL pokedexSFlag_2;
+    BOOL pokedexSFlag_3;
+    BOOL pokedexSFlag_4;
+} pokedexStruct;
 
 #endif // POKEPLATINUM_STRUCT_OV21_021D3320_H

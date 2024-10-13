@@ -107,7 +107,7 @@ BOOL ScrCmd_0FA(ScriptContext *param0)
     v8.unk_01 = v4;
     v8.unk_02 = v6;
     v8.unk_03 = sub_0206A954(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
-    v8.unk_04 = sub_02027474(SaveData_Pokedex(param0->fieldSystem->saveData));
+    v8.unk_04 = Pokedex_NationalUnlocked(SaveData_Pokedex(param0->fieldSystem->saveData));
     v8.unk_05 = v7;
     v8.unk_08 = v1;
     v8.unk_0C = v0;

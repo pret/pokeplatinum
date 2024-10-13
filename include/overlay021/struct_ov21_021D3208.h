@@ -6,13 +6,13 @@
 #include "trainer_info.h"
 
 typedef struct {
-    const PokedexData *unk_00;
+    const PokedexData *dexData;
     const TrainerInfo *unk_04;
-    int unk_08;
-    BOOL unk_0C;
-    BOOL unk_10;
-    BOOL unk_14;
-    BOOL unk_18;
+    int timeOfDay;
+    BOOL pokedexSFlag_1;
+    BOOL pokedexSFlag_2;
+    BOOL pokedexSFlag_3;
+    BOOL pokedexSFlag_4;
     u32 unk_1C;
     u32 unk_20;
 } UnkStruct_ov21_021D3208;

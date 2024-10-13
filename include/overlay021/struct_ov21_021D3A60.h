@@ -6,12 +6,12 @@
 #include "overlay021/struct_ov21_021D37DC.h"
 
 typedef struct {
-    UnkStruct_ov21_021D37DC unk_00[NATIONAL_DEX_COUNT];
+    speciesCaughtStatusStruct caughtStatusArray[NATIONAL_DEX_COUNT];
     int unk_F68;
-    int unk_F6C;
-    int unk_F70[NATIONAL_DEX_COUNT];
+    int numEncountered;// number of pokemon seen
+    int encounteredIndexArray[NATIONAL_DEX_COUNT];// dex number for appearing in dex, dexLength+1 otherwise
     int unk_1724;
-    int unk_1728;
-} UnkStruct_ov21_021D3A60;
+    int numSpecies;
+} pokedexCompletionStruct;
 
 #endif // POKEPLATINUM_STRUCT_OV21_021D3A60_H

@@ -8,7 +8,7 @@
 
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
-#include "overlay021/ov21_021D3208.h"
+#include "overlay021/pokedex_sort.h"
 #include "overlay021/ov21_021DC9BC.h"
 #include "overlay021/ov21_021E29DC.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
@@ -34,7 +34,7 @@
 
 typedef struct {
     UnkStruct_ov21_021E68F4 *unk_00;
-    UnkStruct_ov21_021D3320 *unk_04;
+    pokedexStruct *unk_04;
     UnkStruct_ov21_021E68F4 *unk_08;
 } UnkStruct_ov21_021DDDA4;
 
@@ -198,7 +198,7 @@ static int ov21_021DDE4C(UnkStruct_ov21_021E6A68 *param0, void *param1)
     UnkStruct_ov21_021DDDA4 *v0 = param1;
     UnkStruct_ov21_021DDE4C *v1;
 
-    v1 = Heap_AllocFromHeap(param0->unk_04, sizeof(UnkStruct_ov21_021DDE4C));
+    v1 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov21_021DDE4C));
 
     GF_ASSERT(v1);
     memset(v1, 0, sizeof(UnkStruct_ov21_021DDE4C));
@@ -206,7 +206,7 @@ static int ov21_021DDE4C(UnkStruct_ov21_021E6A68 *param0, void *param1)
     param0->unk_08 = v1;
 
     ov21_021DE5A4(v1, v0);
-    ov21_021DE2EC(v1, v0, param0->unk_04);
+    ov21_021DE2EC(v1, v0, param0->heapID);
 
     return 1;
 }
@@ -251,26 +251,26 @@ static int ov21_021DDEC8(void *param0, UnkStruct_ov21_021E6B20 *param1, const vo
 
     switch (param1->unk_00) {
     case 0:
-        param1->unk_08 = Heap_AllocFromHeap(param1->unk_04, sizeof(UnkStruct_ov21_021DDEC8));
+        param1->unk_08 = Heap_AllocFromHeap(param1->heapID, sizeof(UnkStruct_ov21_021DDEC8));
         memset(param1->unk_08, 0, sizeof(UnkStruct_ov21_021DDEC8));
         param1->unk_00++;
         break;
     case 1:
-        ov21_021DE100(v3, v2, param1->unk_04);
+        ov21_021DE100(v3, v2, param1->heapID);
         ov21_021DE49C(v3, v0, v1);
-        ov21_021DE4D4(v3, v2, v0, param1->unk_04);
+        ov21_021DE4D4(v3, v2, v0, param1->heapID);
         ov21_021DE058(v3, v2, v0, 1);
         param1->unk_00++;
         break;
     case 2:
-        ov21_021DE4D4(v3, v2, v0, param1->unk_04);
+        ov21_021DE4D4(v3, v2, v0, param1->heapID);
 
         if (ov21_021DE0C4(v3, v2, v0, 1)) {
             param1->unk_00++;
         }
         break;
     case 3:
-        ov21_021DE4D4(v3, v2, v0, param1->unk_04);
+        ov21_021DE4D4(v3, v2, v0, param1->heapID);
         ov21_021D25AC(&v2->unk_00->unk_1E0, 0);
         return 1;
     default:
@@ -289,7 +289,7 @@ static int ov21_021DDF80(void *param0, UnkStruct_ov21_021E6B20 *param1, const vo
 
     ov21_021DE49C(v3, v0, v1);
     ov21_021DE630(v2, v1, v0);
-    ov21_021DE4D4(v3, v2, v0, param1->unk_04);
+    ov21_021DE4D4(v3, v2, v0, param1->heapID);
 
     return 0;
 }
@@ -313,7 +313,7 @@ static int ov21_021DDFB4(void *param0, UnkStruct_ov21_021E6B20 *param1, const vo
         }
         break;
     case 2:
-        ov21_021DE128(v3, v2, param1->unk_04);
+        ov21_021DE128(v3, v2, param1->heapID);
         param1->unk_00++;
         break;
     case 3:

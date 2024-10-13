@@ -205,5 +205,28 @@
             "level_min": 0,
             "species": "SPECIES_NONE"
         }
-    ]
+    ],
+    "special_encounters": [],
+    "specialnatdex_encounters": [
+        "SPECIES_CLEFAIRY",
+        "SPECIES_JIGGLYPUFF",
+        "SPECIES_MEOWTH",
+        "SPECIES_CHANSEY",
+        "SPECIES_DITTO",
+        "SPECIES_EEVEE",
+        "SPECIES_CLEFFA",
+        "SPECIES_IGGLYBUFF",
+        "SPECIES_MARILL",
+        "SPECIES_AZURILL",
+        "SPECIES_PLUSLE",
+        "SPECIES_MINUN",
+        "SPECIES_CASTFORM",
+        "SPECIES_BONSLY",
+        "SPECIES_MIME_JR",
+        "SPECIES_HAPPINY"
+    ],
+    "map_category": {
+        "map_type": "dungeon",
+        "map_number": 14
+    }
 }

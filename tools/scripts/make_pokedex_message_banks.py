@@ -21,15 +21,16 @@ args = argparser.parse_args()
 source_dir = pathlib.Path(args.source_dir)
 output_dir = pathlib.Path(args.output_dir)
 
-def Convert_weight(weight_metric):
+def Convert_weight(hectograms):
     conv = 4.536
-    lbs = round(weight_metric/conv,1)
+    lbs = round(hectograms/conv,1)
     if lbs == 1505.7:
         lbs = 1505.8
     elif lbs == 740.7:
         lbs = 740.8
     elif lbs == 1653.4:
         lbs = 1653.5
+
     if lbs >= 1000:
         return f'{lbs} lbs.'
     if lbs >= 100:
@@ -38,13 +39,15 @@ def Convert_weight(weight_metric):
         return f'  {lbs} lbs.'
     return f'   {lbs} lbs.'
 
-def Convert_Height(height_metric):
-    conv = 3.048
-    feet = int(height_metric//conv)
-    inches = round((height_metric%conv)/conv*12)
+def Convert_Height(decimeters):
+    conv = 3.937
+    feet = 0
+    inches = round(decimeters*conv)
+
     while inches >= 12:
         feet += 1
         inches -= 12
+
     if feet >= 100:
         return f'{feet}’{inches:02}”'
     if feet >= 10:
@@ -54,15 +57,15 @@ def Convert_Height(height_metric):
 # variables
 NUM_POKEMON = len(PokemonSpecies)
 
-name_data = ['' for i in range(NUM_POKEMON)]
-name_articles = ['' for i in range(NUM_POKEMON)]
-dex_entry = ['' for i in range(NUM_POKEMON-2)]
+nameData = ['' for i in range(NUM_POKEMON)]
+nameArticles = ['' for i in range(NUM_POKEMON)]
+dexEntries = ['' for i in range(NUM_POKEMON-2)]
 heights = ['' for i in range(NUM_POKEMON-2)]
 heights_gira = ['' for i in range(NUM_POKEMON-2)]
 weights = ['' for i in range(NUM_POKEMON-2)]
 weights_gira = ['' for i in range(NUM_POKEMON-2)]
-name_number = ['' for i in range(NUM_POKEMON-2)]
-dex_category = ['' for i in range(NUM_POKEMON-2)]
+nameNumber = ['' for i in range(NUM_POKEMON-2)]
+dexCategories = ['' for i in range(NUM_POKEMON-2)]
 
 # collect data
 for i, species in enumerate(PokemonSpecies):
@@ -75,22 +78,22 @@ for i, species in enumerate(PokemonSpecies):
         pkdata = json.load(data_file)
 
     if subdir not in ['egg', 'bad_egg']:
-        pokemon_name = pkdata['name'].upper()
+        pokemonName = pkdata['name'].upper()
     else:
-        pokemon_name = pkdata['name']
+        pokemonName = pkdata['name']
     
-    name_data[i] = pokemon_name
+    nameData[i] = pokemonName
 
-    if pokemon_name[0] in ['A','E','I','O','U']:
-        name_articles[i] = 'an {COLOR 255}' + pokemon_name + '{COLOR 0}'
+    if pokemonName[0] in ['A','E','I','O','U']:
+        nameArticles[i] = 'an {COLOR 255}' + pokemonName + '{COLOR 0}'
     else:
-        name_articles[i] = 'a {COLOR 255}' + pokemon_name + '{COLOR 0}'
+        nameArticles[i] = 'a {COLOR 255}' + pokemonName + '{COLOR 0}'
 
     # eggs do not have dex entries
     if subdir in ['egg', 'bad_egg']:
         continue
 
-    name_number[i] = f'{i:03}  ' + pokemon_name
+    nameNumber[i] = f'{i:03}  ' + pokemonName
     pkdexdata = pkdata['pokedex_data']
     if subdir == 'giratina':
         heights_gira[i] = Convert_Height(pkdexdata[1]['height'])
@@ -99,13 +102,13 @@ for i, species in enumerate(PokemonSpecies):
     else:
         heights_gira[i] = Convert_Height(pkdexdata['height'])
         weights_gira[i] = Convert_weight(pkdexdata['weight'])
-    dex_entry[i] = str(pkdexdata['entry_text']).replace('\n','\\n')
-    dex_category[i] = pkdexdata['category']
+    dexEntries[i] = str(pkdexdata['entry_text']).replace('\n','\\n')
+    dexCategories[i] = pkdexdata['category']
     heights[i] = Convert_Height(pkdexdata['height'])
     weights[i] = Convert_weight(pkdexdata['weight'])
 
     if subdir == '000':
-        name_number[i] = '----------'
+        nameNumber[i] = '----------'
         heights[i] = '???’??”'
         heights_gira[i] = '???’??”'
         weights[i] = '????.? lbs.'
@@ -151,17 +154,17 @@ fileNumber = [
     718
 ]
 fileArrays = [
-    name_data,
-    name_articles,
-    dex_entry,
+    nameData,
+    nameArticles,
+    dexEntries,
     weights,
     weights_gira,
     heights,
     heights_gira,
-    name_number,
-    name_number,
-    name_number,
-    dex_category
+    nameNumber,
+    nameNumber,
+    nameNumber,
+    dexCategories
 ]
 fileData = [bytes() for i in range(len(fileNames))]
 emptyString = 'empty_string'

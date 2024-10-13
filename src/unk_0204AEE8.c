@@ -121,7 +121,7 @@ StringTemplate *sub_0204AEE8(SaveData *param0, u16 param1, u16 param2, u8 param3
     for (v0 = 0; v0 < 18; v0++) {
         v1 = sub_02078824(v0);
 
-        if (sub_02026FE8(v4, v1)) {
+        if (Pokedex_EncounteredSpecies(v4, v1)) {
             MessageLoader_GetStrbuf(v6, v1, v2);
             StringTemplate_SetStrbuf(v5, (*param4) + 1, v2, param2, param3, GAME_LANGUAGE);
             (*param4)++;

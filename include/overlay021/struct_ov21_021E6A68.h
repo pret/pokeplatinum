@@ -3,7 +3,7 @@
 
 typedef struct {
     int unk_00;
-    int unk_04;
+    int heapID;
     void *unk_08;
     BOOL unk_0C;
     BOOL unk_10;

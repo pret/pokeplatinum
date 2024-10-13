@@ -96,17 +96,17 @@ for i, species in enumerate(PokemonSpecies):
         binData[11] = binData[11] + i.to_bytes(2, 'little')
 
         # body shape
-        body_idx = PokemonBodyShape[pkdexdata['body_shape']].value + PokemonType['NUMBER_OF_MON_TYPES'].value + 26
-        binData[body_idx] = binData[body_idx] + i.to_bytes(2, 'little')
+        bodyIdx = PokemonBodyShape[pkdexdata['body_shape']].value + PokemonType['NUMBER_OF_MON_TYPES'].value + 26
+        binData[bodyIdx] = binData[bodyIdx] + i.to_bytes(2, 'little')
 
         # pokemon types
-        type_idx = 27
+        typeIdx = 27
         for type in PokemonType:
             if type.name in ['TYPE_MYSTERY', 'NUMBER_OF_MON_TYPES']:
                 continue
             if type.name in pkdata['types']:
-                binData[type_idx] = binData[type_idx] + i.to_bytes(2, 'little')
-            type_idx += 1
+                binData[typeIdx] = binData[typeIdx] + i.to_bytes(2, 'little')
+            typeIdx += 1
         
         # store for later
         heightData[i-1] = pkdexdata['height']
@@ -115,8 +115,8 @@ for i, species in enumerate(PokemonSpecies):
 
 # sinnoh dex order
 with open(args.pokedex) as data_file:
-    dex_data = json.load(data_file)
-    for mon in dex_data:
+    dexData = json.load(data_file)
+    for mon in dexData:
         if mon not in ['SPECIES_EGG', 'SPECIES_BAD_EGG', 'SPECIES_NONE', 'SPECIES_ARCEUS']:
             binData[12] = binData[12] + PokemonSpecies[mon].value.to_bytes(2, 'little')
 

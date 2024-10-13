@@ -2,8 +2,8 @@
 #define POKEPLATINUM_STRUCT_OV21_021D37DC_H
 
 typedef struct {
-    int unk_00;
-    int unk_04;
-} UnkStruct_ov21_021D37DC;
+    int species;
+    int caughtStatus;// 2 for caught, 1 for seen, 0 otherwise
+} speciesCaughtStatusStruct;
 
 #endif // POKEPLATINUM_STRUCT_OV21_021D37DC_H

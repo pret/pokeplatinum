@@ -8,7 +8,7 @@
 
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
-#include "overlay021/ov21_021D3208.h"
+#include "overlay021/pokedex_sort.h"
 #include "overlay021/ov21_021E29DC.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021D13FC.h"
@@ -35,7 +35,7 @@
 
 typedef struct {
     int *unk_00;
-    UnkStruct_ov21_021D3320 *unk_04;
+    pokedexStruct *pokedexS;
     UnkStruct_ov21_021E68F4 *unk_08;
 } UnkStruct_ov21_021E6104;
 
@@ -126,7 +126,7 @@ static UnkStruct_ov21_021E6104 *ov21_021E608C(int param0, UnkStruct_ov21_021D0F6
     memset(v0, 0, sizeof(UnkStruct_ov21_021E6104));
 
     v0->unk_00 = ov21_021D138C(param1);
-    v0->unk_04 = ov21_021D13EC(param1);
+    v0->pokedexS = ov21_021D13EC(param1);
     v0->unk_08 = ov21_021D1410(param1, 5);
 
     return v0;
@@ -178,7 +178,7 @@ static int ov21_021E6134(UnkStruct_ov21_021E6A68 *param0, void *param1)
     UnkStruct_ov21_021E6104 *v0 = param1;
     UnkStruct_ov21_021E6134 *v1;
 
-    v1 = Heap_AllocFromHeap(param0->unk_04, sizeof(UnkStruct_ov21_021E6134));
+    v1 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov21_021E6134));
 
     GF_ASSERT(v1);
     memset(v1, 0, sizeof(UnkStruct_ov21_021E6134));
@@ -224,12 +224,12 @@ static int ov21_021E617C(void *param0, UnkStruct_ov21_021E6B20 *param1, const vo
 
     switch (param1->unk_00) {
     case 0:
-        param1->unk_08 = Heap_AllocFromHeap(param1->unk_04, sizeof(UnkStruct_ov21_021E6274));
+        param1->unk_08 = Heap_AllocFromHeap(param1->heapID, sizeof(UnkStruct_ov21_021E6274));
         memset(param1->unk_08, 0, sizeof(UnkStruct_ov21_021E6274));
         param1->unk_00++;
         break;
     case 1:
-        ov21_021E6338(v3, v2, v0, v1, param1->unk_04);
+        ov21_021E6338(v3, v2, v0, v1, param1->heapID);
         ov21_021E628C(v3, v2, v0, 1);
         param1->unk_00++;
         break;
@@ -408,7 +408,7 @@ static void ov21_021E6518(UnkStruct_ov21_021E6274 *param0, UnkStruct_ov21_021E61
     VecFx32 v3;
     short v4;
     short v5;
-    int v6 = ov21_021D37BC(param2->unk_04);
+    int species = Pokedex_Sort_CurrentSpecies(param2->pokedexS);
 
     sub_020093B4(&v0, 93 + 7000, 14 + 7000, 91 + 7000, 92 + 7000, 0xffffffff, 0xffffffff, 0, 1, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
@@ -418,15 +418,15 @@ static void ov21_021E6518(UnkStruct_ov21_021E6274 *param0, UnkStruct_ov21_021E61
     v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
     v1.heapID = param3;
 
-    v4 = Pokedex_HeightWeightData_TrainerPos(param2->unk_04->unk_1748, v6);
-    v5 = Pokedex_HeightWeightData_TrainerScale(param2->unk_04->unk_1748, v6);
+    v4 = Pokedex_HeightWeightData_TrainerPos(param2->pokedexS->HWData, species);
+    v5 = Pokedex_HeightWeightData_TrainerScale(param2->pokedexS->HWData, species);
 
     v1.position.x = 168 << FX32_SHIFT;
     v1.position.y = (88 + v4) << FX32_SHIFT;
 
     param0->unk_10 = CellActorCollection_Add(&v1);
 
-    if (ov21_021D3920(param2->unk_04) == 0) {
+    if (Pokedex_Sort_TrainerGender(param2->pokedexS) == 0) {
         CellActor_SetAnim(param0->unk_10, 5);
     } else {
         CellActor_SetAnim(param0->unk_10, 6);
@@ -474,14 +474,14 @@ static void ov21_021E6600(UnkStruct_ov21_021E6118 *param0, int param1)
 static void ov21_021E66B0(UnkStruct_ov21_021E6118 *param0, const UnkStruct_ov21_021E6104 *param1, int param2)
 {
     Strbuf *v0 = Strbuf_Init(32, param2);
-    int v2 = ov21_021D37BC(param1->unk_04);
-    Strbuf *v3 = MessageUtil_SpeciesName(v2, param2);
+    int species = Pokedex_Sort_CurrentSpecies(param1->pokedexS);
+    Strbuf *v3 = MessageUtil_SpeciesName(species, param2);
 
     int heightMessageBankIndex = Height_Message_Bank_Index();
     MessageLoader *v1 = MessageLoader_Init(0, 26, heightMessageBankIndex, param2);
 
     sub_0201D78C(&param0->unk_00->unk_04, 0, v3, 26, 152, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    MessageLoader_GetStrbuf(v1, v2, v0);
+    MessageLoader_GetStrbuf(v1, species, v0);
 
     {
         u32 v5 = 32 + 78 - sub_02002D7C(0, v0, 0);
@@ -493,9 +493,9 @@ static void ov21_021E66B0(UnkStruct_ov21_021E6118 *param0, const UnkStruct_ov21_
 
     v1 = MessageLoader_Init(0, 26, 697, param2);
 
-    sub_0201D78C(&param0->unk_00->unk_04, 0, ov21_021D3914(param1->unk_04), 146, 152, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    sub_0201D78C(&param0->unk_00->unk_04, 0, Pokedex_Sort_TrainerName(param1->pokedexS), 146, 152, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
-    if (ov21_021D3920(param1->unk_04) == 0) {
+    if (Pokedex_Sort_TrainerGender(param1->pokedexS) == 0) {
         MessageLoader_GetStrbuf(v1, 95, v0);
     } else {
         MessageLoader_GetStrbuf(v1, 96, v0);
@@ -515,12 +515,12 @@ static void ov21_021E67C8(UnkStruct_ov21_021E6118 *param0, const UnkStruct_ov21_
     Sprite *v0 = ov21_021D2170(param0->unk_00);
     short v1;
     short v2;
-    int v3 = ov21_021D37BC(param1->unk_04);
+    int species = Pokedex_Sort_CurrentSpecies(param1->pokedexS);
 
-    v1 = Pokedex_HeightWeightData_PokemonPos(param1->unk_04->unk_1748, v3);
-    v2 = Pokedex_HeightWeightData_PokemonScale(param1->unk_04->unk_1748, v3);
+    v1 = Pokedex_HeightWeightData_PokemonPos(param1->pokedexS->HWData, species);
+    v2 = Pokedex_HeightWeightData_PokemonScale(param1->pokedexS->HWData, species);
 
-    ov21_021D1890(param0->unk_00, param1->unk_04, v3, 2, 88, 88 + v1);
+    ov21_021D1890(param0->unk_00, param1->pokedexS, species, 2, 88, 88 + v1);
 
     sub_02007DEC(v0, 6, 0);
     sub_020086FC(v0, 15, 15, 0, 0);

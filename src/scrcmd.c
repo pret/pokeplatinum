@@ -6489,7 +6489,7 @@ static BOOL ScrCmd_218(ScriptContext *ctx)
     *v1 = 25;
 
     for (v4 = 1, v5 = 0; v4 <= NATIONAL_DEX_COUNT; v4++) {
-        if ((sub_02026FE8(v0, v4) == 1) && (Pokemon_SinnohDexNumber(v4) != 0)) {
+        if ((Pokedex_EncounteredSpecies(v0, v4) == 1) && (Pokemon_SinnohDexNumber(v4) != 0)) {
             if (v5 == v3) {
                 *v1 = v4;
                 break;
@@ -6585,7 +6585,7 @@ static BOOL ScrCmd_22B(ScriptContext *ctx)
 
 static BOOL ScrCmd_22C(ScriptContext *ctx)
 {
-    sub_020274B0(SaveData_Pokedex(ctx->fieldSystem->saveData));
+    Pokedex_CanDetectForms_True(SaveData_Pokedex(ctx->fieldSystem->saveData));
     return 0;
 }
 
@@ -6600,7 +6600,7 @@ static BOOL ScrCmd_22D(ScriptContext *ctx)
         sub_02027454(SaveData_Pokedex(ctx->fieldSystem->saveData));
         TrainerInfo_GiveNationalDex(SaveData_GetTrainerInfo(ctx->fieldSystem->saveData));
     } else if (v0 == 2) {
-        *v1 = sub_02027474(SaveData_Pokedex(ctx->fieldSystem->saveData));
+        *v1 = Pokedex_NationalUnlocked(SaveData_Pokedex(ctx->fieldSystem->saveData));
     } else {
         GF_ASSERT(FALSE);
     }
