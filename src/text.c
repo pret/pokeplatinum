@@ -3,6 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/font.h"
+#include "constants/heap.h"
+#include "constants/narc.h"
+
 #include "struct_defs/struct_0205AA50.h"
 
 #include "font.h"
@@ -14,394 +18,342 @@
 #include "unk_02006E3C.h"
 #include "unk_02018340.h"
 
-static int sub_0201D9E8(TextPrinter *param0);
-static void sub_0201D97C(SysTask *param0, void *param1);
-static u8 sub_0201D67C(SysTaskFunc param0, void *param1, u32 param2);
-static void sub_0201D6B0(u8 param0);
-static void sub_0201DB48(TextPrinter *param0);
-static void sub_0201DBD8(TextPrinter *param0);
-static u8 *sub_0201DB50(void);
+static enum RenderResult TextPrinter_Render(TextPrinter *param0);
+static u8 Text_CreatePrinterTask(SysTaskFunc taskFunc, TextPrinter *printer, u32 priority);
+static void Text_DestroyPrinterTask(u8 printerID);
+static void Text_ZeroPrinterIconGfx(TextPrinter *printer);
+static void Text_FreePrinterIconGfx(TextPrinter *printer);
+static u8 *Text_LoadScreenIndicatorGfx(void);
+
+static void SysTask_RunTextPrinter(SysTask *task, void *data);
 
 static const FontAttributes *sFontAttributesPtr = NULL;
-static u8 Unk_021C04D8 = 0;
+
+static u8 sPausePrinter = FALSE;
+static SysTask *sTextPrinterTasks[MAX_TEXT_PRINTERS] = { 0 };
+static u16 sFontHalfRowLookupTable[4 * 4 * 4 * 4];
+static u16 sBgColor, sFgColor, sShadowColor;
 
 void Text_SetFontAttributesPtr(const FontAttributes *fontAttributes)
 {
     sFontAttributesPtr = fontAttributes;
 }
 
-static SysTask *Unk_021C04E0[8] = { 0 };
-
-static u8 sub_0201D67C(SysTaskFunc param0, void *param1, u32 param2)
+static u8 Text_CreatePrinterTask(SysTaskFunc taskFunc, TextPrinter *printer, u32 priority)
 {
-    int v0;
+    int i;
+    for (i = 0; i < MAX_TEXT_PRINTERS; i++) {
+        if (sTextPrinterTasks[i] == NULL) {
+            sTextPrinterTasks[i] = SysTask_CreateOnPrintQueue(taskFunc, printer, priority);
 
-    for (v0 = 0; v0 < 8; v0++) {
-        if (Unk_021C04E0[v0] == NULL) {
-            Unk_021C04E0[v0] = sub_0200DA20(param0, param1, param2);
-
-            if (Unk_021C04E0[v0] == NULL) {
-                v0 = 8;
+            if (sTextPrinterTasks[i] == NULL) {
+                i = MAX_TEXT_PRINTERS;
             }
 
             break;
         }
     }
 
-    return v0;
+    return i;
 }
 
-static void sub_0201D6B0(u8 param0)
+static void Text_DestroyPrinterTask(u8 printerID)
 {
-    GF_ASSERT(param0 < 8);
-    GF_ASSERT(Unk_021C04E0[param0] != NULL);
+    GF_ASSERT(printerID < MAX_TEXT_PRINTERS);
+    GF_ASSERT(sTextPrinterTasks[printerID] != NULL);
 
-    if ((param0 < 8) && (Unk_021C04E0[param0] != NULL)) {
-        TextPrinter *v0 = SysTask_GetParam(Unk_021C04E0[param0]);
+    if (printerID < MAX_TEXT_PRINTERS && sTextPrinterTasks[printerID] != NULL) {
+        TextPrinter *printer = SysTask_GetParam(sTextPrinterTasks[printerID]);
 
-        if (v0) {
-            sub_0201DBD8(v0);
-            Heap_FreeToHeap(v0);
+        if (printer) {
+            Text_FreePrinterIconGfx(printer);
+            Heap_FreeToHeap(printer);
         }
 
-        SysTask_Done(Unk_021C04E0[param0]);
-        Unk_021C04E0[param0] = NULL;
+        SysTask_Done(sTextPrinterTasks[printerID]);
+        sTextPrinterTasks[printerID] = NULL;
     }
 }
 
-static BOOL sub_0201D6F8(u8 param0)
+static BOOL Text_IsPrinterTaskActive(u8 printerID)
 {
-    return Unk_021C04E0[param0] != NULL;
+    return sTextPrinterTasks[printerID] != NULL;
 }
 
-void Text_ResetAllPrinters(void)
+void Text_ResetAllPrinters()
 {
-    int v0;
-
-    for (v0 = 0; v0 < 8; v0++) {
-        Unk_021C04E0[v0] = NULL;
+    for (int i = 0; i < MAX_TEXT_PRINTERS; i++) {
+        sTextPrinterTasks[i] = NULL;
     }
 }
 
-u8 Text_IsPrinterActive(u8 param0)
+u8 Text_IsPrinterActive(u8 printerID)
 {
-    return sub_0201D6F8(param0);
+    return Text_IsPrinterTaskActive(printerID);
 }
 
-void Text_RemovePrinter(u8 param0)
+void Text_RemovePrinter(u8 printerID)
 {
-    sub_0201D6B0(param0);
+    Text_DestroyPrinterTask(printerID);
 }
 
 u8 Text_AddPrinterWithParams(Window *window, u32 fontID, const Strbuf *strbuf, u32 xOffset, u32 yOffset, u32 renderDelay, TextPrinterCallback callback)
 {
-    TextPrinterTemplate v0;
+    TextPrinterTemplate template;
 
-    v0.toPrint.strbuf = strbuf;
-    v0.window = window;
-    v0.fontID = fontID;
-    v0.x = xOffset;
-    v0.y = yOffset;
-    v0.currX = xOffset;
-    v0.currY = yOffset;
-    v0.letterSpacing = sFontAttributesPtr[fontID].letterSpacing;
-    v0.lineSpacing = sFontAttributesPtr[fontID].lineSpacing;
-    v0.dummy14 = sFontAttributesPtr[fontID].dummy;
-    v0.fgColor = sFontAttributesPtr[fontID].fgColor;
-    v0.bgColor = sFontAttributesPtr[fontID].bgColor;
-    v0.shadowColor = sFontAttributesPtr[fontID].shadowColor;
-    v0.glyphTable = 0;
-    v0.dummy1A = 0;
-    v0.cacheColor = 0xFF;
+    template.toPrint.strbuf = strbuf;
+    template.window = window;
+    template.fontID = fontID;
+    template.x = xOffset;
+    template.y = yOffset;
+    template.currX = xOffset;
+    template.currY = yOffset;
+    template.letterSpacing = sFontAttributesPtr[fontID].letterSpacing;
+    template.lineSpacing = sFontAttributesPtr[fontID].lineSpacing;
+    template.dummy14 = sFontAttributesPtr[fontID].dummy;
+    template.fgColor = sFontAttributesPtr[fontID].fgColor;
+    template.bgColor = sFontAttributesPtr[fontID].bgColor;
+    template.shadowColor = sFontAttributesPtr[fontID].shadowColor;
+    template.glyphTable = 0;
+    template.dummy1A = 0;
+    template.cacheColor = 0xFF;
 
-    return Text_AddPrinter(&v0, renderDelay, callback);
+    return Text_AddPrinter(&template, renderDelay, callback);
 }
 
-u8 Text_AddPrinterWithParamsAndColor(Window *param0, u32 param1, const Strbuf *param2, u32 param3, u32 param4, u32 param5, u32 param6, TextPrinterCallback param7)
+u8 Text_AddPrinterWithParamsAndColor(Window *window, u32 fontID, const Strbuf *strbuf, u32 xOffset, u32 yOffset, u32 renderDelay, u32 color, TextPrinterCallback callback)
 {
-    TextPrinterTemplate v0;
+    TextPrinterTemplate template;
 
-    v0.toPrint.strbuf = param2;
-    v0.window = param0;
-    v0.fontID = param1;
-    v0.x = param3;
-    v0.y = param4;
-    v0.currX = param3;
-    v0.currY = param4;
-    v0.letterSpacing = sFontAttributesPtr[param1].letterSpacing;
-    v0.lineSpacing = sFontAttributesPtr[param1].lineSpacing;
-    v0.dummy14 = sFontAttributesPtr[param1].dummy;
-    v0.fgColor = (((param6) >> 16) & 0xff);
-    v0.shadowColor = (((param6) >> 8) & 0xff);
-    v0.bgColor = (((param6) >> 0) & 0xff);
-    v0.glyphTable = 0;
-    v0.dummy1A = 0;
-    v0.cacheColor = 0xFF;
+    template.toPrint.strbuf = strbuf;
+    template.window = window;
+    template.fontID = fontID;
+    template.x = xOffset;
+    template.y = yOffset;
+    template.currX = xOffset;
+    template.currY = yOffset;
+    template.letterSpacing = sFontAttributesPtr[fontID].letterSpacing;
+    template.lineSpacing = sFontAttributesPtr[fontID].lineSpacing;
+    template.dummy14 = sFontAttributesPtr[fontID].dummy;
+    template.fgColor = (color >> FONT_COLOR_FG_SHIFT) & FONT_COLOR_MASK;
+    template.shadowColor = (color >> FONT_COLOR_SHADOW_SHIFT) & FONT_COLOR_MASK;
+    template.bgColor = (color >> FONT_COLOR_BG_SHIFT) & FONT_COLOR_MASK;
+    template.glyphTable = 0;
+    template.dummy1A = 0;
+    template.cacheColor = 0xFF;
 
-    return Text_AddPrinter(&v0, param5, param7);
+    return Text_AddPrinter(&template, renderDelay, callback);
 }
 
-u8 Text_AddPrinterWithParamsColorAndSpacing(Window *param0, u32 param1, const Strbuf *param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, TextPrinterCallback param9)
+u8 Text_AddPrinterWithParamsColorAndSpacing(Window *window, u32 fontID, const Strbuf *strbuf, u32 xOffset, u32 yOffset, u32 renderDelay, u32 color, u32 letterSpacing, u32 lineSpacing, TextPrinterCallback callback)
 {
-    TextPrinterTemplate v0;
+    TextPrinterTemplate template;
 
-    v0.toPrint.strbuf = param2;
-    v0.window = param0;
-    v0.fontID = param1;
-    v0.x = param3;
-    v0.y = param4;
-    v0.currX = param3;
-    v0.currY = param4;
-    v0.letterSpacing = param7;
-    v0.lineSpacing = param8;
-    v0.dummy14 = sFontAttributesPtr[param1].dummy;
-    v0.fgColor = (((param6) >> 16) & 0xff);
-    v0.shadowColor = (((param6) >> 8) & 0xff);
-    v0.bgColor = (((param6) >> 0) & 0xff);
-    v0.glyphTable = 0;
-    v0.dummy1A = 0;
-    v0.cacheColor = 0xFF;
+    template.toPrint.strbuf = strbuf;
+    template.window = window;
+    template.fontID = fontID;
+    template.x = xOffset;
+    template.y = yOffset;
+    template.currX = xOffset;
+    template.currY = yOffset;
+    template.letterSpacing = letterSpacing;
+    template.lineSpacing = lineSpacing;
+    template.dummy14 = sFontAttributesPtr[fontID].dummy;
+    template.fgColor = (color >> FONT_COLOR_FG_SHIFT) & FONT_COLOR_MASK;
+    template.shadowColor = (color >> FONT_COLOR_SHADOW_SHIFT) & FONT_COLOR_MASK;
+    template.bgColor = (color >> FONT_COLOR_BG_SHIFT) & FONT_COLOR_MASK;
+    template.glyphTable = 0;
+    template.dummy1A = 0;
+    template.cacheColor = 0xFF;
 
-    return Text_AddPrinter(&v0, param5, param9);
+    return Text_AddPrinter(&template, renderDelay, callback);
 }
 
-u8 Text_AddPrinter(const TextPrinterTemplate *param0, u32 param1, TextPrinterCallback param2)
+u8 Text_AddPrinter(const TextPrinterTemplate *template, u32 renderDelay, TextPrinterCallback callback)
 {
-    TextPrinter *v0;
-    int v1;
-
     if (sFontAttributesPtr == NULL) {
-        return 0xff;
+        return 0xFF;
     }
 
-    v0 = Heap_AllocFromHeap(0, sizeof(TextPrinter));
+    TextPrinter *printer = Heap_AllocFromHeap(HEAP_ID_SYSTEM, sizeof(TextPrinter));
 
-    v0->active = 1;
-    v0->state = 0;
-    v0->textSpeedBottom = param1;
-    v0->delayCounter = 0;
-    v0->scrollDistance = 0;
-    v0->callbackResult = 0;
+    printer->active = TRUE;
+    printer->state = 0;
+    printer->textSpeedBottom = renderDelay;
+    printer->delayCounter = 0;
+    printer->scrollDistance = 0;
+    printer->callbackResult = 0;
 
-    for (v1 = 0; v1 < 7; v1++) {
-        v0->substruct[v1] = 0;
+    for (int i = 0; i < 7; i++) {
+        printer->substruct[i] = 0;
     }
 
-    v0->template = *param0;
-    v0->template.toPrint.raw = Strbuf_GetData(v0->template.toPrint.strbuf);
-    v0->callback = param2;
+    printer->template = *template;
+    printer->template.toPrint.raw = Strbuf_GetData(printer->template.toPrint.strbuf);
+    printer->callback = callback;
 
-    Unk_021C04D8 = 0;
-    sub_0201DB48(v0);
+    sPausePrinter = FALSE;
+    Text_ZeroPrinterIconGfx(printer);
 
-    if ((param1 != 0xff) && (param1 != 0)) {
-        v0->textSpeedBottom--;
-        v0->textSpeedTop = 1;
-        v0->id = sub_0201D67C(sub_0201D97C, v0, 1);
-        return v0->id;
-    } else {
-        u32 v2;
+    if (renderDelay != TEXT_SPEED_NO_TRANSFER && renderDelay != TEXT_SPEED_INSTANT) {
+        printer->textSpeedBottom--;
+        printer->textSpeedTop = 1;
+        printer->id = Text_CreatePrinterTask(SysTask_RunTextPrinter, printer, 1);
+        return printer->id;
+    }
 
-        v0->textSpeedBottom = 0;
-        v0->textSpeedTop = 0;
+    printer->textSpeedBottom = 0;
+    printer->textSpeedTop = 0;
 
-        v2 = 0;
-        Text_GenerateFontHalfRowLookupTable(param0->fgColor, param0->bgColor, param0->shadowColor);
+    u32 i = 0;
+    Text_GenerateFontHalfRowLookupTable(template->fgColor, template->bgColor, template->shadowColor);
 
-        while (v2 < 1024) {
-            if (sub_0201D9E8(v0) == 1) {
-                break;
-            }
-
-            v2++;
+    while (i < 1024) {
+        if (TextPrinter_Render(printer) == RENDER_FINISH) {
+            break;
         }
 
-        if (param1 != 0xff) {
-            sub_0201A954(v0->template.window);
-        }
-
-        sub_0201DBD8(v0);
-        Heap_FreeToHeap(v0);
-
-        return 8;
+        i++;
     }
+
+    if (renderDelay != TEXT_SPEED_NO_TRANSFER) {
+        sub_0201A954(printer->template.window);
+    }
+
+    Text_FreePrinterIconGfx(printer);
+    Heap_FreeToHeap(printer);
+
+    return MAX_TEXT_PRINTERS;
 }
 
-static void sub_0201D97C(SysTask *param0, void *param1)
+static void SysTask_RunTextPrinter(SysTask *task, void *data)
 {
-    TextPrinter *v0;
-    int v1;
-
-    if (Unk_021C04D8) {
+    if (sPausePrinter) {
         return;
     }
 
-    v0 = (TextPrinter *)param1;
+    TextPrinter *printer = (TextPrinter *)data;
 
-    if (v0->callbackResult == 0) {
-        v0->callbackParam = 0;
-        Text_GenerateFontHalfRowLookupTable(v0->template.fgColor, v0->template.bgColor, v0->template.shadowColor);
+    if (printer->callbackResult == 0) {
+        printer->callbackParam = 0;
+        Text_GenerateFontHalfRowLookupTable(printer->template.fgColor, printer->template.bgColor, printer->template.shadowColor);
 
-        v1 = sub_0201D9E8(v0);
+        switch (TextPrinter_Render(printer)) {
+        case RENDER_PRINT:
+            sub_0201A954(printer->template.window);
+            // fall-through
 
-        switch (v1) {
-        case 0:
-            sub_0201A954(v0->template.window);
-        case 3:
-            if (v0->callback != NULL) {
-                v0->callbackResult = (v0->callback)(&(v0->template), v0->callbackParam);
+        case RENDER_UPDATE:
+            if (printer->callback != NULL) {
+                printer->callbackResult = (printer->callback)(&printer->template, printer->callbackParam);
             }
-            break;
-        case 1:
-            sub_0201D6B0(v0->id);
-            break;
+            return;
+
+        case RENDER_FINISH:
+            Text_DestroyPrinterTask(printer->id);
+            return;
         }
     } else {
-        v0->callbackResult = (v0->callback)(&(v0->template), v0->callbackParam);
+        printer->callbackResult = (printer->callback)(&printer->template, printer->callbackParam);
     }
 }
 
-static int sub_0201D9E8(TextPrinter *param0)
+static enum RenderResult TextPrinter_Render(TextPrinter *printer)
 {
-    int v0;
+    enum RenderResult result;
 
     do {
-        v0 = Font_RenderText(param0->template.fontID, param0);
-    } while (v0 == 2);
+        result = Font_RenderText(printer->template.fontID, printer);
+    } while (result == RENDER_REPEAT);
 
-    return v0;
+    return result;
 }
 
-static u16 Unk_021C0500[256];
-static u16 Unk_021C04DE, Unk_021C04DA, Unk_021C04DC;
-
-void Text_GenerateFontHalfRowLookupTable(u8 param0, u8 param1, u8 param2)
+void Text_GenerateFontHalfRowLookupTable(u8 fgColor, u8 bgColor, u8 shadowColor)
 {
-    int v0, v1, v2, v3, v4;
-    u32 v5[4];
+    u32 colors[4];
 
-    v5[0] = 0;
-    v5[1] = param0;
-    v5[2] = param2;
-    v5[3] = param1;
+    colors[0] = 0;
+    colors[1] = fgColor;
+    colors[2] = shadowColor;
+    colors[3] = bgColor;
 
-    Unk_021C04DE = param1;
-    Unk_021C04DA = param0;
-    Unk_021C04DC = param2;
+    sBgColor = bgColor;
+    sFgColor = fgColor;
+    sShadowColor = shadowColor;
 
-    v4 = 0;
-
-    for (v0 = 0; v0 < 4; v0++) {
-        for (v1 = 0; v1 < 4; v1++) {
-            for (v2 = 0; v2 < 4; v2++) {
-                for (v3 = 0; v3 < 4; v3++) {
-                    Unk_021C0500[v4++] = (v5[v3] << 12) | (v5[v2] << 8) | (v5[v1] << 4) | (v5[v0]);
+    u32 idx = 0;
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            for (int k = 0; k < 4; k++) {
+                for (int l = 0; l < 4; l++) {
+                    sFontHalfRowLookupTable[idx++] = (colors[l] << 12) | (colors[k] << 8) | (colors[j] << 4) | (colors[i]);
                 }
             }
         }
     }
 }
 
-void Text_DecompressGlyph(u32 param0, u32 param1)
+void Text_DecompressGlyph(u8 *src, u8 *dst)
 {
-    u32 v0;
-    u16 *v1;
-    u16 *v2;
+    u16 *src16 = (u16 *)src;
+    u16 *dst16 = (u16 *)dst;
 
-    v1 = (u16 *)param0;
-    v2 = (u16 *)param1;
-
-    v0 = (u32)(*v1) >> 8;
-    *v2++ = Unk_021C0500[v0];
-
-    v0 = (u32)((*v1++) << 24) >> 24;
-    *v2++ = Unk_021C0500[v0];
-
-    v0 = (u32)(*v1) >> 8;
-    *v2++ = Unk_021C0500[v0];
-
-    v0 = (u32)((*v1++) << 24) >> 24;
-    *v2++ = Unk_021C0500[v0];
-
-    v0 = (u32)(*v1) >> 8;
-    *v2++ = Unk_021C0500[v0];
-
-    v0 = (u32)((*v1++) << 24) >> 24;
-    *v2++ = Unk_021C0500[v0];
-
-    v0 = (u32)(*v1) >> 8;
-    *v2++ = Unk_021C0500[v0];
-
-    v0 = (u32)((*v1++) << 24) >> 24;
-    *v2++ = Unk_021C0500[v0];
-
-    v0 = (u32)(*v1) >> 8;
-    *v2++ = Unk_021C0500[v0];
-
-    v0 = (u32)((*v1++) << 24) >> 24;
-    *v2++ = Unk_021C0500[v0];
-
-    v0 = (u32)(*v1) >> 8;
-    *v2++ = Unk_021C0500[v0];
-
-    v0 = (u32)((*v1++) << 24) >> 24;
-    *v2++ = Unk_021C0500[v0];
-
-    v0 = (u32)(*v1) >> 8;
-    *v2++ = Unk_021C0500[v0];
-
-    v0 = (u32)((*v1++) << 24) >> 24;
-    *v2++ = Unk_021C0500[v0];
-
-    v0 = (u32)(*v1) >> 8;
-    *v2++ = Unk_021C0500[v0];
-
-    v0 = (u32)((*v1) << 24) >> 24;
-    *v2 = Unk_021C0500[v0];
+    dst16[0] = sFontHalfRowLookupTable[(u32)src16[0] >> 8];
+    dst16[1] = sFontHalfRowLookupTable[(u32)src16[0] & 0xFF];
+    dst16[2] = sFontHalfRowLookupTable[(u32)src16[1] >> 8];
+    dst16[3] = sFontHalfRowLookupTable[(u32)src16[1] & 0xFF];
+    dst16[4] = sFontHalfRowLookupTable[(u32)src16[2] >> 8];
+    dst16[5] = sFontHalfRowLookupTable[(u32)src16[2] & 0xFF];
+    dst16[6] = sFontHalfRowLookupTable[(u32)src16[3] >> 8];
+    dst16[7] = sFontHalfRowLookupTable[(u32)src16[3] & 0xFF];
+    dst16[8] = sFontHalfRowLookupTable[(u32)src16[4] >> 8];
+    dst16[9] = sFontHalfRowLookupTable[(u32)src16[4] & 0xFF];
+    dst16[10] = sFontHalfRowLookupTable[(u32)src16[5] >> 8];
+    dst16[11] = sFontHalfRowLookupTable[(u32)src16[5] & 0xFF];
+    dst16[12] = sFontHalfRowLookupTable[(u32)src16[6] >> 8];
+    dst16[13] = sFontHalfRowLookupTable[(u32)src16[6] & 0xFF];
+    dst16[14] = sFontHalfRowLookupTable[(u32)src16[7] >> 8];
+    dst16[15] = sFontHalfRowLookupTable[(u32)src16[7] & 0xFF];
 }
 
-static void sub_0201DB48(TextPrinter *param0)
+static void Text_ZeroPrinterIconGfx(TextPrinter *printer)
 {
-    param0->iconGfx = NULL;
+    printer->iconGfx = NULL;
 }
 
-static u8 *sub_0201DB50(void)
+static u8 *Text_LoadScreenIndicatorGfx(void)
 {
-    NNSG2dCharacterData *v0;
-    void *v1;
-    u8 *v2;
+    NNSG2dCharacterData *g2dCharData;
 
-    v2 = Heap_AllocFromHeap(0, 3 * 4 * 4 * 0x20);
-    v1 = sub_02006F50(14, 5, 0, &v0, 0);
+    u8 *gfx = Heap_AllocFromHeap(HEAP_ID_SYSTEM, 24 * 64); // These numbers are file dimensions. Curiously, this only loads the bottom-screen indicators.
+    void *ncgr = sub_02006F50(NARC_INDEX_GRAPHIC__PL_FONT, 5, FALSE, &g2dCharData, HEAP_ID_SYSTEM);
 
-    MI_CpuCopy32(v0->pRawData, v2, 3 * 4 * 4 * 0x20);
-    Heap_FreeToHeap(v1);
+    MI_CpuCopy32(g2dCharData->pRawData, gfx, 24 * 64);
+    Heap_FreeToHeap(ncgr);
 
-    return v2;
+    return gfx;
 }
 
-void Text_RenderScreenIndicator(TextPrinter *param0, u16 param1, u16 param2, u16 param3)
+void Text_RenderScreenIndicator(TextPrinter *printer, u16 unusedX, u16 unusedY, u16 indicator)
 {
-    Window *v0 = param0->template.window;
-    u8 *v1;
+    Window *window = printer->template.window;
 
-    if (param0->iconGfx == NULL) {
-        param0->iconGfx = sub_0201DB50();
+    if (printer->iconGfx == NULL) {
+        printer->iconGfx = Text_LoadScreenIndicatorGfx();
     }
 
-    v1 = param0->iconGfx;
-    v1 = &v1[param3 * 12 * 0x20];
+    u8 *tiles = printer->iconGfx;
+    tiles = &tiles[indicator * 24 * 16];
+    unusedX = (sub_0201C294(window) - 3) * 8;
 
-    param1 = (sub_0201C294(v0) - 3) * 8;
-    param2 = 0;
-
-    sub_0201ADDC(v0, v1, 0, 0, 24, 32, param1, param2, 24, 32);
+    sub_0201ADDC(window, tiles, 0, 0, 24, 32, unusedX, 0, 24, 32);
 }
 
-static void sub_0201DBD8(TextPrinter *param0)
+static void Text_FreePrinterIconGfx(TextPrinter *printer)
 {
-    if (param0->iconGfx) {
-        Heap_FreeToHeap(param0->iconGfx);
-        param0->iconGfx = NULL;
+    if (printer->iconGfx) {
+        Heap_FreeToHeap(printer->iconGfx);
+        printer->iconGfx = NULL;
     }
 }

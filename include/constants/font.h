@@ -4,13 +4,18 @@
 typedef u32 FONT_COLOR;
 
 #define FONT_COLOR_MASK         0xFF
-#define FONT_COLOR_LETTER_SHIFT 16
+#define FONT_COLOR_FG_SHIFT     16
 #define FONT_COLOR_SHADOW_SHIFT 8
 #define FONT_COLOR_BG_SHIFT     0
 
-#define MAKE_FONT_COLOR(letter, shadow, bg) ((FONT_COLOR)(((letter & FONT_COLOR_MASK) << FONT_COLOR_LETTER_SHIFT) \
-    | ((shadow & FONT_COLOR_MASK) << FONT_COLOR_SHADOW_SHIFT)                                                     \
+#define MAKE_FONT_COLOR(letter, shadow, bg) ((FONT_COLOR)(((letter & FONT_COLOR_MASK) << FONT_COLOR_FG_SHIFT) \
+    | ((shadow & FONT_COLOR_MASK) << FONT_COLOR_SHADOW_SHIFT)                                                 \
     | ((bg & FONT_COLOR_MASK) << FONT_COLOR_BG_SHIFT)))
+
+#define MAX_TEXT_PRINTERS 8
+
+#define TEXT_SPEED_INSTANT     0
+#define TEXT_SPEED_NO_TRANSFER 0xFF
 
 enum Font {
     FONT_SYSTEM = 0,
