@@ -3,6 +3,7 @@
 
 #include "constants/font.h"
 
+#include "charcode.h"
 #include "render_text.h"
 #include "strbuf.h"
 
@@ -18,20 +19,20 @@ typedef struct FontAttributes {
 } FontAttributes;
 
 void Fonts_Init(void);
-void Font_InitManager(int param0, u32 param1);
-void Font_UseImmediateGlyphAccess(int param0, u32 param1);
-void Font_UseLazyGlyphAccess(int param0);
-void Font_Free(int param0);
-const TextGlyph *Font_TryLoadGlyph(int param0, u16 param1);
-enum RenderResult Font_RenderText(int param0, TextPrinter *param1);
-u32 Font_CalcStringWidth(int param0, const u16 *param1, u32 param2);
-u32 Font_CalcStrbufWidth(int param0, const Strbuf *param1, u32 param2);
-u32 Font_AreAllCharsValid(int param0, Strbuf *param1, Strbuf *param2);
-u8 Font_GetAttribute(u8 param0, u8 param1);
-void Font_LoadTextPalette(u32 param0, u32 param1, u32 param2);
-void Font_LoadScreenIndicatorsPalette(u32 param0, u32 param1, u32 param2);
-u32 Font_CalcMaxLineWidth(int param0, const Strbuf *param1, u32 param2);
-u32 Font_CalcCenterAlignment(int param0, const Strbuf *param1, u32 param2, u32 param3);
-u32 Font_CalcStringWidthWithCursorControl(int param0, const Strbuf *param1);
+void Font_InitManager(enum Font font, u32 heapID);
+void Font_UseImmediateGlyphAccess(enum Font font, u32 heapID);
+void Font_UseLazyGlyphAccess(enum Font font);
+void Font_Free(enum Font font);
+const TextGlyph *Font_TryLoadGlyph(enum Font font, charcode_t c);
+enum RenderResult Font_RenderText(enum Font font, TextPrinter *printer);
+u32 Font_CalcStringWidth(enum Font font, const charcode_t *str, u32 letterSpacing);
+u32 Font_CalcStrbufWidth(enum Font font, const Strbuf *strbuf, u32 letterSpacing);
+u32 Font_AreAllCharsValid(enum Font font, Strbuf *strbuf, Strbuf *tmpbuf);
+u8 Font_GetAttribute(u8 font, u8 attribute);
+void Font_LoadTextPalette(int palLocation, u32 palSlotOffset, u32 heapID);
+void Font_LoadScreenIndicatorsPalette(int palLocation, u32 palSlotOffset, u32 heapID);
+u32 Font_CalcMaxLineWidth(enum Font font, const Strbuf *strbuf, u32 letterSpacing);
+u32 Font_CalcCenterAlignment(enum Font font, const Strbuf *strbuf, u32 letterSpacing, u32 windowWidth);
+u32 Font_CalcStringWidthWithCursorControl(enum Font font, const Strbuf *strbuf);
 
 #endif // POKEPLATINUM_FONT_H
