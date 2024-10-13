@@ -3,324 +3,323 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/charcode.h"
+
 #include "charcode.h"
 #include "heap.h"
 #include "narc.h"
 #include "render_text.h"
 #include "unk_0201D670.h"
 
-static void sub_02023350(FontManager *param0, u32 param1, u32 param2, BOOL param3, u32 param4);
-static void sub_02023408(FontManager *param0);
-static void sub_02023424(FontManager *param0, int param1, u32 param2);
-static void sub_0202343C(FontManager *param0, u32 param1);
-static void sub_0202346C(FontManager *param0, u32 param1);
-static void sub_02023478(FontManager *param0);
-static void sub_0202348C(FontManager *param0);
-static void sub_0202349C(FontManager *param0);
-static void sub_020234BC(const FontManager *param0, u16 param1, TextGlyph *param2);
-static void sub_02023564(const FontManager *param0, u16 param1, TextGlyph *param2);
-static u8 sub_020236B0(const FontManager *param0, u32 param1);
-static u8 sub_020236C8(const FontManager *param0, u32 param1);
+static void FontManager_Init(FontManager *fontManager, u32 narcID, u32 arcFileIdx, BOOL isMonospace, u32 heapID);
+static void FontManager_FreeWidthsAndNARC(FontManager *fontManager);
+static void FontManager_LoadGlyphs(FontManager *fontManager, enum GlyphAccessMode glyphAccessMode, u32 heapID);
+static void FontManager_LoadGlyphImmediate(FontManager *fontManager, u32 heapID);
+static void FontManager_LoadGlyphLazy(FontManager *fontManager, u32 heapID);
+static void FontManager_FreeGlyphs(FontManager *fontManager);
+static void FontManager_FreeGlyphImmediate(FontManager *fontManager);
+static void FontManager_FreeGlyphLazy(FontManager *fontManager);
+static void DecompressGlyph_FromRAM(const FontManager *fontManager, charcode_t c, TextGlyph *outGlyph);
+static void DecompressGlyph_FromNARC(const FontManager *fontManager, charcode_t c, TextGlyph *outGlyph);
+static u8 GlyphWidthFunc_VariableWidth(const FontManager *fontManager, u32 glyphIdx);
+static u8 GlyphWidthFunc_FixedWidth(const FontManager *fontManager, u32 glyphIdx);
 
-FontManager *FontManager_New(u32 param0, u32 param1, int param2, BOOL param3, u32 param4)
+static const u8 sGlyphShapes[][2] = {
+    {
+        GLYPH_SHAPE_8x8,
+        GLYPH_SHAPE_8x16,
+    },
+    {
+        GLYPH_SHAPE_16x8,
+        GLYPH_SHAPE_16x16,
+    },
+};
+
+static void (*const sLoadGlyphFuncs[])(FontManager *fontManager, u32 heapID) = {
+    [GLYPH_ACCESS_MODE_IMMEDIATE] = FontManager_LoadGlyphImmediate,
+    [GLYPH_ACCESS_MODE_LAZY] = FontManager_LoadGlyphLazy,
+};
+
+static void (*const sFreeGlyphFuncs[])(FontManager *fontManager) = {
+    [GLYPH_ACCESS_MODE_IMMEDIATE] = FontManager_FreeGlyphImmediate,
+    [GLYPH_ACCESS_MODE_LAZY] = FontManager_FreeGlyphLazy
+};
+
+FontManager *FontManager_New(u32 narcID, u32 arcFileIdx, enum GlyphAccessMode glyphAccessMode, BOOL isMonospace, u32 heapID)
 {
-    FontManager *v0 = Heap_AllocFromHeap(param4, sizeof(FontManager));
+    FontManager *fontManager = Heap_AllocFromHeap(heapID, sizeof(FontManager));
 
-    if (v0) {
-        sub_02023350(v0, param0, param1, param3, param4);
-        sub_02023424(v0, param2, param4);
+    if (fontManager) {
+        FontManager_Init(fontManager, narcID, arcFileIdx, isMonospace, heapID);
+        FontManager_LoadGlyphs(fontManager, glyphAccessMode, heapID);
     }
 
-    return v0;
+    return fontManager;
 }
 
-void FontManager_Delete(FontManager *param0)
+void FontManager_Delete(FontManager *fontManager)
 {
-    sub_02023478(param0);
-    sub_02023408(param0);
-    Heap_FreeToHeap(param0);
+    FontManager_FreeGlyphs(fontManager);
+    FontManager_FreeWidthsAndNARC(fontManager);
+    Heap_FreeToHeap(fontManager);
 }
 
-void FontManager_SwitchGlyphAccessMode(FontManager *param0, int param1, u32 param2)
+void FontManager_SwitchGlyphAccessMode(FontManager *fontManager, enum GlyphAccessMode glyphAccessMode, u32 heapID)
 {
-    if (param0->glyphAccessMode != param1) {
-        sub_02023478(param0);
-        sub_02023424(param0, param1, param2);
-    }
-}
-
-static void sub_02023350(FontManager *param0, u32 param1, u32 param2, BOOL param3, u32 param4)
-{
-    param0->narc = NARC_ctor(param1, param4);
-
-    if (param0->narc) {
-        NARC_ReadFromMember(param0->narc, param2, 0, sizeof(FontHeader), &(param0->header));
-
-        param0->isMonospace = param3;
-
-        if (param3) {
-            param0->glyphWidths = NULL;
-            param0->glyphWidthFunc = sub_020236C8;
-        } else {
-            GF_ASSERT(param0->header.widthTableOffset);
-
-            param0->glyphWidths = Heap_AllocFromHeap(param4, param0->header.numGlyphs);
-            param0->glyphWidthFunc = sub_020236B0;
-
-            NARC_ReadFromMember(param0->narc, param2, param0->header.widthTableOffset, param0->header.numGlyphs, (void *)(param0->glyphWidths));
-        }
-
-        {
-            static const u8 v0[2][2] = {
-                { 0x0, 0x1 },
-                { 0x2, 0x3 }
-            };
-
-            GF_ASSERT(param0->header.glyphWidth <= 2 && param0->header.glyphHeight <= 2);
-
-            param0->glyphShape = v0[param0->header.glyphWidth - 1][param0->header.glyphHeight - 1];
-            param0->glyphSize = 16 * param0->header.glyphWidth * param0->header.glyphHeight;
-        }
-
-        param0->arcFileIdx = param2;
+    if (fontManager->glyphAccessMode != glyphAccessMode) {
+        FontManager_FreeGlyphs(fontManager);
+        FontManager_LoadGlyphs(fontManager, glyphAccessMode, heapID);
     }
 }
 
-static void sub_02023408(FontManager *param0)
+static void FontManager_Init(FontManager *fontManager, u32 narcID, u32 arcFileIdx, BOOL isMonospace, u32 heapID)
 {
-    if (param0->glyphWidths) {
-        Heap_FreeToHeap(param0->glyphWidths);
+    fontManager->narc = NARC_ctor(narcID, heapID);
+
+    if (!fontManager->narc) {
+        return;
     }
 
-    if (param0->narc) {
-        NARC_dtor(param0->narc);
-    }
-}
+    NARC_ReadFromMember(fontManager->narc, arcFileIdx, 0, sizeof(FontHeader), &(fontManager->header));
 
-static void sub_02023424(FontManager *param0, int param1, u32 param2)
-{
-    static void (*const v0[])(FontManager *, u32) = {
-        sub_0202343C,
-        sub_0202346C,
-    };
+    fontManager->isMonospace = isMonospace;
 
-    param0->glyphAccessMode = param1;
-    v0[param1](param0, param2);
-}
-
-static void sub_0202343C(FontManager *param0, u32 param1)
-{
-    u32 v0 = param0->glyphSize * param0->header.numGlyphs;
-
-    param0->narcBuf = Heap_AllocFromHeap(param1, v0);
-    param0->glyphBitmapFunc = sub_020234BC;
-
-    NARC_ReadFromMember(param0->narc, param0->arcFileIdx, param0->header.size, v0, param0->narcBuf);
-}
-
-static void sub_0202346C(FontManager *param0, u32 param1)
-{
-    param0->glyphBitmapFunc = sub_02023564;
-}
-
-static void sub_02023478(FontManager *param0)
-{
-    static void (*const v0[])(FontManager *) = {
-        sub_0202348C,
-        sub_0202349C
-    };
-
-    v0[param0->glyphAccessMode](param0);
-}
-
-static void sub_0202348C(FontManager *param0)
-{
-    Heap_FreeToHeap(param0->narcBuf);
-    param0->narcBuf = NULL;
-}
-
-static void sub_0202349C(FontManager *param0)
-{
-    (void)0;
-}
-
-void FontManager_TryLoadGlyph(const FontManager *param0, u16 param1, TextGlyph *param2)
-{
-    if (param1 <= param0->header.numGlyphs) {
-        param1--;
+    if (isMonospace) {
+        fontManager->glyphWidths = NULL;
+        fontManager->glyphWidthFunc = GlyphWidthFunc_FixedWidth;
     } else {
-        param1 = 0x1ac - 1;
+        GF_ASSERT(fontManager->header.widthTableOffset);
+
+        fontManager->glyphWidths = Heap_AllocFromHeap(heapID, fontManager->header.numGlyphs);
+        fontManager->glyphWidthFunc = GlyphWidthFunc_VariableWidth;
+
+        NARC_ReadFromMember(fontManager->narc, arcFileIdx, fontManager->header.widthTableOffset, fontManager->header.numGlyphs, (void *)(fontManager->glyphWidths));
     }
 
-    param0->glyphBitmapFunc(param0, param1, param2);
+    GF_ASSERT(fontManager->header.glyphWidth <= 2 && fontManager->header.glyphHeight <= 2);
+
+    fontManager->glyphShape = sGlyphShapes[fontManager->header.glyphWidth - 1][fontManager->header.glyphHeight - 1];
+    fontManager->glyphSize = 16 * fontManager->header.glyphWidth * fontManager->header.glyphHeight;
+
+    fontManager->arcFileIdx = arcFileIdx;
 }
 
-static void sub_020234BC(const FontManager *param0, u16 param1, TextGlyph *param2)
+static void FontManager_FreeWidthsAndNARC(FontManager *fontManager)
 {
-    u32 v0;
+    if (fontManager->glyphWidths) {
+        Heap_FreeToHeap(fontManager->glyphWidths);
+    }
 
-    v0 = (u32)(&param0->narcBuf[param1 * param0->glyphSize]);
+    if (fontManager->narc) {
+        NARC_dtor(fontManager->narc);
+    }
+}
 
-    switch (param0->glyphShape) {
-    case 0:
-        sub_0201DAA0(v0 + 0x10 * 0, ((u32)param2->gfx) + 0x20 * 0);
+static void FontManager_LoadGlyphs(FontManager *fontManager, enum GlyphAccessMode glyphAccessMode, u32 heapID)
+{
+    fontManager->glyphAccessMode = glyphAccessMode;
+    sLoadGlyphFuncs[glyphAccessMode](fontManager, heapID);
+}
+
+static void FontManager_LoadGlyphImmediate(FontManager *fontManager, u32 heapID)
+{
+    u32 size = fontManager->glyphSize * fontManager->header.numGlyphs;
+
+    fontManager->narcBuf = Heap_AllocFromHeap(heapID, size);
+    fontManager->glyphBitmapFunc = DecompressGlyph_FromRAM;
+
+    NARC_ReadFromMember(fontManager->narc, fontManager->arcFileIdx, fontManager->header.size, size, fontManager->narcBuf);
+}
+
+static void FontManager_LoadGlyphLazy(FontManager *fontManager, u32 heapID)
+{
+    fontManager->glyphBitmapFunc = DecompressGlyph_FromNARC;
+}
+
+static void FontManager_FreeGlyphs(FontManager *fontManager)
+{
+    sFreeGlyphFuncs[fontManager->glyphAccessMode](fontManager);
+}
+
+static void FontManager_FreeGlyphImmediate(FontManager *fontManager)
+{
+    Heap_FreeToHeap(fontManager->narcBuf);
+    fontManager->narcBuf = NULL;
+}
+
+static void FontManager_FreeGlyphLazy(FontManager *fontManager)
+{
+}
+
+void FontManager_TryLoadGlyph(const FontManager *fontManager, charcode_t c, TextGlyph *outGlyph)
+{
+    if (c <= fontManager->header.numGlyphs) {
+        c--;
+    } else {
+        c = CHAR_EN_QUESTION_MARK - 1;
+    }
+
+    fontManager->glyphBitmapFunc(fontManager, c, outGlyph);
+}
+
+static void DecompressGlyph_FromRAM(const FontManager *fontManager, charcode_t c, TextGlyph *outGlyph)
+{
+    u8 *tiles = fontManager->narcBuf + (c * fontManager->glyphSize);
+
+    switch (fontManager->glyphShape) {
+    case GLYPH_SHAPE_8x8:
+        DecompressTextGlyph(tiles + 0x00, outGlyph->gfx + 0x00);
         break;
-    case 1:
-        sub_0201DAA0(v0 + 0x10 * 0, ((u32)param2->gfx) + 0x20 * 0);
-        sub_0201DAA0(v0 + 0x10 * 1, ((u32)param2->gfx) + 0x20 * 2);
+
+    case GLYPH_SHAPE_8x16:
+        DecompressTextGlyph(tiles + 0x00, outGlyph->gfx + 0x00);
+        DecompressTextGlyph(tiles + 0x10, outGlyph->gfx + 0x40);
         break;
-    case 2:
-        sub_0201DAA0(v0 + 0x10 * 0, ((u32)param2->gfx) + 0x20 * 0);
-        sub_0201DAA0(v0 + 0x10 * 1, ((u32)param2->gfx) + 0x20 * 1);
+
+    case GLYPH_SHAPE_16x8:
+        DecompressTextGlyph(tiles + 0x00, outGlyph->gfx + 0x00);
+        DecompressTextGlyph(tiles + 0x10, outGlyph->gfx + 0x20);
         break;
-    case 3:
-        sub_0201DAA0(v0 + 0x10 * 0, ((u32)param2->gfx) + 0x20 * 0);
-        sub_0201DAA0(v0 + 0x10 * 1, ((u32)param2->gfx) + 0x20 * 1);
-        sub_0201DAA0(v0 + 0x10 * 2, ((u32)param2->gfx) + 0x20 * 2);
-        sub_0201DAA0(v0 + 0x10 * 3, ((u32)param2->gfx) + 0x20 * 3);
+
+    case GLYPH_SHAPE_16x16:
+        DecompressTextGlyph(tiles + 0x00, outGlyph->gfx + 0x00);
+        DecompressTextGlyph(tiles + 0x10, outGlyph->gfx + 0x20);
+        DecompressTextGlyph(tiles + 0x20, outGlyph->gfx + 0x40);
+        DecompressTextGlyph(tiles + 0x30, outGlyph->gfx + 0x60);
         break;
     }
 
-    param2->width = param0->glyphWidthFunc(param0, param1);
-    param2->height = param0->header.maxHeight;
+    outGlyph->width = fontManager->glyphWidthFunc(fontManager, c);
+    outGlyph->height = fontManager->header.maxHeight;
 }
 
-static void sub_02023564(const FontManager *param0, u16 param1, TextGlyph *param2)
+static void DecompressGlyph_FromNARC(const FontManager *fontManager, charcode_t c, TextGlyph *outGlyph)
 {
-    u32 v0;
+    NARC_ReadFromMember(fontManager->narc, fontManager->arcFileIdx, fontManager->header.size + c * fontManager->glyphSize, fontManager->glyphSize, fontManager->glyphBuf);
 
-    NARC_ReadFromMember(param0->narc, param0->arcFileIdx, param0->header.size + param1 * param0->glyphSize, param0->glyphSize, (void *)(param0->glyphBuf));
+    switch (fontManager->glyphShape) {
+    case GLYPH_SHAPE_8x8:
+        DecompressTextGlyph(fontManager->glyphBuf + 0x00, outGlyph->gfx + 0x00);
+        break;
 
-    switch (param0->glyphShape) {
-    case 0:
-        sub_0201DAA0((u32)(&(param0->glyphBuf[0x10 * 0])), ((u32)param2->gfx) + 0x20 * 0);
+    case GLYPH_SHAPE_8x16:
+        DecompressTextGlyph(fontManager->glyphBuf + 0x00, outGlyph->gfx + 0x00);
+        DecompressTextGlyph(fontManager->glyphBuf + 0x10, outGlyph->gfx + 0x40);
         break;
-    case 1:
-        sub_0201DAA0((u32)(&(param0->glyphBuf[0x10 * 0])), ((u32)param2->gfx) + 0x20 * 0);
-        sub_0201DAA0((u32)(&(param0->glyphBuf[0x10 * 1])), ((u32)param2->gfx) + 0x20 * 2);
+
+    case GLYPH_SHAPE_16x8:
+        DecompressTextGlyph(fontManager->glyphBuf + 0x00, outGlyph->gfx + 0x00);
+        DecompressTextGlyph(fontManager->glyphBuf + 0x10, outGlyph->gfx + 0x20);
         break;
-    case 2:
-        sub_0201DAA0((u32)(&(param0->glyphBuf[0x10 * 0])), ((u32)param2->gfx) + 0x20 * 0);
-        sub_0201DAA0((u32)(&(param0->glyphBuf[0x10 * 1])), ((u32)param2->gfx) + 0x20 * 1);
-        break;
-    case 3:
-        sub_0201DAA0((u32)(&(param0->glyphBuf[0x10 * 0])), ((u32)param2->gfx) + 0x20 * 0);
-        sub_0201DAA0((u32)(&(param0->glyphBuf[0x10 * 1])), ((u32)param2->gfx) + 0x20 * 1);
-        sub_0201DAA0((u32)(&(param0->glyphBuf[0x10 * 2])), ((u32)param2->gfx) + 0x20 * 2);
-        sub_0201DAA0((u32)(&(param0->glyphBuf[0x10 * 3])), ((u32)param2->gfx) + 0x20 * 3);
+
+    case GLYPH_SHAPE_16x16:
+        DecompressTextGlyph(fontManager->glyphBuf + 0x00, outGlyph->gfx + 0x00);
+        DecompressTextGlyph(fontManager->glyphBuf + 0x10, outGlyph->gfx + 0x20);
+        DecompressTextGlyph(fontManager->glyphBuf + 0x20, outGlyph->gfx + 0x40);
+        DecompressTextGlyph(fontManager->glyphBuf + 0x30, outGlyph->gfx + 0x60);
         break;
     }
 
-    param2->width = param0->glyphWidthFunc(param0, param1);
-    param2->height = param0->header.maxHeight;
+    outGlyph->width = fontManager->glyphWidthFunc(fontManager, c);
+    outGlyph->height = fontManager->header.maxHeight;
 }
 
-u32 FontManager_CalcStringWidth(const FontManager *param0, const u16 *param1, u32 param2)
+u32 FontManager_CalcStringWidth(const FontManager *fontManager, const charcode_t *str, u32 letterSpacing)
 {
-    u32 v0 = 0;
+    u32 len = 0;
 
-    while (*param1 != 0xffff) {
-        if (*param1 == 0xfffe) {
-            param1 = CharCode_SkipFormatArg(param1);
-
-            if (*param1 == 0xffff) {
+    while (*str != CHAR_EOS) {
+        if (*str == CHAR_FORMAT_ARG) {
+            str = CharCode_SkipFormatArg(str);
+            if (*str == CHAR_EOS) {
                 break;
             }
         }
 
-        v0 += (param0->glyphWidthFunc(param0, (*param1) - 1) + param2);
-        param1++;
+        len += fontManager->glyphWidthFunc(fontManager, *str - 1) + letterSpacing;
+        str++;
     }
 
-    return v0 - param2;
+    return len - letterSpacing;
 }
 
-BOOL FontManager_AreAllCharsValid(const FontManager *param0, const u16 *param1)
+BOOL FontManager_AreAllCharsValid(const FontManager *fontManager, const charcode_t *str)
 {
-    while (*param1 != 0xffff) {
-        if (*param1 == 0xfffe) {
-            param1 = CharCode_SkipFormatArg(param1);
-
-            if (*param1 == 0xffff) {
-                return 1;
+    while (*str != CHAR_EOS) {
+        if (*str == CHAR_FORMAT_ARG) {
+            str = CharCode_SkipFormatArg(str);
+            if (*str == CHAR_EOS) {
+                return TRUE;
             }
         }
 
-        if (((*param1) - 1) >= param0->header.numGlyphs) {
-            return 0;
+        if (*str - 1 >= fontManager->header.numGlyphs) {
+            return FALSE;
         }
 
-        param1++;
+        str++;
     }
 
-    return 1;
+    return TRUE;
 }
 
-static u8 sub_020236B0(const FontManager *param0, u32 param1)
+static u8 GlyphWidthFunc_VariableWidth(const FontManager *fontManager, u32 glyphIdx)
 {
-    if (param1 < param0->header.numGlyphs) {
-        return param0->glyphWidths[param1];
+    if (glyphIdx < fontManager->header.numGlyphs) {
+        return fontManager->glyphWidths[glyphIdx];
     } else {
-        return param0->glyphWidths[0x1ac - 1];
+        return fontManager->glyphWidths[CHAR_EN_QUESTION_MARK - 1];
     }
 }
 
-static u8 sub_020236C8(const FontManager *param0, u32 param1)
+static u8 GlyphWidthFunc_FixedWidth(const FontManager *fontManager, u32 glyphIdx)
 {
-    return param0->header.maxWidth;
+    return fontManager->header.maxWidth;
 }
 
-u32 FontManager_CalcMaxLineWidth(const FontManager *param0, const u16 *param1, u32 param2)
+u32 FontManager_CalcMaxLineWidth(const FontManager *fontManager, const charcode_t *str, u32 letterSpacing)
 {
-    u32 v0 = 0, v1 = 0;
+    u32 maxLen = 0, lineLen = 0;
 
-    while (*param1 != 0xffff) {
-        if (*param1 == 0xfffe) {
-            param1 = CharCode_SkipFormatArg(param1);
-            continue;
-        } else if (*param1 == 0xe000) {
-            v1 -= param2;
-
-            if (v0 < v1) {
-                v0 = v1;
+    while (*str != CHAR_EOS) {
+        if (*str == CHAR_FORMAT_ARG) {
+            str = CharCode_SkipFormatArg(str);
+        } else if (*str == CHAR_CR) {
+            if (maxLen < lineLen - letterSpacing) {
+                maxLen = lineLen - letterSpacing;
             }
 
-            v1 = 0;
-            param1++;
-
-            continue;
+            lineLen = 0;
+            str++;
+        } else {
+            lineLen += fontManager->glyphWidthFunc(fontManager, *str - 1) + letterSpacing;
+            str++;
         }
-
-        v1 += (param0->glyphWidthFunc(param0, (*param1) - 1) + param2);
-        param1++;
     }
 
-    v1 -= param2;
-
-    if (v0 < v1) {
-        v0 = v1;
+    if (maxLen < lineLen - letterSpacing) {
+        maxLen = lineLen - letterSpacing;
     }
 
-    return v0;
+    return maxLen;
 }
 
-u32 FontManager_CalcStringWidthWithCursorControl(const FontManager *param0, const u16 *param1)
+u32 FontManager_CalcStringWidthWithCursorControl(const FontManager *fontManager, const charcode_t *str)
 {
-    u32 v0 = 0;
+    u32 len = 0;
 
-    while (*param1 != 0xffff) {
-        if (*param1 == 0xfffe) {
-            if (CharCode_FormatArgType(param1) == 0x203) {
-                v0 = CharCode_FormatArgParam(param1, 0) - 12;
+    while (*str != CHAR_EOS) {
+        if (*str == CHAR_FORMAT_ARG) {
+            if (CharCode_FormatArgType(str) == CHAR_CONTROL_CURSOR_X) {
+                len = CharCode_FormatArgParam(str, 0) - 12;
             }
 
-            param1 = CharCode_SkipFormatArg(param1);
-            continue;
+            str = CharCode_SkipFormatArg(str);
+        } else {
+            len += fontManager->glyphWidthFunc(fontManager, *str - 1);
+            str++;
         }
-
-        v0 += param0->glyphWidthFunc(param0, (*param1) - 1);
-        param1++;
     }
 
-    return v0;
+    return len;
 }

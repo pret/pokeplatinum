@@ -29,7 +29,7 @@ u8 sub_0201D78C(Window *param0, u32 param1, const Strbuf *param2, u32 param3, u3
 u8 PrintStringWithColorAndMargins(Window *param0, u32 param1, const Strbuf *param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, TextPrinterCallback param9);
 u8 sub_0201D834(const TextPrinterTemplate *param0, u32 param1, TextPrinterCallback param2);
 void sub_0201D9FC(u8 param0, u8 param1, u8 param2);
-void sub_0201DAA0(u32 param0, u32 param1);
+void DecompressTextGlyph(u32 param0, u32 param1);
 void sub_0201DB8C(TextPrinter *param0, u16 param1, u16 param2, u16 param3);
 
 #endif // POKEPLATINUM_UNK_0201D670_H

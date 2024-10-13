@@ -14,6 +14,11 @@ enum GlyphShape {
     GLYPH_SHAPE_MAX,
 };
 
+enum GlyphAccessMode {
+    GLYPH_ACCESS_MODE_IMMEDIATE = 0,
+    GLYPH_ACCESS_MODE_LAZY,
+};
+
 typedef struct FontManager FontManager;
 
 typedef void (*GlyphBitmapFunc)(const FontManager *fontManager, charcode_t c, TextGlyph *outGlyph);
@@ -44,13 +49,13 @@ struct FontManager {
     u8 *glyphWidths;
 };
 
-FontManager *FontManager_New(u32 param0, u32 param1, int param2, BOOL param3, u32 param4);
-void FontManager_Delete(FontManager *param0);
-void FontManager_SwitchGlyphAccessMode(FontManager *param0, int param1, u32 param2);
-void FontManager_TryLoadGlyph(const FontManager *param0, u16 param1, TextGlyph *param2);
-u32 FontManager_CalcStringWidth(const FontManager *param0, const u16 *param1, u32 param2);
-BOOL FontManager_AreAllCharsValid(const FontManager *param0, const u16 *param1);
-u32 FontManager_CalcMaxLineWidth(const FontManager *param0, const u16 *param1, u32 param2);
-u32 FontManager_CalcStringWidthWithCursorControl(const FontManager *param0, const u16 *param1);
+FontManager *FontManager_New(u32 narcID, u32 arcFileIdx, enum GlyphAccessMode glyphAccessMode, BOOL isMonospace, u32 heapID);
+void FontManager_Delete(FontManager *fontManager);
+void FontManager_SwitchGlyphAccessMode(FontManager *fontManager, enum GlyphAccessMode glyphAccessMode, u32 heapID);
+void FontManager_TryLoadGlyph(const FontManager *fontManager, charcode_t c, TextGlyph *outGlyph);
+u32 FontManager_CalcStringWidth(const FontManager *fontManager, const charcode_t *str, u32 letterSpacing);
+BOOL FontManager_AreAllCharsValid(const FontManager *fontManager, const charcode_t *str);
+u32 FontManager_CalcMaxLineWidth(const FontManager *fontManager, const charcode_t *str, u32 letterSpacing);
+u32 FontManager_CalcStringWidthWithCursorControl(const FontManager *fontManager, const charcode_t *str);
 
 #endif // POKEPLATINUM_FONT_MANAGER_H

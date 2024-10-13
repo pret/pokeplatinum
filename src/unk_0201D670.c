@@ -302,7 +302,7 @@ void sub_0201D9FC(u8 param0, u8 param1, u8 param2)
     }
 }
 
-void sub_0201DAA0(u32 param0, u32 param1)
+void DecompressTextGlyph(u32 param0, u32 param1)
 {
     u32 v0;
     u16 *v1;
