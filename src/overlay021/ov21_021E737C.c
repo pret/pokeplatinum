@@ -10,8 +10,8 @@
 
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
-#include "overlay021/pokedex_sort.h"
 #include "overlay021/ov21_021E29DC.h"
+#include "overlay021/pokedex_sort.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D3320.h"
@@ -555,7 +555,7 @@ static void ov21_021E7904(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E74
     NARC *v9;
 
     v9 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, param3);
-    v8 = ov21_021D33D4(param2->unk_00, species);// lasthere
+    v8 = ov21_021D33D4(param2->unk_00, species); // lasthere
     v1 = PokeIconSpriteIndex(species, 0, v8);
     v2 = PokeIconPalettesFileIndex();
     v3 = PokeIconCellsFileIndex();

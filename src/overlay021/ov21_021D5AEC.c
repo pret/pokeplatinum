@@ -9,9 +9,9 @@
 
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
-#include "overlay021/pokedex_sort.h"
 #include "overlay021/ov21_021D4340.h"
 #include "overlay021/ov21_021D4C0C.h"
+#include "overlay021/pokedex_sort.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D157C.h"
@@ -1727,7 +1727,6 @@ static void ov21_021D7538(UnkStruct_ov21_021D5B68 *param0, int param1)
     (*param0->unk_00) |= (1 << 4);
 
     ov21_021D3794(param0->unk_04, species);
-    
 
     param0->unk_0C = 0;
     param0->unk_04->unk_1740 = 0;

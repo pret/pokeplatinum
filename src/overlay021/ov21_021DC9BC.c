@@ -9,11 +9,11 @@
 
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
-#include "overlay021/pokedex_sort.h"
 #include "overlay021/ov21_021D4C0C.h"
 #include "overlay021/ov21_021D517C.h"
 #include "overlay021/ov21_021D57B4.h"
 #include "overlay021/ov21_021E29DC.h"
+#include "overlay021/pokedex_sort.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D2648.h"
@@ -30,6 +30,7 @@
 #include "cell_actor.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "rtc.h"
 #include "sprite_resource.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
@@ -37,8 +38,6 @@
 #include "unk_02012744.h"
 #include "unk_02018340.h"
 #include "unk_0201F834.h"
-
-#include "rtc.h"
 
 static const u16 Unk_ov21_021E9D78[] = {
     0xffff
@@ -281,7 +280,7 @@ static int ov21_021DCAF4(void)
     return 0;
 }
 
-static int ov21_021DCAF8(UnkStruct_ov21_021E6A68 *param0, void *param1)// dansim
+static int ov21_021DCAF8(UnkStruct_ov21_021E6A68 *param0, void *param1) // dansim
 {
     UnkStruct_ov21_021DCACC *v0 = param1;
     UnkStruct_ov21_021DDABC *v1;

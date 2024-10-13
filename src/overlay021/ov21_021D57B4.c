@@ -18,34 +18,34 @@ void ov21_021D57B4(pokedexEncStruct *dexEncData, int species, int param2, int he
     u32 fileSize;
 
     switch (param2) {
-    case 0:// category 0, morning
+    case 0: // category 0, morning
         v0 = 4;
         break;
-    case 1:// category 0, day
+    case 1: // category 0, day
         v0 = 499;
         break;
-    case 2:// category 0, night
+    case 2: // category 0, night
         v0 = 994;
         break;
-    case 3:// category 2, regional
+    case 3: // category 2, regional
         v0 = 1489;
         break;
-    case 4:// category 2, national
+    case 4: // category 2, national
         v0 = 1984;
         break;
-    case 5:// category 1, morning
+    case 5: // category 1, morning
         v0 = 2479;
         break;
-    case 6:// category 1, day
+    case 6: // category 1, day
         v0 = 2974;
         break;
-    case 7:// category 1, night
+    case 7: // category 1, night
         v0 = 3469;
         break;
-    case 8:// category 3, regional
+    case 8: // category 3, regional
         v0 = 3964;
         break;
-    case 9:// category 3, national
+    case 9: // category 3, national
         v0 = 4459;
         break;
     }
@@ -97,7 +97,7 @@ void ov21_021D58C0(u8 *param0, u8 param1, u8 param2, const UnkStruct_ov21_021D58
 {
     int outerIndex, innerIndex;
 
-    GF_ASSERT((param3->unk_01 + param3->unk_03) < param2);// param 1 and 2 are 30
+    GF_ASSERT((param3->unk_01 + param3->unk_03) < param2); // param 1 and 2 are 30
     GF_ASSERT((param3->unk_00 + param3->unk_02) < param1);
 
     for (outerIndex = param3->unk_01; outerIndex < param3->unk_01 + param3->unk_03; outerIndex++) {
