@@ -266,7 +266,7 @@ static int sub_0201D9E8(TextPrinter *param0)
     int v0;
 
     do {
-        v0 = sub_02002D18(param0->template.fontID, param0);
+        v0 = Font_RenderText(param0->template.fontID, param0);
     } while (v0 == 2);
 
     return v0;

@@ -748,7 +748,7 @@ static void ov7_0224D9B8(BmpList *param0, u32 param1, u8 param2)
         StringTemplate_SetNumber(v0->unk_8C, 0, v3, 4, 1, 1);
         StringTemplate_Format(v0->unk_8C, v1, v2);
 
-        v4 = sub_02002D7C(0, v1, 0);
+        v4 = Font_CalcStrbufWidth(FONT_SYSTEM, v1, 0);
 
         sub_0201D78C(&v0->unk_08[0], 0, v1, (19 * 8) - v4, param2, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         Strbuf_Free(v2);
@@ -787,7 +787,7 @@ static void ov7_0224DAF8(UnkStruct_ov7_0224D008 *param0, u8 param1)
         StringTemplate_SetNumber(param0->unk_8C, 0, v2, 6, 1, 1);
         StringTemplate_Format(param0->unk_8C, v0, v1);
 
-        v3 = sub_02002D7C(0, v0, 0);
+        v3 = Font_CalcStrbufWidth(FONT_SYSTEM, v0, 0);
 
         PrintStringSimple(&param0->unk_08[2], 0, v0, (9 * 8) - v3 - 8, 0, 0xff, NULL);
     } else {
@@ -810,7 +810,7 @@ static void ov7_0224DAF8(UnkStruct_ov7_0224D008 *param0, u8 param1)
         StringTemplate_SetNumber(param0->unk_8C, 0, v2, 6, 1, 1);
         StringTemplate_Format(param0->unk_8C, v0, v1);
 
-        v3 = sub_02002D7C(0, v0, 0);
+        v3 = Font_CalcStrbufWidth(FONT_SYSTEM, v0, 0);
 
         PrintStringSimple(&param0->unk_08[2], 0, v0, (9 * 8) - v3, 16, 0xff, NULL);
     }
@@ -1099,7 +1099,7 @@ static void ov7_0224E28C(UnkStruct_ov7_0224D008 *param0, u8 param1)
     StringTemplate_SetNumber(param0->unk_8C, 0, param0->unk_2B0 * param0->unk_2AC, 6, 1, 1);
     StringTemplate_Format(param0->unk_8C, v0, v1);
 
-    v2 = sub_02002D7C(0, v0, 0);
+    v2 = Font_CalcStrbufWidth(FONT_SYSTEM, v0, 0);
 
     PrintStringSimple(&param0->unk_08[3], 0, v0, (12 * 8) - v2, 8, 0xff, NULL);
     Strbuf_Free(v1);

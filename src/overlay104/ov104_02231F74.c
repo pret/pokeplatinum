@@ -370,7 +370,7 @@ static u32 ov104_02232414(UnkStruct_ov104_02232B5C *param0)
             break;
         }
 
-        v1 = sub_02002D7C(0, (Strbuf *)param0->unk_B4[v0].unk_00, 0);
+        v1 = Font_CalcStrbufWidth(FONT_SYSTEM, (Strbuf *)param0->unk_B4[v0].unk_00, 0);
 
         if (v2 < v1) {
             v2 = v1;
@@ -562,7 +562,7 @@ static u32 ov104_022327F0(UnkStruct_ov104_02232B5C *param0)
             break;
         }
 
-        v1 = sub_02002D7C(0, (Strbuf *)param0->unk_1BC[v0].unk_00, 0);
+        v1 = Font_CalcStrbufWidth(FONT_SYSTEM, (Strbuf *)param0->unk_1BC[v0].unk_00, 0);
 
         if (v2 < v1) {
             v2 = v1;

@@ -94,7 +94,7 @@ int ov81_021D0D80(OverlayManager *param0, int *param1)
     v0->unk_48 = SaveData_GetTrainerInfo(v1);
 
     sub_0208C120(0, 42);
-    sub_02002BEC(0, 42);
+    Font_UseImmediateGlyphAccess(FONT_SYSTEM, 42);
 
     ov81_021D0F20();
     ov81_021D0F40(v0->unk_00);
@@ -149,7 +149,7 @@ int ov81_021D0EC4(OverlayManager *param0, int *param1)
     ov81_021D101C(v0->unk_00);
     ov81_021D115C(v0);
 
-    sub_02002C28(0);
+    Font_UseLazyGlyphAccess(FONT_SYSTEM);
     OverlayManager_FreeData(param0);
     Heap_Destroy(42);
 
@@ -311,7 +311,7 @@ static void ov81_021D1050(UnkStruct_ov81_021D1610 *param0)
     MI_CpuCopy16(v0, param0->unk_5C, 0x800);
     sub_02019574(param0->unk_00, 3, param0->unk_5C, 0x800);
 
-    sub_02002E7C(0, 15 * 32, 42);
+    Font_LoadTextPalette(0, 15 * 32, 42);
     sub_0201975C(4, 0);
 }
 

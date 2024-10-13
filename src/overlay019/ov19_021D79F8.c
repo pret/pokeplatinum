@@ -220,7 +220,7 @@ static void ov19_021D7C58(UnkStruct_ov19_021D8318 *param0, const UnkStruct_ov19_
                 v2->unk_08 = 4;
                 v2->unk_0C = v1->pRawData;
 
-                v4 = sub_02002D7C(0, param1->unk_04, 0);
+                v4 = Font_CalcStrbufWidth(FONT_SYSTEM, param1->unk_04, 0);
                 v3 = 84 - (v4 / 2);
 
                 sub_0201D78C(v2, 0, param1->unk_04, v3, 13, 0xff, (u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);

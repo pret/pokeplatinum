@@ -90,12 +90,12 @@ void Fonts_Init(void)
     SetFontAttributesPtr(sFontAttributes);
 }
 
-void sub_02002BB8(int param0, u32 param1)
+void Font_InitManager(int param0, u32 param1)
 {
     sFontWork->unk_94[param0] = FontManager_New(14, sFontArchiveData[param0].arcFileIdx, 1, sFontArchiveData[param0].unk_02, param1);
 }
 
-void sub_02002BEC(int param0, u32 param1)
+void Font_UseImmediateGlyphAccess(int param0, u32 param1)
 {
     GF_ASSERT(param0 < 4);
     GF_ASSERT(sFontWork->unk_94[param0]);
@@ -103,7 +103,7 @@ void sub_02002BEC(int param0, u32 param1)
     FontManager_SwitchGlyphAccessMode(sFontWork->unk_94[param0], 0, param1);
 }
 
-void sub_02002C28(int param0)
+void Font_UseLazyGlyphAccess(int param0)
 {
     GF_ASSERT(param0 < 4);
     GF_ASSERT(sFontWork->unk_94[param0]);
@@ -111,7 +111,7 @@ void sub_02002C28(int param0)
     FontManager_SwitchGlyphAccessMode(sFontWork->unk_94[param0], 1, 0);
 }
 
-void sub_02002C60(int param0)
+void Font_Free(int param0)
 {
     GF_ASSERT(param0 < 4);
 
@@ -141,13 +141,13 @@ void sub_02002C60(int param0)
     }
 }
 
-const TextGlyph *sub_02002CFC(int param0, u16 param1)
+const TextGlyph *Font_TryLoadGlyph(int param0, u16 param1)
 {
     FontManager_TryLoadGlyph(sFontWork->unk_94[param0], param1, &sFontWork->curGlyph);
     return &(sFontWork->curGlyph);
 }
 
-int sub_02002D18(int param0, TextPrinter *param1)
+enum RenderResult Font_RenderText(int param0, TextPrinter *param1)
 {
     TextPrinterSubstruct *v0;
 
@@ -161,19 +161,19 @@ int sub_02002D18(int param0, TextPrinter *param1)
     return RenderText(param1);
 }
 
-u32 sub_02002D48(int param0, const u16 *param1, u32 param2)
+u32 Font_CalcStringWidth(int param0, const u16 *param1, u32 param2)
 {
     GF_ASSERT(sFontWork->unk_94[param0] != NULL);
     return FontManager_CalcStringWidth(sFontWork->unk_94[param0], param1, param2);
 }
 
-u32 sub_02002D7C(int param0, const Strbuf *param1, u32 param2)
+u32 Font_CalcStrbufWidth(int param0, const Strbuf *param1, u32 param2)
 {
     GF_ASSERT(sFontWork->unk_94[param0] != NULL);
     return FontManager_CalcStringWidth(sFontWork->unk_94[param0], Strbuf_GetData(param1), param2);
 }
 
-u32 sub_02002DB4(int param0, Strbuf *param1, Strbuf *param2)
+u32 Font_AreAllCharsValid(int param0, Strbuf *param1, Strbuf *param2)
 {
     GF_ASSERT(sFontWork->unk_94[param0] != NULL);
 
@@ -217,30 +217,30 @@ u8 Font_GetAttribute(u8 param0, u8 param1)
     return v0;
 }
 
-void sub_02002E7C(u32 param0, u32 param1, u32 param2)
+void Font_LoadTextPalette(u32 param0, u32 param1, u32 param2)
 {
     sub_02006E84(14, 6, (int)param0, param1, 0x20, param2);
 }
 
-void sub_02002E98(u32 param0, u32 param1, u32 param2)
+void Font_LoadScreenIndicatorsPalette(u32 param0, u32 param1, u32 param2)
 {
     sub_02006E84(14, 7, (int)param0, param1, 0x20, param2);
 }
 
-u32 sub_02002EB4(int param0, const Strbuf *param1, u32 param2)
+u32 Font_CalcMaxLineWidth(int param0, const Strbuf *param1, u32 param2)
 {
     GF_ASSERT(sFontWork->unk_94[param0] != NULL);
     return FontManager_CalcMaxLineWidth(sFontWork->unk_94[param0], Strbuf_GetData(param1), param2);
 }
 
-u32 sub_02002EEC(int param0, const Strbuf *param1, u32 param2, u32 param3)
+u32 Font_CalcCenterAlignment(int param0, const Strbuf *param1, u32 param2, u32 param3)
 {
-    u32 v0 = sub_02002D7C(param0, param1, param2);
+    u32 v0 = Font_CalcStrbufWidth(param0, param1, param2);
 
     return (v0 < param3) ? (param3 - v0) / 2 : 0;
 }
 
-u32 sub_02002F04(int param0, const Strbuf *param1)
+u32 Font_CalcStringWidthWithCursorControl(int param0, const Strbuf *param1)
 {
     GF_ASSERT(sFontWork->unk_94[param0] != NULL);
     return FontManager_CalcStringWidthWithCursorControl(sFontWork->unk_94[param0], Strbuf_GetData(param1));

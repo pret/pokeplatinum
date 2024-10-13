@@ -566,7 +566,7 @@ static void ov80_021D1AB0(UnkStruct_ov80_021D2A08 *param0, Window *param1, int p
         if (param0->unk_00 == 1) {
             v0 = (15 * 8 + 2);
         } else {
-            v0 = (29 - 3) * 8 - sub_02002D7C(0, param0->unk_88, 0);
+            v0 = (29 - 3) * 8 - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_88, 0);
             v0 /= 2;
         }
 
@@ -702,7 +702,7 @@ static void ov80_021D1D6C(UnkStruct_ov80_021D2A08 *param0, Window *param1)
     sub_02019964(param0->unk_28, 5, 10, 0, 12, 2, param0->unk_CC->rawData, 0, 7, param0->unk_CC->screenWidth / 8, param0->unk_CC->screenHeight / 8);
 
     v2 = MessageLoader_GetNewStrbuf(param0->unk_84, 1);
-    v0 = (10 * 8) - sub_02002D7C(0, v2, 0);
+    v0 = (10 * 8) - Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
     v0 /= 2;
     v1 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0));
 

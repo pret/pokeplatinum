@@ -544,7 +544,7 @@ static void ov97_0222C254(UnkStruct_ov97_0222C388 *param0)
     ov97_022376FC(param0->unk_04, 5, 1, 0x7000, 0x4000);
 
     sub_0201D710();
-    sub_02002E7C(0, 0 * 32, param0->unk_00);
+    Font_LoadTextPalette(0, 0 * 32, param0->unk_00);
     sub_0200DAA4(param0->unk_04, 0, 1, 1, 0, param0->unk_00);
 
     v0 = Options_Frame(param0->unk_14);

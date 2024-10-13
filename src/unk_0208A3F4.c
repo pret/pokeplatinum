@@ -672,12 +672,12 @@ void sub_0208AF44 (UnkStruct_02089688 * param0)
 void sub_0208AFCC (UnkStruct_02089688 * param0)
 {
     param0->unk_2C0.unk_8C = sub_02012744(2, 101);
-    sub_02002BB8(2, 101);
+    Font_InitManager(FONT_SUBSCREEN, 101);
 }
 
 void sub_0208AFE8 (UnkStruct_02089688 * param0)
 {
-    sub_02002C60(2);
+    Font_Free(FONT_SUBSCREEN);
     sub_02012870(param0->unk_2C0.unk_90[0]);
     sub_0201EE28(&param0->unk_2C0.unk_98[0]);
     sub_02012870(param0->unk_2C0.unk_90[1]);
@@ -713,7 +713,7 @@ void sub_0208B090 (UnkStruct_02089688 * param0, int param1, int param2, int para
     {
         Window_Init(&v7);
         BGL_AddFramelessWindow(param0->unk_2C0.unk_0C, &v7, 10, 2, 0, 0);
-        sub_0201D78C(&v7, 2, v3, sub_02002EEC(2, v3, 0, 80), 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((2 & 0xff) << 0))), NULL);
+        sub_0201D78C(&v7, 2, v3, Font_CalcCenterAlignment(FONT_SUBSCREEN, v3, 0, 80), 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((2 & 0xff) << 0))), NULL);
     }
 
     v4 = 1003;

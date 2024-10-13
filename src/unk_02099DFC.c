@@ -224,7 +224,7 @@ static void sub_02099F80(UnkStruct_02099DFC *param0)
 
     sub_0200DD0C(param0->unk_14, 0, (512 - (18 + 12)), 2, 0, param0->unk_00);
     sub_0200DAA4(param0->unk_14, 0, 512 - (18 + 12) - 9, 3, 0, param0->unk_00);
-    sub_02002E7C(0, 1 * (2 * 16), param0->unk_00);
+    Font_LoadTextPalette(0, 1 * (2 * 16), param0->unk_00);
     sub_02019690(0, 32, 0, param0->unk_00);
     sub_0201975C(0, 0x6c21);
     sub_0201975C(4, 0x6c21);

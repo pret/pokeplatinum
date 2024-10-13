@@ -20,8 +20,8 @@ void sub_0205D8CC(u32 param0, u32 param1)
         sub_0201D710();
     }
 
-    sub_02002E7C(param0, 13 * 32, 4);
-    sub_02002E98(param0, 12 * 32, 4);
+    Font_LoadTextPalette(param0, 13 * 32, 4);
+    Font_LoadScreenIndicatorsPalette(param0, 12 * 32, 4);
 }
 
 void FieldMessage_AddWindow(BGL *param0, Window *param1, u32 param2)

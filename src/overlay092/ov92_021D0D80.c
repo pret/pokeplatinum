@@ -930,7 +930,7 @@ static void ov92_021D1888(UnkStruct_ov92_021D1B24 *param0, NARC *param1)
     sub_0200710C(param1, 7, param0->unk_B810, 7, 0, 0, 0, param0->unk_00);
     sub_0200DD0C(param0->unk_B810, 6, (512 - (18 + 12)), 6, Options_Frame(param0->unk_08), param0->unk_00);
     sub_0200DAA4(param0->unk_B810, 6, ((512 - (18 + 12)) - 9), 7, 0, param0->unk_00);
-    sub_02002E7C(4, 4 * (2 * 16), param0->unk_00);
+    Font_LoadTextPalette(4, 4 * (2 * 16), param0->unk_00);
     sub_02019690(6, 32, 0, param0->unk_00);
     sub_0201975C(6, 0x4753);
     sub_0201A8D4(param0->unk_B810, &param0->unk_B814, &Unk_ov92_021D2934);
@@ -946,13 +946,13 @@ static void ov92_021D1888(UnkStruct_ov92_021D1B24 *param0, NARC *param1)
     sub_02007130(param1, 6, 0, 0 * (2 * 16), (2 * 16) * 4, param0->unk_00);
     sub_0200710C(param1, 7, param0->unk_B810, 3, 0, 0, 0, param0->unk_00);
     sub_0200DAA4(param0->unk_B810, 2, ((512 - (18 + 12)) - 9), 7, 0, param0->unk_00);
-    sub_02002E7C(0, 4 * (2 * 16), param0->unk_00);
+    Font_LoadTextPalette(0, 4 * (2 * 16), param0->unk_00);
     sub_02019690(2, 32, 0, param0->unk_00);
     sub_0201975C(2, 0x0);
 
     {
         Strbuf *v0 = Strbuf_Init(16, param0->unk_00);
-        sub_02002BB8(2, param0->unk_00);
+        Font_InitManager(FONT_SUBSCREEN, param0->unk_00);
 
         {
             u16 v1 = 0x4e56;
@@ -973,12 +973,12 @@ static void ov92_021D1888(UnkStruct_ov92_021D1B24 *param0, NARC *param1)
         {
             u32 v5;
 
-            v5 = sub_02002EEC(2, v0, 0, 6 * 8);
+            v5 = Font_CalcCenterAlignment(FONT_SUBSCREEN, v0, 0, 6 * 8);
             PrintStringSimple(&param0->unk_B834, 2, v0, v5, 0, 0xff, NULL);
         }
 
         Strbuf_Free(v0);
-        sub_02002C60(2);
+        Font_Free(FONT_SUBSCREEN);
     }
 }
 

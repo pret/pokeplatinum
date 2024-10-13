@@ -328,12 +328,12 @@ static void sub_020900D8(PokemonSummaryApp *param0, Window *param1, u32 param2, 
         v2 = 0;
         break;
     case 1:
-        v0 = sub_02002D7C(0, param0->strbuf, 0);
+        v0 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->strbuf, 0);
         v1 = sub_0201C294(param1) * 8;
         v2 = v1 - v0;
         break;
     case 2:
-        v0 = sub_02002D7C(0, param0->strbuf, 0);
+        v0 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->strbuf, 0);
         v1 = sub_0201C294(param1) * 8;
         v2 = (v1 - v0) / 2;
         break;
@@ -372,14 +372,14 @@ static void sub_020901D0(PokemonSummaryApp *param0, u32 param1, u32 param2, u32 
     v0 = &param0->extraWindows[param1];
 
     MessageLoader_GetStrbuf(param0->msgLoader, param2, param0->strbuf);
-    v1 = sub_02002D7C(0, param0->strbuf, 0);
+    v1 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->strbuf, 0);
     v2 = param8 - v1 / 2;
     v3 = v2 + v1;
 
     sub_0201D78C(v0, 0, param0->strbuf, v2, param9, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     sub_02090184(param0, param3, param5, param7, 0);
 
-    v1 = sub_02002D7C(0, param0->strbuf, 0);
+    v1 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->strbuf, 0);
 
     sub_0201D78C(v0, 0, param0->strbuf, v2 - v1, param9, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     sub_02090184(param0, param4, param6, param7, 0);
@@ -494,14 +494,14 @@ static void sub_02090578(PokemonSummaryApp *param0)
     }
 
     {
-        u32 v1 = sub_02002D7C(0, param0->monData.speciesName, 0);
+        u32 v1 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->monData.speciesName, 0);
         u32 v2 = (param0->extraWindows[1].unk_07 * 8 - v1) / 2;
 
         sub_0201D78C(&param0->extraWindows[1], 0, param0->monData.speciesName, v2, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
     {
-        u32 v3 = sub_02002D7C(0, param0->monData.OTName, 0);
+        u32 v3 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->monData.OTName, 0);
         u32 v4 = (param0->extraWindows[2].unk_07 * 8 - v3) / 2;
 
         if (param0->monData.OTGender == 0) {
@@ -782,13 +782,13 @@ void sub_02090F84(PokemonSummaryApp *param0)
     StringTemplate_Format(param0->strFormatter, param0->strbuf, v0);
     Strbuf_Free(v0);
 
-    v2 = sub_02002D7C(0, param0->strbuf, 0);
+    v2 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->strbuf, 0);
     v1 = 7 * 8 - v2;
 
     sub_0201D78C(&param0->extraWindows[1], 0, param0->strbuf, v1, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
     v0 = MessageLoader_GetNewStrbuf(param0->msgLoader, 185);
-    v2 = sub_02002D7C(0, v0, 0);
+    v2 = Font_CalcStrbufWidth(FONT_SYSTEM, v0, 0);
     v1 -= v2;
 
     sub_0201D78C(&param0->extraWindows[1], 0, v0, v1, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -800,7 +800,7 @@ void sub_02090F84(PokemonSummaryApp *param0)
     StringTemplate_Format(param0->strFormatter, param0->strbuf, v0);
     Strbuf_Free(v0);
 
-    v2 = sub_02002D7C(0, param0->strbuf, 0);
+    v2 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->strbuf, 0);
     v1 -= v2;
 
     sub_0201D78C(&param0->extraWindows[1], 0, param0->strbuf, v1, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -851,7 +851,7 @@ static void sub_02091188(PokemonSummaryApp *param0, u32 param1)
         sub_020901D0(param0, 0 + param1, 117, 136 + param1, 141 + param1, v4, v5, 2, (40 + 20), 16);
     } else {
         MessageLoader_GetStrbuf(param0->msgLoader, 153, param0->strbuf);
-        v2 = sub_02002D7C(0, param0->strbuf, 0);
+        v2 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->strbuf, 0);
         sub_0201D78C(v0, 0, param0->strbuf, (40 + 20) - v2 / 2, 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 }

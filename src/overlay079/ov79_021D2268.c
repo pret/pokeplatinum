@@ -482,7 +482,7 @@ static void ov79_021D270C(UnkStruct_ov79_021D2928 *param0)
     sub_0201A8D4(param0->unk_68, &(param0->unk_6C), &v0);
     BGL_FillWindow(&param0->unk_6C, ((0 << 4) | 0));
     sub_0200DD0C(param0->unk_68, 1, 1, 14, param0->unk_10->unk_0B, param0->unk_00);
-    sub_02002E98(0, 15 * 32, param0->unk_00);
+    Font_LoadScreenIndicatorsPalette(0, 15 * 32, param0->unk_00);
 }
 
 static void ov79_021D2754(UnkStruct_ov79_021D2928 *param0)

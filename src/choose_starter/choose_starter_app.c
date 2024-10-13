@@ -1347,7 +1347,7 @@ static void MakeConfirmationWindow(ChooseStarterApp *param0, int param1)
     param0->unk_B0.unk_06 = ((18 + 12) + 9 + 128);
 
     sub_0200DAA4(param0->bgl, 1, (512 + (18 + 12) + 128), 1, 0, param1);
-    sub_02002E7C(0, 3 * 32, param1);
+    Font_LoadTextPalette(0, 3 * 32, param1);
 }
 
 static void ov78_021D2108(ChooseStarterMovement *param0, s32 param1, s32 param2, s32 param3)

@@ -328,12 +328,12 @@ static void ov52_02256A7C(UnkStruct_ov52_02256694 *param0)
     BGL_FillWindow(&param0->unk_20, 4);
     MessageLoader_GetStrbuf(param0->unk_58, 0, param0->unk_5C);
 
-    v0 = ((24 * 8) - sub_02002D7C(0, param0->unk_5C, 0)) / 2;
+    v0 = ((24 * 8) - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_5C, 0)) / 2;
 
     sub_0201D78C(&param0->unk_20, 0, param0->unk_5C, v0, 8, 0xff, (u32)(((1 & 0xff) << 16) | ((8 & 0xff) << 8) | ((4 & 0xff) << 0)), NULL);
     MessageLoader_GetStrbuf(param0->unk_58, 10, param0->unk_5C);
 
-    v0 = ((24 * 8) - sub_02002EB4(0, param0->unk_5C, 0)) / 2;
+    v0 = ((24 * 8) - Font_CalcMaxLineWidth(FONT_SYSTEM, param0->unk_5C, 0)) / 2;
 
     {
         u32 v1 = 8 + 56;
@@ -351,7 +351,7 @@ static void ov52_02256B10(UnkStruct_ov52_02256694 *param0)
     MessageLoader_GetStrbuf(param0->unk_58, 1, param0->unk_5C);
 
     {
-        u32 v0 = (24 * 8 - sub_02002EB4(0, param0->unk_5C, 0)) / 2;
+        u32 v0 = (24 * 8 - Font_CalcMaxLineWidth(FONT_SYSTEM, param0->unk_5C, 0)) / 2;
         sub_0201D78C(&param0->unk_20, 0, param0->unk_5C, v0, 16, 0xff, (u32)(((1 & 0xff) << 16) | ((8 & 0xff) << 8) | ((4 & 0xff) << 0)), NULL);
     }
 
@@ -365,7 +365,7 @@ static void ov52_02256B64(UnkStruct_ov52_02256694 *param0)
     BGL_FillWindow(&param0->unk_20, 4);
     MessageLoader_GetStrbuf(param0->unk_58, 2, param0->unk_5C);
 
-    v0 = ((24 * 8) - sub_02002D7C(0, param0->unk_5C, 0)) / 2;
+    v0 = ((24 * 8) - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_5C, 0)) / 2;
 
     sub_0201D78C(&param0->unk_20, 0, param0->unk_5C, v0, 8, 0xff, (u32)(((1 & 0xff) << 16) | ((8 & 0xff) << 8) | ((4 & 0xff) << 0)), NULL);
     MessageLoader_GetStrbuf(param0->unk_58, 3, param0->unk_5C);
@@ -381,11 +381,11 @@ static void ov52_02256BDC(UnkStruct_ov52_02256694 *param0)
     BGL_FillWindow(&param0->unk_20, 4);
     MessageLoader_GetStrbuf(param0->unk_58, 2, param0->unk_5C);
 
-    v0 = ((24 * 8) - sub_02002D7C(0, param0->unk_5C, 0)) / 2;
+    v0 = ((24 * 8) - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_5C, 0)) / 2;
     sub_0201D78C(&param0->unk_20, 0, param0->unk_5C, v0, 8, 0xff, (u32)(((1 & 0xff) << 16) | ((8 & 0xff) << 8) | ((4 & 0xff) << 0)), NULL);
     MessageLoader_GetStrbuf(param0->unk_58, 4, param0->unk_5C);
 
-    v1 = ((24 * 8) - sub_02002EB4(0, param0->unk_5C, 0)) / 2;
+    v1 = ((24 * 8) - Font_CalcMaxLineWidth(FONT_SYSTEM, param0->unk_5C, 0)) / 2;
     sub_0201D78C(&param0->unk_20, 0, param0->unk_5C, v1, 24, 0xff, (u32)(((1 & 0xff) << 16) | ((8 & 0xff) << 8) | ((4 & 0xff) << 0)), NULL);
 
     sub_0201ACCC(&param0->unk_20);
@@ -405,7 +405,7 @@ static void ov52_02256C64(UnkStruct_ov52_02256694 *param0, const UnkStruct_ov52_
     BGL_FillWindow(&param0->unk_20, 4);
     MessageLoader_GetStrbuf(param0->unk_58, 5, param0->unk_5C);
 
-    v1 = ((24 * 8) - sub_02002D7C(0, param0->unk_5C, 0)) / 2;
+    v1 = ((24 * 8) - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_5C, 0)) / 2;
     sub_0201D78C(&param0->unk_20, 0, param0->unk_5C, v1, 8, 0xff, (u32)(((1 & 0xff) << 16) | ((8 & 0xff) << 8) | ((4 & 0xff) << 0)), NULL);
 
     for (v2 = 0; v2 < 4; v2++) {

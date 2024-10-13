@@ -279,8 +279,8 @@ static void ov94_02244B8C(UnkStruct_ov94_0223FD4C *param0)
 
     sub_02007130(v1, 3, 0, 0, 0, 62);
     sub_02007130(v1, 3, 4, 0, 0, 62);
-    sub_02002E98(0, 13 * 0x20, 62);
-    sub_02002E98(4, 13 * 0x20, 62);
+    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 62);
+    Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, 62);
     sub_0200DD0C(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), 62);
     sub_0200DAA4(v0, 0, (1 + (18 + 12)), 11, 0, 62);
     sub_020070E8(v1, 2, v0, 1, 0, 0, 0, 62);
@@ -921,11 +921,11 @@ static int ov94_02245894(Window *param0, Strbuf *param1, int param2, int param3,
 
     switch (param3) {
     case 1:
-        v0 = sub_02002D7C(param5, param1, 0);
+        v0 = Font_CalcStrbufWidth(param5, param1, 0);
         param2 = ((param0->unk_07 * 8) - v0) / 2;
         break;
     case 2:
-        v0 = sub_02002D7C(param5, param1, 0);
+        v0 = Font_CalcStrbufWidth(param5, param1, 0);
         param2 = (param0->unk_07 * 8) - v0;
         break;
     }

@@ -120,7 +120,7 @@ static int ov83_0223D6A8(int param0, const Strbuf *param1, int param2)
 {
     u32 v0;
 
-    v0 = sub_02002D7C(param2, param1, 0);
+    v0 = Font_CalcStrbufWidth(param2, param1, 0);
     v0 /= 2;
     param0 -= v0;
 
@@ -635,7 +635,7 @@ static void ov83_0223E09C(UnkStruct_ov83_0223E138 *param0, u32 param1)
     BGL_FillWindow(param0->unk_08, 15);
     BGL_FillWindow(param0->unk_0C, 0);
     sub_0200DD0C(param0->unk_04, 4, 1, 0, param0->unk_10, param1);
-    sub_02002E98(4, 1 * 32, param1);
+    Font_LoadScreenIndicatorsPalette(4, 1 * 32, param1);
     sub_0200E060(param0->unk_08, 1, 1, 0);
 }
 
@@ -1062,9 +1062,9 @@ static void ov83_0223E77C(UnkStruct_ov83_0223E824 *param0, u32 param1)
     };
 
     sub_0200DD0C(param0->unk_04, 2, 1, 0, param0->unk_18, param1);
-    sub_02002E98(0, 2 * 32, param1);
+    Font_LoadScreenIndicatorsPalette(0, 2 * 32, param1);
     sub_0200DAA4(param0->unk_04, 2, (1 + (18 + 12)), 1, 0, param1);
-    sub_02002E7C(0, 3 * 32, param1);
+    Font_LoadTextPalette(0, 3 * 32, param1);
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_08[v0] = sub_0201A778(param1, 1);
@@ -1123,7 +1123,7 @@ void ov83_0223E908(UnkStruct_ov83_0223E824 *param0, u32 param1)
     BGL_FillWindow(param0->unk_08[0], 0);
 
     {
-        u32 v0 = sub_02002EEC(1, param0->unk_1C->unk_38[param1], 0, 128);
+        u32 v0 = Font_CalcCenterAlignment(FONT_MESSAGE, param0->unk_1C->unk_38[param1], 0, 128);
         sub_0201D78C(param0->unk_08[0], 1, param0->unk_1C->unk_38[param1], v0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     }
 
@@ -1174,7 +1174,7 @@ static void ov83_0223E9E4(UnkStruct_ov83_0223E824 *param0)
     BGL_FillWindow(param0->unk_08[1], 15);
 
     {
-        u32 v0 = sub_02002EEC(0, param0->unk_1C->unk_34, 0, 224);
+        u32 v0 = Font_CalcCenterAlignment(FONT_SYSTEM, param0->unk_1C->unk_34, 0, 224);
         sub_0201D78C(param0->unk_08[1], 0, param0->unk_1C->unk_34, v0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     }
 

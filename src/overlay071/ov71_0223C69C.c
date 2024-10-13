@@ -108,7 +108,7 @@ void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
             MessageLoader_GetStrbuf(v1, 14, v3);
             StringTemplate_Format(v4, v2, v3);
 
-            v5 = (8 * 17) - sub_02002D7C(0, v2, 0);
+            v5 = (8 * 17) - Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
 
             sub_0201D78C(&param0[2], 0, v2, v5, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
         }
@@ -120,7 +120,7 @@ void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
             MessageLoader_GetStrbuf(v1, 21, v3);
             StringTemplate_Format(v4, v2, v3);
 
-            v6 = (8 * 17) - sub_02002D7C(0, v2, 0);
+            v6 = (8 * 17) - Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
 
             sub_0201D78C(&param0[3], 0, v2, v6, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
         }
@@ -141,7 +141,7 @@ void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
             }
 
             StringTemplate_Format(v4, v2, v3);
-            v7 = (8 * 28) - sub_02002D7C(0, v2, 0);
+            v7 = (8 * 28) - Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
             sub_0201D78C(&param0[5], 0, v2, v7, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
         }
 
@@ -154,7 +154,7 @@ void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
             MessageLoader_GetStrbuf(v1, 17, v3);
             StringTemplate_Format(v4, v2, v3);
 
-            v8 = (8 * 28) - sub_02002D7C(0, v2, 0);
+            v8 = (8 * 28) - Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
 
             sub_0201D78C(&param0[6], 0, v2, v8, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
         }
@@ -167,6 +167,7 @@ void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
     MessageLoader_Free(v1);
 }
 
+// clang-format off
 asm void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
 {
     push {r3, r4, r5, r6, r7, lr}
@@ -345,7 +346,7 @@ asm void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
     mov r0, #0
     add r1, r5, #0
     add r2, r0, #0
-    bl sub_02002D7C
+    bl Font_CalcStrbufWidth
     mov r1, #0xe0
     sub r3, r1, r0
     mov r1, #0
@@ -369,7 +370,7 @@ asm void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
     mov r0, #0
     add r1, r5, #0
     add r2, r0, #0
-    bl sub_02002D7C
+    bl Font_CalcStrbufWidth
     mov r1, #0xe0
     sub r3, r1, r0
     mov r0, #0x10
@@ -404,7 +405,7 @@ asm void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
     mov r0, #0
     add r1, r5, #0
     add r2, r0, #0
-    bl sub_02002D7C
+    bl Font_CalcStrbufWidth
     mov r1, #0xe0
     sub r3, r1, r0
     mov r1, #0
@@ -496,7 +497,7 @@ asm void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
     mov r0, #0
     add r1, r5, #0
     add r2, r0, #0
-    bl sub_02002D7C
+    bl Font_CalcStrbufWidth
     mov r1, #0xe0
     sub r3, r1, r0
     mov r1, #0
@@ -520,6 +521,7 @@ asm void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
     add sp, #0x18
     pop {r3, r4, r5, r6, r7, pc}
 }
+// clang-format on
 
 void ov71_0223CD44 (Window * param0, const u8 param1, const u8 param2)
 {
@@ -535,7 +537,7 @@ static void ov71_0223CD64 (Window * param0, const u32 param1, const u32 param2, 
     u32 v0;
 
     Strbuf_FormatInt(param4, param5, param6, param7, 1);
-    v0 = sub_02002D7C(0, param4, 0);
+    v0 = Font_CalcStrbufWidth(FONT_SYSTEM, param4, 0);
     sub_0201D78C(param0, 0, param4, param1 - (v0 + param2), param3, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
 }
 
@@ -543,7 +545,7 @@ static void ov71_0223CDB0 (Window * param0, const u32 param1, const u32 param2, 
 {
     u32 v0;
 
-    v0 = sub_02002D7C(0, param4, 0);
+    v0 = Font_CalcStrbufWidth(FONT_SYSTEM, param4, 0);
     sub_0201D78C(param0, 0, param4, param1 - (v0 + param2), param3, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
 }
 
@@ -572,7 +574,7 @@ void ov71_0223CDE8 (Window * param0, const TrainerCard * param1, Strbuf *param2)
         StringTemplate_SetNumber(v5, 1, PlayTime_GetMinutes(param1->playTime), 2, 2, 1);
         MessageLoader_GetStrbuf(v2, 16, v4);
         StringTemplate_Format(v5, v3, v4);
-        v1 = (8 * 28) - sub_02002D7C(0, v3, 0);
+        v1 = (8 * 28) - Font_CalcStrbufWidth(FONT_SYSTEM, v3, 0);
         sub_0201D78C(&param0[5], 0, v3, v1, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
 
         MessageLoader_Free(v2);

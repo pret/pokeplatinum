@@ -228,7 +228,7 @@ static void LibraryTV_SetVramBank(LibraryTV *ltv)
     sub_02006E60(NARC_INDEX_GRAPHIC__LIBRARY_TV, screenID, ltv->bgl, frame, 0, 0, 0, ltv->heapID);
 
     sub_02006E84(NARC_INDEX_GRAPHIC__LIBRARY_TV, 3, 0, 0, 0, ltv->heapID);
-    sub_02002E7C(0, 1 * (2 * 16), ltv->heapID);
+    Font_LoadTextPalette(0, 1 * (2 * 16), ltv->heapID);
     sub_0201975C(0, 0x0);
     sub_0201975C(4, 0x0);
 

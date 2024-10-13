@@ -436,7 +436,7 @@ void ov101_021D13C8(UnkStruct_ov101_021D13C8 *param0)
 
     sub_0200DAA4(param0->unk_43C, 0, 1, 15, 0, 79);
     sub_0200DD0C(param0->unk_43C, 0, (1 + (18 + 12)), 14, param0->unk_4C4, 79);
-    sub_02002E98(0, 15 * 32, 79);
+    Font_LoadScreenIndicatorsPalette(0, 15 * 32, 79);
 
     v1->unk_00 = MessageLoader_Init(0, 26, 544, 79);
     v1->unk_04 = StringTemplate_Default(79);

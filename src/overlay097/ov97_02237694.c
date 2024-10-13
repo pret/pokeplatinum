@@ -245,7 +245,7 @@ static int ov97_02237870(UnkStruct_ov97_02237808 *param0, int param1)
             } else {
                 int v5, v6;
 
-                v5 = sub_02002D7C(param0->unk_40, v1, Font_GetAttribute(param0->unk_40, 2));
+                v5 = Font_CalcStrbufWidth(param0->unk_40, v1, Font_GetAttribute(param0->unk_40, 2));
                 v6 = sub_0201C294(param0->unk_10) * 8 - v5;
                 v0 = sub_0201D78C(param0->unk_10, param0->unk_40, v1, v6, param0->unk_24, param0->unk_50, param0->unk_44, NULL);
 

@@ -594,7 +594,7 @@ static void ov90_021D1340(UnkStruct_ov90_021D0ECC *param0)
         }
     }
 
-    sub_02002E7C(0, 2 * 32, param0->unk_00);
+    Font_LoadTextPalette(0, 2 * 32, param0->unk_00);
 }
 
 static void ov90_021D13A8(UnkStruct_ov90_021D0ECC *param0)
@@ -670,7 +670,7 @@ static void ov90_021D14C8(UnkStruct_ov90_021D0ECC *param0, Window *param1, u8 pa
     StringTemplate_SetNumber(param0->unk_28.unk_04, 0, v2, 4, 1, 1);
     StringTemplate_Format(param0->unk_28.unk_04, param0->unk_28.unk_08, param0->unk_28.unk_24[4]);
 
-    v3 = 21 * 8 - sub_02002D7C(0, param0->unk_28.unk_08, 0) - 4;
+    v3 = 21 * 8 - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_28.unk_08, 0) - 4;
     sub_0201D78C(param1, 0, param0->unk_28.unk_08, v3, param4, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
     param4 += 24;
@@ -678,7 +678,7 @@ static void ov90_021D14C8(UnkStruct_ov90_021D0ECC *param0, Window *param1, u8 pa
     StringTemplate_SetNumber(param0->unk_28.unk_04, 0, v1, 4, 1, 1);
     StringTemplate_Format(param0->unk_28.unk_04, param0->unk_28.unk_08, param0->unk_28.unk_24[4]);
 
-    v3 = 21 * 8 - sub_02002D7C(0, param0->unk_28.unk_08, 0) - 4;
+    v3 = 21 * 8 - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_28.unk_08, 0) - 4;
     sub_0201D78C(param1, 0, param0->unk_28.unk_08, v3, param4, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     sub_0201A954(param1);
 }
@@ -690,7 +690,7 @@ static void ov90_021D15D0(UnkStruct_ov90_021D0ECC *param0)
 
     MessageLoader_GetStrbuf(param0->unk_28.unk_00, 0 + param0->unk_0A, param0->unk_28.unk_08);
 
-    v0 = sub_02002D7C(0, param0->unk_28.unk_08, 0);
+    v0 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_28.unk_08, 0);
     v0 = (24 * 8) - v0;
 
     sub_0201D78C(&param0->unk_6C[0], 0, param0->unk_28.unk_08, v0 / 2, 8, 0, ((u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -714,7 +714,7 @@ static void ov90_021D15D0(UnkStruct_ov90_021D0ECC *param0)
         StringTemplate_SetNumber(param0->unk_28.unk_04, 0, sub_0202D2C0(param0->unk_20, 0), 2, 0, 1);
         StringTemplate_Format(param0->unk_28.unk_04, param0->unk_28.unk_08, param0->unk_28.unk_24[5]);
 
-        v0 = 64 - sub_02002D7C(0, param0->unk_28.unk_08, 0);
+        v0 = 64 - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_28.unk_08, 0);
         v0 = v0 / 2 + 64;
 
         sub_0201D78C(&param0->unk_6C[3], 0, param0->unk_28.unk_08, v0, 10, 0, ((u32)(((5 & 0xff) << 16) | ((6 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -771,7 +771,7 @@ static void ov90_021D17F8(UnkStruct_ov90_021D17F8 *param0, Window *param1, Strbu
 
     if (param3 >= (10 - 2)) {
         v4 = 2;
-        v5 = (40 - sub_02002D7C(0, param2, 0)) / 2;
+        v5 = (40 - Font_CalcStrbufWidth(FONT_SYSTEM, param2, 0)) / 2;
         sub_0201D78C(param1, 0, param2, 2 * 72 + 16 + v5, 2 * 24 + 4, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     } else {
         v4 = 3;
@@ -807,11 +807,11 @@ static void ov90_021D18BC(UnkStruct_ov90_021D0ECC *param0)
     StringTemplate_SetNumber(param0->unk_28.unk_04, 1, v0.unk_04, 3, 2, 1);
     StringTemplate_Format(param0->unk_28.unk_04, param0->unk_28.unk_08, param0->unk_28.unk_10);
 
-    v1 = 24 * 8 - sub_02002D7C(0, param0->unk_28.unk_08, 0);
+    v1 = 24 * 8 - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_28.unk_08, 0);
     sub_0201D78C(&param0->unk_6C[0], 0, param0->unk_28.unk_08, v1 / 2, 4, 0xff, ((u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     MessageLoader_GetStrbuf(param0->unk_28.unk_00, 16 + param0->unk_0A, param0->unk_28.unk_08);
 
-    v1 = 24 * 8 - sub_02002D7C(0, param0->unk_28.unk_08, 0);
+    v1 = 24 * 8 - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_28.unk_08, 0);
     sub_0201D78C(&param0->unk_6C[0], 0, param0->unk_28.unk_08, v1 / 2, 20, 0, ((u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     ov90_021D17F8(param0->unk_BC, &param0->unk_6C[1], param0->unk_28.unk_0C, 0, 0, 0);
 }

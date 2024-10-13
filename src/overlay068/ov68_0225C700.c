@@ -492,7 +492,7 @@ static void ov68_0225C9A0(UnkStruct_ov68_0225C91C *param0, Options *param1, u32 
         }
     }
 
-    sub_02002E98(0, 4 * 0x20, param2);
+    Font_LoadScreenIndicatorsPalette(0, 4 * 0x20, param2);
 
     {
         u8 v1 = Options_Frame(param1);
@@ -1310,7 +1310,7 @@ static void ov68_0225D89C(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB
     BGL_FillWindow(&param0->unk_00[0], 0);
 
     v0 = ov68_0225CBEC(param1, 0, param2);
-    v1 = sub_02002D7C(1, v0, 0);
+    v1 = Font_CalcStrbufWidth(FONT_MESSAGE, v0, 0);
     v2 = ((18 * 8) - v1) / 2;
 
     sub_0201D78C(&param0->unk_00[0], 1, v0, v2, 4, 0xff, param3, NULL);
@@ -1347,13 +1347,13 @@ static void ov68_0225D8F0(UnkStruct_ov68_0225D388 *param0, const UnkStruct_ov68_
         ov68_0225CC78(param2, 0, param5);
 
         v0 = ov68_0225CBEC(param2, 0, 110);
-        v1 = sub_02002D7C(1, v0, 0);
+        v1 = Font_CalcStrbufWidth(FONT_MESSAGE, v0, 0);
         v2 = (((12 * 8) - v1) / 2);
 
         sub_0201D78C(&param0->unk_00[5], 1, v0, v2, 0, 0xff, v3, NULL);
 
         v0 = ov68_0225DC58(param1, param2, param4->unk_04);
-        v1 = sub_02002D7C(1, v0, 0);
+        v1 = Font_CalcStrbufWidth(FONT_MESSAGE, v0, 0);
         v2 = (((13 * 8) - v1) / 2);
 
         sub_0201D78C(&param0->unk_00[5], 1, v0, (12 * 8) + v2, 0, 0xff, param6, NULL);

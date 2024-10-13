@@ -325,7 +325,7 @@ static u8 sub_02001F1C(UIControlData *param0)
     u8 v1, v2;
 
     for (v1 = 0; v1 < param0->unk_00.unk_09 * param0->unk_00.unk_0A; v1++) {
-        v2 = sub_02002D7C(param0->unk_00.unk_08, param0->unk_00.unk_00[v1].unk_00, 0);
+        v2 = Font_CalcStrbufWidth(param0->unk_00.unk_08, param0->unk_00.unk_00[v1].unk_00, 0);
 
         if (v0 < v2) {
             v0 = v2;

@@ -301,7 +301,7 @@ static void ov73_021D342C (UnkStruct_ov73_021D342C * param0)
     }
     sub_02006E84(136, 6, 0, 0, 0, param0->unk_00);
     sub_02006E9C(136, 9, 0, 0x20 * 2, 0x20 * 2, 0x20 * 14, param0->unk_00);
-    sub_02002E7C(0, 1 * (2 * 16), param0->unk_00);
+    Font_LoadTextPalette(0, 1 * (2 * 16), param0->unk_00);
     sub_0201975C(0, 0x0);
     sub_0201975C(4, 0x0);
 
@@ -351,6 +351,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov72_021D3A38 = {
     0x1
 };
 
+// clang-format off
 asm static BOOL ov73_021D3698 (UnkStruct_ov73_021D342C * param0, int param1, int param2, int param3)
 {
     push {r3, r4, r5, r6, r7, lr}
@@ -402,7 +403,7 @@ asm static BOOL ov73_021D3698 (UnkStruct_ov73_021D342C * param0, int param1, int
     add r0, r6, #0
     add r1, r5, #0
     add r2, r0, #0
-    bl sub_02002EB4
+    bl Font_CalcMaxLineWidth
     mov r1, #1
     lsl r1, r1, #8
     sub r0, r1, r0
@@ -479,6 +480,7 @@ asm static BOOL ov73_021D3698 (UnkStruct_ov73_021D342C * param0, int param1, int
     pop {r3, r4, r5, r6, r7, pc}
     nop
 }
+// clang-format on
 
 static void ov73_021D37AC (UnkStruct_ov73_021D342C * param0)
 {

@@ -927,8 +927,8 @@ static BOOL ov97_0222DFD4(OverlayManager *param0, UnkStruct_ov97_0222D04C *param
     int v0;
 
     sub_0201D710();
-    sub_02002E7C(0, 0 * 32, 86);
-    sub_02002E7C(0, 1 * 32, 86);
+    Font_LoadTextPalette(0, 0 * 32, 86);
+    Font_LoadTextPalette(0, 1 * 32, 86);
 
     v0 = Options_Frame(param1->unk_08);
 

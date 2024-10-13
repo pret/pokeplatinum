@@ -852,7 +852,7 @@ static void ov75_021D19C8(UnkStruct_ov75_021D1184 *param0)
             Strbuf_Clear(v2);
             MessageLoader_GetStrbuf(param0->unk_20, 0 + v0, v2);
 
-            v3 = (8 * 8) - sub_02002D7C(1, v2, 0);
+            v3 = (8 * 8) - Font_CalcStrbufWidth(FONT_MESSAGE, v2, 0);
             v3 /= 2;
 
             sub_0201D78C(&param0->unk_44[3 + v0], 1, v2, v3, 2, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);

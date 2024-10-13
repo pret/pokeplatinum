@@ -543,7 +543,7 @@ void sub_02082508(GameWindowLayout *param0, u8 param1)
 
 static u32 sub_020825A4(int param0, const Strbuf *param1, u32 param2)
 {
-    u32 v0 = sub_02002D7C(param0, param1, 0);
+    u32 v0 = Font_CalcStrbufWidth(param0, param1, 0);
 
     return (param2 - v0) >> 1;
 }
@@ -770,7 +770,7 @@ void sub_020829DC(GameWindowLayout *param0)
         Strbuf_Free(v1);
 
         {
-            u32 v4 = 14 * 8 - 8 - sub_02002D7C(0, param0->unk_6A4, 0);
+            u32 v4 = 14 * 8 - 8 - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_6A4, 0);
             PrintStringSimple(&param0->unk_254[0], 0, param0->unk_6A4, v4, 16 * v2, 0xff, NULL);
         }
 
@@ -793,7 +793,7 @@ void sub_02082B58(GameWindowLayout *param0)
         StringTemplate_SetNumber(param0->unk_6A0, 0, param0->unk_B14[v2], 3, 0, 1);
         StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, v0);
 
-        v1 = sub_02002D7C(0, param0->unk_6A4, 0);
+        v1 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_6A4, 0);
 
         PrintStringSimple(&param0->unk_254[0], 0, param0->unk_6A4, 14 * 8 - v1 - 8, 16 * v2, 0xff, NULL);
     }

@@ -1151,7 +1151,7 @@ void ov62_02232594 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * param
             Strbuf_CopyChars(v4, param1->unk_8B4.unk_1D58[v0]->unk_00.unk_00);
             ov62_022349A8(param1, v4);
 
-            v7 = sub_02002D7C(0, v5, 0);
+            v7 = Font_CalcStrbufWidth(FONT_SYSTEM, v5, 0);
 
             sub_0201D78C(v1, 0, v5, 16 - v7, 4 + (v0 * 24), 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
             sub_0201D78C(v1, 0, v6, 16, 4 + (v0 * 24), 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -2112,7 +2112,7 @@ int ov62_02233064 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * param1
             Strbuf_CopyChars(v7, param1->unk_8B4.unk_1D58[v5 + v4]->unk_00.unk_00);
             ov62_022349A8(param1, v7);
 
-            v10 = sub_02002D7C(0, v8, 0);
+            v10 = Font_CalcStrbufWidth(FONT_SYSTEM, v8, 0);
 
             sub_0201D78C(v2, 0, v8, 16 - v10, 4 + (v4 * 24), 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
             sub_0201D78C(v2, 0, v9, 16, 4 + (v4 * 24), 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -3176,7 +3176,7 @@ void ov62_0223427C (UnkStruct_ov62_02233F74 * param0, int param1)
 
 int ov62_0223429C (Window * param0, Strbuf *param1)
 {
-    int v0 = sub_02002D7C(0, param1, 0);
+    int v0 = Font_CalcStrbufWidth(FONT_SYSTEM, param1, 0);
     int v1 = (sub_0201C294(param0) * 8 - v0) / 2;
 
     return v1;
@@ -3726,7 +3726,7 @@ void ov62_022349A8 (UnkStruct_0208C06C * param0, Strbuf *param1)
 
     v1 = Strbuf_Init(v2, v0->unk_144);
 
-    if (sub_02002DB4(0, param1, v1) == 0) {
+    if (Font_AreAllCharsValid(FONT_SYSTEM, param1, v1) == 0) {
         ov62_022349E4(param1, v0->unk_144);
     }
 

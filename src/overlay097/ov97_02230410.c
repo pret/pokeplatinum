@@ -617,7 +617,7 @@ static void ov97_02230C44(UnkStruct_ov97_02230868 *param0, int param1, int param
                     v2 = MessageUtil_ExpandedStrbuf(param0->unk_2A60, param0->unk_2A64, v4[v0].unk_20, param0->unk_00);
 
                     {
-                        u32 v5 = (v4[v0].unk_28 == -1) ? sub_02002EEC(v4[v0].unk_14, v2, 0, v4[v0].unk_0C * 8) : v4[v0].unk_28;
+                        u32 v5 = (v4[v0].unk_28 == -1) ? Font_CalcCenterAlignment(v4[v0].unk_14, v2, 0, v4[v0].unk_0C * 8) : v4[v0].unk_28;
                         sub_0201D78C(&param0->unk_2A68[v0], v4[v0].unk_14, v2, v5, v4[v0].unk_2C, 0xff, v3, NULL);
                     }
 
@@ -1059,7 +1059,7 @@ static int ov97_0223161C(OverlayManager *param0, int *param1)
     case 2:
         sub_0201D710();
         ov97_02230F98(v4, 0);
-        sub_02002E7C(0, 15 * 32, 87);
+        Font_LoadTextPalette(0, 15 * 32, 87);
         sub_0200DAA4(v4->unk_2A5C, 0, 1, 13, 0, 87);
         sub_0200DAA4(v4->unk_2A5C, 0, (1 + 9), 14, 1, 87);
         sub_0200DD0C(v4->unk_2A5C, 0, ((1 + 9) + 9), 10, v4->unk_2C0C, 87);
@@ -1206,7 +1206,7 @@ static int ov97_0223161C(OverlayManager *param0, int *param1)
         ov97_02230518(&v4->unk_2C30, 0);
         ov97_02230500(&v4->unk_2C40, 0);
         ov97_02230C44(v4, 1, 0);
-        sub_02002E7C(0, 15 * 32, 87);
+        Font_LoadTextPalette(0, 15 * 32, 87);
         ov97_02230C10(v4, 1, 4, param1);
         break;
     case 22:
@@ -1495,7 +1495,7 @@ void ov97_02231FFC(BGL *param0, void *param1, int param2)
     v0->unk_2A5C = param0;
     v0->unk_00 = param2;
 
-    sub_02002E7C(0, 15 * 32, v0->unk_00);
+    Font_LoadTextPalette(0, 15 * 32, v0->unk_00);
 
     v0->unk_2C14[0] = (UnkStruct_0202DBAC *)param1;
     v0->unk_2C20 = 0;

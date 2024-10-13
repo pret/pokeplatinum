@@ -586,8 +586,8 @@ static void ov67_0225CE30(UnkStruct_ov67_0225D154 *param0, u32 param1)
         v1 = SaveData_Options(param0->unk_00);
         v2 = Options_Frame(v1);
 
-        sub_02002E7C(0, 12 * 32, param1);
-        sub_02002E98(0, 11 * 32, param1);
+        Font_LoadTextPalette(0, 12 * 32, param1);
+        Font_LoadScreenIndicatorsPalette(0, 11 * 32, param1);
         sub_0200DAA4(param0->unk_0C, Unk_ov67_0225D3F4[1], (1 + (18 + 12)), 14, 0, param1);
         sub_0200DD0C(param0->unk_0C, Unk_ov67_0225D3F4[1], 1, 13, v2, param1);
     }
@@ -723,7 +723,7 @@ static void ov67_0225D37C(UnkStruct_ov67_0225D210 *param0, u32 param1)
     BGL_FillWindow(&param0->unk_08, 0);
     MessageLoader_GetStrbuf(param0->unk_04, param1, param0->unk_1C);
     StringTemplate_Format(param0->unk_00, param0->unk_18, param0->unk_1C);
-    sub_0201D78C(&param0->unk_08, 1, param0->unk_18, sub_02002EEC(0, param0->unk_18, 0, 0xB0), 0, 0, 0xF0E00, 0);
+    sub_0201D78C(&param0->unk_08, 1, param0->unk_18, Font_CalcCenterAlignment(FONT_SYSTEM, param0->unk_18, 0, 0xB0), 0, 0, 0xF0E00, 0);
 }
 
 static void ov67_0225D3D0(UnkStruct_ov67_0225D210 *param0, u32 param1)

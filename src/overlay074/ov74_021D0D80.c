@@ -509,10 +509,10 @@ static void ov74_021D14F4(UnkStruct_ov74_021D0D80 *param0)
     sub_0200DAA4(param0->unk_14, 1, (((10 + 12 * 2) + 30 * 14) + 27 * 4), 14, 0, param0->unk_00);
     sub_0200DD0C(param0->unk_14, 1, ((((10 + 12 * 2) + 30 * 14) + 27 * 4) + 9), 15, param0->unk_18.unk_00_10, param0->unk_00);
 
-    sub_02002E7C(0, 13 * 32, param0->unk_00);
-    sub_02002E7C(4, 13 * 32, param0->unk_00);
-    sub_02002E98(0, 12 * 32, param0->unk_00);
-    sub_02002E98(4, 12 * 32, param0->unk_00);
+    Font_LoadTextPalette(0, 13 * 32, param0->unk_00);
+    Font_LoadTextPalette(4, 13 * 32, param0->unk_00);
+    Font_LoadScreenIndicatorsPalette(0, 12 * 32, param0->unk_00);
+    Font_LoadScreenIndicatorsPalette(4, 12 * 32, param0->unk_00);
 
     BGL_FillWindow(&(param0->unk_2C[0]), WINCLR_COL(0));
     BGL_FillWindow(&(param0->unk_2C[1]), WINCLR_COL(15));
@@ -665,7 +665,7 @@ static void ov74_021D17CC(UnkStruct_ov74_021D0D80 *param0, u16 param1)
 
         if (param1 == 4) {
             sub_0201D78C(&param0->unk_2C[1], 0, param0->unk_5C[param1].unk_04[v3], (12 * 8 + 4) - 0 + v5, 16 * param1 + 0, v4, v2, NULL);
-            v5 += sub_02002D7C(0, param0->unk_5C[param1].unk_04[v3], 0) + 12;
+            v5 += Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_5C[param1].unk_04[v3], 0) + 12;
         } else {
             sub_0201D78C(&param0->unk_2C[1], 0, param0->unk_5C[param1].unk_04[v3], v3 * 48 + (12 * 8 + 4) + v6[param1], 16 * param1 + 0, v4, v2, NULL);
         }

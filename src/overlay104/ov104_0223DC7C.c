@@ -500,7 +500,7 @@ static void ov104_0223E3CC(const Strbuf *param0, int param1, int *param2, int *p
 {
     int v0, v1;
 
-    v0 = sub_02002D7C(param1, param0, 0);
+    v0 = Font_CalcStrbufWidth(param1, param0, 0);
     v1 = v0 / 8;
 
     if (FX_ModS32(v0, 8) != 0) {

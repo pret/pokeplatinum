@@ -462,8 +462,8 @@ static void ov80_021D1158(UnkStruct_ov80_021D2A08 *param0)
     param0->unk_B4 = sub_0208C2F4(v3, v2, 29, &param0->unk_D4, param0->unk_04);
 
     NARC_dtor(v3);
-    sub_02002E7C(0, 15 * 32, param0->unk_04);
-    sub_02002E7C(4, 15 * 32, param0->unk_04);
+    Font_LoadTextPalette(0, 15 * 32, param0->unk_04);
+    Font_LoadTextPalette(4, 15 * 32, param0->unk_04);
 }
 
 static void ov80_021D12D8(UnkStruct_ov80_021D2A08 *param0)

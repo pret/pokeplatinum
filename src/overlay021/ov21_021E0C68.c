@@ -432,7 +432,7 @@ static void ov21_021E10D0(UnkStruct_ov21_021E0D7C *param0, const UnkStruct_ov21_
 
     MessageLoader_GetStrbuf(v1, v3, v0);
 
-    v4 = sub_02002D7C(0, v0, 0);
+    v4 = Font_CalcStrbufWidth(FONT_SYSTEM, v0, 0);
     v4 /= 2;
 
     sub_0201D78C(&param0->unk_00->unk_04, 0, v0, 176 - v4, 72, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -447,7 +447,7 @@ static void ov21_021E10D0(UnkStruct_ov21_021E0D7C *param0, const UnkStruct_ov21_
 static void ov21_021E1188(UnkStruct_ov21_021E0D7C *param0, int param1, int param2, int param3, int param4)
 {
     Strbuf *v0 = ov21_021D56BC(param2, param3, param4, param1);
-    u32 v1 = sub_02002EB4(0, v0, 0);
+    u32 v1 = Font_CalcMaxLineWidth(FONT_SYSTEM, v0, 0);
     u32 v2 = (v1 < 240) ? 128 - v1 / 2 : 8;
 
     sub_0201D78C(&param0->unk_00->unk_04, 0, v0, v2, 136, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -571,7 +571,7 @@ static Window *ov21_021E1460(UnkStruct_ov21_021E0D7C *param0, int param1, int pa
     v1 = ov21_021D566C(param1, GAME_LANGUAGE, param2);
 
     {
-        u32 v2 = sub_02002D7C(2, v1, 0);
+        u32 v2 = Font_CalcStrbufWidth(FONT_SUBSCREEN, v1, 0);
         u32 v3 = (v2 < 136) ? (136 - v2) / 2 : 0;
         ov21_021D4E80(param0->unk_00->unk_14C, v0, v1, v3, 0);
     }
@@ -830,7 +830,7 @@ static void ov21_021E18DC(UnkStruct_ov21_021E0D7C *param0, int param1, int param
     Strbuf *v0 = ov21_021D566C(param2, param3, param1);
     u32 v1;
 
-    v1 = 240 - sub_02002D7C(0, v0, 0);
+    v1 = 240 - Font_CalcStrbufWidth(FONT_SYSTEM, v0, 0);
 
     sub_0201D78C(&param0->unk_00->unk_04, 0, v0, v1, 112, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     ov21_021D5600(v0);

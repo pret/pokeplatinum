@@ -574,8 +574,8 @@ static void ov109_021D4300(UnkStruct_ov109_021D5140 *param0, NARC *param1)
 
     sub_02007130(param1, 0, 0, 0, 16 * 16 * 2, 95);
     sub_02006E84(12, 12, 4, 0, 16 * 2, 95);
-    sub_02002E98(0, 13 * 0x20, 95);
-    sub_02002E98(4, 13 * 0x20, 95);
+    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 95);
+    Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, 95);
     sub_02006E3C(12, 10, v0, 6, 0, 0, 1, 95);
     sub_02006E60(12, 11, v0, 6, 0, 0, 1, 95);
     sub_020070E8(param1, 2, v0, 1, 0, 32 * 8 * 0x20, 1, 95);
@@ -693,7 +693,7 @@ static void ov109_021D45F4(UnkStruct_ov109_021D5140 *param0)
 
 static void ov109_021D46D8(Window *param0, Strbuf *param1, int param2)
 {
-    int v0 = sub_02002D7C(1, param1, 0);
+    int v0 = Font_CalcStrbufWidth(FONT_MESSAGE, param1, 0);
     int v1 = (26 * 8 - v0) / 2;
 
     BGL_FillWindow(param0, 0x0);

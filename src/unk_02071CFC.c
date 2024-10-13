@@ -15,7 +15,7 @@ u32 sub_02071CFC(MessageLoader *param0, const int param1, Strbuf *param2)
     u32 v0;
 
     MessageLoader_GetStrbuf(param0, param1, param2);
-    v0 = sub_02002D7C(0, param2, 0);
+    v0 = Font_CalcStrbufWidth(FONT_SYSTEM, param2, 0);
 
     return v0;
 }

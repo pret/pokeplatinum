@@ -1187,7 +1187,7 @@ static void ov62_0223F65C (UnkStruct_0208C06C * param0)
     v3 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 95);
 
     {
-        u32 v6 = (80 - sub_02002EB4(0, v3, 0)) / 2;
+        u32 v6 = (80 - Font_CalcMaxLineWidth(FONT_SYSTEM, v3, 0)) / 2;
         sub_0201D78C(v4, 0, v3, v6, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 

@@ -312,7 +312,7 @@ static u8 ov13_0221FE5C(UnkStruct_ov13_022213F0 *param0)
     ov13_02220D4C(param0);
     ov13_02220F08(param0);
 
-    sub_02002BB8(2, param0->unk_00->unk_0C);
+    Font_InitManager(FONT_SUBSCREEN, param0->unk_00->unk_0C);
 
     ov13_02221738(param0, param0->unk_2076);
     ov13_022260EC(param0, param0->unk_2076);
@@ -1006,7 +1006,7 @@ static u8 ov13_02220BA4(SysTask *param0, UnkStruct_ov13_022213F0 *param1)
     param1->unk_00->unk_32 = ov13_02228A5C(param1->unk_2084);
 
     ov13_02228A50(param1->unk_2084);
-    sub_02002C60(2);
+    Font_Free(FONT_SUBSCREEN);
 
     param1->unk_00->unk_36 = 1;
     SysTask_FinishAndFreeParam(param0);

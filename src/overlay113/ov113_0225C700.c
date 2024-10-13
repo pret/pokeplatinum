@@ -393,7 +393,7 @@ int ov113_0225C700(OverlayManager *param0, int *param1)
 
     sub_0201E3D8();
     sub_0201E450(4);
-    sub_02002BB8(2, 118);
+    Font_InitManager(FONT_SUBSCREEN, 118);
 
     v0->unk_2C = StringTemplate_Default(118);
     v0->unk_30 = MessageLoader_Init(0, 26, 650, 118);
@@ -642,7 +642,7 @@ int ov113_0225CDFC(OverlayManager *param0, int *param1)
     ov113_0225E378(&v0->unk_194);
 
     Strbuf_Free(v0->unk_C4);
-    sub_02002C60(2);
+    Font_Free(FONT_SUBSCREEN);
     sub_020127BC(v0->unk_10);
     MessageLoader_Free(v0->unk_30);
     StringTemplate_Free(v0->unk_2C);
@@ -1572,7 +1572,7 @@ static void ov113_0225E264(const Strbuf *param0, int param1, int *param2, int *p
 {
     int v0, v1;
 
-    v0 = sub_02002D7C(param1, param0, 0);
+    v0 = Font_CalcStrbufWidth(param1, param0, 0);
     v1 = v0 / 8;
 
     if (FX_ModS32(v0, 8) != 0) {

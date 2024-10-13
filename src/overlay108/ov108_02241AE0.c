@@ -828,8 +828,8 @@ static void ov108_0224237C(UnkStruct_ov108_02241DB0 *param0)
         param0->unk_78[v5] = Strbuf_Init(32, 103);
     }
 
-    sub_02002E7C(0, 13 * 32, 103);
-    sub_02002E98(0, 12 * 32, 103);
+    Font_LoadTextPalette(0, 13 * 32, 103);
+    Font_LoadScreenIndicatorsPalette(0, 12 * 32, 103);
 
     ov108_02243630(param0->unk_90, param0->unk_94);
     param0->unk_338 = ov108_0224351C(&param0->unk_E8, 1, 1, 1, 35, 68, 36, 0, 2, 0);

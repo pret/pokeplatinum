@@ -882,7 +882,7 @@ static void ov117_022613EC (UnkStruct_ov117_02261280 * param0)
                 v5 = ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0)));
             }
 
-            v6 = sub_02002D7C(0, v3, 0);
+            v6 = Font_CalcStrbufWidth(FONT_SYSTEM, v3, 0);
             v7 = 8 * 10 / 2 - v6 / 2;
 
             if (v6 & 1) {
@@ -984,6 +984,7 @@ static u32 ov117_02261668 (u32 param0, BOOL param1)
     return NNS_GfdGetPlttKeyAddr(v0);
 }
 
+// clang-format off
 asm static void ov117_0226168C (UnkStruct_ov117_02261280 * param0, NARC * param1)
 {
     push {r4, r5, r6, r7, lr}
@@ -1016,7 +1017,7 @@ asm static void ov117_0226168C (UnkStruct_ov117_02261280 * param0, NARC * param1
     mov r0, #0
     add r1, r6, #0
     add r2, r0, #0
-    bl sub_02002D7C
+    bl Font_CalcStrbufWidth
     mov r1, #0x1e
     sub r0, r1, r0
     lsr r0, r0, #1
@@ -1249,6 +1250,7 @@ asm static void ov117_0226168C (UnkStruct_ov117_02261280 * param0, NARC * param1
     pop {r4, r5, r6, r7, pc}
     nop
 }
+// clang-format on
 
 static void ov117_022618E8 (UnkStruct_ov117_02261280 * param0)
 {

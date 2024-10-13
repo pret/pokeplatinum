@@ -1107,7 +1107,7 @@ static void ov111_021D1C0C(UnkStruct_ov111_021D0F7C *param0)
         ov111_021D3448(param0->unk_3C0);
     }
 
-    sub_02002C60(2);
+    Font_Free(FONT_SUBSCREEN);
     sub_02002FA0(param0->unk_15C, 2);
     sub_02002FA0(param0->unk_15C, 0);
     sub_02002F54(param0->unk_15C);
@@ -1159,11 +1159,11 @@ static void ov111_021D1D68(UnkStruct_ov111_021D0F7C *param0)
     param0->unk_40 = Strbuf_Init(600, 115);
     param0->unk_44 = Strbuf_Init(600, 115);
 
-    sub_02002E7C(0, 13 * 32, 115);
-    sub_02002E7C(4, 13 * 32, 115);
-    sub_02002E98(0, 12 * 32, 115);
-    sub_02002E98(4, 12 * 32, 115);
-    sub_02002BB8(2, 115);
+    Font_LoadTextPalette(0, 13 * 32, 115);
+    Font_LoadTextPalette(4, 13 * 32, 115);
+    Font_LoadScreenIndicatorsPalette(0, 12 * 32, 115);
+    Font_LoadScreenIndicatorsPalette(4, 12 * 32, 115);
+    Font_InitManager(FONT_SUBSCREEN, 115);
 
     param0->unk_160 = sub_0200C440(15, 14, 0, 115);
     ov111_021D3548(param0->unk_58, param0->unk_5C);
@@ -1538,7 +1538,7 @@ static u8 ov111_021D2424(UnkStruct_ov111_021D0F7C *param0, Window *param1, int p
     BGL_FillWindow(param1, param8);
     MessageLoader_GetStrbuf(param0->unk_38, param2, param0->unk_44);
     StringTemplate_Format(param0->unk_3C, param0->unk_40, param0->unk_44);
-    param3 -= (sub_02002D7C(param9, param0->unk_40, 0) + 1) / 2;
+    param3 -= (Font_CalcStrbufWidth(param9, param0->unk_40, 0) + 1) / 2;
     return sub_0201D78C(param1, param9, param0->unk_40, param3, param4, param5, (u32)((((param6) & 0xff) << 16) | (((param7) & 0xff) << 8) | (((param8) & 0xff) << 0)), NULL);
 }
 

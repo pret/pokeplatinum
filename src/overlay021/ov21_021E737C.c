@@ -710,7 +710,7 @@ static void ov21_021E7CF8(UnkStruct_ov21_021E747C *param0, int param1)
     MessageLoader_GetStrbuf(v1, 44, v0);
 
     {
-        u32 v2 = sub_02002EEC(0, v0, 0, 256);
+        u32 v2 = Font_CalcCenterAlignment(FONT_SYSTEM, v0, 0, 256);
         sub_0201D78C(&param0->unk_00->unk_04, 0, v0, v2, 24, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
@@ -735,7 +735,7 @@ static void ov21_021E7DA8(UnkStruct_ov21_021E747C *param0, const UnkStruct_ov21_
     MessageLoader_GetStrbuf(v1, v2, v0);
 
     {
-        u32 v5 = 32 + 78 - sub_02002D7C(0, v0, 0);
+        u32 v5 = 32 + 78 - Font_CalcStrbufWidth(FONT_SYSTEM, v0, 0);
         sub_0201D78C(&param0->unk_00->unk_04, 0, v0, v5, 168, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
@@ -753,7 +753,7 @@ static void ov21_021E7DA8(UnkStruct_ov21_021E747C *param0, const UnkStruct_ov21_
     }
 
     {
-        u32 v6 = 152 + 78 - sub_02002D7C(0, v0, 0);
+        u32 v6 = 152 + 78 - Font_CalcStrbufWidth(FONT_SYSTEM, v0, 0);
         sub_0201D78C(&param0->unk_00->unk_04, 0, v0, v6, 168, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 

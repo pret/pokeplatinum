@@ -200,7 +200,7 @@ static void ov22_0225A718(BGL *param0, const Options *param1)
     int v0 = Options_Frame(param1);
 
     sub_0200DD0C(param0, 5, 1, 1, v0, 14);
-    sub_02002E98(4, 2 * 32, 14);
+    Font_LoadScreenIndicatorsPalette(4, 2 * 32, 14);
 }
 
 static void ov22_0225A748(Window **param0, BGL *param1, int param2, int param3, int param4, int param5, int param6, BOOL param7)

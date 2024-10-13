@@ -112,12 +112,12 @@ static void ov76_0223B870(TouchScreenRect *rect, CellActorData *param1, int para
 void ov76_0223B8A8(UnkStruct_ov76_0223DE00 *param0)
 {
     param0->unk_D4.unk_160 = sub_02012744(2, 53);
-    sub_02002BB8(2, 53);
+    Font_InitManager(FONT_SUBSCREEN, 53);
 }
 
 void ov76_0223B8C4(UnkStruct_ov76_0223DE00 *param0)
 {
-    sub_02002C60(2);
+    Font_Free(FONT_SUBSCREEN);
     sub_02012870(param0->unk_D4.unk_164[0]);
     sub_0201EE28(&param0->unk_D4.unk_16C[0]);
     sub_02012870(param0->unk_D4.unk_164[1]);
@@ -171,7 +171,7 @@ void ov76_0223B98C(UnkStruct_ov76_0223DE00 *param0, int param1, int param2, int 
     v0.unk_0C = sub_0200D04C(param0->unk_D4.unk_0C, v2);
     v0.unk_10 = NULL;
     v0.unk_14 = param0->unk_D4.unk_16C[param1].unk_04;
-    v0.unk_18 = param2 - sub_02002D7C(2, v1, 0) / 2;
+    v0.unk_18 = param2 - Font_CalcStrbufWidth(FONT_SUBSCREEN, v1, 0) / 2;
     v0.unk_1C = param3 + 192;
     v0.unk_20 = 1;
     v0.unk_24 = 40;

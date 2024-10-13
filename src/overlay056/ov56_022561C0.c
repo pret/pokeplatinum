@@ -153,7 +153,7 @@ static void ov56_022561C0(SysTask *param0, void *param1)
     case 1:
         ov56_02256634(v0);
         ov56_02256704(v0);
-        sub_02002BEC(1, 4);
+        Font_UseImmediateGlyphAccess(FONT_MESSAGE, 4);
         ov56_022562EC(v0->unk_14, v0->unk_22C);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
@@ -250,7 +250,7 @@ void ov56_02256468(UnkStruct_ov56_02256468 *param0)
 
         param0->unk_00 = 3;
 
-        sub_02002C28(1);
+        Font_UseLazyGlyphAccess(FONT_MESSAGE);
         sub_0200A4E4(param0->unk_1C8[0]);
         sub_0200A6DC(param0->unk_1C8[1]);
 

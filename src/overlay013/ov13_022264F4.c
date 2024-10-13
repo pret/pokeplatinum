@@ -202,7 +202,7 @@ static u8 ov13_0222668C(UnkStruct_ov13_02227244 *param0)
     ov13_02226ED0(param0);
     ov13_02226FC4(param0);
     ov13_022270B8(param0);
-    sub_02002BB8(2, param0->unk_00->unk_0C);
+    Font_InitManager(FONT_SUBSCREEN, param0->unk_00->unk_0C);
 
     param0->unk_114D = (u8)sub_0207D9EC(BattleSystem_BagCursor(param0->unk_00->unk_00));
 
@@ -556,7 +556,7 @@ static u8 ov13_02226CFC(SysTask *param0, UnkStruct_ov13_02227244 *param1)
     param1->unk_00->unk_25 = ov13_02228A5C(param1->unk_34);
 
     ov13_02228A50(param1->unk_34);
-    sub_02002C60(2);
+    Font_Free(FONT_SUBSCREEN);
 
     if (param1->unk_00->unk_1C != 0) {
         UnkStruct_0207D99C *v0;

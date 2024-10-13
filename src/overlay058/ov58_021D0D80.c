@@ -593,8 +593,8 @@ static void ov58_021D142C(UnkStruct_02095EAC *param0, NARC *param1)
 
     sub_02007130(param1, 0, 0, 0, 16 * 2 * 2, 39);
     sub_02007130(param1, 1, 4, 0, 16 * 2 * 2, 39);
-    sub_02002E98(0, 13 * 0x20, 39);
-    sub_02002E98(4, 13 * 0x20, 39);
+    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 39);
+    Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, 39);
     sub_020070E8(param1, 2, v0, 2, 0, 32 * 8 * 0x20, 1, 39);
     sub_0200710C(param1, 4, v0, 2, 0, 32 * 24 * 2, 1, 39);
     sub_020070E8(param1, 3, v0, 5, 0, 32 * 8 * 0x20, 1, 39);
@@ -740,7 +740,7 @@ static void ov58_021D18AC(UnkStruct_02095EAC *param0, OverlayManager *param1)
     BGL_FillWindow(&param0->unk_34C, 0x0);
 
     {
-        u32 v0 = sub_02002EEC(1, param0->unk_28, 0, (7 - 1) * 8) + 2;
+        u32 v0 = Font_CalcCenterAlignment(FONT_MESSAGE, param0->unk_28, 0, (7 - 1) * 8) + 2;
         sub_0201D78C(&param0->unk_34C, 1, param0->unk_28, v0, 0, 0, (u32)(((0x7 & 0xff) << 16) | ((0x1 & 0xff) << 8) | ((0x0 & 0xff) << 0)), NULL);
     }
 

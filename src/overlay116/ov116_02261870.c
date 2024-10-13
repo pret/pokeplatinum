@@ -466,7 +466,7 @@ void ov116_02262034(UnkStruct_ov116_0226139C *param0, int param1)
 
 static int ov116_0226208C(Window *param0, Strbuf *param1)
 {
-    int v0 = sub_02002D7C(0, param1, 0);
+    int v0 = Font_CalcStrbufWidth(FONT_SYSTEM, param1, 0);
     int v1 = (sub_0201C294(param0) * 8 - v0) / 2;
 
     return v1;

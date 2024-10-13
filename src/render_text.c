@@ -195,7 +195,7 @@ enum RenderResult RenderText(TextPrinter *printer)
             return RENDER_UPDATE;
         }
 
-        const TextGlyph *glyph = sub_02002CFC(substruct->fontID, currChar);
+        const TextGlyph *glyph = Font_TryLoadGlyph(substruct->fontID, currChar);
         sub_0201AED0(printer->template.window,
             glyph->gfx,
             glyph->width,

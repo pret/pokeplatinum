@@ -1283,7 +1283,7 @@ static void ov86_0223C47C(UnkStruct_ov86_0223C3E4 *param0, int param1)
 
     for (v0 = 0; v0 < v1; v0++) {
         Strbuf_CopyLineNum(param0->unk_18, param0->unk_1C, v0);
-        v2 = (136 - sub_02002D7C(0, param0->unk_18, 0)) / 2;
+        v2 = (136 - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_18, 0)) / 2;
         sub_0201D78C(param0->unk_10, 0, param0->unk_18, param0->unk_2C + v2, param1 + v0 * 16, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
     }
 }
@@ -1419,7 +1419,7 @@ static void ov86_0223C72C(UnkStruct_ov86_0223B3C8 *param0)
 
     MessageLoader_GetStrbuf(param0->unk_1C50, 12, param0->unk_1C48);
 
-    v0 = (256 - sub_02002D7C(0, param0->unk_1C48, 0)) / 2;
+    v0 = (256 - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_1C48, 0)) / 2;
     sub_0201D78C(&param0->unk_14, 0, param0->unk_1C48, v0, 4, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
     StringTemplate_SetPlayerName(param0->unk_1C44, 0, param0->unk_0C->unk_00);
 
@@ -1429,7 +1429,7 @@ static void ov86_0223C72C(UnkStruct_ov86_0223B3C8 *param0)
     MessageLoader_GetStrbuf(param0->unk_1C50, 13, param0->unk_1C4C);
     StringTemplate_Format(param0->unk_1C44, param0->unk_1C48, param0->unk_1C4C);
 
-    v0 = (256 - sub_02002D7C(0, param0->unk_1C48, 0)) / 2;
+    v0 = (256 - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_1C48, 0)) / 2;
     sub_0201D78C(&param0->unk_14, 0, param0->unk_1C48, v0, 172, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
     sub_0201ACCC(&param0->unk_14);
 }

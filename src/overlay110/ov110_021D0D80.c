@@ -134,8 +134,8 @@ int ov110_021D0D80 (OverlayManager * param0, int * param1)
     v1->unk_118 = Strbuf_Init(800, 114);
     v1->unk_11C = Strbuf_Init(800, 114);
 
-    sub_02002E7C(0, 13 * 32, 114);
-    sub_02002E98(0, 12 * 32, 114);
+    Font_LoadTextPalette(0, 13 * 32, 114);
+    Font_LoadScreenIndicatorsPalette(0, 12 * 32, 114);
     ov110_021D2124(v1->unk_0C, v1->unk_10, ov110_021D1208(v1->unk_06));
     SetMainCallback(ov110_021D1048, (void *)v1);
     (*param1) = 0;
@@ -487,10 +487,10 @@ static u8 ov110_021D1324 (UnkStruct_ov110_021D0F78 * param0, Window * param1, in
     
     switch(param10) {
     case 1:
-        param3 -= (sub_02002D7C(0, param0->unk_118, 0) + 1) / 2;
+        param3 -= (Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_118, 0) + 1) / 2;
         break;
     case 2:
-        param3 -= sub_02002D7C(0, param0->unk_118, 0);
+        param3 -= Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_118, 0);
         break;
     }
     

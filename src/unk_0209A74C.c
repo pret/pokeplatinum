@@ -105,7 +105,7 @@ void sub_0209A74C(int param0)
     sub_020183C4(v0, 0, &Unk_020F8ADC, 0);
     sub_02019EBC(v0, 0);
     sub_0200DAA4(v0, 0, 512 - 9, 2, 0, param0);
-    sub_02002E7C(0, 1 * (2 * 16), param0);
+    Font_LoadTextPalette(0, 1 * (2 * 16), param0);
     sub_02019690(0, 32, 0, param0);
     sub_0201975C(0, 27681);
     sub_0201975C(4, 27681);
@@ -179,7 +179,7 @@ void sub_0209A8E0(int param0)
     sub_020183C4(v0, 0, &Unk_020F8ADC, 0);
     sub_02019EBC(v0, 0);
     sub_0200DAA4(v0, 0, 512 - 9, 2, 0, param0);
-    sub_02002E7C(0, 1 * (2 * 16), param0);
+    Font_LoadTextPalette(0, 1 * (2 * 16), param0);
     sub_02019690(0, 32, 0, param0);
     sub_0201975C(0, 0x6c21);
     sub_0201975C(4, 0x6c21);

@@ -1823,7 +1823,7 @@ u8 BattleMessage_PrintToWindow(BattleSystem *param0, Window *param1, MessageLoad
     }
 
     if (param6 & 0x2) {
-        v0 = param7 - sub_02002D7C(0, param0->msgBuffer, 0);
+        v0 = param7 - Font_CalcStrbufWidth(FONT_SYSTEM, param0->msgBuffer, 0);
     } else {
         v0 = 0;
     }

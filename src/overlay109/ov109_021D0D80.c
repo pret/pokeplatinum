@@ -2160,7 +2160,7 @@ static void ov109_021D2820(UnkStruct_ov109_021D0F70 *param0, Strbuf *param1, int
     Window *v1 = &v0->unk_1C[param2];
     Window_Show(v1, 1, 1, 14);
     BGL_FillWindow(v1, 15);
-    sub_0201D78C(v1, 0, param1, sub_02002EEC(0, param1, 0, 8 * 8), 0, 0xFF, param3, NULL);
+    sub_0201D78C(v1, 0, param1, Font_CalcCenterAlignment(FONT_SYSTEM, param1, 0, 8 * 8), 0, 0xFF, param3, NULL);
     sub_0201A9A4(v1);
 }
 

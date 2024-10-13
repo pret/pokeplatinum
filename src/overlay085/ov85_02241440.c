@@ -445,7 +445,7 @@ static void ov85_02241718(UnkStruct_ov85_022417E4 *param0, NARC *param1)
         sub_02019448(param0->unk_00, 1);
     }
 
-    sub_02002E7C(0, 15 * 0x20, 36);
+    Font_LoadTextPalette(0, 15 * 0x20, 36);
 }
 
 static void ov85_022417CC(void)
@@ -493,7 +493,7 @@ static void ov85_02241878(UnkStruct_ov85_022417E4 *param0, u32 param1, u32 param
 
     v0 = &param0->unk_04[param1];
     v1 = MessageLoader_GetNewStrbuf(param0->unk_C4, param2);
-    v2 = sub_02002D7C(0, v1, 0);
+    v2 = Font_CalcStrbufWidth(FONT_SYSTEM, v1, 0);
 
     sub_0201D78C(v0, 0, v1, (sub_0201C294(v0) * 8 - v2) / 2, 0, 0xff, param3, NULL);
     Strbuf_Free(v1);

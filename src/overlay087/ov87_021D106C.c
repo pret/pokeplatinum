@@ -422,7 +422,7 @@ static void ov87_021D1640(UnkStruct_ov87_021D106C *param0)
         PrintStringSimple(v2, 0, param0->unk_1F8, 194, 0, 0xff, NULL);
         MessageLoader_GetStrbuf(param0->unk_1E4, 2, param0->unk_1F4);
         PrintStringSimple(v2, 0, param0->unk_1F4, 0, 16, 0xff, NULL);
-        PrintStringSimple(v2, 0, v1->unk_04, sub_02002D7C(0, param0->unk_1F4, 0), 16, 0xff, NULL);
+        PrintStringSimple(v2, 0, v1->unk_04, Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_1F4, 0), 16, 0xff, NULL);
         break;
     case UnkEnum_ov87_021D12C0_1: {
         int v3;

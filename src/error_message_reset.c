@@ -139,7 +139,7 @@ void ErrorMessageReset_PrintErrorAndReset(void)
     sub_020183C4(bgConfig, 0, &sErrorMessageBgTemplate, 0);
     sub_02019EBC(bgConfig, 0);
     sub_0200DAA4(bgConfig, 0, (512 - 9), 2, 0, v5);
-    sub_02002E7C(0, 1 * (2 * 16), v5);
+    Font_LoadTextPalette(0, 1 * (2 * 16), v5);
     sub_02019690(0, 32, 0, v5);
     sub_0201975C(0, 0x6c21);
     sub_0201975C(4, 0x6c21);

@@ -131,7 +131,7 @@ static u32 ov20_021D3B74(UnkStruct_ov20_021D3E0C *param0, BGL *param1, u32 param
         BGL_AddWindow(param1, &v3, 1, v1, v2, 9, 2, 11, param2);
         BGL_FillWindow(&v3, 15);
 
-        v7 = ((9 * 8) - sub_02002D7C(0, v5, 0)) / 2;
+        v7 = ((9 * 8) - Font_CalcStrbufWidth(FONT_SYSTEM, v5, 0)) / 2;
 
         sub_0201D78C(&v3, 0, v5, v7, 0, 0xff, v6, NULL);
         sub_0201A9F4(&v3);
@@ -203,7 +203,7 @@ static u32 ov20_021D3D44(UnkStruct_ov20_021D3E0C *param0, BGL *param1, u32 param
 
     v2 = MessageLoader_Init(1, 26, 436, 35);
     v3 = MessageLoader_GetNewStrbuf(v2, 13);
-    v5 = ((8 * 8) - sub_02002D7C(0, v3, 0)) / 2;
+    v5 = ((8 * 8) - Font_CalcStrbufWidth(FONT_SYSTEM, v3, 0)) / 2;
 
     for (v4 = 0; v4 < NELEMS(v0); v4++) {
         GF_ASSERT(param2 < (1024 - 16));

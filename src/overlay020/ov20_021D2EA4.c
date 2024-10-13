@@ -277,7 +277,7 @@ static u32 ov20_021D32D0(UnkStruct_ov20_021D30F8 *param0)
         switch (ov20_021D3400(&(param0->unk_64), v0)) {
         case 0:
             sub_0201D78C(&param0->unk_0C, 1, v0, v1, v2, 0xff, (u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((13 & 0xff) << 0)), NULL);
-            v1 += sub_02002D7C(1, v0, 0);
+            v1 += Font_CalcStrbufWidth(FONT_MESSAGE, v0, 0);
             break;
         case 1:
             v1 += 2;
@@ -412,7 +412,7 @@ static void ov20_021D351C(UnkStruct_ov20_021D30F8 *param0, Window *param1, const
         ov20_021D34CC(param2, &v0);
         sub_02014DB8(param3, param0->unk_4C);
 
-        v1 = (v0.unk_00 + (96 / 2)) - (sub_02002D7C(1, param0->unk_4C, 0) / 2);
+        v1 = (v0.unk_00 + (96 / 2)) - (Font_CalcStrbufWidth(FONT_MESSAGE, param0->unk_4C, 0) / 2);
 
         sub_0201D78C(param1, 1, param0->unk_4C, v0.unk_00, v0.unk_02, 0xff, (u32)(((5 & 0xff) << 16) | ((6 & 0xff) << 8) | ((14 & 0xff) << 0)), NULL);
     }

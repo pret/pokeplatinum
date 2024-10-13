@@ -612,7 +612,7 @@ static void ov91_021D10C8(UnkStruct_ov91_021D0ED8 *param0, NARC *param1)
     sub_020070E8(param1, 10, param0->unk_04, 2, 0, 0, 0, 67);
     sub_0200710C(param1, 11, param0->unk_04, 2, 0, 0, 0, 67);
     sub_02007130(param1, 12, 0, 0, 0, 67);
-    sub_02002E98(0, 14 * 32, 67);
+    Font_LoadScreenIndicatorsPalette(0, 14 * 32, 67);
     sub_0200DAA4(param0->unk_04, 0, 1, 12, 0, 67);
     sub_0200DD0C(param0->unk_04, 0, (1 + 9), 13, Options_Frame(param0->unk_00->unk_08), 67);
 }
@@ -847,12 +847,12 @@ static void ov91_021D1580(UnkStruct_ov91_021D0ED8 *param0, u32 param1, u32 param
         v2 = 0;
         break;
     case 1:
-        v0 = sub_02002D7C(0, param0->unk_100, 0);
+        v0 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_100, 0);
         v1 = sub_0201C294(&param0->unk_08[param1]) * 8;
         v2 = v1 - v0;
         break;
     case 2:
-        v0 = sub_02002D7C(0, param0->unk_100, 0);
+        v0 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_100, 0);
         v1 = sub_0201C294(&param0->unk_08[param1]) * 8;
         v2 = (v1 - v0) / 2;
         break;

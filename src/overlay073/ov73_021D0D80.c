@@ -370,8 +370,8 @@ static void ov73_021D1058(UnkStruct_ov73_021D1058 *param0)
 
         sub_0200DD0C(param0->unk_18, 0, (0x400 - (18 + 12)), 4, 0, param0->unk_00);
         sub_0200DAA4(param0->unk_18, 0, ((0x400 - (18 + 12)) - 9), 3, 0, param0->unk_00);
-        sub_02002E7C(0, 5 * (2 * 16), param0->unk_00);
-        sub_02002E98(0, 6 * (2 * 16), param0->unk_00);
+        Font_LoadTextPalette(0, 5 * (2 * 16), param0->unk_00);
+        Font_LoadScreenIndicatorsPalette(0, 6 * (2 * 16), param0->unk_00);
     }
     {
         UnkStruct_ov97_0222DB78 v2 = {

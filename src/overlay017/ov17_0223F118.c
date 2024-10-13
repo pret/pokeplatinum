@@ -122,7 +122,7 @@ void ov17_0223F1E8(int param0, BGL *param1, SpriteGfxHandler *param2, UnkStruct_
     int v7 = 0;
 
     {
-        v5 = sub_02002D7C(param6, param5, v7);
+        v5 = Font_CalcStrbufWidth(param6, param5, v7);
         v6 = v5 / 8;
 
         if (FX_ModS32(v5, 8) != 0) {

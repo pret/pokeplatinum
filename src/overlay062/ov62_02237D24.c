@@ -1353,6 +1353,7 @@ static void ov62_022396E8 (UnkStruct_0208C06C * param0)
     ov62_022313BC(param0);
 }
 
+// clang-format off
 asm static void ov62_02239724 (UnkStruct_0208C06C * param0)
 {
     push {r4, r5, r6, r7, lr}
@@ -1451,7 +1452,7 @@ asm static void ov62_02239724 (UnkStruct_0208C06C * param0)
     mov r0, #0
     add r1, r4, #0
     add r2, r0, #0
-    bl sub_02002D7C
+    bl Font_CalcStrbufWidth
     mov r1, #0x80
     sub r0, r1, r0
     lsr r3, r0, #1
@@ -1487,7 +1488,9 @@ asm static void ov62_02239724 (UnkStruct_0208C06C * param0)
     pop {r4, r5, r6, r7, pc}
     nop
 }
+// clang-format on
 
+// clang-format off
 asm static void ov62_02239854 (UnkStruct_0208C06C * param0, int param1)
 {
     push {r4, r5, r6, r7, lr}
@@ -1586,7 +1589,7 @@ asm static void ov62_02239854 (UnkStruct_0208C06C * param0, int param1)
     mov r0, #0
     add r1, r4, #0
     add r2, r0, #0
-    bl sub_02002D7C
+    bl Font_CalcStrbufWidth
     mov r1, #0x80
     sub r0, r1, r0
     lsr r3, r0, #1
@@ -1622,6 +1625,7 @@ asm static void ov62_02239854 (UnkStruct_0208C06C * param0, int param1)
     pop {r4, r5, r6, r7, pc}
     nop
 }
+// clang-format on
 
 static BOOL ov62_02239984 (UnkStruct_0208C06C * param0, int param1)
 {

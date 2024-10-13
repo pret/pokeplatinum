@@ -1002,7 +1002,7 @@ void ov66_0222E640(const UnkStruct_ov66_0222E71C *param0, TrainerInfo *param1, u
             v3 = Strbuf_Init((7 + 1) * 4, param2);
             v2 = Strbuf_Init((7 + 1) * 4, param2);
             TrainerInfo_NameStrbuf(param1, v2);
-            v0 = sub_02002DB4(0, v2, v3);
+            v0 = Font_AreAllCharsValid(FONT_SYSTEM, v2, v3);
 
             if (v0 == 0) {
                 v1 = 1;

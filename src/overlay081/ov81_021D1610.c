@@ -163,7 +163,7 @@ static u8 ov81_021D16B0(UnkStruct_ov81_021D1610 *param0, Window *param1, Window 
     Strbuf_Free(v1);
     sub_0201D78C(param1, 0, param0->unk_58, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
-    v2 = sub_02002D7C(0, param0->unk_58, 0);
+    v2 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_58, 0);
     v1 = MessageLoader_GetNewStrbuf(param0->unk_50, 2 + v0.unk_00_11);
     sub_0201D78C(param1, 0, v1, v2 + 12, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v1);

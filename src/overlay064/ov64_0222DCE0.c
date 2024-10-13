@@ -1067,7 +1067,7 @@ static void ov64_0222E620 (UnkStruct_ov64_0222E21C * param0, const UnkStruct_ov6
 
     v0 = Options_Frame(SaveData_Options(param1->unk_00));
 
-    sub_02002E98(0, 7 * 0x20, param2);
+    Font_LoadScreenIndicatorsPalette(0, 7 * 0x20, param2);
     sub_0200DD0C(param0->unk_00, Unk_ov64_02232258[1], (1 + 9), 8, v0, param2);
     sub_0200DAA4(param0->unk_00, Unk_ov64_02232258[1], 1, 9, 0, param2);
     Window_Init(&param0->unk_220);
@@ -1428,6 +1428,7 @@ static const u8 Unk_ov64_0223241C[4] = {
     0x80
 };
 
+// clang-format off
 asm static void ov64_0222EC94 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2, u32 param3)
 {
     push {r3, r4, r5, r6, r7, lr}
@@ -1536,7 +1537,7 @@ asm static void ov64_0222EC94 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_
     add r1, r4, #0
     add r2, r0, #0
     mov r3, #0xd0
-    bl sub_02002EEC
+    bl Font_CalcCenterAlignment
     mov ip, r0
     ldr r0, [r7, #0]
     mov r6, ip
@@ -1586,6 +1587,7 @@ asm static void ov64_0222EC94 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_
     add sp, #0x30
     pop {r3, r4, r5, r6, r7, pc}
 }
+// clang-format on
 
 static void ov64_0222EE00 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2)
 {
@@ -1959,6 +1961,7 @@ static const CellActorInitParamsEx Unk_ov64_022322B4 = {
     0x0
 };
 
+// clang-format off
 asm static void ov64_0222F414 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2, u32 param3)
 {
     push {r3, r4, r5, r6, r7, lr}
@@ -2048,7 +2051,7 @@ asm static void ov64_0222F414 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_
     add r1, r4, #0
     add r2, r0, #0
     mov r3, #0x40
-    bl sub_02002EEC
+    bl Font_CalcCenterAlignment
     mov r1, #0
     add r3, r0, #0
     str r1, [sp]
@@ -2174,6 +2177,7 @@ asm static void ov64_0222F414 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_
     pop {r3, r4, r5, r6, r7, pc}
     nop
 }
+// clang-format off
 
 static void ov64_0222F5F4 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2)
 {
@@ -2957,6 +2961,7 @@ static void ov64_02230678 (UnkStruct_ov64_02230620 * param0, UnkStruct_ov64_0222
     ov64_02230804(param0, param1, param2);
 }
 
+// clang-format off
 asm static void ov64_02230680 (UnkStruct_ov64_02230620 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2, u32 param3)
 {
     push {r3, r4, r5, r6, r7, lr}
@@ -3039,7 +3044,7 @@ asm static void ov64_02230680 (UnkStruct_ov64_02230620 * param0, UnkStruct_ov64_
     mov r0, #0
     add r1, r6, #0
     add r2, r0, #0
-    bl sub_02002EB4
+    bl Font_CalcMaxLineWidth
     mov r1, #0xb8
     sub r0, r1, r0
     mov r1, #0
@@ -3073,7 +3078,7 @@ asm static void ov64_02230680 (UnkStruct_ov64_02230620 * param0, UnkStruct_ov64_
     add r1, r6, #0
     add r2, r0, #0
     mov r3, #0x78
-    bl sub_02002EEC
+    bl Font_CalcCenterAlignment
     mov r1, #0
     add r3, r0, #0
     str r1, [sp]
@@ -3097,7 +3102,7 @@ asm static void ov64_02230680 (UnkStruct_ov64_02230620 * param0, UnkStruct_ov64_
     mov r0, #0
     add r1, r6, #0
     add r2, r0, #0
-    bl sub_02002EB4
+    bl Font_CalcMaxLineWidth
     mov r1, #0xb8
     sub r0, r1, r0
     mov r1, #0
@@ -3129,6 +3134,7 @@ asm static void ov64_02230680 (UnkStruct_ov64_02230620 * param0, UnkStruct_ov64_
     add sp, #0x28
     pop {r3, r4, r5, r6, r7, pc}
 }
+// clang-format on
 
 static void ov64_02230804 (UnkStruct_ov64_02230620 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2)
 {
@@ -3595,6 +3601,7 @@ static void ov64_02231144 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_0222
     ov64_02232038(param1, &param0->unk_00);
 }
 
+// clang-format off
 asm static void ov64_02231164 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2, u32 param3)
 {
     push {r3, r4, r5, r6, r7, lr}
@@ -4035,7 +4042,9 @@ asm static void ov64_02231164 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     add sp, #0x50
     pop {r3, r4, r5, r6, r7, pc}
 }
+// clang-format on
 
+// clang-format off
 asm static void ov64_02231528 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2, u32 param3)
 {
     push {r3, r4, r5, r6, r7, lr}
@@ -4181,7 +4190,9 @@ asm static void ov64_02231528 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     pop {r3, r4, r5, r6, r7, pc}
     nop
 }
+// clang-format on
 
+// clang-format off
 asm static void ov64_02231664 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2, u32 param3)
 {
     push {r3, r4, r5, r6, r7, lr}
@@ -4608,7 +4619,9 @@ asm static void ov64_02231664 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     add sp, #0x28
     pop {r3, r4, r5, r6, r7, pc}
 }
+// clang-format on
 
+// clang-format off
 asm static void ov64_02231A00 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2, u32 param3)
 {
     push {r3, r4, r5, r6, r7, lr}
@@ -4829,7 +4842,9 @@ asm static void ov64_02231A00 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     pop {r3, r4, r5, r6, r7, pc}
     nop
 }
+// clang-format on
 
+// clang-format off
 asm static void ov64_02231BE0 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2, u32 param3)
 {
     push {r3, r4, r5, r6, r7, lr}
@@ -5001,7 +5016,9 @@ asm static void ov64_02231BE0 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     pop {r3, r4, r5, r6, r7, pc}
     nop
 }
+// clang-format on
 
+// clang-format off
 asm static void ov64_02231D58 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2, u32 param3)
 {
     push {r3, r4, r5, r6, r7, lr}
@@ -5147,7 +5164,9 @@ asm static void ov64_02231D58 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     add sp, #0x28
     pop {r3, r4, r5, r6, r7, pc}
 }
+// clang-format on
 
+// clang-format off
 asm static void ov64_02231E94 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2, u32 param3)
 {
     push {r3, r4, r5, r6, r7, lr}
@@ -5336,6 +5355,7 @@ asm static void ov64_02231E94 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     pop {r3, r4, r5, r6, r7, pc}
     nop
 }
+// clang-format on
 
 static void ov64_02232038 (UnkStruct_ov64_0222E21C * param0, const UnkStruct_ov64_0223221C * param1)
 {
@@ -5345,6 +5365,7 @@ static void ov64_02232038 (UnkStruct_ov64_0222E21C * param0, const UnkStruct_ov6
     sub_0201C3C0(param0->unk_00, Unk_ov64_02232258[3]);
 }
 
+// clang-format off
 asm static void ov64_022320B8 (UnkStruct_ov64_02230F98 * param0, u32 param1, u32 param2, UnkStruct_ov64_0222E060 * param3, UnkStruct_ov64_0222E21C * param4, u32 param5, u32 param6, u32 param7, u32 param8, Strbuf *param9, Strbuf *param10)
 {
     push {r3, r4, r5, r6, r7, lr}
@@ -5377,7 +5398,7 @@ asm static void ov64_022320B8 (UnkStruct_ov64_02230F98 * param0, u32 param1, u32
     mov r0, #0
     add r1, r4, #0
     add r2, r0, #0
-    bl sub_02002D7C
+    bl Font_CalcStrbufWidth
     add r0, r0, #1
     lsr r0, r0, #1
     sub r5, r5, r0
@@ -5386,7 +5407,7 @@ asm static void ov64_022320B8 (UnkStruct_ov64_02230F98 * param0, u32 param1, u32
     mov r0, #0
     add r1, r4, #0
     add r2, r0, #0
-    bl sub_02002D7C
+    bl Font_CalcStrbufWidth
     sub r5, r5, r0
  _0223210E:
     ldr r0, [sp, #0x3c]
@@ -5410,6 +5431,7 @@ asm static void ov64_022320B8 (UnkStruct_ov64_02230F98 * param0, u32 param1, u32
     add sp, #0x18
     pop {r3, r4, r5, r6, r7, pc}
 }
+// clang-format on
 
 static void ov64_02232138 (UnkStruct_ov64_02230904 * param0, s32 param1)
 {

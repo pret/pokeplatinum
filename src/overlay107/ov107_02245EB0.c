@@ -1136,8 +1136,8 @@ static void ov107_02246EE4 (UnkStruct_ov107_02246170 * param0)
         param0->unk_30[v13] = Strbuf_Init(32, 100);
     }
 
-    sub_02002E7C(0, 13 * 32, 100);
-    sub_02002E98(0, 12 * 32, 100);
+    Font_LoadTextPalette(0, 13 * 32, 100);
+    Font_LoadScreenIndicatorsPalette(0, 12 * 32, 100);
 
     param0->unk_144 = sub_0200C440(1, 2, 0, 100);
 
@@ -1487,10 +1487,10 @@ static u8 ov107_02247680 (UnkStruct_ov107_02246170 * param0, Window * param1, in
     
     switch (param10) {
     case 1:
-        param3 -= (sub_02002D7C(0, param0->unk_28, 0) + 1) / 2;
+        param3 -= (Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_28, 0) + 1) / 2;
         break;
     case 2:
-        param3 -= sub_02002D7C(0, param0->unk_28, 0);
+        param3 -= Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_28, 0);
         break;
     }
     
@@ -1513,10 +1513,10 @@ static u8 ov107_02247744 (UnkStruct_ov107_02246170 * param0, Window * param1, in
     
     switch (param10) {
     case 1:
-        param3 -= (sub_02002D7C(0, param0->unk_28, 0) + 1) / 2;
+        param3 -= (Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_28, 0) + 1) / 2;
         break;
     case 2:
-        param3 -= sub_02002D7C(0, param0->unk_28, 0);
+        param3 -= Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_28, 0);
         break;
     }
     

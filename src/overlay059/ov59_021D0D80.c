@@ -578,8 +578,8 @@ static void ov59_021D1388(UnkStruct_020961E8 *param0, NARC *param1)
 
     sub_02007130(param1, 0, 0, 0, 16 * 16 * 2, 51);
     sub_02006E84(12, 12, 4, 0, 16 * 2, 51);
-    sub_02002E98(0, 13 * 0x20, 51);
-    sub_02002E98(4, 13 * 0x20, 51);
+    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 51);
+    Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, 51);
     sub_02006E3C(12, 10, v0, 6, 0, 0, 1, 51);
     sub_02006E60(12, 11, v0, 6, 0, 0, 1, 51);
     sub_020070E8(param1, 2, v0, 1, 0, 32 * 8 * 0x20, 1, 51);
@@ -706,7 +706,7 @@ static void ov59_021D16A0(UnkStruct_020961E8 *param0, OverlayManager *param1)
 
 static void ov59_021D1784(Window *param0, Strbuf *param1, int param2)
 {
-    int v0 = sub_02002D7C(1, param1, 0);
+    int v0 = Font_CalcStrbufWidth(FONT_MESSAGE, param1, 0);
     int v1 = (26 * 8 - v0) / 2;
 
     BGL_FillWindow(param0, 0x0);

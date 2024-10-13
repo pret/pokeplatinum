@@ -431,7 +431,7 @@ static void ov19_021DBF4C(UnkStruct_ov19_021DBA9C *param0)
 
     sub_02079AF4(v0, param0->unk_E0, param0->unk_4BFC);
 
-    v2 = sub_02002D7C(0, param0->unk_4BFC, 0);
+    v2 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_4BFC, 0);
     v3 = 48 - (v2 / 2);
 
     BGL_FillWindow(v1, 7);

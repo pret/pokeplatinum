@@ -693,7 +693,7 @@ static void ov17_02249BC4(UnkStruct_ov17_022492DC *param0, UnkStruct_ov17_02249B
     v6 = param0->unk_04->unk_5C;
 
     {
-        v7 = sub_02002D7C(param3, param2, 0);
+        v7 = Font_CalcStrbufWidth(param3, param2, 0);
         v8 = v7 / 8;
 
         if (FX_ModS32(v7, 8) != 0) {

@@ -471,7 +471,7 @@ static void ov21_021DEC80(Window *param0, int param1, int param2, u32 param3)
 static void ov21_021DECD4(Window *param0, int param1, int param2, int param3, u32 param4)
 {
     Strbuf *v0 = ov21_021D56BC(param2, GAME_LANGUAGE, param3, param1);
-    u32 v1 = sub_02002EB4(0, v0, 0);
+    u32 v1 = Font_CalcMaxLineWidth(FONT_SYSTEM, v0, 0);
     u32 v2 = (v1 < 240) ? 128 - v1 / 2 : 8;
 
     sub_0201D78C(param0, 0, v0, v2, 136, 0, param4, NULL);
@@ -789,7 +789,7 @@ Window *ov21_021DF30C(UnkStruct_ov21_021D4C0C *param0, int param1, int param2)
     v1 = ov21_021D566C(param1, GAME_LANGUAGE, param2);
 
     {
-        u32 v2 = sub_02002D7C(2, v1, 0);
+        u32 v2 = Font_CalcStrbufWidth(FONT_SUBSCREEN, v1, 0);
         u32 v3 = (v2 < 136) ? (136 - v2) / 2 : 0;
 
         ov21_021D4E80(param0, v0, v1, v3, 0);

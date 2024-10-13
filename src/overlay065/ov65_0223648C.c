@@ -750,7 +750,7 @@ static void ov65_02236A28(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207D
 {
     int v0;
 
-    sub_02002E98(0, 1 * 0x20, param2);
+    Font_LoadScreenIndicatorsPalette(0, 1 * 0x20, param2);
 
     v0 = Options_Frame(SaveData_Options(param1->unk_08));
 

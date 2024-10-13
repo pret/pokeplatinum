@@ -1474,7 +1474,7 @@ static void ov115_022617E8(UnkStruct_ov115_022617E8 *param0, UnkStruct_ov115_022
                 sub_0201C2B0(&v5, v4);
 
                 v5.unk_0A_0 = v6;
-                v9 = sub_02002D7C(0, v7, 0);
+                v9 = Font_CalcStrbufWidth(FONT_SYSTEM, v7, 0);
                 v10 = ((8 * 8) - v9) / 2;
                 sub_0201D78C(&v5, 0, v7, v10, 0, 0, v8, NULL);
                 v6 += (8 * 2);
@@ -3148,7 +3148,7 @@ static void ov115_0226376C(UnkStruct_ov115_02261ADC *param0, u32 param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
-    sub_02002E98(0, 5 * 0x20, param1);
+    Font_LoadScreenIndicatorsPalette(0, 5 * 0x20, param1);
     sub_0200DAA4(param0->unk_00, 1, 1, 4, 0, param1);
 }
 

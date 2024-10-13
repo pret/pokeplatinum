@@ -369,9 +369,9 @@ static void ov7_0224C338(UnkStruct_ov7_0224BEFC *param0)
 static void ov7_0224C35C(UnkStruct_ov7_0224BEFC *param0)
 {
     sub_0200DD0C(param0->unk_14, 3, 1, 10, param0->unk_1B0, param0->unk_18);
-    sub_02002E98(0, 12 * 32, param0->unk_18);
+    Font_LoadScreenIndicatorsPalette(0, 12 * 32, param0->unk_18);
     sub_0200DAA4(param0->unk_14, 3, (1 + (18 + 12)), 11, 0, param0->unk_18);
-    sub_02002E7C(0, 13 * 32, param0->unk_18);
+    Font_LoadTextPalette(0, 13 * 32, param0->unk_18);
     sub_02019EBC(param0->unk_14, 3);
 }
 

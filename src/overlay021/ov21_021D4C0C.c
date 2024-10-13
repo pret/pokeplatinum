@@ -153,7 +153,7 @@ u32 ov21_021D4DAC(UnkStruct_ov21_021D4C0C *param0, Window *param1, u32 param2, u
 
     v1 = MessageLoader_GetNewStrbuf(v0, param3);
     sub_0201D78C(param1, 2, v1, param4, param5, 0xff, ((u32)(((3 & 0xff) << 16) | ((2 & 0xff) << 8) | ((1 & 0xff) << 0))), NULL);
-    v2 = sub_02002D7C(2, v1, 0);
+    v2 = Font_CalcStrbufWidth(FONT_SUBSCREEN, v1, 0);
 
     Strbuf_Free(v1);
     MessageLoader_Free(v0);
@@ -172,7 +172,7 @@ void ov21_021D4E10(UnkStruct_ov21_021D4C0C *param0, Window *param1, u32 param2, 
     GF_ASSERT(v0);
 
     v1 = MessageLoader_GetNewStrbuf(v0, param3);
-    v2 = sub_02002D7C(2, v1, 0);
+    v2 = Font_CalcStrbufWidth(FONT_SUBSCREEN, v1, 0);
     v3 = sub_0201C294(param1) * 8;
     v3 = v3 - v2;
     v3 /= 2;

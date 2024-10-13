@@ -1059,8 +1059,8 @@ static void sub_020731F4(UnkStruct_02072334 *param0)
     sub_0200DD0C(param0->unk_170, 3, (1024 - (18 + 12)), 10, param0->unk_14, param0->unk_00);
     sub_0200DAA4(param0->unk_170, 3, (1024 - (18 + 12) - 9), 11, 0, param0->unk_00);
 
-    sub_02002E7C(0, 13 * 32, param0->unk_00);
-    sub_02002E98(0, 12 * 32, param0->unk_00);
+    Font_LoadTextPalette(0, 13 * 32, param0->unk_00);
+    Font_LoadScreenIndicatorsPalette(0, 12 * 32, param0->unk_00);
 
     BGL_AddWindow(param0->unk_170, &param0->unk_184, 3, 2, 19, 27, 4, 12, ((1024 - (18 + 12) - 9) - 27 * 4));
     BGL_FillWindow(&param0->unk_184, 0);

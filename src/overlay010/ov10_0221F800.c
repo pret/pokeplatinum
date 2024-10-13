@@ -1460,7 +1460,7 @@ static void ov10_02220F1C(UnkStruct_ov10_0221FB28 *param0)
     sub_02003070(param0->unk_08, 0, 15 * 16, 0x20 * 1);
     sub_0200DAA4(param0->unk_0C, 0, (1 + (18 + 12)), 14, 0, param0->unk_00->unk_24);
     sub_02003070(param0->unk_08, 0, 14 * 16, 0x20 * 1);
-    sub_02002E7C(0, 13 * 0x20, param0->unk_00->unk_24);
+    Font_LoadTextPalette(0, 13 * 0x20, param0->unk_00->unk_24);
     sub_02003070(param0->unk_08, 0, 13 * 16, 0x20 * 1);
     BGL_AddWindow(param0->unk_0C, &param0->unk_B7C, 0, 0x2, 0x13, 27, 4, 13, ((1 + (18 + 12)) + 9));
     BGL_AddWindow(param0->unk_0C, &param0->unk_B8C, 0, 0x2, 0x13, 27, 4, 13, ((1 + (18 + 12)) + 9));

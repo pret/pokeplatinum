@@ -112,7 +112,7 @@ static void ov84_0223F2C0(UnkStruct_ov84_0223B5A0 *param0, Strbuf *param1, u16 p
 {
     u32 v0;
 
-    v0 = sub_02002D7C(0, param1, 0);
+    v0 = Font_CalcStrbufWidth(FONT_SYSTEM, param1, 0);
     sub_0201D78C(&param0->unk_04[2], 0, param1, param2 - v0 / 2, 2, 0xff, ((u32)((1 & 0xff) << 16 | (2 & 0xff) << 8 | (0 & 0xff) << 0)), NULL);
 }
 
@@ -308,7 +308,7 @@ void ov84_0223F81C(UnkStruct_ov84_0223B5A0 *param0, u16 param1, u16 param2, u32 
     StringTemplate_SetNumber(param0->unk_118, 0, param1, 3, 0, 1);
     StringTemplate_Format(param0->unk_118, v0, param0->unk_400);
 
-    v1 = sub_02002D7C(0, v0, 0);
+    v1 = Font_CalcStrbufWidth(FONT_SYSTEM, v0, 0);
 
     sub_0201D78C(&param0->unk_04[0], 0, v0, (17 * 8 - 2) - v1, param2, 0xff, param3, NULL);
     Strbuf_Free(v0);
@@ -644,7 +644,7 @@ void ov84_02240148(UnkStruct_ov84_0223B5A0 *param0, u8 param1)
     StringTemplate_SetNumber(param0->unk_118, 0, param0->unk_48C * param0->unk_488, 6, 1, 1);
     StringTemplate_Format(param0->unk_118, param0->unk_3F8, v1);
 
-    v2 = sub_02002D7C(0, param0->unk_3F8, 0);
+    v2 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_3F8, 0);
 
     PrintStringSimple(v0, 0, param0->unk_3F8, (12 * 8) - v2, 8, 0xff, NULL);
     sub_0201A9A4(v0);
@@ -676,7 +676,7 @@ void ov84_02240248(UnkStruct_ov84_0223B5A0 *param0, u8 param1)
     StringTemplate_SetNumber(param0->unk_118, 0, TrainerInfo_Money(param0->unk_CC), 6, 1, 1);
     StringTemplate_Format(param0->unk_118, param0->unk_3F8, v1);
 
-    v2 = sub_02002D7C(0, param0->unk_3F8, 0);
+    v2 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_3F8, 0);
 
     PrintStringSimple(v0, 0, param0->unk_3F8, (10 * 8) - v2, 16, 0xff, NULL);
     sub_0201A9A4(v0);
@@ -702,7 +702,7 @@ void ov84_02240328(UnkStruct_ov84_0223B5A0 *param0)
     StringTemplate_Format(param0->unk_118, param0->unk_3F8, v1);
     Strbuf_Free(v1);
 
-    v2 = sub_02002D7C(0, param0->unk_3F8, 0);
+    v2 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_3F8, 0);
     PrintStringSimple(v0, 0, param0->unk_3F8, 11 * 8 - v2, 16, 0xff, NULL);
     sub_0201A9A4(v0);
 }

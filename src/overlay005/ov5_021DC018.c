@@ -240,7 +240,7 @@ static u32 ov5_021DC300(UnkStruct_ov5_021DC1A4 *param0)
             break;
         }
 
-        v1 = sub_02002F04(0, (Strbuf *)param0->unk_BC[v0].unk_00);
+        v1 = Font_CalcStringWidthWithCursorControl(FONT_SYSTEM, (Strbuf *)param0->unk_BC[v0].unk_00);
 
         if (v2 < v1) {
             v2 = v1;
@@ -470,7 +470,7 @@ static u32 ov5_021DC7A8(UnkStruct_ov5_021DC1A4 *param0)
             break;
         }
 
-        v1 = sub_02002F04(0, (Strbuf *)param0->unk_1C4[v0].unk_00);
+        v1 = Font_CalcStringWidthWithCursorControl(FONT_SYSTEM, (Strbuf *)param0->unk_1C4[v0].unk_00);
 
         if (v2 < v1) {
             v2 = v1;
@@ -862,7 +862,7 @@ void ov5_021DCF6C(FieldSystem *fieldSystem, Window *param1)
     StringTemplate_SetNumber(v1, 0, v4, 6, 1, 1);
     StringTemplate_Format(v1, v2, v3);
 
-    v5 = (10 * 8) - sub_02002D7C(0, v2, 0);
+    v5 = (10 * 8) - Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
 
     PrintStringSimple(param1, 0, v2, v5, 16, 0xff, NULL);
     Strbuf_Free(v3);
@@ -911,7 +911,7 @@ void ov5_021DD098(FieldSystem *fieldSystem, Window *param1)
     StringTemplate_SetNumber(v1, 0, v4, 5, 1, 1);
     StringTemplate_Format(v1, v2, v3);
 
-    v5 = (10 * 8) - sub_02002D7C(0, v2, 0);
+    v5 = (10 * 8) - Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
 
     PrintStringSimple(param1, 0, v2, v5, 0, 0xff, NULL);
     Strbuf_Free(v3);
@@ -954,7 +954,7 @@ void ov5_021DD1A4(FieldSystem *fieldSystem, Window *param1)
     StringTemplate_SetNumber(v1, 0, v4, 5, 1, 1);
     StringTemplate_Format(v1, v2, v3);
 
-    v5 = (10 * 8) - sub_02002D7C(0, v2, 0);
+    v5 = (10 * 8) - Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
 
     PrintStringSimple(param1, 0, v2, v5, 0, 0xff, NULL);
     Strbuf_Free(v3);

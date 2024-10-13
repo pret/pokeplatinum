@@ -278,7 +278,7 @@ void ov79_021D1C44(UnkStruct_ov79_021D0E1C *param0, u8 param1)
         return;
     }
 
-    v0 = (20 * 8) - sub_02002D7C(0, param0->unk_30.unk_38[param0->unk_1B], 0);
+    v0 = (20 * 8) - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_30.unk_38[param0->unk_1B], 0);
 
     sub_0201D78C(&param0->unk_E8[6], 0, param0->unk_30.unk_38[param0->unk_1B], v0 / 2, 3, 0, v1, NULL);
 }
@@ -447,7 +447,7 @@ void ov79_021D2078(UnkStruct_ov79_021D0E1C *param0)
     for (v1 = 0; v1 < 6; v1++) {
         static const u8 v4[] = { 2, 10, 4, 6, 10, 6 };
 
-        v0 = (8 * 8) - sub_02002D7C(2, param0->unk_30.unk_20[v1], 0);
+        v0 = (8 * 8) - Font_CalcStrbufWidth(FONT_SUBSCREEN, param0->unk_30.unk_20[v1], 0);
         sub_0201D78C(&param0->unk_E8[7 + v1], 2, param0->unk_30.unk_20[v1], v0 / 2, v4[v1], 0, v3, NULL);
     }
 }

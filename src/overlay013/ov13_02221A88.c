@@ -334,7 +334,7 @@ static void ov13_02221C54(UnkStruct_ov13_022213F0 *param0, u32 param1, u32 param
     if ((v1->unk_16_7 == 0) && (v1->unk_17_7 == 0)) {
         if (v1->unk_17_0 == 0) {
             v3 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 16);
-            v4 = sub_0201C294(v0) * 8 - sub_02002D7C(0, v3, 0);
+            v4 = sub_0201C294(v0) * 8 - Font_CalcStrbufWidth(FONT_SYSTEM, v3, 0);
 
             if (param2 == 0) {
                 sub_0201D78C(v0, 0, v3, v4, param5, 0xff, ((u32)(((7 & 0xff) << 16) | ((8 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -345,7 +345,7 @@ static void ov13_02221C54(UnkStruct_ov13_022213F0 *param0, u32 param1, u32 param
             Strbuf_Free(v3);
         } else if (v1->unk_17_0 == 1) {
             v3 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 17);
-            v4 = sub_0201C294(v0) * 8 - sub_02002D7C(0, v3, 0);
+            v4 = sub_0201C294(v0) * 8 - Font_CalcStrbufWidth(FONT_SYSTEM, v3, 0);
 
             if (param2 == 0) {
                 sub_0201D78C(v0, 0, v3, v4, param5, 0xff, ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -467,7 +467,7 @@ static void ov13_022220CC(UnkStruct_ov13_022213F0 *param0, u32 param1, u32 param
     StringTemplate_Format(param0->unk_1FA8, v1, v2);
 
     if (param4 == 2) {
-        v3 = (sub_0201C294(v0) * 8 - sub_02002D7C(param4, v1, 0)) / 2;
+        v3 = (sub_0201C294(v0) * 8 - Font_CalcStrbufWidth(param4, v1, 0)) / 2;
     } else {
         v3 = 0;
     }
@@ -511,7 +511,7 @@ static void ov13_0222222C(UnkStruct_ov13_022213F0 *param0, u32 param1, u32 param
 
     v0 = &param0->unk_206C[param1];
     v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, param2);
-    v2 = sub_02002D7C(2, v1, 0);
+    v2 = Font_CalcStrbufWidth(FONT_SUBSCREEN, v1, 0);
 
     sub_0201D78C(v0, 2, v1, (sub_0201C294(v0) * 8 - v2) / 2, 6, 0xff, ((u32)(((7 & 0xff) << 16) | ((8 & 0xff) << 8) | ((9 & 0xff) << 0))), NULL);
     Strbuf_Free(v1);
@@ -560,7 +560,7 @@ static void ov13_02222290(UnkStruct_ov13_022213F0 *param0, u32 param1)
 
     StringTemplate_Format(param0->unk_1FA8, v2, v1);
 
-    v3 = sub_0201C294(&param0->unk_206C[12 + v4]) * 8 - sub_02002D7C(0, v2, 0);
+    v3 = sub_0201C294(&param0->unk_206C[12 + v4]) * 8 - Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
 
     sub_0201D78C(&param0->unk_206C[12 + v4], 0, v2, v3, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v1);
@@ -593,7 +593,7 @@ static void ov13_02222464(UnkStruct_ov13_022213F0 *param0, u32 param1)
     StringTemplate_SetNumber(param0->unk_1FA8, 0, v0->unk_06, 3, 0, 1);
     StringTemplate_Format(param0->unk_1FA8, v2, v1);
 
-    v4 = sub_02002D7C(0, v2, 0);
+    v4 = Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
     v5 = sub_0201C294(&param0->unk_206C[5 + v3]) * 8 - v4;
 
     sub_0201D78C(&param0->unk_206C[5 + v3], 0, v2, v5, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -625,7 +625,7 @@ static void ov13_02222560(UnkStruct_ov13_022213F0 *param0, u32 param1)
     StringTemplate_SetNumber(param0->unk_1FA8, 0, v0->unk_08, 3, 0, 1);
     StringTemplate_Format(param0->unk_1FA8, v2, v1);
 
-    v4 = sub_02002D7C(0, v2, 0);
+    v4 = Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
     v5 = sub_0201C294(&param0->unk_206C[6 + v3]) * 8 - v4;
 
     sub_0201D78C(&param0->unk_206C[6 + v3], 0, v2, v5, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -657,7 +657,7 @@ static void ov13_0222265C(UnkStruct_ov13_022213F0 *param0, u32 param1)
     StringTemplate_SetNumber(param0->unk_1FA8, 0, v0->unk_0A, 3, 0, 1);
     StringTemplate_Format(param0->unk_1FA8, v2, v1);
 
-    v4 = sub_02002D7C(0, v2, 0);
+    v4 = Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
     v5 = sub_0201C294(&param0->unk_206C[7 + v3]) * 8 - v4;
 
     sub_0201D78C(&param0->unk_206C[7 + v3], 0, v2, v5, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -690,7 +690,7 @@ static void ov13_0222275C(UnkStruct_ov13_022213F0 *param0, u32 param1)
     StringTemplate_SetNumber(param0->unk_1FA8, 0, v0->unk_0C, 3, 0, 1);
     StringTemplate_Format(param0->unk_1FA8, v2, v1);
 
-    v4 = sub_02002D7C(0, v2, 0);
+    v4 = Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
     v5 = sub_0201C294(&param0->unk_206C[8 + v3]) * 8 - v4;
 
     sub_0201D78C(&param0->unk_206C[8 + v3], 0, v2, v5, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -722,7 +722,7 @@ static void ov13_0222285C(UnkStruct_ov13_022213F0 *param0, u32 param1)
     StringTemplate_SetNumber(param0->unk_1FA8, 0, v0->unk_0E, 3, 0, 1);
     StringTemplate_Format(param0->unk_1FA8, v2, v1);
 
-    v4 = sub_02002D7C(0, v2, 0);
+    v4 = Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
     v5 = sub_0201C294(&param0->unk_206C[9 + v3]) * 8 - v4;
 
     sub_0201D78C(&param0->unk_206C[9 + v3], 0, v2, v5, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -749,7 +749,7 @@ static void ov13_0222295C(UnkStruct_ov13_022213F0 *param0, u32 param1)
     Strbuf_Free(v1);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 31);
-    v3 = sub_02002D7C(0, v1, 0);
+    v3 = Font_CalcStrbufWidth(FONT_SYSTEM, v1, 0);
     v5 = (sub_0201C294(&param0->unk_206C[4]) * 8 - v3) / 2;
 
     sub_0201D78C(&param0->unk_206C[4 + v6], 0, v1, v5, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -761,7 +761,7 @@ static void ov13_0222295C(UnkStruct_ov13_022213F0 *param0, u32 param1)
     StringTemplate_SetNumber(param0->unk_1FA8, 0, v0->unk_10, 3, 0, 1);
     StringTemplate_Format(param0->unk_1FA8, v2, v1);
 
-    v4 = sub_02002D7C(0, v2, 0);
+    v4 = Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
 
     sub_0201D78C(&param0->unk_206C[4 + v6], 0, v2, v5 - v4, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v1);
@@ -822,7 +822,7 @@ static void ov13_02222BB4(UnkStruct_ov13_022213F0 *param0, u32 param1, u32 param
 
     if (param2 == 0) {
         v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 50);
-        v3 = sub_02002D7C(0, v1, 0);
+        v3 = Font_CalcStrbufWidth(FONT_SYSTEM, v1, 0);
         v4 = sub_0201C294(v0) * 8 - v3;
 
         sub_0201D78C(v0, 0, v1, v4, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -834,7 +834,7 @@ static void ov13_02222BB4(UnkStruct_ov13_022213F0 *param0, u32 param1, u32 param
         StringTemplate_SetNumber(param0->unk_1FA8, 0, param2, 3, 0, 1);
         StringTemplate_Format(param0->unk_1FA8, v2, v1);
 
-        v3 = sub_02002D7C(0, v2, 0);
+        v3 = Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
         v4 = sub_0201C294(v0) * 8 - v3;
 
         sub_0201D78C(v0, 0, v2, v4, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -870,7 +870,7 @@ static void ov13_02222CE4(UnkStruct_ov13_022213F0 *param0, u32 param1, u32 param
 
     if (param2 <= 1) {
         v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 50);
-        v3 = sub_02002D7C(0, v1, 0);
+        v3 = Font_CalcStrbufWidth(FONT_SYSTEM, v1, 0);
         v4 = sub_0201C294(v0) * 8 - v3;
 
         sub_0201D78C(v0, 0, v1, v4, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -882,7 +882,7 @@ static void ov13_02222CE4(UnkStruct_ov13_022213F0 *param0, u32 param1, u32 param
         StringTemplate_SetNumber(param0->unk_1FA8, 0, param2, 3, 0, 1);
         StringTemplate_Format(param0->unk_1FA8, v2, v1);
 
-        v3 = sub_02002D7C(0, v2, 0);
+        v3 = Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
         v4 = sub_0201C294(v0) * 8 - v3;
 
         sub_0201D78C(v0, 0, v2, v4, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -939,7 +939,7 @@ static void ov13_02222E94(UnkStruct_ov13_022213F0 *param0, u32 param1)
 
     v0 = &param0->unk_206C[param1];
     v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 53);
-    v2 = sub_02002D7C(0, v1, 0);
+    v2 = Font_CalcStrbufWidth(FONT_SYSTEM, v1, 0);
     v3 = (sub_0201C294(v0) * 8 - v2) / 2;
 
     sub_0201D78C(v0, 0, v1, v3, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -966,7 +966,7 @@ static void ov13_02222EF8(UnkStruct_ov13_022213F0 *param0, u32 param1, u32 param
     }
 
     {
-        u32 v2 = sub_02002EEC(0, v1, 0, 7 * 8);
+        u32 v2 = Font_CalcCenterAlignment(FONT_SYSTEM, v1, 0, 7 * 8);
         sub_0201D78C(v0, 0, v1, v2, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
@@ -984,7 +984,7 @@ static void ov13_02222F74(UnkStruct_ov13_022213F0 *param0, u32 param1, u32 param
 
     v0 = &param0->unk_206C[param1];
     v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 46);
-    v3 = sub_02002D7C(0, v1, 0);
+    v3 = Font_CalcStrbufWidth(FONT_SYSTEM, v1, 0);
     v5 = (sub_0201C294(v0) * 8 - v3) / 2;
 
     sub_0201D78C(v0, 0, v1, v5, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -996,7 +996,7 @@ static void ov13_02222F74(UnkStruct_ov13_022213F0 *param0, u32 param1, u32 param
     StringTemplate_SetNumber(param0->unk_1FA8, 0, param2, 3, 0, 1);
     StringTemplate_Format(param0->unk_1FA8, v2, v1);
 
-    v4 = sub_02002D7C(0, v2, 0);
+    v4 = Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
 
     sub_0201D78C(v0, 0, v2, v5 - v4, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v1);
@@ -1027,7 +1027,7 @@ static void ov13_022230A8(UnkStruct_ov13_022213F0 *param0, u32 param1)
         v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 58);
     }
 
-    v2 = sub_02002D7C(2, v1, 0);
+    v2 = Font_CalcStrbufWidth(FONT_SUBSCREEN, v1, 0);
 
     sub_0201D78C(v0, 2, v1, (12 * 8 - v2) / 2, 6, 0xff, ((u32)(((7 & 0xff) << 16) | ((8 & 0xff) << 8) | ((9 & 0xff) << 0))), NULL);
     Strbuf_Free(v1);
@@ -1069,7 +1069,7 @@ static void ov13_0222317C(UnkStruct_ov13_022213F0 *param0, UnkStruct_ov13_022236
     Strbuf_Free(v1);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 46);
-    v3 = sub_02002D7C(0, v1, 0);
+    v3 = Font_CalcStrbufWidth(FONT_SYSTEM, v1, 0);
 
     sub_0201D78C(v0, 0, v1, 80, 24, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v1);
@@ -1086,7 +1086,7 @@ static void ov13_0222317C(UnkStruct_ov13_022213F0 *param0, UnkStruct_ov13_022236
     StringTemplate_SetNumber(param0->unk_1FA8, 0, param1->unk_02, 2, 0, 1);
     StringTemplate_Format(param0->unk_1FA8, v2, v1);
 
-    v3 = sub_02002D7C(0, v2, 0);
+    v3 = Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
 
     sub_0201D78C(v0, 0, v2, 80 - v3, 24, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v1);
@@ -1104,7 +1104,7 @@ static void ov13_022232C8(UnkStruct_ov13_022213F0 *param0, UnkStruct_ov13_022236
     v0 = &param0->unk_206C[param2];
     v2 = Strbuf_Init((2 + 1) * 2, param0->unk_00->unk_0C);
     v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 43);
-    v3 = sub_02002D7C(0, v1, 0);
+    v3 = Font_CalcStrbufWidth(FONT_SYSTEM, v1, 0);
 
     Strbuf_Free(v1);
     BGL_WindowColor(v0, 0, 40 + v3, 24, 80 - (40 + v3), 16);
@@ -1114,7 +1114,7 @@ static void ov13_022232C8(UnkStruct_ov13_022213F0 *param0, UnkStruct_ov13_022236
     StringTemplate_SetNumber(param0->unk_1FA8, 0, param1->unk_02, 2, 0, 1);
     StringTemplate_Format(param0->unk_1FA8, v2, v1);
 
-    v3 = sub_02002D7C(0, v2, 0);
+    v3 = Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
 
     sub_0201D78C(v0, 0, v2, 80 - v3, 24, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v1);
@@ -1219,13 +1219,13 @@ static void ov13_02223550(UnkStruct_ov13_022213F0 *param0, u32 param1)
         }
     }
 
-    v4 = sub_02002D7C(2, v2, 0);
+    v4 = Font_CalcStrbufWidth(FONT_SUBSCREEN, v2, 0);
 
     if (v3 == NULL) {
         v5 = 0;
         v6 = 0;
     } else {
-        v5 = sub_02002D7C(0, v3, 0);
+        v5 = Font_CalcStrbufWidth(FONT_SYSTEM, v3, 0);
         v6 = 8;
     }
 
@@ -1514,7 +1514,7 @@ static void ov13_02223F7C(UnkStruct_ov13_022213F0 *param0)
         v0 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 57);
 
         {
-            u32 v1 = sub_02002EEC(0, v0, 0, 12 * 8);
+            u32 v1 = Font_CalcCenterAlignment(FONT_SYSTEM, v0, 0, 12 * 8);
             sub_0201D78C(&param0->unk_206C[4], 0, v0, v1, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         }
 

@@ -930,7 +930,7 @@ static void sub_0207EB6C(GameWindowLayout *param0, NARC *param1)
         Heap_FreeToHeapExplicit(12, v1);
     }
 
-    sub_02002E98(0, 13 * 32, 12);
+    Font_LoadScreenIndicatorsPalette(0, 13 * 32, 12);
     sub_0200DAA4(param0->unk_00, 0, 1, 14, 0, 12);
     sub_0200DD0C(param0->unk_00, 0, (1 + 9), 15, Options_Frame(param0->unk_5A4->unk_0C), 12);
     sub_020070E8(param1, 3, param0->unk_00, 4, 0, 0, 0, 12);

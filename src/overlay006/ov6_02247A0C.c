@@ -217,7 +217,7 @@ static int ov6_02247CF4(const Strbuf *param0, int param1, int param2, int param3
         return param3;
     }
 
-    v0 = sub_02002D7C(param1, param0, 0);
+    v0 = Font_CalcStrbufWidth(param1, param0, 0);
 
     switch (param2) {
     case 1:

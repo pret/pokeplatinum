@@ -395,8 +395,8 @@ static void ov102_021D1274(UnkStruct_ov102_021D0F8C *param0)
 
     sub_02019690(0, 32, 0, param0->unk_00);
     sub_02019690(4, 32, 0, param0->unk_00);
-    sub_02002E7C(0, 2 * (2 * 16), param0->unk_00);
-    sub_02002E7C(4, 2 * (2 * 16), param0->unk_00);
+    Font_LoadTextPalette(0, 2 * (2 * 16), param0->unk_00);
+    Font_LoadTextPalette(4, 2 * (2 * 16), param0->unk_00);
 }
 
 static void ov102_021D1420(UnkStruct_ov102_021D0F8C *param0)

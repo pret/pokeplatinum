@@ -406,7 +406,7 @@ static void ov7_0224B8DC(UnkStruct_ov7_0224B4E8 *param0)
         MessageLoader_GetStrbuf(v0, v7, v2);
         StringTemplate_Format(v1, v3, v2);
         {
-            int v14 = sub_02002D7C(0, v3, 0);
+            int v14 = Font_CalcStrbufWidth(FONT_SYSTEM, v3, 0);
             int v15 = v13 - v14;
 
             PrintStringSimple(v4, 0, v3, v15, v9 + v11 * v5, 0xff, NULL);

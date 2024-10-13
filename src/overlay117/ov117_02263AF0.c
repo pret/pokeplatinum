@@ -2023,7 +2023,7 @@ void ov117_02265DB8(BGL *param0, SpriteGfxHandler *param1, UnkStruct_02012744 *p
     int v7 = 0;
 
     {
-        v5 = sub_02002EB4(param5, param4, v7);
+        v5 = Font_CalcMaxLineWidth(param5, param4, v7);
         v6 = v5 / 8;
 
         if (FX_ModS32(v5, 8) != 0) {

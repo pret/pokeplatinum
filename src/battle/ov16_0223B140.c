@@ -301,7 +301,7 @@ void ov16_0223B384(BattleSystem *param0)
 
     param0->unk_23FB_2 = 1;
 
-    sub_02002C60(2);
+    Font_Free(FONT_SUBSCREEN);
     ov16_0223F314(param0, 3);
 
     if (param0->overlayFlags == 0) {
@@ -325,7 +325,7 @@ void ov16_0223B3E4(BattleSystem *param0)
     sub_0200D0B0(param0->unk_90, param0->unk_94);
     sub_0200C8D4(param0->unk_90);
     sub_0201DC3C();
-    sub_02002C60(2);
+    Font_Free(FONT_SUBSCREEN);
 }
 
 void ov16_0223B430(BattleSystem *param0)
@@ -348,7 +348,7 @@ void ov16_0223B430(BattleSystem *param0)
     v1 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
     param0->unk_198 = ov16_022687C8(v0, v1, param0, ov16_0223E1B4(param0, ov16_0223F6E4(param0)), param0->unk_1BC);
 
-    sub_02002BB8(2, 5);
+    Font_InitManager(FONT_SUBSCREEN, 5);
 
     param0->unk_23FB_1 = 1;
 
@@ -535,7 +535,7 @@ static void ov16_0223B790(OverlayManager *param0)
     v0->unk_00 = ov16_0223CD7C();
 
     DisableHBlank();
-    sub_02002BB8(2, 5);
+    Font_InitManager(FONT_SUBSCREEN, 5);
 
     if (v0->battleType & 0x20) {
         v0->unk_1A4 = sub_0200C440(0xe, 2, 0xf, 5);
@@ -790,7 +790,7 @@ static void ov16_0223BCB4(OverlayManager *param0)
     Heap_FreeToHeap(v0->unk_21C);
     Heap_FreeToHeap(v0->unk_220);
     sub_0200C560(v0->unk_1A4);
-    sub_02002C60(2);
+    Font_Free(FONT_SUBSCREEN);
     SysTask_Done(v0->unk_1C);
     SysTask_Done(v0->unk_20);
     sub_0201E530();

@@ -1440,8 +1440,8 @@ static void ov69_0225D3A4(UnkStruct_ov69_0225D35C *param0, Options *param1, u32 
         sub_0200710C(param0->unk_1A8, 18, param0->unk_00, 7, 0, 0, 0, param2);
     }
 
-    sub_02002E98(0, 1 * 0x20, param2);
-    sub_02002E98(4, 11 * 0x20, param2);
+    Font_LoadScreenIndicatorsPalette(0, 1 * 0x20, param2);
+    Font_LoadScreenIndicatorsPalette(4, 11 * 0x20, param2);
     sub_0200DAA4(param0->unk_00, 1, (1 + (18 + 12)), 0, 0, param2);
     sub_0200DAA4(param0->unk_00, 1, (1 + (18 + 12)), 0, 0, param2);
 
@@ -1839,13 +1839,13 @@ static void ov69_0225DBB4(UnkStruct_ov69_0225DC48 *param0, UnkStruct_ov69_0225D3
 
         v0 = ov69_0225EF74(param2, 1);
 
-        sub_02002BB8(2, param3);
+        Font_InitManager(FONT_SUBSCREEN, param3);
         {
-            u32 v1 = sub_02002EEC(2, v0, 0, 48);
+            u32 v1 = Font_CalcCenterAlignment(FONT_SUBSCREEN, v0, 0, 48);
             sub_0201D78C(&param0->unk_1C, 2, v0, v1, 0, 0xff, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
         }
 
-        sub_02002C60(2);
+        Font_Free(FONT_SUBSCREEN);
     }
 
     Window_Show(&param0->unk_1C, 0, (1 + (18 + 12)), 0);

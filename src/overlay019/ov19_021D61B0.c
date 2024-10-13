@@ -186,7 +186,7 @@ BOOL ov19_021D61B0(UnkStruct_ov19_021D61B0 **param0, const UnkStruct_ov19_021D4D
             NNS_G2dInitImagePaletteProxy(&(v0->unk_1A8));
 
             sub_0200716C(v3, 26, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 10, &(v0->unk_1A8));
-            sub_02002BEC(0, 10);
+            Font_UseImmediateGlyphAccess(FONT_SYSTEM, 10);
 
             v0->unk_1BC = sub_0200762C(10);
 
@@ -261,7 +261,7 @@ void ov19_021D64A0(UnkStruct_ov19_021D61B0 *param0)
     sub_02019044(param0->unk_1C0, 1);
     sub_02019044(param0->unk_1C0, 4);
     sub_02007B6C(param0->unk_1BC);
-    sub_02002C28(0);
+    Font_UseLazyGlyphAccess(FONT_SYSTEM);
     Heap_FreeToHeap(param0->unk_1C0);
     Heap_FreeToHeap(param0);
     sub_0200A878();

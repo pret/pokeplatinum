@@ -154,7 +154,7 @@ int ov72_0223D7A0(OverlayManager *param0, int *param1)
         sub_0201E3D8();
         sub_0201E450(1);
         SetMainCallback(ov72_0223DA48, v0->unk_00);
-        sub_02002BB8(2, 39);
+        Font_InitManager(FONT_SUBSCREEN, 39);
 
         ov72_0223DB98(v0);
         ov72_0223DDA8();
@@ -230,7 +230,7 @@ int ov72_0223D984(OverlayManager *param0, int *param1)
     sub_0201F8B4();
 
     ov72_0223E260(v0);
-    sub_02002C60(2);
+    Font_Free(FONT_SUBSCREEN);
     ov72_0223DC6C(v0->unk_00);
     sub_0201E530();
     MessageLoader_Free(v0->unk_14);
@@ -449,8 +449,8 @@ static void ov72_0223DCA8(UnkStruct_ov72_0223DB98 *param0, NARC *param1)
 
     sub_02007130(param1, 0, 0, 0, 16 * 2 * 3, 39);
     sub_02007130(param1, 2, 4, 0, 16 * 2 * 2, 39);
-    sub_02002E98(0, 13 * 0x20, 39);
-    sub_02002E98(4, 13 * 0x20, 39);
+    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 39);
+    Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, 39);
     sub_02019690(1, 32, 0, 39);
     sub_020070E8(param1, 3, v0, 2, 0, 32 * 8 * 0x20, 1, 39);
     sub_0200710C(param1, 5, v0, 2, 0, 32 * 24 * 2, 1, 39);
@@ -555,7 +555,7 @@ static void *ov72_0223E060(Window *param0, Strbuf *param1, int param2, u8 param3
 {
     int v0, v1;
 
-    v1 = sub_02002D7C(2, param1, 0);
+    v1 = Font_CalcStrbufWidth(FONT_SUBSCREEN, param1, 0);
     v0 = ((param0->unk_07 * 8) - v1) / 2;
 
     sub_0201D78C(param0, param3, param1, v0, param2, 0xff, param4, NULL);
@@ -590,7 +590,7 @@ static void ov72_0223E0A0(UnkStruct_ov72_0223DB98 *param0, OverlayManager *param
     BGL_AddWindow(param0->unk_00, &param0->unk_358, 1, 2, 2, 28, 2, 13, ((1 + 24 * 8) + 8 * 2));
 
     {
-        int v2 = sub_02002D7C(1, param0->unk_30, 0);
+        int v2 = Font_CalcStrbufWidth(FONT_MESSAGE, param0->unk_30, 0);
         int v3 = (28 * 8 - v2) / 2;
 
         BGL_FillWindow(&param0->unk_358, 0x0);

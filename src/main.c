@@ -75,9 +75,9 @@ void NitroMain(void)
     sub_02000E3C();
     Fonts_Init();
 
-    sub_02002BB8(0, 3);
-    sub_02002BB8(1, 3);
-    sub_02002BB8(3, 3);
+    Font_InitManager(FONT_SYSTEM, 3);
+    Font_InitManager(FONT_MESSAGE, 3);
+    Font_InitManager(FONT_UNK, 3);
 
     Unk_02101D28.unk_10.unk_00 = -1;
     Unk_02101D28.unk_10.unk_08 = SaveData_Init();

@@ -181,7 +181,7 @@ void ov22_02259DBC (UnkStruct_ov22_02259D2C * param0, UnkStruct_ov22_0225A0E4 * 
     ov22_0225A0E4(&param0->unk_00[3], 3, param1, 136, 144, 40, 42);
     ov22_0225A200(param0->unk_6C, 3, 136, 144 + 12, 40, 42 - 8);
 
-    sub_02002BB8(2, 14);
+    Font_InitManager(FONT_SUBSCREEN, 14);
 
     v0 = ov22_0225A348(param1, 26, 385, 0, 72 / 8, 42 / 8);
 
@@ -189,7 +189,7 @@ void ov22_02259DBC (UnkStruct_ov22_02259D2C * param0, UnkStruct_ov22_0225A0E4 * 
     ov22_0225A200(param0->unk_6C, 4, 184, 144 + 12, 72, 42 - 8);
 
     ov22_0225A3D0(v0);
-    sub_02002C60(2);
+    Font_Free(FONT_SUBSCREEN);
 
     param0->unk_60 = 1;
 
@@ -520,7 +520,7 @@ static Window * ov22_0225A348 (UnkStruct_ov22_0225A0E4 * param0, u32 param1, u32
     BGL_AddFramelessWindow(param0->unk_40, v2, param4, param5, 0, 0);
 
     {
-        u32 v3 = sub_02002EEC(2, v1, 0, param4 * 8);
+        u32 v3 = Font_CalcCenterAlignment(FONT_SUBSCREEN, v1, 0, param4 * 8);
         sub_0201D78C(v2, 2, v1, v3, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((3 & 0xff) << 0)), NULL);
     }
 

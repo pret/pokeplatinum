@@ -1427,8 +1427,8 @@ static void ov114_0225D084(UnkStruct_ov114_0225D084 *param0, u32 param1)
     param0->unk_08 = Strbuf_Init(128, param1);
     param0->unk_0C = Strbuf_Init(128, param1);
 
-    sub_02002E98(0, 12 * 0x20, param1);
-    sub_02002E98(4, 12 * 0x20, param1);
+    Font_LoadScreenIndicatorsPalette(0, 12 * 0x20, param1);
+    Font_LoadScreenIndicatorsPalette(4, 12 * 0x20, param1);
 }
 
 static void ov114_0225D0D8(UnkStruct_ov114_0225D084 *param0)
@@ -1498,7 +1498,7 @@ static void ov114_0225D1C8(UnkStruct_ov114_0225D084 *param0, u32 param1, Window 
     MessageLoader_GetStrbuf(param0->unk_00, param1, param0->unk_0C);
     StringTemplate_Format(param0->unk_04, param0->unk_08, param0->unk_0C);
 
-    v0 = sub_02002D7C(0, param0->unk_08, 0);
+    v0 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_08, 0);
     v1 = param3 - v0;
 
     if (v1 < 0) {
@@ -2322,13 +2322,13 @@ static void ov114_0225E244(UnkStruct_ov114_0225E1A4 *param0, UnkStruct_ov114_022
 
     ov114_0225CBF0(&param0->unk_18, Unk_ov114_02260140[param0->unk_10], Unk_ov114_02260110[param0->unk_10], Unk_ov114_02260104[param0->unk_10], 16);
     ov114_0225E4B0(param0, param1, param0->unk_18.unk_00 >> FX32_SHIFT);
-    sub_02002BB8(2, param2);
+    Font_InitManager(FONT_SUBSCREEN, param2);
 
-    v0 = sub_02002D7C(2, param0->unk_14, 0);
+    v0 = Font_CalcStrbufWidth(FONT_SUBSCREEN, param0->unk_14, 0);
     v1 = ((20 * 8) / 2) - (v0 / 2);
 
     sub_0201D78C(&param0->unk_00, 2, param0->unk_14, v1, 0, 0, Unk_ov114_022600F8[param0->unk_10], NULL);
-    sub_02002C60(2);
+    Font_Free(FONT_SUBSCREEN);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 }
 

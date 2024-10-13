@@ -1301,8 +1301,8 @@ static void ov70_0225E4EC(UnkStruct_ov70_0225E4EC *param0, SaveData *param1, u32
         v1 = SaveData_Options(param1);
         v2 = Options_Frame(v1);
 
-        sub_02002E7C(0, 5 * 32, param2);
-        sub_02002E98(0, 4 * 32, param2);
+        Font_LoadTextPalette(0, 5 * 32, param2);
+        Font_LoadScreenIndicatorsPalette(0, 4 * 32, param2);
 
         sub_0200DAA4(param0->unk_00, Unk_ov70_0226D5CC[0], ((1 + (18 + 12)) + ((18 + 12) + 24)), 3, 0, param2);
         sub_0200DD0C(param0->unk_00, Unk_ov70_0226D5CC[0], 1, 1, v2, param2);
@@ -2441,7 +2441,7 @@ static void ov70_0225F95C(SysTask *param0, void *param1)
     }
 
     {
-        sub_02002E7C(4, 5 * 32, v0->unk_156);
+        Font_LoadTextPalette(4, 5 * 32, v0->unk_156);
     }
 
     {
@@ -2464,7 +2464,7 @@ static void ov70_0225F9BC(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225E4
     }
 
     {
-        sub_02002E7C(4, 5 * 32, param4);
+        Font_LoadTextPalette(4, 5 * 32, param4);
     }
 }
 
@@ -2876,7 +2876,7 @@ static void ov70_02260314(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225F2
     s32 v2;
 
     v0 = ov70_0225F288(param1, 1, param3);
-    v1 = sub_02002D7C(0, v0, 0);
+    v1 = Font_CalcStrbufWidth(FONT_SYSTEM, v0, 0);
     v2 = param4 - v1;
 
     if (v2 < 0) {

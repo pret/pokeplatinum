@@ -353,7 +353,7 @@ static void ov43_02256988(UnkStruct_ov43_02256544 *param0, Window *param1, u32 p
         MessageLoader_GetStrbuf(param0->unk_B4, param2, param0->unk_BC);
     }
 
-    v0 = sub_02002D7C(0, param0->unk_BC, 0);
+    v0 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_BC, 0);
 
     sub_0201D78C(param1, 0, param0->unk_BC, ((6 * 8) - v0) / 2, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((8 & 0xff) << 8) | ((4 & 0xff) << 0)), NULL);
     sub_0201ACCC(param1);

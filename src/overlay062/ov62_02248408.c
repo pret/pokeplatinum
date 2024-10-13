@@ -57,7 +57,7 @@ void ov62_02248408(BattleRecording *param0, BattleParams *param1, int param2)
         Strbuf_Clear(v6);
         Strbuf_CopyChars(v6, param1->trainerData[v4].name);
 
-        if (sub_02002DB4(0, v6, v7) == 0) {
+        if (Font_AreAllCharsValid(FONT_SYSTEM, v6, v7) == 0) {
             ov62_0224856C(v7, param2);
             Strbuf_ToChars(v7, param1->trainerData[v4].name, 8);
             continue;
@@ -80,7 +80,7 @@ void ov62_02248408(BattleRecording *param0, BattleParams *param1, int param2)
             Strbuf_Clear(v6);
             Strbuf_CopyChars(v6, v8);
 
-            if (sub_02002DB4(0, v6, v7) == 0) {
+            if (Font_AreAllCharsValid(FONT_SYSTEM, v6, v7) == 0) {
                 Pokemon_SetValue(v13, 179, NULL);
                 continue;
             }

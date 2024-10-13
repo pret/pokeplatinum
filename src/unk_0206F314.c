@@ -597,8 +597,8 @@ static void sub_0206FB38(UnkStruct_0206F7F8 *param0)
     sub_0200DD0C(param0->unk_D0, 3, (1024 - (18 + 12)), 10, param0->unk_1C, param0->unk_00);
     sub_0200DAA4(param0->unk_D0, 3, (1024 - (18 + 12) - 9), 11, 0, param0->unk_00);
     sub_0200DAA4(param0->unk_D0, 1, (1024 - (18 + 12) - 9), 11, 0, param0->unk_00);
-    sub_02002E7C(0, 13 * 32, param0->unk_00);
-    sub_02002E98(0, 12 * 32, param0->unk_00);
+    Font_LoadTextPalette(0, 13 * 32, param0->unk_00);
+    Font_LoadScreenIndicatorsPalette(0, 12 * 32, param0->unk_00);
     BGL_AddWindow(param0->unk_D0, &param0->unk_E4, 3, 2, 19, 27, 4, 12, ((1024 - (18 + 12) - 9) - 27 * 4));
     BGL_FillWindow(&param0->unk_E4, ((15 << 4) | 15));
 }
@@ -802,7 +802,7 @@ static void sub_02070050(UnkStruct_0206F7F8 *param0, BOOL param1)
         sub_0201D78C(&param0->unk_D4, 0, param0->unk_2C.unk_08, 8, v3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
         StringTemplate_SetNumber(param0->unk_2C.unk_04, 0, v4, v7->unk_04, 1, 1);
         StringTemplate_Format(param0->unk_2C.unk_04, param0->unk_2C.unk_08, param0->unk_2C.unk_1C[v7->unk_06 - 15]);
-        sub_0201D78C(&param0->unk_D4, 0, param0->unk_2C.unk_08, (24 * 8) - sub_02002D7C(0, param0->unk_2C.unk_08, 0) - 8, v3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+        sub_0201D78C(&param0->unk_D4, 0, param0->unk_2C.unk_08, (24 * 8) - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_2C.unk_08, 0) - 8, v3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
 
         param0->unk_32C[v3] = v0;
         v5 = v4;

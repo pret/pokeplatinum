@@ -124,7 +124,7 @@ void ov88_0223EC78(Window *param0, Strbuf *param1, int param2, u32 param3, int p
     if (param4 == 1) {
         int v1;
 
-        v1 = sub_02002D7C(0, param1, 0);
+        v1 = Font_CalcStrbufWidth(FONT_SYSTEM, param1, 0);
         v0 = ((param0->unk_07 * 8) - v1) / 2;
     } else {
         v0 = param4;

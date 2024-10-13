@@ -1462,8 +1462,8 @@ static void ov65_0222ECA8 (UnkStruct_ov65_0222EBE0 * param0, NARC * param1)
     sub_02007130(param1, 3, 0, 0, 0, 54);
     sub_02007130(param1, 3, 4, 0, 0, 54);
 
-    sub_02002E98(0, 13 * 0x20, 54);
-    sub_02002E98(0, 12 * 0x20, 54);
+    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 54);
+    Font_LoadScreenIndicatorsPalette(0, 12 * 0x20, 54);
 
     sub_020070E8(param1, 2, v0, 0, 0, 0, 0, 54);
     sub_0200710C(param1, 5, v0, 0, 0, 0, 0, 54);
@@ -1533,7 +1533,7 @@ static void ov65_0222EE98 (UnkStruct_ov65_0222EBE0 * param0)
     MessageLoader_GetStrbuf(param0->unk_168, 21, param0->unk_178);
 
     {
-        u32 v2 = sub_02002EEC(0, param0->unk_178, 0, 22 * 8);
+        u32 v2 = Font_CalcCenterAlignment(FONT_SYSTEM, param0->unk_178, 0, 22 * 8);
 
         sub_0201D78C(&param0->unk_350, 1, param0->unk_178, v2, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
@@ -2102,6 +2102,7 @@ static int ov65_0222F90C (UnkStruct_ov65_0222EBE0 * param0, int param1)
     return param1;
 }
 
+// clang-format off
 asm static int ov65_0222FAA0 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
     push {r3, r4, r5, lr}
@@ -2182,6 +2183,7 @@ asm static int ov65_0222FAA0 (UnkStruct_ov65_0222EBE0 * param0, int param1)
     add r0, r4, #0
     pop {r3, r4, r5, pc}
 }
+// clang-format on
 
 static int ov65_0222FB44 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
@@ -5163,7 +5165,7 @@ static void ov65_022332FC (UnkStruct_ov65_0222EBE0 * param0, NARC * param1, u32 
     param0->unk_BE0.unk_44 = sub_020071D0(param1, 28, 0, &param0->unk_BE0.unk_48, param2);
 
     ov65_022335F8(param0->unk_BE0.unk_48, (0 + 48));
-    sub_02002E98(4, 15 * 32, param2);
+    Font_LoadScreenIndicatorsPalette(4, 15 * 32, param2);
 
     for (v0 = 0; v0 < 8; v0++) {
         v2 = v0 / 4;
@@ -5388,6 +5390,7 @@ static void ov65_02233874 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
 }
 
+// clang-format off
 asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
 {
     push {r3, r4, r5, r6, r7, lr}
@@ -5531,7 +5534,7 @@ asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     mov r0, #0
     ldr r1, [r5, r1]
     add r2, r0, #0
-    bl sub_02002D7C
+    bl Font_CalcStrbufWidth
     mov r1, #0xe8
     sub r3, r1, r0
     mov r0, #0x20
@@ -5643,7 +5646,7 @@ asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     mov r0, #0
     ldr r1, [r5, r1]
     add r2, r0, #0
-    bl sub_02002D7C
+    bl Font_CalcStrbufWidth
     mov r1, #0xe8
     sub r3, r1, r0
     mov r0, #0x38
@@ -5713,7 +5716,7 @@ asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     mov r0, #0
     ldr r1, [r5, r1]
     add r2, r0, #0
-    bl sub_02002D7C
+    bl Font_CalcStrbufWidth
     mov r1, #0xe8
     sub r3, r1, r0
     mov r0, #0x50
@@ -5787,7 +5790,7 @@ asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     mov r0, #0
     ldr r1, [r5, r1]
     add r2, r0, #0
-    bl sub_02002D7C
+    bl Font_CalcStrbufWidth
     mov r1, #0xe8
     sub r3, r1, r0
     mov r0, #0x68
@@ -5884,7 +5887,7 @@ asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     mov r0, #0
     ldr r1, [r5, r1]
     add r2, r0, #0
-    bl sub_02002D7C
+    bl Font_CalcStrbufWidth
     mov r1, #0xe8
     sub r3, r1, r0
     mov r0, #0x80
@@ -5938,6 +5941,7 @@ asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     add sp, #0x18
     pop {r3, r4, r5, r6, r7, pc}
 }
+// clang-format on
 
 static void ov65_02233E20 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
 {
@@ -5963,6 +5967,7 @@ static void ov65_02233E20 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     }
 }
 
+// clang-format off
 asm static void ov65_02233EF0 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
 {
     push {r3, r4, r5, lr}
@@ -6024,7 +6029,7 @@ asm static void ov65_02233EF0 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     mov r0, #0
     ldr r1, [r5, r1]
     add r2, r0, #0
-    bl sub_02002D7C
+    bl Font_CalcStrbufWidth
     mov r1, #0xe8
     sub r3, r1, r0
     mov r0, #0x18
@@ -6151,7 +6156,7 @@ asm static void ov65_02233EF0 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     mov r0, #0
     ldr r1, [r5, r1]
     add r2, r0, #0
-    bl sub_02002D7C
+    bl Font_CalcStrbufWidth
     mov r1, #0xe8
     sub r3, r1, r0
     mov r0, #0x58
@@ -6248,6 +6253,7 @@ asm static void ov65_02233EF0 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     add sp, #0x10
     pop {r3, r4, r5, pc}
 }
+// clang-format on
 
 static void ov65_0223416C (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
 {
@@ -6261,7 +6267,7 @@ static void ov65_0223416C (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
         MessageLoader_GetStrbuf(param0->unk_168, 63, param0->unk_178);
 
         {
-            u32 v1 = 180 - (sub_02002D7C(0, param0->unk_178, 0) + 1) / 2;
+            u32 v1 = 180 - (Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_178, 0) + 1) / 2;
             sub_0201D78C(&param0->unk_BE0.unk_1FC, 0, param0->unk_178, v1, 24, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         }
     }
@@ -6300,7 +6306,7 @@ static void ov65_022342A8 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
         v3 = MessageUtil_SpeciesName(v1, param1);
 
         {
-            u32 v4 = 33 - (sub_02002D7C(0, v3, 0) + 1) / 2;
+            u32 v4 = 33 - (Font_CalcStrbufWidth(FONT_SYSTEM, v3, 0) + 1) / 2;
             sub_0201D78C(&param0->unk_BE0.unk_1FC, 0, v3, v4, 24, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         }
 
@@ -6438,7 +6444,7 @@ static void ov65_02234708 (UnkStruct_ov65_0222EBE0 * param0, u32 param1, u32 par
     StringTemplate_Format(param0->unk_BE0.unk_00, param0->unk_178, param0->unk_170);
 
     {
-        u32 v0 = param3 - (sub_02002D7C(0, param0->unk_178, 0) + 1) / 2;
+        u32 v0 = param3 - (Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_178, 0) + 1) / 2;
         sub_0201D78C(&param0->unk_BE0.unk_1FC, 0, param0->unk_178, v0, param4, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 }
@@ -6704,7 +6710,7 @@ static void ov65_02234A68 (UnkStruct_ov65_0222EBE0 * param0, NARC * param1, u32 
         CellActor_SetAnim(param0->unk_BE0.unk_21C[v1], Unk_ov65_02238930[v1]);
     }
 
-    sub_02002BB8(2, param2);
+    Font_InitManager(FONT_SUBSCREEN, param2);
     Window_Init(&v3);
     BGL_AddFramelessWindow(param0->unk_15C, &v3, 8, 2, 0, 0);
 
@@ -6712,7 +6718,7 @@ static void ov65_02234A68 (UnkStruct_ov65_0222EBE0 * param0, NARC * param1, u32 
     MessageLoader_GetStrbuf(param0->unk_168, 73, v4);
 
     {
-        v8 = -((sub_02002D7C(0, param0->unk_178, 0) + 1) / 2);
+        v8 = -((Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_178, 0) + 1) / 2);
         sub_0201D78C(&v3, 2, v4, 0, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
     }
 
@@ -6741,7 +6747,7 @@ static void ov65_02234A68 (UnkStruct_ov65_0222EBE0 * param0, NARC * param1, u32 
 
     sub_02012B48(v5);
     BGL_DeleteWindow(&v3);
-    sub_02002C60(2);
+    Font_Free(FONT_SUBSCREEN);
 
     param0->unk_BE0.unk_244 = sub_02023FCC(Unk_ov65_0223895C, 3, ov65_02234E40, param0, param2);
 }

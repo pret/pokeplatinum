@@ -523,7 +523,7 @@ static void ov112_0225CA34 (UnkStruct_ov112_0225C9BC * param0, u32 param1)
 
     {
         sub_02007130(param0->unk_1A4, 0, 0, 0, 0, param1);
-        sub_02002E98(0, 10 * 32, param1);
+        Font_LoadScreenIndicatorsPalette(0, 10 * 32, param1);
         sub_020070E8(param0->unk_1A4, 1, param0->unk_00, 1, 0, 0, 0, param1);
         sub_0200710C(param0->unk_1A4, 3, param0->unk_00, 1, 0, 0, 0, param1);
         sub_0200710C(param0->unk_1A4, 4, param0->unk_00, 2, 0, 0, 0, param1);
@@ -1069,7 +1069,7 @@ static void ov112_0225D460 (UnkStruct_ov112_0225D44C * param0, const Strbuf *par
     param0->unk_00 = 1;
     param0->unk_02 = 0;
     param0->unk_04 = param2;
-    param0->unk_06 = sub_02002D7C(1, param1, 0);
+    param0->unk_06 = Font_CalcStrbufWidth(FONT_MESSAGE, param1, 0);
     param0->unk_06 += 256;
 
     GF_ASSERT((180 * 8) >= param0->unk_06);
@@ -1127,6 +1127,7 @@ static void ov112_0225D4F8 (const UnkStruct_ov112_0225D44C * param0, Window * pa
     sub_0201A9A4(param1);
 }
 
+// clang-format off
 asm static void ov112_0225D57C (UnkStruct_ov112_0225D6DC * param0, UnkStruct_ov112_0225C9BC * param1, u32 param2)
 {
     push {r3, r4, r5, r6, r7, lr}
@@ -1223,7 +1224,7 @@ asm static void ov112_0225D57C (UnkStruct_ov112_0225D6DC * param0, UnkStruct_ov1
     mov r0, #0
     add r1, r4, #0
     add r2, r0, #0
-    bl sub_02002EB4
+    bl Font_CalcMaxLineWidth
     add r0, r0, #1
     ldrb r1, [r5, #7]
     lsr r0, r0, #1
@@ -1234,7 +1235,7 @@ asm static void ov112_0225D57C (UnkStruct_ov112_0225D6DC * param0, UnkStruct_ov1
     mov r0, #0
     add r1, r4, #0
     add r2, r0, #0
-    bl sub_02002EB4
+    bl Font_CalcMaxLineWidth
     ldrb r1, [r5, #7]
     sub r0, r1, r0
     str r0, [sp, #0x2c]
@@ -1287,6 +1288,7 @@ asm static void ov112_0225D57C (UnkStruct_ov112_0225D6DC * param0, UnkStruct_ov1
     pop {r3, r4, r5, r6, r7, pc}
     nop
 }
+// clang-format on
 
 static void ov112_0225D6DC (UnkStruct_ov112_0225D6DC * param0)
 {

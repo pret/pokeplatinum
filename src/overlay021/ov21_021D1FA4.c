@@ -96,7 +96,7 @@ void ov21_021D1FA4(UnkStruct_ov21_021D13FC *param0, int param1)
 
     param0->unk_14C = ov21_021D4C0C(&v1);
 
-    sub_02002BB8(2, param1);
+    Font_InitManager(FONT_SUBSCREEN, param1);
 
     ov21_021D2A0C(param0, param1);
     ov21_021D2AE8(param0, param1);
@@ -122,7 +122,7 @@ void ov21_021D2098(UnkStruct_ov21_021D13FC *param0)
     SpriteResourceCollection_Delete(param0->unk_13C[3]);
 
     ov21_021D4C6C(param0->unk_14C);
-    sub_02002C60(2);
+    Font_Free(FONT_SUBSCREEN);
     ov21_021D2AB4(param0);
     NARC_dtor(param0->unk_278);
 

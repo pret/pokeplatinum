@@ -241,7 +241,7 @@ static void ov22_0225BA40(UnkStruct_ov22_0225B85C *param0)
     param0->unk_200 = sub_0201A778(14, 1);
 
     BGL_AddWindow(param0->unk_14.unk_40, param0->unk_200, 3, 0, 18, 32, 6, 5, 1);
-    sub_02002E7C(0, 5 * 32, 14);
+    Font_LoadTextPalette(0, 5 * 32, 14);
     BGL_SetPriority(3, 0);
     BGL_SetPriority(0, 2);
     BGL_SetPriority(1, 1);
@@ -292,7 +292,7 @@ static void ov22_0225BB00(UnkStruct_ov22_0225B85C *param0)
     v7 = Strbuf_Init(12, 13);
     sub_0202A1A0(param0->unk_00, v7);
 
-    v3 = sub_02002D7C(0, v7, 0);
+    v3 = Font_CalcStrbufWidth(FONT_SYSTEM, v7, 0);
     v1 = 128 - (v3 / 2);
     v2 = 7;
 
@@ -306,7 +306,7 @@ static void ov22_0225BB00(UnkStruct_ov22_0225B85C *param0)
     v6 = MessageLoader_GetNewStrbuf(v8, 45);
     StringTemplate_Format(v5, v7, v6);
 
-    v3 = sub_02002D7C(0, v7, 0);
+    v3 = Font_CalcStrbufWidth(FONT_SYSTEM, v7, 0);
     v1 = 128 - (v3 / 2);
     v2 = 27;
 
@@ -355,7 +355,7 @@ static void ov22_0225BC18(UnkStruct_ov22_0225B85C *param0)
     v3 = MessageLoader_GetNewStrbuf(v7, 43);
     StringTemplate_Format(v1, v2, v3);
     Strbuf_Free(v3);
-    v10 = sub_02002D7C(0, v2, 0);
+    v10 = Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
     v8 = 128 - (v10 / 2);
     v9 = 7;
     sub_0201D78C(param0->unk_200, 0, v2, v8, v9, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -363,7 +363,7 @@ static void ov22_0225BC18(UnkStruct_ov22_0225B85C *param0)
     v3 = MessageLoader_GetNewStrbuf(v7, 44);
     StringTemplate_Format(v1, v2, v3);
     Strbuf_Free(v3);
-    v10 = sub_02002D7C(0, v2, 0);
+    v10 = Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
     v8 = 128 - (v10 / 2);
     v9 = 27;
     sub_0201D78C(param0->unk_200, 0, v2, v8, v9, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);

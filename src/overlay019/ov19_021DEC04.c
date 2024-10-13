@@ -456,7 +456,7 @@ static void ov19_021DF2A8(UnkStruct_ov19_021DEC04 *param0)
 
 static inline u32 inline_ov19_021DF3AC(Window *param0, u32 param1, const Strbuf *param2)
 {
-    return ((param0->unk_07 * 8) - sub_02002D7C(param1, param2, 0)) / 2;
+    return ((param0->unk_07 * 8) - Font_CalcStrbufWidth(param1, param2, 0)) / 2;
 }
 
 static void ov19_021DF2E0(UnkStruct_ov19_021DEC04 *param0)
