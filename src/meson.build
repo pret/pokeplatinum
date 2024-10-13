@@ -86,7 +86,7 @@ pokeplatinum_c = files(
     'unk_02022844.c',
     'resource_collection.c',
     'unk_0202309C.c',
-    'unk_020232E0.c',
+    'font_manager.c',
     'unk_02023FCC.c',
     'unk_0202414C.c',
     'unk_0202419C.c',

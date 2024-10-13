@@ -93,7 +93,7 @@ Static main
 	Object main.nef.p/src_error_handling.c.o
 	Object main.nef.p/src_resource_collection.c.o
 	Object main.nef.p/src_unk_0202309C.c.o
-	Object main.nef.p/src_unk_020232E0.c.o
+	Object main.nef.p/src_font_manager.c.o
 	Object main.nef.p/src_strbuf.c.o
 	Object main.nef.p/src_unk_02023FCC.c.o
 	Object main.nef.p/src_unk_0202414C.c.o

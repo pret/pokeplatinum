@@ -73,7 +73,7 @@ void NitroMain(void)
     sub_0202419C();
     InitRTC();
     sub_02000E3C();
-    sub_02002B7C();
+    Fonts_Init();
 
     sub_02002BB8(0, 3);
     sub_02002BB8(1, 3);

@@ -17,7 +17,7 @@ typedef struct FontAttributes {
     u8 shadowColor;
 } FontAttributes;
 
-void sub_02002B7C(void);
+void Fonts_Init(void);
 void sub_02002BB8(int param0, u32 param1);
 void sub_02002BEC(int param0, u32 param1);
 void sub_02002C28(int param0);

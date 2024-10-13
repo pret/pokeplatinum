@@ -3,19 +3,17 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02023350_decl.h"
-
+#include "font_manager.h"
 #include "heap.h"
 #include "render_text.h"
 #include "strbuf.h"
 #include "unk_02006E3C.h"
 #include "unk_0201D670.h"
-#include "unk_020232E0.h"
 
 typedef struct {
     TextGlyph curGlyph;
     void *data[4];
-    UnkStruct_02023350 *unk_94[4];
+    FontManager *unk_94[4];
 } FontWork;
 
 static const struct {
@@ -77,7 +75,7 @@ static const FontAttributes sFontAttributes[FONT_MAX + 1] = {
 
 static FontWork *sFontWork = NULL;
 
-void sub_02002B7C(void)
+void Fonts_Init(void)
 {
     u32 v0;
     static FontWork work;
@@ -94,7 +92,7 @@ void sub_02002B7C(void)
 
 void sub_02002BB8(int param0, u32 param1)
 {
-    sFontWork->unk_94[param0] = sub_020232E0(14, sFontArchiveData[param0].arcFileIdx, 1, sFontArchiveData[param0].unk_02, param1);
+    sFontWork->unk_94[param0] = FontManager_New(14, sFontArchiveData[param0].arcFileIdx, 1, sFontArchiveData[param0].unk_02, param1);
 }
 
 void sub_02002BEC(int param0, u32 param1)
@@ -102,7 +100,7 @@ void sub_02002BEC(int param0, u32 param1)
     GF_ASSERT(param0 < 4);
     GF_ASSERT(sFontWork->unk_94[param0]);
 
-    sub_02023330(sFontWork->unk_94[param0], 0, param1);
+    FontManager_SwitchGlyphAccessMode(sFontWork->unk_94[param0], 0, param1);
 }
 
 void sub_02002C28(int param0)
@@ -110,7 +108,7 @@ void sub_02002C28(int param0)
     GF_ASSERT(param0 < 4);
     GF_ASSERT(sFontWork->unk_94[param0]);
 
-    sub_02023330(sFontWork->unk_94[param0], 1, 0);
+    FontManager_SwitchGlyphAccessMode(sFontWork->unk_94[param0], 1, 0);
 }
 
 void sub_02002C60(int param0)
@@ -138,14 +136,14 @@ void sub_02002C60(int param0)
     }
 
     if (sFontWork->unk_94[param0] != NULL) {
-        sub_02023318(sFontWork->unk_94[param0]);
+        FontManager_Delete(sFontWork->unk_94[param0]);
         sFontWork->unk_94[param0] = NULL;
     }
 }
 
 const TextGlyph *sub_02002CFC(int param0, u16 param1)
 {
-    sub_020234A0(sFontWork->unk_94[param0], param1, &sFontWork->curGlyph);
+    FontManager_TryLoadGlyph(sFontWork->unk_94[param0], param1, &sFontWork->curGlyph);
     return &(sFontWork->curGlyph);
 }
 
@@ -166,13 +164,13 @@ int sub_02002D18(int param0, TextPrinter *param1)
 u32 sub_02002D48(int param0, const u16 *param1, u32 param2)
 {
     GF_ASSERT(sFontWork->unk_94[param0] != NULL);
-    return sub_02023620(sFontWork->unk_94[param0], param1, param2);
+    return FontManager_CalcStringWidth(sFontWork->unk_94[param0], param1, param2);
 }
 
 u32 sub_02002D7C(int param0, const Strbuf *param1, u32 param2)
 {
     GF_ASSERT(sFontWork->unk_94[param0] != NULL);
-    return sub_02023620(sFontWork->unk_94[param0], Strbuf_GetData(param1), param2);
+    return FontManager_CalcStringWidth(sFontWork->unk_94[param0], Strbuf_GetData(param1), param2);
 }
 
 u32 sub_02002DB4(int param0, Strbuf *param1, Strbuf *param2)
@@ -182,7 +180,7 @@ u32 sub_02002DB4(int param0, Strbuf *param1, Strbuf *param2)
     Strbuf_Clear(param2);
     Strbuf_ConcatTrainerName(param2, param1);
 
-    return sub_0202366C(sFontWork->unk_94[param0], Strbuf_GetData(param2));
+    return FontManager_AreAllCharsValid(sFontWork->unk_94[param0], Strbuf_GetData(param2));
 }
 
 u8 Font_GetAttribute(u8 param0, u8 param1)
@@ -232,7 +230,7 @@ void sub_02002E98(u32 param0, u32 param1, u32 param2)
 u32 sub_02002EB4(int param0, const Strbuf *param1, u32 param2)
 {
     GF_ASSERT(sFontWork->unk_94[param0] != NULL);
-    return sub_020236D0(sFontWork->unk_94[param0], Strbuf_GetData(param1), param2);
+    return FontManager_CalcMaxLineWidth(sFontWork->unk_94[param0], Strbuf_GetData(param1), param2);
 }
 
 u32 sub_02002EEC(int param0, const Strbuf *param1, u32 param2, u32 param3)
@@ -245,5 +243,5 @@ u32 sub_02002EEC(int param0, const Strbuf *param1, u32 param2, u32 param3)
 u32 sub_02002F04(int param0, const Strbuf *param1)
 {
     GF_ASSERT(sFontWork->unk_94[param0] != NULL);
-    return sub_02023738(sFontWork->unk_94[param0], Strbuf_GetData(param1));
+    return FontManager_CalcStringWidthWithCursorControl(sFontWork->unk_94[param0], Strbuf_GetData(param1));
 }
