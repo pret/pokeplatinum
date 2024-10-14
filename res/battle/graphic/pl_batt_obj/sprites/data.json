@@ -1,0 +1,783 @@
+[
+    {
+        "target": "pl_batt_obj_00000076.png",
+        "compressed": false,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000112.png",
+        "compressed": false,
+        "clobber_size": true,
+        "mapping_type": 128
+    },
+    {
+        "target": "pl_batt_obj_00000117.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000120.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000121.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000124.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000127.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000130.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000133.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000134.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000135.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000136.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000137.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000138.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000139.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000140.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000141.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000142.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000143.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000144.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000145.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000146.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000147.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000148.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000149.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000150.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000151.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000152.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000153.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000154.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000155.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000156.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000157.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000158.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000159.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000160.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000161.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000162.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000163.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000164.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000165.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000166.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000167.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000168.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000169.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000170.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000171.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000172.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000173.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000174.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000175.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000176.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000179.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 32
+    },
+    {
+        "target": "pl_batt_obj_00000182.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000185.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000188.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64,
+        "version101": true
+    },
+    {
+        "target": "pl_batt_obj_00000191.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64,
+        "version101": true
+    },
+    {
+        "target": "pl_batt_obj_00000194.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64,
+        "version101": true
+    },
+    {
+        "target": "pl_batt_obj_00000197.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64,
+        "version101": true
+    },
+    {
+        "target": "pl_batt_obj_00000200.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64,
+        "version101": true
+    },
+    {
+        "target": "pl_batt_obj_00000203.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64,
+        "version101": true
+    },
+    {
+        "target": "pl_batt_obj_00000205.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 32
+    },
+    {
+        "target": "pl_batt_obj_00000208.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 32
+    },
+    {
+        "target": "pl_batt_obj_00000211.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 32
+    },
+    {
+        "target": "pl_batt_obj_00000214.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 32
+    },
+    {
+        "target": "pl_batt_obj_00000217.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 32
+    },
+    {
+        "target": "contest_icon_beauty.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 32,
+        "version101": true
+    },
+    {
+        "target": "contest_icon_cute.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 32,
+        "version101": true
+    },
+    {
+        "target": "type_icon_dragon.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 32,
+        "version101": true
+    },
+    {
+        "target": "type_icon_electric.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 32,
+        "version101": true
+    },
+    {
+        "target": "type_icon_psychic.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 32,
+        "version101": true
+    },
+    {
+        "target": "type_icon_dark.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 32,
+        "version101": true
+    },
+    {
+        "target": "type_icon_fighting.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 32,
+        "version101": true
+    },
+    {
+        "target": "type_icon_fire.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 32,
+        "version101": true
+    },
+    {
+        "target": "type_icon_flying.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 32,
+        "version101": true
+    },
+    {
+        "target": "type_icon_ghost.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 32,
+        "version101": true
+    },
+    {
+        "target": "type_icon_ground.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 32,
+        "version101": true
+    },
+    {
+        "target": "type_icon_ice.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 32,
+        "version101": true
+    },
+    {
+        "target": "type_icon_bug.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 32,
+        "version101": true
+    },
+    {
+        "target": "contest_icon_smart.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 32,
+        "version101": true
+    },
+    {
+        "target": "type_icon_grass.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 32,
+        "version101": true
+    },
+    {
+        "target": "type_icon_normal.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 32,
+        "version101": true
+    },
+    {
+        "target": "type_icon_poison.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 32,
+        "version101": true
+    },
+    {
+        "target": "type_icon_mystery.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 32,
+        "version101": true
+    },
+    {
+        "target": "type_icon_rock.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 32,
+        "version101": true
+    },
+    {
+        "target": "type_icon_steel.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 32,
+        "version101": true
+    },
+    {
+        "target": "contest_icon_tough.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 32,
+        "version101": true
+    },
+    {
+        "target": "contest_icon_cool.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 32,
+        "version101": true
+    },
+    {
+        "target": "type_icon_water.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 32,
+        "version101": true
+    },
+    {
+        "target": "move_type_physical.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 32
+    },
+    {
+        "target": "move_type_status.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 32
+    },
+    {
+        "target": "move_type_special.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 32
+    },
+    {
+        "target": "pl_batt_obj_00000247.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000250.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 32
+    },
+    {
+        "target": "pl_batt_obj_00000253.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000256.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000259.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64,
+        "vram": true
+    },
+    {
+        "target": "pl_batt_obj_00000260.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64,
+        "vram": true
+    },
+    {
+        "target": "pl_batt_obj_00000261.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64,
+        "vram": true
+    },
+    {
+        "target": "pl_batt_obj_00000262.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64,
+        "vram": true
+    },
+    {
+        "target": "pl_batt_obj_00000263.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64,
+        "vram": true
+    },
+    {
+        "target": "pl_batt_obj_00000264.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64,
+        "vram": true
+    },
+    {
+        "target": "pl_batt_obj_00000265.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64,
+        "vram": true
+    },
+    {
+        "target": "pl_batt_obj_00000266.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64,
+        "vram": true
+    },
+    {
+        "target": "pl_batt_obj_00000285.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000288.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000291.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000294.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000297.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000300.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000303.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000306.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000309.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000312.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000315.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000318.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000321.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000324.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000327.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000330.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000333.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000336.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000339.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    },
+    {
+        "target": "pl_batt_obj_00000340.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 64
+    }
+]

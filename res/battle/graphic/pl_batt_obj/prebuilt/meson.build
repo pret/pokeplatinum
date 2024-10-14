@@ -1,11 +1,8 @@
-pl_batt_obj_prebuilt_raw = files(
+pl_batt_obj_prebuilt = files(
     'pl_batt_obj_00000077.NCER',
     'pl_batt_obj_00000078.NANR',
     'pl_batt_obj_00000113.NCER',
-    'pl_batt_obj_00000114.NANR'
-)
-
-pl_batt_obj_prebuilt_lz = files(
+    'pl_batt_obj_00000114.NANR',
     'pl_batt_obj_00000115.NANR',
     'pl_batt_obj_00000116.NCER',
     'pl_batt_obj_00000118.NANR',
@@ -114,11 +111,20 @@ pl_batt_obj_prebuilt_lz = files(
     'pl_batt_obj_00000342.NANR'
 )
 
-copy_prog = find_program('cp')
-pl_batt_obj_prebuilt_builder = generator(copy_prog,
-    output: '@PLAINNAME@',
-    arguments: ['@INPUT@', '@OUTPUT@']
-)
+pl_batt_obj_prebuilts_data = files('data.json')
 
-pl_batt_obj_prebuilt_copy = pl_batt_obj_prebuilt_builder.process(pl_batt_obj_prebuilt_raw)
-pl_batt_obj_prebuilt_compressed = pl_batt_obj_lz_builder.process(pl_batt_obj_prebuilt_lz)
+pl_batt_obj_built = []
+foreach infile : pl_batt_obj_prebuilt
+    pl_batt_obj_built += custom_target(
+        input: [infile, pl_batt_obj_prebuilts_data],
+        output: '@BASENAME0@',
+        command: [
+            make_pl_batt_obj_prebuilts_py,
+            '--nitrogfx', nitrogfx_exe.full_path(),
+            '--input', '@INPUT0@',
+            '--output', '@OUTPUT@',
+            '--datafile', '@INPUT1@',
+            '--private-dir', '@PRIVATE_DIR@'
+        ]
+    )
+endforeach

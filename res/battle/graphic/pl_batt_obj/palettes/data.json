@@ -1,0 +1,765 @@
+[
+    {
+        "target": "pl_batt_obj_00000000.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "pl_batt_obj_00000052.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "pl_batt_obj_00000053.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "pl_batt_obj_00000054.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "pl_batt_obj_00000055.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "pl_batt_obj_00000056.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "pl_batt_obj_00000057.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "pl_batt_obj_00000058.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "pl_batt_obj_00000059.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "pl_batt_obj_00000060.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "pl_batt_obj_00000061.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "pl_batt_obj_00000062.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "pl_batt_obj_00000063.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "pl_batt_obj_00000064.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "pl_batt_obj_00000065.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "pl_batt_obj_00000066.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "pl_batt_obj_00000070.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "pl_batt_obj_00000083.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "pl_batt_obj_00000084.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "pl_batt_obj_00000085.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "pl_batt_obj_00000086.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "pl_batt_obj_00000087.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "pl_batt_obj_00000088.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "pl_batt_obj_00000089.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "pl_batt_obj_00000090.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "pl_batt_obj_00000001.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000002.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000003.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000004.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000005.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000006.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000007.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000008.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000009.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000010.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000011.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000012.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000013.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000014.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000015.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000016.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000017.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000018.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000019.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000020.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000021.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000022.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000023.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000024.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000025.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000026.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000027.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000028.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000029.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000030.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000031.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000032.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000033.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000034.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000035.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000036.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000037.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000038.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000039.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000040.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000041.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000042.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000043.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000044.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000045.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000046.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000047.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000048.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000049.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000050.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000051.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000067.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000068.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000069.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000071.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000072.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000073.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "icon_palettes.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000075.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000079.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000080.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000081.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000082.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000091.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000092.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000093.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000094.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000095.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000096.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000097.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000098.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000099.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000100.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000101.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000102.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000103.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000104.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000105.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000106.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000107.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000108.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000109.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000110.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000111.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    }
+]
