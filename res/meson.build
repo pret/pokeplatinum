@@ -30,8 +30,29 @@ s_to_bin_gen = generator(make_script_bin_sh,
     output: '@BASENAME@'
 )
 
+mv_gen = generator(find_program('mv'),
+    arguments: [ '@INPUT@', '@OUTPUT@', ],
+    output: '@PLAINNAME@',
+)
+
+ncgr_gen = generator(nitrogfx_exe,
+    arguments: [ '@INPUT@', '@OUTPUT@', '@EXTRA_ARGS@', ],
+    output: '@BASENAME@.NCGR',
+)
+
+nclr_gen = generator(nitrogfx_exe,
+    arguments: [ '@INPUT@', '@OUTPUT@', '@EXTRA_ARGS@', ],
+    output: '@BASENAME@.NCLR',
+)
+
+lz_gen = generator(nitrogfx_exe,
+    arguments: [ '@INPUT@', '@OUTPUT@', '@EXTRA_ARGS@', ],
+    output: '@PLAINNAME@.lz',
+)
+
 subdir('battle')
 subdir('field')
+subdir('fonts')
 subdir('items')
 subdir('pokemon')
 subdir('sound')
