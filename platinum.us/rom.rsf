@@ -250,7 +250,7 @@ RomSpec
 
 	Root /
 	HostRoot res
-	File battle/graphic/pl_batt_obj/pl_batt_obj.narc
+	File battle/graphic/pl_batt_obj.narc
 
 	Root /
 	HostRoot res/prebuilt

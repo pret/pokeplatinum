@@ -21,5 +21,3 @@ pl_batt_obj_narc = custom_target('pl_batt_obj.narc',
     ],
     build_always_stale: true
 )
-
-nitrofs_files += pl_batt_obj_narc
