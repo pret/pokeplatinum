@@ -1377,8 +1377,8 @@ static void ov91_021D22A0(UnkStruct_ov91_021D0ED8 *param0, u16 param1, u16 param
         v0 = MoveTable_LoadParam(param1, MOVEATTRIBUTE_CONTEST_TYPE) + 18;
     }
 
-    sub_0200D948(param0->unk_110, param0->unk_114, Battle_Obj_GetNARCIndex(), Battle_Obj_TypeIndexToIconNARCMember(v0), 1, 47276 + param2);
-    sub_0200D41C(param0->unk_118[6 + param2], Battle_Obj_TypeIndexToPaletteIndex(v0) + 2);
+    sub_0200D948(param0->unk_110, param0->unk_114, BattleObj_GetNARCIndex(), BattleObj_TypeIDToNARCMember(v0), 1, 47276 + param2);
+    sub_0200D41C(param0->unk_118[6 + param2], BattleObj_TypeIDToPaletteIndex(v0) + 2);
 }
 
 static void ov91_021D2314(UnkStruct_ov91_021D0ED8 *param0)
@@ -1455,8 +1455,8 @@ static void ov91_021D24B4(UnkStruct_ov91_021D0ED8 *param0, u16 param1)
 {
     u32 v0 = MoveTable_LoadParam(param1, MOVEATTRIBUTE_CLASS);
 
-    sub_0200D948(param0->unk_110, param0->unk_114, Battle_Obj_GetMoveTypeNARCIndex(), Battle_Obj_MoveTypeIndexToIconNARCMember(v0), 1, 47275);
-    sub_0200D41C(param0->unk_118[5], Battle_Obj_MoveTypeIndexToPaletteIndex(v0) + 2);
+    sub_0200D948(param0->unk_110, param0->unk_114, BattleObj_GetMoveTypeNARCIndex(), BattleObj_MoveTypeIDToNARCMember(v0), 1, 47275);
+    sub_0200D41C(param0->unk_118[5], BattleObj_MoveTypeIDToPaletteIndex(v0) + 2);
 }
 
 static void ov91_021D2508(UnkStruct_ov91_021D0ED8 *param0, NARC *param1)

@@ -401,16 +401,16 @@ static void ov13_02224A0C(UnkStruct_ov13_022213F0 *param0, CellActorData *param1
 {
     SpriteRenderer *v0 = ov16_0223E010(param0->unk_00->unk_08);
 
-    sub_0200D948(v0, param0->unk_1FB0, Battle_Obj_GetNARCIndex(), Battle_Obj_TypeIndexToIconNARCMember(param3), 1, param2);
-    sub_0200D41C(param1, Battle_Obj_TypeIndexToPaletteIndex(param3) + 4);
+    sub_0200D948(v0, param0->unk_1FB0, BattleObj_GetNARCIndex(), BattleObj_TypeIDToNARCMember(param3), 1, param2);
+    sub_0200D41C(param1, BattleObj_TypeIDToPaletteIndex(param3) + 4);
 }
 
 static void ov13_02224A5C(UnkStruct_ov13_022213F0 *param0, CellActorData *param1, u32 param2)
 {
     SpriteRenderer *v0 = ov16_0223E010(param0->unk_00->unk_08);
 
-    sub_0200D948(v0, param0->unk_1FB0, Battle_Obj_GetMoveTypeNARCIndex(), Battle_Obj_MoveTypeIndexToIconNARCMember(param2), 1, 45077);
-    sub_0200D41C(param1, Battle_Obj_MoveTypeIndexToPaletteIndex(param2) + 4);
+    sub_0200D948(v0, param0->unk_1FB0, BattleObj_GetMoveTypeNARCIndex(), BattleObj_MoveTypeIDToNARCMember(param2), 1, 45077);
+    sub_0200D41C(param1, BattleObj_MoveTypeIDToPaletteIndex(param2) + 4);
 }
 
 static void ov13_02224AB0(u16 param0, CellActorData *param1, const int param2, const int param3)

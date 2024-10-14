@@ -2804,7 +2804,7 @@ void ov16_0226AC98(UnkStruct_ov16_02268A14 *param0, int param1, const UnkStruct_
     for (v4 = 0; v4 < 4; v4++) {
         if ((param2->unk_00[v4] != v0->unk_00.unk_00[v4]) && (param2->unk_00[v4] != 0)) {
             v5 = MoveTable_LoadParam(param2->unk_00[v4], MOVEATTRIBUTE_TYPE);
-            v1 = sub_02006F50(Battle_Obj_GetNARCIndex(), Battle_Obj_TypeIndexToIconNARCMember(v5), 1, &v2, 5);
+            v1 = sub_02006F50(BattleObj_GetNARCIndex(), BattleObj_TypeIDToNARCMember(v5), 1, &v2, 5);
             MI_CpuCopy32(v2->pRawData, v0->unk_18[v4], v3);
             Heap_FreeToHeap(v1);
         }

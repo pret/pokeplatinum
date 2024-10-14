@@ -430,8 +430,8 @@ void sub_0208F16C(PokemonSummaryApp *param0)
 
 static void sub_0208F194(PokemonSummaryApp *param0, u8 param1, u8 param2, u8 param3)
 {
-    sub_0200D948(param0->renderer, param0->gfxHandler, Battle_Obj_GetNARCIndex(), Battle_Obj_TypeIndexToIconNARCMember(param3), 1, param2);
-    sub_0200D414(param0->unk_41C[param1], Battle_Obj_TypeIndexToPaletteIndex(param3) + 3);
+    sub_0200D948(param0->renderer, param0->gfxHandler, BattleObj_GetNARCIndex(), BattleObj_TypeIDToNARCMember(param3), 1, param2);
+    sub_0200D414(param0->unk_41C[param1], BattleObj_TypeIDToPaletteIndex(param3) + 3);
 }
 
 static void sub_0208F1E4(PokemonSummaryApp *param0, u8 *param1, s16 *param2, s16 *param3)
@@ -465,8 +465,8 @@ void sub_0208F294(PokemonSummaryApp *param0, u32 param1)
 {
     u32 v0 = MoveTable_LoadParam(param1, MOVEATTRIBUTE_CLASS);
 
-    sub_0200D948(param0->renderer, param0->gfxHandler, Battle_Obj_GetMoveTypeNARCIndex(), Battle_Obj_MoveTypeIndexToIconNARCMember(v0), 1, 10);
-    sub_0200D414(param0->unk_41C[18], Battle_Obj_MoveTypeIndexToPaletteIndex(v0) + 3);
+    sub_0200D948(param0->renderer, param0->gfxHandler, BattleObj_GetMoveTypeNARCIndex(), BattleObj_MoveTypeIDToNARCMember(v0), 1, 10);
+    sub_0200D414(param0->unk_41C[18], BattleObj_MoveTypeIDToPaletteIndex(v0) + 3);
 }
 
 void sub_0208F2E8(PokemonSummaryApp *param0)
