@@ -32,6 +32,7 @@ s_to_bin_gen = generator(make_script_bin_sh,
 
 subdir('battle')
 subdir('field')
+subdir('fonts')
 subdir('items')
 subdir('pokemon')
 subdir('sound')
