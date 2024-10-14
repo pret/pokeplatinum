@@ -136,12 +136,12 @@ u32 BattleObj_GetNARCIndex(void)
     return NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ;
 }
 
-void sub_0207C948(SpriteRenderer *param0, SpriteGfxHandler *param1, NNS_G2D_VRAM_TYPE param2, int param3, u32 param4)
+void BattleObj_MakeTypeSpriteTiles(SpriteRenderer *param0, SpriteGfxHandler *param1, NNS_G2D_VRAM_TYPE param2, int param3, u32 param4)
 {
     sub_0200CBDC(param0, param1, BattleObj_GetNARCIndex(), BattleObj_TypeIDToNARCMember(param3), 1, param2, param4);
 }
 
-void sub_0207C97C(SpriteRenderer *param0, SpriteGfxHandler *param1, NNS_G2D_VRAM_TYPE param2, u32 param3)
+void BattleObj_MakeTypeSpritePalette(SpriteRenderer *param0, SpriteGfxHandler *param1, NNS_G2D_VRAM_TYPE param2, u32 param3)
 {
     sub_0200CC9C(param0, param1, BattleObj_GetNARCIndex(), BattleObj_GetPaletteNARCMember(), 0, 3, param2, param3);
 }
@@ -219,7 +219,7 @@ u32 BattleObj_GetMoveTypeNARCIndex(void)
     return NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ;
 }
 
-void sub_0207CAC4(SpriteRenderer *param0, SpriteGfxHandler *param1, NNS_G2D_VRAM_TYPE param2, int param3, u32 param4)
+void BattleObj_MakeMoveTypeSpriteTiles(SpriteRenderer *param0, SpriteGfxHandler *param1, NNS_G2D_VRAM_TYPE param2, int param3, u32 param4)
 {
     sub_0200CBDC(param0, param1, BattleObj_GetMoveTypeNARCIndex(), BattleObj_MoveTypeIDToNARCMember(param3), 1, param2, param4);
 }
