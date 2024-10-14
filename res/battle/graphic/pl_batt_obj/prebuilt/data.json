@@ -1,0 +1,442 @@
+[
+    {
+        "target": "pl_batt_obj_00000077.NCER",
+        "compressed": false
+    },
+    {
+        "target": "pl_batt_obj_00000078.NANR",
+        "compressed": false
+    },
+    {
+        "target": "pl_batt_obj_00000113.NCER",
+        "compressed": false
+    },
+    {
+        "target": "pl_batt_obj_00000114.NANR",
+        "compressed": false
+    },
+    {
+        "target": "pl_batt_obj_00000115.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000116.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000118.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000119.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000122.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000123.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000125.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000126.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000128.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000129.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000131.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000132.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000177.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000178.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000180.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000181.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000183.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000184.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000186.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000187.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000189.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000190.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000192.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000193.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000195.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000196.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000198.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000199.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000201.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000202.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000204.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000206.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000207.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000209.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000210.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000212.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000213.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000215.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000216.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000218.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000242.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000243.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000248.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000249.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000251.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000252.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000254.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000255.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000257.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000258.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000267.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000268.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000269.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000270.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000271.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000272.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000273.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000274.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000275.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000276.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000277.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000278.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000279.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000280.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000281.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000282.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000283.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000284.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000286.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000287.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000289.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000290.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000292.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000293.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000295.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000296.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000298.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000299.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000301.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000302.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000304.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000305.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000307.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000308.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000310.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000311.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000313.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000314.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000316.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000317.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000319.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000320.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000322.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000323.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000325.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000326.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000328.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000329.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000331.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000332.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000334.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000335.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000337.NANR",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000338.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000341.NCER",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000342.NANR",
+        "compressed": true
+    }
+]

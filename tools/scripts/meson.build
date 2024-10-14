@@ -10,5 +10,5 @@ make_species_tables_py = find_program('make_species_tables.py', native: true)
 make_tutorable_moves_py = find_program('make_tutorable_moves.py', native: true)
 make_pokedex_data_py = find_program('make_pokedex_data.py', native: true)
 make_pokedex_message_banks_py = find_program('make_pokedex_message_banks.py', native: true)
-make_pl_batt_obj_py = find_program('make_pl_batt_obj.py', native: true)
-make_pl_batt_obj_palettes_py = find_program('make_pl_batt_obj_palettes.py', native: true)
+
+subdir('pl_batt_obj')

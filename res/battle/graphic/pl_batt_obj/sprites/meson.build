@@ -1,9 +1,6 @@
-pl_batt_obj_sprites_raw = files(
+pl_batt_obj_sprites = files(
     'pl_batt_obj_00000076.png',
-    'pl_batt_obj_00000112.png'
-)
-
-pl_batt_obj_sprites_lz = files(
+    'pl_batt_obj_00000112.png',
     'pl_batt_obj_00000117.png',
     'pl_batt_obj_00000120.png',
     'pl_batt_obj_00000121.png',
@@ -128,12 +125,20 @@ pl_batt_obj_sprites_lz = files(
     'pl_batt_obj_00000340.png'
 )
 
-pl_batt_obj_ncgr_builder = generator(nitrogfx_exe,
-    output: '@BASENAME@.NCGR',
-    arguments: ['@INPUT@', '@OUTPUT@']
-)
+pl_batt_obj_sprite_data = files('data.json')
 
-pl_batt_obj_ncgr = pl_batt_obj_ncgr_builder.process(pl_batt_obj_sprites_raw)
-
-pl_batt_obj_lz_ncgr = pl_batt_obj_ncgr_builder.process(pl_batt_obj_sprites_lz)
-pl_batt_obj_ncgr_compressed = pl_batt_obj_lz_builder.process(pl_batt_obj_lz_ncgr)
+pl_batt_obj_ncgr = []
+foreach infile : pl_batt_obj_sprites
+    pl_batt_obj_ncgr += custom_target(
+        input: [infile, pl_batt_obj_sprite_data],
+        output: '@BASENAME0@.NCGR',
+        command: [
+            make_pl_batt_obj_sprites_py,
+            '--nitrogfx', nitrogfx_exe.full_path(),
+            '--input', '@INPUT0@',
+            '--output', '@OUTPUT@',
+            '--datafile', '@INPUT1@',
+            '--private-dir', '@PRIVATE_DIR@'
+        ]
+    )
+endforeach

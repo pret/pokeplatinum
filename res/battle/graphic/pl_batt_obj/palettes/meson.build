@@ -1,32 +1,5 @@
 pl_batt_obj_palettes = files(
     'pl_batt_obj_00000000.pal',
-    'pl_batt_obj_00000052.pal',
-    'pl_batt_obj_00000053.pal',
-    'pl_batt_obj_00000054.pal',
-    'pl_batt_obj_00000055.pal',
-    'pl_batt_obj_00000056.pal',
-    'pl_batt_obj_00000057.pal',
-    'pl_batt_obj_00000058.pal',
-    'pl_batt_obj_00000059.pal',
-    'pl_batt_obj_00000060.pal',
-    'pl_batt_obj_00000061.pal',
-    'pl_batt_obj_00000062.pal',
-    'pl_batt_obj_00000063.pal',
-    'pl_batt_obj_00000064.pal',
-    'pl_batt_obj_00000065.pal',
-    'pl_batt_obj_00000066.pal',
-    'pl_batt_obj_00000070.pal',
-    'pl_batt_obj_00000083.pal',
-    'pl_batt_obj_00000084.pal',
-    'pl_batt_obj_00000085.pal',
-    'pl_batt_obj_00000086.pal',
-    'pl_batt_obj_00000087.pal',
-    'pl_batt_obj_00000088.pal',
-    'pl_batt_obj_00000089.pal',
-    'pl_batt_obj_00000090.pal'
-)
-
-pl_batt_obj_palettes_pcmp = files(
     'pl_batt_obj_00000001.pal',
     'pl_batt_obj_00000002.pal',
     'pl_batt_obj_00000003.pal',
@@ -78,9 +51,25 @@ pl_batt_obj_palettes_pcmp = files(
     'pl_batt_obj_00000049.pal',
     'pl_batt_obj_00000050.pal',
     'pl_batt_obj_00000051.pal',
+    'pl_batt_obj_00000052.pal',
+    'pl_batt_obj_00000053.pal',
+    'pl_batt_obj_00000054.pal',
+    'pl_batt_obj_00000055.pal',
+    'pl_batt_obj_00000056.pal',
+    'pl_batt_obj_00000057.pal',
+    'pl_batt_obj_00000058.pal',
+    'pl_batt_obj_00000059.pal',
+    'pl_batt_obj_00000060.pal',
+    'pl_batt_obj_00000061.pal',
+    'pl_batt_obj_00000062.pal',
+    'pl_batt_obj_00000063.pal',
+    'pl_batt_obj_00000064.pal',
+    'pl_batt_obj_00000065.pal',
+    'pl_batt_obj_00000066.pal',
     'pl_batt_obj_00000067.pal',
     'pl_batt_obj_00000068.pal',
     'pl_batt_obj_00000069.pal',
+    'pl_batt_obj_00000070.pal',
     'pl_batt_obj_00000071.pal',
     'pl_batt_obj_00000072.pal',
     'pl_batt_obj_00000073.pal',
@@ -90,6 +79,14 @@ pl_batt_obj_palettes_pcmp = files(
     'pl_batt_obj_00000080.pal',
     'pl_batt_obj_00000081.pal',
     'pl_batt_obj_00000082.pal',
+    'pl_batt_obj_00000083.pal',
+    'pl_batt_obj_00000084.pal',
+    'pl_batt_obj_00000085.pal',
+    'pl_batt_obj_00000086.pal',
+    'pl_batt_obj_00000087.pal',
+    'pl_batt_obj_00000088.pal',
+    'pl_batt_obj_00000089.pal',
+    'pl_batt_obj_00000090.pal',
     'pl_batt_obj_00000091.pal',
     'pl_batt_obj_00000092.pal',
     'pl_batt_obj_00000093.pal',
@@ -116,11 +113,22 @@ pl_batt_obj_palettes_pcmp = files(
 # for some reason, the pcmp file 'size' field is the real size subtracted from 512
 # (e.g., actual numColors=16, size should=32, but real size is 512-32=480)
 # is this part of the standard? nitrogfx can't currently handle it.
-# take a custom build step to fix it.
-pl_batt_obj_palette_builder = generator(make_pl_batt_obj_palettes_py,
-    output: '@BASENAME@.NCLR',
-    arguments: ['--nitrogfx', nitrogfx_exe.full_path(), '--input', '@INPUT@', '--output', '@OUTPUT@', '@EXTRA_ARGS@']
-)
+# requires a Python script for a fix.
 
-pl_batt_obj_nclr = pl_batt_obj_palette_builder.process(pl_batt_obj_palettes, extra_args: ['-bitdepth', '4', '-nopad'])
-pl_batt_obj_nclr_pcmp = pl_batt_obj_palette_builder.process(pl_batt_obj_palettes_pcmp, extra_args: ['-fixsize', '-bitdepth', '4', '-nopad', '-pcmp'])
+pl_batt_obj_palette_data = files('data.json')
+
+pl_batt_obj_nclr = []
+foreach infile : pl_batt_obj_palettes
+    pl_batt_obj_nclr += custom_target(
+        input: [infile, pl_batt_obj_palette_data],
+        output: '@BASENAME0@.NCLR',
+        command: [
+            make_pl_batt_obj_palettes_py,
+            '--nitrogfx', nitrogfx_exe.full_path(),
+            '--input', '@INPUT0@',
+            '--output', '@OUTPUT@',
+            '--datafile', '@INPUT1@',
+            '--private-dir', '@PRIVATE_DIR@'
+        ]
+    )
+endforeach
