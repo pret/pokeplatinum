@@ -237,13 +237,13 @@ static void ov84_022404C0(UnkStruct_ov84_0223B5A0 *param0)
     SpriteRenderer_LoadCharResObjFromOpenNarc(param0->unk_D8, param0->unk_DC, param0->unk_D4, 36, 0, NNS_G2D_VRAM_TYPE_2DSUB, 49406);
     sub_0200CBDC(param0->unk_D8, param0->unk_DC, 62, 4, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 49408);
     sub_0200CBDC(param0->unk_D8, param0->unk_DC, 16, Item_FileID(0, 1), 0, NNS_G2D_VRAM_TYPE_2DMAIN, 49407);
-    sub_0207C948(param0->unk_D8, param0->unk_DC, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 49409);
-    sub_0207CAC4(param0->unk_D8, param0->unk_DC, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 49410);
+    BattleObj_MakeTypeSpriteTiles(param0->unk_D8, param0->unk_DC, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 49409);
+    BattleObj_MakeMoveTypeSpriteTiles(param0->unk_D8, param0->unk_DC, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 49410);
     sub_0200CD0C(param0->unk_D8, param0->unk_DC, param0->unk_D4, v1, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 49401);
     sub_0200CD0C(param0->unk_D8, param0->unk_DC, param0->unk_D4, 20, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 49402);
     sub_0200CC9C(param0->unk_D8, param0->unk_DC, 16, Item_FileID(0, 2), 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 49404);
     sub_0200CC9C(param0->unk_D8, param0->unk_DC, 62, 10, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 49405);
-    sub_0207C97C(param0->unk_D8, param0->unk_DC, NNS_G2D_VRAM_TYPE_2DMAIN, 49406);
+    BattleObj_MakeTypeSpritePalette(param0->unk_D8, param0->unk_DC, NNS_G2D_VRAM_TYPE_2DMAIN, 49406);
     sub_0200CD0C(param0->unk_D8, param0->unk_DC, param0->unk_D4, 37, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 49403);
     SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_D8, param0->unk_DC, param0->unk_D4, 1, 0, 49401);
     SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_D8, param0->unk_DC, param0->unk_D4, 24, 0, 49402);

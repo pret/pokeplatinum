@@ -1232,7 +1232,7 @@ void ov16_02268A88(UnkStruct_ov16_02268A14 *param0)
     sub_0207C9B0(BattleSystem_PaletteSys(param0->unk_00), 3, v1, v2, NNS_G2D_VRAM_TYPE_2DSUB, 20020);
 
     for (v4 = 0; v4 < 4; v4++) {
-        sub_0207C948(v1, v2, NNS_G2D_VRAM_TYPE_2DSUB, 0, 20025 + v4);
+        BattleObj_MakeTypeSpriteTiles(v1, v2, NNS_G2D_VRAM_TYPE_2DSUB, 0, 20025 + v4);
     }
 
     if (BattleSystem_BattleType(param0->unk_00) & 0x400) {

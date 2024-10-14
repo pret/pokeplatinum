@@ -296,10 +296,10 @@ static void ov13_02224720(UnkStruct_ov13_022213F0 *param0)
     sub_0207C9EC(v0, param0->unk_1FB0, 45065, 45065);
 
     for (v1 = 45070; v1 <= 45076; v1++) {
-        sub_0207C948(v0, param0->unk_1FB0, NNS_G2D_VRAM_TYPE_2DSUB, 0, v1);
+        BattleObj_MakeTypeSpriteTiles(v0, param0->unk_1FB0, NNS_G2D_VRAM_TYPE_2DSUB, 0, v1);
     }
 
-    sub_0207CAC4(v0, param0->unk_1FB0, NNS_G2D_VRAM_TYPE_2DSUB, 0, 45077);
+    BattleObj_MakeMoveTypeSpriteTiles(v0, param0->unk_1FB0, NNS_G2D_VRAM_TYPE_2DSUB, 0, 45077);
 }
 
 static void ov13_02224798(UnkStruct_ov13_022213F0 *param0)
