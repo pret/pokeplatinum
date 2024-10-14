@@ -17,6 +17,7 @@
 
 #include "cell_actor.h"
 #include "core_sys.h"
+#include "font.h"
 #include "game_options.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -30,8 +31,8 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "unk_020021B0.h"
-#include "unk_02002B7C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
@@ -46,7 +47,6 @@
 #include "unk_02017728.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
@@ -907,10 +907,10 @@ static int sub_0208694C(OverlayManager *param0, int *param1)
         sub_020871EC(v0->unk_160);
         sub_020871B0(v0, (UnkStruct_0208737C *)OverlayManager_Args(param0));
         sub_0208769C(v0, v1);
-        sub_02002BB8(2, 18);
+        Font_InitManager(FONT_SUBSCREEN, 18);
         SetMainCallback(sub_02087190, NULL);
         sub_0208737C(v0, param0);
-        sub_02002BEC(0, 18);
+        Font_UseImmediateGlyphAccess(FONT_SYSTEM, 18);
         sub_020877C4();
         sub_020877F4(v0, v1);
         sub_02087A10(v0);
@@ -987,12 +987,12 @@ static int sub_02086B64(OverlayManager *param0, int *param1)
             sub_02087544(v0, param0);
             BGL_FillWindow(&v0->unk_41C[9], 0xf0f);
             sub_0200E060(&v0->unk_41C[9], 0, (32 * 8), 10);
-            v0->unk_4BC = PrintStringSimple(&v0->unk_41C[9], 1, v0->unk_180, 0, 0, 1, NULL);
+            v0->unk_4BC = Text_AddPrinterWithParams(&v0->unk_41C[9], 1, v0->unk_180, 0, 0, 1, NULL);
             sub_0201A954(&v0->unk_41C[9]);
             v0->unk_4C0 = 6;
             break;
         case 6:
-            if (Message_Printing(v0->unk_4BC) == 0) {
+            if (Text_IsPrinterActive(v0->unk_4BC) == 0) {
                 Sound_PlayEffect(1506);
                 v0->unk_4F4[6]++;
                 v0->unk_630 = 0;
@@ -1168,11 +1168,11 @@ static int sub_02086F3C(OverlayManager *param0, int *param1)
     sub_0201E958();
     sub_0201F8B4();
     sub_0208765C(v0->unk_160, v0->unk_41C);
-    sub_02002C28(0);
+    Font_UseLazyGlyphAccess(FONT_SYSTEM);
 
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
 
-    sub_02002C60(2);
+    Font_Free(FONT_SUBSCREEN);
 
     if (v0->unk_180) {
         Strbuf_Free(v0->unk_180);
@@ -1516,9 +1516,9 @@ static void sub_0208769C(UnkStruct_02087A10 *param0, NARC *param1)
     sub_020070E8(param1, 2, v0, 1, 0, 32 * 8 * 0x20, 1, 18);
     sub_0200710C(param1, 6, v0, 1, 0, (32 * 14 * 2), 1, 18);
     sub_0200710C(param1, 7, v0, 0, 0, (32 * 14 * 2), 1, 18);
-    sub_02002E98(0, 12 * 32, 18);
+    Font_LoadScreenIndicatorsPalette(0, 12 * 32, 18);
     sub_0200DD0C(param0->unk_160, 4, (32 * 8), 10, Options_Frame(param0->unk_18), 18);
-    sub_02002E98(4, 12 * 32, 18);
+    Font_LoadScreenIndicatorsPalette(4, 12 * 32, 18);
 
     param0->unk_510 = sub_020071B4(param1, 16, 1, &param0->unk_514, 18);
 }
@@ -1810,21 +1810,21 @@ static void sub_02087D64(BGL *param0, Window *param1, int *param2, int param3, i
 static void sub_02087F48(Window *param0, int param1, Strbuf *param2)
 {
     sub_0200E060(param0, 0, (32 * 8), 10);
-    PrintStringSimple(param0, 1, param2, 0, 0, 0, NULL);
+    Text_AddPrinterWithParams(param0, 1, param2, 0, 0, 0, NULL);
     sub_0201A954(param0);
 }
 
 static void sub_02087F78(Window *param0, int param1, Strbuf *param2)
 {
     int v0 = 16;
-    int v1 = sub_02002D7C(0, param2, 0);
+    int v1 = Font_CalcStrbufWidth(FONT_SYSTEM, param2, 0);
 
     if (v1 > 130) {
         v0 = 0;
     }
 
     BGL_FillWindow(param0, 0x101);
-    sub_0201D78C(param0, 0, param2, v0, 0, 0, (u32)(((0xe & 0xff) << 16) | ((0xf & 0xff) << 8) | ((1 & 0xff) << 0)), NULL);
+    Text_AddPrinterWithParamsAndColor(param0, 0, param2, v0, 0, 0, (u32)(((0xe & 0xff) << 16) | ((0xf & 0xff) << 8) | ((1 & 0xff) << 0)), NULL);
     sub_0201A954(param0);
 }
 
@@ -2089,11 +2089,11 @@ static void sub_02088554(Window *param0, const u16 *param1, int param2, int para
             v3[0] = param1[v0];
             v3[1] = 0xffff;
 
-            v1 = sub_02002D48(0, v3, 0);
+            v1 = Font_CalcStringWidth(FONT_SYSTEM, v3, 0);
             v2 = param2 + v0 * param4 + ((param4 - v1) / 2);
 
             Strbuf_CopyChars(v4, v3);
-            sub_0201D78C(param0, 0, v4, v2, param3, param5, param6, NULL);
+            Text_AddPrinterWithParamsAndColor(param0, 0, v4, v2, param3, param5, param6, NULL);
         }
 
         v0++;
@@ -2111,7 +2111,7 @@ static const u8 Unk_020F24D8[] = {
 
 static void *sub_02088654(Window *param0, Strbuf *param1, u8 param2, const u32 param3)
 {
-    sub_0201D78C(param0, param2, param1, 0, 0, 0xff, param3, NULL);
+    Text_AddPrinterWithParamsAndColor(param0, param2, param1, 0, 0, 0xff, param3, NULL);
     return param0->unk_0C;
 }
 

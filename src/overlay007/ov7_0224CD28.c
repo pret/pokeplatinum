@@ -23,6 +23,7 @@
 #include "camera.h"
 #include "cell_actor.h"
 #include "core_sys.h"
+#include "font.h"
 #include "game_options.h"
 #include "game_records.h"
 #include "gx_layers.h"
@@ -37,10 +38,10 @@
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "trainer_info.h"
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
-#include "unk_02002B7C.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
 #include "unk_0200A328.h"
@@ -50,7 +51,6 @@
 #include "unk_0200F174.h"
 #include "unk_02013A04.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0202854C.h"
 #include "unk_0202C9F4.h"
 #include "unk_0202D05C.h"
@@ -688,7 +688,7 @@ static void ov7_0224D85C(BmpList *param0, u32 param1, u8 param2)
             MessageLoader_Free(v3);
         }
 
-        sub_0201D78C(&v0->unk_08[1], 0, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&v0->unk_08[1], 0, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         Strbuf_Free(v1);
 
         ov7_0224EB7C(v0, (u16)param1);
@@ -748,9 +748,9 @@ static void ov7_0224D9B8(BmpList *param0, u32 param1, u8 param2)
         StringTemplate_SetNumber(v0->unk_8C, 0, v3, 4, 1, 1);
         StringTemplate_Format(v0->unk_8C, v1, v2);
 
-        v4 = sub_02002D7C(0, v1, 0);
+        v4 = Font_CalcStrbufWidth(FONT_SYSTEM, v1, 0);
 
-        sub_0201D78C(&v0->unk_08[0], 0, v1, (19 * 8) - v4, param2, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&v0->unk_08[0], 0, v1, (19 * 8) - v4, param2, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         Strbuf_Free(v2);
         Strbuf_Free(v1);
     }
@@ -759,7 +759,7 @@ static void ov7_0224D9B8(BmpList *param0, u32 param1, u8 param2)
         Strbuf *v6 = MessageLoader_GetNewStrbuf(v0->unk_88, 8);
 
         BGL_WindowColor(&v0->unk_08[0], 15, 0, param2, 19 * 8, 16);
-        sub_0201D78C(&v0->unk_08[0], 0, v6, 0, param2, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&v0->unk_08[0], 0, v6, 0, param2, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         Strbuf_Free(v6);
     }
 }
@@ -787,9 +787,9 @@ static void ov7_0224DAF8(UnkStruct_ov7_0224D008 *param0, u8 param1)
         StringTemplate_SetNumber(param0->unk_8C, 0, v2, 6, 1, 1);
         StringTemplate_Format(param0->unk_8C, v0, v1);
 
-        v3 = sub_02002D7C(0, v0, 0);
+        v3 = Font_CalcStrbufWidth(FONT_SYSTEM, v0, 0);
 
-        PrintStringSimple(&param0->unk_08[2], 0, v0, (9 * 8) - v3 - 8, 0, 0xff, NULL);
+        Text_AddPrinterWithParams(&param0->unk_08[2], 0, v0, (9 * 8) - v3 - 8, 0, 0xff, NULL);
     } else {
         if (param1 == 0) {
             BGL_FillWindow(&param0->unk_08[2], 15);
@@ -797,7 +797,7 @@ static void ov7_0224DAF8(UnkStruct_ov7_0224D008 *param0, u8 param1)
 
             v1 = MessageLoader_GetNewStrbuf(param0->unk_88, 18);
 
-            PrintStringSimple(&param0->unk_08[2], 0, v1, 0, 0, 0xff, NULL);
+            Text_AddPrinterWithParams(&param0->unk_08[2], 0, v1, 0, 0, 0xff, NULL);
             Strbuf_Free(v1);
         } else {
             BGL_WindowColor(&param0->unk_08[2], 15, 0, 16, (9 * 8), 16);
@@ -810,9 +810,9 @@ static void ov7_0224DAF8(UnkStruct_ov7_0224D008 *param0, u8 param1)
         StringTemplate_SetNumber(param0->unk_8C, 0, v2, 6, 1, 1);
         StringTemplate_Format(param0->unk_8C, v0, v1);
 
-        v3 = sub_02002D7C(0, v0, 0);
+        v3 = Font_CalcStrbufWidth(FONT_SYSTEM, v0, 0);
 
-        PrintStringSimple(&param0->unk_08[2], 0, v0, (9 * 8) - v3, 16, 0xff, NULL);
+        Text_AddPrinterWithParams(&param0->unk_08[2], 0, v0, (9 * 8) - v3, 16, 0xff, NULL);
     }
 
     Strbuf_Free(v1);
@@ -955,7 +955,7 @@ static void ov7_0224DED4(UnkStruct_ov7_0224D008 *param0)
 
     StringTemplate_SetNumber(param0->unk_8C, 0, v2, 3, 1, 1);
     StringTemplate_Format(param0->unk_8C, v0, v1);
-    PrintStringSimple(&param0->unk_08[4], 0, v0, 0, 0, 0xff, NULL);
+    Text_AddPrinterWithParams(&param0->unk_08[4], 0, v0, 0, 0, 0xff, NULL);
     Strbuf_Free(v1);
     Strbuf_Free(v0);
     sub_0201A9A4(&param0->unk_08[4]);
@@ -1087,7 +1087,7 @@ static void ov7_0224E28C(UnkStruct_ov7_0224D008 *param0, u8 param1)
 
     StringTemplate_SetNumber(param0->unk_8C, 0, param0->unk_2AC, 2, 2, 1);
     StringTemplate_Format(param0->unk_8C, v0, v1);
-    PrintStringSimple(&param0->unk_08[3], 0, v0, 0, 8, 0xff, NULL);
+    Text_AddPrinterWithParams(&param0->unk_08[3], 0, v0, 0, 8, 0xff, NULL);
     Strbuf_Free(v1);
 
     if (param0->unk_2A9 == 3) {
@@ -1099,9 +1099,9 @@ static void ov7_0224E28C(UnkStruct_ov7_0224D008 *param0, u8 param1)
     StringTemplate_SetNumber(param0->unk_8C, 0, param0->unk_2B0 * param0->unk_2AC, 6, 1, 1);
     StringTemplate_Format(param0->unk_8C, v0, v1);
 
-    v2 = sub_02002D7C(0, v0, 0);
+    v2 = Font_CalcStrbufWidth(FONT_SYSTEM, v0, 0);
 
-    PrintStringSimple(&param0->unk_08[3], 0, v0, (12 * 8) - v2, 8, 0xff, NULL);
+    Text_AddPrinterWithParams(&param0->unk_08[3], 0, v0, (12 * 8) - v2, 8, 0xff, NULL);
     Strbuf_Free(v1);
     Strbuf_Free(v0);
     sub_0201A9A4(&param0->unk_08[3]);

@@ -1,84 +1,80 @@
+#include "overlay107/ov107_02241AE0.h"
+
 #include <nitro.h>
 #include <string.h>
-
-#include "core_sys.h"
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "message.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "strbuf.h"
-#include "trainer_info.h"
 #include "struct_decls/struct_020302DC_decl.h"
 #include "struct_decls/struct_0203041C_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
-#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
-#include "savedata.h"
-#include "overlay107/struct_ov107_02241D6C_decl.h"
-#include "overlay107/struct_ov107_02249B8C_decl.h"
-
 #include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02081CF4.h"
 #include "struct_defs/struct_02099F80.h"
+
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay084/struct_ov84_02240FA8.h"
 #include "overlay097/struct_ov97_0222DB78.h"
+#include "overlay104/ov104_0222DCE0.h"
+#include "overlay104/ov104_0223B6F4.h"
 #include "overlay104/struct_ov104_0223597C.h"
+#include "overlay107/ov107_02249604.h"
+#include "overlay107/ov107_02249B1C.h"
+#include "overlay107/ov107_02249C98.h"
+#include "overlay107/ov107_02249D14.h"
+#include "overlay107/struct_ov107_02241D6C_decl.h"
 #include "overlay107/struct_ov107_02249954.h"
+#include "overlay107/struct_ov107_02249B8C_decl.h"
 
+#include "cell_actor.h"
+#include "communication_information.h"
+#include "communication_system.h"
+#include "core_sys.h"
+#include "font.h"
+#include "game_options.h"
+#include "game_overlay.h"
+#include "gx_layers.h"
+#include "heap.h"
+#include "message.h"
+#include "narc.h"
+#include "overlay_manager.h"
+#include "party.h"
+#include "pokemon.h"
+#include "save_player.h"
+#include "savedata.h"
+#include "strbuf.h"
+#include "string_template.h"
+#include "text.h"
+#include "trainer_info.h"
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
-#include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
-#include "game_overlay.h"
-#include "overlay_manager.h"
-#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A784.h"
-#include "message.h"
-#include "string_template.h"
 #include "unk_0200C440.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02013A04.h"
 #include "unk_02017728.h"
-#include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
-#include "gx_layers.h"
-#include "cell_actor.h"
-#include "strbuf.h"
-#include "save_player.h"
-#include "trainer_info.h"
-#include "game_options.h"
 #include "unk_020302D0.h"
 #include "unk_0203061C.h"
-#include "communication_information.h"
-#include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_020393C8.h"
 #include "unk_0205DFC4.h"
-#include "pokemon.h"
-#include "party.h"
 #include "unk_0208C098.h"
 #include "unk_02096420.h"
 #include "unk_0209BA80.h"
-#include "overlay104/ov104_0222DCE0.h"
-#include "overlay104/ov104_0223B6F4.h"
-#include "overlay107/ov107_02241AE0.h"
-#include "overlay107/ov107_02249604.h"
-#include "overlay107/ov107_02249B1C.h"
-#include "overlay107/ov107_02249C98.h"
-#include "overlay107/ov107_02249D14.h"
 
 FS_EXTERN_OVERLAY(overlay104);
 
@@ -1466,8 +1462,8 @@ static void ov107_02242F5C (UnkStruct_ov107_02241D6C * param0)
         param0->unk_30[v15] = Strbuf_Init(32, 100);
     }
 
-    sub_02002E7C(0, 13 * 32, 100);
-    sub_02002E98(0, 12 * 32, 100);
+    Font_LoadTextPalette(0, 13 * 32, 100);
+    Font_LoadScreenIndicatorsPalette(0, 12 * 32, 100);
 
     param0->unk_1C4 = sub_0200C440(1, 2, 0, 100);
 
@@ -1832,14 +1828,14 @@ static u8 ov107_022437CC (UnkStruct_ov107_02241D6C * param0, Window * param1, in
     
     switch (param10) {
     case 1:
-        param3 -= (sub_02002D7C(0, param0->unk_28, 0) + 1) / 2;
+        param3 -= (Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_28, 0) + 1) / 2;
         break;
     case 2:
-        param3 -= sub_02002D7C(0, param0->unk_28, 0);
+        param3 -= Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_28, 0);
         break;
     }
-    
-    v0 = sub_0201D78C(param1, param9, param0->unk_28, param3, param4, param5, (u32)((((param6) & 0xFF) << 16) | (((param7) & 0xFF) << 8) | ((param8) & 0xFF)), NULL);
+
+    v0 = Text_AddPrinterWithParamsAndColor(param1, param9, param0->unk_28, param3, param4, param5, (u32)((((param6) & 0xFF) << 16) | (((param7) & 0xFF) << 8) | ((param8) & 0xFF)), NULL);
     sub_0201A9A4(param1);
     
     return v0;
@@ -1858,14 +1854,14 @@ static u8 ov107_02243890 (UnkStruct_ov107_02241D6C * param0, Window * param1, in
     
     switch (param10) {
     case 1:
-        param3 -= (sub_02002D7C(0, param0->unk_28, 0) + 1) / 2;
+        param3 -= (Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_28, 0) + 1) / 2;
         break;
     case 2:
-        param3 -= sub_02002D7C(0, param0->unk_28, 0);
+        param3 -= Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_28, 0);
         break;
     }
-    
-    v0 = sub_0201D78C(param1, param9, param0->unk_28, param3, param4, param5, (u32)((((param6) & 0xFF) << 16) | (((param7) & 0xFF) << 8) | ((param8) & 0xFF)), NULL);
+
+    v0 = Text_AddPrinterWithParamsAndColor(param1, param9, param0->unk_28, param3, param4, param5, (u32)((((param6) & 0xFF) << 16) | (((param7) & 0xFF) << 8) | ((param8) & 0xFF)), NULL);
     sub_0201A9A4(param1);
     
     return v0;
@@ -2278,7 +2274,7 @@ static u8 ov107_02243EF8 (UnkStruct_ov107_02241D6C * param0, Window * param1, u1
     MessageLoader_GetStrbuf(param0->unk_1C, param2, param0->unk_2C);
     StringTemplate_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
 
-    v0 = sub_0201D78C(param1, 0, param0->unk_28, 0, 6, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0))), NULL);
+    v0 = Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_28, 0, 6, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
 
     sub_0201A9A4(param1);
     return v0;
@@ -2878,7 +2874,7 @@ static void ov107_02244AB4 (UnkStruct_ov107_02241D6C * param0, Window * param1, 
         v0 = ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | (((0 & 0xff) << 0))));
     }
 
-    sub_0201D78C(param1, param4, v2, param2, param3, 0xff, v0, NULL);
+    Text_AddPrinterWithParamsAndColor(param1, param4, v2, param2, param3, 0xff, v0, NULL);
     sub_0201A9A4(param1);
     Strbuf_Free(v2);
 

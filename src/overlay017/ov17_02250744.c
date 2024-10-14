@@ -27,6 +27,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
@@ -35,7 +36,6 @@
 #include "unk_0200DA60.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "unk_0201D670.h"
 #include "unk_020933F8.h"
 #include "unk_02094EDC.h"
 
@@ -254,7 +254,7 @@ static void ov17_022508E4(UnkStruct_ov17_0224FCA0 *param0, MessageLoader *param1
     StringTemplate_Format(param0->unk_10.unk_B8, param0->unk_10.unk_BC, v0);
     BGL_FillWindow(&param0->unk_10.unk_24[0], 0xff);
 
-    param0->unk_10.unk_388 = PrintStringSimple(&param0->unk_10.unk_24[0], 1, param0->unk_10.unk_BC, 0, 0, v1, NULL);
+    param0->unk_10.unk_388 = Text_AddPrinterWithParams(&param0->unk_10.unk_24[0], 1, param0->unk_10.unk_BC, 0, 0, v1, NULL);
 
     Strbuf_Free(v0);
 }
@@ -273,7 +273,7 @@ void ov17_02250968(UnkStruct_ov17_0224FCA0 *param0, u32 param1, const UnkStruct_
 
 int ov17_0225099C(UnkStruct_ov17_0224FCA0 *param0)
 {
-    return Message_Printing(param0->unk_10.unk_388);
+    return Text_IsPrinterActive(param0->unk_10.unk_388);
 }
 
 void ov17_022509AC(UnkStruct_ov17_0224FCA0 *param0)
@@ -344,8 +344,8 @@ void ov17_02250B00(UnkStruct_ov17_0224FCA0 *param0)
             Pokemon_GetValue(param0->unk_10.unk_00->unk_00[v4], MON_DATA_NICKNAME_STRBUF, v2);
             BGL_FillWindow(&param0->unk_10.unk_24[1 + v3], 0x0);
             BGL_FillWindow(&param0->unk_10.unk_24[5 + v3], 0x0);
-            sub_0201D78C(&param0->unk_10.unk_24[1 + v3], 0, v2, 0, 3, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-            sub_0201D78C(&param0->unk_10.unk_24[5 + v3], 0, param0->unk_00->unk_00.unk_D8[v4], 0, 3, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+            Text_AddPrinterWithParamsAndColor(&param0->unk_10.unk_24[1 + v3], 0, v2, 0, 3, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+            Text_AddPrinterWithParamsAndColor(&param0->unk_10.unk_24[5 + v3], 0, param0->unk_00->unk_00.unk_D8[v4], 0, 3, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         }
 
         Strbuf_Free(v2);

@@ -182,7 +182,7 @@ int ov95_02246C20(OverlayManager *param0, int *param1)
             GX_SetVisiblePlane(0);
             GXS_SetVisiblePlane(0);
 
-            v0->unk_1A8 = sub_0200DA20(ov95_02246F0C, v0, 1);
+            v0->unk_1A8 = SysTask_CreateOnPrintQueue(ov95_02246F0C, v0, 1);
             v0->unk_1B8 = NULL;
         }
 

@@ -81,6 +81,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "trainer_info.h"
 #include "unk_02001AF4.h"
 #include "unk_02002F38.h"
@@ -93,7 +94,6 @@
 #include "unk_02017728.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "unk_0201D670.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202D05C.h"
 #include "unk_0202F1D4.h"
@@ -825,7 +825,7 @@ static BOOL ov104_0222FF3C(UnkStruct_ov104_0222E930 *param0)
 
 static BOOL ov104_0222FF6C(UnkStruct_ov104_0222E930 *param0)
 {
-    if (Message_Printing(param0->unk_00->unk_50) == 0) {
+    if (Text_IsPrinterActive(param0->unk_00->unk_50) == 0) {
         return 1;
     }
 

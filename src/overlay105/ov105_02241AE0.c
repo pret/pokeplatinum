@@ -39,6 +39,7 @@
 #include "communication_information.h"
 #include "communication_system.h"
 #include "core_sys.h"
+#include "font.h"
 #include "game_options.h"
 #include "game_overlay.h"
 #include "gx_layers.h"
@@ -53,9 +54,9 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "trainer_info.h"
 #include "unk_02001AF4.h"
-#include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
@@ -66,7 +67,6 @@
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_02024220.h"
 #include "unk_020363E8.h"
@@ -2117,7 +2117,7 @@ static BOOL ov105_02244424(UnkStruct_ov105_02241FF4 *param0)
 
         break;
     case 1:
-        if (Message_Printing(param0->unk_10) == 0) {
+        if (Text_IsPrinterActive(param0->unk_10) == 0) {
             param0->unk_19 = 0;
             return 1;
         }
@@ -2544,7 +2544,7 @@ static u8 ov105_02244C60(UnkStruct_ov105_02241FF4 *param0, Window *param1, int p
     MessageLoader_GetStrbuf(param0->unk_1C, param2, param0->unk_28);
     StringTemplate_Format(param0->unk_20, param0->unk_24, param0->unk_28);
 
-    return sub_0201D78C(param1, param9, param0->unk_24, param3, param4, param5, (u32)((((param6) & 0xff) << 16) | (((param7) & 0xff) << 8) | (((param8) & 0xff) << 0)), NULL);
+    return Text_AddPrinterWithParamsAndColor(param1, param9, param0->unk_24, param3, param4, param5, (u32)((((param6) & 0xff) << 16) | (((param7) & 0xff) << 8) | (((param8) & 0xff) << 0)), NULL);
 }
 
 static u8 ov105_02244CC0(UnkStruct_ov105_02241FF4 *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9)
@@ -2552,7 +2552,7 @@ static u8 ov105_02244CC0(UnkStruct_ov105_02241FF4 *param0, Window *param1, int p
     MessageLoader_GetStrbuf(param0->unk_1C, param2, param0->unk_28);
     StringTemplate_Format(param0->unk_20, param0->unk_24, param0->unk_28);
 
-    return sub_0201D78C(param1, param9, param0->unk_24, param3, param4, param5, (u32)((((param6) & 0xff) << 16) | (((param7) & 0xff) << 8) | (((param8) & 0xff) << 0)), NULL);
+    return Text_AddPrinterWithParamsAndColor(param1, param9, param0->unk_24, param3, param4, param5, (u32)((((param6) & 0xff) << 16) | (((param7) & 0xff) << 8) | (((param8) & 0xff) << 0)), NULL);
 }
 
 static u8 ov105_02244D14(UnkStruct_ov105_02241FF4 *param0, int param1)
@@ -2662,7 +2662,7 @@ static void ov105_02244F0C(UnkStruct_ov105_02241FF4 *param0, Window *param1, u32
         v0 = ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((0 & 0xff) << 0)));
     }
 
-    sub_0201D78C(param1, param4, v2, param2, param3, 0xff, v0, NULL);
+    Text_AddPrinterWithParamsAndColor(param1, param4, v2, param2, param3, 0xff, v0, NULL);
     Strbuf_Free(v2);
     sub_0201A9A4(param1);
 
@@ -2687,7 +2687,7 @@ static void ov105_02244F84(UnkStruct_ov105_02241FF4 *param0, Window *param1, u32
         v0 = ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((0 & 0xff) << 0)));
     }
 
-    sub_0201D78C(param1, param4, v1, param2, param3, 0xff, v0, NULL);
+    Text_AddPrinterWithParamsAndColor(param1, param4, v1, param2, param3, 0xff, v0, NULL);
     Strbuf_Free(v1);
     sub_0201A9A4(param1);
 
@@ -2708,7 +2708,7 @@ static void ov105_02244FF8(UnkStruct_ov105_02241FF4 *param0, Window *param1, u8 
 
     v4 = Strbuf_Init((10 + 1), 93);
     Strbuf_CopyChars(v4, v6);
-    sub_0201D78C(param1, param8, v4, param3, param4, 0xff, (u32)((((param5) & 0xff) << 16) | (((param6) & 0xff) << 8) | (((param7) & 0xff) << 0)), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, param8, v4, param3, param4, 0xff, (u32)((((param5) & 0xff) << 16) | (((param6) & 0xff) << 8) | (((param7) & 0xff) << 0)), NULL);
 
     v0 = sub_0201C294(param1) - 1;
     v1 = Pokemon_GetValue(v5, MON_DATA_GENDER, NULL);
@@ -2719,7 +2719,7 @@ static void ov105_02244FF8(UnkStruct_ov105_02241FF4 *param0, Window *param1, u8 
 
     if (v1 != 2) {
         MessageLoader_GetStrbuf(param0->unk_1C, v2, v4);
-        sub_0201D78C(param1, param8, v4, v0 * 8, param4, 0xff, v3, NULL);
+        Text_AddPrinterWithParamsAndColor(param1, param8, v4, v0 * 8, param4, 0xff, v3, NULL);
     }
 
     Strbuf_Free(v4);
@@ -2743,7 +2743,7 @@ static void ov105_022450DC(UnkStruct_ov105_02241FF4 *param0, Window *param1, u32
     v4 = MessageLoader_GetNewStrbuf(v3, param8);
 
     MessageLoader_Free(v3);
-    sub_0201D78C(param1, param7, v4, param2, param3, 0xff, (u32)((((param4) & 0xff) << 16) | (((param5) & 0xff) << 8) | (((param6) & 0xff) << 0)), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, param7, v4, param2, param3, 0xff, (u32)((((param4) & 0xff) << 16) | (((param5) & 0xff) << 8) | (((param6) & 0xff) << 0)), NULL);
 
     v0 = sub_0201C294(param1) - 1;
     v1 = (param9 == 0) ? 25 : 26;
@@ -2753,7 +2753,7 @@ static void ov105_022450DC(UnkStruct_ov105_02241FF4 *param0, Window *param1, u32
 
     if (param9 != 2) {
         MessageLoader_GetStrbuf(param0->unk_1C, v1, v4);
-        sub_0201D78C(param1, param7, v4, v0 * 8, param3, 0xff, v2, NULL);
+        Text_AddPrinterWithParamsAndColor(param1, param7, v4, v0 * 8, param3, 0xff, v2, NULL);
     }
 
     Strbuf_Free(v4);
@@ -2858,8 +2858,8 @@ static void ov105_0224531C(UnkStruct_ov105_02241FF4 *param0)
         param0->unk_2C[v0] = Strbuf_Init(64, 93);
     }
 
-    sub_02002E7C(0, 13 * 32, 93);
-    sub_02002E98(0, 12 * 32, 93);
+    Font_LoadTextPalette(0, 13 * 32, 93);
+    Font_LoadScreenIndicatorsPalette(0, 12 * 32, 93);
 
     param0->unk_128 = sub_0200762C(93);
 

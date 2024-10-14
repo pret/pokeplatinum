@@ -15,13 +15,13 @@
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 
+#include "font.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
 #include "strbuf.h"
-#include "unk_02002B7C.h"
 #include "unk_020041CC.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
@@ -462,8 +462,8 @@ static void ov80_021D1158(UnkStruct_ov80_021D2A08 *param0)
     param0->unk_B4 = sub_0208C2F4(v3, v2, 29, &param0->unk_D4, param0->unk_04);
 
     NARC_dtor(v3);
-    sub_02002E7C(0, 15 * 32, param0->unk_04);
-    sub_02002E7C(4, 15 * 32, param0->unk_04);
+    Font_LoadTextPalette(0, 15 * 32, param0->unk_04);
+    Font_LoadTextPalette(4, 15 * 32, param0->unk_04);
 }
 
 static void ov80_021D12D8(UnkStruct_ov80_021D2A08 *param0)

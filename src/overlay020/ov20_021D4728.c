@@ -1,28 +1,28 @@
+#include "overlay020/ov20_021D4728.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "sys_task_manager.h"
-#include "strbuf.h"
 #include "struct_decls/struct_020998EC_decl.h"
+#include "struct_defs/struct_0205AA50.h"
+
+#include "overlay020/ov20_021D0D80.h"
+#include "overlay020/ov20_021D2098.h"
 #include "overlay020/struct_ov20_021D16E8_decl.h"
 #include "overlay020/struct_ov20_021D2128_decl.h"
 
-#include "struct_defs/struct_0205AA50.h"
-
-#include "unk_02002B7C.h"
-#include "unk_02006E3C.h"
-#include "message.h"
-#include "sys_task.h"
-#include "heap.h"
-#include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "cell_actor.h"
+#include "font.h"
+#include "heap.h"
+#include "message.h"
 #include "strbuf.h"
-#include "overlay020/ov20_021D0D80.h"
-#include "overlay020/ov20_021D2098.h"
-#include "overlay020/ov20_021D4728.h"
+#include "sys_task.h"
+#include "sys_task_manager.h"
+#include "text.h"
+#include "unk_02006E3C.h"
+#include "unk_02018340.h"
 
 typedef struct {
     void * unk_00;
@@ -129,6 +129,7 @@ static void ov20_021D4874 (UnkStruct_ov20_021D4AD4 * param0, NARC * param1)
     }
 }
 
+// clang-format off
 asm static void ov20_021D48C4 (UnkStruct_ov20_021D4AD4 * param0, NARC * param1)
 {
     push {r3, r4, r5, r6, r7, lr}
@@ -137,7 +138,7 @@ asm static void ov20_021D48C4 (UnkStruct_ov20_021D4AD4 * param0, NARC * param1)
     add r7, r1, #0
     mov r0, #2
     mov r1, #0
-    bl sub_02002BB8
+    bl Font_InitManager
     ldr r1, = 0x1B5
     mov r0, #0x1a
     mov r2, #0xb
@@ -211,16 +212,18 @@ asm static void ov20_021D48C4 (UnkStruct_ov20_021D4AD4 * param0, NARC * param1)
     add r0, r6, #0
     bl Strbuf_Free
     mov r0, #2
-    bl sub_02002C60
+    bl Font_Free
     add sp, #0x18
     pop {r3, r4, r5, r6, r7, pc}
     nop
 }
+// clang-format on
 
 static const s16 Unk_ov20_021D52EC[] = {
     22, (22 + 56 * 1) - 1, (22 + 56 * 2) - 2, (22 + 56 * 3) - 1,
 };
 
+// clang-format off
 asm static void ov20_021D498C (Window * param0, BGL * param1, const Strbuf *param2, int param3)
 {
     push {r4, r5, r6, r7, lr}
@@ -255,7 +258,7 @@ asm static void ov20_021D498C (Window * param0, BGL * param1, const Strbuf *para
     add r1, r6, #0
     mov r2, #0
     mov r3, #0x58
-    bl sub_02002EEC
+    bl Font_CalcCenterAlignment
     ldr r5, = Unk_ov20_021D52EC
     str r0, [sp, #0x18]
     mov r4, #0
@@ -274,7 +277,7 @@ asm static void ov20_021D498C (Window * param0, BGL * param1, const Strbuf *para
     mov r0, #0
     str r0, [sp, #0xc]
     ldr r0, [sp, #0x10]
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
     add r4, r4, #1
     add r5, r5, #2
     cmp r4, #4
@@ -293,6 +296,7 @@ asm static void ov20_021D498C (Window * param0, BGL * param1, const Strbuf *para
     pop {r4, r5, r6, r7, pc}
     nop
 }
+// clang-format on
 
 static void ov20_021D4A24 (UnkStruct_ov20_021D4AD4 * param0, NARC * param1)
 {

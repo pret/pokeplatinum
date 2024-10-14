@@ -50,6 +50,7 @@
 #include "cell_actor.h"
 #include "enums.h"
 #include "flags.h"
+#include "font.h"
 #include "game_options.h"
 #include "game_records.h"
 #include "heap.h"
@@ -61,16 +62,15 @@
 #include "render_text.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
-#include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02014A84.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0202631C.h"
 #include "unk_0202F1D4.h"
 #include "unk_0206CCB0.h"
@@ -1749,7 +1749,7 @@ u8 ov16_0223F9FC(BattleSystem *param0, int param1, int param2, int param3, int p
                 }
 
                 BGL_FillWindow(v0, 0xff);
-                v1 = PrintStringSimple(v0, 1, v2, 0, 0, param4, BattleMessage_Callback);
+                v1 = Text_AddPrinterWithParams(v0, 1, v2, 0, 0, param4, BattleMessage_Callback);
                 Strbuf_Free(v2);
             }
         } else {
@@ -1783,7 +1783,7 @@ u8 ov16_0223F9FC(BattleSystem *param0, int param1, int param2, int param3, int p
 
                 BGL_FillWindow(v0, 0xff);
 
-                v1 = PrintStringSimple(v0, 1, v4, 0, 0, param4, BattleMessage_Callback);
+                v1 = Text_AddPrinterWithParams(v0, 1, v4, 0, 0, param4, BattleMessage_Callback);
                 Strbuf_Free(v4);
                 MessageLoader_Free(v3);
             }
@@ -1791,7 +1791,7 @@ u8 ov16_0223F9FC(BattleSystem *param0, int param1, int param2, int param3, int p
     } else {
         TrainerData_LoadMessage(param1, param3, param0->msgBuffer, 5);
         BGL_FillWindow(v0, 0xff);
-        v1 = PrintStringSimple(v0, 1, param0->msgBuffer, 0, 0, param4, BattleMessage_Callback);
+        v1 = Text_AddPrinterWithParams(v0, 1, param0->msgBuffer, 0, 0, param4, BattleMessage_Callback);
     }
 
     return v1;
@@ -1807,7 +1807,7 @@ u8 BattleMessage_Print(BattleSystem *battleSys, MessageLoader *msgLoader, Battle
 
     BGL_FillWindow(textWindow, 0xFF);
 
-    return PrintStringSimple(textWindow, 1, battleSys->msgBuffer, 0, 0, renderDelay, BattleMessage_Callback);
+    return Text_AddPrinterWithParams(textWindow, 1, battleSys->msgBuffer, 0, 0, renderDelay, BattleMessage_Callback);
 }
 
 u8 BattleMessage_PrintToWindow(BattleSystem *param0, Window *param1, MessageLoader *param2, BattleMessage *param3, int param4, int param5, int param6, int param7, int param8)
@@ -1823,12 +1823,12 @@ u8 BattleMessage_PrintToWindow(BattleSystem *param0, Window *param1, MessageLoad
     }
 
     if (param6 & 0x2) {
-        v0 = param7 - sub_02002D7C(0, param0->msgBuffer, 0);
+        v0 = param7 - Font_CalcStrbufWidth(FONT_SYSTEM, param0->msgBuffer, 0);
     } else {
         v0 = 0;
     }
 
-    return PrintStringSimple(param1, 0, param0->msgBuffer, param4 + v0, param5, param8, BattleMessage_Callback);
+    return Text_AddPrinterWithParams(param1, 0, param0->msgBuffer, param4 + v0, param5, param8, BattleMessage_Callback);
 }
 
 /**

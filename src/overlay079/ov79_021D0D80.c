@@ -16,6 +16,7 @@
 
 #include "cell_actor.h"
 #include "core_sys.h"
+#include "font.h"
 #include "game_options.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -24,10 +25,10 @@
 #include "overlay_manager.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "touch_screen.h"
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
-#include "unk_02002B7C.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
@@ -35,7 +36,6 @@
 #include "unk_020158A8.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_0208C098.h"
@@ -347,7 +347,7 @@ static int ov79_021D10B8(UnkStruct_ov79_021D0E1C *param0)
 
 static int ov79_021D114C(UnkStruct_ov79_021D0E1C *param0)
 {
-    if (Message_Printing(param0->unk_1F)) {
+    if (Text_IsPrinterActive(param0->unk_1F)) {
         return 0;
     }
 
@@ -376,7 +376,7 @@ static int ov79_021D116C(UnkStruct_ov79_021D0E1C *param0)
 
 static int ov79_021D11C0(UnkStruct_ov79_021D0E1C *param0)
 {
-    if (Message_Printing(param0->unk_1F)) {
+    if (Text_IsPrinterActive(param0->unk_1F)) {
         return 0;
     }
 
@@ -660,9 +660,9 @@ static void ov79_021D14A4(UnkStruct_ov79_021D0E1C *param0)
 
     sub_0200DAA4(param0->unk_24, 1, 1 + 18 + 12, 15, 0, param0->unk_00);
     sub_0200DD0C(param0->unk_24, 1, 1, 14, Options_Frame(param0->unk_20->unk_18), param0->unk_00);
-    sub_02002E7C(0, 13 * 32, param0->unk_00);
-    sub_02002E98(0, 12 * 32, param0->unk_00);
-    sub_02002E7C(4, 13 * 32, param0->unk_00);
+    Font_LoadTextPalette(0, 13 * 32, param0->unk_00);
+    Font_LoadScreenIndicatorsPalette(0, 12 * 32, param0->unk_00);
+    Font_LoadTextPalette(4, 13 * 32, param0->unk_00);
 
     for (v0 = 0; v0 < 13; v0++) {
         BGL_AddWindow(param0->unk_24, &param0->unk_E8[v0], v1[v0].unk_00, v1[v0].unk_01, v1[v0].unk_02, v1[v0].unk_03, v1[v0].unk_04, v1[v0].unk_05, v1[v0].unk_06);
@@ -686,7 +686,7 @@ static void ov79_021D1568(UnkStruct_ov79_021D0E1C *param0)
 {
     int v0 = 0;
 
-    sub_02002BB8(2, param0->unk_00);
+    Font_InitManager(FONT_SUBSCREEN, param0->unk_00);
 
     param0->unk_2C = MessageLoader_Init(0, 26, 463, param0->unk_00);
     param0->unk_28 = sub_020158A8(param0->unk_00);
@@ -736,7 +736,7 @@ static void ov79_021D1618(UnkStruct_ov79_021D0E1C *param0)
     StringTemplate_Free(param0->unk_30.unk_00);
     sub_020158F4(param0->unk_28);
     MessageLoader_Free(param0->unk_2C);
-    sub_02002C60(2);
+    Font_Free(FONT_SUBSCREEN);
 }
 
 static void ov79_021D167C(UnkStruct_ov79_021D0E1C *param0)

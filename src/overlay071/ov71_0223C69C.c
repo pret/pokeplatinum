@@ -1,22 +1,21 @@
+#include "overlay071/ov71_0223C69C.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "strbuf.h"
-
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02072014.h"
+
 #include "overlay061/struct_ov61_0222C884.h"
 
-#include "unk_02002B7C.h"
+#include "font.h"
 #include "message.h"
-#include "string_template.h"
-#include "unk_02018340.h"
-#include "unk_0201D670.h"
-#include "strbuf.h"
 #include "play_time.h"
-#include "overlay071/ov71_0223C69C.h"
+#include "strbuf.h"
+#include "string_template.h"
+#include "text.h"
+#include "unk_02018340.h"
 
 static void ov71_0223CD64(Window * param0, const u32 param1, const u32 param2, const u32 param3, Strbuf *param4, const u32 param5, const u8 param6, const int param7);
 static void ov71_0223CDB0(Window * param0, const u32 param1, const u32 param2, const u32 param3, const Strbuf *param4);
@@ -90,7 +89,7 @@ void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
     for (v0 = 0; v0 < 7; v0++) {
         if ((v0 != 3) || (v0 == 3) && (param1->unk_04_3)) {
             MessageLoader_GetStrbuf(v1, Unk_ov71_0223D644[v0], v2);
-            sub_0201D78C(&param0[v0], 0, v2, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
+            Text_AddPrinterWithParamsAndColor(&param0[v0], 0, v2, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         }
     }
 
@@ -109,9 +108,9 @@ void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
             MessageLoader_GetStrbuf(v1, 14, v3);
             StringTemplate_Format(v4, v2, v3);
 
-            v5 = (8 * 17) - sub_02002D7C(0, v2, 0);
+            v5 = (8 * 17) - Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
 
-            sub_0201D78C(&param0[2], 0, v2, v5, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
+            Text_AddPrinterWithParamsAndColor(&param0[2], 0, v2, v5, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         }
 
         if (param1->unk_04_3) {
@@ -121,9 +120,9 @@ void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
             MessageLoader_GetStrbuf(v1, 21, v3);
             StringTemplate_Format(v4, v2, v3);
 
-            v6 = (8 * 17) - sub_02002D7C(0, v2, 0);
+            v6 = (8 * 17) - Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
 
-            sub_0201D78C(&param0[3], 0, v2, v6, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
+            Text_AddPrinterWithParamsAndColor(&param0[3], 0, v2, v6, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         }
 
         ov71_0223CD64(&param0[4], (8 * 17), 0, 0, v2, param1->unk_24, 9, 1);
@@ -142,8 +141,8 @@ void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
             }
 
             StringTemplate_Format(v4, v2, v3);
-            v7 = (8 * 28) - sub_02002D7C(0, v2, 0);
-            sub_0201D78C(&param0[5], 0, v2, v7, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
+            v7 = (8 * 28) - Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
+            Text_AddPrinterWithParamsAndColor(&param0[5], 0, v2, v7, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         }
 
         {
@@ -155,9 +154,9 @@ void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
             MessageLoader_GetStrbuf(v1, 17, v3);
             StringTemplate_Format(v4, v2, v3);
 
-            v8 = (8 * 28) - sub_02002D7C(0, v2, 0);
+            v8 = (8 * 28) - Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
 
-            sub_0201D78C(&param0[6], 0, v2, v8, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
+            Text_AddPrinterWithParamsAndColor(&param0[6], 0, v2, v8, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         }
 
         Strbuf_Free(v3);
@@ -168,6 +167,7 @@ void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
     MessageLoader_Free(v1);
 }
 
+// clang-format off
 asm void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
 {
     push {r3, r4, r5, r6, r7, lr}
@@ -245,7 +245,7 @@ asm void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
     add r0, r6, r0
     add r2, r5, #0
     add r3, r1, #0
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
     add r0, r4, #1
     lsl r0, r0, #0x18
     lsr r4, r0, #0x18
@@ -346,7 +346,7 @@ asm void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
     mov r0, #0
     add r1, r5, #0
     add r2, r0, #0
-    bl sub_02002D7C
+    bl Font_CalcStrbufWidth
     mov r1, #0xe0
     sub r3, r1, r0
     mov r1, #0
@@ -358,7 +358,7 @@ asm void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
     add r0, #0x70
     add r2, r5, #0
     str r1, [sp, #0xc]
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
     ldr r2, [sp, #0x14]
     add r0, r7, #0
     mov r1, #0xf
@@ -370,7 +370,7 @@ asm void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
     mov r0, #0
     add r1, r5, #0
     add r2, r0, #0
-    bl sub_02002D7C
+    bl Font_CalcStrbufWidth
     mov r1, #0xe0
     sub r3, r1, r0
     mov r0, #0x10
@@ -383,7 +383,7 @@ asm void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
     add r0, #0x70
     add r2, r5, #0
     str r1, [sp, #0xc]
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
     mov r0, #0
     str r0, [sp]
     mov r0, #1
@@ -405,7 +405,7 @@ asm void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
     mov r0, #0
     add r1, r5, #0
     add r2, r0, #0
-    bl sub_02002D7C
+    bl Font_CalcStrbufWidth
     mov r1, #0xe0
     sub r3, r1, r0
     mov r1, #0
@@ -417,7 +417,7 @@ asm void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
     add r0, #0x80
     add r2, r5, #0
     str r1, [sp, #0xc]
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
     add r0, r7, #0
     mov r1, #0x12
     add r2, r5, #0
@@ -432,7 +432,7 @@ asm void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
     add r2, r5, #0
     mov r3, #0x70
     str r1, [sp, #0xc]
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
     mov r2, #0
     ldr r0, [sp, #0x10]
     str r5, [sp]
@@ -461,7 +461,7 @@ asm void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
     add r2, r5, #0
     mov r3, #0xb0
     str r1, [sp, #0xc]
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
     ldr r0, [sp, #0x10]
     str r5, [sp]
     ldr r0, [r0, #0x3c]
@@ -497,7 +497,7 @@ asm void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
     mov r0, #0
     add r1, r5, #0
     add r2, r0, #0
-    bl sub_02002D7C
+    bl Font_CalcStrbufWidth
     mov r1, #0xe0
     sub r3, r1, r0
     mov r1, #0
@@ -509,7 +509,7 @@ asm void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
     add r0, r6, #0
     add r2, r5, #0
     str r1, [sp, #0xc]
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
     ldr r0, [sp, #0x14]
     bl Strbuf_Free
     add r0, r4, #0
@@ -521,6 +521,7 @@ asm void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
     add sp, #0x18
     pop {r3, r4, r5, r6, r7, pc}
 }
+// clang-format on
 
 void ov71_0223CD44 (Window * param0, const u8 param1, const u8 param2)
 {
@@ -536,16 +537,16 @@ static void ov71_0223CD64 (Window * param0, const u32 param1, const u32 param2, 
     u32 v0;
 
     Strbuf_FormatInt(param4, param5, param6, param7, 1);
-    v0 = sub_02002D7C(0, param4, 0);
-    sub_0201D78C(param0, 0, param4, param1 - (v0 + param2), param3, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
+    v0 = Font_CalcStrbufWidth(FONT_SYSTEM, param4, 0);
+    Text_AddPrinterWithParamsAndColor(param0, 0, param4, param1 - (v0 + param2), param3, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 }
 
 static void ov71_0223CDB0 (Window * param0, const u32 param1, const u32 param2, const u32 param3, const Strbuf *param4)
 {
     u32 v0;
 
-    v0 = sub_02002D7C(0, param4, 0);
-    sub_0201D78C(param0, 0, param4, param1 - (v0 + param2), param3, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
+    v0 = Font_CalcStrbufWidth(FONT_SYSTEM, param4, 0);
+    Text_AddPrinterWithParamsAndColor(param0, 0, param4, param1 - (v0 + param2), param3, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 }
 
 void ov71_0223CDE8 (Window * param0, const TrainerCard * param1, Strbuf *param2)
@@ -573,8 +574,8 @@ void ov71_0223CDE8 (Window * param0, const TrainerCard * param1, Strbuf *param2)
         StringTemplate_SetNumber(v5, 1, PlayTime_GetMinutes(param1->playTime), 2, 2, 1);
         MessageLoader_GetStrbuf(v2, 16, v4);
         StringTemplate_Format(v5, v3, v4);
-        v1 = (8 * 28) - sub_02002D7C(0, v3, 0);
-        sub_0201D78C(&param0[5], 0, v3, v1, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
+        v1 = (8 * 28) - Font_CalcStrbufWidth(FONT_SYSTEM, v3, 0);
+        Text_AddPrinterWithParamsAndColor(&param0[5], 0, v3, v1, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
         MessageLoader_Free(v2);
         Strbuf_Free(v3);
@@ -586,7 +587,7 @@ void ov71_0223CDE8 (Window * param0, const TrainerCard * param1, Strbuf *param2)
 void ov71_0223CECC (Window * param0, const BOOL param1, Strbuf *param2)
 {
     if (param1) {
-        sub_0201D78C(param0, 0, param2, (207 - 2), 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
+        Text_AddPrinterWithParamsAndColor(param0, 0, param2, (207 - 2), 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     } else {
         BGL_WindowColor(param0, 0, (207 - 2), 0, 5, 2 * 8);
         sub_0201A954(param0);

@@ -20,6 +20,7 @@
 #include "overlay097/struct_ov97_0222DB78.h"
 
 #include "core_sys.h"
+#include "font.h"
 #include "game_options.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -33,10 +34,10 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "trainer_info.h"
 #include "unk_02000C88.h"
 #include "unk_0200112C.h"
-#include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
@@ -50,7 +51,6 @@
 #include "unk_02015920.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0208694C.h"
 
 #include "constdata/const_020F2DAC.h"
@@ -370,8 +370,8 @@ static void ov73_021D1058(UnkStruct_ov73_021D1058 *param0)
 
         sub_0200DD0C(param0->unk_18, 0, (0x400 - (18 + 12)), 4, 0, param0->unk_00);
         sub_0200DAA4(param0->unk_18, 0, ((0x400 - (18 + 12)) - 9), 3, 0, param0->unk_00);
-        sub_02002E7C(0, 5 * (2 * 16), param0->unk_00);
-        sub_02002E98(0, 6 * (2 * 16), param0->unk_00);
+        Font_LoadTextPalette(0, 5 * (2 * 16), param0->unk_00);
+        Font_LoadScreenIndicatorsPalette(0, 6 * (2 * 16), param0->unk_00);
     }
     {
         UnkStruct_ov97_0222DB78 v2 = {
@@ -454,7 +454,7 @@ static void ov73_021D12C4(UnkStruct_ov73_021D1058 *param0)
 {
     param0->unk_4C = MessageLoader_Init(1, 26, 389, param0->unk_00);
 
-    sub_0201D710();
+    Text_ResetAllPrinters();
 
     param0->unk_60 = sub_0201567C(NULL, 0, 6, param0->unk_00);
     param0->unk_64 = StringTemplate_Default(param0->unk_00);
@@ -723,11 +723,11 @@ static BOOL ov73_021D1510(UnkStruct_ov73_021D1058 *param0, u32 param1, int param
             Strbuf_Free(v1);
         }
 
-        param0->unk_58 = PrintStringSimple(&param0->unk_1C, 1, param0->unk_5C, 0, 0, (Options_TextFrameDelay(param0->unk_08)), NULL);
+        param0->unk_58 = Text_AddPrinterWithParams(&param0->unk_1C, 1, param0->unk_5C, 0, 0, (Options_TextFrameDelay(param0->unk_08)), NULL);
         param0->unk_50 = 1;
         break;
     case 1:
-        if (!(Message_Printing(param0->unk_58))) {
+        if (!(Text_IsPrinterActive(param0->unk_58))) {
             Strbuf_Free(param0->unk_5C);
             param0->unk_50 = 2;
         }
@@ -855,7 +855,7 @@ static BOOL ov73_021D1784(UnkStruct_ov73_021D1058 *param0, u32 param1, int param
 
             sub_0201A8D4(param0->unk_18, &param0->unk_1C, &v1);
             BGL_WindowColor(&param0->unk_1C, 0, 0, 0, 24 * 8, 24 * 8);
-            sub_0201D78C(&param0->unk_1C, 0, param0->unk_5C, 0, 0, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+            Text_AddPrinterWithParamsAndColor(&param0->unk_1C, 0, param0->unk_5C, 0, 0, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
         } else {
             v1 = Unk_ov72_021D37E4;
 
@@ -871,7 +871,7 @@ static BOOL ov73_021D1784(UnkStruct_ov73_021D1058 *param0, u32 param1, int param
 
             sub_0201A8D4(param0->unk_18, &param0->unk_1C, &v1);
             BGL_WindowColor(&param0->unk_1C, 0, 0, 0, 24 * 8, 24 * 8);
-            sub_0201D78C(&param0->unk_1C, 0, param0->unk_5C, 0, 0, 0, (u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+            Text_AddPrinterWithParamsAndColor(&param0->unk_1C, 0, param0->unk_5C, 0, 0, 0, (u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
         }
 
         Strbuf_Free(param0->unk_5C);

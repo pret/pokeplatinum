@@ -36,6 +36,7 @@
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "easy3d.h"
+#include "font.h"
 #include "game_options.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -47,8 +48,8 @@
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "unk_02001AF4.h"
-#include "unk_02002B7C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
@@ -61,7 +62,6 @@
 #include "unk_02015064.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_0201E86C.h"
@@ -1189,7 +1189,7 @@ static void ov78_021D1CA8(ChooseStarterApp *param0, int param1)
         param0->unk_04++;
         break;
     case 4:
-        if (Message_Printing(param0->unk_708) == 0) {
+        if (Text_IsPrinterActive(param0->unk_708) == 0) {
             ov78_021D2090(param0);
             param0->unk_04++;
         }
@@ -1199,7 +1199,7 @@ static void ov78_021D1CA8(ChooseStarterApp *param0, int param1)
         param0->unk_04++;
         break;
     case 6:
-        if (Message_Printing(param0->unk_708) == 0) {
+        if (Text_IsPrinterActive(param0->unk_708) == 0) {
             ov78_021D2090(param0);
             param0->unk_04++;
         }
@@ -1301,7 +1301,7 @@ static u8 ov78_021D1FB4(Window *param0, int param1, int param2, int param3, u32 
     v1 = MessageLoader_GetNewStrbuf(v0, param3);
 
     BGL_FillWindow(param0, 15);
-    v2 = sub_0201D78C(param0, 1, v1, 0, 0, param5, param4, NULL);
+    v2 = Text_AddPrinterWithParamsAndColor(param0, 1, v1, 0, 0, param5, param4, NULL);
     sub_0200E060(param0, 0, 512, 0);
 
     Strbuf_Free(v1);
@@ -1322,7 +1322,7 @@ static u8 ov78_021D201C(Window *param0, int param1, int param2, int param3, u32 
 
     *param6 = MessageLoader_GetNewStrbuf(v0, param3);
     BGL_FillWindow(param0, 15);
-    v1 = sub_0201D78C(param0, 1, *param6, 0, 0, param5, param4, NULL);
+    v1 = Text_AddPrinterWithParamsAndColor(param0, 1, *param6, 0, 0, param5, param4, NULL);
 
     sub_0200E060(param0, 0, 512, 0);
     MessageLoader_Free(v0);
@@ -1347,7 +1347,7 @@ static void MakeConfirmationWindow(ChooseStarterApp *param0, int param1)
     param0->unk_B0.unk_06 = ((18 + 12) + 9 + 128);
 
     sub_0200DAA4(param0->bgl, 1, (512 + (18 + 12) + 128), 1, 0, param1);
-    sub_02002E7C(0, 3 * 32, param1);
+    Font_LoadTextPalette(0, 3 * 32, param1);
 }
 
 static void ov78_021D2108(ChooseStarterMovement *param0, s32 param1, s32 param2, s32 param3)
@@ -1781,7 +1781,7 @@ static void ov78_021D28A8(Window *param0, int param1, int param2, int param3, u3
     v1 = MessageLoader_GetNewStrbuf(v0, param3);
 
     BGL_FillWindow(param0, (((param4) >> 0) & 0xff));
-    sub_0201D78C(param0, 0, v1, 1, 0, 0xff, param4, NULL);
+    Text_AddPrinterWithParamsAndColor(param0, 0, v1, 1, 0, 0xff, param4, NULL);
     Strbuf_Free(v1);
     MessageLoader_Free(v0);
 }

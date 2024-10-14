@@ -20,14 +20,14 @@
 #include "overlay043/struct_ov43_02256544_decl.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 
+#include "font.h"
 #include "heap.h"
 #include "message.h"
 #include "strbuf.h"
 #include "sys_task_manager.h"
-#include "unk_02002B7C.h"
+#include "text.h"
 #include "unk_02006E3C.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 
 struct UnkStruct_ov43_02256544_t {
     const UnkStruct_ov43_02256544_1 *unk_00;
@@ -353,9 +353,9 @@ static void ov43_02256988(UnkStruct_ov43_02256544 *param0, Window *param1, u32 p
         MessageLoader_GetStrbuf(param0->unk_B4, param2, param0->unk_BC);
     }
 
-    v0 = sub_02002D7C(0, param0->unk_BC, 0);
+    v0 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_BC, 0);
 
-    sub_0201D78C(param1, 0, param0->unk_BC, ((6 * 8) - v0) / 2, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((8 & 0xff) << 8) | ((4 & 0xff) << 0)), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_BC, ((6 * 8) - v0) / 2, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((8 & 0xff) << 8) | ((4 & 0xff) << 0)), NULL);
     sub_0201ACCC(param1);
 }
 
@@ -363,7 +363,7 @@ static void ov43_02256A00(UnkStruct_ov43_02256544 *param0, Window *param1, u32 p
 {
     BGL_FillWindow(param1, 4);
     MessageLoader_GetStrbuf(param0->unk_B8, param2, param0->unk_BC);
-    sub_0201D78C(param1, 0, param0->unk_BC, 0, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((8 & 0xff) << 8) | ((4 & 0xff) << 0)), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_BC, 0, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((8 & 0xff) << 8) | ((4 & 0xff) << 0)), NULL);
     sub_0201ACCC(param1);
 }
 

@@ -26,9 +26,9 @@
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "unk_02006E3C.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 
 struct UnkStruct_ov48_0225650C_t {
     const UnkStruct_ov48_0225650C_1 *unk_00;
@@ -164,7 +164,7 @@ static void ov48_02256650(UnkStruct_ov48_0225650C *param0, u32 param1)
     if (v1) {
         BGL_AddWindow(param0->unk_04, &v0, 6, 18, 20, 8, 2, 0, param1);
         BGL_FillWindow(&v0, 4);
-        sub_0201D78C(&v0, 0, v1, 0, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((8 & 0xff) << 8) | ((4 & 0xff) << 0)), NULL);
+        Text_AddPrinterWithParamsAndColor(&v0, 0, v1, 0, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((8 & 0xff) << 8) | ((4 & 0xff) << 0)), NULL);
         sub_0201A9F4(&v0);
         sub_0201ACCC(&v0);
         BGL_DeleteWindow(&v0);

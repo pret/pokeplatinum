@@ -1,22 +1,28 @@
+#include "overlay062/ov62_02237D24.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay062/ov62_const_funcptr_tables.h"
-
-#include "strbuf.h"
-#include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_decls/pokedexdata_decl.h"
+#include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
-#include "overlay022/struct_ov22_0225B1BC_decl.h"
-
-#include "overlay062/const_ov62_022491F0.h"
-
-#include "touch_screen.h"
 #include "struct_defs/struct_02030A80.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0208C06C.h"
+
+#include "overlay022/ov22_0225AF8C.h"
 #include "overlay022/struct_ov22_0225AF8C.h"
+#include "overlay022/struct_ov22_0225B1BC_decl.h"
+#include "overlay061/ov61_0222AE60.h"
+#include "overlay061/ov61_0222B008.h"
+#include "overlay061/ov61_0222BC4C.h"
 #include "overlay061/struct_ov61_0222BC90.h"
+#include "overlay062/const_ov62_022491F0.h"
+#include "overlay062/ov62_0222F2C0.h"
+#include "overlay062/ov62_022300D8.h"
+#include "overlay062/ov62_02231690.h"
+#include "overlay062/ov62_0224112C.h"
+#include "overlay062/ov62_const_funcptr_tables.h"
 #include "overlay062/struct_ov62_022312B0.h"
 #include "overlay062/struct_ov62_022323B8.h"
 #include "overlay062/struct_ov62_0223CAA4.h"
@@ -24,37 +30,29 @@
 #include "overlay062/struct_ov62_02248CDC.h"
 #include "overlay062/struct_ov62_02249380.h"
 
-#include "unk_02002B7C.h"
+#include "font.h"
+#include "game_overlay.h"
+#include "gx_layers.h"
+#include "heap.h"
+#include "message.h"
+#include "strbuf.h"
+#include "string_template.h"
+#include "text.h"
+#include "touch_screen.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
-#include "game_overlay.h"
 #include "unk_02006E3C.h"
-#include "message.h"
-#include "string_template.h"
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
 #include "unk_02017728.h"
-#include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
-#include "gx_layers.h"
-#include "strbuf.h"
 #include "unk_02023FCC.h"
 #include "unk_0202419C.h"
 #include "unk_0202631C.h"
 #include "unk_020298BC.h"
 #include "unk_02030A80.h"
 #include "unk_0208B284.h"
-#include "overlay022/ov22_0225AF8C.h"
-#include "overlay061/ov61_0222AE60.h"
-#include "overlay061/ov61_0222B008.h"
-#include "overlay061/ov61_0222BC4C.h"
-#include "overlay062/ov62_0222F2C0.h"
-#include "overlay062/ov62_022300D8.h"
-#include "overlay062/ov62_02231690.h"
-#include "overlay062/ov62_02237D24.h"
-#include "overlay062/ov62_0224112C.h"
 
 FS_EXTERN_OVERLAY(overlay22);
 
@@ -1250,7 +1248,7 @@ static void ov62_02239440 (UnkStruct_0208C06C * param0, int param1)
     v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
     v3 = ov62_0223429C(v1, v2);
 
-    sub_0201D78C(v1, 0, v2, v3, 0, 0xff, (((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0)))), NULL);
+    Text_AddPrinterWithParamsAndColor(v1, 0, v2, v3, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v2);
     sub_0201A9A4(v1);
 }
@@ -1355,6 +1353,7 @@ static void ov62_022396E8 (UnkStruct_0208C06C * param0)
     ov62_022313BC(param0);
 }
 
+// clang-format off
 asm static void ov62_02239724 (UnkStruct_0208C06C * param0)
 {
     push {r4, r5, r6, r7, lr}
@@ -1453,7 +1452,7 @@ asm static void ov62_02239724 (UnkStruct_0208C06C * param0)
     mov r0, #0
     add r1, r4, #0
     add r2, r0, #0
-    bl sub_02002D7C
+    bl Font_CalcStrbufWidth
     mov r1, #0x80
     sub r0, r1, r0
     lsr r3, r0, #1
@@ -1467,7 +1466,7 @@ asm static void ov62_02239724 (UnkStruct_0208C06C * param0)
     str r0, [sp, #0xc]
     ldr r0, [sp, #0x20]
     add r2, r4, #0
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
     ldr r0, [sp, #0x14]
     add r5, r5, #1
     add r6, #0x10
@@ -1489,7 +1488,9 @@ asm static void ov62_02239724 (UnkStruct_0208C06C * param0)
     pop {r4, r5, r6, r7, pc}
     nop
 }
+// clang-format on
 
+// clang-format off
 asm static void ov62_02239854 (UnkStruct_0208C06C * param0, int param1)
 {
     push {r4, r5, r6, r7, lr}
@@ -1588,7 +1589,7 @@ asm static void ov62_02239854 (UnkStruct_0208C06C * param0, int param1)
     mov r0, #0
     add r1, r4, #0
     add r2, r0, #0
-    bl sub_02002D7C
+    bl Font_CalcStrbufWidth
     mov r1, #0x80
     sub r0, r1, r0
     lsr r3, r0, #1
@@ -1602,7 +1603,7 @@ asm static void ov62_02239854 (UnkStruct_0208C06C * param0, int param1)
     str r0, [sp, #0xc]
     ldr r0, [sp, #0x20]
     add r2, r4, #0
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
     ldr r0, [sp, #0x14]
     add r5, r5, #1
     add r6, #0x10
@@ -1624,6 +1625,7 @@ asm static void ov62_02239854 (UnkStruct_0208C06C * param0, int param1)
     pop {r4, r5, r6, r7, pc}
     nop
 }
+// clang-format on
 
 static BOOL ov62_02239984 (UnkStruct_0208C06C * param0, int param1)
 {
@@ -1758,6 +1760,7 @@ static void ov62_02239BAC (u32 param0, u32 param1, void * param2)
     ov62_02239A0C(v0, param0);
 }
 
+// clang-format off
 asm static void ov62_02239BD8 (UnkStruct_0208C06C * param0)
 {
     push {r4, r5, r6, r7, lr}
@@ -1849,7 +1852,7 @@ asm static void ov62_02239BD8 (UnkStruct_0208C06C * param0)
     str r0, [sp, #0xc]
     add r0, r4, #0
     mov r1, #0
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
     b _02239CB6
  _02239C9A:
     ldr r0, [sp, #0x18]
@@ -1864,7 +1867,7 @@ asm static void ov62_02239BD8 (UnkStruct_0208C06C * param0)
     str r0, [sp, #0xc]
     add r0, r4, #0
     mov r1, #0
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
  _02239CB6:
     add r0, r4, #0
     bl sub_0201A9A4
@@ -1884,6 +1887,7 @@ asm static void ov62_02239BD8 (UnkStruct_0208C06C * param0)
     add sp, #0x34
     pop {r4, r5, r6, r7, pc}
 }
+// clang-format on
 
 static void ov62_02239CE8 (UnkStruct_0208C06C * param0)
 {

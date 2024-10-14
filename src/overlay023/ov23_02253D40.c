@@ -17,10 +17,10 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "trainer_info.h"
 #include "unk_0200DA60.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 
 typedef struct UnkStruct_ov23_02253E2C_t {
     Strbuf *unk_00;
@@ -141,7 +141,7 @@ static void ov23_02253E40(SysTask *param0, void *param1)
     UnkStruct_ov23_02253E2C *v0 = param1;
 
     if (v0->unk_30 < 8) {
-        if (Message_Printing(v0->unk_30) != 0) {
+        if (Text_IsPrinterActive(v0->unk_30) != 0) {
             return;
         }
     }
@@ -187,7 +187,7 @@ static int ov23_02253E90(UnkStruct_ov23_02253E2C *param0, BOOL param1, UnkStruct
 
     v0 = ov23_02253E6C(param0);
 
-    param0->unk_30 = PrintStringSimple(&param0->unk_08, 1, v0, 0, 0, param0->unk_38, NULL);
+    param0->unk_30 = Text_AddPrinterWithParams(&param0->unk_08, 1, v0, 0, 0, param0->unk_38, NULL);
     param0->unk_1C = param2;
     param0->unk_3C = param3;
 
@@ -230,8 +230,8 @@ static void ov23_02253FA4(UnkStruct_ov23_02253E2C *param0, int param1)
     if (param0->unk_44_0) {
         param0->unk_44_0 = 0;
 
-        if ((param0->unk_30 < 8) && (Message_Printing(param0->unk_30))) {
-            PrintString_ForceStop(param0->unk_30);
+        if ((param0->unk_30 < 8) && (Text_IsPrinterActive(param0->unk_30))) {
+            Text_RemovePrinter(param0->unk_30);
         }
 
         switch (param1) {
@@ -379,8 +379,8 @@ void ov23_02254204(UnkStruct_ov23_02253E2C *param0, int param1)
 void ov23_02254210(UnkStruct_ov23_02253E2C *param0)
 {
     if (param0->unk_30 < 8) {
-        if (Message_Printing(param0->unk_30)) {
-            PrintString_ForceStop(param0->unk_30);
+        if (Text_IsPrinterActive(param0->unk_30)) {
+            Text_RemovePrinter(param0->unk_30);
             param0->unk_30 = 8;
         }
     }
@@ -392,12 +392,12 @@ BOOL ov23_02254238(UnkStruct_ov23_02253E2C *param0)
         return 0;
     }
 
-    return Message_Printing(param0->unk_30);
+    return Text_IsPrinterActive(param0->unk_30);
 }
 
 void ov23_02254250(UnkStruct_ov23_02253E2C *param0)
 {
-    if ((param0->unk_30 < 8) && (!Message_Printing(param0->unk_30))) {
+    if ((param0->unk_30 < 8) && (!Text_IsPrinterActive(param0->unk_30))) {
         param0->unk_30 = 8;
     }
 }

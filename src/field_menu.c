@@ -59,6 +59,7 @@
 #include "script_manager.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "trainer_info.h"
 #include "unk_02001AF4.h"
 #include "unk_020041CC.h"
@@ -69,7 +70,6 @@
 #include "unk_02013A04.h"
 #include "unk_02014A84.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0202631C.h"
 #include "unk_02028124.h"
 #include "unk_0202D778.h"
@@ -682,7 +682,7 @@ static void sub_0203B094(TaskManager *taskMan)
         v5 = MessageLoader_GetNewStrbuf(v2, 10);
     }
 
-    PrintStringSimple(&menu->unk_10, 0, v5, 0, 0, 0xff, NULL);
+    Text_AddPrinterWithParams(&menu->unk_10, 0, v5, 0, 0, 0xff, NULL);
     Strbuf_Free(v5);
 
     v3 = StringTemplate_Default(11);
@@ -700,7 +700,7 @@ static void sub_0203B094(TaskManager *taskMan)
     }
 
     StringTemplate_Format(v3, v4, v5);
-    PrintStringSimple(&menu->unk_10, 0, v4, 0, 16, 0xff, NULL);
+    Text_AddPrinterWithParams(&menu->unk_10, 0, v4, 0, 16, 0xff, NULL);
 
     Strbuf_Free(v4);
     Strbuf_Free(v5);

@@ -30,6 +30,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "trainer_info.h"
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
@@ -37,7 +38,6 @@
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
@@ -157,7 +157,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov7_0224ED0C = {
 static void CommClubMan_PrintMessage(int msgId, BOOL format)
 {
     if (!FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
-        PrintString_ForceStop(sCommClubMan->printMsgIndex);
+        Text_RemovePrinter(sCommClubMan->printMsgIndex);
     }
 
     if (format) {
@@ -322,20 +322,20 @@ static void ov7_02249C94(BmpList *param0, u32 param1, u8 param2)
         MessageLoader_GetStrbuf(sCommClubMan->msgLoader, pl_msg_00000353_00063, sCommClubMan->strBuff[1]);
 
         StringTemplate_Format(sCommClubMan->unk_50, sCommClubMan->strBuff[0], sCommClubMan->strBuff[1]);
-        PrintStringSimple(&sCommClubMan->unk_20, 0, sCommClubMan->strBuff[0], 8, param2 * 16, 0xff, NULL);
+        Text_AddPrinterWithParams(&sCommClubMan->unk_20, 0, sCommClubMan->strBuff[0], 8, param2 * 16, 0xff, NULL);
 
         StringTemplate_SetNumber(sCommClubMan->unk_50, 2, TrainerInfo_ID(sCommClubMan->unk_7C) % 0x10000, 5, 2, 1);
         // ID {ID Number}
         MessageLoader_GetStrbuf(sCommClubMan->msgLoader, pl_msg_00000353_00065, sCommClubMan->strBuff[3]);
 
         StringTemplate_Format(sCommClubMan->unk_50, sCommClubMan->strBuff[2], sCommClubMan->strBuff[3]);
-        PrintStringSimple(&sCommClubMan->unk_20, 0, sCommClubMan->strBuff[2], 11 * 8, param2 * 16, 0xff, NULL);
+        Text_AddPrinterWithParams(&sCommClubMan->unk_20, 0, sCommClubMan->strBuff[2], 11 * 8, param2 * 16, 0xff, NULL);
     } else {
         StringTemplate_SetNumber(sCommClubMan->unk_50, 0, cnt + 1, 2, 2, 1);
         MessageLoader_GetStrbuf(sCommClubMan->msgLoader, pl_msg_00000353_00064, sCommClubMan->strBuff[1]);
 
         StringTemplate_Format(sCommClubMan->unk_50, sCommClubMan->strBuff[0], sCommClubMan->strBuff[1]);
-        PrintStringSimple(&sCommClubMan->unk_20, 0, sCommClubMan->strBuff[0], 8, param2 * 16, 0xff, NULL);
+        Text_AddPrinterWithParams(&sCommClubMan->unk_20, 0, sCommClubMan->strBuff[0], 8, param2 * 16, 0xff, NULL);
     }
 }
 
@@ -406,7 +406,7 @@ static void CommClubMan_DisplayPersonalTrainerInfo(CommClubManager *param0)
     StringTemplate_SetNumber(sCommClubMan->unk_54, 1, TrainerInfo_ID(sCommClubMan->trainerInfoPersonal) % 0x10000, 5, 2, 1);
     MessageLoader_GetStrbuf(sCommClubMan->msgLoader, pl_msg_00000353_00062, sCommClubMan->strBuff[6]);
     StringTemplate_Format(sCommClubMan->unk_54, sCommClubMan->strBuff[7], sCommClubMan->strBuff[6]);
-    PrintStringSimple(&sCommClubMan->unk_30, 0, sCommClubMan->strBuff[7], 2, 2, 0, NULL);
+    Text_AddPrinterWithParams(&sCommClubMan->unk_30, 0, sCommClubMan->strBuff[7], 2, 2, 0, NULL);
 }
 
 static void ov7_02249F54(SysTask *task, void *data)
@@ -542,7 +542,7 @@ asm static void CommClubTask_SelectServerList (SysTask * task, void * param1)
               ldr r0, [r0, #0]
     add r0, #0x94
     ldrb r0, [r0]
-    bl PrintString_ForceStop
+    bl Text_RemovePrinter
  _0224A1AE:
     ldr r0, = sCommClubMan
               mov r1, #2
@@ -596,7 +596,7 @@ asm static void CommClubTask_SelectServerList (SysTask * task, void * param1)
     str r3, [sp, #8]
     ldr r2, [r2, #0x14]
     add r0, #0x40
-    bl PrintStringSimple
+    bl Text_AddPrinterWithParams
     ldr r1, = sCommClubMan
               ldr r1, [r1, #0]
     add r1, #0x94
@@ -635,7 +635,7 @@ static BOOL ov7_0224A244(SysTask *task, void *data)
         commClubMan->connectedCnt = CommInfo_CountReceived();
 
         if (!FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
-            PrintString_ForceStop(sCommClubMan->printMsgIndex);
+            Text_RemovePrinter(sCommClubMan->printMsgIndex);
         }
 
         CommClubMan_DestroyList(task, commClubMan);
@@ -739,13 +739,13 @@ static void ov7_0224A438(BmpList *param0, u32 param1, u8 param2)
         MessageLoader_GetStrbuf(sCommClubMan->msgLoader, pl_msg_00000353_00066, sCommClubMan->strBuff[1]);
 
         StringTemplate_Format(sCommClubMan->unk_50, sCommClubMan->strBuff[0], sCommClubMan->strBuff[1]);
-        PrintStringSimple(&sCommClubMan->unk_20, 0, sCommClubMan->strBuff[0], 8, param2 * 16, 0, NULL);
+        Text_AddPrinterWithParams(&sCommClubMan->unk_20, 0, sCommClubMan->strBuff[0], 8, param2 * 16, 0, NULL);
 
         StringTemplate_SetNumber(sCommClubMan->unk_50, 2, TrainerInfo_ID_LowHalf(CommInfo_TrainerInfo(v0)), 5, 2, 1);
         MessageLoader_GetStrbuf(sCommClubMan->msgLoader, pl_msg_00000353_00065, sCommClubMan->strBuff[3]);
 
         StringTemplate_Format(sCommClubMan->unk_50, sCommClubMan->strBuff[2], sCommClubMan->strBuff[3]);
-        PrintStringSimple(&sCommClubMan->unk_20, 0, sCommClubMan->strBuff[2], 9 * 8, param2 * 16, 0, NULL);
+        Text_AddPrinterWithParams(&sCommClubMan->unk_20, 0, sCommClubMan->strBuff[2], 9 * 8, param2 * 16, 0, NULL);
     }
 }
 
@@ -855,7 +855,7 @@ static void ov7_0224A64C(CommClubManager *commClubMan)
 
     MessageLoader_GetStrbuf(sCommClubMan->msgLoader, msg, sCommClubMan->strBuff[7]);
     StringTemplate_Format(sCommClubMan->unk_54, sCommClubMan->strBuff[6], sCommClubMan->strBuff[7]);
-    PrintStringSimple(&sCommClubMan->unk_30, 0, sCommClubMan->strBuff[6], 2, 2, 0, NULL);
+    Text_AddPrinterWithParams(&sCommClubMan->unk_30, 0, sCommClubMan->strBuff[6], 2, 2, 0, NULL);
 }
 
 static void CommClubMan_PrintPlayerContactMsg(int netId, CommClubManager *commClubMan)
@@ -1525,7 +1525,7 @@ static void CommClubTask_WaitForGroup(SysTask *task, void *param1)
     } else if (CommTiming_IsSyncState(10)) {
         if (CommTool_IsInitialized()) {
             if (!FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
-                PrintString_ForceStop(sCommClubMan->printMsgIndex);
+                Text_RemovePrinter(sCommClubMan->printMsgIndex);
             }
 
             commClubMan->connectedCnt = CommSys_ConnectedCount();

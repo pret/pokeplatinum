@@ -15,11 +15,11 @@
 #include "message.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "touch_screen.h"
 #include "unk_02002F38.h"
 #include "unk_02006E3C.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_02030A80.h"
 
 typedef struct {
@@ -84,7 +84,7 @@ static void ov62_02247DD8(UnkStruct_0208C06C *param0, int param1, int param2)
     }
 
     BGL_FillWindow(v1, 0xCC);
-    sub_0201D78C(v1, 0, v0, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((12 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(v1, 0, v0, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((12 & 0xff) << 0))), NULL);
     sub_0201A9A4(v1);
     Strbuf_Free(v0);
 }
@@ -106,7 +106,7 @@ static void ov62_02247E9C(UnkStruct_0208C06C *param0)
     v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 130);
     v4 = ov62_0223429C(v1, v2);
 
-    sub_0201D78C(v1, 0, v2, v4, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(v1, 0, v2, v4, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v2);
     sub_0201A9A4(v1);
 
@@ -120,7 +120,7 @@ static void ov62_02247E9C(UnkStruct_0208C06C *param0)
     v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 131);
     v4 = ov62_0223429C(v1, v2);
 
-    sub_0201D78C(v1, 0, v2, v4, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(v1, 0, v2, v4, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v2);
     sub_0201A9A4(v1);
 }

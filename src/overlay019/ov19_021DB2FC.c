@@ -19,11 +19,11 @@
 #include "message.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "unk_02001AF4.h"
 #include "unk_02006E3C.h"
 #include "unk_0200DA60.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 
 static void ov19_021DB4B4(BGL *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5);
 static void ov19_021DB638(UnkStruct_ov19_021DB6F0 *param0, Window *param1, u8 param2, u32 param3);
@@ -114,7 +114,7 @@ void ov19_021DB448(UnkStruct_ov19_021DB6F0 *param0, u32 param1)
     BGL_FillWindow(&param0->unk_18[0], 15);
     MessageLoader_GetStrbuf(param0->unk_10, param1, param0->unk_30);
     StringTemplate_Format(param0->unk_2C, param0->unk_34, param0->unk_30);
-    PrintStringSimple(&(param0->unk_18[0]), 1, param0->unk_34, 0, 0, 0xff, NULL);
+    Text_AddPrinterWithParams(&(param0->unk_18[0]), 1, param0->unk_34, 0, 0, 0xff, NULL);
     sub_0201ACCC(&(param0->unk_18[0]));
     sub_02019448(param0->unk_00, 1);
 
@@ -181,7 +181,7 @@ void ov19_021DB57C(UnkStruct_ov19_021DB6F0 *param0, const UnkStruct_ov19_021DF96
             ov19_021DB638(param0, v0, param1->unk_22, param1->unk_00[v2] - UnkEnum_021DFB94_56);
         } else {
             MessageLoader_GetStrbuf(param0->unk_14, 24 + param1->unk_00[v2], param0->unk_30);
-            sub_0201D78C(v0, 0, param0->unk_30, 10, v1, 0xff, (u32)(((11 & 0xff) << 16) | ((12 & 0xff) << 8) | ((15 & 0xff) << 0)), NULL);
+            Text_AddPrinterWithParamsAndColor(v0, 0, param0->unk_30, 10, v1, 0xff, (u32)(((11 & 0xff) << 16) | ((12 & 0xff) << 8) | ((15 & 0xff) << 0)), NULL);
         }
 
         v1 += 16;

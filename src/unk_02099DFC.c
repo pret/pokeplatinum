@@ -12,22 +12,22 @@
 #include "overlay097/struct_ov97_0222DB78.h"
 
 #include "core_sys.h"
+#include "font.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
 #include "overlay_manager.h"
 #include "savedata.h"
 #include "strbuf.h"
+#include "text.h"
 #include "unk_02000C88.h"
 #include "unk_02001AF4.h"
-#include "unk_02002B7C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 
 FS_EXTERN_OVERLAY(overlay77);
 
@@ -224,7 +224,7 @@ static void sub_02099F80(UnkStruct_02099DFC *param0)
 
     sub_0200DD0C(param0->unk_14, 0, (512 - (18 + 12)), 2, 0, param0->unk_00);
     sub_0200DAA4(param0->unk_14, 0, 512 - (18 + 12) - 9, 3, 0, param0->unk_00);
-    sub_02002E7C(0, 1 * (2 * 16), param0->unk_00);
+    Font_LoadTextPalette(0, 1 * (2 * 16), param0->unk_00);
     sub_02019690(0, 32, 0, param0->unk_00);
     sub_0201975C(0, 0x6c21);
     sub_0201975C(4, 0x6c21);
@@ -247,7 +247,7 @@ static void sub_0209A044(UnkStruct_02099DFC *param0)
 static void sub_0209A098(UnkStruct_02099DFC *param0)
 {
     param0->unk_18 = MessageLoader_Init(1, 26, 4, param0->unk_00);
-    sub_0201D710();
+    Text_ResetAllPrinters();
     param0->unk_08 = 0;
     sub_0201A8D4(param0->unk_14, &param0->unk_1C, &Unk_020F89E4);
     BGL_WindowColor(&param0->unk_1C, 15, 0, 0, 27 * 8, 4 * 8);
@@ -331,7 +331,7 @@ static BOOL sub_0209A200(UnkStruct_02099DFC *param0, u32 param1, int param2, int
 
         param0->unk_10 = Strbuf_Init(0x400, param0->unk_00);
         MessageLoader_GetStrbuf(param0->unk_18, param1, param0->unk_10);
-        param0->unk_0C = PrintStringSimple(&param0->unk_1C, 1, param0->unk_10, 0, 0, param3, NULL);
+        param0->unk_0C = Text_AddPrinterWithParams(&param0->unk_1C, 1, param0->unk_10, 0, 0, param3, NULL);
 
         if (param3 == 0) {
             Strbuf_Free(param0->unk_10);
@@ -341,7 +341,7 @@ static BOOL sub_0209A200(UnkStruct_02099DFC *param0, u32 param1, int param2, int
         param0->unk_08++;
         break;
     case 1:
-        if (!(Message_Printing(param0->unk_0C))) {
+        if (!(Text_IsPrinterActive(param0->unk_0C))) {
             Strbuf_Free(param0->unk_10);
             param0->unk_08++;
         }

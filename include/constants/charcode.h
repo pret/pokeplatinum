@@ -85,6 +85,8 @@ enum {
     CHAR_EN_y,
     CHAR_EN_z, // 0x015E
 
+    CHAR_EN_QUESTION_MARK = 0x01AC,
+
     CHAR_EN_MINUS = 0x01BE,
 
     CHAR_EN_SPACE = 0x01DE,

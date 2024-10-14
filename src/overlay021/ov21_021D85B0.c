@@ -21,17 +21,17 @@
 #include "overlay021/struct_ov21_021E6B20.h"
 
 #include "cell_actor.h"
+#include "font.h"
 #include "heap.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
-#include "unk_02002B7C.h"
+#include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A9DC.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 
 typedef struct {
     int *unk_00;
@@ -703,9 +703,9 @@ static void ov21_021D8DD4(UnkStruct_ov21_021D879C *param0, int param1, int param
     v1 = ov21_021D1CE0(v2, param2);
 
     {
-        u32 v3 = 24 + (208 - sub_02002EB4(0, v1, 0)) / 2;
+        u32 v3 = 24 + (208 - Font_CalcMaxLineWidth(FONT_SYSTEM, v1, 0)) / 2;
         u32 v4 = 8 + (32 - Strbuf_NumLines(v1) * 16) / 2;
-        sub_0201D78C(&v0->unk_04, 0, v1, v3, v4, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&v0->unk_04, 0, v1, v3, v4, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
     Strbuf_Free(v1);
@@ -721,9 +721,9 @@ static void ov21_021D8E68(UnkStruct_ov21_021D879C *param0, int param1)
     v1 = ov21_021D1CE0(93, param1);
 
     {
-        u32 v2 = 24 + (208 - sub_02002EB4(0, v1, 0)) / 2;
+        u32 v2 = 24 + (208 - Font_CalcMaxLineWidth(FONT_SYSTEM, v1, 0)) / 2;
         u32 v3 = 8 + (32 - Strbuf_NumLines(v1) * 16) / 2;
-        sub_0201D78C(&v0->unk_04, 0, v1, v2, v3, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&v0->unk_04, 0, v1, v2, v3, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
     Strbuf_Free(v1);
@@ -833,8 +833,8 @@ static void ov21_021D9054(UnkStruct_ov21_021D879C *param0, int param1, int param
     v1 = ov21_021D1CE0(v2, param2);
 
     {
-        u32 v3 = 88 + sub_02002EEC(0, v1, 0, 80);
-        sub_0201D78C(&v0->unk_04, 0, v1, v3, 52, 0, ((u32)(((4 & 0xff) << 16) | ((3 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        u32 v3 = 88 + Font_CalcCenterAlignment(FONT_SYSTEM, v1, 0, 80);
+        Text_AddPrinterWithParamsAndColor(&v0->unk_04, 0, v1, v3, 52, 0, ((u32)(((4 & 0xff) << 16) | ((3 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
     Strbuf_Free(v1);
@@ -885,8 +885,8 @@ static void ov21_021D90B4(UnkStruct_ov21_021D879C *param0, int param1, int param
     v1 = ov21_021D1CE0(v2, param2);
 
     {
-        u32 v4 = 88 + sub_02002EEC(0, v1, 0, 80);
-        sub_0201D78C(&v0->unk_04, 0, v1, v4, 77, 0, ((u32)(((4 & 0xff) << 16) | ((3 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        u32 v4 = 88 + Font_CalcCenterAlignment(FONT_SYSTEM, v1, 0, 80);
+        Text_AddPrinterWithParamsAndColor(&v0->unk_04, 0, v1, v4, 77, 0, ((u32)(((4 & 0xff) << 16) | ((3 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
     Strbuf_Free(v1);
@@ -961,8 +961,8 @@ static void ov21_021D915C(UnkStruct_ov21_021D879C *param0, int param1, int param
     v1 = ov21_021D1CE0(v2, param2);
 
     {
-        u32 v4 = 88 + sub_02002EEC(0, v1, 0, 80);
-        sub_0201D78C(&v0->unk_04, 0, v1, v4, param3, 0, ((u32)(((4 & 0xff) << 16) | ((3 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        u32 v4 = 88 + Font_CalcCenterAlignment(FONT_SYSTEM, v1, 0, 80);
+        Text_AddPrinterWithParamsAndColor(&v0->unk_04, 0, v1, v4, param3, 0, ((u32)(((4 & 0xff) << 16) | ((3 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
     Strbuf_Free(v1);
@@ -1081,9 +1081,9 @@ static void ov21_021D93F4(UnkStruct_ov21_021D879C *param0, int param1)
     v1 = ov21_021D1CE0(94, param1);
 
     {
-        u32 v3 = (256 - sub_02002EB4(0, v1, 0)) / 2;
+        u32 v3 = (256 - Font_CalcMaxLineWidth(FONT_SYSTEM, v1, 0)) / 2;
 
-        sub_0201D78C(&v0->unk_04, 0, v1, v3, 128, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&v0->unk_04, 0, v1, v3, 128, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
     Strbuf_Free(v1);

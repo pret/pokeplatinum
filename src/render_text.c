@@ -8,11 +8,11 @@
 
 #include "charcode.h"
 #include "core_sys.h"
+#include "font.h"
 #include "render_text.h"
-#include "unk_02002B7C.h"
+#include "text.h"
 #include "unk_02005474.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 
 #define SPEED_UP_ON_TOUCH_PRESS (gCoreSys.touchPressed && sRenderControlFlags.speedUpOnTouch)
 #define SPEED_UP_ON_TOUCH_HOLD  (gCoreSys.touchHeld && sRenderControlFlags.speedUpOnTouch)
@@ -79,7 +79,7 @@ enum RenderResult RenderText(TextPrinter *printer)
 
         case CHAR_CR:
             printer->template.currX = printer->template.x;
-            printer->template.currY += sub_02002DF8(printer->template.fontID, 1) + printer->template.lineSpacing;
+            printer->template.currY += Font_GetAttribute(printer->template.fontID, 1) + printer->template.lineSpacing;
             return RENDER_REPEAT;
 
         case CHAR_PLACEHOLDER_BEGIN:
@@ -112,7 +112,7 @@ enum RenderResult RenderText(TextPrinter *printer)
                 printer->template.fgColor = color * 2 + 1;
                 printer->template.shadowColor = color * 2 + 2;
 
-                sub_0201D9FC(printer->template.fgColor, printer->template.bgColor, printer->template.shadowColor);
+                Text_GenerateFontHalfRowLookupTable(printer->template.fgColor, printer->template.bgColor, printer->template.shadowColor);
             } break;
 
             case CHAR_CONTROL_SCREEN_INDICATOR: {
@@ -121,7 +121,7 @@ enum RenderResult RenderText(TextPrinter *printer)
                 // 2 -> respond to the top screen
                 // 3 -> look at the top screen
                 u16 screen = CharCode_FormatArgParam(printer->template.toPrint.raw, 0);
-                sub_0201DB8C(printer, printer->template.currX, printer->template.currY, screen);
+                Text_RenderScreenIndicator(printer, printer->template.currX, printer->template.currY, screen);
 
                 if (printer->textSpeedTop != 0) {
                     sub_0201A954(printer->template.window);
@@ -195,7 +195,7 @@ enum RenderResult RenderText(TextPrinter *printer)
             return RENDER_UPDATE;
         }
 
-        const TextGlyph *glyph = sub_02002CFC(substruct->fontID, currChar);
+        const TextGlyph *glyph = Font_TryLoadGlyph(substruct->fontID, currChar);
         sub_0201AED0(printer->template.window,
             glyph->gfx,
             glyph->width,
@@ -231,7 +231,7 @@ enum RenderResult RenderText(TextPrinter *printer)
         if (TextPrinter_WaitWithScrollArrow(printer)) {
             TextPrinter_ClearScrollArrow(printer);
 
-            printer->scrollDistance = (sub_02002DF8(printer->template.fontID, 1) + printer->template.lineSpacing);
+            printer->scrollDistance = (Font_GetAttribute(printer->template.fontID, 1) + printer->template.lineSpacing);
             printer->template.currX = printer->template.x;
             printer->state = RENDER_STATE_SCROLL;
         }

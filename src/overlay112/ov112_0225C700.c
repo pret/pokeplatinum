@@ -1,53 +1,50 @@
-#include "enums.h"
+#include "overlay112/ov112_0225C700.h"
 
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-
 #include "struct_decls/struct_02006C24_decl.h"
-#include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "strbuf.h"
-#include "overlay066/struct_ov66_0222DFF8_decl.h"
-#include "overlay066/struct_ov66_0223177C_decl.h"
-
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
+
 #include "overlay022/struct_ov22_022559F8.h"
+#include "overlay066/ov66_0222DDF0.h"
+#include "overlay066/ov66_02231428.h"
+#include "overlay066/ov66_0223177C.h"
+#include "overlay066/struct_ov66_0222DFF8_decl.h"
 #include "overlay066/struct_ov66_02230FA0.h"
 #include "overlay066/struct_ov66_02231428.h"
+#include "overlay066/struct_ov66_0223177C_decl.h"
 #include "overlay066/struct_ov66_02232068.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 
-#include "unk_02002B7C.h"
+#include "cell_actor.h"
+#include "core_sys.h"
+#include "enums.h"
+#include "font.h"
+#include "gx_layers.h"
+#include "heap.h"
+#include "message.h"
+#include "narc.h"
+#include "overlay_manager.h"
+#include "sprite_resource.h"
+#include "strbuf.h"
+#include "text.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
-#include "overlay_manager.h"
-#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
-#include "sprite_resource.h"
 #include "unk_0200A784.h"
-#include "message.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
-#include "gx_layers.h"
-#include "cell_actor.h"
-#include "strbuf.h"
 #include "unk_020393C8.h"
-#include "overlay066/ov66_0222DDF0.h"
-#include "overlay066/ov66_02231428.h"
-#include "overlay066/ov66_0223177C.h"
-#include "overlay112/ov112_0225C700.h"
 
 typedef struct {
     u32 unk_00;
@@ -526,7 +523,7 @@ static void ov112_0225CA34 (UnkStruct_ov112_0225C9BC * param0, u32 param1)
 
     {
         sub_02007130(param0->unk_1A4, 0, 0, 0, 0, param1);
-        sub_02002E98(0, 10 * 32, param1);
+        Font_LoadScreenIndicatorsPalette(0, 10 * 32, param1);
         sub_020070E8(param0->unk_1A4, 1, param0->unk_00, 1, 0, 0, 0, param1);
         sub_0200710C(param0->unk_1A4, 3, param0->unk_00, 1, 0, 0, 0, param1);
         sub_0200710C(param0->unk_1A4, 4, param0->unk_00, 2, 0, 0, 0, param1);
@@ -1072,13 +1069,13 @@ static void ov112_0225D460 (UnkStruct_ov112_0225D44C * param0, const Strbuf *par
     param0->unk_00 = 1;
     param0->unk_02 = 0;
     param0->unk_04 = param2;
-    param0->unk_06 = sub_02002D7C(1, param1, 0);
+    param0->unk_06 = Font_CalcStrbufWidth(FONT_MESSAGE, param1, 0);
     param0->unk_06 += 256;
 
     GF_ASSERT((180 * 8) >= param0->unk_06);
 
     BGL_FillWindow(&param0->unk_0C, 0);
-    PrintStringSimple(&param0->unk_0C, 1, param0->unk_08, 0, 0, 0xff, NULL);
+    Text_AddPrinterWithParams(&param0->unk_0C, 1, param0->unk_08, 0, 0, 0xff, NULL);
 
     param0->unk_1C = *param3;
 
@@ -1130,6 +1127,7 @@ static void ov112_0225D4F8 (const UnkStruct_ov112_0225D44C * param0, Window * pa
     sub_0201A9A4(param1);
 }
 
+// clang-format off
 asm static void ov112_0225D57C (UnkStruct_ov112_0225D6DC * param0, UnkStruct_ov112_0225C9BC * param1, u32 param2)
 {
     push {r3, r4, r5, r6, r7, lr}
@@ -1226,7 +1224,7 @@ asm static void ov112_0225D57C (UnkStruct_ov112_0225D6DC * param0, UnkStruct_ov1
     mov r0, #0
     add r1, r4, #0
     add r2, r0, #0
-    bl sub_02002EB4
+    bl Font_CalcMaxLineWidth
     add r0, r0, #1
     ldrb r1, [r5, #7]
     lsr r0, r0, #1
@@ -1237,7 +1235,7 @@ asm static void ov112_0225D57C (UnkStruct_ov112_0225D6DC * param0, UnkStruct_ov1
     mov r0, #0
     add r1, r4, #0
     add r2, r0, #0
-    bl sub_02002EB4
+    bl Font_CalcMaxLineWidth
     ldrb r1, [r5, #7]
     sub r0, r1, r0
     str r0, [sp, #0x2c]
@@ -1253,7 +1251,7 @@ asm static void ov112_0225D57C (UnkStruct_ov112_0225D6DC * param0, UnkStruct_ov1
     ldr r0, [sp, #0x14]
     mov r1, #0
     add r2, r4, #0
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
     ldr r0, [sp, #0x30]
     add r7, r7, #1
     add r6, #0x10
@@ -1290,6 +1288,7 @@ asm static void ov112_0225D57C (UnkStruct_ov112_0225D6DC * param0, UnkStruct_ov1
     pop {r3, r4, r5, r6, r7, pc}
     nop
 }
+// clang-format on
 
 static void ov112_0225D6DC (UnkStruct_ov112_0225D6DC * param0)
 {

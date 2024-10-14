@@ -29,6 +29,7 @@
 
 #include "assert.h"
 #include "core_sys.h"
+#include "font.h"
 #include "heap.h"
 #include "message.h"
 #include "message_util.h"
@@ -38,15 +39,14 @@
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "touch_screen.h"
-#include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201E86C.h"
 #include "unk_02094EDC.h"
 
@@ -975,7 +975,7 @@ static void ov17_02240138(UnkStruct_ov17_0223F7E4 *param0, UnkStruct_ov17_022401
     if (param10 == NULL) {
         Window_Init(&v1);
         BGL_AddFramelessWindow(v5, &v1, v8, 16 / 8, 0, 0);
-        PrintStringWithColorAndMargins(&v1, param3, param2, 0, 0, 0xff, param4, 0, 0, NULL);
+        Text_AddPrinterWithParamsColorAndSpacing(&v1, param3, param2, 0, 0, 0xff, param4, 0, 0, NULL);
     } else {
         v1 = param10->unk_00;
     }
@@ -1511,14 +1511,14 @@ static void ov17_02240BF4(UnkStruct_ov17_0223F7E4 *param0, const Strbuf *param1,
 
     Window_Init(&param3->unk_00);
     BGL_AddFramelessWindow(param0->unk_04->unk_24, &param3->unk_00, v1, 16 / 8, 0, 0);
-    PrintStringWithColorAndMargins(&param3->unk_00, param2, param1, 0, 0, 0xff, param4, 0, 0, NULL);
+    Text_AddPrinterWithParamsColorAndSpacing(&param3->unk_00, param2, param1, 0, 0, 0xff, param4, 0, 0, NULL);
 }
 
 static void ov17_02240C60(const Strbuf *param0, int param1, int *param2, int *param3)
 {
     int v0, v1;
 
-    v0 = sub_02002D7C(param1, param0, 0);
+    v0 = Font_CalcStrbufWidth(param1, param0, 0);
     v1 = v0 / 8;
 
     if (FX_ModS32(v0, 8) != 0) {

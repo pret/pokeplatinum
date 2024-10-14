@@ -12,16 +12,16 @@
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 
+#include "font.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
 #include "overlay_manager.h"
-#include "unk_02002B7C.h"
+#include "text.h"
 #include "unk_02006E3C.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 
 #define LIBRARY_TV_DURATION 90 + 150
 
@@ -228,7 +228,7 @@ static void LibraryTV_SetVramBank(LibraryTV *ltv)
     sub_02006E60(NARC_INDEX_GRAPHIC__LIBRARY_TV, screenID, ltv->bgl, frame, 0, 0, 0, ltv->heapID);
 
     sub_02006E84(NARC_INDEX_GRAPHIC__LIBRARY_TV, 3, 0, 0, 0, ltv->heapID);
-    sub_02002E7C(0, 1 * (2 * 16), ltv->heapID);
+    Font_LoadTextPalette(0, 1 * (2 * 16), ltv->heapID);
     sub_0201975C(0, 0x0);
     sub_0201975C(4, 0x0);
 
@@ -259,7 +259,7 @@ static void LibraryTV_ReleaseVramBank(LibraryTV *ltv)
 static void LibraryTV_SetMsgLdr(LibraryTV *ltv)
 {
     ltv->msgLdr = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, 26, 607, ltv->heapID);
-    sub_0201D710();
+    Text_ResetAllPrinters();
     ltv->tvState = 0;
 }
 

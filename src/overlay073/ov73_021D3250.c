@@ -1,31 +1,28 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-
-#include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "strbuf.h"
-
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
+
 #include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 
-#include "unk_02002B7C.h"
+#include "core_sys.h"
+#include "font.h"
+#include "gx_layers.h"
+#include "heap.h"
+#include "message.h"
+#include "overlay_manager.h"
+#include "strbuf.h"
+#include "text.h"
 #include "unk_02002F38.h"
 #include "unk_020041CC.h"
-#include "overlay_manager.h"
 #include "unk_02006E3C.h"
-#include "message.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
-#include "gx_layers.h"
-#include "strbuf.h"
 #include "unk_020241F0.h"
 
 typedef struct {
@@ -304,7 +301,7 @@ static void ov73_021D342C (UnkStruct_ov73_021D342C * param0)
     }
     sub_02006E84(136, 6, 0, 0, 0, param0->unk_00);
     sub_02006E9C(136, 9, 0, 0x20 * 2, 0x20 * 2, 0x20 * 14, param0->unk_00);
-    sub_02002E7C(0, 1 * (2 * 16), param0->unk_00);
+    Font_LoadTextPalette(0, 1 * (2 * 16), param0->unk_00);
     sub_0201975C(0, 0x0);
     sub_0201975C(4, 0x0);
 
@@ -335,7 +332,7 @@ static void ov73_021D366C (UnkStruct_ov73_021D342C * param0)
 {
     param0->unk_08 = MessageLoader_Init(1, 26, 607, param0->unk_00);
 
-    sub_0201D710();
+    Text_ResetAllPrinters();
     param0->unk_0C = 0;
 }
 
@@ -354,6 +351,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov72_021D3A38 = {
     0x1
 };
 
+// clang-format off
 asm static BOOL ov73_021D3698 (UnkStruct_ov73_021D342C * param0, int param1, int param2, int param3)
 {
     push {r3, r4, r5, r6, r7, lr}
@@ -405,7 +403,7 @@ asm static BOOL ov73_021D3698 (UnkStruct_ov73_021D342C * param0, int param1, int
     add r0, r6, #0
     add r1, r5, #0
     add r2, r0, #0
-    bl sub_02002EB4
+    bl Font_CalcMaxLineWidth
     mov r1, #1
     lsl r1, r1, #8
     sub r0, r1, r0
@@ -426,7 +424,7 @@ asm static BOOL ov73_021D3698 (UnkStruct_ov73_021D342C * param0, int param1, int
     add r2, r5, #0
     add r3, r7, #0
     str r1, [sp, #0xc]
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
     add r0, r5, #0
     bl Strbuf_Free
     add r0, r4, #0
@@ -482,6 +480,7 @@ asm static BOOL ov73_021D3698 (UnkStruct_ov73_021D342C * param0, int param1, int
     pop {r3, r4, r5, r6, r7, pc}
     nop
 }
+// clang-format on
 
 static void ov73_021D37AC (UnkStruct_ov73_021D342C * param0)
 {

@@ -61,6 +61,7 @@
 #include "pokemon.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
+#include "text.h"
 #include "touch_screen.h"
 #include "unk_020041CC.h"
 #include "unk_0200A328.h"
@@ -70,7 +71,6 @@
 #include "unk_02012744.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_0201E86C.h"
@@ -669,8 +669,8 @@ void ov21_021D1650(Window *param0, int param1, int param2, int param3)
 
     v1 = ov21_021D561C(param2, GAME_LANGUAGE, param3);
 
-    sub_0201D78C(param0, 2, v0, 22, 0, 0xff, ((u32)(((3 & 0xff) << 16) | ((2 & 0xff) << 8) | ((1 & 0xff) << 0))), NULL);
-    sub_0201D78C(param0, 2, v1, 49, 0, 0xff, ((u32)(((3 & 0xff) << 16) | ((2 & 0xff) << 8) | ((1 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param0, 2, v0, 22, 0, 0xff, ((u32)(((3 & 0xff) << 16) | ((2 & 0xff) << 8) | ((1 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param0, 2, v1, 49, 0, 0xff, ((u32)(((3 & 0xff) << 16) | ((2 & 0xff) << 8) | ((1 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
 
     ov21_021D5600(v1);

@@ -29,6 +29,7 @@
 
 #include "cell_actor.h"
 #include "core_sys.h"
+#include "font.h"
 #include "game_options.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -44,10 +45,10 @@
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
 #include "unk_02000C88.h"
-#include "unk_02002B7C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
@@ -59,7 +60,6 @@
 #include "unk_02015920.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
@@ -408,7 +408,7 @@ static int ov97_02233DAC(UnkStruct_ov97_02233DAC *param0, Strbuf *param1, int pa
     int v0, v1;
 
     if (param2 & 0x1) {
-        v0 = sub_02002D7C(1, (const Strbuf *)param1, 0);
+        v0 = Font_CalcStrbufWidth(FONT_MESSAGE, (const Strbuf *)param1, 0);
         v1 = param0->unk_10 * 8;
         return (v1 - v0) / 2;
     } else {
@@ -456,7 +456,7 @@ static void ov97_02233DD0(UnkStruct_ov97_02234A2C *param0, UnkStruct_ov97_02233D
         Strbuf_Free(v6);
 
         v3 = ov97_02233DAC(param1, v0, param2);
-        param1->unk_48 = sub_0201D78C(param1->unk_00, param1->unk_28, v0, v3, param1->unk_1C, v5, param1->unk_2C, NULL);
+        param1->unk_48 = Text_AddPrinterWithParamsAndColor(param1->unk_00, param1->unk_28, v0, v3, param1->unk_1C, v5, param1->unk_2C, NULL);
 
         if (param1->unk_40 == NULL) {
             StringTemplate_Free(v1);
@@ -470,14 +470,14 @@ static void ov97_02233DD0(UnkStruct_ov97_02234A2C *param0, UnkStruct_ov97_02233D
         v0 = param0->unk_1266C;
         Strbuf_CopyNumChars(v0, param1->unk_38, 64);
         v3 = ov97_02233DAC(param1, v0, param2);
-        param1->unk_48 = sub_0201D78C(param1->unk_00, param1->unk_28, v0, v3, param1->unk_1C, v5, param1->unk_2C, NULL);
+        param1->unk_48 = Text_AddPrinterWithParamsAndColor(param1->unk_00, param1->unk_28, v0, v3, param1->unk_1C, v5, param1->unk_2C, NULL);
         param1->unk_38 = NULL;
     }
 
     if (param1->unk_3C) {
         v3 = ov97_02233DAC(param1, param1->unk_3C, param2);
 
-        param1->unk_48 = sub_0201D78C(param1->unk_00, param1->unk_28, param1->unk_3C, v3, param1->unk_1C, v5, param1->unk_2C, NULL);
+        param1->unk_48 = Text_AddPrinterWithParamsAndColor(param1->unk_00, param1->unk_28, param1->unk_3C, v3, param1->unk_1C, v5, param1->unk_2C, NULL);
         param1->unk_3C = NULL;
     }
 
@@ -1405,12 +1405,12 @@ static void ov97_02234DFC(UnkStruct_ov97_02234A2C *param0)
     gCoreSys.unk_65 = 1;
 
     GXLayers_SwapDisplay();
-    sub_0201D710();
+    Text_ResetAllPrinters();
 
-    sub_02002E7C(0, 15 * 32, 78);
+    Font_LoadTextPalette(0, 15 * 32, 78);
     sub_02006E84(116, 19, 0, 0, 32 * 6, 78);
     sub_02006E3C(116, 22, param0->unk_20, 2, 0, 10 * 16 * 0x20, 1, 78);
-    sub_02002BB8(2, 78);
+    Font_InitManager(FONT_SUBSCREEN, 78);
 }
 
 static void ov97_02234E7C(UnkStruct_ov97_02234A2C *param0)
@@ -1422,7 +1422,7 @@ static void ov97_02234E7C(UnkStruct_ov97_02234A2C *param0)
 
 static void ov97_02234ECC(UnkStruct_ov97_02234A2C *param0)
 {
-    sub_02002E7C(0, 14 * 32, 78);
+    Font_LoadTextPalette(0, 14 * 32, 78);
     sub_0200DAA4(param0->unk_20, 0, 0x3F0, 14, 0, 78);
     sub_0200DD0C(param0->unk_20, 0, (0x3F0 - (18 + 12)), 13, param0->unk_1C, 78);
 
@@ -1486,7 +1486,7 @@ static void ov97_02234F88(UnkStruct_ov97_02234A2C *param0)
     sub_02019E2C(param0->unk_20, 2, 0, 0, 32, 24, Unk_ov97_0223EA60[param0->unk_00]);
     sub_02019448(param0->unk_20, 2);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
-    sub_02002E7C(0, 14 * 32, 78);
+    Font_LoadTextPalette(0, 14 * 32, 78);
     sub_0200DAA4(param0->unk_20, 0, 0x3F0, 14, 0, 78);
     sub_0200DD0C(param0->unk_20, 0, (0x3F0 - (18 + 12)), 13, param0->unk_1C, 78);
 
@@ -1565,7 +1565,7 @@ static void ov97_022351F0(UnkStruct_ov97_02234A2C *param0)
     ov97_02235158(&param0->unk_4EC);
     ov97_02235158(&param0->unk_4FC);
 
-    sub_02002C60(2);
+    Font_Free(FONT_SUBSCREEN);
     sub_0200A4E4(param0->unk_1D0[0]);
     sub_0200A6DC(param0->unk_1D0[1]);
 
@@ -1713,7 +1713,7 @@ static BOOL ov97_022354C4(UnkStruct_ov97_02234A2C *param0, int param1)
         ov97_02233DD0(param0, &param0->unk_490, 0x8 | 0x10);
         param0->unk_04 = 0;
     } else {
-        if (Message_Printing(param0->unk_490.unk_48) == 0) {
+        if (Text_IsPrinterActive(param0->unk_490.unk_48) == 0) {
             RenderControlFlags_SetSpeedUpOnTouch(0);
             return 1;
         }
@@ -1732,7 +1732,7 @@ static BOOL ov97_02235528(UnkStruct_ov97_02234A2C *param0, int param1)
         ov97_02233DD0(param0, &param0->unk_490, 0x8 | 0x10);
         param0->unk_04 = 0;
     } else {
-        if (Message_Printing(param0->unk_490.unk_48) == 0) {
+        if (Text_IsPrinterActive(param0->unk_490.unk_48) == 0) {
             ov97_02235310(param0);
             RenderControlFlags_SetSpeedUpOnTouch(0);
             return 1;
@@ -1754,7 +1754,7 @@ static BOOL ov97_02235590(UnkStruct_ov97_02234A2C *param0, int param1)
         Sound_PlayEffect(1500);
     } else {
         if (param1) {
-            if (Message_Printing(param0->unk_490.unk_48) == 0) {
+            if (Text_IsPrinterActive(param0->unk_490.unk_48) == 0) {
                 RenderControlFlags_SetSpeedUpOnTouch(0);
                 return 1;
             }

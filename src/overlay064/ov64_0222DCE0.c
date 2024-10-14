@@ -33,6 +33,7 @@
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "enums.h"
+#include "font.h"
 #include "game_options.h"
 #include "game_overlay.h"
 #include "gx_layers.h"
@@ -49,10 +50,10 @@
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "trainer_info.h"
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
-#include "unk_02002B7C.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
@@ -64,7 +65,6 @@
 #include "unk_02013A04.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
@@ -1067,7 +1067,7 @@ static void ov64_0222E620 (UnkStruct_ov64_0222E21C * param0, const UnkStruct_ov6
 
     v0 = Options_Frame(SaveData_Options(param1->unk_00));
 
-    sub_02002E98(0, 7 * 0x20, param2);
+    Font_LoadScreenIndicatorsPalette(0, 7 * 0x20, param2);
     sub_0200DD0C(param0->unk_00, Unk_ov64_02232258[1], (1 + 9), 8, v0, param2);
     sub_0200DAA4(param0->unk_00, Unk_ov64_02232258[1], 1, 9, 0, param2);
     Window_Init(&param0->unk_220);
@@ -1107,23 +1107,23 @@ static void ov64_0222E71C (UnkStruct_ov64_0222E21C * param0)
 
 static void ov64_0222E738 (UnkStruct_ov64_0222E21C * param0, u32 param1)
 {
-    if (Message_Printing(param0->unk_238) == 1) {
-        PrintString_ForceStop(param0->unk_238);
+    if (Text_IsPrinterActive(param0->unk_238) == 1) {
+        Text_RemovePrinter(param0->unk_238);
     }
 
     BGL_FillWindow(&param0->unk_220, 0);
     MessageLoader_GetStrbuf(param0->unk_218, param1, param0->unk_234);
     StringTemplate_Format(param0->unk_214, param0->unk_230, param0->unk_234);
 
-    param0->unk_238 = sub_0201D78C(&param0->unk_220, 1, param0->unk_230, 0, 4, 2, ((u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    param0->unk_238 = Text_AddPrinterWithParamsAndColor(&param0->unk_220, 1, param0->unk_230, 0, 4, 2, ((u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
     sub_0201A9A4(&param0->unk_220);
 }
 
 static void ov64_0222E7C8 (UnkStruct_ov64_0222E21C * param0)
 {
-    if (Message_Printing(param0->unk_238) == 1) {
-        PrintString_ForceStop(param0->unk_238);
+    if (Text_IsPrinterActive(param0->unk_238) == 1) {
+        Text_RemovePrinter(param0->unk_238);
     }
 
     sub_0201AD10(&param0->unk_220);
@@ -1428,6 +1428,7 @@ static const u8 Unk_ov64_0223241C[4] = {
     0x80
 };
 
+// clang-format off
 asm static void ov64_0222EC94 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2, u32 param3)
 {
     push {r3, r4, r5, r6, r7, lr}
@@ -1536,7 +1537,7 @@ asm static void ov64_0222EC94 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_
     add r1, r4, #0
     add r2, r0, #0
     mov r3, #0xd0
-    bl sub_02002EEC
+    bl Font_CalcCenterAlignment
     mov ip, r0
     ldr r0, [r7, #0]
     mov r6, ip
@@ -1555,7 +1556,7 @@ asm static void ov64_0222EC94 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_
     ldr r0, [sp, #0x14]
     add r3, r3, r6
     add r0, r0, #4
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
     ldr r0, [sp, #0x2c]
     add r7, r7, #4
     add r0, r0, #1
@@ -1586,6 +1587,7 @@ asm static void ov64_0222EC94 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_
     add sp, #0x30
     pop {r3, r4, r5, r6, r7, pc}
 }
+// clang-format on
 
 static void ov64_0222EE00 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2)
 {
@@ -1697,7 +1699,7 @@ static void ov64_0222EFBC (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_0222
     MessageLoader_GetStrbuf(param1->unk_218, param2, v0);
     StringTemplate_Format(param1->unk_214, param0->unk_38, v0);
 
-    param0->unk_30 = sub_0201D78C(&param0->unk_1C, 1, param0->unk_38, 0, 0, param0->unk_34, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    param0->unk_30 = Text_AddPrinterWithParamsAndColor(&param0->unk_1C, 1, param0->unk_38, 0, 0, param0->unk_34, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
     sub_0200E060(&param0->unk_1C, 1, (1 + 9), 8);
     sub_0201A9A4(&param0->unk_1C);
@@ -1706,7 +1708,7 @@ static void ov64_0222EFBC (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_0222
 
 static BOOL ov64_0222F038 (const UnkStruct_ov64_0222F038 * param0)
 {
-    if (Message_Printing(param0->unk_30) == 0) {
+    if (Text_IsPrinterActive(param0->unk_30) == 0) {
         return 1;
     }
 
@@ -1959,6 +1961,7 @@ static const CellActorInitParamsEx Unk_ov64_022322B4 = {
     0x0
 };
 
+// clang-format off
 asm static void ov64_0222F414 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2, u32 param3)
 {
     push {r3, r4, r5, r6, r7, lr}
@@ -2048,7 +2051,7 @@ asm static void ov64_0222F414 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_
     add r1, r4, #0
     add r2, r0, #0
     mov r3, #0x40
-    bl sub_02002EEC
+    bl Font_CalcCenterAlignment
     mov r1, #0
     add r3, r0, #0
     str r1, [sp]
@@ -2060,7 +2063,7 @@ asm static void ov64_0222F414 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_
     ldr r0, [sp, #0x14]
     str r1, [sp, #0xc]
     add r0, #0xb8
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
     add r0, r4, #0
     bl Strbuf_Free
     ldr r0, [sp, #0x14]
@@ -2174,6 +2177,7 @@ asm static void ov64_0222F414 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_
     pop {r3, r4, r5, r6, r7, pc}
     nop
 }
+// clang-format off
 
 static void ov64_0222F5F4 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2)
 {
@@ -2590,7 +2594,7 @@ static void ov64_0222FE70 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222
     MessageLoader_GetStrbuf(param1->unk_218, param2, v0);
     StringTemplate_Format(param1->unk_214, param0->unk_D4, v0);
 
-    param0->unk_D8 = sub_0201D78C(&param0->unk_C4, 1, param0->unk_D4, 0, 0, param0->unk_DC, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    param0->unk_D8 = Text_AddPrinterWithParamsAndColor(&param0->unk_C4, 1, param0->unk_D4, 0, 0, param0->unk_DC, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
     sub_0200E060(&param0->unk_C4, 1, (1 + 9), 8);
     sub_0201A9A4(&param0->unk_C4);
@@ -2599,7 +2603,7 @@ static void ov64_0222FE70 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222
 
 static BOOL ov64_0222FEFC (const UnkStruct_ov64_0222F0C4 * param0)
 {
-    if (Message_Printing(param0->unk_D8) == 0) {
+    if (Text_IsPrinterActive(param0->unk_D8) == 0) {
         return 1;
     }
 
@@ -2797,7 +2801,7 @@ static void ov64_022302EC (UnkStruct_ov64_02230074 * param0, UnkStruct_ov63_0222
     v3 = Strbuf_Init(128, param7);
 
     Strbuf_CopyChars(v3, sub_0202AEF0(param5, param6));
-    sub_0201D78C(&param0->unk_08, 0, v3, v4, v5, 0xff, v6[v0], NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_08, 0, v3, v4, v5, 0xff, v6[v0], NULL);
     Strbuf_Free(v3);
 }
 
@@ -2957,6 +2961,7 @@ static void ov64_02230678 (UnkStruct_ov64_02230620 * param0, UnkStruct_ov64_0222
     ov64_02230804(param0, param1, param2);
 }
 
+// clang-format off
 asm static void ov64_02230680 (UnkStruct_ov64_02230620 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2, u32 param3)
 {
     push {r3, r4, r5, r6, r7, lr}
@@ -3039,7 +3044,7 @@ asm static void ov64_02230680 (UnkStruct_ov64_02230620 * param0, UnkStruct_ov64_
     mov r0, #0
     add r1, r6, #0
     add r2, r0, #0
-    bl sub_02002EB4
+    bl Font_CalcMaxLineWidth
     mov r1, #0xb8
     sub r0, r1, r0
     mov r1, #0
@@ -3052,7 +3057,7 @@ asm static void ov64_02230680 (UnkStruct_ov64_02230620 * param0, UnkStruct_ov64_
     str r0, [sp, #8]
     add r0, r5, #0
     str r1, [sp, #0xc]
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
     ldr r1, [sp, #0x24]
     ldr r2, [sp, #0x1c]
     add r0, r4, #0
@@ -3073,7 +3078,7 @@ asm static void ov64_02230680 (UnkStruct_ov64_02230620 * param0, UnkStruct_ov64_
     add r1, r6, #0
     add r2, r0, #0
     mov r3, #0x78
-    bl sub_02002EEC
+    bl Font_CalcCenterAlignment
     mov r1, #0
     add r3, r0, #0
     str r1, [sp]
@@ -3085,7 +3090,7 @@ asm static void ov64_02230680 (UnkStruct_ov64_02230620 * param0, UnkStruct_ov64_
     add r0, r5, #0
     add r0, #0x10
     str r1, [sp, #0xc]
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
     b _022307DA
  _022307A6:
     mov r0, #0x63
@@ -3097,7 +3102,7 @@ asm static void ov64_02230680 (UnkStruct_ov64_02230620 * param0, UnkStruct_ov64_
     mov r0, #0
     add r1, r6, #0
     add r2, r0, #0
-    bl sub_02002EB4
+    bl Font_CalcMaxLineWidth
     mov r1, #0xb8
     sub r0, r1, r0
     mov r1, #0
@@ -3110,7 +3115,7 @@ asm static void ov64_02230680 (UnkStruct_ov64_02230620 * param0, UnkStruct_ov64_
     str r0, [sp, #8]
     add r0, r5, #0
     str r1, [sp, #0xc]
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
  _022307DA:
     add r0, r6, #0
     bl Strbuf_Free
@@ -3129,6 +3134,7 @@ asm static void ov64_02230680 (UnkStruct_ov64_02230620 * param0, UnkStruct_ov64_
     add sp, #0x28
     pop {r3, r4, r5, r6, r7, pc}
 }
+// clang-format on
 
 static void ov64_02230804 (UnkStruct_ov64_02230620 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2)
 {
@@ -3595,6 +3601,7 @@ static void ov64_02231144 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_0222
     ov64_02232038(param1, &param0->unk_00);
 }
 
+// clang-format off
 asm static void ov64_02231164 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2, u32 param3)
 {
     push {r3, r4, r5, r6, r7, lr}
@@ -4035,7 +4042,9 @@ asm static void ov64_02231164 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     add sp, #0x50
     pop {r3, r4, r5, r6, r7, pc}
 }
+// clang-format on
 
+// clang-format off
 asm static void ov64_02231528 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2, u32 param3)
 {
     push {r3, r4, r5, r6, r7, lr}
@@ -4181,7 +4190,9 @@ asm static void ov64_02231528 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     pop {r3, r4, r5, r6, r7, pc}
     nop
 }
+// clang-format on
 
+// clang-format off
 asm static void ov64_02231664 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2, u32 param3)
 {
     push {r3, r4, r5, r6, r7, lr}
@@ -4608,7 +4619,9 @@ asm static void ov64_02231664 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     add sp, #0x28
     pop {r3, r4, r5, r6, r7, pc}
 }
+// clang-format on
 
+// clang-format off
 asm static void ov64_02231A00 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2, u32 param3)
 {
     push {r3, r4, r5, r6, r7, lr}
@@ -4829,7 +4842,9 @@ asm static void ov64_02231A00 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     pop {r3, r4, r5, r6, r7, pc}
     nop
 }
+// clang-format on
 
+// clang-format off
 asm static void ov64_02231BE0 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2, u32 param3)
 {
     push {r3, r4, r5, r6, r7, lr}
@@ -4886,7 +4901,7 @@ asm static void ov64_02231BE0 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     ldr r0, [r0, #0x20]
     ldr r2, [sp, #0x2c]
     add r3, r1, #0
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
     ldr r0, [sp, #0x2c]
     bl Strbuf_Free
     mov r2, #7
@@ -5001,7 +5016,9 @@ asm static void ov64_02231BE0 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     pop {r3, r4, r5, r6, r7, pc}
     nop
 }
+// clang-format on
 
+// clang-format off
 asm static void ov64_02231D58 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2, u32 param3)
 {
     push {r3, r4, r5, r6, r7, lr}
@@ -5147,7 +5164,9 @@ asm static void ov64_02231D58 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     add sp, #0x28
     pop {r3, r4, r5, r6, r7, pc}
 }
+// clang-format on
 
+// clang-format off
 asm static void ov64_02231E94 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2, u32 param3)
 {
     push {r3, r4, r5, r6, r7, lr}
@@ -5336,6 +5355,7 @@ asm static void ov64_02231E94 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     pop {r3, r4, r5, r6, r7, pc}
     nop
 }
+// clang-format on
 
 static void ov64_02232038 (UnkStruct_ov64_0222E21C * param0, const UnkStruct_ov64_0223221C * param1)
 {
@@ -5345,6 +5365,7 @@ static void ov64_02232038 (UnkStruct_ov64_0222E21C * param0, const UnkStruct_ov6
     sub_0201C3C0(param0->unk_00, Unk_ov64_02232258[3]);
 }
 
+// clang-format off
 asm static void ov64_022320B8 (UnkStruct_ov64_02230F98 * param0, u32 param1, u32 param2, UnkStruct_ov64_0222E060 * param3, UnkStruct_ov64_0222E21C * param4, u32 param5, u32 param6, u32 param7, u32 param8, Strbuf *param9, Strbuf *param10)
 {
     push {r3, r4, r5, r6, r7, lr}
@@ -5377,7 +5398,7 @@ asm static void ov64_022320B8 (UnkStruct_ov64_02230F98 * param0, u32 param1, u32
     mov r0, #0
     add r1, r4, #0
     add r2, r0, #0
-    bl sub_02002D7C
+    bl Font_CalcStrbufWidth
     add r0, r0, #1
     lsr r0, r0, #1
     sub r5, r5, r0
@@ -5386,7 +5407,7 @@ asm static void ov64_022320B8 (UnkStruct_ov64_02230F98 * param0, u32 param1, u32
     mov r0, #0
     add r1, r4, #0
     add r2, r0, #0
-    bl sub_02002D7C
+    bl Font_CalcStrbufWidth
     sub r5, r5, r0
  _0223210E:
     ldr r0, [sp, #0x3c]
@@ -5406,10 +5427,11 @@ asm static void ov64_022320B8 (UnkStruct_ov64_02230F98 * param0, u32 param1, u32
     lsl r0, r0, #4
     add r0, r2, r0
     add r2, r4, #0
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
     add sp, #0x18
     pop {r3, r4, r5, r6, r7, pc}
 }
+// clang-format on
 
 static void ov64_02232138 (UnkStruct_ov64_02230904 * param0, s32 param1)
 {

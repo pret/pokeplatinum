@@ -38,6 +38,7 @@
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "enums.h"
+#include "font.h"
 #include "heap.h"
 #include "inlines.h"
 #include "message.h"
@@ -50,8 +51,8 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "touch_screen.h"
-#include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
@@ -61,7 +62,6 @@
 #include "unk_02017728.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "unk_0201D670.h"
 #include "unk_0201E86C.h"
 #include "unk_0207C908.h"
 #include "unk_0208C098.h"
@@ -2595,7 +2595,7 @@ static void ov16_0226A95C(const Strbuf *param0, int param1, int *param2, int *pa
 {
     int v0, v1;
 
-    v0 = sub_02002D7C(param1, param0, 0);
+    v0 = Font_CalcStrbufWidth(param1, param0, 0);
     v1 = v0 / 8;
 
     if (FX_ModS32(v0, 8) != 0) {
@@ -2632,7 +2632,7 @@ static void ov16_0226A98C(UnkStruct_ov16_02268A14 *param0, UnkStruct_ov16_0226A9
     if (param10 == NULL) {
         Window_Init(&v1);
         BGL_AddFramelessWindow(v5, &v1, v8, 16 / 8, 0, 0);
-        PrintStringWithColorAndMargins(&v1, param3, param2, 0, 0, 0xff, param4, 0, 0, NULL);
+        Text_AddPrinterWithParamsColorAndSpacing(&v1, param3, param2, 0, 0, 0xff, param4, 0, 0, NULL);
     } else {
         v1 = param10->unk_00;
     }
@@ -2854,7 +2854,7 @@ static void ov16_0226AEA0(UnkStruct_ov16_02268A14 *param0, const Strbuf *param1,
 
     Window_Init(&param3->unk_00);
     BGL_AddFramelessWindow(BattleSystem_BGL(param0->unk_00), &param3->unk_00, v1, 16 / 8, 0, 0);
-    PrintStringWithColorAndMargins(&param3->unk_00, param2, param1, 0, 0, 0xff, param4, 0, 0, NULL);
+    Text_AddPrinterWithParamsColorAndSpacing(&param3->unk_00, param2, param1, 0, 0, 0xff, param4, 0, 0, NULL);
 }
 
 static void ov16_0226AF0C(UnkStruct_ov16_02268A14 *param0)

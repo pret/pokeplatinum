@@ -22,18 +22,18 @@
 
 #include "core_sys.h"
 #include "easy3d_object.h"
+#include "font.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
 #include "strbuf.h"
-#include "unk_02002B7C.h"
+#include "text.h"
 #include "unk_02002F38.h"
 #include "unk_02006E3C.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 
 typedef void (*UnkFuncPtr_ov99_021D4A04)(UnkStruct_ov99_021D2CB0 *);
 typedef BOOL (*UnkFuncPtr_ov99_021D4A04_1)(UnkStruct_ov99_021D2CB0 *, UnkStruct_ov99_021D3A40 *);
@@ -1078,9 +1078,9 @@ static void ov99_021D2AAC(UnkStruct_ov99_021D2CB0 *param0)
         sub_0201A9F4(param0->unk_24);
 
         v1 = MessageLoader_GetNewStrbuf(param0->unk_20, ov99_021D4130());
-        v2 = (256 - sub_02002D7C(0, v1, 0)) / 2;
+        v2 = (256 - Font_CalcStrbufWidth(FONT_SYSTEM, v1, 0)) / 2;
 
-        PrintStringWithColorAndMargins(param0->unk_24, 0, v1, v2, 80, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0)), 3, 0, NULL);
+        Text_AddPrinterWithParamsColorAndSpacing(param0->unk_24, 0, v1, v2, 80, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0)), 3, 0, NULL);
         sub_0201ACCC(param0->unk_24);
         Strbuf_Free(v1);
     }

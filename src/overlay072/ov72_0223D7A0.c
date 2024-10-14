@@ -25,6 +25,7 @@
 #include "assert.h"
 #include "cell_actor.h"
 #include "core_sys.h"
+#include "font.h"
 #include "game_options.h"
 #include "game_records.h"
 #include "gx_layers.h"
@@ -38,8 +39,8 @@
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "touch_screen.h"
-#include "unk_02002B7C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
@@ -53,7 +54,6 @@
 #include "unk_02017728.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_0201E86C.h"
@@ -154,7 +154,7 @@ int ov72_0223D7A0(OverlayManager *param0, int *param1)
         sub_0201E3D8();
         sub_0201E450(1);
         SetMainCallback(ov72_0223DA48, v0->unk_00);
-        sub_02002BB8(2, 39);
+        Font_InitManager(FONT_SUBSCREEN, 39);
 
         ov72_0223DB98(v0);
         ov72_0223DDA8();
@@ -230,7 +230,7 @@ int ov72_0223D984(OverlayManager *param0, int *param1)
     sub_0201F8B4();
 
     ov72_0223E260(v0);
-    sub_02002C60(2);
+    Font_Free(FONT_SUBSCREEN);
     ov72_0223DC6C(v0->unk_00);
     sub_0201E530();
     MessageLoader_Free(v0->unk_14);
@@ -449,8 +449,8 @@ static void ov72_0223DCA8(UnkStruct_ov72_0223DB98 *param0, NARC *param1)
 
     sub_02007130(param1, 0, 0, 0, 16 * 2 * 3, 39);
     sub_02007130(param1, 2, 4, 0, 16 * 2 * 2, 39);
-    sub_02002E98(0, 13 * 0x20, 39);
-    sub_02002E98(4, 13 * 0x20, 39);
+    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 39);
+    Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, 39);
     sub_02019690(1, 32, 0, 39);
     sub_020070E8(param1, 3, v0, 2, 0, 32 * 8 * 0x20, 1, 39);
     sub_0200710C(param1, 5, v0, 2, 0, 32 * 24 * 2, 1, 39);
@@ -555,10 +555,10 @@ static void *ov72_0223E060(Window *param0, Strbuf *param1, int param2, u8 param3
 {
     int v0, v1;
 
-    v1 = sub_02002D7C(2, param1, 0);
+    v1 = Font_CalcStrbufWidth(FONT_SUBSCREEN, param1, 0);
     v0 = ((param0->unk_07 * 8) - v1) / 2;
 
-    sub_0201D78C(param0, param3, param1, v0, param2, 0xff, param4, NULL);
+    Text_AddPrinterWithParamsAndColor(param0, param3, param1, v0, param2, 0xff, param4, NULL);
 
     return param0->unk_0C;
 }
@@ -590,11 +590,11 @@ static void ov72_0223E0A0(UnkStruct_ov72_0223DB98 *param0, OverlayManager *param
     BGL_AddWindow(param0->unk_00, &param0->unk_358, 1, 2, 2, 28, 2, 13, ((1 + 24 * 8) + 8 * 2));
 
     {
-        int v2 = sub_02002D7C(1, param0->unk_30, 0);
+        int v2 = Font_CalcStrbufWidth(FONT_MESSAGE, param0->unk_30, 0);
         int v3 = (28 * 8 - v2) / 2;
 
         BGL_FillWindow(&param0->unk_358, 0x0);
-        sub_0201D78C(&param0->unk_358, 1, param0->unk_30, v3, 0, 0, (u32)(((0x1 & 0xff) << 16) | ((0x2 & 0xff) << 8) | ((0x0 & 0xff) << 0)), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_358, 1, param0->unk_30, v3, 0, 0, (u32)(((0x1 & 0xff) << 16) | ((0x2 & 0xff) << 8) | ((0x0 & 0xff) << 0)), NULL);
     }
 
     {
@@ -1092,7 +1092,7 @@ static void ov72_0223E910(Window *param0, int param1, u32 param2, UnkStruct_ov72
     }
 
     for (v0 = 0; v0 < 5; v0++) {
-        sub_0201D78C(&param0[v0], 1, param3->unk_18[v0], 0, 0, 0xff, (u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((15 & 0xff) << 0)), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0[v0], 1, param3->unk_18[v0], 0, 0, 0xff, (u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((15 & 0xff) << 0)), NULL);
         sub_0201A954(&param0[v0]);
     }
 }
@@ -1114,12 +1114,12 @@ static void ov72_0223E930(UnkStruct_ov72_0223DB98 *param0, int param1)
     BGL_FillWindow(&param0->unk_338, 0xf0f);
     sub_0200E060(&param0->unk_338, 0, 1, 10);
 
-    param0->unk_38 = PrintStringSimple(&param0->unk_338, 1, param0->unk_34, 0, 0, Options_TextFrameDelay(param0->unk_0C), NULL);
+    param0->unk_38 = Text_AddPrinterWithParams(&param0->unk_338, 1, param0->unk_34, 0, 0, Options_TextFrameDelay(param0->unk_0C), NULL);
 }
 
 static int ov72_0223E99C(int param0)
 {
-    if (Message_Printing(param0) == 0) {
+    if (Text_IsPrinterActive(param0) == 0) {
         return 1;
     }
 

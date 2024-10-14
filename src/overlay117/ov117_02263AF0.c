@@ -36,10 +36,11 @@
 
 #include "communication_system.h"
 #include "error_handling.h"
+#include "font.h"
 #include "message.h"
 #include "narc.h"
 #include "strbuf.h"
-#include "unk_02002B7C.h"
+#include "text.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
@@ -47,7 +48,6 @@
 #include "unk_02012744.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "unk_0201D670.h"
 #include "unk_0201E86C.h"
 
 typedef struct {
@@ -2023,7 +2023,7 @@ void ov117_02265DB8(BGL *param0, SpriteGfxHandler *param1, UnkStruct_02012744 *p
     int v7 = 0;
 
     {
-        v5 = sub_02002EB4(param5, param4, v7);
+        v5 = Font_CalcMaxLineWidth(param5, param4, v7);
         v6 = v5 / 8;
 
         if (FX_ModS32(v5, 8) != 0) {
@@ -2034,7 +2034,7 @@ void ov117_02265DB8(BGL *param0, SpriteGfxHandler *param1, UnkStruct_02012744 *p
     {
         Window_Init(&v1);
         BGL_AddFramelessWindow(param0, &v1, v6, param14, 0, 0);
-        PrintStringWithColorAndMargins(&v1, param5, param4, 0, 0, 0xff, param6, v7, 0, NULL);
+        Text_AddPrinterWithParamsColorAndSpacing(&v1, param5, param4, 0, 0, 0xff, param6, v7, 0, NULL);
     }
 
     v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DMAIN, 110);

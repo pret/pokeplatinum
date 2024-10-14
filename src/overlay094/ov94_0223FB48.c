@@ -24,6 +24,7 @@
 
 #include "cell_actor.h"
 #include "core_sys.h"
+#include "font.h"
 #include "game_options.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -35,15 +36,14 @@
 #include "pokemon_icon.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "unk_02001AF4.h"
-#include "unk_02002B7C.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02013A04.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_020393C8.h"
 #include "unk_020797C8.h"
 
@@ -302,7 +302,7 @@ static void ov94_0223FD4C(UnkStruct_ov94_0223FD4C *param0)
 
     sub_02007130(v1, 2, 0, 0, 16 * 3 * 2, 62);
     sub_02007130(v1, 5, 4, 0, 16 * 8 * 2, 62);
-    sub_02002E98(0, 13 * 0x20, 62);
+    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 62);
     sub_0200DD0C(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), 62);
     sub_0200DAA4(v0, 0, (1 + (18 + 12)), 11, 0, 62);
     sub_020070E8(v1, 12, v0, 1, 0, 16 * 5 * 0x20, 1, 62);
@@ -990,7 +990,7 @@ static int ov94_02240CA8(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_02240D08(UnkStruct_ov94_0223FD4C *param0)
 {
-    if (Message_Printing(param0->unk_BE0) == 0) {
+    if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
         param0->unk_2C = param0->unk_30;
     }
 
@@ -999,7 +999,7 @@ static int ov94_02240D08(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_02240D28(UnkStruct_ov94_0223FD4C *param0)
 {
-    if (Message_Printing(param0->unk_BE0) == 0) {
+    if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
         sub_0200E084(&param0->unk_109C, 0);
         param0->unk_2C = param0->unk_30;
     }
@@ -1024,7 +1024,7 @@ static void ov94_02240D58(UnkStruct_ov94_0223FD4C *param0, int param1, int param
     BGL_FillWindow(v0, 0xf0f);
     sub_0200E060(v0, 0, 1, 10);
 
-    param0->unk_BE0 = PrintStringSimple(v0, 1, param0->unk_BAC, 0, 0, param2, NULL);
+    param0->unk_BE0 = Text_AddPrinterWithParams(v0, 1, param0->unk_BAC, 0, 0, param2, NULL);
 
     Strbuf_Free(v1);
 }

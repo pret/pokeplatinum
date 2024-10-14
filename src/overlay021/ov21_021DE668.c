@@ -26,20 +26,20 @@
 #include "overlay021/struct_ov21_021E6B20.h"
 
 #include "cell_actor.h"
+#include "font.h"
 #include "heap.h"
 #include "message.h"
 #include "pokedex_data_index.h"
 #include "pokemon.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
-#include "unk_02002B7C.h"
+#include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_02012744.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 
 typedef struct {
     UnkStruct_ov21_021D13FC *unk_00;
@@ -430,10 +430,10 @@ void ov21_021DEB8C(Window *param0, int param1, int param2, int param3, u32 param
     MessageLoader *v1 = MessageLoader_Init(0, 26, 697, param2);
 
     MessageLoader_GetStrbuf(v1, 9, v0);
-    sub_0201D78C(param0, 0, v0, 152, 88, 0, param4, NULL);
+    Text_AddPrinterWithParamsAndColor(param0, 0, v0, 152, 88, 0, param4, NULL);
 
     MessageLoader_GetStrbuf(v1, 10, v0);
-    sub_0201D78C(param0, 0, v0, 152, 104, 0, param4, NULL);
+    Text_AddPrinterWithParamsAndColor(param0, 0, v0, 152, 104, 0, param4, NULL);
     Strbuf_Free(v0);
     MessageLoader_Free(v1);
 
@@ -450,7 +450,7 @@ static void ov21_021DEC2C(Window *param0, int param1, int param2, u32 param3)
     MessageLoader *v1 = MessageLoader_Init(0, 26, heightMessageBankIndex, param1);
 
     MessageLoader_GetStrbuf(v1, param2, v0);
-    sub_0201D78C(param0, 0, v0, 184, 88, 0, param3, NULL);
+    Text_AddPrinterWithParamsAndColor(param0, 0, v0, 184, 88, 0, param3, NULL);
     Strbuf_Free(v0);
     MessageLoader_Free(v1);
 }
@@ -463,7 +463,7 @@ static void ov21_021DEC80(Window *param0, int param1, int param2, u32 param3)
     MessageLoader *v1 = MessageLoader_Init(0, 26, weightMessageBankIndex, param1);
 
     MessageLoader_GetStrbuf(v1, param2, v0);
-    sub_0201D78C(param0, 0, v0, 184, 104, 0, param3, NULL);
+    Text_AddPrinterWithParamsAndColor(param0, 0, v0, 184, 104, 0, param3, NULL);
     Strbuf_Free(v0);
     MessageLoader_Free(v1);
 }
@@ -471,10 +471,10 @@ static void ov21_021DEC80(Window *param0, int param1, int param2, u32 param3)
 static void ov21_021DECD4(Window *param0, int param1, int param2, int param3, u32 param4)
 {
     Strbuf *v0 = ov21_021D56BC(param2, GAME_LANGUAGE, param3, param1);
-    u32 v1 = sub_02002EB4(0, v0, 0);
+    u32 v1 = Font_CalcMaxLineWidth(FONT_SYSTEM, v0, 0);
     u32 v2 = (v1 < 240) ? 128 - v1 / 2 : 8;
 
-    sub_0201D78C(param0, 0, v0, v2, 136, 0, param4, NULL);
+    Text_AddPrinterWithParamsAndColor(param0, 0, v0, v2, 136, 0, param4, NULL);
     ov21_021D5600(v0);
 }
 
@@ -789,7 +789,7 @@ Window *ov21_021DF30C(UnkStruct_ov21_021D4C0C *param0, int param1, int param2)
     v1 = ov21_021D566C(param1, GAME_LANGUAGE, param2);
 
     {
-        u32 v2 = sub_02002D7C(2, v1, 0);
+        u32 v2 = Font_CalcStrbufWidth(FONT_SUBSCREEN, v1, 0);
         u32 v3 = (v2 < 136) ? (136 - v2) / 2 : 0;
 
         ov21_021D4E80(param0, v0, v1, v3, 0);

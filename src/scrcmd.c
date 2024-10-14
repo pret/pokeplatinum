@@ -129,6 +129,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
 #include "unk_02001AF4.h"
@@ -138,7 +139,6 @@
 #include "unk_02014D38.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "unk_0201D670.h"
 #include "unk_02025CB0.h"
 #include "unk_020261E4.h"
 #include "unk_0202631C.h"
@@ -2487,7 +2487,7 @@ static BOOL ScrCmd_036(ScriptContext *ctx)
 
     MessageLoader_GetStrbuf(ctx->loader, v7, *v1);
     StringTemplate_Format(*v3, *v2, *v1);
-    PrintStringSimple(ov5_021E1B50(fieldSystem->unk_64), 1, *v2, 0, 0, 0, NULL);
+    Text_AddPrinterWithParams(ov5_021E1B50(fieldSystem->unk_64), 1, *v2, 0, 0, 0, NULL);
 
     return 1;
 }
@@ -2589,14 +2589,14 @@ static BOOL sub_02040670(ScriptContext *ctx)
     }
 
     if (v4 != 0xffff) {
-        PrintString_ForceStop(*v1);
+        Text_RemovePrinter(*v1);
         Player_SetDir(ctx->fieldSystem->playerAvatar, v4);
         *v2 = 0;
         return 1;
     }
 
     if (gCoreSys.pressedKeys & PAD_BUTTON_X) {
-        PrintString_ForceStop(*v1);
+        Text_RemovePrinter(*v1);
         *v2 = 1;
         return 1;
     }

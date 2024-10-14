@@ -23,6 +23,7 @@
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "enums.h"
+#include "font.h"
 #include "game_options.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -34,15 +35,14 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "trainer_info.h"
 #include "unk_02000C88.h"
-#include "unk_02002B7C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
 #include "unk_0200DA60.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0202631C.h"
 #include "unk_0202DAB4.h"
 #include "unk_02033200.h"
@@ -543,8 +543,8 @@ static void ov97_0222C254(UnkStruct_ov97_0222C388 *param0)
     ov97_022376FC(param0->unk_04, 4, 1, 0x7800, 0x0);
     ov97_022376FC(param0->unk_04, 5, 1, 0x7000, 0x4000);
 
-    sub_0201D710();
-    sub_02002E7C(0, 0 * 32, param0->unk_00);
+    Text_ResetAllPrinters();
+    Font_LoadTextPalette(0, 0 * 32, param0->unk_00);
     sub_0200DAA4(param0->unk_04, 0, 1, 1, 0, param0->unk_00);
 
     v0 = Options_Frame(param0->unk_14);
@@ -635,7 +635,7 @@ static void ov97_0222C578(UnkStruct_ov97_0222C388 *param0)
 
     ov97_0223795C(param0->unk_04, &param0->unk_F0, 3, 13, 66);
     param0->unk_F0.unk_08 = 0;
-    ov97_02237868(&param0->unk_F0, 0, sub_02002DF8(0, 1));
+    ov97_02237868(&param0->unk_F0, 0, Font_GetAttribute(FONT_SYSTEM, FONTATTR_MAX_LETTER_HEIGHT));
     ov97_0223795C(param0->unk_04, &param0->unk_F0, -1, -1, 68);
 
     OS_GetMacAddress(v4);
@@ -736,7 +736,7 @@ static int ov97_0222C78C(OverlayManager *param0, int *param1)
         }
         break;
     case UnkEnum_ov97_0222C78C_03:
-        if ((Message_Printing(v0->unk_317C) == 0) && gCoreSys.pressedKeys & PAD_BUTTON_A) {
+        if ((Text_IsPrinterActive(v0->unk_317C) == 0) && gCoreSys.pressedKeys & PAD_BUTTON_A) {
             ov97_02237784(1);
             ov97_02237790(0, UnkEnum_ov97_0222C78C_12, param1, UnkEnum_ov97_0222C78C_13);
         }

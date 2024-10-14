@@ -136,6 +136,7 @@
 #include "pokemon.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "trainer_info.h"
 #include "unk_02002F38.h"
 #include "unk_020041CC.h"
@@ -148,7 +149,6 @@
 #include "unk_0201567C.h"
 #include "unk_02015F84.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 
 static void ov16_0225E4E8(SysTask *param0, void *param1);
 static void ov16_0225E894(SysTask *param0, void *param1);
@@ -2954,7 +2954,7 @@ static void ov16_022604C8(SysTask *param0, void *param1)
         }
     } break;
     case 2:
-        if (Message_Printing(v0->unk_35) == 0) {
+        if (Text_IsPrinterActive(v0->unk_35) == 0) {
             v0->unk_0A = 3;
         }
         break;
@@ -3829,7 +3829,7 @@ static void ov16_022611DC(SysTask *param0, void *param1)
         v0->unk_0E++;
     } break;
     case 10:
-        if (Message_Printing(v0->unk_11) == 0) {
+        if (Text_IsPrinterActive(v0->unk_11) == 0) {
             if (--v0->unk_17 == 0) {
                 v0->unk_0E = v0->unk_12;
             }
@@ -4096,7 +4096,7 @@ static void ov16_022611DC(SysTask *param0, void *param1)
     case 16:
     case 24:
     case 30:
-        if (Message_Printing(v0->unk_11) == 0) {
+        if (Text_IsPrinterActive(v0->unk_11) == 0) {
             if (--v0->unk_17 == 0) {
                 BattleSystem_LoadFightOverlay(v0->unk_00, 1);
                 v0->unk_0E = 8;
@@ -4469,7 +4469,7 @@ static void ov16_022623F0(SysTask *param0, void *param1)
         v0->unk_0E = 1;
         break;
     case 1:
-        if ((Message_Printing(v0->unk_1A) == 0) || (v0->unk_10 == NULL)) {
+        if ((Text_IsPrinterActive(v0->unk_1A) == 0) || (v0->unk_10 == NULL)) {
             {
                 NARC *v9 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
                 NARC *v10 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
@@ -5025,7 +5025,7 @@ static void WaitForBattleMessagePrint(SysTask *task, void *data)
         Battle_SetWaitDial(waitTask->battleSys, NULL);
     }
 
-    if (Message_Printing(waitTask->msgIdx) == FALSE) {
+    if (Text_IsPrinterActive(waitTask->msgIdx) == FALSE) {
         ClearCommand(waitTask->battleSys, waitTask->battler, waitTask->command);
         Heap_FreeToHeap(data);
         SysTask_Done(task);
@@ -5038,7 +5038,7 @@ static void ov16_02262FC0(SysTask *param0, void *param1)
 
     switch (v0->unk_07) {
     case 0:
-        if (Message_Printing(v0->unk_06) == 0) {
+        if (Text_IsPrinterActive(v0->unk_06) == 0) {
             v0->unk_07++;
             v0->unk_08 = 0;
         }

@@ -2,6 +2,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
+
 #include "struct_defs/struct_0203CC84.h"
 
 #include "overlay057/const_ov57_021D0F70.h"
@@ -10,6 +12,7 @@
 #include "assert.h"
 #include "communication_system.h"
 #include "core_sys.h"
+#include "font.h"
 #include "game_overlay.h"
 #include "overlay_manager.h"
 #include "rtc.h"
@@ -17,7 +20,6 @@
 #include "savedata.h"
 #include "sys_task_manager.h"
 #include "unk_02000C88.h"
-#include "unk_02002B7C.h"
 #include "unk_02003B60.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
@@ -73,11 +75,11 @@ void NitroMain(void)
     sub_0202419C();
     InitRTC();
     sub_02000E3C();
-    sub_02002B7C();
 
-    sub_02002BB8(0, 3);
-    sub_02002BB8(1, 3);
-    sub_02002BB8(3, 3);
+    Fonts_Init();
+    Font_InitManager(FONT_SYSTEM, HEAP_ID_APPLICATION);
+    Font_InitManager(FONT_MESSAGE, HEAP_ID_APPLICATION);
+    Font_InitManager(FONT_UNOWN, HEAP_ID_APPLICATION);
 
     Unk_02101D28.unk_10.unk_00 = -1;
     Unk_02101D28.unk_10.unk_08 = SaveData_Init();

@@ -1,13 +1,14 @@
+#include "overlay022/ov22_02259C58.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "message.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "strbuf.h"
-
 #include "struct_defs/struct_020127E8.h"
-#include "touch_screen.h"
 #include "struct_defs/struct_0205AA50.h"
+
+#include "overlay022/funcptr_ov22_02259D78.h"
+#include "overlay022/ov22_02255094.h"
 #include "overlay022/struct_ov22_02259C58.h"
 #include "overlay022/struct_ov22_02259C58_1.h"
 #include "overlay022/struct_ov22_02259C9C.h"
@@ -15,25 +16,22 @@
 #include "overlay022/struct_ov22_0225A0E4.h"
 #include "overlay022/struct_ov22_0225A154.h"
 
-#include "overlay022/funcptr_ov22_02259D78.h"
-
-#include "unk_02002B7C.h"
-#include "unk_02005474.h"
-#include "unk_020093B4.h"
-#include "sprite_resource.h"
-#include "unk_0200A328.h"
-#include "message.h"
-#include "unk_02012744.h"
-#include "unk_02018340.h"
-#include "unk_0201D670.h"
-#include "unk_0201E86C.h"
-#include "unk_0201F834.h"
 #include "cell_actor.h"
 #include "error_handling.h"
+#include "font.h"
+#include "message.h"
+#include "sprite_resource.h"
 #include "strbuf.h"
+#include "text.h"
+#include "touch_screen.h"
+#include "unk_02005474.h"
+#include "unk_020093B4.h"
+#include "unk_0200A328.h"
+#include "unk_02012744.h"
+#include "unk_02018340.h"
+#include "unk_0201E86C.h"
+#include "unk_0201F834.h"
 #include "unk_02023FCC.h"
-#include "overlay022/ov22_02255094.h"
-#include "overlay022/ov22_02259C58.h"
 
 static void ov22_02259D94(UnkStruct_ov22_02259C58 * param0, void * param1);
 static void ov22_0225A0E4(UnkStruct_ov22_02259C58 * param0, int param1, UnkStruct_ov22_0225A0E4 * param2, int param3, int param4, int param5, int param6);
@@ -183,7 +181,7 @@ void ov22_02259DBC (UnkStruct_ov22_02259D2C * param0, UnkStruct_ov22_0225A0E4 * 
     ov22_0225A0E4(&param0->unk_00[3], 3, param1, 136, 144, 40, 42);
     ov22_0225A200(param0->unk_6C, 3, 136, 144 + 12, 40, 42 - 8);
 
-    sub_02002BB8(2, 14);
+    Font_InitManager(FONT_SUBSCREEN, 14);
 
     v0 = ov22_0225A348(param1, 26, 385, 0, 72 / 8, 42 / 8);
 
@@ -191,7 +189,7 @@ void ov22_02259DBC (UnkStruct_ov22_02259D2C * param0, UnkStruct_ov22_0225A0E4 * 
     ov22_0225A200(param0->unk_6C, 4, 184, 144 + 12, 72, 42 - 8);
 
     ov22_0225A3D0(v0);
-    sub_02002C60(2);
+    Font_Free(FONT_SUBSCREEN);
 
     param0->unk_60 = 1;
 
@@ -522,8 +520,8 @@ static Window * ov22_0225A348 (UnkStruct_ov22_0225A0E4 * param0, u32 param1, u32
     BGL_AddFramelessWindow(param0->unk_40, v2, param4, param5, 0, 0);
 
     {
-        u32 v3 = sub_02002EEC(2, v1, 0, param4 * 8);
-        sub_0201D78C(v2, 2, v1, v3, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((3 & 0xff) << 0)), NULL);
+        u32 v3 = Font_CalcCenterAlignment(FONT_SUBSCREEN, v1, 0, param4 * 8);
+        Text_AddPrinterWithParamsAndColor(v2, 2, v1, v3, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((3 & 0xff) << 0)), NULL);
     }
 
     Strbuf_Free(v1);

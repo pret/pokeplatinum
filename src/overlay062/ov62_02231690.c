@@ -1,29 +1,29 @@
-#include "enums.h"
+#include "overlay062/ov62_02231690.h"
 
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "message.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "sys_task_manager.h"
-#include "strbuf.h"
 #include "struct_decls/struct_0202F298_decl.h"
 #include "struct_decls/struct_0202F41C_decl.h"
-
-#include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/sentence.h"
-#include "touch_screen.h"
+#include "struct_defs/sprite_template.h"
+#include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_02030A80.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0208B878.h"
 #include "struct_defs/struct_0208C06C.h"
+
+#include "overlay061/ov61_0222BC4C.h"
 #include "overlay061/struct_ov61_0222BE20.h"
+#include "overlay062/ov62_0222F2C0.h"
+#include "overlay062/ov62_022300D8.h"
+#include "overlay062/ov62_0224112C.h"
+#include "overlay062/ov62_02248408.h"
 #include "overlay062/struct_ov62_022312B0.h"
 #include "overlay062/struct_ov62_022323B8.h"
 #include "overlay062/struct_ov62_02233310.h"
@@ -34,38 +34,35 @@
 #include "overlay062/struct_ov62_022349A8.h"
 #include "overlay062/struct_ov62_0223CAA4.h"
 #include "overlay062/struct_ov62_02248CDC.h"
-#include "struct_defs/sprite_template.h"
 
-#include "unk_02002B7C.h"
+#include "core_sys.h"
+#include "enums.h"
+#include "font.h"
+#include "game_records.h"
+#include "gx_layers.h"
+#include "heap.h"
+#include "message.h"
+#include "narc.h"
+#include "pokemon_icon.h"
+#include "savedata_misc.h"
+#include "strbuf.h"
+#include "string_template.h"
+#include "sys_task.h"
+#include "sys_task_manager.h"
+#include "text.h"
+#include "touch_screen.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
-#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
-#include "message.h"
-#include "string_template.h"
 #include "unk_0200C6E4.h"
-#include "sys_task.h"
 #include "unk_02012744.h"
 #include "unk_02014A84.h"
-#include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
-#include "gx_layers.h"
-#include "strbuf.h"
-#include "savedata_misc.h"
-#include "game_records.h"
 #include "unk_0202F1D4.h"
 #include "unk_02030A80.h"
 #include "unk_020393C8.h"
-#include "pokemon_icon.h"
 #include "unk_0208B284.h"
-#include "overlay061/ov61_0222BC4C.h"
-#include "overlay062/ov62_0222F2C0.h"
-#include "overlay062/ov62_022300D8.h"
-#include "overlay062/ov62_02231690.h"
-#include "overlay062/ov62_0224112C.h"
-#include "overlay062/ov62_02248408.h"
 
 static void ov62_022349E4(Strbuf *param0, int param1);
 
@@ -200,7 +197,7 @@ void ov62_0223197C (UnkStruct_0208C06C * param0, int param1)
     v0 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
 
     BGL_FillWindow(v1, 0xCC);
-    sub_0201D78C(v1, 0, v0, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((12 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(v1, 0, v0, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((12 & 0xff) << 0))), NULL);
     sub_0201A9A4(v1);
     Strbuf_Free(v0);
 }
@@ -249,7 +246,7 @@ void ov62_02231AAC (UnkStruct_0208C06C * param0, int param1)
     v0 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
 
     BGL_FillWindow(v1, 0xCC);
-    sub_0201D78C(v1, 0, v0, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((12 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(v1, 0, v0, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((12 & 0xff) << 0))), NULL);
     sub_0201A9A4(v1);
     Strbuf_Free(v0);
 }
@@ -266,7 +263,7 @@ void ov62_02231B3C (UnkStruct_0208C06C * param0, int param1)
     v0 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
 
     BGL_FillWindow(v1, 0xCC);
-    sub_0201D78C(v1, 0, v0, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((12 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(v1, 0, v0, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((12 & 0xff) << 0))), NULL);
     sub_0201A9A4(v1);
     Strbuf_Free(v0);
 }
@@ -312,7 +309,7 @@ void ov62_02231BC4 (UnkStruct_0208C06C * param0, int param1)
     v0 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
 
     BGL_FillWindow(v1, 0xCC);
-    sub_0201D78C(v1, 0, v0, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((12 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(v1, 0, v0, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((12 & 0xff) << 0))), NULL);
     sub_0201A9A4(v1);
     Strbuf_Free(v0);
 }
@@ -354,6 +351,7 @@ const int Unk_ov62_022489F8[] = {
     0x14
 };
 
+// clang-format off
 asm static void ov62_02231C78 (UnkStruct_ov62_022323B8 * param0, UnkStruct_0208C06C * param1)
 {
     push {r3, r4, r5, r6, r7, lr}
@@ -442,7 +440,7 @@ asm static void ov62_02231C78 (UnkStruct_ov62_022323B8 * param0, UnkStruct_0208C
     str r0, [sp, #0xc]
     add r0, r4, #0
     add r2, r6, #0
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
     add r0, r4, #0
     bl sub_0201A9A4
     mov r0, #4
@@ -518,7 +516,7 @@ asm static void ov62_02231C78 (UnkStruct_ov62_022323B8 * param0, UnkStruct_0208C
     str r0, [sp, #8]
     add r0, r5, #0
     str r1, [sp, #0xc]
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
     add r0, r5, #0
     bl sub_0201A9A4
     ldr r0, [sp, #0x2c]
@@ -573,7 +571,7 @@ asm static void ov62_02231C78 (UnkStruct_ov62_022323B8 * param0, UnkStruct_0208C
     str r0, [sp, #8]
     add r0, r5, #0
     str r1, [sp, #0xc]
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
     add r0, r5, #0
     bl sub_0201A9A4
     ldr r0, [sp, #0x38]
@@ -606,7 +604,7 @@ asm static void ov62_02231C78 (UnkStruct_ov62_022323B8 * param0, UnkStruct_0208C
     str r0, [sp, #8]
     add r0, r5, #0
     str r1, [sp, #0xc]
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
     add r0, r5, #0
     bl sub_0201A9A4
     add r0, r6, #0
@@ -638,7 +636,7 @@ asm static void ov62_02231C78 (UnkStruct_ov62_022323B8 * param0, UnkStruct_0208C
     add r0, r5, #0
     add r3, r1, #0
     str r1, [sp, #0xc]
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
     add r0, r5, #0
     bl sub_0201A9A4
     add r0, r6, #0
@@ -671,7 +669,7 @@ asm static void ov62_02231C78 (UnkStruct_ov62_022323B8 * param0, UnkStruct_0208C
     add r0, r5, #0
     add r3, r1, #0
     str r1, [sp, #0xc]
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
     add r0, r5, #0
     bl sub_0201A9A4
     ldr r0, [sp, #0x44]
@@ -714,7 +712,7 @@ asm static void ov62_02231C78 (UnkStruct_ov62_022323B8 * param0, UnkStruct_0208C
     ldr r0, [sp, #0x18]
     mov r3, #4
     str r1, [sp, #0xc]
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
     ldr r0, [sp, #0x18]
     bl sub_0201A9A4
     add r0, r5, #0
@@ -748,7 +746,7 @@ asm static void ov62_02231C78 (UnkStruct_ov62_022323B8 * param0, UnkStruct_0208C
     str r0, [sp, #8]
     add r0, r5, #0
     str r1, [sp, #0xc]
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
     add r0, r5, #0
     bl sub_0201A9A4
     add r0, r6, #0
@@ -780,7 +778,7 @@ asm static void ov62_02231C78 (UnkStruct_ov62_022323B8 * param0, UnkStruct_0208C
     ldr r0, [sp, #0x14]
     add r3, r1, #0
     str r1, [sp, #0xc]
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
     ldr r0, [sp, #0x14]
     bl sub_0201A9A4
     add r0, r5, #0
@@ -790,6 +788,7 @@ asm static void ov62_02231C78 (UnkStruct_ov62_022323B8 * param0, UnkStruct_0208C
     add sp, #0xd8
     pop {r3, r4, r5, r6, r7, pc}
 }
+// clang-format on
 
 static void ov62_02232080 (UnkStruct_ov62_022323B8 * param0, UnkStruct_0208C06C * param1)
 {
@@ -1053,7 +1052,7 @@ static void ov62_022323CC (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C 
         StringTemplate_Free(v2);
     }
 
-    sub_0201D78C(v3, 0, v0, 0, 16, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(v3, 0, v0, 0, 16, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     sub_0201A9A4(v3);
     Strbuf_Free(v0);
 }
@@ -1087,7 +1086,7 @@ void ov62_022324A0 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * param
     for (v0 = 0; v0 < param0->unk_10; v0++) {
         v2 = MessageLoader_GetNewStrbuf(param0->unk_34, param2->unk_00[v0].unk_00);
 
-        sub_0201D78C(v1, 0, v2, 0, (param2->unk_08 * 16) * v0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(v1, 0, v2, 0, (param2->unk_08 * 16) * v0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         Strbuf_Free(v2);
 
         if (param2->unk_00[v0].unk_00 == 16) {
@@ -1135,7 +1134,7 @@ void ov62_02232594 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * param
     if (param3->unk_00) {
         for (v0 = 0; v0 < param0->unk_10; v0++) {
             v2 = MessageLoader_GetNewStrbuf(param0->unk_34, param3->unk_00[v0].unk_00);
-            sub_0201D78C(v1, 0, v2, 0, (param3->unk_08 * 16) * v0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+            Text_AddPrinterWithParamsAndColor(v1, 0, v2, 0, (param3->unk_08 * 16) * v0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
             Strbuf_Free(v2);
         }
     } else {
@@ -1154,11 +1153,11 @@ void ov62_02232594 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * param
             Strbuf_CopyChars(v4, param1->unk_8B4.unk_1D58[v0]->unk_00.unk_00);
             ov62_022349A8(param1, v4);
 
-            v7 = sub_02002D7C(0, v5, 0);
+            v7 = Font_CalcStrbufWidth(FONT_SYSTEM, v5, 0);
 
-            sub_0201D78C(v1, 0, v5, 16 - v7, 4 + (v0 * 24), 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-            sub_0201D78C(v1, 0, v6, 16, 4 + (v0 * 24), 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-            sub_0201D78C(v1, 0, v4, 22, 4 + (v0 * 24), 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+            Text_AddPrinterWithParamsAndColor(v1, 0, v5, 16 - v7, 4 + (v0 * 24), 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+            Text_AddPrinterWithParamsAndColor(v1, 0, v6, 16, 4 + (v0 * 24), 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+            Text_AddPrinterWithParamsAndColor(v1, 0, v4, 22, 4 + (v0 * 24), 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
             Strbuf_Free(v4);
             Strbuf_Free(v5);
             Strbuf_Free(v6);
@@ -1176,6 +1175,7 @@ const int Unk_ov62_022488F8[] = {
     0x14
 };
 
+// clang-format off
 asm void ov62_02232778 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * param1, MessageLoader * param2, const UnkStruct_ov62_02248CDC * param3, int param4, int param5, Strbuf *param6)
 {
     push {r4, r5, r6, r7, lr}
@@ -1494,7 +1494,7 @@ asm void ov62_02232778 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * p
     str r0, [sp, #0xc]
     ldr r0, [sp, #0x50]
     add r3, r1, #0
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
     ldr r0, [r4, #0x28]
     ldr r0, [r0, #8]
     cmp r0, #2
@@ -1532,7 +1532,7 @@ asm void ov62_02232778 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * p
     mov r0, #0
     str r0, [sp, #0xc]
     ldr r0, [sp, #0x50]
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
  _02232A56:
     ldr r0, [sp, #0x4c]
     bl Strbuf_Free
@@ -1567,6 +1567,7 @@ asm void ov62_02232778 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * p
     pop {r4, r5, r6, r7, pc}
     nop
 }
+// clang-format on
 
 void ov62_02232AAC (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * param1, const UnkStruct_ov62_02248CDC * param2, Strbuf *param3[20][2])
 {
@@ -1598,8 +1599,8 @@ void ov62_02232AAC (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * param
     BGL_FillWindow(v1, 0x0);
 
     for (v0 = 0; v0 < param0->unk_10; v0++) {
-        sub_0201D78C(v1, 0, param3[v0][0], 0, ((param2->unk_08 * 8) * v0) + 4, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-        sub_0201D78C(v1, 0, param3[v0][1], 136, ((param2->unk_08 * 8) * v0) + 4, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(v1, 0, param3[v0][0], 0, ((param2->unk_08 * 8) * v0) + 4, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(v1, 0, param3[v0][1], 136, ((param2->unk_08 * 8) * v0) + 4, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
     sub_0201A9A4(v1);
@@ -1638,8 +1639,8 @@ int ov62_02232BB4 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * param1
                 continue;
             }
 
-            sub_0201D78C(v2, 0, param2[v4 + v3][0], 0, ((param0->unk_28->unk_08 * 8) * v3) + 4, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-            sub_0201D78C(v2, 0, param2[v4 + v3][1], 136, ((param0->unk_28->unk_08 * 8) * v3) + 4, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+            Text_AddPrinterWithParamsAndColor(v2, 0, param2[v4 + v3][0], 0, ((param0->unk_28->unk_08 * 8) * v3) + 4, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+            Text_AddPrinterWithParamsAndColor(v2, 0, param2[v4 + v3][1], 136, ((param0->unk_28->unk_08 * 8) * v3) + 4, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         }
     }
     sub_0201A954(v2);
@@ -1655,6 +1656,7 @@ const int Unk_ov62_02248904[] = {
     0x14
 };
 
+// clang-format off
 asm int ov62_02232C78 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * param1, int param2, int param3, Strbuf *param4)
 {
     push {r4, r5, r6, r7, lr}
@@ -1936,7 +1938,7 @@ asm int ov62_02232C78 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * pa
     str r0, [sp, #0xc]
     ldr r0, [sp, #0x58]
     add r3, r1, #0
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
     ldr r0, [r4, #0x28]
     ldr r0, [r0, #8]
     cmp r0, #2
@@ -1974,7 +1976,7 @@ asm int ov62_02232C78 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * pa
     mov r0, #0
     str r0, [sp, #0xc]
     ldr r0, [sp, #0x58]
-    bl sub_0201D78C
+    bl Text_AddPrinterWithParamsAndColor
  _02232F06:
     ldr r0, [sp, #0x44]
     add r0, r0, #1
@@ -2015,8 +2017,7 @@ asm int ov62_02232C78 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * pa
     add sp, #0xe8
     pop {r4, r5, r6, r7, pc}
 }
-
-
+// clang-format on
 
 int ov62_02232F68 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * param1)
 {
@@ -2058,7 +2059,7 @@ int ov62_02232F68 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * param1
 
         for (v0 = v5; v0 < v6; v0++) {
             v3 = MessageLoader_GetNewStrbuf(param0->unk_34, param0->unk_28->unk_00[v0].unk_00);
-            sub_0201D78C(v2, 0, v3, 0, (param0->unk_28->unk_08 * 16) * v4, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+            Text_AddPrinterWithParamsAndColor(v2, 0, v3, 0, (param0->unk_28->unk_08 * 16) * v4, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
             Strbuf_Free(v3);
             v4++;
         }
@@ -2115,11 +2116,11 @@ int ov62_02233064 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * param1
             Strbuf_CopyChars(v7, param1->unk_8B4.unk_1D58[v5 + v4]->unk_00.unk_00);
             ov62_022349A8(param1, v7);
 
-            v10 = sub_02002D7C(0, v8, 0);
+            v10 = Font_CalcStrbufWidth(FONT_SYSTEM, v8, 0);
 
-            sub_0201D78C(v2, 0, v8, 16 - v10, 4 + (v4 * 24), 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-            sub_0201D78C(v2, 0, v9, 16, 4 + (v4 * 24), 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-            sub_0201D78C(v2, 0, v7, 22, 4 + (v4 * 24), 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+            Text_AddPrinterWithParamsAndColor(v2, 0, v8, 16 - v10, 4 + (v4 * 24), 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+            Text_AddPrinterWithParamsAndColor(v2, 0, v9, 16, 4 + (v4 * 24), 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+            Text_AddPrinterWithParamsAndColor(v2, 0, v7, 22, 4 + (v4 * 24), 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
             Strbuf_Free(v7);
             Strbuf_Free(v8);
             Strbuf_Free(v9);
@@ -2823,7 +2824,7 @@ static void ov62_02233B50 (UnkStruct_ov62_02233F74 * param0, UnkStruct_0208C06C 
             Window_Init(v2);
             BGL_AddWindow(param1->unk_14.unk_10, v2, 2, v4[v0][0], v4[v0][1], v4[v0][2], v4[v0][3], 14, v1);
             BGL_FillWindow(v2, 0x0);
-            sub_0201D78C(v2, 0, v3, ov62_0223429C(v2, v3), 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+            Text_AddPrinterWithParamsAndColor(v2, 0, v3, ov62_0223429C(v2, v3), 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
             sub_0201A9A4(v2);
 
             v1 += (v4[v0][2] * v4[v0][3]);
@@ -2852,7 +2853,7 @@ static void ov62_02233B50 (UnkStruct_ov62_02233F74 * param0, UnkStruct_0208C06C 
         StringTemplate_SetStrbuf(v9, 0, v6, 0, 1, GAME_LANGUAGE);
         StringTemplate_Format(v9, v8, v7);
         BGL_FillWindow(v10, 0x0);
-        sub_0201D78C(v10, 0, v8, ov62_0223429C(v10, v8), 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(v10, 0, v8, ov62_0223429C(v10, v8), 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         sub_0201A9A4(v10);
         Strbuf_Free(v6);
         Strbuf_Free(v7);
@@ -2866,7 +2867,7 @@ static void ov62_02233B50 (UnkStruct_ov62_02233F74 * param0, UnkStruct_0208C06C 
             v8 = MessageLoader_GetNewStrbuf(param1->unk_14.unk_34, 132 + v12);
 
             BGL_FillWindow(v10, 0x0);
-            sub_0201D78C(v10, 0, v8, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+            Text_AddPrinterWithParamsAndColor(v10, 0, v8, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
             sub_0201A9A4(v10);
             Strbuf_Free(v8);
             StringTemplate_ClearArgs(v9);
@@ -2885,7 +2886,7 @@ static void ov62_02233B50 (UnkStruct_ov62_02233F74 * param0, UnkStruct_0208C06C 
                 StringTemplate_SetStrbuf(v9, 0, v6, 0, 1, GAME_LANGUAGE);
                 StringTemplate_Format(v9, v8, v7);
                 BGL_FillWindow(v10, 0x0);
-                sub_0201D78C(v10, 0, v8, ov62_0223429C(v10, v8), 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+                Text_AddPrinterWithParamsAndColor(v10, 0, v8, ov62_0223429C(v10, v8), 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
                 sub_0201A9A4(v10);
                 Strbuf_Free(v6);
                 Strbuf_Free(v7);
@@ -2933,7 +2934,7 @@ static void ov62_02233B50 (UnkStruct_ov62_02233F74 * param0, UnkStruct_0208C06C 
             StringTemplate_SetStrbuf(v9, 0, v19, 0, 1, GAME_LANGUAGE);
             StringTemplate_Format(v9, v8, v7);
             BGL_FillWindow(v10, 0x0);
-            sub_0201D78C(v10, 0, v8, ov62_0223429C(v10, v8), 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+            Text_AddPrinterWithParamsAndColor(v10, 0, v8, ov62_0223429C(v10, v8), 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
             sub_0201A9A4(v10);
             Strbuf_Free(v17);
             Strbuf_Free(v18);
@@ -3179,7 +3180,7 @@ void ov62_0223427C (UnkStruct_ov62_02233F74 * param0, int param1)
 
 int ov62_0223429C (Window * param0, Strbuf *param1)
 {
-    int v0 = sub_02002D7C(0, param1, 0);
+    int v0 = Font_CalcStrbufWidth(FONT_SYSTEM, param1, 0);
     int v1 = (sub_0201C294(param0) * 8 - v0) / 2;
 
     return v1;
@@ -3729,7 +3730,7 @@ void ov62_022349A8 (UnkStruct_0208C06C * param0, Strbuf *param1)
 
     v1 = Strbuf_Init(v2, v0->unk_144);
 
-    if (sub_02002DB4(0, param1, v1) == 0) {
+    if (Font_AreAllCharsValid(FONT_SYSTEM, param1, v1) == 0) {
         ov62_022349E4(param1, v0->unk_144);
     }
 

@@ -23,13 +23,13 @@
 #include "heap.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "trainer_info.h"
 #include "unk_02002F38.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
 #include "unk_0200F174.h"
-#include "unk_0201D670.h"
 #include "unk_0202419C.h"
 
 static void ov100_021D3084(UnkStruct_ov100_021D3084 *param0);
@@ -440,7 +440,7 @@ BOOL ov100_021D39E4(void *param0)
         }
         break;
     case 3:
-        if (Message_Printing(v0->unk_1D28->unk_40)) {
+        if (Text_IsPrinterActive(v0->unk_1D28->unk_40)) {
             break;
         }
 
@@ -448,7 +448,7 @@ BOOL ov100_021D39E4(void *param0)
         ov100_021D46C8(v0->unk_1D28, v0->unk_1D2C, 16);
         v0->unk_00++;
     case 4:
-        if (Message_Printing(v0->unk_1D28->unk_40)) {
+        if (Text_IsPrinterActive(v0->unk_1D28->unk_40)) {
             break;
         }
 
@@ -629,7 +629,7 @@ BOOL ov100_021D39E4(void *param0)
         }
         break;
     case 14:
-        if (Message_Printing(v0->unk_1D28->unk_40)) {
+        if (Text_IsPrinterActive(v0->unk_1D28->unk_40)) {
             break;
         }
 
@@ -639,7 +639,7 @@ BOOL ov100_021D39E4(void *param0)
         v0->unk_00++;
         break;
     case 15:
-        if (Message_Printing(v0->unk_1D28->unk_40)) {
+        if (Text_IsPrinterActive(v0->unk_1D28->unk_40)) {
             break;
         }
 
