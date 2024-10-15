@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_0207C908_H
-#define POKEPLATINUM_UNK_0207C908_H
+#ifndef POKEPLATINUM_BATTLE_ICON_H
+#define POKEPLATINUM_BATTLE_ICON_H
 
 #include <nnsys.h>
 
@@ -33,4 +33,4 @@ void BattleIcon_MakeMoveTypeSpriteTiles(SpriteRenderer *param0, SpriteGfxHandler
 void sub_0207CAF8(SpriteGfxHandler *param0, u32 param1);
 void sub_0207CB00(CellActorData *param0);
 
-#endif // POKEPLATINUM_UNK_0207C908_H
+#endif // POKEPLATINUM_BATTLE_ICON_H
