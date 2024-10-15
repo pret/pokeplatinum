@@ -44,7 +44,10 @@ static const SpriteTemplate Unk_ov16_022700CC[] = {
     },
 };
 
-__attribute__((aligned(4))) static const u16 Unk_ov16_0227009C[] = {
+/*
+* Maps a battle platform ID to the NARC member in pl_batt_obj containing a sprite for it.
+*/
+__attribute__((aligned(4))) static const u16 ov16_BattlePlatformIndexToNARCMember[] = {
     0x87,
     0x91,
     0x7F,
@@ -98,7 +101,11 @@ __attribute__((aligned(4))) static const u16 Unk_ov16_0227006C[] = {
     0xB0
 };
 
-__attribute__((aligned(4))) static const u16 Unk_ov16_02270134[][3] = {
+/*
+* Maps a battle platform ID to the NARC member in pl_batt_obj containing a palette for it.
+* Each battle platform has 3 palette options for different times of day (?)
+*/
+__attribute__((aligned(4))) static const u16 ov16_BattlePlatformIndexToPaletteMember[][3] = {
     0x7,
     0x8,
     0x9,
@@ -189,7 +196,7 @@ void ov16_02268520(UnkStruct_ov16_02268520 *param0)
     v2 = &Unk_ov16_022700CC[param0->unk_08];
 
     if (param0->unk_08 == 0) {
-        v3 = Unk_ov16_0227009C[param0->unk_09];
+        v3 = ov16_BattlePlatformIndexToNARCMember[param0->unk_09];
         v4 = 20013;
         v5 = 128;
         v6 = 20005;
@@ -205,8 +212,8 @@ void ov16_02268520(UnkStruct_ov16_02268520 *param0)
     }
 
     SpriteRenderer_LoadCharResObjFromOpenNarc(v0, v1, v10, v3, 1, NNS_G2D_VRAM_TYPE_2DMAIN, v4);
-    SpriteRenderer_LoadPalette(BattleSystem_PaletteSys(param0->unk_04), 2, v0, v1, v10, Unk_ov16_02270134[param0->unk_09][v9], 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20009);
-    PaletteSys_LoadPalette(BattleSystem_PaletteSys(param0->unk_04), 27, Unk_ov16_02270134[param0->unk_09][v9], 5, 0, 0x20, 0x7 * 0x10);
+    SpriteRenderer_LoadPalette(BattleSystem_PaletteSys(param0->unk_04), 2, v0, v1, v10, ov16_BattlePlatformIndexToPaletteMember[param0->unk_09][v9], 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20009);
+    PaletteSys_LoadPalette(BattleSystem_PaletteSys(param0->unk_04), 27, ov16_BattlePlatformIndexToPaletteMember[param0->unk_09][v9], 5, 0, 0x20, 0x7 * 0x10);
     SpriteRenderer_LoadCellResObjFromOpenNarc(v0, v1, v10, v5, 1, v6);
     SpriteRenderer_LoadAnimResObjFromOpenNarc(v0, v1, v10, v7, 1, v8);
     NARC_dtor(v10);
