@@ -4,7 +4,7 @@ subdir('sprites')
 
 pl_batt_order = files('order.txt')
 
-pl_batt_obj_narc = custom_target('pl_batt_obj.narc',
+nitrofs_files += custom_target('pl_batt_obj.narc',
     output: 'pl_batt_obj.narc',
     input: [
         pl_batt_order,
