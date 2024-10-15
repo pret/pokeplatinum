@@ -553,7 +553,7 @@
         "invert_size": true
     },
     {
-        "target": "pl_batt_obj_00000071.pal",
+        "target": "healthbar_normal.pal",
         "bitdepth": 4,
         "pad": false,
         "pcmp": true,
@@ -602,7 +602,7 @@
         "invert_size": true
     },
     {
-        "target": "pl_batt_obj_00000081.pal",
+        "target": "healthbar_safari.pal",
         "bitdepth": 4,
         "pad": false,
         "pcmp": true,
@@ -749,7 +749,7 @@
         "invert_size": true
     },
     {
-        "target": "pl_batt_obj_00000110.pal",
+        "target": "party_gauge.pal",
         "bitdepth": 4,
         "pad": false,
         "pcmp": true,

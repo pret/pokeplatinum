@@ -70,14 +70,14 @@ pl_batt_obj_palettes = files(
     'pl_batt_obj_00000068.pal',
     'pl_batt_obj_00000069.pal',
     'pl_batt_obj_00000070.pal',
-    'pl_batt_obj_00000071.pal',
+    'healthbar_normal.pal',
     'pl_batt_obj_00000072.pal',
     'pl_batt_obj_00000073.pal',
     'icon_palettes.pal',
     'pl_batt_obj_00000075.pal',
     'pl_batt_obj_00000079.pal',
     'pl_batt_obj_00000080.pal',
-    'pl_batt_obj_00000081.pal',
+    'healthbar_safari.pal',
     'pl_batt_obj_00000082.pal',
     'pl_batt_obj_00000083.pal',
     'pl_batt_obj_00000084.pal',
@@ -106,7 +106,7 @@ pl_batt_obj_palettes = files(
     'pl_batt_obj_00000107.pal',
     'pl_batt_obj_00000108.pal',
     'pl_batt_obj_00000109.pal',
-    'pl_batt_obj_00000110.pal',
+    'party_gauge.pal',
     'pl_batt_obj_00000111.pal'
 )
 

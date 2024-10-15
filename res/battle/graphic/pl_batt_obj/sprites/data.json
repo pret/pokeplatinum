@@ -330,42 +330,42 @@
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000188.png",
+        "target": "healthbar_solo_enemy.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64,
         "version101": true
     },
     {
-        "target": "pl_batt_obj_00000191.png",
+        "target": "healthbar_solo_player.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64,
         "version101": true
     },
     {
-        "target": "pl_batt_obj_00000194.png",
+        "target": "healthbar_enemy_slot_1.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64,
         "version101": true
     },
     {
-        "target": "pl_batt_obj_00000197.png",
+        "target": "healthbar_enemy_slot_2.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64,
         "version101": true
     },
     {
-        "target": "pl_batt_obj_00000200.png",
+        "target": "healthbar_player_slot_1.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64,
         "version101": true
     },
     {
-        "target": "pl_batt_obj_00000203.png",
+        "target": "healthbar_player_slot_2.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64,
@@ -661,121 +661,121 @@
         "vram": true
     },
     {
-        "target": "pl_batt_obj_00000285.png",
+        "target": "pokeball_throw.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000288.png",
+        "target": "master_ball_throw.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000291.png",
+        "target": "ultra_ball_throw.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000294.png",
+        "target": "great_ball_throw.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000297.png",
+        "target": "safari_ball_throw.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000300.png",
+        "target": "net_ball_throw.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000303.png",
+        "target": "dive_ball_throw.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000306.png",
+        "target": "nest_ball_throw.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000309.png",
+        "target": "repeat_ball_throw.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000312.png",
+        "target": "timer_ball_throw.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000315.png",
+        "target": "luxury_ball_throw.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000318.png",
+        "target": "premier_ball_throw.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000321.png",
+        "target": "quick_ball_throw.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000324.png",
+        "target": "dusk_ball_throw.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000327.png",
+        "target": "heal_ball_throw.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000330.png",
+        "target": "cherish_ball_throw.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000333.png",
+        "target": "park_ball_throw.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000336.png",
+        "target": "bait_throw.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000339.png",
+        "target": "mud_throw.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000340.png",
+        "target": "party_gauge.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
