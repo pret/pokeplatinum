@@ -20,7 +20,7 @@
 #include "unk_0200C6E4.h"
 #include "unk_02018340.h"
 #include "unk_0201DBEC.h"
-#include "unk_0207C908.h"
+#include "battle/battle_icon.h"
 #include "unk_020920C0.h"
 #include "unk_020923C0.h"
 
@@ -430,8 +430,8 @@ void sub_0208F16C(PokemonSummaryApp *param0)
 
 static void sub_0208F194(PokemonSummaryApp *param0, u8 param1, u8 param2, u8 param3)
 {
-    sub_0200D948(param0->renderer, param0->gfxHandler, BattleObj_GetNARCIndex(), BattleObj_TypeIDToNARCMember(param3), 1, param2);
-    sub_0200D414(param0->unk_41C[param1], BattleObj_TypeIDToPaletteIndex(param3) + 3);
+    sub_0200D948(param0->renderer, param0->gfxHandler, BattleIcon_GetNARCIndex(), BattleIcon_TypeIndexToNARCMember(param3), 1, param2);
+    sub_0200D414(param0->unk_41C[param1], BattleIcon_TypeIndexToPaletteIndex(param3) + 3);
 }
 
 static void sub_0208F1E4(PokemonSummaryApp *param0, u8 *param1, s16 *param2, s16 *param3)
@@ -465,8 +465,8 @@ void sub_0208F294(PokemonSummaryApp *param0, u32 param1)
 {
     u32 v0 = MoveTable_LoadParam(param1, MOVEATTRIBUTE_CLASS);
 
-    sub_0200D948(param0->renderer, param0->gfxHandler, BattleObj_GetMoveTypeNARCIndex(), BattleObj_MoveTypeIDToNARCMember(v0), 1, 10);
-    sub_0200D414(param0->unk_41C[18], BattleObj_MoveTypeIDToPaletteIndex(v0) + 3);
+    sub_0200D948(param0->renderer, param0->gfxHandler, BattleIcon_GetMoveTypeNARCIndex(), BattleIcon_MoveTypeIndexToNARCMember(v0), 1, 10);
+    sub_0200D414(param0->unk_41C[18], BattleIcon_MoveTypeIndexToPaletteIndex(v0) + 3);
 }
 
 void sub_0208F2E8(PokemonSummaryApp *param0)

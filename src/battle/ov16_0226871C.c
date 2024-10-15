@@ -63,7 +63,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201E86C.h"
-#include "unk_0207C908.h"
+#include "battle/battle_icon.h"
 #include "unk_0208C098.h"
 
 typedef struct {
@@ -1232,7 +1232,7 @@ void ov16_02268A88(UnkStruct_ov16_02268A14 *param0)
     sub_0207C9B0(BattleSystem_PaletteSys(param0->unk_00), 3, v1, v2, NNS_G2D_VRAM_TYPE_2DSUB, 20020);
 
     for (v4 = 0; v4 < 4; v4++) {
-        BattleObj_MakeTypeSpriteTiles(v1, v2, NNS_G2D_VRAM_TYPE_2DSUB, 0, 20025 + v4);
+        BattleIcon_MakeTypeSpriteTiles(v1, v2, NNS_G2D_VRAM_TYPE_2DSUB, 0, 20025 + v4);
     }
 
     if (BattleSystem_BattleType(param0->unk_00) & 0x400) {
@@ -2804,7 +2804,7 @@ void ov16_0226AC98(UnkStruct_ov16_02268A14 *param0, int param1, const UnkStruct_
     for (v4 = 0; v4 < 4; v4++) {
         if ((param2->unk_00[v4] != v0->unk_00.unk_00[v4]) && (param2->unk_00[v4] != 0)) {
             v5 = MoveTable_LoadParam(param2->unk_00[v4], MOVEATTRIBUTE_TYPE);
-            v1 = sub_02006F50(BattleObj_GetNARCIndex(), BattleObj_TypeIDToNARCMember(v5), 1, &v2, 5);
+            v1 = sub_02006F50(BattleIcon_GetNARCIndex(), BattleIcon_TypeIndexToNARCMember(v5), 1, &v2, 5);
             MI_CpuCopy32(v2->pRawData, v0->unk_18[v4], v3);
             Heap_FreeToHeap(v1);
         }

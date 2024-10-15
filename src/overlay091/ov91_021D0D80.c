@@ -53,7 +53,7 @@
 #include "unk_02017728.h"
 #include "unk_02018340.h"
 #include "unk_0201DBEC.h"
-#include "unk_0207C908.h"
+#include "battle/battle_icon.h"
 #include "unk_0208C098.h"
 #include "unk_02094EDC.h"
 
@@ -1352,12 +1352,12 @@ static void ov91_021D2110(UnkStruct_ov91_021D0ED8 *param0, NARC *param1)
     SpriteRenderer_LoadCharResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 2, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 47274);
 
     for (v0 = 47276; v0 <= 47282; v0++) {
-        BattleObj_MakeTypeSpriteTiles(param0->unk_110, param0->unk_114, NNS_G2D_VRAM_TYPE_2DMAIN, 0, v0);
+        BattleIcon_MakeTypeSpriteTiles(param0->unk_110, param0->unk_114, NNS_G2D_VRAM_TYPE_2DMAIN, 0, v0);
     }
 
-    BattleObj_MakeMoveTypeSpriteTiles(param0->unk_110, param0->unk_114, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 47275);
+    BattleIcon_MakeMoveTypeSpriteTiles(param0->unk_110, param0->unk_114, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 47275);
     sub_0200CD0C(param0->unk_110, param0->unk_114, param1, 9, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 47272);
-    BattleObj_MakeTypeSpritePalette(param0->unk_110, param0->unk_114, NNS_G2D_VRAM_TYPE_2DMAIN, 47273);
+    BattleIcon_MakeTypeSpritePalette(param0->unk_110, param0->unk_114, NNS_G2D_VRAM_TYPE_2DMAIN, 47273);
     SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 4, 0, 47272);
     SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 7, 0, 47273);
     SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 1, 0, 47274);
@@ -1377,8 +1377,8 @@ static void ov91_021D22A0(UnkStruct_ov91_021D0ED8 *param0, u16 param1, u16 param
         v0 = MoveTable_LoadParam(param1, MOVEATTRIBUTE_CONTEST_TYPE) + 18;
     }
 
-    sub_0200D948(param0->unk_110, param0->unk_114, BattleObj_GetNARCIndex(), BattleObj_TypeIDToNARCMember(v0), 1, 47276 + param2);
-    sub_0200D41C(param0->unk_118[6 + param2], BattleObj_TypeIDToPaletteIndex(v0) + 2);
+    sub_0200D948(param0->unk_110, param0->unk_114, BattleIcon_GetNARCIndex(), BattleIcon_TypeIndexToNARCMember(v0), 1, 47276 + param2);
+    sub_0200D41C(param0->unk_118[6 + param2], BattleIcon_TypeIndexToPaletteIndex(v0) + 2);
 }
 
 static void ov91_021D2314(UnkStruct_ov91_021D0ED8 *param0)
@@ -1455,8 +1455,8 @@ static void ov91_021D24B4(UnkStruct_ov91_021D0ED8 *param0, u16 param1)
 {
     u32 v0 = MoveTable_LoadParam(param1, MOVEATTRIBUTE_CLASS);
 
-    sub_0200D948(param0->unk_110, param0->unk_114, BattleObj_GetMoveTypeNARCIndex(), BattleObj_MoveTypeIDToNARCMember(v0), 1, 47275);
-    sub_0200D41C(param0->unk_118[5], BattleObj_MoveTypeIDToPaletteIndex(v0) + 2);
+    sub_0200D948(param0->unk_110, param0->unk_114, BattleIcon_GetMoveTypeNARCIndex(), BattleIcon_MoveTypeIndexToNARCMember(v0), 1, 47275);
+    sub_0200D41C(param0->unk_118[5], BattleIcon_MoveTypeIndexToPaletteIndex(v0) + 2);
 }
 
 static void ov91_021D2508(UnkStruct_ov91_021D0ED8 *param0, NARC *param1)

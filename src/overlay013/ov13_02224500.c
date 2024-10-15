@@ -25,7 +25,7 @@
 #include "pokemon_icon.h"
 #include "pokemon_summary_app.h"
 #include "unk_0200C6E4.h"
-#include "unk_0207C908.h"
+#include "battle/battle_icon.h"
 #include "unk_0207E0B8.h"
 #include "unk_0208C098.h"
 
@@ -296,10 +296,10 @@ static void ov13_02224720(UnkStruct_ov13_022213F0 *param0)
     sub_0207C9EC(v0, param0->unk_1FB0, 45065, 45065);
 
     for (v1 = 45070; v1 <= 45076; v1++) {
-        BattleObj_MakeTypeSpriteTiles(v0, param0->unk_1FB0, NNS_G2D_VRAM_TYPE_2DSUB, 0, v1);
+        BattleIcon_MakeTypeSpriteTiles(v0, param0->unk_1FB0, NNS_G2D_VRAM_TYPE_2DSUB, 0, v1);
     }
 
-    BattleObj_MakeMoveTypeSpriteTiles(v0, param0->unk_1FB0, NNS_G2D_VRAM_TYPE_2DSUB, 0, 45077);
+    BattleIcon_MakeMoveTypeSpriteTiles(v0, param0->unk_1FB0, NNS_G2D_VRAM_TYPE_2DSUB, 0, 45077);
 }
 
 static void ov13_02224798(UnkStruct_ov13_022213F0 *param0)
@@ -401,16 +401,16 @@ static void ov13_02224A0C(UnkStruct_ov13_022213F0 *param0, CellActorData *param1
 {
     SpriteRenderer *v0 = ov16_0223E010(param0->unk_00->unk_08);
 
-    sub_0200D948(v0, param0->unk_1FB0, BattleObj_GetNARCIndex(), BattleObj_TypeIDToNARCMember(param3), 1, param2);
-    sub_0200D41C(param1, BattleObj_TypeIDToPaletteIndex(param3) + 4);
+    sub_0200D948(v0, param0->unk_1FB0, BattleIcon_GetNARCIndex(), BattleIcon_TypeIndexToNARCMember(param3), 1, param2);
+    sub_0200D41C(param1, BattleIcon_TypeIndexToPaletteIndex(param3) + 4);
 }
 
 static void ov13_02224A5C(UnkStruct_ov13_022213F0 *param0, CellActorData *param1, u32 param2)
 {
     SpriteRenderer *v0 = ov16_0223E010(param0->unk_00->unk_08);
 
-    sub_0200D948(v0, param0->unk_1FB0, BattleObj_GetMoveTypeNARCIndex(), BattleObj_MoveTypeIDToNARCMember(param2), 1, 45077);
-    sub_0200D41C(param1, BattleObj_MoveTypeIDToPaletteIndex(param2) + 4);
+    sub_0200D948(v0, param0->unk_1FB0, BattleIcon_GetMoveTypeNARCIndex(), BattleIcon_MoveTypeIndexToNARCMember(param2), 1, 45077);
+    sub_0200D41C(param1, BattleIcon_MoveTypeIndexToPaletteIndex(param2) + 4);
 }
 
 static void ov13_02224AB0(u16 param0, CellActorData *param1, const int param2, const int param3)
