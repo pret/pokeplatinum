@@ -248,9 +248,9 @@ RomSpec
 	File battle/graphic/pl_b_plist_gra.narc
 	File battle/graphic/pl_batt_bg.narc
 
-	Root /
-	HostRoot res
-	File battle/graphic/pl_batt_obj.narc
+	Root /battle/graphic
+	HostRoot res/battle/graphic/pl_batt_obj
+	File pl_batt_obj.narc
 
 	Root /
 	HostRoot res/prebuilt
