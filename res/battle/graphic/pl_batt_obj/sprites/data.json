@@ -240,73 +240,73 @@
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000165.png",
+        "target": "battle_terrain_tower_player.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000166.png",
+        "target": "battle_terrain_tower_opponent.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000167.png",
+        "target": "battle_terrain_factory_player.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000168.png",
+        "target": "battle_terrain_factory_opponent.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000169.png",
+        "target": "battle_terrain_arcade_player.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000170.png",
+        "target": "battle_terrain_arcade_opponent.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000171.png",
+        "target": "battle_terrain_castle_player.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000172.png",
+        "target": "battle_terrain_castle_opponent.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000173.png",
+        "target": "battle_terrain_hall_player.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000174.png",
+        "target": "battle_terrain_hall_opponent.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000175.png",
+        "target": "battle_terrain_giratina_player.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000176.png",
+        "target": "battle_terrain_giratina_opponent.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64

@@ -409,8 +409,8 @@ static void ov13_02224A5C(UnkStruct_ov13_022213F0 *param0, CellActorData *param1
 {
     SpriteRenderer *v0 = ov16_0223E010(param0->unk_00->unk_08);
 
-    sub_0200D948(v0, param0->unk_1FB0, BattleIcon_GetMoveTypeNARCIndex(), BattleIcon_MoveTypeIndexToNARCMember(param2), 1, 45077);
-    sub_0200D41C(param1, BattleIcon_MoveTypeIndexToPaletteIndex(param2) + 4);
+    sub_0200D948(v0, param0->unk_1FB0, BattleIcon_GetMoveClassNARCIndex(), BattleIcon_MoveClassIndexToNARCMember(param2), 1, 45077);
+    sub_0200D41C(param1, BattleIcon_MoveClassIndexToPaletteIndex(param2) + 4);
 }
 
 static void ov13_02224AB0(u16 param0, CellActorData *param1, const int param2, const int param3)

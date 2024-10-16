@@ -1455,8 +1455,8 @@ static void ov91_021D24B4(UnkStruct_ov91_021D0ED8 *param0, u16 param1)
 {
     u32 v0 = MoveTable_LoadParam(param1, MOVEATTRIBUTE_CLASS);
 
-    sub_0200D948(param0->unk_110, param0->unk_114, BattleIcon_GetMoveTypeNARCIndex(), BattleIcon_MoveTypeIndexToNARCMember(v0), 1, 47275);
-    sub_0200D41C(param0->unk_118[5], BattleIcon_MoveTypeIndexToPaletteIndex(v0) + 2);
+    sub_0200D948(param0->unk_110, param0->unk_114, BattleIcon_GetMoveClassNARCIndex(), BattleIcon_MoveClassIndexToNARCMember(v0), 1, 47275);
+    sub_0200D41C(param0->unk_118[5], BattleIcon_MoveClassIndexToPaletteIndex(v0) + 2);
 }
 
 static void ov91_021D2508(UnkStruct_ov91_021D0ED8 *param0, NARC *param1)

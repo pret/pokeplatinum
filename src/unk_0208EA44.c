@@ -465,8 +465,8 @@ void sub_0208F294(PokemonSummaryApp *param0, u32 param1)
 {
     u32 v0 = MoveTable_LoadParam(param1, MOVEATTRIBUTE_CLASS);
 
-    sub_0200D948(param0->renderer, param0->gfxHandler, BattleIcon_GetMoveTypeNARCIndex(), BattleIcon_MoveTypeIndexToNARCMember(v0), 1, 10);
-    sub_0200D414(param0->unk_41C[18], BattleIcon_MoveTypeIndexToPaletteIndex(v0) + 3);
+    sub_0200D948(param0->renderer, param0->gfxHandler, BattleIcon_GetMoveClassNARCIndex(), BattleIcon_MoveClassIndexToNARCMember(v0), 1, 10);
+    sub_0200D414(param0->unk_41C[18], BattleIcon_MoveClassIndexToPaletteIndex(v0) + 3);
 }
 
 void sub_0208F2E8(PokemonSummaryApp *param0)
