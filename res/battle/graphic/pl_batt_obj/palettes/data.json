@@ -553,7 +553,7 @@
         "invert_size": true
     },
     {
-        "target": "healthbar_normal.pal",
+        "target": "healthbox_normal.pal",
         "bitdepth": 4,
         "pad": false,
         "pcmp": true,
@@ -602,7 +602,7 @@
         "invert_size": true
     },
     {
-        "target": "healthbar_safari.pal",
+        "target": "healthbox_safari.pal",
         "bitdepth": 4,
         "pad": false,
         "pcmp": true,
@@ -616,133 +616,133 @@
         "invert_size": true
     },
     {
-        "target": "pl_batt_obj_00000091.pal",
+        "target": "poke_ball_throw.pal",
         "bitdepth": 4,
         "pad": false,
         "pcmp": true,
         "invert_size": true
     },
     {
-        "target": "pl_batt_obj_00000092.pal",
+        "target": "master_ball_throw.pal",
         "bitdepth": 4,
         "pad": false,
         "pcmp": true,
         "invert_size": true
     },
     {
-        "target": "pl_batt_obj_00000093.pal",
+        "target": "ultra_ball_throw.pal",
         "bitdepth": 4,
         "pad": false,
         "pcmp": true,
         "invert_size": true
     },
     {
-        "target": "pl_batt_obj_00000094.pal",
+        "target": "great_ball_throw.pal",
         "bitdepth": 4,
         "pad": false,
         "pcmp": true,
         "invert_size": true
     },
     {
-        "target": "pl_batt_obj_00000095.pal",
+        "target": "safari_ball_throw.pal",
         "bitdepth": 4,
         "pad": false,
         "pcmp": true,
         "invert_size": true
     },
     {
-        "target": "pl_batt_obj_00000096.pal",
+        "target": "net_ball_throw.pal",
         "bitdepth": 4,
         "pad": false,
         "pcmp": true,
         "invert_size": true
     },
     {
-        "target": "pl_batt_obj_00000097.pal",
+        "target": "dive_ball_throw.pal",
         "bitdepth": 4,
         "pad": false,
         "pcmp": true,
         "invert_size": true
     },
     {
-        "target": "pl_batt_obj_00000098.pal",
+        "target": "nest_ball_throw.pal",
         "bitdepth": 4,
         "pad": false,
         "pcmp": true,
         "invert_size": true
     },
     {
-        "target": "pl_batt_obj_00000099.pal",
+        "target": "repeat_ball_throw.pal",
         "bitdepth": 4,
         "pad": false,
         "pcmp": true,
         "invert_size": true
     },
     {
-        "target": "pl_batt_obj_00000100.pal",
+        "target": "timer_ball_throw.pal",
         "bitdepth": 4,
         "pad": false,
         "pcmp": true,
         "invert_size": true
     },
     {
-        "target": "pl_batt_obj_00000101.pal",
+        "target": "luxury_ball_throw.pal",
         "bitdepth": 4,
         "pad": false,
         "pcmp": true,
         "invert_size": true
     },
     {
-        "target": "pl_batt_obj_00000102.pal",
+        "target": "premier_ball_throw.pal",
         "bitdepth": 4,
         "pad": false,
         "pcmp": true,
         "invert_size": true
     },
     {
-        "target": "pl_batt_obj_00000103.pal",
+        "target": "quick_ball_throw.pal",
         "bitdepth": 4,
         "pad": false,
         "pcmp": true,
         "invert_size": true
     },
     {
-        "target": "pl_batt_obj_00000104.pal",
+        "target": "dusk_ball_throw.pal",
         "bitdepth": 4,
         "pad": false,
         "pcmp": true,
         "invert_size": true
     },
     {
-        "target": "pl_batt_obj_00000105.pal",
+        "target": "heal_ball_throw.pal",
         "bitdepth": 4,
         "pad": false,
         "pcmp": true,
         "invert_size": true
     },
     {
-        "target": "pl_batt_obj_00000106.pal",
+        "target": "cherish_ball_throw.pal",
         "bitdepth": 4,
         "pad": false,
         "pcmp": true,
         "invert_size": true
     },
     {
-        "target": "pl_batt_obj_00000107.pal",
+        "target": "park_ball_throw.pal",
         "bitdepth": 4,
         "pad": false,
         "pcmp": true,
         "invert_size": true
     },
     {
-        "target": "pl_batt_obj_00000108.pal",
+        "target": "bait_throw.pal",
         "bitdepth": 4,
         "pad": false,
         "pcmp": true,
         "invert_size": true
     },
     {
-        "target": "pl_batt_obj_00000109.pal",
+        "target": "mud_throw.pal",
         "bitdepth": 4,
         "pad": false,
         "pcmp": true,
