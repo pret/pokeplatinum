@@ -3,14 +3,14 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/moves.h"
+#include "consts/pokemon.h"
+
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
-
-#include "consts/pokemon.h"
-#include "consts/moves.h"
 
 #include "battle/graphic/pl_batt_obj/pl_batt_obj.naix"
 
@@ -18,11 +18,11 @@
 #include "unk_0200C6E4.h"
 
 // these do not align with the types defined in consts/pokemon.json.
-#define TYPE_COOL_ICON NUMBER_OF_MON_TYPES + 0
+#define TYPE_COOL_ICON   NUMBER_OF_MON_TYPES + 0
 #define TYPE_BEAUTY_ICON NUMBER_OF_MON_TYPES + 1
-#define TYPE_CUTE_ICON NUMBER_OF_MON_TYPES + 2
-#define TYPE_SMART_ICON NUMBER_OF_MON_TYPES + 3
-#define TYPE_TOUGH_ICON NUMBER_OF_MON_TYPES + 4
+#define TYPE_CUTE_ICON   NUMBER_OF_MON_TYPES + 2
+#define TYPE_SMART_ICON  NUMBER_OF_MON_TYPES + 3
+#define TYPE_TOUGH_ICON  NUMBER_OF_MON_TYPES + 4
 
 /*
  * Maps a type index (e.g. TYPE_WATER) to the corresponding NARC member in pl_batt_obj.narc containing the type icon.

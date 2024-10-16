@@ -22,7 +22,6 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "battle/graphic/pl_batt_obj/pl_batt_obj.naix"
-
 #include "overlay010/struct_ov10_0221F800.h"
 #include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_0223BA5C.h"

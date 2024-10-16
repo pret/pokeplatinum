@@ -15,9 +15,8 @@
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 
-#include "battle/ov16_0223DF00.h"
-
 #include "battle/graphic/pl_batt_obj/pl_batt_obj.naix"
+#include "battle/ov16_0223DF00.h"
 
 #include "assert.h"
 #include "cell_actor.h"

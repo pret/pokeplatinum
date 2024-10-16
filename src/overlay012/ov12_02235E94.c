@@ -11,6 +11,7 @@
 #include "struct_defs/struct_0202CA28.h"
 #include "struct_defs/struct_0202CA64.h"
 
+#include "battle/graphic/pl_batt_obj/pl_batt_obj.naix"
 #include "functypes/funcptr_020146F4.h"
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/ov12_022237EC.h"
@@ -25,8 +26,6 @@
 #include "overlay012/struct_ov12_02236690.h"
 #include "overlay012/struct_ov12_02237728.h"
 #include "overlay104/struct_ov104_02241308.h"
-
-#include "battle/graphic/pl_batt_obj/pl_batt_obj.naix"
 
 #include "heap.h"
 #include "narc.h"
