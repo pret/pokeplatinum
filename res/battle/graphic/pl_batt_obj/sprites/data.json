@@ -36,205 +36,205 @@
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000127.png",
+        "target": "battle_terrain_grass_player.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000130.png",
+        "target": "battle_terrain_grass_opponent.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000133.png",
+        "target": "battle_terrain_surf_player.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000134.png",
+        "target": "battle_terrain_surf_opponent.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000135.png",
+        "target": "battle_terrain_path_player.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000136.png",
+        "target": "battle_terrain_path_opponent.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000137.png",
+        "target": "battle_terrain_ice_player.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000138.png",
+        "target": "battle_terrain_ice_opponent.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000139.png",
+        "target": "battle_terrain_mountain_player.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000140.png",
+        "target": "battle_terrain_mountain_opponent.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000141.png",
+        "target": "battle_terrain_snow_player.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000142.png",
+        "target": "battle_terrain_snow_opponent.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000143.png",
+        "target": "battle_terrain_indoors_player.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000144.png",
+        "target": "battle_terrain_indoors_opponent.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000145.png",
+        "target": "battle_terrain_sand_player.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000146.png",
+        "target": "battle_terrain_sand_opponent.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000147.png",
+        "target": "battle_terrain_mud_player.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000148.png",
+        "target": "battle_terrain_mud_opponent.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000149.png",
+        "target": "battle_terrain_cave_player.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000150.png",
+        "target": "battle_terrain_cave_opponent.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000151.png",
+        "target": "battle_terrain_puddle_player.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000152.png",
+        "target": "battle_terrain_puddle_opponent.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000153.png",
+        "target": "battle_terrain_elite4_aaron_player.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000154.png",
+        "target": "battle_terrain_elite4_aaron_opponent.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000155.png",
+        "target": "battle_terrain_elite4_bertha_player.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000156.png",
+        "target": "battle_terrain_elite4_bertha_opponent.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000157.png",
+        "target": "battle_terrain_elite4_flint_player.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000158.png",
+        "target": "battle_terrain_elite4_flint_opponent.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000159.png",
+        "target": "battle_terrain_elite4_lucian_player.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000160.png",
+        "target": "battle_terrain_elite4_lucian_opponent.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000161.png",
+        "target": "battle_terrain_champion_player.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000162.png",
+        "target": "battle_terrain_champion_opponent.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000163.png",
+        "target": "battle_terrain_distortion_world_player.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000164.png",
+        "target": "battle_terrain_distortion_world_opponent.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
@@ -330,55 +330,55 @@
         "mapping_type": 64
     },
     {
-        "target": "healthbar_solo_enemy.png",
+        "target": "healthbox_singles_opponent.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64,
         "version101": true
     },
     {
-        "target": "healthbar_solo_player.png",
+        "target": "healthbox_singles_player.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64,
         "version101": true
     },
     {
-        "target": "healthbar_enemy_slot_1.png",
+        "target": "healthbox_doubles_opponent_1.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64,
         "version101": true
     },
     {
-        "target": "healthbar_enemy_slot_2.png",
+        "target": "healthbox_doubles_opponent_2.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64,
         "version101": true
     },
     {
-        "target": "healthbar_player_slot_1.png",
+        "target": "healthbox_doubles_player_1.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64,
         "version101": true
     },
     {
-        "target": "healthbar_player_slot_2.png",
+        "target": "healthbox_doubles_player_2.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64,
         "version101": true
     },
     {
-        "target": "pl_batt_obj_00000205.png",
+        "target": "ball_status_indicator_opponent.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 32
     },
     {
-        "target": "pl_batt_obj_00000208.png",
+        "target": "ball_status_indicator_player.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 32
@@ -587,13 +587,13 @@
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000250.png",
+        "target": "battle_subscreen_cursor_corner.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 32
     },
     {
-        "target": "pl_batt_obj_00000253.png",
+        "target": "healthbox_safari.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
@@ -661,7 +661,7 @@
         "vram": true
     },
     {
-        "target": "pokeball_throw.png",
+        "target": "poke_ball_throw.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
