@@ -71,4 +71,4 @@ if 'compressed' in file_props and file_props['compressed'] == True:
             compress.compress(f.read(), f2)
     tmp_file = tmp_file.with_suffix(".lz")
 
-shutil.copy(tmp_file, output_file)
+shutil.copy(tmp_file, output_file.with_suffix(".ncgr"))

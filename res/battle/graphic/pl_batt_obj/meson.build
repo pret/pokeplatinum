@@ -16,6 +16,7 @@ nitrofs_files += custom_target('pl_batt_obj.narc',
         knarc_exe,
         '-d', '@PRIVATE_DIR@',
         '-o', '@INPUT0@',
+        '--naix',
         '-p',
         '@OUTPUT@'
     ],

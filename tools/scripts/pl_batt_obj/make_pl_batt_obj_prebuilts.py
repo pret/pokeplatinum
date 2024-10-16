@@ -29,7 +29,7 @@ argparser.add_argument('--datafile',
 args = argparser.parse_args()
 
 input_file = pathlib.Path(args.input)
-output_file = pathlib.Path(args.output).with_suffix(input_file.suffix)
+output_file = pathlib.Path(args.output)
 private_dir = pathlib.Path(args.private_dir)
 with open(args.datafile) as f:
     data_map = json.load(f)
@@ -58,4 +58,4 @@ if 'compressed' in file_props and file_props['compressed'] == True:
         with open(tmp_file, mode="wb") as f2:
             compress.compress(f.read(), f2)
 
-shutil.copy(tmp_file, output_file)
+shutil.copy(tmp_file, output_file.with_suffix(input_file.suffix.lower()))

@@ -72,4 +72,4 @@ if 'invert_size' in file_props and file_props['invert_size'] == True:
     with open(tmp_file, mode="wb") as f:
         f.write(data)
 
-shutil.copy(tmp_file, output_file)
+shutil.copy(tmp_file, output_file.with_suffix(".nclr"))

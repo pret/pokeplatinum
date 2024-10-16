@@ -10,8 +10,6 @@
 
 #include "palette.h"
 
-#define NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ__TYPE_PALETTE 74
-
 u32 BattleIcon_TypeIndexToNARCMember(int param0);
 u32 BattleIcon_GetPaletteNARCMember(void);
 u32 sub_0207C924(void);

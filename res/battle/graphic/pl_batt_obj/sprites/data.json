@@ -563,19 +563,19 @@
         "version101": true
     },
     {
-        "target": "move_type_physical.png",
+        "target": "move_class_physical.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 32
     },
     {
-        "target": "move_type_status.png",
+        "target": "move_class_status.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 32
     },
     {
-        "target": "move_type_special.png",
+        "target": "move_class_special.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 32
