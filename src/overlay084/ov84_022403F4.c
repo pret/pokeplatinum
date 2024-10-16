@@ -7,6 +7,7 @@
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0207CB08.h"
 
+#include "battle/battle_icon.h"
 #include "overlay084/struct_ov84_0223B5A0.h"
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_02241308.h"
@@ -18,7 +19,6 @@
 #include "move_table.h"
 #include "unk_0200C6E4.h"
 #include "unk_0201DBEC.h"
-#include "battle/battle_icon.h"
 
 static void ov84_02240424(UnkStruct_ov84_0223B5A0 *param0);
 static void ov84_022404C0(UnkStruct_ov84_0223B5A0 *param0);

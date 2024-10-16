@@ -16,6 +16,7 @@
 #include "struct_defs/struct_0209C370.h"
 
 #include "battle/battle_display.h"
+#include "battle/battle_icon.h"
 #include "battle/ov16_0223DF00.h"
 #include "battle/ov16_0226DB7C.h"
 #include "battle/ov16_0226DE44.h"
@@ -59,7 +60,6 @@
 #include "unk_02017728.h"
 #include "unk_0201D15C.h"
 #include "unk_0201E86C.h"
-#include "battle/battle_icon.h"
 #include "unk_0208C098.h"
 
 typedef struct {
