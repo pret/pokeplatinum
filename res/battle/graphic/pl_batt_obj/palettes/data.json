@@ -595,7 +595,7 @@
         "invert_size": true
     },
     {
-        "target": "pl_batt_obj_00000080.pal",
+        "target": "battle_subscreen_cursor_corner.pal",
         "bitdepth": 4,
         "pad": false,
         "pcmp": true,

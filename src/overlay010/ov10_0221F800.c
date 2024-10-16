@@ -21,6 +21,8 @@
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
+#include "battle/graphic/pl_batt_obj/pl_batt_obj.naix"
+
 #include "overlay010/struct_ov10_0221F800.h"
 #include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
@@ -1506,10 +1508,10 @@ static void ov10_022210F4(UnkStruct_ov10_0221FB28 *param0)
 
     v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, param0->unk_00->unk_24);
 
-    SpriteRenderer_LoadCharResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 208, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 47111);
+    SpriteRenderer_LoadCharResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, ball_status_indicator_player_ncgr, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 47111);
     sub_0200CC9C(param0->unk_190, param0->unk_194, 108, 8, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 47111);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 207, 1, 47111);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 209, 1, 47111);
+    SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, ball_status_indicator_player_ncer, 1, 47111);
+    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, ball_status_indicator_player_nanr, 1, 47111);
     NARC_dtor(v0);
 }
 

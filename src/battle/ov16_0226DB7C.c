@@ -10,6 +10,8 @@
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 
+#include "battle/graphic/pl_batt_obj/pl_batt_obj.naix"
+
 #include "heap.h"
 #include "narc.h"
 #include "sys_task.h"
@@ -48,10 +50,10 @@ void ov16_0226DB7C(SpriteRenderer *param0, SpriteGfxHandler *param1, PaletteData
 
     v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, param3);
 
-    SpriteRenderer_LoadPalette(param2, 3, param0, param1, v0, 80, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, param5);
-    SpriteRenderer_LoadCharResObjFromOpenNarc(param0, param1, v0, 250, 1, NNS_G2D_VRAM_TYPE_2DSUB, param4);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(param0, param1, v0, 251, 1, param6);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0, param1, v0, 252, 1, param7);
+    SpriteRenderer_LoadPalette(param2, 3, param0, param1, v0, battle_subscreen_cursor_corner_nclr, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, param5);
+    SpriteRenderer_LoadCharResObjFromOpenNarc(param0, param1, v0, battle_subscreen_cursor_corner_ncgr, 1, NNS_G2D_VRAM_TYPE_2DSUB, param4);
+    SpriteRenderer_LoadCellResObjFromOpenNarc(param0, param1, v0, battle_subscreen_cursor_corner_ncer, 1, param6);
+    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0, param1, v0, battle_subscreen_cursor_corner_nanr, 1, param7);
     NARC_dtor(v0);
 }
 

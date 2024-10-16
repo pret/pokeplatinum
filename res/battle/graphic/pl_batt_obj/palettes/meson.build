@@ -76,7 +76,7 @@ pl_batt_obj_palettes = files(
     'icon_palettes.pal',
     'pl_batt_obj_00000075.pal',
     'pl_batt_obj_00000079.pal',
-    'pl_batt_obj_00000080.pal',
+    'battle_subscreen_cursor_corner.pal',
     'healthbox_safari.pal',
     'pl_batt_obj_00000082.pal',
     'pl_batt_obj_00000083.pal',

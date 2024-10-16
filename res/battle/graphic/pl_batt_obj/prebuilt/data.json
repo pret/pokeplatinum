@@ -48,19 +48,19 @@
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000128.NCER",
+        "target": "battle_terrain_player.NCER",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000129.NANR",
+        "target": "battle_terrain_player.NANR",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000131.NCER",
+        "target": "battle_terrain_opponent.NCER",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000132.NANR",
+        "target": "battle_terrain_opponent.NANR",
         "compressed": true
     },
     {
@@ -88,67 +88,67 @@
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000186.NANR",
+        "target": "healthbox_singles_opponent.NANR",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000187.NCER",
+        "target": "healthbox_singles_opponent.NCER",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000189.NANR",
+        "target": "healthbox_singles_player.NANR",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000190.NCER",
+        "target": "healthbox_singles_player.NCER",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000192.NANR",
+        "target": "healthbox_doubles_opponent_1.NANR",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000193.NCER",
+        "target": "healthbox_doubles_opponent_1.NCER",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000195.NANR",
+        "target": "healthbox_doubles_opponent_2.NANR",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000196.NCER",
+        "target": "healthbox_doubles_opponent_2.NCER",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000198.NANR",
+        "target": "healthbox_doubles_player_1.NANR",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000199.NCER",
+        "target": "healthbox_doubles_player_1.NCER",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000201.NANR",
+        "target": "healthbox_doubles_player_2.NANR",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000202.NCER",
+        "target": "healthbox_doubles_player_2.NCER",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000204.NCER",
+        "target": "ball_status_indicator_opponent.NCER",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000206.NANR",
+        "target": "ball_status_indicator_opponent.NANR",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000207.NCER",
+        "target": "ball_status_indicator_player.NCER",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000209.NANR",
+        "target": "ball_status_indicator_player.NANR",
         "compressed": true
     },
     {
@@ -192,19 +192,19 @@
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000251.NCER",
+        "target": "battle_subscreen_cursor_corner.NCER",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000252.NANR",
+        "target": "battle_subscreen_cursor_corner.NANR",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000254.NCER",
+        "target": "healthbox_safari.NCER",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000255.NANR",
+        "target": "healthbox_safari.NANR",
         "compressed": true
     },
     {
@@ -280,163 +280,163 @@
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000283.NANR",
+        "target": "poke_ball_throw.NANR",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000284.NCER",
+        "target": "poke_ball_throw.NCER",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000286.NANR",
+        "target": "master_ball_throw.NANR",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000287.NCER",
+        "target": "master_ball_throw.NCER",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000289.NANR",
+        "target": "ultra_ball_throw.NANR",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000290.NCER",
+        "target": "ultra_ball_throw.NCER",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000292.NANR",
+        "target": "great_ball_throw.NANR",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000293.NCER",
+        "target": "great_ball_throw.NCER",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000295.NANR",
+        "target": "safari_ball_throw.NANR",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000296.NCER",
+        "target": "safari_ball_throw.NCER",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000298.NANR",
+        "target": "net_ball_throw.NANR",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000299.NCER",
+        "target": "net_ball_throw.NCER",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000301.NANR",
+        "target": "dive_ball_throw.NANR",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000302.NCER",
+        "target": "dive_ball_throw.NCER",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000304.NANR",
+        "target": "nest_ball_throw.NANR",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000305.NCER",
+        "target": "nest_ball_throw.NCER",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000307.NANR",
+        "target": "repeat_ball_throw.NANR",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000308.NCER",
+        "target": "repeat_ball_throw.NCER",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000310.NANR",
+        "target": "timer_ball_throw.NANR",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000311.NCER",
+        "target": "timer_ball_throw.NCER",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000313.NANR",
+        "target": "luxury_ball_throw.NANR",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000314.NCER",
+        "target": "luxury_ball_throw.NCER",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000316.NANR",
+        "target": "premier_ball_throw.NANR",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000317.NCER",
+        "target": "premier_ball_throw.NCER",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000319.NANR",
+        "target": "quick_ball_throw.NANR",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000320.NCER",
+        "target": "quick_ball_throw.NCER",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000322.NANR",
+        "target": "dusk_ball_throw.NANR",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000323.NCER",
+        "target": "dusk_ball_throw.NCER",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000325.NANR",
+        "target": "heal_ball_throw.NANR",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000326.NCER",
+        "target": "heal_ball_throw.NCER",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000328.NANR",
+        "target": "cherish_ball_throw.NANR",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000329.NCER",
+        "target": "cherish_ball_throw.NCER",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000331.NANR",
+        "target": "park_ball_throw.NANR",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000332.NCER",
+        "target": "park_ball_throw.NCER",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000334.NANR",
+        "target": "bait_throw.NANR",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000335.NCER",
+        "target": "bait_throw.NCER",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000337.NANR",
+        "target": "mud_throw.NANR",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000338.NCER",
+        "target": "mud_throw.NCER",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000341.NCER",
+        "target": "party_gauge.NCER",
         "compressed": true
     },
     {
-        "target": "pl_batt_obj_00000342.NANR",
+        "target": "party_gauge.NANR",
         "compressed": true
     }
 ]

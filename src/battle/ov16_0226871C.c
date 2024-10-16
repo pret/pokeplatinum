@@ -35,6 +35,8 @@
 #include "overlay011/ov11_0221F800.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 
+#include "battle/graphic/pl_batt_obj/pl_batt_obj.naix"
+
 #include "assert.h"
 #include "cell_actor.h"
 #include "core_sys.h"
@@ -1343,13 +1345,13 @@ void ov16_02268D40(NARC *param0, UnkStruct_ov16_02268A14 *param1)
     v1 = ov16_0223E010(param1->unk_00);
     v2 = ov16_0223E018(param1->unk_00);
 
-    SpriteRenderer_LoadCharResObjFromOpenNarc(v1, v2, param0, 208, 1, NNS_G2D_VRAM_TYPE_2DSUB, 20023);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(v1, v2, param0, 207, 1, 20015);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(v1, v2, param0, 209, 1, 20015);
+    SpriteRenderer_LoadCharResObjFromOpenNarc(v1, v2, param0, ball_status_indicator_player_ncgr, 1, NNS_G2D_VRAM_TYPE_2DSUB, 20023);
+    SpriteRenderer_LoadCellResObjFromOpenNarc(v1, v2, param0, ball_status_indicator_player_ncer, 1, 20015);
+    SpriteRenderer_LoadAnimResObjFromOpenNarc(v1, v2, param0, ball_status_indicator_player_nanr, 1, 20015);
 
-    SpriteRenderer_LoadCharResObjFromOpenNarc(v1, v2, param0, 205, 1, NNS_G2D_VRAM_TYPE_2DSUB, 20024);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(v1, v2, param0, 204, 1, 20016);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(v1, v2, param0, 206, 1, 20016);
+    SpriteRenderer_LoadCharResObjFromOpenNarc(v1, v2, param0, ball_status_indicator_opponent_ncgr, 1, NNS_G2D_VRAM_TYPE_2DSUB, 20024);
+    SpriteRenderer_LoadCellResObjFromOpenNarc(v1, v2, param0, ball_status_indicator_opponent_ncer, 1, 20016);
+    SpriteRenderer_LoadAnimResObjFromOpenNarc(v1, v2, param0, ball_status_indicator_opponent_nanr, 1, 20016);
 
     for (v0 = 0; v0 < 6; v0++) {
         param1->unk_5BC[v0] = SpriteActor_LoadResources(v1, v2, &Unk_ov16_02270414);

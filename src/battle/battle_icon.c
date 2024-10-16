@@ -12,6 +12,8 @@
 #include "consts/pokemon.h"
 #include "consts/moves.h"
 
+#include "battle/graphic/pl_batt_obj/pl_batt_obj.naix"
+
 #include "narc.h"
 #include "unk_0200C6E4.h"
 
@@ -26,29 +28,29 @@
  * Maps a type index (e.g. TYPE_WATER) to the corresponding NARC member in pl_batt_obj.narc containing the type icon.
  */
 __attribute__((aligned(4))) static const u32 sBattleIcon_NARCMemberMap[] = {
-    [TYPE_NORMAL] = 0xEA,
-    [TYPE_FIGHTING] = 0xE1,
-    [TYPE_FLYING] = 0xE3,
-    [TYPE_POISON] = 0xEB,
-    [TYPE_GROUND] = 0xE5,
-    [TYPE_ROCK] = 0xED,
-    [TYPE_BUG] = 0xE7,
-    [TYPE_GHOST] = 0xE4,
-    [TYPE_STEEL] = 0xEE,
-    [TYPE_MYSTERY] = 0xEC,
-    [TYPE_FIRE] = 0xE2,
-    [TYPE_WATER] = 0xF1,
-    [TYPE_GRASS] = 0xE9,
-    [TYPE_ELECTRIC] = 0xDE,
-    [TYPE_PSYCHIC] = 0xDF,
-    [TYPE_ICE] = 0xE6,
-    [TYPE_DRAGON] = 0xDD,
-    [TYPE_DARK] = 0xE0,
-    [TYPE_COOL_ICON] = 0xF0,
-    [TYPE_BEAUTY_ICON] = 0xDB,
-    [TYPE_CUTE_ICON] = 0xDC,
-    [TYPE_SMART_ICON] = 0xE8,
-    [TYPE_TOUGH_ICON] = 0xEF
+    [TYPE_NORMAL] = type_icon_normal_ncgr,
+    [TYPE_FIGHTING] = type_icon_fighting_ncgr,
+    [TYPE_FLYING] = type_icon_flying_ncgr,
+    [TYPE_POISON] = type_icon_poison_ncgr,
+    [TYPE_GROUND] = type_icon_ground_ncgr,
+    [TYPE_ROCK] = type_icon_rock_ncgr,
+    [TYPE_BUG] = type_icon_bug_ncgr,
+    [TYPE_GHOST] = type_icon_ghost_ncgr,
+    [TYPE_STEEL] = type_icon_steel_ncgr,
+    [TYPE_MYSTERY] = type_icon_mystery_ncgr,
+    [TYPE_FIRE] = type_icon_fire_ncgr,
+    [TYPE_WATER] = type_icon_water_ncgr,
+    [TYPE_GRASS] = type_icon_grass_ncgr,
+    [TYPE_ELECTRIC] = type_icon_electric_ncgr,
+    [TYPE_PSYCHIC] = type_icon_psychic_ncgr,
+    [TYPE_ICE] = type_icon_ice_ncgr,
+    [TYPE_DRAGON] = type_icon_dragon_ncgr,
+    [TYPE_DARK] = type_icon_dark_ncgr,
+    [TYPE_COOL_ICON] = contest_icon_cool_ncgr,
+    [TYPE_BEAUTY_ICON] = contest_icon_beauty_ncgr,
+    [TYPE_CUTE_ICON] = contest_icon_cute_ncgr,
+    [TYPE_SMART_ICON] = contest_icon_smart_ncgr,
+    [TYPE_TOUGH_ICON] = contest_icon_tough_ncgr
 };
 
 /*
@@ -84,9 +86,9 @@ __attribute__((aligned(4))) static const u8 sBattleIcon_PaletteIndexMap[] = {
  * Maps move classes (Physical, Special, Status) to the corresponding NARC member in pl_batt_obj.narc containing the type icon.
  */
 __attribute__((aligned(4))) static const u32 sBattleIcon_MoveClass_NARCMemberMap[] = {
-    [CLASS_PHYSICAL] = 0xF4,
-    [CLASS_SPECIAL] = 0xF6,
-    [CLASS_STATUS] = 0xF5
+    [CLASS_PHYSICAL] = move_class_physical_ncgr,
+    [CLASS_SPECIAL] = move_class_special_ncgr,
+    [CLASS_STATUS] = move_class_status_ncgr
 };
 
 /*
@@ -114,7 +116,7 @@ u32 BattleIcon_TypeIndexToNARCMember(int typeIndex)
  */
 u32 BattleIcon_GetPaletteNARCMember(void)
 {
-    return NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ__TYPE_PALETTE;
+    return icon_palettes_nclr;
 }
 
 u32 sub_0207C924(void)
