@@ -3,18 +3,17 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/battle.h"
+
 #include "struct_decls/battle_system.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 
+#include "battle/graphic/pl_batt_obj/pl_batt_obj.naix"
 #include "battle/ov16_0223DF00.h"
 #include "battle/struct_ov16_02268520.h"
-
-#include "battle/graphic/pl_batt_obj/pl_batt_obj.naix"
-
-#include "consts/battle.h"
 
 #include "narc.h"
 #include "palette.h"

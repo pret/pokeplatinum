@@ -17,6 +17,7 @@
 
 #include "battle/battle_display.h"
 #include "battle/battle_icon.h"
+#include "battle/graphic/pl_batt_obj/pl_batt_obj.naix"
 #include "battle/ov16_0223DF00.h"
 #include "battle/ov16_0226DB7C.h"
 #include "battle/ov16_0226DE44.h"
@@ -29,8 +30,6 @@
 #include "battle/struct_ov16_0226DC24_decl.h"
 #include "battle/struct_ov16_0226DEEC_decl.h"
 #include "overlay011/ov11_0221F800.h"
-
-#include "battle/graphic/pl_batt_obj/pl_batt_obj.naix"
 
 #include "assert.h"
 #include "bg_window.h"

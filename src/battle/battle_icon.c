@@ -15,11 +15,11 @@
 #include "unk_0200C6E4.h"
 
 // these do not align with the types defined in consts/pokemon.json.
-#define TYPE_COOL_ICON NUMBER_OF_MON_TYPES + 0
+#define TYPE_COOL_ICON   NUMBER_OF_MON_TYPES + 0
 #define TYPE_BEAUTY_ICON NUMBER_OF_MON_TYPES + 1
-#define TYPE_CUTE_ICON NUMBER_OF_MON_TYPES + 2
-#define TYPE_SMART_ICON NUMBER_OF_MON_TYPES + 3
-#define TYPE_TOUGH_ICON NUMBER_OF_MON_TYPES + 4
+#define TYPE_CUTE_ICON   NUMBER_OF_MON_TYPES + 2
+#define TYPE_SMART_ICON  NUMBER_OF_MON_TYPES + 3
+#define TYPE_TOUGH_ICON  NUMBER_OF_MON_TYPES + 4
 
 /*
  * Maps a type index (e.g. TYPE_WATER) to the corresponding NARC member in pl_batt_obj.narc containing the type icon.
