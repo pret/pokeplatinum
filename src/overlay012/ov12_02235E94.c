@@ -130,9 +130,9 @@ static BOOL ov12_02237694(BallRotation *param0);
 static BOOL ov12_02237474(BallRotation *param0);
 
 /*
-* Maps a ball index (produced by ov12_02235E94) to NARC members in pl_batt_obj.
-* These NARC members describe the sprite, palette, cell, and anim to use for that ball.
-*/
+ * Maps a ball index (produced by ov12_02235E94) to NARC members in pl_batt_obj.
+ * These NARC members describe the sprite, palette, cell, and anim to use for that ball.
+ */
 static const int ov12_BallIndexToNARCMembers[][4] = {
     { 0x120, 0x5C, 0x11F, 0x11E },
     { 0x123, 0x5D, 0x122, 0x121 },

@@ -15,6 +15,7 @@
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
+#include "battle/battle_icon.h"
 #include "overlay005/struct_ov5_021DE5D0.h"
 #include "overlay022/struct_ov22_022559F8.h"
 #include "overlay061/struct_ov61_0222C884.h"
@@ -88,7 +89,6 @@
 #include "unk_02024220.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
-#include "battle/battle_icon.h"
 
 typedef struct {
     u16 unk_00;

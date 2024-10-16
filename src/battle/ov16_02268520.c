@@ -45,8 +45,8 @@ static const SpriteTemplate Unk_ov16_022700CC[] = {
 };
 
 /*
-* Maps a battle terrain index to the NARC member in pl_batt_obj containing a sprite for it.
-*/
+ * Maps a battle terrain index to the NARC member in pl_batt_obj containing a sprite for it.
+ */
 __attribute__((aligned(4))) static const u16 ov16_BattleTerrainIndexToNARCMember[] = {
     0x87,
     0x91,
@@ -102,9 +102,9 @@ __attribute__((aligned(4))) static const u16 ov16_BattleTerrainIndexToOpponentNA
 };
 
 /*
-* Maps a battle terrain ID to the NARC member in pl_batt_obj containing a palette for it.
-* Each battle terrain has 3 palette options for different times of day (?)
-*/
+ * Maps a battle terrain ID to the NARC member in pl_batt_obj containing a palette for it.
+ * Each battle terrain has 3 palette options for different times of day (?)
+ */
 __attribute__((aligned(4))) static const u16 ov16_BattleTerrainIndexToPaletteMember[][3] = {
     0x7,
     0x8,

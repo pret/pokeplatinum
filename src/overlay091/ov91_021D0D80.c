@@ -18,6 +18,7 @@
 #include "struct_defs/struct_020997B8.h"
 #include "struct_defs/struct_02099F80.h"
 
+#include "battle/battle_icon.h"
 #include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay084/struct_ov84_02240FA8.h"
@@ -53,7 +54,6 @@
 #include "unk_02017728.h"
 #include "unk_02018340.h"
 #include "unk_0201DBEC.h"
-#include "battle/battle_icon.h"
 #include "unk_0208C098.h"
 #include "unk_02094EDC.h"
 

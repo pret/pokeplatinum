@@ -8,6 +8,7 @@
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0205AA50.h"
 
+#include "battle/battle_icon.h"
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/struct_ov19_021D4DF0.h"
@@ -28,7 +29,6 @@
 #include "unk_0200762C.h"
 #include "unk_0200C440.h"
 #include "unk_02018340.h"
-#include "battle/battle_icon.h"
 
 typedef struct {
     u16 unk_00;
