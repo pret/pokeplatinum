@@ -448,10 +448,10 @@ void ov84_02240D5C(UnkStruct_ov84_0223B5A0 *param0, u16 param1, u8 param2)
     v1 = MoveTable_LoadParam(v0, MOVEATTRIBUTE_TYPE);
     v2 = MoveTable_LoadParam(v0, MOVEATTRIBUTE_CLASS);
 
-    sub_0200D948(param0->unk_D8, param0->unk_DC, BattleIcon_GetNARCIndex(), BattleIcon_TypeIndexToNARCMember(v1), 1, 49409);
-    sub_0200D41C(param0->unk_E0[10], BattleIcon_TypeIndexToPaletteIndex(v1) + 6);
-    sub_0200D948(param0->unk_D8, param0->unk_DC, BattleIcon_GetMoveClassNARCIndex(), BattleIcon_MoveClassIndexToNARCMember(v2), 1, 49410);
-    sub_0200D41C(param0->unk_E0[11], BattleIcon_MoveClassIndexToPaletteIndex(v2) + 6);
+    sub_0200D948(param0->unk_D8, param0->unk_DC, BattleIcon_GetNARCIndex(), BattleIcon_GetMoveTypeTiles(v1), 1, 49409);
+    sub_0200D41C(param0->unk_E0[10], BattleIcon_GetMoveTypePaletteIndex(v1) + 6);
+    sub_0200D948(param0->unk_D8, param0->unk_DC, BattleIcon_GetMoveClassPalettteFileIndex(), BattleIcon_GetMoveClassTiles(v2), 1, 49410);
+    sub_0200D41C(param0->unk_E0[11], BattleIcon_GetMoveClassPaletteIndex(v2) + 6);
 }
 
 void ov84_02240E24(UnkStruct_ov84_0223B5A0 *param0, s16 param1, s16 param2)

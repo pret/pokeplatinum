@@ -50,7 +50,7 @@ static const SpriteTemplate Unk_ov16_022700CC[] = {
 /*
  * Maps a battle terrain index to the NARC member in pl_batt_obj containing the player's sprite for it.
  */
-__attribute__((aligned(4))) static const u16 sov16_BattleTerrainIndexToNARCMember[] = {
+__attribute__((aligned(4))) static const u16 sBattleTerrainPlayerTiles[] = {
     [TERRAIN_PLAIN] = battle_terrain_path_player_ncgr,
     [TERRAIN_SAND] = battle_terrain_sand_player_ncgr,
     [TERRAIN_GRASS] = battle_terrain_grass_player_ncgr,
@@ -80,7 +80,7 @@ __attribute__((aligned(4))) static const u16 sov16_BattleTerrainIndexToNARCMembe
 /*
  * Maps a battle terrain index to the NARC member in pl_batt_obj containing the opponent's sprite for it.
  */
-__attribute__((aligned(4))) static const u16 sov16_BattleTerrainIndexToOpponentNARCMember[] = {
+__attribute__((aligned(4))) static const u16 sBattleTerrainOpponentTiles[] = {
     [TERRAIN_PLAIN] = battle_terrain_path_opponent_ncgr,
     [TERRAIN_SAND] = battle_terrain_sand_opponent_ncgr,
     [TERRAIN_GRASS] = battle_terrain_grass_opponent_ncgr,
@@ -111,7 +111,7 @@ __attribute__((aligned(4))) static const u16 sov16_BattleTerrainIndexToOpponentN
  * Maps a battle terrain ID to the NARC member in pl_batt_obj containing a palette for it.
  * Each battle terrain has 3 palette options for different times of day.
  */
-__attribute__((aligned(4))) static const u16 sov16_BattleTerrainIndexToPaletteMember[][3] = {
+__attribute__((aligned(4))) static const u16 sBattleTerrainPaletteFileIndex[][3] = {
     [TERRAIN_PLAIN] = { battle_terrain_path_day_nclr, battle_terrain_path_afternoon_nclr, battle_terrain_path_night_nclr },
     [TERRAIN_SAND] = { battle_terrain_sand_day_nclr, battle_terrain_sand_afternoon_nclr, battle_terrain_sand_night_nclr },
     [TERRAIN_GRASS] = { battle_terrain_grass_day_nclr, battle_terrain_grass_afternoon_nclr, battle_terrain_grass_night_nclr },
@@ -154,14 +154,14 @@ void ov16_02268520(UnkStruct_ov16_02268520 *param0)
     v2 = &Unk_ov16_022700CC[param0->unk_08];
 
     if (param0->unk_08 == 0) {
-        v3 = sov16_BattleTerrainIndexToNARCMember[param0->unk_09];
+        v3 = sBattleTerrainPlayerTiles[param0->unk_09];
         v4 = 20013;
         v5 = battle_terrain_player_ncer;
         v6 = 20005;
         v7 = battle_terrain_player_nanr;
         v8 = 20005;
     } else {
-        v3 = sov16_BattleTerrainIndexToOpponentNARCMember[param0->unk_09];
+        v3 = sBattleTerrainOpponentTiles[param0->unk_09];
         v4 = 20014;
         v5 = battle_terrain_opponent_ncer;
         v6 = 20006;
@@ -170,8 +170,8 @@ void ov16_02268520(UnkStruct_ov16_02268520 *param0)
     }
 
     SpriteRenderer_LoadCharResObjFromOpenNarc(v0, v1, v10, v3, 1, NNS_G2D_VRAM_TYPE_2DMAIN, v4);
-    SpriteRenderer_LoadPalette(BattleSystem_PaletteSys(param0->unk_04), 2, v0, v1, v10, sov16_BattleTerrainIndexToPaletteMember[param0->unk_09][v9], 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20009);
-    PaletteSys_LoadPalette(BattleSystem_PaletteSys(param0->unk_04), 27, sov16_BattleTerrainIndexToPaletteMember[param0->unk_09][v9], 5, 0, 0x20, 0x7 * 0x10);
+    SpriteRenderer_LoadPalette(BattleSystem_PaletteSys(param0->unk_04), 2, v0, v1, v10, sBattleTerrainPaletteFileIndex[param0->unk_09][v9], 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20009);
+    PaletteSys_LoadPalette(BattleSystem_PaletteSys(param0->unk_04), 27, sBattleTerrainPaletteFileIndex[param0->unk_09][v9], 5, 0, 0x20, 0x7 * 0x10);
     SpriteRenderer_LoadCellResObjFromOpenNarc(v0, v1, v10, v5, 1, v6);
     SpriteRenderer_LoadAnimResObjFromOpenNarc(v0, v1, v10, v7, 1, v8);
     NARC_dtor(v10);

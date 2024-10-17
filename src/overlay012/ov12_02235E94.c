@@ -134,7 +134,7 @@ static BOOL ov12_02237474(BallRotation *param0);
  * Maps a ball index (produced by ov12_02235E94) to NARC members in pl_batt_obj.
  * These NARC members describe the sprite, palette, cell, and anim to use for that ball.
  */
-static const int ov12_BallIndexToNARCMembers[][4] = {
+static const int sThrownBallSpriteResources[][4] = {
     { master_ball_throw_ncgr, master_ball_throw_nclr, master_ball_throw_ncer, master_ball_throw_nanr },
     { ultra_ball_throw_ncgr, ultra_ball_throw_nclr, ultra_ball_throw_ncer, ultra_ball_throw_nanr },
     { great_ball_throw_ncgr, great_ball_throw_nclr, great_ball_throw_ncer, great_ball_throw_nanr },
@@ -346,7 +346,7 @@ static int ov12_02235FC8(int param0, int param1)
     int v0;
 
     v0 = ov12_02235E94(param0);
-    return ov12_BallIndexToNARCMembers[v0][param1];
+    return sThrownBallSpriteResources[v0][param1];
 }
 
 UnkStruct_ov12_02235FE0 *ov12_02235FE0(int param0)

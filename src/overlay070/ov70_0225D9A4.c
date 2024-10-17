@@ -2445,7 +2445,7 @@ static void ov70_0225F95C(SysTask *param0, void *param1)
     }
 
     {
-        sub_02006E84(BattleIcon_GetNARCIndex(), BattleIcon_GetPaletteNARCMember(), 4, 11 * 32, 3 * 32, v0->unk_156);
+        sub_02006E84(BattleIcon_GetNARCIndex(), BattleIcon_GetMoveTypePaletteFileIndex(), 4, 11 * 32, 3 * 32, v0->unk_156);
     }
 
     SysTask_Done(param0);
@@ -2644,14 +2644,14 @@ static void ov70_0225FDA0(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225FA
 
         if (v0 != 0) {
             v2 = ov66_022316E8(v0);
-            v3 = sub_02006FE8(BattleIcon_GetNARCIndex(), BattleIcon_TypeIndexToNARCMember(v2), 1, param3, 1);
+            v3 = sub_02006FE8(BattleIcon_GetNARCIndex(), BattleIcon_GetMoveTypeTiles(v2), 1, param3, 1);
 
             NNS_G2dGetUnpackedCharacterData(v3, &v4);
 
             sub_0201958C(param2->unk_00, Unk_ov70_0226D5CC[3], v4->pRawData, 4 * 2 * 32, Unk_ov70_0226D590[v1]);
             Heap_FreeToHeap(v3);
             sub_020198E8(param2->unk_00, Unk_ov70_0226D5CC[3], 26, 2 + (2 * v1), 4, 2, Unk_ov70_0226D624[v1], 0, 0, 4, 2);
-            sub_02019E2C(param2->unk_00, Unk_ov70_0226D5CC[3], 26, 2 + (2 * v1), 4, 2, 11 + BattleIcon_TypeIndexToPaletteIndex(v2));
+            sub_02019E2C(param2->unk_00, Unk_ov70_0226D5CC[3], 26, 2 + (2 * v1), 4, 2, 11 + BattleIcon_GetMoveTypePaletteIndex(v2));
             sub_0201C3C0(param2->unk_00, Unk_ov70_0226D5CC[3]);
         }
     }

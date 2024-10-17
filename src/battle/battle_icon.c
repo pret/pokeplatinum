@@ -27,7 +27,7 @@
 /*
  * Maps a type index (e.g. TYPE_WATER) to the corresponding NARC member in pl_batt_obj.narc containing the type icon.
  */
-__attribute__((aligned(4))) static const u32 sBattleIcon_NARCMemberMap[] = {
+__attribute__((aligned(4))) static const u32 sBattleTypeIconTiles[] = {
     [TYPE_NORMAL] = type_icon_normal_ncgr,
     [TYPE_FIGHTING] = type_icon_fighting_ncgr,
     [TYPE_FLYING] = type_icon_flying_ncgr,
@@ -56,36 +56,36 @@ __attribute__((aligned(4))) static const u32 sBattleIcon_NARCMemberMap[] = {
 /*
  * Maps a type index (e.g. TYPE_WATER) to the corresponding palette index in NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ__TYPE_PALETTE.
  */
-__attribute__((aligned(4))) static const u8 sBattleIcon_PaletteIndexMap[] = {
-    [TYPE_NORMAL] = 0x0,
-    [TYPE_FIGHTING] = 0x0,
-    [TYPE_FLYING] = 0x1,
-    [TYPE_POISON] = 0x1,
-    [TYPE_GROUND] = 0x0,
-    [TYPE_ROCK] = 0x0,
-    [TYPE_BUG] = 0x2,
-    [TYPE_GHOST] = 0x1,
-    [TYPE_STEEL] = 0x0,
-    [TYPE_MYSTERY] = 0x2,
-    [TYPE_FIRE] = 0x0,
-    [TYPE_WATER] = 0x1,
-    [TYPE_GRASS] = 0x2,
-    [TYPE_ELECTRIC] = 0x0,
-    [TYPE_PSYCHIC] = 0x1,
-    [TYPE_ICE] = 0x1,
-    [TYPE_DRAGON] = 0x2,
-    [TYPE_DARK] = 0x0,
-    [TYPE_COOL_ICON] = 0x0,
-    [TYPE_BEAUTY_ICON] = 0x1,
-    [TYPE_CUTE_ICON] = 0x1,
-    [TYPE_SMART_ICON] = 0x2,
-    [TYPE_TOUGH_ICON] = 0x0
+__attribute__((aligned(4))) static const u8 sBattleTypeIconPaletteIndex[] = {
+    [TYPE_NORMAL] = 0,
+    [TYPE_FIGHTING] = 0,
+    [TYPE_FLYING] = 1,
+    [TYPE_POISON] = 1,
+    [TYPE_GROUND] = 0,
+    [TYPE_ROCK] = 0,
+    [TYPE_BUG] = 2,
+    [TYPE_GHOST] = 1,
+    [TYPE_STEEL] = 0,
+    [TYPE_MYSTERY] = 2,
+    [TYPE_FIRE] = 0,
+    [TYPE_WATER] = 1,
+    [TYPE_GRASS] = 2,
+    [TYPE_ELECTRIC] = 0,
+    [TYPE_PSYCHIC] = 1,
+    [TYPE_ICE] = 1,
+    [TYPE_DRAGON] = 2,
+    [TYPE_DARK] = 0,
+    [TYPE_COOL_ICON] = 0,
+    [TYPE_BEAUTY_ICON] = 1,
+    [TYPE_CUTE_ICON] = 1,
+    [TYPE_SMART_ICON] = 2,
+    [TYPE_TOUGH_ICON] = 0
 };
 
 /*
  * Maps move classes (Physical, Special, Status) to the corresponding NARC member in pl_batt_obj.narc containing the type icon.
  */
-__attribute__((aligned(4))) static const u32 sBattleIcon_MoveClass_NARCMemberMap[] = {
+__attribute__((aligned(4))) static const u32 sMoveClassIconTiles[] = {
     [CLASS_PHYSICAL] = move_class_physical_ncgr,
     [CLASS_SPECIAL] = move_class_special_ncgr,
     [CLASS_STATUS] = move_class_status_ncgr
@@ -94,7 +94,7 @@ __attribute__((aligned(4))) static const u32 sBattleIcon_MoveClass_NARCMemberMap
 /*
  * Maps move classes (Physical, Special, Status) to the corresponding palette index in NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ__TYPE_PALETTE.
  */
-__attribute__((aligned(4))) static const u8 sBattleIcon_MoveClass_PaletteIndexMap[] = {
+__attribute__((aligned(4))) static const u8 sMoveClassIconPaletteIndex[] = {
     [CLASS_PHYSICAL] = 0x0,
     [CLASS_SPECIAL] = 0x1,
     [CLASS_STATUS] = 0x0
@@ -104,17 +104,17 @@ __attribute__((aligned(4))) static const u8 sBattleIcon_MoveClass_PaletteIndexMa
  * Given a type index, return the corresponding NARC member containing the icon for that type.
  * See also BattleIcon_GetNARCIndex.
  */
-u32 BattleIcon_TypeIndexToNARCMember(int typeIndex)
+u32 BattleIcon_GetMoveTypeTiles(int typeIndex)
 {
-    GF_ASSERT(typeIndex < NELEMS(sBattleIcon_NARCMemberMap));
-    return sBattleIcon_NARCMemberMap[typeIndex];
+    GF_ASSERT(typeIndex < NELEMS(sBattleTypeIconTiles));
+    return sBattleTypeIconTiles[typeIndex];
 }
 
 /*
  * Returns the NARC member within pl_batt_obj containing palettes for battle icons.
  * See also BattleIcon_GetNARCIndex.
  */
-u32 BattleIcon_GetPaletteNARCMember(void)
+u32 BattleIcon_GetMoveTypePaletteFileIndex(void)
 {
     return icon_palettes_nclr;
 }
@@ -131,12 +131,12 @@ u32 sub_0207C928(void)
 
 /*
  * Given a type index, return the corresponding palette index to use for that type's icon.
- * See also BattleIcon_GetNARCIndex and BattleIcon_GetPaletteNARCMember.
+ * See also BattleIcon_GetNARCIndex and BattleIcon_GetMoveTypePaletteFileIndex.
  */
-u8 BattleIcon_TypeIndexToPaletteIndex(int typeIndex)
+u8 BattleIcon_GetMoveTypePaletteIndex(int typeIndex)
 {
-    GF_ASSERT(typeIndex < NELEMS(sBattleIcon_PaletteIndexMap));
-    return sBattleIcon_PaletteIndexMap[typeIndex];
+    GF_ASSERT(typeIndex < NELEMS(sBattleTypeIconPaletteIndex));
+    return sBattleTypeIconPaletteIndex[typeIndex];
 }
 
 /*
@@ -149,17 +149,17 @@ u32 BattleIcon_GetNARCIndex(void)
 
 void BattleIcon_MakeTypeSpriteTiles(SpriteRenderer *param0, SpriteGfxHandler *param1, NNS_G2D_VRAM_TYPE param2, int typeIndex, u32 param4)
 {
-    sub_0200CBDC(param0, param1, BattleIcon_GetNARCIndex(), BattleIcon_TypeIndexToNARCMember(typeIndex), 1, param2, param4);
+    sub_0200CBDC(param0, param1, BattleIcon_GetNARCIndex(), BattleIcon_GetMoveTypeTiles(typeIndex), 1, param2, param4);
 }
 
 void BattleIcon_MakeTypeSpritePalette(SpriteRenderer *param0, SpriteGfxHandler *param1, NNS_G2D_VRAM_TYPE param2, u32 param3)
 {
-    sub_0200CC9C(param0, param1, BattleIcon_GetNARCIndex(), BattleIcon_GetPaletteNARCMember(), 0, 3, param2, param3);
+    sub_0200CC9C(param0, param1, BattleIcon_GetNARCIndex(), BattleIcon_GetMoveTypePaletteFileIndex(), 0, 3, param2, param3);
 }
 
 void sub_0207C9B0(PaletteData *param0, int param1, SpriteRenderer *param2, SpriteGfxHandler *param3, NNS_G2D_VRAM_TYPE param4, u32 param5)
 {
-    sub_0200CD7C(param0, param1, param2, param3, BattleIcon_GetNARCIndex(), BattleIcon_GetPaletteNARCMember(), 0, 3, param4, param5);
+    sub_0200CD7C(param0, param1, param2, param3, BattleIcon_GetNARCIndex(), BattleIcon_GetMoveTypePaletteFileIndex(), 0, 3, param4, param5);
 }
 
 void sub_0207C9EC(SpriteRenderer *param0, SpriteGfxHandler *param1, u32 param2, u32 param3)
@@ -190,7 +190,7 @@ CellActorData *sub_0207CA58(SpriteRenderer *param0, SpriteGfxHandler *param1, in
     SpriteTemplate v1;
 
     v1 = *param3;
-    v1.plttIdx = BattleIcon_TypeIndexToPaletteIndex(param2);
+    v1.plttIdx = BattleIcon_GetMoveTypePaletteIndex(param2);
     v0 = SpriteActor_LoadResources(param0, param1, &v1);
 
     return v0;
@@ -205,34 +205,34 @@ void sub_0207CA88(CellActorData *param0)
  * Given a move class index, return the corresponding NARC member containing the icon for that move class.
  * See also BattleIcon_GetNARCIndex.
  */
-u32 BattleIcon_MoveClassIndexToNARCMember(int moveClassIndex)
+u32 BattleIcon_GetMoveClassTiles(int moveClassIndex)
 {
-    GF_ASSERT(moveClassIndex < NELEMS(sBattleIcon_MoveClass_NARCMemberMap));
-    return sBattleIcon_MoveClass_NARCMemberMap[moveClassIndex];
+    GF_ASSERT(moveClassIndex < NELEMS(sMoveClassIconTiles));
+    return sMoveClassIconTiles[moveClassIndex];
 }
 
 /*
  * Given a move class index, return the corresponding palette index to use for that move class' icon.
- * See also BattleIcon_GetNARCIndex and BattleIcon_GetPaletteNARCMember.
+ * See also BattleIcon_GetNARCIndex and BattleIcon_GetMoveTypePaletteFileIndex.
  */
-u8 BattleIcon_MoveClassIndexToPaletteIndex(int moveClassIndex)
+u8 BattleIcon_GetMoveClassPaletteIndex(int moveClassIndex)
 {
-    GF_ASSERT(moveClassIndex < NELEMS(sBattleIcon_MoveClass_PaletteIndexMap));
-    return sBattleIcon_MoveClass_PaletteIndexMap[moveClassIndex];
+    GF_ASSERT(moveClassIndex < NELEMS(sMoveClassIconPaletteIndex));
+    return sMoveClassIconPaletteIndex[moveClassIndex];
 }
 
 /*
  * Returns the index of the NARC for pl_batt_obj.
  * (This is identical to BattleIcon_GetNARCIndex).
  */
-u32 BattleIcon_GetMoveClassNARCIndex(void)
+u32 BattleIcon_GetMoveClassPalettteFileIndex(void)
 {
     return NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ;
 }
 
 void BattleIcon_MakeMoveTypeSpriteTiles(SpriteRenderer *param0, SpriteGfxHandler *param1, NNS_G2D_VRAM_TYPE param2, int moveTypeIndex, u32 param4)
 {
-    sub_0200CBDC(param0, param1, BattleIcon_GetMoveClassNARCIndex(), BattleIcon_MoveClassIndexToNARCMember(moveTypeIndex), 1, param2, param4);
+    sub_0200CBDC(param0, param1, BattleIcon_GetMoveClassPalettteFileIndex(), BattleIcon_GetMoveClassTiles(moveTypeIndex), 1, param2, param4);
 }
 
 void sub_0207CAF8(SpriteGfxHandler *param0, u32 param1)
