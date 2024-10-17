@@ -1,0 +1,75 @@
+pl_batt_obj_cells = files(
+    'pl_batt_obj_00000077.json',
+    'pl_batt_obj_00000113.json',
+    'pl_batt_obj_00000116.json',
+    'pl_batt_obj_00000122.json',
+    'pl_batt_obj_00000125.json',
+    'battle_terrain_player.json',
+    'pl_batt_obj_00000181.json',
+    'pl_batt_obj_00000184.json',
+    'ball_status_indicator_opponent.json',
+    'ball_status_indicator_player.json',
+    'pl_batt_obj_00000210.json',
+    'pl_batt_obj_00000213.json',
+    'pl_batt_obj_00000216.json',
+    'pl_batt_obj_00000248.json',
+    'battle_subscreen_cursor_corner.json',
+    'pl_batt_obj_00000267.json',
+    'pl_batt_obj_00000268.json',
+    'pl_batt_obj_00000269.json',
+    'pl_batt_obj_00000270.json',
+    'pl_batt_obj_00000271.json',
+    'pl_batt_obj_00000272.json',
+    'pl_batt_obj_00000273.json',
+    'pl_batt_obj_00000274.json',
+    'poke_ball_throw.json',
+    'master_ball_throw.json',
+    'ultra_ball_throw.json',
+    'great_ball_throw.json',
+    'safari_ball_throw.json',
+    'net_ball_throw.json',
+    'dive_ball_throw.json',
+    'nest_ball_throw.json',
+    'repeat_ball_throw.json',
+    'timer_ball_throw.json',
+    'luxury_ball_throw.json',
+    'premier_ball_throw.json',
+    'quick_ball_throw.json',
+    'dusk_ball_throw.json',
+    'heal_ball_throw.json',
+    'cherish_ball_throw.json',
+    'park_ball_throw.json',
+    'bait_throw.json',
+    'mud_throw.json',
+    'party_gauge.json',
+    'pl_batt_obj_00000119.json',
+    'battle_terrain_opponent.json',
+    'pl_batt_obj_00000178.json',
+    'healthbox_singles_opponent.json',
+    'healthbox_singles_player.json',
+    'healthbox_doubles_opponent_1.json',
+    'healthbox_doubles_opponent_2.json',
+    'healthbox_doubles_player_1.json',
+    'healthbox_doubles_player_2.json',
+    'pl_batt_obj_00000242.json',
+    'healthbox_safari.json',
+    'pl_batt_obj_00000257.json'
+)
+
+pl_batt_obj_cells_data = files('data.json')
+
+pl_batt_obj_ncer = []
+foreach infile : pl_batt_obj_cells
+    pl_batt_obj_ncer += custom_target(
+        input: [infile, pl_batt_obj_cells_data],
+        output: '@BASENAME0@.NCER',
+        command: [
+            make_pl_batt_obj_cells_py,
+            '--nitrogfx', nitrogfx_exe.full_path(),
+            '--input', '@INPUT0@',
+            '--output', '@OUTPUT@',
+            '--datafile', '@INPUT1@',
+            '--private-dir', '@PRIVATE_DIR@'
+        ]
+    )
+endforeach
