@@ -1,6 +1,7 @@
 subdir('prebuilt')
 subdir('palettes')
 subdir('sprites')
+subdir('cells')
 
 pl_batt_order = files('order.txt')
 
@@ -10,7 +11,8 @@ nitrofs_files += custom_target('pl_batt_obj.narc',
         pl_batt_order,
         pl_batt_obj_nclr,
         pl_batt_obj_built,
-        pl_batt_obj_ncgr
+        pl_batt_obj_ncgr,
+        pl_batt_obj_ncer
     ],
     command: [
         knarc_exe,

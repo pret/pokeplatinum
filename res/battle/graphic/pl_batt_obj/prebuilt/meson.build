@@ -56,64 +56,6 @@ pl_batt_obj_nanr = files(
     'party_gauge.NANR'
 )
 
-pl_batt_obj_ncer = files(
-    'pl_batt_obj_00000077.NCER',
-    'pl_batt_obj_00000113.NCER',
-    'pl_batt_obj_00000116.NCER',
-    'pl_batt_obj_00000119.NCER',
-    'pl_batt_obj_00000122.NCER',
-    'pl_batt_obj_00000125.NCER',
-    'battle_terrain_player.NCER',
-    'battle_terrain_opponent.NCER',
-    'pl_batt_obj_00000178.NCER',
-    'pl_batt_obj_00000181.NCER',
-    'pl_batt_obj_00000184.NCER',
-    'healthbox_singles_opponent.NCER',
-    'healthbox_singles_player.NCER',
-    'healthbox_doubles_opponent_1.NCER',
-    'healthbox_doubles_opponent_2.NCER',
-    'healthbox_doubles_player_1.NCER',
-    'healthbox_doubles_player_2.NCER',
-    'ball_status_indicator_opponent.NCER',
-    'ball_status_indicator_player.NCER',
-    'pl_batt_obj_00000210.NCER',
-    'pl_batt_obj_00000213.NCER',
-    'pl_batt_obj_00000216.NCER',
-    'pl_batt_obj_00000242.NCER',
-    'pl_batt_obj_00000248.NCER',
-    'battle_subscreen_cursor_corner.NCER',
-    'healthbox_safari.NCER',
-    'pl_batt_obj_00000257.NCER',
-    'pl_batt_obj_00000267.NCER',
-    'pl_batt_obj_00000268.NCER',
-    'pl_batt_obj_00000269.NCER',
-    'pl_batt_obj_00000270.NCER',
-    'pl_batt_obj_00000271.NCER',
-    'pl_batt_obj_00000272.NCER',
-    'pl_batt_obj_00000273.NCER',
-    'pl_batt_obj_00000274.NCER',
-    'poke_ball_throw.NCER',
-    'master_ball_throw.NCER',
-    'ultra_ball_throw.NCER',
-    'great_ball_throw.NCER',
-    'safari_ball_throw.NCER',
-    'net_ball_throw.NCER',
-    'dive_ball_throw.NCER',
-    'nest_ball_throw.NCER',
-    'repeat_ball_throw.NCER',
-    'timer_ball_throw.NCER',
-    'luxury_ball_throw.NCER',
-    'premier_ball_throw.NCER',
-    'quick_ball_throw.NCER',
-    'dusk_ball_throw.NCER',
-    'heal_ball_throw.NCER',
-    'cherish_ball_throw.NCER',
-    'park_ball_throw.NCER',
-    'bait_throw.NCER',
-    'mud_throw.NCER',
-    'party_gauge.NCER'
-)
-
 pl_batt_obj_prebuilts_data = files('data.json')
 
 pl_batt_obj_built = []
@@ -121,21 +63,6 @@ foreach infile : pl_batt_obj_nanr
     pl_batt_obj_built += custom_target(
         input: [infile, pl_batt_obj_prebuilts_data],
         output: '@BASENAME0@.NANR',
-        command: [
-            make_pl_batt_obj_prebuilts_py,
-            '--nitrogfx', nitrogfx_exe.full_path(),
-            '--input', '@INPUT0@',
-            '--output', '@OUTPUT@',
-            '--datafile', '@INPUT1@',
-            '--private-dir', '@PRIVATE_DIR@'
-        ]
-    )
-endforeach
-
-foreach infile : pl_batt_obj_ncer
-    pl_batt_obj_built += custom_target(
-        input: [infile, pl_batt_obj_prebuilts_data],
-        output: '@BASENAME0@.NCER',
         command: [
             make_pl_batt_obj_prebuilts_py,
             '--nitrogfx', nitrogfx_exe.full_path(),
