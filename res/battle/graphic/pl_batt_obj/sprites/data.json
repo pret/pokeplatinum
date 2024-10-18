@@ -599,66 +599,74 @@
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000256.png",
+        "target": "bg_party_level_up.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
     },
     {
-        "target": "pl_batt_obj_00000259.png",
+        "target": "player_lucas_back.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64,
-        "vram": true
+        "vram": true,
+        "tiles": 500
     },
     {
-        "target": "pl_batt_obj_00000260.png",
+        "target": "player_dawn_back.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64,
-        "vram": true
+        "vram": true,
+        "tiles": 500
     },
     {
-        "target": "pl_batt_obj_00000261.png",
+        "target": "player_barry_back.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64,
-        "vram": true
+        "vram": true,
+        "tiles": 500
     },
     {
-        "target": "pl_batt_obj_00000262.png",
+        "target": "player_cheryl_back.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64,
-        "vram": true
+        "vram": true,
+        "tiles": 500
     },
     {
-        "target": "pl_batt_obj_00000263.png",
+        "target": "player_riley_back.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64,
-        "vram": true
+        "vram": true,
+        "tiles": 500
     },
     {
-        "target": "pl_batt_obj_00000264.png",
+        "target": "player_marley_back.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64,
-        "vram": true
+        "vram": true,
+        "tiles": 500
     },
     {
-        "target": "pl_batt_obj_00000265.png",
+        "target": "player_buck_back.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64,
-        "vram": true
+        "vram": true,
+        "tiles": 500
     },
     {
-        "target": "pl_batt_obj_00000266.png",
+        "target": "player_mira_back.png",
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64,
-        "vram": true
+        "vram": true,
+        "tiles": 500
     },
     {
         "target": "poke_ball_throw.png",

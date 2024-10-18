@@ -25,7 +25,7 @@ pl_batt_obj_anims = files(
     'pl_batt_obj_00000249.json',
     'battle_subscreen_cursor_corner.json',
     'healthbox_safari.json',
-    'pl_batt_obj_00000258.json',
+    'bg_party_level_up.json',
     'pl_batt_obj_00000275.json',
     'pl_batt_obj_00000276.json',
     'pl_batt_obj_00000277.json',
