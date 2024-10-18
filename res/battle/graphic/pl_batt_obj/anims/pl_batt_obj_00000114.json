@@ -1,0 +1,24 @@
+{
+	"labelEnabled":	true,
+	"sequenceCount":	1,
+	"frameCount":	1,
+	"resultCount":	1,
+	"sequences":	[{
+			"frameCount":	1,
+			"unk02":	0,
+			"dataType":	0,
+			"unk06":	1,
+			"unk08":	2,
+			"frameData":	[{
+					"frameDelay":	4,
+					"resultId":	0
+				}]
+		}],
+	"animationResults":	[{
+			"dataType":	0,
+			"padded":	true,
+			"index":	0
+		}],
+	"labels":	["CellAnime0"],
+	"labelCount":	1
+}
