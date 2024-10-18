@@ -62,6 +62,9 @@ if 'version101' in file_props and file_props['version101'] == True:
     ngfx_args.append('-version101')
 if 'vram' in file_props and file_props['vram'] == True:
     ngfx_args.append('-vram')
+if 'tiles' in file_props:
+    ngfx_args.append('-num_tiles')
+    ngfx_args.append(str(file_props['tiles']))
 
 subprocess.run(ngfx_args)
 

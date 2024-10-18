@@ -119,56 +119,56 @@
         "invert_size": false
     },
     {
-        "target": "pl_batt_obj_00000083.pal",
+        "target": "player_lucas_back.pal",
         "bitdepth": 4,
         "pad": false,
         "pcmp": false,
         "invert_size": false
     },
     {
-        "target": "pl_batt_obj_00000084.pal",
+        "target": "player_dawn_back.pal",
         "bitdepth": 4,
         "pad": false,
         "pcmp": false,
         "invert_size": false
     },
     {
-        "target": "pl_batt_obj_00000085.pal",
+        "target": "player_barry_back.pal",
         "bitdepth": 4,
         "pad": false,
         "pcmp": false,
         "invert_size": false
     },
     {
-        "target": "pl_batt_obj_00000086.pal",
+        "target": "player_cheryl_back.pal",
         "bitdepth": 4,
         "pad": false,
         "pcmp": false,
         "invert_size": false
     },
     {
-        "target": "pl_batt_obj_00000087.pal",
+        "target": "player_riley_back.pal",
         "bitdepth": 4,
         "pad": false,
         "pcmp": false,
         "invert_size": false
     },
     {
-        "target": "pl_batt_obj_00000088.pal",
+        "target": "player_marley_back.pal",
         "bitdepth": 4,
         "pad": false,
         "pcmp": false,
         "invert_size": false
     },
     {
-        "target": "pl_batt_obj_00000089.pal",
+        "target": "player_buck_back.pal",
         "bitdepth": 4,
         "pad": false,
         "pcmp": false,
         "invert_size": false
     },
     {
-        "target": "pl_batt_obj_00000090.pal",
+        "target": "player_mira_back.pal",
         "bitdepth": 4,
         "pad": false,
         "pcmp": false,
@@ -609,7 +609,7 @@
         "invert_size": true
     },
     {
-        "target": "pl_batt_obj_00000082.pal",
+        "target": "bg_party_level_up.pal",
         "bitdepth": 4,
         "pad": false,
         "pcmp": true,

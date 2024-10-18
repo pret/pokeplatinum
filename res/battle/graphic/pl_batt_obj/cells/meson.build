@@ -53,7 +53,7 @@ pl_batt_obj_cells = files(
     'healthbox_doubles_player_2.json',
     'pl_batt_obj_00000242.json',
     'healthbox_safari.json',
-    'pl_batt_obj_00000257.json'
+    'bg_party_level_up.json'
 )
 
 pl_batt_obj_cells_data = files('data.json')
