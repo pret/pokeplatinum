@@ -1,0 +1,222 @@
+[
+    {
+        "target": "pl_batt_obj_00000078.json",
+        "compressed": false
+    },
+    {
+        "target": "pl_batt_obj_00000114.json",
+        "compressed": false
+    },
+    {
+        "target": "pl_batt_obj_00000115.json",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000118.json",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000123.json",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000126.json",
+        "compressed": true
+    },
+    {
+        "target": "battle_terrain_player.json",
+        "compressed": true
+    },
+    {
+        "target": "battle_terrain_opponent.json",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000177.json",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000180.json",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000183.json",
+        "compressed": true
+    },
+    {
+        "target": "healthbox_singles_opponent.json",
+        "compressed": true
+    },
+    {
+        "target": "healthbox_singles_player.json",
+        "compressed": true
+    },
+    {
+        "target": "healthbox_doubles_opponent_1.json",
+        "compressed": true
+    },
+    {
+        "target": "healthbox_doubles_opponent_2.json",
+        "compressed": true
+    },
+    {
+        "target": "healthbox_doubles_player_1.json",
+        "compressed": true
+    },
+    {
+        "target": "healthbox_doubles_player_2.json",
+        "compressed": true
+    },
+    {
+        "target": "ball_status_indicator_opponent.json",
+        "compressed": true
+    },
+    {
+        "target": "ball_status_indicator_player.json",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000212.json",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000215.json",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000218.json",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000243.json",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000249.json",
+        "compressed": true
+    },
+    {
+        "target": "battle_subscreen_cursor_corner.json",
+        "compressed": true
+    },
+    {
+        "target": "healthbox_safari.json",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000258.json",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000275.json",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000276.json",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000277.json",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000278.json",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000279.json",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000280.json",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000281.json",
+        "compressed": true
+    },
+    {
+        "target": "pl_batt_obj_00000282.json",
+        "compressed": true
+    },
+    {
+        "target": "poke_ball_throw.json",
+        "compressed": true
+    },
+    {
+        "target": "master_ball_throw.json",
+        "compressed": true
+    },
+    {
+        "target": "ultra_ball_throw.json",
+        "compressed": true
+    },
+    {
+        "target": "great_ball_throw.json",
+        "compressed": true
+    },
+    {
+        "target": "safari_ball_throw.json",
+        "compressed": true
+    },
+    {
+        "target": "net_ball_throw.json",
+        "compressed": true
+    },
+    {
+        "target": "dive_ball_throw.json",
+        "compressed": true
+    },
+    {
+        "target": "nest_ball_throw.json",
+        "compressed": true
+    },
+    {
+        "target": "repeat_ball_throw.json",
+        "compressed": true
+    },
+    {
+        "target": "timer_ball_throw.json",
+        "compressed": true
+    },
+    {
+        "target": "luxury_ball_throw.json",
+        "compressed": true
+    },
+    {
+        "target": "premier_ball_throw.json",
+        "compressed": true
+    },
+    {
+        "target": "quick_ball_throw.json",
+        "compressed": true
+    },
+    {
+        "target": "dusk_ball_throw.json",
+        "compressed": true
+    },
+    {
+        "target": "heal_ball_throw.json",
+        "compressed": true
+    },
+    {
+        "target": "cherish_ball_throw.json",
+        "compressed": true
+    },
+    {
+        "target": "park_ball_throw.json",
+        "compressed": true
+    },
+    {
+        "target": "bait_throw.json",
+        "compressed": true
+    },
+    {
+        "target": "mud_throw.json",
+        "compressed": true
+    },
+    {
+        "target": "party_gauge.json",
+        "compressed": true
+    }
+]

@@ -1,0 +1,66 @@
+{
+	"labelEnabled":	true,
+	"sequenceCount":	4,
+	"frameCount":	4,
+	"resultCount":	4,
+	"sequences":	[{
+			"frameCount":	1,
+			"unk02":	0,
+			"dataType":	0,
+			"unk06":	1,
+			"unk08":	2,
+			"frameData":	[{
+					"frameDelay":	4,
+					"resultId":	0
+				}]
+		}, {
+			"frameCount":	1,
+			"unk02":	0,
+			"dataType":	0,
+			"unk06":	1,
+			"unk08":	2,
+			"frameData":	[{
+					"frameDelay":	4,
+					"resultId":	1
+				}]
+		}, {
+			"frameCount":	1,
+			"unk02":	0,
+			"dataType":	0,
+			"unk06":	1,
+			"unk08":	2,
+			"frameData":	[{
+					"frameDelay":	4,
+					"resultId":	2
+				}]
+		}, {
+			"frameCount":	1,
+			"unk02":	0,
+			"dataType":	0,
+			"unk06":	1,
+			"unk08":	2,
+			"frameData":	[{
+					"frameDelay":	4,
+					"resultId":	3
+				}]
+		}],
+	"animationResults":	[{
+			"dataType":	0,
+			"padded":	true,
+			"index":	0
+		}, {
+			"dataType":	0,
+			"padded":	true,
+			"index":	1
+		}, {
+			"dataType":	0,
+			"padded":	true,
+			"index":	2
+		}, {
+			"dataType":	0,
+			"padded":	true,
+			"index":	3
+		}],
+	"labels":	["CellAnime0", "CellAnime1", "CellAnime2", "CellAnime3"],
+	"labelCount":	4
+}

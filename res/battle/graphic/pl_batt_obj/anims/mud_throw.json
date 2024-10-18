@@ -1,0 +1,76 @@
+{
+	"labelEnabled":	true,
+	"sequenceCount":	2,
+	"frameCount":	8,
+	"resultCount":	7,
+	"sequences":	[{
+			"frameCount":	4,
+			"unk02":	0,
+			"dataType":	0,
+			"unk06":	1,
+			"unk08":	2,
+			"frameData":	[{
+					"frameDelay":	2,
+					"resultId":	0
+				}, {
+					"frameDelay":	2,
+					"resultId":	1
+				}, {
+					"frameDelay":	2,
+					"resultId":	2
+				}, {
+					"frameDelay":	2,
+					"resultId":	3
+				}]
+		}, {
+			"frameCount":	4,
+			"unk02":	0,
+			"dataType":	0,
+			"unk06":	1,
+			"unk08":	1,
+			"frameData":	[{
+					"frameDelay":	6,
+					"resultId":	0
+				}, {
+					"frameDelay":	6,
+					"resultId":	4
+				}, {
+					"frameDelay":	6,
+					"resultId":	5
+				}, {
+					"frameDelay":	50,
+					"resultId":	6
+				}]
+		}],
+	"animationResults":	[{
+			"dataType":	0,
+			"padded":	false,
+			"index":	0
+		}, {
+			"dataType":	0,
+			"padded":	false,
+			"index":	1
+		}, {
+			"dataType":	0,
+			"padded":	false,
+			"index":	2
+		}, {
+			"dataType":	0,
+			"padded":	false,
+			"index":	3
+		}, {
+			"dataType":	0,
+			"padded":	false,
+			"index":	4
+		}, {
+			"dataType":	0,
+			"padded":	false,
+			"index":	5
+		}, {
+			"dataType":	0,
+			"padded":	true,
+			"index":	6
+		}],
+	"labels":	["CellAnime0", "CellAnime1"],
+	"labelCount":	2
+}
