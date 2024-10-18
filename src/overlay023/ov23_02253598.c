@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
+
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -36,33 +38,33 @@
 #include "unk_02018340.h"
 #include "unk_0202854C.h"
 
-typedef int (* UnkFuncPtr_ov23_022576EC)(const SecretBaseRecord *);
+typedef int (*UnkFuncPtr_ov23_022576EC)(const SecretBaseRecord *);
 
 typedef struct {
     UnkFuncPtr_ov23_02253834 unk_00;
-    void * unk_04;
+    void *unk_04;
     Window unk_08;
-    ResourceMetadata * unk_18;
-    BmpList * unk_1C;
+    ResourceMetadata *unk_18;
+    BmpList *unk_1C;
     UnkFuncPtr_ov23_0224DCB8 unk_20;
     u16 unk_24;
     int unk_28;
 } UnkStruct_ov23_022537D4;
 
 typedef struct UnkStruct_ov23_02253598_t {
-    UnkStruct_ov23_022537D4 * unk_00;
-    SysTask * unk_04;
-    SaveData * unk_08;
-    SecretBaseRecord * unk_0C;
-    SecretBaseRecord * unk_10;
+    UnkStruct_ov23_022537D4 *unk_00;
+    SysTask *unk_04;
+    SaveData *unk_08;
+    SecretBaseRecord *unk_0C;
+    SecretBaseRecord *unk_10;
     MATHRandContext32 unk_14;
     u8 unk_2C;
 };
 
-static UnkStruct_ov23_02253598 * Unk_ov23_022577BC = NULL;
-static void ov23_022537D4(SysTask * param0, void * param1);
+static UnkStruct_ov23_02253598 *Unk_ov23_022577BC = NULL;
+static void ov23_022537D4(SysTask *param0, void *param1);
 
-void ov23_02253598 (UnkStruct_ov23_02253598 * param0, SecretBaseRecord * param1, SaveData * param2)
+void ov23_02253598(UnkStruct_ov23_02253598 *param0, SecretBaseRecord *param1, SaveData *param2)
 {
     MI_CpuFill8(param0, 0, sizeof(UnkStruct_ov23_02253598));
 
@@ -74,7 +76,7 @@ void ov23_02253598 (UnkStruct_ov23_02253598 * param0, SecretBaseRecord * param1,
     CommSys_Seed(&Unk_ov23_022577BC->unk_14);
 }
 
-void ov23_022535CC (void)
+void ov23_022535CC(void)
 {
     Heap_FreeToHeap(Unk_ov23_022577BC->unk_10);
     Heap_FreeToHeap(Unk_ov23_022577BC);
@@ -82,19 +84,19 @@ void ov23_022535CC (void)
     Unk_ov23_022577BC = NULL;
 }
 
-void ov23_022535EC (void)
+void ov23_022535EC(void)
 {
     if (Unk_ov23_022577BC->unk_04) {
         ov23_022537D4(Unk_ov23_022577BC->unk_04, Unk_ov23_022577BC->unk_00);
     }
 }
 
-void ov23_02253604 (void)
+void ov23_02253604(void)
 {
     return;
 }
 
-int ov23_02253608 (void)
+int ov23_02253608(void)
 {
     return sizeof(UnkStruct_ov23_02253598);
 }
@@ -116,213 +118,71 @@ static UnkFuncPtr_ov23_022576EC Unk_ov23_022576EC[] = {
     sub_020295B8
 };
 
-// clang-format off
-asm static void ov23_0225360C (Window * param0, MessageLoader * param1, TrainerInfo * param2, const SecretBaseRecord * param3)
+static void ov23_0225360C(Window *param0, MessageLoader *param1, TrainerInfo *param2, const SecretBaseRecord *param3)
 {
-    push {r3, r4, r5, r6, r7, lr}
-    sub sp, #0x20
-    add r7, r0, #0
-    mov r0, #4
-    str r1, [sp, #0xc]
-    add r5, r2, #0
-    str r3, [sp, #0x10]
-    bl StringTemplate_Default
-    str r0, [sp, #0x1c]
-    mov r0, #0x1e
-    mov r1, #4
-    bl Strbuf_Init
-    add r4, r0, #0
-    mov r0, #0x1e
-    mov r1, #4
-    bl Strbuf_Init
-    str r0, [sp, #0x18]
-    ldr r0, [sp, #0xc]
-    mov r1, #0
-    add r2, r4, #0
-    bl MessageLoader_GetStrbuf
-    mov r0, #1
-    str r0, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    mov r1, #0
-    add r0, r7, #0
-    add r2, r4, #0
-    mov r3, #2
-    str r1, [sp, #8]
-    bl Text_AddPrinterWithParams
-    ldr r0, [sp, #0xc]
-    mov r1, #1
-    add r2, r4, #0
-    bl MessageLoader_GetStrbuf
-    mov r0, #0x11
-    str r0, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    mov r1, #0
-    add r0, r7, #0
-    add r2, r4, #0
-    mov r3, #2
-    str r1, [sp, #8]
-    bl Text_AddPrinterWithParams
-    ldr r0, [sp, #0xc]
-    mov r1, #2
-    add r2, r4, #0
-    bl MessageLoader_GetStrbuf
-    mov r0, #1
-    str r0, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    mov r1, #0
-    add r0, r7, #0
-    add r2, r4, #0
-    mov r3, #0x84
-    str r1, [sp, #8]
-    bl Text_AddPrinterWithParams
-    add r0, r5, #0
-    bl TrainerInfo_ID_LowHalf
-    add r2, r0, #0
-    mov r0, #2
-    str r0, [sp]
-    mov r0, #1
-    str r0, [sp, #4]
-    ldr r0, [sp, #0x1c]
-    mov r1, #6
-    mov r3, #5
-    bl StringTemplate_SetNumber
-    ldr r0, [sp, #0xc]
-    mov r1, #5
-    add r2, r4, #0
-    bl MessageLoader_GetStrbuf
-    ldr r0, [sp, #0x1c]
-    ldr r1, [sp, #0x18]
-    add r2, r4, #0
-    bl StringTemplate_Format
-    mov r0, #1
-    str r0, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    mov r1, #0
-    ldr r2, [sp, #0x18]
-    add r0, r7, #0
-    mov r3, #0x94
-    str r1, [sp, #8]
-    bl Text_AddPrinterWithParams
-    ldr r0, [sp, #0x1c]
-    mov r1, #0
-    add r2, r5, #0
-    bl StringTemplate_SetPlayerName
-    ldr r0, [sp, #0xc]
-    mov r1, #4
-    add r2, r4, #0
-    bl MessageLoader_GetStrbuf
-    ldr r0, [sp, #0x1c]
-    ldr r1, [sp, #0x18]
-    add r2, r4, #0
-    bl StringTemplate_Format
-    mov r0, #1
-    str r0, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    mov r1, #0
-    ldr r2, [sp, #0x18]
-    add r0, r7, #0
-    mov r3, #0x39
-    str r1, [sp, #8]
-    bl Text_AddPrinterWithParams
-    ldr r0, [sp, #0x10]
-    bl sub_0202958C
-    add r1, r0, #0
-    ldr r0, [sp, #0xc]
-    add r1, #0x14
-    add r2, r4, #0
-    bl MessageLoader_GetStrbuf
-    mov r0, #0x11
-    str r0, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    mov r1, #0
-    add r0, r7, #0
-    add r2, r4, #0
-    mov r3, #0x39
-    str r1, [sp, #8]
-    bl Text_AddPrinterWithParams
-    mov r5, #0
-    mov r6, #0x27
- _02253738:
-    ldr r0, [sp, #0xc]
-    add r1, r5, #6
-    add r2, r4, #0
-    bl MessageLoader_GetStrbuf
-    str r6, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    mov r0, #0
-    str r0, [sp, #8]
-    add r0, r7, #0
-    mov r1, #0
-    add r2, r4, #0
-    mov r3, #2
-    bl Text_AddPrinterWithParams
-    add r5, r5, #1
-    add r6, #0x10
-    cmp r5, #7
-    blt _02253738
-    mov r0, #0
-    ldr r6, = Unk_ov23_022576EC
-              str r0, [sp, #0x14]
-    mov r5, #0x27
- _02253768:
-    ldr r0, [sp, #0x10]
-    ldr r1, [r6, #0]
-    blx r1
-    add r2, r0, #0
-    mov r0, #1
-    str r0, [sp]
-    str r0, [sp, #4]
-    mov r1, #6
-    ldr r0, [sp, #0x1c]
-    add r3, r1, #0
-    bl StringTemplate_SetNumber
-    ldr r0, [sp, #0xc]
-    mov r1, #0xd
-    add r2, r4, #0
-    bl MessageLoader_GetStrbuf
-    ldr r0, [sp, #0x1c]
-    ldr r1, [sp, #0x18]
-    add r2, r4, #0
-    bl StringTemplate_Format
-    str r5, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    mov r0, #0
-    str r0, [sp, #8]
-    ldr r2, [sp, #0x18]
-    add r0, r7, #0
-    mov r1, #0
-    mov r3, #0x94
-    bl Text_AddPrinterWithParams
-    ldr r0, [sp, #0x14]
-    add r6, r6, #4
-    add r0, r0, #1
-    add r5, #0x10
-    str r0, [sp, #0x14]
-    cmp r0, #7
-    blt _02253768
-    add r0, r4, #0
-    bl Strbuf_Free
-    ldr r0, [sp, #0x18]
-    bl Strbuf_Free
-    ldr r0, [sp, #0x1c]
-    bl StringTemplate_Free
-    add sp, #0x20
-    pop {r3, r4, r5, r6, r7, pc}
-    nop
-}
-// clang-format on
+    StringTemplate *v0;
+    Strbuf *v1;
+    Strbuf *v2;
+    int v3, v4;
+    const int v5 = 17;
+    const int v6 = 39;
+    const int v7 = 2;
+    const int v8 = 16;
+    const int v9 = 55;
+    const int v10 = 130;
+    const int v11 = 146;
+    const int v12 = 146;
 
-static void ov23_022537D4 (SysTask * param0, void * param1)
+    v0 = StringTemplate_Default(HEAP_ID_FIELD);
+    v1 = Strbuf_Init(30, HEAP_ID_FIELD);
+    v2 = Strbuf_Init(30, HEAP_ID_FIELD);
+
+    MessageLoader_GetStrbuf(param1, 0, v1);
+    Text_AddPrinterWithParams(param0, 0, v1, v7, 1, 0xFF, NULL);
+
+    MessageLoader_GetStrbuf(param1, 1, v1);
+    Text_AddPrinterWithParams(param0, 0, v1, v7, v5, 0xFF, NULL);
+
+    MessageLoader_GetStrbuf(param1, 2, v1);
+    Text_AddPrinterWithParams(param0, 0, v1, v7 + v10, 1, 0xFF, NULL);
+
+    StringTemplate_SetNumber(v0, 6, TrainerInfo_ID_LowHalf(param2), 5, 2, 1);
+    MessageLoader_GetStrbuf(param1, 5, v1);
+    StringTemplate_Format(v0, v2, v1);
+    Text_AddPrinterWithParams(param0, 0, v2, v7 + v12, 1, 0xFF, NULL);
+
+    StringTemplate_SetPlayerName(v0, 0, param2);
+    MessageLoader_GetStrbuf(param1, 4, v1);
+    StringTemplate_Format(v0, v2, v1);
+    Text_AddPrinterWithParams(param0, 0, v2, v7 + v9, 1, 0xFF, NULL);
+
+    v3 = sub_0202958C(param3);
+    MessageLoader_GetStrbuf(param1, 20 + v3, v1);
+    Text_AddPrinterWithParams(param0, 0, v1, v7 + v9, v5, 0xFF, NULL);
+
+    for (v3 = 0; v3 < 7; v3++) {
+        MessageLoader_GetStrbuf(param1, 6 + v3, v1);
+        Text_AddPrinterWithParams(param0, 0, v1, v7, v6 + v8 * v3, 0xFF, NULL);
+    }
+
+    for (v3 = 0; v3 < 7; v3++) {
+        UnkFuncPtr_ov23_022576EC v13 = Unk_ov23_022576EC[v3];
+
+        v4 = v13(param3);
+        StringTemplate_SetNumber(v0, 6, v4, 6, 1, 1);
+        MessageLoader_GetStrbuf(param1, 13, v1);
+        StringTemplate_Format(v0, v2, v1);
+        Text_AddPrinterWithParams(param0, 0, v2, v7 + v12, v6 + v8 * v3, 0xFF, NULL);
+    }
+
+    Strbuf_Free(v1);
+    Strbuf_Free(v2);
+    StringTemplate_Free(v0);
+}
+
+static void ov23_022537D4(SysTask *param0, void *param1)
 {
-    UnkStruct_ov23_022537D4 * v0 = param1;
+    UnkStruct_ov23_022537D4 *v0 = param1;
 
     Window_Clear(&v0->unk_08, 0);
     sub_0201ACF4(&v0->unk_08);
@@ -343,22 +203,22 @@ static void ov23_022537D4 (SysTask * param0, void * param1)
     Unk_ov23_022577BC->unk_00 = NULL;
 }
 
-static void ov23_0225381C (SysTask * param0, void * param1)
+static void ov23_0225381C(SysTask *param0, void *param1)
 {
-    UnkStruct_ov23_022537D4 * v0 = param1;
+    UnkStruct_ov23_022537D4 *v0 = param1;
 
     if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         ov23_022537D4(param0, param1);
     }
 }
 
-void ov23_02253834 (BGL * param0, TrainerInfo * param1, UnkFuncPtr_ov23_02253834 param2, void * param3, BOOL param4)
+void ov23_02253834(BGL *param0, TrainerInfo *param1, UnkFuncPtr_ov23_02253834 param2, void *param3, BOOL param4)
 {
-    SecretBaseRecord * v0;
-    MessageLoader * v1;
+    SecretBaseRecord *v0;
+    MessageLoader *v1;
     UnkStruct_ov84_02240FA8 v2;
     int v3 = 10;
-    UnkStruct_ov23_022537D4 * v4 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov23_022537D4));
+    UnkStruct_ov23_022537D4 *v4 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov23_022537D4));
 
     MI_CpuClear8(v4, sizeof(UnkStruct_ov23_022537D4));
 
@@ -388,11 +248,11 @@ void ov23_02253834 (BGL * param0, TrainerInfo * param1, UnkFuncPtr_ov23_02253834
     MessageLoader_Free(v1);
 }
 
-void ov23_022538FC (int param0)
+void ov23_022538FC(int param0)
 {
     int v0 = sub_02028558();
     int v1 = GameRecords_GetTrainerScore(SaveData_GetGameRecordsPtr(Unk_ov23_022577BC->unk_08));
-    u8 * v2 = Heap_AllocFromHeap(4, v0 + 1);
+    u8 *v2 = Heap_AllocFromHeap(4, v0 + 1);
 
     MI_CpuClear8(v2, v0 + 1);
     v2[0] = param0;
@@ -409,7 +269,7 @@ void ov23_022538FC (int param0)
     Heap_FreeToHeap(v2);
 }
 
-void ov23_02253968 (void)
+void ov23_02253968(void)
 {
     int v0 = GameRecords_GetTrainerScore(SaveData_GetGameRecordsPtr(Unk_ov23_022577BC->unk_08));
 
@@ -420,14 +280,14 @@ void ov23_02253968 (void)
     sub_020294D4(Unk_ov23_022577BC->unk_0C, v0);
 }
 
-void ov23_02253998 (int param0, int param1, void * param2, void * param3)
+void ov23_02253998(int param0, int param1, void *param2, void *param3)
 {
     CommSys_SendDataServer(82, param2, param1);
 }
 
-void ov23_022539A8 (int param0, int param1, void * param2, void * param3)
+void ov23_022539A8(int param0, int param1, void *param2, void *param3)
 {
-    u8 * v0 = param2;
+    u8 *v0 = param2;
 
     if (v0[0] == CommSys_CurNetId()) {
         MI_CpuCopy8(&v0[1], Unk_ov23_022577BC->unk_10, param1 - 1);
@@ -435,25 +295,25 @@ void ov23_022539A8 (int param0, int param1, void * param2, void * param3)
     }
 }
 
-BOOL ov23_022539D8 (void)
+BOOL ov23_022539D8(void)
 {
     return Unk_ov23_022577BC->unk_2C;
 }
 
-void ov23_022539E8 (void)
+void ov23_022539E8(void)
 {
     Unk_ov23_022577BC->unk_2C = 0;
 }
 
-static void ov23_022539F8 (int param0)
+static void ov23_022539F8(int param0)
 {
     sub_02059514();
 }
 
-void ov23_02253A00 (SecretBaseRecord * param0, int param1)
+void ov23_02253A00(SecretBaseRecord *param0, int param1)
 {
     s32 v0;
-    SecretBaseRecord * v1;
+    SecretBaseRecord *v1;
     UnkFuncPtr_ov23_022576EC v2 = Unk_ov23_022576EC[param1 - 32];
 
     GF_ASSERT(param1 >= 32);
@@ -472,11 +332,11 @@ void ov23_02253A00 (SecretBaseRecord * param0, int param1)
     ov23_02253F40(ov23_022421BC(), param1, 1, ov23_022539F8);
 }
 
-static void ov23_02253A78 (Window * param0, MessageLoader * param1, TrainerInfo * param2, const SecretBaseRecord * param3, const UndergroundData * param4)
+static void ov23_02253A78(Window *param0, MessageLoader *param1, TrainerInfo *param2, const SecretBaseRecord *param3, const UndergroundData *param4)
 {
-    StringTemplate * v0;
-    Strbuf* v1;
-    Strbuf* v2;
+    StringTemplate *v0;
+    Strbuf *v1;
+    Strbuf *v2;
     int v3, v4;
     const int v5 = 17;
     const int v6 = 39;
@@ -508,7 +368,7 @@ static void ov23_02253A78 (Window * param0, MessageLoader * param1, TrainerInfo 
     Text_AddPrinterWithParams(param0, 0, v1, v7, 1 + v8 * 3, 0xff, NULL);
 
     for (v3 = 0; v3 < 5; v3++) {
-        TrainerInfo * v13 = sub_020288C8(param4, 4, v3);
+        TrainerInfo *v13 = sub_020288C8(param4, 4, v3);
 
         if (v13) {
             StringTemplate_SetPlayerName(v0, 0, v13);
@@ -535,13 +395,13 @@ static void ov23_02253A78 (Window * param0, MessageLoader * param1, TrainerInfo 
     StringTemplate_Free(v0);
 }
 
-void * ov23_02253C64 (BGL * param0, TrainerInfo * param1, UndergroundData * param2, UnkFuncPtr_ov23_02253834 param3, void * param4)
+void *ov23_02253C64(BGL *param0, TrainerInfo *param1, UndergroundData *param2, UnkFuncPtr_ov23_02253834 param3, void *param4)
 {
-    SecretBaseRecord * v0;
-    MessageLoader * v1;
+    SecretBaseRecord *v0;
+    MessageLoader *v1;
     UnkStruct_ov84_02240FA8 v2;
     int v3 = 10;
-    UnkStruct_ov23_022537D4 * v4 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov23_022537D4));
+    UnkStruct_ov23_022537D4 *v4 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov23_022537D4));
 
     MI_CpuClear8(v4, sizeof(UnkStruct_ov23_022537D4));
 
@@ -564,9 +424,9 @@ void * ov23_02253C64 (BGL * param0, TrainerInfo * param1, UndergroundData * para
     return v4;
 }
 
-void ov23_02253D10 (void * param0)
+void ov23_02253D10(void *param0)
 {
-    UnkStruct_ov23_022537D4 * v0 = param0;
+    UnkStruct_ov23_022537D4 *v0 = param0;
 
     Window_Clear(&v0->unk_08, 0);
     sub_0201ACF4(&v0->unk_08);

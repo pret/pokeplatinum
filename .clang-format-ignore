@@ -1,26 +1,16 @@
 # These files still contain inline-ASM functions; ignore them for formatting for now
-src/overlay117/ov117_02260668.c
-src/overlay112/ov112_0225C700.c
 src/overlay110/ov110_021D0D80.c
-src/overlay020/ov20_021D4728.c
 src/unk_0208A3F4.c
-src/unk_02089604.c
 src/overlay073/ov73_021D3250.c
 src/overlay107/ov107_02245EB0.c
 src/overlay107/ov107_02241AE0.c
-src/overlay007/ov7_02249960.c
 src/overlay071/ov71_0223C69C.c
-src/overlay019/ov19_021D0D80.c
-src/overlay022/ov22_02259C58.c
-src/overlay023/ov23_02253598.c
 src/overlay065/ov65_0222DCE0.c
 src/overlay064/ov64_0222DCE0.c
 src/overlay098/ov98_022471C8.c
 src/overlay062/ov62_02241204.c
 src/overlay062/ov62_0223DFA8.c
 src/overlay062/ov62_0223CAEC.c
-src/overlay062/ov62_02231690.c
-src/overlay062/ov62_02237D24.c
 
 # Do not format any .s or .inc file
 *.s
