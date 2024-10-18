@@ -33,22 +33,22 @@
 #include "unk_0201F834.h"
 #include "unk_02023FCC.h"
 
-static void ov22_02259D94(UnkStruct_ov22_02259C58 * param0, void * param1);
-static void ov22_0225A0E4(UnkStruct_ov22_02259C58 * param0, int param1, UnkStruct_ov22_0225A0E4 * param2, int param3, int param4, int param5, int param6);
-static void ov22_0225A154(UnkStruct_ov22_0225A154 * param0, int param1, UnkStruct_ov22_0225A0E4 * param2, const UnkStruct_02012744 * param3, const Window * param4, int param5, int param6, int param7, int param8);
+static void ov22_02259D94(UnkStruct_ov22_02259C58 *param0, void *param1);
+static void ov22_0225A0E4(UnkStruct_ov22_02259C58 *param0, int param1, UnkStruct_ov22_0225A0E4 *param2, int param3, int param4, int param5, int param6);
+static void ov22_0225A154(UnkStruct_ov22_0225A154 *param0, int param1, UnkStruct_ov22_0225A0E4 *param2, const UnkStruct_02012744 *param3, const Window *param4, int param5, int param6, int param7, int param8);
 static void ov22_0225A200(TouchScreenHitTable *hitTable, int param1, int param2, int param3, int param4, int param5);
-static void ov22_0225A218(UnkStruct_ov22_0225A0E4 * param0);
-static void ov22_0225A2A8(UnkStruct_ov22_0225A0E4 * param0);
-static Window * ov22_0225A348(UnkStruct_ov22_0225A0E4 * param0, u32 param1, u32 param2, u32 param3, int param4, int param5);
-static void ov22_0225A3D0(Window * param0);
-static void ov22_0225A2D0(UnkStruct_ov22_02259C58 * param0, int param1);
-static void ov22_0225A338(UnkStruct_ov22_02259C58 * param0, int param1, int param2, int param3);
-static void ov22_0225A2F4(UnkStruct_ov22_0225A154 * param0, int param1);
-static void ov22_0225A3DC(UnkStruct_ov22_02259C58 * param0, int param1, int param2);
-static void ov22_0225A418(UnkStruct_ov22_0225A154 * param0, int param1, int param2);
-static void ov22_0225A02C(u32 param0, u32 param1, void * param2);
+static void ov22_0225A218(UnkStruct_ov22_0225A0E4 *param0);
+static void ov22_0225A2A8(UnkStruct_ov22_0225A0E4 *param0);
+static Window *ov22_0225A348(UnkStruct_ov22_0225A0E4 *param0, u32 param1, u32 param2, u32 param3, int param4, int param5);
+static void ov22_0225A3D0(Window *param0);
+static void ov22_0225A2D0(UnkStruct_ov22_02259C58 *param0, int param1);
+static void ov22_0225A338(UnkStruct_ov22_02259C58 *param0, int param1, int param2, int param3);
+static void ov22_0225A2F4(UnkStruct_ov22_0225A154 *param0, int param1);
+static void ov22_0225A3DC(UnkStruct_ov22_02259C58 *param0, int param1, int param2);
+static void ov22_0225A418(UnkStruct_ov22_0225A154 *param0, int param1, int param2);
+static void ov22_0225A02C(u32 param0, u32 param1, void *param2);
 
-void ov22_02259C58 (UnkStruct_ov22_02259C58 * param0, UnkStruct_ov22_02259C58_1 * param1)
+void ov22_02259C58(UnkStruct_ov22_02259C58 *param0, UnkStruct_ov22_02259C58_1 *param1)
 {
     GF_ASSERT(param0);
     GF_ASSERT(param1);
@@ -66,7 +66,7 @@ void ov22_02259C58 (UnkStruct_ov22_02259C58 * param0, UnkStruct_ov22_02259C58_1 
     }
 }
 
-void ov22_02259C9C (UnkStruct_ov22_0225A154 * param0, UnkStruct_ov22_02259C9C * param1)
+void ov22_02259C9C(UnkStruct_ov22_0225A154 *param0, UnkStruct_ov22_02259C9C *param1)
 {
     UnkStruct_020127E8 v0;
 
@@ -88,30 +88,30 @@ void ov22_02259C9C (UnkStruct_ov22_0225A154 * param0, UnkStruct_ov22_02259C9C * 
     param0->unk_10 = sub_020127E8(&v0);
 }
 
-void ov22_02259CE8 (UnkStruct_ov22_02259C58 * param0)
+void ov22_02259CE8(UnkStruct_ov22_02259C58 *param0)
 {
     CellActor_Delete(param0->unk_00);
     memset(param0, 0, sizeof(UnkStruct_ov22_02259C58));
 }
 
-void ov22_02259D00 (UnkStruct_ov22_0225A154 * param0)
+void ov22_02259D00(UnkStruct_ov22_0225A154 *param0)
 {
     ov22_02259CE8(&param0->unk_00);
     sub_02012870(param0->unk_10);
     memset(param0, 0, sizeof(UnkStruct_ov22_0225A154));
 }
 
-void ov22_02259D1C (UnkStruct_ov22_02259C58 * param0, int param1)
+void ov22_02259D1C(UnkStruct_ov22_02259C58 *param0, int param1)
 {
     if (param1 == param0->unk_04) {
         param0->unk_0C(param0, param0->unk_08);
     }
 }
 
-void ov22_02259D2C (UnkStruct_ov22_02259D2C * param0, int param1, int param2)
+void ov22_02259D2C(UnkStruct_ov22_02259D2C *param0, int param1, int param2)
 {
     int v0;
-    UnkStruct_ov22_02259C58 * v1;
+    UnkStruct_ov22_02259C58 *v1;
 
     for (v0 = 2; v0 <= 3; v0++) {
         v1 = param0->unk_00 + v0;
@@ -132,7 +132,7 @@ void ov22_02259D2C (UnkStruct_ov22_02259D2C * param0, int param1, int param2)
     }
 }
 
-void ov22_02259D78 (UnkStruct_ov22_02259C58 * param0, UnkFuncPtr_ov22_02259D78 param1, void * param2, int param3)
+void ov22_02259D78(UnkStruct_ov22_02259C58 *param0, UnkFuncPtr_ov22_02259D78 param1, void *param2, int param3)
 {
     GF_ASSERT(param0);
 
@@ -141,29 +141,29 @@ void ov22_02259D78 (UnkStruct_ov22_02259C58 * param0, UnkFuncPtr_ov22_02259D78 p
     param0->unk_0C = param1;
 }
 
-static void ov22_02259D94 (UnkStruct_ov22_02259C58 * param0, void * param1)
+static void ov22_02259D94(UnkStruct_ov22_02259C58 *param0, void *param1)
 {
     return;
 }
 
-void ov22_02259D98 (UnkStruct_ov22_02259C58 * param0)
+void ov22_02259D98(UnkStruct_ov22_02259C58 *param0)
 {
     SpriteActor_SetAnimFrame(param0->unk_00, 2);
 }
 
-void ov22_02259DA4 (UnkStruct_ov22_02259C58 * param0)
+void ov22_02259DA4(UnkStruct_ov22_02259C58 *param0)
 {
     SpriteActor_SetAnimFrame(param0->unk_00, 0);
 }
 
-void ov22_02259DB0 (UnkStruct_ov22_02259C58 * param0)
+void ov22_02259DB0(UnkStruct_ov22_02259C58 *param0)
 {
     SpriteActor_SetAnimFrame(param0->unk_00, 1);
 }
 
-void ov22_02259DBC (UnkStruct_ov22_02259D2C * param0, UnkStruct_ov22_0225A0E4 * param1)
+void ov22_02259DBC(UnkStruct_ov22_02259D2C *param0, UnkStruct_ov22_0225A0E4 *param1)
 {
-    Window * v0;
+    Window *v0;
 
     param0->unk_64 = sub_02012744(1, 13);
 
@@ -199,7 +199,7 @@ void ov22_02259DBC (UnkStruct_ov22_02259D2C * param0, UnkStruct_ov22_0225A0E4 * 
     param0->unk_68 = sub_02023FCC(param0->unk_6C, 5, ov22_0225A02C, param0, 13);
 }
 
-void ov22_02259F24 (UnkStruct_ov22_02259D2C * param0, UnkStruct_ov22_0225A0E4 * param1)
+void ov22_02259F24(UnkStruct_ov22_02259D2C *param0, UnkStruct_ov22_0225A0E4 *param1)
 {
     int v0;
 
@@ -224,20 +224,20 @@ void ov22_02259F24 (UnkStruct_ov22_02259D2C * param0, UnkStruct_ov22_0225A0E4 * 
     param0->unk_68 = NULL;
 }
 
-void ov22_02259F88 (UnkStruct_ov22_02259D2C * param0)
+void ov22_02259F88(UnkStruct_ov22_02259D2C *param0)
 {
     GF_ASSERT(param0->unk_68);
     sub_0202404C(param0->unk_68);
 }
 
-void ov22_02259FA0 (UnkStruct_ov22_02259D2C * param0)
+void ov22_02259FA0(UnkStruct_ov22_02259D2C *param0)
 {
     ov22_0225A2D0(&param0->unk_40.unk_00, 3);
     ov22_0225A2F4(&param0->unk_40, 3);
     ov22_02259D2C(param0, 2, 3);
 }
 
-void ov22_02259FC4 (UnkStruct_ov22_02259D2C * param0, int param1, int param2)
+void ov22_02259FC4(UnkStruct_ov22_02259D2C *param0, int param1, int param2)
 {
     int v0;
 
@@ -248,7 +248,7 @@ void ov22_02259FC4 (UnkStruct_ov22_02259D2C * param0, int param1, int param2)
     ov22_0225A418(&param0->unk_40, param1, param2);
 }
 
-void ov22_02259FF4 (UnkStruct_ov22_02259D2C * param0, int param1, UnkFuncPtr_ov22_02259D78 param2, void * param3, int param4)
+void ov22_02259FF4(UnkStruct_ov22_02259D2C *param0, int param1, UnkFuncPtr_ov22_02259D78 param2, void *param3, int param4)
 {
     GF_ASSERT(param0);
 
@@ -261,9 +261,9 @@ void ov22_02259FF4 (UnkStruct_ov22_02259D2C * param0, int param1, UnkFuncPtr_ov2
     }
 }
 
-static void ov22_0225A02C (u32 param0, u32 param1, void * param2)
+static void ov22_0225A02C(u32 param0, u32 param1, void *param2)
 {
-    UnkStruct_ov22_02259D2C * v0 = param2;
+    UnkStruct_ov22_02259D2C *v0 = param2;
 
     switch (param0) {
     case 0:
@@ -357,7 +357,7 @@ static void ov22_0225A154(UnkStruct_ov22_0225A154 *param0, int param1, UnkStruct
     ov22_02259C9C(param0, &v0);
 }
 
-static void ov22_0225A200 (TouchScreenHitTable *hitTable, int param1, int param2, int param3, int param4, int param5)
+static void ov22_0225A200(TouchScreenHitTable *hitTable, int param1, int param2, int param3, int param4, int param5)
 {
     hitTable[param1].rect.top = param3;
     hitTable[param1].rect.left = param2;
@@ -365,7 +365,7 @@ static void ov22_0225A200 (TouchScreenHitTable *hitTable, int param1, int param2
     hitTable[param1].rect.right = param2 + param4;
 }
 
-static void ov22_0225A218 (UnkStruct_ov22_0225A0E4 * param0)
+static void ov22_0225A218(UnkStruct_ov22_0225A0E4 *param0)
 {
     int v0;
 
@@ -379,7 +379,7 @@ static void ov22_0225A218 (UnkStruct_ov22_0225A0E4 * param0)
     ov22_02255268(param0, param0->unk_5C, 120, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 2, 1);
 }
 
-static void ov22_0225A2A8 (UnkStruct_ov22_0225A0E4 * param0)
+static void ov22_0225A2A8(UnkStruct_ov22_0225A0E4 *param0)
 {
     int v0;
 
@@ -391,7 +391,7 @@ static void ov22_0225A2A8 (UnkStruct_ov22_0225A0E4 * param0)
     ov22_022552D8(param0, 1);
 }
 
-static void ov22_0225A2D0 (UnkStruct_ov22_02259C58 * param0, int param1)
+static void ov22_0225A2D0(UnkStruct_ov22_02259C58 *param0, int param1)
 {
     if (param1 == 0) {
         ov22_02259DB0(param0);
@@ -402,7 +402,7 @@ static void ov22_0225A2D0 (UnkStruct_ov22_02259C58 * param0, int param1)
     }
 }
 
-static void ov22_0225A2F4 (UnkStruct_ov22_0225A154 * param0, int param1)
+static void ov22_0225A2F4(UnkStruct_ov22_0225A154 *param0, int param1)
 {
     if (param1 == 0) {
         sub_020128C4(param0->unk_10, 0, 15);
@@ -419,18 +419,18 @@ static void ov22_0225A2F4 (UnkStruct_ov22_0225A154 * param0, int param1)
     }
 }
 
-static void ov22_0225A338 (UnkStruct_ov22_02259C58 * param0, int param1, int param2, int param3)
+static void ov22_0225A338(UnkStruct_ov22_02259C58 *param0, int param1, int param2, int param3)
 {
     if (param3 == param2) {
         Sound_PlayEffect(param1);
     }
 }
 
-static Window * ov22_0225A348 (UnkStruct_ov22_0225A0E4 * param0, u32 param1, u32 param2, u32 param3, int param4, int param5)
+static Window *ov22_0225A348(UnkStruct_ov22_0225A0E4 *param0, u32 param1, u32 param2, u32 param3, int param4, int param5)
 {
-    MessageLoader * v0;
-    Strbuf* v1;
-    Window * v2;
+    MessageLoader *v0;
+    Strbuf *v1;
+    Window *v2;
 
     v0 = MessageLoader_Init(0, param1, param2, 13);
     GF_ASSERT(v0);
@@ -451,14 +451,14 @@ static Window * ov22_0225A348 (UnkStruct_ov22_0225A0E4 * param0, u32 param1, u32
     return v2;
 }
 
-static void ov22_0225A3D0 (Window * param0)
+static void ov22_0225A3D0(Window *param0)
 {
     sub_0201A928(param0, 1);
 }
 
-static void ov22_0225A3DC (UnkStruct_ov22_02259C58 * param0, int param1, int param2)
+static void ov22_0225A3DC(UnkStruct_ov22_02259C58 *param0, int param1, int param2)
 {
-    const VecFx32 * v0;
+    const VecFx32 *v0;
     VecFx32 v1;
 
     v0 = CellActor_GetPosition(param0->unk_00);
@@ -468,7 +468,7 @@ static void ov22_0225A3DC (UnkStruct_ov22_02259C58 * param0, int param1, int par
     CellActor_SetPosition(param0->unk_00, &v1);
 }
 
-static void ov22_0225A418 (UnkStruct_ov22_0225A154 * param0, int param1, int param2)
+static void ov22_0225A418(UnkStruct_ov22_0225A154 *param0, int param1, int param2)
 {
     ov22_0225A3DC(&param0->unk_00, param1, param2);
     sub_02012938(param0->unk_10);

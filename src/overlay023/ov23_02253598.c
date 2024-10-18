@@ -38,33 +38,33 @@
 #include "unk_02018340.h"
 #include "unk_0202854C.h"
 
-typedef int (* UnkFuncPtr_ov23_022576EC)(const SecretBaseRecord *);
+typedef int (*UnkFuncPtr_ov23_022576EC)(const SecretBaseRecord *);
 
 typedef struct {
     UnkFuncPtr_ov23_02253834 unk_00;
-    void * unk_04;
+    void *unk_04;
     Window unk_08;
-    ResourceMetadata * unk_18;
-    BmpList * unk_1C;
+    ResourceMetadata *unk_18;
+    BmpList *unk_1C;
     UnkFuncPtr_ov23_0224DCB8 unk_20;
     u16 unk_24;
     int unk_28;
 } UnkStruct_ov23_022537D4;
 
 typedef struct UnkStruct_ov23_02253598_t {
-    UnkStruct_ov23_022537D4 * unk_00;
-    SysTask * unk_04;
-    SaveData * unk_08;
-    SecretBaseRecord * unk_0C;
-    SecretBaseRecord * unk_10;
+    UnkStruct_ov23_022537D4 *unk_00;
+    SysTask *unk_04;
+    SaveData *unk_08;
+    SecretBaseRecord *unk_0C;
+    SecretBaseRecord *unk_10;
     MATHRandContext32 unk_14;
     u8 unk_2C;
 };
 
-static UnkStruct_ov23_02253598 * Unk_ov23_022577BC = NULL;
-static void ov23_022537D4(SysTask * param0, void * param1);
+static UnkStruct_ov23_02253598 *Unk_ov23_022577BC = NULL;
+static void ov23_022537D4(SysTask *param0, void *param1);
 
-void ov23_02253598 (UnkStruct_ov23_02253598 * param0, SecretBaseRecord * param1, SaveData * param2)
+void ov23_02253598(UnkStruct_ov23_02253598 *param0, SecretBaseRecord *param1, SaveData *param2)
 {
     MI_CpuFill8(param0, 0, sizeof(UnkStruct_ov23_02253598));
 
@@ -76,7 +76,7 @@ void ov23_02253598 (UnkStruct_ov23_02253598 * param0, SecretBaseRecord * param1,
     CommSys_Seed(&Unk_ov23_022577BC->unk_14);
 }
 
-void ov23_022535CC (void)
+void ov23_022535CC(void)
 {
     Heap_FreeToHeap(Unk_ov23_022577BC->unk_10);
     Heap_FreeToHeap(Unk_ov23_022577BC);
@@ -84,19 +84,19 @@ void ov23_022535CC (void)
     Unk_ov23_022577BC = NULL;
 }
 
-void ov23_022535EC (void)
+void ov23_022535EC(void)
 {
     if (Unk_ov23_022577BC->unk_04) {
         ov23_022537D4(Unk_ov23_022577BC->unk_04, Unk_ov23_022577BC->unk_00);
     }
 }
 
-void ov23_02253604 (void)
+void ov23_02253604(void)
 {
     return;
 }
 
-int ov23_02253608 (void)
+int ov23_02253608(void)
 {
     return sizeof(UnkStruct_ov23_02253598);
 }
@@ -180,9 +180,9 @@ static void ov23_0225360C(Window *param0, MessageLoader *param1, TrainerInfo *pa
     StringTemplate_Free(v0);
 }
 
-static void ov23_022537D4 (SysTask * param0, void * param1)
+static void ov23_022537D4(SysTask *param0, void *param1)
 {
-    UnkStruct_ov23_022537D4 * v0 = param1;
+    UnkStruct_ov23_022537D4 *v0 = param1;
 
     Window_Clear(&v0->unk_08, 0);
     sub_0201ACF4(&v0->unk_08);
@@ -203,22 +203,22 @@ static void ov23_022537D4 (SysTask * param0, void * param1)
     Unk_ov23_022577BC->unk_00 = NULL;
 }
 
-static void ov23_0225381C (SysTask * param0, void * param1)
+static void ov23_0225381C(SysTask *param0, void *param1)
 {
-    UnkStruct_ov23_022537D4 * v0 = param1;
+    UnkStruct_ov23_022537D4 *v0 = param1;
 
     if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         ov23_022537D4(param0, param1);
     }
 }
 
-void ov23_02253834 (BGL * param0, TrainerInfo * param1, UnkFuncPtr_ov23_02253834 param2, void * param3, BOOL param4)
+void ov23_02253834(BGL *param0, TrainerInfo *param1, UnkFuncPtr_ov23_02253834 param2, void *param3, BOOL param4)
 {
-    SecretBaseRecord * v0;
-    MessageLoader * v1;
+    SecretBaseRecord *v0;
+    MessageLoader *v1;
     UnkStruct_ov84_02240FA8 v2;
     int v3 = 10;
-    UnkStruct_ov23_022537D4 * v4 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov23_022537D4));
+    UnkStruct_ov23_022537D4 *v4 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov23_022537D4));
 
     MI_CpuClear8(v4, sizeof(UnkStruct_ov23_022537D4));
 
@@ -248,11 +248,11 @@ void ov23_02253834 (BGL * param0, TrainerInfo * param1, UnkFuncPtr_ov23_02253834
     MessageLoader_Free(v1);
 }
 
-void ov23_022538FC (int param0)
+void ov23_022538FC(int param0)
 {
     int v0 = sub_02028558();
     int v1 = GameRecords_GetTrainerScore(SaveData_GetGameRecordsPtr(Unk_ov23_022577BC->unk_08));
-    u8 * v2 = Heap_AllocFromHeap(4, v0 + 1);
+    u8 *v2 = Heap_AllocFromHeap(4, v0 + 1);
 
     MI_CpuClear8(v2, v0 + 1);
     v2[0] = param0;
@@ -269,7 +269,7 @@ void ov23_022538FC (int param0)
     Heap_FreeToHeap(v2);
 }
 
-void ov23_02253968 (void)
+void ov23_02253968(void)
 {
     int v0 = GameRecords_GetTrainerScore(SaveData_GetGameRecordsPtr(Unk_ov23_022577BC->unk_08));
 
@@ -280,14 +280,14 @@ void ov23_02253968 (void)
     sub_020294D4(Unk_ov23_022577BC->unk_0C, v0);
 }
 
-void ov23_02253998 (int param0, int param1, void * param2, void * param3)
+void ov23_02253998(int param0, int param1, void *param2, void *param3)
 {
     CommSys_SendDataServer(82, param2, param1);
 }
 
-void ov23_022539A8 (int param0, int param1, void * param2, void * param3)
+void ov23_022539A8(int param0, int param1, void *param2, void *param3)
 {
-    u8 * v0 = param2;
+    u8 *v0 = param2;
 
     if (v0[0] == CommSys_CurNetId()) {
         MI_CpuCopy8(&v0[1], Unk_ov23_022577BC->unk_10, param1 - 1);
@@ -295,25 +295,25 @@ void ov23_022539A8 (int param0, int param1, void * param2, void * param3)
     }
 }
 
-BOOL ov23_022539D8 (void)
+BOOL ov23_022539D8(void)
 {
     return Unk_ov23_022577BC->unk_2C;
 }
 
-void ov23_022539E8 (void)
+void ov23_022539E8(void)
 {
     Unk_ov23_022577BC->unk_2C = 0;
 }
 
-static void ov23_022539F8 (int param0)
+static void ov23_022539F8(int param0)
 {
     sub_02059514();
 }
 
-void ov23_02253A00 (SecretBaseRecord * param0, int param1)
+void ov23_02253A00(SecretBaseRecord *param0, int param1)
 {
     s32 v0;
-    SecretBaseRecord * v1;
+    SecretBaseRecord *v1;
     UnkFuncPtr_ov23_022576EC v2 = Unk_ov23_022576EC[param1 - 32];
 
     GF_ASSERT(param1 >= 32);
@@ -332,11 +332,11 @@ void ov23_02253A00 (SecretBaseRecord * param0, int param1)
     ov23_02253F40(ov23_022421BC(), param1, 1, ov23_022539F8);
 }
 
-static void ov23_02253A78 (Window * param0, MessageLoader * param1, TrainerInfo * param2, const SecretBaseRecord * param3, const UndergroundData * param4)
+static void ov23_02253A78(Window *param0, MessageLoader *param1, TrainerInfo *param2, const SecretBaseRecord *param3, const UndergroundData *param4)
 {
-    StringTemplate * v0;
-    Strbuf* v1;
-    Strbuf* v2;
+    StringTemplate *v0;
+    Strbuf *v1;
+    Strbuf *v2;
     int v3, v4;
     const int v5 = 17;
     const int v6 = 39;
@@ -368,7 +368,7 @@ static void ov23_02253A78 (Window * param0, MessageLoader * param1, TrainerInfo 
     Text_AddPrinterWithParams(param0, 0, v1, v7, 1 + v8 * 3, 0xff, NULL);
 
     for (v3 = 0; v3 < 5; v3++) {
-        TrainerInfo * v13 = sub_020288C8(param4, 4, v3);
+        TrainerInfo *v13 = sub_020288C8(param4, 4, v3);
 
         if (v13) {
             StringTemplate_SetPlayerName(v0, 0, v13);
@@ -395,13 +395,13 @@ static void ov23_02253A78 (Window * param0, MessageLoader * param1, TrainerInfo 
     StringTemplate_Free(v0);
 }
 
-void * ov23_02253C64 (BGL * param0, TrainerInfo * param1, UndergroundData * param2, UnkFuncPtr_ov23_02253834 param3, void * param4)
+void *ov23_02253C64(BGL *param0, TrainerInfo *param1, UndergroundData *param2, UnkFuncPtr_ov23_02253834 param3, void *param4)
 {
-    SecretBaseRecord * v0;
-    MessageLoader * v1;
+    SecretBaseRecord *v0;
+    MessageLoader *v1;
     UnkStruct_ov84_02240FA8 v2;
     int v3 = 10;
-    UnkStruct_ov23_022537D4 * v4 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov23_022537D4));
+    UnkStruct_ov23_022537D4 *v4 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov23_022537D4));
 
     MI_CpuClear8(v4, sizeof(UnkStruct_ov23_022537D4));
 
@@ -424,9 +424,9 @@ void * ov23_02253C64 (BGL * param0, TrainerInfo * param1, UndergroundData * para
     return v4;
 }
 
-void ov23_02253D10 (void * param0)
+void ov23_02253D10(void *param0)
 {
-    UnkStruct_ov23_022537D4 * v0 = param0;
+    UnkStruct_ov23_022537D4 *v0 = param0;
 
     Window_Clear(&v0->unk_08, 0);
     sub_0201ACF4(&v0->unk_08);

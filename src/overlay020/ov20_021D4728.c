@@ -28,27 +28,27 @@
 #include "unk_02018340.h"
 
 typedef struct {
-    void * unk_00;
-    NNSG2dCellDataBank * unk_04;
-    void * unk_08;
-    NNSG2dAnimBankData * unk_0C;
+    void *unk_00;
+    NNSG2dCellDataBank *unk_04;
+    void *unk_08;
+    NNSG2dAnimBankData *unk_0C;
 } UnkStruct_ov20_021D4B2C;
 
 typedef struct UnkStruct_ov20_021D4AD4_t {
-    UnkStruct_ov20_021D2128 * unk_00;
-    const UnkStruct_ov20_021D16E8 * unk_04;
-    const UnkStruct_020998EC * unk_08;
-    BGL * unk_0C;
-    CellActorCollection * unk_10;
-    CellActor * unk_14;
-    CellActor * unk_18;
+    UnkStruct_ov20_021D2128 *unk_00;
+    const UnkStruct_ov20_021D16E8 *unk_04;
+    const UnkStruct_020998EC *unk_08;
+    BGL *unk_0C;
+    CellActorCollection *unk_10;
+    CellActor *unk_14;
+    CellActor *unk_18;
     UnkStruct_ov20_021D4B2C unk_1C;
     u16 unk_2C[8][77];
-    SysTask * unk_4FC;
+    SysTask *unk_4FC;
 } UnkStruct_ov20_021D4AD4;
 
 typedef struct {
-    UnkStruct_ov20_021D4AD4 * unk_00;
+    UnkStruct_ov20_021D4AD4 *unk_00;
     int unk_04;
     u16 unk_08;
     u16 unk_0A;
@@ -60,19 +60,19 @@ typedef struct {
     u16 unk_16;
 } UnkStruct_ov20_021D4BA4;
 
-static void ov20_021D4874(UnkStruct_ov20_021D4AD4 * param0, NARC * param1);
-static void ov20_021D48C4(UnkStruct_ov20_021D4AD4 * param0, NARC * param1);
-static void ov20_021D498C(Window * param0, BGL * param1, const Strbuf *param2, int param3);
-static void ov20_021D4A24(UnkStruct_ov20_021D4AD4 * param0, NARC * param1);
-static void ov20_021D4AD4(UnkStruct_ov20_021D4AD4 * param0);
-static void ov20_021D4AF8(UnkStruct_ov20_021D4B2C * param0, NARC * param1, u32 param2, u32 param3);
-static void ov20_021D4B2C(UnkStruct_ov20_021D4B2C * param0);
-static void ov20_021D4C40(SysTask * param0, void * param1);
-static CellActor * ov20_021D4B40(UnkStruct_ov20_021D4AD4 * param0, NNSG2dImageProxy * param1, NNSG2dImagePaletteProxy * param2, UnkStruct_ov20_021D4B2C * param3, int param4, int param5, int param6, int param7);
+static void ov20_021D4874(UnkStruct_ov20_021D4AD4 *param0, NARC *param1);
+static void ov20_021D48C4(UnkStruct_ov20_021D4AD4 *param0, NARC *param1);
+static void ov20_021D498C(Window *param0, BGL *param1, const Strbuf *param2, int param3);
+static void ov20_021D4A24(UnkStruct_ov20_021D4AD4 *param0, NARC *param1);
+static void ov20_021D4AD4(UnkStruct_ov20_021D4AD4 *param0);
+static void ov20_021D4AF8(UnkStruct_ov20_021D4B2C *param0, NARC *param1, u32 param2, u32 param3);
+static void ov20_021D4B2C(UnkStruct_ov20_021D4B2C *param0);
+static void ov20_021D4C40(SysTask *param0, void *param1);
+static CellActor *ov20_021D4B40(UnkStruct_ov20_021D4AD4 *param0, NNSG2dImageProxy *param1, NNSG2dImagePaletteProxy *param2, UnkStruct_ov20_021D4B2C *param3, int param4, int param5, int param6, int param7);
 
-UnkStruct_ov20_021D4AD4 * ov20_021D4728 (UnkStruct_ov20_021D2128 * param0, const UnkStruct_ov20_021D16E8 * param1, const UnkStruct_020998EC * param2)
+UnkStruct_ov20_021D4AD4 *ov20_021D4728(UnkStruct_ov20_021D2128 *param0, const UnkStruct_ov20_021D16E8 *param1, const UnkStruct_020998EC *param2)
 {
-    UnkStruct_ov20_021D4AD4 * v0 = Heap_AllocFromHeap(35, sizeof(UnkStruct_ov20_021D4AD4));
+    UnkStruct_ov20_021D4AD4 *v0 = Heap_AllocFromHeap(35, sizeof(UnkStruct_ov20_021D4AD4));
 
     v0->unk_00 = param0;
     v0->unk_04 = param1;
@@ -86,13 +86,13 @@ UnkStruct_ov20_021D4AD4 * ov20_021D4728 (UnkStruct_ov20_021D2128 * param0, const
     return v0;
 }
 
-void ov20_021D4764 (UnkStruct_ov20_021D4AD4 * param0)
+void ov20_021D4764(UnkStruct_ov20_021D4AD4 *param0)
 {
     ov20_021D4AD4(param0);
     Heap_FreeToHeap(param0);
 }
 
-void ov20_021D4774 (UnkStruct_ov20_021D4AD4 * param0, NARC * param1)
+void ov20_021D4774(UnkStruct_ov20_021D4AD4 *param0, NARC *param1)
 {
     sub_02007130(param1, 21, 4, 0, 0x40, 35);
     sub_0200710C(param1, 11, param0->unk_0C, 4, 0, 0, 1, 35);
@@ -112,14 +112,21 @@ void ov20_021D4774 (UnkStruct_ov20_021D4AD4 * param0, NARC * param1)
     sub_02019448(param0->unk_0C, 4);
 }
 
-static void ov20_021D4874 (UnkStruct_ov20_021D4AD4 * param0, NARC * param1)
+static void ov20_021D4874(UnkStruct_ov20_021D4AD4 *param0, NARC *param1)
 {
     static const u16 v0[] = {
-        12, 13, 14, 15, 16, 17, 18, 19,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
     };
     int v1;
-    void * v2;
-    NNSG2dScreenData * v3;
+    void *v2;
+    NNSG2dScreenData *v3;
 
     for (v1 = 0; v1 < NELEMS(v0); v1++) {
         v2 = sub_020071D0(param1, v0[v1], 1, &v3, 35);
@@ -165,7 +172,10 @@ static void ov20_021D48C4(UnkStruct_ov20_021D4AD4 *param0, NARC *param1)
 }
 
 static const s16 Unk_ov20_021D52EC[] = {
-    22, (22 + 56 * 1) - 1, (22 + 56 * 2) - 2, (22 + 56 * 3) - 1,
+    22,
+    (22 + 56 * 1) - 1,
+    (22 + 56 * 2) - 2,
+    (22 + 56 * 3) - 1,
 };
 
 static void ov20_021D498C(Window *param0, BGL *param1, const Strbuf *param2, int param3)
@@ -190,7 +200,7 @@ static void ov20_021D498C(Window *param0, BGL *param1, const Strbuf *param2, int
     Strbuf_Free(v5);
 }
 
-static void ov20_021D4A24 (UnkStruct_ov20_021D4AD4 * param0, NARC * param1)
+static void ov20_021D4A24(UnkStruct_ov20_021D4AD4 *param0, NARC *param1)
 {
     NNSG2dImagePaletteProxy v0;
     NNSG2dImageProxy v1;
@@ -212,7 +222,7 @@ static void ov20_021D4A24 (UnkStruct_ov20_021D4AD4 * param0, NARC * param1)
     CellActor_SetDrawFlag(param0->unk_18, 0);
 }
 
-static void ov20_021D4AD4 (UnkStruct_ov20_021D4AD4 * param0)
+static void ov20_021D4AD4(UnkStruct_ov20_021D4AD4 *param0)
 {
     if (param0->unk_14) {
         CellActor_Delete(param0->unk_14);
@@ -225,23 +235,23 @@ static void ov20_021D4AD4 (UnkStruct_ov20_021D4AD4 * param0)
     ov20_021D4B2C(&param0->unk_1C);
 }
 
-static void ov20_021D4AF8 (UnkStruct_ov20_021D4B2C * param0, NARC * param1, u32 param2, u32 param3)
+static void ov20_021D4AF8(UnkStruct_ov20_021D4B2C *param0, NARC *param1, u32 param2, u32 param3)
 {
     param0->unk_00 = sub_02007204(param1, param2, 1, &(param0->unk_04), 35);
     param0->unk_08 = sub_02007220(param1, param3, 1, &(param0->unk_0C), 35);
 }
 
-static void ov20_021D4B2C (UnkStruct_ov20_021D4B2C * param0)
+static void ov20_021D4B2C(UnkStruct_ov20_021D4B2C *param0)
 {
     Heap_FreeToHeap(param0->unk_00);
     Heap_FreeToHeap(param0->unk_08);
 }
 
-static CellActor * ov20_021D4B40 (UnkStruct_ov20_021D4AD4 * param0, NNSG2dImageProxy * param1, NNSG2dImagePaletteProxy * param2, UnkStruct_ov20_021D4B2C * param3, int param4, int param5, int param6, int param7)
+static CellActor *ov20_021D4B40(UnkStruct_ov20_021D4AD4 *param0, NNSG2dImageProxy *param1, NNSG2dImagePaletteProxy *param2, UnkStruct_ov20_021D4B2C *param3, int param4, int param5, int param6, int param7)
 {
     CellActorResourceData v0;
     CellActorInitParams v1;
-    CellActor * v2;
+    CellActor *v2;
 
     v0.imageProxy = param1;
     v0.paletteProxy = param2;
@@ -272,9 +282,9 @@ static CellActor * ov20_021D4B40 (UnkStruct_ov20_021D4AD4 * param0, NNSG2dImageP
     return v2;
 }
 
-void ov20_021D4BA4 (UnkStruct_ov20_021D4AD4 * param0)
+void ov20_021D4BA4(UnkStruct_ov20_021D4AD4 *param0)
 {
-    UnkStruct_ov20_021D4BA4 * v0 = Heap_AllocFromHeap(35, sizeof(UnkStruct_ov20_021D4BA4));
+    UnkStruct_ov20_021D4BA4 *v0 = Heap_AllocFromHeap(35, sizeof(UnkStruct_ov20_021D4BA4));
 
     if (v0) {
         static const struct {
@@ -286,8 +296,8 @@ void ov20_021D4BA4 (UnkStruct_ov20_021D4AD4 * param0)
             u16 unk_0A;
             u16 unk_0C;
         } v1[] = {
-            {0x1, 0x3, 0x3, 0x3, 0x4, 0x3, 0xE},
-            {0x5, 0x7, 0x3, 0xE, 0x0, 0x3, 0x3}
+            { 0x1, 0x3, 0x3, 0x3, 0x4, 0x3, 0xE },
+            { 0x5, 0x7, 0x3, 0xE, 0x0, 0x3, 0x3 }
         };
         int v2 = ov20_021D1F94(param0->unk_04);
 
@@ -308,14 +318,14 @@ void ov20_021D4BA4 (UnkStruct_ov20_021D4AD4 * param0)
     }
 }
 
-BOOL ov20_021D4C2C (UnkStruct_ov20_021D4AD4 * param0)
+BOOL ov20_021D4C2C(UnkStruct_ov20_021D4AD4 *param0)
 {
     return param0->unk_4FC == NULL;
 }
 
-static void ov20_021D4C40 (SysTask * param0, void * param1)
+static void ov20_021D4C40(SysTask *param0, void *param1)
 {
-    UnkStruct_ov20_021D4BA4 * v0 = param1;
+    UnkStruct_ov20_021D4BA4 *v0 = param1;
 
     switch (v0->unk_04) {
     case 0:
@@ -350,7 +360,7 @@ static void ov20_021D4C40 (SysTask * param0, void * param1)
     }
 }
 
-void ov20_021D4DBC (UnkStruct_ov20_021D4AD4 * param0, BOOL param1)
+void ov20_021D4DBC(UnkStruct_ov20_021D4AD4 *param0, BOOL param1)
 {
     if (param1) {
         CellActor_SetDrawFlag(param0->unk_14, ov20_021D204C(param0->unk_04));
@@ -361,7 +371,7 @@ void ov20_021D4DBC (UnkStruct_ov20_021D4AD4 * param0, BOOL param1)
     }
 }
 
-void ov20_021D4DF4 (UnkStruct_ov20_021D4AD4 * param0, int param1, int param2)
+void ov20_021D4DF4(UnkStruct_ov20_021D4AD4 *param0, int param1, int param2)
 {
     switch (param1) {
     case 0:
