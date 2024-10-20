@@ -14,15 +14,15 @@ enum {
 };
 
 static u8 sub_02018F80(u8 param0, u8 param1);
-static void sub_02019304(UnkStruct_02019304 *param0, u8 param1, int param2);
+static void sub_02019304(Background *param0, u8 param1, int param2);
 static void sub_020193E4(BGL *param0, u8 param1);
 static void sub_020194E0(u8 param0, void *param1, u32 param2, u32 param3);
 static void sub_020195B8(BGL *param0, u8 param1, const void *param2, u32 param3, u32 param4);
 static void sub_020195FC(u8 param0, void *param1, u32 param2, u32 param3);
-static void sub_020199E0(UnkStruct_02019304 *param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 *param5, u8 param6, u8 param7, u8 param8, u8 param9, u8 param10);
-static void sub_02019B54(UnkStruct_02019304 *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 *param5, u8 param6, u8 param7, u8 param8, u8 param9, u8 param10);
-static void sub_02019D08(UnkStruct_02019304 *param0, u16 param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6);
-static void sub_02019DB8(UnkStruct_02019304 *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5);
+static void sub_020199E0(Background *param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 *param5, u8 param6, u8 param7, u8 param8, u8 param9, u8 param10);
+static void sub_02019B54(Background *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 *param5, u8 param6, u8 param7, u8 param8, u8 param9, u8 param10);
+static void sub_02019D08(Background *param0, u16 param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6);
+static void sub_02019DB8(Background *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5);
 static void sub_0201AC20(Window *param0);
 static void sub_0201AC4C(Window *param0);
 static void sub_0201AC64(Window *param0);
@@ -38,9 +38,9 @@ static void sub_0201AA58(Window *param0);
 static void sub_0201AADC(Window *param0);
 static void sub_0201AB38(Window *param0);
 static void sub_0201ABC8(Window *param0);
-static void sub_0201C684(UnkStruct_02019304 *param0, u8 param1, u16 param2);
-static void sub_0201C6CC(UnkStruct_02019304 *param0, u8 param1, fx32 param2);
-static void sub_0201C73C(UnkStruct_02019304 *param0, u8 param1, int param2);
+static void sub_0201C684(Background *param0, u8 param1, u16 param2);
+static void sub_0201C6CC(Background *param0, u8 param1, fx32 param2);
+static void sub_0201C73C(Background *param0, u8 param1, int param2);
 static void sub_0201C3D0(BGL *param0);
 static void sub_0201C2D0(BGL *param0);
 
@@ -192,33 +192,33 @@ void sub_020183C4(BGL *param0, u8 param1, const BgTemplate *param2, u8 param3)
         break;
     }
 
-    param0->unk_08[param1].unk_18 = 0;
-    param0->unk_08[param1].unk_1C = FX32_ONE;
-    param0->unk_08[param1].unk_20 = FX32_ONE;
-    param0->unk_08[param1].unk_24 = 0;
-    param0->unk_08[param1].unk_28 = 0;
+    param0->unk_08[param1].rotation = 0;
+    param0->unk_08[param1].xScale = FX32_ONE;
+    param0->unk_08[param1].yScale = FX32_ONE;
+    param0->unk_08[param1].xCenter = 0;
+    param0->unk_08[param1].yCenter = 0;
 
     if (param2->bufferSize) {
-        param0->unk_08[param1].unk_00 = Heap_AllocFromHeap(param0->unk_00, param2->bufferSize);
+        param0->unk_08[param1].tilemapBuffer = Heap_AllocFromHeap(param0->unk_00, param2->bufferSize);
 
-        MI_CpuClear16(param0->unk_08[param1].unk_00, param2->bufferSize);
+        MI_CpuClear16(param0->unk_08[param1].tilemapBuffer, param2->bufferSize);
 
-        param0->unk_08[param1].unk_04 = param2->bufferSize;
-        param0->unk_08[param1].unk_08 = param2->baseTile;
+        param0->unk_08[param1].bufferSize = param2->bufferSize;
+        param0->unk_08[param1].baseTile = param2->baseTile;
     } else {
-        param0->unk_08[param1].unk_00 = NULL;
-        param0->unk_08[param1].unk_04 = 0;
-        param0->unk_08[param1].unk_08 = 0;
+        param0->unk_08[param1].tilemapBuffer = NULL;
+        param0->unk_08[param1].bufferSize = 0;
+        param0->unk_08[param1].baseTile = 0;
     }
 
-    param0->unk_08[param1].unk_15 = param2->screenSize;
-    param0->unk_08[param1].unk_14 = param3;
-    param0->unk_08[param1].unk_16 = param2->colorMode;
+    param0->unk_08[param1].screenSize = param2->screenSize;
+    param0->unk_08[param1].type = param3;
+    param0->unk_08[param1].colorMode = param2->colorMode;
 
     if ((param3 == 0) && (param2->colorMode == GX_BG_COLORMODE_16)) {
-        param0->unk_08[param1].unk_17 = 0x20;
+        param0->unk_08[param1].tileSize = 0x20;
     } else {
-        param0->unk_08[param1].unk_17 = 0x40;
+        param0->unk_08[param1].tileSize = 0x40;
     }
 
     sub_02019184(param0, param1, 0, param2->x);
@@ -228,7 +228,7 @@ void sub_020183C4(BGL *param0, u8 param1, const BgTemplate *param2, u8 param3)
 void sub_02018898(BGL *param0, u8 param1, u8 param2, u8 param3)
 {
     if (param2 == 0) {
-        param0->unk_08[param1].unk_16 = param3;
+        param0->unk_08[param1].colorMode = param3;
     }
 
     switch (param1) {
@@ -241,7 +241,7 @@ void sub_02018898(BGL *param0, u8 param1, u8 param2, u8 param3)
             v0.charBase = param3;
         }
 
-        G2_SetBG0Control((GXBGScrSizeText)v0.screenSize, (GXBGColorMode)param0->unk_08[param1].unk_16, (GXBGScrBase)v0.screenBase, (GXBGCharBase)v0.charBase, (GXBGExtPltt)v0.bgExtPltt);
+        G2_SetBG0Control((GXBGScrSizeText)v0.screenSize, (GXBGColorMode)param0->unk_08[param1].colorMode, (GXBGScrBase)v0.screenBase, (GXBGCharBase)v0.charBase, (GXBGExtPltt)v0.bgExtPltt);
     } break;
     case 1: {
         GXBg01Control v1 = G2_GetBG1Control();
@@ -252,10 +252,10 @@ void sub_02018898(BGL *param0, u8 param1, u8 param2, u8 param3)
             v1.charBase = param3;
         }
 
-        G2_SetBG1Control((GXBGScrSizeText)v1.screenSize, (GXBGColorMode)param0->unk_08[param1].unk_16, (GXBGScrBase)v1.screenBase, (GXBGCharBase)v1.charBase, (GXBGExtPltt)v1.bgExtPltt);
+        G2_SetBG1Control((GXBGScrSizeText)v1.screenSize, (GXBGColorMode)param0->unk_08[param1].colorMode, (GXBGScrBase)v1.screenBase, (GXBGCharBase)v1.charBase, (GXBGExtPltt)v1.bgExtPltt);
     } break;
     case 2:
-        switch (param0->unk_08[param1].unk_14) {
+        switch (param0->unk_08[param1].type) {
         default:
         case 0: {
             GXBg23ControlText v2 = G2_GetBG2ControlText();
@@ -266,7 +266,7 @@ void sub_02018898(BGL *param0, u8 param1, u8 param2, u8 param3)
                 v2.charBase = param3;
             }
 
-            G2_SetBG2ControlText((GXBGScrSizeText)v2.screenSize, (GXBGColorMode)param0->unk_08[param1].unk_16, (GXBGScrBase)v2.screenBase, (GXBGCharBase)v2.charBase);
+            G2_SetBG2ControlText((GXBGScrSizeText)v2.screenSize, (GXBGColorMode)param0->unk_08[param1].colorMode, (GXBGScrBase)v2.screenBase, (GXBGCharBase)v2.charBase);
         } break;
         case 1: {
             GXBg23ControlAffine v3 = G2_GetBG2ControlAffine();
@@ -294,7 +294,7 @@ void sub_02018898(BGL *param0, u8 param1, u8 param2, u8 param3)
 
         break;
     case 3:
-        switch (param0->unk_08[param1].unk_14) {
+        switch (param0->unk_08[param1].type) {
         default:
         case 0: {
             GXBg23ControlText v5 = G2_GetBG3ControlText();
@@ -305,7 +305,7 @@ void sub_02018898(BGL *param0, u8 param1, u8 param2, u8 param3)
                 v5.charBase = param3;
             }
 
-            G2_SetBG3ControlText((GXBGScrSizeText)v5.screenSize, (GXBGColorMode)param0->unk_08[param1].unk_16, (GXBGScrBase)v5.screenBase, (GXBGCharBase)v5.charBase);
+            G2_SetBG3ControlText((GXBGScrSizeText)v5.screenSize, (GXBGColorMode)param0->unk_08[param1].colorMode, (GXBGScrBase)v5.screenBase, (GXBGCharBase)v5.charBase);
         } break;
         case 1: {
             GXBg23ControlAffine v6 = G2_GetBG3ControlAffine();
@@ -341,7 +341,7 @@ void sub_02018898(BGL *param0, u8 param1, u8 param2, u8 param3)
             v8.charBase = param3;
         }
 
-        G2S_SetBG0Control((GXBGScrSizeText)v8.screenSize, (GXBGColorMode)param0->unk_08[param1].unk_16, (GXBGScrBase)v8.screenBase, (GXBGCharBase)v8.charBase, (GXBGExtPltt)v8.bgExtPltt);
+        G2S_SetBG0Control((GXBGScrSizeText)v8.screenSize, (GXBGColorMode)param0->unk_08[param1].colorMode, (GXBGScrBase)v8.screenBase, (GXBGCharBase)v8.charBase, (GXBGExtPltt)v8.bgExtPltt);
     } break;
     case 5: {
         GXBg01Control v9 = G2S_GetBG1Control();
@@ -352,10 +352,10 @@ void sub_02018898(BGL *param0, u8 param1, u8 param2, u8 param3)
             v9.charBase = param3;
         }
 
-        G2S_SetBG1Control((GXBGScrSizeText)v9.screenSize, (GXBGColorMode)param0->unk_08[param1].unk_16, (GXBGScrBase)v9.screenBase, (GXBGCharBase)v9.charBase, (GXBGExtPltt)v9.bgExtPltt);
+        G2S_SetBG1Control((GXBGScrSizeText)v9.screenSize, (GXBGColorMode)param0->unk_08[param1].colorMode, (GXBGScrBase)v9.screenBase, (GXBGCharBase)v9.charBase, (GXBGExtPltt)v9.bgExtPltt);
     } break;
     case 6:
-        switch (param0->unk_08[param1].unk_14) {
+        switch (param0->unk_08[param1].type) {
         default:
         case 0: {
             GXBg23ControlText v10 = G2S_GetBG2ControlText();
@@ -366,7 +366,7 @@ void sub_02018898(BGL *param0, u8 param1, u8 param2, u8 param3)
                 v10.charBase = param3;
             }
 
-            G2S_SetBG2ControlText((GXBGScrSizeText)v10.screenSize, (GXBGColorMode)param0->unk_08[param1].unk_16, (GXBGScrBase)v10.screenBase, (GXBGCharBase)v10.charBase);
+            G2S_SetBG2ControlText((GXBGScrSizeText)v10.screenSize, (GXBGColorMode)param0->unk_08[param1].colorMode, (GXBGScrBase)v10.screenBase, (GXBGCharBase)v10.charBase);
         } break;
         case 1: {
             GXBg23ControlAffine v11 = G2S_GetBG2ControlAffine();
@@ -394,7 +394,7 @@ void sub_02018898(BGL *param0, u8 param1, u8 param2, u8 param3)
 
         break;
     case 7:
-        switch (param0->unk_08[param1].unk_14) {
+        switch (param0->unk_08[param1].type) {
         default:
         case 0: {
             GXBg23ControlText v13 = G2S_GetBG3ControlText();
@@ -405,7 +405,7 @@ void sub_02018898(BGL *param0, u8 param1, u8 param2, u8 param3)
                 v13.charBase = param3;
             }
 
-            G2S_SetBG3ControlText((GXBGScrSizeText)v13.screenSize, (GXBGColorMode)param0->unk_08[param1].unk_16, (GXBGScrBase)v13.screenBase, (GXBGCharBase)v13.charBase);
+            G2S_SetBG3ControlText((GXBGScrSizeText)v13.screenSize, (GXBGColorMode)param0->unk_08[param1].colorMode, (GXBGScrBase)v13.screenBase, (GXBGCharBase)v13.charBase);
         } break;
         case 1: {
             GXBg23ControlAffine v14 = G2S_GetBG3ControlAffine();
@@ -525,12 +525,12 @@ static void sub_02018FF4(u8 param0, u8 *param1, u8 *param2)
 
 void sub_02019044(BGL *param0, u8 param1)
 {
-    if (param0->unk_08[param1].unk_00 == NULL) {
+    if (param0->unk_08[param1].tilemapBuffer == NULL) {
         return;
     }
 
-    Heap_FreeToHeap(param0->unk_08[param1].unk_00);
-    param0->unk_08[param1].unk_00 = NULL;
+    Heap_FreeToHeap(param0->unk_08[param1].tilemapBuffer);
+    param0->unk_08[param1].tilemapBuffer = NULL;
 }
 
 void BGL_SetPriority(u8 param0, u8 param1)
@@ -599,8 +599,8 @@ void sub_02019184(BGL *param0, u8 param1, u8 param2, int param3)
 
     sub_02019304(&param0->unk_08[param1], param2, param3);
 
-    v0 = param0->unk_08[param1].unk_0C;
-    v1 = param0->unk_08[param1].unk_10;
+    v0 = param0->unk_08[param1].xOffset;
+    v1 = param0->unk_08[param1].yOffset;
 
     switch (param1) {
     case 0:
@@ -610,14 +610,14 @@ void sub_02019184(BGL *param0, u8 param1, u8 param2, int param3)
         G2_SetBG1Offset(v0, v1);
         return;
     case 2:
-        if (param0->unk_08[2].unk_14 == 0) {
+        if (param0->unk_08[2].type == 0) {
             G2_SetBG2Offset(v0, v1);
         } else {
             sub_020193E4(param0, 2);
         }
         return;
     case 3:
-        if (param0->unk_08[3].unk_14 == 0) {
+        if (param0->unk_08[3].type == 0) {
             G2_SetBG3Offset(v0, v1);
         } else {
             sub_020193E4(param0, 3);
@@ -630,14 +630,14 @@ void sub_02019184(BGL *param0, u8 param1, u8 param2, int param3)
         G2S_SetBG1Offset(v0, v1);
         return;
     case 6:
-        if (param0->unk_08[6].unk_14 == 0) {
+        if (param0->unk_08[6].type == 0) {
             G2S_SetBG2Offset(v0, v1);
         } else {
             sub_020193E4(param0, 6);
         }
         return;
     case 7:
-        if (param0->unk_08[7].unk_14 == 0) {
+        if (param0->unk_08[7].type == 0) {
             G2S_SetBG3Offset(v0, v1);
         } else {
             sub_020193E4(param0, 7);
@@ -649,34 +649,34 @@ void sub_02019184(BGL *param0, u8 param1, u8 param2, int param3)
 
 int sub_020192EC(BGL *param0, u32 param1)
 {
-    return param0->unk_08[param1].unk_0C;
+    return param0->unk_08[param1].xOffset;
 }
 
 int sub_020192F8(BGL *param0, u32 param1)
 {
-    return param0->unk_08[param1].unk_10;
+    return param0->unk_08[param1].yOffset;
 }
 
-static void sub_02019304(UnkStruct_02019304 *param0, u8 param1, int param2)
+static void sub_02019304(Background *param0, u8 param1, int param2)
 {
     switch (param1) {
     case 0:
-        param0->unk_0C = param2;
+        param0->xOffset = param2;
         break;
     case 1:
-        param0->unk_0C += param2;
+        param0->xOffset += param2;
         break;
     case 2:
-        param0->unk_0C -= param2;
+        param0->xOffset -= param2;
         break;
     case 3:
-        param0->unk_10 = param2;
+        param0->yOffset = param2;
         break;
     case 4:
-        param0->unk_10 += param2;
+        param0->yOffset += param2;
         break;
     case 5:
-        param0->unk_10 -= param2;
+        param0->yOffset -= param2;
         break;
     }
 }
@@ -685,16 +685,16 @@ void sub_02019348(BGL *param0, u8 param1, const MtxFx22 *param2, int param3, int
 {
     switch (param1) {
     case 2:
-        G2_SetBG2Affine(param2, param3, param4, param0->unk_08[param1].unk_0C, param0->unk_08[param1].unk_10);
+        G2_SetBG2Affine(param2, param3, param4, param0->unk_08[param1].xOffset, param0->unk_08[param1].yOffset);
         return;
     case 3:
-        G2_SetBG3Affine(param2, param3, param4, param0->unk_08[param1].unk_0C, param0->unk_08[param1].unk_10);
+        G2_SetBG3Affine(param2, param3, param4, param0->unk_08[param1].xOffset, param0->unk_08[param1].yOffset);
         return;
     case 6:
-        G2S_SetBG2Affine(param2, param3, param4, param0->unk_08[param1].unk_0C, param0->unk_08[param1].unk_10);
+        G2S_SetBG2Affine(param2, param3, param4, param0->unk_08[param1].xOffset, param0->unk_08[param1].yOffset);
         return;
     case 7:
-        G2S_SetBG3Affine(param2, param3, param4, param0->unk_08[param1].unk_0C, param0->unk_08[param1].unk_10);
+        G2S_SetBG3Affine(param2, param3, param4, param0->unk_08[param1].xOffset, param0->unk_08[param1].yOffset);
         return;
     }
 }
@@ -722,7 +722,7 @@ void sub_02019410(const void *param0, void *param1, u32 param2)
 
 void sub_02019448(BGL *param0, u8 param1)
 {
-    sub_02019460(param0, param1, param0->unk_08[param1].unk_00, param0->unk_08[param1].unk_04, param0->unk_08[param1].unk_08);
+    sub_02019460(param0, param1, param0->unk_08[param1].tilemapBuffer, param0->unk_08[param1].bufferSize, param0->unk_08[param1].baseTile);
 }
 
 void sub_02019460(BGL *param0, u8 param1, const void *param2, u32 param3, u32 param4)
@@ -730,10 +730,10 @@ void sub_02019460(BGL *param0, u8 param1, const void *param2, u32 param3, u32 pa
     void *v0;
 
     if (param3 == 0) {
-        if (param0->unk_08[param1].unk_00 != NULL) {
-            v0 = param0->unk_08[param1].unk_00;
+        if (param0->unk_08[param1].tilemapBuffer != NULL) {
+            v0 = param0->unk_08[param1].tilemapBuffer;
             sub_02019410(param2, v0, param3);
-            sub_020194E0(param1, v0, param0->unk_08[param1].unk_08 * 0x2, param0->unk_08[param1].unk_04);
+            sub_020194E0(param1, v0, param0->unk_08[param1].baseTile * 0x2, param0->unk_08[param1].bufferSize);
         } else {
             u32 v1;
 
@@ -783,12 +783,12 @@ static void sub_020194E0(u8 param0, void *param1, u32 param2, u32 param3)
 
 void sub_02019574(BGL *param0, u8 param1, const void *param2, u32 param3)
 {
-    sub_02019410(param2, param0->unk_08[param1].unk_00, param3);
+    sub_02019410(param2, param0->unk_08[param1].tilemapBuffer, param3);
 }
 
 void sub_0201958C(BGL *param0, u8 param1, const void *param2, u32 param3, u32 param4)
 {
-    if (param0->unk_08[param1].unk_16 == GX_BG_COLORMODE_16) {
+    if (param0->unk_08[param1].colorMode == GX_BG_COLORMODE_16) {
         sub_020195B8(param0, param1, param2, param3, param4 * 0x20);
     } else {
         sub_020195B8(param0, param1, param2, param3, param4 * 0x40);
@@ -860,10 +860,10 @@ void sub_020196C0(BGL *param0, u32 param1, u32 param2, u32 param3, u32 param4)
     u32 *v0;
     u32 v1;
 
-    v1 = param3 * param0->unk_08[param1].unk_17;
+    v1 = param3 * param0->unk_08[param1].tileSize;
     v0 = (u32 *)Heap_AllocFromHeapAtEnd(param0->unk_00, v1);
 
-    if (param0->unk_08[param1].unk_17 == 0x20) {
+    if (param0->unk_08[param1].tileSize == 0x20) {
         param2 = (param2 << 12) | (param2 << 8) | (param2 << 4) | param2;
         param2 |= (param2 << 16);
     } else {
@@ -872,7 +872,7 @@ void sub_020196C0(BGL *param0, u32 param1, u32 param2, u32 param3, u32 param4)
 
     MI_CpuFillFast(v0, param2, v1);
 
-    sub_020195FC(param1, (void *)v0, param4 * param0->unk_08[param1].unk_17, v1);
+    sub_020195FC(param1, (void *)v0, param4 * param0->unk_08[param1].tileSize, v1);
     Heap_FreeToHeap(v0);
 }
 
@@ -976,7 +976,7 @@ void sub_020198C0(BGL *param0, u8 param1, const void *param2, u8 param3, u8 para
 
 void sub_020198E8(BGL *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, const void *param6, u8 param7, u8 param8, u8 param9, u8 param10)
 {
-    if (param0->unk_08[param1].unk_14 != 1) {
+    if (param0->unk_08[param1].type != 1) {
         sub_020199E0(&param0->unk_08[param1], param2, param3, param4, param5, (u16 *)param6, param7, param8, param9, param10, 0);
     } else {
         sub_02019B54(&param0->unk_08[param1], param2, param3, param4, param5, (u8 *)param6, param7, param8, param9, param10, 0);
@@ -985,25 +985,25 @@ void sub_020198E8(BGL *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 pa
 
 void sub_02019964(BGL *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, const void *param6, u8 param7, u8 param8, u8 param9, u8 param10)
 {
-    if (param0->unk_08[param1].unk_14 != 1) {
+    if (param0->unk_08[param1].type != 1) {
         sub_020199E0(&param0->unk_08[param1], param2, param3, param4, param5, (u16 *)param6, param7, param8, param9, param10, 1);
     } else {
         sub_02019B54(&param0->unk_08[param1], param2, param3, param4, param5, (u8 *)param6, param7, param8, param9, param10, 1);
     }
 }
 
-static void sub_020199E0(UnkStruct_02019304 *param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 *param5, u8 param6, u8 param7, u8 param8, u8 param9, u8 param10)
+static void sub_020199E0(Background *param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 *param5, u8 param6, u8 param7, u8 param8, u8 param9, u8 param10)
 {
     u16 *v0;
     u8 v1, v2;
     u8 v3, v4;
 
-    if (param0->unk_00 == NULL) {
+    if (param0->tilemapBuffer == NULL) {
         return;
     }
 
-    v0 = (u16 *)param0->unk_00;
-    sub_02018FF4(param0->unk_15, &v1, &v2);
+    v0 = (u16 *)param0->tilemapBuffer;
+    sub_02018FF4(param0->screenSize, &v1, &v2);
 
     if (param10 == 0) {
         for (v3 = 0; v3 < param4; v3++) {
@@ -1016,7 +1016,7 @@ static void sub_020199E0(UnkStruct_02019304 *param0, u8 param1, u8 param2, u8 pa
                     break;
                 }
 
-                v0[sub_02019774(param1 + v4, param2 + v3, param0->unk_15)] = param5[(param7 + v3) * param8 + param6 + v4];
+                v0[sub_02019774(param1 + v4, param2 + v3, param0->screenSize)] = param5[(param7 + v3) * param8 + param6 + v4];
             }
         }
     } else {
@@ -1030,24 +1030,24 @@ static void sub_020199E0(UnkStruct_02019304 *param0, u8 param1, u8 param2, u8 pa
                     break;
                 }
 
-                v0[sub_02019774(param1 + v4, param2 + v3, param0->unk_15)] = param5[sub_020197E0(param6 + v4, param7 + v3, param8, param9)];
+                v0[sub_02019774(param1 + v4, param2 + v3, param0->screenSize)] = param5[sub_020197E0(param6 + v4, param7 + v3, param8, param9)];
             }
         }
     }
 }
 
-static void sub_02019B54(UnkStruct_02019304 *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 *param5, u8 param6, u8 param7, u8 param8, u8 param9, u8 param10)
+static void sub_02019B54(Background *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 *param5, u8 param6, u8 param7, u8 param8, u8 param9, u8 param10)
 {
     u8 *v0;
     u8 v1, v2;
     u8 v3, v4;
 
-    if (param0->unk_00 == NULL) {
+    if (param0->tilemapBuffer == NULL) {
         return;
     }
 
-    v0 = (u8 *)param0->unk_00;
-    sub_02018FF4(param0->unk_15, &v1, &v2);
+    v0 = (u8 *)param0->tilemapBuffer;
+    sub_02018FF4(param0->screenSize, &v1, &v2);
 
     if (param10 == 0) {
         for (v3 = 0; v3 < param4; v3++) {
@@ -1060,7 +1060,7 @@ static void sub_02019B54(UnkStruct_02019304 *param0, u8 param1, u8 param2, u8 pa
                     break;
                 }
 
-                v0[sub_02019774(param1 + v4, param2 + v3, param0->unk_15)] = param5[(param7 + v3) * param8 + param6 + v4];
+                v0[sub_02019774(param1 + v4, param2 + v3, param0->screenSize)] = param5[(param7 + v3) * param8 + param6 + v4];
             }
         }
     } else {
@@ -1074,7 +1074,7 @@ static void sub_02019B54(UnkStruct_02019304 *param0, u8 param1, u8 param2, u8 pa
                     break;
                 }
 
-                v0[sub_02019774(param1 + v4, param2 + v3, param0->unk_15)] = param5[sub_020197E0(param6 + v4, param7 + v3, param8, param9)];
+                v0[sub_02019774(param1 + v4, param2 + v3, param0->screenSize)] = param5[sub_020197E0(param6 + v4, param7 + v3, param8, param9)];
             }
         }
     }
@@ -1082,25 +1082,25 @@ static void sub_02019B54(UnkStruct_02019304 *param0, u8 param1, u8 param2, u8 pa
 
 void sub_02019CB8(BGL *param0, u8 param1, u16 param2, u8 param3, u8 param4, u8 param5, u8 param6, u8 param7)
 {
-    if (param0->unk_08[param1].unk_14 != 1) {
+    if (param0->unk_08[param1].type != 1) {
         sub_02019D08(&param0->unk_08[param1], param2, param3, param4, param5, param6, param7);
     } else {
         sub_02019DB8(&param0->unk_08[param1], (u8)param2, param3, param4, param5, param6);
     }
 }
 
-static void sub_02019D08(UnkStruct_02019304 *param0, u16 param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6)
+static void sub_02019D08(Background *param0, u16 param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6)
 {
     u16 *v0;
     u8 v1, v2;
     u8 v3, v4;
 
-    if (param0->unk_00 == NULL) {
+    if (param0->tilemapBuffer == NULL) {
         return;
     }
 
-    v0 = (u16 *)param0->unk_00;
-    sub_02018FF4(param0->unk_15, &v1, &v2);
+    v0 = (u16 *)param0->tilemapBuffer;
+    sub_02018FF4(param0->screenSize, &v1, &v2);
 
     for (v3 = param3; v3 < param3 + param5; v3++) {
         if (v3 >= v2) {
@@ -1113,7 +1113,7 @@ static void sub_02019D08(UnkStruct_02019304 *param0, u16 param1, u8 param2, u8 p
             }
 
             {
-                u16 v5 = sub_02019774(v4, v3, param0->unk_15);
+                u16 v5 = sub_02019774(v4, v3, param0->screenSize);
 
                 if (param6 == 17) {
                     v0[v5] = param1;
@@ -1127,18 +1127,18 @@ static void sub_02019D08(UnkStruct_02019304 *param0, u16 param1, u8 param2, u8 p
     }
 }
 
-static void sub_02019DB8(UnkStruct_02019304 *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5)
+static void sub_02019DB8(Background *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5)
 {
     u8 *v0;
     u8 v1, v2;
     u8 v3, v4;
 
-    if (param0->unk_00 == NULL) {
+    if (param0->tilemapBuffer == NULL) {
         return;
     }
 
-    v0 = (u8 *)param0->unk_00;
-    sub_02018FF4(param0->unk_15, &v1, &v2);
+    v0 = (u8 *)param0->tilemapBuffer;
+    sub_02018FF4(param0->screenSize, &v1, &v2);
 
     for (v3 = param3; v3 < param3 + param5; v3++) {
         if (v3 >= v2) {
@@ -1150,7 +1150,7 @@ static void sub_02019DB8(UnkStruct_02019304 *param0, u8 param1, u8 param2, u8 pa
                 break;
             }
 
-            v0[sub_02019774(v4, v3, param0->unk_15)] = param1;
+            v0[sub_02019774(v4, v3, param0->screenSize)] = param1;
         }
     }
 }
@@ -1161,12 +1161,12 @@ void sub_02019E2C(BGL *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 pa
     u8 v1, v2;
     u8 v3, v4;
 
-    if (param0->unk_08[param1].unk_00 == NULL) {
+    if (param0->unk_08[param1].tilemapBuffer == NULL) {
         return;
     }
 
-    v0 = (u16 *)param0->unk_08[param1].unk_00;
-    sub_02018FF4(param0->unk_08[param1].unk_15, &v1, &v2);
+    v0 = (u16 *)param0->unk_08[param1].tilemapBuffer;
+    sub_02018FF4(param0->unk_08[param1].screenSize, &v1, &v2);
 
     for (v3 = param3; v3 < param3 + param5; v3++) {
         if (v3 >= v2) {
@@ -1179,7 +1179,7 @@ void sub_02019E2C(BGL *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 pa
             }
 
             {
-                u16 v5 = sub_02019774(v4, v3, param0->unk_08[param1].unk_15);
+                u16 v5 = sub_02019774(v4, v3, param0->unk_08[param1].screenSize);
                 v0[v5] = (v0[v5] & 0xfff) | (param6 << 12);
             }
         }
@@ -1188,31 +1188,31 @@ void sub_02019E2C(BGL *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 pa
 
 void sub_02019EBC(BGL *param0, u8 param1)
 {
-    if (param0->unk_08[param1].unk_00 == NULL) {
+    if (param0->unk_08[param1].tilemapBuffer == NULL) {
         return;
     }
 
-    MI_CpuClear16(param0->unk_08[param1].unk_00, param0->unk_08[param1].unk_04);
+    MI_CpuClear16(param0->unk_08[param1].tilemapBuffer, param0->unk_08[param1].bufferSize);
     sub_02019448(param0, param1);
 }
 
 void sub_02019EE0(BGL *param0, u8 param1, u16 param2)
 {
-    if (param0->unk_08[param1].unk_00 == NULL) {
+    if (param0->unk_08[param1].tilemapBuffer == NULL) {
         return;
     }
 
-    MI_CpuFill16(param0->unk_08[param1].unk_00, param2, param0->unk_08[param1].unk_04);
+    MI_CpuFill16(param0->unk_08[param1].tilemapBuffer, param2, param0->unk_08[param1].bufferSize);
     sub_02019448(param0, param1);
 }
 
 void sub_02019F04(BGL *param0, u8 param1, u16 param2)
 {
-    if (param0->unk_08[param1].unk_00 == NULL) {
+    if (param0->unk_08[param1].tilemapBuffer == NULL) {
         return;
     }
 
-    MI_CpuFill16(param0->unk_08[param1].unk_00, param2, param0->unk_08[param1].unk_04);
+    MI_CpuFill16(param0->unk_08[param1].tilemapBuffer, param2, param0->unk_08[param1].bufferSize);
     sub_0201C3C0(param0, param1);
 }
 
@@ -1273,17 +1273,17 @@ void *sub_02019FC0(const u8 *param0, u32 param1, u8 param2, u32 param3)
 
 void *sub_02019FE4(BGL *param0, u8 param1)
 {
-    return param0->unk_08[param1].unk_00;
+    return param0->unk_08[param1].tilemapBuffer;
 }
 
 int sub_02019FF0(BGL *param0, u8 param1)
 {
-    return param0->unk_08[param1].unk_0C;
+    return param0->unk_08[param1].xOffset;
 }
 
 u16 sub_02019FFC(BGL *param0, u8 param1)
 {
-    return param0->unk_08[param1].unk_18;
+    return param0->unk_08[param1].rotation;
 }
 
 u8 sub_0201A008(BGL *param0, u8 param1)
@@ -1298,7 +1298,7 @@ u8 sub_0201A008(BGL *param0, u8 param1)
         return (u8)v1.priority;
     }
     case 2:
-        switch (param0->unk_08[param1].unk_14) {
+        switch (param0->unk_08[param1].type) {
         default:
         case 0: {
             GXBg23ControlText v2 = G2_GetBG2ControlText();
@@ -1315,7 +1315,7 @@ u8 sub_0201A008(BGL *param0, u8 param1)
         }
 
     case 3:
-        switch (param0->unk_08[param1].unk_14) {
+        switch (param0->unk_08[param1].type) {
         default:
         case 0: {
             GXBg23ControlText v5 = G2_GetBG3ControlText();
@@ -1340,7 +1340,7 @@ u8 sub_0201A008(BGL *param0, u8 param1)
         return (u8)v9.priority;
     }
     case 6:
-        switch (param0->unk_08[param1].unk_14) {
+        switch (param0->unk_08[param1].type) {
         default:
         case 0: {
             GXBg23ControlText v10 = G2S_GetBG2ControlText();
@@ -1357,7 +1357,7 @@ u8 sub_0201A008(BGL *param0, u8 param1)
         }
 
     case 7:
-        switch (param0->unk_08[param1].unk_14) {
+        switch (param0->unk_08[param1].type) {
         default:
         case 0: {
             GXBg23ControlText v13 = G2S_GetBG3ControlText();
@@ -1571,11 +1571,11 @@ void BGL_AddWindow(BGL *param0, Window *param1, u8 param2, u8 param3, u8 param4,
     void *v0;
     u32 v1;
 
-    if (param0->unk_08[param2].unk_00 == NULL) {
+    if (param0->unk_08[param2].tilemapBuffer == NULL) {
         return;
     }
 
-    v1 = param5 * param6 * param0->unk_08[param2].unk_17;
+    v1 = param5 * param6 * param0->unk_08[param2].tileSize;
     v0 = Heap_AllocFromHeap(param0->unk_00, v1);
 
     if (v0 == NULL) {
@@ -1591,7 +1591,7 @@ void BGL_AddWindow(BGL *param0, Window *param1, u8 param2, u8 param3, u8 param4,
     param1->unk_09 = param7;
     param1->unk_0A_0 = param8;
     param1->unk_0C = v0;
-    param1->unk_0A_15 = (param0->unk_08[param2].unk_16 == GX_BG_COLORMODE_16) ? UnkEnum_00 : UnkEnum_01;
+    param1->unk_0A_15 = (param0->unk_08[param2].colorMode == GX_BG_COLORMODE_16) ? UnkEnum_00 : UnkEnum_01;
 }
 
 void BGL_AddFramelessWindow(BGL *param0, Window *param1, u8 param2, u8 param3, u16 param4, u8 param5)
@@ -1703,9 +1703,9 @@ void sub_0201A954(Window *param0)
     GF_ASSERT(param0 != NULL);
     GF_ASSERT(param0->unk_00 != NULL);
     GF_ASSERT(param0->unk_04 < 8);
-    GF_ASSERT(param0->unk_00->unk_08[param0->unk_04].unk_14 < NELEMS(Unk_020E56CC));
+    GF_ASSERT(param0->unk_00->unk_08[param0->unk_04].type < NELEMS(Unk_020E56CC));
 
-    Unk_020E56CC[param0->unk_00->unk_08[param0->unk_04].unk_14](param0);
+    Unk_020E56CC[param0->unk_00->unk_08[param0->unk_04].type](param0);
 }
 
 void sub_0201A9A4(Window *param0)
@@ -1713,14 +1713,14 @@ void sub_0201A9A4(Window *param0)
     GF_ASSERT(param0 != NULL);
     GF_ASSERT(param0->unk_00 != NULL);
     GF_ASSERT(param0->unk_04 < 8);
-    GF_ASSERT(param0->unk_00->unk_08[param0->unk_04].unk_14 < NELEMS(Unk_020E56C0));
+    GF_ASSERT(param0->unk_00->unk_08[param0->unk_04].type < NELEMS(Unk_020E56C0));
 
-    Unk_020E56C0[param0->unk_00->unk_08[param0->unk_04].unk_14](param0);
+    Unk_020E56C0[param0->unk_00->unk_08[param0->unk_04].type](param0);
 }
 
 void sub_0201A9F4(Window *param0)
 {
-    Unk_020E569C[param0->unk_00->unk_08[param0->unk_04].unk_14](param0);
+    Unk_020E569C[param0->unk_00->unk_08[param0->unk_04].type](param0);
 }
 
 void sub_0201AA10(Window *param0, u32 param1, u32 param2)
@@ -1733,7 +1733,7 @@ void sub_0201AA10(Window *param0, u32 param1, u32 param2)
     param0->unk_07 = param1;
     param0->unk_08 = param2;
 
-    Unk_020E569C[param0->unk_00->unk_08[param0->unk_04].unk_14](param0);
+    Unk_020E569C[param0->unk_00->unk_08[param0->unk_04].type](param0);
 
     param0->unk_07 = v0;
     param0->unk_08 = v1;
@@ -1741,17 +1741,17 @@ void sub_0201AA10(Window *param0, u32 param1, u32 param2)
 
 void sub_0201AA3C(Window *param0)
 {
-    Unk_020E56D8[param0->unk_00->unk_08[param0->unk_04].unk_14](param0);
+    Unk_020E56D8[param0->unk_00->unk_08[param0->unk_04].type](param0);
 }
 
 static void sub_0201AA58(Window *param0)
 {
-    if (param0->unk_00->unk_08[param0->unk_04].unk_00) {
+    if (param0->unk_00->unk_08[param0->unk_04].tilemapBuffer) {
         u32 v0, v1, v2, v3, v4, v5, v6;
         u16 *v7;
 
         v6 = 32;
-        v7 = (u16 *)(param0->unk_00->unk_08[param0->unk_04].unk_00);
+        v7 = (u16 *)(param0->unk_00->unk_08[param0->unk_04].tilemapBuffer);
         v4 = param0->unk_0A_0;
         v2 = param0->unk_05 + param0->unk_07;
         v3 = param0->unk_06 + param0->unk_08;
@@ -1768,12 +1768,12 @@ static void sub_0201AA58(Window *param0)
 
 static void sub_0201AADC(Window *param0)
 {
-    if (param0->unk_00->unk_08[param0->unk_04].unk_00) {
+    if (param0->unk_00->unk_08[param0->unk_04].tilemapBuffer) {
         int v0, v1, v2, v3;
         u8 *v4;
 
-        v3 = Unk_020E5694[param0->unk_00->unk_08[param0->unk_04].unk_15];
-        v4 = (u8 *)(param0->unk_00->unk_08[param0->unk_04].unk_00) + param0->unk_06 * v3 + param0->unk_05;
+        v3 = Unk_020E5694[param0->unk_00->unk_08[param0->unk_04].screenSize];
+        v4 = (u8 *)(param0->unk_00->unk_08[param0->unk_04].tilemapBuffer) + param0->unk_06 * v3 + param0->unk_05;
         v2 = param0->unk_0A_0;
 
         for (v1 = 0; v1 < param0->unk_08; v1++) {
@@ -1788,12 +1788,12 @@ static void sub_0201AADC(Window *param0)
 
 static void sub_0201AB38(Window *param0)
 {
-    if (param0->unk_00->unk_08[param0->unk_04].unk_00) {
+    if (param0->unk_00->unk_08[param0->unk_04].tilemapBuffer) {
         u32 v0, v1, v2, v3, v4, v5;
         u16 *v6;
 
-        v5 = Unk_020E5694[param0->unk_00->unk_08[param0->unk_04].unk_15];
-        v6 = (u16 *)(param0->unk_00->unk_08[param0->unk_04].unk_00);
+        v5 = Unk_020E5694[param0->unk_00->unk_08[param0->unk_04].screenSize];
+        v6 = (u16 *)(param0->unk_00->unk_08[param0->unk_04].tilemapBuffer);
         v2 = param0->unk_05 + param0->unk_07;
         v3 = param0->unk_06 + param0->unk_08;
 
@@ -1808,12 +1808,12 @@ static void sub_0201AB38(Window *param0)
 
 static void sub_0201ABC8(Window *param0)
 {
-    if (param0->unk_00->unk_08[param0->unk_04].unk_00) {
+    if (param0->unk_00->unk_08[param0->unk_04].tilemapBuffer) {
         int v0, v1, v2;
         u8 *v3;
 
-        v2 = Unk_020E5694[param0->unk_00->unk_08[param0->unk_04].unk_15];
-        v3 = (u8 *)(param0->unk_00->unk_08[param0->unk_04].unk_00) + param0->unk_06 * v2 + param0->unk_05;
+        v2 = Unk_020E5694[param0->unk_00->unk_08[param0->unk_04].screenSize];
+        v3 = (u8 *)(param0->unk_00->unk_08[param0->unk_04].tilemapBuffer) + param0->unk_06 * v2 + param0->unk_05;
 
         for (v1 = 0; v1 < param0->unk_08; v1++) {
             for (v0 = 0; v0 < param0->unk_07; v0++) {
@@ -1829,7 +1829,7 @@ static void sub_0201AC20(Window *param0)
 {
     sub_0201AA58(param0);
     sub_0201ACCC(param0);
-    sub_02019460(param0->unk_00, param0->unk_04, param0->unk_00->unk_08[param0->unk_04].unk_00, param0->unk_00->unk_08[param0->unk_04].unk_04, param0->unk_00->unk_08[param0->unk_04].unk_08);
+    sub_02019460(param0->unk_00, param0->unk_04, param0->unk_00->unk_08[param0->unk_04].tilemapBuffer, param0->unk_00->unk_08[param0->unk_04].bufferSize, param0->unk_00->unk_08[param0->unk_04].baseTile);
 }
 
 static void sub_0201AC4C(Window *param0)
@@ -1843,7 +1843,7 @@ static void sub_0201AC64(Window *param0)
 {
     sub_0201AADC(param0);
 
-    sub_02019460(param0->unk_00, param0->unk_04, param0->unk_00->unk_08[param0->unk_04].unk_00, param0->unk_00->unk_08[param0->unk_04].unk_04, param0->unk_00->unk_08[param0->unk_04].unk_08);
+    sub_02019460(param0->unk_00, param0->unk_04, param0->unk_00->unk_08[param0->unk_04].tilemapBuffer, param0->unk_00->unk_08[param0->unk_04].bufferSize, param0->unk_00->unk_08[param0->unk_04].baseTile);
     sub_0201958C(param0->unk_00, param0->unk_04, param0->unk_0C, (u32)(param0->unk_07 * param0->unk_08 * 0x40), (u32)param0->unk_0A_0);
 }
 
@@ -1857,24 +1857,24 @@ static void sub_0201ACA0(Window *param0)
 
 void sub_0201ACCC(Window *param0)
 {
-    u32 v0 = param0->unk_07 * param0->unk_08 * param0->unk_00->unk_08[param0->unk_04].unk_17;
+    u32 v0 = param0->unk_07 * param0->unk_08 * param0->unk_00->unk_08[param0->unk_04].tileSize;
     sub_0201958C(param0->unk_00, param0->unk_04, param0->unk_0C, v0, param0->unk_0A_0);
 }
 
 void sub_0201ACF4(Window *param0)
 {
-    Unk_020E56B4[param0->unk_00->unk_08[param0->unk_04].unk_14](param0);
+    Unk_020E56B4[param0->unk_00->unk_08[param0->unk_04].type](param0);
 }
 
 void sub_0201AD10(Window *param0)
 {
-    Unk_020E56A8[param0->unk_00->unk_08[param0->unk_04].unk_14](param0);
+    Unk_020E56A8[param0->unk_00->unk_08[param0->unk_04].type](param0);
 }
 
 static void sub_0201AD2C(Window *param0)
 {
     sub_0201AB38(param0);
-    sub_02019460(param0->unk_00, param0->unk_04, param0->unk_00->unk_08[param0->unk_04].unk_00, param0->unk_00->unk_08[param0->unk_04].unk_04, param0->unk_00->unk_08[param0->unk_04].unk_08);
+    sub_02019460(param0->unk_00, param0->unk_04, param0->unk_00->unk_08[param0->unk_04].tilemapBuffer, param0->unk_00->unk_08[param0->unk_04].bufferSize, param0->unk_00->unk_08[param0->unk_04].baseTile);
 }
 
 static void sub_0201AD54(Window *param0)
@@ -1886,7 +1886,7 @@ static void sub_0201AD54(Window *param0)
 static void sub_0201AD68(Window *param0)
 {
     sub_0201ABC8(param0);
-    sub_02019460(param0->unk_00, param0->unk_04, param0->unk_00->unk_08[param0->unk_04].unk_00, param0->unk_00->unk_08[param0->unk_04].unk_04, param0->unk_00->unk_08[param0->unk_04].unk_08);
+    sub_02019460(param0->unk_00, param0->unk_04, param0->unk_00->unk_08[param0->unk_04].tilemapBuffer, param0->unk_00->unk_08[param0->unk_04].bufferSize, param0->unk_00->unk_08[param0->unk_04].baseTile);
 }
 
 static void sub_0201AD90(Window *param0)
@@ -1900,12 +1900,12 @@ void BGL_FillWindow(Window *param0, u8 param1)
     u32 v0;
     u32 v1;
 
-    if (param0->unk_00->unk_08[param0->unk_04].unk_17 == 0x20) {
+    if (param0->unk_00->unk_08[param0->unk_04].tileSize == 0x20) {
         param1 = (param1 << 4) | param1;
     }
 
     v1 = (param1 << 24) | (param1 << 16) | (param1 << 8) | param1;
-    v0 = param0->unk_00->unk_08[param0->unk_04].unk_17 * param0->unk_07 * param0->unk_08;
+    v0 = param0->unk_00->unk_08[param0->unk_04].tileSize * param0->unk_07 * param0->unk_08;
 
     MI_CpuFillFast(param0->unk_0C, v1, v0);
 }
@@ -1927,7 +1927,7 @@ void sub_0201AE08(Window *param0, void *param1, u16 param2, u16 param3, u16 para
     v1.width = (u16)(param0->unk_07 * 0x8);
     v1.height = (u16)(param0->unk_08 * 0x8);
 
-    if (param0->unk_00->unk_08[param0->unk_04].unk_16 == GX_BG_COLORMODE_16) {
+    if (param0->unk_00->unk_08[param0->unk_04].colorMode == GX_BG_COLORMODE_16) {
         sub_0201A1E4(&v0, &v1, param2, param3, param6, param7, param8, param9, param10);
     } else {
         sub_0201A424(&v0, &v1, param2, param3, param6, param7, param8, param9, param10);
@@ -1942,7 +1942,7 @@ void BGL_WindowColor(Window *param0, u8 param1, u16 param2, u16 param3, u16 para
     v0.width = (u16)(param0->unk_07 * 0x8);
     v0.height = (u16)(param0->unk_08 * 0x8);
 
-    if (param0->unk_00->unk_08[param0->unk_04].unk_16 == GX_BG_COLORMODE_16) {
+    if (param0->unk_00->unk_08[param0->unk_04].colorMode == GX_BG_COLORMODE_16) {
         sub_0201A60C((const Bitmap *)&v0, param2, param3, param4, param5, param1);
     } else {
         sub_0201A6D0((const Bitmap *)&v0, param2, param3, param4, param5, param1);
@@ -2974,7 +2974,7 @@ void sub_0201AED0(Window *param0, const u8 *param1, u16 param2, u16 param3, u16 
 
 void sub_0201C04C(Window *param0, u8 param1, u8 param2, u8 param3)
 {
-    if (param0->unk_00->unk_08[param0->unk_04].unk_16 == GX_BG_COLORMODE_16) {
+    if (param0->unk_00->unk_08[param0->unk_04].colorMode == GX_BG_COLORMODE_16) {
         sub_0201C06C(param0, param1, param2, param3);
     } else {
         sub_0201C158(param0, param1, param2, param3);
@@ -3180,35 +3180,35 @@ void sub_0201C2B8(BGL *param0)
 static void sub_0201C2D0(BGL *param0)
 {
     if ((param0->unk_06 & 1) != 0) {
-        sub_020194E0(0, param0->unk_08[0].unk_00, param0->unk_08[0].unk_08 * 0x2, param0->unk_08[0].unk_04);
+        sub_020194E0(0, param0->unk_08[0].tilemapBuffer, param0->unk_08[0].baseTile * 0x2, param0->unk_08[0].bufferSize);
     }
 
     if ((param0->unk_06 & 2) != 0) {
-        sub_020194E0(1, param0->unk_08[1].unk_00, param0->unk_08[1].unk_08 * 0x2, param0->unk_08[1].unk_04);
+        sub_020194E0(1, param0->unk_08[1].tilemapBuffer, param0->unk_08[1].baseTile * 0x2, param0->unk_08[1].bufferSize);
     }
 
     if ((param0->unk_06 & 4) != 0) {
-        sub_020194E0(2, param0->unk_08[2].unk_00, param0->unk_08[2].unk_08 * 0x2, param0->unk_08[2].unk_04);
+        sub_020194E0(2, param0->unk_08[2].tilemapBuffer, param0->unk_08[2].baseTile * 0x2, param0->unk_08[2].bufferSize);
     }
 
     if ((param0->unk_06 & 8) != 0) {
-        sub_020194E0(3, param0->unk_08[3].unk_00, param0->unk_08[3].unk_08 * 0x2, param0->unk_08[3].unk_04);
+        sub_020194E0(3, param0->unk_08[3].tilemapBuffer, param0->unk_08[3].baseTile * 0x2, param0->unk_08[3].bufferSize);
     }
 
     if ((param0->unk_06 & 16) != 0) {
-        sub_020194E0(4, param0->unk_08[4].unk_00, param0->unk_08[4].unk_08 * 0x2, param0->unk_08[4].unk_04);
+        sub_020194E0(4, param0->unk_08[4].tilemapBuffer, param0->unk_08[4].baseTile * 0x2, param0->unk_08[4].bufferSize);
     }
 
     if ((param0->unk_06 & 32) != 0) {
-        sub_020194E0(5, param0->unk_08[5].unk_00, param0->unk_08[5].unk_08 * 0x2, param0->unk_08[5].unk_04);
+        sub_020194E0(5, param0->unk_08[5].tilemapBuffer, param0->unk_08[5].baseTile * 0x2, param0->unk_08[5].bufferSize);
     }
 
     if ((param0->unk_06 & 64) != 0) {
-        sub_020194E0(6, param0->unk_08[6].unk_00, param0->unk_08[6].unk_08 * 0x2, param0->unk_08[6].unk_04);
+        sub_020194E0(6, param0->unk_08[6].tilemapBuffer, param0->unk_08[6].baseTile * 0x2, param0->unk_08[6].bufferSize);
     }
 
     if ((param0->unk_06 & 128) != 0) {
-        sub_020194E0(7, param0->unk_08[7].unk_00, param0->unk_08[7].unk_08 * 0x2, param0->unk_08[7].unk_04);
+        sub_020194E0(7, param0->unk_08[7].tilemapBuffer, param0->unk_08[7].baseTile * 0x2, param0->unk_08[7].bufferSize);
     }
 }
 
@@ -3220,62 +3220,62 @@ void sub_0201C3C0(BGL *param0, u8 param1)
 static void sub_0201C3D0(BGL *param0)
 {
     if ((param0->unk_04 & 1) != 0) {
-        G2_SetBG0Offset(param0->unk_08[0].unk_0C, param0->unk_08[0].unk_10);
+        G2_SetBG0Offset(param0->unk_08[0].xOffset, param0->unk_08[0].yOffset);
     }
 
     if ((param0->unk_04 & 2) != 0) {
-        G2_SetBG1Offset(param0->unk_08[1].unk_0C, param0->unk_08[1].unk_10);
+        G2_SetBG1Offset(param0->unk_08[1].xOffset, param0->unk_08[1].yOffset);
     }
 
     if ((param0->unk_04 & 4) != 0) {
-        if (param0->unk_08[2].unk_14 == 0) {
-            G2_SetBG2Offset(param0->unk_08[2].unk_0C, param0->unk_08[2].unk_10);
+        if (param0->unk_08[2].type == 0) {
+            G2_SetBG2Offset(param0->unk_08[2].xOffset, param0->unk_08[2].yOffset);
         } else {
             MtxFx22 v0;
 
-            sub_0201D470(&v0, param0->unk_08[2].unk_18, param0->unk_08[2].unk_1C, param0->unk_08[2].unk_20, 2);
-            G2_SetBG2Affine(&v0, param0->unk_08[2].unk_24, param0->unk_08[2].unk_28, param0->unk_08[2].unk_0C, param0->unk_08[2].unk_10);
+            sub_0201D470(&v0, param0->unk_08[2].rotation, param0->unk_08[2].xScale, param0->unk_08[2].yScale, 2);
+            G2_SetBG2Affine(&v0, param0->unk_08[2].xCenter, param0->unk_08[2].yCenter, param0->unk_08[2].xOffset, param0->unk_08[2].yOffset);
         }
     }
 
     if ((param0->unk_04 & 8) != 0) {
-        if (param0->unk_08[3].unk_14 == 0) {
-            G2_SetBG3Offset(param0->unk_08[3].unk_0C, param0->unk_08[3].unk_10);
+        if (param0->unk_08[3].type == 0) {
+            G2_SetBG3Offset(param0->unk_08[3].xOffset, param0->unk_08[3].yOffset);
         } else {
             MtxFx22 v1;
 
-            sub_0201D470(&v1, param0->unk_08[3].unk_18, param0->unk_08[3].unk_1C, param0->unk_08[3].unk_20, 2);
-            G2_SetBG3Affine(&v1, param0->unk_08[3].unk_24, param0->unk_08[3].unk_28, param0->unk_08[3].unk_0C, param0->unk_08[3].unk_10);
+            sub_0201D470(&v1, param0->unk_08[3].rotation, param0->unk_08[3].xScale, param0->unk_08[3].yScale, 2);
+            G2_SetBG3Affine(&v1, param0->unk_08[3].xCenter, param0->unk_08[3].yCenter, param0->unk_08[3].xOffset, param0->unk_08[3].yOffset);
         }
     }
 
     if ((param0->unk_04 & 16) != 0) {
-        G2S_SetBG0Offset(param0->unk_08[4].unk_0C, param0->unk_08[4].unk_10);
+        G2S_SetBG0Offset(param0->unk_08[4].xOffset, param0->unk_08[4].yOffset);
     }
 
     if ((param0->unk_04 & 32) != 0) {
-        G2S_SetBG1Offset(param0->unk_08[5].unk_0C, param0->unk_08[5].unk_10);
+        G2S_SetBG1Offset(param0->unk_08[5].xOffset, param0->unk_08[5].yOffset);
     }
 
     if ((param0->unk_04 & 64) != 0) {
-        if (param0->unk_08[6].unk_14 == 0) {
-            G2S_SetBG2Offset(param0->unk_08[6].unk_0C, param0->unk_08[6].unk_10);
+        if (param0->unk_08[6].type == 0) {
+            G2S_SetBG2Offset(param0->unk_08[6].xOffset, param0->unk_08[6].yOffset);
         } else {
             MtxFx22 v2;
 
-            sub_0201D470(&v2, param0->unk_08[6].unk_18, param0->unk_08[6].unk_1C, param0->unk_08[6].unk_20, 2);
-            G2S_SetBG2Affine(&v2, param0->unk_08[6].unk_24, param0->unk_08[6].unk_28, param0->unk_08[6].unk_0C, param0->unk_08[6].unk_10);
+            sub_0201D470(&v2, param0->unk_08[6].rotation, param0->unk_08[6].xScale, param0->unk_08[6].yScale, 2);
+            G2S_SetBG2Affine(&v2, param0->unk_08[6].xCenter, param0->unk_08[6].yCenter, param0->unk_08[6].xOffset, param0->unk_08[6].yOffset);
         }
     }
 
     if ((param0->unk_04 & 128) != 0) {
-        if (param0->unk_08[7].unk_14 == 0) {
-            G2S_SetBG3Offset(param0->unk_08[7].unk_0C, param0->unk_08[7].unk_10);
+        if (param0->unk_08[7].type == 0) {
+            G2S_SetBG3Offset(param0->unk_08[7].xOffset, param0->unk_08[7].yOffset);
         } else {
             MtxFx22 v3;
 
-            sub_0201D470(&v3, param0->unk_08[7].unk_18, param0->unk_08[7].unk_1C, param0->unk_08[7].unk_20, 2);
-            G2S_SetBG3Affine(&v3, param0->unk_08[7].unk_24, param0->unk_08[7].unk_28, param0->unk_08[7].unk_0C, param0->unk_08[7].unk_10);
+            sub_0201D470(&v3, param0->unk_08[7].rotation, param0->unk_08[7].xScale, param0->unk_08[7].yScale, 2);
+            G2S_SetBG3Affine(&v3, param0->unk_08[7].xCenter, param0->unk_08[7].yCenter, param0->unk_08[7].xOffset, param0->unk_08[7].yOffset);
         }
     }
 }
@@ -3292,17 +3292,17 @@ void sub_0201C660(BGL *param0, u8 param1, u8 param2, u16 param3)
     param0->unk_04 |= (1 << param1);
 }
 
-static void sub_0201C684(UnkStruct_02019304 *param0, u8 param1, u16 param2)
+static void sub_0201C684(Background *param0, u8 param1, u16 param2)
 {
     switch (param1) {
     case 0:
-        param0->unk_18 = param2;
+        param0->rotation = param2;
         break;
     case 1:
-        param0->unk_18 += param2;
+        param0->rotation += param2;
         break;
     case 2:
-        param0->unk_18 -= param2;
+        param0->rotation -= param2;
         break;
     }
 }
@@ -3313,26 +3313,26 @@ void sub_0201C6A8(BGL *param0, u8 param1, u8 param2, fx32 param3)
     param0->unk_04 |= (1 << param1);
 }
 
-static void sub_0201C6CC(UnkStruct_02019304 *param0, u8 param1, fx32 param2)
+static void sub_0201C6CC(Background *param0, u8 param1, fx32 param2)
 {
     switch (param1) {
     case 3:
-        param0->unk_1C = param2;
+        param0->xScale = param2;
         break;
     case 4:
-        param0->unk_1C += param2;
+        param0->xScale += param2;
         break;
     case 5:
-        param0->unk_1C -= param2;
+        param0->xScale -= param2;
         break;
     case 6:
-        param0->unk_20 = param2;
+        param0->yScale = param2;
         break;
     case 7:
-        param0->unk_20 += param2;
+        param0->yScale += param2;
         break;
     case 8:
-        param0->unk_20 -= param2;
+        param0->yScale -= param2;
         break;
     }
 }
@@ -3343,26 +3343,26 @@ void sub_0201C718(BGL *param0, u8 param1, u8 param2, int param3)
     param0->unk_04 |= (1 << param1);
 }
 
-static void sub_0201C73C(UnkStruct_02019304 *param0, u8 param1, int param2)
+static void sub_0201C73C(Background *param0, u8 param1, int param2)
 {
     switch (param1) {
     case 9:
-        param0->unk_24 = param2;
+        param0->xCenter = param2;
         break;
     case 10:
-        param0->unk_24 += param2;
+        param0->xCenter += param2;
         break;
     case 11:
-        param0->unk_24 -= param2;
+        param0->xCenter -= param2;
         break;
     case 12:
-        param0->unk_28 = param2;
+        param0->yCenter = param2;
         break;
     case 13:
-        param0->unk_28 += param2;
+        param0->yCenter += param2;
         break;
     case 14:
-        param0->unk_28 -= param2;
+        param0->yCenter -= param2;
         break;
     }
 }
@@ -3375,20 +3375,20 @@ u8 sub_0201C784(BGL *param0, u8 param1, u16 param2, u16 param3, u16 *param4)
     u8 v4;
     u8 v5;
 
-    if (param0->unk_08[param1].unk_00 == NULL) {
+    if (param0->unk_08[param1].tilemapBuffer == NULL) {
         return 0;
     }
 
-    v1 = sub_02019774((u8)(param2 >> 3), (u8)(param3 >> 3), param0->unk_08[param1].unk_15);
+    v1 = sub_02019774((u8)(param2 >> 3), (u8)(param3 >> 3), param0->unk_08[param1].screenSize);
     v0 = (u8 *)sub_02019F28(param1);
     v2 = (u8)(param2 & 7);
     v3 = (u8)(param3 & 7);
 
-    if (param0->unk_08[param1].unk_16 == GX_BG_COLORMODE_16) {
+    if (param0->unk_08[param1].colorMode == GX_BG_COLORMODE_16) {
         u16 *v6;
         u8 *v7;
 
-        v6 = (u16 *)param0->unk_08[param1].unk_00;
+        v6 = (u16 *)param0->unk_08[param1].tilemapBuffer;
         v7 = Heap_AllocFromHeapAtEnd(param0->unk_00, 64);
 
         v0 += ((v6[v1] & 0x3ff) << 5);
@@ -3406,11 +3406,11 @@ u8 sub_0201C784(BGL *param0, u8 param1, u16 param2, u16 param3, u16 *param4)
             return 1;
         }
     } else {
-        if (param0->unk_08[param1].unk_14 != 1) {
+        if (param0->unk_08[param1].type != 1) {
             u16 *v8;
             u8 *v9;
 
-            v8 = (u16 *)param0->unk_08[param1].unk_00;
+            v8 = (u16 *)param0->unk_08[param1].tilemapBuffer;
             v9 = Heap_AllocFromHeapAtEnd(param0->unk_00, 64);
 
             memcpy(v9, &v0[(v8[v1] & 0x3ff) << 6], 64);
@@ -3419,7 +3419,7 @@ u8 sub_0201C784(BGL *param0, u8 param1, u16 param2, u16 param3, u16 *param4)
             v4 = v9[v2 + (v3 << 3)];
             Heap_FreeToHeap(v9);
         } else {
-            u8 *v10 = (u8 *)param0->unk_08[param1].unk_00;
+            u8 *v10 = (u8 *)param0->unk_08[param1].tilemapBuffer;
 
             v4 = v0[(v10[v1] << 6) + v2 + (v3 << 3)];
         }

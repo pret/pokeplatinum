@@ -46,28 +46,32 @@ typedef struct BgTemplate {
     BOOL mosaic;
 } BgTemplate;
 
-typedef struct {
-    void *unk_00;
-    u32 unk_04;
-    u32 unk_08;
-    int unk_0C;
-    int unk_10;
-    u8 unk_14;
-    u8 unk_15;
-    u8 unk_16;
-    u8 unk_17;
-    u16 unk_18;
-    fx32 unk_1C;
-    fx32 unk_20;
-    int unk_24;
-    int unk_28;
-} UnkStruct_02019304;
+typedef struct Background {
+    void *tilemapBuffer;
+    u32 bufferSize;
+    u32 baseTile;
+
+    int xOffset;
+    int yOffset;
+
+    u8 type;
+    u8 screenSize;
+    u8 colorMode;
+    u8 tileSize;
+
+    u16 rotation;
+
+    fx32 xScale;
+    fx32 yScale;
+    int xCenter;
+    int yCenter;
+} Background;
 
 typedef struct UnkStruct_02018340_t {
     u32 unk_00;
     u16 unk_04;
     u16 unk_06;
-    UnkStruct_02019304 unk_08[8];
+    Background unk_08[8];
 } BGL;
 
 typedef struct {
