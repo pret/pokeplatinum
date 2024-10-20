@@ -22,6 +22,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
+#include "narc.h"
 #include "pokemon.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -36,8 +37,6 @@
 #include "unk_020131EC.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-
-#include "narc.h"
 
 typedef struct UnkStruct_ov87_021D106C_t {
     UnkStruct_ov87_021D0D80 *unk_00;

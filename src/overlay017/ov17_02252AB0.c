@@ -9,12 +9,13 @@
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 
+#include "battle/graphic/pl_batt_obj/pl_batt_obj.naix"
+
 #include "heap.h"
+#include "narc.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_0200C6E4.h"
-#include "narc.h"
-#include "battle/graphic/pl_batt_obj/pl_batt_obj.naix"
 
 typedef struct UnkStruct_ov17_02252B48_t {
     CellActorData *unk_00[5];
