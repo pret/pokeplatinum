@@ -16,7 +16,6 @@
 #include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D157C.h"
 #include "overlay021/struct_ov21_021D2648.h"
-#include "overlay021/struct_ov21_021D37DC.h"
 #include "overlay021/struct_ov21_021D4660.h"
 #include "overlay021/struct_ov21_021D4CA0.h"
 #include "overlay021/struct_ov21_021D4CB8.h"
@@ -24,6 +23,7 @@
 #include "overlay021/struct_ov21_021E68F4.h"
 #include "overlay021/struct_ov21_021E6A68.h"
 #include "overlay021/struct_ov21_021E6B20.h"
+#include "overlay021/struct_speciesCaughtStatus.h"
 
 #include "cell_actor.h"
 #include "core_sys.h"
@@ -871,7 +871,7 @@ static void ov21_021D67EC(UnkStruct_ov21_021D71A8 *param0, UnkStruct_ov21_021D13
     int v3;
     UnkStruct_ov21_021D4CB8 v4;
     Window *v5;
-    const speciesCaughtStatusStruct *speciesCaughtStatus;
+    const speciesCaughtStatus *pokeCaughtStatus;
     int dexIndex;
 
     v4.unk_00 = param1->unk_14C;
@@ -898,8 +898,8 @@ static void ov21_021D67EC(UnkStruct_ov21_021D71A8 *param0, UnkStruct_ov21_021D13
             dexIndex = Pokedex_Sort_SeenIndexToSpecies(param2->unk_04, v1);
 
             if (dexIndex != (NATIONAL_DEX_COUNT + 1)) {
-                speciesCaughtStatus = Pokedex_Sort_SpeciesCaughtStatus(param2->unk_04, dexIndex);
-                v5 = ov21_021D16D8(param1, param2->unk_04, param3, speciesCaughtStatus->species);
+                pokeCaughtStatus = Pokedex_Sort_SpeciesCaughtStatus(param2->unk_04, dexIndex);
+                v5 = ov21_021D16D8(param1, param2->unk_04, param3, pokeCaughtStatus->species);
                 v4.unk_04 = v5;
                 param0->unk_28[v2] = ov21_021D4CB8(&v4, param0->unk_4C);
                 ov21_021D4DA0(v5);
@@ -919,11 +919,11 @@ static void ov21_021D68C8(UnkStruct_ov21_021D71A8 *param0, UnkStruct_ov21_021D13
 {
     int dexIndex;
     int v1;
-    const speciesCaughtStatusStruct *speciesCaughtStatus;
+    const speciesCaughtStatus *pokeCaughtStatus;
 
     v1 = ov21_021D3898(param2->unk_04);
     dexIndex = ov21_021D375C(param2->unk_04);
-    speciesCaughtStatus = Pokedex_Sort_SpeciesCaughtStatus(param2->unk_04, dexIndex);
+    pokeCaughtStatus = Pokedex_Sort_SpeciesCaughtStatus(param2->unk_04, dexIndex);
 
     if (Pokedex_Sort_SeenIndexToSpecies(param2->unk_04, v1) == (NATIONAL_DEX_COUNT + 1)) {
         ov21_021D217C(param1, 0);
@@ -932,7 +932,7 @@ static void ov21_021D68C8(UnkStruct_ov21_021D71A8 *param0, UnkStruct_ov21_021D13
             CellActor_SetDrawFlag(param0->unk_7C, 1);
         }
     } else {
-        ov21_021D1890(param1, param2->unk_04, speciesCaughtStatus->species, 2, 56, 80);
+        ov21_021D1890(param1, param2->unk_04, pokeCaughtStatus->species, 2, 56, 80);
         ov21_021D217C(param1, 1);
 
         if (param0->unk_7C) {
@@ -1085,7 +1085,7 @@ static void ov21_021D6AE4(UnkStruct_ov21_021D71A8 *param0, const UnkStruct_ov21_
     int v5;
     int v6;
     int v7;
-    const speciesCaughtStatusStruct *speciesCaughtStatus;
+    const speciesCaughtStatus *pokeCaughtStatus;
     int v9;
     int v10;
     int dexIndex;
@@ -1103,9 +1103,9 @@ static void ov21_021D6AE4(UnkStruct_ov21_021D71A8 *param0, const UnkStruct_ov21_
             dexIndex = Pokedex_Sort_SeenIndexToSpecies(param1->unk_04, v5);
 
             if (dexIndex != (NATIONAL_DEX_COUNT + 1)) {
-                speciesCaughtStatus = Pokedex_Sort_SpeciesCaughtStatus(param1->unk_04, dexIndex);
+                pokeCaughtStatus = Pokedex_Sort_SpeciesCaughtStatus(param1->unk_04, dexIndex);
 
-                if (speciesCaughtStatus->caughtStatus == 2) {
+                if (pokeCaughtStatus->caughtStatus == CS_CAUGHT) {
                     isCaught = 1;
                 }
             }
@@ -1256,10 +1256,10 @@ static void ov21_021D6D78(UnkStruct_ov21_021D71A8 *param0, UnkStruct_ov21_021D13
 {
     UnkStruct_ov21_021D4CB8 v0;
     Window *v1;
-    const speciesCaughtStatusStruct *speciesCaughtStatus;
+    const speciesCaughtStatus *pokeCaughtStatus;
 
-    speciesCaughtStatus = Pokedex_Sort_SpeciesCaughtStatus(param2->unk_04, dexIndex);
-    GF_ASSERT(speciesCaughtStatus);
+    pokeCaughtStatus = Pokedex_Sort_SpeciesCaughtStatus(param2->unk_04, dexIndex);
+    GF_ASSERT(pokeCaughtStatus);
 
     v0.unk_00 = param1->unk_14C;
     v0.unk_08 = param0->unk_90.paletteProxy;
@@ -1271,7 +1271,7 @@ static void ov21_021D6D78(UnkStruct_ov21_021D71A8 *param0, UnkStruct_ov21_021D13
     v0.unk_20 = NNS_G2D_VRAM_TYPE_2DMAIN;
     v0.unk_24 = param3;
 
-    v1 = ov21_021D16D8(param1, param2->unk_04, param3, speciesCaughtStatus->species);
+    v1 = ov21_021D16D8(param1, param2->unk_04, param3, pokeCaughtStatus->species);
 
     if (param0->unk_28[param4]) {
         ov21_021D4D1C(param0->unk_28[param4]);

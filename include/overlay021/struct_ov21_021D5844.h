@@ -2,8 +2,8 @@
 #define POKEPLATINUM_STRUCT_OV21_021D5844_H
 
 typedef struct {
-    int *pokedexEncArray;
-    int pokedexEncLength;
-} pokedexEncStruct;
+    int *mapsEncounteredOnArray;
+    int numMapsEncounteredOn;
+} mapsEncounteredOn;
 
 #endif // POKEPLATINUM_STRUCT_OV21_021D5844_H

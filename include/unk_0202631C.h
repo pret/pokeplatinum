@@ -40,7 +40,7 @@ void sub_0202736C(PokedexData *dexData, Pokemon *param1);
 void sub_02027454(PokedexData *dexData);
 BOOL Pokedex_NationalUnlocked(const PokedexData *dexData);
 BOOL Pokedex_CanDetectForms(const PokedexData *dexData);
-void Pokedex_CanDetectForms_True(PokedexData *dexData);
+void Pokedex_TurnOnFormDetection(PokedexData *dexData);
 BOOL sub_020274D0(const PokedexData *dexData, u16 param1, u32 param2);
 void sub_02027508(PokedexData *dexData);
 BOOL sub_02027514(const PokedexData *dexData);

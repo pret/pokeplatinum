@@ -3,10 +3,10 @@
 
 #include "constants/species.h"
 
-#include "overlay021/struct_ov21_021D37DC.h"
+#include "overlay021/struct_speciesCaughtStatus.h"
 
 typedef struct {
-    speciesCaughtStatusStruct caughtStatusArray[NATIONAL_DEX_COUNT];
+    speciesCaughtStatus caughtStatusArray[NATIONAL_DEX_COUNT];
     int unk_F68;
     int numEncountered; // number of pokemon seen
     int encounteredIndexArray[NATIONAL_DEX_COUNT]; // dex number for appearing in dex, dexLength+1 otherwise

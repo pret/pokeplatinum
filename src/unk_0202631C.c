@@ -1151,7 +1151,7 @@ BOOL Pokedex_CanDetectForms(const PokedexData *dexData)
     return dexData->canDetectForms;
 }
 
-void Pokedex_CanDetectForms_True(PokedexData *dexData)
+void Pokedex_TurnOnFormDetection(PokedexData *dexData)
 {
     CheckPokedexIntegrity(dexData);
     dexData->canDetectForms = 1;

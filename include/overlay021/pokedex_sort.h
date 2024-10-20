@@ -1,9 +1,9 @@
-#ifndef POKEPLATINUM_OV21_021D3208_H
-#define POKEPLATINUM_OV21_021D3208_H
+#ifndef POKEPLATINUM_POKEDEX_SORT_H
+#define POKEPLATINUM_POKEDEX_SORT_H
 
 #include "overlay021/struct_ov21_021D3208.h"
 #include "overlay021/struct_ov21_021D3320.h"
-#include "overlay021/struct_ov21_021D37DC.h"
+#include "overlay021/struct_speciesCaughtStatus.h"
 
 #include "strbuf.h"
 
@@ -40,7 +40,7 @@ int ov21_021D3770(const pokedexStruct *param0, u32 param1);
 BOOL ov21_021D3794(pokedexStruct *param0, int param1);
 int Pokedex_Sort_CurrentSpecies(const pokedexStruct *param0);
 int Pokedex_Sort_CurrentCaughtStatus(const pokedexStruct *param0);
-const speciesCaughtStatusStruct *Pokedex_Sort_SpeciesCaughtStatus(const pokedexStruct *param0, int dexIndex);
+const speciesCaughtStatus *Pokedex_Sort_SpeciesCaughtStatus(const pokedexStruct *param0, int dexIndex);
 BOOL ov21_021D37F8(const pokedexStruct *param0, int param1);
 BOOL ov21_021D3810(pokedexStruct *param0, int param1);
 BOOL ov21_021D3844(pokedexStruct *param0, int param1);
@@ -58,4 +58,4 @@ BOOL Pokedex_Sort_CanDetectForms(const pokedexStruct *param0);
 void ov21_021D3960(pokedexStruct *param0);
 u32 ov21_021D3998(const pokedexStruct *param0);
 
-#endif // POKEPLATINUM_OV21_021D3208_H
+#endif // POKEPLATINUM_POKEDEX_SORT_H

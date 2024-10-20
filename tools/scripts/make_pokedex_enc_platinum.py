@@ -203,13 +203,16 @@ honeyTrees = [
 
 NUM_POKEMON = len(PokemonSpecies) - 1
 NUM_FILES = NUM_POKEMON * 10 + 4
+NUM_MAPS = 183
+
+numDigits = len(str(NUM_FILES))
 
 binData = bytes()
 for dungeon in file_0:
     for pos in dungeon:
         binData = binData + pos.to_bytes(1, 'little')
 
-target_fname = str(private_dir / output_name) + '_00000.bin'
+target_fname = str(private_dir / output_name) + f'_{0:0{numDigits}}.bin'
 with open(target_fname, 'wb+') as target_file:
     target_file.write(binData)
 
@@ -218,7 +221,7 @@ for dungeon in file_1:
     for pos in dungeon:
         binData = binData + pos.to_bytes(1, 'little')
 
-target_fname = str(private_dir / output_name) + '_00001.bin'
+target_fname = str(private_dir / output_name) + f'_{1:0{numDigits}}.bin'
 with open(target_fname, 'wb+') as target_file:
     target_file.write(binData)
 
@@ -227,7 +230,7 @@ for field in file_2:
     for pos in field:
         binData = binData + pos.to_bytes(1, 'little')
 
-target_fname = str(private_dir / output_name) + '_00002.bin'
+target_fname = str(private_dir / output_name) + f'_{2:0{numDigits}}.bin'
 with open(target_fname, 'wb+') as target_file:
     target_file.write(binData)
 
@@ -236,134 +239,154 @@ for field in file_3:
     for pos in field:
         binData = binData + pos.to_bytes(1, 'little')
 
-target_fname = str(private_dir / output_name) + '_00003.bin'
+target_fname = str(private_dir / output_name) + f'_{3:0{numDigits}}.bin'
 with open(target_fname, 'wb+') as target_file:
     target_file.write(binData)
 
-def SearchLand(species, encounterData, absent, category):
-    encData = 0
-    while ((encData < 12) and absent):
+dungeonMorning = [set() for species in range(NUM_POKEMON)]
+dungeonDay = [set() for species in range(NUM_POKEMON)]
+dungeonNight = [set() for species in range(NUM_POKEMON)]
+dungeonSpecial = [set() for species in range(NUM_POKEMON)]
+dungeonSpecialNatDex = [set() for species in range(NUM_POKEMON)]
+fieldMorning = [set() for species in range(NUM_POKEMON)]
+fieldDay = [set() for species in range(NUM_POKEMON)]
+fieldNight = [set() for species in range(NUM_POKEMON)]
+fieldSpecial = [set() for species in range(NUM_POKEMON)]
+fieldSpecialNatDex = [set() for species in range(NUM_POKEMON)]
 
-        if (((encData == 2) or (encData == 3)) and (category > 0)):
-            if (category == 1):
-                enc = encounterData["morning"][encData - 2]
-            if (category == 2):
-                enc = encounterData["night"][encData - 2]
-        else:
-            enc = encounterData["land_encounters"][encData]["species"]
-        if (enc == species):
-            absent = False
-        encData += 1
-    return absent
-
-def SearchWater(species, encounterData, absent):
-    encData = 0
-    while ((encData < 5) and absent):
-        enc = encounterData["surf_encounters"][encData]["species"]
-        if (enc == species):
-            absent = False
-        enc = encounterData["old_rod_encounters"][encData]["species"]
-        if (enc == species):
-            absent = False
-        enc = encounterData["good_rod_encounters"][encData]["species"]
-        if (enc == species):
-            absent = False
-        enc = encounterData["super_rod_encounters"][encData]["species"]
-        if (enc == species):
-            absent = False
-        encData += 1
-    return absent
-
-def SearchRadar(species, encounterData, absent):
-    encData = 0
-    while ((encData < 4) and absent):
-        enc = encounterData["radar"][encData]
-        if (enc == species):
-            absent = False
-        encData += 1
-    return absent
-
-def SearchSpecial(species, encounterData, absent):
-    encData = 0
-    if (species == "SPECIES_NONE"):
-        return False
-    while ((encData < len(encounterData["special_encounters"])) and absent):
-        enc = encounterData["special_encounters"][encData]
-        if (enc == species):
-            absent = False
-        encData += 1
-    return absent
-
-def SearchSpecialNatDex(species, encounterData, absent):
-    encData = 0
-    while ((encData < len(encounterData["specialnatdex_encounters"])) and absent):
-        enc = encounterData["specialnatdex_encounters"][encData]
-        if (enc == species):
-            absent = False
-        encData += 1
-    if absent:
-        absent = SearchRadar(species, encounterData, absent)
-    return absent
-
-def CategorySearch(species, encounterData, category):
-    absent = True
-
-    if (category < 3):
-        absent = SearchLand(species, encounterData, absent, category)
-        if absent:
-            absent = SearchWater(species, encounterData, absent)
-    if (category == 3):
-        absent = SearchSpecial(species, encounterData, absent)
-    if (category == 4):
-        absent = SearchSpecialNatDex(species, encounterData, absent)
-
-    return absent
-
-for dexNum, species in enumerate(PokemonSpecies):
-    if species.name in ['SPECIES_BAD_EGG']:
-        continue
-    species = species.name
-
-    for category in range(10):
-        fileNum = NUM_POKEMON * category + dexNum + 4
-        encList = []
-
-        for archiveID in range(183):
-            with open(source_dir / '../../../../field/encounters' / f"{archiveID:03}.json", encoding='utf-8') as encounter_file:
+for archiveID in range(NUM_MAPS):
+            with open(source_dir / f"{archiveID:03}.json", encoding='utf-8') as encounter_file:
                 encounterData = json.load(encounter_file)
 
-            areaData = encounterData["map_category"]
-            areaType = areaData["map_type"]
-            areaNum = areaData["map_number"]
+            mapData = encounterData["map_category"]
+            mapType = mapData["map_type"]
+            mapNum = mapData["map_number"]
 
-            if (category < 5):
-                if (areaType == 'field'):
-                    continue
-            else:
-                if (areaType == 'dungeon'):
-                    continue
-            if (areaNum in encList):
-                continue
+            if (mapType == 'dungeon'):
+                for i, slot in enumerate(encounterData["land_encounters"]):
+                    species = slot["species"]
+                    dungeonMorning[PokemonSpecies[species].value].add(mapNum)
 
-            absent = CategorySearch(species, encounterData, category%5)
+                    if ((i == 2) or (i == 3)):
+                        species = encounterData["morning"][i - 2]
+                        dungeonDay[PokemonSpecies[species].value].add(mapNum)
 
-            if not absent:
-                encList.append(areaNum)
+                        species = encounterData["night"][i - 2]
+                        dungeonNight[PokemonSpecies[species].value].add(mapNum)
+                    else:
+                        dungeonDay[PokemonSpecies[species].value].add(mapNum)
+                        dungeonNight[PokemonSpecies[species].value].add(mapNum)
 
-        if (((category == 3) or (category == 4)) and (species in honeyTrees)):
-            encList.append(21)
-        if (((category == 8) or (category == 9)) and (species in honeyTrees)):
-            encList.append(50)
-        encList.sort()
-        encList.append(0)
+                for slot in encounterData["surf_encounters"]:
+                    species = slot["species"]
+                    dungeonMorning[PokemonSpecies[species].value].add(mapNum)
+                    dungeonDay[PokemonSpecies[species].value].add(mapNum)
+                    dungeonNight[PokemonSpecies[species].value].add(mapNum)
 
+                for slot in encounterData["old_rod_encounters"]:
+                    species = slot["species"]
+                    dungeonMorning[PokemonSpecies[species].value].add(mapNum)
+                    dungeonDay[PokemonSpecies[species].value].add(mapNum)
+                    dungeonNight[PokemonSpecies[species].value].add(mapNum)
+
+                for slot in encounterData["good_rod_encounters"]:
+                    species = slot["species"]
+                    dungeonMorning[PokemonSpecies[species].value].add(mapNum)
+                    dungeonDay[PokemonSpecies[species].value].add(mapNum)
+                    dungeonNight[PokemonSpecies[species].value].add(mapNum)
+
+                for slot in encounterData["super_rod_encounters"]:
+                    species = slot["species"]
+                    dungeonMorning[PokemonSpecies[species].value].add(mapNum)
+                    dungeonDay[PokemonSpecies[species].value].add(mapNum)
+                    dungeonNight[PokemonSpecies[species].value].add(mapNum)
+
+                for species in encounterData["special_encounters"]:
+                    dungeonSpecial[PokemonSpecies[species].value].add(mapNum)
+                dungeonSpecial[0].add(mapNum)
+
+                for species in encounterData["radar"]:
+                    dungeonSpecialNatDex[PokemonSpecies[species].value].add(mapNum)
+                for species in encounterData["specialnatdex_encounters"]:
+                    dungeonSpecialNatDex[PokemonSpecies[species].value].add(mapNum)
+
+            if (mapType == 'field'):
+                for i, slot in enumerate(encounterData["land_encounters"]):
+                    species = slot["species"]
+                    fieldMorning[PokemonSpecies[species].value].add(mapNum)
+
+                    if ((i == 2) or (i == 3)):
+                        species = encounterData["morning"][i - 2]
+                        fieldDay[PokemonSpecies[species].value].add(mapNum)
+
+                        species = encounterData["night"][i - 2]
+                        fieldNight[PokemonSpecies[species].value].add(mapNum)
+                    else:
+                        fieldDay[PokemonSpecies[species].value].add(mapNum)
+                        fieldNight[PokemonSpecies[species].value].add(mapNum)
+
+                for slot in encounterData["surf_encounters"]:
+                    species = slot["species"]
+                    fieldMorning[PokemonSpecies[species].value].add(mapNum)
+                    fieldDay[PokemonSpecies[species].value].add(mapNum)
+                    fieldNight[PokemonSpecies[species].value].add(mapNum)
+
+                for slot in encounterData["old_rod_encounters"]:
+                    species = slot["species"]
+                    fieldMorning[PokemonSpecies[species].value].add(mapNum)
+                    fieldDay[PokemonSpecies[species].value].add(mapNum)
+                    fieldNight[PokemonSpecies[species].value].add(mapNum)
+
+                for slot in encounterData["good_rod_encounters"]:
+                    species = slot["species"]
+                    fieldMorning[PokemonSpecies[species].value].add(mapNum)
+                    fieldDay[PokemonSpecies[species].value].add(mapNum)
+                    fieldNight[PokemonSpecies[species].value].add(mapNum)
+
+                for slot in encounterData["super_rod_encounters"]:
+                    species = slot["species"]
+                    fieldMorning[PokemonSpecies[species].value].add(mapNum)
+                    fieldDay[PokemonSpecies[species].value].add(mapNum)
+                    fieldNight[PokemonSpecies[species].value].add(mapNum)
+
+                for species in encounterData["special_encounters"]:
+                    fieldSpecial[PokemonSpecies[species].value].add(mapNum)
+                fieldSpecial[0].add(mapNum)
+
+                for species in encounterData["radar"]:
+                    fieldSpecialNatDex[PokemonSpecies[species].value].add(mapNum)
+                for species in encounterData["specialnatdex_encounters"]:
+                    fieldSpecialNatDex[PokemonSpecies[species].value].add(mapNum)
+
+for species in honeyTrees:
+    dungeonSpecial[PokemonSpecies[species].value].add(21)
+    dungeonSpecialNatDex[PokemonSpecies[species].value].add(21)
+    fieldSpecial[PokemonSpecies[species].value].add(50)
+    fieldSpecialNatDex[PokemonSpecies[species].value].add(50)
+
+for species in range(NUM_POKEMON):
+    speciesSets = [dungeonMorning[species],
+                   dungeonDay[species],
+                   dungeonNight[species],
+                   dungeonSpecial[species],
+                   dungeonSpecialNatDex[species],
+                   fieldMorning[species],
+                   fieldDay[species],
+                   fieldNight[species],
+                   fieldSpecial[species],
+                   fieldSpecialNatDex[species]]
+
+    for i, mapSet in enumerate(speciesSets):
         binData = bytes()
-        for areaNum in encList:
-            binData = binData + areaNum.to_bytes(4, 'little')
+        mapList = list(mapSet)
+        mapList.sort()
+        mapList.append(0)
+        for map in mapList:
+            binData = binData + map.to_bytes(4, 'little')
 
-        target_fname = str(private_dir / output_name) + f'_{fileNum:05}.bin'
+        fileNum = 4 + species + NUM_POKEMON * i
+        target_fname = str(private_dir / output_name) + f'_{fileNum:0{numDigits}}.bin'
         with open(target_fname, 'wb+') as target_file:
             target_file.write(binData)
-
 
 subprocess.run([args.knarc, '-d', private_dir, '-p', str(output_dir / output_name) + '.narc'])

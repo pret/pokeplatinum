@@ -12,14 +12,14 @@ typedef struct {
     const PokedexData *dexData;
     pokedexCompletionStruct pokedexCompletion;
     int isNationalDex;
-    BOOL nationalDexUnlocked;
+    BOOL isNationalDexUnlocked;
     int numEncountered;
     int numCaught;
     int unk_1740;
     int timeOfDay;
     HeightWeightData *HWData;
-    u32 TrainerGameCode;
-    u32 TrainerGender;
+    u32 trainerGameCode;
+    u32 trainerGender;
     Strbuf *trainerName;
     int unk_1758;
     u16 unk_175C;

@@ -6585,7 +6585,7 @@ static BOOL ScrCmd_22B(ScriptContext *ctx)
 
 static BOOL ScrCmd_22C(ScriptContext *ctx)
 {
-    Pokedex_CanDetectForms_True(SaveData_Pokedex(ctx->fieldSystem->saveData));
+    Pokedex_TurnOnFormDetection(SaveData_Pokedex(ctx->fieldSystem->saveData));
     return 0;
 }
 

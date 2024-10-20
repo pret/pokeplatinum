@@ -36,13 +36,11 @@
 #include "overlay021/ov21_021E8484.h"
 #include "overlay021/pokedex_sort.h"
 #include "overlay021/struct_ov21_021D0D80.h"
-#include "overlay021/struct_ov21_021D0D80_1.h"
 #include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D157C.h"
 #include "overlay021/struct_ov21_021D22F8.h"
 #include "overlay021/struct_ov21_021D3208.h"
 #include "overlay021/struct_ov21_021D3320.h"
-#include "overlay021/struct_ov21_021D37DC.h"
 #include "overlay021/struct_ov21_021D3FE0_decl.h"
 #include "overlay021/struct_ov21_021D423C_decl.h"
 #include "overlay021/struct_ov21_021D4660.h"
@@ -50,6 +48,7 @@
 #include "overlay021/struct_ov21_021D4CA0.h"
 #include "overlay021/struct_ov21_021D4CB8.h"
 #include "overlay021/struct_ov21_021E68F4.h"
+#include "overlay021/struct_speciesCaughtStatus.h"
 #include "overlay022/struct_ov22_022559F8.h"
 
 #include "cell_actor.h"
@@ -121,7 +120,7 @@ int ov21_021D0D80(OverlayManager *param0, int *param1)
 {
     UnkStruct_ov21_021D0F18 *v0;
     UnkStruct_ov21_021D0D80 *v1;
-    UnkStruct_ov21_021D0D80_1 v2;
+    UnkStruct_ov21_021D0D80 v2;
     BOOL v3;
 
     sub_02004550(54, 0, 0);
@@ -298,7 +297,7 @@ const static UnkFuncPtr_ov21_021E9B9C Unk_ov21_021E9B54[8] = {
     ov21_021E84E4
 };
 
-UnkStruct_ov21_021D0F60 *ov21_021D0F60(int param0, const UnkStruct_ov21_021D0D80_1 *param1)
+UnkStruct_ov21_021D0F60 *ov21_021D0F60(int param0, const UnkStruct_ov21_021D0D80 *param1)
 {
     UnkStruct_ov21_021D0F60 *v0;
     int v1;
@@ -724,10 +723,10 @@ void ov21_021D1778(UnkStruct_ov21_021D13FC *param0, const pokedexStruct *param1,
     Window *v3;
     SpriteResource *v4;
     VecFx32 v5;
-    const speciesCaughtStatusStruct *speciesCaughtStatus;
+    const speciesCaughtStatus *pokeCaughtStatus;
     u32 v7 = ov21_021D36D8(param1);
 
-    speciesCaughtStatus = Pokedex_Sort_SpeciesCaughtStatus(param1, dexIndex);
+    pokeCaughtStatus = Pokedex_Sort_SpeciesCaughtStatus(param1, dexIndex);
     v0 = ov21_021D22A8(param0);
     v1 = ov21_021D22C4(param0);
 
@@ -737,7 +736,7 @@ void ov21_021D1778(UnkStruct_ov21_021D13FC *param0, const pokedexStruct *param1,
     CellActor_SetPosition(v0, &v5);
     CellActor_SetDrawFlag(v0, 1);
 
-    if (speciesCaughtStatus->caughtStatus == 2) {
+    if (pokeCaughtStatus->caughtStatus == CS_CAUGHT) {
         v5.x = param4 + (-54 * FX32_ONE);
         v5.y = param5;
 
@@ -759,10 +758,10 @@ void ov21_021D1778(UnkStruct_ov21_021D13FC *param0, const pokedexStruct *param1,
     v2.unk_20 = NNS_G2D_VRAM_TYPE_2DMAIN;
     v2.unk_24 = param2;
 
-    v3 = ov21_021D16D8(param0, param1, param2, speciesCaughtStatus->species);
+    v3 = ov21_021D16D8(param0, param1, param2, pokeCaughtStatus->species);
     v2.unk_04 = v3;
 
-    ov21_021D22E0(param0, &v2, 0, speciesCaughtStatus->species, v7);
+    ov21_021D22E0(param0, &v2, 0, pokeCaughtStatus->species, v7);
     ov21_021D4DA0(v3);
 }
 

@@ -25,8 +25,6 @@ argparser.add_argument('-p', '--private-dir',
 argparser.add_argument('-o', '--output-dir',
                        required=True,
                        help='Path to the output directory (where the NARC will be made)')
-argparser.add_argument('pokedex',
-                       help='List of pokemon in the Sinnoh Pokedex')
 argparser.add_argument('giratina_form',
                        help='String of either giratina_origin or giratina_altered')
 args = argparser.parse_args()
@@ -75,7 +73,7 @@ for i, species in enumerate(PokemonSpecies):
     if subdir in ['egg', 'bad_egg']:
         continue
     
-    with open(source_dir / '../../../../pokemon' / subdir / 'data.json', 'r', encoding='utf-8') as data_file:
+    with open(source_dir / subdir / 'data.json', 'r', encoding='utf-8') as data_file:
         pkdata = json.load(data_file)
     pkdexdata = pkdata['pokedex_data']
     if subdir == 'giratina':
@@ -114,7 +112,7 @@ for i, species in enumerate(PokemonSpecies):
         nameData[i-1] = subdir.replace('porygon2','porygon_z2')
 
 # sinnoh dex order
-with open(args.pokedex) as data_file:
+with open(source_dir / 'sinnoh_pokedex.json') as data_file:
     dexData = json.load(data_file)
     for mon in dexData:
         if mon not in ['SPECIES_EGG', 'SPECIES_BAD_EGG', 'SPECIES_NONE', 'SPECIES_ARCEUS']:
@@ -158,8 +156,10 @@ if args.giratina_form == 'giratina_origin':
 if args.giratina_form == 'giratina_altered':
     output_name = 'zukan_data_gira'
 
+numDigits = len(str(NUM_FILES))
+
 for i in range(NUM_FILES):
-    target_fname = str(private_dir / output_name) + f'_{i:02}.bin'
+    target_fname = str(private_dir / output_name) + f'_{i:0{numDigits}}.bin'
     with open(target_fname, 'wb+') as target_file:
         target_file.write(binData[i])
 

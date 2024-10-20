@@ -7,8 +7,8 @@
 
 #include "overlay021/struct_ov21_021D3208.h"
 #include "overlay021/struct_ov21_021D3320.h"
-#include "overlay021/struct_ov21_021D37DC.h"
 #include "overlay021/struct_ov21_021D3A60.h"
+#include "overlay021/struct_speciesCaughtStatus.h"
 
 #include "core_sys.h"
 #include "heap.h"
@@ -48,13 +48,13 @@ void Pokedex_Sort_PopulatePokedexStruct(pokedexStruct *pokedexS, UnkStruct_ov21_
     pokedexS->timeOfDay = param1->timeOfDay;
 
     if (Pokedex_NationalUnlocked(pokedexS->dexData)) {
-        pokedexS->nationalDexUnlocked = 1;
+        pokedexS->isNationalDexUnlocked = 1;
     } else {
-        pokedexS->nationalDexUnlocked = 0;
+        pokedexS->isNationalDexUnlocked = 0;
     }
 
     if (param1->unk_20 == 2) {
-        if (pokedexS->nationalDexUnlocked) {
+        if (pokedexS->isNationalDexUnlocked) {
             isNationalDex = 1;
         } else {
             isNationalDex = 0;
@@ -87,12 +87,12 @@ void Pokedex_Sort_PopulatePokedexStruct(pokedexStruct *pokedexS, UnkStruct_ov21_
     ov21_021D3434(pokedexS, param1->unk_1C);
     ov21_021D344C(pokedexS, param1->unk_20);
 
-    pokedexS->TrainerGameCode = TrainerInfo_GameCode(param1->unk_04);
-    pokedexS->TrainerGender = TrainerInfo_Gender(param1->unk_04);
+    pokedexS->trainerGameCode = TrainerInfo_GameCode(param1->unk_04);
+    pokedexS->trainerGender = TrainerInfo_Gender(param1->unk_04);
     pokedexS->trainerName = TrainerInfo_NameNewStrbuf(param1->unk_04, heapID);
     pokedexS->HWData = Pokedex_HeightWeightData(heapID);
 
-    if (pokedexS->TrainerGender == 0) {
+    if (pokedexS->trainerGender == 0) {
         Pokedex_HeightWeightData_Load(pokedexS->HWData, 0, heapID);
     } else {
         Pokedex_HeightWeightData_Load(pokedexS->HWData, 1, heapID);
@@ -359,7 +359,7 @@ BOOL ov21_021D36A4(const pokedexStruct *pokedexS, int param1)
         return 1;
     }
 
-    if (pokedexS->nationalDexUnlocked) {
+    if (pokedexS->isNationalDexUnlocked) {
         return 1;
     }
 
@@ -468,7 +468,7 @@ int Pokedex_Sort_CurrentCaughtStatus(const pokedexStruct *pokedexS)
     return pokedexS->pokedexCompletion.caughtStatusArray[pokedexS->pokedexCompletion.unk_F68].caughtStatus;
 }
 
-const speciesCaughtStatusStruct *Pokedex_Sort_SpeciesCaughtStatus(const pokedexStruct *pokedexS, int dexIndex)
+const speciesCaughtStatus *Pokedex_Sort_SpeciesCaughtStatus(const pokedexStruct *pokedexS, int dexIndex)
 {
     if (Pokedex_Sort_IsValidDexIndex(pokedexS, dexIndex)) {
         return &pokedexS->pokedexCompletion.caughtStatusArray[dexIndex];
@@ -563,7 +563,7 @@ Strbuf *Pokedex_Sort_TrainerName(const pokedexStruct *pokedexS)
 
 u32 Pokedex_Sort_TrainerGender(const pokedexStruct *pokedexS)
 {
-    return pokedexS->TrainerGender;
+    return pokedexS->trainerGender;
 }
 
 BOOL ov21_021D392C(const pokedexStruct *pokedexS, int param1)
@@ -651,9 +651,9 @@ static void Pokedex_Sort_CaughtStatus(pokedexCompletionStruct *pokedexCompletion
 
     for (index = 0; index < numEncountered; index++) {
         if (Pokedex_CaughtSpecies(dexData, speciesArray[index])) {
-            pokedexCompletion->caughtStatusArray[pokedexCompletion->numEncountered].caughtStatus = 2;
+            pokedexCompletion->caughtStatusArray[pokedexCompletion->numEncountered].caughtStatus = CS_CAUGHT;
         } else {
-            pokedexCompletion->caughtStatusArray[pokedexCompletion->numEncountered].caughtStatus = 1;
+            pokedexCompletion->caughtStatusArray[pokedexCompletion->numEncountered].caughtStatus = CS_ENCOUNTERED;
         }
 
         pokedexCompletion->caughtStatusArray[pokedexCompletion->numEncountered].species = speciesArray[index];
@@ -947,7 +947,7 @@ static void Pokedex_Sort_NumSeenNCaught(pokedexCompletionStruct *pokedexCompleti
     *numCaught = 0;
 
     for (index = 0; index < pokedexCompletion->numEncountered; index++) {
-        if (pokedexCompletion->caughtStatusArray[index].caughtStatus == 2) {
+        if (pokedexCompletion->caughtStatusArray[index].caughtStatus == CS_CAUGHT) {
             (*numCaught)++;
         }
 
