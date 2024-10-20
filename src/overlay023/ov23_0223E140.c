@@ -1161,7 +1161,7 @@ static void ov23_0223EC34(BGL *param0)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v2 = {
+        BgTemplate v2 = {
             0,
             0,
             0x1000,
@@ -1183,7 +1183,7 @@ static void ov23_0223EC34(BGL *param0)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v3 = {
+        BgTemplate v3 = {
             0,
             0,
             0x1000,
@@ -1204,7 +1204,7 @@ static void ov23_0223EC34(BGL *param0)
         sub_02019EBC(param0, 1);
     }
     {
-        UnkStruct_ov97_0222DB78 v4 = {
+        BgTemplate v4 = {
             0,
             0,
             0x1000,
@@ -1225,7 +1225,7 @@ static void ov23_0223EC34(BGL *param0)
         sub_02019EBC(param0, 2);
     }
     {
-        UnkStruct_ov97_0222DB78 v5 = {
+        BgTemplate v5 = {
             0,
             0,
             0x800,

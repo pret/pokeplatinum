@@ -170,7 +170,7 @@ static void ov95_0224A10C(UnkStruct_ov95_02249FF8 *param0)
         GX_BGMODE_0,
         GX_BG0_AS_3D
     };
-    static const UnkStruct_ov97_0222DB78 v2 = {
+    static const BgTemplate v2 = {
         0,
         0,
         0x1000,
@@ -185,7 +185,7 @@ static void ov95_0224A10C(UnkStruct_ov95_02249FF8 *param0)
         0,
         0
     };
-    static const UnkStruct_ov97_0222DB78 v3 = {
+    static const BgTemplate v3 = {
         0,
         0,
         0x1000,
@@ -200,7 +200,7 @@ static void ov95_0224A10C(UnkStruct_ov95_02249FF8 *param0)
         0,
         0
     };
-    static const UnkStruct_ov97_0222DB78 v4 = {
+    static const BgTemplate v4 = {
         0,
         0,
         0x0,

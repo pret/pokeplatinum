@@ -230,7 +230,7 @@ static void sub_0208945C(BGL *param0)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v1[] = {
+        BgTemplate v1[] = {
             {
                 0,
                 0,
@@ -291,7 +291,7 @@ static void sub_0208945C(BGL *param0)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v2[] = {
+        BgTemplate v2[] = {
             {
                 0,
                 0,

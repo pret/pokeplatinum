@@ -345,7 +345,7 @@ static void ov85_02241634(BGL *param0)
     ov85_02241F5C();
 
     {
-        UnkStruct_ov97_0222DB78 v1 = {
+        BgTemplate v1 = {
             0,
             0,
             0x800,
@@ -366,7 +366,7 @@ static void ov85_02241634(BGL *param0)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v2 = {
+        BgTemplate v2 = {
             0,
             0,
             0x800,
@@ -387,7 +387,7 @@ static void ov85_02241634(BGL *param0)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v3 = {
+        BgTemplate v3 = {
             0,
             0,
             0x800,

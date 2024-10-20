@@ -869,7 +869,7 @@ static void ov116_02261494(BGL *param0)
         MI_CpuClear32((void *)HW_DB_OBJ_VRAM, HW_DB_OBJ_VRAM_SIZE);
     }
     {
-        UnkStruct_ov97_0222DB78 v2[] = {
+        BgTemplate v2[] = {
             {
                 0x0,
                 0x0,
@@ -944,7 +944,7 @@ static void ov116_02261494(BGL *param0)
         sub_02019EBC(param0, 3);
     }
     {
-        UnkStruct_ov97_0222DB78 v3[] = {
+        BgTemplate v3[] = {
             {
                 0,
                 0,

@@ -382,7 +382,7 @@ static void ov6_0223E1D0(BGL *param0)
         GX_PLANEMASK_BG0, 1);
 
     {
-        UnkStruct_ov97_0222DB78 v1 = {
+        BgTemplate v1 = {
             0,
             0,
             0x800,

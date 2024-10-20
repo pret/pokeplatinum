@@ -192,13 +192,13 @@ static void LibraryTV_SetVramBank(LibraryTV *ltv)
     sub_02018368(&bgData);
     int frame, charSetID, screenID;
 
-    UnkStruct_ov97_0222DB78 bgHeader0 = { 0, 0, 0x800, 0, 1, GX_BG_COLORMODE_16, GX_BG_SCRBASE_0x0000, GX_BG_CHARBASE_0x18000, GX_BG_EXTPLTT_01, 1, 0, 0, FALSE };
+    BgTemplate bgHeader0 = { 0, 0, 0x800, 0, 1, GX_BG_COLORMODE_16, GX_BG_SCRBASE_0x0000, GX_BG_CHARBASE_0x18000, GX_BG_EXTPLTT_01, 1, 0, 0, FALSE };
     frame = 2;
     sub_020183C4(ltv->bgl, frame, &bgHeader0, 0);
     sub_02019690(frame, 32, 0, ltv->heapID);
     sub_02019EBC(ltv->bgl, frame);
 
-    UnkStruct_ov97_0222DB78 bgHeader1 = { 0, 0, 0x800, 0, 1, GX_BG_COLORMODE_16, GX_BG_SCRBASE_0x0800, GX_BG_CHARBASE_0x14000, GX_BG_EXTPLTT_01, 1, 0, 0, FALSE };
+    BgTemplate bgHeader1 = { 0, 0, 0x800, 0, 1, GX_BG_COLORMODE_16, GX_BG_SCRBASE_0x0800, GX_BG_CHARBASE_0x14000, GX_BG_EXTPLTT_01, 1, 0, 0, FALSE };
     frame = 0;
     charSetID = 1;
     screenID = 4;
@@ -206,7 +206,7 @@ static void LibraryTV_SetVramBank(LibraryTV *ltv)
     sub_02006E3C(NARC_INDEX_DEMO__INTRO__INTRO_TV, charSetID, ltv->bgl, frame, 0, 0, 0, ltv->heapID);
     sub_02006E60(NARC_INDEX_DEMO__INTRO__INTRO_TV, screenID, ltv->bgl, frame, 0, 0, 0, ltv->heapID);
 
-    UnkStruct_ov97_0222DB78 bgHeader2 = { 0, 0, 0x800, 0, 1, GX_BG_COLORMODE_16, GX_BG_SCRBASE_0x1000, GX_BG_CHARBASE_0x10000, GX_BG_EXTPLTT_01, 1, 0, 0, FALSE };
+    BgTemplate bgHeader2 = { 0, 0, 0x800, 0, 1, GX_BG_COLORMODE_16, GX_BG_SCRBASE_0x1000, GX_BG_CHARBASE_0x10000, GX_BG_EXTPLTT_01, 1, 0, 0, FALSE };
     frame = 1;
     charSetID = 2;
     screenID = 5;
@@ -214,7 +214,7 @@ static void LibraryTV_SetVramBank(LibraryTV *ltv)
     sub_02006E3C(NARC_INDEX_DEMO__INTRO__INTRO_TV, charSetID, ltv->bgl, frame, 0, 0, 0, ltv->heapID);
     sub_02006E60(NARC_INDEX_DEMO__INTRO__INTRO_TV, screenID, ltv->bgl, frame, 0, 0, 0, ltv->heapID);
 
-    UnkStruct_ov97_0222DB78 bgHeader3 = { 0, 0, 0x800, 0, 1, GX_BG_COLORMODE_256, GX_BG_SCRBASE_0x1800, GX_BG_CHARBASE_0x20000, GX_BG_EXTPLTT_01, 1, 0, 0, FALSE };
+    BgTemplate bgHeader3 = { 0, 0, 0x800, 0, 1, GX_BG_COLORMODE_256, GX_BG_SCRBASE_0x1800, GX_BG_CHARBASE_0x20000, GX_BG_EXTPLTT_01, 1, 0, 0, FALSE };
     frame = 3;
     charSetID = 2;
     screenID = 4;

@@ -41,7 +41,7 @@ static const UnkStruct_ov84_0223BA5C Unk_020F8B28 = {
     GX_BG0_AS_2D
 };
 
-static const UnkStruct_ov97_0222DB78 Unk_020F8B38 = {
+static const BgTemplate Unk_020F8B38 = {
     0x0,
     0x0,
     0x800,

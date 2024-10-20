@@ -195,7 +195,7 @@ static void ov73_021D342C (UnkStruct_ov73_021D342C * param0)
     {
         int v2, v3, v4;
         {
-            UnkStruct_ov97_0222DB78 v5 = {
+            BgTemplate v5 = {
                 0,
                 0,
                 0x800,
@@ -218,7 +218,7 @@ static void ov73_021D342C (UnkStruct_ov73_021D342C * param0)
             sub_02019EBC(param0->unk_04, v2);
         }
         {
-            UnkStruct_ov97_0222DB78 v6 = {
+            BgTemplate v6 = {
                 0,
                 0,
                 0x800,
@@ -243,7 +243,7 @@ static void ov73_021D342C (UnkStruct_ov73_021D342C * param0)
             sub_02006E60(136, v4, param0->unk_04, v2, 0, 0, 0, param0->unk_00);
         }
         {
-            UnkStruct_ov97_0222DB78 v7 = {
+            BgTemplate v7 = {
                 0,
                 0,
                 0x800,
@@ -268,7 +268,7 @@ static void ov73_021D342C (UnkStruct_ov73_021D342C * param0)
             sub_02006E60(136, v4, param0->unk_04, v2, 0, 0, 0, param0->unk_00);
         }
         {
-            UnkStruct_ov97_0222DB78 v8 = {
+            BgTemplate v8 = {
                 0,
                 0,
                 0x800,

@@ -273,7 +273,7 @@ static void ov45_02256954(UnkStruct_ov25_02255224 *param0)
 
 static void ov45_02256968(SysTask *param0, void *param1)
 {
-    static const UnkStruct_ov97_0222DB78 v0 = {
+    static const BgTemplate v0 = {
         0,
         0,
         0x800,

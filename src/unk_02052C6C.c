@@ -235,7 +235,7 @@ static void sub_02052F28(FieldSystem *fieldSystem, UnkStruct_0205300C *param1)
         GX_BGMODE_0,
         GX_BG0_AS_2D
     };
-    static const UnkStruct_ov97_0222DB78 v2 = {
+    static const BgTemplate v2 = {
         0,
         0,
         0x800,

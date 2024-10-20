@@ -656,7 +656,7 @@ static void EncounterEffect_UnusedTask(SysTask *dummy1, void *dummy2)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v1 = {
+        BgTemplate v1 = {
             0,
             0,
             0x800,
@@ -674,7 +674,7 @@ static void EncounterEffect_UnusedTask(SysTask *dummy1, void *dummy2)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v2 = {
+        BgTemplate v2 = {
             0,
             0,
             0x800,
@@ -692,7 +692,7 @@ static void EncounterEffect_UnusedTask(SysTask *dummy1, void *dummy2)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v3 = {
+        BgTemplate v3 = {
             0,
             0,
             0x800,
@@ -1601,7 +1601,7 @@ static void ov5_021DF30C(FieldSystem *fieldSystem)
         }
 
         {
-            UnkStruct_ov97_0222DB78 v3 = {
+            BgTemplate v3 = {
                 0,
                 0,
                 0x800,

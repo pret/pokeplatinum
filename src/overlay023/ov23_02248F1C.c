@@ -350,7 +350,7 @@ static void ov23_0224944C(BGL *param0, Window *param1)
     ov23_02249438(param0);
 
     {
-        UnkStruct_ov97_0222DB78 v0 = {
+        BgTemplate v0 = {
             0,
             0,
             0x800,
@@ -370,7 +370,7 @@ static void ov23_0224944C(BGL *param0, Window *param1)
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
     }
     {
-        UnkStruct_ov97_0222DB78 v1 = {
+        BgTemplate v1 = {
             0,
             0,
             0x800,
@@ -390,7 +390,7 @@ static void ov23_0224944C(BGL *param0, Window *param1)
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
     }
     {
-        UnkStruct_ov97_0222DB78 v2 = {
+        BgTemplate v2 = {
             0,
             0,
             0x800,

@@ -490,9 +490,8 @@ static void ov98_02247510 (BGL * param0)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v2[] = {
-            {
-                0,
+        BgTemplate v2[] = {
+            { 0,
                 0,
                 0x800,
                 0,
@@ -504,10 +503,8 @@ static void ov98_02247510 (BGL * param0)
                 2,
                 0,
                 0,
-                0
-            },
-            {
-                0,
+                0 },
+            { 0,
                 0,
                 0x800,
                 0,
@@ -519,10 +516,8 @@ static void ov98_02247510 (BGL * param0)
                 3,
                 0,
                 0,
-                0
-            },
-            {
-                0,
+                0 },
+            { 0,
                 0,
                 0x800,
                 0,
@@ -534,10 +529,8 @@ static void ov98_02247510 (BGL * param0)
                 1,
                 0,
                 0,
-                0
-            },
-            {
-                0,
+                0 },
+            { 0,
                 0,
                 0x800,
                 0,
@@ -549,8 +542,7 @@ static void ov98_02247510 (BGL * param0)
                 0,
                 0,
                 0,
-                0
-            },
+                0 },
         };
 
         sub_020183C4(param0, 0, &v2[0], 0);
@@ -575,9 +567,8 @@ static void ov98_02247510 (BGL * param0)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v3[] = {
-            {
-                0,
+        BgTemplate v3[] = {
+            { 0,
                 0,
                 0x800,
                 0,
@@ -589,10 +580,8 @@ static void ov98_02247510 (BGL * param0)
                 0,
                 0,
                 0,
-                0
-            },
-            {
-                0,
+                0 },
+            { 0,
                 0,
                 0x800,
                 0,
@@ -604,8 +593,7 @@ static void ov98_02247510 (BGL * param0)
                 2,
                 0,
                 0,
-                0
-            },
+                0 },
         };
 
         sub_020183C4(param0, 4, &v3[0], 0);

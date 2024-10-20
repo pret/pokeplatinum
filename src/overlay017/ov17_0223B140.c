@@ -451,7 +451,7 @@ static void ov17_0223B728(BGL *param0)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v2[] = {
+        BgTemplate v2[] = {
             {
                 0,
                 0,

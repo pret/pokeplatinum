@@ -303,7 +303,7 @@ static void ov77_021D2610(UnkStruct_ov77_021D2E9C *param0)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v1 = {
+        BgTemplate v1 = {
             0,
             0,
             0x800,
@@ -323,7 +323,7 @@ static void ov77_021D2610(UnkStruct_ov77_021D2E9C *param0)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v2 = {
+        BgTemplate v2 = {
             0,
             0,
             0x800,
@@ -343,7 +343,7 @@ static void ov77_021D2610(UnkStruct_ov77_021D2E9C *param0)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v3 = {
+        BgTemplate v3 = {
             0,
             0,
             0x800,
@@ -363,7 +363,7 @@ static void ov77_021D2610(UnkStruct_ov77_021D2E9C *param0)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v4 = {
+        BgTemplate v4 = {
             0,
             0,
             0x800,
@@ -383,7 +383,7 @@ static void ov77_021D2610(UnkStruct_ov77_021D2E9C *param0)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v5 = {
+        BgTemplate v5 = {
             0,
             0,
             0x800,
@@ -403,7 +403,7 @@ static void ov77_021D2610(UnkStruct_ov77_021D2E9C *param0)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v6 = {
+        BgTemplate v6 = {
             0,
             0,
             0x800,
@@ -442,7 +442,7 @@ static void ov77_021D2724(UnkStruct_ov77_021D2E9C *param0)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v1 = {
+        BgTemplate v1 = {
             0,
             0,
             0,
@@ -462,7 +462,7 @@ static void ov77_021D2724(UnkStruct_ov77_021D2E9C *param0)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v2 = {
+        BgTemplate v2 = {
             0,
             0,
             0,
@@ -482,7 +482,7 @@ static void ov77_021D2724(UnkStruct_ov77_021D2E9C *param0)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v3 = {
+        BgTemplate v3 = {
             0,
             0,
             0,
@@ -502,7 +502,7 @@ static void ov77_021D2724(UnkStruct_ov77_021D2E9C *param0)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v4 = {
+        BgTemplate v4 = {
             0,
             0,
             0x1000,
@@ -522,7 +522,7 @@ static void ov77_021D2724(UnkStruct_ov77_021D2E9C *param0)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v5[] = {
+        BgTemplate v5[] = {
             {
                 0,
                 0,
@@ -584,7 +584,7 @@ static void ov77_021D2828(UnkStruct_ov77_021D2E9C *param0)
     ov77_021D361C(param0, 0);
 
     {
-        UnkStruct_ov97_0222DB78 v0 = {
+        BgTemplate v0 = {
             0,
             0,
             0,
@@ -604,7 +604,7 @@ static void ov77_021D2828(UnkStruct_ov77_021D2E9C *param0)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v1 = {
+        BgTemplate v1 = {
             0,
             0,
             0,
@@ -624,7 +624,7 @@ static void ov77_021D2828(UnkStruct_ov77_021D2E9C *param0)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v2 = {
+        BgTemplate v2 = {
             0,
             0,
             0,
@@ -644,7 +644,7 @@ static void ov77_021D2828(UnkStruct_ov77_021D2E9C *param0)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v3[] = {
+        BgTemplate v3[] = {
             {
                 0,
                 0,
@@ -721,7 +721,7 @@ static void ov77_021D2900(UnkStruct_ov77_021D2E9C *param0)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v1 = {
+        BgTemplate v1 = {
             0,
             0,
             0,
@@ -741,7 +741,7 @@ static void ov77_021D2900(UnkStruct_ov77_021D2E9C *param0)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v2 = {
+        BgTemplate v2 = {
             0,
             0,
             0,
@@ -795,7 +795,7 @@ static void ov77_021D2A00(UnkStruct_ov77_021D2E9C *param0)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v1 = {
+        BgTemplate v1 = {
             0,
             0,
             0x1000,

@@ -108,7 +108,7 @@ static const u32 Unk_ov67_0225D3F4[3] = {
     0x4
 };
 
-static const UnkStruct_ov97_0222DB78 Unk_ov67_0225D438[3] = {
+static const BgTemplate Unk_ov67_0225D438[3] = {
     {
         0x0,
         0x0,

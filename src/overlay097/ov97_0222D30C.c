@@ -716,7 +716,7 @@ static int ov97_0222DB40(OverlayManager *param0)
 
 static void ov97_0222DB78(BGL *param0, int param1, u32 param2, u32 param3)
 {
-    UnkStruct_ov97_0222DB78 v0 = {
+    BgTemplate v0 = {
         0,
         0,
         0x800,
@@ -732,8 +732,8 @@ static void ov97_0222DB78(BGL *param0, int param1, u32 param2, u32 param3)
         0
     };
 
-    v0.unk_12 = param2 / 0x800;
-    v0.unk_13 = param3 / 0x4000;
+    v0.screenBase = param2 / 0x800;
+    v0.charBase = param3 / 0x4000;
 
     sub_020183C4(param0, param1, &v0, 0);
     sub_02019EBC(param0, param1);

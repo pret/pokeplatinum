@@ -637,7 +637,7 @@ static void ov65_02236840(UnkStruct_ov65_02236840 *param0, u32 param1)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v2 = {
+        BgTemplate v2 = {
             0,
             0,
             0x800,
@@ -659,7 +659,7 @@ static void ov65_02236840(UnkStruct_ov65_02236840 *param0, u32 param1)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v3 = {
+        BgTemplate v3 = {
             0,
             0,
             0x800,
@@ -681,7 +681,7 @@ static void ov65_02236840(UnkStruct_ov65_02236840 *param0, u32 param1)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v4 = {
+        BgTemplate v4 = {
             0,
             0,
             0x800,

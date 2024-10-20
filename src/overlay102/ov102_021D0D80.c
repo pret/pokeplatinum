@@ -19,7 +19,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02000C88.h"
 #include "unk_02006E3C.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
@@ -211,7 +210,7 @@ static void ov102_021D0F8C(UnkStruct_ov102_021D0F8C *param0)
         sub_02018368(&v1);
     }
     {
-        UnkStruct_ov97_0222DB78 v2 = {
+        BgTemplate v2 = {
             0,
             0,
             0,
@@ -227,50 +226,50 @@ static void ov102_021D0F8C(UnkStruct_ov102_021D0F8C *param0)
             0
         };
 
-        v2.unk_12 = GX_BG_SCRBASE_0x0000;
-        v2.unk_13 = GX_BG_CHARBASE_0x10000;
-        v2.unk_08 = 0x1000;
-        v2.unk_10 = 2;
+        v2.screenBase = GX_BG_SCRBASE_0x0000;
+        v2.charBase = GX_BG_CHARBASE_0x10000;
+        v2.bufferSize = 0x1000;
+        v2.screenSize = 2;
 
         sub_020183C4(param0->unk_10, 0, &v2, 0);
         sub_02019EBC(param0->unk_10, 0);
 
-        v2.unk_12 = GX_BG_SCRBASE_0x1000;
-        v2.unk_13 = GX_BG_CHARBASE_0x08000;
-        v2.unk_08 = 0x1000;
-        v2.unk_10 = 2;
+        v2.screenBase = GX_BG_SCRBASE_0x1000;
+        v2.charBase = GX_BG_CHARBASE_0x08000;
+        v2.bufferSize = 0x1000;
+        v2.screenSize = 2;
 
         sub_020183C4(param0->unk_10, 1, &v2, 0);
         sub_02019EBC(param0->unk_10, 1);
 
-        v2.unk_12 = GX_BG_SCRBASE_0x2000;
-        v2.unk_13 = GX_BG_CHARBASE_0x04000;
-        v2.unk_08 = 0x800;
-        v2.unk_10 = 1;
+        v2.screenBase = GX_BG_SCRBASE_0x2000;
+        v2.charBase = GX_BG_CHARBASE_0x04000;
+        v2.bufferSize = 0x800;
+        v2.screenSize = 1;
 
         sub_020183C4(param0->unk_10, 3, &v2, 0);
         sub_02019EBC(param0->unk_10, 3);
 
-        v2.unk_12 = GX_BG_SCRBASE_0x0000;
-        v2.unk_13 = GX_BG_CHARBASE_0x10000;
-        v2.unk_08 = 0x1000;
-        v2.unk_10 = 2;
+        v2.screenBase = GX_BG_SCRBASE_0x0000;
+        v2.charBase = GX_BG_CHARBASE_0x10000;
+        v2.bufferSize = 0x1000;
+        v2.screenSize = 2;
 
         sub_020183C4(param0->unk_10, 4, &v2, 0);
         sub_02019EBC(param0->unk_10, 4);
 
-        v2.unk_12 = GX_BG_SCRBASE_0x1000;
-        v2.unk_13 = GX_BG_CHARBASE_0x08000;
-        v2.unk_08 = 0x1000;
-        v2.unk_10 = 2;
+        v2.screenBase = GX_BG_SCRBASE_0x1000;
+        v2.charBase = GX_BG_CHARBASE_0x08000;
+        v2.bufferSize = 0x1000;
+        v2.screenSize = 2;
 
         sub_020183C4(param0->unk_10, 5, &v2, 0);
         sub_02019EBC(param0->unk_10, 5);
 
-        v2.unk_12 = GX_BG_SCRBASE_0x2000;
-        v2.unk_13 = GX_BG_CHARBASE_0x04000;
-        v2.unk_08 = 0x800;
-        v2.unk_10 = 1;
+        v2.screenBase = GX_BG_SCRBASE_0x2000;
+        v2.charBase = GX_BG_CHARBASE_0x04000;
+        v2.bufferSize = 0x800;
+        v2.screenSize = 1;
 
         sub_020183C4(param0->unk_10, 7, &v2, 0);
         sub_02019EBC(param0->unk_10, 7);

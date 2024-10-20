@@ -30,21 +30,21 @@ typedef struct Bitmap {
     u16 height;
 } Bitmap;
 
-typedef struct {
-    int unk_00;
-    int unk_04;
-    u32 unk_08;
-    u32 unk_0C;
-    u8 unk_10;
-    u8 unk_11;
-    u8 unk_12;
-    u8 unk_13;
-    u8 unk_14;
-    u8 unk_15;
-    u8 unk_16;
-    u8 unk_17;
-    BOOL unk_18;
-} UnkStruct_ov97_0222DB78;
+typedef struct BgTemplate {
+    u32 x;
+    u32 y;
+    u32 bufferSize;
+    u32 baseTile;
+    u8 screenSize;
+    u8 colorMode;
+    u8 screenBase;
+    u8 charBase;
+    u8 bgExtPltt;
+    u8 priority;
+    u8 areaOver;
+    u8 dummy;
+    BOOL mosaic;
+} BgTemplate;
 
 typedef struct {
     void *unk_00;
@@ -104,7 +104,7 @@ BGL *sub_02018340(u32 param0);
 u32 sub_02018364(BGL *param0);
 void sub_02018368(const UnkStruct_ov84_0223BA5C *param0);
 void sub_020183A0(const UnkStruct_ov84_0223BA5C *param0, u8 param1);
-void sub_020183C4(BGL *param0, u8 param1, const UnkStruct_ov97_0222DB78 *param2, u8 param3);
+void sub_020183C4(BGL *param0, u8 param1, const BgTemplate *param2, u8 param3);
 void sub_02018898(BGL *param0, u8 param1, u8 param2, u8 param3);
 void sub_02019044(BGL *param0, u8 param1);
 void BGL_SetPriority(u8 param0, u8 param1);

@@ -85,22 +85,22 @@ void sub_020183A0(const UnkStruct_ov84_0223BA5C *param0, u8 param1)
     }
 }
 
-void sub_020183C4(BGL *param0, u8 param1, const UnkStruct_ov97_0222DB78 *param2, u8 param3)
+void sub_020183C4(BGL *param0, u8 param1, const BgTemplate *param2, u8 param3)
 {
-    u8 v0 = sub_02018F80(param2->unk_10, param3);
+    u8 v0 = sub_02018F80(param2->screenSize, param3);
 
     switch (param1) {
     case 0:
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
-        G2_SetBG0Control((GXBGScrSizeText)v0, (GXBGColorMode)param2->unk_11, (GXBGScrBase)param2->unk_12, (GXBGCharBase)param2->unk_13, (GXBGExtPltt)param2->unk_14);
-        G2_SetBG0Priority((int)param2->unk_15);
-        G2_BG0Mosaic((BOOL)param2->unk_18);
+        G2_SetBG0Control((GXBGScrSizeText)v0, (GXBGColorMode)param2->colorMode, (GXBGScrBase)param2->screenBase, (GXBGCharBase)param2->charBase, (GXBGExtPltt)param2->bgExtPltt);
+        G2_SetBG0Priority((int)param2->priority);
+        G2_BG0Mosaic((BOOL)param2->mosaic);
         break;
     case 1:
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
-        G2_SetBG1Control((GXBGScrSizeText)v0, (GXBGColorMode)param2->unk_11, (GXBGScrBase)param2->unk_12, (GXBGCharBase)param2->unk_13, (GXBGExtPltt)param2->unk_14);
-        G2_SetBG1Priority((int)param2->unk_15);
-        G2_BG1Mosaic((BOOL)param2->unk_18);
+        G2_SetBG1Control((GXBGScrSizeText)v0, (GXBGColorMode)param2->colorMode, (GXBGScrBase)param2->screenBase, (GXBGCharBase)param2->charBase, (GXBGExtPltt)param2->bgExtPltt);
+        G2_SetBG1Priority((int)param2->priority);
+        G2_BG1Mosaic((BOOL)param2->mosaic);
         break;
     case 2:
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
@@ -108,18 +108,18 @@ void sub_020183C4(BGL *param0, u8 param1, const UnkStruct_ov97_0222DB78 *param2,
         switch (param3) {
         default:
         case 0:
-            G2_SetBG2ControlText((GXBGScrSizeText)v0, (GXBGColorMode)param2->unk_11, (GXBGScrBase)param2->unk_12, (GXBGCharBase)param2->unk_13);
+            G2_SetBG2ControlText((GXBGScrSizeText)v0, (GXBGColorMode)param2->colorMode, (GXBGScrBase)param2->screenBase, (GXBGCharBase)param2->charBase);
             break;
         case 1:
-            G2_SetBG2ControlAffine((GXBGScrSizeAffine)v0, (GXBGAreaOver)param2->unk_16, (GXBGScrBase)param2->unk_12, (GXBGCharBase)param2->unk_13);
+            G2_SetBG2ControlAffine((GXBGScrSizeAffine)v0, (GXBGAreaOver)param2->areaOver, (GXBGScrBase)param2->screenBase, (GXBGCharBase)param2->charBase);
             break;
         case 2:
-            G2_SetBG2Control256x16Pltt((GXBGScrSize256x16Pltt)v0, (GXBGAreaOver)param2->unk_16, (GXBGScrBase)param2->unk_12, (GXBGCharBase)param2->unk_13);
+            G2_SetBG2Control256x16Pltt((GXBGScrSize256x16Pltt)v0, (GXBGAreaOver)param2->areaOver, (GXBGScrBase)param2->screenBase, (GXBGCharBase)param2->charBase);
             break;
         }
 
-        G2_SetBG2Priority((int)param2->unk_15);
-        G2_BG2Mosaic((BOOL)param2->unk_18);
+        G2_SetBG2Priority((int)param2->priority);
+        G2_BG2Mosaic((BOOL)param2->mosaic);
         break;
     case 3:
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
@@ -127,30 +127,30 @@ void sub_020183C4(BGL *param0, u8 param1, const UnkStruct_ov97_0222DB78 *param2,
         switch (param3) {
         default:
         case 0:
-            G2_SetBG3ControlText((GXBGScrSizeText)v0, (GXBGColorMode)param2->unk_11, (GXBGScrBase)param2->unk_12, (GXBGCharBase)param2->unk_13);
+            G2_SetBG3ControlText((GXBGScrSizeText)v0, (GXBGColorMode)param2->colorMode, (GXBGScrBase)param2->screenBase, (GXBGCharBase)param2->charBase);
             break;
         case 1:
-            G2_SetBG3ControlAffine((GXBGScrSizeAffine)v0, (GXBGAreaOver)param2->unk_16, (GXBGScrBase)param2->unk_12, (GXBGCharBase)param2->unk_13);
+            G2_SetBG3ControlAffine((GXBGScrSizeAffine)v0, (GXBGAreaOver)param2->areaOver, (GXBGScrBase)param2->screenBase, (GXBGCharBase)param2->charBase);
             break;
         case 2:
-            G2_SetBG3Control256x16Pltt((GXBGScrSize256x16Pltt)v0, (GXBGAreaOver)param2->unk_16, (GXBGScrBase)param2->unk_12, (GXBGCharBase)param2->unk_13);
+            G2_SetBG3Control256x16Pltt((GXBGScrSize256x16Pltt)v0, (GXBGAreaOver)param2->areaOver, (GXBGScrBase)param2->screenBase, (GXBGCharBase)param2->charBase);
             break;
         }
 
-        G2_SetBG3Priority((int)param2->unk_15);
-        G2_BG3Mosaic((BOOL)param2->unk_18);
+        G2_SetBG3Priority((int)param2->priority);
+        G2_BG3Mosaic((BOOL)param2->mosaic);
         break;
     case 4:
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
-        G2S_SetBG0Control((GXBGScrSizeText)v0, (GXBGColorMode)param2->unk_11, (GXBGScrBase)param2->unk_12, (GXBGCharBase)param2->unk_13, (GXBGExtPltt)param2->unk_14);
-        G2S_SetBG0Priority((int)param2->unk_15);
-        G2S_BG0Mosaic((BOOL)param2->unk_18);
+        G2S_SetBG0Control((GXBGScrSizeText)v0, (GXBGColorMode)param2->colorMode, (GXBGScrBase)param2->screenBase, (GXBGCharBase)param2->charBase, (GXBGExtPltt)param2->bgExtPltt);
+        G2S_SetBG0Priority((int)param2->priority);
+        G2S_BG0Mosaic((BOOL)param2->mosaic);
         break;
     case 5:
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
-        G2S_SetBG1Control((GXBGScrSizeText)v0, (GXBGColorMode)param2->unk_11, (GXBGScrBase)param2->unk_12, (GXBGCharBase)param2->unk_13, (GXBGExtPltt)param2->unk_14);
-        G2S_SetBG1Priority((int)param2->unk_15);
-        G2S_BG1Mosaic((BOOL)param2->unk_18);
+        G2S_SetBG1Control((GXBGScrSizeText)v0, (GXBGColorMode)param2->colorMode, (GXBGScrBase)param2->screenBase, (GXBGCharBase)param2->charBase, (GXBGExtPltt)param2->bgExtPltt);
+        G2S_SetBG1Priority((int)param2->priority);
+        G2S_BG1Mosaic((BOOL)param2->mosaic);
         break;
     case 6:
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
@@ -158,18 +158,18 @@ void sub_020183C4(BGL *param0, u8 param1, const UnkStruct_ov97_0222DB78 *param2,
         switch (param3) {
         default:
         case 0:
-            G2S_SetBG2ControlText((GXBGScrSizeText)v0, (GXBGColorMode)param2->unk_11, (GXBGScrBase)param2->unk_12, (GXBGCharBase)param2->unk_13);
+            G2S_SetBG2ControlText((GXBGScrSizeText)v0, (GXBGColorMode)param2->colorMode, (GXBGScrBase)param2->screenBase, (GXBGCharBase)param2->charBase);
             break;
         case 1:
-            G2S_SetBG2ControlAffine((GXBGScrSizeAffine)v0, (GXBGAreaOver)param2->unk_16, (GXBGScrBase)param2->unk_12, (GXBGCharBase)param2->unk_13);
+            G2S_SetBG2ControlAffine((GXBGScrSizeAffine)v0, (GXBGAreaOver)param2->areaOver, (GXBGScrBase)param2->screenBase, (GXBGCharBase)param2->charBase);
             break;
         case 2:
-            G2S_SetBG2Control256x16Pltt((GXBGScrSize256x16Pltt)v0, (GXBGAreaOver)param2->unk_16, (GXBGScrBase)param2->unk_12, (GXBGCharBase)param2->unk_13);
+            G2S_SetBG2Control256x16Pltt((GXBGScrSize256x16Pltt)v0, (GXBGAreaOver)param2->areaOver, (GXBGScrBase)param2->screenBase, (GXBGCharBase)param2->charBase);
             break;
         }
 
-        G2S_SetBG2Priority((int)param2->unk_15);
-        G2S_BG2Mosaic((BOOL)param2->unk_18);
+        G2S_SetBG2Priority((int)param2->priority);
+        G2S_BG2Mosaic((BOOL)param2->mosaic);
         break;
     case 7:
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
@@ -177,18 +177,18 @@ void sub_020183C4(BGL *param0, u8 param1, const UnkStruct_ov97_0222DB78 *param2,
         switch (param3) {
         default:
         case 0:
-            G2S_SetBG3ControlText((GXBGScrSizeText)v0, (GXBGColorMode)param2->unk_11, (GXBGScrBase)param2->unk_12, (GXBGCharBase)param2->unk_13);
+            G2S_SetBG3ControlText((GXBGScrSizeText)v0, (GXBGColorMode)param2->colorMode, (GXBGScrBase)param2->screenBase, (GXBGCharBase)param2->charBase);
             break;
         case 1:
-            G2S_SetBG3ControlAffine((GXBGScrSizeAffine)v0, (GXBGAreaOver)param2->unk_16, (GXBGScrBase)param2->unk_12, (GXBGCharBase)param2->unk_13);
+            G2S_SetBG3ControlAffine((GXBGScrSizeAffine)v0, (GXBGAreaOver)param2->areaOver, (GXBGScrBase)param2->screenBase, (GXBGCharBase)param2->charBase);
             break;
         case 2:
-            G2S_SetBG3Control256x16Pltt((GXBGScrSize256x16Pltt)v0, (GXBGAreaOver)param2->unk_16, (GXBGScrBase)param2->unk_12, (GXBGCharBase)param2->unk_13);
+            G2S_SetBG3Control256x16Pltt((GXBGScrSize256x16Pltt)v0, (GXBGAreaOver)param2->areaOver, (GXBGScrBase)param2->screenBase, (GXBGCharBase)param2->charBase);
             break;
         }
 
-        G2S_SetBG3Priority((int)param2->unk_15);
-        G2S_BG3Mosaic((BOOL)param2->unk_18);
+        G2S_SetBG3Priority((int)param2->priority);
+        G2S_BG3Mosaic((BOOL)param2->mosaic);
         break;
     }
 
@@ -198,31 +198,31 @@ void sub_020183C4(BGL *param0, u8 param1, const UnkStruct_ov97_0222DB78 *param2,
     param0->unk_08[param1].unk_24 = 0;
     param0->unk_08[param1].unk_28 = 0;
 
-    if (param2->unk_08) {
-        param0->unk_08[param1].unk_00 = Heap_AllocFromHeap(param0->unk_00, param2->unk_08);
+    if (param2->bufferSize) {
+        param0->unk_08[param1].unk_00 = Heap_AllocFromHeap(param0->unk_00, param2->bufferSize);
 
-        MI_CpuClear16(param0->unk_08[param1].unk_00, param2->unk_08);
+        MI_CpuClear16(param0->unk_08[param1].unk_00, param2->bufferSize);
 
-        param0->unk_08[param1].unk_04 = param2->unk_08;
-        param0->unk_08[param1].unk_08 = param2->unk_0C;
+        param0->unk_08[param1].unk_04 = param2->bufferSize;
+        param0->unk_08[param1].unk_08 = param2->baseTile;
     } else {
         param0->unk_08[param1].unk_00 = NULL;
         param0->unk_08[param1].unk_04 = 0;
         param0->unk_08[param1].unk_08 = 0;
     }
 
-    param0->unk_08[param1].unk_15 = param2->unk_10;
+    param0->unk_08[param1].unk_15 = param2->screenSize;
     param0->unk_08[param1].unk_14 = param3;
-    param0->unk_08[param1].unk_16 = param2->unk_11;
+    param0->unk_08[param1].unk_16 = param2->colorMode;
 
-    if ((param3 == 0) && (param2->unk_11 == GX_BG_COLORMODE_16)) {
+    if ((param3 == 0) && (param2->colorMode == GX_BG_COLORMODE_16)) {
         param0->unk_08[param1].unk_17 = 0x20;
     } else {
         param0->unk_08[param1].unk_17 = 0x40;
     }
 
-    sub_02019184(param0, param1, 0, param2->unk_00);
-    sub_02019184(param0, param1, 3, param2->unk_04);
+    sub_02019184(param0, param1, 0, param2->x);
+    sub_02019184(param0, param1, 3, param2->y);
 }
 
 void sub_02018898(BGL *param0, u8 param1, u8 param2, u8 param3)

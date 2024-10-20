@@ -236,7 +236,7 @@ static void ov95_0224A518(UnkStruct_ov95_0224A42C *param0)
         GX_BGMODE_0,
         GX_BG0_AS_3D
     };
-    static const UnkStruct_ov97_0222DB78 v2 = {
+    static const BgTemplate v2 = {
         0,
         0,
         0x0,

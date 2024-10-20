@@ -491,7 +491,7 @@ static void ov104_0223C948(BGL *param0, int param1)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v3[] = {
+        BgTemplate v3[] = {
             {
                 0,
                 0,
@@ -541,17 +541,17 @@ static void ov104_0223C948(BGL *param0, int param1)
         u16 v4;
 
         if (v0 == GX_BGMODE_0) {
-            v3[1].unk_11 = GX_BG_COLORMODE_16;
-            v3[2].unk_11 = GX_BG_COLORMODE_16;
-            v3[1].unk_14 = GX_BG_EXTPLTT_01;
-            v3[2].unk_14 = GX_BG_EXTPLTT_01;
+            v3[1].colorMode = GX_BG_COLORMODE_16;
+            v3[2].colorMode = GX_BG_COLORMODE_16;
+            v3[1].bgExtPltt = GX_BG_EXTPLTT_01;
+            v3[2].bgExtPltt = GX_BG_EXTPLTT_01;
         }
 
         v4 = ov104_0222EA90(param1, 4);
-        v3[2].unk_10 = v4;
+        v3[2].screenSize = v4;
 
         if (ov104_0222EA90(param1, 9) != 0xffff) {
-            v3[1].unk_10 = v4;
+            v3[1].screenSize = v4;
         }
 
         if (v0 == GX_BGMODE_0) {
@@ -587,7 +587,7 @@ static void ov104_0223C948(BGL *param0, int param1)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v5[] = {
+        BgTemplate v5[] = {
             {
                 0,
                 0,

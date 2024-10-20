@@ -591,7 +591,7 @@ void *ov21_021D2808(UnkStruct_ov21_021D13FC *param0, u32 param1, BOOL param2, NN
 static void ov21_021D2830(BGL *param0, int param1)
 {
     {
-        UnkStruct_ov97_0222DB78 v0 = {
+        BgTemplate v0 = {
             0,
             0,
             0x800,
@@ -613,7 +613,7 @@ static void ov21_021D2830(BGL *param0, int param1)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v1 = {
+        BgTemplate v1 = {
             0,
             0,
             0x800,
@@ -638,7 +638,7 @@ static void ov21_021D2830(BGL *param0, int param1)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
     {
-        UnkStruct_ov97_0222DB78 v2 = {
+        BgTemplate v2 = {
             0,
             0,
             0x800,
@@ -660,7 +660,7 @@ static void ov21_021D2830(BGL *param0, int param1)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v3 = {
+        BgTemplate v3 = {
             0,
             0,
             0x800,
@@ -682,7 +682,7 @@ static void ov21_021D2830(BGL *param0, int param1)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v4 = {
+        BgTemplate v4 = {
             0,
             0,
             0x800,
@@ -704,7 +704,7 @@ static void ov21_021D2830(BGL *param0, int param1)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v5 = {
+        BgTemplate v5 = {
             0,
             0,
             0x400,

@@ -151,7 +151,7 @@ static void ov17_0224981C(UnkStruct_ov17_022492DC *param0, int param1, int param
 static void ov17_022493DC(UnkStruct_ov17_022492DC *param0);
 static void ov17_022495F8(UnkStruct_ov17_022492DC *param0);
 
-static const UnkStruct_ov97_0222DB78 Unk_ov17_022545C0[] = {
+static const BgTemplate Unk_ov17_022545C0[] = {
     {
         0x0,
         0x0,

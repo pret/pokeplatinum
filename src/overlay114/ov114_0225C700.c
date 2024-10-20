@@ -88,7 +88,7 @@ typedef struct {
 
 typedef struct {
     u32 unk_00;
-    UnkStruct_ov97_0222DB78 unk_04;
+    BgTemplate unk_04;
 } UnkStruct_ov114_02260284;
 
 typedef struct {

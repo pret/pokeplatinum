@@ -98,7 +98,7 @@ void *ov97_022376C4(OverlayManager *param0, int param1, int param2, int param3)
 
 void ov97_022376FC(BGL *param0, int param1, u8 param2, u32 param3, u32 param4)
 {
-    UnkStruct_ov97_0222DB78 v0 = {
+    BgTemplate v0 = {
         0,
         0,
         0x800,
@@ -114,25 +114,25 @@ void ov97_022376FC(BGL *param0, int param1, u8 param2, u32 param3, u32 param4)
         0
     };
 
-    v0.unk_10 = param2;
+    v0.screenSize = param2;
 
     switch (param2) {
     case 1:
-        v0.unk_08 = 0x800;
+        v0.bufferSize = 0x800;
         break;
     case 2:
-        v0.unk_08 = 0x1000;
+        v0.bufferSize = 0x1000;
         break;
     case 3:
-        v0.unk_08 = 0x1000;
+        v0.bufferSize = 0x1000;
         break;
     case 4:
-        v0.unk_08 = 0x2000;
+        v0.bufferSize = 0x2000;
         break;
     }
 
-    v0.unk_12 = param3 / 0x800;
-    v0.unk_13 = param4 / 0x4000;
+    v0.screenBase = param3 / 0x800;
+    v0.charBase = param4 / 0x4000;
 
     sub_020183C4(param0, param1, &v0, 0);
     sub_02019EBC(param0, param1);

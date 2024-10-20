@@ -382,7 +382,7 @@ void ov16_0223B578(BattleSystem *param0)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v0[] = {
+        BgTemplate v0[] = {
             {
                 0,
                 0,
@@ -863,7 +863,7 @@ static void ov16_0223C004(BattleSystem *param0, BGL *param1)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v2[] = {
+        BgTemplate v2[] = {
             {
                 0,
                 0,
@@ -1698,7 +1698,7 @@ static void ov16_0223D10C(OverlayManager *param0, BattleParams *param1)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v3 = {
+        BgTemplate v3 = {
             0,
             0,
             0x800,

@@ -589,7 +589,7 @@ static void SetupBGL(BGL *bgl, enum HeapId heapID)
     G2_SetBG0Priority(1);
 
     {
-        UnkStruct_ov97_0222DB78 header = {
+        BgTemplate header = {
             0,
             0,
             0x800,
@@ -611,7 +611,7 @@ static void SetupBGL(BGL *bgl, enum HeapId heapID)
     }
 
     {
-        UnkStruct_ov97_0222DB78 header = {
+        BgTemplate header = {
             0,
             0,
             0x800,
@@ -633,7 +633,7 @@ static void SetupBGL(BGL *bgl, enum HeapId heapID)
     }
 
     {
-        UnkStruct_ov97_0222DB78 header = {
+        BgTemplate header = {
             0,
             0,
             0x800,

@@ -77,7 +77,7 @@ void ov63_0222D228(UnkStruct_ov63_0222D1C0 *param0, const UnkStruct_ov63_0222D16
 
 static void ov63_0222D31C(BGL *param0, int param1, const UnkStruct_ov65_0223582C *param2)
 {
-    UnkStruct_ov97_0222DB78 v0 = {
+    BgTemplate v0 = {
         0,
         0,
         0x1000,
@@ -85,13 +85,13 @@ static void ov63_0222D31C(BGL *param0, int param1, const UnkStruct_ov65_0223582C
         3,
     };
 
-    v0.unk_11 = param2->unk_02;
-    v0.unk_12 = param2->unk_03;
-    v0.unk_13 = param2->unk_04;
-    v0.unk_14 = param2->unk_05;
-    v0.unk_15 = param2->unk_06;
-    v0.unk_16 = 0;
-    v0.unk_18 = param2->unk_07;
+    v0.colorMode = param2->unk_02;
+    v0.screenBase = param2->unk_03;
+    v0.charBase = param2->unk_04;
+    v0.bgExtPltt = param2->unk_05;
+    v0.priority = param2->unk_06;
+    v0.areaOver = 0;
+    v0.mosaic = param2->unk_07;
 
     sub_02019044(param0, param1);
     sub_020183C4(param0, param1, &v0, 0);

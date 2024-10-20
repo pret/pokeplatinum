@@ -164,7 +164,7 @@ static void sub_0209A3D0(UnkStruct_0209A3D0 *param0)
         sub_02018368(&v1);
     }
     {
-        UnkStruct_ov97_0222DB78 v2 = {
+        BgTemplate v2 = {
             0x0,
             0x0,
             0x800,

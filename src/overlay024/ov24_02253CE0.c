@@ -12,7 +12,7 @@
 
 void ov24_02253CE0(BGL *param0)
 {
-    static const UnkStruct_ov97_0222DB78 v0 = {
+    static const BgTemplate v0 = {
         0,
         0,
         0x800,

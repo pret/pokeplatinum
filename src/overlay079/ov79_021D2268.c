@@ -377,7 +377,7 @@ static void ov79_021D257C(UnkStruct_ov79_021D2928 *param0)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v3[] = {
+        BgTemplate v3[] = {
             {
                 0,
                 0,

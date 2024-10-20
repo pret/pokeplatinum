@@ -277,7 +277,7 @@ static void ov21_021E900C(UnkStruct_ov21_021E8D48 *param0)
 static void ov21_021E90B0(BGL *param0, int param1)
 {
     {
-        UnkStruct_ov97_0222DB78 v0 = {
+        BgTemplate v0 = {
             0,
             0,
             0x800,
@@ -300,7 +300,7 @@ static void ov21_021E90B0(BGL *param0, int param1)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v1 = {
+        BgTemplate v1 = {
             0,
             0,
             0x800,
@@ -327,7 +327,7 @@ static void ov21_021E90B0(BGL *param0, int param1)
     sub_02019044(param0, 0);
 
     {
-        UnkStruct_ov97_0222DB78 v2 = {
+        BgTemplate v2 = {
             0,
             0,
             0x800,

@@ -387,9 +387,8 @@ static const UnkStruct_ov64_0223221C Unk_ov64_0223221C[3] = {
     {0xFFFFFFFFFFFFFFE0, 0x0, 0x20, 0x18}
 };
 
-static const UnkStruct_ov97_0222DB78 Unk_ov64_02232390[5] = {
-    {
-        0x0,
+static const BgTemplate Unk_ov64_02232390[5] = {
+    { 0x0,
         0x0,
         0x800,
         0x0,
@@ -401,10 +400,8 @@ static const UnkStruct_ov97_0222DB78 Unk_ov64_02232390[5] = {
         0x3,
         0x0,
         0x0,
-        0x0
-    },
-    {
-        0x0,
+        0x0 },
+    { 0x0,
         0x0,
         0x800,
         0x0,
@@ -416,10 +413,8 @@ static const UnkStruct_ov97_0222DB78 Unk_ov64_02232390[5] = {
         0x0,
         0x0,
         0x0,
-        0x0
-    },
-    {
-        0x0,
+        0x0 },
+    { 0x0,
         0x0,
         0x1000,
         0x0,
@@ -431,10 +426,8 @@ static const UnkStruct_ov97_0222DB78 Unk_ov64_02232390[5] = {
         0x2,
         0x0,
         0x0,
-        0x0
-    },
-    {
-        0x0,
+        0x0 },
+    { 0x0,
         0x0,
         0x1000,
         0x0,
@@ -446,10 +439,8 @@ static const UnkStruct_ov97_0222DB78 Unk_ov64_02232390[5] = {
         0x1,
         0x0,
         0x0,
-        0x0
-    },
-    {
-        0x0,
+        0x0 },
+    { 0x0,
         0x0,
         0x800,
         0x0,
@@ -461,8 +452,7 @@ static const UnkStruct_ov97_0222DB78 Unk_ov64_02232390[5] = {
         0x0,
         0x0,
         0x0,
-        0x0
-    }
+        0x0 }
 };
 
 static const u32 Unk_ov64_02232258[5] = {

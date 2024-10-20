@@ -292,7 +292,7 @@ static void ov80_021D1088(UnkStruct_ov80_021D2A08 *param0, BGL *param1)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v3[] = {
+        BgTemplate v3[] = {
             {
                 0,
                 0,

@@ -327,7 +327,7 @@ static void ov73_021D1058(UnkStruct_ov73_021D1058 *param0)
         sub_02018368(&v1);
     }
     {
-        UnkStruct_ov97_0222DB78 v2 = {
+        BgTemplate v2 = {
             0,
             0,
             0x800,
@@ -343,23 +343,23 @@ static void ov73_021D1058(UnkStruct_ov73_021D1058 *param0)
             0
         };
 
-        v2.unk_12 = GX_BG_SCRBASE_0x7800;
-        v2.unk_13 = GX_BG_CHARBASE_0x18000;
+        v2.screenBase = GX_BG_SCRBASE_0x7800;
+        v2.charBase = GX_BG_CHARBASE_0x18000;
         sub_020183C4(param0->unk_18, 0, &v2, 0);
         sub_02019EBC(param0->unk_18, 0);
 
-        v2.unk_12 = GX_BG_SCRBASE_0x7000;
-        v2.unk_13 = GX_BG_CHARBASE_0x14000;
+        v2.screenBase = GX_BG_SCRBASE_0x7000;
+        v2.charBase = GX_BG_CHARBASE_0x14000;
         sub_020183C4(param0->unk_18, 1, &v2, 0);
         sub_02019EBC(param0->unk_18, 1);
 
-        v2.unk_12 = GX_BG_SCRBASE_0x6800;
-        v2.unk_13 = GX_BG_CHARBASE_0x10000;
+        v2.screenBase = GX_BG_SCRBASE_0x6800;
+        v2.charBase = GX_BG_CHARBASE_0x10000;
         sub_020183C4(param0->unk_18, 2, &v2, 0);
         sub_02019EBC(param0->unk_18, 2);
 
-        v2.unk_12 = GX_BG_SCRBASE_0x6000;
-        v2.unk_13 = GX_BG_CHARBASE_0x0c000;
+        v2.screenBase = GX_BG_SCRBASE_0x6000;
+        v2.charBase = GX_BG_CHARBASE_0x0c000;
         sub_020183C4(param0->unk_18, 3, &v2, 0);
         sub_02019EBC(param0->unk_18, 3);
 
@@ -369,7 +369,7 @@ static void ov73_021D1058(UnkStruct_ov73_021D1058 *param0)
         Font_LoadScreenIndicatorsPalette(0, 6 * (2 * 16), param0->unk_00);
     }
     {
-        UnkStruct_ov97_0222DB78 v2 = {
+        BgTemplate v2 = {
             0,
             0,
             0x800,
@@ -385,23 +385,23 @@ static void ov73_021D1058(UnkStruct_ov73_021D1058 *param0)
             0
         };
 
-        v2.unk_12 = GX_BG_SCRBASE_0x7800;
-        v2.unk_13 = GX_BG_CHARBASE_0x18000;
+        v2.screenBase = GX_BG_SCRBASE_0x7800;
+        v2.charBase = GX_BG_CHARBASE_0x18000;
         sub_020183C4(param0->unk_18, 4, &v2, 0);
         sub_02019EBC(param0->unk_18, 4);
 
-        v2.unk_12 = GX_BG_SCRBASE_0x7000;
-        v2.unk_13 = GX_BG_CHARBASE_0x14000;
+        v2.screenBase = GX_BG_SCRBASE_0x7000;
+        v2.charBase = GX_BG_CHARBASE_0x14000;
         sub_020183C4(param0->unk_18, 5, &v2, 0);
         sub_02019EBC(param0->unk_18, 5);
 
-        v2.unk_12 = GX_BG_SCRBASE_0x6800;
-        v2.unk_13 = GX_BG_CHARBASE_0x10000;
+        v2.screenBase = GX_BG_SCRBASE_0x6800;
+        v2.charBase = GX_BG_CHARBASE_0x10000;
         sub_020183C4(param0->unk_18, 6, &v2, 0);
         sub_02019EBC(param0->unk_18, 6);
 
-        v2.unk_12 = GX_BG_SCRBASE_0x6000;
-        v2.unk_13 = GX_BG_CHARBASE_0x0c000;
+        v2.screenBase = GX_BG_SCRBASE_0x6000;
+        v2.charBase = GX_BG_CHARBASE_0x0c000;
         sub_020183C4(param0->unk_18, 7, &v2, 0);
         sub_02019EBC(param0->unk_18, 7);
     }

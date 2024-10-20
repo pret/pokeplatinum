@@ -672,7 +672,7 @@ static void ov117_022610D8(BGL *param0)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v2[] = {
+        BgTemplate v2[] = {
             { 0,
                 0,
                 0x1000,
@@ -735,7 +735,7 @@ static void ov117_022610D8(BGL *param0)
 
     {
         int v3;
-        static const UnkStruct_ov97_0222DB78 v4[] = {
+        static const BgTemplate v4[] = {
             { 0,
                 0,
                 0x800,
