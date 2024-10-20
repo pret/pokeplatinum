@@ -1,36 +1,50 @@
-This doc details the steps necessary to build a copy of Pokemon Platinum (EN-US) from the sources contained in this repository.
+# Installation Instructions
 
-# 1. Setting up a dev environment
+<!--toc:start-->
+- [Installation Instructions](#installation-instructions)
+  - [0. Preliminaries](#0-preliminaries)
+  - [1. Setting Up Your Development Environment](#1-setting-up-your-development-environment)
+    - [Windows with MSYS2](#windows-with-msys2)
+    - [Windows Subsystem for Linux](#windows-subsystem-for-linux)
+      - [New Installs](#new-installs)
+      - [Existing Installs](#existing-installs)
+      - [Install Build Dependencies](#install-build-dependencies)
+    - [MacOS](#macos)
+    - [Linux](#linux)
+    - [Docker](#docker)
+  - [2. Downloading the Repository](#2-downloading-the-repository)
+  - [3. Specifying a Compiler License](#3-specifying-a-compiler-license)
+    - [Windows (including WSL 1)](#windows-including-wsl-1)
+    - [Unix Systems](#unix-systems)
+  - [4. Building the Repository](#4-building-the-repository)
+<!--toc:end-->
 
-## Windows
+This document details the steps necessary to build a copy of Pokémon Platinum
+(EN-US) using this repository.
 
-First, create an environment variable called `LM_LICENSE_FILE` with its value as the planned path to the license file in the repository, at `tools/cw/license.dat`. For example, if you plan to store the repository at **C:\\Users\\_\<user>_\\Desktop\\pokeplatinum**, where _\<user>_ is your Windows username, then the value of `LM_LICENSE_FILE` should be `C:\Users\<user>\Desktop\pokeplatinum\tools\cw\license.dat`.
+## 0. Preliminaries
 
-To add an environment variable:
-1. Search for "environment variables" in Windows 10's Start Search, and click the option that says "Edit the system environment variables".
-2. In the window that opens, click the button that says "Environment Variables..." on the bottom right.
-3. In the window that opens, click "New..." on the bottom right.
-4. Input in the environment variable name and value, then click "OK".
+## 1. Setting Up Your Development Environment
 
-You will need to restart your computer for the changes to take effect, but if you plan to use Windows Subsystem for Linux (WSL), then you can restart later as part of the required restart when installing WSL, if you choose so.
+### Windows with MSYS2
 
-You now have the choice between two different environments to use to build the project.
+1. Download the MSYS2 installer from [the official website](https://www.msys2.org/)
+and install it on your system.
 
-### MSYS2 (Recommended)
+2. Once the installation is complete, a terminal should automatically pop up.
+To update your package registry, enter the following command:
 
-1. Download the MSYS2 installer from the official website: https://www.msys2.org/ and install it on your system.
-
-2. Once the installation is complete, a terminal should automatically pop up. To update the package registry, type the following command:
-
-    ```
+    ```bash
     pacman -Syu
     ```
 
-    Press 'Y' when prompted to confirm the update. The update process may take a few minutes. Once completed, the terminal will automatically close.
+    Press 'Y' when prompted to confirm the update. This process may take a few
+minutes. Once completed, the terminal will automatically close.
 
-3. Reopen an MSYS terminal (pink icon) and enter the following commands to install the necessary packages:
+3. Re-open an MSYS terminal (the pink icon) from your Start Menu, then enter
+the following commands to install necessary build dependencies:
 
-    ```
+    ```bash
     echo 'export PATH=${PATH}:/mingw64/bin' >> ~/.bashrc
     source ~/.bashrc
     pacman -S git meson gcc flex bison mingw-w64-x86_64-arm-none-eabi-{binutils,gcc}
@@ -38,177 +52,269 @@ You now have the choice between two different environments to use to build the p
 
     Press 'Y' when prompted to confirm the installation.
 
-4. Continue with the [building instructions](#2-downloading-the-repository). Make sure to always use the plain MSYS environment, other environments will not work.
+4. [Download the repository](#2-downloading-the-repository).
 
 ### Windows Subsystem for Linux
 
-***NOTE***: These instructions are written for WSL version 1; if you are using WSL version 2, follow the instructions below for [Linux](#linux).
+> [!IMPORTANT]
+> If you intend to store your project on the Windows file system (or do not know
+> what that means), then use these instructions, which will guide you through
+> installing WSL version 1. If you intend to use WSL version 2, then instead
+> follow the instructions for [Linux](#linux).
 
-1. Open [Windows Powershell **as Administrator**](https://i.imgur.com/QKmVbP9.png), and run the following command (Right Click or Shift+Insert is paste in the Powershell).
+#### New Installs
+
+Follow these instructions if you do not have an existing install of WSL.
+
+1. Open [Windows PowerShell as Administrator](https://i.imgur.com/QKmVbP9.png).
+Paste (Right Click or Shift+Insert) the following command:
 
     ```powershell
     wsl --install -d Ubuntu
     ```
 
-2. Once the process finishes, you will be prompted to restart your machine. Accept.
+2. Once the process finishes, you will be prompted to restart your machine.
+Accept.
 
-3. After rebooting, reopen PowerShell and run the following commmand to downgrade to WSL1
+3. After rebooting, reopen PowerShell and run the following command to downgrade
+WSL to version 1:
 
     ```powershell
     wsl --set-version Ubuntu 1
     ```
 
-    This is necessary because WSL2 has very slow access to the Windows file drive, which is where we need to store the repository.
+    WSL version 1 is preferred for most WSL users due to its increased performance
+when accessing files in the Windows file system.
 
-4. Open **Ubuntu** (e.g. using Search).
+4. Open `Ubuntu` from your Start menu.
 
-5. WSL/Ubuntu will set up its own installation when it runs for the first time. Once WSL/Ubuntu finishes installing, it will ask for a username and password (to be input in).
-    <details>
-        <summary><i>Note...</i></summary>
+5. `Ubuntu` will set up its own installation when it runs for the first time. Once
+finished, it will ask for a username and password as input.
 
-    >   When typing in the password, there will be no visible response, but the terminal will still read in input.
-    </details>
+    > [!NOTE]
+    > When typing the password, there will be no visible response; this is normal,
+    > and the terminal is still reading your input.
 
-6. Update WSL/Ubuntu before continuing. Do this by running the following command. These commands will likely take a long time to finish:
+6. Update `Ubuntu`'s package registry:
 
     ```bash
     sudo apt update && sudo apt upgrade
     ```
 
-7. Certain packages are required to build the repository. Install these packages by running the following command:
+7. [`Install build dependencies`](#install-build-dependencies).
+
+#### Existing Installs
+
+Follow these instructions if you have an existing install of WSL, specifically
+`Ubuntu`.
+
+Older versions of `Ubuntu` (e.g., `20.04`) ship with an outdated version of
+Python, which is not supported. To remedy this, you can upgrade your existing
+install to a more recent version of `Ubuntu`:
+
+1. Run the following inside `Ubuntu`:
+
+    ```bash
+    sudo apt upgrade && sudo apt full-upgrade
+    ```
+
+2. Open PowerShell and run the following commands to restart `Ubuntu`:
+
+    ```powershell
+    wsl -t Ubuntu
+    wsl -d Ubuntu
+    ```
+
+3. Re-open `Ubuntu` and run the following to start a system upgrade:
+
+    ```bash
+    sudo do-release-upgrade
+    ```
+
+    This process may take a long time.
+
+4. Once `Ubuntu` is done upgrading, update `Ubuntu`'s package registry:
+
+    ```bash
+    sudo apt update && sudo apt upgrade
+    ```
+
+5. [`Install build dependencies`](#install-build-dependencies).
+
+#### Install Build Dependencies
+
+1. Run the following to install build dependencies from the `Ubuntu` package
+registry:
 
     ```bash
     sudo apt install git flex bison build-essential binutils-arm-none-eabi gcc-arm-none-eabi ninja-build
     ```
 
-    We are not done yet, the 'meson' package is also necessary, but the version provided by apt is too outdated. To get the most recent meson version, run:
+2. Run the following to install additional dependencies via `pip`:
 
-    ```
-    sudo apt-get install pip
+    ```bash
+    sudo apt install pip
     pip install --user meson
     ```
 
-    You may see `pip` respond with a warning saying `"The script meson is installed in '/home/<YOUR_USER>/.local/bin', which is not on PATH."` To resolve
-    such an issue, run the following commands:
+    You may see `pip` respond with a warning saying `"The script meson is
+installed in '/home/<YOUR_USER>/.local/bin', which is not on PATH.` To resolve
+this issue, run the following commands, filling `<path/to/install/directory>`
+with the path reported by `pip` above:
 
     ```bash
     echo 'export PATH="<path/to/install/directory>:$PATH"' >> ~/.bashrc
     source ~/.bashrc
     ```
 
-    Replacing `<path/to/install/directory>` with the path mentioned above in the `pip` warning.
+3. [Download the repository](#2-downloading-the-repository).
 
-9. Change to a directory accessible from Windows where you'll store the files, for example:
-    ```bash
-    cd /mnt/c/Users/$USER/Desktop
+### MacOS
+
+1. Apple bundles a number of the requisite utilities into Xcode Command Line Tools;
+to install these, run:
+
+    ```zsh
+    xcode-select --install
     ```
 
-Continue with the [building instructions](#2-downloading-the-repository).
+2. Additional packages can be installed using Homebrew; if you do not already have
+Homebrew installed, [do so](https://brew.sh/). Once Homebrew is installed, run
+the following commands:
 
-## macOS
+    ```zsh
+    brew update
+    brew install gcc@14 meson libpng pkg-config arm-none-eabi-binutils arm-none-eabi-gcc
+    brew install --cask wine-stable
+    ```
 
-Apple bundles a number of the requisite utilities into Xcode Command Line Tools; to install these, run:
+3. If your MacOS installation is Monterey (12) or earlier, then you may also need
+GNU `coreutils` installed to run the build scripts:
 
-```
-xcode-select --install
-```
+    ```zsh
+    brew install coreutils
+    ```
 
-You will also need the following packages:
+4. [Download the repository](#2-downloading-the-repository).
 
-* gcc (14.x.x)
-* meson (>= 1.3.0)
-* flex
-* bison
-* wine (to run the mwcc executables)
-* libpng
-* pkg-config
+### Linux
 
-These can be installed using Homebrew; if you do not have Homebrew installed, refer to the instructions [here](https://brew.sh/). Once Homebrew is installed, run:
+> [!NOTE]
+> Precise packages to be installed will vary by Linux distribution and
+> package registry. Known working alternatives are provided for those
+> packages which may go by a different name in various common registries.
 
-```
-brew update
-brew install gcc@14 meson libpng pkg-config arm-none-eabi-binutils arm-none-eabi-gcc
-brew install --cask wine-stable
-```
+The following dependencies are required to build the repository:
 
-On macOS Monterey (12) or earlier, you may also need GNU Coreutils installed to run the build script.
-```
-brew install coreutils
-```
+- `git`
+- `meson` (at least version `1.3.0`)
+- `flex`
+- `bison`
+- `build-essential` / `build-essentials`
+- `binutils-arm-none-eabi` / `arm-none-eabi-binutils`
+- `gcc-arm-none-eabi` / `arm-none-eabi-gcc`
+- `wine`
+- `pkg-config`
 
-Finally, export the variable `LM_LICENSE_FILE` with value `/path/to/pokeplatinum/tools/cw/license.dat`, e.g.:
+> [!IMPORTANT]
+> If the version of `meson` provided by your package manager is out of date, then
+> follow [these instructions](https://mesonbuild.com/Getting-meson.html) to get
+> the most recent version.
+
+Once you have installed all the above dependencies, proceed to [downloading
+the repository](#2-downloading-the-repository).
+
+### Docker
+
+A `Dockerfile` is provided with the repository should you choose to build the
+project as a container. If you do not have `docker` installed on your machine
+and wish to make use of this feature, follow the instructions [here](https://docs.docker.com/desktop/).
+
+Once `docker` is installed, to setup the build environment, run:
 
 ```bash
-echo 'export LM_LICENSE_FILE="/path/to/pokeplatinum/tools/cw/license.dat"' >> ~/.zshrc
-source ~/.zshrc
+make clean # only if you have an existing development environment
+docker build . -t pret/pokeplatinum
+docker run -u $USER -w /rom -v .:/rom pret/pokeplatinum make configure
 ```
 
-## Linux
+Then, run the following to build the ROM:
 
-Building the ROM requires the following packages. If you cannot find one or more of these using your package distribution, it may be under a different name.
-
-* git
-* meson (>= 1.3.0)
-* flex
-* bison
-* build-essentials (build-essential on Ubuntu)
-* binutils-arm-none-eabi (arm-none-eabi-binutils on Arch Linux)
-* gcc-arm-none-eabi (arm-none-eabi-gcc on Arch Linux)
-* wine (to run the mwcc executables)
-* pkg-config
-
-NOTE: On some distros, the meson package provided by the package manager will be out of date. To check your meson version, run:
-
-```
-meson --version
+```bash
+docker run -u $USER -w /rom -v .:/rom pret/pokeplatinum make
 ```
 
-If your mesion version is older than 1.2.0, follow the instructions at: https://mesonbuild.com/Getting-meson.html to get the most recent version of Meson.
+If you wish to stop using the `docker` build feature and switch back to a native
+build environment, then run the following:
 
-Finally, export the variable `LM_LICENSE_FILE` with value `/path/to/pokeplatinum/tools/cw/license.dat`, e.g.:
+```bash
+docker run -u $USER -w /rom -v .:/rom pret/pokeplatinum make clean
+```
+
+## 2. Downloading the Repository
+
+From your terminal, navigate to the path in which you will store the repository.
+Users of WSL 1 should ensure that their target is on the Windows file drive.
+
+```bash
+git clone https://github.com/pret/pokeplatinum
+cd pokeplatinum
+```
+
+## 3. Specifying a Compiler License
+
+Before building the repository, some final setup is required for the compiler.
+Create an environment variable called `LM_LICENSE_FILE` with its value as the
+path to which you cloned the repository, plus `/tools/cw/license.dat`. For
+example, if you cloned your repository to `C:\Users\myuser\Desktop\pokeplatinum`,
+then the value would be `C:\Users\myuser\Desktop\pokeplatinum\tools\cw\license.dat`.
+
+### Windows (including WSL 1)
+
+1. Search for "environment variables" in the Start menu. Click the option which
+says "Edit the system environment variables".
+
+2. In the window that opens, click the button that says "Environment Variables..."
+in the lower right corner.
+
+3. In the window that opens, click "New..." in the lower right corner.
+
+4. Input the environment variable name and value as above, then click "OK".
+
+5. Restart your computer.
+
+### Unix Systems
+
+Export the environment variable as above to your terminal profile:
 
 ```bash
 echo 'export LM_LICENSE_FILE="/path/to/pokeplatinum/tools/cw/license.dat"' >> ~/.bashrc
 source ~/.bashrc
 ```
 
-# 2. Downloading the repository
+Users of MacOS should replace `~/.bashrc` above with `~/.zshrc`.
 
-In your terminal of choice, navigate to the path you would like to store the repository in. If you are using WSL, make sure to clone the repo under the Windows file drive. Clone the repository with:
-```
-git clone https://github.com/pret/pokeplatinum
-cd pokeplatinum
-```
+## 4. Building the Repository
 
-# 3. Building
 To set up the build system, run:
-```
-./config.sh
+
+```bash
+make configure
 ```
 
-This is only required once. If the process is successful, you will see a new 'build' folder in the repository.
+This is only required once. If the process is successful, you will see a new
+`build` folder in the repository folder.
 
-To build the rom, run:
-```
-./build.sh
+To build the ROM, run:
+
+```bash
+make
 ```
 
 If everything works, then the following ROM should be built:
+
 - [build/pokeplatinum.us.nds](https://datomatic.no-intro.org/index.php?page=show_record&s=28&n=3541) `sha1: ce81046eda7d232513069519cb2085349896dec7`
 
-If you want to make modifications to the ROM, you can instead run:
-```
-./build.sh rom
-```
-
-After which, you should see the built ROM `pokeplatinum.us.nds` in the `build` folder.
-
-# 4. Docker
-
-A Dockerfile is provided for your convenience. To begin, setup docker on your local machine following the instructions at https://docs.docker.com/desktop/. Then, run
-
-    ./clean.sh  # because we are switching environments
-    docker build . -t pret/pokeplatinum
-    docker run -u $USER -w /rom -v .:/rom pret/pokeplatinum ./config.sh  # first time only
-    docker run -u $USER -w /rom -v .:/rom pret/pokeplatinum ./build.sh
-    docker run -u $USER -w /rom -v .:/rom pret/pokeplatinum ./clean.sh  # before switching environments
+If you need further assistance, feel free to ask a question in the `#pokeplatinum`
+channel of the `pret` Discord (see `README.md` for contact information) or [open
+an issue](https://github.com/pret/pokeplatinum/issues/new).
