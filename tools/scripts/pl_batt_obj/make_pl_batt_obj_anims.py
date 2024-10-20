@@ -52,7 +52,7 @@ if file_props == None:
 
 tmp_file = dest_dir / output_file.name
 
-ngfx_args = [args.nitrogfx, input_file, tmp_file, "-newparser"]
+ngfx_args = [args.nitrogfx, input_file, tmp_file]
 subprocess.run(ngfx_args)
 
 if 'compressed' in file_props and file_props['compressed'] == True:

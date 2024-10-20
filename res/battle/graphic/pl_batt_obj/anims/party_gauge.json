@@ -2,13 +2,12 @@
 	"labelEnabled":	true,
 	"sequenceCount":	9,
 	"frameCount":	51,
-	"resultCount":	27,
 	"sequences":	[{
 			"frameCount":	8,
-			"unk02":	0,
-			"dataType":	0,
-			"unk06":	1,
-			"unk08":	2,
+			"loopStartFrame":	0,
+			"animationType":	0,
+			"animationType2":	1,
+			"playbackMode":	2,
 			"frameData":	[{
 					"frameDelay":	1,
 					"resultId":	0
@@ -36,10 +35,10 @@
 				}]
 		}, {
 			"frameCount":	8,
-			"unk02":	0,
-			"dataType":	0,
-			"unk06":	1,
-			"unk08":	2,
+			"loopStartFrame":	0,
+			"animationType":	0,
+			"animationType2":	1,
+			"playbackMode":	2,
 			"frameData":	[{
 					"frameDelay":	1,
 					"resultId":	8
@@ -67,10 +66,10 @@
 				}]
 		}, {
 			"frameCount":	8,
-			"unk02":	0,
-			"dataType":	0,
-			"unk06":	1,
-			"unk08":	2,
+			"loopStartFrame":	0,
+			"animationType":	0,
+			"animationType2":	1,
+			"playbackMode":	2,
 			"frameData":	[{
 					"frameDelay":	1,
 					"resultId":	16
@@ -98,10 +97,10 @@
 				}]
 		}, {
 			"frameCount":	8,
-			"unk02":	0,
-			"dataType":	0,
-			"unk06":	1,
-			"unk08":	2,
+			"loopStartFrame":	0,
+			"animationType":	0,
+			"animationType2":	1,
+			"playbackMode":	2,
 			"frameData":	[{
 					"frameDelay":	1,
 					"resultId":	0
@@ -129,10 +128,10 @@
 				}]
 		}, {
 			"frameCount":	8,
-			"unk02":	0,
-			"dataType":	0,
-			"unk06":	1,
-			"unk08":	2,
+			"loopStartFrame":	0,
+			"animationType":	0,
+			"animationType2":	1,
+			"playbackMode":	2,
 			"frameData":	[{
 					"frameDelay":	1,
 					"resultId":	8
@@ -160,10 +159,10 @@
 				}]
 		}, {
 			"frameCount":	8,
-			"unk02":	0,
-			"dataType":	0,
-			"unk06":	1,
-			"unk08":	2,
+			"loopStartFrame":	0,
+			"animationType":	0,
+			"animationType2":	1,
+			"playbackMode":	2,
 			"frameData":	[{
 					"frameDelay":	1,
 					"resultId":	16
@@ -191,144 +190,118 @@
 				}]
 		}, {
 			"frameCount":	1,
-			"unk02":	0,
-			"dataType":	0,
-			"unk06":	1,
-			"unk08":	2,
+			"loopStartFrame":	0,
+			"animationType":	0,
+			"animationType2":	1,
+			"playbackMode":	2,
 			"frameData":	[{
 					"frameDelay":	4,
 					"resultId":	24
 				}]
 		}, {
 			"frameCount":	1,
-			"unk02":	0,
-			"dataType":	0,
-			"unk06":	1,
-			"unk08":	2,
+			"loopStartFrame":	0,
+			"animationType":	0,
+			"animationType2":	1,
+			"playbackMode":	2,
 			"frameData":	[{
 					"frameDelay":	4,
 					"resultId":	25
 				}]
 		}, {
 			"frameCount":	1,
-			"unk02":	0,
-			"dataType":	0,
-			"unk06":	1,
-			"unk08":	2,
+			"loopStartFrame":	0,
+			"animationType":	0,
+			"animationType2":	1,
+			"playbackMode":	2,
 			"frameData":	[{
 					"frameDelay":	4,
 					"resultId":	26
 				}]
 		}],
 	"animationResults":	[{
-			"dataType":	0,
-			"padded":	false,
+			"resultType":	0,
 			"index":	0
 		}, {
-			"dataType":	0,
-			"padded":	false,
+			"resultType":	0,
 			"index":	7
 		}, {
-			"dataType":	0,
-			"padded":	false,
+			"resultType":	0,
 			"index":	6
 		}, {
-			"dataType":	0,
-			"padded":	false,
+			"resultType":	0,
 			"index":	5
 		}, {
-			"dataType":	0,
-			"padded":	false,
+			"resultType":	0,
 			"index":	4
 		}, {
-			"dataType":	0,
-			"padded":	false,
+			"resultType":	0,
 			"index":	3
 		}, {
-			"dataType":	0,
-			"padded":	false,
+			"resultType":	0,
 			"index":	2
 		}, {
-			"dataType":	0,
-			"padded":	false,
+			"resultType":	0,
 			"index":	1
 		}, {
-			"dataType":	0,
-			"padded":	false,
+			"resultType":	0,
 			"index":	8
 		}, {
-			"dataType":	0,
-			"padded":	false,
+			"resultType":	0,
 			"index":	15
 		}, {
-			"dataType":	0,
-			"padded":	false,
+			"resultType":	0,
 			"index":	14
 		}, {
-			"dataType":	0,
-			"padded":	false,
+			"resultType":	0,
 			"index":	13
 		}, {
-			"dataType":	0,
-			"padded":	false,
+			"resultType":	0,
 			"index":	12
 		}, {
-			"dataType":	0,
-			"padded":	false,
+			"resultType":	0,
 			"index":	11
 		}, {
-			"dataType":	0,
-			"padded":	false,
+			"resultType":	0,
 			"index":	10
 		}, {
-			"dataType":	0,
-			"padded":	false,
+			"resultType":	0,
 			"index":	9
 		}, {
-			"dataType":	0,
-			"padded":	false,
+			"resultType":	0,
 			"index":	16
 		}, {
-			"dataType":	0,
-			"padded":	false,
+			"resultType":	0,
 			"index":	23
 		}, {
-			"dataType":	0,
-			"padded":	false,
+			"resultType":	0,
 			"index":	22
 		}, {
-			"dataType":	0,
-			"padded":	false,
+			"resultType":	0,
 			"index":	21
 		}, {
-			"dataType":	0,
-			"padded":	false,
+			"resultType":	0,
 			"index":	20
 		}, {
-			"dataType":	0,
-			"padded":	false,
+			"resultType":	0,
 			"index":	19
 		}, {
-			"dataType":	0,
-			"padded":	false,
+			"resultType":	0,
 			"index":	18
 		}, {
-			"dataType":	0,
-			"padded":	false,
+			"resultType":	0,
 			"index":	17
 		}, {
-			"dataType":	0,
-			"padded":	true,
+			"resultType":	0,
 			"index":	24
 		}, {
-			"dataType":	0,
-			"padded":	true,
+			"resultType":	0,
 			"index":	25
 		}, {
-			"dataType":	0,
-			"padded":	true,
+			"resultType":	0,
 			"index":	26
 		}],
+	"resultCount":	27,
 	"labels":	["CellAnime8", "CellAnime7", "CellAnime6", "CellAnime0", "CellAnime1", "CellAnime2", "CellAnime3", "CellAnime4", "CellAnime5"],
 	"labelCount":	9
 }

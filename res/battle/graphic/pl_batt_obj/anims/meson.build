@@ -21,7 +21,7 @@ pl_batt_obj_anims = files(
     'pl_batt_obj_00000212.json',
     'pl_batt_obj_00000215.json',
     'pl_batt_obj_00000218.json',
-    'pl_batt_obj_00000243.json',
+    'move_type_icon.json',
     'pl_batt_obj_00000249.json',
     'battle_subscreen_cursor_corner.json',
     'healthbox_safari.json',

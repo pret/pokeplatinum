@@ -51,7 +51,7 @@ pl_batt_obj_cells = files(
     'healthbox_doubles_opponent_2.json',
     'healthbox_doubles_player_1.json',
     'healthbox_doubles_player_2.json',
-    'pl_batt_obj_00000242.json',
+    'move_type_icon.json',
     'healthbox_safari.json',
     'bg_party_level_up.json'
 )

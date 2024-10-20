@@ -1,7 +1,7 @@
 {
 	"labelEnabled":	true,
 	"extended":	true,
-	"partitionEnabled":	true,
+	"vramTransferEnabled":	true,
 	"cellCount":	5,
 	"mappingType":	1,
 	"cells":	[{
@@ -677,6 +677,21 @@
 		}],
 	"labels":	["CellAnime0"],
 	"labelCount":	1,
-	"partitions":	[3200, 8, 0, 3200, 3200, 3200, 6400, 3200, 9600, 3200, 12800, 3200],
-	"partitionCount":	12
+	"vramTransferMaxSize":	3200,
+	"transferData":	[{
+			"offset":	0,
+			"size":	3200
+		}, {
+			"offset":	3200,
+			"size":	3200
+		}, {
+			"offset":	6400,
+			"size":	3200
+		}, {
+			"offset":	9600,
+			"size":	3200
+		}, {
+			"offset":	12800,
+			"size":	3200
+		}]
 }
