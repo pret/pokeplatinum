@@ -20,6 +20,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
+#include "narc.h"
 #include "pokemon.h"
 #include "render_window.h"
 #include "strbuf.h"
@@ -32,8 +33,6 @@
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_02017728.h"
-
-#include "narc.h"
 
 typedef struct UnkStruct_ov87_021D106C_t {
     UnkStruct_ov87_021D0D80 *unk_00;
