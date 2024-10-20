@@ -216,7 +216,7 @@ e7266bd8b7095861b6e1fdaf4f13cb648a9c325d *res/prebuilt/graphic/footprint_board.n
 e22f0296444ce01e0b7619f73a8cf2016b2307b4 *res/prebuilt/graphic/oekaki.narc
 917f25f4e5bb3f5e1837471d2a90225e9e95363d *res/prebuilt/graphic/opening.narc
 dd0663e46347230d1d1b9eb8b583cee9acc10f31 *res/prebuilt/graphic/pl_bag_gra.narc
-0929061d78710595aa53796ecffe3545f8406d82 *res/prebuilt/graphic/pl_font.narc
+0929061d78710595aa53796ecffe3545f8406d82 *res/fonts/pl_font.narc
 d397dbd087737151aa8bea242016c626afb55fa5 *res/prebuilt/graphic/pl_plist_gra.narc
 883e6afb310f0ab02c26f2026cba1c76210bb3ac *res/prebuilt/graphic/pl_pst_gra.narc
 c16faeeeee494830c720d1f795a141cacfe49121 *res/prebuilt/graphic/pl_wifinote.narc

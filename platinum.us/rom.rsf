@@ -309,7 +309,13 @@ RomSpec
 	File graphic/oekaki.narc
 	File graphic/opening.narc
 	File graphic/pl_bag_gra.narc
-	File graphic/pl_font.narc
+
+	Root /graphic
+	HostRoot res/fonts
+	File pl_font.narc
+
+	Root /
+	HostRoot res/prebuilt
 	File graphic/pl_plist_gra.narc
 	File graphic/pl_pst_gra.narc
 	File graphic/pl_wifinote.narc
