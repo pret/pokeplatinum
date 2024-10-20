@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/font.h"
 #include "constants/heap.h"
 #include "constants/narc.h"
 
@@ -135,9 +134,9 @@ u8 Text_AddPrinterWithParamsAndColor(Window *window, u32 fontID, const Strbuf *s
     template.letterSpacing = sFontAttributesPtr[fontID].letterSpacing;
     template.lineSpacing = sFontAttributesPtr[fontID].lineSpacing;
     template.dummy14 = sFontAttributesPtr[fontID].dummy;
-    template.fgColor = (color >> FONT_COLOR_FG_SHIFT) & FONT_COLOR_MASK;
-    template.shadowColor = (color >> FONT_COLOR_SHADOW_SHIFT) & FONT_COLOR_MASK;
-    template.bgColor = (color >> FONT_COLOR_BG_SHIFT) & FONT_COLOR_MASK;
+    template.fgColor = (color >> TEXT_COLOR_FG_SHIFT) & TEXT_COLOR_MASK;
+    template.shadowColor = (color >> TEXT_COLOR_SHADOW_SHIFT) & TEXT_COLOR_MASK;
+    template.bgColor = (color >> TEXT_COLOR_BG_SHIFT) & TEXT_COLOR_MASK;
     template.glyphTable = 0;
     template.dummy1A = 0;
     template.cacheColor = 0xFF;
@@ -159,9 +158,9 @@ u8 Text_AddPrinterWithParamsColorAndSpacing(Window *window, u32 fontID, const St
     template.letterSpacing = letterSpacing;
     template.lineSpacing = lineSpacing;
     template.dummy14 = sFontAttributesPtr[fontID].dummy;
-    template.fgColor = (color >> FONT_COLOR_FG_SHIFT) & FONT_COLOR_MASK;
-    template.shadowColor = (color >> FONT_COLOR_SHADOW_SHIFT) & FONT_COLOR_MASK;
-    template.bgColor = (color >> FONT_COLOR_BG_SHIFT) & FONT_COLOR_MASK;
+    template.fgColor = (color >> TEXT_COLOR_FG_SHIFT) & TEXT_COLOR_MASK;
+    template.shadowColor = (color >> TEXT_COLOR_SHADOW_SHIFT) & TEXT_COLOR_MASK;
+    template.bgColor = (color >> TEXT_COLOR_BG_SHIFT) & TEXT_COLOR_MASK;
     template.glyphTable = 0;
     template.dummy1A = 0;
     template.cacheColor = 0xFF;

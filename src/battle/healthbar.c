@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "constants/font.h"
 #include "constants/heap.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
@@ -61,7 +60,7 @@
 #define HEALTHBAR_NAME_WINDOW_OFFSET    0
 #define HEALTHBAR_NAME_BYTE_SIZE        (HEALTHBAR_NAME_BLOCK_COUNT_X * HEALTHBAR_NAME_BLOCK_COUNT_Y * HEALTHBAR_WINDOW_BLOCK_SIZE)
 #define HEALTHBAR_NAME_BACKGROUND_COLOR 0xF
-#define HEALTHBAR_NAME_FONT_COLOR       MAKE_FONT_COLOR(14, 2, HEALTHBAR_NAME_BACKGROUND_COLOR)
+#define HEALTHBAR_NAME_FONT_COLOR       TEXT_COLOR(14, 2, HEALTHBAR_NAME_BACKGROUND_COLOR)
 
 #define VRAM_TRANSFER_DST(vram, transferTable, index_0, index_1, imgProxy) ( \
     (void *)((u32)vram + transferTable[index_0][index_1].pos + imgProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]))

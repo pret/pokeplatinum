@@ -7,6 +7,22 @@
 #include "render_text.h"
 #include "strbuf.h"
 
+typedef u32 TextColor;
+
+#define TEXT_COLOR_MASK         0xFF
+#define TEXT_COLOR_FG_SHIFT     16
+#define TEXT_COLOR_SHADOW_SHIFT 8
+#define TEXT_COLOR_BG_SHIFT     0
+
+#define TEXT_COLOR(letter, shadow, bg) ((TextColor)(((letter & TEXT_COLOR_MASK) << TEXT_COLOR_FG_SHIFT) \
+    | ((shadow & TEXT_COLOR_MASK) << TEXT_COLOR_SHADOW_SHIFT)                                           \
+    | ((bg & TEXT_COLOR_MASK) << TEXT_COLOR_BG_SHIFT)))
+
+#define MAX_TEXT_PRINTERS 8
+
+#define TEXT_SPEED_INSTANT     0
+#define TEXT_SPEED_NO_TRANSFER 0xFF
+
 void Text_SetFontAttributesPtr(const FontAttributes *fontAttributes);
 void Text_ResetAllPrinters(void);
 u8 Text_IsPrinterActive(u8 printerID);

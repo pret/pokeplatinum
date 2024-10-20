@@ -1,11 +1,29 @@
 #ifndef POKEPLATINUM_FONT_H
 #define POKEPLATINUM_FONT_H
 
-#include "constants/font.h"
-
 #include "charcode.h"
 #include "render_text.h"
 #include "strbuf.h"
+
+enum Font {
+    FONT_SYSTEM = 0,
+    FONT_MESSAGE,
+    FONT_SUBSCREEN,
+    FONT_UNOWN,
+
+    FONT_MAX,
+};
+
+enum FontAttribute {
+    FONTATTR_MAX_LETTER_WIDTH = 0,
+    FONTATTR_MAX_LETTER_HEIGHT,
+    FONTATTR_LETTER_SPACING,
+    FONTATTR_LINE_SPACING,
+    FONTATTR_DUMMY,
+    FONTATTR_FG_COLOR,
+    FONTATTR_BG_COLOR,
+    FONTATTR_SHADOW_COLOR,
+};
 
 typedef struct FontAttributes {
     u8 maxLetterWidth;

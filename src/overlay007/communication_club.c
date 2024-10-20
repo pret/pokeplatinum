@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "constants/communication/comm_type.h"
-#include "constants/font.h"
 #include "consts/sdat.h"
 
 #include "struct_decls/struct_0200112C_decl.h"

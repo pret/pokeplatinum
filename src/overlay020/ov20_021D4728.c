@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/font.h"
 #include "constants/heap.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
