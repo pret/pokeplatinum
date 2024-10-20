@@ -1746,7 +1746,7 @@ static void ov16_0223D10C(OverlayManager *param0, BattleParams *param1)
         v6 = Strbuf_Init(0x100, 5);
 
         MessageLoader_GetStrbuf(v5, 923, v6);
-        Text_AddPrinterWithParams(v0->unk_08, 1, v6, 0, 0, NULL, NULL);
+        Text_AddPrinterWithParams(v0->unk_08, FONT_MESSAGE, v6, 0, 0, NULL, NULL);
 
         Strbuf_Free(v6);
         MessageLoader_Free(v5);

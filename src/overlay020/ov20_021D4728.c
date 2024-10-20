@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/font.h"
 #include "constants/heap.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
@@ -193,7 +192,7 @@ static void ov20_021D498C(Window *param0, BGL *param1, const Strbuf *param2, int
         v2 = Font_CalcCenterAlignment(2, v5, 0, 88);
         for (v0 = 0; v0 < NELEMS(Unk_ov20_021D52EC); v0++) {
             v3 = Unk_ov20_021D52EC[v0] + param3;
-            Text_AddPrinterWithParamsAndColor(param0, 2, v5, v2, v3, 0xFF, (u32)((((1) & 0xFF) << 16) | (((2) & 0xFF) << 8) | (3 & 0xFF)), NULL);
+            Text_AddPrinterWithParamsAndColor(param0, FONT_SUBSCREEN, v5, v2, v3, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 3), NULL);
         }
         param3 += 16;
     }

@@ -442,7 +442,7 @@ static Window *ov22_0225A348(UnkStruct_ov22_0225A0E4 *param0, u32 param1, u32 pa
 
     {
         u32 v3 = Font_CalcCenterAlignment(FONT_SUBSCREEN, v1, 0, param4 * 8);
-        Text_AddPrinterWithParamsAndColor(v2, 2, v1, v3, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((3 & 0xff) << 0)), NULL);
+        Text_AddPrinterWithParamsAndColor(v2, FONT_SUBSCREEN, v1, v3, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 3), NULL);
     }
 
     Strbuf_Free(v1);

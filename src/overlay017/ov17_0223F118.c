@@ -111,7 +111,7 @@ void ov17_0223F1E0(GenericPointerData *param0)
     sub_020242C4(param0);
 }
 
-void ov17_0223F1E8(int param0, BGL *param1, SpriteGfxHandler *param2, UnkStruct_02012744 *param3, UnkStruct_ov17_0223F2E4 *param4, const Strbuf *param5, int param6, u32 param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
+void ov17_0223F1E8(int param0, BGL *param1, SpriteGfxHandler *param2, UnkStruct_02012744 *param3, UnkStruct_ov17_0223F2E4 *param4, const Strbuf *param5, enum Font param6, TextColor param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
 {
     UnkStruct_020127E8 v0;
     Window v1;
@@ -133,7 +133,7 @@ void ov17_0223F1E8(int param0, BGL *param1, SpriteGfxHandler *param2, UnkStruct_
     {
         Window_Init(&v1);
         BGL_AddFramelessWindow(param1, &v1, v6, 16 / 8, 0, 0);
-        Text_AddPrinterWithParamsColorAndSpacing(&v1, param6, param5, 0, 0, 0xff, param7, v7, 0, NULL);
+        Text_AddPrinterWithParamsColorAndSpacing(&v1, param6, param5, 0, 0, TEXT_SPEED_NO_TRANSFER, param7, v7, 0, NULL);
     }
 
     v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DMAIN, param0);

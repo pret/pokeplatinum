@@ -131,7 +131,7 @@ static void ov104_0223DD30(UnkStruct_ov104_0223DD30 *param0, SysTask *param1);
 static void ov104_0223DD5C(SysTask *param0, void *param1);
 static void ov104_0223DDB4(SysTask *param0, void *param1);
 static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 param1, const UnkStruct_ov104_0224191C *param2);
-static void ov104_0223E29C(UnkStruct_ov104_0223DD30 *param0, UnkStruct_ov104_0223E3B8 *param1, const Strbuf *param2, int param3, u32 param4, int param5, int param6, int param7, int param8, int param9, UnkStruct_ov104_0223E29C *param10);
+static void ov104_0223E29C(UnkStruct_ov104_0223DD30 *param0, UnkStruct_ov104_0223E3B8 *param1, const Strbuf *param2, enum Font param3, TextColor param4, int param5, int param6, int param7, int param8, int param9, UnkStruct_ov104_0223E29C *param10);
 static void ov104_0223E3B8(UnkStruct_ov104_0223E3B8 *param0);
 static void ov104_0223E3FC(UnkStruct_ov104_0223DD30 *param0, UnkStruct_ov104_0223E48C *param1, fx32 param2, fx32 param3, u32 param4);
 static void ov104_0223E48C(UnkStruct_ov104_0223E48C *param0);
@@ -273,7 +273,7 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 param1, const U
             v9 = MessageLoader_Init(1, 26, 618, param1);
             v10 = MessageLoader_GetNewStrbuf(v9, param2->unk_00);
 
-            ov104_0223E29C(param0, &v0->unk_7C, v10, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0, 2004, 208 + -92 + param0->unk_28, 11 * 8 + param0->unk_2A, 0, NULL);
+            ov104_0223E29C(param0, &v0->unk_7C, v10, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), 0, 2004, 208 + -92 + param0->unk_28, 11 * 8 + param0->unk_2A, 0, NULL);
 
             sub_020129D0(v0->unk_7C.unk_00, 0);
             Strbuf_Free(v10);
@@ -423,7 +423,7 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 param1, const U
     return 0;
 }
 
-static void ov104_0223E29C(UnkStruct_ov104_0223DD30 *param0, UnkStruct_ov104_0223E3B8 *param1, const Strbuf *param2, int param3, u32 param4, int param5, int param6, int param7, int param8, int param9, UnkStruct_ov104_0223E29C *param10)
+static void ov104_0223E29C(UnkStruct_ov104_0223DD30 *param0, UnkStruct_ov104_0223E3B8 *param1, const Strbuf *param2, enum Font param3, TextColor param4, int param5, int param6, int param7, int param8, int param9, UnkStruct_ov104_0223E29C *param10)
 {
     UnkStruct_020127E8 v0;
     Window v1;
@@ -449,7 +449,7 @@ static void ov104_0223E29C(UnkStruct_ov104_0223DD30 *param0, UnkStruct_ov104_022
     if (param10 == NULL) {
         Window_Init(&v1);
         BGL_AddFramelessWindow(v5, &v1, v8, 16 / 8, 0, 0);
-        Text_AddPrinterWithParamsColorAndSpacing(&v1, param3, param2, 0, 0, 0xff, param4, 0, 0, NULL);
+        Text_AddPrinterWithParamsColorAndSpacing(&v1, param3, param2, 0, 0, TEXT_SPEED_NO_TRANSFER, param4, 0, 0, NULL);
     } else {
         v1 = param10->unk_00;
     }

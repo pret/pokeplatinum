@@ -171,7 +171,7 @@ static void ov65_02234694(UnkStruct_ov65_0222EBE0 * param0, u32 param1, u32 para
 static void ov65_022346C4(UnkStruct_ov65_0222EBE0 * param0, Strbuf *param1, u32 param2, u32 param3);
 static void ov65_02234708(UnkStruct_ov65_0222EBE0 * param0, u32 param1, u32 param2, u32 param3, u32 param4);
 static void ov65_02234788(UnkStruct_ov65_0222EBE0 * param0, u8 param1, u8 param2, u8 param3, u8 param4);
-static u32 ov65_0223484C(u32 param0, int * param1);
+static u32 ov65_0223484C(u32 param0, TextColor *param1);
 static void ov65_02234900(UnkStruct_ov65_0222EBE0 * param0, Window * param1, u32 param2, u32 param3, u32 param4);
 static void ov65_0223498C(UnkStruct_ov65_0222EBE0 * param0, Window * param1, u32 param2, u32 param3, u32 param4);
 static void ov65_02234A68(UnkStruct_ov65_0222EBE0 * param0, NARC * param1, u32 param2);
@@ -1535,7 +1535,7 @@ static void ov65_0222EE98 (UnkStruct_ov65_0222EBE0 * param0)
     {
         u32 v2 = Font_CalcCenterAlignment(FONT_SYSTEM, param0->unk_178, 0, 22 * 8);
 
-        Text_AddPrinterWithParamsAndColor(&param0->unk_350, 1, param0->unk_178, v2, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_350, FONT_MESSAGE, param0->unk_178, v2, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
     }
 
     sub_0201A9A4(&param0->unk_350);
@@ -2300,8 +2300,8 @@ static int ov65_0222FCDC (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
 static void ov65_0222FD70 (UnkStruct_ov65_0222EBE0 * param0)
 {
-    int v0, v1, v2;
-    int v3;
+    TextColor v0;
+    int v1, v2, v3;
     TrainerInfo * v4 = SaveData_GetTrainerInfo(param0->unk_160);
     Strbuf* v5 = TrainerInfo_NameNewStrbuf(v4, 54);
     u32 v6;
@@ -2316,12 +2316,12 @@ static void ov65_0222FD70 (UnkStruct_ov65_0222EBE0 * param0)
     v1 = TrainerInfo_Gender(v4);
 
     if (v1 == 0) {
-        v0 = ((u32)(((5 & 0xff) << 16) | ((6 & 0xff) << 8) | ((0 & 0xff) << 0)));
+        v0 = TEXT_COLOR(5, 6, 0);
     } else {
-        v0 = ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((0 & 0xff) << 0)));
+        v0 = TEXT_COLOR(3, 4, 0);
     }
 
-    Text_AddPrinterWithParamsAndColor(&param0->unk_340, 0, v5, 32, 0, 0xff, v0, NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_340, FONT_SYSTEM, v5, 32, 0, TEXT_SPEED_NO_TRANSFER, v0, NULL);
     Strbuf_Free(v5);
 
     v6 = ov65_0222DD20(param0, &param0->unk_04->unk_00);
@@ -2334,9 +2334,9 @@ static void ov65_0222FD70 (UnkStruct_ov65_0222EBE0 * param0)
             v1 = sub_0202AD2C(param0->unk_00, ov4_021D2388(), 8);
 
             if (0 == v1) {
-                v0 = ((u32)(((5 & 0xff) << 16) | ((6 & 0xff) << 8) | ((0 & 0xff) << 0)));
+                v0 = TEXT_COLOR(5, 6, 0);
             } else if (1 == v1) {
-                v0 = ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((0 & 0xff) << 0)));
+                v0 = TEXT_COLOR(3, 4, 0);
             }
 
             Strbuf_CopyChars(param0->unk_170, sub_0202AEF0(param0->unk_00, ov4_021D2388()));
@@ -2345,7 +2345,7 @@ static void ov65_0222FD70 (UnkStruct_ov65_0222EBE0 * param0)
         MessageLoader_GetStrbuf(param0->unk_168, v3, param0->unk_170);
     }
 
-    Text_AddPrinterWithParamsAndColor(&param0->unk_340, 0, param0->unk_170, 102, 0, 0xff, v0, NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_340, FONT_SYSTEM, param0->unk_170, 102, 0, TEXT_SPEED_NO_TRANSFER, v0, NULL);
     ov65_0222EA38(param0->unk_15C, &param0->unk_BD0, 1, 2, 1, v6);
 
     if (param0->unk_04->unk_00.unk_21) {
@@ -4767,7 +4767,7 @@ static void ov65_02232B58 (UnkStruct_ov65_0222EBE0 * param0, int param1, BOOL pa
     RenderControlFlags_SetCanABSpeedUpPrint(1);
     RenderControlFlags_SetAutoScrollFlags(0);
 
-    param0->unk_180 = Text_AddPrinterWithParams(&param0->unk_330, 1, param0->unk_174, 0, 0, v0, NULL);
+    param0->unk_180 = Text_AddPrinterWithParams(&param0->unk_330, FONT_MESSAGE, param0->unk_174, 0, 0, v0, NULL);
 
     sub_0201A9A4(&param0->unk_330);
 }
@@ -5951,18 +5951,18 @@ static void ov65_02233E20 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
 
     {
         MessageLoader_GetStrbuf(param0->unk_168, 52, param0->unk_178);
-        Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, 0, param0->unk_178, 8, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, 8, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
     }
 
     {
         ov65_022346C4(param0, param0->unk_178, 0, v0);
-        Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, 0, param0->unk_178, 8, 24, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, 8, 24, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
         ov65_02234694(param0, 65, 113, v0, 120, 24);
     }
 
     {
         MessageLoader_GetStrbuf(param0->unk_168, 59, param0->unk_178);
-        Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, 0, param0->unk_178, 8, 48, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, 8, 48, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
         ov65_02234694(param0, 65, 112, v0, 120, 48);
     }
 }
@@ -6263,25 +6263,25 @@ static void ov65_0223416C (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
 
     {
         MessageLoader_GetStrbuf(param0->unk_168, 54, param0->unk_178);
-        Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, 0, param0->unk_178, 8, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, 8, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
         MessageLoader_GetStrbuf(param0->unk_168, 63, param0->unk_178);
 
         {
             u32 v1 = 180 - (Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_178, 0) + 1) / 2;
-            Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, 0, param0->unk_178, v1, 24, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+            Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, v1, 24, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
         }
     }
 
     {
         ov65_022346C4(param0, param0->unk_178, 3, v0);
-        Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, 0, param0->unk_178, 8, 48, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, 8, 48, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
         ov65_02234694(param0, 68, 135, v0, 104, 48);
         ov65_02234694(param0, 67, 136, v0, 212, 48);
     }
 
     {
         MessageLoader_GetStrbuf(param0->unk_168, 59, param0->unk_178);
-        Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, 0, param0->unk_178, 8, 80, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, 8, 80, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
 
         ov65_02234694(param0, 68, 134, v0, 104, 80);
         ov65_02234694(param0, 67, 138, v0, 212, 80);
@@ -6300,14 +6300,14 @@ static void ov65_022342A8 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
 
     {
         MessageLoader_GetStrbuf(param0->unk_168, 55, param0->unk_178);
-        Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, 0, param0->unk_178, 8, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, 8, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
 
         v1 = sub_02030698(v2, 124, v0);
         v3 = MessageUtil_SpeciesName(v1, param1);
 
         {
             u32 v4 = 33 - (Font_CalcStrbufWidth(FONT_SYSTEM, v3, 0) + 1) / 2;
-            Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, 0, v3, v4, 24, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+            Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, v3, v4, 24, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
         }
 
         Strbuf_Free(v3);
@@ -6315,13 +6315,13 @@ static void ov65_022342A8 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
 
     {
         ov65_022346C4(param0, param0->unk_178, 4, v0);
-        Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, 0, param0->unk_178, 8, 48, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, 8, 48, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
         ov65_02234694(param0, 65, 123, v0, 108, 48);
     }
 
     {
         MessageLoader_GetStrbuf(param0->unk_168, 59, param0->unk_178);
-        Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, 0, param0->unk_178, 8, 80, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, 8, 80, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
         ov65_02234694(param0, 65, 122, v0, 108, 80);
     }
 }
@@ -6334,18 +6334,18 @@ static void ov65_022343CC (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
 
     {
         MessageLoader_GetStrbuf(param0->unk_168, 56, param0->unk_178);
-        Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, 0, param0->unk_178, 8, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, 8, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
     }
 
     {
         ov65_022346C4(param0, param0->unk_178, 5, v0);
-        Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, 0, param0->unk_178, 8, 24, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, 8, 24, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
         ov65_02234694(param0, 69, 143, v0, 112, 24);
     }
 
     {
         MessageLoader_GetStrbuf(param0->unk_168, 59, param0->unk_178);
-        Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, 0, param0->unk_178, 8, 48, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, 8, 48, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
         ov65_02234694(param0, 69, 142, v0, 112, 48);
     }
 }
@@ -6361,14 +6361,14 @@ static void ov65_0223449C (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
 
     {
         MessageLoader_GetStrbuf(param0->unk_168, 70, param0->unk_178);
-        Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, 0, param0->unk_178, 8, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, 8, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
     }
 
     {
         StringTemplate_SetPlazaMinigameName(param0->unk_BE0.unk_00, 0, UnkEnum_ov66_022324D0_00);
         MessageLoader_GetStrbuf(param0->unk_168, 71, param0->unk_170);
         StringTemplate_Format(param0->unk_BE0.unk_00, param0->unk_178, param0->unk_170);
-        Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, 0, param0->unk_178, 8, 24, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, 8, 24, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
         ov65_02234708(param0, 72, sub_0202AD2C(v1, v0, 10), 164, 24);
     }
 
@@ -6376,7 +6376,7 @@ static void ov65_0223449C (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
         StringTemplate_SetPlazaMinigameName(param0->unk_BE0.unk_00, 0, UnkEnum_ov66_022324D0_01);
         MessageLoader_GetStrbuf(param0->unk_168, 71, param0->unk_170);
         StringTemplate_Format(param0->unk_BE0.unk_00, param0->unk_178, param0->unk_170);
-        Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, 0, param0->unk_178, 8, 48, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, 8, 48, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
         ov65_02234708(param0, 72, sub_0202AD2C(v1, v0, 11), 164, 48);
     }
 
@@ -6384,7 +6384,7 @@ static void ov65_0223449C (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
         StringTemplate_SetPlazaMinigameName(param0->unk_BE0.unk_00, 0, UnkEnum_ov66_022324D0_02);
         MessageLoader_GetStrbuf(param0->unk_168, 71, param0->unk_170);
         StringTemplate_Format(param0->unk_BE0.unk_00, param0->unk_178, param0->unk_170);
-        Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, 0, param0->unk_178, 8, 72, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, 8, 72, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
         ov65_02234708(param0, 72, sub_0202AD2C(v1, v0, 12), 164, 72);
     }
 }
@@ -6445,7 +6445,7 @@ static void ov65_02234708 (UnkStruct_ov65_0222EBE0 * param0, u32 param1, u32 par
 
     {
         u32 v0 = param3 - (Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_178, 0) + 1) / 2;
-        Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, 0, param0->unk_178, v0, param4, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, v0, param4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     }
 }
 
@@ -6476,16 +6476,16 @@ static void ov65_02234788 (UnkStruct_ov65_0222EBE0 * param0, u8 param1, u8 param
     sub_02019E2C(param0->unk_15C, 6, param1, param2, 16, 6, param3 + 4);
 }
 
-static u32 ov65_0223484C (u32 param0, int * param1)
+static u32 ov65_0223484C(u32 param0, TextColor *param1)
 {
     u32 v0;
 
-    *param1 = ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));
+    *param1 = TEXT_COLOR(1, 2, 0);
 
     switch (param0) {
     case 1:
         v0 = 36;
-        *param1 = ((u32)(((2 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0)));
+        *param1 = TEXT_COLOR(2, 14, 0);
         break;
     case 2:
     case 3:
@@ -6494,7 +6494,7 @@ static u32 ov65_0223484C (u32 param0, int * param1)
     case 6:
     case 7:
         v0 = 27;
-        *param1 = ((u32)(((2 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0)));
+        *param1 = TEXT_COLOR(2, 14, 0);
         break;
     case 9:
         v0 = 96;
@@ -6516,21 +6516,21 @@ static u32 ov65_0223484C (u32 param0, int * param1)
         break;
     case 8:
         v0 = 29;
-        *param1 = ((u32)(((2 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0)));
+        *param1 = TEXT_COLOR(2, 14, 0);
         break;
     case 15:
         v0 = 28;
         break;
     case 18:
         v0 = 31;
-        *param1 = ((u32)(((2 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0)));
+        *param1 = TEXT_COLOR(2, 14, 0);
         break;
     case 19:
         v0 = 30;
         break;
     case 20:
         v0 = 33;
-        *param1 = ((u32)(((2 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0)));
+        *param1 = TEXT_COLOR(2, 14, 0);
         break;
     case 21:
         v0 = 32;
@@ -6539,7 +6539,7 @@ static u32 ov65_0223484C (u32 param0, int * param1)
     case 24:
     case 26:
         v0 = 35;
-        *param1 = ((u32)(((2 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0)));
+        *param1 = TEXT_COLOR(2, 14, 0);
         break;
     case 23:
     case 25:
@@ -6560,7 +6560,7 @@ static u32 ov65_0223484C (u32 param0, int * param1)
 static void ov65_02234900 (UnkStruct_ov65_0222EBE0 * param0, Window * param1, u32 param2, u32 param3, u32 param4)
 {
     int v0;
-    int v1;
+    TextColor v1;
     int v2;
 
     BGL_FillWindow(param1, 0);
@@ -6569,16 +6569,16 @@ static void ov65_02234900 (UnkStruct_ov65_0222EBE0 * param0, Window * param1, u3
     v0 = sub_0202AD2C(param0->unk_00, param2 - 1, 8);
 
     if (v0 == 0) {
-        v1 = ((u32)(((5 & 0xff) << 16) | ((6 & 0xff) << 8) | ((0 & 0xff) << 0)));
+        v1 = TEXT_COLOR(5, 6, 0);
     } else {
-        v1 = ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((0 & 0xff) << 0)));
+        v1 = TEXT_COLOR(3, 4, 0);
     }
 
     ov65_02234F68(param0, param2 - 1);
 
     MessageLoader_GetStrbuf(param0->unk_168, 42, param0->unk_170);
     StringTemplate_Format(param0->unk_BE0.unk_00, param0->unk_178, param0->unk_170);
-    Text_AddPrinterWithParamsAndColor(param1, 1, param0->unk_178, 0, v2, 0xff, v1, NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_MESSAGE, param0->unk_178, 0, v2, TEXT_SPEED_NO_TRANSFER, v1, NULL);
     sub_0201A9A4(param1);
 }
 
@@ -6719,7 +6719,7 @@ static void ov65_02234A68 (UnkStruct_ov65_0222EBE0 * param0, NARC * param1, u32 
 
     {
         v8 = -((Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_178, 0) + 1) / 2);
-        Text_AddPrinterWithParamsAndColor(&v3, 2, v4, 0, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+        Text_AddPrinterWithParamsAndColor(&v3, FONT_SUBSCREEN, v4, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     }
 
     Strbuf_Free(v4);

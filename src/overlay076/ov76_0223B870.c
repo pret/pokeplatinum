@@ -158,7 +158,7 @@ void ov76_0223B98C(UnkStruct_ov76_0223DE00 *param0, int param1, int param2, int 
     {
         Window_Init(&v5);
         BGL_AddFramelessWindow(param0->unk_D4.unk_10, &v5, 10, 2, 0, 0);
-        Text_AddPrinterWithParamsAndColor(&v5, 2, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((2 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&v5, FONT_SUBSCREEN, v1, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 2), NULL);
     }
 
     v2 = 30000;
@@ -959,7 +959,7 @@ void ov76_0223CA30(Window *param0, int param1)
     v1 = MessageLoader_GetNewStrbuf(v0, param1);
 
     BGL_FillWindow(param0, 15);
-    Text_AddPrinterWithParams(param0, 1, v1, 0, 0, 0, NULL);
+    Text_AddPrinterWithParams(param0, FONT_MESSAGE, v1, 0, 0, TEXT_SPEED_INSTANT, NULL);
     sub_0201A954(param0);
     Strbuf_Free(v1);
     MessageLoader_Free(v0);
@@ -1020,7 +1020,7 @@ void ov76_0223CC8C(UnkStruct_ov76_0223DE00 *param0)
         v3 = sub_0202CA90(param0->unk_64, v2 - 1);
 
         Strbuf_FormatInt(v4, v3, 3, 1, 1);
-        Text_AddPrinterWithParamsAndColor(v5, 0, v4, (-1 + 8), 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(v5, FONT_SYSTEM, v4, (-1 + 8), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
         sub_0201A954(v5);
         Strbuf_Free(v4);
     }
@@ -1051,7 +1051,7 @@ void ov76_0223CD20(UnkStruct_ov76_0223DE00 *param0, int param1)
     v3 = sub_0202CA90(param0->unk_64, v2 - 1);
 
     Strbuf_FormatInt(v4, v3, 3, 1, 1);
-    Text_AddPrinterWithParamsAndColor(v5, 1, v4, (-1 + 8), 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(v5, FONT_MESSAGE, v4, (-1 + 8), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     sub_0201A954(v5);
     Strbuf_Free(v4);
 }
@@ -1081,7 +1081,7 @@ void ov76_0223CDC4(Window *param0, int param1)
     v1 = MessageLoader_GetNewStrbuf(v0, param1);
 
     BGL_FillWindow(param0, 15);
-    Text_AddPrinterWithParams(param0, 1, v1, 0, 0, 0, NULL);
+    Text_AddPrinterWithParams(param0, FONT_MESSAGE, v1, 0, 0, TEXT_SPEED_INSTANT, NULL);
     sub_0201A954(param0);
     Strbuf_Free(v1);
     MessageLoader_Free(v0);

@@ -40,7 +40,7 @@ static void ov22_0225A7B8(UnkStruct_ov22_022597BC *param0);
 static void ov22_0225A7C0(Window *param0);
 static s32 ov22_0225A7CC(Window *param0, int param1, int param2, int param3, int param4, int param5, u32 param6);
 static s32 ov22_0225A814(Window *param0, int param1, int param2, int param3, int param4, int param5, u32 param6, Strbuf **param7);
-static s32 ov22_0225A860(Window *param0, int param1, int param2, int param3, int param4, int param5, u32 param6, u32 param7);
+static s32 ov22_0225A860(Window *param0, int param1, int param2, int param3, int param4, int param5, TextColor param6, u32 param7);
 static s32 ov22_0225A8B4(Window *param0, int param1, int param2, int param3, int param4, int param5, u32 param6, u32 param7, Strbuf **param8);
 static void ov22_0225A914(UnkStruct_ov22_0225A914 *param0, CellActorCollection *param1, SpriteResourceCollection **param2, int param3, NARC *param4);
 static void ov22_0225A9C8(UnkStruct_ov22_0225A914 *param0, int param1);
@@ -85,8 +85,8 @@ void ov22_0225A428(UnkStruct_ov22_0225A428 *param0, UnkStruct_ov22_02256BAC *par
     if (param2 & 32) {
         ov22_0225A748(&param0->unk_134, param1->unk_00, 2, 1, 27, 2, (18 + 12) + (1 + (27 * 4)), 1);
         BGL_FillWindow(param0->unk_134, 15);
-        ov22_0225A860(param0->unk_134, 26, param1->unk_14, 6, 0, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0)), 0xff);
-        ov22_0225A860(param0->unk_134, 26, param1->unk_14, param1->unk_18, 72, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0)), 0xff);
+        ov22_0225A860(param0->unk_134, 26, param1->unk_14, 6, 0, 0, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
+        ov22_0225A860(param0->unk_134, 26, param1->unk_14, param1->unk_18, 72, 0, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
         sub_0200E060(param0->unk_134, 0, 1, 1);
     }
 
@@ -140,7 +140,7 @@ void ov22_0225A610(UnkStruct_ov22_0225A428 *param0)
 void ov22_0225A628(UnkStruct_ov22_0225A428 *param0, int param1, int param2, int param3)
 {
     GF_ASSERT(param0->unk_138 & 4);
-    ov22_0225A7CC(param0->unk_2C, param1, param2, param3, 0, 0, 0xff);
+    ov22_0225A7CC(param0->unk_2C, param1, param2, param3, 0, 0, TEXT_SPEED_NO_TRANSFER);
 }
 
 s32 ov22_0225A660(UnkStruct_ov22_0225A428 *param0, int param1, int param2, int param3)
@@ -233,7 +233,7 @@ static s32 ov22_0225A7CC(Window *param0, int param1, int param2, int param3, int
     s32 v0;
 
     BGL_FillWindow(param0, 15);
-    v0 = ov22_0225A860(param0, param1, param2, param3, param4, param5, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0)), param6);
+    v0 = ov22_0225A860(param0, param1, param2, param3, param4, param5, TEXT_COLOR(1, 2, 15), param6);
     sub_0200E060(param0, 0, 1, 1);
 
     return v0;
@@ -244,13 +244,13 @@ static s32 ov22_0225A814(Window *param0, int param1, int param2, int param3, int
     s32 v0;
 
     BGL_FillWindow(param0, 15);
-    v0 = ov22_0225A8B4(param0, param1, param2, param3, param4, param5, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0)), param6, param7);
+    v0 = ov22_0225A8B4(param0, param1, param2, param3, param4, param5, TEXT_COLOR(1, 2, 15), param6, param7);
     sub_0200E060(param0, 0, 1, 1);
 
     return v0;
 }
 
-static s32 ov22_0225A860(Window *param0, int param1, int param2, int param3, int param4, int param5, u32 param6, u32 param7)
+static s32 ov22_0225A860(Window *param0, int param1, int param2, int param3, int param4, int param5, TextColor param6, u32 param7)
 {
     MessageLoader *v0;
     Strbuf *v1;
@@ -260,7 +260,7 @@ static s32 ov22_0225A860(Window *param0, int param1, int param2, int param3, int
     GF_ASSERT(v0);
 
     v1 = MessageLoader_GetNewStrbuf(v0, param3);
-    v2 = Text_AddPrinterWithParamsAndColor(param0, 1, v1, param4, param5, param7, param6, NULL);
+    v2 = Text_AddPrinterWithParamsAndColor(param0, FONT_MESSAGE, v1, param4, param5, param7, param6, NULL);
 
     Strbuf_Free(v1);
     MessageLoader_Free(v0);
@@ -278,7 +278,7 @@ static s32 ov22_0225A8B4(Window *param0, int param1, int param2, int param3, int
     v0 = MessageLoader_Init(0, param1, param2, 13);
     GF_ASSERT(v0);
     *param8 = MessageLoader_GetNewStrbuf(v0, param3);
-    v1 = Text_AddPrinterWithParamsAndColor(param0, 1, *param8, param4, param5, param7, param6, NULL);
+    v1 = Text_AddPrinterWithParamsAndColor(param0, FONT_MESSAGE, *param8, param4, param5, param7, param6, NULL);
 
     MessageLoader_Free(v0);
 
@@ -413,8 +413,8 @@ static void ov22_0225AB54(UnkStruct_ov22_0225AB54 *param0, CellActorCollection *
 
     BGL_FillWindow(param0->unk_18, 0);
 
-    ov22_0225A860(param0->unk_18, 26, 385, 4, 0, 4, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), 0xff);
-    ov22_0225A860(param0->unk_18, 26, 385, 5, 0 + 72, 4, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), 0xff);
+    ov22_0225A860(param0->unk_18, 26, 385, 4, 0, 4, TEXT_COLOR(1, 2, 0), TEXT_SPEED_NO_TRANSFER);
+    ov22_0225A860(param0->unk_18, 26, 385, 5, 0 + 72, 4, TEXT_COLOR(1, 2, 0), TEXT_SPEED_NO_TRANSFER);
 
     sub_0201A954(param0->unk_18);
 }

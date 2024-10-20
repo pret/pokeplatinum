@@ -435,7 +435,7 @@ static void ov19_021DBF4C(UnkStruct_ov19_021DBA9C *param0)
     v3 = 48 - (v2 / 2);
 
     BGL_FillWindow(v1, 7);
-    Text_AddPrinterWithParamsAndColor(v1, 0, param0->unk_4BFC, v3, 0, 0xff, (u32)(((2 & 0xff) << 16) | ((8 & 0xff) << 8) | ((7 & 0xff) << 0)), NULL);
+    Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, param0->unk_4BFC, v3, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(2, 8, 7), NULL);
     sub_0201ACCC(v1);
 }
 
@@ -603,7 +603,7 @@ void ov19_021DC29C(UnkStruct_ov19_021DBA9C *param0)
         sub_020198C0(param0->unk_04, 1, param0->unk_38->rawData, 0, 24, 32, 7);
         BGL_FillWindow(&param0->unk_10[2], 4);
         MessageLoader_GetStrbuf(param0->unk_4BF8, v1, param0->unk_4BFC);
-        Text_AddPrinterWithParamsAndColor(&param0->unk_10[2], 0, param0->unk_4BFC, 0, 0, 0xff, (u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((4 & 0xff) << 0)), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_10[2], FONT_SYSTEM, param0->unk_4BFC, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(2, 1, 4), NULL);
         sub_0201A954(&param0->unk_10[2]);
 
         ov19_021DC4F8(param0, v1);

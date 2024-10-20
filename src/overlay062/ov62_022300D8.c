@@ -741,7 +741,7 @@ void ov62_02230FC8(UnkStruct_0208C06C *param0, UnkStruct_ov62_022307C0_sub1 *par
 
     Window_Init(&v2);
     BGL_AddFramelessWindow(param0->unk_14.unk_10, &v2, 20, 2, 0, 0);
-    Text_AddPrinterWithParamsAndColor(&v2, 0, v0, 0, 0, 0xff, ((u32)(((14 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(&v2, FONT_SYSTEM, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(14, 13, 0), NULL);
     sub_02012BE0(param1->unk_14, param1->unk_18, &v2, 102);
     Strbuf_Free(v0);
     BGL_DeleteWindow(&v2);
@@ -818,7 +818,7 @@ void ov62_0223124C(UnkStruct_ov62_022312B0 *param0, UnkStruct_ov62_0223118C *par
 
     Window_Init(&v2);
     BGL_AddFramelessWindow(param1->unk_10, &v2, 20, 2, 0, 0);
-    Text_AddPrinterWithParamsAndColor(&v2, 0, v0, 0, 0, 0xff, ((u32)(((14 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(&v2, FONT_SYSTEM, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(14, 13, 0), NULL);
     sub_02012BE0(param0->unk_0C, param0->unk_10, &v2, 102);
     Strbuf_Free(v0);
     BGL_DeleteWindow(&v2);

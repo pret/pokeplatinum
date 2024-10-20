@@ -688,7 +688,7 @@ static void ov7_0224D85C(BmpList *param0, u32 param1, u8 param2)
             MessageLoader_Free(v3);
         }
 
-        Text_AddPrinterWithParamsAndColor(&v0->unk_08[1], 0, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&v0->unk_08[1], FONT_SYSTEM, v1, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
         Strbuf_Free(v1);
 
         ov7_0224EB7C(v0, (u16)param1);
@@ -750,7 +750,7 @@ static void ov7_0224D9B8(BmpList *param0, u32 param1, u8 param2)
 
         v4 = Font_CalcStrbufWidth(FONT_SYSTEM, v1, 0);
 
-        Text_AddPrinterWithParamsAndColor(&v0->unk_08[0], 0, v1, (19 * 8) - v4, param2, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&v0->unk_08[0], FONT_SYSTEM, v1, (19 * 8) - v4, param2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
         Strbuf_Free(v2);
         Strbuf_Free(v1);
     }
@@ -759,7 +759,7 @@ static void ov7_0224D9B8(BmpList *param0, u32 param1, u8 param2)
         Strbuf *v6 = MessageLoader_GetNewStrbuf(v0->unk_88, 8);
 
         BGL_WindowColor(&v0->unk_08[0], 15, 0, param2, 19 * 8, 16);
-        Text_AddPrinterWithParamsAndColor(&v0->unk_08[0], 0, v6, 0, param2, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&v0->unk_08[0], FONT_SYSTEM, v6, 0, param2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
         Strbuf_Free(v6);
     }
 }
@@ -789,7 +789,7 @@ static void ov7_0224DAF8(UnkStruct_ov7_0224D008 *param0, u8 param1)
 
         v3 = Font_CalcStrbufWidth(FONT_SYSTEM, v0, 0);
 
-        Text_AddPrinterWithParams(&param0->unk_08[2], 0, v0, (9 * 8) - v3 - 8, 0, 0xff, NULL);
+        Text_AddPrinterWithParams(&param0->unk_08[2], FONT_SYSTEM, v0, (9 * 8) - v3 - 8, 0, TEXT_SPEED_NO_TRANSFER, NULL);
     } else {
         if (param1 == 0) {
             BGL_FillWindow(&param0->unk_08[2], 15);
@@ -797,7 +797,7 @@ static void ov7_0224DAF8(UnkStruct_ov7_0224D008 *param0, u8 param1)
 
             v1 = MessageLoader_GetNewStrbuf(param0->unk_88, 18);
 
-            Text_AddPrinterWithParams(&param0->unk_08[2], 0, v1, 0, 0, 0xff, NULL);
+            Text_AddPrinterWithParams(&param0->unk_08[2], FONT_SYSTEM, v1, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
             Strbuf_Free(v1);
         } else {
             BGL_WindowColor(&param0->unk_08[2], 15, 0, 16, (9 * 8), 16);
@@ -812,7 +812,7 @@ static void ov7_0224DAF8(UnkStruct_ov7_0224D008 *param0, u8 param1)
 
         v3 = Font_CalcStrbufWidth(FONT_SYSTEM, v0, 0);
 
-        Text_AddPrinterWithParams(&param0->unk_08[2], 0, v0, (9 * 8) - v3, 16, 0xff, NULL);
+        Text_AddPrinterWithParams(&param0->unk_08[2], FONT_SYSTEM, v0, (9 * 8) - v3, 16, TEXT_SPEED_NO_TRANSFER, NULL);
     }
 
     Strbuf_Free(v1);
@@ -955,7 +955,7 @@ static void ov7_0224DED4(UnkStruct_ov7_0224D008 *param0)
 
     StringTemplate_SetNumber(param0->unk_8C, 0, v2, 3, 1, 1);
     StringTemplate_Format(param0->unk_8C, v0, v1);
-    Text_AddPrinterWithParams(&param0->unk_08[4], 0, v0, 0, 0, 0xff, NULL);
+    Text_AddPrinterWithParams(&param0->unk_08[4], FONT_SYSTEM, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
     Strbuf_Free(v1);
     Strbuf_Free(v0);
     sub_0201A9A4(&param0->unk_08[4]);
@@ -1087,7 +1087,7 @@ static void ov7_0224E28C(UnkStruct_ov7_0224D008 *param0, u8 param1)
 
     StringTemplate_SetNumber(param0->unk_8C, 0, param0->unk_2AC, 2, 2, 1);
     StringTemplate_Format(param0->unk_8C, v0, v1);
-    Text_AddPrinterWithParams(&param0->unk_08[3], 0, v0, 0, 8, 0xff, NULL);
+    Text_AddPrinterWithParams(&param0->unk_08[3], FONT_SYSTEM, v0, 0, 8, TEXT_SPEED_NO_TRANSFER, NULL);
     Strbuf_Free(v1);
 
     if (param0->unk_2A9 == 3) {
@@ -1101,7 +1101,7 @@ static void ov7_0224E28C(UnkStruct_ov7_0224D008 *param0, u8 param1)
 
     v2 = Font_CalcStrbufWidth(FONT_SYSTEM, v0, 0);
 
-    Text_AddPrinterWithParams(&param0->unk_08[3], 0, v0, (12 * 8) - v2, 8, 0xff, NULL);
+    Text_AddPrinterWithParams(&param0->unk_08[3], FONT_SYSTEM, v0, (12 * 8) - v2, 8, TEXT_SPEED_NO_TRANSFER, NULL);
     Strbuf_Free(v1);
     Strbuf_Free(v0);
     sub_0201A9A4(&param0->unk_08[3]);

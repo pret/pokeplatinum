@@ -164,7 +164,7 @@ void sub_02039834(int param0, int param1, int param2)
     MessageLoader_GetStrbuf(v2, v6, v4);
     StringTemplate_Format(v5, v3, v4);
 
-    Text_AddPrinterWithParams(&v1, 0, v3, 0, 0, 0, NULL);
+    Text_AddPrinterWithParams(&v1, FONT_SYSTEM, v3, 0, 0, TEXT_SPEED_INSTANT, NULL);
     Strbuf_Free(v3);
 
     GXLayers_TurnBothDispOn();

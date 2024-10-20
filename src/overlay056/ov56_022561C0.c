@@ -464,13 +464,13 @@ static void ov56_022567FC(UnkStruct_ov56_02256468 *param0, int param1, UnkStruct
     BGL_FillWindow(&param0->unk_22C[param1].unk_00, 0x0);
     BGL_FillWindow(&param0->unk_22C[param1].unk_10, 0x0);
     BGL_FillWindow(&param0->unk_22C[param1].unk_20, 0x0);
-    Text_AddPrinterWithParamsAndColor(&param0->unk_22C[param1].unk_00, 1, param2->unk_00, 0, 1, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
-    Text_AddPrinterWithParamsAndColor(&param0->unk_22C[param1].unk_10, 1, param2->unk_04, 0, 6, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_22C[param1].unk_00, FONT_MESSAGE, param2->unk_00, 0, 1, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_22C[param1].unk_10, FONT_MESSAGE, param2->unk_04, 0, 6, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     sub_0201A9A4(&param0->unk_22C[param1].unk_00);
     sub_0201A9A4(&param0->unk_22C[param1].unk_10);
 
     if (param2->unk_08) {
-        Text_AddPrinterWithParamsAndColor(&param0->unk_22C[param1].unk_20, 1, param2->unk_08, 0, 1, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_22C[param1].unk_20, FONT_MESSAGE, param2->unk_08, 0, 1, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     }
 
     sub_0201A9A4(&param0->unk_22C[param1].unk_20);

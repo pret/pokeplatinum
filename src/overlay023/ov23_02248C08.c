@@ -13,12 +13,12 @@
 #include "overlay023/struct_ov23_02248D20.h"
 #include "overlay084/struct_ov84_02240FA8.h"
 
+#include "colored_arrow.h"
 #include "core_sys.h"
 #include "heap.h"
 #include "unk_0200112C.h"
 #include "unk_02005474.h"
 #include "unk_02013A04.h"
-#include "unk_020149F0.h"
 #include "unk_0202854C.h"
 
 UnkStruct_ov23_02248D20 *ov23_02248C08(UnkStruct_ov84_02240FA8 *param0, u16 param1, u16 param2, u8 param3, UnkFuncPtr_ov23_02248D20 param4, UndergroundData *param5, BOOL param6)
@@ -32,9 +32,9 @@ UnkStruct_ov23_02248D20 *ov23_02248C08(UnkStruct_ov84_02240FA8 *param0, u16 para
     if (v0->unk_00) {
         v0->unk_04 = param5;
         v0->unk_1E = param6;
-        v0->unk_10 = sub_020149F0(param3);
+        v0->unk_10 = ColoredArrow_New(param3);
 
-        sub_02014A40(v0->unk_10, (u32)(((8 & 0xff) << 16) | ((9 & 0xff) << 8) | ((15 & 0xff) << 0)));
+        ColoredArrow_SetColor(v0->unk_10, TEXT_COLOR(8, 9, 15));
 
         v0->unk_1D = param3;
 
@@ -79,7 +79,7 @@ static void ov23_02248CA4(u16 param0, u16 param1, UnkStruct_ov23_02248D20 *param
         int v4 = (v0 - param0) * v3 + sub_02001504(param2->unk_0C, 8);
         Window *v5 = (Window *)sub_02001504(param2->unk_0C, 18);
 
-        sub_02014A58(param2->unk_10, v5, v2, v4);
+        ColoredArrow_Print(param2->unk_10, v5, v2, v4);
     }
 }
 
@@ -211,7 +211,7 @@ void ov23_02248EF8(UnkStruct_ov23_02248D20 *param0, u16 *param1, u16 *param2)
     sub_02001384(v0, param1, param2);
 
     if (param0->unk_00) {
-        sub_02014A20(param0->unk_10);
+        ColoredArrow_Free(param0->unk_10);
         Heap_FreeToHeap(param0->unk_08);
     }
 

@@ -1350,7 +1350,7 @@ static void ov22_022572A0(UnkStruct_ov22_02255D44 *param0, u32 param1, u8 param2
     v0 = MessageLoader_Init(0, 26, 385, 13);
     v1 = MessageLoader_GetNewStrbuf(v0, param1);
 
-    Text_AddPrinterWithParamsAndColor(param0->unk_718, 1, v1, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param0->unk_718, FONT_MESSAGE, v1, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
     Strbuf_Free(v1);
     MessageLoader_Free(v0);
     sub_0201A954(param0->unk_718);
@@ -1369,7 +1369,7 @@ static void ov22_02257368(UnkStruct_ov22_02255D44 *param0, u32 param1)
     v1 = Strbuf_Init(256, 13);
 
     StringTemplate_Format(param0->unk_744, v1, v2);
-    Text_AddPrinterWithParamsAndColor(param0->unk_718, 1, v1, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param0->unk_718, FONT_MESSAGE, v1, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
     Strbuf_Free(v1);
     Strbuf_Free(v2);
     MessageLoader_Free(v0);
@@ -1396,10 +1396,10 @@ static u32 ov22_022573EC(UnkStruct_ov22_02255D44 *param0, u32 param1)
     if (param0->unk_734->unk_16 == 0) {
         v2 = Options_TextFrameDelay(param0->unk_738);
     } else {
-        v2 = 1;
+        v2 = TEXT_SPEED_FAST;
     }
 
-    v0 = Text_AddPrinterWithParamsAndColor(param0->unk_718, 1, param0->unk_740, 0, 0, v2, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+    v0 = Text_AddPrinterWithParamsAndColor(param0->unk_718, FONT_MESSAGE, param0->unk_740, 0, 0, v2, TEXT_COLOR(1, 2, 15), NULL);
 
     Strbuf_Free(v3);
     MessageLoader_Free(v1);

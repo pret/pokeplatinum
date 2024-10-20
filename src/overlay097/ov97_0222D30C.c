@@ -857,7 +857,7 @@ static void ov97_0222DE78(OverlayManager *param0, Window *param1, u32 param2)
         v0 = MessageUtil_ExpandedStrbuf(v1->unk_0C, v1->unk_10, param2, 86);
     }
 
-    v1->unk_6C = Text_AddPrinterWithParamsAndColor(param1, 1, v0, 0, 0, v1->unk_68, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+    v1->unk_6C = Text_AddPrinterWithParamsAndColor(param1, FONT_MESSAGE, v0, 0, 0, v1->unk_68, TEXT_COLOR(1, 2, 15), NULL);
 
     if (v1->unk_14 == NULL) {
         Strbuf_Free(v0);
@@ -879,7 +879,7 @@ static void ov97_0222DF10(OverlayManager *param0, Window *param1, u16 *param2)
 
     Strbuf_CopyNumChars(v0, param2, 36);
     BGL_FillWindow(param1, Font_GetAttribute(FONT_SYSTEM, FONTATTR_BG_COLOR));
-    Text_AddPrinterWithParamsAndColor(param1, 0, v0, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
     Window_Show(param1, 0, (1 + (18 + 12)), 3);
     Strbuf_Free(v0);
 }

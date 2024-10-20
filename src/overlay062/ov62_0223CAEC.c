@@ -347,7 +347,7 @@ static void ov62_0223CF2C (UnkStruct_0208C06C * param0)
         v5 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 80 + v3);
         v4 = ov62_0223429C(v1, v5);
 
-        Text_AddPrinterWithParamsAndColor(v1, 0, v5, v4, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, v5, v4, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 0), NULL);
         sub_0201A9A4(v1);
         Strbuf_Free(v5);
     }
@@ -399,7 +399,7 @@ static void ov62_0223D004 (UnkStruct_0208C06C * param0)
         v5 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 67);
         v4 = 0;
 
-        Text_AddPrinterWithParamsAndColor(v1, 0, v5, v4, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, v5, v4, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 0), NULL);
         sub_0201A9A4(v1);
         Strbuf_Free(v5);
     }

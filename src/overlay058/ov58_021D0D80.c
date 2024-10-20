@@ -272,7 +272,7 @@ int ov58_021D0F08(OverlayManager *param0, int *param1)
             *param1 = Unk_ov58_021D3180[v0->unk_368].unk_00(v0, *param1);
         }
 
-        ov58_021D28E4(v0->unk_2DC, 0, (u32)(((0xe & 0xff) << 16) | ((0xd & 0xff) << 8) | ((0xf & 0xff) << 0)), v0);
+        ov58_021D28E4(v0->unk_2DC, 0, TEXT_COLOR(14, 13, 15), v0);
 
         if (CommSys_CurNetId() == 0) {
             int v1 = ov58_021D2B5C(v0);
@@ -741,7 +741,7 @@ static void ov58_021D18AC(UnkStruct_02095EAC *param0, OverlayManager *param1)
 
     {
         u32 v0 = Font_CalcCenterAlignment(FONT_MESSAGE, param0->unk_28, 0, (7 - 1) * 8) + 2;
-        Text_AddPrinterWithParamsAndColor(&param0->unk_34C, 1, param0->unk_28, v0, 0, 0, (u32)(((0x7 & 0xff) << 16) | ((0x1 & 0xff) << 8) | ((0x0 & 0xff) << 0)), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_34C, FONT_MESSAGE, param0->unk_28, v0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(7, 1, 0), NULL);
     }
 
     {
@@ -752,7 +752,7 @@ static void ov58_021D18AC(UnkStruct_02095EAC *param0, OverlayManager *param1)
             BGL_FillWindow(&param0->unk_2DC[v1], 0);
         }
 
-        ov58_021D28E4(param0->unk_2DC, 0, (u32)(((0xe & 0xff) << 16) | ((0xd & 0xff) << 8) | ((0xf & 0xff) << 0)), param0);
+        ov58_021D28E4(param0->unk_2DC, 0, TEXT_COLOR(14, 13, 15), param0);
     }
 }
 
@@ -839,7 +839,7 @@ static void ov58_021D1A80(UnkStruct_02095EAC *param0)
 
                     sub_02037B58(CommSys_ConnectedCount());
                     param0->unk_9458 = 2;
-                    ov58_021D2A98(param0, 1, 1);
+                    ov58_021D2A98(param0, 1, TEXT_SPEED_FAST);
                     ov58_021D2CB0(param0, 5);
                     ov58_021D1CDC(param0->unk_2AC, 1);
                     v2 = 1;
@@ -848,7 +848,7 @@ static void ov58_021D1A80(UnkStruct_02095EAC *param0)
                     if (param0->unk_43E6[0].unk_09 == 2) {
                         Sound_PlayEffect(1522);
                     } else {
-                        ov58_021D2A98(param0, 1, 1);
+                        ov58_021D2A98(param0, 1, TEXT_SPEED_FAST);
                         ov58_021D2CB0(param0, 5);
                         ov58_021D1CDC(param0->unk_2AC, 1);
                         v2 = 1;
@@ -949,9 +949,9 @@ static void ov58_021D1D40(UnkStruct_02095EAC *param0)
 static int ov58_021D1D64(UnkStruct_02095EAC *param0, int param1)
 {
     if (CommSys_CurNetId() == param0->unk_384) {
-        ov58_021D2A98(param0, 13, 0);
+        ov58_021D2A98(param0, 13, TEXT_SPEED_INSTANT);
     } else {
-        ov58_021D2A98(param0, 0, 0);
+        ov58_021D2A98(param0, 0, TEXT_SPEED_INSTANT);
     }
 
     ov58_021D2CB0(param0, 2);
@@ -1038,7 +1038,7 @@ static int ov58_021D1E4C(UnkStruct_02095EAC *param0, int param1)
     case 1:
         if (CommSys_CurNetId() == 0) {
             ov58_021D2CB0(param0, 13);
-            ov58_021D2A98(param0, 4, 1);
+            ov58_021D2A98(param0, 4, TEXT_SPEED_FAST);
         } else {
             UnkStruct_02095FE4 v1;
 
@@ -1136,7 +1136,7 @@ static int ov58_021D20A8(UnkStruct_02095EAC *param0, int param1)
 {
     u8 v0;
 
-    ov58_021D2A98(param0, 6, 1);
+    ov58_021D2A98(param0, 6, TEXT_SPEED_FAST);
     ov58_021D2CB0(param0, 11);
     ov58_021D1D40(param0);
 
@@ -1227,7 +1227,7 @@ static int ov58_021D223C(UnkStruct_02095EAC *param0, int param1)
 {
     StringTemplate_SetPlayerName(param0->unk_0C, 0, CommInfo_TrainerInfo(0));
 
-    ov58_021D2A98(param0, 3, 1);
+    ov58_021D2A98(param0, 3, TEXT_SPEED_FAST);
     ov58_021D2CB0(param0, 16);
     ov58_021D1D40(param0);
 
@@ -1263,7 +1263,7 @@ static int ov58_021D22D8(UnkStruct_02095EAC *param0, int param1)
 
 static int ov58_021D22DC(UnkStruct_02095EAC *param0, int param1)
 {
-    ov58_021D2A98(param0, 5, 1);
+    ov58_021D2A98(param0, 5, TEXT_SPEED_FAST);
     ov58_021D2CB0(param0, 20);
     ov58_021D1D40(param0);
 
@@ -1286,7 +1286,7 @@ static int ov58_021D2320(UnkStruct_02095EAC *param0, int param1)
         Text_RemovePrinter(param0->unk_30);
     }
 
-    ov58_021D2A98(param0, 2, 1);
+    ov58_021D2A98(param0, 2, TEXT_SPEED_FAST);
     ov58_021D2CB0(param0, 22);
     Sound_PlayEffect(1508);
 
@@ -1652,9 +1652,9 @@ static void ov58_021D28E4(Window *param0, int param1, u32 param2, UnkStruct_0209
             TrainerInfo_NameStrbuf(param3->unk_398[v0][0], param3->unk_14[v0]);
 
             if (v1 == v0) {
-                Text_AddPrinterWithParamsAndColor(&param0[v0], 1, param3->unk_14[v0], 0, 0, 0xff, (u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((15 & 0xff) << 0)), NULL);
+                Text_AddPrinterWithParamsAndColor(&param0[v0], FONT_MESSAGE, param3->unk_14[v0], 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 4, 15), NULL);
             } else {
-                Text_AddPrinterWithParamsAndColor(&param0[v0], 1, param3->unk_14[v0], 0, 0, 0xff, param2, NULL);
+                Text_AddPrinterWithParamsAndColor(&param0[v0], FONT_MESSAGE, param3->unk_14[v0], 0, 0, TEXT_SPEED_NO_TRANSFER, param2, NULL);
             }
         }
 
@@ -1730,7 +1730,7 @@ static void ov58_021D2A98(UnkStruct_02095EAC *param0, int param1, int param2)
         param2 = 0;
     }
 
-    param0->unk_30 = Text_AddPrinterWithParams(&param0->unk_33C, 1, param0->unk_2C, 0, 0, param2, NULL);
+    param0->unk_30 = Text_AddPrinterWithParams(&param0->unk_33C, FONT_MESSAGE, param0->unk_2C, 0, 0, param2, NULL);
 
     if (param2 == 0) {
         param0->unk_30 = 0xff;

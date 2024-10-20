@@ -187,7 +187,7 @@ void ov97_02237808(UnkStruct_ov97_02237808 *param0, Window *param1, int param2, 
     param0->unk_3C = param5;
     param0->unk_2C = 0;
     param0->unk_40 = 0;
-    param0->unk_44 = ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0)));
+    param0->unk_44 = TEXT_COLOR(1, 2, 15);
     param0->unk_48 = 15;
     param0->unk_00 = 0;
     param0->unk_20 = param0->unk_24 = 0;

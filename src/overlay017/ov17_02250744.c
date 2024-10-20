@@ -245,7 +245,7 @@ static void ov17_022508E4(UnkStruct_ov17_0224FCA0 *param0, MessageLoader *param1
     if (param0->unk_00->unk_155 == 0) {
         v1 = Options_TextFrameDelay(param0->unk_00->unk_196C);
     } else {
-        v1 = 1;
+        v1 = TEXT_SPEED_FAST;
     }
 
     v0 = MessageLoader_GetNewStrbuf(param1, param2);
@@ -254,7 +254,7 @@ static void ov17_022508E4(UnkStruct_ov17_0224FCA0 *param0, MessageLoader *param1
     StringTemplate_Format(param0->unk_10.unk_B8, param0->unk_10.unk_BC, v0);
     BGL_FillWindow(&param0->unk_10.unk_24[0], 0xff);
 
-    param0->unk_10.unk_388 = Text_AddPrinterWithParams(&param0->unk_10.unk_24[0], 1, param0->unk_10.unk_BC, 0, 0, v1, NULL);
+    param0->unk_10.unk_388 = Text_AddPrinterWithParams(&param0->unk_10.unk_24[0], FONT_MESSAGE, param0->unk_10.unk_BC, 0, 0, v1, NULL);
 
     Strbuf_Free(v0);
 }
@@ -344,8 +344,8 @@ void ov17_02250B00(UnkStruct_ov17_0224FCA0 *param0)
             Pokemon_GetValue(param0->unk_10.unk_00->unk_00[v4], MON_DATA_NICKNAME_STRBUF, v2);
             BGL_FillWindow(&param0->unk_10.unk_24[1 + v3], 0x0);
             BGL_FillWindow(&param0->unk_10.unk_24[5 + v3], 0x0);
-            Text_AddPrinterWithParamsAndColor(&param0->unk_10.unk_24[1 + v3], 0, v2, 0, 3, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-            Text_AddPrinterWithParamsAndColor(&param0->unk_10.unk_24[5 + v3], 0, param0->unk_00->unk_00.unk_D8[v4], 0, 3, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+            Text_AddPrinterWithParamsAndColor(&param0->unk_10.unk_24[1 + v3], FONT_SYSTEM, v2, 0, 3, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+            Text_AddPrinterWithParamsAndColor(&param0->unk_10.unk_24[5 + v3], FONT_SYSTEM, param0->unk_00->unk_00.unk_D8[v4], 0, 3, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
         }
 
         Strbuf_Free(v2);

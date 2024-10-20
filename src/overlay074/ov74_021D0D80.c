@@ -544,7 +544,7 @@ static void ov74_021D1668(UnkStruct_ov74_021D0D80 *param0)
 {
     u32 v0, v1;
     u16 v2;
-    u32 v3, v4, v5;
+    TextColor v3, v4, v5;
     Strbuf *v6;
     Strbuf *v7;
     static const u8 v8[7] = {
@@ -557,22 +557,22 @@ static void ov74_021D1668(UnkStruct_ov74_021D0D80 *param0)
         42,
     };
 
-    v5 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0));
-    v3 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0));
-    v4 = (u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((15 & 0xff) << 0));
+    v5 = TEXT_COLOR(1, 2, 0);
+    v3 = TEXT_COLOR(1, 2, 15);
+    v4 = TEXT_COLOR(3, 4, 15);
     v6 = Strbuf_Init(256, param0->unk_00);
 
     MessageLoader_GetStrbuf(param0->unk_20, 0, v6);
 
     v1 = 2;
-    Text_AddPrinterWithParamsAndColor(&param0->unk_2C[0], 0, v6, v1, 2, 0, v5, NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_2C[0], FONT_SYSTEM, v6, v1, 2, TEXT_SPEED_INSTANT, v5, NULL);
 
     v1 = 4;
 
     for (v2 = 0; v2 < 7; v2++) {
         Strbuf_Clear(v6);
         MessageLoader_GetStrbuf(param0->unk_20, v8[v2], v6);
-        Text_AddPrinterWithParamsAndColor(&param0->unk_2C[1], 0, v6, v1, 16 * v2, 0xff, v3, NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_2C[1], FONT_SYSTEM, v6, v1, 16 * v2, TEXT_SPEED_NO_TRANSFER, v3, NULL);
     }
 
     for (v2 = 0; v2 < 7; v2++) {
@@ -627,13 +627,13 @@ static void ov74_021D17CC(UnkStruct_ov74_021D0D80 *param0, u16 param1)
     s8 v5 = 0;
     static const s8 v6[] = { 0, 0, 0, 0, 0, 0, 0 };
 
-    v0 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0));
-    v1 = (u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((15 & 0xff) << 0));
+    v0 = TEXT_COLOR(1, 2, 15);
+    v1 = TEXT_COLOR(3, 4, 15);
 
     BGL_WindowColor(&(param0->unk_2C[1]), WINCLR_COL(15), (12 * 8 + 4) + v6[param1], 0 + param1 * 16, (48 * 8), 16);
 
     if (param1 == 5) {
-        Text_AddPrinterWithParamsAndColor(&param0->unk_2C[1], 0, param0->unk_5C[param1].unk_04[param0->unk_5C[param1].unk_02], 1 * 48 + (12 * 8 + 4), 16 * param1 + 0, 0xff, v1, NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_2C[1], FONT_SYSTEM, param0->unk_5C[param1].unk_04[param0->unk_5C[param1].unk_02], 1 * 48 + (12 * 8 + 4), 16 * param1 + 0, TEXT_SPEED_NO_TRANSFER, v1, NULL);
         sub_0201A954(&param0->unk_2C[1]);
         param0->unk_10_21 = 1;
         return;
@@ -658,16 +658,16 @@ static void ov74_021D17CC(UnkStruct_ov74_021D0D80 *param0, u16 param1)
         }
 
         if (v3 == param0->unk_5C[param1].unk_00 - 1) {
-            v4 = 0xff;
+            v4 = TEXT_SPEED_NO_TRANSFER;
         } else {
-            v4 = 0xff;
+            v4 = TEXT_SPEED_NO_TRANSFER;
         }
 
         if (param1 == 4) {
-            Text_AddPrinterWithParamsAndColor(&param0->unk_2C[1], 0, param0->unk_5C[param1].unk_04[v3], (12 * 8 + 4) - 0 + v5, 16 * param1 + 0, v4, v2, NULL);
+            Text_AddPrinterWithParamsAndColor(&param0->unk_2C[1], FONT_SYSTEM, param0->unk_5C[param1].unk_04[v3], (12 * 8 + 4) - 0 + v5, 16 * param1 + 0, v4, v2, NULL);
             v5 += Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_5C[param1].unk_04[v3], 0) + 12;
         } else {
-            Text_AddPrinterWithParamsAndColor(&param0->unk_2C[1], 0, param0->unk_5C[param1].unk_04[v3], v3 * 48 + (12 * 8 + 4) + v6[param1], 16 * param1 + 0, v4, v2, NULL);
+            Text_AddPrinterWithParamsAndColor(&param0->unk_2C[1], FONT_SYSTEM, param0->unk_5C[param1].unk_04[v3], v3 * 48 + (12 * 8 + 4) + v6[param1], 16 * param1 + 0, v4, v2, NULL);
         }
     }
 
@@ -688,15 +688,15 @@ static void ov74_021D1968(UnkStruct_ov74_021D0D80 *param0, u16 param1, BOOL para
 
     BGL_FillWindow(&(param0->unk_2C[2]), 15);
 
-    v0 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0));
+    v0 = TEXT_COLOR(1, 2, 15);
     v1 = Strbuf_Init(256, param0->unk_00);
 
     MessageLoader_GetStrbuf(param0->unk_20, param1, v1);
 
     if (param2 == 0) {
-        param0->unk_2AC = Text_AddPrinterWithParamsAndColor(&param0->unk_2C[2], 1, v1, 4, 0, v2, v0, NULL);
+        param0->unk_2AC = Text_AddPrinterWithParamsAndColor(&param0->unk_2C[2], FONT_MESSAGE, v1, 4, 0, v2, v0, NULL);
     } else {
-        Text_AddPrinterWithParamsAndColor(&param0->unk_2C[2], 1, v1, 4, 0, 0xff, v0, NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_2C[2], FONT_MESSAGE, v1, 4, 0, TEXT_SPEED_NO_TRANSFER, v0, NULL);
         sub_0201A9A4(&param0->unk_2C[2]);
     }
 

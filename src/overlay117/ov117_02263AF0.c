@@ -2012,7 +2012,7 @@ static BOOL ov117_02265C3C(UnkStruct_ov117_02265C3C *param0, UnkStruct_ov117_022
     return 1;
 }
 
-void ov117_02265DB8(BGL *param0, SpriteGfxHandler *param1, UnkStruct_02012744 *param2, UnkStruct_ov117_02265EB0 *param3, const Strbuf *param4, int param5, u32 param6, int param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
+void ov117_02265DB8(BGL *param0, SpriteGfxHandler *param1, UnkStruct_02012744 *param2, UnkStruct_ov117_02265EB0 *param3, const Strbuf *param4, enum Font param5, TextColor param6, int param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
 {
     UnkStruct_020127E8 v0;
     Window v1;
@@ -2034,7 +2034,7 @@ void ov117_02265DB8(BGL *param0, SpriteGfxHandler *param1, UnkStruct_02012744 *p
     {
         Window_Init(&v1);
         BGL_AddFramelessWindow(param0, &v1, v6, param14, 0, 0);
-        Text_AddPrinterWithParamsColorAndSpacing(&v1, param5, param4, 0, 0, 0xff, param6, v7, 0, NULL);
+        Text_AddPrinterWithParamsColorAndSpacing(&v1, param5, param4, 0, 0, TEXT_SPEED_NO_TRANSFER, param6, v7, 0, NULL);
     }
 
     v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DMAIN, 110);
@@ -2251,7 +2251,7 @@ void ov117_02266150(UnkStruct_ov117_02261280 *param0)
         v0 = MessageLoader_GetNewStrbuf(param0->unk_80, 4 + (v4 % 10));
         v4 /= 10;
         sub_020129A4(param0->unk_15A8.unk_04[v1][0].unk_00, &v2, &v3);
-        ov117_02265DB8(param0->unk_2C, param0->unk_28, param0->unk_90, &param0->unk_15A8.unk_108[v1], v0, 0, (u32)(((0xE & 0xFF) << 0x10) | ((0xF & 0xFF) << 0x8) | ((0x0 & 0xFF) << 0x0)), 0, 10003, v2, 168, 0, 1, 12, 2 * 1);
+        ov117_02265DB8(param0->unk_2C, param0->unk_28, param0->unk_90, &param0->unk_15A8.unk_108[v1], v0, FONT_SYSTEM, TEXT_COLOR(14, 15, 0), 0, 10003, v2, 168, 0, 1, 12, 2 * 1);
         Strbuf_Free(v0);
     }
 }

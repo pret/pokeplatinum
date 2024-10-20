@@ -50,7 +50,7 @@ pokeplatinum_c = files(
     'unk_02013A04.c',
     'screen_scroll_manager.c',
     'unk_02014000.c',
-    'unk_020149F0.c',
+    'colored_arrow.c',
     'unk_02014A84.c',
     'unk_02014D38.c',
     'unk_02015064.c',

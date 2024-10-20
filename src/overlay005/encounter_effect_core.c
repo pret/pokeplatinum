@@ -2905,7 +2905,7 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapId he
         BGL_AddWindow(encEffect->fieldSystem->unk_08, &v0->unk_2E0, 2, 0, 10, 16, 2, 2, 1);
         BGL_FillWindow(&v0->unk_2E0, 0);
         v7 = EncounterEffect_GetGymLeaderName(param->trainerID, heapID);
-        Text_AddPrinterWithParamsAndColor(&v0->unk_2E0, 0, v7, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&v0->unk_2E0, FONT_SYSTEM, v7, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
         Strbuf_Free(v7);
 
         ov5_021DE47C(&v0->unk_44, 8, 3);
@@ -3340,7 +3340,7 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
             BGL_AddWindow(encEffect->fieldSystem->unk_08, &v0->unk_358, 2, 21, 13, 11, 2, 2, 1);
             BGL_FillWindow(&v0->unk_358, 0);
             v9 = EncounterEffect_GetGymLeaderName(param->trainerID, heapID);
-            Text_AddPrinterWithParamsAndColor(&v0->unk_358, 0, v9, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+            Text_AddPrinterWithParamsAndColor(&v0->unk_358, FONT_SYSTEM, v9, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
             Strbuf_Free(v9);
         }
 

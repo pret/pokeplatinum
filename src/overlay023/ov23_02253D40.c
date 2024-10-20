@@ -187,7 +187,7 @@ static int ov23_02253E90(UnkStruct_ov23_02253E2C *param0, BOOL param1, UnkStruct
 
     v0 = ov23_02253E6C(param0);
 
-    param0->unk_30 = Text_AddPrinterWithParams(&param0->unk_08, 1, v0, 0, 0, param0->unk_38, NULL);
+    param0->unk_30 = Text_AddPrinterWithParams(&param0->unk_08, FONT_MESSAGE, v0, 0, 0, param0->unk_38, NULL);
     param0->unk_1C = param2;
     param0->unk_3C = param3;
 

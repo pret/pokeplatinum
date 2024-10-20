@@ -190,7 +190,7 @@ static void ov23_0225437C(UnkStruct_ov23_022542D8 *param0)
 
             BGL_FillWindow(&param0->unk_14, 15);
             v8 = MessageLoader_GetNewStrbuf(v5, 0);
-            Text_AddPrinterWithParams(&param0->unk_14, 0, v8, 0, 0, 0xff, NULL);
+            Text_AddPrinterWithParams(&param0->unk_14, FONT_SYSTEM, v8, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
             Strbuf_Free(v8);
         }
 
@@ -438,13 +438,13 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
             v14 = MessageLoader_GetNewStrbuf(v12, 10);
             v15 = Strbuf_Init(6, 4);
 
-            Text_AddPrinterWithParams(&param0->unk_18, 0, v13, 0, 0, 0xff, NULL);
+            Text_AddPrinterWithParams(&param0->unk_18, FONT_SYSTEM, v13, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
             v16 = StringTemplate_Default(4);
 
             StringTemplate_SetNumber(v16, 0, param0->unk_40, 2, 1, 1);
             StringTemplate_SetNumber(v16, 1, param0->unk_41, 2, 1, 1);
             StringTemplate_Format(v16, v15, v14);
-            Text_AddPrinterWithParams(&param0->unk_18, 0, v15, 0, 16, 0xff, NULL);
+            Text_AddPrinterWithParams(&param0->unk_18, FONT_SYSTEM, v15, 0, 16, TEXT_SPEED_NO_TRANSFER, NULL);
 
             StringTemplate_Free(v16);
             Strbuf_Free(v13);
