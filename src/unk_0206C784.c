@@ -216,7 +216,7 @@ static BOOL sub_0206C964(TaskManager *taskMan)
             ov5_021D42B0(fieldSystem->unk_50, fieldSystem->unk_54, 2);
         }
 
-        sub_02055820(taskMan);
+        FieldTask_FinishFieldMap(taskMan);
         v1->unk_00 = 4;
         break;
     case 4:
@@ -224,7 +224,7 @@ static BOOL sub_0206C964(TaskManager *taskMan)
         v1->unk_00 = 5;
         break;
     case 5:
-        sub_020539E8(taskMan, v1->unk_18, -1, v1->unk_1C, v1->unk_20, v1->unk_04);
+        FieldTask_ChangeMapToLocation(taskMan, v1->unk_18, -1, v1->unk_1C, v1->unk_20, v1->unk_04);
         v1->unk_00 = 6;
         break;
     case 6:

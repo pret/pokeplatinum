@@ -26,6 +26,7 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "trainer_info.h"
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
@@ -33,7 +34,6 @@
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0202ACE0.h"
 #include "unk_0203061C.h"
 #include "unk_0203909C.h"
@@ -136,7 +136,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov5_021FAF00 = {
 
 static BOOL ov5_021EA9BC(UnkStruct_ov5_021EAE78 *param0)
 {
-    if (Message_Printing(param0->unk_40) == 0) {
+    if (Text_IsPrinterActive(param0->unk_40) == 0) {
         param0->unk_44 = sub_02002100(param0->fieldSystem->unk_08, &Unk_ov5_021FAF00, 1024 - (18 + 12) - 9, 11, 4);
         param0->unk_48 = 3;
     }
@@ -176,7 +176,7 @@ static BOOL ov5_021EA9F8(UnkStruct_ov5_021EAE78 *param0)
 
 static BOOL ov5_021EAA6C(UnkStruct_ov5_021EAE78 *param0)
 {
-    if (Message_Printing(param0->unk_40) == 0) {
+    if (Text_IsPrinterActive(param0->unk_40) == 0) {
         param0->unk_44 = sub_02002100(param0->fieldSystem->unk_08, &Unk_ov5_021FAF00, 1024 - (18 + 12) - 9, 11, 4);
         param0->unk_48 = 5;
     }
@@ -208,7 +208,7 @@ static BOOL ov5_021EAAA8(UnkStruct_ov5_021EAE78 *param0)
 
 static BOOL ov5_021EAAEC(UnkStruct_ov5_021EAE78 *param0)
 {
-    if (Message_Printing(param0->unk_40) == 0) {
+    if (Text_IsPrinterActive(param0->unk_40) == 0) {
         param0->unk_44 = sub_02002100(param0->fieldSystem->unk_08, &Unk_ov5_021FAF00, 1024 - (18 + 12) - 9, 11, 4);
         param0->unk_48 = 7;
     }
@@ -345,7 +345,7 @@ static BOOL ov5_021EAC44(UnkStruct_ov5_021EAE78 *param0)
 
 static BOOL ov5_021EACFC(UnkStruct_ov5_021EAE78 *param0)
 {
-    if (Message_Printing(param0->unk_40) == 0) {
+    if (Text_IsPrinterActive(param0->unk_40) == 0) {
         param0->unk_44 = sub_02002100(param0->fieldSystem->unk_08, &Unk_ov5_021FAF00, 1024 - (18 + 12) - 9, 11, 4);
         param0->unk_48 = 11;
     }

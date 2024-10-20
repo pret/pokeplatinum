@@ -21,6 +21,7 @@
 #include "overlay104/struct_ov104_02241308.h"
 #include "overlay104/struct_ov104_0224133C.h"
 
+#include "font.h"
 #include "game_options.h"
 #include "game_overlay.h"
 #include "gx_layers.h"
@@ -32,7 +33,6 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
@@ -169,7 +169,7 @@ int ov17_0223CB1C(OverlayManager *param0, int *param1)
 
     sub_0201E3D8();
     sub_0201E450(4);
-    sub_02002BB8(2, 22);
+    Font_InitManager(FONT_SUBSCREEN, 22);
 
     v0->unk_0C.unk_1C = sub_0200C6E4(22);
 
@@ -325,7 +325,7 @@ int ov17_0223CF8C(OverlayManager *param0, int *param1)
     ov17_02247918(v0);
 
     sub_02007B6C(v0->unk_0C.unk_04);
-    sub_02002C60(2);
+    Font_Free(FONT_SUBSCREEN);
     sub_02002FA0(v0->unk_0C.unk_44, 0);
     sub_02002FA0(v0->unk_0C.unk_44, 1);
     sub_02002FA0(v0->unk_0C.unk_44, 2);

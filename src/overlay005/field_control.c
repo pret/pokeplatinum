@@ -470,7 +470,7 @@ BOOL FieldInput_Process_UnionRoom(const FieldInput *input, FieldSystem *fieldSys
         }
     }
 
-    if (input->movement && sub_0205DEE4(Field_CurrentTileBehavior(fieldSystem))) {
+    if (input->movement && TileBehavior_IsWarp(Field_CurrentTileBehavior(fieldSystem))) {
         sub_020545EC(fieldSystem);
         return TRUE;
     }
@@ -799,7 +799,7 @@ static BOOL Field_CheckTransition(FieldSystem *fieldSystem, const int playerX, c
 
         sub_02056BDC(fieldSystem, nextMap.mapId, nextMap.unk_04, 0, 0, playerDir, 2);
         return TRUE;
-    } else if (sub_0205DC38(curTileBehavior) == TRUE) {
+    } else if (TileBehavior_IsEscalator(curTileBehavior) == TRUE) {
         int playerDir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
         if (playerDir != DIR_WEST && playerDir != DIR_EAST) {
@@ -816,8 +816,8 @@ static BOOL Field_CheckTransition(FieldSystem *fieldSystem, const int playerX, c
         return TRUE;
     }
 
-    if (sub_0205DEE4(curTileBehavior)) {
-        sub_02053F58(fieldSystem, nextMap.mapId, nextMap.unk_04);
+    if (TileBehavior_IsWarp(curTileBehavior)) {
+        FieldSystem_StartMapChangeWarpTask(fieldSystem, nextMap.mapId, nextMap.unk_04);
         return TRUE;
     }
 
@@ -1012,7 +1012,7 @@ static BOOL Field_MapConnection(const FieldSystem *fieldSystem, int playerX, int
 
     if (v0->destWarpID == 0x100) {
         GF_ASSERT(v0->destHeaderID == 0xfff);
-        *nextMap = *(sub_0203A730(SaveData_GetFieldOverworldState(fieldSystem->saveData)));
+        *nextMap = *(FieldOverworldState_GetSpecialLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData)));
     } else {
         Location_Set(nextMap, v0->destHeaderID, v0->destWarpID, v0->x, v0->z, 1);
     }

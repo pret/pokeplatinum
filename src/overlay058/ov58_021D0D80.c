@@ -24,6 +24,7 @@
 #include "communication_information.h"
 #include "communication_system.h"
 #include "core_sys.h"
+#include "font.h"
 #include "game_options.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -34,9 +35,9 @@
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_02002B7C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
@@ -49,7 +50,6 @@
 #include "unk_02017728.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_0201E86C.h"
@@ -312,7 +312,7 @@ int ov58_021D1018(OverlayManager *param0, int *param1)
     case 0:
         v3 = sub_0202C168(39);
 
-        sub_0202B758(v1->unk_04, v3, 4);
+        Journal_SaveData(v1->unk_04, v3, 4);
         SetMainCallback(NULL, NULL);
         sub_0200A4E4(v0->unk_1D4[0][0]);
         sub_0200A4E4(v0->unk_1D4[1][0]);
@@ -593,8 +593,8 @@ static void ov58_021D142C(UnkStruct_02095EAC *param0, NARC *param1)
 
     sub_02007130(param1, 0, 0, 0, 16 * 2 * 2, 39);
     sub_02007130(param1, 1, 4, 0, 16 * 2 * 2, 39);
-    sub_02002E98(0, 13 * 0x20, 39);
-    sub_02002E98(4, 13 * 0x20, 39);
+    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 39);
+    Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, 39);
     sub_020070E8(param1, 2, v0, 2, 0, 32 * 8 * 0x20, 1, 39);
     sub_0200710C(param1, 4, v0, 2, 0, 32 * 24 * 2, 1, 39);
     sub_020070E8(param1, 3, v0, 5, 0, 32 * 8 * 0x20, 1, 39);
@@ -740,8 +740,8 @@ static void ov58_021D18AC(UnkStruct_02095EAC *param0, OverlayManager *param1)
     BGL_FillWindow(&param0->unk_34C, 0x0);
 
     {
-        u32 v0 = sub_02002EEC(1, param0->unk_28, 0, (7 - 1) * 8) + 2;
-        sub_0201D78C(&param0->unk_34C, 1, param0->unk_28, v0, 0, 0, (u32)(((0x7 & 0xff) << 16) | ((0x1 & 0xff) << 8) | ((0x0 & 0xff) << 0)), NULL);
+        u32 v0 = Font_CalcCenterAlignment(FONT_MESSAGE, param0->unk_28, 0, (7 - 1) * 8) + 2;
+        Text_AddPrinterWithParamsAndColor(&param0->unk_34C, 1, param0->unk_28, v0, 0, 0, (u32)(((0x7 & 0xff) << 16) | ((0x1 & 0xff) << 8) | ((0x0 & 0xff) << 0)), NULL);
     }
 
     {
@@ -1283,7 +1283,7 @@ static int ov58_021D22FC(UnkStruct_02095EAC *param0, int param1)
 static int ov58_021D2320(UnkStruct_02095EAC *param0, int param1)
 {
     if ((param0->unk_30 != 0xff) && (ov58_021D2B0C(param0->unk_30) == 0)) {
-        PrintString_ForceStop(param0->unk_30);
+        Text_RemovePrinter(param0->unk_30);
     }
 
     ov58_021D2A98(param0, 2, 1);
@@ -1652,9 +1652,9 @@ static void ov58_021D28E4(Window *param0, int param1, u32 param2, UnkStruct_0209
             TrainerInfo_NameStrbuf(param3->unk_398[v0][0], param3->unk_14[v0]);
 
             if (v1 == v0) {
-                sub_0201D78C(&param0[v0], 1, param3->unk_14[v0], 0, 0, 0xff, (u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((15 & 0xff) << 0)), NULL);
+                Text_AddPrinterWithParamsAndColor(&param0[v0], 1, param3->unk_14[v0], 0, 0, 0xff, (u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((15 & 0xff) << 0)), NULL);
             } else {
-                sub_0201D78C(&param0[v0], 1, param3->unk_14[v0], 0, 0, 0xff, param2, NULL);
+                Text_AddPrinterWithParamsAndColor(&param0[v0], 1, param3->unk_14[v0], 0, 0, 0xff, param2, NULL);
             }
         }
 
@@ -1730,7 +1730,7 @@ static void ov58_021D2A98(UnkStruct_02095EAC *param0, int param1, int param2)
         param2 = 0;
     }
 
-    param0->unk_30 = PrintStringSimple(&param0->unk_33C, 1, param0->unk_2C, 0, 0, param2, NULL);
+    param0->unk_30 = Text_AddPrinterWithParams(&param0->unk_33C, 1, param0->unk_2C, 0, 0, param2, NULL);
 
     if (param2 == 0) {
         param0->unk_30 = 0xff;
@@ -1743,7 +1743,7 @@ static int ov58_021D2B0C(int param0)
         return 1;
     }
 
-    if (Message_Printing(param0) == 0) {
+    if (Text_IsPrinterActive(param0) == 0) {
         return 1;
     }
 

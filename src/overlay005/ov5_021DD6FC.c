@@ -15,9 +15,9 @@
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "unk_02006E3C.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_02071CFC.h"
 
 typedef struct UnkStruct_ov5_021DD9C8_t {
@@ -214,7 +214,7 @@ static void ov5_021DD954(UnkStruct_ov5_021DD9C8 *param0, const Strbuf *param1)
     u32 v0;
 
     v0 = (u32)(((3 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0));
-    sub_0201D78C(&param0->unk_20, 0, param1, param0->unk_30, (8 * 2), 0, v0, NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_20, 0, param1, param0->unk_30, (8 * 2), 0, v0, NULL);
 }
 
 static void ov5_021DD980(UnkStruct_ov5_021DD9C8 *param0)
@@ -303,7 +303,7 @@ void ov5_021DDA78(UnkStruct_ov5_021DD9C8 *param0)
     }
 }
 
-void ov5_021DDAA4(FieldSystem *fieldSystem)
+void FieldSystem_RequestLocationName(FieldSystem *fieldSystem)
 {
     int v0;
     int v1;

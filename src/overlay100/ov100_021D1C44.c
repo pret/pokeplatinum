@@ -23,6 +23,7 @@
 #include "easy3d_object.h"
 #include "heap.h"
 #include "sys_task.h"
+#include "text.h"
 #include "trainer_info.h"
 #include "unk_02002F38.h"
 #include "unk_020041CC.h"
@@ -31,7 +32,6 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_0201D15C.h"
-#include "unk_0201D670.h"
 #include "unk_0202419C.h"
 
 static void ov100_021D1C98(UnkStruct_ov100_021D1C98 *param0);
@@ -339,7 +339,7 @@ BOOL ov100_021D2428(void *param0)
         }
         break;
     case 4:
-        if (Message_Printing(v0->unk_1EBC->unk_40)) {
+        if (Text_IsPrinterActive(v0->unk_1EBC->unk_40)) {
             break;
         }
 
@@ -375,7 +375,7 @@ BOOL ov100_021D2428(void *param0)
         v0->unk_04 = 0;
         break;
     case 7:
-        if (Message_Printing(v0->unk_1EBC->unk_40)) {
+        if (Text_IsPrinterActive(v0->unk_1EBC->unk_40)) {
             break;
         }
 
@@ -385,7 +385,7 @@ BOOL ov100_021D2428(void *param0)
         v0->unk_00++;
         break;
     case 8:
-        if (Message_Printing(v0->unk_1EBC->unk_40)) {
+        if (Text_IsPrinterActive(v0->unk_1EBC->unk_40)) {
             break;
         }
 
@@ -426,7 +426,7 @@ BOOL ov100_021D2428(void *param0)
         }
         break;
     case 9:
-        if (Message_Printing(v0->unk_1EBC->unk_40)) {
+        if (Text_IsPrinterActive(v0->unk_1EBC->unk_40)) {
             break;
         }
 
@@ -547,7 +547,7 @@ BOOL ov100_021D2428(void *param0)
         }
         break;
     case 16:
-        if (Message_Printing(v0->unk_1EBC->unk_40)) {
+        if (Text_IsPrinterActive(v0->unk_1EBC->unk_40)) {
             break;
         }
 
@@ -581,7 +581,7 @@ BOOL ov100_021D2428(void *param0)
         }
         break;
     case 18:
-        if (Message_Printing(v0->unk_1EBC->unk_40)) {
+        if (Text_IsPrinterActive(v0->unk_1EBC->unk_40)) {
             break;
         }
 
@@ -624,8 +624,8 @@ BOOL ov100_021D2428(void *param0)
         }
 
         if (v0->unk_1A0.unk_934[4].unk_160 == 0) {
-            if (Message_Printing(v0->unk_1EBC->unk_40)) {
-                PrintString_ForceStop(v0->unk_1EBC->unk_40);
+            if (Text_IsPrinterActive(v0->unk_1EBC->unk_40)) {
+                Text_RemovePrinter(v0->unk_1EBC->unk_40);
             }
 
             v0->unk_1EBC->unk_50.unk_03 = -16;

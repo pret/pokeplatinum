@@ -20,12 +20,12 @@
 #include "pokemon_summary_app.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0207E0B8.h"
 #include "unk_020819DC.h"
 #include "unk_02082C2C.h"
@@ -401,7 +401,7 @@ int sub_02085348(void *param0)
 {
     GameWindowLayout *v0 = (GameWindowLayout *)param0;
 
-    if (Message_Printing(v0->unk_B10) != 0) {
+    if (Text_IsPrinterActive(v0->unk_B10) != 0) {
         return 5;
     }
 
@@ -628,7 +628,7 @@ int sub_02085804(GameWindowLayout *param0)
         }
         break;
     case 3:
-        if (Message_Printing(param0->unk_B10) != 0) {
+        if (Text_IsPrinterActive(param0->unk_B10) != 0) {
             break;
         }
 
@@ -717,7 +717,7 @@ static int sub_02085C50(void *param0)
 
     switch (v0->unk_B13) {
     case 0:
-        if (Message_Printing(v0->unk_B10) == 0) {
+        if (Text_IsPrinterActive(v0->unk_B10) == 0) {
             if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
                 Sound_PlayEffect(1500);
                 sub_020829DC(v0);
@@ -778,7 +778,7 @@ static int sub_02085C50(void *param0)
         }
         break;
     case 4:
-        if (Message_Printing(v0->unk_B10) == 0) {
+        if (Text_IsPrinterActive(v0->unk_B10) == 0) {
             if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
                 Sound_PlayEffect(1500);
                 v0->unk_B13 = 3;

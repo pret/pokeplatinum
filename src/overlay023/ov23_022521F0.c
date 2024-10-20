@@ -32,13 +32,13 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0202631C.h"
 #include "unk_0202854C.h"
 #include "unk_020573FC.h"
@@ -271,14 +271,14 @@ static void ov23_0225265C(BmpList *param0, u32 param1, u8 param2)
 
     BGL_FillWindow(&v0->unk_20, 15);
     MessageLoader_GetStrbuf(ov23_02253E3C(ov23_022421BC()), 23 + v0->unk_2AB, v0->unk_68);
-    PrintStringSimple(&v0->unk_20, 0, v0->unk_68, 1, 1, 0xff, NULL);
+    Text_AddPrinterWithParams(&v0->unk_20, 0, v0->unk_68, 1, 1, 0xff, NULL);
 
     if (param1 != 0xfffffffe) {
         StringTemplate_SetUndergroundItemName(v0->unk_70, 2, v0->unk_279[v1]);
         StringTemplate_SetNumber(v0->unk_70, 6, v0->unk_27E[v1], 2, 1, 1);
         MessageLoader_GetStrbuf(ov23_02253E3C(ov23_022421BC()), 25, v0->unk_68);
         StringTemplate_Format(v0->unk_70, v0->unk_6C, v0->unk_68);
-        PrintStringSimple(&v0->unk_20, 0, v0->unk_6C, 1, 17, 0xff, NULL);
+        Text_AddPrinterWithParams(&v0->unk_20, 0, v0->unk_6C, 1, 17, 0xff, NULL);
     } else {
         (void)0;
     }
@@ -351,7 +351,7 @@ static void ov23_02252754(BmpList *param0, u32 param1, u8 param2)
     }
 
     MessageLoader_GetStrbuf(ov23_02253E3C(ov23_022421BC()), 23 + v1->unk_2AB, v1->unk_68);
-    PrintStringSimple(&v1->unk_20, 0, v1->unk_68, 1, 1, 0xff, NULL);
+    Text_AddPrinterWithParams(&v1->unk_20, 0, v1->unk_68, 1, 1, 0xff, NULL);
 
     if (param1 == 0xfffffffe) {
         (void)0;
@@ -360,7 +360,7 @@ static void ov23_02252754(BmpList *param0, u32 param1, u8 param2)
         StringTemplate_SetNumber(v1->unk_70, 6, v8, 2, 1, 1);
         MessageLoader_GetStrbuf(ov23_02253E3C(ov23_022421BC()), 25, v1->unk_68);
         StringTemplate_Format(v1->unk_70, v1->unk_6C, v1->unk_68);
-        PrintStringSimple(&v1->unk_20, 0, v1->unk_6C, 1, 17, 0xff, NULL);
+        Text_AddPrinterWithParams(&v1->unk_20, 0, v1->unk_6C, 1, 17, 0xff, NULL);
 
         v1->unk_279[0] = v7;
         v1->unk_27E[0] = v8;
@@ -368,7 +368,7 @@ static void ov23_02252754(BmpList *param0, u32 param1, u8 param2)
         v1->unk_279[0] = v7;
 
         MessageLoader_GetStrbuf(ov23_02253E3C(ov23_022421BC()), 26, v1->unk_68);
-        PrintStringSimple(&v1->unk_20, 0, v1->unk_68, 1, 17, 0xff, NULL);
+        Text_AddPrinterWithParams(&v1->unk_20, 0, v1->unk_68, 1, 17, 0xff, NULL);
     }
 
     sub_0201A9A4(&v1->unk_20);
@@ -566,7 +566,7 @@ void ov23_02252D74(UnkStruct_ov23_02250CD4 *param0, int param1)
     sub_0201A954(&param0->unk_30);
 
     MessageLoader_GetStrbuf(ov23_02253E3C(ov23_022421BC()), param1, param0->unk_68);
-    PrintStringSimple(&param0->unk_30, 0, param0->unk_68, 1, 1, 0xff, NULL);
+    Text_AddPrinterWithParams(&param0->unk_30, 0, param0->unk_68, 1, 1, 0xff, NULL);
     sub_0201A9A4(&param0->unk_30);
 }
 

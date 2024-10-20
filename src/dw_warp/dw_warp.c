@@ -18,9 +18,9 @@
 #include "heap.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "render_text.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02002328.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
@@ -95,9 +95,9 @@ BOOL DWWarp_Init(OverlayManager *ovy, int *state)
 
     GXLayers_SwapDisplay();
     GXLayers_TurnBothDispOn();
-    sub_02002AC8(1);
-    sub_02002AE4(0);
-    sub_02002B20(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(1);
+    RenderControlFlags_SetAutoScrollFlags(0);
+    RenderControlFlags_SetSpeedUpOnTouch(0);
 
     dww->task = SysTask_Start(DWWarp_Update, dww, 60000);
     SetMainCallback(DWWarp_VBlankIntr, dww);
@@ -163,9 +163,9 @@ BOOL DWWarp_Exit(OverlayManager *ovy, int *state)
     SetMainCallback(NULL, NULL);
     DisableHBlank();
     sub_0201E530();
-    sub_02002AC8(0);
-    sub_02002AE4(0);
-    sub_02002B20(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(0);
+    RenderControlFlags_SetAutoScrollFlags(0);
+    RenderControlFlags_SetSpeedUpOnTouch(0);
     OverlayManager_FreeData(ovy);
     Heap_Destroy(HEAP_ID_DISTORTION_WORLD_WARP);
 

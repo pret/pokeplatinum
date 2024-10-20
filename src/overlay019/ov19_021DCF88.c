@@ -21,10 +21,10 @@
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "unk_02006E3C.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "unk_0201D670.h"
 #include "unk_020797C8.h"
 
 typedef struct {
@@ -1514,7 +1514,7 @@ static void ov19_021DE350(UnkStruct_ov19_021DCF88 *param0)
     for (v1 = 0; v1 < NELEMS(v0); v1++) {
         sub_02079AF4(param0->unk_04->unk_00, v2, param0->unk_84);
         BGL_WindowColor(&param0->unk_88, 0, v0[v1].unk_00, v0[v1].unk_02, 104, 17);
-        sub_0201D78C(&param0->unk_88, 0, param0->unk_84, v0[v1].unk_00 + 4, v0[v1].unk_02 + 2, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_88, 0, param0->unk_84, v0[v1].unk_00 + 4, v0[v1].unk_02 + 2, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
 
         if (--v2 < 0) {
             v2 = 18 - 1;

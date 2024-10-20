@@ -21,6 +21,7 @@
 
 #include "bag.h"
 #include "core_sys.h"
+#include "font.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "item.h"
@@ -33,8 +34,8 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "touch_screen.h"
-#include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
@@ -43,7 +44,6 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0208C098.h"
 #include "unk_02094EDC.h"
 
@@ -312,7 +312,7 @@ static u8 ov13_0221FE5C(UnkStruct_ov13_022213F0 *param0)
     ov13_02220D4C(param0);
     ov13_02220F08(param0);
 
-    sub_02002BB8(2, param0->unk_00->unk_0C);
+    Font_InitManager(FONT_SUBSCREEN, param0->unk_00->unk_0C);
 
     ov13_02221738(param0, param0->unk_2076);
     ov13_022260EC(param0, param0->unk_2076);
@@ -846,7 +846,7 @@ static u8 ov13_02220834(UnkStruct_ov13_022213F0 *param0)
 
 static u8 ov13_02220848(UnkStruct_ov13_022213F0 *param0)
 {
-    if (Message_Printing(param0->unk_2077) == 0) {
+    if (Text_IsPrinterActive(param0->unk_2077) == 0) {
         return 18;
     }
 
@@ -1006,7 +1006,7 @@ static u8 ov13_02220BA4(SysTask *param0, UnkStruct_ov13_022213F0 *param1)
     param1->unk_00->unk_32 = ov13_02228A5C(param1->unk_2084);
 
     ov13_02228A50(param1->unk_2084);
-    sub_02002C60(2);
+    Font_Free(FONT_SUBSCREEN);
 
     param1->unk_00->unk_36 = 1;
     SysTask_FinishAndFreeParam(param0);

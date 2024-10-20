@@ -36,6 +36,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "unk_02002F38.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
@@ -45,7 +46,6 @@
 #include "unk_02012744.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "unk_0201D670.h"
 #include "unk_0208C098.h"
 #include "unk_02094EDC.h"
 
@@ -1529,7 +1529,7 @@ static void ov17_02242DC0(UnkStruct_ov17_02246F24 *param0, MessageLoader *param1
     StringTemplate_Format(param0->unk_0C.unk_48, param0->unk_0C.unk_4C, v0);
     BGL_FillWindow(&param0->unk_0C.unk_28[0], 0xff);
 
-    param0->unk_0C.unk_210 = PrintStringSimple(&param0->unk_0C.unk_28[0], 1, param0->unk_0C.unk_4C, 0, 0, v1, NULL);
+    param0->unk_0C.unk_210 = Text_AddPrinterWithParams(&param0->unk_0C.unk_28[0], 1, param0->unk_0C.unk_4C, 0, 0, v1, NULL);
 
     if (v1 == 0) {
         param0->unk_0C.unk_210 = 0xff;
@@ -1570,7 +1570,7 @@ int ov17_02242ECC(UnkStruct_ov17_02246F24 *param0)
         return 0;
     }
 
-    return Message_Printing(param0->unk_0C.unk_210);
+    return Text_IsPrinterActive(param0->unk_0C.unk_210);
 }
 
 void ov17_02242EE4(UnkStruct_ov17_02246F24 *param0, int param1)

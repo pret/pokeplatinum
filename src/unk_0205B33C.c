@@ -104,7 +104,7 @@ static int sub_0205BCD4(int param0, int param1, StringTemplate *param2);
 static void sub_0205B408(UnkStruct_0205B43C *param0);
 static void sub_0205BFF0(UnkStruct_0205B4F8 *param0);
 
-UnkStruct_0205B43C *sub_0205B33C(FieldSystem *fieldSystem)
+UnkStruct_0205B43C *FieldSystem_InitCommUnionRoom(FieldSystem *fieldSystem)
 {
     UnkStruct_0205B43C *v0 = NULL;
 
@@ -705,7 +705,7 @@ void sub_0205BA08(int param0, int param1, void *param2, void *param3)
 
     if (param0 != CommSys_CurNetId()) {
         v3 = sub_0202C0EC((u16 *)TrainerInfo_Name(v2), TrainerInfo_Gender(v2), 31);
-        sub_0202B758(fieldSystem->unk_9C, v3, 4);
+        Journal_SaveData(fieldSystem->journal, v3, 4);
     }
 }
 

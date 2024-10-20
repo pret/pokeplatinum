@@ -64,7 +64,7 @@ static BOOL sub_0206C120(TaskManager *taskMan)
         v1->unk_0C = 1;
         break;
     case 1:
-        sub_02055820(taskMan);
+        FieldTask_FinishFieldMap(taskMan);
         v1->unk_0C = 2;
         break;
     case 2: {
@@ -77,11 +77,11 @@ static BOOL sub_0206C120(TaskManager *taskMan)
         }
     }
 
-        sub_020539A0(taskMan, v1->unk_08);
+        FieldTask_ChangeMapByLocation(taskMan, v1->unk_08);
         v1->unk_0C = 3;
         break;
     case 3:
-        sub_02055868(taskMan);
+        FieldTask_StartFieldMap(taskMan);
         v1->unk_0C = 4;
         break;
     case 4: {

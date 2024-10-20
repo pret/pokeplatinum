@@ -28,13 +28,13 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "unk_02002F38.h"
 #include "unk_02006E3C.h"
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "unk_0201D670.h"
 #include "unk_0201E86C.h"
 #include "unk_02030A80.h"
 #include "unk_0208C010.h"
@@ -741,7 +741,7 @@ void ov62_02230FC8(UnkStruct_0208C06C *param0, UnkStruct_ov62_022307C0_sub1 *par
 
     Window_Init(&v2);
     BGL_AddFramelessWindow(param0->unk_14.unk_10, &v2, 20, 2, 0, 0);
-    sub_0201D78C(&v2, 0, v0, 0, 0, 0xff, ((u32)(((14 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(&v2, 0, v0, 0, 0, 0xff, ((u32)(((14 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     sub_02012BE0(param1->unk_14, param1->unk_18, &v2, 102);
     Strbuf_Free(v0);
     BGL_DeleteWindow(&v2);
@@ -818,7 +818,7 @@ void ov62_0223124C(UnkStruct_ov62_022312B0 *param0, UnkStruct_ov62_0223118C *par
 
     Window_Init(&v2);
     BGL_AddFramelessWindow(param1->unk_10, &v2, 20, 2, 0, 0);
-    sub_0201D78C(&v2, 0, v0, 0, 0, 0xff, ((u32)(((14 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(&v2, 0, v0, 0, 0, 0xff, ((u32)(((14 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     sub_02012BE0(param0->unk_0C, param0->unk_10, &v2, 102);
     Strbuf_Free(v0);
     BGL_DeleteWindow(&v2);

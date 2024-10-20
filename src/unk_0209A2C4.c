@@ -12,19 +12,19 @@
 #include "overlay097/struct_ov97_0222DB78.h"
 
 #include "core_sys.h"
+#include "font.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
 #include "overlay_manager.h"
 #include "savedata.h"
 #include "strbuf.h"
+#include "text.h"
 #include "unk_02000C88.h"
-#include "unk_02002B7C.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 
 FS_EXTERN_OVERLAY(overlay97);
 
@@ -190,7 +190,7 @@ static void sub_0209A3D0(UnkStruct_0209A3D0 *param0)
     }
     sub_0200DD0C(param0->unk_18, 0, 512 - (18 + 12), 2, 0, param0->unk_00);
     sub_0200DAA4(param0->unk_18, 0, (512 - (18 + 12)) - 9, 3, 0, param0->unk_00);
-    sub_02002E7C(0, 1 * (2 * 16), param0->unk_00);
+    Font_LoadTextPalette(0, 1 * (2 * 16), param0->unk_00);
     sub_02019690(0, 32, 0, param0->unk_00);
     sub_0201975C(0, 0);
     sub_0201975C(4, 0);
@@ -213,7 +213,7 @@ static void sub_0209A490(UnkStruct_0209A3D0 *param0)
 static void sub_0209A4E4(UnkStruct_0209A3D0 *param0)
 {
     param0->unk_1C = MessageLoader_Init(1, 26, 406, param0->unk_00);
-    sub_0201D710();
+    Text_ResetAllPrinters();
     param0->unk_0C = 0;
 
     sub_0201A8D4(param0->unk_18, &param0->unk_20, &Unk_020F8A58);
@@ -308,7 +308,7 @@ static BOOL sub_0209A688(UnkStruct_0209A3D0 *param0, u32 param1, int param2, int
 
         param0->unk_14 = Strbuf_Init(0x400, param0->unk_00);
         MessageLoader_GetStrbuf(param0->unk_1C, param1, param0->unk_14);
-        param0->unk_10 = PrintStringSimple(&param0->unk_20, 1, param0->unk_14, 0, 0, param3, NULL);
+        param0->unk_10 = Text_AddPrinterWithParams(&param0->unk_20, 1, param0->unk_14, 0, 0, param3, NULL);
 
         if (param3 == 0) {
             Strbuf_Free(param0->unk_14);
@@ -318,7 +318,7 @@ static BOOL sub_0209A688(UnkStruct_0209A3D0 *param0, u32 param1, int param2, int
         param0->unk_0C++;
         break;
     case 1:
-        if (!(Message_Printing(param0->unk_10))) {
+        if (!(Text_IsPrinterActive(param0->unk_10))) {
             Strbuf_Free(param0->unk_14);
             param0->unk_0C++;
         }

@@ -1,68 +1,66 @@
+#include "overlay098/ov98_022471C8.h"
+
+#include <dwc.h>
 #include <nitro.h>
 #include <string.h>
-#include <dwc.h>
-
-#include "inlines.h"
-#include "core_sys.h"
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "message.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_020149F0_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "strbuf.h"
 #include "struct_decls/struct_02025CCC_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
-
 #include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
+
+#include "overlay004/ov4_021D0D80.h"
 #include "overlay061/struct_ov61_0222C3B0.h"
 #include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay084/struct_ov84_02240FA8.h"
+#include "overlay094/ov94_0223B140.h"
 #include "overlay097/struct_ov97_0222DB78.h"
+#include "overlay098/ov98_02246C20.h"
+#include "overlay098/ov98_022499C8.h"
 #include "overlay098/struct_ov98_02246E88.h"
 
+#include "core_sys.h"
+#include "font.h"
+#include "game_options.h"
+#include "gx_layers.h"
+#include "heap.h"
+#include "inlines.h"
+#include "message.h"
+#include "narc.h"
+#include "overlay_manager.h"
+#include "render_text.h"
+#include "save_player.h"
+#include "savedata.h"
+#include "strbuf.h"
+#include "string_template.h"
+#include "text.h"
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
-#include "unk_02002328.h"
-#include "unk_02002B7C.h"
 #include "unk_02005474.h"
-#include "overlay_manager.h"
-#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200A784.h"
-#include "message.h"
-#include "string_template.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02013A04.h"
 #include "unk_020149F0.h"
 #include "unk_02017728.h"
-#include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
-#include "gx_layers.h"
-#include "strbuf.h"
-#include "savedata.h"
 #include "unk_02025CB0.h"
-#include "save_player.h"
-#include "game_options.h"
 #include "unk_0202ACE0.h"
 #include "unk_02030CE8.h"
 #include "unk_020366A0.h"
 #include "unk_02038FFC.h"
 #include "unk_020393C8.h"
-#include "overlay004/ov4_021D0D80.h"
-#include "overlay094/ov94_0223B140.h"
-#include "overlay098/ov98_02246C20.h"
-#include "overlay098/ov98_022471C8.h"
-#include "overlay098/ov98_022499C8.h"
 
 typedef struct {
     UnkStruct_ov98_02246E88 * unk_00;
@@ -369,9 +367,9 @@ int ov98_022471C8 (OverlayManager * param0, int * param1)
     gCoreSys.unk_65 = 0;
 
     GXLayers_SwapDisplay();
-    sub_02002AC8(1);
-    sub_02002AE4(0);
-    sub_02002B20(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(1);
+    RenderControlFlags_SetAutoScrollFlags(0);
+    RenderControlFlags_SetSpeedUpOnTouch(0);
     SetMainCallback(ov98_022474E8, v0);
 
     return 1;
@@ -436,9 +434,9 @@ int ov98_02247440 (OverlayManager * param0, int * param1)
     DisableHBlank();
     sub_0201DC3C();
     sub_0201E530();
-    sub_02002AC8(0);
-    sub_02002AE4(0);
-    sub_02002B20(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(0);
+    RenderControlFlags_SetAutoScrollFlags(0);
+    RenderControlFlags_SetSpeedUpOnTouch(0);
     sub_02039794();
     OverlayManager_FreeData(param0);
     Heap_Destroy(109);
@@ -650,8 +648,8 @@ static void ov98_02247704 (UnkStruct_ov98_02247704 * param0)
 
     sub_02007130(v1, 3, 0, 0, 0, 109);
     sub_02007130(v1, 3, 4, 0, 0, 109);
-    sub_02002E98(0, 13 * 0x20, 109);
-    sub_02002E98(4, 13 * 0x20, 109);
+    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 109);
+    Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, 109);
     sub_0200DD0C(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_08), 109);
     sub_0200DAA4(v0, 0, (1 + (18 + 12)), 11, 0, 109);
     sub_0200DAA4(v0, 2, (1 + (18 + 12)), 11, 0, 109);
@@ -931,11 +929,11 @@ static void ov98_02247F08 (UnkStruct_ov98_02247704 * param0)
     BGL_FillWindow(&param0->unk_D4, 0xf0f);
 
     v0 = MessageLoader_GetNewStrbuf(param0->unk_34, 42);
-    PrintStringSimple(&param0->unk_D4, 0, v0, Unk_ov98_02249D60[0][0] + 12, Unk_ov98_02249D60[0][1], 0xff, NULL);
+    Text_AddPrinterWithParams(&param0->unk_D4, 0, v0, Unk_ov98_02249D60[0][0] + 12, Unk_ov98_02249D60[0][1], 0xff, NULL);
     Strbuf_Free(v0);
 
     v0 = MessageLoader_GetNewStrbuf(param0->unk_34, 43);
-    PrintStringSimple(&param0->unk_D4, 0, v0, Unk_ov98_02249D60[1][0] + 12, Unk_ov98_02249D60[1][1], 0xff, NULL);
+    Text_AddPrinterWithParams(&param0->unk_D4, 0, v0, Unk_ov98_02249D60[1][0] + 12, Unk_ov98_02249D60[1][1], 0xff, NULL);
     Strbuf_Free(v0);
     sub_02014A58(param0->unk_E4, &param0->unk_D4, Unk_ov98_02249D60[param0->unk_B0][0], Unk_ov98_02249D60[param0->unk_B0][1]);
     sub_0201A954(&param0->unk_D4);
@@ -995,7 +993,7 @@ static void ov98_022482CC (UnkStruct_ov98_02247704 * param0)
     v3 = Strbuf_Init(Strbuf_Length(v2), 109);
     for (v0 = param0->unk_AC; v0 < param0->unk_AC + 6; v0++) {
         Strbuf_CopyLineNum(v3, v2, v0);
-        PrintStringSimple(&param0->unk_C4, 0, v3, 4, v1 * 16, 0xFF, NULL);
+        Text_AddPrinterWithParams(&param0->unk_C4, 0, v3, 4, v1 * 16, 0xFF, NULL);
         v1++;
     }
     Strbuf_Free(v2);
@@ -1003,6 +1001,7 @@ static void ov98_022482CC (UnkStruct_ov98_02247704 * param0)
     sub_0201A954(&param0->unk_C4);
 }
 
+// clang-format off
 asm static int ov98_02248350 (UnkStruct_ov98_02247704 * param0)
 {
     push {r4, r5, r6, r7, lr}
@@ -1103,7 +1102,7 @@ asm static int ov98_02248350 (UnkStruct_ov98_02247704 * param0)
     mov r1, #0
     add r2, r7, #0
     mov r3, #4
-    bl PrintStringSimple
+    bl Text_AddPrinterWithParams
     add r6, r6, #1
     add r4, #0x10
     cmp r6, #6
@@ -1385,6 +1384,7 @@ asm static int ov98_02248350 (UnkStruct_ov98_02247704 * param0)
     add sp, #0x1c
     pop {r4, r5, r6, r7, pc}
 }
+// clang-format on
 
 static int ov98_02248684 (UnkStruct_ov98_02247704 * param0)
 {
@@ -2410,7 +2410,7 @@ static void ov98_02249714 (UnkStruct_ov98_02247704 * param0, MessageLoader * par
     BGL_FillWindow(&param0->unk_48, 0xf0f);
     sub_0200E060(&param0->unk_48, 0, 1, 10);
 
-    param0->unk_44 = PrintStringSimple(&param0->unk_48, 1, param0->unk_38, 0, 0, param3, NULL);
+    param0->unk_44 = Text_AddPrinterWithParams(&param0->unk_48, 1, param0->unk_38, 0, 0, param3, NULL);
     param0->unk_90 = 0;
 
     if ((param3 == 0xff) || (param3 == 0)) {
@@ -2420,7 +2420,7 @@ static void ov98_02249714 (UnkStruct_ov98_02247704 * param0, MessageLoader * par
 
 static int ov98_0224977C (int param0)
 {
-    if ((param0 == 0xff) || (Message_Printing(param0) == 0)) {
+    if ((param0 == 0xff) || (Text_IsPrinterActive(param0) == 0)) {
         return 0;
     }
 
@@ -2482,12 +2482,12 @@ static int ov98_02249894 (Window * param0, Strbuf *param1, int param2, int param
 
     switch (param3) {
     case 1:
-        v0 = sub_02002D7C(param5, param1, 0);
+        v0 = Font_CalcStrbufWidth(param5, param1, 0);
         param2 = ((param0->unk_07 * 8) - v0) / 2;
         break;
 
     case 2:
-        v0 = sub_02002D7C(param5, param1, 0);
+        v0 = Font_CalcStrbufWidth(param5, param1, 0);
         param2 = (param0->unk_07 * 8) - v0;
         break;
     }
@@ -2498,7 +2498,7 @@ static int ov98_02249894 (Window * param0, Strbuf *param1, int param2, int param
 void ov98_022498CC (Window * param0, Strbuf *param1, int param2, int param3, int param4, u32 param5)
 {
     param2 = ov98_02249894(param0, param1, param2, param4, param5, 1);
-    sub_0201D78C(param0, 1, param1, param2, param3, 0, param5, NULL);
+    Text_AddPrinterWithParamsAndColor(param0, 1, param1, param2, param3, 0, param5, NULL);
 }
 
 static void ov98_02249900 (UnkStruct_ov98_02247704 * param0, int param1)
@@ -2511,7 +2511,7 @@ static void ov98_02249900 (UnkStruct_ov98_02247704 * param0, int param1)
     BGL_FillWindow(&param0->unk_68, 15);
     Window_Show(&param0->unk_68, 1, (1 + (18 + 12)), 11);
 
-    param0->unk_44 = PrintStringSimple(&param0->unk_68, 1, param0->unk_40, 0, 0, 0, NULL);
+    param0->unk_44 = Text_AddPrinterWithParams(&param0->unk_68, 1, param0->unk_40, 0, 0, 0, NULL);
     param0->unk_44 = 0xff;
 
     Strbuf_Free(v0);

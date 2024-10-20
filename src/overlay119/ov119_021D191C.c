@@ -12,6 +12,7 @@
 #include "cell_actor.h"
 #include "gx_layers.h"
 #include "pokemon.h"
+#include "text.h"
 #include "unk_02001AF4.h"
 #include "unk_02002F38.h"
 #include "unk_020041CC.h"
@@ -20,7 +21,6 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02015F84.h"
-#include "unk_0201D670.h"
 #include "unk_0201F834.h"
 
 static BOOL ov119_021D1930(UnkStruct_ov119_021D0FD0 *param0);
@@ -153,14 +153,14 @@ static BOOL ov119_021D1930(UnkStruct_ov119_021D0FD0 *param0)
 
         param0->unk_60++;
     case 10:
-        if (Message_Printing(param0->unk_04.unk_08) != 0) {
+        if (Text_IsPrinterActive(param0->unk_04.unk_08) != 0) {
             break;
         }
 
         param0->unk_04.unk_08 = ov119_021D1158(&param0->unk_04.unk_14[0], 1, param0->unk_00->unk_0C.unk_00, param0->unk_04.unk_0C);
         param0->unk_60++;
     case 11:
-        if (Message_Printing(param0->unk_04.unk_08) != 0) {
+        if (Text_IsPrinterActive(param0->unk_04.unk_08) != 0) {
             break;
         }
 
@@ -306,14 +306,14 @@ static BOOL ov119_021D1BD0(UnkStruct_ov119_021D0FD0 *param0)
 
         param0->unk_60++;
     case 10:
-        if (Message_Printing(param0->unk_04.unk_08) != 0) {
+        if (Text_IsPrinterActive(param0->unk_04.unk_08) != 0) {
             break;
         }
 
         param0->unk_04.unk_08 = ov119_021D1158(&param0->unk_04.unk_14[0], 1, param0->unk_00->unk_0C.unk_00, param0->unk_04.unk_0C);
         param0->unk_60++;
     case 11:
-        if (Message_Printing(param0->unk_04.unk_08) != 0) {
+        if (Text_IsPrinterActive(param0->unk_04.unk_08) != 0) {
             break;
         }
 

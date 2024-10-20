@@ -35,6 +35,7 @@
 #include "spl.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "unk_02001AF4.h"
 #include "unk_02002F38.h"
 #include "unk_02006E3C.h"
@@ -45,7 +46,6 @@
 #include "unk_02013A04.h"
 #include "unk_02014000.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
@@ -322,7 +322,7 @@ int ov119_021D1158(Window *param0, int param1, Pokemon *param2, int param3)
     StringTemplate_SetSpeciesName(v3, 0, v4);
     StringTemplate_Format(v3, v2, v1);
 
-    v0 = PrintStringSimple(param0, 1, v2, 0, 0, param3, NULL);
+    v0 = Text_AddPrinterWithParams(param0, 1, v2, 0, 0, param3, NULL);
 
     MessageLoader_Free(v5);
     Strbuf_Free(v2);

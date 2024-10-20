@@ -15,7 +15,7 @@ SecretBaseRecord *sub_0202855C(u32 param0);
 void Underground_Init(UndergroundData *param0);
 void sub_02028658(SaveData *param0, int param1);
 void sub_02028758(SaveData *param0, s32 param1, BOOL param2);
-void sub_0202878C(SaveData *param0);
+void SaveData_LoadAndUpdateUnderground(SaveData *param0);
 void sub_020287E0(SaveData *param0);
 void sub_020287F8(SaveData *param0);
 BOOL sub_02028810(SaveData *param0);

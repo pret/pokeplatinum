@@ -20,6 +20,7 @@
 #include "bag.h"
 #include "cell_actor.h"
 #include "core_sys.h"
+#include "font.h"
 #include "game_options.h"
 #include "heap.h"
 #include "message.h"
@@ -29,15 +30,14 @@
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
-#include "unk_02002B7C.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200DA60.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_020298BC.h"
 #include "unk_0205D8CC.h"
 
@@ -369,9 +369,9 @@ static void ov7_0224C338(UnkStruct_ov7_0224BEFC *param0)
 static void ov7_0224C35C(UnkStruct_ov7_0224BEFC *param0)
 {
     sub_0200DD0C(param0->unk_14, 3, 1, 10, param0->unk_1B0, param0->unk_18);
-    sub_02002E98(0, 12 * 32, param0->unk_18);
+    Font_LoadScreenIndicatorsPalette(0, 12 * 32, param0->unk_18);
     sub_0200DAA4(param0->unk_14, 3, (1 + (18 + 12)), 11, 0, param0->unk_18);
-    sub_02002E7C(0, 13 * 32, param0->unk_18);
+    Font_LoadTextPalette(0, 13 * 32, param0->unk_18);
     sub_02019EBC(param0->unk_14, 3);
 }
 
@@ -427,14 +427,14 @@ static void ov7_0224C468(UnkStruct_ov7_0224C3EC *param0, Strbuf *param1, u32 par
     BGL_FillWindow(param0->unk_04, 15);
 
     param0->unk_10 = Strbuf_Clone(param1, param2);
-    param0->unk_0C = sub_0201D78C(param0->unk_04, 1, param0->unk_10, 0, 0, param0->unk_08, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+    param0->unk_0C = Text_AddPrinterWithParamsAndColor(param0->unk_04, 1, param0->unk_10, 0, 0, param0->unk_08, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
 
     sub_0201A954(param0->unk_04);
 }
 
 static BOOL ov7_0224C4B8(UnkStruct_ov7_0224C3EC *param0)
 {
-    if (Message_Printing(param0->unk_0C) == 0) {
+    if (Text_IsPrinterActive(param0->unk_0C) == 0) {
         if (param0->unk_10 != NULL) {
             Strbuf_Free(param0->unk_10);
             param0->unk_10 = NULL;
@@ -553,7 +553,7 @@ static void ov7_0224C6DC(UnkStruct_ov7_0224C620 *param0, u32 param1, u32 param2,
 
     for (v0 = 0; v0 < 3; v0++) {
         StringTemplate_Format(param0->unk_08, param0->unk_0C, param0->unk_10[v0]);
-        sub_0201D78C(param0->unk_04, 0, param0->unk_0C, 0, 16 * v0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(param0->unk_04, 0, param0->unk_0C, 0, 16 * v0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     }
 
     Window_Show(param0->unk_04, 0, (1 + (18 + 12)), 11);

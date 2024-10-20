@@ -22,6 +22,7 @@
 
 #include "cell_actor.h"
 #include "core_sys.h"
+#include "font.h"
 #include "game_options.h"
 #include "heap.h"
 #include "inlines.h"
@@ -29,16 +30,15 @@
 #include "narc.h"
 #include "pokemon.h"
 #include "strbuf.h"
+#include "text.h"
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
-#include "unk_02002B7C.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02013A04.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0202DA40.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
@@ -280,7 +280,7 @@ static void ov94_0223E6B8(UnkStruct_ov94_0223FD4C *param0)
 
     sub_02007130(v1, 3, 0, 0, 16 * 3 * 2, 62);
     sub_02007130(v1, 5, 4, 0, 16 * 8 * 2, 62);
-    sub_02002E98(0, 13 * 0x20, 62);
+    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 62);
     sub_0200DD0C(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), 62);
     sub_0200DAA4(v0, 0, (1 + (18 + 12)), 11, 0, 62);
     sub_020070E8(v1, 13, v0, 1, 0, 16 * 5 * 0x20, 1, 62);
@@ -1055,7 +1055,7 @@ static int ov94_0223F928(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_0223F950(UnkStruct_ov94_0223FD4C *param0)
 {
-    if (Message_Printing(param0->unk_BE0) == 0) {
+    if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
         param0->unk_2C = param0->unk_30;
     }
 
@@ -1064,7 +1064,7 @@ static int ov94_0223F950(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_0223F970(UnkStruct_ov94_0223FD4C *param0)
 {
-    if (Message_Printing(param0->unk_BE0) == 0) {
+    if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
         param0->unk_10E0++;
 
         if (param0->unk_10E0 > 45) {
@@ -1084,7 +1084,7 @@ static void ov94_0223F9A4(UnkStruct_ov94_0223FD4C *param0, int param1, int param
     BGL_FillWindow(&param0->unk_F5C, 0xf0f);
     sub_0200E060(&param0->unk_F5C, 0, 1, 10);
 
-    param0->unk_BE0 = PrintStringSimple(&param0->unk_F5C, 1, param0->unk_BAC, 0, 0, param2, NULL);
+    param0->unk_BE0 = Text_AddPrinterWithParams(&param0->unk_F5C, 1, param0->unk_BAC, 0, 0, param2, NULL);
 }
 
 static void ov94_0223F9FC(Window *param0, Window *param1, MessageLoader *param2)
@@ -1110,7 +1110,7 @@ static void ov94_0223F9FC(Window *param0, Window *param1, MessageLoader *param2)
     v0 = MessageLoader_GetNewStrbuf(param2, 65);
 
     {
-        int v3 = sub_02002EEC(0, v0, 0, param0[6].unk_07 * 8);
+        int v3 = Font_CalcCenterAlignment(FONT_SYSTEM, v0, 0, param0[6].unk_07 * 8);
         ov94_02245900(&param0[6], v0, v3, 0, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));
     }
 
@@ -1119,7 +1119,7 @@ static void ov94_0223F9FC(Window *param0, Window *param1, MessageLoader *param2)
     v0 = MessageLoader_GetNewStrbuf(param2, 66);
 
     {
-        int v4 = sub_02002EEC(0, v0, 0, param0[7].unk_07 * 8);
+        int v4 = Font_CalcCenterAlignment(FONT_SYSTEM, v0, 0, param0[7].unk_07 * 8);
         ov94_02245900(&param0[7], v0, v4, 0, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));
     }
 

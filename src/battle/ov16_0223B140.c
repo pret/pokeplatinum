@@ -45,6 +45,7 @@
 #include "bag.h"
 #include "communication_system.h"
 #include "flags.h"
+#include "font.h"
 #include "game_options.h"
 #include "game_overlay.h"
 #include "game_records.h"
@@ -55,13 +56,13 @@
 #include "overlay_manager.h"
 #include "party.h"
 #include "pokemon.h"
+#include "render_text.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "trainer_info.h"
-#include "unk_02002328.h"
-#include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
@@ -78,7 +79,6 @@
 #include "unk_02017728.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
@@ -301,7 +301,7 @@ void ov16_0223B384(BattleSystem *param0)
 
     param0->unk_23FB_2 = 1;
 
-    sub_02002C60(2);
+    Font_Free(FONT_SUBSCREEN);
     ov16_0223F314(param0, 3);
 
     if (param0->overlayFlags == 0) {
@@ -325,7 +325,7 @@ void ov16_0223B3E4(BattleSystem *param0)
     sub_0200D0B0(param0->unk_90, param0->unk_94);
     sub_0200C8D4(param0->unk_90);
     sub_0201DC3C();
-    sub_02002C60(2);
+    Font_Free(FONT_SUBSCREEN);
 }
 
 void ov16_0223B430(BattleSystem *param0)
@@ -348,7 +348,7 @@ void ov16_0223B430(BattleSystem *param0)
     v1 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
     param0->unk_198 = ov16_022687C8(v0, v1, param0, ov16_0223E1B4(param0, ov16_0223F6E4(param0)), param0->unk_1BC);
 
-    sub_02002BB8(2, 5);
+    Font_InitManager(FONT_SUBSCREEN, 5);
 
     param0->unk_23FB_1 = 1;
 
@@ -362,7 +362,7 @@ void ov16_0223B430(BattleSystem *param0)
     ov16_02268D40(v1, param0->unk_198);
     NARC_dtor(v0);
     NARC_dtor(v1);
-    sub_020027A8(1);
+    TextPrinter_SetScrollArrowBaseTile(1);
     ov16_0223DD4C(param0);
     sub_0200964C(sub_0200C738(param0->unk_90), 0, ((192 + 80) << FX32_SHIFT));
 }
@@ -535,7 +535,7 @@ static void ov16_0223B790(OverlayManager *param0)
     v0->unk_00 = ov16_0223CD7C();
 
     DisableHBlank();
-    sub_02002BB8(2, 5);
+    Font_InitManager(FONT_SUBSCREEN, 5);
 
     if (v0->battleType & 0x20) {
         v0->unk_1A4 = sub_0200C440(0xe, 2, 0xf, 5);
@@ -782,15 +782,15 @@ static void ov16_0223BCB4(OverlayManager *param0)
         ov16_0223B3E4(v0);
     }
 
-    sub_02002AC8(0);
-    sub_02002AE4(0);
-    sub_02002B20(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(0);
+    RenderControlFlags_SetAutoScrollFlags(0);
+    RenderControlFlags_SetSpeedUpOnTouch(0);
     sub_0201A928(v0->windows, 3);
     Heap_FreeToHeap(v0->unk_04);
     Heap_FreeToHeap(v0->unk_21C);
     Heap_FreeToHeap(v0->unk_220);
     sub_0200C560(v0->unk_1A4);
-    sub_02002C60(2);
+    Font_Free(FONT_SUBSCREEN);
     SysTask_Done(v0->unk_1C);
     SysTask_Done(v0->unk_20);
     sub_0201E530();
@@ -1746,7 +1746,7 @@ static void ov16_0223D10C(OverlayManager *param0, BattleParams *param1)
         v6 = Strbuf_Init(0x100, 5);
 
         MessageLoader_GetStrbuf(v5, 923, v6);
-        PrintStringSimple(v0->unk_08, 1, v6, 0, 0, NULL, NULL);
+        Text_AddPrinterWithParams(v0->unk_08, 1, v6, 0, 0, NULL, NULL);
 
         Strbuf_Free(v6);
         MessageLoader_Free(v5);
@@ -2244,13 +2244,13 @@ static BOOL ov16_0223DD10(OverlayManager *param0)
 static void ov16_0223DD4C(BattleSystem *param0)
 {
     if ((param0->battleType & (0x4 | 0x400)) || (param0->battleStatusMask & 0x10)) {
-        sub_02002AE4(1);
-        sub_02002AC8(1);
-        sub_02002B20(0);
+        RenderControlFlags_SetAutoScrollFlags(1);
+        RenderControlFlags_SetCanABSpeedUpPrint(1);
+        RenderControlFlags_SetSpeedUpOnTouch(0);
     } else {
-        sub_02002AE4(3);
-        sub_02002AC8(1);
-        sub_02002B20(1);
+        RenderControlFlags_SetAutoScrollFlags(3);
+        RenderControlFlags_SetCanABSpeedUpPrint(1);
+        RenderControlFlags_SetSpeedUpOnTouch(1);
     }
 }
 

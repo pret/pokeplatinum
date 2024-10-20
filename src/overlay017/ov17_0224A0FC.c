@@ -47,6 +47,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
@@ -55,7 +56,6 @@
 #include "unk_02014000.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "unk_0201D670.h"
 #include "unk_020933F8.h"
 #include "unk_02094EDC.h"
 
@@ -1943,7 +1943,7 @@ static void ov17_0224C244(UnkStruct_ov17_0224DF54 *param0, MessageLoader *param1
     StringTemplate_Format(param0->unk_14.unk_88, param0->unk_14.unk_8C, v0);
     BGL_FillWindow(&param0->unk_14.unk_64[0], 0xff);
 
-    param0->unk_14.unk_A18 = PrintStringSimple(&param0->unk_14.unk_64[0], 1, param0->unk_14.unk_8C, 0, 0, v1, NULL);
+    param0->unk_14.unk_A18 = Text_AddPrinterWithParams(&param0->unk_14.unk_64[0], 1, param0->unk_14.unk_8C, 0, 0, v1, NULL);
     Strbuf_Free(v0);
 }
 
@@ -1961,7 +1961,7 @@ void ov17_0224C2CC(UnkStruct_ov17_0224DF54 *param0, u32 param1, const UnkStruct_
 
 int ov17_0224C300(UnkStruct_ov17_0224DF54 *param0)
 {
-    return Message_Printing(param0->unk_14.unk_A18);
+    return Text_IsPrinterActive(param0->unk_14.unk_A18);
 }
 
 void ov17_0224C310(SpriteRenderer *param0, SpriteGfxHandler *param1, NARC *param2)
@@ -2115,7 +2115,7 @@ void ov17_0224C5A0(UnkStruct_ov17_0224DF54 *param0, u32 param1, const UnkStruct_
 
     StringTemplate_Format(param0->unk_14.unk_88, param0->unk_14.unk_8C, v2);
     BGL_FillWindow(&param0->unk_14.unk_64[1], 0xff);
-    PrintStringSimple(&param0->unk_14.unk_64[1], 1, param0->unk_14.unk_8C, 0, 0, 0, NULL);
+    Text_AddPrinterWithParams(&param0->unk_14.unk_64[1], 1, param0->unk_14.unk_8C, 0, 0, 0, NULL);
     Strbuf_Free(v2);
 
     param0->unk_1B25 = 1;

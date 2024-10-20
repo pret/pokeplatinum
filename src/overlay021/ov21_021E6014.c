@@ -19,6 +19,7 @@
 #include "overlay021/struct_pokedexstatus.h"
 
 #include "cell_actor.h"
+#include "font.h"
 #include "heap.h"
 #include "message.h"
 #include "message_util.h"
@@ -26,12 +27,11 @@
 #include "pokedex_heightweight.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
-#include "unk_02002B7C.h"
+#include "text.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 
 typedef struct {
     int *unk_00;
@@ -459,14 +459,14 @@ static void ov21_021E6600(UnkStruct_ov21_021E6118 *param0, int param1)
     MessageLoader_GetStrbuf(v1, 43, v0);
 
     {
-        u32 v2 = sub_02002EEC(0, v0, 0, 256);
-        sub_0201D78C(&param0->unk_00->unk_04, 0, v0, v2, 24, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        u32 v2 = Font_CalcCenterAlignment(FONT_SYSTEM, v0, 0, 256);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_00->unk_04, 0, v0, v2, 24, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
     MessageLoader_GetStrbuf(v1, 9, v0);
-    sub_0201D78C(&param0->unk_00->unk_04, 0, v0, 32, 168, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_00->unk_04, 0, v0, 32, 168, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     MessageLoader_GetStrbuf(v1, 9, v0);
-    sub_0201D78C(&param0->unk_00->unk_04, 0, v0, 152, 168, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_00->unk_04, 0, v0, 152, 168, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
     MessageLoader_Free(v1);
 }
@@ -480,12 +480,12 @@ static void ov21_021E66B0(UnkStruct_ov21_021E6118 *param0, const UnkStruct_ov21_
     int heightMessageBankIndex = Height_Message_Bank_Index();
     MessageLoader *v1 = MessageLoader_Init(0, 26, heightMessageBankIndex, param2);
 
-    sub_0201D78C(&param0->unk_00->unk_04, 0, v3, 26, 152, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_00->unk_04, 0, v3, 26, 152, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     MessageLoader_GetStrbuf(v1, species, v0);
 
     {
-        u32 v5 = 32 + 78 - sub_02002D7C(0, v0, 0);
-        sub_0201D78C(&param0->unk_00->unk_04, 0, v0, v5, 168, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        u32 v5 = 32 + 78 - Font_CalcStrbufWidth(FONT_SYSTEM, v0, 0);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_00->unk_04, 0, v0, v5, 168, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
     Strbuf_Free(v3);
@@ -493,7 +493,7 @@ static void ov21_021E66B0(UnkStruct_ov21_021E6118 *param0, const UnkStruct_ov21_
 
     v1 = MessageLoader_Init(0, 26, 697, param2);
 
-    sub_0201D78C(&param0->unk_00->unk_04, 0, Pokedex_Sort_TrainerName(param1->dexStatus), 146, 152, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_00->unk_04, 0, Pokedex_Sort_TrainerName(param1->dexStatus), 146, 152, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
     if (Pokedex_Sort_TrainerGender(param1->dexStatus) == 0) {
         MessageLoader_GetStrbuf(v1, 95, v0);
@@ -502,8 +502,8 @@ static void ov21_021E66B0(UnkStruct_ov21_021E6118 *param0, const UnkStruct_ov21_
     }
 
     {
-        u32 v6 = 152 + 78 - sub_02002D7C(0, v0, 0);
-        sub_0201D78C(&param0->unk_00->unk_04, 0, v0, v6, 168, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        u32 v6 = 152 + 78 - Font_CalcStrbufWidth(FONT_SYSTEM, v0, 0);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_00->unk_04, 0, v0, v6, 168, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
     Strbuf_Free(v0);

@@ -25,6 +25,7 @@
 #include "overlay097/struct_ov97_0222DB78.h"
 #include "savedata/save_table.h"
 
+#include "font.h"
 #include "game_options.h"
 #include "game_records.h"
 #include "gx_layers.h"
@@ -36,12 +37,11 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
-#include "unk_02002B7C.h"
+#include "text.h"
 #include "unk_02006E3C.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0202CC64.h"
 #include "unk_0202DA40.h"
 #include "unk_0202F180.h"
@@ -330,7 +330,7 @@ static void ov94_02242CAC(UnkStruct_ov94_0223FD4C *param0)
     BGL *v0 = param0->unk_04;
 
     sub_02006E84(104, 0, 0, 0, 16 * 3 * 2, 62);
-    sub_02002E98(0, 13 * 0x20, 62);
+    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 62);
     sub_0200DD0C(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), 62);
     sub_0200DAA4(v0, 0, (1 + (18 + 12)), 11, 0, 62);
 
@@ -1240,7 +1240,7 @@ static int ov94_02243A90(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_02243AE8(UnkStruct_ov94_0223FD4C *param0)
 {
-    if (Message_Printing(param0->unk_BE0) == 0) {
+    if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
         param0->unk_2C = param0->unk_30;
     }
 
@@ -1403,7 +1403,7 @@ static void ov94_02243E48(Journal *param0, UnkStruct_ov94_0223BA88 *param1)
 
     Pokemon_GetValue(v2, MON_DATA_NICKNAME, v1);
     v0 = sub_0202C1EC(param1->unk_10C, param1->unk_F6, v1, Pokemon_GetGender(v2), 62);
-    sub_0202B758(param0, v0, 4);
+    Journal_SaveData(param0, v0, 4);
 }
 
 static int ov94_02243E84(UnkStruct_ov94_0223FD4C *param0, UnkStruct_ov94_0223BA88 *param1)

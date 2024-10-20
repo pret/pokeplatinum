@@ -800,7 +800,7 @@ static int ov83_0223C258(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
 
                 if (param1->unk_1490 == 1) {
                     v0 = sub_0202C1E0(param1->unk_00);
-                    sub_0202B758(param0->unk_10->unk_1C, v0, 4);
+                    Journal_SaveData(param0->unk_10->unk_1C, v0, 4);
                 }
             }
         }

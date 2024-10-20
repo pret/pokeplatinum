@@ -1,40 +1,38 @@
+#include "unk_0208A3F4.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "inlines.h"
-
+#include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "message.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "strbuf.h"
-
+#include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02089688.h"
 #include "struct_defs/struct_0208AF44.h"
-#include "struct_defs/sprite_template.h"
+
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_02241308.h"
 #include "overlay104/struct_ov104_0224133C.h"
 
-#include "unk_02002B7C.h"
+#include "font.h"
+#include "game_options.h"
+#include "inlines.h"
+#include "message.h"
+#include "strbuf.h"
+#include "text.h"
 #include "unk_02002F38.h"
 #include "unk_02006E3C.h"
-#include "message.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
 #include "unk_02012744.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201E86C.h"
-#include "strbuf.h"
-#include "game_options.h"
-#include "unk_0208A3F4.h"
 
 void sub_0208A3F4 (UnkStruct_02089688 * param0)
 {
@@ -674,12 +672,12 @@ void sub_0208AF44 (UnkStruct_02089688 * param0)
 void sub_0208AFCC (UnkStruct_02089688 * param0)
 {
     param0->unk_2C0.unk_8C = sub_02012744(2, 101);
-    sub_02002BB8(2, 101);
+    Font_InitManager(FONT_SUBSCREEN, 101);
 }
 
 void sub_0208AFE8 (UnkStruct_02089688 * param0)
 {
-    sub_02002C60(2);
+    Font_Free(FONT_SUBSCREEN);
     sub_02012870(param0->unk_2C0.unk_90[0]);
     sub_0201EE28(&param0->unk_2C0.unk_98[0]);
     sub_02012870(param0->unk_2C0.unk_90[1]);
@@ -715,7 +713,7 @@ void sub_0208B090 (UnkStruct_02089688 * param0, int param1, int param2, int para
     {
         Window_Init(&v7);
         BGL_AddFramelessWindow(param0->unk_2C0.unk_0C, &v7, 10, 2, 0, 0);
-        sub_0201D78C(&v7, 2, v3, sub_02002EEC(2, v3, 0, 80), 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((2 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&v7, 2, v3, Font_CalcCenterAlignment(FONT_SUBSCREEN, v3, 0, 80), 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((2 & 0xff) << 0))), NULL);
     }
 
     v4 = 1003;
@@ -770,7 +768,7 @@ void sub_0208B230 (Window * param0, int param1)
     v1 = MessageLoader_GetNewStrbuf(v0, param1);
 
     BGL_FillWindow(param0, 15);
-    PrintStringSimple(param0, 1, v1, 0, 0, 0, NULL);
+    Text_AddPrinterWithParams(param0, 1, v1, 0, 0, 0, NULL);
     sub_0201A954(param0);
 
     Strbuf_Free(v1);

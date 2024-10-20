@@ -12,7 +12,6 @@
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/pokemon_summary.h"
 #include "struct_defs/sprite_animation_frame.h"
-#include "struct_defs/struct_0201D738.h"
 #include "struct_defs/struct_0202818C.h"
 #include "struct_defs/struct_0202CA28.h"
 #include "struct_defs/struct_0207AE68_t.h"
@@ -36,12 +35,13 @@
 #include "pokemon.h"
 #include "pokemon_summary_app.h"
 #include "poketch_data.h"
+#include "render_text.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "unk_02001AF4.h"
-#include "unk_02002328.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
@@ -52,7 +52,6 @@
 #include "unk_02015F84.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0202419C.h"
 #include "unk_020241F0.h"
@@ -75,7 +74,7 @@ static void sub_0207C460(BGL *param0);
 static void sub_0207C498(UnkStruct_0207AE68 *param0);
 static void sub_0207C520(void *param0);
 static u8 sub_0207C584(UnkStruct_0207AE68 *param0, int param1);
-static BOOL sub_0207C5CC(UnkStruct_0201D738 *param0, u16 param1);
+static BOOL sub_0207C5CC(TextPrinterTemplate *param0, u16 param1);
 static void sub_0207C624(UnkStruct_0207AE68 *param0);
 
 static const UnkStruct_ov61_0222C884 Unk_020F0A30 = {
@@ -165,7 +164,7 @@ UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Opt
 
     sub_02015738(v0->unk_58, 1);
     SysTask_Start(sub_0207B0A0, v0, 0);
-    sub_02002AC8(1);
+    RenderControlFlags_SetCanABSpeedUpPrint(1);
     sub_02039734();
 
     return v0;
@@ -215,7 +214,7 @@ void sub_0207B0E0(UnkStruct_0207AE68 *param0)
     Heap_FreeToHeap(param0->unk_00);
     NARC_dtor(param0->unk_80);
     Heap_FreeToHeap(param0);
-    sub_02002AC8(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(0);
 }
 
 static void sub_0207B180(UnkStruct_0207AE68 *param0)
@@ -275,7 +274,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         }
         break;
     case 3:
-        if (Message_Printing(param0->unk_65) == 0) {
+        if (Text_IsPrinterActive(param0->unk_65) == 0) {
             param0->unk_64 = 4;
         }
         break;
@@ -303,7 +302,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         }
         break;
     case 5:
-        if ((Message_Printing(param0->unk_65) == 0) && (sub_0200598C() == 0) && (sub_020160F4(param0->unk_44, 0) == 1) && (sub_02007C24(param0->unk_1C[0]) == 0)) {
+        if ((Text_IsPrinterActive(param0->unk_65) == 0) && (sub_0200598C() == 0) && (sub_020160F4(param0->unk_44, 0) == 1) && (sub_02007C24(param0->unk_1C[0]) == 0)) {
             sub_02015738(param0->unk_58, 1);
             sub_02005474(1141);
             param0->unk_66 = 20;
@@ -411,7 +410,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         }
         break;
     case 12:
-        if (Message_Printing(param0->unk_65) == 0) {
+        if (Text_IsPrinterActive(param0->unk_65) == 0) {
             if (--param0->unk_66 == 0) {
                 sub_0202736C(param0->unk_48, param0->unk_28);
                 GameRecords_IncrementRecordValue(param0->records, RECORD_UNK_012);
@@ -473,7 +472,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
     case 28:
     case 30:
     case 33:
-        if (Message_Printing(param0->unk_65) == 0) {
+        if (Text_IsPrinterActive(param0->unk_65) == 0) {
             if (--param0->unk_66 == 0) {
                 param0->unk_64++;
             }
@@ -569,7 +568,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         break;
         break;
     case 36:
-        if (Message_Printing(param0->unk_65) == 0) {
+        if (Text_IsPrinterActive(param0->unk_65) == 0) {
             if (--param0->unk_66 == 0) {
                 param0->unk_64 = 13;
             }
@@ -603,7 +602,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         param0->unk_64 = 37;
         break;
     case 37:
-        if (Message_Printing(param0->unk_65) == 0) {
+        if (Text_IsPrinterActive(param0->unk_65) == 0) {
             param0->unk_64++;
         }
         break;
@@ -669,7 +668,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         }
         break;
     case 44:
-        if (Message_Printing(param0->unk_65) == 0) {
+        if (Text_IsPrinterActive(param0->unk_65) == 0) {
             if (--param0->unk_66 == 0) {
                 sub_02003178(param0->unk_14, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 0, 16, 0x0);
                 sub_0200872C(param0->unk_18, 0, 16, 0, 0x0);
@@ -984,10 +983,10 @@ static u8 sub_0207C584(UnkStruct_0207AE68 *param0, int param1)
     Heap_FreeToHeap(v0);
     BGL_FillWindow(param0->unk_04, 0xff);
 
-    return PrintStringSimple(param0->unk_04, 1, param0->unk_10, 0, 0, Options_TextFrameDelay(param0->unk_2C), sub_0207C5CC);
+    return Text_AddPrinterWithParams(param0->unk_04, 1, param0->unk_10, 0, 0, Options_TextFrameDelay(param0->unk_2C), sub_0207C5CC);
 }
 
-static BOOL sub_0207C5CC(UnkStruct_0201D738 *param0, u16 param1)
+static BOOL sub_0207C5CC(TextPrinterTemplate *param0, u16 param1)
 {
     BOOL v0;
 

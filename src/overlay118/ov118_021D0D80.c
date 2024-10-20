@@ -17,9 +17,9 @@
 #include "spl.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "unk_02005474.h"
 #include "unk_02014000.h"
-#include "unk_0201D670.h"
 #include "unk_0202419C.h"
 #include "unk_0202631C.h"
 #include "unk_0207E0B8.h"
@@ -147,7 +147,7 @@ int ov118_021D0DBC(GameWindowLayout *param0)
         v0->unk_00++;
         break;
     case 10:
-        if (Message_Printing(param0->unk_B10) == 0) {
+        if (Text_IsPrinterActive(param0->unk_B10) == 0) {
             ov118_021D0F70(param0);
             param0->unk_5A4->unk_23 = 0;
             return 1;

@@ -20,18 +20,18 @@
 
 #include "camera.h"
 #include "easy3d_object.h"
+#include "font.h"
 #include "inlines.h"
 #include "message.h"
 #include "narc.h"
 #include "strbuf.h"
+#include "text.h"
 #include "trainer_info.h"
-#include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_02006E3C.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0202419C.h"
 
 static inline void inline_ov116_02261940(UnkStruct_ov116_0226501C *param0);
@@ -407,7 +407,7 @@ void ov116_02261F70(UnkStruct_ov116_02262A8C *param0)
         v0 = MessageLoader_Init(0, 26, 410, 106);
         v1 = MessageLoader_GetNewStrbuf(v0, 0);
 
-        PrintStringSimple(&param0->unk_1FC8, 0, v1, 0, 0, 0, NULL);
+        Text_AddPrinterWithParams(&param0->unk_1FC8, 0, v1, 0, 0, 0, NULL);
         Strbuf_Free(v1);
         MessageLoader_Free(v0);
     }
@@ -466,7 +466,7 @@ void ov116_02262034(UnkStruct_ov116_0226139C *param0, int param1)
 
 static int ov116_0226208C(Window *param0, Strbuf *param1)
 {
-    int v0 = sub_02002D7C(0, param1, 0);
+    int v0 = Font_CalcStrbufWidth(FONT_SYSTEM, param1, 0);
     int v1 = (sub_0201C294(param0) * 8 - v0) / 2;
 
     return v1;
@@ -541,9 +541,9 @@ void ov116_022620AC(UnkStruct_ov116_0226139C *param0, UnkStruct_ov116_02262A8C *
             v12 = ov116_0226208C(v3, v11);
 
             if (v10) {
-                PrintStringWithColorAndMargins(v3, 0, v11, v12, 0, 0, ((u32)(((5 & 0xff) << 16) | ((6 & 0xff) << 8) | ((15 & 0xff) << 0))), 0, 0, NULL);
+                Text_AddPrinterWithParamsColorAndSpacing(v3, 0, v11, v12, 0, 0, ((u32)(((5 & 0xff) << 16) | ((6 & 0xff) << 8) | ((15 & 0xff) << 0))), 0, 0, NULL);
             } else {
-                PrintStringWithColorAndMargins(v3, 0, v11, v12, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), 0, 0, NULL);
+                Text_AddPrinterWithParamsColorAndSpacing(v3, 0, v11, v12, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), 0, 0, NULL);
             }
 
             Strbuf_Free(v11);

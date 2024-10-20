@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field/map_load.h"
+
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0203CC84.h"
 
@@ -247,7 +249,7 @@ BOOL FieldSystem_Run(FieldSystem *fieldSystem)
 
 void FieldSystem_Control(FieldSystem *fieldSystem)
 {
-    int v0;
+    int loadType;
     FieldInput v1;
     BOOL v2 = 0;
 
@@ -260,14 +262,14 @@ void FieldSystem_Control(FieldSystem *fieldSystem)
         FieldInput_Update(&v1, fieldSystem, gCoreSys.pressedKeys, gCoreSys.heldKeys);
     }
 
-    v0 = fieldSystem->unk_70;
+    loadType = fieldSystem->mapLoadType;
 
     if (fieldSystem->location->mapId == 326) {
-        v0 = 0;
+        loadType = MAP_LOAD_TYPE_OVERWORLD;
     }
 
-    switch (v0) {
-    case 1:
+    switch (loadType) {
+    case MAP_LOAD_TYPE_UNDERGROUND:
         if (v2) {
             if (sub_02058C40()) {
                 if (FieldInput_Process_Underground(&v1, fieldSystem) == 1) {
@@ -277,7 +279,7 @@ void FieldSystem_Control(FieldSystem *fieldSystem)
 
         sub_0205805C(fieldSystem, v2);
         break;
-    case 3:
+    case MAP_LOAD_TYPE_COLOSSEUM:
         if (v2) {
             if (sub_02058C40()) {
                 if (FieldInput_Process_Colosseum(&v1, fieldSystem) == 1) {
@@ -290,7 +292,7 @@ void FieldSystem_Control(FieldSystem *fieldSystem)
 
         sub_0205805C(fieldSystem, v2);
         break;
-    case 2:
+    case MAP_LOAD_TYPE_UNION:
         if (v2) {
             if (FieldInput_Process_UnionRoom(&v1, fieldSystem) == 1) {
 
@@ -299,7 +301,7 @@ void FieldSystem_Control(FieldSystem *fieldSystem)
             }
         }
         break;
-    case 4:
+    case MAP_LOAD_TYPE_BATTLE_TOWER:
         if (v2) {
             if (FieldInput_Process_BattleTower(&v1, fieldSystem) == 1) {
                 ov5_021DDA78(fieldSystem->unk_04->unk_08);
@@ -376,8 +378,8 @@ struct PoketchSystem *FieldSystem_GetPoketchSystem(void)
 
 BGL *sub_0203D170(void *param0)
 {
-    FieldSystem *v0 = (FieldSystem *)param0;
-    return v0->unk_08;
+    FieldSystem *fieldSystem = (FieldSystem *)param0;
+    return fieldSystem->unk_08;
 }
 
 SaveData *FieldSystem_SaveData(void *param0)

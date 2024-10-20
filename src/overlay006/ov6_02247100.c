@@ -153,10 +153,10 @@ static int ov6_02247288(TaskManager *taskMan, FieldSystem *fieldSystem, UnkStruc
 
         v1 = FieldOverworldState_GetWarpId(v0);
         sub_0203A7F0(v1, &v2);
-        sub_02053CD4(taskMan, &v2, param2->unk_08);
+        FieldTask_ChangeMapChangeByDig(taskMan, &v2, param2->unk_08);
     } else {
         Location *v3 = sub_0203A72C(v0);
-        sub_02053CD4(taskMan, v3, param2->unk_08);
+        FieldTask_ChangeMapChangeByDig(taskMan, v3, param2->unk_08);
     }
 
     return 2;
@@ -209,7 +209,7 @@ static void ov6_0224732C(FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param
         return;
     }
 
-    sub_0202B758(fieldSystem->unk_9C, v0, 1);
+    Journal_SaveData(fieldSystem->journal, v0, 1);
 }
 
 static int ov6_02247354(TaskManager *taskMan, FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param2)

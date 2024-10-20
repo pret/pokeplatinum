@@ -15,6 +15,7 @@
 
 #include "cell_actor.h"
 #include "core_sys.h"
+#include "font.h"
 #include "game_options.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -30,7 +31,6 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "trainer_info.h"
-#include "unk_02002B7C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_02006224.h"
@@ -168,7 +168,7 @@ static int sub_0208C330(OverlayManager *param0, int *param1)
     v0->monSpriteData.animationSys = sub_02015F84(19, 1, 1);
     v0->narcPlPokeData = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, 19);
 
-    sub_02002BEC(0, 19);
+    Font_UseImmediateGlyphAccess(FONT_SYSTEM, 19);
     sub_0201E3D8();
     sub_0201E450(4);
     sub_0208D748(v0);
@@ -289,7 +289,7 @@ static int sub_0208C5A0(OverlayManager *param0, int *param1)
     sub_0201DC3C();
     sub_0208C950(v0);
     NARC_dtor(v0->narcPlPokeData);
-    sub_02002C28(0);
+    Font_UseLazyGlyphAccess(FONT_SYSTEM);
 
     G2_BlendNone();
 
@@ -933,7 +933,7 @@ static int sub_0208CF78(PokemonSummaryApp *param0)
             Heap_FreeToHeap(v1);
         }
 
-        sub_02002E98(0, 14 * 32, 19);
+        Font_LoadScreenIndicatorsPalette(0, 14 * 32, 19);
         sub_0200DD0C(param0->bgl, 1, (1024 - (18 + 12)), 13, Options_Frame(param0->data->options), 19);
 
         if (param0->subscreen == 0) {
@@ -2161,7 +2161,7 @@ u8 PokemonSummary_RibbonAt(PokemonSummaryApp *param0, u8 param1)
 static int sub_0208E958(PokemonSummaryApp *param0)
 {
     if (param0->monData.sheen == 255) {
-        sub_02002E98(0, 14 * 32, 19);
+        Font_LoadScreenIndicatorsPalette(0, 14 * 32, 19);
         sub_0200DD0C(param0->bgl, 1, (1024 - (18 + 12)), 13, Options_Frame(param0->data->options), 19);
         sub_02091610(param0, 0xff);
         param0->data->returnMode = 1;

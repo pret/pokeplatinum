@@ -28,6 +28,7 @@
 #include "overlay104/struct_ov104_0224133C.h"
 
 #include "cell_actor.h"
+#include "font.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
@@ -36,9 +37,9 @@
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "touch_screen.h"
 #include "unk_02001AF4.h"
-#include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_02006E3C.h"
 #include "unk_0200C6E4.h"
@@ -48,7 +49,6 @@
 #include "unk_02013A04.h"
 #include "unk_02014000.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201E86C.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
@@ -112,12 +112,12 @@ static void ov76_0223B870(TouchScreenRect *rect, CellActorData *param1, int para
 void ov76_0223B8A8(UnkStruct_ov76_0223DE00 *param0)
 {
     param0->unk_D4.unk_160 = sub_02012744(2, 53);
-    sub_02002BB8(2, 53);
+    Font_InitManager(FONT_SUBSCREEN, 53);
 }
 
 void ov76_0223B8C4(UnkStruct_ov76_0223DE00 *param0)
 {
-    sub_02002C60(2);
+    Font_Free(FONT_SUBSCREEN);
     sub_02012870(param0->unk_D4.unk_164[0]);
     sub_0201EE28(&param0->unk_D4.unk_16C[0]);
     sub_02012870(param0->unk_D4.unk_164[1]);
@@ -158,7 +158,7 @@ void ov76_0223B98C(UnkStruct_ov76_0223DE00 *param0, int param1, int param2, int 
     {
         Window_Init(&v5);
         BGL_AddFramelessWindow(param0->unk_D4.unk_10, &v5, 10, 2, 0, 0);
-        sub_0201D78C(&v5, 2, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((2 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&v5, 2, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((2 & 0xff) << 0))), NULL);
     }
 
     v2 = 30000;
@@ -171,7 +171,7 @@ void ov76_0223B98C(UnkStruct_ov76_0223DE00 *param0, int param1, int param2, int 
     v0.unk_0C = sub_0200D04C(param0->unk_D4.unk_0C, v2);
     v0.unk_10 = NULL;
     v0.unk_14 = param0->unk_D4.unk_16C[param1].unk_04;
-    v0.unk_18 = param2 - sub_02002D7C(2, v1, 0) / 2;
+    v0.unk_18 = param2 - Font_CalcStrbufWidth(FONT_SUBSCREEN, v1, 0) / 2;
     v0.unk_1C = param3 + 192;
     v0.unk_20 = 1;
     v0.unk_24 = 40;
@@ -959,7 +959,7 @@ void ov76_0223CA30(Window *param0, int param1)
     v1 = MessageLoader_GetNewStrbuf(v0, param1);
 
     BGL_FillWindow(param0, 15);
-    PrintStringSimple(param0, 1, v1, 0, 0, 0, NULL);
+    Text_AddPrinterWithParams(param0, 1, v1, 0, 0, 0, NULL);
     sub_0201A954(param0);
     Strbuf_Free(v1);
     MessageLoader_Free(v0);
@@ -1020,7 +1020,7 @@ void ov76_0223CC8C(UnkStruct_ov76_0223DE00 *param0)
         v3 = sub_0202CA90(param0->unk_64, v2 - 1);
 
         Strbuf_FormatInt(v4, v3, 3, 1, 1);
-        sub_0201D78C(v5, 0, v4, (-1 + 8), 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(v5, 0, v4, (-1 + 8), 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         sub_0201A954(v5);
         Strbuf_Free(v4);
     }
@@ -1051,7 +1051,7 @@ void ov76_0223CD20(UnkStruct_ov76_0223DE00 *param0, int param1)
     v3 = sub_0202CA90(param0->unk_64, v2 - 1);
 
     Strbuf_FormatInt(v4, v3, 3, 1, 1);
-    sub_0201D78C(v5, 1, v4, (-1 + 8), 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(v5, 1, v4, (-1 + 8), 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     sub_0201A954(v5);
     Strbuf_Free(v4);
 }
@@ -1081,7 +1081,7 @@ void ov76_0223CDC4(Window *param0, int param1)
     v1 = MessageLoader_GetNewStrbuf(v0, param1);
 
     BGL_FillWindow(param0, 15);
-    PrintStringSimple(param0, 1, v1, 0, 0, 0, NULL);
+    Text_AddPrinterWithParams(param0, 1, v1, 0, 0, 0, NULL);
     sub_0201A954(param0);
     Strbuf_Free(v1);
     MessageLoader_Free(v0);

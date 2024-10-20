@@ -48,6 +48,7 @@
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "trainer_info.h"
 #include "unk_02001AF4.h"
 #include "unk_020041CC.h"
@@ -62,7 +63,6 @@
 #include "unk_02017728.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
@@ -1026,7 +1026,7 @@ static void ov23_0223EA38(SysTask *param0, void *param1)
     u8 v0;
 
     if (Unk_ov23_02257740->unk_A24 != -1) {
-        if (Message_Printing(Unk_ov23_02257740->unk_A24) == 0) {
+        if (Text_IsPrinterActive(Unk_ov23_02257740->unk_A24) == 0) {
             Unk_ov23_02257740->unk_848 = sub_02002100(Unk_ov23_02257740->fieldSystem->unk_08, &Unk_ov23_0225630E, 1024 - (18 + 12) - 9, 11, 4);
             Unk_ov23_02257740->unk_A24 = -1;
         }
@@ -1497,7 +1497,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         (v0->unk_00)++;
         break;
     case 12:
-        if (Message_Printing(Unk_ov23_02257740->unk_A24) == 0) {
+        if (Text_IsPrinterActive(Unk_ov23_02257740->unk_A24) == 0) {
             if (gCoreSys.touchPressed || (gCoreSys.pressedKeys & PAD_BUTTON_A)) {
                 ov23_02254044(ov23_0224219C());
                 v0->unk_00++;
@@ -1526,7 +1526,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
     case 15:
         CellActorCollection_Update(Unk_ov23_02257740->unk_20);
 
-        if (Message_Printing(Unk_ov23_02257740->unk_A24) == 0) {
+        if (Text_IsPrinterActive(Unk_ov23_02257740->unk_A24) == 0) {
             v0->unk_4C--;
 
             if (gCoreSys.touchPressed || (gCoreSys.pressedKeys & PAD_BUTTON_A) || (v0->unk_4C == 0)) {
@@ -1548,7 +1548,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
     case 17:
         CellActorCollection_Update(Unk_ov23_02257740->unk_20);
 
-        if (Message_Printing(Unk_ov23_02257740->unk_A24) == 0) {
+        if (Text_IsPrinterActive(Unk_ov23_02257740->unk_A24) == 0) {
             v0->unk_4C--;
 
             if (gCoreSys.touchPressed || (gCoreSys.pressedKeys & PAD_BUTTON_A) || (v0->unk_4C == 0)) {
@@ -1657,7 +1657,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         v0->unk_00 = 15;
         break;
     case 27:
-        if (Message_Printing(Unk_ov23_02257740->unk_A24) == 0) {
+        if (Text_IsPrinterActive(Unk_ov23_02257740->unk_A24) == 0) {
             v0->unk_4C--;
 
             if (gCoreSys.touchPressed || (gCoreSys.pressedKeys & PAD_BUTTON_A) || (v0->unk_4C == 0)) {
@@ -1674,7 +1674,7 @@ static void ov23_0223F70C(FieldSystem *fieldSystem)
     UnkStruct_ov23_0223EE80 *v0;
     void *v1 = sub_0202BE14(11);
 
-    sub_0202B758(fieldSystem->unk_9C, v1, 1);
+    Journal_SaveData(fieldSystem->journal, v1, 1);
     v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov23_0223EE80));
 
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_0223EE80));

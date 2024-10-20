@@ -21,6 +21,7 @@
 #include "overlay101/struct_ov101_021D1894.h"
 
 #include "enums.h"
+#include "font.h"
 #include "game_records.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -31,7 +32,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02002B7C.h"
+#include "text.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200A784.h"
@@ -39,7 +40,6 @@
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
@@ -436,7 +436,7 @@ void ov101_021D13C8(UnkStruct_ov101_021D13C8 *param0)
 
     sub_0200DAA4(param0->unk_43C, 0, 1, 15, 0, 79);
     sub_0200DD0C(param0->unk_43C, 0, (1 + (18 + 12)), 14, param0->unk_4C4, 79);
-    sub_02002E98(0, 15 * 32, 79);
+    Font_LoadScreenIndicatorsPalette(0, 15 * 32, 79);
 
     v1->unk_00 = MessageLoader_Init(0, 26, 544, 79);
     v1->unk_04 = StringTemplate_Default(79);
@@ -470,7 +470,7 @@ void ov101_021D148C(UnkStruct_ov101_021D13C8 *param0, u32 param1)
     sub_0200E060(&v0->unk_08[0], 1, (1 + (18 + 12)), 14);
     BGL_FillWindow(&v0->unk_08[0], 15);
     MessageLoader_GetStrbuf(v0->unk_00, param1, v0->unk_18);
-    PrintStringSimple(&v0->unk_08[0], 1, v0->unk_18, 0, 0, 0xff, NULL);
+    Text_AddPrinterWithParams(&v0->unk_08[0], 1, v0->unk_18, 0, 0, 0xff, NULL);
     sub_0201A9A4(&v0->unk_08[0]);
 }
 

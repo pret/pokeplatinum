@@ -25,6 +25,7 @@
 #include "communication_information.h"
 #include "communication_system.h"
 #include "core_sys.h"
+#include "font.h"
 #include "game_options.h"
 #include "game_records.h"
 #include "gx_layers.h"
@@ -39,9 +40,9 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "trainer_info.h"
 #include "unk_02001AF4.h"
-#include "unk_02002B7C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
@@ -53,7 +54,6 @@
 #include "unk_02017728.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
@@ -578,8 +578,8 @@ static void ov59_021D1388(UnkStruct_020961E8 *param0, NARC *param1)
 
     sub_02007130(param1, 0, 0, 0, 16 * 16 * 2, 51);
     sub_02006E84(12, 12, 4, 0, 16 * 2, 51);
-    sub_02002E98(0, 13 * 0x20, 51);
-    sub_02002E98(4, 13 * 0x20, 51);
+    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 51);
+    Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, 51);
     sub_02006E3C(12, 10, v0, 6, 0, 0, 1, 51);
     sub_02006E60(12, 11, v0, 6, 0, 0, 1, 51);
     sub_020070E8(param1, 2, v0, 1, 0, 32 * 8 * 0x20, 1, 51);
@@ -706,11 +706,11 @@ static void ov59_021D16A0(UnkStruct_020961E8 *param0, OverlayManager *param1)
 
 static void ov59_021D1784(Window *param0, Strbuf *param1, int param2)
 {
-    int v0 = sub_02002D7C(1, param1, 0);
+    int v0 = Font_CalcStrbufWidth(FONT_MESSAGE, param1, 0);
     int v1 = (26 * 8 - v0) / 2;
 
     BGL_FillWindow(param0, 0x0);
-    sub_0201D78C(param0, 1, param1, v1, 1, param2, (u32)(((1 & 0xff) << 16) | ((4 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+    Text_AddPrinterWithParamsAndColor(param0, 1, param1, v1, 1, param2, (u32)(((1 & 0xff) << 16) | ((4 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
 }
 
 static void ov59_021D17C8(UnkStruct_020961E8 *param0)
@@ -1091,7 +1091,7 @@ static int ov59_021D1DC8(UnkStruct_020961E8 *param0, int param1)
     gCoreSys.inhibitReset = 1;
     v0 = sub_0202C1B4(51);
 
-    sub_0202B758(param0->unk_08->unk_10, v0, 4);
+    Journal_SaveData(param0->unk_08->unk_10, v0, 4);
     GameRecords_IncrementTrainerScore(param0->unk_08->records, TRAINER_SCORE_EVENT_UNK_20);
     sub_02038ED4(&param0->unk_404);
 
@@ -1276,7 +1276,7 @@ static int ov59_021D20D0(UnkStruct_020961E8 *param0, int param1)
 static int ov59_021D20F4(UnkStruct_020961E8 *param0, int param1)
 {
     if ((param0->unk_4C != 0xff) && (ov59_021D26B8(param0->unk_4C) == 0)) {
-        PrintString_ForceStop(param0->unk_4C);
+        Text_RemovePrinter(param0->unk_4C);
     }
 
     ov59_021D2628(param0, 15, 1);
@@ -1345,7 +1345,7 @@ void ov59_021D2204(UnkStruct_020961E8 *param0, int param1, u8 param2)
         break;
     case 25:
         if (ov59_021D26B8(param0->unk_4C) == 0) {
-            PrintString_ForceStop(param0->unk_4C);
+            Text_RemovePrinter(param0->unk_4C);
         }
 
         ov59_021D2628(param0, 12, 0);
@@ -1487,11 +1487,11 @@ static BOOL ov59_021D2418(Window *param0, int param1, u32 param2, UnkStruct_0209
             v2 = MessageUtil_ExpandedStrbuf(param3->unk_24, param3->unk_28, 1, 51);
 
             if (v1 == v0) {
-                sub_0201D78C(&param0[0], 0, param3->unk_2C[v0], 5, 1 + v0 * 18, 0xff, (u32)(((2 & 0xff) << 16) | ((3 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
-                sub_0201D78C(&param0[0], 0, v2, 5 + 13 * 5, 1 + v0 * 18, 0xff, (u32)(((2 & 0xff) << 16) | ((3 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+                Text_AddPrinterWithParamsAndColor(&param0[0], 0, param3->unk_2C[v0], 5, 1 + v0 * 18, 0xff, (u32)(((2 & 0xff) << 16) | ((3 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+                Text_AddPrinterWithParamsAndColor(&param0[0], 0, v2, 5 + 13 * 5, 1 + v0 * 18, 0xff, (u32)(((2 & 0xff) << 16) | ((3 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
             } else {
-                sub_0201D78C(&param0[0], 0, param3->unk_2C[v0], 5, 1 + v0 * 18, 0xff, param2, NULL);
-                sub_0201D78C(&param0[0], 0, v2, 5 + 13 * 5, 1 + v0 * 18, 0xff, param2, NULL);
+                Text_AddPrinterWithParamsAndColor(&param0[0], 0, param3->unk_2C[v0], 5, 1 + v0 * 18, 0xff, param2, NULL);
+                Text_AddPrinterWithParamsAndColor(&param0[0], 0, v2, 5 + 13 * 5, 1 + v0 * 18, 0xff, param2, NULL);
             }
 
             Strbuf_Free(v2);
@@ -1581,9 +1581,9 @@ static void ov59_021D2628(UnkStruct_020961E8 *param0, int param1, int param2)
     sub_0200E060(&param0->unk_34C, 0, 1, 10);
 
     if (param2 == 0) {
-        param0->unk_4C = PrintStringSimple(&param0->unk_34C, 1, param0->unk_44, 0, 0, ov59_021D28D4(param0), NULL);
+        param0->unk_4C = Text_AddPrinterWithParams(&param0->unk_34C, 1, param0->unk_44, 0, 0, ov59_021D28D4(param0), NULL);
     } else {
-        PrintStringSimple(&param0->unk_34C, 1, param0->unk_44, 0, 0, 0, NULL);
+        Text_AddPrinterWithParams(&param0->unk_34C, 1, param0->unk_44, 0, 0, 0, NULL);
         param0->unk_4C = 0xff;
     }
 }
@@ -1594,7 +1594,7 @@ static int ov59_021D26B8(int param0)
         return 1;
     }
 
-    if (Message_Printing(param0) == 0) {
+    if (Text_IsPrinterActive(param0) == 0) {
         return 1;
     }
 

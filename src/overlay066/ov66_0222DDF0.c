@@ -43,6 +43,7 @@
 #include "overlay068/struct_ov68_0225DC74.h"
 
 #include "enums.h"
+#include "font.h"
 #include "game_records.h"
 #include "heap.h"
 #include "inlines.h"
@@ -54,7 +55,6 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "unk_02002B7C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_02014D38.h"
@@ -1002,7 +1002,7 @@ void ov66_0222E640(const UnkStruct_ov66_0222E71C *param0, TrainerInfo *param1, u
             v3 = Strbuf_Init((7 + 1) * 4, param2);
             v2 = Strbuf_Init((7 + 1) * 4, param2);
             TrainerInfo_NameStrbuf(param1, v2);
-            v0 = sub_02002DB4(0, v2, v3);
+            v0 = Font_AreAllCharsValid(FONT_SYSTEM, v2, v3);
 
             if (v0 == 0) {
                 v1 = 1;
@@ -1747,7 +1747,7 @@ void ov66_0222EEF4(UnkStruct_ov66_0222DFF8 *param0, u32 param1)
         ov66_0222E640(v0, v1, 112);
         v2 = sub_0202C250(TrainerInfo_Name(v1), v0->unk_38, 112, 22);
 
-        sub_0202B758(v3, v2, 4);
+        Journal_SaveData(v3, v2, 4);
         Heap_FreeToHeap(v1);
     }
 }
@@ -1768,7 +1768,7 @@ void ov66_0222EF44(UnkStruct_ov66_0222DFF8 *param0, u32 param1)
 
         v2 = sub_0202C250(TrainerInfo_Name(v1), v0->unk_38, 112, 23);
 
-        sub_0202B758(v3, v2, 4);
+        Journal_SaveData(v3, v2, 4);
         Heap_FreeToHeap(v1);
     }
 }
@@ -1802,7 +1802,7 @@ void ov66_0222EF94(UnkStruct_ov66_0222DFF8 *param0, enum PlazaMinigame param1)
     }
 
     if (v0) {
-        sub_0202B758(v1, v0, 4);
+        Journal_SaveData(v1, v0, 4);
     }
 }
 
@@ -1814,7 +1814,7 @@ void ov66_0222F000(UnkStruct_ov66_0222DFF8 *param0)
     v1 = SaveData_GetJournal(param0->unk_00);
     v0 = sub_0202C244(112, 28);
 
-    sub_0202B758(v1, v0, 4);
+    Journal_SaveData(v1, v0, 4);
 }
 
 void ov66_0222F020(UnkStruct_ov66_0222DFF8 *param0)

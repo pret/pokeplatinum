@@ -13,6 +13,7 @@
 #include "overlay097/struct_ov97_0222DB78.h"
 
 #include "core_sys.h"
+#include "font.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
@@ -21,14 +22,13 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "trainer_info.h"
 #include "unk_02000C88.h"
-#include "unk_02002B7C.h"
 #include "unk_02006E3C.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 
 typedef struct {
     int unk_00;
@@ -316,7 +316,7 @@ static void ov102_021D1174(UnkStruct_ov102_021D0F8C *param0)
 {
     UnkStruct_ov61_0222C884 v0 = { 0, 0, 0, 32, 24, 2, 1 };
 
-    sub_0201D710();
+    Text_ResetAllPrinters();
 
     param0->unk_34 = MessageLoader_Init(1, 26, 1, param0->unk_00);
     param0->unk_38 = StringTemplate_Default(param0->unk_00);
@@ -395,8 +395,8 @@ static void ov102_021D1274(UnkStruct_ov102_021D0F8C *param0)
 
     sub_02019690(0, 32, 0, param0->unk_00);
     sub_02019690(4, 32, 0, param0->unk_00);
-    sub_02002E7C(0, 2 * (2 * 16), param0->unk_00);
-    sub_02002E7C(4, 2 * (2 * 16), param0->unk_00);
+    Font_LoadTextPalette(0, 2 * (2 * 16), param0->unk_00);
+    Font_LoadTextPalette(4, 2 * (2 * 16), param0->unk_00);
 }
 
 static void ov102_021D1420(UnkStruct_ov102_021D0F8C *param0)
@@ -409,8 +409,8 @@ static void ov102_021D1420(UnkStruct_ov102_021D0F8C *param0)
         MessageLoader_GetStrbuf(param0->unk_34, 0, v1);
         StringTemplate_SetPlayerName(param0->unk_38, 0, param0->unk_0C);
         StringTemplate_Format(param0->unk_38, v0, v1);
-        sub_0201D78C(&param0->unk_14, 0, v0, 48, 32, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
-        sub_0201D78C(&param0->unk_24, 0, v0, 48, 32, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_14, 0, v0, 48, 32, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_24, 0, v0, 48, 32, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
         Strbuf_Free(v1);
     }
     {
@@ -423,13 +423,13 @@ static void ov102_021D1420(UnkStruct_ov102_021D0F8C *param0)
         }
 
         MessageLoader_GetStrbuf(param0->unk_34, v2, v0);
-        sub_0201D78C(&param0->unk_14, 0, v0, 64, 64, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
-        sub_0201D78C(&param0->unk_24, 0, v0, 64, 64, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_14, 0, v0, 64, 64, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_24, 0, v0, 64, 64, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
     }
     {
         MessageLoader_GetStrbuf(param0->unk_34, 3, v0);
-        sub_0201D78C(&param0->unk_14, 0, v0, 138, 144, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
-        sub_0201D78C(&param0->unk_24, 0, v0, 138, 144, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_14, 0, v0, 138, 144, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_24, 0, v0, 138, 144, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
     }
 
     Strbuf_Free(v0);

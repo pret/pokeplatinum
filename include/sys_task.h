@@ -6,7 +6,7 @@
 // Note: Tasks are executed in order of priority, from lowest to highest.
 SysTask *SysTask_Start(SysTaskFunc callback, void *param, u32 priority);
 SysTask *SysTask_ExecuteOnVBlank(SysTaskFunc callback, void *param, u32 priority);
-SysTask *sub_0200DA20(SysTaskFunc callback, void *param, u32 priority);
+SysTask *SysTask_CreateOnPrintQueue(SysTaskFunc callback, void *param, u32 priority);
 SysTask *SysTask_ExecuteAfterVBlank(SysTaskFunc callback, void *param, u32 priority);
 void SysTask_Done(SysTask *task);
 

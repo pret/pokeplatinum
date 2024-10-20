@@ -18,16 +18,17 @@
 #include "overlay097/struct_ov97_0222DB78.h"
 
 #include "core_sys.h"
+#include "font.h"
 #include "game_options.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "render_text.h"
 #include "strbuf.h"
+#include "text.h"
 #include "unk_02001AF4.h"
-#include "unk_02002328.h"
-#include "unk_02002B7C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
@@ -35,7 +36,6 @@
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_020393C8.h"
 
@@ -117,7 +117,7 @@ int ov74_021D0D80(OverlayManager *param0, int *param1)
     v0->unk_00 = 38;
     v0->unk_1C = v1;
 
-    sub_02002AC8(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(0);
 
     return 1;
 }
@@ -143,7 +143,7 @@ int ov74_021D0E58(OverlayManager *param0, int *param1)
     Options_SetFrame(v0->unk_1C, v0->unk_18.unk_00_10);
     sub_02004FB8(v0->unk_18.unk_00_4);
     Options_SetSystemButtonMode(NULL, v0->unk_18.unk_00_8);
-    sub_02002AC8(1);
+    RenderControlFlags_SetCanABSpeedUpPrint(1);
     OverlayManager_FreeData(param0);
     Heap_Destroy(v0->unk_00);
 
@@ -187,12 +187,12 @@ int ov74_021D0F60(OverlayManager *param0, int *param1)
         ov74_021D1A24(v0);
         return 0;
     case 3:
-        sub_02002AC8(1);
+        RenderControlFlags_SetCanABSpeedUpPrint(1);
         ov74_021D1968(v0, 49, 0);
         break;
     case 4:
         if (ov74_021D1A08(v0)) {
-            sub_02002AC8(0);
+            RenderControlFlags_SetCanABSpeedUpPrint(0);
             ov74_021D1BA8(v0);
             v0->unk_04 = 5;
         }
@@ -215,8 +215,8 @@ int ov74_021D0F60(OverlayManager *param0, int *param1)
 
         return 0;
     case 6:
-        if (Message_Printing(v0->unk_2AC)) {
-            PrintString_ForceStop(v0->unk_2AC);
+        if (Text_IsPrinterActive(v0->unk_2AC)) {
+            Text_RemovePrinter(v0->unk_2AC);
         }
 
         sub_0200F174(3, 0, 0, 0x0, 6, 1, v0->unk_00);
@@ -509,10 +509,10 @@ static void ov74_021D14F4(UnkStruct_ov74_021D0D80 *param0)
     sub_0200DAA4(param0->unk_14, 1, (((10 + 12 * 2) + 30 * 14) + 27 * 4), 14, 0, param0->unk_00);
     sub_0200DD0C(param0->unk_14, 1, ((((10 + 12 * 2) + 30 * 14) + 27 * 4) + 9), 15, param0->unk_18.unk_00_10, param0->unk_00);
 
-    sub_02002E7C(0, 13 * 32, param0->unk_00);
-    sub_02002E7C(4, 13 * 32, param0->unk_00);
-    sub_02002E98(0, 12 * 32, param0->unk_00);
-    sub_02002E98(4, 12 * 32, param0->unk_00);
+    Font_LoadTextPalette(0, 13 * 32, param0->unk_00);
+    Font_LoadTextPalette(4, 13 * 32, param0->unk_00);
+    Font_LoadScreenIndicatorsPalette(0, 12 * 32, param0->unk_00);
+    Font_LoadScreenIndicatorsPalette(4, 12 * 32, param0->unk_00);
 
     BGL_FillWindow(&(param0->unk_2C[0]), WINCLR_COL(0));
     BGL_FillWindow(&(param0->unk_2C[1]), WINCLR_COL(15));
@@ -565,14 +565,14 @@ static void ov74_021D1668(UnkStruct_ov74_021D0D80 *param0)
     MessageLoader_GetStrbuf(param0->unk_20, 0, v6);
 
     v1 = 2;
-    sub_0201D78C(&param0->unk_2C[0], 0, v6, v1, 2, 0, v5, NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_2C[0], 0, v6, v1, 2, 0, v5, NULL);
 
     v1 = 4;
 
     for (v2 = 0; v2 < 7; v2++) {
         Strbuf_Clear(v6);
         MessageLoader_GetStrbuf(param0->unk_20, v8[v2], v6);
-        sub_0201D78C(&param0->unk_2C[1], 0, v6, v1, 16 * v2, 0xff, v3, NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_2C[1], 0, v6, v1, 16 * v2, 0xff, v3, NULL);
     }
 
     for (v2 = 0; v2 < 7; v2++) {
@@ -633,7 +633,7 @@ static void ov74_021D17CC(UnkStruct_ov74_021D0D80 *param0, u16 param1)
     BGL_WindowColor(&(param0->unk_2C[1]), WINCLR_COL(15), (12 * 8 + 4) + v6[param1], 0 + param1 * 16, (48 * 8), 16);
 
     if (param1 == 5) {
-        sub_0201D78C(&param0->unk_2C[1], 0, param0->unk_5C[param1].unk_04[param0->unk_5C[param1].unk_02], 1 * 48 + (12 * 8 + 4), 16 * param1 + 0, 0xff, v1, NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_2C[1], 0, param0->unk_5C[param1].unk_04[param0->unk_5C[param1].unk_02], 1 * 48 + (12 * 8 + 4), 16 * param1 + 0, 0xff, v1, NULL);
         sub_0201A954(&param0->unk_2C[1]);
         param0->unk_10_21 = 1;
         return;
@@ -664,10 +664,10 @@ static void ov74_021D17CC(UnkStruct_ov74_021D0D80 *param0, u16 param1)
         }
 
         if (param1 == 4) {
-            sub_0201D78C(&param0->unk_2C[1], 0, param0->unk_5C[param1].unk_04[v3], (12 * 8 + 4) - 0 + v5, 16 * param1 + 0, v4, v2, NULL);
-            v5 += sub_02002D7C(0, param0->unk_5C[param1].unk_04[v3], 0) + 12;
+            Text_AddPrinterWithParamsAndColor(&param0->unk_2C[1], 0, param0->unk_5C[param1].unk_04[v3], (12 * 8 + 4) - 0 + v5, 16 * param1 + 0, v4, v2, NULL);
+            v5 += Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_5C[param1].unk_04[v3], 0) + 12;
         } else {
-            sub_0201D78C(&param0->unk_2C[1], 0, param0->unk_5C[param1].unk_04[v3], v3 * 48 + (12 * 8 + 4) + v6[param1], 16 * param1 + 0, v4, v2, NULL);
+            Text_AddPrinterWithParamsAndColor(&param0->unk_2C[1], 0, param0->unk_5C[param1].unk_04[v3], v3 * 48 + (12 * 8 + 4) + v6[param1], 16 * param1 + 0, v4, v2, NULL);
         }
     }
 
@@ -681,7 +681,7 @@ static void ov74_021D1968(UnkStruct_ov74_021D0D80 *param0, u16 param1, BOOL para
     u8 v2;
 
     if (ov74_021D1A08(param0) == 0) {
-        PrintString_ForceStop(param0->unk_2AC);
+        Text_RemovePrinter(param0->unk_2AC);
     }
 
     v2 = Options_TextFrameDelay(param0->unk_1C);
@@ -694,9 +694,9 @@ static void ov74_021D1968(UnkStruct_ov74_021D0D80 *param0, u16 param1, BOOL para
     MessageLoader_GetStrbuf(param0->unk_20, param1, v1);
 
     if (param2 == 0) {
-        param0->unk_2AC = sub_0201D78C(&param0->unk_2C[2], 1, v1, 4, 0, v2, v0, NULL);
+        param0->unk_2AC = Text_AddPrinterWithParamsAndColor(&param0->unk_2C[2], 1, v1, 4, 0, v2, v0, NULL);
     } else {
-        sub_0201D78C(&param0->unk_2C[2], 1, v1, 4, 0, 0xff, v0, NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_2C[2], 1, v1, 4, 0, 0xff, v0, NULL);
         sub_0201A9A4(&param0->unk_2C[2]);
     }
 
@@ -705,7 +705,7 @@ static void ov74_021D1968(UnkStruct_ov74_021D0D80 *param0, u16 param1, BOOL para
 
 static BOOL ov74_021D1A08(const UnkStruct_ov74_021D0D80 *param0)
 {
-    if (Message_Printing(param0->unk_2AC) == 0) {
+    if (Text_IsPrinterActive(param0->unk_2AC) == 0) {
         return 1;
     }
 

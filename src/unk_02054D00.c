@@ -20,26 +20,18 @@
 #include "unk_0205DAC8.h"
 #include "unk_02068344.h"
 
-typedef const fx32 (*UnkFuncPtr_02054F44)(const FieldSystem *, const fx32, const fx32, const fx32, u8 *);
-typedef BOOL (*UnkFuncPtr_02054F44_1)(const FieldSystem *, const int, const int, u16 *);
-
-typedef struct UnkStruct_02054F44_t {
-    UnkFuncPtr_02054F44 unk_00;
-    UnkFuncPtr_02054F44_1 unk_04;
-} UnkStruct_02054F44;
-
 static const fx32 sub_02054D0C(const FieldSystem *fieldSystem, const fx32 param1, const fx32 param2, const fx32 param3, u8 *param4);
 static const fx32 sub_02054E50(const FieldSystem *fieldSystem, const fx32 param1, const fx32 param2, const fx32 param3, u8 *param4);
 static BOOL sub_02054E84(const FieldSystem *fieldSystem, const int param1, const int param2, u16 *param3);
 static BOOL sub_02054EF4(const FieldSystem *fieldSystem, const int param1, const int param2, u16 *param3);
 static int sub_02054FD0(const FieldSystem *fieldSystem, const VecFx32 *param1, const int param2, const int param3, u8 *param4);
 
-static const UnkStruct_02054F44 Unk_020EC3D0 = {
+static const TerrainCollisionManager Unk_020EC3D0 = {
     sub_02054D0C,
     sub_02054E84
 };
 
-static const UnkStruct_02054F44 Unk_020EC3D8 = {
+static const TerrainCollisionManager Unk_020EC3D8 = {
     sub_02054E50,
     sub_02054EF4
 };
@@ -261,7 +253,7 @@ static BOOL sub_02054EF4(const FieldSystem *fieldSystem, const int param1, const
     }
 }
 
-void sub_02054F44(const UnkStruct_02054F44 **param0, int param1)
+void sub_02054F44(const TerrainCollisionManager **param0, int param1)
 {
     if (param1 == 0) {
         *param0 = &Unk_020EC3D0;
@@ -277,7 +269,7 @@ BOOL FieldSystem_CheckCollision(const FieldSystem *fieldSystem, const int param1
     BOOL v0;
     u16 v1;
 
-    v0 = fieldSystem->unk_5C->unk_04(fieldSystem, param1, param2, &v1);
+    v0 = fieldSystem->terrainCollisionMan->getAttrFunc(fieldSystem, param1, param2, &v1);
 
     if (v0) {
         u8 v2;
@@ -298,7 +290,7 @@ u8 sub_02054F94(const FieldSystem *fieldSystem, const int param1, const int para
     BOOL v0;
     u16 v1;
 
-    v0 = fieldSystem->unk_5C->unk_04(fieldSystem, param1, param2, &v1);
+    v0 = fieldSystem->terrainCollisionMan->getAttrFunc(fieldSystem, param1, param2, &v1);
 
     if (v0) {
         u8 v2;
@@ -317,7 +309,7 @@ const fx32 sub_02054FBC(const FieldSystem *fieldSystem, const fx32 param1, const
     BOOL v0;
     fx32 v1;
 
-    v1 = fieldSystem->unk_5C->unk_00(fieldSystem, param1, param2, param3, param4);
+    v1 = fieldSystem->terrainCollisionMan->getHeightFunc(fieldSystem, param1, param2, param3, param4);
 
     return v1;
 }

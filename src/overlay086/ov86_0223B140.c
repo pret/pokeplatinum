@@ -23,6 +23,7 @@
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "enums.h"
+#include "font.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "inlines.h"
@@ -36,8 +37,8 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "trainer_info.h"
-#include "unk_02002B7C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
@@ -49,7 +50,6 @@
 #include "unk_02017728.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "unk_0201D670.h"
 
 typedef struct {
     fx32 unk_00;
@@ -1283,8 +1283,8 @@ static void ov86_0223C47C(UnkStruct_ov86_0223C3E4 *param0, int param1)
 
     for (v0 = 0; v0 < v1; v0++) {
         Strbuf_CopyLineNum(param0->unk_18, param0->unk_1C, v0);
-        v2 = (136 - sub_02002D7C(0, param0->unk_18, 0)) / 2;
-        sub_0201D78C(param0->unk_10, 0, param0->unk_18, param0->unk_2C + v2, param1 + v0 * 16, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+        v2 = (136 - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_18, 0)) / 2;
+        Text_AddPrinterWithParamsAndColor(param0->unk_10, 0, param0->unk_18, param0->unk_2C + v2, param1 + v0 * 16, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
     }
 }
 
@@ -1419,8 +1419,8 @@ static void ov86_0223C72C(UnkStruct_ov86_0223B3C8 *param0)
 
     MessageLoader_GetStrbuf(param0->unk_1C50, 12, param0->unk_1C48);
 
-    v0 = (256 - sub_02002D7C(0, param0->unk_1C48, 0)) / 2;
-    sub_0201D78C(&param0->unk_14, 0, param0->unk_1C48, v0, 4, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+    v0 = (256 - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_1C48, 0)) / 2;
+    Text_AddPrinterWithParamsAndColor(&param0->unk_14, 0, param0->unk_1C48, v0, 4, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
     StringTemplate_SetPlayerName(param0->unk_1C44, 0, param0->unk_0C->unk_00);
 
     StringTemplate_SetNumber(param0->unk_1C44, 1, TrainerInfo_ID_LowHalf(param0->unk_0C->unk_00), 5, 2, 1);
@@ -1429,8 +1429,8 @@ static void ov86_0223C72C(UnkStruct_ov86_0223B3C8 *param0)
     MessageLoader_GetStrbuf(param0->unk_1C50, 13, param0->unk_1C4C);
     StringTemplate_Format(param0->unk_1C44, param0->unk_1C48, param0->unk_1C4C);
 
-    v0 = (256 - sub_02002D7C(0, param0->unk_1C48, 0)) / 2;
-    sub_0201D78C(&param0->unk_14, 0, param0->unk_1C48, v0, 172, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+    v0 = (256 - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_1C48, 0)) / 2;
+    Text_AddPrinterWithParamsAndColor(&param0->unk_14, 0, param0->unk_1C48, v0, 172, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
     sub_0201ACCC(&param0->unk_14);
 }
 

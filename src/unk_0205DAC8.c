@@ -412,7 +412,7 @@ BOOL sub_0205DC2C(u8 param0)
     return param0 == 0x6a;
 }
 
-BOOL sub_0205DC38(u8 param0)
+BOOL TileBehavior_IsEscalator(u8 param0)
 {
     return param0 == 0x6b;
 }
@@ -631,7 +631,7 @@ BOOL sub_0205DED8(u8 param0)
     return param0 == 0x43;
 }
 
-BOOL sub_0205DEE4(u8 param0)
+BOOL TileBehavior_IsWarp(u8 param0)
 {
     return param0 == 0x67;
 }

@@ -11,11 +11,11 @@
 #include "overlay084/struct_ov84_02240FA8.h"
 
 #include "core_sys.h"
+#include "font.h"
 #include "heap.h"
-#include "unk_02002B7C.h"
+#include "text.h"
 #include "unk_020149F0.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 
 typedef struct {
     u8 unk_00_0 : 4;
@@ -270,7 +270,7 @@ u32 sub_02001504(BmpList *param0, u8 param1)
         v0 = (u32)param0->unk_00.unk_17_0;
         break;
     case 9:
-        v0 = (u32)sub_02002DF8(param0->unk_00.unk_1A_9, 1) + param0->unk_00.unk_1A_3;
+        v0 = (u32)Font_GetAttribute(param0->unk_00.unk_1A_9, 1) + param0->unk_00.unk_1A_3;
         break;
     case 10:
         v0 = (u32)param0->unk_00.unk_17_4;
@@ -321,9 +321,9 @@ static void sub_020015D0(BmpList *param0, void *param1, u8 param2, u8 param3)
     }
 
     if (param0->unk_1F.unk_04_7) {
-        PrintStringWithColorAndMargins(param0->unk_00.unk_0C, param0->unk_1F.unk_04_0, param1, param2, param3, 0xff, (u32)((((param0->unk_1F.unk_00_0) & 0xff) << 16) | (((param0->unk_1F.unk_01_0) & 0xff) << 8) | (((param0->unk_1F.unk_00_4) & 0xff) << 0)), param0->unk_1F.unk_02_0, 0, NULL);
+        Text_AddPrinterWithParamsColorAndSpacing(param0->unk_00.unk_0C, param0->unk_1F.unk_04_0, param1, param2, param3, 0xff, (u32)((((param0->unk_1F.unk_00_0) & 0xff) << 16) | (((param0->unk_1F.unk_01_0) & 0xff) << 8) | (((param0->unk_1F.unk_00_4) & 0xff) << 0)), param0->unk_1F.unk_02_0, 0, NULL);
     } else {
-        PrintStringWithColorAndMargins(param0->unk_00.unk_0C, param0->unk_00.unk_1A_9, param1, param2, param3, 0xff, (u32)((((param0->unk_00.unk_17_4) & 0xff) << 16) | (((param0->unk_00.unk_18_4) & 0xff) << 8) | (((param0->unk_00.unk_18_0) & 0xff) << 0)), param0->unk_00.unk_1A_0, 0, NULL);
+        Text_AddPrinterWithParamsColorAndSpacing(param0->unk_00.unk_0C, param0->unk_00.unk_1A_9, param1, param2, param3, 0xff, (u32)((((param0->unk_00.unk_17_4) & 0xff) << 16) | (((param0->unk_00.unk_18_4) & 0xff) << 8) | (((param0->unk_00.unk_18_0) & 0xff) << 0)), param0->unk_00.unk_1A_0, 0, NULL);
     }
 }
 
@@ -332,7 +332,7 @@ static void sub_02001688(BmpList *param0, u16 param1, u16 param2, u16 param3)
     int v0;
     u8 v1, v2, v3;
 
-    v3 = sub_02002DF8(param0->unk_00.unk_1A_9, 1) + param0->unk_00.unk_1A_3;
+    v3 = Font_GetAttribute(param0->unk_00.unk_1A_9, 1) + param0->unk_00.unk_1A_3;
 
     for (v0 = 0; v0 < param3; v0++) {
         if (param0->unk_00.unk_00[param1].unk_04 != 0xfffffffd) {
@@ -356,7 +356,7 @@ static void sub_02001720(BmpList *param0)
 {
     u8 v0, v1, v2;
 
-    v2 = sub_02002DF8(param0->unk_00.unk_1A_9, 1) + param0->unk_00.unk_1A_3;
+    v2 = Font_GetAttribute(param0->unk_00.unk_1A_9, 1) + param0->unk_00.unk_1A_3;
     v0 = param0->unk_00.unk_16;
     v1 = (u8)((param0->unk_2A * v2) + param0->unk_00.unk_17_0);
 
@@ -379,7 +379,7 @@ static void sub_02001778(BmpList *param0, u16 param1)
 
     switch (param0->unk_00.unk_1A_15) {
     case 0:
-        v0 = sub_02002DF8(param0->unk_00.unk_1A_9, 1) + param0->unk_00.unk_1A_3;
+        v0 = Font_GetAttribute(param0->unk_00.unk_1A_9, 1) + param0->unk_00.unk_1A_3;
         BGL_WindowColor(param0->unk_00.unk_0C, (u8)param0->unk_00.unk_18_0, param0->unk_00.unk_16, (u16)(param1 * v0 + param0->unk_00.unk_17_0), 8, 16);
         break;
     case 1:
@@ -478,7 +478,7 @@ static void sub_02001900(BmpList *param0, u8 param1, u8 param2)
         return;
     }
 
-    v0 = sub_02002DF8(param0->unk_00.unk_1A_9, 1) + param0->unk_00.unk_1A_3;
+    v0 = Font_GetAttribute(param0->unk_00.unk_1A_9, 1) + param0->unk_00.unk_1A_3;
 
     if (param2 == 0) {
         sub_0201C04C(param0->unk_00.unk_0C, 1, (u8)(param1 * v0), (u8)((param0->unk_00.unk_18_0 << 4) | param0->unk_00.unk_18_0));

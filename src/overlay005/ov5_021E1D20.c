@@ -13,6 +13,7 @@
 #include "overlay005/struct_ov5_021E1FF4_decl.h"
 
 #include "field_overworld_state.h"
+#include "font.h"
 #include "heap.h"
 #include "map_header.h"
 #include "message.h"
@@ -23,11 +24,10 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "trainer_info.h"
-#include "unk_02002B7C.h"
 #include "unk_0200DA60.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0202631C.h"
 #include "unk_020366A0.h"
 
@@ -139,11 +139,11 @@ static void ov5_021E1E20(const UnkStruct_ov5_021E1FF4 *param0)
     int v3;
     int v4;
 
-    v3 = sub_02002DF8(0, 1) + sub_02002DF8(0, 3);
+    v3 = Font_GetAttribute(FONT_SYSTEM, FONTATTR_MAX_LETTER_HEIGHT) + Font_GetAttribute(FONT_SYSTEM, FONTATTR_LINE_SPACING);
     v2 = 0;
     v0 = MessageUtil_ExpandedStrbuf(param0->unk_14, param0->unk_18, Unk_ov5_021F9CCC[0], param0->unk_04);
 
-    PrintStringSimple(param0->unk_10, 0, v0, 0, v2, 0xff, NULL);
+    Text_AddPrinterWithParams(param0->unk_10, 0, v0, 0, v2, 0xff, NULL);
     Strbuf_Free(v0);
 
     for (v4 = 1; v4 < NELEMS(Unk_ov5_021F9CCC); v4++) {
@@ -154,13 +154,13 @@ static void ov5_021E1E20(const UnkStruct_ov5_021E1FF4 *param0)
         v2 += v3;
         v0 = MessageLoader_GetNewStrbuf(param0->unk_18, Unk_ov5_021F9CCC[v4]);
 
-        PrintStringSimple(param0->unk_10, 0, v0, 0, v2, 0xff, NULL);
+        Text_AddPrinterWithParams(param0->unk_10, 0, v0, 0, v2, 0xff, NULL);
         Strbuf_Free(v0);
 
         v0 = MessageUtil_ExpandedStrbuf(param0->unk_14, param0->unk_18, Unk_ov5_021F9CBC[v4 - 1], param0->unk_04);
-        v1 = 13 * 8 - sub_02002D7C(0, v0, sub_02002DF8(0, 2));
+        v1 = 13 * 8 - Font_CalcStrbufWidth(FONT_SYSTEM, v0, Font_GetAttribute(FONT_SYSTEM, FONTATTR_LETTER_SPACING));
 
-        PrintStringSimple(param0->unk_10, 0, v0, v1, v2, 0xff, NULL);
+        Text_AddPrinterWithParams(param0->unk_10, 0, v0, v1, v2, 0xff, NULL);
         Strbuf_Free(v0);
     }
 }
@@ -171,7 +171,7 @@ void ov5_021E1F04(UnkStruct_ov5_021E1FF4 *param0)
 
     BGL_AddWindow(param0->unk_0C, param0->unk_10, param0->unk_08, 1, 1, param0->unk_2C, param0->unk_30, 13, 393);
     sub_0200DAA4(param0->unk_0C, param0->unk_08, 985, 11, 0, param0->unk_04);
-    BGL_FillWindow(param0->unk_10, sub_02002DF8(0, 6));
+    BGL_FillWindow(param0->unk_10, Font_GetAttribute(FONT_SYSTEM, FONTATTR_BG_COLOR));
 
     ov5_021E1E20(param0);
     Window_Show(param0->unk_10, 0, 985, 11);

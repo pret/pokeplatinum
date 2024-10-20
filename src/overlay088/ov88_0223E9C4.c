@@ -13,17 +13,17 @@
 #include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_02240FA8.h"
 
+#include "font.h"
 #include "game_options.h"
 #include "message.h"
 #include "message_util.h"
 #include "strbuf.h"
+#include "text.h"
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
-#include "unk_02002B7C.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 
 static void ov88_0223EE14(BmpList *param0, u32 param1, u8 param2);
 
@@ -124,13 +124,13 @@ void ov88_0223EC78(Window *param0, Strbuf *param1, int param2, u32 param3, int p
     if (param4 == 1) {
         int v1;
 
-        v1 = sub_02002D7C(0, param1, 0);
+        v1 = Font_CalcStrbufWidth(FONT_SYSTEM, param1, 0);
         v0 = ((param0->unk_07 * 8) - v1) / 2;
     } else {
         v0 = param4;
     }
 
-    sub_0201D78C(param0, 0, param1, v0, param5, param3, (u32)(((11 & 0xff) << 16) | ((12 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+    Text_AddPrinterWithParamsAndColor(param0, 0, param1, v0, param5, param3, (u32)(((11 & 0xff) << 16) | ((12 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
 }
 
 int ov88_0223ECBC(Window *param0, int param1, int param2, MessageLoader *param3, StringTemplate *param4)
@@ -147,7 +147,7 @@ int ov88_0223ECBC(Window *param0, int param1, int param2, MessageLoader *param3,
     }
 
     BGL_FillWindow(param0, 15);
-    v1 = sub_0201D78C(param0, param2, v0, 0, 0, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0)), NULL);
+    v1 = Text_AddPrinterWithParamsAndColor(param0, param2, v0, 0, 0, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0)), NULL);
     Strbuf_Free(v0);
 
     return v1;

@@ -14,13 +14,13 @@
 #include "overlay061/struct_ov61_0222C884.h"
 
 #include "cell_actor.h"
+#include "font.h"
 #include "heap.h"
 #include "message.h"
 #include "strbuf.h"
-#include "unk_02002B7C.h"
+#include "text.h"
 #include "unk_02006E3C.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 
 typedef struct UnkStruct_ov20_021D3980_t {
     UnkStruct_ov20_021D2128 *unk_00;
@@ -86,9 +86,9 @@ static void ov20_021D390C(BGL *param0, const UnkStruct_ov61_0222C884 *param1, u3
     BGL_FillWindow(&v0, 14);
 
     v1 = MessageBank_GetNewStrbufFromNARC(26, 438, param2, 35);
-    v2 = ((param1->unk_03 * 8) - sub_02002D7C(0, v1, 0)) / 2;
+    v2 = ((param1->unk_03 * 8) - Font_CalcStrbufWidth(FONT_SYSTEM, v1, 0)) / 2;
 
-    sub_0201D78C(&v0, 0, v1, v2, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((14 & 0xff) << 0)), NULL);
+    Text_AddPrinterWithParamsAndColor(&v0, 0, v1, v2, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((14 & 0xff) << 0)), NULL);
     sub_0201ACCC(&v0);
     Strbuf_Free(v1);
     BGL_DeleteWindow(&v0);

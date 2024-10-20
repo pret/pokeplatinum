@@ -8,14 +8,14 @@
 
 #include "overlay099/struct_ov99_021D3E78_decl.h"
 
+#include "font.h"
 #include "heap.h"
 #include "message.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02002B7C.h"
+#include "text.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 
 static const struct {
     u16 unk_00;
@@ -339,17 +339,17 @@ BOOL ov99_021D3F6C(UnkStruct_ov99_021D3E78 *param0, int param1)
                 MessageLoader_GetStrbuf(param0->unk_2C, Unk_ov99_021D4CE4[param0->unk_0C].unk_00, param0->unk_30);
 
                 if (Unk_ov99_021D4CE4[param0->unk_0C].unk_04) {
-                    v1 = (256 - sub_02002D7C(0, param0->unk_30, 0)) / 2;
+                    v1 = (256 - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_30, 0)) / 2;
                 } else {
                     v1 = 32;
                 }
 
                 v2 = Unk_ov99_021D4CE4[param0->unk_0C].unk_02 & 0xff;
-                sub_0201D78C(param0->unk_24, 0, param0->unk_30, v1, v2, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+                Text_AddPrinterWithParamsAndColor(param0->unk_24, 0, param0->unk_30, v1, v2, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
 
                 if (v2 > (256 - 16)) {
                     BGL_FillWindow(param0->unk_28, 0x0);
-                    sub_0201D78C(param0->unk_28, 0, param0->unk_30, v1, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+                    Text_AddPrinterWithParamsAndColor(param0->unk_28, 0, param0->unk_30, v1, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
 
                     v2 = 16 - (v2 - (256 - 16));
                     sub_0201ADDC(param0->unk_24, param0->unk_28->unk_0C, 0, v2, param0->unk_28->unk_07 * 8, param0->unk_28->unk_08 * 8, 0, 0, 32 * 8, (16 - v2));

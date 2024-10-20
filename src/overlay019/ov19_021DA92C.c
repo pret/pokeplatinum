@@ -23,11 +23,11 @@
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "unk_0200C440.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0207C908.h"
 
 typedef struct {
@@ -445,7 +445,7 @@ static void ov19_021DAE60(Window *param0, UnkStruct_ov19_021DA9E0 *param1, u32 p
         return;
     }
 
-    sub_0201D78C(param0, 0, v0, 0, v1, 0xff, (u32)(((9 & 0xff) << 16) | ((6 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+    Text_AddPrinterWithParamsAndColor(param0, 0, v0, 0, v1, 0xff, (u32)(((9 & 0xff) << 16) | ((6 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
 }
 
 void ov19_021DAF98(UnkStruct_ov19_021DA9E0 *param0)
@@ -532,21 +532,21 @@ static void ov19_021DB0E4(UnkStruct_ov19_021DA9E0 *param0)
 
     v1 = ov19_021D5E70(param0->unk_10);
 
-    sub_0201D78C(&param0->unk_04[0], 0, v1->unk_18, 2, 0, 0xff, (u32)(((9 & 0xff) << 16) | ((6 & 0xff) << 8) | ((15 & 0xff) << 0)), NULL);
-    sub_0201D78C(&param0->unk_04[2], 0, v1->unk_14, 2, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0)), NULL);
-    sub_0201D78C(&param0->unk_04[2], 0, v1->unk_14, 2, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0)), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_04[0], 0, v1->unk_18, 2, 0, 0xff, (u32)(((9 & 0xff) << 16) | ((6 & 0xff) << 8) | ((15 & 0xff) << 0)), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_04[2], 0, v1->unk_14, 2, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0)), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_04[2], 0, v1->unk_14, 2, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0)), NULL);
 
     switch (v1->unk_0E) {
     case 0:
-        sub_0201D78C(&param0->unk_04[2], 0, param0->unk_44, 70, 0, 0xff, (u32)(((7 & 0xff) << 16) | ((8 & 0xff) << 8) | ((15 & 0xff) << 0)), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_04[2], 0, param0->unk_44, 70, 0, 0xff, (u32)(((7 & 0xff) << 16) | ((8 & 0xff) << 8) | ((15 & 0xff) << 0)), NULL);
         break;
     case 1:
-        sub_0201D78C(&param0->unk_04[2], 0, param0->unk_48, 70, 0, 0xff, (u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((15 & 0xff) << 0)), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_04[2], 0, param0->unk_48, 70, 0, 0xff, (u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((15 & 0xff) << 0)), NULL);
         break;
     }
 
     if (v1->unk_0F == 0) {
-        sub_0201D78C(&param0->unk_04[3], 0, v1->unk_1C, 0, 0, 0xff, (u32)(((9 & 0xff) << 16) | ((6 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_04[3], 0, v1->unk_1C, 0, 0, 0xff, (u32)(((9 & 0xff) << 16) | ((6 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
 
         if (v1->unk_08) {
             sub_0200C648(param0->unk_18, 2, v1->unk_08, 3, 2, &(param0->unk_04[1]), 0, 0);
@@ -616,7 +616,7 @@ void ov19_021DB2B0(UnkStruct_ov19_021DA9E0 *param0)
     BGL_FillWindow(&param0->unk_04[3], 0);
 
     if (v0->unk_0F == 0) {
-        sub_0201D78C(&param0->unk_04[3], 0, v0->unk_1C, 0, 0, 0xff, (u32)(((9 & 0xff) << 16) | ((6 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_04[3], 0, v0->unk_1C, 0, 0, 0xff, (u32)(((9 & 0xff) << 16) | ((6 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
     }
 
     ov19_021DACB0(param0);

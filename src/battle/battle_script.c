@@ -66,6 +66,7 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
+#include "text.h"
 #include "touch_screen.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
@@ -79,7 +80,6 @@
 #include "unk_02012744.h"
 #include "unk_0201567C.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201E86C.h"
 #include "unk_020797C8.h"
 #include "unk_0207A274.h"
@@ -10031,7 +10031,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
     }
 
     case SEQ_GET_EXP_WAIT_MESSAGE_PRINT:
-        if (Message_Printing(data->tmpData[GET_EXP_MSG_INDEX]) == FALSE) {
+        if (Text_IsPrinterActive(data->tmpData[GET_EXP_MSG_INDEX]) == FALSE) {
             data->seqNum++;
         }
         break;
@@ -10115,7 +10115,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
         break;
 
     case SEQ_GET_EXP_WAIT_LEVEL_UP_MESSAGE_PRINT:
-        if (Message_Printing(data->tmpData[GET_EXP_MSG_INDEX]) == 0) {
+        if (Text_IsPrinterActive(data->tmpData[GET_EXP_MSG_INDEX]) == 0) {
             data->seqNum = SEQ_GET_EXP_LEVEL_UP_SUMMARY_LOAD_ICON;
             data->tmpData[GET_EXP_LEARNSET_INDEX] = 0;
         }
@@ -10300,7 +10300,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
     case SEQ_GET_EXP_FORGOT_HOW_TO_USE_WAIT:
     case SEQ_GET_EXP_AND_DOTDOTDOT_WAIT:
     case SEQ_GET_EXP_MAKE_IT_FORGET_CANCELLED_WAIT:
-        if (Message_Printing(data->tmpData[GET_EXP_MSG_INDEX]) == FALSE) {
+        if (Text_IsPrinterActive(data->tmpData[GET_EXP_MSG_INDEX]) == FALSE) {
             data->seqNum++;
         }
         break;
@@ -10325,7 +10325,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
         break;
 
     case SEQ_GET_EXP_MAKE_IT_FORGET_WAIT:
-        if (Message_Printing(data->tmpData[GET_EXP_MSG_INDEX]) == FALSE) {
+        if (Text_IsPrinterActive(data->tmpData[GET_EXP_MSG_INDEX]) == FALSE) {
             BattleIO_ForgetMove(data->battleSys, expBattler, data->tmpData[GET_EXP_MOVE], slot);
             data->seqNum++;
         }
@@ -10369,7 +10369,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
         break;
 
     case SEQ_GET_EXP_GIVE_UP_LEARNING_WAIT:
-        if (Message_Printing(data->tmpData[GET_EXP_MSG_INDEX]) == FALSE) {
+        if (Text_IsPrinterActive(data->tmpData[GET_EXP_MSG_INDEX]) == FALSE) {
             // Check for another move to learn
             data->seqNum = SEQ_GET_EXP_CHECK_LEARN_MOVE;
         }
@@ -10420,7 +10420,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
         break;
 
     case SEQ_GET_EXP_LEARNED_MOVE_WAIT:
-        if (Message_Printing(data->tmpData[GET_EXP_MSG_INDEX]) == FALSE) {
+        if (Text_IsPrinterActive(data->tmpData[GET_EXP_MSG_INDEX]) == FALSE) {
             // Check for another move to learn
             data->seqNum = SEQ_GET_EXP_CHECK_LEARN_MOVE;
         }
@@ -10713,7 +10713,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
         }
         break;
     case 9:
-        if (Message_Printing(v2->tmpData[0]) == 0) {
+        if (Text_IsPrinterActive(v2->tmpData[0]) == 0) {
             v2->seqNum = 10;
             ov12_022368C8(v2->ballRotation, 7);
         }
@@ -10754,7 +10754,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
         }
         break;
     case 11:
-        if (Message_Printing(v2->tmpData[0]) == 0) {
+        if (Text_IsPrinterActive(v2->tmpData[0]) == 0) {
             if (--v2->tmpData[1] == 0) {
                 v2->seqNum = 12;
                 sub_02003178(v4, (0x1 | 0x4), 0xffff, 1, 0, 16, 0x0);
@@ -11014,7 +11014,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
         }
         break;
     case 24:
-        if (Message_Printing(v2->tmpData[0]) == 0) {
+        if (Text_IsPrinterActive(v2->tmpData[0]) == 0) {
             if (--v2->tmpData[1] == 0) {
                 {
                     sub_02015738(ov16_0223E220(v2->battleSys), 1);
@@ -11043,7 +11043,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
         }
         break;
     case 26:
-        if (Message_Printing(v2->tmpData[0]) == 0) {
+        if (Text_IsPrinterActive(v2->tmpData[0]) == 0) {
             if (--v2->tmpData[1] == 0) {
                 {
                     BattleMessage v31;
@@ -11058,7 +11058,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
         }
         break;
     case 27:
-        if (Message_Printing(v2->tmpData[0]) == 0) {
+        if (Text_IsPrinterActive(v2->tmpData[0]) == 0) {
             if (--v2->tmpData[1] == 0) {
                 v2->battleCtx->taskData = NULL;
                 Heap_FreeToHeap(param1);
@@ -11091,7 +11091,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
         }
         break;
     case 31:
-        if (Message_Printing(v2->tmpData[0]) == 0) {
+        if (Text_IsPrinterActive(v2->tmpData[0]) == 0) {
             if (--v2->tmpData[1] == 0) {
                 v2->battleCtx->taskData = NULL;
                 Heap_FreeToHeap(param1);
@@ -12264,7 +12264,7 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *param0, BattleScript
     Strbuf_Free(v6);
     Window_Init(&v9);
     BGL_AddFramelessWindow(v8, &v9, 12, 4, 0, 0);
-    sub_0201D78C(&v9, 0, v7, 0, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+    Text_AddPrinterWithParamsAndColor(&v9, 0, v7, 0, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
 
     v10 = sub_02012898(&v9, NNS_G2D_VRAM_TYPE_2DMAIN, 5);
     sub_0201ED94(v10, 1, NNS_G2D_VRAM_TYPE_2DMAIN, &v11);

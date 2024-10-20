@@ -3,13 +3,13 @@
 
 #include <nitro/fx/fx.h>
 
-#include "struct_decls/struct_02054F44_decl.h"
+#include "struct_decls/terrain_collision_manager_decl.h"
 #include "struct_defs/struct_02055130.h"
 
 #include "field/field_system_decl.h"
 #include "overlay005/struct_ov5_021E1890_decl.h"
 
-void sub_02054F44(const UnkStruct_02054F44 **param0, int param1);
+void sub_02054F44(const TerrainCollisionManager **param0, int param1);
 BOOL FieldSystem_CheckCollision(const FieldSystem *fieldSystem, const int param1, const int param2);
 u8 sub_02054F94(const FieldSystem *fieldSystem, const int param1, const int param2);
 const fx32 sub_02054FBC(const FieldSystem *fieldSystem, const fx32 param1, const fx32 param2, const fx32 param3, u8 *param4);

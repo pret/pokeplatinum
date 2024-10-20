@@ -33,13 +33,13 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_020149F0.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0202602C.h"
 #include "unk_0202D778.h"
 #include "unk_020363E8.h"
@@ -884,11 +884,11 @@ static void sub_0205ADF8(UnkStruct_0205A0D8 *param0, int param1)
             v2 = Pokemon_GetValue((Pokemon *)(&param0->unk_48[v1 * v3]), MON_DATA_SPECIES, NULL);
 
             MessageLoader_GetStrbuf(v4, v2, param0->unk_0C);
-            PrintStringSimple(v0, 0, param0->unk_0C, 16, v1 * 16, 0xff, NULL);
+            Text_AddPrinterWithParams(v0, 0, param0->unk_0C, 16, v1 * 16, 0xff, NULL);
         }
 
         MessageLoader_GetStrbuf(param0->unk_2C, 21, param0->unk_0C);
-        PrintStringSimple(v0, 0, param0->unk_0C, 16, v1 * 16, 0xff, NULL);
+        Text_AddPrinterWithParams(v0, 0, param0->unk_0C, 16, v1 * 16, 0xff, NULL);
         MessageLoader_Free(v4);
     }
 
@@ -914,7 +914,7 @@ static void sub_0205AF18(UnkStruct_0205A0D8 *param0, int param1)
 
         for (v1 = 0; v1 < 3; v1++) {
             MessageLoader_GetStrbuf(param0->unk_2C, 22 + v1, param0->unk_0C);
-            PrintStringSimple(v0, 0, param0->unk_0C, 16, v1 * 16, 0xff, NULL);
+            Text_AddPrinterWithParams(v0, 0, param0->unk_0C, 16, v1 * 16, 0xff, NULL);
         }
     }
 

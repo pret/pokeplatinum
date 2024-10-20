@@ -20,7 +20,7 @@ typedef struct UnkStruct_0203A790_t {
     Location unk_00;
     Location entrance;
     Location previous;
-    Location unk_3C;
+    Location special;
     Location unk_50;
     u16 unk_64;
     u16 weather;
@@ -84,14 +84,14 @@ Location *sub_0203A72C(FieldOverworldState *fieldState)
     return &fieldState->unk_50;
 }
 
-Location *sub_0203A730(FieldOverworldState *fieldState)
+Location *FieldOverworldState_GetSpecialLocation(FieldOverworldState *fieldState)
 {
-    return &fieldState->unk_3C;
+    return &fieldState->special;
 }
 
-void sub_0203A734(FieldOverworldState *fieldState, Location *param1)
+void FieldOverworldState_SetSpecialLocation(FieldOverworldState *fieldState, Location *location)
 {
-    fieldState->unk_3C = *param1;
+    fieldState->special = *location;
     return;
 }
 
@@ -130,9 +130,9 @@ int FieldOverworldState_GetCameraType(const FieldOverworldState *fieldState)
     return fieldState->cameraType;
 }
 
-void FieldOverworldState_SetCameraType(FieldOverworldState *fieldState, int param1)
+void FieldOverworldState_SetCameraType(FieldOverworldState *fieldState, int type)
 {
-    fieldState->cameraType = param1;
+    fieldState->cameraType = type;
 }
 
 PlayerData *FieldOverworldState_GetPlayerData(FieldOverworldState *fieldState)

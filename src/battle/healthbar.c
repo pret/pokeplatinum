@@ -30,12 +30,12 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "unk_02002F38.h"
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "unk_0201D670.h"
 #include "unk_0208C098.h"
 
 #define HEALTHBAR_SCROLL_SPEED      24
@@ -1103,7 +1103,7 @@ static void Healthbar_DrawBattlerName(Healthbar *healthbar)
     StringTemplate_Format(strFormatter, nickname, template);
 
     BGL_AddFramelessWindow(bgl, &window, HEALTHBAR_NAME_BLOCK_COUNT_X, HEALTHBAR_NAME_BLOCK_COUNT_Y, HEALTHBAR_NAME_WINDOW_OFFSET, HEALTHBAR_NAME_BACKGROUND_COLOR);
-    PrintStringWithColorAndMargins(&window, FONT_SYSTEM, nickname, 0, 0, 0xFF, HEALTHBAR_NAME_FONT_COLOR, 0, 0, NULL);
+    Text_AddPrinterWithParamsColorAndSpacing(&window, FONT_SYSTEM, nickname, 0, 0, 0xFF, HEALTHBAR_NAME_FONT_COLOR, 0, 0, NULL);
     buf = window.unk_0C;
 
     // copy the window's data into VRAM over the painted healthbar
@@ -1316,7 +1316,7 @@ static void Healthbar_DrawBallCount(Healthbar *param0, u32 param1)
     }
 
     BGL_AddFramelessWindow(v0, &v3, 13, 2, 0, 0xf);
-    PrintStringWithColorAndMargins(&v3, 0, v5, 0, 0, 0xff, ((u32)(((0xe & 0xff) << 16) | ((2 & 0xff) << 8) | ((0xf & 0xff) << 0))), 0, 0, NULL);
+    Text_AddPrinterWithParamsColorAndSpacing(&v3, 0, v5, 0, 0, 0xff, ((u32)(((0xe & 0xff) << 16) | ((2 & 0xff) << 8) | ((0xf & 0xff) << 0))), 0, 0, NULL);
 
     v1 = v3.unk_0C;
 
@@ -1364,7 +1364,7 @@ static void Healthbar_DrawBallsLeftMessage(Healthbar *param0, u32 param1)
     StringTemplate_SetNumber(v7, 0, param0->unk_27, 2, 1, 1);
     StringTemplate_Format(v7, v5, v6);
     BGL_AddFramelessWindow(v0, &v3, 13, 2, 0, 0xf);
-    PrintStringWithColorAndMargins(&v3, 0, v5, 0, 0, 0xff, ((u32)(((0xe & 0xff) << 16) | ((2 & 0xff) << 8) | ((0xf & 0xff) << 0))), 0, 0, NULL);
+    Text_AddPrinterWithParamsColorAndSpacing(&v3, 0, v5, 0, 0, 0xff, ((u32)(((0xe & 0xff) << 16) | ((2 & 0xff) << 8) | ((0xf & 0xff) << 0))), 0, 0, NULL);
 
     v1 = v3.unk_0C;
 

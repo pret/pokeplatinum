@@ -598,7 +598,7 @@ static void ov23_0224F914(SysTask *param0, void *param1)
         ov23_0224FB7C(v0);
         ov23_02250B34(param0, v0, 1);
         ov23_02243204();
-        sub_02054064(v0->fieldSystem);
+        FieldTask_SetUndergroundMapChange(v0->fieldSystem);
         return;
     case 18:
         ov23_02250048(param0, param1);

@@ -23,12 +23,12 @@
 #include "message.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "unk_0200112C.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0202854C.h"
 #include "unk_0206A780.h"
 
@@ -190,7 +190,7 @@ static void ov23_0225437C(UnkStruct_ov23_022542D8 *param0)
 
             BGL_FillWindow(&param0->unk_14, 15);
             v8 = MessageLoader_GetNewStrbuf(v5, 0);
-            PrintStringSimple(&param0->unk_14, 0, v8, 0, 0, 0xff, NULL);
+            Text_AddPrinterWithParams(&param0->unk_14, 0, v8, 0, 0, 0xff, NULL);
             Strbuf_Free(v8);
         }
 
@@ -438,13 +438,13 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
             v14 = MessageLoader_GetNewStrbuf(v12, 10);
             v15 = Strbuf_Init(6, 4);
 
-            PrintStringSimple(&param0->unk_18, 0, v13, 0, 0, 0xff, NULL);
+            Text_AddPrinterWithParams(&param0->unk_18, 0, v13, 0, 0, 0xff, NULL);
             v16 = StringTemplate_Default(4);
 
             StringTemplate_SetNumber(v16, 0, param0->unk_40, 2, 1, 1);
             StringTemplate_SetNumber(v16, 1, param0->unk_41, 2, 1, 1);
             StringTemplate_Format(v16, v15, v14);
-            PrintStringSimple(&param0->unk_18, 0, v15, 0, 16, 0xff, NULL);
+            Text_AddPrinterWithParams(&param0->unk_18, 0, v15, 0, 16, 0xff, NULL);
 
             StringTemplate_Free(v16);
             Strbuf_Free(v13);

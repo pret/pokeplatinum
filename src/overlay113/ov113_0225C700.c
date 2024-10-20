@@ -48,6 +48,7 @@
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "easy3d_object.h"
+#include "font.h"
 #include "game_options.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -56,14 +57,14 @@
 #include "overlay_manager.h"
 #include "party.h"
 #include "pokemon.h"
+#include "render_text.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02002328.h"
-#include "unk_02002B7C.h"
+#include "text.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
@@ -75,7 +76,6 @@
 #include "unk_02015920.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E190.h"
 #include "unk_0201E3D8.h"
@@ -393,7 +393,7 @@ int ov113_0225C700(OverlayManager *param0, int *param1)
 
     sub_0201E3D8();
     sub_0201E450(4);
-    sub_02002BB8(2, 118);
+    Font_InitManager(FONT_SUBSCREEN, 118);
 
     v0->unk_2C = StringTemplate_Default(118);
     v0->unk_30 = MessageLoader_Init(0, 26, 650, 118);
@@ -448,9 +448,9 @@ int ov113_0225C700(OverlayManager *param0, int *param1)
     GXLayers_TurnBothDispOn();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
-    sub_02002AC8(1);
-    sub_02002AE4(0);
-    sub_02002B20(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(1);
+    RenderControlFlags_SetAutoScrollFlags(0);
+    RenderControlFlags_SetSpeedUpOnTouch(0);
 
     v0->unk_18 = SysTask_Start(ov113_0225CEF0, v0, 60000);
 
@@ -514,11 +514,11 @@ int ov113_0225CA04(OverlayManager *param0, int *param1)
         BGL_FillWindow(&v0->unk_B4, 0xf);
         sub_0200E060(&v0->unk_B4, 0, 1, 14);
         MessageLoader_GetStrbuf(v0->unk_30, 2, v0->unk_C4);
-        v0->unk_C8 = PrintStringSimple(&v0->unk_B4, 1, v0->unk_C4, 0, 0, Options_TextFrameDelay(SaveData_Options(v0->unk_04)), NULL);
+        v0->unk_C8 = Text_AddPrinterWithParams(&v0->unk_B4, 1, v0->unk_C4, 0, 0, Options_TextFrameDelay(SaveData_Options(v0->unk_04)), NULL);
         (*param1)++;
         break;
     case 4:
-        if (Message_Printing(v0->unk_C8) == 0) {
+        if (Text_IsPrinterActive(v0->unk_C8) == 0) {
             UnkStruct_02015958 v3;
 
             v3.unk_00 = v0->unk_08;
@@ -564,11 +564,11 @@ int ov113_0225CA04(OverlayManager *param0, int *param1)
         BGL_FillWindow(&v0->unk_B4, 0xf);
         sub_0200E060(&v0->unk_B4, 0, 1, 14);
         MessageLoader_GetStrbuf(v0->unk_30, 3, v0->unk_C4);
-        v0->unk_C8 = PrintStringSimple(&v0->unk_B4, 1, v0->unk_C4, 0, 0, Options_TextFrameDelay(SaveData_Options(v0->unk_04)), NULL);
+        v0->unk_C8 = Text_AddPrinterWithParams(&v0->unk_B4, 1, v0->unk_C4, 0, 0, Options_TextFrameDelay(SaveData_Options(v0->unk_04)), NULL);
         (*param1)++;
         break;
     case 7:
-        if (Message_Printing(v0->unk_C8) == 0) {
+        if (Text_IsPrinterActive(v0->unk_C8) == 0) {
             (*param1)++;
         }
         break;
@@ -642,7 +642,7 @@ int ov113_0225CDFC(OverlayManager *param0, int *param1)
     ov113_0225E378(&v0->unk_194);
 
     Strbuf_Free(v0->unk_C4);
-    sub_02002C60(2);
+    Font_Free(FONT_SUBSCREEN);
     sub_020127BC(v0->unk_10);
     MessageLoader_Free(v0->unk_30);
     StringTemplate_Free(v0->unk_2C);
@@ -669,9 +669,9 @@ int ov113_0225CDFC(OverlayManager *param0, int *param1)
     DisableHBlank();
     sub_0201DC3C();
     sub_0201E530();
-    sub_02002AC8(0);
-    sub_02002AE4(0);
-    sub_02002B20(0);
+    RenderControlFlags_SetCanABSpeedUpPrint(0);
+    RenderControlFlags_SetAutoScrollFlags(0);
+    RenderControlFlags_SetSpeedUpOnTouch(0);
     sub_02039794();
     OverlayManager_FreeData(param0);
     Heap_Destroy(118);
@@ -1527,7 +1527,7 @@ static void ov113_0225E15C(UnkStruct_ov113_0225DBCC *param0, UnkStruct_ov113_022
 
     Window_Init(&v1);
     BGL_AddFramelessWindow(v5, &v1, v8, 16 / 8, 0, 0);
-    PrintStringWithColorAndMargins(&v1, param3, param2, 0, 0, 0xff, param4, 0, 0, NULL);
+    Text_AddPrinterWithParamsColorAndSpacing(&v1, param3, param2, 0, 0, 0xff, param4, 0, 0, NULL);
 
     v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DMAIN, 118);
     sub_0201ED94(v3, 1, NNS_G2D_VRAM_TYPE_2DMAIN, &v2);
@@ -1572,7 +1572,7 @@ static void ov113_0225E264(const Strbuf *param0, int param1, int *param2, int *p
 {
     int v0, v1;
 
-    v0 = sub_02002D7C(param1, param0, 0);
+    v0 = Font_CalcStrbufWidth(param1, param0, 0);
     v1 = v0 / 8;
 
     if (FX_ModS32(v0, 8) != 0) {

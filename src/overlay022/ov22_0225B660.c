@@ -16,6 +16,7 @@
 
 #include "cell_actor.h"
 #include "core_sys.h"
+#include "font.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
@@ -23,12 +24,11 @@
 #include "pokemon.h"
 #include "strbuf.h"
 #include "string_template.h"
-#include "unk_02002B7C.h"
+#include "text.h"
 #include "unk_02006E3C.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0202419C.h"
 #include "unk_020298BC.h"
 #include "unk_02094EDC.h"
@@ -241,7 +241,7 @@ static void ov22_0225BA40(UnkStruct_ov22_0225B85C *param0)
     param0->unk_200 = sub_0201A778(14, 1);
 
     BGL_AddWindow(param0->unk_14.unk_40, param0->unk_200, 3, 0, 18, 32, 6, 5, 1);
-    sub_02002E7C(0, 5 * 32, 14);
+    Font_LoadTextPalette(0, 5 * 32, 14);
     BGL_SetPriority(3, 0);
     BGL_SetPriority(0, 2);
     BGL_SetPriority(1, 1);
@@ -292,11 +292,11 @@ static void ov22_0225BB00(UnkStruct_ov22_0225B85C *param0)
     v7 = Strbuf_Init(12, 13);
     sub_0202A1A0(param0->unk_00, v7);
 
-    v3 = sub_02002D7C(0, v7, 0);
+    v3 = Font_CalcStrbufWidth(FONT_SYSTEM, v7, 0);
     v1 = 128 - (v3 / 2);
     v2 = 7;
 
-    sub_0201D78C(param0->unk_200, 0, v7, v1, v2, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param0->unk_200, 0, v7, v1, v2, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v7);
 
     v4 = sub_0202A1F4(param0->unk_00);
@@ -306,11 +306,11 @@ static void ov22_0225BB00(UnkStruct_ov22_0225B85C *param0)
     v6 = MessageLoader_GetNewStrbuf(v8, 45);
     StringTemplate_Format(v5, v7, v6);
 
-    v3 = sub_02002D7C(0, v7, 0);
+    v3 = Font_CalcStrbufWidth(FONT_SYSTEM, v7, 0);
     v1 = 128 - (v3 / 2);
     v2 = 27;
 
-    sub_0201D78C(param0->unk_200, 0, v7, v1, v2, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param0->unk_200, 0, v7, v1, v2, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v7);
     Strbuf_Free(v6);
     MessageLoader_Free(v8);
@@ -355,18 +355,18 @@ static void ov22_0225BC18(UnkStruct_ov22_0225B85C *param0)
     v3 = MessageLoader_GetNewStrbuf(v7, 43);
     StringTemplate_Format(v1, v2, v3);
     Strbuf_Free(v3);
-    v10 = sub_02002D7C(0, v2, 0);
+    v10 = Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
     v8 = 128 - (v10 / 2);
     v9 = 7;
-    sub_0201D78C(param0->unk_200, 0, v2, v8, v9, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param0->unk_200, 0, v2, v8, v9, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
     v3 = MessageLoader_GetNewStrbuf(v7, 44);
     StringTemplate_Format(v1, v2, v3);
     Strbuf_Free(v3);
-    v10 = sub_02002D7C(0, v2, 0);
+    v10 = Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
     v8 = 128 - (v10 / 2);
     v9 = 27;
-    sub_0201D78C(param0->unk_200, 0, v2, v8, v9, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param0->unk_200, 0, v2, v8, v9, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
     Strbuf_Free(v2);
     MessageLoader_Free(v7);

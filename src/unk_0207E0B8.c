@@ -20,6 +20,7 @@
 #include "bag.h"
 #include "cell_actor.h"
 #include "core_sys.h"
+#include "font.h"
 #include "game_options.h"
 #include "game_overlay.h"
 #include "gx_layers.h"
@@ -34,9 +35,9 @@
 #include "pokemon_summary_app.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "touch_screen.h"
 #include "unk_02001AF4.h"
-#include "unk_02002B7C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
@@ -47,7 +48,6 @@
 #include "unk_02013A04.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E010.h"
 #include "unk_0201E3D8.h"
@@ -583,7 +583,7 @@ static int sub_0207E634(GameWindowLayout *param0)
 
 static int sub_0207E6C0(GameWindowLayout *param0)
 {
-    if (Message_Printing(param0->unk_B10) == 0) {
+    if (Text_IsPrinterActive(param0->unk_B10) == 0) {
         return param0->unk_B0E;
     }
 
@@ -930,7 +930,7 @@ static void sub_0207EB6C(GameWindowLayout *param0, NARC *param1)
         Heap_FreeToHeapExplicit(12, v1);
     }
 
-    sub_02002E98(0, 13 * 32, 12);
+    Font_LoadScreenIndicatorsPalette(0, 13 * 32, 12);
     sub_0200DAA4(param0->unk_00, 0, 1, 14, 0, 12);
     sub_0200DD0C(param0->unk_00, 0, (1 + 9), 15, Options_Frame(param0->unk_5A4->unk_0C), 12);
     sub_020070E8(param1, 3, param0->unk_00, 4, 0, 0, 0, 12);
@@ -2462,7 +2462,7 @@ static int ProcessWindowInput(GameWindowLayout *param0)
 
             v2 = sub_0202BE00((u8)param0->unk_B14[3], 0, 12);
             fieldSystem = param0->unk_5A4->unk_1C;
-            sub_0202B758(fieldSystem->unk_9C, v2, 1);
+            Journal_SaveData(fieldSystem->journal, v2, 1);
             param0->unk_B14[1] = 4;
             param0->unk_B0E = 30;
             return 24;
@@ -2735,7 +2735,7 @@ static void SwapPokemonItem(GameWindowLayout *param0, Pokemon *param1, u32 param
 
 static int HandleMessageCompletion(GameWindowLayout *param0)
 {
-    if (Message_Printing(param0->unk_B10) == 0) {
+    if (Text_IsPrinterActive(param0->unk_B10) == 0) {
         if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             return ResetWindowOnInput(param0);
         }
@@ -2746,7 +2746,7 @@ static int HandleMessageCompletion(GameWindowLayout *param0)
 
 static int ProcessMessageResult(GameWindowLayout *param0)
 {
-    if (Message_Printing(param0->unk_B10) == 0) {
+    if (Text_IsPrinterActive(param0->unk_B10) == 0) {
         if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             sub_0200E084(&param0->unk_04[34], 1);
             LoadOverlay118(param0);
@@ -2770,7 +2770,7 @@ static int HandleOverlayCompletion(GameWindowLayout *param0)
 
 static int FinalizeMessageProcessing(GameWindowLayout *param0)
 {
-    if (Message_Printing(param0->unk_B10) == 0) {
+    if (Text_IsPrinterActive(param0->unk_B10) == 0) {
         sub_020827EC(param0);
         return 10;
     }

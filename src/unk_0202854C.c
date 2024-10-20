@@ -215,7 +215,7 @@ void sub_02028758(SaveData *param0, s32 param1, BOOL param2)
     }
 }
 
-void sub_0202878C(SaveData *param0)
+void SaveData_LoadAndUpdateUnderground(SaveData *param0)
 {
     UndergroundData *v0 = sub_020298B0(param0);
 
