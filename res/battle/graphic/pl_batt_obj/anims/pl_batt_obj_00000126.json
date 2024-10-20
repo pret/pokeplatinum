@@ -2,23 +2,22 @@
 	"labelEnabled":	true,
 	"sequenceCount":	1,
 	"frameCount":	1,
-	"resultCount":	1,
 	"sequences":	[{
 			"frameCount":	1,
-			"unk02":	0,
-			"dataType":	0,
-			"unk06":	1,
-			"unk08":	2,
+			"loopStartFrame":	0,
+			"animationType":	0,
+			"animationType2":	1,
+			"playbackMode":	2,
 			"frameData":	[{
 					"frameDelay":	4,
 					"resultId":	0
 				}]
 		}],
 	"animationResults":	[{
-			"dataType":	0,
-			"padded":	true,
+			"resultType":	0,
 			"index":	0
 		}],
+	"resultCount":	1,
 	"labels":	["CellAnime0"],
 	"labelCount":	1
 }

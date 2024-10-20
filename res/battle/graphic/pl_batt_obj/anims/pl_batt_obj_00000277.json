@@ -2,13 +2,12 @@
 	"labelEnabled":	true,
 	"sequenceCount":	1,
 	"frameCount":	5,
-	"resultCount":	5,
 	"sequences":	[{
 			"frameCount":	5,
-			"unk02":	0,
-			"dataType":	0,
-			"unk06":	1,
-			"unk08":	1,
+			"loopStartFrame":	0,
+			"animationType":	0,
+			"animationType2":	1,
+			"playbackMode":	1,
 			"frameData":	[{
 					"frameDelay":	1,
 					"resultId":	0
@@ -27,26 +26,22 @@
 				}]
 		}],
 	"animationResults":	[{
-			"dataType":	0,
-			"padded":	false,
+			"resultType":	0,
 			"index":	0
 		}, {
-			"dataType":	0,
-			"padded":	false,
+			"resultType":	0,
 			"index":	1
 		}, {
-			"dataType":	0,
-			"padded":	false,
+			"resultType":	0,
 			"index":	2
 		}, {
-			"dataType":	0,
-			"padded":	false,
+			"resultType":	0,
 			"index":	3
 		}, {
-			"dataType":	0,
-			"padded":	true,
+			"resultType":	0,
 			"index":	4
 		}],
+	"resultCount":	5,
 	"labels":	["CellAnime0"],
 	"labelCount":	1
 }

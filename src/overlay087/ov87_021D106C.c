@@ -37,6 +37,8 @@
 #include "unk_02017728.h"
 #include "unk_02018340.h"
 
+#include "narc.h"
+
 typedef struct UnkStruct_ov87_021D106C_t {
     UnkStruct_ov87_021D0D80 *unk_00;
     const UnkStruct_ov87_021D12C0 *unk_04;
@@ -447,8 +449,8 @@ static void ov87_021D1818(UnkStruct_ov87_021D106C *param0)
     NNSG2dAnimBankData *v1;
     int v2;
 
-    param0->unk_1DC = sub_02006FA0(27, 77, 0, &v0, 61);
-    param0->unk_1E0 = sub_02006FBC(27, 78, 0, &v1, 61);
+    param0->unk_1DC = sub_02006FA0(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 77, 0, &v0, 61);
+    param0->unk_1E0 = sub_02006FBC(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 78, 0, &v1, 61);
 
     MI_CpuClearFast(param0->unk_200, sizeof(param0->unk_200));
 
@@ -508,8 +510,8 @@ static void ov87_021D18A0(UnkStruct_ov87_021D106C *param0, NNSG2dCellDataBank *p
     v2.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
     v2.heapID = 61;
 
-    v7 = sub_02006F50(27, 76, 0, &v5, 61);
-    v8 = sub_02006F88(27, 75, &v6, 61);
+    v7 = sub_02006F50(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 76, 0, &v5, 61);
+    v8 = sub_02006F88(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 75, &v6, 61);
 
     for (v9 = 0; v9 < 6; v9++) {
         NNS_G2dInitImageProxy(&v3);

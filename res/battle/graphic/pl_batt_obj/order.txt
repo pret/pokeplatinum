@@ -240,8 +240,8 @@ type_icon_steel.ncgr
 contest_icon_tough.ncgr
 contest_icon_cool.ncgr
 type_icon_water.ncgr
-pl_batt_obj_00000242.ncer
-pl_batt_obj_00000243.nanr
+move_type_icon.ncer
+move_type_icon.nanr
 move_class_physical.ncgr
 move_class_status.ncgr
 move_class_special.ncgr
