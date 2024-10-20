@@ -1,0 +1,765 @@
+[
+    {
+        "target": "pl_batt_obj_00000000.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "battle_terrain_tower_day.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "battle_terrain_tower_afternoon.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "battle_terrain_tower_night.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "battle_terrain_factory_day.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "battle_terrain_factory_afternoon.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "battle_terrain_factory_night.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "battle_terrain_arcade_day.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "battle_terrain_arcade_afternoon.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "battle_terrain_arcade_night.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "battle_terrain_castle_day.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "battle_terrain_castle_afternoon.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "battle_terrain_castle_night.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "battle_terrain_hall_day.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "battle_terrain_hall_afternoon.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "battle_terrain_hall_night.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "pl_batt_obj_00000070.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "player_lucas_back.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "player_dawn_back.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "player_barry_back.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "player_cheryl_back.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "player_riley_back.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "player_marley_back.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "player_buck_back.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "player_mira_back.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": false,
+        "invert_size": false
+    },
+    {
+        "target": "battle_terrain_grass_day.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_grass_afternoon.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_grass_night.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_surf_day.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_surf_afternoon.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_surf_night.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_path_day.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_path_afternoon.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_path_night.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_ice_day.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_ice_afternoon.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_ice_night.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_mountain_day.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_mountain_afternoon.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_mountain_night.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_snow_day.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_snow_afternoon.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_snow_night.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_indoors_day.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_indoors_afternoon.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_indoors_night.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_sand_day.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_sand_afternoon.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_sand_night.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_mud_day.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_mud_afternoon.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_mud_night.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_cave_day.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_cave_afternoon.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_cave_night.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_puddle_day.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_puddle_afternoon.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_puddle_night.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_elite4_aaron_day.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_elite4_aaron_afternoon.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_elite4_aaron_night.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_elite4_bertha_day.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_elite4_bertha_afternoon.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_elite4_bertha_night.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_elite4_flint_day.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_elite4_flint_afternoon.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_elite4_flint_night.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_elite4_lucian_day.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_elite4_lucian_afternoon.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_elite4_lucian_night.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_champion_day.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_champion_afternoon.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_champion_night.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_distortion_world_day.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_distortion_world_afternoon.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_distortion_world_night.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_giratina_day.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_giratina_afternoon.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_terrain_giratina_night.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "healthbox_normal.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000072.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000073.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "icon_palettes.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000075.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000079.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "battle_subscreen_cursor_corner.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "healthbox_safari.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "bg_party_level_up.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "poke_ball_throw.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "master_ball_throw.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "ultra_ball_throw.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "great_ball_throw.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "safari_ball_throw.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "net_ball_throw.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "dive_ball_throw.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "nest_ball_throw.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "repeat_ball_throw.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "timer_ball_throw.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "luxury_ball_throw.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "premier_ball_throw.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "quick_ball_throw.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "dusk_ball_throw.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "heal_ball_throw.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "cherish_ball_throw.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "park_ball_throw.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "bait_throw.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "mud_throw.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "party_gauge.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    },
+    {
+        "target": "pl_batt_obj_00000111.pal",
+        "bitdepth": 4,
+        "pad": false,
+        "pcmp": true,
+        "invert_size": true
+    }
+]

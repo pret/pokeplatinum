@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/battle.h"
+
 #include "struct_decls/battle_system.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
@@ -10,6 +12,7 @@
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 
+#include "battle/graphic/pl_batt_obj/pl_batt_obj.naix"
 #include "battle/ov16_0223DF00.h"
 #include "battle/struct_ov16_02268520.h"
 
@@ -44,133 +47,95 @@ static const SpriteTemplate Unk_ov16_022700CC[] = {
     },
 };
 
-__attribute__((aligned(4))) static const u16 Unk_ov16_0227009C[] = {
-    0x87,
-    0x91,
-    0x7F,
-    0x97,
-    0x8B,
-    0x95,
-    0x8D,
-    0x85,
-    0x89,
-    0x8F,
-    0x93,
-    0x97,
-    0x99,
-    0x9B,
-    0x9D,
-    0x9F,
-    0xA1,
-    0xA3,
-    0xA5,
-    0xA7,
-    0xA9,
-    0xAB,
-    0xAD,
-    0xAF
+/*
+ * Maps a battle terrain index to the NARC member in pl_batt_obj containing the player's sprite for it.
+ */
+__attribute__((aligned(4))) static const u16 sBattleTerrainPlayerTiles[] = {
+    [TERRAIN_PLAIN] = battle_terrain_path_player_ncgr,
+    [TERRAIN_SAND] = battle_terrain_sand_player_ncgr,
+    [TERRAIN_GRASS] = battle_terrain_grass_player_ncgr,
+    [TERRAIN_PUDDLE] = battle_terrain_puddle_player_ncgr,
+    [TERRAIN_MOUNTAIN] = battle_terrain_mountain_player_ncgr,
+    [TERRAIN_CAVE] = battle_terrain_cave_player_ncgr,
+    [TERRAIN_SNOW] = battle_terrain_snow_player_ncgr,
+    [TERRAIN_WATER] = battle_terrain_surf_player_ncgr,
+    [TERRAIN_ICE] = battle_terrain_ice_player_ncgr,
+    [TERRAIN_BUILDING] = battle_terrain_indoors_player_ncgr,
+    [TERRAIN_GREAT_MARSH] = battle_terrain_mud_player_ncgr,
+    [TERRAIN_BRIDGE] = battle_terrain_puddle_player_ncgr,
+    [TERRAIN_AARON] = battle_terrain_elite4_aaron_player_ncgr,
+    [TERRAIN_BERTHA] = battle_terrain_elite4_bertha_player_ncgr,
+    [TERRAIN_FLINT] = battle_terrain_elite4_flint_player_ncgr,
+    [TERRAIN_LUCIAN] = battle_terrain_elite4_lucian_player_ncgr,
+    [TERRAIN_CYNTHIA] = battle_terrain_champion_player_ncgr,
+    [TERRAIN_DISTORTION_WORLD] = battle_terrain_distortion_world_player_ncgr,
+    [TERRAIN_BATTLE_TOWER] = battle_terrain_tower_player_ncgr,
+    [TERRAIN_BATTLE_FACTORY] = battle_terrain_factory_player_ncgr,
+    [TERRAIN_BATTLE_ARCADE] = battle_terrain_arcade_player_ncgr,
+    [TERRAIN_BATTLE_CASTLE] = battle_terrain_castle_player_ncgr,
+    [TERRAIN_BATTLE_HALL] = battle_terrain_hall_player_ncgr,
+    [TERRAIN_GIRATINA] = battle_terrain_giratina_player_ncgr
 };
 
-__attribute__((aligned(4))) static const u16 Unk_ov16_0227006C[] = {
-    0x88,
-    0x92,
-    0x82,
-    0x98,
-    0x8C,
-    0x96,
-    0x8E,
-    0x86,
-    0x8A,
-    0x90,
-    0x94,
-    0x94,
-    0x9A,
-    0x9C,
-    0x9E,
-    0xA0,
-    0xA2,
-    0xA4,
-    0xA6,
-    0xA8,
-    0xAA,
-    0xAC,
-    0xAE,
-    0xB0
+/*
+ * Maps a battle terrain index to the NARC member in pl_batt_obj containing the opponent's sprite for it.
+ */
+__attribute__((aligned(4))) static const u16 sBattleTerrainOpponentTiles[] = {
+    [TERRAIN_PLAIN] = battle_terrain_path_opponent_ncgr,
+    [TERRAIN_SAND] = battle_terrain_sand_opponent_ncgr,
+    [TERRAIN_GRASS] = battle_terrain_grass_opponent_ncgr,
+    [TERRAIN_PUDDLE] = battle_terrain_puddle_opponent_ncgr,
+    [TERRAIN_MOUNTAIN] = battle_terrain_mountain_opponent_ncgr,
+    [TERRAIN_CAVE] = battle_terrain_cave_opponent_ncgr,
+    [TERRAIN_SNOW] = battle_terrain_snow_opponent_ncgr,
+    [TERRAIN_WATER] = battle_terrain_surf_opponent_ncgr,
+    [TERRAIN_ICE] = battle_terrain_ice_opponent_ncgr,
+    [TERRAIN_BUILDING] = battle_terrain_indoors_opponent_ncgr,
+    [TERRAIN_GREAT_MARSH] = battle_terrain_mud_opponent_ncgr,
+    [TERRAIN_BRIDGE] = battle_terrain_mud_opponent_ncgr,
+    [TERRAIN_AARON] = battle_terrain_elite4_aaron_opponent_ncgr,
+    [TERRAIN_BERTHA] = battle_terrain_elite4_bertha_opponent_ncgr,
+    [TERRAIN_FLINT] = battle_terrain_elite4_flint_opponent_ncgr,
+    [TERRAIN_LUCIAN] = battle_terrain_elite4_lucian_opponent_ncgr,
+    [TERRAIN_CYNTHIA] = battle_terrain_champion_opponent_ncgr,
+    [TERRAIN_DISTORTION_WORLD] = battle_terrain_distortion_world_opponent_ncgr,
+    [TERRAIN_BATTLE_TOWER] = battle_terrain_tower_opponent_ncgr,
+    [TERRAIN_BATTLE_FACTORY] = battle_terrain_factory_opponent_ncgr,
+    [TERRAIN_BATTLE_ARCADE] = battle_terrain_arcade_opponent_ncgr,
+    [TERRAIN_BATTLE_CASTLE] = battle_terrain_castle_opponent_ncgr,
+    [TERRAIN_BATTLE_HALL] = battle_terrain_hall_opponent_ncgr,
+    [TERRAIN_GIRATINA] = battle_terrain_giratina_opponent_ncgr
 };
 
-__attribute__((aligned(4))) static const u16 Unk_ov16_02270134[][3] = {
-    0x7,
-    0x8,
-    0x9,
-    0x16,
-    0x17,
-    0x18,
-    0x1,
-    0x2,
-    0x3,
-    0x1F,
-    0x20,
-    0x21,
-    0xD,
-    0xE,
-    0xF,
-    0x1C,
-    0x1D,
-    0x1E,
-    0x10,
-    0x11,
-    0x12,
-    0x4,
-    0x5,
-    0x6,
-    0xA,
-    0xB,
-    0xC,
-    0x13,
-    0x14,
-    0x15,
-    0x19,
-    0x1A,
-    0x1B,
-    0x19,
-    0x1A,
-    0x1B,
-    0x22,
-    0x23,
-    0x24,
-    0x25,
-    0x26,
-    0x27,
-    0x28,
-    0x29,
-    0x2A,
-    0x2B,
-    0x2C,
-    0x2D,
-    0x2E,
-    0x2F,
-    0x30,
-    0x31,
-    0x32,
-    0x33,
-    0x34,
-    0x35,
-    0x36,
-    0x37,
-    0x38,
-    0x39,
-    0x3A,
-    0x3B,
-    0x3C,
-    0x3D,
-    0x3E,
-    0x3F,
-    0x40,
-    0x41,
-    0x42,
-    0x43,
-    0x44,
-    0x45
+/*
+ * Maps a battle terrain ID to the NARC member in pl_batt_obj containing a palette for it.
+ * Each battle terrain has 3 palette options for different times of day.
+ */
+__attribute__((aligned(4))) static const u16 sBattleTerrainPaletteFileIndex[][3] = {
+    [TERRAIN_PLAIN] = { battle_terrain_path_day_nclr, battle_terrain_path_afternoon_nclr, battle_terrain_path_night_nclr },
+    [TERRAIN_SAND] = { battle_terrain_sand_day_nclr, battle_terrain_sand_afternoon_nclr, battle_terrain_sand_night_nclr },
+    [TERRAIN_GRASS] = { battle_terrain_grass_day_nclr, battle_terrain_grass_afternoon_nclr, battle_terrain_grass_night_nclr },
+    [TERRAIN_PUDDLE] = { battle_terrain_puddle_day_nclr, battle_terrain_puddle_afternoon_nclr, battle_terrain_puddle_night_nclr },
+    [TERRAIN_MOUNTAIN] = { battle_terrain_mountain_day_nclr, battle_terrain_mountain_afternoon_nclr, battle_terrain_mountain_night_nclr },
+    [TERRAIN_CAVE] = { battle_terrain_cave_day_nclr, battle_terrain_cave_afternoon_nclr, battle_terrain_cave_night_nclr },
+    [TERRAIN_SNOW] = { battle_terrain_snow_day_nclr, battle_terrain_snow_afternoon_nclr, battle_terrain_snow_night_nclr },
+    [TERRAIN_WATER] = { battle_terrain_surf_day_nclr, battle_terrain_surf_afternoon_nclr, battle_terrain_surf_night_nclr },
+    [TERRAIN_ICE] = { battle_terrain_ice_day_nclr, battle_terrain_ice_afternoon_nclr, battle_terrain_ice_night_nclr },
+    [TERRAIN_BUILDING] = { battle_terrain_indoors_day_nclr, battle_terrain_indoors_afternoon_nclr, battle_terrain_indoors_night_nclr },
+    [TERRAIN_GREAT_MARSH] = { battle_terrain_mud_day_nclr, battle_terrain_mud_afternoon_nclr, battle_terrain_mud_night_nclr },
+    [TERRAIN_BRIDGE] = { battle_terrain_mud_day_nclr, battle_terrain_mud_afternoon_nclr, battle_terrain_mud_night_nclr },
+    [TERRAIN_AARON] = { battle_terrain_elite4_aaron_day_nclr, battle_terrain_elite4_aaron_afternoon_nclr, battle_terrain_elite4_aaron_night_nclr },
+    [TERRAIN_BERTHA] = { battle_terrain_elite4_bertha_day_nclr, battle_terrain_elite4_bertha_afternoon_nclr, battle_terrain_elite4_bertha_night_nclr },
+    [TERRAIN_FLINT] = { battle_terrain_elite4_flint_day_nclr, battle_terrain_elite4_flint_afternoon_nclr, battle_terrain_elite4_flint_night_nclr },
+    [TERRAIN_LUCIAN] = { battle_terrain_elite4_lucian_day_nclr, battle_terrain_elite4_lucian_afternoon_nclr, battle_terrain_elite4_lucian_night_nclr },
+    [TERRAIN_CYNTHIA] = { battle_terrain_champion_day_nclr, battle_terrain_champion_afternoon_nclr, battle_terrain_champion_night_nclr },
+    [TERRAIN_DISTORTION_WORLD] = { battle_terrain_distortion_world_day_nclr, battle_terrain_distortion_world_afternoon_nclr, battle_terrain_distortion_world_night_nclr },
+    [TERRAIN_BATTLE_TOWER] = { battle_terrain_tower_day_nclr, battle_terrain_tower_afternoon_nclr, battle_terrain_tower_night_nclr },
+    [TERRAIN_BATTLE_FACTORY] = { battle_terrain_factory_day_nclr, battle_terrain_factory_afternoon_nclr, battle_terrain_factory_night_nclr },
+    [TERRAIN_BATTLE_ARCADE] = { battle_terrain_arcade_day_nclr, battle_terrain_arcade_afternoon_nclr, battle_terrain_arcade_night_nclr },
+    [TERRAIN_BATTLE_CASTLE] = { battle_terrain_castle_day_nclr, battle_terrain_castle_afternoon_nclr, battle_terrain_castle_night_nclr },
+    [TERRAIN_BATTLE_HALL] = { battle_terrain_hall_day_nclr, battle_terrain_hall_afternoon_nclr, battle_terrain_hall_night_nclr },
+    [TERRAIN_GIRATINA] = { battle_terrain_giratina_day_nclr, battle_terrain_giratina_afternoon_nclr, battle_terrain_giratina_night_nclr }
 };
 
 void ov16_02268520(UnkStruct_ov16_02268520 *param0)
@@ -189,24 +154,24 @@ void ov16_02268520(UnkStruct_ov16_02268520 *param0)
     v2 = &Unk_ov16_022700CC[param0->unk_08];
 
     if (param0->unk_08 == 0) {
-        v3 = Unk_ov16_0227009C[param0->unk_09];
+        v3 = sBattleTerrainPlayerTiles[param0->unk_09];
         v4 = 20013;
-        v5 = 128;
+        v5 = battle_terrain_player_ncer;
         v6 = 20005;
-        v7 = 129;
+        v7 = battle_terrain_player_nanr;
         v8 = 20005;
     } else {
-        v3 = Unk_ov16_0227006C[param0->unk_09];
+        v3 = sBattleTerrainOpponentTiles[param0->unk_09];
         v4 = 20014;
-        v5 = 131;
+        v5 = battle_terrain_opponent_ncer;
         v6 = 20006;
-        v7 = 132;
+        v7 = battle_terrain_opponent_nanr;
         v8 = 20006;
     }
 
     SpriteRenderer_LoadCharResObjFromOpenNarc(v0, v1, v10, v3, 1, NNS_G2D_VRAM_TYPE_2DMAIN, v4);
-    SpriteRenderer_LoadPalette(BattleSystem_PaletteSys(param0->unk_04), 2, v0, v1, v10, Unk_ov16_02270134[param0->unk_09][v9], 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20009);
-    PaletteSys_LoadPalette(BattleSystem_PaletteSys(param0->unk_04), 27, Unk_ov16_02270134[param0->unk_09][v9], 5, 0, 0x20, 0x7 * 0x10);
+    SpriteRenderer_LoadPalette(BattleSystem_PaletteSys(param0->unk_04), 2, v0, v1, v10, sBattleTerrainPaletteFileIndex[param0->unk_09][v9], 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20009);
+    PaletteSys_LoadPalette(BattleSystem_PaletteSys(param0->unk_04), NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, sBattleTerrainPaletteFileIndex[param0->unk_09][v9], 5, 0, 0x20, 0x7 * 0x10);
     SpriteRenderer_LoadCellResObjFromOpenNarc(v0, v1, v10, v5, 1, v6);
     SpriteRenderer_LoadAnimResObjFromOpenNarc(v0, v1, v10, v7, 1, v8);
     NARC_dtor(v10);

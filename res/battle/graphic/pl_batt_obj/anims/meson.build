@@ -1,0 +1,75 @@
+pl_batt_obj_anims = files(
+    'pl_batt_obj_00000078.json',
+    'pl_batt_obj_00000114.json',
+    'pl_batt_obj_00000115.json',
+    'pl_batt_obj_00000118.json',
+    'pl_batt_obj_00000123.json',
+    'pl_batt_obj_00000126.json',
+    'battle_terrain_player.json',
+    'battle_terrain_opponent.json',
+    'pl_batt_obj_00000177.json',
+    'pl_batt_obj_00000180.json',
+    'pl_batt_obj_00000183.json',
+    'healthbox_singles_opponent.json',
+    'healthbox_singles_player.json',
+    'healthbox_doubles_opponent_1.json',
+    'healthbox_doubles_opponent_2.json',
+    'healthbox_doubles_player_1.json',
+    'healthbox_doubles_player_2.json',
+    'ball_status_indicator_opponent.json',
+    'ball_status_indicator_player.json',
+    'pl_batt_obj_00000212.json',
+    'pl_batt_obj_00000215.json',
+    'pl_batt_obj_00000218.json',
+    'move_type_icon.json',
+    'pl_batt_obj_00000249.json',
+    'battle_subscreen_cursor_corner.json',
+    'healthbox_safari.json',
+    'bg_party_level_up.json',
+    'pl_batt_obj_00000275.json',
+    'pl_batt_obj_00000276.json',
+    'pl_batt_obj_00000277.json',
+    'pl_batt_obj_00000278.json',
+    'pl_batt_obj_00000279.json',
+    'pl_batt_obj_00000280.json',
+    'pl_batt_obj_00000281.json',
+    'pl_batt_obj_00000282.json',
+    'poke_ball_throw.json',
+    'master_ball_throw.json',
+    'ultra_ball_throw.json',
+    'great_ball_throw.json',
+    'safari_ball_throw.json',
+    'net_ball_throw.json',
+    'dive_ball_throw.json',
+    'nest_ball_throw.json',
+    'repeat_ball_throw.json',
+    'timer_ball_throw.json',
+    'luxury_ball_throw.json',
+    'premier_ball_throw.json',
+    'quick_ball_throw.json',
+    'dusk_ball_throw.json',
+    'heal_ball_throw.json',
+    'cherish_ball_throw.json',
+    'park_ball_throw.json',
+    'bait_throw.json',
+    'mud_throw.json',
+    'party_gauge.json'
+)
+
+pl_batt_obj_anims_data = files('data.json')
+
+pl_batt_obj_nanr = []
+foreach infile : pl_batt_obj_anims
+    pl_batt_obj_nanr += custom_target(
+        input: [infile, pl_batt_obj_anims_data],
+        output: '@BASENAME0@.NANR',
+        command: [
+            make_pl_batt_obj_anims_py,
+            '--nitrogfx', nitrogfx_exe.full_path(),
+            '--input', '@INPUT0@',
+            '--output', '@OUTPUT@',
+            '--datafile', '@INPUT1@',
+            '--private-dir', '@PRIVATE_DIR@'
+        ]
+    )
+endforeach

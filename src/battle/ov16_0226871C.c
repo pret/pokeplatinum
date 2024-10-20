@@ -20,6 +20,8 @@
 #include "struct_defs/struct_0209C370.h"
 
 #include "battle/battle_display.h"
+#include "battle/battle_icon.h"
+#include "battle/graphic/pl_batt_obj/pl_batt_obj.naix"
 #include "battle/ov16_0223DF00.h"
 #include "battle/ov16_0226DB7C.h"
 #include "battle/ov16_0226DE44.h"
@@ -63,7 +65,6 @@
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201E86C.h"
-#include "unk_0207C908.h"
 #include "unk_0208C098.h"
 
 typedef struct {
@@ -1232,7 +1233,7 @@ void ov16_02268A88(UnkStruct_ov16_02268A14 *param0)
     sub_0207C9B0(BattleSystem_PaletteSys(param0->unk_00), 3, v1, v2, NNS_G2D_VRAM_TYPE_2DSUB, 20020);
 
     for (v4 = 0; v4 < 4; v4++) {
-        sub_0207C948(v1, v2, NNS_G2D_VRAM_TYPE_2DSUB, 0, 20025 + v4);
+        BattleIcon_MakeTypeSpriteTiles(v1, v2, NNS_G2D_VRAM_TYPE_2DSUB, 0, 20025 + v4);
     }
 
     if (BattleSystem_BattleType(param0->unk_00) & 0x400) {
@@ -1343,13 +1344,13 @@ void ov16_02268D40(NARC *param0, UnkStruct_ov16_02268A14 *param1)
     v1 = ov16_0223E010(param1->unk_00);
     v2 = ov16_0223E018(param1->unk_00);
 
-    SpriteRenderer_LoadCharResObjFromOpenNarc(v1, v2, param0, 208, 1, NNS_G2D_VRAM_TYPE_2DSUB, 20023);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(v1, v2, param0, 207, 1, 20015);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(v1, v2, param0, 209, 1, 20015);
+    SpriteRenderer_LoadCharResObjFromOpenNarc(v1, v2, param0, ball_status_indicator_player_ncgr, 1, NNS_G2D_VRAM_TYPE_2DSUB, 20023);
+    SpriteRenderer_LoadCellResObjFromOpenNarc(v1, v2, param0, ball_status_indicator_player_ncer, 1, 20015);
+    SpriteRenderer_LoadAnimResObjFromOpenNarc(v1, v2, param0, ball_status_indicator_player_nanr, 1, 20015);
 
-    SpriteRenderer_LoadCharResObjFromOpenNarc(v1, v2, param0, 205, 1, NNS_G2D_VRAM_TYPE_2DSUB, 20024);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(v1, v2, param0, 204, 1, 20016);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(v1, v2, param0, 206, 1, 20016);
+    SpriteRenderer_LoadCharResObjFromOpenNarc(v1, v2, param0, ball_status_indicator_opponent_ncgr, 1, NNS_G2D_VRAM_TYPE_2DSUB, 20024);
+    SpriteRenderer_LoadCellResObjFromOpenNarc(v1, v2, param0, ball_status_indicator_opponent_ncer, 1, 20016);
+    SpriteRenderer_LoadAnimResObjFromOpenNarc(v1, v2, param0, ball_status_indicator_opponent_nanr, 1, 20016);
 
     for (v0 = 0; v0 < 6; v0++) {
         param1->unk_5BC[v0] = SpriteActor_LoadResources(v1, v2, &Unk_ov16_02270414);
@@ -2804,7 +2805,7 @@ void ov16_0226AC98(UnkStruct_ov16_02268A14 *param0, int param1, const UnkStruct_
     for (v4 = 0; v4 < 4; v4++) {
         if ((param2->unk_00[v4] != v0->unk_00.unk_00[v4]) && (param2->unk_00[v4] != 0)) {
             v5 = MoveTable_LoadParam(param2->unk_00[v4], MOVEATTRIBUTE_TYPE);
-            v1 = sub_02006F50(sub_0207C944(), sub_0207C908(v5), 1, &v2, 5);
+            v1 = sub_02006F50(BattleIcon_GetNARCIndex(), BattleIcon_GetMoveTypeTiles(v5), 1, &v2, 5);
             MI_CpuCopy32(v2->pRawData, v0->unk_18[v4], v3);
             Heap_FreeToHeap(v1);
         }

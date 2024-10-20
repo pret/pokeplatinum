@@ -9,7 +9,10 @@
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 
+#include "battle/graphic/pl_batt_obj/pl_batt_obj.naix"
+
 #include "heap.h"
+#include "narc.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_0200C6E4.h"
@@ -41,10 +44,10 @@ static const SpriteTemplate Unk_ov17_02254D9C = {
 
 void ov17_02252AB0(SpriteRenderer *param0, SpriteGfxHandler *param1, PaletteData *param2, u32 param3, u32 param4, u32 param5, u32 param6)
 {
-    sub_0200CD7C(param2, 3, param0, param1, 27, 80, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, param4);
-    sub_0200CBDC(param0, param1, 27, 250, 1, NNS_G2D_VRAM_TYPE_2DSUB, param3);
-    sub_0200CE0C(param0, param1, 27, 251, 1, param5);
-    sub_0200CE3C(param0, param1, 27, 252, 1, param6);
+    sub_0200CD7C(param2, 3, param0, param1, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, battle_subscreen_cursor_corner_nclr, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, param4);
+    sub_0200CBDC(param0, param1, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, battle_subscreen_cursor_corner_ncgr, 1, NNS_G2D_VRAM_TYPE_2DSUB, param3);
+    sub_0200CE0C(param0, param1, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, battle_subscreen_cursor_corner_ncer, 1, param5);
+    sub_0200CE3C(param0, param1, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, battle_subscreen_cursor_corner_nanr, 1, param6);
 }
 
 void ov17_02252B20(SpriteGfxHandler *param0, u32 param1, u32 param2, u32 param3, u32 param4)
