@@ -1,8 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/ov25_02255090.h"
 #include "overlay025/ov25_02255540.h"
@@ -14,12 +12,11 @@
 #include "overlay025/struct_ov25_022558C4_decl.h"
 #include "overlay025/struct_ov25_02255958.h"
 #include "overlay036/poketch_app_pedometer.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
 #include "heap.h"
 #include "sys_task_manager.h"
 #include "unk_02006E3C.h"
-#include "unk_02018340.h"
 
 struct UnkStruct_ov36_02256404_t {
     const UnkStruct_ov36_02256404_1 *unk_00;

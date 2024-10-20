@@ -3,13 +3,12 @@
 
 #include <nnsys.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-
 #include "overlay095/struct_ov95_02247004_decl.h"
 #include "overlay095/struct_ov95_022472C4_decl.h"
 #include "overlay095/struct_ov95_02247568.h"
 #include "overlay095/struct_ov95_02247628_decl.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "message.h"
 #include "overlay_manager.h"

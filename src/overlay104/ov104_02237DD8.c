@@ -20,6 +20,7 @@
 #include "overlay104/struct_ov104_0223BFFC.h"
 #include "overlay104/struct_ov104_0223C4CC.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -29,7 +30,6 @@
 #include "savedata.h"
 #include "unk_02002F38.h"
 #include "unk_02006E3C.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_02030494.h"
 #include "unk_0203061C.h"

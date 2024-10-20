@@ -1,12 +1,11 @@
 #ifndef POKEPLATINUM_OV23_02253D40_H
 #define POKEPLATINUM_OV23_02253D40_H
 
-#include "struct_decls/struct_02018340_decl.h"
-
 #include "overlay023/struct_ov23_02253E2C_decl.h"
 #include "overlay023/struct_ov23_02253F60.h"
 #include "overlay084/struct_ov84_02240FA8.h"
 
+#include "bg_window.h"
 #include "message.h"
 #include "trainer_info.h"
 

@@ -3,12 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0205AA50.h"
-
+#include "bg_window.h"
 #include "heap.h"
 #include "unk_020021B0.h"
 #include "unk_02006E3C.h"
-#include "unk_02018340.h"
 
 typedef struct UnkStruct_0200C440_t {
     void *unk_00;

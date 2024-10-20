@@ -5,7 +5,6 @@
 
 #include "struct_decls/battle_system.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 
 #include "battle/ov16_0223DF00.h"
 #include "overlay013/ov13_02221A88.h"
@@ -16,10 +15,9 @@
 #include "overlay013/struct_ov13_022213F0.h"
 #include "overlay013/struct_ov13_02221ED0.h"
 #include "overlay013/struct_ov13_022236B8.h"
-#include "overlay084/struct_ov84_0223BA5C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
 #include "bag.h"
+#include "bg_window.h"
 #include "core_sys.h"
 #include "font.h"
 #include "gx_layers.h"
@@ -43,7 +41,6 @@
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
-#include "unk_02018340.h"
 #include "unk_0208C098.h"
 #include "unk_02094EDC.h"
 

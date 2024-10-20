@@ -11,14 +11,12 @@
 #include "struct_defs/struct_0203E234.h"
 #include "struct_defs/struct_0203E274.h"
 #include "struct_defs/struct_02049FA8.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "field/field_system.h"
-#include "overlay084/struct_ov84_0223BA5C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 #include "savedata/save_table.h"
 
+#include "bg_window.h"
 #include "field_overworld_state.h"
 #include "game_options.h"
 #include "game_records.h"
@@ -36,7 +34,6 @@
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02018340.h"
 #include "unk_0202631C.h"
 #include "unk_0202DF8C.h"
 #include "unk_0203D178.h"

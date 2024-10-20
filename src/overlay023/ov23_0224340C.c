@@ -6,7 +6,6 @@
 #include "consts/game_records.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
@@ -25,6 +24,7 @@
 #include "overlay023/struct_ov23_0224271C.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
+#include "bg_window.h"
 #include "camera.h"
 #include "cell_actor.h"
 #include "comm_player_manager.h"
@@ -49,7 +49,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A9DC.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"

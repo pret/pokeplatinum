@@ -11,8 +11,8 @@
 #include "overlay058/ov58_021D0D80.h"
 #include "overlay058/struct_ov58_021D2820.h"
 
+#include "bg_window.h"
 #include "communication_system.h"
-#include "unk_02018340.h"
 #include "unk_02030EE0.h"
 #include "unk_02032798.h"
 #include "unk_020366A0.h"

@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_FIELD_SYSTEM_STRUCT_H
 #define POKEPLATINUM_FIELD_SYSTEM_STRUCT_H
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02039E30_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02054C18_decl.h"
@@ -40,6 +39,7 @@
 #include "overlay066/struct_ov66_0222DCE0_sub1.h"
 
 #include "bag.h"
+#include "bg_window.h"
 #include "camera.h"
 #include "journal.h"
 #include "map_header_data.h"

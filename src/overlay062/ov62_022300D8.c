@@ -7,11 +7,9 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0208C06C.h"
 #include "struct_defs/struct_020F3DCC.h"
 
@@ -23,6 +21,7 @@
 #include "overlay062/struct_ov62_0223118C.h"
 #include "overlay062/struct_ov62_022312B0.h"
 
+#include "bg_window.h"
 #include "message.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -33,7 +32,6 @@
 #include "unk_02006E3C.h"
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201E86C.h"
 #include "unk_02030A80.h"

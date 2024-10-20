@@ -6,8 +6,7 @@
 #include "constants/heap.h"
 #include "constants/narc.h"
 
-#include "struct_defs/struct_0205AA50.h"
-
+#include "bg_window.h"
 #include "font.h"
 #include "heap.h"
 #include "render_text.h"
@@ -15,7 +14,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02006E3C.h"
-#include "unk_02018340.h"
 
 static enum RenderResult TextPrinter_Render(TextPrinter *printer);
 static u8 Text_CreatePrinterTask(SysTaskFunc taskFunc, TextPrinter *printer, u32 priority);

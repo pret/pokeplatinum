@@ -3,19 +3,15 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02072014.h"
 
-#include "overlay061/struct_ov61_0222C884.h"
-
+#include "bg_window.h"
 #include "font.h"
 #include "message.h"
 #include "play_time.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_02018340.h"
 
 static void ov71_0223CD64(Window * param0, const u32 param1, const u32 param2, const u32 param3, Strbuf *param4, const u32 param5, const u8 param6, const int param7);
 static void ov71_0223CDB0(Window * param0, const u32 param1, const u32 param2, const u32 param3, const Strbuf *param4);

@@ -1,8 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV20_021D4E8C_H
 #define POKEPLATINUM_STRUCT_OV20_021D4E8C_H
 
-#include "struct_decls/struct_02018340_decl.h"
-
+#include "bg_window.h"
 #include "sys_task_manager.h"
 
 typedef struct {

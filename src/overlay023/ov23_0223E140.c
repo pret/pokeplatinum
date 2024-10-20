@@ -7,7 +7,6 @@
 
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_defs/struct_0200C738.h"
@@ -26,10 +25,8 @@
 #include "overlay023/ov23_0224F294.h"
 #include "overlay023/ov23_02253D40.h"
 #include "overlay023/struct_ov23_0224271C.h"
-#include "overlay061/struct_ov61_0222C884.h"
-#include "overlay084/struct_ov84_0223BA5C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
 #include "camera.h"
 #include "cell_actor.h"
 #include "comm_player_manager.h"
@@ -61,7 +58,6 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"

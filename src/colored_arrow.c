@@ -5,13 +5,11 @@
 
 #include "constants/charcode.h"
 
-#include "struct_defs/struct_0205AA50.h"
-
+#include "bg_window.h"
 #include "charcode.h"
 #include "heap.h"
 #include "strbuf.h"
 #include "text.h"
-#include "unk_02018340.h"
 
 ColoredArrow *ColoredArrow_New(u32 heapID)
 {

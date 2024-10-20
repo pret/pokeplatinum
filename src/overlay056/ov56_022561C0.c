@@ -3,21 +3,19 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0205B43C_decl.h"
 #include "struct_defs/sentence.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0203330C.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0205C22C.h"
 #include "struct_defs/struct_0205C924.h"
 #include "struct_defs/struct_0205C95C.h"
 
 #include "field/field_system.h"
 #include "overlay056/struct_ov56_02256468_decl.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "font.h"
@@ -40,7 +38,6 @@
 #include "unk_0200A328.h"
 #include "unk_02014A84.h"
 #include "unk_02017728.h"
-#include "unk_02018340.h"
 #include "unk_02027F84.h"
 #include "unk_02033200.h"
 #include "unk_020508D4.h"

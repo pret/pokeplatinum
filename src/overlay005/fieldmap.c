@@ -3,7 +3,6 @@
 
 #include "constants/field/map_load.h"
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02020C44_decl.h"
 #include "struct_decls/struct_02027860_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
@@ -48,9 +47,8 @@
 #include "overlay005/struct_ov5_021ED0A4.h"
 #include "overlay009/ov9_02249960.h"
 #include "overlay022/struct_ov22_022559F8.h"
-#include "overlay084/struct_ov84_0223BA5C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
 #include "camera.h"
 #include "comm_player_manager.h"
 #include "core_sys.h"
@@ -74,7 +72,6 @@
 #include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"

@@ -5,7 +5,6 @@
 
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay022/funcptr_ov22_02259D78.h"
 #include "overlay022/ov22_02255094.h"
@@ -16,6 +15,7 @@
 #include "overlay022/struct_ov22_0225A0E4.h"
 #include "overlay022/struct_ov22_0225A154.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "error_handling.h"
 #include "font.h"
@@ -28,7 +28,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_02012744.h"
-#include "unk_02018340.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "unk_02023FCC.h"

@@ -4,8 +4,6 @@
 #include <nitro/fx/fx.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "field/field_system_decl.h"
 #include "overlay005/encounter_effect.h"
@@ -18,6 +16,7 @@
 #include "overlay005/struct_ov5_021DE5A4.h"
 #include "overlay006/battle_params.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "enc_effects.h"
 #include "sys_task_manager.h"

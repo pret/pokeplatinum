@@ -18,6 +18,7 @@
 #include "overlay104/struct_ov104_0223C4CC.h"
 #include "overlay105/ov105_02241AE0.h"
 
+#include "bg_window.h"
 #include "heap.h"
 #include "party.h"
 #include "pokemon.h"
@@ -25,7 +26,6 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02018340.h"
 #include "unk_0202FF4C.h"
 #include "unk_02051D8C.h"
 #include "unk_0209B6F8.h"

@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0204B184.h"
@@ -14,6 +13,7 @@
 #include "overlay104/struct_ov104_0223A348_sub1.h"
 #include "overlay104/struct_ov104_0223BA10.h"
 
+#include "bg_window.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "heap.h"
@@ -23,7 +23,6 @@
 #include "save_player.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0203061C.h"
 #include "unk_02051D8C.h"

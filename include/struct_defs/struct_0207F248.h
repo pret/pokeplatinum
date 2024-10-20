@@ -7,10 +7,8 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02098700_decl.h"
 #include "struct_defs/funcptr_0207F248_sub1.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_020831B4.h"
 #include "struct_defs/struct_02083D1C.h"
@@ -20,6 +18,7 @@
 #include "functypes/funcptr_0207F248.h"
 #include "overlay118/struct_ov118_021D0FDC_decl.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "message.h"
 #include "strbuf.h"

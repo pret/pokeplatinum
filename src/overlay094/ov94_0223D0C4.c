@@ -5,9 +5,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/archived_sprite.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02081CF4.h"
 
 #include "overlay094/const_ov94_02245FD8.h"
@@ -17,8 +15,8 @@
 #include "overlay094/ov94_02244950.h"
 #include "overlay094/struct_ov94_0223BA88_sub2.h"
 #include "overlay094/struct_ov94_0223FD4C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "font.h"
@@ -40,7 +38,6 @@
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_02013A04.h"
-#include "unk_02018340.h"
 #include "unk_020393C8.h"
 
 static void ov94_0223D1D4(BGL *param0);

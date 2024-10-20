@@ -3,13 +3,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0205AA50.h"
-
 #include "field/field_system.h"
 #include "overlay005/struct_ov5_021E1B20_decl.h"
 
+#include "bg_window.h"
 #include "heap.h"
-#include "unk_02018340.h"
 #include "unk_0205D8CC.h"
 
 struct UnkStruct_ov5_021E1B20_t {

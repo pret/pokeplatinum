@@ -4,13 +4,10 @@
 #include <string.h>
 
 #include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02081CF4.h"
 
-#include "overlay061/struct_ov61_0222C884.h"
-
+#include "bg_window.h"
 #include "colored_arrow.h"
 #include "core_sys.h"
 #include "font.h"
@@ -20,7 +17,6 @@
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
-#include "unk_02018340.h"
 
 typedef struct UIControlData_t {
     UnkStruct_02081CF4 unk_00;

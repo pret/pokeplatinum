@@ -1,11 +1,10 @@
 #ifndef POKEPLATINUM_OV84_0223F040_H
 #define POKEPLATINUM_OV84_0223F040_H
 
-#include "struct_defs/struct_0205AA50.h"
-
 #include "overlay084/struct_ov84_0223B5A0.h"
 
 #include "bag.h"
+#include "bg_window.h"
 
 void ov84_0223F040(UnkStruct_ov84_0223B5A0 *param0);
 void ov84_0223F1DC(Window *param0);

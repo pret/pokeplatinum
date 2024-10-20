@@ -3,14 +3,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-
 #include "overlay104/struct_ov104_0223C23C_decl.h"
 
+#include "bg_window.h"
 #include "heap.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02018340.h"
 
 typedef struct {
     SysTask *unk_00;

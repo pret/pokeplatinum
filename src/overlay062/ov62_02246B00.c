@@ -7,7 +7,6 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 
@@ -15,6 +14,7 @@
 #include "overlay062/struct_ov62_02246BF4.h"
 #include "overlay062/struct_ov62_02246BF4_sub1.h"
 
+#include "bg_window.h"
 #include "game_options.h"
 #include "heap.h"
 #include "inlines.h"

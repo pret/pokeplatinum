@@ -4,13 +4,12 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 
+#include "bg_window.h"
 #include "core_sys.h"
 #include "heap.h"
 #include "narc.h"
 #include "unk_0200F174.h"
-#include "unk_02018340.h"
 
 __attribute__((aligned(4))) static const u16 Unk_020F4030[] = {
     0x20,

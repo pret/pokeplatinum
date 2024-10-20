@@ -4,13 +4,13 @@
 #include <string.h>
 
 #include "struct_defs/pokemon_summary_app.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay007/struct_ov7_0224F2EC.h"
 #include "overlay007/struct_ov7_0224F358.h"
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_0224133C.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "gx_layers.h"
 #include "move_table.h"
@@ -18,7 +18,6 @@
 #include "pokemon_icon.h"
 #include "pokemon_summary_app.h"
 #include "unk_0200C6E4.h"
-#include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_0207C908.h"
 #include "unk_020920C0.h"

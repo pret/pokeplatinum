@@ -7,9 +7,9 @@
 #include "overlay104/ov104_0223D9E4.h"
 #include "overlay104/struct_ov104_0223C4CC.h"
 
+#include "bg_window.h"
 #include "gx_layers.h"
 #include "heap.h"
-#include "unk_02018340.h"
 
 typedef void (*UnkFuncPtr_ov104_0223F394)(UnkStruct_ov104_0223C4CC *, void **);
 

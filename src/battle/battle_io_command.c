@@ -13,7 +13,6 @@
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/battle_io.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "battle/battle_display.h"
 #include "battle/battle_io.h"
@@ -72,6 +71,7 @@
 #include "overlay012/ov12_022380BC.h"
 #include "overlay012/struct_ov12_02237728.h"
 
+#include "bg_window.h"
 #include "flags.h"
 #include "heap.h"
 #include "narc.h"
@@ -80,7 +80,6 @@
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
 #include "unk_020131EC.h"
-#include "unk_02018340.h"
 
 typedef void (*UnkFuncPtr_ov16_0226F068)(BattleSystem *, BattlerData *);
 

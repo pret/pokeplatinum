@@ -4,13 +4,11 @@
 #include <nnsys.h>
 
 #include "struct_decls/struct_0200C440_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
-#include "struct_defs/struct_0201AE08.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "message.h"
 #include "strbuf.h"

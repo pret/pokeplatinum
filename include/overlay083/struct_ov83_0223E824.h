@@ -1,12 +1,10 @@
 #ifndef POKEPLATINUM_STRUCT_OV83_0223E824_H
 #define POKEPLATINUM_STRUCT_OV83_0223E824_H
 
-#include "struct_decls/struct_02018340_decl.h"
-#include "struct_defs/struct_0205AA50.h"
-
 #include "overlay083/struct_ov83_0223DEA0.h"
 #include "overlay083/struct_ov83_0223FE50.h"
 
+#include "bg_window.h"
 #include "sys_task_manager.h"
 
 typedef struct {

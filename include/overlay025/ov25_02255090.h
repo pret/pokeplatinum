@@ -1,10 +1,10 @@
 #ifndef POKEPLATINUM_OV25_02255090_H
 #define POKEPLATINUM_OV25_02255090_H
 
-#include "struct_decls/struct_02018340_decl.h"
-
 #include "overlay025/struct_ov25_0225517C.h"
 #include "overlay025/struct_ov25_02255224_decl.h"
+
+#include "bg_window.h"
 
 void ov25_02255090(u32 *param0, u32 param1);
 BOOL ov25_02255130(u32 *param0, u32 param1);

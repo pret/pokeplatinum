@@ -3,9 +3,6 @@
 
 #include <nnsys.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-#include "struct_defs/struct_0205AA50.h"
-
 #include "overlay021/struct_ov21_021D0D80_1.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021D13FC.h"
@@ -18,6 +15,7 @@
 #include "overlay021/struct_ov21_021D4CA0.h"
 #include "overlay021/struct_ov21_021E68F4.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "overlay_manager.h"
 #include "strbuf.h"

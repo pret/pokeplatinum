@@ -8,9 +8,9 @@
 #include "overlay013/ov13_02227A4C.h"
 #include "overlay013/struct_ov13_02227244.h"
 
+#include "bg_window.h"
 #include "heap.h"
 #include "unk_0200C6E4.h"
-#include "unk_02018340.h"
 
 typedef struct {
     u8 unk_00;

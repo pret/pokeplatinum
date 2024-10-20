@@ -1,8 +1,7 @@
 #ifndef POKEPLATINUM_COLORED_ARROW_H
 #define POKEPLATINUM_COLORED_ARROW_H
 
-#include "struct_defs/struct_0205AA50.h"
-
+#include "bg_window.h"
 #include "strbuf.h"
 #include "text.h"
 

@@ -7,13 +7,13 @@
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02081CF4.h"
 
 #include "field/field_system.h"
 #include "overlay005/struct_ov5_021DC1A4_decl.h"
 #include "overlay084/struct_ov84_02240FA8.h"
 
+#include "bg_window.h"
 #include "coins.h"
 #include "core_sys.h"
 #include "font.h"
@@ -31,7 +31,6 @@
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02018340.h"
 #include "unk_0202D05C.h"
 
 struct UnkStruct_ov5_021DC1A4_t {

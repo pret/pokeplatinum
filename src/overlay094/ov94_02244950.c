@@ -5,15 +5,13 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay004/ov4_021D0D80.h"
 #include "overlay094/ov94_0223B140.h"
 #include "overlay094/ov94_0223BCB0.h"
 #include "overlay094/struct_ov94_0223FD4C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
 #include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
@@ -28,7 +26,6 @@
 #include "unk_02006E3C.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02018340.h"
 #include "unk_02025CB0.h"
 #include "unk_0202ACE0.h"
 #include "unk_02030CE8.h"

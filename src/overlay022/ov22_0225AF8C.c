@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029C88_decl.h"
 #include "struct_decls/struct_0202A138_decl.h"
@@ -26,12 +25,12 @@
 #include "overlay022/struct_ov22_0225AF8C.h"
 #include "overlay022/struct_ov22_0225B388.h"
 
+#include "bg_window.h"
 #include "heap.h"
 #include "narc.h"
 #include "pokemon.h"
 #include "resource_collection.h"
 #include "unk_02006E3C.h"
-#include "unk_02018340.h"
 #include "unk_020298BC.h"
 
 typedef struct UnkStruct_ov22_0225B1BC_t {

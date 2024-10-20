@@ -3,18 +3,16 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_02013610.h"
-#include "struct_defs/struct_0201AE08.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay005/ov5_021D2F14.h"
 #include "overlay005/struct_ov5_021D30A8.h"
 #include "overlay104/struct_ov104_02241308.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -30,7 +28,6 @@
 #include "unk_0200A328.h"
 #include "unk_0200C6E4.h"
 #include "unk_020131EC.h"
-#include "unk_02018340.h"
 
 typedef struct {
     Window *unk_00;

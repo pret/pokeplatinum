@@ -5,9 +5,7 @@
 
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0200C738.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207DE04.h"
 #include "struct_defs/struct_0207DFAC.h"
 #include "struct_defs/struct_0207E060.h"
@@ -15,7 +13,6 @@
 
 #include "overlay004/ov4_021D0D80.h"
 #include "overlay022/struct_ov22_022559F8.h"
-#include "overlay061/struct_ov61_0222C884.h"
 #include "overlay063/ov63_0222BE18.h"
 #include "overlay063/ov63_0222CCE4.h"
 #include "overlay063/struct_ov63_0222BE18_decl.h"
@@ -26,9 +23,8 @@
 #include "overlay065/struct_ov65_02236744_decl.h"
 #include "overlay065/struct_ov65_02236760.h"
 #include "overlay065/struct_ov65_022376D0.h"
-#include "overlay084/struct_ov84_0223BA5C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -58,7 +54,6 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"

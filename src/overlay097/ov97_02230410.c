@@ -3,13 +3,11 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0202442C_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_0202DBAC.h"
 #include "struct_defs/struct_0203CC84.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay084/struct_ov84_02240FA8.h"
 #include "overlay097/ov97_0222D04C.h"
@@ -20,6 +18,7 @@
 #include "overlay097/union_ov97_0222D2B0.h"
 #include "savedata/save_table.h"
 
+#include "bg_window.h"
 #include "buffer_manager.h"
 #include "cell_actor.h"
 #include "communication_information.h"
@@ -49,7 +48,6 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02013A04.h"
-#include "unk_02018340.h"
 #include "unk_0202DAB4.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"

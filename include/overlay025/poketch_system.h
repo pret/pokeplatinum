@@ -3,13 +3,12 @@
 
 #include <nnsys.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-
 #include "field/field_system_decl.h"
 #include "overlay025/poketch_button.h"
 #include "overlay025/struct_ov25_02254560_1.h"
 #include "overlay025/struct_ov25_02254560_decl.h"
 
+#include "bg_window.h"
 #include "poketch_data.h"
 #include "savedata.h"
 #include "sys_task_manager.h"

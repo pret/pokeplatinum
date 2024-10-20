@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0208C06C.h"
 
 #include "overlay062/ov62_0222F2C0.h"
@@ -12,6 +11,7 @@
 #include "overlay062/ov62_const_funcptr_tables.h"
 #include "overlay062/struct_ov62_02235008.h"
 
+#include "bg_window.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
@@ -24,7 +24,6 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0208B284.h"
 

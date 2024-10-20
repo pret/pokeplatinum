@@ -1,15 +1,9 @@
-#include "unk_02018340.h"
+#include "bg_window.h"
 
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0201AE08.h"
-#include "struct_defs/struct_0205AA50.h"
-
-#include "overlay061/struct_ov61_0222C884.h"
-#include "overlay084/struct_ov84_0223BA5C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
-
+#include "bg_window.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
@@ -18,30 +12,6 @@ enum {
     UnkEnum_00 = 0,
     UnkEnum_01 = 1,
 };
-
-typedef struct {
-    void *unk_00;
-    u32 unk_04;
-    u32 unk_08;
-    int unk_0C;
-    int unk_10;
-    u8 unk_14;
-    u8 unk_15;
-    u8 unk_16;
-    u8 unk_17;
-    u16 unk_18;
-    fx32 unk_1C;
-    fx32 unk_20;
-    int unk_24;
-    int unk_28;
-} UnkStruct_02019304;
-
-typedef struct UnkStruct_02018340_t {
-    u32 unk_00;
-    u16 unk_04;
-    u16 unk_06;
-    UnkStruct_02019304 unk_08[8];
-} BGL;
 
 static u8 sub_02018F80(u8 param0, u8 param1);
 static void sub_02019304(UnkStruct_02019304 *param0, u8 param1, int param2);

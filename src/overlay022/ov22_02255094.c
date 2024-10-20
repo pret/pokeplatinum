@@ -6,7 +6,6 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02015128_decl.h"
 #include "struct_decls/struct_020151A4_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay022/struct_ov22_022550D4.h"
@@ -15,9 +14,8 @@
 #include "overlay022/struct_ov22_022559F8.h"
 #include "overlay022/struct_ov22_02255CB8.h"
 #include "overlay022/struct_ov22_0225A0E4.h"
-#include "overlay084/struct_ov84_0223BA5C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "gx_layers.h"
@@ -31,7 +29,6 @@
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_02015064.h"
-#include "unk_02018340.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "unk_0202419C.h"

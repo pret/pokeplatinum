@@ -36,6 +36,7 @@
 #include "overlay022/struct_ov22_0225B1BC_decl.h"
 
 #include "assert.h"
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "game_options.h"
 #include "heap.h"
@@ -54,7 +55,6 @@
 #include "unk_0200DA60.h"
 #include "unk_02012744.h"
 #include "unk_02014000.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_020933F8.h"
 #include "unk_02094EDC.h"

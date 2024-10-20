@@ -27,6 +27,7 @@
 #include "overlay017/struct_ov17_022538F0.h"
 
 #include "assert.h"
+#include "bg_window.h"
 #include "game_options.h"
 #include "heap.h"
 #include "inlines.h"
@@ -44,7 +45,6 @@
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0208C098.h"
 #include "unk_02094EDC.h"

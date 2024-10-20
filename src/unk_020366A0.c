@@ -4,13 +4,13 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0202610C.h"
 
 #include "overlay004/ov4_021D0D80.h"
 #include "overlay065/struct_ov65_0222F6EC.h"
 #include "overlay066/ov66_022324F0.h"
 
+#include "bg_window.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "core_sys.h"

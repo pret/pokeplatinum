@@ -5,7 +5,6 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02095C48.h"
 
@@ -13,6 +12,7 @@
 #include "overlay017/struct_ov17_0223F6E8.h"
 #include "overlay017/struct_ov17_0223F744.h"
 
+#include "bg_window.h"
 #include "strbuf.h"
 #include "text.h"
 

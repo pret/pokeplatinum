@@ -3,11 +3,10 @@
 
 #include <nnsys.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-#include "struct_defs/struct_0205AA50.h"
-
 #include "overlay083/struct_ov83_0223DEA0.h"
 #include "overlay083/struct_ov83_0223FE50.h"
+
+#include "bg_window.h"
 
 typedef struct {
     int unk_00;

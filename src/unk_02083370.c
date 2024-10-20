@@ -14,6 +14,7 @@
 #include "overlay118/ov118_021D0D80.h"
 
 #include "bag.h"
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "heap.h"
@@ -27,7 +28,6 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
-#include "unk_02018340.h"
 #include "unk_0207070C.h"
 #include "unk_0207E0B8.h"
 #include "unk_020819DC.h"

@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/ov19_021D8B54.h"
@@ -15,6 +13,7 @@
 #include "overlay019/struct_ov19_021DA384.h"
 #include "overlay019/struct_ov19_021DE3E8_decl.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "heap.h"
 #include "item.h"

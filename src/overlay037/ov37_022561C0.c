@@ -2,14 +2,13 @@
 #include <nitro/sinit.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-
 #include "overlay025/poketch_button.h"
 #include "overlay025/poketch_system.h"
 #include "overlay037/ov37_022563D4.h"
 #include "overlay037/struct_ov37_022563D4_1.h"
 #include "overlay037/struct_ov37_022563D4_decl.h"
 
+#include "bg_window.h"
 #include "heap.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"

@@ -25,9 +25,9 @@
 #include "overlay023/ov23_02254A14.h"
 #include "overlay023/struct_ov23_0224271C.h"
 #include "overlay023/struct_ov23_02250CD4.h"
-#include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_02240FA8.h"
 
+#include "bg_window.h"
 #include "camera.h"
 #include "comm_player_manager.h"
 #include "communication_information.h"
@@ -49,7 +49,6 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02013A04.h"
-#include "unk_02018340.h"
 #include "unk_0202854C.h"
 #include "unk_02033200.h"
 #include "unk_020508D4.h"

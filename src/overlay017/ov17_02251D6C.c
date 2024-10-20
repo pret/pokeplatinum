@@ -23,6 +23,7 @@
 #include "overlay017/struct_ov17_022529C8.h"
 #include "overlay017/struct_ov17_022539E4.h"
 
+#include "bg_window.h"
 #include "heap.h"
 #include "pokemon.h"
 #include "sys_task.h"
@@ -32,7 +33,6 @@
 #include "unk_0200A9DC.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02018340.h"
 
 static int ov17_02251DAC(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3);
 static void ov17_02251DC0(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3);

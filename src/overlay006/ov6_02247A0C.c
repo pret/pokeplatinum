@@ -3,12 +3,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "field/field_system.h"
 
+#include "bg_window.h"
 #include "core_sys.h"
 #include "field_system.h"
 #include "font.h"
@@ -20,7 +19,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "unk_0200DA60.h"
-#include "unk_02018340.h"
 #include "unk_0202F108.h"
 #include "unk_020508D4.h"
 

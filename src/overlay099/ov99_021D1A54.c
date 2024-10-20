@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 
@@ -20,6 +19,7 @@
 #include "overlay099/struct_ov99_021D2CB0_sub2.h"
 #include "overlay099/struct_ov99_021D3A40.h"
 
+#include "bg_window.h"
 #include "core_sys.h"
 #include "easy3d_object.h"
 #include "font.h"
@@ -33,7 +33,6 @@
 #include "unk_0200A9DC.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
-#include "unk_02018340.h"
 
 typedef void (*UnkFuncPtr_ov99_021D4A04)(UnkStruct_ov99_021D2CB0 *);
 typedef BOOL (*UnkFuncPtr_ov99_021D4A04_1)(UnkStruct_ov99_021D2CB0 *, UnkStruct_ov99_021D3A40 *);

@@ -37,6 +37,7 @@
 #include "overlay104/struct_ov104_02241308.h"
 
 #include "bag.h"
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
@@ -69,7 +70,6 @@
 #include "unk_0200F174.h"
 #include "unk_02013A04.h"
 #include "unk_02014A84.h"
-#include "unk_02018340.h"
 #include "unk_0202631C.h"
 #include "unk_02028124.h"
 #include "unk_0202D778.h"

@@ -6,7 +6,6 @@
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/pokemon_summary.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02072014.h"
 #include "struct_defs/struct_02098C44.h"
 
@@ -15,6 +14,7 @@
 #include "overlay005/ov5_021D0D80.h"
 
 #include "bag.h"
+#include "bg_window.h"
 #include "colored_arrow.h"
 #include "comm_player_manager.h"
 #include "communication_information.h"
@@ -38,7 +38,6 @@
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02018340.h"
 #include "unk_0202602C.h"
 #include "unk_0202D778.h"
 #include "unk_020363E8.h"

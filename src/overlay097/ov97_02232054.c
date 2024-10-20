@@ -3,18 +3,15 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0202442C_decl.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay084/struct_ov84_0223BA5C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 #include "overlay097/struct_ov97_0223829C.h"
 #include "savedata/save_table.h"
 
+#include "bg_window.h"
 #include "gx_layers.h"
 #include "savedata.h"
-#include "unk_02018340.h"
 #include "unk_0202DAB4.h"
 
 void ov97_02232054(void)

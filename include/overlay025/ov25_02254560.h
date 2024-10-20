@@ -3,12 +3,12 @@
 
 #include <nnsys.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-
 #include "overlay025/poketch_system.h"
 #include "overlay025/struct_ov25_02254560_1.h"
 #include "overlay025/struct_ov25_02254560_decl.h"
 #include "overlay025/struct_ov25_022555E8_decl.h"
+
+#include "bg_window.h"
 
 BOOL ov25_02254560(UnkStruct_ov25_02254560 **param0, const UnkStruct_ov25_02254560_1 *param1, NNSG2dOamManagerInstance *param2, PoketchSystem *poketchSys);
 UnkStruct_ov25_022555E8 *ov25_02254664(void);

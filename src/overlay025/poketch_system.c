@@ -5,13 +5,12 @@
 
 #include "consts/sdat.h"
 
-#include "struct_decls/struct_02018340_decl.h"
-
 #include "field/field_system_decl.h"
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/poketch_button.h"
 #include "overlay025/struct_ov25_02254560_decl.h"
 
+#include "bg_window.h"
 #include "enums.h"
 #include "field_system.h"
 #include "game_overlay.h"

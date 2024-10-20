@@ -9,12 +9,12 @@
 
 #include "overlay084/struct_ov84_02240FA8.h"
 
+#include "bg_window.h"
 #include "colored_arrow.h"
 #include "core_sys.h"
 #include "font.h"
 #include "heap.h"
 #include "text.h"
-#include "unk_02018340.h"
 
 typedef struct {
     u8 unk_00_0 : 4;

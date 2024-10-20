@@ -6,8 +6,6 @@
 #include "constants/heap.h"
 #include "constants/trainer.h"
 
-#include "struct_defs/struct_0205AA50.h"
-
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay005/encounter_effect.h"
@@ -22,6 +20,7 @@
 #include "overlay005/struct_ov5_021E52A8_sub2.h"
 #include "overlay115/camera_angle.h"
 
+#include "bg_window.h"
 #include "camera.h"
 #include "cell_actor.h"
 #include "gx_layers.h"
@@ -38,7 +37,6 @@
 #include "unk_02006E3C.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
-#include "unk_02018340.h"
 #include "unk_0202419C.h"
 
 // EncounterEffect_Grass_HigherLevel

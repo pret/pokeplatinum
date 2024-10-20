@@ -1,12 +1,13 @@
 #ifndef POKEPLATINUM_OV17_0223F7E4_H
 #define POKEPLATINUM_OV17_0223F7E4_H
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_02095C48.h"
 
 #include "overlay017/struct_ov17_0223F7E4_decl.h"
 #include "overlay017/struct_ov17_0223F88C.h"
 #include "overlay017/struct_ov17_022472F8.h"
+
+#include "bg_window.h"
 
 void ov17_0223F80C(BGL *param0);
 void ov17_0223F864(BGL *param0);

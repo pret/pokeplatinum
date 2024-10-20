@@ -2,7 +2,6 @@
 #define POKEPLATINUM_STRUCT_OV83_0223B784_H
 
 #include "struct_decls/struct_02015064_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 
 #include "overlay083/struct_ov83_0223D4CC_decl.h"
 #include "overlay083/struct_ov83_0223D784.h"
@@ -22,6 +21,8 @@
 #include "overlay083/struct_ov83_0223F820.h"
 #include "overlay083/struct_ov83_0223FDB0.h"
 #include "overlay083/struct_ov83_0223FE50.h"
+
+#include "bg_window.h"
 
 typedef struct {
     int unk_00;

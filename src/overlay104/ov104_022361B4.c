@@ -5,13 +5,11 @@
 
 #include "consts/game_records.h"
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020302DC_decl.h"
 #include "struct_decls/struct_0203041C_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0204B184.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0222E63C.h"
@@ -25,6 +23,7 @@
 #include "overlay104/struct_ov104_0223BA10.h"
 #include "overlay104/struct_ov104_0223C4CC.h"
 
+#include "bg_window.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "game_records.h"
@@ -39,7 +38,6 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_0200DA60.h"
-#include "unk_02018340.h"
 #include "unk_020302D0.h"
 #include "unk_0203061C.h"
 #include "unk_0205DFC4.h"

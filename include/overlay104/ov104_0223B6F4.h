@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_OV104_0223B6F4_H
 #define POKEPLATINUM_OV104_0223B6F4_H
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_party_decl.h"
 
@@ -9,6 +8,7 @@
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "overlay104/struct_ov104_0223BA10.h"
 
+#include "bg_window.h"
 #include "pokemon.h"
 
 void ov104_0223B760(u8 param0, int param1, u16 param2[], u8 param3);

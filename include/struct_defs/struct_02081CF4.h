@@ -2,7 +2,8 @@
 #define POKEPLATINUM_STRUCT_02081CF4_H
 
 #include "struct_decls/struct_02013A04_decl.h"
-#include "struct_defs/struct_0205AA50.h"
+
+#include "bg_window.h"
 
 typedef struct {
     const ResourceMetadata *unk_00;

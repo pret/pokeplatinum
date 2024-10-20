@@ -3,15 +3,13 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0205AA50.h"
-
 #include "battle/ov16_0223DF00.h"
 #include "overlay013/struct_ov13_0221FC20.h"
 #include "overlay013/struct_ov13_022213F0.h"
 #include "overlay013/struct_ov13_02221ED0.h"
 #include "overlay013/struct_ov13_022236B8.h"
-#include "overlay061/struct_ov61_0222C884.h"
 
+#include "bg_window.h"
 #include "font.h"
 #include "heap.h"
 #include "item.h"
@@ -26,7 +24,6 @@
 #include "text.h"
 #include "unk_0200C440.h"
 #include "unk_0200DA60.h"
-#include "unk_02018340.h"
 #include "unk_0208C098.h"
 #include "unk_02094EDC.h"
 

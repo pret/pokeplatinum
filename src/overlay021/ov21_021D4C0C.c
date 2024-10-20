@@ -4,14 +4,13 @@
 #include <string.h>
 
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay021/struct_ov21_021D1FA4.h"
 #include "overlay021/struct_ov21_021D4CA0.h"
 #include "overlay021/struct_ov21_021D4CB8.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "font.h"
 #include "heap.h"
@@ -19,7 +18,6 @@
 #include "strbuf.h"
 #include "text.h"
 #include "unk_02012744.h"
-#include "unk_02018340.h"
 #include "unk_0201E86C.h"
 
 typedef struct UnkStruct_ov21_021D4C0C_t {

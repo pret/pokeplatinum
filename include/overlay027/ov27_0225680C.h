@@ -1,10 +1,10 @@
 #ifndef POKEPLATINUM_OV27_0225680C_H
 #define POKEPLATINUM_OV27_0225680C_H
 
-#include "struct_decls/struct_02018340_decl.h"
-
 #include "overlay027/struct_ov27_0225680C_1.h"
 #include "overlay027/struct_ov27_0225680C_decl.h"
+
+#include "bg_window.h"
 
 BOOL ov27_0225680C(UnkStruct_ov27_0225680C **param0, const UnkStruct_ov27_0225680C_1 *param1, BGL *param2);
 void ov27_02256890(UnkStruct_ov27_0225680C *param0);

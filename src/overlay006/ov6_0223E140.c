@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -21,10 +20,9 @@
 #include "overlay006/funcptr_ov6_0223E6EC.h"
 #include "overlay006/struct_ov6_0223E6EC.h"
 #include "overlay006/struct_ov6_0223FDE4_decl.h"
-#include "overlay084/struct_ov84_0223BA5C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 #include "overlay115/camera_angle.h"
 
+#include "bg_window.h"
 #include "camera.h"
 #include "core_sys.h"
 #include "easy3d_object.h"
@@ -38,7 +36,6 @@
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_020508D4.h"
 #include "unk_020655F4.h"

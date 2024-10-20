@@ -8,8 +8,6 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
 
 #include "overlay114/struct_ov114_0225CAD4_decl.h"
@@ -31,6 +29,7 @@
 #include "overlay117/struct_ov117_02265EC8.h"
 #include "overlay117/struct_ov117_02266274.h"
 
+#include "bg_window.h"
 #include "camera.h"
 #include "message.h"
 #include "strbuf.h"

@@ -4,9 +4,7 @@
 #include <nnsys.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0209ACBC_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay021/funcptr_ov21_021E9B74.h"
@@ -52,6 +50,7 @@
 #include "overlay021/struct_ov21_021E68F4.h"
 #include "overlay022/struct_ov22_022559F8.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -70,7 +69,6 @@
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02017728.h"
-#include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_0201E86C.h"

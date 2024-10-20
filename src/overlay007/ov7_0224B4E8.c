@@ -10,11 +10,11 @@
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_0202610C.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "field/field_system.h"
 #include "overlay084/struct_ov84_02240FA8.h"
 
+#include "bg_window.h"
 #include "core_sys.h"
 #include "font.h"
 #include "heap.h"
@@ -28,7 +28,6 @@
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
-#include "unk_02018340.h"
 #include "unk_0202602C.h"
 #include "unk_02026150.h"
 #include "unk_020508D4.h"

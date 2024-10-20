@@ -34,6 +34,7 @@
 #include "overlay022/struct_ov22_0225AF8C.h"
 
 #include "assert.h"
+#include "bg_window.h"
 #include "core_sys.h"
 #include "heap.h"
 #include "pokemon.h"
@@ -46,7 +47,6 @@
 #include "unk_0200762C.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200DA60.h"
-#include "unk_02018340.h"
 #include "unk_020933F8.h"
 #include "unk_02094EDC.h"
 

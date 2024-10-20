@@ -3,19 +3,17 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-
 #include "overlay022/struct_ov22_022597BC.h"
 #include "overlay022/struct_ov22_02259820.h"
 #include "overlay022/struct_ov22_022599A0.h"
 #include "overlay022/struct_ov22_0225AF44.h"
 
+#include "bg_window.h"
 #include "heap.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_0200679C.h"
 #include "unk_02006E3C.h"
-#include "unk_02018340.h"
 
 typedef struct {
     UnkStruct_ov22_022597BC *unk_00;

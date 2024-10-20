@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 
 #include "field/field_system.h"
@@ -14,6 +13,7 @@
 #include "overlay006/ov6_02240C9C.h"
 #include "overlay006/struct_ov6_0223E6EC.h"
 
+#include "bg_window.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "map_header.h"
@@ -22,7 +22,6 @@
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
-#include "unk_02018340.h"
 #include "unk_020508D4.h"
 #include "unk_02054D00.h"
 

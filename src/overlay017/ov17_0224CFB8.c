@@ -34,6 +34,7 @@
 #include "overlay017/struct_ov17_022539E4.h"
 #include "overlay022/ov22_0225AF8C.h"
 
+#include "bg_window.h"
 #include "communication_system.h"
 #include "heap.h"
 #include "pokemon.h"
@@ -42,7 +43,6 @@
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
-#include "unk_02018340.h"
 #include "unk_02094EDC.h"
 
 static int ov17_0224CFF8(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3);

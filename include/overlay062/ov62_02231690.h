@@ -4,7 +4,6 @@
 #include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0202F41C_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0208B878.h"
 #include "struct_defs/struct_0208C06C.h"
 
@@ -16,6 +15,7 @@
 #include "overlay062/struct_ov62_0223CAA4.h"
 #include "overlay062/struct_ov62_02248CDC.h"
 
+#include "bg_window.h"
 #include "message.h"
 #include "strbuf.h"
 

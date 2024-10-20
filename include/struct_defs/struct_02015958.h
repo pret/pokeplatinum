@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_02015958_H
 #define POKEPLATINUM_STRUCT_02015958_H
 
-#include "struct_decls/struct_02018340_decl.h"
+#include "bg_window.h"
 
 typedef struct {
     BGL *unk_00;

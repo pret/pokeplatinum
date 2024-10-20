@@ -5,7 +5,6 @@
 #include "constants/species.h"
 
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 
 #include "overlay025/poketch_button.h"
 #include "overlay025/poketch_system.h"
@@ -15,6 +14,7 @@
 #include "overlay028/struct_ov28_0225697C_decl.h"
 #include "overlay028/struct_ov28_02256E9C_decl.h"
 
+#include "bg_window.h"
 #include "heap.h"
 #include "pokemon.h"
 #include "sys_task.h"

@@ -6,8 +6,6 @@
 #include "constants/species.h"
 #include "consts/pokemon.h"
 
-#include "struct_defs/struct_0205AA50.h"
-
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/ov66_022324F0.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
@@ -15,6 +13,7 @@
 #include "overlay113/footprint_data.h"
 #include "overlay113/struct_ov113_02260818.h"
 
+#include "bg_window.h"
 #include "heap.h"
 #include "message.h"
 #include "strbuf.h"
@@ -22,7 +21,6 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_02018340.h"
 
 __attribute__((aligned(4))) static const u16 Unk_ov113_02260D6C[][2] = {
     { 0x4210, 0x6f7b },

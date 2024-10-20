@@ -10,16 +10,15 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "battle/ov16_0223DF00.h"
 #include "battle/struct_ov16_022674C4.h"
 #include "gmm/message_bank_battle_strings.h"
 
 #include "assert.h"
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "heap.h"
 #include "message.h"
@@ -33,7 +32,6 @@
 #include "unk_02002F38.h"
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0208C098.h"
 

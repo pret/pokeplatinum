@@ -4,11 +4,9 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02095EAC_decl.h"
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/struct_0203DDFC.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02095EAC_t.h"
 #include "struct_defs/struct_02095FE4.h"
 #include "struct_defs/struct_02099F80.h"
@@ -17,9 +15,8 @@
 #include "overlay058/struct_ov58_021D2754.h"
 #include "overlay058/struct_ov58_021D2820.h"
 #include "overlay072/struct_ov72_0223E2A8.h"
-#include "overlay084/struct_ov84_0223BA5C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -48,7 +45,6 @@
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
 #include "unk_02017728.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"

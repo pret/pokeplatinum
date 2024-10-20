@@ -1,8 +1,7 @@
 #ifndef POKEPLATINUM_TEXT_H
 #define POKEPLATINUM_TEXT_H
 
-#include "struct_defs/struct_0205AA50.h"
-
+#include "bg_window.h"
 #include "font.h"
 #include "render_text.h"
 #include "strbuf.h"

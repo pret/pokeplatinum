@@ -6,7 +6,6 @@
 
 #include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 
 #include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D22F8.h"
@@ -16,6 +15,7 @@
 #include "overlay021/struct_ov21_021D4CB8.h"
 #include "overlay021/struct_ov21_021D4EE4_decl.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "sprite_resource.h"
 

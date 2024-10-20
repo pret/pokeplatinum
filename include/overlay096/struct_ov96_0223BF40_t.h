@@ -5,9 +5,7 @@
 #include <nnsys.h>
 
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0200C738.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0206BC70.h"
 
 #include "overlay061/struct_ov61_0222C3B0.h"
@@ -16,6 +14,7 @@
 #include "overlay096/struct_ov96_0223B574.h"
 #include "overlay096/struct_ov96_0223B574_1.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "message.h"
 #include "pokemon.h"

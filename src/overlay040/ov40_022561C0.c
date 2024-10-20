@@ -2,7 +2,6 @@
 #include <nitro/sinit.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02026218_decl.h"
 #include "struct_decls/struct_02026310_decl.h"
 
@@ -12,6 +11,7 @@
 #include "overlay040/struct_ov40_0225645C_1.h"
 #include "overlay040/struct_ov40_0225645C_decl.h"
 
+#include "bg_window.h"
 #include "heap.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"

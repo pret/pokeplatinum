@@ -6,11 +6,11 @@
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/sentence.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021D0D80.h"
 
+#include "bg_window.h"
 #include "colored_arrow.h"
 #include "core_sys.h"
 #include "heap.h"
@@ -23,7 +23,6 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02014A84.h"
-#include "unk_02018340.h"
 #include "unk_0202D05C.h"
 #include "unk_0203D1B8.h"
 #include "unk_020508D4.h"

@@ -7,13 +7,11 @@
 #include "constants/species.h"
 #include "consts/game_records.h"
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_0202DA40_decl.h"
 #include "struct_defs/chatot_cry.h"
 
-#include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay094/ov94_0223B140.h"
 #include "overlay094/ov94_0223BCB0.h"
 #include "overlay094/ov94_0223C610.h"
@@ -22,9 +20,9 @@
 #include "overlay094/ov94_02244950.h"
 #include "overlay094/struct_ov94_0223BA88.h"
 #include "overlay094/struct_ov94_0223FD4C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 #include "savedata/save_table.h"
 
+#include "bg_window.h"
 #include "font.h"
 #include "game_options.h"
 #include "game_records.h"
@@ -41,7 +39,6 @@
 #include "unk_02006E3C.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02018340.h"
 #include "unk_0202CC64.h"
 #include "unk_0202DA40.h"
 #include "unk_0202F180.h"

@@ -4,9 +4,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay019/ov19_021D61B0.h"
@@ -14,8 +12,8 @@
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/struct_ov19_021DA384.h"
 #include "overlay019/struct_ov19_021DBA9C.h"
-#include "overlay061/struct_ov61_0222C884.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "font.h"
 #include "heap.h"
@@ -28,7 +26,6 @@
 #include "text.h"
 #include "unk_02006E3C.h"
 #include "unk_0200C440.h"
-#include "unk_02018340.h"
 #include "unk_020797C8.h"
 
 typedef struct {

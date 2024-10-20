@@ -6,13 +6,13 @@
 #include "constants/charcode.h"
 #include "consts/sdat.h"
 
+#include "bg_window.h"
 #include "charcode.h"
 #include "core_sys.h"
 #include "font.h"
 #include "render_text.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_02018340.h"
 
 #define SPEED_UP_ON_TOUCH_PRESS (gCoreSys.touchPressed && sRenderControlFlags.speedUpOnTouch)
 #define SPEED_UP_ON_TOUCH_HOLD  (gCoreSys.touchHeld && sRenderControlFlags.speedUpOnTouch)

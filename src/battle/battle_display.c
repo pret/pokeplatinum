@@ -13,13 +13,11 @@
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/battle_io.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_0200D0F4.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/trainer_data.h"
 
 #include "battle/battle_context.h"
@@ -124,6 +122,7 @@
 #include "overlay013/struct_ov13_022264F4.h"
 
 #include "assert.h"
+#include "bg_window.h"
 #include "core_sys.h"
 #include "enums.h"
 #include "flags.h"
@@ -148,7 +147,6 @@
 #include "unk_020131EC.h"
 #include "unk_0201567C.h"
 #include "unk_02015F84.h"
-#include "unk_02018340.h"
 
 static void ov16_0225E4E8(SysTask *param0, void *param1);
 static void ov16_0225E894(SysTask *param0, void *param1);

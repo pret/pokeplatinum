@@ -3,15 +3,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0202442C_decl.h"
 #include "struct_decls/struct_02025CCC_decl.h"
 #include "struct_defs/struct_0202DF40.h"
 #include "struct_defs/struct_0203CC84.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay077/const_ov77_021D742C.h"
-#include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay084/struct_ov84_02240FA8.h"
 #include "overlay097/ov97_0222D04C.h"
 #include "overlay097/ov97_02232054.h"
@@ -20,13 +17,13 @@
 #include "overlay097/ov97_02238534.h"
 #include "overlay097/struct_ov97_0222D04C.h"
 #include "overlay097/struct_ov97_0222D250.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 #include "overlay097/struct_ov97_02237808.h"
 #include "overlay097/struct_ov97_02237AEC.h"
 #include "overlay097/struct_ov97_0223829C.h"
 #include "overlay097/union_ov97_0222D2B0.h"
 #include "savedata/save_table.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "communication_system.h"
 #include "core_sys.h"
@@ -58,7 +55,6 @@
 #include "unk_0200F174.h"
 #include "unk_02013A04.h"
 #include "unk_02017728.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0202DAB4.h"
 #include "unk_02033200.h"

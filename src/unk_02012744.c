@@ -4,8 +4,8 @@
 #include <string.h>
 
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/struct_0205AA50.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "heap.h"
 #include "unk_02006E3C.h"

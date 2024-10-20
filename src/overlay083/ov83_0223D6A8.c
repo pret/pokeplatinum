@@ -8,9 +8,7 @@
 #include "struct_decls/struct_02015128_decl.h"
 #include "struct_decls/struct_020151A4_decl.h"
 #include "struct_decls/struct_02015214_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_02015958.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay021/struct_ov21_021E7F40.h"
 #include "overlay022/struct_ov22_022557A0.h"
@@ -40,6 +38,7 @@
 #include "overlay083/struct_ov83_0223FCE8.h"
 #include "overlay083/struct_ov83_0223FE50.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "font.h"
 #include "gx_layers.h"
@@ -58,7 +57,6 @@
 #include "unk_0200DA60.h"
 #include "unk_02015064.h"
 #include "unk_02015920.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201E3BC.h"
 #include "unk_02098FFC.h"

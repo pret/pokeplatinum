@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV24_02253CE0_H
 #define POKEPLATINUM_OV24_02253CE0_H
 
-#include "struct_decls/struct_02018340_decl.h"
+#include "bg_window.h"
 
 void ov24_02253CE0(BGL *param0);
 void ov24_02253DA4(BGL *param0);

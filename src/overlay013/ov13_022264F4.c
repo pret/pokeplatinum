@@ -5,7 +5,6 @@
 
 #include "struct_decls/battle_system.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
 
@@ -19,10 +18,9 @@
 #include "overlay013/ov13_02228A38.h"
 #include "overlay013/struct_ov13_022264F4.h"
 #include "overlay013/struct_ov13_02227244.h"
-#include "overlay084/struct_ov84_0223BA5C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
 #include "bag.h"
+#include "bg_window.h"
 #include "core_sys.h"
 #include "font.h"
 #include "gx_layers.h"
@@ -44,7 +42,6 @@
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
-#include "unk_02018340.h"
 #include "unk_020797C8.h"
 
 static void ov13_02226590(SysTask *param0, void *param1);

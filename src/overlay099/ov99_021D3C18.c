@@ -8,8 +8,8 @@
 #include "overlay099/struct_ov99_021D3A40.h"
 #include "overlay099/struct_ov99_021D3C18.h"
 
+#include "bg_window.h"
 #include "unk_0200A9DC.h"
-#include "unk_02018340.h"
 
 static void ov99_021D3CF8(UnkStruct_ov99_021D3C18 *param0, u32 param1);
 static BOOL ov99_021D3D50(UnkStruct_ov99_021D3C18 *param0);

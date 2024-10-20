@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/ov25_02255090.h"
 #include "overlay025/poketch_system.h"
@@ -13,12 +11,11 @@
 #include "overlay028/ov28_02256E9C.h"
 #include "overlay028/struct_ov28_0225697C_1.h"
 #include "overlay028/struct_ov28_0225697C_decl.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
 #include "heap.h"
 #include "sys_task_manager.h"
 #include "unk_02006E3C.h"
-#include "unk_02018340.h"
 
 struct UnkStruct_ov28_0225697C_t {
     const UnkStruct_ov28_0225697C_1 *unk_00;

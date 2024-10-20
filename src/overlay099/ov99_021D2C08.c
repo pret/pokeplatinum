@@ -11,9 +11,9 @@
 #include "overlay099/struct_ov99_021D2D18.h"
 #include "overlay099/struct_ov99_021D3A40.h"
 
+#include "bg_window.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200C6E4.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 
 typedef struct {

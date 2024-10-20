@@ -1,12 +1,12 @@
 #ifndef POKEPLATINUM_OV20_021D2098_H
 #define POKEPLATINUM_OV20_021D2098_H
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020998EC_decl.h"
 
 #include "overlay020/struct_ov20_021D16E8_decl.h"
 #include "overlay020/struct_ov20_021D2128_decl.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "sys_task_manager.h"
 

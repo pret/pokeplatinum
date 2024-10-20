@@ -1,13 +1,13 @@
 #ifndef POKEPLATINUM_OV23_02253598_H
 #define POKEPLATINUM_OV23_02253598_H
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
 
 #include "overlay023/funcptr_ov23_02253834.h"
 #include "overlay023/struct_ov23_02253598_decl.h"
 
+#include "bg_window.h"
 #include "savedata.h"
 #include "trainer_info.h"
 

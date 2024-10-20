@@ -2,7 +2,6 @@
 #include <nitro/sinit.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0202D7B0.h"
 #include "struct_defs/struct_0206C638.h"
 
@@ -11,6 +10,7 @@
 #include "overlay047/struct_ov47_02256634_1.h"
 #include "overlay047/struct_ov47_02256634_decl.h"
 
+#include "bg_window.h"
 #include "heap.h"
 #include "inlines.h"
 #include "poketch_data.h"

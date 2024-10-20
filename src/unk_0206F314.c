@@ -7,7 +7,6 @@
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0202E8C0_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/sprite_template.h"
@@ -15,15 +14,14 @@
 #include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_0202EE10.h"
 #include "struct_defs/struct_0202EE10_sub1.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021D2F14.h"
 #include "overlay005/struct_ov5_021D30A8.h"
-#include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_02240FA8.h"
 #include "overlay104/struct_ov104_02241308.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "font.h"
@@ -42,7 +40,6 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
-#include "unk_02018340.h"
 #include "unk_0202E840.h"
 #include "unk_020508D4.h"
 

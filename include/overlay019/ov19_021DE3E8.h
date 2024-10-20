@@ -3,12 +3,11 @@
 
 #include <nitro/fx/fx.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/struct_ov19_021DE3E8_decl.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 
 BOOL ov19_021DE3E8(UnkStruct_ov19_021DE3E8 **param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BGL *param3, CellActorCollection *param4);

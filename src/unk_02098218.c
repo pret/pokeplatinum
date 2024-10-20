@@ -15,6 +15,7 @@
 #include "overlay119/ov119_021D191C.h"
 #include "overlay119/struct_ov119_021D0FD0.h"
 
+#include "bg_window.h"
 #include "field_system.h"
 #include "game_options.h"
 #include "game_records.h"
@@ -32,7 +33,6 @@
 #include "unk_0200F174.h"
 #include "unk_02015F84.h"
 #include "unk_02017728.h"
-#include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_02024220.h"
 #include "unk_0202F180.h"

@@ -9,7 +9,6 @@
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021DC018.h"
@@ -18,6 +17,7 @@
 #include "overlay084/struct_ov84_02240FA8.h"
 
 #include "bag.h"
+#include "bg_window.h"
 #include "field_script_context.h"
 #include "heap.h"
 #include "inlines.h"
@@ -34,7 +34,6 @@
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02018340.h"
 #include "unk_0202631C.h"
 #include "unk_02054884.h"
 

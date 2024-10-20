@@ -4,14 +4,13 @@
 #include <string.h>
 
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_02049FA8.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021EA714.h"
 #include "overlay005/struct_ov5_021E1FF4_decl.h"
 
+#include "bg_window.h"
 #include "field_overworld_state.h"
 #include "font.h"
 #include "heap.h"
@@ -27,7 +26,6 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_0200DA60.h"
-#include "unk_02018340.h"
 #include "unk_0202631C.h"
 #include "unk_020366A0.h"
 

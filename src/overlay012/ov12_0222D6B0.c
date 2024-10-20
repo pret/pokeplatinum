@@ -20,11 +20,11 @@
 #include "overlay012/struct_ov12_02235350.h"
 #include "overlay012/struct_ov12_0223595C.h"
 
+#include "bg_window.h"
 #include "heap.h"
 #include "sys_task_manager.h"
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 
 typedef struct {

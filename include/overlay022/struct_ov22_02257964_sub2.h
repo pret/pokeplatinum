@@ -5,11 +5,12 @@
 #include "struct_decls/struct_02015064_decl.h"
 #include "struct_decls/struct_02015128_decl.h"
 #include "struct_decls/struct_020151A4_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_020298D8.h"
 
 #include "overlay022/struct_ov22_02254DE0.h"
 #include "overlay022/struct_ov22_022597BC.h"
+
+#include "bg_window.h"
 
 typedef struct {
     UnkStruct_02015064 *unk_00;

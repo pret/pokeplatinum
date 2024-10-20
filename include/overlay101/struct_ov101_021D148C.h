@@ -1,8 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV101_021D148C_H
 #define POKEPLATINUM_STRUCT_OV101_021D148C_H
 
-#include "struct_defs/struct_0205AA50.h"
-
+#include "bg_window.h"
 #include "message.h"
 #include "string_template.h"
 

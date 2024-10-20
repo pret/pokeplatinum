@@ -18,6 +18,7 @@
 #include "savedata/save_table.h"
 
 #include "bag.h"
+#include "bg_window.h"
 #include "game_options.h"
 #include "game_overlay.h"
 #include "gx_layers.h"
@@ -34,7 +35,6 @@
 #include "unk_0200F174.h"
 #include "unk_02015F84.h"
 #include "unk_02017728.h"
-#include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_02023FCC.h"

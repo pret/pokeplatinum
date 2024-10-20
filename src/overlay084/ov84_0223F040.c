@@ -3,11 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207CB08.h"
 #include "struct_defs/struct_02081CF4.h"
 
-#include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/ov84_0223B5A0.h"
 #include "overlay084/ov84_022403F4.h"
 #include "overlay084/struct_ov84_0223B5A0.h"
@@ -15,6 +13,7 @@
 #include "overlay084/struct_ov84_0223C920.h"
 
 #include "bag.h"
+#include "bg_window.h"
 #include "font.h"
 #include "game_options.h"
 #include "heap.h"
@@ -33,7 +32,6 @@
 #include "unk_0200C440.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
-#include "unk_02018340.h"
 
 static void ov84_0223F9B0(UnkStruct_ov84_0223B5A0 *param0, u32 param1);
 static BOOL ov84_022400E0(TextPrinterTemplate *param0, u16 param1);

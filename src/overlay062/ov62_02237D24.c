@@ -7,7 +7,6 @@
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_defs/struct_02030A80.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0208C06C.h"
 
 #include "overlay022/ov22_0225AF8C.h"
@@ -30,6 +29,7 @@
 #include "overlay062/struct_ov62_02248CDC.h"
 #include "overlay062/struct_ov62_02249380.h"
 
+#include "bg_window.h"
 #include "font.h"
 #include "game_overlay.h"
 #include "gx_layers.h"
@@ -45,7 +45,6 @@
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
 #include "unk_02017728.h"
-#include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_02023FCC.h"
 #include "unk_0202419C.h"

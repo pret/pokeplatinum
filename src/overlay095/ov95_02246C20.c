@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02013610.h"
@@ -21,6 +20,7 @@
 #include "overlay095/struct_ov95_02247568.h"
 #include "overlay095/struct_ov95_02247628_decl.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "game_options.h"
 #include "gx_layers.h"
@@ -40,7 +40,6 @@
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_02017728.h"
-#include "unk_02018340.h"
 #include "unk_020393C8.h"
 
 struct UnkStruct_ov95_02247628_t {

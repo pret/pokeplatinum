@@ -1,10 +1,10 @@
 #ifndef POKEPLATINUM_OV51_0225632C_H
 #define POKEPLATINUM_OV51_0225632C_H
 
-#include "struct_decls/struct_02018340_decl.h"
-
 #include "overlay051/struct_ov51_0225632C_1.h"
 #include "overlay051/struct_ov51_0225632C_decl.h"
+
+#include "bg_window.h"
 
 BOOL ov51_0225632C(UnkStruct_ov51_0225632C **param0, const UnkStruct_ov51_0225632C_1 *param1, BGL *param2);
 void ov51_0225635C(UnkStruct_ov51_0225632C *param0);

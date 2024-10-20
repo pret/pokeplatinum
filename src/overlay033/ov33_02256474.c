@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/ov25_02255090.h"
@@ -18,8 +17,8 @@
 #include "overlay025/struct_ov25_02255958.h"
 #include "overlay033/struct_ov33_02256474_1.h"
 #include "overlay033/struct_ov33_02256474_decl.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
 #include "core_sys.h"
 #include "heap.h"
 #include "inlines.h"
@@ -29,7 +28,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02006E3C.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 
 typedef struct {

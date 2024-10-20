@@ -9,12 +9,10 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/sprite_manager_allocation.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02095C48.h"
 
 #include "overlay017/ov17_0223F118.h"
@@ -25,9 +23,9 @@
 #include "overlay017/struct_ov17_0223F88C.h"
 #include "overlay017/struct_ov17_022472F8.h"
 #include "overlay017/struct_ov17_02252B48_decl.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
 #include "assert.h"
+#include "bg_window.h"
 #include "core_sys.h"
 #include "font.h"
 #include "heap.h"
@@ -46,7 +44,6 @@
 #include "unk_02006E3C.h"
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
-#include "unk_02018340.h"
 #include "unk_0201E86C.h"
 #include "unk_02094EDC.h"
 

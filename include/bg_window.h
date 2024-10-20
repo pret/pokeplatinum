@@ -1,15 +1,8 @@
-#ifndef POKEPLATINUM_UNK_02018340_H
-#define POKEPLATINUM_UNK_02018340_H
+#ifndef POKEPLATINUM_BG_WINDOW_H
+#define POKEPLATINUM_BG_WINDOW_H
 
 #include <nitro/fx/fx.h>
-
-#include "struct_decls/struct_02018340_decl.h"
-#include "struct_defs/struct_0201AE08.h"
-#include "struct_defs/struct_0205AA50.h"
-
-#include "overlay061/struct_ov61_0222C884.h"
-#include "overlay084/struct_ov84_0223BA5C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
+#include <nitro/gx.h>
 
 enum BGLFrame {
     BGL_FRAME_MAIN_0 = 0,
@@ -30,6 +23,82 @@ enum BGLScreenSize {
     SCREEN_SIZE_512x512,
     SCREEN_SIZE_1024x1024,
 };
+
+typedef struct {
+    const u8 *unk_00;
+    u16 unk_04;
+    u16 unk_06;
+} UnkStruct_0201AE08;
+
+typedef struct {
+    int unk_00;
+    int unk_04;
+    u32 unk_08;
+    u32 unk_0C;
+    u8 unk_10;
+    u8 unk_11;
+    u8 unk_12;
+    u8 unk_13;
+    u8 unk_14;
+    u8 unk_15;
+    u8 unk_16;
+    u8 unk_17;
+    BOOL unk_18;
+} UnkStruct_ov97_0222DB78;
+
+typedef struct {
+    void *unk_00;
+    u32 unk_04;
+    u32 unk_08;
+    int unk_0C;
+    int unk_10;
+    u8 unk_14;
+    u8 unk_15;
+    u8 unk_16;
+    u8 unk_17;
+    u16 unk_18;
+    fx32 unk_1C;
+    fx32 unk_20;
+    int unk_24;
+    int unk_28;
+} UnkStruct_02019304;
+
+typedef struct UnkStruct_02018340_t {
+    u32 unk_00;
+    u16 unk_04;
+    u16 unk_06;
+    UnkStruct_02019304 unk_08[8];
+} BGL;
+
+typedef struct {
+    u8 unk_00;
+    u8 unk_01;
+    u8 unk_02;
+    u8 unk_03;
+    u8 unk_04;
+    u8 unk_05;
+    u16 unk_06;
+} UnkStruct_ov61_0222C884;
+
+typedef struct {
+    BGL *unk_00;
+    u8 unk_04;
+    u8 unk_05;
+    u8 unk_06;
+    u8 unk_07;
+    u8 unk_08;
+    u8 unk_09;
+    u16 unk_0A_0 : 15;
+    u16 unk_0A_15 : 1;
+    void *unk_0C;
+} Window;
+
+typedef struct {
+    GXDispMode unk_00;
+    GXBGMode unk_04;
+    GXBGMode unk_08;
+    GXBG0As unk_0C;
+} UnkStruct_ov84_0223BA5C;
 
 BGL *sub_02018340(u32 param0);
 u32 sub_02018364(BGL *param0);
@@ -112,4 +181,4 @@ void sub_0201C6A8(BGL *param0, u8 param1, u8 param2, fx32 param3);
 void sub_0201C718(BGL *param0, u8 param1, u8 param2, int param3);
 u8 sub_0201C784(BGL *param0, u8 param1, u16 param2, u16 param3, u16 *param4);
 
-#endif // POKEPLATINUM_UNK_02018340_H
+#endif // POKEPLATINUM_BG_WINDOW_H

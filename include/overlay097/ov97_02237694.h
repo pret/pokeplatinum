@@ -2,15 +2,14 @@
 #define POKEPLATINUM_OV97_02237694_H
 
 #include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0202DF40.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay097/struct_ov97_02237808.h"
 #include "overlay097/struct_ov97_02237AEC.h"
 #include "overlay097/struct_ov97_0223829C.h"
 #include "overlay097/union_ov97_0222D2B0.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "overlay_manager.h"
 #include "savedata.h"

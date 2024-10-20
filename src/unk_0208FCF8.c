@@ -4,11 +4,9 @@
 #include <string.h>
 
 #include "struct_defs/pokemon_summary_app.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02090800.h"
 
-#include "overlay061/struct_ov61_0222C884.h"
-
+#include "bg_window.h"
 #include "font.h"
 #include "heap.h"
 #include "message.h"
@@ -20,7 +18,6 @@
 #include "text.h"
 #include "unk_0200C440.h"
 #include "unk_0200DA60.h"
-#include "unk_02018340.h"
 #include "unk_0207A274.h"
 #include "unk_0208EA44.h"
 #include "unk_020923C0.h"

@@ -15,7 +15,6 @@
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02081CF4.h"
 
 #include "overlay063/ov63_0222BE18.h"
@@ -37,6 +36,7 @@
 #include "overlay104/struct_ov104_022331E8.h"
 #include "overlay104/struct_ov104_0223C4CC.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "font.h"
@@ -62,7 +62,6 @@
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_02014A84.h"
-#include "unk_02018340.h"
 #include "unk_0201F834.h"
 #include "unk_0207E0B8.h"
 #include "unk_0209B6F8.h"

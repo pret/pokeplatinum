@@ -9,9 +9,7 @@
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay084/struct_ov84_02240FA8.h"
 #include "overlay094/const_ov94_02245FD4.h"
@@ -25,8 +23,8 @@
 #include "overlay094/struct_ov94_0223FD4C.h"
 #include "overlay094/struct_ov94_0223FD4C_sub3.h"
 #include "overlay094/struct_ov94_02242AAC.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
 #include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
@@ -47,7 +45,6 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02013A04.h"
-#include "unk_02018340.h"
 #include "unk_0202631C.h"
 #include "unk_0202C858.h"
 #include "unk_020393C8.h"

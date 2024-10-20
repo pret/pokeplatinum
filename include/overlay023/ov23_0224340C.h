@@ -3,11 +3,10 @@
 
 #include <nitro/math.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-
 #include "field/field_system_decl.h"
 #include "overlay023/struct_ov23_0224271C_decl.h"
 
+#include "bg_window.h"
 #include "strbuf.h"
 
 void ov23_022434BC(void *param0, FieldSystem *fieldSystem);

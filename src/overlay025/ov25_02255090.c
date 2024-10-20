@@ -4,19 +4,18 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/struct_ov25_0225517C.h"
 #include "overlay025/struct_ov25_02255224_decl.h"
 
+#include "bg_window.h"
 #include "heap.h"
 #include "narc.h"
 #include "pokemon_icon.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02006E3C.h"
-#include "unk_02018340.h"
 
 struct UnkStruct_ov25_02255224_t {
     u32 unk_00;

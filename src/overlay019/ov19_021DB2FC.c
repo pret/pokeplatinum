@@ -4,15 +4,13 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/struct_ov19_021DB6F0.h"
 #include "overlay019/struct_ov19_021DF964.h"
-#include "overlay061/struct_ov61_0222C884.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "enums.h"
 #include "heap.h"
@@ -23,7 +21,6 @@
 #include "unk_02001AF4.h"
 #include "unk_02006E3C.h"
 #include "unk_0200DA60.h"
-#include "unk_02018340.h"
 
 static void ov19_021DB4B4(BGL *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5);
 static void ov19_021DB638(UnkStruct_ov19_021DB6F0 *param0, Window *param1, u8 param2, u32 param3);

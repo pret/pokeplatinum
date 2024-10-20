@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "struct_defs/struct_02030A80.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0208C06C.h"
 
 #include "overlay062/ov62_0222F2C0.h"
@@ -10,6 +9,7 @@
 #include "overlay062/ov62_02231690.h"
 #include "overlay062/ov62_const_funcptr_tables.h"
 
+#include "bg_window.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
@@ -19,7 +19,6 @@
 #include "touch_screen.h"
 #include "unk_02002F38.h"
 #include "unk_02006E3C.h"
-#include "unk_02018340.h"
 #include "unk_02030A80.h"
 
 typedef struct {

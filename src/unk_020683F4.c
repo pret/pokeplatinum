@@ -6,7 +6,6 @@
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_0203D9B8.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_020684D0.h"
 #include "struct_defs/struct_02068630.h"
 #include "struct_defs/struct_020708E0.h"
@@ -26,6 +25,7 @@
 #include "savedata/save_table.h"
 
 #include "bag.h"
+#include "bg_window.h"
 #include "core_sys.h"
 #include "field_map_change.h"
 #include "field_menu.h"
@@ -45,7 +45,6 @@
 #include "strbuf.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02018340.h"
 #include "unk_0202631C.h"
 #include "unk_02028124.h"
 #include "unk_0203C954.h"

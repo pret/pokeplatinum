@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_decls/struct_020711EC_decl.h"
 #include "struct_defs/archived_sprite.h"
@@ -15,6 +14,7 @@
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 #include "overlay101/struct_ov101_021D86B0.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -30,7 +30,6 @@
 #include "unk_0200A328.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0205D8CC.h"
 #include "unk_020711EC.h"

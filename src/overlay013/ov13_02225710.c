@@ -6,10 +6,10 @@
 #include "overlay013/ov13_0221FC20.h"
 #include "overlay013/struct_ov13_022213F0.h"
 
+#include "bg_window.h"
 #include "heap.h"
 #include "unk_02002F38.h"
 #include "unk_0200C6E4.h"
-#include "unk_02018340.h"
 
 typedef struct {
     u8 unk_00;

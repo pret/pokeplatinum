@@ -3,9 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020998EC_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay020/ov20_021D0D80.h"
 #include "overlay020/ov20_021D2098.h"
@@ -15,12 +13,12 @@
 #include "overlay020/struct_ov20_021D4E8C.h"
 #include "overlay020/struct_ov20_021D4FF0.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "enums.h"
 #include "heap.h"
 #include "strbuf.h"
 #include "text.h"
-#include "unk_02018340.h"
 
 typedef struct UnkStruct_ov20_021D4210_t {
     UnkStruct_ov20_021D2128 *unk_00;

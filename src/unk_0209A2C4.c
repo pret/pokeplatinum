@@ -2,15 +2,10 @@
 #include <string.h>
 
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0203CC84.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay061/struct_ov61_0222C884.h"
-#include "overlay084/struct_ov84_0223BA5C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
-
+#include "bg_window.h"
 #include "core_sys.h"
 #include "font.h"
 #include "gx_layers.h"
@@ -24,7 +19,6 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02018340.h"
 
 FS_EXTERN_OVERLAY(overlay97);
 

@@ -5,8 +5,8 @@
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 
+#include "bg_window.h"
 #include "enums.h"
 #include "heap.h"
 #include "narc.h"
@@ -14,7 +14,6 @@
 #include "sys_task_manager.h"
 #include "unk_02002F38.h"
 #include "unk_02006E3C.h"
-#include "unk_02018340.h"
 
 typedef struct {
     SysTask *unk_00;

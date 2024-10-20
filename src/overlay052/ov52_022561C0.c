@@ -2,14 +2,13 @@
 #include <nitro/sinit.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-
 #include "field/field_system.h"
 #include "overlay025/poketch_system.h"
 #include "overlay052/ov52_02256694.h"
 #include "overlay052/struct_ov52_02256694_1.h"
 #include "overlay052/struct_ov52_02256694_decl.h"
 
+#include "bg_window.h"
 #include "communication_system.h"
 #include "heap.h"
 #include "map_header.h"

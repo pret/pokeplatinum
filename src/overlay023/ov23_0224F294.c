@@ -29,11 +29,11 @@
 #include "overlay023/ov23_02253598.h"
 #include "overlay023/ov23_02253D40.h"
 #include "overlay023/struct_ov23_02250CD4.h"
-#include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_02240FA8.h"
 #include "overlay104/struct_ov104_02241308.h"
 
 #include "bag.h"
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "comm_player_manager.h"
 #include "communication_system.h"
@@ -58,7 +58,6 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
-#include "unk_02018340.h"
 #include "unk_0202854C.h"
 #include "unk_0206A780.h"
 

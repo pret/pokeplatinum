@@ -11,9 +11,8 @@
 #include "overlay079/ov79_021D183C.h"
 #include "overlay079/ov79_021D20F4.h"
 #include "overlay079/struct_ov79_021D0E1C.h"
-#include "overlay084/struct_ov84_0223BA5C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "font.h"
@@ -35,7 +34,6 @@
 #include "unk_0200F174.h"
 #include "unk_020158A8.h"
 #include "unk_02017728.h"
-#include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_0208C098.h"

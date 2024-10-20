@@ -5,9 +5,9 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 
+#include "bg_window.h"
 #include "touch_screen.h"
 
 typedef struct {

@@ -13,6 +13,7 @@
 #include "overlay100/struct_ov100_021D4DD8.h"
 #include "overlay115/camera_angle.h"
 
+#include "bg_window.h"
 #include "camera.h"
 #include "core_sys.h"
 #include "easy3d_object.h"
@@ -25,7 +26,6 @@
 #include "trainer_info.h"
 #include "unk_02002F38.h"
 #include "unk_0200DA60.h"
-#include "unk_02018340.h"
 
 int ov100_021D46C8(UnkStruct_ov100_021D46C8 *param0, UnkStruct_020985E4 *param1, int param2)
 {

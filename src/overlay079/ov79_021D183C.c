@@ -7,10 +7,10 @@
 #include "struct_defs/struct_0203D9B8.h"
 #include "struct_defs/struct_020989DC.h"
 
-#include "overlay061/struct_ov61_0222C884.h"
 #include "overlay079/struct_ov79_021D0E1C.h"
 #include "overlay084/struct_ov84_02240FA8.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "font.h"
 #include "render_text.h"
@@ -24,7 +24,6 @@
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
 #include "unk_020158A8.h"
-#include "unk_02018340.h"
 #include "unk_02098FFC.h"
 
 static void ov79_021D1D88(BmpList *param0, u32 param1, u8 param2);

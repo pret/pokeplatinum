@@ -4,7 +4,6 @@
 #include <nitro/fx/fx.h>
 
 #include "struct_decls/cell_actor_data.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay116/struct_ov116_02260490.h"
 #include "overlay116/struct_ov116_02262A8C_sub1.h"
@@ -15,6 +14,8 @@
 #include "overlay116/struct_ov116_0226501C.h"
 #include "overlay116/struct_ov116_0226534C.h"
 #include "overlay116/struct_ov116_022660A8.h"
+
+#include "bg_window.h"
 
 typedef struct {
     u32 unk_00;

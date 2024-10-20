@@ -7,12 +7,9 @@
 
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay061/struct_ov61_0222C3B0.h"
-#include "overlay061/struct_ov61_0222C884.h"
 #include "overlay065/struct_ov65_0222F6EC.h"
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/ov66_02231428.h"
@@ -20,9 +17,8 @@
 #include "overlay066/struct_ov66_0222E71C_decl.h"
 #include "overlay066/struct_ov66_02231024.h"
 #include "overlay066/struct_ov66_02231300.h"
-#include "overlay084/struct_ov84_0223BA5C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
 #include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
@@ -45,7 +41,6 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02018340.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 

@@ -32,13 +32,13 @@
 #include "overlay101/struct_ov101_021D9934.h"
 #include "overlay101/struct_ov101_021D9AE4.h"
 
+#include "bg_window.h"
 #include "core_sys.h"
 #include "enums.h"
 #include "heap.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_020711EC.h"
 

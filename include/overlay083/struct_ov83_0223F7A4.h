@@ -2,7 +2,8 @@
 #define POKEPLATINUM_STRUCT_OV83_0223F7A4_H
 
 #include "struct_decls/struct_02015920_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
+
+#include "bg_window.h"
 
 typedef struct {
     UnkStruct_02015920 *unk_00;

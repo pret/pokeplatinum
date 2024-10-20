@@ -3,12 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay084/struct_ov84_0223BA5C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 #include "overlay100/ov100_021D13E4.h"
 #include "overlay100/ov100_021D1C44.h"
 #include "overlay100/ov100_021D2F0C.h"
@@ -19,6 +15,7 @@
 #include "overlay104/struct_ov104_02241308.h"
 #include "overlay104/struct_ov104_0224133C.h"
 
+#include "bg_window.h"
 #include "camera.h"
 #include "core_sys.h"
 #include "game_options.h"
@@ -33,7 +30,6 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_02024220.h"
 

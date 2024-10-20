@@ -5,7 +5,6 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
@@ -17,6 +16,7 @@
 #include "overlay062/ov62_const_funcptr_tables.h"
 #include "overlay062/struct_ov62_022312B0.h"
 
+#include "bg_window.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "touch_screen.h"
@@ -25,7 +25,6 @@
 #include "unk_02006E3C.h"
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0202D05C.h"
 #include "unk_02030A80.h"

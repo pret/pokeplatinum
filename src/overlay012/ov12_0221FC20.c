@@ -10,7 +10,6 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
@@ -37,6 +36,7 @@
 #include "overlay017/ov17_022413D8.h"
 #include "overlay104/struct_ov104_02241308.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "heap.h"
@@ -53,7 +53,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
 #include "unk_02014000.h"
-#include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201F834.h"
 

@@ -2,11 +2,9 @@
 #define POKEPLATINUM_UNK_02001AF4_H
 
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02081CF4.h"
 
-#include "overlay061/struct_ov61_0222C884.h"
+#include "bg_window.h"
 
 UIControlData *sub_02001AF4(const UnkStruct_02081CF4 *param0, u8 param1, u8 param2, u8 param3, u8 param4, u32 param5);
 UIControlData *sub_02001B7C(const UnkStruct_02081CF4 *param0, u8 param1, u8 param2, u8 param3, u8 param4, u32 param5);

@@ -21,6 +21,7 @@
 #include "overlay116/struct_ov116_022660A8.h"
 #include "overlay116/union_ov116_02266FEC.h"
 
+#include "bg_window.h"
 #include "easy3d_object.h"
 #include "heap.h"
 #include "inlines.h"
@@ -30,7 +31,6 @@
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 
 typedef struct {

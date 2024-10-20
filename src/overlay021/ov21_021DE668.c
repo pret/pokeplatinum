@@ -5,7 +5,6 @@
 
 #include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1F90.h"
@@ -25,6 +24,7 @@
 #include "overlay021/struct_ov21_021E6A68.h"
 #include "overlay021/struct_ov21_021E6B20.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "font.h"
 #include "heap.h"
@@ -39,7 +39,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_02012744.h"
-#include "unk_02018340.h"
 
 typedef struct {
     UnkStruct_ov21_021D13FC *unk_00;

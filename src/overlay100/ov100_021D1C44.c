@@ -7,7 +7,6 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/sprite_template.h"
 
 #include "overlay100/ov100_021D400C.h"
@@ -19,6 +18,7 @@
 #include "overlay100/struct_ov100_021D54D0.h"
 #include "overlay115/camera_angle.h"
 
+#include "bg_window.h"
 #include "camera.h"
 #include "easy3d_object.h"
 #include "heap.h"

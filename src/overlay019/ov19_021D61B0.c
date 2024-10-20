@@ -5,7 +5,6 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -36,9 +35,8 @@
 #include "overlay019/struct_ov19_021DCF88_decl.h"
 #include "overlay019/struct_ov19_021DE3E8_decl.h"
 #include "overlay019/struct_ov19_021DEC04_decl.h"
-#include "overlay084/struct_ov84_0223BA5C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "enums.h"
 #include "font.h"
@@ -54,7 +52,6 @@
 #include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02018340.h"
 
 struct UnkStruct_ov19_021D61B0_t {
     SysTask *unk_00;

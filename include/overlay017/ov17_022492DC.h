@@ -1,11 +1,12 @@
 #ifndef POKEPLATINUM_OV17_022492DC_H
 #define POKEPLATINUM_OV17_022492DC_H
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_02095C48.h"
 
 #include "overlay017/struct_ov17_022492DC_decl.h"
 #include "overlay017/struct_ov17_0224A1EC.h"
+
+#include "bg_window.h"
 
 void ov17_02249300(BGL *param0);
 void ov17_02249358(BGL *param0);

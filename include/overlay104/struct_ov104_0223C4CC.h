@@ -5,7 +5,6 @@
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0209B75C_decl.h"
 #include "struct_defs/struct_0207C690.h"
 
@@ -21,6 +20,7 @@
 #include "overlay104/struct_ov104_0223D3B0_1.h"
 #include "overlay104/struct_ov104_0223D5F0_decl.h"
 
+#include "bg_window.h"
 #include "sys_task_manager.h"
 
 typedef struct UnkStruct_ov104_0223C4CC_t {

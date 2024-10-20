@@ -3,19 +3,17 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0205AA50.h"
-
 #include "overlay104/struct_ov104_0223E9EC.h"
 #include "overlay104/struct_ov104_0223EA38.h"
 #include "overlay104/struct_ov104_0223F094.h"
 #include "overlay104/struct_ov104_0223F1B4.h"
 
+#include "bg_window.h"
 #include "buffer_manager.h"
 #include "heap.h"
 #include "screen_scroll_manager.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02018340.h"
 
 typedef struct {
     int unk_00;

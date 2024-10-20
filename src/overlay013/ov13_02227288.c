@@ -3,12 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0205AA50.h"
-
 #include "battle/ov16_0223DF00.h"
 #include "overlay013/struct_ov13_02227244.h"
-#include "overlay061/struct_ov61_0222C884.h"
 
+#include "bg_window.h"
 #include "font.h"
 #include "item.h"
 #include "message.h"
@@ -17,7 +15,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "unk_0200DA60.h"
-#include "unk_02018340.h"
 
 static void ov13_022273CC(UnkStruct_ov13_02227244 *param0);
 static void ov13_02227888(UnkStruct_ov13_02227244 *param0);

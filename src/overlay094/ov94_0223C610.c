@@ -5,16 +5,13 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 
-#include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay094/ov94_0223BCB0.h"
 #include "overlay094/ov94_02243EF8.h"
 #include "overlay094/ov94_02244950.h"
 #include "overlay094/struct_ov94_0223FD4C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "font.h"
@@ -31,7 +28,6 @@
 #include "unk_02006E3C.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02018340.h"
 #include "unk_020393C8.h"
 
 static void ov94_0223C720(BGL *param0);

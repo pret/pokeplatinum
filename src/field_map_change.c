@@ -12,7 +12,6 @@
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/map_load_mode.h"
 #include "struct_defs/struct_02049FA8.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0205EC34.h"
 
 #include "field/field_system.h"
@@ -26,8 +25,8 @@
 #include "overlay023/ov23_02248F1C.h"
 #include "overlay023/ov23_022499E4.h"
 #include "overlay023/ov23_0224B05C.h"
-#include "overlay061/struct_ov61_0222C884.h"
 
+#include "bg_window.h"
 #include "communication_system.h"
 #include "core_sys.h"
 #include "field_overworld_state.h"
@@ -55,7 +54,6 @@
 #include "unk_0200A9DC.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02018340.h"
 #include "unk_02027F50.h"
 #include "unk_0202854C.h"
 #include "unk_02039C80.h"

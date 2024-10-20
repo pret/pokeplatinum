@@ -5,10 +5,10 @@
 
 #include "struct_defs/pokemon_summary_app.h"
 
+#include "bg_window.h"
 #include "core_sys.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
-#include "unk_02018340.h"
 #include "unk_0208EA44.h"
 
 typedef struct {

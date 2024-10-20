@@ -21,6 +21,7 @@
 #include "overlay012/struct_ov12_02226504_decl.h"
 #include "overlay012/struct_ov12_0222660C_decl.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "enums.h"
 #include "heap.h"
@@ -29,7 +30,6 @@
 #include "unk_0200762C.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200C6E4.h"
-#include "unk_02018340.h"
 
 typedef struct {
     UnkStruct_ov12_0221FCDC *unk_00;

@@ -2,13 +2,13 @@
 #define POKEPLATINUM_OV19_021DB2FC_H
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/struct_ov19_021DB6F0.h"
 #include "overlay019/struct_ov19_021DF964.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "message.h"
 

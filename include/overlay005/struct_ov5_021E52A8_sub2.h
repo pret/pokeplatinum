@@ -3,7 +3,7 @@
 
 #include <nitro/fx/fx.h>
 
-#include "struct_decls/struct_02018340_decl.h"
+#include "bg_window.h"
 
 typedef struct {
     BGL *unk_00;

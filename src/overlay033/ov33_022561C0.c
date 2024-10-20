@@ -2,7 +2,6 @@
 #include <nitro/sinit.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "overlay025/poketch_system.h"
@@ -10,6 +9,7 @@
 #include "overlay033/struct_ov33_02256474_1.h"
 #include "overlay033/struct_ov33_02256474_decl.h"
 
+#include "bg_window.h"
 #include "heap.h"
 #include "party.h"
 #include "pokemon.h"

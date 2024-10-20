@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020998EC_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02099F80.h"
@@ -21,9 +20,8 @@
 #include "overlay020/struct_ov20_021D3E0C_decl.h"
 #include "overlay020/struct_ov20_021D4210_decl.h"
 #include "overlay020/struct_ov20_021D4AD4_decl.h"
-#include "overlay084/struct_ov84_0223BA5C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -35,7 +33,6 @@
 #include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02018340.h"
 
 typedef struct UnkStruct_ov20_021D2128_t {
     SysTask *unk_00;

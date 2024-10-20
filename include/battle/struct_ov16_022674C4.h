@@ -3,8 +3,8 @@
 
 #include "struct_decls/battle_system.h"
 #include "struct_decls/cell_actor_data.h"
-#include "struct_defs/struct_0205AA50.h"
 
+#include "bg_window.h"
 #include "sys_task_manager.h"
 
 typedef struct {

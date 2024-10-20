@@ -11,6 +11,7 @@
 #include "overlay005/ov5_021D57BC.h"
 #include "overlay005/struct_ov5_021D57D8_decl.h"
 
+#include "bg_window.h"
 #include "buffer_manager.h"
 #include "camera.h"
 #include "cell_actor.h"
@@ -26,7 +27,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201E190.h"
 #include "unk_0202309C.h"

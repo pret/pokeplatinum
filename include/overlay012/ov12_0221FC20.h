@@ -8,7 +8,6 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/sprite_template.h"
 
 #include "battle/struct_ov16_02264408.h"
@@ -19,6 +18,7 @@
 #include "overlay012/struct_ov12_02223764.h"
 #include "overlay012/struct_ov12_022380DC.h"
 
+#include "bg_window.h"
 #include "spl.h"
 #include "sys_task_manager.h"
 

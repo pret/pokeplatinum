@@ -8,14 +8,13 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02095C48_sub1.h"
 
 #include "battle/struct_ov16_0223E0C8.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 #include "overlay017/struct_ov17_0223F2E4.h"
 
+#include "bg_window.h"
 #include "message.h"
 #include "strbuf.h"
 #include "string_template.h"

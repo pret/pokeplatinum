@@ -11,7 +11,6 @@
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/struct_0203DA00.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02093BBC.h"
 #include "struct_defs/struct_02095C60.h"
 
@@ -49,6 +48,7 @@
 #include "overlay022/struct_ov22_0225AF68.h"
 #include "overlay022/struct_ov22_0225B388.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "font.h"
@@ -74,7 +74,6 @@
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
 #include "unk_02017728.h"
-#include "unk_02018340.h"
 #include "unk_0201E3D8.h"
 #include "unk_020298BC.h"
 #include "unk_020363E8.h"

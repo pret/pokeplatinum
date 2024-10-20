@@ -40,6 +40,7 @@
 #include "overlay101/struct_ov101_021D86B0.h"
 #include "overlay115/camera_angle.h"
 
+#include "bg_window.h"
 #include "camera.h"
 #include "cell_actor.h"
 #include "field_system.h"
@@ -59,7 +60,6 @@
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
-#include "unk_02018340.h"
 #include "unk_0201CED8.h"
 #include "unk_0201D15C.h"
 #include "unk_0201DBEC.h"

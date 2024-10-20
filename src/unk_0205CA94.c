@@ -8,6 +8,7 @@
 
 #include "field/field_system.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -23,7 +24,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200F174.h"
-#include "unk_02018340.h"
 
 typedef struct {
     CellActorCollection *unk_00;

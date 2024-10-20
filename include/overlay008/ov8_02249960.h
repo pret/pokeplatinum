@@ -1,10 +1,9 @@
 #ifndef POKEPLATINUM_OV8_02249960_H
 #define POKEPLATINUM_OV8_02249960_H
 
-#include "struct_defs/struct_0205AA50.h"
-
 #include "field/field_system_decl.h"
 
+#include "bg_window.h"
 #include "message.h"
 #include "strbuf.h"
 

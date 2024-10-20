@@ -8,11 +8,10 @@
 #include "struct_defs/struct_0202BE38.h"
 #include "struct_defs/struct_0202BF4C.h"
 #include "struct_defs/struct_0202BFCC.h"
-#include "struct_defs/struct_0205AA50.h"
 
-#include "overlay061/struct_ov61_0222C884.h"
 #include "overlay081/struct_ov81_021D1610.h"
 
+#include "bg_window.h"
 #include "font.h"
 #include "heap.h"
 #include "journal.h"
@@ -23,7 +22,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "trainer_data.h"
-#include "unk_02018340.h"
 
 static u8 ov81_021D16B0(UnkStruct_ov81_021D1610 *param0, Window *param1, Window *param2);
 static void ov81_021D17C8(UnkStruct_ov81_021D1610 *param0, Window *param1);

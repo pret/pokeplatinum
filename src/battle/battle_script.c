@@ -18,7 +18,6 @@
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/archived_sprite.h"
@@ -28,7 +27,6 @@
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/trainer_data.h"
 
@@ -52,6 +50,7 @@
 #include "overlay021/ov21_021E8D48.h"
 #include "overlay021/struct_ov21_021E8E0C.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "flags.h"
@@ -79,7 +78,6 @@
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_0201567C.h"
-#include "unk_02018340.h"
 #include "unk_0201E86C.h"
 #include "unk_020797C8.h"
 #include "unk_0207A274.h"

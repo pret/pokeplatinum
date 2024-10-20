@@ -1,10 +1,10 @@
 #ifndef POKEPLATINUM_OV26_02256404_H
 #define POKEPLATINUM_OV26_02256404_H
 
-#include "struct_decls/struct_02018340_decl.h"
-
 #include "overlay026/struct_ov26_02256404_1.h"
 #include "overlay026/struct_ov26_02256404_decl.h"
+
+#include "bg_window.h"
 
 BOOL ov26_02256404(UnkStruct_ov26_02256404 **param0, const UnkStruct_ov26_02256404_1 *param1, BGL *param2);
 void ov26_0225649C(UnkStruct_ov26_02256404 *param0);

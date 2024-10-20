@@ -9,6 +9,7 @@
 #include "field/field_system.h"
 
 #include "bag.h"
+#include "bg_window.h"
 #include "core_sys.h"
 #include "heap.h"
 #include "item.h"
@@ -25,7 +26,6 @@
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
-#include "unk_02018340.h"
 #include "unk_0207E0B8.h"
 #include "unk_020819DC.h"
 #include "unk_02082C2C.h"

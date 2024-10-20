@@ -4,8 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02095C60.h"
 
 #include "overlay022/ov22_022597BC.h"
@@ -18,6 +16,7 @@
 #include "overlay022/struct_ov22_0225AD68.h"
 #include "overlay022/struct_ov22_0225AE9C.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "font.h"
 #include "game_options.h"
@@ -30,7 +29,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200DA60.h"
-#include "unk_02018340.h"
 #include "unk_02095AF0.h"
 
 static void ov22_0225A6E0(UnkStruct_ov22_022597BC *param0, BGL *param1);

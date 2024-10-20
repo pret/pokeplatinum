@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02039EBC_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay007/struct_ov7_0224F358.h"
 #include "overlay080/ov80_021D2AF4.h"
@@ -13,6 +12,7 @@
 #include "overlay080/struct_ov80_021D2C1C.h"
 #include "overlay080/struct_ov80_021D2C5C.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "font.h"
@@ -27,7 +27,6 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02018340.h"
 #include "unk_02039C80.h"
 #include "unk_02071CFC.h"
 

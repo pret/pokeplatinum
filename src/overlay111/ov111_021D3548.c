@@ -3,13 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-#include "struct_defs/struct_0205AA50.h"
-
-#include "overlay061/struct_ov61_0222C884.h"
-
+#include "bg_window.h"
 #include "unk_0200DA60.h"
-#include "unk_02018340.h"
 
 static const UnkStruct_ov61_0222C884 Unk_ov111_021D38B8[] = {
     { 0x2, 0x2, 0x1, 0x1B, 0x4, 0xC, 0x1 },

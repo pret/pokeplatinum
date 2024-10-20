@@ -4,11 +4,10 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 
+#include "bg_window.h"
 #include "heap.h"
 #include "narc.h"
-#include "unk_02018340.h"
 
 static u32 sub_020072D0(void *param0, BGL *param1, u32 param2, u32 param3, u32 param4);
 static void sub_02007314(void *param0, BGL *param1, u32 param2, u32 param3, u32 param4);

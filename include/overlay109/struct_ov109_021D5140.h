@@ -4,16 +4,15 @@
 #include <nnsys.h>
 
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0209C194_decl.h"
 #include "struct_defs/struct_0200C738.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0209BDF8.h"
 
 #include "overlay109/struct_ov109_021D5140_sub1.h"
 #include "overlay109/struct_ov109_021D5140_sub2.h"
 #include "overlay109/struct_ov109_021D5140_sub3.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "message.h"
 #include "sprite_resource.h"
