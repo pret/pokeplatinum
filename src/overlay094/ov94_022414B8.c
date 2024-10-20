@@ -1141,12 +1141,12 @@ static int ov94_02242718(ResourceMetadata **param0, MessageLoader *param1, Messa
 
     for (v0 = 0; v0 < v3; v0++) {
         if (v4) {
-            if (sub_02026FE8(param7, param3[v1 + v0])) {
+            if (Pokedex_EncounteredSpecies(param7, param3[v1 + v0])) {
                 v2++;
             }
         } else {
             if (param4[param3[v1 + v0]]) {
-                if (sub_02026FE8(param7, param3[v1 + v0])) {
+                if (Pokedex_EncounteredSpecies(param7, param3[v1 + v0])) {
                     v2++;
                 }
             }
@@ -1157,12 +1157,12 @@ static int ov94_02242718(ResourceMetadata **param0, MessageLoader *param1, Messa
 
     for (v0 = 0; v0 < v3; v0++) {
         if (v4) {
-            if (sub_02026FE8(param7, param3[v1 + v0])) {
+            if (Pokedex_EncounteredSpecies(param7, param3[v1 + v0])) {
                 sub_02013A4C(*param0, param1, param3[v1 + v0], param3[v1 + v0]);
             }
         } else {
             if (param4[param3[v1 + v0]]) {
-                if (sub_02026FE8(param7, param3[v1 + v0])) {
+                if (Pokedex_EncounteredSpecies(param7, param3[v1 + v0])) {
                     sub_02013A4C(*param0, param1, param3[v1 + v0], param3[v1 + v0]);
                 }
             }

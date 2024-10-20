@@ -205,5 +205,15 @@
             "level_min": 35,
             "species": "SPECIES_DRAGONAIR"
         }
-    ]
+    ],
+    "special_encounters": [
+        "SPECIES_FEEBAS"
+    ],
+    "specialnatdex_encounters": [
+        "SPECIES_FEEBAS"
+    ],
+    "map_category": {
+        "map_type": "dungeon",
+        "map_number": 3
+    }
 }

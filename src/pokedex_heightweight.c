@@ -86,46 +86,46 @@ void Pokedex_HeightWeightData_Release(HeightWeightData *HWData)
     HWData->pokemonScale = NULL;
 }
 
-int Pokedex_HeightWeightData_Height(const HeightWeightData *HWData, int dexNumber)
+int Pokedex_HeightWeightData_Height(const HeightWeightData *HWData, int species)
 {
     GF_ASSERT(HWData);
     GF_ASSERT(HWData->height);
-    return HWData->height[dexNumber];
+    return HWData->height[species];
 }
 
-int Pokedex_HeightWeightData_Weight(const HeightWeightData *HWData, int dexNumber)
+int Pokedex_HeightWeightData_Weight(const HeightWeightData *HWData, int species)
 {
     GF_ASSERT(HWData);
     GF_ASSERT(HWData->weight);
-    return HWData->weight[dexNumber];
+    return HWData->weight[species];
 }
 
-short Pokedex_HeightWeightData_TrainerPos(const HeightWeightData *HWData, int dexNumber)
+short Pokedex_HeightWeightData_TrainerPos(const HeightWeightData *HWData, int species)
 {
     GF_ASSERT(HWData);
     GF_ASSERT(HWData->trainerPos);
-    return HWData->trainerPos[dexNumber];
+    return HWData->trainerPos[species];
 }
 
-short Pokedex_HeightWeightData_PokemonPos(const HeightWeightData *HWData, int dexNumber)
+short Pokedex_HeightWeightData_PokemonPos(const HeightWeightData *HWData, int species)
 {
     GF_ASSERT(HWData);
     GF_ASSERT(HWData->pokemonPos);
-    return HWData->pokemonPos[dexNumber];
+    return HWData->pokemonPos[species];
 }
 
-short Pokedex_HeightWeightData_TrainerScale(const HeightWeightData *HWData, int dexNumber)
+short Pokedex_HeightWeightData_TrainerScale(const HeightWeightData *HWData, int species)
 {
     GF_ASSERT(HWData);
     GF_ASSERT(HWData->trainerScale);
-    return HWData->trainerScale[dexNumber];
+    return HWData->trainerScale[species];
 }
 
-short Pokedex_HeightWeightData_PokemonScale(const HeightWeightData *HWData, int dexNumber)
+short Pokedex_HeightWeightData_PokemonScale(const HeightWeightData *HWData, int species)
 {
     GF_ASSERT(HWData);
     GF_ASSERT(HWData->pokemonScale);
-    return HWData->pokemonScale[dexNumber];
+    return HWData->pokemonScale[species];
 }
 
 static int *Pokedex_Height_Array(NARC *pokedexDataNARC, int param1)

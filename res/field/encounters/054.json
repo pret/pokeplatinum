@@ -205,5 +205,11 @@
             "level_min": 0,
             "species": "SPECIES_NONE"
         }
-    ]
+    ],
+    "special_encounters": [],
+    "specialnatdex_encounters": [],
+    "map_category": {
+        "map_type": "dungeon",
+        "map_number": 8
+    }
 }

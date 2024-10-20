@@ -3,127 +3,129 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/species.h"
+
+#include "overlay021/struct_dungeoncoordinates.h"
+#include "overlay021/struct_fieldCoordinates.h"
 #include "overlay021/struct_ov21_021D5844.h"
-#include "overlay021/struct_ov21_021D5868.h"
-#include "overlay021/struct_ov21_021D5890.h"
 
 #include "cell_actor.h"
 #include "heap.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
 
-void ov21_021D57B4(UnkStruct_ov21_021D5844 *param0, int param1, int param2, int param3)
+void PokedexEncData_PopulateMapsEncounteredOn(mapsEncounteredOn *mapsEncOn, int species, int encounterCategory, int heapID)
 {
-    int v0;
-    u32 v1;
+    int fileIndex;
+    u32 fileSize;
 
-    switch (param2) {
-    case 0:
-        v0 = 4;
+    switch (encounterCategory) {
+    case PEFC_DUNGEONMORNING:
+        fileIndex = PEFI_DUNGEONMORNING;
         break;
-    case 1:
-        v0 = 499;
+    case PEFC_DUNGEONDAY:
+        fileIndex = PEFI_DUNGEONDAY;
         break;
-    case 2:
-        v0 = 994;
+    case PEFC_DUNGEONNIGHT:
+        fileIndex = PEFI_DUNGEONNIGHT;
         break;
-    case 3:
-        v0 = 1489;
+    case PEFC_DUNGEONSPECIAL:
+        fileIndex = PEFI_DUNGEONSPECIAL;
         break;
-    case 4:
-        v0 = 1984;
+    case PEFC_DUNGEONSPECIALNATDEX:
+        fileIndex = PEFI_DUNGEONSPECIALNATDEX;
         break;
-    case 5:
-        v0 = 2479;
+    case PEFC_FIELDMORNING:
+        fileIndex = PEFI_FIELDMORNING;
         break;
-    case 6:
-        v0 = 2974;
+    case PEFC_FIELDDAY:
+        fileIndex = PEFI_FIELDDAY;
         break;
-    case 7:
-        v0 = 3469;
+    case PEFC_FIELDNIGHT:
+        fileIndex = PEFI_FIELDNIGHT;
         break;
-    case 8:
-        v0 = 3964;
+    case PEFC_FIELDSPECIAL:
+        fileIndex = PEFI_FIELDSPECIAL;
         break;
-    case 9:
-        v0 = 4459;
+    case PEFC_FIELDSPECIALNATDEX:
+        fileIndex = PEFI_FIELDSPECIALNATDEX;
         break;
     }
 
-    param0->unk_00 = (int *)sub_02007068(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_ENC_PLATINUM, v0 + param1, 0, param3, 0, &v1);
-    param0->unk_04 = v1 / sizeof(int);
+    mapsEncOn->mapsEncounteredOnArray = (int *)sub_02007068(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_ENC_PLATINUM, fileIndex + species, 0, heapID, 0, &fileSize);
+    mapsEncOn->numMapsEncounteredOn = fileSize / sizeof(int);
 }
 
-void ov21_021D5844(UnkStruct_ov21_021D5844 *param0)
+void PokedexEncData_FreeMapsEncounteredOn(mapsEncounteredOn *mapsEncOn)
 {
-    GF_ASSERT(param0);
-    GF_ASSERT(param0->unk_00);
+    GF_ASSERT(mapsEncOn);
+    GF_ASSERT(mapsEncOn->mapsEncounteredOnArray);
 
-    Heap_FreeToHeap(param0->unk_00);
+    Heap_FreeToHeap(mapsEncOn->mapsEncounteredOnArray);
 
-    param0->unk_00 = NULL;
-    param0->unk_04 = 0;
+    mapsEncOn->mapsEncounteredOnArray = NULL;
+    mapsEncOn->numMapsEncounteredOn = 0;
 }
 
-UnkStruct_ov21_021D5868 *ov21_021D5868(int param0, int *param1)
+dungeonCoordinates *PokedexEncData_GetDungeonLocations(int heapID, int *numDungeons)
 {
-    UnkStruct_ov21_021D5868 *v0;
-    u32 v1;
+    dungeonCoordinates *dungeonCoordinatesArray;
+    u32 fileSize;
 
-    v0 = (UnkStruct_ov21_021D5868 *)sub_02007068(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_ENC_PLATINUM, 0, 0, param0, 0, &v1);
+    dungeonCoordinatesArray = (dungeonCoordinates *)sub_02007068(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_ENC_PLATINUM, 0, 0, heapID, 0, &fileSize);
 
-    if (param1) {
-        *param1 = v1 / sizeof(UnkStruct_ov21_021D5868);
+    if (numDungeons) {
+        *numDungeons = fileSize / sizeof(dungeonCoordinates);
     }
 
-    return v0;
+    return dungeonCoordinatesArray;
 }
 
-UnkStruct_ov21_021D5890 *ov21_021D5890(int param0, int *param1)
+fieldCoordinates *PokedexEncData_GetFieldLocations(int heapID, int *numFields)
 {
-    UnkStruct_ov21_021D5890 *v0;
-    u32 v1;
+    fieldCoordinates *fieldCoordinatesArray;
+    u32 fileSize;
 
-    v0 = (UnkStruct_ov21_021D5890 *)sub_02007068(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_ENC_PLATINUM, 2, 0, param0, 0, &v1);
+    fieldCoordinatesArray = (fieldCoordinates *)sub_02007068(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_ENC_PLATINUM, 2, 0, heapID, 0, &fileSize);
 
-    if (param1) {
-        *param1 = v1 / sizeof(UnkStruct_ov21_021D5890);
+    if (numFields) {
+        *numFields = fileSize / sizeof(fieldCoordinates);
     }
 
-    return v0;
+    return fieldCoordinatesArray;
 }
 
-void ov21_021D58C0(u8 *param0, u8 param1, u8 param2, const UnkStruct_ov21_021D5890 *param3)
+void ov21_021D58C0(u8 *mapFieldCellMatrix, u8 mapHeight, u8 mapWidth, const fieldCoordinates *fieldCoords)
 {
-    int v0, v1;
+    int xCoord, yCoord;
 
-    GF_ASSERT((param3->unk_01 + param3->unk_03) < param2);
-    GF_ASSERT((param3->unk_00 + param3->unk_02) < param1);
+    GF_ASSERT((fieldCoords->xCoordinate + fieldCoords->width) < mapWidth); // param 1 and 2 are 30
+    GF_ASSERT((fieldCoords->yCoordinate + fieldCoords->height) < mapHeight);
 
-    for (v0 = param3->unk_01; v0 < param3->unk_01 + param3->unk_03; v0++) {
-        for (v1 = param3->unk_00; v1 < param3->unk_00 + param3->unk_02; v1++) {
-            param0[(v0 * param1) + v1] |= param3->unk_04[((v0 - param3->unk_01) * param3->unk_02) + (v1 - param3->unk_00)];
+    for (xCoord = fieldCoords->xCoordinate; xCoord < fieldCoords->xCoordinate + fieldCoords->width; xCoord++) {
+        for (yCoord = fieldCoords->yCoordinate; yCoord < fieldCoords->yCoordinate + fieldCoords->height; yCoord++) {
+            mapFieldCellMatrix[(xCoord * mapHeight) + yCoord] |= fieldCoords->cellMatrix[((xCoord - fieldCoords->xCoordinate) * fieldCoords->height) + (yCoord - fieldCoords->yCoordinate)];
         }
     }
 }
 
-u32 ov21_021D5948(u8 *param0, int param1, int param2, const UnkStruct_ov21_021D5890 *param3, const UnkStruct_ov21_021D5844 *param4, const u8 *param5, u32 param6)
+u32 ov21_021D5948(u8 *mapFieldCellMatrix, int mapHeight, int mapWidth, const fieldCoordinates *fieldCoordArray, const mapsEncounteredOn *mapsEncOn, const u8 *mapArray, u32 mapArrayLength)
 {
-    int v0;
-    int v1;
+    int index;
+    int mapArrayIndex;
     u32 v2 = 0;
 
-    for (v0 = 0; v0 < param4->unk_04 - 1; v0++) {
-        GF_ASSERT(param4->unk_00[v0]);
+    for (index = 0; index < mapsEncOn->numMapsEncounteredOn - 1; index++) {
+        GF_ASSERT(mapsEncOn->mapsEncounteredOnArray[index]);
 
-        for (v1 = 0; v1 < param6; v1++) {
-            if (param4->unk_00[v0] == param5[v1]) {
+        for (mapArrayIndex = 0; mapArrayIndex < mapArrayLength; mapArrayIndex++) {
+            if (mapsEncOn->mapsEncounteredOnArray[index] == mapArray[mapArrayIndex]) {
                 break;
             }
         }
 
-        if (v1 >= param6) {
-            ov21_021D58C0(param0, param1, param2, &param3[param4->unk_00[v0]]);
+        if (mapArrayIndex >= mapArrayLength) {
+            ov21_021D58C0(mapFieldCellMatrix, mapHeight, mapWidth, &fieldCoordArray[mapsEncOn->mapsEncounteredOnArray[index]]);
             v2++;
         }
     }
@@ -131,48 +133,48 @@ u32 ov21_021D5948(u8 *param0, int param1, int param2, const UnkStruct_ov21_021D5
     return v2;
 }
 
-void ov21_021D59D8(CellActor *param0, int param1, int param2, int param3, int param4, const UnkStruct_ov21_021D5868 *param5, int param6, int param7)
+void ov21_021D59D8(CellActor *actor, int xOffset, int yOffset, int xScale, int yScale, const dungeonCoordinates *dungeonCoords, int animID_1, int animID_2)
 {
-    VecFx32 v0;
+    VecFx32 position;
 
-    v0.x = (param5->unk_00 * param3) + param1;
-    v0.y = (param5->unk_01 * param4) + param2;
-    v0.x <<= FX32_SHIFT;
-    v0.y <<= FX32_SHIFT;
+    position.x = (dungeonCoords->xCoordinate * xScale) + xOffset;
+    position.y = (dungeonCoords->yCoordinate * yScale) + yOffset;
+    position.x <<= FX32_SHIFT;
+    position.y <<= FX32_SHIFT;
 
-    CellActor_SetPosition(param0, &v0);
+    CellActor_SetPosition(actor, &position);
 
-    if (param5->unk_02) {
-        CellActor_SetAnim(param0, param7);
+    if (dungeonCoords->unk_02) {
+        CellActor_SetAnim(actor, animID_2);
     } else {
-        CellActor_SetAnim(param0, param6);
+        CellActor_SetAnim(actor, animID_1);
     }
 }
 
-int ov21_021D5A20(CellActor **param0, int param1, int param2, int param3, int param4, int param5, int param6, const UnkStruct_ov21_021D5868 *param7, const UnkStruct_ov21_021D5844 *param8, int param9, int param10, const u8 *param11, u32 param12, u32 *param13)
+int ov21_021D5A20(CellActor **cellActorArray, int initialNumDungeons, int param2, int xOffset, int yOffset, int xScale, int yScale, const dungeonCoordinates *dungeonCoordinatesArray, const mapsEncounteredOn *mapsEncOn, int animID_1, int animID_2, const u8 *mapArray, u32 mapArrayLength, u32 *param13)
 {
-    int v0, v1;
-    int v2 = param1;
+    int index, mapArrayIndex;
+    int numDungeons = initialNumDungeons;
     int v3 = 0;
 
-    for (v0 = 0; v0 < param8->unk_04 - 1; v0++) {
-        GF_ASSERT(param8->unk_00[v0]);
-        GF_ASSERT(v2 < param2);
+    for (index = 0; index < mapsEncOn->numMapsEncounteredOn - 1; index++) {
+        GF_ASSERT(mapsEncOn->mapsEncounteredOnArray[index]);
+        GF_ASSERT(numDungeons < param2);
 
-        for (v1 = 0; v1 < param12; v1++) {
-            if (param8->unk_00[v0] == param11[v1]) {
+        for (mapArrayIndex = 0; mapArrayIndex < mapArrayLength; mapArrayIndex++) {
+            if (mapsEncOn->mapsEncounteredOnArray[index] == mapArray[mapArrayIndex]) {
                 break;
             }
         }
 
-        if (v1 >= param12) {
-            ov21_021D59D8(param0[v2], param3, param4, param5, param6, &param7[param8->unk_00[v0]], param9, param10);
-            v2++;
+        if (mapArrayIndex >= mapArrayLength) {
+            ov21_021D59D8(cellActorArray[numDungeons], xOffset, yOffset, xScale, yScale, &dungeonCoordinatesArray[mapsEncOn->mapsEncounteredOnArray[index]], animID_1, animID_2);
+            numDungeons++;
             v3++;
         }
     }
 
     *param13 = v3;
 
-    return v2;
+    return numDungeons;
 }

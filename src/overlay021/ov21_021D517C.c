@@ -7,265 +7,266 @@
 
 #include "unk_02018340.h"
 
-static void ov21_021D5248(Window *param0, u8 *param1, u16 param2, u16 param3, int param4, int param5, u8 param6, u8 param7);
-static void ov21_021D52A0(u8 *param0, int param1, int param2, int param3, int param4);
-static int ov21_021D52D4(u8 *param0, int param1, int param2, int param3, int param4);
-static void ov21_021D5304(u8 *param0, int *param1, int param2, int param3, int param4, int param5);
-static int ov21_021D5424(int param0);
+static void ov21_021D5248(Window *param0, u8 *param1, u16 cellWidth, u16 cellHeight, int mapScale, int cellType, u8 yCoord, u8 xCoord);
+static void MapFieldCellMatrix_CellType(u8 *mapFieldCellMatrix, int y, int x, int mapHeight, int mapWidth);
+static int MapFieldCellMatrix_Value(u8 *mapFieldCellMatrix, int y, int x, int mapHeight, int mapWidth);
+static void MapFieldCellMatrix_NeighboringCells(u8 *mapFieldCellMatrix, int *neighbors, int y, int x, int mapHeight, int mapWidth);
+static int MapFieldCellMatrix_EmptyCellType(int neighbors);
 
-void ov21_021D517C(Window *param0, u8 *param1, u16 param2, u16 param3, u8 param4, u8 *param5, u8 param6, u8 param7, u16 param8, u16 param9)
+void ov21_021D517C(Window *param0, u8 *param1, u16 cellWidth, u16 cellHeight, u8 mapScale, u8 *mapFieldCellMatrix, u8 mapHeight, u8 mapWidth, u16 yOffset, u16 xOffset)
 {
-    int v0, v1;
+    int x, y;
 
-    for (v0 = 0; v0 < param7; v0++) {
-        for (v1 = 0; v1 < param6; v1++) {
-            ov21_021D5248(param0, param1, param2, param3, param4, param5[(v0 * param7) + v1], param8 + (v1 * param4), param9 + (v0 * param4));
+    for (x = 0; x < mapWidth; x++) {
+        for (y = 0; y < mapHeight; y++) {
+            ov21_021D5248(param0, param1, cellWidth, cellHeight, mapScale, mapFieldCellMatrix[(x * mapWidth) + y], yOffset + (y * mapScale), xOffset + (x * mapScale));
         }
     }
 }
 
-void ov21_021D5214(u8 *param0, u8 param1, u8 param2)
+void MapFieldCellMatrix_SmoothCells(u8 *mapFieldCellMatrix, u8 mapHeight, u8 mapWidth)
 {
-    int v0, v1;
+    int x, y;
 
-    for (v0 = 0; v0 < param2; v0++) {
-        for (v1 = 0; v1 < param1; v1++) {
-            ov21_021D52A0(param0, v1, v0, param1, param2);
+    for (x = 0; x < mapWidth; x++) {
+        for (y = 0; y < mapHeight; y++) {
+            MapFieldCellMatrix_CellType(mapFieldCellMatrix, y, x, mapHeight, mapWidth);
         }
     }
 }
 
-static void ov21_021D5248(Window *param0, u8 *param1, u16 param2, u16 param3, int param4, int param5, u8 param6, u8 param7)
+static void ov21_021D5248(Window *param0, u8 *param1, u16 cellWidth, u16 cellHeight, int mapScale, int cellType, u8 yCoord, u8 xCoord)
 {
     int v0;
     int v1;
 
-    if (param5 != 0) {
-        v0 = param5 * param4;
-        v1 = v0 / param2;
-        v0 = v0 % param2;
+    if (cellType != 0) {
+        v0 = cellType * mapScale;
+        v1 = v0 / cellWidth;
+        v0 = v0 % cellWidth;
 
-        sub_0201ADDC(param0, param1, v0, v1, param2, param3, param6, param7, param4, param4);
+        sub_0201ADDC(param0, param1, v0, v1, cellWidth, cellHeight, yCoord, xCoord, mapScale, mapScale);
     }
 }
 
-static void ov21_021D52A0(u8 *param0, int param1, int param2, int param3, int param4)
+static void MapFieldCellMatrix_CellType(u8 *mapFieldCellMatrix, int y, int x, int mapHeight, int mapWidth)
 {
-    int v0;
-    int v1;
+    int neighbors;
+    int cellType;
 
-    if (param0[(param2 * param3) + param1] == 0) {
-        ov21_021D5304(param0, &v0, param1, param2, param3, param4);
+    if (mapFieldCellMatrix[(x * mapHeight) + y] == 0) {
+        MapFieldCellMatrix_NeighboringCells(mapFieldCellMatrix, &neighbors, y, x, mapHeight, mapWidth);
 
-        v1 = ov21_021D5424(v0);
-        param0[(param2 * param3) + param1] = v1;
+        cellType = MapFieldCellMatrix_EmptyCellType(neighbors);
+        mapFieldCellMatrix[(x * mapHeight) + y] = cellType;
     }
 }
 
-static int ov21_021D52D4(u8 *param0, int param1, int param2, int param3, int param4)
+static int MapFieldCellMatrix_Value(u8 *mapFieldCellMatrix, int y, int x, int mapHeight, int mapWidth)
 {
-    if ((param1 < 0) || (param1 >= param3)) {
+    if ((y < 0) || (y >= mapHeight)) {
         return -1;
     }
 
-    if ((param2 < 0) || (param2 >= param4)) {
+    if ((x < 0) || (x >= mapWidth)) {
         return -1;
     }
 
-    return param0[(param2 * param3) + param1];
+    return mapFieldCellMatrix[(x * mapHeight) + y];
 }
 
-static void ov21_021D5304(u8 *param0, int *param1, int param2, int param3, int param4, int param5)
+static void MapFieldCellMatrix_NeighboringCells(u8 *mapFieldCellMatrix, int *neighbors, int y, int x, int mapHeight, int mapWidth)
 {
     int v0;
 
-    *param1 = 0;
+    *neighbors = 0; // binary storage of cells (NE)(SE)(NW)(SW)(N)(S)(E)(W)
+    // only records intercardinal directions if adjacent cardinals are both empty
 
-    if (ov21_021D52D4(param0, param2, param3 - 1, param4, param5) == 1) {
-        *param1 |= (1 << 0);
+    if (MapFieldCellMatrix_Value(mapFieldCellMatrix, y, x - 1, mapHeight, mapWidth) == 1) {
+        *neighbors |= CN_WEST;
     }
 
-    if (ov21_021D52D4(param0, param2, param3 + 1, param4, param5) == 1) {
-        *param1 |= (1 << 1);
+    if (MapFieldCellMatrix_Value(mapFieldCellMatrix, y, x + 1, mapHeight, mapWidth) == 1) {
+        *neighbors |= CN_EAST;
     }
 
-    if (ov21_021D52D4(param0, param2 - 1, param3, param4, param5) == 1) {
-        *param1 |= (1 << 2);
+    if (MapFieldCellMatrix_Value(mapFieldCellMatrix, y - 1, x, mapHeight, mapWidth) == 1) {
+        *neighbors |= CN_SOUTH;
     }
 
-    if (ov21_021D52D4(param0, param2 + 1, param3, param4, param5) == 1) {
-        *param1 |= (1 << 3);
+    if (MapFieldCellMatrix_Value(mapFieldCellMatrix, y + 1, x, mapHeight, mapWidth) == 1) {
+        *neighbors |= CN_NORTH;
     }
 
-    if ((((*param1) & (1 << 0)) == 0) && (((*param1) & (1 << 2)) == 0)) {
-        if (ov21_021D52D4(param0, param2 - 1, param3 - 1, param4, param5) == 1) {
-            *param1 |= (1 << 4);
+    if ((((*neighbors) & CN_WEST) == 0) && (((*neighbors) & CN_SOUTH) == 0)) {
+        if (MapFieldCellMatrix_Value(mapFieldCellMatrix, y - 1, x - 1, mapHeight, mapWidth) == 1) {
+            *neighbors |= CN_SOUTHWEST;
         }
     }
 
-    if ((((*param1) & (1 << 0)) == 0) && (((*param1) & (1 << 3)) == 0)) {
-        if (ov21_021D52D4(param0, param2 + 1, param3 - 1, param4, param5) == 1) {
-            *param1 |= (1 << 5);
+    if ((((*neighbors) & CN_WEST) == 0) && (((*neighbors) & CN_NORTH) == 0)) {
+        if (MapFieldCellMatrix_Value(mapFieldCellMatrix, y + 1, x - 1, mapHeight, mapWidth) == 1) {
+            *neighbors |= CN_NORTHWEST;
         }
     }
 
-    if ((((*param1) & (1 << 1)) == 0) && (((*param1) & (1 << 2)) == 0)) {
-        if (ov21_021D52D4(param0, param2 - 1, param3 + 1, param4, param5) == 1) {
-            *param1 |= (1 << 6);
+    if ((((*neighbors) & CN_EAST) == 0) && (((*neighbors) & CN_SOUTH) == 0)) {
+        if (MapFieldCellMatrix_Value(mapFieldCellMatrix, y - 1, x + 1, mapHeight, mapWidth) == 1) {
+            *neighbors |= CN_SOUTHEAST;
         }
     }
 
-    if ((((*param1) & (1 << 1)) == 0) && (((*param1) & (1 << 3)) == 0)) {
-        if (ov21_021D52D4(param0, param2 + 1, param3 + 1, param4, param5) == 1) {
-            *param1 |= (1 << 7);
+    if ((((*neighbors) & CN_EAST) == 0) && (((*neighbors) & CN_NORTH) == 0)) {
+        if (MapFieldCellMatrix_Value(mapFieldCellMatrix, y + 1, x + 1, mapHeight, mapWidth) == 1) {
+            *neighbors |= CN_NORTHEAST;
         }
     }
 }
 
-static int ov21_021D5424(int param0)
+static int MapFieldCellMatrix_EmptyCellType(int neighbors)
 {
     int v0;
 
-    switch (param0) {
-    case 0:
+    switch (neighbors) {
+    case CN_ALONE:
         v0 = 0;
         break;
-    case ((1 << 0)):
+    case (CN_WEST):
         v0 = 2;
         break;
-    case ((1 << 1)):
+    case (CN_EAST):
         v0 = 3;
         break;
-    case ((1 << 2)):
+    case (CN_SOUTH):
         v0 = 4;
         break;
-    case ((1 << 3)):
+    case (CN_NORTH):
         v0 = 5;
         break;
-    case ((1 << 0) | (1 << 1)):
+    case (CN_WEST | CN_EAST):
         v0 = 6;
         break;
-    case ((1 << 0) | (1 << 2)):
+    case (CN_WEST | CN_SOUTH):
         v0 = 7;
         break;
-    case ((1 << 0) | (1 << 3)):
+    case (CN_WEST | CN_NORTH):
         v0 = 8;
         break;
-    case ((1 << 1) | (1 << 2)):
+    case (CN_EAST | CN_SOUTH):
         v0 = 9;
         break;
-    case ((1 << 1) | (1 << 3)):
+    case (CN_EAST | CN_NORTH):
         v0 = 10;
         break;
-    case ((1 << 2) | (1 << 3)):
+    case (CN_SOUTH | CN_NORTH):
         v0 = 11;
         break;
-    case ((1 << 0) | (1 << 1) | (1 << 2)):
+    case (CN_WEST | CN_EAST | CN_SOUTH):
         v0 = 12;
         break;
-    case ((1 << 0) | (1 << 1) | (1 << 3)):
+    case (CN_WEST | CN_EAST | CN_NORTH):
         v0 = 13;
         break;
-    case ((1 << 0) | (1 << 2) | (1 << 3)):
+    case (CN_WEST | CN_SOUTH | CN_NORTH):
         v0 = 14;
         break;
-    case ((1 << 1) | (1 << 2) | (1 << 3)):
+    case (CN_EAST | CN_SOUTH | CN_NORTH):
         v0 = 15;
         break;
-    case ((1 << 0) | (1 << 1) | (1 << 2) | (1 << 3)):
+    case (CN_WEST | CN_EAST | CN_SOUTH | CN_NORTH):
         v0 = 16;
         break;
-    case ((1 << 4)):
+    case (CN_SOUTHWEST):
         v0 = 17;
         break;
-    case ((1 << 5)):
+    case (CN_NORTHWEST):
         v0 = 18;
         break;
-    case ((1 << 6)):
+    case (CN_SOUTHEAST):
         v0 = 19;
         break;
-    case ((1 << 7)):
+    case (CN_NORTHEAST):
         v0 = 20;
         break;
-    case ((1 << 4) | (1 << 5)):
+    case (CN_SOUTHWEST | CN_NORTHWEST):
         v0 = 21;
         break;
-    case ((1 << 4) | (1 << 6)):
+    case (CN_SOUTHWEST | CN_SOUTHEAST):
         v0 = 22;
         break;
-    case ((1 << 4) | (1 << 7)):
+    case (CN_SOUTHWEST | CN_NORTHEAST):
         v0 = 23;
         break;
-    case ((1 << 5) | (1 << 6)):
+    case (CN_NORTHWEST | CN_SOUTHEAST):
         v0 = 24;
         break;
-    case ((1 << 5) | (1 << 7)):
+    case (CN_NORTHWEST | CN_NORTHEAST):
         v0 = 25;
         break;
-    case ((1 << 6) | (1 << 7)):
+    case (CN_SOUTHEAST | CN_NORTHEAST):
         v0 = 26;
         break;
-    case ((1 << 4) | (1 << 5) | (1 << 6)):
+    case (CN_SOUTHWEST | CN_NORTHWEST | CN_SOUTHEAST):
         v0 = 27;
         break;
-    case ((1 << 4) | (1 << 5) | (1 << 7)):
+    case (CN_SOUTHWEST | CN_NORTHWEST | CN_NORTHEAST):
         v0 = 28;
         break;
-    case ((1 << 4) | (1 << 6) | (1 << 7)):
+    case (CN_SOUTHWEST | CN_SOUTHEAST | CN_NORTHEAST):
         v0 = 29;
         break;
-    case ((1 << 5) | (1 << 6) | (1 << 7)):
+    case (CN_NORTHWEST | CN_SOUTHEAST | CN_NORTHEAST):
         v0 = 30;
         break;
-    case ((1 << 4) | (1 << 5) | (1 << 6) | (1 << 7)):
+    case (CN_SOUTHWEST | CN_NORTHWEST | CN_SOUTHEAST | CN_NORTHEAST):
         v0 = 31;
         break;
-    case ((1 << 0) | (1 << 6) | (1 << 7)):
+    case (CN_WEST | CN_SOUTHEAST | CN_NORTHEAST):
         v0 = 32;
         break;
-    case ((1 << 1) | (1 << 4) | (1 << 5)):
+    case (CN_EAST | CN_SOUTHWEST | CN_NORTHWEST):
         v0 = 33;
         break;
-    case ((1 << 2) | (1 << 5) | (1 << 7)):
+    case (CN_SOUTH | CN_NORTHWEST | CN_NORTHEAST):
         v0 = 34;
         break;
-    case ((1 << 3) | (1 << 4) | (1 << 6)):
+    case (CN_NORTH | CN_SOUTHWEST | CN_SOUTHEAST):
         v0 = 35;
         break;
-    case ((1 << 0) | (1 << 2) | (1 << 7)):
+    case (CN_WEST | CN_SOUTH | CN_NORTHEAST):
         v0 = 36;
         break;
-    case ((1 << 0) | (1 << 3) | (1 << 6)):
+    case (CN_WEST | CN_NORTH | CN_SOUTHEAST):
         v0 = 37;
         break;
-    case ((1 << 1) | (1 << 2) | (1 << 5)):
+    case (CN_EAST | CN_SOUTH | CN_NORTHWEST):
         v0 = 38;
         break;
-    case ((1 << 1) | (1 << 3) | (1 << 4)):
+    case (CN_EAST | CN_NORTH | CN_SOUTHWEST):
         v0 = 39;
         break;
-    case ((1 << 0) | (1 << 6)):
+    case (CN_WEST | CN_SOUTHEAST):
         v0 = 40;
         break;
-    case ((1 << 0) | (1 << 7)):
+    case (CN_WEST | CN_NORTHEAST):
         v0 = 41;
         break;
-    case ((1 << 1) | (1 << 4)):
+    case (CN_EAST | CN_SOUTHWEST):
         v0 = 42;
         break;
-    case ((1 << 1) | (1 << 5)):
+    case (CN_EAST | CN_NORTHWEST):
         v0 = 43;
         break;
-    case ((1 << 2) | (1 << 5)):
+    case (CN_SOUTH | CN_NORTHWEST):
         v0 = 44;
         break;
-    case ((1 << 2) | (1 << 7)):
+    case (CN_SOUTH | CN_NORTHEAST):
         v0 = 45;
         break;
-    case ((1 << 3) | (1 << 4)):
+    case (CN_NORTH | CN_SOUTHWEST):
         v0 = 46;
         break;
-    case ((1 << 3) | (1 << 6)):
+    case (CN_NORTH | CN_SOUTHEAST):
         v0 = 47;
         break;
     default:
