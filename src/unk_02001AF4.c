@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/struct_020149F0_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -12,6 +11,7 @@
 
 #include "overlay061/struct_ov61_0222C884.h"
 
+#include "colored_arrow.h"
 #include "core_sys.h"
 #include "font.h"
 #include "heap.h"
@@ -20,12 +20,11 @@
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
-#include "unk_020149F0.h"
 #include "unk_02018340.h"
 
 typedef struct UIControlData_t {
     UnkStruct_02081CF4 unk_00;
-    UnkStruct_020149F0 *unk_0C;
+    ColoredArrow *unk_0C;
     u32 unk_10;
     u8 unk_14;
     u8 unk_15;
@@ -52,7 +51,7 @@ UIControlData *sub_02001AF4(const UnkStruct_02081CF4 *param0, u8 param1, u8 para
     UIControlData *v0 = (UIControlData *)Heap_AllocFromHeap(param4, sizeof(UIControlData));
 
     v0->unk_00 = *param0;
-    v0->unk_0C = sub_020149F0(param4);
+    v0->unk_0C = ColoredArrow_New(param4);
     v0->unk_10 = param5;
     v0->unk_15 = param3;
     v0->unk_16 = sub_02001F1C(v0);
@@ -87,7 +86,7 @@ void sub_02001BC4(UIControlData *param0, u8 *param1)
         *param1 = param0->unk_15;
     }
 
-    sub_02014A20(param0->unk_0C);
+    ColoredArrow_Free(param0->unk_0C);
     Heap_FreeToHeapExplicit(param0->unk_1C, param0);
 }
 
@@ -367,7 +366,7 @@ static void sub_02001FE8(UIControlData *param0)
     }
 
     sub_02002018(param0, &v0, &v1, param0->unk_15);
-    sub_02014A58(param0->unk_0C, param0->unk_00.unk_04, v0, v1);
+    ColoredArrow_Print(param0->unk_0C, param0->unk_00.unk_04, v0, v1);
 }
 
 static void sub_02002018(UIControlData *param0, u8 *param1, u8 *param2, u8 param3)

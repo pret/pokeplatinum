@@ -5,16 +5,15 @@
 #include <string.h>
 
 #include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/struct_020149F0_decl.h"
 #include "struct_defs/struct_02013A04_t.h"
 
 #include "overlay084/struct_ov84_02240FA8.h"
 
+#include "colored_arrow.h"
 #include "core_sys.h"
 #include "font.h"
 #include "heap.h"
 #include "text.h"
-#include "unk_020149F0.h"
 #include "unk_02018340.h"
 
 typedef struct {
@@ -30,7 +29,7 @@ typedef struct {
 typedef struct UnkStruct_0200112C_t {
     UnkStruct_ov84_02240FA8 unk_00;
     UnkStruct_0200112C_sub1 unk_1F;
-    UnkStruct_020149F0 *unk_24;
+    ColoredArrow *unk_24;
     u16 unk_28;
     u16 unk_2A;
     u8 unk_2C;
@@ -54,7 +53,7 @@ BmpList *sub_0200112C(const UnkStruct_ov84_02240FA8 *param0, u16 param1, u16 par
     BmpList *v0 = (BmpList *)Heap_AllocFromHeap(param3, sizeof(BmpList));
 
     v0->unk_00 = *param0;
-    v0->unk_24 = sub_020149F0(param3);
+    v0->unk_24 = ColoredArrow_New(param3);
     v0->unk_28 = param1;
     v0->unk_2A = param2;
     v0->unk_2C = 0;
@@ -74,7 +73,7 @@ BmpList *sub_0200112C(const UnkStruct_ov84_02240FA8 *param0, u16 param1, u16 par
         v0->unk_00.unk_12 = v0->unk_00.unk_10;
     }
 
-    sub_02014A40(v0->unk_24, TEXT_COLOR(v0->unk_00.unk_17_4, v0->unk_00.unk_18_4, v0->unk_00.unk_18_0));
+    ColoredArrow_SetColor(v0->unk_24, TEXT_COLOR(v0->unk_00.unk_17_4, v0->unk_00.unk_18_4, v0->unk_00.unk_18_0));
     BGL_FillWindow(v0->unk_00.unk_0C, v0->unk_00.unk_18_0);
     sub_02001688(v0, v0->unk_28, 0, v0->unk_00.unk_12);
     sub_02001720(v0);
@@ -159,7 +158,7 @@ void sub_02001384(BmpList *param0, u16 *param1, u16 *param2)
         *param2 = param0->unk_2A;
     }
 
-    sub_02014A20(param0->unk_24);
+    ColoredArrow_Free(param0->unk_24);
     Heap_FreeToHeapExplicit(param0->unk_30, param0);
 }
 
@@ -362,7 +361,7 @@ static void sub_02001720(BmpList *param0)
 
     switch (param0->unk_00.unk_1A_15) {
     case 0:
-        sub_02014A58(param0->unk_24, param0->unk_00.unk_0C, v0, v1);
+        ColoredArrow_Print(param0->unk_24, param0->unk_00.unk_0C, v0, v1);
         break;
     case 1:
         break;

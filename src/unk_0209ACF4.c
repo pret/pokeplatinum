@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020149F0_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/sentence.h"
@@ -12,6 +11,7 @@
 #include "field/field_system.h"
 #include "overlay005/ov5_021D0D80.h"
 
+#include "colored_arrow.h"
 #include "core_sys.h"
 #include "heap.h"
 #include "message.h"
@@ -22,7 +22,6 @@
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_020149F0.h"
 #include "unk_02014A84.h"
 #include "unk_02018340.h"
 #include "unk_0202D05C.h"
@@ -37,7 +36,7 @@ typedef struct {
     Strbuf *unk_08;
     StringTemplate *unk_0C;
     MessageLoader *unk_10;
-    UnkStruct_020149F0 *unk_14;
+    ColoredArrow *unk_14;
     Window unk_18;
     Window unk_28;
     Window unk_38;
@@ -73,7 +72,7 @@ void sub_0209ACF4(TaskManager *param0)
     v1->unk_08 = Strbuf_Init(400, 32);
     v1->unk_0C = StringTemplate_Default(32);
     v1->unk_10 = MessageLoader_Init(1, 26, 420, 32);
-    v1->unk_14 = sub_020149F0(32);
+    v1->unk_14 = ColoredArrow_New(32);
     v1->unk_50 = sub_0209747C(2, 0, v1->fieldSystem->saveData, 32);
 
     sub_02097520(v1->unk_50);
@@ -89,7 +88,7 @@ void sub_0209ACF4(TaskManager *param0)
 static void sub_0209AD84(UnkStruct_0209AD84 *param0)
 {
     sub_020974EC(param0->unk_50);
-    sub_02014A20(param0->unk_14);
+    ColoredArrow_Free(param0->unk_14);
     Strbuf_Free(param0->unk_04);
     Strbuf_Free(param0->unk_08);
     StringTemplate_Free(param0->unk_0C);
@@ -308,7 +307,7 @@ static void sub_0209B12C(UnkStruct_0209AD84 *param0)
             Text_AddPrinterWithParams(v0, FONT_SYSTEM, param0->unk_08, 12, v1 * 16, TEXT_SPEED_NO_TRANSFER, NULL);
         }
 
-        sub_02014A58(param0->unk_14, v0, 0, 0);
+        ColoredArrow_Print(param0->unk_14, v0, 0, 0);
     }
 
     param0->unk_68 = v0;
@@ -340,7 +339,7 @@ static void sub_0209B1D8(UnkStruct_0209AD84 *param0)
             Text_AddPrinterWithParams(v0, FONT_SYSTEM, param0->unk_08, 12, v1 * 16, TEXT_SPEED_NO_TRANSFER, NULL);
         }
 
-        sub_02014A58(param0->unk_14, v0, 0, 0);
+        ColoredArrow_Print(param0->unk_14, v0, 0, 0);
     }
 
     param0->unk_68 = v0;
@@ -400,7 +399,7 @@ static int sub_0209B288(UnkStruct_0209AD84 *param0)
 
     {
         BGL_WindowColor(param0->unk_68, 15, 0, 0, 12, param0->unk_68->unk_08 * 8);
-        sub_02014A58(param0->unk_14, param0->unk_68, 0, param0->unk_5C * 16);
+        ColoredArrow_Print(param0->unk_14, param0->unk_68, 0, param0->unk_5C * 16);
         sub_0201ACCC(param0->unk_68);
         Sound_PlayEffect(1500);
     }

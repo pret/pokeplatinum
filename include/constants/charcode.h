@@ -20,7 +20,9 @@ enum {
 
     CHAR_JP_MINUS = 0x00F1,
 
-    CHAR_EN_0 = 0x0121,
+    CHAR_MENU_ARROW = 0x011F,
+    CHAR_WIDE_AMPERSAND,
+    CHAR_EN_0,
     CHAR_EN_1,
     CHAR_EN_2,
     CHAR_EN_3,

@@ -8,7 +8,6 @@
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/struct_020149F0_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02025CCC_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
@@ -27,6 +26,7 @@
 #include "overlay098/ov98_022499C8.h"
 #include "overlay098/struct_ov98_02246E88.h"
 
+#include "colored_arrow.h"
 #include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
@@ -50,7 +50,6 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02013A04.h"
-#include "unk_020149F0.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
 #include "unk_0201DBEC.h"
@@ -102,7 +101,7 @@ typedef struct {
     int unk_C0;
     Window unk_C4;
     Window unk_D4;
-    UnkStruct_020149F0 * unk_E4;
+    ColoredArrow *unk_E4;
     s32 unk_E8;
     UnkStruct_ov61_0222C3B0 unk_EC;
 } UnkStruct_ov98_02247704;
@@ -935,7 +934,7 @@ static void ov98_02247F08 (UnkStruct_ov98_02247704 * param0)
     v0 = MessageLoader_GetNewStrbuf(param0->unk_34, 43);
     Text_AddPrinterWithParams(&param0->unk_D4, FONT_SYSTEM, v0, Unk_ov98_02249D60[1][0] + 12, Unk_ov98_02249D60[1][1], TEXT_SPEED_NO_TRANSFER, NULL);
     Strbuf_Free(v0);
-    sub_02014A58(param0->unk_E4, &param0->unk_D4, Unk_ov98_02249D60[param0->unk_B0][0], Unk_ov98_02249D60[param0->unk_B0][1]);
+    ColoredArrow_Print(param0->unk_E4, &param0->unk_D4, Unk_ov98_02249D60[param0->unk_B0][0], Unk_ov98_02249D60[param0->unk_B0][1]);
     sub_0201A954(&param0->unk_D4);
 }
 
@@ -1134,7 +1133,7 @@ asm static int ov98_02248350 (UnkStruct_ov98_02247704 * param0)
     add r0, #0xd4
     bl sub_0201A954
     mov r0, #0x6d
-    bl sub_020149F0
+    bl ColoredArrow_New
     add r1, r5, #0
     add r1, #0xe4
     str r0, [r1, #0]
@@ -1362,7 +1361,7 @@ asm static int ov98_02248350 (UnkStruct_ov98_02247704 * param0)
     add r0, r5, #0
     add r0, #0xe4
     ldr r0, [r0, #0]
-    bl sub_02014A20
+    bl ColoredArrow_Free
     ldr r0, [r5, #4]
     mov r1, #3
     bl sub_02019EBC

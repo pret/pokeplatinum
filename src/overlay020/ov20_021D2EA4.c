@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_020149F0_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020998EC_decl.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -16,6 +15,7 @@
 
 #include "cell_actor.h"
 #include "charcode.h"
+#include "colored_arrow.h"
 #include "font.h"
 #include "heap.h"
 #include "message.h"
@@ -24,7 +24,6 @@
 #include "text.h"
 #include "unk_02006E3C.h"
 #include "unk_0200DA60.h"
-#include "unk_020149F0.h"
 #include "unk_02014D38.h"
 #include "unk_02018340.h"
 
@@ -51,7 +50,7 @@ typedef struct UnkStruct_ov20_021D30F8_t {
     CellActor *unk_44;
     MessageLoader *unk_48;
     Strbuf *unk_4C;
-    UnkStruct_020149F0 *unk_50;
+    ColoredArrow *unk_50;
     UnkStruct_ov20_021D34CC unk_54[2];
     u32 unk_5C;
     u32 unk_60;
@@ -85,7 +84,7 @@ UnkStruct_ov20_021D30F8 *ov20_021D2EA4(UnkStruct_ov20_021D2128 *param0, const Un
     v0->unk_44 = NULL;
     v0->unk_4C = Strbuf_Init(128, 35);
     v0->unk_48 = MessageLoader_Init(0, 26, 437, 35);
-    v0->unk_50 = sub_020149F0(35);
+    v0->unk_50 = ColoredArrow_New(35);
 
     return v0;
 }
@@ -93,7 +92,7 @@ UnkStruct_ov20_021D30F8 *ov20_021D2EA4(UnkStruct_ov20_021D2128 *param0, const Un
 void ov20_021D2EF0(UnkStruct_ov20_021D30F8 *param0)
 {
     if (param0->unk_50) {
-        sub_02014A20(param0->unk_50);
+        ColoredArrow_Free(param0->unk_50);
     }
 
     if (param0->unk_3C) {
@@ -545,7 +544,7 @@ void ov20_021D3790(UnkStruct_ov20_021D30F8 *param0, int param1)
     Text_AddPrinterWithParamsAndColor(&param0->unk_2C, FONT_SYSTEM, param0->unk_4C, 14, 0 + 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 9), NULL);
 
     Window_Show(&param0->unk_2C, 0, param0->unk_60, 14);
-    sub_02014A58(param0->unk_50, &param0->unk_2C, 0, 0 + (param1 * 16));
+    ColoredArrow_Print(param0->unk_50, &param0->unk_2C, 0, 0 + (param1 * 16));
 
     sub_0201A954(&param0->unk_2C);
 }
@@ -553,7 +552,7 @@ void ov20_021D3790(UnkStruct_ov20_021D30F8 *param0, int param1)
 void ov20_021D381C(UnkStruct_ov20_021D30F8 *param0, int param1)
 {
     BGL_WindowColor(&param0->unk_2C, 9, 0, 0, 14, 4 * 8);
-    sub_02014A58(param0->unk_50, &param0->unk_2C, 0, 0 + (param1 * 16));
+    ColoredArrow_Print(param0->unk_50, &param0->unk_2C, 0, 0 + (param1 * 16));
 }
 
 void ov20_021D384C(UnkStruct_ov20_021D30F8 *param0)
