@@ -1107,7 +1107,7 @@ static void ov94_0223F9FC(Window *param0, Window *param1, MessageLoader *param2)
     v0 = MessageLoader_GetNewStrbuf(param2, 65);
 
     {
-        int v3 = Font_CalcCenterAlignment(FONT_SYSTEM, v0, 0, param0[6].unk_07 * 8);
+        int v3 = Font_CalcCenterAlignment(FONT_SYSTEM, v0, 0, param0[6].width * 8);
         ov94_02245900(&param0[6], v0, v3, 0, 0, TEXT_COLOR(1, 2, 0));
     }
 
@@ -1116,7 +1116,7 @@ static void ov94_0223F9FC(Window *param0, Window *param1, MessageLoader *param2)
     v0 = MessageLoader_GetNewStrbuf(param2, 66);
 
     {
-        int v4 = Font_CalcCenterAlignment(FONT_SYSTEM, v0, 0, param0[7].unk_07 * 8);
+        int v4 = Font_CalcCenterAlignment(FONT_SYSTEM, v0, 0, param0[7].width * 8);
         ov94_02245900(&param0[7], v0, v4, 0, 0, TEXT_COLOR(1, 2, 0));
     }
 

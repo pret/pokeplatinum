@@ -1101,7 +1101,7 @@ static void Healthbar_DrawBattlerName(Healthbar *healthbar)
 
     BGL_AddFramelessWindow(bgl, &window, HEALTHBAR_NAME_BLOCK_COUNT_X, HEALTHBAR_NAME_BLOCK_COUNT_Y, HEALTHBAR_NAME_WINDOW_OFFSET, HEALTHBAR_NAME_BACKGROUND_COLOR);
     Text_AddPrinterWithParamsColorAndSpacing(&window, FONT_SYSTEM, nickname, 0, 0, TEXT_SPEED_NO_TRANSFER, HEALTHBAR_NAME_TEXT_COLOR, 0, 0, NULL);
-    buf = window.unk_0C;
+    buf = window.pixels;
 
     // copy the window's data into VRAM over the painted healthbar
     {
@@ -1315,7 +1315,7 @@ static void Healthbar_DrawBallCount(Healthbar *param0, u32 param1)
     BGL_AddFramelessWindow(v0, &v3, 13, 2, 0, 0xf);
     Text_AddPrinterWithParamsColorAndSpacing(&v3, FONT_SYSTEM, v5, 0, 0, TEXT_SPEED_NO_TRANSFER, HEALTHBAR_NAME_TEXT_COLOR, 0, 0, NULL);
 
-    v1 = v3.unk_0C;
+    v1 = v3.pixels;
 
     {
         void *v6;
@@ -1363,7 +1363,7 @@ static void Healthbar_DrawBallsLeftMessage(Healthbar *param0, u32 param1)
     BGL_AddFramelessWindow(v0, &v3, 13, 2, 0, 0xf);
     Text_AddPrinterWithParamsColorAndSpacing(&v3, FONT_SYSTEM, v5, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(14, 2, 15), 0, 0, NULL);
 
-    v1 = v3.unk_0C;
+    v1 = v3.pixels;
 
     {
         void *v8;

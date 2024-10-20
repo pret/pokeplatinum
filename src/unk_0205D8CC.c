@@ -32,7 +32,7 @@ void FieldMessage_AddWindow(BgConfig *param0, Window *param1, u32 param2)
 
 void FieldMessage_DrawWindow(Window *param0, const Options *param1)
 {
-    sub_0200DD0C(param0->unk_00, sub_0201C290(param0), 1024 - (18 + 12), 10, Options_Frame(param1), 4);
+    sub_0200DD0C(param0->bgConfig, sub_0201C290(param0), 1024 - (18 + 12), 10, Options_Frame(param1), 4);
     sub_0205D988(param0);
     sub_0200E060(param0, 0, 1024 - (18 + 12), 10);
 }
@@ -93,7 +93,7 @@ void sub_0205DA1C(BgConfig *param0, Window *param1, u16 param2, u16 param3)
 
 void sub_0205DA80(Window *param0, u16 param1, u16 param2)
 {
-    sub_0200E2A4(param0->unk_00, sub_0201C290(param0), ((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)), 9, param1, param2, 4);
+    sub_0200E2A4(param0->bgConfig, sub_0201C290(param0), ((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)), 9, param1, param2, 4);
     BGL_FillWindow(param0, 15);
     sub_0200E69C(param0, 0, ((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)), 9, param1);
 }

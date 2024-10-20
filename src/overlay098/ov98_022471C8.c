@@ -2465,12 +2465,12 @@ static int ov98_02249894 (Window * param0, Strbuf *param1, int param2, int param
     switch (param3) {
     case 1:
         v0 = Font_CalcStrbufWidth(param5, param1, 0);
-        param2 = ((param0->unk_07 * 8) - v0) / 2;
+        param2 = ((param0->width * 8) - v0) / 2;
         break;
 
     case 2:
         v0 = Font_CalcStrbufWidth(param5, param1, 0);
-        param2 = (param0->unk_07 * 8) - v0;
+        param2 = (param0->width * 8) - v0;
         break;
     }
 

@@ -166,7 +166,7 @@ static void ov7_0224B6AC(UnkStruct_ov7_0224B4E8 *param0)
     if (param0->unk_00) {
         sub_02001384(param0->unk_00, NULL, NULL);
         Window_Clear(&param0->unk_34, 1);
-        sub_0201C3C0(param0->unk_34.unk_00, param0->unk_34.unk_04);
+        sub_0201C3C0(param0->unk_34.bgConfig, param0->unk_34.bgLayer);
         BGL_DeleteWindow(&param0->unk_34);
         sub_02013A3C(param0->unk_08);
 
@@ -282,7 +282,7 @@ static int ov7_0224B83C(UnkStruct_ov7_0224B4E8 *param0)
     if (param0->unk_04) {
         sub_02001384(param0->unk_04, NULL, NULL);
         Window_Clear(&param0->unk_44, 1);
-        sub_0201C3C0(param0->unk_44.unk_00, param0->unk_44.unk_04);
+        sub_0201C3C0(param0->unk_44.bgConfig, param0->unk_44.bgLayer);
         BGL_DeleteWindow(&param0->unk_44);
         sub_02013A3C(param0->unk_0C);
 
@@ -421,7 +421,7 @@ static void ov7_0224B8DC(UnkStruct_ov7_0224B4E8 *param0)
 static void ov7_0224BBA0(UnkStruct_ov7_0224B4E8 *param0)
 {
     Window_Clear(&param0->unk_24, 1);
-    sub_0201C3C0(param0->unk_24.unk_00, param0->unk_24.unk_04);
+    sub_0201C3C0(param0->unk_24.bgConfig, param0->unk_24.bgLayer);
     BGL_DeleteWindow(&param0->unk_24);
 }
 

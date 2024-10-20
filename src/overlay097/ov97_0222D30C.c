@@ -252,7 +252,7 @@ static void ov97_0222D34C(OverlayManager *param0)
     }
 
     for (v0 = 0; v0 < 3; v0++) {
-        if (v1->unk_28[v0].unk_00) {
+        if (v1->unk_28[v0].bgConfig) {
             sub_0201ACF4(&v1->unk_28[v0]);
             BGL_DeleteWindow(&v1->unk_28[v0]);
         }
@@ -478,7 +478,7 @@ static void ov97_0222D6F8(OverlayManager *param0, int param1)
 
     v1 = &v2->unk_28[2];
 
-    if (v1->unk_00 == NULL) {
+    if (v1->bgConfig == NULL) {
         BGL_AddWindow(v2->unk_00, v1, 0, 23, 10, 6, 4, 0, (((((1 + (18 + 12)) + 9) + 26 * 6) + 16 * 6) + 17 * 8));
     }
 
@@ -517,7 +517,7 @@ static int ov97_0222D798(OverlayManager *param0)
 
     v0 = &v1->unk_28[2];
 
-    if (v0->unk_00 == NULL) {
+    if (v0->bgConfig == NULL) {
         BGL_AddWindow(v1->unk_00, v0, 0, 23, 10, 6, 4, 0, (((((1 + (18 + 12)) + 9) + 26 * 6) + 16 * 6) + 17 * 8));
     }
 
@@ -538,7 +538,7 @@ static int ov97_0222D814(OverlayManager *param0)
 
     v0 = &v1->unk_28[2];
 
-    if (v0->unk_00 == NULL) {
+    if (v0->bgConfig == NULL) {
         BGL_AddWindow(v1->unk_00, v0, 0, 23, 10, 6, 4, 0, (((((1 + (18 + 12)) + 9) + 26 * 6) + 16 * 6) + 17 * 8));
     }
 
@@ -559,7 +559,7 @@ static int ov97_0222D884(OverlayManager *param0)
 
     v0 = &v1->unk_28[2];
 
-    if (v0->unk_00 == NULL) {
+    if (v0->bgConfig == NULL) {
         BGL_AddWindow(v1->unk_00, v0, 0, 23, 10, 6, 4, 0, (((((1 + (18 + 12)) + 9) + 26 * 6) + 16 * 6) + 17 * 8));
     }
 
@@ -576,7 +576,7 @@ static void ov97_0222D8F4(OverlayManager *param0)
 
     v0 = &v1->unk_28[2];
 
-    if (v0->unk_00 == NULL) {
+    if (v0->bgConfig == NULL) {
         BGL_AddWindow(v1->unk_00, v0, 0, 23, 10, 6, 4, 0, (((((1 + (18 + 12)) + 9) + 26 * 6) + 16 * 6) + 17 * 8));
     }
 
@@ -677,7 +677,7 @@ static int ov97_0222DA84(OverlayManager *param0)
     ov97_0222D444(&v2->unk_28[0], 0);
     v0 = &v2->unk_28[1];
 
-    if (v0->unk_00 == NULL) {
+    if (v0->bgConfig == NULL) {
         BGL_AddWindow(v2->unk_00, v0, 0, 15, 9, 16, 8, 0, ((((1 + (18 + 12)) + 9) + 26 * 6) + 16 * 6));
     }
 
@@ -829,7 +829,7 @@ static void ov97_0222DDD0(OverlayManager *param0, int param1, u32 param2)
 
     v2[v4++] = Unk_ov97_0223E5B8[2];
 
-    if (v1->unk_00 == NULL) {
+    if (v1->bgConfig == NULL) {
         BGL_AddWindow(v0->unk_00, v1, 0, 8, 7, 16, v4 * 2, 0, param1);
     }
 

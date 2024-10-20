@@ -349,7 +349,7 @@ BOOL ov99_021D3F6C(UnkStruct_ov99_021D3E78 *param0, int param1)
                     Text_AddPrinterWithParamsAndColor(param0->unk_28, FONT_SYSTEM, param0->unk_30, v1, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
 
                     v2 = 16 - (v2 - (256 - 16));
-                    sub_0201ADDC(param0->unk_24, param0->unk_28->unk_0C, 0, v2, param0->unk_28->unk_07 * 8, param0->unk_28->unk_08 * 8, 0, 0, 32 * 8, (16 - v2));
+                    sub_0201ADDC(param0->unk_24, param0->unk_28->pixels, 0, v2, param0->unk_28->width * 8, param0->unk_28->height * 8, 0, 0, 32 * 8, (16 - v2));
                 }
 
                 param0->unk_18 = 1;

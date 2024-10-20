@@ -272,7 +272,7 @@ static void CommClubMan_Delete(void)
 
     MessageLoader_Free(sCommClubMan->msgLoader);
 
-    if (sCommClubMan->msgWindow.unk_0C != NULL) {
+    if (sCommClubMan->msgWindow.pixels != NULL) {
         BGL_DeleteWindow(&sCommClubMan->msgWindow);
     }
 

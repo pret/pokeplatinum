@@ -685,7 +685,7 @@ void ov23_0224FB7C(UnkStruct_ov23_02250CD4 *param0)
 
     if (BGL_WindowAdded(&param0->unk_10)) {
         Window_Clear(&param0->unk_10, 1);
-        sub_0201C3C0(param0->unk_10.unk_00, param0->unk_10.unk_04);
+        sub_0201C3C0(param0->unk_10.bgConfig, param0->unk_10.bgLayer);
         BGL_DeleteWindow(&param0->unk_10);
         sub_02013A3C(param0->unk_40);
         ov23_02252DF4(param0);
@@ -767,7 +767,7 @@ static void ov23_0224FCF4(UnkStruct_ov23_02250CD4 *param0)
 {
     if (param0->unk_50) {
         sub_02001384(param0->unk_50, NULL, NULL);
-        sub_0201C3C0(param0->unk_20.unk_00, param0->unk_20.unk_04);
+        sub_0201C3C0(param0->unk_20.bgConfig, param0->unk_20.bgLayer);
         sub_02013A3C(param0->unk_44);
 
         param0->unk_50 = NULL;

@@ -267,7 +267,7 @@ int ov97_0223795C(BgConfig *param0, UnkStruct_ov97_02237808 *param1, int param2,
 {
     int v0;
 
-    if (param1->unk_10->unk_00 == NULL) {
+    if (param1->unk_10->bgConfig == NULL) {
         BGL_AddWindow(param0, param1->unk_10, param1->unk_2C, param2, param3, param1->unk_18, param1->unk_1C, param1->unk_30, param1->unk_28);
         v0 = ov97_02237870(param1, param4);
     } else {

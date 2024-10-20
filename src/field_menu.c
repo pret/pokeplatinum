@@ -1429,7 +1429,7 @@ static BOOL FieldMenu_SelectSave(TaskManager *taskMan)
 
     FieldMenu_Close(menu);
     Window_Clear(&menu->unk_00, 1);
-    sub_0201C3C0(menu->unk_00.unk_00, menu->unk_00.unk_04);
+    sub_0201C3C0(menu->unk_00.bgConfig, menu->unk_00.bgLayer);
     BGL_DeleteWindow(&menu->unk_00);
     sub_0203B200(taskMan);
 
@@ -1593,7 +1593,7 @@ static BOOL FieldMenu_SelectRetire(TaskManager *taskMan)
 
     FieldMenu_Close(menu);
     Window_Clear(&menu->unk_00, 1);
-    sub_0201C3C0(menu->unk_00.unk_00, menu->unk_00.unk_04);
+    sub_0201C3C0(menu->unk_00.bgConfig, menu->unk_00.bgLayer);
     BGL_DeleteWindow(&menu->unk_00);
     sub_0203B200(taskMan);
 

@@ -1426,21 +1426,21 @@ static void ov17_022409F4(UnkStruct_ov17_0223F7E4 *param0)
     int v0, v1;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (param0->unk_18C.unk_00[v0].unk_00.unk_0C != NULL) {
+        if (param0->unk_18C.unk_00[v0].unk_00.pixels != NULL) {
             BGL_DeleteWindow(&param0->unk_18C.unk_00[v0].unk_00);
         }
 
-        if (param0->unk_18C.unk_50[v0].unk_00.unk_0C != NULL) {
+        if (param0->unk_18C.unk_50[v0].unk_00.pixels != NULL) {
             BGL_DeleteWindow(&param0->unk_18C.unk_50[v0].unk_00);
         }
 
-        if (param0->unk_18C.unk_A0[v0].unk_00.unk_0C != NULL) {
+        if (param0->unk_18C.unk_A0[v0].unk_00.pixels != NULL) {
             BGL_DeleteWindow(&param0->unk_18C.unk_A0[v0].unk_00);
         }
     }
 
     for (v0 = 0; v0 < (1 + 2); v0++) {
-        if (param0->unk_18C.unk_F0[v0].unk_00.unk_0C != NULL) {
+        if (param0->unk_18C.unk_F0[v0].unk_00.pixels != NULL) {
             BGL_DeleteWindow(&param0->unk_18C.unk_F0[v0].unk_00);
         }
     }
@@ -1502,7 +1502,7 @@ static void ov17_02240BF4(UnkStruct_ov17_0223F7E4 *param0, const Strbuf *param1,
     param3->unk_12 = v0;
     param3->unk_10 = v1;
 
-    if (param3->unk_00.unk_0C != NULL) {
+    if (param3->unk_00.pixels != NULL) {
         BGL_DeleteWindow(&param3->unk_00);
     }
 

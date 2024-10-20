@@ -252,7 +252,7 @@ static void ov23_0225451C(UnkStruct_ov23_022542D8 *param0)
     Window_Clear(&param0->unk_14, 1);
     sub_02001384(param0->unk_28, param0->unk_30, param0->unk_34);
     Window_Clear(&param0->unk_04, 1);
-    sub_0201C3C0(param0->unk_04.unk_00, param0->unk_04.unk_04);
+    sub_0201C3C0(param0->unk_04.bgConfig, param0->unk_04.bgLayer);
     BGL_DeleteWindow(&param0->unk_04);
     BGL_DeleteWindow(&param0->unk_14);
     sub_02013A3C(param0->unk_24);
@@ -505,7 +505,7 @@ static void ov23_02254958(UnkStruct_ov23_02254594 *param0)
     ov23_02248EF8(param0->unk_2C, param0->unk_38, param0->unk_3C);
 
     Window_Clear(&param0->unk_08, 1);
-    sub_0201C3C0(param0->unk_08.unk_00, param0->unk_08.unk_04);
+    sub_0201C3C0(param0->unk_08.bgConfig, param0->unk_08.bgLayer);
     BGL_DeleteWindow(&param0->unk_08);
     BGL_DeleteWindow(&param0->unk_18);
     sub_02013A3C(param0->unk_28);

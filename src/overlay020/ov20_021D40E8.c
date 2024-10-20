@@ -329,7 +329,7 @@ static void ov20_021D4658(UnkStruct_ov20_021D4210 *param0, u32 param1, u32 param
 
         BGL_FillWindow(&param0->unk_20, 0);
         Text_AddPrinterWithParamsAndColor(&param0->unk_20, FONT_SYSTEM, param0->unk_3C, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
-        sub_0201ADDC(&param0->unk_10, param0->unk_20.unk_0C, 0, 0, 12 * 8, 2 * 8, 0 + (param1 & 1) * 112, param2, 12 * 8, v0);
-        sub_0201ADDC(&param0->unk_10, param0->unk_20.unk_0C, 0, v0, 12 * 8, 2 * 8, 0 + (param1 & 1) * 112, 0, 12 * 8, (2 * 8) - v0);
+        sub_0201ADDC(&param0->unk_10, param0->unk_20.pixels, 0, 0, 12 * 8, 2 * 8, 0 + (param1 & 1) * 112, param2, 12 * 8, v0);
+        sub_0201ADDC(&param0->unk_10, param0->unk_20.pixels, 0, v0, 12 * 8, 2 * 8, 0 + (param1 & 1) * 112, 0, 12 * 8, (2 * 8) - v0);
     }
 }

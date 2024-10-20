@@ -1322,7 +1322,7 @@ static void ov65_0222EAD0 (Window * param0, UnkStruct_ov65_0222E99C * param1, u1
     int v0;
 
     sub_0201ADDC(param0, param1->unk_0C->pRawData, (2 * 8) * param4, 0, param1->unk_0C->W * 8, param1->unk_0C->H * 8, param2, param3, 2 * 8, 2 * 8);
-    v0 = ov65_0222EBAC(param0->unk_04);
+    v0 = ov65_0222EBAC(param0->bgLayer);
     sub_0201C2B4(param0, v0 + param5);
 }
 

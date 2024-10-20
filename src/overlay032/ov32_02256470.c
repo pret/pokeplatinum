@@ -229,16 +229,16 @@ static void ov32_02256648(UnkStruct_ov32_02256470 *param0, const UnkStruct_ov32_
 
 static void ov32_022566E0(Window *param0, UnkStruct_ov32_02256470 *param1)
 {
-    sub_02019CB8(param1->unk_04, 6, 1, param0->unk_05 - 1, param0->unk_06 - 1, 1, 1, 0);
-    sub_02019CB8(param1->unk_04, 6, 2, param0->unk_05, param0->unk_06 - 1, param0->unk_07, 1, 0);
-    sub_02019CB8(param1->unk_04, 6, 1025, param0->unk_05 + param0->unk_07, param0->unk_06 - 1, 1, 1, 0);
+    sub_02019CB8(param1->unk_04, 6, 1, param0->tilemapLeft - 1, param0->tilemapTop - 1, 1, 1, 0);
+    sub_02019CB8(param1->unk_04, 6, 2, param0->tilemapLeft, param0->tilemapTop - 1, param0->width, 1, 0);
+    sub_02019CB8(param1->unk_04, 6, 1025, param0->tilemapLeft + param0->width, param0->tilemapTop - 1, 1, 1, 0);
 
-    sub_02019CB8(param1->unk_04, 6, 6, param0->unk_05 - 1, param0->unk_06, 1, param0->unk_08, 0);
-    sub_02019CB8(param1->unk_04, 6, 1030, param0->unk_05 + param0->unk_07, param0->unk_06, 1, param0->unk_08, 0);
+    sub_02019CB8(param1->unk_04, 6, 6, param0->tilemapLeft - 1, param0->tilemapTop, 1, param0->height, 0);
+    sub_02019CB8(param1->unk_04, 6, 1030, param0->tilemapLeft + param0->width, param0->tilemapTop, 1, param0->height, 0);
 
-    sub_02019CB8(param1->unk_04, 6, 2049, param0->unk_05 - 1, param0->unk_06 + param0->unk_08, 1, 1, 0);
-    sub_02019CB8(param1->unk_04, 6, 2050, param0->unk_05, param0->unk_06 + param0->unk_08, param0->unk_07, 1, 0);
-    sub_02019CB8(param1->unk_04, 6, 3073, param0->unk_05 + param0->unk_07, param0->unk_06 + param0->unk_08, 1, 1, 0);
+    sub_02019CB8(param1->unk_04, 6, 2049, param0->tilemapLeft - 1, param0->tilemapTop + param0->height, 1, 1, 0);
+    sub_02019CB8(param1->unk_04, 6, 2050, param0->tilemapLeft, param0->tilemapTop + param0->height, param0->width, 1, 0);
+    sub_02019CB8(param1->unk_04, 6, 3073, param0->tilemapLeft + param0->width, param0->tilemapTop + param0->height, 1, 1, 0);
 }
 
 static void ov32_0225682C(Window *param0, u32 param1)

@@ -492,14 +492,14 @@ static void sub_02090578(PokemonSummaryApp *param0)
 
     {
         u32 v1 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->monData.speciesName, 0);
-        u32 v2 = (param0->extraWindows[1].unk_07 * 8 - v1) / 2;
+        u32 v2 = (param0->extraWindows[1].width * 8 - v1) / 2;
 
         Text_AddPrinterWithParamsAndColor(&param0->extraWindows[1], FONT_SYSTEM, param0->monData.speciesName, v2, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     }
 
     {
         u32 v3 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->monData.OTName, 0);
-        u32 v4 = (param0->extraWindows[2].unk_07 * 8 - v3) / 2;
+        u32 v4 = (param0->extraWindows[2].width * 8 - v3) / 2;
 
         if (param0->monData.OTGender == 0) {
             Text_AddPrinterWithParamsAndColor(

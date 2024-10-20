@@ -213,10 +213,10 @@ static void ov19_021D7C58(UnkStruct_ov19_021D8318 *param0, const UnkStruct_ov19_
             if (v2) {
                 u32 v3, v4;
 
-                v2->unk_00 = param0->unk_58F4;
-                v2->unk_07 = 21;
-                v2->unk_08 = 4;
-                v2->unk_0C = v1->pRawData;
+                v2->bgConfig = param0->unk_58F4;
+                v2->width = 21;
+                v2->height = 4;
+                v2->pixels = v1->pRawData;
 
                 v4 = Font_CalcStrbufWidth(FONT_SYSTEM, param1->unk_04, 0);
                 v3 = 84 - (v4 / 2);

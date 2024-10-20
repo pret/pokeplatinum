@@ -2506,7 +2506,7 @@ static u8 *ov69_0225E6E8(UnkStruct_ov69_0225E084 *param0, u32 param1, u32 param2
     u8 *v0;
 
     GF_ASSERT(param1 < 3);
-    v0 = param0->unk_168[param1].unk_0C;
+    v0 = param0->unk_168[param1].pixels;
 
     return &v0[((27 * param2) * 32)];
 }
@@ -2515,7 +2515,7 @@ static u8 *ov69_0225E70C(UnkStruct_ov69_0225E084 *param0, u32 param1)
 {
     u8 *v0;
 
-    v0 = param0->unk_198.unk_0C;
+    v0 = param0->unk_198.pixels;
     return &v0[((27 * param1) * 32)];
 }
 

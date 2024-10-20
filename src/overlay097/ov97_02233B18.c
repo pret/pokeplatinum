@@ -426,7 +426,7 @@ static void ov97_02233DD0(UnkStruct_ov97_02234A2C *param0, UnkStruct_ov97_02233D
         v5 = param1->unk_44;
     }
 
-    if (param1->unk_00->unk_00 == NULL) {
+    if (param1->unk_00->bgConfig == NULL) {
         BGL_AddWindow(param0->unk_20, param1->unk_00, param1->unk_24, param1->unk_08, param1->unk_0C, param1->unk_10, param1->unk_14, 15, param1->unk_20);
     }
 
@@ -1493,7 +1493,7 @@ static void ov97_02234F88(UnkStruct_ov97_02234A2C *param0)
 
 static void ov97_02235158(Window *param0)
 {
-    if (param0->unk_00) {
+    if (param0->bgConfig) {
         sub_0200E084(param0, 0);
         sub_0201ACF4(param0);
         BGL_DeleteWindow(param0);

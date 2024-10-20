@@ -906,7 +906,7 @@ static void ov97_0222BC9C(OverlayManager *param0)
     }
 
     for (v0 = 0; v0 < (sizeof(Unk_ov97_0223E014) / sizeof(UnkStruct_ov97_0223E014)); v0++) {
-        if (v1->unk_5C[v0].unk_00) {
+        if (v1->unk_5C[v0].bgConfig) {
             sub_0201ACF4(&v1->unk_5C[v0]);
             BGL_DeleteWindow(&v1->unk_5C[v0]);
         }

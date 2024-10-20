@@ -251,7 +251,7 @@ static void ov41_022569BC(UnkStruct_ov41_022567B0 *param0, u32 param1)
 
     sub_0201A8D4(param0->unk_04, &param0->unk_48, &v0);
 
-    if (sub_02099DD0(param0->unk_00->unk_08, param0->unk_48.unk_0C, (20 * 19 * 0x20)) == 0) {
+    if (sub_02099DD0(param0->unk_00->unk_08, param0->unk_48.pixels, (20 * 19 * 0x20)) == 0) {
         BGL_FillWindow(&param0->unk_48, 0x4);
     }
 
@@ -269,7 +269,7 @@ static void ov41_02256A1C(SysTask *param0, void *param1)
         ov25_0225524C(param1);
         break;
     case 1:
-        sub_02099DA8(v0->unk_00->unk_08, v0->unk_48.unk_0C, (20 * 19 * 0x20));
+        sub_02099DA8(v0->unk_00->unk_08, v0->unk_48.pixels, (20 * 19 * 0x20));
         BGL_DeleteWindow(&v0->unk_48);
         sub_02019044(v0->unk_04, 6);
         sub_02019044(v0->unk_04, 7);
@@ -297,7 +297,7 @@ static void ov41_02256A8C(SysTask *param0, void *param1)
     v3 = ((v1 >> 3) * 20) + (v0 >> 3);
 
     BGL_WindowColor(&v4->unk_48, 0x1, v0, v1, 2, 2);
-    GXS_LoadBG3Char((u8 *)(v4->unk_48.unk_0C) + (v3 * 0x20), (v4->unk_58 + v3) * 0x20, 0x20);
+    GXS_LoadBG3Char((u8 *)(v4->unk_48.pixels) + (v3 * 0x20), (v4->unk_58 + v3) * 0x20, 0x20);
     ov41_022568C8(param1);
 }
 

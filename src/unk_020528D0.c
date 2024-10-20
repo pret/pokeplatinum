@@ -190,7 +190,7 @@ static void sub_02052AA4(UnkStruct_02052AA4 *param0, u16 param1, u8 param2, u8 p
 
     {
         u32 v2 = Font_CalcMaxLineWidth(FONT_SYSTEM, v1, 0);
-        param2 = (u8)(param0->unk_0C.unk_07 * 8 - v2) / 2 - 4;
+        param2 = (u8)(param0->unk_0C.width * 8 - v2) / 2 - 4;
     }
 
     Text_AddPrinterWithParamsAndColor(&param0->unk_0C, FONT_SYSTEM, v1, param2, param3, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 2, 0), NULL);

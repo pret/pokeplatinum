@@ -2108,7 +2108,7 @@ static const u8 Unk_020F24D8[] = {
 static void *sub_02088654(Window *param0, Strbuf *param1, u8 param2, const TextColor param3)
 {
     Text_AddPrinterWithParamsAndColor(param0, param2, param1, 0, 0, TEXT_SPEED_NO_TRANSFER, param3, NULL);
-    return param0->unk_0C;
+    return param0->pixels;
 }
 
 static void sub_02088678(Window *param0, const u16 *param1, u8 *param2, Strbuf *param3)

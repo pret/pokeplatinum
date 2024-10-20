@@ -1266,7 +1266,7 @@ static void ov77_021D2214(BgConfig *param0, int param1, UnkStruct_ov77_021D1568 
         BGL_WindowColor(&param2->unk_22C, 0, 0, 0, 28 * 8, 2 * 8);
         MessageLoader_GetStrbuf(v4, 0, v5);
 
-        v6 = Font_CalcCenterAlignment(FONT_SYSTEM, v5, 1, param2->unk_22C.unk_07 * 8);
+        v6 = Font_CalcCenterAlignment(FONT_SYSTEM, v5, 1, param2->unk_22C.width * 8);
 
         Text_AddPrinterWithParamsColorAndSpacing(&param2->unk_22C, FONT_SYSTEM, v5, v6, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 1, 0), 1, 0, NULL);
         Strbuf_Free(v5);

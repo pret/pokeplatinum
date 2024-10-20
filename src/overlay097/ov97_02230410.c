@@ -591,7 +591,7 @@ static void ov97_02230C44(UnkStruct_ov97_02230868 *param0, int param1, int param
 
     for (v0 = 0; v0 < sizeof(Unk_ov97_0223E680) / sizeof(UnkStruct_ov97_0223E680); v0++) {
         if ((v4[v0].unk_00 != param2) && (v4[v0].unk_00 != 2)) {
-            if (param0->unk_2A68[v0].unk_00) {
+            if (param0->unk_2A68[v0].bgConfig) {
                 sub_0201ACF4(&param0->unk_2A68[v0]);
                 BGL_DeleteWindow(&param0->unk_2A68[v0]);
             }
@@ -602,7 +602,7 @@ static void ov97_02230C44(UnkStruct_ov97_02230868 *param0, int param1, int param
 
     for (v0 = 0; v0 < sizeof(Unk_ov97_0223E680) / sizeof(UnkStruct_ov97_0223E680); v0++) {
         if (v4[v0].unk_00 == param2) {
-            if (param0->unk_2A68[v0].unk_00 == NULL) {
+            if (param0->unk_2A68[v0].bgConfig == NULL) {
                 param0->unk_2BA8[v0] = v1;
                 BGL_AddWindow(param0->unk_2A5C, &param0->unk_2A68[v0], 0, v4[v0].unk_04, v4[v0].unk_08, v4[v0].unk_0C, v4[v0].unk_10, 15, v1);
             }
@@ -642,7 +642,7 @@ static int ov97_02230E04(UnkStruct_ov97_02230868 *param0, Window *param1, int pa
     u32 v1;
     UnkStruct_ov97_0223E680 *v2 = Unk_ov97_0223E680 + param2;
 
-    if (param1->unk_00 == NULL) {
+    if (param1->bgConfig == NULL) {
         BGL_AddWindow(param0->unk_2A5C, param1, 2, v2->unk_04, v2->unk_08, v2->unk_0C, v2->unk_10, 15, param3);
     }
 
@@ -1445,18 +1445,18 @@ static int ov97_02231F38(OverlayManager *param0, int *param1)
     UnkStruct_ov97_02230868 *v1 = OverlayManager_Data(param0);
 
     for (v0 = 0; v0 < sizeof(Unk_ov97_0223E680) / sizeof(UnkStruct_ov97_0223E680); v0++) {
-        if (v1->unk_2A68[v0].unk_00) {
+        if (v1->unk_2A68[v0].bgConfig) {
             sub_0201ACF4(&v1->unk_2A68[v0]);
             BGL_DeleteWindow(&v1->unk_2A68[v0]);
         }
     }
 
-    if (v1->unk_2C30.unk_00) {
+    if (v1->unk_2C30.bgConfig) {
         sub_0201ACF4(&v1->unk_2C30);
         BGL_DeleteWindow(&v1->unk_2C30);
     }
 
-    if (v1->unk_2C40.unk_00) {
+    if (v1->unk_2C40.bgConfig) {
         sub_0201ACF4(&v1->unk_2C40);
         BGL_DeleteWindow(&v1->unk_2C40);
     }

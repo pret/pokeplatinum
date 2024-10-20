@@ -1390,11 +1390,11 @@ static void ov10_02220C94(UnkStruct_ov10_0221FB28 *param0, GXBG0As param1, int p
 
 static void ov10_02220DCC(UnkStruct_ov10_0221FB28 *param0)
 {
-    if (param0->unk_B7C.unk_0C != NULL) {
+    if (param0->unk_B7C.pixels != NULL) {
         BGL_DeleteWindow(&param0->unk_B7C);
     }
 
-    if (param0->unk_B8C.unk_0C != NULL) {
+    if (param0->unk_B8C.pixels != NULL) {
         BGL_DeleteWindow(&param0->unk_B8C);
     }
 }
@@ -2321,15 +2321,15 @@ static void ov10_02222594(UnkStruct_ov10_0221FB28 *param0, u32 param1)
     case 4:
     case 3:
         sub_0201972C(
-            1, &param0->unk_4D8[9], 2 * 2, (v0->unk_09 * 16 + 9) * 2);
+            1, &param0->unk_4D8[9], 2 * 2, (v0->palette * 16 + 9) * 2);
         break;
     case 2:
         sub_0201972C(
-            1, &param0->unk_4D8[(9 + 16)], 2 * 2, (v0->unk_09 * 16 + 9) * 2);
+            1, &param0->unk_4D8[(9 + 16)], 2 * 2, (v0->palette * 16 + 9) * 2);
         break;
     case 1:
         sub_0201972C(
-            1, &param0->unk_4D8[(9 + 32)], 2 * 2, (v0->unk_09 * 16 + 9) * 2);
+            1, &param0->unk_4D8[(9 + 32)], 2 * 2, (v0->palette * 16 + 9) * 2);
         break;
     }
 

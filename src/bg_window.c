@@ -1545,21 +1545,21 @@ Window *sub_0201A778(u32 param0, u8 param1)
 
 void Window_Init(Window *param0)
 {
-    param0->unk_00 = NULL;
-    param0->unk_04 = 0xff;
-    param0->unk_05 = 0;
-    param0->unk_06 = 0;
-    param0->unk_07 = 0;
-    param0->unk_08 = 0;
-    param0->unk_09 = 0;
-    param0->unk_0A_0 = 0;
-    param0->unk_0C = NULL;
-    param0->unk_0A_15 = UnkEnum_00;
+    param0->bgConfig = NULL;
+    param0->bgLayer = 0xff;
+    param0->tilemapLeft = 0;
+    param0->tilemapTop = 0;
+    param0->width = 0;
+    param0->height = 0;
+    param0->palette = 0;
+    param0->baseTile = 0;
+    param0->pixels = NULL;
+    param0->colorMode = UnkEnum_00;
 }
 
 u8 BGL_WindowAdded(Window *param0)
 {
-    if ((param0->unk_00 == NULL) || (param0->unk_04 == 0xff) || (param0->unk_0C == NULL)) {
+    if ((param0->bgConfig == NULL) || (param0->bgLayer == 0xff) || (param0->pixels == NULL)) {
         return 0;
     }
 
@@ -1582,16 +1582,16 @@ void BGL_AddWindow(BgConfig *param0, Window *param1, u8 param2, u8 param3, u8 pa
         return;
     }
 
-    param1->unk_00 = param0;
-    param1->unk_04 = param2;
-    param1->unk_05 = param3;
-    param1->unk_06 = param4;
-    param1->unk_07 = param5;
-    param1->unk_08 = param6;
-    param1->unk_09 = param7;
-    param1->unk_0A_0 = param8;
-    param1->unk_0C = v0;
-    param1->unk_0A_15 = (param0->bgs[param2].colorMode == GX_BG_COLORMODE_16) ? UnkEnum_00 : UnkEnum_01;
+    param1->bgConfig = param0;
+    param1->bgLayer = param2;
+    param1->tilemapLeft = param3;
+    param1->tilemapTop = param4;
+    param1->width = param5;
+    param1->height = param6;
+    param1->palette = param7;
+    param1->baseTile = param8;
+    param1->pixels = v0;
+    param1->colorMode = (param0->bgs[param2].colorMode == GX_BG_COLORMODE_16) ? UnkEnum_00 : UnkEnum_01;
 }
 
 void BGL_AddFramelessWindow(BgConfig *param0, Window *param1, u8 param2, u8 param3, u16 param4, u8 param5)
@@ -1609,12 +1609,12 @@ void BGL_AddFramelessWindow(BgConfig *param0, Window *param1, u8 param2, u8 para
         return;
     }
 
-    param1->unk_00 = param0;
-    param1->unk_07 = param2;
-    param1->unk_08 = param3;
-    param1->unk_0A_0 = param4;
-    param1->unk_0C = v0;
-    param1->unk_0A_15 = UnkEnum_00;
+    param1->bgConfig = param0;
+    param1->width = param2;
+    param1->height = param3;
+    param1->baseTile = param4;
+    param1->pixels = v0;
+    param1->colorMode = UnkEnum_00;
 }
 
 void sub_0201A8D4(BgConfig *param0, Window *param1, const WindowTemplate *param2)
@@ -1625,17 +1625,17 @@ void sub_0201A8D4(BgConfig *param0, Window *param1, const WindowTemplate *param2
 
 void BGL_DeleteWindow(Window *param0)
 {
-    Heap_FreeToHeap(param0->unk_0C);
+    Heap_FreeToHeap(param0->pixels);
 
-    param0->unk_00 = NULL;
-    param0->unk_04 = 0xff;
-    param0->unk_05 = 0;
-    param0->unk_06 = 0;
-    param0->unk_07 = 0;
-    param0->unk_08 = 0;
-    param0->unk_09 = 0;
-    param0->unk_0A_0 = 0;
-    param0->unk_0C = NULL;
+    param0->bgConfig = NULL;
+    param0->bgLayer = 0xff;
+    param0->tilemapLeft = 0;
+    param0->tilemapTop = 0;
+    param0->width = 0;
+    param0->height = 0;
+    param0->palette = 0;
+    param0->baseTile = 0;
+    param0->pixels = NULL;
 }
 
 void sub_0201A928(Window *param0, u8 param1)
@@ -1643,11 +1643,11 @@ void sub_0201A928(Window *param0, u8 param1)
     u16 v0;
 
     for (v0 = 0; v0 < param1; v0++) {
-        if (param0[v0].unk_0C == NULL) {
+        if (param0[v0].pixels == NULL) {
             continue;
         }
 
-        Heap_FreeToHeap(param0[v0].unk_0C);
+        Heap_FreeToHeap(param0[v0].pixels);
     }
 
     Heap_FreeToHeap(param0);
@@ -1701,65 +1701,65 @@ static const u8 Unk_020E5694[] = {
 void sub_0201A954(Window *param0)
 {
     GF_ASSERT(param0 != NULL);
-    GF_ASSERT(param0->unk_00 != NULL);
-    GF_ASSERT(param0->unk_04 < 8);
-    GF_ASSERT(param0->unk_00->bgs[param0->unk_04].type < NELEMS(Unk_020E56CC));
+    GF_ASSERT(param0->bgConfig != NULL);
+    GF_ASSERT(param0->bgLayer < 8);
+    GF_ASSERT(param0->bgConfig->bgs[param0->bgLayer].type < NELEMS(Unk_020E56CC));
 
-    Unk_020E56CC[param0->unk_00->bgs[param0->unk_04].type](param0);
+    Unk_020E56CC[param0->bgConfig->bgs[param0->bgLayer].type](param0);
 }
 
 void sub_0201A9A4(Window *param0)
 {
     GF_ASSERT(param0 != NULL);
-    GF_ASSERT(param0->unk_00 != NULL);
-    GF_ASSERT(param0->unk_04 < 8);
-    GF_ASSERT(param0->unk_00->bgs[param0->unk_04].type < NELEMS(Unk_020E56C0));
+    GF_ASSERT(param0->bgConfig != NULL);
+    GF_ASSERT(param0->bgLayer < 8);
+    GF_ASSERT(param0->bgConfig->bgs[param0->bgLayer].type < NELEMS(Unk_020E56C0));
 
-    Unk_020E56C0[param0->unk_00->bgs[param0->unk_04].type](param0);
+    Unk_020E56C0[param0->bgConfig->bgs[param0->bgLayer].type](param0);
 }
 
 void sub_0201A9F4(Window *param0)
 {
-    Unk_020E569C[param0->unk_00->bgs[param0->unk_04].type](param0);
+    Unk_020E569C[param0->bgConfig->bgs[param0->bgLayer].type](param0);
 }
 
 void sub_0201AA10(Window *param0, u32 param1, u32 param2)
 {
     u32 v0, v1;
 
-    v0 = param0->unk_07;
-    v1 = param0->unk_08;
+    v0 = param0->width;
+    v1 = param0->height;
 
-    param0->unk_07 = param1;
-    param0->unk_08 = param2;
+    param0->width = param1;
+    param0->height = param2;
 
-    Unk_020E569C[param0->unk_00->bgs[param0->unk_04].type](param0);
+    Unk_020E569C[param0->bgConfig->bgs[param0->bgLayer].type](param0);
 
-    param0->unk_07 = v0;
-    param0->unk_08 = v1;
+    param0->width = v0;
+    param0->height = v1;
 }
 
 void sub_0201AA3C(Window *param0)
 {
-    Unk_020E56D8[param0->unk_00->bgs[param0->unk_04].type](param0);
+    Unk_020E56D8[param0->bgConfig->bgs[param0->bgLayer].type](param0);
 }
 
 static void sub_0201AA58(Window *param0)
 {
-    if (param0->unk_00->bgs[param0->unk_04].tilemapBuffer) {
+    if (param0->bgConfig->bgs[param0->bgLayer].tilemapBuffer) {
         u32 v0, v1, v2, v3, v4, v5, v6;
         u16 *v7;
 
         v6 = 32;
-        v7 = (u16 *)(param0->unk_00->bgs[param0->unk_04].tilemapBuffer);
-        v4 = param0->unk_0A_0;
-        v2 = param0->unk_05 + param0->unk_07;
-        v3 = param0->unk_06 + param0->unk_08;
+        v7 = (u16 *)(param0->bgConfig->bgs[param0->bgLayer].tilemapBuffer);
+        v4 = param0->baseTile;
+        v2 = param0->tilemapLeft + param0->width;
+        v3 = param0->tilemapTop + param0->height;
 
-        for (v1 = param0->unk_06; v1 < v3; v1++) {
-            for (v0 = param0->unk_05; v0 < v2; v0++) {
+        for (v1 = param0->tilemapTop; v1 < v3; v1++) {
+            for (v0 = param0->tilemapLeft; v0 < v2; v0++) {
                 v5 = ((v1 & 0x20) * 32) + ((v0 & 0x20) * 32) + ((v1 & 0x1f) * v6) + (v0 & 0x1f);
-                v7[v5] = v4 | (param0->unk_09 << 12);
+                v7[v5] = v4 | (param0->palette << 12);
                 v4++;
             }
         }
@@ -1768,16 +1768,16 @@ static void sub_0201AA58(Window *param0)
 
 static void sub_0201AADC(Window *param0)
 {
-    if (param0->unk_00->bgs[param0->unk_04].tilemapBuffer) {
+    if (param0->bgConfig->bgs[param0->bgLayer].tilemapBuffer) {
         int v0, v1, v2, v3;
         u8 *v4;
 
-        v3 = Unk_020E5694[param0->unk_00->bgs[param0->unk_04].screenSize];
-        v4 = (u8 *)(param0->unk_00->bgs[param0->unk_04].tilemapBuffer) + param0->unk_06 * v3 + param0->unk_05;
-        v2 = param0->unk_0A_0;
+        v3 = Unk_020E5694[param0->bgConfig->bgs[param0->bgLayer].screenSize];
+        v4 = (u8 *)(param0->bgConfig->bgs[param0->bgLayer].tilemapBuffer) + param0->tilemapTop * v3 + param0->tilemapLeft;
+        v2 = param0->baseTile;
 
-        for (v1 = 0; v1 < param0->unk_08; v1++) {
-            for (v0 = 0; v0 < param0->unk_07; v0++) {
+        for (v1 = 0; v1 < param0->height; v1++) {
+            for (v0 = 0; v0 < param0->width; v0++) {
                 v4[v0] = v2++;
             }
 
@@ -1788,17 +1788,17 @@ static void sub_0201AADC(Window *param0)
 
 static void sub_0201AB38(Window *param0)
 {
-    if (param0->unk_00->bgs[param0->unk_04].tilemapBuffer) {
+    if (param0->bgConfig->bgs[param0->bgLayer].tilemapBuffer) {
         u32 v0, v1, v2, v3, v4, v5;
         u16 *v6;
 
-        v5 = Unk_020E5694[param0->unk_00->bgs[param0->unk_04].screenSize];
-        v6 = (u16 *)(param0->unk_00->bgs[param0->unk_04].tilemapBuffer);
-        v2 = param0->unk_05 + param0->unk_07;
-        v3 = param0->unk_06 + param0->unk_08;
+        v5 = Unk_020E5694[param0->bgConfig->bgs[param0->bgLayer].screenSize];
+        v6 = (u16 *)(param0->bgConfig->bgs[param0->bgLayer].tilemapBuffer);
+        v2 = param0->tilemapLeft + param0->width;
+        v3 = param0->tilemapTop + param0->height;
 
-        for (v1 = param0->unk_06; v1 < v3; v1++) {
-            for (v0 = param0->unk_05; v0 < v2; v0++) {
+        for (v1 = param0->tilemapTop; v1 < v3; v1++) {
+            for (v0 = param0->tilemapLeft; v0 < v2; v0++) {
                 v4 = ((v1 & 0x20) * 32) + ((v0 & 0x20) * 32) + ((v1 & 0x1f) * v5) + (v0 & 0x1f);
                 v6[v4] = 0x0;
             }
@@ -1808,15 +1808,15 @@ static void sub_0201AB38(Window *param0)
 
 static void sub_0201ABC8(Window *param0)
 {
-    if (param0->unk_00->bgs[param0->unk_04].tilemapBuffer) {
+    if (param0->bgConfig->bgs[param0->bgLayer].tilemapBuffer) {
         int v0, v1, v2;
         u8 *v3;
 
-        v2 = Unk_020E5694[param0->unk_00->bgs[param0->unk_04].screenSize];
-        v3 = (u8 *)(param0->unk_00->bgs[param0->unk_04].tilemapBuffer) + param0->unk_06 * v2 + param0->unk_05;
+        v2 = Unk_020E5694[param0->bgConfig->bgs[param0->bgLayer].screenSize];
+        v3 = (u8 *)(param0->bgConfig->bgs[param0->bgLayer].tilemapBuffer) + param0->tilemapTop * v2 + param0->tilemapLeft;
 
-        for (v1 = 0; v1 < param0->unk_08; v1++) {
-            for (v0 = 0; v0 < param0->unk_07; v0++) {
+        for (v1 = 0; v1 < param0->height; v1++) {
+            for (v0 = 0; v0 < param0->width; v0++) {
                 v3[v0] = 0;
             }
 
@@ -1829,13 +1829,13 @@ static void sub_0201AC20(Window *param0)
 {
     sub_0201AA58(param0);
     sub_0201ACCC(param0);
-    sub_02019460(param0->unk_00, param0->unk_04, param0->unk_00->bgs[param0->unk_04].tilemapBuffer, param0->unk_00->bgs[param0->unk_04].bufferSize, param0->unk_00->bgs[param0->unk_04].baseTile);
+    sub_02019460(param0->bgConfig, param0->bgLayer, param0->bgConfig->bgs[param0->bgLayer].tilemapBuffer, param0->bgConfig->bgs[param0->bgLayer].bufferSize, param0->bgConfig->bgs[param0->bgLayer].baseTile);
 }
 
 static void sub_0201AC4C(Window *param0)
 {
     sub_0201AA58(param0);
-    sub_0201C3C0(param0->unk_00, param0->unk_04);
+    sub_0201C3C0(param0->bgConfig, param0->bgLayer);
     sub_0201ACCC(param0);
 }
 
@@ -1843,56 +1843,56 @@ static void sub_0201AC64(Window *param0)
 {
     sub_0201AADC(param0);
 
-    sub_02019460(param0->unk_00, param0->unk_04, param0->unk_00->bgs[param0->unk_04].tilemapBuffer, param0->unk_00->bgs[param0->unk_04].bufferSize, param0->unk_00->bgs[param0->unk_04].baseTile);
-    sub_0201958C(param0->unk_00, param0->unk_04, param0->unk_0C, (u32)(param0->unk_07 * param0->unk_08 * 0x40), (u32)param0->unk_0A_0);
+    sub_02019460(param0->bgConfig, param0->bgLayer, param0->bgConfig->bgs[param0->bgLayer].tilemapBuffer, param0->bgConfig->bgs[param0->bgLayer].bufferSize, param0->bgConfig->bgs[param0->bgLayer].baseTile);
+    sub_0201958C(param0->bgConfig, param0->bgLayer, param0->pixels, (u32)(param0->width * param0->height * 0x40), (u32)param0->baseTile);
 }
 
 static void sub_0201ACA0(Window *param0)
 {
     sub_0201AADC(param0);
 
-    sub_0201C3C0(param0->unk_00, param0->unk_04);
-    sub_0201958C(param0->unk_00, param0->unk_04, param0->unk_0C, (u32)(param0->unk_07 * param0->unk_08 * 0x40), (u32)param0->unk_0A_0);
+    sub_0201C3C0(param0->bgConfig, param0->bgLayer);
+    sub_0201958C(param0->bgConfig, param0->bgLayer, param0->pixels, (u32)(param0->width * param0->height * 0x40), (u32)param0->baseTile);
 }
 
 void sub_0201ACCC(Window *param0)
 {
-    u32 v0 = param0->unk_07 * param0->unk_08 * param0->unk_00->bgs[param0->unk_04].tileSize;
-    sub_0201958C(param0->unk_00, param0->unk_04, param0->unk_0C, v0, param0->unk_0A_0);
+    u32 v0 = param0->width * param0->height * param0->bgConfig->bgs[param0->bgLayer].tileSize;
+    sub_0201958C(param0->bgConfig, param0->bgLayer, param0->pixels, v0, param0->baseTile);
 }
 
 void sub_0201ACF4(Window *param0)
 {
-    Unk_020E56B4[param0->unk_00->bgs[param0->unk_04].type](param0);
+    Unk_020E56B4[param0->bgConfig->bgs[param0->bgLayer].type](param0);
 }
 
 void sub_0201AD10(Window *param0)
 {
-    Unk_020E56A8[param0->unk_00->bgs[param0->unk_04].type](param0);
+    Unk_020E56A8[param0->bgConfig->bgs[param0->bgLayer].type](param0);
 }
 
 static void sub_0201AD2C(Window *param0)
 {
     sub_0201AB38(param0);
-    sub_02019460(param0->unk_00, param0->unk_04, param0->unk_00->bgs[param0->unk_04].tilemapBuffer, param0->unk_00->bgs[param0->unk_04].bufferSize, param0->unk_00->bgs[param0->unk_04].baseTile);
+    sub_02019460(param0->bgConfig, param0->bgLayer, param0->bgConfig->bgs[param0->bgLayer].tilemapBuffer, param0->bgConfig->bgs[param0->bgLayer].bufferSize, param0->bgConfig->bgs[param0->bgLayer].baseTile);
 }
 
 static void sub_0201AD54(Window *param0)
 {
     sub_0201AB38(param0);
-    sub_0201C3C0(param0->unk_00, param0->unk_04);
+    sub_0201C3C0(param0->bgConfig, param0->bgLayer);
 }
 
 static void sub_0201AD68(Window *param0)
 {
     sub_0201ABC8(param0);
-    sub_02019460(param0->unk_00, param0->unk_04, param0->unk_00->bgs[param0->unk_04].tilemapBuffer, param0->unk_00->bgs[param0->unk_04].bufferSize, param0->unk_00->bgs[param0->unk_04].baseTile);
+    sub_02019460(param0->bgConfig, param0->bgLayer, param0->bgConfig->bgs[param0->bgLayer].tilemapBuffer, param0->bgConfig->bgs[param0->bgLayer].bufferSize, param0->bgConfig->bgs[param0->bgLayer].baseTile);
 }
 
 static void sub_0201AD90(Window *param0)
 {
     sub_0201ABC8(param0);
-    sub_0201C3C0(param0->unk_00, param0->unk_04);
+    sub_0201C3C0(param0->bgConfig, param0->bgLayer);
 }
 
 void BGL_FillWindow(Window *param0, u8 param1)
@@ -1900,14 +1900,14 @@ void BGL_FillWindow(Window *param0, u8 param1)
     u32 v0;
     u32 v1;
 
-    if (param0->unk_00->bgs[param0->unk_04].tileSize == 0x20) {
+    if (param0->bgConfig->bgs[param0->bgLayer].tileSize == 0x20) {
         param1 = (param1 << 4) | param1;
     }
 
     v1 = (param1 << 24) | (param1 << 16) | (param1 << 8) | param1;
-    v0 = param0->unk_00->bgs[param0->unk_04].tileSize * param0->unk_07 * param0->unk_08;
+    v0 = param0->bgConfig->bgs[param0->bgLayer].tileSize * param0->width * param0->height;
 
-    MI_CpuFillFast(param0->unk_0C, v1, v0);
+    MI_CpuFillFast(param0->pixels, v1, v0);
 }
 
 void sub_0201ADDC(Window *param0, void *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6, u16 param7, u16 param8, u16 param9)
@@ -1923,11 +1923,11 @@ void sub_0201AE08(Window *param0, void *param1, u16 param2, u16 param3, u16 para
     v0.pixels = (u8 *)param1;
     v0.width = param4;
     v0.height = param5;
-    v1.pixels = (u8 *)param0->unk_0C;
-    v1.width = (u16)(param0->unk_07 * 0x8);
-    v1.height = (u16)(param0->unk_08 * 0x8);
+    v1.pixels = (u8 *)param0->pixels;
+    v1.width = (u16)(param0->width * 0x8);
+    v1.height = (u16)(param0->height * 0x8);
 
-    if (param0->unk_00->bgs[param0->unk_04].colorMode == GX_BG_COLORMODE_16) {
+    if (param0->bgConfig->bgs[param0->bgLayer].colorMode == GX_BG_COLORMODE_16) {
         sub_0201A1E4(&v0, &v1, param2, param3, param6, param7, param8, param9, param10);
     } else {
         sub_0201A424(&v0, &v1, param2, param3, param6, param7, param8, param9, param10);
@@ -1938,11 +1938,11 @@ void BGL_WindowColor(Window *param0, u8 param1, u16 param2, u16 param3, u16 para
 {
     Bitmap v0;
 
-    v0.pixels = (u8 *)param0->unk_0C;
-    v0.width = (u16)(param0->unk_07 * 0x8);
-    v0.height = (u16)(param0->unk_08 * 0x8);
+    v0.pixels = (u8 *)param0->pixels;
+    v0.width = (u16)(param0->width * 0x8);
+    v0.height = (u16)(param0->height * 0x8);
 
-    if (param0->unk_00->bgs[param0->unk_04].colorMode == GX_BG_COLORMODE_16) {
+    if (param0->bgConfig->bgs[param0->bgLayer].colorMode == GX_BG_COLORMODE_16) {
         sub_0201A60C((const Bitmap *)&v0, param2, param3, param4, param5, param1);
     } else {
         sub_0201A6D0((const Bitmap *)&v0, param2, param3, param4, param5, param1);
@@ -1956,9 +1956,9 @@ void sub_0201AED0(Window *param0, const u8 *param1, u16 param2, u16 param3, u16 
     int v3, v4;
     u8 v5;
 
-    v0 = (u8 *)param0->unk_0C;
-    v1 = (u16)(param0->unk_07 * 0x8);
-    v2 = (u16)(param0->unk_08 * 0x8);
+    v0 = (u8 *)param0->pixels;
+    v1 = (u16)(param0->width * 0x8);
+    v2 = (u16)(param0->height * 0x8);
 
     if (((v1) - (param4)) < (param2)) {
         v3 = (v1) - (param4);
@@ -1982,7 +1982,7 @@ void sub_0201AED0(Window *param0, const u8 *param1, u16 param2, u16 param3, u16 
         v5 |= 2;
     }
 
-    if (param0->unk_0A_15 == UnkEnum_00) {
+    if (param0->colorMode == UnkEnum_00) {
         switch (v5) {
         case 0: {
             int v7, v8, v9, v10, v17;
@@ -2484,7 +2484,7 @@ void sub_0201AED0(Window *param0, const u8 *param1, u16 param2, u16 param3, u16 
             return;
         }
     } else {
-        u8 *v6 = sub_02019FC0(param1, param2 * 4 * param3 * 8, param0->unk_09, param0->unk_00->heapID);
+        u8 *v6 = sub_02019FC0(param1, param2 * 4 * param3 * 8, param0->palette, param0->bgConfig->heapID);
 
         switch (v5) {
         case 0: {
@@ -2974,7 +2974,7 @@ void sub_0201AED0(Window *param0, const u8 *param1, u16 param2, u16 param3, u16 
 
 void sub_0201C04C(Window *param0, u8 param1, u8 param2, u8 param3)
 {
-    if (param0->unk_00->bgs[param0->unk_04].colorMode == GX_BG_COLORMODE_16) {
+    if (param0->bgConfig->bgs[param0->bgLayer].colorMode == GX_BG_COLORMODE_16) {
         sub_0201C06C(param0, param1, param2, param3);
     } else {
         sub_0201C158(param0, param1, param2, param3);
@@ -2989,10 +2989,10 @@ static void sub_0201C06C(Window *param0, u8 param1, u8 param2, u8 param3)
     int v6, v7;
     int v8;
 
-    v0 = (u8 *)param0->unk_0C;
+    v0 = (u8 *)param0->pixels;
     v4 = (param3 << 24) | (param3 << 16) | (param3 << 8) | (param3 << 0);
-    v5 = param0->unk_08 * param0->unk_07 * 0x20;
-    v6 = param0->unk_07;
+    v5 = param0->height * param0->width * 0x20;
+    v6 = param0->width;
 
     switch (param1) {
     case 0:
@@ -3049,10 +3049,10 @@ static void sub_0201C158(Window *param0, u8 param1, u8 param2, u8 param3)
     int v6, v7;
     int v8;
 
-    v0 = (u8 *)param0->unk_0C;
+    v0 = (u8 *)param0->pixels;
     v4 = (param3 << 24) | (param3 << 16) | (param3 << 8) | param3;
-    v5 = param0->unk_08 * param0->unk_07 * 0x40;
-    v6 = param0->unk_07;
+    v5 = param0->height * param0->width * 0x40;
+    v6 = param0->width;
 
     switch (param1) {
     case 0:
@@ -3120,52 +3120,52 @@ static void sub_0201C158(Window *param0, u8 param1, u8 param2, u8 param3)
 
 BgConfig *sub_0201C28C(Window *param0)
 {
-    return param0->unk_00;
+    return param0->bgConfig;
 }
 
 u8 sub_0201C290(Window *param0)
 {
-    return param0->unk_04;
+    return param0->bgLayer;
 }
 
 u8 sub_0201C294(Window *param0)
 {
-    return param0->unk_07;
+    return param0->width;
 }
 
 u8 sub_0201C298(Window *param0)
 {
-    return param0->unk_08;
+    return param0->height;
 }
 
 u8 sub_0201C29C(Window *param0)
 {
-    return param0->unk_05;
+    return param0->tilemapLeft;
 }
 
 u8 sub_0201C2A0(Window *param0)
 {
-    return param0->unk_06;
+    return param0->tilemapTop;
 }
 
 u16 sub_0201C2A4(Window *param0)
 {
-    return param0->unk_0A_0;
+    return param0->baseTile;
 }
 
 void sub_0201C2AC(Window *param0, u8 param1)
 {
-    param0->unk_05 = param1;
+    param0->tilemapLeft = param1;
 }
 
 void sub_0201C2B0(Window *param0, u8 param1)
 {
-    param0->unk_06 = param1;
+    param0->tilemapTop = param1;
 }
 
 void sub_0201C2B4(Window *param0, u8 param1)
 {
-    param0->unk_09 = param1;
+    param0->palette = param1;
 }
 
 void sub_0201C2B8(BgConfig *param0)

@@ -150,13 +150,13 @@ static void ov20_021D48C4(UnkStruct_ov20_021D4AD4 *param0, NARC *param1)
         Window v4;
 
         Window_Init(&v4);
-        v4.unk_00 = param0->unk_0C;
-        v4.unk_07 = 11;
-        v4.unk_08 = 57;
-        v4.unk_0A_15 = 0;
-        v4.unk_0C = v3->pRawData;
+        v4.bgConfig = param0->unk_0C;
+        v4.width = 11;
+        v4.height = 57;
+        v4.colorMode = 0;
+        v4.pixels = v3->pRawData;
         ov20_021D498C(&v4, param0->unk_0C, v0, 0);
-        v4.unk_0C = (u8 *)(v3->pRawData) + (11 * 7 * 4 * 0x20);
+        v4.pixels = (u8 *)(v3->pRawData) + (11 * 7 * 4 * 0x20);
         ov20_021D498C(&v4, param0->unk_0C, v1, 0);
         DC_FlushRange(v3->pRawData, v3->szByte);
         sub_0201958C(param0->unk_0C, 4, v3->pRawData, v3->szByte, 0);

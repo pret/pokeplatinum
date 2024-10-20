@@ -397,7 +397,7 @@ static int sub_0209B288(UnkStruct_0209AD84 *param0)
     } while (0);
 
     {
-        BGL_WindowColor(param0->unk_68, 15, 0, 0, 12, param0->unk_68->unk_08 * 8);
+        BGL_WindowColor(param0->unk_68, 15, 0, 0, 12, param0->unk_68->height * 8);
         ColoredArrow_Print(param0->unk_14, param0->unk_68, 0, param0->unk_5C * 16);
         sub_0201ACCC(param0->unk_68);
         Sound_PlayEffect(1500);

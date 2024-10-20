@@ -84,17 +84,17 @@ typedef struct WindowTemplate {
     u16 baseTile;
 } WindowTemplate;
 
-typedef struct {
-    BgConfig *unk_00;
-    u8 unk_04;
-    u8 unk_05;
-    u8 unk_06;
-    u8 unk_07;
-    u8 unk_08;
-    u8 unk_09;
-    u16 unk_0A_0 : 15;
-    u16 unk_0A_15 : 1;
-    void *unk_0C;
+typedef struct Window {
+    BgConfig *bgConfig;
+    u8 bgLayer;
+    u8 tilemapLeft;
+    u8 tilemapTop;
+    u8 width;
+    u8 height;
+    u8 palette;
+    u16 baseTile : 15;
+    u16 colorMode : 1;
+    void *pixels;
 } Window;
 
 typedef struct {

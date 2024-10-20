@@ -1109,7 +1109,7 @@ static void ov112_0225D4F8(const UnkStruct_ov112_0225D44C *param0, Window *param
     }
 
     BGL_WindowColor(param1, 0, 0, 0, 255, 2 * 8);
-    sub_0201AE08(param1, param0->unk_0C.unk_0C, v2, 0, 180 * 8, 2 * 8, v1, 0, v3, 2 * 8, 15);
+    sub_0201AE08(param1, param0->unk_0C.pixels, v2, 0, 180 * 8, 2 * 8, v1, 0, v3, 2 * 8, 15);
     sub_0201A9A4(param1);
 }
 

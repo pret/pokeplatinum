@@ -367,13 +367,13 @@ void sub_02082104(GameWindowLayout *param0, u8 param1)
         return;
     case 4:
     case 3:
-        sub_0201972C(1, &param0->unk_4A4[9], 2 * 2, (v0->unk_09 * 16 + 9) * 2);
+        sub_0201972C(1, &param0->unk_4A4[9], 2 * 2, (v0->palette * 16 + 9) * 2);
         break;
     case 2:
-        sub_0201972C(1, &param0->unk_4A4[(16 + 9)], 2 * 2, (v0->unk_09 * 16 + 9) * 2);
+        sub_0201972C(1, &param0->unk_4A4[(16 + 9)], 2 * 2, (v0->palette * 16 + 9) * 2);
         break;
     case 1:
-        sub_0201972C(1, &param0->unk_4A4[(32 + 9)], 2 * 2, (v0->unk_09 * 16 + 9) * 2);
+        sub_0201972C(1, &param0->unk_4A4[(32 + 9)], 2 * 2, (v0->palette * 16 + 9) * 2);
         break;
     }
 
@@ -553,14 +553,14 @@ void sub_020825B4(GameWindowLayout *param0, u8 param1)
 
     if (param1 & 1) {
         MessageLoader_GetStrbuf(param0->unk_69C, 0, param0->unk_6A8);
-        v0 = sub_020825A4(0, param0->unk_6A8, param0->unk_04[30].unk_07 * 8);
+        v0 = sub_020825A4(0, param0->unk_6A8, param0->unk_04[30].width * 8);
         Text_AddPrinterWithParamsAndColor(&param0->unk_04[30], FONT_SYSTEM, param0->unk_6A8, v0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
         sub_0201A9A4(&param0->unk_04[30]);
     }
 
     if (param1 & 2) {
         MessageLoader_GetStrbuf(param0->unk_69C, 1, param0->unk_6A8);
-        v0 = sub_020825A4(0, param0->unk_6A8, param0->unk_04[31].unk_07 * 8);
+        v0 = sub_020825A4(0, param0->unk_6A8, param0->unk_04[31].width * 8);
         Text_AddPrinterWithParamsAndColor(&param0->unk_04[31], FONT_SYSTEM, param0->unk_6A8, v0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
         sub_0201A9A4(&param0->unk_04[31]);
     }

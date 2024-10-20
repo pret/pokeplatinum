@@ -52,7 +52,7 @@ void ov106_0224372C(BgConfig *param0, Window *param1)
 
 void ov106_02243758(Window *param0, int param1)
 {
-    sub_0200DD0C(param0->unk_00, sub_0201C290(param0), ((1024 - 9) - (18 + 12)), 10, param1, 98);
+    sub_0200DD0C(param0->bgConfig, sub_0201C290(param0), ((1024 - 9) - (18 + 12)), 10, param1, 98);
     BGL_FillWindow(param0, 15);
     sub_0200E060(param0, 0, ((1024 - 9) - (18 + 12)), 10);
 

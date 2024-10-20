@@ -890,7 +890,7 @@ static void sub_0205ADF8(UnkStruct_0205A0D8 *param0, int param1)
         MessageLoader_Free(v4);
     }
 
-    BGL_WindowColor(v0, 15, 0, 0, 16, v0->unk_08 * 8);
+    BGL_WindowColor(v0, 15, 0, 0, 16, v0->height * 8);
     ColoredArrow_Print(param0->unk_78, &param0->unk_54, 0, param1 * 16);
     Window_Show(&param0->unk_54, 0, 1, 11);
 
@@ -920,7 +920,7 @@ static void sub_0205AF18(UnkStruct_0205A0D8 *param0, int param1)
     param0->unk_7C = v0;
     param0->unk_81 = param1;
 
-    BGL_WindowColor(v0, 15, 0, 0, 16, v0->unk_08 * 8);
+    BGL_WindowColor(v0, 15, 0, 0, 16, v0->height * 8);
     ColoredArrow_Print(param0->unk_78, param0->unk_7C, 0, param1 * 16);
     Window_Show(param0->unk_7C, 0, 1, 11);
 }
@@ -957,7 +957,7 @@ static int sub_0205AFE4(UnkStruct_0205A0D8 *param0)
     } while (0);
 
     Sound_PlayEffect(1500);
-    BGL_WindowColor(param0->unk_7C, 15, 0, 0, 16, param0->unk_7C->unk_08 * 8);
+    BGL_WindowColor(param0->unk_7C, 15, 0, 0, 16, param0->unk_7C->height * 8);
     ColoredArrow_Print(param0->unk_78, param0->unk_7C, 0, param0->unk_81 * 16);
     sub_0201ACCC(param0->unk_7C);
 

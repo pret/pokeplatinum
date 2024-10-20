@@ -134,7 +134,7 @@ void Window_Show(Window *param0, u8 param1, u16 param2, u8 param3)
 {
     u8 v0 = sub_0201C290(param0);
 
-    sub_0200DB10(param0->unk_00, v0, sub_0201C29C(param0), sub_0201C2A0(param0), sub_0201C294(param0), sub_0201C298(param0), param3, param2);
+    sub_0200DB10(param0->bgConfig, v0, sub_0201C29C(param0), sub_0201C2A0(param0), sub_0201C294(param0), sub_0201C298(param0), param3, param2);
 
     if (param1 == 0) {
         sub_0201A954(param0);
@@ -145,7 +145,7 @@ void Window_Clear(Window *param0, u8 param1)
 {
     u8 v0 = sub_0201C290(param0);
 
-    sub_02019CB8(param0->unk_00, v0, 0, sub_0201C29C(param0) - 1, sub_0201C2A0(param0) - 1, sub_0201C294(param0) + 2, sub_0201C298(param0) + 2, 0);
+    sub_02019CB8(param0->bgConfig, v0, 0, sub_0201C29C(param0) - 1, sub_0201C2A0(param0) - 1, sub_0201C294(param0) + 2, sub_0201C298(param0) + 2, 0);
 
     if (param1 == 0) {
         sub_0201ACF4(param0);
@@ -196,7 +196,7 @@ static void sub_0200DD7C(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 p
 
 void sub_0200E010(Window *param0, u32 param1, u32 param2)
 {
-    sub_0200DD7C(param0->unk_00, sub_0201C290(param0), sub_0201C29C(param0), sub_0201C2A0(param0), sub_0201C294(param0), sub_0201C298(param0), param2, param1);
+    sub_0200DD7C(param0->bgConfig, sub_0201C290(param0), sub_0201C29C(param0), sub_0201C2A0(param0), sub_0201C294(param0), sub_0201C298(param0), param2, param1);
 }
 
 void sub_0200E060(Window *param0, u8 param1, u16 param2, u8 param3)
@@ -214,7 +214,7 @@ void sub_0200E084(Window *param0, u8 param1)
 {
     u8 v0 = sub_0201C290(param0);
 
-    sub_02019CB8(param0->unk_00, v0, 0, sub_0201C29C(param0) - 2, sub_0201C2A0(param0) - 1, sub_0201C294(param0) + 5, sub_0201C298(param0) + 2, 0);
+    sub_02019CB8(param0->bgConfig, v0, 0, sub_0201C29C(param0) - 2, sub_0201C2A0(param0) - 1, sub_0201C294(param0) + 5, sub_0201C298(param0) + 2, 0);
 
     if (param1 == 0) {
         sub_0201ACF4(param0);
@@ -247,7 +247,7 @@ static void sub_0200E130(Window *param0, u16 param1)
     u8 v5;
     u8 v6;
 
-    v0 = sub_02018364(param0->unk_00);
+    v0 = sub_02018364(param0->bgConfig);
     v5 = sub_0201C290(param0);
     v1 = Heap_AllocFromHeap(v0, (0x20 * 4 * 3));
     v2 = sub_02019F28(v5);
@@ -267,7 +267,7 @@ static void sub_0200E130(Window *param0, u16 param1)
     }
 
     sub_0200E0EC(v3, 4, 0, 12, 16 * 3, v1, 12, 16 * 3, 1, 0, 12, 16 * 3);
-    sub_0201958C(param0->unk_00, v5, v1, (0x20 * 4 * 3), param1 + 18);
+    sub_0201958C(param0->bgConfig, v5, v1, (0x20 * 4 * 3), param1 + 18);
     TextPrinter_SetScrollArrowBaseTile(param1);
     Heap_FreeToHeap(v4);
     Heap_FreeToHeap(v1);
@@ -374,7 +374,7 @@ static void sub_0200E61C(Window *param0, u16 param1, u8 param2)
 
     for (v0 = 0; v0 < 4; v0++) {
         for (v1 = 0; v1 < 6; v1++) {
-            sub_02019CB8(param0->unk_00, v4, param1 + v0 * 6 + v1, v2 + v1, v3 + v0, 1, 1, param2);
+            sub_02019CB8(param0->bgConfig, v4, param1 + v0 * 6 + v1, v2 + v1, v3 + v0, 1, 1, param2);
         }
     }
 }
@@ -384,10 +384,10 @@ void sub_0200E69C(Window *param0, u8 param1, u16 param2, u8 param3, u8 param4)
     u8 v0 = sub_0201C290(param0);
 
     if ((param4 == 0) || (param4 == 1)) {
-        sub_0200E354(param0->unk_00, v0, sub_0201C29C(param0), sub_0201C2A0(param0), sub_0201C294(param0), sub_0201C298(param0), param3, param2);
+        sub_0200E354(param0->bgConfig, v0, sub_0201C29C(param0), sub_0201C2A0(param0), sub_0201C294(param0), sub_0201C298(param0), param3, param2);
         sub_0200E61C(param0, param2 + (18 + 12), param3);
     } else {
-        sub_0200DD7C(param0->unk_00, v0, sub_0201C29C(param0), sub_0201C2A0(param0), sub_0201C294(param0), sub_0201C298(param0), param3, param2);
+        sub_0200DD7C(param0->bgConfig, v0, sub_0201C29C(param0), sub_0201C2A0(param0), sub_0201C294(param0), sub_0201C298(param0), param3, param2);
     }
 
     if (param1 == 0) {
@@ -402,9 +402,9 @@ void sub_0200E744(Window *param0, u8 param1, u8 param2)
     u8 v0 = sub_0201C290(param0);
 
     if ((param1 == 0) || (param1 == 1)) {
-        sub_02019CB8(param0->unk_00, v0, 0, sub_0201C29C(param0) - 9, sub_0201C2A0(param0) - 1, sub_0201C294(param0) + 11, sub_0201C298(param0) + 2, 0);
+        sub_02019CB8(param0->bgConfig, v0, 0, sub_0201C29C(param0) - 9, sub_0201C2A0(param0) - 1, sub_0201C294(param0) + 11, sub_0201C298(param0) + 2, 0);
     } else {
-        sub_02019CB8(param0->unk_00, v0, 0, sub_0201C29C(param0) - 2, sub_0201C2A0(param0) - 1, sub_0201C294(param0) + 5, sub_0201C298(param0) + 2, 0);
+        sub_02019CB8(param0->bgConfig, v0, 0, sub_0201C29C(param0) - 2, sub_0201C2A0(param0) - 1, sub_0201C294(param0) + 5, sub_0201C298(param0) + 2, 0);
     }
 
     if (param2 == 0) {
@@ -423,7 +423,7 @@ void *sub_0200E7FC(Window *param0, u32 param1)
     u8 v6;
     u8 v7;
 
-    v1 = sub_02018364(param0->unk_00);
+    v1 = sub_02018364(param0->bgConfig);
     v6 = sub_0201C290(param0);
     v2 = sub_02019F28(v6);
     v0 = Heap_AllocFromHeap(v1, sizeof(UnkStruct_0200E924));
@@ -475,28 +475,28 @@ static void sub_0200E924(UnkStruct_0200E924 *param0, u32 param1)
     v3 = sub_0201C294(param0->unk_00);
 
     if (param1 == 2) {
-        sub_0201958C(param0->unk_00->unk_00, v0, param0->unk_404, 0x20 * 4, param0->unk_484 + 18);
-        sub_02019CB8(param0->unk_00->unk_00, v0, param0->unk_484 + 10, v1 + v3 + 1, v2 + 2, 1, 1, 16);
-        sub_02019CB8(param0->unk_00->unk_00, v0, param0->unk_484 + 11, v1 + v3 + 2, v2 + 2, 1, 1, 16);
-        sub_02019CB8(param0->unk_00->unk_00, v0, param0->unk_484 + 10, v1 + v3 + 1, v2 + 3, 1, 1, 16);
-        sub_02019CB8(param0->unk_00->unk_00, v0, param0->unk_484 + 11, v1 + v3 + 2, v2 + 3, 1, 1, 16);
-        sub_02019448(param0->unk_00->unk_00, v0);
+        sub_0201958C(param0->unk_00->bgConfig, v0, param0->unk_404, 0x20 * 4, param0->unk_484 + 18);
+        sub_02019CB8(param0->unk_00->bgConfig, v0, param0->unk_484 + 10, v1 + v3 + 1, v2 + 2, 1, 1, 16);
+        sub_02019CB8(param0->unk_00->bgConfig, v0, param0->unk_484 + 11, v1 + v3 + 2, v2 + 2, 1, 1, 16);
+        sub_02019CB8(param0->unk_00->bgConfig, v0, param0->unk_484 + 10, v1 + v3 + 1, v2 + 3, 1, 1, 16);
+        sub_02019CB8(param0->unk_00->bgConfig, v0, param0->unk_484 + 11, v1 + v3 + 2, v2 + 3, 1, 1, 16);
+        sub_02019448(param0->unk_00->bgConfig, v0);
 
         return;
     }
 
     sub_0201958C(
-        param0->unk_00->unk_00, v0, &param0->unk_04[0x20 * 4 * param0->unk_487_0], 0x20 * 4, param0->unk_484 + 18);
+        param0->unk_00->bgConfig, v0, &param0->unk_04[0x20 * 4 * param0->unk_487_0], 0x20 * 4, param0->unk_484 + 18);
 
     if (param1 == 0) {
         return;
     }
 
-    sub_02019CB8(param0->unk_00->unk_00, v0, param0->unk_484 + 18, v1 + v3 + 1, v2 + 2, 1, 1, 16);
-    sub_02019CB8(param0->unk_00->unk_00, v0, param0->unk_484 + 19, v1 + v3 + 2, v2 + 2, 1, 1, 16);
-    sub_02019CB8(param0->unk_00->unk_00, v0, param0->unk_484 + 20, v1 + v3 + 1, v2 + 3, 1, 1, 16);
-    sub_02019CB8(param0->unk_00->unk_00, v0, param0->unk_484 + 21, v1 + v3 + 2, v2 + 3, 1, 1, 16);
-    sub_02019448(param0->unk_00->unk_00, v0);
+    sub_02019CB8(param0->unk_00->bgConfig, v0, param0->unk_484 + 18, v1 + v3 + 1, v2 + 2, 1, 1, 16);
+    sub_02019CB8(param0->unk_00->bgConfig, v0, param0->unk_484 + 19, v1 + v3 + 2, v2 + 2, 1, 1, 16);
+    sub_02019CB8(param0->unk_00->bgConfig, v0, param0->unk_484 + 20, v1 + v3 + 1, v2 + 3, 1, 1, 16);
+    sub_02019CB8(param0->unk_00->bgConfig, v0, param0->unk_484 + 21, v1 + v3 + 2, v2 + 3, 1, 1, 16);
+    sub_02019448(param0->unk_00->bgConfig, v0);
 }
 
 static void sub_0200EB20(SysTask *param0, void *param1)

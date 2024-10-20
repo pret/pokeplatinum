@@ -1469,7 +1469,7 @@ static void ov115_022617E8(UnkStruct_ov115_022617E8 *param0, UnkStruct_ov115_022
                 sub_0201C2AC(&v5, v3);
                 sub_0201C2B0(&v5, v4);
 
-                v5.unk_0A_0 = v6;
+                v5.baseTile = v6;
                 v9 = Font_CalcStrbufWidth(FONT_SYSTEM, v7, 0);
                 v10 = ((8 * 8) - v9) / 2;
                 Text_AddPrinterWithParamsAndColor(&v5, FONT_SYSTEM, v7, v10, 0, TEXT_SPEED_INSTANT, v8, NULL);

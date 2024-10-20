@@ -107,7 +107,7 @@ void ov19_021DB3C4(UnkStruct_ov19_021DB6F0 *param0)
 void ov19_021DB448(UnkStruct_ov19_021DB6F0 *param0, u32 param1)
 {
     sub_0201A9F4(&param0->unk_18[0]);
-    ov19_021DB4B4(param0->unk_00, param0->unk_18[0].unk_04, param0->unk_18[0].unk_05, param0->unk_18[0].unk_06, param0->unk_18[0].unk_07, param0->unk_18[0].unk_08);
+    ov19_021DB4B4(param0->unk_00, param0->unk_18[0].bgLayer, param0->unk_18[0].tilemapLeft, param0->unk_18[0].tilemapTop, param0->unk_18[0].width, param0->unk_18[0].height);
     BGL_FillWindow(&param0->unk_18[0], 15);
     MessageLoader_GetStrbuf(param0->unk_10, param1, param0->unk_30);
     StringTemplate_Format(param0->unk_2C, param0->unk_34, param0->unk_30);
@@ -310,11 +310,11 @@ static void ov19_021DB84C(BgConfig *param0, Window *param1)
     u16 *v0;
     u32 v1, v2, v3, v4;
 
-    v0 = sub_02019FE4(param0, param1->unk_04);
-    v0 += (((param1->unk_06 - 1) * 32) + (param1->unk_05 - 1));
+    v0 = sub_02019FE4(param0, param1->bgLayer);
+    v0 += (((param1->tilemapTop - 1) * 32) + (param1->tilemapLeft - 1));
 
-    for (v2 = 0; v2 < (param1->unk_08 + 2); v2++) {
-        for (v1 = 0; v1 < (param1->unk_07 + 2); v1++) {
+    for (v2 = 0; v2 < (param1->height + 2); v2++) {
+        for (v1 = 0; v1 < (param1->width + 2); v1++) {
             v0[v1] = 0x0;
         }
 
@@ -327,11 +327,11 @@ static void ov19_021DB898(BgConfig *param0, Window *param1)
     u16 *v0;
     u32 v1, v2, v3, v4;
 
-    v0 = sub_02019FE4(param0, param1->unk_04);
-    v0 += (((param1->unk_06 - 1) * 32) + (param1->unk_05 - 2));
+    v0 = sub_02019FE4(param0, param1->bgLayer);
+    v0 += (((param1->tilemapTop - 1) * 32) + (param1->tilemapLeft - 2));
 
-    for (v2 = 0; v2 < (param1->unk_08 + 2); v2++) {
-        for (v1 = 0; v1 < (param1->unk_07 + 5); v1++) {
+    for (v2 = 0; v2 < (param1->height + 2); v2++) {
+        for (v1 = 0; v1 < (param1->width + 5); v1++) {
             v0[v1] = 0x0;
         }
 

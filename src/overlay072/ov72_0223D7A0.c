@@ -208,7 +208,7 @@ int ov72_0223D984(OverlayManager *param0, int *param1)
     UnkStruct_ov72_0223DB98 *v0 = OverlayManager_Data(param0);
     int v1;
 
-    ov72_0223E9B4(v0->unk_5BFC, v0->unk_328.unk_0C);
+    ov72_0223E9B4(v0->unk_5BFC, v0->unk_328.pixels);
 
     SetMainCallback(NULL, NULL);
     sub_0200A4E4(v0->unk_1DC[0][0]);
@@ -552,11 +552,11 @@ static void *ov72_0223E060(Window *param0, Strbuf *param1, int param2, u8 param3
     int v0, v1;
 
     v1 = Font_CalcStrbufWidth(FONT_SUBSCREEN, param1, 0);
-    v0 = ((param0->unk_07 * 8) - v1) / 2;
+    v0 = ((param0->width * 8) - v1) / 2;
 
     Text_AddPrinterWithParamsAndColor(param0, param3, param1, v0, param2, TEXT_SPEED_NO_TRANSFER, param4, NULL);
 
-    return param0->unk_0C;
+    return param0->pixels;
 }
 
 static void ov72_0223E0A0(UnkStruct_ov72_0223DB98 *param0, OverlayManager *param1)

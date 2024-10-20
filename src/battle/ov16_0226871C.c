@@ -2761,15 +2761,15 @@ static void ov16_0226ABE8(UnkStruct_ov16_02268A14 *param0)
         for (v0 = 0; v0 < 4; v0++) {
             Heap_FreeToHeap(param0->unk_68[v1].unk_18[v0]);
 
-            if (param0->unk_68[v1].unk_28[v0].unk_00.unk_0C != NULL) {
+            if (param0->unk_68[v1].unk_28[v0].unk_00.pixels != NULL) {
                 BGL_DeleteWindow(&param0->unk_68[v1].unk_28[v0].unk_00);
             }
 
-            if (param0->unk_68[v1].unk_78[v0].unk_00.unk_0C != NULL) {
+            if (param0->unk_68[v1].unk_78[v0].unk_00.pixels != NULL) {
                 BGL_DeleteWindow(&param0->unk_68[v1].unk_78[v0].unk_00);
             }
 
-            if (param0->unk_68[v1].unk_C8[v0].unk_00.unk_0C != NULL) {
+            if (param0->unk_68[v1].unk_C8[v0].unk_00.pixels != NULL) {
                 BGL_DeleteWindow(&param0->unk_68[v1].unk_C8[v0].unk_00);
             }
         }
@@ -2806,24 +2806,24 @@ void ov16_0226AC98(UnkStruct_ov16_02268A14 *param0, int param1, const UnkStruct_
             Heap_FreeToHeap(v1);
         }
 
-        if ((v0->unk_28[v4].unk_00.unk_0C == NULL) || ((param2->unk_00[v4] != v0->unk_00.unk_00[v4]) && (param2->unk_00[v4] != 0))) {
+        if ((v0->unk_28[v4].unk_00.pixels == NULL) || ((param2->unk_00[v4] != v0->unk_00.unk_00[v4]) && (param2->unk_00[v4] != 0))) {
             v6 = MessageUtil_MoveName(param2->unk_00[v4], 5);
             ov16_0226AEA0(param0, v6, FONT_SUBSCREEN, &v0->unk_28[v4], TEXT_COLOR(7, 8, 9));
             Strbuf_Free(v6);
         }
 
-        if ((v0->unk_78[v4].unk_00.unk_0C == NULL) || (v0->unk_C8[v4].unk_00.unk_0C == NULL) || (param2->unk_00[v4] != 0) || (param2->unk_00[v4] != v0->unk_00.unk_00[v4]) || (param2->unk_08[v4] != v0->unk_00.unk_08[v4]) || (param2->unk_10[v4] != v0->unk_00.unk_10[v4])) {
+        if ((v0->unk_78[v4].unk_00.pixels == NULL) || (v0->unk_C8[v4].unk_00.pixels == NULL) || (param2->unk_00[v4] != 0) || (param2->unk_00[v4] != v0->unk_00.unk_00[v4]) || (param2->unk_08[v4] != v0->unk_00.unk_08[v4]) || (param2->unk_10[v4] != v0->unk_00.unk_10[v4])) {
             StringTemplate_SetNumber(v10, 0, param2->unk_08[v4], 2, 1, 0);
             StringTemplate_SetNumber(v10, 1, param2->unk_10[v4], 2, 1, 0);
             StringTemplate_Format(v10, v7, v8);
 
             v11 = ov16_0226B924(param2->unk_08[v4], param2->unk_10[v4]);
 
-            if ((v0->unk_78[v4].unk_00.unk_0C == NULL) || (param2->unk_00[v4] != v0->unk_00.unk_00[v4]) || (param2->unk_08[v4] != v0->unk_00.unk_08[v4])) {
+            if ((v0->unk_78[v4].unk_00.pixels == NULL) || (param2->unk_00[v4] != v0->unk_00.unk_00[v4]) || (param2->unk_08[v4] != v0->unk_00.unk_08[v4])) {
                 ov16_0226AEA0(param0, v7, FONT_SYSTEM, &v0->unk_78[v4], v11);
             }
 
-            if ((v0->unk_C8[v4].unk_00.unk_0C == NULL) || (param2->unk_00[v4] != v0->unk_00.unk_00[v4]) || (param2->unk_08[v4] != v0->unk_00.unk_08[v4])) {
+            if ((v0->unk_C8[v4].unk_00.pixels == NULL) || (param2->unk_00[v4] != v0->unk_00.unk_00[v4]) || (param2->unk_08[v4] != v0->unk_00.unk_08[v4])) {
                 ov16_0226AEA0(param0, v9, FONT_SYSTEM, &v0->unk_C8[v4], v11);
             }
         }
@@ -2845,7 +2845,7 @@ static void ov16_0226AEA0(UnkStruct_ov16_02268A14 *param0, const Strbuf *param1,
     param3->unk_12 = v0;
     param3->unk_10 = v1;
 
-    if (param3->unk_00.unk_0C != NULL) {
+    if (param3->unk_00.pixels != NULL) {
         BGL_DeleteWindow(&param3->unk_00);
     }
 

@@ -75,7 +75,7 @@ static BOOL ov29_02256728(UnkStruct_ov29_022566C8 *param0)
     if (param0->unk_70) {
         sub_0201A8D4(param0->unk_04, param0->unk_70, &v0);
 
-        if (sub_02099DD0(param0->unk_00->unk_16E8, param0->unk_70->unk_0C, (20 * 19 * 0x20)) == 0) {
+        if (sub_02099DD0(param0->unk_00->unk_16E8, param0->unk_70->pixels, (20 * 19 * 0x20)) == 0) {
             BGL_FillWindow(param0->unk_70, 0x4);
         }
 
@@ -91,7 +91,7 @@ void ov29_02256770(UnkStruct_ov29_022566C8 *param0)
         GF_ASSERT(GF_heap_c_dummy_return_true(7));
 
         if (param0->unk_70) {
-            sub_02099DA8(param0->unk_00->unk_16E8, param0->unk_70->unk_0C, (20 * 19 * 0x20));
+            sub_02099DA8(param0->unk_00->unk_16E8, param0->unk_70->pixels, (20 * 19 * 0x20));
             BGL_DeleteWindow(param0->unk_70);
             Heap_FreeToHeap(param0->unk_70);
         }
@@ -271,13 +271,13 @@ static void ov29_022569DC(SysTask *param0, void *param1)
         }
 
         BGL_WindowColor(v2->unk_70, 0x4, v0, v1, v3, v4);
-        ov29_02256968((u8 *)v2->unk_70->unk_0C, v0, v1, v3, v4);
+        ov29_02256968((u8 *)v2->unk_70->pixels, v0, v1, v3, v4);
     } else {
         v0 = v2->unk_00->unk_04 * 2;
         v1 = v2->unk_00->unk_08 * 2;
 
         BGL_WindowColor(v2->unk_70, 0x1, v0, v1, 2, 2);
-        ov29_02256968((u8 *)v2->unk_70->unk_0C, v0, v1, 2, 2);
+        ov29_02256968((u8 *)v2->unk_70->pixels, v0, v1, 2, 2);
     }
 
     ov29_022567F0(param1);

@@ -158,7 +158,7 @@ void sub_02095EAC(int param0, int param1, void *param2, void *param3)
             MI_CpuCopyFast(v1->unk_00, &v0->unk_4434[v1->unk_3EC * 1000], 1000);
         }
 
-        MI_CpuCopyFast(v0->unk_4434, v0->unk_32C.unk_0C, 30 * 15 * 32);
+        MI_CpuCopyFast(v0->unk_4434, v0->unk_32C.pixels, 30 * 15 * 32);
         sub_0201A954(&v0->unk_32C);
     } else {
         UnkStruct_02095EAC_sub1 *v2 = (UnkStruct_02095EAC_sub1 *)param2;
@@ -333,7 +333,7 @@ static void sub_02096170(int param0, int param1, void *param2, void *param3)
 
 static void sub_0209617C(UnkStruct_02095EAC *param0, int param1)
 {
-    u8 *v0 = (u8 *)param0->unk_32C.unk_0C;
+    u8 *v0 = (u8 *)param0->unk_32C.pixels;
 
     MI_CpuCopyFast(&v0[param1 * 1000], param0->unk_7C74.unk_00, 1000);
 

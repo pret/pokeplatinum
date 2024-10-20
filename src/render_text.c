@@ -313,7 +313,7 @@ void TextPrinter_DrawScrollArrow(TextPrinter *printer)
     u8 width = sub_0201C294(printer->template.window);
     u16 baseTile = sScrollArrowBaseTile;
 
-    sub_02019CB8(printer->template.window->unk_00,
+    sub_02019CB8(printer->template.window->bgConfig,
         bgID,
         baseTile + 18 + (sScrollArrowTileOffsets[substruct->scrollArrowYPosIdx] * 4),
         x + width + 1,
@@ -321,7 +321,7 @@ void TextPrinter_DrawScrollArrow(TextPrinter *printer)
         1,
         1,
         16);
-    sub_02019CB8(printer->template.window->unk_00,
+    sub_02019CB8(printer->template.window->bgConfig,
         bgID,
         baseTile + 19 + (sScrollArrowTileOffsets[substruct->scrollArrowYPosIdx] * 4),
         x + width + 2,
@@ -329,7 +329,7 @@ void TextPrinter_DrawScrollArrow(TextPrinter *printer)
         1,
         1,
         16);
-    sub_02019CB8(printer->template.window->unk_00,
+    sub_02019CB8(printer->template.window->bgConfig,
         bgID,
         baseTile + 20 + (sScrollArrowTileOffsets[substruct->scrollArrowYPosIdx] * 4),
         x + width + 1,
@@ -337,7 +337,7 @@ void TextPrinter_DrawScrollArrow(TextPrinter *printer)
         1,
         1,
         16);
-    sub_02019CB8(printer->template.window->unk_00,
+    sub_02019CB8(printer->template.window->bgConfig,
         bgID,
         baseTile + 21 + (sScrollArrowTileOffsets[substruct->scrollArrowYPosIdx] * 4),
         x + width + 2,
@@ -346,7 +346,7 @@ void TextPrinter_DrawScrollArrow(TextPrinter *printer)
         1,
         16);
 
-    sub_02019448(printer->template.window->unk_00, bgID);
+    sub_02019448(printer->template.window->bgConfig, bgID);
     substruct->scrollArrowDelay = 8;
     substruct->scrollArrowYPosIdx++;
 }
@@ -359,7 +359,7 @@ void TextPrinter_ClearScrollArrow(TextPrinter *printer)
     u8 width = sub_0201C294(printer->template.window);
     u16 baseTile = sScrollArrowBaseTile;
 
-    sub_02019CB8(printer->template.window->unk_00,
+    sub_02019CB8(printer->template.window->bgConfig,
         bgID,
         baseTile + 10,
         x + width + 1,
@@ -367,7 +367,7 @@ void TextPrinter_ClearScrollArrow(TextPrinter *printer)
         1,
         2,
         16);
-    sub_02019CB8(printer->template.window->unk_00,
+    sub_02019CB8(printer->template.window->bgConfig,
         bgID,
         baseTile + 11,
         x + width + 2,
@@ -375,7 +375,7 @@ void TextPrinter_ClearScrollArrow(TextPrinter *printer)
         1,
         2,
         16);
-    sub_02019448(printer->template.window->unk_00, bgID);
+    sub_02019448(printer->template.window->bgConfig, bgID);
 }
 
 static BOOL TextPrinter_Continue(TextPrinter *printer)
