@@ -223,16 +223,16 @@ void sub_0200E084(Window *param0, u8 param1)
 
 static void sub_0200E0EC(void *param0, u16 param1, u16 param2, u16 param3, u16 param4, void *param5, u16 param6, u16 param7, u16 param8, u16 param9, u16 param10, u16 param11)
 {
-    UnkStruct_0201AE08 v0;
-    UnkStruct_0201AE08 v1;
+    Bitmap v0;
+    Bitmap v1;
 
-    v0.unk_00 = (u8 *)param0;
-    v0.unk_04 = param3;
-    v0.unk_06 = param4;
+    v0.pixels = (u8 *)param0;
+    v0.width = param3;
+    v0.height = param4;
 
-    v1.unk_00 = (u8 *)param5;
-    v1.unk_04 = param6;
-    v1.unk_06 = param7;
+    v1.pixels = (u8 *)param5;
+    v1.width = param6;
+    v1.height = param7;
 
     sub_0201A1E4(&v0, &v1, param1, param2, param8, param9, param10, param11, 0);
 }

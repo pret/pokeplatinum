@@ -24,11 +24,11 @@ enum BGLScreenSize {
     SCREEN_SIZE_1024x1024,
 };
 
-typedef struct {
-    const u8 *unk_00;
-    u16 unk_04;
-    u16 unk_06;
-} UnkStruct_0201AE08;
+typedef struct Bitmap {
+    const u8 *pixels;
+    u16 width;
+    u16 height;
+} Bitmap;
 
 typedef struct {
     int unk_00;
@@ -137,10 +137,10 @@ void *sub_02019FE4(BGL *param0, u8 param1);
 int sub_02019FF0(BGL *param0, u8 param1);
 u16 sub_02019FFC(BGL *param0, u8 param1);
 u8 sub_0201A008(BGL *param0, u8 param1);
-void sub_0201A1E4(const UnkStruct_0201AE08 *param0, const UnkStruct_0201AE08 *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6, u16 param7, u16 param8);
-void sub_0201A424(const UnkStruct_0201AE08 *param0, const UnkStruct_0201AE08 *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6, u16 param7, u16 param8);
-void sub_0201A60C(const UnkStruct_0201AE08 *param0, u16 param1, u16 param2, u16 param3, u16 param4, u8 param5);
-void sub_0201A6D0(const UnkStruct_0201AE08 *param0, u16 param1, u16 param2, u16 param3, u16 param4, u8 param5);
+void sub_0201A1E4(const Bitmap *param0, const Bitmap *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6, u16 param7, u16 param8);
+void sub_0201A424(const Bitmap *param0, const Bitmap *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6, u16 param7, u16 param8);
+void sub_0201A60C(const Bitmap *param0, u16 param1, u16 param2, u16 param3, u16 param4, u8 param5);
+void sub_0201A6D0(const Bitmap *param0, u16 param1, u16 param2, u16 param3, u16 param4, u8 param5);
 Window *sub_0201A778(u32 param0, u8 param1);
 void Window_Init(Window *param0);
 u8 BGL_WindowAdded(Window *param0);

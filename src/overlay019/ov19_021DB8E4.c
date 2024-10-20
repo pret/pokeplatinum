@@ -116,9 +116,9 @@ BOOL ov19_021DB8E4(UnkStruct_ov19_021DBA9C *param0, UnkStruct_ov19_021D61B0 *par
     param0->unk_44 = sub_0200C440(2, 13, 4, 10);
     param0->unk_4BFC = Strbuf_Init(500, 10);
     param0->unk_10 = NULL;
-    param0->unk_3C.unk_00 = param0->unk_18->pRawData;
-    param0->unk_3C.unk_04 = 32;
-    param0->unk_3C.unk_06 = 32;
+    param0->unk_3C.pixels = param0->unk_18->pRawData;
+    param0->unk_3C.width = 32;
+    param0->unk_3C.height = 32;
     param0->unk_4BF8 = MessageLoader_Init(1, 26, 391, 10);
 
     for (v0 = 0; v0 < 18; v0++) {

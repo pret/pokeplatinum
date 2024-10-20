@@ -29,7 +29,7 @@ typedef struct {
     NNSG2dScreenData *unk_30;
     void *unk_34;
     NNSG2dScreenData *unk_38;
-    UnkStruct_0201AE08 unk_3C;
+    Bitmap unk_3C;
     UnkStruct_0200C440 *unk_44;
     CellActor *unk_48[18];
     CellActor *unk_90;

@@ -1377,31 +1377,31 @@ u8 sub_0201A008(BGL *param0, u8 param1)
     return 0;
 }
 
-void sub_0201A1E4(const UnkStruct_0201AE08 *param0, const UnkStruct_0201AE08 *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6, u16 param7, u16 param8)
+void sub_0201A1E4(const Bitmap *param0, const Bitmap *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6, u16 param7, u16 param8)
 {
     int v0, v1, v2, v3, v4, v5, v6, v7, v8, v9;
     u8 *v10, *v11;
 
-    if (((param1->unk_04) - (param4)) < (param6)) {
-        v6 = (param1->unk_04) - (param4) + (param2);
+    if (((param1->width) - (param4)) < (param6)) {
+        v6 = (param1->width) - (param4) + (param2);
     } else {
         v6 = (param6) + (param2);
     }
 
-    if (((param1->unk_06) - (param5)) < (param7)) {
-        v7 = (param1->unk_06) - (param5) + (param3);
+    if (((param1->height) - (param5)) < (param7)) {
+        v7 = (param1->height) - (param5) + (param3);
     } else {
         v7 = (param7) + (param3);
     }
 
-    v8 = (((param0->unk_04) + ((param0->unk_04) & 7)) >> 3);
-    v9 = (((param1->unk_04) + ((param1->unk_04) & 7)) >> 3);
+    v8 = (((param0->width) + ((param0->width) & 7)) >> 3);
+    v9 = (((param1->width) + ((param1->width) & 7)) >> 3);
 
     if (param8 == 0xffff) {
         for (v2 = (param3), v3 = (param5); v2 < v7; v2++, v3++) {
             for (v0 = (param2), v1 = (param4); v0 < v6; v0++, v1++) {
-                v10 = (u8 *)((param0->unk_00) + ((v0 >> 1) & 0x3) + ((v0 << 2) & 0x3fe0) + (((v2 << 2) & 0x3fe0) * v8) + ((u32)((v2 << 2) & 0x1c)));
-                v11 = (u8 *)((param1->unk_00) + ((v1 >> 1) & 0x3) + ((v1 << 2) & 0x3fe0) + (((v3 << 2) & 0x3fe0) * v9) + ((u32)((v3 << 2) & 0x1c)));
+                v10 = (u8 *)((param0->pixels) + ((v0 >> 1) & 0x3) + ((v0 << 2) & 0x3fe0) + (((v2 << 2) & 0x3fe0) * v8) + ((u32)((v2 << 2) & 0x1c)));
+                v11 = (u8 *)((param1->pixels) + ((v1 >> 1) & 0x3) + ((v1 << 2) & 0x3fe0) + (((v3 << 2) & 0x3fe0) * v9) + ((u32)((v3 << 2) & 0x1c)));
 
                 v4 = (*v10 >> ((v0 & 1) * 4)) & 0xf;
                 v5 = (v1 & 1) * 4;
@@ -1411,8 +1411,8 @@ void sub_0201A1E4(const UnkStruct_0201AE08 *param0, const UnkStruct_0201AE08 *pa
     } else {
         for (v2 = (param3), v3 = (param5); v2 < v7; v2++, v3++) {
             for (v0 = (param2), v1 = (param4); v0 < v6; v0++, v1++) {
-                v10 = (u8 *)((param0->unk_00) + ((v0 >> 1) & 0x3) + ((v0 << 2) & 0x3fe0) + (((v2 << 2) & 0x3fe0) * v8) + ((u32)((v2 << 2) & 0x1c)));
-                v11 = (u8 *)((param1->unk_00) + ((v1 >> 1) & 0x3) + ((v1 << 2) & 0x3fe0) + (((v3 << 2) & 0x3fe0) * v9) + ((u32)((v3 << 2) & 0x1c)));
+                v10 = (u8 *)((param0->pixels) + ((v0 >> 1) & 0x3) + ((v0 << 2) & 0x3fe0) + (((v2 << 2) & 0x3fe0) * v8) + ((u32)((v2 << 2) & 0x1c)));
+                v11 = (u8 *)((param1->pixels) + ((v1 >> 1) & 0x3) + ((v1 << 2) & 0x3fe0) + (((v3 << 2) & 0x3fe0) * v9) + ((u32)((v3 << 2) & 0x1c)));
 
                 v4 = (*v10 >> ((v0 & 1) * 4)) & 0xf;
 
@@ -1425,40 +1425,40 @@ void sub_0201A1E4(const UnkStruct_0201AE08 *param0, const UnkStruct_0201AE08 *pa
     }
 }
 
-void sub_0201A424(const UnkStruct_0201AE08 *param0, const UnkStruct_0201AE08 *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6, u16 param7, u16 param8)
+void sub_0201A424(const Bitmap *param0, const Bitmap *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6, u16 param7, u16 param8)
 {
     int v0, v1, v2, v3, v4, v5, v6, v7;
     u8 *v8;
     u8 *v9;
 
-    if (((param1->unk_04) - (param4)) < (param6)) {
-        v4 = (param1->unk_04) - (param4) + (param2);
+    if (((param1->width) - (param4)) < (param6)) {
+        v4 = (param1->width) - (param4) + (param2);
     } else {
         v4 = (param6) + (param2);
     }
 
-    if (((param1->unk_06) - (param5)) < (param7)) {
-        v5 = (param1->unk_06) - (param5) + (param3);
+    if (((param1->height) - (param5)) < (param7)) {
+        v5 = (param1->height) - (param5) + (param3);
     } else {
         v5 = (param7) + (param3);
     }
 
-    v6 = (((param0->unk_04) + ((param0->unk_04) & 7)) >> 3);
-    v7 = (((param1->unk_04) + ((param1->unk_04) & 7)) >> 3);
+    v6 = (((param0->width) + ((param0->width) & 7)) >> 3);
+    v7 = (((param1->width) + ((param1->width) & 7)) >> 3);
 
     if (param8 == 0xffff) {
         for (v2 = (param3), v3 = (param5); v2 < v5; v2++, v3++) {
             for (v0 = (param2), v1 = (param4); v0 < v4; v0++, v1++) {
-                v8 = (u8 *)((param0->unk_00) + (v0 & 0x7) + ((v0 << 3) & 0x7fc0) + (((v2 << 3) & 0x7fc0) * v6) + ((u32)((v2 << 3) & 0x38)));
-                v9 = (u8 *)((param1->unk_00) + (v1 & 0x7) + ((v1 << 3) & 0x7fc0) + (((v3 << 3) & 0x7fc0) * v7) + ((u32)((v3 << 3) & 0x38)));
+                v8 = (u8 *)((param0->pixels) + (v0 & 0x7) + ((v0 << 3) & 0x7fc0) + (((v2 << 3) & 0x7fc0) * v6) + ((u32)((v2 << 3) & 0x38)));
+                v9 = (u8 *)((param1->pixels) + (v1 & 0x7) + ((v1 << 3) & 0x7fc0) + (((v3 << 3) & 0x7fc0) * v7) + ((u32)((v3 << 3) & 0x38)));
                 *v9 = *v8;
             }
         }
     } else {
         for (v2 = (param3), v3 = (param5); v2 < v5; v2++, v3++) {
             for (v0 = (param2), v1 = (param4); v0 < v4; v0++, v1++) {
-                v8 = (u8 *)((param0->unk_00) + (v0 & 0x7) + ((v0 << 3) & 0x7fc0) + (((v2 << 3) & 0x7fc0) * v6) + ((u32)((v2 << 3) & 0x38)));
-                v9 = (u8 *)((param1->unk_00) + (v1 & 0x7) + ((v1 << 3) & 0x7fc0) + (((v3 << 3) & 0x7fc0) * v7) + ((u32)((v3 << 3) & 0x38)));
+                v8 = (u8 *)((param0->pixels) + (v0 & 0x7) + ((v0 << 3) & 0x7fc0) + (((v2 << 3) & 0x7fc0) * v6) + ((u32)((v2 << 3) & 0x38)));
+                v9 = (u8 *)((param1->pixels) + (v1 & 0x7) + ((v1 << 3) & 0x7fc0) + (((v3 << 3) & 0x7fc0) * v7) + ((u32)((v3 << 3) & 0x38)));
 
                 if (*v8 != (param8)) {
                     *v9 = *v8;
@@ -1468,28 +1468,28 @@ void sub_0201A424(const UnkStruct_0201AE08 *param0, const UnkStruct_0201AE08 *pa
     }
 }
 
-void sub_0201A60C(const UnkStruct_0201AE08 *param0, u16 param1, u16 param2, u16 param3, u16 param4, u8 param5)
+void sub_0201A60C(const Bitmap *param0, u16 param1, u16 param2, u16 param3, u16 param4, u8 param5)
 {
     int v0, v1, v2, v3, v4;
     u8 *v5;
 
     v2 = param1 + param3;
 
-    if (v2 > param0->unk_04) {
-        v2 = param0->unk_04;
+    if (v2 > param0->width) {
+        v2 = param0->width;
     }
 
     v3 = param2 + param4;
 
-    if (v3 > param0->unk_06) {
-        v3 = param0->unk_06;
+    if (v3 > param0->height) {
+        v3 = param0->height;
     }
 
-    v4 = (((param0->unk_04) + (param0->unk_04 & 7)) >> 3);
+    v4 = (((param0->width) + (param0->width & 7)) >> 3);
 
     for (v1 = param2; v1 < v3; v1++) {
         for (v0 = param1; v0 < v2; v0++) {
-            v5 = (u8 *)((param0->unk_00) + ((v0 >> 1) & 0x3) + ((v0 << 2) & 0x3fe0) + (((v1 << 2) & 0x3fe0) * v4) + ((u32)((v1 << 2) & 0x1c)));
+            v5 = (u8 *)((param0->pixels) + ((v0 >> 1) & 0x3) + ((v0 << 2) & 0x3fe0) + (((v1 << 2) & 0x3fe0) * v4) + ((u32)((v1 << 2) & 0x1c)));
 
             if (v0 & 1) {
                 *v5 &= 0xf;
@@ -1502,28 +1502,28 @@ void sub_0201A60C(const UnkStruct_0201AE08 *param0, u16 param1, u16 param2, u16 
     }
 }
 
-void sub_0201A6D0(const UnkStruct_0201AE08 *param0, u16 param1, u16 param2, u16 param3, u16 param4, u8 param5)
+void sub_0201A6D0(const Bitmap *param0, u16 param1, u16 param2, u16 param3, u16 param4, u8 param5)
 {
     int v0, v1, v2, v3, v4;
     u8 *v5;
 
     v2 = param1 + param3;
 
-    if (v2 > param0->unk_04) {
-        v2 = param0->unk_04;
+    if (v2 > param0->width) {
+        v2 = param0->width;
     }
 
     v3 = param2 + param4;
 
-    if (v3 > param0->unk_06) {
-        v3 = param0->unk_06;
+    if (v3 > param0->height) {
+        v3 = param0->height;
     }
 
-    v4 = (param0->unk_04 + (param0->unk_04 & 7)) >> 3;
+    v4 = (param0->width + (param0->width & 7)) >> 3;
 
     for (v1 = param2; v1 < v3; v1++) {
         for (v0 = param1; v0 < v2; v0++) {
-            v5 = (u8 *)((param0->unk_00) + (v0 & 0x7) + ((v0 << 3) & 0x7fc0) + (((v1 << 3) & 0x7fc0) * v4) + ((u32)((v1 << 3) & 0x38)));
+            v5 = (u8 *)((param0->pixels) + (v0 & 0x7) + ((v0 << 3) & 0x7fc0) + (((v1 << 3) & 0x7fc0) * v4) + ((u32)((v1 << 3) & 0x38)));
             *v5 = param5;
         }
     }
@@ -1917,15 +1917,15 @@ void sub_0201ADDC(Window *param0, void *param1, u16 param2, u16 param3, u16 para
 
 void sub_0201AE08(Window *param0, void *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6, u16 param7, u16 param8, u16 param9, u16 param10)
 {
-    UnkStruct_0201AE08 v0;
-    UnkStruct_0201AE08 v1;
+    Bitmap v0;
+    Bitmap v1;
 
-    v0.unk_00 = (u8 *)param1;
-    v0.unk_04 = param4;
-    v0.unk_06 = param5;
-    v1.unk_00 = (u8 *)param0->unk_0C;
-    v1.unk_04 = (u16)(param0->unk_07 * 0x8);
-    v1.unk_06 = (u16)(param0->unk_08 * 0x8);
+    v0.pixels = (u8 *)param1;
+    v0.width = param4;
+    v0.height = param5;
+    v1.pixels = (u8 *)param0->unk_0C;
+    v1.width = (u16)(param0->unk_07 * 0x8);
+    v1.height = (u16)(param0->unk_08 * 0x8);
 
     if (param0->unk_00->unk_08[param0->unk_04].unk_16 == GX_BG_COLORMODE_16) {
         sub_0201A1E4(&v0, &v1, param2, param3, param6, param7, param8, param9, param10);
@@ -1936,16 +1936,16 @@ void sub_0201AE08(Window *param0, void *param1, u16 param2, u16 param3, u16 para
 
 void BGL_WindowColor(Window *param0, u8 param1, u16 param2, u16 param3, u16 param4, u16 param5)
 {
-    UnkStruct_0201AE08 v0;
+    Bitmap v0;
 
-    v0.unk_00 = (u8 *)param0->unk_0C;
-    v0.unk_04 = (u16)(param0->unk_07 * 0x8);
-    v0.unk_06 = (u16)(param0->unk_08 * 0x8);
+    v0.pixels = (u8 *)param0->unk_0C;
+    v0.width = (u16)(param0->unk_07 * 0x8);
+    v0.height = (u16)(param0->unk_08 * 0x8);
 
     if (param0->unk_00->unk_08[param0->unk_04].unk_16 == GX_BG_COLORMODE_16) {
-        sub_0201A60C((const UnkStruct_0201AE08 *)&v0, param2, param3, param4, param5, param1);
+        sub_0201A60C((const Bitmap *)&v0, param2, param3, param4, param5, param1);
     } else {
-        sub_0201A6D0((const UnkStruct_0201AE08 *)&v0, param2, param3, param4, param5, param1);
+        sub_0201A6D0((const Bitmap *)&v0, param2, param3, param4, param5, param1);
     }
 }
 
