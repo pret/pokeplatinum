@@ -110,7 +110,7 @@ static void ov39_02256468(SysTask *param0, void *param1)
     v2 = ov25_0225523C(param1);
     v3 = ov25_02255240(param1);
 
-    sub_020183C4(v2->unk_04, 6, &v0, 0);
+    Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
     sub_02006E3C(12, 59, v2->unk_04, 6, 0, 0, 1, 8);
     sub_02006E60(12, 58, v2->unk_04, 6, 0, 0, 1, 8);
 
@@ -120,7 +120,7 @@ static void ov39_02256468(SysTask *param0, void *param1)
         ov39_0225659C(v2, v6, v3->unk_04[v6], 0);
     }
 
-    sub_02019448(v2->unk_04, 6);
+    Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);
 
     v1 = GXS_GetDispCnt();
     GXS_SetVisiblePlane(v1.visiblePlane | GX_PLANEMASK_BG2);
@@ -132,7 +132,7 @@ static void ov39_02256518(SysTask *param0, void *param1)
 {
     UnkStruct_ov39_022563DC *v0 = ov25_0225523C(param1);
 
-    sub_02019044(v0->unk_04, 6);
+    Bg_FreeTilemapBuffer(v0->unk_04, 6);
     ov39_02256454(param1);
 }
 
@@ -142,7 +142,7 @@ static void ov39_02256534(SysTask *param0, void *param1)
     const UnkStruct_ov39_022563DC_1 *v1 = ov25_02255240(param1);
 
     ov39_0225659C(v0, v1->unk_1C, v1->unk_04[v1->unk_1C], 1);
-    sub_02019448(v0->unk_04, 6);
+    Bg_CopyTilemapBufferToVRAM(v0->unk_04, 6);
     ov39_02256454(param1);
 }
 
@@ -152,7 +152,7 @@ static void ov39_02256568(SysTask *param0, void *param1)
     const UnkStruct_ov39_022563DC_1 *v1 = ov25_02255240(param1);
 
     ov39_0225659C(v0, v1->unk_1C, v1->unk_04[v1->unk_1C], 0);
-    sub_02019448(v0->unk_04, 6);
+    Bg_CopyTilemapBufferToVRAM(v0->unk_04, 6);
     ov39_02256454(param1);
 }
 
@@ -169,7 +169,7 @@ static void ov39_0225659C(UnkStruct_ov39_022563DC *param0, u32 param1, BOOL para
     u16 *v1;
     int v2, v3, v4;
 
-    v1 = sub_02019FE4(param0->unk_04, 6);
+    v1 = Bg_GetTilemapBuffer(param0->unk_04, 6);
     v1 += v0[param1];
     v4 = (param2) ? (36 * 2) * (param1 + 1) : 0;
 

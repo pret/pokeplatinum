@@ -290,7 +290,7 @@ int ov108_02241AE0(OverlayManager *param0, int *param1)
     v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov108_02241DB0), 103);
     memset(v1, 0, sizeof(UnkStruct_ov108_02241DB0));
 
-    v1->unk_90 = sub_02018340(103);
+    v1->unk_90 = BgConfig_New(103);
     v1->unk_00 = param0;
 
     v2 = (UnkStruct_ov104_02238240 *)OverlayManager_Args(param0);
@@ -900,9 +900,9 @@ static void ov108_022426D4(BgConfig *param0)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
 
-    sub_02019044(param0, 3);
-    sub_02019044(param0, 1);
-    sub_02019044(param0, 4);
+    Bg_FreeTilemapBuffer(param0, 3);
+    Bg_FreeTilemapBuffer(param0, 1);
+    Bg_FreeTilemapBuffer(param0, 4);
     Heap_FreeToHeap(param0);
 
     return;
@@ -916,7 +916,7 @@ static void ov108_02242708(void *param0)
         sub_02003694(v0->unk_D4);
     }
 
-    sub_0201C2B8(v0->unk_90);
+    Bg_RunScheduledUpdates(v0->unk_90);
     sub_0201DCAC();
     sub_0200A858();
 
@@ -952,7 +952,7 @@ static void ov108_02242760(BgConfig *param0)
             GX_BG0_AS_2D
         };
 
-        sub_02018368(&v0);
+        SetAllGraphicsModes(&v0);
     }
 
     {
@@ -972,9 +972,9 @@ static void ov108_02242760(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 1, &v1, 0);
-        sub_02019690(1, 32, 0, 103);
-        sub_02019EBC(param0, 1);
+        Bg_InitFromTemplate(param0, 1, &v1, 0);
+        Bg_ClearTilesRange(1, 32, 0, 103);
+        Bg_ClearTilemap(param0, 1);
     }
 
     {
@@ -994,8 +994,8 @@ static void ov108_02242760(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 3, &v2, 0);
-        sub_02019EBC(param0, 3);
+        Bg_InitFromTemplate(param0, 3, &v2, 0);
+        Bg_ClearTilemap(param0, 3);
     }
 
     {
@@ -1015,8 +1015,8 @@ static void ov108_02242760(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 4, &v3, 0);
-        sub_02019EBC(param0, 4);
+        Bg_InitFromTemplate(param0, 4, &v3, 0);
+        Bg_ClearTilemap(param0, 4);
     }
 
     G2_SetBG0Priority(0);

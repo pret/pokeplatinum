@@ -193,18 +193,18 @@ static void ov56_022562EC(BgConfig *param0, UnkStruct_ov56_022562EC *param1)
     int v0;
 
     for (v0 = 0; v0 < 3; v0++) {
-        BGL_AddWindow(param0, &param1[v0].unk_00, 4 + v0, 1, 1 + v0 * 8, 8, 2, 12, (32 * 5) + v0 * (8 * 2));
-        BGL_FillWindow(&param1[v0].unk_00, 0x0);
+        Window_Add(param0, &param1[v0].unk_00, 4 + v0, 1, 1 + v0 * 8, 8, 2, 12, (32 * 5) + v0 * (8 * 2));
+        Window_FillTilemap(&param1[v0].unk_00, 0x0);
 
-        sub_0201A954(&param1[v0].unk_00);
+        Window_CopyToVRAM(&param1[v0].unk_00);
 
-        BGL_AddWindow(param0, &param1[v0].unk_10, 4 + v0, 2, 3 + v0 * 8, 27, 5, 12, ((32 * 5) + (8 * 2) * 3) + v0 * (27 * 5));
-        BGL_FillWindow(&param1[v0].unk_10, 0x0);
-        sub_0201A954(&param1[v0].unk_10);
+        Window_Add(param0, &param1[v0].unk_10, 4 + v0, 2, 3 + v0 * 8, 27, 5, 12, ((32 * 5) + (8 * 2) * 3) + v0 * (27 * 5));
+        Window_FillTilemap(&param1[v0].unk_10, 0x0);
+        Window_CopyToVRAM(&param1[v0].unk_10);
 
-        BGL_AddWindow(param0, &param1[v0].unk_20, 4 + v0, 12, 1 + v0 * 8, 15, 2, 12, (((32 * 5) + (8 * 2) * 3) + (27 * 5) * 3) + v0 * (15 * 2));
-        BGL_FillWindow(&param1[v0].unk_20, 0x0);
-        sub_0201A954(&param1[v0].unk_20);
+        Window_Add(param0, &param1[v0].unk_20, 4 + v0, 12, 1 + v0 * 8, 15, 2, 12, (((32 * 5) + (8 * 2) * 3) + (27 * 5) * 3) + v0 * (15 * 2));
+        Window_FillTilemap(&param1[v0].unk_20, 0x0);
+        Window_CopyToVRAM(&param1[v0].unk_20);
     }
 }
 
@@ -213,9 +213,9 @@ static void ov56_022563E8(UnkStruct_ov56_022562EC *param0)
     int v0;
 
     for (v0 = 0; v0 < 3; v0++) {
-        BGL_DeleteWindow(&param0[v0].unk_10);
-        BGL_DeleteWindow(&param0[v0].unk_00);
-        BGL_DeleteWindow(&param0[v0].unk_20);
+        Window_Remove(&param0[v0].unk_10);
+        Window_Remove(&param0[v0].unk_00);
+        Window_Remove(&param0[v0].unk_20);
     }
 }
 
@@ -271,10 +271,10 @@ void ov56_02256468(UnkStruct_ov56_02256468 *param0)
 
 static void ov56_022564E4(BgConfig *param0)
 {
-    sub_02019044(param0, 4);
-    sub_02019044(param0, 5);
-    sub_02019044(param0, 6);
-    sub_02019044(param0, 7);
+    Bg_FreeTilemapBuffer(param0, 4);
+    Bg_FreeTilemapBuffer(param0, 5);
+    Bg_FreeTilemapBuffer(param0, 6);
+    Bg_FreeTilemapBuffer(param0, 7);
 }
 
 static void ov56_02256508(BgConfig *param0)
@@ -298,8 +298,8 @@ static void ov56_02256508(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 4, &v0, 0);
-        sub_02019EBC(param0, 4);
+        Bg_InitFromTemplate(param0, 4, &v0, 0);
+        Bg_ClearTilemap(param0, 4);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
     }
 
@@ -320,8 +320,8 @@ static void ov56_02256508(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 5, &v1, 0);
-        sub_02019EBC(param0, 5);
+        Bg_InitFromTemplate(param0, 5, &v1, 0);
+        Bg_ClearTilemap(param0, 5);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
     }
 
@@ -342,8 +342,8 @@ static void ov56_02256508(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 6, &v2, 0);
-        sub_02019EBC(param0, 6);
+        Bg_InitFromTemplate(param0, 6, &v2, 0);
+        Bg_ClearTilemap(param0, 6);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
     }
 
@@ -364,7 +364,7 @@ static void ov56_02256508(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 7, &v3, 0);
+        Bg_InitFromTemplate(param0, 7, &v3, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
     }
 
@@ -457,20 +457,20 @@ static void ov56_022567FC(UnkStruct_ov56_02256468 *param0, int param1, UnkStruct
 {
     param0->unk_22C[param1].unk_30 = param2->unk_10;
 
-    sub_020198E8(param0->unk_14, 7, 0, param1 * 8, 32, 8, param0->unk_24->rawData, 0, 24 * param0->unk_22C[param1].unk_30, 32, 48);
-    BGL_FillWindow(&param0->unk_22C[param1].unk_00, 0x0);
-    BGL_FillWindow(&param0->unk_22C[param1].unk_10, 0x0);
-    BGL_FillWindow(&param0->unk_22C[param1].unk_20, 0x0);
+    Bg_CopyToTilemapRect(param0->unk_14, 7, 0, param1 * 8, 32, 8, param0->unk_24->rawData, 0, 24 * param0->unk_22C[param1].unk_30, 32, 48);
+    Window_FillTilemap(&param0->unk_22C[param1].unk_00, 0x0);
+    Window_FillTilemap(&param0->unk_22C[param1].unk_10, 0x0);
+    Window_FillTilemap(&param0->unk_22C[param1].unk_20, 0x0);
     Text_AddPrinterWithParamsAndColor(&param0->unk_22C[param1].unk_00, FONT_MESSAGE, param2->unk_00, 0, 1, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Text_AddPrinterWithParamsAndColor(&param0->unk_22C[param1].unk_10, FONT_MESSAGE, param2->unk_04, 0, 6, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
-    sub_0201A9A4(&param0->unk_22C[param1].unk_00);
-    sub_0201A9A4(&param0->unk_22C[param1].unk_10);
+    Window_ScheduleCopyToVRAM(&param0->unk_22C[param1].unk_00);
+    Window_ScheduleCopyToVRAM(&param0->unk_22C[param1].unk_10);
 
     if (param2->unk_08) {
         Text_AddPrinterWithParamsAndColor(&param0->unk_22C[param1].unk_20, FONT_MESSAGE, param2->unk_08, 0, 1, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     }
 
-    sub_0201A9A4(&param0->unk_22C[param1].unk_20);
+    Window_ScheduleCopyToVRAM(&param0->unk_22C[param1].unk_20);
 }
 
 static void ov56_022568E0(UnkStruct_ov56_02256468 *param0)
@@ -494,8 +494,8 @@ static void ov56_022568E0(UnkStruct_ov56_02256468 *param0)
             v2 = ov56_022567E4(param0->unk_2D4, v2);
         }
 
-        DC_FlushRange((void *)sub_02019FE4(param0->unk_14, 7), 32 * 24 * 2);
-        sub_02019460(param0->unk_14, 7, sub_02019FE4(param0->unk_14, 7), 32 * 24 * 2, 0);
+        DC_FlushRange((void *)Bg_GetTilemapBuffer(param0->unk_14, 7), 32 * 24 * 2);
+        Bg_CopyTilemapBufferRangeToVRAM(param0->unk_14, 7, Bg_GetTilemapBuffer(param0->unk_14, 7), 32 * 24 * 2, 0);
 
         param0->unk_2E8 = 0;
     }
@@ -751,12 +751,12 @@ static void ov56_02256D64(BgConfig *param0, NNSG2dScreenData *param1, UnkStruct_
     for (v0 = 0; v0 < param4; v0++) {
         int v2 = param2[v0].unk_34 / 2;
 
-        sub_020198E8(param0, 7, 0, v0 * 8, 32, 8, param1->rawData, 0, 24 * param2[v0].unk_30 + 8 * v2, 32, 48);
-        sub_02019184(param0, 4 + v0, 3, Unk_ov56_02257244[v2]);
+        Bg_CopyToTilemapRect(param0, 7, 0, v0 * 8, 32, 8, param1->rawData, 0, 24 * param2[v0].unk_30 + 8 * v2, 32, 48);
+        Bg_SetOffset(param0, 4 + v0, 3, Unk_ov56_02257244[v2]);
     }
 
-    DC_FlushRange((void *)sub_02019FE4(param0, 7), 32 * 24 * 2);
-    sub_02019460(param0, 7, sub_02019FE4(param0, 7), 32 * 24 * 2, 0);
+    DC_FlushRange((void *)Bg_GetTilemapBuffer(param0, 7), 32 * 24 * 2);
+    Bg_CopyTilemapBufferRangeToVRAM(param0, 7, Bg_GetTilemapBuffer(param0, 7), 32 * 24 * 2, 0);
 }
 
 static Strbuf *ov56_02256E5C(UnkStruct_02027F8C *param0, u32 param1, StringTemplate *param2, MessageLoader *param3, TrainerInfo *param4)

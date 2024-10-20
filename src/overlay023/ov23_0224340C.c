@@ -2225,13 +2225,13 @@ static void ov23_02244FD0(int param0, BOOL param1)
 
         {
             int v1;
-            u8 *v2 = sub_02019FE4(Unk_ov23_02257764->fieldSystem->unk_08, 2);
+            u8 *v2 = Bg_GetTilemapBuffer(Unk_ov23_02257764->fieldSystem->unk_08, 2);
 
             for (v1 = 0; v1 < 0x800; v1 += 2) {
                 v2[v1] = 0;
             }
 
-            BGL_SetPriority(2, 3);
+            Bg_SetPriority(2, 3);
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
         }
 
@@ -2247,7 +2247,7 @@ static void ov23_02244FD0(int param0, BOOL param1)
 static BOOL ov23_02245064(UnkStruct_ov23_0224271C *param0, BgConfig *param1, UnkStruct_ov23_022451BC *param2)
 {
     int v0, v1 = 0;
-    u8 *v2 = sub_02019FE4(param1, 2);
+    u8 *v2 = Bg_GetTilemapBuffer(param1, 2);
 
     if (v2 == NULL) {
         return 0;
@@ -2256,7 +2256,7 @@ static BOOL ov23_02245064(UnkStruct_ov23_0224271C *param0, BgConfig *param1, Unk
     if ((param2->unk_08 != 0xffff) && (param2->unk_0A != 0xffff)) {
         ov23_02244EF8(param0->unk_00, param0->unk_02, param2->unk_08, param2->unk_0A, v2);
 
-        sub_02019448(param1, 2);
+        Bg_CopyTilemapBufferToVRAM(param1, 2);
     }
 
     param2->unk_08 = param0->unk_00;
@@ -2366,10 +2366,10 @@ static void ov23_022451C8(SysTask *param0, void *param1)
             sub_02006E60(50, v2[v3], v0->unk_10, 2, 0, 32 * 24 * 2, 0, 4);
         }
 
-        BGL_SetPriority(0, 3);
-        BGL_SetPriority(1, 2);
-        BGL_SetPriority(2, 1);
-        BGL_SetPriority(3, 0);
+        Bg_SetPriority(0, 3);
+        Bg_SetPriority(1, 2);
+        Bg_SetPriority(2, 1);
+        Bg_SetPriority(3, 0);
         v0->unk_00++;
         break;
     case 4:

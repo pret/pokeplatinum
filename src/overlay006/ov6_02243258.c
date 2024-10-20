@@ -1688,8 +1688,8 @@ static void ov6_0224481C(UnkStruct_ov6_02243FFC *param0)
     ov6_02244F80(param0, (FX32_ONE * 0), (FX32_ONE * 192), (FX32_ONE * 1), (FX32_ONE * 192));
     ov6_02244F2C(param0);
 
-    param0->unk_24 = sub_0201A008(param0->fieldSystem->unk_08, 0);
-    param0->unk_26 = sub_0201A008(param0->fieldSystem->unk_08, 3);
+    param0->unk_24 = Bg_GetPriority(param0->fieldSystem->unk_08, 0);
+    param0->unk_26 = Bg_GetPriority(param0->fieldSystem->unk_08, 3);
 
     G2_SetBG1Priority(1);
     G2_SetBG3Priority(0);
@@ -1945,7 +1945,7 @@ static void ov6_02244E54(NARC *param0, u32 param1, NNSG2dPaletteData **param2)
 
     NNS_G2dGetUnpackedPaletteData(v0, param2);
 
-    sub_0201972C(3, (*param2)->pRawData, (32 * 1), (32 * 12));
+    Bg_LoadPalette(3, (*param2)->pRawData, (32 * 1), (32 * 12));
     Heap_FreeToHeap(v0);
 }
 
@@ -1956,7 +1956,7 @@ static void ov6_02244E7C(BgConfig *param0, NARC *param1, u32 param2, NNSG2dChara
     v0 = NARC_AllocAndReadWholeMember(param1, param2, 4);
     NNS_G2dGetUnpackedCharacterData(v0, param3);
 
-    sub_0201958C(param0, 3, (*param3)->pRawData, (*param3)->szByte, 0);
+    Bg_LoadTiles(param0, 3, (*param3)->pRawData, (*param3)->szByte, 0);
     Heap_FreeToHeap(v0);
 }
 
@@ -1964,21 +1964,21 @@ static void ov6_02244EB4(BgConfig *param0, NARC *param1, u32 param2, NNSG2dScree
 {
     void *v0;
 
-    sub_02019184(param0, 3, 0, 0);
-    sub_02019184(param0, 3, 3, 0);
+    Bg_SetOffset(param0, 3, 0, 0);
+    Bg_SetOffset(param0, 3, 3, 0);
 
     v0 = NARC_AllocAndReadWholeMember(param1, param2, 4);
     NNS_G2dGetUnpackedScreenData(v0, param3);
 
-    sub_02019574(param0, 3, (void *)(*param3)->rawData, (*param3)->szByte);
-    sub_02019E2C(param0, 3, 0, 0, 32, 32, 12);
-    sub_02019448(param0, 3);
+    Bg_LoadTilemapBuffer(param0, 3, (void *)(*param3)->rawData, (*param3)->szByte);
+    Bg_ChangeTilemapRectPalette(param0, 3, 0, 0, 32, 32, 12);
+    Bg_CopyTilemapBufferToVRAM(param0, 3);
     Heap_FreeToHeap(v0);
 }
 
 static void ov6_02244F20(BgConfig *param0)
 {
-    sub_02019EBC(param0, 3);
+    Bg_ClearTilemap(param0, 3);
 }
 
 static void ov6_02244F2C(UnkStruct_ov6_02243FFC *param0)

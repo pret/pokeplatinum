@@ -140,7 +140,7 @@ int ov95_02246C20(OverlayManager *param0, int *param1)
         if (v0) {
             v0->unk_00 = OverlayManager_Args(param0);
             v0->unk_04 = 0;
-            v0->unk_08 = sub_02018340(57);
+            v0->unk_08 = BgConfig_New(57);
             v0->unk_14 = Strbuf_Init(400, 57);
             v0->unk_10 = MessageLoader_Init(0, 26, 350, 57);
             v0->unk_0C = StringTemplate_Default(57);
@@ -541,8 +541,8 @@ static void ov95_022473A0(UnkStruct_ov95_022472C4 *param0)
     v1._10 = 0;
     v1._11 = param0->unk_08;
 
-    sub_02019348(param0->unk_00, 2, &v1, 128, v0[param0->unk_1C]);
-    sub_02019348(param0->unk_00, 6, &v1, 128, v0[param0->unk_1C]);
+    Bg_SetAffineParams(param0->unk_00, 2, &v1, 128, v0[param0->unk_1C]);
+    Bg_SetAffineParams(param0->unk_00, 6, &v1, 128, v0[param0->unk_1C]);
 }
 
 void ov95_022473E8(UnkStruct_ov95_02247628 *param0, int param1, u32 param2, u32 param3, BOOL param4)
@@ -581,7 +581,7 @@ void ov95_022473E8(UnkStruct_ov95_02247628 *param0, int param1, u32 param2, u32 
 
         sub_02013720(v0.archive, v0.character, 57, &v4, v3, v7, param4, 2, v8);
         DC_FlushRange(v3, v2);
-        sub_0201958C(param0->unk_08, param2, v3, v2, 0);
+        Bg_LoadTiles(param0->unk_08, param2, v3, v2, 0);
 
         BoxPokemon_ExitDecryptionContext(v5, v6);
         Heap_FreeToHeap(v3);
@@ -606,8 +606,8 @@ void ov95_022474D4(UnkStruct_ov95_02247628 *param0, int param1, u32 param2, u32 
     v0 = sub_02006F6C(7, v2, 0, &v1, 57);
 
     if (v0) {
-        sub_020198E8(param0->unk_08, param2, param4, param5, 10, 10, v1->rawData, 0, 0, 32, 32);
-        sub_02019E2C(param0->unk_08, param2, param4, param5, 10, 10, param3);
+        Bg_CopyToTilemapRect(param0->unk_08, param2, param4, param5, 10, 10, v1->rawData, 0, 0, 32, 32);
+        Bg_ChangeTilemapRectPalette(param0->unk_08, param2, param4, param5, 10, 10, param3);
         Heap_FreeToHeap(v0);
     }
 }

@@ -159,7 +159,7 @@ void sub_02095EAC(int param0, int param1, void *param2, void *param3)
         }
 
         MI_CpuCopyFast(v0->unk_4434, v0->unk_32C.pixels, 30 * 15 * 32);
-        sub_0201A954(&v0->unk_32C);
+        Window_CopyToVRAM(&v0->unk_32C);
     } else {
         UnkStruct_02095EAC_sub1 *v2 = (UnkStruct_02095EAC_sub1 *)param2;
 

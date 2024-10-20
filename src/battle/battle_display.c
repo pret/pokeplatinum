@@ -531,7 +531,7 @@ void ov16_0225D228(BattleSystem *param0, BattlerData *param1, UnkStruct_ov16_022
     v1->unk_1C = 0;
 
     if ((v1->unk_14 == 0) || (v1->unk_14 == 2)) {
-        sub_02019184(BattleSystem_BGL(param0), 3, 2, 4 * 33);
+        Bg_SetOffset(BattleSystem_BGL(param0), 3, 2, 4 * 33);
     }
 
     SysTask_Start(ov16_0225FA70, v1, 0);
@@ -2315,7 +2315,7 @@ static void ov16_0225FA70(SysTask *param0, void *param1)
     v5 = BattleSystem_BattleType(v0->unk_00);
 
     if ((v0->unk_1C < 33) && (v0->unk_0E >= 2) && ((v0->unk_14 == 0) || (v0->unk_14 == 2))) {
-        sub_02019184(BattleSystem_BGL(v0->unk_00), 3, 1, 4);
+        Bg_SetOffset(BattleSystem_BGL(v0->unk_00), 3, 1, 4);
         v0->unk_1C++;
     }
 
@@ -4182,8 +4182,8 @@ static void ov16_02261E8C(SysTask *param0, void *param1)
     {
         Window *v2 = BattleSystem_Window(v0->unk_00, 0);
 
-        BGL_FillWindow(v2, 0xff);
-        sub_0201ACCC(v2);
+        Window_FillTilemap(v2, 0xff);
+        Window_LoadTiles(v2);
     }
 
         v0->unk_17 = ov16_0226CD08(ov16_0223E02C(v0->unk_00));

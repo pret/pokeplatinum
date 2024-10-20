@@ -218,12 +218,12 @@ static void ov33_02256598(SysTask *param0, void *param1)
 
     v2 = ov25_0225523C(param1);
 
-    sub_020183C4(v2->unk_04, 6, &v0, 0);
+    Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
     sub_02006E3C(12, 7, v2->unk_04, 6, 0, 0, 1, 8);
-    sub_02019CB8(v2->unk_04, 6, 0, 0, 0, 32, 24, 0);
+    Bg_FillTilemapRect(v2->unk_04, 6, 0, 0, 0, 32, 24, 0);
 
     ov25_022546B8(0, 0);
-    sub_02019448(v2->unk_04, 6);
+    Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);
 
     ov33_02256634(v2, v2->unk_00);
     ov33_0225681C(v2, v2->unk_00);
@@ -343,7 +343,7 @@ static void ov33_02256898(SysTask *param0, void *param1)
 {
     UnkStruct_ov33_02256474 *v0 = ov25_0225523C(param1);
 
-    sub_02019044(v0->unk_04, 6);
+    Bg_FreeTilemapBuffer(v0->unk_04, 6);
     ov33_02256584(param1);
 }
 

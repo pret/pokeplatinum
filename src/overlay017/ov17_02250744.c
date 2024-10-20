@@ -252,7 +252,7 @@ static void ov17_022508E4(UnkStruct_ov17_0224FCA0 *param0, MessageLoader *param1
     ov17_022507F0(param0, param3, param4);
 
     StringTemplate_Format(param0->unk_10.unk_B8, param0->unk_10.unk_BC, v0);
-    BGL_FillWindow(&param0->unk_10.unk_24[0], 0xff);
+    Window_FillTilemap(&param0->unk_10.unk_24[0], 0xff);
 
     param0->unk_10.unk_388 = Text_AddPrinterWithParams(&param0->unk_10.unk_24[0], FONT_MESSAGE, param0->unk_10.unk_BC, 0, 0, v1, NULL);
 
@@ -285,7 +285,7 @@ void ov17_022509AC(UnkStruct_ov17_0224FCA0 *param0)
 
     sub_020070E8(v1, 23, param0->unk_10.unk_20, 3, 0, 0, 1, 24);
     sub_0200710C(v1, 22, param0->unk_10.unk_20, 3, 0, 0, 1, 24);
-    sub_02019EBC(param0->unk_10.unk_20, 1);
+    Bg_ClearTilemap(param0->unk_10.unk_20, 1);
     PaletteSys_LoadPalette(param0->unk_10.unk_C0, 45, 35, 24, 0, 0, 0);
     PaletteSys_LoadPalette(param0->unk_10.unk_C0, 45, 36, 24, 0, 0x20, 13 * 16);
 
@@ -293,7 +293,7 @@ void ov17_022509AC(UnkStruct_ov17_0224FCA0 *param0)
 
     sub_0200DD0C(param0->unk_10.unk_20, 1, 1, 15, v0, 24);
     PaletteSys_LoadPalette(param0->unk_10.unk_C0, 38, sub_0200DD08(v0), 24, 0, 0x20, 14 * 16);
-    sub_02019EBC(param0->unk_10.unk_20, 2);
+    Bg_ClearTilemap(param0->unk_10.unk_20, 2);
     NARC_dtor(v1);
 }
 
@@ -324,7 +324,7 @@ void ov17_02250B00(UnkStruct_ov17_0224FCA0 *param0)
     sub_020070E8(v1, 27, param0->unk_10.unk_20, 3, 0, 0, 1, 24);
     sub_0200710C(v1, 25, param0->unk_10.unk_20, 3, 0, 0, 1, 24);
     sub_0200710C(v1, 26, param0->unk_10.unk_20, 2, 0, 0, 1, 24);
-    sub_02019EBC(param0->unk_10.unk_20, 1);
+    Bg_ClearTilemap(param0->unk_10.unk_20, 1);
     PaletteSys_LoadPalette(param0->unk_10.unk_C0, 45, 39, 24, 0, 0, 0);
     PaletteSys_LoadPalette(param0->unk_10.unk_C0, 45, 36, 24, 0, 0x20, 13 * 16);
 
@@ -342,8 +342,8 @@ void ov17_02250B00(UnkStruct_ov17_0224FCA0 *param0)
         for (v3 = 0; v3 < 4; v3++) {
             v4 = param0->unk_39A.unk_30[v3];
             Pokemon_GetValue(param0->unk_10.unk_00->unk_00[v4], MON_DATA_NICKNAME_STRBUF, v2);
-            BGL_FillWindow(&param0->unk_10.unk_24[1 + v3], 0x0);
-            BGL_FillWindow(&param0->unk_10.unk_24[5 + v3], 0x0);
+            Window_FillTilemap(&param0->unk_10.unk_24[1 + v3], 0x0);
+            Window_FillTilemap(&param0->unk_10.unk_24[5 + v3], 0x0);
             Text_AddPrinterWithParamsAndColor(&param0->unk_10.unk_24[1 + v3], FONT_SYSTEM, v2, 0, 3, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
             Text_AddPrinterWithParamsAndColor(&param0->unk_10.unk_24[5 + v3], FONT_SYSTEM, param0->unk_00->unk_00.unk_D8[v4], 0, 3, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
         }

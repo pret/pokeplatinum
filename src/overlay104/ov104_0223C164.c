@@ -68,8 +68,8 @@ static void ov104_0223C1BC(SysTask *param0, void *param1)
 
     ov104_0223C208(v1, v2->unk_08);
 
-    sub_020198C0(v2->unk_04, 3, v1, 14, 2, 2, 2);
-    sub_0201C3C0(v2->unk_04, 3);
+    Bg_LoadToTilemapRect(v2->unk_04, 3, v1, 14, 2, 2, 2);
+    Bg_ScheduleTilemapTransfer(v2->unk_04, 3);
 
     return;
 }

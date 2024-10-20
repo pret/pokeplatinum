@@ -661,7 +661,7 @@ void ov62_02230E80(UnkStruct_0208C06C *param0)
 
         for (v11 = 0; v11 < 2; v11++) {
             Window_Init(&v6);
-            BGL_AddFramelessWindow(param0->unk_14.unk_10, &v6, 20, 2, 0, 0);
+            Window_AddToTopLeftCorner(param0->unk_14.unk_10, &v6, 20, 2, 0, 0);
 
             v7[v11]->unk_18 = sub_02012B20(&v6, 102);
             v4 = sub_02012898(&v6, v8[v11], 102);
@@ -684,7 +684,7 @@ void ov62_02230E80(UnkStruct_0208C06C *param0)
             v7[v11]->unk_14 = sub_02012B60(&v2, v7[v11]->unk_18);
 
             sub_02012AC0(v7[v11]->unk_14, (2 - 1));
-            BGL_DeleteWindow(&v6);
+            Window_Remove(&v6);
             sub_020129D0(v7[v11]->unk_14, 0);
         }
     }
@@ -738,11 +738,11 @@ void ov62_02230FC8(UnkStruct_0208C06C *param0, UnkStruct_ov62_022307C0_sub1 *par
     }
 
     Window_Init(&v2);
-    BGL_AddFramelessWindow(param0->unk_14.unk_10, &v2, 20, 2, 0, 0);
+    Window_AddToTopLeftCorner(param0->unk_14.unk_10, &v2, 20, 2, 0, 0);
     Text_AddPrinterWithParamsAndColor(&v2, FONT_SYSTEM, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(14, 13, 0), NULL);
     sub_02012BE0(param1->unk_14, param1->unk_18, &v2, 102);
     Strbuf_Free(v0);
-    BGL_DeleteWindow(&v2);
+    Window_Remove(&v2);
 }
 
 void ov62_0223113C(UnkStruct_0208C06C *param0)
@@ -777,7 +777,7 @@ void ov62_0223118C(UnkStruct_ov62_022312B0 *param0, UnkStruct_ov62_0223118C *par
     }
 
     Window_Init(&v6);
-    BGL_AddFramelessWindow(param1->unk_10, &v6, 20, 2, 0, 0);
+    Window_AddToTopLeftCorner(param1->unk_10, &v6, 20, 2, 0, 0);
 
     param0->unk_10 = sub_02012B20(&v6, 102);
     v4 = sub_02012898(&v6, param2, 102);
@@ -801,7 +801,7 @@ void ov62_0223118C(UnkStruct_ov62_022312B0 *param0, UnkStruct_ov62_0223118C *par
     param0->unk_0C = sub_02012B60(&v2, param0->unk_10);
 
     sub_02012AC0(param0->unk_0C, (2 - 1));
-    BGL_DeleteWindow(&v6);
+    Window_Remove(&v6);
     sub_020129D0(param0->unk_0C, 0);
 }
 
@@ -815,11 +815,11 @@ void ov62_0223124C(UnkStruct_ov62_022312B0 *param0, UnkStruct_ov62_0223118C *par
     v0 = MessageLoader_GetNewStrbuf(v1, param2);
 
     Window_Init(&v2);
-    BGL_AddFramelessWindow(param1->unk_10, &v2, 20, 2, 0, 0);
+    Window_AddToTopLeftCorner(param1->unk_10, &v2, 20, 2, 0, 0);
     Text_AddPrinterWithParamsAndColor(&v2, FONT_SYSTEM, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(14, 13, 0), NULL);
     sub_02012BE0(param0->unk_0C, param0->unk_10, &v2, 102);
     Strbuf_Free(v0);
-    BGL_DeleteWindow(&v2);
+    Window_Remove(&v2);
 }
 
 void ov62_022312B0(UnkStruct_ov62_022312B0 *param0)

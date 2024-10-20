@@ -41,7 +41,7 @@ u32 sub_0207C924(void);
 u32 sub_0207C928(void);
 u8 sub_0207C92C(int param0);
 u32 sub_0207C944(void);
-void sub_0201AA10(Window *param0, u32 param1, u32 param2);
+void Window_PutRectToTilemap(Window *param0, u32 param1, u32 param2);
 static void ov19_021DAB44(UnkStruct_ov19_021DA9E0 *param0);
 static void ov19_021DAC4C(UnkStruct_ov19_021DA9E0 *param0);
 static void ov19_021DAC90(UnkStruct_ov19_021DA9E0 *param0);
@@ -99,7 +99,7 @@ void ov19_021DA9E0(UnkStruct_ov19_021DA9E0 *param0)
 
     if (param0->unk_04) {
         for (v0 = 0; v0 < 4; v0++) {
-            BGL_DeleteWindow(&param0->unk_04[v0]);
+            Window_Remove(&param0->unk_04[v0]);
         }
 
         Heap_FreeToHeap(param0->unk_04);
@@ -187,22 +187,22 @@ void ov19_021DAADC(UnkStruct_ov19_021DA9E0 *param0)
         return;
     }
 
-    param0->unk_04 = sub_0201A778(10, 4);
+    param0->unk_04 = Window_New(10, 4);
 
     if (param0->unk_04) {
         int v1;
 
         for (v1 = 0; v1 < 4; v1++) {
-            sub_0201A8D4(param0->unk_08, &param0->unk_04[v1], &v0[v1]);
+            Window_AddFromTemplate(param0->unk_08, &param0->unk_04[v1], &v0[v1]);
 
             if (v1 != 3) {
-                sub_0201A9F4(&param0->unk_04[v1]);
+                Window_PutToTilemap(&param0->unk_04[v1]);
             } else {
-                sub_0201AA10(&param0->unk_04[v1], 12, 2);
+                Window_PutRectToTilemap(&param0->unk_04[v1], 12, 2);
             }
         }
 
-        sub_02019448(param0->unk_08, 2);
+        Bg_CopyTilemapBufferToVRAM(param0->unk_08, 2);
     }
 
     ov19_021DAB44(param0);
@@ -303,7 +303,7 @@ static void ov19_021DACF8(SysTask *param0, void *param1)
         v0->unk_00 = 1;
     case 1:
         ov19_021DAE60(&v1->unk_04[3], v1, v0->unk_02, 0);
-        sub_0201ACCC(&v1->unk_04[3]);
+        Window_LoadTiles(&v1->unk_04[3]);
         v0->unk_04 = 0;
         v0->unk_00 = 2;
         break;
@@ -321,8 +321,8 @@ static void ov19_021DACF8(SysTask *param0, void *param1)
         v0->unk_06 += 4;
 
         ov19_021DADCC(v1, 4 << FX32_SHIFT);
-        sub_0201C04C(&v1->unk_04[3], 0, 4, 0x0);
-        sub_0201ACCC(&v1->unk_04[3]);
+        Window_Scroll(&v1->unk_04[3], 0, 4, 0x0);
+        Window_LoadTiles(&v1->unk_04[3]);
 
         if (v0->unk_06 >= 16) {
             if (v0->unk_02 == 1) {
@@ -379,7 +379,7 @@ static void ov19_021DAE2C(UnkStruct_ov19_021DAE2C *param0)
 
     v1 = &(param0->unk_08->unk_04[3]);
 
-    BGL_FillWindow(v1, 0);
+    Window_FillTilemap(v1, 0);
     ov19_021DAE60(v1, param0->unk_08, param0->unk_02, 0);
 
     v0 = param0->unk_02 + 1;
@@ -451,19 +451,19 @@ void ov19_021DAF98(UnkStruct_ov19_021DA9E0 *param0)
         return;
     }
 
-    BGL_FillWindow(&param0->unk_04[0], 15);
-    BGL_FillWindow(&param0->unk_04[1], 15);
-    BGL_FillWindow(&param0->unk_04[2], 15);
-    BGL_FillWindow(&param0->unk_04[3], 0);
+    Window_FillTilemap(&param0->unk_04[0], 15);
+    Window_FillTilemap(&param0->unk_04[1], 15);
+    Window_FillTilemap(&param0->unk_04[2], 15);
+    Window_FillTilemap(&param0->unk_04[3], 0);
 
     if (ov19_021D5E4C(param0->unk_10)) {
         ov19_021DB0E4(param0);
     }
 
-    sub_0201ACCC(&param0->unk_04[0]);
-    sub_0201ACCC(&param0->unk_04[1]);
-    sub_0201ACCC(&param0->unk_04[2]);
-    sub_0201ACCC(&param0->unk_04[3]);
+    Window_LoadTiles(&param0->unk_04[0]);
+    Window_LoadTiles(&param0->unk_04[1]);
+    Window_LoadTiles(&param0->unk_04[2]);
+    Window_LoadTiles(&param0->unk_04[3]);
 }
 
 void ov19_021DAFF8(UnkStruct_ov19_021DA9E0 *param0)
@@ -472,10 +472,10 @@ void ov19_021DAFF8(UnkStruct_ov19_021DA9E0 *param0)
         return;
     }
 
-    BGL_FillWindow(&param0->unk_04[0], 15);
-    BGL_FillWindow(&param0->unk_04[1], 15);
-    BGL_FillWindow(&param0->unk_04[2], 15);
-    BGL_FillWindow(&param0->unk_04[3], 0);
+    Window_FillTilemap(&param0->unk_04[0], 15);
+    Window_FillTilemap(&param0->unk_04[1], 15);
+    Window_FillTilemap(&param0->unk_04[2], 15);
+    Window_FillTilemap(&param0->unk_04[3], 0);
 
     if (param0->unk_24) {
         sub_02007DC8(param0->unk_24);
@@ -488,10 +488,10 @@ void ov19_021DAFF8(UnkStruct_ov19_021DA9E0 *param0)
         ov19_021DB24C(param0, 0);
     }
 
-    sub_0201ACCC(&param0->unk_04[0]);
-    sub_0201ACCC(&param0->unk_04[1]);
-    sub_0201ACCC(&param0->unk_04[2]);
-    sub_0201ACCC(&param0->unk_04[3]);
+    Window_LoadTiles(&param0->unk_04[0]);
+    Window_LoadTiles(&param0->unk_04[1]);
+    Window_LoadTiles(&param0->unk_04[2]);
+    Window_LoadTiles(&param0->unk_04[3]);
 
     ov19_021DACB0(param0);
 }
@@ -502,10 +502,10 @@ void ov19_021DB078(UnkStruct_ov19_021DA9E0 *param0)
         return;
     }
 
-    BGL_FillWindow(&param0->unk_04[0], 15);
-    BGL_FillWindow(&param0->unk_04[1], 15);
-    BGL_FillWindow(&param0->unk_04[2], 15);
-    BGL_FillWindow(&param0->unk_04[3], 0);
+    Window_FillTilemap(&param0->unk_04[0], 15);
+    Window_FillTilemap(&param0->unk_04[1], 15);
+    Window_FillTilemap(&param0->unk_04[2], 15);
+    Window_FillTilemap(&param0->unk_04[3], 0);
 
     if (param0->unk_24) {
         sub_02007DC8(param0->unk_24);
@@ -514,10 +514,10 @@ void ov19_021DB078(UnkStruct_ov19_021DA9E0 *param0)
 
     ov19_021DB24C(param0, 0);
 
-    sub_0201ACCC(&param0->unk_04[0]);
-    sub_0201ACCC(&param0->unk_04[1]);
-    sub_0201ACCC(&param0->unk_04[2]);
-    sub_0201ACCC(&param0->unk_04[3]);
+    Window_LoadTiles(&param0->unk_04[0]);
+    Window_LoadTiles(&param0->unk_04[1]);
+    Window_LoadTiles(&param0->unk_04[2]);
+    Window_LoadTiles(&param0->unk_04[3]);
 
     ov19_021DACDC(param0);
 }
@@ -587,7 +587,7 @@ static void ov19_021DB24C(UnkStruct_ov19_021DA9E0 *param0, u8 param1)
     int v2;
 
     v1 = (19 * 32) + 4;
-    v0 = sub_02019FE4(param0->unk_08, 2);
+    v0 = Bg_GetTilemapBuffer(param0->unk_08, 2);
     v0 += v1;
 
     for (v2 = 0; v2 < 6; v2++) {
@@ -598,7 +598,7 @@ static void ov19_021DB24C(UnkStruct_ov19_021DA9E0 *param0, u8 param1)
         }
     }
 
-    sub_02019460(param0->unk_08, 2, v0, 6 * sizeof(u16), v1);
+    Bg_CopyTilemapBufferRangeToVRAM(param0->unk_08, 2, v0, 6 * sizeof(u16), v1);
 }
 
 void ov19_021DB2B0(UnkStruct_ov19_021DA9E0 *param0)
@@ -610,7 +610,7 @@ void ov19_021DB2B0(UnkStruct_ov19_021DA9E0 *param0)
     }
 
     v0 = ov19_021D5E70(param0->unk_10);
-    BGL_FillWindow(&param0->unk_04[3], 0);
+    Window_FillTilemap(&param0->unk_04[3], 0);
 
     if (v0->unk_0F == 0) {
         Text_AddPrinterWithParamsAndColor(&param0->unk_04[3], FONT_SYSTEM, v0->unk_1C, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(9, 6, 0), NULL);

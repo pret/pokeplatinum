@@ -198,7 +198,7 @@ static void ov94_02242B54(BgConfig *param0)
             GX_BG0_AS_2D,
         };
 
-        sub_02018368(&v0);
+        SetAllGraphicsModes(&v0);
     }
 
     {
@@ -218,8 +218,8 @@ static void ov94_02242B54(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 0, &v1, 0);
-        sub_02019EBC(param0, 0);
+        Bg_InitFromTemplate(param0, 0, &v1, 0);
+        Bg_ClearTilemap(param0, 0);
     }
 
     {
@@ -239,8 +239,8 @@ static void ov94_02242B54(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 1, &v2, 0);
-        sub_02019EBC(param0, 1);
+        Bg_InitFromTemplate(param0, 1, &v2, 0);
+        Bg_ClearTilemap(param0, 1);
     }
 
     {
@@ -260,8 +260,8 @@ static void ov94_02242B54(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 2, &v3, 0);
-        sub_02019EBC(param0, 2);
+        Bg_InitFromTemplate(param0, 2, &v3, 0);
+        Bg_ClearTilemap(param0, 2);
     }
 
     {
@@ -281,8 +281,8 @@ static void ov94_02242B54(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 4, &v4, 0);
-        sub_02019EBC(param0, 4);
+        Bg_InitFromTemplate(param0, 4, &v4, 0);
+        Bg_ClearTilemap(param0, 4);
     }
 
     {
@@ -302,12 +302,12 @@ static void ov94_02242B54(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 5, &v5, 0);
+        Bg_InitFromTemplate(param0, 5, &v5, 0);
     }
 
-    sub_02019690(0, 32, 0, 62);
-    sub_02019690(1, 32, 0, 62);
-    sub_02019690(4, 32, 0, 62);
+    Bg_ClearTilesRange(0, 32, 0, 62);
+    Bg_ClearTilesRange(1, 32, 0, 62);
+    Bg_ClearTilesRange(4, 32, 0, 62);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -315,11 +315,11 @@ static void ov94_02242B54(BgConfig *param0)
 
 static void ov94_02242C80(BgConfig *param0)
 {
-    sub_02019044(param0, 5);
-    sub_02019044(param0, 4);
-    sub_02019044(param0, 2);
-    sub_02019044(param0, 1);
-    sub_02019044(param0, 0);
+    Bg_FreeTilemapBuffer(param0, 5);
+    Bg_FreeTilemapBuffer(param0, 4);
+    Bg_FreeTilemapBuffer(param0, 2);
+    Bg_FreeTilemapBuffer(param0, 1);
+    Bg_FreeTilemapBuffer(param0, 0);
 }
 
 static void ov94_02242CAC(UnkStruct_ov94_0223FD4C *param0)
@@ -332,8 +332,8 @@ static void ov94_02242CAC(UnkStruct_ov94_0223FD4C *param0)
     sub_0200DAA4(v0, 0, (1 + (18 + 12)), 11, 0, 62);
 
     if (param0->unk_10F0 == 0) {
-        sub_02019120(4, 0);
-        sub_02019120(5, 0);
+        Bg_ToggleLayer(4, 0);
+        Bg_ToggleLayer(5, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 0);
     }
 
@@ -344,13 +344,13 @@ static void ov94_02242CAC(UnkStruct_ov94_0223FD4C *param0)
 
 static void ov94_02242D38(UnkStruct_ov94_0223FD4C *param0)
 {
-    BGL_AddWindow(param0->unk_04, &param0->unk_F5C, 0, 2, 19, 27, 4, 13, ((1 + (18 + 12)) + 9));
-    BGL_FillWindow(&param0->unk_F5C, 0x0);
+    Window_Add(param0->unk_04, &param0->unk_F5C, 0, 2, 19, 27, 4, 13, ((1 + (18 + 12)) + 9));
+    Window_FillTilemap(&param0->unk_F5C, 0x0);
 }
 
 static void ov94_02242D74(UnkStruct_ov94_0223FD4C *param0)
 {
-    BGL_DeleteWindow(&param0->unk_F5C);
+    Window_Remove(&param0->unk_F5C);
 }
 
 static void ov94_02242D84(UnkStruct_ov94_0223FD4C *param0)

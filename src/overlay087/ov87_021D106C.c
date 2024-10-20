@@ -90,7 +90,7 @@ UnkStruct_ov87_021D106C *ov87_021D106C(UnkStruct_ov87_021D0D80 *param0, const Un
     if (v0) {
         v0->unk_00 = param0;
         v0->unk_04 = param1;
-        v0->unk_10 = sub_02018340(61);
+        v0->unk_10 = BgConfig_New(61);
 
         NNS_G2dInitOamManagerModule();
         sub_0200A784(0, 128, 0, 32, 0, 128, 0, 32, 61);
@@ -300,14 +300,14 @@ static void ov87_021D139C(UnkStruct_ov87_021D106C *param0)
     GXLayers_SetBanks(&v0);
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
 
-    sub_02018368(&v1);
-    sub_020183C4(param0->unk_10, 1, &v2, 0);
-    sub_020183C4(param0->unk_10, 2, &v3, 0);
+    SetAllGraphicsModes(&v1);
+    Bg_InitFromTemplate(param0->unk_10, 1, &v2, 0);
+    Bg_InitFromTemplate(param0->unk_10, 2, &v3, 0);
     sub_02006E3C(101, 1, param0->unk_10, 2, 0, 0, 1, 61);
     sub_02006E60(101, 0, param0->unk_10, 2, 0, 0, 1, 61);
     sub_02006E84(101, 2, 0, 0, 0x40, 61);
-    sub_020196C0(param0->unk_10, 1, 0x0, 1, 0);
-    sub_02019CB8(param0->unk_10, 1, 0x0, 0, 0, 32, 32, 0);
+    Bg_FillTilesRange(param0->unk_10, 1, 0x0, 1, 0);
+    Bg_FillTilemapRect(param0->unk_10, 1, 0x0, 0, 0, 32, 32, 0);
 
     v4 = ov87_021D14D4(param0, 1);
 
@@ -315,7 +315,7 @@ static void ov87_021D139C(UnkStruct_ov87_021D106C *param0)
     sub_0200DAA4(param0->unk_10, 1, v4, 2, 0, 61);
     Window_Show(&(param0->unk_14[0]), 0, v4, 2);
     Window_Show(&(param0->unk_14[1]), 0, v4, 2);
-    sub_02019448(param0->unk_10, 1);
+    Bg_CopyTilemapBufferToVRAM(param0->unk_10, 1);
 
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG1, 8, 8);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -323,23 +323,23 @@ static void ov87_021D139C(UnkStruct_ov87_021D106C *param0)
 
 static void ov87_021D14B8(UnkStruct_ov87_021D106C *param0)
 {
-    sub_02019044(param0->unk_10, 1);
-    sub_02019044(param0->unk_10, 2);
+    Bg_FreeTilemapBuffer(param0->unk_10, 1);
+    Bg_FreeTilemapBuffer(param0->unk_10, 2);
     ov87_021D1540(param0);
 }
 
 static u32 ov87_021D14D4(UnkStruct_ov87_021D106C *param0, u32 param1)
 {
-    BGL_AddWindow(param0->unk_10, &(param0->unk_14[0]), 1, 1, 1, 30, 2, 0, param1);
+    Window_Add(param0->unk_10, &(param0->unk_14[0]), 1, 1, 1, 30, 2, 0, param1);
 
     param1 += (30 * 2);
 
-    BGL_AddWindow(param0->unk_10, &(param0->unk_14[1]), 1, 1, 19, 30, 4, 0, param1);
+    Window_Add(param0->unk_10, &(param0->unk_14[1]), 1, 1, 19, 30, 4, 0, param1);
 
     param1 += (30 * 4);
 
-    sub_0201A9F4(&(param0->unk_14[0]));
-    sub_0201A9F4(&(param0->unk_14[1]));
+    Window_PutToTilemap(&(param0->unk_14[0]));
+    Window_PutToTilemap(&(param0->unk_14[1]));
 
     return param1;
 }
@@ -349,7 +349,7 @@ static void ov87_021D1540(UnkStruct_ov87_021D106C *param0)
     int v0;
 
     for (v0 = 0; v0 < 2; v0++) {
-        BGL_DeleteWindow(&(param0->unk_14[v0]));
+        Window_Remove(&(param0->unk_14[v0]));
     }
 }
 
@@ -361,10 +361,10 @@ static void ov87_021D1558(UnkStruct_ov87_021D106C *param0)
 
 static void ov87_021D1568(UnkStruct_ov87_021D106C *param0)
 {
-    BGL_FillWindow(&(param0->unk_14[0]), 15);
-    BGL_FillWindow(&(param0->unk_14[1]), 15);
-    sub_0201ACCC(&(param0->unk_14[0]));
-    sub_0201ACCC(&(param0->unk_14[1]));
+    Window_FillTilemap(&(param0->unk_14[0]), 15);
+    Window_FillTilemap(&(param0->unk_14[1]), 15);
+    Window_LoadTiles(&(param0->unk_14[0]));
+    Window_LoadTiles(&(param0->unk_14[1]));
 }
 
 static void ov87_021D1590(UnkStruct_ov87_021D106C *param0)
@@ -378,9 +378,9 @@ static void ov87_021D1590(UnkStruct_ov87_021D106C *param0)
     StringTemplate_SetNumber(param0->unk_1F0, 3, v0->unk_04.day, 2, 0, 1);
     MessageLoader_GetStrbuf(param0->unk_1E4, 0, param0->unk_1F4);
     StringTemplate_Format(param0->unk_1F0, param0->unk_1F8, param0->unk_1F4);
-    BGL_FillWindow(v1, 15);
+    Window_FillTilemap(v1, 15);
     Text_AddPrinterWithParams(v1, FONT_SYSTEM, param0->unk_1F8, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
-    sub_0201ACCC(v1);
+    Window_LoadTiles(v1);
 }
 
 static void ov87_021D1640(UnkStruct_ov87_021D106C *param0)
@@ -389,7 +389,7 @@ static void ov87_021D1640(UnkStruct_ov87_021D106C *param0)
     const UnkStruct_ov87_021D1640 *v1 = &(v0->unk_20[v0->unk_18]);
     Window *v2 = &(param0->unk_14[1]);
 
-    BGL_FillWindow(v2, 15);
+    Window_FillTilemap(v2, 15);
 
     switch (v0->unk_1C) {
     case UnkEnum_ov87_021D12C0_0:
@@ -434,7 +434,7 @@ static void ov87_021D1640(UnkStruct_ov87_021D106C *param0)
     } break;
     }
 
-    sub_0201ACCC(v2);
+    Window_LoadTiles(v2);
 }
 
 static void ov87_021D1818(UnkStruct_ov87_021D106C *param0)

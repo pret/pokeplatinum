@@ -543,7 +543,7 @@ static int ov5_021F0E24(UnkStruct_ov5_021F0D6C *param0)
 {
     if ((FieldMessage_FinishedPrinting(param0->unk_28) == 1) && (ov5_021F0D54() == 1)) {
         sub_0200E084(&param0->window, 0);
-        BGL_DeleteWindow(&param0->window);
+        Window_Remove(&param0->window);
         return 1;
     }
 

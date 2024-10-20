@@ -19,8 +19,8 @@ void ov108_02243630(BgConfig *param0, Window *param1)
     const WindowTemplate *v1 = Unk_ov108_02243774;
 
     for (v0 = 0; v0 < 2; v0++) {
-        sub_0201A8D4(param0, &param1[v0], &v1[v0]);
-        BGL_FillWindow(&param1[v0], 0);
+        Window_AddFromTemplate(param0, &param1[v0], &v1[v0]);
+        Window_FillTilemap(&param1[v0], 0);
     }
 
     return;
@@ -31,7 +31,7 @@ void ov108_02243660(Window *param0)
     u16 v0;
 
     for (v0 = 0; v0 < 2; v0++) {
-        BGL_DeleteWindow(&param0[v0]);
+        Window_Remove(&param0[v0]);
     }
 
     return;

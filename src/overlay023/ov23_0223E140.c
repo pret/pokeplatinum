@@ -1157,7 +1157,7 @@ static void ov23_0223EC34(BgConfig *param0)
             GX_BG0_AS_2D
         };
 
-        sub_02018368(&v1);
+        SetAllGraphicsModes(&v1);
     }
 
     {
@@ -1177,9 +1177,9 @@ static void ov23_0223EC34(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 0, &v2, 0);
-        sub_02019690(0, 32, 0, 29);
-        sub_02019EBC(param0, 0);
+        Bg_InitFromTemplate(param0, 0, &v2, 0);
+        Bg_ClearTilesRange(0, 32, 0, 29);
+        Bg_ClearTilemap(param0, 0);
     }
 
     {
@@ -1199,9 +1199,9 @@ static void ov23_0223EC34(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 1, &v3, 0);
-        sub_02019690(1, 32, 0, 29);
-        sub_02019EBC(param0, 1);
+        Bg_InitFromTemplate(param0, 1, &v3, 0);
+        Bg_ClearTilesRange(1, 32, 0, 29);
+        Bg_ClearTilemap(param0, 1);
     }
     {
         BgTemplate v4 = {
@@ -1220,9 +1220,9 @@ static void ov23_0223EC34(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 2, &v4, 0);
-        sub_02019690(2, 32, 0, 29);
-        sub_02019EBC(param0, 2);
+        Bg_InitFromTemplate(param0, 2, &v4, 0);
+        Bg_ClearTilesRange(2, 32, 0, 29);
+        Bg_ClearTilemap(param0, 2);
     }
     {
         BgTemplate v5 = {
@@ -1241,13 +1241,13 @@ static void ov23_0223EC34(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 3, &v5, 0);
-        sub_02019690(3, 32, 0, 29);
-        sub_02019EBC(param0, 3);
+        Bg_InitFromTemplate(param0, 3, &v5, 0);
+        Bg_ClearTilesRange(3, 32, 0, 29);
+        Bg_ClearTilemap(param0, 3);
     }
 
-    sub_02019690(4, 32, 0, 29);
-    sub_02019690(0, 32, 0, 29);
+    Bg_ClearTilesRange(4, 32, 0, 29);
+    Bg_ClearTilesRange(0, 32, 0, 29);
 }
 
 static void ov23_0223ED68(int param0, int param1, BOOL param2, BOOL param3, BOOL param4)
@@ -1308,7 +1308,7 @@ static void ov23_0223EE80(UnkStruct_ov23_0223EE80 *param0)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
     Heap_Create(3, 29, 0x50000);
 
-    v1 = sub_02018340(29);
+    v1 = BgConfig_New(29);
     Unk_ov23_02257740->unk_04 = v1;
 
     SetMainCallback(ov23_022411E8, v1);
@@ -1316,9 +1316,9 @@ static void ov23_0223EE80(UnkStruct_ov23_0223EE80 *param0)
     ov23_02253E2C(ov23_0224219C(), v1, (512 - (18 + 12)), (((512 - (18 + 12)) - 73) - (27 * 4)));
     ov23_0223EC34(v1);
 
-    sub_02019EBC(v1, 0);
-    sub_02019EBC(v1, 1);
-    sub_02019EBC(v1, 2);
+    Bg_ClearTilemap(v1, 0);
+    Bg_ClearTilemap(v1, 1);
+    Bg_ClearTilemap(v1, 2);
     sub_0200DD0C(v1, 3, (512 - (18 + 12)), 10, 0, 29);
 
     {
@@ -1346,17 +1346,17 @@ static void ov23_0223EF98(void)
     int v5;
 
     ov23_022404C8(Unk_ov23_02257740->unk_04);
-    sub_02019448(Unk_ov23_02257740->unk_04, 1);
+    Bg_CopyTilemapBufferToVRAM(Unk_ov23_02257740->unk_04, 1);
 
     ov23_0223FF8C(Unk_ov23_02257740->unk_04);
     sub_02006E3C(55, 9, Unk_ov23_02257740->unk_04, 2, 1, 0, 0, 29);
 
     ov23_022401B0(Unk_ov23_02257740->unk_04);
 
-    BGL_SetPriority(0, 3);
-    BGL_SetPriority(1, 2);
-    BGL_SetPriority(2, 1);
-    BGL_SetPriority(3, 0);
+    Bg_SetPriority(0, 3);
+    Bg_SetPriority(1, 2);
+    Bg_SetPriority(2, 1);
+    Bg_SetPriority(3, 0);
 
     ov23_02240E88();
     ov23_0224108C();
@@ -1368,10 +1368,10 @@ static void ov23_0223F020(UnkStruct_ov23_0223EE80 *param0)
     void *v0;
     int v1;
 
-    sub_02019044(Unk_ov23_02257740->unk_04, 0);
-    sub_02019044(Unk_ov23_02257740->unk_04, 1);
-    sub_02019044(Unk_ov23_02257740->unk_04, 2);
-    sub_02019044(Unk_ov23_02257740->unk_04, 3);
+    Bg_FreeTilemapBuffer(Unk_ov23_02257740->unk_04, 0);
+    Bg_FreeTilemapBuffer(Unk_ov23_02257740->unk_04, 1);
+    Bg_FreeTilemapBuffer(Unk_ov23_02257740->unk_04, 2);
+    Bg_FreeTilemapBuffer(Unk_ov23_02257740->unk_04, 3);
     sub_0200A4E4(Unk_ov23_02257740->unk_1C0[0]);
     sub_0200A4E4(Unk_ov23_02257740->unk_1C0[4]);
     sub_0200A6DC(Unk_ov23_02257740->unk_1C0[1]);
@@ -1922,7 +1922,7 @@ static void ov23_0223FA3C(BgConfig *param0, int param1, UnkStruct_ov23_0223EE80 
 static int ov23_0223FC9C(int param0, BgConfig *param1, int param2, UnkStruct_ov23_0223EE80 *param3)
 {
     UnkStruct_ov23_0223FC9C *v0 = &Unk_ov23_02257740->unk_874[param0];
-    u16 *v1 = sub_02019FE4(param1, 1);
+    u16 *v1 = Bg_GetTilemapBuffer(param1, 1);
     int v2 = v0->unk_05 * 2;
     int v3 = v0->unk_06 * 2;
     int v4 = v2 + v0->unk_00->unk_0C;
@@ -2158,7 +2158,7 @@ static void ov23_022401B0(BgConfig *param0)
     static u8 v5[] = { 0x2, 0x3, 0x12, 0x13 };
     static u8 v6[] = { 0x0, 0x1, 0x10, 0x11 };
     static u8 *v7[] = { v0, v1, v2, v3, v4, v5, v6 };
-    u16 *v8 = sub_02019FE4(param0, 2);
+    u16 *v8 = Bg_GetTilemapBuffer(param0, 2);
     int v9, v10, v11;
 
     for (v9 = 0; v9 < 10; v9++) {
@@ -2173,7 +2173,7 @@ static void ov23_022401B0(BgConfig *param0)
         }
     }
 
-    sub_02019448(param0, 2);
+    Bg_CopyTilemapBufferToVRAM(param0, 2);
 }
 
 static BOOL ov23_02240244(int param0, int param1)
@@ -2326,7 +2326,7 @@ static void ov23_022404C8(BgConfig *param0)
     Unk_ov23_02257740->unk_A2A = 1;
     Unk_ov23_02257740->unk_A28 = 1;
 
-    v0 = sub_02019FE4(param0, 1);
+    v0 = Bg_GetTilemapBuffer(param0, 1);
     ov23_02240454(v0, Unk_ov23_02256BF4, 0x30, 54);
 }
 
@@ -2356,7 +2356,7 @@ static void ov23_022404F8(BgConfig *param0, int param1, int param2, int param3)
         }
     }
 
-    v2 = sub_02019FE4(param0, 1);
+    v2 = Bg_GetTilemapBuffer(param0, 1);
 
     switch (Unk_ov23_02257740->unk_A2A) {
     case 0:
@@ -2399,7 +2399,7 @@ static void ov23_022404F8(BgConfig *param0, int param1, int param2, int param3)
         break;
     }
 
-    sub_02019448(param0, 1);
+    Bg_CopyTilemapBufferToVRAM(param0, 1);
 }
 
 static void ov23_02240660(VecFx32 *param0)
@@ -2419,7 +2419,7 @@ static void ov23_02240688(BgConfig *param0)
     VecFx32 v0;
     int v1 = Unk_ov23_02257740->unk_A2B;
     int v2, v3, v4;
-    u16 *v5 = sub_02019FE4(param0, 0);
+    u16 *v5 = Bg_GetTilemapBuffer(param0, 0);
 
     v1 = (v1 / 4) * 4;
     v4 = 6 - (v1 % 24) / 4;
@@ -2437,7 +2437,7 @@ static void ov23_02240688(BgConfig *param0)
         v5[0x79 - v3] = (v5[0x79 - v3] & 0xfc00) + 0xad - (v3 % 3);
     }
 
-    sub_02019448(param0, 0);
+    Bg_CopyTilemapBufferToVRAM(param0, 0);
 }
 
 static void ov23_02240758(UnkStruct_ov23_0223EE80 *param0)
@@ -2676,8 +2676,8 @@ static void ov23_02240C94(BgConfig *param0)
     }
 
     for (v0 = 0; v0 < 3; v0++) {
-        sub_02019184(param0, v0, 0, Unk_ov23_02257740->unk_A2D);
-        sub_02019184(param0, v0, 3, Unk_ov23_02257740->unk_A2E);
+        Bg_SetOffset(param0, v0, 0, Unk_ov23_02257740->unk_A2D);
+        Bg_SetOffset(param0, v0, 3, Unk_ov23_02257740->unk_A2E);
     }
 }
 
@@ -2864,7 +2864,7 @@ static void ov23_022411E8(void *param0)
 
     ov23_02240C94(v0);
 
-    sub_0201C2B8(v0);
+    Bg_RunScheduledUpdates(v0);
     sub_0201DCAC();
     sub_0200A858();
 }

@@ -527,7 +527,7 @@ static int sub_02085704(void *param0)
     }
 
     sub_02082098(v0, v0->unk_B11);
-    BGL_FillWindow(&v0->unk_04[3 + v0->unk_B11 * 5], 0);
+    Window_FillTilemap(&v0->unk_04[3 + v0->unk_B11 * 5], 0);
     sub_02082058(v0, v0->unk_B11);
     sub_02082104(v0, v0->unk_B11);
 
@@ -618,7 +618,7 @@ int sub_02085804(GameWindowLayout *param0)
         param0->unk_704[param0->unk_B11].unk_06++;
 
         sub_02082098(param0, param0->unk_B11);
-        BGL_FillWindow(&param0->unk_04[3 + param0->unk_B11 * 5], 0);
+        Window_FillTilemap(&param0->unk_04[3 + param0->unk_B11 * 5], 0);
         sub_02082058(param0, param0->unk_B11);
         sub_02082104(param0, param0->unk_B11);
 

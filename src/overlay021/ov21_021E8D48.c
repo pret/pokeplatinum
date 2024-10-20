@@ -293,10 +293,10 @@ static void ov21_021E90B0(BgConfig *param0, int param1)
             0
         };
 
-        sub_02019044(param0, 1);
-        sub_020183C4(param0, 1, &v0, 0);
-        sub_02019690(1, 32, 0, param1);
-        sub_02019EBC(param0, 1);
+        Bg_FreeTilemapBuffer(param0, 1);
+        Bg_InitFromTemplate(param0, 1, &v0, 0);
+        Bg_ClearTilesRange(1, 32, 0, param1);
+        Bg_ClearTilemap(param0, 1);
     }
 
     {
@@ -316,15 +316,15 @@ static void ov21_021E90B0(BgConfig *param0, int param1)
             0
         };
 
-        sub_02019044(param0, 2);
-        sub_020183C4(param0, 2, &v1, 0);
-        sub_02019690(2, 32, 0, param1);
-        sub_02019EBC(param0, 2);
+        Bg_FreeTilemapBuffer(param0, 2);
+        Bg_InitFromTemplate(param0, 2, &v1, 0);
+        Bg_ClearTilesRange(2, 32, 0, param1);
+        Bg_ClearTilemap(param0, 2);
     }
 
-    BGL_SetPriority(0, 0);
+    Bg_SetPriority(0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
-    sub_02019044(param0, 0);
+    Bg_FreeTilemapBuffer(param0, 0);
 
     {
         BgTemplate v2 = {
@@ -343,38 +343,38 @@ static void ov21_021E90B0(BgConfig *param0, int param1)
             0
         };
 
-        sub_02019044(param0, 3);
-        sub_020183C4(param0, 3, &v2, 0);
-        sub_02019690(3, 32, 0, param1);
-        sub_02019EBC(param0, 3);
+        Bg_FreeTilemapBuffer(param0, 3);
+        Bg_InitFromTemplate(param0, 3, &v2, 0);
+        Bg_ClearTilesRange(3, 32, 0, param1);
+        Bg_ClearTilemap(param0, 3);
     }
 }
 
 static void ov21_021E9194(BgConfig *param0)
 {
-    sub_02019044(param0, 1);
-    sub_02019044(param0, 2);
-    sub_02019044(param0, 3);
+    Bg_FreeTilemapBuffer(param0, 1);
+    Bg_FreeTilemapBuffer(param0, 2);
+    Bg_FreeTilemapBuffer(param0, 3);
 }
 
 static Window *ov21_021E91B0(BgConfig *param0, int param1)
 {
     Window *v0;
 
-    v0 = sub_0201A778(param1, 1);
+    v0 = Window_New(param1, 1);
 
-    BGL_AddWindow(param0, v0, 1, 0, 0, 32, 32, 0xc, 0);
-    BGL_FillWindow(v0, 0);
-    sub_0201A954(v0);
+    Window_Add(param0, v0, 1, 0, 0, 32, 32, 0xc, 0);
+    Window_FillTilemap(v0, 0);
+    Window_CopyToVRAM(v0);
 
     return v0;
 }
 
 static void ov21_021E91F0(Window *param0)
 {
-    sub_0201ACF4(param0);
-    BGL_DeleteWindow(param0);
-    sub_0201A928(param0, 1);
+    Window_ClearAndCopyToVRAM(param0);
+    Window_Remove(param0);
+    Windows_Delete(param0, 1);
 }
 
 static void ov21_021E9208(SpriteResourceCollection **param0, int param1)
@@ -642,24 +642,24 @@ static void ov21_021E96A8(BgConfig *param0, int param1, NARC *param2)
 
     v0 = sub_020071D0(param2, 50, 1, &v1, param1);
 
-    sub_020198C0(param0, 3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
+    Bg_LoadToTilemapRect(param0, 3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
 
     v0 = sub_020071D0(param2, 51, 1, &v1, param1);
 
-    sub_020198C0(param0, 3, v1->rawData, 0, 3, v1->screenWidth / 8, v1->screenHeight / 8);
+    Bg_LoadToTilemapRect(param0, 3, v1->rawData, 0, 3, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
 
     v0 = sub_020071D0(param2, 52, 1, &v1, param1);
 
-    sub_020198C0(param0, 3, v1->rawData, 12, 8, v1->screenWidth / 8, v1->screenHeight / 8);
+    Bg_LoadToTilemapRect(param0, 3, v1->rawData, 12, 8, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
 
     v0 = sub_020071D0(param2, 54, 1, &v1, param1);
 
-    sub_020198C0(param0, 3, v1->rawData, 0, 16, v1->screenWidth / 8, v1->screenHeight / 8);
+    Bg_LoadToTilemapRect(param0, 3, v1->rawData, 0, 16, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
-    sub_0201C3C0(param0, 3);
+    Bg_ScheduleTilemapTransfer(param0, 3);
 }
 
 static void ov21_021E97C4(BgConfig *param0, int param1, NARC *param2)
@@ -671,9 +671,9 @@ static void ov21_021E97C4(BgConfig *param0, int param1, NARC *param2)
 
     v0 = sub_020071D0(param2, 57, 1, &v1, param1);
 
-    sub_020198C0(param0, 2, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
+    Bg_LoadToTilemapRect(param0, 2, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
-    sub_0201C3C0(param0, 2);
+    Bg_ScheduleTilemapTransfer(param0, 2);
 }
 
 static void ov21_021E9828(SysTask *param0, void *param1)

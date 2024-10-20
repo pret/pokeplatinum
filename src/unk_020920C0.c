@@ -96,7 +96,7 @@ void sub_020920C0(PokemonSummaryApp *param0)
             param0->subscreenType = 0;
         } else {
             param0->subscreenType = 1;
-            sub_0201C63C(param0->bgl, 4, 0, 4);
+            Bg_ScheduleScroll(param0->bgl, 4, 0, 4);
         }
         break;
     case 2:
@@ -115,7 +115,7 @@ static void sub_0209212C(PokemonSummaryApp *param0, const UnkStruct_020F5164 *pa
     u8 v2;
     u8 v3, v4;
 
-    v0 = (u16 *)sub_02019FE4(param0->bgl, 4);
+    v0 = (u16 *)Bg_GetTilemapBuffer(param0->bgl, 4);
     v1 = (param1->unk_00 & 1) * 15 + (param1->unk_00 / 2) * (30 * 5) + param2 * 5 + 30;
 
     for (v3 = 0; v3 < 5; v3++) {
@@ -146,7 +146,7 @@ void sub_0209219C(PokemonSummaryApp *param0)
         v1++;
     }
 
-    sub_0201C3C0(param0->bgl, 4);
+    Bg_ScheduleTilemapTransfer(param0->bgl, 4);
 }
 
 u8 sub_020921E4(PokemonSummaryApp *param0)
@@ -188,7 +188,7 @@ static int sub_02092224(PokemonSummaryApp *param0)
     if (v0 != 0xffffffff) {
         u16 v1 = 0xfffe;
 
-        if (sub_0201C784(param0->bgl, 4, gCoreSys.touchX, gCoreSys.touchY, &v1) == 0) {
+        if (Bg_DoesPixelAtXYMatchVal(param0->bgl, 4, gCoreSys.touchX, gCoreSys.touchY, &v1) == 0) {
             return 0xffffffff;
         }
     }
@@ -205,7 +205,7 @@ u8 sub_0209228C(PokemonSummaryApp *param0)
         Sound_PlayEffect(1508);
         sub_0209219C(param0);
         sub_0209212C(param0, &v0[param0->buttonPos], 2);
-        sub_0201C3C0(param0->bgl, 4);
+        Bg_ScheduleTilemapTransfer(param0->bgl, 4);
         sub_0208F600(param0);
         param0->buttonCount = 0;
         param0->buttonState = 1;
@@ -230,7 +230,7 @@ u8 sub_0209228C(PokemonSummaryApp *param0)
                 sub_0209212C(param0, &v0[param0->buttonPos], 1);
             }
 
-            sub_0201C3C0(param0->bgl, 4);
+            Bg_ScheduleTilemapTransfer(param0->bgl, 4);
             return 1;
         }
     }

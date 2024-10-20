@@ -138,7 +138,7 @@ static void ov5_021DD610(FieldSystem *fieldSystem, UnkStruct_ov5_021DD648 *param
         *(param1->unk_10) = 1;
     }
 
-    BGL_FillWindow(param1->unk_0C, 15);
+    Window_FillTilemap(param1->unk_0C, 15);
 }
 
 static void ov5_021DD648(UnkStruct_ov5_021DD648 *param0, const MessageLoader *param1, u32 param2)

@@ -171,14 +171,14 @@ static void ov104_02231FC4(UnkStruct_ov104_022320B4 *param0)
     UnkStruct_ov104_0223C4CC *v0 = ov104_0222E924(param0);
 
     if (param0->unk_5A == 0) {
-        BGL_AddWindow(
+        Window_Add(
             v0->unk_00, &param0->unk_64, 1, 2, 19, 27, 4, 13, (((1024 - (18 + 12)) - 9) - (27 * 4)));
-        BGL_FillWindow(&param0->unk_64, 15);
+        Window_FillTilemap(&param0->unk_64, 15);
         sub_0200E060(&param0->unk_64, 0, (1024 - (18 + 12)), 11);
 
         param0->unk_5A = 1;
     } else {
-        BGL_FillWindow(&param0->unk_64, 15);
+        Window_FillTilemap(&param0->unk_64, 15);
     }
 }
 
@@ -201,7 +201,7 @@ void ov104_02232088(UnkStruct_ov104_022320B4 *param0)
     GF_ASSERT(param0->unk_5A == 1);
 
     sub_0200E084(&param0->unk_64, 0);
-    BGL_DeleteWindow(&param0->unk_64);
+    Window_Remove(&param0->unk_64);
 
     param0->unk_5A = 0;
 }
@@ -327,7 +327,7 @@ void ov104_022322B0(UnkStruct_ov104_02232B5C *param0)
         param0->unk_99 -= param0->unk_9B * 2;
     }
 
-    BGL_AddWindow(v1->unk_00, &param0->unk_08, 1, param0->unk_98, param0->unk_99, v0, param0->unk_9B * 2, 14, 1);
+    Window_Add(v1->unk_00, &param0->unk_08, 1, param0->unk_98, param0->unk_99, v0, param0->unk_9B * 2, 14, 1);
     Window_Show(&param0->unk_08, 1, 985, 12);
     ov104_02232454(param0);
     param0->unk_B0 = sub_02001B9C(&param0->unk_A4, param0->unk_96, param0->unk_00->unk_34);
@@ -448,7 +448,7 @@ static void ov104_02232570(UnkStruct_ov104_02232B5C *param0)
 
     sub_02001BC4(param0->unk_B0, NULL);
     Window_Clear(param0->unk_A4.unk_04, 0);
-    BGL_DeleteWindow(param0->unk_A4.unk_04);
+    Window_Remove(param0->unk_A4.unk_04);
 
     for (v0 = 0; v0 < 28; v0++) {
         Strbuf_Free(param0->unk_1C[v0]);
@@ -507,12 +507,12 @@ void ov104_02232624(UnkStruct_ov104_02232B5C *param0)
         if (param0->unk_97_7) {
             param0->unk_99 -= 8 * 2;
         }
-        BGL_AddWindow(v1->unk_00, &param0->unk_08, 1, param0->unk_98, param0->unk_99, v0, 8 * 2, 14, 1);
+        Window_Add(v1->unk_00, &param0->unk_08, 1, param0->unk_98, param0->unk_99, v0, 8 * 2, 14, 1);
     } else {
         if (param0->unk_97_7) {
             param0->unk_99 -= param0->unk_9B * 2;
         }
-        BGL_AddWindow(v1->unk_00, &param0->unk_08, 1, param0->unk_98, param0->unk_99, v0, param0->unk_9B * 2, 14, 1);
+        Window_Add(v1->unk_00, &param0->unk_08, 1, param0->unk_98, param0->unk_99, v0, param0->unk_9B * 2, 14, 1);
     }
     Window_Show(&param0->unk_08, 1, 985, 12);
     ov104_02232830(param0);
@@ -688,7 +688,7 @@ static void ov104_02232A58(UnkStruct_ov104_02232B5C *param0, u8 param1)
 
     sub_02001384(param0->unk_1B4, NULL, NULL);
     Window_Clear(param0->unk_194.unk_0C, 0);
-    BGL_DeleteWindow(&param0->unk_08);
+    Window_Remove(&param0->unk_08);
 
     for (v0 = 0; v0 < 28; v0++) {
         Strbuf_Free(param0->unk_1C[v0]);
@@ -708,7 +708,7 @@ static void ov104_02232AC4(UnkStruct_ov104_02232B5C *param0, u16 param1, u32 par
     Strbuf *v0 = Strbuf_Init((40 * 2), param0->unk_00->unk_34);
     Strbuf *v1 = Strbuf_Init((40 * 2), param0->unk_00->unk_34);
 
-    BGL_FillWindow(param0->unk_18, 15);
+    Window_FillTilemap(param0->unk_18, 15);
 
     MessageLoader_GetStrbuf(param0->unk_8C, param1, v0);
 

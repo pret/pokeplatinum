@@ -95,7 +95,7 @@ void ov22_022550D4(UnkStruct_ov22_0225A0E4 *param0)
     ov22_02255BF4(param0, 13);
     ov22_022559F8(param0);
 
-    param0->unk_40 = sub_02018340(14);
+    param0->unk_40 = BgConfig_New(14);
 
     ov22_02255860(param0);
 }
@@ -265,7 +265,7 @@ void ov22_02255390(void)
 
 void ov22_022553F8(UnkStruct_ov22_0225A0E4 *param0)
 {
-    sub_0201C2B8(param0->unk_40);
+    Bg_RunScheduledUpdates(param0->unk_40);
     sub_02008A94(param0->unk_20);
     sub_0200A858();
 }
@@ -332,10 +332,10 @@ void ov22_022554A8(UnkStruct_ov22_0225A0E4 *param0, BgConfig *param1, int param2
             0
         };
 
-        sub_02019044(param0->unk_40, 2);
-        sub_020183C4(param0->unk_40, 2, &v0, 0);
-        sub_02019690(2, 32, 0, param2);
-        sub_02019EBC(param0->unk_40, 2);
+        Bg_FreeTilemapBuffer(param0->unk_40, 2);
+        Bg_InitFromTemplate(param0->unk_40, 2, &v0, 0);
+        Bg_ClearTilesRange(2, 32, 0, param2);
+        Bg_ClearTilemap(param0->unk_40, 2);
     }
 }
 
@@ -354,7 +354,7 @@ void ov22_022554F8(UnkStruct_ov22_0225A0E4 *param0)
 
 void ov22_02255524(UnkStruct_ov22_0225A0E4 *param0)
 {
-    sub_02019044(param0->unk_40, 2);
+    Bg_FreeTilemapBuffer(param0->unk_40, 2);
 }
 
 void ov22_02255530(UnkStruct_ov22_0225A0E4 *param0)
@@ -397,7 +397,7 @@ void ov22_022555D4(UnkStruct_ov22_0225A0E4 *param0, int param1)
 {
     param0->unk_5C = NARC_ctor(NARC_INDEX_GRAPHIC__IMAGECLIP, 14);
     ov22_022559F8(param0);
-    param0->unk_40 = sub_02018340(14);
+    param0->unk_40 = BgConfig_New(14);
     ov22_02255860(param0);
 }
 
@@ -411,7 +411,7 @@ void ov22_022555FC(UnkStruct_ov22_0225A0E4 *param0)
 
 void ov22_0225561C(UnkStruct_ov22_0225A0E4 *param0)
 {
-    sub_0201C2B8(param0->unk_40);
+    Bg_RunScheduledUpdates(param0->unk_40);
     sub_0200A858();
 }
 
@@ -468,7 +468,7 @@ static void ov22_022556DC(void)
             GX_BG0_AS_3D
         };
 
-        sub_02018368(&v0);
+        SetAllGraphicsModes(&v0);
     }
 
     GX_SetOBJVRamModeChar(GX_OBJVRAMMODE_CHAR_1D_32K);
@@ -570,9 +570,9 @@ static void ov22_02255860(UnkStruct_ov22_0225A0E4 *param0)
             0
         };
 
-        sub_020183C4(param0->unk_40, 1, &v0, 0);
-        sub_02019690(1, 32, 0, 14);
-        sub_02019EBC(param0->unk_40, 1);
+        Bg_InitFromTemplate(param0->unk_40, 1, &v0, 0);
+        Bg_ClearTilesRange(1, 32, 0, 14);
+        Bg_ClearTilemap(param0->unk_40, 1);
     }
 
     {
@@ -592,9 +592,9 @@ static void ov22_02255860(UnkStruct_ov22_0225A0E4 *param0)
             0
         };
 
-        sub_020183C4(param0->unk_40, 2, &v1, 0);
-        sub_02019690(2, 32, 0, 14);
-        sub_02019EBC(param0->unk_40, 2);
+        Bg_InitFromTemplate(param0->unk_40, 2, &v1, 0);
+        Bg_ClearTilesRange(2, 32, 0, 14);
+        Bg_ClearTilemap(param0->unk_40, 2);
     }
 
     {
@@ -614,9 +614,9 @@ static void ov22_02255860(UnkStruct_ov22_0225A0E4 *param0)
             0
         };
 
-        sub_020183C4(param0->unk_40, 3, &v2, 0);
-        sub_02019690(3, 32, 0, 14);
-        sub_02019EBC(param0->unk_40, 3);
+        Bg_InitFromTemplate(param0->unk_40, 3, &v2, 0);
+        Bg_ClearTilesRange(3, 32, 0, 14);
+        Bg_ClearTilemap(param0->unk_40, 3);
     }
 
     {
@@ -636,9 +636,9 @@ static void ov22_02255860(UnkStruct_ov22_0225A0E4 *param0)
             0
         };
 
-        sub_020183C4(param0->unk_40, 4, &v3, 0);
-        sub_02019690(4, 32, 0, 14);
-        sub_02019EBC(param0->unk_40, 4);
+        Bg_InitFromTemplate(param0->unk_40, 4, &v3, 0);
+        Bg_ClearTilesRange(4, 32, 0, 14);
+        Bg_ClearTilemap(param0->unk_40, 4);
     }
 
     {
@@ -658,19 +658,19 @@ static void ov22_02255860(UnkStruct_ov22_0225A0E4 *param0)
             0
         };
 
-        sub_020183C4(param0->unk_40, 5, &v4, 0);
-        sub_02019690(5, 32, 0, 14);
-        sub_02019EBC(param0->unk_40, 5);
+        Bg_InitFromTemplate(param0->unk_40, 5, &v4, 0);
+        Bg_ClearTilesRange(5, 32, 0, 14);
+        Bg_ClearTilemap(param0->unk_40, 5);
     }
 }
 
 static void ov22_02255984(UnkStruct_ov22_0225A0E4 *param0)
 {
-    sub_02019044(param0->unk_40, 1);
-    sub_02019044(param0->unk_40, 2);
-    sub_02019044(param0->unk_40, 3);
-    sub_02019044(param0->unk_40, 4);
-    sub_02019044(param0->unk_40, 5);
+    Bg_FreeTilemapBuffer(param0->unk_40, 1);
+    Bg_FreeTilemapBuffer(param0->unk_40, 2);
+    Bg_FreeTilemapBuffer(param0->unk_40, 3);
+    Bg_FreeTilemapBuffer(param0->unk_40, 4);
+    Bg_FreeTilemapBuffer(param0->unk_40, 5);
 }
 
 static void ov22_022559B4(UnkStruct_ov22_0225A0E4 *param0)

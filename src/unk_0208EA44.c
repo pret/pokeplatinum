@@ -654,7 +654,7 @@ void sub_0208F6DC(PokemonSummaryApp *param0, Window *param1)
         return;
     }
 
-    SpriteActor_SetPositionXY(param0->unk_41C[47], sub_0201C29C(param1) * 8 - 10, 8);
+    SpriteActor_SetPositionXY(param0->unk_41C[47], Window_GetXPos(param1) * 8 - 10, 8);
     CellActor_SetDrawFlag(param0->unk_41C[47], 1);
 }
 

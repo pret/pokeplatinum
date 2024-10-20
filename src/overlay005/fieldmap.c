@@ -138,7 +138,7 @@ static void ov5_021D0D80(void *param0)
 {
     FieldSystem *fieldSystem = param0;
 
-    sub_0201C2B8(fieldSystem->unk_08);
+    Bg_RunScheduledUpdates(fieldSystem->unk_08);
     sub_0201DCAC();
     sub_0200A858();
 
@@ -198,7 +198,7 @@ static BOOL FieldMap_Init(OverlayManager *overlayMan, int *param1)
         ov5_021D154C();
 
         GXLayers_SwapDisplay();
-        fieldSystem->unk_08 = sub_02018340(4);
+        fieldSystem->unk_08 = BgConfig_New(4);
         ov5_021D1444(fieldSystem->unk_08);
         sub_0205D8CC(0, 1);
         sub_0203F5C0(fieldSystem, 4);
@@ -580,7 +580,7 @@ static void ov5_021D1444(BgConfig *bgl)
             GX_BG0_AS_3D
         };
 
-        sub_02018368(&v0);
+        SetAllGraphicsModes(&v0);
     }
 
     {
@@ -600,9 +600,9 @@ static void ov5_021D1444(BgConfig *bgl)
             0
         };
 
-        sub_020183C4(bgl, 1, &v1, 0);
-        sub_02019690(1, 32, 0, 4);
-        sub_02019EBC(bgl, 1);
+        Bg_InitFromTemplate(bgl, 1, &v1, 0);
+        Bg_ClearTilesRange(1, 32, 0, 4);
+        Bg_ClearTilemap(bgl, 1);
     }
 
     {
@@ -622,9 +622,9 @@ static void ov5_021D1444(BgConfig *bgl)
             0
         };
 
-        sub_020183C4(bgl, 2, &v2, 0);
-        sub_02019690(2, 32, 0, 4);
-        sub_02019EBC(bgl, 2);
+        Bg_InitFromTemplate(bgl, 2, &v2, 0);
+        Bg_ClearTilesRange(2, 32, 0, 4);
+        Bg_ClearTilemap(bgl, 2);
     }
     {
         BgTemplate v3 = {
@@ -643,9 +643,9 @@ static void ov5_021D1444(BgConfig *bgl)
             0
         };
 
-        sub_020183C4(bgl, 3, &v3, 0);
-        sub_02019690(3, 32, 0, 4);
-        sub_02019EBC(bgl, 3);
+        Bg_InitFromTemplate(bgl, 3, &v3, 0);
+        Bg_ClearTilesRange(3, 32, 0, 4);
+        Bg_ClearTilemap(bgl, 3);
     }
 
     {
@@ -659,9 +659,9 @@ static void ov5_021D1444(BgConfig *bgl)
 static void ov5_021D1524(BgConfig *bgl)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3, 0);
-    sub_02019044(bgl, 1);
-    sub_02019044(bgl, 2);
-    sub_02019044(bgl, 3);
+    Bg_FreeTilemapBuffer(bgl, 1);
+    Bg_FreeTilemapBuffer(bgl, 2);
+    Bg_FreeTilemapBuffer(bgl, 3);
 }
 
 static void ov5_021D154C(void)

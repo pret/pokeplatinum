@@ -116,28 +116,28 @@ static void ov54_022564BC(SysTask *param0, void *param1)
     v2 = ov25_0225523C(param1);
     v3 = ov25_02255240(param1);
 
-    sub_020183C4(v2->unk_04, 6, &v0, 0);
-    sub_020196C0(v2->unk_04, 6, 4, 1, 0);
-    sub_02019CB8(v2->unk_04, 6, 0, 0, 0, 32, 24, 0);
+    Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
+    Bg_FillTilesRange(v2->unk_04, 6, 4, 1, 0);
+    Bg_FillTilemapRect(v2->unk_04, 6, 0, 0, 0, 32, 24, 0);
 
     ov25_022546B8(0, 0);
 
-    BGL_AddWindow(v2->unk_04, &v4, 6, 2, 2, 24, 2, 0, 1);
-    BGL_FillWindow(&v4, 4);
-    sub_0201A9F4(&v4);
+    Window_Add(v2->unk_04, &v4, 6, 2, 2, 24, 2, 0, 1);
+    Window_FillTilemap(&v4, 4);
+    Window_PutToTilemap(&v4);
 
     {
         Strbuf *v5 = MessageBank_GetNewStrbufFromNARC(26, 458, 0, 8);
 
         if (v5) {
             Text_AddPrinterWithParamsAndColor(&v4, FONT_SYSTEM, v5, (192 - Font_CalcStrbufWidth(FONT_SYSTEM, v5, 0)) / 2, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 8, 4), NULL);
-            sub_0201ACCC(&v4);
+            Window_LoadTiles(&v4);
             Strbuf_Free(v5);
         }
     }
 
-    BGL_DeleteWindow(&v4);
-    sub_02019448(v2->unk_04, 6);
+    Window_Remove(&v4);
+    Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);
     ov54_022565EC(v2, v3);
 
     v1 = GXS_GetDispCnt();
@@ -151,7 +151,7 @@ static void ov54_022565CC(SysTask *param0, void *param1)
     UnkStruct_ov54_0225642C *v0 = ov25_0225523C(param1);
 
     ov54_022566A8(v0);
-    sub_02019044(v0->unk_04, 6);
+    Bg_FreeTilemapBuffer(v0->unk_04, 6);
     ov54_022564A8(param1);
 }
 

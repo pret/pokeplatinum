@@ -127,24 +127,24 @@ void ErrorMessageReset_PrintErrorAndReset(void)
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);
 
     GXLayers_SetBanks(&sErrorMessageBanksConfig);
-    bgConfig = sub_02018340(v5);
+    bgConfig = BgConfig_New(v5);
 
-    sub_02018368(&sErrorMessageBgModeSet);
-    sub_020183C4(bgConfig, 0, &sErrorMessageBgTemplate, 0);
-    sub_02019EBC(bgConfig, 0);
+    SetAllGraphicsModes(&sErrorMessageBgModeSet);
+    Bg_InitFromTemplate(bgConfig, 0, &sErrorMessageBgTemplate, 0);
+    Bg_ClearTilemap(bgConfig, 0);
     sub_0200DAA4(bgConfig, 0, (512 - 9), 2, 0, v5);
     Font_LoadTextPalette(0, 1 * (2 * 16), v5);
-    sub_02019690(0, 32, 0, v5);
-    sub_0201975C(0, 0x6c21);
-    sub_0201975C(4, 0x6c21);
+    Bg_ClearTilesRange(0, 32, 0, v5);
+    Bg_MaskPalette(0, 0x6c21);
+    Bg_MaskPalette(4, 0x6c21);
 
     errorMsgData = MessageLoader_Init(1, 26, 214, v5);
     errorString = Strbuf_Init(0x180, v5);
 
     Text_ResetAllPrinters();
 
-    sub_0201A8D4(bgConfig, &window, &sErrorMessageWindowTemplate);
-    BGL_WindowColor(&window, 15, 0, 0, 26 * 8, 18 * 8);
+    Window_AddFromTemplate(bgConfig, &window, &sErrorMessageWindowTemplate);
+    Window_FillRectWithColor(&window, 15, 0, 0, 26 * 8, 18 * 8);
     Window_Show(&window, 0, (512 - 9), 2);
     MessageLoader_GetStrbuf(errorMsgData, v4, errorString);
     Text_AddPrinterWithParams(&window, FONT_SYSTEM, errorString, 0, 0, TEXT_SPEED_INSTANT, NULL);
@@ -180,7 +180,7 @@ void ErrorMessageReset_PrintErrorAndReset(void)
     sub_0200F344(0, 0x7fff);
     sub_0200F344(1, 0x7fff);
 
-    BGL_DeleteWindow(&window);
+    Window_Remove(&window);
     MessageLoader_Free(errorMsgData);
     Heap_FreeToHeap(bgConfig);
 

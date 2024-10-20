@@ -209,7 +209,7 @@ static void ov17_0224D078(SysTask *param0, void *param1)
             u16 *v1, *v2;
             int v3, v4, v5, v6, v7;
 
-            v1 = sub_02019FE4(v0->unk_00->unk_14.unk_60, 2);
+            v1 = Bg_GetTilemapBuffer(v0->unk_00->unk_14.unk_60, 2);
 
             for (v4 = 0; v4 < 4; v4++) {
                 if (Unk_ov17_022549C4[v0->unk_11] + v4 < 0) {
@@ -240,7 +240,7 @@ static void ov17_0224D078(SysTask *param0, void *param1)
                 }
             }
 
-            sub_0201C3C0(v0->unk_00->unk_14.unk_60, 2);
+            Bg_ScheduleTilemapTransfer(v0->unk_00->unk_14.unk_60, 2);
         }
 
         v0->unk_12++;
@@ -312,7 +312,7 @@ static void ov17_0224D240(SysTask *param0, void *param1)
             int v3, v4, v5, v6, v7;
             int v8;
 
-            v1 = sub_02019FE4(v0->unk_00->unk_14.unk_60, 2);
+            v1 = Bg_GetTilemapBuffer(v0->unk_00->unk_14.unk_60, 2);
 
             for (v4 = 0; v4 < 4; v4++) {
                 v8 = Unk_ov17_022549C4[NELEMS(Unk_ov17_022549C4) - 1 - v0->unk_11];
@@ -348,7 +348,7 @@ static void ov17_0224D240(SysTask *param0, void *param1)
                 }
             }
 
-            sub_0201C3C0(v0->unk_00->unk_14.unk_60, 2);
+            Bg_ScheduleTilemapTransfer(v0->unk_00->unk_14.unk_60, 2);
         }
 
         v0->unk_12++;
@@ -1404,7 +1404,7 @@ static void ov17_0224E6C8(SysTask *param0, void *param1)
     case 0:
         if (v0->unk_1A != 0) {
             sub_0200E060(&v0->unk_00->unk_14.unk_64[0], 1, 1, 14);
-            sub_0201C3C0(v0->unk_00->unk_14.unk_60, 1);
+            Bg_ScheduleTilemapTransfer(v0->unk_00->unk_14.unk_60, 1);
 
             ov17_0224C2CC(v0->unk_00, v0->unk_1A, &v0->unk_14);
             v0->unk_10++;
@@ -1424,7 +1424,7 @@ static void ov17_0224E6C8(SysTask *param0, void *param1)
             v0->unk_10++;
         } else if (v0->unk_12 >= v0->unk_1B) {
             sub_0200E084(&v0->unk_00->unk_14.unk_64[0], 1);
-            sub_0201C3C0(v0->unk_00->unk_14.unk_60, 1);
+            Bg_ScheduleTilemapTransfer(v0->unk_00->unk_14.unk_60, 1);
             v0->unk_10++;
         }
         break;

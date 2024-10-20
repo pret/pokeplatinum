@@ -154,13 +154,13 @@ static u8 sub_020157E4(UnkStruct_020157E4 *param0)
 static void sub_02015840(void *param0, u16 *param1)
 {
     UnkStruct_020157E4 *v0 = (UnkStruct_020157E4 *)param0;
-    sub_0201972C(0, param1, 0x20, v0->unk_4D * 0x20);
+    Bg_LoadPalette(0, param1, 0x20, v0->unk_4D * 0x20);
 }
 
 static void sub_02015858(void *param0, u16 *param1)
 {
     UnkStruct_020157E4 *v0 = (UnkStruct_020157E4 *)param0;
-    sub_0201972C(4, param1, 0x20, v0->unk_4D * 0x20);
+    Bg_LoadPalette(4, param1, 0x20, v0->unk_4D * 0x20);
 }
 
 static void sub_02015870(void *param0, u16 *param1)

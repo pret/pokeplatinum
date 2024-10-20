@@ -70,8 +70,8 @@ void ov110_021D2124(BgConfig *param0, Window *param1, u8 param2)
     u32 v2 = Unk_ov110_021D2278[param2].unk_04;
 
     for (v0 = 0; v0 < v2; v0++) {
-        sub_0201A8D4(param0, &param1[v0], &v1[v0]);
-        BGL_FillWindow(&param1[v0], 0);
+        Window_AddFromTemplate(param0, &param1[v0], &v1[v0]);
+        Window_FillTilemap(&param1[v0], 0);
     }
 
     return;
@@ -83,7 +83,7 @@ void ov110_021D216C(Window *param0, u8 param1)
     u32 v1 = Unk_ov110_021D2278[param1].unk_04;
 
     for (v0 = 0; v0 < v1; v0++) {
-        BGL_DeleteWindow(&param0[v0]);
+        Window_Remove(&param0[v0]);
     }
 
     return;

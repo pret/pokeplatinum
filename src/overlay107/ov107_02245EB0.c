@@ -256,7 +256,7 @@ int ov107_02245EB0 (OverlayManager * param0, int * param1)
     v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov107_02246170), 100);
     memset(v1, 0, sizeof(UnkStruct_ov107_02246170));
 
-    v1->unk_4C = sub_02018340(100);
+    v1->unk_4C = BgConfig_New(100);
     v1->unk_00 = param0;
 
     v2 = (UnkStruct_ov104_0223597C *)OverlayManager_Args(param0);
@@ -459,7 +459,7 @@ static void ov107_02246274 (UnkStruct_ov107_02246170 * param0)
     ov107_022484DC(param0, &v2, &v3, &v4, &v5);
     v8 = &param0->unk_50[0];
 
-    BGL_FillWindow(v8, 0);
+    Window_FillTilemap(v8, 0);
 
     ov107_02248E84(param0, v8);
     ov107_02248C08(param0, v8);
@@ -1231,11 +1231,11 @@ static void ov107_022472A4(BgConfig *param0)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
 
-    sub_02019044(param0, 3);
-    sub_02019044(param0, 2);
-    sub_02019044(param0, 0);
-    sub_02019044(param0, 1);
-    sub_02019044(param0, 4);
+    Bg_FreeTilemapBuffer(param0, 3);
+    Bg_FreeTilemapBuffer(param0, 2);
+    Bg_FreeTilemapBuffer(param0, 0);
+    Bg_FreeTilemapBuffer(param0, 1);
+    Bg_FreeTilemapBuffer(param0, 4);
     Heap_FreeToHeap(param0);
 
     return;
@@ -1249,7 +1249,7 @@ static void ov107_022472E8 (void * param0)
         sub_02003694(v0->unk_140);
     }
 
-    sub_0201C2B8(v0->unk_4C);
+    Bg_RunScheduledUpdates(v0->unk_4C);
     sub_0201DCAC();
     sub_0200A858();
 
@@ -1285,7 +1285,7 @@ static void ov107_02247340(BgConfig *param0)
             GX_BG0_AS_2D
         };
 
-        sub_02018368(&v0);
+        SetAllGraphicsModes(&v0);
     }
 
     {
@@ -1305,9 +1305,9 @@ static void ov107_02247340(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 1, &v1, 0);
-        sub_02019690(1, 32, 0, 100);
-        sub_02019EBC(param0, 1);
+        Bg_InitFromTemplate(param0, 1, &v1, 0);
+        Bg_ClearTilesRange(1, 32, 0, 100);
+        Bg_ClearTilemap(param0, 1);
     }
 
     {
@@ -1327,9 +1327,9 @@ static void ov107_02247340(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 0, &v2, 0);
-        sub_02019690(0, 32, 0, 100);
-        sub_02019EBC(param0, 0);
+        Bg_InitFromTemplate(param0, 0, &v2, 0);
+        Bg_ClearTilesRange(0, 32, 0, 100);
+        Bg_ClearTilemap(param0, 0);
     }
 
     {
@@ -1349,9 +1349,9 @@ static void ov107_02247340(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 2, &v3, 0);
-        sub_02019690(2, 32, 0, 100);
-        sub_02019EBC(param0, 2);
+        Bg_InitFromTemplate(param0, 2, &v3, 0);
+        Bg_ClearTilesRange(2, 32, 0, 100);
+        Bg_ClearTilemap(param0, 2);
     }
 
     {
@@ -1371,9 +1371,9 @@ static void ov107_02247340(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 3, &v4, 0);
-        sub_02019690(3, 32, 0, 100);
-        sub_02019EBC(param0, 3);
+        Bg_InitFromTemplate(param0, 3, &v4, 0);
+        Bg_ClearTilesRange(3, 32, 0, 100);
+        Bg_ClearTilemap(param0, 3);
     }
 
     {
@@ -1393,8 +1393,8 @@ static void ov107_02247340(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 4, &v5, 0);
-        sub_02019EBC(param0, 4);
+        Bg_InitFromTemplate(param0, 4, &v5, 0);
+        Bg_ClearTilemap(param0, 4);
     }
 
     G2_SetBG0Priority(0);
@@ -1477,7 +1477,7 @@ static u8 ov107_02247650 (UnkStruct_ov107_02246170 * param0, Window * param1, in
 static u8 ov107_02247680 (UnkStruct_ov107_02246170 * param0, Window * param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9, u32 param10)
 {
     u8 v0;
-    BGL_FillWindow(param1, param8);
+    Window_FillTilemap(param1, param8);
     MessageLoader_GetStrbuf(param0->unk_20, param2, param0->unk_2C);
     StringTemplate_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
     
@@ -1491,8 +1491,8 @@ static u8 ov107_02247680 (UnkStruct_ov107_02246170 * param0, Window * param1, in
     }
 
     v0 = Text_AddPrinterWithParamsAndColor(param1, param9, param0->unk_28, param3, param4, param5, TEXT_COLOR(param6, param7, param8), NULL);
-    sub_0201A9A4(param1);
-    
+    Window_ScheduleCopyToVRAM(param1);
+
     return v0;
 }
 
@@ -1517,8 +1517,8 @@ static u8 ov107_02247744 (UnkStruct_ov107_02246170 * param0, Window * param1, in
     }
 
     v0 = Text_AddPrinterWithParamsAndColor(param1, param9, param0->unk_28, param3, param4, param5, TEXT_COLOR(param6, param7, param8), NULL);
-    sub_0201A9A4(param1);
-    
+    Window_ScheduleCopyToVRAM(param1);
+
     return v0;
 }
 
@@ -1527,11 +1527,12 @@ static u8 ov107_022477CC (UnkStruct_ov107_02246170 * param0, int param1, u8 para
     u8 v0;
 
     v0 = ov107_02247650(param0, &param0->unk_50[7], param1, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, param2);
-    sub_0201A9A4(&param0->unk_50[7]);
+    Window_ScheduleCopyToVRAM(&param0->unk_50[7]);
 
     return v0;
 }
 
+// clang-format off
 asm static void ov107_02247804 (UnkStruct_ov107_02246170 * param0, Window * param1, Pokemon * param2)
 {
     push {r4, r5, r6, lr}
@@ -1541,7 +1542,7 @@ asm static void ov107_02247804 (UnkStruct_ov107_02246170 * param0, Window * para
     add r6, r2, #0
     add r0, r4, #0
     mov r1, #0
-    bl BGL_FillWindow
+    bl Window_FillTilemap
     add r0, r6, #0
     mov r1, #6
     mov r2, #0
@@ -1761,10 +1762,11 @@ asm static void ov107_02247804 (UnkStruct_ov107_02246170 * param0, Window * para
     mov r2, #0x3f
     bl ov107_02247A14
     add r0, r4, #0
-    bl sub_0201A9A4
+    bl Window_ScheduleCopyToVRAM
     add sp, #8
     pop {r4, r5, r6, pc}
 }
+// clang-format on
 
 static void ov107_02247A14 (UnkStruct_ov107_02246170 * param0, Window * param1, int param2, u16 param3, u16 param4, u32 param5)
 {
@@ -1773,14 +1775,14 @@ static void ov107_02247A14 (UnkStruct_ov107_02246170 * param0, Window * param1, 
 
 static void ov107_02247A3C (UnkStruct_ov107_02246170 * param0, Window * param1, Pokemon * param2)
 {
-    BGL_FillWindow(param1, 0);
+    Window_FillTilemap(param1, 0);
 
     ov107_02247AD0(param0, param1, 0, 71, 75, param2, 54, 58, 66);
     ov107_02247AD0(param0, param1, 1, 72, 75, param2, 55, 59, 67);
     ov107_02247AD0(param0, param1, 2, 73, 75, param2, 56, 60, 68);
     ov107_02247AD0(param0, param1, 3, 74, 75, param2, 57, 61, 69);
 
-    sub_0201A9A4(param1);
+    Window_ScheduleCopyToVRAM(param1);
     return;
 }
 
@@ -1806,7 +1808,7 @@ static void ov107_02247B78 (UnkStruct_ov107_02246170 * param0, Window * param1)
     int v2;
     Pokemon * v3;
 
-    BGL_FillWindow(param1, 0);
+    Window_FillTilemap(param1, 0);
 
     if (ov104_0223BA14(param0->unk_09) == 0) {
         v0 = 36;
@@ -1818,7 +1820,7 @@ static void ov107_02247B78 (UnkStruct_ov107_02246170 * param0, Window * param1)
 
     for (v2 = 0; v2 < v1; v2++) {
         if (param0->unk_3CC[v2] == 0) {
-            BGL_WindowColor(param1, 0, v0 + (64 * v2), 1, 64, 2 * 8);
+            Window_FillRectWithColor(param1, 0, v0 + (64 * v2), 1, 64, 2 * 8);
 
             continue;
         }
@@ -1830,7 +1832,7 @@ static void ov107_02247B78 (UnkStruct_ov107_02246170 * param0, Window * param1)
         sub_0200C5BC(param0->unk_144, Pokemon_GetValue(v3, MON_DATA_MAX_HP, NULL), 3, 0, param1, 32 + v0 + (64 * v2), 1);
     }
 
-    sub_0201A9A4(param1);
+    Window_ScheduleCopyToVRAM(param1);
     return;
 }
 
@@ -1842,7 +1844,7 @@ static void ov107_02247C64 (UnkStruct_ov107_02246170 * param0, Window * param1)
     int v4;
     Pokemon * v5;
 
-    BGL_FillWindow(param1, 0);
+    Window_FillTilemap(param1, 0);
 
     if (ov104_0223BA14(param0->unk_09) == 0) {
         v1 = 40;
@@ -1862,7 +1864,7 @@ static void ov107_02247C64 (UnkStruct_ov107_02246170 * param0, Window * param1)
         ov107_022481FC(param0, param1, v2 + (64 * v4), 1, 0, v0);
     }
 
-    sub_0201A9A4(param1);
+    Window_ScheduleCopyToVRAM(param1);
     return;
 }
 
@@ -1969,7 +1971,7 @@ static void ov107_02247E5C (UnkStruct_ov107_02246170 * param0)
     UnkStruct_ov84_02240FA8 v1;
 
     ov107_02249D84(param0->unk_4C, &param0->unk_50[5]);
-    BGL_FillWindow(&param0->unk_50[5], 15);
+    Window_FillTilemap(&param0->unk_50[5], 15);
 
     param0->unk_13C = sub_02013A04((NELEMS(Unk_ov107_0224A1BC)), 100);
 
@@ -1991,7 +1993,7 @@ static void ov107_02247E5C (UnkStruct_ov107_02246170 * param0)
     param0->unk_138 = sub_0200112C(&v1, param0->unk_1C, param0->unk_1E, 100);
     param0->unk_0F_1 = 1;
 
-    sub_0201A9A4(&param0->unk_50[5]);
+    Window_ScheduleCopyToVRAM(&param0->unk_50[5]);
     return;
 }
 
@@ -2031,7 +2033,7 @@ static void ov107_02247F6C (UnkStruct_ov107_02246170 * param0)
     UnkStruct_ov84_02240FA8 v1;
 
     ov107_02249D84(param0->unk_4C, &param0->unk_50[6]);
-    BGL_FillWindow(&param0->unk_50[6], 15);
+    Window_FillTilemap(&param0->unk_50[6], 15);
 
     param0->unk_13C = sub_02013A04((NELEMS(Unk_ov107_0224A19C)), 100);
 
@@ -2053,7 +2055,7 @@ static void ov107_02247F6C (UnkStruct_ov107_02246170 * param0)
     param0->unk_138 = sub_0200112C(&v1, 0, 0, 100);
     param0->unk_0F_1 = 1;
 
-    sub_0201A9A4(&param0->unk_50[6]);
+    Window_ScheduleCopyToVRAM(&param0->unk_50[6]);
     return;
 }
 
@@ -2629,7 +2631,7 @@ static void ov107_0224883C (UnkStruct_ov107_02246170 * param0)
 static void ov107_02248860 (Window * param0)
 {
     sub_0200E084(param0, 1);
-    sub_0201AD10(param0);
+    Window_ClearAndScheduleCopyToVRAM(param0);
 
     return;
 }
@@ -2813,7 +2815,7 @@ static void ov107_02248A2C (UnkStruct_ov107_02246170 * param0, u8 param1)
     ov107_0224752C(param0, 2);
     ov107_02248860(&param0->unk_50[7]);
 
-    sub_0201AD10(&param0->unk_50[7]);
+    Window_ClearAndScheduleCopyToVRAM(&param0->unk_50[7]);
 
     v0 = Party_GetPokemonBySlotIndex(param0->unk_3DC, ov107_02249C98(param0->unk_14, param1));
     ov107_02247804(param0, &param0->unk_50[4], v0);
@@ -2853,7 +2855,7 @@ static void ov107_02248AF0 (UnkStruct_ov107_02246170 * param0, u8 param1)
     ov107_022475A8(param0, 2);
     ov107_02248860(&param0->unk_50[7]);
 
-    sub_0201AD10(&param0->unk_50[7]);
+    Window_ClearAndScheduleCopyToVRAM(&param0->unk_50[7]);
 
     v0 = Party_GetPokemonBySlotIndex(param0->unk_3DC, ov107_02249C98(param0->unk_14, param1));
     ov107_02247A3C(param0, &param0->unk_50[4], v0);
@@ -2892,7 +2894,7 @@ static void ov107_02248BB4 (UnkStruct_ov107_02246170 * param0)
         param0->unk_0F_2 = 0;
         sub_02001BC4(param0->unk_11C, NULL);
         Window_Clear(param0->unk_110.unk_04, 1);
-        sub_0201AD10(param0->unk_110.unk_04);
+        Window_ClearAndScheduleCopyToVRAM(param0->unk_110.unk_04);
     }
 
     return;
@@ -2904,6 +2906,7 @@ static void ov107_02248BEC (UnkStruct_ov107_02246170 * param0)
     return;
 }
 
+// clang-format off
 asm static void ov107_02248C08 (UnkStruct_ov107_02246170 * param0, Window * param1)
 {
     push {r3, r4, r5, r6, r7, lr}
@@ -2939,7 +2942,7 @@ asm static void ov107_02248C08 (UnkStruct_ov107_02246170 * param0, Window * para
     add r0, r4, #0
     lsr r2, r2, #0x10
     add r3, r6, #0
-    bl BGL_WindowColor
+    bl Window_FillRectWithColor
     ldrb r0, [r5, #9]
     bl sub_0205E630
     str r0, [sp, #0x1c]
@@ -2995,7 +2998,7 @@ asm static void ov107_02248C08 (UnkStruct_ov107_02246170 * param0, Window * para
     add r0, r4, #0
     lsr r2, r2, #0x10
     add r3, r6, #0
-    bl BGL_WindowColor
+    bl Window_FillRectWithColor
     ldrb r0, [r5, #9]
     bl sub_0205E630
     str r0, [sp, #0x20]
@@ -3046,7 +3049,7 @@ asm static void ov107_02248C08 (UnkStruct_ov107_02246170 * param0, Window * para
     add r0, r4, #0
     lsr r2, r2, #0x10
     add r3, r6, #0
-    bl BGL_WindowColor
+    bl Window_FillRectWithColor
     mov r0, #1
     str r0, [sp]
     ldr r2, = 0x3D6
@@ -3089,7 +3092,7 @@ asm static void ov107_02248C08 (UnkStruct_ov107_02246170 * param0, Window * para
     add r0, r4, #0
     lsr r2, r2, #0x10
     add r3, r6, #0
-    bl BGL_WindowColor
+    bl Window_FillRectWithColor
     mov r0, #1
     str r0, [sp]
     ldr r2, = 0x3D6
@@ -3131,7 +3134,7 @@ asm static void ov107_02248C08 (UnkStruct_ov107_02246170 * param0, Window * para
     add r0, r4, #0
     lsr r2, r2, #0x10
     add r3, r6, #0
-    bl BGL_WindowColor
+    bl Window_FillRectWithColor
     ldrb r0, [r5, #9]
     bl sub_0205E630
     str r0, [sp, #0x24]
@@ -3167,10 +3170,11 @@ asm static void ov107_02248C08 (UnkStruct_ov107_02246170 * param0, Window * para
     strb r0, [r5, #0xa]
  _02248E46:
     add r0, r4, #0
-    bl sub_0201A9A4
+    bl Window_ScheduleCopyToVRAM
     add sp, #0x30
     pop {r3, r4, r5, r6, r7, pc}
 }
+// clang-format on
 
 static void ov107_02248E54 (UnkStruct_ov107_02246170 * param0, u8 param1)
 {
@@ -3217,7 +3221,7 @@ static void ov107_02248E84 (UnkStruct_ov107_02246170 * param0, Window * param1)
         }
     }
 
-    sub_0201A9A4(param1);
+    Window_ScheduleCopyToVRAM(param1);
     return;
 }
 
@@ -3356,8 +3360,8 @@ static void ov107_022490E8 (UnkStruct_ov107_02246170 * param0, u8 param1, u8 par
 
 static void ov107_02249238 (UnkStruct_ov107_02246170 * param0)
 {
-    BGL_FillWindow(&param0->unk_50[4], 0);
-    sub_0201ACF4(&param0->unk_50[4]);
+    Window_FillTilemap(&param0->unk_50[4], 0);
+    Window_ClearAndCopyToVRAM(&param0->unk_50[4]);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
 
     return;
@@ -3373,8 +3377,8 @@ static void ov107_02249258 (UnkStruct_ov107_02246170 * param0)
         v0 = (Window *)sub_02001504(param0->unk_138, 18);
 
         Window_Clear(v0, 1);
-        BGL_FillWindow(v0, 0);
-        sub_0201AD10(v0);
+        Window_FillTilemap(v0, 0);
+        Window_ClearAndScheduleCopyToVRAM(v0);
         sub_02013A3C(param0->unk_13C);
         sub_02001384(param0->unk_138, NULL, NULL);
     }

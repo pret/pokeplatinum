@@ -557,7 +557,7 @@ static int sub_0207E634(GameWindowLayout *param0)
     case 0xfffffffe:
         sub_0200E084(&param0->unk_04[33], 1);
         Window_Clear(&param0->unk_04[35], 1);
-        sub_0201AD10(&param0->unk_04[35]);
+        Window_ClearAndScheduleCopyToVRAM(&param0->unk_04[35]);
         sub_02001BC4(param0->unk_700, NULL);
         sub_02013A3C(param0->unk_6FC);
         sub_020826E0(param0, 29, 1);
@@ -679,7 +679,7 @@ static void sub_0207E898(void *param0)
 {
     GameWindowLayout *v0 = param0;
 
-    sub_0201C2B8(v0->unk_00);
+    Bg_RunScheduledUpdates(v0->unk_00);
     sub_0201DCAC();
     sub_0200C800();
 
@@ -722,8 +722,8 @@ static void sub_0207E8E0(BgConfig *param0)
         0
     };
 
-    sub_020183C4(param0, 0, &v0, 0);
-    sub_02019EBC(param0, 0);
+    Bg_InitFromTemplate(param0, 0, &v0, 0);
+    Bg_ClearTilemap(param0, 0);
 }
 
 static void sub_0207E918(BgConfig *param0)
@@ -736,7 +736,7 @@ static void sub_0207E918(BgConfig *param0)
             GX_BG0_AS_2D,
         };
 
-        sub_02018368(&v0);
+        SetAllGraphicsModes(&v0);
     }
 
     {
@@ -760,8 +760,8 @@ static void sub_0207E918(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 1, &v1, 0);
-        sub_02019EBC(param0, 1);
+        Bg_InitFromTemplate(param0, 1, &v1, 0);
+        Bg_ClearTilemap(param0, 1);
     }
 
     {
@@ -781,8 +781,8 @@ static void sub_0207E918(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 2, &v2, 0);
-        sub_02019EBC(param0, 2);
+        Bg_InitFromTemplate(param0, 2, &v2, 0);
+        Bg_ClearTilemap(param0, 2);
     }
 
     {
@@ -802,7 +802,7 @@ static void sub_0207E918(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 3, &v3, 0);
+        Bg_InitFromTemplate(param0, 3, &v3, 0);
     }
 
     {
@@ -822,8 +822,8 @@ static void sub_0207E918(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 4, &v4, 0);
-        sub_02019EBC(param0, 4);
+        Bg_InitFromTemplate(param0, 4, &v4, 0);
+        Bg_ClearTilemap(param0, 4);
     }
 
     {
@@ -843,31 +843,31 @@ static void sub_0207E918(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 5, &v5, 0);
+        Bg_InitFromTemplate(param0, 5, &v5, 0);
     }
 
-    sub_02019690(0, 32, 0, 12);
-    sub_02019690(4, 32, 0, 12);
+    Bg_ClearTilesRange(0, 32, 0, 12);
+    Bg_ClearTilesRange(4, 32, 0, 12);
 }
 
 static void sub_0207EA24(BgConfig *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_OBJ, 0);
-    sub_02019044(param0, 5);
-    sub_02019044(param0, 4);
-    sub_02019044(param0, 3);
-    sub_02019044(param0, 2);
-    sub_02019044(param0, 1);
-    sub_02019044(param0, 0);
+    Bg_FreeTilemapBuffer(param0, 5);
+    Bg_FreeTilemapBuffer(param0, 4);
+    Bg_FreeTilemapBuffer(param0, 3);
+    Bg_FreeTilemapBuffer(param0, 2);
+    Bg_FreeTilemapBuffer(param0, 1);
+    Bg_FreeTilemapBuffer(param0, 0);
     Heap_FreeToHeapExplicit(12, param0);
 }
 
 void sub_0207EA74(GameWindowLayout *param0, int param1)
 {
     if (param1 == 0) {
-        sub_02019120(0, 0);
-        sub_02019044(param0->unk_00, 0);
+        Bg_ToggleLayer(0, 0);
+        Bg_FreeTilemapBuffer(param0->unk_00, 0);
 
         GX_SetGraphicsMode(GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BG0_AS_3D);
         param0->unk_B28 = sub_0207EAD4(12);
@@ -878,7 +878,7 @@ void sub_0207EA74(GameWindowLayout *param0, int param1)
         GX_SetGraphicsMode(GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BG0_AS_2D);
 
         sub_0207E8E0(param0->unk_00);
-        sub_02019690(0, 32, 0, 12);
+        Bg_ClearTilesRange(0, 32, 0, 12);
     }
 }
 
@@ -919,7 +919,7 @@ static void sub_0207EB6C(GameWindowLayout *param0, NARC *param1)
 
         v1 = NARC_AllocAndReadWholeMember(param1, 16, 12);
         NNS_G2dGetUnpackedPaletteData(v1, &v0);
-        sub_0201972C(3, (void *)v0->pRawData, v0->szByte, 0);
+        Bg_LoadPalette(3, (void *)v0->pRawData, v0->szByte, 0);
 
         v2 = (u16 *)v0->pRawData;
         memcpy(param0->unk_4A4, &v2[3 * 16], 32 * 8);
@@ -935,8 +935,8 @@ static void sub_0207EB6C(GameWindowLayout *param0, NARC *param1)
     sub_0200710C(param1, 14, param0->unk_00, 5, 0, 0, 0, 12);
     sub_02007130(param1, 13, 4, 0, 0x20, 12);
     LoadScreenDataFromNARC(12, param0->unk_264, param0->unk_324, param0->unk_3E4);
-    sub_0201975C(0, 0);
-    sub_0201975C(4, 0);
+    Bg_MaskPalette(0, 0);
+    Bg_MaskPalette(4, 0);
 }
 
 static GameWindowLayout *sub_0207ECC0(OverlayManager *param0)
@@ -948,7 +948,7 @@ static GameWindowLayout *sub_0207ECC0(OverlayManager *param0)
     memset(v0, 0, sizeof(GameWindowLayout));
 
     v0->unk_5A4 = OverlayManager_Args(param0);
-    v0->unk_00 = sub_02018340(12);
+    v0->unk_00 = BgConfig_New(12);
 
     if ((v0->unk_5A4->unk_20 == 2) && (v0->unk_5A4->unk_14 != NULL)) {
         v0->unk_B20 = sub_0207A2A8(12);
@@ -1161,14 +1161,14 @@ static void sub_0207F250(GameWindowLayout *param0, u8 param1, u8 param2, u8 para
     param0->unk_704[param1].unk_14 = (s8)param2;
     param0->unk_704[param1].unk_15 = (s8)param3;
 
-    sub_020198E8(param0->unk_00, 2, param2, param3, 16, 6, (const void *)v0, 0, 0, 16, 6);
+    Bg_CopyToTilemapRect(param0->unk_00, 2, param2, param3, 16, 6, (const void *)v0, 0, 0, 16, 6);
 
     if (param4 == 0) {
-        sub_02019CB8(
+        Bg_FillTilemapRect(
             param0->unk_00, 2, 0x17, param2 + 6, param3 + 3, 9, 1, 16);
     }
 
-    sub_02019E2C(param0->unk_00, 2, param2, param3, 16, 6, 3 + param1);
+    Bg_ChangeTilemapRectPalette(param0->unk_00, 2, param2, param3, 16, 6, 3 + param1);
     sub_0207F8F8(param0, param1);
 }
 
@@ -1194,8 +1194,8 @@ static void sub_0207F308(GameWindowLayout *param0)
         sub_0207F388(param0, v0);
     }
 
-    sub_0201C3C0(param0->unk_00, 2);
-    sub_0201C3C0(param0->unk_00, 4);
+    Bg_ScheduleTilemapTransfer(param0->unk_00, 2);
+    Bg_ScheduleTilemapTransfer(param0->unk_00, 4);
 }
 
 static void sub_0207F388(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1)
@@ -1341,8 +1341,8 @@ static void sub_0207F788(GameWindowLayout *param0, const UnkStruct_020F1DF8 *par
 
 static void sub_0207F884(GameWindowLayout *param0, u8 param1, s16 param2, s16 param3)
 {
-    sub_020198E8(param0->unk_00, 2, param2, param3, 16, 6, (const void *)param0->unk_3E4, 0, 0, 16, 6);
-    sub_02019E2C(param0->unk_00, 2, param2, param3, 16, 6, 1);
+    Bg_CopyToTilemapRect(param0->unk_00, 2, param2, param3, 16, 6, (const void *)param0->unk_3E4, 0, 0, 16, 6);
+    Bg_ChangeTilemapRectPalette(param0->unk_00, 2, param2, param3, 16, 6, 1);
     sub_02083014(param0, param1, 7);
     sub_02083040(param0, param1, 0);
     sub_02083104(param0, param1);
@@ -1373,7 +1373,7 @@ void sub_0207F8F8(GameWindowLayout *param0, u8 param1)
         }
     }
 
-    sub_0201972C(2, &param0->unk_4A4[v1 * 16], 8 * 2, (3 + param1) * 32);
+    Bg_LoadPalette(2, &param0->unk_4A4[v1 * 16], 8 * 2, (3 + param1) * 32);
 }
 
 static u8 sub_0207F984(GameWindowLayout *param0, u8 param1)
@@ -1475,7 +1475,7 @@ static u8 sub_0207FA24(GameWindowLayout *param0)
 
             if (v4 < 6) {
                 UpdateWindowLayout(param0, v4, 0);
-                sub_0201C3C0(param0->unk_00, 4);
+                Bg_ScheduleTilemapTransfer(param0->unk_00, 4);
             }
 
             if ((v4 != 6) && (v4 != 7)) {
@@ -1589,7 +1589,7 @@ void sub_0207FD68(GameWindowLayout *param0, u8 param1)
 
         if (v2 < 6) {
             UpdateWindowLayout(param0, v2, 0);
-            sub_0201C3C0(param0->unk_00, 4);
+            Bg_ScheduleTilemapTransfer(param0->unk_00, 4);
         }
     }
 }
@@ -1608,12 +1608,12 @@ static void sub_0207FE1C(GameWindowLayout *param0)
         sub_020832E4(param0, v0, v1);
     }
         UpdateWindowLayout(param0, param0->unk_B0D, 2);
-        sub_0201C3C0(param0->unk_00, 4);
+        Bg_ScheduleTilemapTransfer(param0->unk_00, 4);
         param0->unk_B0C++;
         break;
     case 2:
         UpdateWindowLayout(param0, param0->unk_B0D, 1);
-        sub_0201C3C0(param0->unk_00, 4);
+        Bg_ScheduleTilemapTransfer(param0->unk_00, 4);
         param0->unk_B0C = 0;
         break;
     }
@@ -2276,7 +2276,7 @@ static void UpdateWindowLayout(GameWindowLayout *param0, u8 param1, u8 param2)
     u8 v2, v3;
     u8 v4, v5;
 
-    v0 = (u16 *)sub_02019FE4(param0->unk_00, 4);
+    v0 = (u16 *)Bg_GetTilemapBuffer(param0->unk_00, 4);
     v1 = 5 + (1 << 12) + 5 * 5 * param2;
     v2 = Unk_020F1BB8[param1][0];
     v3 = Unk_020F1BB8[param1][1];
@@ -2307,7 +2307,7 @@ static int GetValidWindowLayout(GameWindowLayout *param0)
     if (v0 != 0xffffffff) {
         u16 v1 = 0xfffe;
 
-        if (sub_0201C784(param0->unk_00, 4, gCoreSys.touchX, gCoreSys.touchY, &v1) == 0) {
+        if (Bg_DoesPixelAtXYMatchVal(param0->unk_00, 4, gCoreSys.touchX, gCoreSys.touchY, &v1) == 0) {
             return 0xffffffff;
         }
     }
@@ -2503,7 +2503,7 @@ static BOOL UpdatePokemonStatus(GameWindowLayout *param0, u8 slot, s8 param2)
     param0->unk_B14[2]++;
 
     sub_02082098(param0, slot);
-    BGL_FillWindow(&param0->unk_04[3 + slot * 5], 0);
+    Window_FillTilemap(&param0->unk_04[3 + slot * 5], 0);
     sub_02082058(param0, slot);
     sub_02082104(param0, slot);
 
@@ -2686,7 +2686,7 @@ static int ProcessItemApplication(GameWindowLayout *param0)
     }
 
     sub_0200E060(v1, 1, (1 + 9), 15);
-    BGL_FillWindow(v1, 15);
+    Window_FillTilemap(v1, 15);
     sub_0208274C(param0);
 
     return v2;
@@ -2815,7 +2815,7 @@ static int ProcessPokemonItemSwap(GameWindowLayout *param0)
             }
         }
 
-        BGL_FillWindow(v3, 15);
+        Window_FillTilemap(v3, 15);
         sub_0208274C(param0);
     }
         return v0;
@@ -2872,7 +2872,7 @@ static int UpdatePokemonFormWithItem(GameWindowLayout *param0)
     }
 
     sub_0200E060(v1, 1, (1 + 9), 15);
-    BGL_FillWindow(v1, 15);
+    Window_FillTilemap(v1, 15);
     sub_0208274C(param0);
 
     if (param0->unk_5A4->unk_20 == 12) {

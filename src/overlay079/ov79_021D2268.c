@@ -330,7 +330,7 @@ static void ov79_021D252C(void *param0)
 {
     UnkStruct_ov79_021D2928 *v0 = param0;
 
-    sub_0201C2B8(v0->unk_68);
+    Bg_RunScheduledUpdates(v0->unk_68);
     sub_02008A94(v0->unk_40.unk_04);
 
     sub_0200C800();
@@ -363,7 +363,7 @@ static void ov79_021D257C(UnkStruct_ov79_021D2928 *param0)
 
     ov79_021D255C();
 
-    param0->unk_68 = sub_02018340(param0->unk_00);
+    param0->unk_68 = BgConfig_New(param0->unk_00);
 
     {
         GraphicsModes v2 = {
@@ -373,7 +373,7 @@ static void ov79_021D257C(UnkStruct_ov79_021D2928 *param0)
             GX_BG0_AS_3D
         };
 
-        sub_02018368(&v2);
+        SetAllGraphicsModes(&v2);
     }
 
     {
@@ -428,9 +428,9 @@ static void ov79_021D257C(UnkStruct_ov79_021D2928 *param0)
 
         for (v0 = 0; v0 < 3; v0++) {
             v1 = v4[v0];
-            sub_020183C4(param0->unk_68, v1, &(v3[v0]), 0);
-            sub_02019EBC(param0->unk_68, v1);
-            sub_02019690(v1, 32, 0, param0->unk_00);
+            Bg_InitFromTemplate(param0->unk_68, v1, &(v3[v0]), 0);
+            Bg_ClearTilemap(param0->unk_68, v1);
+            Bg_ClearTilesRange(v1, 32, 0, param0->unk_00);
         }
     }
 }
@@ -440,10 +440,10 @@ static void ov79_021D260C(UnkStruct_ov79_021D2928 *param0)
     int v0;
 
     for (v0 = 1; v0 < 3; v0++) {
-        sub_02019044(param0->unk_68, v0);
+        Bg_FreeTilemapBuffer(param0->unk_68, v0);
     }
 
-    sub_02019044(param0->unk_68, 4);
+    Bg_FreeTilemapBuffer(param0->unk_68, 4);
     Heap_FreeToHeap(param0->unk_68);
 }
 
@@ -464,8 +464,8 @@ static void ov79_021D2634(UnkStruct_ov79_021D2928 *param0)
 
     NARC_dtor(v0);
 
-    sub_0201C3C0(param0->unk_68, 2);
-    sub_0201C3C0(param0->unk_68, 4);
+    Bg_ScheduleTilemapTransfer(param0->unk_68, 2);
+    Bg_ScheduleTilemapTransfer(param0->unk_68, 4);
 }
 
 static void ov79_021D270C(UnkStruct_ov79_021D2928 *param0)
@@ -474,16 +474,16 @@ static void ov79_021D270C(UnkStruct_ov79_021D2928 *param0)
         1, 2, 19, 27, 4, 15, (1 + (18 + 12))
     };
 
-    sub_0201A8D4(param0->unk_68, &(param0->unk_6C), &v0);
-    BGL_FillWindow(&param0->unk_6C, ((0 << 4) | 0));
+    Window_AddFromTemplate(param0->unk_68, &(param0->unk_6C), &v0);
+    Window_FillTilemap(&param0->unk_6C, ((0 << 4) | 0));
     sub_0200DD0C(param0->unk_68, 1, 1, 14, param0->unk_10->unk_0B, param0->unk_00);
     Font_LoadScreenIndicatorsPalette(0, 15 * 32, param0->unk_00);
 }
 
 static void ov79_021D2754(UnkStruct_ov79_021D2928 *param0)
 {
-    sub_0201ACF4(&param0->unk_6C);
-    BGL_DeleteWindow(&param0->unk_6C);
+    Window_ClearAndCopyToVRAM(&param0->unk_6C);
+    Window_Remove(&param0->unk_6C);
 }
 
 static void ov79_021D2768(UnkStruct_ov79_021D2928 *param0)
@@ -734,7 +734,7 @@ static int ov79_021D2B84(UnkStruct_ov79_021D2928 *param0, UnkStruct_ov79_021D29B
 static int ov79_021D2B94(UnkStruct_ov79_021D2928 *param0)
 {
     sub_0200E060(&param0->unk_6C, 1, 1, 14);
-    BGL_FillWindow(&param0->unk_6C, ((15 << 4) | 15));
+    Window_FillTilemap(&param0->unk_6C, ((15 << 4) | 15));
     Strbuf_Clear(param0->unk_1C.unk_04);
     StringTemplate_SetStrbuf(param0->unk_1C.unk_00, 0, param0->unk_30.unk_0C, 2, 1, GAME_LANGUAGE);
     StringTemplate_Format(param0->unk_1C.unk_00, param0->unk_1C.unk_04, param0->unk_1C.unk_08[param0->unk_30.unk_09]);
@@ -756,7 +756,7 @@ static int ov79_021D2C08(UnkStruct_ov79_021D2928 *param0)
     }
 
     sub_0200E084(&param0->unk_6C, 1);
-    sub_0201ACF4(&param0->unk_6C);
+    Window_ClearAndCopyToVRAM(&param0->unk_6C);
 
     return 8;
 }

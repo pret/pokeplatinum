@@ -77,7 +77,7 @@ static int sub_02098218(OverlayManager *param0, int *param1)
     v1->unk_04.unk_34 = ov119_021D0DD4();
     v1->unk_04.unk_38 = sub_0200762C(71);
     v1->unk_04.unk_3C = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, 71);
-    v1->unk_04.unk_00 = sub_02018340(71);
+    v1->unk_04.unk_00 = BgConfig_New(71);
 
     sub_0201DBEC(64, 71);
 
@@ -172,10 +172,10 @@ static int sub_02098388(OverlayManager *param0, int *param1)
     sub_02002FA0(v0->unk_04.unk_04, 3);
     sub_02002F54(v0->unk_04.unk_04);
 
-    sub_02019044(v0->unk_04.unk_00, 1);
-    sub_02019044(v0->unk_04.unk_00, 2);
-    sub_02019044(v0->unk_04.unk_00, 3);
-    sub_02019044(v0->unk_04.unk_00, 4);
+    Bg_FreeTilemapBuffer(v0->unk_04.unk_00, 1);
+    Bg_FreeTilemapBuffer(v0->unk_04.unk_00, 2);
+    Bg_FreeTilemapBuffer(v0->unk_04.unk_00, 3);
+    Bg_FreeTilemapBuffer(v0->unk_04.unk_00, 4);
 
     Heap_FreeToHeap(v0->unk_04.unk_00);
     sub_0201DC3C();

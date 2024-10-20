@@ -44,7 +44,7 @@ static void sub_0201C73C(Background *param0, u8 param1, int param2);
 static void sub_0201C3D0(BgConfig *param0);
 static void sub_0201C2D0(BgConfig *param0);
 
-BgConfig *sub_02018340(u32 param0)
+BgConfig *BgConfig_New(u32 param0)
 {
     BgConfig *v0 = Heap_AllocFromHeap(param0, sizeof(BgConfig));
 
@@ -57,12 +57,12 @@ BgConfig *sub_02018340(u32 param0)
     return v0;
 }
 
-u32 sub_02018364(BgConfig *param0)
+u32 BgConfig_GetHeapID(BgConfig *param0)
 {
     return param0->heapID;
 }
 
-void sub_02018368(const GraphicsModes *param0)
+void SetAllGraphicsModes(const GraphicsModes *param0)
 {
     GX_SetGraphicsMode(param0->displayMode, param0->mainBgMode, param0->bg0As2DOr3D);
     GXS_SetGraphicsMode(param0->subBgMode);
@@ -74,7 +74,7 @@ void sub_02018368(const GraphicsModes *param0)
     GXLayers_DisableEngineBLayers();
 }
 
-void sub_020183A0(const GraphicsModes *param0, u8 param1)
+void SetScreenGraphicsModes(const GraphicsModes *param0, u8 param1)
 {
     if (param1 == 0) {
         GX_SetGraphicsMode(param0->displayMode, param0->mainBgMode, param0->bg0As2DOr3D);
@@ -85,7 +85,7 @@ void sub_020183A0(const GraphicsModes *param0, u8 param1)
     }
 }
 
-void sub_020183C4(BgConfig *param0, u8 param1, const BgTemplate *param2, u8 param3)
+void Bg_InitFromTemplate(BgConfig *param0, u8 param1, const BgTemplate *param2, u8 param3)
 {
     u8 v0 = sub_02018F80(param2->screenSize, param3);
 
@@ -221,11 +221,11 @@ void sub_020183C4(BgConfig *param0, u8 param1, const BgTemplate *param2, u8 para
         param0->bgs[param1].tileSize = 0x40;
     }
 
-    sub_02019184(param0, param1, 0, param2->x);
-    sub_02019184(param0, param1, 3, param2->y);
+    Bg_SetOffset(param0, param1, 0, param2->x);
+    Bg_SetOffset(param0, param1, 3, param2->y);
 }
 
-void sub_02018898(BgConfig *param0, u8 param1, u8 param2, u8 param3)
+void Bg_SetControlParam(BgConfig *param0, u8 param1, u8 param2, u8 param3)
 {
     if (param2 == 0) {
         param0->bgs[param1].colorMode = param3;
@@ -523,7 +523,7 @@ static void sub_02018FF4(u8 param0, u8 *param1, u8 *param2)
     }
 }
 
-void sub_02019044(BgConfig *param0, u8 param1)
+void Bg_FreeTilemapBuffer(BgConfig *param0, u8 param1)
 {
     if (param0->bgs[param1].tilemapBuffer == NULL) {
         return;
@@ -533,7 +533,7 @@ void sub_02019044(BgConfig *param0, u8 param1)
     param0->bgs[param1].tilemapBuffer = NULL;
 }
 
-void BGL_SetPriority(u8 param0, u8 param1)
+void Bg_SetPriority(u8 param0, u8 param1)
 {
     switch (param0) {
     case 0:
@@ -563,7 +563,7 @@ void BGL_SetPriority(u8 param0, u8 param1)
     }
 }
 
-void sub_02019120(u8 param0, u8 param1)
+void Bg_ToggleLayer(u8 param0, u8 param1)
 {
     switch (param0) {
     case 0:
@@ -593,7 +593,7 @@ void sub_02019120(u8 param0, u8 param1)
     }
 }
 
-void sub_02019184(BgConfig *param0, u8 param1, u8 param2, int param3)
+void Bg_SetOffset(BgConfig *param0, u8 param1, u8 param2, int param3)
 {
     int v0, v1;
 
@@ -647,12 +647,12 @@ void sub_02019184(BgConfig *param0, u8 param1, u8 param2, int param3)
     }
 }
 
-int sub_020192EC(BgConfig *param0, u32 param1)
+int Bg_GetXOffset(BgConfig *param0, u32 param1)
 {
     return param0->bgs[param1].xOffset;
 }
 
-int sub_020192F8(BgConfig *param0, u32 param1)
+int Bg_GetYOffset(BgConfig *param0, u32 param1)
 {
     return param0->bgs[param1].yOffset;
 }
@@ -681,7 +681,7 @@ static void sub_02019304(Background *param0, u8 param1, int param2)
     }
 }
 
-void sub_02019348(BgConfig *param0, u8 param1, const MtxFx22 *param2, int param3, int param4)
+void Bg_SetAffineParams(BgConfig *param0, u8 param1, const MtxFx22 *param2, int param3, int param4)
 {
     switch (param1) {
     case 2:
@@ -704,10 +704,10 @@ static void sub_020193E4(BgConfig *param0, u8 param1)
     MtxFx22 v0;
 
     sub_0201D470(&v0, 0, FX32_ONE, FX32_ONE, 0);
-    sub_02019348(param0, param1, &v0, 0, 0);
+    Bg_SetAffineParams(param0, param1, &v0, 0, 0);
 }
 
-void sub_02019410(const void *param0, void *param1, u32 param2)
+static void sub_02019410(const void *param0, void *param1, u32 param2)
 {
     if (param2 == 0) {
         MI_UncompressLZ8(param0, param1);
@@ -720,12 +720,12 @@ void sub_02019410(const void *param0, void *param1, u32 param2)
     }
 }
 
-void sub_02019448(BgConfig *param0, u8 param1)
+void Bg_CopyTilemapBufferToVRAM(BgConfig *param0, u8 param1)
 {
-    sub_02019460(param0, param1, param0->bgs[param1].tilemapBuffer, param0->bgs[param1].bufferSize, param0->bgs[param1].baseTile);
+    Bg_CopyTilemapBufferRangeToVRAM(param0, param1, param0->bgs[param1].tilemapBuffer, param0->bgs[param1].bufferSize, param0->bgs[param1].baseTile);
 }
 
-void sub_02019460(BgConfig *param0, u8 param1, const void *param2, u32 param3, u32 param4)
+void Bg_CopyTilemapBufferRangeToVRAM(BgConfig *param0, u8 param1, const void *param2, u32 param3, u32 param4)
 {
     void *v0;
 
@@ -781,12 +781,12 @@ static void sub_020194E0(u8 param0, void *param1, u32 param2, u32 param3)
     }
 }
 
-void sub_02019574(BgConfig *param0, u8 param1, const void *param2, u32 param3)
+void Bg_LoadTilemapBuffer(BgConfig *param0, u8 param1, const void *param2, u32 param3)
 {
     sub_02019410(param2, param0->bgs[param1].tilemapBuffer, param3);
 }
 
-void sub_0201958C(BgConfig *param0, u8 param1, const void *param2, u32 param3, u32 param4)
+void Bg_LoadTiles(BgConfig *param0, u8 param1, const void *param2, u32 param3, u32 param4)
 {
     if (param0->bgs[param1].colorMode == GX_BG_COLORMODE_16) {
         sub_020195B8(param0, param1, param2, param3, param4 * 0x20);
@@ -845,7 +845,7 @@ static void sub_020195FC(u8 param0, void *param1, u32 param2, u32 param3)
     }
 }
 
-void sub_02019690(u8 param0, u32 param1, u32 param2, u32 param3)
+void Bg_ClearTilesRange(u8 param0, u32 param1, u32 param2, u32 param3)
 {
     u32 *v0 = (u32 *)Heap_AllocFromHeapAtEnd(param3, param1);
 
@@ -855,7 +855,7 @@ void sub_02019690(u8 param0, u32 param1, u32 param2, u32 param3)
     Heap_FreeToHeapExplicit(param3, v0);
 }
 
-void sub_020196C0(BgConfig *param0, u32 param1, u32 param2, u32 param3, u32 param4)
+void Bg_FillTilesRange(BgConfig *param0, u32 param1, u32 param2, u32 param3, u32 param4)
 {
     u32 *v0;
     u32 v1;
@@ -876,7 +876,7 @@ void sub_020196C0(BgConfig *param0, u32 param1, u32 param2, u32 param3, u32 para
     Heap_FreeToHeap(v0);
 }
 
-void sub_0201972C(u8 param0, void *param1, u16 param2, u16 param3)
+void Bg_LoadPalette(u8 param0, void *param1, u16 param2, u16 param3)
 {
     DC_FlushRange((void *)param1, param2);
 
@@ -887,9 +887,9 @@ void sub_0201972C(u8 param0, void *param1, u16 param2, u16 param3)
     }
 }
 
-void sub_0201975C(u8 param0, u16 param1)
+void Bg_MaskPalette(u8 param0, u16 param1)
 {
-    sub_0201972C(param0, &param1, 2, 0);
+    Bg_LoadPalette(param0, &param1, 2, 0);
 }
 
 static u16 sub_02019774(u8 param0, u8 param1, u8 param2)
@@ -969,12 +969,12 @@ static u16 sub_020197E0(u8 param0, u8 param1, u8 param2, u8 param3)
     return v1;
 }
 
-void sub_020198C0(BgConfig *param0, u8 param1, const void *param2, u8 param3, u8 param4, u8 param5, u8 param6)
+void Bg_LoadToTilemapRect(BgConfig *param0, u8 param1, const void *param2, u8 param3, u8 param4, u8 param5, u8 param6)
 {
-    sub_020198E8(param0, param1, param3, param4, param5, param6, param2, 0, 0, param5, param6);
+    Bg_CopyToTilemapRect(param0, param1, param3, param4, param5, param6, param2, 0, 0, param5, param6);
 }
 
-void sub_020198E8(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, const void *param6, u8 param7, u8 param8, u8 param9, u8 param10)
+void Bg_CopyToTilemapRect(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, const void *param6, u8 param7, u8 param8, u8 param9, u8 param10)
 {
     if (param0->bgs[param1].type != 1) {
         sub_020199E0(&param0->bgs[param1], param2, param3, param4, param5, (u16 *)param6, param7, param8, param9, param10, 0);
@@ -983,7 +983,7 @@ void sub_020198E8(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 param4, 
     }
 }
 
-void sub_02019964(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, const void *param6, u8 param7, u8 param8, u8 param9, u8 param10)
+void Bg_CopyRectToTilemapRect(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, const void *param6, u8 param7, u8 param8, u8 param9, u8 param10)
 {
     if (param0->bgs[param1].type != 1) {
         sub_020199E0(&param0->bgs[param1], param2, param3, param4, param5, (u16 *)param6, param7, param8, param9, param10, 1);
@@ -1080,7 +1080,7 @@ static void sub_02019B54(Background *param0, u8 param1, u8 param2, u8 param3, u8
     }
 }
 
-void sub_02019CB8(BgConfig *param0, u8 param1, u16 param2, u8 param3, u8 param4, u8 param5, u8 param6, u8 param7)
+void Bg_FillTilemapRect(BgConfig *param0, u8 param1, u16 param2, u8 param3, u8 param4, u8 param5, u8 param6, u8 param7)
 {
     if (param0->bgs[param1].type != 1) {
         sub_02019D08(&param0->bgs[param1], param2, param3, param4, param5, param6, param7);
@@ -1155,7 +1155,7 @@ static void sub_02019DB8(Background *param0, u8 param1, u8 param2, u8 param3, u8
     }
 }
 
-void sub_02019E2C(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6)
+void Bg_ChangeTilemapRectPalette(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6)
 {
     u16 *v0;
     u8 v1, v2;
@@ -1186,37 +1186,37 @@ void sub_02019E2C(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 param4, 
     }
 }
 
-void sub_02019EBC(BgConfig *param0, u8 param1)
+void Bg_ClearTilemap(BgConfig *param0, u8 param1)
 {
     if (param0->bgs[param1].tilemapBuffer == NULL) {
         return;
     }
 
     MI_CpuClear16(param0->bgs[param1].tilemapBuffer, param0->bgs[param1].bufferSize);
-    sub_02019448(param0, param1);
+    Bg_CopyTilemapBufferToVRAM(param0, param1);
 }
 
-void sub_02019EE0(BgConfig *param0, u8 param1, u16 param2)
+void Bg_FillTilemap(BgConfig *param0, u8 param1, u16 param2)
 {
     if (param0->bgs[param1].tilemapBuffer == NULL) {
         return;
     }
 
     MI_CpuFill16(param0->bgs[param1].tilemapBuffer, param2, param0->bgs[param1].bufferSize);
-    sub_02019448(param0, param1);
+    Bg_CopyTilemapBufferToVRAM(param0, param1);
 }
 
-void sub_02019F04(BgConfig *param0, u8 param1, u16 param2)
+void Bg_ScheduleFillTilemap(BgConfig *param0, u8 param1, u16 param2)
 {
     if (param0->bgs[param1].tilemapBuffer == NULL) {
         return;
     }
 
     MI_CpuFill16(param0->bgs[param1].tilemapBuffer, param2, param0->bgs[param1].bufferSize);
-    sub_0201C3C0(param0, param1);
+    Bg_ScheduleTilemapTransfer(param0, param1);
 }
 
-void *sub_02019F28(u8 param0)
+void *Bg_GetCharPtr(u8 param0)
 {
     switch (param0) {
     case 0:
@@ -1240,7 +1240,7 @@ void *sub_02019F28(u8 param0)
     return NULL;
 }
 
-void sub_02019F80(const u8 *param0, u32 param1, u8 *param2, u8 param3)
+static void sub_02019F80(const u8 *param0, u32 param1, u8 *param2, u8 param3)
 {
     u32 v0;
 
@@ -1261,7 +1261,7 @@ void sub_02019F80(const u8 *param0, u32 param1, u8 *param2, u8 param3)
     }
 }
 
-void *sub_02019FC0(const u8 *param0, u32 param1, u8 param2, u32 param3)
+static void *sub_02019FC0(const u8 *param0, u32 param1, u8 param2, u32 param3)
 {
     void *v0;
 
@@ -1271,22 +1271,22 @@ void *sub_02019FC0(const u8 *param0, u32 param1, u8 param2, u32 param3)
     return v0;
 }
 
-void *sub_02019FE4(BgConfig *param0, u8 param1)
+void *Bg_GetTilemapBuffer(BgConfig *param0, u8 param1)
 {
     return param0->bgs[param1].tilemapBuffer;
 }
 
-int sub_02019FF0(BgConfig *param0, u8 param1)
+int Bg_GetXOffset2(BgConfig *param0, u8 param1)
 {
     return param0->bgs[param1].xOffset;
 }
 
-u16 sub_02019FFC(BgConfig *param0, u8 param1)
+u16 Bg_GetRotation(BgConfig *param0, u8 param1)
 {
     return param0->bgs[param1].rotation;
 }
 
-u8 sub_0201A008(BgConfig *param0, u8 param1)
+u8 Bg_GetPriority(BgConfig *param0, u8 param1)
 {
     switch (param1) {
     case 0: {
@@ -1377,7 +1377,7 @@ u8 sub_0201A008(BgConfig *param0, u8 param1)
     return 0;
 }
 
-void sub_0201A1E4(const Bitmap *param0, const Bitmap *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6, u16 param7, u16 param8)
+void Bitmap_BlitRect4bpp(const Bitmap *param0, const Bitmap *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6, u16 param7, u16 param8)
 {
     int v0, v1, v2, v3, v4, v5, v6, v7, v8, v9;
     u8 *v10, *v11;
@@ -1425,7 +1425,7 @@ void sub_0201A1E4(const Bitmap *param0, const Bitmap *param1, u16 param2, u16 pa
     }
 }
 
-void sub_0201A424(const Bitmap *param0, const Bitmap *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6, u16 param7, u16 param8)
+void Bitmap_BlitRect8bpp(const Bitmap *param0, const Bitmap *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6, u16 param7, u16 param8)
 {
     int v0, v1, v2, v3, v4, v5, v6, v7;
     u8 *v8;
@@ -1468,7 +1468,7 @@ void sub_0201A424(const Bitmap *param0, const Bitmap *param1, u16 param2, u16 pa
     }
 }
 
-void sub_0201A60C(const Bitmap *param0, u16 param1, u16 param2, u16 param3, u16 param4, u8 param5)
+void Bitmap_FillRect4bpp(const Bitmap *param0, u16 param1, u16 param2, u16 param3, u16 param4, u8 param5)
 {
     int v0, v1, v2, v3, v4;
     u8 *v5;
@@ -1502,7 +1502,7 @@ void sub_0201A60C(const Bitmap *param0, u16 param1, u16 param2, u16 param3, u16 
     }
 }
 
-void sub_0201A6D0(const Bitmap *param0, u16 param1, u16 param2, u16 param3, u16 param4, u8 param5)
+void Bitmap_FillRect8bpp(const Bitmap *param0, u16 param1, u16 param2, u16 param3, u16 param4, u8 param5)
 {
     int v0, v1, v2, v3, v4;
     u8 *v5;
@@ -1529,7 +1529,7 @@ void sub_0201A6D0(const Bitmap *param0, u16 param1, u16 param2, u16 param3, u16 
     }
 }
 
-Window *sub_0201A778(u32 param0, u8 param1)
+Window *Window_New(u32 param0, u8 param1)
 {
     Window *v0;
     u16 v1;
@@ -1557,7 +1557,7 @@ void Window_Init(Window *param0)
     param0->colorMode = UnkEnum_00;
 }
 
-u8 BGL_WindowAdded(Window *param0)
+u8 Window_IsInUse(Window *param0)
 {
     if ((param0->bgConfig == NULL) || (param0->bgLayer == 0xff) || (param0->pixels == NULL)) {
         return 0;
@@ -1566,7 +1566,7 @@ u8 BGL_WindowAdded(Window *param0)
     return 1;
 }
 
-void BGL_AddWindow(BgConfig *param0, Window *param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6, u8 param7, u16 param8)
+void Window_Add(BgConfig *param0, Window *param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6, u8 param7, u16 param8)
 {
     void *v0;
     u32 v1;
@@ -1594,7 +1594,7 @@ void BGL_AddWindow(BgConfig *param0, Window *param1, u8 param2, u8 param3, u8 pa
     param1->colorMode = (param0->bgs[param2].colorMode == GX_BG_COLORMODE_16) ? UnkEnum_00 : UnkEnum_01;
 }
 
-void BGL_AddFramelessWindow(BgConfig *param0, Window *param1, u8 param2, u8 param3, u16 param4, u8 param5)
+void Window_AddToTopLeftCorner(BgConfig *param0, Window *param1, u8 param2, u8 param3, u16 param4, u8 param5)
 {
     void *v0;
     u32 v1;
@@ -1617,13 +1617,13 @@ void BGL_AddFramelessWindow(BgConfig *param0, Window *param1, u8 param2, u8 para
     param1->colorMode = UnkEnum_00;
 }
 
-void sub_0201A8D4(BgConfig *param0, Window *param1, const WindowTemplate *param2)
+void Window_AddFromTemplate(BgConfig *param0, Window *param1, const WindowTemplate *param2)
 {
-    BGL_AddWindow(
+    Window_Add(
         param0, param1, param2->bgLayer, param2->tilemapLeft, param2->tilemapTop, param2->width, param2->height, param2->palette, param2->baseTile);
 }
 
-void BGL_DeleteWindow(Window *param0)
+void Window_Remove(Window *param0)
 {
     Heap_FreeToHeap(param0->pixels);
 
@@ -1638,7 +1638,7 @@ void BGL_DeleteWindow(Window *param0)
     param0->pixels = NULL;
 }
 
-void sub_0201A928(Window *param0, u8 param1)
+void Windows_Delete(Window *param0, u8 param1)
 {
     u16 v0;
 
@@ -1698,7 +1698,7 @@ static const u8 Unk_020E5694[] = {
     0x20
 };
 
-void sub_0201A954(Window *param0)
+void Window_CopyToVRAM(Window *param0)
 {
     GF_ASSERT(param0 != NULL);
     GF_ASSERT(param0->bgConfig != NULL);
@@ -1708,7 +1708,7 @@ void sub_0201A954(Window *param0)
     Unk_020E56CC[param0->bgConfig->bgs[param0->bgLayer].type](param0);
 }
 
-void sub_0201A9A4(Window *param0)
+void Window_ScheduleCopyToVRAM(Window *param0)
 {
     GF_ASSERT(param0 != NULL);
     GF_ASSERT(param0->bgConfig != NULL);
@@ -1718,12 +1718,12 @@ void sub_0201A9A4(Window *param0)
     Unk_020E56C0[param0->bgConfig->bgs[param0->bgLayer].type](param0);
 }
 
-void sub_0201A9F4(Window *param0)
+void Window_PutToTilemap(Window *param0)
 {
     Unk_020E569C[param0->bgConfig->bgs[param0->bgLayer].type](param0);
 }
 
-void sub_0201AA10(Window *param0, u32 param1, u32 param2)
+void Window_PutRectToTilemap(Window *param0, u32 param1, u32 param2)
 {
     u32 v0, v1;
 
@@ -1739,7 +1739,7 @@ void sub_0201AA10(Window *param0, u32 param1, u32 param2)
     param0->height = v1;
 }
 
-void sub_0201AA3C(Window *param0)
+void Window_ClearTilemap(Window *param0)
 {
     Unk_020E56D8[param0->bgConfig->bgs[param0->bgLayer].type](param0);
 }
@@ -1828,45 +1828,45 @@ static void sub_0201ABC8(Window *param0)
 static void sub_0201AC20(Window *param0)
 {
     sub_0201AA58(param0);
-    sub_0201ACCC(param0);
-    sub_02019460(param0->bgConfig, param0->bgLayer, param0->bgConfig->bgs[param0->bgLayer].tilemapBuffer, param0->bgConfig->bgs[param0->bgLayer].bufferSize, param0->bgConfig->bgs[param0->bgLayer].baseTile);
+    Window_LoadTiles(param0);
+    Bg_CopyTilemapBufferRangeToVRAM(param0->bgConfig, param0->bgLayer, param0->bgConfig->bgs[param0->bgLayer].tilemapBuffer, param0->bgConfig->bgs[param0->bgLayer].bufferSize, param0->bgConfig->bgs[param0->bgLayer].baseTile);
 }
 
 static void sub_0201AC4C(Window *param0)
 {
     sub_0201AA58(param0);
-    sub_0201C3C0(param0->bgConfig, param0->bgLayer);
-    sub_0201ACCC(param0);
+    Bg_ScheduleTilemapTransfer(param0->bgConfig, param0->bgLayer);
+    Window_LoadTiles(param0);
 }
 
 static void sub_0201AC64(Window *param0)
 {
     sub_0201AADC(param0);
 
-    sub_02019460(param0->bgConfig, param0->bgLayer, param0->bgConfig->bgs[param0->bgLayer].tilemapBuffer, param0->bgConfig->bgs[param0->bgLayer].bufferSize, param0->bgConfig->bgs[param0->bgLayer].baseTile);
-    sub_0201958C(param0->bgConfig, param0->bgLayer, param0->pixels, (u32)(param0->width * param0->height * 0x40), (u32)param0->baseTile);
+    Bg_CopyTilemapBufferRangeToVRAM(param0->bgConfig, param0->bgLayer, param0->bgConfig->bgs[param0->bgLayer].tilemapBuffer, param0->bgConfig->bgs[param0->bgLayer].bufferSize, param0->bgConfig->bgs[param0->bgLayer].baseTile);
+    Bg_LoadTiles(param0->bgConfig, param0->bgLayer, param0->pixels, (u32)(param0->width * param0->height * 0x40), (u32)param0->baseTile);
 }
 
 static void sub_0201ACA0(Window *param0)
 {
     sub_0201AADC(param0);
 
-    sub_0201C3C0(param0->bgConfig, param0->bgLayer);
-    sub_0201958C(param0->bgConfig, param0->bgLayer, param0->pixels, (u32)(param0->width * param0->height * 0x40), (u32)param0->baseTile);
+    Bg_ScheduleTilemapTransfer(param0->bgConfig, param0->bgLayer);
+    Bg_LoadTiles(param0->bgConfig, param0->bgLayer, param0->pixels, (u32)(param0->width * param0->height * 0x40), (u32)param0->baseTile);
 }
 
-void sub_0201ACCC(Window *param0)
+void Window_LoadTiles(Window *param0)
 {
     u32 v0 = param0->width * param0->height * param0->bgConfig->bgs[param0->bgLayer].tileSize;
-    sub_0201958C(param0->bgConfig, param0->bgLayer, param0->pixels, v0, param0->baseTile);
+    Bg_LoadTiles(param0->bgConfig, param0->bgLayer, param0->pixels, v0, param0->baseTile);
 }
 
-void sub_0201ACF4(Window *param0)
+void Window_ClearAndCopyToVRAM(Window *param0)
 {
     Unk_020E56B4[param0->bgConfig->bgs[param0->bgLayer].type](param0);
 }
 
-void sub_0201AD10(Window *param0)
+void Window_ClearAndScheduleCopyToVRAM(Window *param0)
 {
     Unk_020E56A8[param0->bgConfig->bgs[param0->bgLayer].type](param0);
 }
@@ -1874,28 +1874,28 @@ void sub_0201AD10(Window *param0)
 static void sub_0201AD2C(Window *param0)
 {
     sub_0201AB38(param0);
-    sub_02019460(param0->bgConfig, param0->bgLayer, param0->bgConfig->bgs[param0->bgLayer].tilemapBuffer, param0->bgConfig->bgs[param0->bgLayer].bufferSize, param0->bgConfig->bgs[param0->bgLayer].baseTile);
+    Bg_CopyTilemapBufferRangeToVRAM(param0->bgConfig, param0->bgLayer, param0->bgConfig->bgs[param0->bgLayer].tilemapBuffer, param0->bgConfig->bgs[param0->bgLayer].bufferSize, param0->bgConfig->bgs[param0->bgLayer].baseTile);
 }
 
 static void sub_0201AD54(Window *param0)
 {
     sub_0201AB38(param0);
-    sub_0201C3C0(param0->bgConfig, param0->bgLayer);
+    Bg_ScheduleTilemapTransfer(param0->bgConfig, param0->bgLayer);
 }
 
 static void sub_0201AD68(Window *param0)
 {
     sub_0201ABC8(param0);
-    sub_02019460(param0->bgConfig, param0->bgLayer, param0->bgConfig->bgs[param0->bgLayer].tilemapBuffer, param0->bgConfig->bgs[param0->bgLayer].bufferSize, param0->bgConfig->bgs[param0->bgLayer].baseTile);
+    Bg_CopyTilemapBufferRangeToVRAM(param0->bgConfig, param0->bgLayer, param0->bgConfig->bgs[param0->bgLayer].tilemapBuffer, param0->bgConfig->bgs[param0->bgLayer].bufferSize, param0->bgConfig->bgs[param0->bgLayer].baseTile);
 }
 
 static void sub_0201AD90(Window *param0)
 {
     sub_0201ABC8(param0);
-    sub_0201C3C0(param0->bgConfig, param0->bgLayer);
+    Bg_ScheduleTilemapTransfer(param0->bgConfig, param0->bgLayer);
 }
 
-void BGL_FillWindow(Window *param0, u8 param1)
+void Window_FillTilemap(Window *param0, u8 param1)
 {
     u32 v0;
     u32 v1;
@@ -1910,12 +1910,12 @@ void BGL_FillWindow(Window *param0, u8 param1)
     MI_CpuFillFast(param0->pixels, v1, v0);
 }
 
-void sub_0201ADDC(Window *param0, void *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6, u16 param7, u16 param8, u16 param9)
+void Window_BlitBitmapRect(Window *param0, void *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6, u16 param7, u16 param8, u16 param9)
 {
-    sub_0201AE08(param0, param1, param2, param3, param4, param5, param6, param7, param8, param9, 0);
+    Window_BlitBitmapRectWithTransparency(param0, param1, param2, param3, param4, param5, param6, param7, param8, param9, 0);
 }
 
-void sub_0201AE08(Window *param0, void *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6, u16 param7, u16 param8, u16 param9, u16 param10)
+void Window_BlitBitmapRectWithTransparency(Window *param0, void *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6, u16 param7, u16 param8, u16 param9, u16 param10)
 {
     Bitmap v0;
     Bitmap v1;
@@ -1928,13 +1928,13 @@ void sub_0201AE08(Window *param0, void *param1, u16 param2, u16 param3, u16 para
     v1.height = (u16)(param0->height * 0x8);
 
     if (param0->bgConfig->bgs[param0->bgLayer].colorMode == GX_BG_COLORMODE_16) {
-        sub_0201A1E4(&v0, &v1, param2, param3, param6, param7, param8, param9, param10);
+        Bitmap_BlitRect4bpp(&v0, &v1, param2, param3, param6, param7, param8, param9, param10);
     } else {
-        sub_0201A424(&v0, &v1, param2, param3, param6, param7, param8, param9, param10);
+        Bitmap_BlitRect8bpp(&v0, &v1, param2, param3, param6, param7, param8, param9, param10);
     }
 }
 
-void BGL_WindowColor(Window *param0, u8 param1, u16 param2, u16 param3, u16 param4, u16 param5)
+void Window_FillRectWithColor(Window *param0, u8 param1, u16 param2, u16 param3, u16 param4, u16 param5)
 {
     Bitmap v0;
 
@@ -1943,13 +1943,13 @@ void BGL_WindowColor(Window *param0, u8 param1, u16 param2, u16 param3, u16 para
     v0.height = (u16)(param0->height * 0x8);
 
     if (param0->bgConfig->bgs[param0->bgLayer].colorMode == GX_BG_COLORMODE_16) {
-        sub_0201A60C((const Bitmap *)&v0, param2, param3, param4, param5, param1);
+        Bitmap_FillRect4bpp((const Bitmap *)&v0, param2, param3, param4, param5, param1);
     } else {
-        sub_0201A6D0((const Bitmap *)&v0, param2, param3, param4, param5, param1);
+        Bitmap_FillRect8bpp((const Bitmap *)&v0, param2, param3, param4, param5, param1);
     }
 }
 
-void sub_0201AED0(Window *param0, const u8 *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6)
+void Window_CopyGlyph(Window *param0, const u8 *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6)
 {
     u8 *v0;
     u16 v1, v2;
@@ -2972,7 +2972,7 @@ void sub_0201AED0(Window *param0, const u8 *param1, u16 param2, u16 param3, u16 
     }
 }
 
-void sub_0201C04C(Window *param0, u8 param1, u8 param2, u8 param3)
+void Window_Scroll(Window *param0, u8 param1, u8 param2, u8 param3)
 {
     if (param0->bgConfig->bgs[param0->bgLayer].colorMode == GX_BG_COLORMODE_16) {
         sub_0201C06C(param0, param1, param2, param3);
@@ -3118,57 +3118,57 @@ static void sub_0201C158(Window *param0, u8 param1, u8 param2, u8 param3)
     }
 }
 
-BgConfig *sub_0201C28C(Window *param0)
+BgConfig *Window_GetBgConfig(Window *param0)
 {
     return param0->bgConfig;
 }
 
-u8 sub_0201C290(Window *param0)
+u8 Window_GetBgLayer(Window *param0)
 {
     return param0->bgLayer;
 }
 
-u8 sub_0201C294(Window *param0)
+u8 Window_GetWidth(Window *param0)
 {
     return param0->width;
 }
 
-u8 sub_0201C298(Window *param0)
+u8 Window_GetHeight(Window *param0)
 {
     return param0->height;
 }
 
-u8 sub_0201C29C(Window *param0)
+u8 Window_GetXPos(Window *param0)
 {
     return param0->tilemapLeft;
 }
 
-u8 sub_0201C2A0(Window *param0)
+u8 Window_GetYPos(Window *param0)
 {
     return param0->tilemapTop;
 }
 
-u16 sub_0201C2A4(Window *param0)
+u16 Window_GetBaseTile(Window *param0)
 {
     return param0->baseTile;
 }
 
-void sub_0201C2AC(Window *param0, u8 param1)
+void Window_SetXPos(Window *param0, u8 param1)
 {
     param0->tilemapLeft = param1;
 }
 
-void sub_0201C2B0(Window *param0, u8 param1)
+void Window_SetYPos(Window *param0, u8 param1)
 {
     param0->tilemapTop = param1;
 }
 
-void sub_0201C2B4(Window *param0, u8 param1)
+void Window_SetPalette(Window *param0, u8 param1)
 {
     param0->palette = param1;
 }
 
-void sub_0201C2B8(BgConfig *param0)
+void Bg_RunScheduledUpdates(BgConfig *param0)
 {
     sub_0201C3D0(param0);
     sub_0201C2D0(param0);
@@ -3212,7 +3212,7 @@ static void sub_0201C2D0(BgConfig *param0)
     }
 }
 
-void sub_0201C3C0(BgConfig *param0, u8 param1)
+void Bg_ScheduleTilemapTransfer(BgConfig *param0, u8 param1)
 {
     param0->bufferTransferScheduled |= (1 << param1);
 }
@@ -3280,13 +3280,13 @@ static void sub_0201C3D0(BgConfig *param0)
     }
 }
 
-void sub_0201C63C(BgConfig *param0, u8 param1, u8 param2, int param3)
+void Bg_ScheduleScroll(BgConfig *param0, u8 param1, u8 param2, int param3)
 {
     sub_02019304(&param0->bgs[param1], param2, param3);
     param0->scrollScheduled |= (1 << param1);
 }
 
-void sub_0201C660(BgConfig *param0, u8 param1, u8 param2, u16 param3)
+void Bg_ScheduleAffineRotation(BgConfig *param0, u8 param1, u8 param2, u16 param3)
 {
     sub_0201C684(&param0->bgs[param1], param2, param3);
     param0->scrollScheduled |= (1 << param1);
@@ -3307,7 +3307,7 @@ static void sub_0201C684(Background *param0, u8 param1, u16 param2)
     }
 }
 
-void sub_0201C6A8(BgConfig *param0, u8 param1, u8 param2, fx32 param3)
+void Bg_ScheduleAffineScale(BgConfig *param0, u8 param1, u8 param2, fx32 param3)
 {
     sub_0201C6CC(&param0->bgs[param1], param2, param3);
     param0->scrollScheduled |= (1 << param1);
@@ -3337,7 +3337,7 @@ static void sub_0201C6CC(Background *param0, u8 param1, fx32 param2)
     }
 }
 
-void sub_0201C718(BgConfig *param0, u8 param1, u8 param2, int param3)
+void Bg_ScheduleAffineRotationCenter(BgConfig *param0, u8 param1, u8 param2, int param3)
 {
     sub_0201C73C(&param0->bgs[param1], param2, param3);
     param0->scrollScheduled |= (1 << param1);
@@ -3367,7 +3367,7 @@ static void sub_0201C73C(Background *param0, u8 param1, int param2)
     }
 }
 
-u8 sub_0201C784(BgConfig *param0, u8 param1, u16 param2, u16 param3, u16 *param4)
+u8 Bg_DoesPixelAtXYMatchVal(BgConfig *param0, u8 param1, u16 param2, u16 param3, u16 *param4)
 {
     u8 *v0;
     u16 v1;
@@ -3380,7 +3380,7 @@ u8 sub_0201C784(BgConfig *param0, u8 param1, u16 param2, u16 param3, u16 *param4
     }
 
     v1 = sub_02019774((u8)(param2 >> 3), (u8)(param3 >> 3), param0->bgs[param1].screenSize);
-    v0 = (u8 *)sub_02019F28(param1);
+    v0 = (u8 *)Bg_GetCharPtr(param1);
     v2 = (u8)(param2 & 7);
     v3 = (u8)(param3 & 7);
 

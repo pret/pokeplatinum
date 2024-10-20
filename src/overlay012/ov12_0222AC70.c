@@ -1370,7 +1370,7 @@ static void ov12_0222C4A8(SysTask *param0, void *param1)
             sub_02007DEC(v1->unk_14[v0].unk_08, 0, v1->unk_14[v0].unk_00.unk_00 + v1->unk_B4.unk_00);
         }
 
-        sub_02019184(v1->unk_08, 3, 0, v1->unk_B4.unk_00);
+        Bg_SetOffset(v1->unk_08, 3, 0, v1->unk_B4.unk_00);
         break;
     default:
         ov12_02220220(v1->unk_0C, param0);
@@ -1605,8 +1605,8 @@ static void ov12_0222C994(SysTask *param0, void *param1)
                 sub_02007DEC(v1->unk_38[v0], 0, v1->unk_28[v0].unk_00 + v1->unk_4C.unk_00);
             }
 
-            sub_02019184(v1->unk_00.unk_14, 3, 0, v1->unk_4C.unk_00);
-            sub_02019184(v1->unk_00.unk_14, 3, 3, v1->unk_4C.unk_02);
+            Bg_SetOffset(v1->unk_00.unk_14, 3, 0, v1->unk_4C.unk_00);
+            Bg_SetOffset(v1->unk_00.unk_14, 3, 3, v1->unk_4C.unk_02);
         }
         break;
     default:

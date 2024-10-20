@@ -30,8 +30,8 @@ void ov105_02246214(BgConfig *param0, Window *param1)
     const WindowTemplate *v1 = Unk_ov105_02246458;
 
     for (v0 = 0; v0 < 10; v0++) {
-        sub_0201A8D4(param0, &param1[v0], &v1[v0]);
-        BGL_FillWindow(&param1[v0], 0);
+        Window_AddFromTemplate(param0, &param1[v0], &v1[v0]);
+        Window_FillTilemap(&param1[v0], 0);
     }
 
     return;
@@ -42,7 +42,7 @@ void ov105_02246244(Window *param0)
     u16 v0;
 
     for (v0 = 0; v0 < 10; v0++) {
-        BGL_DeleteWindow(&param0[v0]);
+        Window_Remove(&param0[v0]);
     }
 
     return;
@@ -58,8 +58,8 @@ void ov105_02246260(BgConfig *param0, Window *param1)
 
 void ov105_0224628C(Window *param0, int param1)
 {
-    sub_0200DD0C(param0->bgConfig, sub_0201C290(param0), ((1024 - 9) - (18 + 12)), 10, param1, 93);
-    BGL_FillWindow(param0, 15);
+    sub_0200DD0C(param0->bgConfig, Window_GetBgLayer(param0), ((1024 - 9) - (18 + 12)), 10, param1, 93);
+    Window_FillTilemap(param0, 15);
     sub_0200E060(param0, 1, ((1024 - 9) - (18 + 12)), 10);
 
     return;

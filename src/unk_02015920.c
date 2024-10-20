@@ -323,8 +323,8 @@ static void sub_02015D00(UnkStruct_02015C38 *param0)
 {
     int v0;
 
-    sub_02019CB8(param0->unk_00, param0->unk_04, 0, param0->unk_34, param0->unk_35, param0->unk_18[0]->screenWidth / 8, param0->unk_18[0]->screenHeight / 8, 0);
-    sub_0201C3C0(param0->unk_00, param0->unk_04);
+    Bg_FillTilemapRect(param0->unk_00, param0->unk_04, 0, param0->unk_34, param0->unk_35, param0->unk_18[0]->screenWidth / 8, param0->unk_18[0]->screenHeight / 8, 0);
+    Bg_ScheduleTilemapTransfer(param0->unk_00, param0->unk_04);
 
     for (v0 = 0; v0 < 4; v0++) {
         Heap_FreeToHeap(param0->unk_08[v0]);
@@ -400,7 +400,7 @@ static void sub_02015E64(SysTask *param0, void *param1)
 
     DC_FlushRange(v0->unk_04->pRawData, v0->unk_04->szByte);
 
-    sub_0201958C(v0->unk_00, v0->unk_0C, v0->unk_04->pRawData, v0->unk_04->szByte, v0->unk_10);
+    Bg_LoadTiles(v0->unk_00, v0->unk_0C, v0->unk_04->pRawData, v0->unk_04->szByte, v0->unk_10);
     SysTask_Done(param0);
     Heap_FreeToHeap(v0->unk_08);
     Heap_FreeToHeap(v0);
@@ -425,8 +425,8 @@ static void sub_02015EA0(SysTask *param0, void *param1)
 
 static void sub_02015EE8(BgConfig *param0, int param1, const NNSG2dScreenData *param2, int param3, int param4)
 {
-    sub_020198E8(param0, param1, param3, param4, param2->screenWidth / 8, param2->screenHeight / 8, param2->rawData, 0, 0, param2->screenWidth / 8, param2->screenHeight / 8);
-    sub_0201C3C0(param0, param1);
+    Bg_CopyToTilemapRect(param0, param1, param3, param4, param2->screenWidth / 8, param2->screenHeight / 8, param2->rawData, 0, 0, param2->screenWidth / 8, param2->screenHeight / 8);
+    Bg_ScheduleTilemapTransfer(param0, param1);
 }
 
 static void sub_02015F34(const NNSG2dScreenData *param0, int param1)

@@ -84,7 +84,7 @@ int ov81_021D0D80(OverlayManager *param0, int *param1)
     v1 = OverlayManager_Args(param0);
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov81_021D1610), 42);
     memset(v0, 0, sizeof(UnkStruct_ov81_021D1610));
-    v0->unk_00 = sub_02018340(42);
+    v0->unk_00 = BgConfig_New(42);
 
     v0->unk_4C = v1;
     v0->unk_44 = SaveData_GetJournal(v1);
@@ -157,7 +157,7 @@ static void ov81_021D0F00(void *param0)
 {
     UnkStruct_ov81_021D1610 *v0 = param0;
 
-    sub_0201C2B8(v0->unk_00);
+    Bg_RunScheduledUpdates(v0->unk_00);
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
@@ -189,7 +189,7 @@ static void ov81_021D0F40(BgConfig *param0)
             GX_BG0_AS_2D,
         };
 
-        sub_02018368(&v0);
+        SetAllGraphicsModes(&v0);
     }
 
     {
@@ -209,8 +209,8 @@ static void ov81_021D0F40(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 0, &v1, 0);
-        sub_02019EBC(param0, 0);
+        Bg_InitFromTemplate(param0, 0, &v1, 0);
+        Bg_ClearTilemap(param0, 0);
     }
     {
         BgTemplate v2 = {
@@ -229,8 +229,8 @@ static void ov81_021D0F40(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 1, &v2, 0);
-        sub_02019EBC(param0, 1);
+        Bg_InitFromTemplate(param0, 1, &v2, 0);
+        Bg_ClearTilemap(param0, 1);
     }
     {
         BgTemplate v3 = {
@@ -249,7 +249,7 @@ static void ov81_021D0F40(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 2, &v3, 0);
+        Bg_InitFromTemplate(param0, 2, &v3, 0);
     }
     {
         BgTemplate v4 = {
@@ -268,20 +268,20 @@ static void ov81_021D0F40(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 3, &v4, 0);
+        Bg_InitFromTemplate(param0, 3, &v4, 0);
     }
 
-    sub_02019690(0, 32, 0, 42);
-    sub_02019690(1, 32, 0, 42);
+    Bg_ClearTilesRange(0, 32, 0, 42);
+    Bg_ClearTilesRange(1, 32, 0, 42);
 }
 
 static void ov81_021D101C(BgConfig *param0)
 {
     GXLayers_DisableEngineALayers();
-    sub_02019044(param0, 3);
-    sub_02019044(param0, 2);
-    sub_02019044(param0, 1);
-    sub_02019044(param0, 0);
+    Bg_FreeTilemapBuffer(param0, 3);
+    Bg_FreeTilemapBuffer(param0, 2);
+    Bg_FreeTilemapBuffer(param0, 1);
+    Bg_FreeTilemapBuffer(param0, 0);
     Heap_FreeToHeapExplicit(42, param0);
 }
 
@@ -304,12 +304,12 @@ static void ov81_021D1050(UnkStruct_ov81_021D1610 *param0)
 
     NARC_dtor(v1);
 
-    v0 = sub_02019FE4(param0->unk_00, 2);
+    v0 = Bg_GetTilemapBuffer(param0->unk_00, 2);
     MI_CpuCopy16(v0, param0->unk_5C, 0x800);
-    sub_02019574(param0->unk_00, 3, param0->unk_5C, 0x800);
+    Bg_LoadTilemapBuffer(param0->unk_00, 3, param0->unk_5C, 0x800);
 
     Font_LoadTextPalette(0, 15 * 32, 42);
-    sub_0201975C(4, 0);
+    Bg_MaskPalette(4, 0);
 }
 
 static void ov81_021D1130(UnkStruct_ov81_021D1610 *param0)
@@ -389,10 +389,10 @@ static int ov81_021D120C(UnkStruct_ov81_021D1610 *param0)
             param0->unk_105E = 0;
             param0->unk_1060 ^= 1;
 
-            sub_020198C0(param0->unk_00, param0->unk_1062, param0->unk_85C, 0, 0, 32, 32);
-            sub_020198C0(param0->unk_00, param0->unk_1061, param0->unk_5C, 0, 0, 32, 32);
-            sub_0201C3C0(param0->unk_00, param0->unk_1062);
-            sub_0201C3C0(param0->unk_00, param0->unk_1061);
+            Bg_LoadToTilemapRect(param0->unk_00, param0->unk_1062, param0->unk_85C, 0, 0, 32, 32);
+            Bg_LoadToTilemapRect(param0->unk_00, param0->unk_1061, param0->unk_5C, 0, 0, 32, 32);
+            Bg_ScheduleTilemapTransfer(param0->unk_00, param0->unk_1062);
+            Bg_ScheduleTilemapTransfer(param0->unk_00, param0->unk_1061);
 
             return 1;
         }
@@ -478,15 +478,15 @@ static u8 ov81_021D13CC(UnkStruct_ov81_021D1610 *param0, s8 param1)
 
 static void ov81_021D140C(UnkStruct_ov81_021D1610 *param0, u8 param1, u8 param2)
 {
-    sub_02019E2C(param0->unk_00, param1, 0, 0, 32, 32, param2);
-    sub_0201C3C0(param0->unk_00, param1);
+    Bg_ChangeTilemapRectPalette(param0->unk_00, param1, 0, 0, 32, 32, param2);
+    Bg_ScheduleTilemapTransfer(param0->unk_00, param1);
 }
 
 static void ov81_021D1434(UnkStruct_ov81_021D1610 *param0)
 {
     u16 *v0;
 
-    v0 = sub_02019FE4(param0->unk_00, 0);
+    v0 = Bg_GetTilemapBuffer(param0->unk_00, 0);
     MI_CpuCopy16(v0, param0->unk_85C, 0x800);
 }
 
@@ -495,11 +495,11 @@ static void ov81_021D1450(UnkStruct_ov81_021D1610 *param0, u16 *param1, u16 para
     u16 *v0;
     u16 v1, v2;
 
-    v0 = sub_02019FE4(param0->unk_00, param2);
+    v0 = Bg_GetTilemapBuffer(param0->unk_00, param2);
 
     for (v2 = 0; v2 < 32; v2++) {
         if (Unk_ov81_021D33E8[param3][v2] == 0xff) {
-            sub_02019CB8(param0->unk_00, param2, 0, v2, 0, 1, 32, 0);
+            Bg_FillTilemapRect(param0->unk_00, param2, 0, v2, 0, 1, 32, 0);
             continue;
         }
 
@@ -508,7 +508,7 @@ static void ov81_021D1450(UnkStruct_ov81_021D1610 *param0, u16 *param1, u16 para
         }
     }
 
-    sub_0201C3C0(param0->unk_00, param2);
+    Bg_ScheduleTilemapTransfer(param0->unk_00, param2);
 }
 
 static u8 ov81_021D14E0(UnkStruct_ov81_021D1610 *param0)
@@ -520,10 +520,10 @@ static u8 ov81_021D14E0(UnkStruct_ov81_021D1610 *param0)
     param0->unk_105F++;
 
     if (param0->unk_105F == 9) {
-        BGL_SetPriority(param0->unk_1064, 0);
-        BGL_SetPriority(param0->unk_1063, 1);
-        BGL_SetPriority(param0->unk_1062, 2);
-        BGL_SetPriority(param0->unk_1061, 3);
+        Bg_SetPriority(param0->unk_1064, 0);
+        Bg_SetPriority(param0->unk_1063, 1);
+        Bg_SetPriority(param0->unk_1062, 2);
+        Bg_SetPriority(param0->unk_1061, 3);
         return 1;
     }
 
@@ -537,10 +537,10 @@ static u8 ov81_021D156C(UnkStruct_ov81_021D1610 *param0)
     ov81_021D140C(param0, param0->unk_1063, param0->unk_105C);
 
     if (param0->unk_105F == 1) {
-        BGL_SetPriority(param0->unk_1064, 0);
-        BGL_SetPriority(param0->unk_1063, 1);
-        BGL_SetPriority(param0->unk_1062, 2);
-        BGL_SetPriority(param0->unk_1061, 3);
+        Bg_SetPriority(param0->unk_1064, 0);
+        Bg_SetPriority(param0->unk_1063, 1);
+        Bg_SetPriority(param0->unk_1062, 2);
+        Bg_SetPriority(param0->unk_1061, 3);
     }
 
     param0->unk_105F++;

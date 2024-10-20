@@ -89,7 +89,7 @@ static const UnkStruct_ov84_02240FA8 Unk_ov7_0224F188 = {
 
 static void ov7_0224B4E8(UnkStruct_ov7_0224B4E8 *param0, int param1)
 {
-    if (BGL_WindowAdded(&param0->unk_54) == 0) {
+    if (Window_IsInUse(&param0->unk_54) == 0) {
         Window_Init(&param0->unk_54);
         FieldMessage_AddWindow(param0->fieldSystem->unk_08, &param0->unk_54, 3);
         FieldMessage_DrawWindow(&param0->unk_54, SaveData_Options(param0->fieldSystem->saveData));
@@ -107,10 +107,10 @@ static void ov7_0224B558(UnkStruct_ov7_0224B4E8 *param0, BOOL param1)
 {
     if (param1) {
         sub_0200E084(&param0->unk_54, 0);
-        sub_0201ACF4(&param0->unk_54);
+        Window_ClearAndCopyToVRAM(&param0->unk_54);
     }
 
-    BGL_DeleteWindow(&param0->unk_54);
+    Window_Remove(&param0->unk_54);
 }
 
 static void ov7_0224B57C(UnkStruct_ov7_0224B4E8 *param0, int param1)
@@ -130,12 +130,12 @@ static void ov7_0224B5A8(UnkStruct_ov7_0224B4E8 *param0)
         v3++;
     }
 
-    if (BGL_WindowAdded(v1) == 0) {
+    if (Window_IsInUse(v1) == 0) {
         int v4;
 
         param0->unk_08 = sub_02013A04(v3 + 2, 4);
 
-        BGL_AddWindow(param0->fieldSystem->unk_08, v1, 3, 1, 1, 16, (v3 + 2) * 2, 13, 1);
+        Window_Add(param0->fieldSystem->unk_08, v1, 3, 1, 1, 16, (v3 + 2) * 2, 13, 1);
         Window_Show(&param0->unk_34, 1, 1024 - (18 + 12) - 9, 11);
         sub_02013A4C(param0->unk_08, param0->unk_68, 123, 12);
 
@@ -158,7 +158,7 @@ static void ov7_0224B5A8(UnkStruct_ov7_0224B4E8 *param0)
     v0.unk_1C = param0;
 
     param0->unk_00 = sub_0200112C(&v0, 0, param0->unk_78, 4);
-    sub_0201A954(&param0->unk_34);
+    Window_CopyToVRAM(&param0->unk_34);
 }
 
 static void ov7_0224B6AC(UnkStruct_ov7_0224B4E8 *param0)
@@ -166,8 +166,8 @@ static void ov7_0224B6AC(UnkStruct_ov7_0224B4E8 *param0)
     if (param0->unk_00) {
         sub_02001384(param0->unk_00, NULL, NULL);
         Window_Clear(&param0->unk_34, 1);
-        sub_0201C3C0(param0->unk_34.bgConfig, param0->unk_34.bgLayer);
-        BGL_DeleteWindow(&param0->unk_34);
+        Bg_ScheduleTilemapTransfer(param0->unk_34.bgConfig, param0->unk_34.bgLayer);
+        Window_Remove(&param0->unk_34);
         sub_02013A3C(param0->unk_08);
 
         param0->unk_00 = NULL;
@@ -228,7 +228,7 @@ static void ov7_0224B788(UnkStruct_ov7_0224B4E8 *param0)
 
     param0->unk_0C = sub_02013A04(v1, 4);
 
-    BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_44, 3, v5, v3, v4, v1 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - v4 * v1 * 2);
+    Window_Add(param0->fieldSystem->unk_08, &param0->unk_44, 3, v5, v3, v4, v1 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - v4 * v1 * 2);
     Window_Show(&param0->unk_44, 1, 1024 - (18 + 12) - 9, 11);
 
     {
@@ -248,7 +248,7 @@ static void ov7_0224B788(UnkStruct_ov7_0224B4E8 *param0)
     v0.unk_1C = param0;
 
     param0->unk_04 = sub_0200112C(&v0, 0, param0->unk_7A, 4);
-    sub_0201A954(&param0->unk_44);
+    Window_CopyToVRAM(&param0->unk_44);
 }
 
 static int ov7_0224B83C(UnkStruct_ov7_0224B4E8 *param0)
@@ -282,8 +282,8 @@ static int ov7_0224B83C(UnkStruct_ov7_0224B4E8 *param0)
     if (param0->unk_04) {
         sub_02001384(param0->unk_04, NULL, NULL);
         Window_Clear(&param0->unk_44, 1);
-        sub_0201C3C0(param0->unk_44.bgConfig, param0->unk_44.bgLayer);
-        BGL_DeleteWindow(&param0->unk_44);
+        Bg_ScheduleTilemapTransfer(param0->unk_44.bgConfig, param0->unk_44.bgLayer);
+        Window_Remove(&param0->unk_44);
         sub_02013A3C(param0->unk_0C);
 
         param0->unk_04 = NULL;
@@ -335,9 +335,9 @@ static void ov7_0224B8DC(UnkStruct_ov7_0224B4E8 *param0)
     v3 = Strbuf_Init((90 * 2), 4);
     v4 = &param0->unk_24;
 
-    BGL_AddWindow(param0->fieldSystem->unk_08, v4, 3, 4, 2, 24, 19, 13, 1);
+    Window_Add(param0->fieldSystem->unk_08, v4, 3, 4, 2, 24, 19, 13, 1);
     Window_Show(v4, 1, 1024 - (18 + 12) - 9, 11);
-    BGL_FillWindow(v4, 15);
+    Window_FillTilemap(v4, 15);
 
     ov7_0224B57C(param0, param0->unk_78 - 1);
 
@@ -415,14 +415,14 @@ static void ov7_0224B8DC(UnkStruct_ov7_0224B4E8 *param0)
     Strbuf_Free(v2);
     Strbuf_Free(v3);
     MessageLoader_Free(v0);
-    sub_0201A954(v4);
+    Window_CopyToVRAM(v4);
 }
 
 static void ov7_0224BBA0(UnkStruct_ov7_0224B4E8 *param0)
 {
     Window_Clear(&param0->unk_24, 1);
-    sub_0201C3C0(param0->unk_24.bgConfig, param0->unk_24.bgLayer);
-    BGL_DeleteWindow(&param0->unk_24);
+    Bg_ScheduleTilemapTransfer(param0->unk_24.bgConfig, param0->unk_24.bgLayer);
+    Window_Remove(&param0->unk_24);
 }
 
 static BOOL ov7_0224BBC4(UnkStruct_ov7_0224B4E8 *param0)

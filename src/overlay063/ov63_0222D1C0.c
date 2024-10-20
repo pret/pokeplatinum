@@ -93,8 +93,8 @@ static void ov63_0222D31C(BgConfig *param0, int param1, const UnkStruct_ov65_022
     v0.areaOver = 0;
     v0.mosaic = param2->unk_07;
 
-    sub_02019044(param0, param1);
-    sub_020183C4(param0, param1, &v0, 0);
+    Bg_FreeTilemapBuffer(param0, param1);
+    Bg_InitFromTemplate(param0, param1, &v0, 0);
 }
 
 static void ov63_0222D378(UnkStruct_ov63_0222D1C0 *param0, s16 param1, s16 param2)
@@ -114,11 +114,11 @@ static void ov63_0222D378(UnkStruct_ov63_0222D1C0 *param0, s16 param1, s16 param
         param0->unk_1A = v1;
 
         ov63_0222D408(param0->unk_04, param0->unk_14, param0->unk_0C, -v0, -v1);
-        sub_0201C3C0(param0->unk_04, param0->unk_14);
+        Bg_ScheduleTilemapTransfer(param0->unk_04, param0->unk_14);
     }
 
-    sub_0201C63C(param0->unk_04, param0->unk_14, 0, v2);
-    sub_0201C63C(param0->unk_04, param0->unk_14, 3, v3);
+    Bg_ScheduleScroll(param0->unk_04, param0->unk_14, 0, v2);
+    Bg_ScheduleScroll(param0->unk_04, param0->unk_14, 3, v3);
 }
 
 static void ov63_0222D408(BgConfig *param0, int param1, const NNSG2dScreenData *param2, s16 param3, s16 param4)
@@ -166,7 +166,7 @@ static void ov63_0222D408(BgConfig *param0, int param1, const NNSG2dScreenData *
         v1 -= (v3 + v1) - v7;
     }
 
-    sub_02019CB8(param0, param1, 0, 0, 0, 33, 25, 17);
+    Bg_FillTilemapRect(param0, param1, 0, 0, 0, 33, 25, 17);
     ov63_0222D4F8(param0, param1, v4, v5, v0, v1, param2->rawData, v2, v3, v6, v7);
 }
 
@@ -183,7 +183,7 @@ static void ov63_0222D4F8(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 
     v8 = ov63_0222D688(param9, param10);
 
     if (v8 == 0) {
-        sub_020198E8(param0, param1, param2, param3, param4, param5, param6, param7, param8, param9, param10);
+        Bg_CopyToTilemapRect(param0, param1, param2, param3, param4, param5, param6, param7, param8, param9, param10);
         return;
     }
 
@@ -215,7 +215,7 @@ static void ov63_0222D4F8(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 
             v6 = v9 / 32;
             v4 = ov63_0222D6BC(param6, v6, v7, v8, param9, param10, &v5);
 
-            sub_020198E8(param0, param1, v10, param3, v2, v3, v4, v9 % 32, param8 % 32, v5.unk_00, v5.unk_02);
+            Bg_CopyToTilemapRect(param0, param1, v10, param3, v2, v3, v4, v9 % 32, param8 % 32, v5.unk_00, v5.unk_02);
 
             v9 += v2;
             v10 += v2;

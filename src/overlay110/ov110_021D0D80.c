@@ -112,7 +112,7 @@ int ov110_021D0D80 (OverlayManager * param0, int * param1)
     memset(v1, 0, sizeof(UnkStruct_ov110_021D0F78));
 
     v1->unk_00 = param0;
-    v1->unk_0C = sub_02018340(114);
+    v1->unk_0C = BgConfig_New(114);
 
     v2 = (UnkStruct_0203E564 *)OverlayManager_Args(param0);
 
@@ -257,7 +257,7 @@ static void ov110_021D1048 (void * param0)
         sub_02003694(v0->unk_120);
     }
 
-    sub_0201C2B8(v0->unk_0C);
+    Bg_RunScheduledUpdates(v0->unk_0C);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
@@ -291,7 +291,7 @@ static void ov110_021D1098(BgConfig *param0)
             GX_BG0_AS_2D
         };
 
-        sub_02018368(&v0);
+        SetAllGraphicsModes(&v0);
     }
 
     {
@@ -311,9 +311,9 @@ static void ov110_021D1098(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 0, &v1, 0);
-        sub_02019690(0, 32, 0, 114);
-        sub_02019EBC(param0, 0);
+        Bg_InitFromTemplate(param0, 0, &v1, 0);
+        Bg_ClearTilesRange(0, 32, 0, 114);
+        Bg_ClearTilemap(param0, 0);
     }
 
     {
@@ -333,9 +333,9 @@ static void ov110_021D1098(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 2, &v2, 0);
-        sub_02019690(2, 32, 0, 114);
-        sub_02019EBC(param0, 2);
+        Bg_InitFromTemplate(param0, 2, &v2, 0);
+        Bg_ClearTilesRange(2, 32, 0, 114);
+        Bg_ClearTilemap(param0, 2);
     }
 
     {
@@ -355,9 +355,9 @@ static void ov110_021D1098(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 6, &v3, 0);
-        sub_02019690(6, 32, 0, 114);
-        sub_02019EBC(param0, 6);
+        Bg_InitFromTemplate(param0, 6, &v3, 0);
+        Bg_ClearTilesRange(6, 32, 0, 114);
+        Bg_ClearTilemap(param0, 6);
     }
 
     G2_SetBG0Priority(0);
@@ -390,9 +390,9 @@ static void ov110_021D11CC(BgConfig *param0)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
 
-    sub_02019044(param0, 0);
-    sub_02019044(param0, 2);
-    sub_02019044(param0, 6);
+    Bg_FreeTilemapBuffer(param0, 0);
+    Bg_FreeTilemapBuffer(param0, 2);
+    Bg_FreeTilemapBuffer(param0, 6);
     Heap_FreeToHeap(param0);
 
     return;
@@ -477,7 +477,7 @@ static void ov110_021D12C0 (UnkStruct_ov110_021D0F78 * param0, u32 param1)
 static u8 ov110_021D1324 (UnkStruct_ov110_021D0F78 * param0, Window * param1, int param2, u32 param3, u32 param4, u8 param5, u8 param6, u8 param7, u8 param8, u8 param9, int param10)
 {
     if (param9)
-        BGL_FillWindow(param1, param7);
+        Window_FillTilemap(param1, param7);
     MessageLoader_GetStrbuf(param0->unk_110, param2, param0->unk_11C);
     StringTemplate_Format(param0->unk_114, param0->unk_118, param0->unk_11C);
     
@@ -545,7 +545,7 @@ static void ov110_021D1468 (UnkStruct_ov110_021D0F78 * param0)
     u32 v3;
     
     v0 = 0;
-    BGL_FillWindow(&param0->unk_10[v0], 0);
+    Window_FillTilemap(&param0->unk_10[v0], 0);
     ov110_021D1324(param0, &param0->unk_10[v0], 22, 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 0);
 
     if (param0->unk_05 == 0) {
@@ -560,27 +560,28 @@ static void ov110_021D1468 (UnkStruct_ov110_021D0F78 * param0)
     }
 
     ov110_021D1324(param0, &param0->unk_10[v0], v2, v3, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
-    sub_0201A9A4(&param0->unk_10[v0]);
+    Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
     v0 = 1;
     ov110_021D13CC(param0, &param0->unk_10[v0], 34, 1);
     ov110_021D1324(param0, &param0->unk_10[v0], 36, 28 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
-    sub_0201A9A4(&param0->unk_10[v0]);
+    Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
     v0 = 2;
     ov110_021D13CC(param0, &param0->unk_10[v0], ov110_021D17AC(param0, 0), 1);
     ov110_021D13F0(param0, 0, sub_02030698(param0->unk_12C, sub_0205E430(0, param0->unk_05), 0xFF));
     ov110_021D1324(param0, &param0->unk_10[v0], 38, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
     ov110_021D13F0(param0, 0, sub_02030698(param0->unk_12C, sub_0205E488(0, param0->unk_05), 0xFF));
     ov110_021D1324(param0, &param0->unk_10[v0], 40, 28 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
-    sub_0201A9A4(&param0->unk_10[v0]);
+    Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
     v0 = 3;
     ov110_021D13CC(param0, &param0->unk_10[v0], 31, 1);
     ov110_021D13F0(param0, 0, sub_02030698(param0->unk_12C, sub_0205E45C(0, param0->unk_05), 0xFF));
     ov110_021D1324(param0, &param0->unk_10[v0], 38, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
     ov110_021D13F0(param0, 0, sub_02030698(param0->unk_12C, sub_0205E4B4(0, param0->unk_05), 0xFF));
     ov110_021D1324(param0, &param0->unk_10[v0], 40, 28 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
-    sub_0201A9A4(&param0->unk_10[v0]);
+    Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
 }
 
+// clang-format off
 asm static void ov110_021D1650 (UnkStruct_ov110_021D0F78 * param0)
 {
     push {r3, r4, lr}
@@ -593,7 +594,7 @@ asm static void ov110_021D1650 (UnkStruct_ov110_021D0F78 * param0)
     bl ov110_021D13CC
     add r0, r4, #0
     add r0, #0x50
-    bl sub_0201A9A4
+    bl Window_ScheduleCopyToVRAM
     add r0, r4, #0
     mov r1, #1
     bl ov110_021D17AC
@@ -663,7 +664,7 @@ asm static void ov110_021D1650 (UnkStruct_ov110_021D0F78 * param0)
     bl ov110_021D1324
     add r0, r4, #0
     add r0, #0x60
-    bl sub_0201A9A4
+    bl Window_ScheduleCopyToVRAM
     add r1, r4, #0
     add r0, r4, #0
     add r1, #0x70
@@ -730,10 +731,11 @@ asm static void ov110_021D1650 (UnkStruct_ov110_021D0F78 * param0)
     bl ov110_021D1324
     add r4, #0x70
     add r0, r4, #0
-    bl sub_0201A9A4
+    bl Window_ScheduleCopyToVRAM
     add sp, #0x1c
     pop {r3, r4, pc}
 }
+// clang-format on
 
 static u32 ov110_021D17AC (UnkStruct_ov110_021D0F78 * param0, u8 param1)
 {
@@ -759,6 +761,7 @@ static u32 ov110_021D17AC (UnkStruct_ov110_021D0F78 * param0, u8 param1)
     return 29;
 }
 
+// clang-format off
 asm static void ov110_021D1808 (UnkStruct_ov110_021D0F78 * param0)
 {
     push {r4, r5, r6, lr}
@@ -766,7 +769,7 @@ asm static void ov110_021D1808 (UnkStruct_ov110_021D0F78 * param0)
     add r5, r0, #0
     add r0, #0x10
     mov r1, #0
-    bl BGL_FillWindow
+    bl Window_FillTilemap
     mov r1, #0
     str r1, [sp]
     mov r0, #1
@@ -815,7 +818,7 @@ asm static void ov110_021D1808 (UnkStruct_ov110_021D0F78 * param0)
     bl ov110_021D1324
     add r0, r5, #0
     add r0, #0x10
-    bl sub_0201A9A4
+    bl Window_ScheduleCopyToVRAM
     add r0, r5, #0
     bl ov110_021D19B0
     mov r3, #0
@@ -835,7 +838,7 @@ asm static void ov110_021D1808 (UnkStruct_ov110_021D0F78 * param0)
     bl ov110_021D1324
     add r0, r5, #0
     add r0, #0x20
-    bl sub_0201A9A4
+    bl Window_ScheduleCopyToVRAM
     add r1, r5, #0
     add r0, r5, #0
     add r1, #0x30
@@ -894,7 +897,7 @@ asm static void ov110_021D1808 (UnkStruct_ov110_021D0F78 * param0)
     bl ov110_021D1324
     add r0, r5, #0
     add r0, #0x30
-    bl sub_0201A9A4
+    bl Window_ScheduleCopyToVRAM
     add r1, r5, #0
     add r0, r5, #0
     add r1, #0x40
@@ -952,10 +955,11 @@ asm static void ov110_021D1808 (UnkStruct_ov110_021D0F78 * param0)
     bl ov110_021D1324
     add r5, #0x40
     add r0, r5, #0
-    bl sub_0201A9A4
+    bl Window_ScheduleCopyToVRAM
     add sp, #0x20
     pop {r4, r5, r6, pc}
 }
+// clang-format on
 
 static void ov110_021D19B0 (UnkStruct_ov110_021D0F78 * param0)
 {
@@ -972,6 +976,7 @@ static void ov110_021D19B0 (UnkStruct_ov110_021D0F78 * param0)
     return;
 }
 
+// clang-format off
 asm static void ov110_021D19F4 (UnkStruct_ov110_021D0F78 * param0)
 {
     push {r3, r4, r5, r6, lr}
@@ -979,7 +984,7 @@ asm static void ov110_021D19F4 (UnkStruct_ov110_021D0F78 * param0)
     add r5, r0, #0
     add r0, #0x10
     mov r1, #0
-    bl BGL_FillWindow
+    bl Window_FillTilemap
     mov r1, #0
     str r1, [sp]
     mov r0, #1
@@ -1028,7 +1033,7 @@ asm static void ov110_021D19F4 (UnkStruct_ov110_021D0F78 * param0)
     bl ov110_021D1324
     add r0, r5, #0
     add r0, #0x10
-    bl sub_0201A9A4
+    bl Window_ScheduleCopyToVRAM
     mov r2, #0
     str r2, [sp]
     mov r1, #1
@@ -1047,7 +1052,7 @@ asm static void ov110_021D19F4 (UnkStruct_ov110_021D0F78 * param0)
     bl ov110_021D1324
     add r0, r5, #0
     add r0, #0x20
-    bl sub_0201A9A4
+    bl Window_ScheduleCopyToVRAM
     add r0, r5, #0
     bl ov110_021D1BEC
     add r1, r5, #0
@@ -1121,7 +1126,7 @@ asm static void ov110_021D19F4 (UnkStruct_ov110_021D0F78 * param0)
     bl ov110_021D1324
     add r0, r5, #0
     add r0, #0x30
-    bl sub_0201A9A4
+    bl Window_ScheduleCopyToVRAM
     add r1, r5, #0
     add r0, r5, #0
     add r1, #0x40
@@ -1193,10 +1198,11 @@ asm static void ov110_021D19F4 (UnkStruct_ov110_021D0F78 * param0)
     bl ov110_021D1324
     add r5, #0x40
     add r0, r5, #0
-    bl sub_0201A9A4
+    bl Window_ScheduleCopyToVRAM
     add sp, #0x1c
     pop {r3, r4, r5, r6, pc}
 }
+// clang-format on
 
 static u32 ov110_021D1BEC (UnkStruct_ov110_021D0F78 * param0)
 {
@@ -1215,6 +1221,7 @@ static u32 ov110_021D1BEC (UnkStruct_ov110_021D0F78 * param0)
     return 29;
 }
 
+// clang-format off
 asm static void ov110_021D1C40 (UnkStruct_ov110_021D0F78 * param0)
 {
     push {r3, r4, lr}
@@ -1222,7 +1229,7 @@ asm static void ov110_021D1C40 (UnkStruct_ov110_021D0F78 * param0)
     add r4, r0, #0
     add r0, #0x10
     mov r1, #0
-    bl BGL_FillWindow
+    bl Window_FillTilemap
     mov r1, #0
     str r1, [sp]
     mov r0, #1
@@ -1271,7 +1278,7 @@ asm static void ov110_021D1C40 (UnkStruct_ov110_021D0F78 * param0)
     bl ov110_021D1324
     add r0, r4, #0
     add r0, #0x10
-    bl sub_0201A9A4
+    bl Window_ScheduleCopyToVRAM
     add r0, r4, #0
     bl ov110_021D1D68
     add r1, r4, #0
@@ -1310,7 +1317,7 @@ asm static void ov110_021D1C40 (UnkStruct_ov110_021D0F78 * param0)
     bl ov110_021D1324
     add r0, r4, #0
     add r0, #0x20
-    bl sub_0201A9A4
+    bl Window_ScheduleCopyToVRAM
     add r1, r4, #0
     add r0, r4, #0
     add r1, #0x30
@@ -1347,10 +1354,11 @@ asm static void ov110_021D1C40 (UnkStruct_ov110_021D0F78 * param0)
     bl ov110_021D1324
     add r4, #0x30
     add r0, r4, #0
-    bl sub_0201A9A4
+    bl Window_ScheduleCopyToVRAM
     add sp, #0x1c
     pop {r3, r4, pc}
 }
+// clang-format on
 
 static u32 ov110_021D1D68 (UnkStruct_ov110_021D0F78 * param0)
 {
@@ -1369,6 +1377,7 @@ static u32 ov110_021D1D68 (UnkStruct_ov110_021D0F78 * param0)
     return 29;
 }
 
+// clang-format off
 asm static void ov110_021D1DBC (UnkStruct_ov110_021D0F78 * param0)
 {
     push {r3, r4, lr}
@@ -1376,7 +1385,7 @@ asm static void ov110_021D1DBC (UnkStruct_ov110_021D0F78 * param0)
     add r4, r0, #0
     add r0, #0x10
     mov r1, #0
-    bl BGL_FillWindow
+    bl Window_FillTilemap
     mov r1, #0
     str r1, [sp]
     mov r0, #1
@@ -1418,7 +1427,7 @@ asm static void ov110_021D1DBC (UnkStruct_ov110_021D0F78 * param0)
     bl ov110_021D1324
     add r0, r4, #0
     add r0, #0x10
-    bl sub_0201A9A4
+    bl Window_ScheduleCopyToVRAM
     ldrb r1, [r4, #5]
     add r0, r4, #0
     bl ov110_021D20CC
@@ -1458,7 +1467,7 @@ asm static void ov110_021D1DBC (UnkStruct_ov110_021D0F78 * param0)
     bl ov110_021D1324
     add r0, r4, #0
     add r0, #0x30
-    bl sub_0201A9A4
+    bl Window_ScheduleCopyToVRAM
     add r1, r4, #0
     add r0, r4, #0
     add r1, #0x40
@@ -1495,11 +1504,13 @@ asm static void ov110_021D1DBC (UnkStruct_ov110_021D0F78 * param0)
     bl ov110_021D1324
     add r4, #0x40
     add r0, r4, #0
-    bl sub_0201A9A4
+    bl Window_ScheduleCopyToVRAM
     add sp, #0x1c
     pop {r3, r4, pc}
 }
+// clang-format on
 
+// clang-format off
 asm static void ov110_021D1ED8 (UnkStruct_ov110_021D0F78 * param0)
 {
     push {r3, r4, lr}
@@ -1507,7 +1518,7 @@ asm static void ov110_021D1ED8 (UnkStruct_ov110_021D0F78 * param0)
     add r4, r0, #0
     add r0, #0x10
     mov r1, #0
-    bl BGL_FillWindow
+    bl Window_FillTilemap
     mov r1, #0
     str r1, [sp]
     mov r0, #1
@@ -1542,7 +1553,7 @@ asm static void ov110_021D1ED8 (UnkStruct_ov110_021D0F78 * param0)
     bl ov110_021D1324
     add r0, r4, #0
     add r0, #0x10
-    bl sub_0201A9A4
+    bl Window_ScheduleCopyToVRAM
     add r1, r4, #0
     add r0, r4, #0
     add r1, #0x20
@@ -1551,7 +1562,7 @@ asm static void ov110_021D1ED8 (UnkStruct_ov110_021D0F78 * param0)
     bl ov110_021D13CC
     add r0, r4, #0
     add r0, #0x20
-    bl sub_0201A9A4
+    bl Window_ScheduleCopyToVRAM
     ldrb r1, [r4, #5]
     add r0, r4, #0
     bl ov110_021D20CC
@@ -1591,7 +1602,7 @@ asm static void ov110_021D1ED8 (UnkStruct_ov110_021D0F78 * param0)
     bl ov110_021D1324
     add r0, r4, #0
     add r0, #0x50
-    bl sub_0201A9A4
+    bl Window_ScheduleCopyToVRAM
     add r1, r4, #0
     add r0, r4, #0
     add r1, #0x60
@@ -1628,7 +1639,7 @@ asm static void ov110_021D1ED8 (UnkStruct_ov110_021D0F78 * param0)
     bl ov110_021D1324
     add r0, r4, #0
     add r0, #0x60
-    bl sub_0201A9A4
+    bl Window_ScheduleCopyToVRAM
     add r1, r4, #0
     add r0, r4, #0
     add r1, #0x70
@@ -1637,7 +1648,7 @@ asm static void ov110_021D1ED8 (UnkStruct_ov110_021D0F78 * param0)
     bl ov110_021D13CC
     add r0, r4, #0
     add r0, #0x70
-    bl sub_0201A9A4
+    bl Window_ScheduleCopyToVRAM
     add r0, r4, #0
     mov r1, #3
     bl ov110_021D20CC
@@ -1677,7 +1688,7 @@ asm static void ov110_021D1ED8 (UnkStruct_ov110_021D0F78 * param0)
     bl ov110_021D1324
     add r0, r4, #0
     add r0, #0x80
-    bl sub_0201A9A4
+    bl Window_ScheduleCopyToVRAM
     add r1, r4, #0
     add r0, r4, #0
     add r1, #0x90
@@ -1714,10 +1725,11 @@ asm static void ov110_021D1ED8 (UnkStruct_ov110_021D0F78 * param0)
     bl ov110_021D1324
     add r4, #0x90
     add r0, r4, #0
-    bl sub_0201A9A4
+    bl Window_ScheduleCopyToVRAM
     add sp, #0x1c
     pop {r3, r4, pc}
 }
+// clang-format on
 
 static u32 ov110_021D20CC (UnkStruct_ov110_021D0F78 * param0, u8 param1)
 {

@@ -205,7 +205,7 @@ static void ov52_022567F4(SysTask *param0, void *param1)
 
     v2 = ov25_0225523C(param1);
 
-    sub_020183C4(v2->unk_04, 6, &v0, 0);
+    Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
 
     v5 = sub_02006E3C(12, 96, v2->unk_04, 6, 0, 0, 1, 8);
     v5 /= 0x20;
@@ -213,11 +213,11 @@ static void ov52_022567F4(SysTask *param0, void *param1)
     sub_02006E60(12, 95, v2->unk_04, 6, 0, 0, 1, 8);
     ov25_022546B8(0, 0);
 
-    BGL_AddWindow(v2->unk_04, &v2->unk_20, 6, 2, 2, 24, 20, 0, v5);
-    sub_0201A9F4(&v2->unk_20);
+    Window_Add(v2->unk_04, &v2->unk_20, 6, 2, 2, 24, 20, 0, v5);
+    Window_PutToTilemap(&v2->unk_20);
 
     ov52_02256A7C(v2);
-    sub_02019448(v2->unk_04, 6);
+    Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);
 
     v1 = GXS_GetDispCnt();
     GXS_SetVisiblePlane(v1.visiblePlane | GX_PLANEMASK_BG2);
@@ -229,8 +229,8 @@ static void ov52_022568B4(SysTask *param0, void *param1)
 {
     UnkStruct_ov52_02256694 *v0 = ov25_0225523C(param1);
 
-    BGL_DeleteWindow(&v0->unk_20);
-    sub_02019044(v0->unk_04, 6);
+    Window_Remove(&v0->unk_20);
+    Bg_FreeTilemapBuffer(v0->unk_04, 6);
 
     ov52_022567E0(param1);
 }
@@ -321,7 +321,7 @@ static void ov52_02256A7C(UnkStruct_ov52_02256694 *param0)
 {
     u32 v0;
 
-    BGL_FillWindow(&param0->unk_20, 4);
+    Window_FillTilemap(&param0->unk_20, 4);
     MessageLoader_GetStrbuf(param0->unk_58, 0, param0->unk_5C);
 
     v0 = ((24 * 8) - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_5C, 0)) / 2;
@@ -338,12 +338,12 @@ static void ov52_02256A7C(UnkStruct_ov52_02256694 *param0)
         Text_AddPrinterWithParamsAndColor(&param0->unk_20, FONT_SYSTEM, param0->unk_5C, v0, v1, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 8, 4), NULL);
     }
 
-    sub_0201ACCC(&param0->unk_20);
+    Window_LoadTiles(&param0->unk_20);
 }
 
 static void ov52_02256B10(UnkStruct_ov52_02256694 *param0)
 {
-    BGL_FillWindow(&param0->unk_20, 4);
+    Window_FillTilemap(&param0->unk_20, 4);
     MessageLoader_GetStrbuf(param0->unk_58, 1, param0->unk_5C);
 
     {
@@ -351,14 +351,14 @@ static void ov52_02256B10(UnkStruct_ov52_02256694 *param0)
         Text_AddPrinterWithParamsAndColor(&param0->unk_20, FONT_SYSTEM, param0->unk_5C, v0, 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 8, 4), NULL);
     }
 
-    sub_0201ACCC(&param0->unk_20);
+    Window_LoadTiles(&param0->unk_20);
 }
 
 static void ov52_02256B64(UnkStruct_ov52_02256694 *param0)
 {
     u32 v0;
 
-    BGL_FillWindow(&param0->unk_20, 4);
+    Window_FillTilemap(&param0->unk_20, 4);
     MessageLoader_GetStrbuf(param0->unk_58, 2, param0->unk_5C);
 
     v0 = ((24 * 8) - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_5C, 0)) / 2;
@@ -366,7 +366,7 @@ static void ov52_02256B64(UnkStruct_ov52_02256694 *param0)
     Text_AddPrinterWithParamsAndColor(&param0->unk_20, FONT_SYSTEM, param0->unk_5C, v0, 8, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 8, 4), NULL);
     MessageLoader_GetStrbuf(param0->unk_58, 3, param0->unk_5C);
     Text_AddPrinterWithParamsAndColor(&param0->unk_20, FONT_SYSTEM, param0->unk_5C, 16, 24, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 8, 4), NULL);
-    sub_0201ACCC(&param0->unk_20);
+    Window_LoadTiles(&param0->unk_20);
 }
 
 static void ov52_02256BDC(UnkStruct_ov52_02256694 *param0)
@@ -374,7 +374,7 @@ static void ov52_02256BDC(UnkStruct_ov52_02256694 *param0)
     u32 v0;
     u32 v1;
 
-    BGL_FillWindow(&param0->unk_20, 4);
+    Window_FillTilemap(&param0->unk_20, 4);
     MessageLoader_GetStrbuf(param0->unk_58, 2, param0->unk_5C);
 
     v0 = ((24 * 8) - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_5C, 0)) / 2;
@@ -384,7 +384,7 @@ static void ov52_02256BDC(UnkStruct_ov52_02256694 *param0)
     v1 = ((24 * 8) - Font_CalcMaxLineWidth(FONT_SYSTEM, param0->unk_5C, 0)) / 2;
     Text_AddPrinterWithParamsAndColor(&param0->unk_20, FONT_SYSTEM, param0->unk_5C, v1, 24, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 8, 4), NULL);
 
-    sub_0201ACCC(&param0->unk_20);
+    Window_LoadTiles(&param0->unk_20);
 }
 
 static void ov52_02256C64(UnkStruct_ov52_02256694 *param0, const UnkStruct_ov52_02256694_1 *param1)
@@ -398,7 +398,7 @@ static void ov52_02256C64(UnkStruct_ov52_02256694 *param0, const UnkStruct_ov52_
     u32 v1;
     int v2;
 
-    BGL_FillWindow(&param0->unk_20, 4);
+    Window_FillTilemap(&param0->unk_20, 4);
     MessageLoader_GetStrbuf(param0->unk_58, 5, param0->unk_5C);
 
     v1 = ((24 * 8) - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_5C, 0)) / 2;
@@ -411,5 +411,5 @@ static void ov52_02256C64(UnkStruct_ov52_02256694 *param0, const UnkStruct_ov52_
         Text_AddPrinterWithParamsAndColor(&param0->unk_20, FONT_SYSTEM, param0->unk_5C, 160, 32 + 16 * v2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 8, 4), NULL);
     }
 
-    sub_0201ACCC(&param0->unk_20);
+    Window_LoadTiles(&param0->unk_20);
 }

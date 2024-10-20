@@ -131,7 +131,7 @@ static void ov48_022565A8(SysTask *param0, void *param1)
     G2S_SetBGMosaicSize(0, 0);
     G2S_SetOBJMosaicSize(0, 0);
 
-    sub_020183C4(v2->unk_04, 6, &v0, 0);
+    Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
 
     v4 = sub_02006E3C(12, 117, v2->unk_04, 6, 0, 0, 1, 8);
     v4 /= 0x20;
@@ -141,7 +141,7 @@ static void ov48_022565A8(SysTask *param0, void *param1)
     ov25_022546B8(0, 0);
     ov48_02256650(v2, v4);
 
-    sub_02019448(v2->unk_04, 6);
+    Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);
 
     v1 = GXS_GetDispCnt();
     GXS_SetVisiblePlane(v1.visiblePlane | GX_PLANEMASK_BG2);
@@ -158,12 +158,12 @@ static void ov48_02256650(UnkStruct_ov48_0225650C *param0, u32 param1)
     v1 = MessageBank_GetNewStrbufFromNARC(26, 459, 0, 8);
 
     if (v1) {
-        BGL_AddWindow(param0->unk_04, &v0, 6, 18, 20, 8, 2, 0, param1);
-        BGL_FillWindow(&v0, 4);
+        Window_Add(param0->unk_04, &v0, 6, 18, 20, 8, 2, 0, param1);
+        Window_FillTilemap(&v0, 4);
         Text_AddPrinterWithParamsAndColor(&v0, FONT_SYSTEM, v1, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 8, 4), NULL);
-        sub_0201A9F4(&v0);
-        sub_0201ACCC(&v0);
-        BGL_DeleteWindow(&v0);
+        Window_PutToTilemap(&v0);
+        Window_LoadTiles(&v0);
+        Window_Remove(&v0);
         Strbuf_Free(v1);
     }
 }
@@ -182,7 +182,7 @@ static void ov48_022566D0(SysTask *param0, void *param1)
             ov48_02256984(v0);
             G2S_SetBGMosaicSize(0, 0);
             G2S_SetOBJMosaicSize(0, 0);
-            sub_02019044(v0->unk_04, 6);
+            Bg_FreeTilemapBuffer(v0->unk_04, 6);
             ov48_02256594(param1);
         }
         break;

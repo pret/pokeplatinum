@@ -387,8 +387,8 @@ void ov104_0223BB84(BgConfig *param0, UnkStruct_ov104_0223BA10 *param1, u32 para
 
     ov104_0223BBC4(v1, ov104_0223BB60(param1));
 
-    sub_020198C0(param0, param2, v1, 11, 6, 10, 3);
-    sub_0201C3C0(param0, param2);
+    Bg_LoadToTilemapRect(param0, param2, v1, 11, 6, 10, 3);
+    Bg_ScheduleTilemapTransfer(param0, param2);
 
     return;
 }

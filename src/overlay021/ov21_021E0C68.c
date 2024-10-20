@@ -380,10 +380,10 @@ static void ov21_021E0F4C(UnkStruct_ov21_021E14D4 *param0, UnkStruct_ov21_021E0D
 static void ov21_021E0F94(UnkStruct_ov21_021E14D4 *param0, UnkStruct_ov21_021E0D7C *param1)
 {
     ov21_021E14BC(param0);
-    BGL_FillWindow(&param1->unk_00->unk_04, 0);
+    Window_FillTilemap(&param1->unk_00->unk_04, 0);
 
     ov21_021E1328(param0, param1);
-    sub_02019EBC(param1->unk_00->unk_00, 1);
+    Bg_ClearTilemap(param1->unk_00->unk_00, 1);
 }
 
 static void ov21_021E0FBC(UnkStruct_ov21_021E0D7C *param0, int param1)
@@ -394,24 +394,24 @@ static void ov21_021E0FBC(UnkStruct_ov21_021E0D7C *param0, int param1)
     ov21_021D2724(param0->unk_00, 33, param0->unk_00->unk_00, 3, 0, 0, 1, param1);
 
     v0 = ov21_021D27B8(param0->unk_00, 50, 1, &v1, param1);
-    sub_020198C0(param0->unk_00->unk_00, 3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
+    Bg_LoadToTilemapRect(param0->unk_00->unk_00, 3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
 
     v0 = ov21_021D27B8(param0->unk_00, 51, 1, &v1, param1);
 
-    sub_020198C0(param0->unk_00->unk_00, 3, v1->rawData, 0, 3, v1->screenWidth / 8, v1->screenHeight / 8);
+    Bg_LoadToTilemapRect(param0->unk_00->unk_00, 3, v1->rawData, 0, 3, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
 
     v0 = ov21_021D27B8(param0->unk_00, 55, 1, &v1, param1);
 
-    sub_020198C0(param0->unk_00->unk_00, 3, v1->rawData, 0, 16, v1->screenWidth / 8, v1->screenHeight / 8);
+    Bg_LoadToTilemapRect(param0->unk_00->unk_00, 3, v1->rawData, 0, 16, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
 
     v0 = ov21_021D27B8(param0->unk_00, 56, 1, &v1, param1);
 
-    sub_020198C0(param0->unk_00->unk_00, 3, v1->rawData, 12, 8, v1->screenWidth / 8, v1->screenHeight / 8);
+    Bg_LoadToTilemapRect(param0->unk_00->unk_00, 3, v1->rawData, 12, 8, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
-    sub_0201C3C0(param0->unk_00->unk_00, 3);
+    Bg_ScheduleTilemapTransfer(param0->unk_00->unk_00, 3);
 }
 
 static void ov21_021E10D0(UnkStruct_ov21_021E0D7C *param0, const UnkStruct_ov21_021E0D68 *param1, int param2)

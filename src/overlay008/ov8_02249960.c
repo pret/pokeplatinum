@@ -2864,7 +2864,7 @@ static BOOL ov8_0224B3D4(TaskManager *param0)
 
             ov8_0224B240(&v2->unk_1C, v9, v10);
             sub_0200E084(v2->unk_44, 0);
-            BGL_DeleteWindow(v2->unk_44);
+            Window_Remove(v2->unk_44);
             v2->unk_04 = 0;
             v2->unk_00 = 5;
             break;

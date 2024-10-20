@@ -74,10 +74,10 @@ static void ov99_021D3CF8(UnkStruct_ov99_021D3C18 *param0, u32 param1)
 
     if (param1 == (GX_BLEND_PLANEMASK_BG2)) {
         G2_SetBlendAlpha((GX_BLEND_PLANEMASK_BG2), (GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), param0->unk_05, param0->unk_06);
-        sub_02019120(3, 1);
+        Bg_ToggleLayer(3, 1);
     } else {
         G2_SetBlendAlpha((GX_BLEND_PLANEMASK_BG3), (GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BD), param0->unk_05, param0->unk_06);
-        sub_02019120(2, 1);
+        Bg_ToggleLayer(2, 1);
     }
 }
 
@@ -101,13 +101,13 @@ static BOOL ov99_021D3D50(UnkStruct_ov99_021D3C18 *param0)
 
     if ((param0->unk_05 == 0) && (param0->unk_06 == 16)) {
         if (param0->unk_08 == (GX_BLEND_PLANEMASK_BG2)) {
-            sub_02019120(2, 0);
-            BGL_SetPriority(2, 3);
-            BGL_SetPriority(3, 2);
+            Bg_ToggleLayer(2, 0);
+            Bg_SetPriority(2, 3);
+            Bg_SetPriority(3, 2);
         } else {
-            sub_02019120(3, 0);
-            BGL_SetPriority(2, 2);
-            BGL_SetPriority(3, 3);
+            Bg_ToggleLayer(3, 0);
+            Bg_SetPriority(2, 2);
+            Bg_SetPriority(3, 3);
         }
 
         return 1;

@@ -98,18 +98,18 @@ static void sub_0209AD84(UnkStruct_0209AD84 *param0)
 
 static void sub_0209ADBC(UnkStruct_0209AD84 *param0)
 {
-    if (BGL_WindowAdded(&(param0->unk_18))) {
-        BGL_DeleteWindow(&param0->unk_18);
+    if (Window_IsInUse(&(param0->unk_18))) {
+        Window_Remove(&param0->unk_18);
         Window_Init(&(param0->unk_18));
     }
 
-    if (BGL_WindowAdded(&(param0->unk_28))) {
-        BGL_DeleteWindow(&param0->unk_28);
+    if (Window_IsInUse(&(param0->unk_28))) {
+        Window_Remove(&param0->unk_28);
         Window_Init(&(param0->unk_28));
     }
 
-    if (BGL_WindowAdded(&(param0->unk_38))) {
-        BGL_DeleteWindow(&param0->unk_38);
+    if (Window_IsInUse(&(param0->unk_38))) {
+        Window_Remove(&param0->unk_38);
         Window_Init(&(param0->unk_38));
     }
 }
@@ -265,7 +265,7 @@ static void sub_0209B084(UnkStruct_0209AD84 *param0, int param1, BOOL param2)
         MessageLoader_GetStrbuf(param0->unk_10, param1, param0->unk_08);
     }
 
-    if (BGL_WindowAdded(v0) == 0) {
+    if (Window_IsInUse(v0) == 0) {
         FieldMessage_AddWindow(param0->fieldSystem->unk_08, v0, 3);
         FieldMessage_DrawWindow(v0, SaveData_Options(param0->fieldSystem->saveData));
     } else {
@@ -285,7 +285,7 @@ static void sub_0209B110(UnkStruct_0209AD84 *param0)
 {
     Window *v0 = &(param0->unk_18);
 
-    if (BGL_WindowAdded(v0)) {
+    if (Window_IsInUse(v0)) {
         sub_0200E084(v0, 0);
     }
 }
@@ -294,12 +294,12 @@ static void sub_0209B12C(UnkStruct_0209AD84 *param0)
 {
     Window *v0 = &(param0->unk_28);
 
-    if (BGL_WindowAdded(v0) == 0) {
+    if (Window_IsInUse(v0) == 0) {
         int v1;
 
         sub_0200DAA4(param0->fieldSystem->unk_08, 3, 155, 11, 0, 32);
-        BGL_AddWindow(param0->fieldSystem->unk_08, v0, 3, 1, 1, 13, 10, 13, 1);
-        BGL_FillWindow(v0, 15);
+        Window_Add(param0->fieldSystem->unk_08, v0, 3, 1, 1, 13, 10, 13, 1);
+        Window_FillTilemap(v0, 15);
 
         for (v1 = 0; v1 < 5; v1++) {
             MessageLoader_GetStrbuf(param0->unk_10, 9 + v1, param0->unk_08);
@@ -326,12 +326,12 @@ static void sub_0209B1D8(UnkStruct_0209AD84 *param0)
 {
     Window *v0 = &(param0->unk_38);
 
-    if (BGL_WindowAdded(v0) == 0) {
+    if (Window_IsInUse(v0) == 0) {
         int v1;
 
         sub_0200DAA4(param0->fieldSystem->unk_08, 3, 155, 11, 0, 32);
-        BGL_AddWindow(param0->fieldSystem->unk_08, v0, 3, 25, 13, 6, 4, 13, 131);
-        BGL_FillWindow(v0, 15);
+        Window_Add(param0->fieldSystem->unk_08, v0, 3, 25, 13, 6, 4, 13, 131);
+        Window_FillTilemap(v0, 15);
 
         for (v1 = 0; v1 < 2; v1++) {
             MessageLoader_GetStrbuf(param0->unk_10, v1 + 14, param0->unk_08);
@@ -397,9 +397,9 @@ static int sub_0209B288(UnkStruct_0209AD84 *param0)
     } while (0);
 
     {
-        BGL_WindowColor(param0->unk_68, 15, 0, 0, 12, param0->unk_68->height * 8);
+        Window_FillRectWithColor(param0->unk_68, 15, 0, 0, 12, param0->unk_68->height * 8);
         ColoredArrow_Print(param0->unk_14, param0->unk_68, 0, param0->unk_5C * 16);
-        sub_0201ACCC(param0->unk_68);
+        Window_LoadTiles(param0->unk_68);
         Sound_PlayEffect(1500);
     }
 

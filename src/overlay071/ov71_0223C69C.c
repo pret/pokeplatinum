@@ -36,10 +36,10 @@ void ov71_0223C69C(BgConfig *param0, Window *param1)
     const WindowTemplate *v1 = Unk_ov71_0223D670;
 
     for (v0 = 0; v0 < 11; v0++) {
-        sub_0201A8D4(param0, &param1[v0], &v1[v0]);
+        Window_AddFromTemplate(param0, &param1[v0], &v1[v0]);
     }
 
-    sub_020196C0(param0, 7, 0, 1, 0);
+    Bg_FillTilesRange(param0, 7, 0, 1, 0);
 }
 
 void ov71_0223C6D4 (Window * param0)
@@ -47,7 +47,7 @@ void ov71_0223C6D4 (Window * param0)
     u16 v0;
 
     for (v0 = 0; v0 < 11; v0++) {
-        BGL_DeleteWindow(&param0[v0]);
+        Window_Remove(&param0[v0]);
     }
 }
 
@@ -71,13 +71,13 @@ void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
     MessageLoader * v1;
     Strbuf* v2;
 
-    BGL_WindowColor(&param0[0], 0, 0, 0, 17 * 8, 2 * 8);
-    BGL_WindowColor(&param0[1], 0, 0, 0, 17 * 8, 2 * 8);
-    BGL_WindowColor(&param0[2], 0, 0, 0, 17 * 8, 2 * 8);
-    BGL_WindowColor(&param0[3], 0, 0, 0, 17 * 8, 2 * 8);
-    BGL_WindowColor(&param0[4], 0, 0, 0, 17 * 8, 2 * 8);
-    BGL_WindowColor(&param0[5], 0, 0, 0, 28 * 8, 2 * 8);
-    BGL_WindowColor(&param0[6], 0, 0, 0, 28 * 8, 2 * 8);
+    Window_FillRectWithColor(&param0[0], 0, 0, 0, 17 * 8, 2 * 8);
+    Window_FillRectWithColor(&param0[1], 0, 0, 0, 17 * 8, 2 * 8);
+    Window_FillRectWithColor(&param0[2], 0, 0, 0, 17 * 8, 2 * 8);
+    Window_FillRectWithColor(&param0[3], 0, 0, 0, 17 * 8, 2 * 8);
+    Window_FillRectWithColor(&param0[4], 0, 0, 0, 17 * 8, 2 * 8);
+    Window_FillRectWithColor(&param0[5], 0, 0, 0, 28 * 8, 2 * 8);
+    Window_FillRectWithColor(&param0[6], 0, 0, 0, 28 * 8, 2 * 8);
 
     v1 = MessageLoader_Init(0, 26, 616, 25);
     v2 = Strbuf_Init(32, 25);
@@ -179,7 +179,7 @@ asm void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
     add r0, #0x70
     add r2, r1, #0
     add r3, r1, #0
-    bl BGL_WindowColor
+    bl Window_FillRectWithColor
     mov r1, #0
     mov r0, #0xe0
     str r0, [sp]
@@ -189,7 +189,7 @@ asm void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
     add r0, #0x80
     add r2, r1, #0
     add r3, r1, #0
-    bl BGL_WindowColor
+    bl Window_FillRectWithColor
     mov r1, #0
     mov r0, #0xe0
     str r0, [sp]
@@ -199,7 +199,7 @@ asm void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
     add r0, #0x90
     add r2, r1, #0
     add r3, r1, #0
-    bl BGL_WindowColor
+    bl Window_FillRectWithColor
     mov r1, #0
     mov r0, #0xe0
     str r0, [sp]
@@ -209,7 +209,7 @@ asm void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
     add r0, #0xa0
     add r2, r1, #0
     add r3, r1, #0
-    bl BGL_WindowColor
+    bl Window_FillRectWithColor
     mov r2, #0x9a
     mov r0, #0
     mov r1, #0x1a
@@ -524,7 +524,7 @@ void ov71_0223CD44 (Window * param0, const u8 param1, const u8 param2)
     u8 v0;
 
     for (v0 = param1; v0 <= param2; v0++) {
-        sub_0201ACF4(&param0[v0]);
+        Window_ClearAndCopyToVRAM(&param0[v0]);
     }
 }
 
@@ -557,7 +557,7 @@ void ov71_0223CDE8 (Window * param0, const TrainerCard * param1, Strbuf *param2)
         v0 = 999;
     }
 
-    BGL_WindowColor(&param0[5], 0, 184, 0, 40, 2 * 8);
+    Window_FillRectWithColor(&param0[5], 0, 184, 0, 40, 2 * 8);
 
     {
         u32 v1;
@@ -585,7 +585,7 @@ void ov71_0223CECC (Window * param0, const BOOL param1, Strbuf *param2)
     if (param1) {
         Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, param2, (207 - 2), 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
     } else {
-        BGL_WindowColor(param0, 0, (207 - 2), 0, 5, 2 * 8);
-        sub_0201A954(param0);
+        Window_FillRectWithColor(param0, 0, (207 - 2), 0, 5, 2 * 8);
+        Window_CopyToVRAM(param0);
     }
 }

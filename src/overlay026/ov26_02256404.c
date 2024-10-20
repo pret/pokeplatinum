@@ -135,14 +135,14 @@ static void ov26_022564F8(SysTask *param0, void *param1)
 
     v2 = ov25_0225523C(param1);
 
-    sub_020183C4(v2->unk_04, 6, &v0, 0);
+    Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
     sub_02006E3C(12, 23, v2->unk_04, 6, 0, 0, 1, 8);
     sub_02006E60(12, 24, v2->unk_04, 6, 0, 0, 1, 8);
 
     ov25_022546B8(0, 0);
     ov26_022565F4(v2);
 
-    sub_02019448(v2->unk_04, 6);
+    Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);
 
     v1 = GXS_GetDispCnt();
     GXS_SetVisiblePlane(v1.visiblePlane | GX_PLANEMASK_BG2);
@@ -154,7 +154,7 @@ static void ov26_0225658C(SysTask *param0, void *param1)
     UnkStruct_ov26_02256404 *v0 = ov25_0225523C(param1);
 
     ov26_022565F4(v0);
-    sub_02019448(v0->unk_04, 6);
+    Bg_CopyTilemapBufferToVRAM(v0->unk_04, 6);
     ov26_022564E4(param1);
 }
 
@@ -175,7 +175,7 @@ static void ov26_022565D8(SysTask *param0, void *param1)
 {
     UnkStruct_ov26_02256404 *v0 = ov25_0225523C(param1);
 
-    sub_02019044(v0->unk_04, 6);
+    Bg_FreeTilemapBuffer(v0->unk_04, 6);
     ov26_022564E4(param1);
 }
 
@@ -188,14 +188,14 @@ static void ov26_022565F4(UnkStruct_ov26_02256404 *param0)
     v0 = CP_GetDivResult32();
     v1 = CP_GetDivRemainder32();
 
-    sub_020198E8(param0->unk_04, 6, 3, 7, 4, 9, param0->unk_30, 4 * v0, 0, (4 * 10), 9);
-    sub_020198E8(param0->unk_04, 6, (3 + (4 + 1)), 7, 4, 9, param0->unk_30, 4 * v1, 0, (4 * 10), 9);
+    Bg_CopyToTilemapRect(param0->unk_04, 6, 3, 7, 4, 9, param0->unk_30, 4 * v0, 0, (4 * 10), 9);
+    Bg_CopyToTilemapRect(param0->unk_04, 6, (3 + (4 + 1)), 7, 4, 9, param0->unk_30, 4 * v1, 0, (4 * 10), 9);
 
     CP_SetDiv32_32(param0->unk_00->unk_00.minute, 10);
 
     v0 = CP_GetDivResult32();
     v1 = CP_GetDivRemainder32();
 
-    sub_020198E8(param0->unk_04, 6, 15, 7, 4, 9, param0->unk_30, 4 * v0, 0, (4 * 10), 9);
-    sub_020198E8(param0->unk_04, 6, (15 + (4 + 1)), 7, 4, 9, param0->unk_30, 4 * v1, 0, (4 * 10), 9);
+    Bg_CopyToTilemapRect(param0->unk_04, 6, 15, 7, 4, 9, param0->unk_30, 4 * v0, 0, (4 * 10), 9);
+    Bg_CopyToTilemapRect(param0->unk_04, 6, (15 + (4 + 1)), 7, 4, 9, param0->unk_30, 4 * v1, 0, (4 * 10), 9);
 }

@@ -101,7 +101,7 @@ void ov81_021D1610(UnkStruct_ov81_021D1610 *param0)
     u32 v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_0201A8D4(param0->unk_00, &param0->unk_04[v0], &Unk_ov81_021D3508[v0]);
+        Window_AddFromTemplate(param0->unk_00, &param0->unk_04[v0], &Unk_ov81_021D3508[v0]);
     }
 }
 
@@ -110,7 +110,7 @@ void ov81_021D1634(UnkStruct_ov81_021D1610 *param0)
     u32 v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        BGL_DeleteWindow(&param0->unk_04[v0]);
+        Window_Remove(&param0->unk_04[v0]);
     }
 }
 
@@ -127,8 +127,8 @@ void ov81_021D164C(UnkStruct_ov81_021D1610 *param0, u32 param1)
         v1 = &param0->unk_04[3];
     }
 
-    BGL_FillWindow(v0, 0);
-    BGL_FillWindow(v1, 0);
+    Window_FillTilemap(v0, 0);
+    Window_FillTilemap(v1, 0);
 
     if (ov81_021D16B0(param0, v0, v1) == 1) {
         ov81_021D17C8(param0, v1);
@@ -137,8 +137,8 @@ void ov81_021D164C(UnkStruct_ov81_021D1610 *param0, u32 param1)
         ov81_021D1C10(param0, v1);
     }
 
-    sub_0201A9A4(v0);
-    sub_0201A9A4(v1);
+    Window_ScheduleCopyToVRAM(v0);
+    Window_ScheduleCopyToVRAM(v1);
 }
 
 static u8 ov81_021D16B0(UnkStruct_ov81_021D1610 *param0, Window *param1, Window *param2)

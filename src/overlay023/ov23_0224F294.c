@@ -481,7 +481,7 @@ static void ov23_0224F7F4(UnkStruct_ov23_02250CD4 *param0)
     v3 = ov23_0224F7D4(v2);
     param0->unk_40 = sub_02013A04(NELEMS(Unk_ov23_02256924), 4);
 
-    BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_10, 3, 20, 1, 11, NELEMS(Unk_ov23_02256924) * 3, 13, (1024 - (18 + 12) - 9 - 11 * 22));
+    Window_Add(param0->fieldSystem->unk_08, &param0->unk_10, 3, 20, 1, 11, NELEMS(Unk_ov23_02256924) * 3, 13, (1024 - (18 + 12) - 9 - 11 * 22));
     Window_Show(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {
@@ -522,7 +522,7 @@ static void ov23_0224F7F4(UnkStruct_ov23_02250CD4 *param0)
     param0->unk_54 = sub_02001AF4(&v0, 28, 4, param0->unk_29C, 11, PAD_BUTTON_B | PAD_BUTTON_X);
     param0->unk_48 = NULL;
 
-    sub_0201A9A4(&param0->unk_10);
+    Window_ScheduleCopyToVRAM(&param0->unk_10);
     ov23_0224F294(param0, v2, NELEMS(Unk_ov23_02256924));
     sub_020594FC();
 }
@@ -683,10 +683,10 @@ void ov23_0224FB7C(UnkStruct_ov23_02250CD4 *param0)
         param0->unk_25C = 0;
     }
 
-    if (BGL_WindowAdded(&param0->unk_10)) {
+    if (Window_IsInUse(&param0->unk_10)) {
         Window_Clear(&param0->unk_10, 1);
-        sub_0201C3C0(param0->unk_10.bgConfig, param0->unk_10.bgLayer);
-        BGL_DeleteWindow(&param0->unk_10);
+        Bg_ScheduleTilemapTransfer(param0->unk_10.bgConfig, param0->unk_10.bgLayer);
+        Window_Remove(&param0->unk_10);
         sub_02013A3C(param0->unk_40);
         ov23_02252DF4(param0);
     }
@@ -738,7 +738,7 @@ static void ov23_0224FBFC(UnkStruct_ov23_02250CD4 *param0, int param1)
 
     param0->unk_44 = sub_02013A04(v1, 4);
 
-    BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_20, 3, v5, v3, v4, v1 * 2, 13, (1024 - (18 + 12) - 9 - 11 * 22));
+    Window_Add(param0->fieldSystem->unk_08, &param0->unk_20, 3, v5, v3, v4, v1 * 2, 13, (1024 - (18 + 12) - 9 - 11 * 22));
     Window_Show(&param0->unk_20, 1, 1024 - (18 + 12) - 9, 11);
 
     {
@@ -767,15 +767,15 @@ static void ov23_0224FCF4(UnkStruct_ov23_02250CD4 *param0)
 {
     if (param0->unk_50) {
         sub_02001384(param0->unk_50, NULL, NULL);
-        sub_0201C3C0(param0->unk_20.bgConfig, param0->unk_20.bgLayer);
+        Bg_ScheduleTilemapTransfer(param0->unk_20.bgConfig, param0->unk_20.bgLayer);
         sub_02013A3C(param0->unk_44);
 
         param0->unk_50 = NULL;
     }
 
-    if (BGL_WindowAdded(&param0->unk_20)) {
+    if (Window_IsInUse(&param0->unk_20)) {
         Window_Clear(&param0->unk_20, 1);
-        BGL_DeleteWindow(&param0->unk_20);
+        Window_Remove(&param0->unk_20);
     }
 }
 
@@ -850,7 +850,7 @@ static void ov23_0224FE38(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
 
     param0->unk_40 = sub_02013A04(v3 + 1, 4);
 
-    BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_10, 3, 19, 3, 12, (6 * 2), 13, ((1024 - (18 + 12) - 9 - 11 * 22) - 12 * (6 * 2)));
+    Window_Add(param0->fieldSystem->unk_08, &param0->unk_10, 3, 19, 3, 12, (6 * 2), 13, ((1024 - (18 + 12) - 9 - 11 * 22) - 12 * (6 * 2)));
     Window_Show(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {
@@ -1041,7 +1041,7 @@ static void ov23_0225021C(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
 
     param0->unk_40 = sub_02013A04(v4 + 1, 4);
 
-    BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_10, 3, 19, 3, 12, (6 * 2), 13, ((1024 - (18 + 12) - 9 - 11 * 22) - 12 * (6 * 2)));
+    Window_Add(param0->fieldSystem->unk_08, &param0->unk_10, 3, 19, 3, 12, (6 * 2), 13, ((1024 - (18 + 12) - 9 - 11 * 22) - 12 * (6 * 2)));
     Window_Show(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {
@@ -1217,7 +1217,7 @@ static void ov23_022505EC(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
 
     param0->unk_40 = sub_02013A04(v3 + 1, 4);
 
-    BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_10, 3, 19, 3, 12, (6 * 2), 13, ((1024 - (18 + 12) - 9 - 11 * 22) - 12 * (6 * 2)));
+    Window_Add(param0->fieldSystem->unk_08, &param0->unk_10, 3, 19, 3, 12, (6 * 2), 13, ((1024 - (18 + 12) - 9 - 11 * 22) - 12 * (6 * 2)));
     Window_Show(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {
@@ -1618,7 +1618,7 @@ static void ov23_02250D90(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
 
     param0->unk_40 = sub_02013A04(v3 + 1, 4);
 
-    BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_10, 3, 19, 3, 12, (6 * 2), 13, ((1024 - (18 + 12) - 9 - 11 * 22) - 12 * (6 * 2)));
+    Window_Add(param0->fieldSystem->unk_08, &param0->unk_10, 3, 19, 3, 12, (6 * 2), 13, ((1024 - (18 + 12) - 9 - 11 * 22) - 12 * (6 * 2)));
     Window_Show(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {

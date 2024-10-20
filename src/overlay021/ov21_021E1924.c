@@ -647,19 +647,19 @@ static void ov21_021E20A4(UnkStruct_ov21_021E1A90 *param0, int param1)
 
     v0 = ov21_021D27B8(param0->unk_00, 62, 1, &v1, param1);
 
-    sub_020198C0(param0->unk_00->unk_00, 6, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
+    Bg_LoadToTilemapRect(param0->unk_00->unk_00, 6, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
 
     v0 = ov21_021D27B8(param0->unk_00, 60, 1, &v1, param1);
 
-    sub_020198C0(param0->unk_00->unk_00, 6, v1->rawData, ((128 - (160 / 2)) / 8), ((132 - (40 / 2)) / 8), v1->screenWidth / 8, v1->screenHeight / 8);
+    Bg_LoadToTilemapRect(param0->unk_00->unk_00, 6, v1->rawData, ((128 - (160 / 2)) / 8), ((132 - (40 / 2)) / 8), v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
 
     v0 = ov21_021D27B8(param0->unk_00, 63, 1, &v1, param1);
 
-    sub_020198C0(param0->unk_00->unk_00, 6, v1->rawData, ((128 - (160 / 2)) / 8), ((76 - (40 / 2)) / 8), v1->screenWidth / 8, v1->screenHeight / 8);
+    Bg_LoadToTilemapRect(param0->unk_00->unk_00, 6, v1->rawData, ((128 - (160 / 2)) / 8), ((76 - (40 / 2)) / 8), v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
-    sub_0201C3C0(param0->unk_00->unk_00, 6);
+    Bg_ScheduleTilemapTransfer(param0->unk_00->unk_00, 6);
 }
 
 static void ov21_021E2180(UnkStruct_ov21_021E2588 *param0, UnkStruct_ov21_021E1A90 *param1, int param2)

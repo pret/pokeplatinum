@@ -1013,8 +1013,8 @@ static void ov12_0223025C(SysTask *param0, void *param1)
         }
         break;
     case 2:
-        sub_02019184(ov12_02220278(v0->unk_00), 2, 0, -v0->unk_10);
-        sub_02019184(ov12_02220278(v0->unk_00), 2, 3, -v0->unk_12);
+        Bg_SetOffset(ov12_02220278(v0->unk_00), 2, 0, -v0->unk_10);
+        Bg_SetOffset(ov12_02220278(v0->unk_00), 2, 3, -v0->unk_12);
 
         v0->unk_08++;
 
@@ -1032,11 +1032,11 @@ static void ov12_0223025C(SysTask *param0, void *param1)
     case 4:
         ov12_0222669C(v0->unk_18);
 
-        BGL_SetPriority(ov12_022233B0(v0->unk_00, 1), ov12_02223428(v0->unk_00, 1));
-        BGL_SetPriority(0, ov12_0222339C(v0->unk_00));
+        Bg_SetPriority(ov12_022233B0(v0->unk_00, 1), ov12_02223428(v0->unk_00, 1));
+        Bg_SetPriority(0, ov12_0222339C(v0->unk_00));
 
-        sub_02019690(ov12_022233B0(v0->unk_00, 1), 0x4000, 0, ov12_0221FDE4(v0->unk_00));
-        sub_02019EBC(ov12_02220278(v0->unk_00), ov12_022233B0(v0->unk_00, 1));
+        Bg_ClearTilesRange(ov12_022233B0(v0->unk_00, 1), 0x4000, 0, ov12_0221FDE4(v0->unk_00));
+        Bg_ClearTilemap(ov12_02220278(v0->unk_00), ov12_022233B0(v0->unk_00, 1));
 
         ov12_02220220(v0->unk_00, param0);
         Heap_FreeToHeap(v0);
@@ -1089,8 +1089,8 @@ void ov12_022303D0(UnkStruct_ov12_0221FCDC *param0)
     v3 = ov12_02235254(v0->unk_00, ov12_02220240(param0));
 
     if ((v3 == 3) || (v3 == 4)) {
-        BGL_SetPriority(ov12_022233B0(v0->unk_00, 1), ov12_0222339C(v0->unk_00));
-        BGL_SetPriority(0, ov12_0222339C(v0->unk_00) + 1);
+        Bg_SetPriority(ov12_022233B0(v0->unk_00, 1), ov12_0222339C(v0->unk_00));
+        Bg_SetPriority(0, ov12_0222339C(v0->unk_00) + 1);
     }
 
     ov12_0223025C(v2, v0);
@@ -1333,15 +1333,15 @@ static void ov12_02230994(SysTask *param0, void *param1)
         }
         break;
     case 2:
-        BGL_SetPriority(ov12_022233B0(v0->unk_00, 1), ov12_02223428(v0->unk_00, 1));
-        BGL_SetPriority(0, ov12_0222339C(v0->unk_00));
+        Bg_SetPriority(ov12_022233B0(v0->unk_00, 1), ov12_02223428(v0->unk_00, 1));
+        Bg_SetPriority(0, ov12_0222339C(v0->unk_00));
 
         if (ov12_0222337C(v0->unk_00, ov12_02220248(v0->unk_00)) == 0) {
             sub_02007DEC(v0->unk_10, 6, 0);
         }
 
-        sub_02019690(ov12_022233B0(v0->unk_00, 1), 0x4000, 0, ov12_0221FDE4(v0->unk_00));
-        sub_02019EBC(ov12_02220278(v0->unk_00), ov12_022233B0(v0->unk_00, 1));
+        Bg_ClearTilesRange(ov12_022233B0(v0->unk_00, 1), 0x4000, 0, ov12_0221FDE4(v0->unk_00));
+        Bg_ClearTilemap(ov12_02220278(v0->unk_00), ov12_022233B0(v0->unk_00, 1));
 
         ov12_02220220(v0->unk_00, param0);
         Heap_FreeToHeap(v0);
@@ -1380,8 +1380,8 @@ void ov12_02230A8C(UnkStruct_ov12_0221FCDC *param0)
         SpriteActor_EnableObject(v0->unk_48, 1);
         sub_0200D460(v0->unk_48, 2);
     } else {
-        BGL_SetPriority(ov12_022233B0(v0->unk_00, 1), ov12_0222339C(v0->unk_00));
-        BGL_SetPriority(0, ov12_0222339C(v0->unk_00) + 1);
+        Bg_SetPriority(ov12_022233B0(v0->unk_00, 1), ov12_0222339C(v0->unk_00));
+        Bg_SetPriority(0, ov12_0222339C(v0->unk_00) + 1);
         SpriteActor_EnableObject(v0->unk_48, 0);
     }
 
@@ -3714,11 +3714,11 @@ static void ov12_02233BD8(SysTask *param0, void *param1)
         ov12_022265F8(v0->unk_04);
         ov12_022265C0(v0->unk_04);
 
-        BGL_SetPriority(ov12_022233B0(v0->unk_00, 1), ov12_02223428(v0->unk_00, 1));
-        BGL_SetPriority(0, ov12_0222339C(v0->unk_00));
+        Bg_SetPriority(ov12_022233B0(v0->unk_00, 1), ov12_02223428(v0->unk_00, 1));
+        Bg_SetPriority(0, ov12_0222339C(v0->unk_00));
 
-        sub_02019690(ov12_022233B0(v0->unk_00, 1), 0x4000, 0, ov12_0221FDE4(v0->unk_00));
-        sub_02019EBC(ov12_02220278(v0->unk_00), ov12_022233B0(v0->unk_00, 1));
+        Bg_ClearTilesRange(ov12_022233B0(v0->unk_00, 1), 0x4000, 0, ov12_0221FDE4(v0->unk_00));
+        Bg_ClearTilemap(ov12_02220278(v0->unk_00), ov12_022233B0(v0->unk_00, 1));
 
         Heap_FreeToHeap(v0);
         ov12_02220220(v0->unk_00, param0);
@@ -3757,8 +3757,8 @@ void ov12_02233CD4(UnkStruct_ov12_0221FCDC *param0)
     v4 = ov12_02235254(v0->unk_00, ov12_02220248(param0));
 
     if ((v4 == 3) || (v4 == 4)) {
-        BGL_SetPriority(ov12_022233B0(v0->unk_00, 1), ov12_0222339C(v0->unk_00));
-        BGL_SetPriority(0, ov12_0222339C(v0->unk_00) + 1);
+        Bg_SetPriority(ov12_022233B0(v0->unk_00, 1), ov12_0222339C(v0->unk_00));
+        Bg_SetPriority(0, ov12_0222339C(v0->unk_00) + 1);
     }
 
     ov12_022201E8(v0->unk_00, ov12_02233BD8, v0);

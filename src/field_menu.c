@@ -495,9 +495,9 @@ static BOOL sub_0203AC44(TaskManager *taskMan)
         sub_0203B2EC(menu, fieldSystem);
         FieldMenu_Close(menu);
         Window_Clear(&menu->unk_00, 1);
-        BGL_DeleteWindow(&menu->unk_00);
+        Window_Remove(&menu->unk_00);
         sub_0203B200(taskMan);
-        sub_0201C3C0(fieldSystem->unk_08, 3);
+        Bg_ScheduleTilemapTransfer(fieldSystem->unk_08, 3);
         Heap_FreeToHeap(menu);
         MapObjectMan_UnpauseAllMovement(fieldSystem->mapObjMan);
         return TRUE;
@@ -528,7 +528,7 @@ static void sub_0203ADFC(TaskManager *taskMan)
     menu = TaskManager_Environment(taskMan);
     v5 = FieldMenu_MakeList(menu, menu->unk_30);
 
-    BGL_AddWindow(fieldSystem->unk_08, &menu->unk_00, 3, 20, 1, 11, v5 * 3, 12, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (11 * 22)));
+    Window_Add(fieldSystem->unk_08, &menu->unk_00, 3, 20, 1, 11, v5 * 3, 12, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (11 * 22)));
     sub_0200DAA4(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 1, 11);
     Window_Show(&menu->unk_00, 1, 1024 - (18 + 12) - 9, 11);
 
@@ -583,7 +583,7 @@ static void sub_0203ADFC(TaskManager *taskMan)
 
     menu->unk_20 = sub_02001AF4(&v3, 28, 4, menu->unk_28, 11, PAD_BUTTON_B | PAD_BUTTON_X);
 
-    sub_0201A9A4(&menu->unk_00);
+    Window_ScheduleCopyToVRAM(&menu->unk_00);
     sub_0203B318(menu, menu->unk_30, v5, TrainerInfo_Gender(SaveData_GetTrainerInfo(fieldSystem->saveData)));
 }
 
@@ -669,10 +669,10 @@ static void sub_0203B094(TaskManager *taskMan)
         return;
     }
 
-    BGL_AddWindow(fieldSystem->unk_08, &menu->unk_10, 3, 1, 1, 12, 4, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)));
+    Window_Add(fieldSystem->unk_08, &menu->unk_10, 3, 1, 1, 12, 4, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)));
     sub_0200DAA4(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 1, 11);
     Window_Show(&menu->unk_10, 1, 1024 - (18 + 12) - 9, 11);
-    BGL_FillWindow(&menu->unk_10, 15);
+    Window_FillTilemap(&menu->unk_10, 15);
 
     v2 = MessageLoader_Init(0, 26, 367, 11);
 
@@ -706,7 +706,7 @@ static void sub_0203B094(TaskManager *taskMan)
     Strbuf_Free(v5);
     StringTemplate_Free(v3);
     MessageLoader_Free(v2);
-    sub_0201A9A4(&menu->unk_10);
+    Window_ScheduleCopyToVRAM(&menu->unk_10);
 }
 
 static void sub_0203B200(TaskManager *taskMan)
@@ -722,7 +722,7 @@ static void sub_0203B200(TaskManager *taskMan)
     }
 
     Window_Clear(&menu->unk_10, 1);
-    BGL_DeleteWindow(&menu->unk_10);
+    Window_Remove(&menu->unk_10);
 }
 
 static BOOL FieldMenu_Select(TaskManager *taskMan)
@@ -898,7 +898,7 @@ static void FieldMenu_ApplicationStart(TaskManager *taskMan)
     menu = TaskManager_Environment(taskMan);
 
     FieldMenu_Close(menu);
-    BGL_DeleteWindow(&menu->unk_00);
+    Window_Remove(&menu->unk_00);
     sub_0203B200(taskMan);
 
     menu->unk_22C(taskMan);
@@ -1429,8 +1429,8 @@ static BOOL FieldMenu_SelectSave(TaskManager *taskMan)
 
     FieldMenu_Close(menu);
     Window_Clear(&menu->unk_00, 1);
-    sub_0201C3C0(menu->unk_00.bgConfig, menu->unk_00.bgLayer);
-    BGL_DeleteWindow(&menu->unk_00);
+    Bg_ScheduleTilemapTransfer(menu->unk_00.bgConfig, menu->unk_00.bgLayer);
+    Window_Remove(&menu->unk_00);
     sub_0203B200(taskMan);
 
     menu->state = FIELD_MENU_STATE_SAVE;
@@ -1593,8 +1593,8 @@ static BOOL FieldMenu_SelectRetire(TaskManager *taskMan)
 
     FieldMenu_Close(menu);
     Window_Clear(&menu->unk_00, 1);
-    sub_0201C3C0(menu->unk_00.bgConfig, menu->unk_00.bgLayer);
-    BGL_DeleteWindow(&menu->unk_00);
+    Bg_ScheduleTilemapTransfer(menu->unk_00.bgConfig, menu->unk_00.bgLayer);
+    Window_Remove(&menu->unk_00);
     sub_0203B200(taskMan);
 
     if (sub_0206AE5C(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {

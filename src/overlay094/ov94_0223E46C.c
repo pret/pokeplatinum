@@ -187,8 +187,8 @@ static void ov94_0223E598(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 0, &v0, 0);
-        sub_02019EBC(param0, 0);
+        Bg_InitFromTemplate(param0, 0, &v0, 0);
+        Bg_ClearTilemap(param0, 0);
     }
 
     {
@@ -208,8 +208,8 @@ static void ov94_0223E598(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 1, &v1, 0);
-        sub_02019EBC(param0, 1);
+        Bg_InitFromTemplate(param0, 1, &v1, 0);
+        Bg_ClearTilemap(param0, 1);
     }
 
     {
@@ -229,8 +229,8 @@ static void ov94_0223E598(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 2, &v2, 0);
-        sub_02019EBC(param0, 2);
+        Bg_InitFromTemplate(param0, 2, &v2, 0);
+        Bg_ClearTilemap(param0, 2);
     }
 
     {
@@ -250,24 +250,24 @@ static void ov94_0223E598(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 3, &v3, 0);
-        sub_02019EBC(param0, 3);
+        Bg_InitFromTemplate(param0, 3, &v3, 0);
+        Bg_ClearTilemap(param0, 3);
     }
 
-    sub_02019690(2, 32, 0, 62);
-    sub_02019690(0, 32, 0, 62);
-    sub_02019690(3, 32, 0, 62);
-    sub_02019690(4, 32, 0, 62);
+    Bg_ClearTilesRange(2, 32, 0, 62);
+    Bg_ClearTilesRange(0, 32, 0, 62);
+    Bg_ClearTilesRange(3, 32, 0, 62);
+    Bg_ClearTilesRange(4, 32, 0, 62);
 }
 
 static void ov94_0223E684(BgConfig *param0)
 {
-    sub_02019044(param0, 5);
-    sub_02019044(param0, 4);
-    sub_02019044(param0, 2);
-    sub_02019044(param0, 1);
-    sub_02019044(param0, 0);
-    sub_02019044(param0, 3);
+    Bg_FreeTilemapBuffer(param0, 5);
+    Bg_FreeTilemapBuffer(param0, 4);
+    Bg_FreeTilemapBuffer(param0, 2);
+    Bg_FreeTilemapBuffer(param0, 1);
+    Bg_FreeTilemapBuffer(param0, 0);
+    Bg_FreeTilemapBuffer(param0, 3);
 }
 
 static void ov94_0223E6B8(UnkStruct_ov94_0223FD4C *param0)
@@ -328,48 +328,48 @@ static const u16 Unk_ov94_02245D8C[][2] = {
 
 static void ov94_0223E7D4(UnkStruct_ov94_0223FD4C *param0)
 {
-    BGL_AddWindow(param0->unk_04, &param0->unk_F7C, 0, 1, 1, 28, 2, 13, ((1 + (18 + 12)) + 9));
-    BGL_FillWindow(&param0->unk_F7C, 0x0);
+    Window_Add(param0->unk_04, &param0->unk_F7C, 0, 1, 1, 28, 2, 13, ((1 + (18 + 12)) + 9));
+    Window_FillTilemap(&param0->unk_F7C, 0x0);
 
     ov94_022458CC(&param0->unk_F7C, param0->unk_BB0, 0, 1, 0, TEXT_COLOR(15, 13, 0));
 
-    BGL_AddWindow(param0->unk_04, &param0->unk_F5C, 0, 2, 21, 27, 2, 13, (((1 + (18 + 12)) + 9) + 28 * 2));
-    BGL_FillWindow(&param0->unk_F5C, 0x0);
+    Window_Add(param0->unk_04, &param0->unk_F5C, 0, 2, 21, 27, 2, 13, (((1 + (18 + 12)) + 9) + 28 * 2));
+    Window_FillTilemap(&param0->unk_F5C, 0x0);
 
     {
         int v0, v1;
 
         for (v0 = 0; v0 < 6; v0++) {
-            BGL_AddWindow(param0->unk_04, &param0->unk_FCC[v0], 3, Unk_ov94_02245D94[v0][0], Unk_ov94_02245D94[v0][1], 11, 2, 13, 1 + (11 * 2) * v0);
-            BGL_FillWindow(&param0->unk_FCC[v0], 0x0);
+            Window_Add(param0->unk_04, &param0->unk_FCC[v0], 3, Unk_ov94_02245D94[v0][0], Unk_ov94_02245D94[v0][1], 11, 2, 13, 1 + (11 * 2) * v0);
+            Window_FillTilemap(&param0->unk_FCC[v0], 0x0);
         }
 
         for (v0 = 0; v0 < 2; v0++) {
-            BGL_AddWindow(param0->unk_04, &param0->unk_FCC[6 + v0], 2, Unk_ov94_02245D84[v0][0], Unk_ov94_02245D84[v0][1], 8, 2, 13, ((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + (8 * 2) * v0);
-            BGL_FillWindow(&param0->unk_FCC[6 + v0], 0x0);
+            Window_Add(param0->unk_04, &param0->unk_FCC[6 + v0], 2, Unk_ov94_02245D84[v0][0], Unk_ov94_02245D84[v0][1], 8, 2, 13, ((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + (8 * 2) * v0);
+            Window_FillTilemap(&param0->unk_FCC[6 + v0], 0x0);
         }
 
         for (v0 = 0; v0 < 2; v0++) {
-            BGL_AddWindow(param0->unk_04, &param0->unk_10AC[v0], 3, Unk_ov94_02245D8C[v0][0], Unk_ov94_02245D8C[v0][1], 28, 2, 13, (1 + 11 * 2 * 6) + (28 * 2) * v0);
-            BGL_FillWindow(&param0->unk_10AC[v0], 0x0);
+            Window_Add(param0->unk_04, &param0->unk_10AC[v0], 3, Unk_ov94_02245D8C[v0][0], Unk_ov94_02245D8C[v0][1], 28, 2, 13, (1 + 11 * 2 * 6) + (28 * 2) * v0);
+            Window_FillTilemap(&param0->unk_10AC[v0], 0x0);
         }
     }
 }
 
 static void ov94_0223E968(UnkStruct_ov94_0223FD4C *param0)
 {
-    BGL_DeleteWindow(&param0->unk_F5C);
-    BGL_DeleteWindow(&param0->unk_F7C);
+    Window_Remove(&param0->unk_F5C);
+    Window_Remove(&param0->unk_F7C);
 
     {
         int v0;
 
         for (v0 = 0; v0 < 8; v0++) {
-            BGL_DeleteWindow(&param0->unk_FCC[v0]);
+            Window_Remove(&param0->unk_FCC[v0]);
         }
 
         for (v0 = 0; v0 < 2; v0++) {
-            BGL_DeleteWindow(&param0->unk_10AC[v0]);
+            Window_Remove(&param0->unk_10AC[v0]);
         }
     }
 }
@@ -747,11 +747,11 @@ static int ov94_0223F0D0(UnkStruct_ov94_0223FD4C *param0)
     ov94_0223F9A4(param0, 9, TEXT_SPEED_FAST, 0, 0xf0f);
     ov94_0223C3F4(param0, 23, 4);
 
-    BGL_AddWindow(param0->unk_04, &param0->unk_F9C[0], 0, 15, 5, 4, 13, 13, (((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 8 * 2 * 2));
-    BGL_FillWindow(&param0->unk_F9C[0], 0x0);
+    Window_Add(param0->unk_04, &param0->unk_F9C[0], 0, 15, 5, 4, 13, 13, (((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 8 * 2 * 2));
+    Window_FillTilemap(&param0->unk_F9C[0], 0x0);
 
-    BGL_AddWindow(param0->unk_04, &param0->unk_F9C[1], 0, 21, 5, 10, 13, 13, ((((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 8 * 2 * 2) + 4 * 13));
-    BGL_FillWindow(&param0->unk_F9C[1], 0x0);
+    Window_Add(param0->unk_04, &param0->unk_F9C[1], 0, 21, 5, 10, 13, 13, ((((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 8 * 2 * 2) + 4 * 13));
+    Window_FillTilemap(&param0->unk_F9C[1], 0x0);
 
     return 3;
 }
@@ -787,8 +787,8 @@ static int ov94_0223F190(UnkStruct_ov94_0223FD4C *param0)
         sub_02013A3C(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
         sub_0200E084(&param0->unk_F5C, 0);
-        BGL_DeleteWindow(&param0->unk_F9C[0]);
-        BGL_DeleteWindow(&param0->unk_F9C[1]);
+        Window_Remove(&param0->unk_F9C[0]);
+        Window_Remove(&param0->unk_F9C[1]);
         Sound_PlayEffect(1500);
         param0->unk_2C = 0;
         break;
@@ -826,21 +826,21 @@ static int ov94_0223F2B0(UnkStruct_ov94_0223FD4C *param0)
         sub_02013A3C(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
         Window_Clear(&param0->unk_F9C[1], 0);
-        BGL_DeleteWindow(&param0->unk_F9C[0]);
-        BGL_DeleteWindow(&param0->unk_F9C[1]);
+        Window_Remove(&param0->unk_F9C[0]);
+        Window_Remove(&param0->unk_F9C[1]);
 
         param0->unk_B7A.unk_00 = v0;
         param0->unk_2C = 0;
 
         Sound_PlayEffect(1500);
-        BGL_FillWindow(&param0->unk_FCC[1], 0x0);
+        Window_FillTilemap(&param0->unk_FCC[1], 0x0);
 
         ov94_02242158(&param0->unk_FCC[1], param0->unk_B94, v0, 0, 0, TEXT_COLOR(1, 2, 0));
         param0->unk_10E4->unk_20 = PokemonPersonalData_GetSpeciesValue(v0, 18);
         ov94_02242AC4(&param0->unk_111C, param0->unk_10E4->unk_06 + param0->unk_10E4->unk_04, param0->unk_10E4->unk_0A, param0->unk_10E4->unk_08);
 
         if (ov94_02241B80(&param0->unk_B7A, param0->unk_10E4->unk_20)) {
-            BGL_FillWindow(&param0->unk_FCC[3], 0x0);
+            Window_FillTilemap(&param0->unk_FCC[3], 0x0);
             ov94_02242204(&param0->unk_FCC[3], param0->unk_B90, param0->unk_B7A.unk_02, 1, 0, 0, TEXT_COLOR(1, 2, 0));
         }
         break;
@@ -854,8 +854,8 @@ static int ov94_0223F41C(UnkStruct_ov94_0223FD4C *param0)
     ov94_0223F9A4(param0, 10, TEXT_SPEED_FAST, 0, 0xf0f);
     ov94_0223C3F4(param0, 23, 9);
 
-    BGL_AddWindow(param0->unk_04, &param0->unk_F9C[0], 0, 21, 10, 10, 8, 13, (((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 8 * 2 * 2));
-    BGL_FillWindow(&param0->unk_F9C[0], 0x0);
+    Window_Add(param0->unk_04, &param0->unk_F9C[0], 0, 21, 10, 10, 8, 13, (((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 8 * 2 * 2));
+    Window_FillTilemap(&param0->unk_F9C[0], 0x0);
 
     return 3;
 }
@@ -879,7 +879,7 @@ static int ov94_0223F4B0(UnkStruct_ov94_0223FD4C *param0)
         sub_02013A3C(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
         sub_0200E084(&param0->unk_F5C, 0);
-        BGL_DeleteWindow(&param0->unk_F9C[0]);
+        Window_Remove(&param0->unk_F9C[0]);
         Sound_PlayEffect(1500);
         param0->unk_2C = 0;
         break;
@@ -889,13 +889,13 @@ static int ov94_0223F4B0(UnkStruct_ov94_0223FD4C *param0)
         sub_02001384(param0->unk_10D8, NULL, NULL);
         sub_02013A3C(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
-        BGL_DeleteWindow(&param0->unk_F9C[0]);
+        Window_Remove(&param0->unk_F9C[0]);
         Sound_PlayEffect(1500);
 
         param0->unk_B7A.unk_02 = v0 + 1;
         param0->unk_2C = 0;
 
-        BGL_FillWindow(&param0->unk_FCC[3], 0x0);
+        Window_FillTilemap(&param0->unk_FCC[3], 0x0);
         ov94_02242204(&param0->unk_FCC[3], param0->unk_B90, param0->unk_B7A.unk_02, 1, 0, 0, TEXT_COLOR(1, 2, 0));
         break;
     }
@@ -908,8 +908,8 @@ static int ov94_0223F5A0(UnkStruct_ov94_0223FD4C *param0)
     ov94_0223F9A4(param0, 11, TEXT_SPEED_FAST, 0, 0xf0f);
     ov94_0223C3F4(param0, 23, 12);
 
-    BGL_AddWindow(param0->unk_04, &param0->unk_F9C[0], 0, 15, 5, 16, 13, 13, (((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 8 * 2 * 2));
-    BGL_FillWindow(&param0->unk_F9C[0], 0x0);
+    Window_Add(param0->unk_04, &param0->unk_F9C[0], 0, 15, 5, 16, 13, 13, (((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 8 * 2 * 2));
+    Window_FillTilemap(&param0->unk_F9C[0], 0x0);
 
     return 3;
 }
@@ -936,7 +936,7 @@ static int ov94_0223F638(UnkStruct_ov94_0223FD4C *param0)
         sub_02013A3C(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
         sub_0200E084(&param0->unk_F5C, 0);
-        BGL_DeleteWindow(&param0->unk_F9C[0]);
+        Window_Remove(&param0->unk_F9C[0]);
         Sound_PlayEffect(1500);
         param0->unk_2C = 0;
         break;
@@ -944,13 +944,13 @@ static int ov94_0223F638(UnkStruct_ov94_0223FD4C *param0)
         sub_02001384(param0->unk_10D8, NULL, NULL);
         sub_02013A3C(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
-        BGL_DeleteWindow(&param0->unk_F9C[0]);
+        Window_Remove(&param0->unk_F9C[0]);
         Sound_PlayEffect(1500);
         ov94_02242934(&param0->unk_B7A, v0, 1);
 
         param0->unk_2C = 0;
 
-        BGL_FillWindow(&param0->unk_FCC[5], 0x0);
+        Window_FillTilemap(&param0->unk_FCC[5], 0x0);
         ov94_022422B8(&param0->unk_FCC[5], param0->unk_B90, v0, 0, 0, TEXT_COLOR(1, 2, 0), 1);
         break;
     }
@@ -963,8 +963,8 @@ static int ov94_0223F728(UnkStruct_ov94_0223FD4C *param0)
     ov94_0223F9A4(param0, 169, TEXT_SPEED_FAST, 0, 0xf0f);
     ov94_0223C3F4(param0, 23, 15);
 
-    BGL_AddWindow(param0->unk_04, &param0->unk_F9C[0], 0, 2, 5, 28, 13, 13, (((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 8 * 2 * 2));
-    BGL_FillWindow(&param0->unk_F9C[0], 0x0);
+    Window_Add(param0->unk_04, &param0->unk_F9C[0], 0, 2, 5, 28, 13, 13, (((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 8 * 2 * 2));
+    Window_FillTilemap(&param0->unk_F9C[0], 0x0);
 
     return 3;
 }
@@ -991,19 +991,19 @@ static int ov94_0223F7C0(UnkStruct_ov94_0223FD4C *param0)
         sub_02013A3C(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
         sub_0200E084(&param0->unk_F5C, 0);
-        BGL_DeleteWindow(&param0->unk_F9C[0]);
+        Window_Remove(&param0->unk_F9C[0]);
         Sound_PlayEffect(1500);
         param0->unk_2C = 0;
     } else {
         sub_02001384(param0->unk_10D8, NULL, NULL);
         sub_02013A3C(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
-        BGL_DeleteWindow(&param0->unk_F9C[0]);
+        Window_Remove(&param0->unk_F9C[0]);
         Sound_PlayEffect(1500);
 
         ov94_02242A44(param0, v0);
         param0->unk_2C = 0;
-        BGL_FillWindow(&param0->unk_10AC[1], 0x0);
+        Window_FillTilemap(&param0->unk_10AC[1], 0x0);
         ov94_0224218C(&param0->unk_10AC[1], param0->unk_BA0, param0->unk_B90, param0->unk_11B0, 0, 0, TEXT_COLOR(1, 2, 0));
     }
 
@@ -1078,7 +1078,7 @@ static void ov94_0223F9A4(UnkStruct_ov94_0223FD4C *param0, int param1, int param
     Strbuf *v0;
 
     MessageLoader_GetStrbuf(param0->unk_B90, param1, param0->unk_BAC);
-    BGL_FillWindow(&param0->unk_F5C, 0xf0f);
+    Window_FillTilemap(&param0->unk_F5C, 0xf0f);
     sub_0200E060(&param0->unk_F5C, 0, 1, 10);
 
     param0->unk_BE0 = Text_AddPrinterWithParams(&param0->unk_F5C, FONT_MESSAGE, param0->unk_BAC, 0, 0, param2, NULL);

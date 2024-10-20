@@ -293,15 +293,15 @@ UnkStruct_ov99_021D3E78 *ov99_021D3E78(BgConfig *param0, int param1, int param2,
         v0->unk_18 = 0;
         v0->unk_1C = 0;
         v0->unk_30 = Strbuf_Init(256, 75);
-        v0->unk_24 = sub_0201A778(75, 1);
+        v0->unk_24 = Window_New(75, 1);
 
-        BGL_AddWindow(param0, v0->unk_24, param2, 0, 0, 32, 32, param3, 0);
-        BGL_FillWindow(v0->unk_24, 0x0);
-        sub_0201A9F4(v0->unk_24);
-        sub_0201A954(v0->unk_24);
+        Window_Add(param0, v0->unk_24, param2, 0, 0, 32, 32, param3, 0);
+        Window_FillTilemap(v0->unk_24, 0x0);
+        Window_PutToTilemap(v0->unk_24);
+        Window_CopyToVRAM(v0->unk_24);
 
-        v0->unk_28 = sub_0201A778(75, 1);
-        BGL_AddWindow(param0, v0->unk_28, param2, 0, 0, 32, 2, param3, 0);
+        v0->unk_28 = Window_New(75, 1);
+        Window_Add(param0, v0->unk_28, param2, 0, 0, 32, 2, param3, 0);
         v0->unk_34 = SysTask_ExecuteAfterVBlank(ov99_021D4104, v0, 0);
     }
 
@@ -315,8 +315,8 @@ void ov99_021D3F38(UnkStruct_ov99_021D3E78 *param0)
     }
 
     Strbuf_Free(param0->unk_30);
-    BGL_DeleteWindow(param0->unk_24);
-    BGL_DeleteWindow(param0->unk_28);
+    Window_Remove(param0->unk_24);
+    Window_Remove(param0->unk_28);
     Heap_FreeToHeap(param0->unk_24);
     Heap_FreeToHeap(param0->unk_28);
     Heap_FreeToHeap(param0);
@@ -345,11 +345,11 @@ BOOL ov99_021D3F6C(UnkStruct_ov99_021D3E78 *param0, int param1)
                 Text_AddPrinterWithParamsAndColor(param0->unk_24, FONT_SYSTEM, param0->unk_30, v1, v2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
 
                 if (v2 > (256 - 16)) {
-                    BGL_FillWindow(param0->unk_28, 0x0);
+                    Window_FillTilemap(param0->unk_28, 0x0);
                     Text_AddPrinterWithParamsAndColor(param0->unk_28, FONT_SYSTEM, param0->unk_30, v1, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
 
                     v2 = 16 - (v2 - (256 - 16));
-                    sub_0201ADDC(param0->unk_24, param0->unk_28->pixels, 0, v2, param0->unk_28->width * 8, param0->unk_28->height * 8, 0, 0, 32 * 8, (16 - v2));
+                    Window_BlitBitmapRect(param0->unk_24, param0->unk_28->pixels, 0, v2, param0->unk_28->width * 8, param0->unk_28->height * 8, 0, 0, 32 * 8, (16 - v2));
                 }
 
                 param0->unk_18 = 1;
@@ -366,15 +366,15 @@ BOOL ov99_021D3F6C(UnkStruct_ov99_021D3E78 *param0, int param1)
             int v3 = Unk_ov99_021D4CE4[param0->unk_10].unk_02 & 0xff;
 
             if (v3 <= (256 - 16)) {
-                BGL_WindowColor(param0->unk_24, 0x0, 0, v3, 32 * 8, 16);
+                Window_FillRectWithColor(param0->unk_24, 0x0, 0, v3, 32 * 8, 16);
             } else {
                 int v4, v5;
 
                 v4 = 16 - (v3 - (256 - 16));
                 v5 = 16 - v4;
 
-                BGL_WindowColor(param0->unk_24, 0x0, 0, v3, 32 * 8, v4);
-                BGL_WindowColor(param0->unk_24, 0x0, 0, 0, 32 * 8, v5);
+                Window_FillRectWithColor(param0->unk_24, 0x0, 0, v3, 32 * 8, v4);
+                Window_FillRectWithColor(param0->unk_24, 0x0, 0, 0, 32 * 8, v5);
             }
 
             param0->unk_18 = 1;
@@ -395,13 +395,13 @@ static void ov99_021D4104(SysTask *param0, void *param1)
     UnkStruct_ov99_021D3E78 *v0 = param1;
 
     if (v0->unk_18) {
-        sub_0201ACCC(v0->unk_24);
+        Window_LoadTiles(v0->unk_24);
         v0->unk_18 = 0;
     }
 
     {
         int v1 = v0->unk_00 & 255;
-        sub_02019184(v0->unk_20, v0->unk_08, 3, v1);
+        Bg_SetOffset(v0->unk_20, v0->unk_08, 3, v1);
     }
 }
 

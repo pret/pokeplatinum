@@ -720,10 +720,10 @@ void ov5_021DE3D0(NARC *param0, u32 param1, u32 param2, u32 param3, u32 param4, 
 
     v0 = sub_020071D0(param0, param1, 0, &v1, 4);
 
-    sub_020198C0(param6, param7, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
-    sub_02019E2C(param6, param7, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8, param4);
+    Bg_LoadToTilemapRect(param6, param7, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
+    Bg_ChangeTilemapRectPalette(param6, param7, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8, param4);
     Heap_FreeToHeap(v0);
-    sub_0201C3C0(param6, param7);
+    Bg_ScheduleTilemapTransfer(param6, param7);
 }
 
 void ov5_021DE47C(UnkStruct_ov5_021DE47C *param0, int param1, int param2)
@@ -959,7 +959,7 @@ static void ov5_021DE89C(Window *param0, s32 param1, s32 param2, s32 param3, s32
         param2 = 256;
     }
 
-    BGL_WindowColor(param0, param5, param3, param1, param4 - param3, param2 - param1);
+    Window_FillRectWithColor(param0, param5, param3, param1, param4 - param3, param2 - param1);
 }
 
 UnkStruct_ov5_021DE928 *ov5_021DE8F8(u32 param0)
@@ -1540,7 +1540,7 @@ static void ov5_021DF28C(SysTask *param0, void *param1)
         ov5_021D16F4(v0->fieldSystem, 0);
         ov5_021D1718(v0->fieldSystem, 0);
 
-        BGL_SetPriority(0, 0);
+        Bg_SetPriority(0, 0);
 
         v0->unk_02 = 1;
         SysTask_Done(param0);
@@ -1580,7 +1580,7 @@ static void ov5_021DF30C(FieldSystem *fieldSystem)
             GX_BG0_AS_3D
         };
 
-        sub_02018368(&v1);
+        SetAllGraphicsModes(&v1);
     }
 
     {
@@ -1589,7 +1589,7 @@ static void ov5_021DF30C(FieldSystem *fieldSystem)
         {
             G2_SetBG3ControlDCBmp(GX_BG_SCRSIZE_DCBMP_256x256, GX_BG_AREAOVER_XLU, GX_BG_BMPSCRBASE_0x20000);
 
-            BGL_SetPriority(3, 3);
+            Bg_SetPriority(3, 3);
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
 
             {
@@ -1617,9 +1617,9 @@ static void ov5_021DF30C(FieldSystem *fieldSystem)
                 0
             };
 
-            sub_020183C4(fieldSystem->unk_08, 2, &v3, 0);
-            sub_02019690(2, 32, 0, 4);
-            sub_02019EBC(fieldSystem->unk_08, 2);
+            Bg_InitFromTemplate(fieldSystem->unk_08, 2, &v3, 0);
+            Bg_ClearTilesRange(2, 32, 0, 4);
+            Bg_ClearTilemap(fieldSystem->unk_08, 2);
         }
     }
 
@@ -1628,7 +1628,7 @@ static void ov5_021DF30C(FieldSystem *fieldSystem)
 
 static void ov5_021DF3D4(FieldSystem *fieldSystem)
 {
-    sub_02019044(fieldSystem->unk_08, 2);
+    Bg_FreeTilemapBuffer(fieldSystem->unk_08, 2);
     ov5_021D1434(fieldSystem->unk_08);
 }
 

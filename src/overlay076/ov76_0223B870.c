@@ -155,7 +155,7 @@ void ov76_0223B98C(UnkStruct_ov76_0223DE00 *param0, int param1, int param2, int 
 
     {
         Window_Init(&v5);
-        BGL_AddFramelessWindow(param0->unk_D4.unk_10, &v5, 10, 2, 0, 0);
+        Window_AddToTopLeftCorner(param0->unk_D4.unk_10, &v5, 10, 2, 0, 0);
         Text_AddPrinterWithParamsAndColor(&v5, FONT_SUBSCREEN, v1, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 2), NULL);
     }
 
@@ -180,7 +180,7 @@ void ov76_0223B98C(UnkStruct_ov76_0223DE00 *param0, int param1, int param2, int 
     sub_02012AC0(param0->unk_D4.unk_164[param1], param4);
     Strbuf_Free(v1);
     MessageLoader_Free(v4);
-    BGL_DeleteWindow(&v5);
+    Window_Remove(&v5);
 }
 
 void ov76_0223BA90(UnkStruct_ov76_0223DE00 *param0, int param1)
@@ -334,8 +334,8 @@ static void ov76_0223BCA0(SysTask *param0, void *param1)
 
         if (ov12_02225C14(&v0->unk_00[8]) == 1) {
             v1 = 1;
-            sub_02019184(v0->unk_164, 5, 0, v0->unk_00[8].unk_00);
-            sub_02019184(v0->unk_164, 5, 3, v0->unk_00[8].unk_02);
+            Bg_SetOffset(v0->unk_164, 5, 0, v0->unk_00[8].unk_00);
+            Bg_SetOffset(v0->unk_164, 5, 3, v0->unk_00[8].unk_02);
         }
     }
 
@@ -373,8 +373,8 @@ void ov76_0223BD30(UnkStruct_ov76_0223DE00 *param0, s8 param1, int param2)
     }
 
     {
-        int v4 = sub_020192EC(v0->unk_164, 5);
-        int v5 = sub_020192F8(v0->unk_164, 5);
+        int v4 = Bg_GetXOffset(v0->unk_164, 5);
+        int v5 = Bg_GetYOffset(v0->unk_164, 5);
         ov12_02225BC8(&v0->unk_00[8], v4, v4 + (((+7 * 8) * param1) * -1), v5, v5 + (((-2 * 8) * param1) * -1), param2);
     }
 
@@ -492,7 +492,7 @@ void ov76_0223BF74(BgConfig *param0, Window *param1, int param2, UnkStruct_ov76_
     v7 = (v5 / 2);
 
     Window_Init(param1);
-    BGL_AddWindow(param0, param1, param2, v2, v3, v4, v5, 14, v6);
+    Window_Add(param0, param1, param2, v2, v3, v4, v5, 14, v6);
 
     param3->unk_D4.unk_C8 = sub_02013A04(v7, 53);
 
@@ -948,17 +948,17 @@ void ov76_0223CA30(Window *param0, int param1)
     Strbuf *v1;
 
     if (param1 == 0xFFFF) {
-        BGL_FillWindow(param0, 15);
-        sub_0201A954(param0);
+        Window_FillTilemap(param0, 15);
+        Window_CopyToVRAM(param0);
         return;
     }
 
     v0 = MessageLoader_Init(0, 26, 8, 53);
     v1 = MessageLoader_GetNewStrbuf(v0, param1);
 
-    BGL_FillWindow(param0, 15);
+    Window_FillTilemap(param0, 15);
     Text_AddPrinterWithParams(param0, FONT_MESSAGE, v1, 0, 0, TEXT_SPEED_INSTANT, NULL);
-    sub_0201A954(param0);
+    Window_CopyToVRAM(param0);
     Strbuf_Free(v1);
     MessageLoader_Free(v0);
 }
@@ -966,18 +966,18 @@ void ov76_0223CA30(Window *param0, int param1)
 void ov76_0223CA98(BgConfig *param0, Window *param1, int param2, int param3, int param4, int param5, int param6, int param7)
 {
     Window_Init(param1);
-    BGL_AddWindow(param0, param1, param2, param3, param4, param5, param6, 14, param7);
+    Window_Add(param0, param1, param2, param3, param4, param5, param6, 14, param7);
     sub_0200E060(param1, 1, 1, 12);
-    BGL_FillWindow(param1, 15);
-    sub_0201A954(param1);
+    Window_FillTilemap(param1, 15);
+    Window_CopyToVRAM(param1);
 }
 
 static void ov76_0223CAFC(BgConfig *param0, Window *param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8)
 {
     Window_Init(param1);
-    BGL_AddWindow(param0, param1, param2, param3, param4, param5, param6, param8, param7);
-    BGL_FillWindow(param1, 15);
-    sub_0201A954(param1);
+    Window_Add(param0, param1, param2, param3, param4, param5, param6, param8, param7);
+    Window_FillTilemap(param1, 15);
+    Window_CopyToVRAM(param1);
 }
 
 void ov76_0223CB58(UnkStruct_ov76_0223DE00 *param0)
@@ -1007,19 +1007,19 @@ void ov76_0223CC8C(UnkStruct_ov76_0223DE00 *param0)
         v2 = param0->unk_418.unk_08[v1];
 
         if (v2 == 0) {
-            BGL_FillWindow(v5, 0xEE);
-            sub_0201A954(v5);
+            Window_FillTilemap(v5, 0xEE);
+            Window_CopyToVRAM(v5);
             continue;
         }
 
-        BGL_FillWindow(v5, 0x0);
+        Window_FillTilemap(v5, 0x0);
 
         v4 = Strbuf_Init(100, 53);
         v3 = sub_0202CA90(param0->unk_64, v2 - 1);
 
         Strbuf_FormatInt(v4, v3, 3, 1, 1);
         Text_AddPrinterWithParamsAndColor(v5, FONT_SYSTEM, v4, (-1 + 8), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
-        sub_0201A954(v5);
+        Window_CopyToVRAM(v5);
         Strbuf_Free(v4);
     }
 }
@@ -1038,19 +1038,19 @@ void ov76_0223CD20(UnkStruct_ov76_0223DE00 *param0, int param1)
     v2 = param0->unk_418.unk_08[v1];
 
     if (v2 == 0) {
-        BGL_FillWindow(v5, 0xEE);
-        sub_0201A954(v5);
+        Window_FillTilemap(v5, 0xEE);
+        Window_CopyToVRAM(v5);
         return;
     }
 
-    BGL_FillWindow(v5, 0x0);
+    Window_FillTilemap(v5, 0x0);
 
     v4 = Strbuf_Init(100, 53);
     v3 = sub_0202CA90(param0->unk_64, v2 - 1);
 
     Strbuf_FormatInt(v4, v3, 3, 1, 1);
     Text_AddPrinterWithParamsAndColor(v5, FONT_MESSAGE, v4, (-1 + 8), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
-    sub_0201A954(v5);
+    Window_CopyToVRAM(v5);
     Strbuf_Free(v4);
 }
 
@@ -1059,8 +1059,8 @@ void ov76_0223CDA4(UnkStruct_ov76_0223DE00 *param0)
     int v0;
 
     for (v0 = 3; v0 < 11; v0++) {
-        sub_0201ACF4(&param0->unk_D4.unk_18[v0]);
-        BGL_DeleteWindow(&param0->unk_D4.unk_18[v0]);
+        Window_ClearAndCopyToVRAM(&param0->unk_D4.unk_18[v0]);
+        Window_Remove(&param0->unk_D4.unk_18[v0]);
     }
 }
 
@@ -1070,17 +1070,17 @@ void ov76_0223CDC4(Window *param0, int param1)
     Strbuf *v1;
 
     if (param1 == 0xFFFF) {
-        BGL_FillWindow(param0, 15);
-        sub_0201A954(param0);
+        Window_FillTilemap(param0, 15);
+        Window_CopyToVRAM(param0);
         return;
     }
 
     v0 = MessageLoader_Init(0, 26, 12, 53);
     v1 = MessageLoader_GetNewStrbuf(v0, param1);
 
-    BGL_FillWindow(param0, 15);
+    Window_FillTilemap(param0, 15);
     Text_AddPrinterWithParams(param0, FONT_MESSAGE, v1, 0, 0, TEXT_SPEED_INSTANT, NULL);
-    sub_0201A954(param0);
+    Window_CopyToVRAM(param0);
     Strbuf_Free(v1);
     MessageLoader_Free(v0);
 }

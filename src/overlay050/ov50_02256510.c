@@ -169,8 +169,8 @@ static void ov50_0225664C(SysTask *param0, void *param1)
     v3 = ov25_0225523C(param1);
     v4 = ov25_02255240(param1);
 
-    sub_020183C4(v3->unk_04, 6, &v0, 0);
-    sub_020183C4(v3->unk_04, 7, &v1, 0);
+    Bg_InitFromTemplate(v3->unk_04, 6, &v0, 0);
+    Bg_InitFromTemplate(v3->unk_04, 7, &v1, 0);
 
     ov50_0225675C(v3, v4);
     ov50_022567F4(v3, v4);
@@ -178,8 +178,8 @@ static void ov50_0225664C(SysTask *param0, void *param1)
     sub_02006E3C(12, 111, v3->unk_04, 7, 0, 0, 1, 8);
     ov25_022546B8(0, 0);
 
-    sub_02019448(v3->unk_04, 6);
-    sub_02019448(v3->unk_04, 7);
+    Bg_CopyTilemapBufferToVRAM(v3->unk_04, 6);
+    Bg_CopyTilemapBufferToVRAM(v3->unk_04, 7);
 
     v2 = GXS_GetDispCnt();
     GXS_SetVisiblePlane(v2.visiblePlane | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3);
@@ -190,8 +190,8 @@ static void ov50_022566F0(SysTask *param0, void *param1)
 {
     UnkStruct_ov50_02256510 *v0 = ov25_0225523C(param1);
 
-    sub_02019044(v0->unk_04, 6);
-    sub_02019044(v0->unk_04, 7);
+    Bg_FreeTilemapBuffer(v0->unk_04, 6);
+    Bg_FreeTilemapBuffer(v0->unk_04, 7);
 
     ov50_02256638(param1);
 }
@@ -207,7 +207,7 @@ static void ov50_02256714(SysTask *param0, void *param1)
     v2 = (v1->unk_0C[v1->unk_88].unk_03) ? 143 : 131;
 
     ov50_022567A8(v0->unk_04, v2, v1->unk_0C[v1->unk_88].unk_02);
-    sub_02019448(v0->unk_04, 7);
+    Bg_CopyTilemapBufferToVRAM(v0->unk_04, 7);
     ov50_02256638(param1);
 }
 
@@ -231,14 +231,14 @@ static void ov50_022567A8(BgConfig *param0, u16 param1, u32 param2)
     v0 = 4 + 3 * (param2 % 7);
     v1 = 5 + 3 * (param2 / 7);
 
-    sub_02019CB8(param0, 7, param1, v0, v1, 2, 2, 0);
+    Bg_FillTilemapRect(param0, 7, param1, v0, v1, 2, 2, 0);
 }
 
 static void ov50_022567F4(UnkStruct_ov50_02256510 *param0, const UnkStruct_ov50_02256510_1 *param1)
 {
     u32 v0;
 
-    sub_02019CB8(param0->unk_04, 6, 130, 0, 0, 32, 32, 0);
+    Bg_FillTilemapRect(param0->unk_04, 6, 130, 0, 0, 32, 32, 0);
     ov50_0225683C(param0->unk_04, param1->unk_00);
 
     for (v0 = 0; v0 < param1->unk_04; v0++) {
@@ -256,7 +256,7 @@ static void ov50_0225683C(BgConfig *param0, u32 param1)
 
     for (v3 = 0; v3 < 2; v3++) {
         for (v2 = 0; v2 < 4; v2++) {
-            sub_02019CB8(param0, 6, v1 + v2, 12 + v2, 2 + v3, 1, 1, 0);
+            Bg_FillTilemapRect(param0, 6, v1 + v2, 12 + v2, 2 + v3, 1, 1, 0);
         }
 
         v1 += 12;
@@ -279,10 +279,10 @@ static void ov50_02256894(BgConfig *param0, u32 param1, u32 param2)
     v4 = param1 % 10;
 
     if (v3) {
-        sub_02019CB8(param0, 6, v0[v5][v3], v1, v2, 1, 1, 0);
-        sub_02019CB8(param0, 6, v0[v5][v3] + 12, v1, v2 + 1, 1, 1, 0);
+        Bg_FillTilemapRect(param0, 6, v0[v5][v3], v1, v2, 1, 1, 0);
+        Bg_FillTilemapRect(param0, 6, v0[v5][v3] + 12, v1, v2 + 1, 1, 1, 0);
     }
 
-    sub_02019CB8(param0, 6, v0[v5][v4], v1 + 1, v2, 1, 1, 0);
-    sub_02019CB8(param0, 6, v0[v5][v4] + 12, v1 + 1, v2 + 1, 1, 1, 0);
+    Bg_FillTilemapRect(param0, 6, v0[v5][v4], v1 + 1, v2, 1, 1, 0);
+    Bg_FillTilemapRect(param0, 6, v0[v5][v4] + 12, v1 + 1, v2 + 1, 1, 1, 0);
 }

@@ -395,8 +395,8 @@ void ov116_02261F3C(UnkStruct_ov116_02262A8C *param0)
 void ov116_02261F70(UnkStruct_ov116_02262A8C *param0)
 {
     Window_Init(&param0->unk_1FC8);
-    BGL_AddWindow(param0->unk_14->unk_10, &param0->unk_1FC8, 7, 2, 19, 28, 4, 14, 256 + (16 * 3));
-    BGL_FillWindow(&param0->unk_1FC8, 0xFF);
+    Window_Add(param0->unk_14->unk_10, &param0->unk_1FC8, 7, 2, 19, 28, 4, 14, 256 + (16 * 3));
+    Window_FillTilemap(&param0->unk_1FC8, 0xFF);
 
     {
         MessageLoader *v0;
@@ -411,15 +411,15 @@ void ov116_02261F70(UnkStruct_ov116_02262A8C *param0)
     }
 
     Window_Show(&param0->unk_1FC8, 0, 180, 13);
-    sub_0201A954(&param0->unk_1FC8);
+    Window_CopyToVRAM(&param0->unk_1FC8);
 }
 
 void ov116_02262004(UnkStruct_ov116_02262A8C *param0)
 {
-    if (BGL_WindowAdded(&param0->unk_1FC8) == 1) {
+    if (Window_IsInUse(&param0->unk_1FC8) == 1) {
         Window_Clear(&param0->unk_1FC8, 1);
-        sub_0201ACF4(&param0->unk_1FC8);
-        BGL_DeleteWindow(&param0->unk_1FC8);
+        Window_ClearAndCopyToVRAM(&param0->unk_1FC8);
+        Window_Remove(&param0->unk_1FC8);
     }
 }
 
@@ -465,7 +465,7 @@ void ov116_02262034(UnkStruct_ov116_0226139C *param0, int param1)
 static int ov116_0226208C(Window *param0, Strbuf *param1)
 {
     int v0 = Font_CalcStrbufWidth(FONT_SYSTEM, param1, 0);
-    int v1 = (sub_0201C294(param0) * 8 - v0) / 2;
+    int v1 = (Window_GetWidth(param0) * 8 - v0) / 2;
 
     return v1;
 }
@@ -527,9 +527,9 @@ void ov116_022620AC(UnkStruct_ov116_0226139C *param0, UnkStruct_ov116_02262A8C *
         v7 = v4[param1->unk_04 - 2][v1][2];
         v8 = v4[param1->unk_04 - 2][v1][3];
 
-        BGL_AddWindow(param1->unk_14->unk_10, v3, 7, v5, v6, v7, v8, 14, v2);
+        Window_Add(param1->unk_14->unk_10, v3, 7, v5, v6, v7, v8, 14, v2);
         v2 += (v7 * v8);
-        BGL_FillWindow(v3, 0xFF);
+        Window_FillTilemap(v3, 0xFF);
 
         {
             Strbuf *v11;
@@ -547,7 +547,7 @@ void ov116_022620AC(UnkStruct_ov116_0226139C *param0, UnkStruct_ov116_02262A8C *
             Strbuf_Free(v11);
         }
 
-        sub_0201A954(v3);
+        Window_CopyToVRAM(v3);
         v1++;
     }
 }
@@ -563,10 +563,10 @@ void ov116_02262264(UnkStruct_ov116_02262A8C *param0)
             continue;
         }
 
-        if (BGL_WindowAdded(&param0->unk_1FD8[v1]) == 1) {
+        if (Window_IsInUse(&param0->unk_1FD8[v1]) == 1) {
             Window_Clear(&param0->unk_1FD8[v1], 1);
-            sub_0201ACF4(&param0->unk_1FD8[v1]);
-            BGL_DeleteWindow(&param0->unk_1FD8[v1]);
+            Window_ClearAndCopyToVRAM(&param0->unk_1FD8[v1]);
+            Window_Remove(&param0->unk_1FD8[v1]);
         }
 
         v1++;

@@ -125,7 +125,7 @@ static void ov53_022564B0(SysTask *param0, void *param1)
     v2 = ov25_0225523C(param1);
     v3 = ov25_02255240(param1);
 
-    sub_020183C4(v2->unk_04, 6, &v0, 0);
+    Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
     sub_02006E3C(12, 122, v2->unk_04, 6, 0, 0, 1, 8);
     sub_02006E60(12, 121, v2->unk_04, 6, 0, 0, 1, 8);
 
@@ -142,7 +142,7 @@ static void ov53_02256548(SysTask *param0, void *param1)
     UnkStruct_ov53_02256420 *v0 = ov25_0225523C(param1);
 
     ov53_02256840(v0);
-    sub_02019044(v0->unk_04, 6);
+    Bg_FreeTilemapBuffer(v0->unk_04, 6);
     ov53_0225649C(param1);
 }
 

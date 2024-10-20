@@ -60,7 +60,7 @@ static int sub_020890F4(OverlayManager *param0, int *param1)
     GXS_SetVisiblePlane(0);
 
     v0->unk_2C0.unk_00 = NARC_ctor(NARC_INDEX_ARC__CODEIN_GRA, 101);
-    v0->unk_2C0.unk_0C = sub_02018340(101);
+    v0->unk_2C0.unk_0C = BgConfig_New(101);
     v0->unk_2C0.unk_10 = sub_02002F38(101);
 
     sub_02003858(v0->unk_2C0.unk_10, 1);
@@ -125,13 +125,13 @@ static int sub_0208927C(OverlayManager *param0, int *param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
-    sub_02019044(v0->unk_2C0.unk_0C, 1);
-    sub_02019044(v0->unk_2C0.unk_0C, 2);
-    sub_02019044(v0->unk_2C0.unk_0C, 3);
-    sub_02019044(v0->unk_2C0.unk_0C, 4);
-    sub_02019044(v0->unk_2C0.unk_0C, 5);
-    sub_02019044(v0->unk_2C0.unk_0C, 6);
-    sub_02019044(v0->unk_2C0.unk_0C, 7);
+    Bg_FreeTilemapBuffer(v0->unk_2C0.unk_0C, 1);
+    Bg_FreeTilemapBuffer(v0->unk_2C0.unk_0C, 2);
+    Bg_FreeTilemapBuffer(v0->unk_2C0.unk_0C, 3);
+    Bg_FreeTilemapBuffer(v0->unk_2C0.unk_0C, 4);
+    Bg_FreeTilemapBuffer(v0->unk_2C0.unk_0C, 5);
+    Bg_FreeTilemapBuffer(v0->unk_2C0.unk_0C, 6);
+    Bg_FreeTilemapBuffer(v0->unk_2C0.unk_0C, 7);
     Heap_FreeToHeap(v0->unk_2C0.unk_0C);
     sub_02002FA0(v0->unk_2C0.unk_10, 0);
     sub_02002FA0(v0->unk_2C0.unk_10, 1);
@@ -278,12 +278,12 @@ static void sub_0208945C(BgConfig *param0)
             },
         };
 
-        sub_020183C4(param0, 1, &v1[0], 0);
-        sub_020183C4(param0, 2, &v1[1], 0);
-        sub_020183C4(param0, 3, &v1[2], 0);
-        sub_02019EBC(param0, 1);
-        sub_02019EBC(param0, 2);
-        sub_02019EBC(param0, 3);
+        Bg_InitFromTemplate(param0, 1, &v1[0], 0);
+        Bg_InitFromTemplate(param0, 2, &v1[1], 0);
+        Bg_InitFromTemplate(param0, 3, &v1[2], 0);
+        Bg_ClearTilemap(param0, 1);
+        Bg_ClearTilemap(param0, 2);
+        Bg_ClearTilemap(param0, 3);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
@@ -326,14 +326,14 @@ static void sub_0208945C(BgConfig *param0)
             { 0 },
         };
 
-        sub_020183C4(param0, 4, &v2[0], 0);
-        sub_020183C4(param0, 5, &v2[1], 0);
-        sub_020183C4(param0, 6, &v2[2], 0);
-        sub_020183C4(param0, 7, &v2[3], 0);
-        sub_02019EBC(param0, 4);
-        sub_02019EBC(param0, 5);
-        sub_02019EBC(param0, 6);
-        sub_02019EBC(param0, 7);
+        Bg_InitFromTemplate(param0, 4, &v2[0], 0);
+        Bg_InitFromTemplate(param0, 5, &v2[1], 0);
+        Bg_InitFromTemplate(param0, 6, &v2[2], 0);
+        Bg_InitFromTemplate(param0, 7, &v2[3], 0);
+        Bg_ClearTilemap(param0, 4);
+        Bg_ClearTilemap(param0, 5);
+        Bg_ClearTilemap(param0, 6);
+        Bg_ClearTilemap(param0, 7);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
@@ -354,7 +354,7 @@ static void sub_020895CC(void *param0)
     sub_0201DCAC();
     sub_0200C800();
     sub_02003694(v0->unk_2C0.unk_10);
-    sub_0201C2B8(v0->unk_2C0.unk_0C);
+    Bg_RunScheduledUpdates(v0->unk_2C0.unk_0C);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }

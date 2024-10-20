@@ -1203,7 +1203,7 @@ void ov16_0223EF8C(BattleSystem *param0)
         }
     }
 
-    sub_0201958C(param0->unk_04, 3, param0->unk_21C, 0x10000, 0);
+    Bg_LoadTiles(param0->unk_04, 3, param0->unk_21C, 0x10000, 0);
 
     ov16_02268700(&param0->unk_17C[0]);
     ov16_02268700(&param0->unk_17C[1]);
@@ -1746,7 +1746,7 @@ u8 ov16_0223F9FC(BattleSystem *param0, int param1, int param2, int param3, int p
                     v2 = sub_02014B34(&param0->trainers[param2].loseMsg, 5);
                 }
 
-                BGL_FillWindow(v0, 0xff);
+                Window_FillTilemap(v0, 0xff);
                 v1 = Text_AddPrinterWithParams(v0, FONT_MESSAGE, v2, 0, 0, param4, BattleMessage_Callback);
                 Strbuf_Free(v2);
             }
@@ -1779,7 +1779,7 @@ u8 ov16_0223F9FC(BattleSystem *param0, int param1, int param2, int param3, int p
                 v3 = MessageLoader_Init(0, 26, v6, 5);
                 v4 = MessageLoader_GetNewStrbuf(v3, v5);
 
-                BGL_FillWindow(v0, 0xff);
+                Window_FillTilemap(v0, 0xff);
 
                 v1 = Text_AddPrinterWithParams(v0, FONT_MESSAGE, v4, 0, 0, param4, BattleMessage_Callback);
                 Strbuf_Free(v4);
@@ -1788,7 +1788,7 @@ u8 ov16_0223F9FC(BattleSystem *param0, int param1, int param2, int param3, int p
         }
     } else {
         TrainerData_LoadMessage(param1, param3, param0->msgBuffer, 5);
-        BGL_FillWindow(v0, 0xff);
+        Window_FillTilemap(v0, 0xff);
         v1 = Text_AddPrinterWithParams(v0, FONT_MESSAGE, param0->msgBuffer, 0, 0, param4, BattleMessage_Callback);
     }
 
@@ -1803,7 +1803,7 @@ u8 BattleMessage_Print(BattleSystem *battleSys, MessageLoader *msgLoader, Battle
     BattleMessage_FillFormatBuffers(battleSys, battleMsg);
     BattleMessage_Format(battleSys, msgLoader, battleMsg);
 
-    BGL_FillWindow(textWindow, 0xFF);
+    Window_FillTilemap(textWindow, 0xFF);
 
     return Text_AddPrinterWithParams(textWindow, FONT_MESSAGE, battleSys->msgBuffer, 0, 0, renderDelay, BattleMessage_Callback);
 }
@@ -1817,7 +1817,7 @@ u8 BattleMessage_PrintToWindow(BattleSystem *param0, Window *param1, MessageLoad
     BattleMessage_Format(param0, param2, param3);
 
     if (param6 & 0x1) {
-        BGL_FillWindow(param1, 0xff);
+        Window_FillTilemap(param1, 0xff);
     }
 
     if (param6 & 0x2) {

@@ -124,7 +124,7 @@ enum RenderResult RenderText(TextPrinter *printer)
                 Text_RenderScreenIndicator(printer, printer->template.currX, printer->template.currY, screen);
 
                 if (printer->textSpeedTop != 0) {
-                    sub_0201A954(printer->template.window);
+                    Window_CopyToVRAM(printer->template.window);
                 }
             } break;
 
@@ -196,7 +196,7 @@ enum RenderResult RenderText(TextPrinter *printer)
         }
 
         const TextGlyph *glyph = Font_TryLoadGlyph(substruct->fontID, currChar);
-        sub_0201AED0(printer->template.window,
+        Window_CopyGlyph(printer->template.window,
             glyph->gfx,
             glyph->width,
             glyph->height,
@@ -218,7 +218,7 @@ enum RenderResult RenderText(TextPrinter *printer)
     case RENDER_STATE_CLEAR:
         if (TextPrinter_WaitWithScrollArrow(printer)) {
             TextPrinter_ClearScrollArrow(printer);
-            BGL_FillWindow(printer->template.window, printer->template.bgColor);
+            Window_FillTilemap(printer->template.window, printer->template.bgColor);
 
             printer->template.currX = printer->template.x;
             printer->template.currY = printer->template.y;
@@ -242,14 +242,14 @@ enum RenderResult RenderText(TextPrinter *printer)
         if (printer->scrollDistance) {
             // This cast here is ugly, but is necessary to match without declaring a separate variable just for 4.
             if ((int)printer->scrollDistance < 4) {
-                sub_0201C04C(printer->template.window, 0, printer->scrollDistance, (printer->template.bgColor << 4) | printer->template.bgColor);
+                Window_Scroll(printer->template.window, 0, printer->scrollDistance, (printer->template.bgColor << 4) | printer->template.bgColor);
                 printer->scrollDistance = 0;
             } else {
-                sub_0201C04C(printer->template.window, 0, 4, (printer->template.bgColor << 4) | printer->template.bgColor);
+                Window_Scroll(printer->template.window, 0, 4, (printer->template.bgColor << 4) | printer->template.bgColor);
                 printer->scrollDistance -= 4;
             }
 
-            sub_0201A954(printer->template.window);
+            Window_CopyToVRAM(printer->template.window);
         } else {
             printer->state = RENDER_STATE_HANDLE_CHAR;
         }
@@ -307,13 +307,13 @@ void TextPrinter_DrawScrollArrow(TextPrinter *printer)
         return;
     }
 
-    u8 bgID = sub_0201C290(printer->template.window);
-    u8 x = sub_0201C29C(printer->template.window);
-    u8 y = sub_0201C2A0(printer->template.window);
-    u8 width = sub_0201C294(printer->template.window);
+    u8 bgID = Window_GetBgLayer(printer->template.window);
+    u8 x = Window_GetXPos(printer->template.window);
+    u8 y = Window_GetYPos(printer->template.window);
+    u8 width = Window_GetWidth(printer->template.window);
     u16 baseTile = sScrollArrowBaseTile;
 
-    sub_02019CB8(printer->template.window->bgConfig,
+    Bg_FillTilemapRect(printer->template.window->bgConfig,
         bgID,
         baseTile + 18 + (sScrollArrowTileOffsets[substruct->scrollArrowYPosIdx] * 4),
         x + width + 1,
@@ -321,7 +321,7 @@ void TextPrinter_DrawScrollArrow(TextPrinter *printer)
         1,
         1,
         16);
-    sub_02019CB8(printer->template.window->bgConfig,
+    Bg_FillTilemapRect(printer->template.window->bgConfig,
         bgID,
         baseTile + 19 + (sScrollArrowTileOffsets[substruct->scrollArrowYPosIdx] * 4),
         x + width + 2,
@@ -329,7 +329,7 @@ void TextPrinter_DrawScrollArrow(TextPrinter *printer)
         1,
         1,
         16);
-    sub_02019CB8(printer->template.window->bgConfig,
+    Bg_FillTilemapRect(printer->template.window->bgConfig,
         bgID,
         baseTile + 20 + (sScrollArrowTileOffsets[substruct->scrollArrowYPosIdx] * 4),
         x + width + 1,
@@ -337,7 +337,7 @@ void TextPrinter_DrawScrollArrow(TextPrinter *printer)
         1,
         1,
         16);
-    sub_02019CB8(printer->template.window->bgConfig,
+    Bg_FillTilemapRect(printer->template.window->bgConfig,
         bgID,
         baseTile + 21 + (sScrollArrowTileOffsets[substruct->scrollArrowYPosIdx] * 4),
         x + width + 2,
@@ -346,20 +346,20 @@ void TextPrinter_DrawScrollArrow(TextPrinter *printer)
         1,
         16);
 
-    sub_02019448(printer->template.window->bgConfig, bgID);
+    Bg_CopyTilemapBufferToVRAM(printer->template.window->bgConfig, bgID);
     substruct->scrollArrowDelay = 8;
     substruct->scrollArrowYPosIdx++;
 }
 
 void TextPrinter_ClearScrollArrow(TextPrinter *printer)
 {
-    u8 bgID = sub_0201C290(printer->template.window);
-    u8 x = sub_0201C29C(printer->template.window);
-    u8 y = sub_0201C2A0(printer->template.window);
-    u8 width = sub_0201C294(printer->template.window);
+    u8 bgID = Window_GetBgLayer(printer->template.window);
+    u8 x = Window_GetXPos(printer->template.window);
+    u8 y = Window_GetYPos(printer->template.window);
+    u8 width = Window_GetWidth(printer->template.window);
     u16 baseTile = sScrollArrowBaseTile;
 
-    sub_02019CB8(printer->template.window->bgConfig,
+    Bg_FillTilemapRect(printer->template.window->bgConfig,
         bgID,
         baseTile + 10,
         x + width + 1,
@@ -367,7 +367,7 @@ void TextPrinter_ClearScrollArrow(TextPrinter *printer)
         1,
         2,
         16);
-    sub_02019CB8(printer->template.window->bgConfig,
+    Bg_FillTilemapRect(printer->template.window->bgConfig,
         bgID,
         baseTile + 11,
         x + width + 2,
@@ -375,7 +375,7 @@ void TextPrinter_ClearScrollArrow(TextPrinter *printer)
         1,
         2,
         16);
-    sub_02019448(printer->template.window->bgConfig, bgID);
+    Bg_CopyTilemapBufferToVRAM(printer->template.window->bgConfig, bgID);
 }
 
 static BOOL TextPrinter_Continue(TextPrinter *printer)

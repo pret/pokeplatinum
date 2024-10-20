@@ -168,7 +168,7 @@ int ov17_0224F4D4(OverlayManager *param0, int *param1)
     sub_02002F70(v0->unk_10.unk_C0, 2, (((16 - 2) * 16) * sizeof(u16)), 24);
     sub_02002F70(v0->unk_10.unk_C0, 3, 0x200, 24);
 
-    v0->unk_10.unk_20 = sub_02018340(24);
+    v0->unk_10.unk_20 = BgConfig_New(24);
 
     sub_0201DBEC(64, 24);
     SetAutorepeat(4, 8);
@@ -288,16 +288,16 @@ int ov17_0224F86C(OverlayManager *param0, int *param1)
     ov17_0224FEC8(v0);
 
     for (v1 = 0; v1 < 9; v1++) {
-        BGL_DeleteWindow(&v0->unk_10.unk_24[v1]);
+        Window_Remove(&v0->unk_10.unk_24[v1]);
     }
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
-    sub_02019044(v0->unk_10.unk_20, 1);
-    sub_02019044(v0->unk_10.unk_20, 2);
-    sub_02019044(v0->unk_10.unk_20, 3);
-    sub_02019120(4, 0);
-    sub_02019044(v0->unk_10.unk_20, 4);
+    Bg_FreeTilemapBuffer(v0->unk_10.unk_20, 1);
+    Bg_FreeTilemapBuffer(v0->unk_10.unk_20, 2);
+    Bg_FreeTilemapBuffer(v0->unk_10.unk_20, 3);
+    Bg_ToggleLayer(4, 0);
+    Bg_FreeTilemapBuffer(v0->unk_10.unk_20, 4);
     sub_0200D0B0(v0->unk_10.unk_18, v0->unk_10.unk_1C);
     sub_0200C8D4(v0->unk_10.unk_18);
     sub_0201DC3C();
@@ -362,7 +362,7 @@ static void ov17_0224FA24(void *param0)
     sub_0201DCAC();
     sub_0200C800();
     sub_02003694(v0->unk_10.unk_C0);
-    sub_0201C2B8(v0->unk_10.unk_20);
+    Bg_RunScheduledUpdates(v0->unk_10.unk_20);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
@@ -376,9 +376,9 @@ static void ov17_0224FAAC(void *param0)
         v1 = GX_GetVCount();
 
         if ((v1 >= (0x13 - 1) * 8) && (v1 <= (0x13 - 0) * 8)) {
-            BGL_SetPriority(1, 0);
+            Bg_SetPriority(1, 0);
         } else if (v1 < (0x13 - 1) * 8) {
-            BGL_SetPriority(1, 2);
+            Bg_SetPriority(1, 2);
         }
     }
 }
@@ -388,7 +388,7 @@ static void ov17_0224FAE4(SysTask *param0, void *param1)
     UnkStruct_ov17_0224FCA0 *v0 = param1;
 
     if (v0->unk_127B == 1) {
-        BGL_SetPriority(1, 2);
+        Bg_SetPriority(1, 2);
     }
 }
 
@@ -441,7 +441,7 @@ static void ov17_0224FB34(BgConfig *param0)
             GX_BG0_AS_3D
         };
 
-        sub_02018368(&v1);
+        SetAllGraphicsModes(&v1);
     }
 
     {
@@ -493,18 +493,18 @@ static void ov17_0224FB34(BgConfig *param0)
             },
         };
 
-        sub_020183C4(param0, 1, &v2[0], 0);
-        sub_02019EBC(param0, 1);
-        sub_02019184(param0, 1, 0, 0);
-        sub_02019184(param0, 1, 3, 0);
-        sub_020183C4(param0, 2, &v2[1], 0);
-        sub_02019EBC(param0, 2);
-        sub_02019184(param0, 2, 0, 0);
-        sub_02019184(param0, 2, 3, 0);
-        sub_020183C4(param0, 3, &v2[2], 0);
-        sub_02019EBC(param0, 3);
-        sub_02019184(param0, 3, 0, 0);
-        sub_02019184(param0, 3, 3, 0);
+        Bg_InitFromTemplate(param0, 1, &v2[0], 0);
+        Bg_ClearTilemap(param0, 1);
+        Bg_SetOffset(param0, 1, 0, 0);
+        Bg_SetOffset(param0, 1, 3, 0);
+        Bg_InitFromTemplate(param0, 2, &v2[1], 0);
+        Bg_ClearTilemap(param0, 2);
+        Bg_SetOffset(param0, 2, 0, 0);
+        Bg_SetOffset(param0, 2, 3, 0);
+        Bg_InitFromTemplate(param0, 3, &v2[2], 0);
+        Bg_ClearTilemap(param0, 3);
+        Bg_SetOffset(param0, 3, 0, 0);
+        Bg_SetOffset(param0, 3, 3, 0);
 
         G2_SetBG0Priority(1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
@@ -529,24 +529,24 @@ static void ov17_0224FB34(BgConfig *param0)
             },
         };
 
-        sub_020183C4(param0, 4, &v3[0], 0);
-        sub_02019EBC(param0, 4);
-        sub_02019184(param0, 4, 0, 0);
-        sub_02019184(param0, 4, 3, 0);
+        Bg_InitFromTemplate(param0, 4, &v3[0], 0);
+        Bg_ClearTilemap(param0, 4);
+        Bg_SetOffset(param0, 4, 0, 0);
+        Bg_SetOffset(param0, 4, 3, 0);
     }
 }
 
 static void ov17_0224FCA0(UnkStruct_ov17_0224FCA0 *param0)
 {
-    BGL_AddWindow(param0->unk_10.unk_20, &param0->unk_10.unk_24[0], 1, 0x2, 0x13, 27, 4, 13, ((18 + 12) + 1));
-    BGL_AddWindow(param0->unk_10.unk_20, &param0->unk_10.unk_24[1], 1, 6, 1 + 4 * 0, 8, 3, 13, (((18 + 12) + 1) + (27 * 4)));
-    BGL_AddWindow(param0->unk_10.unk_20, &param0->unk_10.unk_24[2], 1, 6, 1 + 4 * 1, 8, 3, 13, ((((18 + 12) + 1) + (27 * 4)) + (8 * 3)));
-    BGL_AddWindow(param0->unk_10.unk_20, &param0->unk_10.unk_24[3], 1, 6, 1 + 4 * 2, 8, 3, 13, (((((18 + 12) + 1) + (27 * 4)) + (8 * 3)) + (8 * 3)));
-    BGL_AddWindow(param0->unk_10.unk_20, &param0->unk_10.unk_24[4], 1, 6, 1 + 4 * 3, 8, 3, 13, ((((((18 + 12) + 1) + (27 * 4)) + (8 * 3)) + (8 * 3)) + (8 * 3)));
-    BGL_AddWindow(param0->unk_10.unk_20, &param0->unk_10.unk_24[5], 1, 0x10, 1 + 4 * 0, 8, 3, 13, (((((((18 + 12) + 1) + (27 * 4)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3)));
-    BGL_AddWindow(param0->unk_10.unk_20, &param0->unk_10.unk_24[6], 1, 0x10, 1 + 4 * 1, 8, 3, 13, ((((((((18 + 12) + 1) + (27 * 4)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3)));
-    BGL_AddWindow(param0->unk_10.unk_20, &param0->unk_10.unk_24[7], 1, 0x10, 1 + 4 * 2, 8, 3, 13, (((((((((18 + 12) + 1) + (27 * 4)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3)));
-    BGL_AddWindow(param0->unk_10.unk_20, &param0->unk_10.unk_24[8], 1, 0x10, 1 + 4 * 3, 8, 3, 13, ((((((((((18 + 12) + 1) + (27 * 4)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3)));
+    Window_Add(param0->unk_10.unk_20, &param0->unk_10.unk_24[0], 1, 0x2, 0x13, 27, 4, 13, ((18 + 12) + 1));
+    Window_Add(param0->unk_10.unk_20, &param0->unk_10.unk_24[1], 1, 6, 1 + 4 * 0, 8, 3, 13, (((18 + 12) + 1) + (27 * 4)));
+    Window_Add(param0->unk_10.unk_20, &param0->unk_10.unk_24[2], 1, 6, 1 + 4 * 1, 8, 3, 13, ((((18 + 12) + 1) + (27 * 4)) + (8 * 3)));
+    Window_Add(param0->unk_10.unk_20, &param0->unk_10.unk_24[3], 1, 6, 1 + 4 * 2, 8, 3, 13, (((((18 + 12) + 1) + (27 * 4)) + (8 * 3)) + (8 * 3)));
+    Window_Add(param0->unk_10.unk_20, &param0->unk_10.unk_24[4], 1, 6, 1 + 4 * 3, 8, 3, 13, ((((((18 + 12) + 1) + (27 * 4)) + (8 * 3)) + (8 * 3)) + (8 * 3)));
+    Window_Add(param0->unk_10.unk_20, &param0->unk_10.unk_24[5], 1, 0x10, 1 + 4 * 0, 8, 3, 13, (((((((18 + 12) + 1) + (27 * 4)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3)));
+    Window_Add(param0->unk_10.unk_20, &param0->unk_10.unk_24[6], 1, 0x10, 1 + 4 * 1, 8, 3, 13, ((((((((18 + 12) + 1) + (27 * 4)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3)));
+    Window_Add(param0->unk_10.unk_20, &param0->unk_10.unk_24[7], 1, 0x10, 1 + 4 * 2, 8, 3, 13, (((((((((18 + 12) + 1) + (27 * 4)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3)));
+    Window_Add(param0->unk_10.unk_20, &param0->unk_10.unk_24[8], 1, 0x10, 1 + 4 * 3, 8, 3, 13, ((((((((((18 + 12) + 1) + (27 * 4)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3)));
 }
 
 static void ov17_0224FDDC(void)

@@ -396,7 +396,7 @@ void ov17_022413E4(UnkStruct_ov17_02246F24 *param0, int param1, int param2)
     u16 *v0;
     int v1, v2;
 
-    v0 = sub_02019FE4(param0->unk_0C.unk_24, 2);
+    v0 = Bg_GetTilemapBuffer(param0->unk_0C.unk_24, 2);
     v0 = &v0[32 * (param1 * 6) + 0];
 
     for (v2 = 0; v2 < 6; v2++) {
@@ -414,7 +414,7 @@ void ov17_02241428(UnkStruct_ov17_02246F24 *param0)
         ov17_022413E4(param0, v0, Unk_ov17_022536B4[param0->unk_220.unk_01[v0]]);
     }
 
-    sub_0201C3C0(param0->unk_0C.unk_24, 2);
+    Bg_ScheduleTilemapTransfer(param0->unk_0C.unk_24, 2);
 }
 
 UnkStruct_ov17_0224145C *ov17_0224145C(UnkStruct_ov17_02246F24 *param0, int param1)
@@ -1504,8 +1504,8 @@ static void ov17_0224290C(UnkStruct_ov17_02246F24 *param0, int param1, const Unk
 
 void ov17_02242DA8(UnkStruct_ov17_02246F24 *param0)
 {
-    BGL_FillWindow(&param0->unk_0C.unk_28[0], 0xff);
-    sub_0201A954(&param0->unk_0C.unk_28[0]);
+    Window_FillTilemap(&param0->unk_0C.unk_28[0], 0xff);
+    Window_CopyToVRAM(&param0->unk_0C.unk_28[0]);
 }
 
 static void ov17_02242DC0(UnkStruct_ov17_02246F24 *param0, MessageLoader *param1, u32 param2, int param3, const UnkStruct_ov17_022449B8 *param4, const void *param5, int param6)
@@ -1527,16 +1527,16 @@ static void ov17_02242DC0(UnkStruct_ov17_02246F24 *param0, MessageLoader *param1
     ov17_0224290C(param0, param3, param4, param5);
 
     StringTemplate_Format(param0->unk_0C.unk_48, param0->unk_0C.unk_4C, v0);
-    BGL_FillWindow(&param0->unk_0C.unk_28[0], 0xff);
+    Window_FillTilemap(&param0->unk_0C.unk_28[0], 0xff);
 
     param0->unk_0C.unk_210 = Text_AddPrinterWithParams(&param0->unk_0C.unk_28[0], FONT_MESSAGE, param0->unk_0C.unk_4C, 0, 0, v1, NULL);
 
     if (v1 == 0) {
         param0->unk_0C.unk_210 = 0xff;
-        sub_0201A954(&param0->unk_0C.unk_28[0]);
+        Window_CopyToVRAM(&param0->unk_0C.unk_28[0]);
     }
 
-    if (sub_020192EC(param0->unk_0C.unk_24, 1) == 0) {
+    if (Bg_GetXOffset(param0->unk_0C.unk_24, 1) == 0) {
         (void)0;
     }
 

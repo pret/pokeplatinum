@@ -629,7 +629,7 @@ BOOL ov21_021D157C(UnkStruct_ov21_021D157C *param0)
     int v1;
 
     if (param0->unk_1C <= param0->unk_20) {
-        sub_02019CB8(param0->unk_00, param0->unk_08, 0, 0, 0, 32, 24, 16);
+        Bg_FillTilemapRect(param0->unk_00, param0->unk_08, 0, 0, 0, 32, 24, 16);
 
         v0 = (param0->unk_14 * param0->unk_1C) / param0->unk_20;
         v1 = (param0->unk_18 * param0->unk_1C) / param0->unk_20;
@@ -637,14 +637,14 @@ BOOL ov21_021D157C(UnkStruct_ov21_021D157C *param0)
         v1 += param0->unk_10;
 
         if (v0 > 0) {
-            sub_020198E8(param0->unk_00, param0->unk_08, 0, 0, 32, v0, param0->unk_04->rawData, 0, 32 - v0, 32, 32);
+            Bg_CopyToTilemapRect(param0->unk_00, param0->unk_08, 0, 0, 32, v0, param0->unk_04->rawData, 0, 32 - v0, 32, 32);
         }
 
         if ((32 - v1) > 0) {
-            sub_020198E8(param0->unk_00, param0->unk_08, 0, 32 - v1, 32, v1, param0->unk_04->rawData, 0, 0, 32, 32);
+            Bg_CopyToTilemapRect(param0->unk_00, param0->unk_08, 0, 32 - v1, 32, v1, param0->unk_04->rawData, 0, 0, 32, 32);
         }
 
-        sub_0201C3C0(param0->unk_00, param0->unk_08);
+        Bg_ScheduleTilemapTransfer(param0->unk_00, param0->unk_08);
         param0->unk_1C++;
 
         return 0;

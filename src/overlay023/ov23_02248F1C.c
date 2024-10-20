@@ -145,7 +145,7 @@ static void ov23_02248F1C(SysTask *param0, void *param1)
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
-        sub_0201975C(4, 0);
+        Bg_MaskPalette(4, 0);
         v0->unk_00++;
         break;
     case 4:
@@ -174,8 +174,8 @@ static void ov23_02248F1C(SysTask *param0, void *param1)
 
         CellActorCollection_Delete(v0->unk_1BC);
         sub_0200E084(&v0->unk_3F4, 0);
-        BGL_DeleteWindow(&v0->unk_3F4);
-        sub_02019044(v1, 7);
+        Window_Remove(&v0->unk_3F4);
+        Bg_FreeTilemapBuffer(v1, 7);
 
         ov23_02249438(v1);
         ov23_02249778(&v0->unk_410);
@@ -340,8 +340,8 @@ void ov23_0224942C(UnkStruct_ov23_0224942C *param0)
 
 static void ov23_02249438(BgConfig *param0)
 {
-    sub_02019044(param0, 4);
-    sub_02019044(param0, 5);
+    Bg_FreeTilemapBuffer(param0, 4);
+    Bg_FreeTilemapBuffer(param0, 5);
 }
 
 static void ov23_0224944C(BgConfig *param0, Window *param1)
@@ -366,7 +366,7 @@ static void ov23_0224944C(BgConfig *param0, Window *param1)
             0
         };
 
-        sub_020183C4(param0, 4, &v0, 0);
+        Bg_InitFromTemplate(param0, 4, &v0, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
     }
     {
@@ -386,7 +386,7 @@ static void ov23_0224944C(BgConfig *param0, Window *param1)
             0
         };
 
-        sub_020183C4(param0, 5, &v1, 0);
+        Bg_InitFromTemplate(param0, 5, &v1, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
     }
     {
@@ -406,9 +406,9 @@ static void ov23_0224944C(BgConfig *param0, Window *param1)
             0
         };
 
-        sub_020183C4(param0, 7, &v2, 0);
+        Bg_InitFromTemplate(param0, 7, &v2, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
-        sub_02019EBC(param0, 7);
+        Bg_ClearTilemap(param0, 7);
     }
 
     {
@@ -423,9 +423,9 @@ static void ov23_0224944C(BgConfig *param0, Window *param1)
     }
 
     sub_0205D8CC(4, 0);
-    sub_02019690(7, 32, 0, 4);
+    Bg_ClearTilesRange(7, 32, 0, 4);
     FieldMessage_AddWindow(param0, param1, 7);
-    BGL_FillWindow(param1, 0);
+    Window_FillTilemap(param1, 0);
     sub_02006E84(50, 52, 4, 10 * 0x20, 4 * 0x20, 4);
     sub_0200F338(1);
 }
@@ -481,8 +481,8 @@ static void ov23_0224966C(BgConfig *param0, Window *param1, int *param2, int *pa
         break;
     case 2:
         if (ov23_02249900(param5) == 0) {
-            sub_0201C04C(param1, 0, 2, 0x0);
-            sub_0201A954(param1);
+            Window_Scroll(param1, 0, 2, 0x0);
+            Window_CopyToVRAM(param1);
 
             if (++(*param4) >= 8) {
                 *param4 = 0;

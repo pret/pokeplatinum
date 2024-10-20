@@ -375,7 +375,7 @@ static void ov6_0223E1D0(BgConfig *param0)
             GX_BG0_AS_3D
         };
 
-        sub_02018368(&v0);
+        SetAllGraphicsModes(&v0);
     }
 
     GXLayers_EngineAToggleLayers(
@@ -398,9 +398,9 @@ static void ov6_0223E1D0(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 3, &v1, 0);
-        sub_02019690(3, 32, 0, 4);
-        sub_02019EBC(param0, 3);
+        Bg_InitFromTemplate(param0, 3, &v1, 0);
+        Bg_ClearTilesRange(3, 32, 0, 4);
+        Bg_ClearTilemap(param0, 3);
     }
 }
 
@@ -2064,7 +2064,7 @@ UnkStruct_ov6_022401B8 *ov6_02240104(u32 param0, FieldSystem *fieldSystem)
         sub_02006E3C(172, 74, v1, 2, 0, 0, 0, param0);
         sub_02006E60(172, 76, v1, 2, 0, 0, 0, param0);
         sub_02006E84(172, 75, 0, 0x20 * 6, 0x20, param0);
-        BGL_SetPriority(2, 1);
+        Bg_SetPriority(2, 1);
 
         v0->unk_34.unk_00 = 0;
         v0->unk_34.unk_04 = 31;

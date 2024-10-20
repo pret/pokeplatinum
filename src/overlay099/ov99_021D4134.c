@@ -200,8 +200,8 @@ void ov99_021D439C(UnkStruct_ov99_021D2CB0 *param0, int param1, int param2, int 
     sub_020038B0(param0->unk_0C, 1, 2, 0x0, 0, 1);
     sub_020070E8(param0->unk_10F8, v3->unk_00, param0->unk_08, param2, 0, 0, 0, 75);
     sub_0200710C(param0->unk_10F8, v3->unk_02, param0->unk_08, param2, 0, 0, 0, 75);
-    sub_02019184(v0, param2, 0, v3->unk_06);
-    sub_02019184(v0, param2, 3, v3->unk_08);
+    Bg_SetOffset(v0, param2, 0, v3->unk_06);
+    Bg_SetOffset(v0, param2, 3, v3->unk_08);
 }
 
 void ov99_021D44CC(UnkStruct_ov99_021D2CB0 *param0, CellActorData *param1)

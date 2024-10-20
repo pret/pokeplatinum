@@ -77,7 +77,7 @@ int ov96_0223B6A0(OverlayManager *param0, int *param1)
 
         v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov96_0223BF40), 68);
         memset(v0, 0, sizeof(UnkStruct_ov96_0223BF40));
-        v0->unk_04 = sub_02018340(68);
+        v0->unk_04 = BgConfig_New(68);
         Unk_ov96_0223DEEC = v0;
 
         {
@@ -88,7 +88,7 @@ int ov96_0223B6A0(OverlayManager *param0, int *param1)
                 GX_BG0_AS_2D,
             };
 
-            sub_02018368(&v1);
+            SetAllGraphicsModes(&v1);
         }
 
         v0->unk_BCC = StringTemplate_New(11, 32, 68);

@@ -300,7 +300,7 @@ static void ov104_0223EB44(Window *param0, s32 param1, s32 param2, s32 param3, s
         param2 = 256;
     }
 
-    BGL_WindowColor(param0, param5, param3, param1, param4 - param3, param2 - param1);
+    Window_FillRectWithColor(param0, param5, param3, param1, param4 - param3, param2 - param1);
 }
 
 UnkStruct_ov104_0223EBD0 *ov104_0223EBA0(u32 param0)

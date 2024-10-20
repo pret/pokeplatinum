@@ -349,8 +349,8 @@ static void ov21_021E638C(UnkStruct_ov21_021E6274 *param0, UnkStruct_ov21_021E61
     ov21_021E65EC(param0);
     ov21_021E64D4(param0, param1);
 
-    BGL_FillWindow(&param1->unk_00->unk_04, 0);
-    sub_02019EBC(param1->unk_00->unk_00, 1);
+    Window_FillTilemap(&param1->unk_00->unk_04, 0);
+    Bg_ClearTilemap(param1->unk_00->unk_00, 1);
 
     ov21_021E6844(param1);
 }
@@ -364,9 +364,9 @@ static void ov21_021E63C0(UnkStruct_ov21_021E6118 *param0, const UnkStruct_ov21_
 
     v0 = ov21_021D27B8(param0->unk_00, 74, 1, &v1, param2);
 
-    sub_020198C0(param0->unk_00->unk_00, 3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
+    Bg_LoadToTilemapRect(param0->unk_00->unk_00, 3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
-    sub_0201C3C0(param0->unk_00->unk_00, 3);
+    Bg_ScheduleTilemapTransfer(param0->unk_00->unk_00, 3);
 }
 
 static void ov21_021E6428(UnkStruct_ov21_021E6274 *param0, UnkStruct_ov21_021E6118 *param1, int param2)

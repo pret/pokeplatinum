@@ -240,7 +240,7 @@ static void ov43_02256700(SysTask *param0, void *param1)
     v2 = ov25_0225523C(param1);
     v3 = ov25_02255240(param1);
 
-    sub_020183C4(v2->unk_04, 6, &v0, 0);
+    Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
 
     v6 = sub_02006E3C(12, 61, v2->unk_04, 6, 0, 0, 1, 8);
     sub_02006E60(12, 60, v2->unk_04, 6, 0, 0, 1, 8);
@@ -248,7 +248,7 @@ static void ov43_02256700(SysTask *param0, void *param1)
 
     v6 /= 0x20;
     ov43_022567A4(v2, v3, v6);
-    sub_02019448(v2->unk_04, 6);
+    Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);
 
     v1 = GXS_GetDispCnt();
     GXS_SetVisiblePlane(v1.visiblePlane | GX_PLANEMASK_BG2);
@@ -258,31 +258,31 @@ static void ov43_02256700(SysTask *param0, void *param1)
 
 static void ov43_022567A4(UnkStruct_ov43_02256544 *param0, const UnkStruct_ov43_02256544_1 *param1, u32 param2)
 {
-    BGL_AddWindow(param0->unk_04, &(param0->unk_74), 6, 6, 15, 6, 2, 0, param2);
+    Window_Add(param0->unk_04, &(param0->unk_74), 6, 6, 15, 6, 2, 0, param2);
     param2 += 12;
 
-    BGL_AddWindow(param0->unk_04, &(param0->unk_84), 6, 16, 4, 6, 2, 0, param2);
+    Window_Add(param0->unk_04, &(param0->unk_84), 6, 16, 4, 6, 2, 0, param2);
     param2 += 12;
 
-    BGL_AddWindow(param0->unk_04, &(param0->unk_94), 6, 16, 8, 6, 2, 0, param2);
+    Window_Add(param0->unk_04, &(param0->unk_94), 6, 16, 8, 6, 2, 0, param2);
     param2 += 12;
 
-    BGL_AddWindow(param0->unk_04, &(param0->unk_A4), 6, 3, 19, 22, 2, 0, param2);
+    Window_Add(param0->unk_04, &(param0->unk_A4), 6, 3, 19, 22, 2, 0, param2);
 
-    sub_0201A9F4(&(param0->unk_74));
-    sub_0201A9F4(&(param0->unk_84));
-    sub_0201A9F4(&(param0->unk_94));
-    sub_0201A9F4(&(param0->unk_A4));
+    Window_PutToTilemap(&(param0->unk_74));
+    Window_PutToTilemap(&(param0->unk_84));
+    Window_PutToTilemap(&(param0->unk_94));
+    Window_PutToTilemap(&(param0->unk_A4));
 
     ov43_02256948(param0, param1);
 }
 
 static void ov43_02256870(UnkStruct_ov43_02256544 *param0)
 {
-    BGL_DeleteWindow(&(param0->unk_74));
-    BGL_DeleteWindow(&(param0->unk_84));
-    BGL_DeleteWindow(&(param0->unk_94));
-    BGL_DeleteWindow(&(param0->unk_A4));
+    Window_Remove(&(param0->unk_74));
+    Window_Remove(&(param0->unk_84));
+    Window_Remove(&(param0->unk_94));
+    Window_Remove(&(param0->unk_A4));
 }
 
 static void ov43_02256894(SysTask *param0, void *param1)
@@ -290,7 +290,7 @@ static void ov43_02256894(SysTask *param0, void *param1)
     UnkStruct_ov43_02256544 *v0 = ov25_0225523C(param1);
 
     ov43_02256870(v0);
-    sub_02019044(v0->unk_04, 6);
+    Bg_FreeTilemapBuffer(v0->unk_04, 6);
     ov43_022566EC(param1);
 }
 
@@ -341,7 +341,7 @@ static void ov43_02256988(UnkStruct_ov43_02256544 *param0, Window *param1, u32 p
 {
     u32 v0;
 
-    BGL_FillWindow(param1, 4);
+    Window_FillTilemap(param1, 4);
 
     if (param2 == 18) {
         MessageLoader_GetStrbuf(param0->unk_B8, 6, param0->unk_BC);
@@ -352,15 +352,15 @@ static void ov43_02256988(UnkStruct_ov43_02256544 *param0, Window *param1, u32 p
     v0 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_BC, 0);
 
     Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_BC, ((6 * 8) - v0) / 2, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 8, 4), NULL);
-    sub_0201ACCC(param1);
+    Window_LoadTiles(param1);
 }
 
 static void ov43_02256A00(UnkStruct_ov43_02256544 *param0, Window *param1, u32 param2)
 {
-    BGL_FillWindow(param1, 4);
+    Window_FillTilemap(param1, 4);
     MessageLoader_GetStrbuf(param0->unk_B8, param2, param0->unk_BC);
     Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_BC, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 8, 4), NULL);
-    sub_0201ACCC(param1);
+    Window_LoadTiles(param1);
 }
 
 static void ov43_02256A4C(UnkStruct_ov43_02256544 *param0, u32 param1)

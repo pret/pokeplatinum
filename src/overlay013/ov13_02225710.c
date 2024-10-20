@@ -438,8 +438,8 @@ static void ov13_02225D8C(UnkStruct_ov13_022213F0 *param0, u8 param1, u8 param2,
 
     ov13_02225C4C(param0, v0, param1, param2, param3);
 
-    sub_020198C0(param0->unk_1E0, 6, v0, Unk_ov13_02229924[param1].unk_00, Unk_ov13_02229924[param1].unk_01, Unk_ov13_02229924[param1].unk_02, Unk_ov13_02229924[param1].unk_03);
-    sub_0201C3C0(param0->unk_1E0, 6);
+    Bg_LoadToTilemapRect(param0->unk_1E0, 6, v0, Unk_ov13_02229924[param1].unk_00, Unk_ov13_02229924[param1].unk_01, Unk_ov13_02229924[param1].unk_02, Unk_ov13_02229924[param1].unk_03);
+    Bg_ScheduleTilemapTransfer(param0->unk_1E0, 6);
     Heap_FreeToHeap(v0);
 }
 
@@ -474,16 +474,16 @@ static void ov13_02225E08(UnkStruct_ov13_022213F0 *param0, u8 param1, u8 param2)
     }
 
     if ((param1 >= 14) && (param1 <= 17)) {
-        sub_0201C04C(&param0->unk_206C[v0[param0->unk_2071]], v2, v3, 0);
-        sub_0201A9A4(&param0->unk_206C[v0[param0->unk_2071]]);
+        Window_Scroll(&param0->unk_206C[v0[param0->unk_2071]], v2, v3, 0);
+        Window_ScheduleCopyToVRAM(&param0->unk_206C[v0[param0->unk_2071]]);
     } else {
         for (v1 = 0; v1 < 8; v1++) {
             if (v0[v1] == 0xff) {
                 break;
             }
 
-            sub_0201C04C(&param0->unk_206C[v0[v1]], v2, v3, 0);
-            sub_0201A9A4(&param0->unk_206C[v0[v1]]);
+            Window_Scroll(&param0->unk_206C[v0[v1]], v2, v3, 0);
+            Window_ScheduleCopyToVRAM(&param0->unk_206C[v0[v1]]);
         }
     }
 }

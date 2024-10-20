@@ -314,12 +314,12 @@ static void ov46_02256D74(SysTask *param0, void *param1)
 
     v2 = ov25_0225523C(param1);
 
-    sub_020183C4(v2->unk_04, 6, &v0, 0);
+    Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
     sub_02006E3C(12, 91, v2->unk_04, 6, 0, 0, 1, 8);
     sub_02006E60(12, 90, v2->unk_04, 6, 0, 0, 1, 8);
 
     ov25_022546B8(0, 0);
-    sub_02019448(v2->unk_04, 6);
+    Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);
 
     v1 = GXS_GetDispCnt();
     GXS_SetVisiblePlane(v1.visiblePlane | GX_PLANEMASK_BG2);
@@ -358,7 +358,7 @@ static void ov46_02256E58(SysTask *param0, void *param1)
         ov25_0225524C(param1);
     case 1:
         if (ov46_02256D48(v0, 6)) {
-            sub_02019044(v0->unk_04, 6);
+            Bg_FreeTilemapBuffer(v0->unk_04, 6);
             ov46_02256D60(param1);
         }
     }

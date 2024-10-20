@@ -127,17 +127,17 @@ Window *ov21_021D4D6C(UnkStruct_ov21_021D4C0C *param0, int param1, int param2)
 {
     Window *v0;
 
-    v0 = sub_0201A778(param0->unk_14, 1);
+    v0 = Window_New(param0->unk_14, 1);
 
     Window_Init(v0);
-    BGL_AddFramelessWindow(param0->unk_08, v0, param1, param2, 0, 0);
+    Window_AddToTopLeftCorner(param0->unk_08, v0, param1, param2, 0, 0);
 
     return v0;
 }
 
 void ov21_021D4DA0(Window *param0)
 {
-    sub_0201A928(param0, 1);
+    Windows_Delete(param0, 1);
 }
 
 u32 ov21_021D4DAC(UnkStruct_ov21_021D4C0C *param0, Window *param1, u32 param2, u32 param3, int param4, int param5)
@@ -171,7 +171,7 @@ void ov21_021D4E10(UnkStruct_ov21_021D4C0C *param0, Window *param1, u32 param2, 
 
     v1 = MessageLoader_GetNewStrbuf(v0, param3);
     v2 = Font_CalcStrbufWidth(FONT_SUBSCREEN, v1, 0);
-    v3 = sub_0201C294(param1) * 8;
+    v3 = Window_GetWidth(param1) * 8;
     v3 = v3 - v2;
     v3 /= 2;
 

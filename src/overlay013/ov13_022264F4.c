@@ -642,7 +642,7 @@ static void ov13_02226ED0(UnkStruct_ov13_02227244 *param0)
             GX_BG0_AS_3D,
         };
 
-        sub_020183A0(&v0, 1);
+        SetScreenGraphicsModes(&v0, 1);
     }
 
     {
@@ -662,7 +662,7 @@ static void ov13_02226ED0(UnkStruct_ov13_02227244 *param0)
             0
         };
 
-        sub_020183C4(param0->unk_04, 6, &v1, 0);
+        Bg_InitFromTemplate(param0->unk_04, 6, &v1, 0);
     }
 
     {
@@ -682,8 +682,8 @@ static void ov13_02226ED0(UnkStruct_ov13_02227244 *param0)
             0
         };
 
-        sub_020183C4(param0->unk_04, 5, &v2, 0);
-        sub_02019EBC(param0->unk_04, 5);
+        Bg_InitFromTemplate(param0->unk_04, 5, &v2, 0);
+        Bg_ClearTilemap(param0->unk_04, 5);
     }
 
     {
@@ -703,22 +703,22 @@ static void ov13_02226ED0(UnkStruct_ov13_02227244 *param0)
             0
         };
 
-        sub_020183C4(param0->unk_04, 4, &v3, 0);
-        sub_02019EBC(param0->unk_04, 4);
+        Bg_InitFromTemplate(param0->unk_04, 4, &v3, 0);
+        Bg_ClearTilemap(param0->unk_04, 4);
     }
 
-    sub_02019690(5, 32, 0, param0->unk_00->unk_0C);
-    sub_02019690(4, 32, 0, param0->unk_00->unk_0C);
-    sub_0201C3C0(param0->unk_04, 5);
-    sub_0201C3C0(param0->unk_04, 4);
+    Bg_ClearTilesRange(5, 32, 0, param0->unk_00->unk_0C);
+    Bg_ClearTilesRange(4, 32, 0, param0->unk_00->unk_0C);
+    Bg_ScheduleTilemapTransfer(param0->unk_04, 5);
+    Bg_ScheduleTilemapTransfer(param0->unk_04, 4);
 }
 
 static void ov13_02226F9C(BgConfig *param0)
 {
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_OBJ, 0);
-    sub_02019044(param0, 4);
-    sub_02019044(param0, 5);
-    sub_02019044(param0, 6);
+    Bg_FreeTilemapBuffer(param0, 4);
+    Bg_FreeTilemapBuffer(param0, 5);
+    Bg_FreeTilemapBuffer(param0, 6);
 }
 
 static void ov13_02226FC4(UnkStruct_ov13_02227244 *param0)
@@ -774,16 +774,16 @@ static void ov13_02227118(UnkStruct_ov13_02227244 *param0, u8 param1)
 {
     switch (param1) {
     case 0:
-        sub_0201C63C(param0->unk_04, 6, 0, 0);
-        sub_0201C63C(param0->unk_04, 6, 3, 0);
+        Bg_ScheduleScroll(param0->unk_04, 6, 0, 0);
+        Bg_ScheduleScroll(param0->unk_04, 6, 3, 0);
         break;
     case 1:
-        sub_0201C63C(param0->unk_04, 6, 0, 256);
-        sub_0201C63C(param0->unk_04, 6, 3, 0);
+        Bg_ScheduleScroll(param0->unk_04, 6, 0, 256);
+        Bg_ScheduleScroll(param0->unk_04, 6, 3, 0);
         break;
     case 2:
-        sub_0201C63C(param0->unk_04, 6, 0, 0);
-        sub_0201C63C(param0->unk_04, 6, 3, 256);
+        Bg_ScheduleScroll(param0->unk_04, 6, 0, 0);
+        Bg_ScheduleScroll(param0->unk_04, 6, 3, 256);
         break;
     }
 }
@@ -794,8 +794,8 @@ static void ov13_0222717C(UnkStruct_ov13_02227244 *param0, u8 param1)
         return;
     }
 
-    sub_02019E2C(param0->unk_04, 6, 2, 35, 28, 4, 8 + param0->unk_114D);
-    sub_02019E2C(param0->unk_04, 6, 2, 40, 28, 8, 8 + param0->unk_114D);
+    Bg_ChangeTilemapRectPalette(param0->unk_04, 6, 2, 35, 28, 4, 8 + param0->unk_114D);
+    Bg_ChangeTilemapRectPalette(param0->unk_04, 6, 2, 40, 28, 8, 8 + param0->unk_114D);
 }
 
 static void ov13_022271D0(UnkStruct_ov13_02227244 *param0, u8 param1)
@@ -803,8 +803,8 @@ static void ov13_022271D0(UnkStruct_ov13_02227244 *param0, u8 param1)
     ov13_0222717C(param0, param1);
     ov13_02227118(param0, param1);
 
-    sub_02019F04(param0->unk_04, 4, 0);
-    sub_02019F04(param0->unk_04, 5, 0);
+    Bg_ScheduleFillTilemap(param0->unk_04, 4, 0);
+    Bg_ScheduleFillTilemap(param0->unk_04, 5, 0);
 
     ov13_02227324(param0);
     ov13_022272AC(param0, param1);

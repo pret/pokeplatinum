@@ -10134,15 +10134,15 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
         PaletteData *paletteSys = BattleSystem_PaletteSys(data->battleSys);
 
         G2_SetBG0Priority(1 + 1); // this is the background + 1; could do with a constant
-        BGL_SetPriority(1, 1);
-        BGL_SetPriority(2, 0);
+        Bg_SetPriority(1, 1);
+        Bg_SetPriority(2, 0);
 
         BattleSystem_SetGaugePriority(data->battleSys, 0 + 2); // gauge's default is 0
 
         Window_SetFrame(bgl, 2, 1, 0, HEAP_ID_BATTLE);
         PaletteSys_LoadPalette(paletteSys, NARC_INDEX_GRAPHIC__PL_WINFRAME, Window_FramePalette(), HEAP_ID_BATTLE, 0, 0x20, 8 * 0x10);
-        BGL_AddWindow(bgl, window, 2, 0x11, 0x7, 14, 12, 11, (9 + 1));
-        BGL_FillWindow(window, 0xFF);
+        Window_Add(bgl, window, 2, 0x11, 0x7, 14, 12, 11, (9 + 1));
+        Window_FillTilemap(window, 0xFF);
         Window_Show(window, 0, 1, 8);
 
         data->seqNum = SEQ_GET_EXP_LEVEL_UP_SUMMARY_PRINT_DIFF;
@@ -10193,7 +10193,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
         };
         Window *window = BattleSystem_Window(data->battleSys, 1);
 
-        BGL_WindowColor(window, 0xF, 80, 0, 36, 96); // clear out the diff section (keep the printed stat names)
+        Window_FillRectWithColor(window, 0xF, 80, 0, 36, 96); // clear out the diff section (keep the printed stat names)
 
         for (i = 0; i < STAT_MAX; i++) {
             msg.id = 949; // just a number
@@ -10220,11 +10220,11 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
         Window *window = BattleSystem_Window(data->battleSys, 1);
 
         Window_Clear(window, 0);
-        BGL_DeleteWindow(window);
+        Window_Remove(window);
 
         G2_SetBG0Priority(1);
-        BGL_SetPriority(1, 0);
-        BGL_SetPriority(2, 1);
+        Bg_SetPriority(1, 0);
+        Bg_SetPriority(2, 1);
 
         BattleSystem_SetGaugePriority(data->battleSys, 0);
 
@@ -12261,7 +12261,7 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *param0, BattleScript
     StringTemplate_Format(v5, v7, v6);
     Strbuf_Free(v6);
     Window_Init(&v9);
-    BGL_AddFramelessWindow(v8, &v9, 12, 4, 0, 0);
+    Window_AddToTopLeftCorner(v8, &v9, 12, 4, 0, 0);
     Text_AddPrinterWithParamsAndColor(&v9, FONT_SYSTEM, v7, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
 
     v10 = sub_02012898(&v9, NNS_G2D_VRAM_TYPE_2DMAIN, 5);
@@ -12284,7 +12284,7 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *param0, BattleScript
     param1->spriteMgrAlloc = v11;
 
     sub_02012AC0(param1->fontOAM, 1);
-    BGL_DeleteWindow(&v9);
+    Window_Remove(&v9);
 }
 
 static void BattleScript_FreePartyLevelUpIcon(BattleSystem *param0, BattleScriptTaskData *param1)

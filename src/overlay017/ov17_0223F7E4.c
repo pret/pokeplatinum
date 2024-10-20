@@ -545,10 +545,10 @@ void ov17_0223F80C(BgConfig *param0)
     int v0;
 
     for (v0 = 0; v0 < NELEMS(Unk_ov17_02253448); v0++) {
-        sub_020183C4(param0, 4 + v0, &Unk_ov17_02253448[v0], 0);
-        sub_02019EE0(param0, 4 + v0, 0);
-        sub_02019184(param0, 4 + v0, 0, 0);
-        sub_02019184(param0, 4 + v0, 3, 0);
+        Bg_InitFromTemplate(param0, 4 + v0, &Unk_ov17_02253448[v0], 0);
+        Bg_FillTilemap(param0, 4 + v0, 0);
+        Bg_SetOffset(param0, 4 + v0, 0, 0);
+        Bg_SetOffset(param0, 4 + v0, 3, 0);
     }
 }
 
@@ -557,8 +557,8 @@ void ov17_0223F864(BgConfig *param0)
     int v0;
 
     for (v0 = 0; v0 < NELEMS(Unk_ov17_02253448); v0++) {
-        sub_02019120(4 + v0, 0);
-        sub_02019044(param0, 4 + v0);
+        Bg_ToggleLayer(4 + v0, 0);
+        Bg_FreeTilemapBuffer(param0, 4 + v0);
     }
 }
 
@@ -655,7 +655,7 @@ void ov17_0223F9C4(UnkStruct_ov17_0223F7E4 *param0, int param1, int param2, void
 
     {
         for (v2 = 0; v2 < 4; v2++) {
-            BGL_SetPriority(4 + v2, v0->unk_0C_val2[v2]);
+            Bg_SetPriority(4 + v2, v0->unk_0C_val2[v2]);
         }
     }
 
@@ -665,8 +665,8 @@ void ov17_0223F9C4(UnkStruct_ov17_0223F7E4 *param0, int param1, int param2, void
 
     for (v2 = 0; v2 < 4; v2++) {
         if ((v0->unk_04_val2[v2] != 0xffff) && ((param2 == 1) || (v0->unk_04_val2[v2] != v1->unk_04_val2[v2]))) {
-            sub_02019574(v3, 4 + v2, param0->unk_20[v0->unk_04_val2[v2]], 0x800);
-            sub_0201C3C0(v3, 4 + v2);
+            Bg_LoadTilemapBuffer(v3, 4 + v2, param0->unk_20[v0->unk_04_val2[v2]], 0x800);
+            Bg_ScheduleTilemapTransfer(v3, 4 + v2);
         }
     }
 
@@ -971,7 +971,7 @@ static void ov17_02240138(UnkStruct_ov17_0223F7E4 *param0, UnkStruct_ov17_022401
 
     if (param10 == NULL) {
         Window_Init(&v1);
-        BGL_AddFramelessWindow(v5, &v1, v8, 16 / 8, 0, 0);
+        Window_AddToTopLeftCorner(v5, &v1, v8, 16 / 8, 0, 0);
         Text_AddPrinterWithParamsColorAndSpacing(&v1, param3, param2, 0, 0, TEXT_SPEED_NO_TRANSFER, param4, 0, 0, NULL);
     } else {
         v1 = param10->unk_00;
@@ -1005,7 +1005,7 @@ static void ov17_02240138(UnkStruct_ov17_0223F7E4 *param0, UnkStruct_ov17_022401
     sub_020128C4(v4, param7, param8);
 
     if (param10 == NULL) {
-        BGL_DeleteWindow(&v1);
+        Window_Remove(&v1);
     }
 
     param1->unk_00 = v4;
@@ -1102,7 +1102,7 @@ static void ov17_022403B0(UnkStruct_ov17_0223F7E4 *param0, const s16 *param1, co
     int v7;
 
     v2 = param0->unk_04->unk_24;
-    v3 = sub_02019FE4(v2, 4);
+    v3 = Bg_GetTilemapBuffer(v2, 4);
     v5 = param0->unk_20[param3];
     v7 = param1[param4];
 
@@ -1115,7 +1115,7 @@ static void ov17_022403B0(UnkStruct_ov17_0223F7E4 *param0, const s16 *param1, co
         }
     }
 
-    sub_0201C3C0(v2, 4);
+    Bg_ScheduleTilemapTransfer(v2, 4);
 }
 
 static void ov17_02240424(UnkStruct_ov17_0223F7E4 *param0, int param1, int param2)
@@ -1427,21 +1427,21 @@ static void ov17_022409F4(UnkStruct_ov17_0223F7E4 *param0)
 
     for (v0 = 0; v0 < 4; v0++) {
         if (param0->unk_18C.unk_00[v0].unk_00.pixels != NULL) {
-            BGL_DeleteWindow(&param0->unk_18C.unk_00[v0].unk_00);
+            Window_Remove(&param0->unk_18C.unk_00[v0].unk_00);
         }
 
         if (param0->unk_18C.unk_50[v0].unk_00.pixels != NULL) {
-            BGL_DeleteWindow(&param0->unk_18C.unk_50[v0].unk_00);
+            Window_Remove(&param0->unk_18C.unk_50[v0].unk_00);
         }
 
         if (param0->unk_18C.unk_A0[v0].unk_00.pixels != NULL) {
-            BGL_DeleteWindow(&param0->unk_18C.unk_A0[v0].unk_00);
+            Window_Remove(&param0->unk_18C.unk_A0[v0].unk_00);
         }
     }
 
     for (v0 = 0; v0 < (1 + 2); v0++) {
         if (param0->unk_18C.unk_F0[v0].unk_00.pixels != NULL) {
-            BGL_DeleteWindow(&param0->unk_18C.unk_F0[v0].unk_00);
+            Window_Remove(&param0->unk_18C.unk_F0[v0].unk_00);
         }
     }
 }
@@ -1503,11 +1503,11 @@ static void ov17_02240BF4(UnkStruct_ov17_0223F7E4 *param0, const Strbuf *param1,
     param3->unk_10 = v1;
 
     if (param3->unk_00.pixels != NULL) {
-        BGL_DeleteWindow(&param3->unk_00);
+        Window_Remove(&param3->unk_00);
     }
 
     Window_Init(&param3->unk_00);
-    BGL_AddFramelessWindow(param0->unk_04->unk_24, &param3->unk_00, v1, 16 / 8, 0, 0);
+    Window_AddToTopLeftCorner(param0->unk_04->unk_24, &param3->unk_00, v1, 16 / 8, 0, 0);
     Text_AddPrinterWithParamsColorAndSpacing(&param3->unk_00, param2, param1, 0, 0, TEXT_SPEED_NO_TRANSFER, param4, 0, 0, NULL);
 }
 
@@ -1811,7 +1811,7 @@ static void ov17_022411E4(SysTask *param0, void *param1)
 {
     UnkStruct_ov17_0223F7E4 *v0 = param1;
 
-    sub_0201958C(v0->unk_04->unk_24, 4, v0->unk_2C4->pRawData, 0x6000, 0);
+    Bg_LoadTiles(v0->unk_04->unk_24, 4, v0->unk_2C4->pRawData, 0x6000, 0);
     Heap_FreeToHeap(v0->unk_2C0);
 
     v0->unk_2C0 = NULL;
@@ -1829,9 +1829,9 @@ static void ov17_02241220(SysTask *param0, void *param1)
 
     for (v2 = 0; v2 < 4; v2++) {
         if (v1->unk_04_val2[v2] == 0xffff) {
-            sub_02019120(4 + v2, 0);
+            Bg_ToggleLayer(4 + v2, 0);
         } else {
-            sub_02019120(4 + v2, 1);
+            Bg_ToggleLayer(4 + v2, 1);
         }
     }
 

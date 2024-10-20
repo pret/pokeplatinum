@@ -94,7 +94,7 @@ void ov113_02260620(MessageLoader *param0, StringTemplate *param1, Window param2
     v3 = Strbuf_Init(v5, 118);
 
     StringTemplate_Format(param1, v3, v2);
-    BGL_FillWindow(&param2[v7], 0x0);
+    Window_FillTilemap(&param2[v7], 0x0);
 
     if (ov66_0222E924(param3, v8) == 1) {
         v9 = TEXT_COLOR(7, 8, 0);
@@ -103,7 +103,7 @@ void ov113_02260620(MessageLoader *param0, StringTemplate *param1, Window param2
     }
 
     Text_AddPrinterWithParamsAndColor(&param2[v7], FONT_SYSTEM, v3, 0, 0, TEXT_SPEED_INSTANT, v9, NULL);
-    sub_0201A954(&param2[v7]);
+    Window_CopyToVRAM(&param2[v7]);
     Strbuf_Free(v4);
     Strbuf_Free(v2);
     Strbuf_Free(v3);
@@ -117,7 +117,7 @@ void ov113_02260714(Window param0[], u32 param1)
         return;
     }
 
-    sub_0201ACF4(&param0[param1]);
+    Window_ClearAndCopyToVRAM(&param0[param1]);
 }
 
 u16 ov113_0226072C(int param0, u32 param1)

@@ -82,7 +82,7 @@ void ov22_0225A428(UnkStruct_ov22_0225A428 *param0, UnkStruct_ov22_02256BAC *par
 
     if (param2 & 32) {
         ov22_0225A748(&param0->unk_134, param1->unk_00, 2, 1, 27, 2, (18 + 12) + (1 + (27 * 4)), 1);
-        BGL_FillWindow(param0->unk_134, 15);
+        Window_FillTilemap(param0->unk_134, 15);
         ov22_0225A860(param0->unk_134, 26, param1->unk_14, 6, 0, 0, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
         ov22_0225A860(param0->unk_134, 26, param1->unk_14, param1->unk_18, 72, 0, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
         sub_0200E060(param0->unk_134, 0, 1, 1);
@@ -203,17 +203,17 @@ static void ov22_0225A718(BgConfig *param0, const Options *param1)
 
 static void ov22_0225A748(Window **param0, BgConfig *param1, int param2, int param3, int param4, int param5, int param6, BOOL param7)
 {
-    *param0 = sub_0201A778(14, 1);
+    *param0 = Window_New(14, 1);
 
     Window_Init(*param0);
-    BGL_AddWindow(param1, *param0, 5, param2, param3, param4, param5, 2, param6);
-    BGL_FillWindow(*param0, 15);
+    Window_Add(param1, *param0, 5, param2, param3, param4, param5, 2, param6);
+    Window_FillTilemap(*param0, 15);
 
     if (param7) {
         sub_0200E060(*param0, 0, 1, 1);
     }
 
-    sub_0201A954(*param0);
+    Window_CopyToVRAM(*param0);
 }
 
 static void ov22_0225A7B8(UnkStruct_ov22_022597BC *param0)
@@ -223,14 +223,14 @@ static void ov22_0225A7B8(UnkStruct_ov22_022597BC *param0)
 
 static void ov22_0225A7C0(Window *param0)
 {
-    sub_0201A928(param0, 1);
+    Windows_Delete(param0, 1);
 }
 
 static s32 ov22_0225A7CC(Window *param0, int param1, int param2, int param3, int param4, int param5, u32 param6)
 {
     s32 v0;
 
-    BGL_FillWindow(param0, 15);
+    Window_FillTilemap(param0, 15);
     v0 = ov22_0225A860(param0, param1, param2, param3, param4, param5, TEXT_COLOR(1, 2, 15), param6);
     sub_0200E060(param0, 0, 1, 1);
 
@@ -241,7 +241,7 @@ static s32 ov22_0225A814(Window *param0, int param1, int param2, int param3, int
 {
     s32 v0;
 
-    BGL_FillWindow(param0, 15);
+    Window_FillTilemap(param0, 15);
     v0 = ov22_0225A8B4(param0, param1, param2, param3, param4, param5, TEXT_COLOR(1, 2, 15), param6, param7);
     sub_0200E060(param0, 0, 1, 1);
 
@@ -409,12 +409,12 @@ static void ov22_0225AB54(UnkStruct_ov22_0225AB54 *param0, CellActorCollection *
     ov22_0225ACE4(param0);
     ov22_0225A748(&param0->unk_18, param4, 10, 8, 14, 4, (18 + 12) + ((1 + (27 * 4)) + (27 * 2)), 0);
 
-    BGL_FillWindow(param0->unk_18, 0);
+    Window_FillTilemap(param0->unk_18, 0);
 
     ov22_0225A860(param0->unk_18, 26, 385, 4, 0, 4, TEXT_COLOR(1, 2, 0), TEXT_SPEED_NO_TRANSFER);
     ov22_0225A860(param0->unk_18, 26, 385, 5, 0 + 72, 4, TEXT_COLOR(1, 2, 0), TEXT_SPEED_NO_TRANSFER);
 
-    sub_0201A954(param0->unk_18);
+    Window_CopyToVRAM(param0->unk_18);
 }
 
 static void ov22_0225AC58(UnkStruct_ov22_0225AB54 *param0, SpriteResourceCollection **param1)

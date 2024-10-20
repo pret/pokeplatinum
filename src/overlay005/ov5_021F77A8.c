@@ -474,9 +474,9 @@ void ov5_021F7F2C(UnkStruct_ov5_021F7ED8 *param0, u32 param1, u32 param2, u32 pa
 static void ov5_021F7F34(UnkStruct_ov5_021F7ED8 *param0)
 {
     if (param0->unk_C7 > 8) {
-        BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_08, 3, param0->unk_C4, param0->unk_C5, 11, 8 * 2, 13, 1);
+        Window_Add(param0->fieldSystem->unk_08, &param0->unk_08, 3, param0->unk_C4, param0->unk_C5, 11, 8 * 2, 13, 1);
     } else {
-        BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_08, 3, param0->unk_C4, param0->unk_C5, 11, param0->unk_C7 * 2, 13, 1);
+        Window_Add(param0->fieldSystem->unk_08, &param0->unk_08, 3, param0->unk_C4, param0->unk_C5, 11, param0->unk_C7 * 2, 13, 1);
     }
 
     sub_0200DAA4(param0->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
@@ -604,7 +604,7 @@ static void ov5_021F8250(UnkStruct_ov5_021F7ED8 *param0)
     Sound_PlayEffect(1500);
     sub_02001384(param0->unk_F0, NULL, NULL);
     Window_Clear(param0->unk_D0.unk_0C, 0);
-    BGL_DeleteWindow(&param0->unk_08);
+    Window_Remove(&param0->unk_08);
 
     for (v0 = 0; v0 < ((NELEMS(sTeachableMoves)) + 1); v0++) {
         Strbuf_Free(param0->unk_1C[v0]);

@@ -709,15 +709,15 @@ void ov104_02236FC0(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *
     GF_ASSERT(param0->unk_AC == NULL);
 
     if (ov104_0223BA14(param1->unk_10) == 0) {
-        param0->unk_A8 = sub_0201A778(11, 1);
-        BGL_AddWindow(v0->unk_00, param0->unk_A8, 1, 1, 1, 10, 4, 14, (((((1024 - (18 + 12)) - 9) - (27 * 4)) - (11 * 22)) - (10 * 4)));
+        param0->unk_A8 = Window_New(11, 1);
+        Window_Add(v0->unk_00, param0->unk_A8, 1, 1, 1, 10, 4, 14, (((((1024 - (18 + 12)) - 9) - (27 * 4)) - (11 * 22)) - (10 * 4)));
         ov104_022370C0(v0->unk_00, param0->unk_A8);
     } else {
-        param0->unk_A8 = sub_0201A778(11, 1);
-        param0->unk_AC = sub_0201A778(11, 1);
+        param0->unk_A8 = Window_New(11, 1);
+        param0->unk_AC = Window_New(11, 1);
 
-        BGL_AddWindow(v0->unk_00, param0->unk_A8, 1, 1, 1, 10, 4, 14, (((((1024 - (18 + 12)) - 9) - (27 * 4)) - (11 * 22)) - (10 * 4)));
-        BGL_AddWindow(v0->unk_00, param0->unk_AC, 1, 21, 1, 10, 4, 14, ((((((1024 - (18 + 12)) - 9) - (27 * 4)) - (11 * 22)) - (10 * 4)) - (10 * 4)));
+        Window_Add(v0->unk_00, param0->unk_A8, 1, 1, 1, 10, 4, 14, (((((1024 - (18 + 12)) - 9) - (27 * 4)) - (11 * 22)) - (10 * 4)));
+        Window_Add(v0->unk_00, param0->unk_AC, 1, 21, 1, 10, 4, 14, ((((((1024 - (18 + 12)) - 9) - (27 * 4)) - (11 * 22)) - (10 * 4)) - (10 * 4)));
 
         ov104_022370C0(v0->unk_00, param0->unk_A8);
         ov104_022370C0(v0->unk_00, param0->unk_AC);
@@ -730,7 +730,7 @@ void ov104_02236FC0(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *
 static void ov104_022370C0(BgConfig *param0, Window *param1)
 {
     Window_Show(param1, 1, ((1024 - (18 + 12)) - 9), 12);
-    BGL_FillWindow(param1, 15);
+    Window_FillTilemap(param1, 15);
 
     return;
 }
@@ -744,7 +744,7 @@ void ov104_022370E0(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *
         GF_ASSERT(param0->unk_A8 != NULL);
         v0 = param0->unk_A8;
         Window_Clear(v0, 0);
-        sub_0201A928(v0, 1);
+        Windows_Delete(v0, 1);
     } else {
         GF_ASSERT(param0->unk_A8 != NULL);
         GF_ASSERT(param0->unk_AC != NULL);
@@ -758,9 +758,9 @@ void ov104_022370E0(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *
         }
 
         Window_Clear(v0, 0);
-        sub_0201A928(v0, 1);
+        Windows_Delete(v0, 1);
         Window_Clear(v1, 0);
-        sub_0201A928(v1, 1);
+        Windows_Delete(v1, 1);
     }
 
     param0->unk_A8 = NULL;
@@ -820,7 +820,7 @@ static void ov104_02237284(UnkStruct_ov104_022320B4 *param0, Window *param1, Tra
     Strbuf_Free(v2);
     MessageLoader_Free(v0);
 
-    sub_0201A954(param1);
+    Window_CopyToVRAM(param1);
 
     return;
 }

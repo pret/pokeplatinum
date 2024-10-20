@@ -64,10 +64,10 @@ static void ov12_02234E54(UnkStruct_ov12_02234E54 *param0, int param1)
     v0 = ov12_0221FDE4(param0->unk_18.unk_04);
     v1 = ov12_02223428(param0->unk_18.unk_04, 3);
 
-    BGL_SetPriority(param1, v1);
+    Bg_SetPriority(param1, v1);
     sub_02006E3C(param0->unk_00.unk_00, Unk_ov12_0223A1D8[param0->unk_00.unk_04][0], param0->unk_18.unk_14, param1, 0, 0, 1, v0);
     PaletteSys_LoadPalette(param0->unk_18.unk_18, param0->unk_00.unk_00, Unk_ov12_0223A1D8[param0->unk_00.unk_04][1], v0, 0, 0x20, (8 * 16));
-    sub_02019EBC(param0->unk_18.unk_14, param1);
+    Bg_ClearTilemap(param0->unk_18.unk_14, param1);
     sub_02006E60(param0->unk_00.unk_00, Unk_ov12_0223A1D8[param0->unk_00.unk_04][2], param0->unk_18.unk_14, param1, 0, 0, 1, v0);
 }
 
@@ -101,7 +101,7 @@ static void ov12_02234EF0(SysTask *param0, void *param1)
         }
 
         if ((v0->unk_00.unk_14 == 0) && (v0->unk_00.unk_16 == 16)) {
-            sub_02019EBC(v0->unk_18.unk_14, 2);
+            Bg_ClearTilemap(v0->unk_18.unk_14, 2);
             SpriteActor_EnableObject(v0->unk_34, 0);
             SpriteActor_EnableObject(v0->unk_38, 0);
             SpriteActor_EnableObject(v0->unk_3C, 0);
@@ -113,8 +113,8 @@ static void ov12_02234EF0(SysTask *param0, void *param1)
     default:
         G2_SetWndOutsidePlane((GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ), 0);
         G2_SetWndOBJInsidePlane((GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ), 0);
-        sub_02019184(v0->unk_18.unk_14, 2, 0, 0);
-        sub_02019184(v0->unk_18.unk_14, 2, 3, 0);
+        Bg_SetOffset(v0->unk_18.unk_14, 2, 0, 0);
+        Bg_SetOffset(v0->unk_18.unk_14, 2, 3, 0);
         GX_SetVisibleWnd(GX_WNDMASK_NONE);
         ov12_02220220(v0->unk_18.unk_04, param0);
         ov12_02235E80(v0);
@@ -125,8 +125,8 @@ static void ov12_02234EF0(SysTask *param0, void *param1)
     v0->unk_00.unk_10 += v0->unk_00.unk_0C;
     v0->unk_00.unk_12 += v0->unk_00.unk_0E;
 
-    sub_02019184(v0->unk_18.unk_14, 2, 0, v0->unk_00.unk_10);
-    sub_02019184(v0->unk_18.unk_14, 2, 3, v0->unk_00.unk_12);
+    Bg_SetOffset(v0->unk_18.unk_14, 2, 0, v0->unk_00.unk_10);
+    Bg_SetOffset(v0->unk_18.unk_14, 2, 3, v0->unk_00.unk_12);
 
     sub_0200D330(v0->unk_34);
     sub_0200D330(v0->unk_38);

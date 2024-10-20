@@ -265,7 +265,7 @@ static BOOL ov5_021EAB58(UnkStruct_ov5_021EAE78 *param0)
 
     param0->unk_00 = sub_02013A04(v2 + 1, 4);
 
-    BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_20, 3, 19, 1, 12, v3 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (10 * (v3 + 2) * 2));
+    Window_Add(param0->fieldSystem->unk_08, &param0->unk_20, 3, 19, 1, 12, v3 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (10 * (v3 + 2) * 2));
     Window_Show(&param0->unk_20, 1, 1024 - (18 + 12) - 9, 11);
 
     {
@@ -292,7 +292,7 @@ static BOOL ov5_021EAB58(UnkStruct_ov5_021EAE78 *param0)
     v1.unk_1C = param0;
 
     param0->unk_04 = sub_0200112C(&v1, 0, 0, 4);
-    sub_0201A954(&param0->unk_20);
+    Window_CopyToVRAM(&param0->unk_20);
     param0->unk_48 = 9;
 
     return 0;
@@ -334,7 +334,7 @@ static BOOL ov5_021EAC44(UnkStruct_ov5_021EAE78 *param0)
     }
 
     Window_Clear(&param0->unk_20, 0);
-    BGL_DeleteWindow(&param0->unk_20);
+    Window_Remove(&param0->unk_20);
     sub_02001384(param0->unk_04, NULL, NULL);
     sub_02013A3C(param0->unk_00);
 
@@ -434,8 +434,8 @@ static BOOL ov5_021EADB4(TaskManager *param0)
 
 static void ov5_021EAE78(UnkStruct_ov5_021EAE78 *param0, int param1)
 {
-    if (BGL_WindowAdded(&param0->unk_10)) {
-        BGL_DeleteWindow(&param0->unk_10);
+    if (Window_IsInUse(&param0->unk_10)) {
+        Window_Remove(&param0->unk_10);
     }
 
     MessageLoader_GetStrbuf(param0->unk_3C, param1, param0->unk_08);
@@ -463,8 +463,8 @@ static void ov5_021EAF1C(UnkStruct_ov5_021EAE78 *param0)
     Strbuf_Free(param0->unk_0C);
     Strbuf_Free(param0->unk_08);
 
-    if (BGL_WindowAdded(&param0->unk_10)) {
-        BGL_DeleteWindow(&param0->unk_10);
+    if (Window_IsInUse(&param0->unk_10)) {
+        Window_Remove(&param0->unk_10);
     }
 }
 

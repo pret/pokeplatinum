@@ -53,5 +53,5 @@ void ColoredArrow_SetColor(ColoredArrow *arrow, TextColor color)
 void ColoredArrow_Print(const ColoredArrow *arrow, Window *window, u32 xOffset, u32 yOffset)
 {
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, arrow->strbuf, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, arrow->color, NULL);
-    sub_0201ACCC(window);
+    Window_LoadTiles(window);
 }

@@ -463,16 +463,16 @@ static void ov68_0225C980(UnkStruct_ov68_0225C91C *param0)
 
 static void ov68_0225C98C(UnkStruct_ov68_0225C91C *param0)
 {
-    sub_0201C2B8(param0->unk_00);
+    Bg_RunScheduledUpdates(param0->unk_00);
     sub_0200A858();
     sub_0201DCAC();
 }
 
 static void ov68_0225C9A0(UnkStruct_ov68_0225C91C *param0, Options *param1, u32 param2)
 {
-    sub_02018368(&Unk_ov68_0225DD48);
+    SetAllGraphicsModes(&Unk_ov68_0225DD48);
 
-    param0->unk_00 = sub_02018340(param2);
+    param0->unk_00 = BgConfig_New(param2);
     gCoreSys.unk_65 = 0;
 
     GXLayers_SwapDisplay();
@@ -481,9 +481,9 @@ static void ov68_0225C9A0(UnkStruct_ov68_0225C91C *param0, Options *param1, u32 
         int v0;
 
         for (v0 = 0; v0 < 4; v0++) {
-            sub_020183C4(param0->unk_00, Unk_ov68_0225DD68[v0], &Unk_ov68_0225DE18[v0], 0);
-            sub_02019690(Unk_ov68_0225DD68[v0], 32, 0, param2);
-            sub_02019EBC(param0->unk_00, Unk_ov68_0225DD68[v0]);
+            Bg_InitFromTemplate(param0->unk_00, Unk_ov68_0225DD68[v0], &Unk_ov68_0225DE18[v0], 0);
+            Bg_ClearTilesRange(Unk_ov68_0225DD68[v0], 32, 0, param2);
+            Bg_ClearTilemap(param0->unk_00, Unk_ov68_0225DD68[v0]);
         }
     }
 
@@ -509,7 +509,7 @@ static void ov68_0225CA8C(UnkStruct_ov68_0225C91C *param0)
         int v0;
 
         for (v0 = 0; v0 < 4; v0++) {
-            sub_02019044(param0->unk_00, Unk_ov68_0225DD68[v0]);
+            Bg_FreeTilemapBuffer(param0->unk_00, Unk_ov68_0225DD68[v0]);
         }
     }
 
@@ -708,7 +708,7 @@ static void ov68_0225CCD0(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB
         int v3;
 
         for (v3 = 0; v3 < 1; v3++) {
-            sub_0201A8D4(param2->unk_00, &param0->unk_00[v3], &Unk_ov68_0225DD40[v3]);
+            Window_AddFromTemplate(param2->unk_00, &param0->unk_00[v3], &Unk_ov68_0225DD40[v3]);
         }
     }
 
@@ -852,7 +852,7 @@ static void ov68_0225D02C(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB
         int v0;
 
         for (v0 = 0; v0 < 1; v0++) {
-            BGL_DeleteWindow(&param0->unk_00[v0]);
+            Window_Remove(&param0->unk_00[v0]);
         }
     }
 
@@ -876,7 +876,7 @@ static void ov68_0225D06C(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB
 {
     Strbuf *v0;
 
-    BGL_FillWindow(&param0->unk_00[0], 0);
+    Window_FillTilemap(&param0->unk_00[0], 0);
 
     v0 = ov68_0225DC58(&param0->unk_2C, param1, 0);
     Text_AddPrinterWithParamsAndColor(&param0->unk_00[0], FONT_MESSAGE, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
@@ -886,7 +886,7 @@ static void ov68_0225D06C(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB
 
     v0 = ov68_0225DC58(&param0->unk_2C, param1, 2);
     Text_AddPrinterWithParamsAndColor(&param0->unk_00[0], FONT_MESSAGE, v0, 0, 48, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
-    sub_0201A9A4(&param0->unk_00[0]);
+    Window_ScheduleCopyToVRAM(&param0->unk_00[0]);
 }
 
 static void ov68_0225D0F8(UnkStruct_ov68_0225D0F8 *param0)
@@ -902,8 +902,8 @@ static void ov68_0225D11C(UnkStruct_ov68_0225D0F8 *param0)
 
 static void ov68_0225D128(UnkStruct_ov68_0225D128 *param0, UnkStruct_ov68_0225C91C *param1, SaveData *param2, u32 param3)
 {
-    BGL_AddWindow(param1->unk_00, &param0->unk_08, 1, 2, 19, 27, 4, 4, ((1 + (18 + 12)) + 9));
-    BGL_FillWindow(&param0->unk_08, 15);
+    Window_Add(param1->unk_00, &param0->unk_08, 1, 2, 19, 27, 4, 4, ((1 + (18 + 12)) + 9));
+    Window_FillTilemap(&param0->unk_08, 15);
 
     param0->unk_18 = Strbuf_Init(256, param3);
 
@@ -924,7 +924,7 @@ static void ov68_0225D178(UnkStruct_ov68_0225D128 *param0, u32 param1)
     ov68_0225D2A0(param0);
 
     Strbuf_Free(param0->unk_18);
-    BGL_DeleteWindow(&param0->unk_08);
+    Window_Remove(&param0->unk_08);
 
     ov68_0225D348(param0, param1);
 }
@@ -935,7 +935,7 @@ static void ov68_0225D1B4(UnkStruct_ov68_0225D128 *param0, const Strbuf *param1)
         Text_RemovePrinter(param0->unk_00);
     }
 
-    BGL_FillWindow(&param0->unk_08, 15);
+    Window_FillTilemap(&param0->unk_08, 15);
     Strbuf_Copy(param0->unk_18, param1);
     param0->unk_00 = Text_AddPrinterWithParamsAndColor(&param0->unk_08, FONT_MESSAGE, param0->unk_18, 0, 0, param0->unk_04, TEXT_COLOR(1, 2, 15), NULL);
     sub_0200E060(&param0->unk_08, 1, 1, 5);
@@ -947,11 +947,11 @@ static void ov68_0225D218(UnkStruct_ov68_0225D128 *param0, const Strbuf *param1)
         Text_RemovePrinter(param0->unk_00);
     }
 
-    BGL_FillWindow(&param0->unk_08, 15);
+    Window_FillTilemap(&param0->unk_08, 15);
     Strbuf_Copy(param0->unk_18, param1);
     Text_AddPrinterWithParamsAndColor(&param0->unk_08, FONT_MESSAGE, param0->unk_18, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
     sub_0200E060(&param0->unk_08, 1, 1, 5);
-    sub_0201A9A4(&param0->unk_08);
+    Window_ScheduleCopyToVRAM(&param0->unk_08);
 }
 
 static void ov68_0225D284(UnkStruct_ov68_0225D128 *param0)
@@ -986,7 +986,7 @@ static void ov68_0225D2CC(UnkStruct_ov68_0225D128 *param0)
     ov68_0225D2A0(param0);
 
     sub_0200E084(&param0->unk_08, 1);
-    sub_0201AD10(&param0->unk_08);
+    Window_ClearAndScheduleCopyToVRAM(&param0->unk_08);
 }
 
 static void ov68_0225D304(UnkStruct_ov68_0225D128 *param0, UnkStruct_ov68_0225C91C *param1, u32 param2)
@@ -1043,7 +1043,7 @@ static void ov68_0225D388(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB
         int v0;
 
         for (v0 = 0; v0 < 6; v0++) {
-            sub_0201A8D4(param2->unk_00, &param0->unk_00[v0], &Unk_ov68_0225DDE8[v0]);
+            Window_AddFromTemplate(param2->unk_00, &param0->unk_00[v0], &Unk_ov68_0225DDE8[v0]);
         }
     }
 
@@ -1291,7 +1291,7 @@ static void ov68_0225D868(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB
         int v0;
 
         for (v0 = 0; v0 < 6; v0++) {
-            BGL_DeleteWindow(&param0->unk_00[v0]);
+            Window_Remove(&param0->unk_00[v0]);
         }
     }
 }
@@ -1302,22 +1302,22 @@ static void ov68_0225D89C(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB
     u32 v1;
     s32 v2;
 
-    BGL_FillWindow(&param0->unk_00[0], 0);
+    Window_FillTilemap(&param0->unk_00[0], 0);
 
     v0 = ov68_0225CBEC(param1, 0, param2);
     v1 = Font_CalcStrbufWidth(FONT_MESSAGE, v0, 0);
     v2 = ((18 * 8) - v1) / 2;
 
     Text_AddPrinterWithParamsAndColor(&param0->unk_00[0], FONT_MESSAGE, v0, v2, 4, TEXT_SPEED_NO_TRANSFER, param3, NULL);
-    sub_0201A9A4(&param0->unk_00[0]);
+    Window_ScheduleCopyToVRAM(&param0->unk_00[0]);
 }
 
 static void ov68_0225D8F0(UnkStruct_ov68_0225D388 *param0, const UnkStruct_ov68_0225DB8C *param1, UnkStruct_ov68_0225CB70 *param2, UnkStruct_ov68_0225C91C *param3, const UnkStruct_ov66_0222E908 *param4, u32 param5, u32 param6, u32 param7, BOOL param8)
 {
     Strbuf *v0;
 
-    BGL_FillWindow(&param0->unk_00[1], 0);
-    BGL_FillWindow(&param0->unk_00[5], 0);
+    Window_FillTilemap(&param0->unk_00[1], 0);
+    Window_FillTilemap(&param0->unk_00[5], 0);
 
     v0 = ov68_0225DC58(param1, param2, 0);
     Text_AddPrinterWithParamsAndColor(&param0->unk_00[1], FONT_MESSAGE, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, param6, NULL);
@@ -1354,8 +1354,8 @@ static void ov68_0225D8F0(UnkStruct_ov68_0225D388 *param0, const UnkStruct_ov68_
         Text_AddPrinterWithParamsAndColor(&param0->unk_00[5], FONT_MESSAGE, v0, (12 * 8) + v2, 0, TEXT_SPEED_NO_TRANSFER, param6, NULL);
     }
 
-    sub_0201A9A4(&param0->unk_00[5]);
-    sub_0201A9A4(&param0->unk_00[1]);
+    Window_ScheduleCopyToVRAM(&param0->unk_00[5]);
+    Window_ScheduleCopyToVRAM(&param0->unk_00[1]);
 }
 
 static void ov68_0225DA30(UnkStruct_ov68_0225D388 *param0, const UnkStruct_ov68_0225DC74 *param1, UnkStruct_ov68_0225C91C *param2, u32 param3)
@@ -1368,8 +1368,8 @@ static void ov68_0225DA30(UnkStruct_ov68_0225D388 *param0, const UnkStruct_ov68_
         param0->unk_68[v0] = 0;
         param0->unk_74[v0] = ov68_0225DCA4(param1, v0, 80);
 
-        sub_0201C2B4(&param0->unk_00[2 + v0], param3);
-        BGL_FillWindow(&param0->unk_00[2 + v0], 0);
+        Window_SetPalette(&param0->unk_00[2 + v0], param3);
+        Window_FillTilemap(&param0->unk_00[2 + v0], 0);
     }
 }
 
@@ -1407,10 +1407,10 @@ static BOOL ov68_0225DA74(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225C9
         }
 
         for (v4 = 0; v4 < v2; v4++) {
-            sub_0201ADDC(&param0->unk_00[2 + v3], param0->unk_84->pRawData, 247, 16, 256, 32, 4 + v1 + v4, 0, 1, 16);
+            Window_BlitBitmapRect(&param0->unk_00[2 + v3], param0->unk_84->pRawData, 247, 16, 256, 32, 4 + v1 + v4, 0, 1, 16);
         }
 
-        sub_0201A9A4(&param0->unk_00[2 + v3]);
+        Window_ScheduleCopyToVRAM(&param0->unk_00[2 + v3]);
     }
 
     if (v5 == 3) {
@@ -1430,8 +1430,8 @@ static void ov68_0225DB3C(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB
         int v0;
 
         for (v0 = 0; v0 < 6; v0++) {
-            BGL_FillWindow(&param0->unk_00[v0], 0);
-            sub_0201A954(&param0->unk_00[v0]);
+            Window_FillTilemap(&param0->unk_00[v0], 0);
+            Window_CopyToVRAM(&param0->unk_00[v0]);
         }
     }
 

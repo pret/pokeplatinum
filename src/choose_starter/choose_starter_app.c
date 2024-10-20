@@ -348,12 +348,12 @@ BOOL ChooseStarter_Init(OverlayManager *param0, int *param1)
     SetupDrawing(app, HEAP_ID_CHOOSE_STARTER_APP);
 
     GraphicsModes bglHeader;
-    app->bgl = sub_02018340(HEAP_ID_CHOOSE_STARTER_APP);
+    app->bgl = BgConfig_New(HEAP_ID_CHOOSE_STARTER_APP);
     bglHeader.displayMode = GX_DISPMODE_GRAPHICS;
     bglHeader.mainBgMode = GX_BGMODE_0;
     bglHeader.subBgMode = GX_BGMODE_1;
     bglHeader.bg0As2DOr3D = GX_BG0_AS_3D;
-    sub_02018368(&bglHeader);
+    SetAllGraphicsModes(&bglHeader);
 
     SetupBGL(app->bgl, HEAP_ID_CHOOSE_STARTER_APP);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
@@ -479,7 +479,7 @@ static void ChooseStarterAppMainCallback(void *data)
     ChooseStarterApp *app = data;
 
     sub_0200A858();
-    sub_0201C2B8(app->bgl);
+    Bg_RunScheduledUpdates(app->bgl);
     sub_02008A94(app->spriteManager);
     sub_0201DCAC();
 }
@@ -605,9 +605,9 @@ static void SetupBGL(BgConfig *bgl, enum HeapId heapID)
             0
         };
 
-        sub_020183C4(bgl, 1, &header, 0);
-        sub_02019690(1, 32, 0, heapID);
-        sub_02019EBC(bgl, 1);
+        Bg_InitFromTemplate(bgl, 1, &header, 0);
+        Bg_ClearTilesRange(1, 32, 0, heapID);
+        Bg_ClearTilemap(bgl, 1);
     }
 
     {
@@ -627,9 +627,9 @@ static void SetupBGL(BgConfig *bgl, enum HeapId heapID)
             0
         };
 
-        sub_020183C4(bgl, 2, &header, 0);
-        sub_02019690(2, 32, 0, heapID);
-        sub_02019EBC(bgl, 2);
+        Bg_InitFromTemplate(bgl, 2, &header, 0);
+        Bg_ClearTilesRange(2, 32, 0, heapID);
+        Bg_ClearTilemap(bgl, 2);
     }
 
     {
@@ -649,27 +649,27 @@ static void SetupBGL(BgConfig *bgl, enum HeapId heapID)
             0
         };
 
-        sub_020183C4(bgl, 3, &header, 0);
-        sub_02019690(3, 32, 0, heapID);
-        sub_02019EBC(bgl, 3);
+        Bg_InitFromTemplate(bgl, 3, &header, 0);
+        Bg_ClearTilesRange(3, 32, 0, heapID);
+        Bg_ClearTilemap(bgl, 3);
     }
 }
 
 static void ov78_021D12EC(BgConfig *param0)
 {
-    sub_02019044(param0, 1);
-    sub_02019044(param0, 2);
-    sub_02019044(param0, 3);
+    Bg_FreeTilemapBuffer(param0, 1);
+    Bg_FreeTilemapBuffer(param0, 2);
+    Bg_FreeTilemapBuffer(param0, 3);
 }
 
 static void MakeMessageWindow(ChooseStarterApp *app, enum HeapId heapID)
 {
-    app->messageWindow = sub_0201A778(heapID, 1);
+    app->messageWindow = Window_New(heapID, 1);
     Window_Init(app->messageWindow);
 
-    BGL_AddWindow(app->bgl, app->messageWindow, BGL_FRAME_MAIN_1, TEXT_POS_X, TEXT_POS_Y, TEXT_COLUMNS, TEXT_ROWS, FRAME_PALETTE_INDEX, TEXT_WINDOW_SIZE + 1);
+    Window_Add(app->bgl, app->messageWindow, BGL_FRAME_MAIN_1, TEXT_POS_X, TEXT_POS_Y, TEXT_COLUMNS, TEXT_ROWS, FRAME_PALETTE_INDEX, TEXT_WINDOW_SIZE + 1);
 
-    BGL_FillWindow(app->messageWindow, 15);
+    Window_FillTilemap(app->messageWindow, 15);
     sub_0200DD0C(app->bgl, BGL_FRAME_MAIN_1, FRAME_TEXT_START, FRAME_TEXT_PALETTE_INDEX, app->messageFrame, heapID);
     sub_02006E84(NARC_INDEX_GRAPHIC__EV_POKESELECT, 16, 0, FRAME_PALETTE_INDEX * 32, 32, heapID);
     sub_0200E060(app->messageWindow, 0, FRAME_TEXT_START, FRAME_TEXT_PALETTE_INDEX);
@@ -677,7 +677,7 @@ static void MakeMessageWindow(ChooseStarterApp *app, enum HeapId heapID)
 
 static void ov78_021D13A0(ChooseStarterApp *param0)
 {
-    BGL_DeleteWindow(param0->messageWindow);
+    Window_Remove(param0->messageWindow);
     Heap_FreeToHeap(param0->messageWindow);
 }
 
@@ -1295,7 +1295,7 @@ static u8 ov78_021D1FB4(Window *param0, int param1, int param2, int param3, Text
     GF_ASSERT(v0);
     v1 = MessageLoader_GetNewStrbuf(v0, param3);
 
-    BGL_FillWindow(param0, 15);
+    Window_FillTilemap(param0, 15);
     v2 = Text_AddPrinterWithParamsAndColor(param0, FONT_MESSAGE, v1, 0, 0, param5, param4, NULL);
     sub_0200E060(param0, 0, 512, 0);
 
@@ -1316,7 +1316,7 @@ static u8 ov78_021D201C(Window *param0, int param1, int param2, int param3, u32 
     GF_ASSERT(v0);
 
     *param6 = MessageLoader_GetNewStrbuf(v0, param3);
-    BGL_FillWindow(param0, 15);
+    Window_FillTilemap(param0, 15);
     v1 = Text_AddPrinterWithParamsAndColor(param0, FONT_MESSAGE, *param6, 0, 0, param5, param4, NULL);
 
     sub_0200E060(param0, 0, 512, 0);
@@ -1733,7 +1733,7 @@ static void MakeSubplaneWindow(ChooseStarterApp *param0, int param1)
     sub_02006E84(82, 17, 0, 5 * 32, 32, param1);
 
     for (v0 = 0; v0 < 3; v0++) {
-        param0->unk_9C[v0] = sub_0201A778(param1, 1);
+        param0->unk_9C[v0] = Window_New(param1, 1);
         Window_Init(param0->unk_9C[v0]);
 
         switch (v0) {
@@ -1751,7 +1751,7 @@ static void MakeSubplaneWindow(ChooseStarterApp *param0, int param1)
             break;
         }
 
-        BGL_AddWindow(param0->bgl, param0->unk_9C[v0], 3, v1, v2, 11, 4, 5, 1 + (64 * v0));
+        Window_Add(param0->bgl, param0->unk_9C[v0], 3, v1, v2, 11, 4, 5, 1 + (64 * v0));
         ov78_021D28A8(param0->unk_9C[v0], param1, 360, 4 + v0, TEXT_COLOR(1, 2, 10));
     }
 }
@@ -1761,7 +1761,7 @@ static void ov78_021D2884(ChooseStarterApp *param0)
     int v0;
 
     for (v0 = 0; v0 < 3; v0++) {
-        BGL_DeleteWindow(param0->unk_9C[v0]);
+        Window_Remove(param0->unk_9C[v0]);
         Heap_FreeToHeap(param0->unk_9C[v0]);
     }
 }
@@ -1775,7 +1775,7 @@ static void ov78_021D28A8(Window *param0, int param1, int param2, int param3, Te
     GF_ASSERT(v0);
     v1 = MessageLoader_GetNewStrbuf(v0, param3);
 
-    BGL_FillWindow(param0, (((param4) >> 0) & 0xff));
+    Window_FillTilemap(param0, (((param4) >> 0) & 0xff));
     Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, v1, 1, 0, TEXT_SPEED_NO_TRANSFER, param4, NULL);
     Strbuf_Free(v1);
     MessageLoader_Free(v0);
@@ -1783,7 +1783,7 @@ static void ov78_021D28A8(Window *param0, int param1, int param2, int param3, Te
 
 static void ov78_021D2904(ChooseStarterApp *param0)
 {
-    sub_0201ACF4(param0->unk_9C[param0->unk_A8]);
+    Window_ClearAndCopyToVRAM(param0->unk_9C[param0->unk_A8]);
 }
 
 static u16 GetSelectedSpecies(u16 cursorPosition)

@@ -37,7 +37,7 @@ void ov24_02253CE0(BgConfig *param0)
 #endif // SDK_ARM9
     GXS_SetOBJVRamModeChar(GX_OBJVRAMMODE_CHAR_1D_32K);
 
-    sub_020183C4(param0, 4, &v0, 0);
+    Bg_InitFromTemplate(param0, 4, &v0, 0);
 
     {
         NARC *v1;
@@ -56,7 +56,7 @@ void ov24_02253CE0(BgConfig *param0)
 
 void ov24_02253DA4(BgConfig *param0)
 {
-    sub_02019044(param0, 4);
+    Bg_FreeTilemapBuffer(param0, 4);
     Heap_Destroy(8);
 }
 

@@ -168,11 +168,11 @@ static int ov23_02253E90(UnkStruct_ov23_02253E2C *param0, BOOL param1, UnkStruct
     ov23_02253FA4(param0, 0);
     ov23_022421EC();
 
-    if (!BGL_WindowAdded(&param0->unk_08)) {
-        BGL_AddWindow(param0->unk_18, &param0->unk_08, 3, 2, 19, 27, 4, 12, param0->unk_40);
+    if (!Window_IsInUse(&param0->unk_08)) {
+        Window_Add(param0->unk_18, &param0->unk_08, 3, 2, 19, 27, 4, 12, param0->unk_40);
     }
 
-    BGL_FillWindow(&param0->unk_08, 15);
+    Window_FillTilemap(&param0->unk_08, 15);
     sub_0200E060(&param0->unk_08, 1, param0->unk_42, 10);
 
     if (param1) {
@@ -237,13 +237,13 @@ static void ov23_02253FA4(UnkStruct_ov23_02253E2C *param0, int param1)
             break;
         case 1:
             sub_0200E084(&param0->unk_08, 1);
-            sub_0201ACF4(&param0->unk_08);
-            BGL_DeleteWindow(&param0->unk_08);
+            Window_ClearAndCopyToVRAM(&param0->unk_08);
+            Window_Remove(&param0->unk_08);
             break;
         case 2:
             sub_0200E084(&param0->unk_08, 1);
-            sub_0201AD10(&param0->unk_08);
-            BGL_DeleteWindow(&param0->unk_08);
+            Window_ClearAndScheduleCopyToVRAM(&param0->unk_08);
+            Window_Remove(&param0->unk_08);
             break;
         }
 

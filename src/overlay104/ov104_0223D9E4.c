@@ -154,11 +154,11 @@ static void ov104_0223DB48(SysTask *param0, void *param1)
     v1->unk_22008 = 0;
 
     {
-        sub_0201958C(v1->unk_04, 3, v1->unk_2008[v1->unk_22009], 0x10000, 0);
+        Bg_LoadTiles(v1->unk_04, 3, v1->unk_2008[v1->unk_22009], 0x10000, 0);
     }
 
-    sub_02019574(v1->unk_04, 3, v1->unk_08[v1->unk_22009], 0x1000);
-    sub_0201C3C0(v1->unk_04, 3);
+    Bg_LoadTilemapBuffer(v1->unk_04, 3, v1->unk_08[v1->unk_22009], 0x1000);
+    Bg_ScheduleTilemapTransfer(v1->unk_04, 3);
 
     v1->unk_22009 ^= 1;
 }

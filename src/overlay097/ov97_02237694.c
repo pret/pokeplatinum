@@ -134,8 +134,8 @@ void ov97_022376FC(BgConfig *param0, int param1, u8 param2, u32 param3, u32 para
     v0.screenBase = param3 / 0x800;
     v0.charBase = param4 / 0x4000;
 
-    sub_020183C4(param0, param1, &v0, 0);
-    sub_02019EBC(param0, param1);
+    Bg_InitFromTemplate(param0, param1, &v0, 0);
+    Bg_ClearTilemap(param0, param1);
 }
 
 void ov97_02237784(int param0)
@@ -223,7 +223,7 @@ static int ov97_02237870(UnkStruct_ov97_02237808 *param0, int param1)
         param0->unk_4C = param1;
 
         if (param0->unk_08 == 1) {
-            BGL_FillWindow(param0->unk_10, param0->unk_48);
+            Window_FillTilemap(param0->unk_10, param0->unk_48);
         }
 
         if (param0->unk_4C != -1) {
@@ -243,7 +243,7 @@ static int ov97_02237870(UnkStruct_ov97_02237808 *param0, int param1)
                 int v5, v6;
 
                 v5 = Font_CalcStrbufWidth(param0->unk_40, v1, Font_GetAttribute(param0->unk_40, 2));
-                v6 = sub_0201C294(param0->unk_10) * 8 - v5;
+                v6 = Window_GetWidth(param0->unk_10) * 8 - v5;
                 v0 = Text_AddPrinterWithParamsAndColor(param0->unk_10, param0->unk_40, v1, v6, param0->unk_24, param0->unk_50, param0->unk_44, NULL);
 
                 param0->unk_0C = 0;
@@ -268,15 +268,15 @@ int ov97_0223795C(BgConfig *param0, UnkStruct_ov97_02237808 *param1, int param2,
     int v0;
 
     if (param1->unk_10->bgConfig == NULL) {
-        BGL_AddWindow(param0, param1->unk_10, param1->unk_2C, param2, param3, param1->unk_18, param1->unk_1C, param1->unk_30, param1->unk_28);
+        Window_Add(param0, param1->unk_10, param1->unk_2C, param2, param3, param1->unk_18, param1->unk_1C, param1->unk_30, param1->unk_28);
         v0 = ov97_02237870(param1, param4);
     } else {
         if (param2 != -1) {
-            sub_0201C2AC(param1->unk_10, param2);
+            Window_SetXPos(param1->unk_10, param2);
         }
 
         if (param3 != -1) {
-            sub_0201C2B0(param1->unk_10, param3);
+            Window_SetYPos(param1->unk_10, param3);
         }
 
         v0 = ov97_02237870(param1, param4);
@@ -528,7 +528,7 @@ static void ov97_02237E58(void *param0)
     sub_0200A858();
 
     if (v0->unk_00) {
-        sub_0201C2B8(v0->unk_00);
+        Bg_RunScheduledUpdates(v0->unk_00);
     }
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
@@ -680,12 +680,12 @@ void ov97_02238194(BgConfig *param0, UnkStruct_0202DF40 *param1)
 
         NNS_G2dGetUnpackedScreenData(v4, &v3);
 
-        sub_02019574(param0, 5, v3->rawData, 32 * 24 * 2);
+        Bg_LoadTilemapBuffer(param0, 5, v3->rawData, 32 * 24 * 2);
         Heap_FreeToHeap(v4);
     }
 
-    sub_02019E2C(param0, 5, 0, 0, 32, 24, 8 + v0);
-    sub_0201C3C0(param0, 5);
+    Bg_ChangeTilemapRectPalette(param0, 5, 0, 0, 32, 24, 8 + v0);
+    Bg_ScheduleTilemapTransfer(param0, 5);
 
     v2->unk_F08 = ov97_02238174;
     v2->unk_00 = param0;

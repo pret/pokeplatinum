@@ -1018,8 +1018,8 @@ static void ov16_0225CB80(BattleSystem *param0, BattlerData *param1)
 {
     Window *v0 = BattleSystem_Window(param0, 0);
 
-    BGL_FillWindow(v0, 0xff);
-    sub_0201ACCC(v0);
+    Window_FillTilemap(v0, 0xff);
+    Window_LoadTiles(v0);
 
     ClearCommand(param0, param1->battler, 66);
     ZeroDataBuffer(param1);

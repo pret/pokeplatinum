@@ -409,7 +409,7 @@ void ov117_02263AF0(BgConfig *param0, int param1, int param2, UnkStruct_ov117_02
 
 static void ov117_02263B8C(BgConfig *param0, UnkStruct_ov117_02263DAC *param1)
 {
-    sub_02019EBC(param0, 7);
+    Bg_ClearTilemap(param0, 7);
     param1->unk_00 = 0;
     param1->unk_2D = 1;
 }
@@ -464,10 +464,10 @@ static void ov117_02263BA4(BgConfig *param0, UnkStruct_ov117_02263DAC *param1, i
         v5 = FX_Inv(v0);
         v6 = FX_Inv(v1);
 
-        sub_0201C6A8(param0, 7, 3, v5);
-        sub_0201C6A8(param0, 7, 6, v6);
-        sub_0201C63C(param0, 7, 0, 0 - v2 + v7);
-        sub_0201C63C(param0, 7, 3, (256 - 192) / 2 + 7 - v3);
+        Bg_ScheduleAffineScale(param0, 7, 3, v5);
+        Bg_ScheduleAffineScale(param0, 7, 6, v6);
+        Bg_ScheduleScroll(param0, 7, 0, 0 - v2 + v7);
+        Bg_ScheduleScroll(param0, 7, 3, (256 - 192) / 2 + 7 - v3);
     }
 }
 
@@ -1223,8 +1223,8 @@ void ov117_02264AB0(UnkStruct_ov117_02261280 *param0)
 
     switch (param0->unk_00->unk_30) {
     case 3:
-        sub_02019E2C(param0->unk_2C, 4, 0, 13, 12, 4, 3);
-        sub_02019E2C(param0->unk_2C, 4, 0x14, 13, 12, 4, 0);
+        Bg_ChangeTilemapRectPalette(param0->unk_2C, 4, 0, 13, 12, 4, 3);
+        Bg_ChangeTilemapRectPalette(param0->unk_2C, 4, 0x14, 13, 12, 4, 0);
         break;
     }
 }
@@ -2031,7 +2031,7 @@ void ov117_02265DB8(BgConfig *param0, SpriteGfxHandler *param1, UnkStruct_020127
 
     {
         Window_Init(&v1);
-        BGL_AddFramelessWindow(param0, &v1, v6, param14, 0, 0);
+        Window_AddToTopLeftCorner(param0, &v1, v6, param14, 0, 0);
         Text_AddPrinterWithParamsColorAndSpacing(&v1, param5, param4, 0, 0, TEXT_SPEED_NO_TRANSFER, param6, v7, 0, NULL);
     }
 
@@ -2064,7 +2064,7 @@ void ov117_02265DB8(BgConfig *param0, SpriteGfxHandler *param1, UnkStruct_020127
     }
 
     sub_020128C4(v4, param9, param10);
-    BGL_DeleteWindow(&v1);
+    Window_Remove(&v1);
 
     param3->unk_00 = v4;
     param3->unk_04 = v2;

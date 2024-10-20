@@ -102,11 +102,11 @@ static const WindowTemplate Unk_020F1E98 = {
 
 static void sub_020819DC(BgConfig *param0, Window *param1, const WindowTemplate *param2)
 {
-    sub_0201A8D4(param0, &param1[0], &param2[0]);
-    sub_0201A8D4(param0, &param1[1], &param2[1]);
-    sub_0201A8D4(param0, &param1[2], &param2[2]);
-    sub_0201A8D4(param0, &param1[3], &param2[3]);
-    sub_0201A8D4(param0, &param1[4], &param2[4]);
+    Window_AddFromTemplate(param0, &param1[0], &param2[0]);
+    Window_AddFromTemplate(param0, &param1[1], &param2[1]);
+    Window_AddFromTemplate(param0, &param1[2], &param2[2]);
+    Window_AddFromTemplate(param0, &param1[3], &param2[3]);
+    Window_AddFromTemplate(param0, &param1[4], &param2[4]);
 }
 
 void sub_02081A24(GameWindowLayout *param0)
@@ -133,17 +133,17 @@ void sub_02081A24(GameWindowLayout *param0)
 
         v2 = Unk_020F1ED0[0];
         v2.tilemapTop = 22;
-        sub_0201A8D4(param0->unk_00, &param0->unk_04[31], &v2);
+        Window_AddFromTemplate(param0->unk_00, &param0->unk_04[31], &v2);
     } else {
-        sub_0201A8D4(param0->unk_00, &param0->unk_04[31], &Unk_020F1ED0[0]);
+        Window_AddFromTemplate(param0->unk_00, &param0->unk_04[31], &Unk_020F1ED0[0]);
     }
 
-    sub_0201A8D4(param0->unk_00, &param0->unk_04[30], &Unk_020F1ED0[1]);
-    sub_0201A8D4(param0->unk_00, &param0->unk_04[32], &Unk_020F1ED0[2]);
-    sub_0201A8D4(param0->unk_00, &param0->unk_04[33], &Unk_020F1ED0[3]);
-    sub_0201A8D4(param0->unk_00, &param0->unk_04[34], &Unk_020F1ED0[4]);
-    sub_0201A8D4(param0->unk_00, &param0->unk_04[35], &Unk_020F1ED0[5]);
-    sub_0201A8D4(param0->unk_00, &param0->unk_04[36], &Unk_020F1ED0[6]);
+    Window_AddFromTemplate(param0->unk_00, &param0->unk_04[30], &Unk_020F1ED0[1]);
+    Window_AddFromTemplate(param0->unk_00, &param0->unk_04[32], &Unk_020F1ED0[2]);
+    Window_AddFromTemplate(param0->unk_00, &param0->unk_04[33], &Unk_020F1ED0[3]);
+    Window_AddFromTemplate(param0->unk_00, &param0->unk_04[34], &Unk_020F1ED0[4]);
+    Window_AddFromTemplate(param0->unk_00, &param0->unk_04[35], &Unk_020F1ED0[5]);
+    Window_AddFromTemplate(param0->unk_00, &param0->unk_04[36], &Unk_020F1ED0[6]);
 }
 
 void sub_02081B90(GameWindowLayout *param0)
@@ -151,12 +151,12 @@ void sub_02081B90(GameWindowLayout *param0)
     u16 v0;
 
     for (v0 = 0; v0 < 37; v0++) {
-        BGL_DeleteWindow(&param0->unk_04[v0]);
+        Window_Remove(&param0->unk_04[v0]);
     }
 
     for (v0 = 0; v0 < 1; v0++) {
-        if (BGL_WindowAdded(&param0->unk_254[v0]) == 1) {
-            BGL_DeleteWindow(&param0->unk_254[v0]);
+        if (Window_IsInUse(&param0->unk_254[v0]) == 1) {
+            Window_Remove(&param0->unk_254[v0]);
         }
     }
 }
@@ -198,7 +198,7 @@ void sub_02081CF4(GameWindowLayout *param0, const u8 *param1, u8 param2)
     UnkStruct_02081CF4 v0;
     u16 v1, v2;
 
-    BGL_AddWindow(param0->unk_00, &param0->unk_254[0], 0, 19, 23 - param2 * 2, 12, param2 * 2, 0, (((((((((((((((((((((((((((((((1 + 9) + (18 + 12)) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 5 * 2) + 7 * 2) + 20 * 2) + 13 * 4) + 27 * 4));
+    Window_Add(param0->unk_00, &param0->unk_254[0], 0, 19, 23 - param2 * 2, 12, param2 * 2, 0, (((((((((((((((((((((((((((((((1 + 9) + (18 + 12)) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 5 * 2) + 7 * 2) + 20 * 2) + 13 * 4) + 27 * 4));
 
     param0->unk_6FC = sub_02013A04(param2, 12);
     v2 = 0;
@@ -284,7 +284,7 @@ void sub_02081F2C(GameWindowLayout *param0, u8 param1)
     Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->unk_704[param1].unk_00, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
 
     if (param0->unk_704[param1].unk_10 == 1) {
-        sub_0201A9A4(v0);
+        Window_ScheduleCopyToVRAM(v0);
         return;
     }
 
@@ -300,7 +300,7 @@ void sub_02081F2C(GameWindowLayout *param0, u8 param1)
         }
     }
 
-    sub_0201A9A4(v0);
+    Window_ScheduleCopyToVRAM(v0);
 }
 
 void sub_02081FFC(GameWindowLayout *param0, u8 param1)
@@ -311,12 +311,12 @@ void sub_02081FFC(GameWindowLayout *param0, u8 param1)
     v0 = &param0->unk_04[1 + param1 * 5];
 
     if (param0->unk_704[param1].unk_0E_0 != 7) {
-        sub_0201A9A4(v0);
+        Window_ScheduleCopyToVRAM(v0);
         return;
     }
 
     sub_0200C648(param0->unk_698, 1, param0->unk_704[param1].unk_0A, 3, 0, v0, 5, 2);
-    sub_0201A9A4(v0);
+    Window_ScheduleCopyToVRAM(v0);
 }
 
 void sub_02082058(GameWindowLayout *param0, u8 param1)
@@ -328,7 +328,7 @@ void sub_02082058(GameWindowLayout *param0, u8 param1)
     v0 = &param0->unk_04[2 + param1 * 5];
 
     sub_0200C5BC(param0->unk_698, param0->unk_704[param1].unk_06, 3, 1, v0, (28 - 24), 2);
-    sub_0201A9A4(v0);
+    Window_ScheduleCopyToVRAM(v0);
 }
 
 void sub_02082098(GameWindowLayout *param0, u8 param1)
@@ -339,8 +339,8 @@ void sub_02082098(GameWindowLayout *param0, u8 param1)
 
     v0 = &param0->unk_04[2 + param1 * 5];
 
-    BGL_WindowColor(v0, 0, (28 - 24), 0, 24, 2 * 8);
-    sub_0201A9A4(v0);
+    Window_FillRectWithColor(v0, 0, (28 - 24), 0, 24, 2 * 8);
+    Window_ScheduleCopyToVRAM(v0);
 }
 
 static void sub_020820C4(GameWindowLayout *param0, u8 param1)
@@ -351,7 +351,7 @@ static void sub_020820C4(GameWindowLayout *param0, u8 param1)
     v0 = &param0->unk_04[2 + param1 * 5];
 
     sub_0200C5BC(param0->unk_698, param0->unk_704[param1].unk_08, 3, 0, v0, (28 + 8), 2);
-    sub_0201A9A4(v0);
+    Window_ScheduleCopyToVRAM(v0);
 }
 
 void sub_02082104(GameWindowLayout *param0, u8 param1)
@@ -363,41 +363,41 @@ void sub_02082104(GameWindowLayout *param0, u8 param1)
 
     switch (HealthBar_Color(param0->unk_704[param1].unk_06, param0->unk_704[param1].unk_08, 48)) {
     case 0:
-        sub_0201A9A4(v0);
+        Window_ScheduleCopyToVRAM(v0);
         return;
     case 4:
     case 3:
-        sub_0201972C(1, &param0->unk_4A4[9], 2 * 2, (v0->palette * 16 + 9) * 2);
+        Bg_LoadPalette(1, &param0->unk_4A4[9], 2 * 2, (v0->palette * 16 + 9) * 2);
         break;
     case 2:
-        sub_0201972C(1, &param0->unk_4A4[(16 + 9)], 2 * 2, (v0->palette * 16 + 9) * 2);
+        Bg_LoadPalette(1, &param0->unk_4A4[(16 + 9)], 2 * 2, (v0->palette * 16 + 9) * 2);
         break;
     case 1:
-        sub_0201972C(1, &param0->unk_4A4[(32 + 9)], 2 * 2, (v0->palette * 16 + 9) * 2);
+        Bg_LoadPalette(1, &param0->unk_4A4[(32 + 9)], 2 * 2, (v0->palette * 16 + 9) * 2);
         break;
     }
 
     v1 = App_PixelCount(param0->unk_704[param1].unk_06, param0->unk_704[param1].unk_08, 48);
 
-    BGL_WindowColor(v0, 10, 0, 2, v1, 1);
-    BGL_WindowColor(v0, 9, 0, 3, v1, 2);
-    BGL_WindowColor(v0, 10, 0, 5, v1, 1);
-    sub_0201A9A4(v0);
+    Window_FillRectWithColor(v0, 10, 0, 2, v1, 1);
+    Window_FillRectWithColor(v0, 9, 0, 3, v1, 2);
+    Window_FillRectWithColor(v0, 10, 0, 5, v1, 1);
+    Window_ScheduleCopyToVRAM(v0);
 }
 
 void sub_020821F8(GameWindowLayout *param0, u8 param1)
 {
-    BGL_FillWindow(&param0->unk_04[0 + param1 * 5], 0);
-    BGL_FillWindow(&param0->unk_04[1 + param1 * 5], 0);
-    BGL_FillWindow(&param0->unk_04[2 + param1 * 5], 0);
-    BGL_FillWindow(&param0->unk_04[3 + param1 * 5], 0);
+    Window_FillTilemap(&param0->unk_04[0 + param1 * 5], 0);
+    Window_FillTilemap(&param0->unk_04[1 + param1 * 5], 0);
+    Window_FillTilemap(&param0->unk_04[2 + param1 * 5], 0);
+    Window_FillTilemap(&param0->unk_04[3 + param1 * 5], 0);
     sub_02081F2C(param0, param1);
 
     if (param0->unk_704[param1].unk_10 == 1) {
-        sub_0201A9A4(&param0->unk_04[0 + param1 * 5]);
-        sub_0201A9A4(&param0->unk_04[1 + param1 * 5]);
-        sub_0201A9A4(&param0->unk_04[2 + param1 * 5]);
-        sub_0201A9A4(&param0->unk_04[3 + param1 * 5]);
+        Window_ScheduleCopyToVRAM(&param0->unk_04[0 + param1 * 5]);
+        Window_ScheduleCopyToVRAM(&param0->unk_04[1 + param1 * 5]);
+        Window_ScheduleCopyToVRAM(&param0->unk_04[2 + param1 * 5]);
+        Window_ScheduleCopyToVRAM(&param0->unk_04[3 + param1 * 5]);
         return;
     }
 
@@ -410,26 +410,26 @@ void sub_020821F8(GameWindowLayout *param0, u8 param1)
 
 void sub_020822BC(GameWindowLayout *param0, u8 param1)
 {
-    sub_0201ACCC(&param0->unk_04[0 + param1 * 5]);
-    sub_0201ACCC(&param0->unk_04[1 + param1 * 5]);
-    sub_0201ACCC(&param0->unk_04[2 + param1 * 5]);
-    sub_0201ACCC(&param0->unk_04[3 + param1 * 5]);
+    Window_LoadTiles(&param0->unk_04[0 + param1 * 5]);
+    Window_LoadTiles(&param0->unk_04[1 + param1 * 5]);
+    Window_LoadTiles(&param0->unk_04[2 + param1 * 5]);
+    Window_LoadTiles(&param0->unk_04[3 + param1 * 5]);
 }
 
 void sub_020822F4(GameWindowLayout *param0, u8 param1)
 {
-    sub_0201AD10(&param0->unk_04[0 + param1 * 5]);
-    sub_0201AD10(&param0->unk_04[1 + param1 * 5]);
-    sub_0201AD10(&param0->unk_04[2 + param1 * 5]);
-    sub_0201AD10(&param0->unk_04[3 + param1 * 5]);
+    Window_ClearAndScheduleCopyToVRAM(&param0->unk_04[0 + param1 * 5]);
+    Window_ClearAndScheduleCopyToVRAM(&param0->unk_04[1 + param1 * 5]);
+    Window_ClearAndScheduleCopyToVRAM(&param0->unk_04[2 + param1 * 5]);
+    Window_ClearAndScheduleCopyToVRAM(&param0->unk_04[3 + param1 * 5]);
 }
 
 void sub_0208232C(GameWindowLayout *param0, u8 param1)
 {
     Pokemon *v0;
 
-    BGL_FillWindow(&param0->unk_04[0 + param1 * 5], 0);
-    BGL_FillWindow(&param0->unk_04[1 + param1 * 5], 0);
+    Window_FillTilemap(&param0->unk_04[0 + param1 * 5], 0);
+    Window_FillTilemap(&param0->unk_04[1 + param1 * 5], 0);
     sub_02081F2C(param0, param1);
 
     if (param0->unk_704[param1].unk_10 == 1) {
@@ -453,8 +453,8 @@ void sub_020823C4(GameWindowLayout *param0, u8 param1)
     Pokemon *v0;
     u8 v1;
 
-    BGL_FillWindow(&param0->unk_04[0 + param1 * 5], 0);
-    BGL_FillWindow(&param0->unk_04[1 + param1 * 5], 0);
+    Window_FillTilemap(&param0->unk_04[0 + param1 * 5], 0);
+    Window_FillTilemap(&param0->unk_04[1 + param1 * 5], 0);
     sub_02081F2C(param0, param1);
 
     if (param0->unk_704[param1].unk_10 == 1) {
@@ -481,8 +481,8 @@ void sub_0208245C(GameWindowLayout *param0, u8 param1)
     Pokemon *v0;
     u8 v1;
 
-    BGL_FillWindow(&param0->unk_04[0 + param1 * 5], 0);
-    BGL_FillWindow(&param0->unk_04[1 + param1 * 5], 0);
+    Window_FillTilemap(&param0->unk_04[0 + param1 * 5], 0);
+    Window_FillTilemap(&param0->unk_04[1 + param1 * 5], 0);
     sub_02081F2C(param0, param1);
 
     if (param0->unk_704[param1].unk_10 != 1) {
@@ -497,8 +497,8 @@ void sub_020824C0(GameWindowLayout *param0, u8 param1)
     Pokemon *v0;
     u8 v1;
 
-    BGL_FillWindow(&param0->unk_04[0 + param1 * 5], 0);
-    BGL_FillWindow(&param0->unk_04[1 + param1 * 5], 0);
+    Window_FillTilemap(&param0->unk_04[0 + param1 * 5], 0);
+    Window_FillTilemap(&param0->unk_04[1 + param1 * 5], 0);
     sub_02081F2C(param0, param1);
 
     if (param0->unk_704[param1].unk_10 != 1) {
@@ -548,21 +548,21 @@ void sub_020825B4(GameWindowLayout *param0, u8 param1)
 {
     u32 v0;
 
-    BGL_FillWindow(&param0->unk_04[30], 0);
-    BGL_FillWindow(&param0->unk_04[31], 0);
+    Window_FillTilemap(&param0->unk_04[30], 0);
+    Window_FillTilemap(&param0->unk_04[31], 0);
 
     if (param1 & 1) {
         MessageLoader_GetStrbuf(param0->unk_69C, 0, param0->unk_6A8);
         v0 = sub_020825A4(0, param0->unk_6A8, param0->unk_04[30].width * 8);
         Text_AddPrinterWithParamsAndColor(&param0->unk_04[30], FONT_SYSTEM, param0->unk_6A8, v0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
-        sub_0201A9A4(&param0->unk_04[30]);
+        Window_ScheduleCopyToVRAM(&param0->unk_04[30]);
     }
 
     if (param1 & 2) {
         MessageLoader_GetStrbuf(param0->unk_69C, 1, param0->unk_6A8);
         v0 = sub_020825A4(0, param0->unk_6A8, param0->unk_04[31].width * 8);
         Text_AddPrinterWithParamsAndColor(&param0->unk_04[31], FONT_SYSTEM, param0->unk_6A8, v0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
-        sub_0201A9A4(&param0->unk_04[31]);
+        Window_ScheduleCopyToVRAM(&param0->unk_04[31]);
     }
 }
 
@@ -572,14 +572,14 @@ static void sub_02082680(GameWindowLayout *param0, Window *param1, u32 param2, u
         sub_0200E060(param1, 1, (1 + 9), 15);
     }
 
-    BGL_FillWindow(param1, 15);
+    Window_FillTilemap(param1, 15);
 
     if (param2 != 0xffffffff) {
         MessageLoader_GetStrbuf(param0->unk_69C, param2, param0->unk_6A4);
     }
 
     Text_AddPrinterWithParams(param1, FONT_MESSAGE, param0->unk_6A4, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
-    sub_0201A9A4(param1);
+    Window_ScheduleCopyToVRAM(param1);
 }
 
 void sub_020826E0(GameWindowLayout *param0, u32 param1, u8 param2)
@@ -600,7 +600,7 @@ void sub_02082708(GameWindowLayout *param0, u32 param1, u8 param2)
         sub_0200E060(v0, 1, (1 + 9), 15);
     }
 
-    BGL_FillWindow(v0, 15);
+    Window_FillTilemap(v0, 15);
 
     if (param1 != 0xffffffff) {
         MessageLoader_GetStrbuf(param0->unk_69C, param1, param0->unk_6A4);
@@ -650,7 +650,7 @@ static void sub_02082810(GameWindowLayout *param0, u8 param1, u8 param2)
 
     v0 = &param0->unk_04[4 + param1 * 5];
 
-    BGL_FillWindow(v0, 0);
+    Window_FillTilemap(v0, 0);
 
     switch (param2) {
     case 0:
@@ -663,7 +663,7 @@ static void sub_02082810(GameWindowLayout *param0, u8 param1, u8 param2)
 
     Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, v1, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
     Strbuf_Free(v1);
-    sub_0201A9A4(v0);
+    Window_ScheduleCopyToVRAM(v0);
 }
 
 static void sub_02082880(GameWindowLayout *param0, u8 param1, u8 param2)
@@ -673,7 +673,7 @@ static void sub_02082880(GameWindowLayout *param0, u8 param1, u8 param2)
 
     v0 = &param0->unk_04[4 + param1 * 5];
 
-    BGL_FillWindow(v0, 0);
+    Window_FillTilemap(v0, 0);
 
     switch (param2) {
     case 0:
@@ -689,7 +689,7 @@ static void sub_02082880(GameWindowLayout *param0, u8 param1, u8 param2)
 
     Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, v1, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
     Strbuf_Free(v1);
-    sub_0201A9A4(v0);
+    Window_ScheduleCopyToVRAM(v0);
 }
 
 static void sub_02082900(GameWindowLayout *param0, u8 param1, u8 param2)
@@ -699,7 +699,7 @@ static void sub_02082900(GameWindowLayout *param0, u8 param1, u8 param2)
 
     v0 = &param0->unk_04[4 + param1 * 5];
 
-    BGL_FillWindow(v0, 0);
+    Window_FillTilemap(v0, 0);
 
     if (param2 == 0) {
         v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 181);
@@ -709,7 +709,7 @@ static void sub_02082900(GameWindowLayout *param0, u8 param1, u8 param2)
 
     Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, v1, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
     Strbuf_Free(v1);
-    sub_0201A9A4(v0);
+    Window_ScheduleCopyToVRAM(v0);
 }
 
 static void sub_02082964(GameWindowLayout *param0, u8 param1, u8 param2)
@@ -719,7 +719,7 @@ static void sub_02082964(GameWindowLayout *param0, u8 param1, u8 param2)
 
     v0 = &param0->unk_04[4 + param1 * 5];
 
-    BGL_FillWindow(v0, 0);
+    Window_FillTilemap(v0, 0);
 
     if (param2 < 6) {
         v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 169 + param2);
@@ -731,7 +731,7 @@ static void sub_02082964(GameWindowLayout *param0, u8 param1, u8 param2)
 
     Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, v1, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
     Strbuf_Free(v1);
-    sub_0201A9A4(v0);
+    Window_ScheduleCopyToVRAM(v0);
 }
 
 void sub_020829DC(GameWindowLayout *param0)
@@ -750,9 +750,9 @@ void sub_020829DC(GameWindowLayout *param0)
     v3[4] = (u16)Pokemon_GetValue(v0, MON_DATA_SP_DEF, NULL);
     v3[5] = (u16)Pokemon_GetValue(v0, MON_DATA_SPEED, NULL);
 
-    BGL_AddWindow(param0->unk_00, &param0->unk_254[0], 0, 1, 1, 14, 12, 0, 576);
+    Window_Add(param0->unk_00, &param0->unk_254[0], 0, 1, 1, 14, 12, 0, 576);
     Window_Show(&param0->unk_254[0], 1, 1, 14);
-    BGL_FillWindow(&param0->unk_254[0], 15);
+    Window_FillTilemap(&param0->unk_254[0], 15);
 
     for (v2 = 0; v2 < 6; v2++) {
         v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 185 + v2);
@@ -773,7 +773,7 @@ void sub_020829DC(GameWindowLayout *param0)
         param0->unk_B14[v2] = v3[v2];
     }
 
-    sub_0201A9A4(&param0->unk_254[0]);
+    Window_ScheduleCopyToVRAM(&param0->unk_254[0]);
 }
 
 void sub_02082B58(GameWindowLayout *param0)
@@ -782,7 +782,7 @@ void sub_02082B58(GameWindowLayout *param0)
     u32 v1;
     u32 v2;
 
-    BGL_WindowColor(&param0->unk_254[0], 15, 80, 0, 32, 14 * 8);
+    Window_FillRectWithColor(&param0->unk_254[0], 15, 80, 0, 32, 14 * 8);
     v0 = MessageLoader_GetNewStrbuf(param0->unk_69C, 192);
 
     for (v2 = 0; v2 < 6; v2++) {
@@ -795,11 +795,11 @@ void sub_02082B58(GameWindowLayout *param0)
     }
 
     Strbuf_Free(v0);
-    sub_0201A9A4(&param0->unk_254[0]);
+    Window_ScheduleCopyToVRAM(&param0->unk_254[0]);
 }
 
 void sub_02082C10(GameWindowLayout *param0)
 {
     Window_Clear(&param0->unk_254[0], 0);
-    BGL_DeleteWindow(&param0->unk_254[0]);
+    Window_Remove(&param0->unk_254[0]);
 }

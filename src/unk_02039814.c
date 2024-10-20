@@ -133,16 +133,16 @@ void sub_02039834(int param0, int param1, int param2)
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);
 
     GXLayers_SetBanks(&Unk_020E5EFC);
-    v0 = sub_02018340(param0);
+    v0 = BgConfig_New(param0);
 
-    sub_02018368(&Unk_020E5ED0);
-    sub_020183C4(v0, 0, &Unk_020E5EE0, 0);
-    sub_02019EBC(v0, 0);
+    SetAllGraphicsModes(&Unk_020E5ED0);
+    Bg_InitFromTemplate(v0, 0, &Unk_020E5EE0, 0);
+    Bg_ClearTilemap(v0, 0);
     sub_0200DAA4(v0, 0, (512 - 9), 2, 0, param0);
     Font_LoadTextPalette(0, 1 * (2 * 16), param0);
-    sub_02019690(0, 32, 0, param0);
-    sub_0201975C(0, 0x6c21);
-    sub_0201975C(4, 0x6c21);
+    Bg_ClearTilesRange(0, 32, 0, param0);
+    Bg_MaskPalette(0, 0x6c21);
+    Bg_MaskPalette(4, 0x6c21);
 
     v2 = MessageLoader_Init(1, 26, 214, param0);
     v3 = Strbuf_Init(0x180, param0);
@@ -150,8 +150,8 @@ void sub_02039834(int param0, int param1, int param2)
     Text_ResetAllPrinters();
     v5 = StringTemplate_Default(param0);
 
-    sub_0201A8D4(v0, &v1, &Unk_020E5EC8);
-    BGL_WindowColor(&v1, 15, 0, 0, 26 * 8, 18 * 8);
+    Window_AddFromTemplate(v0, &v1, &Unk_020E5EC8);
+    Window_FillRectWithColor(&v1, 15, 0, 0, 26 * 8, 18 * 8);
     Window_Show(&v1, 0, (512 - 9), 2);
 
     StringTemplate_SetNumber(v5, 0, param2, 5, 2, 1);
@@ -166,7 +166,7 @@ void sub_02039834(int param0, int param1, int param2)
     sub_0200F338(1);
     sub_0200AB4C(0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
 
-    BGL_DeleteWindow(&v1);
+    Window_Remove(&v1);
     MessageLoader_Free(v2);
     StringTemplate_Free(v5);
     Heap_FreeToHeap(v0);

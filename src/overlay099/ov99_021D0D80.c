@@ -118,7 +118,7 @@ int ov99_021D0D80(OverlayManager *param0, int *param1)
     sub_02002F70(v0->unk_0C, 3, 0x200, 75);
     sub_02003858(v0->unk_0C, 1);
 
-    v0->unk_08 = sub_02018340(75);
+    v0->unk_08 = BgConfig_New(75);
 
     sub_0201DBEC(64, 75);
     SetAutorepeat(4, 8);
@@ -175,8 +175,8 @@ int ov99_021D0D80(OverlayManager *param0, int *param1)
     sub_0200F44C(0, 0);
     sub_0200F44C(1, 0);
 
-    sub_02019120(1, 1);
-    sub_02019120(5, 1);
+    Bg_ToggleLayer(1, 1);
+    Bg_ToggleLayer(5, 1);
 
     return 1;
 }
@@ -313,14 +313,14 @@ static void ov99_021D1270(UnkStruct_ov99_021D2CB0 *param0)
     param0->unk_110C = NULL;
     param0->unk_1108 = NULL;
 
-    sub_02019120(1, 0);
-    sub_02019120(5, 0);
-    sub_02019044(param0->unk_08, 7);
-    sub_02019044(param0->unk_08, 5);
-    sub_02019044(param0->unk_08, 6);
-    sub_02019044(param0->unk_08, 3);
-    sub_02019044(param0->unk_08, 2);
-    sub_02019044(param0->unk_08, 1);
+    Bg_ToggleLayer(1, 0);
+    Bg_ToggleLayer(5, 0);
+    Bg_FreeTilemapBuffer(param0->unk_08, 7);
+    Bg_FreeTilemapBuffer(param0->unk_08, 5);
+    Bg_FreeTilemapBuffer(param0->unk_08, 6);
+    Bg_FreeTilemapBuffer(param0->unk_08, 3);
+    Bg_FreeTilemapBuffer(param0->unk_08, 2);
+    Bg_FreeTilemapBuffer(param0->unk_08, 1);
     Heap_FreeToHeap(param0->unk_08);
 
     ov99_021D1A4C(param0->unk_10);
@@ -334,7 +334,7 @@ void ov99_021D12F0(UnkStruct_ov99_021D2CB0 *param0)
 
     ov99_021D1270(param0);
 
-    param0->unk_08 = sub_02018340(75);
+    param0->unk_08 = BgConfig_New(75);
     ov99_021D1580(param0->unk_08);
 }
 
@@ -342,10 +342,10 @@ static void ov99_021D1314(UnkStruct_ov99_021D2CB0 *param0)
 {
     GF_ASSERT(param0->unk_1108 == NULL);
 
-    sub_02019044(param0->unk_08, 1);
-    sub_02019044(param0->unk_08, 2);
-    sub_02019044(param0->unk_08, 3);
-    sub_02019044(param0->unk_08, 7);
+    Bg_FreeTilemapBuffer(param0->unk_08, 1);
+    Bg_FreeTilemapBuffer(param0->unk_08, 2);
+    Bg_FreeTilemapBuffer(param0->unk_08, 3);
+    Bg_FreeTilemapBuffer(param0->unk_08, 7);
     Heap_FreeToHeap(param0->unk_08);
 }
 
@@ -356,7 +356,7 @@ static void ov99_021D1350(void *param0)
     sub_0201DCAC();
     sub_0200C800();
     sub_02003694(v0->unk_0C);
-    sub_0201C2B8(v0->unk_08);
+    Bg_RunScheduledUpdates(v0->unk_08);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
@@ -396,7 +396,7 @@ static void ov99_021D1380(BgConfig *param0)
             GX_BG0_AS_3D,
         };
 
-        sub_02018368(&v1);
+        SetAllGraphicsModes(&v1);
     }
 
     {
@@ -448,19 +448,19 @@ static void ov99_021D1380(BgConfig *param0)
             },
         };
 
-        sub_020183C4(param0, 1, &v2[0], 0);
-        sub_02019EBC(param0, 1);
-        sub_02019184(param0, 1, 0, 0);
-        sub_02019184(param0, 1, 3, 0);
+        Bg_InitFromTemplate(param0, 1, &v2[0], 0);
+        Bg_ClearTilemap(param0, 1);
+        Bg_SetOffset(param0, 1, 0, 0);
+        Bg_SetOffset(param0, 1, 3, 0);
 
-        sub_020183C4(param0, 2, &v2[1], 0);
-        sub_02019EBC(param0, 2);
-        sub_02019184(param0, 2, 0, 0);
-        sub_02019184(param0, 2, 3, 0);
+        Bg_InitFromTemplate(param0, 2, &v2[1], 0);
+        Bg_ClearTilemap(param0, 2);
+        Bg_SetOffset(param0, 2, 0, 0);
+        Bg_SetOffset(param0, 2, 3, 0);
 
-        sub_020183C4(param0, 3, &v2[2], 2);
-        sub_02019184(param0, 3, 0, 0);
-        sub_02019184(param0, 3, 3, 0);
+        Bg_InitFromTemplate(param0, 3, &v2[2], 2);
+        Bg_SetOffset(param0, 3, 0, 0);
+        Bg_SetOffset(param0, 3, 3, 0);
 
         G2_SetBG0Priority(1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
@@ -515,29 +515,29 @@ static void ov99_021D1380(BgConfig *param0)
             },
         };
 
-        sub_020183C4(param0, 5, &v3[0], 0);
-        sub_02019EBC(param0, 5);
-        sub_02019184(param0, 5, 0, 0);
-        sub_02019184(param0, 5, 3, 0);
+        Bg_InitFromTemplate(param0, 5, &v3[0], 0);
+        Bg_ClearTilemap(param0, 5);
+        Bg_SetOffset(param0, 5, 0, 0);
+        Bg_SetOffset(param0, 5, 3, 0);
 
-        sub_020183C4(param0, 6, &v3[1], 0);
-        sub_02019EBC(param0, 6);
-        sub_02019184(param0, 6, 0, 0);
-        sub_02019184(param0, 6, 3, 0);
+        Bg_InitFromTemplate(param0, 6, &v3[1], 0);
+        Bg_ClearTilemap(param0, 6);
+        Bg_SetOffset(param0, 6, 0, 0);
+        Bg_SetOffset(param0, 6, 3, 0);
 
-        sub_020183C4(param0, 7, &v3[2], 0);
-        sub_02019EBC(param0, 7);
-        sub_02019184(param0, 7, 0, 0);
-        sub_02019184(param0, 7, 3, 0);
+        Bg_InitFromTemplate(param0, 7, &v3[2], 0);
+        Bg_ClearTilemap(param0, 7);
+        Bg_SetOffset(param0, 7, 0, 0);
+        Bg_SetOffset(param0, 7, 3, 0);
     }
 
-    sub_02019690(1, 32, 0, 75);
-    sub_02019690(5, 32, 0, 75);
-    sub_02019690(6, 32, 0, 75);
-    sub_02019690(7, 32, 0, 75);
+    Bg_ClearTilesRange(1, 32, 0, 75);
+    Bg_ClearTilesRange(5, 32, 0, 75);
+    Bg_ClearTilesRange(6, 32, 0, 75);
+    Bg_ClearTilesRange(7, 32, 0, 75);
 
-    sub_02019120(3, 0);
-    sub_02019120(6, 0);
+    Bg_ToggleLayer(3, 0);
+    Bg_ToggleLayer(6, 0);
 }
 
 static void ov99_021D1580(BgConfig *param0)
@@ -575,7 +575,7 @@ static void ov99_021D1580(BgConfig *param0)
             GX_BG0_AS_2D,
         };
 
-        sub_02018368(&v1);
+        SetAllGraphicsModes(&v1);
     }
 
     {
@@ -627,20 +627,20 @@ static void ov99_021D1580(BgConfig *param0)
             },
         };
 
-        sub_020183C4(param0, 1, &v2[0], 0);
-        sub_02019EBC(param0, 1);
-        sub_02019184(param0, 1, 0, 0);
-        sub_02019184(param0, 1, 3, 0);
+        Bg_InitFromTemplate(param0, 1, &v2[0], 0);
+        Bg_ClearTilemap(param0, 1);
+        Bg_SetOffset(param0, 1, 0, 0);
+        Bg_SetOffset(param0, 1, 3, 0);
 
-        sub_020183C4(param0, 2, &v2[1], 2);
-        sub_02019EBC(param0, 2);
-        sub_02019184(param0, 2, 0, 0);
-        sub_02019184(param0, 2, 3, 0);
+        Bg_InitFromTemplate(param0, 2, &v2[1], 2);
+        Bg_ClearTilemap(param0, 2);
+        Bg_SetOffset(param0, 2, 0, 0);
+        Bg_SetOffset(param0, 2, 3, 0);
 
-        sub_020183C4(param0, 3, &v2[2], 2);
-        sub_02019EBC(param0, 3);
-        sub_02019184(param0, 3, 0, 0);
-        sub_02019184(param0, 3, 3, 0);
+        Bg_InitFromTemplate(param0, 3, &v2[2], 2);
+        Bg_ClearTilemap(param0, 3);
+        Bg_SetOffset(param0, 3, 0, 0);
+        Bg_SetOffset(param0, 3, 3, 0);
     }
 
     {
@@ -662,13 +662,13 @@ static void ov99_021D1580(BgConfig *param0)
             },
         };
 
-        sub_020183C4(param0, 7, &v3[0], 0);
-        sub_02019EBC(param0, 7);
-        sub_02019184(param0, 7, 0, 0);
-        sub_02019184(param0, 7, 3, 0);
+        Bg_InitFromTemplate(param0, 7, &v3[0], 0);
+        Bg_ClearTilemap(param0, 7);
+        Bg_SetOffset(param0, 7, 0, 0);
+        Bg_SetOffset(param0, 7, 3, 0);
     }
 
-    sub_02019690(7, 32, 0, 75);
+    Bg_ClearTilesRange(7, 32, 0, 75);
 }
 
 static void ov99_021D16E4(UnkStruct_ov99_021D2CB0 *param0)

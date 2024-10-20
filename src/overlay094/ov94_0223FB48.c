@@ -170,7 +170,7 @@ static void ov94_0223FC08(BgConfig *param0)
             GX_BG0_AS_2D
         };
 
-        sub_02018368(&v0);
+        SetAllGraphicsModes(&v0);
     }
 
     {
@@ -190,8 +190,8 @@ static void ov94_0223FC08(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 0, &v1, 0);
-        sub_02019EBC(param0, 0);
+        Bg_InitFromTemplate(param0, 0, &v1, 0);
+        Bg_ClearTilemap(param0, 0);
     }
 
     {
@@ -211,7 +211,7 @@ static void ov94_0223FC08(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 1, &v2, 0);
+        Bg_InitFromTemplate(param0, 1, &v2, 0);
     }
 
     {
@@ -231,8 +231,8 @@ static void ov94_0223FC08(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 2, &v3, 0);
-        sub_02019EBC(param0, 2);
+        Bg_InitFromTemplate(param0, 2, &v3, 0);
+        Bg_ClearTilemap(param0, 2);
     }
 
     {
@@ -252,8 +252,8 @@ static void ov94_0223FC08(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 4, &v4, 0);
-        sub_02019EBC(param0, 4);
+        Bg_InitFromTemplate(param0, 4, &v4, 0);
+        Bg_ClearTilemap(param0, 4);
     }
 
     {
@@ -273,22 +273,22 @@ static void ov94_0223FC08(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 5, &v5, 0);
+        Bg_InitFromTemplate(param0, 5, &v5, 0);
     }
 
-    sub_02019690(0, 32, 0, 62);
-    sub_02019690(4, 32, 0, 62);
+    Bg_ClearTilesRange(0, 32, 0, 62);
+    Bg_ClearTilesRange(4, 32, 0, 62);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 static void ov94_0223FD20(BgConfig *param0)
 {
-    sub_02019044(param0, 5);
-    sub_02019044(param0, 4);
-    sub_02019044(param0, 2);
-    sub_02019044(param0, 1);
-    sub_02019044(param0, 0);
+    Bg_FreeTilemapBuffer(param0, 5);
+    Bg_FreeTilemapBuffer(param0, 4);
+    Bg_FreeTilemapBuffer(param0, 2);
+    Bg_FreeTilemapBuffer(param0, 1);
+    Bg_FreeTilemapBuffer(param0, 0);
 }
 
 static void ov94_0223FD4C(UnkStruct_ov94_0223FD4C *param0)
@@ -435,34 +435,34 @@ static void ov94_0223FFC8(UnkStruct_ov94_0223FD4C *param0)
 
 static void ov94_02240028(UnkStruct_ov94_0223FD4C *param0)
 {
-    BGL_AddWindow(param0->unk_04, &param0->unk_F7C, 0, 1, 1, 28, 2, 13, ((1 + (18 + 12)) + 9));
-    BGL_FillWindow(&param0->unk_F7C, 0x0);
+    Window_Add(param0->unk_04, &param0->unk_F7C, 0, 1, 1, 28, 2, 13, ((1 + (18 + 12)) + 9));
+    Window_FillTilemap(&param0->unk_F7C, 0x0);
 
     ov94_02245900(&param0->unk_F7C, param0->unk_BB0, 0, 1, 0, TEXT_COLOR(15, 14, 0));
 
-    BGL_AddWindow(param0->unk_04, &param0->unk_F8C, 0, 5, 3, 13, 3, 13, (((1 + (18 + 12)) + 9) + 28 * 2));
-    BGL_FillWindow(&param0->unk_F8C, 0x0);
-    sub_0201A954(&param0->unk_F8C);
-    BGL_AddWindow(param0->unk_04, &param0->unk_F5C, 0, 2, 21, 27, 2, 13, ((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13));
-    BGL_FillWindow(&param0->unk_F5C, 0x0);
-    BGL_AddWindow(param0->unk_04, &param0->unk_109C, 0, 2, 19, 27, 4, 13, (((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2));
-    BGL_FillWindow(&param0->unk_109C, 0x0);
-    BGL_AddWindow(param0->unk_04, &param0->unk_F9C[1], 1, 25, 21, 6, 2, 0, ((((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2) + 2 * 19));
-    BGL_FillWindow(&param0->unk_F9C[1], 0x606);
+    Window_Add(param0->unk_04, &param0->unk_F8C, 0, 5, 3, 13, 3, 13, (((1 + (18 + 12)) + 9) + 28 * 2));
+    Window_FillTilemap(&param0->unk_F8C, 0x0);
+    Window_CopyToVRAM(&param0->unk_F8C);
+    Window_Add(param0->unk_04, &param0->unk_F5C, 0, 2, 21, 27, 2, 13, ((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13));
+    Window_FillTilemap(&param0->unk_F5C, 0x0);
+    Window_Add(param0->unk_04, &param0->unk_109C, 0, 2, 19, 27, 4, 13, (((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2));
+    Window_FillTilemap(&param0->unk_109C, 0x0);
+    Window_Add(param0->unk_04, &param0->unk_F9C[1], 1, 25, 21, 6, 2, 0, ((((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2) + 2 * 19));
+    Window_FillTilemap(&param0->unk_F9C[1], 0x606);
 
     ov94_02245900(&param0->unk_F9C[1], param0->unk_BA8, 0, 1, 1, TEXT_COLOR(1, 3, 6));
 
-    BGL_AddWindow(param0->unk_04, &param0->unk_F9C[0], 0, 21, 13, (5 * 2), 6, 13, (((((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2) + 2 * 19) + 6 * 2));
+    Window_Add(param0->unk_04, &param0->unk_F9C[0], 0, 21, 13, (5 * 2), 6, 13, (((((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2) + 2 * 19) + 6 * 2));
 }
 
 static void ov94_02240190(UnkStruct_ov94_0223FD4C *param0)
 {
-    BGL_DeleteWindow(&param0->unk_109C);
-    BGL_DeleteWindow(&param0->unk_F9C[1]);
-    BGL_DeleteWindow(&param0->unk_F9C[0]);
-    BGL_DeleteWindow(&param0->unk_F5C);
-    BGL_DeleteWindow(&param0->unk_F8C);
-    BGL_DeleteWindow(&param0->unk_F7C);
+    Window_Remove(&param0->unk_109C);
+    Window_Remove(&param0->unk_F9C[1]);
+    Window_Remove(&param0->unk_F9C[0]);
+    Window_Remove(&param0->unk_F5C);
+    Window_Remove(&param0->unk_F8C);
+    Window_Remove(&param0->unk_F7C);
 }
 
 static void ov94_022401E0(UnkStruct_ov94_0223FD4C *param0)
@@ -785,7 +785,7 @@ static int ov94_02240830(UnkStruct_ov94_0223FD4C *param0)
     v0.unk_00 = param0->unk_10CC;
     v0.unk_04 = &param0->unk_F9C[0];
 
-    BGL_FillWindow(v0.unk_04, 0xf0f);
+    Window_FillTilemap(v0.unk_04, 0xf0f);
     Window_Show(&param0->unk_F9C[0], 1, (1 + (18 + 12)), 11);
 
     param0->unk_10D4 = sub_02001B7C(&v0, 9, 0, 0, 62, PAD_BUTTON_B);
@@ -1017,7 +1017,7 @@ static void ov94_02240D58(UnkStruct_ov94_0223FD4C *param0, int param1, int param
         v0 = &param0->unk_109C;
     }
 
-    BGL_FillWindow(v0, 0xf0f);
+    Window_FillTilemap(v0, 0xf0f);
     sub_0200E060(v0, 0, 1, 10);
 
     param0->unk_BE0 = Text_AddPrinterWithParams(v0, FONT_MESSAGE, param0->unk_BAC, 0, 0, param2, NULL);
@@ -1183,7 +1183,7 @@ static void ov94_02240FA0(UnkStruct_ov94_0223FD4C *param0, int param1)
     }
 
     NARC_dtor(v6);
-    BGL_FillWindow(&param0->unk_F8C, 0x0);
+    Window_FillTilemap(&param0->unk_F8C, 0x0);
 
     ov94_02245900(&param0->unk_F8C, param0->unk_BA4, 0, 5, 1, TEXT_COLOR(1, 2, 0));
 

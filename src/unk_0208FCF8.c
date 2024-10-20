@@ -138,8 +138,8 @@ void sub_0208FCF8(PokemonSummaryApp *param0)
     u16 v0;
 
     for (v0 = 0; v0 < 36; v0++) {
-        sub_0201A8D4(param0->bgl, &param0->staticWindows[v0], &Unk_020F4ED0[v0]);
-        BGL_FillWindow(&param0->staticWindows[v0], 0);
+        Window_AddFromTemplate(param0->bgl, &param0->staticWindows[v0], &Unk_020F4ED0[v0]);
+        Window_FillTilemap(&param0->staticWindows[v0], 0);
     }
 
     sub_020902B0(param0);
@@ -191,10 +191,10 @@ void sub_0208FD40(PokemonSummaryApp *param0)
         return;
     }
 
-    param0->extraWindows = sub_0201A778(19, param0->numExtraWindows);
+    param0->extraWindows = Window_New(19, param0->numExtraWindows);
 
     for (v1 = 0; v1 < param0->numExtraWindows; v1++) {
-        sub_0201A8D4(param0->bgl, &param0->extraWindows[v1], &v0[v1]);
+        Window_AddFromTemplate(param0->bgl, &param0->extraWindows[v1], &v0[v1]);
     }
 }
 
@@ -218,7 +218,7 @@ void sub_0208FE34(PokemonSummaryApp *param0)
         return;
     }
 
-    sub_0201A928(param0->extraWindows, param0->numExtraWindows);
+    Windows_Delete(param0->extraWindows, param0->numExtraWindows);
 }
 
 void sub_0208FE88(PokemonSummaryApp *param0)
@@ -228,7 +228,7 @@ void sub_0208FE88(PokemonSummaryApp *param0)
     sub_0208FE34(param0);
 
     for (v0 = 0; v0 < 36; v0++) {
-        BGL_DeleteWindow(&param0->staticWindows[v0]);
+        Window_Remove(&param0->staticWindows[v0]);
     }
 }
 
@@ -239,7 +239,7 @@ void sub_0208FEA4(PokemonSummaryApp *param0)
 
     v0 = &param0->staticWindows[34];
 
-    BGL_FillWindow(v0, 0);
+    Window_FillTilemap(v0, 0);
     Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->monData.nickname, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
 
     if (param0->monData.showGender == 0) {
@@ -252,7 +252,7 @@ void sub_0208FEA4(PokemonSummaryApp *param0)
         }
     }
 
-    sub_0201A9A4(v0);
+    Window_ScheduleCopyToVRAM(v0);
 }
 
 void sub_0208FF3C(PokemonSummaryApp *param0)
@@ -262,7 +262,7 @@ void sub_0208FF3C(PokemonSummaryApp *param0)
 
     v0 = &param0->staticWindows[33];
 
-    BGL_FillWindow(v0, 0);
+    Window_FillTilemap(v0, 0);
 
     if (param0->monData.isEgg == 0) {
         sub_0200C578(param0->unk_684, 1, v0, 0, 5);
@@ -275,14 +275,14 @@ void sub_0208FF3C(PokemonSummaryApp *param0)
         Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->strbuf, 16, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     }
 
-    sub_0201A9A4(v0);
+    Window_ScheduleCopyToVRAM(v0);
 }
 
 void sub_0208FFE0(PokemonSummaryApp *param0)
 {
     Strbuf *v0;
 
-    BGL_FillWindow(&param0->staticWindows[32], 0);
+    Window_FillTilemap(&param0->staticWindows[32], 0);
 
     if (param0->monData.heldItem != 0) {
         StringTemplate_SetItemName(param0->strFormatter, 0, param0->monData.heldItem);
@@ -294,15 +294,15 @@ void sub_0208FFE0(PokemonSummaryApp *param0)
     }
 
     sub_020900D8(param0, &param0->staticWindows[32], TEXT_COLOR(1, 2, 0), 0);
-    sub_0201A9A4(&param0->staticWindows[6]);
-    sub_0201A9A4(&param0->staticWindows[32]);
+    Window_ScheduleCopyToVRAM(&param0->staticWindows[6]);
+    Window_ScheduleCopyToVRAM(&param0->staticWindows[32]);
 }
 
 void sub_02090064(PokemonSummaryApp *param0, u32 param1)
 {
-    BGL_FillWindow(&param0->staticWindows[35], 0);
+    Window_FillTilemap(&param0->staticWindows[35], 0);
     sub_02090158(param0, 35, param1, TEXT_COLOR(15, 14, 0), 0);
-    sub_0201A9A4(&param0->staticWindows[35]);
+    Window_ScheduleCopyToVRAM(&param0->staticWindows[35]);
 }
 
 static BOOL sub_02090098(PokemonSummaryApp *param0)
@@ -326,12 +326,12 @@ static void sub_020900D8(PokemonSummaryApp *param0, Window *param1, TextColor pa
         break;
     case 1:
         v0 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->strbuf, 0);
-        v1 = sub_0201C294(param1) * 8;
+        v1 = Window_GetWidth(param1) * 8;
         v2 = v1 - v0;
         break;
     case 2:
         v0 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->strbuf, 0);
-        v1 = sub_0201C294(param1) * 8;
+        v1 = Window_GetWidth(param1) * 8;
         v2 = (v1 - v0) / 2;
         break;
     }
@@ -424,8 +424,8 @@ static void sub_020902B0(PokemonSummaryApp *param0)
 
 void sub_020904C4(PokemonSummaryApp *param0)
 {
-    sub_02019CB8(param0->bgl, 1, 0, 0, 0, 32, 2, 16);
-    sub_02019CB8(param0->bgl, 1, 0, 14, 2, 18, 22, 16);
+    Bg_FillTilemapRect(param0->bgl, 1, 0, 0, 0, 32, 2, 16);
+    Bg_FillTilemapRect(param0->bgl, 1, 0, 14, 2, 18, 22, 16);
 
     switch (param0->page) {
     case 0:
@@ -457,22 +457,22 @@ void sub_020904C4(PokemonSummaryApp *param0)
 
 static void sub_02090578(PokemonSummaryApp *param0)
 {
-    sub_0201A9A4(&param0->staticWindows[0]);
-    sub_0201A9A4(&param0->staticWindows[7]);
-    sub_0201A9A4(&param0->staticWindows[8]);
-    sub_0201A9A4(&param0->staticWindows[9]);
-    sub_0201A9A4(&param0->staticWindows[10]);
-    sub_0201A9A4(&param0->staticWindows[11]);
-    sub_0201A9A4(&param0->staticWindows[12]);
-    sub_0201A9A4(&param0->staticWindows[13]);
-    sub_0201A9A4(&param0->staticWindows[14]);
+    Window_ScheduleCopyToVRAM(&param0->staticWindows[0]);
+    Window_ScheduleCopyToVRAM(&param0->staticWindows[7]);
+    Window_ScheduleCopyToVRAM(&param0->staticWindows[8]);
+    Window_ScheduleCopyToVRAM(&param0->staticWindows[9]);
+    Window_ScheduleCopyToVRAM(&param0->staticWindows[10]);
+    Window_ScheduleCopyToVRAM(&param0->staticWindows[11]);
+    Window_ScheduleCopyToVRAM(&param0->staticWindows[12]);
+    Window_ScheduleCopyToVRAM(&param0->staticWindows[13]);
+    Window_ScheduleCopyToVRAM(&param0->staticWindows[14]);
 
-    BGL_FillWindow(&param0->extraWindows[0], 0);
-    BGL_FillWindow(&param0->extraWindows[1], 0);
-    BGL_FillWindow(&param0->extraWindows[2], 0);
-    BGL_FillWindow(&param0->extraWindows[3], 0);
-    BGL_FillWindow(&param0->extraWindows[4], 0);
-    BGL_FillWindow(&param0->extraWindows[5], 0);
+    Window_FillTilemap(&param0->extraWindows[0], 0);
+    Window_FillTilemap(&param0->extraWindows[1], 0);
+    Window_FillTilemap(&param0->extraWindows[2], 0);
+    Window_FillTilemap(&param0->extraWindows[3], 0);
+    Window_FillTilemap(&param0->extraWindows[4], 0);
+    Window_FillTilemap(&param0->extraWindows[5], 0);
 
     {
         u32 v0 = sub_0207A294(param0->data->dexMode, param0->monData.species);
@@ -522,12 +522,12 @@ static void sub_02090578(PokemonSummaryApp *param0)
     }
 
     sub_020900D8(param0, &param0->extraWindows[5], TEXT_COLOR(1, 2, 0), 2);
-    sub_0201A9A4(&param0->extraWindows[0]);
-    sub_0201A9A4(&param0->extraWindows[1]);
-    sub_0201A9A4(&param0->extraWindows[2]);
-    sub_0201A9A4(&param0->extraWindows[3]);
-    sub_0201A9A4(&param0->extraWindows[4]);
-    sub_0201A9A4(&param0->extraWindows[5]);
+    Window_ScheduleCopyToVRAM(&param0->extraWindows[0]);
+    Window_ScheduleCopyToVRAM(&param0->extraWindows[1]);
+    Window_ScheduleCopyToVRAM(&param0->extraWindows[2]);
+    Window_ScheduleCopyToVRAM(&param0->extraWindows[3]);
+    Window_ScheduleCopyToVRAM(&param0->extraWindows[4]);
+    Window_ScheduleCopyToVRAM(&param0->extraWindows[5]);
 }
 
 static void sub_02090800(Window *param0, Pokemon *param1, BOOL param2)
@@ -561,8 +561,8 @@ static void sub_020908CC(PokemonSummaryApp *param0)
 {
     Strbuf *v0;
 
-    sub_0201A9A4(&param0->staticWindows[1]);
-    BGL_FillWindow(&param0->extraWindows[0], 0);
+    Window_ScheduleCopyToVRAM(&param0->staticWindows[1]);
+    Window_FillTilemap(&param0->extraWindows[0], 0);
 
     {
         void *v1 = PokemonSummary_MonData(param0);
@@ -581,32 +581,32 @@ static void sub_020908CC(PokemonSummaryApp *param0)
         }
     }
 
-    sub_0201A9A4(&param0->extraWindows[0]);
+    Window_ScheduleCopyToVRAM(&param0->extraWindows[0]);
 }
 
 static void sub_0209093C(PokemonSummaryApp *param0)
 {
     u32 v0;
 
-    sub_0201A9A4(&param0->staticWindows[2]);
-    sub_0201A9A4(&param0->staticWindows[15]);
-    sub_0201A9A4(&param0->staticWindows[16]);
-    sub_0201A9A4(&param0->staticWindows[17]);
-    sub_0201A9A4(&param0->staticWindows[18]);
-    sub_0201A9A4(&param0->staticWindows[19]);
-    sub_0201A9A4(&param0->staticWindows[20]);
-    sub_0201A9A4(&param0->staticWindows[21]);
+    Window_ScheduleCopyToVRAM(&param0->staticWindows[2]);
+    Window_ScheduleCopyToVRAM(&param0->staticWindows[15]);
+    Window_ScheduleCopyToVRAM(&param0->staticWindows[16]);
+    Window_ScheduleCopyToVRAM(&param0->staticWindows[17]);
+    Window_ScheduleCopyToVRAM(&param0->staticWindows[18]);
+    Window_ScheduleCopyToVRAM(&param0->staticWindows[19]);
+    Window_ScheduleCopyToVRAM(&param0->staticWindows[20]);
+    Window_ScheduleCopyToVRAM(&param0->staticWindows[21]);
 
-    BGL_FillWindow(&param0->extraWindows[0], 0);
-    BGL_FillWindow(&param0->extraWindows[1], 0);
-    BGL_FillWindow(&param0->extraWindows[2], 0);
-    BGL_FillWindow(&param0->extraWindows[3], 0);
-    BGL_FillWindow(&param0->extraWindows[4], 0);
-    BGL_FillWindow(&param0->extraWindows[5], 0);
-    BGL_FillWindow(&param0->extraWindows[6], 0);
-    BGL_FillWindow(&param0->extraWindows[7], 0);
+    Window_FillTilemap(&param0->extraWindows[0], 0);
+    Window_FillTilemap(&param0->extraWindows[1], 0);
+    Window_FillTilemap(&param0->extraWindows[2], 0);
+    Window_FillTilemap(&param0->extraWindows[3], 0);
+    Window_FillTilemap(&param0->extraWindows[4], 0);
+    Window_FillTilemap(&param0->extraWindows[5], 0);
+    Window_FillTilemap(&param0->extraWindows[6], 0);
+    Window_FillTilemap(&param0->extraWindows[7], 0);
 
-    v0 = sub_0201C294(&param0->extraWindows[0]) * 8;
+    v0 = Window_GetWidth(&param0->extraWindows[0]) * 8;
 
     sub_020901D0(param0, 0, 117, 119, 118, param0->monData.curHP, param0->monData.maxHP, 3, v0 / 2, 0);
     sub_02090184(param0, 120, param0->monData.attack, 3, 0);
@@ -637,44 +637,44 @@ static void sub_0209093C(PokemonSummaryApp *param0)
         sub_020900D8(param0, &param0->extraWindows[7], TEXT_COLOR(1, 2, 0), 0);
     }
 
-    sub_0201A9A4(&param0->extraWindows[0]);
-    sub_0201A9A4(&param0->extraWindows[1]);
-    sub_0201A9A4(&param0->extraWindows[2]);
-    sub_0201A9A4(&param0->extraWindows[3]);
-    sub_0201A9A4(&param0->extraWindows[4]);
-    sub_0201A9A4(&param0->extraWindows[5]);
-    sub_0201A9A4(&param0->extraWindows[6]);
-    sub_0201A9A4(&param0->extraWindows[7]);
+    Window_ScheduleCopyToVRAM(&param0->extraWindows[0]);
+    Window_ScheduleCopyToVRAM(&param0->extraWindows[1]);
+    Window_ScheduleCopyToVRAM(&param0->extraWindows[2]);
+    Window_ScheduleCopyToVRAM(&param0->extraWindows[3]);
+    Window_ScheduleCopyToVRAM(&param0->extraWindows[4]);
+    Window_ScheduleCopyToVRAM(&param0->extraWindows[5]);
+    Window_ScheduleCopyToVRAM(&param0->extraWindows[6]);
+    Window_ScheduleCopyToVRAM(&param0->extraWindows[7]);
 }
 
 static void sub_02090BDC(PokemonSummaryApp *param0)
 {
-    sub_0201A9A4(&param0->staticWindows[3]);
-    sub_0201A9A4(&param0->staticWindows[22]);
+    Window_ScheduleCopyToVRAM(&param0->staticWindows[3]);
+    Window_ScheduleCopyToVRAM(&param0->staticWindows[22]);
 
     if ((param0->data->mode != 3) && (param0->data->mode != 4)) {
         return;
     }
 
-    BGL_FillWindow(&param0->extraWindows[1], 0);
+    Window_FillTilemap(&param0->extraWindows[1], 0);
     MessageLoader_GetStrbuf(param0->msgLoader, 165, param0->strbuf);
     sub_020900D8(param0, &param0->extraWindows[1], TEXT_COLOR(15, 14, 0), 0);
     MessageLoader_GetStrbuf(param0->msgLoader, 166 + param0->monData.preferredFlavor, param0->strbuf);
     Text_AddPrinterWithParamsAndColor(&param0->extraWindows[1], FONT_SYSTEM, param0->strbuf, 0, 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
-    sub_0201A9A4(&param0->extraWindows[1]);
+    Window_ScheduleCopyToVRAM(&param0->extraWindows[1]);
 
     if (param0->data->mode == 3) {
-        BGL_FillWindow(&param0->extraWindows[0], 0);
+        Window_FillTilemap(&param0->extraWindows[0], 0);
         MessageLoader_GetStrbuf(param0->msgLoader, 163, param0->strbuf);
         sub_020900D8(param0, &param0->extraWindows[0], TEXT_COLOR(15, 14, 0), 0);
-        sub_0201A9A4(&param0->extraWindows[0]);
+        Window_ScheduleCopyToVRAM(&param0->extraWindows[0]);
         sub_0208F6DC(param0, &param0->extraWindows[0]);
     }
 }
 
 static void sub_02090CD4(PokemonSummaryApp *param0)
 {
-    sub_0201A9A4(&param0->staticWindows[4]);
+    Window_ScheduleCopyToVRAM(&param0->staticWindows[4]);
 
     if (param0->data->mode == 2) {
         sub_02090064(param0, 155);
@@ -684,25 +684,25 @@ static void sub_02090CD4(PokemonSummaryApp *param0)
 
     sub_0208F6DC(param0, &param0->staticWindows[35]);
 
-    BGL_FillWindow(&param0->extraWindows[0], 0);
-    BGL_FillWindow(&param0->extraWindows[1], 0);
-    BGL_FillWindow(&param0->extraWindows[2], 0);
-    BGL_FillWindow(&param0->extraWindows[3], 0);
+    Window_FillTilemap(&param0->extraWindows[0], 0);
+    Window_FillTilemap(&param0->extraWindows[1], 0);
+    Window_FillTilemap(&param0->extraWindows[2], 0);
+    Window_FillTilemap(&param0->extraWindows[3], 0);
 
     sub_02091188(param0, 0);
     sub_02091188(param0, 1);
     sub_02091188(param0, 2);
     sub_02091188(param0, 3);
 
-    sub_0201A9A4(&param0->extraWindows[0]);
-    sub_0201A9A4(&param0->extraWindows[1]);
-    sub_0201A9A4(&param0->extraWindows[2]);
-    sub_0201A9A4(&param0->extraWindows[3]);
+    Window_ScheduleCopyToVRAM(&param0->extraWindows[0]);
+    Window_ScheduleCopyToVRAM(&param0->extraWindows[1]);
+    Window_ScheduleCopyToVRAM(&param0->extraWindows[2]);
+    Window_ScheduleCopyToVRAM(&param0->extraWindows[3]);
 }
 
 static void sub_02090D90(PokemonSummaryApp *param0)
 {
-    sub_0201A9A4(&param0->staticWindows[5]);
+    Window_ScheduleCopyToVRAM(&param0->staticWindows[5]);
 
     if (param0->data->mode == 2) {
         sub_02090064(param0, 159);
@@ -712,31 +712,31 @@ static void sub_02090D90(PokemonSummaryApp *param0)
 
     sub_0208F6DC(param0, &param0->staticWindows[35]);
 
-    BGL_FillWindow(&param0->extraWindows[0], 0);
-    BGL_FillWindow(&param0->extraWindows[1], 0);
-    BGL_FillWindow(&param0->extraWindows[2], 0);
-    BGL_FillWindow(&param0->extraWindows[3], 0);
+    Window_FillTilemap(&param0->extraWindows[0], 0);
+    Window_FillTilemap(&param0->extraWindows[1], 0);
+    Window_FillTilemap(&param0->extraWindows[2], 0);
+    Window_FillTilemap(&param0->extraWindows[3], 0);
 
     sub_02091188(param0, 0);
     sub_02091188(param0, 1);
     sub_02091188(param0, 2);
     sub_02091188(param0, 3);
 
-    sub_0201A9A4(&param0->extraWindows[0]);
-    sub_0201A9A4(&param0->extraWindows[1]);
-    sub_0201A9A4(&param0->extraWindows[2]);
-    sub_0201A9A4(&param0->extraWindows[3]);
+    Window_ScheduleCopyToVRAM(&param0->extraWindows[0]);
+    Window_ScheduleCopyToVRAM(&param0->extraWindows[1]);
+    Window_ScheduleCopyToVRAM(&param0->extraWindows[2]);
+    Window_ScheduleCopyToVRAM(&param0->extraWindows[3]);
 }
 
 static void sub_02090E4C(PokemonSummaryApp *param0)
 {
-    sub_0201A9A4(&param0->staticWindows[31]);
-    sub_0201A9A4(&param0->staticWindows[30]);
+    Window_ScheduleCopyToVRAM(&param0->staticWindows[31]);
+    Window_ScheduleCopyToVRAM(&param0->staticWindows[30]);
 
-    BGL_FillWindow(&param0->extraWindows[0], 0);
+    Window_FillTilemap(&param0->extraWindows[0], 0);
     sub_02090184(param0, 183, param0->ribbonMax, 3, 0);
     sub_020900D8(param0, &param0->extraWindows[0], TEXT_COLOR(1, 2, 0), 0);
-    sub_0201A9A4(&param0->extraWindows[0]);
+    Window_ScheduleCopyToVRAM(&param0->extraWindows[0]);
 
     if (param0->ribbonMax != 0) {
         sub_02090064(param0, 180);
@@ -746,7 +746,7 @@ static void sub_02090E4C(PokemonSummaryApp *param0)
 
 static void sub_02090EC8(PokemonSummaryApp *param0)
 {
-    sub_0201A9A4(&param0->staticWindows[28]);
+    Window_ScheduleCopyToVRAM(&param0->staticWindows[28]);
     sub_02090064(param0, 161);
     sub_0208F6DC(param0, &param0->staticWindows[35]);
 
@@ -754,7 +754,7 @@ static void sub_02090EC8(PokemonSummaryApp *param0)
         return;
     }
 
-    BGL_FillWindow(&param0->extraWindows[1], 0);
+    Window_FillTilemap(&param0->extraWindows[1], 0);
 
     MessageLoader_GetStrbuf(param0->msgLoader, 165, param0->strbuf);
     sub_020900D8(param0, &param0->extraWindows[1], TEXT_COLOR(15, 14, 0), 0);
@@ -762,7 +762,7 @@ static void sub_02090EC8(PokemonSummaryApp *param0)
     MessageLoader_GetStrbuf(param0->msgLoader, 166 + param0->monData.preferredFlavor, param0->strbuf);
     Text_AddPrinterWithParamsAndColor(&param0->extraWindows[1], FONT_SYSTEM, param0->strbuf, 0, 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
 
-    sub_0201A9A4(&param0->extraWindows[1]);
+    Window_ScheduleCopyToVRAM(&param0->extraWindows[1]);
 }
 
 void sub_02090F84(PokemonSummaryApp *param0)
@@ -771,7 +771,7 @@ void sub_02090F84(PokemonSummaryApp *param0)
     u8 v1;
     u8 v2;
 
-    BGL_FillWindow(&param0->extraWindows[1], 0);
+    Window_FillTilemap(&param0->extraWindows[1], 0);
 
     v0 = MessageLoader_GetNewStrbuf(param0->msgLoader, 186);
 
@@ -801,13 +801,13 @@ void sub_02090F84(PokemonSummaryApp *param0)
     v1 -= v2;
 
     Text_AddPrinterWithParamsAndColor(&param0->extraWindows[1], FONT_SYSTEM, param0->strbuf, v1, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
-    sub_0201A9A4(&param0->extraWindows[1]);
+    Window_ScheduleCopyToVRAM(&param0->extraWindows[1]);
 }
 
 void sub_020910E4(PokemonSummaryApp *param0)
 {
-    BGL_FillWindow(&param0->extraWindows[2], 0);
-    BGL_FillWindow(&param0->extraWindows[3], 0);
+    Window_FillTilemap(&param0->extraWindows[2], 0);
+    Window_FillTilemap(&param0->extraWindows[3], 0);
 
     MessageLoader_GetStrbuf(param0->ribbonLoader, sub_020923C0(param0->ribbonNum, 3), param0->strbuf);
     sub_020900D8(param0, &param0->extraWindows[2], TEXT_COLOR(15, 14, 0), 0);
@@ -815,8 +815,8 @@ void sub_020910E4(PokemonSummaryApp *param0)
     MessageLoader_GetStrbuf(param0->ribbonLoader, sub_02092424(param0->data->ribbons, param0->ribbonNum), param0->strbuf);
     sub_020900D8(param0, &param0->extraWindows[3], TEXT_COLOR(1, 2, 0), 0);
 
-    sub_0201A9A4(&param0->extraWindows[2]);
-    sub_0201A9A4(&param0->extraWindows[3]);
+    Window_ScheduleCopyToVRAM(&param0->extraWindows[2]);
+    Window_ScheduleCopyToVRAM(&param0->extraWindows[3]);
 }
 
 static void sub_02091188(PokemonSummaryApp *param0, u32 param1)
@@ -859,13 +859,13 @@ void sub_020912A4(PokemonSummaryApp *param0, u32 param1)
     u32 v1;
     u32 v2;
 
-    sub_0201A9A4(&param0->staticWindows[25]);
-    sub_0201A9A4(&param0->staticWindows[26]);
-    sub_0201A9A4(&param0->staticWindows[27]);
+    Window_ScheduleCopyToVRAM(&param0->staticWindows[25]);
+    Window_ScheduleCopyToVRAM(&param0->staticWindows[26]);
+    Window_ScheduleCopyToVRAM(&param0->staticWindows[27]);
 
-    BGL_FillWindow(&param0->extraWindows[5], 0);
-    BGL_FillWindow(&param0->extraWindows[6], 0);
-    BGL_FillWindow(&param0->extraWindows[7], 0);
+    Window_FillTilemap(&param0->extraWindows[5], 0);
+    Window_FillTilemap(&param0->extraWindows[6], 0);
+    Window_FillTilemap(&param0->extraWindows[7], 0);
 
     v2 = MoveTable_LoadParam(param1, MOVEATTRIBUTE_POWER);
 
@@ -893,48 +893,48 @@ void sub_020912A4(PokemonSummaryApp *param0, u32 param1)
     sub_020900D8(param0, &param0->extraWindows[7], TEXT_COLOR(1, 2, 0), 0);
     MessageLoader_Free(v0);
 
-    sub_0201A9A4(&param0->extraWindows[5]);
-    sub_0201A9A4(&param0->extraWindows[6]);
-    sub_0201A9A4(&param0->extraWindows[7]);
+    Window_ScheduleCopyToVRAM(&param0->extraWindows[5]);
+    Window_ScheduleCopyToVRAM(&param0->extraWindows[6]);
+    Window_ScheduleCopyToVRAM(&param0->extraWindows[7]);
 }
 
 void sub_020913D8(PokemonSummaryApp *param0)
 {
-    sub_0201AD10(&param0->staticWindows[25]);
-    sub_0201AD10(&param0->staticWindows[26]);
-    sub_0201AD10(&param0->staticWindows[27]);
-    sub_0201AD10(&param0->extraWindows[5]);
-    sub_0201AD10(&param0->extraWindows[6]);
-    sub_0201AD10(&param0->extraWindows[7]);
+    Window_ClearAndScheduleCopyToVRAM(&param0->staticWindows[25]);
+    Window_ClearAndScheduleCopyToVRAM(&param0->staticWindows[26]);
+    Window_ClearAndScheduleCopyToVRAM(&param0->staticWindows[27]);
+    Window_ClearAndScheduleCopyToVRAM(&param0->extraWindows[5]);
+    Window_ClearAndScheduleCopyToVRAM(&param0->extraWindows[6]);
+    Window_ClearAndScheduleCopyToVRAM(&param0->extraWindows[7]);
 }
 
 void sub_02091420(PokemonSummaryApp *param0)
 {
     if (param0->data->move != 0) {
-        BGL_FillWindow(&param0->extraWindows[4], 0);
+        Window_FillTilemap(&param0->extraWindows[4], 0);
         sub_02091188(param0, 4);
-        sub_0201A9A4(&param0->extraWindows[4]);
+        Window_ScheduleCopyToVRAM(&param0->extraWindows[4]);
     } else {
-        sub_0201A9A4(&param0->staticWindows[24]);
+        Window_ScheduleCopyToVRAM(&param0->staticWindows[24]);
     }
 }
 
 void sub_0209145C(PokemonSummaryApp *param0)
 {
-    sub_0201AD10(&param0->staticWindows[24]);
-    sub_0201C3C0(param0->bgl, 1);
+    Window_ClearAndScheduleCopyToVRAM(&param0->staticWindows[24]);
+    Bg_ScheduleTilemapTransfer(param0->bgl, 1);
 }
 
 void sub_02091474(PokemonSummaryApp *param0)
 {
-    BGL_FillWindow(&param0->extraWindows[0 + param0->cursor], 0);
-    BGL_FillWindow(&param0->extraWindows[0 + param0->cursorTmp], 0);
+    Window_FillTilemap(&param0->extraWindows[0 + param0->cursor], 0);
+    Window_FillTilemap(&param0->extraWindows[0 + param0->cursorTmp], 0);
 
     sub_02091188(param0, param0->cursor);
     sub_02091188(param0, param0->cursorTmp);
 
-    sub_0201A9A4(&param0->extraWindows[0 + param0->cursor]);
-    sub_0201A9A4(&param0->extraWindows[0 + param0->cursorTmp]);
+    Window_ScheduleCopyToVRAM(&param0->extraWindows[0 + param0->cursor]);
+    Window_ScheduleCopyToVRAM(&param0->extraWindows[0 + param0->cursorTmp]);
 }
 
 void sub_020914F8(PokemonSummaryApp *param0)
@@ -942,18 +942,18 @@ void sub_020914F8(PokemonSummaryApp *param0)
     Window *v0;
 
     if (param0->page == 3) {
-        sub_0201AD10(&param0->extraWindows[5]);
-        sub_0201AD10(&param0->extraWindows[6]);
-        sub_0201AD10(&param0->extraWindows[7]);
+        Window_ClearAndScheduleCopyToVRAM(&param0->extraWindows[5]);
+        Window_ClearAndScheduleCopyToVRAM(&param0->extraWindows[6]);
+        Window_ClearAndScheduleCopyToVRAM(&param0->extraWindows[7]);
         v0 = &param0->extraWindows[7];
     } else {
         v0 = &param0->extraWindows[5];
     }
 
-    BGL_FillWindow(v0, 0);
+    Window_FillTilemap(v0, 0);
     MessageLoader_GetStrbuf(param0->msgLoader, 156, param0->strbuf);
     sub_020900D8(param0, v0, TEXT_COLOR(1, 2, 0), 0);
-    sub_0201A9A4(v0);
+    Window_ScheduleCopyToVRAM(v0);
 }
 
 void sub_02091570(PokemonSummaryApp *param0, u32 param1)
@@ -962,7 +962,7 @@ void sub_02091570(PokemonSummaryApp *param0, u32 param1)
     u32 v1;
     u32 v2;
 
-    BGL_FillWindow(&param0->extraWindows[5], 0);
+    Window_FillTilemap(&param0->extraWindows[5], 0);
 
     v1 = MoveTable_LoadParam(param1, MOVEATTRIBUTE_CONTEST_EFFECT);
     v2 = sub_0209577C(v1);
@@ -973,14 +973,14 @@ void sub_02091570(PokemonSummaryApp *param0, u32 param1)
 
     MessageLoader_Free(v0);
 
-    sub_0201A9A4(&param0->staticWindows[29]);
-    sub_0201A9A4(&param0->extraWindows[5]);
+    Window_ScheduleCopyToVRAM(&param0->staticWindows[29]);
+    Window_ScheduleCopyToVRAM(&param0->extraWindows[5]);
 }
 
 void sub_020915F4(PokemonSummaryApp *param0)
 {
-    sub_0201AD10(&param0->staticWindows[29]);
-    sub_0201AD10(&param0->extraWindows[5]);
+    Window_ClearAndScheduleCopyToVRAM(&param0->staticWindows[29]);
+    Window_ClearAndScheduleCopyToVRAM(&param0->extraWindows[5]);
 }
 
 void sub_02091610(PokemonSummaryApp *param0, u8 param1)
@@ -1014,8 +1014,8 @@ void sub_02091610(PokemonSummaryApp *param0, u8 param1)
     v0 = &param0->extraWindows[2];
 
     sub_0200E060(v0, 1, (1024 - (18 + 12)), 13);
-    BGL_FillWindow(v0, 15);
+    Window_FillTilemap(v0, 15);
     MessageLoader_GetStrbuf(param0->msgLoader, v1, param0->strbuf);
     Text_AddPrinterWithParamsAndColor(v0, FONT_MESSAGE, param0->strbuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
-    sub_0201A9A4(v0);
+    Window_ScheduleCopyToVRAM(v0);
 }

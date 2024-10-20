@@ -174,7 +174,7 @@ static void ov80_021D0E68(void *param0)
     NNS_GfdDoVramTransfer();
 
     ov80_021D2AEC(v0);
-    sub_0201C2B8(v0->unk_28);
+    Bg_RunScheduledUpdates(v0->unk_28);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
@@ -227,7 +227,7 @@ static int ov80_021D0EC8(UnkStruct_ov80_021D2A08 *param0)
         break;
     case 1:
         ov80_021D0EA8();
-        param0->unk_28 = sub_02018340(param0->unk_04);
+        param0->unk_28 = BgConfig_New(param0->unk_04);
         ov80_021D1088(param0, param0->unk_28);
         ov80_021D1158(param0);
         sub_0201E3D8();
@@ -259,7 +259,7 @@ static void ov80_021D0FF4(UnkStruct_ov80_021D2A08 *param0)
     ov80_021D12D8(param0);
 
     for (v0 = 0; v0 < 8; v0++) {
-        sub_02019044(param0->unk_28, v0);
+        Bg_FreeTilemapBuffer(param0->unk_28, v0);
     }
 
     Heap_FreeToHeap(param0->unk_28);
@@ -288,7 +288,7 @@ static void ov80_021D1088(UnkStruct_ov80_021D2A08 *param0, BgConfig *param1)
             GX_BG0_AS_2D
         };
 
-        sub_02018368(&v2);
+        SetAllGraphicsModes(&v2);
     }
 
     {
@@ -418,19 +418,19 @@ static void ov80_021D1088(UnkStruct_ov80_021D2A08 *param0, BgConfig *param1)
         v1 = 0;
 
         for (v0 = 0; v0 < 8; v0++) {
-            sub_020183C4(param1, v1, &(v3[v0]), 0);
-            sub_02019EBC(param1, v1++);
+            Bg_InitFromTemplate(param1, v1, &(v3[v0]), 0);
+            Bg_ClearTilemap(param1, v1++);
         }
     }
 
-    sub_02019690(0, 32, 0, param0->unk_04);
-    sub_02019690(1, 32, 0, param0->unk_04);
-    sub_02019690(2, 32, 0, param0->unk_04);
-    sub_02019690(3, 32, 0, param0->unk_04);
-    sub_02019690(4, 32, 0, param0->unk_04);
-    sub_02019690(5, 32, 0, param0->unk_04);
-    sub_02019690(6, 32, 0, param0->unk_04);
-    sub_02019690(7, 32, 0, param0->unk_04);
+    Bg_ClearTilesRange(0, 32, 0, param0->unk_04);
+    Bg_ClearTilesRange(1, 32, 0, param0->unk_04);
+    Bg_ClearTilesRange(2, 32, 0, param0->unk_04);
+    Bg_ClearTilesRange(3, 32, 0, param0->unk_04);
+    Bg_ClearTilesRange(4, 32, 0, param0->unk_04);
+    Bg_ClearTilesRange(5, 32, 0, param0->unk_04);
+    Bg_ClearTilesRange(6, 32, 0, param0->unk_04);
+    Bg_ClearTilesRange(7, 32, 0, param0->unk_04);
 }
 
 static void ov80_021D1158(UnkStruct_ov80_021D2A08 *param0)

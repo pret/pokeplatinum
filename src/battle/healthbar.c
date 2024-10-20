@@ -1099,7 +1099,7 @@ static void Healthbar_DrawBattlerName(Healthbar *healthbar)
     StringTemplate_SetNickname(strFormatter, 0, boxMon);
     StringTemplate_Format(strFormatter, nickname, template);
 
-    BGL_AddFramelessWindow(bgl, &window, HEALTHBAR_NAME_BLOCK_COUNT_X, HEALTHBAR_NAME_BLOCK_COUNT_Y, HEALTHBAR_NAME_WINDOW_OFFSET, HEALTHBAR_NAME_BACKGROUND_COLOR);
+    Window_AddToTopLeftCorner(bgl, &window, HEALTHBAR_NAME_BLOCK_COUNT_X, HEALTHBAR_NAME_BLOCK_COUNT_Y, HEALTHBAR_NAME_WINDOW_OFFSET, HEALTHBAR_NAME_BACKGROUND_COLOR);
     Text_AddPrinterWithParamsColorAndSpacing(&window, FONT_SYSTEM, nickname, 0, 0, TEXT_SPEED_NO_TRANSFER, HEALTHBAR_NAME_TEXT_COLOR, 0, 0, NULL);
     buf = window.pixels;
 
@@ -1124,7 +1124,7 @@ static void Healthbar_DrawBattlerName(Healthbar *healthbar)
             sBattlerNameVRAMTransfer[healthbar->type][3].size);
     }
 
-    BGL_DeleteWindow(&window);
+    Window_Remove(&window);
     Strbuf_Free(nickname);
     Strbuf_Free(template);
 }
@@ -1312,7 +1312,7 @@ static void Healthbar_DrawBallCount(Healthbar *param0, u32 param1)
         v5 = MessageLoader_GetNewStrbuf(v4, 1220);
     }
 
-    BGL_AddFramelessWindow(v0, &v3, 13, 2, 0, 0xf);
+    Window_AddToTopLeftCorner(v0, &v3, 13, 2, 0, 0xf);
     Text_AddPrinterWithParamsColorAndSpacing(&v3, FONT_SYSTEM, v5, 0, 0, TEXT_SPEED_NO_TRANSFER, HEALTHBAR_NAME_TEXT_COLOR, 0, 0, NULL);
 
     v1 = v3.pixels;
@@ -1333,7 +1333,7 @@ static void Healthbar_DrawBallCount(Healthbar *param0, u32 param1)
         MI_CpuCopy16(&v8[Unk_ov16_0226F33C[1].size], (void *)((u32)v6 + Unk_ov16_0226F33C[3].pos + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F33C[3].size);
     }
 
-    BGL_DeleteWindow(&v3);
+    Window_Remove(&v3);
     Strbuf_Free(v5);
 }
 
@@ -1360,7 +1360,7 @@ static void Healthbar_DrawBallsLeftMessage(Healthbar *param0, u32 param1)
 
     StringTemplate_SetNumber(v7, 0, param0->unk_27, 2, 1, 1);
     StringTemplate_Format(v7, v5, v6);
-    BGL_AddFramelessWindow(v0, &v3, 13, 2, 0, 0xf);
+    Window_AddToTopLeftCorner(v0, &v3, 13, 2, 0, 0xf);
     Text_AddPrinterWithParamsColorAndSpacing(&v3, FONT_SYSTEM, v5, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(14, 2, 15), 0, 0, NULL);
 
     v1 = v3.pixels;
@@ -1380,7 +1380,7 @@ static void Healthbar_DrawBallsLeftMessage(Healthbar *param0, u32 param1)
         MI_CpuCopy16(&v10[Unk_ov16_0226F34C[1].size], (void *)((u32)v8 + Unk_ov16_0226F34C[3].pos + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F34C[3].size);
     }
 
-    BGL_DeleteWindow(&v3);
+    Window_Remove(&v3);
     Strbuf_Free(v5);
     Strbuf_Free(v6);
 }

@@ -1025,7 +1025,7 @@ static UIControlData *ov23_0224BD90(BgConfig *param0, const WindowTemplate *para
     sub_02013A4C(v2, v1, 39, 1);
 
     v0.unk_00 = v2;
-    v0.unk_04 = sub_0201A778(param4, 1);
+    v0.unk_04 = Window_New(param4, 1);
     v0.unk_08 = 0;
     v0.unk_09 = 1;
     v0.unk_0A = 2;
@@ -1033,7 +1033,7 @@ static UIControlData *ov23_0224BD90(BgConfig *param0, const WindowTemplate *para
     v0.unk_0B_4 = 0;
     v0.unk_0B_0 = 0;
 
-    sub_0201A8D4(param0, v0.unk_04, param1);
+    Window_AddFromTemplate(param0, v0.unk_04, param1);
     Window_Show(v0.unk_04, 1, param2, param3);
 
     return sub_02001B7C(&v0, 8, 0, 0, param4, PAD_BUTTON_B);

@@ -98,15 +98,15 @@ void ov20_021D4774(UnkStruct_ov20_021D4AD4 *param0, NARC *param1)
     ov20_021D48C4(param0, param1);
 
     if (ov20_021D1F94(param0->unk_04) == 0) {
-        sub_020198E8(param0->unk_0C, 4, 3, 3, 11, 7, param0->unk_2C[3], 0, 0, 11, 7);
-        sub_020198E8(param0->unk_0C, 4, 3, 14, 11, 7, param0->unk_2C[4], 0, 0, 11, 7);
+        Bg_CopyToTilemapRect(param0->unk_0C, 4, 3, 3, 11, 7, param0->unk_2C[3], 0, 0, 11, 7);
+        Bg_CopyToTilemapRect(param0->unk_0C, 4, 3, 14, 11, 7, param0->unk_2C[4], 0, 0, 11, 7);
     } else {
-        sub_020198E8(param0->unk_0C, 4, 3, 3, 11, 7, param0->unk_2C[0], 0, 0, 11, 7);
-        sub_020198E8(param0->unk_0C, 4, 3, 14, 11, 7, param0->unk_2C[7], 0, 0, 11, 7);
+        Bg_CopyToTilemapRect(param0->unk_0C, 4, 3, 3, 11, 7, param0->unk_2C[0], 0, 0, 11, 7);
+        Bg_CopyToTilemapRect(param0->unk_0C, 4, 3, 14, 11, 7, param0->unk_2C[7], 0, 0, 11, 7);
     }
 
     ov20_021D4A24(param0, param1);
-    sub_02019448(param0->unk_0C, 4);
+    Bg_CopyTilemapBufferToVRAM(param0->unk_0C, 4);
 }
 
 static void ov20_021D4874(UnkStruct_ov20_021D4AD4 *param0, NARC *param1)
@@ -159,7 +159,7 @@ static void ov20_021D48C4(UnkStruct_ov20_021D4AD4 *param0, NARC *param1)
         v4.pixels = (u8 *)(v3->pRawData) + (11 * 7 * 4 * 0x20);
         ov20_021D498C(&v4, param0->unk_0C, v1, 0);
         DC_FlushRange(v3->pRawData, v3->szByte);
-        sub_0201958C(param0->unk_0C, 4, v3->pRawData, v3->szByte, 0);
+        Bg_LoadTiles(param0->unk_0C, 4, v3->pRawData, v3->szByte, 0);
         Heap_FreeToHeap(v2);
     }
 
@@ -326,17 +326,17 @@ static void ov20_021D4C40(SysTask *param0, void *param1)
 
     switch (v0->unk_04) {
     case 0:
-        sub_020198E8(v0->unk_00->unk_0C, 4, v0->unk_0E, v0->unk_10, 11, 7, v0->unk_00->unk_2C[v0->unk_0A], 0, 0, 11, 7);
-        sub_020198E8(v0->unk_00->unk_0C, 4, v0->unk_14, v0->unk_16, 11, 7, v0->unk_00->unk_2C[v0->unk_12], 0, 0, 11, 7);
-        sub_02019448(v0->unk_00->unk_0C, 4);
+        Bg_CopyToTilemapRect(v0->unk_00->unk_0C, 4, v0->unk_0E, v0->unk_10, 11, 7, v0->unk_00->unk_2C[v0->unk_0A], 0, 0, 11, 7);
+        Bg_CopyToTilemapRect(v0->unk_00->unk_0C, 4, v0->unk_14, v0->unk_16, 11, 7, v0->unk_00->unk_2C[v0->unk_12], 0, 0, 11, 7);
+        Bg_CopyTilemapBufferToVRAM(v0->unk_00->unk_0C, 4);
 
         v0->unk_0A++;
         v0->unk_04++;
         break;
     case 1:
         if (++(v0->unk_08) >= 2) {
-            sub_020198E8(v0->unk_00->unk_0C, 4, v0->unk_0E, v0->unk_10, 11, 7, v0->unk_00->unk_2C[v0->unk_0A], 0, 0, 11, 7);
-            sub_02019448(v0->unk_00->unk_0C, 4);
+            Bg_CopyToTilemapRect(v0->unk_00->unk_0C, 4, v0->unk_0E, v0->unk_10, 11, 7, v0->unk_00->unk_2C[v0->unk_0A], 0, 0, 11, 7);
+            Bg_CopyTilemapBufferToVRAM(v0->unk_00->unk_0C, 4);
 
             v0->unk_08 = 0;
             v0->unk_0A++;
@@ -345,8 +345,8 @@ static void ov20_021D4C40(SysTask *param0, void *param1)
         break;
     case 2:
         if (++(v0->unk_08) >= 4) {
-            sub_020198E8(v0->unk_00->unk_0C, 4, v0->unk_0E, v0->unk_10, 11, 7, v0->unk_00->unk_2C[v0->unk_0A], 0, 0, 11, 7);
-            sub_02019448(v0->unk_00->unk_0C, 4);
+            Bg_CopyToTilemapRect(v0->unk_00->unk_0C, 4, v0->unk_0E, v0->unk_10, 11, 7, v0->unk_00->unk_2C[v0->unk_0A], 0, 0, 11, 7);
+            Bg_CopyTilemapBufferToVRAM(v0->unk_00->unk_0C, 4);
             v0->unk_04++;
         }
         break;

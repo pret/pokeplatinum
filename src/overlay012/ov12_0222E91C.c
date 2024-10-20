@@ -672,7 +672,7 @@ void ov12_0222F5EC(UnkStruct_ov12_0221FCDC *param0)
         switch (v1) {
         case 3:
         case 4:
-            BGL_SetPriority(2, (ov12_0222339C(param0) - 1));
+            Bg_SetPriority(2, (ov12_0222339C(param0) - 1));
             break;
         }
     }

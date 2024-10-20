@@ -142,7 +142,7 @@ static int sub_02097B18(OverlayManager *param0, int *param1)
         }
     }
 
-    v0->unk_D4.unk_10 = sub_02018340(53);
+    v0->unk_D4.unk_10 = BgConfig_New(53);
     sub_0201DBEC(64, 53);
     v0->unk_D4.unk_14 = sub_02002F38(53);
     sub_02003858(v0->unk_D4.unk_14, 1);
@@ -233,13 +233,13 @@ static int sub_02097D88(OverlayManager *param0, int *param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
-    sub_02019044(v0->unk_D4.unk_10, 1);
-    sub_02019044(v0->unk_D4.unk_10, 2);
-    sub_02019044(v0->unk_D4.unk_10, 3);
-    sub_02019044(v0->unk_D4.unk_10, 4);
-    sub_02019044(v0->unk_D4.unk_10, 5);
-    sub_02019044(v0->unk_D4.unk_10, 6);
-    sub_02019044(v0->unk_D4.unk_10, 7);
+    Bg_FreeTilemapBuffer(v0->unk_D4.unk_10, 1);
+    Bg_FreeTilemapBuffer(v0->unk_D4.unk_10, 2);
+    Bg_FreeTilemapBuffer(v0->unk_D4.unk_10, 3);
+    Bg_FreeTilemapBuffer(v0->unk_D4.unk_10, 4);
+    Bg_FreeTilemapBuffer(v0->unk_D4.unk_10, 5);
+    Bg_FreeTilemapBuffer(v0->unk_D4.unk_10, 6);
+    Bg_FreeTilemapBuffer(v0->unk_D4.unk_10, 7);
     Heap_FreeToHeap(v0->unk_D4.unk_10);
     sub_02002FA0(v0->unk_D4.unk_14, 0);
     sub_02002FA0(v0->unk_D4.unk_14, 1);

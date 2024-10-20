@@ -970,7 +970,7 @@ static BOOL sub_02068F48(TaskManager *param0)
         break;
     case 2:
         MapObjectMan_UnpauseAllMovement(fieldSystem->mapObjMan);
-        BGL_DeleteWindow(&v1->unk_00);
+        Window_Remove(&v1->unk_00);
         Strbuf_Free(v1->unk_10);
         Heap_FreeToHeap(v1);
 

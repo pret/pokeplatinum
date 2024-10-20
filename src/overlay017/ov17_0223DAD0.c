@@ -257,7 +257,7 @@ int ov17_0223DAD0(OverlayManager *param0, int *param1)
 
     v0->unk_1050.unk_00 = Heap_AllocFromHeap(23, 0x200);
     ov17_0224CDB4(v0, 1);
-    v0->unk_14.unk_60 = sub_02018340(23);
+    v0->unk_14.unk_60 = BgConfig_New(23);
 
     sub_0201DBEC(64, 23);
     SetAutorepeat(4, 8);
@@ -408,14 +408,14 @@ int ov17_0223DF0C(OverlayManager *param0, int *param1)
     ov17_0223E774(v0);
 
     for (v1 = 0; v1 < 2; v1++) {
-        BGL_DeleteWindow(&v0->unk_14.unk_64[v1]);
+        Window_Remove(&v0->unk_14.unk_64[v1]);
     }
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
-    sub_02019044(v0->unk_14.unk_60, 1);
-    sub_02019044(v0->unk_14.unk_60, 2);
-    sub_02019044(v0->unk_14.unk_60, 3);
+    Bg_FreeTilemapBuffer(v0->unk_14.unk_60, 1);
+    Bg_FreeTilemapBuffer(v0->unk_14.unk_60, 2);
+    Bg_FreeTilemapBuffer(v0->unk_14.unk_60, 3);
 
     ov17_02249358(v0->unk_14.unk_60);
     ov17_022493A4(v0->unk_1074);
@@ -499,7 +499,7 @@ static void ov17_0223E09C(void *param0)
     sub_0201DCAC();
     sub_0200C800();
     sub_02003694(v0->unk_14.unk_90);
-    sub_0201C2B8(v0->unk_14.unk_60);
+    Bg_RunScheduledUpdates(v0->unk_14.unk_60);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
@@ -600,7 +600,7 @@ static void ov17_0223E250(BgConfig *param0)
             GX_BG0_AS_3D
         };
 
-        sub_02018368(&v1);
+        SetAllGraphicsModes(&v1);
     }
 
     {
@@ -652,18 +652,18 @@ static void ov17_0223E250(BgConfig *param0)
             },
         };
 
-        sub_020183C4(param0, 1, &v2[0], 0);
-        sub_02019EBC(param0, 1);
-        sub_02019184(param0, 1, 0, 0);
-        sub_02019184(param0, 1, 3, 0);
-        sub_020183C4(param0, 2, &v2[1], 0);
-        sub_02019EBC(param0, 2);
-        sub_02019184(param0, 2, 0, 0);
-        sub_02019184(param0, 2, 3, 0);
-        sub_020183C4(param0, 3, &v2[2], 0);
-        sub_02019EBC(param0, 3);
-        sub_02019184(param0, 3, 0, 0);
-        sub_02019184(param0, 3, 3, 0);
+        Bg_InitFromTemplate(param0, 1, &v2[0], 0);
+        Bg_ClearTilemap(param0, 1);
+        Bg_SetOffset(param0, 1, 0, 0);
+        Bg_SetOffset(param0, 1, 3, 0);
+        Bg_InitFromTemplate(param0, 2, &v2[1], 0);
+        Bg_ClearTilemap(param0, 2);
+        Bg_SetOffset(param0, 2, 0, 0);
+        Bg_SetOffset(param0, 2, 3, 0);
+        Bg_InitFromTemplate(param0, 3, &v2[2], 0);
+        Bg_ClearTilemap(param0, 3);
+        Bg_SetOffset(param0, 3, 0, 0);
+        Bg_SetOffset(param0, 3, 3, 0);
 
         G2_SetBG0Priority(2);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
@@ -676,8 +676,8 @@ static void ov17_0223E250(BgConfig *param0)
 
 static void ov17_0223E380(UnkStruct_ov17_0224DF54 *param0)
 {
-    BGL_AddWindow(param0->unk_14.unk_60, &param0->unk_14.unk_64[0], 1, 0x2, 0x13, 27, 4, 13, ((18 + 12) + 1));
-    BGL_AddWindow(param0->unk_14.unk_60, &param0->unk_14.unk_64[1], 1, 0x2, 0xb, 27, 2, 13, ((18 + 12) + 1));
+    Window_Add(param0->unk_14.unk_60, &param0->unk_14.unk_64[0], 1, 0x2, 0x13, 27, 4, 13, ((18 + 12) + 1));
+    Window_Add(param0->unk_14.unk_60, &param0->unk_14.unk_64[1], 1, 0x2, 0xb, 27, 2, 13, ((18 + 12) + 1));
 }
 
 static BOOL ov17_0223E3CC(UnkStruct_ov17_0224DF54 *param0, int *param1, int *param2)

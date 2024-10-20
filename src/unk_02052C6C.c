@@ -259,12 +259,12 @@ static void sub_02052F28(FieldSystem *fieldSystem, UnkStruct_0205300C *param1)
 
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
 
-    sub_02018368(&v1);
-    sub_0201975C(3, 0x0);
-    sub_020183C4(fieldSystem->unk_08, 3, &v2, 0);
-    sub_02019690(3, 0x20, 0, 32);
-    sub_02019CB8(fieldSystem->unk_08, 3, 0x0, 0, 0, 32, 32, 17);
-    sub_02019448(fieldSystem->unk_08, 3);
+    SetAllGraphicsModes(&v1);
+    Bg_MaskPalette(3, 0x0);
+    Bg_InitFromTemplate(fieldSystem->unk_08, 3, &v2, 0);
+    Bg_ClearTilesRange(3, 0x20, 0, 32);
+    Bg_FillTilemapRect(fieldSystem->unk_08, 3, 0x0, 0, 0, 32, 32, 17);
+    Bg_CopyTilemapBufferToVRAM(fieldSystem->unk_08, 3);
 }
 
 static void sub_02052FA8(FieldSystem *fieldSystem, UnkStruct_0205300C *param1)
@@ -317,9 +317,9 @@ static void sub_02053098(FieldSystem *fieldSystem, UnkStruct_0205300C *param1)
         Strbuf_Free(param1->unk_2C);
     }
 
-    if (BGL_WindowAdded(&param1->unk_1C)) {
-        BGL_DeleteWindow(&param1->unk_1C);
+    if (Window_IsInUse(&param1->unk_1C)) {
+        Window_Remove(&param1->unk_1C);
     }
 
-    sub_02019044(fieldSystem->unk_08, 3);
+    Bg_FreeTilemapBuffer(fieldSystem->unk_08, 3);
 }

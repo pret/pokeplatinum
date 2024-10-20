@@ -130,7 +130,7 @@ void ov17_0223F1E8(int param0, BgConfig *param1, SpriteGfxHandler *param2, UnkSt
 
     {
         Window_Init(&v1);
-        BGL_AddFramelessWindow(param1, &v1, v6, 16 / 8, 0, 0);
+        Window_AddToTopLeftCorner(param1, &v1, v6, 16 / 8, 0, 0);
         Text_AddPrinterWithParamsColorAndSpacing(&v1, param6, param5, 0, 0, TEXT_SPEED_NO_TRANSFER, param7, v7, 0, NULL);
     }
 
@@ -163,7 +163,7 @@ void ov17_0223F1E8(int param0, BgConfig *param1, SpriteGfxHandler *param2, UnkSt
     }
 
     sub_020128C4(v4, param10, param11);
-    BGL_DeleteWindow(&v1);
+    Window_Remove(&v1);
 
     param4->unk_00 = v4;
     param4->unk_04 = v2;

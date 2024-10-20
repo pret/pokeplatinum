@@ -203,10 +203,10 @@ void ov104_0223DC7C(int param0, BgConfig *param1, SpriteRenderer *param2, Sprite
 
     v1->unk_2C = param0 - 1;
 
-    MI_CpuClear32(sub_02019F28(1), 0x8000);
+    MI_CpuClear32(Bg_GetCharPtr(1), 0x8000);
 
-    sub_0201C63C(param1, 1, 0, 0);
-    sub_0201C63C(param1, 1, 3, 0);
+    Bg_ScheduleScroll(param1, 1, 0, 0);
+    Bg_ScheduleScroll(param1, 1, 3, 0);
 
     ov104_0223E5A8(v1, &Unk_ov104_0224191C[v1->unk_2C]);
 
@@ -446,7 +446,7 @@ static void ov104_0223E29C(UnkStruct_ov104_0223DD30 *param0, UnkStruct_ov104_022
 
     if (param10 == NULL) {
         Window_Init(&v1);
-        BGL_AddFramelessWindow(v5, &v1, v8, 16 / 8, 0, 0);
+        Window_AddToTopLeftCorner(v5, &v1, v8, 16 / 8, 0, 0);
         Text_AddPrinterWithParamsColorAndSpacing(&v1, param3, param2, 0, 0, TEXT_SPEED_NO_TRANSFER, param4, 0, 0, NULL);
     } else {
         v1 = param10->unk_00;
@@ -480,7 +480,7 @@ static void ov104_0223E29C(UnkStruct_ov104_0223DD30 *param0, UnkStruct_ov104_022
     sub_020128C4(v4, param7, param8);
 
     if (param10 == NULL) {
-        BGL_DeleteWindow(&v1);
+        Window_Remove(&v1);
     }
 
     param1->unk_00 = v4;
@@ -625,8 +625,8 @@ static void ov104_0223E5A8(UnkStruct_ov104_0223DD30 *param0, const UnkStruct_ov1
     PaletteSys_LoadPalette(param0->unk_1C, 112, param1->unk_08, 94, 0, 0x20, 12 * 16);
     sub_020070E8(param0->unk_24, param1->unk_09, param0->unk_10, 1, 0, 0, 0, 94);
     sub_0200710C(param0->unk_24, param1->unk_0A, param0->unk_10, 1, 0, 0, 0, 94);
-    sub_02019E2C(param0->unk_10, 1, 0, 0, 32, 32, 12);
-    sub_0201C3C0(param0->unk_10, 1);
+    Bg_ChangeTilemapRectPalette(param0->unk_10, 1, 0, 0, 32, 32, 12);
+    Bg_ScheduleTilemapTransfer(param0->unk_10, 1);
 
     {
         void *v0;

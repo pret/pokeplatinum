@@ -68,7 +68,7 @@ void ov22_022597BC(UnkStruct_ov22_022597BC *param0, UnkStruct_ov22_022599A0 *par
 
 void ov22_02259804(UnkStruct_ov22_022597BC *param0)
 {
-    sub_02019EBC(param0->unk_00, param0->unk_1C);
+    Bg_ClearTilemap(param0->unk_00, param0->unk_1C);
     memset(param0, 0, sizeof(UnkStruct_ov22_022597BC));
 }
 
@@ -135,8 +135,8 @@ void ov22_022598F4(UnkStruct_ov22_022597BC *param0, UnkStruct_ov22_022599A0 *par
     v0->unk_38 = param4;
     v0->unk_3C = param2 / param4;
     v0->unk_40 = param3 / param4;
-    v0->unk_44 = sub_020192EC(param0->unk_00, param0->unk_1C);
-    v0->unk_48 = sub_020192F8(param0->unk_00, param0->unk_1C);
+    v0->unk_44 = Bg_GetXOffset(param0->unk_00, param0->unk_1C);
+    v0->unk_48 = Bg_GetYOffset(param0->unk_00, param0->unk_1C);
 
     param1->unk_28 = 128;
     param1->unk_24 = 0x5;
@@ -204,11 +204,11 @@ static void ov22_02259A4C(SysTask *param0, void *param1)
     v0->unk_38--;
 
     if (v0->unk_38 >= 0) {
-        sub_0201C63C(v0->unk_00->unk_00, v0->unk_00->unk_1C, 2, v0->unk_3C);
-        sub_0201C63C(v0->unk_00->unk_00, v0->unk_00->unk_1C, 5, v0->unk_40);
+        Bg_ScheduleScroll(v0->unk_00->unk_00, v0->unk_00->unk_1C, 2, v0->unk_3C);
+        Bg_ScheduleScroll(v0->unk_00->unk_00, v0->unk_00->unk_1C, 5, v0->unk_40);
     } else {
-        sub_0201C63C(v0->unk_00->unk_00, v0->unk_00->unk_1C, 0, v0->unk_44);
-        sub_0201C63C(v0->unk_00->unk_00, v0->unk_00->unk_1C, 3, v0->unk_48);
+        Bg_ScheduleScroll(v0->unk_00->unk_00, v0->unk_00->unk_1C, 0, v0->unk_44);
+        Bg_ScheduleScroll(v0->unk_00->unk_00, v0->unk_00->unk_1C, 3, v0->unk_48);
         ov22_022597BC(v0->unk_00, &v0->unk_04);
 
         if (v0->unk_34) {
@@ -222,9 +222,9 @@ static void ov22_02259A4C(SysTask *param0, void *param1)
 static void ov22_02259ABC(BgConfig *param0, int param1, const NNSG2dScreenData *param2, int param3, int param4, int param5, int param6, int param7, int param8)
 {
     ov22_02259980(param2, param7);
-    sub_020198E8(param0, param1, param5, param6, param3, param4, param2->rawData, 0, 0, param3, param4);
-    sub_02019E2C(param0, param1, param5, param6, param3, param4, param8);
-    sub_0201C3C0(param0, param1);
+    Bg_CopyToTilemapRect(param0, param1, param5, param6, param3, param4, param2->rawData, 0, 0, param3, param4);
+    Bg_ChangeTilemapRectPalette(param0, param1, param5, param6, param3, param4, param8);
+    Bg_ScheduleTilemapTransfer(param0, param1);
 }
 
 static void ov22_02259B3C(u32 param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5)
@@ -263,7 +263,7 @@ static void ov22_02259BD4(SysTask *param0, void *param1)
 
     DC_FlushRange(v0->unk_04->pRawData, v0->unk_04->szByte);
 
-    sub_0201958C(v0->unk_00, v0->unk_0C, v0->unk_04->pRawData, v0->unk_04->szByte, v0->unk_10);
+    Bg_LoadTiles(v0->unk_00, v0->unk_0C, v0->unk_04->pRawData, v0->unk_04->szByte, v0->unk_10);
     SysTask_Done(param0);
     Heap_FreeToHeap(v0->unk_08);
     Heap_FreeToHeap(v0);

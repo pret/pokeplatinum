@@ -132,12 +132,12 @@ void ov19_021D7A74(UnkStruct_ov19_021D8318 *param0)
 
 void ov19_021D7A9C(UnkStruct_ov19_021D8318 *param0)
 {
-    param0->unk_0C = sub_020192EC(param0->unk_58F4, 3);
+    param0->unk_0C = Bg_GetXOffset(param0->unk_58F4, 3);
     param0->unk_0C -= param0->unk_585C;
     param0->unk_0C &= (REG_G2_BG3HOFS_OFFSET_MASK);
 
-    sub_02019184(param0->unk_58F4, 3, 0, param0->unk_0C);
-    sub_02019CB8(param0->unk_58F4, 3, 0x18, 0, 0, 64, 32, 9);
+    Bg_SetOffset(param0->unk_58F4, 3, 0, param0->unk_0C);
+    Bg_FillTilemapRect(param0->unk_58F4, 3, 0x18, 0, 0, 64, 32, 9);
 }
 
 static void ov19_021D7AF4(const UnkStruct_ov19_021D8318 *param0, int param1, u32 *param2, u32 *param3, u32 *param4)
@@ -208,7 +208,7 @@ static void ov19_021D7C58(UnkStruct_ov19_021D8318 *param0, const UnkStruct_ov19_
         if (NNS_G2dGetUnpackedBGCharacterData(v0, &v1)) {
             Window *v2;
 
-            v2 = sub_0201A778(10, 1);
+            v2 = Window_New(10, 1);
 
             if (v2) {
                 u32 v3, v4;
@@ -225,7 +225,7 @@ static void ov19_021D7C58(UnkStruct_ov19_021D8318 *param0, const UnkStruct_ov19_
                 Heap_FreeToHeap(v2);
             }
 
-            sub_0201958C(param0->unk_58F4, 3, v1->pRawData, v1->szByte, param2);
+            Bg_LoadTiles(param0->unk_58F4, 3, v1->pRawData, v1->szByte, param2);
         }
 
         Heap_FreeToHeap(v0);
@@ -243,20 +243,20 @@ static void ov19_021D7D00(UnkStruct_ov19_021D8318 *param0, const UnkStruct_ov19_
         NNSG2dScreenData *v2;
 
         NNS_G2dGetUnpackedScreenData(v0, &v2);
-        v1 = sub_02019FE4(param0->unk_58F4, 3);
+        v1 = Bg_GetTilemapBuffer(param0->unk_58F4, 3);
 
         if (v1) {
             ov19_021D8764(v1, (const u16 *)(v2->rawData), param2, param3, param4);
         }
 
         Heap_FreeToHeap(v0);
-        sub_02019460(param0->unk_58F4, 3, v1, 0x1000, 0);
+        Bg_CopyTilemapBufferRangeToVRAM(param0->unk_58F4, 3, v1, 0x1000, 0);
     }
 }
 
 void ov19_021D7D70(UnkStruct_ov19_021D8318 *param0, const UnkStruct_ov19_021D4F5C *param1, int param2)
 {
-    param0->unk_08 = (sub_020192EC(param0->unk_58F4, 3) & (REG_G2_BG3HOFS_OFFSET_MASK)) << FX32_SHIFT;
+    param0->unk_08 = (Bg_GetXOffset(param0->unk_58F4, 3) & (REG_G2_BG3HOFS_OFFSET_MASK)) << FX32_SHIFT;
     param0->unk_14 = param0->unk_08 + ((((21 + 2) * 8) * param2) << FX32_SHIFT);
     param0->unk_10 = (param0->unk_14 - param0->unk_08) / (15 * 2);
     param0->unk_14 >>= FX32_SHIFT;
@@ -322,11 +322,11 @@ static void ov19_021D7E6C(SysTask *param0, void *param1)
             v0->unk_98++;
             v0->unk_0C = (v0->unk_08 >> FX32_SHIFT) & (REG_G2_BG3HOFS_OFFSET_MASK);
             v0->unk_08 += v0->unk_10;
-            sub_02019184(v0->unk_58F4, 3, 0, v0->unk_0C);
+            Bg_SetOffset(v0->unk_58F4, 3, 0, v0->unk_0C);
             v0->unk_04--;
         }
     } else {
-        sub_02019184(v0->unk_58F4, 3, 0, v0->unk_14);
+        Bg_SetOffset(v0->unk_58F4, 3, 0, v0->unk_14);
         ov19_021D870C(v0, v0->unk_A8[v2]);
         SysTask_Done(param0);
     }

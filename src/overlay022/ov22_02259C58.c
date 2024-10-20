@@ -435,9 +435,9 @@ static Window *ov22_0225A348(UnkStruct_ov22_0225A0E4 *param0, u32 param1, u32 pa
     GF_ASSERT(v0);
     v1 = MessageLoader_GetNewStrbuf(v0, param3);
 
-    v2 = sub_0201A778(14, 1);
+    v2 = Window_New(14, 1);
     Window_Init(v2);
-    BGL_AddFramelessWindow(param0->unk_40, v2, param4, param5, 0, 0);
+    Window_AddToTopLeftCorner(param0->unk_40, v2, param4, param5, 0, 0);
 
     {
         u32 v3 = Font_CalcCenterAlignment(FONT_SUBSCREEN, v1, 0, param4 * 8);
@@ -452,7 +452,7 @@ static Window *ov22_0225A348(UnkStruct_ov22_0225A0E4 *param0, u32 param1, u32 pa
 
 static void ov22_0225A3D0(Window *param0)
 {
-    sub_0201A928(param0, 1);
+    Windows_Delete(param0, 1);
 }
 
 static void ov22_0225A3DC(UnkStruct_ov22_02259C58 *param0, int param1, int param2)

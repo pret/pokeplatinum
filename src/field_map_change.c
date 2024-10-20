@@ -1161,12 +1161,12 @@ BOOL FieldTask_MapChangeToUnderground(TaskManager *taskMan)
         switch (sub_02002114(mapChangeUndergroundData->unk_3C, 11)) {
         case 0:
             sub_0200E084(&mapChangeUndergroundData->unk_24, 0);
-            BGL_DeleteWindow(&mapChangeUndergroundData->unk_24);
+            Window_Remove(&mapChangeUndergroundData->unk_24);
             mapChangeUndergroundData->state = 3;
             break;
         case 0xfffffffe:
             sub_0200E084(&mapChangeUndergroundData->unk_24, 0);
-            BGL_DeleteWindow(&mapChangeUndergroundData->unk_24);
+            Window_Remove(&mapChangeUndergroundData->unk_24);
             mapChangeUndergroundData->state = 5;
         }
         break;

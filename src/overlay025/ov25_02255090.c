@@ -307,7 +307,7 @@ void ov25_02255440(BgConfig *param0, u32 param1, u32 param2)
         (v0)[3] = v2 + 9;
     }
 
-    sub_020198C0(param0, param2, v0, 9 + 0, 11, 2, 2);
+    Bg_LoadToTilemapRect(param0, param2, v0, 9 + 0, 11, 2, 2);
 
     {
         u32 v2 = ((2 / 4) * 16) + ((2 & 3) * 2);
@@ -317,7 +317,7 @@ void ov25_02255440(BgConfig *param0, u32 param1, u32 param2)
         (v0)[3] = v2 + 9;
     }
 
-    sub_020198C0(param0, param2, v0, 9 + 2, 11, 2, 2);
+    Bg_LoadToTilemapRect(param0, param2, v0, 9 + 2, 11, 2, 2);
 
     {
         u32 v2 = ((3 / 4) * 16) + ((3 & 3) * 2);
@@ -327,7 +327,7 @@ void ov25_02255440(BgConfig *param0, u32 param1, u32 param2)
         (v0)[3] = v2 + 9;
     }
 
-    sub_020198C0(param0, param2, v0, 9 + 4, 11, 2, 2);
+    Bg_LoadToTilemapRect(param0, param2, v0, 9 + 4, 11, 2, 2);
 
     v1 = param1 / 10;
     param1 -= (v1 * 10);
@@ -342,7 +342,7 @@ void ov25_02255440(BgConfig *param0, u32 param1, u32 param2)
         (v0)[3] = v2 + 9;
     }
 
-    sub_020198C0(param0, param2, v0, 9 + 6, 11, 2, 2);
+    Bg_LoadToTilemapRect(param0, param2, v0, 9 + 6, 11, 2, 2);
 
     {
         u32 v2 = (((param1) / 4) * 16) + (((param1) & 3) * 2);
@@ -352,5 +352,5 @@ void ov25_02255440(BgConfig *param0, u32 param1, u32 param2)
         (v0)[3] = v2 + 9;
     }
 
-    sub_020198C0(param0, param2, v0, 9 + 8, 11, 2, 2);
+    Bg_LoadToTilemapRect(param0, param2, v0, 9 + 8, 11, 2, 2);
 }

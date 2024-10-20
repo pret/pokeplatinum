@@ -117,7 +117,7 @@ UnkStruct_ov20_021D2128 *ov20_021D2098(const UnkStruct_ov20_021D16E8 *param0, co
         sub_0200A784(0, 128, 0, 32, 0, 128, 0, 32, 35);
 
         v0->unk_24 = sub_020095C4(128, &v0->unk_28, 35);
-        v0->unk_20 = sub_02018340(35);
+        v0->unk_20 = BgConfig_New(35);
         v0->unk_00 = SysTask_Start(ov20_021D2178, v0, 2);
         v0->unk_04 = ov20_021D2170(ov20_021D217C, v0, 1);
 
@@ -360,11 +360,11 @@ static void ov20_021D2414(SysTask *param0, void *param1)
                 }
             }
 
-            sub_02019044(v1->unk_20, 0);
-            sub_02019044(v1->unk_20, 1);
-            sub_02019044(v1->unk_20, 2);
-            sub_02019044(v1->unk_20, 3);
-            sub_02019044(v1->unk_20, 4);
+            Bg_FreeTilemapBuffer(v1->unk_20, 0);
+            Bg_FreeTilemapBuffer(v1->unk_20, 1);
+            Bg_FreeTilemapBuffer(v1->unk_20, 2);
+            Bg_FreeTilemapBuffer(v1->unk_20, 3);
+            Bg_FreeTilemapBuffer(v1->unk_20, 4);
 
             ov20_021D2238(v0);
         }
@@ -473,14 +473,14 @@ static void ov20_021D24EC(UnkStruct_ov20_021D2238 *param0)
     GX_SetGraphicsMode(GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BG0_AS_3D);
 
     GXLayers_SetBanks(&v0);
-    sub_02018368(&v1);
+    SetAllGraphicsModes(&v1);
 
-    sub_020183C4(v7->unk_20, 0, &v2, 0);
-    sub_020183C4(v7->unk_20, 1, &v3, 0);
-    sub_020183C4(v7->unk_20, 2, &v4, 0);
-    sub_020183C4(v7->unk_20, 3, &v5, 0);
+    Bg_InitFromTemplate(v7->unk_20, 0, &v2, 0);
+    Bg_InitFromTemplate(v7->unk_20, 1, &v3, 0);
+    Bg_InitFromTemplate(v7->unk_20, 2, &v4, 0);
+    Bg_InitFromTemplate(v7->unk_20, 3, &v5, 0);
 
-    sub_020183C4(v7->unk_20, 4, &v6, 0);
+    Bg_InitFromTemplate(v7->unk_20, 4, &v6, 0);
 }
 
 static void ov20_021D2570(SysTask *param0, void *param1)

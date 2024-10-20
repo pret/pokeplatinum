@@ -461,24 +461,24 @@ static void ov99_021D1D68(UnkStruct_ov99_021D2CB0 *param0)
     sub_020070E8(param0->unk_10F8, 12, param0->unk_08, 7, 0, 0, 0, 75);
     sub_0200710C(param0->unk_10F8, 6, param0->unk_08, 7, 0, 0, 0, 75);
 
-    sub_02019184(v0, 2, 0, 0);
-    sub_02019184(v0, 2, 3, 0);
-    sub_02019184(v0, 7, 0, 0);
-    sub_02019184(v0, 7, 3, 0);
+    Bg_SetOffset(v0, 2, 0, 0);
+    Bg_SetOffset(v0, 2, 3, 0);
+    Bg_SetOffset(v0, 7, 0, 0);
+    Bg_SetOffset(v0, 7, 3, 0);
 
-    sub_02019120(2, 1);
-    sub_02019120(7, 1);
+    Bg_ToggleLayer(2, 1);
+    Bg_ToggleLayer(7, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
-    sub_0201C3C0(param0->unk_08, 2);
-    sub_0201C3C0(param0->unk_08, 7);
+    Bg_ScheduleTilemapTransfer(param0->unk_08, 2);
+    Bg_ScheduleTilemapTransfer(param0->unk_08, 7);
 }
 
 static void ov99_021D1E6C(UnkStruct_ov99_021D2CB0 *param0)
 {
-    sub_02019120(2, 0);
-    sub_02019120(7, 0);
+    Bg_ToggleLayer(2, 0);
+    Bg_ToggleLayer(7, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
 }
@@ -599,13 +599,13 @@ static void ov99_021D211C(UnkStruct_ov99_021D2CB0 *param0)
     ov99_021D439C(param0, param0->unk_1105, 3, 0);
     param0->unk_1105++;
 
-    sub_02019120(3, 1);
-    sub_0201C3C0(param0->unk_08, 2);
+    Bg_ToggleLayer(3, 1);
+    Bg_ScheduleTilemapTransfer(param0->unk_08, 2);
 }
 
 static void ov99_021D214C(UnkStruct_ov99_021D2CB0 *param0)
 {
-    sub_02019120(3, 0);
+    Bg_ToggleLayer(3, 0);
 }
 
 static void ov99_021D2158(UnkStruct_ov99_021D2CB0 *param0)
@@ -679,24 +679,24 @@ static void ov99_021D2180(UnkStruct_ov99_021D2CB0 *param0)
         Heap_FreeToHeap(v2);
     }
 
-    sub_02019184(v0, 2, 0, 0);
-    sub_02019184(v0, 2, 3, 0);
-    sub_02019184(v0, 7, 0, 0);
-    sub_02019184(v0, 7, 3, 0);
+    Bg_SetOffset(v0, 2, 0, 0);
+    Bg_SetOffset(v0, 2, 3, 0);
+    Bg_SetOffset(v0, 7, 0, 0);
+    Bg_SetOffset(v0, 7, 3, 0);
 
-    sub_02019120(2, 1);
-    sub_02019120(7, 1);
+    Bg_ToggleLayer(2, 1);
+    Bg_ToggleLayer(7, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
-    sub_0201C3C0(param0->unk_08, 2);
-    sub_0201C3C0(param0->unk_08, 7);
+    Bg_ScheduleTilemapTransfer(param0->unk_08, 2);
+    Bg_ScheduleTilemapTransfer(param0->unk_08, 7);
 }
 
 static void ov99_021D22AC(UnkStruct_ov99_021D2CB0 *param0)
 {
-    sub_02019120(2, 0);
-    sub_02019120(7, 0);
+    Bg_ToggleLayer(2, 0);
+    Bg_ToggleLayer(7, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
 }
@@ -822,24 +822,24 @@ static void ov99_021D24F0(UnkStruct_ov99_021D2CB0 *param0)
         sub_02002FBC(param0->unk_0C, param0->unk_FA4.unk_08_val3.unk_08, 1, 16 * 1, 0x20);
     }
 
-    sub_02019184(v0, 2, 0, 0);
-    sub_02019184(v0, 2, 3, 0);
-    sub_02019184(v0, 7, 0, 0);
-    sub_02019184(v0, 7, 3, 0);
+    Bg_SetOffset(v0, 2, 0, 0);
+    Bg_SetOffset(v0, 2, 3, 0);
+    Bg_SetOffset(v0, 7, 0, 0);
+    Bg_SetOffset(v0, 7, 3, 0);
 
-    sub_02019120(2, 1);
-    sub_02019120(7, 1);
+    Bg_ToggleLayer(2, 1);
+    Bg_ToggleLayer(7, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
-    sub_0201C3C0(param0->unk_08, 2);
-    sub_0201C3C0(param0->unk_08, 7);
+    Bg_ScheduleTilemapTransfer(param0->unk_08, 2);
+    Bg_ScheduleTilemapTransfer(param0->unk_08, 7);
 }
 
 static void ov99_021D2640(UnkStruct_ov99_021D2CB0 *param0)
 {
-    sub_02019120(2, 0);
-    sub_02019120(7, 0);
+    Bg_ToggleLayer(2, 0);
+    Bg_ToggleLayer(7, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
 }
@@ -997,14 +997,14 @@ static void ov99_021D2A38(UnkStruct_ov99_021D2CB0 *param0)
     ov99_021D439C(param0, param0->unk_1105, 2, 1);
     param0->unk_1105++;
 
-    sub_02019120(2, 1);
-    sub_0201C3C0(param0->unk_08, 2);
+    Bg_ToggleLayer(2, 1);
+    Bg_ScheduleTilemapTransfer(param0->unk_08, 2);
 }
 
 static void ov99_021D2A70(UnkStruct_ov99_021D2CB0 *param0)
 {
-    sub_02019120(2, 0);
-    sub_02019120(3, 0);
+    Bg_ToggleLayer(2, 0);
+    Bg_ToggleLayer(3, 0);
 }
 
 static void ov99_021D2A84(UnkStruct_ov99_021D2CB0 *param0)
@@ -1070,23 +1070,23 @@ static void ov99_021D2AAC(UnkStruct_ov99_021D2CB0 *param0)
         Strbuf *v1;
         int v2;
 
-        param0->unk_24 = sub_0201A778(75, 1);
+        param0->unk_24 = Window_New(75, 1);
 
-        BGL_AddWindow(v0, param0->unk_24, 7, 0, 0, 32, 32, 15, 0);
-        BGL_FillWindow(param0->unk_24, 15);
-        sub_0201A9F4(param0->unk_24);
+        Window_Add(v0, param0->unk_24, 7, 0, 0, 32, 32, 15, 0);
+        Window_FillTilemap(param0->unk_24, 15);
+        Window_PutToTilemap(param0->unk_24);
 
         v1 = MessageLoader_GetNewStrbuf(param0->unk_20, ov99_021D4130());
         v2 = (256 - Font_CalcStrbufWidth(FONT_SYSTEM, v1, 0)) / 2;
 
         Text_AddPrinterWithParamsColorAndSpacing(param0->unk_24, FONT_SYSTEM, v1, v2, 80, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), 3, 0, NULL);
-        sub_0201ACCC(param0->unk_24);
+        Window_LoadTiles(param0->unk_24);
         Strbuf_Free(v1);
     }
 
-    sub_02019184(v0, 7, 0, 0);
-    sub_02019184(v0, 7, 3, 0);
-    sub_02019120(7, 1);
+    Bg_SetOffset(v0, 7, 0, 0);
+    Bg_SetOffset(v0, 7, 3, 0);
+    Bg_ToggleLayer(7, 1);
 
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);
@@ -1094,15 +1094,15 @@ static void ov99_021D2AAC(UnkStruct_ov99_021D2CB0 *param0)
     sub_0200F44C(0, -16);
     sub_0200F44C(1, -16);
     sub_0200AB4C(0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
-    sub_0201C3C0(param0->unk_08, 7);
+    Bg_ScheduleTilemapTransfer(param0->unk_08, 7);
 }
 
 static void ov99_021D2BBC(UnkStruct_ov99_021D2CB0 *param0)
 {
-    sub_02019120(7, 0);
+    Bg_ToggleLayer(7, 0);
 
     if (param0->unk_24 != NULL) {
-        BGL_DeleteWindow(param0->unk_24);
+        Window_Remove(param0->unk_24);
         Heap_FreeToHeap(param0->unk_24);
         param0->unk_24 = NULL;
     }

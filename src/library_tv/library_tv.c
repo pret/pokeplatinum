@@ -160,7 +160,7 @@ static void LibraryTV_VBlank(void *data)
 {
     LibraryTV *ltv = data;
 
-    sub_0201C2B8(ltv->bgl);
+    Bg_RunScheduledUpdates(ltv->bgl);
 }
 
 static void LibraryTV_SetVramBank(LibraryTV *ltv)
@@ -180,7 +180,7 @@ static void LibraryTV_SetVramBank(LibraryTV *ltv)
 
     GXLayers_SetBanks(&vramBank);
 
-    ltv->bgl = sub_02018340(ltv->heapID);
+    ltv->bgl = BgConfig_New(ltv->heapID);
 
     GraphicsModes bgData = {
         GX_DISPMODE_GRAPHICS,
@@ -189,20 +189,20 @@ static void LibraryTV_SetVramBank(LibraryTV *ltv)
         GX_BG0_AS_2D
     };
 
-    sub_02018368(&bgData);
+    SetAllGraphicsModes(&bgData);
     int frame, charSetID, screenID;
 
     BgTemplate bgHeader0 = { 0, 0, 0x800, 0, 1, GX_BG_COLORMODE_16, GX_BG_SCRBASE_0x0000, GX_BG_CHARBASE_0x18000, GX_BG_EXTPLTT_01, 1, 0, 0, FALSE };
     frame = 2;
-    sub_020183C4(ltv->bgl, frame, &bgHeader0, 0);
-    sub_02019690(frame, 32, 0, ltv->heapID);
-    sub_02019EBC(ltv->bgl, frame);
+    Bg_InitFromTemplate(ltv->bgl, frame, &bgHeader0, 0);
+    Bg_ClearTilesRange(frame, 32, 0, ltv->heapID);
+    Bg_ClearTilemap(ltv->bgl, frame);
 
     BgTemplate bgHeader1 = { 0, 0, 0x800, 0, 1, GX_BG_COLORMODE_16, GX_BG_SCRBASE_0x0800, GX_BG_CHARBASE_0x14000, GX_BG_EXTPLTT_01, 1, 0, 0, FALSE };
     frame = 0;
     charSetID = 1;
     screenID = 4;
-    sub_020183C4(ltv->bgl, frame, &bgHeader1, 0);
+    Bg_InitFromTemplate(ltv->bgl, frame, &bgHeader1, 0);
     sub_02006E3C(NARC_INDEX_DEMO__INTRO__INTRO_TV, charSetID, ltv->bgl, frame, 0, 0, 0, ltv->heapID);
     sub_02006E60(NARC_INDEX_DEMO__INTRO__INTRO_TV, screenID, ltv->bgl, frame, 0, 0, 0, ltv->heapID);
 
@@ -210,7 +210,7 @@ static void LibraryTV_SetVramBank(LibraryTV *ltv)
     frame = 1;
     charSetID = 2;
     screenID = 5;
-    sub_020183C4(ltv->bgl, frame, &bgHeader2, 0);
+    Bg_InitFromTemplate(ltv->bgl, frame, &bgHeader2, 0);
     sub_02006E3C(NARC_INDEX_DEMO__INTRO__INTRO_TV, charSetID, ltv->bgl, frame, 0, 0, 0, ltv->heapID);
     sub_02006E60(NARC_INDEX_DEMO__INTRO__INTRO_TV, screenID, ltv->bgl, frame, 0, 0, 0, ltv->heapID);
 
@@ -218,35 +218,35 @@ static void LibraryTV_SetVramBank(LibraryTV *ltv)
     frame = 3;
     charSetID = 2;
     screenID = 4;
-    sub_020183C4(ltv->bgl, frame, &bgHeader3, 0);
+    Bg_InitFromTemplate(ltv->bgl, frame, &bgHeader3, 0);
     sub_02006E3C(NARC_INDEX_GRAPHIC__LIBRARY_TV, charSetID, ltv->bgl, frame, 0, 0, 0, ltv->heapID);
     sub_02006E60(NARC_INDEX_GRAPHIC__LIBRARY_TV, screenID, ltv->bgl, frame, 0, 0, 0, ltv->heapID);
 
     sub_02006E84(NARC_INDEX_GRAPHIC__LIBRARY_TV, 3, 0, 0, 0, ltv->heapID);
     Font_LoadTextPalette(0, 1 * (2 * 16), ltv->heapID);
-    sub_0201975C(0, 0x0);
-    sub_0201975C(4, 0x0);
+    Bg_MaskPalette(0, 0x0);
+    Bg_MaskPalette(4, 0x0);
 
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, (GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3), 0x4, 0xc);
 }
 
 static void LibraryTV_ReleaseVramBank(LibraryTV *ltv)
 {
-    sub_02019120(0, 0);
-    sub_02019120(1, 0);
-    sub_02019120(2, 0);
-    sub_02019120(3, 0);
-    sub_02019120(4, 0);
-    sub_02019120(5, 0);
-    sub_02019120(6, 0);
-    sub_02019120(7, 0);
+    Bg_ToggleLayer(0, 0);
+    Bg_ToggleLayer(1, 0);
+    Bg_ToggleLayer(2, 0);
+    Bg_ToggleLayer(3, 0);
+    Bg_ToggleLayer(4, 0);
+    Bg_ToggleLayer(5, 0);
+    Bg_ToggleLayer(6, 0);
+    Bg_ToggleLayer(7, 0);
 
     G2_BlendNone();
 
-    sub_02019044(ltv->bgl, 3);
-    sub_02019044(ltv->bgl, 1);
-    sub_02019044(ltv->bgl, 0);
-    sub_02019044(ltv->bgl, 2);
+    Bg_FreeTilemapBuffer(ltv->bgl, 3);
+    Bg_FreeTilemapBuffer(ltv->bgl, 1);
+    Bg_FreeTilemapBuffer(ltv->bgl, 0);
+    Bg_FreeTilemapBuffer(ltv->bgl, 2);
 
     Heap_FreeToHeap(ltv->bgl);
 }
@@ -266,5 +266,5 @@ static void LibraryTV_ReleaseMsgLdr(LibraryTV *ltv)
 static void LibraryTV_UpdateScanLines(LibraryTV *ltv)
 {
     ltv->scanLinePos += 0x4;
-    sub_02019184(ltv->bgl, 1, 3, ltv->scanLinePos >> 4);
+    Bg_SetOffset(ltv->bgl, 1, 3, ltv->scanLinePos >> 4);
 }

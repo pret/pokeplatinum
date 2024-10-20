@@ -183,8 +183,8 @@ static void ov23_022537D4(SysTask *param0, void *param1)
     UnkStruct_ov23_022537D4 *v0 = param1;
 
     Window_Clear(&v0->unk_08, 0);
-    sub_0201ACF4(&v0->unk_08);
-    BGL_DeleteWindow(&v0->unk_08);
+    Window_ClearAndCopyToVRAM(&v0->unk_08);
+    Window_Remove(&v0->unk_08);
 
     {
         UnkFuncPtr_ov23_02253834 v1 = v0->unk_00;
@@ -223,11 +223,11 @@ void ov23_02253834(BgConfig *param0, TrainerInfo *param1, UnkFuncPtr_ov23_022538
     v4->unk_00 = param2;
     v4->unk_04 = param3;
 
-    BGL_AddWindow(param0, &v4->unk_08, 3, 4, 2, 24, 19, 13, 1);
+    Window_Add(param0, &v4->unk_08, 3, 4, 2, 24, 19, 13, 1);
     Window_Show(&v4->unk_08, 1, 1024 - (18 + 12) - 9, 11);
 
     v1 = MessageLoader_Init(0, 26, 640, 4);
-    BGL_FillWindow(&v4->unk_08, 15);
+    Window_FillTilemap(&v4->unk_08, 15);
 
     if (param4) {
         v0 = Unk_ov23_022577BC->unk_0C;
@@ -237,7 +237,7 @@ void ov23_02253834(BgConfig *param0, TrainerInfo *param1, UnkFuncPtr_ov23_022538
 
     ov23_0225360C(&v4->unk_08, v1, param1, v0);
 
-    sub_0201A9A4(&v4->unk_08);
+    Window_ScheduleCopyToVRAM(&v4->unk_08);
     Sound_PlayEffect(1533);
 
     Unk_ov23_022577BC->unk_04 = SysTask_Start(ov23_0225381C, v4, 10);
@@ -406,17 +406,17 @@ void *ov23_02253C64(BgConfig *param0, TrainerInfo *param1, UndergroundData *para
     v4->unk_00 = param3;
     v4->unk_04 = param4;
 
-    BGL_AddWindow(param0, &v4->unk_08, 3, 4, 2, 24, 19, 13, 1);
+    Window_Add(param0, &v4->unk_08, 3, 4, 2, 24, 19, 13, 1);
     Window_Show(&v4->unk_08, 1, 1024 - (18 + 12) - 9, 11);
 
     v1 = MessageLoader_Init(0, 26, 639, 4);
-    BGL_FillWindow(&v4->unk_08, 15);
+    Window_FillTilemap(&v4->unk_08, 15);
 
     v0 = Unk_ov23_022577BC->unk_0C;
     ov23_02253A78(&v4->unk_08, v1, param1, v0, param2);
 
     Sound_PlayEffect(1533);
-    sub_0201A9A4(&v4->unk_08);
+    Window_ScheduleCopyToVRAM(&v4->unk_08);
     MessageLoader_Free(v1);
 
     return v4;
@@ -427,8 +427,8 @@ void ov23_02253D10(void *param0)
     UnkStruct_ov23_022537D4 *v0 = param0;
 
     Window_Clear(&v0->unk_08, 0);
-    sub_0201ACF4(&v0->unk_08);
-    BGL_DeleteWindow(&v0->unk_08);
+    Window_ClearAndCopyToVRAM(&v0->unk_08);
+    Window_Remove(&v0->unk_08);
 
     {
         UnkFuncPtr_ov23_02253834 v1 = v0->unk_00;

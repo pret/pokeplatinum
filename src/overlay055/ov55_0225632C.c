@@ -31,7 +31,7 @@ BOOL ov55_0225632C(UnkStruct_ov55_0225632C **param0, const UnkStruct_ov55_022563
     if (v0 != NULL) {
         ov25_02255090(v0->unk_08, 8);
         v0->unk_00 = param1;
-        v0->unk_04 = sub_02018340(8);
+        v0->unk_04 = BgConfig_New(8);
 
         if (v0->unk_04 != NULL) {
             *param0 = v0;
@@ -103,13 +103,13 @@ static void ov55_022563C8(SysTask *param0, void *param1)
 
     v2 = ov25_0225523C(param1);
 
-    sub_020183C4(v2->unk_04, 6, &v0, 0);
+    Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
     sub_02006E3C(12, 8, v2->unk_04, 6, 0, 0, 0, 8);
-    sub_02019CB8(v2->unk_04, 6, 0, 0, 0, 32, 24, 0);
+    Bg_FillTilemapRect(v2->unk_04, 6, 0, 0, 0, 32, 24, 0);
     sub_02006E84(12, 9, 4, 0 * 0x20, 0x20, 8);
 
     ov25_02255440(v2->unk_04, v2->unk_00->unk_00, 6);
-    sub_02019448(v2->unk_04, 6);
+    Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);
 
     v1 = GXS_GetDispCnt();
     GXS_SetVisiblePlane(v1.visiblePlane | GX_PLANEMASK_BG2);
@@ -121,6 +121,6 @@ static void ov55_02256468(SysTask *param0, void *param1)
 {
     UnkStruct_ov55_0225632C *v0 = ov25_0225523C(param1);
 
-    sub_02019044(v0->unk_04, 6);
+    Bg_FreeTilemapBuffer(v0->unk_04, 6);
     ov55_022563B4(param1);
 }

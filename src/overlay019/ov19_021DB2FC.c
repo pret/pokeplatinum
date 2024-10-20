@@ -58,7 +58,7 @@ void ov19_021DB370(UnkStruct_ov19_021DB6F0 *param0)
         int v0;
 
         for (v0 = 0; v0 < 2; v0++) {
-            BGL_DeleteWindow(&(param0->unk_18[v0]));
+            Window_Remove(&(param0->unk_18[v0]));
         }
 
         if (param0->unk_24) {
@@ -89,13 +89,13 @@ void ov19_021DB3C4(UnkStruct_ov19_021DB6F0 *param0)
         { 1, 19, 3, 12, 16, 4, 593 }
     };
 
-    param0->unk_18 = sub_0201A778(10, 2);
+    param0->unk_18 = Window_New(10, 2);
 
     if (param0->unk_18) {
         int v1;
 
         for (v1 = 0; v1 < 2; v1++) {
-            sub_0201A8D4(param0->unk_00, &param0->unk_18[v1], &v0[v1]);
+            Window_AddFromTemplate(param0->unk_00, &param0->unk_18[v1], &v0[v1]);
         }
     }
 
@@ -106,14 +106,14 @@ void ov19_021DB3C4(UnkStruct_ov19_021DB6F0 *param0)
 
 void ov19_021DB448(UnkStruct_ov19_021DB6F0 *param0, u32 param1)
 {
-    sub_0201A9F4(&param0->unk_18[0]);
+    Window_PutToTilemap(&param0->unk_18[0]);
     ov19_021DB4B4(param0->unk_00, param0->unk_18[0].bgLayer, param0->unk_18[0].tilemapLeft, param0->unk_18[0].tilemapTop, param0->unk_18[0].width, param0->unk_18[0].height);
-    BGL_FillWindow(&param0->unk_18[0], 15);
+    Window_FillTilemap(&param0->unk_18[0], 15);
     MessageLoader_GetStrbuf(param0->unk_10, param1, param0->unk_30);
     StringTemplate_Format(param0->unk_2C, param0->unk_34, param0->unk_30);
     Text_AddPrinterWithParams(&(param0->unk_18[0]), FONT_MESSAGE, param0->unk_34, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
-    sub_0201ACCC(&(param0->unk_18[0]));
-    sub_02019448(param0->unk_00, 1);
+    Window_LoadTiles(&(param0->unk_18[0]));
+    Bg_CopyTilemapBufferToVRAM(param0->unk_00, 1);
 
     param0->unk_1C = 1;
 }
@@ -123,7 +123,7 @@ static void ov19_021DB4B4(BgConfig *param0, u32 param1, u32 param2, u32 param3, 
     u16 *v0;
     u32 v1, v2;
 
-    v0 = sub_02019FE4(param0, param1);
+    v0 = Bg_GetTilemapBuffer(param0, param1);
     v0 += (((param3 - 1) * 32) + (param2 - 2));
 
     v0[0] = (8 << 12) | 521;
@@ -170,7 +170,7 @@ void ov19_021DB57C(UnkStruct_ov19_021DB6F0 *param0, const UnkStruct_ov19_021DF96
     }
 
     v0 = &(param0->unk_18[1]);
-    BGL_FillWindow(v0, 15);
+    Window_FillTilemap(v0, 15);
     v1 = (8 - param1->unk_21) * 16;
 
     for (v2 = 0; v2 < param1->unk_21; v2++) {
@@ -187,15 +187,15 @@ void ov19_021DB57C(UnkStruct_ov19_021DB6F0 *param0, const UnkStruct_ov19_021DF96
     ov19_021DB748(param0, param1);
     ov19_021DB684(param0, param1->unk_21);
 
-    sub_0201ACCC(v0);
-    sub_02019448(param0->unk_00, 1);
+    Window_LoadTiles(v0);
+    Bg_CopyTilemapBufferToVRAM(param0->unk_00, 1);
 
     param0->unk_1E = 1;
 }
 
 static void ov19_021DB638(UnkStruct_ov19_021DB6F0 *param0, Window *param1, u8 param2, u32 param3)
 {
-    sub_0201AE08(param1, param0->unk_28->pRawData, param3 * 8, ((param2 & (1 << param3)) ? 0 : 8), 48, 16, 44, param3 * 16 + 4, 8, 8, 0xff);
+    Window_BlitBitmapRectWithTransparency(param1, param0->unk_28->pRawData, param3 * 8, ((param2 & (1 << param3)) ? 0 : 8), 48, 16, 44, param3 * 16 + 4, 8, 8, 0xff);
 }
 
 static void ov19_021DB684(UnkStruct_ov19_021DB6F0 *param0, u32 param1)
@@ -203,7 +203,7 @@ static void ov19_021DB684(UnkStruct_ov19_021DB6F0 *param0, u32 param1)
     u16 *v0;
     u32 v1, v2, v3, v4;
 
-    v0 = sub_02019FE4(param0->unk_00, 1);
+    v0 = Bg_GetTilemapBuffer(param0->unk_00, 1);
     v0 += (3 * 32 + 19);
     v3 = 593;
     v4 = 8 - param1;
@@ -234,7 +234,7 @@ void ov19_021DB6F0(UnkStruct_ov19_021DB6F0 *param0)
         param0->unk_1E = 0;
     }
 
-    sub_02019448(param0->unk_00, 1);
+    Bg_CopyTilemapBufferToVRAM(param0->unk_00, 1);
 }
 
 void ov19_021DB724(UnkStruct_ov19_021DB6F0 *param0)
@@ -244,7 +244,7 @@ void ov19_021DB724(UnkStruct_ov19_021DB6F0 *param0)
         param0->unk_1E = 0;
     }
 
-    sub_02019448(param0->unk_00, 1);
+    Bg_CopyTilemapBufferToVRAM(param0->unk_00, 1);
 }
 
 void ov19_021DB748(UnkStruct_ov19_021DB6F0 *param0, const UnkStruct_ov19_021DF964 *param1)
@@ -255,9 +255,9 @@ void ov19_021DB748(UnkStruct_ov19_021DB6F0 *param0, const UnkStruct_ov19_021DF96
     v0 = &(param0->unk_18[1]);
     v1 = (8 - param1->unk_21) * 16;
 
-    BGL_WindowColor(v0, 15, 0, v1, 10, param1->unk_21 * 16);
+    Window_FillRectWithColor(v0, 15, 0, v1, 10, param1->unk_21 * 16);
     sub_02002180(v0, 0, v1 + (param1->unk_20 * 16));
-    sub_0201ACCC(v0);
+    Window_LoadTiles(v0);
 }
 
 void ov19_021DB790(UnkStruct_ov19_021DB6F0 *param0, const UnkStruct_ov19_021DF964 *param1)
@@ -271,7 +271,7 @@ void ov19_021DB790(UnkStruct_ov19_021DB6F0 *param0, const UnkStruct_ov19_021DF96
         ov19_021DB638(param0, v0, param1->unk_22, v1);
     }
 
-    sub_0201ACCC(v0);
+    Window_LoadTiles(v0);
 }
 
 static void ov19_021DB7BC(BgConfig *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5)
@@ -279,7 +279,7 @@ static void ov19_021DB7BC(BgConfig *param0, u32 param1, u32 param2, u32 param3, 
     u16 *v0;
     u32 v1;
 
-    v0 = sub_02019FE4(param0, param1);
+    v0 = Bg_GetTilemapBuffer(param0, param1);
     v0 += (((param3 - 1) * 32) + (param2 - 1));
     *v0 = (7 << 12) | 512;
 
@@ -310,7 +310,7 @@ static void ov19_021DB84C(BgConfig *param0, Window *param1)
     u16 *v0;
     u32 v1, v2, v3, v4;
 
-    v0 = sub_02019FE4(param0, param1->bgLayer);
+    v0 = Bg_GetTilemapBuffer(param0, param1->bgLayer);
     v0 += (((param1->tilemapTop - 1) * 32) + (param1->tilemapLeft - 1));
 
     for (v2 = 0; v2 < (param1->height + 2); v2++) {
@@ -327,7 +327,7 @@ static void ov19_021DB898(BgConfig *param0, Window *param1)
     u16 *v0;
     u32 v1, v2, v3, v4;
 
-    v0 = sub_02019FE4(param0, param1->bgLayer);
+    v0 = Bg_GetTilemapBuffer(param0, param1->bgLayer);
     v0 += (((param1->tilemapTop - 1) * 32) + (param1->tilemapLeft - 2));
 
     for (v2 = 0; v2 < (param1->height + 2); v2++) {

@@ -160,7 +160,7 @@ int ov71_0223B140(OverlayManager *param0, int *param1)
     memset(v0, 0, sizeof(UnkStruct_ov71_0223B620));
 
     v0->unk_B4 = OverlayManager_Args(param0);
-    v0->unk_00 = sub_02018340(25);
+    v0->unk_00 = BgConfig_New(25);
 
     ov71_0223B620(v0);
     ov71_0223B688();
@@ -200,7 +200,7 @@ int ov71_0223B140(OverlayManager *param0, int *param1)
             }
         }
 
-        sub_02019448(v0->unk_00, 3);
+        Bg_CopyTilemapBufferToVRAM(v0->unk_00, 3);
     }
 
     ov71_0223C6F0(v0->unk_04, v0->unk_B4);
@@ -545,7 +545,7 @@ static void ov71_0223B858(BgConfig *param0)
             GX_BG0_AS_2D,
         };
 
-        sub_02018368(&v0);
+        SetAllGraphicsModes(&v0);
     }
 
     {
@@ -565,8 +565,8 @@ static void ov71_0223B858(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 7, &v1, 2);
-        sub_02019EBC(param0, 7);
+        Bg_InitFromTemplate(param0, 7, &v1, 2);
+        Bg_ClearTilemap(param0, 7);
     }
 
     {
@@ -586,8 +586,8 @@ static void ov71_0223B858(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 5, &v2, 0);
-        sub_02019EBC(param0, 5);
+        Bg_InitFromTemplate(param0, 5, &v2, 0);
+        Bg_ClearTilemap(param0, 5);
     }
 
     {
@@ -607,8 +607,8 @@ static void ov71_0223B858(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 6, &v3, 1);
-        sub_02019EBC(param0, 6);
+        Bg_InitFromTemplate(param0, 6, &v3, 1);
+        Bg_ClearTilemap(param0, 6);
     }
 
     {
@@ -628,8 +628,8 @@ static void ov71_0223B858(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 2, &v4, 0);
-        sub_02019EBC(param0, 2);
+        Bg_InitFromTemplate(param0, 2, &v4, 0);
+        Bg_ClearTilemap(param0, 2);
     }
 
     {
@@ -649,8 +649,8 @@ static void ov71_0223B858(BgConfig *param0)
             0
         };
 
-        sub_020183C4(param0, 3, &v5, 1);
-        sub_02019EBC(param0, 3);
+        Bg_InitFromTemplate(param0, 3, &v5, 1);
+        Bg_ClearTilemap(param0, 3);
     }
 }
 
@@ -755,11 +755,11 @@ static void ov71_0223BBDC(BgConfig *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_OBJ, 0);
-    sub_02019044(param0, 7);
-    sub_02019044(param0, 6);
-    sub_02019044(param0, 5);
-    sub_02019044(param0, 2);
-    sub_02019044(param0, 3);
+    Bg_FreeTilemapBuffer(param0, 7);
+    Bg_FreeTilemapBuffer(param0, 6);
+    Bg_FreeTilemapBuffer(param0, 5);
+    Bg_FreeTilemapBuffer(param0, 2);
+    Bg_FreeTilemapBuffer(param0, 3);
     Heap_FreeToHeap(param0);
 }
 
@@ -803,14 +803,14 @@ static BOOL ov71_0223BC20(UnkStruct_ov71_0223B620 *param0)
             sub_02006E60(51, 36, param0->unk_00, 6, 0, 0, 0, 25);
             ov71_0223CD44(param0->unk_04, 0, 6);
             ov71_0223C3E8(param0);
-            sub_02019EBC(param0->unk_00, 7);
+            Bg_ClearTilemap(param0->unk_00, 7);
             ov71_0223CA28(param0->unk_04, param0->unk_B4);
             ov71_0223C530(param0->unk_00, 7, param0->unk_B8);
         } else {
             param0->unk_30C0 = 0;
             sub_02006E60(51, 35, param0->unk_00, 6, 0, 0, 0, 25);
             ov71_0223CD44(param0->unk_04, 7, 10);
-            sub_02019EBC(param0->unk_00, 7);
+            Bg_ClearTilemap(param0->unk_00, 7);
             ov71_0223C390(param0);
             ov71_0223C6F0(param0->unk_04, param0->unk_B4);
         }
@@ -1029,7 +1029,7 @@ static void ov71_0223C0D8(UnkStruct_ov71_0223B620 *param0, const u8 param1)
     u16 v1;
     u8 v2, v3;
 
-    v0 = (u16 *)sub_02019FE4(param0->unk_00, 2);
+    v0 = (u16 *)Bg_GetTilemapBuffer(param0->unk_00, 2);
     v1 = (4 * 32) + (4 * param1);
 
     for (v3 = 0; v3 < 4; v3++) {
@@ -1038,7 +1038,7 @@ static void ov71_0223C0D8(UnkStruct_ov71_0223B620 *param0, const u8 param1)
         }
     }
 
-    sub_02019448(param0->unk_00, 2);
+    Bg_CopyTilemapBufferToVRAM(param0->unk_00, 2);
 }
 
 static void ov71_0223C128(UnkStruct_ov71_0223B620 *param0, const u8 param1)
@@ -1057,7 +1057,7 @@ static void ov71_0223C128(UnkStruct_ov71_0223B620 *param0, const u8 param1)
     v4 += (v5 * 7);
     v6 += (v7 * 7);
 
-    v0 = (u8 *)sub_02019FE4(param0->unk_00, 3);
+    v0 = (u8 *)Bg_GetTilemapBuffer(param0->unk_00, 3);
     v1 = (5 * 32 + 26);
 
     for (v3 = 0; v3 < 5; v3++) {
@@ -1181,18 +1181,18 @@ static void ov71_0223C390(UnkStruct_ov71_0223B620 *param0)
 
     v0 = param0->unk_3360->szByte;
 
-    sub_0201958C(param0->unk_00, 7, param0->unk_30BC->pRawData, param0->unk_30BC->szByte, 0);
+    Bg_LoadTiles(param0->unk_00, 7, param0->unk_30BC->pRawData, param0->unk_30BC->szByte, 0);
 
-    if (sub_02019FE4(param0->unk_00, 7) != NULL) {
-        sub_02019574(param0->unk_00, 7, param0->unk_3360->rawData, v0);
+    if (Bg_GetTilemapBuffer(param0->unk_00, 7) != NULL) {
+        Bg_LoadTilemapBuffer(param0->unk_00, 7, param0->unk_3360->rawData, v0);
     }
 
-    sub_02019460(param0->unk_00, 7, param0->unk_3360->rawData, v0, 0);
+    Bg_CopyTilemapBufferRangeToVRAM(param0->unk_00, 7, param0->unk_3360->rawData, v0, 0);
 }
 
 static void ov71_0223C3E8(UnkStruct_ov71_0223B620 *param0)
 {
-    sub_02019CB8(param0->unk_00, 7, 0, 20, 6, 6, 9, 16);
+    Bg_FillTilemapRect(param0->unk_00, 7, 0, 20, 6, 6, 9, 16);
 }
 
 static const u8 ov71_0223C40C(const int param0)
@@ -1274,9 +1274,9 @@ static void ov71_0223C530(BgConfig *param0, const int param1, const u8 *param2)
     u8 v1, v2;
     u16 v3;
 
-    sub_0201958C(param0, param1, param2, (24 * 8 * 64), 1);
+    Bg_LoadTiles(param0, param1, param2, (24 * 8 * 64), 1);
 
-    v0 = (u16 *)sub_02019FE4(param0, param1);
+    v0 = (u16 *)Bg_GetTilemapBuffer(param0, param1);
     v3 = 0;
 
     for (v2 = 0; v2 < 8; v2++) {
@@ -1286,7 +1286,7 @@ static void ov71_0223C530(BgConfig *param0, const int param1, const u8 *param2)
         }
     }
 
-    sub_02019448(param0, param1);
+    Bg_CopyTilemapBufferToVRAM(param0, param1);
 }
 
 static void ov71_0223C594(const int param0)
@@ -1325,7 +1325,7 @@ static int ov71_0223C60C(BgConfig *param0, const TouchScreenRect *rect)
         if (v0 != 0) {
             u16 v1 = 0x40;
 
-            if (sub_0201C784(param0, 2, gCoreSys.touchX, gCoreSys.touchY, &v1) == 0) {
+            if (Bg_DoesPixelAtXYMatchVal(param0, 2, gCoreSys.touchX, gCoreSys.touchY, &v1) == 0) {
                 return 0xffffffff;
             }
         } else {
@@ -1344,7 +1344,7 @@ static int ov71_0223C654(BgConfig *param0, const TouchScreenRect *rect)
         if (v0 != 0) {
             u16 v1 = 0x40;
 
-            if (sub_0201C784(param0, 2, gCoreSys.touchX, gCoreSys.touchY, &v1) == 0) {
+            if (Bg_DoesPixelAtXYMatchVal(param0, 2, gCoreSys.touchX, gCoreSys.touchY, &v1) == 0) {
                 return 0xffffffff;
             }
         } else {

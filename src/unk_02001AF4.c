@@ -67,7 +67,7 @@ UIControlData *sub_02001B7C(const UnkStruct_02081CF4 *param0, u8 param1, u8 para
 {
     UIControlData *v0 = sub_02001AF4(param0, param1, param2, param3, param4, param5);
 
-    sub_0201A954(v0->unk_00.unk_04);
+    Window_CopyToVRAM(v0->unk_00.unk_04);
     return v0;
 }
 
@@ -235,7 +235,7 @@ static BOOL sub_02001DCC(UIControlData *param0, u8 param1, u16 param2)
         v3 = Font_GetAttribute(param0->unk_00.unk_08, 6);
 
         sub_02002018(param0, &v1, &v2, v0);
-        BGL_WindowColor(param0->unk_00.unk_04, v3, v1, v2, 8, param0->unk_1A);
+        Window_FillRectWithColor(param0->unk_00.unk_04, v3, v1, v2, 8, param0->unk_1A);
     }
 
     sub_02001FE8(param0);
@@ -336,7 +336,7 @@ static void sub_02001F5C(UIControlData *param0)
     u8 v1, v2, v3;
     u8 v4, v5;
 
-    BGL_FillWindow(param0->unk_00.unk_04, Font_GetAttribute(param0->unk_00.unk_08, 6));
+    Window_FillTilemap(param0->unk_00.unk_04, Font_GetAttribute(param0->unk_00.unk_08, 6));
 
     v1 = param0->unk_17;
     v3 = param0->unk_16 + param0->unk_19 * 2;
@@ -385,7 +385,7 @@ UIControlData *sub_02002054(BgConfig *param0, const WindowTemplate *param1, u16 
     MessageLoader_Free(v1);
 
     v0.unk_00 = v2;
-    v0.unk_04 = sub_0201A778(param5, 1);
+    v0.unk_04 = Window_New(param5, 1);
     v0.unk_08 = 0;
     v0.unk_09 = 1;
     v0.unk_0A = 2;
@@ -393,7 +393,7 @@ UIControlData *sub_02002054(BgConfig *param0, const WindowTemplate *param1, u16 
     v0.unk_0B_4 = 0;
     v0.unk_0B_6 = 0;
 
-    sub_0201A8D4(param0, v0.unk_04, param1);
+    Window_AddFromTemplate(param0, v0.unk_04, param1);
     Window_Show(v0.unk_04, 1, param2, param3);
 
     return sub_02001B7C(&v0, 8, 0, param4, param5, PAD_BUTTON_B);
@@ -429,7 +429,7 @@ u32 sub_02002134(UIControlData *param0, u8 param1, u32 param2)
 void sub_02002154(UIControlData *param0, u32 param1)
 {
     Window_Clear(param0->unk_00.unk_04, 0);
-    BGL_DeleteWindow(param0->unk_00.unk_04);
+    Window_Remove(param0->unk_00.unk_04);
     Heap_FreeToHeapExplicit(param1, param0->unk_00.unk_04);
     sub_02013A3C((ResourceMetadata *)param0->unk_00.unk_00);
     sub_02001BC4(param0, NULL);
@@ -504,5 +504,5 @@ void sub_02002180(Window *param0, u32 param1, u32 param2)
         0x0
     };
 
-    sub_0201ADDC(param0, (void *)v0, 0, 0, 8, 16, param1, param2, 8, 16);
+    Window_BlitBitmapRect(param0, (void *)v0, 0, 0, 8, 16, param1, param2, 8, 16);
 }

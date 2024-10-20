@@ -593,10 +593,10 @@ static BOOL ov62_02237884(UnkStruct_0208C06C *param0)
                 v0->unk_04[v1] = 0.2f;
             }
         }
-        sub_02019EBC(param0->unk_14.unk_10, 3);
-        sub_02019EBC(param0->unk_14.unk_10, 2);
-        sub_02019EBC(param0->unk_14.unk_10, 7);
-        sub_02019EBC(param0->unk_14.unk_10, 6);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 3);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 2);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 7);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 6);
         ov62_022315C8(&v0->unk_D4, &v0->unk_D8, 0);
         ov62_02231560(&v0->unk_D4, &v0->unk_D8, 0, 0, GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG1, 0);
         Sound_PlayEffect(1377);
@@ -626,7 +626,7 @@ static BOOL ov62_02237884(UnkStruct_0208C06C *param0)
         ov62_0223376C(param0, 0);
         sub_0208B9E0(param0->unk_6F0, 0);
         ov62_02234314();
-        BGL_SetPriority(6, 2);
+        Bg_SetPriority(6, 2);
         ov62_02236E14(param0);
         sub_02003A2C(param0->unk_14.unk_14, 3, 0xC | 0x10, v0->unk_00, param0->unk_14.unk_44);
         param0->unk_08++;
@@ -730,10 +730,10 @@ static BOOL ov62_02237B00(UnkStruct_0208C06C *param0)
         ov62_02234540(param0, 1);
         ov62_0223146C(param0);
         ov62_02234540(param0, 0);
-        sub_02019EBC(param0->unk_14.unk_10, 2);
-        sub_02019EBC(param0->unk_14.unk_10, 6);
-        sub_02019EBC(param0->unk_14.unk_10, 3);
-        sub_02019EBC(param0->unk_14.unk_10, 7);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 2);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 6);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 3);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 7);
         param0->unk_08++;
         break;
     case 4:

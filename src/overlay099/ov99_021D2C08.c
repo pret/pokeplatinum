@@ -165,6 +165,6 @@ static void ov99_021D2DF4(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2C
 {
     param1->unk_00 += -0x40;
 
-    sub_02019184(param0->unk_08, 2, 0, param1->unk_00 / FX32_ONE);
-    sub_02019184(param0->unk_08, 7, 0, param1->unk_00 / FX32_ONE);
+    Bg_SetOffset(param0->unk_08, 2, 0, param1->unk_00 / FX32_ONE);
+    Bg_SetOffset(param0->unk_08, 7, 0, param1->unk_00 / FX32_ONE);
 }

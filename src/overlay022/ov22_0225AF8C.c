@@ -158,8 +158,8 @@ void ov22_0225B080(UnkStruct_ov22_0225B1BC *param0, int param1, int param2)
     ov22_02257AD8(&param0->unk_1F4, param0->unk_2A0, param0->unk_2A4, param1, param2);
 
     if (param0->unk_2C4) {
-        sub_02019184(param0->unk_00.unk_40, 2, 0, 136 - param1);
-        sub_02019184(param0->unk_00.unk_40, 2, 3, 16 - param2);
+        Bg_SetOffset(param0->unk_00.unk_40, 2, 0, 136 - param1);
+        Bg_SetOffset(param0->unk_00.unk_40, 2, 3, 16 - param2);
     }
 
     param0->unk_2A0 = param1;

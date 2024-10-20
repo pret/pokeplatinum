@@ -34,7 +34,7 @@ void *ov5_021E1B08(u32 param0)
 void ov5_021E1B20(UnkStruct_ov5_021E1B20 *param0)
 {
     if (param0->unk_13_7 != 0) {
-        BGL_DeleteWindow(&param0->unk_00);
+        Window_Remove(&param0->unk_00);
     }
 
     Heap_FreeToHeap(param0);
@@ -106,7 +106,7 @@ void ov5_021E1BCC(FieldSystem *fieldSystem, u8 param1)
 
 static void ov5_021E1BE0(FieldSystem *fieldSystem)
 {
-    sub_02019184(fieldSystem->unk_08, 3, 3, -48);
+    Bg_SetOffset(fieldSystem->unk_08, 3, 3, -48);
 
     if (fieldSystem->unk_64->unk_13_7 == 0) {
         sub_0205DA1C(fieldSystem->unk_08, &fieldSystem->unk_64->unk_00, fieldSystem->unk_64->unk_12, 3);
@@ -122,47 +122,47 @@ static void ov5_021E1C1C(FieldSystem *fieldSystem)
         return;
     }
 
-    BGL_DeleteWindow(&fieldSystem->unk_64->unk_00);
-    sub_02019CB8(fieldSystem->unk_08, 3, 0, 0, 18, 32, 6, 16);
-    sub_02019448(fieldSystem->unk_08, 3);
-    sub_02019184(fieldSystem->unk_08, 3, 3, 0);
+    Window_Remove(&fieldSystem->unk_64->unk_00);
+    Bg_FillTilemapRect(fieldSystem->unk_08, 3, 0, 0, 18, 32, 6, 16);
+    Bg_CopyTilemapBufferToVRAM(fieldSystem->unk_08, 3);
+    Bg_SetOffset(fieldSystem->unk_08, 3, 3, 0);
 
     fieldSystem->unk_64->unk_13_7 = 0;
 }
 
 static BOOL ov5_021E1C70(FieldSystem *fieldSystem)
 {
-    int v0 = sub_020192F8(fieldSystem->unk_08, 3);
+    int v0 = Bg_GetYOffset(fieldSystem->unk_08, 3);
 
     if (v0 == 0) {
         return 1;
     }
 
     if (!((v0 > -48) && (v0 < 0))) {
-        sub_02019184(fieldSystem->unk_08, 3, 3, -48);
+        Bg_SetOffset(fieldSystem->unk_08, 3, 3, -48);
     }
 
-    sub_02019184(fieldSystem->unk_08, 3, 4, 16);
+    Bg_SetOffset(fieldSystem->unk_08, 3, 4, 16);
 
     return 0;
 }
 
 static BOOL ov5_021E1CB0(FieldSystem *fieldSystem)
 {
-    int v0 = sub_020192F8(fieldSystem->unk_08, 3);
+    int v0 = Bg_GetYOffset(fieldSystem->unk_08, 3);
 
     if (v0 == -48) {
-        sub_02019CB8(fieldSystem->unk_08, 3, 0, 0, 18, 32, 6, 16);
-        sub_02019448(fieldSystem->unk_08, 3);
-        sub_02019184(fieldSystem->unk_08, 3, 3, 0);
+        Bg_FillTilemapRect(fieldSystem->unk_08, 3, 0, 0, 18, 32, 6, 16);
+        Bg_CopyTilemapBufferToVRAM(fieldSystem->unk_08, 3);
+        Bg_SetOffset(fieldSystem->unk_08, 3, 3, 0);
         return 1;
     }
 
     if (!((v0 > -48) && (v0 < 0))) {
-        sub_02019184(fieldSystem->unk_08, 3, 3, 0);
+        Bg_SetOffset(fieldSystem->unk_08, 3, 3, 0);
     }
 
-    sub_02019184(fieldSystem->unk_08, 3, 5, 16);
+    Bg_SetOffset(fieldSystem->unk_08, 3, 5, 16);
 
     return 0;
 }

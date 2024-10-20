@@ -21,10 +21,10 @@ void ov20_021D4E38(UnkStruct_ov20_021D4E8C *param0, BgConfig *param1, u32 param2
     param0->unk_04 = param2;
 
     if (param3 == 0) {
-        param0->unk_0C = sub_020192EC(param1, param2);
+        param0->unk_0C = Bg_GetXOffset(param1, param2);
         param0->unk_08 = 0;
     } else {
-        param0->unk_0C = sub_020192F8(param1, param2);
+        param0->unk_0C = Bg_GetYOffset(param1, param2);
         param0->unk_08 = 3;
     }
 
@@ -62,10 +62,10 @@ static void ov20_021D4ED8(SysTask *param0, void *param1)
 
     if (v0->unk_18) {
         v0->unk_0C += v0->unk_14;
-        sub_02019184(v0->unk_00, v0->unk_04, v0->unk_08, (v0->unk_0C >> FX32_SHIFT));
+        Bg_SetOffset(v0->unk_00, v0->unk_04, v0->unk_08, (v0->unk_0C >> FX32_SHIFT));
         v0->unk_18--;
     } else {
-        sub_02019184(v0->unk_00, v0->unk_04, v0->unk_08, v0->unk_10);
+        Bg_SetOffset(v0->unk_00, v0->unk_04, v0->unk_08, v0->unk_10);
     }
 }
 

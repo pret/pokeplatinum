@@ -301,7 +301,7 @@ static u32 sub_020072D0(void *param0, BgConfig *param1, u32 param2, u32 param3, 
                 param4 = v0->szByte;
             }
 
-            sub_0201958C(param1, param2, v0->pRawData, param4, param3);
+            Bg_LoadTiles(param1, param2, v0->pRawData, param4, param3);
         }
 
         Heap_FreeToHeap(param0);
@@ -320,11 +320,11 @@ static void sub_02007314(void *param0, BgConfig *param1, u32 param2, u32 param3,
                 param4 = v0->szByte;
             }
 
-            if (sub_02019FE4(param1, param2) != NULL) {
-                sub_02019574(param1, param2, v0->rawData, param4);
+            if (Bg_GetTilemapBuffer(param1, param2) != NULL) {
+                Bg_LoadTilemapBuffer(param1, param2, v0->rawData, param4);
             }
 
-            sub_02019460(param1, param2, v0->rawData, param4, param3);
+            Bg_CopyTilemapBufferRangeToVRAM(param1, param2, v0->rawData, param4, param3);
         }
 
         Heap_FreeToHeap(param0);

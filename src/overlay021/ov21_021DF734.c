@@ -433,9 +433,9 @@ static void ov21_021DFAE8(UnkStruct_ov21_021DF858 *param0, int param1)
 
     v0 = ov21_021D27B8(param0->unk_00, 50, 1, &v1, param1);
 
-    sub_020198C0(param0->unk_00->unk_00, 3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
+    Bg_LoadToTilemapRect(param0->unk_00->unk_00, 3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
-    sub_0201C3C0(param0->unk_00->unk_00, 3);
+    Bg_ScheduleTilemapTransfer(param0->unk_00->unk_00, 3);
 }
 
 static void ov21_021DFB50(UnkStruct_ov21_021DFFF8 *param0, UnkStruct_ov21_021DF858 *param1, const UnkStruct_ov21_021DF844 *param2)

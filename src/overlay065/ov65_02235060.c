@@ -639,7 +639,7 @@ static void ov65_0223591C(BgConfig *param0)
 static void ov65_02235920(BgConfig *param0, u32 param1, NARC *param2)
 {
     sub_02007130(param2, 30, 0, 0, 8 * 32, param1);
-    sub_0201975C(0, 0);
+    Bg_MaskPalette(0, 0);
     sub_020070E8(param2, 29, param0, 0, 0, 0, 0, param1);
 }
 

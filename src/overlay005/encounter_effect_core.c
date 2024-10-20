@@ -1174,17 +1174,17 @@ void EncounterEffect_Trainer_Water_HigherLevel(SysTask *param0, void *param1)
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
-        v1->unk_270 = sub_0201A778(4, 1);
-        BGL_AddWindow(v0->fieldSystem->unk_08, v1->unk_270, 3, 0, 0, 32, 32, 0, 0);
+        v1->unk_270 = Window_New(4, 1);
+        Window_Add(v0->fieldSystem->unk_08, v1->unk_270, 3, 0, 0, 32, 32, 0, 0);
 
         {
             GXRgb v6 = 0;
 
-            sub_0201972C(3, &v6, sizeof(short), 2 * 15);
+            Bg_LoadPalette(3, &v6, sizeof(short), 2 * 15);
         }
 
-        BGL_FillWindow(v1->unk_270, 0);
-        sub_0201A9A4(v1->unk_270);
+        Window_FillTilemap(v1->unk_270, 0);
+        Window_ScheduleCopyToVRAM(v1->unk_270);
 
         v0->state++;
         break;
@@ -1306,12 +1306,12 @@ void EncounterEffect_Trainer_Water_HigherLevel(SysTask *param0, void *param1)
         ov5_021DE5A4(&v1->unk_00, &v1->unk_1A0);
         ov5_021DE4AC(&v1->unk_00);
 
-        sub_0201ACF4(v1->unk_270);
-        BGL_DeleteWindow(v1->unk_270);
-        sub_0201A928(v1->unk_270, 1);
+        Window_ClearAndCopyToVRAM(v1->unk_270);
+        Window_Remove(v1->unk_270);
+        Windows_Delete(v1->unk_270, 1);
 
-        sub_02019690(3, 32, 0, 4);
-        sub_02019EBC(v0->fieldSystem->unk_08, 3);
+        Bg_ClearTilesRange(3, 32, 0, 4);
+        Bg_ClearTilemap(v0->fieldSystem->unk_08, 3);
 
         EncounterEffect_Finish(v0, param0);
         return;
@@ -1344,7 +1344,7 @@ void EncounterEffect_Trainer_Water_HigherLevel(SysTask *param0, void *param1)
         }
     }
 
-    sub_0201A9A4(v1->unk_270);
+    Window_ScheduleCopyToVRAM(v1->unk_270);
 
     if (v0->state != 7) {
         CellActorCollection_Update(v1->unk_00.unk_00);
@@ -1506,17 +1506,17 @@ void EncounterEffect_Trainer_Cave_HigherLevel(SysTask *param0, void *param1)
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
-        v1->unk_264 = sub_0201A778(4, 1);
-        BGL_AddWindow(v0->fieldSystem->unk_08, v1->unk_264, 3, 0, 0, 32, 32, 0, 0);
+        v1->unk_264 = Window_New(4, 1);
+        Window_Add(v0->fieldSystem->unk_08, v1->unk_264, 3, 0, 0, 32, 32, 0, 0);
 
         {
             GXRgb v6 = 0;
 
-            sub_0201972C(3, &v6, sizeof(short), 2 * 15);
+            Bg_LoadPalette(3, &v6, sizeof(short), 2 * 15);
         }
 
-        BGL_FillWindow(v1->unk_264, 0);
-        sub_0201A9A4(v1->unk_264);
+        Window_FillTilemap(v1->unk_264, 0);
+        Window_ScheduleCopyToVRAM(v1->unk_264);
 
         v1->unk_268 = ov5_021DE8F8(4);
 
@@ -1626,7 +1626,7 @@ void EncounterEffect_Trainer_Cave_HigherLevel(SysTask *param0, void *param1)
 
     case 8:
         v3 = ov5_021DE988(v1->unk_268);
-        sub_0201A9A4(v1->unk_264);
+        Window_ScheduleCopyToVRAM(v1->unk_264);
 
         QuadraticInterpolationTaskFX32_Update(&v1->unk_270);
         Camera_SetDistance(v1->unk_270.currentValue, v1->camera);
@@ -1653,12 +1653,12 @@ void EncounterEffect_Trainer_Cave_HigherLevel(SysTask *param0, void *param1)
 
         ov5_021DE928(v1->unk_268);
 
-        sub_0201ACF4(v1->unk_264);
-        BGL_DeleteWindow(v1->unk_264);
-        sub_0201A928(v1->unk_264, 1);
+        Window_ClearAndCopyToVRAM(v1->unk_264);
+        Window_Remove(v1->unk_264);
+        Windows_Delete(v1->unk_264, 1);
 
-        sub_02019690(3, 32, 0, 4);
-        sub_02019EBC(v0->fieldSystem->unk_08, 3);
+        Bg_ClearTilesRange(3, 32, 0, 4);
+        Bg_ClearTilemap(v0->fieldSystem->unk_08, 3);
 
         EncounterEffect_Finish(v0, param0);
         break;
@@ -2146,17 +2146,17 @@ void EncounterEffect_GalacticBoss(SysTask *param0, void *param1)
 
         v1->unk_04 = ov5_021DEBEC(4);
 
-        v1->unk_00 = sub_0201A778(4, 1);
-        BGL_AddWindow(v0->fieldSystem->unk_08, v1->unk_00, 3, 0, 0, 32, 32, 0, 0);
+        v1->unk_00 = Window_New(4, 1);
+        Window_Add(v0->fieldSystem->unk_08, v1->unk_00, 3, 0, 0, 32, 32, 0, 0);
 
         {
             GXRgb v3 = 0;
 
-            sub_0201972C(3, &v3, sizeof(short), 2 * 15);
+            Bg_LoadPalette(3, &v3, sizeof(short), 2 * 15);
         }
 
-        BGL_FillWindow(v1->unk_00, 0);
-        sub_0201A9A4(v1->unk_00);
+        Window_FillTilemap(v1->unk_00, 0);
+        Window_ScheduleCopyToVRAM(v1->unk_00);
 
         v0->state++;
         break;
@@ -2214,7 +2214,7 @@ void EncounterEffect_GalacticBoss(SysTask *param0, void *param1)
             v0->state++;
         }
 
-        sub_0201A9A4(v1->unk_00);
+        Window_ScheduleCopyToVRAM(v1->unk_00);
         break;
 
     case 7:
@@ -2230,12 +2230,12 @@ void EncounterEffect_GalacticBoss(SysTask *param0, void *param1)
         ov5_021DE5A4(&v1->unk_08, &v1->unk_1A8);
         ov5_021DE4AC(&v1->unk_08);
 
-        sub_0201ACF4(v1->unk_00);
-        BGL_DeleteWindow(v1->unk_00);
-        sub_0201A928(v1->unk_00, 1);
+        Window_ClearAndCopyToVRAM(v1->unk_00);
+        Window_Remove(v1->unk_00);
+        Windows_Delete(v1->unk_00, 1);
 
-        sub_02019690(3, 32, 0, 4);
-        sub_02019EBC(v0->fieldSystem->unk_08, 3);
+        Bg_ClearTilesRange(3, 32, 0, 4);
+        Bg_ClearTilemap(v0->fieldSystem->unk_08, 3);
 
         G2_SetOBJMosaicSize(0, 0);
 
@@ -2900,8 +2900,8 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapId he
         sub_02007130(encEffect->narc, 11, 0, 2 * 0x20, 0x20, heapID);
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
-        BGL_AddWindow(encEffect->fieldSystem->unk_08, &v0->unk_2E0, 2, 0, 10, 16, 2, 2, 1);
-        BGL_FillWindow(&v0->unk_2E0, 0);
+        Window_Add(encEffect->fieldSystem->unk_08, &v0->unk_2E0, 2, 0, 10, 16, 2, 2, 1);
+        Window_FillTilemap(&v0->unk_2E0, 0);
         v7 = EncounterEffect_GetGymLeaderName(param->trainerID, heapID);
         Text_AddPrinterWithParamsAndColor(&v0->unk_2E0, FONT_SYSTEM, v7, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
         Strbuf_Free(v7);
@@ -3029,9 +3029,9 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapId he
 
             sub_0200AB4C(-14, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BD, 1);
 
-            sub_0201C63C(encEffect->fieldSystem->unk_08, 2, 0, -((v0->unk_00.currentValue >> FX32_SHIFT) + -92));
+            Bg_ScheduleScroll(encEffect->fieldSystem->unk_08, 2, 0, -((v0->unk_00.currentValue >> FX32_SHIFT) + -92));
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
-            BGL_SetPriority(2, 0);
+            Bg_SetPriority(2, 0);
             encEffect->state++;
         }
 
@@ -3089,19 +3089,19 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapId he
         ov5_021DE5A4(&v0->unk_44, &v0->unk_1E4[1]);
         ov5_021DE4AC(&v0->unk_44);
 
-        BGL_DeleteWindow(&v0->unk_2E0);
+        Window_Remove(&v0->unk_2E0);
 
         GX_SetVisibleWnd(GX_WNDMASK_NONE);
 
         sub_0200AB4C(0, GX_BLEND_PLANEMASK_NONE, 1);
 
-        sub_02019184(encEffect->fieldSystem->unk_08, 2, 0, 0);
+        Bg_SetOffset(encEffect->fieldSystem->unk_08, 2, 0, 0);
 
         return 1;
     }
 
     if (v0->unk_2F0 == 1) {
-        sub_0201C63C(encEffect->fieldSystem->unk_08, 3, 0, v0->unk_2F4);
+        Bg_ScheduleScroll(encEffect->fieldSystem->unk_08, 3, 0, v0->unk_2F4);
 
         v0->unk_2F4 = (v0->unk_2F4 + 30) % 512;
     }
@@ -3335,8 +3335,8 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
             sub_02007130(encEffect->narc, 11, 0, 2 * 0x20, 0x20, heapID);
 
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
-            BGL_AddWindow(encEffect->fieldSystem->unk_08, &v0->unk_358, 2, 21, 13, 11, 2, 2, 1);
-            BGL_FillWindow(&v0->unk_358, 0);
+            Window_Add(encEffect->fieldSystem->unk_08, &v0->unk_358, 2, 21, 13, 11, 2, 2, 1);
+            Window_FillTilemap(&v0->unk_358, 0);
             v9 = EncounterEffect_GetGymLeaderName(param->trainerID, heapID);
             Text_AddPrinterWithParamsAndColor(&v0->unk_358, FONT_SYSTEM, v9, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
             Strbuf_Free(v9);
@@ -3426,7 +3426,7 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
         LinearInterpolationTaskS32_Init(&v0->unk_48, 16, 0, 6);
 
         ov5_021DF17C(4);
-        BGL_SetPriority(0, 1);
+        Bg_SetPriority(0, 1);
 
         encEffect->state++;
         break;
@@ -3545,7 +3545,7 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
 
         ov5_021E519C(&v0->unk_2F4);
 
-        BGL_DeleteWindow(&v0->unk_358);
+        Window_Remove(&v0->unk_358);
 
         for (v5 = 0; v5 < 4; v5++) {
             CellActor_Delete(v0->unk_2CC[v5]);

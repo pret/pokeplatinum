@@ -97,8 +97,8 @@ static void sub_020528D0(BgConfig *param0)
     };
 
     GXLayers_SetBanks(&v0);
-    sub_02018368(&v1);
-    sub_020183C4(param0, 3, &v2, 0);
+    SetAllGraphicsModes(&v1);
+    Bg_InitFromTemplate(param0, 3, &v2, 0);
     sub_02006E84(14, 6, 0, 13 * 0x20, 0x20, 11);
 }
 
@@ -116,14 +116,14 @@ static void sub_02052914(FieldSystem *fieldSystem, TaskManager *param1)
 
     v0->unk_00 = 0;
     v0->fieldSystem = fieldSystem;
-    v0->unk_08 = sub_02018340(11);
+    v0->unk_08 = BgConfig_New(11);
 
     sub_020528D0(v0->unk_08);
 
     v0->unk_1C = MessageLoader_Init(1, 26, 373, 11);
     v0->unk_20 = StringTemplate_Default(11);
 
-    sub_0201A8D4(v0->unk_08, &v0->unk_0C, &Unk_020EC2F0);
+    Window_AddFromTemplate(v0->unk_08, &v0->unk_0C, &Unk_020EC2F0);
     StringTemplate_SetPlayerName(v0->unk_20, 0, SaveData_GetTrainerInfo(FieldSystem_SaveData(fieldSystem)));
 
     if (fieldSystem->location->mapId == 414) {
@@ -132,7 +132,7 @@ static void sub_02052914(FieldSystem *fieldSystem, TaskManager *param1)
         sub_02052AA4(v0, 3, 0, 0);
     }
 
-    sub_0201A954(&v0->unk_0C);
+    Window_CopyToVRAM(&v0->unk_0C);
     FieldTask_Start(param1, sub_020529C4, v0);
 
     return;
@@ -160,16 +160,16 @@ static BOOL sub_020529C4(TaskManager *param0)
         break;
     case 3:
         if (ScreenWipe_Done()) {
-            BGL_FillWindow(&v0->unk_0C, 0);
+            Window_FillTilemap(&v0->unk_0C, 0);
             v0->unk_00++;
         }
         break;
     case 4:
         sub_0200E084(&v0->unk_0C, 0);
-        BGL_DeleteWindow(&v0->unk_0C);
+        Window_Remove(&v0->unk_0C);
         StringTemplate_Free(v0->unk_20);
         MessageLoader_Free(v0->unk_1C);
-        sub_02019044(v0->unk_08, 3);
+        Bg_FreeTilemapBuffer(v0->unk_08, 3);
         Heap_FreeToHeap(v0->unk_08);
         Heap_FreeToHeap(v0);
 
@@ -184,7 +184,7 @@ static void sub_02052AA4(UnkStruct_02052AA4 *param0, u16 param1, u8 param2, u8 p
     Strbuf *v0 = Strbuf_Init(1024, 11);
     Strbuf *v1 = Strbuf_Init(1024, 11);
 
-    BGL_FillWindow(&param0->unk_0C, 0);
+    Window_FillTilemap(&param0->unk_0C, 0);
     MessageLoader_GetStrbuf(param0->unk_1C, param1, v0);
     StringTemplate_Format(param0->unk_20, v1, v0);
 

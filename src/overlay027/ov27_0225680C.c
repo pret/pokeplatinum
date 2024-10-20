@@ -67,7 +67,7 @@ BOOL ov27_0225680C(UnkStruct_ov27_0225680C **param0, const UnkStruct_ov27_022568
     if (v0 != NULL) {
         v0->unk_00 = param1;
         v0->unk_5C = ov25_02254664();
-        v0->unk_04 = sub_02018340(8);
+        v0->unk_04 = BgConfig_New(8);
 
         if (v0->unk_04 == NULL) {
             return 0;
@@ -190,12 +190,12 @@ static void ov27_02256A18(SysTask *param0, void *param1)
     GXSDispCnt v1;
     UnkStruct_ov27_0225680C *v2 = ov25_0225523C(param1);
 
-    sub_020183C4(v2->unk_04, 6, &v0, 0);
+    Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
     sub_02006E3C(12, 21, v2->unk_04, 6, 0, 0, 1, 8);
     sub_02006E60(12, 20, v2->unk_04, 6, 0, 0, 1, 8);
 
     ov25_022546B8(0, 0);
-    sub_02019448(v2->unk_04, 6);
+    Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);
 
     {
         UnkStruct_ov27_0225680C *v3 = ov25_0225523C(param1);
@@ -341,7 +341,7 @@ static void ov27_02256BB0(SysTask *param0, void *param1)
 
     ov25_02255914(v0->unk_60[8], 1);
     ov27_02256EC4(v0->unk_04, 0);
-    sub_02019448(v0->unk_04, 6);
+    Bg_CopyTilemapBufferToVRAM(v0->unk_04, 6);
     ov27_02256A04(param1);
 }
 
@@ -353,7 +353,7 @@ static void ov27_02256BE8(SysTask *param0, void *param1)
     ov25_022558C4(v0->unk_60[8], 11);
     ov27_02256EC4(v0->unk_04, 1);
 
-    sub_02019448(v0->unk_04, 6);
+    Bg_CopyTilemapBufferToVRAM(v0->unk_04, 6);
 
     PoketchSystem_PlaySoundEffect(1641);
     ov27_02256A04(param1);
@@ -373,7 +373,7 @@ static void ov27_02256C2C(SysTask *param0, void *param1)
     case 0:
         ov25_022558C4(v1->unk_60[8], 12);
         ov27_02256EC4(v1->unk_04, 0);
-        sub_02019448(v1->unk_04, 6);
+        Bg_CopyTilemapBufferToVRAM(v1->unk_04, 6);
         ov25_0225524C(param1);
         break;
     case 1:
@@ -408,7 +408,7 @@ static void ov27_02256C80(SysTask *param0, void *param1)
         if (ov27_02256E90(v2, 6)) {
             PoketchSystem_PlaySoundEffect(1641);
             ov27_02256EC4(v1->unk_04, v2->unk_03);
-            sub_02019448(v1->unk_04, 6);
+            Bg_CopyTilemapBufferToVRAM(v1->unk_04, 6);
         }
         break;
     }
@@ -441,7 +441,7 @@ static void ov27_02256D00(SysTask *param0, void *param1)
         if (ov27_02256E90(v2, 3)) {
             PoketchSystem_PlaySoundEffect(1641);
             ov27_02256EC4(v1->unk_04, v2->unk_03);
-            sub_02019448(v1->unk_04, 6);
+            Bg_CopyTilemapBufferToVRAM(v1->unk_04, 6);
         }
         break;
     }
@@ -468,7 +468,7 @@ static void ov27_02256D80(SysTask *param0, void *param1)
         v2->unk_02 = 0;
         ov25_022558C4(v1->unk_60[8], 15);
         ov27_02256EC4(v1->unk_04, 5);
-        sub_02019448(v1->unk_04, 6);
+        Bg_CopyTilemapBufferToVRAM(v1->unk_04, 6);
         PoketchSystem_PlaySoundEffect(1638);
         ov25_0225524C(param1);
     case 1:
@@ -477,7 +477,7 @@ static void ov27_02256D80(SysTask *param0, void *param1)
             v2->unk_02 ^= 1;
             v2->unk_03 = 5 + v2->unk_02;
             ov27_02256EC4(v1->unk_04, v2->unk_03);
-            sub_02019448(v1->unk_04, 6);
+            Bg_CopyTilemapBufferToVRAM(v1->unk_04, 6);
         }
         break;
     }
@@ -502,7 +502,7 @@ static void ov27_02256E1C(SysTask *param0, void *param1)
     case 0:
         ov25_022558C4(v1->unk_60[8], 16);
         ov27_02256EC4(v1->unk_04, 6);
-        sub_02019448(v1->unk_04, 6);
+        Bg_CopyTilemapBufferToVRAM(v1->unk_04, 6);
         ov25_0225524C(param1);
         v2->unk_00 = 0;
     case 1:
@@ -541,7 +541,7 @@ static void ov27_02256EC4(BgConfig *param0, u32 param1)
     u32 v1, v2;
     u16 v3;
 
-    v0 = sub_02019FE4(param0, 6);
+    v0 = Bg_GetTilemapBuffer(param0, 6);
     v0 += ((9 * 32) + 9);
     v3 = 2 + param1 * 5;
 
@@ -568,7 +568,7 @@ static void ov27_02256F24(SysTask *param0, void *param1)
     case 1:
         ov25_022559B0(&(v0->unk_34));
         ov25_022559B0(&(v0->unk_48));
-        sub_02019044(v0->unk_04, 6);
+        Bg_FreeTilemapBuffer(v0->unk_04, 6);
         SysTask_Done(v0->unk_84);
         v0->unk_84 = NULL;
         ov27_02256A04(param1);

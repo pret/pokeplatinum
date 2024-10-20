@@ -89,10 +89,10 @@ static BOOL ov62_02235E64(UnkStruct_0208C06C *param0)
     memset(v0, 0, sizeof(UnkStruct_ov62_02235E64));
     param0->unk_860 = v0;
 
-    sub_02019EBC(param0->unk_14.unk_10, 2);
-    sub_02019EBC(param0->unk_14.unk_10, 3);
-    sub_02019EBC(param0->unk_14.unk_10, 6);
-    sub_02019EBC(param0->unk_14.unk_10, 7);
+    Bg_ClearTilemap(param0->unk_14.unk_10, 2);
+    Bg_ClearTilemap(param0->unk_14.unk_10, 3);
+    Bg_ClearTilemap(param0->unk_14.unk_10, 6);
+    Bg_ClearTilemap(param0->unk_14.unk_10, 7);
 
     ov62_022315C8(&v0->unk_00, &v0->unk_04, 0);
     ov62_0222FB60(param0, 1);
@@ -118,14 +118,14 @@ static BOOL ov62_02235EBC(UnkStruct_0208C06C *param0)
         ov62_02234540(param0, 1);
         ov62_02231454(param0);
         ov62_02234540(param0, 0);
-        BGL_SetPriority(0, 0);
-        BGL_SetPriority(1, 3);
-        BGL_SetPriority(2, 0);
-        BGL_SetPriority(3, 2);
-        BGL_SetPriority(4, 0);
-        BGL_SetPriority(5, 3);
-        BGL_SetPriority(6, 1);
-        BGL_SetPriority(7, 2);
+        Bg_SetPriority(0, 0);
+        Bg_SetPriority(1, 3);
+        Bg_SetPriority(2, 0);
+        Bg_SetPriority(3, 2);
+        Bg_SetPriority(4, 0);
+        Bg_SetPriority(5, 3);
+        Bg_SetPriority(6, 1);
+        Bg_SetPriority(7, 2);
         sub_020070E8(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
         sub_020070E8(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
         param0->unk_08++;
@@ -291,39 +291,39 @@ static void ov62_022362B8(UnkStruct_0208C06C *param0)
 
     v1 = &v0->unk_178[0];
     Window_Init(v1);
-    BGL_AddWindow(param0->unk_14.unk_10, v1, 6, 4, 6, 10, 2, 14, v3);
-    BGL_FillWindow(v1, 0x0);
+    Window_Add(param0->unk_14.unk_10, v1, 6, 4, 6, 10, 2, 14, v3);
+    Window_FillTilemap(v1, 0x0);
 
     v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 130);
     v4 = ov62_0223429C(v1, v2);
 
     Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, v2, v4, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 0), NULL);
     Strbuf_Free(v2);
-    sub_0201A9A4(v1);
+    Window_ScheduleCopyToVRAM(v1);
 
     v3 += (10 * 2);
     v1 = &v0->unk_178[1];
 
     Window_Init(v1);
-    BGL_AddWindow(param0->unk_14.unk_10, v1, 6, 18, 6, 10, 2, 14, v3);
-    BGL_FillWindow(v1, 0x0);
+    Window_Add(param0->unk_14.unk_10, v1, 6, 18, 6, 10, 2, 14, v3);
+    Window_FillTilemap(v1, 0x0);
 
     v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 131);
     v4 = ov62_0223429C(v1, v2);
 
     Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, v2, v4, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 0), NULL);
     Strbuf_Free(v2);
-    sub_0201A9A4(v1);
+    Window_ScheduleCopyToVRAM(v1);
 }
 
 static void ov62_02236398(UnkStruct_0208C06C *param0)
 {
     UnkStruct_ov62_02235E64 *v0 = param0->unk_860;
 
-    sub_0201ACF4(&v0->unk_178[0]);
-    BGL_DeleteWindow(&v0->unk_178[0]);
-    sub_0201ACF4(&v0->unk_178[1]);
-    BGL_DeleteWindow(&v0->unk_178[1]);
+    Window_ClearAndCopyToVRAM(&v0->unk_178[0]);
+    Window_Remove(&v0->unk_178[0]);
+    Window_ClearAndCopyToVRAM(&v0->unk_178[1]);
+    Window_Remove(&v0->unk_178[1]);
 }
 
 static BOOL ov62_022363CC(UnkStruct_0208C06C *param0)
@@ -552,10 +552,10 @@ static BOOL ov62_022367B4(UnkStruct_0208C06C *param0)
         ov62_02234540(param0, 1);
         ov62_0223146C(param0);
         ov62_02234540(param0, 0);
-        sub_02019EBC(param0->unk_14.unk_10, 2);
-        sub_02019EBC(param0->unk_14.unk_10, 6);
-        sub_02019EBC(param0->unk_14.unk_10, 3);
-        sub_02019EBC(param0->unk_14.unk_10, 7);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 2);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 6);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 3);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 7);
         param0->unk_08++;
         break;
     default:
@@ -696,7 +696,7 @@ static void ov62_02236B64(UnkStruct_0208C06C *param0)
 
     v1 = &v0->unk_178[0];
     Window_Init(v1);
-    BGL_AddWindow(param0->unk_14.unk_10, v1, 6, 8, 3, 16, 2, 14, v2);
+    Window_Add(param0->unk_14.unk_10, v1, 6, 8, 3, 16, 2, 14, v2);
     ov62_02236BC8(param0, 121);
 }
 
@@ -704,8 +704,8 @@ static void ov62_02236BA8(UnkStruct_0208C06C *param0)
 {
     UnkStruct_ov62_02235E64 *v0 = param0->unk_860;
 
-    sub_0201ACF4(&v0->unk_178[0]);
-    BGL_DeleteWindow(&v0->unk_178[0]);
+    Window_ClearAndCopyToVRAM(&v0->unk_178[0]);
+    Window_Remove(&v0->unk_178[0]);
 }
 
 static void ov62_02236BC8(UnkStruct_0208C06C *param0, int param1)
@@ -717,14 +717,14 @@ static void ov62_02236BC8(UnkStruct_0208C06C *param0, int param1)
 
     v1 = &v0->unk_178[0];
 
-    BGL_FillWindow(v1, 0x0);
+    Window_FillTilemap(v1, 0x0);
 
     v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
     v3 = ov62_0223429C(v1, v2);
 
     Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, v2, v3, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 0), NULL);
     Strbuf_Free(v2);
-    sub_0201A9A4(v1);
+    Window_ScheduleCopyToVRAM(v1);
 }
 
 static void ov62_02236C20(UnkStruct_0208C06C *param0)

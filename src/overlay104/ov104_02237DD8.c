@@ -655,7 +655,7 @@ void ov104_02238658(void *param0, UnkStruct_ov104_0223C4CC *param1)
         }
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
-        sub_0201C3C0(param1->unk_00, 2);
+        Bg_ScheduleTilemapTransfer(param1->unk_00, 2);
         NARC_dtor(v0);
     } else {
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
@@ -673,7 +673,7 @@ void ov104_02238728(void *param0, UnkStruct_ov104_0223C4CC *param1)
     v0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 94);
 
     sub_0200710C(v0, 53, param1->unk_00, 3, 0, 0, 1, 94);
-    sub_0201C3C0(param1->unk_00, 3);
+    Bg_ScheduleTilemapTransfer(param1->unk_00, 3);
     NARC_dtor(v0);
 
     return;

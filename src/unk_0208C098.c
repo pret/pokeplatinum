@@ -176,7 +176,7 @@ void sub_0208C210(BgConfig *param0, int param1, NARC *param2, int param3, int pa
             param7 = v2->szByte;
         }
 
-        sub_0201958C(param0, param5, v2->pRawData, param7, param8);
+        Bg_LoadTiles(param0, param5, v2->pRawData, param7, param8);
         break;
     case 1:
         NNS_G2dGetUnpackedScreenData(v1, &v3);
@@ -185,11 +185,11 @@ void sub_0208C210(BgConfig *param0, int param1, NARC *param2, int param3, int pa
             param7 = v3->szByte;
         }
 
-        if (sub_02019FE4(param0, param5) != NULL) {
-            sub_02019574(param0, param5, v3->rawData, param7);
+        if (Bg_GetTilemapBuffer(param0, param5) != NULL) {
+            Bg_LoadTilemapBuffer(param0, param5, v3->rawData, param7);
         }
 
-        sub_02019460(param0, param5, v3->rawData, param7, param8);
+        Bg_CopyTilemapBufferRangeToVRAM(param0, param5, v3->rawData, param7, param8);
         break;
     case 2:
         NNS_G2dGetUnpackedPaletteData(v1, &v4);
@@ -198,7 +198,7 @@ void sub_0208C210(BgConfig *param0, int param1, NARC *param2, int param3, int pa
             param7 = v4->szByte;
         }
 
-        sub_0201972C(param5, v4->pRawData, param7, param8);
+        Bg_LoadPalette(param5, v4->pRawData, param7, param8);
     }
 
     Heap_FreeToHeap(v1);

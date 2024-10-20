@@ -42,22 +42,22 @@ static void ov62_02234A10(UnkStruct_0208C06C *param0)
     Window *v2 = &param0->unk_8A4;
 
     Window_Init(v2);
-    BGL_AddWindow(param0->unk_14.unk_10, v2, 2, 8, 16, 16, 2, 14, 300);
-    BGL_FillWindow(v2, 0x0);
+    Window_Add(param0->unk_14.unk_10, v2, 2, 8, 16, 16, 2, 14, 300);
+    Window_FillTilemap(v2, 0x0);
 
     v0 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 192);
     v1 = ov62_0223429C(v2, v0);
 
     Text_AddPrinterWithParamsAndColor(v2, FONT_SYSTEM, v0, v1, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 14, 0), NULL);
     Strbuf_Free(v0);
-    sub_0201A9A4(v2);
+    Window_ScheduleCopyToVRAM(v2);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
 }
 
 static void ov62_02234A90(UnkStruct_0208C06C *param0)
 {
-    sub_0201ACF4(&param0->unk_8A4);
-    BGL_DeleteWindow(&param0->unk_8A4);
+    Window_ClearAndCopyToVRAM(&param0->unk_8A4);
+    Window_Remove(&param0->unk_8A4);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
 }
 
