@@ -15,10 +15,10 @@
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D2648.h"
-#include "overlay021/struct_ov21_021D3320.h"
 #include "overlay021/struct_ov21_021E68F4.h"
 #include "overlay021/struct_ov21_021E6A68.h"
 #include "overlay021/struct_ov21_021E6B20.h"
+#include "overlay021/struct_pokedexstatus.h"
 
 #include "cell_actor.h"
 #include "heap.h"
@@ -32,7 +32,7 @@
 
 typedef struct {
     int *unk_00;
-    pokedexStruct *unk_04;
+    pokedexStatus *unk_04;
     UnkStruct_ov21_021E68F4 *unk_08;
     UnkStruct_ov21_021E68F4 *unk_0C;
 } UnkStruct_ov21_021E40F4;

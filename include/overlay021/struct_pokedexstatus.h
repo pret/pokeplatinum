@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_STRUCT_OV21_021D3320_H
-#define POKEPLATINUM_STRUCT_OV21_021D3320_H
+#ifndef POKEPLATINUM_STRUCT_POKEDEXSTATUS_H
+#define POKEPLATINUM_STRUCT_POKEDEXSTATUS_H
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02098700_decl.h"
@@ -24,10 +24,10 @@ typedef struct {
     int unk_1758;
     u16 unk_175C;
     u16 unk_175E;
-    BOOL pokedexSFlag_1;
-    BOOL pokedexSFlag_2;
-    BOOL pokedexSFlag_3;
-    BOOL pokedexSFlag_4;
-} pokedexStruct;
+    BOOL pokedexSFlag_1; // VarsFlags->vars[54]
+    BOOL pokedexSFlag_2; // VarsFlags->vars[55]
+    BOOL pokedexSFlag_3; // VarsFlags->vars[56]
+    BOOL pokedexSFlag_4; // VarsFlags->vars[57]
+} pokedexStatus;
 
-#endif // POKEPLATINUM_STRUCT_OV21_021D3320_H
+#endif // POKEPLATINUM_STRUCT_POKEDEXSTATUS_H
