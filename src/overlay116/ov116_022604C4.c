@@ -840,7 +840,7 @@ static void ov116_02261494(BgConfig *param0)
 {
     GXLayers_DisableEngineALayers();
     {
-        UnkStruct_ov84_0223BA5C v0 = {
+        GraphicsModes v0 = {
             GX_DISPMODE_GRAPHICS,
             GX_BGMODE_0,
             GX_BGMODE_0,

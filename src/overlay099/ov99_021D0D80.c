@@ -389,7 +389,7 @@ static void ov99_021D1380(BgConfig *param0)
     }
 
     {
-        UnkStruct_ov84_0223BA5C v1 = {
+        GraphicsModes v1 = {
             GX_DISPMODE_GRAPHICS,
             GX_BGMODE_3,
             GX_BGMODE_0,
@@ -568,7 +568,7 @@ static void ov99_021D1580(BgConfig *param0)
     }
 
     {
-        UnkStruct_ov84_0223BA5C v1 = {
+        GraphicsModes v1 = {
             GX_DISPMODE_GRAPHICS,
             GX_BGMODE_5,
             GX_BGMODE_0,

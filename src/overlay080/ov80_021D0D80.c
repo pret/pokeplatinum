@@ -281,7 +281,7 @@ static void ov80_021D1088(UnkStruct_ov80_021D2A08 *param0, BgConfig *param1)
     int v0, v1;
 
     {
-        UnkStruct_ov84_0223BA5C v2 = {
+        GraphicsModes v2 = {
             GX_DISPMODE_GRAPHICS,
             GX_BGMODE_0,
             GX_BGMODE_0,

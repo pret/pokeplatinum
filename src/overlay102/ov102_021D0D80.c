@@ -203,7 +203,7 @@ static void ov102_021D0F8C(UnkStruct_ov102_021D0F8C *param0)
     }
 
     {
-        UnkStruct_ov84_0223BA5C v1 = {
+        GraphicsModes v1 = {
             GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BGMODE_0, GX_BG0_AS_2D
         };
 

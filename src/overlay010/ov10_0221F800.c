@@ -1279,14 +1279,14 @@ static void ov10_02220C94(UnkStruct_ov10_0221FB28 *param0, GXBG0As param1, int p
     param0->unk_B9C = param1;
 
     {
-        UnkStruct_ov84_0223BA5C v0 = {
+        GraphicsModes v0 = {
             GX_DISPMODE_GRAPHICS,
             GX_BGMODE_0,
             GX_BGMODE_0,
             GX_BG0_AS_3D,
         };
 
-        v0.unk_0C = param1;
+        v0.bg0As2DOr3D = param1;
         sub_02018368(&v0);
     }
 
@@ -1835,7 +1835,7 @@ static u32 ov10_0222194C(u32 param0, BOOL param1)
 static void ov10_02221970(UnkStruct_ov10_0221FB28 *param0)
 {
     {
-        UnkStruct_ov84_0223BA5C v0 = {
+        GraphicsModes v0 = {
             GX_DISPMODE_GRAPHICS,
             GX_BGMODE_0,
             GX_BGMODE_0,

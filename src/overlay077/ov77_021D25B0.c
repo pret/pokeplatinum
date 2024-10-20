@@ -292,7 +292,7 @@ static void ov77_021D2610(UnkStruct_ov77_021D2E9C *param0)
     param0->unk_0C = sub_02018340(param0->unk_00);
 
     {
-        UnkStruct_ov84_0223BA5C v0 = {
+        GraphicsModes v0 = {
             GX_DISPMODE_GRAPHICS,
             GX_BGMODE_0,
             GX_BGMODE_0,
@@ -431,7 +431,7 @@ static void ov77_021D2724(UnkStruct_ov77_021D2E9C *param0)
     param0->unk_0C = sub_02018340(param0->unk_00);
 
     {
-        UnkStruct_ov84_0223BA5C v0 = {
+        GraphicsModes v0 = {
             GX_DISPMODE_GRAPHICS,
             GX_BGMODE_0,
             GX_BGMODE_0,
@@ -710,7 +710,7 @@ static void ov77_021D2900(UnkStruct_ov77_021D2E9C *param0)
     ov77_021D2828(param0);
 
     {
-        UnkStruct_ov84_0223BA5C v0 = {
+        GraphicsModes v0 = {
             GX_DISPMODE_GRAPHICS,
             GX_BGMODE_0,
             GX_BGMODE_0,
@@ -784,7 +784,7 @@ static void ov77_021D2A00(UnkStruct_ov77_021D2E9C *param0)
     param0->unk_0C = sub_02018340(param0->unk_00);
 
     {
-        UnkStruct_ov84_0223BA5C v0 = {
+        GraphicsModes v0 = {
             GX_DISPMODE_GRAPHICS,
             GX_BGMODE_0,
             GX_BGMODE_0,

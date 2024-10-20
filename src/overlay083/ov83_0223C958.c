@@ -172,7 +172,7 @@ static void ov83_0223CC30(BgConfig **param0, int param1)
     *param0 = sub_02018340(param1);
 
     {
-        UnkStruct_ov84_0223BA5C v2 = {
+        GraphicsModes v2 = {
             GX_DISPMODE_GRAPHICS,
             GX_BGMODE_0,
             GX_BGMODE_0,

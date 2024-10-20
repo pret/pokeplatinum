@@ -62,10 +62,10 @@ u32 sub_02018364(BgConfig *param0)
     return param0->heapID;
 }
 
-void sub_02018368(const UnkStruct_ov84_0223BA5C *param0)
+void sub_02018368(const GraphicsModes *param0)
 {
-    GX_SetGraphicsMode(param0->unk_00, param0->unk_04, param0->unk_0C);
-    GXS_SetGraphicsMode(param0->unk_08);
+    GX_SetGraphicsMode(param0->displayMode, param0->mainBgMode, param0->bg0As2DOr3D);
+    GXS_SetGraphicsMode(param0->subBgMode);
 
     GX_SetBGScrOffset(GX_BGSCROFFSET_0x00000);
     GX_SetBGCharOffset(GX_BGCHAROFFSET_0x00000);
@@ -74,13 +74,13 @@ void sub_02018368(const UnkStruct_ov84_0223BA5C *param0)
     GXLayers_DisableEngineBLayers();
 }
 
-void sub_020183A0(const UnkStruct_ov84_0223BA5C *param0, u8 param1)
+void sub_020183A0(const GraphicsModes *param0, u8 param1)
 {
     if (param1 == 0) {
-        GX_SetGraphicsMode(param0->unk_00, param0->unk_04, param0->unk_0C);
+        GX_SetGraphicsMode(param0->displayMode, param0->mainBgMode, param0->bg0As2DOr3D);
         GXLayers_DisableEngineALayers();
     } else {
-        GXS_SetGraphicsMode(param0->unk_08);
+        GXS_SetGraphicsMode(param0->subBgMode);
         GXLayers_DisableEngineBLayers();
     }
 }

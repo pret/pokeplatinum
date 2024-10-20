@@ -32,7 +32,7 @@ static const UnkStruct_02099F80 Unk_020F8AF8 = {
     GX_VRAM_TEXPLTT_NONE
 };
 
-static const UnkStruct_ov84_0223BA5C Unk_020F8ACC = {
+static const GraphicsModes Unk_020F8ACC = {
     GX_DISPMODE_GRAPHICS,
     GX_BGMODE_0,
     GX_BGMODE_0,

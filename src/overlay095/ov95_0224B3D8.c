@@ -236,7 +236,7 @@ static int ov95_0224B520(UnkStruct_ov95_0224B4D4 *param0, int *param1)
         GX_VRAM_TEX_0_A,
         GX_VRAM_TEXPLTT_0123_E
     };
-    static const UnkStruct_ov84_0223BA5C v1 = {
+    static const GraphicsModes v1 = {
         GX_DISPMODE_GRAPHICS,
         GX_BGMODE_0,
         GX_BGMODE_0,

@@ -182,7 +182,7 @@ static void LibraryTV_SetVramBank(LibraryTV *ltv)
 
     ltv->bgl = sub_02018340(ltv->heapID);
 
-    UnkStruct_ov84_0223BA5C bgData = {
+    GraphicsModes bgData = {
         GX_DISPMODE_GRAPHICS,
         GX_BGMODE_0,
         GX_BGMODE_0,

@@ -627,7 +627,7 @@ static void ov77_021D17B4(UnkStruct_ov77_021D17B4 *param0)
     param0->unk_04 = sub_02018340(param0->unk_00);
 
     {
-        UnkStruct_ov84_0223BA5C v0 = {
+        GraphicsModes v0 = {
             GX_DISPMODE_GRAPHICS,
             GX_BGMODE_0,
             GX_BGMODE_0,

@@ -635,7 +635,7 @@ static u8 ov13_02226D94(UnkStruct_ov13_02227244 *param0)
 static void ov13_02226ED0(UnkStruct_ov13_02227244 *param0)
 {
     {
-        UnkStruct_ov84_0223BA5C v0 = {
+        GraphicsModes v0 = {
             GX_DISPMODE_GRAPHICS,
             GX_BGMODE_0,
             GX_BGMODE_0,

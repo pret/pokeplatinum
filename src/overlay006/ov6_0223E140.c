@@ -368,7 +368,7 @@ static void ov6_0223E1B0(void)
 static void ov6_0223E1D0(BgConfig *param0)
 {
     {
-        UnkStruct_ov84_0223BA5C v0 = {
+        GraphicsModes v0 = {
             GX_DISPMODE_GRAPHICS,
             GX_BGMODE_0,
             GX_BGMODE_0,

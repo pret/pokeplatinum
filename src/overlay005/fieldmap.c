@@ -573,7 +573,7 @@ void ov5_021D143C(BgConfig *bgl)
 static void ov5_021D1444(BgConfig *bgl)
 {
     {
-        UnkStruct_ov84_0223BA5C v0 = {
+        GraphicsModes v0 = {
             GX_DISPMODE_GRAPHICS,
             GX_BGMODE_0,
             GX_BGMODE_0,

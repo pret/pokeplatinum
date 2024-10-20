@@ -479,14 +479,14 @@ static void ov104_0223C948(BgConfig *param0, int param1)
     }
 
     {
-        UnkStruct_ov84_0223BA5C v2 = {
+        GraphicsModes v2 = {
             GX_DISPMODE_GRAPHICS,
             GX_BGMODE_5,
             GX_BGMODE_0,
             GX_BG0_AS_3D
         };
 
-        v2.unk_04 = v0;
+        v2.mainBgMode = v0;
         sub_02018368(&v2);
     }
 

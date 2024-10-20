@@ -848,7 +848,7 @@ static void ov16_0223C004(BattleSystem *param0, BgConfig *param1)
     }
 
     {
-        UnkStruct_ov84_0223BA5C v1 = {
+        GraphicsModes v1 = {
             GX_DISPMODE_GRAPHICS,
             GX_BGMODE_0,
             GX_BGMODE_0,
@@ -1687,7 +1687,7 @@ static void ov16_0223D10C(OverlayManager *param0, BattleParams *param1)
     }
 
     {
-        UnkStruct_ov84_0223BA5C v2 = {
+        GraphicsModes v2 = {
             GX_DISPMODE_GRAPHICS,
             GX_BGMODE_0,
             GX_BGMODE_0,

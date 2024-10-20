@@ -259,7 +259,7 @@ static void ov87_021D139C(UnkStruct_ov87_021D106C *param0)
         GX_VRAM_TEX_0_A,
         GX_VRAM_TEXPLTT_01_FG
     };
-    static const UnkStruct_ov84_0223BA5C v1 = {
+    static const GraphicsModes v1 = {
         GX_DISPMODE_GRAPHICS,
         GX_BGMODE_0,
         GX_BGMODE_0,

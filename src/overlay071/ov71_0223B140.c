@@ -538,7 +538,7 @@ static void ov71_0223B858(BgConfig *param0)
     GX_SetDispSelect(GX_DISP_SELECT_SUB_MAIN);
 
     {
-        UnkStruct_ov84_0223BA5C v0 = {
+        GraphicsModes v0 = {
             GX_DISPMODE_GRAPHICS,
             GX_BGMODE_1,
             GX_BGMODE_4,

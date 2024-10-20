@@ -926,7 +926,7 @@ static void ov64_0222E290 (UnkStruct_ov64_0222E21C * param0, u32 param1)
     param0->unk_00 = sub_02018340(param1);
 
     {
-        UnkStruct_ov84_0223BA5C v1 = {
+        GraphicsModes v1 = {
             GX_DISPMODE_GRAPHICS,
             GX_BGMODE_0,
             GX_BGMODE_0,

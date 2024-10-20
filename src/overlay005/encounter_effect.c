@@ -647,7 +647,7 @@ void EncounterEffect_Unused(void)
 static void EncounterEffect_UnusedTask(SysTask *dummy1, void *dummy2)
 {
     {
-        UnkStruct_ov84_0223BA5C v0 = {
+        GraphicsModes v0 = {
             GX_DISPMODE_GRAPHICS,
             GX_BGMODE_1,
             GX_BGMODE_0,
@@ -1573,7 +1573,7 @@ static void ov5_021DF30C(FieldSystem *fieldSystem)
         GX_PLANEMASK_BG0, 0);
 
     {
-        UnkStruct_ov84_0223BA5C v1 = {
+        GraphicsModes v1 = {
             GX_DISPMODE_GRAPHICS,
             GX_BGMODE_3,
             GX_BGMODE_0,

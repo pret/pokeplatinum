@@ -106,7 +106,7 @@ int ov94_0223BCB0(OverlayManager *param0, int *param1)
         Unk_ov94_02246C08 = v0;
 
         {
-            UnkStruct_ov84_0223BA5C v1 = {
+            GraphicsModes v1 = {
                 GX_DISPMODE_GRAPHICS,
                 GX_BGMODE_0,
                 GX_BGMODE_0,

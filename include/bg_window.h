@@ -97,17 +97,17 @@ typedef struct Window {
     void *pixels;
 } Window;
 
-typedef struct {
-    GXDispMode unk_00;
-    GXBGMode unk_04;
-    GXBGMode unk_08;
-    GXBG0As unk_0C;
-} UnkStruct_ov84_0223BA5C;
+typedef struct GraphicsModes {
+    GXDispMode displayMode;
+    GXBGMode mainBgMode;
+    GXBGMode subBgMode;
+    GXBG0As bg0As2DOr3D;
+} GraphicsModes;
 
 BgConfig *sub_02018340(u32 param0);
 u32 sub_02018364(BgConfig *param0);
-void sub_02018368(const UnkStruct_ov84_0223BA5C *param0);
-void sub_020183A0(const UnkStruct_ov84_0223BA5C *param0, u8 param1);
+void sub_02018368(const GraphicsModes *param0);
+void sub_020183A0(const GraphicsModes *param0, u8 param1);
 void sub_020183C4(BgConfig *param0, u8 param1, const BgTemplate *param2, u8 param3);
 void sub_02018898(BgConfig *param0, u8 param1, u8 param2, u8 param3);
 void sub_02019044(BgConfig *param0, u8 param1);

@@ -74,7 +74,7 @@ static void sub_020528D0(BgConfig *param0)
         GX_VRAM_TEX_0_A,
         GX_VRAM_TEXPLTT_01_FG
     };
-    static const UnkStruct_ov84_0223BA5C v1 = {
+    static const GraphicsModes v1 = {
         GX_DISPMODE_GRAPHICS,
         GX_BGMODE_0,
         GX_BGMODE_0,

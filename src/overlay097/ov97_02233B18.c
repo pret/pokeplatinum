@@ -1285,7 +1285,7 @@ static void ov97_02234CF4(UnkStruct_ov97_02234A2C *param0, int param1, int param
 static void ov97_02234D28(BgConfig *param0)
 {
     {
-        UnkStruct_ov84_0223BA5C v0 = {
+        GraphicsModes v0 = {
             GX_DISPMODE_GRAPHICS,
             GX_BGMODE_0,
             GX_BGMODE_0,

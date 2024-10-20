@@ -347,12 +347,12 @@ BOOL ChooseStarter_Init(OverlayManager *param0, int *param1)
 
     SetupDrawing(app, HEAP_ID_CHOOSE_STARTER_APP);
 
-    UnkStruct_ov84_0223BA5C bglHeader;
+    GraphicsModes bglHeader;
     app->bgl = sub_02018340(HEAP_ID_CHOOSE_STARTER_APP);
-    bglHeader.unk_00 = GX_DISPMODE_GRAPHICS;
-    bglHeader.unk_04 = GX_BGMODE_0;
-    bglHeader.unk_08 = GX_BGMODE_1;
-    bglHeader.unk_0C = GX_BG0_AS_3D;
+    bglHeader.displayMode = GX_DISPMODE_GRAPHICS;
+    bglHeader.mainBgMode = GX_BGMODE_0;
+    bglHeader.subBgMode = GX_BGMODE_1;
+    bglHeader.bg0As2DOr3D = GX_BG0_AS_3D;
     sub_02018368(&bglHeader);
 
     SetupBGL(app->bgl, HEAP_ID_CHOOSE_STARTER_APP);

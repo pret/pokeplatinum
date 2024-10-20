@@ -741,7 +741,7 @@ static void ov97_0222DB78(BgConfig *param0, int param1, u32 param2, u32 param3)
 
 static void ov97_0222DBC4(BgConfig *param0)
 {
-    UnkStruct_ov84_0223BA5C v0 = {
+    GraphicsModes v0 = {
         GX_DISPMODE_GRAPHICS,
         GX_BGMODE_0,
         GX_BGMODE_0,

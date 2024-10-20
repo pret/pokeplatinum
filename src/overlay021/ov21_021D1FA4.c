@@ -61,16 +61,16 @@ static void ov21_021D3194(SysTask *param0, void *param1);
 
 void ov21_021D1FA4(UnkStruct_ov21_021D13FC *param0, int param1)
 {
-    UnkStruct_ov84_0223BA5C v0;
+    GraphicsModes v0;
     UnkStruct_ov21_021D1FA4 v1;
 
     param0->unk_278 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__ZUKAN__ZUKAN, param1);
     param0->unk_00 = sub_02018340(param1);
 
-    v0.unk_00 = GX_DISPMODE_GRAPHICS;
-    v0.unk_04 = GX_BGMODE_0;
-    v0.unk_08 = GX_BGMODE_1;
-    v0.unk_0C = GX_BG0_AS_3D;
+    v0.displayMode = GX_DISPMODE_GRAPHICS;
+    v0.mainBgMode = GX_BGMODE_0;
+    v0.subBgMode = GX_BGMODE_1;
+    v0.bg0As2DOr3D = GX_BG0_AS_3D;
 
     sub_02018368(&v0);
 

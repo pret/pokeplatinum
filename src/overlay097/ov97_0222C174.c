@@ -525,7 +525,7 @@ static void ov97_0222C254(UnkStruct_ov97_0222C388 *param0)
         GX_VRAM_TEX_0_B,
         GX_VRAM_TEXPLTT_01_FG
     };
-    UnkStruct_ov84_0223BA5C v2 = {
+    GraphicsModes v2 = {
         GX_DISPMODE_GRAPHICS,
         GX_BGMODE_0,
         GX_BGMODE_0,

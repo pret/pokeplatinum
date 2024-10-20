@@ -461,7 +461,7 @@ static void ov22_02255654(void)
 static void ov22_022556DC(void)
 {
     {
-        UnkStruct_ov84_0223BA5C v0 = {
+        GraphicsModes v0 = {
             GX_DISPMODE_GRAPHICS,
             GX_BGMODE_0,
             GX_BGMODE_0,

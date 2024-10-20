@@ -1014,7 +1014,7 @@ static u8 ov13_02220BA4(SysTask *param0, UnkStruct_ov13_022213F0 *param1)
 static void ov13_02220C0C(UnkStruct_ov13_022213F0 *param0)
 {
     {
-        UnkStruct_ov84_0223BA5C v0 = {
+        GraphicsModes v0 = {
             GX_DISPMODE_GRAPHICS,
             GX_BGMODE_0,
             GX_BGMODE_0,
