@@ -371,7 +371,7 @@ static void sub_02002018(UIControlData *param0, u8 *param1, u8 *param2, u8 param
     *param2 = (param3 % param0->unk_00.unk_0A) * (param0->unk_1A + param0->unk_00.unk_0B_0) + param0->unk_18;
 }
 
-UIControlData *sub_02002054(BgConfig *param0, const UnkStruct_ov61_0222C884 *param1, u16 param2, u8 param3, u8 param4, u32 param5)
+UIControlData *sub_02002054(BgConfig *param0, const WindowTemplate *param1, u16 param2, u8 param3, u8 param4, u32 param5)
 {
     UnkStruct_02081CF4 v0;
     MessageLoader *v1;
@@ -399,7 +399,7 @@ UIControlData *sub_02002054(BgConfig *param0, const UnkStruct_ov61_0222C884 *par
     return sub_02001B7C(&v0, 8, 0, param4, param5, PAD_BUTTON_B);
 }
 
-UIControlData *sub_02002100(BgConfig *param0, const UnkStruct_ov61_0222C884 *param1, u16 param2, u8 param3, u32 param4)
+UIControlData *sub_02002100(BgConfig *param0, const WindowTemplate *param1, u16 param2, u8 param3, u32 param4)
 {
     return sub_02002054(param0, param1, param2, param3, 0, param4);
 }

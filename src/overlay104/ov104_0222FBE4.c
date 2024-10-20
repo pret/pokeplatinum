@@ -287,7 +287,7 @@ static BOOL ov104_02231720(UnkStruct_ov104_02231148 *param0);
 static BOOL ov104_02231864(UnkStruct_ov104_02231148 *param0);
 static BOOL ov104_022319CC(UnkStruct_ov104_02231148 *param0);
 
-static const UnkStruct_ov61_0222C884 Unk_ov104_0223F640 = {
+static const WindowTemplate Unk_ov104_0223F640 = {
     0x1,
     0x19,
     0xD,

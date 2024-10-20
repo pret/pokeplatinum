@@ -335,7 +335,7 @@ static void ov73_021D368C (UnkStruct_ov73_021D342C * param0)
     MessageLoader_Free(param0->unk_08);
 }
 
-static const UnkStruct_ov61_0222C884 Unk_ov72_021D3A38 = {
+static const WindowTemplate Unk_ov72_021D3A38 = {
     0x2,
     0x0,
     0x0,

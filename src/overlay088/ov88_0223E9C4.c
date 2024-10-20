@@ -150,7 +150,7 @@ int ov88_0223ECBC(Window *param0, int param1, int param2, MessageLoader *param3,
     return v1;
 }
 
-static const UnkStruct_ov61_0222C884 Unk_ov88_0223F148 = {
+static const WindowTemplate Unk_ov88_0223F148 = {
     0x0,
     0x19,
     0xD,

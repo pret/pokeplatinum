@@ -563,7 +563,7 @@ static void ov90_021D12B0(UnkStruct_ov90_021D0ECC *param0)
 static void ov90_021D1340(UnkStruct_ov90_021D0ECC *param0)
 {
     int v0;
-    static const UnkStruct_ov61_0222C884 v1[] = {
+    static const WindowTemplate v1[] = {
         { 0, 4, 1, 24, 5, 2, 192 },
         { 0, 1, 9, 8, 5, 1, 312 },
         { 0, 1, 17, 8, 5, 1, 352 },
@@ -571,7 +571,7 @@ static void ov90_021D1340(UnkStruct_ov90_021D0ECC *param0)
         { 0, 10, 17, 21, 6, 1, 497 },
         { 0, 3, 18, 26, 5, 2, 312 },
     };
-    static const UnkStruct_ov61_0222C884 v2[] = {
+    static const WindowTemplate v2[] = {
         { 0, 4, 1, 24, 5, 2, 192 },
         { 2, 3, 7, 26, 9, 1, 1 },
         { 0, 3, 18, 26, 5, 2, 312 },

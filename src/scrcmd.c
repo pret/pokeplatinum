@@ -755,7 +755,7 @@ static const u8 sConditionTable[6][3] = {
     { TRUE, FALSE, TRUE }, //  !=
 };
 
-static const UnkStruct_ov61_0222C884 Unk_020EAB84 = {
+static const WindowTemplate Unk_020EAB84 = {
     0x3,
     0x19,
     0xD,

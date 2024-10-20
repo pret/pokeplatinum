@@ -242,12 +242,12 @@ static void ov41_022568DC(SysTask *param0, void *param1)
 
 static void ov41_022569BC(UnkStruct_ov41_022567B0 *param0, u32 param1)
 {
-    UnkStruct_ov61_0222C884 v0 = {
+    WindowTemplate v0 = {
         7, 2, 2, 20, 19, 0, 0
     };
 
     param0->unk_58 = param1;
-    v0.unk_06 = param1;
+    v0.baseTile = param1;
 
     sub_0201A8D4(param0->unk_04, &param0->unk_48, &v0);
 

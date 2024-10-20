@@ -72,7 +72,7 @@ static u8 sub_0207C584(UnkStruct_0207AE68 *param0, int param1);
 static BOOL sub_0207C5CC(TextPrinterTemplate *param0, u16 param1);
 static void sub_0207C624(UnkStruct_0207AE68 *param0);
 
-static const UnkStruct_ov61_0222C884 Unk_020F0A30 = {
+static const WindowTemplate Unk_020F0A30 = {
     0x2,
     0x17,
     0xD,

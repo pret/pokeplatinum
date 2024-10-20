@@ -398,7 +398,7 @@ static void ov94_0223C32C(UnkStruct_ov94_0223FD4C *param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static const UnkStruct_ov61_0222C884 Unk_ov94_022459F8 = {
+static const WindowTemplate Unk_ov94_022459F8 = {
     0x0,
     0x17,
     0xD,
@@ -410,11 +410,11 @@ static const UnkStruct_ov61_0222C884 Unk_ov94_022459F8 = {
 
 UIControlData *ov94_0223C3C0(BgConfig *param0, int param1, int param2)
 {
-    UnkStruct_ov61_0222C884 v0;
+    WindowTemplate v0;
 
     v0 = Unk_ov94_022459F8;
-    v0.unk_02 = param1;
-    v0.unk_06 = param2;
+    v0.tilemapTop = param1;
+    v0.baseTile = param2;
 
     return sub_02002100(param0, &v0, (1 + (18 + 12)), 11, 62);
 }

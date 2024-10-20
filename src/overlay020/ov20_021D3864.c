@@ -26,7 +26,7 @@ typedef struct UnkStruct_ov20_021D3980_t {
     CellActor *unk_0C;
 } UnkStruct_ov20_021D3980;
 
-static void ov20_021D390C(BgConfig *param0, const UnkStruct_ov61_0222C884 *param1, u32 param2);
+static void ov20_021D390C(BgConfig *param0, const WindowTemplate *param1, u32 param2);
 static void ov20_021D3980(UnkStruct_ov20_021D3980 *param0);
 
 UnkStruct_ov20_021D3980 *ov20_021D3864(UnkStruct_ov20_021D2128 *param0, const UnkStruct_ov20_021D16E8 *param1, const UnkStruct_020998EC *param2)
@@ -52,10 +52,10 @@ void ov20_021D3880(UnkStruct_ov20_021D3980 *param0)
 
 void ov20_021D3898(UnkStruct_ov20_021D3980 *param0, NARC *param1)
 {
-    static const UnkStruct_ov61_0222C884 v0 = {
+    static const WindowTemplate v0 = {
         3, 3, 6, 10, 2, 13, 64
     };
-    static const UnkStruct_ov61_0222C884 v1 = {
+    static const WindowTemplate v1 = {
         3, 19, 6, 10, 2, 13, 84
     };
     BgConfig *v2;
@@ -72,7 +72,7 @@ void ov20_021D3898(UnkStruct_ov20_021D3980 *param0, NARC *param1)
     sub_02019448(v2, 3);
 }
 
-static void ov20_021D390C(BgConfig *param0, const UnkStruct_ov61_0222C884 *param1, u32 param2)
+static void ov20_021D390C(BgConfig *param0, const WindowTemplate *param1, u32 param2)
 {
     Window v0;
     Strbuf *v1;
@@ -83,7 +83,7 @@ static void ov20_021D390C(BgConfig *param0, const UnkStruct_ov61_0222C884 *param
     BGL_FillWindow(&v0, 14);
 
     v1 = MessageBank_GetNewStrbufFromNARC(26, 438, param2, 35);
-    v2 = ((param1->unk_03 * 8) - Font_CalcStrbufWidth(FONT_SYSTEM, v1, 0)) / 2;
+    v2 = ((param1->width * 8) - Font_CalcStrbufWidth(FONT_SYSTEM, v1, 0)) / 2;
 
     Text_AddPrinterWithParamsAndColor(&v0, FONT_SYSTEM, v1, v2, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 14), NULL);
     sub_0201ACCC(&v0);

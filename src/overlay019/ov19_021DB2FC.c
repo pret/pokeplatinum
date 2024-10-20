@@ -84,7 +84,7 @@ void ov19_021DB370(UnkStruct_ov19_021DB6F0 *param0)
 
 void ov19_021DB3C4(UnkStruct_ov19_021DB6F0 *param0)
 {
-    static const UnkStruct_ov61_0222C884 v0[] = {
+    static const WindowTemplate v0[] = {
         { 1, 2, 21, 27, 2, 4, 539 },
         { 1, 19, 3, 12, 16, 4, 593 }
     };

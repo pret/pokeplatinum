@@ -97,7 +97,7 @@ static void ov85_02242124(VecFx16 *param0, VecFx16 *param1);
 static void ov85_022423FC(VecFx16 *param0, VecFx16 *param1, VecFx16 *param2);
 static void ov85_022423A0(const UnkStruct_ov85_022423A0 *param0, VecFx16 *param1, u8 param2);
 
-static const UnkStruct_ov61_0222C884 Unk_ov85_022428D8[] = {
+static const WindowTemplate Unk_ov85_022428D8[] = {
     { 0x3, 0x1, 0x0, 0xC, 0x2, 0x2, 0x3E8 },
     { 0x1, 0x1, 0x3, 0xA, 0x2, 0xF, 0x41 },
     { 0x3, 0x12, 0x1, 0x7, 0x2, 0xF, 0x200 },

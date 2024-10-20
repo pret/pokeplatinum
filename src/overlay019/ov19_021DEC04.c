@@ -256,7 +256,7 @@ static void ov19_021DEF64(UnkStruct_ov19_021DEC04 *param0)
 
 static void ov19_021DEFC8(UnkStruct_ov19_021DEC04 *param0)
 {
-    static const UnkStruct_ov61_0222C884 v0[] = {
+    static const WindowTemplate v0[] = {
         { 4, 3, 1, 9, 2, 0, 1 },
         { 4, 20, 1, 9, 2, 1, 19 },
         { 4, 13, 4, 6, 16, 0, 37 }
@@ -338,7 +338,7 @@ static void ov19_021DF0CC(UnkStruct_ov19_021DEC04 *param0, int param1)
 
 static void ov19_021DF108(UnkStruct_ov19_021DEC04 *param0)
 {
-    static const UnkStruct_ov61_0222C884 v0[] = {
+    static const WindowTemplate v0[] = {
         { 4, 3, 4, 9, 16, 0, 133 },
         { 4, 20, 4, 9, 16, 1, 277 }
     };
@@ -425,7 +425,7 @@ static void ov19_021DF250(UnkStruct_ov19_021DEC04 *param0, int param1)
 
 static void ov19_021DF270(UnkStruct_ov19_021DEC04 *param0)
 {
-    static const UnkStruct_ov61_0222C884 v0[] = {
+    static const WindowTemplate v0[] = {
         { 4, 1, 4, 11, 12, 0, 133 },
         { 4, 20, 4, 11, 12, 1, 265 }
     };

@@ -20,7 +20,7 @@ static void ov13_022273CC(UnkStruct_ov13_02227244 *param0);
 static void ov13_02227888(UnkStruct_ov13_02227244 *param0);
 static void ov13_02227974(UnkStruct_ov13_02227244 *param0);
 
-static const UnkStruct_ov61_0222C884 Unk_ov13_02229A60 = {
+static const WindowTemplate Unk_ov13_02229A60 = {
     0x4,
     0x2,
     0x13,
@@ -30,7 +30,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov13_02229A60 = {
     0x376
 };
 
-static const UnkStruct_ov61_0222C884 Unk_ov13_02229A88[] = {
+static const WindowTemplate Unk_ov13_02229A88[] = {
     { 0x4, 0x2, 0x4, 0xC, 0x5, 0x0, 0x2CE },
     { 0x4, 0x2, 0xD, 0xC, 0x5, 0x0, 0x30A },
     { 0x4, 0x12, 0x5, 0xC, 0x3, 0x0, 0x286 },
@@ -38,7 +38,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov13_02229A88[] = {
     { 0x4, 0x5, 0x14, 0x14, 0x3, 0x0, 0x24A }
 };
 
-static const UnkStruct_ov61_0222C884 Unk_ov13_02229AE0[] = {
+static const WindowTemplate Unk_ov13_02229AE0[] = {
     { 0x5, 0x1, 0x1, 0xE, 0x3, 0x0, 0x1 },
     { 0x5, 0x8, 0x4, 0x4, 0x3, 0x4, 0x2B },
     { 0x5, 0x11, 0x1, 0xE, 0x3, 0x0, 0x37 },
@@ -67,7 +67,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov13_02229AE0[] = {
     { 0x5, 0x16, 0x14, 0x4, 0x3, 0x4, 0x2BB }
 };
 
-static const UnkStruct_ov61_0222C884 Unk_ov13_02229A68[] = {
+static const WindowTemplate Unk_ov13_02229A68[] = {
     { 0x5, 0x7, 0x4, 0xC, 0x2, 0x4, 0x2C7 },
     { 0x5, 0x14, 0x4, 0x4, 0x2, 0x4, 0x2DF },
     { 0x5, 0x2, 0x9, 0x1C, 0x6, 0x4, 0x2E7 },
@@ -82,7 +82,7 @@ void ov13_02227288(UnkStruct_ov13_02227244 *param0)
 
 void ov13_022272AC(UnkStruct_ov13_02227244 *param0, u32 param1)
 {
-    const UnkStruct_ov61_0222C884 *v0;
+    const WindowTemplate *v0;
     u8 v1;
 
     switch (param1) {

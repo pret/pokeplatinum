@@ -470,7 +470,7 @@ static void ov79_021D2634(UnkStruct_ov79_021D2928 *param0)
 
 static void ov79_021D270C(UnkStruct_ov79_021D2928 *param0)
 {
-    static const UnkStruct_ov61_0222C884 v0 = {
+    static const WindowTemplate v0 = {
         1, 2, 19, 27, 4, 15, (1 + (18 + 12))
     };
 

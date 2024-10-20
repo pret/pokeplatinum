@@ -142,7 +142,7 @@ static int CommClubMan_Regulation(void);
 
 static CommClubManager *sCommClubMan = NULL;
 
-static const UnkStruct_ov61_0222C884 Unk_ov7_0224ED0C = {
+static const WindowTemplate Unk_ov7_0224ED0C = {
     0x3,
     0x19,
     0xD,

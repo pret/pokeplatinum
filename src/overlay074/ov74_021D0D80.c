@@ -748,7 +748,7 @@ static BOOL ov74_021D1B44(UnkStruct_ov74_021D0D80 *param0)
 
 static void ov74_021D1BA8(UnkStruct_ov74_021D0D80 *param0)
 {
-    static const UnkStruct_ov61_0222C884 v0 = {
+    static const WindowTemplate v0 = {
         3, 25, 13, 6, 4, 13, (((((10 + 12 * 2) + 30 * 14) + 27 * 4) + 9) + (18 + 12))
     };
 

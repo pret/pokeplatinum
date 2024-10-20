@@ -424,8 +424,8 @@ static BOOL ov109_021D3CD8(UnkStruct_ov109_021D0F70 *param0);
 static int ov109_021D3D1C(UnkStruct_ov109_021D0F70 *param0);
 static BOOL ov109_021D3D3C(UnkStruct_ov109_021D0F70 *param0);
 
-static const UnkStruct_ov61_0222C884 Unk_ov109_021D59B8[1];
-static const UnkStruct_ov61_0222C884 *const Unk_ov109_021D5A68[5 + 1];
+static const WindowTemplate Unk_ov109_021D59B8[1];
+static const WindowTemplate *const Unk_ov109_021D5A68[5 + 1];
 static const u16 Unk_ov109_021D5C44[5 + 1][5];
 static const u16 Unk_ov109_021D5C80[5 + 1][5];
 static const UnkStruct_ov109_021D5C14 Unk_ov109_021D5C14[5 + 1];
@@ -2129,7 +2129,7 @@ static void ov109_021D27AC(UnkStruct_ov109_021D0F70 *param0, int param1)
 {
     int v0;
     UnkStruct_ov109_021D24F8 *v1 = &param0->unk_C9C;
-    const UnkStruct_ov61_0222C884 *v2 = Unk_ov109_021D5A68[param1];
+    const WindowTemplate *v2 = Unk_ov109_021D5A68[param1];
 
     v1->unk_00 = param1;
 
@@ -3639,7 +3639,7 @@ static BOOL ov109_021D3D3C(UnkStruct_ov109_021D0F70 *param0)
     return 0;
 }
 
-static const UnkStruct_ov61_0222C884 Unk_ov109_021D59B8[1] = {
+static const WindowTemplate Unk_ov109_021D59B8[1] = {
     0x1,
     0x2,
     0x13,
@@ -3649,25 +3649,25 @@ static const UnkStruct_ov61_0222C884 Unk_ov109_021D59B8[1] = {
     0x28
 };
 
-static const UnkStruct_ov61_0222C884 Unk_ov109_021D5A04[2] = {
+static const WindowTemplate Unk_ov109_021D5A04[2] = {
     { 0x1, 0xC, 0x12, 0x8, 0x2, 0xF, 0x94 },
     { 0x1, 0xC, 0x6, 0x8, 0x2, 0xF, 0xBC }
 };
 
-static const UnkStruct_ov61_0222C884 Unk_ov109_021D5AB0[3] = {
+static const WindowTemplate Unk_ov109_021D5AB0[3] = {
     { 0x1, 0xC, 0x12, 0x8, 0x2, 0xF, 0x94 },
     { 0x1, 0x5, 0xA, 0x8, 0x2, 0xF, 0xBC },
     { 0x1, 0x13, 0xA, 0x8, 0x2, 0xF, 0xE4 }
 };
 
-static const UnkStruct_ov61_0222C884 Unk_ov109_021D5B54[4] = {
+static const WindowTemplate Unk_ov109_021D5B54[4] = {
     { 0x1, 0xC, 0x12, 0x8, 0x2, 0xF, 0x94 },
     { 0x1, 0x4, 0xD, 0x8, 0x2, 0xF, 0xBC },
     { 0x1, 0xC, 0x6, 0x8, 0x2, 0xF, 0xE4 },
     { 0x1, 0x14, 0xD, 0x8, 0x2, 0xF, 0x10C }
 };
 
-static const UnkStruct_ov61_0222C884 Unk_ov109_021D5B94[5] = {
+static const WindowTemplate Unk_ov109_021D5B94[5] = {
     { 0x1, 0xC, 0x13, 0x8, 0x2, 0xF, 0x94 },
     { 0x1, 0x4, 0xE, 0x8, 0x2, 0xF, 0xBC },
     { 0x1, 0x6, 0x9, 0x8, 0x2, 0xF, 0xE4 },
@@ -3675,7 +3675,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov109_021D5B94[5] = {
     { 0x1, 0x14, 0xE, 0x8, 0x2, 0xF, 0X134 }
 };
 
-static const UnkStruct_ov61_0222C884 *const Unk_ov109_021D5A68[5 + 1] = {
+static const WindowTemplate *const Unk_ov109_021D5A68[5 + 1] = {
     NULL,
     NULL,
     Unk_ov109_021D5A04,

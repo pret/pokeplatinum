@@ -372,7 +372,7 @@ static int sub_0206F554(UnkStruct_0206F7F8 *param0)
 
 static void sub_0206F62C(UnkStruct_0206F7F8 *param0)
 {
-    static const UnkStruct_ov61_0222C884 v0 = {
+    static const WindowTemplate v0 = {
         0x3,
         0x19,
         0xD,

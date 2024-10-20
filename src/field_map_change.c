@@ -166,7 +166,7 @@ static const MapLoadMode sMapLoadMode[] = {
     { 0x1, 0x1, 0x1, 0x0, 0x1, 0x1, 0x1, 0xA0000 }
 };
 
-static const UnkStruct_ov61_0222C884 Unk_020EC3A0 = {
+static const WindowTemplate Unk_020EC3A0 = {
     0x3,
     0x19,
     0xD,

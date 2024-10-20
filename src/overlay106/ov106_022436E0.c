@@ -11,7 +11,7 @@ void ov106_02243710(Window *param0);
 void ov106_0224372C(BgConfig *param0, Window *param1);
 void ov106_02243758(Window *param0, int param1);
 
-static const UnkStruct_ov61_0222C884 Unk_ov106_02243860[] = {
+static const WindowTemplate Unk_ov106_02243860[] = {
     { 0x0, 0x2, 0x13, 0x1B, 0x4, 0xC, 0x1 },
     { 0x0, 0x18, 0xD, 0x7, 0x4, 0xD, 0x6D },
     { 0x0, 0xA, 0x14, 0x9, 0x2, 0xD, 0x89 },
@@ -21,7 +21,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov106_02243860[] = {
 void ov106_022436E0(BgConfig *param0, Window *param1)
 {
     u8 v0;
-    const UnkStruct_ov61_0222C884 *v1 = Unk_ov106_02243860;
+    const WindowTemplate *v1 = Unk_ov106_02243860;
 
     for (v0 = 0; v0 < 4; v0++) {
         sub_0201A8D4(param0, &param1[v0], &v1[v0]);

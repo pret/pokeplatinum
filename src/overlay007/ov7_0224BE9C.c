@@ -788,7 +788,7 @@ static void ov7_0224CBE4(void *param0, u32 param1)
 
 static void ov7_0224CC44(UnkStruct_ov7_0224CC44 *param0, BgConfig *param1, u32 param2)
 {
-    static const UnkStruct_ov61_0222C884 v0 = {
+    static const WindowTemplate v0 = {
         3,
         24,
         13,

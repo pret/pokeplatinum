@@ -7,7 +7,7 @@
 #include "unk_0200DA60.h"
 
 typedef struct {
-    const UnkStruct_ov61_0222C884 *unk_00;
+    const WindowTemplate *unk_00;
     u32 unk_04;
 } UnkStruct_ov107_0224A218;
 
@@ -16,7 +16,7 @@ void ov107_02249D5C(Window *param0, u8 param1);
 void ov107_02249D84(BgConfig *param0, Window *param1);
 void ov107_02249DBC(Window *param0, int param1);
 
-static const UnkStruct_ov61_0222C884 Unk_ov107_0224A288[] = {
+static const WindowTemplate Unk_ov107_0224A288[] = {
     { 0x1, 0x2, 0x1, 0x1D, 0x2, 0xD, 0x1 },
     { 0x1, 0x1A, 0x13, 0x4, 0x3, 0xD, 0x3B },
     { 0x1, 0x0, 0x4, 0x20, 0x2, 0xD, 0x47 },
@@ -37,7 +37,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov107_0224A288[] = {
     { 0x0, 0x1, 0xD, 0xB, 0x2, 0xD, 0x2F4 }
 };
 
-static const UnkStruct_ov61_0222C884 Unk_ov107_0224A228[] = {
+static const WindowTemplate Unk_ov107_0224A228[] = {
     { 0x1, 0x2, 0x1, 0x1D, 0x2, 0xD, 0x1 },
     { 0x1, 0x1A, 0x13, 0x4, 0x3, 0xD, 0x3B },
     { 0x1, 0x0, 0x4, 0x20, 0x2, 0xD, 0x47 },
@@ -60,7 +60,7 @@ static const UnkStruct_ov107_0224A218 Unk_ov107_0224A218[2] = {
 void ov107_02249D14(BgConfig *param0, Window *param1, u8 param2)
 {
     u8 v0;
-    const UnkStruct_ov61_0222C884 *v1 = Unk_ov107_0224A218[param2].unk_00;
+    const WindowTemplate *v1 = Unk_ov107_0224A218[param2].unk_00;
     u32 v2 = Unk_ov107_0224A218[param2].unk_04;
 
     for (v0 = 0; v0 < v2; v0++) {

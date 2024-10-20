@@ -66,7 +66,7 @@ BOOL ov29_022566C8(UnkStruct_ov29_022566C8 **param0, const UnkStruct_ov29_022566
 
 static BOOL ov29_02256728(UnkStruct_ov29_022566C8 *param0)
 {
-    static const UnkStruct_ov61_0222C884 v0 = {
+    static const WindowTemplate v0 = {
         7, 2, 2, 20, 19, 0, 12
     };
 

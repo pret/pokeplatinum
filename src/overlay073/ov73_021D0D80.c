@@ -591,7 +591,7 @@ typedef struct UnkStruct_ov72_021D3840_t {
     u32 unk_04;
 } UnkStruct_ov72_021D3840;
 
-static const UnkStruct_ov61_0222C884 Unk_ov72_021D37EC = {
+static const WindowTemplate Unk_ov72_021D37EC = {
     0x0,
     0x2,
     0x13,
@@ -600,7 +600,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov72_021D37EC = {
     0x6,
     0x36D
 };
-static const UnkStruct_ov61_0222C884 Unk_ov72_021D37C4 = {
+static const WindowTemplate Unk_ov72_021D37C4 = {
     0x0,
     0x2,
     0x3,
@@ -609,7 +609,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov72_021D37C4 = {
     0x5,
     0x355
 };
-static const UnkStruct_ov61_0222C884 Unk_ov72_021D37DC = {
+static const WindowTemplate Unk_ov72_021D37DC = {
     0x0,
     0x1,
     0x3,
@@ -618,7 +618,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov72_021D37DC = {
     0x5,
     0x30D
 };
-static const UnkStruct_ov61_0222C884 Unk_ov72_021D37CC = {
+static const WindowTemplate Unk_ov72_021D37CC = {
     0x0,
     0x2,
     0x3,
@@ -627,7 +627,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov72_021D37CC = {
     0x5,
     0x2E1
 };
-const UnkStruct_ov61_0222C884 Unk_ov72_021D37E4 = {
+const WindowTemplate Unk_ov72_021D37E4 = {
     0x0,
     0x8,
     0x0,
@@ -636,7 +636,7 @@ const UnkStruct_ov61_0222C884 Unk_ov72_021D37E4 = {
     0x5,
     0x12D
 };
-const UnkStruct_ov61_0222C884 Unk_ov72_021D37D4 = {
+const WindowTemplate Unk_ov72_021D37D4 = {
     0x0,
     0x4,
     0x0,
@@ -749,7 +749,7 @@ static BOOL ov73_021D1648(UnkStruct_ov73_021D1058 *param0, int param1, int param
 {
     BOOL v0 = 0;
     UnkStruct_ov84_02240FA8 v1;
-    const UnkStruct_ov61_0222C884 *v2;
+    const WindowTemplate *v2;
     const UnkStruct_ov72_021D3840 *v3;
     int v4, v5;
 
@@ -830,7 +830,7 @@ static BOOL ov73_021D1648(UnkStruct_ov73_021D1058 *param0, int param1, int param
 static BOOL ov73_021D1784(UnkStruct_ov73_021D1058 *param0, u32 param1, int param2, int param3, int param4)
 {
     BOOL v0 = 0;
-    UnkStruct_ov61_0222C884 v1;
+    WindowTemplate v1;
 
     switch (param0->unk_54) {
     case 0:
@@ -844,8 +844,8 @@ static BOOL ov73_021D1784(UnkStruct_ov73_021D1058 *param0, u32 param1, int param
             {
                 u32 v2 = Strbuf_NumLines(param0->unk_5C);
 
-                v1.unk_02 = 12 - v2;
-                v1.unk_04 = v2 * 2;
+                v1.tilemapTop = 12 - v2;
+                v1.height = v2 * 2;
             }
 
             sub_0201A8D4(param0->unk_18, &param0->unk_1C, &v1);
@@ -857,11 +857,11 @@ static BOOL ov73_021D1784(UnkStruct_ov73_021D1058 *param0, u32 param1, int param
             if (param2 == 2) {
                 u32 v3 = Strbuf_NumLines(param0->unk_5C);
 
-                v1.unk_02 = param3 + param4 / 2 - v3;
-                v1.unk_04 = v3 * 2;
+                v1.tilemapTop = param3 + param4 / 2 - v3;
+                v1.height = v3 * 2;
             } else {
-                v1.unk_02 = param3;
-                v1.unk_04 = param4;
+                v1.tilemapTop = param3;
+                v1.height = param4;
             }
 
             sub_0201A8D4(param0->unk_18, &param0->unk_1C, &v1);

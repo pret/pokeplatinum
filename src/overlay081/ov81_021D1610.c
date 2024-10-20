@@ -89,7 +89,7 @@ static void ov81_021D3248(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 static void ov81_021D32A0(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkStruct_0202BFCC *param2, u8 param3, int param4);
 static void ov81_021D3304(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkStruct_0202BFCC *param2, u8 param3);
 
-static const UnkStruct_ov61_0222C884 Unk_ov81_021D3508[] = {
+static const WindowTemplate Unk_ov81_021D3508[] = {
     { 0x0, 0x2, 0x2, 0x18, 0x2, 0xF, 0x1 },
     { 0x0, 0x4, 0x4, 0x1B, 0x12, 0xF, 0x31 },
     { 0x1, 0x2, 0x2, 0x18, 0x2, 0xF, 0x1 },

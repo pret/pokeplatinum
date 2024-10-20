@@ -60,7 +60,7 @@ const OverlayManagerTemplate Unk_020F8A48 = {
     0xFFFFFFFF
 };
 
-static const UnkStruct_ov61_0222C884 Unk_020F89E4 = {
+static const WindowTemplate Unk_020F89E4 = {
     0x0,
     0x2,
     0x13,
@@ -70,7 +70,7 @@ static const UnkStruct_ov61_0222C884 Unk_020F89E4 = {
     0x16D
 };
 
-static const UnkStruct_ov61_0222C884 Unk_020F89EC = {
+static const WindowTemplate Unk_020F89EC = {
     0x0,
     0x19,
     0xD,

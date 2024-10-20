@@ -156,7 +156,7 @@ static const BgTemplate Unk_ov67_0225D438[3] = {
     },
 };
 
-static const UnkStruct_ov61_0222C884 Unk_ov67_0225D3EC = {
+static const WindowTemplate Unk_ov67_0225D3EC = {
     0x1,
     0x19,
     0xD,

@@ -32,7 +32,7 @@ static void sub_02082900(GameWindowLayout *param0, u8 param1, u8 param2);
 static void sub_02082964(GameWindowLayout *param0, u8 param1, u8 param2);
 static BOOL sub_0208279C(TextPrinterTemplate *param0, u16 param1);
 
-static const UnkStruct_ov61_0222C884 Unk_020F1F08[] = {
+static const WindowTemplate Unk_020F1F08[] = {
     { 0x1, 0x6, 0x1, 0x9, 0x2, 0x0, 0x28 },
     { 0x1, 0x0, 0x4, 0x6, 0x2, 0x0, 0x3A },
     { 0x1, 0x7, 0x4, 0x8, 0x2, 0x0, 0x46 },
@@ -80,7 +80,7 @@ static const UnkStruct_ov61_0222C884 Unk_020F1F08[] = {
     { 0x1, 0x18, 0x4, 0x6, 0x1, 0x4, 0x8A }
 };
 
-static const UnkStruct_ov61_0222C884 Unk_020F1ED0[] = {
+static const WindowTemplate Unk_020F1ED0[] = {
     { 0x1, 0x1A, 0x15, 0x5, 0x2, 0x0, 0x160 },
     { 0x1, 0x19, 0x14, 0x7, 0x2, 0x0, 0x16A },
     { 0x0, 0x2, 0x15, 0x14, 0x2, 0xD, 0x178 },
@@ -90,7 +90,7 @@ static const UnkStruct_ov61_0222C884 Unk_020F1ED0[] = {
     { 0x0, 0x13, 0xF, 0xC, 0x8, 0x0, 0x240 }
 };
 
-static const UnkStruct_ov61_0222C884 Unk_020F1E98 = {
+static const WindowTemplate Unk_020F1E98 = {
     0x0,
     0x17,
     0xD,
@@ -100,7 +100,7 @@ static const UnkStruct_ov61_0222C884 Unk_020F1E98 = {
     0x240
 };
 
-static void sub_020819DC(BgConfig *param0, Window *param1, const UnkStruct_ov61_0222C884 *param2)
+static void sub_020819DC(BgConfig *param0, Window *param1, const WindowTemplate *param2)
 {
     sub_0201A8D4(param0, &param1[0], &param2[0]);
     sub_0201A8D4(param0, &param1[1], &param2[1]);
@@ -111,7 +111,7 @@ static void sub_020819DC(BgConfig *param0, Window *param1, const UnkStruct_ov61_
 
 void sub_02081A24(GameWindowLayout *param0)
 {
-    const UnkStruct_ov61_0222C884 *v0 = Unk_020F1F08;
+    const WindowTemplate *v0 = Unk_020F1F08;
     u16 v1;
 
     sub_020819DC(param0->unk_00, &param0->unk_04[0], &v0[0]);
@@ -129,10 +129,10 @@ void sub_02081A24(GameWindowLayout *param0)
     }
 
     if ((param0->unk_5A4->unk_20 == 2) || (param0->unk_5A4->unk_20 == 17) || (param0->unk_5A4->unk_20 == 23) || (param0->unk_5A4->unk_20 == 22)) {
-        UnkStruct_ov61_0222C884 v2;
+        WindowTemplate v2;
 
         v2 = Unk_020F1ED0[0];
-        v2.unk_02 = 22;
+        v2.tilemapTop = 22;
         sub_0201A8D4(param0->unk_00, &param0->unk_04[31], &v2);
     } else {
         sub_0201A8D4(param0->unk_00, &param0->unk_04[31], &Unk_020F1ED0[0]);

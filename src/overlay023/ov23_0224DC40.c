@@ -148,7 +148,7 @@ static const UnkStruct_ov84_02240FA8 Unk_ov23_02256894 = {
     NULL
 };
 
-static const UnkStruct_ov61_0222C884 Unk_ov23_0225688C = {
+static const WindowTemplate Unk_ov23_0225688C = {
     0x3,
     0x19,
     0xD,

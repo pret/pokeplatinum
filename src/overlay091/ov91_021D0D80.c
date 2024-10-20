@@ -142,7 +142,7 @@ static void ov91_021D2574(UnkStruct_ov91_021D0ED8 *param0, u8 param1);
 static void ov91_021D2594(UnkStruct_ov91_021D0ED8 *param0);
 static void ov91_021D25E4(UnkStruct_ov91_021D0ED8 *param0);
 
-static const UnkStruct_ov61_0222C884 Unk_ov91_021D2884[] = {
+static const WindowTemplate Unk_ov91_021D2884[] = {
     { 0x1, 0x13, 0x0, 0xB, 0x2, 0xF, 0x28 },
     { 0x1, 0x13, 0x0, 0xB, 0x2, 0xF, 0x3E },
     { 0x1, 0x1, 0x0, 0x6, 0x2, 0xF, 0x54 },

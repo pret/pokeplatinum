@@ -574,7 +574,7 @@ static UnkStruct_ov23_02256EB0 Unk_ov23_02256EB0[] = {
     { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x4, 0x42, 0x28, 0x1A }
 };
 
-static const UnkStruct_ov61_0222C884 Unk_ov23_0225630E = {
+static const WindowTemplate Unk_ov23_0225630E = {
     0x3,
     0x19,
     0xD,

@@ -50,7 +50,7 @@ static void sub_02052914(FieldSystem *fieldSystem, TaskManager *param1);
 static BOOL sub_020529C4(TaskManager *param0);
 static void sub_02052AA4(UnkStruct_02052AA4 *param0, u16 param1, u8 param2, u8 param3);
 
-static const UnkStruct_ov61_0222C884 Unk_020EC2F0 = {
+static const WindowTemplate Unk_020EC2F0 = {
     0x3,
     0x4,
     0x5,

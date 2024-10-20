@@ -197,7 +197,7 @@ static void ov23_0224DC24(void);
 
 static UnkStruct_ov23_022577AC *Unk_ov23_022577AC = NULL;
 
-static const UnkStruct_ov61_0222C884 Unk_ov23_02256864 = {
+static const WindowTemplate Unk_ov23_02256864 = {
     0x3,
     0x19,
     0xD,
@@ -207,7 +207,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov23_02256864 = {
     0x21F
 };
 
-static const UnkStruct_ov61_0222C884 Unk_ov23_0225686C = {
+static const WindowTemplate Unk_ov23_0225686C = {
     0x3,
     0x10,
     0xD,
@@ -1013,7 +1013,7 @@ static int ov23_0224BD1C(int param0, BOOL param1)
     return v1;
 }
 
-static UIControlData *ov23_0224BD90(BgConfig *param0, const UnkStruct_ov61_0222C884 *param1, u16 param2, u8 param3, u32 param4)
+static UIControlData *ov23_0224BD90(BgConfig *param0, const WindowTemplate *param1, u16 param2, u8 param3, u32 param4)
 {
     UnkStruct_02081CF4 v0;
     MessageLoader *v1 = ov23_02253E3C(ov23_0224219C());

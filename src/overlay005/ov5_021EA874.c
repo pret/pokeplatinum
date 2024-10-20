@@ -122,7 +122,7 @@ static BOOL ov5_021EA8F0(UnkStruct_ov5_021EAE78 *param0)
     return 0;
 }
 
-static const UnkStruct_ov61_0222C884 Unk_ov5_021FAF00 = {
+static const WindowTemplate Unk_ov5_021FAF00 = {
     0x3,
     0x19,
     0xD,

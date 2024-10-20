@@ -74,15 +74,15 @@ typedef struct BgConfig {
     Background bgs[8];
 } BgConfig;
 
-typedef struct {
-    u8 unk_00;
-    u8 unk_01;
-    u8 unk_02;
-    u8 unk_03;
-    u8 unk_04;
-    u8 unk_05;
-    u16 unk_06;
-} UnkStruct_ov61_0222C884;
+typedef struct WindowTemplate {
+    u8 bgLayer;
+    u8 tilemapLeft;
+    u8 tilemapTop;
+    u8 width;
+    u8 height;
+    u8 palette;
+    u16 baseTile;
+} WindowTemplate;
 
 typedef struct {
     BgConfig *unk_00;
@@ -150,7 +150,7 @@ void Window_Init(Window *param0);
 u8 BGL_WindowAdded(Window *param0);
 void BGL_AddWindow(BgConfig *param0, Window *param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6, u8 param7, u16 param8);
 void BGL_AddFramelessWindow(BgConfig *param0, Window *param1, u8 param2, u8 param3, u16 param4, u8 param5);
-void sub_0201A8D4(BgConfig *param0, Window *param1, const UnkStruct_ov61_0222C884 *param2);
+void sub_0201A8D4(BgConfig *param0, Window *param1, const WindowTemplate *param2);
 void BGL_DeleteWindow(Window *param0);
 void sub_0201A928(Window *param0, u8 param1);
 void sub_0201A954(Window *param0);

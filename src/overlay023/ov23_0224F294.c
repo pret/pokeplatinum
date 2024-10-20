@@ -106,7 +106,7 @@ static void ov23_02250B34(SysTask *param0, UnkStruct_ov23_02250CD4 *param1, BOOL
 
 static UnkStruct_ov23_022577B8 *Unk_ov23_022577B8 = NULL;
 
-static const UnkStruct_ov61_0222C884 Unk_ov23_022568D8 = {
+static const WindowTemplate Unk_ov23_022568D8 = {
     0x3,
     0x19,
     0xD,

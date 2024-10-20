@@ -298,7 +298,7 @@ static int ov75_021D0FA0(UnkStruct_ov75_021D1184 *param0)
 
 static void ov75_021D1040(UnkStruct_ov75_021D1184 *param0)
 {
-    static const UnkStruct_ov61_0222C884 v0 = {
+    static const WindowTemplate v0 = {
         0, 25, 13, 6, 4, UnkEnum_ov75_021D1598_03, 555
     };
 

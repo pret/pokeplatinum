@@ -80,7 +80,7 @@ static void ov23_022520E8(FieldSystem *fieldSystem, UnkStruct_ov23_022513B0 *par
 static void ov23_02251F94(FieldSystem *fieldSystem);
 static void ov23_022521C8(UnkStruct_ov23_02250CD4 *param0);
 
-static const UnkStruct_ov61_0222C884 Unk_ov23_022569C8 = {
+static const WindowTemplate Unk_ov23_022569C8 = {
     0x3,
     0x19,
     0xD,

@@ -176,7 +176,7 @@ BOOL ov19_021DAAC4(UnkStruct_ov19_021DA9E0 *param0)
 
 void ov19_021DAADC(UnkStruct_ov19_021DA9E0 *param0)
 {
-    static const UnkStruct_ov61_0222C884 v0[] = {
+    static const WindowTemplate v0[] = {
         { 2, 0, 1, 10, 2, 1, 288 },
         { 2, 5, 3, 5, 1, 1, 308 },
         { 2, 0, 16, 10, 3, 3, 313 },

@@ -108,7 +108,7 @@ static u16 ov7_0224E8CC(UnkStruct_ov7_0224D008 *param0, u16 param1);
 static u32 ov7_0224E8F4(UnkStruct_ov7_0224D008 *param0);
 static void ov7_0224E920(UnkStruct_ov7_0224D008 *param0, u32 param1);
 
-static const UnkStruct_ov61_0222C884 Unk_ov7_0224F328[] = {
+static const WindowTemplate Unk_ov7_0224F328[] = {
     { 0x2, 0xC, 0x2, 0x13, 0xE, 0xD, 0x1 },
     { 0x2, 0x5, 0x12, 0x1B, 0x6, 0xD, 0x10B },
     { 0x3, 0x1, 0x1, 0x9, 0x4, 0xD, 0x28 },
@@ -117,7 +117,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov7_0224F328[] = {
     { 0x3, 0x2, 0x13, 0x1B, 0x4, 0xC, 0x98 }
 };
 
-static const UnkStruct_ov61_0222C884 Unk_ov7_0224F2BC = {
+static const WindowTemplate Unk_ov7_0224F2BC = {
     0x2,
     0x1,
     0x12,
@@ -127,7 +127,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov7_0224F2BC = {
     0x10B
 };
 
-static const UnkStruct_ov61_0222C884 Unk_ov7_0224F2CC = {
+static const WindowTemplate Unk_ov7_0224F2CC = {
     0x3,
     0x17,
     0xD,
@@ -149,7 +149,7 @@ static const u8 Unk_ov7_0224F49C[] = {
     0xff
 };
 
-static const UnkStruct_ov61_0222C884 Unk_ov7_0224F2C4 = {
+static const WindowTemplate Unk_ov7_0224F2C4 = {
     0x3,
     0x1,
     0x1,

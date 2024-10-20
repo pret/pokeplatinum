@@ -57,7 +57,7 @@ static const BgTemplate Unk_020E5F60 = {
     0x0
 };
 
-static const UnkStruct_ov61_0222C884 Unk_020E5F48 = {
+static const WindowTemplate Unk_020E5F48 = {
     0x0,
     0x3,
     0x3,

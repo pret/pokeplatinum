@@ -674,7 +674,7 @@ static void sub_020729B4(UnkStruct_02072334 *param0)
 {
     u8 v0 = 0, v1 = 0;
     UnkStruct_02072EB8 *v2;
-    static const UnkStruct_ov61_0222C884 v3[2] = {
+    static const WindowTemplate v3[2] = {
         { 0x3, 0x13, 0x1, 0xC, 0x10, 0xD, 0x295 },
         { 0x3, 0x1, 0x1, 0x9, 0x2, 0xD, 0x283 }
     };
@@ -782,7 +782,7 @@ static void sub_02072C0C(BmpList *param0, u32 param1, u8 param2)
 static void sub_02072C98(UnkStruct_02072334 *param0, u8 param1, u8 param2)
 {
     u8 v0 = 0, v1 = 0;
-    static const UnkStruct_ov61_0222C884 v2 = {
+    static const WindowTemplate v2 = {
         0x3,
         0x1,
         0x1,
@@ -1120,7 +1120,7 @@ static BOOL sub_020733B4(UnkStruct_02072334 *param0)
 
 static void sub_020733E0(UnkStruct_02072334 *param0)
 {
-    static const UnkStruct_ov61_0222C884 v0 = {
+    static const WindowTemplate v0 = {
         0x3,
         0x19,
         0xD,

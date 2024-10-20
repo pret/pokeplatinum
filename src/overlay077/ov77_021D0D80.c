@@ -831,7 +831,7 @@ static void ov77_021D1984(UnkStruct_ov77_021D1568 *param0, UnkStruct_ov77_021D12
     param1->unk_210++;
 }
 
-static const UnkStruct_ov61_0222C884 Unk_ov77_021D72D0 = {
+static const WindowTemplate Unk_ov77_021D72D0 = {
     0x4,
     0x2,
     0x13,

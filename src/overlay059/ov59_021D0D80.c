@@ -842,7 +842,7 @@ static int ov59_021D19E4(UnkStruct_020961E8 *param0, int param1)
     return param1;
 }
 
-static const UnkStruct_ov61_0222C884 Unk_ov59_021D3288 = {
+static const WindowTemplate Unk_ov59_021D3288 = {
     0x0,
     0x17,
     0xD,

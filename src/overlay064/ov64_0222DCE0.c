@@ -468,7 +468,7 @@ static NNSG2dViewRect Unk_ov64_02232460 = {
     {(255 << FX32_SHIFT), (192 << FX32_SHIFT)}
 };
 
-static const UnkStruct_ov61_0222C884 Unk_ov64_022321CA = {
+static const WindowTemplate Unk_ov64_022321CA = {
     0x1,
     0x19,
     0xD,

@@ -143,8 +143,8 @@ static int ov92_021D16F8(int param0);
 static void ov92_021D1700(UnkStruct_ov92_021D1B24 *param0);
 static void ov92_021D1818(int param0, int param1, int *param2, int *param3, int *param4, int *param5);
 static BOOL ov92_021D1B70(UnkStruct_ov92_021D1B24 *param0, u32 param1, int param2);
-static void ov92_021D1C4C(UnkStruct_ov92_021D1B24 *param0, Window *param1, const UnkStruct_ov61_0222C884 *param2, const UnkStruct_ov84_02240FA8 *param3, const UnkStruct_ov92_021D2958 *param4);
-static void ov92_021D1CF4(UnkStruct_ov92_021D1B24 *param0, Window *param1, const UnkStruct_ov61_0222C884 *param2, const UnkStruct_ov84_02240FA8 *param3, u32 param4, const u8 *param5, u32 param6);
+static void ov92_021D1C4C(UnkStruct_ov92_021D1B24 *param0, Window *param1, const WindowTemplate *param2, const UnkStruct_ov84_02240FA8 *param3, const UnkStruct_ov92_021D2958 *param4);
+static void ov92_021D1CF4(UnkStruct_ov92_021D1B24 *param0, Window *param1, const WindowTemplate *param2, const UnkStruct_ov84_02240FA8 *param3, u32 param4, const u8 *param5, u32 param6);
 static void ov92_021D1DB4(UnkStruct_ov92_021D1B24 *param0);
 static void ov92_021D1DEC(UnkStruct_ov92_021D1B24 *param0);
 static void ov92_021D1EBC(UnkStruct_ov92_021D1B24 *param0, int param1, int param2);
@@ -196,7 +196,7 @@ static const BgTemplate Unk_ov92_021D298C = {
     0x0
 };
 
-static const UnkStruct_ov61_0222C884 Unk_ov92_021D2934 = {
+static const WindowTemplate Unk_ov92_021D2934 = {
     0x6,
     0x2,
     0x13,
@@ -206,7 +206,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov92_021D2934 = {
     0x16D
 };
 
-static const UnkStruct_ov61_0222C884 Unk_ov92_021D292C = {
+static const WindowTemplate Unk_ov92_021D292C = {
     0x6,
     0x19,
     0xD,
@@ -216,7 +216,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov92_021D292C = {
     0x155
 };
 
-static const UnkStruct_ov61_0222C884 Unk_ov92_021D290C = {
+static const WindowTemplate Unk_ov92_021D290C = {
     0x6,
     0x13,
     0xB,
@@ -226,7 +226,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov92_021D290C = {
     0x125
 };
 
-static const UnkStruct_ov61_0222C884 Unk_ov92_021D2914 = {
+static const WindowTemplate Unk_ov92_021D2914 = {
     0x6,
     0x3,
     0x2,
@@ -236,7 +236,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov92_021D2914 = {
     0x1
 };
 
-static const UnkStruct_ov61_0222C884 Unk_ov92_021D291C = {
+static const WindowTemplate Unk_ov92_021D291C = {
     0x6,
     0x2,
     0x1,
@@ -246,7 +246,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov92_021D291C = {
     0xB3
 };
 
-static const UnkStruct_ov61_0222C884 Unk_ov92_021D2924 = {
+static const WindowTemplate Unk_ov92_021D2924 = {
     0x2,
     0x19,
     0x15,
@@ -1022,7 +1022,7 @@ static void ov92_021D1C38(BmpList *param0, u32 param1, u8 param2)
     }
 }
 
-static void ov92_021D1C4C(UnkStruct_ov92_021D1B24 *param0, Window *param1, const UnkStruct_ov61_0222C884 *param2, const UnkStruct_ov84_02240FA8 *param3, const UnkStruct_ov92_021D2958 *param4)
+static void ov92_021D1C4C(UnkStruct_ov92_021D1B24 *param0, Window *param1, const WindowTemplate *param2, const UnkStruct_ov84_02240FA8 *param3, const UnkStruct_ov92_021D2958 *param4)
 {
     UnkStruct_ov84_02240FA8 v0;
     int v1;
@@ -1044,7 +1044,7 @@ static void ov92_021D1C4C(UnkStruct_ov92_021D1B24 *param0, Window *param1, const
     sub_0201A954(param1);
 }
 
-static void ov92_021D1CF4(UnkStruct_ov92_021D1B24 *param0, Window *param1, const UnkStruct_ov61_0222C884 *param2, const UnkStruct_ov84_02240FA8 *param3, u32 param4, const u8 *param5, u32 param6)
+static void ov92_021D1CF4(UnkStruct_ov92_021D1B24 *param0, Window *param1, const WindowTemplate *param2, const UnkStruct_ov84_02240FA8 *param3, u32 param4, const u8 *param5, u32 param6)
 {
     UnkStruct_ov84_02240FA8 v0;
     MessageLoader *v1;

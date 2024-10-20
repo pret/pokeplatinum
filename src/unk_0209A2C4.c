@@ -51,7 +51,7 @@ static BOOL sub_0209A688(UnkStruct_0209A3D0 *param0, u32 param1, int param2, int
 
 extern const OverlayManagerTemplate Unk_ov97_0223D674;
 
-static const UnkStruct_ov61_0222C884 Unk_020F8A58 = {
+static const WindowTemplate Unk_020F8A58 = {
     0x0,
     0x2,
     0x13,

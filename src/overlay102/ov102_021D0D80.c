@@ -307,19 +307,19 @@ static void ov102_021D10F8(UnkStruct_ov102_021D0F8C *param0)
 
 static void ov102_021D1174(UnkStruct_ov102_021D0F8C *param0)
 {
-    UnkStruct_ov61_0222C884 v0 = { 0, 0, 0, 32, 24, 2, 1 };
+    WindowTemplate v0 = { 0, 0, 0, 32, 24, 2, 1 };
 
     Text_ResetAllPrinters();
 
     param0->unk_34 = MessageLoader_Init(1, 26, 1, param0->unk_00);
     param0->unk_38 = StringTemplate_Default(param0->unk_00);
 
-    v0.unk_00 = 0;
+    v0.bgLayer = 0;
 
     sub_0201A8D4(param0->unk_10, &param0->unk_14, &v0);
     BGL_WindowColor(&param0->unk_14, 0, 0, 0, 32 * 8, 24 * 8);
 
-    v0.unk_00 = 4;
+    v0.bgLayer = 4;
 
     sub_0201A8D4(param0->unk_10, &param0->unk_24, &v0);
     BGL_WindowColor(&param0->unk_24, 0, 0, 0, 32 * 8, 24 * 8);

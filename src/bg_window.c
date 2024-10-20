@@ -1617,10 +1617,10 @@ void BGL_AddFramelessWindow(BgConfig *param0, Window *param1, u8 param2, u8 para
     param1->unk_0A_15 = UnkEnum_00;
 }
 
-void sub_0201A8D4(BgConfig *param0, Window *param1, const UnkStruct_ov61_0222C884 *param2)
+void sub_0201A8D4(BgConfig *param0, Window *param1, const WindowTemplate *param2)
 {
     BGL_AddWindow(
-        param0, param1, param2->unk_00, param2->unk_01, param2->unk_02, param2->unk_03, param2->unk_04, param2->unk_05, param2->unk_06);
+        param0, param1, param2->bgLayer, param2->tilemapLeft, param2->tilemapTop, param2->width, param2->height, param2->palette, param2->baseTile);
 }
 
 void BGL_DeleteWindow(Window *param0)

@@ -6,7 +6,7 @@
 #include "bg_window.h"
 #include "unk_0200DA60.h"
 
-static const UnkStruct_ov61_0222C884 Unk_ov111_021D38B8[] = {
+static const WindowTemplate Unk_ov111_021D38B8[] = {
     { 0x2, 0x2, 0x1, 0x1B, 0x4, 0xC, 0x1 },
     { 0x4, 0x18, 0xD, 0x7, 0x4, 0xD, 0x6D },
     { 0x4, 0x11, 0x3, 0xB, 0x5, 0xD, 0x89 },
@@ -33,7 +33,7 @@ void ov111_021D35C0(Window *param0, int param1);
 void ov111_021D3548(BgConfig *param0, Window *param1)
 {
     u8 v0;
-    const UnkStruct_ov61_0222C884 *v1 = Unk_ov111_021D38B8;
+    const WindowTemplate *v1 = Unk_ov111_021D38B8;
 
     for (v0 = 0; v0 < 16; v0++) {
         sub_0201A8D4(param0, &param1[v0], &v1[v0]);

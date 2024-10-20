@@ -207,7 +207,7 @@ typedef struct ChooseStarterApp {
     Window *unk_9C[3];
     int unk_A8;
     Strbuf *unk_AC;
-    UnkStruct_ov61_0222C884 unk_B0;
+    WindowTemplate unk_B0;
     UIControlData *unk_B8;
     UnkStruct_0200C738 unk_BC;
     CellActorCollection *unk_248;
@@ -1333,13 +1333,13 @@ static void ov78_021D2090(ChooseStarterApp *param0)
 
 static void MakeConfirmationWindow(ChooseStarterApp *param0, int param1)
 {
-    param0->unk_B0.unk_00 = 1;
-    param0->unk_B0.unk_01 = 23;
-    param0->unk_B0.unk_02 = 12;
-    param0->unk_B0.unk_03 = 5;
-    param0->unk_B0.unk_04 = 4;
-    param0->unk_B0.unk_05 = 3;
-    param0->unk_B0.unk_06 = ((18 + 12) + 9 + 128);
+    param0->unk_B0.bgLayer = 1;
+    param0->unk_B0.tilemapLeft = 23;
+    param0->unk_B0.tilemapTop = 12;
+    param0->unk_B0.width = 5;
+    param0->unk_B0.height = 4;
+    param0->unk_B0.palette = 3;
+    param0->unk_B0.baseTile = ((18 + 12) + 9 + 128);
 
     sub_0200DAA4(param0->bgl, 1, (512 + (18 + 12) + 128), 1, 0, param1);
     Font_LoadTextPalette(0, 3 * 32, param1);

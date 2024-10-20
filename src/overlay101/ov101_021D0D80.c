@@ -71,7 +71,7 @@ static void ov101_021D18F4(SysTask *param0, void *param1);
 static void ov101_021D197C(void *param0);
 static void ov101_021D19BC(UnkStruct_ov101_021D13C8 *param0);
 static void ov101_021D19D4(UnkStruct_ov101_021D13C8 *param0);
-static const UnkStruct_ov61_0222C884 Unk_ov101_021D8588[1];
+static const WindowTemplate Unk_ov101_021D8588[1];
 static void ov101_021D1458(UnkStruct_ov101_021D13C8 *param0);
 
 int ov101_021D0D80(OverlayManager *param0, int *param1)
@@ -701,6 +701,6 @@ void *ov101_021D19E4(UnkStruct_ov101_021D13C8 *param0, u32 param1, int param2)
     return v0;
 }
 
-static const UnkStruct_ov61_0222C884 Unk_ov101_021D8588[1] = {
+static const WindowTemplate Unk_ov101_021D8588[1] = {
     { 0x0, 0x2, 0x13, 0x1A, 0x4, 0xF, 0x3D }
 };

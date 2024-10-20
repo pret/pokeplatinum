@@ -58,7 +58,7 @@ static const BgTemplate sErrorMessageBgTemplate = {
     0x0
 };
 
-static const UnkStruct_ov61_0222C884 sErrorMessageWindowTemplate = {
+static const WindowTemplate sErrorMessageWindowTemplate = {
     0x0,
     0x3,
     0x3,

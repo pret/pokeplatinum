@@ -36,7 +36,7 @@
 static void ov84_0223F9B0(UnkStruct_ov84_0223B5A0 *param0, u32 param1);
 static BOOL ov84_022400E0(TextPrinterTemplate *param0, u16 param1);
 
-static const UnkStruct_ov61_0222C884 Unk_ov84_02241150 = {
+static const WindowTemplate Unk_ov84_02241150 = {
     0x0,
     0x17,
     0xD,

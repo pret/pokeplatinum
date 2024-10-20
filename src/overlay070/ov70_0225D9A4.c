@@ -373,7 +373,7 @@ static const u16 Unk_ov70_0226D624[2][2][4] = {
     },
 };
 
-static const UnkStruct_ov61_0222C884 Unk_ov70_0226D68C[5] = {
+static const WindowTemplate Unk_ov70_0226D68C[5] = {
     { 0x6, 0x8, 0x2, 0x10, 0x4, 0x5, 0x140 },
     { 0x6, 0x1, 0x7, 0x1E, 0x6, 0x5, 0x180 },
     { 0x6, 0x1, 0xE, 0x13, 0x4, 0x5, 0x234 },
@@ -449,7 +449,7 @@ static const VecFx32 Unk_ov70_0226D7B4[12] = {
     { FX32_CONST(152), FX32_CONST(176) + (256 * FX32_ONE), 0x0 }
 };
 
-static const UnkStruct_ov61_0222C884 Unk_ov70_0226D5A4 = {
+static const WindowTemplate Unk_ov70_0226D5A4 = {
     0x5,
     0x1,
     0x0,

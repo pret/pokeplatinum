@@ -322,7 +322,7 @@ static void ov96_0223BB0C(UnkStruct_ov96_0223BF40 *param0)
     sub_02039734();
 }
 
-static const UnkStruct_ov61_0222C884 Unk_ov96_0223DA78 = {
+static const WindowTemplate Unk_ov96_0223DA78 = {
     0x0,
     0x17,
     0xD,
@@ -334,11 +334,11 @@ static const UnkStruct_ov61_0222C884 Unk_ov96_0223DA78 = {
 
 UIControlData *ov96_0223BBC8(BgConfig *param0, int param1, int param2)
 {
-    UnkStruct_ov61_0222C884 v0;
+    WindowTemplate v0;
 
     v0 = Unk_ov96_0223DA78;
-    v0.unk_02 = param1;
-    v0.unk_06 = param2;
+    v0.tilemapTop = param1;
+    v0.baseTile = param2;
 
     return sub_02002100(param0, &v0, (1 + (18 + 12)), 11, 68);
 }

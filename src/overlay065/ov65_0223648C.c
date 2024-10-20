@@ -288,7 +288,7 @@ static const u8 Unk_ov65_02239C04[18] = {
     0x5
 };
 
-static const UnkStruct_ov61_0222C884 Unk_ov65_02239A24 = {
+static const WindowTemplate Unk_ov65_02239A24 = {
     0x2,
     0x19,
     0xD,

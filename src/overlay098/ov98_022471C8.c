@@ -276,7 +276,7 @@ static const u8 Unk_ov98_02249BBC[4] = {
     0x4
 };
 
-static const UnkStruct_ov61_0222C884 Unk_ov98_02249BC4 = {
+static const WindowTemplate Unk_ov98_02249BC4 = {
     0x0,
     0x17,
     0xD,
@@ -702,22 +702,22 @@ static void ov98_02247B0C (UnkStruct_ov98_02247704 * param0)
 
 static UIControlData *ov98_02247B24(BgConfig *param0, int param1, int param2)
 {
-    UnkStruct_ov61_0222C884 v0;
+    WindowTemplate v0;
 
     v0 = Unk_ov98_02249BC4;
-    v0.unk_02 = param1;
-    v0.unk_06 = param2;
+    v0.tilemapTop = param1;
+    v0.baseTile = param2;
 
     return sub_02002100(param0, &v0, (1 + (18 + 12)), 11, 109);
 }
 
 static UIControlData *ov98_02247B58(BgConfig *param0, int param1, int param2, int param3)
 {
-    UnkStruct_ov61_0222C884 v0;
+    WindowTemplate v0;
 
     v0 = Unk_ov98_02249BC4;
-    v0.unk_02 = param1;
-    v0.unk_06 = param2;
+    v0.tilemapTop = param1;
+    v0.baseTile = param2;
 
     return sub_02002054(param0, &v0, (1 + (18 + 12)), 11, param3, 109);
 }

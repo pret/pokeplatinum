@@ -130,7 +130,7 @@ static int (*Unk_ov61_0222E600[])(UnkStruct_ov61_0222C664 *) = {
     ov61_0222CE2C,
 };
 
-static const UnkStruct_ov61_0222C884 Unk_ov61_0222E4A0 = {
+static const WindowTemplate Unk_ov61_0222E4A0 = {
     0x0,
     0x17,
     0xD,
@@ -553,11 +553,11 @@ static void ov61_0222C86C(UnkStruct_ov61_0222C664 *param0)
 
 static UIControlData *ov61_0222C884(BgConfig *param0, int param1, int param2)
 {
-    UnkStruct_ov61_0222C884 v0;
+    WindowTemplate v0;
 
     v0 = Unk_ov61_0222E4A0;
-    v0.unk_02 = param1;
-    v0.unk_06 = param2;
+    v0.tilemapTop = param1;
+    v0.baseTile = param2;
 
     return sub_02002100(param0, &v0, (1 + (18 + 12)), 11, 117);
 }
