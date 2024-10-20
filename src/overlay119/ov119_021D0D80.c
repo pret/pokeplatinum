@@ -322,7 +322,7 @@ int ov119_021D1158(Window *param0, int param1, Pokemon *param2, int param3)
     StringTemplate_SetSpeciesName(v3, 0, v4);
     StringTemplate_Format(v3, v2, v1);
 
-    v0 = Text_AddPrinterWithParams(param0, 1, v2, 0, 0, param3, NULL);
+    v0 = Text_AddPrinterWithParams(param0, FONT_MESSAGE, v2, 0, 0, param3, NULL);
 
     MessageLoader_Free(v5);
     Strbuf_Free(v2);

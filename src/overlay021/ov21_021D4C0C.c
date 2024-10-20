@@ -152,7 +152,7 @@ u32 ov21_021D4DAC(UnkStruct_ov21_021D4C0C *param0, Window *param1, u32 param2, u
     GF_ASSERT(v0);
 
     v1 = MessageLoader_GetNewStrbuf(v0, param3);
-    Text_AddPrinterWithParamsAndColor(param1, 2, v1, param4, param5, 0xff, ((u32)(((3 & 0xff) << 16) | ((2 & 0xff) << 8) | ((1 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SUBSCREEN, v1, param4, param5, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 2, 1), NULL);
     v2 = Font_CalcStrbufWidth(FONT_SUBSCREEN, v1, 0);
 
     Strbuf_Free(v1);
@@ -177,14 +177,14 @@ void ov21_021D4E10(UnkStruct_ov21_021D4C0C *param0, Window *param1, u32 param2, 
     v3 = v3 - v2;
     v3 /= 2;
 
-    Text_AddPrinterWithParamsAndColor(param1, 2, v1, v3, 0, 0xff, ((u32)(((3 & 0xff) << 16) | ((2 & 0xff) << 8) | ((1 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SUBSCREEN, v1, v3, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 2, 1), NULL);
     Strbuf_Free(v1);
     MessageLoader_Free(v0);
 }
 
 void ov21_021D4E80(UnkStruct_ov21_021D4C0C *param0, Window *param1, Strbuf *param2, int param3, int param4)
 {
-    Text_AddPrinterWithParamsAndColor(param1, 2, param2, param3, param4, 0xff, ((u32)(((3 & 0xff) << 16) | ((2 & 0xff) << 8) | ((1 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SUBSCREEN, param2, param3, param4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 2, 1), NULL);
 }
 
 static BOOL ov21_021D4EA4(UnkStruct_ov21_021D4CA0 *param0)

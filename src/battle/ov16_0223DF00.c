@@ -1749,7 +1749,7 @@ u8 ov16_0223F9FC(BattleSystem *param0, int param1, int param2, int param3, int p
                 }
 
                 BGL_FillWindow(v0, 0xff);
-                v1 = Text_AddPrinterWithParams(v0, 1, v2, 0, 0, param4, BattleMessage_Callback);
+                v1 = Text_AddPrinterWithParams(v0, FONT_MESSAGE, v2, 0, 0, param4, BattleMessage_Callback);
                 Strbuf_Free(v2);
             }
         } else {
@@ -1783,7 +1783,7 @@ u8 ov16_0223F9FC(BattleSystem *param0, int param1, int param2, int param3, int p
 
                 BGL_FillWindow(v0, 0xff);
 
-                v1 = Text_AddPrinterWithParams(v0, 1, v4, 0, 0, param4, BattleMessage_Callback);
+                v1 = Text_AddPrinterWithParams(v0, FONT_MESSAGE, v4, 0, 0, param4, BattleMessage_Callback);
                 Strbuf_Free(v4);
                 MessageLoader_Free(v3);
             }
@@ -1791,7 +1791,7 @@ u8 ov16_0223F9FC(BattleSystem *param0, int param1, int param2, int param3, int p
     } else {
         TrainerData_LoadMessage(param1, param3, param0->msgBuffer, 5);
         BGL_FillWindow(v0, 0xff);
-        v1 = Text_AddPrinterWithParams(v0, 1, param0->msgBuffer, 0, 0, param4, BattleMessage_Callback);
+        v1 = Text_AddPrinterWithParams(v0, FONT_MESSAGE, param0->msgBuffer, 0, 0, param4, BattleMessage_Callback);
     }
 
     return v1;
@@ -1807,7 +1807,7 @@ u8 BattleMessage_Print(BattleSystem *battleSys, MessageLoader *msgLoader, Battle
 
     BGL_FillWindow(textWindow, 0xFF);
 
-    return Text_AddPrinterWithParams(textWindow, 1, battleSys->msgBuffer, 0, 0, renderDelay, BattleMessage_Callback);
+    return Text_AddPrinterWithParams(textWindow, FONT_MESSAGE, battleSys->msgBuffer, 0, 0, renderDelay, BattleMessage_Callback);
 }
 
 u8 BattleMessage_PrintToWindow(BattleSystem *param0, Window *param1, MessageLoader *param2, BattleMessage *param3, int param4, int param5, int param6, int param7, int param8)
@@ -1828,7 +1828,7 @@ u8 BattleMessage_PrintToWindow(BattleSystem *param0, Window *param1, MessageLoad
         v0 = 0;
     }
 
-    return Text_AddPrinterWithParams(param1, 0, param0->msgBuffer, param4 + v0, param5, param8, BattleMessage_Callback);
+    return Text_AddPrinterWithParams(param1, FONT_SYSTEM, param0->msgBuffer, param4 + v0, param5, param8, BattleMessage_Callback);
 }
 
 /**

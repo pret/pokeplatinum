@@ -884,11 +884,11 @@ static void sub_0205ADF8(UnkStruct_0205A0D8 *param0, int param1)
             v2 = Pokemon_GetValue((Pokemon *)(&param0->unk_48[v1 * v3]), MON_DATA_SPECIES, NULL);
 
             MessageLoader_GetStrbuf(v4, v2, param0->unk_0C);
-            Text_AddPrinterWithParams(v0, 0, param0->unk_0C, 16, v1 * 16, 0xff, NULL);
+            Text_AddPrinterWithParams(v0, FONT_SYSTEM, param0->unk_0C, 16, v1 * 16, TEXT_SPEED_NO_TRANSFER, NULL);
         }
 
         MessageLoader_GetStrbuf(param0->unk_2C, 21, param0->unk_0C);
-        Text_AddPrinterWithParams(v0, 0, param0->unk_0C, 16, v1 * 16, 0xff, NULL);
+        Text_AddPrinterWithParams(v0, FONT_SYSTEM, param0->unk_0C, 16, v1 * 16, TEXT_SPEED_NO_TRANSFER, NULL);
         MessageLoader_Free(v4);
     }
 
@@ -914,7 +914,7 @@ static void sub_0205AF18(UnkStruct_0205A0D8 *param0, int param1)
 
         for (v1 = 0; v1 < 3; v1++) {
             MessageLoader_GetStrbuf(param0->unk_2C, 22 + v1, param0->unk_0C);
-            Text_AddPrinterWithParams(v0, 0, param0->unk_0C, 16, v1 * 16, 0xff, NULL);
+            Text_AddPrinterWithParams(v0, FONT_SYSTEM, param0->unk_0C, 16, v1 * 16, TEXT_SPEED_NO_TRANSFER, NULL);
         }
     }
 

@@ -331,7 +331,7 @@ static BOOL sub_0209A200(UnkStruct_02099DFC *param0, u32 param1, int param2, int
 
         param0->unk_10 = Strbuf_Init(0x400, param0->unk_00);
         MessageLoader_GetStrbuf(param0->unk_18, param1, param0->unk_10);
-        param0->unk_0C = Text_AddPrinterWithParams(&param0->unk_1C, 1, param0->unk_10, 0, 0, param3, NULL);
+        param0->unk_0C = Text_AddPrinterWithParams(&param0->unk_1C, FONT_MESSAGE, param0->unk_10, 0, 0, param3, NULL);
 
         if (param3 == 0) {
             Strbuf_Free(param0->unk_10);

@@ -108,7 +108,7 @@ typedef struct {
 
 static void ov104_02231FC4(UnkStruct_ov104_022320B4 *param0);
 static void ov104_02232034(UnkStruct_ov104_022320B4 *param0, const MessageLoader *param1, u32 param2);
-static void ov104_02232050(UnkStruct_ov104_022320B4 *param0, int param1, int param2, int param3, int param4);
+static void ov104_02232050(UnkStruct_ov104_022320B4 *param0, enum Font param1, int param2, int param3, int param4);
 static void ov104_0223214C(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_02232B5C *param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 *param6, StringTemplate *param7, MessageLoader *param8);
 UnkStruct_ov104_02232B5C *ov104_02232258(UnkStruct_ov104_022320B4 *param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 *param5, StringTemplate *param6, MessageLoader *param7);
 void ov104_022322A8(UnkStruct_ov104_02232B5C *param0, u32 param1, u32 param2, u32 param3);
@@ -157,7 +157,7 @@ void ov104_02231F74(UnkStruct_ov104_022320B4 *param0, const MessageLoader *param
 
         v0 = Options_TextFrameDelay(v4->unk_04);
         v1 = 0;
-        v2 = 1;
+        v2 = FONT_MESSAGE;
     } else {
         v0 = param4->unk_00;
         v1 = param4->unk_01;
@@ -189,7 +189,7 @@ static void ov104_02232034(UnkStruct_ov104_022320B4 *param0, const MessageLoader
     StringTemplate_Format(param0->unk_44, param0->unk_48, param0->unk_4C);
 }
 
-static void ov104_02232050(UnkStruct_ov104_022320B4 *param0, int param1, int param2, int param3, int param4)
+static void ov104_02232050(UnkStruct_ov104_022320B4 *param0, enum Font param1, int param2, int param3, int param4)
 {
     RenderControlFlags_SetCanABSpeedUpPrint(param3);
     RenderControlFlags_SetAutoScrollFlags(param4);
@@ -216,9 +216,9 @@ void ov104_022320B4(UnkStruct_ov104_022320B4 *param0, u8 param1, u16 param2, u16
     ov104_022320FC(param0->unk_48, param2, param3, param4, param5);
 
     if (param6 != 0xFF) {
-        ov104_02232050(param0, 1, param1, param6, 0);
+        ov104_02232050(param0, FONT_MESSAGE, param1, param6, 0);
     } else {
-        ov104_02232050(param0, 1, 0, param6, 0);
+        ov104_02232050(param0, FONT_MESSAGE, TEXT_SPEED_INSTANT, param6, 0);
     }
 }
 
@@ -471,7 +471,7 @@ static void ov104_022325D8(UnkStruct_ov104_02232B5C *param0)
     v0 = sub_02001DC4(param0->unk_B0);
 
     if (param0->unk_29C[v0] != 0xff) {
-        ov104_02232AC4(param0, param0->unk_29C[v0], 0);
+        ov104_02232AC4(param0, param0->unk_29C[v0], TEXT_SPEED_INSTANT);
     }
 
     return;
@@ -727,7 +727,7 @@ static void ov104_02232B2C(UnkStruct_ov104_02232B5C *param0)
     sub_020014D0(param0->unk_1B4, &param0->unk_1BA);
 
     if (param0->unk_29C[param0->unk_1BA] != 0xff) {
-        ov104_02232AC4(param0, param0->unk_29C[param0->unk_1BA], 0);
+        ov104_02232AC4(param0, param0->unk_29C[param0->unk_1BA], TEXT_SPEED_INSTANT);
     }
 
     return;

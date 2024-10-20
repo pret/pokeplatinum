@@ -1115,7 +1115,7 @@ static void ov64_0222E738 (UnkStruct_ov64_0222E21C * param0, u32 param1)
     MessageLoader_GetStrbuf(param0->unk_218, param1, param0->unk_234);
     StringTemplate_Format(param0->unk_214, param0->unk_230, param0->unk_234);
 
-    param0->unk_238 = Text_AddPrinterWithParamsAndColor(&param0->unk_220, 1, param0->unk_230, 0, 4, 2, ((u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    param0->unk_238 = Text_AddPrinterWithParamsAndColor(&param0->unk_220, FONT_MESSAGE, param0->unk_230, 0, 4, TEXT_SPEED_QUICK, TEXT_COLOR(15, 2, 0), NULL);
 
     sub_0201A9A4(&param0->unk_220);
 }
@@ -1699,7 +1699,7 @@ static void ov64_0222EFBC (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_0222
     MessageLoader_GetStrbuf(param1->unk_218, param2, v0);
     StringTemplate_Format(param1->unk_214, param0->unk_38, v0);
 
-    param0->unk_30 = Text_AddPrinterWithParamsAndColor(&param0->unk_1C, 1, param0->unk_38, 0, 0, param0->unk_34, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    param0->unk_30 = Text_AddPrinterWithParamsAndColor(&param0->unk_1C, FONT_MESSAGE, param0->unk_38, 0, 0, param0->unk_34, TEXT_COLOR(1, 2, 0), NULL);
 
     sub_0200E060(&param0->unk_1C, 1, (1 + 9), 8);
     sub_0201A9A4(&param0->unk_1C);
@@ -2594,7 +2594,7 @@ static void ov64_0222FE70 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222
     MessageLoader_GetStrbuf(param1->unk_218, param2, v0);
     StringTemplate_Format(param1->unk_214, param0->unk_D4, v0);
 
-    param0->unk_D8 = Text_AddPrinterWithParamsAndColor(&param0->unk_C4, 1, param0->unk_D4, 0, 0, param0->unk_DC, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    param0->unk_D8 = Text_AddPrinterWithParamsAndColor(&param0->unk_C4, FONT_MESSAGE, param0->unk_D4, 0, 0, param0->unk_DC, TEXT_COLOR(1, 2, 0), NULL);
 
     sub_0200E060(&param0->unk_C4, 1, (1 + 9), 8);
     sub_0201A9A4(&param0->unk_C4);
@@ -2781,7 +2781,7 @@ static void ov64_022302EC (UnkStruct_ov64_02230074 * param0, UnkStruct_ov63_0222
     UnkStruct_ov64_022302EC v2;
     Strbuf* v3;
     int v4, v5;
-    static const u32 v6[] = {((u32)(((5 & 0xff) << 16) | ((6 & 0xff) << 8) | ((0 & 0xff) << 0))), ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((0 & 0xff) << 0))), ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)))};
+    static const u32 v6[] = {TEXT_COLOR(5, 6, 0), TEXT_COLOR(3, 4, 0), TEXT_COLOR(1, 2, 0)};
 
     v1 = sub_0202AD2C(param5, param6, 7);
     v0 = sub_0202AD2C(param5, param6, 8);
@@ -2801,7 +2801,7 @@ static void ov64_022302EC (UnkStruct_ov64_02230074 * param0, UnkStruct_ov63_0222
     v3 = Strbuf_Init(128, param7);
 
     Strbuf_CopyChars(v3, sub_0202AEF0(param5, param6));
-    Text_AddPrinterWithParamsAndColor(&param0->unk_08, 0, v3, v4, v5, 0xff, v6[v0], NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_08, FONT_SYSTEM, v3, v4, v5, TEXT_SPEED_NO_TRANSFER, v6[v0], NULL);
     Strbuf_Free(v3);
 }
 

@@ -299,7 +299,7 @@ static void ov114_0225D190(UnkStruct_ov114_0225D084 *param0, Strbuf *param1, u32
 static void ov114_0225D1AC(UnkStruct_ov114_0225D084 *param0, u32 param1, Window *param2, u8 param3, u8 param4);
 static void ov114_0225D1C8(UnkStruct_ov114_0225D084 *param0, u32 param1, Window *param2, u8 param3, u8 param4);
 static u32 ov114_0225D218(UnkStruct_ov114_0225D084 *param0, u32 param1, Window *param2, Strbuf *param3, u32 param4);
-static void ov114_0225D254(UnkStruct_ov114_0225D084 *param0, u32 param1, Window *param2, u8 param3, u8 param4, u32 param5);
+static void ov114_0225D254(UnkStruct_ov114_0225D084 *param0, u32 param1, Window *param2, u8 param3, u8 param4, TextColor param5);
 static void ov114_0225D290(UnkStruct_ov114_0225D338 *param0, UnkStruct_ov114_0225CEF0 *param1, SaveData *param2, BOOL param3, u32 param4);
 static void ov114_0225D338(UnkStruct_ov114_0225D338 *param0);
 static void ov114_0225D368(UnkStruct_ov114_0225D338 *param0, UnkStruct_ov114_0225D084 *param1, u32 param2, u32 param3);
@@ -409,10 +409,10 @@ static const VecFx32 Unk_ov114_0226019C[2] = {
     { FX32_CONST(128), FX32_CONST(96 + 2), 0x0 }
 };
 
-static const u32 Unk_ov114_022600F8[UnkEnum_ov66_022324D0_12] = {
-    (u32)((7 & 0xff) << 16 | (8 & 0xff) << 8 | (9 & 0xff) << 0),
-    (u32)((4 & 0xff) << 16 | (5 & 0xff) << 8 | (6 & 0xff) << 0),
-    (u32)((1 & 0xff) << 16 | (2 & 0xff) << 8 | (3 & 0xff) << 0)
+static const TextColor Unk_ov114_022600F8[UnkEnum_ov66_022324D0_12] = {
+    TEXT_COLOR(7, 8, 9),
+    TEXT_COLOR(4, 5, 6),
+    TEXT_COLOR(1, 2, 3),
 };
 
 static const fx32 Unk_ov114_02260140[UnkEnum_ov66_022324D0_12] = {
@@ -1487,7 +1487,7 @@ static void ov114_0225D190(UnkStruct_ov114_0225D084 *param0, Strbuf *param1, u32
 
 static void ov114_0225D1AC(UnkStruct_ov114_0225D084 *param0, u32 param1, Window *param2, u8 param3, u8 param4)
 {
-    ov114_0225D254(param0, param1, param2, param3, param4, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))));
+    ov114_0225D254(param0, param1, param2, param3, param4, TEXT_COLOR(15, 14, 0));
 }
 
 static void ov114_0225D1C8(UnkStruct_ov114_0225D084 *param0, u32 param1, Window *param2, u8 param3, u8 param4)
@@ -1505,7 +1505,7 @@ static void ov114_0225D1C8(UnkStruct_ov114_0225D084 *param0, u32 param1, Window 
         v1 = 0;
     }
 
-    Text_AddPrinterWithParamsAndColor(param2, 0, param0->unk_08, v1, param4, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param2, FONT_SYSTEM, param0->unk_08, v1, param4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
 }
 
 static u32 ov114_0225D218(UnkStruct_ov114_0225D084 *param0, u32 param1, Window *param2, Strbuf *param3, u32 param4)
@@ -1513,14 +1513,14 @@ static u32 ov114_0225D218(UnkStruct_ov114_0225D084 *param0, u32 param1, Window *
     MessageLoader_GetStrbuf(param0->unk_00, param1, param0->unk_0C);
     StringTemplate_Format(param0->unk_04, param3, param0->unk_0C);
 
-    return Text_AddPrinterWithParamsAndColor(param2, 1, param3, 0, 0, param4, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+    return Text_AddPrinterWithParamsAndColor(param2, FONT_MESSAGE, param3, 0, 0, param4, TEXT_COLOR(1, 2, 15), NULL);
 }
 
-static void ov114_0225D254(UnkStruct_ov114_0225D084 *param0, u32 param1, Window *param2, u8 param3, u8 param4, u32 param5)
+static void ov114_0225D254(UnkStruct_ov114_0225D084 *param0, u32 param1, Window *param2, u8 param3, u8 param4, TextColor param5)
 {
     MessageLoader_GetStrbuf(param0->unk_00, param1, param0->unk_0C);
     StringTemplate_Format(param0->unk_04, param0->unk_08, param0->unk_0C);
-    Text_AddPrinterWithParamsAndColor(param2, 0, param0->unk_08, param3, param4, 0xff, param5, NULL);
+    Text_AddPrinterWithParamsAndColor(param2, FONT_SYSTEM, param0->unk_08, param3, param4, TEXT_SPEED_NO_TRANSFER, param5, NULL);
 }
 
 static void ov114_0225D290(UnkStruct_ov114_0225D338 *param0, UnkStruct_ov114_0225CEF0 *param1, SaveData *param2, BOOL param3, u32 param4)
@@ -1583,7 +1583,7 @@ static void ov114_0225D368(UnkStruct_ov114_0225D338 *param0, UnkStruct_ov114_022
 
     ov114_0225D474(param0, param3);
     BGL_FillWindow(&param0->unk_00[param3], 15);
-    param0->unk_20[param3] = ov114_0225D218(param1, param2, &param0->unk_00[param3], param0->unk_24[param3], 1);
+    param0->unk_20[param3] = ov114_0225D218(param1, param2, &param0->unk_00[param3], param0->unk_24[param3], TEXT_SPEED_FAST);
     sub_0200E060(&param0->unk_00[param3], 1, 1, 13);
     sub_0201A9A4(&param0->unk_00[param3]);
 }
@@ -2000,7 +2000,7 @@ static void ov114_0225DC44(UnkStruct_ov114_0225DAC0 *param0, UnkStruct_ov114_022
     ov114_0225D104(param1, param2);
 
     if (param5 == 1) {
-        ov114_0225D254(param1, 10, &param0->unk_00, param3, param4, ((u32)(((5 & 0xff) << 16) | ((6 & 0xff) << 8) | ((0 & 0xff) << 0))));
+        ov114_0225D254(param1, 10, &param0->unk_00, param3, param4, TEXT_COLOR(5, 6, 0));
     } else {
         ov114_0225D1AC(param1, 10, &param0->unk_00, param3, param4);
     }
@@ -2327,7 +2327,7 @@ static void ov114_0225E244(UnkStruct_ov114_0225E1A4 *param0, UnkStruct_ov114_022
     v0 = Font_CalcStrbufWidth(FONT_SUBSCREEN, param0->unk_14, 0);
     v1 = ((20 * 8) / 2) - (v0 / 2);
 
-    Text_AddPrinterWithParamsAndColor(&param0->unk_00, 2, param0->unk_14, v1, 0, 0, Unk_ov114_022600F8[param0->unk_10], NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_00, FONT_SUBSCREEN, param0->unk_14, v1, 0, TEXT_SPEED_INSTANT, Unk_ov114_022600F8[param0->unk_10], NULL);
     Font_Free(FONT_SUBSCREEN);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 }

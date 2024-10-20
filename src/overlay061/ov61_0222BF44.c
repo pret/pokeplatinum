@@ -94,7 +94,7 @@ static void ov61_0222C3B0(UnkStruct_ov61_0222C664 *param0);
 static void ov61_0222C664(UnkStruct_ov61_0222C664 *param0);
 static void ov61_0222C70C(UnkStruct_ov61_0222C664 *param0);
 static int ov61_0222C728(Window *param0, Strbuf *param1, int param2, int param3, u32 param4, int param5);
-void ov61_0222C760(Window *param0, Strbuf *param1, int param2, int param3, int param4, u32 param5);
+void ov61_0222C760(Window *param0, Strbuf *param1, int param2, int param3, int param4, TextColor param5);
 static void ov61_0222C794(UnkStruct_ov61_0222C664 *param0, int param1);
 static void ov61_0222C7F8(UnkStruct_ov61_0222C664 *param0, int param1, int param2);
 static int ov61_0222C834(int param0);
@@ -464,7 +464,7 @@ static void ov61_0222C664(UnkStruct_ov61_0222C664 *param0)
     BGL_AddWindow(param0->unk_04, &param0->unk_54, 0, 4, 1, 24, 2, 13, ((((1 + (18 + 12)) + 9) + 27 * 4) + 23 * 16));
     BGL_FillWindow(&param0->unk_54, 0x0);
 
-    ov61_0222C760(&param0->unk_54, param0->unk_38, 0, 1, 1, (u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0)));
+    ov61_0222C760(&param0->unk_54, param0->unk_38, 0, 1, 1, TEXT_COLOR(15, 14, 0));
 
     BGL_AddWindow(param0->unk_04, &param0->unk_44, 0, 2, 19, 27, 4, 13, ((1 + (18 + 12)) + 9));
     BGL_FillWindow(&param0->unk_44, 0x0);
@@ -495,10 +495,10 @@ static int ov61_0222C728(Window *param0, Strbuf *param1, int param2, int param3,
     return param2;
 }
 
-void ov61_0222C760(Window *param0, Strbuf *param1, int param2, int param3, int param4, u32 param5)
+void ov61_0222C760(Window *param0, Strbuf *param1, int param2, int param3, int param4, TextColor param5)
 {
     param2 = ov61_0222C728(param0, param1, param2, param4, param5, 1);
-    Text_AddPrinterWithParamsAndColor(param0, 1, param1, param2, param3, 0, param5, NULL);
+    Text_AddPrinterWithParamsAndColor(param0, FONT_MESSAGE, param1, param2, param3, TEXT_SPEED_INSTANT, param5, NULL);
 }
 
 static void ov61_0222C794(UnkStruct_ov61_0222C664 *param0, int param1)
@@ -510,7 +510,7 @@ static void ov61_0222C794(UnkStruct_ov61_0222C664 *param0, int param1)
     BGL_FillWindow(&param0->unk_64, 15);
     Window_Show(&param0->unk_64, 1, (1 + (18 + 12)), 11);
 
-    param0->unk_40 = Text_AddPrinterWithParams(&param0->unk_64, 1, param0->unk_3C, 0, 0, 0, NULL);
+    param0->unk_40 = Text_AddPrinterWithParams(&param0->unk_64, FONT_MESSAGE, param0->unk_3C, 0, 0, TEXT_SPEED_INSTANT, NULL);
     param0->unk_40 = 0xff;
 
     Strbuf_Free(v0);
@@ -578,7 +578,7 @@ static void ov61_0222C8B8(UnkStruct_ov61_0222C664 *param0, MessageLoader *param1
     BGL_FillWindow(&param0->unk_44, 0xf0f);
     sub_0200E060(&param0->unk_44, 0, 1, 10);
 
-    param0->unk_40 = Text_AddPrinterWithParams(&param0->unk_44, 1, param0->unk_34, 0, 0, param3, NULL);
+    param0->unk_40 = Text_AddPrinterWithParams(&param0->unk_44, FONT_MESSAGE, param0->unk_34, 0, 0, param3, NULL);
     param0->unk_8C = 0;
 
     if ((param3 == 0xff) || (param3 == 0)) {
@@ -633,7 +633,7 @@ static int ov61_0222C960(UnkStruct_ov61_0222C664 *param0)
         param0->unk_90++;
         break;
     case 1:
-        ov61_0222C8B8(param0, param0->unk_2C, 17, 1, 0xf0f);
+        ov61_0222C8B8(param0, param0->unk_2C, 17, TEXT_SPEED_FAST, 0xf0f);
         param0->unk_90++;
         break;
     case 2:
@@ -665,7 +665,7 @@ static int ov61_0222CA20(UnkStruct_ov61_0222C664 *param0)
     case 0:
         sub_02038438(param0->unk_00->unk_00->unk_04);
         sub_02039734();
-        ov61_0222C8B8(param0, param0->unk_28, 1, 1, 0xf0f);
+        ov61_0222C8B8(param0, param0->unk_28, 1, TEXT_SPEED_FAST, 0xf0f);
         ov61_0222C850(param0);
         param0->unk_90++;
         break;
@@ -894,7 +894,7 @@ static int ov61_0222CCE8(UnkStruct_ov61_0222C664 *param0)
         break;
     }
 
-    ov61_0222C8B8(param0, param0->unk_24, v0, 1, 0xf0f);
+    ov61_0222C8B8(param0, param0->unk_24, v0, TEXT_SPEED_FAST, 0xf0f);
     ov61_0222C920(param0, 12, 11);
 
     return 0;
@@ -904,7 +904,7 @@ static int ov61_0222CD58(UnkStruct_ov61_0222C664 *param0)
 {
     switch (param0->unk_90) {
     case 0:
-        ov61_0222C8B8(param0, param0->unk_24, 178, 1, 0xf0f);
+        ov61_0222C8B8(param0, param0->unk_24, 178, TEXT_SPEED_FAST, 0xf0f);
         param0->unk_90++;
         break;
     case 1:
@@ -915,7 +915,7 @@ static int ov61_0222CD58(UnkStruct_ov61_0222C664 *param0)
         }
         break;
     case 2:
-        ov61_0222C8B8(param0, param0->unk_24, 179, 1, 0xf0f);
+        ov61_0222C8B8(param0, param0->unk_24, 179, TEXT_SPEED_FAST, 0xf0f);
         param0->unk_90++;
         break;
     case 3:
@@ -953,7 +953,7 @@ static int ov61_0222CE2C(UnkStruct_ov61_0222C664 *param0)
 
     switch (param0->unk_90) {
     case 0:
-        ov61_0222C8B8(param0, param0->unk_2C, 26, 1, 0xf0f);
+        ov61_0222C8B8(param0, param0->unk_2C, 26, TEXT_SPEED_FAST, 0xf0f);
         param0->unk_90++;
         break;
     case 1:
@@ -963,7 +963,7 @@ static int ov61_0222CE2C(UnkStruct_ov61_0222C664 *param0)
         break;
     case 2:
         sub_02039794();
-        ov61_0222C8B8(param0, param0->unk_2C, 27, 1, 0xf0f);
+        ov61_0222C8B8(param0, param0->unk_2C, 27, TEXT_SPEED_FAST, 0xf0f);
         param0->unk_90++;
         break;
     case 3:

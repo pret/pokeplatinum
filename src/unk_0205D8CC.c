@@ -53,7 +53,7 @@ u8 FieldMessage_Print(Window *param0, Strbuf *param1, const Options *param2, u8 
     RenderControlFlags_SetAutoScrollFlags(0);
     RenderControlFlags_SetSpeedUpOnTouch(0);
 
-    v0 = Text_AddPrinterWithParams(param0, 1, param1, 0, 0, Options_TextFrameDelay(param2), NULL);
+    v0 = Text_AddPrinterWithParams(param0, FONT_MESSAGE, param1, 0, 0, Options_TextFrameDelay(param2), NULL);
     return v0;
 }
 

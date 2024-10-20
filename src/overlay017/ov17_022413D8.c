@@ -1514,12 +1514,12 @@ static void ov17_02242DC0(UnkStruct_ov17_02246F24 *param0, MessageLoader *param1
     u32 v1;
 
     if (param6 == 1) {
-        v1 = 0;
+        v1 = TEXT_SPEED_INSTANT;
     } else {
         if (param0->unk_00->unk_155 == 0) {
             v1 = Options_TextFrameDelay(param0->unk_00->unk_196C);
         } else {
-            v1 = 1;
+            v1 = TEXT_SPEED_FAST;
         }
     }
 
@@ -1529,7 +1529,7 @@ static void ov17_02242DC0(UnkStruct_ov17_02246F24 *param0, MessageLoader *param1
     StringTemplate_Format(param0->unk_0C.unk_48, param0->unk_0C.unk_4C, v0);
     BGL_FillWindow(&param0->unk_0C.unk_28[0], 0xff);
 
-    param0->unk_0C.unk_210 = Text_AddPrinterWithParams(&param0->unk_0C.unk_28[0], 1, param0->unk_0C.unk_4C, 0, 0, v1, NULL);
+    param0->unk_0C.unk_210 = Text_AddPrinterWithParams(&param0->unk_0C.unk_28[0], FONT_MESSAGE, param0->unk_0C.unk_4C, 0, 0, v1, NULL);
 
     if (v1 == 0) {
         param0->unk_0C.unk_210 = 0xff;
@@ -1576,20 +1576,20 @@ int ov17_02242ECC(UnkStruct_ov17_02246F24 *param0)
 void ov17_02242EE4(UnkStruct_ov17_02246F24 *param0, int param1)
 {
     Strbuf *v0;
-    u32 v1;
+    TextColor v1;
 
     v0 = Strbuf_Init(12, 21);
 
     Pokemon_GetValue(param0->unk_0C.unk_00->unk_00[param1], MON_DATA_NICKNAME_STRBUF, v0);
 
     if (param1 == param0->unk_00->unk_00.unk_113) {
-        v1 = ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));
+        v1 = TEXT_COLOR(1, 2, 0);
     } else {
-        v1 = ((u32)(((5 & 0xff) << 16) | ((6 & 0xff) << 8) | ((0 & 0xff) << 0)));
+        v1 = TEXT_COLOR(5, 6, 0);
     }
 
-    ov17_0223F1E8(21, param0->unk_0C.unk_24, param0->unk_0C.unk_1C, param0->unk_0C.unk_54, &param0->unk_0C.unk_1C8[param1], v0, 0, v1, 0, 33005, 0, 0, 0, 0, 15);
-    ov17_0223F1E8(21, param0->unk_0C.unk_24, param0->unk_0C.unk_1C, param0->unk_0C.unk_54, &param0->unk_0C.unk_180[param1], param0->unk_00->unk_00.unk_D8[param1], 0, v1, 0, 33005, 0, 0, 0, 0, 15);
+    ov17_0223F1E8(21, param0->unk_0C.unk_24, param0->unk_0C.unk_1C, param0->unk_0C.unk_54, &param0->unk_0C.unk_1C8[param1], v0, FONT_SYSTEM, v1, 0, 33005, 0, 0, 0, 0, 15);
+    ov17_0223F1E8(21, param0->unk_0C.unk_24, param0->unk_0C.unk_1C, param0->unk_0C.unk_54, &param0->unk_0C.unk_180[param1], param0->unk_00->unk_00.unk_D8[param1], FONT_SYSTEM, v1, 0, 33005, 0, 0, 0, 0, 15);
 
     Strbuf_Free(v0);
 }

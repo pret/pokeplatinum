@@ -83,7 +83,7 @@ static void ov79_021D183C(UnkStruct_020989DC *param0)
 
 static void ov79_021D1850(UnkStruct_ov79_021D0E1C *param0, Strbuf *param1, u8 param2, u8 param3)
 {
-    u32 v0 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0));
+    u32 v0 = TEXT_COLOR(1, 2, 15);
 
     if (param3) {
         sub_0200E060(&param0->unk_E8[2], 1, 1, 14);
@@ -93,7 +93,7 @@ static void ov79_021D1850(UnkStruct_ov79_021D0E1C *param0, Strbuf *param1, u8 pa
     RenderControlFlags_SetCanABSpeedUpPrint(1);
     RenderControlFlags_SetAutoScrollFlags(0);
 
-    param0->unk_1F = Text_AddPrinterWithParamsAndColor(&param0->unk_E8[2], 1, param1, 0, 0, param2, v0, NULL);
+    param0->unk_1F = Text_AddPrinterWithParamsAndColor(&param0->unk_E8[2], FONT_MESSAGE, param1, 0, 0, param2, v0, NULL);
 }
 
 static u16 ov79_021D18B4(UnkStruct_0203D9B8 *param0, UnkStruct_ov79_021D0E1C *param1)
@@ -250,7 +250,7 @@ void ov79_021D1B24(UnkStruct_ov79_021D0E1C *param0, u8 param1, u8 param2)
 void ov79_021D1C44(UnkStruct_ov79_021D0E1C *param0, u8 param1)
 {
     int v0;
-    u32 v1 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0));
+    TextColor v1 = TEXT_COLOR(1, 2, 0);
 
     Sound_PlayEffect(1508);
 
@@ -280,7 +280,7 @@ void ov79_021D1C44(UnkStruct_ov79_021D0E1C *param0, u8 param1)
 
     v0 = (20 * 8) - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_30.unk_38[param0->unk_1B], 0);
 
-    Text_AddPrinterWithParamsAndColor(&param0->unk_E8[6], 0, param0->unk_30.unk_38[param0->unk_1B], v0 / 2, 3, 0, v1, NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_E8[6], FONT_SYSTEM, param0->unk_30.unk_38[param0->unk_1B], v0 / 2, 3, TEXT_SPEED_INSTANT, v1, NULL);
 }
 
 static void ov79_021D1D20(UnkStruct_ov79_021D0E1C *param0, UnkStruct_020989DC *param1)
@@ -308,19 +308,19 @@ static void ov79_021D1D20(UnkStruct_ov79_021D0E1C *param0, UnkStruct_020989DC *p
 static void ov79_021D1D88(BmpList *param0, u32 param1, u8 param2)
 {
     UnkStruct_ov79_021D0E1C *v0 = (UnkStruct_ov79_021D0E1C *)sub_02001504(param0, 19);
-    u32 v1;
+    TextColor v1;
 
-    v1 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0));
+    v1 = TEXT_COLOR(1, 2, 0);
 }
 
 static void ov79_021D1D94(BmpList *param0, u32 param1, u8 param2)
 {
     UnkStruct_ov79_021D0E1C *v0 = (UnkStruct_ov79_021D0E1C *)sub_02001504(param0, 19);
-    u32 v1;
+    TextColor v1;
     u16 v2, v3;
     u8 v4 = 0;
 
-    v1 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0));
+    v1 = TEXT_COLOR(1, 2, 0);
 
     if (!param2) {
         Sound_PlayEffect(1500);
@@ -361,7 +361,7 @@ static void ov79_021D1D94(BmpList *param0, u32 param1, u8 param2)
 
     StringTemplate_SetNumber(v0->unk_30.unk_00, 0, v4, 2, 0, 1);
     StringTemplate_Format(v0->unk_30.unk_00, v0->unk_30.unk_04, v0->unk_30.unk_10);
-    Text_AddPrinterWithParamsAndColor(&v0->unk_E8[1], 0, v0->unk_30.unk_04, 8, 0, 0, v1, NULL);
+    Text_AddPrinterWithParamsAndColor(&v0->unk_E8[1], FONT_SYSTEM, v0->unk_30.unk_04, 8, 0, TEXT_SPEED_INSTANT, v1, NULL);
     sub_0209933C(v0->unk_1F8, v0->unk_1FC, v0->unk_20->unk_1C[param1].unk_02);
     SpriteActor_EnableObject(v0->unk_1FC->unk_04, 1);
 }
@@ -439,15 +439,15 @@ void ov79_021D2054(UnkStruct_ov79_021D0E1C *param0)
 void ov79_021D2078(UnkStruct_ov79_021D0E1C *param0)
 {
     int v0, v1;
-    u32 v2 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0));
-    u32 v3 = (u32)(((2 & 0xff) << 16) | ((3 & 0xff) << 8) | ((1 & 0xff) << 0));
+    TextColor v2 = TEXT_COLOR(1, 2, 0);
+    TextColor v3 = TEXT_COLOR(2, 3, 1);
 
-    Text_AddPrinterWithParamsAndColor(&param0->unk_E8[5], 0, param0->unk_30.unk_1C, 4, 0, 0, v2, NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_E8[5], FONT_SYSTEM, param0->unk_30.unk_1C, 4, 0, TEXT_SPEED_INSTANT, v2, NULL);
 
     for (v1 = 0; v1 < 6; v1++) {
         static const u8 v4[] = { 2, 10, 4, 6, 10, 6 };
 
         v0 = (8 * 8) - Font_CalcStrbufWidth(FONT_SUBSCREEN, param0->unk_30.unk_20[v1], 0);
-        Text_AddPrinterWithParamsAndColor(&param0->unk_E8[7 + v1], 2, param0->unk_30.unk_20[v1], v0 / 2, v4[v1], 0, v3, NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_E8[7 + v1], FONT_SUBSCREEN, param0->unk_30.unk_20[v1], v0 / 2, v4[v1], TEXT_SPEED_INSTANT, v3, NULL);
     }
 }

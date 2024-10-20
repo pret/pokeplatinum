@@ -74,7 +74,7 @@ BmpList *sub_0200112C(const UnkStruct_ov84_02240FA8 *param0, u16 param1, u16 par
         v0->unk_00.unk_12 = v0->unk_00.unk_10;
     }
 
-    sub_02014A40(v0->unk_24, (u32)((((v0->unk_00.unk_17_4) & 0xff) << 16) | (((v0->unk_00.unk_18_4) & 0xff) << 8) | (((v0->unk_00.unk_18_0) & 0xff) << 0)));
+    sub_02014A40(v0->unk_24, TEXT_COLOR(v0->unk_00.unk_17_4, v0->unk_00.unk_18_4, v0->unk_00.unk_18_0));
     BGL_FillWindow(v0->unk_00.unk_0C, v0->unk_00.unk_18_0);
     sub_02001688(v0, v0->unk_28, 0, v0->unk_00.unk_12);
     sub_02001720(v0);
@@ -321,9 +321,9 @@ static void sub_020015D0(BmpList *param0, void *param1, u8 param2, u8 param3)
     }
 
     if (param0->unk_1F.unk_04_7) {
-        Text_AddPrinterWithParamsColorAndSpacing(param0->unk_00.unk_0C, param0->unk_1F.unk_04_0, param1, param2, param3, 0xff, (u32)((((param0->unk_1F.unk_00_0) & 0xff) << 16) | (((param0->unk_1F.unk_01_0) & 0xff) << 8) | (((param0->unk_1F.unk_00_4) & 0xff) << 0)), param0->unk_1F.unk_02_0, 0, NULL);
+        Text_AddPrinterWithParamsColorAndSpacing(param0->unk_00.unk_0C, param0->unk_1F.unk_04_0, param1, param2, param3, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(param0->unk_1F.unk_00_0, param0->unk_1F.unk_01_0, param0->unk_1F.unk_00_4), param0->unk_1F.unk_02_0, 0, NULL);
     } else {
-        Text_AddPrinterWithParamsColorAndSpacing(param0->unk_00.unk_0C, param0->unk_00.unk_1A_9, param1, param2, param3, 0xff, (u32)((((param0->unk_00.unk_17_4) & 0xff) << 16) | (((param0->unk_00.unk_18_4) & 0xff) << 8) | (((param0->unk_00.unk_18_0) & 0xff) << 0)), param0->unk_00.unk_1A_0, 0, NULL);
+        Text_AddPrinterWithParamsColorAndSpacing(param0->unk_00.unk_0C, param0->unk_00.unk_1A_9, param1, param2, param3, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(param0->unk_00.unk_17_4, param0->unk_00.unk_18_4, param0->unk_00.unk_18_0), param0->unk_00.unk_1A_0, 0, NULL);
     }
 }
 

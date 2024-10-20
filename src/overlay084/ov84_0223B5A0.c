@@ -1169,9 +1169,9 @@ static void ov84_0223C3B8(BmpList *param0, u32 param1, u8 param2)
     } else {
         if ((param1 != 0xfffffffd) && (param1 != 0xfffffffe)) {
             if ((v0->unk_47A == 1) && (v0->unk_47C == param1)) {
-                ov84_0223F81C(v0, v1->unk_00[param1].quantity, param2, ((u32)(((8 & 0xff) << 16) | ((9 & 0xff) << 8) | ((0 & 0xff) << 0))));
+                ov84_0223F81C(v0, v1->unk_00[param1].quantity, param2, TEXT_COLOR(8, 9, 0));
             } else {
-                ov84_0223F81C(v0, v1->unk_00[param1].quantity, param2, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))));
+                ov84_0223F81C(v0, v1->unk_00[param1].quantity, param2, TEXT_COLOR(1, 2, 0));
             }
         }
     }

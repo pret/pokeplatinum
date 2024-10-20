@@ -88,7 +88,7 @@ static void ov20_021D390C(BGL *param0, const UnkStruct_ov61_0222C884 *param1, u3
     v1 = MessageBank_GetNewStrbufFromNARC(26, 438, param2, 35);
     v2 = ((param1->unk_03 * 8) - Font_CalcStrbufWidth(FONT_SYSTEM, v1, 0)) / 2;
 
-    Text_AddPrinterWithParamsAndColor(&v0, 0, v1, v2, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((14 & 0xff) << 0)), NULL);
+    Text_AddPrinterWithParamsAndColor(&v0, FONT_SYSTEM, v1, v2, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 14), NULL);
     sub_0201ACCC(&v0);
     Strbuf_Free(v1);
     BGL_DeleteWindow(&v0);

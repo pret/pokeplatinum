@@ -34,7 +34,7 @@ UnkStruct_ov23_02248D20 *ov23_02248C08(UnkStruct_ov84_02240FA8 *param0, u16 para
         v0->unk_1E = param6;
         v0->unk_10 = sub_020149F0(param3);
 
-        sub_02014A40(v0->unk_10, (u32)(((8 & 0xff) << 16) | ((9 & 0xff) << 8) | ((15 & 0xff) << 0)));
+        sub_02014A40(v0->unk_10, TEXT_COLOR(8, 9, 15));
 
         v0->unk_1D = param3;
 

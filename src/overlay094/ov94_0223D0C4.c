@@ -356,7 +356,7 @@ static int ov94_0223D5B0(UnkStruct_ov94_0223FD4C *param0)
 static int ov94_0223D5B8(UnkStruct_ov94_0223FD4C *param0)
 {
     if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
-        ov94_0223D88C(param0, 5, 1, 0, 0xf0f, (Pokemon *)param0->unk_12C.unk_00.unk_00);
+        ov94_0223D88C(param0, 5, TEXT_SPEED_FAST, 0, 0xf0f, (Pokemon *)param0->unk_12C.unk_00.unk_00);
         ov94_0223C3F4(param0, 3, 7);
         Sound_PlayEffect(1500);
     } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
@@ -444,13 +444,13 @@ static int ov94_0223D754(UnkStruct_ov94_0223FD4C *param0)
 
             if (ov94_02241498(v0)) {
                 if (Party_GetCurrentCount(param0->unk_00->unk_08) == 6) {
-                    ov94_0223D88C(param0, 36, 1, 0, 0xf0f, v0);
+                    ov94_0223D88C(param0, 36, TEXT_SPEED_FAST, 0, 0xf0f, v0);
                     ov94_0223C3F4(param0, 3, 1);
                     return 3;
                 }
             }
 
-            ov94_0223D88C(param0, 6, 1, 0, 0xf0f, v0);
+            ov94_0223D88C(param0, 6, TEXT_SPEED_FAST, 0, 0xf0f, v0);
             ov94_0223C3F4(param0, 3, 5);
         }
 
@@ -505,15 +505,15 @@ static void ov94_0223D88C(UnkStruct_ov94_0223FD4C *param0, int param1, int param
     BGL_FillWindow(&param0->unk_F5C, 0xf0f);
     sub_0200E060(&param0->unk_F5C, 0, 1, 10);
 
-    param0->unk_BE0 = Text_AddPrinterWithParams(&param0->unk_F5C, 1, param0->unk_BAC, 0, 0, param2, NULL);
+    param0->unk_BE0 = Text_AddPrinterWithParams(&param0->unk_F5C, FONT_MESSAGE, param0->unk_BAC, 0, 0, param2, NULL);
 
     Strbuf_Free(v0);
 }
 
-static u32 Unk_ov94_022467FC[] = {
-    0x0,
-    (u32)(((5 & 0xff) << 16) | ((6 & 0xff) << 8) | ((0 & 0xff) << 0)),
-    (u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((0 & 0xff) << 0))
+static TextColor Unk_ov94_022467FC[] = {
+    TEXT_COLOR(0, 0, 0),
+    TEXT_COLOR(5, 6, 0),
+    TEXT_COLOR(3, 4, 0)
 };
 
 void ov94_0223D910(MessageLoader *param0, MessageLoader *param1, StringTemplate *param2, Window param3[], BoxPokemon *param4, UnkStruct_ov94_0223BA88_sub2 *param5)
@@ -543,16 +543,16 @@ void ov94_0223D910(MessageLoader *param0, MessageLoader *param1, StringTemplate 
         BGL_FillWindow(&param3[v9], 0x0);
     }
 
-    ov94_02245900(&param3[0], v4, 0, 0, 0, (u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));
+    ov94_02245900(&param3[0], v4, 0, 0, 0, TEXT_COLOR(15, 2, 0));
 
     if (v6 != 3) {
         ov94_02245900(&param3[0], v1, 70, 0, 0, Unk_ov94_022467FC[v6]);
     }
 
-    ov94_02245900(&param3[1], v0, 0, 0, 0, (u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));
-    ov94_02245900(&param3[2], v2, 0, 0, 0, (u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));
-    ov94_02245900(&param3[3], v3, 0, 0, 0, (u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));
-    ov94_02245900(&param3[4], v5, 0, 0, 0, (u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));
+    ov94_02245900(&param3[1], v0, 0, 0, 0, TEXT_COLOR(15, 2, 0));
+    ov94_02245900(&param3[2], v2, 0, 0, 0, TEXT_COLOR(15, 2, 0));
+    ov94_02245900(&param3[3], v3, 0, 0, 0, TEXT_COLOR(15, 2, 0));
+    ov94_02245900(&param3[4], v5, 0, 0, 0, TEXT_COLOR(15, 2, 0));
 
     Strbuf_Free(v3);
     Strbuf_Free(v5);
@@ -576,10 +576,10 @@ void ov94_0223DA78(MessageLoader *param0, Window param1[], u16 *param2, Pokemon 
     v2 = MessageLoader_GetNewStrbuf(param0, 172);
     Pokemon_GetValue(param3, MON_DATA_OTNAME_STRBUF, v3);
 
-    ov94_02245900(&param1[0], v1, 0, 0, 0, (u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));
-    ov94_02245900(&param1[1], v0, 0, 0, 0, (u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));
-    ov94_02245900(&param4[0], v2, 0, 0, 0, (u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));
-    ov94_02245900(&param4[1], v3, 0, 0, 0, (u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));
+    ov94_02245900(&param1[0], v1, 0, 0, 0, TEXT_COLOR(15, 2, 0));
+    ov94_02245900(&param1[1], v0, 0, 0, 0, TEXT_COLOR(15, 2, 0));
+    ov94_02245900(&param4[0], v2, 0, 0, 0, TEXT_COLOR(15, 2, 0));
+    ov94_02245900(&param4[1], v3, 0, 0, 0, TEXT_COLOR(15, 2, 0));
 
     Strbuf_Free(v1);
     Strbuf_Free(v0);

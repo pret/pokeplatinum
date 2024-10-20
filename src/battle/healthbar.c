@@ -60,7 +60,7 @@
 #define HEALTHBAR_NAME_WINDOW_OFFSET    0
 #define HEALTHBAR_NAME_BYTE_SIZE        (HEALTHBAR_NAME_BLOCK_COUNT_X * HEALTHBAR_NAME_BLOCK_COUNT_Y * HEALTHBAR_WINDOW_BLOCK_SIZE)
 #define HEALTHBAR_NAME_BACKGROUND_COLOR 0xF
-#define HEALTHBAR_NAME_FONT_COLOR       TEXT_COLOR(14, 2, HEALTHBAR_NAME_BACKGROUND_COLOR)
+#define HEALTHBAR_NAME_TEXT_COLOR       TEXT_COLOR(14, 2, HEALTHBAR_NAME_BACKGROUND_COLOR)
 
 #define VRAM_TRANSFER_DST(vram, transferTable, index_0, index_1, imgProxy) ( \
     (void *)((u32)vram + transferTable[index_0][index_1].pos + imgProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]))
@@ -1102,7 +1102,7 @@ static void Healthbar_DrawBattlerName(Healthbar *healthbar)
     StringTemplate_Format(strFormatter, nickname, template);
 
     BGL_AddFramelessWindow(bgl, &window, HEALTHBAR_NAME_BLOCK_COUNT_X, HEALTHBAR_NAME_BLOCK_COUNT_Y, HEALTHBAR_NAME_WINDOW_OFFSET, HEALTHBAR_NAME_BACKGROUND_COLOR);
-    Text_AddPrinterWithParamsColorAndSpacing(&window, FONT_SYSTEM, nickname, 0, 0, 0xFF, HEALTHBAR_NAME_FONT_COLOR, 0, 0, NULL);
+    Text_AddPrinterWithParamsColorAndSpacing(&window, FONT_SYSTEM, nickname, 0, 0, TEXT_SPEED_NO_TRANSFER, HEALTHBAR_NAME_TEXT_COLOR, 0, 0, NULL);
     buf = window.unk_0C;
 
     // copy the window's data into VRAM over the painted healthbar
@@ -1315,7 +1315,7 @@ static void Healthbar_DrawBallCount(Healthbar *param0, u32 param1)
     }
 
     BGL_AddFramelessWindow(v0, &v3, 13, 2, 0, 0xf);
-    Text_AddPrinterWithParamsColorAndSpacing(&v3, 0, v5, 0, 0, 0xff, ((u32)(((0xe & 0xff) << 16) | ((2 & 0xff) << 8) | ((0xf & 0xff) << 0))), 0, 0, NULL);
+    Text_AddPrinterWithParamsColorAndSpacing(&v3, FONT_SYSTEM, v5, 0, 0, TEXT_SPEED_NO_TRANSFER, HEALTHBAR_NAME_TEXT_COLOR, 0, 0, NULL);
 
     v1 = v3.unk_0C;
 
@@ -1363,7 +1363,7 @@ static void Healthbar_DrawBallsLeftMessage(Healthbar *param0, u32 param1)
     StringTemplate_SetNumber(v7, 0, param0->unk_27, 2, 1, 1);
     StringTemplate_Format(v7, v5, v6);
     BGL_AddFramelessWindow(v0, &v3, 13, 2, 0, 0xf);
-    Text_AddPrinterWithParamsColorAndSpacing(&v3, 0, v5, 0, 0, 0xff, ((u32)(((0xe & 0xff) << 16) | ((2 & 0xff) << 8) | ((0xf & 0xff) << 0))), 0, 0, NULL);
+    Text_AddPrinterWithParamsColorAndSpacing(&v3, FONT_SYSTEM, v5, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(14, 2, 15), 0, 0, NULL);
 
     v1 = v3.unk_0C;
 

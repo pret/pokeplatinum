@@ -351,7 +351,7 @@ static void sub_02001F5C(UIControlData *param0)
             v0 = param0->unk_00.unk_00[v4 * param0->unk_00.unk_0A + v5].unk_00;
             v2 = (param0->unk_1A + param0->unk_00.unk_0B_0) * v5 + param0->unk_18;
 
-            Text_AddPrinterWithParams(param0->unk_00.unk_04, param0->unk_00.unk_08, v0, v1, v2, 0xff, NULL);
+            Text_AddPrinterWithParams(param0->unk_00.unk_04, param0->unk_00.unk_08, v0, v1, v2, TEXT_SPEED_NO_TRANSFER, NULL);
         }
 
         v1 += v3;

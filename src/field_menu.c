@@ -682,7 +682,7 @@ static void sub_0203B094(TaskManager *taskMan)
         v5 = MessageLoader_GetNewStrbuf(v2, 10);
     }
 
-    Text_AddPrinterWithParams(&menu->unk_10, 0, v5, 0, 0, 0xff, NULL);
+    Text_AddPrinterWithParams(&menu->unk_10, FONT_SYSTEM, v5, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
     Strbuf_Free(v5);
 
     v3 = StringTemplate_Default(11);
@@ -700,7 +700,7 @@ static void sub_0203B094(TaskManager *taskMan)
     }
 
     StringTemplate_Format(v3, v4, v5);
-    Text_AddPrinterWithParams(&menu->unk_10, 0, v4, 0, 16, 0xff, NULL);
+    Text_AddPrinterWithParams(&menu->unk_10, FONT_SYSTEM, v4, 0, 16, TEXT_SPEED_NO_TRANSFER, NULL);
 
     Strbuf_Free(v4);
     Strbuf_Free(v5);

@@ -713,7 +713,7 @@ void sub_0208B090 (UnkStruct_02089688 * param0, int param1, int param2, int para
     {
         Window_Init(&v7);
         BGL_AddFramelessWindow(param0->unk_2C0.unk_0C, &v7, 10, 2, 0, 0);
-        Text_AddPrinterWithParamsAndColor(&v7, 2, v3, Font_CalcCenterAlignment(FONT_SUBSCREEN, v3, 0, 80), 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((2 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&v7, FONT_SUBSCREEN, v3, Font_CalcCenterAlignment(FONT_SUBSCREEN, v3, 0, 80), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 2), NULL);
     }
 
     v4 = 1003;
@@ -768,7 +768,7 @@ void sub_0208B230 (Window * param0, int param1)
     v1 = MessageLoader_GetNewStrbuf(v0, param1);
 
     BGL_FillWindow(param0, 15);
-    Text_AddPrinterWithParams(param0, 1, v1, 0, 0, 0, NULL);
+    Text_AddPrinterWithParams(param0, FONT_MESSAGE, v1, 0, 0, TEXT_SPEED_INSTANT, NULL);
     sub_0201A954(param0);
 
     Strbuf_Free(v1);

@@ -138,31 +138,31 @@ static void ov23_0225360C(Window *param0, MessageLoader *param1, TrainerInfo *pa
     v2 = Strbuf_Init(30, HEAP_ID_FIELD);
 
     MessageLoader_GetStrbuf(param1, 0, v1);
-    Text_AddPrinterWithParams(param0, 0, v1, v7, 1, 0xFF, NULL);
+    Text_AddPrinterWithParams(param0, FONT_SYSTEM, v1, v7, 1, TEXT_SPEED_NO_TRANSFER, NULL);
 
     MessageLoader_GetStrbuf(param1, 1, v1);
-    Text_AddPrinterWithParams(param0, 0, v1, v7, v5, 0xFF, NULL);
+    Text_AddPrinterWithParams(param0, FONT_SYSTEM, v1, v7, v5, TEXT_SPEED_NO_TRANSFER, NULL);
 
     MessageLoader_GetStrbuf(param1, 2, v1);
-    Text_AddPrinterWithParams(param0, 0, v1, v7 + v10, 1, 0xFF, NULL);
+    Text_AddPrinterWithParams(param0, FONT_SYSTEM, v1, v7 + v10, 1, TEXT_SPEED_NO_TRANSFER, NULL);
 
     StringTemplate_SetNumber(v0, 6, TrainerInfo_ID_LowHalf(param2), 5, 2, 1);
     MessageLoader_GetStrbuf(param1, 5, v1);
     StringTemplate_Format(v0, v2, v1);
-    Text_AddPrinterWithParams(param0, 0, v2, v7 + v12, 1, 0xFF, NULL);
+    Text_AddPrinterWithParams(param0, FONT_SYSTEM, v2, v7 + v12, 1, TEXT_SPEED_NO_TRANSFER, NULL);
 
     StringTemplate_SetPlayerName(v0, 0, param2);
     MessageLoader_GetStrbuf(param1, 4, v1);
     StringTemplate_Format(v0, v2, v1);
-    Text_AddPrinterWithParams(param0, 0, v2, v7 + v9, 1, 0xFF, NULL);
+    Text_AddPrinterWithParams(param0, FONT_SYSTEM, v2, v7 + v9, 1, TEXT_SPEED_NO_TRANSFER, NULL);
 
     v3 = sub_0202958C(param3);
     MessageLoader_GetStrbuf(param1, 20 + v3, v1);
-    Text_AddPrinterWithParams(param0, 0, v1, v7 + v9, v5, 0xFF, NULL);
+    Text_AddPrinterWithParams(param0, FONT_SYSTEM, v1, v7 + v9, v5, TEXT_SPEED_NO_TRANSFER, NULL);
 
     for (v3 = 0; v3 < 7; v3++) {
         MessageLoader_GetStrbuf(param1, 6 + v3, v1);
-        Text_AddPrinterWithParams(param0, 0, v1, v7, v6 + v8 * v3, 0xFF, NULL);
+        Text_AddPrinterWithParams(param0, FONT_SYSTEM, v1, v7, v6 + v8 * v3, TEXT_SPEED_NO_TRANSFER, NULL);
     }
 
     for (v3 = 0; v3 < 7; v3++) {
@@ -172,7 +172,7 @@ static void ov23_0225360C(Window *param0, MessageLoader *param1, TrainerInfo *pa
         StringTemplate_SetNumber(v0, 6, v4, 6, 1, 1);
         MessageLoader_GetStrbuf(param1, 13, v1);
         StringTemplate_Format(v0, v2, v1);
-        Text_AddPrinterWithParams(param0, 0, v2, v7 + v12, v6 + v8 * v3, 0xFF, NULL);
+        Text_AddPrinterWithParams(param0, FONT_SYSTEM, v2, v7 + v12, v6 + v8 * v3, TEXT_SPEED_NO_TRANSFER, NULL);
     }
 
     Strbuf_Free(v1);
@@ -354,18 +354,18 @@ static void ov23_02253A78(Window *param0, MessageLoader *param1, TrainerInfo *pa
     StringTemplate_SetPlayerName(v0, 1, param2);
     MessageLoader_GetStrbuf(param1, 12, v1);
     StringTemplate_Format(v0, v2, v1);
-    Text_AddPrinterWithParams(param0, 0, v2, v7, 1, 0xff, NULL);
+    Text_AddPrinterWithParams(param0, FONT_SYSTEM, v2, v7, 1, TEXT_SPEED_NO_TRANSFER, NULL);
 
     MessageLoader_GetStrbuf(param1, 13, v1);
-    Text_AddPrinterWithParams(param0, 0, v1, v7, 1 + v8, 0xff, NULL);
+    Text_AddPrinterWithParams(param0, FONT_SYSTEM, v1, v7, 1 + v8, TEXT_SPEED_NO_TRANSFER, NULL);
 
     StringTemplate_SetNumber(v0, 6, sub_020295B8(param3), 6, 1, 1);
     MessageLoader_GetStrbuf(param1, 14, v1);
     StringTemplate_Format(v0, v2, v1);
-    Text_AddPrinterWithParams(param0, 0, v2, v7 + 100, 1 + v8, 0xff, NULL);
+    Text_AddPrinterWithParams(param0, FONT_SYSTEM, v2, v7 + 100, 1 + v8, TEXT_SPEED_NO_TRANSFER, NULL);
 
     MessageLoader_GetStrbuf(param1, 15, v1);
-    Text_AddPrinterWithParams(param0, 0, v1, v7, 1 + v8 * 3, 0xff, NULL);
+    Text_AddPrinterWithParams(param0, FONT_SYSTEM, v1, v7, 1 + v8 * 3, TEXT_SPEED_NO_TRANSFER, NULL);
 
     for (v3 = 0; v3 < 5; v3++) {
         TrainerInfo *v13 = sub_020288C8(param4, 4, v3);
@@ -374,19 +374,19 @@ static void ov23_02253A78(Window *param0, MessageLoader *param1, TrainerInfo *pa
             StringTemplate_SetPlayerName(v0, 0, v13);
             MessageLoader_GetStrbuf(param1, 16, v1);
             StringTemplate_Format(v0, v2, v1);
-            Text_AddPrinterWithParams(param0, 0, v2, v7, 1 + v8 * (4 + v3), 0xff, NULL);
+            Text_AddPrinterWithParams(param0, FONT_SYSTEM, v2, v7, 1 + v8 * (4 + v3), TEXT_SPEED_NO_TRANSFER, NULL);
 
             StringTemplate_SetNumber(v0, 5, TrainerInfo_ID_LowHalf(v13), 5, 2, 1);
             MessageLoader_GetStrbuf(param1, 17, v1);
             StringTemplate_Format(v0, v2, v1);
 
-            Text_AddPrinterWithParams(param0, 0, v2, v7 + v12, 1 + v8 * (4 + v3), 0xff, NULL);
+            Text_AddPrinterWithParams(param0, FONT_SYSTEM, v2, v7 + v12, 1 + v8 * (4 + v3), TEXT_SPEED_NO_TRANSFER, NULL);
             Heap_FreeToHeap(v13);
         } else {
             MessageLoader_GetStrbuf(param1, 51, v1);
-            Text_AddPrinterWithParams(param0, 0, v1, v7, 1 + v8 * (4 + v3), 0xff, NULL);
+            Text_AddPrinterWithParams(param0, FONT_SYSTEM, v1, v7, 1 + v8 * (4 + v3), TEXT_SPEED_NO_TRANSFER, NULL);
             MessageLoader_GetStrbuf(param1, 52, v1);
-            Text_AddPrinterWithParams(param0, 0, v1, v7 + v12, 1 + v8 * (4 + v3), 0xff, NULL);
+            Text_AddPrinterWithParams(param0, FONT_SYSTEM, v1, v7 + v12, 1 + v8 * (4 + v3), TEXT_SPEED_NO_TRANSFER, NULL);
         }
     }
 

@@ -344,11 +344,11 @@ static void ov7_0224B8DC(UnkStruct_ov7_0224B4E8 *param0)
 
     MessageLoader_GetStrbuf(v0, 95, v2);
     StringTemplate_Format(v1, v3, v2);
-    Text_AddPrinterWithParams(v4, 0, v3, v10 + v12, 0, 0xff, NULL);
+    Text_AddPrinterWithParams(v4, FONT_SYSTEM, v3, v10 + v12, 0, TEXT_SPEED_NO_TRANSFER, NULL);
 
     for (v5 = 0; v5 < 9; v5++) {
         MessageLoader_GetStrbuf(v0, 75 + v5, v2);
-        Text_AddPrinterWithParams(v4, 0, v2, v10, v9 + v11 * v5, 0xff, NULL);
+        Text_AddPrinterWithParams(v4, FONT_SYSTEM, v2, v10, v9 + v11 * v5, TEXT_SPEED_NO_TRANSFER, NULL);
     }
 
     for (v5 = 0; v5 < 9; v5++) {
@@ -409,7 +409,7 @@ static void ov7_0224B8DC(UnkStruct_ov7_0224B4E8 *param0)
             int v14 = Font_CalcStrbufWidth(FONT_SYSTEM, v3, 0);
             int v15 = v13 - v14;
 
-            Text_AddPrinterWithParams(v4, 0, v3, v15, v9 + v11 * v5, 0xff, NULL);
+            Text_AddPrinterWithParams(v4, FONT_SYSTEM, v3, v15, v9 + v11 * v5, TEXT_SPEED_NO_TRANSFER, NULL);
         }
     }
 

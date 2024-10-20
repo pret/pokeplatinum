@@ -130,7 +130,7 @@ void ov88_0223EC78(Window *param0, Strbuf *param1, int param2, u32 param3, int p
         v0 = param4;
     }
 
-    Text_AddPrinterWithParamsAndColor(param0, 0, param1, v0, param5, param3, (u32)(((11 & 0xff) << 16) | ((12 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+    Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, param1, v0, param5, param3, TEXT_COLOR(11, 12, 0), NULL);
 }
 
 int ov88_0223ECBC(Window *param0, int param1, int param2, MessageLoader *param3, StringTemplate *param4)
@@ -147,7 +147,7 @@ int ov88_0223ECBC(Window *param0, int param1, int param2, MessageLoader *param3,
     }
 
     BGL_FillWindow(param0, 15);
-    v1 = Text_AddPrinterWithParamsAndColor(param0, param2, v0, 0, 0, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0)), NULL);
+    v1 = Text_AddPrinterWithParamsAndColor(param0, param2, v0, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
     Strbuf_Free(v0);
 
     return v1;

@@ -435,7 +435,7 @@ static void ov21_021E10D0(UnkStruct_ov21_021E0D7C *param0, const UnkStruct_ov21_
     v4 = Font_CalcStrbufWidth(FONT_SYSTEM, v0, 0);
     v4 /= 2;
 
-    Text_AddPrinterWithParamsAndColor(&param0->unk_00->unk_04, 0, v0, 176 - v4, 72, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_00->unk_04, FONT_SYSTEM, v0, 176 - v4, 72, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
     Strbuf_Free(v0);
     MessageLoader_Free(v1);
 
@@ -450,7 +450,7 @@ static void ov21_021E1188(UnkStruct_ov21_021E0D7C *param0, int param1, int param
     u32 v1 = Font_CalcMaxLineWidth(FONT_SYSTEM, v0, 0);
     u32 v2 = (v1 < 240) ? 128 - v1 / 2 : 8;
 
-    Text_AddPrinterWithParamsAndColor(&param0->unk_00->unk_04, 0, v0, v2, 136, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_00->unk_04, FONT_SYSTEM, v0, v2, 136, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
     ov21_021D5600(v0);
 }
 
@@ -821,7 +821,7 @@ static void ov21_021E18A0(UnkStruct_ov21_021E0D7C *param0, int param1, int param
 {
     Strbuf *v0 = ov21_021D561C(param2, param3, param1);
 
-    Text_AddPrinterWithParamsAndColor(&param0->unk_00->unk_04, 0, v0, 120, 96, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_00->unk_04, FONT_SYSTEM, v0, 120, 96, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
     ov21_021D5600(v0);
 }
 
@@ -832,6 +832,6 @@ static void ov21_021E18DC(UnkStruct_ov21_021E0D7C *param0, int param1, int param
 
     v1 = 240 - Font_CalcStrbufWidth(FONT_SYSTEM, v0, 0);
 
-    Text_AddPrinterWithParamsAndColor(&param0->unk_00->unk_04, 0, v0, v1, 112, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_00->unk_04, FONT_SYSTEM, v0, v1, 112, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
     ov21_021D5600(v0);
 }

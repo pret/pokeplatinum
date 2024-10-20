@@ -146,16 +146,16 @@ static int ov97_022306F4(OverlayManager *param0);
 static int ov97_02230834(OverlayManager *param0);
 static int ov97_02230778(OverlayManager *param0);
 static void ov97_02230868(UnkStruct_ov97_02230868 *param0);
-static BOOL ov97_022308B0(UnkStruct_ov97_02230868 *param0, Window *param1, u32 param2);
-static BOOL ov97_022308B4(UnkStruct_ov97_02230868 *param0, Window *param1, u32 param2);
-static BOOL ov97_02230904(UnkStruct_ov97_02230868 *param0, Window *param1, u32 param2);
-static BOOL ov97_0223097C(UnkStruct_ov97_02230868 *param0, Window *param1, u32 param2);
-static BOOL ov97_022309E4(UnkStruct_ov97_02230868 *param0, Window *param1, u32 param2);
-static BOOL ov97_02230A34(UnkStruct_ov97_02230868 *param0, Window *param1, u32 param2);
-static BOOL ov97_02230AB0(UnkStruct_ov97_02230868 *param0, Window *param1, u32 param2);
-static BOOL ov97_02230B94(UnkStruct_ov97_02230868 *param0, Window *param1, u32 param2);
-static BOOL ov97_02230BAC(UnkStruct_ov97_02230868 *param0, Window *param1, u32 param2);
-static BOOL ov97_02230BF0(UnkStruct_ov97_02230868 *param0, Window *param1, u32 param2);
+static BOOL ov97_022308B0(UnkStruct_ov97_02230868 *param0, Window *param1, TextColor param2);
+static BOOL ov97_022308B4(UnkStruct_ov97_02230868 *param0, Window *param1, TextColor param2);
+static BOOL ov97_02230904(UnkStruct_ov97_02230868 *param0, Window *param1, TextColor param2);
+static BOOL ov97_0223097C(UnkStruct_ov97_02230868 *param0, Window *param1, TextColor param2);
+static BOOL ov97_022309E4(UnkStruct_ov97_02230868 *param0, Window *param1, TextColor param2);
+static BOOL ov97_02230A34(UnkStruct_ov97_02230868 *param0, Window *param1, TextColor param2);
+static BOOL ov97_02230AB0(UnkStruct_ov97_02230868 *param0, Window *param1, TextColor param2);
+static BOOL ov97_02230B94(UnkStruct_ov97_02230868 *param0, Window *param1, TextColor param2);
+static BOOL ov97_02230BAC(UnkStruct_ov97_02230868 *param0, Window *param1, TextColor param2);
+static BOOL ov97_02230BF0(UnkStruct_ov97_02230868 *param0, Window *param1, TextColor param2);
 static int ov97_02231CA0(UnkStruct_ov97_02230868 *param0, Window *param1);
 static void ov97_02231E78(UnkStruct_ov97_02230868 *param0, Window *param1, int param2);
 static void ov97_02231F1C(UnkStruct_ov97_02230868 *param0, int *param1, int param2);
@@ -333,7 +333,7 @@ static void ov97_022305EC(Window *param0, int param1)
     BGL_FillWindow(param0, Font_GetAttribute(FONT_MESSAGE, FONTATTR_BG_COLOR));
 
     v0 = MessageUtil_ExpandedStrbuf(v2, v1, param1, 87);
-    Text_AddPrinterWithParamsAndColor(param0, 1, v0, 0, 0, 0xff, 66048, NULL);
+    Text_AddPrinterWithParamsAndColor(param0, FONT_MESSAGE, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     sub_0201A954(param0);
 
     Strbuf_Free(v0);
@@ -431,25 +431,25 @@ static void ov97_02230868(UnkStruct_ov97_02230868 *param0)
     BGL_DeleteWindow(&param0->unk_2C40);
 }
 
-static BOOL ov97_022308B0(UnkStruct_ov97_02230868 *param0, Window *param1, u32 param2)
+static BOOL ov97_022308B0(UnkStruct_ov97_02230868 *param0, Window *param1, TextColor param2)
 {
     return 1;
 }
 
-static BOOL ov97_022308B4(UnkStruct_ov97_02230868 *param0, Window *param1, u32 param2)
+static BOOL ov97_022308B4(UnkStruct_ov97_02230868 *param0, Window *param1, TextColor param2)
 {
     Strbuf *v0;
 
     v0 = Strbuf_Init(36 + 1, param0->unk_00);
 
     Strbuf_CopyNumChars(v0, param0->unk_2C14[param0->unk_2C20]->unk_104.unk_00, 36);
-    Text_AddPrinterWithParamsAndColor(param1, 1, v0, 0, 0, 0xff, param2, NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_MESSAGE, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, param2, NULL);
     Strbuf_Free(v0);
 
     return 1;
 }
 
-static BOOL ov97_02230904(UnkStruct_ov97_02230868 *param0, Window *param1, u32 param2)
+static BOOL ov97_02230904(UnkStruct_ov97_02230868 *param0, Window *param1, TextColor param2)
 {
     Strbuf *v0;
     UnkStruct_0202DBAC *v1 = param0->unk_2C14[param0->unk_2C20];
@@ -467,7 +467,7 @@ static BOOL ov97_02230904(UnkStruct_ov97_02230868 *param0, Window *param1, u32 p
 
     v0 = MessageUtil_ExpandedStrbuf(param0->unk_2A60, param0->unk_2A64, v2, param0->unk_00);
 
-    Text_AddPrinterWithParamsAndColor(param1, 1, v0, 0, 0, 0xff, param2, NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_MESSAGE, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, param2, NULL);
     Strbuf_Free(v0);
 
     return 1;
@@ -493,7 +493,7 @@ static BOOL ov97_022309E4(UnkStruct_ov97_02230868 *param0, Window *param1, u32 p
     v0 = Strbuf_Init(250 + 1, 87);
 
     Strbuf_CopyNumChars(v0, param0->unk_2C14[param0->unk_2C20]->unk_154, 250);
-    Text_AddPrinterWithParamsAndColor(param1, 1, v0, 0, 0, 0xff, param2, NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_MESSAGE, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, param2, NULL);
     Strbuf_Free(v0);
 
     return 0;
@@ -505,7 +505,7 @@ static BOOL ov97_02230A34(UnkStruct_ov97_02230868 *param0, Window *param1, u32 p
         Strbuf *v0;
 
         v0 = MessageUtil_ExpandedStrbuf(param0->unk_2A60, param0->unk_2A64, 51, 87);
-        Text_AddPrinterWithParamsAndColor(param1, 1, v0, 0, 0, 0xff, param2, NULL);
+        Text_AddPrinterWithParamsAndColor(param1, FONT_MESSAGE, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, param2, NULL);
         Strbuf_Free(v0);
         return 0;
     } else if (param0->unk_2C14[param0->unk_2C20]->unk_348) {
@@ -582,7 +582,7 @@ static void ov97_02230C44(UnkStruct_ov97_02230868 *param0, int param1, int param
 {
     int v0, v1;
     Strbuf *v2;
-    u32 v3;
+    TextColor v3;
     UnkStruct_ov97_0223E680 *v4 = Unk_ov97_0223E680;
 
     param0->unk_2A64 = MessageLoader_Init(1, 26, 421, param0->unk_00);
@@ -618,7 +618,7 @@ static void ov97_02230C44(UnkStruct_ov97_02230868 *param0, int param1, int param
 
                     {
                         u32 v5 = (v4[v0].unk_28 == -1) ? Font_CalcCenterAlignment(v4[v0].unk_14, v2, 0, v4[v0].unk_0C * 8) : v4[v0].unk_28;
-                        Text_AddPrinterWithParamsAndColor(&param0->unk_2A68[v0], v4[v0].unk_14, v2, v5, v4[v0].unk_2C, 0xff, v3, NULL);
+                        Text_AddPrinterWithParamsAndColor(&param0->unk_2A68[v0], v4[v0].unk_14, v2, v5, v4[v0].unk_2C, TEXT_SPEED_NO_TRANSFER, v3, NULL);
                     }
 
                     Strbuf_Free(v2);
@@ -663,7 +663,7 @@ static int ov97_02230E04(UnkStruct_ov97_02230868 *param0, Window *param1, int pa
     if (v2->unk_20) {
         v0 = MessageUtil_ExpandedStrbuf(param0->unk_2A60, param0->unk_2A64, v2->unk_20, 87);
 
-        Text_AddPrinterWithParamsAndColor(param1, v2->unk_14, v0, 0, 0, 0xff, v2->unk_18, NULL);
+        Text_AddPrinterWithParamsAndColor(param1, v2->unk_14, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, v2->unk_18, NULL);
         Strbuf_Free(v0);
         MessageLoader_Free(param0->unk_2A64);
         StringTemplate_Free(param0->unk_2A60);
@@ -1383,9 +1383,9 @@ static int ov97_02231CA0(UnkStruct_ov97_02230868 *param0, Window *param1)
             v6 = MessageUtil_ExpandedStrbuf(v7, v8, 53, 87);
 
             if (TrainerInfo_Gender(v5) == 0) {
-                Text_AddPrinterWithParamsAndColor(param1, 0, v6, 0, v2, 0xff, ((u32)(((5 & 0xff) << 16) | ((6 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+                Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v6, 0, v2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(5, 6, 0), NULL);
             } else {
-                Text_AddPrinterWithParamsAndColor(param1, 0, v6, 0, v2, 0xff, ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+                Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v6, 0, v2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 4, 0), NULL);
             }
 
             Strbuf_Free(v6);
@@ -1393,7 +1393,7 @@ static int ov97_02231CA0(UnkStruct_ov97_02230868 *param0, Window *param1)
 
             v6 = MessageUtil_ExpandedStrbuf(v7, v8, 54, 87);
 
-            Text_AddPrinterWithParamsAndColor(param1, 0, v6, 80, v2, 0xff, 921344, NULL);
+            Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v6, 80, v2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(14, 15, 0), NULL);
             Strbuf_Free(v6);
 
             v2 += 24;
@@ -1423,7 +1423,7 @@ static void ov97_02231E78(UnkStruct_ov97_02230868 *param0, Window *param1, int p
 
     v0 = MessageUtil_ExpandedStrbuf(param0->unk_2A60, param0->unk_2A64, 56, 87);
 
-    Text_AddPrinterWithParamsAndColor(param1, 1, v0, 0, 0, 0xff, 66048, NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_MESSAGE, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     sub_0201A954(param1);
 
     Strbuf_Free(v0);

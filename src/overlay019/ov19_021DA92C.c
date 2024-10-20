@@ -445,7 +445,7 @@ static void ov19_021DAE60(Window *param0, UnkStruct_ov19_021DA9E0 *param1, u32 p
         return;
     }
 
-    Text_AddPrinterWithParamsAndColor(param0, 0, v0, 0, v1, 0xff, (u32)(((9 & 0xff) << 16) | ((6 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+    Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, v0, 0, v1, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(9, 6, 0), NULL);
 }
 
 void ov19_021DAF98(UnkStruct_ov19_021DA9E0 *param0)
@@ -532,21 +532,21 @@ static void ov19_021DB0E4(UnkStruct_ov19_021DA9E0 *param0)
 
     v1 = ov19_021D5E70(param0->unk_10);
 
-    Text_AddPrinterWithParamsAndColor(&param0->unk_04[0], 0, v1->unk_18, 2, 0, 0xff, (u32)(((9 & 0xff) << 16) | ((6 & 0xff) << 8) | ((15 & 0xff) << 0)), NULL);
-    Text_AddPrinterWithParamsAndColor(&param0->unk_04[2], 0, v1->unk_14, 2, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0)), NULL);
-    Text_AddPrinterWithParamsAndColor(&param0->unk_04[2], 0, v1->unk_14, 2, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0)), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_04[0], FONT_SYSTEM, v1->unk_18, 2, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(9, 6, 15), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_04[2], FONT_SYSTEM, v1->unk_14, 2, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_04[2], FONT_SYSTEM, v1->unk_14, 2, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
 
     switch (v1->unk_0E) {
     case 0:
-        Text_AddPrinterWithParamsAndColor(&param0->unk_04[2], 0, param0->unk_44, 70, 0, 0xff, (u32)(((7 & 0xff) << 16) | ((8 & 0xff) << 8) | ((15 & 0xff) << 0)), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_04[2], FONT_SYSTEM, param0->unk_44, 70, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(7, 8, 15), NULL);
         break;
     case 1:
-        Text_AddPrinterWithParamsAndColor(&param0->unk_04[2], 0, param0->unk_48, 70, 0, 0xff, (u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((15 & 0xff) << 0)), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_04[2], FONT_SYSTEM, param0->unk_48, 70, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 4, 15), NULL);
         break;
     }
 
     if (v1->unk_0F == 0) {
-        Text_AddPrinterWithParamsAndColor(&param0->unk_04[3], 0, v1->unk_1C, 0, 0, 0xff, (u32)(((9 & 0xff) << 16) | ((6 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_04[3], FONT_SYSTEM, v1->unk_1C, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(9, 6, 0), NULL);
 
         if (v1->unk_08) {
             sub_0200C648(param0->unk_18, 2, v1->unk_08, 3, 2, &(param0->unk_04[1]), 0, 0);
@@ -616,7 +616,7 @@ void ov19_021DB2B0(UnkStruct_ov19_021DA9E0 *param0)
     BGL_FillWindow(&param0->unk_04[3], 0);
 
     if (v0->unk_0F == 0) {
-        Text_AddPrinterWithParamsAndColor(&param0->unk_04[3], 0, v0->unk_1C, 0, 0, 0xff, (u32)(((9 & 0xff) << 16) | ((6 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_04[3], FONT_SYSTEM, v0->unk_1C, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(9, 6, 0), NULL);
     }
 
     ov19_021DACB0(param0);

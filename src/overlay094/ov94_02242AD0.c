@@ -370,28 +370,28 @@ static int ov94_02242DA8(UnkStruct_ov94_0223FD4C *param0)
 {
     switch (param0->unk_24) {
     case 7:
-        ov94_02245824(param0, param0->unk_B90, 24, 1, 0xf0f);
+        ov94_02245824(param0, param0->unk_B90, 24, TEXT_SPEED_FAST, 0xf0f);
         ov94_0223C3F4(param0, 37, 2);
         break;
     case 8:
-        ov94_02245824(param0, param0->unk_B90, 24, 1, 0xf0f);
+        ov94_02245824(param0, param0->unk_B90, 24, TEXT_SPEED_FAST, 0xf0f);
         ov94_0223C3F4(param0, 37, 7);
         break;
     case 9:
-        ov94_02245824(param0, param0->unk_B90, 24, 1, 0xf0f);
+        ov94_02245824(param0, param0->unk_B90, 24, TEXT_SPEED_FAST, 0xf0f);
         ov94_0223C3F4(param0, 37, 12);
         break;
     case 10:
-        ov94_02245824(param0, param0->unk_B90, 24, 1, 0xf0f);
+        ov94_02245824(param0, param0->unk_B90, 24, TEXT_SPEED_FAST, 0xf0f);
         ov94_0223C3F4(param0, 37, 18);
         param0->unk_1110 = 1;
         break;
     case 11:
-        ov94_02245824(param0, param0->unk_B90, 24, 0, 0xf0f);
+        ov94_02245824(param0, param0->unk_B90, 24, TEXT_SPEED_INSTANT, 0xf0f);
         param0->unk_2C = 24;
         break;
     case 12:
-        ov94_02245824(param0, param0->unk_B90, 142, 1, 0xf0f);
+        ov94_02245824(param0, param0->unk_B90, 142, TEXT_SPEED_FAST, 0xf0f);
         param0->unk_18 = 1;
         param0->unk_2C = 29;
         break;
@@ -776,12 +776,12 @@ static int ov94_02243398(UnkStruct_ov94_0223FD4C *param0)
             switch (ov94_02243E84(param0, &param0->unk_12C)) {
             case 1:
                 ov94_0223C5F4(param0);
-                ov94_02245824(param0, param0->unk_B90, 29, 1, 0xf0f);
+                ov94_02245824(param0, param0->unk_B90, 29, TEXT_SPEED_FAST, 0xf0f);
                 ov94_0223C3F4(param0, 37, 28);
                 break;
             case 2:
                 ov94_0223C5F4(param0);
-                ov94_02245824(param0, param0->unk_B90, 35, 1, 0xf0f);
+                ov94_02245824(param0, param0->unk_B90, 35, TEXT_SPEED_FAST, 0xf0f);
                 ov94_0223C3F4(param0, 37, 28);
                 break;
             case 0:
@@ -1090,7 +1090,7 @@ static int ov94_022437F4(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_02243884(UnkStruct_ov94_0223FD4C *param0)
 {
-    ov94_02245824(param0, param0->unk_B90, 141, 1, 0xf0f);
+    ov94_02245824(param0, param0->unk_B90, 141, TEXT_SPEED_FAST, 0xf0f);
     ov94_0223C3F4(param0, 37, 36);
     ov94_0223C4C0(param0, 1, 0);
     ov94_0223C5F4(param0);
@@ -1127,7 +1127,7 @@ static void ov94_022438C8(UnkStruct_ov94_0223FD4C *param0)
         break;
     }
 
-    ov94_02245824(param0, param0->unk_B90, v0, 1, 0xf0f);
+    ov94_02245824(param0, param0->unk_B90, v0, TEXT_SPEED_FAST, 0xf0f);
 }
 
 static int ov94_02243920(UnkStruct_ov94_0223FD4C *param0)
@@ -1215,7 +1215,7 @@ static int ov94_02243A44(UnkStruct_ov94_0223FD4C *param0)
     if (SaveData_SaveStateMain(param0->unk_00->unk_20) == 2) {
         ov94_0223C4C0(param0, 1, 0);
         ov94_0223C5F4(param0);
-        ov94_02245824(param0, param0->unk_B90, param0->unk_28, 1, 0xf0f);
+        ov94_02245824(param0, param0->unk_B90, param0->unk_28, TEXT_SPEED_FAST, 0xf0f);
         ov94_0223C3F4(param0, 37, 28);
     }
 

@@ -175,7 +175,7 @@ static void ov113_0225E068(UnkStruct_ov113_0225DBCC *param0, int param1);
 static void ov113_0225E0D4(UnkStruct_ov113_0225DBCC *param0, int param1);
 static void ov113_0225E118(UnkStruct_ov113_0225DBCC *param0);
 static int ov113_0225DE98(UnkStruct_ov113_0225DBCC *param0);
-static void ov113_0225E15C(UnkStruct_ov113_0225DBCC *param0, UnkStruct_ov113_0225E250 *param1, const Strbuf *param2, int param3, u32 param4, int param5, int param6, int param7, int param8, int param9);
+static void ov113_0225E15C(UnkStruct_ov113_0225DBCC *param0, UnkStruct_ov113_0225E250 *param1, const Strbuf *param2, enum Font param3, TextColor param4, int param5, int param6, int param7, int param8, int param9);
 static void ov113_0225E250(UnkStruct_ov113_0225E250 *param0);
 static void ov113_0225E264(const Strbuf *param0, int param1, int *param2, int *param3);
 static void ov113_0225E294(UnkStruct_ov113_0225DBCC *param0);
@@ -514,7 +514,7 @@ int ov113_0225CA04(OverlayManager *param0, int *param1)
         BGL_FillWindow(&v0->unk_B4, 0xf);
         sub_0200E060(&v0->unk_B4, 0, 1, 14);
         MessageLoader_GetStrbuf(v0->unk_30, 2, v0->unk_C4);
-        v0->unk_C8 = Text_AddPrinterWithParams(&v0->unk_B4, 1, v0->unk_C4, 0, 0, Options_TextFrameDelay(SaveData_Options(v0->unk_04)), NULL);
+        v0->unk_C8 = Text_AddPrinterWithParams(&v0->unk_B4, FONT_MESSAGE, v0->unk_C4, 0, 0, Options_TextFrameDelay(SaveData_Options(v0->unk_04)), NULL);
         (*param1)++;
         break;
     case 4:
@@ -564,7 +564,7 @@ int ov113_0225CA04(OverlayManager *param0, int *param1)
         BGL_FillWindow(&v0->unk_B4, 0xf);
         sub_0200E060(&v0->unk_B4, 0, 1, 14);
         MessageLoader_GetStrbuf(v0->unk_30, 3, v0->unk_C4);
-        v0->unk_C8 = Text_AddPrinterWithParams(&v0->unk_B4, 1, v0->unk_C4, 0, 0, Options_TextFrameDelay(SaveData_Options(v0->unk_04)), NULL);
+        v0->unk_C8 = Text_AddPrinterWithParams(&v0->unk_B4, FONT_MESSAGE, v0->unk_C4, 0, 0, Options_TextFrameDelay(SaveData_Options(v0->unk_04)), NULL);
         (*param1)++;
         break;
     case 7:
@@ -1008,7 +1008,7 @@ static void ov113_0225D484(UnkStruct_ov113_0225DBCC *param0)
         Strbuf *v2;
 
         v2 = MessageLoader_GetNewStrbuf(param0->unk_30, 1);
-        ov113_0225E15C(param0, &param0->unk_19C0, v2, 2, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((3 & 0xff) << 0)), 0, 10003, 0x1c * 8, 176, 1);
+        ov113_0225E15C(param0, &param0->unk_19C0, v2, FONT_SUBSCREEN, TEXT_COLOR(1, 2, 3), 0, 10003, 0x1c * 8, 176, 1);
         sub_020129D0(param0->unk_19C0.unk_00, 1);
         Strbuf_Free(v2);
     }
@@ -1507,7 +1507,7 @@ static void ov113_0225E118(UnkStruct_ov113_0225DBCC *param0)
     }
 }
 
-static void ov113_0225E15C(UnkStruct_ov113_0225DBCC *param0, UnkStruct_ov113_0225E250 *param1, const Strbuf *param2, int param3, u32 param4, int param5, int param6, int param7, int param8, int param9)
+static void ov113_0225E15C(UnkStruct_ov113_0225DBCC *param0, UnkStruct_ov113_0225E250 *param1, const Strbuf *param2, enum Font param3, TextColor param4, int param5, int param6, int param7, int param8, int param9)
 {
     UnkStruct_020127E8 v0;
     Window v1;
@@ -1527,7 +1527,7 @@ static void ov113_0225E15C(UnkStruct_ov113_0225DBCC *param0, UnkStruct_ov113_022
 
     Window_Init(&v1);
     BGL_AddFramelessWindow(v5, &v1, v8, 16 / 8, 0, 0);
-    Text_AddPrinterWithParamsColorAndSpacing(&v1, param3, param2, 0, 0, 0xff, param4, 0, 0, NULL);
+    Text_AddPrinterWithParamsColorAndSpacing(&v1, param3, param2, 0, 0, TEXT_SPEED_NO_TRANSFER, param4, 0, 0, NULL);
 
     v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DMAIN, 118);
     sub_0201ED94(v3, 1, NNS_G2D_VRAM_TYPE_2DMAIN, &v2);

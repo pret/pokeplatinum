@@ -480,12 +480,12 @@ static void ov19_021DF2E0(UnkStruct_ov19_021DEC04 *param0)
     case 0:
         for (v2 = 0; v2 < NELEMS(v0); v2++) {
             MessageLoader_GetStrbuf(param0->unk_6C, v0[v2], param0->unk_74);
-            Text_AddPrinterWithParamsAndColor(v1, 0, param0->unk_74, inline_ov19_021DF3AC(v1, 0, param0->unk_74), 0 + 16 * v2, 0xff, (u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+            Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, param0->unk_74, inline_ov19_021DF3AC(v1, 0, param0->unk_74), 0 + 16 * v2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
         }
         break;
     case 2:
         MessageLoader_GetStrbuf(param0->unk_6C, 43, param0->unk_74);
-        Text_AddPrinterWithParamsAndColor(v1, 0, param0->unk_74, inline_ov19_021DF3AC(v1, 0, param0->unk_74), 0, 0xff, (u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+        Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, param0->unk_74, inline_ov19_021DF3AC(v1, 0, param0->unk_74), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
         break;
     }
 
@@ -520,17 +520,17 @@ static void ov19_021DF3AC(UnkStruct_ov19_021DEC04 *param0, int param1)
         if (v1->unk_06 == 0) {
             const u16 *v6 = &v1->unk_08;
 
-            Text_AddPrinterWithParamsAndColor(v0, 0, v1->unk_2C, inline_ov19_021DF3AC(v0, 0, v1->unk_2C), 0, 0xff, (u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+            Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, v1->unk_2C, inline_ov19_021DF3AC(v0, 0, v1->unk_2C), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
 
             for (v5 = 0; v5 < 7; v5++) {
                 Strbuf_FormatInt(param0->unk_74, v6[v5], 3, 0, 1);
-                Text_AddPrinterWithParamsAndColor(v0, 0, param0->unk_74, inline_ov19_021DF3AC(v0, 0, param0->unk_74), (1 + v5) * 16, 0xff, (u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+                Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->unk_74, inline_ov19_021DF3AC(v0, 0, param0->unk_74), (1 + v5) * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
             }
         } else {
             MessageLoader_GetStrbuf(param0->unk_6C, 44, param0->unk_74);
 
             for (v5 = 0; v5 < 8; v5++) {
-                Text_AddPrinterWithParamsAndColor(v0, 0, param0->unk_74, inline_ov19_021DF3AC(v0, 0, param0->unk_74), v5 * 16, 0xff, (u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+                Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->unk_74, inline_ov19_021DF3AC(v0, 0, param0->unk_74), v5 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
             }
         }
     }
@@ -559,14 +559,14 @@ static void ov19_021DF4D0(UnkStruct_ov19_021DEC04 *param0, int param1)
             for (v5 = 0; v5 < 4; v5++) {
                 if (v1->unk_20[v5]) {
                     MessageLoader_GetStrbuf(param0->unk_70, v1->unk_20[v5], param0->unk_74);
-                    Text_AddPrinterWithParamsAndColor(v0, 0, param0->unk_74, inline_ov19_021DF3AC(v0, 0, param0->unk_74), 4 + 24 * v5, 0xff, (u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+                    Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->unk_74, inline_ov19_021DF3AC(v0, 0, param0->unk_74), 4 + 24 * v5, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
                 }
             }
         } else {
             MessageLoader_GetStrbuf(param0->unk_6C, 44, param0->unk_74);
 
             for (v5 = 0; v5 < 4; v5++) {
-                Text_AddPrinterWithParamsAndColor(v0, 0, param0->unk_74, inline_ov19_021DF3AC(v0, 0, param0->unk_74), 4 + 24 * v5, 0xff, (u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+                Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->unk_74, inline_ov19_021DF3AC(v0, 0, param0->unk_74), 4 + 24 * v5, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
             }
         }
     }
@@ -700,7 +700,7 @@ static void ov19_021DF8C8(UnkStruct_ov19_021DEC04 *param0, int param1)
 
     if (ov19_021D5E34(param0->unk_08)) {
         const UnkStruct_ov19_021D5FAC *v1 = ov19_021D5FAC(param0->unk_08, param1);
-        Text_AddPrinterWithParamsAndColor(v0, 0, v1->unk_28, inline_ov19_021DF3AC(v0, 0, v1->unk_28), 0, 0xff, (u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+        Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, v1->unk_28, inline_ov19_021DF3AC(v0, 0, v1->unk_28), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
     }
 
     sub_0201ACCC(v0);

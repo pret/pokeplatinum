@@ -336,7 +336,7 @@ static int ov95_02247F04(UnkStruct_ov95_02247C6C *param0, int *param1)
 
             MessageLoader_GetStrbuf(v0, v2, param0->unk_68);
             StringTemplate_Format(v1, param0->unk_6C, param0->unk_68);
-            Text_AddPrinterWithParams(&(param0->unk_58), 1, param0->unk_6C, 0, 0, 0xff, NULL);
+            Text_AddPrinterWithParams(&(param0->unk_58), FONT_MESSAGE, param0->unk_6C, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
             sub_0200E010(&(param0->unk_58), 109, 2);
             sub_0201A954(&(param0->unk_58));
             param0->unk_08 = 0;
@@ -363,7 +363,7 @@ static int ov95_02247F04(UnkStruct_ov95_02247C6C *param0, int *param1)
                 }
 
                 BGL_FillWindow(&(param0->unk_58), 0xf);
-                Text_AddPrinterWithParams(&(param0->unk_58), 1, param0->unk_6C, 0, 0, 0xff, NULL);
+                Text_AddPrinterWithParams(&(param0->unk_58), FONT_MESSAGE, param0->unk_6C, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
                 sub_0201ACCC(&(param0->unk_58));
                 param0->unk_08 = 0;
                 (*param1)++;

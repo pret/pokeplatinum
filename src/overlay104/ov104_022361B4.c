@@ -810,13 +810,13 @@ static void ov104_02237284(UnkStruct_ov104_022320B4 *param0, Window *param1, Tra
     MessageLoader_GetStrbuf(v0, 2, v1);
 
     StringTemplate_Format(param0->unk_44, v2, v1);
-    Text_AddPrinterWithParams(param1, 0, v2, 16, 2 * 8, 0xff, NULL);
+    Text_AddPrinterWithParams(param1, FONT_SYSTEM, v2, 16, 2 * 8, TEXT_SPEED_NO_TRANSFER, NULL);
     StringTemplate_SetPlayerName(param0->unk_44, 0, param2);
 
     MessageLoader_GetStrbuf(v0, 0, v1);
 
     StringTemplate_Format(param0->unk_44, v2, v1);
-    Text_AddPrinterWithParams(param1, 0, v2, 0, 0, 0, NULL);
+    Text_AddPrinterWithParams(param1, FONT_SYSTEM, v2, 0, 0, TEXT_SPEED_INSTANT, NULL);
 
     Strbuf_Free(v1);
     Strbuf_Free(v2);
