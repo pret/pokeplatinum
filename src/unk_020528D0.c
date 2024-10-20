@@ -40,7 +40,7 @@
 typedef struct {
     int unk_00;
     FieldSystem *fieldSystem;
-    BGL *unk_08;
+    BgConfig *unk_08;
     Window unk_0C;
     MessageLoader *unk_1C;
     StringTemplate *unk_20;
@@ -60,7 +60,7 @@ static const UnkStruct_ov61_0222C884 Unk_020EC2F0 = {
     0x1
 };
 
-static void sub_020528D0(BGL *param0)
+static void sub_020528D0(BgConfig *param0)
 {
     static const UnkStruct_02099F80 v0 = {
         GX_VRAM_BG_128_B,

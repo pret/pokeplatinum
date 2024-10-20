@@ -21,7 +21,7 @@ void sub_0205D8CC(u32 param0, u32 param1)
     Font_LoadScreenIndicatorsPalette(param0, 12 * 32, 4);
 }
 
-void FieldMessage_AddWindow(BGL *param0, Window *param1, u32 param2)
+void FieldMessage_AddWindow(BgConfig *param0, Window *param1, u32 param2)
 {
     if (param2 == 3) {
         BGL_AddWindow(param0, param1, 3, 2, 19, 27, 4, 12, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)));
@@ -72,7 +72,7 @@ u8 FieldMessage_FinishedPrinting(u8 param0)
     return 0;
 }
 
-void sub_0205DA1C(BGL *param0, Window *param1, u16 param2, u16 param3)
+void sub_0205DA1C(BgConfig *param0, Window *param1, u16 param2, u16 param3)
 {
     u16 v0, v1;
 

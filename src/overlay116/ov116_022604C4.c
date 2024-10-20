@@ -48,7 +48,7 @@
 #include "unk_020393C8.h"
 
 static void ov116_022612CC(UnkStruct_ov116_0226139C *param0);
-static void ov116_02261494(BGL *param0);
+static void ov116_02261494(BgConfig *param0);
 static void ov116_022616CC(UnkStruct_ov116_0226139C *param0);
 static BOOL ov116_02261768(int param0);
 static void ov116_0226178C(UnkStruct_ov116_0226139C *param0, BOOL param1, int param2, int *param3);
@@ -836,7 +836,7 @@ void ov116_0226139C(UnkStruct_ov116_0226139C *param0)
     G3X_AlphaBlend(0);
 }
 
-static void ov116_02261494(BGL *param0)
+static void ov116_02261494(BgConfig *param0)
 {
     GXLayers_DisableEngineALayers();
     {

@@ -66,7 +66,7 @@ static GenericPointerData *ov117_02260E14(int param0);
 static void ov117_02260E34(void);
 static void ov117_02260EB8(GenericPointerData *param0);
 static void ov117_02260F7C(SysTask *param0, void *param1);
-static void ov117_022610D8(BGL *param0);
+static void ov117_022610D8(BgConfig *param0);
 static void ov117_02261280(UnkStruct_ov117_02261280 *param0);
 static void ov117_02261574(UnkStruct_ov117_02261280 *param0);
 static void ov117_022615E0(UnkStruct_ov117_02261280 *param0);
@@ -634,7 +634,7 @@ static void ov117_02260F7C(SysTask *param0, void *param1)
     sub_02038A1C(110, v0->unk_2C);
 }
 
-static void ov117_022610D8(BGL *param0)
+static void ov117_022610D8(BgConfig *param0)
 {
     GXLayers_DisableEngineALayers();
 

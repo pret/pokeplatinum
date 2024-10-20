@@ -541,7 +541,7 @@ void ov83_0223DEC4(UnkStruct_ov83_0223E138 *param0)
     memset(param0, 0, sizeof(UnkStruct_ov83_0223E138));
 }
 
-void ov83_0223DEE0(UnkStruct_ov83_0223E138 *param0, BGL *param1, u32 param2, NARC *param3)
+void ov83_0223DEE0(UnkStruct_ov83_0223E138 *param0, BgConfig *param1, u32 param2, NARC *param3)
 {
     GF_ASSERT(param0->unk_30 == 0);
 
@@ -1025,7 +1025,7 @@ void ov83_0223E6F8(UnkStruct_ov83_0223E824 *param0)
     memset(param0, 0, sizeof(UnkStruct_ov83_0223E824));
 }
 
-void ov83_0223E720(UnkStruct_ov83_0223E824 *param0, BGL *param1, u32 param2, NARC *param3)
+void ov83_0223E720(UnkStruct_ov83_0223E824 *param0, BgConfig *param1, u32 param2, NARC *param3)
 {
     GF_ASSERT(param0->unk_28 == 0);
 
@@ -1841,7 +1841,7 @@ void ov83_0223F784(UnkStruct_ov83_0223F770 *param0)
     sub_02099160(param0->unk_00);
 }
 
-void ov83_0223F790(UnkStruct_ov83_0223F7A4 *param0, int param1, BGL *param2)
+void ov83_0223F790(UnkStruct_ov83_0223F7A4 *param0, int param1, BgConfig *param2)
 {
     param0->unk_00 = sub_02015920(param1);
     param0->unk_04 = param2;

@@ -8,7 +8,7 @@ typedef struct {
 
 typedef struct UnkStruct_ov36_02256404_t UnkStruct_ov36_02256404;
 
-BOOL ov36_02256404(UnkStruct_ov36_02256404 **param0, const UnkStruct_ov36_02256404_1 *param1, BGL *param2);
+BOOL ov36_02256404(UnkStruct_ov36_02256404 **param0, const UnkStruct_ov36_02256404_1 *param1, BgConfig *param2);
 void ov36_02256440(UnkStruct_ov36_02256404 *param0);
 void ov36_0225653C(UnkStruct_ov36_02256404 *param0, u32 param1);
 BOOL ov36_02256560(UnkStruct_ov36_02256404 *param0, u32 param1);

@@ -42,7 +42,7 @@ typedef struct {
 } UnkStruct_ov85_022420A8;
 
 typedef struct {
-    BGL *unk_00;
+    BgConfig *unk_00;
     Window unk_04[12];
     MessageLoader *unk_C4;
     StringTemplate *unk_C8;
@@ -68,8 +68,8 @@ typedef struct {
 
 static void ov85_022415F4(void *param0);
 static void ov85_02241614(void);
-static void ov85_02241634(BGL *param0);
-static void ov85_022416E8(BGL *param0);
+static void ov85_02241634(BgConfig *param0);
+static void ov85_022416E8(BgConfig *param0);
 static void ov85_02241718(UnkStruct_ov85_022417E4 *param0, NARC *param1);
 static void ov85_022417CC(void);
 static void ov85_022417E4(UnkStruct_ov85_022417E4 *param0);
@@ -329,7 +329,7 @@ static void ov85_02241614(void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov85_02241634(BGL *param0)
+static void ov85_02241634(BgConfig *param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -409,7 +409,7 @@ static void ov85_02241634(BGL *param0)
     sub_02019690(1, 32, 0, 36);
 }
 
-static void ov85_022416E8(BGL *param0)
+static void ov85_022416E8(BgConfig *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3, 0);
     sub_02019044(param0, 3);

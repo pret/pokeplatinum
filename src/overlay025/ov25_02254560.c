@@ -45,7 +45,7 @@ struct UnkStruct_ov25_02254560_t {
     UnkStruct_ov25_022555E8 *unk_1CC;
     SysTask *unk_1D0;
     UnkStruct_ov25_02254DD8 unk_1D4;
-    BGL *unk_1F8;
+    BgConfig *unk_1F8;
     PoketchSystem *poketchSys;
     u16 unk_200[256];
     u16 unk_400[16];
@@ -139,7 +139,7 @@ UnkStruct_ov25_022555E8 *ov25_02254664(void)
     return v0->unk_1CC;
 }
 
-BGL *ov25_02254674(void)
+BgConfig *ov25_02254674(void)
 {
     UnkStruct_ov25_02254560 *v0 = ov25_02254418();
     return v0->unk_1F8;

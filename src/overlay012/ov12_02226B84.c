@@ -317,7 +317,7 @@ typedef struct {
     int unk_1C;
     int unk_20;
     int unk_24;
-    BGL *unk_28;
+    BgConfig *unk_28;
     UnkStruct_ov12_0221FCDC *unk_2C;
     SpriteGfxHandler *unk_30;
     UnkStruct_ov12_02235998 unk_34[4];

@@ -23,7 +23,7 @@
 #include "trainer_info.h"
 
 typedef struct {
-    BGL *unk_00;
+    BgConfig *unk_00;
     Window unk_04[11];
     Window unk_B4[1];
     UnkStruct_0207CB08 *unk_C4;

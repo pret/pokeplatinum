@@ -579,7 +579,7 @@ void ov116_022622C8(UnkStruct_ov116_0226139C *param0)
 {
     NARC *v0 = param0->unk_48.unk_00;
     NARC *v1 = param0->unk_48.unk_04;
-    BGL *v2 = param0->unk_48.unk_10;
+    BgConfig *v2 = param0->unk_48.unk_10;
     SpriteRenderer *v3 = param0->unk_48.unk_08;
     SpriteGfxHandler *v4 = param0->unk_48.unk_0C;
     PaletteData *v5 = param0->unk_48.unk_14;
@@ -817,7 +817,7 @@ void ov116_022628B8(UnkStruct_ov116_0226139C *param0)
 {
     NARC *v0 = param0->unk_48.unk_00;
     NARC *v1 = param0->unk_48.unk_04;
-    BGL *v2 = param0->unk_48.unk_10;
+    BgConfig *v2 = param0->unk_48.unk_10;
     SpriteRenderer *v3 = param0->unk_48.unk_08;
     SpriteGfxHandler *v4 = param0->unk_48.unk_0C;
     PaletteData *v5 = param0->unk_48.unk_14;

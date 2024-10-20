@@ -15,7 +15,7 @@ static void ov20_021D4ED8(SysTask *param0, void *param1);
 static void ov20_021D4F74(SysTask *param0, void *param1);
 static void ov20_021D5018(SysTask *param0, void *param1);
 
-void ov20_021D4E38(UnkStruct_ov20_021D4E8C *param0, BGL *param1, u32 param2, int param3, int param4, int param5)
+void ov20_021D4E38(UnkStruct_ov20_021D4E8C *param0, BgConfig *param1, u32 param2, int param3, int param4, int param5)
 {
     param0->unk_00 = param1;
     param0->unk_04 = param2;

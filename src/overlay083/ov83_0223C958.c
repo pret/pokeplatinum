@@ -26,8 +26,8 @@
 #include "unk_0201F834.h"
 #include "unk_0202419C.h"
 
-static void ov83_0223CC30(BGL **param0, int param1);
-static void ov83_0223CCCC(BGL **param0);
+static void ov83_0223CC30(BgConfig **param0, int param1);
+static void ov83_0223CCCC(BgConfig **param0);
 static void ov83_0223CCF8(UnkStruct_ov83_0223B784 *param0);
 static void ov83_0223CD1C(UnkStruct_ov83_0223B784 *param0);
 static void ov83_0223CD28(UnkStruct_ov83_0223B784 *param0);
@@ -163,7 +163,7 @@ static void ov83_0223CC10(void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov83_0223CC30(BGL **param0, int param1)
+static void ov83_0223CC30(BgConfig **param0, int param1)
 {
     int v0 = 0, v1;
 
@@ -259,7 +259,7 @@ static void ov83_0223CC30(BGL **param0, int param1)
     }
 }
 
-static void ov83_0223CCCC(BGL **param0)
+static void ov83_0223CCCC(BgConfig **param0)
 {
     sub_02019044(*param0, 5);
     sub_02019044(*param0, 4);

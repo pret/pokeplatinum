@@ -240,7 +240,7 @@ static void ov100_021D17B4(UnkStruct_ov100_021D1808 *param0)
 static void ov100_021D1808(UnkStruct_ov100_021D1808 *param0)
 {
     NARC *v0 = param0->unk_7C4->unk_00;
-    BGL *v1 = param0->unk_7C4->unk_0C;
+    BgConfig *v1 = param0->unk_7C4->unk_0C;
     SpriteRenderer *v2 = param0->unk_7C4->unk_04;
     SpriteGfxHandler *v3 = param0->unk_7C4->unk_08;
     PaletteData *v4 = param0->unk_7C4->unk_10;
@@ -296,7 +296,7 @@ static void ov100_021D1A54(UnkStruct_ov100_021D1808 *param0)
 {
     int v0;
     NARC *v1 = param0->unk_7C4->unk_00;
-    BGL *v2 = param0->unk_7C4->unk_0C;
+    BgConfig *v2 = param0->unk_7C4->unk_0C;
     SpriteRenderer *v3 = param0->unk_7C4->unk_04;
     SpriteGfxHandler *v4 = param0->unk_7C4->unk_08;
     PaletteData *v5 = param0->unk_7C4->unk_10;

@@ -38,7 +38,7 @@ typedef struct UnkStruct_ov87_021D106C_t {
     const UnkStruct_ov87_021D12C0 *unk_04;
     int unk_08;
     int unk_0C;
-    BGL *unk_10;
+    BgConfig *unk_10;
     Window unk_14[2];
     CellActorCollection *unk_34;
     UnkStruct_0200C738 unk_38;

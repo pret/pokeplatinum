@@ -36,7 +36,7 @@ typedef struct {
     u8 unk_1A;
     u8 unk_1B;
     int unk_1C;
-    BGL *unk_20;
+    BgConfig *unk_20;
     int unk_24;
     int unk_28;
     UnkStruct_ov83_0223D784 unk_2C;

@@ -65,7 +65,7 @@ typedef struct {
     u8 unk_03;
 } UnkStruct_ov117_02266BC4;
 
-static void ov117_02263BA4(BGL *param0, UnkStruct_ov117_02263DAC *param1, int param2);
+static void ov117_02263BA4(BgConfig *param0, UnkStruct_ov117_02263DAC *param1, int param2);
 int ov117_02263DAC(UnkStruct_ov117_02261280 *param0);
 static void ov117_02263C8C(int param0, int param1, int param2, fx32 *param3, fx32 *param4);
 static int ov117_02263D08(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_02263DAC *param1, int param2, int param3, int param4);
@@ -73,7 +73,7 @@ static int ov117_02263E1C(UnkStruct_ov117_02261280 *param0, const UnkStruct_ov11
 static BOOL ov117_02263F80(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_02263EF8 *param1);
 static CellActorData *ov117_0226417C(UnkStruct_ov117_02261280 *param0, const UnkStruct_ov117_02266F10 *param1);
 static void ov117_02264214(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_02264808 *param1, UnkStruct_ov117_02263DAC *param2);
-static void ov117_02263B8C(BGL *param0, UnkStruct_ov117_02263DAC *param1);
+static void ov117_02263B8C(BgConfig *param0, UnkStruct_ov117_02263DAC *param1);
 static CellActorData *ov117_02264884(UnkStruct_ov117_02261280 *param0, int param1, int param2);
 void ov117_022648E0(UnkStruct_ov117_02261280 *param0);
 BOOL ov117_02264930(UnkStruct_ov117_02261280 *param0);
@@ -386,7 +386,7 @@ static int (*const Unk_ov117_02266B94[])(UnkStruct_ov117_02261280 *, UnkStruct_o
     ov117_022657C4,
 };
 
-void ov117_02263AF0(BGL *param0, int param1, int param2, UnkStruct_ov117_02263DAC *param3)
+void ov117_02263AF0(BgConfig *param0, int param1, int param2, UnkStruct_ov117_02263DAC *param3)
 {
     NARC *v0;
 
@@ -407,14 +407,14 @@ void ov117_02263AF0(BGL *param0, int param1, int param2, UnkStruct_ov117_02263DA
     Sound_PlayEffect(1515);
 }
 
-static void ov117_02263B8C(BGL *param0, UnkStruct_ov117_02263DAC *param1)
+static void ov117_02263B8C(BgConfig *param0, UnkStruct_ov117_02263DAC *param1)
 {
     sub_02019EBC(param0, 7);
     param1->unk_00 = 0;
     param1->unk_2D = 1;
 }
 
-static void ov117_02263BA4(BGL *param0, UnkStruct_ov117_02263DAC *param1, int param2)
+static void ov117_02263BA4(BgConfig *param0, UnkStruct_ov117_02263DAC *param1, int param2)
 {
     fx32 v0, v1;
     int v2, v3;
@@ -531,7 +531,7 @@ static int ov117_02263D5C(UnkStruct_ov117_02263DAC *param0)
     return 1;
 }
 
-void ov117_02263D80(UnkStruct_ov117_02261280 *param0, BGL *param1, UnkStruct_ov117_02263DAC *param2)
+void ov117_02263D80(UnkStruct_ov117_02261280 *param0, BgConfig *param1, UnkStruct_ov117_02263DAC *param2)
 {
     if (param0->unk_2FCC == 0) {
         return;
@@ -2010,7 +2010,7 @@ static BOOL ov117_02265C3C(UnkStruct_ov117_02265C3C *param0, UnkStruct_ov117_022
     return 1;
 }
 
-void ov117_02265DB8(BGL *param0, SpriteGfxHandler *param1, UnkStruct_02012744 *param2, UnkStruct_ov117_02265EB0 *param3, const Strbuf *param4, enum Font param5, TextColor param6, int param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
+void ov117_02265DB8(BgConfig *param0, SpriteGfxHandler *param1, UnkStruct_02012744 *param2, UnkStruct_ov117_02265EB0 *param3, const Strbuf *param4, enum Font param5, TextColor param6, int param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
 {
     UnkStruct_020127E8 v0;
     Window v1;

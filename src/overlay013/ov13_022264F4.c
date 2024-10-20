@@ -61,7 +61,7 @@ static u8 ov13_02226D94(UnkStruct_ov13_02227244 *param0);
 static u8 ov13_02226CD4(UnkStruct_ov13_02227244 *param0);
 static u8 ov13_02226CFC(SysTask *param0, UnkStruct_ov13_02227244 *param1);
 static void ov13_02226ED0(UnkStruct_ov13_02227244 *param0);
-static void ov13_02226F9C(BGL *param0);
+static void ov13_02226F9C(BgConfig *param0);
 static void ov13_02226FC4(UnkStruct_ov13_02227244 *param0);
 static void ov13_022270B8(UnkStruct_ov13_02227244 *param0);
 static void ov13_022270F8(UnkStruct_ov13_02227244 *param0);
@@ -713,7 +713,7 @@ static void ov13_02226ED0(UnkStruct_ov13_02227244 *param0)
     sub_0201C3C0(param0->unk_04, 4);
 }
 
-static void ov13_02226F9C(BGL *param0)
+static void ov13_02226F9C(BgConfig *param0)
 {
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_OBJ, 0);
     sub_02019044(param0, 4);

@@ -169,7 +169,7 @@ typedef struct {
     u8 unk_02;
     u8 unk_03;
     int unk_04;
-    BGL *unk_08;
+    BgConfig *unk_08;
     UnkStruct_ov12_0221FCDC *unk_0C;
     SpriteGfxHandler *unk_10;
     UnkStruct_ov12_02235998 unk_14[4];
@@ -183,7 +183,7 @@ typedef struct {
     u8 unk_02;
     u8 unk_03;
     UnkStruct_ov12_02235350 unk_04;
-    BGL *unk_08;
+    BgConfig *unk_08;
     UnkStruct_ov12_0221FCDC *unk_0C;
     SpriteGfxHandler *unk_10;
     Sprite *unk_14;

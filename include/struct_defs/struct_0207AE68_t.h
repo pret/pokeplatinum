@@ -24,7 +24,7 @@
 #include "string_template.h"
 
 struct UnkStruct_0207AE68_t {
-    BGL *unk_00;
+    BgConfig *unk_00;
     Window *unk_04;
     MessageLoader *unk_08;
     StringTemplate *unk_0C;

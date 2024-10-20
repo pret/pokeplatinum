@@ -58,7 +58,7 @@
 
 typedef struct {
     UnkStruct_ov98_02246E88 * unk_00;
-    BGL * unk_04;
+    BgConfig *unk_04;
     int unk_08;
     int unk_0C;
     int unk_10;
@@ -110,15 +110,15 @@ int ov98_022471C8(OverlayManager * param0, int * param1);
 int ov98_022473D8(OverlayManager * param0, int * param1);
 int ov98_02247440(OverlayManager * param0, int * param1);
 static void ov98_022474E8(void * param0);
-static void ov98_02247510(BGL * param0);
-static void ov98_022476D0(BGL * param0);
+static void ov98_02247510(BgConfig *param0);
+static void ov98_022476D0(BgConfig *param0);
 static void ov98_02247704(UnkStruct_ov98_02247704 * param0);
 static void ov98_02247A24(UnkStruct_ov98_02247704 * param0);
 static void ov98_02247ACC(UnkStruct_ov98_02247704 * param0);
 static void ov98_02247AE8(UnkStruct_ov98_02247704 * param0, int param1, int param2);
 static void ov98_02247AF0(UnkStruct_ov98_02247704 * param0);
 static void ov98_02247B0C(UnkStruct_ov98_02247704 * param0);
-static UIControlData * ov98_02247B24(BGL * param0, int param1, int param2);
+static UIControlData *ov98_02247B24(BgConfig *param0, int param1, int param2);
 static int ov98_02247B98(UnkStruct_ov98_02247704 * param0);
 static int ov98_02247D30(UnkStruct_ov98_02247704 * param0);
 static int ov98_02247D50(UnkStruct_ov98_02247704 * param0);
@@ -451,7 +451,7 @@ static void ov98_022474E8 (void * param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void ov98_02247510 (BGL * param0)
+static void ov98_02247510(BgConfig *param0)
 {
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -611,7 +611,7 @@ static void ov98_02247510 (BGL * param0)
     sub_02019690(4, 32, 0, 109);
 }
 
-static void ov98_022476D0 (BGL * param0)
+static void ov98_022476D0(BgConfig *param0)
 {
     sub_02019044(param0, 5);
     sub_02019044(param0, 4);
@@ -623,7 +623,7 @@ static void ov98_022476D0 (BGL * param0)
 
 static void ov98_02247704 (UnkStruct_ov98_02247704 * param0)
 {
-    BGL * v0 = param0->unk_04;
+    BgConfig *v0 = param0->unk_04;
     NARC * v1;
 
     v1 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, 109);
@@ -700,7 +700,7 @@ static void ov98_02247B0C (UnkStruct_ov98_02247704 * param0)
     }
 }
 
-static UIControlData * ov98_02247B24 (BGL * param0, int param1, int param2)
+static UIControlData *ov98_02247B24(BgConfig *param0, int param1, int param2)
 {
     UnkStruct_ov61_0222C884 v0;
 
@@ -711,7 +711,7 @@ static UIControlData * ov98_02247B24 (BGL * param0, int param1, int param2)
     return sub_02002100(param0, &v0, (1 + (18 + 12)), 11, 109);
 }
 
-static UIControlData * ov98_02247B58 (BGL * param0, int param1, int param2, int param3)
+static UIControlData *ov98_02247B58(BgConfig *param0, int param1, int param2, int param3)
 {
     UnkStruct_ov61_0222C884 v0;
 

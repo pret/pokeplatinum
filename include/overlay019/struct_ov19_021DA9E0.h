@@ -18,7 +18,7 @@
 typedef struct {
     BOOL unk_00;
     Window *unk_04;
-    BGL *unk_08;
+    BgConfig *unk_08;
     CellActorCollection *unk_0C;
     const UnkStruct_ov19_021D4DF0 *unk_10;
     UnkStruct_ov19_021D61B0 *unk_14;

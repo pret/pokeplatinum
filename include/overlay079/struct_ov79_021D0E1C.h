@@ -36,7 +36,7 @@ typedef struct UnkStruct_ov79_021D0E1C_t {
     u8 unk_1E;
     u8 unk_1F;
     UnkStruct_0203D9B8 *unk_20;
-    BGL *unk_24;
+    BgConfig *unk_24;
     UnkStruct_020158A8 *unk_28;
     MessageLoader *unk_2C;
     UnkStruct_ov79_021D0E1C_sub1 unk_30;

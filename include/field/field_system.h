@@ -49,7 +49,7 @@
 typedef struct FieldSystem_t {
     FieldSystem_sub1 *unk_00;
     FieldSystem_sub2 *unk_04;
-    BGL *unk_08;
+    BgConfig *unk_08;
     SaveData *saveData;
     TaskManager *unk_10;
     MapHeaderData *mapHeaderData;

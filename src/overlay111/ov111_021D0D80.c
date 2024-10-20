@@ -81,7 +81,7 @@ struct UnkStruct_ov111_021D0F7C_t {
     Strbuf *unk_40;
     Strbuf *unk_44;
     u16 unk_48[8];
-    BGL *unk_58;
+    BgConfig *unk_58;
     Window unk_5C[16];
     PaletteData *unk_15C;
     UnkStruct_0200C440 *unk_160;
@@ -145,10 +145,10 @@ static void ov111_021D1F84(UnkStruct_ov111_021D0F7C *param0);
 static void ov111_021D1FB4(UnkStruct_ov111_021D0F7C *param0);
 static void ov111_021D2034(UnkStruct_ov111_021D0F7C *param0);
 static void ov111_021D1FC4(UnkStruct_ov111_021D0F7C *param0);
-static void ov111_021D2044(BGL *param0);
+static void ov111_021D2044(BgConfig *param0);
 static void ov111_021D2090(void *param0);
 static void ov111_021D20CC(void);
-static void ov111_021D20EC(BGL *param0);
+static void ov111_021D20EC(BgConfig *param0);
 static void ov111_021D2248(UnkStruct_ov111_021D0F7C *param0, u32 param1);
 static void ov111_021D22D0(void);
 static void ov111_021D228C(UnkStruct_ov111_021D0F7C *param0, u32 param1);
@@ -1259,7 +1259,7 @@ static void ov111_021D2034(UnkStruct_ov111_021D0F7C *param0)
     return;
 }
 
-static void ov111_021D2044(BGL *param0)
+static void ov111_021D2044(BgConfig *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
@@ -1312,7 +1312,7 @@ static void ov111_021D20CC(void)
     return;
 }
 
-static void ov111_021D20EC(BGL *param0)
+static void ov111_021D20EC(BgConfig *param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {

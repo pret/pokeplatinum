@@ -10,7 +10,7 @@
 #include "trainer_info.h"
 
 typedef struct {
-    BGL *unk_00;
+    BgConfig *unk_00;
     Window unk_04[4];
     Journal *unk_44;
     TrainerInfo *unk_48;

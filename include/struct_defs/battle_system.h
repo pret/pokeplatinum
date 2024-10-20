@@ -44,7 +44,7 @@
 
 struct BattleSystem {
     GenericPointerData *unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     Window *windows;
     MessageLoader *unk_0C;
     MessageLoader *unk_10;

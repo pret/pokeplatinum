@@ -42,7 +42,7 @@ typedef BOOL (*UnkFuncPtr_ov100_021D5130_2)(void *);
 static void ov100_021D0FA0(UnkStruct_ov100_021D46C8 *param0);
 static void ov100_021D1034(UnkStruct_ov100_021D46C8 *param0);
 static void ov100_021D111C(UnkStruct_ov100_021D46C8 *param0);
-static void ov100_021D1208(BGL *param0);
+static void ov100_021D1208(BgConfig *param0);
 static void ov100_021D13B4(void *param0);
 
 int ov100_021D0D80(OverlayManager *param0, int *param1)
@@ -272,7 +272,7 @@ static void ov100_021D111C(UnkStruct_ov100_021D46C8 *param0)
     G3X_AlphaBlend(0);
 }
 
-static void ov100_021D1208(BGL *param0)
+static void ov100_021D1208(BgConfig *param0)
 {
     GXLayers_DisableEngineALayers();
 

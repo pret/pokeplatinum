@@ -451,7 +451,7 @@ BOOL ov99_021D1D30(UnkStruct_ov99_021D2CB0 *param0, int param1)
 
 static void ov99_021D1D68(UnkStruct_ov99_021D2CB0 *param0)
 {
-    BGL *v0 = param0->unk_08;
+    BgConfig *v0 = param0->unk_08;
 
     PaletteSys_LoadPalette(param0->unk_0C, 127, 18, 75, 0, 0, 0);
     sub_020070E8(param0->unk_10F8, 9, param0->unk_08, 2, 0, 0, 0, 75);
@@ -594,7 +594,7 @@ static void ov99_021D20F8(UnkStruct_ov99_021D2CB0 *param0)
 
 static void ov99_021D211C(UnkStruct_ov99_021D2CB0 *param0)
 {
-    BGL *v0 = param0->unk_08;
+    BgConfig *v0 = param0->unk_08;
 
     ov99_021D439C(param0, param0->unk_1105, 3, 0);
     param0->unk_1105++;
@@ -660,7 +660,7 @@ static void ov99_021D217C(UnkStruct_ov99_021D2CB0 *param0)
 
 static void ov99_021D2180(UnkStruct_ov99_021D2CB0 *param0)
 {
-    BGL *v0 = param0->unk_08;
+    BgConfig *v0 = param0->unk_08;
 
     PaletteSys_LoadPalette(param0->unk_0C, 127, 19, 75, 0, 0, 0);
     sub_020070E8(param0->unk_10F8, 10, param0->unk_08, 2, 0, 0, 0, 75);
@@ -800,7 +800,7 @@ static void ov99_021D24CC(UnkStruct_ov99_021D2CB0 *param0)
 
 static void ov99_021D24F0(UnkStruct_ov99_021D2CB0 *param0)
 {
-    BGL *v0 = param0->unk_08;
+    BgConfig *v0 = param0->unk_08;
 
     PaletteSys_LoadPalette(param0->unk_0C, 127, 20, 75, 0, 0, 0);
     sub_020070E8(param0->unk_10F8, 11, param0->unk_08, 2, 0, 0, 0, 75);
@@ -989,7 +989,7 @@ static void ov99_021D2A14(UnkStruct_ov99_021D2CB0 *param0)
 
 static void ov99_021D2A38(UnkStruct_ov99_021D2CB0 *param0)
 {
-    BGL *v0 = param0->unk_08;
+    BgConfig *v0 = param0->unk_08;
 
     ov99_021D12F0(param0);
 
@@ -1059,7 +1059,7 @@ static void ov99_021D2AA8(UnkStruct_ov99_021D2CB0 *param0)
 
 static void ov99_021D2AAC(UnkStruct_ov99_021D2CB0 *param0)
 {
-    BGL *v0 = param0->unk_08;
+    BgConfig *v0 = param0->unk_08;
 
     gCoreSys.unk_65 = 0;
 

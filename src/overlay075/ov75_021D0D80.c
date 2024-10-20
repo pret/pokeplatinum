@@ -80,7 +80,7 @@ typedef struct {
     u8 unk_15;
     u8 unk_16;
     u8 unk_17;
-    BGL *unk_18;
+    BgConfig *unk_18;
     UnkStruct_020978D8 *unk_1C;
     MessageLoader *unk_20;
     Strbuf *unk_24[3];

@@ -31,9 +31,9 @@
 #include "unk_0200DA60.h"
 #include "unk_02095AF0.h"
 
-static void ov22_0225A6E0(UnkStruct_ov22_022597BC *param0, BGL *param1);
-static void ov22_0225A718(BGL *param0, const Options *param1);
-static void ov22_0225A748(Window **param0, BGL *param1, int param2, int param3, int param4, int param5, int param6, BOOL param7);
+static void ov22_0225A6E0(UnkStruct_ov22_022597BC *param0, BgConfig *param1);
+static void ov22_0225A718(BgConfig *param0, const Options *param1);
+static void ov22_0225A748(Window **param0, BgConfig *param1, int param2, int param3, int param4, int param5, int param6, BOOL param7);
 static void ov22_0225A7B8(UnkStruct_ov22_022597BC *param0);
 static void ov22_0225A7C0(Window *param0);
 static s32 ov22_0225A7CC(Window *param0, int param1, int param2, int param3, int param4, int param5, u32 param6);
@@ -43,7 +43,7 @@ static s32 ov22_0225A8B4(Window *param0, int param1, int param2, int param3, int
 static void ov22_0225A914(UnkStruct_ov22_0225A914 *param0, CellActorCollection *param1, SpriteResourceCollection **param2, int param3, NARC *param4);
 static void ov22_0225A9C8(UnkStruct_ov22_0225A914 *param0, int param1);
 static void ov22_0225AA10(UnkStruct_ov22_0225A914 *param0, SpriteResourceCollection **param1);
-static void ov22_0225AB54(UnkStruct_ov22_0225AB54 *param0, CellActorCollection *param1, SpriteResourceCollection **param2, int param3, BGL *param4, UnkStruct_02095C60 *param5, NARC *param6);
+static void ov22_0225AB54(UnkStruct_ov22_0225AB54 *param0, CellActorCollection *param1, SpriteResourceCollection **param2, int param3, BgConfig *param4, UnkStruct_02095C60 *param5, NARC *param6);
 static void ov22_0225AC58(UnkStruct_ov22_0225AB54 *param0, SpriteResourceCollection **param1);
 static void ov22_0225AC8C(UnkStruct_ov22_0225AB54 *param0);
 static void ov22_0225AD5C(UnkStruct_ov22_0225AB54 *param0);
@@ -173,7 +173,7 @@ BOOL ov22_0225A6D4(const UnkStruct_ov22_0225A428 *param0)
     return ov22_0225AF34(&param0->unk_A0.unk_30);
 }
 
-static void ov22_0225A6E0(UnkStruct_ov22_022597BC *param0, BGL *param1)
+static void ov22_0225A6E0(UnkStruct_ov22_022597BC *param0, BgConfig *param1)
 {
     UnkStruct_ov22_022599A0 v0;
 
@@ -193,7 +193,7 @@ static void ov22_0225A6E0(UnkStruct_ov22_022597BC *param0, BGL *param1)
     ov22_022597BC(param0, &v0);
 }
 
-static void ov22_0225A718(BGL *param0, const Options *param1)
+static void ov22_0225A718(BgConfig *param0, const Options *param1)
 {
     int v0 = Options_Frame(param1);
 
@@ -201,7 +201,7 @@ static void ov22_0225A718(BGL *param0, const Options *param1)
     Font_LoadScreenIndicatorsPalette(4, 2 * 32, 14);
 }
 
-static void ov22_0225A748(Window **param0, BGL *param1, int param2, int param3, int param4, int param5, int param6, BOOL param7)
+static void ov22_0225A748(Window **param0, BgConfig *param1, int param2, int param3, int param4, int param5, int param6, BOOL param7)
 {
     *param0 = sub_0201A778(14, 1);
 
@@ -376,7 +376,7 @@ static void ov22_0225AAF4(SpriteResource **param0, SpriteResourceCollection **pa
     sub_020093B4(param2, SpriteResource_GetID(param0[0]), SpriteResource_GetID(param0[1]), SpriteResource_GetID(param0[2]), SpriteResource_GetID(param0[3]), 0xffffffff, 0xffffffff, 0, param3, param1[0], param1[1], param1[2], param1[3], NULL, NULL);
 }
 
-static void ov22_0225AB54(UnkStruct_ov22_0225AB54 *param0, CellActorCollection *param1, SpriteResourceCollection **param2, int param3, BGL *param4, UnkStruct_02095C60 *param5, NARC *param6)
+static void ov22_0225AB54(UnkStruct_ov22_0225AB54 *param0, CellActorCollection *param1, SpriteResourceCollection **param2, int param3, BgConfig *param4, UnkStruct_02095C60 *param5, NARC *param6)
 {
     CellActorResourceData v0;
     CellActorInitParams v1;

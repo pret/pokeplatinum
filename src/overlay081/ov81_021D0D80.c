@@ -34,8 +34,8 @@
 
 static void ov81_021D0F00(void *param0);
 static void ov81_021D0F20(void);
-static void ov81_021D0F40(BGL *param0);
-static void ov81_021D101C(BGL *param0);
+static void ov81_021D0F40(BgConfig *param0);
+static void ov81_021D101C(BgConfig *param0);
 static void ov81_021D1050(UnkStruct_ov81_021D1610 *param0);
 static void ov81_021D1130(UnkStruct_ov81_021D1610 *param0);
 static void ov81_021D115C(UnkStruct_ov81_021D1610 *param0);
@@ -179,7 +179,7 @@ static void ov81_021D0F20(void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov81_021D0F40(BGL *param0)
+static void ov81_021D0F40(BgConfig *param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -275,7 +275,7 @@ static void ov81_021D0F40(BGL *param0)
     sub_02019690(1, 32, 0, 42);
 }
 
-static void ov81_021D101C(BGL *param0)
+static void ov81_021D101C(BgConfig *param0)
 {
     GXLayers_DisableEngineALayers();
     sub_02019044(param0, 3);

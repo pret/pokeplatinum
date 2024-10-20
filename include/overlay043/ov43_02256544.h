@@ -6,7 +6,7 @@
 
 #include "bg_window.h"
 
-BOOL ov43_02256544(UnkStruct_ov43_02256544 **param0, const UnkStruct_ov43_02256544_1 *param1, BGL *param2);
+BOOL ov43_02256544(UnkStruct_ov43_02256544 **param0, const UnkStruct_ov43_02256544_1 *param1, BgConfig *param2);
 void ov43_02256680(UnkStruct_ov43_02256544 *param0);
 void ov43_022566B0(UnkStruct_ov43_02256544 *param0, u32 param1);
 BOOL ov43_022566D4(UnkStruct_ov43_02256544 *param0, u32 param1);

@@ -8,7 +8,7 @@
 #include "pokemon.h"
 
 typedef struct {
-    BGL *unk_00;
+    BgConfig *unk_00;
     PaletteData *unk_04;
     UnkStruct_02007768 *unk_08;
     int unk_0C;

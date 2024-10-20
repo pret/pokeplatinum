@@ -107,10 +107,10 @@ static u8 ov65_02234FC4(int param0);
 static BOOL ov65_02234FCC(UnkStruct_ov65_0222EBE0 * param0, int param1, int param2);
 static void ov65_0222E5E0(void * param0);
 static void ov65_0222E618(void);
-static void ov65_0222E638(BGL * param0);
+static void ov65_0222E638(BgConfig *param0);
 static void ov65_0222EBE0(UnkStruct_ov65_0222EBE0 * param0);
 static void ov65_0222EC2C(UnkStruct_ov65_0222EBE0 * param0);
-static void ov65_0222EC5C(BGL * param0);
+static void ov65_0222EC5C(BgConfig *param0);
 static void ov65_0222ECA8(UnkStruct_ov65_0222EBE0 * param0, NARC * param1);
 static void ov65_0222EDD0(void);
 static void ov65_0222EE18(UnkStruct_ov65_0222EBE0 * param0, NARC * param1);
@@ -122,10 +122,10 @@ static void ov65_022302B0(UnkStruct_ov65_0222EBE0 * param0, u32 param1);
 static int ov65_02230164(UnkStruct_ov65_0222EBE0 * param0);
 static void ov65_02230298(UnkStruct_ov65_0222EBE0 * param0, u32 param1);
 static UnkStruct_ov65_022354D8 * ov65_0222E8D4(UnkStruct_ov65_0222EBE0 * param0, u32 param1);
-static void ov65_0222E90C(BGL * param0, UnkStruct_ov65_0222E99C * param1, NARC * param2, u32 param3);
+static void ov65_0222E90C(BgConfig *param0, UnkStruct_ov65_0222E99C *param1, NARC *param2, u32 param3);
 static void ov65_0222E99C(UnkStruct_ov65_0222E99C * param0);
-static void ov65_0222E9C0(BGL * param0, UnkStruct_ov65_0222E99C * param1, u32 param2, u8 param3, u8 param4, u32 param5, u32 param6);
-static void ov65_0222EA38(BGL * param0, UnkStruct_ov65_0222E99C * param1, u32 param2, u8 param3, u8 param4, u32 param5);
+static void ov65_0222E9C0(BgConfig *param0, UnkStruct_ov65_0222E99C *param1, u32 param2, u8 param3, u8 param4, u32 param5, u32 param6);
+static void ov65_0222EA38(BgConfig *param0, UnkStruct_ov65_0222E99C *param1, u32 param2, u8 param3, u8 param4, u32 param5);
 static void ov65_0222EAD0(Window * param0, UnkStruct_ov65_0222E99C * param1, u16 param2, u16 param3, u32 param4, u32 param5);
 static void ov65_0222EB1C(Window * param0, UnkStruct_ov65_0222E99C * param1, u16 param2, u16 param3, u32 param4);
 static int ov65_0222EBAC(u32 param0);
@@ -964,7 +964,7 @@ static void ov65_0222E618 (void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov65_0222E638 (BGL * param0)
+static void ov65_0222E638(BgConfig *param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -1210,7 +1210,7 @@ static UnkStruct_ov65_022354D8 * ov65_0222E8D4 (UnkStruct_ov65_0222EBE0 * param0
     return NULL;
 }
 
-static void ov65_0222E90C (BGL * param0, UnkStruct_ov65_0222E99C * param1, NARC * param2, u32 param3)
+static void ov65_0222E90C(BgConfig *param0, UnkStruct_ov65_0222E99C *param1, NARC *param2, u32 param3)
 {
     sub_02007130(param2, 13, 0, 8 * 32, 2 * 32, param3);
     sub_02007130(param2, 13, 4, 13 * 32, 2 * 32, param3);
@@ -1239,7 +1239,7 @@ static void ov65_0222E99C (UnkStruct_ov65_0222E99C * param0)
     }
 }
 
-static void ov65_0222E9C0 (BGL * param0, UnkStruct_ov65_0222E99C * param1, u32 param2, u8 param3, u8 param4, u32 param5, u32 param6)
+static void ov65_0222E9C0(BgConfig *param0, UnkStruct_ov65_0222E99C *param1, u32 param2, u8 param3, u8 param4, u32 param5, u32 param6)
 {
     int v0;
 
@@ -1251,7 +1251,7 @@ static void ov65_0222E9C0 (BGL * param0, UnkStruct_ov65_0222E99C * param1, u32 p
     sub_0201C3C0(param0, param2);
 }
 
-static void ov65_0222EA38 (BGL * param0, UnkStruct_ov65_0222E99C * param1, u32 param2, u8 param3, u8 param4, u32 param5)
+static void ov65_0222EA38(BgConfig *param0, UnkStruct_ov65_0222E99C *param1, u32 param2, u8 param3, u8 param4, u32 param5)
 {
     u8 v0 = 0;
     u8 v1 = 0;
@@ -1431,7 +1431,7 @@ static void ov65_0222EC2C (UnkStruct_ov65_0222EBE0 * param0)
     Strbuf_Free(param0->unk_170);
 }
 
-static void ov65_0222EC5C (BGL * param0)
+static void ov65_0222EC5C(BgConfig *param0)
 {
     sub_02019044(param0, 7);
     sub_02019044(param0, 6);
@@ -1446,7 +1446,7 @@ static void ov65_0222EC5C (BGL * param0)
 
 static void ov65_0222ECA8 (UnkStruct_ov65_0222EBE0 * param0, NARC * param1)
 {
-    BGL * v0 = param0->unk_15C;
+    BgConfig *v0 = param0->unk_15C;
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);

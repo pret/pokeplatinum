@@ -127,7 +127,7 @@ static BOOL ov6_02247A34(TaskManager *param0)
 void *ov6_02247A90(void *param0)
 {
     UnkStruct_ov6_02247A90 *v0;
-    BGL *v1;
+    BgConfig *v1;
     Strbuf *v2, *v3;
     int v4, v5, v6, v7;
     SaveData *v8;

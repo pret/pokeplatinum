@@ -121,7 +121,7 @@ void ov20_021D2EF0(UnkStruct_ov20_021D30F8 *param0)
 
 void ov20_021D2F50(UnkStruct_ov20_021D30F8 *param0, NARC *param1)
 {
-    BGL *v0;
+    BgConfig *v0;
     u32 v1;
 
     v0 = ov20_021D2E04(param0->unk_00);

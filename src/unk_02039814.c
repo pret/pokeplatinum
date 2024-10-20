@@ -75,7 +75,7 @@ static void sub_02039814(void)
 
 void sub_02039834(int param0, int param1, int param2)
 {
-    BGL *v0;
+    BgConfig *v0;
     Window v1;
     MessageLoader *v2;
     Strbuf *v3;

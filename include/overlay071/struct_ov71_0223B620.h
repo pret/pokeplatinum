@@ -13,7 +13,7 @@
 #include "strbuf.h"
 
 typedef struct {
-    BGL *unk_00;
+    BgConfig *unk_00;
     Window unk_04[11];
     TrainerCard *unk_B4;
     u8 unk_B8[12288];

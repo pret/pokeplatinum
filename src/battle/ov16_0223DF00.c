@@ -73,7 +73,7 @@
 #include "unk_0202F1D4.h"
 #include "unk_0206CCB0.h"
 
-BGL *BattleSystem_BGL(BattleSystem *param0);
+BgConfig *BattleSystem_BGL(BattleSystem *param0);
 u32 BattleSystem_BattleType(BattleSystem *param0);
 BattleContext *BattleSystem_Context(BattleSystem *param0);
 BattlerData *BattleSystem_BattlerData(BattleSystem *param0, int param1);
@@ -225,7 +225,7 @@ static void BattleMessage_TrainerName(BattleSystem *param0, u32 param1, int para
 static void BattleMessage_PCBoxName(BattleSystem *param0, u32 param1, int param2);
 static u8 ov16_0223F6D4(u8 *param0, u8 *param1, u16 *param2);
 
-BGL *BattleSystem_BGL(BattleSystem *param0)
+BgConfig *BattleSystem_BGL(BattleSystem *param0)
 {
     return param0->unk_04;
 }

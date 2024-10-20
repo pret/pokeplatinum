@@ -44,7 +44,7 @@ typedef struct {
 typedef struct {
     UnkStruct_ov5_021D30A8 unk_00;
     CellActorData *unk_1C8;
-    BGL *unk_1CC;
+    BgConfig *unk_1CC;
     u8 unk_1D0;
     u8 unk_1D1;
     u8 unk_1D2;
@@ -52,10 +52,10 @@ typedef struct {
 } UnkStruct_0200ED50;
 
 static void sub_0200E130(Window *param0, u16 param1);
-static void sub_0200E31C(BGL *param0, u8 param1, u16 param2, u8 param3, u16 param4, u32 param5);
+static void sub_0200E31C(BgConfig *param0, u8 param1, u16 param2, u8 param3, u16 param4, u32 param5);
 static void sub_0200E924(UnkStruct_0200E924 *param0, u32 param1);
 static void sub_0200EB20(SysTask *param0, void *param1);
-static UnkStruct_0200ED50 *sub_0200ED14(BGL *param0, u8 param1, u8 param2, u8 param3, u32 param4);
+static UnkStruct_0200ED50 *sub_0200ED14(BgConfig *param0, u8 param1, u8 param2, u8 param3, u32 param4);
 static void sub_0200ED50(UnkStruct_0200ED50 *param0, u32 param1);
 static void sub_0200ED7C(UnkStruct_0200ED50 *param0);
 static void sub_0200EDD4(UnkStruct_0200ED50 *param0, u8 param1, u8 param2);
@@ -79,7 +79,7 @@ static const SpriteTemplate Unk_020E5040 = {
     0x0
 };
 
-void Window_SetFrame(BGL *param0, u8 param1, u16 param2, u8 param3, u32 param4)
+void Window_SetFrame(BgConfig *param0, u8 param1, u16 param2, u8 param3, u32 param4)
 {
     if (param3 == 0) {
         sub_02006E3C(38, 0, param0, param1, param2, 0, 0, param4);
@@ -93,7 +93,7 @@ u32 Window_FramePalette(void)
     return 24;
 }
 
-void sub_0200DAA4(BGL *param0, u8 param1, u16 param2, u8 param3, u8 param4, u32 param5)
+void sub_0200DAA4(BgConfig *param0, u8 param1, u16 param2, u8 param3, u8 param4, u32 param5)
 {
     u32 v0;
 
@@ -118,7 +118,7 @@ void sub_0200DAA4(BGL *param0, u8 param1, u16 param2, u8 param3, u8 param4, u32 
     }
 }
 
-static void sub_0200DB10(BGL *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6, u16 param7)
+static void sub_0200DB10(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6, u16 param7)
 {
     sub_02019CB8(param0, param1, param7, param2 - 1, param3 - 1, 1, 1, param6);
     sub_02019CB8(param0, param1, param7 + 1, param2, param3 - 1, param4, 1, param6);
@@ -162,7 +162,7 @@ u32 sub_0200DD08(u32 param0)
     return 25 + param0;
 }
 
-void sub_0200DD0C(BGL *param0, u8 param1, u16 param2, u8 param3, u8 param4, u32 param5)
+void sub_0200DD0C(BgConfig *param0, u8 param1, u16 param2, u8 param3, u8 param4, u32 param5)
 {
     sub_02006E3C(38, sub_0200DD04(param4), param0, param1, param2, 0, 0, param5);
 
@@ -173,7 +173,7 @@ void sub_0200DD0C(BGL *param0, u8 param1, u16 param2, u8 param3, u8 param4, u32 
     }
 }
 
-static void sub_0200DD7C(BGL *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6, u16 param7)
+static void sub_0200DD7C(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6, u16 param7)
 {
     sub_02019CB8(param0, param1, param7, param2 - 2, param3 - 1, 1, 1, param6);
     sub_02019CB8(param0, param1, param7 + 1, param2 - 1, param3 - 1, 1, 1, param6);
@@ -273,7 +273,7 @@ static void sub_0200E130(Window *param0, u16 param1)
     Heap_FreeToHeap(v1);
 }
 
-void sub_0200E218(BGL *param0, u8 param1, u16 param2, u8 param3, u8 param4, u32 param5)
+void sub_0200E218(BgConfig *param0, u8 param1, u16 param2, u8 param3, u8 param4, u32 param5)
 {
     void *v0;
     NNSG2dCharacterData *v1;
@@ -306,7 +306,7 @@ void sub_0200E218(BGL *param0, u8 param1, u16 param2, u8 param3, u8 param4, u32 
     Heap_FreeToHeap(v2);
 }
 
-void sub_0200E2A4(BGL *param0, u8 param1, u16 param2, u8 param3, u8 param4, u16 param5, u32 param6)
+void sub_0200E2A4(BgConfig *param0, u8 param1, u16 param2, u8 param3, u8 param4, u16 param5, u32 param6)
 {
     sub_02006E3C(
         36, 0, param0, param1, param2, (18 + 12) * 0x20, 0, param6);
@@ -329,7 +329,7 @@ void sub_0200E2A4(BGL *param0, u8 param1, u16 param2, u8 param3, u8 param4, u16 
     }
 }
 
-static void sub_0200E31C(BGL *param0, u8 param1, u16 param2, u8 param3, u16 param4, u32 param5)
+static void sub_0200E31C(BgConfig *param0, u8 param1, u16 param2, u8 param3, u16 param4, u32 param5)
 {
     if (param3 == 0) {
         param4 += 33;
@@ -340,7 +340,7 @@ static void sub_0200E31C(BGL *param0, u8 param1, u16 param2, u8 param3, u16 para
     sub_02006E3C(36, param4, param0, param1, param2, 24 * 0x20, 0, param5);
 }
 
-static void sub_0200E354(BGL *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6, u16 param7)
+static void sub_0200E354(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6, u16 param7)
 {
     sub_02019CB8(param0, param1, param7, param2 - 9, param3 - 1, 1, 1, param6);
     sub_02019CB8(param0, param1, param7 + 1, param2 - 8, param3 - 1, 1, 1, param6);
@@ -543,7 +543,7 @@ void sub_0200EBC8(void *param0)
     v0->unk_488_0 = 2;
 }
 
-u8 *sub_0200EBF0(BGL *param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 param5, u16 param6, u8 param7, int param8)
+u8 *sub_0200EBF0(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 param5, u16 param6, u8 param7, int param8)
 {
     UnkStruct_0200ED50 *v0 = sub_0200ED14(param0, param1, param2, param3, param8);
 
@@ -557,7 +557,7 @@ u8 *sub_0200EBF0(BGL *param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 pa
     return &v0->unk_1D3;
 }
 
-u8 *sub_0200EC48(BGL *param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 param5, Pokemon *param6, int param7)
+u8 *sub_0200EC48(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 param5, Pokemon *param6, int param7)
 {
     UnkStruct_0200ED50 *v0 = sub_0200ED14(param0, param1, param2, param3, param7);
 
@@ -596,7 +596,7 @@ static void sub_0200EC9C(SysTask *param0, void *param1)
     CellActorCollection_Update(v0->unk_00.unk_00);
 }
 
-static UnkStruct_0200ED50 *sub_0200ED14(BGL *param0, u8 param1, u8 param2, u8 param3, u32 param4)
+static UnkStruct_0200ED50 *sub_0200ED14(BgConfig *param0, u8 param1, u8 param2, u8 param3, u32 param4)
 {
     UnkStruct_0200ED50 *v0 = SysTask_GetParam(SysTask_StartAndAllocateParam(sub_0200EC9C, sizeof(UnkStruct_0200ED50), 0, param4));
 

@@ -24,7 +24,7 @@ typedef struct {
     Sprite *unk_18;
     SpriteRenderer *unk_1C;
     SpriteGfxHandler *unk_20;
-    BGL *unk_24;
+    BgConfig *unk_24;
     Window unk_28[1];
     MessageLoader *unk_38;
     StringTemplate *unk_3C;

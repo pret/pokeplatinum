@@ -59,10 +59,10 @@
 static void inline_ov72_0223E2A4(UnkStruct_ov72_0223DB98 *param0, int param1);
 static void ov72_0223DA48(void *param0);
 static void ov72_0223DA70(void);
-static void ov72_0223DA90(BGL *param0);
+static void ov72_0223DA90(BgConfig *param0);
 static void ov72_0223DB98(UnkStruct_ov72_0223DB98 *param0);
 static void ov72_0223DC34(UnkStruct_ov72_0223DB98 *param0);
-static void ov72_0223DC6C(BGL *param0);
+static void ov72_0223DC6C(BgConfig *param0);
 static void ov72_0223DCA8(UnkStruct_ov72_0223DB98 *param0, NARC *param1);
 static void ov72_0223DDA8(void);
 static void ov72_0223DDD8(UnkStruct_ov72_0223DB98 *param0, NARC *param1);
@@ -89,7 +89,7 @@ static int ov72_0223E99C(int param0);
 static void ov72_0223E388(CellActor **param0, int param1);
 static void ov72_0223E3A8(CellActor **param0, BOOL param1);
 static int ov72_0223E528(UnkStruct_ov72_0223DB98 *param0, int param1);
-static void ov72_0223E430(BGL *param0, UnkStruct_02015920 *param1);
+static void ov72_0223E430(BgConfig *param0, UnkStruct_02015920 *param1);
 static void ov72_0223E9B4(u8 *param0, u8 *param1);
 static void *ov72_0223E060(Window *param0, Strbuf *param1, int param2, u8 param3, const u32 param4);
 static void ov72_0223EA18(UnkStruct_ov72_0223DB98 *param0);
@@ -246,7 +246,7 @@ static void ov72_0223DA48(void *param0)
 {
     sub_0201DCAC();
     sub_0200A858();
-    sub_0201C2B8((BGL *)param0);
+    sub_0201C2B8((BgConfig *)param0);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
@@ -269,7 +269,7 @@ static void ov72_0223DA70(void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov72_0223DA90(BGL *param0)
+static void ov72_0223DA90(BgConfig *param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -428,7 +428,7 @@ static void ov72_0223DC34(UnkStruct_ov72_0223DB98 *param0)
     Strbuf_Free(param0->unk_2C);
 }
 
-static void ov72_0223DC6C(BGL *param0)
+static void ov72_0223DC6C(BgConfig *param0)
 {
     sub_02019044(param0, 5);
     sub_02019044(param0, 4);
@@ -441,7 +441,7 @@ static void ov72_0223DC6C(BGL *param0)
 
 static void ov72_0223DCA8(UnkStruct_ov72_0223DB98 *param0, NARC *param1)
 {
-    BGL *v0 = param0->unk_00;
+    BgConfig *v0 = param0->unk_00;
 
     sub_02007130(param1, 0, 0, 0, 16 * 2 * 3, 39);
     sub_02007130(param1, 2, 4, 0, 16 * 2 * 2, 39);
@@ -728,7 +728,7 @@ static void ov72_0223E408(UnkStruct_ov72_0223DB98 *param0)
     ov72_0223E80C(&param0->unk_328, param0->unk_4391, param0->unk_43E6, 0);
 }
 
-static void ov72_0223E430(BGL *param0, UnkStruct_02015920 *param1)
+static void ov72_0223E430(BgConfig *param0, UnkStruct_02015920 *param1)
 {
     UnkStruct_02015958 v0;
 

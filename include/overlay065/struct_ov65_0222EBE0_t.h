@@ -36,7 +36,7 @@ struct UnkStruct_ov65_0222EBE0_t {
     BmpList *unk_150;
     ResourceMetadata *unk_154;
     BmpList *unk_158;
-    BGL *unk_15C;
+    BgConfig *unk_15C;
     SaveData *unk_160;
     StringTemplate *unk_164;
     MessageLoader *unk_168;

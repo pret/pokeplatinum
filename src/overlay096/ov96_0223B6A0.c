@@ -332,7 +332,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov96_0223DA78 = {
     0x0
 };
 
-UIControlData *ov96_0223BBC8(BGL *param0, int param1, int param2)
+UIControlData *ov96_0223BBC8(BgConfig *param0, int param1, int param2)
 {
     UnkStruct_ov61_0222C884 v0;
 

@@ -69,7 +69,7 @@ typedef struct {
 typedef struct {
     int unk_00;
     UnkStruct_ov97_0222D04C unk_04;
-    BGL *unk_2A5C;
+    BgConfig *unk_2A5C;
     StringTemplate *unk_2A60;
     MessageLoader *unk_2A64;
     Window unk_2A68[20];
@@ -138,7 +138,7 @@ typedef struct {
 
 void Strbuf_CopyNumChars(Strbuf *param0, const u16 *param1, u32 param2);
 MysteryGift *SaveData_MysteryGift(SaveData *param0);
-void ov97_02231FFC(BGL *param0, void *, int param2);
+void ov97_02231FFC(BgConfig *param0, void *, int param2);
 static int ov97_02230728(OverlayManager *param0);
 static int ov97_022306F4(OverlayManager *param0);
 static int ov97_02230834(OverlayManager *param0);
@@ -339,7 +339,7 @@ static void ov97_022305EC(Window *param0, int param1)
     StringTemplate_Free(v2);
 }
 
-static void ov97_02230664(BGL *param0)
+static void ov97_02230664(BgConfig *param0)
 {
     sub_02006E84(116, 11, 0, 16 * 2 * 15, 16 * 2, 87);
     sub_02006E84(116, 16, 0, 16 * 2 * 12, 16 * 2, 87);
@@ -1481,7 +1481,7 @@ const OverlayManagerTemplate Unk_ov97_0223D7AC = {
     0xffffffff
 };
 
-void ov97_02231FFC(BGL *param0, void *param1, int param2)
+void ov97_02231FFC(BgConfig *param0, void *param1, int param2)
 {
     UnkStruct_ov97_02230868 *v0;
 

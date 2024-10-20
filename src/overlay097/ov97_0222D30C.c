@@ -112,7 +112,7 @@ typedef struct {
 void Strbuf_ToChars(const Strbuf *param0, u16 *param1, u32 param2);
 void Strbuf_CopyNumChars(Strbuf *param0, const u16 *param1, u32 param2);
 MysteryGift *SaveData_MysteryGift(SaveData *param0);
-void ov97_02231FFC(BGL *param0, void *, int param2);
+void ov97_02231FFC(BgConfig *param0, void *, int param2);
 static int ov97_0222D474(OverlayManager *param0);
 static int ov97_0222D4D8(OverlayManager *param0);
 static int ov97_0222DA18(OverlayManager *param0);
@@ -714,7 +714,7 @@ static int ov97_0222DB40(OverlayManager *param0)
     return -1;
 }
 
-static void ov97_0222DB78(BGL *param0, int param1, u32 param2, u32 param3)
+static void ov97_0222DB78(BgConfig *param0, int param1, u32 param2, u32 param3)
 {
     BgTemplate v0 = {
         0,
@@ -739,7 +739,7 @@ static void ov97_0222DB78(BGL *param0, int param1, u32 param2, u32 param3)
     sub_02019EBC(param0, param1);
 }
 
-static void ov97_0222DBC4(BGL *param0)
+static void ov97_0222DBC4(BgConfig *param0)
 {
     UnkStruct_ov84_0223BA5C v0 = {
         GX_DISPMODE_GRAPHICS,
@@ -756,7 +756,7 @@ static void ov97_0222DBC4(BGL *param0)
     ov97_0222DB78(param0, 5, 0x7800, 0x4000);
 }
 
-static void ov97_0222DC20(BGL *param0)
+static void ov97_0222DC20(BgConfig *param0)
 {
     sub_02006E84(116, 0, 4, 16 * 2 * 8, 16 * 2, 86);
     sub_02006E3C(116, 1, param0, 5, 0, 10 * 16 * 0x20, 1, 86);
@@ -765,7 +765,7 @@ static void ov97_0222DC20(BGL *param0)
     sub_02019448(param0, 5);
 }
 
-static void ov97_0222DC9C(BGL *param0)
+static void ov97_0222DC9C(BgConfig *param0)
 {
     sub_02006E84(116, 0, 0, 16 * 2 * 8, 16 * 2, 86);
     sub_02006E3C(116, 1, param0, 1, 0, 10 * 16 * 0x20, 1, 86);

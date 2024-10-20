@@ -64,7 +64,7 @@ void ov23_02245784(void);
 void ov23_022457E4(int param0, int param1, void *param2, void *param3);
 void ov23_0224589C(int param0, int param1, void *param2, void *param3);
 int ov23_02245908(void);
-void ov23_022468A8(BGL *param0);
+void ov23_022468A8(BgConfig *param0);
 void ov23_022489F8(FieldSystem *fieldSystem, int param1, int param2, int param3, int param4, u8 *param5, int param6, u8 *param7, int param8, u8 *param9, int param10);
 void ov23_02248B98(int param0);
 

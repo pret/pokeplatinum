@@ -10,7 +10,7 @@
 #include "narc.h"
 #include "unk_02006E3C.h"
 
-void ov24_02253CE0(BGL *param0)
+void ov24_02253CE0(BgConfig *param0)
 {
     static const BgTemplate v0 = {
         0,
@@ -54,13 +54,13 @@ void ov24_02253CE0(BGL *param0)
     GXS_SetVisiblePlane(GX_PLANEMASK_BG0);
 }
 
-void ov24_02253DA4(BGL *param0)
+void ov24_02253DA4(BgConfig *param0)
 {
     sub_02019044(param0, 4);
     Heap_Destroy(8);
 }
 
-BOOL ov24_02253DB4(BGL *param0)
+BOOL ov24_02253DB4(BgConfig *param0)
 {
     return 1;
 }

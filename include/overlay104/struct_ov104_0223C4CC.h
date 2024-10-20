@@ -24,7 +24,7 @@
 #include "sys_task_manager.h"
 
 typedef struct UnkStruct_ov104_0223C4CC_t {
-    BGL *unk_00;
+    BgConfig *unk_00;
     PaletteData *unk_04;
     UnkStruct_0209B75C *unk_08;
     GenericPointerData *unk_0C;

@@ -10129,7 +10129,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
         break;
 
     case SEQ_GET_EXP_LEVEL_UP_SUMMARY_INIT: {
-        BGL *bgl = BattleSystem_BGL(data->battleSys);
+        BgConfig *bgl = BattleSystem_BGL(data->battleSys);
         Window *window = BattleSystem_Window(data->battleSys, 1);
         PaletteData *paletteSys = BattleSystem_PaletteSys(data->battleSys);
 
@@ -10239,7 +10239,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
 
     case SEQ_GET_EXP_CHECK_LEARN_MOVE: {
         u16 move;
-        BGL *bgl = BattleSystem_BGL(data->battleSys); // unused, but must be kept to match
+        BgConfig *bgl = BattleSystem_BGL(data->battleSys); // unused, but must be kept to match
 
         switch (Pokemon_LevelUpMove(mon, &data->tmpData[GET_EXP_LEARNSET_INDEX], &move)) {
         case LEARNSET_MOVE_ALREADY_KNOWN:
@@ -12207,7 +12207,7 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *param0, BattleScript
     MessageLoader *v4;
     StringTemplate *v5;
     Strbuf *v6, *v7;
-    BGL *v8;
+    BgConfig *v8;
     Window v9;
     int v10;
     SpriteManagerAllocation v11;

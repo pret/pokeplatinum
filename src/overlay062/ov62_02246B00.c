@@ -583,7 +583,7 @@ int ov62_02247540(UnkStruct_ov62_02246BF4 *param0, int param1)
 void ov62_02247574(UnkStruct_ov62_02246BF4 *param0)
 {
     NARC *v0;
-    BGL *v1;
+    BgConfig *v1;
     SpriteRenderer *v2;
     SpriteGfxHandler *v3;
     PaletteData *v4;

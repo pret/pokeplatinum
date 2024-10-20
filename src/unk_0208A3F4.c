@@ -65,7 +65,7 @@ void sub_0208A3F4 (UnkStruct_02089688 * param0)
 void sub_0208A490 (UnkStruct_02089688 * param0)
 {
     NARC * v0;
-    BGL * v1;
+    BgConfig *v1;
     SpriteRenderer * v2;
     SpriteGfxHandler * v3;
     PaletteData * v4;
@@ -745,7 +745,7 @@ void sub_0208B090 (UnkStruct_02089688 * param0, int param1, int param2, int para
     BGL_DeleteWindow(&v7);
 }
 
-void sub_0208B1C4 (BGL * param0, Window * param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8)
+void sub_0208B1C4(BgConfig *param0, Window *param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8)
 {
     Window_Init(param1);
     BGL_AddWindow(param0, param1, param2, param3, param4, param5, param6, 12, param7);

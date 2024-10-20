@@ -28,7 +28,7 @@ typedef struct {
     int unk_04;
     SaveData *unk_08;
     TrainerInfo *unk_0C;
-    BGL *unk_10;
+    BgConfig *unk_10;
     Window unk_14;
     Window unk_24;
     MessageLoader *unk_34;

@@ -60,7 +60,7 @@ typedef struct {
     int unk_04;
     int unk_08;
     UnkStruct_0203E234 *unk_0C;
-    BGL *unk_10;
+    BgConfig *unk_10;
     Window unk_14;
     CellActorCollection *unk_24;
     UnkStruct_0200C738 unk_28;
@@ -170,7 +170,7 @@ typedef struct {
 typedef struct {
     UnkStruct_ov86_0223BDAC unk_00;
     UnkStruct_ov86_0223B3C8 *unk_08;
-    BGL *unk_0C;
+    BgConfig *unk_0C;
     Window *unk_10;
     StringTemplate *unk_14;
     Strbuf *unk_18;
@@ -186,7 +186,7 @@ typedef struct {
 typedef struct {
     UnkStruct_ov86_0223BDAC unk_00;
     UnkStruct_ov86_0223B3C8 *unk_08;
-    BGL *unk_0C;
+    BgConfig *unk_0C;
     Window *unk_10;
     UnkStruct_ov86_0223D264 unk_14;
     int unk_28;

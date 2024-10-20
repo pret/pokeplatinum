@@ -41,7 +41,7 @@ void *ov100_021D3620(UnkStruct_ov100_021D4DD8 *param0);
 BOOL ov100_021D39E4(void *param0);
 BOOL ov100_021D3FD4(void *param0);
 
-static void ov100_021D2F0C(BGL *param0, PaletteData *param1)
+static void ov100_021D2F0C(BgConfig *param0, PaletteData *param1)
 {
     int v0 = 12;
     int v1 = 10;
@@ -58,7 +58,7 @@ static void ov100_021D2F0C(BGL *param0, PaletteData *param1)
 static void ov100_021D2F64(UnkStruct_ov100_021D3084 *param0)
 {
     NARC *v0 = param0->unk_1D28->unk_00;
-    BGL *v1 = param0->unk_1D28->unk_0C;
+    BgConfig *v1 = param0->unk_1D28->unk_0C;
     SpriteRenderer *v2 = param0->unk_1D28->unk_04;
     SpriteGfxHandler *v3 = param0->unk_1D28->unk_08;
     PaletteData *v4 = param0->unk_1D28->unk_10;
@@ -86,7 +86,7 @@ static void ov100_021D2F64(UnkStruct_ov100_021D3084 *param0)
 static void ov100_021D3084(UnkStruct_ov100_021D3084 *param0)
 {
     NARC *v0 = param0->unk_1D28->unk_00;
-    BGL *v1 = param0->unk_1D28->unk_0C;
+    BgConfig *v1 = param0->unk_1D28->unk_0C;
     SpriteRenderer *v2 = param0->unk_1D28->unk_04;
     SpriteGfxHandler *v3 = param0->unk_1D28->unk_08;
     PaletteData *v4 = param0->unk_1D28->unk_10;

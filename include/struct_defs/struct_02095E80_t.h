@@ -61,7 +61,7 @@ struct UnkStruct_02095E80_t {
     u32 unk_154[2][3];
     int unk_16C;
     int unk_170;
-    BGL *unk_174;
+    BgConfig *unk_174;
     StringTemplate *unk_178;
     StringTemplate *unk_17C;
     StringTemplate *unk_180;

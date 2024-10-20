@@ -5,7 +5,7 @@
 #include "sys_task_manager.h"
 
 typedef struct {
-    BGL *unk_00;
+    BgConfig *unk_00;
     u32 unk_04;
     int unk_08;
     fx32 unk_0C;

@@ -17,7 +17,7 @@
 
 typedef struct {
     SysTask *unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     u16 unk_08[2][2048];
     u8 unk_2008[2][65536];
     u8 unk_22008;
@@ -35,7 +35,7 @@ typedef struct {
 typedef struct {
     SysTask *unk_00;
     SysTask *unk_04;
-    BGL *unk_08;
+    BgConfig *unk_08;
     int unk_0C;
     int unk_10;
     int unk_14;
@@ -50,7 +50,7 @@ typedef struct UnkStruct_ov104_0223DA28_t {
     UnkStruct_ov104_0223DA28_sub1 *unk_08;
 } UnkStruct_ov104_0223DA28;
 
-static UnkStruct_ov104_0223DB34 *ov104_0223DA40(BGL *param0);
+static UnkStruct_ov104_0223DB34 *ov104_0223DA40(BgConfig *param0);
 static void ov104_0223DB34(UnkStruct_ov104_0223DB34 *param0);
 static void ov104_0223DB48(SysTask *param0, void *param1);
 static UnkStruct_ov104_0223DC04 *ov104_0223DBB8(PaletteData *param0);
@@ -62,7 +62,7 @@ static const u16 Unk_ov104_022418B0[] = {
     0x15
 };
 
-UnkStruct_ov104_0223DA28 *ov104_0223D9E4(BGL *param0, PaletteData *param1)
+UnkStruct_ov104_0223DA28 *ov104_0223D9E4(BgConfig *param0, PaletteData *param1)
 {
     UnkStruct_ov104_0223DA28 *v0;
 
@@ -84,7 +84,7 @@ void ov104_0223DA28(UnkStruct_ov104_0223DA28 *param0)
     Heap_FreeToHeap(param0);
 }
 
-static UnkStruct_ov104_0223DB34 *ov104_0223DA40(BGL *param0)
+static UnkStruct_ov104_0223DB34 *ov104_0223DA40(BgConfig *param0)
 {
     UnkStruct_ov104_0223DB34 *v0;
 

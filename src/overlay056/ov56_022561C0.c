@@ -67,7 +67,7 @@ struct UnkStruct_ov56_02256468_t {
     UnkStruct_0205B43C *unk_08;
     FieldSystem *fieldSystem;
     TrainerInfo *unk_10;
-    BGL *unk_14;
+    BgConfig *unk_14;
     StringTemplate *unk_18;
     MessageLoader *unk_1C;
     u16 *unk_20;
@@ -98,11 +98,11 @@ struct UnkStruct_ov56_02256468_t {
 };
 
 static void ov56_02256294(UnkStruct_ov56_02256468 *param0);
-static void ov56_022564E4(BGL *param0);
-static void ov56_02256508(BGL *param0);
+static void ov56_022564E4(BgConfig *param0);
+static void ov56_02256508(BgConfig *param0);
 static void ov56_02256634(UnkStruct_ov56_02256468 *param0);
 static void ov56_02256704(UnkStruct_ov56_02256468 *param0);
-static void ov56_022562EC(BGL *param0, UnkStruct_ov56_022562EC *param1);
+static void ov56_022562EC(BgConfig *param0, UnkStruct_ov56_022562EC *param1);
 static void ov56_022563E8(UnkStruct_ov56_022562EC *param0);
 static void ov56_022568E0(UnkStruct_ov56_02256468 *param0);
 static void ov56_022567FC(UnkStruct_ov56_02256468 *param0, int param1, UnkStruct_0205C924 *param2);
@@ -119,7 +119,7 @@ static int ov56_02256BC0(UnkStruct_ov56_02256468 *param0);
 static void ov56_02257100(UnkStruct_ov56_02256468 *param0);
 static void ov56_02257048(UnkStruct_ov56_02256468 *param0, TrainerInfo *param1, Sentence *param2, u32 param3);
 static Strbuf *ov56_02256E5C(UnkStruct_02027F8C *param0, u32 param1, StringTemplate *param2, MessageLoader *param3, TrainerInfo *param4);
-static void ov56_02256D64(BGL *param0, NNSG2dScreenData *param1, UnkStruct_ov56_022562EC *param2, int param3, int param4, int *param5);
+static void ov56_02256D64(BgConfig *param0, NNSG2dScreenData *param1, UnkStruct_ov56_022562EC *param2, int param3, int param4, int *param5);
 static void ov56_0225710C(UnkStruct_ov56_02256468 *param0);
 static void ov56_0225712C(UnkStruct_ov56_02256468 *param0);
 static BOOL ov56_02257174(const UnkStruct_ov56_02256468 *param0);
@@ -131,7 +131,7 @@ static void ov56_022571D0(UnkStruct_ov56_02256468 *param0);
 static void ov56_022561C0(SysTask *param0, void *param1)
 {
     UnkStruct_ov56_02256468 *v0 = param1;
-    BGL *v1 = v0->unk_14;
+    BgConfig *v1 = v0->unk_14;
     int v2;
 
     if (v0->fieldSystem->unk_80 == NULL) {
@@ -188,7 +188,7 @@ static void ov56_02256294(UnkStruct_ov56_02256468 *param0)
     param0->unk_20 = sub_02006F6C(74, 3, 1, &(param0->unk_24), 4);
 }
 
-static void ov56_022562EC(BGL *param0, UnkStruct_ov56_022562EC *param1)
+static void ov56_022562EC(BgConfig *param0, UnkStruct_ov56_022562EC *param1)
 {
     int v0;
 
@@ -242,7 +242,7 @@ UnkStruct_ov56_02256468 *ov56_02256410(FieldSystem *fieldSystem)
 void ov56_02256468(UnkStruct_ov56_02256468 *param0)
 {
     if (param0->unk_00 == 2) {
-        BGL *v0 = param0->unk_14;
+        BgConfig *v0 = param0->unk_14;
         int v1;
 
         param0->unk_00 = 3;
@@ -269,7 +269,7 @@ void ov56_02256468(UnkStruct_ov56_02256468 *param0)
     }
 }
 
-static void ov56_022564E4(BGL *param0)
+static void ov56_022564E4(BgConfig *param0)
 {
     sub_02019044(param0, 4);
     sub_02019044(param0, 5);
@@ -277,7 +277,7 @@ static void ov56_022564E4(BGL *param0)
     sub_02019044(param0, 7);
 }
 
-static void ov56_02256508(BGL *param0)
+static void ov56_02256508(BgConfig *param0)
 {
     ov56_022564E4(param0);
 
@@ -723,7 +723,7 @@ static const int Unk_ov56_02257244[] = {
     0x5
 };
 
-static void ov56_02256D64(BGL *param0, NNSG2dScreenData *param1, UnkStruct_ov56_022562EC *param2, int param3, int param4, int *param5)
+static void ov56_02256D64(BgConfig *param0, NNSG2dScreenData *param1, UnkStruct_ov56_022562EC *param2, int param3, int param4, int *param5)
 {
     int v0, v1 = 0;
 

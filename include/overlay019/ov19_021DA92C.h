@@ -11,7 +11,7 @@
 #include "cell_actor.h"
 #include "message.h"
 
-BOOL ov19_021DA92C(UnkStruct_ov19_021DA9E0 *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BGL *param3, CellActorCollection *param4, const MessageLoader *param5, NARC *param6);
+BOOL ov19_021DA92C(UnkStruct_ov19_021DA9E0 *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, CellActorCollection *param4, const MessageLoader *param5, NARC *param6);
 void ov19_021DA9E0(UnkStruct_ov19_021DA9E0 *param0);
 void ov19_021DAA80(UnkStruct_ov19_021DA9E0 *param0);
 void ov19_021DAA90(UnkStruct_ov19_021DA9E0 *param0);

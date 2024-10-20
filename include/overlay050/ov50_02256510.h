@@ -6,7 +6,7 @@
 
 #include "bg_window.h"
 
-BOOL ov50_02256510(UnkStruct_ov50_02256510 **param0, const UnkStruct_ov50_02256510_1 *param1, BGL *param2);
+BOOL ov50_02256510(UnkStruct_ov50_02256510 **param0, const UnkStruct_ov50_02256510_1 *param1, BgConfig *param2);
 void ov50_0225654C(UnkStruct_ov50_02256510 *param0);
 void ov50_022565FC(UnkStruct_ov50_02256510 *param0, u32 param1);
 BOOL ov50_02256620(UnkStruct_ov50_02256510 *param0, u32 param1);

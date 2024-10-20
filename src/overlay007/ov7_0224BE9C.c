@@ -113,7 +113,7 @@ typedef struct {
 
 typedef struct {
     u32 unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     UnkStruct_ov7_0224C620 *unk_08;
     const UnkStruct_ov7_0224F1B4 *unk_0C;
     Bag *unk_10;
@@ -125,7 +125,7 @@ typedef struct UnkStruct_ov7_0224BEFC_t {
     SaveData *unk_08;
     UnkStruct_02029D04 *unk_0C;
     Bag *unk_10;
-    BGL *unk_14;
+    BgConfig *unk_14;
     u32 unk_18;
     CellActorCollection *unk_1C;
     UnkStruct_0200C738 unk_20;
@@ -144,16 +144,16 @@ static void ov7_0224C3B8(UnkStruct_ov7_0224BEFC *param0);
 static void ov7_0224C3CC(UnkStruct_ov7_0224BEFC *param0);
 static void ov7_0224C3E0(UnkStruct_ov7_0224BEFC *param0);
 static void ov7_0224C338(UnkStruct_ov7_0224BEFC *param0);
-static void ov7_0224C3EC(UnkStruct_ov7_0224C3EC *param0, BGL *param1, u32 param2, u32 param3);
+static void ov7_0224C3EC(UnkStruct_ov7_0224C3EC *param0, BgConfig *param1, u32 param2, u32 param3);
 static void ov7_0224C444(UnkStruct_ov7_0224C3EC *param0);
 static void ov7_0224C468(UnkStruct_ov7_0224C3EC *param0, Strbuf *param1, u32 param2);
 static BOOL ov7_0224C4B8(UnkStruct_ov7_0224C3EC *param0);
 static void ov7_0224C4E0(UnkStruct_ov7_0224C3EC *param0, MessageLoader *param1, u32 param2, const UnkStruct_ov7_0224F1B4 *param3, u32 param4);
 static void ov7_0224C580(UnkStruct_ov7_0224C3EC *param0, MessageLoader *param1, u32 param2, const UnkStruct_ov7_0224F1B4 *param3, u32 param4);
-static void ov7_0224C620(UnkStruct_ov7_0224C620 *param0, BGL *param1, MessageLoader *param2, u32 param3);
+static void ov7_0224C620(UnkStruct_ov7_0224C620 *param0, BgConfig *param1, MessageLoader *param2, u32 param3);
 static void ov7_0224C698(UnkStruct_ov7_0224C620 *param0);
 static void ov7_0224C6DC(UnkStruct_ov7_0224C620 *param0, u32 param1, u32 param2, u32 param3);
-static void ov7_0224C768(UnkStruct_ov7_0224C768 *param0, BGL *param1, u32 param2, const UnkStruct_ov7_0224F1B4 *param3, u32 param4, MessageLoader *param5, void *param6, UnkFuncPtr_ov7_0224C768 param7, CellActorCollection *param8);
+static void ov7_0224C768(UnkStruct_ov7_0224C768 *param0, BgConfig *param1, u32 param2, const UnkStruct_ov7_0224F1B4 *param3, u32 param4, MessageLoader *param5, void *param6, UnkFuncPtr_ov7_0224C768 param7, CellActorCollection *param8);
 static void ov7_0224C934(UnkStruct_ov7_0224C768 *param0);
 static u32 ov7_0224C9A4(UnkStruct_ov7_0224C768 *param0);
 static void ov7_0224CA0C(UnkStruct_ov7_0224C768 *param0);
@@ -161,17 +161,17 @@ static void ov7_0224CA34(UnkStruct_ov7_0224C768 *param0);
 static void ov7_0224CA54(CellActorResourceData *param0, UnkStruct_ov7_0224C768 *param1, u32 param2);
 static void ov7_0224CB40(UnkStruct_ov7_0224C768 *param0);
 static void ov7_0224CB70(UnkStruct_ov7_0224C768 *param0);
-static void ov7_0224CC44(UnkStruct_ov7_0224CC44 *param0, BGL *param1, u32 param2);
+static void ov7_0224CC44(UnkStruct_ov7_0224CC44 *param0, BgConfig *param1, u32 param2);
 static void ov7_0224CC6C(UnkStruct_ov7_0224CC44 *param0);
 static u32 ov7_0224CC78(UnkStruct_ov7_0224CC44 *param0);
-static void ov7_0224CBD0(UnkStruct_ov7_0224CBE4 *param0, UnkStruct_ov7_0224C620 *param1, const UnkStruct_ov7_0224F1B4 *param2, Bag *param3, u32 param4, BGL *param5);
+static void ov7_0224CBD0(UnkStruct_ov7_0224CBE4 *param0, UnkStruct_ov7_0224C620 *param1, const UnkStruct_ov7_0224F1B4 *param2, Bag *param3, u32 param4, BgConfig *param5);
 static void ov7_0224CBE4(void *param0, u32 param1);
 static BOOL ov7_0224CC88(const UnkStruct_02029D04 *param0, const UnkStruct_ov7_0224F1B4 *param1, u32 param2);
 static BOOL ov7_0224CCB8(Bag *param0, const UnkStruct_ov7_0224F1B4 *param1, u32 param2, u32 param3);
 static BOOL ov7_0224CCE4(const UnkStruct_02029D04 *param0, const UnkStruct_ov7_0224F1B4 *param1, u32 param2);
 static void ov7_0224CCF4(UnkStruct_02029D04 *param0, Bag *param1, const UnkStruct_ov7_0224F1B4 *param2, u32 param3, u32 param4);
 
-UnkStruct_ov7_0224BEFC *ov7_0224BE9C(u32 param0, SaveData *param1, BGL *param2)
+UnkStruct_ov7_0224BEFC *ov7_0224BE9C(u32 param0, SaveData *param1, BgConfig *param2)
 {
     UnkStruct_ov7_0224BEFC *v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov7_0224BEFC));
 
@@ -388,7 +388,7 @@ static void ov7_0224C3E0(UnkStruct_ov7_0224BEFC *param0)
     CellActorCollection_Delete(param0->unk_1C);
 }
 
-static void ov7_0224C3EC(UnkStruct_ov7_0224C3EC *param0, BGL *param1, u32 param2, u32 param3)
+static void ov7_0224C3EC(UnkStruct_ov7_0224C3EC *param0, BgConfig *param1, u32 param2, u32 param3)
 {
     if (param0->unk_00 == 1) {
         return;
@@ -497,7 +497,7 @@ static void ov7_0224C580(UnkStruct_ov7_0224C3EC *param0, MessageLoader *param1, 
     Strbuf_Free(v0);
 }
 
-static void ov7_0224C620(UnkStruct_ov7_0224C620 *param0, BGL *param1, MessageLoader *param2, u32 param3)
+static void ov7_0224C620(UnkStruct_ov7_0224C620 *param0, BgConfig *param1, MessageLoader *param2, u32 param3)
 {
     int v0;
 
@@ -556,7 +556,7 @@ static void ov7_0224C6DC(UnkStruct_ov7_0224C620 *param0, u32 param1, u32 param2,
     Window_Show(param0->unk_04, 0, (1 + (18 + 12)), 11);
 }
 
-static void ov7_0224C768(UnkStruct_ov7_0224C768 *param0, BGL *param1, u32 param2, const UnkStruct_ov7_0224F1B4 *param3, u32 param4, MessageLoader *param5, void *param6, UnkFuncPtr_ov7_0224C768 param7, CellActorCollection *param8)
+static void ov7_0224C768(UnkStruct_ov7_0224C768 *param0, BgConfig *param1, u32 param2, const UnkStruct_ov7_0224F1B4 *param3, u32 param4, MessageLoader *param5, void *param6, UnkFuncPtr_ov7_0224C768 param7, CellActorCollection *param8)
 {
     int v0;
     Strbuf *v1;
@@ -763,7 +763,7 @@ static void ov7_0224CB70(UnkStruct_ov7_0224C768 *param0)
     }
 }
 
-static void ov7_0224CBD0(UnkStruct_ov7_0224CBE4 *param0, UnkStruct_ov7_0224C620 *param1, const UnkStruct_ov7_0224F1B4 *param2, Bag *param3, u32 param4, BGL *param5)
+static void ov7_0224CBD0(UnkStruct_ov7_0224CBE4 *param0, UnkStruct_ov7_0224C620 *param1, const UnkStruct_ov7_0224F1B4 *param2, Bag *param3, u32 param4, BgConfig *param5)
 {
     param0->unk_04 = param5;
     param0->unk_08 = param1;
@@ -786,7 +786,7 @@ static void ov7_0224CBE4(void *param0, u32 param1)
     }
 }
 
-static void ov7_0224CC44(UnkStruct_ov7_0224CC44 *param0, BGL *param1, u32 param2)
+static void ov7_0224CC44(UnkStruct_ov7_0224CC44 *param0, BgConfig *param1, u32 param2)
 {
     static const UnkStruct_ov61_0222C884 v0 = {
         3,

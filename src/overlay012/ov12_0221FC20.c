@@ -122,7 +122,7 @@ typedef struct UnkStruct_ov12_0221FCDC_t {
     s32 unk_90[10];
     UnkFuncPtr_ov12_02239EEC unk_B8;
     UnkStruct_ov12_02223178 *unk_BC;
-    BGL *unk_C0;
+    BgConfig *unk_C0;
     PaletteData *unk_C4;
     SpriteGfxHandler *unk_C8[4];
     CellActorData *unk_D8[10];
@@ -195,7 +195,7 @@ typedef struct {
 } UnkStruct_ov12_022224F8;
 
 typedef struct UnkStruct_ov12_022222D4_t {
-    BGL *unk_00;
+    BgConfig *unk_00;
     s16 unk_04;
     s16 unk_06;
     s16 unk_08;
@@ -220,7 +220,7 @@ typedef struct UnkStruct_ov12_0222118C_t {
 } UnkStruct_ov12_0222118C;
 
 typedef struct UnkStruct_ov12_022211D8_t {
-    BGL *unk_00;
+    BgConfig *unk_00;
     UnkStruct_ov12_0222118C_sub1 unk_04;
 } UnkStruct_ov12_022211D8;
 
@@ -736,7 +736,7 @@ SPLEmitter *ov12_0222026C(UnkStruct_ov12_0221FCDC *param0, int param1)
     return v0;
 }
 
-BGL *ov12_02220278(UnkStruct_ov12_0221FCDC *param0)
+BgConfig *ov12_02220278(UnkStruct_ov12_0221FCDC *param0)
 {
     return param0->unk_C0;
 }

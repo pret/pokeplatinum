@@ -52,7 +52,7 @@ typedef struct {
 
 struct UnkStruct_ov33_02256474_t {
     const UnkStruct_ov33_02256474_1 *unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     u32 unk_08[10];
     UnkStruct_ov25_022555E8 *unk_30;
     UnkStruct_ov25_02255958 unk_34;
@@ -114,7 +114,7 @@ static void ov33_022570E8(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
 static void ov33_0225718C(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_02256474_1 *param1, int param2);
 static void ov33_022572A0(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_02256474_1 *param1);
 
-BOOL ov33_02256474(UnkStruct_ov33_02256474 **param0, const UnkStruct_ov33_02256474_1 *param1, BGL *param2)
+BOOL ov33_02256474(UnkStruct_ov33_02256474 **param0, const UnkStruct_ov33_02256474_1 *param1, BgConfig *param2)
 {
     UnkStruct_ov33_02256474 *v0 = (UnkStruct_ov33_02256474 *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov33_02256474));
 

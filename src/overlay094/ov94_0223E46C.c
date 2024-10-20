@@ -40,8 +40,8 @@
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 
-static void ov94_0223E598(BGL *param0);
-static void ov94_0223E684(BGL *param0);
+static void ov94_0223E598(BgConfig *param0);
+static void ov94_0223E684(BgConfig *param0);
 static void ov94_0223E6B8(UnkStruct_ov94_0223FD4C *param0);
 static void ov94_0223E770(UnkStruct_ov94_0223FD4C *param0);
 static void ov94_0223E7C4(UnkStruct_ov94_0223FD4C *param0);
@@ -168,7 +168,7 @@ int ov94_0223E574(UnkStruct_ov94_0223FD4C *param0, int param1)
     return 1;
 }
 
-static void ov94_0223E598(BGL *param0)
+static void ov94_0223E598(BgConfig *param0)
 {
     {
         BgTemplate v0 = {
@@ -260,7 +260,7 @@ static void ov94_0223E598(BGL *param0)
     sub_02019690(4, 32, 0, 62);
 }
 
-static void ov94_0223E684(BGL *param0)
+static void ov94_0223E684(BgConfig *param0)
 {
     sub_02019044(param0, 5);
     sub_02019044(param0, 4);
@@ -272,7 +272,7 @@ static void ov94_0223E684(BGL *param0)
 
 static void ov94_0223E6B8(UnkStruct_ov94_0223FD4C *param0)
 {
-    BGL *v0 = param0->unk_04;
+    BgConfig *v0 = param0->unk_04;
     NARC *v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, 62);
 
     sub_02007130(v1, 3, 0, 0, 16 * 3 * 2, 62);

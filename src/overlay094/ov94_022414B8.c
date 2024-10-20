@@ -56,8 +56,8 @@ typedef struct {
 } UnkStruct_ov94_022460AC;
 
 static void ov94_0224158C(UnkStruct_ov94_0223FD4C *param0, int param1, int param2, int param3, u16 param4);
-static void ov94_022415F8(BGL *param0);
-static void ov94_022416E0(BGL *param0);
+static void ov94_022415F8(BgConfig *param0);
+static void ov94_022416E0(BgConfig *param0);
 static void ov94_0224170C(UnkStruct_ov94_0223FD4C *param0);
 static void ov94_022417A0(UnkStruct_ov94_0223FD4C *param0);
 static void ov94_02241880(UnkStruct_ov94_0223FD4C *param0);
@@ -335,7 +335,7 @@ static void ov94_0224158C(UnkStruct_ov94_0223FD4C *param0, int param1, int param
     Strbuf_Free(v0);
 }
 
-static void ov94_022415F8(BGL *param0)
+static void ov94_022415F8(BgConfig *param0)
 {
     {
         BgTemplate v0 = {
@@ -443,7 +443,7 @@ static void ov94_022415F8(BGL *param0)
     sub_02019690(4, 32, 0, 62);
 }
 
-static void ov94_022416E0(BGL *param0)
+static void ov94_022416E0(BgConfig *param0)
 {
     sub_02019044(param0, 5);
     sub_02019044(param0, 4);
@@ -454,7 +454,7 @@ static void ov94_022416E0(BGL *param0)
 
 static void ov94_0224170C(UnkStruct_ov94_0223FD4C *param0)
 {
-    BGL *v0 = param0->unk_04;
+    BgConfig *v0 = param0->unk_04;
 
     sub_02006E84(104, 1, 0, 0, 16 * 3 * 2, 62);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 62);

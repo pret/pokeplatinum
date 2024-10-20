@@ -10,7 +10,7 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 
-BOOL ov19_021DE3E8(UnkStruct_ov19_021DE3E8 **param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BGL *param3, CellActorCollection *param4);
+BOOL ov19_021DE3E8(UnkStruct_ov19_021DE3E8 **param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, CellActorCollection *param4);
 void ov19_021DE440(UnkStruct_ov19_021DE3E8 *param0);
 void ov19_021DE584(UnkStruct_ov19_021DE3E8 *param0);
 void ov19_021DE7A0(UnkStruct_ov19_021DE3E8 *param0);

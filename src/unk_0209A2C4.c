@@ -29,7 +29,7 @@ typedef struct {
     int unk_0C;
     int unk_10;
     Strbuf *unk_14;
-    BGL *unk_18;
+    BgConfig *unk_18;
     MessageLoader *unk_1C;
     Window unk_20;
     UIControlData *unk_30;

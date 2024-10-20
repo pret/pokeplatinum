@@ -534,7 +534,7 @@ static void ov21_021D7CD8(UnkStruct_ov21_021D77E8 *param0, const UnkStruct_ov21_
 {
     void *v0;
     NNSG2dScreenData *v1;
-    BGL *v2 = param0->unk_00->unk_00;
+    BgConfig *v2 = param0->unk_00->unk_00;
 
     ov21_021D276C(param0->unk_00, 0, 4, 0, 0, param2);
 
@@ -758,7 +758,7 @@ static void ov21_021D820C(UnkStruct_ov21_021D77E8 *param0, int param1)
 {
     void *v0;
     NNSG2dScreenData *v1;
-    BGL *v2 = param0->unk_00->unk_00;
+    BgConfig *v2 = param0->unk_00->unk_00;
 
     ov21_021D2724(param0->unk_00, 27, v2, 7, 0, 0, 1, param1);
 
@@ -773,7 +773,7 @@ static void ov21_021D820C(UnkStruct_ov21_021D77E8 *param0, int param1)
 
 static void ov21_021D828C(UnkStruct_ov21_021D77E8 *param0, int param1)
 {
-    BGL *v0 = param0->unk_00->unk_00;
+    BgConfig *v0 = param0->unk_00->unk_00;
 
     sub_02019690(7, 64, 0, param1);
     sub_02019EBC(v0, 7);

@@ -94,7 +94,7 @@ typedef struct {
 typedef struct UnkStruct_ov113_0225DBCC_t {
     UnkStruct_ov66_0223127C *unk_00;
     SaveData *unk_04;
-    BGL *unk_08;
+    BgConfig *unk_08;
     PaletteData *unk_0C;
     UnkStruct_02012744 *unk_10;
     GenericPointerData *unk_14;
@@ -142,8 +142,8 @@ typedef struct UnkStruct_ov113_0225DBCC_t {
 
 static void ov113_0225CEF0(SysTask *param0, void *param1);
 static void ov113_0225CF18(void *param0);
-static void ov113_0225CF58(BGL *param0);
-static void ov113_0225D12C(BGL *param0);
+static void ov113_0225CF58(BgConfig *param0);
+static void ov113_0225D12C(BgConfig *param0);
 static void ov113_0225D160(UnkStruct_ov113_0225DBCC *param0, NARC *param1);
 static void ov113_0225DBCC(UnkStruct_ov113_0225DBCC *param0);
 static void ov113_0225DC4C(UnkStruct_ov113_0225DBCC *param0);
@@ -701,7 +701,7 @@ static void ov113_0225CF18(void *param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void ov113_0225CF58(BGL *param0)
+static void ov113_0225CF58(BgConfig *param0)
 {
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -875,7 +875,7 @@ static void ov113_0225CF58(BGL *param0)
     sub_02019690(5, 32, 0, 118);
 }
 
-static void ov113_0225D12C(BGL *param0)
+static void ov113_0225D12C(BgConfig *param0)
 {
     sub_02019044(param0, 6);
     sub_02019044(param0, 5);
@@ -887,7 +887,7 @@ static void ov113_0225D12C(BGL *param0)
 
 static void ov113_0225D160(UnkStruct_ov113_0225DBCC *param0, NARC *param1)
 {
-    BGL *v0 = param0->unk_08;
+    BgConfig *v0 = param0->unk_08;
     u16 *v1;
 
     PaletteSys_LoadPalette(param0->unk_0C, 187, 19, 118, 0, 0x200 - 0x40, 0);
@@ -1510,7 +1510,7 @@ static void ov113_0225E15C(UnkStruct_ov113_0225DBCC *param0, UnkStruct_ov113_022
     SpriteManagerAllocation v2;
     int v3;
     FontOAM *v4;
-    BGL *v5;
+    BgConfig *v5;
     SpriteGfxHandler *v6;
     int v7, v8;
 

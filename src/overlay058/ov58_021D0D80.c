@@ -66,10 +66,10 @@ typedef struct {
 
 static void ov58_021D115C(void *param0);
 static void ov58_021D1184(void);
-static void ov58_021D11A4(BGL *param0);
+static void ov58_021D11A4(BgConfig *param0);
 static void ov58_021D12C4(UnkStruct_02095EAC *param0);
 static void ov58_021D13B4(UnkStruct_02095EAC *param0);
-static void ov58_021D13F0(BGL *param0);
+static void ov58_021D13F0(BgConfig *param0);
 static void ov58_021D142C(UnkStruct_02095EAC *param0, NARC *param1);
 static void ov58_021D1524(void);
 static void ov58_021D1554(UnkStruct_02095EAC *param0, NARC *param1);
@@ -373,7 +373,7 @@ static void ov58_021D115C(void *param0)
 {
     sub_0201DCAC();
     sub_0200A858();
-    sub_0201C2B8((BGL *)param0);
+    sub_0201C2B8((BgConfig *)param0);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
@@ -396,7 +396,7 @@ static void ov58_021D1184(void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov58_021D11A4(BGL *param0)
+static void ov58_021D11A4(BgConfig *param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -572,7 +572,7 @@ static void ov58_021D13B4(UnkStruct_02095EAC *param0)
     Strbuf_Free(param0->unk_28);
 }
 
-static void ov58_021D13F0(BGL *param0)
+static void ov58_021D13F0(BgConfig *param0)
 {
     sub_02019044(param0, 5);
     sub_02019044(param0, 4);
@@ -585,7 +585,7 @@ static void ov58_021D13F0(BGL *param0)
 
 static void ov58_021D142C(UnkStruct_02095EAC *param0, NARC *param1)
 {
-    BGL *v0 = param0->unk_00;
+    BgConfig *v0 = param0->unk_00;
 
     sub_02007130(param1, 0, 0, 0, 16 * 2 * 2, 39);
     sub_02007130(param1, 1, 4, 0, 16 * 2 * 2, 39);

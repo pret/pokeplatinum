@@ -18,7 +18,7 @@
 typedef struct {
     UnkStruct_ov13_0221FC20 *unk_00;
     UnkStruct_ov13_02221ED0 unk_04[6];
-    BGL *unk_1E0;
+    BgConfig *unk_1E0;
     PaletteData *unk_1E4;
     u16 unk_1E8[4][96];
     u16 unk_4E8[4][96];

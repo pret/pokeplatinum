@@ -69,7 +69,7 @@ typedef struct {
 } UnkStruct_ov21_021E9A9C;
 
 typedef struct UnkStruct_ov21_021E8D48_t {
-    BGL *unk_00;
+    BgConfig *unk_00;
     Window *unk_04;
     PaletteData *unk_08;
     Sprite *unk_0C;
@@ -95,9 +95,9 @@ static void ov21_021E98F8(PaletteData *param0, Sprite *param1, int param2, int p
 static BOOL ov21_021E9948(PaletteData *param0, Sprite *param1);
 static void ov21_021E8E0C(UnkStruct_ov21_021E8D48 *param0, const UnkStruct_ov21_021E8E0C *param1);
 static void ov21_021E900C(UnkStruct_ov21_021E8D48 *param0);
-static void ov21_021E90B0(BGL *param0, int param1);
-static void ov21_021E9194(BGL *param0);
-static Window *ov21_021E91B0(BGL *param0, int param1);
+static void ov21_021E90B0(BgConfig *param0, int param1);
+static void ov21_021E9194(BgConfig *param0);
+static Window *ov21_021E91B0(BgConfig *param0, int param1);
 static void ov21_021E91F0(Window *param0);
 static void ov21_021E9208(SpriteResourceCollection **param0, int param1);
 static void ov21_021E9228(SpriteResourceCollection **param0);
@@ -120,8 +120,8 @@ static void ov21_021E95BC(UnkStruct_ov21_021E968C *param0, SpriteResourceCollect
 static void ov21_021E95EC(UnkStruct_ov21_021E968C *param0, SpriteResourceCollection **param1);
 static void ov21_021E95F8(UnkStruct_ov21_021E968C *param0, CellActorCollection *param1, SpriteResourceCollection **param2, int param3, int param4);
 static void ov21_021E968C(UnkStruct_ov21_021E968C *param0);
-static void ov21_021E96A8(BGL *param0, int param1, NARC *param2);
-static void ov21_021E97C4(BGL *param0, int param1, NARC *param2);
+static void ov21_021E96A8(BgConfig *param0, int param1, NARC *param2);
+static void ov21_021E97C4(BgConfig *param0, int param1, NARC *param2);
 static void ov21_021E9968(Window *param0, int param1, int param2);
 static void ov21_021E998C(Window *param0, int param1);
 static void ov21_021E9A0C(int param0);
@@ -274,7 +274,7 @@ static void ov21_021E900C(UnkStruct_ov21_021E8D48 *param0)
     ov21_021E9A38();
 }
 
-static void ov21_021E90B0(BGL *param0, int param1)
+static void ov21_021E90B0(BgConfig *param0, int param1)
 {
     {
         BgTemplate v0 = {
@@ -350,14 +350,14 @@ static void ov21_021E90B0(BGL *param0, int param1)
     }
 }
 
-static void ov21_021E9194(BGL *param0)
+static void ov21_021E9194(BgConfig *param0)
 {
     sub_02019044(param0, 1);
     sub_02019044(param0, 2);
     sub_02019044(param0, 3);
 }
 
-static Window *ov21_021E91B0(BGL *param0, int param1)
+static Window *ov21_021E91B0(BgConfig *param0, int param1)
 {
     Window *v0;
 
@@ -632,7 +632,7 @@ static void ov21_021E968C(UnkStruct_ov21_021E968C *param0)
     }
 }
 
-static void ov21_021E96A8(BGL *param0, int param1, NARC *param2)
+static void ov21_021E96A8(BgConfig *param0, int param1, NARC *param2)
 {
     void *v0;
     NNSG2dScreenData *v1;
@@ -662,7 +662,7 @@ static void ov21_021E96A8(BGL *param0, int param1, NARC *param2)
     sub_0201C3C0(param0, 3);
 }
 
-static void ov21_021E97C4(BGL *param0, int param1, NARC *param2)
+static void ov21_021E97C4(BgConfig *param0, int param1, NARC *param2)
 {
     void *v0;
     NNSG2dScreenData *v1;

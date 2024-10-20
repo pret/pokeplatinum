@@ -95,7 +95,7 @@ typedef struct UnkStruct_ov10_0221FB28_t {
     UnkStruct_ov10_0221F800 *unk_00;
     const UnkFuncPtr_ov10_02222AD0 *unk_04;
     PaletteData *unk_08;
-    BGL *unk_0C;
+    BgConfig *unk_0C;
     Window unk_10[24];
     SpriteRenderer *unk_190;
     SpriteGfxHandler *unk_194;

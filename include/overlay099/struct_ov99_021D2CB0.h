@@ -23,7 +23,7 @@
 typedef struct {
     UnkStruct_0203E274 *unk_00;
     BOOL unk_04;
-    BGL *unk_08;
+    BgConfig *unk_08;
     PaletteData *unk_0C;
     GenericPointerData *unk_10;
     SysTask *unk_14;

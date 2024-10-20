@@ -18,7 +18,7 @@
 #include "string_template.h"
 
 struct UnkStruct_ov72_0223DB98_t {
-    BGL *unk_00;
+    BgConfig *unk_00;
     BOOL unk_04;
     GameRecords *records;
     Options *unk_0C;

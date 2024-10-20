@@ -14,7 +14,7 @@ typedef struct {
     NARC *unk_00;
     SpriteRenderer *unk_04;
     SpriteGfxHandler *unk_08;
-    BGL *unk_0C;
+    BgConfig *unk_0C;
     PaletteData *unk_10;
     UnkStruct_02023FCC *unk_14;
     TouchScreenRect unk_18[24];

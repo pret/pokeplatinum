@@ -36,8 +36,8 @@
 #include "unk_02012744.h"
 #include "unk_02015064.h"
 
-static void ov21_021D2830(BGL *param0, int param1);
-static void ov21_021D299C(BGL *param0);
+static void ov21_021D2830(BgConfig *param0, int param1);
+static void ov21_021D299C(BgConfig *param0);
 static void ov21_021D29D0(UnkStruct_ov21_021D13FC *param0, int param1);
 static void ov21_021D2A00(UnkStruct_ov21_021D13FC *param0);
 static void ov21_021D2A0C(UnkStruct_ov21_021D13FC *param0, int param1);
@@ -494,7 +494,7 @@ void *ov21_021D26E8(UnkStruct_ov21_021D13FC *param0, u32 param1, BOOL param2, u3
     return v0;
 }
 
-u32 ov21_021D2724(UnkStruct_ov21_021D13FC *param0, u32 param1, BGL *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
+u32 ov21_021D2724(UnkStruct_ov21_021D13FC *param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
 {
     void *v0 = ov21_021D26E8(param0, param1, param6, param7);
 
@@ -588,7 +588,7 @@ void *ov21_021D2808(UnkStruct_ov21_021D13FC *param0, u32 param1, BOOL param2, NN
     return v0;
 }
 
-static void ov21_021D2830(BGL *param0, int param1)
+static void ov21_021D2830(BgConfig *param0, int param1)
 {
     {
         BgTemplate v0 = {
@@ -726,7 +726,7 @@ static void ov21_021D2830(BGL *param0, int param1)
     }
 }
 
-static void ov21_021D299C(BGL *param0)
+static void ov21_021D299C(BgConfig *param0)
 {
     sub_02019044(param0, 1);
     sub_02019044(param0, 2);

@@ -45,7 +45,7 @@
 struct UnkStruct_ov95_02247628_t {
     const UnkStruct_ov6_02246254 *unk_00;
     int unk_04;
-    BGL *unk_08;
+    BgConfig *unk_08;
     StringTemplate *unk_0C;
     MessageLoader *unk_10;
     Strbuf *unk_14;
@@ -83,7 +83,7 @@ typedef struct {
 } UnkStruct_ov95_02247170;
 
 struct UnkStruct_ov95_022472C4_t {
-    BGL *unk_00;
+    BgConfig *unk_00;
     volatile BOOL *unk_04;
     fx32 unk_08;
     fx32 unk_0C;
@@ -462,7 +462,7 @@ static void ov95_02247254(SysTask *param0, void *param1)
     }
 }
 
-UnkStruct_ov95_022472C4 *ov95_022472C4(BGL *param0, fx32 param1, fx32 param2, fx32 param3, fx32 param4, int param5, volatile BOOL *param6)
+UnkStruct_ov95_022472C4 *ov95_022472C4(BgConfig *param0, fx32 param1, fx32 param2, fx32 param3, fx32 param4, int param5, volatile BOOL *param6)
 {
     UnkStruct_ov95_022472C4 *v0 = Heap_AllocFromHeap(57, sizeof(UnkStruct_ov95_022472C4));
 
@@ -668,7 +668,7 @@ CellActor *ov95_022475E4(UnkStruct_ov95_02247628 *param0, CellActorResourceData 
     return v0;
 }
 
-BGL *ov95_02247628(UnkStruct_ov95_02247628 *param0)
+BgConfig *ov95_02247628(UnkStruct_ov95_02247628 *param0)
 {
     return param0->unk_08;
 }

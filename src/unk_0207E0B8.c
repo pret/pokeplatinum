@@ -88,8 +88,8 @@ static int sub_0207E750(GameWindowLayout *param0);
 static int ProcessWindowInput(GameWindowLayout *param0);
 static void sub_0207E898(void *param0);
 static void sub_0207E8C0(void);
-static void sub_0207E918(BGL *param0);
-static void sub_0207EA24(BGL *param0);
+static void sub_0207E918(BgConfig *param0);
+static void sub_0207EA24(BgConfig *param0);
 static void sub_0207EB6C(GameWindowLayout *param0, NARC *param1);
 static GameWindowLayout *sub_0207ECC0(OverlayManager *param0);
 static void sub_0207EE14(GameWindowLayout *param0);
@@ -704,7 +704,7 @@ static void sub_0207E8C0(void)
     GXLayers_SetBanks(&v0);
 }
 
-static void sub_0207E8E0(BGL *param0)
+static void sub_0207E8E0(BgConfig *param0)
 {
     BgTemplate v0 = {
         0,
@@ -726,7 +726,7 @@ static void sub_0207E8E0(BGL *param0)
     sub_02019EBC(param0, 0);
 }
 
-static void sub_0207E918(BGL *param0)
+static void sub_0207E918(BgConfig *param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -850,7 +850,7 @@ static void sub_0207E918(BGL *param0)
     sub_02019690(4, 32, 0, 12);
 }
 
-static void sub_0207EA24(BGL *param0)
+static void sub_0207EA24(BgConfig *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_OBJ, 0);

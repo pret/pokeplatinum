@@ -69,7 +69,7 @@ typedef struct {
     u8 unk_06;
     u8 unk_07;
     u8 unk_08;
-    BGL *unk_0C;
+    BgConfig *unk_0C;
     SysTask *unk_10;
     UnkStruct_ov77_021D670C *unk_14;
     u8 *unk_18;
@@ -87,7 +87,7 @@ typedef struct {
     u8 unk_08;
     u8 unk_09;
     int unk_0C;
-    BGL *unk_10;
+    BgConfig *unk_10;
     UnkStruct_ov77_021D5564 *unk_14;
     UnkStruct_ov77_021D6734 *unk_18;
     UnkStruct_ov77_021D6CFC *unk_1C;
@@ -120,7 +120,7 @@ typedef struct {
     u8 unk_02;
     u8 unk_03;
     fx32 unk_04;
-    BGL *unk_08;
+    BgConfig *unk_08;
     UnkStruct_ov77_021D5308_sub1 unk_0C;
 } UnkStruct_ov77_021D5308;
 
@@ -128,7 +128,7 @@ typedef struct {
     int unk_00;
     int unk_04;
     BOOL unk_08;
-    BGL *unk_0C;
+    BgConfig *unk_0C;
     GenericPointerData *unk_10;
     u32 unk_14;
     UnkStruct_ov77_021D2F38 unk_18;

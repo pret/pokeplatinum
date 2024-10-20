@@ -10,7 +10,7 @@ typedef struct {
     u32 unk_04;
 } UnkStruct_ov110_021D2278;
 
-void ov110_021D2124(BGL *param0, Window *param1, u8 param2);
+void ov110_021D2124(BgConfig *param0, Window *param1, u8 param2);
 void ov110_021D216C(Window *param0, u8 param1);
 
 static const UnkStruct_ov61_0222C884 Unk_ov110_021D22A0[] = {
@@ -63,7 +63,7 @@ static const UnkStruct_ov110_021D2278 Unk_ov110_021D2278[5] = {
     { Unk_ov110_021D22D8, 0x9 }
 };
 
-void ov110_021D2124(BGL *param0, Window *param1, u8 param2)
+void ov110_021D2124(BgConfig *param0, Window *param1, u8 param2)
 {
     u8 v0;
     const UnkStruct_ov61_0222C884 *v1 = Unk_ov110_021D2278[param2].unk_00;

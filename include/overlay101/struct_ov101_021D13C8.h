@@ -61,7 +61,7 @@ typedef struct UnkStruct_ov101_021D13C8_t {
     UnkStruct_ov101_021D148C unk_408;
     UnkStruct_ov101_021D1894 unk_424;
     NARC *unk_438;
-    BGL *unk_43C;
+    BgConfig *unk_43C;
     NNSG2dScreenData *unk_440;
     NNSG2dCharacterData *unk_444;
     NNSG2dPaletteData *unk_448;

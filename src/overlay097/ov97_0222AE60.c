@@ -84,7 +84,7 @@ typedef struct {
 } UnkStruct_ov97_0223DFB0;
 
 typedef struct {
-    BGL *unk_00;
+    BgConfig *unk_00;
     SaveData *unk_04;
     PokedexData *unk_08;
     TrainerInfo *unk_0C;
@@ -968,7 +968,7 @@ static void ov97_0222BD48(void *param0)
 {
     sub_0201DCAC();
     sub_0200A858();
-    sub_0201C2B8((BGL *)param0);
+    sub_0201C2B8((BgConfig *)param0);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }

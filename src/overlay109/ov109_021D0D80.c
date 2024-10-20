@@ -297,7 +297,7 @@ typedef struct UnkStruct_ov109_021D0F70_t {
     UnkStruct_ov109_021D28C4 unk_D0C;
     UnkStruct_ov109_021D294C unk_D2C;
     NARC *unk_D80;
-    BGL *unk_D84;
+    BgConfig *unk_D84;
     NNSG2dScreenData *unk_D88;
     NNSG2dCharacterData *unk_D8C;
     NNSG2dPaletteData *unk_D90;

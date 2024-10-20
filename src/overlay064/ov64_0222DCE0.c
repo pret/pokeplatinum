@@ -122,7 +122,7 @@ typedef struct {
 } UnkStruct_ov64_0222E060;
 
 typedef struct {
-    BGL * unk_00;
+    BgConfig *unk_00;
     CellActorCollection * unk_04;
     NNSG2dRenderSurface unk_08;
     UnkStruct_0200C738 unk_78;

@@ -92,7 +92,7 @@ typedef struct {
 } UnkStruct_ov114_02260284;
 
 typedef struct {
-    BGL *unk_00;
+    BgConfig *unk_00;
     const UnkStruct_ov114_02260284 *unk_04;
     u32 unk_08;
 } UnkStruct_ov114_0225CEF0;

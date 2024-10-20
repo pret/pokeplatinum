@@ -48,7 +48,7 @@
 #include "unk_02033200.h"
 
 typedef struct {
-    BGL *unk_00;
+    BgConfig *unk_00;
     BOOL unk_04;
     int unk_08;
     int unk_0C;
@@ -96,7 +96,7 @@ void *ov97_022376C4(OverlayManager *param0, int param1, int param2, int param3)
     return v0;
 }
 
-void ov97_022376FC(BGL *param0, int param1, u8 param2, u32 param3, u32 param4)
+void ov97_022376FC(BgConfig *param0, int param1, u8 param2, u32 param3, u32 param4)
 {
     BgTemplate v0 = {
         0,
@@ -263,7 +263,7 @@ static int ov97_02237870(UnkStruct_ov97_02237808 *param0, int param1)
     return v0;
 }
 
-int ov97_0223795C(BGL *param0, UnkStruct_ov97_02237808 *param1, int param2, int param3, int param4)
+int ov97_0223795C(BgConfig *param0, UnkStruct_ov97_02237808 *param1, int param2, int param3, int param4)
 {
     int v0;
 
@@ -664,7 +664,7 @@ static void ov97_02238174(void *param0)
     sub_02006E84(116, 29, 4, 16 * 2 * 8, 16 * 2 * 6, v0->unk_08);
 }
 
-void ov97_02238194(BGL *param0, UnkStruct_0202DF40 *param1)
+void ov97_02238194(BgConfig *param0, UnkStruct_0202DF40 *param1)
 {
     int v0, v1;
     UnkStruct_ov97_0223F550 *v2 = &Unk_ov97_0223F550;

@@ -32,7 +32,7 @@ struct UnkStruct_ov19_021DEC04_t {
     BOOL unk_00;
     UnkStruct_ov19_021D61B0 *unk_04;
     const UnkStruct_ov19_021D4DF0 *unk_08;
-    BGL *unk_0C;
+    BgConfig *unk_0C;
     CellActorCollection *unk_10;
     UnkStruct_ov19_021DA384 *unk_14;
     u32 unk_18[2];
@@ -82,7 +82,7 @@ static void ov19_021DF834(UnkStruct_ov19_021DEC04 *param0);
 static void ov19_021DF8C8(UnkStruct_ov19_021DEC04 *param0, int param1);
 static void ov19_021DF930(SysTask *param0, void *param1);
 
-BOOL ov19_021DEC04(UnkStruct_ov19_021DEC04 **param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BGL *param3, CellActorCollection *param4, MessageLoader *param5, NARC *param6)
+BOOL ov19_021DEC04(UnkStruct_ov19_021DEC04 **param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, CellActorCollection *param4, MessageLoader *param5, NARC *param6)
 {
     if (ov19_021D5E08(param2) != 4) {
         *param0 = NULL;

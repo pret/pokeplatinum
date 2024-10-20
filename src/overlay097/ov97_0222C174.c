@@ -348,7 +348,7 @@ UnkStruct_ov97_0223E0B0 Unk_ov97_0223E0B0[] = {
 
 typedef struct {
     int unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     SaveData *unk_08;
     PokedexData *unk_0C;
     TrainerInfo *unk_10;
@@ -435,7 +435,7 @@ enum {
 static void ov97_0222C388(UnkStruct_ov97_0222C388 *param0);
 int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0);
 MysteryGift *SaveData_MysteryGift(SaveData *param0);
-void ov97_02231FFC(BGL *param0, void *, int param2);
+void ov97_02231FFC(BgConfig *param0, void *, int param2);
 
 static u16 ov97_0222C174(u16 param0)
 {

@@ -52,7 +52,7 @@ FS_EXTERN_OVERLAY(overlay22);
 static void ov17_0224FA24(void *param0);
 static void ov17_0224FAAC(void *param0);
 static void ov17_0224FAFC(SysTask *param0, void *param1);
-static void ov17_0224FB34(BGL *param0);
+static void ov17_0224FB34(BgConfig *param0);
 static void ov17_0224FCA0(UnkStruct_ov17_0224FCA0 *param0);
 static void ov17_0224FE1C(UnkStruct_ov17_0224FCA0 *param0);
 static void ov17_0224FE48(UnkStruct_ov17_0224FCA0 *param0);
@@ -407,7 +407,7 @@ static void ov17_0224FAFC(SysTask *param0, void *param1)
     sub_02038A1C(24, v0->unk_10.unk_20);
 }
 
-static void ov17_0224FB34(BGL *param0)
+static void ov17_0224FB34(BgConfig *param0)
 {
     GXLayers_DisableEngineALayers();
 

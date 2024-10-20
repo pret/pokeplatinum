@@ -12,7 +12,7 @@
 #include "string_template.h"
 
 typedef struct {
-    BGL *unk_00;
+    BgConfig *unk_00;
     u8 padding_04[4];
     const UnkStruct_ov19_021D4DF0 *unk_08;
     UnkStruct_ov19_021D61B0 *unk_0C;

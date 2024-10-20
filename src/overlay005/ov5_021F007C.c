@@ -54,7 +54,7 @@ typedef struct UnkStruct_ov5_021F0468_t {
     s16 unk_0E;
 } UnkStruct_ov5_021F0468;
 
-static void ov5_021F0260(BGL *param0);
+static void ov5_021F0260(BgConfig *param0);
 static void ov5_021F02B8(UnkStruct_ov5_021F02B8 *param0, int param1, int param2, int param3);
 static BOOL ov5_021F02C8(UnkStruct_ov5_021F02B8 *param0);
 
@@ -246,7 +246,7 @@ BOOL ov5_021F0254(UnkStruct_ov5_021D1BEC *param0)
     return v0->unk_3C;
 }
 
-static void ov5_021F0260(BGL *param0)
+static void ov5_021F0260(BgConfig *param0)
 {
     GXRgb v0 = (GX_RGB(31, 10, 23));
     u8 *v1;

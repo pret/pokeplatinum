@@ -64,10 +64,10 @@
 
 static void ov59_021D1100(void *param0);
 static void ov59_021D1128(void);
-static void ov59_021D1148(BGL *param0);
+static void ov59_021D1148(BgConfig *param0);
 static void ov59_021D1250(UnkStruct_020961E8 *param0, NARC *param1);
 static void ov59_021D131C(UnkStruct_020961E8 *param0);
-static void ov59_021D1354(BGL *param0);
+static void ov59_021D1354(BgConfig *param0);
 static void ov59_021D1388(UnkStruct_020961E8 *param0, NARC *param1);
 static void ov59_021D1474(void);
 static void ov59_021D14A4(UnkStruct_020961E8 *param0, NARC *param1);
@@ -367,7 +367,7 @@ static void ov59_021D1100(void *param0)
 {
     sub_0201DCAC();
     sub_0200A858();
-    sub_0201C2B8((BGL *)param0);
+    sub_0201C2B8((BgConfig *)param0);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
@@ -390,7 +390,7 @@ static void ov59_021D1128(void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov59_021D1148(BGL *param0)
+static void ov59_021D1148(BgConfig *param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -557,7 +557,7 @@ static void ov59_021D131C(UnkStruct_020961E8 *param0)
     Strbuf_Free(param0->unk_44);
 }
 
-static void ov59_021D1354(BGL *param0)
+static void ov59_021D1354(BgConfig *param0)
 {
     sub_02019044(param0, 6);
     sub_02019044(param0, 5);
@@ -569,7 +569,7 @@ static void ov59_021D1354(BGL *param0)
 
 static void ov59_021D1388(UnkStruct_020961E8 *param0, NARC *param1)
 {
-    BGL *v0 = param0->unk_00;
+    BgConfig *v0 = param0->unk_00;
 
     sub_02007130(param1, 0, 0, 0, 16 * 16 * 2, 51);
     sub_02006E84(12, 12, 4, 0, 16 * 2, 51);

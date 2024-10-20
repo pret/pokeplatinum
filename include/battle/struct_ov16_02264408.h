@@ -13,7 +13,7 @@
 
 typedef struct {
     SpriteRenderer *unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     PaletteData *unk_08;
     UnkStruct_ov16_0223E0C8 *unk_0C[4];
     u8 unk_1C[4];

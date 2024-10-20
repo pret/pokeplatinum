@@ -47,7 +47,7 @@ typedef struct {
     u8 unk_07;
     u16 unk_08;
     u16 unk_0A;
-    BGL * unk_0C;
+    BgConfig *unk_0C;
     Window unk_10[16];
     MessageLoader * unk_110;
     StringTemplate * unk_114;
@@ -67,9 +67,9 @@ static BOOL ov110_021D0FD0(UnkStruct_ov110_021D0F78 * param0);
 static BOOL ov110_021D1000(UnkStruct_ov110_021D0F78 * param0);
 static void ov110_021D1048(void * param0);
 static void ov110_021D1078(void);
-static void ov110_021D1098(BGL * param0);
+static void ov110_021D1098(BgConfig *param0);
 static void ov110_021D1180(UnkStruct_ov110_021D0F78 * param0);
-static void ov110_021D11CC(BGL * param0);
+static void ov110_021D11CC(BgConfig *param0);
 static void ov110_021D1200(UnkStruct_ov110_021D0F78 * param0, int * param1, int param2);
 static u8 ov110_021D1208(u8 param0);
 static void ov110_021D123C(UnkStruct_ov110_021D0F78 * param0, u32 param1);
@@ -281,7 +281,7 @@ static void ov110_021D1078 (void)
     return;
 }
 
-static void ov110_021D1098 (BGL * param0)
+static void ov110_021D1098(BgConfig *param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -385,7 +385,7 @@ static void ov110_021D1180 (UnkStruct_ov110_021D0F78 * param0)
     return;
 }
 
-static void ov110_021D11CC (BGL * param0)
+static void ov110_021D11CC(BgConfig *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);

@@ -1715,7 +1715,7 @@ void ov62_0223331C(UnkStruct_ov62_02233310 *param0, UnkStruct_0208C06C *param1, 
     CellActorData *v0;
     SpriteTemplate v1;
     NARC *v2 = param1->unk_14.unk_00;
-    BGL *v3 = param1->unk_14.unk_10;
+    BgConfig *v3 = param1->unk_14.unk_10;
     SpriteRenderer *v4 = param1->unk_14.unk_04;
     SpriteGfxHandler *v5 = param1->unk_14.unk_08;
     PaletteData *v6 = param1->unk_14.unk_14;

@@ -27,8 +27,8 @@ typedef struct {
 
 static void NitroStaticInit(void);
 
-static BOOL ov36_022561D4(void **param0, PoketchSystem *poketchSys, BGL *param2, u32 param3);
-static BOOL ov36_0225621C(UnkStruct_ov36_0225621C *param0, PoketchSystem *poketchSys, BGL *param2, u32 param3);
+static BOOL ov36_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3);
+static BOOL ov36_0225621C(UnkStruct_ov36_0225621C *param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3);
 static void ov36_02256278(u32 param0, u32 param1, u32 param2, void *param3);
 static void ov36_02256280(UnkStruct_ov36_0225621C *param0);
 static void ov36_02256298(SysTask *param0, void *param1);
@@ -43,7 +43,7 @@ static void NitroStaticInit(void)
     PoketchSystem_SetAppFunctions(ov36_022561D4, ov36_022562D4);
 }
 
-static BOOL ov36_022561D4(void **param0, PoketchSystem *poketchSys, BGL *param2, u32 param3)
+static BOOL ov36_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3)
 {
     UnkStruct_ov36_0225621C *v0 = (UnkStruct_ov36_0225621C *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov36_0225621C));
 
@@ -61,7 +61,7 @@ static BOOL ov36_022561D4(void **param0, PoketchSystem *poketchSys, BGL *param2,
     return 0;
 }
 
-static BOOL ov36_0225621C(UnkStruct_ov36_0225621C *param0, PoketchSystem *poketchSys, BGL *param2, u32 param3)
+static BOOL ov36_0225621C(UnkStruct_ov36_0225621C *param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3)
 {
     static const TouchScreenHitTable v0[] = {
         { 128 - (56 / 2),

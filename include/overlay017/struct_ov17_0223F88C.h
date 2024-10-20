@@ -26,7 +26,7 @@ typedef struct {
     SpriteRenderer *unk_18;
     SpriteGfxHandler *unk_1C;
     UnkStruct_ov12_0221FCDC *unk_20;
-    BGL *unk_24;
+    BgConfig *unk_24;
     Window unk_28[1];
     MessageLoader *unk_38;
     MessageLoader *unk_3C;

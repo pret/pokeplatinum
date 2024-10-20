@@ -267,7 +267,7 @@ struct UnkStruct_ov99_021D3E78_t {
     BOOL unk_14;
     BOOL unk_18;
     int unk_1C;
-    BGL *unk_20;
+    BgConfig *unk_20;
     Window *unk_24;
     Window *unk_28;
     MessageLoader *unk_2C;
@@ -277,7 +277,7 @@ struct UnkStruct_ov99_021D3E78_t {
 
 static void ov99_021D4104(SysTask *param0, void *param1);
 
-UnkStruct_ov99_021D3E78 *ov99_021D3E78(BGL *param0, int param1, int param2, int param3, MessageLoader *param4)
+UnkStruct_ov99_021D3E78 *ov99_021D3E78(BgConfig *param0, int param1, int param2, int param3, MessageLoader *param4)
 {
     UnkStruct_ov99_021D3E78 *v0 = Heap_AllocFromHeap(75, sizeof(UnkStruct_ov99_021D3E78));
 

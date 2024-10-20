@@ -107,7 +107,7 @@ typedef struct {
     UnkStruct_ov79_021D3820 unk_40;
     UnkStruct_0209903C *unk_5C;
     UnkStruct_0209916C *unk_60[2];
-    BGL *unk_68;
+    BgConfig *unk_68;
     Window unk_6C;
     SpriteRenderer *unk_7C;
     UnkStruct_ov79_021D29B4 unk_80;

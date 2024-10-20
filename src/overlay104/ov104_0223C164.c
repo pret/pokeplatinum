@@ -12,22 +12,22 @@
 
 typedef struct {
     SysTask *unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     u16 unk_08;
     u16 unk_0A;
 } UnkStruct_ov104_0223C188;
 
 struct UnkStruct_ov104_0223C23C_t {
-    BGL *unk_00;
+    BgConfig *unk_00;
     UnkStruct_ov104_0223C188 *unk_04;
 };
 
-UnkStruct_ov104_0223C23C *ov104_0223C164(BGL *param0);
-static UnkStruct_ov104_0223C188 *ov104_0223C188(BGL *param0);
+UnkStruct_ov104_0223C23C *ov104_0223C164(BgConfig *param0);
+static UnkStruct_ov104_0223C188 *ov104_0223C188(BgConfig *param0);
 static void ov104_0223C1BC(SysTask *param0, void *param1);
 static void ov104_0223C208(u16 *param0, u8 param1);
 
-UnkStruct_ov104_0223C23C *ov104_0223C164(BGL *param0)
+UnkStruct_ov104_0223C23C *ov104_0223C164(BgConfig *param0)
 {
     UnkStruct_ov104_0223C23C *v0;
 
@@ -38,7 +38,7 @@ UnkStruct_ov104_0223C23C *ov104_0223C164(BGL *param0)
     return v0;
 }
 
-static UnkStruct_ov104_0223C188 *ov104_0223C188(BGL *param0)
+static UnkStruct_ov104_0223C188 *ov104_0223C188(BgConfig *param0)
 {
     UnkStruct_ov104_0223C188 *v0;
 

@@ -52,8 +52,8 @@ static void ov101_021D0F94(UnkStruct_ov101_021D13C8 *param0);
 static void ov101_021D0F9C(UnkStruct_ov101_021D13C8 *param0);
 static void ov101_021D107C(UnkStruct_ov101_021D13C8 *param0);
 static void ov101_021D1098(void);
-static void ov101_021D10B8(BGL *param0);
-static void ov101_021D11A4(BGL *param0);
+static void ov101_021D10B8(BgConfig *param0);
+static void ov101_021D11A4(BgConfig *param0);
 static void ov101_021D11D0(void);
 static void ov101_021D121C(UnkStruct_ov101_021D13C8 *param0);
 static void ov101_021D150C(void);
@@ -260,7 +260,7 @@ static void ov101_021D1098(void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov101_021D10B8(BGL *param0)
+static void ov101_021D10B8(BgConfig *param0)
 {
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
 
@@ -361,7 +361,7 @@ static void ov101_021D10B8(BGL *param0)
     }
 }
 
-static void ov101_021D11A4(BGL *param0)
+static void ov101_021D11A4(BgConfig *param0)
 {
     sub_02019044(param0, 0);
     sub_02019044(param0, 1);

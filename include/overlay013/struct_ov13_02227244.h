@@ -18,7 +18,7 @@
 
 typedef struct {
     UnkStruct_ov13_022264F4 *unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     PaletteData *unk_08;
     UnkStruct_0200C440 *unk_0C;
     MessageLoader *unk_10;

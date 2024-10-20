@@ -120,7 +120,7 @@ typedef struct {
     TrainerInfo *unk_14;
     Options *unk_18;
     int unk_1C;
-    BGL *unk_20;
+    BgConfig *unk_20;
     int unk_24;
     CellActorCollection *unk_28;
     UnkStruct_0200C738 unk_2C;
@@ -1282,7 +1282,7 @@ static void ov97_02234CF4(UnkStruct_ov97_02234A2C *param0, int param1, int param
     param0->unk_24 = param2;
 }
 
-static void ov97_02234D28(BGL *param0)
+static void ov97_02234D28(BgConfig *param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {

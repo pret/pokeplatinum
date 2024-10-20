@@ -35,7 +35,7 @@ typedef struct UnkStruct_ov20_021D4AD4_t {
     UnkStruct_ov20_021D2128 *unk_00;
     const UnkStruct_ov20_021D16E8 *unk_04;
     const UnkStruct_020998EC *unk_08;
-    BGL *unk_0C;
+    BgConfig *unk_0C;
     CellActorCollection *unk_10;
     CellActor *unk_14;
     CellActor *unk_18;
@@ -59,7 +59,7 @@ typedef struct {
 
 static void ov20_021D4874(UnkStruct_ov20_021D4AD4 *param0, NARC *param1);
 static void ov20_021D48C4(UnkStruct_ov20_021D4AD4 *param0, NARC *param1);
-static void ov20_021D498C(Window *param0, BGL *param1, const Strbuf *param2, int param3);
+static void ov20_021D498C(Window *param0, BgConfig *param1, const Strbuf *param2, int param3);
 static void ov20_021D4A24(UnkStruct_ov20_021D4AD4 *param0, NARC *param1);
 static void ov20_021D4AD4(UnkStruct_ov20_021D4AD4 *param0);
 static void ov20_021D4AF8(UnkStruct_ov20_021D4B2C *param0, NARC *param1, u32 param2, u32 param3);
@@ -175,7 +175,7 @@ static const s16 Unk_ov20_021D52EC[] = {
     (22 + 56 * 3) - 1,
 };
 
-static void ov20_021D498C(Window *param0, BGL *param1, const Strbuf *param2, int param3)
+static void ov20_021D498C(Window *param0, BgConfig *param1, const Strbuf *param2, int param3)
 {
     int v0, v1, v2, v3;
     u32 v4;

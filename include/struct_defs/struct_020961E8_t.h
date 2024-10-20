@@ -22,7 +22,7 @@
 #include "trainer_info.h"
 
 struct UnkStruct_020961E8_t {
-    BGL *unk_00;
+    BgConfig *unk_00;
     BOOL unk_04;
     UnkStruct_0203DE34 *unk_08;
     UnkStruct_ov59_021D109C unk_0C;

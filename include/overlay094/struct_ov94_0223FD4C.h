@@ -38,7 +38,7 @@
 
 typedef struct UnkStruct_ov94_0223FD4C_t {
     UnkStruct_0203E0FC *unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     UnkStruct_0202B370 *unk_08;
     int unk_0C;
     int unk_10;

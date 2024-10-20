@@ -26,7 +26,7 @@ void sub_0208AFE8(UnkStruct_02089688 *param0);
 void sub_0208B028(UnkStruct_02089688 *param0);
 void sub_0208B064(UnkStruct_02089688 *param0);
 void sub_0208B090(UnkStruct_02089688 *param0, int param1, int param2, int param3, int param4);
-void sub_0208B1C4(BGL *param0, Window *param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8);
+void sub_0208B1C4(BgConfig *param0, Window *param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8);
 void sub_0208B230(Window *param0, int param1);
 
 #endif // POKEPLATINUM_UNK_0208A3F4_H

@@ -32,7 +32,7 @@ typedef struct {
     ResourceCollection *unk_34;
     NNSG2dCharacterData **unk_38;
     int unk_3C;
-    BGL *unk_40;
+    BgConfig *unk_40;
     CellActorCollection *unk_44;
     SpriteResourceCollection *unk_48[4];
     UnkStruct_0200C738 unk_58;

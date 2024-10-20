@@ -202,7 +202,7 @@ typedef struct ChooseStarterApp {
     enum CursorPosition cursorPosition;
     int unk_58[3][3];
     int unk_7C[3][2];
-    BGL *bgl;
+    BgConfig *bgl;
     Window *messageWindow;
     Window *unk_9C[3];
     int unk_A8;
@@ -243,8 +243,8 @@ static void SetupVRAMBank(void);
 static void SetupOAM(enum HeapId heapID);
 static void Setup3D(ChooseStarterApp *app);
 static void ov78_021D1218(void);
-static void SetupBGL(BGL *bgl, enum HeapId heapID);
-static void ov78_021D12EC(BGL *param0);
+static void SetupBGL(BgConfig *bgl, enum HeapId heapID);
+static void ov78_021D12EC(BgConfig *param0);
 static void MakeMessageWindow(ChooseStarterApp *app, enum HeapId heapID);
 static void ov78_021D13A0(ChooseStarterApp *param0);
 static u8 ov78_021D1FB4(Window *param0, int param1, int param2, int param3, TextColor param4, u32 param5);
@@ -584,7 +584,7 @@ static void ov78_021D1218(void)
     NNS_GfdResetFrmPlttVramState();
 }
 
-static void SetupBGL(BGL *bgl, enum HeapId heapID)
+static void SetupBGL(BgConfig *bgl, enum HeapId heapID)
 {
     G2_SetBG0Priority(1);
 
@@ -655,7 +655,7 @@ static void SetupBGL(BGL *bgl, enum HeapId heapID)
     }
 }
 
-static void ov78_021D12EC(BGL *param0)
+static void ov78_021D12EC(BgConfig *param0)
 {
     sub_02019044(param0, 1);
     sub_02019044(param0, 2);

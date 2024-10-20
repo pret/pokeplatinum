@@ -87,7 +87,7 @@ static void ov62_02236CBC(UnkStruct_0208C06C *param0, int param1)
 static void ov62_02236CF8(UnkStruct_0208C06C *param0, int param1)
 {
     NARC *v0 = param0->unk_14.unk_00;
-    BGL *v1 = param0->unk_14.unk_10;
+    BgConfig *v1 = param0->unk_14.unk_10;
     SpriteRenderer *v2 = param0->unk_14.unk_04;
     SpriteGfxHandler *v3 = param0->unk_14.unk_08;
     PaletteData *v4 = param0->unk_14.unk_14;
@@ -135,7 +135,7 @@ static void ov62_02236E14(UnkStruct_0208C06C *param0)
 {
     UnkStruct_ov62_02236CBC *v0 = param0->unk_860;
     NARC *v1 = param0->unk_14.unk_00;
-    BGL *v2 = param0->unk_14.unk_10;
+    BgConfig *v2 = param0->unk_14.unk_10;
     SpriteRenderer *v3 = param0->unk_14.unk_04;
     SpriteGfxHandler *v4 = param0->unk_14.unk_08;
     PaletteData *v5 = param0->unk_14.unk_14;
@@ -221,7 +221,7 @@ static void ov62_022370D4(u16 *param0, u16 param1, u16 param2)
 static void ov62_0223712C(UnkStruct_0208C06C *param0)
 {
     UnkStruct_ov62_02236CBC *v0 = param0->unk_860;
-    BGL *v1 = param0->unk_14.unk_10;
+    BgConfig *v1 = param0->unk_14.unk_10;
     SpriteRenderer *v2 = param0->unk_14.unk_04;
     SpriteGfxHandler *v3 = param0->unk_14.unk_08;
     PaletteData *v4 = param0->unk_14.unk_14;
@@ -262,7 +262,7 @@ static void ov62_022371CC(UnkStruct_0208C06C *param0)
     int v2[4 + 1];
     int v3[5];
     UnkStruct_ov62_02236CBC *v4 = param0->unk_860;
-    BGL *v5 = param0->unk_14.unk_10;
+    BgConfig *v5 = param0->unk_14.unk_10;
     SpriteRenderer *v6 = param0->unk_14.unk_04;
     SpriteGfxHandler *v7 = param0->unk_14.unk_08;
     PaletteData *v8 = param0->unk_14.unk_14;

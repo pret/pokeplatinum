@@ -66,7 +66,7 @@ typedef struct {
 struct UnkStruct_ov19_021DCF88_t {
     UnkStruct_ov19_021D61B0 *unk_00;
     const UnkStruct_ov19_021D4DF0 *unk_04;
-    BGL *unk_08;
+    BgConfig *unk_08;
     CellActorCollection *unk_0C;
     u32 unk_10;
     SysTask *unk_14;
@@ -300,7 +300,7 @@ static const u16 Unk_ov19_021E0264[] = {
     0x0
 };
 
-BOOL ov19_021DCF88(UnkStruct_ov19_021DCF88 **param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BGL *param3, CellActorCollection *param4)
+BOOL ov19_021DCF88(UnkStruct_ov19_021DCF88 **param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, CellActorCollection *param4)
 {
     if (ov19_021D5E08(param2) == 4) {
         *param0 = NULL;

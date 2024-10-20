@@ -95,11 +95,11 @@ static void ov88_0223B2F0(NNSG2dCharacterData *param0, int param1, int param2, i
 static void ov88_0223B320(UnkStruct_02095E80 *param0);
 static void ov88_0223C0E0(void *param0);
 static void ov88_0223C15C(void);
-static void ov88_0223C17C(BGL *param0);
+static void ov88_0223C17C(BgConfig *param0);
 static void ov88_0223C63C(void);
 static void ov88_0223C370(UnkStruct_02095E80 *param0, OverlayManager *param1);
-static void ov88_0223C44C(BGL *param0);
-static void ov88_0223C4E0(BGL *param0, int param1, int param2);
+static void ov88_0223C44C(BgConfig *param0);
+static void ov88_0223C4E0(BgConfig *param0, int param1, int param2);
 static void ov88_0223C504(UnkStruct_02095E80 *param0, NARC *param1);
 static void ov88_0223C66C(UnkStruct_02095E80 *param0, NARC *param1);
 static void ov88_0223CBA0(UnkStruct_02095E80 *param0);
@@ -168,7 +168,7 @@ static int ov88_0223D854(UnkStruct_02095E80 *param0);
 static int ov88_0223D69C(UnkStruct_02095E80 *param0);
 static void ov88_0223D1EC(UnkStruct_02095E80 *param0, int param1);
 static void ov88_0223D0D4(TrainerInfo *param0, UnkStruct_02027F8C *param1, UnkStruct_02027F8C *param2);
-static void ov88_0223C488(NARC *param0, u32 param1, BGL *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7);
+static void ov88_0223C488(NARC *param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7);
 
 static const int Unk_ov88_0223EF9C[][2] = {
     { 0x0, 0x20 },
@@ -939,7 +939,7 @@ static void ov88_0223C15C(void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov88_0223C17C(BGL *param0)
+static void ov88_0223C17C(BgConfig *param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -1161,7 +1161,7 @@ static void ov88_0223C370(UnkStruct_02095E80 *param0, OverlayManager *param1)
     sub_02038F8C(v0->unk_14);
 }
 
-static void ov88_0223C44C(BGL *param0)
+static void ov88_0223C44C(BgConfig *param0)
 {
     sub_02019044(param0, 6);
     sub_02019044(param0, 5);
@@ -1173,7 +1173,7 @@ static void ov88_0223C44C(BGL *param0)
     sub_02019044(param0, 0);
 }
 
-static void ov88_0223C488(NARC *param0, u32 param1, BGL *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
+static void ov88_0223C488(NARC *param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
 {
     void *v0 = sub_0200723C(param0, param1, param6, param7, 1);
 
@@ -1194,7 +1194,7 @@ static void ov88_0223C488(NARC *param0, u32 param1, BGL *param2, u32 param3, u32
     }
 }
 
-static void ov88_0223C4E0(BGL *param0, int param1, int param2)
+static void ov88_0223C4E0(BgConfig *param0, int param1, int param2)
 {
     int v0;
     sub_02019460(param0, 2, sub_02019FE4(param0, 2), 32 * 24 * 2, 0);
@@ -1202,7 +1202,7 @@ static void ov88_0223C4E0(BGL *param0, int param1, int param2)
 
 static void ov88_0223C504(UnkStruct_02095E80 *param0, NARC *param1)
 {
-    BGL *v0 = param0->unk_174;
+    BgConfig *v0 = param0->unk_174;
 
     sub_02007130(param1, 0, 4, 0, 16 * 9 * 2, 26);
     sub_02007130(param1, 0, 0, 0, 16 * 9 * 2, 26);

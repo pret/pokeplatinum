@@ -31,8 +31,8 @@
 #include "unk_0200F174.h"
 #include "unk_020393C8.h"
 
-static void ov94_0223DD1C(BGL *param0);
-static void ov94_0223DDE0(BGL *param0);
+static void ov94_0223DD1C(BgConfig *param0);
+static void ov94_0223DDE0(BgConfig *param0);
 static void ov94_0223DE04(UnkStruct_ov94_0223FD4C *param0);
 static void ov94_0223DED8(UnkStruct_ov94_0223FD4C *param0);
 static void ov94_0223DFA4(UnkStruct_ov94_0223FD4C *param0);
@@ -106,7 +106,7 @@ int ov94_0223DCF8(UnkStruct_ov94_0223FD4C *param0, int param1)
     return 1;
 }
 
-static void ov94_0223DD1C(BGL *param0)
+static void ov94_0223DD1C(BgConfig *param0)
 {
     {
         BgTemplate v0 = {
@@ -194,7 +194,7 @@ static void ov94_0223DD1C(BGL *param0)
     sub_02019690(4, 32, 0, 62);
 }
 
-static void ov94_0223DDE0(BGL *param0)
+static void ov94_0223DDE0(BgConfig *param0)
 {
     sub_02019044(param0, 5);
     sub_02019044(param0, 4);
@@ -204,7 +204,7 @@ static void ov94_0223DDE0(BGL *param0)
 
 static void ov94_0223DE04(UnkStruct_ov94_0223FD4C *param0)
 {
-    BGL *v0 = param0->unk_04;
+    BgConfig *v0 = param0->unk_04;
 
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 62);
     sub_0200DD0C(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), 62);

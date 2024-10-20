@@ -97,7 +97,7 @@ void sub_020389C4(u8 param0);
 u8 sub_020389D8(void);
 void sub_020389FC(int param0);
 void sub_02038A0C(void);
-void sub_02038A1C(int param0, BGL *param1);
+void sub_02038A1C(int param0, BgConfig *param1);
 void sub_02038A20(int param0);
 BOOL sub_02038AB8(void);
 BOOL Link_SetErrorState(int param0);

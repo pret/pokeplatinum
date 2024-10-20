@@ -6,9 +6,9 @@
 #include "bg_window.h"
 #include "unk_0200DA60.h"
 
-void ov105_02246214(BGL *param0, Window *param1);
+void ov105_02246214(BgConfig *param0, Window *param1);
 void ov105_02246244(Window *param0);
-void ov105_02246260(BGL *param0, Window *param1);
+void ov105_02246260(BgConfig *param0, Window *param1);
 void ov105_0224628C(Window *param0, int param1);
 
 static const UnkStruct_ov61_0222C884 Unk_ov105_02246458[] = {
@@ -24,7 +24,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov105_02246458[] = {
     { 0x1, 0x16, 0x6, 0x9, 0x2, 0xD, 0x105 }
 };
 
-void ov105_02246214(BGL *param0, Window *param1)
+void ov105_02246214(BgConfig *param0, Window *param1)
 {
     u8 v0;
     const UnkStruct_ov61_0222C884 *v1 = Unk_ov105_02246458;
@@ -48,7 +48,7 @@ void ov105_02246244(Window *param0)
     return;
 }
 
-void ov105_02246260(BGL *param0, Window *param1)
+void ov105_02246260(BgConfig *param0, Window *param1)
 {
     sub_0200DAA4(param0, 1, (1024 - 9), 11, 0, 93);
     Window_Show(param1, 1, (1024 - 9), 11);

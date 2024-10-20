@@ -1029,7 +1029,7 @@ static void *ov16_0226871C(void)
     return v0;
 }
 
-void ov16_02268744(BGL *param0)
+void ov16_02268744(BgConfig *param0)
 {
     int v0;
 
@@ -1041,7 +1041,7 @@ void ov16_02268744(BGL *param0)
     }
 }
 
-void ov16_022687A0(BGL *param0)
+void ov16_022687A0(BgConfig *param0)
 {
     int v0;
 
@@ -1202,7 +1202,7 @@ void ov16_02268A14(UnkStruct_ov16_02268A14 *param0)
 
 void ov16_02268A88(UnkStruct_ov16_02268A14 *param0)
 {
-    BGL *v0;
+    BgConfig *v0;
     SpriteRenderer *v1;
     SpriteGfxHandler *v2;
     PaletteData *v3;
@@ -1264,7 +1264,7 @@ void ov16_02268C04(NARC *param0, NARC *param1, UnkStruct_ov16_02268A14 *param2, 
 {
     const UnkStruct_ov16_02270670 *v0, *v1;
     int v2;
-    BGL *v3;
+    BgConfig *v3;
     SpriteRenderer *v4;
     SpriteGfxHandler *v5;
 
@@ -1675,7 +1675,7 @@ static void ov16_022694A8(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_02268A14 *v0 = param1;
     int v1 = 0;
-    BGL *v2;
+    BgConfig *v2;
 
     v2 = BattleSystem_BGL(v0->unk_00);
     v0->unk_6AC += v0->unk_6B0;
@@ -1829,7 +1829,7 @@ static void ov16_022698BC(UnkStruct_ov16_02268A14 *param0, int param1, int param
     ov16_02269668(param0, param1, param2);
 
     {
-        BGL *v1;
+        BgConfig *v1;
 
         v1 = BattleSystem_BGL(param0->unk_00);
 
@@ -1861,7 +1861,7 @@ static void ov16_02269938(UnkStruct_ov16_02268A14 *param0, int param1, int param
     ov16_02269668(param0, param1, param2);
 
     {
-        BGL *v1;
+        BgConfig *v1;
 
         v1 = BattleSystem_BGL(param0->unk_00);
 
@@ -1930,7 +1930,7 @@ static void ov16_022699AC(UnkStruct_ov16_02268A14 *param0, int param1, int param
     }
 
     {
-        BGL *v7;
+        BgConfig *v7;
 
         v7 = BattleSystem_BGL(param0->unk_00);
 
@@ -2031,7 +2031,7 @@ static void ov16_02269E94(UnkStruct_ov16_02268A14 *param0, int param1, int param
     v1 = MessageLoader_GetNewStrbuf(v0, 1260);
 
     {
-        BGL *v2;
+        BgConfig *v2;
         NNSG2dScreenData *v3;
         void *v4;
 
@@ -2045,7 +2045,7 @@ static void ov16_02269E94(UnkStruct_ov16_02268A14 *param0, int param1, int param
     }
 
     {
-        BGL *v5 = BattleSystem_BGL(param0->unk_00);
+        BgConfig *v5 = BattleSystem_BGL(param0->unk_00);
 
         MI_CpuClear32(param0->unk_3C[4], 0x800);
         sub_02019574(v5, 5, param0->unk_3C[4], 0x800);
@@ -2389,7 +2389,7 @@ static int ov16_0226A528(UnkStruct_ov16_02268A14 *param0, int param1, int param2
     }
 
     {
-        BGL *v2;
+        BgConfig *v2;
 
         v2 = BattleSystem_BGL(param0->unk_00);
         sub_02019EE0(v2, 5, (0x6000 / 0x20 - 1));
@@ -2610,7 +2610,7 @@ static void ov16_0226A98C(UnkStruct_ov16_02268A14 *param0, UnkStruct_ov16_0226A9
     SpriteManagerAllocation v2;
     int v3;
     FontOAM *v4;
-    BGL *v5;
+    BgConfig *v5;
     SpriteGfxHandler *v6;
     int v7, v8;
 
@@ -2688,7 +2688,7 @@ static void ov16_0226AAF8(UnkStruct_ov16_02268A14 *param0)
     u8 v0[4], v1[4];
     int v2, v3;
     u16 *v4, *v5;
-    BGL *v6;
+    BgConfig *v6;
 
     v6 = BattleSystem_BGL(param0->unk_00);
     v4 = sub_02019FE4(v6, 5);
@@ -2955,7 +2955,7 @@ static void ov16_0226B0DC(UnkStruct_ov16_02268A14 *param0, int param1)
     PaletteData *v0;
     int v1;
     const u8 v2[] = { 6, 0xc, 0xd, 5 };
-    BGL *v3;
+    BgConfig *v3;
 
     v3 = BattleSystem_BGL(param0->unk_00);
     v0 = BattleSystem_PaletteSys(param0->unk_00);
@@ -3107,7 +3107,7 @@ static void inline_ov16_0226B318_1(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_02268A14 *v0 = param1;
     UnkStruct_ov16_02268A14_sub4 *v1;
-    BGL *v2;
+    BgConfig *v2;
     PaletteData *v3;
     int v4, v5;
 
@@ -3149,7 +3149,7 @@ static void inline_ov16_0226B314_1(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_02268A14 *v0 = param1;
     UnkStruct_ov16_02268A14_sub4 *v1;
-    BGL *v2;
+    BgConfig *v2;
     PaletteData *v3;
     int v4, v5;
     u8 v6[4];
@@ -3196,7 +3196,7 @@ static void inline_ov16_0226B314_1(SysTask *param0, void *param1)
 static void ov16_0226B31C(UnkStruct_ov16_02268A14 *param0, const s16 *param1, const UnkStruct_ov16_022702F4 *param2, int param3, int param4)
 {
     int v0, v1;
-    BGL *v2;
+    BgConfig *v2;
     u16 *v3, *v4;
     u16 *v5, *v6;
     int v7;
@@ -3221,7 +3221,7 @@ static void ov16_0226B31C(UnkStruct_ov16_02268A14 *param0, const s16 *param1, co
 static void ov16_0226B390(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_02268A14 *v0 = param1;
-    BGL *v1;
+    BgConfig *v1;
     int v2, v3;
 
     v1 = BattleSystem_BGL(v0->unk_00);
@@ -3273,7 +3273,7 @@ static void ov16_0226B390(SysTask *param0, void *param1)
 static void ov16_0226B4E0(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_02268A14 *v0 = param1;
-    BGL *v1;
+    BgConfig *v1;
     int v2, v3;
     int v4, v5, v6;
     int v7, v8, v9;
@@ -3401,7 +3401,7 @@ static void ov16_0226B4E0(SysTask *param0, void *param1)
 static void ov16_0226B780(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_02268A14 *v0 = param1;
-    BGL *v1;
+    BgConfig *v1;
     int v2, v3;
     u8 v4[4];
     int v5;
@@ -3510,7 +3510,7 @@ static TextColor ov16_0226B924(int param0, int param1)
 static void ov16_0226B988(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0226B988 *v0 = param1;
-    BGL *v1;
+    BgConfig *v1;
 
     v1 = BattleSystem_BGL(v0->unk_00->unk_00);
 
@@ -3557,7 +3557,7 @@ static void ov16_0226B988(SysTask *param0, void *param1)
 static void ov16_0226BA88(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0226B988 *v0 = param1;
-    BGL *v1;
+    BgConfig *v1;
     s32 v2, v3, v4;
 
     v1 = BattleSystem_BGL(v0->unk_00->unk_00);
@@ -3624,14 +3624,14 @@ static void ov16_0226BB94(void *param0)
     v1 = GX_GetVCount();
 
     if (v1 == (18 * 8)) {
-        BGL *v3 = BattleSystem_BGL(v0->unk_00->unk_00);
+        BgConfig *v3 = BattleSystem_BGL(v0->unk_00->unk_00);
 
         sub_02019184(v3, 4, 0, 0);
         sub_02019184(v3, 4, 3, v0->unk_10);
         sub_02019184(v3, 5, 0, 0);
         sub_02019184(v3, 5, 3, v0->unk_10);
     } else if (v1 > 192) {
-        BGL *v4 = BattleSystem_BGL(v0->unk_00->unk_00);
+        BgConfig *v4 = BattleSystem_BGL(v0->unk_00->unk_00);
 
         if (v0->unk_12 == 4) {
             v2 = 255 - v0->unk_0C;
@@ -4578,7 +4578,7 @@ static int ov16_0226CE34(UnkStruct_ov16_02268A14 *param0)
 
 void ov16_0226CEB0(UnkStruct_ov16_02268A14 *param0, int param1)
 {
-    BGL *v0 = BattleSystem_BGL(param0->unk_00);
+    BgConfig *v0 = BattleSystem_BGL(param0->unk_00);
     PaletteData *v1 = BattleSystem_PaletteSys(param0->unk_00);
 
     GF_ASSERT(param0->unk_66B == 18);

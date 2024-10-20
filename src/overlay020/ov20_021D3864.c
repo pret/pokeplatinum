@@ -26,7 +26,7 @@ typedef struct UnkStruct_ov20_021D3980_t {
     CellActor *unk_0C;
 } UnkStruct_ov20_021D3980;
 
-static void ov20_021D390C(BGL *param0, const UnkStruct_ov61_0222C884 *param1, u32 param2);
+static void ov20_021D390C(BgConfig *param0, const UnkStruct_ov61_0222C884 *param1, u32 param2);
 static void ov20_021D3980(UnkStruct_ov20_021D3980 *param0);
 
 UnkStruct_ov20_021D3980 *ov20_021D3864(UnkStruct_ov20_021D2128 *param0, const UnkStruct_ov20_021D16E8 *param1, const UnkStruct_020998EC *param2)
@@ -58,7 +58,7 @@ void ov20_021D3898(UnkStruct_ov20_021D3980 *param0, NARC *param1)
     static const UnkStruct_ov61_0222C884 v1 = {
         3, 19, 6, 10, 2, 13, 84
     };
-    BGL *v2;
+    BgConfig *v2;
 
     v2 = ov20_021D2E04(param0->unk_00);
 
@@ -72,7 +72,7 @@ void ov20_021D3898(UnkStruct_ov20_021D3980 *param0, NARC *param1)
     sub_02019448(v2, 3);
 }
 
-static void ov20_021D390C(BGL *param0, const UnkStruct_ov61_0222C884 *param1, u32 param2)
+static void ov20_021D390C(BgConfig *param0, const UnkStruct_ov61_0222C884 *param1, u32 param2)
 {
     Window v0;
     Strbuf *v1;

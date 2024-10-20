@@ -75,7 +75,7 @@ static const UnkStruct_ov104_02241308 Unk_ov99_021D472C = {
 
 static void ov99_021D1244(SysTask *param0, void *param1);
 static void ov99_021D1350(void *param0);
-static void ov99_021D1380(BGL *param0);
+static void ov99_021D1380(BgConfig *param0);
 static void ov99_021D1720(UnkStruct_ov99_021D2CB0 *param0);
 static void ov99_021D1918(UnkStruct_ov99_021D2CB0 *param0);
 static void ov99_021D19A0(UnkStruct_ov99_021D2CB0 *param0);
@@ -85,7 +85,7 @@ static void ov99_021D1A4C(GenericPointerData *param0);
 static void ov99_021D16E4(UnkStruct_ov99_021D2CB0 *param0);
 static void ov99_021D1270(UnkStruct_ov99_021D2CB0 *param0);
 static void ov99_021D1314(UnkStruct_ov99_021D2CB0 *param0);
-static void ov99_021D1580(BGL *param0);
+static void ov99_021D1580(BgConfig *param0);
 
 int ov99_021D0D80(OverlayManager *param0, int *param1)
 {
@@ -361,7 +361,7 @@ static void ov99_021D1350(void *param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void ov99_021D1380(BGL *param0)
+static void ov99_021D1380(BgConfig *param0)
 {
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -540,7 +540,7 @@ static void ov99_021D1380(BGL *param0)
     sub_02019120(6, 0);
 }
 
-static void ov99_021D1580(BGL *param0)
+static void ov99_021D1580(BgConfig *param0)
 {
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();

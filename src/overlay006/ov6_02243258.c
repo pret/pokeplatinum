@@ -271,9 +271,9 @@ static void ov6_02244D34(CellActor *param0);
 static CellActor *ov6_02244D4C(UnkStruct_ov6_02243FFC *param0, const VecFx32 *param1, int param2, int param3);
 static void ov6_02244DB4(UnkStruct_ov6_02243FFC *param0);
 static void ov6_02244E54(NARC *param0, u32 param1, NNSG2dPaletteData **param2);
-static void ov6_02244E7C(BGL *param0, NARC *param1, u32 param2, NNSG2dCharacterData **param3);
-static void ov6_02244EB4(BGL *param0, NARC *param1, u32 param2, NNSG2dScreenData **param3);
-static void ov6_02244F20(BGL *param0);
+static void ov6_02244E7C(BgConfig *param0, NARC *param1, u32 param2, NNSG2dCharacterData **param3);
+static void ov6_02244EB4(BgConfig *param0, NARC *param1, u32 param2, NNSG2dScreenData **param3);
+static void ov6_02244F20(BgConfig *param0);
 static void ov6_02244F2C(UnkStruct_ov6_02243FFC *param0);
 static void ov6_02244F50(UnkStruct_ov6_02243FFC *param0);
 static void ov6_02244F58(UnkStruct_ov6_02243FFC *param0);
@@ -1949,7 +1949,7 @@ static void ov6_02244E54(NARC *param0, u32 param1, NNSG2dPaletteData **param2)
     Heap_FreeToHeap(v0);
 }
 
-static void ov6_02244E7C(BGL *param0, NARC *param1, u32 param2, NNSG2dCharacterData **param3)
+static void ov6_02244E7C(BgConfig *param0, NARC *param1, u32 param2, NNSG2dCharacterData **param3)
 {
     void *v0;
 
@@ -1960,7 +1960,7 @@ static void ov6_02244E7C(BGL *param0, NARC *param1, u32 param2, NNSG2dCharacterD
     Heap_FreeToHeap(v0);
 }
 
-static void ov6_02244EB4(BGL *param0, NARC *param1, u32 param2, NNSG2dScreenData **param3)
+static void ov6_02244EB4(BgConfig *param0, NARC *param1, u32 param2, NNSG2dScreenData **param3)
 {
     void *v0;
 
@@ -1976,7 +1976,7 @@ static void ov6_02244EB4(BGL *param0, NARC *param1, u32 param2, NNSG2dScreenData
     Heap_FreeToHeap(v0);
 }
 
-static void ov6_02244F20(BGL *param0)
+static void ov6_02244F20(BgConfig *param0)
 {
     sub_02019EBC(param0, 3);
 }

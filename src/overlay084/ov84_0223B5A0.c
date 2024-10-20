@@ -68,8 +68,8 @@ typedef int (*UnkFuncPtr_ov84_0223DA04)(UnkStruct_ov84_0223B5A0 *);
 static void ov84_0223B9AC(UnkStruct_ov84_0223B5A0 *param0);
 static void ov84_0223BA14(void *param0);
 static void ov84_0223BA3C(void);
-static void ov84_0223BA5C(BGL *param0);
-static void ov84_0223BBC4(BGL *param0);
+static void ov84_0223BA5C(BgConfig *param0);
+static void ov84_0223BBC4(BgConfig *param0);
 static void ov84_0223BC1C(UnkStruct_ov84_0223B5A0 *param0);
 static u8 ov84_0223C5B8(UnkStruct_ov84_0223B5A0 *param0);
 static u8 ov84_0223C750(UnkStruct_ov84_0223B5A0 *param0);
@@ -650,7 +650,7 @@ static void ov84_0223BA3C(void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov84_0223BA5C(BGL *param0)
+static void ov84_0223BA5C(BgConfig *param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -798,7 +798,7 @@ static void ov84_0223BA5C(BGL *param0)
     sub_02019690(4, 32, 0, 6);
 }
 
-static void ov84_0223BBC4(BGL *param0)
+static void ov84_0223BBC4(BgConfig *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);

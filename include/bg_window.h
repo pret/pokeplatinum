@@ -67,12 +67,12 @@ typedef struct Background {
     int yCenter;
 } Background;
 
-typedef struct UnkStruct_02018340_t {
-    u32 unk_00;
-    u16 unk_04;
-    u16 unk_06;
-    Background unk_08[8];
-} BGL;
+typedef struct BgConfig {
+    u32 heapID;
+    u16 scrollScheduled;
+    u16 bufferTransferScheduled;
+    Background bgs[8];
+} BgConfig;
 
 typedef struct {
     u8 unk_00;
@@ -85,7 +85,7 @@ typedef struct {
 } UnkStruct_ov61_0222C884;
 
 typedef struct {
-    BGL *unk_00;
+    BgConfig *unk_00;
     u8 unk_04;
     u8 unk_05;
     u8 unk_06;
@@ -104,43 +104,43 @@ typedef struct {
     GXBG0As unk_0C;
 } UnkStruct_ov84_0223BA5C;
 
-BGL *sub_02018340(u32 param0);
-u32 sub_02018364(BGL *param0);
+BgConfig *sub_02018340(u32 param0);
+u32 sub_02018364(BgConfig *param0);
 void sub_02018368(const UnkStruct_ov84_0223BA5C *param0);
 void sub_020183A0(const UnkStruct_ov84_0223BA5C *param0, u8 param1);
-void sub_020183C4(BGL *param0, u8 param1, const BgTemplate *param2, u8 param3);
-void sub_02018898(BGL *param0, u8 param1, u8 param2, u8 param3);
-void sub_02019044(BGL *param0, u8 param1);
+void sub_020183C4(BgConfig *param0, u8 param1, const BgTemplate *param2, u8 param3);
+void sub_02018898(BgConfig *param0, u8 param1, u8 param2, u8 param3);
+void sub_02019044(BgConfig *param0, u8 param1);
 void BGL_SetPriority(u8 param0, u8 param1);
 void sub_02019120(u8 param0, u8 param1);
-void sub_02019184(BGL *param0, u8 param1, u8 param2, int param3);
-int sub_020192EC(BGL *param0, u32 param1);
-int sub_020192F8(BGL *param0, u32 param1);
-void sub_02019348(BGL *param0, u8 param1, const MtxFx22 *param2, int param3, int param4);
+void sub_02019184(BgConfig *param0, u8 param1, u8 param2, int param3);
+int sub_020192EC(BgConfig *param0, u32 param1);
+int sub_020192F8(BgConfig *param0, u32 param1);
+void sub_02019348(BgConfig *param0, u8 param1, const MtxFx22 *param2, int param3, int param4);
 void sub_02019410(const void *param0, void *param1, u32 param2);
-void sub_02019448(BGL *param0, u8 param1);
-void sub_02019460(BGL *param0, u8 param1, const void *param2, u32 param3, u32 param4);
-void sub_02019574(BGL *param0, u8 param1, const void *param2, u32 param3);
-void sub_0201958C(BGL *param0, u8 param1, const void *param2, u32 param3, u32 param4);
+void sub_02019448(BgConfig *param0, u8 param1);
+void sub_02019460(BgConfig *param0, u8 param1, const void *param2, u32 param3, u32 param4);
+void sub_02019574(BgConfig *param0, u8 param1, const void *param2, u32 param3);
+void sub_0201958C(BgConfig *param0, u8 param1, const void *param2, u32 param3, u32 param4);
 void sub_02019690(u8 param0, u32 param1, u32 param2, u32 param3);
-void sub_020196C0(BGL *param0, u32 param1, u32 param2, u32 param3, u32 param4);
+void sub_020196C0(BgConfig *param0, u32 param1, u32 param2, u32 param3, u32 param4);
 void sub_0201972C(u8 param0, void *param1, u16 param2, u16 param3);
 void sub_0201975C(u8 param0, u16 param1);
-void sub_020198C0(BGL *param0, u8 param1, const void *param2, u8 param3, u8 param4, u8 param5, u8 param6);
-void sub_020198E8(BGL *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, const void *param6, u8 param7, u8 param8, u8 param9, u8 param10);
-void sub_02019964(BGL *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, const void *param6, u8 param7, u8 param8, u8 param9, u8 param10);
-void sub_02019CB8(BGL *param0, u8 param1, u16 param2, u8 param3, u8 param4, u8 param5, u8 param6, u8 param7);
-void sub_02019E2C(BGL *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6);
-void sub_02019EBC(BGL *param0, u8 param1);
-void sub_02019EE0(BGL *param0, u8 param1, u16 param2);
-void sub_02019F04(BGL *param0, u8 param1, u16 param2);
+void sub_020198C0(BgConfig *param0, u8 param1, const void *param2, u8 param3, u8 param4, u8 param5, u8 param6);
+void sub_020198E8(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, const void *param6, u8 param7, u8 param8, u8 param9, u8 param10);
+void sub_02019964(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, const void *param6, u8 param7, u8 param8, u8 param9, u8 param10);
+void sub_02019CB8(BgConfig *param0, u8 param1, u16 param2, u8 param3, u8 param4, u8 param5, u8 param6, u8 param7);
+void sub_02019E2C(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6);
+void sub_02019EBC(BgConfig *param0, u8 param1);
+void sub_02019EE0(BgConfig *param0, u8 param1, u16 param2);
+void sub_02019F04(BgConfig *param0, u8 param1, u16 param2);
 void *sub_02019F28(u8 param0);
 void sub_02019F80(const u8 *param0, u32 param1, u8 *param2, u8 param3);
 void *sub_02019FC0(const u8 *param0, u32 param1, u8 param2, u32 param3);
-void *sub_02019FE4(BGL *param0, u8 param1);
-int sub_02019FF0(BGL *param0, u8 param1);
-u16 sub_02019FFC(BGL *param0, u8 param1);
-u8 sub_0201A008(BGL *param0, u8 param1);
+void *sub_02019FE4(BgConfig *param0, u8 param1);
+int sub_02019FF0(BgConfig *param0, u8 param1);
+u16 sub_02019FFC(BgConfig *param0, u8 param1);
+u8 sub_0201A008(BgConfig *param0, u8 param1);
 void sub_0201A1E4(const Bitmap *param0, const Bitmap *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6, u16 param7, u16 param8);
 void sub_0201A424(const Bitmap *param0, const Bitmap *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6, u16 param7, u16 param8);
 void sub_0201A60C(const Bitmap *param0, u16 param1, u16 param2, u16 param3, u16 param4, u8 param5);
@@ -148,9 +148,9 @@ void sub_0201A6D0(const Bitmap *param0, u16 param1, u16 param2, u16 param3, u16 
 Window *sub_0201A778(u32 param0, u8 param1);
 void Window_Init(Window *param0);
 u8 BGL_WindowAdded(Window *param0);
-void BGL_AddWindow(BGL *param0, Window *param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6, u8 param7, u16 param8);
-void BGL_AddFramelessWindow(BGL *param0, Window *param1, u8 param2, u8 param3, u16 param4, u8 param5);
-void sub_0201A8D4(BGL *param0, Window *param1, const UnkStruct_ov61_0222C884 *param2);
+void BGL_AddWindow(BgConfig *param0, Window *param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6, u8 param7, u16 param8);
+void BGL_AddFramelessWindow(BgConfig *param0, Window *param1, u8 param2, u8 param3, u16 param4, u8 param5);
+void sub_0201A8D4(BgConfig *param0, Window *param1, const UnkStruct_ov61_0222C884 *param2);
 void BGL_DeleteWindow(Window *param0);
 void sub_0201A928(Window *param0, u8 param1);
 void sub_0201A954(Window *param0);
@@ -167,7 +167,7 @@ void sub_0201AE08(Window *param0, void *param1, u16 param2, u16 param3, u16 para
 void BGL_WindowColor(Window *param0, u8 param1, u16 param2, u16 param3, u16 param4, u16 param5);
 void sub_0201AED0(Window *param0, const u8 *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6);
 void sub_0201C04C(Window *param0, u8 param1, u8 param2, u8 param3);
-BGL *sub_0201C28C(Window *param0);
+BgConfig *sub_0201C28C(Window *param0);
 u8 sub_0201C290(Window *param0);
 u8 sub_0201C294(Window *param0);
 u8 sub_0201C298(Window *param0);
@@ -177,12 +177,12 @@ u16 sub_0201C2A4(Window *param0);
 void sub_0201C2AC(Window *param0, u8 param1);
 void sub_0201C2B0(Window *param0, u8 param1);
 void sub_0201C2B4(Window *param0, u8 param1);
-void sub_0201C2B8(BGL *param0);
-void sub_0201C3C0(BGL *param0, u8 param1);
-void sub_0201C63C(BGL *param0, u8 param1, u8 param2, int param3);
-void sub_0201C660(BGL *param0, u8 param1, u8 param2, u16 param3);
-void sub_0201C6A8(BGL *param0, u8 param1, u8 param2, fx32 param3);
-void sub_0201C718(BGL *param0, u8 param1, u8 param2, int param3);
-u8 sub_0201C784(BGL *param0, u8 param1, u16 param2, u16 param3, u16 *param4);
+void sub_0201C2B8(BgConfig *param0);
+void sub_0201C3C0(BgConfig *param0, u8 param1);
+void sub_0201C63C(BgConfig *param0, u8 param1, u8 param2, int param3);
+void sub_0201C660(BgConfig *param0, u8 param1, u8 param2, u16 param3);
+void sub_0201C6A8(BgConfig *param0, u8 param1, u8 param2, fx32 param3);
+void sub_0201C718(BgConfig *param0, u8 param1, u8 param2, int param3);
+u8 sub_0201C784(BgConfig *param0, u8 param1, u16 param2, u16 param3, u16 *param4);
 
 #endif // POKEPLATINUM_BG_WINDOW_H

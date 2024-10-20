@@ -610,7 +610,7 @@ void ov21_021D154C(TouchScreenHitTable *hitTable, int param1, int param2, int pa
     hitTable->rect.right = param4;
 }
 
-void ov21_021D1558(UnkStruct_ov21_021D157C *param0, BGL *param1, int param2, NNSG2dScreenData *param3, int param4, int param5, int param6, int param7, int param8)
+void ov21_021D1558(UnkStruct_ov21_021D157C *param0, BgConfig *param1, int param2, NNSG2dScreenData *param3, int param4, int param5, int param6, int param7, int param8)
 {
     param0->unk_00 = param1;
     param0->unk_08 = param2;

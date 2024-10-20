@@ -100,7 +100,7 @@ static const UnkStruct_ov61_0222C884 Unk_020F1E98 = {
     0x240
 };
 
-static void sub_020819DC(BGL *param0, Window *param1, const UnkStruct_ov61_0222C884 *param2)
+static void sub_020819DC(BgConfig *param0, Window *param1, const UnkStruct_ov61_0222C884 *param2)
 {
     sub_0201A8D4(param0, &param1[0], &param2[0]);
     sub_0201A8D4(param0, &param1[1], &param2[1]);

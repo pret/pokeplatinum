@@ -75,7 +75,7 @@ typedef struct {
     UnkStruct_0202C878 *unk_04;
     Options *unk_08;
     UnkStruct_ov92_021D1B24_sub1 unk_0C;
-    BGL *unk_B810;
+    BgConfig *unk_B810;
     Window unk_B814;
     Window unk_B824;
     Window unk_B834;

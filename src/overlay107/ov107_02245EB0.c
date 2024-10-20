@@ -104,7 +104,7 @@ struct UnkStruct_ov107_02246170_t {
     Strbuf* unk_2C;
     Strbuf* unk_30[3];
     u16 unk_3C[8];
-    BGL * unk_4C;
+    BgConfig *unk_4C;
     Window unk_50[12];
     UnkStruct_02081CF4 unk_110;
     UIControlData * unk_11C;
@@ -156,10 +156,10 @@ static void ov107_02246EAC(void);
 static void ov107_02246EE4(UnkStruct_ov107_02246170 * param0);
 static void ov107_02247280(UnkStruct_ov107_02246170 * param0);
 static void ov107_02247220(UnkStruct_ov107_02246170 * param0);
-static void ov107_022472A4(BGL * param0);
+static void ov107_022472A4(BgConfig *param0);
 static void ov107_022472E8(void * param0);
 static void ov107_02247320(void);
-static void ov107_02247340(BGL * param0);
+static void ov107_02247340(BgConfig *param0);
 static void ov107_02247484(UnkStruct_ov107_02246170 * param0, u32 param1);
 static void ov107_022474F8(void);
 static void ov107_0224752C(UnkStruct_ov107_02246170 * param0, u32 param1);
@@ -1226,7 +1226,7 @@ static void ov107_02247280 (UnkStruct_ov107_02246170 * param0)
     return;
 }
 
-static void ov107_022472A4 (BGL * param0)
+static void ov107_022472A4(BgConfig *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
@@ -1275,7 +1275,7 @@ static void ov107_02247320 (void)
     return;
 }
 
-static void ov107_02247340 (BGL * param0)
+static void ov107_02247340(BgConfig *param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {

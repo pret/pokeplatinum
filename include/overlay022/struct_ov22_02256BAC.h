@@ -10,7 +10,7 @@
 #include "sprite_resource.h"
 
 typedef struct {
-    BGL *unk_00;
+    BgConfig *unk_00;
     CellActorCollection *unk_04;
     SpriteResourceCollection **unk_08;
     const Options *unk_0C;

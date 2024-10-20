@@ -67,7 +67,7 @@ static void ov104_0223C71C(SysTask *param0, void *param1);
 static void ov104_0223C738(SysTask *param0, void *param1);
 static void ov104_0223C720(SysTask *param0, void *param1);
 static void ov104_0223C72C(SysTask *param0, void *param1);
-static void ov104_0223C948(BGL *param0, int param1);
+static void ov104_0223C948(BgConfig *param0, int param1);
 static void ov104_0223CC74(UnkStruct_ov104_0223C4CC *param0, int param1, const TrainerInfo *param2);
 static void ov104_0223CEEC(UnkStruct_ov104_0223C4CC *param0);
 static void ov104_0223CB80(UnkStruct_ov104_0223C4CC *param0);
@@ -449,7 +449,7 @@ static void ov104_0223C8E8(UnkStruct_ov104_0223C4CC *param0)
     }
 }
 
-static void ov104_0223C948(BGL *param0, int param1)
+static void ov104_0223C948(BgConfig *param0, int param1)
 {
     int v0;
 

@@ -39,9 +39,9 @@ typedef struct {
 static void ov71_0223B620(UnkStruct_ov71_0223B620 *param0);
 static void ov71_0223B668(UnkStruct_ov71_0223B620 *param0);
 static void ov71_0223B688(void);
-static void ov71_0223B858(BGL *param0);
+static void ov71_0223B858(BgConfig *param0);
 static void ov71_0223B968(UnkStruct_ov71_0223B620 *param0, NARC *param1);
-static void ov71_0223BBDC(BGL *param0);
+static void ov71_0223BBDC(BgConfig *param0);
 static BOOL ov71_0223BC20(UnkStruct_ov71_0223B620 *param0);
 static BOOL ov71_0223BDF8(UnkStruct_ov71_0223B620 *param0);
 static BOOL ov71_0223C334(UnkStruct_ov71_0223B620 *param0, const u8 *param1);
@@ -63,11 +63,11 @@ static void ov71_0223C444(UnkStruct_ov71_0223C444 *param0);
 static void ov71_0223C44C(UnkStruct_ov71_0223C444 *param0);
 static void ov71_0223C45C(UnkStruct_ov71_0223C444 *param0);
 static void ov71_0223C4DC(const u8 *param0, u8 *param1);
-static void ov71_0223C530(BGL *param0, const int param1, const u8 *param2);
+static void ov71_0223C530(BgConfig *param0, const int param1, const u8 *param2);
 static void ov71_0223C594(const int param0);
 static void ov71_0223C5A4(UnkStruct_ov71_0223B620 *param0, const u8 param1);
-static int ov71_0223C60C(BGL *param0, const TouchScreenRect *rect);
-static int ov71_0223C654(BGL *param0, const TouchScreenRect *rect);
+static int ov71_0223C60C(BgConfig *param0, const TouchScreenRect *rect);
+static int ov71_0223C654(BgConfig *param0, const TouchScreenRect *rect);
 
 static const u8 Unk_ov71_0223D4B0[5] = {
     0x1,
@@ -533,7 +533,7 @@ static void ov71_0223B820(const u8 param0, NARC *param1)
     Heap_FreeToHeap(v0);
 }
 
-static void ov71_0223B858(BGL *param0)
+static void ov71_0223B858(BgConfig *param0)
 {
     GX_SetDispSelect(GX_DISP_SELECT_SUB_MAIN);
 
@@ -751,7 +751,7 @@ static void ov71_0223B968(UnkStruct_ov71_0223B620 *param0, NARC *param1)
     ov71_0223C4DC(param0->unk_B4->unk_68, param0->unk_B8);
 }
 
-static void ov71_0223BBDC(BGL *param0)
+static void ov71_0223BBDC(BgConfig *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_OBJ, 0);
@@ -1268,7 +1268,7 @@ static void ov71_0223C4DC(const u8 *param0, u8 *param1)
     }
 }
 
-static void ov71_0223C530(BGL *param0, const int param1, const u8 *param2)
+static void ov71_0223C530(BgConfig *param0, const int param1, const u8 *param2)
 {
     u16 *v0;
     u8 v1, v2;
@@ -1317,7 +1317,7 @@ static void ov71_0223C5A4(UnkStruct_ov71_0223B620 *param0, const u8 param1)
     param0->unk_3382 = (param0->unk_3382 + 1) % 30;
 }
 
-static int ov71_0223C60C(BGL *param0, const TouchScreenRect *rect)
+static int ov71_0223C60C(BgConfig *param0, const TouchScreenRect *rect)
 {
     int v0 = sub_02022664(rect);
 
@@ -1336,7 +1336,7 @@ static int ov71_0223C60C(BGL *param0, const TouchScreenRect *rect)
     return v0;
 }
 
-static int ov71_0223C654(BGL *param0, const TouchScreenRect *rect)
+static int ov71_0223C654(BgConfig *param0, const TouchScreenRect *rect)
 {
     int v0 = sub_02022644(rect);
 

@@ -23,7 +23,7 @@ typedef struct UnkStruct_ov23_02253E2C_t {
     Strbuf *unk_00;
     Strbuf *unk_04;
     Window unk_08;
-    BGL *unk_18;
+    BgConfig *unk_18;
     UnkStruct_ov23_02253F60 unk_1C;
     SysTask *unk_20;
     MessageLoader *unk_24;
@@ -70,7 +70,7 @@ const UnkStruct_ov84_02240FA8 *ov23_02253D40(void)
     return &Unk_ov23_022569E0;
 }
 
-UnkStruct_ov23_02253E2C *ov23_02253D48(int param0, int param1, BGL *param2, int param3, int param4)
+UnkStruct_ov23_02253E2C *ov23_02253D48(int param0, int param1, BgConfig *param2, int param3, int param4)
 {
     int v0 = param4;
     UnkStruct_ov23_02253E2C *v1 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov23_02253E2C));
@@ -121,7 +121,7 @@ void ov23_02253DFC(UnkStruct_ov23_02253E2C *param0, int param1, int param2)
     }
 }
 
-void ov23_02253E2C(UnkStruct_ov23_02253E2C *param0, BGL *param1, u16 param2, u16 param3)
+void ov23_02253E2C(UnkStruct_ov23_02253E2C *param0, BgConfig *param1, u16 param2, u16 param3)
 {
     param0->unk_18 = param1;
     param0->unk_42 = param2;

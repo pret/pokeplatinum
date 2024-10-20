@@ -102,7 +102,7 @@ typedef struct {
     ResourceMetadata *unk_C4;
     UIControlData *unk_C8;
     FieldSystem *fieldSystem;
-    BGL *unk_D0;
+    BgConfig *unk_D0;
     Window unk_D4;
     Window unk_E4;
     Window unk_F4;

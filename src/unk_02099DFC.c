@@ -31,7 +31,7 @@ typedef struct {
     int unk_08;
     int unk_0C;
     Strbuf *unk_10;
-    BGL *unk_14;
+    BgConfig *unk_14;
     MessageLoader *unk_18;
     Window unk_1C;
     UIControlData *unk_2C;

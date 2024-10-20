@@ -74,7 +74,7 @@ enum PoketchEventID {
 
 typedef struct PoketchSystem PoketchSystem;
 
-typedef BOOL (*PoketchAppInitFunction)(void **app, PoketchSystem *poketchSys, BGL *bgl, u32 appID);
+typedef BOOL (*PoketchAppInitFunction)(void **app, PoketchSystem *poketchSys, BgConfig *bgl, u32 appID);
 typedef void (*PoketchAppShutdownFunction)(void *app);
 typedef void (*PoketchAppSaveFunction)(void *app);
 
@@ -106,7 +106,7 @@ struct PoketchSystem {
     PoketchAppSaveFunction currAppSave;
     void *appSaveData;
 
-    BGL *bgl;
+    BgConfig *bgl;
     NNSG2dOamManagerInstance *oamManager;
 
     SaveData *saveData;
@@ -115,7 +115,7 @@ struct PoketchSystem {
     enum ButtonDir buttonDir;
 };
 
-void PoketchSystem_Create(FieldSystem *fieldSystem, PoketchSystem **poketchSys, SaveData *saveData, BGL *bgl, NNSG2dOamManagerInstance *oamManager);
+void PoketchSystem_Create(FieldSystem *fieldSystem, PoketchSystem **poketchSys, SaveData *saveData, BgConfig *bgl, NNSG2dOamManagerInstance *oamManager);
 void PoketchSystem_StartShutdown(PoketchSystem *poketchSys);
 BOOL PoketchSystem_IsSystemShutdown(PoketchSystem *poketchSys);
 void PoketchSystem_SendEvent(PoketchSystem *poketchSys, enum PoketchEventID eventID, u32);

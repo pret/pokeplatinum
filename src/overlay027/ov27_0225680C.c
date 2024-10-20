@@ -30,7 +30,7 @@ typedef struct {
 
 struct UnkStruct_ov27_0225680C_t {
     const UnkStruct_ov27_0225680C_1 *unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     u32 unk_08[10];
     NNSG2dOamManagerInstance *unk_30;
     UnkStruct_ov25_02255958 unk_34;
@@ -55,12 +55,12 @@ static void ov27_02256D00(SysTask *param0, void *param1);
 static void ov27_02256D80(SysTask *param0, void *param1);
 static void ov27_02256E1C(SysTask *param0, void *param1);
 static BOOL ov27_02256E90(UnkStruct_ov27_02256E90 *param0, u32 param1);
-static void ov27_02256EC4(BGL *param0, u32 param1);
+static void ov27_02256EC4(BgConfig *param0, u32 param1);
 static void ov27_02256F24(SysTask *param0, void *param1);
 static void ov27_02256F7C(UnkStruct_ov27_0225680C *param0);
 struct PoketchSystem *FieldSystem_GetPoketchSystem(void);
 
-BOOL ov27_0225680C(UnkStruct_ov27_0225680C **param0, const UnkStruct_ov27_0225680C_1 *param1, BGL *param2)
+BOOL ov27_0225680C(UnkStruct_ov27_0225680C **param0, const UnkStruct_ov27_0225680C_1 *param1, BgConfig *param2)
 {
     UnkStruct_ov27_0225680C *v0 = (UnkStruct_ov27_0225680C *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov27_0225680C));
 
@@ -535,7 +535,7 @@ static BOOL ov27_02256E90(UnkStruct_ov27_02256E90 *param0, u32 param1)
     return 0;
 }
 
-static void ov27_02256EC4(BGL *param0, u32 param1)
+static void ov27_02256EC4(BgConfig *param0, u32 param1)
 {
     u16 *v0;
     u32 v1, v2;

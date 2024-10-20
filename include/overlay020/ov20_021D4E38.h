@@ -6,7 +6,7 @@
 
 #include "bg_window.h"
 
-void ov20_021D4E38(UnkStruct_ov20_021D4E8C *param0, BGL *param1, u32 param2, int param3, int param4, int param5);
+void ov20_021D4E38(UnkStruct_ov20_021D4E8C *param0, BgConfig *param1, u32 param2, int param3, int param4, int param5);
 BOOL ov20_021D4E8C(UnkStruct_ov20_021D4E8C *param0);
 void ov20_021D4F1C(UnkStruct_ov20_021D4FF0 *param0, int param1, int param2, int param3, int param4, int param5);
 BOOL ov20_021D4F4C(UnkStruct_ov20_021D4FF0 *param0);

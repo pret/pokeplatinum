@@ -16,7 +16,7 @@
 
 typedef struct {
     UnkStruct_ov19_021D61B0 *unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     CellActorCollection *unk_08;
     const UnkStruct_ov19_021D4DF0 *unk_0C;
     Window *unk_10;

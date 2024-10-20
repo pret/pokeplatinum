@@ -27,7 +27,7 @@ typedef struct {
 } UnkStruct_ov22_022598F4;
 
 typedef struct {
-    BGL *unk_00;
+    BgConfig *unk_00;
     NNSG2dCharacterData *unk_04;
     void *unk_08;
     int unk_0C;
@@ -45,8 +45,8 @@ typedef struct {
 static void ov22_02259980(const NNSG2dScreenData *param0, int param1);
 static void ov22_022599A0(UnkStruct_ov22_022599A0 *param0, int *param1, int *param2);
 static void ov22_02259A4C(SysTask *param0, void *param1);
-static void ov22_02259ABC(BGL *param0, int param1, const NNSG2dScreenData *param2, int param3, int param4, int param5, int param6, int param7, int param8);
-static void ov22_02259B3C(u32 param0, u32 param1, BGL *param2, u32 param3, u32 param4, u32 param5);
+static void ov22_02259ABC(BgConfig *param0, int param1, const NNSG2dScreenData *param2, int param3, int param4, int param5, int param6, int param7, int param8);
+static void ov22_02259B3C(u32 param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5);
 static void ov22_02259B8C(u32 param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5);
 static void ov22_02259BD4(SysTask *param0, void *param1);
 static void ov22_02259C10(SysTask *param0, void *param1);
@@ -219,7 +219,7 @@ static void ov22_02259A4C(SysTask *param0, void *param1)
     }
 }
 
-static void ov22_02259ABC(BGL *param0, int param1, const NNSG2dScreenData *param2, int param3, int param4, int param5, int param6, int param7, int param8)
+static void ov22_02259ABC(BgConfig *param0, int param1, const NNSG2dScreenData *param2, int param3, int param4, int param5, int param6, int param7, int param8)
 {
     ov22_02259980(param2, param7);
     sub_020198E8(param0, param1, param5, param6, param3, param4, param2->rawData, 0, 0, param3, param4);
@@ -227,7 +227,7 @@ static void ov22_02259ABC(BGL *param0, int param1, const NNSG2dScreenData *param
     sub_0201C3C0(param0, param1);
 }
 
-static void ov22_02259B3C(u32 param0, u32 param1, BGL *param2, u32 param3, u32 param4, u32 param5)
+static void ov22_02259B3C(u32 param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5)
 {
     UnkStruct_ov22_02259B3C *v0;
 

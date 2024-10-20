@@ -255,9 +255,9 @@ static void ov6_0223E140(UnkStruct_ov6_0223E140 *param0);
 static void ov6_0223E198(UnkStruct_ov6_0223E140 *param0);
 static u32 ov6_0223E1AC(const UnkStruct_ov6_0223E140 *param0);
 static void ov6_0223E1B0(void);
-static void ov6_0223E1D0(BGL *param0);
-static void ov6_0223E2AC(BGL *param0);
-static void ov6_0223E2A4(BGL *param0);
+static void ov6_0223E1D0(BgConfig *param0);
+static void ov6_0223E2AC(BgConfig *param0);
+static void ov6_0223E2A4(BgConfig *param0);
 static MotionBlur *ov6_0223E2BC(int param0, int param1);
 static void ov6_0223E2E8(UnkStruct_ov6_0223E140 *param0);
 static void ov6_0223E234(UnkStruct_ov6_0223E140 *param0);
@@ -365,7 +365,7 @@ static void ov6_0223E1B0(void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov6_0223E1D0(BGL *param0)
+static void ov6_0223E1D0(BgConfig *param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -435,12 +435,12 @@ static void ov6_0223E280(SysTask *param0, void *param1)
     SysTask_Done(param0);
 }
 
-static void ov6_0223E2A4(BGL *param0)
+static void ov6_0223E2A4(BgConfig *param0)
 {
     ov5_021D143C(param0);
 }
 
-static void ov6_0223E2AC(BGL *param0)
+static void ov6_0223E2AC(BgConfig *param0)
 {
     ov5_021D1434(param0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
@@ -2059,7 +2059,7 @@ UnkStruct_ov6_022401B8 *ov6_02240104(u32 param0, FieldSystem *fieldSystem)
     ov6_02240260(&v0->unk_34, v0->unk_11C, &v0->unk_10C);
 
     {
-        BGL *v1 = sub_0203D170(v0->fieldSystem);
+        BgConfig *v1 = sub_0203D170(v0->fieldSystem);
 
         sub_02006E3C(172, 74, v1, 2, 0, 0, 0, param0);
         sub_02006E60(172, 76, v1, 2, 0, 0, 0, param0);

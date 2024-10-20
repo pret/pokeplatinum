@@ -30,7 +30,7 @@ typedef struct {
     UnkStruct_ov95_02247628 *unk_00;
     int unk_04;
     int unk_08;
-    BGL *unk_0C;
+    BgConfig *unk_0C;
     fx32 unk_10;
     fx32 unk_14;
     fx32 unk_18;
@@ -43,7 +43,7 @@ static int ov95_0224A020(UnkStruct_ov95_02249FF8 *param0, int *param1);
 static void ov95_0224A0C4(SysTask *param0, void *param1);
 static void ov95_0224A10C(UnkStruct_ov95_02249FF8 *param0);
 static void ov95_0224A320(UnkStruct_ov95_02249FF8 *param0);
-static void ov95_0224A358(BGL *param0, int param1, int param2);
+static void ov95_0224A358(BgConfig *param0, int param1, int param2);
 
 void *ov95_02249F90(UnkStruct_ov95_02247628 *param0)
 {
@@ -270,7 +270,7 @@ static void ov95_0224A320(UnkStruct_ov95_02249FF8 *param0)
     sub_02019044(param0->unk_0C, 5);
 }
 
-static void ov95_0224A358(BGL *param0, int param1, int param2)
+static void ov95_0224A358(BgConfig *param0, int param1, int param2)
 {
     param2 &= 0x1ff;
     param1 &= 0x1ff;

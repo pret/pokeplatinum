@@ -60,7 +60,7 @@ typedef struct {
     UnkStruct_ov95_02247628 *unk_00;
     int unk_04;
     int unk_08;
-    BGL *unk_0C;
+    BgConfig *unk_0C;
     UnkStruct_ov95_02247004 *unk_10;
     BOOL unk_14;
     UnkStruct_ov95_022472C4 *unk_18;
@@ -75,7 +75,7 @@ typedef struct {
 
 typedef struct {
     UnkStruct_ov95_0224AC64 *unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     int unk_08;
     fx32 unk_0C;
     fx32 unk_10;

@@ -23,7 +23,7 @@
 typedef struct UnkStruct_ov21_021D4C0C_t {
     UnkStruct_02012744 *unk_00;
     CellActorCollection *unk_04;
-    BGL *unk_08;
+    BgConfig *unk_08;
     UnkStruct_ov21_021D4CA0 *unk_0C;
     int unk_10;
     int unk_14;

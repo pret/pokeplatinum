@@ -78,8 +78,8 @@ static int sub_0208D164(PokemonSummaryApp *param0);
 static u8 sub_0208D17C(PokemonSummaryApp *param0);
 static u8 sub_0208D18C(PokemonSummaryApp *param0);
 static void sub_0208C638(void);
-static void sub_0208C658(BGL *param0);
-static void sub_0208C76C(BGL *param0);
+static void sub_0208C658(BgConfig *param0);
+static void sub_0208C76C(BgConfig *param0);
 static void sub_0208C7AC(PokemonSummaryApp *param0, NARC *param1);
 static void sub_0208C86C(void);
 static void sub_0208C604(void *param0);
@@ -325,7 +325,7 @@ static void sub_0208C638(void)
     GXLayers_SetBanks(&v0);
 }
 
-static void sub_0208C658(BGL *param0)
+static void sub_0208C658(BgConfig *param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -445,7 +445,7 @@ static void sub_0208C658(BGL *param0)
     sub_02019690(4, 32, 0, 19);
 }
 
-static void sub_0208C76C(BGL *param0)
+static void sub_0208C76C(BgConfig *param0)
 {
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();

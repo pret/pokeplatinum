@@ -31,7 +31,7 @@ typedef struct UnkStruct_ov20_021D3E0C_t {
     UnkStruct_ov20_021D2128 *unk_00;
     const UnkStruct_ov20_021D16E8 *unk_04;
     const UnkStruct_020998EC *unk_08;
-    BGL *unk_0C;
+    BgConfig *unk_0C;
     u32 unk_10;
     u32 unk_14;
     SysTask *unk_18;
@@ -40,9 +40,9 @@ typedef struct UnkStruct_ov20_021D3E0C_t {
     CellActor *unk_5C;
 } UnkStruct_ov20_021D3E0C;
 
-static u32 ov20_021D3B74(UnkStruct_ov20_021D3E0C *param0, BGL *param1, u32 param2);
-static u32 ov20_021D3C78(UnkStruct_ov20_021D3E0C *param0, BGL *param1, u32 param2);
-static u32 ov20_021D3D44(UnkStruct_ov20_021D3E0C *param0, BGL *param1, u32 param2);
+static u32 ov20_021D3B74(UnkStruct_ov20_021D3E0C *param0, BgConfig *param1, u32 param2);
+static u32 ov20_021D3C78(UnkStruct_ov20_021D3E0C *param0, BgConfig *param1, u32 param2);
+static u32 ov20_021D3D44(UnkStruct_ov20_021D3E0C *param0, BgConfig *param1, u32 param2);
 static void ov20_021D3E0C(UnkStruct_ov20_021D3E0C *param0);
 
 UnkStruct_ov20_021D3E0C *ov20_021D3A54(UnkStruct_ov20_021D2128 *param0, const UnkStruct_ov20_021D16E8 *param1, const UnkStruct_020998EC *param2)
@@ -71,7 +71,7 @@ void ov20_021D3A80(UnkStruct_ov20_021D3E0C *param0)
 
 void ov20_021D3A98(UnkStruct_ov20_021D3E0C *param0, NARC *param1)
 {
-    BGL *v0;
+    BgConfig *v0;
     u32 v1;
 
     v0 = ov20_021D2E04(param0->unk_00);
@@ -97,7 +97,7 @@ void ov20_021D3A98(UnkStruct_ov20_021D3E0C *param0, NARC *param1)
     sub_02019448(v0, 1);
 }
 
-static u32 ov20_021D3B74(UnkStruct_ov20_021D3E0C *param0, BGL *param1, u32 param2)
+static u32 ov20_021D3B74(UnkStruct_ov20_021D3E0C *param0, BgConfig *param1, u32 param2)
 {
     int v0, v1, v2;
     Window v3;
@@ -146,7 +146,7 @@ static u32 ov20_021D3B74(UnkStruct_ov20_021D3E0C *param0, BGL *param1, u32 param
     return param2;
 }
 
-static u32 ov20_021D3C78(UnkStruct_ov20_021D3E0C *param0, BGL *param1, u32 param2)
+static u32 ov20_021D3C78(UnkStruct_ov20_021D3E0C *param0, BgConfig *param1, u32 param2)
 {
     Window v0;
     Strbuf *v1;
@@ -185,7 +185,7 @@ static u32 ov20_021D3C78(UnkStruct_ov20_021D3E0C *param0, BGL *param1, u32 param
     return param2;
 }
 
-static u32 ov20_021D3D44(UnkStruct_ov20_021D3E0C *param0, BGL *param1, u32 param2)
+static u32 ov20_021D3D44(UnkStruct_ov20_021D3E0C *param0, BgConfig *param1, u32 param2)
 {
     static const struct {
         u16 unk_00;

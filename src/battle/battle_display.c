@@ -2873,7 +2873,7 @@ static void SlideHealthbarOutTask(SysTask *task, void *data)
 static void ov16_022604C8(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0225D5B8 *v0;
-    BGL *v1;
+    BgConfig *v1;
     UnkStruct_ov16_02268A14 *v2;
     BattlerData *v3;
     u32 v4;
@@ -3225,7 +3225,7 @@ static void ov16_02260BAC(SysTask *param0, void *param1)
 static void ov16_02260C00(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0225D698 *v0 = (UnkStruct_ov16_0225D698 *)param1;
-    BGL *v1 = BattleSystem_BGL(v0->unk_00);
+    BgConfig *v1 = BattleSystem_BGL(v0->unk_00);
     UnkStruct_ov16_02268A14 *v2;
     int v3;
     Healthbar *v4;
@@ -3408,7 +3408,7 @@ static void ov16_02260E98(SysTask *param0, void *param1)
 static void ov16_02260F14(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0225D708 *v0 = (UnkStruct_ov16_0225D708 *)param1;
-    BGL *v1 = BattleSystem_BGL(v0->unk_00);
+    BgConfig *v1 = BattleSystem_BGL(v0->unk_00);
     UnkStruct_ov16_02268A14 *v2;
     int v3;
     Healthbar *v4;
@@ -4423,7 +4423,7 @@ static void ov16_0226232C(SysTask *param0, void *param1)
 static void ov16_022623F0(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0225D8AC *v0 = param1;
-    BGL *v1 = BattleSystem_BGL(v0->unk_00);
+    BgConfig *v1 = BattleSystem_BGL(v0->unk_00);
     UnkStruct_ov16_02268A14 *v2 = ov16_0223E02C(v0->unk_00);
     int v3;
     Healthbar *v4;
@@ -5108,7 +5108,7 @@ static const int Unk_ov16_0226F1D0[] = {
 static void ov16_02263014(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0225CBB8 *v0 = (UnkStruct_ov16_0225CBB8 *)param1;
-    BGL *v1;
+    BgConfig *v1;
     PaletteData *v2;
     int v3;
     int v4;

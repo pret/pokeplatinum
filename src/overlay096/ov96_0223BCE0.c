@@ -41,8 +41,8 @@
 #include "unk_020393C8.h"
 #include "unk_02073700.h"
 
-static void ov96_0223BE38(BGL *param0);
-static void ov96_0223BF1C(BGL *param0);
+static void ov96_0223BE38(BgConfig *param0);
+static void ov96_0223BF1C(BgConfig *param0);
 static void ov96_0223BF40(UnkStruct_ov96_0223BF40 *param0);
 static void ov96_0223C1FC(UnkStruct_ov96_0223BF40 *param0);
 static void ov96_0223C314(UnkStruct_ov96_0223BF40 *param0);
@@ -247,7 +247,7 @@ int ov96_0223BDEC(UnkStruct_ov96_0223BF40 *param0, int param1)
     return 1;
 }
 
-static void ov96_0223BE38(BGL *param0)
+static void ov96_0223BE38(BgConfig *param0)
 {
     {
         BgTemplate v0 = {
@@ -339,7 +339,7 @@ static void ov96_0223BE38(BGL *param0)
     sub_02019690(4, 32, 0, 68);
 }
 
-static void ov96_0223BF1C(BGL *param0)
+static void ov96_0223BF1C(BgConfig *param0)
 {
     sub_02019044(param0, 5);
     sub_02019044(param0, 4);
@@ -349,7 +349,7 @@ static void ov96_0223BF1C(BGL *param0)
 
 static void ov96_0223BF40(UnkStruct_ov96_0223BF40 *param0)
 {
-    BGL *v0 = param0->unk_04;
+    BgConfig *v0 = param0->unk_04;
     NARC *v1 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, 68);
 
     sub_02007130(v1, 3, 0, 0, 0, 68);

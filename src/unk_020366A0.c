@@ -2450,7 +2450,7 @@ void sub_02038A0C(void)
     }
 }
 
-void sub_02038A1C(int param0, BGL *param1)
+void sub_02038A1C(int param0, BgConfig *param1)
 {
     return;
 }

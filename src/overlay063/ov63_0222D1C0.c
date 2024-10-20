@@ -17,7 +17,7 @@
 
 typedef struct UnkStruct_ov63_0222D1C0_t {
     UnkStruct_0200C738 *unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     void *unk_08;
     NNSG2dScreenData *unk_0C;
     u32 unk_10;
@@ -26,14 +26,14 @@ typedef struct UnkStruct_ov63_0222D1C0_t {
     u16 unk_1A;
 } UnkStruct_ov63_0222D1C0;
 
-static void ov63_0222D31C(BGL *param0, int param1, const UnkStruct_ov65_0223582C *param2);
+static void ov63_0222D31C(BgConfig *param0, int param1, const UnkStruct_ov65_0223582C *param2);
 static void ov63_0222D378(UnkStruct_ov63_0222D1C0 *param0, s16 param1, s16 param2);
-static void ov63_0222D408(BGL *param0, int param1, const NNSG2dScreenData *param2, s16 param3, s16 param4);
-static void ov63_0222D4F8(BGL *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, const void *param6, u8 param7, u8 param8, u8 param9, u8 param10);
+static void ov63_0222D408(BgConfig *param0, int param1, const NNSG2dScreenData *param2, s16 param3, s16 param4);
+static void ov63_0222D4F8(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, const void *param6, u8 param7, u8 param8, u8 param9, u8 param10);
 static u8 ov63_0222D688(u8 param0, u8 param1);
 static const void *ov63_0222D6BC(const u8 *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, UnkStruct_ov63_0222CC3C *param6);
 
-UnkStruct_ov63_0222D1C0 *ov63_0222D1C0(UnkStruct_0200C738 *param0, BGL *param1, const UnkStruct_ov65_0223582C *param2, u32 param3)
+UnkStruct_ov63_0222D1C0 *ov63_0222D1C0(UnkStruct_0200C738 *param0, BgConfig *param1, const UnkStruct_ov65_0223582C *param2, u32 param3)
 {
     UnkStruct_ov63_0222D1C0 *v0;
 
@@ -75,7 +75,7 @@ void ov63_0222D228(UnkStruct_ov63_0222D1C0 *param0, const UnkStruct_ov63_0222D16
     ov63_0222D378(param0, v0, v1);
 }
 
-static void ov63_0222D31C(BGL *param0, int param1, const UnkStruct_ov65_0223582C *param2)
+static void ov63_0222D31C(BgConfig *param0, int param1, const UnkStruct_ov65_0223582C *param2)
 {
     BgTemplate v0 = {
         0,
@@ -121,7 +121,7 @@ static void ov63_0222D378(UnkStruct_ov63_0222D1C0 *param0, s16 param1, s16 param
     sub_0201C63C(param0->unk_04, param0->unk_14, 3, v3);
 }
 
-static void ov63_0222D408(BGL *param0, int param1, const NNSG2dScreenData *param2, s16 param3, s16 param4)
+static void ov63_0222D408(BgConfig *param0, int param1, const NNSG2dScreenData *param2, s16 param3, s16 param4)
 {
     s16 v0, v1;
     s16 v2, v3;
@@ -170,7 +170,7 @@ static void ov63_0222D408(BGL *param0, int param1, const NNSG2dScreenData *param
     ov63_0222D4F8(param0, param1, v4, v5, v0, v1, param2->rawData, v2, v3, v6, v7);
 }
 
-static void ov63_0222D4F8(BGL *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, const void *param6, u8 param7, u8 param8, u8 param9, u8 param10)
+static void ov63_0222D4F8(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, const void *param6, u8 param7, u8 param8, u8 param9, u8 param10)
 {
     s8 v0, v1;
     s8 v2, v3;

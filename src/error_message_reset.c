@@ -83,7 +83,7 @@ static void VBlankIntr(void)
 
 void ErrorMessageReset_PrintErrorAndReset(void)
 {
-    BGL *bgConfig;
+    BgConfig *bgConfig;
     Window window;
     MessageLoader *errorMsgData;
     Strbuf *errorString;

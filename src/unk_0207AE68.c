@@ -64,8 +64,8 @@ BOOL sub_0207B0D0(UnkStruct_0207AE68 *param0);
 void sub_0207B0E0(UnkStruct_0207AE68 *param0);
 static void sub_0207B180(UnkStruct_0207AE68 *param0);
 static void sub_0207C028(UnkStruct_0207AE68 *param0);
-static void sub_0207C1CC(UnkStruct_0207AE68 *param0, BGL *param1);
-static void sub_0207C460(BGL *param0);
+static void sub_0207C1CC(UnkStruct_0207AE68 *param0, BgConfig *param1);
+static void sub_0207C460(BgConfig *param0);
 static void sub_0207C498(UnkStruct_0207AE68 *param0);
 static void sub_0207C520(void *param0);
 static u8 sub_0207C584(UnkStruct_0207AE68 *param0, int param1);
@@ -755,7 +755,7 @@ static void sub_0207C028(UnkStruct_0207AE68 *param0)
     }
 }
 
-static void sub_0207C1CC(UnkStruct_0207AE68 *param0, BGL *param1)
+static void sub_0207C1CC(UnkStruct_0207AE68 *param0, BgConfig *param1)
 {
     GXLayers_DisableEngineALayers();
 
@@ -922,7 +922,7 @@ static void sub_0207C1CC(UnkStruct_0207AE68 *param0, BGL *param1)
     SetMainCallback(sub_0207C520, param0);
 }
 
-static void sub_0207C460(BGL *param0)
+static void sub_0207C460(BgConfig *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);

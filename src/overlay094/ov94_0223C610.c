@@ -30,8 +30,8 @@
 #include "unk_0200F174.h"
 #include "unk_020393C8.h"
 
-static void ov94_0223C720(BGL *param0);
-static void ov94_0223C830(BGL *param0);
+static void ov94_0223C720(BgConfig *param0);
+static void ov94_0223C830(BgConfig *param0);
 static void ov94_0223C888(UnkStruct_ov94_0223FD4C *param0);
 static void ov94_0223C950(UnkStruct_ov94_0223FD4C *param0);
 static void ov94_0223C9B0(UnkStruct_ov94_0223FD4C *param0);
@@ -132,7 +132,7 @@ int ov94_0223C6F4(UnkStruct_ov94_0223FD4C *param0, int param1)
     return 1;
 }
 
-static void ov94_0223C720(BGL *param0)
+static void ov94_0223C720(BgConfig *param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -254,7 +254,7 @@ static void ov94_0223C720(BGL *param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void ov94_0223C830(BGL *param0)
+static void ov94_0223C830(BgConfig *param0)
 {
     sub_02019044(param0, 5);
     sub_02019044(param0, 4);
@@ -273,7 +273,7 @@ static void ov94_0223C85C(UnkStruct_ov94_0223FD4C *param0)
 
 static void ov94_0223C888(UnkStruct_ov94_0223FD4C *param0)
 {
-    BGL *v0 = param0->unk_04;
+    BgConfig *v0 = param0->unk_04;
     NARC *v1;
 
     v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, 62);
@@ -615,7 +615,7 @@ void ov94_0223D030(Window *param0, MessageLoader *param1, int param2, u16 param3
 
 void ov94_0223D068(UnkStruct_ov94_0223FD4C *param0)
 {
-    BGL *v0 = param0->unk_04;
+    BgConfig *v0 = param0->unk_04;
 
     sub_02006E84(104, 5, 4, 0, 16 * 16 * 2, 62);
     sub_02006E3C(104, 15, v0, 5, 0, 32 * 21 * 0x40, 1, 62);

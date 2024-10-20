@@ -127,7 +127,7 @@ typedef struct {
     UnkStruct_ov95_02247568 unk_0C;
     CellActor *unk_1C[20][2];
     u32 unk_BC;
-    BGL *unk_C0;
+    BgConfig *unk_C0;
     UnkStruct_ov95_02247004 *unk_C4;
     BOOL unk_C8;
     UnkStruct_ov95_022472C4 *unk_CC;
@@ -152,7 +152,7 @@ typedef struct {
 typedef struct {
     UnkStruct_ov95_02248688 *unk_00;
     UnkStruct_ov95_02248E5C unk_04;
-    BGL *unk_154;
+    BgConfig *unk_154;
     fx32 unk_158;
     fx32 unk_15C;
     fx32 unk_160;

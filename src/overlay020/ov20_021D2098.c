@@ -40,7 +40,7 @@ typedef struct UnkStruct_ov20_021D2128_t {
     SysTask *unk_08[4];
     const UnkStruct_ov20_021D16E8 *unk_18;
     const UnkStruct_020998EC *unk_1C;
-    BGL *unk_20;
+    BgConfig *unk_20;
     CellActorCollection *unk_24;
     UnkStruct_0200C738 unk_28;
     NNSG2dImageProxy unk_1B4[2];
@@ -953,7 +953,7 @@ u32 ov20_021D2DF4(UnkStruct_ov20_021D2128 *param0)
     return ov20_021D3574(param0->unk_244);
 }
 
-BGL *ov20_021D2E04(UnkStruct_ov20_021D2128 *param0)
+BgConfig *ov20_021D2E04(UnkStruct_ov20_021D2128 *param0)
 {
     return param0->unk_20;
 }

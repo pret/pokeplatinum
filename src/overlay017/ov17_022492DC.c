@@ -284,7 +284,7 @@ static void *ov17_022492DC(void)
     return v0;
 }
 
-void ov17_02249300(BGL *param0)
+void ov17_02249300(BgConfig *param0)
 {
     int v0;
 
@@ -296,7 +296,7 @@ void ov17_02249300(BGL *param0)
     }
 }
 
-void ov17_02249358(BGL *param0)
+void ov17_02249358(BgConfig *param0)
 {
     int v0;
 
@@ -409,7 +409,7 @@ void ov17_02249640(UnkStruct_ov17_022492DC *param0, int param1, int param2, void
 {
     const UnkStruct_ov17_02254578 *v0, *v1;
     int v2;
-    BGL *v3;
+    BgConfig *v3;
     SpriteRenderer *v4;
     SpriteGfxHandler *v5;
 
@@ -680,7 +680,7 @@ static void ov17_02249BC4(UnkStruct_ov17_022492DC *param0, UnkStruct_ov17_02249B
     SpriteManagerAllocation v2;
     int v3;
     FontOAM *v4;
-    BGL *v5;
+    BgConfig *v5;
     SpriteGfxHandler *v6;
     int v7, v8;
 
@@ -807,7 +807,7 @@ static void ov17_02249D80(UnkStruct_ov17_022492DC *param0)
 static void ov17_02249DA0(SysTask *param0, void *param1)
 {
     UnkStruct_ov17_022492DC *v0 = param1;
-    BGL *v1;
+    BgConfig *v1;
     int v2, v3;
     int v4;
 

@@ -25,7 +25,7 @@ typedef struct UnkStruct_ov5_021DD9C8_t {
     u16 unk_10;
     BOOL unk_14;
     int unk_18;
-    BGL *unk_1C;
+    BgConfig *unk_1C;
     Window unk_20;
     u8 unk_30;
     u8 unk_31;
@@ -38,7 +38,7 @@ typedef struct UnkStruct_ov5_021DD9C8_t {
 static void ov5_021DD718(UnkStruct_ov5_021DD9C8 *param0);
 static void ov5_021DD744(UnkStruct_ov5_021DD9C8 *param0, u8 param1, u16 param2, u8 param3, u8 param4);
 static void ov5_021DD880(UnkStruct_ov5_021DD9C8 *param0);
-static void ov5_021DD894(UnkStruct_ov5_021DD9C8 *param0, BGL *param1);
+static void ov5_021DD894(UnkStruct_ov5_021DD9C8 *param0, BgConfig *param1);
 static void ov5_021DD8A4(SysTask *param0, void *param1);
 static void ov5_021DD7A0(UnkStruct_ov5_021DD9C8 *param0, const int param1);
 static void ov5_021DD980(UnkStruct_ov5_021DD9C8 *param0);
@@ -138,7 +138,7 @@ static void ov5_021DD880(UnkStruct_ov5_021DD9C8 *param0)
     param0->unk_1C = NULL;
 }
 
-static void ov5_021DD894(UnkStruct_ov5_021DD9C8 *param0, BGL *param1)
+static void ov5_021DD894(UnkStruct_ov5_021DD9C8 *param0, BgConfig *param1)
 {
     ov5_021DD880(param0);
     param0->unk_1C = param1;
@@ -220,7 +220,7 @@ static void ov5_021DD980(UnkStruct_ov5_021DD9C8 *param0)
     param0->unk_10 = 0;
 }
 
-UnkStruct_ov5_021DD9C8 *ov5_021DD98C(BGL *param0)
+UnkStruct_ov5_021DD9C8 *ov5_021DD98C(BgConfig *param0)
 {
     UnkStruct_ov5_021DD9C8 *v0;
 
@@ -295,7 +295,7 @@ void ov5_021DDA78(UnkStruct_ov5_021DD9C8 *param0)
     sub_02019184(param0->unk_1C, 3, 3, 0);
 
     {
-        BGL *v0 = param0->unk_1C;
+        BgConfig *v0 = param0->unk_1C;
         ov5_021DD894(param0, v0);
     }
 }

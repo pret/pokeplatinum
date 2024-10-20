@@ -97,7 +97,7 @@ typedef struct {
 } UnkStruct_ov65_02237908;
 
 typedef struct {
-    BGL *unk_00;
+    BgConfig *unk_00;
     StringTemplate *unk_04;
     MessageLoader *unk_08;
     Strbuf *unk_0C;

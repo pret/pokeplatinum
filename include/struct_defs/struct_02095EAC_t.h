@@ -18,7 +18,7 @@
 #include "trainer_info.h"
 
 struct UnkStruct_02095EAC_t {
-    BGL *unk_00;
+    BgConfig *unk_00;
     BOOL unk_04;
     UnkStruct_0203DDFC *unk_08;
     StringTemplate *unk_0C;

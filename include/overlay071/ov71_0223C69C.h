@@ -6,7 +6,7 @@
 #include "bg_window.h"
 #include "strbuf.h"
 
-void ov71_0223C69C(BGL *param0, Window *param1);
+void ov71_0223C69C(BgConfig *param0, Window *param1);
 void ov71_0223C6D4(Window *param0);
 void ov71_0223C6F0(Window *param0, const TrainerCard *param1);
 void ov71_0223CA28(Window *param0, const TrainerCard *param1);

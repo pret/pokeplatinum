@@ -30,7 +30,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov71_0223D670[] = {
     {0x7, 0x2, 0xB, 0x1C, 0x2, 0xF, 0x1A1}
 };
 
-void ov71_0223C69C (BGL * param0, Window * param1)
+void ov71_0223C69C(BgConfig *param0, Window *param1)
 {
     u8 v0;
     const UnkStruct_ov61_0222C884 * v1 = Unk_ov71_0223D670;

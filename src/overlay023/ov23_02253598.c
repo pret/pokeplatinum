@@ -210,7 +210,7 @@ static void ov23_0225381C(SysTask *param0, void *param1)
     }
 }
 
-void ov23_02253834(BGL *param0, TrainerInfo *param1, UnkFuncPtr_ov23_02253834 param2, void *param3, BOOL param4)
+void ov23_02253834(BgConfig *param0, TrainerInfo *param1, UnkFuncPtr_ov23_02253834 param2, void *param3, BOOL param4)
 {
     SecretBaseRecord *v0;
     MessageLoader *v1;
@@ -393,7 +393,7 @@ static void ov23_02253A78(Window *param0, MessageLoader *param1, TrainerInfo *pa
     StringTemplate_Free(v0);
 }
 
-void *ov23_02253C64(BGL *param0, TrainerInfo *param1, UndergroundData *param2, UnkFuncPtr_ov23_02253834 param3, void *param4)
+void *ov23_02253C64(BgConfig *param0, TrainerInfo *param1, UndergroundData *param2, UnkFuncPtr_ov23_02253834 param3, void *param4)
 {
     SecretBaseRecord *v0;
     MessageLoader *v1;

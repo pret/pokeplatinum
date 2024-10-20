@@ -67,7 +67,7 @@ static const UnkStruct_ov61_0222C884 Unk_020F8AC4 = {
 
 void sub_0209A74C(int param0)
 {
-    BGL *v0;
+    BgConfig *v0;
     Window v1;
     MessageLoader *v2;
     Strbuf *v3;
@@ -142,7 +142,7 @@ void sub_0209A74C(int param0)
 
 void sub_0209A8E0(int param0)
 {
-    BGL *v0;
+    BgConfig *v0;
     Window v1;
     MessageLoader *v2;
     Strbuf *v3;

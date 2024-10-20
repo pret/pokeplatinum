@@ -26,8 +26,8 @@ typedef struct {
 
 static void NitroStaticInit(void);
 
-static BOOL ov42_022561D4(void **param0, PoketchSystem *poketchSys, BGL *param2, u32 param3);
-static BOOL ov42_0225621C(UnkStruct_ov42_0225621C *param0, PoketchSystem *poketchSys, BGL *param2, u32 param3);
+static BOOL ov42_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3);
+static BOOL ov42_0225621C(UnkStruct_ov42_0225621C *param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3);
 static void ov42_02256260(UnkStruct_ov42_0225621C *param0);
 static void ov42_02256280(SysTask *param0, void *param1);
 static void ov42_022562B4(void *param0);
@@ -42,7 +42,7 @@ static void NitroStaticInit(void)
     PoketchSystem_SetAppFunctions(ov42_022561D4, ov42_022562B4);
 }
 
-static BOOL ov42_022561D4(void **param0, PoketchSystem *poketchSys, BGL *param2, u32 param3)
+static BOOL ov42_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3)
 {
     UnkStruct_ov42_0225621C *v0 = (UnkStruct_ov42_0225621C *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov42_0225621C));
 
@@ -60,7 +60,7 @@ static BOOL ov42_022561D4(void **param0, PoketchSystem *poketchSys, BGL *param2,
     return 0;
 }
 
-static BOOL ov42_0225621C(UnkStruct_ov42_0225621C *param0, PoketchSystem *poketchSys, BGL *param2, u32 param3)
+static BOOL ov42_0225621C(UnkStruct_ov42_0225621C *param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3)
 {
     param0->unk_04 = param3;
 

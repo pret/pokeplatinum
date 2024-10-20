@@ -50,8 +50,8 @@ typedef struct {
     u8 unk_0C[512];
 } UnkStruct_ov94_02240FA0;
 
-static void ov94_0223FC08(BGL *param0);
-static void ov94_0223FD20(BGL *param0);
+static void ov94_0223FC08(BgConfig *param0);
+static void ov94_0223FD20(BgConfig *param0);
 static void ov94_0223FD4C(UnkStruct_ov94_0223FD4C *param0);
 static void ov94_0223FE24(UnkStruct_ov94_0223FD4C *param0);
 static void ov94_0223FFC8(UnkStruct_ov94_0223FD4C *param0);
@@ -160,7 +160,7 @@ int ov94_0223FBDC(UnkStruct_ov94_0223FD4C *param0, int param1)
     return 1;
 }
 
-static void ov94_0223FC08(BGL *param0)
+static void ov94_0223FC08(BgConfig *param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -282,7 +282,7 @@ static void ov94_0223FC08(BGL *param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void ov94_0223FD20(BGL *param0)
+static void ov94_0223FD20(BgConfig *param0)
 {
     sub_02019044(param0, 5);
     sub_02019044(param0, 4);
@@ -293,7 +293,7 @@ static void ov94_0223FD20(BGL *param0)
 
 static void ov94_0223FD4C(UnkStruct_ov94_0223FD4C *param0)
 {
-    BGL *v0 = param0->unk_04;
+    BgConfig *v0 = param0->unk_04;
     NARC *v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, 62);
 
     sub_02007130(v1, 2, 0, 0, 16 * 3 * 2, 62);

@@ -50,7 +50,7 @@ void ov21_021D144C(CellActor *param0, int param1);
 void ov21_021D1498(CellActor *param0, UnkStruct_ov21_021D4CA0 *param1, int param2);
 void ov21_021D1524(CellActor *param0, UnkStruct_ov21_021D4CA0 *param1, int param2, int param3, int param4);
 void ov21_021D154C(TouchScreenHitTable *hitTable, int param1, int param2, int param3, int param4);
-void ov21_021D1558(UnkStruct_ov21_021D157C *param0, BGL *param1, int param2, NNSG2dScreenData *param3, int param4, int param5, int param6, int param7, int param8);
+void ov21_021D1558(UnkStruct_ov21_021D157C *param0, BgConfig *param1, int param2, NNSG2dScreenData *param3, int param4, int param5, int param6, int param7, int param8);
 BOOL ov21_021D157C(UnkStruct_ov21_021D157C *param0);
 void ov21_021D1650(Window *param0, int param1, int param2, int param3);
 Window *ov21_021D16D8(UnkStruct_ov21_021D13FC *param0, const UnkStruct_ov21_021D3320 *param1, int param2, int param3);

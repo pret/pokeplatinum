@@ -21,7 +21,7 @@
 
 typedef struct {
     int unk_00;
-    BGL * unk_04;
+    BgConfig *unk_04;
     MessageLoader * unk_08;
     int unk_0C;
     Window unk_10;

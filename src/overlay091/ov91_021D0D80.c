@@ -56,7 +56,7 @@
 
 typedef struct {
     UnkStruct_020997B8 *unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     Window unk_08[15];
     MessageLoader *unk_F8;
     StringTemplate *unk_FC;
@@ -86,8 +86,8 @@ static void ov91_021D0ED8(UnkStruct_ov91_021D0ED8 *param0);
 static void ov91_021D0F6C(UnkStruct_ov91_021D0ED8 *param0);
 static void ov91_021D0F9C(void *param0);
 static void ov91_021D0FC4(void);
-static void ov91_021D0FE4(BGL *param0);
-static void ov91_021D1098(BGL *param0);
+static void ov91_021D0FE4(BgConfig *param0);
+static void ov91_021D1098(BgConfig *param0);
 static void ov91_021D10C8(UnkStruct_ov91_021D0ED8 *param0, NARC *param1);
 static void ov91_021D1154(UnkStruct_ov91_021D0ED8 *param0);
 static void ov91_021D11A0(UnkStruct_ov91_021D0ED8 *param0);
@@ -514,7 +514,7 @@ static void ov91_021D0FC4(void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov91_021D0FE4(BGL *param0)
+static void ov91_021D0FE4(BgConfig *param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -593,7 +593,7 @@ static void ov91_021D0FE4(BGL *param0)
     sub_02019690(0, 32, 0, 67);
 }
 
-static void ov91_021D1098(BGL *param0)
+static void ov91_021D1098(BgConfig *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_OBJ, 0);
     sub_02019044(param0, 2);

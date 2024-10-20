@@ -17,7 +17,7 @@
 
 struct UnkStruct_ov51_0225632C_t {
     const UnkStruct_ov51_0225632C_1 *unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     u32 unk_08[10];
 };
 
@@ -25,7 +25,7 @@ static void ov51_022563A4(UnkStruct_ov25_02255224 *param0);
 static void ov51_022563B8(SysTask *param0, void *param1);
 static void ov51_02256458(SysTask *param0, void *param1);
 
-BOOL ov51_0225632C(UnkStruct_ov51_0225632C **param0, const UnkStruct_ov51_0225632C_1 *param1, BGL *param2)
+BOOL ov51_0225632C(UnkStruct_ov51_0225632C **param0, const UnkStruct_ov51_0225632C_1 *param1, BgConfig *param2)
 {
     UnkStruct_ov51_0225632C *v0 = (UnkStruct_ov51_0225632C *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov51_0225632C));
 

@@ -294,7 +294,7 @@ void ov25_022553A0(u32 param0, const u32 *param1, u32 param2, BOOL param3)
     }
 }
 
-void ov25_02255440(BGL *param0, u32 param1, u32 param2)
+void ov25_02255440(BgConfig *param0, u32 param1, u32 param2)
 {
     u16 v0[4];
     u32 v1;

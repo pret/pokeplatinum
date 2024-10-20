@@ -62,7 +62,7 @@ typedef struct {
     SpriteAnimationFrame unk_18[10];
     CellActor *unk_40[2];
     UnkStruct_ov95_02247568 unk_48;
-    BGL *unk_58;
+    BgConfig *unk_58;
     Window unk_5C;
     Strbuf *unk_6C;
     Strbuf *unk_70;

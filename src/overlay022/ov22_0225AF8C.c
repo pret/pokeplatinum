@@ -56,7 +56,7 @@ typedef struct {
     const UnkStruct_0202A138 *unk_00;
     const UnkStruct_0202A150 *unk_04[20];
     int unk_54;
-    BGL *unk_58;
+    BgConfig *unk_58;
     int unk_5C;
     int unk_60;
     int unk_64;

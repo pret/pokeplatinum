@@ -60,7 +60,7 @@ typedef struct {
     SaveData *unk_00;
     u32 unk_04;
     u32 unk_08;
-    BGL *unk_0C;
+    BgConfig *unk_0C;
     UnkStruct_ov67_0225D210 unk_10;
     UnkStruct_ov67_0225D210 unk_40;
     UnkStruct_ov67_0225D210 unk_70;
@@ -73,7 +73,7 @@ static void ov67_0225CE28(void *param0);
 static void ov67_0225CE30(UnkStruct_ov67_0225D154 *param0, u32 param1);
 static void ov67_0225D154(UnkStruct_ov67_0225D154 *param0);
 static void ov67_0225D17C(UnkStruct_ov67_0225D154 *param0);
-static void ov67_0225D188(UnkStruct_ov67_0225D210 *param0, BGL *param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, SaveData *param9, u32 param10);
+static void ov67_0225D188(UnkStruct_ov67_0225D210 *param0, BgConfig *param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, SaveData *param9, u32 param10);
 static void ov67_0225D210(UnkStruct_ov67_0225D210 *param0, u32 param1);
 static void ov67_0225D294(UnkStruct_ov67_0225D210 *param0);
 static void ov67_0225D2EC(UnkStruct_ov67_0225D210 *param0);
@@ -627,7 +627,7 @@ static void ov67_0225D17C(UnkStruct_ov67_0225D154 *param0)
     sub_0201C2B8(param0->unk_0C);
 }
 
-static void ov67_0225D188(UnkStruct_ov67_0225D210 *param0, BGL *param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, SaveData *param9, u32 param10)
+static void ov67_0225D188(UnkStruct_ov67_0225D210 *param0, BgConfig *param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, SaveData *param9, u32 param10)
 {
     param0->unk_00 = StringTemplate_Default(param10);
     param0->unk_04 = MessageLoader_Init(0, 26, param3, param10);

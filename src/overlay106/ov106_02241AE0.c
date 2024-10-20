@@ -95,7 +95,7 @@ struct UnkStruct_ov106_02243118_t {
     Strbuf *unk_2C;
     Strbuf *unk_30[2];
     u16 unk_38[8];
-    BGL *unk_48;
+    BgConfig *unk_48;
     Window unk_4C[4];
     UnkStruct_02081CF4 unk_8C;
     UIControlData *unk_98;
@@ -138,10 +138,10 @@ static void ov106_022424C8(void);
 static void ov106_02242500(UnkStruct_ov106_02243118 *param0);
 static void ov106_02242688(UnkStruct_ov106_02243118 *param0);
 static void ov106_0224262C(UnkStruct_ov106_02243118 *param0);
-static void ov106_022426A4(BGL *param0);
+static void ov106_022426A4(BgConfig *param0);
 static void ov106_022426E0(void *param0);
 static void ov106_0224271C(void);
-static void ov106_0224273C(BGL *param0);
+static void ov106_0224273C(BgConfig *param0);
 static void ov106_0224283C(UnkStruct_ov106_02243118 *param0, u32 param1);
 static void ov106_02242884(void);
 static void ov106_022428B8(UnkStruct_ov106_02243118 *param0, u32 param1);
@@ -160,8 +160,8 @@ static void ov106_02242D5C(UnkStruct_ov106_02243118 *param0, int *param1, int pa
 static void ov106_02242D64(UnkStruct_ov106_02243118 *param0, int param1);
 static u16 ov106_02242F24(UnkStruct_ov106_02243118 *param0);
 static u16 ov106_02242F3C(UnkStruct_ov106_02243118 *param0);
-static void ov106_02242FAC(BGL *param0, u8 param1, u8 param2);
-static void ov106_02242F4C(UnkStruct_ov106_02243118 *param0, BGL *param1);
+static void ov106_02242FAC(BgConfig *param0, u8 param1, u8 param2);
+static void ov106_02242F4C(UnkStruct_ov106_02243118 *param0, BgConfig *param1);
 static u8 ov106_02243090(u8 param0);
 static BOOL ov106_02243098(UnkStruct_ov106_02243118 *param0);
 static BOOL ov106_022430B0(UnkStruct_ov106_02243118 *param0);
@@ -869,7 +869,7 @@ static void ov106_02242688(UnkStruct_ov106_02243118 *param0)
     return;
 }
 
-static void ov106_022426A4(BGL *param0)
+static void ov106_022426A4(BgConfig *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
@@ -921,7 +921,7 @@ static void ov106_0224271C(void)
     return;
 }
 
-static void ov106_0224273C(BGL *param0)
+static void ov106_0224273C(BgConfig *param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -1362,7 +1362,7 @@ static u16 ov106_02242F3C(UnkStruct_ov106_02243118 *param0)
     return (param0->unk_0D / 4) * 36 + 16;
 }
 
-static void ov106_02242F4C(UnkStruct_ov106_02243118 *param0, BGL *param1)
+static void ov106_02242F4C(UnkStruct_ov106_02243118 *param0, BgConfig *param1)
 {
     int v0;
 
@@ -1384,7 +1384,7 @@ static void ov106_02242F4C(UnkStruct_ov106_02243118 *param0, BGL *param1)
     return;
 }
 
-static void ov106_02242FAC(BGL *param0, u8 param1, u8 param2)
+static void ov106_02242FAC(BgConfig *param0, u8 param1, u8 param2)
 {
     u8 v0, v1, v2, v3, v4;
 

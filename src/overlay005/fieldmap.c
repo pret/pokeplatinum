@@ -97,8 +97,8 @@ struct UnkStruct_ov5_021D1A68_t {
     int unk_02[24];
 };
 
-static void ov5_021D1444(BGL *bgl);
-static void ov5_021D1524(BGL *bgl);
+static void ov5_021D1444(BgConfig *bgl);
+static void ov5_021D1524(BgConfig *bgl);
 static void ov5_021D154C(void);
 static void ov5_021D1570(void);
 static void ov5_021D1578(UnkStruct_ov5_021D5894 *param0);
@@ -560,17 +560,17 @@ static void ov5_021D1414(void)
     GXLayers_SetBanks(&v0);
 }
 
-void ov5_021D1434(BGL *bgl)
+void ov5_021D1434(BgConfig *bgl)
 {
     ov5_021D1444(bgl);
 }
 
-void ov5_021D143C(BGL *bgl)
+void ov5_021D143C(BgConfig *bgl)
 {
     ov5_021D1524(bgl);
 }
 
-static void ov5_021D1444(BGL *bgl)
+static void ov5_021D1444(BgConfig *bgl)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -656,7 +656,7 @@ static void ov5_021D1444(BGL *bgl)
     }
 }
 
-static void ov5_021D1524(BGL *bgl)
+static void ov5_021D1524(BgConfig *bgl)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3, 0);
     sub_02019044(bgl, 1);

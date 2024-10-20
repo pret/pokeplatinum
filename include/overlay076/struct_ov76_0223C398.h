@@ -28,7 +28,7 @@ typedef struct {
     BOOL unk_04;
     SpriteRenderer *unk_08;
     SpriteGfxHandler *unk_0C;
-    BGL *unk_10;
+    BgConfig *unk_10;
     PaletteData *unk_14;
     Window unk_18[11];
     ResourceMetadata *unk_C8;

@@ -1325,7 +1325,7 @@ void ov76_0223EB54(int param0)
     DisableHBlank();
 }
 
-void ov76_0223EB64(BGL *param0)
+void ov76_0223EB64(BgConfig *param0)
 {
     GXLayers_DisableEngineALayers();
 

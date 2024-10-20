@@ -10,7 +10,7 @@
 
 typedef struct {
     int unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     Window *unk_08;
     Window *unk_0C;
     int unk_10;

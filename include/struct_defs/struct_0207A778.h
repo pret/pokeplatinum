@@ -10,7 +10,7 @@
 
 typedef struct {
     BattleParams *unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     Window *unk_08;
     PaletteData *unk_0C;
     UnkStruct_02027F8C *unk_10[4];

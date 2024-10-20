@@ -23,7 +23,7 @@ typedef struct {
     NARC *unk_00;
     SpriteRenderer *unk_04;
     SpriteGfxHandler *unk_08;
-    BGL *unk_0C;
+    BgConfig *unk_0C;
     PaletteData *unk_10;
     GenericPointerData *unk_14;
     Camera *camera;

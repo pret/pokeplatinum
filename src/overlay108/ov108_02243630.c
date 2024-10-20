@@ -5,7 +5,7 @@
 
 #include "bg_window.h"
 
-void ov108_02243630(BGL *param0, Window *param1);
+void ov108_02243630(BgConfig *param0, Window *param1);
 void ov108_02243660(Window *param0);
 
 static const UnkStruct_ov61_0222C884 Unk_ov108_02243774[] = {
@@ -13,7 +13,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov108_02243774[] = {
     { 0x1, 0x18, 0xD, 0x7, 0x4, 0xD, 0x6D }
 };
 
-void ov108_02243630(BGL *param0, Window *param1)
+void ov108_02243630(BgConfig *param0, Window *param1)
 {
     u8 v0;
     const UnkStruct_ov61_0222C884 *v1 = Unk_ov108_02243774;

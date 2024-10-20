@@ -119,9 +119,9 @@ static BOOL ov16_0223DD10(OverlayManager *param0);
 static void ov16_0223D10C(OverlayManager *param0, BattleParams *param1);
 static BOOL ov16_0223D354(OverlayManager *param0);
 static void ov16_0223D7B4(OverlayManager *param0);
-static void ov16_0223C004(BattleSystem *param0, BGL *param1);
+static void ov16_0223C004(BattleSystem *param0, BgConfig *param1);
 static void ov16_0223C210(BattleSystem *param0);
-static void ov16_0223C288(BGL *param0);
+static void ov16_0223C288(BgConfig *param0);
 static void ov16_0223C2BC(BattleSystem *param0);
 static void ov16_0223C2C0(BattleSystem *param0, BattleParams *param1);
 static void ov16_0223CE28(void);
@@ -819,7 +819,7 @@ static void ov16_0223BCB4(OverlayManager *param0)
     }
 }
 
-static void ov16_0223C004(BattleSystem *param0, BGL *param1)
+static void ov16_0223C004(BattleSystem *param0, BgConfig *param1)
 {
     GXLayers_DisableEngineALayers();
     sub_0200F338(0);
@@ -976,7 +976,7 @@ static void ov16_0223C210(BattleSystem *param0)
     ov16_0223DECC();
 }
 
-static void ov16_0223C288(BGL *param0)
+static void ov16_0223C288(BgConfig *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);

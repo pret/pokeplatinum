@@ -20,7 +20,7 @@
 #include "string_template.h"
 
 typedef struct {
-    BGL *unk_00;
+    BgConfig *unk_00;
     SaveData *unk_04;
     Options *unk_08;
     StringTemplate *unk_0C;

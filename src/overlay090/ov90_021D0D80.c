@@ -79,7 +79,7 @@ typedef struct {
     u8 unk_0D;
     u8 unk_0E;
     u8 unk_0F;
-    BGL *unk_10;
+    BgConfig *unk_10;
     UnkStruct_ov90_021D0D80 *unk_14;
     Options *unk_18;
     UnkStruct_0203068C *unk_1C;

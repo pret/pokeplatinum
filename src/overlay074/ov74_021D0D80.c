@@ -51,7 +51,7 @@ typedef struct UnkStruct_ov74_021D0D80_t {
     u32 unk_10_5 : 16;
     u32 unk_10_21 : 1;
     u32 unk_10_22 : 10;
-    BGL *unk_14;
+    BgConfig *unk_14;
     UnkStruct_0203D8EC unk_18;
     Options *unk_1C;
     MessageLoader *unk_20;

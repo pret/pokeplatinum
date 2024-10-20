@@ -24,7 +24,7 @@ typedef struct UnkStruct_ov20_021D4210_t {
     UnkStruct_ov20_021D2128 *unk_00;
     const UnkStruct_ov20_021D16E8 *unk_04;
     const UnkStruct_020998EC *unk_08;
-    BGL *unk_0C;
+    BgConfig *unk_0C;
     Window unk_10;
     Window unk_20;
     CellActor *unk_30;
@@ -90,7 +90,7 @@ void ov20_021D4164(UnkStruct_ov20_021D4210 *param0)
 
 void ov20_021D41A8(UnkStruct_ov20_021D4210 *param0)
 {
-    BGL *v0;
+    BgConfig *v0;
     u32 v1;
 
     v0 = ov20_021D2E04(param0->unk_00);

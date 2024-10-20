@@ -61,7 +61,7 @@ struct UnkStruct_ov19_021D61B0_t {
     UnkStruct_0200C738 unk_1C;
     NNSG2dImagePaletteProxy unk_1A8;
     UnkStruct_02007768 *unk_1BC;
-    BGL *unk_1C0;
+    BgConfig *unk_1C0;
     const UnkStruct_ov19_021D4DF0 *unk_1C4;
     UnkStruct_ov19_021DA384 unk_1C8;
     UnkStruct_ov19_021D8318 unk_494;

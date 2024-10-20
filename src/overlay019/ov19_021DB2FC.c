@@ -22,14 +22,14 @@
 #include "unk_02006E3C.h"
 #include "unk_0200DA60.h"
 
-static void ov19_021DB4B4(BGL *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5);
+static void ov19_021DB4B4(BgConfig *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5);
 static void ov19_021DB638(UnkStruct_ov19_021DB6F0 *param0, Window *param1, u8 param2, u32 param3);
 static void ov19_021DB684(UnkStruct_ov19_021DB6F0 *param0, u32 param1);
-static void ov19_021DB7BC(BGL *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5);
-static void ov19_021DB84C(BGL *param0, Window *param1);
-static void ov19_021DB898(BGL *param0, Window *param1);
+static void ov19_021DB7BC(BgConfig *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5);
+static void ov19_021DB84C(BgConfig *param0, Window *param1);
+static void ov19_021DB898(BgConfig *param0, Window *param1);
 
-BOOL ov19_021DB2FC(UnkStruct_ov19_021DB6F0 *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BGL *param3, CellActorCollection *param4, MessageLoader *param5, const StringTemplate *param6, int param7, NARC *param8)
+BOOL ov19_021DB2FC(UnkStruct_ov19_021DB6F0 *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, CellActorCollection *param4, MessageLoader *param5, const StringTemplate *param6, int param7, NARC *param8)
 {
     param0->unk_0C = param1;
     param0->unk_00 = param3;
@@ -118,7 +118,7 @@ void ov19_021DB448(UnkStruct_ov19_021DB6F0 *param0, u32 param1)
     param0->unk_1C = 1;
 }
 
-static void ov19_021DB4B4(BGL *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5)
+static void ov19_021DB4B4(BgConfig *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5)
 {
     u16 *v0;
     u32 v1, v2;
@@ -274,7 +274,7 @@ void ov19_021DB790(UnkStruct_ov19_021DB6F0 *param0, const UnkStruct_ov19_021DF96
     sub_0201ACCC(v0);
 }
 
-static void ov19_021DB7BC(BGL *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5)
+static void ov19_021DB7BC(BgConfig *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5)
 {
     u16 *v0;
     u32 v1;
@@ -305,7 +305,7 @@ static void ov19_021DB7BC(BGL *param0, u32 param1, u32 param2, u32 param3, u32 p
     v0[param4 + 1] = (7 << 12) | (512 + 8);
 }
 
-static void ov19_021DB84C(BGL *param0, Window *param1)
+static void ov19_021DB84C(BgConfig *param0, Window *param1)
 {
     u16 *v0;
     u32 v1, v2, v3, v4;
@@ -322,7 +322,7 @@ static void ov19_021DB84C(BGL *param0, Window *param1)
     }
 }
 
-static void ov19_021DB898(BGL *param0, Window *param1)
+static void ov19_021DB898(BgConfig *param0, Window *param1)
 {
     u16 *v0;
     u32 v1, v2, v3, v4;

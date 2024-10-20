@@ -56,12 +56,12 @@
 typedef struct {
     UnkStruct_ov12_02225F6C unk_00[9];
     CellActorData *unk_144[8];
-    BGL *unk_164;
+    BgConfig *unk_164;
     int unk_168;
     BOOL *unk_16C;
 } UnkStruct_ov76_0223BCA0;
 
-void ov76_0223BF74(BGL *param0, Window *param1, int param2, UnkStruct_ov76_0223DE00 *param3, int param4);
+void ov76_0223BF74(BgConfig *param0, Window *param1, int param2, UnkStruct_ov76_0223DE00 *param3, int param4);
 void ov76_0223C0EC(int param0, s16 *param1, s16 *param2);
 void ov76_0223C110(UnkStruct_ov76_0223DE00 *param0);
 void ov76_0223C188(UnkStruct_ov76_0223DE00 *param0);
@@ -77,10 +77,10 @@ void ov76_0223C7E0(UnkStruct_ov76_0223DE00 *param0);
 void ov76_0223C80C(UnkStruct_ov76_0223DE00 *param0, int param1, int param2);
 void ov76_0223C88C(UnkStruct_ov76_0223DE00 *param0);
 void ov76_0223C8BC(UnkStruct_ov76_0223DE00 *param0);
-void ov76_0223C8EC(BGL *param0, PaletteData *param1, int param2);
-void ov76_0223C974(BGL *param0, PaletteData *param1, int param2);
+void ov76_0223C8EC(BgConfig *param0, PaletteData *param1, int param2);
+void ov76_0223C974(BgConfig *param0, PaletteData *param1, int param2);
 void ov76_0223CA30(Window *param0, int param1);
-void ov76_0223CA98(BGL *param0, Window *param1, int param2, int param3, int param4, int param5, int param6, int param7);
+void ov76_0223CA98(BgConfig *param0, Window *param1, int param2, int param3, int param4, int param5, int param6, int param7);
 void ov76_0223CB58(UnkStruct_ov76_0223DE00 *param0);
 void ov76_0223CDA4(UnkStruct_ov76_0223DE00 *param0);
 void ov76_0223CDC4(Window *param0, int param1);
@@ -443,7 +443,7 @@ void ov76_0223BF50(void)
     G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 }
 
-void ov76_0223BF74(BGL *param0, Window *param1, int param2, UnkStruct_ov76_0223DE00 *param3, int param4)
+void ov76_0223BF74(BgConfig *param0, Window *param1, int param2, UnkStruct_ov76_0223DE00 *param3, int param4)
 {
     UnkStruct_02081CF4 v0;
     int v1;
@@ -922,7 +922,7 @@ void ov76_0223C8BC(UnkStruct_ov76_0223DE00 *param0)
     sub_0200D0F4(param0->unk_2F4[1]);
 }
 
-void ov76_0223C8EC(BGL *param0, PaletteData *param1, int param2)
+void ov76_0223C8EC(BgConfig *param0, PaletteData *param1, int param2)
 {
     sub_0200DD0C(param0, 1, 1, 15, param2, 53);
     PaletteSys_LoadPalette(param1, 38, sub_0200DD08(param2), 53, 0, 0x20, 12 * 16);
@@ -931,7 +931,7 @@ void ov76_0223C8EC(BGL *param0, PaletteData *param1, int param2)
     PaletteSys_LoadPalette(param1, 14, 7, 53, 0, 0x20, 14 * 16);
 }
 
-void ov76_0223C974(BGL *param0, PaletteData *param1, int param2)
+void ov76_0223C974(BgConfig *param0, PaletteData *param1, int param2)
 {
     sub_0200DD0C(param0, 4, 1, 15, param2, 53);
     PaletteSys_LoadPalette(param1, 38, sub_0200DD08(param2), 53, 1, 0x20, 12 * 16);
@@ -963,7 +963,7 @@ void ov76_0223CA30(Window *param0, int param1)
     MessageLoader_Free(v0);
 }
 
-void ov76_0223CA98(BGL *param0, Window *param1, int param2, int param3, int param4, int param5, int param6, int param7)
+void ov76_0223CA98(BgConfig *param0, Window *param1, int param2, int param3, int param4, int param5, int param6, int param7)
 {
     Window_Init(param1);
     BGL_AddWindow(param0, param1, param2, param3, param4, param5, param6, 14, param7);
@@ -972,7 +972,7 @@ void ov76_0223CA98(BGL *param0, Window *param1, int param2, int param3, int para
     sub_0201A954(param1);
 }
 
-static void ov76_0223CAFC(BGL *param0, Window *param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8)
+static void ov76_0223CAFC(BgConfig *param0, Window *param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8)
 {
     Window_Init(param1);
     BGL_AddWindow(param0, param1, param2, param3, param4, param5, param6, param8, param7);

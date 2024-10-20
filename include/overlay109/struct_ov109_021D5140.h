@@ -27,7 +27,7 @@ typedef struct UnkStruct_ov109_021D5140_t {
     int unk_08;
     UnkStruct_0209C194 *unk_0C;
     UnkStruct_0209BDF8 *unk_10;
-    BGL *unk_14;
+    BgConfig *unk_14;
     BOOL unk_18;
     UnkStruct_ov109_021D5140_sub1 unk_1C;
     SysTask *unk_30;

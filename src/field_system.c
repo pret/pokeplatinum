@@ -376,7 +376,7 @@ struct PoketchSystem *FieldSystem_GetPoketchSystem(void)
     return sFieldSystem->unk_04->poketchSys;
 }
 
-BGL *sub_0203D170(void *param0)
+BgConfig *sub_0203D170(void *param0)
 {
     FieldSystem *fieldSystem = (FieldSystem *)param0;
     return fieldSystem->unk_08;

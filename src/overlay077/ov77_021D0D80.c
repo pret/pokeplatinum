@@ -102,7 +102,7 @@ typedef struct {
 
 typedef struct {
     int unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     GenericPointerData *unk_08;
     UnkStruct_ov77_021D17B4_sub1 unk_0C;
     UnkStruct_ov77_021D1568 unk_238;
@@ -118,7 +118,7 @@ extern const OverlayManagerTemplate Unk_020F8A48;
 extern const OverlayManagerTemplate Unk_020F8AB4;
 extern const OverlayManagerTemplate Unk_ov77_021D788C;
 
-static void ov77_021D1D48(BGL *param0, int param1);
+static void ov77_021D1D48(BgConfig *param0, int param1);
 void sub_02000EC4(FSOverlayID param0, const OverlayManagerTemplate *param1);
 static int ov77_021D0D80(OverlayManager *param0, int *param1);
 static int ov77_021D0E3C(OverlayManager *param0, int *param1);
@@ -133,17 +133,17 @@ static void ov77_021D1208(UnkStruct_ov77_021D1208 *param0, int param1, int param
 static void ov77_021D14E4(UnkStruct_ov77_021D1208 *param0);
 static void ov77_021D1568(UnkStruct_ov77_021D1568 *param0, UnkStruct_ov77_021D1208 *param1);
 static BOOL ov77_021D11A4(void);
-static BOOL ov77_021D1A60(UnkStruct_ov77_021D1568 *param0, BGL *param1, int param2);
-static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BGL *param1, int param2);
-static BOOL ov77_021D20E4(UnkStruct_ov77_021D1568 *param0, BGL *param1, int param2);
-static BOOL ov77_021D21C0(UnkStruct_ov77_021D1568 *param0, BGL *param1, int param2);
+static BOOL ov77_021D1A60(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int param2);
+static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int param2);
+static BOOL ov77_021D20E4(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int param2);
+static BOOL ov77_021D21C0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int param2);
 static void ov77_021D1300(UnkStruct_ov77_021D1208 *param0, int param1);
 static void ov77_021D1514(UnkStruct_ov77_021D1208 *param0);
 static void ov77_021D1704(UnkStruct_ov77_021D1208 *param0);
 static void ov77_021D1984(UnkStruct_ov77_021D1568 *param0, UnkStruct_ov77_021D1208 *param1);
 static void ov77_021D25AC(Camera *camera);
-static void ov77_021D2214(BGL *param0, int param1, UnkStruct_ov77_021D1568 *param2);
-static void ov77_021D2428(BGL *param0, int param1, UnkStruct_ov77_021D1568 *param2);
+static void ov77_021D2214(BgConfig *param0, int param1, UnkStruct_ov77_021D1568 *param2);
+static void ov77_021D2428(BgConfig *param0, int param1, UnkStruct_ov77_021D1568 *param2);
 static void ov77_021D24C8(UnkStruct_ov77_021D1568 *param0);
 static void ov77_021D2438(UnkStruct_ov77_021D1568 *param0);
 
@@ -841,7 +841,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov77_021D72D0 = {
     0x1
 };
 
-static BOOL ov77_021D1A60(UnkStruct_ov77_021D1568 *param0, BGL *param1, int param2)
+static BOOL ov77_021D1A60(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int param2)
 {
     ov77_021D24C8(param0);
     ov77_021D2214(param1, param2, param0);
@@ -926,7 +926,7 @@ static void ov77_021D1C10(UnkStruct_ov77_021D1568 *param0)
     param0->unk_248.z += (v1);
 }
 
-static void ov77_021D1CC0(BGL *param0, int param1)
+static void ov77_021D1CC0(BgConfig *param0, int param1)
 {
     sub_02019044(param0, 5);
     {
@@ -958,7 +958,7 @@ static void ov77_021D1CC0(BGL *param0, int param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
 }
 
-static void ov77_021D1D48(BGL *param0, int param1)
+static void ov77_021D1D48(BgConfig *param0, int param1)
 {
     sub_02019044(param0, 4);
 
@@ -997,7 +997,7 @@ static void ov77_021D1D48(BGL *param0, int param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
 }
 
-static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BGL *param1, int param2)
+static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int param2)
 {
     BOOL v0 = 0;
 
@@ -1135,7 +1135,7 @@ static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BGL *param1, int para
     return v0;
 }
 
-static BOOL ov77_021D20E4(UnkStruct_ov77_021D1568 *param0, BGL *param1, int param2)
+static BOOL ov77_021D20E4(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int param2)
 {
     BOOL v0 = 0;
 
@@ -1195,7 +1195,7 @@ static BOOL ov77_021D20E4(UnkStruct_ov77_021D1568 *param0, BGL *param1, int para
     return v0;
 }
 
-static BOOL ov77_021D21C0(UnkStruct_ov77_021D1568 *param0, BGL *param1, int param2)
+static BOOL ov77_021D21C0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int param2)
 {
     Camera_Delete(param0->unk_04.camera1);
     Camera_Delete(param0->unk_04.camera2);
@@ -1212,7 +1212,7 @@ static BOOL ov77_021D21C0(UnkStruct_ov77_021D1568 *param0, BGL *param1, int para
     return 1;
 }
 
-static void ov77_021D2214(BGL *param0, int param1, UnkStruct_ov77_021D1568 *param2)
+static void ov77_021D2214(BgConfig *param0, int param1, UnkStruct_ov77_021D1568 *param2)
 {
     {
         int v0, v1;
@@ -1282,7 +1282,7 @@ static void ov77_021D2214(BGL *param0, int param1, UnkStruct_ov77_021D1568 *para
     }
 }
 
-static void ov77_021D2428(BGL *param0, int param1, UnkStruct_ov77_021D1568 *param2)
+static void ov77_021D2428(BgConfig *param0, int param1, UnkStruct_ov77_021D1568 *param2)
 {
     BGL_DeleteWindow(&param2->unk_22C);
 }

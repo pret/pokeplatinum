@@ -40,7 +40,7 @@ struct UnkStruct_ov5_021E1FF4_t {
     FieldSystem *fieldSystem;
     int unk_04;
     u8 unk_08;
-    BGL *unk_0C;
+    BgConfig *unk_0C;
     Window *unk_10;
     StringTemplate *unk_14;
     MessageLoader *unk_18;

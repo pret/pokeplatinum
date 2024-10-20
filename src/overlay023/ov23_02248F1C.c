@@ -46,7 +46,7 @@ struct UnkStruct_ov23_0224942C_t {
     int unk_44[8][3];
     int unk_A4[17][4];
     FieldSystem *fieldSystem;
-    BGL *unk_1B8;
+    BgConfig *unk_1B8;
     CellActorCollection *unk_1BC;
     UnkStruct_0200C738 unk_1C0;
     SpriteResourceCollection *unk_34C[4];
@@ -63,14 +63,14 @@ struct UnkStruct_ov23_0224942C_t {
 
 int Unk_ov23_0225776C[8][2];
 
-static void ov23_0224944C(BGL *param0, Window *param1);
+static void ov23_0224944C(BgConfig *param0, Window *param1);
 static void ov23_02249584(UnkStruct_ov23_0224942C *param0);
 static void ov23_02249214(PlayerAvatar *const playerAvatar, int param1[][2], int param2[][3]);
 static void ov23_022491CC(int param0[][2], int param1[][3]);
 static void ov23_022492C8(int param0[][3], CellActor *param1[]);
-static void ov23_0224944C(BGL *param0, Window *param1);
-static void ov23_02249438(BGL *param0);
-static void ov23_0224966C(BGL *param0, Window *param1, int *param2, int *param3, int *param4, UnkStruct_ov23_02249724 *param5);
+static void ov23_0224944C(BgConfig *param0, Window *param1);
+static void ov23_02249438(BgConfig *param0);
+static void ov23_0224966C(BgConfig *param0, Window *param1, int *param2, int *param3, int *param4, UnkStruct_ov23_02249724 *param5);
 static void ov23_02249724(UnkStruct_ov23_02249724 *param0);
 static void ov23_02249778(UnkStruct_ov23_02249724 *param0);
 static int ov23_02249844(UnkStruct_ov23_02249724 *param0, Strbuf *param1);
@@ -84,7 +84,7 @@ static UnkStruct_ov23_0224942C *Unk_ov23_02257768;
 static void ov23_02248F1C(SysTask *param0, void *param1)
 {
     UnkStruct_ov23_0224942C *v0 = param1;
-    BGL *v1 = v0->unk_1B8;
+    BgConfig *v1 = v0->unk_1B8;
     int v2;
 
     Unk_ov23_02257768 = v0;
@@ -338,13 +338,13 @@ void ov23_0224942C(UnkStruct_ov23_0224942C *param0)
     }
 }
 
-static void ov23_02249438(BGL *param0)
+static void ov23_02249438(BgConfig *param0)
 {
     sub_02019044(param0, 4);
     sub_02019044(param0, 5);
 }
 
-static void ov23_0224944C(BGL *param0, Window *param1)
+static void ov23_0224944C(BgConfig *param0, Window *param1)
 {
     sub_0200F344(1, 0x0);
     ov23_02249438(param0);
@@ -457,7 +457,7 @@ static void ov23_02249584(UnkStruct_ov23_0224942C *param0)
     sub_0200A640(param0->unk_35C[1]);
 }
 
-static void ov23_0224966C(BGL *param0, Window *param1, int *param2, int *param3, int *param4, UnkStruct_ov23_02249724 *param5)
+static void ov23_0224966C(BgConfig *param0, Window *param1, int *param2, int *param3, int *param4, UnkStruct_ov23_02249724 *param5)
 {
     Strbuf *v0;
 

@@ -19,7 +19,7 @@
 #include "sys_task_manager.h"
 
 typedef struct {
-    BGL *unk_00;
+    BgConfig *unk_00;
     Window unk_04;
     UnkStruct_0200C738 unk_14;
     CellActorCollection *unk_138;

@@ -32,8 +32,8 @@
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 
-static void ov94_02244A7C(BGL *param0);
-static void ov94_02244B68(BGL *param0);
+static void ov94_02244A7C(BgConfig *param0);
+static void ov94_02244B68(BgConfig *param0);
 static void ov94_02244B8C(UnkStruct_ov94_0223FD4C *param0);
 static void ov94_02244E48(UnkStruct_ov94_0223FD4C *param0);
 static void ov94_02244F00(UnkStruct_ov94_0223FD4C *param0);
@@ -166,7 +166,7 @@ int ov94_02244A2C(UnkStruct_ov94_0223FD4C *param0, int param1)
     return 1;
 }
 
-static void ov94_02244A7C(BGL *param0)
+static void ov94_02244A7C(BgConfig *param0)
 {
     {
         BgTemplate v0 = {
@@ -259,7 +259,7 @@ static void ov94_02244A7C(BGL *param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 0);
 }
 
-static void ov94_02244B68(BGL *param0)
+static void ov94_02244B68(BgConfig *param0)
 {
     sub_02019044(param0, 5);
     sub_02019044(param0, 4);
@@ -269,7 +269,7 @@ static void ov94_02244B68(BGL *param0)
 
 static void ov94_02244B8C(UnkStruct_ov94_0223FD4C *param0)
 {
-    BGL *v0 = param0->unk_04;
+    BgConfig *v0 = param0->unk_04;
     NARC *v1;
 
     v1 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, 62);

@@ -43,7 +43,7 @@
 #include "unk_0208BA78.h"
 #include "unk_0208C010.h"
 
-static void ov62_0222F670(BGL *param0);
+static void ov62_0222F670(BgConfig *param0);
 static void ov62_0222F848(UnkStruct_0208C06C *param0);
 
 void ov62_0222F2C0(UnkStruct_0208C06C *param0)
@@ -226,7 +226,7 @@ static const BgTemplate Unk_ov62_02248820[] = {
     { 0x0, 0x0, 0x800, 0x0, 0x1, GX_BG_COLORMODE_16, GX_BG_SCRBASE_0xd800, GX_BG_CHARBASE_0x00000, GX_BG_EXTPLTT_01, 0x1, 0x0, 0x0, 0x0 }
 };
 
-static void ov62_0222F670(BGL *param0)
+static void ov62_0222F670(BgConfig *param0)
 {
     GXLayers_DisableEngineALayers();
 

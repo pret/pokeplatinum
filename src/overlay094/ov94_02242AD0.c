@@ -51,8 +51,8 @@
 #include "unk_020797C8.h"
 #include "vars_flags.h"
 
-static void ov94_02242B54(BGL *param0);
-static void ov94_02242C80(BGL *param0);
+static void ov94_02242B54(BgConfig *param0);
+static void ov94_02242C80(BgConfig *param0);
 static void ov94_02242CAC(UnkStruct_ov94_0223FD4C *param0);
 static void ov94_02242D38(UnkStruct_ov94_0223FD4C *param0);
 static void ov94_02242D74(UnkStruct_ov94_0223FD4C *param0);
@@ -188,7 +188,7 @@ int ov94_02242B34(UnkStruct_ov94_0223FD4C *param0, int param1)
     return 1;
 }
 
-static void ov94_02242B54(BGL *param0)
+static void ov94_02242B54(BgConfig *param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -313,7 +313,7 @@ static void ov94_02242B54(BGL *param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void ov94_02242C80(BGL *param0)
+static void ov94_02242C80(BgConfig *param0)
 {
     sub_02019044(param0, 5);
     sub_02019044(param0, 4);
@@ -324,7 +324,7 @@ static void ov94_02242C80(BGL *param0)
 
 static void ov94_02242CAC(UnkStruct_ov94_0223FD4C *param0)
 {
-    BGL *v0 = param0->unk_04;
+    BgConfig *v0 = param0->unk_04;
 
     sub_02006E84(104, 0, 0, 0, 16 * 3 * 2, 62);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 62);

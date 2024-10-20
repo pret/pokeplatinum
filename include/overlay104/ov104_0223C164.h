@@ -5,7 +5,7 @@
 
 #include "bg_window.h"
 
-UnkStruct_ov104_0223C23C *ov104_0223C164(BGL *param0);
+UnkStruct_ov104_0223C23C *ov104_0223C164(BgConfig *param0);
 void ov104_0223C23C(UnkStruct_ov104_0223C23C *param0);
 u16 ov104_0223C264(u8 param0);
 u16 ov104_0223C29C(u8 param0);

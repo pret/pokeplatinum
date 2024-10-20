@@ -1076,7 +1076,7 @@ static void ScrollHealthbarTask(SysTask *task, void *data)
  */
 static void Healthbar_DrawBattlerName(Healthbar *healthbar)
 {
-    BGL *bgl;
+    BgConfig *bgl;
     u8 *buf;
     NNSG2dImageProxy *imgProxy;
     Window window;
@@ -1296,7 +1296,7 @@ static void Healthbar_DrawStatusIcon(Healthbar *param0, int param1)
 
 static void Healthbar_DrawBallCount(Healthbar *param0, u32 param1)
 {
-    BGL *v0;
+    BgConfig *v0;
     u8 *v1;
     NNSG2dImageProxy *v2;
     Window v3;
@@ -1339,7 +1339,7 @@ static void Healthbar_DrawBallCount(Healthbar *param0, u32 param1)
 
 static void Healthbar_DrawBallsLeftMessage(Healthbar *param0, u32 param1)
 {
-    BGL *v0;
+    BgConfig *v0;
     u8 *v1;
     NNSG2dImageProxy *v2;
     Window v3;

@@ -6,7 +6,7 @@
 #include "bg_window.h"
 
 typedef struct {
-    BGL *unk_00;
+    BgConfig *unk_00;
     MtxFx22 unk_04;
     u32 unk_14;
     int unk_18;

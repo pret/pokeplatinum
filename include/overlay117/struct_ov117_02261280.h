@@ -45,7 +45,7 @@ typedef struct UnkStruct_ov117_02261280_t {
     int unk_20;
     SpriteRenderer *unk_24;
     SpriteGfxHandler *unk_28;
-    BGL *unk_2C;
+    BgConfig *unk_2C;
     Window unk_30[5];
     MessageLoader *unk_80;
     StringTemplate *unk_84;

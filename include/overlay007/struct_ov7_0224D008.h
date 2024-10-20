@@ -22,7 +22,7 @@
 #include "vars_flags.h"
 
 typedef struct {
-    BGL *unk_00;
+    BgConfig *unk_00;
     void *unk_04;
     Window unk_08[6];
     Window unk_68;

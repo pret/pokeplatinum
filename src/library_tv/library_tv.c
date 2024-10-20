@@ -22,7 +22,7 @@
 
 typedef struct LibraryTV {
     int heapID;
-    BGL *bgl;
+    BgConfig *bgl;
     MessageLoader *msgLdr;
     int tvState;
     Window tvWindow;

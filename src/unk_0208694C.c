@@ -76,7 +76,7 @@ struct UnkStruct_02087A10_t {
     u16 unk_118[32];
     u16 unk_158;
     u16 unk_15A[3];
-    BGL *unk_160;
+    BgConfig *unk_160;
     BOOL unk_164;
     StringTemplate *unk_168;
     MessageLoader *unk_16C;
@@ -149,12 +149,12 @@ static int sub_02086B64(OverlayManager *param0, int *param1);
 static int sub_02086F3C(OverlayManager *param0, int *param1);
 static void sub_02087190(void *param0);
 static void sub_020871CC(void);
-static void sub_020871EC(BGL *param0);
-static void sub_0208765C(BGL *param0, Window *param1);
+static void sub_020871EC(BgConfig *param0);
+static void sub_0208765C(BgConfig *param0, Window *param1);
 static void sub_0208769C(UnkStruct_02087A10 *param0, NARC *param1);
-static void sub_02087D64(BGL *param0, Window *param1, int *param2, int param3, int *param4, VecFx32 param5[], CellActor **param6, void *param7);
+static void sub_02087D64(BgConfig *param0, Window *param1, int *param2, int param3, int *param4, VecFx32 param5[], CellActor **param6, void *param7);
 static void sub_0208737C(UnkStruct_02087A10 *param0, OverlayManager *param1);
-static void sub_02088240(BGL *param0, int param1, VecFx32 param2[]);
+static void sub_02088240(BgConfig *param0, int param1, VecFx32 param2[]);
 static void sub_02088260(VecFx32 param0[], int param1);
 static void sub_020877F4(UnkStruct_02087A10 *param0, NARC *param1);
 static void sub_02087A10(UnkStruct_02087A10 *param0);
@@ -1258,7 +1258,7 @@ static void sub_020871CC(void)
     GXLayers_SetBanks(&v0);
 }
 
-static void sub_020871EC(BGL *param0)
+static void sub_020871EC(BgConfig *param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -1485,7 +1485,7 @@ static void sub_02087544(UnkStruct_02087A10 *param0, OverlayManager *param1)
     }
 }
 
-static void sub_0208765C(BGL *param0, Window *param1)
+static void sub_0208765C(BgConfig *param0, Window *param1)
 {
     int v0;
 
@@ -1502,7 +1502,7 @@ static void sub_0208765C(BGL *param0, Window *param1)
 
 static void sub_0208769C(UnkStruct_02087A10 *param0, NARC *param1)
 {
-    BGL *v0 = param0->unk_160;
+    BgConfig *v0 = param0->unk_160;
 
     sub_02007130(param1, 0, 0, 0, 16 * 3 * 2, 18);
     sub_02006E84(12, 12, 4, 0, 16 * 2, 18);
@@ -1734,7 +1734,7 @@ static void sub_02087CDC(SysTask *param0, void *param1)
     v0->unk_04++;
 }
 
-static void sub_02087D64(BGL *param0, Window *param1, int *param2, int param3, int *param4, VecFx32 param5[], CellActor **param6, void *param7)
+static void sub_02087D64(BgConfig *param0, Window *param1, int *param2, int param3, int *param4, VecFx32 param5[], CellActor **param6, void *param7)
 {
     int v0 = *param4;
     int v1 = v0 ^ 1;
@@ -1882,7 +1882,7 @@ static void sub_02087FC0(UnkStruct_02087A10 *param0, OverlayManager *param1, NAR
     }
 }
 
-static void sub_02088240(BGL *param0, int param1, VecFx32 param2[])
+static void sub_02088240(BgConfig *param0, int param1, VecFx32 param2[])
 {
     BGL_SetPriority(0 + param1, 1);
     BGL_SetPriority(0 + param1 ^ 1, 2);

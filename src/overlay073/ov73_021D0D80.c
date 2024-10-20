@@ -59,7 +59,7 @@ typedef struct {
     int unk_0C;
     int unk_10;
     OverlayManager *unk_14;
-    BGL *unk_18;
+    BgConfig *unk_18;
     Window unk_1C;
     int unk_2C;
     Window unk_30;

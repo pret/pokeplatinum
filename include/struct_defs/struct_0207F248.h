@@ -25,7 +25,7 @@
 #include "string_template.h"
 
 typedef struct {
-    BGL *unk_00;
+    BgConfig *unk_00;
     Window unk_04[37];
     Window unk_254[1];
     u16 unk_264[96];

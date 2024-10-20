@@ -24,7 +24,7 @@
 
 struct UnkStruct_ov96_0223BF40_t {
     UnkStruct_0206BC70 *unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     int unk_08;
     int unk_0C;
     int unk_10;

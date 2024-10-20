@@ -110,7 +110,7 @@ typedef struct {
 } UnkStruct_ov68_0225CB70;
 
 typedef struct {
-    BGL *unk_00;
+    BgConfig *unk_00;
     CellActorCollection *unk_04;
     UnkStruct_0200C738 unk_08;
     SpriteResourceCollection *unk_194[4];

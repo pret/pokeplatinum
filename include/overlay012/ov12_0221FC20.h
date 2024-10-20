@@ -42,7 +42,7 @@ u16 ov12_02220248(UnkStruct_ov12_0221FCDC *param0);
 UnkStruct_02014014 *ov12_02220250(UnkStruct_ov12_0221FCDC *param0);
 UnkStruct_02014014 *ov12_02220260(UnkStruct_ov12_0221FCDC *param0, int param1);
 SPLEmitter *ov12_0222026C(UnkStruct_ov12_0221FCDC *param0, int param1);
-BGL *ov12_02220278(UnkStruct_ov12_0221FCDC *param0);
+BgConfig *ov12_02220278(UnkStruct_ov12_0221FCDC *param0);
 s32 ov12_02220280(UnkStruct_ov12_0221FCDC *param0, int param1);
 CellActorData *ov12_02220298(UnkStruct_ov12_0221FCDC *param0, int param1);
 CellActorData *ov12_022202C0(UnkStruct_ov12_0221FCDC *param0, int param1);

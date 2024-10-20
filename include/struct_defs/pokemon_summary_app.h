@@ -86,7 +86,7 @@ typedef struct PokemonSummaryAppSpriteData {
 } PokemonSummaryAppSpriteData;
 
 typedef struct PokemonSummaryApp {
-    BGL *bgl;
+    BgConfig *bgl;
     Window staticWindows[36];
     Window *extraWindows;
     u32 numExtraWindows;
