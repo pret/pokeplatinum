@@ -4,16 +4,14 @@
 #include <nitro/fx/fx.h>
 #include <nitro/gx.h>
 
-enum BGLFrame {
-    BGL_FRAME_MAIN_0 = 0,
-    BGL_FRAME_MAIN_1,
-    BGL_FRAME_MAIN_2,
-    BGL_FRAME_MAIN_3,
-    BGL_FRAME_SUB_0,
-    BGL_FRAME_SUB_1,
-    BGL_FRAME_SUB_2,
-    BGL_FRAME_SUB_3,
-};
+#define TILE_SIZE_4BPP 0x20
+#define TILE_SIZE_8BPP 0x40
+
+#define TILEMAP_COPY_SRC_FLAT 0 // source dimensions are equal to dest dimensions
+#define TILEMAP_COPY_SRC_RECT 1 // dest dimensions carve a window from source
+
+#define TILEMAP_FILL_VAL_KEEP_PALETTE     16 // do not replace the selected palette index
+#define TILEMAP_FILL_VAL_INCLUDES_PALETTE 17
 
 enum BGLScreenSize {
     SCREEN_SIZE_128x128 = 0,
@@ -22,6 +20,71 @@ enum BGLScreenSize {
     SCREEN_SIZE_512x256,
     SCREEN_SIZE_512x512,
     SCREEN_SIZE_1024x1024,
+};
+
+enum DSScreen {
+    DS_SCREEN_MAIN = 0,
+    DS_SCREEN_SUB,
+};
+
+enum BgLayer {
+    BG_LAYER_MAIN_0 = 0,
+    BG_LAYER_MAIN_1,
+    BG_LAYER_MAIN_2,
+    BG_LAYER_MAIN_3,
+    BG_LAYER_SUB_0,
+    BG_LAYER_SUB_1,
+    BG_LAYER_SUB_2,
+    BG_LAYER_SUB_3,
+};
+
+enum BgType {
+    BG_TYPE_STATIC = 0,
+    BG_TYPE_AFFINE,
+    BG_TYPE_STATIC_WITH_AFFINE,
+};
+
+enum BgControlParam {
+    BG_CONTROL_PARAM_COLOR_MODE = 0,
+    BG_CONTROL_PARAM_SCREEN_BASE,
+    BG_CONTROL_PARAM_CHAR_BASE,
+    BG_CONTROL_PARAM_SCREEN_SIZE,
+};
+
+enum BgOffsetUpdateOp {
+    BG_OFFSET_UPDATE_SET_X = 0,
+    BG_OFFSET_UPDATE_ADD_X,
+    BG_OFFSET_UPDATE_SUB_X,
+    BG_OFFSET_UPDATE_SET_Y,
+    BG_OFFSET_UPDATE_ADD_Y,
+    BG_OFFSET_UPDATE_SUB_Y,
+};
+
+enum BgAffineUpdateOp {
+    BG_AFFINE_UPDATE_SET_ROTATION = 0,
+    BG_AFFINE_UPDATE_ADD_ROTATION,
+    BG_AFFINE_UPDATE_SUB_ROTATION,
+    BG_AFFINE_UPDATE_SET_X_SCALE,
+    BG_AFFINE_UPDATE_ADD_X_SCALE,
+    BG_AFFINE_UPDATE_SUB_X_SCALE,
+    BG_AFFINE_UPDATE_SET_Y_SCALE,
+    BG_AFFINE_UPDATE_ADD_Y_SCALE,
+    BG_AFFINE_UPDATE_SUB_Y_SCALE,
+    BG_AFFINE_UPDATE_SET_X_CENTER,
+    BG_AFFINE_UPDATE_ADD_X_CENTER,
+    BG_AFFINE_UPDATE_SUB_X_CENTER,
+    BG_AFFINE_UPDATE_SET_Y_CENTER,
+    BG_AFFINE_UPDATE_ADD_Y_CENTER,
+    BG_AFFINE_UPDATE_SUB_Y_CENTER,
+};
+
+enum BgScreenSize {
+    BG_SCREEN_SIZE_128x128 = 0,
+    BG_SCREEN_SIZE_256x256,
+    BG_SCREEN_SIZE_256x512,
+    BG_SCREEN_SIZE_512x256,
+    BG_SCREEN_SIZE_512x512,
+    BG_SCREEN_SIZE_1024x1024,
 };
 
 typedef struct Bitmap {
@@ -104,44 +167,55 @@ typedef struct GraphicsModes {
     GXBG0As bg0As2DOr3D;
 } GraphicsModes;
 
-BgConfig *BgConfig_New(u32 param0);
-u32 BgConfig_GetHeapID(BgConfig *param0);
-void SetAllGraphicsModes(const GraphicsModes *param0);
-void SetScreenGraphicsModes(const GraphicsModes *param0, u8 param1);
-void Bg_InitFromTemplate(BgConfig *param0, u8 param1, const BgTemplate *param2, u8 param3);
-void Bg_SetControlParam(BgConfig *param0, u8 param1, u8 param2, u8 param3);
-void Bg_FreeTilemapBuffer(BgConfig *param0, u8 param1);
-void Bg_SetPriority(u8 param0, u8 param1);
-void Bg_ToggleLayer(u8 param0, u8 param1);
-void Bg_SetOffset(BgConfig *param0, u8 param1, u8 param2, int param3);
-int Bg_GetXOffset(BgConfig *param0, u32 param1);
-int Bg_GetYOffset(BgConfig *param0, u32 param1);
-void Bg_SetAffineParams(BgConfig *param0, u8 param1, const MtxFx22 *param2, int param3, int param4);
-void Bg_CopyTilemapBufferToVRAM(BgConfig *param0, u8 param1);
-void Bg_CopyTilemapBufferRangeToVRAM(BgConfig *param0, u8 param1, const void *param2, u32 param3, u32 param4);
-void Bg_LoadTilemapBuffer(BgConfig *param0, u8 param1, const void *param2, u32 param3);
-void Bg_LoadTiles(BgConfig *param0, u8 param1, const void *param2, u32 param3, u32 param4);
-void Bg_ClearTilesRange(u8 param0, u32 param1, u32 param2, u32 param3);
-void Bg_FillTilesRange(BgConfig *param0, u32 param1, u32 param2, u32 param3, u32 param4);
-void Bg_LoadPalette(u8 param0, void *param1, u16 param2, u16 param3);
-void Bg_MaskPalette(u8 param0, u16 param1);
-void Bg_LoadToTilemapRect(BgConfig *param0, u8 param1, const void *param2, u8 param3, u8 param4, u8 param5, u8 param6);
-void Bg_CopyToTilemapRect(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, const void *param6, u8 param7, u8 param8, u8 param9, u8 param10);
-void Bg_CopyRectToTilemapRect(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, const void *param6, u8 param7, u8 param8, u8 param9, u8 param10);
-void Bg_FillTilemapRect(BgConfig *param0, u8 param1, u16 param2, u8 param3, u8 param4, u8 param5, u8 param6, u8 param7);
-void Bg_ChangeTilemapRectPalette(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6);
-void Bg_ClearTilemap(BgConfig *param0, u8 param1);
-void Bg_FillTilemap(BgConfig *param0, u8 param1, u16 param2);
-void Bg_ScheduleFillTilemap(BgConfig *param0, u8 param1, u16 param2);
-void *Bg_GetCharPtr(u8 param0);
-void *Bg_GetTilemapBuffer(BgConfig *param0, u8 param1);
-int Bg_GetXOffset2(BgConfig *param0, u8 param1);
-u16 Bg_GetRotation(BgConfig *param0, u8 param1);
-u8 Bg_GetPriority(BgConfig *param0, u8 param1);
+void SetAllGraphicsModes(const GraphicsModes *graphicsModes);
+void SetScreenGraphicsModes(const GraphicsModes *graphicsModes, u8 screen);
+
+BgConfig *BgConfig_New(u32 heapID);
+u32 BgConfig_GetHeapID(BgConfig *bgConfig);
+void Bg_InitFromTemplate(BgConfig *bgConfig, u8 bgLayer, const BgTemplate *bgTemplate, u8 bgType);
+void Bg_SetControlParam(BgConfig *bgConfig, u8 bgLayer, enum BgControlParam bgControlParam, u8 val);
+void Bg_FreeTilemapBuffer(BgConfig *bgConfig, u8 bgLayer);
+void Bg_SetPriority(u8 bgLayer, u8 priority);
+void Bg_ToggleLayer(u8 bgLayer, u8 enable);
+void Bg_SetOffset(BgConfig *bgConfig, u8 bgLayer, u8 bgOffsetUpdateOp, int val);
+int Bg_GetXOffset(BgConfig *bgConfig, enum BgLayer bgLayer);
+int Bg_GetYOffset(BgConfig *bgConfig, enum BgLayer bgLayer);
+void Bg_SetAffineParams(BgConfig *bgConfig, u8 bgLayer, const MtxFx22 *mtx, int centerX, int centerY);
+void Bg_CopyTilemapBufferToVRAM(BgConfig *bgConfig, u8 bgLayer);
+void Bg_CopyTilemapBufferRangeToVRAM(BgConfig *bgConfig, u8 bgLayer, void *src, u32 size, u32 offset);
+void Bg_LoadTilemapBuffer(BgConfig *bgConfig, u8 bgLayer, void *src, u32 size);
+void Bg_LoadTiles(BgConfig *bgConfig, u8 bgLayer, void *src, u32 size, u32 tileStart);
+void Bg_LoadTilesToVRAM(BgConfig *bgConfig, u8 bgLayer, void *src, u32 size, u32 offset);
+void Bg_ClearTilesRange(u8 bgLayer, u32 size, u32 offset, u32 heapID);
+void Bg_FillTilesRange(BgConfig *bgConfig, u32 bgLayer, u32 fillVal, u32 numTiles, u32 offset);
+void Bg_LoadPalette(u8 bgLayer, void *src, u16 size, u16 offset);
+void Bg_MaskPalette(u8 bgLayer, u16 mask);
+void Bg_LoadToTilemapRect(BgConfig *bgConfig, u8 bgLayer, const void *src, u8 destX, u8 destY, u8 destWidth, u8 destHeight);
+void Bg_CopyToTilemapRect(BgConfig *bgConfig, u8 bgLayer, u8 destX, u8 destY, u8 destWidth, u8 destHeight, const void *src, u8 srcX, u8 srcY, u8 srcWidth, u8 srcHeight);
+void Bg_CopyRectToTilemapRect(BgConfig *bgConfig, u8 bgLayer, u8 destX, u8 destY, u8 destWidth, u8 destHeight, const void *src, u8 srcX, u8 srcY, u8 srcWidth, u8 srcHeight);
+void Bg_FillTilemapRect(BgConfig *bgConfig, u8 bgLayer, u16 fillVal, u8 x, u8 y, u8 width, u8 height, u8 palette);
+void Bg_ChangeTilemapRectPalette(BgConfig *bgConfig, u8 bgLayer, u8 x, u8 y, u8 width, u8 height, u8 palette);
+void Bg_ClearTilemap(BgConfig *bgConfig, u8 bgLayer);
+void Bg_FillTilemap(BgConfig *bgConfig, u8 bgLayer, u16 fillVal);
+void Bg_ScheduleFillTilemap(BgConfig *bgConfig, u8 bgLayer, u16 fillVal);
+void *Bg_GetCharPtr(u8 bgLayer);
+void *Bg_GetTilemapBuffer(BgConfig *bgConfig, u8 bgLayer);
+int Bg_GetXOffset2(BgConfig *bgConfig, u8 bgLayer);
+u16 Bg_GetRotation(BgConfig *bgConfig, u8 bgLayer);
+u8 Bg_GetPriority(BgConfig *bgConfig, u8 bgLayer);
+void Bg_RunScheduledUpdates(BgConfig *bgConfig);
+void Bg_ScheduleTilemapTransfer(BgConfig *bgConfig, u8 bgLayer);
+void Bg_ScheduleScroll(BgConfig *bgConfig, u8 bgLayer, u8 bgOffsetUpdateOp, int val);
+void Bg_ScheduleAffineRotation(BgConfig *bgConfig, u8 bgLayer, u8 bgAffineUpdateOp, u16 val);
+void Bg_ScheduleAffineScale(BgConfig *bgConfig, u8 bgLayer, u8 bgAffineUpdateOp, fx32 val);
+void Bg_ScheduleAffineRotationCenter(BgConfig *bgConfig, u8 bgLayer, u8 bgAffineUpdateOp, int val);
+u8 Bg_DoesPixelAtXYMatchVal(BgConfig *bgConfig, u8 bgLayer, u16 x, u16 y, u16 *src);
+
 void Bitmap_BlitRect4bpp(const Bitmap *param0, const Bitmap *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6, u16 param7, u16 param8);
 void Bitmap_BlitRect8bpp(const Bitmap *param0, const Bitmap *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6, u16 param7, u16 param8);
 void Bitmap_FillRect4bpp(const Bitmap *param0, u16 param1, u16 param2, u16 param3, u16 param4, u8 param5);
 void Bitmap_FillRect8bpp(const Bitmap *param0, u16 param1, u16 param2, u16 param3, u16 param4, u8 param5);
+
 Window *Window_New(u32 param0, u8 param1);
 void Window_Init(Window *param0);
 u8 Window_IsInUse(Window *param0);
@@ -174,12 +248,5 @@ u16 Window_GetBaseTile(Window *param0);
 void Window_SetXPos(Window *param0, u8 param1);
 void Window_SetYPos(Window *param0, u8 param1);
 void Window_SetPalette(Window *param0, u8 param1);
-void Bg_RunScheduledUpdates(BgConfig *param0);
-void Bg_ScheduleTilemapTransfer(BgConfig *param0, u8 param1);
-void Bg_ScheduleScroll(BgConfig *param0, u8 param1, u8 param2, int param3);
-void Bg_ScheduleAffineRotation(BgConfig *param0, u8 param1, u8 param2, u16 param3);
-void Bg_ScheduleAffineScale(BgConfig *param0, u8 param1, u8 param2, fx32 param3);
-void Bg_ScheduleAffineRotationCenter(BgConfig *param0, u8 param1, u8 param2, int param3);
-u8 Bg_DoesPixelAtXYMatchVal(BgConfig *param0, u8 param1, u16 param2, u16 param3, u16 *param4);
 
 #endif // POKEPLATINUM_BG_WINDOW_H

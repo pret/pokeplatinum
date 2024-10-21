@@ -1021,7 +1021,7 @@ static void ov13_02220C0C(UnkStruct_ov13_022213F0 *param0)
             GX_BG0_AS_3D,
         };
 
-        SetScreenGraphicsModes(&v0, 1);
+        SetScreenGraphicsModes(&v0, DS_SCREEN_SUB);
     }
 
     {
