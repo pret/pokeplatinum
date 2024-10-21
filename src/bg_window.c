@@ -3,15 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "bg_window.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
-
-enum {
-    UnkEnum_00 = 0,
-    UnkEnum_01 = 1,
-};
 
 static u8 ConvertToGxBgScreenSize(u8 bgScreenSize, u8 bgType);
 static void GetBgScreenTileDimensions(u8 bgScreenSize, u8 *outXTiles, u8 *outYTiles);
@@ -27,21 +21,21 @@ static void FillBgTilemapRectText(Background *bg, u16 fillVal, u8 x, u8 y, u8 wi
 static void FillBgTilemapRectAffine(Background *bg, u8 fillVal, u8 x, u8 y, u8 width, u8 height);
 static void Copy4bppTo8bpp(const u8 *src, u32 size, u8 *dest, u8 palette);
 static void *Convert4bppTo8bpp(const u8 *src, u32 size, u8 palette, u32 heapID);
-static void sub_0201AC20(Window *param0);
-static void sub_0201AC4C(Window *param0);
-static void sub_0201AC64(Window *param0);
-static void sub_0201ACA0(Window *param0);
-static void sub_0201AD2C(Window *param0);
-static void sub_0201AD54(Window *param0);
-static void sub_0201AD68(Window *param0);
-static void sub_0201AD90(Window *param0);
-static void sub_0201C06C(Window *param0, u8 param1, u8 param2, u8 param3);
-static void sub_0201C158(Window *param0, u8 param1, u8 param2, u8 param3);
+static void CopyWindowToVramText(Window *window);
+static void ScheduleCopyWindowToVramText(Window *window);
+static void CopyWindowToVramAffine(Window *window);
+static void ScheduleCopyWindowToVramAffine(Window *window);
+static void ClearAndCopyWindowToVramText(Window *window);
+static void ClearAndScheduleCopyWindowToVramText(Window *window);
+static void ClearAndCopyWindowToVramAffine(Window *window);
+static void ClearAndScheduleCopyWindowToVramAffine(Window *window);
+static void ScrollWindow4bpp(Window *window, u8 direction, u8 distance, u8 fillVal);
+static void ScrollWindow8bpp(Window *window, u8 direction, u8 distance, u8 fillVal);
 static void ApplyFlipFlagsToTile(BgConfig *bgConfig, u8 flags, u8 *tile);
-static void sub_0201AA58(Window *param0);
-static void sub_0201AADC(Window *param0);
-static void sub_0201AB38(Window *param0);
-static void sub_0201ABC8(Window *param0);
+static void PutWindowToTilemapText(Window *window);
+static void PutWindowToTilemapAffine(Window *window);
+static void ClearWindowTilemapText(Window *window);
+static void ClearWindowTilemapAffine(Window *window);
 static void UpdateBgRotationWithVal(Background *bg, enum BgAffineUpdateOp op, u16 val);
 static void UpdateBgAffineScaleWithVal(Background *bg, enum BgAffineUpdateOp op, fx32 val);
 static void UpdateBgAffineRotationCenterWithVal(Background *bg, enum BgAffineUpdateOp op, int val);
@@ -1586,1643 +1580,820 @@ void Bitmap_FillRect8bpp(const Bitmap *bitmap, u16 x, u16 y, u16 width, u16 heig
     }
 }
 
-Window *Window_New(u32 param0, u8 param1)
+Window *Window_New(u32 heapID, u8 winCount)
 {
-    Window *v0;
-    u16 v1;
+    Window *windows = (Window *)Heap_AllocFromHeap(heapID, sizeof(Window) * winCount);
 
-    v0 = (Window *)Heap_AllocFromHeap(param0, sizeof(Window) * param1);
-
-    for (v1 = 0; v1 < param1; v1++) {
-        Window_Init(&v0[v1]);
+    for (u16 i = 0; i < winCount; i++) {
+        Window_Init(&windows[i]);
     }
 
-    return v0;
+    return windows;
 }
 
-void Window_Init(Window *param0)
+void Window_Init(Window *window)
 {
-    param0->bgConfig = NULL;
-    param0->bgLayer = 0xff;
-    param0->tilemapLeft = 0;
-    param0->tilemapTop = 0;
-    param0->width = 0;
-    param0->height = 0;
-    param0->palette = 0;
-    param0->baseTile = 0;
-    param0->pixels = NULL;
-    param0->colorMode = UnkEnum_00;
+    window->bgConfig = NULL;
+    window->bgLayer = 0xFF;
+    window->tilemapLeft = 0;
+    window->tilemapTop = 0;
+    window->width = 0;
+    window->height = 0;
+    window->palette = 0;
+    window->baseTile = 0;
+    window->pixels = NULL;
+    window->colorMode = BG_COLOR_MODE_4BPP;
 }
 
-u8 Window_IsInUse(Window *param0)
+u8 Window_IsInUse(Window *window)
 {
-    if ((param0->bgConfig == NULL) || (param0->bgLayer == 0xff) || (param0->pixels == NULL)) {
-        return 0;
+    if (window->bgConfig == NULL || window->bgLayer == 0xFF || window->pixels == NULL) {
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-void Window_Add(BgConfig *param0, Window *param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6, u8 param7, u16 param8)
+void Window_Add(BgConfig *bgConfig, Window *window, u8 bgLayer, u8 tilemapLeft, u8 tilemapTop, u8 width, u8 height, u8 palette, u16 baseTile)
 {
-    void *v0;
-    u32 v1;
-
-    if (param0->bgs[param2].tilemapBuffer == NULL) {
+    if (bgConfig->bgs[bgLayer].tilemapBuffer == NULL) {
         return;
     }
 
-    v1 = param5 * param6 * param0->bgs[param2].tileSize;
-    v0 = Heap_AllocFromHeap(param0->heapID, v1);
+    u32 size = width * height * bgConfig->bgs[bgLayer].tileSize;
+    void *pixels = Heap_AllocFromHeap(bgConfig->heapID, size);
 
-    if (v0 == NULL) {
+    if (pixels == NULL) {
         return;
     }
 
-    param1->bgConfig = param0;
-    param1->bgLayer = param2;
-    param1->tilemapLeft = param3;
-    param1->tilemapTop = param4;
-    param1->width = param5;
-    param1->height = param6;
-    param1->palette = param7;
-    param1->baseTile = param8;
-    param1->pixels = v0;
-    param1->colorMode = (param0->bgs[param2].colorMode == GX_BG_COLORMODE_16) ? UnkEnum_00 : UnkEnum_01;
+    window->bgConfig = bgConfig;
+    window->bgLayer = bgLayer;
+    window->tilemapLeft = tilemapLeft;
+    window->tilemapTop = tilemapTop;
+    window->width = width;
+    window->height = height;
+    window->palette = palette;
+    window->baseTile = baseTile;
+    window->pixels = pixels;
+    window->colorMode = (bgConfig->bgs[bgLayer].colorMode == GX_BG_COLORMODE_16) ? BG_COLOR_MODE_4BPP : BG_COLOR_MODE_8BPP;
 }
 
-void Window_AddToTopLeftCorner(BgConfig *param0, Window *param1, u8 param2, u8 param3, u16 param4, u8 param5)
+void Window_AddToTopLeftCorner(BgConfig *bgConfig, Window *window, u8 width, u8 height, u16 baseTile, u8 fillVal)
 {
-    void *v0;
-    u32 v1;
+    u32 size = width * height * TILE_SIZE_4BPP;
+    void *pixels = Heap_AllocFromHeap(bgConfig->heapID, size);
 
-    v1 = (u32)(param2 * param3 * 0x20);
-    v0 = Heap_AllocFromHeap(param0->heapID, v1);
+    fillVal |= fillVal << 4;
+    memset(pixels, fillVal, size);
 
-    param5 |= param5 << 4;
-    memset(v0, param5, v1);
-
-    if (v0 == NULL) {
+    if (pixels == NULL) {
         return;
     }
 
-    param1->bgConfig = param0;
-    param1->width = param2;
-    param1->height = param3;
-    param1->baseTile = param4;
-    param1->pixels = v0;
-    param1->colorMode = UnkEnum_00;
+    window->bgConfig = bgConfig;
+    window->width = width;
+    window->height = height;
+    window->baseTile = baseTile;
+    window->pixels = pixels;
+    window->colorMode = BG_COLOR_MODE_4BPP;
 }
 
-void Window_AddFromTemplate(BgConfig *param0, Window *param1, const WindowTemplate *param2)
+void Window_AddFromTemplate(BgConfig *bgConfig, Window *window, const WindowTemplate *template)
 {
-    Window_Add(
-        param0, param1, param2->bgLayer, param2->tilemapLeft, param2->tilemapTop, param2->width, param2->height, param2->palette, param2->baseTile);
+    Window_Add(bgConfig,
+        window,
+        template->bgLayer,
+        template->tilemapLeft,
+        template->tilemapTop,
+        template->width,
+        template->height,
+        template->palette,
+        template->baseTile);
 }
 
-void Window_Remove(Window *param0)
+void Window_Remove(Window *window)
 {
-    Heap_FreeToHeap(param0->pixels);
+    Heap_FreeToHeap(window->pixels);
 
-    param0->bgConfig = NULL;
-    param0->bgLayer = 0xff;
-    param0->tilemapLeft = 0;
-    param0->tilemapTop = 0;
-    param0->width = 0;
-    param0->height = 0;
-    param0->palette = 0;
-    param0->baseTile = 0;
-    param0->pixels = NULL;
+    window->bgConfig = NULL;
+    window->bgLayer = 0xFF;
+    window->tilemapLeft = 0;
+    window->tilemapTop = 0;
+    window->width = 0;
+    window->height = 0;
+    window->palette = 0;
+    window->baseTile = 0;
+    window->pixels = NULL;
 }
 
-void Windows_Delete(Window *param0, u8 param1)
+void Windows_Delete(Window *window, u8 winCount)
 {
-    u16 v0;
-
-    for (v0 = 0; v0 < param1; v0++) {
-        if (param0[v0].pixels == NULL) {
-            continue;
-        }
-
-        Heap_FreeToHeap(param0[v0].pixels);
-    }
-
-    Heap_FreeToHeap(param0);
-}
-
-static void (*const Unk_020E56CC[])(Window *) = {
-    sub_0201AC20,
-    sub_0201AC64,
-    sub_0201AC20
-};
-
-static void (*const Unk_020E56C0[])(Window *) = {
-    sub_0201AC4C,
-    sub_0201ACA0,
-    sub_0201AC4C
-};
-
-static void (*const Unk_020E56B4[])(Window *) = {
-    sub_0201AD2C,
-    sub_0201AD68,
-    sub_0201AD2C
-};
-
-static void (*const Unk_020E56A8[])(Window *) = {
-    sub_0201AD54,
-    sub_0201AD90,
-    sub_0201AD54
-};
-
-static void (*const Unk_020E569C[])(Window *) = {
-    sub_0201AA58,
-    sub_0201AADC,
-    sub_0201AA58
-};
-
-static void (*const Unk_020E56D8[])(Window *) = {
-    sub_0201AB38,
-    sub_0201ABC8,
-    sub_0201AB38
-};
-
-static const u8 Unk_020E5694[] = {
-    0x10,
-    0x20,
-    0x20,
-    0x20,
-    0x20,
-    0x20
-};
-
-void Window_CopyToVRAM(Window *param0)
-{
-    GF_ASSERT(param0 != NULL);
-    GF_ASSERT(param0->bgConfig != NULL);
-    GF_ASSERT(param0->bgLayer < 8);
-    GF_ASSERT(param0->bgConfig->bgs[param0->bgLayer].type < NELEMS(Unk_020E56CC));
-
-    Unk_020E56CC[param0->bgConfig->bgs[param0->bgLayer].type](param0);
-}
-
-void Window_ScheduleCopyToVRAM(Window *param0)
-{
-    GF_ASSERT(param0 != NULL);
-    GF_ASSERT(param0->bgConfig != NULL);
-    GF_ASSERT(param0->bgLayer < 8);
-    GF_ASSERT(param0->bgConfig->bgs[param0->bgLayer].type < NELEMS(Unk_020E56C0));
-
-    Unk_020E56C0[param0->bgConfig->bgs[param0->bgLayer].type](param0);
-}
-
-void Window_PutToTilemap(Window *param0)
-{
-    Unk_020E569C[param0->bgConfig->bgs[param0->bgLayer].type](param0);
-}
-
-void Window_PutRectToTilemap(Window *param0, u32 param1, u32 param2)
-{
-    u32 v0, v1;
-
-    v0 = param0->width;
-    v1 = param0->height;
-
-    param0->width = param1;
-    param0->height = param2;
-
-    Unk_020E569C[param0->bgConfig->bgs[param0->bgLayer].type](param0);
-
-    param0->width = v0;
-    param0->height = v1;
-}
-
-void Window_ClearTilemap(Window *param0)
-{
-    Unk_020E56D8[param0->bgConfig->bgs[param0->bgLayer].type](param0);
-}
-
-static void sub_0201AA58(Window *param0)
-{
-    if (param0->bgConfig->bgs[param0->bgLayer].tilemapBuffer) {
-        u32 v0, v1, v2, v3, v4, v5, v6;
-        u16 *v7;
-
-        v6 = 32;
-        v7 = (u16 *)(param0->bgConfig->bgs[param0->bgLayer].tilemapBuffer);
-        v4 = param0->baseTile;
-        v2 = param0->tilemapLeft + param0->width;
-        v3 = param0->tilemapTop + param0->height;
-
-        for (v1 = param0->tilemapTop; v1 < v3; v1++) {
-            for (v0 = param0->tilemapLeft; v0 < v2; v0++) {
-                v5 = ((v1 & 0x20) * 32) + ((v0 & 0x20) * 32) + ((v1 & 0x1f) * v6) + (v0 & 0x1f);
-                v7[v5] = v4 | (param0->palette << 12);
-                v4++;
-            }
+    for (u16 i = 0; i < winCount; i++) {
+        if (window[i].pixels != NULL) {
+            Heap_FreeToHeap(window[i].pixels);
         }
     }
+
+    Heap_FreeToHeap(window);
 }
 
-static void sub_0201AADC(Window *param0)
+typedef void (*WindowFunc)(Window *);
+
+static const WindowFunc sCopyWindowToVramFuncs[] = {
+    [BG_TYPE_STATIC] = CopyWindowToVramText,
+    [BG_TYPE_AFFINE] = CopyWindowToVramAffine,
+    [BG_TYPE_STATIC_WITH_AFFINE] = CopyWindowToVramText,
+};
+
+static const WindowFunc sScheduleCopyWindowToVramFuncs[] = {
+    [BG_TYPE_STATIC] = ScheduleCopyWindowToVramText,
+    [BG_TYPE_AFFINE] = ScheduleCopyWindowToVramAffine,
+    [BG_TYPE_STATIC_WITH_AFFINE] = ScheduleCopyWindowToVramText,
+};
+
+static const WindowFunc sClearAndCopyWindowToVramFuncs[] = {
+    [BG_TYPE_STATIC] = ClearAndCopyWindowToVramText,
+    [BG_TYPE_AFFINE] = ClearAndCopyWindowToVramAffine,
+    [BG_TYPE_STATIC_WITH_AFFINE] = ClearAndCopyWindowToVramText,
+};
+
+static const WindowFunc sClearAndScheduleCopyWindowToVramFuncs[] = {
+    [BG_TYPE_STATIC] = ClearAndScheduleCopyWindowToVramText,
+    [BG_TYPE_AFFINE] = ClearAndScheduleCopyWindowToVramAffine,
+    [BG_TYPE_STATIC_WITH_AFFINE] = ClearAndScheduleCopyWindowToVramText,
+};
+
+static const WindowFunc sPutWindowToTilemapFuncs[] = {
+    [BG_TYPE_STATIC] = PutWindowToTilemapText,
+    [BG_TYPE_AFFINE] = PutWindowToTilemapAffine,
+    [BG_TYPE_STATIC_WITH_AFFINE] = PutWindowToTilemapText,
+};
+
+static const WindowFunc sClearWindowTilemapFuncs[] = {
+    [BG_TYPE_STATIC] = ClearWindowTilemapText,
+    [BG_TYPE_AFFINE] = ClearWindowTilemapAffine,
+    [BG_TYPE_STATIC_WITH_AFFINE] = ClearWindowTilemapText,
+};
+
+static const u8 sScreenSizeToTilemapWidth[] = {
+    [BG_SCREEN_SIZE_128x128] = 0x10,
+    [BG_SCREEN_SIZE_256x256] = 0x20,
+    [BG_SCREEN_SIZE_256x512] = 0x20,
+    [BG_SCREEN_SIZE_512x256] = 0x20,
+    [BG_SCREEN_SIZE_512x512] = 0x20,
+    [BG_SCREEN_SIZE_1024x1024] = 0x20,
+};
+
+void Window_CopyToVRAM(Window *window)
 {
-    if (param0->bgConfig->bgs[param0->bgLayer].tilemapBuffer) {
-        int v0, v1, v2, v3;
-        u8 *v4;
+    GF_ASSERT(window != NULL);
+    GF_ASSERT(window->bgConfig != NULL);
+    GF_ASSERT(window->bgLayer < BG_LAYER_MAX);
+    GF_ASSERT(window->bgConfig->bgs[window->bgLayer].type < NELEMS(sCopyWindowToVramFuncs));
 
-        v3 = Unk_020E5694[param0->bgConfig->bgs[param0->bgLayer].screenSize];
-        v4 = (u8 *)(param0->bgConfig->bgs[param0->bgLayer].tilemapBuffer) + param0->tilemapTop * v3 + param0->tilemapLeft;
-        v2 = param0->baseTile;
+    sCopyWindowToVramFuncs[window->bgConfig->bgs[window->bgLayer].type](window);
+}
 
-        for (v1 = 0; v1 < param0->height; v1++) {
-            for (v0 = 0; v0 < param0->width; v0++) {
-                v4[v0] = v2++;
-            }
+void Window_ScheduleCopyToVRAM(Window *window)
+{
+    GF_ASSERT(window != NULL);
+    GF_ASSERT(window->bgConfig != NULL);
+    GF_ASSERT(window->bgLayer < BG_LAYER_MAX);
+    GF_ASSERT(window->bgConfig->bgs[window->bgLayer].type < NELEMS(sScheduleCopyWindowToVramFuncs));
 
-            v4 += v3;
+    sScheduleCopyWindowToVramFuncs[window->bgConfig->bgs[window->bgLayer].type](window);
+}
+
+void Window_PutToTilemap(Window *window)
+{
+    sPutWindowToTilemapFuncs[window->bgConfig->bgs[window->bgLayer].type](window);
+}
+
+void Window_PutRectToTilemap(Window *window, u32 width, u32 height)
+{
+    u32 oldWidth = window->width;
+    u32 oldHeight = window->height;
+
+    window->width = width;
+    window->height = height;
+
+    sPutWindowToTilemapFuncs[window->bgConfig->bgs[window->bgLayer].type](window);
+
+    window->width = oldWidth;
+    window->height = oldHeight;
+}
+
+void Window_ClearTilemap(Window *window)
+{
+    sClearWindowTilemapFuncs[window->bgConfig->bgs[window->bgLayer].type](window);
+}
+
+static void PutWindowToTilemapText(Window *window)
+{
+    u32 x, y, tilemapRight, tilemapBottom, tile, idx, tilemapWidth;
+    u16 *tilemap = window->bgConfig->bgs[window->bgLayer].tilemapBuffer;
+
+    if (tilemap == NULL) {
+        return;
+    }
+
+    tilemapWidth = 32; // required to match
+    tile = window->baseTile;
+    tilemapRight = window->tilemapLeft + window->width;
+    tilemapBottom = window->tilemapTop + window->height;
+
+    for (y = window->tilemapTop; y < tilemapBottom; y++) {
+        for (x = window->tilemapLeft; x < tilemapRight; x++) {
+            idx = ((y & 0x20) * 32) + ((x & 0x20) * 32) + ((y & 0x1F) * tilemapWidth) + (x & 0x1F);
+            tilemap[idx] = tile | (window->palette << 12);
+            tile++;
         }
     }
 }
 
-static void sub_0201AB38(Window *param0)
+static void PutWindowToTilemapAffine(Window *window)
 {
-    if (param0->bgConfig->bgs[param0->bgLayer].tilemapBuffer) {
-        u32 v0, v1, v2, v3, v4, v5;
-        u16 *v6;
+    if (window->bgConfig->bgs[window->bgLayer].tilemapBuffer == NULL) {
+        return;
+    }
 
-        v5 = Unk_020E5694[param0->bgConfig->bgs[param0->bgLayer].screenSize];
-        v6 = (u16 *)(param0->bgConfig->bgs[param0->bgLayer].tilemapBuffer);
-        v2 = param0->tilemapLeft + param0->width;
-        v3 = param0->tilemapTop + param0->height;
+    int x, y, tile, tilemapWidth;
+    u8 *tilemap;
 
-        for (v1 = param0->tilemapTop; v1 < v3; v1++) {
-            for (v0 = param0->tilemapLeft; v0 < v2; v0++) {
-                v4 = ((v1 & 0x20) * 32) + ((v0 & 0x20) * 32) + ((v1 & 0x1f) * v5) + (v0 & 0x1f);
-                v6[v4] = 0x0;
-            }
+    tilemapWidth = sScreenSizeToTilemapWidth[window->bgConfig->bgs[window->bgLayer].screenSize];
+    tilemap = (u8 *)(window->bgConfig->bgs[window->bgLayer].tilemapBuffer) + window->tilemapTop * tilemapWidth + window->tilemapLeft;
+    tile = window->baseTile;
+
+    for (y = 0; y < window->height; y++) {
+        for (x = 0; x < window->width; x++) {
+            tilemap[x] = tile++;
+        }
+
+        tilemap += tilemapWidth;
+    }
+}
+
+static void ClearWindowTilemapText(Window *window)
+{
+    if (window->bgConfig->bgs[window->bgLayer].tilemapBuffer == NULL) {
+        return;
+    }
+
+    u32 x, y, tilemapRight, tilemapBottom, idx, tilemapWidth;
+    u16 *tilemap;
+
+    tilemapWidth = sScreenSizeToTilemapWidth[window->bgConfig->bgs[window->bgLayer].screenSize];
+    tilemap = window->bgConfig->bgs[window->bgLayer].tilemapBuffer;
+    tilemapRight = window->tilemapLeft + window->width;
+    tilemapBottom = window->tilemapTop + window->height;
+
+    for (y = window->tilemapTop; y < tilemapBottom; y++) {
+        for (x = window->tilemapLeft; x < tilemapRight; x++) {
+            idx = ((y & 0x20) * 32) + ((x & 0x20) * 32) + ((y & 0x1F) * tilemapWidth) + (x & 0x1F);
+            tilemap[idx] = 0;
         }
     }
 }
 
-static void sub_0201ABC8(Window *param0)
+static void ClearWindowTilemapAffine(Window *window)
 {
-    if (param0->bgConfig->bgs[param0->bgLayer].tilemapBuffer) {
-        int v0, v1, v2;
-        u8 *v3;
+    if (window->bgConfig->bgs[window->bgLayer].tilemapBuffer == NULL) {
+        return;
+    }
 
-        v2 = Unk_020E5694[param0->bgConfig->bgs[param0->bgLayer].screenSize];
-        v3 = (u8 *)(param0->bgConfig->bgs[param0->bgLayer].tilemapBuffer) + param0->tilemapTop * v2 + param0->tilemapLeft;
+    int x, y, tilemapWidth;
+    u8 *tilemap;
 
-        for (v1 = 0; v1 < param0->height; v1++) {
-            for (v0 = 0; v0 < param0->width; v0++) {
-                v3[v0] = 0;
-            }
+    tilemapWidth = sScreenSizeToTilemapWidth[window->bgConfig->bgs[window->bgLayer].screenSize];
+    tilemap = (u8 *)(window->bgConfig->bgs[window->bgLayer].tilemapBuffer) + window->tilemapTop * tilemapWidth + window->tilemapLeft;
 
-            v3 += v2;
+    for (y = 0; y < window->height; y++) {
+        for (x = 0; x < window->width; x++) {
+            tilemap[x] = 0;
         }
+
+        tilemap += tilemapWidth;
     }
 }
 
-static void sub_0201AC20(Window *param0)
+static void CopyWindowToVramText(Window *window)
 {
-    sub_0201AA58(param0);
-    Window_LoadTiles(param0);
-    Bg_CopyTilemapBufferRangeToVRAM(param0->bgConfig, param0->bgLayer, param0->bgConfig->bgs[param0->bgLayer].tilemapBuffer, param0->bgConfig->bgs[param0->bgLayer].bufferSize, param0->bgConfig->bgs[param0->bgLayer].baseTile);
+    PutWindowToTilemapText(window);
+    Window_LoadTiles(window);
+    Bg_CopyTilemapBufferRangeToVRAM(window->bgConfig,
+        window->bgLayer,
+        window->bgConfig->bgs[window->bgLayer].tilemapBuffer,
+        window->bgConfig->bgs[window->bgLayer].bufferSize,
+        window->bgConfig->bgs[window->bgLayer].baseTile);
 }
 
-static void sub_0201AC4C(Window *param0)
+static void ScheduleCopyWindowToVramText(Window *window)
 {
-    sub_0201AA58(param0);
-    Bg_ScheduleTilemapTransfer(param0->bgConfig, param0->bgLayer);
-    Window_LoadTiles(param0);
+    PutWindowToTilemapText(window);
+    Bg_ScheduleTilemapTransfer(window->bgConfig, window->bgLayer);
+    Window_LoadTiles(window);
 }
 
-static void sub_0201AC64(Window *param0)
+static void CopyWindowToVramAffine(Window *window)
 {
-    sub_0201AADC(param0);
+    PutWindowToTilemapAffine(window);
 
-    Bg_CopyTilemapBufferRangeToVRAM(param0->bgConfig, param0->bgLayer, param0->bgConfig->bgs[param0->bgLayer].tilemapBuffer, param0->bgConfig->bgs[param0->bgLayer].bufferSize, param0->bgConfig->bgs[param0->bgLayer].baseTile);
-    Bg_LoadTiles(param0->bgConfig, param0->bgLayer, param0->pixels, (u32)(param0->width * param0->height * 0x40), (u32)param0->baseTile);
+    Bg_CopyTilemapBufferRangeToVRAM(window->bgConfig,
+        window->bgLayer,
+        window->bgConfig->bgs[window->bgLayer].tilemapBuffer,
+        window->bgConfig->bgs[window->bgLayer].bufferSize,
+        window->bgConfig->bgs[window->bgLayer].baseTile);
+    Bg_LoadTiles(window->bgConfig,
+        window->bgLayer,
+        window->pixels,
+        window->width * window->height * 0x40,
+        window->baseTile);
 }
 
-static void sub_0201ACA0(Window *param0)
+static void ScheduleCopyWindowToVramAffine(Window *window)
 {
-    sub_0201AADC(param0);
+    PutWindowToTilemapAffine(window);
 
-    Bg_ScheduleTilemapTransfer(param0->bgConfig, param0->bgLayer);
-    Bg_LoadTiles(param0->bgConfig, param0->bgLayer, param0->pixels, (u32)(param0->width * param0->height * 0x40), (u32)param0->baseTile);
+    Bg_ScheduleTilemapTransfer(window->bgConfig, window->bgLayer);
+    Bg_LoadTiles(window->bgConfig,
+        window->bgLayer,
+        window->pixels,
+        window->width * window->height * 0x40,
+        window->baseTile);
 }
 
-void Window_LoadTiles(Window *param0)
+void Window_LoadTiles(Window *window)
 {
-    u32 v0 = param0->width * param0->height * param0->bgConfig->bgs[param0->bgLayer].tileSize;
-    Bg_LoadTiles(param0->bgConfig, param0->bgLayer, param0->pixels, v0, param0->baseTile);
+    u32 size = window->width * window->height * window->bgConfig->bgs[window->bgLayer].tileSize;
+    Bg_LoadTiles(window->bgConfig, window->bgLayer, window->pixels, size, window->baseTile);
 }
 
-void Window_ClearAndCopyToVRAM(Window *param0)
+void Window_ClearAndCopyToVRAM(Window *window)
 {
-    Unk_020E56B4[param0->bgConfig->bgs[param0->bgLayer].type](param0);
+    sClearAndCopyWindowToVramFuncs[window->bgConfig->bgs[window->bgLayer].type](window);
 }
 
-void Window_ClearAndScheduleCopyToVRAM(Window *param0)
+void Window_ClearAndScheduleCopyToVRAM(Window *window)
 {
-    Unk_020E56A8[param0->bgConfig->bgs[param0->bgLayer].type](param0);
+    sClearAndScheduleCopyWindowToVramFuncs[window->bgConfig->bgs[window->bgLayer].type](window);
 }
 
-static void sub_0201AD2C(Window *param0)
+static void ClearAndCopyWindowToVramText(Window *window)
 {
-    sub_0201AB38(param0);
-    Bg_CopyTilemapBufferRangeToVRAM(param0->bgConfig, param0->bgLayer, param0->bgConfig->bgs[param0->bgLayer].tilemapBuffer, param0->bgConfig->bgs[param0->bgLayer].bufferSize, param0->bgConfig->bgs[param0->bgLayer].baseTile);
+    ClearWindowTilemapText(window);
+    Bg_CopyTilemapBufferRangeToVRAM(window->bgConfig,
+        window->bgLayer,
+        window->bgConfig->bgs[window->bgLayer].tilemapBuffer,
+        window->bgConfig->bgs[window->bgLayer].bufferSize,
+        window->bgConfig->bgs[window->bgLayer].baseTile);
 }
 
-static void sub_0201AD54(Window *param0)
+static void ClearAndScheduleCopyWindowToVramText(Window *window)
 {
-    sub_0201AB38(param0);
-    Bg_ScheduleTilemapTransfer(param0->bgConfig, param0->bgLayer);
+    ClearWindowTilemapText(window);
+    Bg_ScheduleTilemapTransfer(window->bgConfig, window->bgLayer);
 }
 
-static void sub_0201AD68(Window *param0)
+static void ClearAndCopyWindowToVramAffine(Window *window)
 {
-    sub_0201ABC8(param0);
-    Bg_CopyTilemapBufferRangeToVRAM(param0->bgConfig, param0->bgLayer, param0->bgConfig->bgs[param0->bgLayer].tilemapBuffer, param0->bgConfig->bgs[param0->bgLayer].bufferSize, param0->bgConfig->bgs[param0->bgLayer].baseTile);
+    ClearWindowTilemapAffine(window);
+    Bg_CopyTilemapBufferRangeToVRAM(window->bgConfig,
+        window->bgLayer,
+        window->bgConfig->bgs[window->bgLayer].tilemapBuffer,
+        window->bgConfig->bgs[window->bgLayer].bufferSize,
+        window->bgConfig->bgs[window->bgLayer].baseTile);
 }
 
-static void sub_0201AD90(Window *param0)
+static void ClearAndScheduleCopyWindowToVramAffine(Window *window)
 {
-    sub_0201ABC8(param0);
-    Bg_ScheduleTilemapTransfer(param0->bgConfig, param0->bgLayer);
+    ClearWindowTilemapAffine(window);
+    Bg_ScheduleTilemapTransfer(window->bgConfig, window->bgLayer);
 }
 
-void Window_FillTilemap(Window *param0, u8 param1)
+void Window_FillTilemap(Window *window, u8 val)
 {
-    u32 v0;
-    u32 v1;
-
-    if (param0->bgConfig->bgs[param0->bgLayer].tileSize == 0x20) {
-        param1 = (param1 << 4) | param1;
+    if (window->bgConfig->bgs[window->bgLayer].tileSize == TILE_SIZE_4BPP) {
+        val = (val << 4) | val;
     }
 
-    v1 = (param1 << 24) | (param1 << 16) | (param1 << 8) | param1;
-    v0 = param0->bgConfig->bgs[param0->bgLayer].tileSize * param0->width * param0->height;
+    u32 fill = (val << 24) | (val << 16) | (val << 8) | val;
+    u32 size = window->bgConfig->bgs[window->bgLayer].tileSize * window->width * window->height;
 
-    MI_CpuFillFast(param0->pixels, v1, v0);
+    MI_CpuFillFast(window->pixels, fill, size);
 }
 
-void Window_BlitBitmapRect(Window *param0, void *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6, u16 param7, u16 param8, u16 param9)
+void Window_BlitBitmapRect(Window *window, void *src, u16 srcX, u16 srcY, u16 srcWidth, u16 srcHeight, u16 destX, u16 destY, u16 destWidth, u16 destHeight)
 {
-    Window_BlitBitmapRectWithTransparency(param0, param1, param2, param3, param4, param5, param6, param7, param8, param9, 0);
+    Window_BlitBitmapRectWithTransparency(window, src, srcX, srcY, srcWidth, srcHeight, destX, destY, destWidth, destHeight, 0);
 }
 
-void Window_BlitBitmapRectWithTransparency(Window *param0, void *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6, u16 param7, u16 param8, u16 param9, u16 param10)
+void Window_BlitBitmapRectWithTransparency(Window *window, void *src, u16 srcX, u16 srcY, u16 srcWidth, u16 srcHeight, u16 destX, u16 destY, u16 destWidth, u16 destHeight, u16 transparent)
 {
-    Bitmap v0;
-    Bitmap v1;
+    Bitmap bmpSrc, bmpDest;
 
-    v0.pixels = (u8 *)param1;
-    v0.width = param4;
-    v0.height = param5;
-    v1.pixels = (u8 *)param0->pixels;
-    v1.width = (u16)(param0->width * 0x8);
-    v1.height = (u16)(param0->height * 0x8);
+    bmpSrc.pixels = src;
+    bmpSrc.width = srcWidth;
+    bmpSrc.height = srcHeight;
 
-    if (param0->bgConfig->bgs[param0->bgLayer].colorMode == GX_BG_COLORMODE_16) {
-        Bitmap_BlitRect4bpp(&v0, &v1, param2, param3, param6, param7, param8, param9, param10);
+    bmpDest.pixels = window->pixels;
+    bmpDest.width = window->width * 8;
+    bmpDest.height = window->height * 8;
+
+    if (window->bgConfig->bgs[window->bgLayer].colorMode == GX_BG_COLORMODE_16) {
+        Bitmap_BlitRect4bpp(&bmpSrc, &bmpDest, srcX, srcY, destX, destY, destWidth, destHeight, transparent);
     } else {
-        Bitmap_BlitRect8bpp(&v0, &v1, param2, param3, param6, param7, param8, param9, param10);
+        Bitmap_BlitRect8bpp(&bmpSrc, &bmpDest, srcX, srcY, destX, destY, destWidth, destHeight, transparent);
     }
 }
 
-void Window_FillRectWithColor(Window *param0, u8 param1, u16 param2, u16 param3, u16 param4, u16 param5)
+void Window_FillRectWithColor(Window *window, u8 color, u16 x, u16 y, u16 width, u16 height)
 {
-    Bitmap v0;
+    Bitmap bmp;
 
-    v0.pixels = (u8 *)param0->pixels;
-    v0.width = (u16)(param0->width * 0x8);
-    v0.height = (u16)(param0->height * 0x8);
+    bmp.pixels = window->pixels;
+    bmp.width = window->width * 8;
+    bmp.height = window->height * 8;
 
-    if (param0->bgConfig->bgs[param0->bgLayer].colorMode == GX_BG_COLORMODE_16) {
-        Bitmap_FillRect4bpp((const Bitmap *)&v0, param2, param3, param4, param5, param1);
+    if (window->bgConfig->bgs[window->bgLayer].colorMode == GX_BG_COLORMODE_16) {
+        Bitmap_FillRect4bpp((const Bitmap *)&bmp, x, y, width, height, color);
     } else {
-        Bitmap_FillRect8bpp((const Bitmap *)&v0, param2, param3, param4, param5, param1);
+        Bitmap_FillRect8bpp((const Bitmap *)&bmp, x, y, width, height, color);
     }
 }
 
-void Window_CopyGlyph(Window *param0, const u8 *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6)
+#define CopyGlyph4bpp(glyphPixels, srcX, srcY, srcWidth, srcHeight, windowPixels, destX, destY, destWidth, table) \
+    {                                                                                                             \
+        int srcJ, destJ, srcI, destI, bits;                                                                       \
+        u8 toOrr;                                                                                                 \
+        u8 tableFlag;                                                                                             \
+        u8 tableBit;                                                                                              \
+        u8 *dest;                                                                                                 \
+        const u8 *src;                                                                                            \
+        u32 pixelData;                                                                                            \
+                                                                                                                  \
+        src = glyphPixels + (srcY / 8 * 64) + (srcX / 8 * 32);                                                    \
+        if (srcY == 0) {                                                                                          \
+            destI = destY + srcY;                                                                                 \
+            tableBit = table & 0xFF;                                                                              \
+        } else {                                                                                                  \
+            destI = destY + srcY;                                                                                 \
+            for (srcI = 0; srcI < 8; srcI++) {                                                                    \
+                if (((table >> srcI) & 1) != 0) {                                                                 \
+                    destI++;                                                                                      \
+                }                                                                                                 \
+            }                                                                                                     \
+            tableBit = table >> 8;                                                                                \
+        }                                                                                                         \
+        for (srcI = 0; srcI < srcHeight; srcI++) {                                                                \
+            pixelData = *(u32 *)src;                                                                              \
+            tableFlag = (tableBit >> srcI) & 1;                                                                   \
+            for (srcJ = 0, destJ = destX + srcX; srcJ < srcWidth; srcJ++, destJ++) {                              \
+                dest = CalcPixelAddressFromBlit4bpp(windowPixels, destJ, destI, destWidth);                       \
+                toOrr = (pixelData >> (srcJ * 4)) & 0xF;                                                          \
+                if (toOrr != 0) {                                                                                 \
+                    bits = (destJ & 1) * 4;                                                                       \
+                    toOrr = (toOrr << bits) | (*dest & (0xF0 >> bits));                                           \
+                    *dest = toOrr;                                                                                \
+                    if (tableFlag) {                                                                              \
+                        dest = CalcPixelAddressFromBlit4bpp(windowPixels, destJ, destI + 1, destWidth);           \
+                        *dest = toOrr;                                                                            \
+                    }                                                                                             \
+                }                                                                                                 \
+            }                                                                                                     \
+            if (tableFlag) {                                                                                      \
+                destI += 2;                                                                                       \
+            } else {                                                                                              \
+                destI += 1;                                                                                       \
+            }                                                                                                     \
+            src += 4;                                                                                             \
+        }                                                                                                         \
+    }
+
+#define CopyGlyph8bpp(glyphPixels, srcX, srcY, srcWidth, srcHeight, windowPixels, destX, destY, destWidth, table) \
+    {                                                                                                             \
+        int srcJ, destJ, srcI, destI;                                                                             \
+        u8 toOrr;                                                                                                 \
+        u8 tableFlag;                                                                                             \
+        u8 tableBit;                                                                                              \
+        u8 *dest;                                                                                                 \
+        const u8 *src;                                                                                            \
+        u8 *pixelData;                                                                                            \
+                                                                                                                  \
+        src = glyphPixels + (srcY / 8 * 128) + (srcX / 8 * 64);                                                   \
+        if (srcY == 0) {                                                                                          \
+            destI = destY + srcY;                                                                                 \
+            tableBit = table & 0xFF;                                                                              \
+        } else {                                                                                                  \
+            destI = destY + srcY;                                                                                 \
+            for (srcI = 0; srcI < 8; srcI++) {                                                                    \
+                if (((table >> srcI) & 1) != 0) {                                                                 \
+                    destI++;                                                                                      \
+                }                                                                                                 \
+            }                                                                                                     \
+            tableBit = table >> 8;                                                                                \
+        }                                                                                                         \
+        for (srcI = 0; srcI < srcHeight; srcI++) {                                                                \
+            pixelData = (u8 *)src;                                                                                \
+            tableFlag = (tableBit >> srcI) & 1;                                                                   \
+            for (srcJ = 0, destJ = destX + srcX; srcJ < srcWidth; srcJ++, destJ++) {                              \
+                dest = CalcPixelAddressFromBlit8bpp(windowPixels, destJ, destI, destWidth);                       \
+                toOrr = pixelData[srcJ];                                                                          \
+                if (toOrr != 0) {                                                                                 \
+                    *dest = toOrr;                                                                                \
+                    if (tableFlag) {                                                                              \
+                        dest = CalcPixelAddressFromBlit8bpp(windowPixels, destJ, destI + 1, destWidth);           \
+                        *dest = toOrr;                                                                            \
+                    }                                                                                             \
+                }                                                                                                 \
+            }                                                                                                     \
+            if (tableFlag) {                                                                                      \
+                destI += 2;                                                                                       \
+            } else {                                                                                              \
+                destI += 1;                                                                                       \
+            }                                                                                                     \
+            src += 8;                                                                                             \
+        }                                                                                                         \
+    }
+
+void Window_CopyGlyph(Window *window, const u8 *glyphPixels, u16 srcWidth, u16 srcHeight, u16 destX, u16 destY, u16 table)
 {
-    u8 *v0;
-    u16 v1, v2;
-    int v3, v4;
-    u8 v5;
+    u8 *windowPixels;
+    u16 destWidth, destHeight;
+    int srcRight, srcBottom;
+    u8 glyphSizeParam;
 
-    v0 = (u8 *)param0->pixels;
-    v1 = (u16)(param0->width * 0x8);
-    v2 = (u16)(param0->height * 0x8);
+    windowPixels = window->pixels;
+    destWidth = window->width * 8;
+    destHeight = window->height * 8;
 
-    if (((v1) - (param4)) < (param2)) {
-        v3 = (v1) - (param4);
+    if (destWidth - destX < srcWidth) {
+        srcRight = destWidth - destX;
     } else {
-        v3 = (param2);
+        srcRight = srcWidth;
     }
-
-    if (((v2) - (param5)) < (param3)) {
-        v4 = (v2) - (param5);
+    if (destHeight - destY < srcHeight) {
+        srcBottom = destHeight - destY;
     } else {
-        v4 = (param3);
+        srcBottom = srcHeight;
     }
 
-    v5 = 0;
-
-    if (v3 > 8) {
-        v5 |= 1;
+    glyphSizeParam = 0;
+    if (srcRight > 8) {
+        glyphSizeParam |= 1;
+    }
+    if (srcBottom > 8) {
+        glyphSizeParam |= 2;
     }
 
-    if (v4 > 8) {
-        v5 |= 2;
-    }
-
-    if (param0->colorMode == UnkEnum_00) {
-        switch (v5) {
-        case 0: {
-            int v7, v8, v9, v10, v17;
-            u8 v11;
-            u8 v12;
-            u8 v13;
-            u8 *v14;
-            const u8 *v15;
-            u32 v16;
-
-            v15 = (param1) + (0 / 8 * 0x40) + (0 / 8 * 0x20);
-
-            if (0 == 0) {
-                v10 = (param5) + 0;
-                v13 = (u8)((param6) & 0xff);
-            } else {
-                v10 = (param5) + 0;
-
-                for (v9 = 0; v9 < 8; v9++) {
-                    if ((((param6) >> v9) & 1) != 0) {
-                        v10++;
-                    }
-                }
-
-                v13 = (u8)((param6) >> 8);
-            }
-
-            for (v9 = 0; v9 < v4; v9++) {
-                v16 = *(u32 *)v15;
-                v12 = (u8)((v13 >> v9) & 1);
-
-                for (v7 = 0, v8 = (param4) + 0; v7 < v3; v7++, v8++) {
-                    v14 = (u8 *)((v0) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + (((v10 << 2) & 0x3fe0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 2) & 0x1c)));
-                    v11 = (u8)((v16 >> (v7 * 4)) & 0xf);
-
-                    if (v11 != 0) {
-                        v17 = (v8 & 1) * 4;
-                        v11 = (u8)((v11 << v17) | (*v14 & (0xf0 >> v17)));
-                        *v14 = v11;
-
-                        if (v12 != 0) {
-                            v14 = (u8 *)((v0) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + ((((v10 + 1) << 2) & 0x3fe0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 2) & 0x1c)));
-                            *v14 = v11;
-                        }
-                    }
-                }
-
-                if (v12 != 0) {
-                    v10 += 2;
-                } else {
-                    v10++;
-                }
-
-                v15 += 4;
-            }
-        };
+    if (window->colorMode == BG_COLOR_MODE_4BPP) {
+        switch (glyphSizeParam) {
+        case 0: // 1x1
+            CopyGlyph4bpp(glyphPixels, 0, 0, srcRight, srcBottom, windowPixels, destX, destY, ConvertPixelsToTiles(destWidth), table);
             return;
-        case 1: {
-            int v7, v8, v9, v10, v17;
-            u8 v11;
-            u8 v12;
-            u8 v13;
-            u8 *v14;
-            const u8 *v15;
-            u32 v16;
 
-            v15 = (param1) + (0 / 8 * 0x40) + (0 / 8 * 0x20);
-
-            if (0 == 0) {
-                v10 = (param5) + 0;
-                v13 = (u8)((param6) & 0xff);
-            } else {
-                v10 = (param5) + 0;
-
-                for (v9 = 0; v9 < 8; v9++) {
-                    if ((((param6) >> v9) & 1) != 0) {
-                        v10++;
-                    }
-                }
-
-                v13 = (u8)((param6) >> 8);
-            }
-
-            for (v9 = 0; v9 < v4; v9++) {
-                v16 = *(u32 *)v15;
-                v12 = (u8)((v13 >> v9) & 1);
-
-                for (v7 = 0, v8 = (param4) + 0; v7 < 8; v7++, v8++) {
-                    v14 = (u8 *)((v0) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + (((v10 << 2) & 0x3fe0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 2) & 0x1c)));
-                    v11 = (u8)((v16 >> (v7 * 4)) & 0xf);
-
-                    if (v11 != 0) {
-                        v17 = (v8 & 1) * 4;
-                        v11 = (u8)((v11 << v17) | (*v14 & (0xf0 >> v17)));
-                        *v14 = v11;
-
-                        if (v12 != 0) {
-                            v14 = (u8 *)((v0) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + ((((v10 + 1) << 2) & 0x3fe0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 2) & 0x1c)));
-                            *v14 = v11;
-                        }
-                    }
-                }
-
-                if (v12 != 0) {
-                    v10 += 2;
-                } else {
-                    v10++;
-                }
-
-                v15 += 4;
-            }
-        };
-            {
-                int v7, v8, v9, v10, v17;
-                u8 v11;
-                u8 v12;
-                u8 v13;
-                u8 *v14;
-                const u8 *v15;
-                u32 v16;
-
-                v15 = (param1) + (0 / 8 * 0x40) + (8 / 8 * 0x20);
-
-                if (0 == 0) {
-                    v10 = (param5) + 0;
-                    v13 = (u8)((param6) & 0xff);
-                } else {
-                    v10 = (param5) + 0;
-
-                    for (v9 = 0; v9 < 8; v9++) {
-                        if ((((param6) >> v9) & 1) != 0) {
-                            v10++;
-                        }
-                    }
-
-                    v13 = (u8)((param6) >> 8);
-                }
-
-                for (v9 = 0; v9 < v4; v9++) {
-                    v16 = *(u32 *)v15;
-                    v12 = (u8)((v13 >> v9) & 1);
-
-                    for (v7 = 0, v8 = (param4) + 8; v7 < v3 - 8; v7++, v8++) {
-                        v14 = (u8 *)((v0) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + (((v10 << 2) & 0x3fe0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 2) & 0x1c)));
-                        v11 = (u8)((v16 >> (v7 * 4)) & 0xf);
-
-                        if (v11 != 0) {
-                            v17 = (v8 & 1) * 4;
-                            v11 = (u8)((v11 << v17) | (*v14 & (0xf0 >> v17)));
-                            *v14 = v11;
-
-                            if (v12 != 0) {
-                                v14 = (u8 *)((v0) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + ((((v10 + 1) << 2) & 0x3fe0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 2) & 0x1c)));
-                                *v14 = v11;
-                            }
-                        }
-                    }
-
-                    if (v12 != 0) {
-                        v10 += 2;
-                    } else {
-                        v10++;
-                    }
-
-                    v15 += 4;
-                }
-            }
+        case 1: // 2x1
+            CopyGlyph4bpp(glyphPixels, 0, 0, 8, srcBottom, windowPixels, destX, destY, ConvertPixelsToTiles(destWidth), table);
+            CopyGlyph4bpp(glyphPixels, 8, 0, srcRight - 8, srcBottom, windowPixels, destX, destY, ConvertPixelsToTiles(destWidth), table);
             return;
-        case 2: {
-            int v7, v8, v9, v10, v17;
-            u8 v11;
-            u8 v12;
-            u8 v13;
-            u8 *v14;
-            const u8 *v15;
-            u32 v16;
 
-            v15 = (param1) + (0 / 8 * 0x40) + (0 / 8 * 0x20);
-
-            if (0 == 0) {
-                v10 = (param5) + 0;
-                v13 = (u8)((param6) & 0xff);
-            } else {
-                v10 = (param5) + 0;
-
-                for (v9 = 0; v9 < 8; v9++) {
-                    if ((((param6) >> v9) & 1) != 0) {
-                        v10++;
-                    }
-                }
-
-                v13 = (u8)((param6) >> 8);
-            }
-
-            for (v9 = 0; v9 < 8; v9++) {
-                v16 = *(u32 *)v15;
-                v12 = (u8)((v13 >> v9) & 1);
-
-                for (v7 = 0, v8 = (param4) + 0; v7 < v3; v7++, v8++) {
-                    v14 = (u8 *)((v0) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + (((v10 << 2) & 0x3fe0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 2) & 0x1c)));
-                    v11 = (u8)((v16 >> (v7 * 4)) & 0xf);
-
-                    if (v11 != 0) {
-                        v17 = (v8 & 1) * 4;
-                        v11 = (u8)((v11 << v17) | (*v14 & (0xf0 >> v17)));
-                        *v14 = v11;
-
-                        if (v12 != 0) {
-                            v14 = (u8 *)((v0) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + ((((v10 + 1) << 2) & 0x3fe0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 2) & 0x1c)));
-                            *v14 = v11;
-                        }
-                    }
-                }
-
-                if (v12 != 0) {
-                    v10 += 2;
-                } else {
-                    v10++;
-                }
-
-                v15 += 4;
-            }
-        };
-            {
-                int v7, v8, v9, v10, v17;
-                u8 v11;
-                u8 v12;
-                u8 v13;
-                u8 *v14;
-                const u8 *v15;
-                u32 v16;
-                v15 = (param1) + (8 / 8 * 0x40) + (0 / 8 * 0x20);
-
-                if (8 == 0) {
-                    v10 = (param5) + 8;
-                    v13 = (u8)((param6) & 0xff);
-                } else {
-                    v10 = (param5) + 8;
-
-                    for (v9 = 0; v9 < 8; v9++) {
-                        if ((((param6) >> v9) & 1) != 0) {
-                            v10++;
-                        }
-                    }
-
-                    v13 = (u8)((param6) >> 8);
-                }
-
-                for (v9 = 0; v9 < v4 - 8; v9++) {
-                    v16 = *(u32 *)v15;
-                    v12 = (u8)((v13 >> v9) & 1);
-
-                    for (v7 = 0, v8 = (param4) + 0; v7 < v3; v7++, v8++) {
-                        v14 = (u8 *)((v0) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + (((v10 << 2) & 0x3fe0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 2) & 0x1c)));
-                        v11 = (u8)((v16 >> (v7 * 4)) & 0xf);
-
-                        if (v11 != 0) {
-                            v17 = (v8 & 1) * 4;
-                            v11 = (u8)((v11 << v17) | (*v14 & (0xf0 >> v17)));
-                            *v14 = v11;
-
-                            if (v12 != 0) {
-                                v14 = (u8 *)((v0) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + ((((v10 + 1) << 2) & 0x3fe0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 2) & 0x1c)));
-                                *v14 = v11;
-                            }
-                        }
-                    }
-
-                    if (v12 != 0) {
-                        v10 += 2;
-                    } else {
-                        v10++;
-                    }
-
-                    v15 += 4;
-                }
-            }
+        case 2: // 1x2
+            CopyGlyph4bpp(glyphPixels, 0, 0, srcRight, 8, windowPixels, destX, destY, ConvertPixelsToTiles(destWidth), table);
+            CopyGlyph4bpp(glyphPixels, 0, 8, srcRight, srcBottom - 8, windowPixels, destX, destY, ConvertPixelsToTiles(destWidth), table);
             return;
-        case 3: {
-            int v7, v8, v9, v10, v17;
-            u8 v11;
-            u8 v12;
-            u8 v13;
-            u8 *v14;
-            const u8 *v15;
-            u32 v16;
 
-            v15 = (param1) + (0 / 8 * 0x40) + (0 / 8 * 0x20);
-
-            if (0 == 0) {
-                v10 = (param5) + 0;
-                v13 = (u8)((param6) & 0xff);
-            } else {
-                v10 = (param5) + 0;
-
-                for (v9 = 0; v9 < 8; v9++) {
-                    if ((((param6) >> v9) & 1) != 0) {
-                        v10++;
-                    }
-                }
-
-                v13 = (u8)((param6) >> 8);
-            }
-
-            for (v9 = 0; v9 < 8; v9++) {
-                v16 = *(u32 *)v15;
-                v12 = (u8)((v13 >> v9) & 1);
-
-                for (v7 = 0, v8 = (param4) + 0; v7 < 8; v7++, v8++) {
-                    v14 = (u8 *)((v0) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + (((v10 << 2) & 0x3fe0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 2) & 0x1c)));
-                    v11 = (u8)((v16 >> (v7 * 4)) & 0xf);
-
-                    if (v11 != 0) {
-                        v17 = (v8 & 1) * 4;
-                        v11 = (u8)((v11 << v17) | (*v14 & (0xf0 >> v17)));
-                        *v14 = v11;
-
-                        if (v12 != 0) {
-                            v14 = (u8 *)((v0) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + ((((v10 + 1) << 2) & 0x3fe0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 2) & 0x1c)));
-                            *v14 = v11;
-                        }
-                    }
-                }
-
-                if (v12 != 0) {
-                    v10 += 2;
-                } else {
-                    v10++;
-                }
-
-                v15 += 4;
-            }
-        };
-            {
-                int v7, v8, v9, v10, v17;
-                u8 v11;
-                u8 v12;
-                u8 v13;
-                u8 *v14;
-                const u8 *v15;
-                u32 v16;
-
-                v15 = (param1) + (0 / 8 * 0x40) + (8 / 8 * 0x20);
-
-                if (0 == 0) {
-                    v10 = (param5) + 0;
-                    v13 = (u8)((param6) & 0xff);
-                } else {
-                    v10 = (param5) + 0;
-
-                    for (v9 = 0; v9 < 8; v9++) {
-                        if ((((param6) >> v9) & 1) != 0) {
-                            v10++;
-                        }
-                    }
-
-                    v13 = (u8)((param6) >> 8);
-                }
-
-                for (v9 = 0; v9 < 8; v9++) {
-                    v16 = *(u32 *)v15;
-                    v12 = (u8)((v13 >> v9) & 1);
-
-                    for (v7 = 0, v8 = (param4) + 8; v7 < v3 - 8; v7++, v8++) {
-                        v14 = (u8 *)((v0) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + (((v10 << 2) & 0x3fe0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 2) & 0x1c)));
-                        v11 = (u8)((v16 >> (v7 * 4)) & 0xf);
-
-                        if (v11 != 0) {
-                            v17 = (v8 & 1) * 4;
-                            v11 = (u8)((v11 << v17) | (*v14 & (0xf0 >> v17)));
-                            *v14 = v11;
-
-                            if (v12 != 0) {
-                                v14 = (u8 *)((v0) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + ((((v10 + 1) << 2) & 0x3fe0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 2) & 0x1c)));
-                                *v14 = v11;
-                            }
-                        }
-                    }
-
-                    if (v12 != 0) {
-                        v10 += 2;
-                    } else {
-                        v10++;
-                    }
-
-                    v15 += 4;
-                }
-            }
-            {
-                int v7, v8, v9, v10, v17;
-                u8 v11;
-                u8 v12;
-                u8 v13;
-                u8 *v14;
-                const u8 *v15;
-                u32 v16;
-
-                v15 = (param1) + (8 / 8 * 0x40) + (0 / 8 * 0x20);
-
-                if (8 == 0) {
-                    v10 = (param5) + 8;
-                    v13 = (u8)((param6) & 0xff);
-                } else {
-                    v10 = (param5) + 8;
-
-                    for (v9 = 0; v9 < 8; v9++) {
-                        if ((((param6) >> v9) & 1) != 0) {
-                            v10++;
-                        }
-                    }
-
-                    v13 = (u8)((param6) >> 8);
-                }
-
-                for (v9 = 0; v9 < v4 - 8; v9++) {
-                    v16 = *(u32 *)v15;
-                    v12 = (u8)((v13 >> v9) & 1);
-
-                    for (v7 = 0, v8 = (param4) + 0; v7 < 8; v7++, v8++) {
-                        v14 = (u8 *)((v0) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + (((v10 << 2) & 0x3fe0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 2) & 0x1c)));
-                        v11 = (u8)((v16 >> (v7 * 4)) & 0xf);
-
-                        if (v11 != 0) {
-                            v17 = (v8 & 1) * 4;
-                            v11 = (u8)((v11 << v17) | (*v14 & (0xf0 >> v17)));
-                            *v14 = v11;
-
-                            if (v12 != 0) {
-                                v14 = (u8 *)((v0) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + ((((v10 + 1) << 2) & 0x3fe0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 2) & 0x1c)));
-                                *v14 = v11;
-                            }
-                        }
-                    }
-
-                    if (v12 != 0) {
-                        v10 += 2;
-                    } else {
-                        v10++;
-                    }
-
-                    v15 += 4;
-                }
-            }
-            {
-                int v7, v8, v9, v10, v17;
-                u8 v11;
-                u8 v12;
-                u8 v13;
-                u8 *v14;
-                const u8 *v15;
-                u32 v16;
-
-                v15 = (param1) + (8 / 8 * 0x40) + (8 / 8 * 0x20);
-
-                if (8 == 0) {
-                    v10 = (param5) + 8;
-                    v13 = (u8)((param6) & 0xff);
-                } else {
-                    v10 = (param5) + 8;
-
-                    for (v9 = 0; v9 < 8; v9++) {
-                        if ((((param6) >> v9) & 1) != 0) {
-                            v10++;
-                        }
-                    }
-
-                    v13 = (u8)((param6) >> 8);
-                }
-
-                for (v9 = 0; v9 < v4 - 8; v9++) {
-                    v16 = *(u32 *)v15;
-                    v12 = (u8)((v13 >> v9) & 1);
-
-                    for (v7 = 0, v8 = (param4) + 8; v7 < v3 - 8; v7++, v8++) {
-                        v14 = (u8 *)((v0) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + (((v10 << 2) & 0x3fe0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 2) & 0x1c)));
-                        v11 = (u8)((v16 >> (v7 * 4)) & 0xf);
-
-                        if (v11 != 0) {
-                            v17 = (v8 & 1) * 4;
-                            v11 = (u8)((v11 << v17) | (*v14 & (0xf0 >> v17)));
-                            *v14 = v11;
-
-                            if (v12 != 0) {
-                                v14 = (u8 *)((v0) + ((v8 >> 1) & 0x3) + ((v8 << 2) & 0x3fe0) + ((((v10 + 1) << 2) & 0x3fe0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 2) & 0x1c)));
-                                *v14 = v11;
-                            }
-                        }
-                    }
-
-                    if (v12 != 0) {
-                        v10 += 2;
-                    } else {
-                        v10++;
-                    }
-
-                    v15 += 4;
-                }
-            }
+        case 3: // 2x2
+            CopyGlyph4bpp(glyphPixels, 0, 0, 8, 8, windowPixels, destX, destY, ConvertPixelsToTiles(destWidth), table);
+            CopyGlyph4bpp(glyphPixels, 8, 0, srcRight - 8, 8, windowPixels, destX, destY, ConvertPixelsToTiles(destWidth), table);
+            CopyGlyph4bpp(glyphPixels, 0, 8, 8, srcBottom - 8, windowPixels, destX, destY, ConvertPixelsToTiles(destWidth), table);
+            CopyGlyph4bpp(glyphPixels, 8, 8, srcRight - 8, srcBottom - 8, windowPixels, destX, destY, ConvertPixelsToTiles(destWidth), table);
             return;
         }
     } else {
-        u8 *v6 = Convert4bppTo8bpp(param1, param2 * 4 * param3 * 8, param0->palette, param0->bgConfig->heapID);
-
-        switch (v5) {
-        case 0: {
-            int v7, v8, v9, v10;
-            u8 v11;
-            u8 v12;
-            u8 v13;
-            u8 *v14;
-            const u8 *v15;
-            u8 *v16;
-
-            v15 = (v6) + (0 / 8 * 0x80) + (0 / 8 * 0x40);
-
-            if (0 == 0) {
-                v10 = (param5) + 0;
-                v13 = (u8)((param6) & 0xff);
-            } else {
-                v10 = (param5) + 0;
-
-                for (v9 = 0; v9 < 8; v9++) {
-                    if ((((param6) >> v9) & 1) != 0) {
-                        v10++;
-                    }
-                }
-
-                v13 = (u8)((param6) >> 8);
-            }
-
-            for (v9 = 0; v9 < v4; v9++) {
-                v16 = (u8 *)v15;
-                v12 = (u8)((v13 >> v9) & 1);
-
-                for (v7 = 0, v8 = (param4) + 0; v7 < v3; v7++, v8++) {
-                    v14 = (u8 *)((v0) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + (((v10 << 3) & 0x7fc0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 3) & 0x38)));
-                    v11 = v16[v7];
-
-                    if (v11 != 0) {
-                        *v14 = v11;
-
-                        if (v12 != 0) {
-                            v14 = (u8 *)((v0) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + ((((v10 + 1) << 3) & 0x7fc0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 3) & 0x38)));
-                            *v14 = v11;
-                        }
-                    }
-                }
-
-                if (v12 != 0) {
-                    v10 += 2;
-                } else {
-                    v10++;
-                }
-
-                v15 += 8;
-            }
-        };
+        u8 *convertedSrc = Convert4bppTo8bpp(glyphPixels, srcWidth * 4 * srcHeight * 8, window->palette, window->bgConfig->heapID);
+        switch (glyphSizeParam) {
+        case 0: // 1x1
+            CopyGlyph8bpp(convertedSrc, 0, 0, srcRight, srcBottom, windowPixels, destX, destY, ConvertPixelsToTiles(destWidth), table);
             break;
-        case 1: {
-            int v7, v8, v9, v10;
-            u8 v11;
-            u8 v12;
-            u8 v13;
-            u8 *v14;
-            const u8 *v15;
-            u8 *v16;
 
-            v15 = (v6) + (0 / 8 * 0x80) + (0 / 8 * 0x40);
-
-            if (0 == 0) {
-                v10 = (param5) + 0;
-                v13 = (u8)((param6) & 0xff);
-            } else {
-                v10 = (param5) + 0;
-
-                for (v9 = 0; v9 < 8; v9++) {
-                    if ((((param6) >> v9) & 1) != 0) {
-                        v10++;
-                    }
-                }
-
-                v13 = (u8)((param6) >> 8);
-            }
-
-            for (v9 = 0; v9 < v4; v9++) {
-                v16 = (u8 *)v15;
-                v12 = (u8)((v13 >> v9) & 1);
-
-                for (v7 = 0, v8 = (param4) + 0; v7 < 8; v7++, v8++) {
-                    v14 = (u8 *)((v0) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + (((v10 << 3) & 0x7fc0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 3) & 0x38)));
-                    v11 = v16[v7];
-
-                    if (v11 != 0) {
-                        *v14 = v11;
-
-                        if (v12 != 0) {
-                            v14 = (u8 *)((v0) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + ((((v10 + 1) << 3) & 0x7fc0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 3) & 0x38)));
-                            *v14 = v11;
-                        }
-                    }
-                }
-
-                if (v12 != 0) {
-                    v10 += 2;
-                } else {
-                    v10++;
-                }
-
-                v15 += 8;
-            }
-        };
-            {
-                int v7, v8, v9, v10;
-                u8 v11;
-                u8 v12;
-                u8 v13;
-                u8 *v14;
-                const u8 *v15;
-                u8 *v16;
-
-                v15 = (v6) + (0 / 8 * 0x80) + (8 / 8 * 0x40);
-
-                if (0 == 0) {
-                    v10 = (param5) + 0;
-                    v13 = (u8)((param6) & 0xff);
-                } else {
-                    v10 = (param5) + 0;
-
-                    for (v9 = 0; v9 < 8; v9++) {
-                        if ((((param6) >> v9) & 1) != 0) {
-                            v10++;
-                        }
-                    }
-
-                    v13 = (u8)((param6) >> 8);
-                }
-
-                for (v9 = 0; v9 < v4; v9++) {
-                    v16 = (u8 *)v15;
-                    v12 = (u8)((v13 >> v9) & 1);
-
-                    for (v7 = 0, v8 = (param4) + 8; v7 < v3 - 8; v7++, v8++) {
-                        v14 = (u8 *)((v0) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + (((v10 << 3) & 0x7fc0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 3) & 0x38)));
-                        v11 = v16[v7];
-
-                        if (v11 != 0) {
-                            *v14 = v11;
-
-                            if (v12 != 0) {
-                                v14 = (u8 *)((v0) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + ((((v10 + 1) << 3) & 0x7fc0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 3) & 0x38)));
-                                *v14 = v11;
-                            }
-                        }
-                    }
-
-                    if (v12 != 0) {
-                        v10 += 2;
-                    } else {
-                        v10++;
-                    }
-
-                    v15 += 8;
-                }
-            }
+        case 1: // 2x1
+            CopyGlyph8bpp(convertedSrc, 0, 0, 8, srcBottom, windowPixels, destX, destY, ConvertPixelsToTiles(destWidth), table);
+            CopyGlyph8bpp(convertedSrc, 8, 0, srcRight - 8, srcBottom, windowPixels, destX, destY, ConvertPixelsToTiles(destWidth), table);
             break;
-        case 2: {
-            int v7, v8, v9, v10;
-            u8 v11;
-            u8 v12;
-            u8 v13;
-            u8 *v14;
-            const u8 *v15;
-            u8 *v16;
-            v15 = (v6) + (0 / 8 * 0x80) + (0 / 8 * 0x40);
 
-            if (0 == 0) {
-                v10 = (param5) + 0;
-                v13 = (u8)((param6) & 0xff);
-            } else {
-                v10 = (param5) + 0;
-
-                for (v9 = 0; v9 < 8; v9++) {
-                    if ((((param6) >> v9) & 1) != 0) {
-                        v10++;
-                    }
-                }
-
-                v13 = (u8)((param6) >> 8);
-            }
-
-            for (v9 = 0; v9 < 8; v9++) {
-                v16 = (u8 *)v15;
-                v12 = (u8)((v13 >> v9) & 1);
-
-                for (v7 = 0, v8 = (param4) + 0; v7 < v3; v7++, v8++) {
-                    v14 = (u8 *)((v0) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + (((v10 << 3) & 0x7fc0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 3) & 0x38)));
-                    v11 = v16[v7];
-
-                    if (v11 != 0) {
-                        *v14 = v11;
-
-                        if (v12 != 0) {
-                            v14 = (u8 *)((v0) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + ((((v10 + 1) << 3) & 0x7fc0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 3) & 0x38)));
-                            *v14 = v11;
-                        }
-                    }
-                }
-
-                if (v12 != 0) {
-                    v10 += 2;
-                } else {
-                    v10++;
-                }
-
-                v15 += 8;
-            }
-        };
-            {
-                int v7, v8, v9, v10;
-                u8 v11;
-                u8 v12;
-                u8 v13;
-                u8 *v14;
-                const u8 *v15;
-                u8 *v16;
-
-                v15 = (v6) + (8 / 8 * 0x80) + (0 / 8 * 0x40);
-
-                if (8 == 0) {
-                    v10 = (param5) + 8;
-                    v13 = (u8)((param6) & 0xff);
-                } else {
-                    v10 = (param5) + 8;
-
-                    for (v9 = 0; v9 < 8; v9++) {
-                        if ((((param6) >> v9) & 1) != 0) {
-                            v10++;
-                        }
-                    }
-
-                    v13 = (u8)((param6) >> 8);
-                }
-
-                for (v9 = 0; v9 < v4 - 8; v9++) {
-                    v16 = (u8 *)v15;
-                    v12 = (u8)((v13 >> v9) & 1);
-
-                    for (v7 = 0, v8 = (param4) + 0; v7 < v3; v7++, v8++) {
-                        v14 = (u8 *)((v0) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + (((v10 << 3) & 0x7fc0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 3) & 0x38)));
-                        v11 = v16[v7];
-
-                        if (v11 != 0) {
-                            *v14 = v11;
-
-                            if (v12 != 0) {
-                                v14 = (u8 *)((v0) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + ((((v10 + 1) << 3) & 0x7fc0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 3) & 0x38)));
-                                *v14 = v11;
-                            }
-                        }
-                    }
-
-                    if (v12 != 0) {
-                        v10 += 2;
-                    } else {
-                        v10++;
-                    }
-
-                    v15 += 8;
-                }
-            }
+        case 2: // 1x2
+            CopyGlyph8bpp(convertedSrc, 0, 0, srcRight, 8, windowPixels, destX, destY, ConvertPixelsToTiles(destWidth), table);
+            CopyGlyph8bpp(convertedSrc, 0, 8, srcRight, srcBottom - 8, windowPixels, destX, destY, ConvertPixelsToTiles(destWidth), table);
             break;
-        case 3: {
-            int v7, v8, v9, v10;
-            u8 v11;
-            u8 v12;
-            u8 v13;
-            u8 *v14;
-            const u8 *v15;
-            u8 *v16;
 
-            v15 = (v6) + (0 / 8 * 0x80) + (0 / 8 * 0x40);
-
-            if (0 == 0) {
-                v10 = (param5) + 0;
-                v13 = (u8)((param6) & 0xff);
-            } else {
-                v10 = (param5) + 0;
-
-                for (v9 = 0; v9 < 8; v9++) {
-                    if ((((param6) >> v9) & 1) != 0) {
-                        v10++;
-                    }
-                }
-
-                v13 = (u8)((param6) >> 8);
-            }
-
-            for (v9 = 0; v9 < 8; v9++) {
-                v16 = (u8 *)v15;
-                v12 = (u8)((v13 >> v9) & 1);
-
-                for (v7 = 0, v8 = (param4) + 0; v7 < 8; v7++, v8++) {
-                    v14 = (u8 *)((v0) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + (((v10 << 3) & 0x7fc0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 3) & 0x38)));
-                    v11 = v16[v7];
-
-                    if (v11 != 0) {
-                        *v14 = v11;
-
-                        if (v12 != 0) {
-                            v14 = (u8 *)((v0) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + ((((v10 + 1) << 3) & 0x7fc0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 3) & 0x38)));
-                            *v14 = v11;
-                        }
-                    }
-                }
-
-                if (v12 != 0) {
-                    v10 += 2;
-                } else {
-                    v10++;
-                }
-
-                v15 += 8;
-            }
-        };
-            {
-                int v7, v8, v9, v10;
-                u8 v11;
-                u8 v12;
-                u8 v13;
-                u8 *v14;
-                const u8 *v15;
-                u8 *v16;
-
-                v15 = (v6) + (0 / 8 * 0x80) + (8 / 8 * 0x40);
-
-                if (0 == 0) {
-                    v10 = (param5) + 0;
-                    v13 = (u8)((param6) & 0xff);
-                } else {
-                    v10 = (param5) + 0;
-
-                    for (v9 = 0; v9 < 8; v9++) {
-                        if ((((param6) >> v9) & 1) != 0) {
-                            v10++;
-                        }
-                    }
-
-                    v13 = (u8)((param6) >> 8);
-                }
-
-                for (v9 = 0; v9 < 8; v9++) {
-                    v16 = (u8 *)v15;
-                    v12 = (u8)((v13 >> v9) & 1);
-
-                    for (v7 = 0, v8 = (param4) + 8; v7 < v3 - 8; v7++, v8++) {
-                        v14 = (u8 *)((v0) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + (((v10 << 3) & 0x7fc0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 3) & 0x38)));
-                        v11 = v16[v7];
-
-                        if (v11 != 0) {
-                            *v14 = v11;
-
-                            if (v12 != 0) {
-                                v14 = (u8 *)((v0) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + ((((v10 + 1) << 3) & 0x7fc0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 3) & 0x38)));
-                                *v14 = v11;
-                            }
-                        }
-                    }
-
-                    if (v12 != 0) {
-                        v10 += 2;
-                    } else {
-                        v10++;
-                    }
-
-                    v15 += 8;
-                }
-            }
-            {
-                int v7, v8, v9, v10;
-                u8 v11;
-                u8 v12;
-                u8 v13;
-                u8 *v14;
-                const u8 *v15;
-                u8 *v16;
-
-                v15 = (v6) + (8 / 8 * 0x80) + (0 / 8 * 0x40);
-
-                if (8 == 0) {
-                    v10 = (param5) + 8;
-                    v13 = (u8)((param6) & 0xff);
-                } else {
-                    v10 = (param5) + 8;
-
-                    for (v9 = 0; v9 < 8; v9++) {
-                        if ((((param6) >> v9) & 1) != 0) {
-                            v10++;
-                        }
-                    }
-
-                    v13 = (u8)((param6) >> 8);
-                }
-
-                for (v9 = 0; v9 < v4 - 8; v9++) {
-                    v16 = (u8 *)v15;
-                    v12 = (u8)((v13 >> v9) & 1);
-
-                    for (v7 = 0, v8 = (param4) + 0; v7 < 8; v7++, v8++) {
-                        v14 = (u8 *)((v0) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + (((v10 << 3) & 0x7fc0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 3) & 0x38)));
-                        v11 = v16[v7];
-
-                        if (v11 != 0) {
-                            *v14 = v11;
-
-                            if (v12 != 0) {
-                                v14 = (u8 *)((v0) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + ((((v10 + 1) << 3) & 0x7fc0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 3) & 0x38)));
-                                *v14 = v11;
-                            }
-                        }
-                    }
-
-                    if (v12 != 0) {
-                        v10 += 2;
-                    } else {
-                        v10++;
-                    }
-
-                    v15 += 8;
-                }
-            }
-            {
-                int v7, v8, v9, v10;
-                u8 v11;
-                u8 v12;
-                u8 v13;
-                u8 *v14;
-                const u8 *v15;
-                u8 *v16;
-                v15 = (v6) + (8 / 8 * 0x80) + (8 / 8 * 0x40);
-
-                if (8 == 0) {
-                    v10 = (param5) + 8;
-                    v13 = (u8)((param6) & 0xff);
-                } else {
-                    v10 = (param5) + 8;
-
-                    for (v9 = 0; v9 < 8; v9++) {
-                        if ((((param6) >> v9) & 1) != 0) {
-                            v10++;
-                        }
-                    }
-
-                    v13 = (u8)((param6) >> 8);
-                }
-
-                for (v9 = 0; v9 < v4 - 8; v9++) {
-                    v16 = (u8 *)v15;
-                    v12 = (u8)((v13 >> v9) & 1);
-
-                    for (v7 = 0, v8 = (param4) + 8; v7 < v3 - 8; v7++, v8++) {
-                        v14 = (u8 *)((v0) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + (((v10 << 3) & 0x7fc0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)((v10 << 3) & 0x38)));
-                        v11 = v16[v7];
-
-                        if (v11 != 0) {
-                            *v14 = v11;
-
-                            if (v12 != 0) {
-                                v14 = (u8 *)((v0) + (v8 & 0x7) + ((v8 << 3) & 0x7fc0) + ((((v10 + 1) << 3) & 0x7fc0) * (((v1) + ((v1) & 7)) >> 3)) + ((u32)(((v10 + 1) << 3) & 0x38)));
-                                *v14 = v11;
-                            }
-                        }
-                    }
-
-                    if (v12 != 0) {
-                        v10 += 2;
-                    } else {
-                        v10++;
-                    }
-
-                    v15 += 8;
-                }
-            }
+        case 3: // 2x2
+            CopyGlyph8bpp(convertedSrc, 0, 0, 8, 8, windowPixels, destX, destY, ConvertPixelsToTiles(destWidth), table);
+            CopyGlyph8bpp(convertedSrc, 8, 0, srcRight - 8, 8, windowPixels, destX, destY, ConvertPixelsToTiles(destWidth), table);
+            CopyGlyph8bpp(convertedSrc, 0, 8, 8, srcBottom - 8, windowPixels, destX, destY, ConvertPixelsToTiles(destWidth), table);
+            CopyGlyph8bpp(convertedSrc, 8, 8, srcRight - 8, srcBottom - 8, windowPixels, destX, destY, ConvertPixelsToTiles(destWidth), table);
             break;
         }
-
-        Heap_FreeToHeap(v6);
+        Heap_FreeToHeap(convertedSrc);
     }
 }
 
-void Window_Scroll(Window *param0, u8 param1, u8 param2, u8 param3)
+void Window_Scroll(Window *window, u8 direction, u8 distance, u8 fillVal)
 {
-    if (param0->bgConfig->bgs[param0->bgLayer].colorMode == GX_BG_COLORMODE_16) {
-        sub_0201C06C(param0, param1, param2, param3);
+    if (window->bgConfig->bgs[window->bgLayer].colorMode == GX_BG_COLORMODE_16) {
+        ScrollWindow4bpp(window, direction, distance, fillVal);
     } else {
-        sub_0201C158(param0, param1, param2, param3);
+        ScrollWindow8bpp(window, direction, distance, fillVal);
     }
 }
 
-static void sub_0201C06C(Window *param0, u8 param1, u8 param2, u8 param3)
+static void ScrollWindow4bpp(Window *window, u8 direction, u8 distance, u8 fillVal)
 {
-    u8 *v0;
-    int v1, v2, v3;
-    int v4, v5;
-    int v6, v7;
-    int v8;
+    u8 *pixels;
+    int y0, y1, y2;
+    int fill, size;
+    u32 width;
+    int i, j;
 
-    v0 = (u8 *)param0->pixels;
-    v4 = (param3 << 24) | (param3 << 16) | (param3 << 8) | (param3 << 0);
-    v5 = param0->height * param0->width * 0x20;
-    v6 = param0->width;
+    pixels = window->pixels;
+    fill = (fillVal << 24) | (fillVal << 16) | (fillVal << 8) | (fillVal << 0);
+    size = window->height * window->width * TILE_SIZE_4BPP;
+    width = window->width;
 
-    switch (param1) {
-    case 0:
-        for (v1 = 0; v1 < v5; v1 += 0x20) {
-            v7 = param2;
+    switch (direction) {
+    case SCROLL_DIRECTION_UP:
+        for (i = 0; i < size; i += TILE_SIZE_4BPP) {
+            y0 = distance;
 
-            for (v8 = 0; v8 < 8; v8++) {
-                v2 = v1 + (v8 << 2);
-                v3 = v1 + (((v6 * (v7 & 0xfffffff8)) | (v7 & 0x7)) << 2);
+            for (j = 0; j < 8; j++) {
+                y1 = i + (j << 2);
+                y2 = i + (((width * (y0 & ~7)) | (y0 & 7)) << 2);
 
-                if (v3 < v5) {
-                    *(u32 *)(v0 + v2) = *(u32 *)(v0 + v3);
+                if (y2 < size) {
+                    *(u32 *)(pixels + y1) = *(u32 *)(pixels + y2);
                 } else {
-                    *(u32 *)(v0 + v2) = v4;
+                    *(u32 *)(pixels + y1) = fill;
                 }
 
-                v7++;
-            }
-        }
-
-        break;
-    case 1:
-        v0 += v5 - 4;
-
-        for (v1 = 0; v1 < v5; v1 += 0x20) {
-            v7 = param2;
-
-            for (v8 = 0; v8 < 8; v8++) {
-                v2 = v1 + (v8 << 2);
-                v3 = v1 + (((v6 * (v7 & 0xfffffff8)) | (v7 & 0x7)) << 2);
-
-                if (v3 < v5) {
-                    *(u32 *)(v0 - v2) = *(u32 *)(v0 - v3);
-                } else {
-                    *(u32 *)(v0 - v2) = v4;
-                }
-
-                v7++;
+                y0++;
             }
         }
         break;
-    case 2:
-        break;
-    case 3:
-        break;
-    }
-}
 
-static void sub_0201C158(Window *param0, u8 param1, u8 param2, u8 param3)
-{
-    u8 *v0;
-    int v1, v2, v3;
-    int v4, v5;
-    int v6, v7;
-    int v8;
+    case SCROLL_DIRECTION_DOWN:
+        pixels += size - 4;
+        for (i = 0; i < size; i += TILE_SIZE_4BPP) {
+            y0 = distance;
 
-    v0 = (u8 *)param0->pixels;
-    v4 = (param3 << 24) | (param3 << 16) | (param3 << 8) | param3;
-    v5 = param0->height * param0->width * 0x40;
-    v6 = param0->width;
+            for (j = 0; j < 8; j++) {
+                y1 = i + (j << 2);
+                y2 = i + (((width * (y0 & ~7)) | (y0 & 7)) << 2);
 
-    switch (param1) {
-    case 0:
-        for (v1 = 0; v1 < v5; v1 += 0x40) {
-            v7 = param2;
-
-            for (v8 = 0; v8 < 8; v8++) {
-                v2 = v1 + (v8 << 3);
-                v3 = v1 + (((v6 * (v7 & 0xfffffff8)) | (v7 & 0x7)) << 3);
-
-                if (v3 < v5) {
-                    *(u32 *)(v0 + v2) = *(u32 *)(v0 + v3);
+                if (y2 < size) {
+                    *(u32 *)(pixels - y1) = *(u32 *)(pixels - y2);
                 } else {
-                    *(u32 *)(v0 + v2) = v4;
+                    *(u32 *)(pixels - y1) = fill;
                 }
 
-                v2 += 4;
-                v3 += 4;
-
-                if (v3 < v5 + 4) {
-                    *(u32 *)(v0 + v2) = *(u32 *)(v0 + v3);
-                } else {
-                    *(u32 *)(v0 + v2) = v4;
-                }
-
-                v7++;
+                y0++;
             }
         }
         break;
-    case 1:
-        v0 += (v5 - 8);
 
-        for (v1 = 0; v1 < v5; v1 += 0x40) {
-            v7 = param2;
-
-            for (v8 = 0; v8 < 8; v8++) {
-                v2 = v1 + (v8 << 3);
-                v3 = v1 + (((v6 * (v7 & 0xfffffff8)) | (v7 & 0x7)) << 3);
-
-                if (v3 < v5) {
-                    *(u32 *)(v0 - v2) = *(u32 *)(v0 - v3);
-                } else {
-                    *(u32 *)(v0 - v2) = v4;
-                }
-
-                v2 -= 4;
-                v3 -= 4;
-
-                if (v3 < v5 - 4) {
-                    *(u32 *)(v0 - v2) = *(u32 *)(v0 - v3);
-                } else {
-                    *(u32 *)(v0 - v2) = v4;
-                }
-
-                v7++;
-            }
-        }
+    case SCROLL_DIRECTION_LEFT:
         break;
-    case 2:
-        break;
-    case 3:
+
+    case SCROLL_DIRECTION_RIGHT:
         break;
     }
 }
 
-BgConfig *Window_GetBgConfig(Window *param0)
+static void ScrollWindow8bpp(Window *window, u8 direction, u8 distance, u8 fillVal)
 {
-    return param0->bgConfig;
+    u8 *pixels;
+    int y0, y1, y2;
+    int fill, size;
+    u32 width;
+    int i, j;
+
+    pixels = window->pixels;
+    fill = (fillVal << 24) | (fillVal << 16) | (fillVal << 8) | fillVal;
+    size = window->height * window->width * TILE_SIZE_8BPP;
+    width = window->width;
+
+    switch (direction) {
+    case SCROLL_DIRECTION_UP:
+        for (i = 0; i < size; i += TILE_SIZE_8BPP) {
+            y0 = distance;
+
+            for (j = 0; j < 8; j++) {
+                y1 = i + (j << 3);
+                y2 = i + (((width * (y0 & ~7)) | (y0 & 7)) << 3);
+
+                if (y2 < size) {
+                    *(u32 *)(pixels + y1) = *(u32 *)(pixels + y2);
+                } else {
+                    *(u32 *)(pixels + y1) = fill;
+                }
+
+                y1 += 4;
+                y2 += 4;
+
+                if (y2 < size + 4) {
+                    *(u32 *)(pixels + y1) = *(u32 *)(pixels + y2);
+                } else {
+                    *(u32 *)(pixels + y1) = fill;
+                }
+
+                y0++;
+            }
+        }
+        break;
+
+    case SCROLL_DIRECTION_DOWN:
+        pixels += (size - 8);
+        for (i = 0; i < size; i += TILE_SIZE_8BPP) {
+            y0 = distance;
+
+            for (j = 0; j < 8; j++) {
+                y1 = i + (j << 3);
+                y2 = i + (((width * (y0 & ~7)) | (y0 & 7)) << 3);
+
+                if (y2 < size) {
+                    *(u32 *)(pixels - y1) = *(u32 *)(pixels - y2);
+                } else {
+                    *(u32 *)(pixels - y1) = fill;
+                }
+
+                y1 -= 4;
+                y2 -= 4;
+
+                if (y2 < size - 4) {
+                    *(u32 *)(pixels - y1) = *(u32 *)(pixels - y2);
+                } else {
+                    *(u32 *)(pixels - y1) = fill;
+                }
+
+                y0++;
+            }
+        }
+        break;
+
+    case SCROLL_DIRECTION_LEFT:
+        break;
+
+    case SCROLL_DIRECTION_RIGHT:
+        break;
+    }
 }
 
-u8 Window_GetBgLayer(Window *param0)
+BgConfig *Window_GetBgConfig(Window *window)
 {
-    return param0->bgLayer;
+    return window->bgConfig;
 }
 
-u8 Window_GetWidth(Window *param0)
+u8 Window_GetBgLayer(Window *window)
 {
-    return param0->width;
+    return window->bgLayer;
 }
 
-u8 Window_GetHeight(Window *param0)
+u8 Window_GetWidth(Window *window)
 {
-    return param0->height;
+    return window->width;
 }
 
-u8 Window_GetXPos(Window *param0)
+u8 Window_GetHeight(Window *window)
 {
-    return param0->tilemapLeft;
+    return window->height;
 }
 
-u8 Window_GetYPos(Window *param0)
+u8 Window_GetXPos(Window *window)
 {
-    return param0->tilemapTop;
+    return window->tilemapLeft;
 }
 
-u16 Window_GetBaseTile(Window *param0)
+u8 Window_GetYPos(Window *window)
 {
-    return param0->baseTile;
+    return window->tilemapTop;
 }
 
-void Window_SetXPos(Window *param0, u8 param1)
+u16 Window_GetBaseTile(Window *window)
 {
-    param0->tilemapLeft = param1;
+    return window->baseTile;
 }
 
-void Window_SetYPos(Window *param0, u8 param1)
+void Window_SetXPos(Window *window, u8 x)
 {
-    param0->tilemapTop = param1;
+    window->tilemapLeft = x;
 }
 
-void Window_SetPalette(Window *param0, u8 param1)
+void Window_SetYPos(Window *window, u8 y)
 {
-    param0->palette = param1;
+    window->tilemapTop = y;
+}
+
+void Window_SetPalette(Window *window, u8 palette)
+{
+    window->palette = palette;
 }
 
 void Bg_RunScheduledUpdates(BgConfig *bgConfig)

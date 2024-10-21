@@ -13,15 +13,6 @@
 #define TILEMAP_FILL_VAL_KEEP_PALETTE     16 // do not replace the selected palette index
 #define TILEMAP_FILL_VAL_INCLUDES_PALETTE 17
 
-enum BGLScreenSize {
-    SCREEN_SIZE_128x128 = 0,
-    SCREEN_SIZE_256x256,
-    SCREEN_SIZE_256x512,
-    SCREEN_SIZE_512x256,
-    SCREEN_SIZE_512x512,
-    SCREEN_SIZE_1024x1024,
-};
-
 enum DSScreen {
     DS_SCREEN_MAIN = 0,
     DS_SCREEN_SUB,
@@ -36,6 +27,8 @@ enum BgLayer {
     BG_LAYER_SUB_1,
     BG_LAYER_SUB_2,
     BG_LAYER_SUB_3,
+
+    BG_LAYER_MAX,
 };
 
 enum BgType {
@@ -85,6 +78,18 @@ enum BgScreenSize {
     BG_SCREEN_SIZE_512x256,
     BG_SCREEN_SIZE_512x512,
     BG_SCREEN_SIZE_1024x1024,
+};
+
+enum BgColorMode {
+    BG_COLOR_MODE_4BPP = 0,
+    BG_COLOR_MODE_8BPP,
+};
+
+enum ScrollDirection {
+    SCROLL_DIRECTION_UP = 0,
+    SCROLL_DIRECTION_DOWN,
+    SCROLL_DIRECTION_LEFT,
+    SCROLL_DIRECTION_RIGHT,
 };
 
 typedef struct Bitmap {
@@ -216,37 +221,37 @@ void Bitmap_BlitRect8bpp(const Bitmap *src, const Bitmap *dest, u16 srcX, u16 sr
 void Bitmap_FillRect4bpp(const Bitmap *bitmap, u16 x, u16 y, u16 width, u16 height, u8 fillVal);
 void Bitmap_FillRect8bpp(const Bitmap *bitmap, u16 x, u16 y, u16 width, u16 height, u8 fillVal);
 
-Window *Window_New(u32 param0, u8 param1);
-void Window_Init(Window *param0);
-u8 Window_IsInUse(Window *param0);
-void Window_Add(BgConfig *param0, Window *param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6, u8 param7, u16 param8);
-void Window_AddToTopLeftCorner(BgConfig *param0, Window *param1, u8 param2, u8 param3, u16 param4, u8 param5);
-void Window_AddFromTemplate(BgConfig *param0, Window *param1, const WindowTemplate *param2);
-void Window_Remove(Window *param0);
-void Windows_Delete(Window *param0, u8 param1);
-void Window_CopyToVRAM(Window *param0);
-void Window_ScheduleCopyToVRAM(Window *param0);
-void Window_PutToTilemap(Window *param0);
-void Window_PutRectToTilemap(Window *param0, u32 param1, u32 param2);
-void Window_ClearTilemap(Window *param0);
-void Window_LoadTiles(Window *param0);
-void Window_ClearAndCopyToVRAM(Window *param0);
-void Window_ClearAndScheduleCopyToVRAM(Window *param0);
-void Window_FillTilemap(Window *param0, u8 param1);
-void Window_BlitBitmapRect(Window *param0, void *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6, u16 param7, u16 param8, u16 param9);
-void Window_BlitBitmapRectWithTransparency(Window *param0, void *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6, u16 param7, u16 param8, u16 param9, u16 param10);
-void Window_FillRectWithColor(Window *param0, u8 param1, u16 param2, u16 param3, u16 param4, u16 param5);
-void Window_CopyGlyph(Window *param0, const u8 *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6);
-void Window_Scroll(Window *param0, u8 param1, u8 param2, u8 param3);
-BgConfig *Window_GetBgConfig(Window *param0);
-u8 Window_GetBgLayer(Window *param0);
-u8 Window_GetWidth(Window *param0);
-u8 Window_GetHeight(Window *param0);
-u8 Window_GetXPos(Window *param0);
-u8 Window_GetYPos(Window *param0);
-u16 Window_GetBaseTile(Window *param0);
-void Window_SetXPos(Window *param0, u8 param1);
-void Window_SetYPos(Window *param0, u8 param1);
-void Window_SetPalette(Window *param0, u8 param1);
+Window *Window_New(u32 heapID, u8 numWindows);
+void Window_Init(Window *window);
+u8 Window_IsInUse(Window *window);
+void Window_Add(BgConfig *bgConfig, Window *window, u8 bgLayer, u8 tilemapLeft, u8 tilemapTop, u8 width, u8 height, u8 palette, u16 baseTile);
+void Window_AddToTopLeftCorner(BgConfig *bgConfig, Window *window, u8 width, u8 height, u16 baseTile, u8 fillVal);
+void Window_AddFromTemplate(BgConfig *bgConfig, Window *window, const WindowTemplate *template);
+void Window_Remove(Window *window);
+void Windows_Delete(Window *window, u8 numWindows);
+void Window_CopyToVRAM(Window *window);
+void Window_ScheduleCopyToVRAM(Window *window);
+void Window_PutToTilemap(Window *window);
+void Window_PutRectToTilemap(Window *window, u32 width, u32 height);
+void Window_ClearTilemap(Window *window);
+void Window_LoadTiles(Window *window);
+void Window_ClearAndCopyToVRAM(Window *window);
+void Window_ClearAndScheduleCopyToVRAM(Window *window);
+void Window_FillTilemap(Window *window, u8 val);
+void Window_BlitBitmapRect(Window *window, void *src, u16 srcX, u16 srcY, u16 srcWidth, u16 srcHeight, u16 destX, u16 destY, u16 destWidth, u16 destHeight);
+void Window_BlitBitmapRectWithTransparency(Window *window, void *src, u16 srcX, u16 srcY, u16 srcWidth, u16 srcHeight, u16 destX, u16 destY, u16 destWidth, u16 destHeight, u16 transparent);
+void Window_FillRectWithColor(Window *window, u8 color, u16 x, u16 y, u16 width, u16 height);
+void Window_CopyGlyph(Window *window, const u8 *glyphPixels, u16 srcWidth, u16 srcHeight, u16 destX, u16 destY, u16 table);
+void Window_Scroll(Window *window, u8 direction, u8 distance, u8 fillVal);
+BgConfig *Window_GetBgConfig(Window *window);
+u8 Window_GetBgLayer(Window *window);
+u8 Window_GetWidth(Window *window);
+u8 Window_GetHeight(Window *window);
+u8 Window_GetXPos(Window *window);
+u8 Window_GetYPos(Window *window);
+u16 Window_GetBaseTile(Window *window);
+void Window_SetXPos(Window *window, u8 x);
+void Window_SetYPos(Window *window, u8 y);
+void Window_SetPalette(Window *window, u8 palette);
 
 #endif // POKEPLATINUM_BG_WINDOW_H
