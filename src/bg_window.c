@@ -1442,154 +1442,146 @@ u8 Bg_GetPriority(BgConfig *bgConfig, u8 bgLayer)
     return 0;
 }
 
-void Bitmap_BlitRect4bpp(const Bitmap *param0, const Bitmap *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6, u16 param7, u16 param8)
+#define CalcPixelAddressFromBlit4bpp(ptr, x, y, width) ((u8 *)((ptr) + (((x) >> 1) & 3) + (((x) << 2) & 0x3FE0) + ((((y) << 2) & 0x3FE0) * (width)) + (((u32)(((y) << 2) & 0x1C)))))
+#define CalcPixelAddressFromBlit8bpp(ptr, x, y, width) ((u8 *)((ptr) + ((x) & 7) + (((x) << 3) & 0x7FC0) + ((((y) << 3) & 0x7FC0) * (width)) + (((u32)(((y) << 3) & 0x38)))))
+#define ConvertPixelsToTiles(x)                        (((x) + ((x) & 7)) >> 3)
+
+void Bitmap_BlitRect4bpp(const Bitmap *src, const Bitmap *dest, u16 srcX, u16 srcY, u16 destX, u16 destY, u16 width, u16 height, u16 transparent)
 {
-    int v0, v1, v2, v3, v4, v5, v6, v7, v8, v9;
-    u8 *v10, *v11;
+    int loopSrcX, loopDestX, loopSrcY, loopDestY, toOrr, shift, xEnd, yEnd, multiplierSrcY, multiplierDestY;
+    u8 *srcPixels, *destPixels;
 
-    if (((param1->width) - (param4)) < (param6)) {
-        v6 = (param1->width) - (param4) + (param2);
+    if (dest->width - destX < width) {
+        xEnd = dest->width - destX + srcX;
     } else {
-        v6 = (param6) + (param2);
+        xEnd = width + srcX;
     }
 
-    if (((param1->height) - (param5)) < (param7)) {
-        v7 = (param1->height) - (param5) + (param3);
+    if (dest->height - destY < height) {
+        yEnd = dest->height - destY + srcY;
     } else {
-        v7 = (param7) + (param3);
+        yEnd = height + srcY;
     }
 
-    v8 = (((param0->width) + ((param0->width) & 7)) >> 3);
-    v9 = (((param1->width) + ((param1->width) & 7)) >> 3);
+    multiplierSrcY = ConvertPixelsToTiles(src->width);
+    multiplierDestY = ConvertPixelsToTiles(dest->width);
 
-    if (param8 == 0xffff) {
-        for (v2 = (param3), v3 = (param5); v2 < v7; v2++, v3++) {
-            for (v0 = (param2), v1 = (param4); v0 < v6; v0++, v1++) {
-                v10 = (u8 *)((param0->pixels) + ((v0 >> 1) & 0x3) + ((v0 << 2) & 0x3fe0) + (((v2 << 2) & 0x3fe0) * v8) + ((u32)((v2 << 2) & 0x1c)));
-                v11 = (u8 *)((param1->pixels) + ((v1 >> 1) & 0x3) + ((v1 << 2) & 0x3fe0) + (((v3 << 2) & 0x3fe0) * v9) + ((u32)((v3 << 2) & 0x1c)));
+    if (transparent == 0xFFFF) {
+        for (loopSrcY = srcY, loopDestY = destY; loopSrcY < yEnd; loopSrcY++, loopDestY++) {
+            for (loopSrcX = srcX, loopDestX = destX; loopSrcX < xEnd; loopSrcX++, loopDestX++) {
+                srcPixels = CalcPixelAddressFromBlit4bpp(src->pixels, loopSrcX, loopSrcY, multiplierSrcY);
+                destPixels = CalcPixelAddressFromBlit4bpp(dest->pixels, loopDestX, loopDestY, multiplierDestY);
 
-                v4 = (*v10 >> ((v0 & 1) * 4)) & 0xf;
-                v5 = (v1 & 1) * 4;
-                *v11 = (u8)((v4 << v5) | (*v11 & (0xf0 >> v5)));
+                toOrr = (*srcPixels >> ((loopSrcX & 1) * 4)) & 0xF;
+                shift = (loopDestX & 1) * 4;
+                *destPixels = ((toOrr << shift) | (*destPixels & (0xF0 >> shift)));
             }
         }
     } else {
-        for (v2 = (param3), v3 = (param5); v2 < v7; v2++, v3++) {
-            for (v0 = (param2), v1 = (param4); v0 < v6; v0++, v1++) {
-                v10 = (u8 *)((param0->pixels) + ((v0 >> 1) & 0x3) + ((v0 << 2) & 0x3fe0) + (((v2 << 2) & 0x3fe0) * v8) + ((u32)((v2 << 2) & 0x1c)));
-                v11 = (u8 *)((param1->pixels) + ((v1 >> 1) & 0x3) + ((v1 << 2) & 0x3fe0) + (((v3 << 2) & 0x3fe0) * v9) + ((u32)((v3 << 2) & 0x1c)));
+        for (loopSrcY = srcY, loopDestY = destY; loopSrcY < yEnd; loopSrcY++, loopDestY++) {
+            for (loopSrcX = srcX, loopDestX = destX; loopSrcX < xEnd; loopSrcX++, loopDestX++) {
+                srcPixels = CalcPixelAddressFromBlit4bpp(src->pixels, loopSrcX, loopSrcY, multiplierSrcY);
+                destPixels = CalcPixelAddressFromBlit4bpp(dest->pixels, loopDestX, loopDestY, multiplierDestY);
 
-                v4 = (*v10 >> ((v0 & 1) * 4)) & 0xf;
-
-                if (v4 != (param8)) {
-                    v5 = (v1 & 1) * 4;
-                    *v11 = (u8)((v4 << v5) | (*v11 & (0xf0 >> v5)));
+                toOrr = (*srcPixels >> ((loopSrcX & 1) * 4)) & 0xF;
+                if (toOrr != transparent) {
+                    shift = (loopDestX & 1) * 4;
+                    *destPixels = ((toOrr << shift) | (*destPixels & (0xF0 >> shift)));
                 }
             }
         }
     }
 }
 
-void Bitmap_BlitRect8bpp(const Bitmap *param0, const Bitmap *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6, u16 param7, u16 param8)
+void Bitmap_BlitRect8bpp(const Bitmap *src, const Bitmap *dest, u16 srcX, u16 srcY, u16 destX, u16 destY, u16 width, u16 height, u16 transparent)
 {
-    int v0, v1, v2, v3, v4, v5, v6, v7;
-    u8 *v8;
-    u8 *v9;
+    int loopSrcX, loopDestX, loopSrcY, loopDestY, xEnd, yEnd, multiplierSrcY, multiplierDestY;
+    u8 *srcPixels, *destPixels;
 
-    if (((param1->width) - (param4)) < (param6)) {
-        v4 = (param1->width) - (param4) + (param2);
+    if (dest->width - destX < width) {
+        xEnd = dest->width - destX + srcX;
     } else {
-        v4 = (param6) + (param2);
+        xEnd = width + srcX;
     }
 
-    if (((param1->height) - (param5)) < (param7)) {
-        v5 = (param1->height) - (param5) + (param3);
+    if (dest->height - destY < height) {
+        yEnd = dest->height - destY + srcY;
     } else {
-        v5 = (param7) + (param3);
+        yEnd = height + srcY;
     }
 
-    v6 = (((param0->width) + ((param0->width) & 7)) >> 3);
-    v7 = (((param1->width) + ((param1->width) & 7)) >> 3);
+    multiplierSrcY = ConvertPixelsToTiles(src->width);
+    multiplierDestY = ConvertPixelsToTiles(dest->width);
 
-    if (param8 == 0xffff) {
-        for (v2 = (param3), v3 = (param5); v2 < v5; v2++, v3++) {
-            for (v0 = (param2), v1 = (param4); v0 < v4; v0++, v1++) {
-                v8 = (u8 *)((param0->pixels) + (v0 & 0x7) + ((v0 << 3) & 0x7fc0) + (((v2 << 3) & 0x7fc0) * v6) + ((u32)((v2 << 3) & 0x38)));
-                v9 = (u8 *)((param1->pixels) + (v1 & 0x7) + ((v1 << 3) & 0x7fc0) + (((v3 << 3) & 0x7fc0) * v7) + ((u32)((v3 << 3) & 0x38)));
-                *v9 = *v8;
+    if (transparent == 0xffff) {
+        for (loopSrcY = srcY, loopDestY = destY; loopSrcY < yEnd; loopSrcY++, loopDestY++) {
+            for (loopSrcX = srcX, loopDestX = destX; loopSrcX < xEnd; loopSrcX++, loopDestX++) {
+                srcPixels = CalcPixelAddressFromBlit8bpp(src->pixels, loopSrcX, loopSrcY, multiplierSrcY);
+                destPixels = CalcPixelAddressFromBlit8bpp(dest->pixels, loopDestX, loopDestY, multiplierDestY);
+                *destPixels = *srcPixels;
             }
         }
     } else {
-        for (v2 = (param3), v3 = (param5); v2 < v5; v2++, v3++) {
-            for (v0 = (param2), v1 = (param4); v0 < v4; v0++, v1++) {
-                v8 = (u8 *)((param0->pixels) + (v0 & 0x7) + ((v0 << 3) & 0x7fc0) + (((v2 << 3) & 0x7fc0) * v6) + ((u32)((v2 << 3) & 0x38)));
-                v9 = (u8 *)((param1->pixels) + (v1 & 0x7) + ((v1 << 3) & 0x7fc0) + (((v3 << 3) & 0x7fc0) * v7) + ((u32)((v3 << 3) & 0x38)));
+        for (loopSrcY = srcY, loopDestY = destY; loopSrcY < yEnd; loopSrcY++, loopDestY++) {
+            for (loopSrcX = srcX, loopDestX = destX; loopSrcX < xEnd; loopSrcX++, loopDestX++) {
+                srcPixels = CalcPixelAddressFromBlit8bpp(src->pixels, loopSrcX, loopSrcY, multiplierSrcY);
+                destPixels = CalcPixelAddressFromBlit8bpp(dest->pixels, loopDestX, loopDestY, multiplierDestY);
 
-                if (*v8 != (param8)) {
-                    *v9 = *v8;
+                if (*srcPixels != transparent) {
+                    *destPixels = *srcPixels;
                 }
             }
         }
     }
 }
 
-void Bitmap_FillRect4bpp(const Bitmap *param0, u16 param1, u16 param2, u16 param3, u16 param4, u8 param5)
+void Bitmap_FillRect4bpp(const Bitmap *bitmap, u16 x, u16 y, u16 width, u16 height, u8 fillVal)
 {
-    int v0, v1, v2, v3, v4;
-    u8 *v5;
-
-    v2 = param1 + param3;
-
-    if (v2 > param0->width) {
-        v2 = param0->width;
+    int xEnd = x + width;
+    if (xEnd > bitmap->width) {
+        xEnd = bitmap->width;
     }
 
-    v3 = param2 + param4;
-
-    if (v3 > param0->height) {
-        v3 = param0->height;
+    int yEnd = y + height;
+    if (yEnd > bitmap->height) {
+        yEnd = bitmap->height;
     }
 
-    v4 = (((param0->width) + (param0->width & 7)) >> 3);
+    int blitWidth = ConvertPixelsToTiles(bitmap->width);
 
-    for (v1 = param2; v1 < v3; v1++) {
-        for (v0 = param1; v0 < v2; v0++) {
-            v5 = (u8 *)((param0->pixels) + ((v0 >> 1) & 0x3) + ((v0 << 2) & 0x3fe0) + (((v1 << 2) & 0x3fe0) * v4) + ((u32)((v1 << 2) & 0x1c)));
+    for (int i = y; i < yEnd; i++) {
+        for (int j = x; j < xEnd; j++) {
+            u8 *pixels = CalcPixelAddressFromBlit4bpp(bitmap->pixels, j, i, blitWidth);
 
-            if (v0 & 1) {
-                *v5 &= 0xf;
-                *v5 |= (param5 << 4);
+            if (j & 1) {
+                *pixels &= 0xF;
+                *pixels |= (fillVal << 4);
             } else {
-                *v5 &= 0xf0;
-                *v5 |= param5;
+                *pixels &= 0xF0;
+                *pixels |= fillVal;
             }
         }
     }
 }
 
-void Bitmap_FillRect8bpp(const Bitmap *param0, u16 param1, u16 param2, u16 param3, u16 param4, u8 param5)
+void Bitmap_FillRect8bpp(const Bitmap *bitmap, u16 x, u16 y, u16 width, u16 height, u8 fillVal)
 {
-    int v0, v1, v2, v3, v4;
-    u8 *v5;
-
-    v2 = param1 + param3;
-
-    if (v2 > param0->width) {
-        v2 = param0->width;
+    int xEnd = x + width;
+    if (xEnd > bitmap->width) {
+        xEnd = bitmap->width;
     }
 
-    v3 = param2 + param4;
-
-    if (v3 > param0->height) {
-        v3 = param0->height;
+    int yEnd = y + height;
+    if (yEnd > bitmap->height) {
+        yEnd = bitmap->height;
     }
 
-    v4 = (param0->width + (param0->width & 7)) >> 3;
+    int blitWidth = ConvertPixelsToTiles(bitmap->width);
 
-    for (v1 = param2; v1 < v3; v1++) {
-        for (v0 = param1; v0 < v2; v0++) {
-            v5 = (u8 *)((param0->pixels) + (v0 & 0x7) + ((v0 << 3) & 0x7fc0) + (((v1 << 3) & 0x7fc0) * v4) + ((u32)((v1 << 3) & 0x38)));
-            *v5 = param5;
+    for (int i = y; i < yEnd; i++) {
+        for (int j = x; j < xEnd; j++) {
+            u8 *pixels = CalcPixelAddressFromBlit8bpp(bitmap->pixels, j, i, blitWidth);
+            *pixels = fillVal;
         }
     }
 }

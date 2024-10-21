@@ -211,10 +211,10 @@ void Bg_ScheduleAffineScale(BgConfig *bgConfig, u8 bgLayer, u8 bgAffineUpdateOp,
 void Bg_ScheduleAffineRotationCenter(BgConfig *bgConfig, u8 bgLayer, u8 bgAffineUpdateOp, int val);
 u8 Bg_DoesPixelAtXYMatchVal(BgConfig *bgConfig, u8 bgLayer, u16 x, u16 y, u16 *src);
 
-void Bitmap_BlitRect4bpp(const Bitmap *param0, const Bitmap *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6, u16 param7, u16 param8);
-void Bitmap_BlitRect8bpp(const Bitmap *param0, const Bitmap *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 param6, u16 param7, u16 param8);
-void Bitmap_FillRect4bpp(const Bitmap *param0, u16 param1, u16 param2, u16 param3, u16 param4, u8 param5);
-void Bitmap_FillRect8bpp(const Bitmap *param0, u16 param1, u16 param2, u16 param3, u16 param4, u8 param5);
+void Bitmap_BlitRect4bpp(const Bitmap *src, const Bitmap *dest, u16 srcX, u16 srcY, u16 destX, u16 destY, u16 width, u16 height, u16 transparent);
+void Bitmap_BlitRect8bpp(const Bitmap *src, const Bitmap *dest, u16 srcX, u16 srcY, u16 destX, u16 destY, u16 width, u16 height, u16 transparent);
+void Bitmap_FillRect4bpp(const Bitmap *bitmap, u16 x, u16 y, u16 width, u16 height, u8 fillVal);
+void Bitmap_FillRect8bpp(const Bitmap *bitmap, u16 x, u16 y, u16 width, u16 height, u8 fillVal);
 
 Window *Window_New(u32 param0, u8 param1);
 void Window_Init(Window *param0);
