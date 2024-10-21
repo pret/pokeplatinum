@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+
+### This tool is responsible for using `debugedit` to fix Wine paths in the debuginfo file to real filesystem paths.
+### VSC requires the debuginfo paths to map to real filesystem paths in order for VSC to correctly open sources during a debugging session.
+### (This works fine on my Linux system, but may or may not work on WSL, and will certainly not work on other systems)
 import subprocess
 import os
 import shutil

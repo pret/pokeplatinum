@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+
+### This tool creates a file which maps overlay section names and source file names to overlay IDs.
+### custom GDB build then processes this source map and uses it to identify what overlay a source file belongs to.
+### (This makes it a lot easier to identify which overlapping overlay is used for a given input location).
 import subprocess
 import os
 import shutil
