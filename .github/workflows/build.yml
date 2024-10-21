@@ -10,6 +10,7 @@ env:
   CALCROM_DISCORD_WEBHOOK_AVATAR_URL: "https://i.imgur.com/38BQHdd.png"
   CALCROM_DISCORD_WEBHOOK_USERNAME: "OK"
   CALCROM_WEBHOOK_URL: "${{ secrets.WEBHOOKURL }}"
+  POKEPLATINUM_BUILD: /var/tmp/pokeplatinum
 
 jobs:
   build:
@@ -30,15 +31,15 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Configure Repo
-        run: ./config.sh /var/tmp/pokeplatinum
+        run: make configure
 
       - name: Build Repo
-        run: meson test -C /var/tmp/pokeplatinum
+        run: make check
 
       - name: Webhook
         if: ${{ github.event_name == 'push' }}
         env:
-          arm9name: /var/tmp/pokeplatinum/
+          arm9name: ${{ vars.POKEPLATINUM_BUILD }}
         run: |
           .github/calcrom/webhook.sh "$CALCROM_WEBHOOK_URL"
         continue-on-error: true
@@ -46,7 +47,7 @@ jobs:
       - name: Post error archive
         if: failure()
         continue-on-error: true
-        run: tar czf failure.tar.gz /var/tmp/pokeplatinum
+        run: tar czf failure.tar.gz "$POKEPLATINUM_BUILD"
 
       - name: Post error upload
         if: failure()
@@ -55,21 +56,21 @@ jobs:
           name: pokeplatinum-failure-${{ github.run_id }}
           path: failure.tar.gz
           retention-days: 1
-      
+
       - name: Checkout xMAP
         if: ${{ github.event_name == 'push' }}
         uses: actions/checkout@v4
         with:
           path: 'xmap'
           ref: 'xmap'
-      
+
       - name: Move xMAP
         if: ${{ github.event_name == 'push' }}
         run: |
           mkdir -p xmap
-          cp /var/tmp/pokeplatinum/*.xMAP xmap/platinumus.xMAP
+          cp "$POKEPLATINUM_BUILD/*.xMAP" xmap/platinumus.xMAP
           echo "XMAP_COMMIT_MSG=$( git log --format=%s ${GITHUB_SHA} )" >> $GITHUB_ENV
-      
+
       - name: Update xMAP
         if: ${{ github.event_name == 'push' }}
         uses: EndBug/add-and-commit@v9
