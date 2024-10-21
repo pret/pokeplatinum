@@ -10,9 +10,9 @@ For contacts and other pret projects, see [pret.github.io](https://pret.github.i
 
 ## Debugging with GDB + overlays
 
-1. Download and build custom GDB debugger from https://github.com/joshua-smith-12/binutils-gdb-nds - this build includes changes to help aid overlay debugging. (Regular gdb-multiarch works as well but will handle overlays poorly)
+1. Download and build custom GDB debugger from https://github.com/joshua-smith-12/binutils-gdb-nds - this build includes changes to help aid overlay debugging. There is a release available from the repo, which was built for Ubuntu 24.04. (Regular gdb-multiarch works for basic debugging but will handle overlays poorly)
 
-2. Create a `.vscode/launch.json` with the below contents, updating `miDebuggerPath`:
+2. Create or update a `.vscode/launch.json` with the below contents, updating `miDebuggerPath`:
 
 ```
 {
@@ -41,6 +41,10 @@ For contacts and other pret projects, see [pret.github.io](https://pret.github.i
                 {
                     "description": "Enable overlays",
                     "text": "overlay auto"
+                },
+                {
+                    "description": "Enable overlay map",
+                    "text": "overlay map build/overlay.map"
                 }
             ],
             "stopAtConnect": false,
@@ -50,8 +54,6 @@ For contacts and other pret projects, see [pret.github.io](https://pret.github.i
 }
 ```
 
-3. Launch melonDS with GDB stub enabled and launch the pokeplatinum ROM (you may need to fiddle with the config file to make this work, melonDS GDB stub config is off and may not actually enable properly through the UI)
+3. Launch melonDS with GDB stub enabled and launch the pokeplatinum ROM (you may need to fiddle with the config file to make this work, melonDS GDB stub config is odd and may not actually enable properly through the UI)
 
-4. Run debugger through VS Code, it should connect to melonDS automatically.
-
-5. Pause the debugger and run `-exec overlay section-map build/overlay.map` (this cannot currently be included in setupCommands due to issues with architecture loading).
+4. Run debugger through VS Code, it should connect to melonDS automatically and configure overlay debugging for you.
