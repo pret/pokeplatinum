@@ -1,0 +1,432 @@
+[
+    {
+        "tiles": 0,
+        "palette": 6,
+        "cells": 0,
+        "anim": 0,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 0
+    },
+    {
+        "tiles": 1,
+        "palette": 0,
+        "cells": 1,
+        "anim": 1,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 0
+    },
+    {
+        "tiles": 2,
+        "palette": 0,
+        "cells": 2,
+        "anim": 2,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 0
+    },
+    {
+        "tiles": 3,
+        "palette": 1,
+        "cells": 3,
+        "anim": 3,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 0
+    },
+    {
+        "tiles": 4,
+        "palette": 1,
+        "cells": 3,
+        "anim": 3,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 0
+    },
+    {
+        "tiles": 5,
+        "palette": 1,
+        "cells": 3,
+        "anim": 3,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 0
+    },
+    {
+        "tiles": 6,
+        "palette": 1,
+        "cells": 3,
+        "anim": 3,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 0
+    },
+    {
+        "tiles": 7,
+        "palette": 1,
+        "cells": 3,
+        "anim": 3,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 0
+    },
+    {
+        "tiles": 8,
+        "palette": 1,
+        "cells": 3,
+        "anim": 3,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 0
+    },
+    {
+        "tiles": 9,
+        "palette": 1,
+        "cells": 3,
+        "anim": 3,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 0
+    },
+    {
+        "tiles": 10,
+        "palette": 1,
+        "cells": 3,
+        "anim": 3,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 0
+    },
+    {
+        "tiles": 11,
+        "palette": 5,
+        "cells": 4,
+        "anim": 4,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 0
+    },
+    {
+        "tiles": 12,
+        "palette": 3,
+        "cells": 5,
+        "anim": 5,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 3
+    },
+    {
+        "tiles": 13,
+        "palette": 0,
+        "cells": 6,
+        "anim": 6,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 3
+    },
+    {
+        "tiles": 14,
+        "palette": 0,
+        "cells": 7,
+        "anim": 7,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 3
+    },
+    {
+        "tiles": 16,
+        "palette": 4,
+        "cells": 9,
+        "anim": 9,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 0
+    },
+    {
+        "tiles": 17,
+        "palette": 0,
+        "cells": 10,
+        "anim": 10,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 0
+    },
+    {
+        "tiles": 18,
+        "palette": 0,
+        "cells": 10,
+        "anim": 10,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 0
+    },
+    {
+        "tiles": 15,
+        "palette": 0,
+        "cells": 8,
+        "anim": 8,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 3
+    },
+    {
+        "tiles": 22,
+        "palette": 0,
+        "cells": 8,
+        "anim": 8,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 3
+    },
+    {
+        "tiles": 21,
+        "palette": 0,
+        "cells": 8,
+        "anim": 8,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 3
+    },
+    {
+        "tiles": 23,
+        "palette": 0,
+        "cells": 8,
+        "anim": 8,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 3
+    },
+    {
+        "tiles": 19,
+        "palette": 0,
+        "cells": 8,
+        "anim": 8,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 3
+    },
+    {
+        "tiles": 20,
+        "palette": 0,
+        "cells": 8,
+        "anim": 8,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 3
+    },
+    {
+        "tiles": 24,
+        "palette": 0,
+        "cells": 8,
+        "anim": 8,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 3
+    },
+    {
+        "tiles": 25,
+        "palette": 0,
+        "cells": 11,
+        "anim": 11,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 0
+    },
+    {
+        "tiles": 26,
+        "palette": 5,
+        "cells": 12,
+        "anim": 12,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 3
+    },
+    {
+        "tiles": 27,
+        "palette": 5,
+        "cells": 12,
+        "anim": 12,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 3
+    },
+    {
+        "tiles": 28,
+        "palette": 5,
+        "cells": 12,
+        "anim": 12,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 3
+    },
+    {
+        "tiles": 29,
+        "palette": 5,
+        "cells": 12,
+        "anim": 12,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 3
+    },
+    {
+        "tiles": 30,
+        "palette": 5,
+        "cells": 12,
+        "anim": 12,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 3
+    },
+    {
+        "tiles": 31,
+        "palette": 5,
+        "cells": 12,
+        "anim": 12,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 3
+    },
+    {
+        "tiles": 32,
+        "palette": 5,
+        "cells": 12,
+        "anim": 12,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 3
+    },
+    {
+        "tiles": 33,
+        "palette": 5,
+        "cells": 12,
+        "anim": 12,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 3
+    },
+    {
+        "tiles": 34,
+        "palette": 5,
+        "cells": 12,
+        "anim": 12,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 3
+    },
+    {
+        "tiles": 35,
+        "palette": 5,
+        "cells": 12,
+        "anim": 12,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 3
+    },
+    {
+        "tiles": 36,
+        "palette": 5,
+        "cells": 12,
+        "anim": 12,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 3
+    },
+    {
+        "tiles": 37,
+        "palette": 5,
+        "cells": 12,
+        "anim": 12,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 3
+    },
+    {
+        "tiles": 38,
+        "palette": 0,
+        "cells": 15,
+        "anim": 15,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 2
+    },
+    {
+        "tiles": 39,
+        "palette": 0,
+        "cells": 14,
+        "anim": 14,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 0
+    },
+    {
+        "tiles": 40,
+        "palette": 0,
+        "cells": 13,
+        "anim": 13,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 0
+    },
+    {
+        "tiles": 41,
+        "palette": 0,
+        "cells": 0,
+        "anim": 0,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 0
+    },
+    {
+        "tiles": 42,
+        "palette": 0,
+        "cells": 16,
+        "anim": 16,
+        "multi_cells": -1,
+        "multi_anim": -1,
+        "vram_transfer": false,
+        "bg_priority": 3
+    }
+]

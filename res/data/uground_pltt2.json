@@ -1,0 +1,13 @@
+{
+    "type": "PALETTE",
+    "contents": [
+        {
+            "narc": 47,
+            "member": 3,
+            "compressed": false,
+            "id": 0,
+            "vramType": 3,
+            "paletteCount": 1
+        }
+    ]
+}

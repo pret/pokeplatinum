@@ -1,0 +1,23 @@
+{
+    "type": "ANIM",
+    "contents": [
+        {
+            "narc": 62,
+            "member": 6,
+            "compressed": false,
+            "id": 0
+        },
+        {
+            "narc": 62,
+            "member": 9,
+            "compressed": false,
+            "id": 1
+        },
+        {
+            "narc": 16,
+            "member": 0,
+            "compressed": false,
+            "id": 2
+        }
+    ]
+}

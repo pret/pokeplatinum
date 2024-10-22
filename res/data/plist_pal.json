@@ -1,0 +1,45 @@
+{
+    "type": "PALETTE",
+    "contents": [
+        {
+            "narc": 20,
+            "member": 8,
+            "compressed": false,
+            "id": 0,
+            "vramType": 1,
+            "paletteCount": 2
+        },
+        {
+            "narc": 39,
+            "member": 65,
+            "compressed": false,
+            "id": 1,
+            "vramType": 1,
+            "paletteCount": 1
+        },
+        {
+            "narc": 19,
+            "member": 0,
+            "compressed": false,
+            "id": 2,
+            "vramType": 1,
+            "paletteCount": 3
+        },
+        {
+            "narc": 20,
+            "member": 21,
+            "compressed": false,
+            "id": 3,
+            "vramType": 1,
+            "paletteCount": 1
+        },
+        {
+            "narc": 20,
+            "member": 23,
+            "compressed": false,
+            "id": 4,
+            "vramType": 2,
+            "paletteCount": 1
+        }
+    ]
+}

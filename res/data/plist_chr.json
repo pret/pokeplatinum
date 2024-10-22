@@ -1,0 +1,89 @@
+{
+    "type": "TILES",
+    "contents": [
+        {
+            "narc": 20,
+            "member": 2,
+            "compressed": false,
+            "id": 0,
+            "vramType": 1
+        },
+        {
+            "narc": 20,
+            "member": 7,
+            "compressed": false,
+            "id": 1,
+            "vramType": 1
+        },
+        {
+            "narc": 20,
+            "member": 11,
+            "compressed": false,
+            "id": 2,
+            "vramType": 1
+        },
+        {
+            "narc": 39,
+            "member": 64,
+            "compressed": false,
+            "id": 3,
+            "vramType": 1
+        },
+        {
+            "narc": 19,
+            "member": 7,
+            "compressed": false,
+            "id": 4,
+            "vramType": 1
+        },
+        {
+            "narc": 19,
+            "member": 7,
+            "compressed": false,
+            "id": 5,
+            "vramType": 1
+        },
+        {
+            "narc": 19,
+            "member": 7,
+            "compressed": false,
+            "id": 6,
+            "vramType": 1
+        },
+        {
+            "narc": 19,
+            "member": 7,
+            "compressed": false,
+            "id": 7,
+            "vramType": 1
+        },
+        {
+            "narc": 19,
+            "member": 7,
+            "compressed": false,
+            "id": 8,
+            "vramType": 1
+        },
+        {
+            "narc": 19,
+            "member": 7,
+            "compressed": false,
+            "id": 9,
+            "vramType": 1
+        },
+        {
+            "narc": 20,
+            "member": 20,
+            "compressed": false,
+            "id": 10,
+            "vramType": 1
+        },
+        {
+            "narc": 13,
+            "member": 36,
+            "compressed": false,
+            "id": 11,
+            "vramType": 2
+        }
+    ]
+}

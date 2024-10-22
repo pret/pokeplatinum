@@ -34,11 +34,19 @@ RomSpec
 	File data/UTF16.dat
 	File data/arealight.narc
 	File data/battle_win.NSCR
+
+	Root /        # Directory in rom
+	HostRoot res  # Directory in source
+
 	File data/btower_canm.resdat
 	File data/btower_celact.cldat
 	File data/btower_cell.resdat
 	File data/btower_chr.resdat
 	File data/btower_pal.resdat
+
+	Root /        # Directory in rom
+	HostRoot res/prebuilt  # Directory in source
+
 	File data/cell0.NCGR
 	File data/cell0.NCLR
 	File data/clact_default.NANR
@@ -89,6 +97,10 @@ RomSpec
 	File data/pl_wm.ncgr
 	File data/pl_wm.nclr
 	File data/plbr.dat
+
+	Root /        # Directory in rom
+	HostRoot res  # Directory in source
+
 	File data/plist_canm.resdat
 	File data/plist_cell.resdat
 	File data/plist_chr.resdat
@@ -109,6 +121,10 @@ RomSpec
 	File data/shop_chr.resdat
 	File data/shop_h.cldat
 	File data/shop_pal.resdat
+
+	Root /        # Directory in rom
+	HostRoot res/prebuilt  # Directory in source
+
 	File data/slot.narc
 	File data/smptm_koori.NANR
 	File data/smptm_koori.NCER
@@ -126,6 +142,10 @@ RomSpec
 	File data/test.atr
 	File data/tmap_block.dat
 	File data/tmap_flags.dat
+
+	Root /        # Directory in rom
+	HostRoot res  # Directory in source
+
 	File data/tmapn_canm.resdat
 	File data/tmapn_celact.cldat
 	File data/tmapn_celact.txt
@@ -136,6 +156,10 @@ RomSpec
 	File data/tmapn_res_cell.txt
 	File data/tmapn_res_chr.txt
 	File data/tmapn_res_pal.txt
+
+	Root /        # Directory in rom
+	HostRoot res/prebuilt  # Directory in source
+
 	File data/tradelist.narc
 	File data/trapmark.narc
 	File data/tw_arc_etc.naix
@@ -154,6 +178,10 @@ RomSpec
 	File data/ug_radar.narc
 	File data/ug_trap.narc
 	File data/ugeffect_obj_graphic.narc
+
+	Root /        # Directory in rom
+	HostRoot res  # Directory in source
+
 	File data/uground_cell.resdat
 	File data/uground_cellanm.resdat
 	File data/uground_char.resdat
@@ -161,6 +189,10 @@ RomSpec
 	File data/uground_clact.cldat
 	File data/uground_pltt.resdat
 	File data/uground_pltt2.resdat
+
+	Root /        # Directory in rom
+	HostRoot res/prebuilt  # Directory in source
+
 	File data/ugroundeffect.naix
 	File data/ugroundeffect.narc
 	File data/underg_radar.narc

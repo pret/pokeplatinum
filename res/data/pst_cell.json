@@ -1,0 +1,107 @@
+{
+    "type": "CELLS",
+    "contents": [
+        {
+            "narc": 39,
+            "member": 48,
+            "compressed": false,
+            "id": 0
+        },
+        {
+            "narc": 39,
+            "member": 128,
+            "compressed": false,
+            "id": 1
+        },
+        {
+            "narc": 39,
+            "member": 131,
+            "compressed": false,
+            "id": 2
+        },
+        {
+            "narc": 27,
+            "member": 242,
+            "compressed": true,
+            "id": 3
+        },
+        {
+            "narc": 19,
+            "member": 2,
+            "compressed": false,
+            "id": 4
+        },
+        {
+            "narc": 39,
+            "member": 63,
+            "compressed": false,
+            "id": 5
+        },
+        {
+            "narc": 39,
+            "member": 67,
+            "compressed": false,
+            "id": 6
+        },
+        {
+            "narc": 39,
+            "member": 60,
+            "compressed": false,
+            "id": 7
+        },
+        {
+            "narc": 39,
+            "member": 51,
+            "compressed": false,
+            "id": 8
+        },
+        {
+            "narc": 13,
+            "member": 35,
+            "compressed": false,
+            "id": 9
+        },
+        {
+            "narc": 39,
+            "member": 18,
+            "compressed": false,
+            "id": 10
+        },
+        {
+            "narc": 39,
+            "member": 45,
+            "compressed": false,
+            "id": 11
+        },
+        {
+            "narc": 39,
+            "member": 71,
+            "compressed": false,
+            "id": 12
+        },
+        {
+            "narc": 39,
+            "member": 123,
+            "compressed": false,
+            "id": 13
+        },
+        {
+            "narc": 39,
+            "member": 42,
+            "compressed": false,
+            "id": 14
+        },
+        {
+            "narc": 39,
+            "member": 125,
+            "compressed": false,
+            "id": 15
+        },
+        {
+            "narc": 39,
+            "member": 134,
+            "compressed": false,
+            "id": 16
+        }
+    ]
+}

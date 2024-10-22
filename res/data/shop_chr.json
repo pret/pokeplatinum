@@ -1,0 +1,26 @@
+{
+    "type": "TILES",
+    "contents": [
+        {
+            "narc": 62,
+            "member": 4,
+            "compressed": false,
+            "id": 0,
+            "vramType": 1
+        },
+        {
+            "narc": 62,
+            "member": 7,
+            "compressed": false,
+            "id": 1,
+            "vramType": 1
+        },
+        {
+            "narc": 16,
+            "member": 2,
+            "compressed": false,
+            "id": 2,
+            "vramType": 1
+        }
+    ]
+}

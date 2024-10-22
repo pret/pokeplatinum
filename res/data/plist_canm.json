@@ -1,0 +1,47 @@
+{
+    "type": "ANIM",
+    "contents": [
+        {
+            "narc": 20,
+            "member": 0,
+            "compressed": false,
+            "id": 0
+        },
+        {
+            "narc": 20,
+            "member": 5,
+            "compressed": false,
+            "id": 1
+        },
+        {
+            "narc": 20,
+            "member": 9,
+            "compressed": false,
+            "id": 2
+        },
+        {
+            "narc": 39,
+            "member": 62,
+            "compressed": false,
+            "id": 3
+        },
+        {
+            "narc": 19,
+            "member": 3,
+            "compressed": false,
+            "id": 4
+        },
+        {
+            "narc": 20,
+            "member": 18,
+            "compressed": false,
+            "id": 5
+        },
+        {
+            "narc": 13,
+            "member": 34,
+            "compressed": false,
+            "id": 6
+        }
+    ]
+}

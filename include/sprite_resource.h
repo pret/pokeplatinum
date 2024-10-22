@@ -44,7 +44,7 @@ typedef struct SpriteResourceTableEntryNARC {
     BOOL compressed;
     int id;
     NNS_G2D_VRAM_TYPE vramType;
-    int paletteIndex;
+    int paletteCount;
 } SpriteResourceTableEntryNARC;
 
 typedef struct SpriteResourceTable {

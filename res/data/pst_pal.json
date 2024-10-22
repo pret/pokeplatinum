@@ -1,0 +1,54 @@
+{
+    "type": "PALETTE",
+    "contents": [
+        {
+            "narc": 39,
+            "member": 69,
+            "compressed": false,
+            "id": 0,
+            "vramType": 1,
+            "paletteCount": 3
+        },
+        {
+            "narc": 27,
+            "member": 74,
+            "compressed": false,
+            "id": 1,
+            "vramType": 1,
+            "paletteCount": 3,
+            "description": "BATTLE_ICON_PALETTE"
+        },
+        {
+            "narc": 39,
+            "member": 65,
+            "compressed": false,
+            "id": 3,
+            "vramType": 1,
+            "paletteCount": 1
+        },
+        {
+            "narc": 20,
+            "member": 23,
+            "compressed": false,
+            "id": 4,
+            "vramType": 2,
+            "paletteCount": 1
+        },
+        {
+            "narc": 39,
+            "member": 136,
+            "compressed": false,
+            "id": 5,
+            "vramType": 1,
+            "paletteCount": 5
+        },
+        {
+            "narc": 39,
+            "member": 37,
+            "compressed": false,
+            "id": 6,
+            "vramType": 1,
+            "paletteCount": 1
+        }
+    ]
+}

@@ -1,0 +1,17 @@
+{
+    "type": "CELLS",
+    "contents": [
+        {
+            "narc": 83,
+            "member": 6,
+            "compressed": false,
+            "id": 0
+        },
+        {
+            "narc": 83,
+            "member": 8,
+            "compressed": false,
+            "id": 1
+        }
+    ]
+}

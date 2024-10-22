@@ -1,0 +1,47 @@
+{
+    "type": "CELLS",
+    "contents": [
+        {
+            "narc": 20,
+            "member": 1,
+            "compressed": false,
+            "id": 0
+        },
+        {
+            "narc": 20,
+            "member": 6,
+            "compressed": false,
+            "id": 1
+        },
+        {
+            "narc": 20,
+            "member": 10,
+            "compressed": false,
+            "id": 2
+        },
+        {
+            "narc": 39,
+            "member": 63,
+            "compressed": false,
+            "id": 3
+        },
+        {
+            "narc": 19,
+            "member": 4,
+            "compressed": false,
+            "id": 4
+        },
+        {
+            "narc": 20,
+            "member": 19,
+            "compressed": false,
+            "id": 5
+        },
+        {
+            "narc": 13,
+            "member": 35,
+            "compressed": false,
+            "id": 6
+        }
+    ]
+}
