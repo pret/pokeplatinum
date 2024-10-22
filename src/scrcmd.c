@@ -64,7 +64,6 @@
 #include "overlay005/ov5_021F77A8.h"
 #include "overlay005/struct_ov5_021DC1A4_decl.h"
 #include "overlay005/struct_ov5_021DD42C.h"
-#include "overlay005/struct_ov5_021E1FF4_decl.h"
 #include "overlay005/vs_seeker.h"
 #include "overlay006/ov6_0223E140.h"
 #include "overlay006/ov6_02242AF0.h"

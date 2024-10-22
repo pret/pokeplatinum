@@ -6,48 +6,24 @@
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_defs/struct_02049FA8.h"
 
-#include "field/field_system.h"
+#include "overlay005/ov5_021E1D20.h"
 #include "overlay005/ov5_021EA714.h"
-#include "overlay005/struct_ov5_021E1FF4_decl.h"
 
 #include "bg_window.h"
 #include "field_overworld_state.h"
 #include "font.h"
 #include "heap.h"
 #include "map_header.h"
-#include "message.h"
 #include "message_util.h"
-#include "play_time.h"
 #include "player_avatar.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
-#include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "unk_020366A0.h"
-
-typedef struct {
-    int unk_00;
-    int unk_04;
-    TrainerInfo *unk_08;
-    PlayTime *playTime;
-} UnkStruct_ov5_021E1D20;
-
-struct UnkStruct_ov5_021E1FF4_t {
-    FieldSystem *fieldSystem;
-    int unk_04;
-    u8 unk_08;
-    BgConfig *unk_0C;
-    Window *unk_10;
-    StringTemplate *unk_14;
-    MessageLoader *unk_18;
-    UnkStruct_ov5_021E1D20 unk_1C;
-    int unk_2C;
-    int unk_30;
-};
 
 static void ov5_021E2028(FieldSystem *fieldSystem);
 
