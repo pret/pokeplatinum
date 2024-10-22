@@ -7,6 +7,7 @@
 
 #include "applications/pokemon_summary_screen/main.h"
 #include "applications/pokemon_summary_screen/subscreen.h"
+#include "data/pst_pal.h"
 #include "overlay007/struct_ov7_0224F2EC.h"
 #include "overlay007/struct_ov7_0224F358.h"
 #include "overlay104/struct_ov104_022412F4.h"
@@ -430,7 +431,7 @@ void sub_0208F16C(PokemonSummaryScreen *param0)
 static void sub_0208F194(PokemonSummaryScreen *param0, u8 param1, u8 param2, u8 param3)
 {
     sub_0200D948(param0->renderer, param0->gfxHandler, sub_0207C944(), sub_0207C908(param3), 1, param2);
-    sub_0200D414(param0->unk_41C[param1], sub_0207C92C(param3) + 3);
+    sub_0200D414(param0->unk_41C[param1], sub_0207C92C(param3) + RESDAT_PST_PAL_NARC_27_MEMBER_74_1_OFFSET);
 }
 
 static void sub_0208F1E4(PokemonSummaryScreen *param0, u8 *param1, s16 *param2, s16 *param3)
@@ -465,7 +466,7 @@ void PokemonSummaryScreen_UpdateMoveCategoryIcon(PokemonSummaryScreen *summarySc
     u32 category = MoveTable_LoadParam(move, MOVEATTRIBUTE_CLASS);
 
     sub_0200D948(summaryScreen->renderer, summaryScreen->gfxHandler, sub_0207CAC0(), sub_0207CA90(category), 1, 10);
-    sub_0200D414(summaryScreen->unk_41C[18], sub_0207CAA8(category) + 3);
+    sub_0200D414(summaryScreen->unk_41C[18], sub_0207CAA8(category) + RESDAT_PST_PAL_NARC_27_MEMBER_74_1_OFFSET);
 }
 
 void PokemonSummaryScreen_UpdateMoveSelectorPos(PokemonSummaryScreen *summaryScreen)
@@ -669,7 +670,7 @@ void sub_0208F71C(PokemonSummaryScreen *param0)
     }
 
     sub_0200D948(param0->renderer, param0->gfxHandler, 19, v1, 0, 11);
-    sub_0200D414(param0->unk_41C[19], PokeIconPaletteIndex(param0->monData.species, param0->monData.form, param0->monData.isEgg) + 7);
+    sub_0200D414(param0->unk_41C[19], PokeIconPaletteIndex(param0->monData.species, param0->monData.form, param0->monData.isEgg) + RESDAT_PST_PAL_NARC_20_MEMBER_23_3_OFFSET);
     CellActor_SetFlipMode(param0->unk_41C[19], (PokemonPersonalData_GetFormValue(param0->monData.species, param0->monData.form, 28) ^ 1));
 }
 
@@ -732,7 +733,7 @@ void PokemonSummaryScreen_HideContestStatDots(PokemonSummaryScreen *summaryScree
 static void sub_0208F9B0(PokemonSummaryScreen *summaryScreen, u8 ribbonNum, u8 param2)
 {
     sub_0200D948(summaryScreen->renderer, summaryScreen->gfxHandler, 39, Ribbon_GetData(ribbonNum, RIBBON_DATA_SPRITE_ID), 0, 26 + param2);
-    sub_0200D414(summaryScreen->unk_41C[55 + param2], Ribbon_GetData(ribbonNum, RIBBON_DATA_PALETTE_NUM) + 7);
+    sub_0200D414(summaryScreen->unk_41C[55 + param2], Ribbon_GetData(ribbonNum, RIBBON_DATA_PALETTE_NUM) + RESDAT_PST_PAL_NARC_20_MEMBER_23_3_OFFSET);
 }
 
 void sub_0208FA04(PokemonSummaryScreen *summaryScreen)

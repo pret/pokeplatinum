@@ -35,7 +35,7 @@ typedef struct SpriteResourceTableEntryFile {
     int id;
     char filename[64];
     NNS_G2D_VRAM_TYPE vramType;
-    int paletteIndex;
+    int paletteCount;
 } SpriteResourceTableEntryFile;
 
 typedef struct SpriteResourceTableEntryNARC {

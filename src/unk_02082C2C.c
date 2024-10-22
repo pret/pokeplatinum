@@ -7,6 +7,7 @@
 #include "struct_defs/struct_0207F248.h"
 #include "struct_defs/struct_020831B4.h"
 
+#include "data/plist_pal.h"
 #include "overlay007/struct_ov7_0224F2EC.h"
 #include "overlay007/struct_ov7_0224F358.h"
 #include "overlay104/struct_ov104_022412F4.h"
@@ -97,7 +98,7 @@ void sub_02082CEC(GameWindowLayout *param0, u8 param1, u16 param2, u16 param3, N
     v1.unk_08 = 0;
     v1.unk_0A = 0;
     v1.unk_0C = 0;
-    v1.unk_10 = PokeIconPaletteIndex(param0->unk_704[param1].unk_04, param0->unk_704[param1].unk_11, v2) + 3;
+    v1.unk_10 = PokeIconPaletteIndex(param0->unk_704[param1].unk_04, param0->unk_704[param1].unk_11, v2) + RESDAT_PLIST_PAL_NARC_19_MEMBER_0_2_OFFSET;
     v1.unk_14 = NNS_G2D_VRAM_TYPE_2DMAIN;
     v1.unk_18 = 0;
     v1.unk_1C = 0;
@@ -131,7 +132,7 @@ void sub_02082DA8(GameWindowLayout *param0, u8 param1)
     }
 
     Heap_FreeToHeap(v5);
-    sub_0200D414(param0->unk_704[param1].unk_24, PokeIconPaletteIndex(v2, v3, 0) + 3);
+    sub_0200D414(param0->unk_704[param1].unk_24, PokeIconPaletteIndex(v2, v3, 0) + RESDAT_PLIST_PAL_NARC_19_MEMBER_0_2_OFFSET);
     NARC_dtor(v1);
 }
 
