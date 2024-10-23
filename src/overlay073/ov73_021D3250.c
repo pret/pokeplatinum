@@ -7,6 +7,7 @@
 #include "core_sys.h"
 #include "font.h"
 #include "gx_layers.h"
+#include "hardware_palette.h"
 #include "heap.h"
 #include "message.h"
 #include "overlay_manager.h"
@@ -17,7 +18,6 @@
 #include "unk_02006E3C.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_020241F0.h"
 
 typedef struct {
     int unk_00;
@@ -83,7 +83,7 @@ int ov73_021D3280 (OverlayManager * param0, int * param1)
         GXLayers_TurnBothDispOn();
 
         {
-            u16 * v2 = (u16 *)sub_020241F0();
+            u16 *v2 = (u16 *)GetHardwareMainBgPaletteAddress();
 
             BlendPalettes(v2, v2, 0xFFFC, 7, 0x0);
             GX_LoadBGPltt((const void *)v2, 0, 16 * 0x20);

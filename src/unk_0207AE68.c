@@ -23,6 +23,7 @@
 #include "game_options.h"
 #include "game_records.h"
 #include "gx_layers.h"
+#include "hardware_palette.h"
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
@@ -49,7 +50,6 @@
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
 #include "unk_0202419C.h"
-#include "unk_020241F0.h"
 #include "unk_02024220.h"
 #include "unk_0202631C.h"
 #include "unk_02028124.h"
@@ -97,8 +97,8 @@ UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Opt
     v0 = (UnkStruct_0207AE68 *)Heap_AllocFromHeap(param11, sizeof(UnkStruct_0207AE68));
 
     MI_CpuClearFast(v0, sizeof(UnkStruct_0207AE68));
-    MI_CpuFill16((void *)sub_020241F0(), 0x0, sub_020241F8());
-    MI_CpuFill16((void *)sub_02024200(), 0x0, sub_02024208());
+    MI_CpuFill16((void *)GetHardwareMainBgPaletteAddress(), 0x0, GetHardwareMainBgPaletteSize());
+    MI_CpuFill16((void *)GetHardwareSubBgPaletteAddress(), 0x0, GetHardwareSubBgPaletteSize());
 
     v0->unk_24 = param0;
     v0->unk_28 = param1;

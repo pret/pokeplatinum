@@ -90,7 +90,7 @@ pokeplatinum_c = files(
     'unk_02023FCC.c',
     'unk_0202414C.c',
     'unk_0202419C.c',
-    'unk_020241F0.c',
+    'hardware_palette.c',
     'unk_02024220.c',
     'unk_02024358.c',
     'savedata/save_table.c',

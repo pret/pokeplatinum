@@ -48,6 +48,7 @@
 #include "game_overlay.h"
 #include "game_records.h"
 #include "gx_layers.h"
+#include "hardware_palette.h"
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
@@ -79,7 +80,6 @@
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
-#include "unk_020241F0.h"
 #include "unk_02024220.h"
 #include "unk_0202631C.h"
 #include "unk_0202F1D4.h"
@@ -339,7 +339,7 @@ void ov16_0223B430(BattleSystem *param0)
     }
 
     ov16_0223F314(param0, 0);
-    MI_CpuFill16((void *)sub_02024200(), 0x0, sub_02024208());
+    MI_CpuFill16((void *)GetHardwareSubBgPaletteAddress(), 0x0, GetHardwareSubBgPaletteSize());
 
     v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
     v1 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
@@ -526,8 +526,8 @@ static void ov16_0223B790(OverlayManager *param0)
     RTCDate v4;
     RTCTime v5;
 
-    MI_CpuFill16((void *)sub_020241F0(), 0x0, sub_020241F8());
-    MI_CpuFill16((void *)sub_02024200(), 0x0, sub_02024208());
+    MI_CpuFill16((void *)GetHardwareMainBgPaletteAddress(), 0x0, GetHardwareMainBgPaletteSize());
+    MI_CpuFill16((void *)GetHardwareSubBgPaletteAddress(), 0x0, GetHardwareSubBgPaletteSize());
 
     v0->unk_00 = ov16_0223CD7C();
 

@@ -3,11 +3,11 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "hardware_palette.h"
 #include "heap.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02006E3C.h"
-#include "unk_020241F0.h"
 
 static u8 sub_0200327C(u16 param0, u16 param1);
 static void sub_02003290(PaletteData *param0, u16 param1);
@@ -97,16 +97,16 @@ void PaletteData_LoadBufferFromHardware(PaletteData *param0, int param1, u16 par
 
     switch (param1) {
     case 0:
-        v0 = (u16 *)sub_020241F0();
+        v0 = (u16 *)GetHardwareMainBgPaletteAddress();
         break;
     case 1:
-        v0 = (u16 *)sub_02024200();
+        v0 = (u16 *)GetHardwareSubBgPaletteAddress();
         break;
     case 2:
-        v0 = (u16 *)sub_02024210();
+        v0 = (u16 *)GetHardwareMainObjPaletteAddress();
         break;
     case 3:
-        v0 = (u16 *)sub_02024218();
+        v0 = (u16 *)GetHardwareSubObjPaletteAddress();
         break;
     default:
         GF_ASSERT(FALSE);

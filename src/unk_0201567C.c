@@ -4,10 +4,10 @@
 #include <string.h>
 
 #include "bg_window.h"
+#include "hardware_palette.h"
 #include "palette.h"
 #include "sys_task_manager.h"
 #include "unk_0200679C.h"
-#include "unk_020241F0.h"
 
 typedef void (*UnkFuncPtr_020157E4)(void *, u16 *);
 
@@ -49,10 +49,10 @@ void *sub_0201567C(PaletteData *param0, u16 param1, u16 param2, u32 param3)
         }
     } else {
         if (param1 == 0) {
-            v2 = (u16 *)sub_020241F0();
+            v2 = (u16 *)GetHardwareMainBgPaletteAddress();
             v0->unk_04 = sub_02015840;
         } else {
-            v2 = (u16 *)sub_02024200();
+            v2 = (u16 *)GetHardwareSubBgPaletteAddress();
             v0->unk_04 = sub_02015858;
         }
     }
