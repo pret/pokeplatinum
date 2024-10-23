@@ -15,6 +15,7 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "font.h"
+#include "graphics.h"
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
@@ -22,7 +23,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02006E3C.h"
 
 typedef struct {
     void *unk_00;

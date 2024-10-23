@@ -10,6 +10,7 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "map_object.h"
@@ -20,7 +21,6 @@
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
-#include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200F174.h"

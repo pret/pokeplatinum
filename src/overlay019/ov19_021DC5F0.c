@@ -15,13 +15,13 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "graphics.h"
 #include "heap.h"
 #include "narc.h"
 #include "party.h"
 #include "pokemon.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
 
 static const struct {
     u16 unk_00;

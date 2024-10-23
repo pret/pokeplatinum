@@ -13,6 +13,7 @@
 #include "overlay104/struct_ov104_0224133C.h"
 
 #include "cell_actor.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "item.h"
@@ -20,7 +21,6 @@
 #include "party.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
-#include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
 #include "unk_0201DBEC.h"

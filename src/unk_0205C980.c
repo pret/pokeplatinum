@@ -3,9 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "graphics.h"
 #include "heap.h"
 #include "string_template.h"
-#include "unk_02006E3C.h"
 
 static const int Unk_020ED7F0[][3] = {
     { 0x3, 0x3C, 0x3C },

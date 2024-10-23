@@ -9,10 +9,10 @@
 
 #include "camera.h"
 #include "easy3d.h"
+#include "graphics.h"
 #include "heap.h"
 #include "inlines.h"
 #include "narc.h"
-#include "unk_02006E3C.h"
 #include "unk_0201CED8.h"
 
 struct UnkStruct_ov95_02247958_t {

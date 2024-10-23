@@ -9,11 +9,11 @@
 #include "overlay022/struct_ov22_0225AF44.h"
 
 #include "bg_window.h"
+#include "graphics.h"
 #include "heap.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_0200679C.h"
-#include "unk_02006E3C.h"
 
 typedef struct {
     UnkStruct_ov22_022597BC *unk_00;

@@ -16,10 +16,10 @@
 #include "overlay030/struct_ov30_022563EC_decl.h"
 
 #include "bg_window.h"
+#include "graphics.h"
 #include "heap.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
 
 struct UnkStruct_ov30_022563EC_t {
     const UnkStruct_ov30_022563EC_1 *unk_00;

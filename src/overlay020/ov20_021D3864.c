@@ -12,12 +12,12 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "font.h"
+#include "graphics.h"
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
 #include "strbuf.h"
 #include "text.h"
-#include "unk_02006E3C.h"
 
 typedef struct UnkStruct_ov20_021D3980_t {
     UnkStruct_ov20_021D2128 *unk_00;

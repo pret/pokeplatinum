@@ -12,10 +12,10 @@
 #include "overlay022/struct_ov22_0225A0E4.h"
 
 #include "core_sys.h"
+#include "graphics.h"
 #include "heap.h"
 #include "pokemon.h"
 #include "touch_screen.h"
-#include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 
 static int ov22_0225936C(char *param0, int param1);

@@ -6,6 +6,7 @@
 #include "bg_window.h"
 #include "core_sys.h"
 #include "font.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "hardware_palette.h"
 #include "heap.h"
@@ -15,7 +16,6 @@
 #include "strbuf.h"
 #include "text.h"
 #include "unk_020041CC.h"
-#include "unk_02006E3C.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 

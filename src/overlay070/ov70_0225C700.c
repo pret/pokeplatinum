@@ -7,10 +7,10 @@
 
 #include "easy3d.h"
 #include "easy3d_object.h"
+#include "graphics.h"
 #include "heap.h"
 #include "narc.h"
 #include "resource_collection.h"
-#include "unk_02006E3C.h"
 #include "unk_0201CED8.h"
 
 void ov70_0225C700(const UnkStruct_ov63_0222CC3C *param0, VecFx32 *param1)

@@ -4,9 +4,9 @@
 #include <string.h>
 
 #include "bg_window.h"
+#include "graphics.h"
 #include "heap.h"
 #include "narc.h"
-#include "unk_02006E3C.h"
 
 void ov24_02253CE0(BgConfig *param0)
 {

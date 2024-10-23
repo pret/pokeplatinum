@@ -17,9 +17,9 @@
 #include "overlay035/struct_ov35_02256410_decl.h"
 
 #include "bg_window.h"
+#include "graphics.h"
 #include "heap.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
 
 struct UnkStruct_ov35_02256410_t {
     const UnkStruct_ov35_02256410_1 *unk_00;

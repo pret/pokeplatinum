@@ -17,10 +17,10 @@
 #include "overlay053/struct_ov53_02256420_decl.h"
 
 #include "bg_window.h"
+#include "graphics.h"
 #include "heap.h"
 #include "pokemon_icon.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
 #include "unk_0201D15C.h"
 
 struct UnkStruct_ov53_02256420_t {

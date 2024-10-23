@@ -17,9 +17,9 @@
 #include "overlay042/struct_ov42_022563D4_decl.h"
 
 #include "bg_window.h"
+#include "graphics.h"
 #include "heap.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
 
 static fx32 Unk_ov42_02256720 = 0;
 static fx32 Unk_ov42_02256724 = 0;

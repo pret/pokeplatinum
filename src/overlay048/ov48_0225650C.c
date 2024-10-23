@@ -18,13 +18,13 @@
 #include "overlay048/struct_ov48_0225650C_decl.h"
 
 #include "bg_window.h"
+#include "graphics.h"
 #include "heap.h"
 #include "message.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02006E3C.h"
 
 struct UnkStruct_ov48_0225650C_t {
     const UnkStruct_ov48_0225650C_1 *unk_00;

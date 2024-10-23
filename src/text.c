@@ -8,12 +8,12 @@
 
 #include "bg_window.h"
 #include "font.h"
+#include "graphics.h"
 #include "heap.h"
 #include "render_text.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
 
 static enum RenderResult TextPrinter_Render(TextPrinter *printer);
 static u8 Text_CreatePrinterTask(SysTaskFunc taskFunc, TextPrinter *printer, u32 priority);

@@ -14,12 +14,12 @@
 #include "overlay006/struct_ov6_0223E6EC.h"
 
 #include "easy3d_object.h"
+#include "graphics.h"
 #include "heap.h"
 #include "map_object.h"
 #include "narc.h"
 #include "player_avatar.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 
 typedef struct {
     Easy3DObject unk_00;

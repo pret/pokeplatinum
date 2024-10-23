@@ -3,10 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "graphics.h"
 #include "heap.h"
 #include "narc.h"
 #include "pokedex_data_index.h"
-#include "unk_02006E3C.h"
 
 typedef struct HeightWeightData {
     int *height;

@@ -10,6 +10,7 @@
 #include "overlay062/ov62_const_funcptr_tables.h"
 
 #include "bg_window.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
@@ -18,7 +19,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_02006E3C.h"
 #include "unk_02030A80.h"
 
 typedef struct {

@@ -18,13 +18,13 @@
 #include "cell_actor.h"
 #include "enums.h"
 #include "font.h"
+#include "graphics.h"
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
 #include "strbuf.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02006E3C.h"
 #include "unk_020998EC.h"
 
 typedef struct UnkStruct_ov20_021D3E0C_t {

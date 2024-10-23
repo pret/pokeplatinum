@@ -8,12 +8,12 @@
 #include "overlay094/struct_ov94_0223FD4C.h"
 
 #include "cell_actor.h"
+#include "graphics.h"
 #include "heap.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
-#include "unk_02006E3C.h"
 #include "unk_0205C980.h"
 
 typedef struct {

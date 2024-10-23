@@ -11,9 +11,9 @@
 #include "overlay026/struct_ov26_02256404_decl.h"
 
 #include "bg_window.h"
+#include "graphics.h"
 #include "heap.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
 
 struct UnkStruct_ov26_02256404_t {
     const UnkStruct_ov26_02256404_1 *unk_00;

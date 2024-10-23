@@ -11,11 +11,11 @@
 #include "overlay019/struct_ov19_021DCD18.h"
 
 #include "cell_actor.h"
+#include "graphics.h"
 #include "heap.h"
 #include "narc.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
-#include "unk_02006E3C.h"
 
 BOOL ov19_021DA270(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, CellActorCollection *param3, NARC *param4)
 {

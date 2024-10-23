@@ -5,11 +5,11 @@
 
 #include "constants/heap.h"
 
+#include "graphics.h"
 #include "hardware_palette.h"
 #include "heap.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
 
 #define SLOTS_PER_PALETTE 16
 #define PALETTE_SIZE      (SLOTS_PER_PALETTE)

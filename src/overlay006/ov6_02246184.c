@@ -9,6 +9,7 @@
 #include "overlay006/struct_ov6_02246204_decl.h"
 #include "overlay006/struct_ov6_02246254.h"
 
+#include "graphics.h"
 #include "heap.h"
 #include "map_header.h"
 #include "message.h"
@@ -17,7 +18,6 @@
 #include "save_player.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "unk_02006E3C.h"
 #include "unk_0202F180.h"
 #include "unk_020559DC.h"
 #include "unk_02092494.h"

@@ -11,9 +11,9 @@
 
 #include "easy3d.h"
 #include "easy3d_object.h"
+#include "graphics.h"
 #include "heap.h"
 #include "narc.h"
-#include "unk_02006E3C.h"
 #include "unk_0201D15C.h"
 
 typedef struct {

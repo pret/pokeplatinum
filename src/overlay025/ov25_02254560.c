@@ -16,13 +16,13 @@
 #include "overlay025/struct_ov25_02255958.h"
 
 #include "bg_window.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "poketch_data.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 
 typedef struct {
     BOOL unk_00;

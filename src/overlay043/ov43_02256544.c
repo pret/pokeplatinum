@@ -18,12 +18,12 @@
 
 #include "bg_window.h"
 #include "font.h"
+#include "graphics.h"
 #include "heap.h"
 #include "message.h"
 #include "strbuf.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02006E3C.h"
 
 struct UnkStruct_ov43_02256544_t {
     const UnkStruct_ov43_02256544_1 *unk_00;

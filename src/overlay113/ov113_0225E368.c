@@ -27,11 +27,11 @@
 #include "camera.h"
 #include "easy3d.h"
 #include "easy3d_object.h"
+#include "graphics.h"
 #include "heap.h"
 #include "narc.h"
 #include "pokemon.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_0200F174.h"
 #include "unk_0201D15C.h"
 

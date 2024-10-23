@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_02006E3C_H
-#define POKEPLATINUM_UNK_02006E3C_H
+#ifndef POKEPLATINUM_GRAPHICS_H
+#define POKEPLATINUM_GRAPHICS_H
 
 #include <nnsys.h>
 
@@ -36,4 +36,4 @@ void *sub_02007220(NARC *param0, u32 param1, BOOL param2, NNSG2dAnimBankData **p
 void *sub_0200723C(NARC *param0, u32 param1, BOOL param2, u32 param3, int param4);
 void *sub_02007250(NARC *param0, u32 param1, BOOL param2, u32 param3, int param4, u32 *param5);
 
-#endif // POKEPLATINUM_UNK_02006E3C_H
+#endif // POKEPLATINUM_GRAPHICS_H

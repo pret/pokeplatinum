@@ -16,11 +16,11 @@
 #include "overlay019/struct_ov19_021DCD18.h"
 
 #include "cell_actor.h"
+#include "graphics.h"
 #include "heap.h"
 #include "narc.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
 #include "unk_0201D15C.h"
 
 typedef struct {

@@ -15,6 +15,7 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "font.h"
+#include "graphics.h"
 #include "heap.h"
 #include "inlines.h"
 #include "message.h"
@@ -25,7 +26,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02006E3C.h"
 
 struct UnkStruct_ov19_021DEC04_t {
     BOOL unk_00;

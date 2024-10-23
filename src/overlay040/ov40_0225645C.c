@@ -17,12 +17,12 @@
 #include "overlay040/struct_ov40_0225645C_decl.h"
 
 #include "bg_window.h"
+#include "graphics.h"
 #include "heap.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
 
 struct UnkStruct_ov40_0225645C_t {
     const UnkStruct_ov40_0225645C_1 *unk_00;

@@ -15,11 +15,11 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "graphics.h"
 #include "heap.h"
 #include "item.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
 
 static const struct {
     u32 unk_00;

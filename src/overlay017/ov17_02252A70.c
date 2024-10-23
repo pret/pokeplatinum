@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_02029C88_decl.h"
 
-#include "unk_02006E3C.h"
+#include "graphics.h"
 #include "unk_020298BC.h"
 
 u32 ov17_02252A70(const UnkStruct_02029C88 *param0, const u8 *param1)

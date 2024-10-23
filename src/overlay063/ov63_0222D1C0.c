@@ -11,8 +11,8 @@
 #include "overlay065/struct_ov65_0223582C.h"
 
 #include "bg_window.h"
+#include "graphics.h"
 #include "heap.h"
-#include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 
 typedef struct UnkStruct_ov63_0222D1C0_t {

@@ -9,6 +9,7 @@
 #include "bg_window.h"
 #include "core_sys.h"
 #include "font.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
@@ -19,7 +20,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02006E3C.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 

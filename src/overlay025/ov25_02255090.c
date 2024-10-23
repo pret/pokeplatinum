@@ -8,12 +8,12 @@
 #include "overlay025/struct_ov25_02255224_decl.h"
 
 #include "bg_window.h"
+#include "graphics.h"
 #include "heap.h"
 #include "narc.h"
 #include "pokemon_icon.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
 
 struct UnkStruct_ov25_02255224_t {
     u32 unk_00;

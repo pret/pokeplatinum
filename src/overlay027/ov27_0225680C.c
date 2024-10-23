@@ -17,10 +17,10 @@
 #include "overlay027/struct_ov27_0225680C_decl.h"
 
 #include "bg_window.h"
+#include "graphics.h"
 #include "heap.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
 
 typedef struct {
     u16 unk_00;

@@ -7,10 +7,10 @@
 
 #include "nnsys/g2d/g2d_Image.h"
 
+#include "graphics.h"
 #include "heap.h"
 #include "narc.h"
 #include "resource_collection.h"
-#include "unk_02006E3C.h"
 
 #define SPRITE_VRAM_TYPE_DEFAULT NNS_G2D_VRAM_TYPE_3DMAIN
 #define NARC_INDEX_NONE          0xFFFFFFFE

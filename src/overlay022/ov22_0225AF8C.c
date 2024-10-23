@@ -26,11 +26,11 @@
 #include "overlay022/struct_ov22_0225B388.h"
 
 #include "bg_window.h"
+#include "graphics.h"
 #include "heap.h"
 #include "narc.h"
 #include "pokemon.h"
 #include "resource_collection.h"
-#include "unk_02006E3C.h"
 #include "unk_020298BC.h"
 
 typedef struct UnkStruct_ov22_0225B1BC_t {

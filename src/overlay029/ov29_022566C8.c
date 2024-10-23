@@ -17,9 +17,9 @@
 #include "overlay029/struct_ov29_022566C8_decl.h"
 
 #include "bg_window.h"
+#include "graphics.h"
 #include "heap.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
 #include "unk_02099D44.h"
 
 struct UnkStruct_ov29_022566C8_t {

@@ -16,10 +16,10 @@
 
 #include "core_sys.h"
 #include "easy3d_object.h"
+#include "graphics.h"
 #include "heap.h"
 #include "narc.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 
 typedef struct {
     u16 unk_00;

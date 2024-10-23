@@ -20,10 +20,10 @@
 
 #include "easy3d.h"
 #include "easy3d_object.h"
+#include "graphics.h"
 #include "heap.h"
 #include "narc.h"
 #include "resource_collection.h"
-#include "unk_02006E3C.h"
 #include "unk_0201CED8.h"
 #include "unk_02020AEC.h"
 #include "unk_0202414C.h"

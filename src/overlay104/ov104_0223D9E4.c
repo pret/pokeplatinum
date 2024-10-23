@@ -5,12 +5,12 @@
 
 #include "bg_window.h"
 #include "enums.h"
+#include "graphics.h"
 #include "heap.h"
 #include "narc.h"
 #include "palette.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
 
 typedef struct {
     SysTask *unk_00;

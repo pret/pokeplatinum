@@ -14,6 +14,7 @@
 #include "overlay006/struct_ov6_0223E6EC.h"
 
 #include "bg_window.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "map_header.h"
@@ -21,7 +22,6 @@
 #include "player_avatar.h"
 #include "script_manager.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_020508D4.h"
 #include "unk_02054D00.h"
 

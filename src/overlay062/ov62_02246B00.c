@@ -14,13 +14,13 @@
 
 #include "bg_window.h"
 #include "game_options.h"
+#include "graphics.h"
 #include "heap.h"
 #include "inlines.h"
 #include "narc.h"
 #include "palette.h"
 #include "strbuf.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_0200C6E4.h"
 #include "unk_02023FCC.h"
 

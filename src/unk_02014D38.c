@@ -3,12 +3,12 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "graphics.h"
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
 #include "savedata.h"
 #include "strbuf.h"
-#include "unk_02006E3C.h"
 #include "unk_0201D15C.h"
 
 static const u16 Unk_020E5522[] = {

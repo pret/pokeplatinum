@@ -17,11 +17,11 @@
 #include "overlay044/struct_ov44_022565BC_decl.h"
 
 #include "bg_window.h"
+#include "graphics.h"
 #include "heap.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
 
 struct UnkStruct_ov44_022565BC_t {
     const UnkStruct_ov44_022565BC_1 *unk_00;

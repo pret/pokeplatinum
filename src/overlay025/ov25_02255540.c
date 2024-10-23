@@ -8,8 +8,8 @@
 #include "overlay025/struct_ov25_022558C4_decl.h"
 #include "overlay025/struct_ov25_02255958.h"
 
+#include "graphics.h"
 #include "heap.h"
-#include "unk_02006E3C.h"
 
 struct UnkStruct_ov25_022558C4_t {
     const NNSG2dCellDataBank *unk_00;

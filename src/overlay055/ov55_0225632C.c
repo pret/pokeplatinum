@@ -10,9 +10,9 @@
 #include "overlay055/struct_ov55_0225632C_decl.h"
 
 #include "bg_window.h"
+#include "graphics.h"
 #include "heap.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
 
 struct UnkStruct_ov55_0225632C_t {
     const UnkStruct_ov55_0225632C_1 *unk_00;

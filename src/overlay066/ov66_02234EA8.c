@@ -8,9 +8,9 @@
 #include "overlay069/struct_ov69_0225C980.h"
 #include "overlay092/struct_ov92_021D1530.h"
 
+#include "graphics.h"
 #include "heap.h"
 #include "narc.h"
-#include "unk_02006E3C.h"
 #include "unk_020996D0.h"
 
 static void ov66_02234F2C(NARC *param0, u32 param1, u16 param2, u8 param3, fx32 *param4);

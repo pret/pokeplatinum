@@ -7,8 +7,8 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "graphics.h"
 #include "heap.h"
-#include "unk_02006E3C.h"
 #include "unk_0201E86C.h"
 
 typedef struct {

@@ -8,9 +8,9 @@
 #include "overlay005/struct_ov5_021D5894.h"
 
 #include "ascii_util.h"
+#include "graphics.h"
 #include "heap.h"
 #include "rtc.h"
-#include "unk_02006E3C.h"
 
 typedef struct UnkStruct_ov5_021D538C_t {
     u32 unk_00;

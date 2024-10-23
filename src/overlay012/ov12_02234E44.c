@@ -11,9 +11,9 @@
 #include "overlay012/struct_ov12_0223595C.h"
 
 #include "bg_window.h"
+#include "graphics.h"
 #include "palette.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
 #include "unk_0200C6E4.h"
 
 typedef struct {

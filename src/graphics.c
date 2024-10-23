@@ -1,4 +1,4 @@
-#include "unk_02006E3C.h"
+#include "graphics.h"
 
 #include <nitro.h>
 #include <string.h>

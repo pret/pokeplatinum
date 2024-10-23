@@ -17,9 +17,9 @@
 #include "overlay049/struct_ov49_022563D4_decl.h"
 
 #include "bg_window.h"
+#include "graphics.h"
 #include "heap.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
 
 struct UnkStruct_ov49_022563D4_t {
     const UnkStruct_ov49_022563D4_1 *unk_00;

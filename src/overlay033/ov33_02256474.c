@@ -18,6 +18,7 @@
 
 #include "bg_window.h"
 #include "core_sys.h"
+#include "graphics.h"
 #include "heap.h"
 #include "inlines.h"
 #include "narc.h"
@@ -25,7 +26,6 @@
 #include "pokemon_icon.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
 #include "unk_0201D15C.h"
 
 typedef struct {

@@ -19,13 +19,13 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "font.h"
+#include "graphics.h"
 #include "heap.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02006E3C.h"
 #include "unk_020797C8.h"
 
 static const struct {
