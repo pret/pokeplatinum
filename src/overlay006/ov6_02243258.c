@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_decls/struct_020711EC_decl.h"
 #include "struct_defs/archived_sprite.h"
@@ -15,6 +14,7 @@
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 #include "overlay101/struct_ov101_021D86B0.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -30,7 +30,6 @@
 #include "unk_0200A328.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0205D8CC.h"
 #include "unk_020711EC.h"
@@ -272,9 +271,9 @@ static void ov6_02244D34(CellActor *param0);
 static CellActor *ov6_02244D4C(UnkStruct_ov6_02243FFC *param0, const VecFx32 *param1, int param2, int param3);
 static void ov6_02244DB4(UnkStruct_ov6_02243FFC *param0);
 static void ov6_02244E54(NARC *param0, u32 param1, NNSG2dPaletteData **param2);
-static void ov6_02244E7C(BGL *param0, NARC *param1, u32 param2, NNSG2dCharacterData **param3);
-static void ov6_02244EB4(BGL *param0, NARC *param1, u32 param2, NNSG2dScreenData **param3);
-static void ov6_02244F20(BGL *param0);
+static void ov6_02244E7C(BgConfig *param0, NARC *param1, u32 param2, NNSG2dCharacterData **param3);
+static void ov6_02244EB4(BgConfig *param0, NARC *param1, u32 param2, NNSG2dScreenData **param3);
+static void ov6_02244F20(BgConfig *param0);
 static void ov6_02244F2C(UnkStruct_ov6_02243FFC *param0);
 static void ov6_02244F50(UnkStruct_ov6_02243FFC *param0);
 static void ov6_02244F58(UnkStruct_ov6_02243FFC *param0);
@@ -1689,8 +1688,8 @@ static void ov6_0224481C(UnkStruct_ov6_02243FFC *param0)
     ov6_02244F80(param0, (FX32_ONE * 0), (FX32_ONE * 192), (FX32_ONE * 1), (FX32_ONE * 192));
     ov6_02244F2C(param0);
 
-    param0->unk_24 = sub_0201A008(param0->fieldSystem->unk_08, 0);
-    param0->unk_26 = sub_0201A008(param0->fieldSystem->unk_08, 3);
+    param0->unk_24 = Bg_GetPriority(param0->fieldSystem->unk_08, 0);
+    param0->unk_26 = Bg_GetPriority(param0->fieldSystem->unk_08, 3);
 
     G2_SetBG1Priority(1);
     G2_SetBG3Priority(0);
@@ -1946,40 +1945,40 @@ static void ov6_02244E54(NARC *param0, u32 param1, NNSG2dPaletteData **param2)
 
     NNS_G2dGetUnpackedPaletteData(v0, param2);
 
-    sub_0201972C(3, (*param2)->pRawData, (32 * 1), (32 * 12));
+    Bg_LoadPalette(3, (*param2)->pRawData, (32 * 1), (32 * 12));
     Heap_FreeToHeap(v0);
 }
 
-static void ov6_02244E7C(BGL *param0, NARC *param1, u32 param2, NNSG2dCharacterData **param3)
+static void ov6_02244E7C(BgConfig *param0, NARC *param1, u32 param2, NNSG2dCharacterData **param3)
 {
     void *v0;
 
     v0 = NARC_AllocAndReadWholeMember(param1, param2, 4);
     NNS_G2dGetUnpackedCharacterData(v0, param3);
 
-    sub_0201958C(param0, 3, (*param3)->pRawData, (*param3)->szByte, 0);
+    Bg_LoadTiles(param0, 3, (*param3)->pRawData, (*param3)->szByte, 0);
     Heap_FreeToHeap(v0);
 }
 
-static void ov6_02244EB4(BGL *param0, NARC *param1, u32 param2, NNSG2dScreenData **param3)
+static void ov6_02244EB4(BgConfig *param0, NARC *param1, u32 param2, NNSG2dScreenData **param3)
 {
     void *v0;
 
-    sub_02019184(param0, 3, 0, 0);
-    sub_02019184(param0, 3, 3, 0);
+    Bg_SetOffset(param0, 3, 0, 0);
+    Bg_SetOffset(param0, 3, 3, 0);
 
     v0 = NARC_AllocAndReadWholeMember(param1, param2, 4);
     NNS_G2dGetUnpackedScreenData(v0, param3);
 
-    sub_02019574(param0, 3, (void *)(*param3)->rawData, (*param3)->szByte);
-    sub_02019E2C(param0, 3, 0, 0, 32, 32, 12);
-    sub_02019448(param0, 3);
+    Bg_LoadTilemapBuffer(param0, 3, (void *)(*param3)->rawData, (*param3)->szByte);
+    Bg_ChangeTilemapRectPalette(param0, 3, 0, 0, 32, 32, 12);
+    Bg_CopyTilemapBufferToVRAM(param0, 3);
     Heap_FreeToHeap(v0);
 }
 
-static void ov6_02244F20(BGL *param0)
+static void ov6_02244F20(BgConfig *param0)
 {
-    sub_02019EBC(param0, 3);
+    Bg_ClearTilemap(param0, 3);
 }
 
 static void ov6_02244F2C(UnkStruct_ov6_02243FFC *param0)

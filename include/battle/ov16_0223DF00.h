@@ -12,11 +12,9 @@
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/trainer_data.h"
 
 #include "battle/battle_context.h"
@@ -31,6 +29,7 @@
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 
 #include "bag.h"
+#include "bg_window.h"
 #include "game_options.h"
 #include "message.h"
 #include "pokemon.h"
@@ -41,7 +40,7 @@
 #define ENEMY_IN_SLOT_RIGHT 0
 #define ENEMY_IN_SLOT_LEFT  2
 
-BGL *BattleSystem_BGL(BattleSystem *param0);
+BgConfig *BattleSystem_BGL(BattleSystem *param0);
 
 /**
  * @brief Get one of the allocated windows for the battle display.

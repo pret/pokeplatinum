@@ -7,18 +7,17 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_defs/sprite_manager_allocation.h"
-#include "struct_defs/struct_0205AA50.h"
 
+#include "bg_window.h"
 #include "touch_screen.h"
 
 typedef struct {
     NARC *unk_00;
     SpriteRenderer *unk_04;
     SpriteGfxHandler *unk_08;
-    BGL *unk_0C;
+    BgConfig *unk_0C;
     PaletteData *unk_10;
     UnkStruct_02023FCC *unk_14;
     TouchScreenRect unk_18[28];

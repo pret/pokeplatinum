@@ -4,13 +4,11 @@
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02028430_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_0202818C.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0206A844.h"
 #include "struct_defs/struct_02097728.h"
 #include "struct_defs/struct_02098C44.h"
@@ -19,10 +17,10 @@
 #include "overlay005/ov5_021D37AC.h"
 #include "overlay005/ov5_021D431C.h"
 #include "overlay006/ov6_02247078.h"
-#include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_02240FA8.h"
 
 #include "bag.h"
+#include "bg_window.h"
 #include "core_sys.h"
 #include "field_system.h"
 #include "font.h"
@@ -46,7 +44,6 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02013A04.h"
-#include "unk_02018340.h"
 #include "unk_02028124.h"
 #include "unk_0203D1B8.h"
 #include "unk_020508D4.h"
@@ -109,7 +106,7 @@ typedef struct {
     ResourceMetadata *unk_164;
     UIControlData *unk_168;
     FieldSystem *fieldSystem;
-    BGL *unk_170;
+    BgConfig *unk_170;
     Window unk_174;
     Window unk_184;
     Window unk_194;
@@ -677,7 +674,7 @@ static void sub_020729B4(UnkStruct_02072334 *param0)
 {
     u8 v0 = 0, v1 = 0;
     UnkStruct_02072EB8 *v2;
-    static const UnkStruct_ov61_0222C884 v3[2] = {
+    static const WindowTemplate v3[2] = {
         { 0x3, 0x13, 0x1, 0xC, 0x10, 0xD, 0x295 },
         { 0x3, 0x1, 0x1, 0x9, 0x2, 0xD, 0x283 }
     };
@@ -687,10 +684,10 @@ static void sub_020729B4(UnkStruct_02072334 *param0)
     sub_0206A8A0(param0->unk_1A4, 200, 10, 138);
     sub_0206A8C4(param0->unk_1A4, 0, 1);
     sub_0206A8C4(param0->unk_1A4, 1, 1);
-    sub_0201A8D4(param0->unk_170, &(param0->unk_174), &v3[0]);
-    sub_0201A8D4(param0->unk_170, &(param0->unk_194), &v3[1]);
-    BGL_FillWindow(&param0->unk_174, ((15 << 4) | 15));
-    BGL_FillWindow(&param0->unk_194, ((15 << 4) | 15));
+    Window_AddFromTemplate(param0->unk_170, &(param0->unk_174), &v3[0]);
+    Window_AddFromTemplate(param0->unk_170, &(param0->unk_194), &v3[1]);
+    Window_FillTilemap(&param0->unk_174, ((15 << 4) | 15));
+    Window_FillTilemap(&param0->unk_194, ((15 << 4) | 15));
 
     param0->unk_164 = sub_02013A04(param0->unk_1B + 1, param0->unk_00);
 
@@ -737,7 +734,7 @@ static void sub_020729B4(UnkStruct_02072334 *param0)
     Window_Show(&param0->unk_174, 0, (1024 - (18 + 12) - 9), 11);
     Text_AddPrinterWithParamsAndColor(&param0->unk_194, FONT_SYSTEM, param0->unk_110.unk_0C, 2, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
     Window_Show(&param0->unk_194, 0, (1024 - (18 + 12) - 9), 11);
-    sub_0201C3C0(param0->unk_170, 3);
+    Bg_ScheduleTilemapTransfer(param0->unk_170, 3);
 
     param0->unk_13B_0 = 0;
 }
@@ -785,7 +782,7 @@ static void sub_02072C0C(BmpList *param0, u32 param1, u8 param2)
 static void sub_02072C98(UnkStruct_02072334 *param0, u8 param1, u8 param2)
 {
     u8 v0 = 0, v1 = 0;
-    static const UnkStruct_ov61_0222C884 v2 = {
+    static const WindowTemplate v2 = {
         0x3,
         0x1,
         0x1,
@@ -798,8 +795,8 @@ static void sub_02072C98(UnkStruct_02072334 *param0, u8 param1, u8 param2)
     v1 = NELEMS(Unk_020F0524);
     param0->unk_164 = sub_02013A04(v1, param0->unk_00);
 
-    sub_0201A8D4(param0->unk_170, &(param0->unk_174), &v2);
-    BGL_FillWindow(&param0->unk_174, ((15 << 4) | 15));
+    Window_AddFromTemplate(param0->unk_170, &(param0->unk_174), &v2);
+    Window_FillTilemap(&param0->unk_174, ((15 << 4) | 15));
 
     for (v0 = 0; v0 < v1; v0++) {
         sub_02013A4C(param0->unk_164, param0->unk_10C, Unk_020F0524[v0].unk_00, Unk_020F0524[v0].unk_04);
@@ -817,7 +814,7 @@ static void sub_02072C98(UnkStruct_02072334 *param0, u8 param1, u8 param2)
     param0->unk_160 = sub_0200112C(&(param0->unk_140), param1, param2, param0->unk_00);
 
     Window_Show(&param0->unk_174, 0, (1024 - (18 + 12) - 9), 11);
-    sub_0201C3C0(param0->unk_170, 3);
+    Bg_ScheduleTilemapTransfer(param0->unk_170, 3);
 
     param0->unk_13B_0 = 1;
 }
@@ -836,13 +833,13 @@ static void sub_02072DB8(UnkStruct_02072334 *param0)
     sub_02001384(param0->unk_160, &v0, &v1);
     sub_02013A3C(param0->unk_164);
 
-    sub_0201ACF4(&(param0->unk_194));
+    Window_ClearAndCopyToVRAM(&(param0->unk_194));
     Window_Clear(&(param0->unk_194), 0);
-    BGL_DeleteWindow(&(param0->unk_194));
+    Window_Remove(&(param0->unk_194));
 
-    sub_0201ACF4(&(param0->unk_174));
+    Window_ClearAndCopyToVRAM(&(param0->unk_174));
     Window_Clear(&(param0->unk_174), 0);
-    BGL_DeleteWindow(&(param0->unk_174));
+    Window_Remove(&(param0->unk_174));
 
     param0->unk_13C = v0;
     param0->unk_13E = v1;
@@ -852,20 +849,20 @@ static void sub_02072DB8(UnkStruct_02072334 *param0)
         param0->unk_1A4 = NULL;
     }
 
-    sub_0201C3C0(param0->unk_170, 3);
+    Bg_ScheduleTilemapTransfer(param0->unk_170, 3);
 }
 
 static void sub_02072E4C(UnkStruct_02072334 *param0)
 {
     u16 v0, v1;
 
-    sub_0201ACF4(&(param0->unk_174));
+    Window_ClearAndCopyToVRAM(&(param0->unk_174));
     Window_Clear(&(param0->unk_174), 0);
     sub_02001384(param0->unk_160, &v0, &v1);
     sub_02013A3C(param0->unk_164);
-    BGL_DeleteWindow(&(param0->unk_174));
+    Window_Remove(&(param0->unk_174));
     sub_02073398(param0);
-    sub_0201C3C0(param0->unk_170, 3);
+    Bg_ScheduleTilemapTransfer(param0->unk_170, 3);
 }
 
 static void sub_02072EA4(UnkStruct_02072334 *param0, SysTaskFunc param1, SysTaskFunc param2)
@@ -1062,14 +1059,14 @@ static void sub_020731F4(UnkStruct_02072334 *param0)
     Font_LoadTextPalette(0, 13 * 32, param0->unk_00);
     Font_LoadScreenIndicatorsPalette(0, 12 * 32, param0->unk_00);
 
-    BGL_AddWindow(param0->unk_170, &param0->unk_184, 3, 2, 19, 27, 4, 12, ((1024 - (18 + 12) - 9) - 27 * 4));
-    BGL_FillWindow(&param0->unk_184, 0);
+    Window_Add(param0->unk_170, &param0->unk_184, 3, 2, 19, 27, 4, 12, ((1024 - (18 + 12) - 9) - 27 * 4));
+    Window_FillTilemap(&param0->unk_184, 0);
 }
 
 static void sub_02073294(UnkStruct_02072334 *param0)
 {
-    sub_0201ACF4(&param0->unk_184);
-    BGL_DeleteWindow(&param0->unk_184);
+    Window_ClearAndCopyToVRAM(&param0->unk_184);
+    Window_Remove(&param0->unk_184);
 
     MI_CpuClear8(&param0->unk_184, sizeof(Window));
     param0->unk_170 = NULL;
@@ -1083,7 +1080,7 @@ static void sub_020732C4(UnkStruct_02072334 *param0, int param1, u8 param2, u8 p
         sub_0200E060(&param0->unk_184, 1, (1024 - (18 + 12)), 10);
     }
 
-    BGL_WindowColor(&param0->unk_184, ((15 << 4) | 15), 0, 0, 27 * 8, 4 * 8);
+    Window_FillRectWithColor(&param0->unk_184, ((15 << 4) | 15), 0, 0, 27 * 8, 4 * 8);
     RenderControlFlags_SetCanABSpeedUpPrint(1);
     RenderControlFlags_SetAutoScrollFlags(0);
 
@@ -1098,14 +1095,14 @@ static void sub_020732C4(UnkStruct_02072334 *param0, int param1, u8 param2, u8 p
     }
 
     param0->unk_138 = Text_AddPrinterWithParamsAndColor(&param0->unk_184, FONT_MESSAGE, v0, 0, 0, param2, TEXT_COLOR(1, 2, 15), NULL);
-    sub_0201A954(&param0->unk_184);
+    Window_CopyToVRAM(&param0->unk_184);
     param0->unk_139 = param3;
 }
 
 static void sub_02073398(UnkStruct_02072334 *param0)
 {
     sub_0200E084(&param0->unk_184, 1);
-    sub_0201ACF4(&param0->unk_184);
+    Window_ClearAndCopyToVRAM(&param0->unk_184);
 }
 
 static BOOL sub_020733B4(UnkStruct_02072334 *param0)
@@ -1123,7 +1120,7 @@ static BOOL sub_020733B4(UnkStruct_02072334 *param0)
 
 static void sub_020733E0(UnkStruct_02072334 *param0)
 {
-    static const UnkStruct_ov61_0222C884 v0 = {
+    static const WindowTemplate v0 = {
         0x3,
         0x19,
         0xD,

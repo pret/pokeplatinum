@@ -5,11 +5,10 @@
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay005/struct_ov5_021D30A8.h"
 
+#include "bg_window.h"
 #include "camera.h"
 #include "cell_actor.h"
 #include "game_options.h"
@@ -23,7 +22,7 @@
 #include "vars_flags.h"
 
 typedef struct {
-    BGL *unk_00;
+    BgConfig *unk_00;
     void *unk_04;
     Window unk_08[6];
     Window unk_68;

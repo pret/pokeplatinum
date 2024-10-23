@@ -1,10 +1,10 @@
 #ifndef POKEPLATINUM_STRUCT_OV22_022597BC_H
 #define POKEPLATINUM_STRUCT_OV22_022597BC_H
 
-#include "struct_decls/struct_02018340_decl.h"
+#include "bg_window.h"
 
 typedef struct {
-    BGL *unk_00;
+    BgConfig *unk_00;
     int unk_04;
     int unk_08;
     int unk_0C;

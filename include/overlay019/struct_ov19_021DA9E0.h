@@ -6,12 +6,11 @@
 #include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "strbuf.h"
 #include "sys_task_manager.h"
@@ -19,7 +18,7 @@
 typedef struct {
     BOOL unk_00;
     Window *unk_04;
-    BGL *unk_08;
+    BgConfig *unk_08;
     CellActorCollection *unk_0C;
     const UnkStruct_ov19_021D4DF0 *unk_10;
     UnkStruct_ov19_021D61B0 *unk_14;

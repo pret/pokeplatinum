@@ -5,7 +5,6 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
@@ -22,6 +21,7 @@
 #include "overlay021/struct_ov21_021E6A68.h"
 #include "overlay021/struct_ov21_021E6B20.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "heap.h"
@@ -33,7 +33,6 @@
 #include "unk_0200A328.h"
 #include "unk_0200A9DC.h"
 #include "unk_02012744.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201F834.h"
@@ -783,26 +782,26 @@ static void ov21_021E5538(UnkStruct_ov21_021E4DA4 *param0, int param1)
     ov21_021D2724(param0->unk_00, 34, param0->unk_00->unk_00, 6, 0, 0, 1, param1);
     v0 = ov21_021D27B8(param0->unk_00, 71, 1, &v1, param1);
 
-    sub_020198C0(param0->unk_00->unk_00, 6, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
+    Bg_LoadToTilemapRect(param0->unk_00->unk_00, 6, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
-    sub_0201C3C0(param0->unk_00->unk_00, 6);
+    Bg_ScheduleTilemapTransfer(param0->unk_00->unk_00, 6);
 
     ov21_021D2724(param0->unk_00, 35, param0->unk_00->unk_00, 7, 0, 0, 1, param1);
     v0 = ov21_021D27B8(param0->unk_00, 72, 1, &v1, param1);
 
-    sub_020198C0(param0->unk_00->unk_00, 7, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
+    Bg_LoadToTilemapRect(param0->unk_00->unk_00, 7, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
-    sub_0201C3C0(param0->unk_00->unk_00, 7);
-    sub_02019184(param0->unk_00->unk_00, 7, 0, -48);
-    sub_02019184(param0->unk_00->unk_00, 7, 3, -16);
-    BGL_SetPriority(7, 3);
+    Bg_ScheduleTilemapTransfer(param0->unk_00->unk_00, 7);
+    Bg_SetOffset(param0->unk_00->unk_00, 7, 0, -48);
+    Bg_SetOffset(param0->unk_00->unk_00, 7, 3, -16);
+    Bg_SetPriority(7, 3);
 }
 
 static void ov21_021E5620(UnkStruct_ov21_021E4DA4 *param0)
 {
-    sub_02019EBC(param0->unk_00->unk_00, 6);
-    sub_02019EBC(param0->unk_00->unk_00, 7);
-    BGL_SetPriority(7, 1);
+    Bg_ClearTilemap(param0->unk_00->unk_00, 6);
+    Bg_ClearTilemap(param0->unk_00->unk_00, 7);
+    Bg_SetPriority(7, 1);
 }
 
 static void ov21_021E5644(UnkStruct_ov21_021E5004 *param0, UnkStruct_ov21_021E4DA4 *param1, int param2)
@@ -1116,9 +1115,9 @@ static void ov21_021E5B6C(UnkStruct_ov21_021E5004 *param0, UnkStruct_ov21_021E4D
     param0->unk_4C += (v0 - param0->unk_48) * -16;
     param0->unk_4C &= 0xffff;
 
-    sub_0201C660(param1->unk_00->unk_00, 7, 0, param0->unk_4C / 182);
-    sub_0201C718(param1->unk_00->unk_00, 7, 9, 131);
-    sub_0201C718(param1->unk_00->unk_00, 7, 12, 99);
+    Bg_ScheduleAffineRotation(param1->unk_00->unk_00, 7, 0, param0->unk_4C / 182);
+    Bg_ScheduleAffineRotationCenter(param1->unk_00->unk_00, 7, 9, 131);
+    Bg_ScheduleAffineRotationCenter(param1->unk_00->unk_00, 7, 12, 99);
 
     param0->unk_48 = v0;
 }

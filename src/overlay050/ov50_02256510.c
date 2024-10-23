@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/ov25_02255090.h"
 #include "overlay025/ov25_02255540.h"
@@ -16,16 +14,15 @@
 #include "overlay025/struct_ov25_02255958.h"
 #include "overlay050/struct_ov50_02256510_1.h"
 #include "overlay050/struct_ov50_02256510_decl.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
 #include "heap.h"
 #include "sys_task_manager.h"
 #include "unk_02006E3C.h"
-#include "unk_02018340.h"
 
 struct UnkStruct_ov50_02256510_t {
     const UnkStruct_ov50_02256510_1 *unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     u32 unk_08[6];
     UnkStruct_ov25_022555E8 *unk_20;
     UnkStruct_ov25_022558C4 *unk_24;
@@ -40,12 +37,12 @@ static void ov50_0225664C(SysTask *param0, void *param1);
 static void ov50_022566F0(SysTask *param0, void *param1);
 static void ov50_02256714(SysTask *param0, void *param1);
 static void ov50_0225675C(UnkStruct_ov50_02256510 *param0, const UnkStruct_ov50_02256510_1 *param1);
-static void ov50_022567A8(BGL *param0, u16 param1, u32 param2);
+static void ov50_022567A8(BgConfig *param0, u16 param1, u32 param2);
 static void ov50_022567F4(UnkStruct_ov50_02256510 *param0, const UnkStruct_ov50_02256510_1 *param1);
-static void ov50_0225683C(BGL *param0, u32 param1);
-static void ov50_02256894(BGL *param0, u32 param1, u32 param2);
+static void ov50_0225683C(BgConfig *param0, u32 param1);
+static void ov50_02256894(BgConfig *param0, u32 param1, u32 param2);
 
-BOOL ov50_02256510(UnkStruct_ov50_02256510 **param0, const UnkStruct_ov50_02256510_1 *param1, BGL *param2)
+BOOL ov50_02256510(UnkStruct_ov50_02256510 **param0, const UnkStruct_ov50_02256510_1 *param1, BgConfig *param2)
 {
     UnkStruct_ov50_02256510 *v0 = (UnkStruct_ov50_02256510 *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov50_02256510));
 
@@ -135,7 +132,7 @@ static void ov50_02256638(UnkStruct_ov25_02255224 *param0)
 
 static void ov50_0225664C(SysTask *param0, void *param1)
 {
-    static const UnkStruct_ov97_0222DB78 v0 = {
+    static const BgTemplate v0 = {
         0,
         0,
         0x800,
@@ -150,7 +147,7 @@ static void ov50_0225664C(SysTask *param0, void *param1)
         0,
         0
     };
-    static const UnkStruct_ov97_0222DB78 v1 = {
+    static const BgTemplate v1 = {
         0,
         0,
         0x800,
@@ -172,8 +169,8 @@ static void ov50_0225664C(SysTask *param0, void *param1)
     v3 = ov25_0225523C(param1);
     v4 = ov25_02255240(param1);
 
-    sub_020183C4(v3->unk_04, 6, &v0, 0);
-    sub_020183C4(v3->unk_04, 7, &v1, 0);
+    Bg_InitFromTemplate(v3->unk_04, 6, &v0, 0);
+    Bg_InitFromTemplate(v3->unk_04, 7, &v1, 0);
 
     ov50_0225675C(v3, v4);
     ov50_022567F4(v3, v4);
@@ -181,8 +178,8 @@ static void ov50_0225664C(SysTask *param0, void *param1)
     sub_02006E3C(12, 111, v3->unk_04, 7, 0, 0, 1, 8);
     ov25_022546B8(0, 0);
 
-    sub_02019448(v3->unk_04, 6);
-    sub_02019448(v3->unk_04, 7);
+    Bg_CopyTilemapBufferToVRAM(v3->unk_04, 6);
+    Bg_CopyTilemapBufferToVRAM(v3->unk_04, 7);
 
     v2 = GXS_GetDispCnt();
     GXS_SetVisiblePlane(v2.visiblePlane | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3);
@@ -193,8 +190,8 @@ static void ov50_022566F0(SysTask *param0, void *param1)
 {
     UnkStruct_ov50_02256510 *v0 = ov25_0225523C(param1);
 
-    sub_02019044(v0->unk_04, 6);
-    sub_02019044(v0->unk_04, 7);
+    Bg_FreeTilemapBuffer(v0->unk_04, 6);
+    Bg_FreeTilemapBuffer(v0->unk_04, 7);
 
     ov50_02256638(param1);
 }
@@ -210,7 +207,7 @@ static void ov50_02256714(SysTask *param0, void *param1)
     v2 = (v1->unk_0C[v1->unk_88].unk_03) ? 143 : 131;
 
     ov50_022567A8(v0->unk_04, v2, v1->unk_0C[v1->unk_88].unk_02);
-    sub_02019448(v0->unk_04, 7);
+    Bg_CopyTilemapBufferToVRAM(v0->unk_04, 7);
     ov50_02256638(param1);
 }
 
@@ -227,21 +224,21 @@ static void ov50_0225675C(UnkStruct_ov50_02256510 *param0, const UnkStruct_ov50_
     }
 }
 
-static void ov50_022567A8(BGL *param0, u16 param1, u32 param2)
+static void ov50_022567A8(BgConfig *param0, u16 param1, u32 param2)
 {
     u32 v0, v1;
 
     v0 = 4 + 3 * (param2 % 7);
     v1 = 5 + 3 * (param2 / 7);
 
-    sub_02019CB8(param0, 7, param1, v0, v1, 2, 2, 0);
+    Bg_FillTilemapRect(param0, 7, param1, v0, v1, 2, 2, 0);
 }
 
 static void ov50_022567F4(UnkStruct_ov50_02256510 *param0, const UnkStruct_ov50_02256510_1 *param1)
 {
     u32 v0;
 
-    sub_02019CB8(param0->unk_04, 6, 130, 0, 0, 32, 32, 0);
+    Bg_FillTilemapRect(param0->unk_04, 6, 130, 0, 0, 32, 32, 0);
     ov50_0225683C(param0->unk_04, param1->unk_00);
 
     for (v0 = 0; v0 < param1->unk_04; v0++) {
@@ -249,7 +246,7 @@ static void ov50_022567F4(UnkStruct_ov50_02256510 *param0, const UnkStruct_ov50_
     }
 }
 
-static void ov50_0225683C(BGL *param0, u32 param1)
+static void ov50_0225683C(BgConfig *param0, u32 param1)
 {
     static const u16 v0[12] = {
         0x0, 0x4, 0x8, 0x18, 0x1c, 0x20, 0x30, 0x34, 0x38, 0x48, 0x4c, 0x50
@@ -259,14 +256,14 @@ static void ov50_0225683C(BGL *param0, u32 param1)
 
     for (v3 = 0; v3 < 2; v3++) {
         for (v2 = 0; v2 < 4; v2++) {
-            sub_02019CB8(param0, 6, v1 + v2, 12 + v2, 2 + v3, 1, 1, 0);
+            Bg_FillTilemapRect(param0, 6, v1 + v2, 12 + v2, 2 + v3, 1, 1, 0);
         }
 
         v1 += 12;
     }
 }
 
-static void ov50_02256894(BGL *param0, u32 param1, u32 param2)
+static void ov50_02256894(BgConfig *param0, u32 param1, u32 param2)
 {
     static const u16 v0[2][10] = {
         { 0x60, 0x61, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69 },
@@ -282,10 +279,10 @@ static void ov50_02256894(BGL *param0, u32 param1, u32 param2)
     v4 = param1 % 10;
 
     if (v3) {
-        sub_02019CB8(param0, 6, v0[v5][v3], v1, v2, 1, 1, 0);
-        sub_02019CB8(param0, 6, v0[v5][v3] + 12, v1, v2 + 1, 1, 1, 0);
+        Bg_FillTilemapRect(param0, 6, v0[v5][v3], v1, v2, 1, 1, 0);
+        Bg_FillTilemapRect(param0, 6, v0[v5][v3] + 12, v1, v2 + 1, 1, 1, 0);
     }
 
-    sub_02019CB8(param0, 6, v0[v5][v4], v1 + 1, v2, 1, 1, 0);
-    sub_02019CB8(param0, 6, v0[v5][v4] + 12, v1 + 1, v2 + 1, 1, 1, 0);
+    Bg_FillTilemapRect(param0, 6, v0[v5][v4], v1 + 1, v2, 1, 1, 0);
+    Bg_FillTilemapRect(param0, 6, v0[v5][v4] + 12, v1 + 1, v2 + 1, 1, 1, 0);
 }

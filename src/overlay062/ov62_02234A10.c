@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0208C06C.h"
 
 #include "overlay062/ov62_0222F2C0.h"
@@ -12,6 +11,7 @@
 #include "overlay062/ov62_const_funcptr_tables.h"
 #include "overlay062/struct_ov62_02235008.h"
 
+#include "bg_window.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
@@ -24,7 +24,6 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0208B284.h"
 
@@ -43,22 +42,22 @@ static void ov62_02234A10(UnkStruct_0208C06C *param0)
     Window *v2 = &param0->unk_8A4;
 
     Window_Init(v2);
-    BGL_AddWindow(param0->unk_14.unk_10, v2, 2, 8, 16, 16, 2, 14, 300);
-    BGL_FillWindow(v2, 0x0);
+    Window_Add(param0->unk_14.unk_10, v2, 2, 8, 16, 16, 2, 14, 300);
+    Window_FillTilemap(v2, 0x0);
 
     v0 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 192);
     v1 = ov62_0223429C(v2, v0);
 
     Text_AddPrinterWithParamsAndColor(v2, FONT_SYSTEM, v0, v1, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 14, 0), NULL);
     Strbuf_Free(v0);
-    sub_0201A9A4(v2);
+    Window_ScheduleCopyToVRAM(v2);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
 }
 
 static void ov62_02234A90(UnkStruct_0208C06C *param0)
 {
-    sub_0201ACF4(&param0->unk_8A4);
-    BGL_DeleteWindow(&param0->unk_8A4);
+    Window_ClearAndCopyToVRAM(&param0->unk_8A4);
+    Window_Remove(&param0->unk_8A4);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
 }
 

@@ -1,12 +1,12 @@
 #ifndef POKEPLATINUM_OV21_021DE668_H
 #define POKEPLATINUM_OV21_021DE668_H
 
-#include "struct_defs/struct_0205AA50.h"
-
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021D4C0C_decl.h"
 #include "overlay021/struct_ov21_021DE6D4.h"
 #include "overlay021/struct_ov21_021E68F4.h"
+
+#include "bg_window.h"
 
 void ov21_021DE668(UnkStruct_ov21_021E68F4 *param0, UnkStruct_ov21_021D0F60 *param1, int param2);
 void ov21_021DE6C0(UnkStruct_ov21_021E68F4 *param0);

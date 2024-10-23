@@ -8,11 +8,10 @@
 #include "struct_defs/struct_0202BE38.h"
 #include "struct_defs/struct_0202BF4C.h"
 #include "struct_defs/struct_0202BFCC.h"
-#include "struct_defs/struct_0205AA50.h"
 
-#include "overlay061/struct_ov61_0222C884.h"
 #include "overlay081/struct_ov81_021D1610.h"
 
+#include "bg_window.h"
 #include "font.h"
 #include "heap.h"
 #include "journal.h"
@@ -23,7 +22,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "trainer_data.h"
-#include "unk_02018340.h"
 
 static u8 ov81_021D16B0(UnkStruct_ov81_021D1610 *param0, Window *param1, Window *param2);
 static void ov81_021D17C8(UnkStruct_ov81_021D1610 *param0, Window *param1);
@@ -91,7 +89,7 @@ static void ov81_021D3248(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 static void ov81_021D32A0(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkStruct_0202BFCC *param2, u8 param3, int param4);
 static void ov81_021D3304(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkStruct_0202BFCC *param2, u8 param3);
 
-static const UnkStruct_ov61_0222C884 Unk_ov81_021D3508[] = {
+static const WindowTemplate Unk_ov81_021D3508[] = {
     { 0x0, 0x2, 0x2, 0x18, 0x2, 0xF, 0x1 },
     { 0x0, 0x4, 0x4, 0x1B, 0x12, 0xF, 0x31 },
     { 0x1, 0x2, 0x2, 0x18, 0x2, 0xF, 0x1 },
@@ -103,7 +101,7 @@ void ov81_021D1610(UnkStruct_ov81_021D1610 *param0)
     u32 v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_0201A8D4(param0->unk_00, &param0->unk_04[v0], &Unk_ov81_021D3508[v0]);
+        Window_AddFromTemplate(param0->unk_00, &param0->unk_04[v0], &Unk_ov81_021D3508[v0]);
     }
 }
 
@@ -112,7 +110,7 @@ void ov81_021D1634(UnkStruct_ov81_021D1610 *param0)
     u32 v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        BGL_DeleteWindow(&param0->unk_04[v0]);
+        Window_Remove(&param0->unk_04[v0]);
     }
 }
 
@@ -129,8 +127,8 @@ void ov81_021D164C(UnkStruct_ov81_021D1610 *param0, u32 param1)
         v1 = &param0->unk_04[3];
     }
 
-    BGL_FillWindow(v0, 0);
-    BGL_FillWindow(v1, 0);
+    Window_FillTilemap(v0, 0);
+    Window_FillTilemap(v1, 0);
 
     if (ov81_021D16B0(param0, v0, v1) == 1) {
         ov81_021D17C8(param0, v1);
@@ -139,8 +137,8 @@ void ov81_021D164C(UnkStruct_ov81_021D1610 *param0, u32 param1)
         ov81_021D1C10(param0, v1);
     }
 
-    sub_0201A9A4(v0);
-    sub_0201A9A4(v1);
+    Window_ScheduleCopyToVRAM(v0);
+    Window_ScheduleCopyToVRAM(v1);
 }
 
 static u8 ov81_021D16B0(UnkStruct_ov81_021D1610 *param0, Window *param1, Window *param2)

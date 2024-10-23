@@ -3,14 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay061/struct_ov61_0222C884.h"
-#include "overlay084/struct_ov84_0223BA5C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
-
+#include "bg_window.h"
 #include "core_sys.h"
 #include "font.h"
 #include "gx_layers.h"
@@ -23,7 +18,6 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02018340.h"
 
 void sub_0201777C(void);
 
@@ -40,14 +34,14 @@ static const UnkStruct_02099F80 Unk_020F8B54 = {
     GX_VRAM_TEXPLTT_NONE
 };
 
-static const UnkStruct_ov84_0223BA5C Unk_020F8B28 = {
+static const GraphicsModes Unk_020F8B28 = {
     GX_DISPMODE_GRAPHICS,
     GX_BGMODE_0,
     GX_BGMODE_0,
     GX_BG0_AS_2D
 };
 
-static const UnkStruct_ov97_0222DB78 Unk_020F8B38 = {
+static const BgTemplate Unk_020F8B38 = {
     0x0,
     0x0,
     0x800,
@@ -63,7 +57,7 @@ static const UnkStruct_ov97_0222DB78 Unk_020F8B38 = {
     0x0
 };
 
-static const UnkStruct_ov61_0222C884 Unk_020F8B20 = {
+static const WindowTemplate Unk_020F8B20 = {
     0x0,
     0x3,
     0x3,
@@ -75,7 +69,7 @@ static const UnkStruct_ov61_0222C884 Unk_020F8B20 = {
 
 void sub_0209AA74(int param0, int param1)
 {
-    BGL *v0;
+    BgConfig *v0;
     Window v1;
     MessageLoader *v2;
     Strbuf *v3;
@@ -109,23 +103,23 @@ void sub_0209AA74(int param0, int param1)
 
     GXLayers_SetBanks(&Unk_020F8B54);
 
-    v0 = sub_02018340(param0);
+    v0 = BgConfig_New(param0);
 
-    sub_02018368(&Unk_020F8B28);
-    sub_020183C4(v0, 0, &Unk_020F8B38, 0);
-    sub_02019EBC(v0, 0);
+    SetAllGraphicsModes(&Unk_020F8B28);
+    Bg_InitFromTemplate(v0, 0, &Unk_020F8B38, 0);
+    Bg_ClearTilemap(v0, 0);
     sub_0200DAA4(v0, 0, 512 - 9, 2, 0, param0);
     Font_LoadTextPalette(0, 1 * (2 * 16), param0);
-    sub_02019690(0, 32, 0, param0);
-    sub_0201975C(0, 0x6c21);
-    sub_0201975C(4, 0x6c21);
+    Bg_ClearTilesRange(0, 32, 0, param0);
+    Bg_MaskPalette(0, 0x6c21);
+    Bg_MaskPalette(4, 0x6c21);
 
     v2 = MessageLoader_Init(1, 26, 6, param0);
     v3 = Strbuf_Init(0x180, param0);
 
     Text_ResetAllPrinters();
-    sub_0201A8D4(v0, &v1, &Unk_020F8B20);
-    BGL_WindowColor(&v1, 15, 0, 0, 26 * 8, 18 * 8);
+    Window_AddFromTemplate(v0, &v1, &Unk_020F8B20);
+    Window_FillRectWithColor(&v1, 15, 0, 0, 26 * 8, 18 * 8);
     Window_Show(&v1, 0, (512 - 9), 2);
     MessageLoader_GetStrbuf(v2, v4, v3);
     Text_AddPrinterWithParams(&v1, FONT_SYSTEM, v3, 0, 0, TEXT_SPEED_INSTANT, NULL);
@@ -140,17 +134,17 @@ void sub_0209AA74(int param0, int param1)
         OS_WaitIrq(1, OS_IE_V_BLANK);
     }
 
-    BGL_DeleteWindow(&v1);
+    Window_Remove(&v1);
     MessageLoader_Free(v2);
-    sub_02019120(0, 0);
-    sub_02019120(1, 0);
-    sub_02019120(2, 0);
-    sub_02019120(3, 0);
-    sub_02019120(4, 0);
-    sub_02019120(5, 0);
-    sub_02019120(6, 0);
-    sub_02019120(7, 0);
-    sub_02019044(v0, 0);
+    Bg_ToggleLayer(0, 0);
+    Bg_ToggleLayer(1, 0);
+    Bg_ToggleLayer(2, 0);
+    Bg_ToggleLayer(3, 0);
+    Bg_ToggleLayer(4, 0);
+    Bg_ToggleLayer(5, 0);
+    Bg_ToggleLayer(6, 0);
+    Bg_ToggleLayer(7, 0);
+    Bg_FreeTilemapBuffer(v0, 0);
     Heap_FreeToHeap(v0);
 
     PM_ForceToPowerOff();

@@ -5,9 +5,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02015064_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0200C738.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay021/struct_ov21_021D22F8.h"
 #include "overlay021/struct_ov21_021D23F8.h"
@@ -15,12 +13,13 @@
 #include "overlay021/struct_ov21_021D3124.h"
 #include "overlay021/struct_ov21_021D4C0C_decl.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "sprite_resource.h"
 #include "sys_task_manager.h"
 
 typedef struct {
-    BGL *unk_00;
+    BgConfig *unk_00;
     Window unk_04;
     UnkStruct_0200C738 unk_14;
     CellActorCollection *unk_138;

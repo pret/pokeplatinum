@@ -42,7 +42,6 @@
 #include "struct_defs/struct_02042434.h"
 #include "struct_defs/struct_02049FA8.h"
 #include "struct_defs/struct_0204AFC4.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02098C44.h"
 
 #include "field/field_system.h"
@@ -89,13 +88,13 @@
 #include "overlay008/ov8_02249960.h"
 #include "overlay009/ov9_02249960.h"
 #include "overlay023/ov23_022521F0.h"
-#include "overlay061/struct_ov61_0222C884.h"
 #include "overlay090/struct_ov90_021D0D80.h"
 #include "overlay098/struct_ov98_02247168.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "savedata/save_table.h"
 
 #include "bag.h"
+#include "bg_window.h"
 #include "camera.h"
 #include "comm_player_manager.h"
 #include "communication_system.h"
@@ -137,7 +136,6 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02014D38.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_02025CB0.h"
 #include "unk_020261E4.h"
@@ -757,7 +755,7 @@ static const u8 sConditionTable[6][3] = {
     { TRUE, FALSE, TRUE }, //  !=
 };
 
-static const UnkStruct_ov61_0222C884 Unk_020EAB84 = {
+static const WindowTemplate Unk_020EAB84 = {
     0x3,
     0x19,
     0xD,
@@ -2373,7 +2371,7 @@ static BOOL ScrCmd_CloseMessage(ScriptContext *ctx)
     u8 *v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_IS_MSG_BOX_OPEN);
 
     sub_0200E084(window, 0);
-    BGL_DeleteWindow(window);
+    Window_Remove(window);
 
     *v2 = 0;
     return FALSE;
@@ -2385,7 +2383,7 @@ static BOOL ScrCmd_035(ScriptContext *ctx)
     Window *v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW);
     u8 *v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_IS_MSG_BOX_OPEN);
 
-    BGL_DeleteWindow(v1);
+    Window_Remove(v1);
 
     *v2 = 0;
     return 0;
@@ -2430,17 +2428,17 @@ static BOOL ScriptContext_ScrollBG3(ScriptContext *ctx)
 
     if (*distanceX != 0) {
         if (*directionX == 0) {
-            sub_02019184(fieldSystem->unk_08, 3, 1, *distanceX);
+            Bg_SetOffset(fieldSystem->unk_08, 3, 1, *distanceX);
         } else {
-            sub_02019184(fieldSystem->unk_08, 3, 2, *distanceX);
+            Bg_SetOffset(fieldSystem->unk_08, 3, 2, *distanceX);
         }
     }
 
     if (*distanceY != 0) {
         if (*directionY == 0) {
-            sub_02019184(fieldSystem->unk_08, 3, 4, *distanceY);
+            Bg_SetOffset(fieldSystem->unk_08, 3, 4, *distanceY);
         } else {
-            sub_02019184(fieldSystem->unk_08, 3, 5, *distanceY);
+            Bg_SetOffset(fieldSystem->unk_08, 3, 5, *distanceY);
         }
     }
 
@@ -4837,7 +4835,7 @@ static BOOL ScrCmd_0E6(ScriptContext *ctx)
     u16 v6 = ScriptContext_GetVar(ctx);
 
     TrainerData_LoadMessage(v5, v6, *v2, 11);
-    BGL_FillWindow(FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW), SCRIPT_MANAGER_STR_TEMPLATE);
+    Window_FillTilemap(FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW), SCRIPT_MANAGER_STR_TEMPLATE);
 
     *v4 = FieldMessage_Print(FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW), *v2, SaveData_Options(ctx->fieldSystem->saveData), SCRIPT_MANAGER_WINDOW);
     ScriptContext_Pause(ctx, sub_02040014);

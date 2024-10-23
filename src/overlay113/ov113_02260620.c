@@ -6,8 +6,6 @@
 #include "constants/species.h"
 #include "consts/pokemon.h"
 
-#include "struct_defs/struct_0205AA50.h"
-
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/ov66_022324F0.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
@@ -15,6 +13,7 @@
 #include "overlay113/footprint_data.h"
 #include "overlay113/struct_ov113_02260818.h"
 
+#include "bg_window.h"
 #include "heap.h"
 #include "message.h"
 #include "strbuf.h"
@@ -22,7 +21,6 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_02018340.h"
 
 __attribute__((aligned(4))) static const u16 Unk_ov113_02260D6C[][2] = {
     { 0x4210, 0x6f7b },
@@ -96,7 +94,7 @@ void ov113_02260620(MessageLoader *param0, StringTemplate *param1, Window param2
     v3 = Strbuf_Init(v5, 118);
 
     StringTemplate_Format(param1, v3, v2);
-    BGL_FillWindow(&param2[v7], 0x0);
+    Window_FillTilemap(&param2[v7], 0x0);
 
     if (ov66_0222E924(param3, v8) == 1) {
         v9 = TEXT_COLOR(7, 8, 0);
@@ -105,7 +103,7 @@ void ov113_02260620(MessageLoader *param0, StringTemplate *param1, Window param2
     }
 
     Text_AddPrinterWithParamsAndColor(&param2[v7], FONT_SYSTEM, v3, 0, 0, TEXT_SPEED_INSTANT, v9, NULL);
-    sub_0201A954(&param2[v7]);
+    Window_CopyToVRAM(&param2[v7]);
     Strbuf_Free(v4);
     Strbuf_Free(v2);
     Strbuf_Free(v3);
@@ -119,7 +117,7 @@ void ov113_02260714(Window param0[], u32 param1)
         return;
     }
 
-    sub_0201ACF4(&param0[param1]);
+    Window_ClearAndCopyToVRAM(&param0[param1]);
 }
 
 u16 ov113_0226072C(int param0, u32 param1)

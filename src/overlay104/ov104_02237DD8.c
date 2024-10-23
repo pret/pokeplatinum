@@ -20,6 +20,7 @@
 #include "overlay104/struct_ov104_0223BFFC.h"
 #include "overlay104/struct_ov104_0223C4CC.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -29,7 +30,6 @@
 #include "savedata.h"
 #include "unk_02002F38.h"
 #include "unk_02006E3C.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_02030494.h"
 #include "unk_0203061C.h"
@@ -655,7 +655,7 @@ void ov104_02238658(void *param0, UnkStruct_ov104_0223C4CC *param1)
         }
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
-        sub_0201C3C0(param1->unk_00, 2);
+        Bg_ScheduleTilemapTransfer(param1->unk_00, 2);
         NARC_dtor(v0);
     } else {
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
@@ -673,7 +673,7 @@ void ov104_02238728(void *param0, UnkStruct_ov104_0223C4CC *param1)
     v0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 94);
 
     sub_0200710C(v0, 53, param1->unk_00, 3, 0, 0, 1, 94);
-    sub_0201C3C0(param1->unk_00, 3);
+    Bg_ScheduleTilemapTransfer(param1->unk_00, 3);
     NARC_dtor(v0);
 
     return;

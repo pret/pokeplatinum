@@ -14,7 +14,6 @@
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021EB1A0.h"
@@ -23,6 +22,7 @@
 #include "overlay084/struct_ov84_02240FA8.h"
 
 #include "bag.h"
+#include "bg_window.h"
 #include "field_script_context.h"
 #include "game_records.h"
 #include "heap.h"
@@ -45,7 +45,6 @@
 #include "unk_02006E3C.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_02020AEC.h"
 #include "unk_0202631C.h"
@@ -276,9 +275,9 @@ void ov5_021F6760(UnkStruct_ov5_021F6704 *param0, u32 param1, u32 param2, u32 pa
 static void ov5_021F6768(UnkStruct_ov5_021F6704 *param0)
 {
     if (param0->unk_20B > 8) {
-        BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_08, 3, param0->unk_208, param0->unk_209, 11, 8 * 2, 13, 1);
+        Window_Add(param0->fieldSystem->unk_08, &param0->unk_08, 3, param0->unk_208, param0->unk_209, 11, 8 * 2, 13, 1);
     } else {
-        BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_08, 3, param0->unk_208, param0->unk_209, 11, param0->unk_20B * 2, 13, 1);
+        Window_Add(param0->fieldSystem->unk_08, &param0->unk_08, 3, param0->unk_208, param0->unk_209, 11, param0->unk_20B * 2, 13, 1);
     }
 
     sub_0200DAA4(param0->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
@@ -421,7 +420,7 @@ static void ov5_021F6AD4(UnkStruct_ov5_021F6704 *param0)
     Sound_PlayEffect(1500);
     sub_02001384(param0->unk_23C, NULL, NULL);
     Window_Clear(param0->unk_21C.unk_0C, 0);
-    BGL_DeleteWindow(&param0->unk_08);
+    Window_Remove(&param0->unk_08);
 
     for (v0 = 0; v0 < 120; v0++) {
         Strbuf_Free(param0->unk_1C[v0]);

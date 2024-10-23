@@ -18,6 +18,7 @@
 #include "overlay104/struct_ov104_0223C4CC.h"
 #include "overlay105/ov105_02241AE0.h"
 
+#include "bg_window.h"
 #include "heap.h"
 #include "party.h"
 #include "pokemon.h"
@@ -25,7 +26,6 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02018340.h"
 #include "unk_0202FF4C.h"
 #include "unk_02051D8C.h"
 #include "unk_0209B6F8.h"
@@ -380,8 +380,8 @@ BOOL ov104_022334DC(UnkStruct_ov104_0222E930 *param0)
         *v15 = v4->unk_04;
         break;
     case 30:
-        sub_02019E2C(v1->unk_00, 3, 3, 10, 26, 11, v13);
-        sub_0201C3C0(v1->unk_00, 3);
+        Bg_ChangeTilemapRectPalette(v1->unk_00, 3, 3, 10, 26, 11, v13);
+        Bg_ScheduleTilemapTransfer(v1->unk_00, 3);
         break;
     case 31:
         v4->unk_500 = SysTask_Start(ov104_022338B4, ov104_0222E924(param0->unk_00), 5);
@@ -444,12 +444,12 @@ void ov104_022338B4(SysTask *param0, void *param1)
     int v0;
     UnkStruct_ov104_0223C4CC *v1 = param1;
 
-    v0 = sub_020192F8(v1->unk_00, 2);
+    v0 = Bg_GetYOffset(v1->unk_00, 2);
 
     if (v0 >= 255) {
-        sub_0201C63C(v1->unk_00, 2, 3, 0);
+        Bg_ScheduleScroll(v1->unk_00, 2, 3, 0);
     } else {
-        sub_0201C63C(v1->unk_00, 2, 4, 1);
+        Bg_ScheduleScroll(v1->unk_00, 2, 4, 1);
     }
 
     return;

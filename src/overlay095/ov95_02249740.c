@@ -3,19 +3,17 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay095/ov95_02246C20.h"
 #include "overlay095/ov95_022476F0.h"
 #include "overlay095/struct_ov95_02247568.h"
 #include "overlay095/struct_ov95_02247628_decl.h"
 #include "overlay095/struct_ov95_0224773C_decl.h"
 #include "overlay095/struct_ov95_02247958_decl.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 #include "overlay115/camera_angle.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "enums.h"
 #include "gx_layers.h"
@@ -26,7 +24,6 @@
 #include "unk_02006E3C.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0202419C.h"
 
@@ -92,7 +89,7 @@ typedef struct {
     BOOL unk_0C;
     UnkStruct_ov95_02247568 unk_10;
     CellActor *unk_20[1];
-    BGL *unk_24;
+    BgConfig *unk_24;
     UnkStruct_ov95_0224773C *unk_28;
     UnkStruct_ov95_02247958 *unk_2C;
     SysTask *unk_30;
@@ -253,13 +250,13 @@ static void ov95_02249910(UnkStruct_ov95_022497D8 *param0)
         GX_VRAM_TEX_0_A,
         GX_VRAM_TEXPLTT_0123_E
     };
-    static const UnkStruct_ov84_0223BA5C v1 = {
+    static const GraphicsModes v1 = {
         GX_DISPMODE_GRAPHICS,
         GX_BGMODE_0,
         GX_BGMODE_0,
         GX_BG0_AS_3D
     };
-    static const UnkStruct_ov97_0222DB78 v2 = {
+    static const BgTemplate v2 = {
         0,
         0,
         0x0,
@@ -280,9 +277,9 @@ static void ov95_02249910(UnkStruct_ov95_022497D8 *param0)
 
     GX_SetDispSelect(GX_DISP_SELECT_SUB_MAIN);
 
-    sub_02018368(&v1);
-    sub_020183C4(param0->unk_24, 3, &v2, 0);
-    sub_020183C4(param0->unk_24, 7, &v2, 0);
+    SetAllGraphicsModes(&v1);
+    Bg_InitFromTemplate(param0->unk_24, 3, &v2, 0);
+    Bg_InitFromTemplate(param0->unk_24, 7, &v2, 0);
 
     switch (ov95_02247644(param0->unk_00)) {
     case 0:
@@ -321,8 +318,8 @@ static void ov95_02249910(UnkStruct_ov95_022497D8 *param0)
     sub_02006E9C(93, v5, 0, v6, 0, 0x20, 58);
     sub_02006E9C(93, v5, 4, v6, 0, 0x20, 58);
 
-    sub_02019184(param0->unk_24, 3, 3, 256);
-    sub_02019184(param0->unk_24, 7, 3, 0);
+    Bg_SetOffset(param0->unk_24, 3, 3, 256);
+    Bg_SetOffset(param0->unk_24, 7, 3, 0);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -330,8 +327,8 @@ static void ov95_02249910(UnkStruct_ov95_022497D8 *param0)
 
 static void ov95_02249A68(UnkStruct_ov95_022497D8 *param0)
 {
-    sub_02019044(param0->unk_24, 3);
-    sub_02019044(param0->unk_24, 7);
+    Bg_FreeTilemapBuffer(param0->unk_24, 3);
+    Bg_FreeTilemapBuffer(param0->unk_24, 7);
 }
 
 static void ov95_02249A80(UnkStruct_ov95_022497D8 *param0)
@@ -604,8 +601,8 @@ static void ov95_02249F38(SysTask *param0, void *param1)
         v1.y = 0;
         v1.z = 0;
 
-        sub_02019184(v0->unk_24, 3, 3, 0);
-        sub_02019184(v0->unk_24, 7, 3, 256);
+        Bg_SetOffset(v0->unk_24, 3, 3, 0);
+        Bg_SetOffset(v0->unk_24, 7, 3, 256);
 
         ov95_02247AC0(v0->unk_28, &v1);
         GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);

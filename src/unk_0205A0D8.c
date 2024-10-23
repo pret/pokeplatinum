@@ -6,7 +6,6 @@
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/pokemon_summary.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02072014.h"
 #include "struct_defs/struct_02098C44.h"
 
@@ -15,6 +14,7 @@
 #include "overlay005/ov5_021D0D80.h"
 
 #include "bag.h"
+#include "bg_window.h"
 #include "colored_arrow.h"
 #include "comm_player_manager.h"
 #include "communication_information.h"
@@ -38,7 +38,6 @@
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02018340.h"
 #include "unk_0202602C.h"
 #include "unk_0202D778.h"
 #include "unk_020363E8.h"
@@ -620,7 +619,7 @@ static int sub_0205AA50(UnkStruct_0205A0D8 *param0, const Strbuf *param1)
 {
     Window *v0 = &(param0->unk_14);
 
-    if (BGL_WindowAdded(v0) == 0) {
+    if (Window_IsInUse(v0) == 0) {
         FieldMessage_AddWindow(param0->fieldSystem->unk_08, v0, 3);
         FieldMessage_DrawWindow(v0, SaveData_Options(param0->fieldSystem->saveData));
     } else {
@@ -632,23 +631,23 @@ static int sub_0205AA50(UnkStruct_0205A0D8 *param0, const Strbuf *param1)
 
 static void sub_0205AAA0(UnkStruct_0205A0D8 *param0, BOOL param1)
 {
-    if (BGL_WindowAdded(&(param0->unk_14))) {
+    if (Window_IsInUse(&(param0->unk_14))) {
         if (param1) {
             sub_0200E084(&param0->unk_14, 0);
-            sub_0201ACF4(&param0->unk_14);
+            Window_ClearAndCopyToVRAM(&param0->unk_14);
         }
 
-        BGL_DeleteWindow(&param0->unk_14);
+        Window_Remove(&param0->unk_14);
         Window_Init(&param0->unk_14);
     }
 
-    if (BGL_WindowAdded(&(param0->unk_54))) {
-        BGL_DeleteWindow(&param0->unk_54);
+    if (Window_IsInUse(&(param0->unk_54))) {
+        Window_Remove(&param0->unk_54);
         Window_Init(&param0->unk_54);
     }
 
-    if (BGL_WindowAdded(&(param0->unk_64))) {
-        BGL_DeleteWindow(&param0->unk_64);
+    if (Window_IsInUse(&(param0->unk_64))) {
+        Window_Remove(&param0->unk_64);
         Window_Init(&param0->unk_64);
     }
 }
@@ -868,16 +867,16 @@ static void sub_0205ADF8(UnkStruct_0205A0D8 *param0, int param1)
 {
     Window *v0 = &(param0->unk_54);
 
-    if (BGL_WindowAdded(v0) == 0) {
+    if (Window_IsInUse(v0) == 0) {
         int v1, v2, v3;
         MessageLoader *v4;
 
         v4 = MessageLoader_Init(1, 26, 412, 4);
         v3 = Pokemon_GetStructSize();
 
-        BGL_AddWindow(param0->fieldSystem->unk_08, v0, 3, 21, 9, 10, 8, 13, 10);
+        Window_Add(param0->fieldSystem->unk_08, v0, 3, 21, 9, 10, 8, 13, 10);
         sub_0200DAA4(param0->fieldSystem->unk_08, 3, 1, 11, 0, 4);
-        BGL_FillWindow(v0, 15);
+        Window_FillTilemap(v0, 15);
 
         for (v1 = 0; v1 < 3; v1++) {
             v2 = Pokemon_GetValue((Pokemon *)(&param0->unk_48[v1 * v3]), MON_DATA_SPECIES, NULL);
@@ -891,7 +890,7 @@ static void sub_0205ADF8(UnkStruct_0205A0D8 *param0, int param1)
         MessageLoader_Free(v4);
     }
 
-    BGL_WindowColor(v0, 15, 0, 0, 16, v0->unk_08 * 8);
+    Window_FillRectWithColor(v0, 15, 0, 0, 16, v0->height * 8);
     ColoredArrow_Print(param0->unk_78, &param0->unk_54, 0, param1 * 16);
     Window_Show(&param0->unk_54, 0, 1, 11);
 
@@ -904,12 +903,12 @@ static void sub_0205AF18(UnkStruct_0205A0D8 *param0, int param1)
 {
     Window *v0 = &(param0->unk_64);
 
-    if (BGL_WindowAdded(v0) == 0) {
+    if (Window_IsInUse(v0) == 0) {
         int v1;
 
-        BGL_AddWindow(param0->fieldSystem->unk_08, v0, 3, 20, 11, 11, 6, 13, 90);
+        Window_Add(param0->fieldSystem->unk_08, v0, 3, 20, 11, 11, 6, 13, 90);
         sub_0200DAA4(param0->fieldSystem->unk_08, 3, 1, 11, 0, 4);
-        BGL_FillWindow(v0, 15);
+        Window_FillTilemap(v0, 15);
 
         for (v1 = 0; v1 < 3; v1++) {
             MessageLoader_GetStrbuf(param0->unk_2C, 22 + v1, param0->unk_0C);
@@ -921,7 +920,7 @@ static void sub_0205AF18(UnkStruct_0205A0D8 *param0, int param1)
     param0->unk_7C = v0;
     param0->unk_81 = param1;
 
-    BGL_WindowColor(v0, 15, 0, 0, 16, v0->unk_08 * 8);
+    Window_FillRectWithColor(v0, 15, 0, 0, 16, v0->height * 8);
     ColoredArrow_Print(param0->unk_78, param0->unk_7C, 0, param1 * 16);
     Window_Show(param0->unk_7C, 0, 1, 11);
 }
@@ -958,9 +957,9 @@ static int sub_0205AFE4(UnkStruct_0205A0D8 *param0)
     } while (0);
 
     Sound_PlayEffect(1500);
-    BGL_WindowColor(param0->unk_7C, 15, 0, 0, 16, param0->unk_7C->unk_08 * 8);
+    Window_FillRectWithColor(param0->unk_7C, 15, 0, 0, 16, param0->unk_7C->height * 8);
     ColoredArrow_Print(param0->unk_78, param0->unk_7C, 0, param0->unk_81 * 16);
-    sub_0201ACCC(param0->unk_7C);
+    Window_LoadTiles(param0->unk_7C);
 
     return 0;
 }
@@ -1035,7 +1034,7 @@ static BOOL sub_0205B140(TaskManager *param0)
                 Strbuf_Free(v1->unk_00);
                 Strbuf_Free(v1->unk_04);
                 sub_0200E084(&v1->unk_08, 0);
-                BGL_DeleteWindow(&v1->unk_08);
+                Window_Remove(&v1->unk_08);
                 ov5_021D1744(0);
                 v1->unk_28++;
             }

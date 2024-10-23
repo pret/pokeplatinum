@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0209B75C_decl.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0207C690.h"
@@ -24,8 +23,6 @@
 #include "overlay063/union_ov63_0222BDAC.h"
 #include "overlay065/struct_ov65_0223582C.h"
 #include "overlay065/struct_ov65_022376D0.h"
-#include "overlay084/struct_ov84_0223BA5C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0222EA90.h"
 #include "overlay104/ov104_0223D5D0.h"
@@ -41,6 +38,7 @@
 #include "overlay104/struct_ov104_02241308.h"
 #include "overlay104/struct_ov104_0224133C.h"
 
+#include "bg_window.h"
 #include "game_options.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -57,7 +55,6 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
 #include "unk_02017728.h"
-#include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
@@ -70,7 +67,7 @@ static void ov104_0223C71C(SysTask *param0, void *param1);
 static void ov104_0223C738(SysTask *param0, void *param1);
 static void ov104_0223C720(SysTask *param0, void *param1);
 static void ov104_0223C72C(SysTask *param0, void *param1);
-static void ov104_0223C948(BGL *param0, int param1);
+static void ov104_0223C948(BgConfig *param0, int param1);
 static void ov104_0223CC74(UnkStruct_ov104_0223C4CC *param0, int param1, const TrainerInfo *param2);
 static void ov104_0223CEEC(UnkStruct_ov104_0223C4CC *param0);
 static void ov104_0223CB80(UnkStruct_ov104_0223C4CC *param0);
@@ -165,7 +162,7 @@ UnkStruct_ov104_0223C4CC *ov104_0223C2D4(UnkStruct_0209B75C *param0)
     sub_02002F70(v0->unk_04, 2, 0x200 - 0x40, 94);
     sub_02002F70(v0->unk_04, 3, 0x200, 94);
 
-    v0->unk_00 = sub_02018340(94);
+    v0->unk_00 = BgConfig_New(94);
 
     sub_0201DBEC(64, 94);
     SetAutorepeat(4, 8);
@@ -217,12 +214,12 @@ void ov104_0223C4CC(UnkStruct_ov104_0223C4CC *param0)
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
-    sub_02019044(param0->unk_00, 1);
-    sub_02019044(param0->unk_00, 2);
-    sub_02019044(param0->unk_00, 3);
+    Bg_FreeTilemapBuffer(param0->unk_00, 1);
+    Bg_FreeTilemapBuffer(param0->unk_00, 2);
+    Bg_FreeTilemapBuffer(param0->unk_00, 3);
 
-    sub_02019120(4, 0);
-    sub_02019044(param0->unk_00, 4);
+    Bg_ToggleLayer(4, 0);
+    Bg_FreeTilemapBuffer(param0->unk_00, 4);
 
     ov104_0223D058(param0);
     ov104_0223D5F0(param0->unk_10);
@@ -330,7 +327,7 @@ static void ov104_0223C6EC(void *param0)
     sub_0201DCAC();
     sub_0200C800();
     sub_02003694(v0->unk_04);
-    sub_0201C2B8(v0->unk_00);
+    Bg_RunScheduledUpdates(v0->unk_00);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
@@ -424,12 +421,12 @@ static void ov104_0223C7EC(UnkStruct_ov104_0223C4CC *param0)
     v0 = ov63_0222D1B8(&param0->unk_1C) + param0->unk_A4.unk_04;
 
     sub_0200962C(sub_0200C738(param0->unk_34.unk_00), FX32_CONST(v0), FX32_CONST(v1));
-    sub_0201C63C(param0->unk_00, 3, 0, v0);
-    sub_0201C63C(param0->unk_00, 3, 3, v1);
+    Bg_ScheduleScroll(param0->unk_00, 3, 0, v0);
+    Bg_ScheduleScroll(param0->unk_00, 3, 3, v1);
 
     if ((ov104_0222EA90(v2->unk_24, 9) != 0xffff) && (ov104_0222EA90(v2->unk_24, 13) == 1)) {
-        sub_0201C63C(param0->unk_00, 2, 0, v0);
-        sub_0201C63C(param0->unk_00, 2, 3, v1);
+        Bg_ScheduleScroll(param0->unk_00, 2, 0, v0);
+        Bg_ScheduleScroll(param0->unk_00, 2, 3, v1);
     }
 }
 
@@ -452,7 +449,7 @@ static void ov104_0223C8E8(UnkStruct_ov104_0223C4CC *param0)
     }
 }
 
-static void ov104_0223C948(BGL *param0, int param1)
+static void ov104_0223C948(BgConfig *param0, int param1)
 {
     int v0;
 
@@ -482,19 +479,19 @@ static void ov104_0223C948(BGL *param0, int param1)
     }
 
     {
-        UnkStruct_ov84_0223BA5C v2 = {
+        GraphicsModes v2 = {
             GX_DISPMODE_GRAPHICS,
             GX_BGMODE_5,
             GX_BGMODE_0,
             GX_BG0_AS_3D
         };
 
-        v2.unk_04 = v0;
-        sub_02018368(&v2);
+        v2.mainBgMode = v0;
+        SetAllGraphicsModes(&v2);
     }
 
     {
-        UnkStruct_ov97_0222DB78 v3[] = {
+        BgTemplate v3[] = {
             {
                 0,
                 0,
@@ -544,45 +541,45 @@ static void ov104_0223C948(BGL *param0, int param1)
         u16 v4;
 
         if (v0 == GX_BGMODE_0) {
-            v3[1].unk_11 = GX_BG_COLORMODE_16;
-            v3[2].unk_11 = GX_BG_COLORMODE_16;
-            v3[1].unk_14 = GX_BG_EXTPLTT_01;
-            v3[2].unk_14 = GX_BG_EXTPLTT_01;
+            v3[1].colorMode = GX_BG_COLORMODE_16;
+            v3[2].colorMode = GX_BG_COLORMODE_16;
+            v3[1].bgExtPltt = GX_BG_EXTPLTT_01;
+            v3[2].bgExtPltt = GX_BG_EXTPLTT_01;
         }
 
         v4 = ov104_0222EA90(param1, 4);
-        v3[2].unk_10 = v4;
+        v3[2].screenSize = v4;
 
         if (ov104_0222EA90(param1, 9) != 0xffff) {
-            v3[1].unk_10 = v4;
+            v3[1].screenSize = v4;
         }
 
         if (v0 == GX_BGMODE_0) {
-            sub_020183C4(param0, 1, &v3[0], 0);
-            sub_02019EBC(param0, 1);
-            sub_02019184(param0, 1, 0, 0);
-            sub_02019184(param0, 1, 3, 0);
-            sub_020183C4(param0, 2, &v3[1], 0);
-            sub_02019EBC(param0, 2);
-            sub_02019184(param0, 2, 0, 0);
-            sub_02019184(param0, 2, 3, 0);
-            sub_020183C4(param0, 3, &v3[2], 0);
-            sub_02019EBC(param0, 3);
-            sub_02019184(param0, 3, 0, 0);
-            sub_02019184(param0, 3, 3, 0);
+            Bg_InitFromTemplate(param0, 1, &v3[0], 0);
+            Bg_ClearTilemap(param0, 1);
+            Bg_SetOffset(param0, 1, 0, 0);
+            Bg_SetOffset(param0, 1, 3, 0);
+            Bg_InitFromTemplate(param0, 2, &v3[1], 0);
+            Bg_ClearTilemap(param0, 2);
+            Bg_SetOffset(param0, 2, 0, 0);
+            Bg_SetOffset(param0, 2, 3, 0);
+            Bg_InitFromTemplate(param0, 3, &v3[2], 0);
+            Bg_ClearTilemap(param0, 3);
+            Bg_SetOffset(param0, 3, 0, 0);
+            Bg_SetOffset(param0, 3, 3, 0);
         } else {
-            sub_020183C4(param0, 1, &v3[0], 0);
-            sub_02019EBC(param0, 1);
-            sub_02019184(param0, 1, 0, 0);
-            sub_02019184(param0, 1, 3, 0);
-            sub_020183C4(param0, 2, &v3[1], 2);
-            sub_02019EBC(param0, 2);
-            sub_02019184(param0, 2, 0, 0);
-            sub_02019184(param0, 2, 3, 0);
-            sub_020183C4(param0, 3, &v3[2], 2);
-            sub_02019EBC(param0, 3);
-            sub_02019184(param0, 3, 0, 0);
-            sub_02019184(param0, 3, 3, 0);
+            Bg_InitFromTemplate(param0, 1, &v3[0], 0);
+            Bg_ClearTilemap(param0, 1);
+            Bg_SetOffset(param0, 1, 0, 0);
+            Bg_SetOffset(param0, 1, 3, 0);
+            Bg_InitFromTemplate(param0, 2, &v3[1], 2);
+            Bg_ClearTilemap(param0, 2);
+            Bg_SetOffset(param0, 2, 0, 0);
+            Bg_SetOffset(param0, 2, 3, 0);
+            Bg_InitFromTemplate(param0, 3, &v3[2], 2);
+            Bg_ClearTilemap(param0, 3);
+            Bg_SetOffset(param0, 3, 0, 0);
+            Bg_SetOffset(param0, 3, 3, 0);
         }
 
         G2_SetBG0Priority(0);
@@ -590,7 +587,7 @@ static void ov104_0223C948(BGL *param0, int param1)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v5[] = {
+        BgTemplate v5[] = {
             {
                 0,
                 0,
@@ -608,10 +605,10 @@ static void ov104_0223C948(BGL *param0, int param1)
             },
         };
 
-        sub_020183C4(param0, 4, &v5[0], 0);
-        sub_02019EBC(param0, 4);
-        sub_02019184(param0, 4, 0, 0);
-        sub_02019184(param0, 4, 3, 0);
+        Bg_InitFromTemplate(param0, 4, &v5[0], 0);
+        Bg_ClearTilemap(param0, 4);
+        Bg_SetOffset(param0, 4, 0, 0);
+        Bg_SetOffset(param0, 4, 3, 0);
     }
 }
 
@@ -747,7 +744,7 @@ static void ov104_0223CC74(UnkStruct_ov104_0223C4CC *param0, int param1, const T
             }
         }
 
-        sub_0201C3C0(param0->unk_00, 3);
+        Bg_ScheduleTilemapTransfer(param0->unk_00, 3);
         NARC_dtor(v3);
     }
 }

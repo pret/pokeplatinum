@@ -19,13 +19,11 @@
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/battle_system.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_0200D0F4.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/trainer_data.h"
 
 #include "battle/battle_context.h"
@@ -47,6 +45,7 @@
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 
 #include "bag.h"
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "enums.h"
 #include "flags.h"
@@ -70,12 +69,11 @@
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02014A84.h"
-#include "unk_02018340.h"
 #include "unk_0202631C.h"
 #include "unk_0202F1D4.h"
 #include "unk_0206CCB0.h"
 
-BGL *BattleSystem_BGL(BattleSystem *param0);
+BgConfig *BattleSystem_BGL(BattleSystem *param0);
 u32 BattleSystem_BattleType(BattleSystem *param0);
 BattleContext *BattleSystem_Context(BattleSystem *param0);
 BattlerData *BattleSystem_BattlerData(BattleSystem *param0, int param1);
@@ -227,7 +225,7 @@ static void BattleMessage_TrainerName(BattleSystem *param0, u32 param1, int para
 static void BattleMessage_PCBoxName(BattleSystem *param0, u32 param1, int param2);
 static u8 ov16_0223F6D4(u8 *param0, u8 *param1, u16 *param2);
 
-BGL *BattleSystem_BGL(BattleSystem *param0)
+BgConfig *BattleSystem_BGL(BattleSystem *param0)
 {
     return param0->unk_04;
 }
@@ -1205,7 +1203,7 @@ void ov16_0223EF8C(BattleSystem *param0)
         }
     }
 
-    sub_0201958C(param0->unk_04, 3, param0->unk_21C, 0x10000, 0);
+    Bg_LoadTiles(param0->unk_04, 3, param0->unk_21C, 0x10000, 0);
 
     ov16_02268700(&param0->unk_17C[0]);
     ov16_02268700(&param0->unk_17C[1]);
@@ -1748,7 +1746,7 @@ u8 ov16_0223F9FC(BattleSystem *param0, int param1, int param2, int param3, int p
                     v2 = sub_02014B34(&param0->trainers[param2].loseMsg, 5);
                 }
 
-                BGL_FillWindow(v0, 0xff);
+                Window_FillTilemap(v0, 0xff);
                 v1 = Text_AddPrinterWithParams(v0, FONT_MESSAGE, v2, 0, 0, param4, BattleMessage_Callback);
                 Strbuf_Free(v2);
             }
@@ -1781,7 +1779,7 @@ u8 ov16_0223F9FC(BattleSystem *param0, int param1, int param2, int param3, int p
                 v3 = MessageLoader_Init(0, 26, v6, 5);
                 v4 = MessageLoader_GetNewStrbuf(v3, v5);
 
-                BGL_FillWindow(v0, 0xff);
+                Window_FillTilemap(v0, 0xff);
 
                 v1 = Text_AddPrinterWithParams(v0, FONT_MESSAGE, v4, 0, 0, param4, BattleMessage_Callback);
                 Strbuf_Free(v4);
@@ -1790,7 +1788,7 @@ u8 ov16_0223F9FC(BattleSystem *param0, int param1, int param2, int param3, int p
         }
     } else {
         TrainerData_LoadMessage(param1, param3, param0->msgBuffer, 5);
-        BGL_FillWindow(v0, 0xff);
+        Window_FillTilemap(v0, 0xff);
         v1 = Text_AddPrinterWithParams(v0, FONT_MESSAGE, param0->msgBuffer, 0, 0, param4, BattleMessage_Callback);
     }
 
@@ -1805,7 +1803,7 @@ u8 BattleMessage_Print(BattleSystem *battleSys, MessageLoader *msgLoader, Battle
     BattleMessage_FillFormatBuffers(battleSys, battleMsg);
     BattleMessage_Format(battleSys, msgLoader, battleMsg);
 
-    BGL_FillWindow(textWindow, 0xFF);
+    Window_FillTilemap(textWindow, 0xFF);
 
     return Text_AddPrinterWithParams(textWindow, FONT_MESSAGE, battleSys->msgBuffer, 0, 0, renderDelay, BattleMessage_Callback);
 }
@@ -1819,7 +1817,7 @@ u8 BattleMessage_PrintToWindow(BattleSystem *param0, Window *param1, MessageLoad
     BattleMessage_Format(param0, param2, param3);
 
     if (param6 & 0x1) {
-        BGL_FillWindow(param1, 0xff);
+        Window_FillTilemap(param1, 0xff);
     }
 
     if (param6 & 0x2) {

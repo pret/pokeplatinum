@@ -2,14 +2,13 @@
 #include <nitro/sinit.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-
 #include "overlay025/poketch_button.h"
 #include "overlay025/poketch_system.h"
 #include "overlay039/ov39_022563DC.h"
 #include "overlay039/struct_ov39_022563DC_1.h"
 #include "overlay039/struct_ov39_022563DC_decl.h"
 
+#include "bg_window.h"
 #include "heap.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -29,8 +28,8 @@ typedef struct {
 
 static void NitroStaticInit(void);
 
-static BOOL ov39_022561D4(void **param0, PoketchSystem *poketchSys, BGL *param2, u32 param3);
-static BOOL ov39_0225621C(UnkStruct_ov39_0225621C *param0, PoketchSystem *poketchSys, BGL *param2, u32 param3);
+static BOOL ov39_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3);
+static BOOL ov39_0225621C(UnkStruct_ov39_0225621C *param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3);
 static void ov39_02256268(UnkStruct_ov39_0225621C *param0);
 static void ov39_02256284(u32 param0, u32 param1, u32 param2, void *param3);
 static void ov39_0225628C(SysTask *param0, void *param1);
@@ -45,7 +44,7 @@ static void NitroStaticInit(void)
     PoketchSystem_SetAppFunctions(ov39_022561D4, ov39_022562C8);
 }
 
-static BOOL ov39_022561D4(void **param0, PoketchSystem *poketchSys, BGL *param2, u32 param3)
+static BOOL ov39_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3)
 {
     UnkStruct_ov39_0225621C *v0 = (UnkStruct_ov39_0225621C *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov39_0225621C));
 
@@ -63,7 +62,7 @@ static BOOL ov39_022561D4(void **param0, PoketchSystem *poketchSys, BGL *param2,
     return 0;
 }
 
-static BOOL ov39_0225621C(UnkStruct_ov39_0225621C *param0, PoketchSystem *poketchSys, BGL *param2, u32 param3)
+static BOOL ov39_0225621C(UnkStruct_ov39_0225621C *param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3)
 {
     if (ov39_022563DC(&(param0->unk_24), &(param0->unk_04), param2)) {
         static const TouchScreenHitTable v0[] = {

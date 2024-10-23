@@ -7,7 +7,6 @@
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 
@@ -24,13 +23,13 @@
 #include "overlay012/struct_ov12_0223595C.h"
 #include "overlay012/struct_ov12_02235998.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "heap.h"
 #include "sys_task_manager.h"
 #include "unk_02002F38.h"
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
-#include "unk_02018340.h"
 #include "unk_0201F834.h"
 
 typedef struct {
@@ -170,7 +169,7 @@ typedef struct {
     u8 unk_02;
     u8 unk_03;
     int unk_04;
-    BGL *unk_08;
+    BgConfig *unk_08;
     UnkStruct_ov12_0221FCDC *unk_0C;
     SpriteGfxHandler *unk_10;
     UnkStruct_ov12_02235998 unk_14[4];
@@ -184,7 +183,7 @@ typedef struct {
     u8 unk_02;
     u8 unk_03;
     UnkStruct_ov12_02235350 unk_04;
-    BGL *unk_08;
+    BgConfig *unk_08;
     UnkStruct_ov12_0221FCDC *unk_0C;
     SpriteGfxHandler *unk_10;
     Sprite *unk_14;
@@ -1371,7 +1370,7 @@ static void ov12_0222C4A8(SysTask *param0, void *param1)
             sub_02007DEC(v1->unk_14[v0].unk_08, 0, v1->unk_14[v0].unk_00.unk_00 + v1->unk_B4.unk_00);
         }
 
-        sub_02019184(v1->unk_08, 3, 0, v1->unk_B4.unk_00);
+        Bg_SetOffset(v1->unk_08, 3, 0, v1->unk_B4.unk_00);
         break;
     default:
         ov12_02220220(v1->unk_0C, param0);
@@ -1606,8 +1605,8 @@ static void ov12_0222C994(SysTask *param0, void *param1)
                 sub_02007DEC(v1->unk_38[v0], 0, v1->unk_28[v0].unk_00 + v1->unk_4C.unk_00);
             }
 
-            sub_02019184(v1->unk_00.unk_14, 3, 0, v1->unk_4C.unk_00);
-            sub_02019184(v1->unk_00.unk_14, 3, 3, v1->unk_4C.unk_02);
+            Bg_SetOffset(v1->unk_00.unk_14, 3, 0, v1->unk_4C.unk_00);
+            Bg_SetOffset(v1->unk_00.unk_14, 3, 3, v1->unk_4C.unk_02);
         }
         break;
     default:

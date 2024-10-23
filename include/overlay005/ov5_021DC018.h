@@ -1,11 +1,10 @@
 #ifndef POKEPLATINUM_OV5_021DC018_H
 #define POKEPLATINUM_OV5_021DC018_H
 
-#include "struct_defs/struct_0205AA50.h"
-
 #include "field/field_system_decl.h"
 #include "overlay005/struct_ov5_021DC1A4_decl.h"
 
+#include "bg_window.h"
 #include "message.h"
 #include "string_template.h"
 

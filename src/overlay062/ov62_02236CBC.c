@@ -5,7 +5,6 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
@@ -17,6 +16,7 @@
 #include "overlay062/ov62_const_funcptr_tables.h"
 #include "overlay062/struct_ov62_022312B0.h"
 
+#include "bg_window.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "touch_screen.h"
@@ -25,7 +25,6 @@
 #include "unk_02006E3C.h"
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0202D05C.h"
 #include "unk_02030A80.h"
@@ -88,7 +87,7 @@ static void ov62_02236CBC(UnkStruct_0208C06C *param0, int param1)
 static void ov62_02236CF8(UnkStruct_0208C06C *param0, int param1)
 {
     NARC *v0 = param0->unk_14.unk_00;
-    BGL *v1 = param0->unk_14.unk_10;
+    BgConfig *v1 = param0->unk_14.unk_10;
     SpriteRenderer *v2 = param0->unk_14.unk_04;
     SpriteGfxHandler *v3 = param0->unk_14.unk_08;
     PaletteData *v4 = param0->unk_14.unk_14;
@@ -136,7 +135,7 @@ static void ov62_02236E14(UnkStruct_0208C06C *param0)
 {
     UnkStruct_ov62_02236CBC *v0 = param0->unk_860;
     NARC *v1 = param0->unk_14.unk_00;
-    BGL *v2 = param0->unk_14.unk_10;
+    BgConfig *v2 = param0->unk_14.unk_10;
     SpriteRenderer *v3 = param0->unk_14.unk_04;
     SpriteGfxHandler *v4 = param0->unk_14.unk_08;
     PaletteData *v5 = param0->unk_14.unk_14;
@@ -222,7 +221,7 @@ static void ov62_022370D4(u16 *param0, u16 param1, u16 param2)
 static void ov62_0223712C(UnkStruct_0208C06C *param0)
 {
     UnkStruct_ov62_02236CBC *v0 = param0->unk_860;
-    BGL *v1 = param0->unk_14.unk_10;
+    BgConfig *v1 = param0->unk_14.unk_10;
     SpriteRenderer *v2 = param0->unk_14.unk_04;
     SpriteGfxHandler *v3 = param0->unk_14.unk_08;
     PaletteData *v4 = param0->unk_14.unk_14;
@@ -263,7 +262,7 @@ static void ov62_022371CC(UnkStruct_0208C06C *param0)
     int v2[4 + 1];
     int v3[5];
     UnkStruct_ov62_02236CBC *v4 = param0->unk_860;
-    BGL *v5 = param0->unk_14.unk_10;
+    BgConfig *v5 = param0->unk_14.unk_10;
     SpriteRenderer *v6 = param0->unk_14.unk_04;
     SpriteGfxHandler *v7 = param0->unk_14.unk_08;
     PaletteData *v8 = param0->unk_14.unk_14;
@@ -594,10 +593,10 @@ static BOOL ov62_02237884(UnkStruct_0208C06C *param0)
                 v0->unk_04[v1] = 0.2f;
             }
         }
-        sub_02019EBC(param0->unk_14.unk_10, 3);
-        sub_02019EBC(param0->unk_14.unk_10, 2);
-        sub_02019EBC(param0->unk_14.unk_10, 7);
-        sub_02019EBC(param0->unk_14.unk_10, 6);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 3);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 2);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 7);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 6);
         ov62_022315C8(&v0->unk_D4, &v0->unk_D8, 0);
         ov62_02231560(&v0->unk_D4, &v0->unk_D8, 0, 0, GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG1, 0);
         Sound_PlayEffect(1377);
@@ -627,7 +626,7 @@ static BOOL ov62_02237884(UnkStruct_0208C06C *param0)
         ov62_0223376C(param0, 0);
         sub_0208B9E0(param0->unk_6F0, 0);
         ov62_02234314();
-        BGL_SetPriority(6, 2);
+        Bg_SetPriority(6, 2);
         ov62_02236E14(param0);
         sub_02003A2C(param0->unk_14.unk_14, 3, 0xC | 0x10, v0->unk_00, param0->unk_14.unk_44);
         param0->unk_08++;
@@ -731,10 +730,10 @@ static BOOL ov62_02237B00(UnkStruct_0208C06C *param0)
         ov62_02234540(param0, 1);
         ov62_0223146C(param0);
         ov62_02234540(param0, 0);
-        sub_02019EBC(param0->unk_14.unk_10, 2);
-        sub_02019EBC(param0->unk_14.unk_10, 6);
-        sub_02019EBC(param0->unk_14.unk_10, 3);
-        sub_02019EBC(param0->unk_14.unk_10, 7);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 2);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 6);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 3);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 7);
         param0->unk_08++;
         break;
     case 4:

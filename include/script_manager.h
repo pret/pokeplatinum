@@ -5,13 +5,13 @@
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_0203F478.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "field/field_system_decl.h"
 #include "overlay005/struct_ov5_021DC1A4_decl.h"
 #include "overlay005/struct_ov5_021E1FF4_decl.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
+#include "bg_window.h"
 #include "field_script_context.h"
 #include "string_template.h"
 #include "sys_task_manager.h"

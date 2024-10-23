@@ -11,9 +11,8 @@
 #include "overlay079/ov79_021D183C.h"
 #include "overlay079/ov79_021D20F4.h"
 #include "overlay079/struct_ov79_021D0E1C.h"
-#include "overlay084/struct_ov84_0223BA5C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "font.h"
@@ -35,7 +34,6 @@
 #include "unk_0200F174.h"
 #include "unk_020158A8.h"
 #include "unk_02017728.h"
-#include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_0208C098.h"
@@ -205,7 +203,7 @@ static void ov79_021D0F7C(void *param0)
     }
 
     sub_0201DCAC();
-    sub_0201C2B8(v0->unk_24);
+    Bg_RunScheduledUpdates(v0->unk_24);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
@@ -385,7 +383,7 @@ static int ov79_021D11C0(UnkStruct_ov79_021D0E1C *param0)
     }
 
     sub_0200E084(&param0->unk_E8[2], 1);
-    sub_0201ACF4(&param0->unk_E8[2]);
+    Window_ClearAndCopyToVRAM(&param0->unk_E8[2]);
 
     param0->unk_20->unk_1C[param0->unk_1A].unk_04_val1_6 = 1;
     param0->unk_20->unk_02 = 1;
@@ -485,21 +483,21 @@ static void ov79_021D132C(UnkStruct_ov79_021D0E1C *param0)
 
     ov79_021D130C();
 
-    param0->unk_24 = sub_02018340(param0->unk_00);
+    param0->unk_24 = BgConfig_New(param0->unk_00);
 
     {
-        UnkStruct_ov84_0223BA5C v2 = {
+        GraphicsModes v2 = {
             GX_DISPMODE_GRAPHICS,
             GX_BGMODE_0,
             GX_BGMODE_0,
             GX_BG0_AS_2D
         };
 
-        sub_02018368(&v2);
+        SetAllGraphicsModes(&v2);
     }
 
     {
-        UnkStruct_ov97_0222DB78 v3[] = {
+        BgTemplate v3[] = {
             {
                 0x0,
                 0x0,
@@ -595,9 +593,9 @@ static void ov79_021D132C(UnkStruct_ov79_021D0E1C *param0)
         v1 = 0;
 
         for (v0 = 0; v0 < 6; v0++) {
-            sub_020183C4(param0->unk_24, v1, &(v3[v0]), 0);
-            sub_02019EBC(param0->unk_24, v1);
-            sub_02019690(v1, 32, 0, param0->unk_00);
+            Bg_InitFromTemplate(param0->unk_24, v1, &(v3[v0]), 0);
+            Bg_ClearTilemap(param0->unk_24, v1);
+            Bg_ClearTilesRange(v1, 32, 0, param0->unk_00);
             ++v1;
         }
     }
@@ -608,7 +606,7 @@ static void ov79_021D13A4(UnkStruct_ov79_021D0E1C *param0)
     int v0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        sub_02019044(param0->unk_24, v0);
+        Bg_FreeTilemapBuffer(param0->unk_24, v0);
     }
 
     Heap_FreeToHeap(param0->unk_24);
@@ -627,8 +625,8 @@ static void ov79_021D13C4(UnkStruct_ov79_021D0E1C *param0)
     sub_0208C210(param0->unk_24, param0->unk_00, v0, 83, 10, 3, 1, 0, 0);
     sub_0208C210(param0->unk_24, param0->unk_00, v0, 83, 11, 5, 1, 0, 0);
     NARC_dtor(v0);
-    sub_0201C3C0(param0->unk_24, 3);
-    sub_0201C3C0(param0->unk_24, 5);
+    Bg_ScheduleTilemapTransfer(param0->unk_24, 3);
+    Bg_ScheduleTilemapTransfer(param0->unk_24, 5);
 }
 
 static void ov79_021D14A0(UnkStruct_ov79_021D0E1C *param0)
@@ -665,8 +663,8 @@ static void ov79_021D14A4(UnkStruct_ov79_021D0E1C *param0)
     Font_LoadTextPalette(4, 13 * 32, param0->unk_00);
 
     for (v0 = 0; v0 < 13; v0++) {
-        BGL_AddWindow(param0->unk_24, &param0->unk_E8[v0], v1[v0].unk_00, v1[v0].unk_01, v1[v0].unk_02, v1[v0].unk_03, v1[v0].unk_04, v1[v0].unk_05, v1[v0].unk_06);
-        BGL_FillWindow(&(param0->unk_E8[v0]), 0);
+        Window_Add(param0->unk_24, &param0->unk_E8[v0], v1[v0].unk_00, v1[v0].unk_01, v1[v0].unk_02, v1[v0].unk_03, v1[v0].unk_04, v1[v0].unk_05, v1[v0].unk_06);
+        Window_FillTilemap(&(param0->unk_E8[v0]), 0);
     }
 
     ov79_021D2078(param0);
@@ -677,8 +675,8 @@ static void ov79_021D1548(UnkStruct_ov79_021D0E1C *param0)
     int v0 = 0;
 
     for (v0 = 0; v0 < 13; v0++) {
-        sub_0201ACF4(&param0->unk_E8[v0]);
-        BGL_DeleteWindow(&param0->unk_E8[v0]);
+        Window_ClearAndCopyToVRAM(&param0->unk_E8[v0]);
+        Window_Remove(&param0->unk_E8[v0]);
     }
 }
 

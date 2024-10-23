@@ -7,10 +7,8 @@
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0200C738.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1F90.h"
@@ -24,8 +22,8 @@
 #include "overlay021/struct_ov21_021D4CB8.h"
 #include "overlay021/struct_ov21_021E8E0C.h"
 #include "overlay022/struct_ov22_022559F8.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -44,7 +42,6 @@
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
-#include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
 
@@ -72,7 +69,7 @@ typedef struct {
 } UnkStruct_ov21_021E9A9C;
 
 typedef struct UnkStruct_ov21_021E8D48_t {
-    BGL *unk_00;
+    BgConfig *unk_00;
     Window *unk_04;
     PaletteData *unk_08;
     Sprite *unk_0C;
@@ -98,9 +95,9 @@ static void ov21_021E98F8(PaletteData *param0, Sprite *param1, int param2, int p
 static BOOL ov21_021E9948(PaletteData *param0, Sprite *param1);
 static void ov21_021E8E0C(UnkStruct_ov21_021E8D48 *param0, const UnkStruct_ov21_021E8E0C *param1);
 static void ov21_021E900C(UnkStruct_ov21_021E8D48 *param0);
-static void ov21_021E90B0(BGL *param0, int param1);
-static void ov21_021E9194(BGL *param0);
-static Window *ov21_021E91B0(BGL *param0, int param1);
+static void ov21_021E90B0(BgConfig *param0, int param1);
+static void ov21_021E9194(BgConfig *param0);
+static Window *ov21_021E91B0(BgConfig *param0, int param1);
 static void ov21_021E91F0(Window *param0);
 static void ov21_021E9208(SpriteResourceCollection **param0, int param1);
 static void ov21_021E9228(SpriteResourceCollection **param0);
@@ -123,8 +120,8 @@ static void ov21_021E95BC(UnkStruct_ov21_021E968C *param0, SpriteResourceCollect
 static void ov21_021E95EC(UnkStruct_ov21_021E968C *param0, SpriteResourceCollection **param1);
 static void ov21_021E95F8(UnkStruct_ov21_021E968C *param0, CellActorCollection *param1, SpriteResourceCollection **param2, int param3, int param4);
 static void ov21_021E968C(UnkStruct_ov21_021E968C *param0);
-static void ov21_021E96A8(BGL *param0, int param1, NARC *param2);
-static void ov21_021E97C4(BGL *param0, int param1, NARC *param2);
+static void ov21_021E96A8(BgConfig *param0, int param1, NARC *param2);
+static void ov21_021E97C4(BgConfig *param0, int param1, NARC *param2);
 static void ov21_021E9968(Window *param0, int param1, int param2);
 static void ov21_021E998C(Window *param0, int param1);
 static void ov21_021E9A0C(int param0);
@@ -277,10 +274,10 @@ static void ov21_021E900C(UnkStruct_ov21_021E8D48 *param0)
     ov21_021E9A38();
 }
 
-static void ov21_021E90B0(BGL *param0, int param1)
+static void ov21_021E90B0(BgConfig *param0, int param1)
 {
     {
-        UnkStruct_ov97_0222DB78 v0 = {
+        BgTemplate v0 = {
             0,
             0,
             0x800,
@@ -296,14 +293,14 @@ static void ov21_021E90B0(BGL *param0, int param1)
             0
         };
 
-        sub_02019044(param0, 1);
-        sub_020183C4(param0, 1, &v0, 0);
-        sub_02019690(1, 32, 0, param1);
-        sub_02019EBC(param0, 1);
+        Bg_FreeTilemapBuffer(param0, 1);
+        Bg_InitFromTemplate(param0, 1, &v0, 0);
+        Bg_ClearTilesRange(1, 32, 0, param1);
+        Bg_ClearTilemap(param0, 1);
     }
 
     {
-        UnkStruct_ov97_0222DB78 v1 = {
+        BgTemplate v1 = {
             0,
             0,
             0x800,
@@ -319,18 +316,18 @@ static void ov21_021E90B0(BGL *param0, int param1)
             0
         };
 
-        sub_02019044(param0, 2);
-        sub_020183C4(param0, 2, &v1, 0);
-        sub_02019690(2, 32, 0, param1);
-        sub_02019EBC(param0, 2);
+        Bg_FreeTilemapBuffer(param0, 2);
+        Bg_InitFromTemplate(param0, 2, &v1, 0);
+        Bg_ClearTilesRange(2, 32, 0, param1);
+        Bg_ClearTilemap(param0, 2);
     }
 
-    BGL_SetPriority(0, 0);
+    Bg_SetPriority(0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
-    sub_02019044(param0, 0);
+    Bg_FreeTilemapBuffer(param0, 0);
 
     {
-        UnkStruct_ov97_0222DB78 v2 = {
+        BgTemplate v2 = {
             0,
             0,
             0x800,
@@ -346,38 +343,38 @@ static void ov21_021E90B0(BGL *param0, int param1)
             0
         };
 
-        sub_02019044(param0, 3);
-        sub_020183C4(param0, 3, &v2, 0);
-        sub_02019690(3, 32, 0, param1);
-        sub_02019EBC(param0, 3);
+        Bg_FreeTilemapBuffer(param0, 3);
+        Bg_InitFromTemplate(param0, 3, &v2, 0);
+        Bg_ClearTilesRange(3, 32, 0, param1);
+        Bg_ClearTilemap(param0, 3);
     }
 }
 
-static void ov21_021E9194(BGL *param0)
+static void ov21_021E9194(BgConfig *param0)
 {
-    sub_02019044(param0, 1);
-    sub_02019044(param0, 2);
-    sub_02019044(param0, 3);
+    Bg_FreeTilemapBuffer(param0, 1);
+    Bg_FreeTilemapBuffer(param0, 2);
+    Bg_FreeTilemapBuffer(param0, 3);
 }
 
-static Window *ov21_021E91B0(BGL *param0, int param1)
+static Window *ov21_021E91B0(BgConfig *param0, int param1)
 {
     Window *v0;
 
-    v0 = sub_0201A778(param1, 1);
+    v0 = Window_New(param1, 1);
 
-    BGL_AddWindow(param0, v0, 1, 0, 0, 32, 32, 0xc, 0);
-    BGL_FillWindow(v0, 0);
-    sub_0201A954(v0);
+    Window_Add(param0, v0, 1, 0, 0, 32, 32, 0xc, 0);
+    Window_FillTilemap(v0, 0);
+    Window_CopyToVRAM(v0);
 
     return v0;
 }
 
 static void ov21_021E91F0(Window *param0)
 {
-    sub_0201ACF4(param0);
-    BGL_DeleteWindow(param0);
-    sub_0201A928(param0, 1);
+    Window_ClearAndCopyToVRAM(param0);
+    Window_Remove(param0);
+    Windows_Delete(param0, 1);
 }
 
 static void ov21_021E9208(SpriteResourceCollection **param0, int param1)
@@ -635,7 +632,7 @@ static void ov21_021E968C(UnkStruct_ov21_021E968C *param0)
     }
 }
 
-static void ov21_021E96A8(BGL *param0, int param1, NARC *param2)
+static void ov21_021E96A8(BgConfig *param0, int param1, NARC *param2)
 {
     void *v0;
     NNSG2dScreenData *v1;
@@ -645,27 +642,27 @@ static void ov21_021E96A8(BGL *param0, int param1, NARC *param2)
 
     v0 = sub_020071D0(param2, 50, 1, &v1, param1);
 
-    sub_020198C0(param0, 3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
+    Bg_LoadToTilemapRect(param0, 3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
 
     v0 = sub_020071D0(param2, 51, 1, &v1, param1);
 
-    sub_020198C0(param0, 3, v1->rawData, 0, 3, v1->screenWidth / 8, v1->screenHeight / 8);
+    Bg_LoadToTilemapRect(param0, 3, v1->rawData, 0, 3, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
 
     v0 = sub_020071D0(param2, 52, 1, &v1, param1);
 
-    sub_020198C0(param0, 3, v1->rawData, 12, 8, v1->screenWidth / 8, v1->screenHeight / 8);
+    Bg_LoadToTilemapRect(param0, 3, v1->rawData, 12, 8, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
 
     v0 = sub_020071D0(param2, 54, 1, &v1, param1);
 
-    sub_020198C0(param0, 3, v1->rawData, 0, 16, v1->screenWidth / 8, v1->screenHeight / 8);
+    Bg_LoadToTilemapRect(param0, 3, v1->rawData, 0, 16, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
-    sub_0201C3C0(param0, 3);
+    Bg_ScheduleTilemapTransfer(param0, 3);
 }
 
-static void ov21_021E97C4(BGL *param0, int param1, NARC *param2)
+static void ov21_021E97C4(BgConfig *param0, int param1, NARC *param2)
 {
     void *v0;
     NNSG2dScreenData *v1;
@@ -674,9 +671,9 @@ static void ov21_021E97C4(BGL *param0, int param1, NARC *param2)
 
     v0 = sub_020071D0(param2, 57, 1, &v1, param1);
 
-    sub_020198C0(param0, 2, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
+    Bg_LoadToTilemapRect(param0, 2, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
-    sub_0201C3C0(param0, 2);
+    Bg_ScheduleTilemapTransfer(param0, 2);
 }
 
 static void ov21_021E9828(SysTask *param0, void *param1)

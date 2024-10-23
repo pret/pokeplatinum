@@ -13,13 +13,11 @@
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/battle_io.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_0200D0F4.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/trainer_data.h"
 
 #include "battle/battle_context.h"
@@ -124,6 +122,7 @@
 #include "overlay013/struct_ov13_022264F4.h"
 
 #include "assert.h"
+#include "bg_window.h"
 #include "core_sys.h"
 #include "enums.h"
 #include "flags.h"
@@ -148,7 +147,6 @@
 #include "unk_020131EC.h"
 #include "unk_0201567C.h"
 #include "unk_02015F84.h"
-#include "unk_02018340.h"
 
 static void ov16_0225E4E8(SysTask *param0, void *param1);
 static void ov16_0225E894(SysTask *param0, void *param1);
@@ -533,7 +531,7 @@ void ov16_0225D228(BattleSystem *param0, BattlerData *param1, UnkStruct_ov16_022
     v1->unk_1C = 0;
 
     if ((v1->unk_14 == 0) || (v1->unk_14 == 2)) {
-        sub_02019184(BattleSystem_BGL(param0), 3, 2, 4 * 33);
+        Bg_SetOffset(BattleSystem_BGL(param0), 3, 2, 4 * 33);
     }
 
     SysTask_Start(ov16_0225FA70, v1, 0);
@@ -2317,7 +2315,7 @@ static void ov16_0225FA70(SysTask *param0, void *param1)
     v5 = BattleSystem_BattleType(v0->unk_00);
 
     if ((v0->unk_1C < 33) && (v0->unk_0E >= 2) && ((v0->unk_14 == 0) || (v0->unk_14 == 2))) {
-        sub_02019184(BattleSystem_BGL(v0->unk_00), 3, 1, 4);
+        Bg_SetOffset(BattleSystem_BGL(v0->unk_00), 3, 1, 4);
         v0->unk_1C++;
     }
 
@@ -2875,7 +2873,7 @@ static void SlideHealthbarOutTask(SysTask *task, void *data)
 static void ov16_022604C8(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0225D5B8 *v0;
-    BGL *v1;
+    BgConfig *v1;
     UnkStruct_ov16_02268A14 *v2;
     BattlerData *v3;
     u32 v4;
@@ -3227,7 +3225,7 @@ static void ov16_02260BAC(SysTask *param0, void *param1)
 static void ov16_02260C00(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0225D698 *v0 = (UnkStruct_ov16_0225D698 *)param1;
-    BGL *v1 = BattleSystem_BGL(v0->unk_00);
+    BgConfig *v1 = BattleSystem_BGL(v0->unk_00);
     UnkStruct_ov16_02268A14 *v2;
     int v3;
     Healthbar *v4;
@@ -3410,7 +3408,7 @@ static void ov16_02260E98(SysTask *param0, void *param1)
 static void ov16_02260F14(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0225D708 *v0 = (UnkStruct_ov16_0225D708 *)param1;
-    BGL *v1 = BattleSystem_BGL(v0->unk_00);
+    BgConfig *v1 = BattleSystem_BGL(v0->unk_00);
     UnkStruct_ov16_02268A14 *v2;
     int v3;
     Healthbar *v4;
@@ -4184,8 +4182,8 @@ static void ov16_02261E8C(SysTask *param0, void *param1)
     {
         Window *v2 = BattleSystem_Window(v0->unk_00, 0);
 
-        BGL_FillWindow(v2, 0xff);
-        sub_0201ACCC(v2);
+        Window_FillTilemap(v2, 0xff);
+        Window_LoadTiles(v2);
     }
 
         v0->unk_17 = ov16_0226CD08(ov16_0223E02C(v0->unk_00));
@@ -4425,7 +4423,7 @@ static void ov16_0226232C(SysTask *param0, void *param1)
 static void ov16_022623F0(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0225D8AC *v0 = param1;
-    BGL *v1 = BattleSystem_BGL(v0->unk_00);
+    BgConfig *v1 = BattleSystem_BGL(v0->unk_00);
     UnkStruct_ov16_02268A14 *v2 = ov16_0223E02C(v0->unk_00);
     int v3;
     Healthbar *v4;
@@ -5110,7 +5108,7 @@ static const int Unk_ov16_0226F1D0[] = {
 static void ov16_02263014(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0225CBB8 *v0 = (UnkStruct_ov16_0225CBB8 *)param1;
-    BGL *v1;
+    BgConfig *v1;
     PaletteData *v2;
     int v3;
     int v4;

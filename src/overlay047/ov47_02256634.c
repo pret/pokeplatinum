@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/ov25_02255090.h"
 #include "overlay025/ov25_02255540.h"
@@ -17,17 +15,16 @@
 #include "overlay025/struct_ov25_02255958.h"
 #include "overlay047/struct_ov47_02256634_1.h"
 #include "overlay047/struct_ov47_02256634_decl.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
 #include "heap.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02006E3C.h"
-#include "unk_02018340.h"
 
 struct UnkStruct_ov47_02256634_t {
     const UnkStruct_ov47_02256634_1 *unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     u32 unk_08[6];
     UnkStruct_ov25_022555E8 *unk_20;
     UnkStruct_ov25_022558C4 *unk_24[6];
@@ -45,7 +42,7 @@ static void ov47_022568BC(SysTask *param0, void *param1);
 static void ov47_0225694C(SysTask *param0, void *param1);
 static void ov47_02256968(SysTask *param0, void *param1);
 
-BOOL ov47_02256634(UnkStruct_ov47_02256634 **param0, const UnkStruct_ov47_02256634_1 *param1, BGL *param2)
+BOOL ov47_02256634(UnkStruct_ov47_02256634 **param0, const UnkStruct_ov47_02256634_1 *param1, BgConfig *param2)
 {
     UnkStruct_ov47_02256634 *v0 = (UnkStruct_ov47_02256634 *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov47_02256634));
 
@@ -198,7 +195,7 @@ static void ov47_022568A8(UnkStruct_ov25_02255224 *param0)
 
 static void ov47_022568BC(SysTask *param0, void *param1)
 {
-    static const UnkStruct_ov97_0222DB78 v0 = {
+    static const BgTemplate v0 = {
         0,
         0,
         0x800,
@@ -219,13 +216,13 @@ static void ov47_022568BC(SysTask *param0, void *param1)
 
     v2 = ov25_0225523C(param1);
 
-    sub_020183C4(v2->unk_04, 6, &v0, 0);
+    Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
     sub_02006E3C(12, 117, v2->unk_04, 6, 0, 0, 1, 8);
     sub_02006E60(12, 115, v2->unk_04, 6, 0, 0, 1, 8);
 
     ov25_022546B8(0, 0);
 
-    sub_02019448(v2->unk_04, 6);
+    Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);
 
     v1 = GXS_GetDispCnt();
     GXS_SetVisiblePlane(v1.visiblePlane | GX_PLANEMASK_BG2);
@@ -237,7 +234,7 @@ static void ov47_0225694C(SysTask *param0, void *param1)
 {
     UnkStruct_ov47_02256634 *v0 = ov25_0225523C(param1);
 
-    sub_02019044(v0->unk_04, 6);
+    Bg_FreeTilemapBuffer(v0->unk_04, 6);
     ov47_022568A8(param1);
 }
 

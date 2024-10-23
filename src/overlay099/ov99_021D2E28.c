@@ -11,10 +11,10 @@
 #include "overlay099/struct_ov99_021D2FD4.h"
 #include "overlay099/struct_ov99_021D3A40.h"
 
+#include "bg_window.h"
 #include "unk_02002F38.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200C6E4.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 
 typedef struct {
@@ -265,8 +265,8 @@ static void ov99_021D32D8(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2E
 {
     param1->unk_04 += 0x60;
 
-    sub_02019184(param0->unk_08, 2, 3, param1->unk_04 / FX32_ONE);
-    sub_02019184(param0->unk_08, 7, 3, param1->unk_04 / FX32_ONE);
+    Bg_SetOffset(param0->unk_08, 2, 3, param1->unk_04 / FX32_ONE);
+    Bg_SetOffset(param0->unk_08, 7, 3, param1->unk_04 / FX32_ONE);
 }
 
 static void ov99_021D330C(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2E28 *param1)

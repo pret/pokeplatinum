@@ -6,7 +6,6 @@
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029C88_decl.h"
 #include "struct_defs/struct_02041DC8.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay022/ov22_02255094.h"
 #include "overlay022/ov22_0225AF8C.h"
@@ -14,6 +13,7 @@
 #include "overlay022/struct_ov22_0225AF8C.h"
 #include "overlay022/struct_ov22_0225B1BC_decl.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "font.h"
@@ -28,7 +28,6 @@
 #include "unk_02006E3C.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02018340.h"
 #include "unk_0202419C.h"
 #include "unk_020298BC.h"
 #include "unk_02094EDC.h"
@@ -202,10 +201,10 @@ static void ov22_0225B85C(UnkStruct_ov22_0225B85C *param0)
 
     v0 = sub_020071D0(param0->unk_14.unk_5C, v2, 0, &v1, 14);
 
-    sub_020198C0(param0->unk_14.unk_40, 1, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
-    sub_02019E2C(param0->unk_14.unk_40, 1, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8, v3);
+    Bg_LoadToTilemapRect(param0->unk_14.unk_40, 1, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
+    Bg_ChangeTilemapRectPalette(param0->unk_14.unk_40, 1, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8, v3);
     Heap_FreeToHeap(v0);
-    sub_0201C3C0(param0->unk_14.unk_40, 1);
+    Bg_ScheduleTilemapTransfer(param0->unk_14.unk_40, 1);
 }
 
 static void ov22_0225B910(UnkStruct_ov22_0225B85C *param0)
@@ -238,26 +237,26 @@ static void ov22_0225BA00(UnkStruct_ov22_0225B85C *param0)
 
 static void ov22_0225BA40(UnkStruct_ov22_0225B85C *param0)
 {
-    param0->unk_200 = sub_0201A778(14, 1);
+    param0->unk_200 = Window_New(14, 1);
 
-    BGL_AddWindow(param0->unk_14.unk_40, param0->unk_200, 3, 0, 18, 32, 6, 5, 1);
+    Window_Add(param0->unk_14.unk_40, param0->unk_200, 3, 0, 18, 32, 6, 5, 1);
     Font_LoadTextPalette(0, 5 * 32, 14);
-    BGL_SetPriority(3, 0);
-    BGL_SetPriority(0, 2);
-    BGL_SetPriority(1, 1);
-    sub_02019184(param0->unk_14.unk_40, 3, 3, 0);
+    Bg_SetPriority(3, 0);
+    Bg_SetPriority(0, 2);
+    Bg_SetPriority(1, 1);
+    Bg_SetOffset(param0->unk_14.unk_40, 3, 3, 0);
 }
 
 static void ov22_0225BAA8(UnkStruct_ov22_0225B85C *param0)
 {
-    sub_0201ACF4(param0->unk_200);
-    BGL_DeleteWindow(param0->unk_200);
-    sub_0201A928(param0->unk_200, 1);
+    Window_ClearAndCopyToVRAM(param0->unk_200);
+    Window_Remove(param0->unk_200);
+    Windows_Delete(param0->unk_200, 1);
 }
 
 static void ov22_0225BAD0(UnkStruct_ov22_0225B85C *param0)
 {
-    BGL_FillWindow(param0->unk_200, 0);
+    Window_FillTilemap(param0->unk_200, 0);
 
     if (param0->unk_0C == 0) {
         ov22_0225BB00(param0);
@@ -265,7 +264,7 @@ static void ov22_0225BAD0(UnkStruct_ov22_0225B85C *param0)
         ov22_0225BC18(param0);
     }
 
-    sub_0201A954(param0->unk_200);
+    Window_CopyToVRAM(param0->unk_200);
 }
 
 static void ov22_0225BB00(UnkStruct_ov22_0225B85C *param0)

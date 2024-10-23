@@ -4,15 +4,16 @@
 #include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/chatot_cry.h"
 
 #include "battle/struct_ov16_0223E0C8.h"
 #include "battle/struct_ov16_02264408_sub1.h"
 
+#include "bg_window.h"
+
 typedef struct {
     SpriteRenderer *unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     PaletteData *unk_08;
     UnkStruct_ov16_0223E0C8 *unk_0C[4];
     u8 unk_1C[4];

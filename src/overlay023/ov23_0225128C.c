@@ -25,9 +25,9 @@
 #include "overlay023/ov23_02254A14.h"
 #include "overlay023/struct_ov23_0224271C.h"
 #include "overlay023/struct_ov23_02250CD4.h"
-#include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_02240FA8.h"
 
+#include "bg_window.h"
 #include "camera.h"
 #include "comm_player_manager.h"
 #include "communication_information.h"
@@ -49,7 +49,6 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02013A04.h"
-#include "unk_02018340.h"
 #include "unk_0202854C.h"
 #include "unk_02033200.h"
 #include "unk_020508D4.h"
@@ -81,7 +80,7 @@ static void ov23_022520E8(FieldSystem *fieldSystem, UnkStruct_ov23_022513B0 *par
 static void ov23_02251F94(FieldSystem *fieldSystem);
 static void ov23_022521C8(UnkStruct_ov23_02250CD4 *param0);
 
-static const UnkStruct_ov61_0222C884 Unk_ov23_022569C8 = {
+static const WindowTemplate Unk_ov23_022569C8 = {
     0x3,
     0x19,
     0xD,
@@ -359,7 +358,7 @@ static void ov23_022515D8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
 
     param0->unk_40 = sub_02013A04(v1, 4);
 
-    BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_10, 3, 17, 3, 14, v1 * 2, 13, 2);
+    Window_Add(param0->fieldSystem->unk_08, &param0->unk_10, 3, 17, 3, 14, v1 * 2, 13, 2);
     Window_Show(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {
@@ -405,7 +404,7 @@ static void ov23_022516E8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
 
     param0->unk_40 = sub_02013A04(v1, 4);
 
-    BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_10, 3, 17, 3, 14, v1 * 2, 13, (2 + 14 * 16));
+    Window_Add(param0->fieldSystem->unk_08, &param0->unk_10, 3, 17, 3, 14, v1 * 2, 13, (2 + 14 * 16));
     Window_Show(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {

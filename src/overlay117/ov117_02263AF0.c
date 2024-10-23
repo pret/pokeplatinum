@@ -7,12 +7,10 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/sprite_manager_allocation.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay117/ov117_02260668.h"
 #include "overlay117/ov117_022666C0.h"
@@ -34,6 +32,7 @@
 #include "overlay117/struct_ov117_02266344.h"
 #include "overlay117/struct_ov117_02266F10.h"
 
+#include "bg_window.h"
 #include "communication_system.h"
 #include "error_handling.h"
 #include "font.h"
@@ -46,7 +45,6 @@
 #include "unk_02006E3C.h"
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201E86C.h"
 
@@ -67,7 +65,7 @@ typedef struct {
     u8 unk_03;
 } UnkStruct_ov117_02266BC4;
 
-static void ov117_02263BA4(BGL *param0, UnkStruct_ov117_02263DAC *param1, int param2);
+static void ov117_02263BA4(BgConfig *param0, UnkStruct_ov117_02263DAC *param1, int param2);
 int ov117_02263DAC(UnkStruct_ov117_02261280 *param0);
 static void ov117_02263C8C(int param0, int param1, int param2, fx32 *param3, fx32 *param4);
 static int ov117_02263D08(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_02263DAC *param1, int param2, int param3, int param4);
@@ -75,7 +73,7 @@ static int ov117_02263E1C(UnkStruct_ov117_02261280 *param0, const UnkStruct_ov11
 static BOOL ov117_02263F80(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_02263EF8 *param1);
 static CellActorData *ov117_0226417C(UnkStruct_ov117_02261280 *param0, const UnkStruct_ov117_02266F10 *param1);
 static void ov117_02264214(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_02264808 *param1, UnkStruct_ov117_02263DAC *param2);
-static void ov117_02263B8C(BGL *param0, UnkStruct_ov117_02263DAC *param1);
+static void ov117_02263B8C(BgConfig *param0, UnkStruct_ov117_02263DAC *param1);
 static CellActorData *ov117_02264884(UnkStruct_ov117_02261280 *param0, int param1, int param2);
 void ov117_022648E0(UnkStruct_ov117_02261280 *param0);
 BOOL ov117_02264930(UnkStruct_ov117_02261280 *param0);
@@ -388,7 +386,7 @@ static int (*const Unk_ov117_02266B94[])(UnkStruct_ov117_02261280 *, UnkStruct_o
     ov117_022657C4,
 };
 
-void ov117_02263AF0(BGL *param0, int param1, int param2, UnkStruct_ov117_02263DAC *param3)
+void ov117_02263AF0(BgConfig *param0, int param1, int param2, UnkStruct_ov117_02263DAC *param3)
 {
     NARC *v0;
 
@@ -409,14 +407,14 @@ void ov117_02263AF0(BGL *param0, int param1, int param2, UnkStruct_ov117_02263DA
     Sound_PlayEffect(1515);
 }
 
-static void ov117_02263B8C(BGL *param0, UnkStruct_ov117_02263DAC *param1)
+static void ov117_02263B8C(BgConfig *param0, UnkStruct_ov117_02263DAC *param1)
 {
-    sub_02019EBC(param0, 7);
+    Bg_ClearTilemap(param0, 7);
     param1->unk_00 = 0;
     param1->unk_2D = 1;
 }
 
-static void ov117_02263BA4(BGL *param0, UnkStruct_ov117_02263DAC *param1, int param2)
+static void ov117_02263BA4(BgConfig *param0, UnkStruct_ov117_02263DAC *param1, int param2)
 {
     fx32 v0, v1;
     int v2, v3;
@@ -466,10 +464,10 @@ static void ov117_02263BA4(BGL *param0, UnkStruct_ov117_02263DAC *param1, int pa
         v5 = FX_Inv(v0);
         v6 = FX_Inv(v1);
 
-        sub_0201C6A8(param0, 7, 3, v5);
-        sub_0201C6A8(param0, 7, 6, v6);
-        sub_0201C63C(param0, 7, 0, 0 - v2 + v7);
-        sub_0201C63C(param0, 7, 3, (256 - 192) / 2 + 7 - v3);
+        Bg_ScheduleAffineScale(param0, 7, 3, v5);
+        Bg_ScheduleAffineScale(param0, 7, 6, v6);
+        Bg_ScheduleScroll(param0, 7, 0, 0 - v2 + v7);
+        Bg_ScheduleScroll(param0, 7, 3, (256 - 192) / 2 + 7 - v3);
     }
 }
 
@@ -533,7 +531,7 @@ static int ov117_02263D5C(UnkStruct_ov117_02263DAC *param0)
     return 1;
 }
 
-void ov117_02263D80(UnkStruct_ov117_02261280 *param0, BGL *param1, UnkStruct_ov117_02263DAC *param2)
+void ov117_02263D80(UnkStruct_ov117_02261280 *param0, BgConfig *param1, UnkStruct_ov117_02263DAC *param2)
 {
     if (param0->unk_2FCC == 0) {
         return;
@@ -1225,8 +1223,8 @@ void ov117_02264AB0(UnkStruct_ov117_02261280 *param0)
 
     switch (param0->unk_00->unk_30) {
     case 3:
-        sub_02019E2C(param0->unk_2C, 4, 0, 13, 12, 4, 3);
-        sub_02019E2C(param0->unk_2C, 4, 0x14, 13, 12, 4, 0);
+        Bg_ChangeTilemapRectPalette(param0->unk_2C, 4, 0, 13, 12, 4, 3);
+        Bg_ChangeTilemapRectPalette(param0->unk_2C, 4, 0x14, 13, 12, 4, 0);
         break;
     }
 }
@@ -2012,7 +2010,7 @@ static BOOL ov117_02265C3C(UnkStruct_ov117_02265C3C *param0, UnkStruct_ov117_022
     return 1;
 }
 
-void ov117_02265DB8(BGL *param0, SpriteGfxHandler *param1, UnkStruct_02012744 *param2, UnkStruct_ov117_02265EB0 *param3, const Strbuf *param4, enum Font param5, TextColor param6, int param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
+void ov117_02265DB8(BgConfig *param0, SpriteGfxHandler *param1, UnkStruct_02012744 *param2, UnkStruct_ov117_02265EB0 *param3, const Strbuf *param4, enum Font param5, TextColor param6, int param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
 {
     UnkStruct_020127E8 v0;
     Window v1;
@@ -2033,7 +2031,7 @@ void ov117_02265DB8(BGL *param0, SpriteGfxHandler *param1, UnkStruct_02012744 *p
 
     {
         Window_Init(&v1);
-        BGL_AddFramelessWindow(param0, &v1, v6, param14, 0, 0);
+        Window_AddToTopLeftCorner(param0, &v1, v6, param14, 0, 0);
         Text_AddPrinterWithParamsColorAndSpacing(&v1, param5, param4, 0, 0, TEXT_SPEED_NO_TRANSFER, param6, v7, 0, NULL);
     }
 
@@ -2066,7 +2064,7 @@ void ov117_02265DB8(BGL *param0, SpriteGfxHandler *param1, UnkStruct_02012744 *p
     }
 
     sub_020128C4(v4, param9, param10);
-    BGL_DeleteWindow(&v1);
+    Window_Remove(&v1);
 
     param3->unk_00 = v4;
     param3->unk_04 = v2;

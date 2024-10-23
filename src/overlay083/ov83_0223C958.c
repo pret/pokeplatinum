@@ -4,16 +4,14 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay022/struct_ov22_022550D4.h"
 #include "overlay022/struct_ov22_022559F8.h"
 #include "overlay083/ov83_0223D6A8.h"
 #include "overlay083/struct_ov83_0223B784.h"
-#include "overlay084/struct_ov84_0223BA5C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "gx_layers.h"
@@ -24,13 +22,12 @@
 #include "string_template.h"
 #include "unk_0200A784.h"
 #include "unk_02015064.h"
-#include "unk_02018340.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "unk_0202419C.h"
 
-static void ov83_0223CC30(BGL **param0, int param1);
-static void ov83_0223CCCC(BGL **param0);
+static void ov83_0223CC30(BgConfig **param0, int param1);
+static void ov83_0223CCCC(BgConfig **param0);
 static void ov83_0223CCF8(UnkStruct_ov83_0223B784 *param0);
 static void ov83_0223CD1C(UnkStruct_ov83_0223B784 *param0);
 static void ov83_0223CD28(UnkStruct_ov83_0223B784 *param0);
@@ -144,7 +141,7 @@ void ov83_0223CBFC(UnkStruct_ov83_0223B784 *param0)
     sub_0200A858();
 
     if (param0->unk_20) {
-        sub_0201C2B8(param0->unk_20);
+        Bg_RunScheduledUpdates(param0->unk_20);
     }
 }
 
@@ -166,30 +163,30 @@ static void ov83_0223CC10(void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov83_0223CC30(BGL **param0, int param1)
+static void ov83_0223CC30(BgConfig **param0, int param1)
 {
     int v0 = 0, v1;
 
     ov83_0223CC10();
 
-    *param0 = sub_02018340(param1);
+    *param0 = BgConfig_New(param1);
 
     {
-        UnkStruct_ov84_0223BA5C v2 = {
+        GraphicsModes v2 = {
             GX_DISPMODE_GRAPHICS,
             GX_BGMODE_0,
             GX_BGMODE_0,
             GX_BG0_AS_3D
         };
 
-        sub_02018368(&v2);
+        SetAllGraphicsModes(&v2);
     }
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
-    BGL_SetPriority(0, 2);
+    Bg_SetPriority(0, 2);
 
     {
-        UnkStruct_ov97_0222DB78 v3[] = {
+        BgTemplate v3[] = {
             {
                 0,
                 0,
@@ -255,19 +252,19 @@ static void ov83_0223CC30(BGL **param0, int param1)
         for (v0 = 0; v0 < 4; v0++) {
             const u8 v4[4] = { 1, 2, 4, 5 };
 
-            sub_020183C4(*param0, v4[v0], &(v3[v0]), 0);
-            sub_02019EBC(*param0, v4[v0]);
-            sub_02019690(v4[v0], 32, 0, param1);
+            Bg_InitFromTemplate(*param0, v4[v0], &(v3[v0]), 0);
+            Bg_ClearTilemap(*param0, v4[v0]);
+            Bg_ClearTilesRange(v4[v0], 32, 0, param1);
         }
     }
 }
 
-static void ov83_0223CCCC(BGL **param0)
+static void ov83_0223CCCC(BgConfig **param0)
 {
-    sub_02019044(*param0, 5);
-    sub_02019044(*param0, 4);
-    sub_02019044(*param0, 2);
-    sub_02019044(*param0, 1);
+    Bg_FreeTilemapBuffer(*param0, 5);
+    Bg_FreeTilemapBuffer(*param0, 4);
+    Bg_FreeTilemapBuffer(*param0, 2);
+    Bg_FreeTilemapBuffer(*param0, 1);
     Heap_FreeToHeap(*param0);
 }
 

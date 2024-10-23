@@ -1,9 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV81_021D1610_H
 #define POKEPLATINUM_STRUCT_OV81_021D1610_H
 
-#include "struct_decls/struct_02018340_decl.h"
-#include "struct_defs/struct_0205AA50.h"
-
+#include "bg_window.h"
 #include "journal.h"
 #include "message.h"
 #include "savedata.h"
@@ -12,7 +10,7 @@
 #include "trainer_info.h"
 
 typedef struct {
-    BGL *unk_00;
+    BgConfig *unk_00;
     Window unk_04[4];
     Journal *unk_44;
     TrainerInfo *unk_48;

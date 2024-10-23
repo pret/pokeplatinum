@@ -5,8 +5,8 @@
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 
+#include "bg_window.h"
 #include "enums.h"
 #include "heap.h"
 #include "narc.h"
@@ -14,11 +14,10 @@
 #include "sys_task_manager.h"
 #include "unk_02002F38.h"
 #include "unk_02006E3C.h"
-#include "unk_02018340.h"
 
 typedef struct {
     SysTask *unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     u16 unk_08[2][2048];
     u8 unk_2008[2][65536];
     u8 unk_22008;
@@ -36,7 +35,7 @@ typedef struct {
 typedef struct {
     SysTask *unk_00;
     SysTask *unk_04;
-    BGL *unk_08;
+    BgConfig *unk_08;
     int unk_0C;
     int unk_10;
     int unk_14;
@@ -51,7 +50,7 @@ typedef struct UnkStruct_ov104_0223DA28_t {
     UnkStruct_ov104_0223DA28_sub1 *unk_08;
 } UnkStruct_ov104_0223DA28;
 
-static UnkStruct_ov104_0223DB34 *ov104_0223DA40(BGL *param0);
+static UnkStruct_ov104_0223DB34 *ov104_0223DA40(BgConfig *param0);
 static void ov104_0223DB34(UnkStruct_ov104_0223DB34 *param0);
 static void ov104_0223DB48(SysTask *param0, void *param1);
 static UnkStruct_ov104_0223DC04 *ov104_0223DBB8(PaletteData *param0);
@@ -63,7 +62,7 @@ static const u16 Unk_ov104_022418B0[] = {
     0x15
 };
 
-UnkStruct_ov104_0223DA28 *ov104_0223D9E4(BGL *param0, PaletteData *param1)
+UnkStruct_ov104_0223DA28 *ov104_0223D9E4(BgConfig *param0, PaletteData *param1)
 {
     UnkStruct_ov104_0223DA28 *v0;
 
@@ -85,7 +84,7 @@ void ov104_0223DA28(UnkStruct_ov104_0223DA28 *param0)
     Heap_FreeToHeap(param0);
 }
 
-static UnkStruct_ov104_0223DB34 *ov104_0223DA40(BGL *param0)
+static UnkStruct_ov104_0223DB34 *ov104_0223DA40(BgConfig *param0)
 {
     UnkStruct_ov104_0223DB34 *v0;
 
@@ -155,11 +154,11 @@ static void ov104_0223DB48(SysTask *param0, void *param1)
     v1->unk_22008 = 0;
 
     {
-        sub_0201958C(v1->unk_04, 3, v1->unk_2008[v1->unk_22009], 0x10000, 0);
+        Bg_LoadTiles(v1->unk_04, 3, v1->unk_2008[v1->unk_22009], 0x10000, 0);
     }
 
-    sub_02019574(v1->unk_04, 3, v1->unk_08[v1->unk_22009], 0x1000);
-    sub_0201C3C0(v1->unk_04, 3);
+    Bg_LoadTilemapBuffer(v1->unk_04, 3, v1->unk_08[v1->unk_22009], 0x1000);
+    Bg_ScheduleTilemapTransfer(v1->unk_04, 3);
 
     v1->unk_22009 ^= 1;
 }

@@ -8,7 +8,6 @@
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021DFB54.h"
@@ -17,6 +16,7 @@
 #include "overlay006/ov6_02240C9C.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
+#include "bg_window.h"
 #include "core_sys.h"
 #include "game_records.h"
 #include "heap.h"
@@ -32,7 +32,6 @@
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_020508D4.h"
 #include "unk_02050A74.h"
@@ -544,7 +543,7 @@ static int ov5_021F0E24(UnkStruct_ov5_021F0D6C *param0)
 {
     if ((FieldMessage_FinishedPrinting(param0->unk_28) == 1) && (ov5_021F0D54() == 1)) {
         sub_0200E084(&param0->window, 0);
-        BGL_DeleteWindow(&param0->window);
+        Window_Remove(&param0->window);
         return 1;
     }
 

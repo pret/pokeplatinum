@@ -3,7 +3,6 @@
 
 #include "struct_decls/struct_0202F41C_decl.h"
 #include "struct_decls/struct_02030A80_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0208B878.h"
 #include "struct_defs/struct_0208BA84.h"
 #include "struct_defs/struct_0208C06C_sub1.h"
@@ -16,6 +15,7 @@
 #include "overlay062/struct_ov62_02233750.h"
 #include "overlay062/struct_ov62_02233828.h"
 
+#include "bg_window.h"
 #include "savedata.h"
 #include "sys_task_manager.h"
 

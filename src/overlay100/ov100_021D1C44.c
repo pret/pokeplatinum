@@ -7,7 +7,6 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/sprite_template.h"
 
 #include "overlay100/ov100_021D400C.h"
@@ -19,6 +18,7 @@
 #include "overlay100/struct_ov100_021D54D0.h"
 #include "overlay115/camera_angle.h"
 
+#include "bg_window.h"
 #include "camera.h"
 #include "easy3d_object.h"
 #include "heap.h"
@@ -73,7 +73,7 @@ static void ov100_021D1C44(Camera *camera, VecFx32 *param1)
 static void ov100_021D1C98(UnkStruct_ov100_021D1C98 *param0)
 {
     NARC *v0 = param0->unk_1EBC->unk_00;
-    BGL *v1 = param0->unk_1EBC->unk_0C;
+    BgConfig *v1 = param0->unk_1EBC->unk_0C;
     SpriteRenderer *v2 = param0->unk_1EBC->unk_04;
     SpriteGfxHandler *v3 = param0->unk_1EBC->unk_08;
     PaletteData *v4 = param0->unk_1EBC->unk_10;
@@ -197,7 +197,7 @@ static void ov100_021D2250(UnkStruct_ov100_021D1C98 *param0)
 {
     int v0;
     NARC *v1 = param0->unk_1EBC->unk_00;
-    BGL *v2 = param0->unk_1EBC->unk_0C;
+    BgConfig *v2 = param0->unk_1EBC->unk_0C;
     SpriteRenderer *v3 = param0->unk_1EBC->unk_04;
     SpriteGfxHandler *v4 = param0->unk_1EBC->unk_08;
     PaletteData *v5 = param0->unk_1EBC->unk_10;

@@ -10,13 +10,12 @@
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "field/field_system.h"
 #include "gmm/message_bank_unk_0353.h"
-#include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_02240FA8.h"
 
+#include "bg_window.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "core_sys.h"
@@ -37,7 +36,6 @@
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
-#include "unk_02018340.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
@@ -144,7 +142,7 @@ static int CommClubMan_Regulation(void);
 
 static CommClubManager *sCommClubMan = NULL;
 
-static const UnkStruct_ov61_0222C884 Unk_ov7_0224ED0C = {
+static const WindowTemplate Unk_ov7_0224ED0C = {
     0x3,
     0x19,
     0xD,
@@ -167,7 +165,7 @@ static void CommClubMan_PrintMessage(int msgId, BOOL format)
         MessageLoader_GetStrbuf(sCommClubMan->msgLoader, msgId, sCommClubMan->strBuff[5]);
     }
 
-    if (!BGL_WindowAdded(&sCommClubMan->msgWindow)) {
+    if (!Window_IsInUse(&sCommClubMan->msgWindow)) {
         FieldMessage_AddWindow(sCommClubMan->fieldSystem->unk_08, &sCommClubMan->msgWindow, 3);
     }
 
@@ -188,7 +186,7 @@ static inline void CommClubMan_PrintMessageFastSpeed(int msgId, BOOL format)
         MessageLoader_GetStrbuf(sCommClubMan->msgLoader, msgId, sCommClubMan->strBuff[5]);
     }
 
-    if (!BGL_WindowAdded(&sCommClubMan->msgWindow)) {
+    if (!Window_IsInUse(&sCommClubMan->msgWindow)) {
         FieldMessage_AddWindow(sCommClubMan->fieldSystem->unk_08, &sCommClubMan->msgWindow, 3);
     }
 
@@ -201,8 +199,8 @@ static inline void CommClubMan_PrintMessageFastSpeed(int msgId, BOOL format)
 
 static void CommClubMan_CreateList(UnkStruct_ov84_02240FA8 param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 param5)
 {
-    if (!BGL_WindowAdded(&sCommClubMan->unk_20)) {
-        BGL_AddWindow(sCommClubMan->fieldSystem->unk_08, &sCommClubMan->unk_20, 3, param1, param2, param3, param4, 13, param5);
+    if (!Window_IsInUse(&sCommClubMan->unk_20)) {
+        Window_Add(sCommClubMan->fieldSystem->unk_08, &sCommClubMan->unk_20, 3, param1, param2, param3, param4, 13, param5);
     }
 
     Window_Show(&sCommClubMan->unk_20, 1, 1024 - (18 + 12) - 9, 11);
@@ -212,7 +210,7 @@ static void CommClubMan_CreateList(UnkStruct_ov84_02240FA8 param0, u8 param1, u8
     v0.unk_0C = &sCommClubMan->unk_20;
 
     sCommClubMan->unk_5C = sub_0200112C(&v0, 0, 0, 4);
-    sub_0201A954(&sCommClubMan->unk_20);
+    Window_CopyToVRAM(&sCommClubMan->unk_20);
 }
 
 static void CommClubMan_Init(FieldSystem *fieldSystem)
@@ -274,8 +272,8 @@ static void CommClubMan_Delete(void)
 
     MessageLoader_Free(sCommClubMan->msgLoader);
 
-    if (sCommClubMan->msgWindow.unk_0C != NULL) {
-        BGL_DeleteWindow(&sCommClubMan->msgWindow);
+    if (sCommClubMan->msgWindow.pixels != NULL) {
+        Window_Remove(&sCommClubMan->msgWindow);
     }
 
     Heap_FreeToHeap(sCommClubMan);
@@ -336,7 +334,7 @@ static void ov7_02249C94(BmpList *param0, u32 param1, u8 param2)
 
     cnt += param2;
 
-    BGL_WindowColor(&sCommClubMan->unk_20, 15, 8, param2 * 16, sub_0201C294(&sCommClubMan->unk_20) * 8 - 8, 16);
+    Window_FillRectWithColor(&sCommClubMan->unk_20, 15, 8, param2 * 16, Window_GetWidth(&sCommClubMan->unk_20) * 8 - 8, 16);
 
     if (cnt < v0) {
         sub_020339AC(cnt, sCommClubMan->unk_7C);
@@ -365,13 +363,13 @@ static void ov7_02249C94(BmpList *param0, u32 param1, u8 param2)
 
 static void CommClubMan_PrintChooseJoinMsg(CommClubManager *param0)
 {
-    if (!BGL_WindowAdded(&sCommClubMan->unk_30)) {
-        BGL_AddWindow(sCommClubMan->fieldSystem->unk_08, &sCommClubMan->unk_30, 3, 23, 2, 8, 4, 13, (1 + 20 * 5 * 2));
+    if (!Window_IsInUse(&sCommClubMan->unk_30)) {
+        Window_Add(sCommClubMan->fieldSystem->unk_08, &sCommClubMan->unk_30, 3, 23, 2, 8, 4, 13, (1 + 20 * 5 * 2));
     }
 
     Window_Show(&sCommClubMan->unk_30, 1, 1024 - (18 + 12) - 9, 11);
-    BGL_FillWindow(&sCommClubMan->unk_30, 15);
-    sub_0201A954(&sCommClubMan->unk_30);
+    Window_FillTilemap(&sCommClubMan->unk_30, 15);
+    Window_CopyToVRAM(&sCommClubMan->unk_30);
 
     param0->unk_97 = 1;
 
@@ -502,9 +500,9 @@ static void ov7_0224A0C8(CommClubManager *commClubMan)
     if (sub_02033870() || sCommClubMan->unk_98) {
         sCommClubMan->unk_98 = 0;
         sub_02033884();
-        BGL_WindowColor(&sCommClubMan->unk_20, 15, 8, 0, 20 - 8, (5 * 2) * 8);
+        Window_FillRectWithColor(&sCommClubMan->unk_20, 15, 8, 0, 20 - 8, (5 * 2) * 8);
         ov7_02249C64(sCommClubMan->unk_5C, 0, 0);
-        sub_0201A954(&sCommClubMan->unk_20);
+        Window_CopyToVRAM(&sCommClubMan->unk_20);
     }
 }
 
@@ -696,13 +694,13 @@ static void ov7_0224A53C(CommClubManager *man)
     SysTask_Start(CommClubMan_Run, man, 0);
     ov7_0224A5D0();
 
-    if (!BGL_WindowAdded(&sCommClubMan->unk_30)) {
-        BGL_AddWindow(sCommClubMan->fieldSystem->unk_08, &sCommClubMan->unk_30, 3, 22, 2, 9, 4, 13, (1 + 17 * 6 * 2));
+    if (!Window_IsInUse(&sCommClubMan->unk_30)) {
+        Window_Add(sCommClubMan->fieldSystem->unk_08, &sCommClubMan->unk_30, 3, 22, 2, 9, 4, 13, (1 + 17 * 6 * 2));
     }
 
     Window_Show(&sCommClubMan->unk_30, 1, 1024 - (18 + 12) - 9, 11);
-    BGL_FillWindow(&sCommClubMan->unk_30, 15);
-    sub_0201A954(&sCommClubMan->unk_30);
+    Window_FillTilemap(&sCommClubMan->unk_30, 15);
+    Window_CopyToVRAM(&sCommClubMan->unk_30);
 
     man->unk_97 = 1;
 
@@ -776,7 +774,7 @@ static void ov7_0224A64C(CommClubManager *commClubMan)
     }
 
     StringTemplate_SetNumber(sCommClubMan->unk_54, 0, playerCnt, 2, 5, 1);
-    BGL_FillWindow(&sCommClubMan->unk_30, 15);
+    Window_FillTilemap(&sCommClubMan->unk_30, 15);
 
     MessageLoader_GetStrbuf(sCommClubMan->msgLoader, msg, sCommClubMan->strBuff[7]);
     StringTemplate_Format(sCommClubMan->unk_54, sCommClubMan->strBuff[6], sCommClubMan->strBuff[7]);
@@ -1376,17 +1374,17 @@ static void ov7_0224AF84(SysTask *task, void *param1)
 
 static void CommClubMan_DestroyList(SysTask *task, CommClubManager *param1)
 {
-    BGL_FillWindow(&sCommClubMan->msgWindow, 15);
+    Window_FillTilemap(&sCommClubMan->msgWindow, 15);
     Window_Clear(&param1->unk_20, 0);
     sub_02013A3C(param1->unk_64);
     sub_02001384(param1->unk_5C, NULL, NULL);
-    sub_0201ACF4(&param1->unk_20);
-    BGL_DeleteWindow(&param1->unk_20);
+    Window_ClearAndCopyToVRAM(&param1->unk_20);
+    Window_Remove(&param1->unk_20);
 
     if (param1->unk_97) {
         Window_Clear(&sCommClubMan->unk_30, 0);
-        sub_0201ACF4(&sCommClubMan->unk_30);
-        BGL_DeleteWindow(&sCommClubMan->unk_30);
+        Window_ClearAndCopyToVRAM(&sCommClubMan->unk_30);
+        Window_Remove(&sCommClubMan->unk_30);
         param1->unk_97 = 0;
     }
 

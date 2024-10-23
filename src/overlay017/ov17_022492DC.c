@@ -7,16 +7,14 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/sprite_manager_allocation.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02095C48.h"
 
 #include "overlay017/struct_ov17_0224A1EC.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
 #include "core_sys.h"
 #include "font.h"
 #include "heap.h"
@@ -30,7 +28,6 @@
 #include "unk_02006E3C.h"
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
-#include "unk_02018340.h"
 #include "unk_0201E86C.h"
 #include "unk_02094EDC.h"
 
@@ -154,7 +151,7 @@ static void ov17_0224981C(UnkStruct_ov17_022492DC *param0, int param1, int param
 static void ov17_022493DC(UnkStruct_ov17_022492DC *param0);
 static void ov17_022495F8(UnkStruct_ov17_022492DC *param0);
 
-static const UnkStruct_ov97_0222DB78 Unk_ov17_022545C0[] = {
+static const BgTemplate Unk_ov17_022545C0[] = {
     {
         0x0,
         0x0,
@@ -287,25 +284,25 @@ static void *ov17_022492DC(void)
     return v0;
 }
 
-void ov17_02249300(BGL *param0)
+void ov17_02249300(BgConfig *param0)
 {
     int v0;
 
     for (v0 = 0; v0 < NELEMS(Unk_ov17_022545C0); v0++) {
-        sub_020183C4(param0, 4 + v0, &Unk_ov17_022545C0[v0], 0);
-        sub_02019EE0(param0, 4 + v0, 0);
-        sub_02019184(param0, 4 + v0, 0, 0);
-        sub_02019184(param0, 4 + v0, 3, 0);
+        Bg_InitFromTemplate(param0, 4 + v0, &Unk_ov17_022545C0[v0], 0);
+        Bg_FillTilemap(param0, 4 + v0, 0);
+        Bg_SetOffset(param0, 4 + v0, 0, 0);
+        Bg_SetOffset(param0, 4 + v0, 3, 0);
     }
 }
 
-void ov17_02249358(BGL *param0)
+void ov17_02249358(BgConfig *param0)
 {
     int v0;
 
     for (v0 = 0; v0 < NELEMS(Unk_ov17_022545C0); v0++) {
-        sub_02019120(4 + v0, 0);
-        sub_02019044(param0, 4 + v0);
+        Bg_ToggleLayer(4 + v0, 0);
+        Bg_FreeTilemapBuffer(param0, 4 + v0);
     }
 }
 
@@ -412,7 +409,7 @@ void ov17_02249640(UnkStruct_ov17_022492DC *param0, int param1, int param2, void
 {
     const UnkStruct_ov17_02254578 *v0, *v1;
     int v2;
-    BGL *v3;
+    BgConfig *v3;
     SpriteRenderer *v4;
     SpriteGfxHandler *v5;
 
@@ -433,7 +430,7 @@ void ov17_02249640(UnkStruct_ov17_022492DC *param0, int param1, int param2, void
 
     {
         for (v2 = 0; v2 < 4; v2++) {
-            BGL_SetPriority(4 + v2, v0->unk_0C_val2[v2]);
+            Bg_SetPriority(4 + v2, v0->unk_0C_val2[v2]);
         }
     }
 
@@ -448,8 +445,8 @@ void ov17_02249640(UnkStruct_ov17_022492DC *param0, int param1, int param2, void
 
     for (v2 = 0; v2 < 4; v2++) {
         if ((v0->unk_04_val2[v2] != 0xffff) && ((param2 == 1) || (v0->unk_04_val2[v2] != v1->unk_04_val2[v2]))) {
-            sub_02019574(v3, 4 + v2, param0->unk_D0[v0->unk_04_val2[v2]], 0x800);
-            sub_0201C3C0(v3, 4 + v2);
+            Bg_LoadTilemapBuffer(v3, 4 + v2, param0->unk_D0[v0->unk_04_val2[v2]], 0x800);
+            Bg_ScheduleTilemapTransfer(v3, 4 + v2);
         }
     }
 
@@ -629,7 +626,7 @@ static UnkStruct_ov17_02249B30 *ov17_02249AAC(UnkStruct_ov17_022492DC *param0, i
 
     v0->unk_1C = param5 * 0x20;
     v0->unk_10 = *param4;
-    v0->unk_04 = sub_02019F28(param1);
+    v0->unk_04 = Bg_GetCharPtr(param1);
 
     return v0;
 }
@@ -683,7 +680,7 @@ static void ov17_02249BC4(UnkStruct_ov17_022492DC *param0, UnkStruct_ov17_02249B
     SpriteManagerAllocation v2;
     int v3;
     FontOAM *v4;
-    BGL *v5;
+    BgConfig *v5;
     SpriteGfxHandler *v6;
     int v7, v8;
 
@@ -703,7 +700,7 @@ static void ov17_02249BC4(UnkStruct_ov17_022492DC *param0, UnkStruct_ov17_02249B
 
     {
         Window_Init(&v1);
-        BGL_AddFramelessWindow(v5, &v1, v8, 16 / 8, 0, 0);
+        Window_AddToTopLeftCorner(v5, &v1, v8, 16 / 8, 0, 0);
         Text_AddPrinterWithParamsColorAndSpacing(&v1, param3, param2, 0, 0, TEXT_SPEED_NO_TRANSFER, param4, 0, 0, NULL);
     }
 
@@ -733,7 +730,7 @@ static void ov17_02249BC4(UnkStruct_ov17_022492DC *param0, UnkStruct_ov17_02249B
 
     sub_02012AC0(v4, param5);
     sub_020128C4(v4, param7, param8);
-    BGL_DeleteWindow(&v1);
+    Window_Remove(&v1);
 
     param1->unk_00 = v4;
     param1->unk_04 = v2;
@@ -810,7 +807,7 @@ static void ov17_02249D80(UnkStruct_ov17_022492DC *param0)
 static void ov17_02249DA0(SysTask *param0, void *param1)
 {
     UnkStruct_ov17_022492DC *v0 = param1;
-    BGL *v1;
+    BgConfig *v1;
     int v2, v3;
     int v4;
 
@@ -920,9 +917,9 @@ static void ov17_0224A038(SysTask *param0, void *param1)
 
     for (v2 = 0; v2 < 4; v2++) {
         if (v1->unk_04_val2[v2] == 0xffff) {
-            sub_02019120(4 + v2, 0);
+            Bg_ToggleLayer(4 + v2, 0);
         } else {
-            sub_02019120(4 + v2, 1);
+            Bg_ToggleLayer(4 + v2, 1);
         }
     }
 
@@ -934,7 +931,7 @@ static void ov17_0224A088(SysTask *param0, void *param1)
     UnkStruct_ov17_022492DC *v0 = param1;
 
     if (v0->unk_88 != 0xffff) {
-        sub_0201958C(v0->unk_04->unk_60, 4, v0->unk_C4[v0->unk_88], (0x8000 - (0x800 * 4)), 0);
+        Bg_LoadTiles(v0->unk_04->unk_60, 4, v0->unk_C4[v0->unk_88], (0x8000 - (0x800 * 4)), 0);
         v0->unk_88 = 0xffff;
     }
 

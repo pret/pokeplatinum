@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029C88_decl.h"
 #include "struct_decls/struct_0202A138_decl.h"
@@ -26,12 +25,12 @@
 #include "overlay022/struct_ov22_0225AF8C.h"
 #include "overlay022/struct_ov22_0225B388.h"
 
+#include "bg_window.h"
 #include "heap.h"
 #include "narc.h"
 #include "pokemon.h"
 #include "resource_collection.h"
 #include "unk_02006E3C.h"
-#include "unk_02018340.h"
 #include "unk_020298BC.h"
 
 typedef struct UnkStruct_ov22_0225B1BC_t {
@@ -57,7 +56,7 @@ typedef struct {
     const UnkStruct_0202A138 *unk_00;
     const UnkStruct_0202A150 *unk_04[20];
     int unk_54;
-    BGL *unk_58;
+    BgConfig *unk_58;
     int unk_5C;
     int unk_60;
     int unk_64;
@@ -159,8 +158,8 @@ void ov22_0225B080(UnkStruct_ov22_0225B1BC *param0, int param1, int param2)
     ov22_02257AD8(&param0->unk_1F4, param0->unk_2A0, param0->unk_2A4, param1, param2);
 
     if (param0->unk_2C4) {
-        sub_02019184(param0->unk_00.unk_40, 2, 0, 136 - param1);
-        sub_02019184(param0->unk_00.unk_40, 2, 3, 16 - param2);
+        Bg_SetOffset(param0->unk_00.unk_40, 2, 0, 136 - param1);
+        Bg_SetOffset(param0->unk_00.unk_40, 2, 3, 16 - param2);
     }
 
     param0->unk_2A0 = param1;

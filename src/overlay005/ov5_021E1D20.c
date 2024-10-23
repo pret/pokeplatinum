@@ -4,14 +4,13 @@
 #include <string.h>
 
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_02049FA8.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021EA714.h"
 #include "overlay005/struct_ov5_021E1FF4_decl.h"
 
+#include "bg_window.h"
 #include "field_overworld_state.h"
 #include "font.h"
 #include "heap.h"
@@ -27,7 +26,6 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_0200DA60.h"
-#include "unk_02018340.h"
 #include "unk_0202631C.h"
 #include "unk_020366A0.h"
 
@@ -42,7 +40,7 @@ struct UnkStruct_ov5_021E1FF4_t {
     FieldSystem *fieldSystem;
     int unk_04;
     u8 unk_08;
-    BGL *unk_0C;
+    BgConfig *unk_0C;
     Window *unk_10;
     StringTemplate *unk_14;
     MessageLoader *unk_18;
@@ -169,9 +167,9 @@ void ov5_021E1F04(UnkStruct_ov5_021E1FF4 *param0)
 {
     param0->unk_10 = Heap_AllocFromHeap(param0->unk_04, sizeof(Window));
 
-    BGL_AddWindow(param0->unk_0C, param0->unk_10, param0->unk_08, 1, 1, param0->unk_2C, param0->unk_30, 13, 393);
+    Window_Add(param0->unk_0C, param0->unk_10, param0->unk_08, 1, 1, param0->unk_2C, param0->unk_30, 13, 393);
     sub_0200DAA4(param0->unk_0C, param0->unk_08, 985, 11, 0, param0->unk_04);
-    BGL_FillWindow(param0->unk_10, Font_GetAttribute(FONT_SYSTEM, FONTATTR_BG_COLOR));
+    Window_FillTilemap(param0->unk_10, Font_GetAttribute(FONT_SYSTEM, FONTATTR_BG_COLOR));
 
     ov5_021E1E20(param0);
     Window_Show(param0->unk_10, 0, 985, 11);
@@ -180,7 +178,7 @@ void ov5_021E1F04(UnkStruct_ov5_021E1FF4 *param0)
 void ov5_021E1F7C(UnkStruct_ov5_021E1FF4 *param0)
 {
     Window_Clear(param0->unk_10, 0);
-    BGL_DeleteWindow(param0->unk_10);
+    Window_Remove(param0->unk_10);
     Heap_FreeToHeap(param0->unk_10);
 }
 

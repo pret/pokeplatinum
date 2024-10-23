@@ -8,11 +8,9 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02089688.h"
 #include "struct_defs/struct_0208AF44.h"
 
@@ -20,6 +18,7 @@
 #include "overlay104/struct_ov104_02241308.h"
 #include "overlay104/struct_ov104_0224133C.h"
 
+#include "bg_window.h"
 #include "font.h"
 #include "game_options.h"
 #include "inlines.h"
@@ -31,7 +30,6 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
 #include "unk_02012744.h"
-#include "unk_02018340.h"
 #include "unk_0201E86C.h"
 
 void sub_0208A3F4 (UnkStruct_02089688 * param0)
@@ -67,7 +65,7 @@ void sub_0208A3F4 (UnkStruct_02089688 * param0)
 void sub_0208A490 (UnkStruct_02089688 * param0)
 {
     NARC * v0;
-    BGL * v1;
+    BgConfig *v1;
     SpriteRenderer * v2;
     SpriteGfxHandler * v3;
     PaletteData * v4;
@@ -131,7 +129,7 @@ void sub_0208A6CC (UnkStruct_02089688 * param0)
     }
 
     sub_0208AFE8(param0);
-    BGL_DeleteWindow(&param0->unk_2C0.unk_B0);
+    Window_Remove(&param0->unk_2C0.unk_B0);
 }
 
 extern void _u32_div_f(void);
@@ -712,7 +710,7 @@ void sub_0208B090 (UnkStruct_02089688 * param0, int param1, int param2, int para
 
     {
         Window_Init(&v7);
-        BGL_AddFramelessWindow(param0->unk_2C0.unk_0C, &v7, 10, 2, 0, 0);
+        Window_AddToTopLeftCorner(param0->unk_2C0.unk_0C, &v7, 10, 2, 0, 0);
         Text_AddPrinterWithParamsAndColor(&v7, FONT_SUBSCREEN, v3, Font_CalcCenterAlignment(FONT_SUBSCREEN, v3, 0, 80), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 2), NULL);
     }
 
@@ -744,16 +742,16 @@ void sub_0208B090 (UnkStruct_02089688 * param0, int param1, int param2, int para
     sub_02012AC0(param0->unk_2C0.unk_90[param1], param4);
     Strbuf_Free(v3);
     MessageLoader_Free(v6);
-    BGL_DeleteWindow(&v7);
+    Window_Remove(&v7);
 }
 
-void sub_0208B1C4 (BGL * param0, Window * param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8)
+void sub_0208B1C4(BgConfig *param0, Window *param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8)
 {
     Window_Init(param1);
-    BGL_AddWindow(param0, param1, param2, param3, param4, param5, param6, 12, param7);
+    Window_Add(param0, param1, param2, param3, param4, param5, param6, 12, param7);
     sub_0200E060(param1, 1, 1, 11);
-    BGL_FillWindow(param1, 15);
-    sub_0201A954(param1);
+    Window_FillTilemap(param1, 15);
+    Window_CopyToVRAM(param1);
     sub_0208B230(param1, param8);
 }
 
@@ -762,14 +760,14 @@ void sub_0208B230 (Window * param0, int param1)
     MessageLoader * v0;
     Strbuf* v1;
 
-    BGL_FillWindow(param0, 15);
+    Window_FillTilemap(param0, 15);
 
     v0 = MessageLoader_Init(0, 26, 212, 101);
     v1 = MessageLoader_GetNewStrbuf(v0, param1);
 
-    BGL_FillWindow(param0, 15);
+    Window_FillTilemap(param0, 15);
     Text_AddPrinterWithParams(param0, FONT_MESSAGE, v1, 0, 0, TEXT_SPEED_INSTANT, NULL);
-    sub_0201A954(param0);
+    Window_CopyToVRAM(param0);
 
     Strbuf_Free(v1);
     MessageLoader_Free(v0);

@@ -5,7 +5,6 @@
 
 #include "constants/field/map_load.h"
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0203CC84.h"
 
 #include "field/field_system_sub1_decl.h"
@@ -20,6 +19,7 @@
 #include "overlay077/const_ov77_021D742C.h"
 
 #include "bag.h"
+#include "bg_window.h"
 #include "comm_player_manager.h"
 #include "communication_system.h"
 #include "core_sys.h"
@@ -376,7 +376,7 @@ struct PoketchSystem *FieldSystem_GetPoketchSystem(void)
     return sFieldSystem->unk_04->poketchSys;
 }
 
-BGL *sub_0203D170(void *param0)
+BgConfig *sub_0203D170(void *param0)
 {
     FieldSystem *fieldSystem = (FieldSystem *)param0;
     return fieldSystem->unk_08;

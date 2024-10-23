@@ -1,10 +1,9 @@
 #ifndef POKEPLATINUM_OV94_0223C610_H
 #define POKEPLATINUM_OV94_0223C610_H
 
-#include "struct_defs/struct_0205AA50.h"
-
 #include "overlay094/struct_ov94_0223FD4C_decl.h"
 
+#include "bg_window.h"
 #include "message.h"
 
 int ov94_0223C610(UnkStruct_ov94_0223FD4C *param0, int param1);

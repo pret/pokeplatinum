@@ -6,7 +6,6 @@
 
 #include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 
 #include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D22F8.h"
@@ -16,6 +15,7 @@
 #include "overlay021/struct_ov21_021D4CB8.h"
 #include "overlay021/struct_ov21_021D4EE4_decl.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "sprite_resource.h"
 
@@ -57,7 +57,7 @@ void ov21_021D2648(UnkStruct_ov21_021D2648 *param0, int param1, int param2, int 
 BOOL ov21_021D2664(UnkStruct_ov21_021D2648 *param0);
 NARC *ov21_021D26E0(UnkStruct_ov21_021D13FC *param0);
 void *ov21_021D26E8(UnkStruct_ov21_021D13FC *param0, u32 param1, BOOL param2, u32 param3);
-u32 ov21_021D2724(UnkStruct_ov21_021D13FC *param0, u32 param1, BGL *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7);
+u32 ov21_021D2724(UnkStruct_ov21_021D13FC *param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7);
 void ov21_021D276C(UnkStruct_ov21_021D13FC *param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5);
 void *ov21_021D27B8(UnkStruct_ov21_021D13FC *param0, u32 param1, BOOL param2, NNSG2dScreenData **param3, u32 param4);
 void *ov21_021D27E0(UnkStruct_ov21_021D13FC *param0, u32 param1, NNSG2dPaletteData **param2, u32 param3);

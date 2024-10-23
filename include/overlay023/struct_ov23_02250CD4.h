@@ -5,7 +5,6 @@
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0206A844.h"
 
 #include "field/field_system_decl.h"
@@ -17,6 +16,7 @@
 #include "overlay023/funcptr_ov23_022515D8.h"
 #include "overlay023/struct_ov23_02248D20.h"
 
+#include "bg_window.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"

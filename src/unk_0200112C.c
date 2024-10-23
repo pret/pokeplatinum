@@ -9,12 +9,12 @@
 
 #include "overlay084/struct_ov84_02240FA8.h"
 
+#include "bg_window.h"
 #include "colored_arrow.h"
 #include "core_sys.h"
 #include "font.h"
 #include "heap.h"
 #include "text.h"
-#include "unk_02018340.h"
 
 typedef struct {
     u8 unk_00_0 : 4;
@@ -74,11 +74,11 @@ BmpList *sub_0200112C(const UnkStruct_ov84_02240FA8 *param0, u16 param1, u16 par
     }
 
     ColoredArrow_SetColor(v0->unk_24, TEXT_COLOR(v0->unk_00.unk_17_4, v0->unk_00.unk_18_4, v0->unk_00.unk_18_0));
-    BGL_FillWindow(v0->unk_00.unk_0C, v0->unk_00.unk_18_0);
+    Window_FillTilemap(v0->unk_00.unk_0C, v0->unk_00.unk_18_0);
     sub_02001688(v0, v0->unk_28, 0, v0->unk_00.unk_12);
     sub_02001720(v0);
     sub_02001AD8(v0, 1);
-    sub_0201A954(param0->unk_0C);
+    Window_CopyToVRAM(param0->unk_0C);
 
     return v0;
 }
@@ -164,10 +164,10 @@ void sub_02001384(BmpList *param0, u16 *param1, u16 *param2)
 
 void sub_020013AC(BmpList *param0)
 {
-    BGL_FillWindow(param0->unk_00.unk_0C, param0->unk_00.unk_18_0);
+    Window_FillTilemap(param0->unk_00.unk_0C, param0->unk_00.unk_18_0);
     sub_02001688(param0, param0->unk_28, 0, param0->unk_00.unk_12);
     sub_02001720(param0);
-    sub_0201A954(param0->unk_00.unk_0C);
+    Window_CopyToVRAM(param0->unk_00.unk_0C);
 }
 
 void sub_020013D8(BmpList *param0, u8 param1, u8 param2, u8 param3)
@@ -379,7 +379,7 @@ static void sub_02001778(BmpList *param0, u16 param1)
     switch (param0->unk_00.unk_1A_15) {
     case 0:
         v0 = Font_GetAttribute(param0->unk_00.unk_1A_9, 1) + param0->unk_00.unk_1A_3;
-        BGL_WindowColor(param0->unk_00.unk_0C, (u8)param0->unk_00.unk_18_0, param0->unk_00.unk_16, (u16)(param1 * v0 + param0->unk_00.unk_17_0), 8, 16);
+        Window_FillRectWithColor(param0->unk_00.unk_0C, (u8)param0->unk_00.unk_18_0, param0->unk_00.unk_16, (u16)(param1 * v0 + param0->unk_00.unk_17_0), 8, 16);
         break;
     case 1:
     case 2:
@@ -472,7 +472,7 @@ static void sub_02001900(BmpList *param0, u8 param1, u8 param2)
     u16 v1;
 
     if (param1 >= param0->unk_00.unk_12) {
-        BGL_FillWindow(param0->unk_00.unk_0C, param0->unk_00.unk_18_0);
+        Window_FillTilemap(param0->unk_00.unk_0C, param0->unk_00.unk_18_0);
         sub_02001688(param0, param0->unk_28, 0, param0->unk_00.unk_12);
         return;
     }
@@ -480,16 +480,16 @@ static void sub_02001900(BmpList *param0, u8 param1, u8 param2)
     v0 = Font_GetAttribute(param0->unk_00.unk_1A_9, 1) + param0->unk_00.unk_1A_3;
 
     if (param2 == 0) {
-        sub_0201C04C(param0->unk_00.unk_0C, 1, (u8)(param1 * v0), (u8)((param0->unk_00.unk_18_0 << 4) | param0->unk_00.unk_18_0));
+        Window_Scroll(param0->unk_00.unk_0C, 1, (u8)(param1 * v0), (u8)((param0->unk_00.unk_18_0 << 4) | param0->unk_00.unk_18_0));
         sub_02001688(param0, param0->unk_28, 0, param1);
 
         v1 = (u16)(param0->unk_00.unk_12 * v0 + param0->unk_00.unk_17_0);
 
-        BGL_WindowColor(param0->unk_00.unk_0C, (u8)param0->unk_00.unk_18_0, 0, v1, (u16)(sub_0201C294(param0->unk_00.unk_0C) * 8), (u16)(sub_0201C298(param0->unk_00.unk_0C) * 8 - v1));
+        Window_FillRectWithColor(param0->unk_00.unk_0C, (u8)param0->unk_00.unk_18_0, 0, v1, (u16)(Window_GetWidth(param0->unk_00.unk_0C) * 8), (u16)(Window_GetHeight(param0->unk_00.unk_0C) * 8 - v1));
     } else {
-        sub_0201C04C(param0->unk_00.unk_0C, 0, (u8)(param1 * v0), (u8)((param0->unk_00.unk_18_0 << 4) | param0->unk_00.unk_18_0));
+        Window_Scroll(param0->unk_00.unk_0C, 0, (u8)(param1 * v0), (u8)((param0->unk_00.unk_18_0 << 4) | param0->unk_00.unk_18_0));
         sub_02001688(param0, (u16)(param0->unk_28 + (param0->unk_00.unk_12 - param1)), (u16)(param0->unk_00.unk_12 - param1), (u16)param1);
-        BGL_WindowColor(param0->unk_00.unk_0C, (u8)param0->unk_00.unk_18_0, 0, 0, (u16)(sub_0201C294(param0->unk_00.unk_0C) * 8), (u16)param0->unk_00.unk_17_0);
+        Window_FillRectWithColor(param0->unk_00.unk_0C, (u8)param0->unk_00.unk_18_0, 0, 0, (u16)(Window_GetWidth(param0->unk_00.unk_0C) * 8), (u16)param0->unk_00.unk_17_0);
     }
 }
 
@@ -526,7 +526,7 @@ static u8 sub_02001A18(BmpList *param0, u8 param1, u8 param2, u8 param3)
             sub_02001778(param0, v0);
             sub_02001720(param0);
             sub_02001AD8(param0, 0);
-            sub_0201A954(param0->unk_00.unk_0C);
+            Window_CopyToVRAM(param0->unk_00.unk_0C);
             break;
         case 2:
         case 3:
@@ -534,7 +534,7 @@ static u8 sub_02001A18(BmpList *param0, u8 param1, u8 param2, u8 param3)
             sub_02001900(param0, v4, param3);
             sub_02001720(param0);
             sub_02001AD8(param0, 0);
-            sub_0201A954(param0->unk_00.unk_0C);
+            Window_CopyToVRAM(param0->unk_00.unk_0C);
             break;
         }
     }

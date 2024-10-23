@@ -10,7 +10,6 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
@@ -37,6 +36,7 @@
 #include "overlay017/ov17_022413D8.h"
 #include "overlay104/struct_ov104_02241308.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "heap.h"
@@ -53,7 +53,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
 #include "unk_02014000.h"
-#include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201F834.h"
 
@@ -123,7 +122,7 @@ typedef struct UnkStruct_ov12_0221FCDC_t {
     s32 unk_90[10];
     UnkFuncPtr_ov12_02239EEC unk_B8;
     UnkStruct_ov12_02223178 *unk_BC;
-    BGL *unk_C0;
+    BgConfig *unk_C0;
     PaletteData *unk_C4;
     SpriteGfxHandler *unk_C8[4];
     CellActorData *unk_D8[10];
@@ -196,7 +195,7 @@ typedef struct {
 } UnkStruct_ov12_022224F8;
 
 typedef struct UnkStruct_ov12_022222D4_t {
-    BGL *unk_00;
+    BgConfig *unk_00;
     s16 unk_04;
     s16 unk_06;
     s16 unk_08;
@@ -221,7 +220,7 @@ typedef struct UnkStruct_ov12_0222118C_t {
 } UnkStruct_ov12_0222118C;
 
 typedef struct UnkStruct_ov12_022211D8_t {
-    BGL *unk_00;
+    BgConfig *unk_00;
     UnkStruct_ov12_0222118C_sub1 unk_04;
 } UnkStruct_ov12_022211D8;
 
@@ -611,10 +610,10 @@ BOOL ov12_0221FE30(UnkStruct_ov12_0221FCDC *param0, UnkStruct_ov16_02265BBC *par
     }
 
     param0->unk_18 = (u32 *)param0->unk_14;
-    param0->unk_19C[0] = sub_0201A008(param0->unk_C0, 0);
-    param0->unk_19C[1] = sub_0201A008(param0->unk_C0, 1);
-    param0->unk_19C[2] = sub_0201A008(param0->unk_C0, 2);
-    param0->unk_19C[3] = sub_0201A008(param0->unk_C0, 3);
+    param0->unk_19C[0] = Bg_GetPriority(param0->unk_C0, 0);
+    param0->unk_19C[1] = Bg_GetPriority(param0->unk_C0, 1);
+    param0->unk_19C[2] = Bg_GetPriority(param0->unk_C0, 2);
+    param0->unk_19C[3] = Bg_GetPriority(param0->unk_C0, 3);
 
     for (v0 = 0; v0 < 10; v0++) {
         param0->unk_D8[v0] = NULL;
@@ -737,7 +736,7 @@ SPLEmitter *ov12_0222026C(UnkStruct_ov12_0221FCDC *param0, int param1)
     return v0;
 }
 
-BGL *ov12_02220278(UnkStruct_ov12_0221FCDC *param0)
+BgConfig *ov12_02220278(UnkStruct_ov12_0221FCDC *param0)
 {
     return param0->unk_C0;
 }
@@ -1324,22 +1323,22 @@ static void ov12_02220798(UnkStruct_ov12_0221FCDC *param0)
     if (ov12_0221FDD4(param0) == 0) {
         Battle_SetDefaultBlend();
 
-        sub_02019690(ov12_022233B0(param0, 1), 0x4000, 0, ov12_0221FDE4(param0));
-        sub_02019EBC(ov12_02220278(param0), ov12_022233B0(param0, 1));
-        sub_02019120(2, 1);
+        Bg_ClearTilesRange(ov12_022233B0(param0, 1), 0x4000, 0, ov12_0221FDE4(param0));
+        Bg_ClearTilemap(ov12_02220278(param0), ov12_022233B0(param0, 1));
+        Bg_ToggleLayer(2, 1);
     } else {
         ov17_022413D8();
     }
 
-    BGL_SetPriority(0, param0->unk_19C[0]);
-    BGL_SetPriority(1, param0->unk_19C[1]);
-    BGL_SetPriority(2, param0->unk_19C[2]);
-    BGL_SetPriority(3, param0->unk_19C[3]);
+    Bg_SetPriority(0, param0->unk_19C[0]);
+    Bg_SetPriority(1, param0->unk_19C[1]);
+    Bg_SetPriority(2, param0->unk_19C[2]);
+    Bg_SetPriority(3, param0->unk_19C[3]);
 
-    sub_02019184(param0->unk_C0, 2, 0, 0);
-    sub_02019184(param0->unk_C0, 2, 3, 0);
-    sub_02019184(param0->unk_C0, 3, 0, 0);
-    sub_02019184(param0->unk_C0, 3, 3, 0);
+    Bg_SetOffset(param0->unk_C0, 2, 0, 0);
+    Bg_SetOffset(param0->unk_C0, 2, 3, 0);
+    Bg_SetOffset(param0->unk_C0, 3, 0, 0);
+    Bg_SetOffset(param0->unk_C0, 3, 3, 0);
 
     param0->unk_10 = 0;
 }
@@ -1978,8 +1977,8 @@ static void ov12_022211D8(SysTask *param0, void *param1)
     v2 = sub_020080C0(v0->unk_04.unk_04, 1);
     v2 -= sub_020080C0(v0->unk_04.unk_04, 41);
 
-    sub_02019184(v0->unk_00, 2, 0, -(v1 - 40));
-    sub_02019184(v0->unk_00, 2, 3, -(v2 - 40));
+    Bg_SetOffset(v0->unk_00, 2, 0, -(v1 - 40));
+    Bg_SetOffset(v0->unk_00, 2, 3, -(v2 - 40));
 }
 
 void ov12_02221238(UnkStruct_ov12_0221FCDC *param0, int param1)
@@ -2041,12 +2040,12 @@ static void ov12_0222128C(UnkStruct_ov12_0221FCDC *param0)
     }
 
     {
-        u8 *v8 = sub_02019F28(2);
+        u8 *v8 = Bg_GetCharPtr(2);
         MI_CpuFill8(v8, 0, 10 * 10 * 2 * 0x20);
     }
 
-    sub_02019120(2, 0);
-    sub_0201958C(param0->unk_C0, 2, v0, (10 * 10 * ((8 / 2) * 8)), 0);
+    Bg_ToggleLayer(2, 0);
+    Bg_LoadTiles(param0->unk_C0, 2, v0, (10 * 10 * ((8 / 2) * 8)), 0);
     PaletteSys_LoadPalette(param0->unk_C4, v4, v5, param0->unk_00, 0, 0, (8 * 16));
     sub_0200710C(param0->unk_1A0[0], v6, param0->unk_C0, 2, 0, 0, 0, param0->unk_00);
 
@@ -2072,12 +2071,12 @@ static void ov12_0222128C(UnkStruct_ov12_0221FCDC *param0)
         v11 = sub_020080C0(ov12_022232FC(param0, v3), 1);
         v11 -= sub_020080C0(ov12_022232FC(param0, v3), 41);
 
-        sub_02019184(param0->unk_C0, 2, 0, -(v10 - 40));
-        sub_02019184(param0->unk_C0, 2, 3, -(v11 - 40));
+        Bg_SetOffset(param0->unk_C0, 2, 0, -(v10 - 40));
+        Bg_SetOffset(param0->unk_C0, 2, 3, -(v11 - 40));
     }
 
-    sub_02019120(2, 1);
-    BGL_SetPriority(2, ov12_0222339C(param0));
+    Bg_ToggleLayer(2, 1);
+    Bg_SetPriority(2, ov12_0222339C(param0));
 }
 
 static void ov12_02221424(UnkStruct_ov12_0221FCDC *param0)
@@ -2086,7 +2085,7 @@ static void ov12_02221424(UnkStruct_ov12_0221FCDC *param0)
     param0->unk_18 += 1;
 
     {
-        u8 *v0 = sub_02019F28(2);
+        u8 *v0 = Bg_GetCharPtr(2);
         MI_CpuFill8(v0, 0, 10 * 10 * 2 * 0x20);
     }
 
@@ -2521,7 +2520,7 @@ static void ov12_02221AA8(UnkStruct_ov12_02221BBC *param0, UnkStruct_ov12_0221FC
 {
     sub_02006E3C(7, ov12_022234E4(param3, 0), param1->unk_C0, param2, 0, 0, 1, param1->unk_00);
     PaletteSys_LoadPalette(param1->unk_C4, 7, ov12_022234E4(param3, 1), param1->unk_00, 0, 0x20, (9 * 16));
-    sub_02019EBC(param1->unk_C0, param2);
+    Bg_ClearTilemap(param1->unk_C0, param2);
 
     {
         int v0 = 2;
@@ -2638,19 +2637,19 @@ static BOOL ov12_02221C50(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
             int v0 = ov12_02223428(param1->unk_48, 2);
             int v1 = ov12_02223428(param1->unk_48, 1);
 
-            BGL_SetPriority(3, v0);
-            BGL_SetPriority(2, v0);
+            Bg_SetPriority(3, v0);
+            Bg_SetPriority(2, v0);
         }
-        sub_02019120(2, 1);
+        Bg_ToggleLayer(2, 1);
 
         param1->unk_05++;
         break;
 
     case 1: {
-        sub_02018898(param1->unk_48->unk_C0, 3, 2, GX_BG_CHARBASE_0x0c000);
+        Bg_SetControlParam(param1->unk_48->unk_C0, 3, 2, GX_BG_CHARBASE_0x0c000);
 
         if (ov12_0221FDD4(param1->unk_48) != 1) {
-            sub_02018898(param1->unk_48->unk_C0, 3, 0, GX_BG_COLORMODE_16);
+            Bg_SetControlParam(param1->unk_48->unk_C0, 3, 0, GX_BG_COLORMODE_16);
         }
 
         ov12_02221AA8(param1, param1->unk_48, 3, param1->unk_10);
@@ -2697,14 +2696,14 @@ static BOOL ov12_02221D50(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
 {
     switch (param1->unk_05) {
     case 0:
-        sub_02019120(2, 1);
+        Bg_ToggleLayer(2, 1);
         param1->unk_05++;
     case 1: {
         int v0 = ov12_02223428(param1->unk_48, 2);
         int v1 = ov12_02223428(param1->unk_48, 1);
 
-        BGL_SetPriority(3, v0);
-        BGL_SetPriority(2, v0);
+        Bg_SetPriority(3, v0);
+        Bg_SetPriority(2, v0);
 
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG3, param1->unk_09, param1->unk_0A);
         ov12_02221B64(param1);
@@ -2743,12 +2742,12 @@ static BOOL ov12_02221D50(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
             ov12_02222338(param1->unk_48);
         }
 
-        sub_02019184(param1->unk_48->unk_C0, 3, 0, 0);
-        sub_02019184(param1->unk_48->unk_C0, 3, 3, 0);
-        sub_02018898(param1->unk_48->unk_C0, 3, 2, GX_BG_CHARBASE_0x10000);
+        Bg_SetOffset(param1->unk_48->unk_C0, 3, 0, 0);
+        Bg_SetOffset(param1->unk_48->unk_C0, 3, 3, 0);
+        Bg_SetControlParam(param1->unk_48->unk_C0, 3, 2, GX_BG_CHARBASE_0x10000);
 
         if (ov12_0221FDD4(param1->unk_48) == 0) {
-            sub_02018898(param1->unk_48->unk_C0, 3, 0, GX_BG_COLORMODE_256);
+            Bg_SetControlParam(param1->unk_48->unk_C0, 3, 0, GX_BG_COLORMODE_256);
             ov12_02223460(param1->unk_48, 3);
             ov12_02223488(param1->unk_48);
         } else {
@@ -2794,7 +2793,7 @@ static BOOL ov12_02221F44(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
             break;
         }
 
-        sub_02018898(param1->unk_48->unk_C0, 3, 0, GX_BG_COLORMODE_16);
+        Bg_SetControlParam(param1->unk_48->unk_C0, 3, 0, GX_BG_COLORMODE_16);
         ov12_02221AA8(param1, param1->unk_48, 3, param1->unk_10);
 
         if (param1->unk_0D == 0) {
@@ -2848,10 +2847,10 @@ static BOOL ov12_0222206C(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
             ov12_02222338(param1->unk_48);
         }
 
-        sub_02019120(3, 0);
+        Bg_ToggleLayer(3, 0);
 
         if (ov12_0221FDD4(param1->unk_48) == 0) {
-            sub_02018898(param1->unk_48->unk_C0, 3, 0, GX_BG_COLORMODE_256);
+            Bg_SetControlParam(param1->unk_48->unk_C0, 3, 0, GX_BG_COLORMODE_256);
 
             ov12_02223460(param1->unk_48, 3);
             ov12_02223488(param1->unk_48);
@@ -2861,12 +2860,12 @@ static BOOL ov12_0222206C(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
         }
 
         sub_02006E60(param1->unk_48->unk_180.unk_00, param1->unk_48->unk_180.unk_0C, param1->unk_48->unk_C0, 3, 0, 0, 1, param1->unk_48->unk_00);
-        sub_02019120(3, 1);
+        Bg_ToggleLayer(3, 1);
 
         param1->unk_05++;
     case 3:
-        sub_02019184(param1->unk_48->unk_C0, 3, 0, 0);
-        sub_02019184(param1->unk_48->unk_C0, 3, 3, 0);
+        Bg_SetOffset(param1->unk_48->unk_C0, 3, 0, 0);
+        Bg_SetOffset(param1->unk_48->unk_C0, 3, 3, 0);
 
         if (param1->unk_0D == 0) {
             sub_02003178(param1->unk_48->unk_C4, 0x1, param1->unk_48->unk_198, 0, 16, 0, 0);
@@ -2921,11 +2920,11 @@ static void ov12_022222D4(SysTask *param0, void *param1)
     v0->unk_06 += v0->unk_0A;
 
     if (v0->unk_08 != 0) {
-        sub_02019184(v0->unk_00, v0->unk_0C, 0, v0->unk_04);
+        Bg_SetOffset(v0->unk_00, v0->unk_0C, 0, v0->unk_04);
     }
 
     if (v0->unk_0A != 0) {
-        sub_02019184(v0->unk_00, v0->unk_0C, 3, v0->unk_06);
+        Bg_SetOffset(v0->unk_00, v0->unk_0C, 3, v0->unk_06);
     }
 }
 
@@ -3063,17 +3062,17 @@ void ov12_02222590(UnkStruct_ov12_0221FCDC *param0, int param1)
 {
     int v0 = ov12_02223428(param0, 2);
 
-    BGL_SetPriority(param1, v0);
-    sub_02019120(param1, 0);
+    Bg_SetPriority(param1, v0);
+    Bg_ToggleLayer(param1, 0);
 
     if (ov12_0221FDD4(param0) == 1) {
-        sub_02018898(param0->unk_C0, param1, 2, GX_BG_CHARBASE_0x10000);
+        Bg_SetControlParam(param0->unk_C0, param1, 2, GX_BG_CHARBASE_0x10000);
     } else {
-        sub_02018898(param0->unk_C0, param1, 0, GX_BG_COLORMODE_256);
-        sub_02018898(param0->unk_C0, param1, 2, GX_BG_CHARBASE_0x10000);
+        Bg_SetControlParam(param0->unk_C0, param1, 0, GX_BG_COLORMODE_256);
+        Bg_SetControlParam(param0->unk_C0, param1, 2, GX_BG_CHARBASE_0x10000);
     }
 
-    sub_02019EBC(param0->unk_C0, param1);
+    Bg_ClearTilemap(param0->unk_C0, param1);
 
     if (ov12_0221FDD4(param0) == 1) {
         sub_02006E3C(param0->unk_180.unk_00, param0->unk_180.unk_04, param0->unk_C0, param1, 0, 0, 1, param0->unk_00);
@@ -3088,16 +3087,16 @@ void ov12_02222664(UnkStruct_ov12_0221FCDC *param0, int param1)
 {
     int v0 = ov12_02223428(param0, 1);
 
-    BGL_SetPriority(param1, v0);
+    Bg_SetPriority(param1, v0);
 
     if (ov12_0221FDD4(param0) == 1) {
-        sub_02018898(param0->unk_C0, param1, 2, GX_BG_CHARBASE_0x0c000);
+        Bg_SetControlParam(param0->unk_C0, param1, 2, GX_BG_CHARBASE_0x0c000);
     } else {
-        sub_02018898(param0->unk_C0, param1, 0, GX_BG_COLORMODE_16);
-        sub_02018898(param0->unk_C0, param1, 2, GX_BG_CHARBASE_0x0c000);
+        Bg_SetControlParam(param0->unk_C0, param1, 0, GX_BG_COLORMODE_16);
+        Bg_SetControlParam(param0->unk_C0, param1, 2, GX_BG_CHARBASE_0x0c000);
     }
 
-    sub_02019EBC(param0->unk_C0, param1);
+    Bg_ClearTilemap(param0->unk_C0, param1);
 }
 
 static BOOL ov12_022226D0(UnkStruct_ov12_02221BBC *param0)
@@ -4090,7 +4089,7 @@ int ov12_02223428(UnkStruct_ov12_0221FCDC *param0, int param1)
 
 void ov12_02223460(UnkStruct_ov12_0221FCDC *param0, int param1)
 {
-    sub_0201958C(param0->unk_C0, param1, param0->unk_BC->unk_110, 0x10000, 0);
+    Bg_LoadTiles(param0->unk_C0, param1, param0->unk_BC->unk_110, 0x10000, 0);
 }
 
 void ov12_02223488(UnkStruct_ov12_0221FCDC *param0)

@@ -5,12 +5,12 @@
 #include <nnsys.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 
 #include "overlay022/struct_ov22_022550D4.h"
 #include "overlay022/struct_ov22_02255CB8.h"
 #include "overlay022/struct_ov22_0225A0E4.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 
 void ov22_02255094(void);
@@ -38,7 +38,7 @@ void ov22_022553F8(UnkStruct_ov22_0225A0E4 *param0);
 void ov22_02255410(UnkStruct_ov22_02255CB8 *param0, int param1);
 int ov22_02255420(NNSG2dCharacterData *param0, int param1, int param2, int param3);
 void ov22_0225547C(UnkStruct_ov22_0225A0E4 *param0, const UnkStruct_ov22_022550D4 *param1, int param2);
-void ov22_022554A8(UnkStruct_ov22_0225A0E4 *param0, BGL *param1, int param2);
+void ov22_022554A8(UnkStruct_ov22_0225A0E4 *param0, BgConfig *param1, int param2);
 void ov22_022554F8(UnkStruct_ov22_0225A0E4 *param0);
 void ov22_02255524(UnkStruct_ov22_0225A0E4 *param0);
 void ov22_02255530(UnkStruct_ov22_0225A0E4 *param0);

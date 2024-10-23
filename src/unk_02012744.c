@@ -4,8 +4,8 @@
 #include <string.h>
 
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/struct_0205AA50.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "heap.h"
 #include "unk_02006E3C.h"
@@ -148,7 +148,7 @@ FontOAM *sub_020127E8(const UnkStruct_020127E8 *param0)
     v1.unk_0C = &v1;
     v1.unk_10 = &v1;
 
-    v2 = sub_02012DE4(param0->unk_04->unk_07, param0->unk_04->unk_08, param0->unk_2C, &v1);
+    v2 = sub_02012DE4(param0->unk_04->width, param0->unk_04->height, param0->unk_2C, &v1);
     v3 = Heap_AllocFromHeapAtEnd(param0->unk_2C, sizeof(NNSG2dImageProxy) * v2);
 
     v0->unk_00 = Heap_AllocFromHeap(param0->unk_2C, sizeof(UnkStruct_02012CE0_sub1) * v2);
@@ -180,7 +180,7 @@ int sub_02012898(const Window *param0, int param1, int param2)
     v0.unk_0C = &v0;
     v0.unk_10 = &v0;
 
-    sub_02012DE4(param0->unk_07, param0->unk_08, param2, &v0);
+    sub_02012DE4(param0->width, param0->height, param2, &v0);
     v1 = sub_02013034(&v0, param1);
     sub_020131B8(&v0);
 
@@ -341,7 +341,7 @@ UnkStruct_02012B20 *sub_02012B20(const Window *param0, int param1)
 
     v0->unk_00.unk_0C = &v0->unk_00;
     v0->unk_00.unk_10 = &v0->unk_00;
-    v0->unk_14 = sub_02012DE4(param0->unk_07, param0->unk_08, param1, &v0->unk_00);
+    v0->unk_14 = sub_02012DE4(param0->width, param0->height, param1, &v0->unk_00);
 
     return v0;
 }
@@ -422,17 +422,17 @@ void sub_02012C60(const Window *param0, int param1, int param2, int param3, int 
     int v1;
     int v2;
 
-    GF_ASSERT(param0->unk_07 >= (param1 + param3));
-    GF_ASSERT(param0->unk_08 >= (param2 + param4));
+    GF_ASSERT(param0->width >= (param1 + param3));
+    GF_ASSERT(param0->height >= (param2 + param4));
 
     for (v0 = 0; v0 < param2; v0++) {
         v1 = v0 * param1;
         v1 *= 32;
-        v2 = ((v0 + param4) * param0->unk_07);
+        v2 = ((v0 + param4) * param0->width);
         v2 += param3;
         v2 *= 32;
 
-        memcpy(param5 + v1, (char *)(param0->unk_0C) + v2, 32 * param1);
+        memcpy(param5 + v1, (char *)(param0->pixels) + v2, 32 * param1);
     }
 }
 

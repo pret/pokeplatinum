@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020998EC_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02099F80.h"
@@ -21,9 +20,8 @@
 #include "overlay020/struct_ov20_021D3E0C_decl.h"
 #include "overlay020/struct_ov20_021D4210_decl.h"
 #include "overlay020/struct_ov20_021D4AD4_decl.h"
-#include "overlay084/struct_ov84_0223BA5C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -35,7 +33,6 @@
 #include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02018340.h"
 
 typedef struct UnkStruct_ov20_021D2128_t {
     SysTask *unk_00;
@@ -43,7 +40,7 @@ typedef struct UnkStruct_ov20_021D2128_t {
     SysTask *unk_08[4];
     const UnkStruct_ov20_021D16E8 *unk_18;
     const UnkStruct_020998EC *unk_1C;
-    BGL *unk_20;
+    BgConfig *unk_20;
     CellActorCollection *unk_24;
     UnkStruct_0200C738 unk_28;
     NNSG2dImageProxy unk_1B4[2];
@@ -120,7 +117,7 @@ UnkStruct_ov20_021D2128 *ov20_021D2098(const UnkStruct_ov20_021D16E8 *param0, co
         sub_0200A784(0, 128, 0, 32, 0, 128, 0, 32, 35);
 
         v0->unk_24 = sub_020095C4(128, &v0->unk_28, 35);
-        v0->unk_20 = sub_02018340(35);
+        v0->unk_20 = BgConfig_New(35);
         v0->unk_00 = SysTask_Start(ov20_021D2178, v0, 2);
         v0->unk_04 = ov20_021D2170(ov20_021D217C, v0, 1);
 
@@ -363,11 +360,11 @@ static void ov20_021D2414(SysTask *param0, void *param1)
                 }
             }
 
-            sub_02019044(v1->unk_20, 0);
-            sub_02019044(v1->unk_20, 1);
-            sub_02019044(v1->unk_20, 2);
-            sub_02019044(v1->unk_20, 3);
-            sub_02019044(v1->unk_20, 4);
+            Bg_FreeTilemapBuffer(v1->unk_20, 0);
+            Bg_FreeTilemapBuffer(v1->unk_20, 1);
+            Bg_FreeTilemapBuffer(v1->unk_20, 2);
+            Bg_FreeTilemapBuffer(v1->unk_20, 3);
+            Bg_FreeTilemapBuffer(v1->unk_20, 4);
 
             ov20_021D2238(v0);
         }
@@ -389,13 +386,13 @@ static void ov20_021D24EC(UnkStruct_ov20_021D2238 *param0)
         GX_VRAM_TEX_0_A,
         GX_VRAM_TEXPLTT_01_FG
     };
-    static const UnkStruct_ov84_0223BA5C v1 = {
+    static const GraphicsModes v1 = {
         GX_DISPMODE_GRAPHICS,
         GX_BGMODE_0,
         GX_BGMODE_0,
         GX_BG0_AS_2D,
     };
-    static const UnkStruct_ov97_0222DB78 v2 = {
+    static const BgTemplate v2 = {
         0,
         0,
         0x800,
@@ -410,7 +407,7 @@ static void ov20_021D24EC(UnkStruct_ov20_021D2238 *param0)
         0,
         0
     };
-    static const UnkStruct_ov97_0222DB78 v3 = {
+    static const BgTemplate v3 = {
         0,
         0,
         0x1000,
@@ -425,7 +422,7 @@ static void ov20_021D24EC(UnkStruct_ov20_021D2238 *param0)
         0,
         0
     };
-    static const UnkStruct_ov97_0222DB78 v4 = {
+    static const BgTemplate v4 = {
         0,
         0,
         0x800,
@@ -440,7 +437,7 @@ static void ov20_021D24EC(UnkStruct_ov20_021D2238 *param0)
         0,
         0
     };
-    static const UnkStruct_ov97_0222DB78 v5 = {
+    static const BgTemplate v5 = {
         0,
         0,
         0x800,
@@ -455,7 +452,7 @@ static void ov20_021D24EC(UnkStruct_ov20_021D2238 *param0)
         0,
         0
     };
-    static const UnkStruct_ov97_0222DB78 v6 = {
+    static const BgTemplate v6 = {
         0,
         0,
         0x800,
@@ -476,14 +473,14 @@ static void ov20_021D24EC(UnkStruct_ov20_021D2238 *param0)
     GX_SetGraphicsMode(GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BG0_AS_3D);
 
     GXLayers_SetBanks(&v0);
-    sub_02018368(&v1);
+    SetAllGraphicsModes(&v1);
 
-    sub_020183C4(v7->unk_20, 0, &v2, 0);
-    sub_020183C4(v7->unk_20, 1, &v3, 0);
-    sub_020183C4(v7->unk_20, 2, &v4, 0);
-    sub_020183C4(v7->unk_20, 3, &v5, 0);
+    Bg_InitFromTemplate(v7->unk_20, 0, &v2, 0);
+    Bg_InitFromTemplate(v7->unk_20, 1, &v3, 0);
+    Bg_InitFromTemplate(v7->unk_20, 2, &v4, 0);
+    Bg_InitFromTemplate(v7->unk_20, 3, &v5, 0);
 
-    sub_020183C4(v7->unk_20, 4, &v6, 0);
+    Bg_InitFromTemplate(v7->unk_20, 4, &v6, 0);
 }
 
 static void ov20_021D2570(SysTask *param0, void *param1)
@@ -956,7 +953,7 @@ u32 ov20_021D2DF4(UnkStruct_ov20_021D2128 *param0)
     return ov20_021D3574(param0->unk_244);
 }
 
-BGL *ov20_021D2E04(UnkStruct_ov20_021D2128 *param0)
+BgConfig *ov20_021D2E04(UnkStruct_ov20_021D2128 *param0)
 {
     return param0->unk_20;
 }

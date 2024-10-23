@@ -9,12 +9,10 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/sprite_manager_allocation.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02095C48.h"
 
@@ -23,6 +21,7 @@
 #include "overlay017/struct_ov17_0223F6E8.h"
 #include "overlay017/struct_ov17_0223F744.h"
 
+#include "bg_window.h"
 #include "font.h"
 #include "game_overlay.h"
 #include "gx_layers.h"
@@ -37,7 +36,6 @@
 #include "unk_0200A9DC.h"
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
-#include "unk_02018340.h"
 #include "unk_0201E86C.h"
 #include "unk_02024220.h"
 
@@ -111,7 +109,7 @@ void ov17_0223F1E0(GenericPointerData *param0)
     sub_020242C4(param0);
 }
 
-void ov17_0223F1E8(int param0, BGL *param1, SpriteGfxHandler *param2, UnkStruct_02012744 *param3, UnkStruct_ov17_0223F2E4 *param4, const Strbuf *param5, enum Font param6, TextColor param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
+void ov17_0223F1E8(int param0, BgConfig *param1, SpriteGfxHandler *param2, UnkStruct_02012744 *param3, UnkStruct_ov17_0223F2E4 *param4, const Strbuf *param5, enum Font param6, TextColor param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
 {
     UnkStruct_020127E8 v0;
     Window v1;
@@ -132,7 +130,7 @@ void ov17_0223F1E8(int param0, BGL *param1, SpriteGfxHandler *param2, UnkStruct_
 
     {
         Window_Init(&v1);
-        BGL_AddFramelessWindow(param1, &v1, v6, 16 / 8, 0, 0);
+        Window_AddToTopLeftCorner(param1, &v1, v6, 16 / 8, 0, 0);
         Text_AddPrinterWithParamsColorAndSpacing(&v1, param6, param5, 0, 0, TEXT_SPEED_NO_TRANSFER, param7, v7, 0, NULL);
     }
 
@@ -165,7 +163,7 @@ void ov17_0223F1E8(int param0, BGL *param1, SpriteGfxHandler *param2, UnkStruct_
     }
 
     sub_020128C4(v4, param10, param11);
-    BGL_DeleteWindow(&v1);
+    Window_Remove(&v1);
 
     param4->unk_00 = v4;
     param4->unk_04 = v2;

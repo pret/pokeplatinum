@@ -7,7 +7,6 @@
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_defs/struct_02030A80.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0208C06C.h"
 
 #include "overlay022/ov22_0225AF8C.h"
@@ -30,6 +29,7 @@
 #include "overlay062/struct_ov62_02248CDC.h"
 #include "overlay062/struct_ov62_02249380.h"
 
+#include "bg_window.h"
 #include "font.h"
 #include "game_overlay.h"
 #include "gx_layers.h"
@@ -45,7 +45,6 @@
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
 #include "unk_02017728.h"
-#include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_02023FCC.h"
 #include "unk_0202419C.h"
@@ -223,10 +222,10 @@ static BOOL ov62_02237D24(UnkStruct_0208C06C *param0)
         v0->unk_250.unk_00 = sub_02030A80(102);
     }
 
-    sub_02019EBC(param0->unk_14.unk_10, 2);
-    sub_02019EBC(param0->unk_14.unk_10, 3);
-    sub_02019EBC(param0->unk_14.unk_10, 6);
-    sub_02019EBC(param0->unk_14.unk_10, 7);
+    Bg_ClearTilemap(param0->unk_14.unk_10, 2);
+    Bg_ClearTilemap(param0->unk_14.unk_10, 3);
+    Bg_ClearTilemap(param0->unk_14.unk_10, 6);
+    Bg_ClearTilemap(param0->unk_14.unk_10, 7);
 
     ov62_022315C8(&v0->unk_00, &v0->unk_04, 0);
     ov62_0222FB60(param0, 1);
@@ -249,14 +248,14 @@ static BOOL ov62_02237DB8(UnkStruct_0208C06C *param0)
         sub_02003A2C(param0->unk_14.unk_14, 1, 0x2, v0->unk_08, param0->unk_14.unk_44);
         break;
     case 1:
-        BGL_SetPriority(0, 0);
-        BGL_SetPriority(2, 0);
-        BGL_SetPriority(1, 3);
-        BGL_SetPriority(3, 2);
-        BGL_SetPriority(4, 0);
-        BGL_SetPriority(6, 1);
-        BGL_SetPriority(5, 3);
-        BGL_SetPriority(7, 2);
+        Bg_SetPriority(0, 0);
+        Bg_SetPriority(2, 0);
+        Bg_SetPriority(1, 3);
+        Bg_SetPriority(3, 2);
+        Bg_SetPriority(4, 0);
+        Bg_SetPriority(6, 1);
+        Bg_SetPriority(5, 3);
+        Bg_SetPriority(7, 2);
         sub_0208B9E0(param0->unk_6F0, 0);
         param0->unk_08++;
         break;
@@ -373,22 +372,22 @@ static BOOL ov62_022380B0(UnkStruct_0208C06C *param0)
 
     switch (param0->unk_08) {
     case 0:
-        BGL_SetPriority(0, 1);
-        BGL_SetPriority(1, 3);
-        BGL_SetPriority(2, 2);
-        BGL_SetPriority(3, 1);
-        BGL_SetPriority(4, 1);
-        BGL_SetPriority(5, 3);
-        BGL_SetPriority(6, 2);
-        BGL_SetPriority(7, 1);
+        Bg_SetPriority(0, 1);
+        Bg_SetPriority(1, 3);
+        Bg_SetPriority(2, 2);
+        Bg_SetPriority(3, 1);
+        Bg_SetPriority(4, 1);
+        Bg_SetPriority(5, 3);
+        Bg_SetPriority(6, 2);
+        Bg_SetPriority(7, 1);
 
         {
             Heap_FreeToHeap(v0->unk_230.unk_08);
             sub_02030A98(v0->unk_250.unk_00);
         }
 
-        sub_02019EBC(param0->unk_14.unk_10, 2);
-        sub_02019EBC(param0->unk_14.unk_10, 6);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 2);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 6);
         ov62_02239D0C(param0);
         param0->unk_08++;
         break;
@@ -399,10 +398,10 @@ static BOOL ov62_022380B0(UnkStruct_0208C06C *param0)
             ov62_02234540(param0, 1);
             ov62_022396E8(param0);
             ov62_02234540(param0, 0);
-            sub_02019EBC(param0->unk_14.unk_10, 3);
-            sub_02019EBC(param0->unk_14.unk_10, 7);
-            sub_02019184(param0->unk_14.unk_10, 2, 0, 0);
-            BGL_SetPriority(2, 0);
+            Bg_ClearTilemap(param0->unk_14.unk_10, 3);
+            Bg_ClearTilemap(param0->unk_14.unk_10, 7);
+            Bg_SetOffset(param0->unk_14.unk_10, 2, 0, 0);
+            Bg_SetPriority(2, 0);
             param0->unk_08++;
         }
 
@@ -449,10 +448,10 @@ static BOOL ov62_022380B0(UnkStruct_0208C06C *param0)
         ov62_02231688(&v0->unk_08);
         ov62_0223146C(param0);
         ov62_02234540(param0, 0);
-        sub_02019EBC(param0->unk_14.unk_10, 2);
-        sub_02019EBC(param0->unk_14.unk_10, 6);
-        sub_02019EBC(param0->unk_14.unk_10, 3);
-        sub_02019EBC(param0->unk_14.unk_10, 7);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 2);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 6);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 3);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 7);
         ov62_0223376C(param0, 1);
         param0->unk_08++;
         break;
@@ -465,7 +464,7 @@ static BOOL ov62_022380B0(UnkStruct_0208C06C *param0)
             if (v0->unk_228) {
                 ov22_0225B020(v0->unk_228);
                 ov62_0222F834(param0);
-                BGL_SetPriority(2, 0);
+                Bg_SetPriority(2, 0);
                 ov62_0223956C();
             }
 
@@ -497,22 +496,22 @@ static BOOL ov62_022383E4(UnkStruct_0208C06C *param0)
 
     switch (param0->unk_08) {
     case 0:
-        BGL_SetPriority(0, 1);
-        BGL_SetPriority(1, 3);
-        BGL_SetPriority(2, 2);
-        BGL_SetPriority(3, 1);
-        BGL_SetPriority(4, 1);
-        BGL_SetPriority(5, 3);
-        BGL_SetPriority(6, 2);
-        BGL_SetPriority(7, 1);
+        Bg_SetPriority(0, 1);
+        Bg_SetPriority(1, 3);
+        Bg_SetPriority(2, 2);
+        Bg_SetPriority(3, 1);
+        Bg_SetPriority(4, 1);
+        Bg_SetPriority(5, 3);
+        Bg_SetPriority(6, 2);
+        Bg_SetPriority(7, 1);
 
         {
             Heap_FreeToHeap(v0->unk_230.unk_08);
             sub_02030A98(v0->unk_250.unk_00);
         }
 
-        sub_02019EBC(param0->unk_14.unk_10, 2);
-        sub_02019EBC(param0->unk_14.unk_10, 6);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 2);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 6);
         ov62_02239D0C(param0);
         param0->unk_08++;
         break;
@@ -523,8 +522,8 @@ static BOOL ov62_022383E4(UnkStruct_0208C06C *param0)
             ov62_02234540(param0, 1);
             ov62_022396E8(param0);
             ov62_02234540(param0, 0);
-            sub_02019EBC(param0->unk_14.unk_10, 3);
-            sub_02019EBC(param0->unk_14.unk_10, 7);
+            Bg_ClearTilemap(param0->unk_14.unk_10, 3);
+            Bg_ClearTilemap(param0->unk_14.unk_10, 7);
             param0->unk_08++;
         }
 
@@ -535,10 +534,10 @@ static BOOL ov62_022383E4(UnkStruct_0208C06C *param0)
         ov62_02234540(param0, 1);
         ov62_0223146C(param0);
         ov62_02234540(param0, 0);
-        sub_02019EBC(param0->unk_14.unk_10, 2);
-        sub_02019EBC(param0->unk_14.unk_10, 6);
-        sub_02019EBC(param0->unk_14.unk_10, 3);
-        sub_02019EBC(param0->unk_14.unk_10, 7);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 2);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 6);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 3);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 7);
         ov62_0223376C(param0, 1);
         param0->unk_08++;
         break;
@@ -553,7 +552,7 @@ static BOOL ov62_022383E4(UnkStruct_0208C06C *param0)
             if (v0->unk_228) {
                 ov22_0225B020(v0->unk_228);
                 ov62_0222F834(param0);
-                BGL_SetPriority(2, 0);
+                Bg_SetPriority(2, 0);
                 ov62_0223956C();
             }
 
@@ -748,22 +747,22 @@ static BOOL ov62_0223896C(UnkStruct_0208C06C *param0)
 
     switch (param0->unk_08) {
     case 0:
-        BGL_SetPriority(0, 1);
-        BGL_SetPriority(1, 3);
-        BGL_SetPriority(2, 2);
-        BGL_SetPriority(3, 1);
-        BGL_SetPriority(4, 1);
-        BGL_SetPriority(5, 3);
-        BGL_SetPriority(6, 2);
-        BGL_SetPriority(7, 1);
+        Bg_SetPriority(0, 1);
+        Bg_SetPriority(1, 3);
+        Bg_SetPriority(2, 2);
+        Bg_SetPriority(3, 1);
+        Bg_SetPriority(4, 1);
+        Bg_SetPriority(5, 3);
+        Bg_SetPriority(6, 2);
+        Bg_SetPriority(7, 1);
 
         {
             Heap_FreeToHeap(v0->unk_230.unk_08);
             sub_02030A98(v0->unk_250.unk_00);
         }
 
-        sub_02019EBC(param0->unk_14.unk_10, 2);
-        sub_02019EBC(param0->unk_14.unk_10, 6);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 2);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 6);
         param0->unk_08++;
         break;
     case 1:
@@ -773,8 +772,8 @@ static BOOL ov62_0223896C(UnkStruct_0208C06C *param0)
             ov62_02234540(param0, 1);
             ov62_022396E8(param0);
             ov62_02234540(param0, 0);
-            sub_02019EBC(param0->unk_14.unk_10, 3);
-            sub_02019EBC(param0->unk_14.unk_10, 7);
+            Bg_ClearTilemap(param0->unk_14.unk_10, 3);
+            Bg_ClearTilemap(param0->unk_14.unk_10, 7);
             param0->unk_08++;
         }
 
@@ -785,10 +784,10 @@ static BOOL ov62_0223896C(UnkStruct_0208C06C *param0)
         ov62_02234540(param0, 1);
         ov62_0223146C(param0);
         ov62_02234540(param0, 0);
-        sub_02019EBC(param0->unk_14.unk_10, 2);
-        sub_02019EBC(param0->unk_14.unk_10, 6);
-        sub_02019EBC(param0->unk_14.unk_10, 3);
-        sub_02019EBC(param0->unk_14.unk_10, 7);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 2);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 6);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 3);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 7);
         ov62_0223376C(param0, 1);
         param0->unk_08++;
         break;
@@ -803,7 +802,7 @@ static BOOL ov62_0223896C(UnkStruct_0208C06C *param0)
             if (v0->unk_228) {
                 ov22_0225B020(v0->unk_228);
                 ov62_0222F834(param0);
-                BGL_SetPriority(2, 0);
+                Bg_SetPriority(2, 0);
                 ov62_0223956C();
             }
 
@@ -1004,8 +1003,8 @@ static BOOL ov62_02238F24(UnkStruct_0208C06C *param0)
     switch (param0->unk_08) {
     case 0:
         if (v0->unk_0C == 0) {
-            sub_02019EBC(param0->unk_14.unk_10, 2);
-            sub_02019EBC(param0->unk_14.unk_10, 6);
+            Bg_ClearTilemap(param0->unk_14.unk_10, 2);
+            Bg_ClearTilemap(param0->unk_14.unk_10, 6);
             ov62_02239D0C(param0);
         } else {
             ov62_02234540(param0, 1);
@@ -1023,15 +1022,15 @@ static BOOL ov62_02238F24(UnkStruct_0208C06C *param0)
             if (v0->unk_228) {
                 ov22_0225B020(v0->unk_228);
                 ov62_0222F834(param0);
-                BGL_SetPriority(2, 0);
+                Bg_SetPriority(2, 0);
                 v0->unk_228 = NULL;
                 ov62_0223956C();
             }
 
-            sub_02019EBC(param0->unk_14.unk_10, 3);
-            sub_02019EBC(param0->unk_14.unk_10, 7);
-            sub_02019EBC(param0->unk_14.unk_10, 2);
-            sub_02019EBC(param0->unk_14.unk_10, 6);
+            Bg_ClearTilemap(param0->unk_14.unk_10, 3);
+            Bg_ClearTilemap(param0->unk_14.unk_10, 7);
+            Bg_ClearTilemap(param0->unk_14.unk_10, 2);
+            Bg_ClearTilemap(param0->unk_14.unk_10, 6);
             param0->unk_08++;
         }
 
@@ -1053,7 +1052,7 @@ static BOOL ov62_0223900C(UnkStruct_0208C06C *param0)
     case 0:
         if (v0->unk_0C == 0) {
             ov62_02239D0C(param0);
-            sub_02019EBC(param0->unk_14.unk_10, 2);
+            Bg_ClearTilemap(param0->unk_14.unk_10, 2);
         } else {
             ov62_02234540(param0, 1);
             ov62_02232394(&v0->unk_250, param0);
@@ -1068,13 +1067,13 @@ static BOOL ov62_0223900C(UnkStruct_0208C06C *param0)
                 if (v0->unk_228) {
                     ov22_0225B020(v0->unk_228);
                     ov62_0222F834(param0);
-                    BGL_SetPriority(2, 0);
+                    Bg_SetPriority(2, 0);
                     v0->unk_228 = NULL;
                     ov62_0223956C();
                 }
 
-                sub_02019EBC(param0->unk_14.unk_10, 2);
-                sub_02019EBC(param0->unk_14.unk_10, 3);
+                Bg_ClearTilemap(param0->unk_14.unk_10, 2);
+                Bg_ClearTilemap(param0->unk_14.unk_10, 3);
                 GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
             }
 
@@ -1145,7 +1144,7 @@ static BOOL ov62_0223921C(UnkStruct_0208C06C *param0)
     case 0:
         if (v0->unk_0C == 0) {
             ov62_02239D0C(param0);
-            sub_02019EBC(param0->unk_14.unk_10, 2);
+            Bg_ClearTilemap(param0->unk_14.unk_10, 2);
         } else {
             ov62_02234540(param0, 1);
             ov62_02232394(&v0->unk_250, param0);
@@ -1160,13 +1159,13 @@ static BOOL ov62_0223921C(UnkStruct_0208C06C *param0)
                 if (v0->unk_228) {
                     ov22_0225B020(v0->unk_228);
                     ov62_0222F834(param0);
-                    BGL_SetPriority(2, 0);
+                    Bg_SetPriority(2, 0);
                     v0->unk_228 = NULL;
                     ov62_0223956C();
                 }
 
-                sub_02019EBC(param0->unk_14.unk_10, 2);
-                sub_02019EBC(param0->unk_14.unk_10, 3);
+                Bg_ClearTilemap(param0->unk_14.unk_10, 2);
+                Bg_ClearTilemap(param0->unk_14.unk_10, 3);
                 GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
             }
 
@@ -1233,8 +1232,8 @@ static void ov62_02239424(UnkStruct_0208C06C *param0)
 {
     UnkStruct_ov62_02237D24 *v0 = param0->unk_860;
 
-    sub_0201ACF4(&v0->unk_D0[0]);
-    BGL_DeleteWindow(&v0->unk_D0[0]);
+    Window_ClearAndCopyToVRAM(&v0->unk_D0[0]);
+    Window_Remove(&v0->unk_D0[0]);
 }
 
 static void ov62_02239440(UnkStruct_0208C06C *param0, int param1)
@@ -1246,14 +1245,14 @@ static void ov62_02239440(UnkStruct_0208C06C *param0, int param1)
 
     v1 = &v0->unk_D0[0];
 
-    BGL_FillWindow(v1, 0x0);
+    Window_FillTilemap(v1, 0x0);
 
     v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
     v3 = ov62_0223429C(v1, v2);
 
     Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, v2, v3, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 0), NULL);
     Strbuf_Free(v2);
-    sub_0201A9A4(v1);
+    Window_ScheduleCopyToVRAM(v1);
 }
 
 static void ov62_02239498(UnkStruct_0208C06C *param0)
@@ -1264,7 +1263,7 @@ static void ov62_02239498(UnkStruct_0208C06C *param0)
 
     v1 = &v0->unk_D0[0];
     Window_Init(v1);
-    BGL_AddWindow(param0->unk_14.unk_10, v1, 6, 8, 3, 16, 2, 14, v2);
+    Window_Add(param0->unk_14.unk_10, v1, 6, 8, 3, 16, 2, 14, v2);
 
     ov62_02239440(param0, 121);
 }
@@ -1280,7 +1279,7 @@ static void ov62_022394D8(void *param0)
 
     sub_0201DCAC();
     sub_02003694(v0->unk_14.unk_14);
-    sub_0201C2B8(v0->unk_14.unk_10);
+    Bg_RunScheduledUpdates(v0->unk_14.unk_10);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
@@ -1368,14 +1367,14 @@ static void ov62_02239724(UnkStruct_0208C06C *param0)
     u32 v7;
     int v8, v9;
 
-    if (BGL_WindowAdded(&v5->unk_10[0]) == 1) {
+    if (Window_IsInUse(&v5->unk_10[0]) == 1) {
         return;
     }
 
     v0 = &v5->unk_10[0];
     Window_Init(v0);
-    BGL_AddWindow(param0->unk_14.unk_10, v0, 2, 16, 19, 16, 4, 14, 300);
-    BGL_FillWindow(v0, 0x00);
+    Window_Add(param0->unk_14.unk_10, v0, 2, 16, 19, 16, 4, 14, 300);
+    Window_FillTilemap(v0, 0x00);
 
     v4 = ov62_02231690(102);
     v3 = Strbuf_Init(255, 102);
@@ -1397,7 +1396,7 @@ static void ov62_02239724(UnkStruct_0208C06C *param0)
         Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, v1, v9, 16 * v8, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 0), NULL);
     }
 
-    sub_0201A9A4(v0);
+    Window_ScheduleCopyToVRAM(v0);
 
     Strbuf_Free(v1);
     Strbuf_Free(v2);
@@ -1417,14 +1416,14 @@ static void ov62_02239854(UnkStruct_0208C06C *param0, int param1)
     u32 v7;
     int v8, v9;
 
-    if (BGL_WindowAdded(&v5->unk_10[0]) == 1) {
+    if (Window_IsInUse(&v5->unk_10[0]) == 1) {
         return;
     }
 
     v0 = &v5->unk_10[0];
     Window_Init(v0);
-    BGL_AddWindow(param0->unk_14.unk_10, v0, 2, 16, 19, 16, 4, 14, 300);
-    BGL_FillWindow(v0, 0x00);
+    Window_Add(param0->unk_14.unk_10, v0, 2, 16, 19, 16, 4, 14, 300);
+    Window_FillTilemap(v0, 0x00);
 
     v4 = ov62_02231690(102);
     v3 = Strbuf_Init(255, 102);
@@ -1446,7 +1445,7 @@ static void ov62_02239854(UnkStruct_0208C06C *param0, int param1)
         Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, v1, v9, 16 * v8, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 0), NULL);
     }
 
-    sub_0201A9A4(v0);
+    Window_ScheduleCopyToVRAM(v0);
 
     Strbuf_Free(v1);
     Strbuf_Free(v2);
@@ -1605,8 +1604,8 @@ static void ov62_02239BD8(UnkStruct_0208C06C *param0)
         v7 = Unk_ov62_022491F0[v3].rect.right / 8 - v5;
         v8 = Unk_ov62_022491F0[v3].rect.bottom / 8 - v6;
         Window_Init(v1);
-        BGL_AddWindow(param0->unk_14.unk_10, v1, 6, v5, v6, v7, v8, 14, v4);
-        BGL_FillWindow(v1, 0x00);
+        Window_Add(param0->unk_14.unk_10, v1, 6, v5, v6, v7, v8, 14, v4);
+        Window_FillTilemap(v1, 0x00);
         v0 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 68 + v3);
         v9 = ov62_0223429C(v1, v0);
         v10 = (8 * v8 - 16) / 2;
@@ -1616,7 +1615,7 @@ static void ov62_02239BD8(UnkStruct_0208C06C *param0)
             Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, v0, v9, v10, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(12, 11, 0), NULL);
         }
 
-        sub_0201A9A4(v1);
+        Window_ScheduleCopyToVRAM(v1);
         Strbuf_Free(v0);
         v4 += v7 * v8;
     }
@@ -1630,8 +1629,8 @@ static void ov62_02239CE8(UnkStruct_0208C06C *param0)
 
     for (v0 = 0; v0 < 9; v0++) {
         v1 = &v2->unk_D0[v0];
-        sub_0201ACF4(v1);
-        BGL_DeleteWindow(v1);
+        Window_ClearAndCopyToVRAM(v1);
+        Window_Remove(v1);
     }
 }
 
@@ -1639,9 +1638,9 @@ static void ov62_02239D0C(UnkStruct_0208C06C *param0)
 {
     UnkStruct_ov62_02237D24 *v0 = param0->unk_860;
 
-    if (BGL_WindowAdded(&v0->unk_10[0]) == 1) {
-        sub_0201ACF4(&v0->unk_10[0]);
-        BGL_DeleteWindow(&v0->unk_10[0]);
+    if (Window_IsInUse(&v0->unk_10[0]) == 1) {
+        Window_ClearAndCopyToVRAM(&v0->unk_10[0]);
+        Window_Remove(&v0->unk_10[0]);
     }
 }
 

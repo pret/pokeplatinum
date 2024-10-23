@@ -5,7 +5,6 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -36,9 +35,8 @@
 #include "overlay019/struct_ov19_021DCF88_decl.h"
 #include "overlay019/struct_ov19_021DE3E8_decl.h"
 #include "overlay019/struct_ov19_021DEC04_decl.h"
-#include "overlay084/struct_ov84_0223BA5C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "enums.h"
 #include "font.h"
@@ -54,7 +52,6 @@
 #include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02018340.h"
 
 struct UnkStruct_ov19_021D61B0_t {
     SysTask *unk_00;
@@ -64,7 +61,7 @@ struct UnkStruct_ov19_021D61B0_t {
     UnkStruct_0200C738 unk_1C;
     NNSG2dImagePaletteProxy unk_1A8;
     UnkStruct_02007768 *unk_1BC;
-    BGL *unk_1C0;
+    BgConfig *unk_1C0;
     const UnkStruct_ov19_021D4DF0 *unk_1C4;
     UnkStruct_ov19_021DA384 unk_1C8;
     UnkStruct_ov19_021D8318 unk_494;
@@ -159,7 +156,7 @@ BOOL ov19_021D61B0(UnkStruct_ov19_021D61B0 **param0, const UnkStruct_ov19_021D4D
 
     if (v0 != NULL) {
         v0->unk_1C4 = param1;
-        v0->unk_1C0 = sub_02018340(10);
+        v0->unk_1C0 = BgConfig_New(10);
 
         if (v0->unk_1C0 != NULL) {
             u32 v1;
@@ -256,10 +253,10 @@ void ov19_021D64A0(UnkStruct_ov19_021D61B0 *param0)
     ov19_021DA384(&(param0->unk_1C8));
 
     CellActorCollection_Delete(param0->unk_18);
-    sub_02019044(param0->unk_1C0, 3);
-    sub_02019044(param0->unk_1C0, 2);
-    sub_02019044(param0->unk_1C0, 1);
-    sub_02019044(param0->unk_1C0, 4);
+    Bg_FreeTilemapBuffer(param0->unk_1C0, 3);
+    Bg_FreeTilemapBuffer(param0->unk_1C0, 2);
+    Bg_FreeTilemapBuffer(param0->unk_1C0, 1);
+    Bg_FreeTilemapBuffer(param0->unk_1C0, 4);
     sub_02007B6C(param0->unk_1BC);
     Font_UseLazyGlyphAccess(FONT_SYSTEM);
     Heap_FreeToHeap(param0->unk_1C0);
@@ -1605,14 +1602,14 @@ static void ov19_021D74B4(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_
         GX_VRAM_TEXPLTT_01_FG
     };
 
-    static const UnkStruct_ov84_0223BA5C v1 = {
+    static const GraphicsModes v1 = {
         GX_DISPMODE_GRAPHICS,
         GX_BGMODE_0,
         GX_BGMODE_0,
         GX_BG0_AS_3D,
     };
 
-    static const UnkStruct_ov97_0222DB78 v2 = {
+    static const BgTemplate v2 = {
         0,
         0,
         0x800,
@@ -1628,7 +1625,7 @@ static void ov19_021D74B4(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_
         0
     };
 
-    static const UnkStruct_ov97_0222DB78 v3 = {
+    static const BgTemplate v3 = {
         0,
         0,
         0x800,
@@ -1644,7 +1641,7 @@ static void ov19_021D74B4(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_
         0
     };
 
-    static const UnkStruct_ov97_0222DB78 v4 = {
+    static const BgTemplate v4 = {
         0,
         0,
         0x800,
@@ -1660,7 +1657,7 @@ static void ov19_021D74B4(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_
         0
     };
 
-    static const UnkStruct_ov97_0222DB78 v5 = {
+    static const BgTemplate v5 = {
         0,
         0,
         0x1000,
@@ -1676,7 +1673,7 @@ static void ov19_021D74B4(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_
         0
     };
 
-    static const UnkStruct_ov97_0222DB78 v6 = {
+    static const BgTemplate v6 = {
         0,
         0,
         0x800,
@@ -1692,7 +1689,7 @@ static void ov19_021D74B4(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_
         0
     };
 
-    static const UnkStruct_ov97_0222DB78 v7 = {
+    static const BgTemplate v7 = {
         0,
         0,
         0x0,
@@ -1708,7 +1705,7 @@ static void ov19_021D74B4(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_
         0
     };
 
-    static const UnkStruct_ov97_0222DB78 v8 = {
+    static const BgTemplate v8 = {
         0,
         0,
         0x0,
@@ -1724,7 +1721,7 @@ static void ov19_021D74B4(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_
         0
     };
 
-    static const UnkStruct_ov97_0222DB78 v9 = {
+    static const BgTemplate v9 = {
         0,
         0,
         0x0,
@@ -1740,7 +1737,7 @@ static void ov19_021D74B4(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_
         0
     };
 
-    static const UnkStruct_ov97_0222DB78 v10 = {
+    static const BgTemplate v10 = {
         0,
         0,
         0x0,
@@ -1756,7 +1753,7 @@ static void ov19_021D74B4(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_
         0
     };
 
-    static const UnkStruct_ov97_0222DB78 v11 = {
+    static const BgTemplate v11 = {
         0,
         0,
         0x0,
@@ -1777,21 +1774,21 @@ static void ov19_021D74B4(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
     GX_SetGraphicsMode(GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BG0_AS_3D);
 
-    sub_02018368(&v1);
-    sub_020183C4(param0->unk_1C0, 1, &v3, 0);
-    sub_020183C4(param0->unk_1C0, 2, &v4, 0);
-    sub_020183C4(param0->unk_1C0, 3, &v5, 0);
+    SetAllGraphicsModes(&v1);
+    Bg_InitFromTemplate(param0->unk_1C0, 1, &v3, 0);
+    Bg_InitFromTemplate(param0->unk_1C0, 2, &v4, 0);
+    Bg_InitFromTemplate(param0->unk_1C0, 3, &v5, 0);
 
     if (ov19_021D5E08(param1) != 4) {
-        sub_020183C4(param0->unk_1C0, 4, &v6, 0);
-        sub_020183C4(param0->unk_1C0, 5, &v7, 0);
-        sub_020183C4(param0->unk_1C0, 6, &v8, 0);
-        sub_020183C4(param0->unk_1C0, 7, &v9, 0);
+        Bg_InitFromTemplate(param0->unk_1C0, 4, &v6, 0);
+        Bg_InitFromTemplate(param0->unk_1C0, 5, &v7, 0);
+        Bg_InitFromTemplate(param0->unk_1C0, 6, &v8, 0);
+        Bg_InitFromTemplate(param0->unk_1C0, 7, &v9, 0);
     } else {
-        sub_020183C4(param0->unk_1C0, 4, &v6, 0);
-        sub_020183C4(param0->unk_1C0, 5, &v10, 0);
-        sub_020183C4(param0->unk_1C0, 6, &v11, 0);
-        sub_020183C4(param0->unk_1C0, 7, &v9, 0);
+        Bg_InitFromTemplate(param0->unk_1C0, 4, &v6, 0);
+        Bg_InitFromTemplate(param0->unk_1C0, 5, &v10, 0);
+        Bg_InitFromTemplate(param0->unk_1C0, 6, &v11, 0);
+        Bg_InitFromTemplate(param0->unk_1C0, 7, &v9, 0);
     }
 
     ov19_021D76FC();
@@ -1800,8 +1797,8 @@ static void ov19_021D74B4(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_
 static void ov19_021D75CC(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_021D4DF0 *param1, NARC *param2)
 {
     sub_020070E8(param2, 4, param0->unk_1C0, 1, 0, 0, 1, 10);
-    sub_02019CB8(param0->unk_1C0, 1, 0x0, 0, 0, 32, 32, 17);
-    sub_02019448(param0->unk_1C0, 1);
+    Bg_FillTilemapRect(param0->unk_1C0, 1, 0x0, 0, 0, 32, 32, 17);
+    Bg_CopyTilemapBufferToVRAM(param0->unk_1C0, 1);
     sub_020070E8(param2, 1, param0->unk_1C0, 2, 0, 0, 1, 10);
     sub_02007130(param2, 5, 0, 0, 0x20 * 7, 10);
 

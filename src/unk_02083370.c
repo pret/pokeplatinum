@@ -14,6 +14,7 @@
 #include "overlay118/ov118_021D0D80.h"
 
 #include "bag.h"
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "heap.h"
@@ -27,7 +28,6 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
-#include "unk_02018340.h"
 #include "unk_0207070C.h"
 #include "unk_0207E0B8.h"
 #include "unk_020819DC.h"
@@ -117,10 +117,10 @@ u32 sub_02083370(u8 param0)
 void sub_0208337C(GameWindowLayout *param0)
 {
     Window_Clear(&param0->unk_254[0], 1);
-    sub_0201AD10(&param0->unk_254[0]);
+    Window_ClearAndScheduleCopyToVRAM(&param0->unk_254[0]);
     sub_02001BC4(param0->unk_700, NULL);
     sub_02013A3C(param0->unk_6FC);
-    BGL_DeleteWindow(&param0->unk_254[0]);
+    Window_Remove(&param0->unk_254[0]);
 }
 
 static void sub_020833BC(GameWindowLayout *param0, int *param1)
@@ -208,7 +208,7 @@ static void sub_020834B0(GameWindowLayout *param0, int *param1)
     }
 
     sub_0200E060(&param0->unk_04[34], 1, (1 + 9), 15);
-    BGL_FillWindow(&param0->unk_04[34], 15);
+    Window_FillTilemap(&param0->unk_04[34], 15);
     sub_0208274C(param0);
 
     *param1 = v2;
@@ -488,8 +488,8 @@ void sub_02083BD4(GameWindowLayout *param0)
         param0->unk_7F8.unk_302[1] = 0;
     }
 
-    v0 = (u16 *)sub_02019FE4(param0->unk_00, 2);
-    v1 = (u16 *)sub_02019FE4(param0->unk_00, 1);
+    v0 = (u16 *)Bg_GetTilemapBuffer(param0->unk_00, 2);
+    v1 = (u16 *)Bg_GetTilemapBuffer(param0->unk_00, 1);
 
     v2 = param0->unk_704[param0->unk_7F8.unk_300[0]].unk_14;
     v3 = param0->unk_704[param0->unk_7F8.unk_300[0]].unk_15;
@@ -523,8 +523,8 @@ BOOL sub_02083D1C(GameWindowLayout *param0)
         sub_02083E8C(param0, 1);
         sub_02083FDC(param0, 0, v0->unk_302[0]);
         sub_02083FDC(param0, 1, v0->unk_302[1]);
-        sub_0201C3C0(param0->unk_00, 2);
-        sub_0201C3C0(param0->unk_00, 1);
+        Bg_ScheduleTilemapTransfer(param0->unk_00, 2);
+        Bg_ScheduleTilemapTransfer(param0->unk_00, 1);
 
         if (v0->unk_306 == 16) {
             v0->unk_305 = 2;
@@ -542,8 +542,8 @@ BOOL sub_02083D1C(GameWindowLayout *param0)
         sub_02083E8C(param0, 1);
         sub_02083FDC(param0, 0, v0->unk_302[0] ^ 1);
         sub_02083FDC(param0, 1, v0->unk_302[1] ^ 1);
-        sub_0201C3C0(param0->unk_00, 2);
-        sub_0201C3C0(param0->unk_00, 1);
+        Bg_ScheduleTilemapTransfer(param0->unk_00, 2);
+        Bg_ScheduleTilemapTransfer(param0->unk_00, 1);
 
         if (v0->unk_306 == 0) {
             v0->unk_305 = 4;
@@ -578,15 +578,15 @@ static void sub_02083E8C(GameWindowLayout *param0, u8 param1)
     v1 = param0->unk_704[v0->unk_300[param1]].unk_14;
     v2 = param0->unk_704[v0->unk_300[param1]].unk_15;
 
-    sub_02019CB8(param0->unk_00, 2, 0, v1, v2, 16, 6, 16);
-    sub_02019CB8(param0->unk_00, 1, 0, v1, v2, 16, 6, 16);
+    Bg_FillTilemapRect(param0->unk_00, 2, 0, v1, v2, 16, 6, 16);
+    Bg_FillTilemapRect(param0->unk_00, 1, 0, v1, v2, 16, 6, 16);
 
     if (v0->unk_302[param1] == 0) {
-        sub_020198E8(param0->unk_00, 2, v1, v2, 16 - v0->unk_306, 6, &v0->unk_00[param1], v0->unk_306, 0, 16, 6);
-        sub_020198E8(param0->unk_00, 1, v1, v2, 16 - v0->unk_306, 6, &v0->unk_180[param1], v0->unk_306, 0, 16, 6);
+        Bg_CopyToTilemapRect(param0->unk_00, 2, v1, v2, 16 - v0->unk_306, 6, &v0->unk_00[param1], v0->unk_306, 0, 16, 6);
+        Bg_CopyToTilemapRect(param0->unk_00, 1, v1, v2, 16 - v0->unk_306, 6, &v0->unk_180[param1], v0->unk_306, 0, 16, 6);
     } else {
-        sub_020198E8(param0->unk_00, 2, v1 + v0->unk_306, v2, 16 - v0->unk_306, 6, &v0->unk_00[param1], 0, 0, 16, 6);
-        sub_020198E8(param0->unk_00, 1, v1 + v0->unk_306, v2, 16 - v0->unk_306, 6, &v0->unk_180[param1], 0, 0, 16, 6);
+        Bg_CopyToTilemapRect(param0->unk_00, 2, v1 + v0->unk_306, v2, 16 - v0->unk_306, 6, &v0->unk_00[param1], 0, 0, 16, 6);
+        Bg_CopyToTilemapRect(param0->unk_00, 1, v1 + v0->unk_306, v2, 16 - v0->unk_306, 6, &v0->unk_180[param1], 0, 0, 16, 6);
     }
 }
 

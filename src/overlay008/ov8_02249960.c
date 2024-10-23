@@ -9,7 +9,6 @@
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_02055130.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02071B10.h"
 #include "struct_defs/struct_02071B30.h"
 #include "struct_defs/struct_02071B6C.h"
@@ -36,6 +35,7 @@
 #include "overlay008/struct_ov8_02249FB8.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
+#include "bg_window.h"
 #include "camera.h"
 #include "core_sys.h"
 #include "field_system.h"
@@ -54,7 +54,6 @@
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_02027F50.h"
 #include "unk_020508D4.h"
@@ -2865,7 +2864,7 @@ static BOOL ov8_0224B3D4(TaskManager *param0)
 
             ov8_0224B240(&v2->unk_1C, v9, v10);
             sub_0200E084(v2->unk_44, 0);
-            BGL_DeleteWindow(v2->unk_44);
+            Window_Remove(v2->unk_44);
             v2->unk_04 = 0;
             v2->unk_00 = 5;
             break;

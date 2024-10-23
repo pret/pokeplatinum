@@ -3,34 +3,31 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/ov25_02255090.h"
 #include "overlay025/struct_ov25_0225517C.h"
 #include "overlay025/struct_ov25_02255224_decl.h"
 #include "overlay031/struct_ov31_02256554_1.h"
 #include "overlay031/struct_ov31_02256554_decl.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
 #include "heap.h"
 #include "sys_task_manager.h"
-#include "unk_02018340.h"
 
 struct UnkStruct_ov31_02256554_t {
     const UnkStruct_ov31_02256554_1 *unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     u32 unk_08[10];
 };
 
 static void ov31_022565CC(UnkStruct_ov25_02255224 *param0);
 static void ov31_022565E0(SysTask *param0, void *param1);
-static void ov31_02256644(BGL *param0);
+static void ov31_02256644(BgConfig *param0);
 static void ov31_022566EC(SysTask *param0, void *param1);
 static void ov31_02256710(SysTask *param0, void *param1);
-static void ov31_0225672C(BGL *param0, const UnkStruct_ov31_02256554_1 *param1);
+static void ov31_0225672C(BgConfig *param0, const UnkStruct_ov31_02256554_1 *param1);
 
-BOOL ov31_02256554(UnkStruct_ov31_02256554 **param0, const UnkStruct_ov31_02256554_1 *param1, BGL *param2)
+BOOL ov31_02256554(UnkStruct_ov31_02256554 **param0, const UnkStruct_ov31_02256554_1 *param1, BgConfig *param2)
 {
     UnkStruct_ov31_02256554 *v0 = (UnkStruct_ov31_02256554 *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov31_02256554));
 
@@ -86,7 +83,7 @@ static void ov31_022565CC(UnkStruct_ov25_02255224 *param0)
 
 static void ov31_022565E0(SysTask *param0, void *param1)
 {
-    static const UnkStruct_ov97_0222DB78 v0 = {
+    static const BgTemplate v0 = {
         0,
         0,
         0x800,
@@ -106,20 +103,20 @@ static void ov31_022565E0(SysTask *param0, void *param1)
 
     v2 = ov25_0225523C(param1);
 
-    sub_020183C4(v2->unk_04, 6, &v0, 0);
+    Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
 
     ov31_02256644(v2->unk_04);
     ov31_0225672C(v2->unk_04, v2->unk_00);
     ov25_022546B8(0, 0);
 
-    sub_02019448(v2->unk_04, 6);
+    Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);
 
     v1 = GXS_GetDispCnt();
     GXS_SetVisiblePlane(v1.visiblePlane | GX_PLANEMASK_BG2);
     ov31_022565CC(param1);
 }
 
-static void ov31_02256644(BGL *param0)
+static void ov31_02256644(BgConfig *param0)
 {
     u8 *v0 = Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, 0x20 * 16);
 
@@ -132,7 +129,7 @@ static void ov31_02256644(BGL *param0)
             MI_CpuFillFast(v0 + v1 * 0x20, v2, 0x20);
         }
 
-        sub_0201958C(param0, 6, v0, 0x20 * 16, 0);
+        Bg_LoadTiles(param0, 6, v0, 0x20 * 16, 0);
         Heap_FreeToHeap(v0);
     }
 }
@@ -144,7 +141,7 @@ static void ov31_022566EC(SysTask *param0, void *param1)
     v0 = ov25_0225523C(param1);
 
     ov31_0225672C(v0->unk_04, v0->unk_00);
-    sub_02019448(v0->unk_04, 6);
+    Bg_CopyTilemapBufferToVRAM(v0->unk_04, 6);
     ov31_022565CC(param1);
 }
 
@@ -152,17 +149,17 @@ static void ov31_02256710(SysTask *param0, void *param1)
 {
     UnkStruct_ov31_02256554 *v0 = ov25_0225523C(param1);
 
-    sub_02019044(v0->unk_04, 6);
+    Bg_FreeTilemapBuffer(v0->unk_04, 6);
     ov31_022565CC(param1);
 }
 
-static void ov31_0225672C(BGL *param0, const UnkStruct_ov31_02256554_1 *param1)
+static void ov31_0225672C(BgConfig *param0, const UnkStruct_ov31_02256554_1 *param1)
 {
     static const u8 v0[] = {
         4, 15, 8, 1
     };
     int v1, v2, v3;
-    u16 *v4 = sub_02019FE4(param0, 6);
+    u16 *v4 = Bg_GetTilemapBuffer(param0, 6);
 
     v4 += ((2 * 32) + 2);
 

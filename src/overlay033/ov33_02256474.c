@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/ov25_02255090.h"
@@ -18,8 +17,8 @@
 #include "overlay025/struct_ov25_02255958.h"
 #include "overlay033/struct_ov33_02256474_1.h"
 #include "overlay033/struct_ov33_02256474_decl.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
 #include "core_sys.h"
 #include "heap.h"
 #include "inlines.h"
@@ -29,7 +28,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02006E3C.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 
 typedef struct {
@@ -54,7 +52,7 @@ typedef struct {
 
 struct UnkStruct_ov33_02256474_t {
     const UnkStruct_ov33_02256474_1 *unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     u32 unk_08[10];
     UnkStruct_ov25_022555E8 *unk_30;
     UnkStruct_ov25_02255958 unk_34;
@@ -116,7 +114,7 @@ static void ov33_022570E8(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
 static void ov33_0225718C(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_02256474_1 *param1, int param2);
 static void ov33_022572A0(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_02256474_1 *param1);
 
-BOOL ov33_02256474(UnkStruct_ov33_02256474 **param0, const UnkStruct_ov33_02256474_1 *param1, BGL *param2)
+BOOL ov33_02256474(UnkStruct_ov33_02256474 **param0, const UnkStruct_ov33_02256474_1 *param1, BgConfig *param2)
 {
     UnkStruct_ov33_02256474 *v0 = (UnkStruct_ov33_02256474 *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov33_02256474));
 
@@ -200,7 +198,7 @@ static void ov33_02256584(UnkStruct_ov25_02255224 *param0)
 
 static void ov33_02256598(SysTask *param0, void *param1)
 {
-    static const UnkStruct_ov97_0222DB78 v0 = {
+    static const BgTemplate v0 = {
         0,
         0,
         0x800,
@@ -220,12 +218,12 @@ static void ov33_02256598(SysTask *param0, void *param1)
 
     v2 = ov25_0225523C(param1);
 
-    sub_020183C4(v2->unk_04, 6, &v0, 0);
+    Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
     sub_02006E3C(12, 7, v2->unk_04, 6, 0, 0, 1, 8);
-    sub_02019CB8(v2->unk_04, 6, 0, 0, 0, 32, 24, 0);
+    Bg_FillTilemapRect(v2->unk_04, 6, 0, 0, 0, 32, 24, 0);
 
     ov25_022546B8(0, 0);
-    sub_02019448(v2->unk_04, 6);
+    Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);
 
     ov33_02256634(v2, v2->unk_00);
     ov33_0225681C(v2, v2->unk_00);
@@ -345,7 +343,7 @@ static void ov33_02256898(SysTask *param0, void *param1)
 {
     UnkStruct_ov33_02256474 *v0 = ov25_0225523C(param1);
 
-    sub_02019044(v0->unk_04, 6);
+    Bg_FreeTilemapBuffer(v0->unk_04, 6);
     ov33_02256584(param1);
 }
 

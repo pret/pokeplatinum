@@ -7,17 +7,13 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/sprite_template.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02081CF4.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay084/struct_ov84_0223BA5C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_02241308.h"
 #include "overlay104/struct_ov104_0224133C.h"
@@ -27,6 +23,7 @@
 #include "overlay119/struct_ov119_021D17B8.h"
 #include "overlay119/struct_ov119_021D1930.h"
 
+#include "bg_window.h"
 #include "camera.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -45,7 +42,6 @@
 #include "unk_0200F174.h"
 #include "unk_02013A04.h"
 #include "unk_02014000.h"
-#include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
@@ -117,7 +113,7 @@ void ov119_021D0E78(void)
     sub_02014000();
 }
 
-void ov119_021D0EB8(BGL *param0)
+void ov119_021D0EB8(BgConfig *param0)
 {
     GXLayers_DisableEngineALayers();
 
@@ -144,18 +140,18 @@ void ov119_021D0EB8(BGL *param0)
     }
 
     {
-        UnkStruct_ov84_0223BA5C v1 = {
+        GraphicsModes v1 = {
             GX_DISPMODE_GRAPHICS,
             GX_BGMODE_0,
             GX_BGMODE_0,
             GX_BG0_AS_3D
         };
 
-        sub_02018368(&v1);
+        SetAllGraphicsModes(&v1);
     }
 
     {
-        UnkStruct_ov97_0222DB78 v2[] = {
+        BgTemplate v2[] = {
             {
                 0,
                 0,
@@ -203,12 +199,12 @@ void ov119_021D0EB8(BGL *param0)
             },
         };
 
-        sub_020183C4(param0, 1, &v2[0], 0);
-        sub_020183C4(param0, 2, &v2[1], 0);
-        sub_020183C4(param0, 3, &v2[2], 0);
-        sub_02019EBC(param0, 1);
-        sub_02019EBC(param0, 2);
-        sub_02019EBC(param0, 3);
+        Bg_InitFromTemplate(param0, 1, &v2[0], 0);
+        Bg_InitFromTemplate(param0, 2, &v2[1], 0);
+        Bg_InitFromTemplate(param0, 3, &v2[2], 0);
+        Bg_ClearTilemap(param0, 1);
+        Bg_ClearTilemap(param0, 2);
+        Bg_ClearTilemap(param0, 3);
 
         G2_SetBG0Priority(1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
@@ -218,7 +214,7 @@ void ov119_021D0EB8(BGL *param0)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
     {
-        UnkStruct_ov97_0222DB78 v3[] = {
+        BgTemplate v3[] = {
             {
                 0,
                 0,
@@ -236,8 +232,8 @@ void ov119_021D0EB8(BGL *param0)
             },
         };
 
-        sub_020183C4(param0, 4, &v3[0], 0);
-        sub_02019EBC(param0, 4);
+        Bg_InitFromTemplate(param0, 4, &v3[0], 0);
+        Bg_ClearTilemap(param0, 4);
     }
 }
 
@@ -249,7 +245,7 @@ void ov119_021D0FD0(void *param0)
     sub_0201DCAC();
     sub_0200C800();
     sub_02003694(v0->unk_04.unk_04);
-    sub_0201C2B8(v0->unk_04.unk_00);
+    Bg_RunScheduledUpdates(v0->unk_04.unk_00);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
@@ -282,7 +278,7 @@ void ov119_021D1048(void)
     sub_0200F174(0, 0, 0, 0x0, 6, 1, 71);
 }
 
-void ov119_021D1068(BGL *param0, PaletteData *param1, int param2)
+void ov119_021D1068(BgConfig *param0, PaletteData *param1, int param2)
 {
     int v0 = 71;
 
@@ -293,13 +289,13 @@ void ov119_021D1068(BGL *param0, PaletteData *param1, int param2)
     PaletteSys_LoadPalette(param1, 14, 7, v0, 0, 0x20, 14 * 16);
 }
 
-void ov119_021D10F0(BGL *param0, Window *param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8)
+void ov119_021D10F0(BgConfig *param0, Window *param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8)
 {
     Window_Init(param1);
-    BGL_AddWindow(param0, param1, param2, param3, param4, param5, param6, param8, param7);
+    Window_Add(param0, param1, param2, param3, param4, param5, param6, param8, param7);
     sub_0200E060(param1, 1, 20, 12);
-    BGL_FillWindow(param1, 15);
-    sub_0201A954(param1);
+    Window_FillTilemap(param1, 15);
+    Window_CopyToVRAM(param1);
 }
 
 int ov119_021D1158(Window *param0, int param1, Pokemon *param2, int param3)
@@ -311,7 +307,7 @@ int ov119_021D1158(Window *param0, int param1, Pokemon *param2, int param3)
     BoxPokemon *v4;
     MessageLoader *v5;
 
-    BGL_FillWindow(param0, 15);
+    Window_FillTilemap(param0, 15);
 
     v5 = MessageLoader_Init(0, 26, 357, 71);
     v3 = StringTemplate_Default(71);
@@ -332,12 +328,12 @@ int ov119_021D1158(Window *param0, int param1, Pokemon *param2, int param3)
     return v0;
 }
 
-void ov119_021D11E4(UnkStruct_ov119_021D0FD0 *param0, BGL *param1, Window *param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9)
+void ov119_021D11E4(UnkStruct_ov119_021D0FD0 *param0, BgConfig *param1, Window *param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9)
 {
     UnkStruct_02081CF4 v0;
 
     Window_Init(param2);
-    BGL_AddWindow(param1, param2, param3, param4, param5, param6, param7, param9, param8);
+    Window_Add(param1, param2, param3, param4, param5, param6, param7, param9, param8);
 
     param0->unk_04.unk_44 = sub_02013A04(2, 71);
 
@@ -371,19 +367,19 @@ void ov119_021D11E4(UnkStruct_ov119_021D0FD0 *param0, BGL *param1, Window *param
 void ov119_021D12CC(UnkStruct_ov119_021D0FD0 *param0)
 {
     Window_Clear(&param0->unk_04.unk_14[1], 1);
-    sub_0201ACF4(&param0->unk_04.unk_14[1]);
-    BGL_DeleteWindow(&param0->unk_04.unk_14[1]);
+    Window_ClearAndCopyToVRAM(&param0->unk_04.unk_14[1]);
+    Window_Remove(&param0->unk_04.unk_14[1]);
     sub_02001BC4(param0->unk_04.unk_48, NULL);
     sub_02013A3C(param0->unk_04.unk_44);
 }
 
 void ov119_021D12F8(Window *param0)
 {
-    sub_0201ACF4(param0);
-    BGL_DeleteWindow(param0);
+    Window_ClearAndCopyToVRAM(param0);
+    Window_Remove(param0);
 }
 
-void ov119_021D1308(BGL *param0, PaletteData *param1)
+void ov119_021D1308(BgConfig *param0, PaletteData *param1)
 {
     int v0 = 118;
     int v1 = 0;
@@ -397,7 +393,7 @@ void ov119_021D1308(BGL *param0, PaletteData *param1)
     PaletteSys_LoadPalette(param1, v0, v3, v5, 0, 0x20 * 2, 0);
 }
 
-void ov119_021D135C(BGL *param0, PaletteData *param1)
+void ov119_021D135C(BgConfig *param0, PaletteData *param1)
 {
     int v0 = 12;
     int v1 = 10;

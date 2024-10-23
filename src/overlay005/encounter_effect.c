@@ -9,8 +9,6 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "field/field_system.h"
@@ -27,9 +25,8 @@
 #include "overlay005/struct_ov5_021DE5A4.h"
 #include "overlay005/struct_ov5_021DE5D0.h"
 #include "overlay006/battle_params.h"
-#include "overlay084/struct_ov84_0223BA5C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
 #include "camera.h"
 #include "cell_actor.h"
 #include "enc_effects.h"
@@ -46,7 +43,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_02014000.h"
-#include "unk_02018340.h"
 #include "unk_02054884.h"
 
 enum ScreenFlashState {
@@ -651,7 +647,7 @@ void EncounterEffect_Unused(void)
 static void EncounterEffect_UnusedTask(SysTask *dummy1, void *dummy2)
 {
     {
-        UnkStruct_ov84_0223BA5C v0 = {
+        GraphicsModes v0 = {
             GX_DISPMODE_GRAPHICS,
             GX_BGMODE_1,
             GX_BGMODE_0,
@@ -660,7 +656,7 @@ static void EncounterEffect_UnusedTask(SysTask *dummy1, void *dummy2)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v1 = {
+        BgTemplate v1 = {
             0,
             0,
             0x800,
@@ -678,7 +674,7 @@ static void EncounterEffect_UnusedTask(SysTask *dummy1, void *dummy2)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v2 = {
+        BgTemplate v2 = {
             0,
             0,
             0x800,
@@ -696,7 +692,7 @@ static void EncounterEffect_UnusedTask(SysTask *dummy1, void *dummy2)
     }
 
     {
-        UnkStruct_ov97_0222DB78 v3 = {
+        BgTemplate v3 = {
             0,
             0,
             0x800,
@@ -714,7 +710,7 @@ static void EncounterEffect_UnusedTask(SysTask *dummy1, void *dummy2)
     }
 }
 
-void ov5_021DE3D0(NARC *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, BGL *param6, u32 param7)
+void ov5_021DE3D0(NARC *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, BgConfig *param6, u32 param7)
 {
     void *v0;
     NNSG2dScreenData *v1;
@@ -724,10 +720,10 @@ void ov5_021DE3D0(NARC *param0, u32 param1, u32 param2, u32 param3, u32 param4, 
 
     v0 = sub_020071D0(param0, param1, 0, &v1, 4);
 
-    sub_020198C0(param6, param7, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
-    sub_02019E2C(param6, param7, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8, param4);
+    Bg_LoadToTilemapRect(param6, param7, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
+    Bg_ChangeTilemapRectPalette(param6, param7, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8, param4);
     Heap_FreeToHeap(v0);
-    sub_0201C3C0(param6, param7);
+    Bg_ScheduleTilemapTransfer(param6, param7);
 }
 
 void ov5_021DE47C(UnkStruct_ov5_021DE47C *param0, int param1, int param2)
@@ -963,7 +959,7 @@ static void ov5_021DE89C(Window *param0, s32 param1, s32 param2, s32 param3, s32
         param2 = 256;
     }
 
-    BGL_WindowColor(param0, param5, param3, param1, param4 - param3, param2 - param1);
+    Window_FillRectWithColor(param0, param5, param3, param1, param4 - param3, param2 - param1);
 }
 
 UnkStruct_ov5_021DE928 *ov5_021DE8F8(u32 param0)
@@ -1544,7 +1540,7 @@ static void ov5_021DF28C(SysTask *param0, void *param1)
         ov5_021D16F4(v0->fieldSystem, 0);
         ov5_021D1718(v0->fieldSystem, 0);
 
-        BGL_SetPriority(0, 0);
+        Bg_SetPriority(0, 0);
 
         v0->unk_02 = 1;
         SysTask_Done(param0);
@@ -1577,14 +1573,14 @@ static void ov5_021DF30C(FieldSystem *fieldSystem)
         GX_PLANEMASK_BG0, 0);
 
     {
-        UnkStruct_ov84_0223BA5C v1 = {
+        GraphicsModes v1 = {
             GX_DISPMODE_GRAPHICS,
             GX_BGMODE_3,
             GX_BGMODE_0,
             GX_BG0_AS_3D
         };
 
-        sub_02018368(&v1);
+        SetAllGraphicsModes(&v1);
     }
 
     {
@@ -1593,7 +1589,7 @@ static void ov5_021DF30C(FieldSystem *fieldSystem)
         {
             G2_SetBG3ControlDCBmp(GX_BG_SCRSIZE_DCBMP_256x256, GX_BG_AREAOVER_XLU, GX_BG_BMPSCRBASE_0x20000);
 
-            BGL_SetPriority(3, 3);
+            Bg_SetPriority(3, 3);
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
 
             {
@@ -1605,7 +1601,7 @@ static void ov5_021DF30C(FieldSystem *fieldSystem)
         }
 
         {
-            UnkStruct_ov97_0222DB78 v3 = {
+            BgTemplate v3 = {
                 0,
                 0,
                 0x800,
@@ -1621,9 +1617,9 @@ static void ov5_021DF30C(FieldSystem *fieldSystem)
                 0
             };
 
-            sub_020183C4(fieldSystem->unk_08, 2, &v3, 0);
-            sub_02019690(2, 32, 0, 4);
-            sub_02019EBC(fieldSystem->unk_08, 2);
+            Bg_InitFromTemplate(fieldSystem->unk_08, 2, &v3, 0);
+            Bg_ClearTilesRange(2, 32, 0, 4);
+            Bg_ClearTilemap(fieldSystem->unk_08, 2);
         }
     }
 
@@ -1632,7 +1628,7 @@ static void ov5_021DF30C(FieldSystem *fieldSystem)
 
 static void ov5_021DF3D4(FieldSystem *fieldSystem)
 {
-    sub_02019044(fieldSystem->unk_08, 2);
+    Bg_FreeTilemapBuffer(fieldSystem->unk_08, 2);
     ov5_021D1434(fieldSystem->unk_08);
 }
 

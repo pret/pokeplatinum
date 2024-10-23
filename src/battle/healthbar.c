@@ -10,16 +10,15 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "battle/ov16_0223DF00.h"
 #include "battle/struct_ov16_022674C4.h"
 #include "gmm/message_bank_battle_strings.h"
 
 #include "assert.h"
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "heap.h"
 #include "message.h"
@@ -33,7 +32,6 @@
 #include "unk_02002F38.h"
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0208C098.h"
 
@@ -1078,7 +1076,7 @@ static void ScrollHealthbarTask(SysTask *task, void *data)
  */
 static void Healthbar_DrawBattlerName(Healthbar *healthbar)
 {
-    BGL *bgl;
+    BgConfig *bgl;
     u8 *buf;
     NNSG2dImageProxy *imgProxy;
     Window window;
@@ -1101,9 +1099,9 @@ static void Healthbar_DrawBattlerName(Healthbar *healthbar)
     StringTemplate_SetNickname(strFormatter, 0, boxMon);
     StringTemplate_Format(strFormatter, nickname, template);
 
-    BGL_AddFramelessWindow(bgl, &window, HEALTHBAR_NAME_BLOCK_COUNT_X, HEALTHBAR_NAME_BLOCK_COUNT_Y, HEALTHBAR_NAME_WINDOW_OFFSET, HEALTHBAR_NAME_BACKGROUND_COLOR);
+    Window_AddToTopLeftCorner(bgl, &window, HEALTHBAR_NAME_BLOCK_COUNT_X, HEALTHBAR_NAME_BLOCK_COUNT_Y, HEALTHBAR_NAME_WINDOW_OFFSET, HEALTHBAR_NAME_BACKGROUND_COLOR);
     Text_AddPrinterWithParamsColorAndSpacing(&window, FONT_SYSTEM, nickname, 0, 0, TEXT_SPEED_NO_TRANSFER, HEALTHBAR_NAME_TEXT_COLOR, 0, 0, NULL);
-    buf = window.unk_0C;
+    buf = window.pixels;
 
     // copy the window's data into VRAM over the painted healthbar
     {
@@ -1126,7 +1124,7 @@ static void Healthbar_DrawBattlerName(Healthbar *healthbar)
             sBattlerNameVRAMTransfer[healthbar->type][3].size);
     }
 
-    BGL_DeleteWindow(&window);
+    Window_Remove(&window);
     Strbuf_Free(nickname);
     Strbuf_Free(template);
 }
@@ -1298,7 +1296,7 @@ static void Healthbar_DrawStatusIcon(Healthbar *param0, int param1)
 
 static void Healthbar_DrawBallCount(Healthbar *param0, u32 param1)
 {
-    BGL *v0;
+    BgConfig *v0;
     u8 *v1;
     NNSG2dImageProxy *v2;
     Window v3;
@@ -1314,10 +1312,10 @@ static void Healthbar_DrawBallCount(Healthbar *param0, u32 param1)
         v5 = MessageLoader_GetNewStrbuf(v4, 1220);
     }
 
-    BGL_AddFramelessWindow(v0, &v3, 13, 2, 0, 0xf);
+    Window_AddToTopLeftCorner(v0, &v3, 13, 2, 0, 0xf);
     Text_AddPrinterWithParamsColorAndSpacing(&v3, FONT_SYSTEM, v5, 0, 0, TEXT_SPEED_NO_TRANSFER, HEALTHBAR_NAME_TEXT_COLOR, 0, 0, NULL);
 
-    v1 = v3.unk_0C;
+    v1 = v3.pixels;
 
     {
         void *v6;
@@ -1335,13 +1333,13 @@ static void Healthbar_DrawBallCount(Healthbar *param0, u32 param1)
         MI_CpuCopy16(&v8[Unk_ov16_0226F33C[1].size], (void *)((u32)v6 + Unk_ov16_0226F33C[3].pos + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F33C[3].size);
     }
 
-    BGL_DeleteWindow(&v3);
+    Window_Remove(&v3);
     Strbuf_Free(v5);
 }
 
 static void Healthbar_DrawBallsLeftMessage(Healthbar *param0, u32 param1)
 {
-    BGL *v0;
+    BgConfig *v0;
     u8 *v1;
     NNSG2dImageProxy *v2;
     Window v3;
@@ -1362,10 +1360,10 @@ static void Healthbar_DrawBallsLeftMessage(Healthbar *param0, u32 param1)
 
     StringTemplate_SetNumber(v7, 0, param0->unk_27, 2, 1, 1);
     StringTemplate_Format(v7, v5, v6);
-    BGL_AddFramelessWindow(v0, &v3, 13, 2, 0, 0xf);
+    Window_AddToTopLeftCorner(v0, &v3, 13, 2, 0, 0xf);
     Text_AddPrinterWithParamsColorAndSpacing(&v3, FONT_SYSTEM, v5, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(14, 2, 15), 0, 0, NULL);
 
-    v1 = v3.unk_0C;
+    v1 = v3.pixels;
 
     {
         void *v8;
@@ -1382,7 +1380,7 @@ static void Healthbar_DrawBallsLeftMessage(Healthbar *param0, u32 param1)
         MI_CpuCopy16(&v10[Unk_ov16_0226F34C[1].size], (void *)((u32)v8 + Unk_ov16_0226F34C[3].pos + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F34C[3].size);
     }
 
-    BGL_DeleteWindow(&v3);
+    Window_Remove(&v3);
     Strbuf_Free(v5);
     Strbuf_Free(v6);
 }

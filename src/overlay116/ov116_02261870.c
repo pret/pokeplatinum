@@ -7,10 +7,8 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay114/ov114_0225C700.h"
 #include "overlay116/ov116_0226432C.h"
@@ -18,6 +16,7 @@
 #include "overlay116/struct_ov116_02262A8C.h"
 #include "overlay116/struct_ov116_0226501C.h"
 
+#include "bg_window.h"
 #include "camera.h"
 #include "easy3d_object.h"
 #include "font.h"
@@ -31,7 +30,6 @@
 #include "unk_02006E3C.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
-#include "unk_02018340.h"
 #include "unk_0202419C.h"
 
 static inline void inline_ov116_02261940(UnkStruct_ov116_0226501C *param0);
@@ -397,8 +395,8 @@ void ov116_02261F3C(UnkStruct_ov116_02262A8C *param0)
 void ov116_02261F70(UnkStruct_ov116_02262A8C *param0)
 {
     Window_Init(&param0->unk_1FC8);
-    BGL_AddWindow(param0->unk_14->unk_10, &param0->unk_1FC8, 7, 2, 19, 28, 4, 14, 256 + (16 * 3));
-    BGL_FillWindow(&param0->unk_1FC8, 0xFF);
+    Window_Add(param0->unk_14->unk_10, &param0->unk_1FC8, 7, 2, 19, 28, 4, 14, 256 + (16 * 3));
+    Window_FillTilemap(&param0->unk_1FC8, 0xFF);
 
     {
         MessageLoader *v0;
@@ -413,15 +411,15 @@ void ov116_02261F70(UnkStruct_ov116_02262A8C *param0)
     }
 
     Window_Show(&param0->unk_1FC8, 0, 180, 13);
-    sub_0201A954(&param0->unk_1FC8);
+    Window_CopyToVRAM(&param0->unk_1FC8);
 }
 
 void ov116_02262004(UnkStruct_ov116_02262A8C *param0)
 {
-    if (BGL_WindowAdded(&param0->unk_1FC8) == 1) {
+    if (Window_IsInUse(&param0->unk_1FC8) == 1) {
         Window_Clear(&param0->unk_1FC8, 1);
-        sub_0201ACF4(&param0->unk_1FC8);
-        BGL_DeleteWindow(&param0->unk_1FC8);
+        Window_ClearAndCopyToVRAM(&param0->unk_1FC8);
+        Window_Remove(&param0->unk_1FC8);
     }
 }
 
@@ -467,7 +465,7 @@ void ov116_02262034(UnkStruct_ov116_0226139C *param0, int param1)
 static int ov116_0226208C(Window *param0, Strbuf *param1)
 {
     int v0 = Font_CalcStrbufWidth(FONT_SYSTEM, param1, 0);
-    int v1 = (sub_0201C294(param0) * 8 - v0) / 2;
+    int v1 = (Window_GetWidth(param0) * 8 - v0) / 2;
 
     return v1;
 }
@@ -529,9 +527,9 @@ void ov116_022620AC(UnkStruct_ov116_0226139C *param0, UnkStruct_ov116_02262A8C *
         v7 = v4[param1->unk_04 - 2][v1][2];
         v8 = v4[param1->unk_04 - 2][v1][3];
 
-        BGL_AddWindow(param1->unk_14->unk_10, v3, 7, v5, v6, v7, v8, 14, v2);
+        Window_Add(param1->unk_14->unk_10, v3, 7, v5, v6, v7, v8, 14, v2);
         v2 += (v7 * v8);
-        BGL_FillWindow(v3, 0xFF);
+        Window_FillTilemap(v3, 0xFF);
 
         {
             Strbuf *v11;
@@ -549,7 +547,7 @@ void ov116_022620AC(UnkStruct_ov116_0226139C *param0, UnkStruct_ov116_02262A8C *
             Strbuf_Free(v11);
         }
 
-        sub_0201A954(v3);
+        Window_CopyToVRAM(v3);
         v1++;
     }
 }
@@ -565,10 +563,10 @@ void ov116_02262264(UnkStruct_ov116_02262A8C *param0)
             continue;
         }
 
-        if (BGL_WindowAdded(&param0->unk_1FD8[v1]) == 1) {
+        if (Window_IsInUse(&param0->unk_1FD8[v1]) == 1) {
             Window_Clear(&param0->unk_1FD8[v1], 1);
-            sub_0201ACF4(&param0->unk_1FD8[v1]);
-            BGL_DeleteWindow(&param0->unk_1FD8[v1]);
+            Window_ClearAndCopyToVRAM(&param0->unk_1FD8[v1]);
+            Window_Remove(&param0->unk_1FD8[v1]);
         }
 
         v1++;
@@ -581,7 +579,7 @@ void ov116_022622C8(UnkStruct_ov116_0226139C *param0)
 {
     NARC *v0 = param0->unk_48.unk_00;
     NARC *v1 = param0->unk_48.unk_04;
-    BGL *v2 = param0->unk_48.unk_10;
+    BgConfig *v2 = param0->unk_48.unk_10;
     SpriteRenderer *v3 = param0->unk_48.unk_08;
     SpriteGfxHandler *v4 = param0->unk_48.unk_0C;
     PaletteData *v5 = param0->unk_48.unk_14;
@@ -819,7 +817,7 @@ void ov116_022628B8(UnkStruct_ov116_0226139C *param0)
 {
     NARC *v0 = param0->unk_48.unk_00;
     NARC *v1 = param0->unk_48.unk_04;
-    BGL *v2 = param0->unk_48.unk_10;
+    BgConfig *v2 = param0->unk_48.unk_10;
     SpriteRenderer *v3 = param0->unk_48.unk_08;
     SpriteGfxHandler *v4 = param0->unk_48.unk_0C;
     PaletteData *v5 = param0->unk_48.unk_14;

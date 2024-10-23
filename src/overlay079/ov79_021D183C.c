@@ -7,10 +7,10 @@
 #include "struct_defs/struct_0203D9B8.h"
 #include "struct_defs/struct_020989DC.h"
 
-#include "overlay061/struct_ov61_0222C884.h"
 #include "overlay079/struct_ov79_021D0E1C.h"
 #include "overlay084/struct_ov84_02240FA8.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "font.h"
 #include "render_text.h"
@@ -24,7 +24,6 @@
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
 #include "unk_020158A8.h"
-#include "unk_02018340.h"
 #include "unk_02098FFC.h"
 
 static void ov79_021D1D88(BmpList *param0, u32 param1, u8 param2);
@@ -89,7 +88,7 @@ static void ov79_021D1850(UnkStruct_ov79_021D0E1C *param0, Strbuf *param1, u8 pa
         sub_0200E060(&param0->unk_E8[2], 1, 1, 14);
     }
 
-    BGL_WindowColor(&(param0->unk_E8[2]), ((15 << 4) | 15), 0, 0, 27 * 8, 4 * 8);
+    Window_FillRectWithColor(&(param0->unk_E8[2]), ((15 << 4) | 15), 0, 0, 27 * 8, 4 * 8);
     RenderControlFlags_SetCanABSpeedUpPrint(1);
     RenderControlFlags_SetAutoScrollFlags(0);
 
@@ -195,10 +194,10 @@ void ov79_021D196C(UnkStruct_ov79_021D0E1C *param0)
 
 void ov79_021D1AB8(UnkStruct_ov79_021D0E1C *param0, BOOL param1)
 {
-    BGL_WindowColor(&(param0->unk_E8[0]), ((0 << 4) | 0), 0, 0, 22 * 8, 12 * 8);
+    Window_FillRectWithColor(&(param0->unk_E8[0]), ((0 << 4) | 0), 0, 0, 22 * 8, 12 * 8);
 
     if (param1) {
-        sub_0201ACF4(&param0->unk_E8[0]);
+        Window_ClearAndCopyToVRAM(&param0->unk_E8[0]);
     }
 
     sub_02001384(param0->unk_C4, &(param0->unk_80), &(param0->unk_82));
@@ -217,34 +216,34 @@ void ov79_021D1B24(UnkStruct_ov79_021D0E1C *param0, u8 param1, u8 param2)
     case 0:
         CellActor_SetAnim(param0->unk_1E0[param1], param1 * 3);
         CellActor_SetAnimateFlag(param0->unk_1E0[param1], 0);
-        sub_0201C04C(
+        Window_Scroll(
             &param0->unk_E8[7 + param1], 1, 2, ((0 << 4) | 0));
         break;
     case 1:
         CellActor_RestartAnim(param0->unk_1E0[param1]);
         CellActor_SetAnimateFlag(param0->unk_1E0[param1], 1);
-        sub_0201C04C(&param0->unk_E8[7 + param1], 0, 4, ((0 << 4) | 0));
+        Window_Scroll(&param0->unk_E8[7 + param1], 0, 4, ((0 << 4) | 0));
         param0->unk_14 = 1;
         break;
     case 2:
         CellActor_SetAnim(param0->unk_1E0[param1], param1 * 3 + 1);
-        sub_0201C04C(&param0->unk_E8[7 + param1], 1, 2, ((0 << 4) | 0));
+        Window_Scroll(&param0->unk_E8[7 + param1], 1, 2, ((0 << 4) | 0));
         param0->unk_14 = 0;
         break;
     case 3:
         CellActor_SetAnim(param0->unk_1E0[param1], param1 * 3 + 2);
-        sub_0201C04C(&param0->unk_E8[7 + param1], 0, 2, ((0 << 4) | 0));
+        Window_Scroll(&param0->unk_E8[7 + param1], 0, 2, ((0 << 4) | 0));
         param0->unk_14 = 1;
         break;
     case 4:
         CellActor_SetAnim(param0->unk_1E0[param1], param1 * 3 + 1);
         CellActor_SetAnimateFlag(param0->unk_1E0[param1], 1);
-        sub_0201C04C(&param0->unk_E8[7 + param1], 0, 2, ((0 << 4) | 0));
+        Window_Scroll(&param0->unk_E8[7 + param1], 0, 2, ((0 << 4) | 0));
         param0->unk_14 = 0;
         break;
     }
 
-    sub_0201A954(&param0->unk_E8[7 + param1]);
+    Window_CopyToVRAM(&param0->unk_E8[7 + param1]);
 }
 
 void ov79_021D1C44(UnkStruct_ov79_021D0E1C *param0, u8 param1)
@@ -271,10 +270,10 @@ void ov79_021D1C44(UnkStruct_ov79_021D0E1C *param0, u8 param1)
     param0->unk_20->unk_04 = param0->unk_20->unk_06 = 0;
 
     ov79_021D196C(param0);
-    BGL_WindowColor(&(param0->unk_E8[6]), ((0 << 4) | 0), 0, 0, 20 * 8, 3 * 8);
+    Window_FillRectWithColor(&(param0->unk_E8[6]), ((0 << 4) | 0), 0, 0, 20 * 8, 3 * 8);
 
     if (param0->unk_1B == 5) {
-        sub_0201A954(&param0->unk_E8[6]);
+        Window_CopyToVRAM(&param0->unk_E8[6]);
         return;
     }
 
@@ -341,11 +340,11 @@ static void ov79_021D1D94(BmpList *param0, u32 param1, u8 param2)
         CellActor_SetDrawFlag(v0->unk_1C0[2], 0);
     }
 
-    BGL_WindowColor(&(v0->unk_E8[1]), ((0 << 4) | 0), 0, 0, 10 * 8, 2 * 8);
+    Window_FillRectWithColor(&(v0->unk_E8[1]), ((0 << 4) | 0), 0, 0, 10 * 8, 2 * 8);
 
     if (param1 == 0xFF) {
         ov79_021D1D20(v0, NULL);
-        sub_0201A954(&v0->unk_E8[1]);
+        Window_CopyToVRAM(&v0->unk_E8[1]);
         SpriteActor_EnableObject(v0->unk_1FC->unk_04, 0);
         return;
     }
@@ -393,7 +392,7 @@ void ov79_021D1F60(UnkStruct_ov79_021D0E1C *param0)
     u16 v0, v1;
 
     Window_Clear(&(param0->unk_E8[3]), 0);
-    sub_0201ACF4(&param0->unk_E8[3]);
+    Window_ClearAndCopyToVRAM(&param0->unk_E8[3]);
 
     sub_02001384(param0->unk_C8, &v1, &v0);
     sub_02013A3C(param0->unk_D0);
@@ -429,7 +428,7 @@ void ov79_021D2008(UnkStruct_ov79_021D0E1C *param0)
 
 void ov79_021D2054(UnkStruct_ov79_021D0E1C *param0)
 {
-    static const UnkStruct_ov61_0222C884 v0 = {
+    static const WindowTemplate v0 = {
         1, 26, 13, 5, 4, 13, 463
     };
 

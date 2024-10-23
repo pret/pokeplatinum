@@ -2,10 +2,11 @@
 #define POKEPLATINUM_OV76_0223D338_H
 
 #include "struct_decls/cell_actor_data.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0202CA28.h"
 
 #include "overlay076/struct_ov76_0223DE00.h"
+
+#include "bg_window.h"
 
 void ov76_0223D338(UnkStruct_ov76_0223DE00 *param0);
 void ov76_0223D350(UnkStruct_ov76_0223DE00 *param0);
@@ -28,7 +29,7 @@ void ov76_0223DF84(UnkStruct_ov76_0223DE00 *param0);
 void ov76_0223E91C(UnkStruct_ov76_0223DE00 *param0, int param1);
 void ov76_0223EB20(int param0);
 void ov76_0223EB54(int param0);
-void ov76_0223EB64(BGL *param0);
+void ov76_0223EB64(BgConfig *param0);
 void ov76_0223ECB0(void *param0);
 
 #endif // POKEPLATINUM_OV76_0223D338_H

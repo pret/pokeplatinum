@@ -3,19 +3,17 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0205AA50.h"
-
 #include "overlay104/struct_ov104_0223E9EC.h"
 #include "overlay104/struct_ov104_0223EA38.h"
 #include "overlay104/struct_ov104_0223F094.h"
 #include "overlay104/struct_ov104_0223F1B4.h"
 
+#include "bg_window.h"
 #include "buffer_manager.h"
 #include "heap.h"
 #include "screen_scroll_manager.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02018340.h"
 
 typedef struct {
     int unk_00;
@@ -302,7 +300,7 @@ static void ov104_0223EB44(Window *param0, s32 param1, s32 param2, s32 param3, s
         param2 = 256;
     }
 
-    BGL_WindowColor(param0, param5, param3, param1, param4 - param3, param2 - param1);
+    Window_FillRectWithColor(param0, param5, param3, param1, param4 - param3, param2 - param1);
 }
 
 UnkStruct_ov104_0223EBD0 *ov104_0223EBA0(u32 param0)

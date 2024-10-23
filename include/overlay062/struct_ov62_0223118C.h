@@ -7,7 +7,6 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_defs/struct_0207C690.h"
 
@@ -16,6 +15,7 @@
 #include "overlay062/struct_ov62_0223359C.h"
 #include "overlay062/struct_ov62_022349A8.h"
 
+#include "bg_window.h"
 #include "message.h"
 #include "touch_screen.h"
 
@@ -24,7 +24,7 @@ typedef struct {
     SpriteRenderer *unk_04;
     SpriteGfxHandler *unk_08;
     u8 padding_0C[4];
-    BGL *unk_10;
+    BgConfig *unk_10;
     PaletteData *unk_14;
     UnkStruct_02023FCC *unk_18;
     TouchScreenRect unk_1C[5];

@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 
 #include "field/field_system.h"
@@ -14,6 +13,7 @@
 #include "overlay006/ov6_02240C9C.h"
 #include "overlay006/struct_ov6_0223E6EC.h"
 
+#include "bg_window.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "map_header.h"
@@ -22,7 +22,6 @@
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
-#include "unk_02018340.h"
 #include "unk_020508D4.h"
 #include "unk_02054D00.h"
 
@@ -55,7 +54,7 @@ typedef struct UnkStruct_ov5_021F0468_t {
     s16 unk_0E;
 } UnkStruct_ov5_021F0468;
 
-static void ov5_021F0260(BGL *param0);
+static void ov5_021F0260(BgConfig *param0);
 static void ov5_021F02B8(UnkStruct_ov5_021F02B8 *param0, int param1, int param2, int param3);
 static BOOL ov5_021F02C8(UnkStruct_ov5_021F02B8 *param0);
 
@@ -68,7 +67,7 @@ static void ov5_021F007C(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
 
     ov5_021F02B8(&v0->unk_28, 0, 8, 19);
 
-    BGL_SetPriority(2, 0);
+    Bg_SetPriority(2, 0);
     GXLayers_EngineAToggleLayers((GX_PLANEMASK_BG2), 1);
     Sound_PlayEffect(1608);
 }
@@ -107,7 +106,7 @@ static void ov5_021F00F0(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     }
 
     sub_020039F8(v1->unk_04->pRawData, v1->unk_08, 0x1, v1->unk_28.unk_00, (GX_RGB(31, 10, 23)));
-    sub_0201972C(2, v1->unk_08, 32, 6 * 32);
+    Bg_LoadPalette(2, v1->unk_08, 32, 6 * 32);
 }
 
 static void ov5_021F013C(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2)
@@ -121,7 +120,7 @@ static void ov5_021F013C(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
 
     G2_SetBlendAlpha((GX_PLANEMASK_BG2), GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD, 0, 16 - 0);
 
-    BGL_SetPriority(2, 0);
+    Bg_SetPriority(2, 0);
     GXLayers_EngineAToggleLayers((GX_PLANEMASK_BG2), 1);
     Sound_PlayEffect(1608);
 }
@@ -247,19 +246,19 @@ BOOL ov5_021F0254(UnkStruct_ov5_021D1BEC *param0)
     return v0->unk_3C;
 }
 
-static void ov5_021F0260(BGL *param0)
+static void ov5_021F0260(BgConfig *param0)
 {
     GXRgb v0 = (GX_RGB(31, 10, 23));
     u8 *v1;
 
-    sub_0201972C(2, &v0, sizeof(short), (6 * 32) + 2);
+    Bg_LoadPalette(2, &v0, sizeof(short), (6 * 32) + 2);
 
     v1 = Heap_AllocFromHeap(4, sizeof(u8) * 32);
     memset(v1, 0x11, sizeof(u8) * 32);
 
-    sub_0201958C(param0, 2, v1, sizeof(u8) * 32, 1);
+    Bg_LoadTiles(param0, 2, v1, sizeof(u8) * 32, 1);
     Heap_FreeToHeap(v1);
-    sub_02019EE0(param0, 2, (6 << 12) | 1);
+    Bg_FillTilemap(param0, 2, (6 << 12) | 1);
 }
 
 static void ov5_021F02B8(UnkStruct_ov5_021F02B8 *param0, int param1, int param2, int param3)
@@ -291,12 +290,12 @@ static BOOL ov5_021F02C8(UnkStruct_ov5_021F02B8 *param0)
 
 static void ov5_021F02F4(FieldSystem *fieldSystem)
 {
-    sub_0201975C(2, 0);
+    Bg_MaskPalette(2, 0);
 }
 
 static void ov5_021F0300(FieldSystem *fieldSystem)
 {
-    sub_0201975C(2, 0x7fff);
+    Bg_MaskPalette(2, 0x7fff);
 }
 
 static void ov5_021F0310(FieldSystem *fieldSystem)
@@ -307,9 +306,9 @@ static void ov5_021F0310(FieldSystem *fieldSystem)
 
     G2_SetBG2Priority(3);
 
-    sub_0201972C(2, &v0, 2, ((6 * 32) + 4));
-    sub_020196C0(fieldSystem->unk_08, 2, 2, 1, 2);
-    sub_02019EE0(fieldSystem->unk_08, 2, ((6 << 12) | 2));
+    Bg_LoadPalette(2, &v0, 2, ((6 * 32) + 4));
+    Bg_FillTilesRange(fieldSystem->unk_08, 2, 2, 1, 2);
+    Bg_FillTilemap(fieldSystem->unk_08, 2, ((6 << 12) | 2));
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
 
     ov5_021F02F4(fieldSystem);
@@ -323,9 +322,9 @@ static void ov5_021F0374(FieldSystem *fieldSystem)
 
     G2_SetBG3Priority(3);
 
-    sub_0201972C(3, &v0, 2, ((6 * 32) + 4));
-    sub_020196C0(fieldSystem->unk_08, 3, 2, 1, 2);
-    sub_02019EE0(fieldSystem->unk_08, 3, ((6 << 12) | 2));
+    Bg_LoadPalette(3, &v0, 2, ((6 * 32) + 4));
+    Bg_FillTilesRange(fieldSystem->unk_08, 3, 2, 1, 2);
+    Bg_FillTilemap(fieldSystem->unk_08, 3, ((6 << 12) | 2));
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
 
     ov5_021F02F4(fieldSystem);
@@ -462,7 +461,7 @@ BOOL ov5_021F0488(TaskManager *param0)
 
         v1->unk_0C = 2;
 
-        BGL_SetPriority(2, 0);
+        Bg_SetPriority(2, 0);
         GXLayers_EngineAToggleLayers((GX_PLANEMASK_BG2), 1);
         break;
     case 2:
@@ -523,11 +522,11 @@ BOOL ov5_021F0488(TaskManager *param0)
             if (v1->unk_08 == 0) {
                 GXLayers_EngineAToggleLayers((GX_PLANEMASK_BG2), 0);
                 G2_BlendNone();
-                BGL_SetPriority(2, 3);
+                Bg_SetPriority(2, 3);
 
-                sub_02019EBC(fieldSystem->unk_08, 2);
+                Bg_ClearTilemap(fieldSystem->unk_08, 2);
             } else {
-                BGL_SetPriority(2, 1);
+                Bg_SetPriority(2, 1);
             }
 
             v1->unk_0C = 8;

@@ -9,13 +9,12 @@
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "field/field_system.h"
-#include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_02240FA8.h"
 
 #include "bag.h"
+#include "bg_window.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "field_system.h"
@@ -33,7 +32,6 @@
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
-#include "unk_02018340.h"
 #include "unk_0202ACE0.h"
 #include "unk_0203061C.h"
 #include "unk_0203909C.h"
@@ -124,7 +122,7 @@ static BOOL ov5_021EA8F0(UnkStruct_ov5_021EAE78 *param0)
     return 0;
 }
 
-static const UnkStruct_ov61_0222C884 Unk_ov5_021FAF00 = {
+static const WindowTemplate Unk_ov5_021FAF00 = {
     0x3,
     0x19,
     0xD,
@@ -267,7 +265,7 @@ static BOOL ov5_021EAB58(UnkStruct_ov5_021EAE78 *param0)
 
     param0->unk_00 = sub_02013A04(v2 + 1, 4);
 
-    BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_20, 3, 19, 1, 12, v3 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (10 * (v3 + 2) * 2));
+    Window_Add(param0->fieldSystem->unk_08, &param0->unk_20, 3, 19, 1, 12, v3 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (10 * (v3 + 2) * 2));
     Window_Show(&param0->unk_20, 1, 1024 - (18 + 12) - 9, 11);
 
     {
@@ -294,7 +292,7 @@ static BOOL ov5_021EAB58(UnkStruct_ov5_021EAE78 *param0)
     v1.unk_1C = param0;
 
     param0->unk_04 = sub_0200112C(&v1, 0, 0, 4);
-    sub_0201A954(&param0->unk_20);
+    Window_CopyToVRAM(&param0->unk_20);
     param0->unk_48 = 9;
 
     return 0;
@@ -336,7 +334,7 @@ static BOOL ov5_021EAC44(UnkStruct_ov5_021EAE78 *param0)
     }
 
     Window_Clear(&param0->unk_20, 0);
-    BGL_DeleteWindow(&param0->unk_20);
+    Window_Remove(&param0->unk_20);
     sub_02001384(param0->unk_04, NULL, NULL);
     sub_02013A3C(param0->unk_00);
 
@@ -436,8 +434,8 @@ static BOOL ov5_021EADB4(TaskManager *param0)
 
 static void ov5_021EAE78(UnkStruct_ov5_021EAE78 *param0, int param1)
 {
-    if (BGL_WindowAdded(&param0->unk_10)) {
-        BGL_DeleteWindow(&param0->unk_10);
+    if (Window_IsInUse(&param0->unk_10)) {
+        Window_Remove(&param0->unk_10);
     }
 
     MessageLoader_GetStrbuf(param0->unk_3C, param1, param0->unk_08);
@@ -465,8 +463,8 @@ static void ov5_021EAF1C(UnkStruct_ov5_021EAE78 *param0)
     Strbuf_Free(param0->unk_0C);
     Strbuf_Free(param0->unk_08);
 
-    if (BGL_WindowAdded(&param0->unk_10)) {
-        BGL_DeleteWindow(&param0->unk_10);
+    if (Window_IsInUse(&param0->unk_10)) {
+        Window_Remove(&param0->unk_10);
     }
 }
 

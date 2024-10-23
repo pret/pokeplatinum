@@ -8,16 +8,15 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_020158A8.h"
 #include "struct_defs/struct_0203D9B8.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0209903C.h"
 #include "struct_defs/struct_0209916C.h"
 
 #include "overlay079/struct_ov79_021D0E1C_sub1.h"
 #include "overlay084/struct_ov84_02240FA8.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "message.h"
 
@@ -37,7 +36,7 @@ typedef struct UnkStruct_ov79_021D0E1C_t {
     u8 unk_1E;
     u8 unk_1F;
     UnkStruct_0203D9B8 *unk_20;
-    BGL *unk_24;
+    BgConfig *unk_24;
     UnkStruct_020158A8 *unk_28;
     MessageLoader *unk_2C;
     UnkStruct_ov79_021D0E1C_sub1 unk_30;

@@ -13,6 +13,7 @@
 #include "overlay100/struct_ov100_021D4DD8.h"
 #include "overlay115/camera_angle.h"
 
+#include "bg_window.h"
 #include "camera.h"
 #include "core_sys.h"
 #include "easy3d_object.h"
@@ -25,7 +26,6 @@
 #include "trainer_info.h"
 #include "unk_02002F38.h"
 #include "unk_0200DA60.h"
-#include "unk_02018340.h"
 
 int ov100_021D46C8(UnkStruct_ov100_021D46C8 *param0, UnkStruct_020985E4 *param1, int param2)
 {
@@ -51,10 +51,10 @@ int ov100_021D46C8(UnkStruct_ov100_021D46C8 *param0, UnkStruct_020985E4 *param1,
     }
 
     v4 = Options_TextFrameDelay(param1->unk_04);
-    BGL_FillWindow(&param0->unk_30, 0xFF);
+    Window_FillTilemap(&param0->unk_30, 0xFF);
 
     v0 = Text_AddPrinterWithParams(&param0->unk_30, FONT_MESSAGE, v3, 0, 0, v4, NULL);
-    sub_0201A954(&param0->unk_30);
+    Window_CopyToVRAM(&param0->unk_30);
 
     sub_0200E060(&param0->unk_30, 0, 500, 15);
     Strbuf_Free(v2);
@@ -68,7 +68,7 @@ int ov100_021D46C8(UnkStruct_ov100_021D46C8 *param0, UnkStruct_020985E4 *param1,
 void ov100_021D4788(UnkStruct_ov100_021D46C8 *param0)
 {
     sub_0200E084(&param0->unk_30, 1);
-    sub_0201ACF4(&param0->unk_30);
+    Window_ClearAndCopyToVRAM(&param0->unk_30);
 }
 
 void ov100_021D47A0(UnkStruct_ov100_021D46C8 *param0)

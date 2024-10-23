@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 
 #include "overlay063/ov63_0222BCE8.h"
 #include "overlay063/ov63_0222BE18.h"
@@ -25,6 +24,7 @@
 #include "overlay065/struct_ov65_02236318.h"
 #include "overlay065/struct_ov65_022376D0.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "heap.h"
@@ -32,7 +32,6 @@
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201DBEC.h"
 
@@ -67,9 +66,9 @@ static void ov65_022358F8(UnkStruct_ov65_022358CC *param0, u32 param1, NARC *par
 static void ov65_02235900(UnkStruct_ov65_022358CC *param0);
 static void ov65_02235908(UnkStruct_ov65_022358CC *param0, u32 param1);
 static void ov65_02235910(UnkStruct_ov65_022358CC *param0);
-static void ov65_02235918(BGL *param0, u32 param1);
-static void ov65_0223591C(BGL *param0);
-static void ov65_02235920(BGL *param0, u32 param1, NARC *param2);
+static void ov65_02235918(BgConfig *param0, u32 param1);
+static void ov65_0223591C(BgConfig *param0);
+static void ov65_02235920(BgConfig *param0, u32 param1, NARC *param2);
 static BOOL ov65_02235BE8(UnkStruct_ov65_02235130 *param0);
 static void ov65_02235960(UnkStruct_ov65_022358CC *param0, u32 param1, NARC *param2);
 static void ov65_02235A60(UnkStruct_ov65_022358CC *param0);
@@ -129,7 +128,7 @@ static const u16 Unk_ov65_02238BC8[2] = {
     0x2
 };
 
-void ov65_02235060(UnkStruct_ov65_02235130 *param0, u32 param1, NARC *param2, BGL *param3, u32 param4, u32 param5)
+void ov65_02235060(UnkStruct_ov65_02235130 *param0, u32 param1, NARC *param2, BgConfig *param3, u32 param4, u32 param5)
 {
     UnkStruct_ov63_0222CC3C v0;
     u32 v1;
@@ -627,20 +626,20 @@ static void ov65_02235910(UnkStruct_ov65_022358CC *param0)
     ov65_02235B14(param0);
 }
 
-static void ov65_02235918(BGL *param0, u32 param1)
+static void ov65_02235918(BgConfig *param0, u32 param1)
 {
     return;
 }
 
-static void ov65_0223591C(BGL *param0)
+static void ov65_0223591C(BgConfig *param0)
 {
     return;
 }
 
-static void ov65_02235920(BGL *param0, u32 param1, NARC *param2)
+static void ov65_02235920(BgConfig *param0, u32 param1, NARC *param2)
 {
     sub_02007130(param2, 30, 0, 0, 8 * 32, param1);
-    sub_0201975C(0, 0);
+    Bg_MaskPalette(0, 0);
     sub_020070E8(param2, 29, param0, 0, 0, 0, 0, param1);
 }
 

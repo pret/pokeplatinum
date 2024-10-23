@@ -7,13 +7,12 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/sprite_manager_allocation.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/struct_0205AA50.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "font.h"
 #include "heap.h"
@@ -30,7 +29,6 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
-#include "unk_02018340.h"
 #include "unk_0201E86C.h"
 
 typedef struct {
@@ -70,7 +68,7 @@ typedef struct {
     int unk_04;
     int unk_08;
     void *unk_0C;
-    BGL *unk_10;
+    BgConfig *unk_10;
     SpriteRenderer *unk_14;
     SpriteGfxHandler *unk_18;
     PaletteData *unk_1C;
@@ -126,7 +124,7 @@ typedef struct {
     u8 unk_0B;
 } UnkStruct_ov104_0224191C;
 
-void ov104_0223DC7C(int param0, BGL *param1, SpriteRenderer *param2, SpriteGfxHandler *param3, PaletteData *param4, u16 *param5, s16 param6, s16 param7);
+void ov104_0223DC7C(int param0, BgConfig *param1, SpriteRenderer *param2, SpriteGfxHandler *param3, PaletteData *param4, u16 *param5, s16 param6, s16 param7);
 static void ov104_0223DD30(UnkStruct_ov104_0223DD30 *param0, SysTask *param1);
 static void ov104_0223DD5C(SysTask *param0, void *param1);
 static void ov104_0223DDB4(SysTask *param0, void *param1);
@@ -182,7 +180,7 @@ static const SpriteTemplate Unk_ov104_022418E8 = {
     0x0
 };
 
-void ov104_0223DC7C(int param0, BGL *param1, SpriteRenderer *param2, SpriteGfxHandler *param3, PaletteData *param4, u16 *param5, s16 param6, s16 param7)
+void ov104_0223DC7C(int param0, BgConfig *param1, SpriteRenderer *param2, SpriteGfxHandler *param3, PaletteData *param4, u16 *param5, s16 param6, s16 param7)
 {
     SysTask *v0;
     UnkStruct_ov104_0223DD30 *v1;
@@ -205,10 +203,10 @@ void ov104_0223DC7C(int param0, BGL *param1, SpriteRenderer *param2, SpriteGfxHa
 
     v1->unk_2C = param0 - 1;
 
-    MI_CpuClear32(sub_02019F28(1), 0x8000);
+    MI_CpuClear32(Bg_GetCharPtr(1), 0x8000);
 
-    sub_0201C63C(param1, 1, 0, 0);
-    sub_0201C63C(param1, 1, 3, 0);
+    Bg_ScheduleScroll(param1, 1, 0, 0);
+    Bg_ScheduleScroll(param1, 1, 3, 0);
 
     ov104_0223E5A8(v1, &Unk_ov104_0224191C[v1->unk_2C]);
 
@@ -430,7 +428,7 @@ static void ov104_0223E29C(UnkStruct_ov104_0223DD30 *param0, UnkStruct_ov104_022
     SpriteManagerAllocation v2;
     int v3;
     FontOAM *v4;
-    BGL *v5;
+    BgConfig *v5;
     SpriteGfxHandler *v6;
     int v7, v8;
 
@@ -448,7 +446,7 @@ static void ov104_0223E29C(UnkStruct_ov104_0223DD30 *param0, UnkStruct_ov104_022
 
     if (param10 == NULL) {
         Window_Init(&v1);
-        BGL_AddFramelessWindow(v5, &v1, v8, 16 / 8, 0, 0);
+        Window_AddToTopLeftCorner(v5, &v1, v8, 16 / 8, 0, 0);
         Text_AddPrinterWithParamsColorAndSpacing(&v1, param3, param2, 0, 0, TEXT_SPEED_NO_TRANSFER, param4, 0, 0, NULL);
     } else {
         v1 = param10->unk_00;
@@ -482,7 +480,7 @@ static void ov104_0223E29C(UnkStruct_ov104_0223DD30 *param0, UnkStruct_ov104_022
     sub_020128C4(v4, param7, param8);
 
     if (param10 == NULL) {
-        BGL_DeleteWindow(&v1);
+        Window_Remove(&v1);
     }
 
     param1->unk_00 = v4;
@@ -627,8 +625,8 @@ static void ov104_0223E5A8(UnkStruct_ov104_0223DD30 *param0, const UnkStruct_ov1
     PaletteSys_LoadPalette(param0->unk_1C, 112, param1->unk_08, 94, 0, 0x20, 12 * 16);
     sub_020070E8(param0->unk_24, param1->unk_09, param0->unk_10, 1, 0, 0, 0, 94);
     sub_0200710C(param0->unk_24, param1->unk_0A, param0->unk_10, 1, 0, 0, 0, 94);
-    sub_02019E2C(param0->unk_10, 1, 0, 0, 32, 32, 12);
-    sub_0201C3C0(param0->unk_10, 1);
+    Bg_ChangeTilemapRectPalette(param0->unk_10, 1, 0, 0, 32, 32, 12);
+    Bg_ScheduleTilemapTransfer(param0->unk_10, 1);
 
     {
         void *v0;

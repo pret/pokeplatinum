@@ -9,7 +9,6 @@
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "field/field_system.h"
 #include "overlay023/funcptr_ov23_0224DCB8.h"
@@ -18,9 +17,9 @@
 #include "overlay023/ov23_02253598.h"
 #include "overlay023/ov23_02253D40.h"
 #include "overlay023/struct_ov23_02250CD4.h"
-#include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_02240FA8.h"
 
+#include "bg_window.h"
 #include "comm_player_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -37,7 +36,6 @@
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0202854C.h"
 #include "unk_020573FC.h"
@@ -150,7 +148,7 @@ static const UnkStruct_ov84_02240FA8 Unk_ov23_02256894 = {
     NULL
 };
 
-static const UnkStruct_ov61_0222C884 Unk_ov23_0225688C = {
+static const WindowTemplate Unk_ov23_0225688C = {
     0x3,
     0x19,
     0xD,
@@ -241,7 +239,7 @@ static void ov23_0224DD2C(UnkStruct_ov23_0224E280 *param0)
 
     param0->unk_1C = sub_02013A04(NELEMS(Unk_ov23_022568B4), 4);
 
-    BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_0C, 3, 1, 1, 10, NELEMS(Unk_ov23_022568B4) * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (10 * NELEMS(Unk_ov23_022568B4) * 2));
+    Window_Add(param0->fieldSystem->unk_08, &param0->unk_0C, 3, 1, 1, 10, NELEMS(Unk_ov23_022568B4) * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (10 * NELEMS(Unk_ov23_022568B4) * 2));
     Window_Show(&param0->unk_0C, 1, 1024 - (18 + 12) - 9, 11);
 
     {
@@ -267,7 +265,7 @@ static void ov23_0224DD2C(UnkStruct_ov23_0224E280 *param0)
     param0->unk_3A = 0;
     param0->unk_20 = sub_0200112C(&v0, 0, 0, 4);
 
-    sub_0201A954(&param0->unk_0C);
+    Window_CopyToVRAM(&param0->unk_0C);
     sub_020594FC();
 }
 
@@ -302,7 +300,7 @@ static void ov23_0224DE3C(UnkStruct_ov23_0224E280 *param0)
 
     param0->unk_1C = sub_02013A04(4, 4);
 
-    BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_0C, 3, 1, 1, 16, 4 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (16 * 4 * 2));
+    Window_Add(param0->fieldSystem->unk_08, &param0->unk_0C, 3, 1, 1, 16, 4 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (16 * 4 * 2));
     Window_Show(&param0->unk_0C, 1, 1024 - (18 + 12) - 9, 11);
 
     {
@@ -339,7 +337,7 @@ static void ov23_0224DE3C(UnkStruct_ov23_0224E280 *param0)
     param0->unk_3A = 0;
     param0->unk_20 = sub_0200112C(&v0, 0, 0, 4);
 
-    sub_0201A954(&param0->unk_0C);
+    Window_CopyToVRAM(&param0->unk_0C);
 }
 
 static BOOL ov23_0224DF1C(SysTask *param0, void *param1)
@@ -390,7 +388,7 @@ static void ov23_0224DFA0(UnkStruct_ov23_0224E280 *param0)
 
     param0->unk_1C = sub_02013A04(4, 4);
 
-    BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_0C, 3, 1, 1, 16, 4 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (16 * 4 * 2));
+    Window_Add(param0->fieldSystem->unk_08, &param0->unk_0C, 3, 1, 1, 16, 4 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (16 * 4 * 2));
     Window_Show(&param0->unk_0C, 1, 1024 - (18 + 12) - 9, 11);
 
     {
@@ -415,7 +413,7 @@ static void ov23_0224DFA0(UnkStruct_ov23_0224E280 *param0)
     param0->unk_3A = 0;
     param0->unk_20 = sub_0200112C(&v0, 0, 0, 4);
 
-    sub_0201A954(&param0->unk_0C);
+    Window_CopyToVRAM(&param0->unk_0C);
 }
 
 static BOOL ov23_0224E05C(SysTask *param0, void *param1)
@@ -539,8 +537,8 @@ static void ov23_0224E244(SysTask *param0, UnkStruct_ov23_0224E280 *param1)
     if (param1->unk_1C) {
         Window_Clear(&param1->unk_0C, 1);
         sub_02001384(param1->unk_20, NULL, NULL);
-        sub_0201ACF4(&param1->unk_0C);
-        BGL_DeleteWindow(&param1->unk_0C);
+        Window_ClearAndCopyToVRAM(&param1->unk_0C);
+        Window_Remove(&param1->unk_0C);
         sub_02013A3C(param1->unk_1C);
         param1->unk_1C = NULL;
     }
@@ -956,8 +954,8 @@ static void ov23_0224EA08(SysTask *param0, UnkStruct_ov23_022577B0 *param1)
     if (param1->unk_18) {
         Window_Clear(&param1->unk_08, 1);
         sub_02001384(param1->unk_1C, NULL, NULL);
-        sub_0201ACF4(&param1->unk_08);
-        BGL_DeleteWindow(&param1->unk_08);
+        Window_ClearAndCopyToVRAM(&param1->unk_08);
+        Window_Remove(&param1->unk_08);
         sub_02013A3C(param1->unk_18);
 
         param1->unk_18 = NULL;
@@ -984,7 +982,7 @@ static void ov23_0224EAA4(UnkStruct_ov23_022577B0 *param0)
 
     param0->unk_18 = sub_02013A04(v1, 4);
 
-    BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_08, 3, 1, 1, 16, v1 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (16 * v1 * 2));
+    Window_Add(param0->fieldSystem->unk_08, &param0->unk_08, 3, 1, 1, 16, v1 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (16 * v1 * 2));
     Window_Show(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
     {
         MessageLoader *v2;
@@ -1011,7 +1009,7 @@ static void ov23_0224EAA4(UnkStruct_ov23_022577B0 *param0)
     param0->unk_36 = 0;
     param0->unk_1C = sub_0200112C(&v0, 0, 0, 4);
 
-    sub_0201A954(&param0->unk_08);
+    Window_CopyToVRAM(&param0->unk_08);
 }
 
 static BOOL ov23_0224EB74(SysTask *param0, void *param1)

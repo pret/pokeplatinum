@@ -2,15 +2,14 @@
 #define POKEPLATINUM_STRUCT_02095EAC_T_H
 
 #include "struct_decls/struct_02015920_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0203DDFC.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02095EAC_sub1.h"
 
 #include "overlay058/struct_ov58_021D2754.h"
 #include "overlay058/struct_ov58_021D2820.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "message.h"
 #include "sprite_resource.h"
@@ -19,7 +18,7 @@
 #include "trainer_info.h"
 
 struct UnkStruct_02095EAC_t {
-    BGL *unk_00;
+    BgConfig *unk_00;
     BOOL unk_04;
     UnkStruct_0203DDFC *unk_08;
     StringTemplate *unk_0C;

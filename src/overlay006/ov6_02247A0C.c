@@ -3,12 +3,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "field/field_system.h"
 
+#include "bg_window.h"
 #include "core_sys.h"
 #include "field_system.h"
 #include "font.h"
@@ -20,7 +19,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "unk_0200DA60.h"
-#include "unk_02018340.h"
 #include "unk_0202F108.h"
 #include "unk_020508D4.h"
 
@@ -129,7 +127,7 @@ static BOOL ov6_02247A34(TaskManager *param0)
 void *ov6_02247A90(void *param0)
 {
     UnkStruct_ov6_02247A90 *v0;
-    BGL *v1;
+    BgConfig *v1;
     Strbuf *v2, *v3;
     int v4, v5, v6, v7;
     SaveData *v8;
@@ -143,10 +141,10 @@ void *ov6_02247A90(void *param0)
     v0->unk_10 = MessageLoader_Init(0, 26, 208, 11);
     v0->unk_14 = StringTemplate_Default(11);
 
-    BGL_AddWindow(v1, &v0->unk_00, 3, 1, 3, 30, 17, 12, (1 + 10));
+    Window_Add(v1, &v0->unk_00, 3, 1, 3, 30, 17, 12, (1 + 10));
     sub_0200DAA4(v1, 3, 1, 11, 0, 11);
     Window_Show(&v0->unk_00, 1, 1, 11);
-    BGL_FillWindow(&v0->unk_00, 15);
+    Window_FillTilemap(&v0->unk_00, 15);
 
     v3 = Strbuf_Init(100, 11);
     v2 = MessageLoader_GetNewStrbuf(v0->unk_10, 0);
@@ -192,7 +190,7 @@ void *ov6_02247A90(void *param0)
     }
 
     Strbuf_Free(v3);
-    sub_0201A954(&v0->unk_00);
+    Window_CopyToVRAM(&v0->unk_00);
 
     return v0;
 }
@@ -202,8 +200,8 @@ void ov6_02247CC8(void *param0)
     UnkStruct_ov6_02247A90 *v0 = param0;
 
     Window_Clear(&v0->unk_00, 1);
-    sub_0201ACF4(&v0->unk_00);
-    BGL_DeleteWindow(&v0->unk_00);
+    Window_ClearAndCopyToVRAM(&v0->unk_00);
+    Window_Remove(&v0->unk_00);
     MessageLoader_Free(v0->unk_10);
     StringTemplate_Free(v0->unk_14);
     Heap_FreeToHeap(v0);

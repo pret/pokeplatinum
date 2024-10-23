@@ -7,11 +7,9 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0208C06C.h"
 #include "struct_defs/struct_020F3DCC.h"
 
@@ -23,6 +21,7 @@
 #include "overlay062/struct_ov62_0223118C.h"
 #include "overlay062/struct_ov62_022312B0.h"
 
+#include "bg_window.h"
 #include "message.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -33,7 +32,6 @@
 #include "unk_02006E3C.h"
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201E86C.h"
 #include "unk_02030A80.h"
@@ -47,7 +45,7 @@ static const u8 Unk_ov62_022488A8[][5] = {
 void ov62_022300D8(UnkStruct_0208C06C *param0)
 {
     NARC *v0 = param0->unk_14.unk_00;
-    BGL *v1 = param0->unk_14.unk_10;
+    BgConfig *v1 = param0->unk_14.unk_10;
     SpriteRenderer *v2 = param0->unk_14.unk_04;
     SpriteGfxHandler *v3 = param0->unk_14.unk_08;
     PaletteData *v4 = param0->unk_14.unk_14;
@@ -78,7 +76,7 @@ void ov62_022300D8(UnkStruct_0208C06C *param0)
 void ov62_022302A8(UnkStruct_0208C06C *param0, int param1, BOOL param2)
 {
     NARC *v0 = param0->unk_14.unk_00;
-    BGL *v1 = param0->unk_14.unk_10;
+    BgConfig *v1 = param0->unk_14.unk_10;
     SpriteRenderer *v2 = param0->unk_14.unk_04;
     SpriteGfxHandler *v3 = param0->unk_14.unk_08;
     PaletteData *v4 = param0->unk_14.unk_14;
@@ -95,7 +93,7 @@ void ov62_022302A8(UnkStruct_0208C06C *param0, int param1, BOOL param2)
 void ov62_022302F0(UnkStruct_0208C06C *param0, int param1)
 {
     NARC *v0 = param0->unk_14.unk_00;
-    BGL *v1 = param0->unk_14.unk_10;
+    BgConfig *v1 = param0->unk_14.unk_10;
     SpriteRenderer *v2 = param0->unk_14.unk_04;
     SpriteGfxHandler *v3 = param0->unk_14.unk_08;
     PaletteData *v4 = param0->unk_14.unk_14;
@@ -108,7 +106,7 @@ void ov62_022302F0(UnkStruct_0208C06C *param0, int param1)
 void ov62_02230330(UnkStruct_0208C06C *param0)
 {
     NARC *v0 = param0->unk_14.unk_00;
-    BGL *v1 = param0->unk_14.unk_10;
+    BgConfig *v1 = param0->unk_14.unk_10;
     SpriteRenderer *v2 = param0->unk_14.unk_04;
     SpriteGfxHandler *v3 = param0->unk_14.unk_08;
     PaletteData *v4 = param0->unk_14.unk_14;
@@ -268,7 +266,7 @@ void ov62_0223069C(UnkStruct_0208C06C *param0)
 void ov62_022306B8(UnkStruct_0208C06C *param0)
 {
     NARC *v0 = param0->unk_14.unk_00;
-    BGL *v1 = param0->unk_14.unk_10;
+    BgConfig *v1 = param0->unk_14.unk_10;
     SpriteRenderer *v2 = param0->unk_14.unk_04;
     SpriteGfxHandler *v3 = param0->unk_14.unk_08;
     PaletteData *v4 = param0->unk_14.unk_14;
@@ -663,7 +661,7 @@ void ov62_02230E80(UnkStruct_0208C06C *param0)
 
         for (v11 = 0; v11 < 2; v11++) {
             Window_Init(&v6);
-            BGL_AddFramelessWindow(param0->unk_14.unk_10, &v6, 20, 2, 0, 0);
+            Window_AddToTopLeftCorner(param0->unk_14.unk_10, &v6, 20, 2, 0, 0);
 
             v7[v11]->unk_18 = sub_02012B20(&v6, 102);
             v4 = sub_02012898(&v6, v8[v11], 102);
@@ -686,7 +684,7 @@ void ov62_02230E80(UnkStruct_0208C06C *param0)
             v7[v11]->unk_14 = sub_02012B60(&v2, v7[v11]->unk_18);
 
             sub_02012AC0(v7[v11]->unk_14, (2 - 1));
-            BGL_DeleteWindow(&v6);
+            Window_Remove(&v6);
             sub_020129D0(v7[v11]->unk_14, 0);
         }
     }
@@ -740,11 +738,11 @@ void ov62_02230FC8(UnkStruct_0208C06C *param0, UnkStruct_ov62_022307C0_sub1 *par
     }
 
     Window_Init(&v2);
-    BGL_AddFramelessWindow(param0->unk_14.unk_10, &v2, 20, 2, 0, 0);
+    Window_AddToTopLeftCorner(param0->unk_14.unk_10, &v2, 20, 2, 0, 0);
     Text_AddPrinterWithParamsAndColor(&v2, FONT_SYSTEM, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(14, 13, 0), NULL);
     sub_02012BE0(param1->unk_14, param1->unk_18, &v2, 102);
     Strbuf_Free(v0);
-    BGL_DeleteWindow(&v2);
+    Window_Remove(&v2);
 }
 
 void ov62_0223113C(UnkStruct_0208C06C *param0)
@@ -779,7 +777,7 @@ void ov62_0223118C(UnkStruct_ov62_022312B0 *param0, UnkStruct_ov62_0223118C *par
     }
 
     Window_Init(&v6);
-    BGL_AddFramelessWindow(param1->unk_10, &v6, 20, 2, 0, 0);
+    Window_AddToTopLeftCorner(param1->unk_10, &v6, 20, 2, 0, 0);
 
     param0->unk_10 = sub_02012B20(&v6, 102);
     v4 = sub_02012898(&v6, param2, 102);
@@ -803,7 +801,7 @@ void ov62_0223118C(UnkStruct_ov62_022312B0 *param0, UnkStruct_ov62_0223118C *par
     param0->unk_0C = sub_02012B60(&v2, param0->unk_10);
 
     sub_02012AC0(param0->unk_0C, (2 - 1));
-    BGL_DeleteWindow(&v6);
+    Window_Remove(&v6);
     sub_020129D0(param0->unk_0C, 0);
 }
 
@@ -817,11 +815,11 @@ void ov62_0223124C(UnkStruct_ov62_022312B0 *param0, UnkStruct_ov62_0223118C *par
     v0 = MessageLoader_GetNewStrbuf(v1, param2);
 
     Window_Init(&v2);
-    BGL_AddFramelessWindow(param1->unk_10, &v2, 20, 2, 0, 0);
+    Window_AddToTopLeftCorner(param1->unk_10, &v2, 20, 2, 0, 0);
     Text_AddPrinterWithParamsAndColor(&v2, FONT_SYSTEM, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(14, 13, 0), NULL);
     sub_02012BE0(param0->unk_0C, param0->unk_10, &v2, 102);
     Strbuf_Free(v0);
-    BGL_DeleteWindow(&v2);
+    Window_Remove(&v2);
 }
 
 void ov62_022312B0(UnkStruct_ov62_022312B0 *param0)
@@ -834,7 +832,7 @@ void ov62_022312B0(UnkStruct_ov62_022312B0 *param0)
 void ov62_022312CC(UnkStruct_0208C06C *param0, int param1)
 {
     NARC *v0 = param0->unk_14.unk_00;
-    BGL *v1 = param0->unk_14.unk_10;
+    BgConfig *v1 = param0->unk_14.unk_10;
     SpriteRenderer *v2 = param0->unk_14.unk_04;
     SpriteGfxHandler *v3 = param0->unk_14.unk_08;
     PaletteData *v4 = param0->unk_14.unk_14;
@@ -847,7 +845,7 @@ void ov62_022312CC(UnkStruct_0208C06C *param0, int param1)
 void ov62_0223131C(UnkStruct_0208C06C *param0, int param1)
 {
     NARC *v0 = param0->unk_14.unk_00;
-    BGL *v1 = param0->unk_14.unk_10;
+    BgConfig *v1 = param0->unk_14.unk_10;
     SpriteRenderer *v2 = param0->unk_14.unk_04;
     SpriteGfxHandler *v3 = param0->unk_14.unk_08;
     PaletteData *v4 = param0->unk_14.unk_14;
@@ -860,7 +858,7 @@ void ov62_0223131C(UnkStruct_0208C06C *param0, int param1)
 void ov62_0223136C(UnkStruct_0208C06C *param0, int param1)
 {
     NARC *v0 = param0->unk_14.unk_00;
-    BGL *v1 = param0->unk_14.unk_10;
+    BgConfig *v1 = param0->unk_14.unk_10;
     SpriteRenderer *v2 = param0->unk_14.unk_04;
     SpriteGfxHandler *v3 = param0->unk_14.unk_08;
     PaletteData *v4 = param0->unk_14.unk_14;

@@ -5,9 +5,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/archived_sprite.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02081CF4.h"
 
 #include "overlay094/const_ov94_02245FD8.h"
@@ -17,8 +15,8 @@
 #include "overlay094/ov94_02244950.h"
 #include "overlay094/struct_ov94_0223BA88_sub2.h"
 #include "overlay094/struct_ov94_0223FD4C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "font.h"
@@ -40,11 +38,10 @@
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_02013A04.h"
-#include "unk_02018340.h"
 #include "unk_020393C8.h"
 
-static void ov94_0223D1D4(BGL *param0);
-static void ov94_0223D2BC(BGL *param0);
+static void ov94_0223D1D4(BgConfig *param0);
+static void ov94_0223D2BC(BgConfig *param0);
 static void ov94_0223D2E8(UnkStruct_ov94_0223FD4C *param0);
 static void ov94_0223D438(UnkStruct_ov94_0223FD4C *param0);
 static void ov94_0223D504(UnkStruct_ov94_0223FD4C *param0);
@@ -119,10 +116,10 @@ int ov94_0223D1B0(UnkStruct_ov94_0223FD4C *param0, int param1)
     return 1;
 }
 
-static void ov94_0223D1D4(BGL *param0)
+static void ov94_0223D1D4(BgConfig *param0)
 {
     {
-        UnkStruct_ov97_0222DB78 v0 = {
+        BgTemplate v0 = {
             0,
             0,
             0x800,
@@ -138,12 +135,12 @@ static void ov94_0223D1D4(BGL *param0)
             0
         };
 
-        sub_020183C4(param0, 0, &v0, 0);
-        sub_02019EBC(param0, 0);
+        Bg_InitFromTemplate(param0, 0, &v0, 0);
+        Bg_ClearTilemap(param0, 0);
     }
 
     {
-        UnkStruct_ov97_0222DB78 v1 = {
+        BgTemplate v1 = {
             0,
             0,
             0x800,
@@ -159,11 +156,11 @@ static void ov94_0223D1D4(BGL *param0)
             0
         };
 
-        sub_020183C4(param0, 1, &v1, 0);
+        Bg_InitFromTemplate(param0, 1, &v1, 0);
     }
 
     {
-        UnkStruct_ov97_0222DB78 v2 = {
+        BgTemplate v2 = {
             0,
             0,
             0x800,
@@ -179,11 +176,11 @@ static void ov94_0223D1D4(BGL *param0)
             0
         };
 
-        sub_020183C4(param0, 2, &v2, 0);
+        Bg_InitFromTemplate(param0, 2, &v2, 0);
     }
 
     {
-        UnkStruct_ov97_0222DB78 v3 = {
+        BgTemplate v3 = {
             0,
             0,
             0x800,
@@ -199,12 +196,12 @@ static void ov94_0223D1D4(BGL *param0)
             0
         };
 
-        sub_020183C4(param0, 4, &v3, 0);
-        sub_02019EBC(param0, 4);
+        Bg_InitFromTemplate(param0, 4, &v3, 0);
+        Bg_ClearTilemap(param0, 4);
     }
 
     {
-        UnkStruct_ov97_0222DB78 v4 = {
+        BgTemplate v4 = {
             0,
             0,
             0x800,
@@ -220,25 +217,25 @@ static void ov94_0223D1D4(BGL *param0)
             0
         };
 
-        sub_020183C4(param0, 5, &v4, 0);
+        Bg_InitFromTemplate(param0, 5, &v4, 0);
     }
 
-    sub_02019690(0, 32, 0, 62);
-    sub_02019690(4, 32, 0, 62);
+    Bg_ClearTilesRange(0, 32, 0, 62);
+    Bg_ClearTilesRange(4, 32, 0, 62);
 }
 
-static void ov94_0223D2BC(BGL *param0)
+static void ov94_0223D2BC(BgConfig *param0)
 {
-    sub_02019044(param0, 5);
-    sub_02019044(param0, 4);
-    sub_02019044(param0, 2);
-    sub_02019044(param0, 1);
-    sub_02019044(param0, 0);
+    Bg_FreeTilemapBuffer(param0, 5);
+    Bg_FreeTilemapBuffer(param0, 4);
+    Bg_FreeTilemapBuffer(param0, 2);
+    Bg_FreeTilemapBuffer(param0, 1);
+    Bg_FreeTilemapBuffer(param0, 0);
 }
 
 static void ov94_0223D2E8(UnkStruct_ov94_0223FD4C *param0)
 {
-    BGL *v0 = param0->unk_04;
+    BgConfig *v0 = param0->unk_04;
     NARC *v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, 62);
 
     sub_02007130(v1, 7, 0, 0, 16 * 3 * 2, 62);
@@ -291,9 +288,9 @@ static const int Unk_ov94_02245B94[][4] = {
 
 static void ov94_0223D438(UnkStruct_ov94_0223FD4C *param0)
 {
-    BGL_AddWindow(param0->unk_04, &param0->unk_F5C, 0, 2, 21, 27, 2, 13, ((1 + (18 + 12)) + 9));
-    BGL_FillWindow(&param0->unk_F5C, 0x0);
-    BGL_AddWindow(param0->unk_04, &param0->unk_F9C[0], 0, 21, 15, (5 * 2), 4, 13, (((1 + (18 + 12)) + 9) + 27 * 2));
+    Window_Add(param0->unk_04, &param0->unk_F5C, 0, 2, 21, 27, 2, 13, ((1 + (18 + 12)) + 9));
+    Window_FillTilemap(&param0->unk_F5C, 0x0);
+    Window_Add(param0->unk_04, &param0->unk_F9C[0], 0, 21, 15, (5 * 2), 4, 13, (((1 + (18 + 12)) + 9) + 27 * 2));
 
     {
         int v0, v1;
@@ -301,8 +298,8 @@ static void ov94_0223D438(UnkStruct_ov94_0223FD4C *param0)
         v1 = ((((1 + (18 + 12)) + 9) + 27 * 2) + (5 * 2) * 4);
 
         for (v0 = 0; v0 < 10 + 2; v0++) {
-            BGL_AddWindow(param0->unk_04, &param0->unk_FCC[v0], 0, Unk_ov94_02245B94[v0][0], Unk_ov94_02245B94[v0][1], Unk_ov94_02245B94[v0][2], Unk_ov94_02245B94[v0][3], 13, v1);
-            BGL_FillWindow(&param0->unk_FCC[v0], 0x0);
+            Window_Add(param0->unk_04, &param0->unk_FCC[v0], 0, Unk_ov94_02245B94[v0][0], Unk_ov94_02245B94[v0][1], Unk_ov94_02245B94[v0][2], Unk_ov94_02245B94[v0][3], 13, v1);
+            Window_FillTilemap(&param0->unk_FCC[v0], 0x0);
 
             v1 += Unk_ov94_02245B94[v0][2] * Unk_ov94_02245B94[v0][3];
         }
@@ -311,14 +308,14 @@ static void ov94_0223D438(UnkStruct_ov94_0223FD4C *param0)
 
 static void ov94_0223D504(UnkStruct_ov94_0223FD4C *param0)
 {
-    BGL_DeleteWindow(&param0->unk_F5C);
-    BGL_DeleteWindow(&param0->unk_F9C[0]);
+    Window_Remove(&param0->unk_F5C);
+    Window_Remove(&param0->unk_F9C[0]);
 
     {
         int v0;
 
         for (v0 = 0; v0 < 10 + 2; v0++) {
-            BGL_DeleteWindow(&param0->unk_FCC[v0]);
+            Window_Remove(&param0->unk_FCC[v0]);
         }
     }
 }
@@ -502,7 +499,7 @@ static void ov94_0223D88C(UnkStruct_ov94_0223FD4C *param0, int param1, int param
     StringTemplate_SetSpeciesName(param0->unk_B8C, 0, Pokemon_GetBoxPokemon(param5));
     v0 = MessageLoader_GetNewStrbuf(param0->unk_B90, param1);
     StringTemplate_Format(param0->unk_B8C, param0->unk_BAC, v0);
-    BGL_FillWindow(&param0->unk_F5C, 0xf0f);
+    Window_FillTilemap(&param0->unk_F5C, 0xf0f);
     sub_0200E060(&param0->unk_F5C, 0, 1, 10);
 
     param0->unk_BE0 = Text_AddPrinterWithParams(&param0->unk_F5C, FONT_MESSAGE, param0->unk_BAC, 0, 0, param2, NULL);
@@ -540,7 +537,7 @@ void ov94_0223D910(MessageLoader *param0, MessageLoader *param1, StringTemplate 
     Item_LoadName(v5, v8, 62);
 
     for (v9 = 0; v9 < 5; v9++) {
-        BGL_FillWindow(&param3[v9], 0x0);
+        Window_FillTilemap(&param3[v9], 0x0);
     }
 
     ov94_02245900(&param3[0], v4, 0, 0, 0, TEXT_COLOR(15, 2, 0));

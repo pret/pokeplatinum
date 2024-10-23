@@ -1,10 +1,10 @@
 #ifndef POKEPLATINUM_OV5_021E1B08_H
 #define POKEPLATINUM_OV5_021E1B08_H
 
-#include "struct_defs/struct_0205AA50.h"
-
 #include "field/field_system_decl.h"
 #include "overlay005/struct_ov5_021E1B20_decl.h"
+
+#include "bg_window.h"
 
 void *ov5_021E1B08(u32 param0);
 void ov5_021E1B20(UnkStruct_ov5_021E1B20 *param0);

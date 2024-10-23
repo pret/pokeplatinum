@@ -7,8 +7,8 @@
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02012B20_decl.h"
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/struct_0205AA50.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 
 UnkStruct_02012744 *sub_02012744(int param0, int param1);

@@ -8,6 +8,7 @@
 
 #include "field/field_system.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -23,7 +24,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200F174.h"
-#include "unk_02018340.h"
 
 typedef struct {
     CellActorCollection *unk_00;
@@ -198,7 +198,7 @@ void sub_0205CBFC(SysTask *param0, void *param1)
         v0->unk_1E4++;
         break;
     case 1:
-        sub_0201972C(4, &v3, 2, 0);
+        Bg_LoadPalette(4, &v3, 2, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
         sub_0205D274(v0, &v0->unk_1C0[0], 2);

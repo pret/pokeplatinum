@@ -22,6 +22,7 @@
 #include "overlay012/struct_ov12_02235998.h"
 #include "overlay012/struct_ov12_022380DC.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "heap.h"
 #include "pokemon.h"
@@ -29,7 +30,6 @@
 #include "unk_02002F38.h"
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
-#include "unk_02018340.h"
 #include "unk_0201F834.h"
 
 typedef struct {
@@ -672,7 +672,7 @@ void ov12_0222F5EC(UnkStruct_ov12_0221FCDC *param0)
         switch (v1) {
         case 3:
         case 4:
-            BGL_SetPriority(2, (ov12_0222339C(param0) - 1));
+            Bg_SetPriority(2, (ov12_0222339C(param0) - 1));
             break;
         }
     }

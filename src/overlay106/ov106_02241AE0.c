@@ -8,16 +8,12 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02081CF4.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay084/struct_ov84_0223BA5C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0223AF58.h"
 #include "overlay104/struct_ov104_02235208.h"
@@ -28,6 +24,7 @@
 #include "overlay106/struct_ov106_02243310.h"
 #include "overlay106/struct_ov106_02243650_decl.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "communication_system.h"
 #include "core_sys.h"
@@ -58,7 +55,6 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_02030108.h"
 #include "unk_020363E8.h"
@@ -99,7 +95,7 @@ struct UnkStruct_ov106_02243118_t {
     Strbuf *unk_2C;
     Strbuf *unk_30[2];
     u16 unk_38[8];
-    BGL *unk_48;
+    BgConfig *unk_48;
     Window unk_4C[4];
     UnkStruct_02081CF4 unk_8C;
     UIControlData *unk_98;
@@ -142,10 +138,10 @@ static void ov106_022424C8(void);
 static void ov106_02242500(UnkStruct_ov106_02243118 *param0);
 static void ov106_02242688(UnkStruct_ov106_02243118 *param0);
 static void ov106_0224262C(UnkStruct_ov106_02243118 *param0);
-static void ov106_022426A4(BGL *param0);
+static void ov106_022426A4(BgConfig *param0);
 static void ov106_022426E0(void *param0);
 static void ov106_0224271C(void);
-static void ov106_0224273C(BGL *param0);
+static void ov106_0224273C(BgConfig *param0);
 static void ov106_0224283C(UnkStruct_ov106_02243118 *param0, u32 param1);
 static void ov106_02242884(void);
 static void ov106_022428B8(UnkStruct_ov106_02243118 *param0, u32 param1);
@@ -164,8 +160,8 @@ static void ov106_02242D5C(UnkStruct_ov106_02243118 *param0, int *param1, int pa
 static void ov106_02242D64(UnkStruct_ov106_02243118 *param0, int param1);
 static u16 ov106_02242F24(UnkStruct_ov106_02243118 *param0);
 static u16 ov106_02242F3C(UnkStruct_ov106_02243118 *param0);
-static void ov106_02242FAC(BGL *param0, u8 param1, u8 param2);
-static void ov106_02242F4C(UnkStruct_ov106_02243118 *param0, BGL *param1);
+static void ov106_02242FAC(BgConfig *param0, u8 param1, u8 param2);
+static void ov106_02242F4C(UnkStruct_ov106_02243118 *param0, BgConfig *param1);
 static u8 ov106_02243090(u8 param0);
 static BOOL ov106_02243098(UnkStruct_ov106_02243118 *param0);
 static BOOL ov106_022430B0(UnkStruct_ov106_02243118 *param0);
@@ -206,7 +202,7 @@ int ov106_02241AE0(OverlayManager *param0, int *param1)
     v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov106_02243118), 98);
     memset(v1, 0, sizeof(UnkStruct_ov106_02243118));
 
-    v1->unk_48 = sub_02018340(98);
+    v1->unk_48 = BgConfig_New(98);
     v1->unk_00 = param0;
 
     v2 = (UnkStruct_ov104_02235208 *)OverlayManager_Args(param0);
@@ -447,7 +443,7 @@ static BOOL ov106_02241E5C(UnkStruct_ov106_02243118 *param0)
 
                 if (ov104_0223B5B0(param0->unk_09) == 0) {
                     ov106_02242FAC(param0->unk_48, param0->unk_0D, 1);
-                    sub_0201C3C0(param0->unk_48, 3);
+                    Bg_ScheduleTilemapTransfer(param0->unk_48, 3);
                 }
 
                 param0->unk_14 = 8;
@@ -506,7 +502,7 @@ static BOOL ov106_02241E5C(UnkStruct_ov106_02243118 *param0)
     case 4:
         ov106_02243758(&param0->unk_4C[0], Options_Frame(param0->unk_B4));
         param0->unk_0A = ov106_02242918(param0, &param0->unk_4C[0], 32, 1, 1, Options_TextFrameDelay(SaveData_Options(param0->unk_B8)), 1, 2, 15, FONT_MESSAGE);
-        sub_0201A954(&param0->unk_4C[0]);
+        Window_CopyToVRAM(&param0->unk_4C[0]);
         param0->unk_08 = 5;
         break;
     case 5:
@@ -586,7 +582,7 @@ static BOOL ov106_02242108(UnkStruct_ov106_02243118 *param0)
         param0->unk_1B = 10;
 
         ov106_02242FAC(param0->unk_48, param0->unk_2F8, 2);
-        sub_0201C3C0(param0->unk_48, 3);
+        Bg_ScheduleTilemapTransfer(param0->unk_48, 3);
 
         param0->unk_08 = 4;
         break;
@@ -602,7 +598,7 @@ static BOOL ov106_02242108(UnkStruct_ov106_02243118 *param0)
             ov106_022432D4(param0);
             ov106_02242FAC(param0->unk_48, param0->unk_2F8, 0);
 
-            sub_0201C3C0(param0->unk_48, 3);
+            Bg_ScheduleTilemapTransfer(param0->unk_48, 3);
 
             param0->unk_2F8 = 0xff;
             param0->unk_2F9 = 0;
@@ -614,7 +610,7 @@ static BOOL ov106_02242108(UnkStruct_ov106_02243118 *param0)
         break;
     case 2:
         ov106_02242FAC(param0->unk_48, param0->unk_0D, 1);
-        sub_0201C3C0(param0->unk_48, 3);
+        Bg_ScheduleTilemapTransfer(param0->unk_48, 3);
         ov106_02243224(param0);
         param0->unk_08 = 5;
         break;
@@ -780,7 +776,7 @@ static void ov106_0224248C(UnkStruct_ov106_02243118 *param0)
     int v0;
 
     ov106_022424C8();
-    param0->unk_48 = sub_02018340(98);
+    param0->unk_48 = BgConfig_New(98);
     ov106_02242500(param0);
 
     if (ov104_0223B5A4(param0->unk_0D) == 0xfe) {
@@ -873,15 +869,15 @@ static void ov106_02242688(UnkStruct_ov106_02243118 *param0)
     return;
 }
 
-static void ov106_022426A4(BGL *param0)
+static void ov106_022426A4(BgConfig *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
 
-    sub_02019044(param0, 3);
-    sub_02019044(param0, 1);
-    sub_02019044(param0, 0);
-    sub_02019044(param0, 4);
+    Bg_FreeTilemapBuffer(param0, 3);
+    Bg_FreeTilemapBuffer(param0, 1);
+    Bg_FreeTilemapBuffer(param0, 0);
+    Bg_FreeTilemapBuffer(param0, 4);
     Heap_FreeToHeap(param0);
 
     return;
@@ -899,7 +895,7 @@ static void ov106_022426E0(void *param0)
         sub_02003694(v0->unk_AC);
     }
 
-    sub_0201C2B8(v0->unk_48);
+    Bg_RunScheduledUpdates(v0->unk_48);
     sub_0201DCAC();
     sub_0200A858();
 
@@ -925,21 +921,21 @@ static void ov106_0224271C(void)
     return;
 }
 
-static void ov106_0224273C(BGL *param0)
+static void ov106_0224273C(BgConfig *param0)
 {
     {
-        UnkStruct_ov84_0223BA5C v0 = {
+        GraphicsModes v0 = {
             GX_DISPMODE_GRAPHICS,
             GX_BGMODE_0,
             GX_BGMODE_0,
             GX_BG0_AS_2D
         };
 
-        sub_02018368(&v0);
+        SetAllGraphicsModes(&v0);
     }
 
     {
-        UnkStruct_ov97_0222DB78 v1 = {
+        BgTemplate v1 = {
             0,
             0,
             0x800,
@@ -955,13 +951,13 @@ static void ov106_0224273C(BGL *param0)
             0
         };
 
-        sub_020183C4(param0, 0, &v1, 0);
-        sub_02019690(0, 32, 0, 98);
-        sub_02019EBC(param0, 0);
+        Bg_InitFromTemplate(param0, 0, &v1, 0);
+        Bg_ClearTilesRange(0, 32, 0, 98);
+        Bg_ClearTilemap(param0, 0);
     }
 
     {
-        UnkStruct_ov97_0222DB78 v2 = {
+        BgTemplate v2 = {
             0,
             0,
             0x800,
@@ -977,13 +973,13 @@ static void ov106_0224273C(BGL *param0)
             0
         };
 
-        sub_020183C4(param0, 1, &v2, 0);
-        sub_02019690(1, 32, 0, 98);
-        sub_02019EBC(param0, 1);
+        Bg_InitFromTemplate(param0, 1, &v2, 0);
+        Bg_ClearTilesRange(1, 32, 0, 98);
+        Bg_ClearTilemap(param0, 1);
     }
 
     {
-        UnkStruct_ov97_0222DB78 v3 = {
+        BgTemplate v3 = {
             0,
             0,
             0x800,
@@ -999,12 +995,12 @@ static void ov106_0224273C(BGL *param0)
             0
         };
 
-        sub_020183C4(param0, 3, &v3, 0);
-        sub_02019EBC(param0, 3);
+        Bg_InitFromTemplate(param0, 3, &v3, 0);
+        Bg_ClearTilemap(param0, 3);
     }
 
     {
-        UnkStruct_ov97_0222DB78 v4 = {
+        BgTemplate v4 = {
             0,
             0,
             0x800,
@@ -1020,8 +1016,8 @@ static void ov106_0224273C(BGL *param0)
             0
         };
 
-        sub_020183C4(param0, 4, &v4, 0);
-        sub_02019EBC(param0, 4);
+        Bg_InitFromTemplate(param0, 4, &v4, 0);
+        Bg_ClearTilemap(param0, 4);
     }
 
     G2_SetBG0Priority(0);
@@ -1063,7 +1059,7 @@ static void ov106_022428B8(UnkStruct_ov106_02243118 *param0, u32 param1)
 
 static u8 ov106_02242918(UnkStruct_ov106_02243118 *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9)
 {
-    BGL_FillWindow(param1, param8);
+    Window_FillTilemap(param1, param8);
     MessageLoader_GetStrbuf(param0->unk_20, param2, param0->unk_2C);
     StringTemplate_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
 
@@ -1075,7 +1071,7 @@ static u8 ov106_02242978(UnkStruct_ov106_02243118 *param0, int param1, u8 param2
     u8 v0;
 
     v0 = ov106_02242918(param0, &param0->unk_4C[0], param1, 1, 1, TEXT_SPEED_INSTANT, 1, 2, 15, param2);
-    sub_0201A954(&param0->unk_4C[0]);
+    Window_CopyToVRAM(&param0->unk_4C[0]);
 
     return v0;
 }
@@ -1143,13 +1139,13 @@ static void ov106_02242AC4(UnkStruct_ov106_02243118 *param0, Window *param1, u32
 
     v5 = Party_GetPokemonBySlotIndex(param0->unk_290, 0);
     Pokemon_GetValue(v5, MON_DATA_SPECIES_NAME, v6);
-    BGL_FillWindow(param1, param6);
+    Window_FillTilemap(param1, param6);
 
     v4 = Strbuf_Init((10 + 1), 98);
     Strbuf_CopyChars(v4, v6);
     Text_AddPrinterWithParamsAndColor(param1, param7, v4, param2, param3, TEXT_SPEED_INSTANT, TEXT_COLOR(param4, param5, param6), NULL);
     Strbuf_Free(v4);
-    sub_0201A954(param1);
+    Window_CopyToVRAM(param1);
 
     return;
 }
@@ -1160,7 +1156,7 @@ static void ov106_02242B38(UnkStruct_ov106_02243118 *param0, Window *param1, u8 
     Strbuf *v2;
     MessageLoader *v3;
 
-    BGL_FillWindow(param1, param4);
+    Window_FillTilemap(param1, param4);
 
     v3 = MessageLoader_Init(1, 26, 624, 98);
     v2 = Strbuf_Init((10 + 1), 98);
@@ -1177,7 +1173,7 @@ static void ov106_02242B38(UnkStruct_ov106_02243118 *param0, Window *param1, u8 
 
     Strbuf_Free(v2);
     MessageLoader_Free(v3);
-    sub_0201A954(param1);
+    Window_CopyToVRAM(param1);
 
     return;
 }
@@ -1185,7 +1181,7 @@ static void ov106_02242B38(UnkStruct_ov106_02243118 *param0, Window *param1, u8 
 static void ov106_02242C04(UnkStruct_ov106_02243118 *param0, Window *param1, u8 param2, u32 param3, u32 param4)
 {
     sub_0200C5BC(param0->unk_B0, param2, 2, 0, param1, param3, param4);
-    sub_0201A9A4(param1);
+    Window_ScheduleCopyToVRAM(param1);
     return;
 }
 
@@ -1366,7 +1362,7 @@ static u16 ov106_02242F3C(UnkStruct_ov106_02243118 *param0)
     return (param0->unk_0D / 4) * 36 + 16;
 }
 
-static void ov106_02242F4C(UnkStruct_ov106_02243118 *param0, BGL *param1)
+static void ov106_02242F4C(UnkStruct_ov106_02243118 *param0, BgConfig *param1)
 {
     int v0;
 
@@ -1384,11 +1380,11 @@ static void ov106_02242F4C(UnkStruct_ov106_02243118 *param0, BGL *param1)
         ov106_02242FAC(param1, ((4 * 5) - 1), 3);
     }
 
-    sub_0201C3C0(param1, 3);
+    Bg_ScheduleTilemapTransfer(param1, 3);
     return;
 }
 
-static void ov106_02242FAC(BGL *param0, u8 param1, u8 param2)
+static void ov106_02242FAC(BgConfig *param0, u8 param1, u8 param2)
 {
     u8 v0, v1, v2, v3, v4;
 
@@ -1423,7 +1419,7 @@ static void ov106_02242FAC(BGL *param0, u8 param1, u8 param2)
         v1 = 18;
     }
 
-    sub_02019E2C(param0, 3, v0, v1, v2, v3, v4);
+    Bg_ChangeTilemapRectPalette(param0, 3, v0, v1, v2, v3, v4);
 
     if (param2 == 0) {
         v4 = 0;
@@ -1449,9 +1445,9 @@ static void ov106_02242FAC(BGL *param0, u8 param1, u8 param2)
         }
 
         if (param1 < 9) {
-            sub_02019E2C(param0, 3, v0, v1, v2, v3, 1);
+            Bg_ChangeTilemapRectPalette(param0, 3, v0, v1, v2, v3, 1);
         } else {
-            sub_02019E2C(param0, 3, v0, v1, v2, v3, 2);
+            Bg_ChangeTilemapRectPalette(param0, 3, v0, v1, v2, v3, 2);
         }
     }
 
@@ -1669,7 +1665,7 @@ static void ov106_022432AC(UnkStruct_ov106_02243118 *param0)
     ov106_022432D4(param0);
     ov106_02242FAC(param0->unk_48, param0->unk_0D, 0);
 
-    sub_0201C3C0(param0->unk_48, 3);
+    Bg_ScheduleTilemapTransfer(param0->unk_48, 3);
     ov106_022436B0(param0->unk_280, 1);
 
     return;

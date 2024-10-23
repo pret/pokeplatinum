@@ -4,13 +4,11 @@
 #include <nnsys.h>
 
 #include "struct_decls/struct_0200C440_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
-#include "struct_defs/struct_0201AE08.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "message.h"
 #include "strbuf.h"
@@ -18,7 +16,7 @@
 
 typedef struct {
     UnkStruct_ov19_021D61B0 *unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     CellActorCollection *unk_08;
     const UnkStruct_ov19_021D4DF0 *unk_0C;
     Window *unk_10;
@@ -31,7 +29,7 @@ typedef struct {
     NNSG2dScreenData *unk_30;
     void *unk_34;
     NNSG2dScreenData *unk_38;
-    UnkStruct_0201AE08 unk_3C;
+    Bitmap unk_3C;
     UnkStruct_0200C440 *unk_44;
     CellActor *unk_48[18];
     CellActor *unk_90;
