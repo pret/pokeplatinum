@@ -597,8 +597,8 @@ void *ov17_0223F88C(UnkStruct_02095C48 *param0, UnkStruct_ov17_0223F88C *param1,
 
         for (v7 = 0; v7 < 2; v7++) {
             v0->unk_34[v7] = Heap_AllocFromHeap(21, 0x200);
-            PaletteSys_LoadPalette(v6, 45, Unk_ov17_02253238[v7], 21, 1, 0, 0);
-            v5 = sub_02003164(v6, 1);
+            PaletteData_LoadBufferFromFileStart(v6, 45, Unk_ov17_02253238[v7], 21, 1, 0, 0);
+            v5 = PaletteData_GetUnfadedBuffer(v6, 1);
             MI_CpuCopy16(v5, v0->unk_34[v7], 0x200);
         }
     }
@@ -659,7 +659,7 @@ void ov17_0223F9C4(UnkStruct_ov17_0223F7E4 *param0, int param1, int param2, void
     }
 
     if (1) {
-        sub_02002FBC(param0->unk_04->unk_50, param0->unk_34[v0->unk_02], 1, 0, 0x200);
+        PaletteData_LoadBuffer(param0->unk_04->unk_50, param0->unk_34[v0->unk_02], 1, 0, 0x200);
     }
 
     for (v2 = 0; v2 < 4; v2++) {
@@ -762,7 +762,7 @@ static void ov17_0223FBD4(UnkStruct_ov17_0223F7E4 *param0, int param1, int param
 
     Strbuf_Free(v0);
     Strbuf_Free(v1);
-    sub_02002FEC(param0->unk_04->unk_50, 45, 38, 21, 1, 0x20, 2 * 16, 16 * param0->unk_04->unk_00->unk_10F);
+    PaletteData_LoadBufferFromFile(param0->unk_04->unk_50, 45, 38, 21, 1, 0x20, 2 * 16, 16 * param0->unk_04->unk_00->unk_10F);
 }
 
 static void ov17_0223FCAC(UnkStruct_ov17_0223F7E4 *param0, int param1, int param2)
@@ -812,7 +812,7 @@ static void ov17_0223FCAC(UnkStruct_ov17_0223F7E4 *param0, int param1, int param
 
     for (v2 = 0; v2 < 4; v2++) {
         if ((v0[v2] != 0) && (ov17_02243A98(param0->unk_08, param0->unk_04->unk_00->unk_113, v0[v2]) == 0)) {
-            sub_02002FBC(param0->unk_04->unk_50, &param0->unk_34[1][0x8 * 16], 1, (4 + v2) * 16, 0x20);
+            PaletteData_LoadBuffer(param0->unk_04->unk_50, &param0->unk_34[1][0x8 * 16], 1, (4 + v2) * 16, 0x20);
 
             GF_ASSERT(param0->unk_2C9 == 0xff);
             param0->unk_2C9 = v2;
@@ -1128,10 +1128,10 @@ static void ov17_02240424(UnkStruct_ov17_0223F7E4 *param0, int param1, int param
     };
 
     if (param1 != -1) {
-        sub_02002FBC(param0->unk_04->unk_50, v0[param1], 1, (4 + param2) * 16, 0x20);
+        PaletteData_LoadBuffer(param0->unk_04->unk_50, v0[param1], 1, (4 + param2) * 16, 0x20);
     } else {
         ov17_022403B0(param0, &Unk_ov17_02253248[param2], &Unk_ov17_02253408[param2], 2, 0);
-        sub_02002FBC(param0->unk_04->unk_50, &param0->unk_34[1][0x8 * 16], 1, (4 + param2) * 16, 0x20);
+        PaletteData_LoadBuffer(param0->unk_04->unk_50, &param0->unk_34[1][0x8 * 16], 1, (4 + param2) * 16, 0x20);
     }
 }
 
@@ -1410,7 +1410,7 @@ static void ov17_02240950(SysTask *param0, void *param1)
             v4 = 1;
         }
 
-        sub_020039B0(v2, 1, v1->unk_09 * 16, 16, v1->unk_04 >> 8, 0x7fff);
+        PaletteData_Blend(v2, 1, v1->unk_09 * 16, 16, v1->unk_04 >> 8, 0x7fff);
 
         if (v4 == 1) {
             ov17_02240910(v0);

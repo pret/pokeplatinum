@@ -1125,7 +1125,7 @@ static void ov73_021D1B80(UnkStruct_ov73_021D1058 *param0)
 
     MI_CpuCopy32(v3, param0->unk_B8, 0x20);
 
-    sub_020039F8(param0->unk_B8, v3, 1, 16, 0x6a3c);
+    BlendPalettes(param0->unk_B8, v3, 1, 16, 0x6a3c);
     Bg_FillTilemapRect(param0->unk_18, v4, 0, 0, 0, 32, 24, v6);
     Bg_LoadToTilemapRect(param0->unk_18, v4, v1, 11, 9, 10, 10);
 
@@ -1285,7 +1285,7 @@ static void ov73_021D1FA0(UnkStruct_ov73_021D1058 *param0)
     if (param0->unk_94[8] > 0) {
         param0->unk_94[8]--;
 
-        sub_020039F8(param0->unk_B8, param0->unk_BC, 1, param0->unk_94[8] / 3, 0x6a3c);
+        BlendPalettes(param0->unk_B8, param0->unk_BC, 1, param0->unk_94[8] / 3, 0x6a3c);
         Bg_LoadPalette(2, param0->unk_BC, (2 * 16), (2 * 16) * 8);
         Bg_LoadPalette(5, param0->unk_BC, (2 * 16), (2 * 16) * 10);
     }

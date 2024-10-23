@@ -1114,7 +1114,7 @@ static void ov12_022267D4(SysTask *param0, void *param1)
 
     if ((++v0->unk_17) >= v0->unk_16) {
         v0->unk_17 = 0;
-        sub_020039B0(v0->unk_18, v0->unk_08, v0->unk_0C, v0->unk_0E, v0->unk_14, v0->unk_10);
+        PaletteData_Blend(v0->unk_18, v0->unk_08, v0->unk_0C, v0->unk_0E, v0->unk_14, v0->unk_10);
 
         if (v0->unk_14 == v0->unk_13) {
             v0->unk_00 = 0;
@@ -1205,7 +1205,7 @@ void ov12_02226924(UnkStruct_ov12_0221FCDC *param0)
     u16 *v1;
 
     v0 = ov12_0222332C(param0);
-    v1 = sub_0200316C(v0, 0);
+    v1 = PaletteData_GetFadedBuffer(v0, 0);
 
     if (ov12_0221FDD4(param0) == 1) {
         ov12_022268DC(v1, 16 * 3);
@@ -1221,8 +1221,8 @@ void ov12_02226954(UnkStruct_ov12_0221FCDC *param0)
     v0 = ov12_0222332C(param0);
 
     if (ov12_0221FDD4(param0) == 1) {
-        sub_02003120(v0, 0, 0, 0, 0, 16 * 3 * 2);
+        PaletteData_CopyBuffer(v0, 0, 0, 0, 0, 16 * 3 * 2);
     } else {
-        sub_02003120(v0, 0, 0, 0, 0, 16 * 8 * 2);
+        PaletteData_CopyBuffer(v0, 0, 0, 0, 0, 16 * 8 * 2);
     }
 }

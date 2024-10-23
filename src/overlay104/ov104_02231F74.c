@@ -940,10 +940,10 @@ void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, int param
         v12 = CellActor_GetPaletteProxy(v5->unk_00);
         v13 = sub_0201FAB4(v12, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-        PaletteSys_LoadPalette(v2, v3.archive, v3.palette, param2, 2, 0x20, v13 * 16);
+        PaletteData_LoadBufferFromFileStart(v2, v3.archive, v3.palette, param2, 2, 0x20, v13 * 16);
 
         if (param8 > 0) {
-            sub_020039B0(v2, 2, v13 * 16, 16, param8, param9);
+            PaletteData_Blend(v2, 2, v13 * 16, 16, param8, param9);
         }
     }
 

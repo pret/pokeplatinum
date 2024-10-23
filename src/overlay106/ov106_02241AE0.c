@@ -745,9 +745,9 @@ static void ov106_022423E8(UnkStruct_ov106_02243118 *param0)
     }
 
     sub_02039794();
-    sub_02002FA0(param0->unk_AC, 2);
-    sub_02002FA0(param0->unk_AC, 0);
-    sub_02002F54(param0->unk_AC);
+    PaletteData_FreeBuffer(param0->unk_AC, 2);
+    PaletteData_FreeBuffer(param0->unk_AC, 0);
+    PaletteData_Free(param0->unk_AC);
 
     param0->unk_AC = NULL;
 
@@ -848,10 +848,10 @@ static void ov106_0224262C(UnkStruct_ov106_02243118 *param0)
     ov106_0224271C();
     ov106_0224273C(param0->unk_48);
 
-    param0->unk_AC = sub_02002F38(98);
+    param0->unk_AC = PaletteData_New(98);
 
-    sub_02002F70(param0->unk_AC, 2, (32 * 16), 98);
-    sub_02002F70(param0->unk_AC, 0, (32 * 16), 98);
+    PaletteData_AllocBuffer(param0->unk_AC, 2, (32 * 16), 98);
+    PaletteData_AllocBuffer(param0->unk_AC, 0, (32 * 16), 98);
 
     ov106_0224283C(param0, 3);
     ov106_02242884();
@@ -891,7 +891,7 @@ static void ov106_022426E0(void *param0)
     }
 
     if (v0->unk_AC != NULL) {
-        sub_02003694(v0->unk_AC);
+        PaletteData_CommitFadedBuffers(v0->unk_AC);
     }
 
     Bg_RunScheduledUpdates(v0->unk_48);

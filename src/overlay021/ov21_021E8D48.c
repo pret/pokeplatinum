@@ -715,22 +715,22 @@ static void ov21_021E9828(SysTask *param0, void *param1)
 
 static void ov21_021E98D8(PaletteData *param0, Sprite *param1)
 {
-    sub_02003070(param0, 0, 0, 32 * 0x10);
-    sub_02003070(param0, 2, 0, (((16 - 2) * 16) * sizeof(u16)));
+    PaletteData_LoadBufferFromHardware(param0, 0, 0, 32 * 0x10);
+    PaletteData_LoadBufferFromHardware(param0, 2, 0, (((16 - 2) * 16) * sizeof(u16)));
 }
 
 static void ov21_021E98F8(PaletteData *param0, Sprite *param1, int param2, int param3, int param4, int param5, int param6)
 {
     sub_020086FC(param1, param2, param4, param5, param6);
-    sub_02003178(param0, 0x1 | 0x4, 0xffff, param5, param3, param4, param6);
-    sub_02003858(param0, 0);
+    PaletteData_StartFade(param0, 0x1 | 0x4, 0xffff, param5, param3, param4, param6);
+    PaletteData_SetAutoTransparent(param0, 0);
 }
 
 static BOOL ov21_021E9948(PaletteData *param0, Sprite *param1)
 {
     BOOL v0[2];
 
-    v0[0] = sub_0200384C(param0);
+    v0[0] = PaletteData_GetSelectedBuffersMask(param0);
     v0[1] = sub_020087B4(param1);
 
     if ((v0[0] == 0) && (v0[1] == 0)) {

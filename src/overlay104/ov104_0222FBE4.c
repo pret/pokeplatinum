@@ -2124,7 +2124,7 @@ static BOOL ov104_022311BC(UnkStruct_ov104_02231148 *param0)
         param0->unk_28 = Window_New(11, 1);
 
         Window_Add(param0->unk_00->unk_00, param0->unk_28, 1, 0, 0, 32, 32, 0, 0);
-        sub_020038B0(param0->unk_00->unk_04, 0, 2, 0x0, 0, 16);
+        PaletteData_FillBufferRange(param0->unk_00->unk_04, 0, 2, 0x0, 0, 16);
         Window_FillTilemap(param0->unk_28, 0);
         Window_ScheduleCopyToVRAM(param0->unk_28);
 
@@ -2178,7 +2178,7 @@ static BOOL ov104_022312D8(UnkStruct_ov104_02231148 *param0)
         param0->unk_28 = Window_New(11, 1);
 
         Window_Add(param0->unk_00->unk_00, param0->unk_28, 1, 0, 0, 32, 32, 0, 0);
-        sub_020038B0(param0->unk_00->unk_04, 0, 2, 0x0, 0, 16);
+        PaletteData_FillBufferRange(param0->unk_00->unk_04, 0, 2, 0x0, 0, 16);
         Window_FillTilemap(param0->unk_28, 0);
         Window_ScheduleCopyToVRAM(param0->unk_28);
 
@@ -2529,7 +2529,7 @@ static BOOL ov104_02231A28(UnkStruct_ov104_0222E930 *param0)
 
     sub_0209B980(param0->unk_00->unk_00, v1);
     ov104_0222E974(param0, ov104_02231AA8);
-    sub_020038B0(v1->unk_00->unk_04, 0, 2, 0x0, 0, 1);
+    PaletteData_FillBufferRange(v1->unk_00->unk_04, 0, 2, 0x0, 0, 1);
 
     return 1;
 }

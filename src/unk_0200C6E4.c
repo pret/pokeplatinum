@@ -460,7 +460,7 @@ u8 sub_0200CD7C(PaletteData *param0, int param1, SpriteRenderer *param2, SpriteG
     v0 = sub_0200CC9C(param2, param3, param4, param5, param6, param7, param8, param9);
 
     if (v0 != -1) {
-        sub_02003070(param0, param1, v0 * 16, param7 * 0x20);
+        PaletteData_LoadBufferFromHardware(param0, param1, v0 * 16, param7 * 0x20);
     }
 
     return v0;
@@ -473,7 +473,7 @@ u8 SpriteRenderer_LoadPalette(PaletteData *param0, enum PaletteFadeBufferId para
     v0 = sub_0200CD0C(param2, param3, param4, param5, param6, param7, param8, param9);
 
     if (v0 != -1) {
-        sub_02003070(param0, param1, v0 * 16, param7 * 0x20);
+        PaletteData_LoadBufferFromHardware(param0, param1, v0 * 16, param7 * 0x20);
     }
 
     return v0;

@@ -1103,9 +1103,9 @@ static void ov111_021D1C0C(UnkStruct_ov111_021D0F7C *param0)
     }
 
     Font_Free(FONT_SUBSCREEN);
-    sub_02002FA0(param0->unk_15C, 2);
-    sub_02002FA0(param0->unk_15C, 0);
-    sub_02002F54(param0->unk_15C);
+    PaletteData_FreeBuffer(param0->unk_15C, 2);
+    PaletteData_FreeBuffer(param0->unk_15C, 0);
+    PaletteData_Free(param0->unk_15C);
 
     param0->unk_15C = NULL;
 
@@ -1234,10 +1234,10 @@ static void ov111_021D1FC4(UnkStruct_ov111_021D0F7C *param0)
     ov111_021D20CC();
     ov111_021D20EC(param0->unk_58);
 
-    param0->unk_15C = sub_02002F38(115);
+    param0->unk_15C = PaletteData_New(115);
 
-    sub_02002F70(param0->unk_15C, 2, (32 * 16), 115);
-    sub_02002F70(param0->unk_15C, 0, (32 * 16), 115);
+    PaletteData_AllocBuffer(param0->unk_15C, 2, (32 * 16), 115);
+    PaletteData_AllocBuffer(param0->unk_15C, 0, (32 * 16), 115);
 
     ov111_021D2248(param0, 7);
     ov111_021D22D0();
@@ -1282,7 +1282,7 @@ static void ov111_021D2090(void *param0)
     }
 
     if (v0->unk_15C != NULL) {
-        sub_02003694(v0->unk_15C);
+        PaletteData_CommitFadedBuffers(v0->unk_15C);
     }
 
     Bg_RunScheduledUpdates(v0->unk_58);

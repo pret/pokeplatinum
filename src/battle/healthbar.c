@@ -1789,7 +1789,7 @@ static void ov16_02268380(SysTask *param0, void *param1)
             v0->unk_08++;
         }
 
-        sub_020039B0(v3, 2, v0->unk_09 * 16 + 0, 16, v0->unk_0A, 0x73a5);
+        PaletteData_Blend(v3, 2, v0->unk_09 * 16 + 0, 16, v0->unk_0A, 0x73a5);
         break;
     case 2:
         v0->unk_0A -= 2;
@@ -1799,7 +1799,7 @@ static void ov16_02268380(SysTask *param0, void *param1)
             v0->unk_08++;
         }
 
-        sub_020039B0(v3, 2, v0->unk_09 * 16 + 0, 16, v0->unk_0A, 0x73a5);
+        PaletteData_Blend(v3, 2, v0->unk_09 * 16 + 0, 16, v0->unk_0A, 0x73a5);
         break;
     default:
         v2 = sub_0200D05C(v1, 20006, NNS_G2D_VRAM_TYPE_2DMAIN);

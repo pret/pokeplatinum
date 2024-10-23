@@ -80,8 +80,8 @@ static void ov100_021D1C98(UnkStruct_ov100_021D1C98 *param0)
 
     sub_020070E8(v0, 18, v1, 5, 0, 0, 0, 111);
     sub_0200710C(v0, 20, v1, 5, 0, 0, 0, 111);
-    PaletteSys_LoadPalette(v4, 172, 19, 111, 1, 0x20 * 2, 0);
-    PaletteSys_LoadPalette(v4, 172, 19, 111, 0, 0x20 * 2, 0);
+    PaletteData_LoadBufferFromFileStart(v4, 172, 19, 111, 1, 0x20 * 2, 0);
+    PaletteData_LoadBufferFromFileStart(v4, 172, 19, 111, 0, 0x20 * 2, 0);
 
     SpriteRenderer_LoadPalette(v4, 3, v2, v3, v0, 50, 0, 3, NNS_G2D_VRAM_TYPE_2DSUB, v5);
     SpriteRenderer_LoadCellResObjFromOpenNarc(v2, v3, v0, 48, 0, v5);

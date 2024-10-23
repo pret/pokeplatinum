@@ -168,10 +168,10 @@ void ov62_022317CC(UnkStruct_0208C06C *param0, int param1)
     SpriteGfxHandler *v2 = param0->unk_14.unk_08;
     NARC *v3 = param0->unk_14.unk_00;
 
-    PaletteSys_LoadPalette(v0, 162, ov62_02231710(param0, 3), 102, 0, 0x20 * (8 + 1), 0);
-    PaletteSys_LoadPalette(v0, 162, ov62_02231710(param0, 3), 102, 1, 0x20 * (8 + 1), 0);
-    PaletteSys_LoadPalette(v0, 162, ov62_02231710(param0, 0), 102, 0, 0x20, 14 * 16);
-    PaletteSys_LoadPalette(v0, 162, ov62_02231710(param0, 0), 102, 1, 0x20, 14 * 16);
+    PaletteData_LoadBufferFromFileStart(v0, 162, ov62_02231710(param0, 3), 102, 0, 0x20 * (8 + 1), 0);
+    PaletteData_LoadBufferFromFileStart(v0, 162, ov62_02231710(param0, 3), 102, 1, 0x20 * (8 + 1), 0);
+    PaletteData_LoadBufferFromFileStart(v0, 162, ov62_02231710(param0, 0), 102, 0, 0x20, 14 * 16);
+    PaletteData_LoadBufferFromFileStart(v0, 162, ov62_02231710(param0, 0), 102, 1, 0x20, 14 * 16);
     sub_0208B63C(param0->unk_6F0, param0->unk_14.unk_48);
     sub_0208B63C(param0->unk_6F0, param0->unk_14.unk_48);
     SpriteGfxHandler_UnloadPlttObjById(v2, 9999);
@@ -182,10 +182,10 @@ void ov62_022317CC(UnkStruct_0208C06C *param0, int param1)
 
 void ov62_022318E8(UnkStruct_0208C06C *param0)
 {
-    sub_02003A2C(param0->unk_14.unk_14, 2, 0xFFFF, 0, param0->unk_14.unk_44);
-    sub_02003A2C(param0->unk_14.unk_14, 0, 0xFFFF, 0, param0->unk_14.unk_44);
-    sub_02003A2C(param0->unk_14.unk_14, 3, 0xFFFF, 0, param0->unk_14.unk_44);
-    sub_02003A2C(param0->unk_14.unk_14, 1, 0xFFFF, 0, param0->unk_14.unk_44);
+    PaletteData_BlendMulti(param0->unk_14.unk_14, 2, 0xFFFF, 0, param0->unk_14.unk_44);
+    PaletteData_BlendMulti(param0->unk_14.unk_14, 0, 0xFFFF, 0, param0->unk_14.unk_44);
+    PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xFFFF, 0, param0->unk_14.unk_44);
+    PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0xFFFF, 0, param0->unk_14.unk_44);
 }
 
 u16 *ov62_Pokedex_Alphabetical(int heapID, int unused, int *pokedexLength)

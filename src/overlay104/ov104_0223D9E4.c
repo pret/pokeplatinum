@@ -175,7 +175,7 @@ static UnkStruct_ov104_0223DC04 *ov104_0223DBB8(PaletteData *param0)
     {
         u16 *v1;
 
-        v1 = sub_02003164(param0, 0);
+        v1 = PaletteData_GetUnfadedBuffer(param0, 0);
         MI_CpuCopy16(&v1[16 * 5], v0->unk_08, 3 * 16 * sizeof(u16));
     }
 
@@ -200,7 +200,7 @@ static void ov104_0223DC18(SysTask *param0, void *param1)
     }
 
     v0->unk_69 = 0;
-    sub_02002FBC(v0->unk_04, v0->unk_08[v0->unk_68], 0, 6 * 16, 0x20);
+    PaletteData_LoadBuffer(v0->unk_04, v0->unk_08[v0->unk_68], 0, 6 * 16, 0x20);
     v0->unk_68++;
 
     if (v0->unk_68 >= 3) {

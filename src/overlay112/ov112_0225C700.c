@@ -1237,7 +1237,7 @@ static void ov112_0225D784(UnkStruct_ov112_0225D73C *param0)
 
     v1 = 0xe;
 
-    sub_0200393C(&v1, &param0->unk_04, 1, v0, 0x19);
+    BlendPalette(&v1, &param0->unk_04, 1, v0, 0x19);
     DC_FlushRange(&param0->unk_04, 2);
     GX_LoadBGPltt(&param0->unk_04, param0->unk_06, 2);
 

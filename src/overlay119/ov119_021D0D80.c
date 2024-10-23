@@ -243,7 +243,7 @@ void ov119_021D0FD0(void *param0)
     sub_02008A94(v0->unk_04.unk_38);
     sub_0201DCAC();
     sub_0200C800();
-    sub_02003694(v0->unk_04.unk_04);
+    PaletteData_CommitFadedBuffers(v0->unk_04.unk_04);
     Bg_RunScheduledUpdates(v0->unk_04.unk_00);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
@@ -282,10 +282,10 @@ void ov119_021D1068(BgConfig *param0, PaletteData *param1, int param2)
     int v0 = 71;
 
     sub_0200DD0C(param0, 1, 20, 15, param2, v0);
-    PaletteSys_LoadPalette(param1, 38, sub_0200DD08(param2), v0, 0, 0x20, 12 * 16);
+    PaletteData_LoadBufferFromFileStart(param1, 38, sub_0200DD08(param2), v0, 0, 0x20, 12 * 16);
     sub_0200DAA4(param0, 1, (20 + (18 + 12)), 13, 0, v0);
-    PaletteSys_LoadPalette(param1, 38, Window_FramePalette(), v0, 0, 0x20, 13 * 16);
-    PaletteSys_LoadPalette(param1, 14, 7, v0, 0, 0x20, 14 * 16);
+    PaletteData_LoadBufferFromFileStart(param1, 38, Window_FramePalette(), v0, 0, 0x20, 13 * 16);
+    PaletteData_LoadBufferFromFileStart(param1, 14, 7, v0, 0, 0x20, 14 * 16);
 }
 
 void ov119_021D10F0(BgConfig *param0, Window *param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8)
@@ -389,7 +389,7 @@ void ov119_021D1308(BgConfig *param0, PaletteData *param1)
 
     sub_02006E3C(v0, v1, param0, v4, 0, 0, 1, v5);
     sub_02006E60(v0, v2, param0, v4, 0, 0, 1, v5);
-    PaletteSys_LoadPalette(param1, v0, v3, v5, 0, 0x20 * 2, 0);
+    PaletteData_LoadBufferFromFileStart(param1, v0, v3, v5, 0, 0x20 * 2, 0);
 }
 
 void ov119_021D135C(BgConfig *param0, PaletteData *param1)
@@ -403,7 +403,7 @@ void ov119_021D135C(BgConfig *param0, PaletteData *param1)
 
     sub_02006E3C(v0, v1, param0, v4, 0, 0, 1, v5);
     sub_02006E60(v0, v2, param0, v4, 0, 0, 1, v5);
-    PaletteSys_LoadPalette(param1, v0, v3, v5, 1, 0x20 * 1, 0);
+    PaletteData_LoadBufferFromFileStart(param1, v0, v3, v5, 1, 0x20 * 1, 0);
 }
 
 static u32 ov119_021D13B4(u32 param0, BOOL param1)

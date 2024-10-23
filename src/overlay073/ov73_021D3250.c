@@ -85,7 +85,7 @@ int ov73_021D3280 (OverlayManager * param0, int * param1)
         {
             u16 * v2 = (u16 *)sub_020241F0();
 
-            sub_020039F8(v2, v2, 0xFFFC, 7, 0x0);
+            BlendPalettes(v2, v2, 0xFFFC, 7, 0x0);
             GX_LoadBGPltt((const void *)v2, 0, 16 * 0x20);
         }
 

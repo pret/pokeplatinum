@@ -1134,7 +1134,7 @@ void ov16_0223EF8C(BattleSystem *param0)
     param0->unk_220 = Heap_AllocFromHeap(5, 0x200);
 
     MI_CpuCopy32((void *)(HW_BG_VRAM + 0x10000), param0->unk_21C, 0x10000);
-    MI_CpuCopy32(sub_02003164(param0->unk_28, 0), param0->unk_220, HW_BG_PLTT_SIZE);
+    MI_CpuCopy32(PaletteData_GetUnfadedBuffer(param0->unk_28, 0), param0->unk_220, HW_BG_PLTT_SIZE);
 
     v7 = G2_GetOBJCharPtr();
     v0 = SpriteActor_ImageProxy(param0->unk_17C[1].unk_00->unk_00);

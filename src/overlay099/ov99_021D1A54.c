@@ -334,12 +334,12 @@ static void ov99_021D1A54(UnkStruct_ov99_021D2CB0 *param0)
 
     switch (param0->unk_1101) {
     case 0:
-        sub_020039B0(param0->unk_0C, 2, v0 * 16, 16, 4, GX_RGB(28, 12, 6));
+        PaletteData_Blend(param0->unk_0C, 2, v0 * 16, 16, 4, GX_RGB(28, 12, 6));
         break;
     case 2:
         break;
     case 4:
-        sub_020039B0(param0->unk_0C, 2, v0 * 16, 16, 4, GX_RGB(11, 11, 16));
+        PaletteData_Blend(param0->unk_0C, 2, v0 * 16, 16, 4, GX_RGB(11, 11, 16));
         break;
     }
 }
@@ -453,11 +453,11 @@ static void ov99_021D1D68(UnkStruct_ov99_021D2CB0 *param0)
 {
     BgConfig *v0 = param0->unk_08;
 
-    PaletteSys_LoadPalette(param0->unk_0C, 127, 18, 75, 0, 0, 0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C, 127, 18, 75, 0, 0, 0);
     sub_020070E8(param0->unk_10F8, 9, param0->unk_08, 2, 0, 0, 0, 75);
     sub_0200710C(param0->unk_10F8, 3, param0->unk_08, 2, 0, 0, 0, 75);
 
-    PaletteSys_LoadPalette(param0->unk_0C, 127, 21, 75, 1, 0, 0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C, 127, 21, 75, 1, 0, 0);
     sub_020070E8(param0->unk_10F8, 12, param0->unk_08, 7, 0, 0, 0, 75);
     sub_0200710C(param0->unk_10F8, 6, param0->unk_08, 7, 0, 0, 0, 75);
 
@@ -662,11 +662,11 @@ static void ov99_021D2180(UnkStruct_ov99_021D2CB0 *param0)
 {
     BgConfig *v0 = param0->unk_08;
 
-    PaletteSys_LoadPalette(param0->unk_0C, 127, 19, 75, 0, 0, 0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C, 127, 19, 75, 0, 0, 0);
     sub_020070E8(param0->unk_10F8, 10, param0->unk_08, 2, 0, 0, 0, 75);
     sub_0200710C(param0->unk_10F8, 4, param0->unk_08, 2, 0, 0, 0, 75);
 
-    PaletteSys_LoadPalette(param0->unk_0C, 127, 22, 75, 1, 0, 0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C, 127, 22, 75, 1, 0, 0);
     sub_020070E8(param0->unk_10F8, 13, param0->unk_08, 7, 0, 0, 0, 75);
     sub_0200710C(param0->unk_10F8, 7, param0->unk_08, 7, 0, 0, 0, 75);
 
@@ -802,11 +802,11 @@ static void ov99_021D24F0(UnkStruct_ov99_021D2CB0 *param0)
 {
     BgConfig *v0 = param0->unk_08;
 
-    PaletteSys_LoadPalette(param0->unk_0C, 127, 20, 75, 0, 0, 0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C, 127, 20, 75, 0, 0, 0);
     sub_020070E8(param0->unk_10F8, 11, param0->unk_08, 2, 0, 0, 0, 75);
     sub_0200710C(param0->unk_10F8, 5, param0->unk_08, 2, 0, 0, 0, 75);
 
-    PaletteSys_LoadPalette(param0->unk_0C, 127, 23, 75, 1, 0, 0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C, 127, 23, 75, 1, 0, 0);
     sub_020070E8(param0->unk_10F8, 14, param0->unk_08, 7, 0, 0, 0, 75);
     sub_0200710C(param0->unk_10F8, 8, param0->unk_08, 7, 0, 0, 0, 75);
 
@@ -818,8 +818,8 @@ static void ov99_021D24F0(UnkStruct_ov99_021D2CB0 *param0)
         MI_CpuCopy16(v1->pRawData, param0->unk_FA4.unk_08_val3.unk_08, 0x20 * 8);
         Heap_FreeToHeap(v2);
 
-        sub_02002FBC(param0->unk_0C, param0->unk_FA4.unk_08_val3.unk_08, 0, 16 * 1, 0x20);
-        sub_02002FBC(param0->unk_0C, param0->unk_FA4.unk_08_val3.unk_08, 1, 16 * 1, 0x20);
+        PaletteData_LoadBuffer(param0->unk_0C, param0->unk_FA4.unk_08_val3.unk_08, 0, 16 * 1, 0x20);
+        PaletteData_LoadBuffer(param0->unk_0C, param0->unk_FA4.unk_08_val3.unk_08, 1, 16 * 1, 0x20);
     }
 
     Bg_SetOffset(v0, 2, 0, 0);
@@ -1064,7 +1064,7 @@ static void ov99_021D2AAC(UnkStruct_ov99_021D2CB0 *param0)
     gCoreSys.unk_65 = 0;
 
     GXLayers_SwapDisplay();
-    sub_020038B0(param0->unk_0C, 0, 2, 0x0, 0, 1);
+    PaletteData_FillBufferRange(param0->unk_0C, 0, 2, 0x0, 0, 1);
 
     {
         Strbuf *v1;

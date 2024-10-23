@@ -330,14 +330,14 @@ static u8 ov13_0221FE5C(UnkStruct_ov13_022213F0 *param0)
     ov13_0222563C(param0, param0->unk_2076);
     ov13_022214E0(param0, param0->unk_2076);
 
-    sub_02003178(param0->unk_1E4, (0x2 | 0x8), 0xffff, -8, 16, 0, 0);
+    PaletteData_StartFade(param0->unk_1E4, (0x2 | 0x8), 0xffff, -8, 16, 0, 0);
 
     return v0;
 }
 
 static u8 ov13_0221FF60(UnkStruct_ov13_022213F0 *param0)
 {
-    if (sub_0200384C(param0->unk_1E4) != 0) {
+    if (PaletteData_GetSelectedBuffersMask(param0->unk_1E4) != 0) {
         return 1;
     }
 
@@ -985,13 +985,13 @@ static u8 ov13_02220A4C(UnkStruct_ov13_022213F0 *param0)
 
 static u8 ov13_02220B78(UnkStruct_ov13_022213F0 *param0)
 {
-    sub_02003178(param0->unk_1E4, (0x2 | 0x8), 0xffff, -8, 0, 16, 0);
+    PaletteData_StartFade(param0->unk_1E4, (0x2 | 0x8), 0xffff, -8, 0, 16, 0);
     return 26;
 }
 
 static u8 ov13_02220BA4(SysTask *param0, UnkStruct_ov13_022213F0 *param1)
 {
-    if (sub_0200384C(param1->unk_1E4) != 0) {
+    if (PaletteData_GetSelectedBuffersMask(param1->unk_1E4) != 0) {
         return 0;
     }
 
@@ -1144,33 +1144,33 @@ static void ov13_02220D4C(UnkStruct_ov13_022213F0 *param0)
         Heap_FreeToHeap(v2);
     }
 
-    PaletteSys_LoadPalette(param0->unk_1E4, 72, 23, param0->unk_00->unk_0C, 1, 0x20 * 16, 0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_1E4, 72, 23, param0->unk_00->unk_0C, 1, 0x20 * 16, 0);
     NARC_dtor(v0);
 
     {
-        u16 *v3 = sub_02003164(param0->unk_1E4, 1);
+        u16 *v3 = PaletteData_GetUnfadedBuffer(param0->unk_1E4, 1);
         memcpy(param0->unk_1F5C, &v3[12 * 16], 0x20 * 2);
     }
 
-    PaletteSys_LoadPalette(param0->unk_1E4, 14, 6, param0->unk_00->unk_0C, 1, 0x20, 13 * 16);
-    PaletteSys_LoadPalette(param0->unk_1E4, 14, 7, param0->unk_00->unk_0C, 1, 0x20, 15 * 16);
+    PaletteData_LoadBufferFromFileStart(param0->unk_1E4, 14, 6, param0->unk_00->unk_0C, 1, 0x20, 13 * 16);
+    PaletteData_LoadBufferFromFileStart(param0->unk_1E4, 14, 7, param0->unk_00->unk_0C, 1, 0x20, 15 * 16);
 
     {
         int v4 = ov16_0223EDE0(param0->unk_00->unk_08);
 
         sub_02006E3C(38, sub_0200DD04(v4), param0->unk_1E0, 4, 1, 0, 0, param0->unk_00->unk_0C);
-        PaletteSys_LoadPalette(param0->unk_1E4, 38, sub_0200DD08(v4), param0->unk_00->unk_0C, 1, 0x20, 14 * 16);
+        PaletteData_LoadBufferFromFileStart(param0->unk_1E4, 38, sub_0200DD08(v4), param0->unk_00->unk_0C, 1, 0x20, 14 * 16);
     }
 
     {
-        u16 *v5 = sub_02003164(param0->unk_1E4, 1);
+        u16 *v5 = PaletteData_GetUnfadedBuffer(param0->unk_1E4, 1);
         u16 *v6 = Heap_AllocFromHeap(param0->unk_00->unk_0C, 0x20);
 
         memcpy(v6, &v5[13 * 16], 0x20);
         memcpy(&v6[7], &v5[9 * 16 + 10], 4);
         memcpy(&v6[3], &v5[9 * 16 + 12], 4);
 
-        sub_02002FBC(param0->unk_1E4, v6, 1, 13 * 16, 0x20);
+        PaletteData_LoadBuffer(param0->unk_1E4, v6, 1, 13 * 16, 0x20);
         Heap_FreeToHeap(v6);
     }
 }

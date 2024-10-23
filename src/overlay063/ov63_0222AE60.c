@@ -1134,10 +1134,10 @@ static void ov63_0222BC80(UnkStruct_ov63_0222AE60 *param0, SpriteResource *param
     v1[1] = sub_0200A760(param1, NNS_G2D_VRAM_TYPE_2DSUB);
 
     if (v1[0] != (NNS_G2D_VRAM_ADDR_NOT_INITIALIZED)) {
-        sub_02002FBC(param0->unk_04, v0->pRawData, 2, v1[0] * 16, param2 * 32);
+        PaletteData_LoadBuffer(param0->unk_04, v0->pRawData, 2, v1[0] * 16, param2 * 32);
     }
 
     if (v1[1] != (NNS_G2D_VRAM_ADDR_NOT_INITIALIZED)) {
-        sub_02002FBC(param0->unk_04, v0->pRawData, 3, v1[1] * 16, param2 * 32);
+        PaletteData_LoadBuffer(param0->unk_04, v0->pRawData, 3, v1[1] * 16, param2 * 32);
     }
 }

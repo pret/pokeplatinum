@@ -286,13 +286,13 @@ void ov17_022509AC(UnkStruct_ov17_0224FCA0 *param0)
     sub_020070E8(v1, 23, param0->unk_10.unk_20, 3, 0, 0, 1, 24);
     sub_0200710C(v1, 22, param0->unk_10.unk_20, 3, 0, 0, 1, 24);
     Bg_ClearTilemap(param0->unk_10.unk_20, 1);
-    PaletteSys_LoadPalette(param0->unk_10.unk_C0, 45, 35, 24, 0, 0, 0);
-    PaletteSys_LoadPalette(param0->unk_10.unk_C0, 45, 36, 24, 0, 0x20, 13 * 16);
+    PaletteData_LoadBufferFromFileStart(param0->unk_10.unk_C0, 45, 35, 24, 0, 0, 0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_10.unk_C0, 45, 36, 24, 0, 0x20, 13 * 16);
 
     v0 = Options_Frame(param0->unk_00->unk_196C);
 
     sub_0200DD0C(param0->unk_10.unk_20, 1, 1, 15, v0, 24);
-    PaletteSys_LoadPalette(param0->unk_10.unk_C0, 38, sub_0200DD08(v0), 24, 0, 0x20, 14 * 16);
+    PaletteData_LoadBufferFromFileStart(param0->unk_10.unk_C0, 38, sub_0200DD08(v0), 24, 0, 0x20, 14 * 16);
     Bg_ClearTilemap(param0->unk_10.unk_20, 2);
     NARC_dtor(v1);
 }
@@ -325,13 +325,13 @@ void ov17_02250B00(UnkStruct_ov17_0224FCA0 *param0)
     sub_0200710C(v1, 25, param0->unk_10.unk_20, 3, 0, 0, 1, 24);
     sub_0200710C(v1, 26, param0->unk_10.unk_20, 2, 0, 0, 1, 24);
     Bg_ClearTilemap(param0->unk_10.unk_20, 1);
-    PaletteSys_LoadPalette(param0->unk_10.unk_C0, 45, 39, 24, 0, 0, 0);
-    PaletteSys_LoadPalette(param0->unk_10.unk_C0, 45, 36, 24, 0, 0x20, 13 * 16);
+    PaletteData_LoadBufferFromFileStart(param0->unk_10.unk_C0, 45, 39, 24, 0, 0, 0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_10.unk_C0, 45, 36, 24, 0, 0x20, 13 * 16);
 
     v0 = Options_Frame(param0->unk_00->unk_196C);
 
     sub_0200DD0C(param0->unk_10.unk_20, 1, 1, 15, v0, 24);
-    PaletteSys_LoadPalette(param0->unk_10.unk_C0, 38, sub_0200DD08(v0), 24, 0, 0x20, 14 * 16);
+    PaletteData_LoadBufferFromFileStart(param0->unk_10.unk_C0, 38, sub_0200DD08(v0), 24, 0, 0x20, 14 * 16);
 
     {
         Strbuf *v2;
@@ -363,8 +363,8 @@ void ov17_02250B00(UnkStruct_ov17_0224FCA0 *param0)
 
 void ov17_02250CEC(UnkStruct_ov17_0224FCA0 *param0)
 {
-    sub_020038B0(param0->unk_10.unk_C0, 1, 2, 0x0, 0, 16 * 16);
-    sub_020038B0(param0->unk_10.unk_C0, 3, 2, 0x0, 0, 16 * 16);
+    PaletteData_FillBufferRange(param0->unk_10.unk_C0, 1, 2, 0x0, 0, 16 * 16);
+    PaletteData_FillBufferRange(param0->unk_10.unk_C0, 3, 2, 0x0, 0, 16 * 16);
 }
 
 void ov17_02250D24(UnkStruct_ov17_0224FCA0 *param0)

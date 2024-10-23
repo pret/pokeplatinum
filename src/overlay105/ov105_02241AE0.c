@@ -2134,7 +2134,7 @@ static void ov105_0224451C(void *param0)
     sub_02008A94(v0->unk_128);
 
     if (v0->unk_120 != NULL) {
-        sub_02003694(v0->unk_120);
+        PaletteData_CommitFadedBuffers(v0->unk_120);
     }
 
     Bg_RunScheduledUpdates(v0->unk_4C);
@@ -2272,10 +2272,10 @@ static void ov105_02244678(UnkStruct_ov105_02241FF4 *param0)
     ov105_02244564();
     ov105_02244584(param0->unk_4C);
 
-    param0->unk_120 = sub_02002F38(93);
+    param0->unk_120 = PaletteData_New(93);
 
-    sub_02002F70(param0->unk_120, 2, (32 * 16), 93);
-    sub_02002F70(param0->unk_120, 0, (32 * 16), 93);
+    PaletteData_AllocBuffer(param0->unk_120, 2, (32 * 16), 93);
+    PaletteData_AllocBuffer(param0->unk_120, 0, (32 * 16), 93);
 
     ov105_02244AF8();
 
@@ -2775,9 +2775,9 @@ static void ov105_022451B4(UnkStruct_ov105_02241FF4 *param0)
 
     sub_02039794();
 
-    sub_02002FA0(param0->unk_120, 2);
-    sub_02002FA0(param0->unk_120, 0);
-    sub_02002F54(param0->unk_120);
+    PaletteData_FreeBuffer(param0->unk_120, 2);
+    PaletteData_FreeBuffer(param0->unk_120, 0);
+    PaletteData_Free(param0->unk_120);
 
     param0->unk_120 = NULL;
 

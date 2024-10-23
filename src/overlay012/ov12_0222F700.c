@@ -1163,7 +1163,7 @@ static void ov12_02230600(SysTask *param0, void *param1)
                 int v2;
 
                 v2 = 1 << ov12_02225950(v0->unk_0C);
-                sub_02003178(ov12_0222332C(v0->unk_00), 0x4, v2, 0, 16, 0, 0);
+                PaletteData_StartFade(ov12_0222332C(v0->unk_00), 0x4, v2, 0, 16, 0, 0);
             }
 
             v0->unk_04++;
@@ -1262,7 +1262,7 @@ void ov12_02230804(UnkStruct_ov12_0221FCDC *param0)
         int v4;
 
         v4 = 1 << ov12_02225950(v0->unk_0C);
-        sub_02003178(ov12_0222332C(v0->unk_00), 0x4, v4, 0, 0, 16, 0);
+        PaletteData_StartFade(ov12_0222332C(v0->unk_00), 0x4, v4, 0, 0, 16, 0);
         v0->unk_10 = 1;
 
         if (ov12_0222337C(v0->unk_00, ov12_02220248(v0->unk_00)) == 0) {
@@ -1387,7 +1387,7 @@ void ov12_02230A8C(UnkStruct_ov12_0221FCDC *param0)
     v0->unk_14 = ov12_0222662C(v3, v3 + 80, ((5 * 0xffff) / 360), (5 * FX32_ONE), 100, ov12_022233EC(param0, 1), 0, ov12_022266E8(-v2, -v3), ov12_0221FDE4(param0));
     v4 = 1 << 8;
 
-    sub_02003A2C(v0->unk_18, 0, v4, 8, 0x0);
+    PaletteData_BlendMulti(v0->unk_18, 0, v4, 8, 0x0);
     ov12_022201E8(v0->unk_00, ov12_02230994, v0);
 }
 
@@ -2124,7 +2124,7 @@ static void ov12_02231A38(SysTask *param0, void *param1)
         if (v0->unk_54 < 0) {
             v0->unk_0C++;
 
-            sub_02003178(ov12_0222332C(v0->unk_00), 0x1, ov12_02222354(v0->unk_00), -8, 0, 16, 0xffff);
+            PaletteData_StartFade(ov12_0222332C(v0->unk_00), 0x1, ov12_02222354(v0->unk_00), -8, 0, 16, 0xffff);
 
             for (v1 = 0; v1 < 4; v1++) {
                 if (v0->unk_14[v1]) {
@@ -2134,9 +2134,9 @@ static void ov12_02231A38(SysTask *param0, void *param1)
         }
         break;
     case 3:
-        if (sub_0200384C(ov12_0222332C(v0->unk_00)) == 0) {
+        if (PaletteData_GetSelectedBuffersMask(ov12_0222332C(v0->unk_00)) == 0) {
             v0->unk_0C++;
-            sub_02003178(ov12_0222332C(v0->unk_00), 0x1, ov12_02222354(v0->unk_00), -8, 16, 0, 0xffff);
+            PaletteData_StartFade(ov12_0222332C(v0->unk_00), 0x1, ov12_02222354(v0->unk_00), -8, 16, 0, 0xffff);
 
             for (v1 = 0; v1 < 4; v1++) {
                 if (v0->unk_14[v1]) {
@@ -2146,7 +2146,7 @@ static void ov12_02231A38(SysTask *param0, void *param1)
         }
         break;
     case 4:
-        if (sub_0200384C(ov12_0222332C(v0->unk_00)) == 0) {
+        if (PaletteData_GetSelectedBuffersMask(ov12_0222332C(v0->unk_00)) == 0) {
             v0->unk_0C++;
             v0->unk_54 = 4;
             v0->unk_50 = 4;
@@ -3018,7 +3018,7 @@ static void ov12_02232D38(UnkStruct_ov12_02232D38 *param0, CellActorData *param1
     int v0;
 
     v0 = 1 << ov12_02225950(param1);
-    sub_02003A2C(param0->unk_C4, 2, v0, 8, 0x0);
+    PaletteData_BlendMulti(param0->unk_C4, 2, v0, 8, 0x0);
 }
 
 static void ov12_02232D64(UnkStruct_ov12_02232D38 *param0)
@@ -3780,7 +3780,7 @@ static void ov12_02233DCC(SysTask *param0, void *param1)
         v0->unk_08--;
 
         if (v0->unk_08 < 0) {
-            sub_02003178(ov12_0222332C(v0->unk_00), 0x1, ov12_02222354(v0->unk_00), 0, 0, 16, 0xffff);
+            PaletteData_StartFade(ov12_0222332C(v0->unk_00), 0x1, ov12_02222354(v0->unk_00), 0, 0, 16, 0xffff);
             v0->unk_04++;
         }
         break;
@@ -3792,14 +3792,14 @@ static void ov12_02233DCC(SysTask *param0, void *param1)
         }
         break;
     case 3:
-        if (sub_0200384C(ov12_0222332C(v0->unk_00)) == 0) {
+        if (PaletteData_GetSelectedBuffersMask(ov12_0222332C(v0->unk_00)) == 0) {
             v0->unk_04++;
             GX_SetVisibleWnd(GX_WNDMASK_NONE);
-            sub_02003178(ov12_0222332C(v0->unk_00), 0x1, ov12_02222354(v0->unk_00), 0, 16, 0, 0xffff);
+            PaletteData_StartFade(ov12_0222332C(v0->unk_00), 0x1, ov12_02222354(v0->unk_00), 0, 16, 0, 0xffff);
         }
         break;
     case 4:
-        if (sub_0200384C(ov12_0222332C(v0->unk_00)) == 0) {
+        if (PaletteData_GetSelectedBuffersMask(ov12_0222332C(v0->unk_00)) == 0) {
             v0->unk_04++;
         }
         break;

@@ -1058,7 +1058,7 @@ static void ov17_0224DFF8(SysTask *param0, void *param1)
     switch (v0->unk_10) {
     case 0:
         ov17_0224CDB4(v0->unk_00, 0);
-        sub_02003178(v0->unk_00->unk_14.unk_90, 0x1, (0x1fff ^ ((1 << 4) | (1 << 3) | (1 << 2))), -2, 0, 6, 0x0);
+        PaletteData_StartFade(v0->unk_00->unk_14.unk_90, 0x1, (0x1fff ^ ((1 << 4) | (1 << 3) | (1 << 2))), -2, 0, 6, 0x0);
 
         for (v2 = 0; v2 < 4; v2++) {
             ov17_0224CEE4(v0->unk_00, v2, 0x7fff, 0x254a, 16, 4, &v0->unk_11[v2]);
@@ -1067,7 +1067,7 @@ static void ov17_0224DFF8(SysTask *param0, void *param1)
         v0->unk_10++;
         break;
     case 1:
-        if (sub_0200384C(v0->unk_00->unk_14.unk_90) == 0) {
+        if (PaletteData_GetSelectedBuffersMask(v0->unk_00->unk_14.unk_90) == 0) {
             for (v2 = 0; v2 < 4; v2++) {
                 if (v0->unk_11[v2] == 0) {
                     break;
@@ -1124,11 +1124,11 @@ static void ov17_0224DFF8(SysTask *param0, void *param1)
         }
         break;
     case 4:
-        sub_02003178(v0->unk_00->unk_14.unk_90, 0x1, (0x1fff ^ ((1 << 4) | (1 << 3) | (1 << 2))), -2, 6, 0, 0x0);
+        PaletteData_StartFade(v0->unk_00->unk_14.unk_90, 0x1, (0x1fff ^ ((1 << 4) | (1 << 3) | (1 << 2))), -2, 6, 0, 0x0);
         v0->unk_10++;
         break;
     case 5:
-        if (sub_0200384C(v0->unk_00->unk_14.unk_90) == 0) {
+        if (PaletteData_GetSelectedBuffersMask(v0->unk_00->unk_14.unk_90) == 0) {
             ov17_0224CDB4(v0->unk_00, 1);
             v0->unk_10++;
         }

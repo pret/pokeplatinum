@@ -115,7 +115,7 @@ static void ov13_02227D10(UnkStruct_ov13_02227244 *param0, u16 param1, u32 param
 
 static void ov13_02227D48(UnkStruct_ov13_02227244 *param0, u16 param1, u16 param2, u32 param3)
 {
-    PaletteSys_LoadPalette(param0->unk_08, 16, Item_FileID(param1, 2), param0->unk_00->unk_0C, 3, 0x20, param2 * 16);
+    PaletteData_LoadBufferFromFileStart(param0->unk_08, 16, Item_FileID(param1, 2), param0->unk_00->unk_0C, 3, 0x20, param2 * 16);
 }
 
 static CellActorData *ov13_02227D78(UnkStruct_ov13_02227244 *param0, u32 param1)

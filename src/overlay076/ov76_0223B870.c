@@ -924,21 +924,21 @@ void ov76_0223C8BC(UnkStruct_ov76_0223DE00 *param0)
 void ov76_0223C8EC(BgConfig *param0, PaletteData *param1, int param2)
 {
     sub_0200DD0C(param0, 1, 1, 15, param2, 53);
-    PaletteSys_LoadPalette(param1, 38, sub_0200DD08(param2), 53, 0, 0x20, 12 * 16);
+    PaletteData_LoadBufferFromFileStart(param1, 38, sub_0200DD08(param2), 53, 0, 0x20, 12 * 16);
     sub_0200DAA4(param0, 1, (1 + (18 + 12)), 13, 0, 53);
-    PaletteSys_LoadPalette(param1, 38, Window_FramePalette(), 53, 0, 0x20, 13 * 16);
-    PaletteSys_LoadPalette(param1, 14, 7, 53, 0, 0x20, 14 * 16);
+    PaletteData_LoadBufferFromFileStart(param1, 38, Window_FramePalette(), 53, 0, 0x20, 13 * 16);
+    PaletteData_LoadBufferFromFileStart(param1, 14, 7, 53, 0, 0x20, 14 * 16);
 }
 
 void ov76_0223C974(BgConfig *param0, PaletteData *param1, int param2)
 {
     sub_0200DD0C(param0, 4, 1, 15, param2, 53);
-    PaletteSys_LoadPalette(param1, 38, sub_0200DD08(param2), 53, 1, 0x20, 12 * 16);
+    PaletteData_LoadBufferFromFileStart(param1, 38, sub_0200DD08(param2), 53, 1, 0x20, 12 * 16);
     sub_0200DAA4(param0, 4, (1 + (18 + 12)), 13, 0, 53);
-    PaletteSys_LoadPalette(param1, 38, Window_FramePalette(), 53, 1, 0x20, 13 * 16);
-    PaletteSys_LoadPalette(param1, 14, 7, 53, 1, 0x20, 14 * 16);
-    PaletteSys_LoadPalette(param1, 14, 7, 53, 1, 0x20, 3 * 16);
-    PaletteSys_LoadPalette(param1, 91, 294, 53, 1, 0x20, 11 * 16);
+    PaletteData_LoadBufferFromFileStart(param1, 38, Window_FramePalette(), 53, 1, 0x20, 13 * 16);
+    PaletteData_LoadBufferFromFileStart(param1, 14, 7, 53, 1, 0x20, 14 * 16);
+    PaletteData_LoadBufferFromFileStart(param1, 14, 7, 53, 1, 0x20, 3 * 16);
+    PaletteData_LoadBufferFromFileStart(param1, 91, 294, 53, 1, 0x20, 11 * 16);
 }
 
 void ov76_0223CA30(Window *param0, int param1)
@@ -1111,7 +1111,7 @@ void ov76_0223CE84(UnkStruct_ov76_0223DE00 *param0, NARC *param1)
 
     sub_020070E8(param1, v1, param0->unk_D4.unk_10, v4, 0, 0, 1, 53);
     sub_0200710C(param1, v2, param0->unk_D4.unk_10, v4, 0, 0, 1, 53);
-    PaletteSys_LoadPalette(param0->unk_D4.unk_14, v0, v3, 53, 0, 0x20 * 2, 0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_D4.unk_14, v0, v3, 53, 0, 0x20 * 2, 0);
 
     v1 = 269;
     v2 = 285;
@@ -1131,7 +1131,7 @@ void ov76_0223CF24(UnkStruct_ov76_0223DE00 *param0, NARC *param1)
 
     sub_020070E8(param1, v1, param0->unk_D4.unk_10, v4, 0, 0, 1, 53);
     sub_0200710C(param1, v2, param0->unk_D4.unk_10, v4, 0, 0, 1, 53);
-    PaletteSys_LoadPalette(param0->unk_D4.unk_14, v0, v3, 53, 1, 0x20 * 2, 0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_D4.unk_14, v0, v3, 53, 1, 0x20 * 2, 0);
 }
 
 void ov76_0223CF88(UnkStruct_ov76_0223DE00 *param0, NARC *param1)
@@ -1144,7 +1144,7 @@ void ov76_0223CF88(UnkStruct_ov76_0223DE00 *param0, NARC *param1)
 
     sub_020070E8(param1, v1, param0->unk_D4.unk_10, v4, 0, 0, 1, 53);
     sub_0200710C(param1, v2, param0->unk_D4.unk_10, v4, 0, 0, 1, 53);
-    PaletteSys_LoadPalette(param0->unk_D4.unk_14, v0, v3, 53, 1, 0x20 * 2, 0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_D4.unk_14, v0, v3, 53, 1, 0x20 * 2, 0);
 }
 
 void ov76_0223CFEC(UnkStruct_ov76_0223DE00 *param0, NARC *param1)

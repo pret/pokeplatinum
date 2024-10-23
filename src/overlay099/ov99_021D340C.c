@@ -352,12 +352,12 @@ static void ov99_021D3930(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D34
             v4 = 8 - 1;
         }
 
-        v5 = sub_0200316C(param0->unk_0C, 0);
-        v6 = sub_0200316C(param0->unk_0C, 1);
+        v5 = PaletteData_GetFadedBuffer(param0->unk_0C, 0);
+        v6 = PaletteData_GetFadedBuffer(param0->unk_0C, 1);
 
         for (v1 = 0; v1 < 16; v1++) {
-            sub_0200393C(&param1->unk_08[v2][v1], &v5[v1 + 16 * 1], 1, v3, param1->unk_08[v4][v1]);
-            sub_0200393C(&param1->unk_08[v2][v1], &v6[v1 + 16 * 1], 1, v3, param1->unk_08[v4][v1]);
+            BlendPalette(&param1->unk_08[v2][v1], &v5[v1 + 16 * 1], 1, v3, param1->unk_08[v4][v1]);
+            BlendPalette(&param1->unk_08[v2][v1], &v6[v1 + 16 * 1], 1, v3, param1->unk_08[v4][v1]);
         }
         break;
     }

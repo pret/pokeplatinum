@@ -77,11 +77,11 @@ void sub_0208A490 (UnkStruct_02089688 * param0)
 
     sub_020070E8(v0, 12, v1, 1, 0, 0, 0, 101);
     sub_0200710C(v0, 14, v1, 1, 0, 0, 0, 101);
-    PaletteSys_LoadPalette(v4, 159, 13, 101, 0, 0x20 * 1, 0);
+    PaletteData_LoadBufferFromFileStart(v4, 159, 13, 101, 0, 0x20 * 1, 0);
 
     sub_020070E8(v0, 15, v1, 5, 0, 0, 0, 101);
     sub_0200710C(v0, 17, v1, 5, 0, 0, 0, 101);
-    PaletteSys_LoadPalette(v4, 159, 16, 101, 1, 0x20 * 1, 0);
+    PaletteData_LoadBufferFromFileStart(v4, 159, 16, 101, 1, 0x20 * 1, 0);
 
     SpriteRenderer_LoadPalette(v4, 2, v2, v3, v0, 1, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 1000);
     SpriteRenderer_LoadCharResObjFromOpenNarc(v2, v3, v0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1000);
@@ -102,8 +102,8 @@ void sub_0208A490 (UnkStruct_02089688 * param0)
         int v5 = Options_Frame(param0->unk_38C.unk_20);
 
         sub_0200DD0C(v1, 4, 1, 10, v5, 101);
-        PaletteSys_LoadPalette(v4, 38, sub_0200DD08(v5), 101, 1, 0x20, 11 * 16);
-        PaletteSys_LoadPalette(v4, 14, 7, 101, 1, 0x20, 12 * 16);
+        PaletteData_LoadBufferFromFileStart(v4, 38, sub_0200DD08(v5), 101, 1, 0x20, 11 * 16);
+        PaletteData_LoadBufferFromFileStart(v4, 14, 7, 101, 1, 0x20, 12 * 16);
     }
 }
 

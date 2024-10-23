@@ -2256,8 +2256,8 @@ void ov17_0224C864(UnkStruct_ov17_0224DF54 *param0, int param1)
 {
     u16 *v0;
 
-    v0 = sub_02003164(param0->unk_14.unk_90, 0);
-    sub_020039F8(v0, param0->unk_1050.unk_00, (0x1fff ^ ((1 << 4) | (1 << 3) | (1 << 2))), Unk_ov17_022546DC[param1].unk_02, Unk_ov17_022546DC[param1].unk_00);
+    v0 = PaletteData_GetUnfadedBuffer(param0->unk_14.unk_90, 0);
+    BlendPalettes(v0, param0->unk_1050.unk_00, (0x1fff ^ ((1 << 4) | (1 << 3) | (1 << 2))), Unk_ov17_022546DC[param1].unk_02, Unk_ov17_022546DC[param1].unk_00);
 }
 
 void ov17_0224C89C(UnkStruct_ov17_0224DF54 *param0, const UnkStruct_ov17_0224EDE0 *param1)
@@ -2368,8 +2368,8 @@ static void ov17_0224CA28(SysTask *param0, void *param1)
     {
         u16 *v1;
 
-        v1 = sub_02003164(v0->unk_00->unk_14.unk_90, 0);
-        sub_0200393C(&v1[v0->unk_0A], &v0->unk_00->unk_1050.unk_00[v0->unk_0A], 16, v0->unk_08 >> 8, 0x7fff);
+        v1 = PaletteData_GetUnfadedBuffer(v0->unk_00->unk_14.unk_90, 0);
+        BlendPalette(&v1[v0->unk_0A], &v0->unk_00->unk_1050.unk_00[v0->unk_0A], 16, v0->unk_08 >> 8, 0x7fff);
     }
 
     if (v0->unk_08 == 0) {
@@ -2448,7 +2448,7 @@ static void ov17_0224CB80(UnkStruct_ov17_0224DF54 *param0, int param1)
     }
 
     ov17_0224CD84(param0, (0x1fff ^ ((1 << 4) | (1 << 3) | (1 << 2))), 8, 16, 0, 0x7fff);
-    sub_02003178(param0->unk_14.unk_90, 0x4, 0x3fff, -1, 16, 0, 0x7fff);
+    PaletteData_StartFade(param0->unk_14.unk_90, 0x4, 0x3fff, -1, 16, 0, 0x7fff);
 
     G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, 16);
 
@@ -2589,7 +2589,7 @@ static void ov17_0224CF4C(SysTask *param0, void *param1)
         v2 = v0->unk_10;
     }
 
-    sub_0200393C(&v0->unk_08, &v1, 1, v2, v0->unk_0A);
+    BlendPalette(&v0->unk_08, &v1, 1, v2, v0->unk_0A);
     ov22_0225B198(v0->unk_00, v1);
 
     if (v2 >= v0->unk_10) {

@@ -123,7 +123,7 @@ BOOL sub_02089820(UnkStruct_02089688 *param0)
         void *v1 = sub_020394A8(101);
 
         NNS_G2dGetUnpackedPaletteData(v1, &v0);
-        sub_02002FBC(param0->unk_2C0.unk_10, v0->pRawData, 0x1 | 0x2, 0xe0, 0x20);
+        PaletteData_LoadBuffer(param0->unk_2C0.unk_10, v0->pRawData, 0x1 | 0x2, 0xe0, 0x20);
         Heap_FreeToHeap(v1);
     }
 

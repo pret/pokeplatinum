@@ -1224,12 +1224,12 @@ static BOOL ov12_02236A6C(BallRotation *param0)
         int v0;
 
         v0 = sub_0200D43C(param0->unk_30);
-        sub_02003178(param0->unk_90.paletteSys, 0x4, 1 << v0, -1, 0, 12, 0x37F);
+        PaletteData_StartFade(param0->unk_90.paletteSys, 0x4, 1 << v0, -1, 0, 12, 0x37F);
 
         param0->unk_08++;
     } break;
     case 1:
-        if (sub_0200384C(param0->unk_90.paletteSys) != 0) {
+        if (PaletteData_GetSelectedBuffersMask(param0->unk_90.paletteSys) != 0) {
             break;
         }
 
@@ -1237,13 +1237,13 @@ static BOOL ov12_02236A6C(BallRotation *param0)
             int v1;
 
             v1 = sub_0200D43C(param0->unk_30);
-            sub_02003178(param0->unk_90.paletteSys, 0x4, 1 << v1, -1, 12, 0, 0x37F);
+            PaletteData_StartFade(param0->unk_90.paletteSys, 0x4, 1 << v1, -1, 12, 0, 0x37F);
         }
 
         param0->unk_08++;
         break;
     default:
-        if (sub_0200384C(param0->unk_90.paletteSys) != 0) {
+        if (PaletteData_GetSelectedBuffersMask(param0->unk_90.paletteSys) != 0) {
             break;
         }
 
@@ -1461,12 +1461,12 @@ static BOOL ov12_02236D18(BallRotation *param0)
         int v0;
 
         v0 = sub_0200D43C(param0->unk_30);
-        sub_02003178(param0->unk_90.paletteSys, 0x4, 1 << v0, -5, 0, 10, 0x0);
+        PaletteData_StartFade(param0->unk_90.paletteSys, 0x4, 1 << v0, -5, 0, 10, 0x0);
 
         param0->unk_08++;
     } break;
     case 1:
-        if (sub_0200384C(param0->unk_90.paletteSys) != 0) {
+        if (PaletteData_GetSelectedBuffersMask(param0->unk_90.paletteSys) != 0) {
             break;
         }
 
@@ -1495,7 +1495,7 @@ static BOOL ov12_02236D18(BallRotation *param0)
         }
     } break;
     default:
-        if (sub_0200384C(param0->unk_90.paletteSys) != 0) {
+        if (PaletteData_GetSelectedBuffersMask(param0->unk_90.paletteSys) != 0) {
             break;
         }
 
@@ -1518,12 +1518,12 @@ static BOOL ov12_02236E0C(BallRotation *param0)
         int v0;
 
         v0 = sub_0200D43C(param0->unk_30);
-        sub_02003178(param0->unk_90.paletteSys, 0x4, 1 << v0, -5, 10, 0, 0x0);
+        PaletteData_StartFade(param0->unk_90.paletteSys, 0x4, 1 << v0, -5, 10, 0, 0x0);
     }
         param0->unk_08++;
         break;
     case 1:
-        if (sub_0200384C(param0->unk_90.paletteSys) != 0) {
+        if (PaletteData_GetSelectedBuffersMask(param0->unk_90.paletteSys) != 0) {
             break;
         }
 

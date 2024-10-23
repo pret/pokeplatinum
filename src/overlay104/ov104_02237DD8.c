@@ -903,7 +903,7 @@ void ov104_02238AB4(u8 param0, u8 param1)
     v4 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 94);
     v3 = sub_020071EC(v4, v0, &v2, 94);
 
-    sub_0200393C(v2->pRawData, v5, 0x1000, param0, 0x0);
+    BlendPalette(v2->pRawData, v5, 0x1000, param0, 0x0);
     DC_FlushRange(v5, 0x1000 * 2);
 
     GX_BeginLoadBGExtPltt();

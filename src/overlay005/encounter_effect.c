@@ -783,7 +783,7 @@ void ov5_021DE5D0(CellActor *param0, u32 param1, u32 param2, u8 param3, u16 para
     sub_02076AAC(param2, 2, &v0);
     v3 = Heap_AllocFromHeap(param1, 32);
     v2 = sub_02006F88(v0.unk_00, v0.unk_08, &v1, param1);
-    sub_0200393C(v1->pRawData, v3, 16, param3, param4);
+    BlendPalette(v1->pRawData, v3, 16, param3, param4);
 
     ov5_021DE67C(param0, v3, 32);
 

@@ -284,7 +284,7 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 param1, const U
             SpriteRenderer_LoadCharResObjFromOpenNarc(param0->unk_14, param0->unk_18, param0->unk_24, param2->unk_05, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 2010);
             SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_14, param0->unk_18, param0->unk_24, param2->unk_06, 0, 2002);
             SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_14, param0->unk_18, param0->unk_24, param2->unk_07, 0, 2002);
-            sub_020039B0(param0->unk_1C, 2, param0->unk_160 * 16, 16, 14, (GX_RGB(0, 0, 0)));
+            PaletteData_Blend(param0->unk_1C, 2, param0->unk_160 * 16, 16, 14, (GX_RGB(0, 0, 0)));
 
             v7 = SpriteRenderer_LoadPalette(param0->unk_1C, 2, param0->unk_14, param0->unk_18, param0->unk_24, 51, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 2003);
             param0->unk_164 |= 1 << v7;
@@ -368,8 +368,8 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 param1, const U
         break;
     case 12:
         if (ScreenWipe_Done()) {
-            sub_02003A2C(param0->unk_1C, 2, param0->unk_164 ^ 0x3fff, 14, 0x0);
-            sub_020039B0(param0->unk_1C, 2, param0->unk_160 * 16, 16, 0, (GX_RGB(0, 0, 0)));
+            PaletteData_BlendMulti(param0->unk_1C, 2, param0->unk_164 ^ 0x3fff, 14, 0x0);
+            PaletteData_Blend(param0->unk_1C, 2, param0->unk_160 * 16, 16, 0, (GX_RGB(0, 0, 0)));
             sub_0200AB4C(-14, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD, 1);
             sub_020129D0(v0->unk_7C.unk_00, 1);
             param0->unk_00++;
@@ -621,7 +621,7 @@ static void ov104_0223E5A8(UnkStruct_ov104_0223DD30 *param0, const UnkStruct_ov1
     G2_SetWnd0Position(0, 0, 0, 0);
     G2_SetWnd1Position(0, 0, 0, 0);
 
-    PaletteSys_LoadPalette(param0->unk_1C, 112, param1->unk_08, 94, 0, 0x20, 12 * 16);
+    PaletteData_LoadBufferFromFileStart(param0->unk_1C, 112, param1->unk_08, 94, 0, 0x20, 12 * 16);
     sub_020070E8(param0->unk_24, param1->unk_09, param0->unk_10, 1, 0, 0, 0, 94);
     sub_0200710C(param0->unk_24, param1->unk_0A, param0->unk_10, 1, 0, 0, 0, 94);
     Bg_ChangeTilemapRectPalette(param0->unk_10, 1, 0, 0, 32, 32, 12);
@@ -657,7 +657,7 @@ static void ov104_0223E6BC(SysTask *param0, void *param1)
         v0->unk_3C = 0;
     }
 
-    sub_02002FBC(v0->unk_1C, &v0->unk_40[v0->unk_3C * 16], 0, 12 * 16, 0x20);
+    PaletteData_LoadBuffer(v0->unk_1C, &v0->unk_40[v0->unk_3C * 16], 0, 12 * 16, 0x20);
 }
 
 static void ov104_0223E6F0(UnkStruct_ov104_0223DD30 *param0, int param1)

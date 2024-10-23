@@ -383,9 +383,9 @@ static void ov17_022493DC(UnkStruct_ov17_022492DC *param0)
     MI_CpuCopy32(v1->rawData, param0->unk_D0[3], 0x800);
     Heap_FreeToHeap(v2);
 
-    sub_020030E4(45, 31, 23, 0x200, 0, param0->unk_E0[0]);
-    sub_020030E4(45, 38, 23, 32, 16 * param0->unk_04->unk_00->unk_10F, &param0->unk_E0[0][2 * 16]);
-    sub_020030E4(45, 33, 23, 0x200, 0, param0->unk_E0[1]);
+    LoadPaletteFromFile(45, 31, 23, 0x200, 0, param0->unk_E0[0]);
+    LoadPaletteFromFile(45, 38, 23, 32, 16 * param0->unk_04->unk_00->unk_10F, &param0->unk_E0[0][2 * 16]);
+    LoadPaletteFromFile(45, 33, 23, 0x200, 0, param0->unk_E0[1]);
 }
 
 static void ov17_022495F8(UnkStruct_ov17_022492DC *param0)
@@ -440,7 +440,7 @@ void ov17_02249640(UnkStruct_ov17_022492DC *param0, int param1, int param2, void
     }
 
     if ((v0->unk_02 != 0xffff) && ((param2 == 1) || (v0->unk_02 != v1->unk_02))) {
-        sub_02002FBC(param0->unk_04->unk_90, param0->unk_E0[v0->unk_02], 1, 0, 0x200);
+        PaletteData_LoadBuffer(param0->unk_04->unk_90, param0->unk_E0[v0->unk_02], 1, 0, 0x200);
     }
 
     for (v2 = 0; v2 < 4; v2++) {
@@ -949,5 +949,5 @@ static void ov17_0224A0C8(SysTask *param0, void *param1)
 
 void ov17_0224A0E0(UnkStruct_ov17_022492DC *param0, u16 param1, u8 param2)
 {
-    sub_020039B0(param0->unk_04->unk_90, 1, (0 * 16), (16 * 4), param2, param1);
+    PaletteData_Blend(param0->unk_04->unk_90, 1, (0 * 16), (16 * 4), param2, param1);
 }

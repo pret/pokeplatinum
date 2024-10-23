@@ -433,5 +433,5 @@ void ov11_0221F81C(PaletteData *param0, int param1, int param2, int param3, int 
     const u16 *v0;
 
     v0 = ov11_0221F800(param1);
-    sub_02002FBC(param0, v0, param3, param4 * 16, 0x20);
+    PaletteData_LoadBuffer(param0, v0, param3, param4 * 16, 0x20);
 }

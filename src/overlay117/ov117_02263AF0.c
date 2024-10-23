@@ -1241,7 +1241,7 @@ void ov117_02264AF0(UnkStruct_ov117_02261280 *param0)
         v4 = Unk_ov117_02266B72[v2];
 
         for (v1 = 0; v1 < 3; v1++) {
-            v0[v2][v1] = sub_02003910(param0->unk_8C, 1, 1, v4 + v1);
+            v0[v2][v1] = PaletteData_GetBufferIndexColor(param0->unk_8C, 1, 1, v4 + v1);
         }
     }
 
@@ -1253,8 +1253,8 @@ void ov117_02264AF0(UnkStruct_ov117_02261280 *param0)
         }
     }
 
-    v8 = sub_02003164(param0->unk_8C, 1);
-    v9 = sub_0200316C(param0->unk_8C, 1);
+    v8 = PaletteData_GetUnfadedBuffer(param0->unk_8C, 1);
+    v9 = PaletteData_GetFadedBuffer(param0->unk_8C, 1);
 
     for (v1 = 0; v1 < param0->unk_00->unk_30; v1++) {
         v4 = v1;
@@ -1282,7 +1282,7 @@ void ov117_02264BF8(UnkStruct_ov117_02261280 *param0)
         v4 = Unk_ov117_02266B8A[v2];
 
         for (v1 = 0; v1 < 16; v1++) {
-            v0[v2][v1] = sub_02003910(param0->unk_8C, 3, 1, v10 * 16 + v4 + v1);
+            v0[v2][v1] = PaletteData_GetBufferIndexColor(param0->unk_8C, 3, 1, v10 * 16 + v4 + v1);
         }
     }
 
@@ -1294,8 +1294,8 @@ void ov117_02264BF8(UnkStruct_ov117_02261280 *param0)
         }
     }
 
-    v8 = sub_02003164(param0->unk_8C, 3);
-    v9 = sub_0200316C(param0->unk_8C, 3);
+    v8 = PaletteData_GetUnfadedBuffer(param0->unk_8C, 3);
+    v9 = PaletteData_GetFadedBuffer(param0->unk_8C, 3);
 
     for (v1 = 0; v1 < param0->unk_00->unk_30; v1++) {
         v4 = v1;
@@ -1323,7 +1323,7 @@ void ov117_02264D1C(UnkStruct_ov117_02261280 *param0)
         v4 = Unk_ov117_02266B82[v2];
 
         for (v1 = 0; v1 < 1; v1++) {
-            v0[v2][v1] = sub_02003910(param0->unk_8C, 3, 1, v10 * 16 + v4 + v1);
+            v0[v2][v1] = PaletteData_GetBufferIndexColor(param0->unk_8C, 3, 1, v10 * 16 + v4 + v1);
         }
     }
 
@@ -1335,8 +1335,8 @@ void ov117_02264D1C(UnkStruct_ov117_02261280 *param0)
         }
     }
 
-    v8 = sub_02003164(param0->unk_8C, 3);
-    v9 = sub_0200316C(param0->unk_8C, 3);
+    v8 = PaletteData_GetUnfadedBuffer(param0->unk_8C, 3);
+    v9 = PaletteData_GetFadedBuffer(param0->unk_8C, 3);
 
     for (v1 = 0; v1 < param0->unk_00->unk_30; v1++) {
         v4 = v1;

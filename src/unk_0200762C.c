@@ -1394,10 +1394,10 @@ static void sub_02008FC8(UnkStruct_02007768 *param0)
                 v6 = 1;
                 param0->unk_00[v1].unk_24.unk_26 = param0->unk_00[v1].unk_24.unk_27;
 
-                sub_0200393C((void *)&param0->unk_304[0x10 * v1], (void *)&param0->unk_300[0x10 * v1], 16, param0->unk_00[v1].unk_24.unk_24, param0->unk_00[v1].unk_24.unk_28);
+                BlendPalette((void *)&param0->unk_304[0x10 * v1], (void *)&param0->unk_300[0x10 * v1], 16, param0->unk_00[v1].unk_24.unk_24, param0->unk_00[v1].unk_24.unk_28);
 
                 if (param0->unk_00[v1].unk_6C.unk_00_0) {
-                    sub_0200393C((void *)&param0->unk_304[0x10 * (3 + param0->unk_00[v1].unk_6C.unk_00_0)], (void *)&param0->unk_300[0x10 * (3 + param0->unk_00[v1].unk_6C.unk_00_0)], 16, param0->unk_00[v1].unk_24.unk_24, param0->unk_00[v1].unk_24.unk_28);
+                    BlendPalette((void *)&param0->unk_304[0x10 * (3 + param0->unk_00[v1].unk_6C.unk_00_0)], (void *)&param0->unk_300[0x10 * (3 + param0->unk_00[v1].unk_6C.unk_00_0)], 16, param0->unk_00[v1].unk_24.unk_24, param0->unk_00[v1].unk_24.unk_28);
                 }
 
                 if (param0->unk_00[v1].unk_24.unk_24 == param0->unk_00[v1].unk_24.unk_25) {

@@ -10139,7 +10139,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
         BattleSystem_SetGaugePriority(data->battleSys, 0 + 2); // gauge's default is 0
 
         Window_SetFrame(bgl, 2, 1, 0, HEAP_ID_BATTLE);
-        PaletteSys_LoadPalette(paletteSys, NARC_INDEX_GRAPHIC__PL_WINFRAME, Window_FramePalette(), HEAP_ID_BATTLE, 0, 0x20, 8 * 0x10);
+        PaletteData_LoadBufferFromFileStart(paletteSys, NARC_INDEX_GRAPHIC__PL_WINFRAME, Window_FramePalette(), HEAP_ID_BATTLE, 0, 0x20, 8 * 0x10);
         Window_Add(bgl, window, 2, 0x11, 0x7, 14, 12, 11, (9 + 1));
         Window_FillTilemap(window, 0xFF);
         Window_Show(window, 0, 1, 8);
@@ -10725,12 +10725,12 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                     v3 = BattleSystem_PartyPokemon(v2->battleSys, v1, v2->battleCtx->selectedPartySlot[v1]);
                     BattleSystem_SetPokemonCatchData(v2->battleSys, v2->battleCtx, v3);
                     sub_02015738(ov16_0223E220(v2->battleSys), 1);
-                    sub_02003178(v4, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 0, 16, 0x0);
+                    PaletteData_StartFade(v4, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 0, 16, 0x0);
                     sub_0200872C(v5, 0, 16, 0, 0x0);
                     v2->seqNum = 32;
                 } else if (BattleSystem_CaughtSpecies(v2->battleSys, Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL))) {
                     sub_02015738(ov16_0223E220(v2->battleSys), 1);
-                    sub_02003178(v4, (0x1 | 0x4), 0xffff, 1, 0, 16, 0x0);
+                    PaletteData_StartFade(v4, (0x1 | 0x4), 0xffff, 1, 0, 16, 0x0);
                     sub_0200872C(v5, 0, 16, 0, 0x0);
                     v2->seqNum = 16;
                 } else {
@@ -10754,14 +10754,14 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
         if (Text_IsPrinterActive(v2->tmpData[0]) == 0) {
             if (--v2->tmpData[1] == 0) {
                 v2->seqNum = 12;
-                sub_02003178(v4, (0x1 | 0x4), 0xffff, 1, 0, 16, 0x0);
+                PaletteData_StartFade(v4, (0x1 | 0x4), 0xffff, 1, 0, 16, 0x0);
                 sub_0200872C(v5, 0, 16, 0, 0x0);
                 sub_02015738(ov16_0223E220(v2->battleSys), 1);
             }
         }
         break;
     case 12:
-        if (sub_0200384C(v4) == 0) {
+        if (PaletteData_GetSelectedBuffersMask(v4) == 0) {
             {
                 UnkStruct_ov21_021E8E0C v12;
 
@@ -10794,7 +10794,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
             }
 
             if (v2->seqNum == 14) {
-                sub_02003178(v4, (0x1 | 0x4), 0xffff, 1, 0, 16, 0x0);
+                PaletteData_StartFade(v4, (0x1 | 0x4), 0xffff, 1, 0, 16, 0x0);
                 ov21_021E8E04(v2->tmpPtr[0], 0);
             }
         }
@@ -10814,11 +10814,11 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
         ov21_021E8DD0(v2->tmpPtr[0]);
         sub_0201EEB8(v2->tmpPtr[1]);
         ov16_0223B578(v2->battleSys);
-        sub_02003178(v4, (0x1 | 0x4), 0xffff, 1, 16, 0, 0x0);
+        PaletteData_StartFade(v4, (0x1 | 0x4), 0xffff, 1, 16, 0, 0x0);
         v2->seqNum = 17;
         break;
     case 16:
-        if (sub_0200384C(v4) == 0) {
+        if (PaletteData_GetSelectedBuffersMask(v4) == 0) {
             {
                 ArchivedSprite v14;
 
@@ -10831,7 +10831,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 ov16_0223B578(v2->battleSys);
                 Pokemon_BuildArchivedSprite(&v14, v3, 2);
                 sub_02007C34(v5, &v14, 128, 72, 0, 0, NULL, NULL);
-                sub_02003178(v4, (0x1 | 0x4), 0xffff, 1, 16, 0, 0x0);
+                PaletteData_StartFade(v4, (0x1 | 0x4), 0xffff, 1, 16, 0, 0x0);
                 sub_0200872C(v5, 16, 0, 0, 0x0);
 
                 v2->seqNum = 17;
@@ -10839,12 +10839,12 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
         }
         break;
     case 17:
-        if (sub_0200384C(v4) == 0) {
+        if (PaletteData_GetSelectedBuffersMask(v4) == 0) {
             {
                 v2->seqNum = 18;
 
                 sub_02015738(ov16_0223E220(v2->battleSys), 0);
-                sub_02003858(v4, 1);
+                PaletteData_SetAutoTransparent(v4, 1);
             }
         }
         break;
@@ -10861,14 +10861,14 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 v2->seqNum = 22;
             } else {
                 sub_02015738(ov16_0223E220(v2->battleSys), 1);
-                sub_02003178(v4, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 0, 16, 0x0);
+                PaletteData_StartFade(v4, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 0, 16, 0x0);
                 sub_0200872C(v5, 0, 16, 0, 0x0);
                 v2->seqNum = 20;
             }
         }
         break;
     case 20:
-        if (sub_0200384C(v4) == 0) {
+        if (PaletteData_GetSelectedBuffersMask(v4) == 0) {
             {
                 UnkStruct_0208737C *v16;
 
@@ -10936,7 +10936,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
         break;
     case 22:
     case 23:
-        if (sub_0200384C(v4) == 0) {
+        if (PaletteData_GetSelectedBuffersMask(v4) == 0) {
             {
                 BattleMessage v21;
                 Party *v22;
@@ -10954,7 +10954,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 if (Party_AddPokemon(v22, v3) == 1) {
                     if (v2->seqNum == 22) {
                         sub_02015738(ov16_0223E220(v2->battleSys), 1);
-                        sub_02003178(v4, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 0, 16, 0x0);
+                        PaletteData_StartFade(v4, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 0, 16, 0x0);
                         sub_0200872C(v5, 0, 16, 0, 0x0);
                     }
 
@@ -11015,7 +11015,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
             if (--v2->tmpData[1] == 0) {
                 {
                     sub_02015738(ov16_0223E220(v2->battleSys), 1);
-                    sub_02003178(v4, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 0, 16, 0x0);
+                    PaletteData_StartFade(v4, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 0, 16, 0x0);
                     sub_0200872C(v5, 0, 16, 0, 0x0);
 
                     v2->seqNum = 32;
@@ -11097,7 +11097,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
         }
         break;
     case 32:
-        if (sub_0200384C(v4) == 0) {
+        if (PaletteData_GetSelectedBuffersMask(v4) == 0) {
             if (BattleSystem_BattleType(v2->battleSys) & (0x200 | 0x400)) {
                 ov12_0223783C(v2->ballRotation);
                 sub_02007DD4(v5);

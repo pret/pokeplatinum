@@ -216,7 +216,7 @@ static u8 ov13_0222668C(UnkStruct_ov13_02227244 *param0)
 
     ov13_02228008(param0, param0->unk_114C);
     ov13_022280F0(param0, param0->unk_114C);
-    sub_02003178(param0->unk_08, (0x2 | 0x8), 0xffff, -8, 16, 0, 0);
+    PaletteData_StartFade(param0->unk_08, (0x2 | 0x8), 0xffff, -8, 16, 0, 0);
 
     if (param0->unk_00->unk_14 == 1) {
         return 12;
@@ -227,7 +227,7 @@ static u8 ov13_0222668C(UnkStruct_ov13_02227244 *param0)
 
 static u8 ov13_02226760(UnkStruct_ov13_02227244 *param0)
 {
-    if (sub_0200384C(param0->unk_08) != 0) {
+    if (PaletteData_GetSelectedBuffersMask(param0->unk_08) != 0) {
         return 1;
     }
 
@@ -535,13 +535,13 @@ static u8 ov13_02226CBC(UnkStruct_ov13_02227244 *param0)
 
 static u8 ov13_02226CD4(UnkStruct_ov13_02227244 *param0)
 {
-    sub_02003178(param0->unk_08, (0x2 | 0x8), 0xffff, -8, 0, 16, 0);
+    PaletteData_StartFade(param0->unk_08, (0x2 | 0x8), 0xffff, -8, 0, 16, 0);
     return 14;
 }
 
 static u8 ov13_02226CFC(SysTask *param0, UnkStruct_ov13_02227244 *param1)
 {
-    if (sub_0200384C(param1->unk_08) != 0) {
+    if (PaletteData_GetSelectedBuffersMask(param1->unk_08) != 0) {
         return 0;
     }
 
@@ -576,7 +576,7 @@ static u8 ov13_02226CFC(SysTask *param0, UnkStruct_ov13_02227244 *param1)
 
 static u8 ov13_02226D94(UnkStruct_ov13_02227244 *param0)
 {
-    if (sub_0200384C(param0->unk_08) != 0) {
+    if (PaletteData_GetSelectedBuffersMask(param0->unk_08) != 0) {
         return 12;
     }
 
@@ -743,14 +743,14 @@ static void ov13_02226FC4(UnkStruct_ov13_02227244 *param0)
     }
 
     NARC_dtor(v0);
-    PaletteSys_LoadPalette(param0->unk_08, 77, 3, param0->unk_00->unk_0C, 1, 0x20 * 12, 0);
-    PaletteSys_LoadPalette(param0->unk_08, 14, 7, param0->unk_00->unk_0C, 1, 0x20, 15 * 16);
+    PaletteData_LoadBufferFromFileStart(param0->unk_08, 77, 3, param0->unk_00->unk_0C, 1, 0x20 * 12, 0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_08, 14, 7, param0->unk_00->unk_0C, 1, 0x20, 15 * 16);
 
     {
         int v4 = ov16_0223EDE0(param0->unk_00->unk_00);
 
         sub_02006E3C(38, sub_0200DD04(v4), param0->unk_04, 4, 1024 - (18 + 12), 0, 0, param0->unk_00->unk_0C);
-        PaletteSys_LoadPalette(param0->unk_08, 38, sub_0200DD08(v4), param0->unk_00->unk_0C, 1, 0x20, 14 * 16);
+        PaletteData_LoadBufferFromFileStart(param0->unk_08, 38, sub_0200DD08(v4), param0->unk_00->unk_0C, 1, 0x20, 14 * 16);
     }
 }
 

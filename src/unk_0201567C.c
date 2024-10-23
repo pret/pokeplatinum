@@ -41,10 +41,10 @@ void *sub_0201567C(PaletteData *param0, u16 param1, u16 param2, u32 param3)
 
     if (param0 != NULL) {
         if (param1 == 0) {
-            v2 = sub_02003164(param0, 0);
+            v2 = PaletteData_GetUnfadedBuffer(param0, 0);
             v0->unk_04 = sub_02015870;
         } else {
-            v2 = sub_02003164(param0, 1);
+            v2 = PaletteData_GetUnfadedBuffer(param0, 1);
             v0->unk_04 = sub_0201588C;
         }
     } else {
@@ -164,11 +164,11 @@ static void sub_02015858(void *param0, u16 *param1)
 static void sub_02015870(void *param0, u16 *param1)
 {
     UnkStruct_020157E4 *v0 = (UnkStruct_020157E4 *)param0;
-    sub_02002FBC(v0->unk_08, param1, 0, v0->unk_4D * 16, 0x20);
+    PaletteData_LoadBuffer(v0->unk_08, param1, 0, v0->unk_4D * 16, 0x20);
 }
 
 static void sub_0201588C(void *param0, u16 *param1)
 {
     UnkStruct_020157E4 *v0 = (UnkStruct_020157E4 *)param0;
-    sub_02002FBC(v0->unk_08, param1, 1, v0->unk_4D * 16, 0x20);
+    PaletteData_LoadBuffer(v0->unk_08, param1, 1, v0->unk_4D * 16, 0x20);
 }

@@ -2045,7 +2045,7 @@ static void ov12_0222128C(UnkStruct_ov12_0221FCDC *param0)
 
     Bg_ToggleLayer(2, 0);
     Bg_LoadTiles(param0->unk_C0, 2, v0, (10 * 10 * ((8 / 2) * 8)), 0);
-    PaletteSys_LoadPalette(param0->unk_C4, v4, v5, param0->unk_00, 0, 0, (8 * 16));
+    PaletteData_LoadBufferFromFileStart(param0->unk_C4, v4, v5, param0->unk_00, 0, 0, (8 * 16));
     sub_0200710C(param0->unk_1A0[0], v6, param0->unk_C0, 2, 0, 0, 0, param0->unk_00);
 
     if (v2 == 1) {
@@ -2232,7 +2232,7 @@ static void ov12_02221580(UnkStruct_ov12_0221FCDC *param0)
         v19 = CellActor_GetPaletteProxy(v1->unk_00);
         v20 = sub_0201FAB4(v19, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-        PaletteSys_LoadPalette(param0->unk_C4, v8, v9, param0->unk_00, 2, 0x20, v20 * 16);
+        PaletteData_LoadBufferFromFileStart(param0->unk_C4, v8, v9, param0->unk_00, 2, 0x20, v20 * 16);
     }
 
     GF_ASSERT(param0->unk_138[v5] == NULL);
@@ -2518,7 +2518,7 @@ static BOOL ov12_02221A54(UnkStruct_ov12_02221BBC *param0, UnkStruct_ov12_0221FC
 static void ov12_02221AA8(UnkStruct_ov12_02221BBC *param0, UnkStruct_ov12_0221FCDC *param1, int param2, int param3)
 {
     sub_02006E3C(7, ov12_022234E4(param3, 0), param1->unk_C0, param2, 0, 0, 1, param1->unk_00);
-    PaletteSys_LoadPalette(param1->unk_C4, 7, ov12_022234E4(param3, 1), param1->unk_00, 0, 0x20, (9 * 16));
+    PaletteData_LoadBufferFromFileStart(param1->unk_C4, 7, ov12_022234E4(param3, 1), param1->unk_00, 0, 0x20, (9 * 16));
     Bg_ClearTilemap(param1->unk_C0, param2);
 
     {
@@ -2751,7 +2751,7 @@ static BOOL ov12_02221D50(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
             ov12_02223488(param1->unk_48);
         } else {
             sub_02006E3C(param1->unk_48->unk_180.unk_00, param1->unk_48->unk_180.unk_04, param1->unk_48->unk_C0, 3, 0, 0, 1, param1->unk_48->unk_00);
-            PaletteSys_LoadPalette(param1->unk_48->unk_C4, param1->unk_48->unk_180.unk_00, param1->unk_48->unk_180.unk_08, param1->unk_48->unk_00, 0, param1->unk_48->unk_180.unk_14 * 0x20, param1->unk_48->unk_180.unk_10);
+            PaletteData_LoadBufferFromFileStart(param1->unk_48->unk_C4, param1->unk_48->unk_180.unk_00, param1->unk_48->unk_180.unk_08, param1->unk_48->unk_00, 0, param1->unk_48->unk_180.unk_14 * 0x20, param1->unk_48->unk_180.unk_10);
         }
 
         sub_02006E60(param1->unk_48->unk_180.unk_00, param1->unk_48->unk_180.unk_0C, param1->unk_48->unk_C0, 3, 0, 0, 1, param1->unk_48->unk_00);
@@ -2779,16 +2779,16 @@ static BOOL ov12_02221F44(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
     switch (param1->unk_05) {
     case 0:
         if (param1->unk_0D == 0) {
-            sub_02003178(param1->unk_48->unk_C4, 0x1, param1->unk_48->unk_198, 0, 0, 16, 0);
-            sub_02003A2C(param1->unk_48->unk_C4, 0, 0x200, 16, 0);
+            PaletteData_StartFade(param1->unk_48->unk_C4, 0x1, param1->unk_48->unk_198, 0, 0, 16, 0);
+            PaletteData_BlendMulti(param1->unk_48->unk_C4, 0, 0x200, 16, 0);
         } else {
-            sub_02003178(param1->unk_48->unk_C4, 0x1, param1->unk_48->unk_198, 0, 0, 16, 0xFFFF);
-            sub_02003A2C(param1->unk_48->unk_C4, 0, 0x200, 16, 0xFFFF);
+            PaletteData_StartFade(param1->unk_48->unk_C4, 0x1, param1->unk_48->unk_198, 0, 0, 16, 0xFFFF);
+            PaletteData_BlendMulti(param1->unk_48->unk_C4, 0, 0x200, 16, 0xFFFF);
         }
 
         param1->unk_05++;
     case 1:
-        if (sub_0200384C(param1->unk_48->unk_C4) != 0) {
+        if (PaletteData_GetSelectedBuffersMask(param1->unk_48->unk_C4) != 0) {
             break;
         }
 
@@ -2796,9 +2796,9 @@ static BOOL ov12_02221F44(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
         ov12_02221AA8(param1, param1->unk_48, 3, param1->unk_10);
 
         if (param1->unk_0D == 0) {
-            sub_02003178(param1->unk_48->unk_C4, 0x1, (1 << 9), 0, 16, 0, 0);
+            PaletteData_StartFade(param1->unk_48->unk_C4, 0x1, (1 << 9), 0, 16, 0, 0);
         } else {
-            sub_02003178(param1->unk_48->unk_C4, 0x1, (1 << 9), 0, 16, 0, 0xFFFF);
+            PaletteData_StartFade(param1->unk_48->unk_C4, 0x1, (1 << 9), 0, 16, 0, 0xFFFF);
         }
 
         ov12_02221B64(param1);
@@ -2807,7 +2807,7 @@ static BOOL ov12_02221F44(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
         param1->unk_05++;
         break;
     default:
-        if (sub_0200384C(param1->unk_48->unk_C4) != 0) {
+        if (PaletteData_GetSelectedBuffersMask(param1->unk_48->unk_C4) != 0) {
             break;
         }
 
@@ -2825,16 +2825,16 @@ static BOOL ov12_0222206C(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
         param1->unk_05++;
     case 1:
         if (param1->unk_0D == 0) {
-            sub_02003178(param1->unk_48->unk_C4, 0x1, (1 << 9), 0, 0, 16, 0);
-            sub_02003A2C(param1->unk_48->unk_C4, 0, param1->unk_48->unk_198, 16, 0);
+            PaletteData_StartFade(param1->unk_48->unk_C4, 0x1, (1 << 9), 0, 0, 16, 0);
+            PaletteData_BlendMulti(param1->unk_48->unk_C4, 0, param1->unk_48->unk_198, 16, 0);
         } else {
-            sub_02003178(param1->unk_48->unk_C4, 0x1, (1 << 9), 0, 0, 16, 0xFFFF);
-            sub_02003A2C(param1->unk_48->unk_C4, 0, param1->unk_48->unk_198, 16, 0xFFFF);
+            PaletteData_StartFade(param1->unk_48->unk_C4, 0x1, (1 << 9), 0, 0, 16, 0xFFFF);
+            PaletteData_BlendMulti(param1->unk_48->unk_C4, 0, param1->unk_48->unk_198, 16, 0xFFFF);
         }
 
         param1->unk_05++;
     case 2:
-        if (sub_0200384C(param1->unk_48->unk_C4) != 0) {
+        if (PaletteData_GetSelectedBuffersMask(param1->unk_48->unk_C4) != 0) {
             break;
         }
 
@@ -2855,7 +2855,7 @@ static BOOL ov12_0222206C(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
             ov12_02223488(param1->unk_48);
         } else {
             sub_02006E3C(param1->unk_48->unk_180.unk_00, param1->unk_48->unk_180.unk_04, param1->unk_48->unk_C0, 3, 0, 0, 1, param1->unk_48->unk_00);
-            PaletteSys_LoadPalette(param1->unk_48->unk_C4, param1->unk_48->unk_180.unk_00, param1->unk_48->unk_180.unk_08, param1->unk_48->unk_00, 0, param1->unk_48->unk_180.unk_14 * 0x20, param1->unk_48->unk_180.unk_10);
+            PaletteData_LoadBufferFromFileStart(param1->unk_48->unk_C4, param1->unk_48->unk_180.unk_00, param1->unk_48->unk_180.unk_08, param1->unk_48->unk_00, 0, param1->unk_48->unk_180.unk_14 * 0x20, param1->unk_48->unk_180.unk_10);
         }
 
         sub_02006E60(param1->unk_48->unk_180.unk_00, param1->unk_48->unk_180.unk_0C, param1->unk_48->unk_C0, 3, 0, 0, 1, param1->unk_48->unk_00);
@@ -2867,15 +2867,15 @@ static BOOL ov12_0222206C(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
         Bg_SetOffset(param1->unk_48->unk_C0, 3, 3, 0);
 
         if (param1->unk_0D == 0) {
-            sub_02003178(param1->unk_48->unk_C4, 0x1, param1->unk_48->unk_198, 0, 16, 0, 0);
+            PaletteData_StartFade(param1->unk_48->unk_C4, 0x1, param1->unk_48->unk_198, 0, 16, 0, 0);
         } else {
-            sub_02003178(param1->unk_48->unk_C4, 0x1, param1->unk_48->unk_198, 0, 16, 0, 0xFFFF);
+            PaletteData_StartFade(param1->unk_48->unk_C4, 0x1, param1->unk_48->unk_198, 0, 16, 0, 0xFFFF);
         }
 
         param1->unk_05++;
 
     default:
-        if (sub_0200384C(param1->unk_48->unk_C4) != 0) {
+        if (PaletteData_GetSelectedBuffersMask(param1->unk_48->unk_C4) != 0) {
             break;
         }
 
@@ -4093,7 +4093,7 @@ void ov12_02223460(UnkStruct_ov12_0221FCDC *param0, int param1)
 
 void ov12_02223488(UnkStruct_ov12_0221FCDC *param0)
 {
-    sub_02002FBC(param0->unk_C4, param0->unk_BC->unk_114, 0, 0, 0x200);
+    PaletteData_LoadBuffer(param0->unk_C4, param0->unk_BC->unk_114, 0, 0, 0x200);
 }
 
 BOOL ov12_022234A8(UnkStruct_ov12_0221FCDC *param0, int param1)
@@ -4318,7 +4318,7 @@ UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *param0, int param1, int par
                     v18 = CellActor_GetPaletteProxy(v10->unk_00);
                     v19 = sub_0201FAB4(v18, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-                    PaletteSys_LoadPalette(v2->unk_08.unk_08, v6, v7, v2->unk_00, 2, 0x20, v19 * 16);
+                    PaletteData_LoadBufferFromFileStart(v2->unk_08.unk_08, v6, v7, v2->unk_00, 2, 0x20, v19 * 16);
                 }
             }
         }

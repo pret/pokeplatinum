@@ -3593,12 +3593,12 @@ static void ov16_022611DC(SysTask *param0, void *param1)
     case 0:
         v0->unk_10 = ov16_0226CD08(ov16_0223E02C(v0->unk_00));
         sub_02015738(ov16_0223E220(v0->unk_00), 1);
-        sub_02003178(v1, (0x1 | 0x4), 0xc00, -8, 0, 7, 0x0);
-        sub_02003178(v1, (0x2 | 0x8), 0xffff, -8, 0, 16, 0x0);
+        PaletteData_StartFade(v1, (0x1 | 0x4), 0xc00, -8, 0, 7, 0x0);
+        PaletteData_StartFade(v1, (0x2 | 0x8), 0xffff, -8, 0, 16, 0x0);
         v0->unk_0E++;
         break;
     case 1:
-        if (sub_0200384C(v1) == 0) {
+        if (PaletteData_GetSelectedBuffersMask(v1) == 0) {
             {
                 ov16_0223B384(v0->unk_00);
 
@@ -3706,12 +3706,12 @@ static void ov16_022611DC(SysTask *param0, void *param1)
     case 6:
         ov16_0223B430(v0->unk_00);
         ov16_0226CD10(ov16_0223E02C(v0->unk_00), v0->unk_10);
-        sub_02003178(v1, (0x1 | 0x4), 0xc00, -8, 7, 0, 0x0);
-        sub_02003178(v1, (0x2 | 0x8), 0xffff, -8, 16, 0, 0x0);
+        PaletteData_StartFade(v1, (0x1 | 0x4), 0xc00, -8, 7, 0, 0x0);
+        PaletteData_StartFade(v1, (0x2 | 0x8), 0xffff, -8, 16, 0, 0x0);
         v0->unk_0E++;
         break;
     case 7:
-        if (sub_0200384C(v1) == 0) {
+        if (PaletteData_GetSelectedBuffersMask(v1) == 0) {
             sub_02015738(ov16_0223E220(v0->unk_00), 0);
 
             if (v0->unk_04->unk_1C) {
@@ -4187,12 +4187,12 @@ static void ov16_02261E8C(SysTask *param0, void *param1)
 
         v0->unk_17 = ov16_0226CD08(ov16_0223E02C(v0->unk_00));
         sub_02015738(ov16_0223E220(v0->unk_00), 1);
-        sub_02003178(v1, (0x1 | 0x4), 0xc00, -8, 0, 7, 0x0);
-        sub_02003178(v1, (0x2 | 0x8), 0xffff, -8, 0, 16, 0x0);
+        PaletteData_StartFade(v1, (0x1 | 0x4), 0xc00, -8, 0, 7, 0x0);
+        PaletteData_StartFade(v1, (0x2 | 0x8), 0xffff, -8, 0, 16, 0x0);
         v0->unk_0A++;
         break;
     case 1:
-        if (sub_0200384C(v1) == 0) {
+        if (PaletteData_GetSelectedBuffersMask(v1) == 0) {
             {
                 int v3;
                 int v4 = 0;
@@ -4297,13 +4297,13 @@ static void ov16_02261E8C(SysTask *param0, void *param1)
         if (v0->unk_04->unk_36) {
             ov16_0223B430(v0->unk_00);
             ov16_0226CD10(ov16_0223E02C(v0->unk_00), v0->unk_04->unk_32);
-            sub_02003178(v1, (0x1 | 0x4), 0xc00, -8, 7, 0, 0x0);
-            sub_02003178(v1, (0x2 | 0x8), 0xffff, -8, 16, 0, 0x0);
+            PaletteData_StartFade(v1, (0x1 | 0x4), 0xc00, -8, 7, 0, 0x0);
+            PaletteData_StartFade(v1, (0x2 | 0x8), 0xffff, -8, 16, 0, 0x0);
             v0->unk_0A++;
         }
         break;
     case 3:
-        if (sub_0200384C(v1) == 0) {
+        if (PaletteData_GetSelectedBuffersMask(v1) == 0) {
             sub_02015738(ov16_0223E220(v0->unk_00), 0);
 
             if (v0->unk_04->unk_11 == 6) {
@@ -4911,12 +4911,12 @@ static void ov16_02262D28(SysTask *param0, void *param1)
     switch (v0->unk_06) {
     case 0:
         sub_02015738(ov16_0223E220(v0->unk_00), 1);
-        sub_02003178(v1, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 0, 16, 0x0);
+        PaletteData_StartFade(v1, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 0, 16, 0x0);
         sub_0200872C(v2, 0, 16, 0, 0x0);
         sub_0200564C(0, 16);
         v0->unk_06++;
     case 1:
-        if (sub_0200384C(v1) == 0) {
+        if (PaletteData_GetSelectedBuffersMask(v1) == 0) {
             v0->unk_06++;
         }
         break;
@@ -5144,8 +5144,8 @@ static void ov16_02263014(SysTask *param0, void *param1)
     case 1:
 
         if (v0->unk_15 == 10) {
-            sub_02003178(v2, 0x1, 0xf3ff, 0, 0, 16, v4);
-            sub_02003178(v2, 0x4, 0x3fff, 0, 0, 16, v4);
+            PaletteData_StartFade(v2, 0x1, 0xf3ff, 0, 0, 16, v4);
+            PaletteData_StartFade(v2, 0x4, 0x3fff, 0, 0, 16, v4);
         }
 
         if ((v0->unk_15 >= 10) && (v0->unk_16 < 16)) {
@@ -5158,7 +5158,7 @@ static void ov16_02263014(SysTask *param0, void *param1)
                 v0->unk_16 = 16;
             }
 
-            v8 = sub_0200316C(v2, 1);
+            v8 = PaletteData_GetFadedBuffer(v2, 1);
 
             for (v6 = 0; v6 < 256; v6++) {
                 v7 = (0 + ((0x1f - 0) * v0->unk_16 >> 4));
@@ -5175,25 +5175,25 @@ static void ov16_02263014(SysTask *param0, void *param1)
         }
 
         if (v0->unk_15 == 28) {
-            MI_CpuCopy16(ov16_0223F204(v0->unk_00), sub_02003164(v2, 0), 0x20 * 7);
+            MI_CpuCopy16(ov16_0223F204(v0->unk_00), PaletteData_GetUnfadedBuffer(v2, 0), 0x20 * 7);
 
             if (BattleSystem_BattleType(v0->unk_00) == (0x2 | 0x8 | 0x40)) {
-                MI_CpuCopy16(ov16_0223F210(v0->unk_00), sub_02003164(v2, 2), 0x20 * 5);
+                MI_CpuCopy16(ov16_0223F210(v0->unk_00), PaletteData_GetUnfadedBuffer(v2, 2), 0x20 * 5);
             } else if (BattleSystem_BattleType(v0->unk_00) & 0x2) {
-                MI_CpuCopy16(ov16_0223F210(v0->unk_00), sub_02003164(v2, 2), 0x20 * 7);
+                MI_CpuCopy16(ov16_0223F210(v0->unk_00), PaletteData_GetUnfadedBuffer(v2, 2), 0x20 * 7);
             } else if (BattleSystem_BattleType(v0->unk_00) & 0x1) {
-                MI_CpuCopy16(ov16_0223F210(v0->unk_00), sub_02003164(v2, 2), 0x20 * 5);
+                MI_CpuCopy16(ov16_0223F210(v0->unk_00), PaletteData_GetUnfadedBuffer(v2, 2), 0x20 * 5);
             } else {
-                MI_CpuCopy16(ov16_0223F210(v0->unk_00), sub_02003164(v2, 2), 0x20 * 4);
+                MI_CpuCopy16(ov16_0223F210(v0->unk_00), PaletteData_GetUnfadedBuffer(v2, 2), 0x20 * 4);
             }
 
-            sub_02003178(v2, 0x1, 0xf3ff, 0, 16, 0, v4);
-            sub_02003178(v2, 0x4, 0x3fff, 0, 16, 0, v4);
-            sub_02003178(v2, (0x2 | 0x8), 0xffff, 0, 16, 0, v4);
+            PaletteData_StartFade(v2, 0x1, 0xf3ff, 0, 16, 0, v4);
+            PaletteData_StartFade(v2, 0x4, 0x3fff, 0, 16, 0, v4);
+            PaletteData_StartFade(v2, (0x2 | 0x8), 0xffff, 0, 16, 0, v4);
         }
 
         if (v0->unk_15 >= 50) {
-            sub_02003178(v2, 0x1, 0xc00, 0, 16, 0, 0x0);
+            PaletteData_StartFade(v2, 0x1, 0xc00, 0, 16, 0, 0x0);
             v0->unk_14++;
         }
         break;
@@ -5213,21 +5213,21 @@ static void ov16_02263014(SysTask *param0, void *param1)
         ov12_02237F74(v0->unk_04);
         v0->unk_14++;
     case 5:
-        MI_CpuCopy16(ov16_0223F204(v0->unk_00), sub_02003164(v2, 0), 0x20 * 7);
+        MI_CpuCopy16(ov16_0223F204(v0->unk_00), PaletteData_GetUnfadedBuffer(v2, 0), 0x20 * 7);
 
         if (BattleSystem_BattleType(v0->unk_00) == (0x2 | 0x8 | 0x40)) {
-            MI_CpuCopy16(ov16_0223F210(v0->unk_00), sub_02003164(v2, 2), 0x20 * 5);
+            MI_CpuCopy16(ov16_0223F210(v0->unk_00), PaletteData_GetUnfadedBuffer(v2, 2), 0x20 * 5);
         } else if (BattleSystem_BattleType(v0->unk_00) & 0x2) {
-            MI_CpuCopy16(ov16_0223F210(v0->unk_00), sub_02003164(v2, 2), 0x20 * 7);
+            MI_CpuCopy16(ov16_0223F210(v0->unk_00), PaletteData_GetUnfadedBuffer(v2, 2), 0x20 * 7);
         } else if (BattleSystem_BattleType(v0->unk_00) & 0x1) {
-            MI_CpuCopy16(ov16_0223F210(v0->unk_00), sub_02003164(v2, 2), 0x20 * 5);
+            MI_CpuCopy16(ov16_0223F210(v0->unk_00), PaletteData_GetUnfadedBuffer(v2, 2), 0x20 * 5);
         } else {
-            MI_CpuCopy16(ov16_0223F210(v0->unk_00), sub_02003164(v2, 2), 0x20 * 4);
+            MI_CpuCopy16(ov16_0223F210(v0->unk_00), PaletteData_GetUnfadedBuffer(v2, 2), 0x20 * 4);
         }
 
-        sub_02003178(v2, 0x1, 0xffff, 0, 0, 0, 0x7fff);
-        sub_02003178(v2, 0x4, 0x3fff, 0, 0, 0, 0xffff);
-        sub_02003178(v2, (0x2 | 0x8), 0xffff, 0, 0, 0, 0x7fff);
+        PaletteData_StartFade(v2, 0x1, 0xffff, 0, 0, 0, 0x7fff);
+        PaletteData_StartFade(v2, 0x4, 0x3fff, 0, 0, 0, 0xffff);
+        PaletteData_StartFade(v2, (0x2 | 0x8), 0xffff, 0, 0, 0, 0x7fff);
         v0->unk_14 = 3;
         break;
     }
@@ -5242,11 +5242,11 @@ static void ov16_022633A4(SysTask *param0, void *param1)
 
     switch (v0->unk_0A) {
     case 0:
-        sub_02003178(v1, (0x2 | 0x8), 0xffff, -8, 0, 16, 0x0);
+        PaletteData_StartFade(v1, (0x2 | 0x8), 0xffff, -8, 0, 16, 0x0);
         v0->unk_0A++;
         break;
     case 1:
-        if (sub_0200384C(v1) == 0) {
+        if (PaletteData_GetSelectedBuffersMask(v1) == 0) {
             ov16_0223B384(v0->unk_00);
 
             v0->unk_04 = Heap_AllocFromHeap(5, sizeof(UnkStruct_ov13_0221FC20));
@@ -5269,12 +5269,12 @@ static void ov16_022633A4(SysTask *param0, void *param1)
     case 2:
         if (v0->unk_04->unk_36) {
             ov16_0223B430(v0->unk_00);
-            sub_02003178(v1, (0x2 | 0x8), 0xffff, -8, 16, 0, 0x0);
+            PaletteData_StartFade(v1, (0x2 | 0x8), 0xffff, -8, 16, 0, 0x0);
             v0->unk_0A++;
         }
         break;
     case 3:
-        if (sub_0200384C(v1) == 0) {
+        if (PaletteData_GetSelectedBuffersMask(v1) == 0) {
             if (v0->unk_04->unk_34 == 4) {
                 ov16_02265B10(v0->unk_00, v0->unk_09, 0xff);
             } else {

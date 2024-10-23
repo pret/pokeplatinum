@@ -272,8 +272,8 @@ void ov100_021D4BF0(UnkStruct_ov100_021D46C8 *param0)
         }
     }
 
-    sub_020039B0(param0->unk_10, 1, 0, 4, param0->unk_C1 / 8, 0xCCCC);
-    sub_020039B0(param0->unk_10, 1, 4, 6, param0->unk_C1 / 8, 0xCCCC);
+    PaletteData_Blend(param0->unk_10, 1, 0, 4, param0->unk_C1 / 8, 0xCCCC);
+    PaletteData_Blend(param0->unk_10, 1, 4, 6, param0->unk_C1 / 8, 0xCCCC);
 }
 
 void ov100_021D4C94(UnkStruct_ov100_021D46C8 *param0, int param1)
@@ -331,7 +331,7 @@ void ov100_021D4C94(UnkStruct_ov100_021D46C8 *param0, int param1)
         }
     }
 
-    sub_020039B0(param0->unk_10, 1, v3[v0][0], v3[v0][1], param0->unk_C1 / v1[v0], v4[v0]);
+    PaletteData_Blend(param0->unk_10, 1, v3[v0][0], v3[v0][1], param0->unk_C1 / v1[v0], v4[v0]);
 }
 
 void ov100_021D4DC8(int param0)

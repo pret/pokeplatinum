@@ -465,7 +465,7 @@ static void ov117_02262C60(UnkStruct_ov117_022626B0 *param0, int param1)
         v0 = 16;
     }
 
-    sub_0200393C(param0->unk_24C, param0->unk_250, param0->unk_254 / 2, v0, 0x1f);
+    BlendPalette(param0->unk_24C, param0->unk_250, param0->unk_254 / 2, v0, 0x1f);
     DC_FlushRange(param0->unk_250, param0->unk_254);
 
     param0->unk_276 = 1;

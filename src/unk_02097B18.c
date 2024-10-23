@@ -144,12 +144,12 @@ static int sub_02097B18(OverlayManager *param0, int *param1)
 
     v0->unk_D4.unk_10 = BgConfig_New(53);
     sub_0201DBEC(64, 53);
-    v0->unk_D4.unk_14 = sub_02002F38(53);
-    sub_02003858(v0->unk_D4.unk_14, 1);
-    sub_02002F70(v0->unk_D4.unk_14, 0, 0x200, 53);
-    sub_02002F70(v0->unk_D4.unk_14, 1, 0x200, 53);
-    sub_02002F70(v0->unk_D4.unk_14, 2, 0x200, 53);
-    sub_02002F70(v0->unk_D4.unk_14, 3, 0x200, 53);
+    v0->unk_D4.unk_14 = PaletteData_New(53);
+    PaletteData_SetAutoTransparent(v0->unk_D4.unk_14, 1);
+    PaletteData_AllocBuffer(v0->unk_D4.unk_14, 0, 0x200, 53);
+    PaletteData_AllocBuffer(v0->unk_D4.unk_14, 1, 0x200, 53);
+    PaletteData_AllocBuffer(v0->unk_D4.unk_14, 2, 0x200, 53);
+    PaletteData_AllocBuffer(v0->unk_D4.unk_14, 3, 0x200, 53);
 
     ov76_0223EB64(v0->unk_D4.unk_10);
     ov76_0223BF10();
@@ -241,11 +241,11 @@ static int sub_02097D88(OverlayManager *param0, int *param1)
     Bg_FreeTilemapBuffer(v0->unk_D4.unk_10, 6);
     Bg_FreeTilemapBuffer(v0->unk_D4.unk_10, 7);
     Heap_FreeToHeap(v0->unk_D4.unk_10);
-    sub_02002FA0(v0->unk_D4.unk_14, 0);
-    sub_02002FA0(v0->unk_D4.unk_14, 1);
-    sub_02002FA0(v0->unk_D4.unk_14, 2);
-    sub_02002FA0(v0->unk_D4.unk_14, 3);
-    sub_02002F54(v0->unk_D4.unk_14);
+    PaletteData_FreeBuffer(v0->unk_D4.unk_14, 0);
+    PaletteData_FreeBuffer(v0->unk_D4.unk_14, 1);
+    PaletteData_FreeBuffer(v0->unk_D4.unk_14, 2);
+    PaletteData_FreeBuffer(v0->unk_D4.unk_14, 3);
+    PaletteData_Free(v0->unk_D4.unk_14);
     sub_02097F20(v0->unk_00, v0->unk_3C4[0]);
     Heap_FreeToHeap(v0->unk_428);
     ov76_0223B678(v0);

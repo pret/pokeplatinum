@@ -167,9 +167,9 @@ int ov110_021D0EF0 (OverlayManager * param0, int * param1)
     int v0;
     UnkStruct_ov110_021D0F78 * v1 = OverlayManager_Data(param0);
 
-    sub_02002FA0(v1->unk_120, 2);
-    sub_02002FA0(v1->unk_120, 0);
-    sub_02002F54(v1->unk_120);
+    PaletteData_FreeBuffer(v1->unk_120, 2);
+    PaletteData_FreeBuffer(v1->unk_120, 0);
+    PaletteData_Free(v1->unk_120);
 
     v1->unk_120 = NULL;
 
@@ -253,7 +253,7 @@ static void ov110_021D1048 (void * param0)
     UnkStruct_ov110_021D0F78 * v0 = param0;
 
     if (v0->unk_120 != NULL) {
-        sub_02003694(v0->unk_120);
+        PaletteData_CommitFadedBuffers(v0->unk_120);
     }
 
     Bg_RunScheduledUpdates(v0->unk_0C);
@@ -372,10 +372,10 @@ static void ov110_021D1180 (UnkStruct_ov110_021D0F78 * param0)
     ov110_021D1078();
     ov110_021D1098(param0->unk_0C);
 
-    param0->unk_120 = sub_02002F38(114);
+    param0->unk_120 = PaletteData_New(114);
 
-    sub_02002F70(param0->unk_120, 2, (32 * 16), 114);
-    sub_02002F70(param0->unk_120, 0, (32 * 16), 114);
+    PaletteData_AllocBuffer(param0->unk_120, 2, (32 * 16), 114);
+    PaletteData_AllocBuffer(param0->unk_120, 0, (32 * 16), 114);
 
     ov110_021D123C(param0, 2);
     ov110_021D128C();

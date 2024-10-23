@@ -81,7 +81,7 @@ static inline void inline_ov61_0222C3B0_sub_1(UnkStruct_ov61_0222C3B0 *param0)
         do {
             GF_ASSERT(v1 < (((16 << 8) / 0x300 + 2) * (4 - 1)));
             for (v4 = 1; v4 < 1 + 15; v4++) {
-                sub_0200393C(&param0->unk_08[v0][v4], &param0->unk_88[v1][v4], 1, v3 >> 8, param0->unk_08[v2][v4]);
+                BlendPalette(&param0->unk_08[v0][v4], &param0->unk_88[v1][v4], 1, v3 >> 8, param0->unk_08[v2][v4]);
             }
             v1++;
             if (v5 == 1) {
