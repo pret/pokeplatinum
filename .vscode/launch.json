@@ -11,7 +11,7 @@
             "externalConsole": true,
             "miDebuggerServerAddress": "localhost:3333",
             // point this to your own gdb path...
-            "miDebuggerPath": "/home/ziddia/Desktop/PokePlat/binutils-gdb/gdb/gdb",
+            "miDebuggerPath": "/path/to/binutils-gdb/gdb/gdb",
             //"miDebuggerPath": "gdb-multiarch",
             "setupCommands": [
                 {
