@@ -18,11 +18,13 @@ export NINJA_STATUS="[%p %f/%t] "
 export MESON_RSP_THRESHOLD=16387
 
 # Build the project
+"${MESON:-meson}" configure build "-Dgdb_debugging=false"
 if [ "$target" = test ]; then
     "${MESON:-meson}" test -C build "$@"
 elif [ "$target" = rom ]; then
     "${MESON:-meson}" compile -C build "pokeplatinum.us.nds"
 elif [ "$target" = debug ]; then
+    "${MESON:-meson}" configure build "-Dgdb_debugging=true"
     "${MESON:-meson}" compile -C build "pokeplatinum.us.nds" "debug.nef" "overlay.map"
 else
     "${MESON:-meson}" compile -C build "$target" "$@"
