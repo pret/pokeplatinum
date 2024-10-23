@@ -1013,7 +1013,7 @@ u16 *ov94_Pokedex_Alphabetical(int heapID, int unused, int *pokedexLength)
     u32 pokedexSize;
     u16 *pokedexAlphabetical;
 
-    pokedexAlphabetical = sub_02007068(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_DATA, 13, 0, heapID, 0, &pokedexSize);
+    pokedexAlphabetical = LoadMemberFromNARC_OutFileSize(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_DATA, 13, 0, heapID, 0, &pokedexSize);
     *pokedexLength = pokedexSize / (sizeof(u16));
 
     return pokedexAlphabetical;
@@ -1027,7 +1027,7 @@ u8 *ov94_02242548(int param0)
 
     MI_CpuClearFast(v4, NATIONAL_DEX_COUNT + 1);
 
-    v3 = sub_02007068(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_DATA, 12, 0, param0, 0, &v0);
+    v3 = LoadMemberFromNARC_OutFileSize(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_DATA, 12, 0, param0, 0, &v0);
     v1 = v0 / (sizeof(u16));
 
     for (v2 = 0; v2 < v1; v2++) {

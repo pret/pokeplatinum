@@ -1174,7 +1174,7 @@ static void ov88_0223C44C(BgConfig *param0)
 
 static void ov88_0223C488(NARC *param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
 {
-    void *v0 = sub_0200723C(param0, param1, param6, param7, 1);
+    void *v0 = LoadMemberFromOpenNARC(param0, param1, param6, param7, 1);
 
     if (v0 != NULL) {
         NNSG2dScreenData *v1;

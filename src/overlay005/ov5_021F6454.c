@@ -200,7 +200,7 @@ static u16 *ov5_021F65FC(int heapID, int fileIndex, int *pokedexLength)
     u32 pokedexSize;
     u16 *pokedex;
 
-    pokedex = sub_02007068(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_DATA, fileIndex, 0, heapID, 0, &pokedexSize);
+    pokedex = LoadMemberFromNARC_OutFileSize(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_DATA, fileIndex, 0, heapID, 0, &pokedexSize);
     *pokedexLength = pokedexSize / (sizeof(u16));
 
     return pokedex;

@@ -568,7 +568,7 @@ static UnkStruct_ov113_0225E6B8 *ov113_0225E6B8(UnkStruct_ov113_0225DBCC *param0
 
 static BOOL ov113_0225E774(UnkStruct_ov113_0225EB20 *param0, Easy3DModel *param1, NARC *param2, NARC *param3, const UnkStruct_ov113_02260818 *param4, BOOL param5)
 {
-    param1->data = sub_0200723C(param2, 29, 0, 118, 0);
+    param1->data = LoadMemberFromOpenNARC(param2, 29, 0, 118, 0);
 
     {
         BOOL v0;
@@ -677,10 +677,10 @@ static void ov113_0225E920(NNSG3dResTex *param0, NARC *param1, NARC *param2, con
     v1 = (u8 *)((u8 *)param0 + param0->texInfo.ofsTex);
 
     if (v4 == 1) {
-        v2 = sub_0200723C(param2, 3 + param3->unk_02, 1, 118, 1);
+        v2 = LoadMemberFromOpenNARC(param2, 3 + param3->unk_02, 1, 118, 1);
         NNS_G2dGetUnpackedCharacterData(v2, &v3);
     } else {
-        v2 = sub_0200723C(param1, 16, 0, 118, 1);
+        v2 = LoadMemberFromOpenNARC(param1, 16, 0, 118, 1);
         NNS_G2dGetUnpackedCharacterData(v2, &v3);
     }
 

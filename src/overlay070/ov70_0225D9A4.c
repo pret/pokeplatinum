@@ -2638,7 +2638,7 @@ static void ov70_0225FDA0(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225FA
 
         if (v0 != 0) {
             v2 = ov66_022316E8(v0);
-            v3 = sub_02006FE8(sub_0207C944(), sub_0207C908(v2), 1, param3, 1);
+            v3 = LoadMemberFromNARC(sub_0207C944(), sub_0207C908(v2), 1, param3, 1);
 
             NNS_G2dGetUnpackedCharacterData(v3, &v4);
 

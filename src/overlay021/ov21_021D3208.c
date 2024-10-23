@@ -704,7 +704,7 @@ static u16 *Pokedex_Sorted_Array(int heapID, int pokedexSort, int *pokedexLength
     GF_ASSERT(47 > pokedexSort);
 
     pokedexDataNarcIndex = Pokedex_Data_NARC_Index();
-    pokedexSortedArray = sub_02007068(pokedexDataNarcIndex, 11 + pokedexSort, 0, heapID, 0, &pokedexSize);
+    pokedexSortedArray = LoadMemberFromNARC_OutFileSize(pokedexDataNarcIndex, 11 + pokedexSort, 0, heapID, 0, &pokedexSize);
     *pokedexLength = pokedexSize / (sizeof(u16));
 
     return pokedexSortedArray;

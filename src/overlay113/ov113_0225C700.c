@@ -1128,13 +1128,13 @@ static BOOL ov113_0225D938(int param0, int param1, CellActorData *param2, NARC *
     }
 
     if (PokemonHasOverworldFootprint(param0, param1, param6) == 1) {
-        v2 = sub_0200723C(param4, 3 + param0, 1, 118, 1);
+        v2 = LoadMemberFromOpenNARC(param4, 3 + param0, 1, 118, 1);
         NNS_G2dGetUnpackedCharacterData(v2, &v3);
         DC_FlushRange(v3->pRawData, 0x20 * 8);
         v4 = &((u8 *)v3->pRawData)[0x20 * 4];
         v5 = v3->pRawData;
     } else {
-        v2 = sub_0200723C(param3, 16, 0, 118, 1);
+        v2 = LoadMemberFromOpenNARC(param3, 16, 0, 118, 1);
         NNS_G2dGetUnpackedCharacterData(v2, &v3);
         DC_FlushRange(v3->pRawData, 0x20 * 4);
         v4 = v3->pRawData;

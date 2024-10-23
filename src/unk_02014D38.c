@@ -349,7 +349,7 @@ UnkStruct_02014FB0 *sub_02014FB0(u32 heapID)
     v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02014FB0));
     memset(v0, 0, sizeof(UnkStruct_02014FB0));
 
-    v0->unk_04 = sub_02007068(NARC_INDEX_RESOURCE__ENG__PMS_AIKOTOBA__PMS_AIKOTOBA, 0, 0, heapID, 0, &fileSize);
+    v0->unk_04 = LoadMemberFromNARC_OutFileSize(NARC_INDEX_RESOURCE__ENG__PMS_AIKOTOBA__PMS_AIKOTOBA, 0, 0, heapID, 0, &fileSize);
     v0->unk_00 = fileSize / sizeof(u32);
 
     return v0;

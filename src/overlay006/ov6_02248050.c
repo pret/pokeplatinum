@@ -619,7 +619,7 @@ static void ov6_022487F8(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     Easy3DModel_LoadFrom(&v0->unk_00, v2, 8, 4);
 
     for (v1 = 0; v1 < 4; v1++) {
-        v0->unk_CD0[v1] = sub_0200723C(v2, 4 + v1, 0, 4, 0);
+        v0->unk_CD0[v1] = LoadMemberFromOpenNARC(v2, 4 + v1, 0, 4, 0);
     }
 
     for (v1 = 0; v1 < 16; v1++) {

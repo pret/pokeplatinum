@@ -784,7 +784,7 @@ static void ov78_021D1604(ChooseStarter3DGraphics *param0, int param1, int param
 
 static void ov78_021D1630(ChooseStarter3DGraphics *param0, int param1, int param2)
 {
-    param0->unk_54 = sub_02006FE8(82, param1, 0, param2, 0);
+    param0->unk_54 = LoadMemberFromNARC(82, param1, 0, param2, 0);
     param0->unk_58 = NNS_G3dGetMdlSet(param0->unk_54);
     param0->unk_5C = NNS_G3dGetMdlByIdx(param0->unk_58, 0);
     param0->unk_60 = NNS_G3dGetTex(param0->unk_54);
@@ -797,7 +797,7 @@ static void ov78_021D1630(ChooseStarter3DGraphics *param0, int param1, int param
 
 static void ov78_021D1694(ChooseStarter3DGraphics *param0, int param1, int param2, NNSFndAllocator *param3)
 {
-    param0->unk_64 = sub_02006FE8(82, param1, 0, param2, 0);
+    param0->unk_64 = LoadMemberFromNARC(82, param1, 0, param2, 0);
     param0->unk_68 = NNS_G3dGetAnmByIdx(param0->unk_64, 0);
     param0->unk_6C = NNS_G3dAllocAnmObj(param3, param0->unk_68, param0->unk_5C);
 

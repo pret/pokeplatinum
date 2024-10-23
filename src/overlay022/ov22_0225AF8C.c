@@ -464,7 +464,7 @@ static void ov22_0225B5A8(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255C
         v1 = v3;
 
         if (ResourceCollection_IsIDUnused(param1->unk_10, v1) == 1) {
-            v2 = sub_0200723C(param0->unk_5C, v3 + 1, 0, param3, 1);
+            v2 = LoadMemberFromOpenNARC(param0->unk_5C, v3 + 1, 0, param3, 1);
 
             ResourceCollection_Add(param1->unk_10, v2, v1);
             NNS_G2dGetUnpackedCharacterData(v2, &param1->unk_00[v1].unk_04);
@@ -473,7 +473,7 @@ static void ov22_0225B5A8(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255C
         }
     }
 
-    v2 = sub_0200723C(param0->unk_5C, 0, 0, param3, 1);
+    v2 = LoadMemberFromOpenNARC(param0->unk_5C, 0, 0, param3, 1);
 
     ResourceCollection_Add(param1->unk_14, v2, 0);
     NNS_G2dGetUnpackedPaletteData(v2, &param1->unk_08[0].unk_04);

@@ -824,7 +824,7 @@ static void SpriteResourceCollection_InitResFromFile(SpriteResourceCollection *s
 
 static void SpriteResourceCollection_InitRes(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, int narcIdx, int memberIdx, BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum SpriteResourceType type, enum HeapId heapID, BOOL allocAtEnd)
 {
-    void *data = sub_02006FE8(narcIdx, memberIdx, compressed, heapID, allocAtEnd);
+    void *data = LoadMemberFromNARC(narcIdx, memberIdx, compressed, heapID, allocAtEnd);
 
     spriteRes->rawResource = ResourceCollection_Add(spriteResources->collection, data, id);
     spriteRes->type = type;

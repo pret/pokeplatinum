@@ -200,7 +200,7 @@ static void ov19_021D7C58(UnkStruct_ov19_021D8318 *param0, const UnkStruct_ov19_
 {
     void *v0;
 
-    v0 = sub_02006FE8(18, Unk_ov19_021E0178[param1->unk_01].unk_01, 1, 10, 1);
+    v0 = LoadMemberFromNARC(18, Unk_ov19_021E0178[param1->unk_01].unk_01, 1, 10, 1);
 
     if (v0 != NULL) {
         NNSG2dCharacterData *v1;
@@ -236,7 +236,7 @@ static void ov19_021D7D00(UnkStruct_ov19_021D8318 *param0, const UnkStruct_ov19_
 {
     void *v0;
 
-    v0 = sub_02006FE8(18, Unk_ov19_021E0178[param1->unk_01].unk_00, 1, 10, 1);
+    v0 = LoadMemberFromNARC(18, Unk_ov19_021E0178[param1->unk_01].unk_00, 1, 10, 1);
 
     if (v0) {
         u16 *v1;

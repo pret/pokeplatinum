@@ -184,7 +184,7 @@ UnkStruct_ov66_02234548 *ov66_022343A8(u32 param0, u32 param1, u32 param2, u32 p
         v4 = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI_LOBBY_OTHER, param2);
 
         {
-            v5 = sub_0200723C(v4, 127, 0, param3, 0);
+            v5 = LoadMemberFromOpenNARC(v4, 127, 0, param3, 0);
             ResourceCollection_Add(v0->unk_00, v5, 127);
             ov66_02231668(v5);
 
@@ -200,7 +200,7 @@ UnkStruct_ov66_02234548 *ov66_022343A8(u32 param0, u32 param1, u32 param2, u32 p
 
         {
             for (v6 = 0; v6 < 2; v6++) {
-                v5 = sub_0200723C(v3, Unk_ov66_02258B28[v6], 0, param3, 0);
+                v5 = LoadMemberFromOpenNARC(v3, Unk_ov66_02258B28[v6], 0, param3, 0);
                 ResourceCollection_Add(v0->unk_04, v5, Unk_ov66_02258B28[v6]);
             }
         }
@@ -227,7 +227,7 @@ UnkStruct_ov66_02234548 *ov66_022343A8(u32 param0, u32 param1, u32 param2, u32 p
                     v11 = 0;
                 }
 
-                v5 = sub_0200723C(v3, Unk_ov66_02258B38[v6].unk_02_0, 0, param3, 0);
+                v5 = LoadMemberFromOpenNARC(v3, Unk_ov66_02258B38[v6].unk_02_0, 0, param3, 0);
                 v9 = TextureResourceManager_AddTexture(v0->unk_08, v5, Unk_ov66_02258B38[v6].unk_02_0, v11, param3);
 
                 if (v11 == 1) {

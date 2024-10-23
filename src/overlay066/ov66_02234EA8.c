@@ -59,7 +59,7 @@ static void ov66_02234F2C(NARC *param0, u32 param1, u16 param2, u8 param3, fx32 
         u32 v3;
         int v4;
 
-        v1 = sub_02007250(param0, 18, 0, param1, 0, &v3);
+        v1 = LoadMemberFromOpenNARC_OutFileSize(param0, 18, 0, param1, 0, &v3);
         v2 = (UnkStruct_ov92_021D1530 *)v1;
         v4 = v3 / 6;
 
@@ -81,7 +81,7 @@ static void ov66_02234F2C(NARC *param0, u32 param1, u16 param2, u8 param3, fx32 
 
         v9 = sub_020996D4(param2);
         v8 = sub_02099764(v9);
-        v5 = sub_02007250(param0, v8, 0, param1, 0, &v7);
+        v5 = LoadMemberFromOpenNARC_OutFileSize(param0, v8, 0, param1, 0, &v7);
         v6 = (UnkStruct_ov69_0225C980 *)v5;
         v10 = v7 / 4;
 

@@ -795,7 +795,7 @@ static void ov70_02269540(UnkStruct_ov70_02269204 *param0, NARC *param1, u32 par
     int v0;
 
     for (v0 = 0; v0 < 15; v0++) {
-        param0->unk_10550[v0].data = sub_0200723C(param1, 129 + v0, 0, param2, 0);
+        param0->unk_10550[v0].data = LoadMemberFromOpenNARC(param1, 129 + v0, 0, param2, 0);
         param0->unk_10550[v0].set = NNS_G3dGetMdlSet(param0->unk_10550[v0].data);
         param0->unk_10550[v0].model = NNS_G3dGetMdlByIdx(param0->unk_10550[v0].set, 0);
         param0->unk_10550[v0].texture = NULL;

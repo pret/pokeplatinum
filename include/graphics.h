@@ -22,6 +22,12 @@ enum ImageMappingLayout {
     IMAGE_MAPPING_LAYOUT_2D,
 };
 
+void *LoadCompressedMemberFromNARC(u32 narcID, u32 narcMemberIdx, u32 heapID);
+void *LoadMemberFromNARC(u32 narcID, u32 narcMemberIdx, BOOL compressed, u32 heapID, BOOL allocAtEnd);
+void *LoadMemberFromNARC_OutFileSize(u32 narcID, u32 narcMemberIdx, BOOL compressed, u32 heapID, BOOL allocAtEnd, u32 *fileSize);
+void *LoadMemberFromOpenNARC(NARC *narc, u32 narcMemberIdx, BOOL compressed, u32 heapID, BOOL allocAtEnd);
+void *LoadMemberFromOpenNARC_OutFileSize(NARC *narc, u32 narcMemberIdx, BOOL compressed, u32 heapID, BOOL allocAtEnd, u32 *fileSize);
+
 u32 sub_02006E3C(u32 param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7);
 void sub_02006E60(u32 param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7);
 void sub_02006E84(u32 param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5);
@@ -35,9 +41,6 @@ void *sub_02006F6C(u32 param0, u32 param1, BOOL param2, NNSG2dScreenData **param
 void *sub_02006F88(u32 bankID, u32 memberIndex, NNSG2dPaletteData **param2, u32 param3);
 void *sub_02006FA0(u32 param0, u32 param1, BOOL param2, NNSG2dCellDataBank **param3, u32 param4);
 void *sub_02006FBC(u32 param0, u32 param1, BOOL param2, NNSG2dAnimBankData **param3, u32 param4);
-void *sub_02006FD8(u32 param0, u32 param1, u32 param2);
-void *sub_02006FE8(u32 param0, u32 param1, BOOL param2, u32 param3, int param4);
-void *sub_02007068(u32 narcIndex, u32 fileIndex, BOOL param2, u32 heapID, int param4, u32 *fileSize);
 u32 sub_020070E8(NARC *param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7);
 void sub_0200710C(NARC *param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7);
 void sub_02007130(NARC *param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5);
@@ -49,7 +52,5 @@ void *sub_020071D0(NARC *param0, u32 param1, BOOL param2, NNSG2dScreenData **par
 void *sub_020071EC(NARC *param0, u32 param1, NNSG2dPaletteData **param2, u32 param3);
 void *sub_02007204(NARC *param0, u32 param1, BOOL param2, NNSG2dCellDataBank **param3, u32 param4);
 void *sub_02007220(NARC *param0, u32 param1, BOOL param2, NNSG2dAnimBankData **param3, u32 param4);
-void *sub_0200723C(NARC *param0, u32 param1, BOOL param2, u32 param3, int param4);
-void *sub_02007250(NARC *param0, u32 param1, BOOL param2, u32 param3, int param4, u32 *param5);
 
 #endif // POKEPLATINUM_GRAPHICS_H

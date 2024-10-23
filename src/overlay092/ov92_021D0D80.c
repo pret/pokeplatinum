@@ -735,7 +735,7 @@ static void ov92_021D1530(UnkStruct_ov92_021D1B24 *param0)
         u32 v3;
         int v4, v5;
 
-        v1 = sub_02007250(v0, 18, 0, param0->unk_00, 0, &v3);
+        v1 = LoadMemberFromOpenNARC_OutFileSize(v0, 18, 0, param0->unk_00, 0, &v3);
         v2 = (UnkStruct_ov92_021D1530 *)v1;
         v5 = v3 / 6;
 
@@ -763,7 +763,7 @@ static void ov92_021D1530(UnkStruct_ov92_021D1B24 *param0)
 
         while (v12 < v11) {
             v9 = sub_02099764(v12);
-            v6 = sub_02007250(v0, v9, 0, param0->unk_00, 0, &v8);
+            v6 = LoadMemberFromOpenNARC_OutFileSize(v0, v9, 0, param0->unk_00, 0, &v8);
             v7 = (UnkStruct_ov69_0225C980 *)v6;
             v13 = v8 / 4;
 

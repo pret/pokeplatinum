@@ -67,7 +67,7 @@ UnkStruct_ov6_02246204 *ov6_02246184(u32 param0, u32 param1)
     v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov6_02246204));
     memset(v0, 0, sizeof(UnkStruct_ov6_02246204));
 
-    v0->unk_00 = sub_02006FE8(115, param1, 0, param0, 0);
+    v0->unk_00 = LoadMemberFromNARC(115, param1, 0, param0, 0);
     v0->unk_10 = param0;
     v0->unk_0C = param1;
     v0->unk_04 = Pokemon_New(param0);

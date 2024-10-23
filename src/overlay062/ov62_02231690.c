@@ -192,7 +192,7 @@ u16 *ov62_Pokedex_Alphabetical(int heapID, int unused, int *pokedexLength)
     u32 pokedexSize;
     u16 *pokedexAlphabetical;
 
-    pokedexAlphabetical = sub_02007068(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_DATA, 13, 0, heapID, 0, &pokedexSize);
+    pokedexAlphabetical = LoadMemberFromNARC_OutFileSize(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_DATA, 13, 0, heapID, 0, &pokedexSize);
     *pokedexLength = pokedexSize / sizeof(u16);
 
     return pokedexAlphabetical;

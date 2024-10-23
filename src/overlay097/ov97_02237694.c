@@ -676,7 +676,7 @@ void ov97_02238194(BgConfig *param0, UnkStruct_0202DF40 *param1)
 
     {
         NNSG2dScreenData *v3;
-        void *v4 = sub_02006FE8(116, 31, 1, v2->unk_08, 1);
+        void *v4 = LoadMemberFromNARC(116, 31, 1, v2->unk_08, 1);
 
         NNS_G2dGetUnpackedScreenData(v4, &v3);
 

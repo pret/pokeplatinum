@@ -55,7 +55,7 @@ void sub_02073848(UnkStruct_02073838 *param0, NNSG3dResFileHeader *param1, u32 p
 
 void sub_0207389C(UnkStruct_02073838 *param0, u32 param1, NARC *param2, u32 param3, u32 param4, int param5)
 {
-    NNSG3dResFileHeader *v0 = sub_0200723C(param2, param3, 0, param4, param5);
+    NNSG3dResFileHeader *v0 = LoadMemberFromOpenNARC(param2, param3, 0, param4, param5);
     sub_02073848(param0, v0, param1);
 }
 
@@ -139,7 +139,7 @@ void sub_020739A8(UnkStruct_02073974 *param0, UnkStruct_02073974 *param1, u32 pa
 
 void sub_020739B4(UnkStruct_02073974 *param0, u32 param1, NARC *param2, u32 param3, u32 param4, int param5)
 {
-    void *v0 = sub_0200723C(param2, param3, 0, param4, param5);
+    void *v0 = LoadMemberFromOpenNARC(param2, param3, 0, param4, param5);
     sub_02073980(param0, v0, param1);
 }
 

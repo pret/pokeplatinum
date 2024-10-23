@@ -456,7 +456,7 @@ static void sub_0205D0D8(UnkStruct_0205D094 *param0, int param1, u32 param2)
     sub_0200A41C(param0->unk_18[0]);
     sub_0200A684(param0->unk_18[1]);
 
-    v1 = sub_02006FE8(177, 4, 0, 4, 0);
+    v1 = LoadMemberFromNARC(177, 4, 0, 4, 0);
     param0->unk_04 = sub_02009508(v1, 4, param0->unk_08[0], param0->unk_08[1], param0->unk_08[2], param0->unk_08[3], NULL, NULL);
 
     Heap_FreeToHeap(v1);
@@ -470,7 +470,7 @@ static int sub_0205D1C4(SpriteResourceCollection *param0, SpriteResourceList **p
     void *v3;
 
     v0 = Heap_AllocFromHeapAtEnd(4, SpriteResourceTable_Size());
-    v3 = sub_02006FE8(177, param2, 0, 4, 0);
+    v3 = LoadMemberFromNARC(177, param2, 0, 4, 0);
 
     SpriteResourceTable_LoadFromBinary(v3, v0, 4);
     Heap_FreeToHeap(v3);

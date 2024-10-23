@@ -813,7 +813,7 @@ static void ov5_021D6290(SpriteResourceTable *param0, int param1, int param2)
     void *v1;
 
     v0 = SpriteResourceTable_GetArrayElement(param0, param1);
-    v1 = sub_02006FE8(65, param2, 0, 4, 1);
+    v1 = LoadMemberFromNARC(65, param2, 0, 4, 1);
 
     SpriteResourceTable_LoadFromBinary(v1, v0, 4);
     Heap_FreeToHeap(v1);
