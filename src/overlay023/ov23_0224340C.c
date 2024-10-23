@@ -2346,23 +2346,23 @@ static void ov23_022451C8(SysTask *param0, void *param1)
         break;
     case 1:
         sub_0200AAE0(1, 10, 0, GX_BLEND_PLANEMASK_BG0, 1);
-        sub_02006E3C(50, 9, v0->unk_10, 2, 0, 8 * 6 * 6, 0, 4);
+        Graphics_LoadTilesToBgLayer(50, 9, v0->unk_10, 2, 0, 8 * 6 * 6, 0, 4);
         v0->unk_00++;
         break;
     case 2:
-        sub_02006E84(50, 10, 0, 0, 32, 4);
+        Graphics_LoadPalette(50, 10, 0, 0, 32, 4);
         v0->unk_00++;
         break;
     case 3:
         sub_0200AAE0(1, 0, 10, GX_BLEND_PLANEMASK_BG0, 1);
 
         if (Unk_ov23_02257764->unk_B9F == 19) {
-            sub_02006E60(50, 8, v0->unk_10, 2, 0, 32 * 24 * 2, 0, 4);
+            Graphics_LoadTilemapToBgLayer(50, 8, v0->unk_10, 2, 0, 32 * 24 * 2, 0, 4);
         } else {
             u16 v2[] = { 11, 12, 13, 14 };
             u16 v3 = LCRNG_Next() % 4;
 
-            sub_02006E60(50, v2[v3], v0->unk_10, 2, 0, 32 * 24 * 2, 0, 4);
+            Graphics_LoadTilemapToBgLayer(50, v2[v3], v0->unk_10, 2, 0, 32 * 24 * 2, 0, 4);
         }
 
         Bg_SetPriority(0, 3);

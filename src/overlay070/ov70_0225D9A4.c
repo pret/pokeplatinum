@@ -1302,7 +1302,7 @@ static void ov70_0225E4EC(UnkStruct_ov70_0225E4EC *param0, SaveData *param1, u32
         sub_0200DD0C(param0->unk_00, Unk_ov70_0226D5CC[0], 1, 1, v2, param2);
         sub_0200E2A4(param0->unk_00, Unk_ov70_0226D5CC[0], (1 + (18 + 12)), 2, 3, 0, param2);
 
-        sub_02006E84(186, 90, 0, 2 * 32, 32, param2);
+        Graphics_LoadPalette(186, 90, 0, 2 * 32, 32, param2);
     }
 
     {
@@ -2431,7 +2431,7 @@ static void ov70_0225F95C(SysTask *param0, void *param1)
     UnkStruct_ov70_0225F350 *v0 = param1;
 
     {
-        sub_02007130(v0->unk_14C, v0->unk_154, 4, 0, 0, v0->unk_156);
+        Graphics_LoadPaletteFromOpenNARC(v0->unk_14C, v0->unk_154, 4, 0, 0, v0->unk_156);
     }
 
     {
@@ -2439,7 +2439,7 @@ static void ov70_0225F95C(SysTask *param0, void *param1)
     }
 
     {
-        sub_02006E84(sub_0207C944(), sub_0207C920(), 4, 11 * 32, 3 * 32, v0->unk_156);
+        Graphics_LoadPalette(sub_0207C944(), sub_0207C920(), 4, 11 * 32, 3 * 32, v0->unk_156);
     }
 
     SysTask_Done(param0);
@@ -2449,12 +2449,12 @@ static void ov70_0225F9BC(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225E4
 {
     {
         if (param3 == 0) {
-            sub_02007130(param2, 86, 4, 0, 0, param4);
+            Graphics_LoadPaletteFromOpenNARC(param2, 86, 4, 0, 0, param4);
         } else {
-            sub_02007130(param2, 87, 4, 0, 0, param4);
+            Graphics_LoadPaletteFromOpenNARC(param2, 87, 4, 0, 0, param4);
         }
 
-        sub_020070E8(param2, 54, param1->unk_00, Unk_ov70_0226D5CC[1], 0, 0, 0, param4);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param2, 54, param1->unk_00, Unk_ov70_0226D5CC[1], 0, 0, 0, param4);
     }
 
     {
@@ -2472,7 +2472,7 @@ static void ov70_0225FA14(UnkStruct_ov70_0225E4EC *param0, NARC *param1, u32 par
     void *v0;
     NNSG2dScreenData *v1;
 
-    v0 = sub_020071D0(param1, param2, 0, &v1, param5);
+    v0 = Graphics_GetScrnDataFromOpenNARC(param1, param2, 0, &v1, param5);
 
     {
         int v2;
@@ -3066,7 +3066,7 @@ static void ov70_02260744(UnkStruct_ov70_02260744 *param0, UnkStruct_ov70_0225E4
     Window_AddFromTemplate(param1->unk_00, &param0->unk_0C, &Unk_ov70_0226D5A4);
 
     for (v0 = 0; v0 < 3; v0++) {
-        param0->unk_20[v0] = sub_020071D0(param2, 56 + v0, 0, &param0->unk_2C[v0], param3);
+        param0->unk_20[v0] = Graphics_GetScrnDataFromOpenNARC(param2, 56 + v0, 0, &param0->unk_2C[v0], param3);
     }
 
     {
@@ -3134,7 +3134,7 @@ static BOOL ov70_022607D4(UnkStruct_ov70_02260744 *param0, UnkStruct_ov70_0225E4
 static void ov70_02260870(UnkStruct_ov70_02260744 *param0, UnkStruct_ov70_0225E4EC *param1, UnkStruct_ov70_0225F208 *param2, const UnkStruct_ov66_0222E71C *param3, NARC *param4, u32 param5)
 {
     {
-        sub_0200710C(param4, 55, param1->unk_00, Unk_ov70_0226D5CC[1], 0, 0, 0, param5);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param4, 55, param1->unk_00, Unk_ov70_0226D5CC[1], 0, 0, 0, param5);
     }
 
     param0->unk_08 = 0;
@@ -3142,7 +3142,7 @@ static void ov70_02260870(UnkStruct_ov70_02260744 *param0, UnkStruct_ov70_0225E4
     {
         param0->unk_0A = ov66_0222E8C4(param3);
 
-        sub_020070E8(param4, 0 + param0->unk_0A, param1->unk_00, Unk_ov70_0226D5CC[3], 320, 0, 0, param5);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param4, 0 + param0->unk_0A, param1->unk_00, Unk_ov70_0226D5CC[3], 320, 0, 0, param5);
         ov70_0225FA14(param1, param4, 27 + param0->unk_0A, Unk_ov70_0226D5CC[3], 320, param5);
     }
 
@@ -3167,13 +3167,13 @@ static void ov70_02260930(UnkStruct_ov70_02260744 *param0, UnkStruct_ov70_0225E4
     GF_ASSERT(param2 < 3);
 
     {
-        sub_0200710C(param3, 55, param1->unk_00, Unk_ov70_0226D5CC[1], 0, 0, 0, param4);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param3, 55, param1->unk_00, Unk_ov70_0226D5CC[1], 0, 0, 0, param4);
     }
 
     param0->unk_08 = 1;
     param0->unk_0A = param2;
 
-    sub_020070E8(param3, 93 + param0->unk_0A, param1->unk_00, Unk_ov70_0226D5CC[3], 320, 0, 0, param4);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param3, 93 + param0->unk_0A, param1->unk_00, Unk_ov70_0226D5CC[3], 320, 0, 0, param4);
 
     if (param0->unk_02 == 0) {
         ov70_022609D4(param0, param1, 0, param3, param4);

@@ -253,7 +253,7 @@ void ov25_02255360(u32 param0)
     void *v0;
     NNSG2dPaletteData *v1;
 
-    v0 = sub_02006F88(19, PokeIconPalettesFileIndex(), &v1, 8);
+    v0 = Graphics_GetPlttData(19, PokeIconPalettesFileIndex(), &v1, 8);
 
     if (v0) {
         ov25_02255290(v1->pRawData, 4 * 0x10);

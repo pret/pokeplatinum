@@ -485,18 +485,18 @@ static void ov7_0224D474(UnkStruct_ov7_0224D008 *param0)
 
     v0 = NARC_ctor(NARC_INDEX_GRAPHIC__SHOP_GRA, 11);
 
-    sub_020070E8(v0, 0, param0->unk_00, 1, 0, 0, 0, 11);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 0, param0->unk_00, 1, 0, 0, 0, 11);
 
     if ((param0->unk_2A9 == 0) || (param0->unk_2A9 == 3)) {
-        sub_0200710C(v0, 2, param0->unk_00, 1, 0, 0, 0, 11);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 2, param0->unk_00, 1, 0, 0, 0, 11);
     } else {
-        sub_0200710C(v0, 3, param0->unk_00, 1, 0, 0, 0, 11);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 3, param0->unk_00, 1, 0, 0, 0, 11);
     }
 
     if (param0->unk_2A9 == 3) {
-        sub_02007130(v0, 11, 0, 0, 32, 11);
+        Graphics_LoadPaletteFromOpenNARC(v0, 11, 0, 0, 32, 11);
     } else {
-        sub_02007130(v0, 1, 0, 0, 32, 11);
+        Graphics_LoadPaletteFromOpenNARC(v0, 1, 0, 0, 32, 11);
     }
 
     sub_0200DAA4(param0->unk_00, 3, (1 + (18 + 12)), 11, 0, 11);

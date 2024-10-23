@@ -140,7 +140,7 @@ static void ov43_022565B4(UnkStruct_ov43_02256544 *param0)
     };
     int v2;
 
-    sub_02006EC0(12, 64, 1, 0, 0, 1, 8);
+    Graphics_LoadObjectTiles(12, 64, 1, 0, 0, 1, 8);
     ov25_02255958(&param0->unk_60, 12, 62, 63, 8);
 
     for (v2 = 0; v2 < 6; v2++) {
@@ -242,8 +242,8 @@ static void ov43_02256700(SysTask *param0, void *param1)
 
     Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
 
-    v6 = sub_02006E3C(12, 61, v2->unk_04, 6, 0, 0, 1, 8);
-    sub_02006E60(12, 60, v2->unk_04, 6, 0, 0, 1, 8);
+    v6 = Graphics_LoadTilesToBgLayer(12, 61, v2->unk_04, 6, 0, 0, 1, 8);
+    Graphics_LoadTilemapToBgLayer(12, 60, v2->unk_04, 6, 0, 0, 1, 8);
     ov25_022546B8(0, 0);
 
     v6 /= 0x20;

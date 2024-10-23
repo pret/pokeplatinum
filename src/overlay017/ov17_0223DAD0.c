@@ -783,7 +783,7 @@ static void ov17_0223E67C(UnkStruct_ov17_0224DF54 *param0, NARC *param1)
 {
     int v0;
 
-    sub_020070E8(param1, 13, param0->unk_14.unk_60, 3, 0, 0, 1, 23);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 13, param0->unk_14.unk_60, 3, 0, 0, 1, 23);
 
     {
         int v1, v2;
@@ -791,7 +791,7 @@ static void ov17_0223E67C(UnkStruct_ov17_0224DF54 *param0, NARC *param1)
 
         ov17_0223E3CC(param0, &v1, &v2);
         v3 = ov17_0223F0BC(v2, 0);
-        sub_0200710C(param1, v3, param0->unk_14.unk_60, 3, 0, 0, 1, 23);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, v3, param0->unk_14.unk_60, 3, 0, 0, 1, 23);
     }
 
     PaletteData_LoadBufferFromFileStart(param0->unk_14.unk_90, 45, 32, 23, 0, 0, 0);

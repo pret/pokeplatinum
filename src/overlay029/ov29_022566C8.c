@@ -175,8 +175,8 @@ static void ov29_02256804(SysTask *param0, void *param1)
 
     GF_ASSERT(GF_heap_c_dummy_return_true(8));
 
-    sub_02006E3C(12, 30, v3->unk_04, 6, 0, 0, 1, 8);
-    sub_02006E60(12, 31, v3->unk_04, 6, 0, 0, 1, 8);
+    Graphics_LoadTilesToBgLayer(12, 30, v3->unk_04, 6, 0, 0, 1, 8);
+    Graphics_LoadTilemapToBgLayer(12, 31, v3->unk_04, 6, 0, 0, 1, 8);
     ov25_022546B8(0, 0);
 
     GF_ASSERT(GF_heap_c_dummy_return_true(8));
@@ -324,7 +324,7 @@ static void ov29_02256ABC(UnkStruct_ov29_022566C8 *param0)
         },
     };
 
-    sub_02006EC0(12, 32, 1, 0, 0, 1, 8);
+    Graphics_LoadObjectTiles(12, 32, 1, 0, 0, 1, 8);
 
     if (ov25_02255958(&param0->unk_54, 12, 33, 34, 8)) {
         int v1;

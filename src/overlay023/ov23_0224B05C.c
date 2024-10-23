@@ -1641,7 +1641,7 @@ static BOOL ov23_0224C790(TaskManager *param0)
         CommSys_EnableSendMovementData();
         sub_020594FC();
 
-        sub_02006E84(50, 52, 0, 10 * 0x20, 4 * 0x20, 4);
+        Graphics_LoadPalette(50, 52, 0, 10 * 0x20, 4 * 0x20, 4);
         sub_0200DAA4(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 2, 4);
 
         if (v1->unk_2D) {

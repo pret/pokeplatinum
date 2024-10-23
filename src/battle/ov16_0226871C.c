@@ -1093,7 +1093,7 @@ void *ov16_022687C8(NARC *param0, NARC *param1, BattleSystem *param2, int param3
                 v6 = Unk_ov16_02270264[v5];
             }
 
-            v4 = sub_02006F6C(7, v6, 1, &v3, 5);
+            v4 = Graphics_GetScrnData(7, v6, 1, &v3, 5);
 
             MI_CpuCopy32(v3->rawData, v0->unk_3C[v5], 0x800);
             Heap_FreeToHeap(v4);
@@ -1154,7 +1154,7 @@ void *ov16_022687C8(NARC *param0, NARC *param1, BattleSystem *param2, int param3
             v15 = 267;
         }
 
-        v14 = sub_02006F88(7, v15, &v13, 5);
+        v14 = Graphics_GetPlttData(7, v15, &v13, 5);
 
         if (BattleSystem_BattleType(param2) & 0x80) {
             MI_CpuCopy16(v13->pRawData, v0->unk_60, 0x40);
@@ -1221,7 +1221,7 @@ void ov16_02268A88(UnkStruct_ov16_02268A14 *param0)
             v5 = 28;
         }
 
-        sub_02006E3C(7, v5, v0, 4, 0, 0x6000, 1, 5);
+        Graphics_LoadTilesToBgLayer(7, v5, v0, 4, 0, 0x6000, 1, 5);
     }
 
     sub_0207C9EC(v1, v2, 20017, 20017);
@@ -1295,12 +1295,12 @@ void ov16_02268C04(NARC *param0, NARC *param1, UnkStruct_ov16_02268A14 *param2, 
             v6 = v0->unk_00;
         }
 
-        sub_020070E8(param0, v6, v3, 4, 0, (0x6000 - (32 * 12 * 0x20)), 1, 5);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param0, v6, v3, 4, 0, (0x6000 - (32 * 12 * 0x20)), 1, 5);
 
         if (param2->unk_66D == 0) {
-            sub_020070E8(param0, 37, v3, 4, ((0x6000 - (32 * 12 * 0x20)) / 0x20), (32 * 12 * 0x20), 1, 5);
+            Graphics_LoadTilesToBgLayerFromOpenNARC(param0, 37, v3, 4, ((0x6000 - (32 * 12 * 0x20)) / 0x20), (32 * 12 * 0x20), 1, 5);
         } else {
-            sub_020070E8(param0, 38, v3, 4, ((0x6000 - (32 * 12 * 0x20)) / 0x20), (32 * 12 * 0x20), 1, 5);
+            Graphics_LoadTilesToBgLayerFromOpenNARC(param0, 38, v3, 4, ((0x6000 - (32 * 12 * 0x20)) / 0x20), (32 * 12 * 0x20), 1, 5);
         }
     }
 
@@ -2034,7 +2034,7 @@ static void ov16_02269E94(UnkStruct_ov16_02268A14 *param0, int param1, int param
         NNSG2dScreenData *v3;
         void *v4;
 
-        v4 = sub_02006F6C(7, 46, 1, &v3, 5);
+        v4 = Graphics_GetScrnData(7, 46, 1, &v3, 5);
         MI_CpuCopy32(v3->rawData, param0->unk_3C[6], 0x800);
         Heap_FreeToHeap(v4);
 
@@ -2800,7 +2800,7 @@ void ov16_0226AC98(UnkStruct_ov16_02268A14 *param0, int param1, const UnkStruct_
     for (v4 = 0; v4 < 4; v4++) {
         if ((param2->unk_00[v4] != v0->unk_00.unk_00[v4]) && (param2->unk_00[v4] != 0)) {
             v5 = MoveTable_LoadParam(param2->unk_00[v4], MOVEATTRIBUTE_TYPE);
-            v1 = sub_02006F50(sub_0207C944(), sub_0207C908(v5), 1, &v2, 5);
+            v1 = Graphics_GetCharData(sub_0207C944(), sub_0207C908(v5), 1, &v2, 5);
             MI_CpuCopy32(v2->pRawData, v0->unk_18[v4], v3);
             Heap_FreeToHeap(v1);
         }

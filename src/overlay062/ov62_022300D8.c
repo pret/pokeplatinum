@@ -50,25 +50,25 @@ void ov62_022300D8(UnkStruct_0208C06C *param0)
     PaletteData *v4 = param0->unk_14.unk_14;
 
     if (param0->unk_00 == 0) {
-        sub_020070E8(v0, 67, v1, 1, 0, 0, 0, 102);
-        sub_020070E8(v0, 67, v1, 5, 0, 0, 0, 102);
-        sub_0200710C(v0, 69, v1, 5, 0, 0, 0, 102);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 67, v1, 1, 0, 0, 0, 102);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 67, v1, 5, 0, 0, 0, 102);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 69, v1, 5, 0, 0, 0, 102);
         PaletteData_LoadBufferFromFileStart(v4, 162, ov62_02231710(param0, 3), 102, 0, 0x20 * (8 + 1), 0);
         PaletteData_LoadBufferFromFileStart(v4, 162, ov62_02231710(param0, 3), 102, 1, 0x20 * (8 + 1), 0);
         PaletteData_LoadBufferFromFileStart(v4, 162, ov62_02231710(param0, 0), 102, 0, 0x20, 14 * 16);
         PaletteData_LoadBufferFromFileStart(v4, 162, ov62_02231710(param0, 0), 102, 1, 0x20, 14 * 16);
     } else {
-        sub_020070E8(v0, 54, v1, 1, 0, 0, 0, 102);
-        sub_020070E8(v0, 54, v1, 5, 0, 0, 0, 102);
-        sub_0200710C(v0, 55, v1, 5, 0, 0, 0, 102);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 54, v1, 1, 0, 0, 0, 102);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 54, v1, 5, 0, 0, 0, 102);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 55, v1, 5, 0, 0, 0, 102);
         PaletteData_LoadBufferFromFileStart(v4, 162, 53, 102, 0, 0x20 * (8 + 1), 0);
         PaletteData_LoadBufferFromFileStart(v4, 162, 53, 102, 1, 0x20 * (8 + 1), 0);
         PaletteData_LoadBufferFromFileStart(v4, 162, 52, 102, 0, 0x20, 14 * 16);
         PaletteData_LoadBufferFromFileStart(v4, 162, 52, 102, 1, 0x20, 14 * 16);
     }
 
-    sub_0200710C(v0, 70, v1, 5, 0, 0, 0, 102);
-    sub_0200710C(v0, 70, v1, 1, 0, 0, 0, 102);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 70, v1, 5, 0, 0, 0, 102);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 70, v1, 1, 0, 0, 0, 102);
     PaletteData_BlendMulti(v4, 1, 0x2, 16, param0->unk_14.unk_44);
 }
 
@@ -85,8 +85,8 @@ void ov62_022302A8(UnkStruct_0208C06C *param0, int param1, BOOL param2)
         v5 = 0;
     }
 
-    sub_020070E8(v0, 45, v1, param1, 0, 0, 0, 102);
-    sub_0200710C(v0, v5, v1, param1, 0, 0, 0, 102);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 45, v1, param1, 0, 0, 0, 102);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, v5, v1, param1, 0, 0, 0, 102);
 }
 
 void ov62_022302F0(UnkStruct_0208C06C *param0, int param1)
@@ -98,8 +98,8 @@ void ov62_022302F0(UnkStruct_0208C06C *param0, int param1)
     PaletteData *v4 = param0->unk_14.unk_14;
     int v5 = 1;
 
-    sub_020070E8(v0, 45, v1, param1, 0, 0, 0, 102);
-    sub_0200710C(v0, v5, v1, param1, 0, 0, 0, 102);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 45, v1, param1, 0, 0, 0, 102);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, v5, v1, param1, 0, 0, 0, 102);
 }
 
 void ov62_02230330(UnkStruct_0208C06C *param0)

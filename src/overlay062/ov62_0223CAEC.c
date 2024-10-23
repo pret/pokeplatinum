@@ -1098,10 +1098,10 @@ static BOOL ov62_0223DAE8 (UnkStruct_0208C06C * param0)
 
     switch (param0->unk_08) {
     case 0:
-        sub_020070E8(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
-        sub_020070E8(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
-        sub_0200710C(param0->unk_14.unk_00, 33, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
-        sub_0200710C(param0->unk_14.unk_00, 34, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, 33, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, 34, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
 
         ov62_0223D004(param0);
         ov62_0223D160(param0);

@@ -62,7 +62,7 @@ static void ov5_021F007C(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
 {
     UnkStruct_ov5_021F007C *v0 = param2;
 
-    v0->unk_00 = sub_02006F88(65, 55, &v0->unk_04, 4);
+    v0->unk_00 = Graphics_GetPlttData(65, 55, &v0->unk_04, 4);
     v0->unk_3C = 0;
 
     ov5_021F02B8(&v0->unk_28, 0, 8, 19);
@@ -76,7 +76,7 @@ static void ov5_021F00BC(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
 {
     UnkStruct_ov5_021F007C *v0 = param2;
 
-    v0->unk_00 = sub_02006F88(65, 55, &v0->unk_04, 4);
+    v0->unk_00 = Graphics_GetPlttData(65, 55, &v0->unk_04, 4);
     v0->unk_3C = 0;
 
     ov5_021F02B8(&v0->unk_28, 8, 0, 19);

@@ -358,22 +358,22 @@ static void ov95_0224AE1C(UnkStruct_ov95_0224AC64 *param0)
         OS_RestoreInterrupts(v6);
     }
 
-    sub_02006E3C(93, 2, param0->unk_0C, 2, 0, 0, 1, 58);
-    sub_02006E3C(93, 2, param0->unk_0C, 6, 0, 0, 1, 58);
-    sub_02006E60(93, 1, param0->unk_0C, 2, 0, 0, 1, 58);
-    sub_02006E60(93, 1, param0->unk_0C, 6, 0, 0, 1, 58);
+    Graphics_LoadTilesToBgLayer(93, 2, param0->unk_0C, 2, 0, 0, 1, 58);
+    Graphics_LoadTilesToBgLayer(93, 2, param0->unk_0C, 6, 0, 0, 1, 58);
+    Graphics_LoadTilemapToBgLayer(93, 1, param0->unk_0C, 2, 0, 0, 1, 58);
+    Graphics_LoadTilemapToBgLayer(93, 1, param0->unk_0C, 6, 0, 0, 1, 58);
 
     v5 = ov95_02247644(param0->unk_00);
 
-    sub_02006E84(93, 3, 0, 0, 0x20, 58);
-    sub_02006E84(93, 3, 4, 0, 0x20, 58);
-    sub_02006E9C(93, 3, 0, v4[v5], 0x20, 0x40, 58);
-    sub_02006E9C(93, 3, 4, v4[v5], 0x20, 0x40, 58);
+    Graphics_LoadPalette(93, 3, 0, 0, 0x20, 58);
+    Graphics_LoadPalette(93, 3, 4, 0, 0x20, 58);
+    Graphics_LoadPaletteWithSrcOffset(93, 3, 0, v4[v5], 0x20, 0x40, 58);
+    Graphics_LoadPaletteWithSrcOffset(93, 3, 4, v4[v5], 0x20, 0x40, 58);
 
-    sub_02006E3C(93, 5, param0->unk_0C, 3, 0, 0, 1, 58);
-    sub_02006E3C(93, 5, param0->unk_0C, 7, 0, 0, 1, 58);
-    sub_02006E60(93, 4, param0->unk_0C, 3, 0, 0, 1, 58);
-    sub_02006E60(93, 4, param0->unk_0C, 7, 0, 0, 1, 58);
+    Graphics_LoadTilesToBgLayer(93, 5, param0->unk_0C, 3, 0, 0, 1, 58);
+    Graphics_LoadTilesToBgLayer(93, 5, param0->unk_0C, 7, 0, 0, 1, 58);
+    Graphics_LoadTilemapToBgLayer(93, 4, param0->unk_0C, 3, 0, 0, 1, 58);
+    Graphics_LoadTilemapToBgLayer(93, 4, param0->unk_0C, 7, 0, 0, 1, 58);
 
     {
         u8 *v7 = Heap_AllocFromHeap(58, 96);

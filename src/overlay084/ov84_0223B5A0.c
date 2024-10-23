@@ -816,21 +816,21 @@ static void ov84_0223BC1C(UnkStruct_ov84_0223B5A0 *param0)
 {
     param0->unk_D4 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_BAG_GRA, 6);
 
-    sub_020070E8(param0->unk_D4, 11, param0->unk_00, 1, 0, 0, 0, 6);
-    sub_0200710C(param0->unk_D4, 14, param0->unk_00, 1, 0, 0, 0, 6);
-    sub_0200710C(param0->unk_D4, 13, param0->unk_00, 3, 0, 0, 0, 6);
-    sub_02007130(param0->unk_D4, 12, 0, 0, 0, 6);
-    sub_02007130(param0->unk_D4, 22, 0, 16 * 13 * 2, 32, 6);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_D4, 11, param0->unk_00, 1, 0, 0, 0, 6);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_D4, 14, param0->unk_00, 1, 0, 0, 0, 6);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_D4, 13, param0->unk_00, 3, 0, 0, 0, 6);
+    Graphics_LoadPaletteFromOpenNARC(param0->unk_D4, 12, 0, 0, 0, 6);
+    Graphics_LoadPaletteFromOpenNARC(param0->unk_D4, 22, 0, 16 * 13 * 2, 32, 6);
     Font_LoadScreenIndicatorsPalette(0, 11 * 32, 6);
     sub_0200DAA4(param0->unk_00, 0, 1024 - 9, 14, 0, 6);
     sub_0200DD0C(param0->unk_00, 0, 1024 - 9 - (18 + 12), 12, Options_Frame(param0->unk_D0), 6);
-    sub_020070E8(param0->unk_D4, 15, param0->unk_00, 5, 0, 0, 0, 6);
-    sub_02007130(param0->unk_D4, 16, 4, 0, 0, 6);
-    sub_0200710C(param0->unk_D4, 17, param0->unk_00, 5, 0, 0, 0, 6);
-    sub_020070E8(param0->unk_D4, 32, param0->unk_00, 7, 0, 0, 0, 6);
-    sub_0200710C(param0->unk_D4, 33, param0->unk_00, 7, 0, 0, 0, 6);
-    sub_020070E8(param0->unk_D4, 19, param0->unk_00, 4, 0, 0, 0, 6);
-    sub_02007130(param0->unk_D4, 18, 4, 16 * 2 * 2, 0x20 * 2, 6);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_D4, 15, param0->unk_00, 5, 0, 0, 0, 6);
+    Graphics_LoadPaletteFromOpenNARC(param0->unk_D4, 16, 4, 0, 0, 6);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_D4, 17, param0->unk_00, 5, 0, 0, 0, 6);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_D4, 32, param0->unk_00, 7, 0, 0, 0, 6);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_D4, 33, param0->unk_00, 7, 0, 0, 0, 6);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_D4, 19, param0->unk_00, 4, 0, 0, 0, 6);
+    Graphics_LoadPaletteFromOpenNARC(param0->unk_D4, 18, 4, 16 * 2 * 2, 0x20 * 2, 6);
 }
 
 static void ov84_0223BDB4(UnkStruct_ov84_0223B5A0 *param0)

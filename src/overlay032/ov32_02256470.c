@@ -177,7 +177,7 @@ static void ov32_02256588(SysTask *param0, void *param1)
     v2 = ov25_0225523C(param1);
     Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
 
-    v3 = sub_02006E3C(12, 106, v2->unk_04, 6, 0, 0, 1, 8);
+    v3 = Graphics_LoadTilesToBgLayer(12, 106, v2->unk_04, 6, 0, 0, 1, 8);
     v3 /= 0x20;
 
     Bg_FillTilemapRect(v2->unk_04, 6, 0x5, 0, 0, 32, 24, 0);
@@ -278,7 +278,7 @@ static void ov32_02256898(UnkStruct_ov32_02256470 *param0, const UnkStruct_ov32_
     int v0;
     UnkStruct_ov25_02255810 v1;
 
-    sub_02006EC0(12, 109, 1, 0 * 0x20, 0, 1, 8);
+    Graphics_LoadObjectTiles(12, 109, 1, 0 * 0x20, 0, 1, 8);
 
     v1.unk_0A = 0;
     v1.unk_0B = 2;

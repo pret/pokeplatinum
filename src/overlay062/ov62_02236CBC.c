@@ -139,8 +139,8 @@ static void ov62_02236E14(UnkStruct_0208C06C *param0)
     SpriteGfxHandler *v4 = param0->unk_14.unk_08;
     PaletteData *v5 = param0->unk_14.unk_14;
 
-    sub_020070E8(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 6, 0, 0, 0, 102);
-    sub_0200710C(v1, 68, v2, 6, 0, 0, 0, 102);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 6, 0, 0, 0, 102);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 68, v2, 6, 0, 0, 0, 102);
     SpriteRenderer_LoadPalette(v5, 3, v3, v4, v1, ov62_02231710(param0, 0), 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 29292);
     SpriteRenderer_LoadCharResObjFromOpenNarc(v3, v4, v1, 66, 0, NNS_G2D_VRAM_TYPE_2DSUB, 29292);
     SpriteRenderer_LoadCellResObjFromOpenNarc(v3, v4, v1, 71, 0, 29292);

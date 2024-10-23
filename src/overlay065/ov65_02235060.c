@@ -637,9 +637,9 @@ static void ov65_0223591C(BgConfig *param0)
 
 static void ov65_02235920(BgConfig *param0, u32 param1, NARC *param2)
 {
-    sub_02007130(param2, 30, 0, 0, 8 * 32, param1);
+    Graphics_LoadPaletteFromOpenNARC(param2, 30, 0, 0, 8 * 32, param1);
     Bg_MaskPalette(0, 0);
-    sub_020070E8(param2, 29, param0, 0, 0, 0, 0, param1);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param2, 29, param0, 0, 0, 0, 0, param1);
 }
 
 static void ov65_02235960(UnkStruct_ov65_022358CC *param0, u32 param1, NARC *param2)
@@ -1159,7 +1159,7 @@ static void ov65_022362B0(UnkStruct_ov65_02235130 *param0, UnkStruct_ov65_022363
 {
     memset(param1, 0, sizeof(UnkStruct_ov65_02236318));
 
-    param1->unk_00 = sub_020071EC(param2, 31, &param1->unk_04, param0->unk_04);
+    param1->unk_00 = Graphics_GetPlttDataFromOpenNARC(param2, 31, &param1->unk_04, param0->unk_04);
     param1->unk_08 = (1 << 0) | (1 << 1) | (1 << 2) | (1 << 3);
     param1->unk_09 = 0;
     param1->unk_0A = Unk_ov65_02238BC8[param1->unk_09];

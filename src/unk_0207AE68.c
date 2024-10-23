@@ -886,8 +886,8 @@ static void sub_0207C1CC(UnkStruct_0207AE68 *param0, BgConfig *param1)
         v4 = Options_Frame(param0->unk_2C);
 
         sub_0200E218(param1, 1, 1, 10, v4, param0->unk_5C);
-        sub_02006E3C(v5, v6, param1, v9, 0, 0, 1, param0->unk_5C);
-        sub_02006E60(v5, v7, param1, v9, 0, 0, 1, param0->unk_5C);
+        Graphics_LoadTilesToBgLayer(v5, v6, param1, v9, 0, 0, 1, param0->unk_5C);
+        Graphics_LoadTilemapToBgLayer(v5, v7, param1, v9, 0, 0, 1, param0->unk_5C);
         PaletteData_LoadBufferFromFileStart(param0->unk_14, v5, v8, param0->unk_5C, 0, 0x20 * 2, 0);
         PaletteData_LoadBufferFromFileStart(param0->unk_14, 38, sub_0200DD08(v4), param0->unk_5C, 0, 0x20, 10 * 0x10);
         PaletteData_LoadBufferFromFileStart(param0->unk_14, 14, 7, param0->unk_5C, 0, 0x20, 0xb * 0x10);
@@ -902,8 +902,8 @@ static void sub_0207C1CC(UnkStruct_0207AE68 *param0, BgConfig *param1)
         int v13 = 12;
         int v14 = 4;
 
-        sub_02006E3C(v10, v11, param1, v14, 0, 0, 1, param0->unk_5C);
-        sub_02006E60(v10, v12, param1, v14, 0, 0, 1, param0->unk_5C);
+        Graphics_LoadTilesToBgLayer(v10, v11, param1, v14, 0, 0, 1, param0->unk_5C);
+        Graphics_LoadTilemapToBgLayer(v10, v12, param1, v14, 0, 0, 1, param0->unk_5C);
         PaletteData_LoadBufferFromFileStart(param0->unk_14, v10, v13, param0->unk_5C, 1, 0x20 * 1, 0);
     }
 

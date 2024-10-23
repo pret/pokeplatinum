@@ -612,8 +612,8 @@ static void ov17_0224FE68(UnkStruct_ov17_0224FCA0 *param0)
 
 static void ov17_0224FE70(UnkStruct_ov17_0224FCA0 *param0)
 {
-    sub_02006E3C(45, 19, param0->unk_10.unk_20, 4, 0, 0, 1, 24);
-    sub_02006E60(45, 20, param0->unk_10.unk_20, 4, 0, 0, 1, 24);
+    Graphics_LoadTilesToBgLayer(45, 19, param0->unk_10.unk_20, 4, 0, 0, 1, 24);
+    Graphics_LoadTilemapToBgLayer(45, 20, param0->unk_10.unk_20, 4, 0, 0, 1, 24);
     PaletteData_LoadBufferFromFileStart(param0->unk_10.unk_C0, 45, 34, 24, 1, 0, 0);
 }
 

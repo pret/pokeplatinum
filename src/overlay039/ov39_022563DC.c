@@ -111,8 +111,8 @@ static void ov39_02256468(SysTask *param0, void *param1)
     v3 = ov25_02255240(param1);
 
     Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
-    sub_02006E3C(12, 59, v2->unk_04, 6, 0, 0, 1, 8);
-    sub_02006E60(12, 58, v2->unk_04, 6, 0, 0, 1, 8);
+    Graphics_LoadTilesToBgLayer(12, 59, v2->unk_04, 6, 0, 0, 1, 8);
+    Graphics_LoadTilemapToBgLayer(12, 58, v2->unk_04, 6, 0, 0, 1, 8);
 
     ov25_022546B8(0, 0);
 

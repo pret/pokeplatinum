@@ -391,8 +391,8 @@ void ov117_02263AF0(BgConfig *param0, int param1, int param2, UnkStruct_ov117_02
 
     v0 = NARC_ctor(NARC_INDEX_APPLICATION__BALLOON__GRAPHIC__BALLOON_GRA, 110);
 
-    sub_020070E8(v0, Unk_ov117_02266BEC[param2].unk_00, param0, 7, 0, 0, 0, 110);
-    sub_0200710C(v0, Unk_ov117_02266BEC[param2].unk_02, param0, 7, 0, 0, 0, 110);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, Unk_ov117_02266BEC[param2].unk_00, param0, 7, 0, 0, 0, 110);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, Unk_ov117_02266BEC[param2].unk_02, param0, 7, 0, 0, 0, 110);
     NARC_dtor(v0);
 
     MI_CpuClear8(param3, sizeof(UnkStruct_ov117_02263DAC));

@@ -181,7 +181,7 @@ BOOL ov19_021D61B0(UnkStruct_ov19_021D61B0 **param0, const UnkStruct_ov19_021D4D
 
             NNS_G2dInitImagePaletteProxy(&(v0->unk_1A8));
 
-            sub_0200716C(v3, 26, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 10, &(v0->unk_1A8));
+            Graphics_LoadPartialPaletteFromOpenNARC(v3, 26, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 10, &(v0->unk_1A8));
             Font_UseImmediateGlyphAccess(FONT_SYSTEM, 10);
 
             v0->unk_1BC = sub_0200762C(10);
@@ -1795,14 +1795,14 @@ static void ov19_021D74B4(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_
 
 static void ov19_021D75CC(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_021D4DF0 *param1, NARC *param2)
 {
-    sub_020070E8(param2, 4, param0->unk_1C0, 1, 0, 0, 1, 10);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param2, 4, param0->unk_1C0, 1, 0, 0, 1, 10);
     Bg_FillTilemapRect(param0->unk_1C0, 1, 0x0, 0, 0, 32, 32, 17);
     Bg_CopyTilemapBufferToVRAM(param0->unk_1C0, 1);
-    sub_020070E8(param2, 1, param0->unk_1C0, 2, 0, 0, 1, 10);
-    sub_02007130(param2, 5, 0, 0, 0x20 * 7, 10);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param2, 1, param0->unk_1C0, 2, 0, 0, 1, 10);
+    Graphics_LoadPaletteFromOpenNARC(param2, 5, 0, 0, 0x20 * 7, 10);
 
     if (ov19_021D5E08(param1) != 4) {
-        sub_0200710C(param2, 0, param0->unk_1C0, 2, 0, 0, 1, 10);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param2, 0, param0->unk_1C0, 2, 0, 0, 1, 10);
     }
 
     ov19_021D7A9C(&param0->unk_494);

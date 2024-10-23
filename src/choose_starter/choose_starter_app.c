@@ -671,7 +671,7 @@ static void MakeMessageWindow(ChooseStarterApp *app, enum HeapId heapID)
 
     Window_FillTilemap(app->messageWindow, 15);
     sub_0200DD0C(app->bgl, BG_LAYER_MAIN_1, FRAME_TEXT_START, FRAME_TEXT_PALETTE_INDEX, app->messageFrame, heapID);
-    sub_02006E84(NARC_INDEX_GRAPHIC__EV_POKESELECT, 16, 0, FRAME_PALETTE_INDEX * 32, 32, heapID);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__EV_POKESELECT, 16, 0, FRAME_PALETTE_INDEX * 32, 32, heapID);
     sub_0200E060(app->messageWindow, 0, FRAME_TEXT_START, FRAME_TEXT_PALETTE_INDEX);
 }
 
@@ -1546,8 +1546,8 @@ static void MakePreviewWindow(StarterPreviewWindow *param0, ChooseStarterApp *pa
     UnkStruct_ov22_02255800 v1;
     UnkStruct_ov21_021E7F40 v2;
 
-    param0->unk_0C = sub_02006F50(82, 14, 0, &param0->unk_14, param2);
-    param0->unk_10 = sub_02006F88(82, 15, &param0->unk_18, param2);
+    param0->unk_0C = Graphics_GetCharData(82, 14, 0, &param0->unk_14, param2);
+    param0->unk_10 = Graphics_GetPlttData(82, 15, &param0->unk_18, param2);
 
     v0.unk_00 = param1->spriteDisplay;
     v0.unk_04 = param0->unk_14;
@@ -1730,7 +1730,7 @@ static void MakeSubplaneWindow(ChooseStarterApp *param0, int param1)
     int v0;
     int v1, v2;
 
-    sub_02006E84(82, 17, 0, 5 * 32, 32, param1);
+    Graphics_LoadPalette(82, 17, 0, 5 * 32, 32, param1);
 
     for (v0 = 0; v0 < 3; v0++) {
         param0->unk_9C[v0] = Window_New(param1, 1);

@@ -714,10 +714,10 @@ void ov5_021DE3D0(NARC *param0, u32 param1, u32 param2, u32 param3, u32 param4, 
     void *v0;
     NNSG2dScreenData *v1;
 
-    sub_02007130(param0, param3, 0, param4 * 32, param5 * 32, 4);
-    sub_020070E8(param0, param2, param6, param7, 0, 0, 0, 4);
+    Graphics_LoadPaletteFromOpenNARC(param0, param3, 0, param4 * 32, param5 * 32, 4);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0, param2, param6, param7, 0, 0, 0, 4);
 
-    v0 = sub_020071D0(param0, param1, 0, &v1, 4);
+    v0 = Graphics_GetScrnDataFromOpenNARC(param0, param1, 0, &v1, 4);
 
     Bg_LoadToTilemapRect(param6, param7, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Bg_ChangeTilemapRectPalette(param6, param7, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8, param4);
@@ -781,7 +781,7 @@ void ov5_021DE5D0(CellActor *param0, u32 param1, u32 param2, u8 param3, u16 para
 
     sub_02076AAC(param2, 2, &v0);
     v3 = Heap_AllocFromHeap(param1, 32);
-    v2 = sub_02006F88(v0.unk_00, v0.unk_08, &v1, param1);
+    v2 = Graphics_GetPlttData(v0.unk_00, v0.unk_08, &v1, param1);
     BlendPalette(v1->pRawData, v3, 16, param3, param4);
 
     ov5_021DE67C(param0, v3, 32);

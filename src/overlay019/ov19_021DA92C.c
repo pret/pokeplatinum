@@ -74,11 +74,11 @@ BOOL ov19_021DA92C(UnkStruct_ov19_021DA9E0 *param0, UnkStruct_ov19_021D61B0 *par
     param0->unk_20 = ov19_021D7818(param1);
     param0->unk_18 = sub_0200C440(9, 6, 15, 10);
     param0->unk_1C = sub_0200C440(1, 2, 15, 10);
-    param0->unk_28 = sub_02007204(param6, 16, 1, &(param0->unk_2C), 10);
+    param0->unk_28 = Graphics_GetCellBankFromOpenNARC(param6, 16, 1, &(param0->unk_2C), 10);
     param0->unk_30 = NULL;
     param0->unk_44 = MessageLoader_GetNewStrbuf(param5, 21);
     param0->unk_48 = MessageLoader_GetNewStrbuf(param5, 22);
-    param0->unk_34 = sub_02006FA0(sub_0207C944(), sub_0207C924(), 1, &(param0->unk_38), 10);
+    param0->unk_34 = Graphics_GetCellBank(sub_0207C944(), sub_0207C924(), 1, &(param0->unk_38), 10);
 
     for (v0 = 0; v0 < 2; v0++) {
         param0->unk_3C[v0] = NULL;
@@ -218,11 +218,11 @@ static void ov19_021DAB44(UnkStruct_ov19_021DA9E0 *param0)
     v2 = sub_0207C944();
     v3 = sub_0207C908(2);
 
-    sub_02006E84(v2, sub_0207C920(), 1, 10 * 0x20, 0x20 * 3, 10);
+    Graphics_LoadPalette(v2, sub_0207C920(), 1, 10 * 0x20, 0x20 * 3, 10);
 
     for (v4 = 0; v4 < 2; v4++) {
         NNS_G2dInitImageProxy(&v0);
-        sub_02006F28(v2, v3, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, (1504 + (8 * v4)) * 0x20, 10, &v0);
+        Graphics_LoadImageMappingAndSetVramMode(v2, v3, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, (1504 + (8 * v4)) * 0x20, 10, &v0);
         ov19_021D783C(&v1, &v0, ov19_021D77D0(param0->unk_14), param0->unk_38, NULL, 3);
 
         param0->unk_3C[v4] = ov19_021D785C(param0->unk_0C, &v1, 24 + 36 * v4, 176, 46, NNS_G2D_VRAM_TYPE_2DMAIN);
@@ -233,7 +233,7 @@ static void ov19_021DAB44(UnkStruct_ov19_021DA9E0 *param0)
 
     NNS_G2dInitImageProxy(&v0);
 
-    sub_02006F00(18, 15, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1480 * 0x20, 10, &v0);
+    Graphics_LoadImageMapping(18, 15, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1480 * 0x20, 10, &v0);
     ov19_021D783C(&v1, &v0, ov19_021D77D0(param0->unk_14), param0->unk_2C, NULL, 3);
 
     param0->unk_30 = ov19_021D785C(param0->unk_0C, &v1, 56, 176, 47, NNS_G2D_VRAM_TYPE_2DMAIN);
@@ -416,7 +416,7 @@ static void ov19_021DAE60(Window *param0, UnkStruct_ov19_021DA9E0 *param1, u32 p
         v3 = sub_0207C944();
         v4 = sub_0207C908(param1->unk_10->unk_4C.unk_0C);
 
-        sub_02006EC0(sub_0207C944(), sub_0207C908(param1->unk_10->unk_4C.unk_0C), 0, 1504 * 0x20, 0, 1, 10);
+        Graphics_LoadObjectTiles(sub_0207C944(), sub_0207C908(param1->unk_10->unk_4C.unk_0C), 0, 1504 * 0x20, 0, 1, 10);
 
         v2 = *CellActor_GetPosition(param1->unk_3C[0]);
         v2.y = (176 + (16 * param3)) << FX32_SHIFT;
@@ -426,7 +426,7 @@ static void ov19_021DAE60(Window *param0, UnkStruct_ov19_021DA9E0 *param1, u32 p
         CellActor_SetDrawFlag(param1->unk_3C[0], 1);
 
         if (param1->unk_10->unk_4C.unk_0C != param1->unk_10->unk_4C.unk_0D) {
-            sub_02006EC0(sub_0207C944(), sub_0207C908(param1->unk_10->unk_4C.unk_0D), 0, (1504 + 8) * 0x20, 0, 1, 10);
+            Graphics_LoadObjectTiles(sub_0207C944(), sub_0207C908(param1->unk_10->unk_4C.unk_0D), 0, (1504 + 8) * 0x20, 0, 1, 10);
 
             v2.x += (36 << FX32_SHIFT);
 

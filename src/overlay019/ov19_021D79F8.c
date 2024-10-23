@@ -174,7 +174,7 @@ static void ov19_021D7BC0(UnkStruct_ov19_021D8318 *param0, const UnkStruct_ov19_
     NNSG2dPaletteData *v0;
     void *v1;
 
-    v1 = sub_02006F88(18, Unk_ov19_021E0178[param1->unk_01].unk_02, &v0, 10);
+    v1 = Graphics_GetPlttData(18, Unk_ov19_021E0178[param1->unk_01].unk_02, &v0, 10);
 
     if (v1) {
         int v2;

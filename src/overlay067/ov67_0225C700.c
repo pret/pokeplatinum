@@ -587,12 +587,12 @@ static void ov67_0225CE30(UnkStruct_ov67_0225D154 *param0, u32 param1)
     }
 
     {
-        sub_02006E84(92, 3, 0, 0, 11 * 32, param1);
-        sub_02006E84(92, 3, 4, 0, 11 * 32, param1);
-        sub_02006E3C(92, 2, param0->unk_0C, Unk_ov67_0225D3F4[0], 0, 0, 0, param1);
-        sub_02006E3C(92, 10, param0->unk_0C, Unk_ov67_0225D3F4[2], 0, 0, 0, param1);
-        sub_02006E60(92, 5, param0->unk_0C, Unk_ov67_0225D3F4[0], 0, 0, 0, param1);
-        sub_02006E60(92, 11, param0->unk_0C, Unk_ov67_0225D3F4[2], 0, 0, 0, param1);
+        Graphics_LoadPalette(92, 3, 0, 0, 11 * 32, param1);
+        Graphics_LoadPalette(92, 3, 4, 0, 11 * 32, param1);
+        Graphics_LoadTilesToBgLayer(92, 2, param0->unk_0C, Unk_ov67_0225D3F4[0], 0, 0, 0, param1);
+        Graphics_LoadTilesToBgLayer(92, 10, param0->unk_0C, Unk_ov67_0225D3F4[2], 0, 0, 0, param1);
+        Graphics_LoadTilemapToBgLayer(92, 5, param0->unk_0C, Unk_ov67_0225D3F4[0], 0, 0, 0, param1);
+        Graphics_LoadTilemapToBgLayer(92, 11, param0->unk_0C, Unk_ov67_0225D3F4[2], 0, 0, 0, param1);
     }
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);

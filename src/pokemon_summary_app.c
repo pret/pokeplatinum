@@ -460,16 +460,16 @@ static void sub_0208C76C(BgConfig *param0)
 
 static void sub_0208C7AC(PokemonSummaryApp *param0, NARC *param1)
 {
-    sub_020070E8(param1, 0, param0->bgl, 3, 0, 0, 0, 19);
-    sub_0200710C(param1, 3, param0->bgl, 3, 0, 0, 0, 19);
-    sub_02007130(param1, 1, 0, 0, 0, 19);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 0, param0->bgl, 3, 0, 0, 0, 19);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 3, param0->bgl, 3, 0, 0, 0, 19);
+    Graphics_LoadPaletteFromOpenNARC(param1, 1, 0, 0, 0, 19);
 
-    sub_0200710C(param1, 11, param0->bgl, 2, 0, 0, 0, 19);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 11, param0->bgl, 2, 0, 0, 0, 19);
 
-    sub_020070E8(param1, 2, param0->bgl, 4, 0, 0, 0, 19);
-    sub_020070E8(param1, 16, param0->bgl, 5, 0, 0, 0, 19);
-    sub_0200710C(param1, 15, param0->bgl, 5, 0, 0, 0, 19);
-    sub_02007130(param1, 14, 4, 0, 0, 19);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, param0->bgl, 4, 0, 0, 0, 19);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 16, param0->bgl, 5, 0, 0, 0, 19);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 15, param0->bgl, 5, 0, 0, 0, 19);
+    Graphics_LoadPaletteFromOpenNARC(param1, 14, 4, 0, 0, 19);
 }
 
 static void sub_0208C86C(void)

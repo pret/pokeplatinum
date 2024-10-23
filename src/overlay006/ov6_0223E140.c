@@ -2060,9 +2060,9 @@ UnkStruct_ov6_022401B8 *ov6_02240104(u32 param0, FieldSystem *fieldSystem)
     {
         BgConfig *v1 = sub_0203D170(v0->fieldSystem);
 
-        sub_02006E3C(172, 74, v1, 2, 0, 0, 0, param0);
-        sub_02006E60(172, 76, v1, 2, 0, 0, 0, param0);
-        sub_02006E84(172, 75, 0, 0x20 * 6, 0x20, param0);
+        Graphics_LoadTilesToBgLayer(172, 74, v1, 2, 0, 0, 0, param0);
+        Graphics_LoadTilemapToBgLayer(172, 76, v1, 2, 0, 0, 0, param0);
+        Graphics_LoadPalette(172, 75, 0, 0x20 * 6, 0x20, param0);
         Bg_SetPriority(2, 1);
 
         v0->unk_34.unk_00 = 0;

@@ -320,11 +320,11 @@ static void ov20_021D2370(UnkStruct_ov20_021D2238 *param0, NARC *param1)
     NNS_G2dInitImageProxy(&(v0->unk_1B4[0]));
     NNS_G2dInitImageProxy(&(v0->unk_1B4[1]));
 
-    sub_0200718C(param1, 9, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 35, &(v0->unk_1B4[0]));
-    sub_0200716C(param1, 10, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 35, &(v0->unk_1FC[0]));
+    Graphics_LoadImageMappingFromOpenNARC(param1, 9, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 35, &(v0->unk_1B4[0]));
+    Graphics_LoadPartialPaletteFromOpenNARC(param1, 10, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 35, &(v0->unk_1FC[0]));
 
-    v0->unk_234[0] = sub_02007204(param1, 7, 1, &(v0->unk_224[0]), 35);
-    v0->unk_23C[0] = sub_02007220(param1, 8, 1, &(v0->unk_22C[0]), 35);
+    v0->unk_234[0] = Graphics_GetCellBankFromOpenNARC(param1, 7, 1, &(v0->unk_224[0]), 35);
+    v0->unk_23C[0] = Graphics_GetAnimBankFromOpenNARC(param1, 8, 1, &(v0->unk_22C[0]), 35);
     v0->unk_234[1] = NULL;
     v0->unk_23C[1] = NULL;
 }

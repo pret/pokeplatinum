@@ -1109,16 +1109,16 @@ void ov76_0223CE84(UnkStruct_ov76_0223DE00 *param0, NARC *param1)
     int v3 = 288;
     int v4 = 2;
 
-    sub_020070E8(param1, v1, param0->unk_D4.unk_10, v4, 0, 0, 1, 53);
-    sub_0200710C(param1, v2, param0->unk_D4.unk_10, v4, 0, 0, 1, 53);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, v1, param0->unk_D4.unk_10, v4, 0, 0, 1, 53);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, v2, param0->unk_D4.unk_10, v4, 0, 0, 1, 53);
     PaletteData_LoadBufferFromFileStart(param0->unk_D4.unk_14, v0, v3, 53, 0, 0x20 * 2, 0);
 
     v1 = 269;
     v2 = 285;
     v4 = 3;
 
-    sub_020070E8(param1, v1, param0->unk_D4.unk_10, v4, 0, 0, 1, 53);
-    sub_0200710C(param1, v2, param0->unk_D4.unk_10, v4, 0, 0, 1, 53);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, v1, param0->unk_D4.unk_10, v4, 0, 0, 1, 53);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, v2, param0->unk_D4.unk_10, v4, 0, 0, 1, 53);
 }
 
 void ov76_0223CF24(UnkStruct_ov76_0223DE00 *param0, NARC *param1)
@@ -1129,8 +1129,8 @@ void ov76_0223CF24(UnkStruct_ov76_0223DE00 *param0, NARC *param1)
     int v3 = 287;
     int v4 = 5;
 
-    sub_020070E8(param1, v1, param0->unk_D4.unk_10, v4, 0, 0, 1, 53);
-    sub_0200710C(param1, v2, param0->unk_D4.unk_10, v4, 0, 0, 1, 53);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, v1, param0->unk_D4.unk_10, v4, 0, 0, 1, 53);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, v2, param0->unk_D4.unk_10, v4, 0, 0, 1, 53);
     PaletteData_LoadBufferFromFileStart(param0->unk_D4.unk_14, v0, v3, 53, 1, 0x20 * 2, 0);
 }
 
@@ -1142,8 +1142,8 @@ void ov76_0223CF88(UnkStruct_ov76_0223DE00 *param0, NARC *param1)
     int v3 = 287;
     int v4 = 7;
 
-    sub_020070E8(param1, v1, param0->unk_D4.unk_10, v4, 0, 0, 1, 53);
-    sub_0200710C(param1, v2, param0->unk_D4.unk_10, v4, 0, 0, 1, 53);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, v1, param0->unk_D4.unk_10, v4, 0, 0, 1, 53);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, v2, param0->unk_D4.unk_10, v4, 0, 0, 1, 53);
     PaletteData_LoadBufferFromFileStart(param0->unk_D4.unk_14, v0, v3, 53, 1, 0x20 * 2, 0);
 }
 

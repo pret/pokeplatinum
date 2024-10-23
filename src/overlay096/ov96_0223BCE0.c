@@ -351,16 +351,16 @@ static void ov96_0223BF40(UnkStruct_ov96_0223BF40 *param0)
     BgConfig *v0 = param0->unk_04;
     NARC *v1 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, 68);
 
-    sub_02007130(v1, 3, 0, 0, 0, 68);
-    sub_02007130(v1, 3, 4, 0, 0, 68);
+    Graphics_LoadPaletteFromOpenNARC(v1, 3, 0, 0, 0, 68);
+    Graphics_LoadPaletteFromOpenNARC(v1, 3, 4, 0, 0, 68);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 68);
     Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, 68);
     sub_0200DD0C(v0, 0, 1, 14, Options_Frame(param0->unk_00->unk_10), 68);
     sub_0200DAA4(v0, 0, (1 + (18 + 12)), 11, 0, 68);
-    sub_020070E8(v1, 2, v0, 1, 0, 0, 0, 68);
-    sub_0200710C(v1, 5, v0, 1, 0, 32 * 24 * 2, 0, 68);
-    sub_020070E8(v1, 10, v0, 5, 0, 0, 0, 68);
-    sub_0200710C(v1, 11, v0, 5, 0, 32 * 24 * 2, 0f, 68);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 2, v0, 1, 0, 0, 0, 68);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 5, v0, 1, 0, 32 * 24 * 2, 0, 68);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 10, v0, 5, 0, 0, 0, 68);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 11, v0, 5, 0, 32 * 24 * 2, 0f, 68);
     Bg_MaskPalette(0, 0);
     Bg_MaskPalette(4, 0);
 

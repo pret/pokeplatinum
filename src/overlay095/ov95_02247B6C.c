@@ -260,13 +260,13 @@ static int ov95_02247CB4(UnkStruct_ov95_02247C6C *param0, int *param1)
     Window_Add(param0->unk_54, &(param0->unk_58), 1, 2, 19, 27, 4, 1, 1);
     Window_FillTilemap(&(param0->unk_58), 0xf);
 
-    sub_02006E84(14, 7, 0, 1 * 0x20, 0x20, 58);
-    sub_02006E3C(93, 22, param0->unk_54, 2, 0, 0, 1, 58);
-    sub_02006E60(93, 21, param0->unk_54, 2, 0, 0, 1, 58);
-    sub_02006E84(93, 23, 0, 0 * 0x20, 0x20, 58);
-    sub_02006E3C(93, 22, param0->unk_54, 6, 0, 0, 1, 58);
-    sub_02006E60(93, 21, param0->unk_54, 6, 0, 0, 1, 58);
-    sub_02006E84(93, 23, 4, 0 * 0x20, 0x20, 58);
+    Graphics_LoadPalette(14, 7, 0, 1 * 0x20, 0x20, 58);
+    Graphics_LoadTilesToBgLayer(93, 22, param0->unk_54, 2, 0, 0, 1, 58);
+    Graphics_LoadTilemapToBgLayer(93, 21, param0->unk_54, 2, 0, 0, 1, 58);
+    Graphics_LoadPalette(93, 23, 0, 0 * 0x20, 0x20, 58);
+    Graphics_LoadTilesToBgLayer(93, 22, param0->unk_54, 6, 0, 0, 1, 58);
+    Graphics_LoadTilemapToBgLayer(93, 21, param0->unk_54, 6, 0, 0, 1, 58);
+    Graphics_LoadPalette(93, 23, 4, 0 * 0x20, 0x20, 58);
 
     Bg_CopyTilemapBufferToVRAM(param0->unk_54, 1);
     ov95_02248174(param0);
@@ -478,8 +478,8 @@ static void ov95_0224829C(UnkStruct_ov95_02247C6C *param0)
     NNS_G2dInitImagePaletteProxy(&v0);
     NNS_G2dInitImageProxy(&v1);
 
-    sub_02006F00(93, 9, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &v1);
-    sub_02006EE0(93, 10, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &v0);
+    Graphics_LoadImageMapping(93, 9, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &v1);
+    Graphics_LoadPartialPalette(93, 10, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &v0);
 
     ov95_022475C4(&v2, &param0->unk_44, &v1, &v0, 2);
 

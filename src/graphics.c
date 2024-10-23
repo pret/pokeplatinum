@@ -20,73 +20,73 @@ static void *GetPaletteData(void *nclrBuffer, NNSG2dPaletteData **outPaletteData
 static void *GetCellBank(void *ncerBuffer, NNSG2dCellDataBank **outCellData);
 static void *GetAnimBank(void *nanrBuffer, NNSG2dAnimBankData **outAnimBank);
 
-u32 sub_02006E3C(u32 param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
+u32 Graphics_LoadTilesToBgLayer(u32 param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
 {
     void *v0 = LoadMemberFromNARC(param0, param1, param6, param7, 0);
     return LoadTilesToBgLayer(v0, param2, param3, param4, param5);
 }
 
-void sub_02006E60(u32 param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
+void Graphics_LoadTilemapToBgLayer(u32 param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
 {
     void *v0 = LoadMemberFromNARC(param0, param1, param6, param7, 1);
     LoadTilemapToBgLayer(v0, param2, param3, param4, param5);
 }
 
-void sub_02006E84(u32 param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5)
+void Graphics_LoadPalette(u32 param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5)
 {
-    sub_02006E9C(param0, param1, param2, 0, param3, param4, param5);
+    Graphics_LoadPaletteWithSrcOffset(param0, param1, param2, 0, param3, param4, param5);
 }
 
-void sub_02006E9C(u32 param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6)
+void Graphics_LoadPaletteWithSrcOffset(u32 param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6)
 {
     void *v0 = LoadMemberFromNARC(param0, param1, 0, param6, 1);
     LoadPaletteWithSrcOffset(v0, param2, param3, param4, param5);
 }
 
-u32 sub_02006EC0(u32 param0, u32 param1, int param2, u32 param3, u32 param4, BOOL param5, u32 param6)
+u32 Graphics_LoadObjectTiles(u32 param0, u32 param1, int param2, u32 param3, u32 param4, BOOL param5, u32 param6)
 {
     void *v0 = LoadMemberFromNARC(param0, param1, param5, param6, 1);
     return LoadObjectTiles(v0, param2, param3, param4);
 }
 
-void sub_02006EE0(u32 param0, u32 param1, NNS_G2D_VRAM_TYPE param2, u32 param3, u32 param4, NNSG2dImagePaletteProxy *param5)
+void Graphics_LoadPartialPalette(u32 param0, u32 param1, NNS_G2D_VRAM_TYPE param2, u32 param3, u32 param4, NNSG2dImagePaletteProxy *param5)
 {
     void *v0 = LoadMemberFromNARC(param0, param1, 0, param4, 1);
     LoadPartialPalette(v0, param2, param3, param5);
 }
 
-u32 sub_02006F00(u32 param0, u32 param1, BOOL param2, int param3, u32 param4, NNS_G2D_VRAM_TYPE param5, u32 param6, u32 param7, NNSG2dImageProxy *param8)
+u32 Graphics_LoadImageMapping(u32 param0, u32 param1, BOOL param2, int param3, u32 param4, NNS_G2D_VRAM_TYPE param5, u32 param6, u32 param7, NNSG2dImageProxy *param8)
 {
     void *v0 = LoadMemberFromNARC(param0, param1, param2, param7, 1);
     return LoadImageMapping(v0, param3, param4, param5, param6, param8);
 }
 
-void sub_02006F28(u32 param0, u32 param1, BOOL param2, int param3, u32 param4, NNS_G2D_VRAM_TYPE param5, u32 param6, u32 param7, NNSG2dImageProxy *param8)
+void Graphics_LoadImageMappingAndSetVramMode(u32 param0, u32 param1, BOOL param2, int param3, u32 param4, NNS_G2D_VRAM_TYPE param5, u32 param6, u32 param7, NNSG2dImageProxy *param8)
 {
     void *v0 = LoadMemberFromNARC(param0, param1, param2, param7, 1);
     LoadImageMappingAndSetVramMode(v0, param3, param4, param5, param6, param8);
 }
 
-void *sub_02006F50(u32 param0, u32 param1, BOOL param2, NNSG2dCharacterData **param3, u32 param4)
+void *Graphics_GetCharData(u32 param0, u32 param1, BOOL param2, NNSG2dCharacterData **param3, u32 param4)
 {
     void *v0 = LoadMemberFromNARC(param0, param1, param2, param4, 0);
 
     return GetCharacterData(v0, param3);
 }
 
-void *sub_02006F6C(u32 param0, u32 param1, BOOL param2, NNSG2dScreenData **param3, u32 param4)
+void *Graphics_GetScrnData(u32 param0, u32 param1, BOOL param2, NNSG2dScreenData **param3, u32 param4)
 {
     void *v0 = LoadMemberFromNARC(param0, param1, param2, param4, 0);
     return GetScreenData(v0, param3);
 }
 
-void *sub_02006F88(u32 param0, u32 param1, NNSG2dPaletteData **param2, u32 param3)
+void *Graphics_GetPlttData(u32 param0, u32 param1, NNSG2dPaletteData **param2, u32 param3)
 {
     void *v0 = LoadMemberFromNARC(param0, param1, 0, param3, 0);
     return GetPaletteData(v0, param2);
 }
 
-void *sub_02006FA0(u32 param0, u32 param1, BOOL param2, NNSG2dCellDataBank **param3, u32 param4)
+void *Graphics_GetCellBank(u32 param0, u32 param1, BOOL param2, NNSG2dCellDataBank **param3, u32 param4)
 {
     void *v0;
 
@@ -94,7 +94,7 @@ void *sub_02006FA0(u32 param0, u32 param1, BOOL param2, NNSG2dCellDataBank **par
     return GetCellBank(v0, param3);
 }
 
-void *sub_02006FBC(u32 param0, u32 param1, BOOL param2, NNSG2dAnimBankData **param3, u32 param4)
+void *Graphics_GetAnimBank(u32 param0, u32 param1, BOOL param2, NNSG2dAnimBankData **param3, u32 param4)
 {
     void *v0 = LoadMemberFromNARC(param0, param1, param2, param4, 0);
     return GetAnimBank(v0, param3);
@@ -175,60 +175,60 @@ void *LoadMemberFromNARC_OutFileSize(u32 narcID, u32 narcMemberIdx, BOOL compres
     return data;
 }
 
-u32 sub_020070E8(NARC *param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
+u32 Graphics_LoadTilesToBgLayerFromOpenNARC(NARC *param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
 {
     void *v0 = LoadMemberFromOpenNARC(param0, param1, param6, param7, 0);
     return LoadTilesToBgLayer(v0, param2, param3, param4, param5);
 }
 
-void sub_0200710C(NARC *param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
+void Graphics_LoadTilemapToBgLayerFromOpenNARC(NARC *param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
 {
     void *v0 = LoadMemberFromOpenNARC(param0, param1, param6, param7, 1);
     LoadTilemapToBgLayer(v0, param2, param3, param4, param5);
 }
 
-void sub_02007130(NARC *param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5)
+void Graphics_LoadPaletteFromOpenNARC(NARC *param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5)
 {
-    sub_02007148(param0, param1, param2, 0, param3, param4, param5);
+    Graphics_LoadPaletteWithSrcOffsetFromOpenNARC(param0, param1, param2, 0, param3, param4, param5);
 }
 
-void sub_02007148(NARC *param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6)
+void Graphics_LoadPaletteWithSrcOffsetFromOpenNARC(NARC *param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6)
 {
     void *v0 = LoadMemberFromOpenNARC(param0, param1, 0, param6, 1);
     LoadPaletteWithSrcOffset(v0, param2, param3, param4, param5);
 }
 
-void sub_0200716C(NARC *param0, u32 param1, NNS_G2D_VRAM_TYPE param2, u32 param3, u32 param4, NNSG2dImagePaletteProxy *param5)
+void Graphics_LoadPartialPaletteFromOpenNARC(NARC *param0, u32 param1, NNS_G2D_VRAM_TYPE param2, u32 param3, u32 param4, NNSG2dImagePaletteProxy *param5)
 {
     void *v0 = LoadMemberFromOpenNARC(param0, param1, 0, param4, 1);
     LoadPartialPalette(v0, param2, param3, param5);
 }
 
-u32 sub_0200718C(NARC *param0, u32 param1, BOOL param2, int param3, u32 param4, NNS_G2D_VRAM_TYPE param5, u32 param6, u32 param7, NNSG2dImageProxy *param8)
+u32 Graphics_LoadImageMappingFromOpenNARC(NARC *param0, u32 param1, BOOL param2, int param3, u32 param4, NNS_G2D_VRAM_TYPE param5, u32 param6, u32 param7, NNSG2dImageProxy *param8)
 {
     void *v0 = LoadMemberFromOpenNARC(param0, param1, param2, param7, 1);
     return LoadImageMapping(v0, param3, param4, param5, param6, param8);
 }
 
-void *sub_020071B4(NARC *param0, u32 param1, BOOL param2, NNSG2dCharacterData **param3, u32 param4)
+void *Graphics_GetCharDataFromOpenNARC(NARC *param0, u32 param1, BOOL param2, NNSG2dCharacterData **param3, u32 param4)
 {
     void *v0 = LoadMemberFromOpenNARC(param0, param1, param2, param4, 0);
     return GetCharacterData(v0, param3);
 }
 
-void *sub_020071D0(NARC *param0, u32 param1, BOOL param2, NNSG2dScreenData **param3, u32 param4)
+void *Graphics_GetScrnDataFromOpenNARC(NARC *param0, u32 param1, BOOL param2, NNSG2dScreenData **param3, u32 param4)
 {
     void *v0 = LoadMemberFromOpenNARC(param0, param1, param2, param4, 0);
     return GetScreenData(v0, param3);
 }
 
-void *sub_020071EC(NARC *param0, u32 param1, NNSG2dPaletteData **param2, u32 param3)
+void *Graphics_GetPlttDataFromOpenNARC(NARC *param0, u32 param1, NNSG2dPaletteData **param2, u32 param3)
 {
     void *v0 = LoadMemberFromOpenNARC(param0, param1, 0, param3, 0);
     return GetPaletteData(v0, param2);
 }
 
-void *sub_02007204(NARC *param0, u32 param1, BOOL param2, NNSG2dCellDataBank **param3, u32 param4)
+void *Graphics_GetCellBankFromOpenNARC(NARC *param0, u32 param1, BOOL param2, NNSG2dCellDataBank **param3, u32 param4)
 {
     void *v0;
 
@@ -236,7 +236,7 @@ void *sub_02007204(NARC *param0, u32 param1, BOOL param2, NNSG2dCellDataBank **p
     return GetCellBank(v0, param3);
 }
 
-void *sub_02007220(NARC *param0, u32 param1, BOOL param2, NNSG2dAnimBankData **param3, u32 param4)
+void *Graphics_GetAnimBankFromOpenNARC(NARC *param0, u32 param1, BOOL param2, NNSG2dAnimBankData **param3, u32 param4)
 {
     void *v0 = LoadMemberFromOpenNARC(param0, param1, param2, param4, 0);
     return GetAnimBank(v0, param3);

@@ -637,8 +637,8 @@ static void ov17_0223BAD0(UnkStruct_ov17_02246F24 *param0)
 void ov17_0223BB14(UnkStruct_ov17_02246F24 *param0, int param1, int param2)
 {
     if (param1 == 0) {
-        sub_02006E3C(45, 3, param0->unk_0C.unk_24, 2, 0, 0x4000, 1, 21);
-        sub_02006E60(45, 5, param0->unk_0C.unk_24, 2, 0, 0, 1, 21);
+        Graphics_LoadTilesToBgLayer(45, 3, param0->unk_0C.unk_24, 2, 0, 0x4000, 1, 21);
+        Graphics_LoadTilemapToBgLayer(45, 5, param0->unk_0C.unk_24, 2, 0, 0, 1, 21);
         Bg_SetPriority(1, 1);
         Bg_SetPriority(2, 0);
 
@@ -657,10 +657,10 @@ void ov17_0223BB14(UnkStruct_ov17_02246F24 *param0, int param1, int param2)
 
 static void ov17_0223BBA8(UnkStruct_ov17_02246F24 *param0, NARC *param1)
 {
-    sub_020070E8(param1, 1, param0->unk_0C.unk_24, 3, 0, 0, 1, 21);
-    sub_0200710C(param1, 2, param0->unk_0C.unk_24, 3, 0, 0, 1, 21);
-    sub_020070E8(param1, 3, param0->unk_0C.unk_24, 1, 0, 0, 1, 21);
-    sub_0200710C(param1, 4, param0->unk_0C.unk_24, 1, 0, 0, 1, 21);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 1, param0->unk_0C.unk_24, 3, 0, 0, 1, 21);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 2, param0->unk_0C.unk_24, 3, 0, 0, 1, 21);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 3, param0->unk_0C.unk_24, 1, 0, 0, 1, 21);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 4, param0->unk_0C.unk_24, 1, 0, 0, 1, 21);
 
     ov17_0223BB14(param0, 0, 0);
 

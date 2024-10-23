@@ -259,7 +259,7 @@ static void ov17_02247B00(UnkStruct_ov17_0224F30C *param0, void *param1, const U
         v0->unk_F5B = (Unk_ov17_02254468[0] + 4) * 8;
     }
 
-    sub_02006E60(45, 21, v0->unk_0C.unk_24, 2, 0, 0, 1, 22);
+    Graphics_LoadTilemapToBgLayer(45, 21, v0->unk_0C.unk_24, 2, 0, 0, 1, 22);
     SysTask_Start(ov17_02247C5C, v2, 30000);
 }
 

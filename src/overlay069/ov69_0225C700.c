@@ -1423,16 +1423,16 @@ static void ov69_0225D3A4(UnkStruct_ov69_0225D35C *param0, Options *param1, u32 
         }
     }
 
-    sub_02007130(param0->unk_1A8, 5, 4, 0, 0, param2);
+    Graphics_LoadPaletteFromOpenNARC(param0->unk_1A8, 5, 4, 0, 0, param2);
 
     {
-        sub_020070E8(param0->unk_1A8, 11, param0->unk_00, 4, 0, 0, 0, param2);
-        sub_0200710C(param0->unk_1A8, 12, param0->unk_00, 4, 0, 0, 0, param2);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_1A8, 11, param0->unk_00, 4, 0, 0, 0, param2);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_1A8, 12, param0->unk_00, 4, 0, 0, 0, param2);
     }
 
     {
-        sub_020070E8(param0->unk_1A8, 4, param0->unk_00, 6, 0, 0, 0, param2);
-        sub_0200710C(param0->unk_1A8, 18, param0->unk_00, 7, 0, 0, 0, param2);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_1A8, 4, param0->unk_00, 6, 0, 0, 0, param2);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_1A8, 18, param0->unk_00, 7, 0, 0, 0, param2);
     }
 
     Font_LoadScreenIndicatorsPalette(0, 1 * 0x20, param2);
@@ -2039,7 +2039,7 @@ static void ov69_0225DEC0(UnkStruct_ov69_0225E084 *param0, UnkStruct_ov69_0225D3
     ov69_0225E590(param0, param1, param3);
 
     {
-        param0->unk_94 = sub_020071D0(param1->unk_1A8, 19, 0, &param0->unk_98, param3);
+        param0->unk_94 = Graphics_GetScrnDataFromOpenNARC(param1->unk_1A8, 19, 0, &param0->unk_98, param3);
     }
 
     ov69_0225E960(&param0->unk_1B8, param1, &param0->unk_2E4, param3);
@@ -2539,7 +2539,7 @@ static void ov69_0225E748(UnkStruct_ov69_0225E7DC *param0, UnkStruct_ov69_0225D3
         param0->unk_18 = param2->unk_04;
 
         for (v0 = 0; v0 < param0->unk_18; v0++) {
-            param0->unk_08[v0] = sub_020071D0(
+            param0->unk_08[v0] = Graphics_GetScrnDataFromOpenNARC(
                 param1->unk_1A8, param2->unk_00[v0], 0, &param0->unk_10[v0], param4);
         }
     }
@@ -2547,7 +2547,7 @@ static void ov69_0225E748(UnkStruct_ov69_0225E7DC *param0, UnkStruct_ov69_0225D3
     if (param2->unk_08 > 0) {
         param0->unk_24 = param2->unk_08;
         param0->unk_26 = param2->unk_0A;
-        param0->unk_1C = sub_020071EC(param1->unk_1A8, param2->unk_06, &param0->unk_20, param4);
+        param0->unk_1C = Graphics_GetPlttDataFromOpenNARC(param1->unk_1A8, param2->unk_06, &param0->unk_20, param4);
     }
 }
 

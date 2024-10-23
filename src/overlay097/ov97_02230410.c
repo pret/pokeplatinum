@@ -341,10 +341,10 @@ static void ov97_022305EC(Window *param0, int param1)
 
 static void ov97_02230664(BgConfig *param0)
 {
-    sub_02006E84(116, 11, 0, 16 * 2 * 15, 16 * 2, 87);
-    sub_02006E84(116, 16, 0, 16 * 2 * 12, 16 * 2, 87);
-    sub_02006E3C(116, 17, param0, 1, 0, 6 * 16 * 0x20, 1, 87);
-    sub_02006E60(116, 18, param0, 1, 0, 32 * 24 * 2, 1, 87);
+    Graphics_LoadPalette(116, 11, 0, 16 * 2 * 15, 16 * 2, 87);
+    Graphics_LoadPalette(116, 16, 0, 16 * 2 * 12, 16 * 2, 87);
+    Graphics_LoadTilesToBgLayer(116, 17, param0, 1, 0, 6 * 16 * 0x20, 1, 87);
+    Graphics_LoadTilemapToBgLayer(116, 18, param0, 1, 0, 32 * 24 * 2, 1, 87);
     Bg_ChangeTilemapRectPalette(param0, 1, 0, 0, 32, 24, 12);
     Bg_CopyTilemapBufferToVRAM(param0, 1);
 }
@@ -716,20 +716,20 @@ static void ov97_02230F58(UnkStruct_ov97_02230868 *param0, u32 param1, u32 param
 
 static void ov97_02230F98(UnkStruct_ov97_02230868 *param0, int param1)
 {
-    sub_02006E84(116, 3, 0, 0, 16 * 16, param0->unk_00);
-    sub_02006E3C(116, 6, param0->unk_2A5C, 1, 0, 24 * 16 * 0x20, 1, param0->unk_00);
+    Graphics_LoadPalette(116, 3, 0, 0, 16 * 16, param0->unk_00);
+    Graphics_LoadTilesToBgLayer(116, 6, param0->unk_2A5C, 1, 0, 24 * 16 * 0x20, 1, param0->unk_00);
 
     switch (param1) {
     case 0:
-        sub_02006E60(116, 4, param0->unk_2A5C, 1, 0, 32 * 24 * 2, 1, param0->unk_00);
+        Graphics_LoadTilemapToBgLayer(116, 4, param0->unk_2A5C, 1, 0, 32 * 24 * 2, 1, param0->unk_00);
         break;
     case 1:
-        sub_02006E60(116, 5, param0->unk_2A5C, 1, 0, 32 * 24 * 2, 1, param0->unk_00);
+        Graphics_LoadTilemapToBgLayer(116, 5, param0->unk_2A5C, 1, 0, 32 * 24 * 2, 1, param0->unk_00);
         break;
     }
 
-    sub_02006E84(116, 0, 0, 16 * 2 * 11, 16 * 2, param0->unk_00);
-    sub_02006E3C(116, 1, param0->unk_2A5C, 3, 0 * 1, 1 * 16 * 0x20, 1, param0->unk_00);
+    Graphics_LoadPalette(116, 0, 0, 16 * 2 * 11, 16 * 2, param0->unk_00);
+    Graphics_LoadTilesToBgLayer(116, 1, param0->unk_2A5C, 3, 0 * 1, 1 * 16 * 0x20, 1, param0->unk_00);
 
     ov97_02230F58(param0, 2, 3, 32 * 24 * 2);
 
@@ -794,7 +794,7 @@ static void ov97_022310FC(UnkStruct_ov97_02230868 *param0)
         ov97_02237A74();
         ov97_02237B0C(116, 26, 23, 25, 24, 0);
 
-        sub_02006E84(19, PokeIconPalettesFileIndex(), 1, 3 * 0x20, 0, param0->unk_00);
+        Graphics_LoadPalette(19, PokeIconPalettesFileIndex(), 1, 3 * 0x20, 0, param0->unk_00);
     }
 
     v2 = 1;
@@ -812,7 +812,7 @@ static void ov97_022310FC(UnkStruct_ov97_02230868 *param0)
         }
 
         param0->unk_2E90[v1] = ov97_02237D14(0, param0->unk_2E90[v1], v0, 16, 10 + v1);
-        v3 = sub_02006F50(19, PokeIconSpriteIndex(v2, 0, 0), 0, &v4, param0->unk_00);
+        v3 = Graphics_GetCharData(19, PokeIconSpriteIndex(v2, 0, 0), 0, &v4, param0->unk_00);
 
         DC_FlushRange(v4->pRawData, ((4 * 4) * 0x20));
         GX_LoadOBJ(v4->pRawData, (0x64 + v1 * (4 * 4)) * 0x20, ((4 * 4) * 0x20));

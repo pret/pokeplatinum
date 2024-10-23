@@ -594,8 +594,8 @@ void ov62_02247574(UnkStruct_ov62_02246BF4 *param0)
     v1 = param0->unk_220.unk_0C;
     v0 = param0->unk_220.unk_00;
 
-    sub_020070E8(v0, 54, param0->unk_220.unk_0C, 3, 0, 0, 0, 102);
-    sub_0200710C(v0, 43, v1, 3, 0, 0, 0, 102);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 54, param0->unk_220.unk_0C, 3, 0, 0, 0, 102);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 43, v1, 3, 0, 0, 0, 102);
     SpriteRenderer_LoadPalette(v4, 2, v2, v3, v0, 44, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 1000);
     SpriteRenderer_LoadCharResObjFromOpenNarc(v2, v3, v0, 40, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1000);
     SpriteRenderer_LoadCellResObjFromOpenNarc(v2, v3, v0, 41, 0, 1000);

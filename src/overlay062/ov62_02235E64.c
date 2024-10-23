@@ -126,8 +126,8 @@ static BOOL ov62_02235EBC(UnkStruct_0208C06C *param0)
         Bg_SetPriority(5, 3);
         Bg_SetPriority(6, 1);
         Bg_SetPriority(7, 2);
-        sub_020070E8(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
-        sub_020070E8(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
         param0->unk_08++;
         break;
     default:
@@ -363,7 +363,7 @@ static BOOL ov62_022363CC(UnkStruct_0208C06C *param0)
     case 2:
         ov62_022362B8(param0);
         ov62_02231AAC(param0, 296);
-        sub_0200710C(param0->unk_14.unk_00, 84, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, 84, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
         param0->unk_08++;

@@ -47,7 +47,7 @@ UnkStruct_ov63_0222D1C0 *ov63_0222D1C0(UnkStruct_0200C738 *param0, BgConfig *par
 
     ov63_0222D31C(v0->unk_04, v0->unk_14, param2);
 
-    v0->unk_08 = sub_02006F6C(param2->unk_08, param2->unk_09, param2->unk_0A, &v0->unk_0C, param3);
+    v0->unk_08 = Graphics_GetScrnData(param2->unk_08, param2->unk_09, param2->unk_0A, &v0->unk_0C, param3);
 
     return v0;
 }

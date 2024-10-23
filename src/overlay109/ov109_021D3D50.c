@@ -530,7 +530,7 @@ static void ov109_021D41F8(UnkStruct_ov109_021D5140 *param0, NARC *param1)
     param0->unk_1C.unk_00 = 0;
     param0->unk_1C.unk_08 = 0;
     param0->unk_1C.unk_04 = 0;
-    param0->unk_1C.unk_0C = sub_020071EC(param1, 1, &param0->unk_1C.unk_10, 95);
+    param0->unk_1C.unk_0C = Graphics_GetPlttDataFromOpenNARC(param1, 1, &param0->unk_1C.unk_10, 95);
     param0->unk_4AA8 = 0;
     param0->unk_394 = NULL;
     param0->unk_10->unk_2C = 2;
@@ -566,14 +566,14 @@ static void ov109_021D4300(UnkStruct_ov109_021D5140 *param0, NARC *param1)
 {
     BgConfig *v0 = param0->unk_14;
 
-    sub_02007130(param1, 0, 0, 0, 16 * 16 * 2, 95);
-    sub_02006E84(12, 12, 4, 0, 16 * 2, 95);
+    Graphics_LoadPaletteFromOpenNARC(param1, 0, 0, 0, 16 * 16 * 2, 95);
+    Graphics_LoadPalette(12, 12, 4, 0, 16 * 2, 95);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 95);
     Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, 95);
-    sub_02006E3C(12, 10, v0, 6, 0, 0, 1, 95);
-    sub_02006E60(12, 11, v0, 6, 0, 0, 1, 95);
-    sub_020070E8(param1, 2, v0, 1, 0, 32 * 8 * 0x20, 1, 95);
-    sub_0200710C(param1, 3, v0, 1, 0, 32 * 24 * 2, 1, 95);
+    Graphics_LoadTilesToBgLayer(12, 10, v0, 6, 0, 0, 1, 95);
+    Graphics_LoadTilemapToBgLayer(12, 11, v0, 6, 0, 0, 1, 95);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 1, 0, 32 * 8 * 0x20, 1, 95);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 3, v0, 1, 0, 32 * 24 * 2, 1, 95);
     sub_0200DD0C(v0, 0, 1, 10, Options_Frame(param0->unk_0C->unk_14.unk_10), 95);
     sub_0200DAA4(v0, 0, 1 + (18 + 12), 11, 0, 95);
 }
@@ -1651,10 +1651,10 @@ static void ov109_021D5668(UnkStruct_ov109_021D5140 *param0)
 
 static void ov109_021D577C(UnkStruct_ov109_021D5140 *param0, NARC *param1)
 {
-    param0->unk_3A8[0] = sub_02006F88(104, 8, &(param0->unk_3B0[0]), 95);
-    param0->unk_3A8[1] = sub_020071EC(param1, 7, &(param0->unk_3B0[1]), 95);
-    param0->unk_398[0] = sub_02006F50(104, 32, 1, &(param0->unk_3A0[0]), 95);
-    param0->unk_398[1] = sub_020071B4(param1, 9, 1, &(param0->unk_3A0[1]), 95);
+    param0->unk_3A8[0] = Graphics_GetPlttData(104, 8, &(param0->unk_3B0[0]), 95);
+    param0->unk_3A8[1] = Graphics_GetPlttDataFromOpenNARC(param1, 7, &(param0->unk_3B0[1]), 95);
+    param0->unk_398[0] = Graphics_GetCharData(104, 32, 1, &(param0->unk_3A0[0]), 95);
+    param0->unk_398[1] = Graphics_GetCharDataFromOpenNARC(param1, 9, 1, &(param0->unk_3A0[1]), 95);
 }
 
 static const u16 Unk_ov109_021D5D9C[] = {

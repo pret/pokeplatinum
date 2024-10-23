@@ -1430,9 +1430,9 @@ static void ov115_022617E8(UnkStruct_ov115_022617E8 *param0, UnkStruct_ov115_022
     MessageLoader_GetStrbuf(param1->unk_08, 0, v0);
     Text_AddPrinterWithParamsAndColor(&param0->unk_0C, FONT_SYSTEM, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
     Strbuf_Free(v0);
-    sub_020070E8(param5, 18, param1->unk_00, 2, 0, 0, 0, param6);
-    sub_0200710C(param5, 20 + (param3 - 2), param1->unk_00, 2, 0, 0, 0, param6);
-    sub_02007130(param5, 19, 0, 0 * 32, (3 + 1) * 32, param6);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param5, 18, param1->unk_00, 2, 0, 0, 0, param6);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param5, 20 + (param3 - 2), param1->unk_00, 2, 0, 0, 0, param6);
+    Graphics_LoadPaletteFromOpenNARC(param5, 19, 0, 0 * 32, (3 + 1) * 32, param6);
 
     {
         int v2;
@@ -3301,12 +3301,12 @@ static void ov115_02263CD8(UnkStruct_ov115_02261ADC *param0, NARC *param1, u32 p
         11,
     };
 
-    sub_020070E8(param1, 12, param0->unk_00, 4, 0, 0, 0, param3);
-    sub_0200710C(param1, 14, param0->unk_00, 7, 0, 0, 0, param3);
-    sub_0200710C(param1, 15, param0->unk_00, 6, 0, 0, 0, param3);
-    sub_0200710C(param1, 16, param0->unk_00, 5, 0, 0, 0, param3);
-    sub_0200710C(param1, 17, param0->unk_00, 4, 0, 0, 0, param3);
-    sub_02007130(param1, 13, 4, 0, 12 * 32, param3);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 12, param0->unk_00, 4, 0, 0, 0, param3);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 14, param0->unk_00, 7, 0, 0, 0, param3);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 15, param0->unk_00, 6, 0, 0, 0, param3);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 16, param0->unk_00, 5, 0, 0, 0, param3);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 17, param0->unk_00, 4, 0, 0, 0, param3);
+    Graphics_LoadPaletteFromOpenNARC(param1, 13, 4, 0, 12 * 32, param3);
     Bg_ChangeTilemapRectPalette(param0->unk_00, 7, 0, 0, 32, 32, v0[param2]);
     Bg_ChangeTilemapRectPalette(param0->unk_00, 6, 0, 0, 32, 32, 2 + (param2 * 2));
     Bg_ChangeTilemapRectPalette(param0->unk_00, 5, 0, 0, 32, 32, 1 + (param2 * 2));

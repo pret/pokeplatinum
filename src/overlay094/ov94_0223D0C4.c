@@ -237,15 +237,15 @@ static void ov94_0223D2E8(UnkStruct_ov94_0223FD4C *param0)
     BgConfig *v0 = param0->unk_04;
     NARC *v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, 62);
 
-    sub_02007130(v1, 7, 0, 0, 16 * 3 * 2, 62);
-    sub_02007130(v1, 5, 4, 0, 16 * 8 * 2, 62);
+    Graphics_LoadPaletteFromOpenNARC(v1, 7, 0, 0, 16 * 3 * 2, 62);
+    Graphics_LoadPaletteFromOpenNARC(v1, 5, 4, 0, 16 * 8 * 2, 62);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 62);
     sub_0200DD0C(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), 62);
     sub_0200DAA4(v0, 0, (1 + (18 + 12)), 11, 0, 62);
-    sub_020070E8(v1, 17, v0, 1, 0, 16 * 5 * 0x20, 1, 62);
-    sub_0200710C(v1, 25, v0, 1, 0, 32 * 24 * 2, 1, 62);
-    sub_020070E8(v1, 15, v0, 5, 0, 32 * 21 * 0x40, 1, 62);
-    sub_0200710C(v1, 31, v0, 5, 0, 32 * 24 * 2, 1, 62);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 17, v0, 1, 0, 16 * 5 * 0x20, 1, 62);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 25, v0, 1, 0, 32 * 24 * 2, 1, 62);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 15, v0, 5, 0, 32 * 21 * 0x40, 1, 62);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 31, v0, 5, 0, 32 * 24 * 2, 1, 62);
     NARC_dtor(v1);
 }
 
@@ -600,7 +600,7 @@ void ov94_0223DB2C(Pokemon *param0)
     DC_FlushRange(v1, (0x20 * 10 * 10));
     GX_LoadOBJ(v1, ((18 * 32 + 16) * 32), (0x20 * 10 * 10));
 
-    sub_02006E84(v0.archive, v0.palette, 1, 0x20 * 13, 32, 62);
+    Graphics_LoadPalette(v0.archive, v0.palette, 1, 0x20 * 13, 32, 62);
     Heap_FreeToHeap(v1);
 }
 

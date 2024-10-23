@@ -446,11 +446,11 @@ void ov16_0223B578(BattleSystem *param0)
         v1 = ov16_0223EDE0(param0);
 
         sub_0200E218(param0->unk_04, 1, 1, 10, v1, 5);
-        sub_02006E3C(7, 3 + param0->unk_2400, param0->unk_04, 3, 0, 0, 1, 5);
+        Graphics_LoadTilesToBgLayer(7, 3 + param0->unk_2400, param0->unk_04, 3, 0, 0, 1, 5);
         PaletteData_LoadBufferFromFileStart(param0->unk_28, 7, 172 + (param0->unk_2400 * 3) + ov16_0223EC04(param0), 5, 0, 0, 0);
         PaletteData_LoadBufferFromFileStart(param0->unk_28, 38, sub_0200DD08(v1), 5, 0, 0x20, 10 * 0x10);
         PaletteData_LoadBufferFromFileStart(param0->unk_28, 14, 7, 5, 0, 0x20, 0xb * 0x10);
-        sub_02006E60(7, 2, param0->unk_04, 3, 0, 0, 1, 5);
+        Graphics_LoadTilemapToBgLayer(7, 2, param0->unk_04, 3, 0, 0, 1, 5);
     }
 
     {
@@ -931,11 +931,11 @@ static void ov16_0223C004(BattleSystem *param0, BgConfig *param1)
         v3 = ov16_0223EDE0(param0);
 
         sub_0200E218(param1, 1, 1, 10, v3, 5);
-        sub_02006E3C(7, 3 + param0->unk_2400, param1, 3, 0, 0, 1, 5);
+        Graphics_LoadTilesToBgLayer(7, 3 + param0->unk_2400, param1, 3, 0, 0, 1, 5);
         PaletteData_LoadBufferFromFileStart(param0->unk_28, 7, 172 + (param0->unk_2400 * 3) + ov16_0223EC04(param0), 5, 0, 0, 0);
         PaletteData_LoadBufferFromFileStart(param0->unk_28, 38, sub_0200DD08(v3), 5, 0, 0x20, 10 * 0x10);
         PaletteData_LoadBufferFromFileStart(param0->unk_28, 14, 7, 5, 0, 0x20, 0xb * 0x10);
-        sub_02006E60(7, 2, param1, 3, 0, 0, 1, 5);
+        Graphics_LoadTilemapToBgLayer(7, 2, param1, 3, 0, 0, 1, 5);
     }
 
     {

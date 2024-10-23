@@ -491,8 +491,8 @@ static void ov97_0222B404(UnkStruct_0222AE60 *param0)
 
 static void ov97_0222B46C(UnkStruct_0222AE60 *param0)
 {
-    sub_02006E84(116, 45, 0, 4 * 32, 32 * 1, 81);
-    sub_02006E3C(116, 44, param0->unk_00, 2, 0x380, 2 * 32 * 0x20, 0, 81);
+    Graphics_LoadPalette(116, 45, 0, 4 * 32, 32 * 1, 81);
+    Graphics_LoadTilesToBgLayer(116, 44, param0->unk_00, 2, 0x380, 2 * 32 * 0x20, 0, 81);
 }
 
 static void ov97_0222B4AC(UnkStruct_0222AE60 *param0, int param1, int param2, int param3)

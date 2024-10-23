@@ -100,7 +100,7 @@ UnkStruct_02012744 *sub_02012744(int param0, int param1)
     GF_ASSERT(v0);
 
     for (v1 = 0; v1 < 12; v1++) {
-        v0->unk_00[v1] = sub_02006FA0(
+        v0->unk_00[v1] = Graphics_GetCellBank(
             35, v1, 0, &v0->unk_30[v1], param1);
 
         GF_ASSERT(v0->unk_00[v1]);

@@ -75,12 +75,12 @@ void sub_0208A490 (UnkStruct_02089688 * param0)
     v1 = param0->unk_2C0.unk_0C;
     v0 = param0->unk_2C0.unk_00;
 
-    sub_020070E8(v0, 12, v1, 1, 0, 0, 0, 101);
-    sub_0200710C(v0, 14, v1, 1, 0, 0, 0, 101);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 12, v1, 1, 0, 0, 0, 101);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 14, v1, 1, 0, 0, 0, 101);
     PaletteData_LoadBufferFromFileStart(v4, 159, 13, 101, 0, 0x20 * 1, 0);
 
-    sub_020070E8(v0, 15, v1, 5, 0, 0, 0, 101);
-    sub_0200710C(v0, 17, v1, 5, 0, 0, 0, 101);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 15, v1, 5, 0, 0, 0, 101);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 17, v1, 5, 0, 0, 0, 101);
     PaletteData_LoadBufferFromFileStart(v4, 159, 16, 101, 1, 0x20 * 1, 0);
 
     SpriteRenderer_LoadPalette(v4, 2, v2, v3, v0, 1, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 1000);

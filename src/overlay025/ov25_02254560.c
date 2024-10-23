@@ -150,7 +150,7 @@ static void ov25_02254684(UnkStruct_ov25_02254560 *param0)
     NNSG2dPaletteData *v0;
     void *v1;
 
-    v1 = sub_02006F88(12, 0, &v0, 7);
+    v1 = Graphics_GetPlttData(12, 0, &v0, 7);
 
     if (v1) {
         MI_CpuCopy32(v0->pRawData, param0->unk_200, 8 * 0x40);
@@ -318,9 +318,9 @@ static void ov25_02254820(SysTask *param0, void *param1)
     Bg_InitFromTemplate(v2->unk_1F8, 4, &v0, 0);
     Bg_InitFromTemplate(v2->unk_1F8, 5, &v1, 0);
 
-    sub_02006E3C(12, 14, v2->unk_1F8, 4, 64, 0, 1, 7);
-    sub_02006E60(12, 15, v2->unk_1F8, 4, 0, 0, 1, 7);
-    sub_02006E9C(12, 13, 4, PoketchSystem_GetBorderColor(v2->poketchSys) * 0x20, 15 * 0x20, 0x20, 7);
+    Graphics_LoadTilesToBgLayer(12, 14, v2->unk_1F8, 4, 64, 0, 1, 7);
+    Graphics_LoadTilemapToBgLayer(12, 15, v2->unk_1F8, 4, 0, 0, 1, 7);
+    Graphics_LoadPaletteWithSrcOffset(12, 13, 4, PoketchSystem_GetBorderColor(v2->poketchSys) * 0x20, 15 * 0x20, 0x20, 7);
 
     Bg_FillTilemapRect(v2->unk_1F8, 5, 64 + 164, 0, 0, 32, 24, 15);
     Bg_CopyTilemapBufferToVRAM(v2->unk_1F8, 5);
@@ -576,8 +576,8 @@ static void ov25_02254DE0(UnkStruct_ov25_02254560 *param0, UnkStruct_ov25_02254D
             0
         };
 
-        sub_02006EC0(12, 2, 1, 0, 0, 1, 7);
-        sub_02006E84(12, 0, 5, 0, 0x60, 7);
+        Graphics_LoadObjectTiles(12, 2, 1, 0, 0, 1, 7);
+        Graphics_LoadPalette(12, 0, 5, 0, 0x60, 7);
 
         ov25_02254E84(param0, 15);
 

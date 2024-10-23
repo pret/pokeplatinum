@@ -889,18 +889,18 @@ static void ov113_0225D160(UnkStruct_ov113_0225DBCC *param0, NARC *param1)
     u16 *v1;
 
     PaletteData_LoadBufferFromFileStart(param0->unk_0C, 187, 19, 118, 0, 0x200 - 0x40, 0);
-    sub_020070E8(param1, 18, param0->unk_08, 2, 0, 0, 0, 118);
-    sub_0200710C(param1, 17, param0->unk_08, 2, 0, 0, 0, 118);
-    sub_0200710C(param1, 20, param0->unk_08, 3, 0, 0, 0, 118);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 18, param0->unk_08, 2, 0, 0, 0, 118);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 17, param0->unk_08, 2, 0, 0, 0, 118);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 20, param0->unk_08, 3, 0, 0, 0, 118);
     PaletteData_LoadBufferFromFileStart(param0->unk_0C, 187, 23, 118, 1, 0, 0);
 
     if (param0->unk_00->unk_04 == 0) {
         PaletteData_CopyBuffer(param0->unk_0C, 1, 16 * 1, 1, 16 * 0, 0x20);
     }
 
-    sub_020070E8(param1, 22, param0->unk_08, 6, 0, 0, 0, 118);
-    sub_0200710C(param1, 21, param0->unk_08, 6, 0, 0, 0, 118);
-    sub_0200710C(param1, 24, param0->unk_08, 7, 0, 0, 0, 118);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 22, param0->unk_08, 6, 0, 0, 0, 118);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 21, param0->unk_08, 6, 0, 0, 0, 118);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 24, param0->unk_08, 7, 0, 0, 0, 118);
 
     v1 = Bg_GetTilemapBuffer(param0->unk_08, 6);
 

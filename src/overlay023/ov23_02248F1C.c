@@ -415,9 +415,9 @@ static void ov23_0224944C(BgConfig *param0, Window *param1)
 
         v3 = NARC_ctor(NARC_INDEX_DATA__UNDERG_RADAR, 4);
 
-        sub_02007130(v3, 0, 4, 0, 0x20 * 2, 4);
-        sub_020070E8(v3, 1, param0, 4, 0, 32 * 5 * 0x20, 0, 4);
-        sub_0200710C(v3, 2, param0, 4, 0, 32 * 24 * 2, 0, 4);
+        Graphics_LoadPaletteFromOpenNARC(v3, 0, 4, 0, 0x20 * 2, 4);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(v3, 1, param0, 4, 0, 32 * 5 * 0x20, 0, 4);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v3, 2, param0, 4, 0, 32 * 24 * 2, 0, 4);
         NARC_dtor(v3);
     }
 
@@ -425,7 +425,7 @@ static void ov23_0224944C(BgConfig *param0, Window *param1)
     Bg_ClearTilesRange(7, 32, 0, 4);
     FieldMessage_AddWindow(param0, param1, 7);
     Window_FillTilemap(param1, 0);
-    sub_02006E84(50, 52, 4, 10 * 0x20, 4 * 0x20, 4);
+    Graphics_LoadPalette(50, 52, 4, 10 * 0x20, 4 * 0x20, 4);
     sub_0200F338(1);
 }
 

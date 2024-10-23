@@ -123,7 +123,7 @@ static void ov41_0225680C(UnkStruct_ov41_022567B0 *param0, const UnkStruct_ov41_
     };
     int v1;
 
-    sub_02006EC0(12, 89, 1, 0, 0, 1, 8);
+    Graphics_LoadObjectTiles(12, 89, 1, 0, 0, 1, 8);
     ov25_02255958(&param0->unk_34, 12, 87, 88, 8);
 
     for (v1 = 0; v1 < 4; v1++) {
@@ -222,10 +222,10 @@ static void ov41_022568DC(SysTask *param0, void *param1)
 
     GF_ASSERT(GF_heap_c_dummy_return_true(8));
 
-    v4 = sub_02006E3C(12, 86, v3->unk_04, 6, 0, 0, 1, 8);
+    v4 = Graphics_LoadTilesToBgLayer(12, 86, v3->unk_04, 6, 0, 0, 1, 8);
     v4 /= 0x20;
 
-    sub_02006E60(12, 85, v3->unk_04, 6, 0, 0, 1, 8);
+    Graphics_LoadTilemapToBgLayer(12, 85, v3->unk_04, 6, 0, 0, 1, 8);
     ov25_022546B8(0, 0);
 
     GF_ASSERT(GF_heap_c_dummy_return_true(8));

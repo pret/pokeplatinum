@@ -276,13 +276,13 @@ static void ov94_0223C888(UnkStruct_ov94_0223FD4C *param0)
 
     v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, 62);
 
-    sub_02007130(v1, 4, 0, 0, 16 * 3 * 2, 62);
+    Graphics_LoadPaletteFromOpenNARC(v1, 4, 0, 0, 16 * 3 * 2, 62);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 62);
     sub_0200DD0C(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), 62);
     sub_0200DAA4(v0, 0, (1 + (18 + 12)), 11, 0, 62);
-    sub_020070E8(v1, 14, v0, 1, 0, 16 * 6 * 0x20, 1, 62);
-    sub_0200710C(v1, 30, v0, 1, 0, 32 * 24 * 2, 1, 62);
-    sub_0200710C(v1, 29, v0, 2, 0, 32 * 24 * 2, 1, 62);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 14, v0, 1, 0, 16 * 6 * 0x20, 1, 62);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 30, v0, 1, 0, 32 * 24 * 2, 1, 62);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 29, v0, 2, 0, 32 * 24 * 2, 1, 62);
 
     ov94_0223D068(param0);
 
@@ -615,7 +615,7 @@ void ov94_0223D068(UnkStruct_ov94_0223FD4C *param0)
 {
     BgConfig *v0 = param0->unk_04;
 
-    sub_02006E84(104, 5, 4, 0, 16 * 16 * 2, 62);
-    sub_02006E3C(104, 15, v0, 5, 0, 32 * 21 * 0x40, 1, 62);
-    sub_02006E60(104, 31, v0, 5, 0, 32 * 24 * 2, 1, 62);
+    Graphics_LoadPalette(104, 5, 4, 0, 16 * 16 * 2, 62);
+    Graphics_LoadTilesToBgLayer(104, 15, v0, 5, 0, 32 * 21 * 0x40, 1, 62);
+    Graphics_LoadTilemapToBgLayer(104, 31, v0, 5, 0, 32 * 24 * 2, 1, 62);
 }

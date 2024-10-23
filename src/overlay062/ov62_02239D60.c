@@ -600,7 +600,7 @@ static BOOL ov62_0223A544(UnkStruct_0208C06C *param0)
         ov62_02231664(&v0->unk_1AC, 1);
 
         if (ov62_022315E0(&v0->unk_1A4, &v0->unk_1A8, 1, 2)) {
-            sub_0200710C(param0->unk_14.unk_00, 79, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
+            Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, 79, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
             ov62_0223AB14(param0);
             ov62_0223A4C8(param0, 1);
             param0->unk_08++;
@@ -725,7 +725,7 @@ static BOOL ov62_0223A840(UnkStruct_0208C06C *param0)
 
         if (ov62_022315E0(&v0->unk_1A4, &v0->unk_1A8, 1, 2)) {
             ov62_0223A4C8(param0, 0);
-            sub_0200710C(param0->unk_14.unk_00, 77, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
+            Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, 77, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
             param0->unk_08++;
         }
 
@@ -1248,8 +1248,8 @@ static void ov62_0223B158(UnkStruct_0208C06C *param0)
         v0->unk_04.unk_176 = 0;
     }
 
-    sub_020070E8(param0->unk_14.unk_00, (138 + (v0->unk_04.unk_176 * 3)), param0->unk_14.unk_10, 3, 0, 0, 0, 102);
-    sub_0200710C(param0->unk_14.unk_00, (140 + (v0->unk_04.unk_176 * 3)), param0->unk_14.unk_10, 3, 0, 0, 0, 102);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_00, (138 + (v0->unk_04.unk_176 * 3)), param0->unk_14.unk_10, 3, 0, 0, 0, 102);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, (140 + (v0->unk_04.unk_176 * 3)), param0->unk_14.unk_10, 3, 0, 0, 0, 102);
     PaletteData_LoadBufferFromFile(param0->unk_14.unk_14, 162, (139 + (v0->unk_04.unk_176 * 3)), 102, 0, 0x40, 12 * 16, 12 * 16);
 
     ov62_0223B050(param0);
@@ -1277,8 +1277,8 @@ static void ov62_0223B230(UnkStruct_0208C06C *param0)
         }
     }
 
-    sub_020070E8(param0->unk_14.unk_00, (138 + (v0->unk_04.unk_176 * 3)), param0->unk_14.unk_10, 3, 0, 0, 0, 102);
-    sub_0200710C(param0->unk_14.unk_00, (140 + (v0->unk_04.unk_176 * 3)), param0->unk_14.unk_10, 3, 0, 0, 0, 102);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_00, (138 + (v0->unk_04.unk_176 * 3)), param0->unk_14.unk_10, 3, 0, 0, 0, 102);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, (140 + (v0->unk_04.unk_176 * 3)), param0->unk_14.unk_10, 3, 0, 0, 0, 102);
     PaletteData_LoadBufferFromFile(param0->unk_14.unk_14, 162, (139 + (v0->unk_04.unk_176 * 3)), 102, 0, 0x40, 12 * 16, 12 * 16);
 
     ov62_0223B050(param0);
@@ -1301,8 +1301,8 @@ static BOOL ov62_0223B2E8(UnkStruct_0208C06C *param0)
         ov62_0223AFC0(param0, 0);
         ov62_02234540(param0, 0);
 
-        sub_020070E8(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
-        sub_0200710C(param0->unk_14.unk_00, 77, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, 77, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
     }
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
@@ -1410,8 +1410,8 @@ static BOOL ov62_0223B564(UnkStruct_0208C06C *param0)
         ov62_022302F0(param0, 2);
         ov62_0223AA90(param0);
         ov62_0223AC0C(param0, 275);
-        sub_020070E8(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
-        sub_0200710C(param0->unk_14.unk_00, 79, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, 79, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
 
         ov62_0223AB14(param0);
         ov62_0223A4C8(param0, 1);
@@ -1640,9 +1640,9 @@ static BOOL ov62_0223B980(UnkStruct_0208C06C *param0)
         ov62_02231664(&v0->unk_1AC, 1);
 
         if (ov62_022315E0(&v0->unk_1A4, &v0->unk_1A8, 1, 0)) {
-            sub_020070E8(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
-            sub_0200710C(param0->unk_14.unk_00, 3, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
-            sub_0200710C(param0->unk_14.unk_00, 78, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
+            Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
+            Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, 3, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
+            Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, 78, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
             param0->unk_08++;
         }
 
@@ -1725,7 +1725,7 @@ static BOOL ov62_0223B980(UnkStruct_0208C06C *param0)
         if (ov62_022315E0(&v0->unk_1A4, &v0->unk_1A8, 1, 0)) {
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
             GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
-            sub_0200710C(param0->unk_14.unk_00, 79, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
+            Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, 79, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
             param0->unk_08++;
         }
         break;
@@ -1875,7 +1875,7 @@ static BOOL ov62_0223BFB4(UnkStruct_0208C06C *param0)
         param0->unk_08++;
     case 1:
         if (ov62_022315E0(&v0->unk_1A4, &v0->unk_1A8, 1, 0)) {
-            sub_0200710C(param0->unk_14.unk_00, 79, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
+            Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, 79, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
             param0->unk_08++;
         }
         break;
@@ -1942,7 +1942,7 @@ static BOOL ov62_0223C138(UnkStruct_0208C06C *param0)
         ov62_02234540(param0, 0);
 
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
-        sub_0200710C(param0->unk_14.unk_00, 75, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, 75, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
     }
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
@@ -2017,9 +2017,9 @@ static BOOL ov62_0223C424(UnkStruct_0208C06C *param0)
         param0->unk_08++;
     case 2:
         if (ov62_022315E0(&v0->unk_1A4, &v0->unk_1A8, 1, 0)) {
-            sub_020070E8(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
-            sub_0200710C(param0->unk_14.unk_00, 3, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
-            sub_0200710C(param0->unk_14.unk_00, 78, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
+            Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
+            Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, 3, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
+            Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, 78, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
             GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
             param0->unk_08++;
@@ -2096,8 +2096,8 @@ static BOOL ov62_0223C63C(UnkStruct_0208C06C *param0)
             ov62_02232378(&v0->unk_2ED8, param0);
             ov62_022323B8(&v0->unk_2ED8, 0);
             ov62_02234540(param0, 0);
-            sub_020070E8(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
-            sub_0200710C(param0->unk_14.unk_00, 80, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
+            Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
+            Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, 80, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
             param0->unk_08++;
         }
         break;
@@ -2136,8 +2136,8 @@ static BOOL ov62_0223C79C(UnkStruct_0208C06C *param0)
         if (ov62_022315E0(&v0->unk_1A4, &v0->unk_1A8, 1, 1)) {
             Bg_ClearTilemap(param0->unk_14.unk_10, 2);
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
-            sub_020070E8(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
-            sub_0200710C(param0->unk_14.unk_00, 3, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
+            Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
+            Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, 3, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
             param0->unk_08++;
         }
         break;

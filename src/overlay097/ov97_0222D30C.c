@@ -758,18 +758,18 @@ static void ov97_0222DBC4(BgConfig *param0)
 
 static void ov97_0222DC20(BgConfig *param0)
 {
-    sub_02006E84(116, 0, 4, 16 * 2 * 8, 16 * 2, 86);
-    sub_02006E3C(116, 1, param0, 5, 0, 10 * 16 * 0x20, 1, 86);
-    sub_02006E60(116, 2, param0, 5, 0, 32 * 24 * 2, 1, 86);
+    Graphics_LoadPalette(116, 0, 4, 16 * 2 * 8, 16 * 2, 86);
+    Graphics_LoadTilesToBgLayer(116, 1, param0, 5, 0, 10 * 16 * 0x20, 1, 86);
+    Graphics_LoadTilemapToBgLayer(116, 2, param0, 5, 0, 32 * 24 * 2, 1, 86);
     Bg_ChangeTilemapRectPalette(param0, 5, 0, 0, 32, 24, 8);
     Bg_CopyTilemapBufferToVRAM(param0, 5);
 }
 
 static void ov97_0222DC9C(BgConfig *param0)
 {
-    sub_02006E84(116, 0, 0, 16 * 2 * 8, 16 * 2, 86);
-    sub_02006E3C(116, 1, param0, 1, 0, 10 * 16 * 0x20, 1, 86);
-    sub_02006E60(116, 2, param0, 1, 0, 32 * 24 * 2, 1, 86);
+    Graphics_LoadPalette(116, 0, 0, 16 * 2 * 8, 16 * 2, 86);
+    Graphics_LoadTilesToBgLayer(116, 1, param0, 1, 0, 10 * 16 * 0x20, 1, 86);
+    Graphics_LoadTilemapToBgLayer(116, 2, param0, 1, 0, 32 * 24 * 2, 1, 86);
     Bg_ChangeTilemapRectPalette(param0, 1, 0, 0, 32, 24, 8);
     Bg_CopyTilemapBufferToVRAM(param0, 1);
 

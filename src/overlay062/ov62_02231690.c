@@ -2711,7 +2711,7 @@ int ov62_0223438C(u64 param0)
 
 void ov62_022343B8(UnkStruct_0208C06C *param0, int param1, int param2)
 {
-    sub_0200710C(param0->unk_14.unk_00, param1, param0->unk_14.unk_10, param2, 0, 0, 0, 102);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, param1, param0->unk_14.unk_10, param2, 0, 0, 0, 102);
 }
 
 static void ov62_022343D8(SysTask *param0, void *param1)

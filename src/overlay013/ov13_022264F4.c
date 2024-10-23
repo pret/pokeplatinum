@@ -726,8 +726,8 @@ static void ov13_02226FC4(UnkStruct_ov13_02227244 *param0)
 
     v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__B_BAG_GRA, param0->unk_00->unk_0C);
 
-    sub_020070E8(v0, 2, param0->unk_04, 6, 0, 0, 0, param0->unk_00->unk_0C);
-    sub_0200710C(v0, 0, param0->unk_04, 6, 0, 0, 0, param0->unk_00->unk_0C);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 2, param0->unk_04, 6, 0, 0, 0, param0->unk_00->unk_0C);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 0, param0->unk_04, 6, 0, 0, 0, param0->unk_00->unk_0C);
 
     {
         NNSG2dScreenData *v1;
@@ -748,7 +748,7 @@ static void ov13_02226FC4(UnkStruct_ov13_02227244 *param0)
     {
         int v4 = ov16_0223EDE0(param0->unk_00->unk_00);
 
-        sub_02006E3C(38, sub_0200DD04(v4), param0->unk_04, 4, 1024 - (18 + 12), 0, 0, param0->unk_00->unk_0C);
+        Graphics_LoadTilesToBgLayer(38, sub_0200DD04(v4), param0->unk_04, 4, 1024 - (18 + 12), 0, 0, param0->unk_00->unk_0C);
         PaletteData_LoadBufferFromFileStart(param0->unk_08, 38, sub_0200DD08(v4), param0->unk_00->unk_0C, 1, 0x20, 14 * 16);
     }
 }

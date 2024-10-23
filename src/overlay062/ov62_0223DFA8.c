@@ -547,7 +547,7 @@ static BOOL ov62_0223E810 (UnkStruct_0208C06C * param0)
         ov62_02231664(&v0->unk_08, 1);
 
         if (ov62_022315E0(&v0->unk_00, &v0->unk_04, 1, 2)) {
-            sub_0200710C(param0->unk_14.unk_00, 84, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
+            Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, 84, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
             ov62_0223E0FC(param0, 102, v0->unk_1FB0);
             param0->unk_08++;
         }
@@ -600,8 +600,8 @@ static BOOL ov62_0223E8BC (UnkStruct_0208C06C * param0)
 
         ov62_0224088C(param0);
         ov62_02240900(param0);
-        sub_020070E8(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
-        sub_020070E8(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
         ov62_02234540(param0, 1);
 
         if (v0->unk_10 == 0) {
@@ -613,11 +613,11 @@ static BOOL ov62_0223E8BC (UnkStruct_0208C06C * param0)
             ov62_02232394(&v0->unk_194, param0);
             ov62_02232378(&v0->unk_194, param0);
             ov62_022323B8(&v0->unk_194, 0);
-            sub_0200710C(param0->unk_14.unk_00, 80, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
+            Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, 80, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
         }
 
         ov62_02234540(param0, 0);
-        sub_0200710C(param0->unk_14.unk_00, 6, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, 6, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
         param0->unk_08++;
         break;
     case 3:
@@ -695,8 +695,8 @@ static BOOL ov62_0223EB28 (UnkStruct_0208C06C * param0)
         }
 
         ov62_02240900(param0);
-        sub_020070E8(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
-        sub_020070E8(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
         ov62_02234540(param0, 1);
 
         if (v0->unk_10 == 0) {
@@ -707,11 +707,11 @@ static BOOL ov62_0223EB28 (UnkStruct_0208C06C * param0)
         } else {
             ov62_02232378(&v0->unk_194, param0);
             ov62_022323B8(&v0->unk_194, 0);
-            sub_0200710C(param0->unk_14.unk_00, 80, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
+            Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, 80, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
         }
 
         ov62_02234540(param0, 0);
-        sub_0200710C(param0->unk_14.unk_00, 6, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, 6, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
         param0->unk_08++;
         break;
     case 3:
@@ -1216,8 +1216,8 @@ static BOOL ov62_0223F760 (UnkStruct_0208C06C * param0)
         v0->unk_2008.unk_00 = ov62_02233A68(102);
         v0->unk_2008.unk_08 = 500;
 
-        sub_020070E8(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
-        sub_020070E8(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
 
         ov62_022343B8(param0, 4, 3);
         ov62_022343B8(param0, 7, 7);
@@ -1683,8 +1683,8 @@ static BOOL ov62_02240084 (UnkStruct_0208C06C * param0)
             }
         }
 
-        sub_020070E8(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
-        sub_020070E8(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
 
         ov62_022343B8(param0, 6, 7);
 
@@ -2032,7 +2032,7 @@ asm static BOOL ov62_022403F8 (UnkStruct_0208C06C * param0)
     ldr r2, [r4, #0x24]
     mov r1, #0x3e
     mov r3, #3
-    bl sub_020070E8
+    bl Graphics_LoadTilesToBgLayerFromOpenNARC
     mov r0, #0
     str r0, [sp]
     str r0, [sp, #4]
@@ -2043,7 +2043,7 @@ asm static BOOL ov62_022403F8 (UnkStruct_0208C06C * param0)
     ldr r2, [r4, #0x24]
     mov r1, #0x3e
     mov r3, #7
-    bl sub_020070E8
+    bl Graphics_LoadTilesToBgLayerFromOpenNARC
     add r0, r4, #0
     mov r1, #1
     bl ov62_02234540
@@ -2090,7 +2090,7 @@ asm static BOOL ov62_022403F8 (UnkStruct_0208C06C * param0)
     ldr r2, [r4, #0x24]
     mov r1, #0x50
     mov r3, #3
-    bl sub_0200710C
+    bl Graphics_LoadTilemapToBgLayerFromOpenNARC
  _02240698:
     add r0, r4, #0
     mov r1, #0
@@ -2105,7 +2105,7 @@ asm static BOOL ov62_022403F8 (UnkStruct_0208C06C * param0)
     ldr r2, [r4, #0x24]
     mov r1, #6
     mov r3, #7
-    bl sub_0200710C
+    bl Graphics_LoadTilemapToBgLayerFromOpenNARC
     ldr r0, [r4, #8]
     add r0, r0, #1
     str r0, [r4, #8]

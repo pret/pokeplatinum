@@ -437,8 +437,8 @@ static void ov110_021D123C (UnkStruct_ov110_021D0F78 * param0, u32 param1)
 
     v0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 114);
 
-    sub_020070E8(v0, 124, param0->unk_0C, param1, 0, 0, 1, 114);
-    sub_0200710C(v0, 123, param0->unk_0C, param1, 0, 0, 1, 114);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 124, param0->unk_0C, param1, 0, 0, 1, 114);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 123, param0->unk_0C, param1, 0, 0, 1, 114);
     NARC_dtor(v0);
 
     return;
@@ -449,7 +449,7 @@ static void ov110_021D128C (void)
     void * v0;
     NNSG2dPaletteData * v1;
 
-    v0 = sub_02006F88(150, 170, &v1, 114);
+    v0 = Graphics_GetPlttData(150, 170, &v1, 114);
 
     DC_FlushRange(v1->pRawData, (sizeof(u16) * 16 * 2));
     GX_LoadBGPltt(v1->pRawData, 0, (sizeof(u16) * 16 * 2));
@@ -464,9 +464,9 @@ static void ov110_021D12C0 (UnkStruct_ov110_021D0F78 * param0, u32 param1)
 
     v0 = NARC_ctor(NARC_INDEX_GRAPHIC__POKETCH, 114);
 
-    sub_020070E8(v0, 10, param0->unk_0C, param1, 0, 0, 1, 114);
-    sub_0200710C(v0, 11, param0->unk_0C, param1, 0, 0, 1, 114);
-    sub_02007130(v0, 12, 4, 0, 0x20, 114);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 10, param0->unk_0C, param1, 0, 0, 1, 114);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 11, param0->unk_0C, param1, 0, 0, 1, 114);
+    Graphics_LoadPaletteFromOpenNARC(v0, 12, 4, 0, 0x20, 114);
     NARC_dtor(v0);
 
     return;

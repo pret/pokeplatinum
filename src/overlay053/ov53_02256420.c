@@ -126,8 +126,8 @@ static void ov53_022564B0(SysTask *param0, void *param1)
     v3 = ov25_02255240(param1);
 
     Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
-    sub_02006E3C(12, 122, v2->unk_04, 6, 0, 0, 1, 8);
-    sub_02006E60(12, 121, v2->unk_04, 6, 0, 0, 1, 8);
+    Graphics_LoadTilesToBgLayer(12, 122, v2->unk_04, 6, 0, 0, 1, 8);
+    Graphics_LoadTilemapToBgLayer(12, 121, v2->unk_04, 6, 0, 0, 1, 8);
 
     ov25_022546B8(0, 0);
     ov53_022566AC(v2, v3);
@@ -347,7 +347,7 @@ static void ov53_022566AC(UnkStruct_ov53_02256420 *param0, const UnkStruct_ov53_
     ov25_02255958(&param0->unk_78, 12, 5, 6, 8);
     ov25_02255958(&param0->unk_64, 12, 123, 124, 8);
 
-    v1 = sub_02006EC0(12, 125, 1, 0, 0, 1, 8);
+    v1 = Graphics_LoadObjectTiles(12, 125, 1, 0, 0, 1, 8);
     v1 /= 0x20;
     param0->unk_AC = v1;
 

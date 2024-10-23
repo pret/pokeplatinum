@@ -62,8 +62,8 @@ void ov20_021D3898(UnkStruct_ov20_021D3980 *param0, NARC *param1)
 
     v2 = ov20_021D2E04(param0->unk_00);
 
-    sub_0200710C(param1, 4, v2, 3, 0, 0, 1, 35);
-    sub_020070E8(param1, 5, v2, 3, 0, 0, 1, 35);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 4, v2, 3, 0, 0, 1, 35);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 5, v2, 3, 0, 0, 1, 35);
 
     ov20_021D390C(v2, &v0, 0);
     ov20_021D390C(v2, &v1, 1);

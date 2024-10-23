@@ -387,8 +387,8 @@ void ov119_021D1308(BgConfig *param0, PaletteData *param1)
     int v4 = 3;
     int v5 = 71;
 
-    sub_02006E3C(v0, v1, param0, v4, 0, 0, 1, v5);
-    sub_02006E60(v0, v2, param0, v4, 0, 0, 1, v5);
+    Graphics_LoadTilesToBgLayer(v0, v1, param0, v4, 0, 0, 1, v5);
+    Graphics_LoadTilemapToBgLayer(v0, v2, param0, v4, 0, 0, 1, v5);
     PaletteData_LoadBufferFromFileStart(param1, v0, v3, v5, 0, 0x20 * 2, 0);
 }
 
@@ -401,8 +401,8 @@ void ov119_021D135C(BgConfig *param0, PaletteData *param1)
     int v4 = 4;
     int v5 = 71;
 
-    sub_02006E3C(v0, v1, param0, v4, 0, 0, 1, v5);
-    sub_02006E60(v0, v2, param0, v4, 0, 0, 1, v5);
+    Graphics_LoadTilesToBgLayer(v0, v1, param0, v4, 0, 0, 1, v5);
+    Graphics_LoadTilemapToBgLayer(v0, v2, param0, v4, 0, 0, 1, v5);
     PaletteData_LoadBufferFromFileStart(param1, v0, v3, v5, 1, 0x20 * 1, 0);
 }
 

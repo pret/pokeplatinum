@@ -239,8 +239,8 @@ static void ov73_021D342C (UnkStruct_ov73_021D342C * param0)
             v4 = 4;
 
             Bg_InitFromTemplate(param0->unk_04, v2, &v6, 0);
-            sub_02006E3C(136, v3, param0->unk_04, v2, 0, 0, 0, param0->unk_00);
-            sub_02006E60(136, v4, param0->unk_04, v2, 0, 0, 0, param0->unk_00);
+            Graphics_LoadTilesToBgLayer(136, v3, param0->unk_04, v2, 0, 0, 0, param0->unk_00);
+            Graphics_LoadTilemapToBgLayer(136, v4, param0->unk_04, v2, 0, 0, 0, param0->unk_00);
         }
         {
             BgTemplate v7 = {
@@ -264,8 +264,8 @@ static void ov73_021D342C (UnkStruct_ov73_021D342C * param0)
             v4 = 5;
 
             Bg_InitFromTemplate(param0->unk_04, v2, &v7, 0);
-            sub_02006E3C(136, v3, param0->unk_04, v2, 0, 0, 0, param0->unk_00);
-            sub_02006E60(136, v4, param0->unk_04, v2, 0, 0, 0, param0->unk_00);
+            Graphics_LoadTilesToBgLayer(136, v3, param0->unk_04, v2, 0, 0, 0, param0->unk_00);
+            Graphics_LoadTilemapToBgLayer(136, v4, param0->unk_04, v2, 0, 0, 0, param0->unk_00);
         }
         {
             BgTemplate v8 = {
@@ -289,12 +289,12 @@ static void ov73_021D342C (UnkStruct_ov73_021D342C * param0)
             v4 = 7;
 
             Bg_InitFromTemplate(param0->unk_04, v2, &v8, 0);
-            sub_02006E3C(136, v3, param0->unk_04, v2, 0, 0, 0, param0->unk_00);
-            sub_02006E60(136, v4, param0->unk_04, v2, 0, 0, 0, param0->unk_00);
+            Graphics_LoadTilesToBgLayer(136, v3, param0->unk_04, v2, 0, 0, 0, param0->unk_00);
+            Graphics_LoadTilemapToBgLayer(136, v4, param0->unk_04, v2, 0, 0, 0, param0->unk_00);
         }
     }
-    sub_02006E84(136, 6, 0, 0, 0, param0->unk_00);
-    sub_02006E9C(136, 9, 0, 0x20 * 2, 0x20 * 2, 0x20 * 14, param0->unk_00);
+    Graphics_LoadPalette(136, 6, 0, 0, 0, param0->unk_00);
+    Graphics_LoadPaletteWithSrcOffset(136, 9, 0, 0x20 * 2, 0x20 * 2, 0x20 * 14, param0->unk_00);
     Font_LoadTextPalette(0, 1 * (2 * 16), param0->unk_00);
     Bg_MaskPalette(0, 0x0);
     Bg_MaskPalette(4, 0x0);

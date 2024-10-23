@@ -144,7 +144,7 @@ static void CommManUnderground_Init(CommManUnderground *param0, FieldSystem *fie
     sCommManUnderground->unk_128 = ov23_02253D48(630, 33, fieldSystem->unk_08, v0, 0);
 
     sub_0200DD0C(sCommManUnderground->fieldSystem->unk_08, 3, (1024 - (18 + 12)), 10, 0, 4);
-    sub_02006E84(50, 52, 0, 10 * 0x20, 4 * 0x20, 4);
+    Graphics_LoadPalette(50, 52, 0, 10 * 0x20, 4 * 0x20, 4);
     sub_0200DAA4(sCommManUnderground->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 2, 4);
 
     for (v1 = 0; v1 < (7 + 1); v1++) {

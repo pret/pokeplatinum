@@ -282,8 +282,8 @@ void ov17_022509AC(UnkStruct_ov17_0224FCA0 *param0)
 
     v1 = NARC_ctor(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 24);
 
-    sub_020070E8(v1, 23, param0->unk_10.unk_20, 3, 0, 0, 1, 24);
-    sub_0200710C(v1, 22, param0->unk_10.unk_20, 3, 0, 0, 1, 24);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 23, param0->unk_10.unk_20, 3, 0, 0, 1, 24);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 22, param0->unk_10.unk_20, 3, 0, 0, 1, 24);
     Bg_ClearTilemap(param0->unk_10.unk_20, 1);
     PaletteData_LoadBufferFromFileStart(param0->unk_10.unk_C0, 45, 35, 24, 0, 0, 0);
     PaletteData_LoadBufferFromFileStart(param0->unk_10.unk_C0, 45, 36, 24, 0, 0x20, 13 * 16);
@@ -320,9 +320,9 @@ void ov17_02250B00(UnkStruct_ov17_0224FCA0 *param0)
 
     v1 = NARC_ctor(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 24);
 
-    sub_020070E8(v1, 27, param0->unk_10.unk_20, 3, 0, 0, 1, 24);
-    sub_0200710C(v1, 25, param0->unk_10.unk_20, 3, 0, 0, 1, 24);
-    sub_0200710C(v1, 26, param0->unk_10.unk_20, 2, 0, 0, 1, 24);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 27, param0->unk_10.unk_20, 3, 0, 0, 1, 24);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 25, param0->unk_10.unk_20, 3, 0, 0, 1, 24);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 26, param0->unk_10.unk_20, 2, 0, 0, 1, 24);
     Bg_ClearTilemap(param0->unk_10.unk_20, 1);
     PaletteData_LoadBufferFromFileStart(param0->unk_10.unk_C0, 45, 39, 24, 0, 0, 0);
     PaletteData_LoadBufferFromFileStart(param0->unk_10.unk_C0, 45, 36, 24, 0, 0x20, 13 * 16);

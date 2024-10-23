@@ -442,15 +442,15 @@ static void ov72_0223DCA8(UnkStruct_ov72_0223DB98 *param0, NARC *param1)
 {
     BgConfig *v0 = param0->unk_00;
 
-    sub_02007130(param1, 0, 0, 0, 16 * 2 * 3, 39);
-    sub_02007130(param1, 2, 4, 0, 16 * 2 * 2, 39);
+    Graphics_LoadPaletteFromOpenNARC(param1, 0, 0, 0, 16 * 2 * 3, 39);
+    Graphics_LoadPaletteFromOpenNARC(param1, 2, 4, 0, 16 * 2 * 2, 39);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 39);
     Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, 39);
     Bg_ClearTilesRange(1, 32, 0, 39);
-    sub_020070E8(param1, 3, v0, 2, 0, 32 * 8 * 0x20, 1, 39);
-    sub_0200710C(param1, 5, v0, 2, 0, 32 * 24 * 2, 1, 39);
-    sub_020070E8(param1, 4, v0, 5, 0, 32 * 8 * 0x20, 1, 39);
-    sub_0200710C(param1, 6, v0, 5, 0, 32 * 24 * 2, 1, 39);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 3, v0, 2, 0, 32 * 8 * 0x20, 1, 39);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 5, v0, 2, 0, 32 * 24 * 2, 1, 39);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 4, v0, 5, 0, 32 * 8 * 0x20, 1, 39);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 6, v0, 5, 0, 32 * 24 * 2, 1, 39);
     sub_0200DD0C(v0, 0, 1, 10, Options_Frame(param0->unk_0C), 39);
     sub_0200DAA4(v0, 0, 1 + (18 + 12), 11, 0, 39);
 }

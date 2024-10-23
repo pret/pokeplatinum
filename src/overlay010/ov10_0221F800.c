@@ -1432,11 +1432,11 @@ static void ov10_02220E70(UnkStruct_ov10_0221FB28 *param0)
 
     v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__VS_DEMO_GRA, param0->unk_00->unk_24);
 
-    sub_020070E8(v0, 0, param0->unk_0C, 1, 0, 0, 0, param0->unk_00->unk_24);
-    sub_0200710C(v0, 4, param0->unk_0C, 1, 0, 0, 0, param0->unk_00->unk_24);
-    sub_0200710C(v0, 2, param0->unk_0C, 2, 0, 0, 0, param0->unk_00->unk_24);
-    sub_0200710C(v0, 3, param0->unk_0C, 3, 0, 0, 0, param0->unk_00->unk_24);
-    sub_02007130(v0, 1, 0, 0, 0, param0->unk_00->unk_24);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 0, param0->unk_0C, 1, 0, 0, 0, param0->unk_00->unk_24);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 4, param0->unk_0C, 1, 0, 0, 0, param0->unk_00->unk_24);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 2, param0->unk_0C, 2, 0, 0, 0, param0->unk_00->unk_24);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 3, param0->unk_0C, 3, 0, 0, 0, param0->unk_00->unk_24);
+    Graphics_LoadPaletteFromOpenNARC(v0, 1, 0, 0, 0, param0->unk_00->unk_24);
     PaletteData_LoadBufferFromHardware(param0->unk_08, 0, 0, 0x20 * 5);
     Bg_MaskPalette(1, 0x18c6);
     NARC_dtor(v0);
@@ -1921,8 +1921,8 @@ static void ov10_02221A3C(UnkStruct_ov10_0221FB28 *param0)
 
     v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, param0->unk_00->unk_24);
 
-    sub_020070E8(v0, 15, param0->unk_0C, 3, 0, 0, 0, param0->unk_00->unk_24);
-    sub_0200710C(v0, 17, param0->unk_0C, 3, 0, 0, 0, param0->unk_00->unk_24);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 15, param0->unk_0C, 3, 0, 0, 0, param0->unk_00->unk_24);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 17, param0->unk_0C, 3, 0, 0, 0, param0->unk_00->unk_24);
 
     {
         NNSG2dPaletteData *v1;

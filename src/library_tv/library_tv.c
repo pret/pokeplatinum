@@ -203,26 +203,26 @@ static void LibraryTV_SetVramBank(LibraryTV *ltv)
     charSetID = 1;
     screenID = 4;
     Bg_InitFromTemplate(ltv->bgl, frame, &bgHeader1, 0);
-    sub_02006E3C(NARC_INDEX_DEMO__INTRO__INTRO_TV, charSetID, ltv->bgl, frame, 0, 0, 0, ltv->heapID);
-    sub_02006E60(NARC_INDEX_DEMO__INTRO__INTRO_TV, screenID, ltv->bgl, frame, 0, 0, 0, ltv->heapID);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO_TV, charSetID, ltv->bgl, frame, 0, 0, 0, ltv->heapID);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO_TV, screenID, ltv->bgl, frame, 0, 0, 0, ltv->heapID);
 
     BgTemplate bgHeader2 = { 0, 0, 0x800, 0, 1, GX_BG_COLORMODE_16, GX_BG_SCRBASE_0x1000, GX_BG_CHARBASE_0x10000, GX_BG_EXTPLTT_01, 1, 0, 0, FALSE };
     frame = 1;
     charSetID = 2;
     screenID = 5;
     Bg_InitFromTemplate(ltv->bgl, frame, &bgHeader2, 0);
-    sub_02006E3C(NARC_INDEX_DEMO__INTRO__INTRO_TV, charSetID, ltv->bgl, frame, 0, 0, 0, ltv->heapID);
-    sub_02006E60(NARC_INDEX_DEMO__INTRO__INTRO_TV, screenID, ltv->bgl, frame, 0, 0, 0, ltv->heapID);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO_TV, charSetID, ltv->bgl, frame, 0, 0, 0, ltv->heapID);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO_TV, screenID, ltv->bgl, frame, 0, 0, 0, ltv->heapID);
 
     BgTemplate bgHeader3 = { 0, 0, 0x800, 0, 1, GX_BG_COLORMODE_256, GX_BG_SCRBASE_0x1800, GX_BG_CHARBASE_0x20000, GX_BG_EXTPLTT_01, 1, 0, 0, FALSE };
     frame = 3;
     charSetID = 2;
     screenID = 4;
     Bg_InitFromTemplate(ltv->bgl, frame, &bgHeader3, 0);
-    sub_02006E3C(NARC_INDEX_GRAPHIC__LIBRARY_TV, charSetID, ltv->bgl, frame, 0, 0, 0, ltv->heapID);
-    sub_02006E60(NARC_INDEX_GRAPHIC__LIBRARY_TV, screenID, ltv->bgl, frame, 0, 0, 0, ltv->heapID);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__LIBRARY_TV, charSetID, ltv->bgl, frame, 0, 0, 0, ltv->heapID);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__LIBRARY_TV, screenID, ltv->bgl, frame, 0, 0, 0, ltv->heapID);
 
-    sub_02006E84(NARC_INDEX_GRAPHIC__LIBRARY_TV, 3, 0, 0, 0, ltv->heapID);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__LIBRARY_TV, 3, 0, 0, 0, ltv->heapID);
     Font_LoadTextPalette(0, 1 * (2 * 16), ltv->heapID);
     Bg_MaskPalette(0, 0x0);
     Bg_MaskPalette(4, 0x0);

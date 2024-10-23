@@ -1048,10 +1048,10 @@ static void ov117_022619F8(UnkStruct_ov117_02261280 *param0)
 static void ov117_02261A2C(UnkStruct_ov117_02261280 *param0, NARC *param1)
 {
     PaletteData_LoadBufferFromFileStart(param0->unk_8C, 173, 4, 110, 0, 0, 0);
-    sub_020070E8(param1, 2, param0->unk_2C, 3, 0, 0, 0, 110);
-    sub_0200710C(param1, 3, param0->unk_2C, 3, 0, 0, 0, 110);
-    sub_020070E8(param1, 0, param0->unk_2C, 2, 0, 0, 0, 110);
-    sub_0200710C(param1, 1, param0->unk_2C, 2, 0, 0, 0, 110);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, param0->unk_2C, 3, 0, 0, 0, 110);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 3, param0->unk_2C, 3, 0, 0, 0, 110);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 0, param0->unk_2C, 2, 0, 0, 0, 110);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 1, param0->unk_2C, 2, 0, 0, 0, 110);
     PaletteData_FillBufferRange(param0->unk_8C, 0, 2, 0x0, 0, 1);
 }
 
@@ -1064,24 +1064,24 @@ static void ov117_02261AC8(UnkStruct_ov117_02261280 *param0, NARC *param1)
 {
     PaletteData_LoadBufferFromFileStart(param0->unk_8C, 173, 5, 110, 1, 5 * 0x20, 0);
     PaletteData_LoadBufferFromFile(param0->unk_8C, 173, 6, 110, 1, (0x20 * 10), 6 * 16, 6 * 16);
-    sub_020070E8(param1, 13, param0->unk_2C, 6, 0, 0, 0, 110);
-    sub_0200710C(param1, 14, param0->unk_2C, 6, 0, 0, 0, 110);
-    sub_020070E8(param1, 18, param0->unk_2C, 5, 0, 0, 0, 110);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 13, param0->unk_2C, 6, 0, 0, 0, 110);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 14, param0->unk_2C, 6, 0, 0, 0, 110);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 18, param0->unk_2C, 5, 0, 0, 0, 110);
 
     switch (param0->unk_00->unk_30) {
     case 2:
-        sub_0200710C(param1, 15, param0->unk_2C, 5, 0, 0, 0, 110);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 15, param0->unk_2C, 5, 0, 0, 0, 110);
         break;
     case 3:
-        sub_0200710C(param1, 16, param0->unk_2C, 5, 0, 0, 0, 110);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 16, param0->unk_2C, 5, 0, 0, 0, 110);
         break;
     default:
-        sub_0200710C(param1, 17, param0->unk_2C, 5, 0, 0, 0, 110);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 17, param0->unk_2C, 5, 0, 0, 0, 110);
         break;
     }
 
-    sub_020070E8(param1, 18, param0->unk_2C, 4, 0, 0, 0, 110);
-    sub_0200710C(param1, 19, param0->unk_2C, 4, 0, 0, 0, 110);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 18, param0->unk_2C, 4, 0, 0, 0, 110);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 19, param0->unk_2C, 4, 0, 0, 0, 110);
 
     ov117_02264AF0(param0);
     ov117_02264AB0(param0);

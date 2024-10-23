@@ -309,14 +309,14 @@ static void ov95_02249910(UnkStruct_ov95_022497D8 *param0)
         break;
     }
 
-    sub_02006E3C(93, v4, param0->unk_24, 3, 0, 0, 1, 58);
-    sub_02006E3C(93, v4, param0->unk_24, 7, 0, 0, 1, 58);
+    Graphics_LoadTilesToBgLayer(93, v4, param0->unk_24, 3, 0, 0, 1, 58);
+    Graphics_LoadTilesToBgLayer(93, v4, param0->unk_24, 7, 0, 0, 1, 58);
 
-    sub_02006E60(93, v3, param0->unk_24, 3, 0, 0, 1, 58);
-    sub_02006E60(93, v3, param0->unk_24, 7, 0, 0, 1, 58);
+    Graphics_LoadTilemapToBgLayer(93, v3, param0->unk_24, 3, 0, 0, 1, 58);
+    Graphics_LoadTilemapToBgLayer(93, v3, param0->unk_24, 7, 0, 0, 1, 58);
 
-    sub_02006E9C(93, v5, 0, v6, 0, 0x20, 58);
-    sub_02006E9C(93, v5, 4, v6, 0, 0x20, 58);
+    Graphics_LoadPaletteWithSrcOffset(93, v5, 0, v6, 0, 0x20, 58);
+    Graphics_LoadPaletteWithSrcOffset(93, v5, 4, v6, 0, 0x20, 58);
 
     Bg_SetOffset(param0->unk_24, 3, 3, 256);
     Bg_SetOffset(param0->unk_24, 7, 3, 0);
@@ -404,8 +404,8 @@ static void ov95_02249B90(UnkStruct_ov95_022497D8 *param0)
     NNS_G2dInitImagePaletteProxy(&v0);
     NNS_G2dInitImageProxy(&v1);
 
-    sub_02006F00(93, 9, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &v1);
-    sub_02006EE0(93, 10, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &v0);
+    Graphics_LoadImageMapping(93, 9, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &v1);
+    Graphics_LoadPartialPalette(93, 10, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &v0);
     ov95_022475C4(&v2, &param0->unk_10, &v1, &v0, 0);
 
     param0->unk_20[0] = ov95_022475E4(param0->unk_00, &v2, UnkEnum_ov95_02249B90_00, UnkEnum_ov95_02249B90_01, 0, NNS_G2D_VRAM_TYPE_2DMAIN);

@@ -326,7 +326,7 @@ static void ov94_02242CAC(UnkStruct_ov94_0223FD4C *param0)
 {
     BgConfig *v0 = param0->unk_04;
 
-    sub_02006E84(104, 0, 0, 0, 16 * 3 * 2, 62);
+    Graphics_LoadPalette(104, 0, 0, 0, 16 * 3 * 2, 62);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 62);
     sub_0200DD0C(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), 62);
     sub_0200DAA4(v0, 0, (1 + (18 + 12)), 11, 0, 62);

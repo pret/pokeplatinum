@@ -905,9 +905,9 @@ static BOOL ov73_021D1784(UnkStruct_ov73_021D1058 *param0, u32 param1, int param
 
 static void ov73_021D1930(UnkStruct_ov73_021D1058 *param0)
 {
-    sub_02006E3C(125, 0, param0->unk_18, 3, 0, 0, 0, param0->unk_00);
+    Graphics_LoadTilesToBgLayer(125, 0, param0->unk_18, 3, 0, 0, 0, param0->unk_00);
     Bg_ClearTilesRange(0, 32, 0, param0->unk_00);
-    sub_02006E3C(125, 24, param0->unk_18, 7, 0, 0, 0, param0->unk_00);
+    Graphics_LoadTilesToBgLayer(125, 24, param0->unk_18, 7, 0, 0, 0, param0->unk_00);
 
     {
         int v0, v1;
@@ -923,8 +923,8 @@ static void ov73_021D1930(UnkStruct_ov73_021D1058 *param0)
             v1 = 26;
         }
 
-        sub_02006E84(125, v0, 0, 0 * (2 * 16), (2 * 16) * 3, param0->unk_00);
-        sub_02006E84(125, v1, 4, 0 * (2 * 16), (2 * 16) * 5, param0->unk_00);
+        Graphics_LoadPalette(125, v0, 0, 0 * (2 * 16), (2 * 16) * 3, param0->unk_00);
+        Graphics_LoadPalette(125, v1, 4, 0 * (2 * 16), (2 * 16) * 5, param0->unk_00);
     }
 
     ov73_021D19DC(param0);
@@ -943,7 +943,7 @@ static void ov73_021D19DC(UnkStruct_ov73_021D1058 *param0)
         return;
     }
 
-    sub_02006E60(125, v0[param0->unk_88], param0->unk_18, 3, 0, 0, 0, param0->unk_00);
+    Graphics_LoadTilemapToBgLayer(125, v0[param0->unk_88], param0->unk_18, 3, 0, 0, 0, param0->unk_00);
 }
 
 static void ov73_021D1A20(UnkStruct_ov73_021D1058 *param0)
@@ -963,16 +963,16 @@ static void ov73_021D1A20(UnkStruct_ov73_021D1058 *param0)
     };
 
     if ((param0->unk_89 != 0) && (param0->unk_89 < 12)) {
-        sub_02006E3C(125, v0[param0->unk_89][0], param0->unk_18, 1, 0, 0, 0, param0->unk_00);
-        sub_02006E84(125, v0[param0->unk_89][1], 0, 7 * (2 * 16), (2 * 16), param0->unk_00);
-        sub_02006E60(125, 23, param0->unk_18, 1, 0, 0, 0, param0->unk_00);
+        Graphics_LoadTilesToBgLayer(125, v0[param0->unk_89][0], param0->unk_18, 1, 0, 0, 0, param0->unk_00);
+        Graphics_LoadPalette(125, v0[param0->unk_89][1], 0, 7 * (2 * 16), (2 * 16), param0->unk_00);
+        Graphics_LoadTilemapToBgLayer(125, 23, param0->unk_18, 1, 0, 0, 0, param0->unk_00);
         ov73_021D14DC(param0, 1, 7);
     }
 
     if ((param0->unk_8A != 0) && (param0->unk_8A < 12)) {
-        sub_02006E3C(125, v0[param0->unk_8A][0], param0->unk_18, 2, 0, 0, 0, param0->unk_00);
-        sub_02006E84(125, v0[param0->unk_8A][1], 0, 8 * (2 * 16), (2 * 16), param0->unk_00);
-        sub_02006E60(125, 23, param0->unk_18, 2, 0, 0, 0, param0->unk_00);
+        Graphics_LoadTilesToBgLayer(125, v0[param0->unk_8A][0], param0->unk_18, 2, 0, 0, 0, param0->unk_00);
+        Graphics_LoadPalette(125, v0[param0->unk_8A][1], 0, 8 * (2 * 16), (2 * 16), param0->unk_00);
+        Graphics_LoadTilemapToBgLayer(125, 23, param0->unk_18, 2, 0, 0, 0, param0->unk_00);
         ov73_021D14DC(param0, 2, 8);
     }
 }
@@ -985,7 +985,7 @@ static void ov73_021D1B14(UnkStruct_ov73_021D1058 *param0)
         return;
     }
 
-    sub_02006E60(125, v0[param0->unk_8B], param0->unk_18, 7, 0, 0, 0, param0->unk_00);
+    Graphics_LoadTilemapToBgLayer(125, v0[param0->unk_8B], param0->unk_18, 7, 0, 0, 0, param0->unk_00);
 
     if (param0->unk_8B == 1) {
         ov73_021D14DC(param0, 7, 3);
@@ -1149,12 +1149,12 @@ static void ov73_021D1B80(UnkStruct_ov73_021D1058 *param0)
 
 static void ov73_021D1CE0(UnkStruct_ov73_021D1058 *param0)
 {
-    sub_02006E60(125, 40, param0->unk_18, 6, 0, 0, 0, param0->unk_00);
+    Graphics_LoadTilemapToBgLayer(125, 40, param0->unk_18, 6, 0, 0, 0, param0->unk_00);
     ov73_021D14DC(param0, 6, 9);
 
-    sub_02006E84(125, 41, 4, 7 * (2 * 16), (2 * 16) * 3, param0->unk_00);
+    Graphics_LoadPalette(125, 41, 4, 7 * (2 * 16), (2 * 16) * 3, param0->unk_00);
     Bg_ClearTilesRange(6, 32, 0, param0->unk_00);
-    sub_02006E3C(125, 32, param0->unk_18, 6, 0x20, 0, 0, param0->unk_00);
+    Graphics_LoadTilesToBgLayer(125, 32, param0->unk_18, 6, 0x20, 0, 0, param0->unk_00);
 }
 
 static BOOL ov73_021D1D44(UnkStruct_ov73_021D1058 *param0, int param1, int param2)
@@ -1216,7 +1216,7 @@ static void ov73_021D1DE8(UnkStruct_ov73_021D1058 *param0)
 
         {
             int v0[] = { 9, 10, 11, 12 };
-            sub_02006E3C(125, v0[param0->unk_8C], param0->unk_18, 1, 0, 0, 0, param0->unk_00);
+            Graphics_LoadTilesToBgLayer(125, v0[param0->unk_8C], param0->unk_18, 1, 0, 0, 0, param0->unk_00);
         }
     } else {
         if (param0->unk_8F) {
@@ -1231,7 +1231,7 @@ static void ov73_021D1DE8(UnkStruct_ov73_021D1058 *param0)
 
         {
             int v1[] = { 14, 15, 16, 17 };
-            sub_02006E3C(125, v1[param0->unk_8E], param0->unk_18, 2, 0, 0, 0, param0->unk_00);
+            Graphics_LoadTilesToBgLayer(125, v1[param0->unk_8E], param0->unk_18, 2, 0, 0, 0, param0->unk_00);
         }
     }
 }
@@ -1274,7 +1274,7 @@ static BOOL ov73_021D1F18(UnkStruct_ov73_021D1058 *param0)
     if (v1 == 0xff) {
         v0 = 1;
     } else {
-        sub_02006E3C(125, v1, param0->unk_18, 1, 0, 0, 0, param0->unk_00);
+        Graphics_LoadTilesToBgLayer(125, v1, param0->unk_18, 1, 0, 0, 0, param0->unk_00);
     }
 
     return v0;
@@ -1766,7 +1766,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
 
                     param0->unk_0C = 50;
                 } else {
-                    sub_02006E3C(125, v3[param0->unk_94[0]], param0->unk_18, 6, 0x20, 0, 0, param0->unk_00);
+                    Graphics_LoadTilesToBgLayer(125, v3[param0->unk_94[0]], param0->unk_18, 6, 0x20, 0, 0, param0->unk_00);
                     param0->unk_94[0]++;
                     param0->unk_94[1] = 4;
                 }

@@ -355,31 +355,31 @@ static void ov17_022493DC(UnkStruct_ov17_022492DC *param0)
     param0->unk_E0[0] = Heap_AllocFromHeap(23, 0x200);
     param0->unk_E0[1] = Heap_AllocFromHeap(23, 0x200);
 
-    v2 = sub_02006F50(45, 9, 1, &v0, 23);
+    v2 = Graphics_GetCharData(45, 9, 1, &v0, 23);
     MI_CpuCopy32(v0->pRawData, param0->unk_C4[0], (0x8000 - (0x800 * 4)));
     Heap_FreeToHeap(v2);
 
-    v2 = sub_02006F50(45, 18, 1, &v0, 23);
+    v2 = Graphics_GetCharData(45, 18, 1, &v0, 23);
     MI_CpuCopy32(v0->pRawData, param0->unk_C4[1], (0x8000 - (0x800 * 4)));
     Heap_FreeToHeap(v2);
 
-    v2 = sub_02006F50(45, 16, 1, &v0, 23);
+    v2 = Graphics_GetCharData(45, 16, 1, &v0, 23);
     MI_CpuCopy32(v0->pRawData, param0->unk_C4[2], 6 * 12 * 0x20 * 3);
     Heap_FreeToHeap(v2);
 
-    v2 = sub_02006F6C(45, 7, 1, &v1, 23);
+    v2 = Graphics_GetScrnData(45, 7, 1, &v1, 23);
     MI_CpuCopy32(v1->rawData, param0->unk_D0[0], 0x800);
     Heap_FreeToHeap(v2);
 
-    v2 = sub_02006F6C(45, 8, 1, &v1, 23);
+    v2 = Graphics_GetScrnData(45, 8, 1, &v1, 23);
     MI_CpuCopy32(v1->rawData, param0->unk_D0[1], 0x800);
     Heap_FreeToHeap(v2);
 
-    v2 = sub_02006F6C(45, 17, 1, &v1, 23);
+    v2 = Graphics_GetScrnData(45, 17, 1, &v1, 23);
     MI_CpuCopy32(v1->rawData, param0->unk_D0[2], 0x800);
     Heap_FreeToHeap(v2);
 
-    v2 = sub_02006F6C(45, 28, 1, &v1, 23);
+    v2 = Graphics_GetScrnData(45, 28, 1, &v1, 23);
     MI_CpuCopy32(v1->rawData, param0->unk_D0[3], 0x800);
     Heap_FreeToHeap(v2);
 

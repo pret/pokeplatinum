@@ -497,13 +497,13 @@ void ov116_022620AC(UnkStruct_ov116_0226139C *param0, UnkStruct_ov116_02262A8C *
 
     switch (param1->unk_04) {
     case 2:
-        sub_0200710C(param1->unk_14->unk_00, 79, param1->unk_14->unk_10, 7, 0, 0, 0, 106);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1->unk_14->unk_00, 79, param1->unk_14->unk_10, 7, 0, 0, 0, 106);
         break;
     case 3:
-        sub_0200710C(param1->unk_14->unk_00, 80, param1->unk_14->unk_10, 7, 0, 0, 0, 106);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1->unk_14->unk_00, 80, param1->unk_14->unk_10, 7, 0, 0, 0, 106);
         break;
     case 4:
-        sub_0200710C(param1->unk_14->unk_00, 81, param1->unk_14->unk_10, 7, 0, 0, 0, 106);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1->unk_14->unk_00, 81, param1->unk_14->unk_10, 7, 0, 0, 0, 106);
         break;
     default:
         GF_ASSERT(0);
@@ -570,7 +570,7 @@ void ov116_02262264(UnkStruct_ov116_02262A8C *param0)
         v1++;
     }
 
-    sub_0200710C(param0->unk_14->unk_00, 78, param0->unk_14->unk_10, 7, 0, 0, 0, 106);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14->unk_00, 78, param0->unk_14->unk_10, 7, 0, 0, 0, 106);
 }
 
 void ov116_022622C8(UnkStruct_ov116_0226139C *param0)
@@ -821,18 +821,18 @@ void ov116_022628B8(UnkStruct_ov116_0226139C *param0)
     PaletteData *v5 = param0->unk_48.unk_14;
     NARC *v6 = v0;
 
-    sub_020070E8(v6, 72, v2, 4, 0, 0, 0, 106);
-    sub_020070E8(v6, 75, v2, 5, 0, 0, 0, 106);
-    sub_0200710C(v6, 74, v2, 4, 0, 0, 0, 106);
-    sub_0200710C(v6, 76, v2, 5, 0, 0, 0, 106);
-    sub_0200710C(v6, 77, v2, 6, 0, 0, 0, 106);
-    sub_0200710C(v6, 78, v2, 7, 0, 0, 0, 106);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v6, 72, v2, 4, 0, 0, 0, 106);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v6, 75, v2, 5, 0, 0, 0, 106);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v6, 74, v2, 4, 0, 0, 0, 106);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v6, 76, v2, 5, 0, 0, 0, 106);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v6, 77, v2, 6, 0, 0, 0, 106);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v6, 78, v2, 7, 0, 0, 0, 106);
     PaletteData_LoadBufferFromFileStart(v5, 164, 73, 106, 1, 0x20 * 5, 0);
-    sub_020070E8(v6, 5, v2, 3, 0, 0, 0, 106);
-    sub_020070E8(v6, 8, v2, 1, 0, 0, 0, 106);
-    sub_0200710C(v6, 7, v2, 3, 0, 0, 0, 106);
-    sub_0200710C(v6, 9, v2, 1, 0, 0, 0, 106);
-    sub_0200710C(v6, 10, v2, 2, 0, 0, 0, 106);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v6, 5, v2, 3, 0, 0, 0, 106);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v6, 8, v2, 1, 0, 0, 0, 106);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v6, 7, v2, 3, 0, 0, 0, 106);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v6, 9, v2, 1, 0, 0, 0, 106);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v6, 10, v2, 2, 0, 0, 0, 106);
     PaletteData_LoadBufferFromFileStart(v5, 164, 6, 106, 0, 0x20, 0);
     PaletteData_LoadBufferFromFileStart(v5, 14, 7, 106, 1, 0x20, 14 * 16);
     PaletteData_LoadBufferFromFileStart(v5, 38, Window_FramePalette(), 106, 1, 0x20, 13 * 16);

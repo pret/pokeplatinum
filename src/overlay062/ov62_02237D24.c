@@ -274,8 +274,8 @@ static BOOL ov62_02237DB8(UnkStruct_0208C06C *param0)
         ov62_02231454(param0);
         ov62_02239608(param0);
         ov62_02234540(param0, 0);
-        sub_020070E8(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
-        sub_020070E8(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
         ov62_0222FB60(param0, 2);
         break;
     }

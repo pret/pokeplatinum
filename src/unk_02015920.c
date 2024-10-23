@@ -291,7 +291,7 @@ static void sub_02015C38(UnkStruct_02015C38 *param0, const UnkStruct_02015B14 *p
     param0->unk_35 = param1->unk_2D;
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_08[v0] = sub_02006F6C(param1->unk_08, param1->unk_0C[v0], 1, &param0->unk_18[v0], param2);
+        param0->unk_08[v0] = Graphics_GetScrnData(param1->unk_08, param1->unk_0C[v0], 1, &param0->unk_18[v0], param2);
 
         sub_02015F34(param0->unk_18[v0], param1->unk_1C);
         sub_02015F54(param0->unk_18[v0], param1->unk_20);
@@ -371,7 +371,7 @@ static void sub_02015DCC(u32 param0, u32 param1, BgConfig *param2, u32 param3, u
     v0 = Heap_AllocFromHeap(param5, sizeof(UnkStruct_02015DCC));
     memset(v0, 0, sizeof(UnkStruct_02015DCC));
 
-    v0->unk_08 = sub_02006F50(param0, param1, 1, &v0->unk_04, param5);
+    v0->unk_08 = Graphics_GetCharData(param0, param1, 1, &v0->unk_04, param5);
     v0->unk_00 = param2;
     v0->unk_0C = param3;
     v0->unk_10 = param4;
@@ -386,7 +386,7 @@ static void sub_02015E1C(u32 param0, u32 param1, int param2, u32 param3, u32 par
     v0 = Heap_AllocFromHeap(param5, sizeof(UnkStruct_02015E1C));
     memset(v0, 0, sizeof(UnkStruct_02015E1C));
 
-    v0->unk_04 = sub_02006F88(param0, param1, &v0->unk_00, param5);
+    v0->unk_04 = Graphics_GetPlttData(param0, param1, &v0->unk_00, param5);
     v0->unk_08 = param2;
     v0->unk_0C = param3;
     v0->unk_10 = param4;

@@ -635,25 +635,25 @@ static void ov21_021E96A8(BgConfig *param0, int param1, NARC *param2)
     void *v0;
     NNSG2dScreenData *v1;
 
-    sub_02007130(param2, 6, 0, 0, 0, param1);
-    sub_020070E8(param2, 33, param0, 3, 0, 0, 1, param1);
+    Graphics_LoadPaletteFromOpenNARC(param2, 6, 0, 0, 0, param1);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param2, 33, param0, 3, 0, 0, 1, param1);
 
-    v0 = sub_020071D0(param2, 50, 1, &v1, param1);
+    v0 = Graphics_GetScrnDataFromOpenNARC(param2, 50, 1, &v1, param1);
 
     Bg_LoadToTilemapRect(param0, 3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
 
-    v0 = sub_020071D0(param2, 51, 1, &v1, param1);
+    v0 = Graphics_GetScrnDataFromOpenNARC(param2, 51, 1, &v1, param1);
 
     Bg_LoadToTilemapRect(param0, 3, v1->rawData, 0, 3, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
 
-    v0 = sub_020071D0(param2, 52, 1, &v1, param1);
+    v0 = Graphics_GetScrnDataFromOpenNARC(param2, 52, 1, &v1, param1);
 
     Bg_LoadToTilemapRect(param0, 3, v1->rawData, 12, 8, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
 
-    v0 = sub_020071D0(param2, 54, 1, &v1, param1);
+    v0 = Graphics_GetScrnDataFromOpenNARC(param2, 54, 1, &v1, param1);
 
     Bg_LoadToTilemapRect(param0, 3, v1->rawData, 0, 16, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
@@ -665,9 +665,9 @@ static void ov21_021E97C4(BgConfig *param0, int param1, NARC *param2)
     void *v0;
     NNSG2dScreenData *v1;
 
-    sub_020070E8(param2, 33, param0, 2, 0, 0, 1, param1);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param2, 33, param0, 2, 0, 0, 1, param1);
 
-    v0 = sub_020071D0(param2, 57, 1, &v1, param1);
+    v0 = Graphics_GetScrnDataFromOpenNARC(param2, 57, 1, &v1, param1);
 
     Bg_LoadToTilemapRect(param0, 2, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
@@ -785,12 +785,12 @@ static void ov21_021E9A40(UnkStruct_ov21_021E9A9C *param0, int param1, int param
     int v0;
 
     if (param2 == 0) {
-        param0->unk_00[0] = sub_020071EC(param3, 23, &param0->unk_08[0], param1);
+        param0->unk_00[0] = Graphics_GetPlttDataFromOpenNARC(param3, 23, &param0->unk_08[0], param1);
     } else {
-        param0->unk_00[0] = sub_020071EC(param3, 24, &param0->unk_08[0], param1);
+        param0->unk_00[0] = Graphics_GetPlttDataFromOpenNARC(param3, 24, &param0->unk_08[0], param1);
     }
 
-    param0->unk_00[1] = sub_020071EC(param3, 26, &param0->unk_08[1], param1);
+    param0->unk_00[1] = Graphics_GetPlttDataFromOpenNARC(param3, 26, &param0->unk_08[1], param1);
     param0->unk_10 = 0;
     param0->unk_1C = 0;
 

@@ -711,16 +711,16 @@ static void ov65_02236840(UnkStruct_ov65_02236840 *param0, u32 param1)
 
     v0 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, param1);
 
-    sub_02007130(v0, 13, 0, 5 * 32, 1 * 32, param1);
-    sub_020070E8(v0, 12, param0->unk_00, 2, 0 * 32, (24 * 2) * 32, 0, param1);
+    Graphics_LoadPaletteFromOpenNARC(v0, 13, 0, 5 * 32, 1 * 32, param1);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 12, param0->unk_00, 2, 0 * 32, (24 * 2) * 32, 0, param1);
 
-    param0->unk_244 = sub_020071D0(v0, 14, 0, &param0->unk_248, param1);
+    param0->unk_244 = Graphics_GetScrnDataFromOpenNARC(v0, 14, 0, &param0->unk_248, param1);
 
     {
-        param0->unk_250 = sub_020071EC(v0, 44, &param0->unk_254, param1);
+        param0->unk_250 = Graphics_GetPlttDataFromOpenNARC(v0, 44, &param0->unk_254, param1);
 
-        sub_020070E8(v0, 45, param0->unk_00, 0, 0, 0, 0, param1);
-        sub_0200710C(v0, 46, param0->unk_00, 0, 0, 0, 0, param1);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 45, param0->unk_00, 0, 0, 0, 0, param1);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 46, param0->unk_00, 0, 0, 0, 0, param1);
         ov65_022372EC(param0, 0);
 
         param0->unk_258 = 3;

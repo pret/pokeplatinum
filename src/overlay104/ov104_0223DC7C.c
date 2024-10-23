@@ -621,8 +621,8 @@ static void ov104_0223E5A8(UnkStruct_ov104_0223DD30 *param0, const UnkStruct_ov1
     G2_SetWnd1Position(0, 0, 0, 0);
 
     PaletteData_LoadBufferFromFileStart(param0->unk_1C, 112, param1->unk_08, 94, 0, 0x20, 12 * 16);
-    sub_020070E8(param0->unk_24, param1->unk_09, param0->unk_10, 1, 0, 0, 0, 94);
-    sub_0200710C(param0->unk_24, param1->unk_0A, param0->unk_10, 1, 0, 0, 0, 94);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_24, param1->unk_09, param0->unk_10, 1, 0, 0, 0, 94);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_24, param1->unk_0A, param0->unk_10, 1, 0, 0, 0, 94);
     Bg_ChangeTilemapRectPalette(param0->unk_10, 1, 0, 0, 32, 32, 12);
     Bg_ScheduleTilemapTransfer(param0->unk_10, 1);
 
@@ -630,7 +630,7 @@ static void ov104_0223E5A8(UnkStruct_ov104_0223DD30 *param0, const UnkStruct_ov1
         void *v0;
         NNSG2dPaletteData *v1;
 
-        v0 = sub_02006F88(112, param1->unk_08, &v1, 94);
+        v0 = Graphics_GetPlttData(112, param1->unk_08, &v1, 94);
 
         MI_CpuCopy16(v1->pRawData, param0->unk_40, 8 * 32);
         Heap_FreeToHeap(v0);

@@ -230,12 +230,12 @@ u8 Font_GetAttribute(u8 font, u8 attribute)
 
 void Font_LoadTextPalette(int palLocation, u32 palSlotOffset, u32 heapID)
 {
-    sub_02006E84(NARC_INDEX_GRAPHIC__PL_FONT, 6, palLocation, palSlotOffset, 0x20, heapID);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__PL_FONT, 6, palLocation, palSlotOffset, 0x20, heapID);
 }
 
 void Font_LoadScreenIndicatorsPalette(int palLocation, u32 palSlotOffset, u32 heapID)
 {
-    sub_02006E84(NARC_INDEX_GRAPHIC__PL_FONT, 7, palLocation, palSlotOffset, 0x20, heapID);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__PL_FONT, 7, palLocation, palSlotOffset, 0x20, heapID);
 }
 
 u32 Font_CalcMaxLineWidth(enum Font font, const Strbuf *strbuf, u32 letterSpacing)

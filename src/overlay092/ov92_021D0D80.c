@@ -919,9 +919,9 @@ static void ov92_021D1888(UnkStruct_ov92_021D1B24 *param0, NARC *param1)
     Bg_InitFromTemplate(param0->unk_B810, 6, &Unk_ov92_021D2970, 0);
     Bg_ClearTilemap(param0->unk_B810, 6);
     Bg_InitFromTemplate(param0->unk_B810, 7, &Unk_ov92_021D298C, 0);
-    sub_020070E8(param1, 5, param0->unk_B810, 7, 0, 0, 0, param0->unk_00);
-    sub_02007130(param1, 6, 4, 0 * (2 * 16), (2 * 16) * 4, param0->unk_00);
-    sub_0200710C(param1, 7, param0->unk_B810, 7, 0, 0, 0, param0->unk_00);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 5, param0->unk_B810, 7, 0, 0, 0, param0->unk_00);
+    Graphics_LoadPaletteFromOpenNARC(param1, 6, 4, 0 * (2 * 16), (2 * 16) * 4, param0->unk_00);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 7, param0->unk_B810, 7, 0, 0, 0, param0->unk_00);
     sub_0200DD0C(param0->unk_B810, 6, (512 - (18 + 12)), 6, Options_Frame(param0->unk_08), param0->unk_00);
     sub_0200DAA4(param0->unk_B810, 6, ((512 - (18 + 12)) - 9), 7, 0, param0->unk_00);
     Font_LoadTextPalette(4, 4 * (2 * 16), param0->unk_00);
@@ -936,9 +936,9 @@ static void ov92_021D1888(UnkStruct_ov92_021D1B24 *param0, NARC *param1)
     Bg_InitFromTemplate(param0->unk_B810, 2, &Unk_ov92_021D2970, 0);
     Bg_ClearTilemap(param0->unk_B810, 2);
     Bg_InitFromTemplate(param0->unk_B810, 3, &Unk_ov92_021D298C, 0);
-    sub_020070E8(param1, 5, param0->unk_B810, 3, 0, 0, 0, param0->unk_00);
-    sub_02007130(param1, 6, 0, 0 * (2 * 16), (2 * 16) * 4, param0->unk_00);
-    sub_0200710C(param1, 7, param0->unk_B810, 3, 0, 0, 0, param0->unk_00);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 5, param0->unk_B810, 3, 0, 0, 0, param0->unk_00);
+    Graphics_LoadPaletteFromOpenNARC(param1, 6, 0, 0 * (2 * 16), (2 * 16) * 4, param0->unk_00);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 7, param0->unk_B810, 3, 0, 0, 0, param0->unk_00);
     sub_0200DAA4(param0->unk_B810, 2, ((512 - (18 + 12)) - 9), 7, 0, param0->unk_00);
     Font_LoadTextPalette(0, 4 * (2 * 16), param0->unk_00);
     Bg_ClearTilesRange(2, 32, 0, param0->unk_00);
