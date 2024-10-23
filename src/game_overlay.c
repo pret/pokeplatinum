@@ -40,7 +40,9 @@ static UnkStruct_021BF370 Unk_021BF370;
 unsigned long _novlys = MAX_OVERLAYS;
 struct_overlayTable _ovly_table[MAX_OVERLAYS] = {};
 // this does nothing, but needs to be defined for GDB to refresh overlay state automatically.
-static void _ovly_debug_event(void) {}
+static void _ovly_debug_event(void)
+{
+}
 
 // helper function to mark a specific overlay as unmapped.
 void UnloadOverlayGDB(const FSOverlayID overlayID)
@@ -91,9 +93,9 @@ void Overlay_UnloadByID(const FSOverlayID overlayID)
     for (i = 0; i < 8; i++) {
         if ((table[i].isActive == 1) && (table[i].id == overlayID)) {
             FreeOverlayAllocation(&table[i]);
-            #ifdef GDB_DEBUGGING
+#ifdef GDB_DEBUGGING
             UnloadOverlayGDB(overlayID);
-            #endif
+#endif
             return;
         }
     }
@@ -237,9 +239,9 @@ static BOOL GetOverlayRamBounds(const FSOverlayID overlayID, u32 *start, u32 *en
 
 static BOOL LoadOverlayNormal(MIProcessor proc, FSOverlayID overlayID)
 {
-    #ifdef GDB_DEBUGGING
+#ifdef GDB_DEBUGGING
     LoadOverlayGDB(overlayID);
-    #endif
+#endif
     return FS_LoadOverlay(proc, overlayID);
 }
 
@@ -255,9 +257,9 @@ static BOOL LoadOverlayNoInit(MIProcessor proc, FSOverlayID overlayID)
         return FALSE;
     }
 
-    #ifdef GDB_DEBUGGING
+#ifdef GDB_DEBUGGING
     LoadOverlayGDB(overlayID);
-    #endif
+#endif
 
     FS_StartOverlay(&info);
     return TRUE;
@@ -272,9 +274,9 @@ static BOOL LoadOverlayNoInitAsync(MIProcessor proc, FSOverlayID overlayID)
         return FALSE;
     }
 
-    #ifdef GDB_DEBUGGING
+#ifdef GDB_DEBUGGING
     LoadOverlayGDB(overlayID);
-    #endif
+#endif
 
     FS_InitFile(&file);
     FS_LoadOverlayImageAsync(&info, &file);
