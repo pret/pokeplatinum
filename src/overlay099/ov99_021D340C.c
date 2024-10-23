@@ -12,7 +12,7 @@
 #include "overlay099/struct_ov99_021D35E8.h"
 #include "overlay099/struct_ov99_021D3A40.h"
 
-#include "unk_02002F38.h"
+#include "palette.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200C6E4.h"
 #include "unk_0201D15C.h"

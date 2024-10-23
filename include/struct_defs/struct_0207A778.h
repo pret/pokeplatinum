@@ -1,12 +1,12 @@
 #ifndef POKEPLATINUM_STRUCT_0207A778_H
 #define POKEPLATINUM_STRUCT_0207A778_H
 
-#include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 
 #include "overlay006/battle_params.h"
 
 #include "bg_window.h"
+#include "palette.h"
 
 typedef struct {
     BattleParams *unk_00;

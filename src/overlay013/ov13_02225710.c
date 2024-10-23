@@ -8,7 +8,7 @@
 
 #include "bg_window.h"
 #include "heap.h"
-#include "unk_02002F38.h"
+#include "palette.h"
 #include "unk_0200C6E4.h"
 
 typedef struct {

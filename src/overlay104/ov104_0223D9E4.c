@@ -3,16 +3,15 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 
 #include "bg_window.h"
 #include "enums.h"
 #include "heap.h"
 #include "narc.h"
+#include "palette.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02002F38.h"
 #include "unk_02006E3C.h"
 
 typedef struct {

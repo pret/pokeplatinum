@@ -28,11 +28,11 @@
 
 #include "heap.h"
 #include "narc.h"
+#include "palette.h"
 #include "pokemon.h"
 #include "spl.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
 #include "unk_0200C6E4.h"

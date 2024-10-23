@@ -24,7 +24,7 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
-#include "unk_02002F38.h"
+#include "palette.h"
 #include "unk_020041CC.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"

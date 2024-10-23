@@ -3,11 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02002F38_decl.h"
-
 #include "bg_window.h"
+#include "palette.h"
 #include "sys_task_manager.h"
-#include "unk_02002F38.h"
 #include "unk_0200679C.h"
 #include "unk_020241F0.h"
 

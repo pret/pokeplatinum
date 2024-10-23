@@ -7,9 +7,9 @@
 
 #include "core_sys.h"
 #include "heap.h"
+#include "palette.h"
 #include "strbuf.h"
 #include "touch_screen.h"
-#include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"

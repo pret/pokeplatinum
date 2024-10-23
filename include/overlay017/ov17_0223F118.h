@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_OV17_0223F118_H
 #define POKEPLATINUM_OV17_0223F118_H
 
-#include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
@@ -13,6 +12,7 @@
 #include "overlay017/struct_ov17_0223F744.h"
 
 #include "bg_window.h"
+#include "palette.h"
 #include "strbuf.h"
 #include "text.h"
 

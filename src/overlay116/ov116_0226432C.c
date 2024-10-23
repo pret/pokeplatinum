@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02002F38_decl.h"
 #include "struct_defs/struct_0200D0F4.h"
 
 #include "overlay116/ov116_02261870.h"
@@ -25,9 +24,9 @@
 #include "easy3d_object.h"
 #include "heap.h"
 #include "inlines.h"
+#include "palette.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"

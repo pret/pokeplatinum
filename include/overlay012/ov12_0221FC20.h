@@ -4,7 +4,6 @@
 #include "struct_decls/battle_system.h"
 #include "struct_decls/cell_actor_data.h"
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
@@ -19,6 +18,7 @@
 #include "overlay012/struct_ov12_022380DC.h"
 
 #include "bg_window.h"
+#include "palette.h"
 #include "spl.h"
 #include "sys_task_manager.h"
 

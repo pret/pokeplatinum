@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_defs/sprite_template.h"
@@ -26,8 +25,8 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "heap.h"
+#include "palette.h"
 #include "sys_task_manager.h"
-#include "unk_02002F38.h"
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
 #include "unk_0201F834.h"

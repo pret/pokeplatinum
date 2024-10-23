@@ -22,7 +22,7 @@ Static main
 	Object main.nef.p/src_unk_020021B0.c.o
 	Object main.nef.p/src_render_text.c.o
 	Object main.nef.p/src_font.c.o
-	Object main.nef.p/src_unk_02002F38.c.o
+	Object main.nef.p/src_palette.c.o
 	Object main.nef.p/src_unk_02003B60.c.o
 	Object main.nef.p/src_unk_020041CC.c.o
 	Object main.nef.p/src_unk_02005474.c.o

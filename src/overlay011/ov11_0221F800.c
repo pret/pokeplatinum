@@ -3,9 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02002F38_decl.h"
-
-#include "unk_02002F38.h"
+#include "palette.h"
 
 __attribute__((aligned(4))) const u16 Unk_ov11_0221F94C[] = {
     0x75CD,

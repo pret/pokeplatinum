@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_02002F38_decl.h"
 #include "struct_defs/struct_0200D0F4.h"
 
 #include "overlay012/funcptr_ov12_02226274.h"
@@ -20,10 +19,10 @@
 #include "cell_actor.h"
 #include "heap.h"
 #include "inlines.h"
+#include "palette.h"
 #include "screen_scroll_manager.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02002F38.h"
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
 #include "unk_0201F834.h"

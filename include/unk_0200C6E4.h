@@ -7,7 +7,6 @@
 #include "constants/palette.h"
 
 #include "struct_decls/cell_actor_data.h"
-#include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
@@ -21,6 +20,7 @@
 #include "overlay104/struct_ov104_0224133C.h"
 
 #include "cell_actor.h"
+#include "palette.h"
 
 SpriteRenderer *sub_0200C6E4(int param0);
 SpriteGfxHandler *sub_0200C704(SpriteRenderer *param0);

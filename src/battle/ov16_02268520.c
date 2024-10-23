@@ -14,7 +14,7 @@
 #include "battle/struct_ov16_02268520.h"
 
 #include "narc.h"
-#include "unk_02002F38.h"
+#include "palette.h"
 #include "unk_0200C6E4.h"
 
 static const SpriteTemplate Unk_ov16_022700CC[] = {

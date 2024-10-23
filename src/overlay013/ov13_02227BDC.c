@@ -22,7 +22,7 @@
 #include "gx_layers.h"
 #include "item.h"
 #include "narc.h"
-#include "unk_02002F38.h"
+#include "palette.h"
 #include "unk_0200C6E4.h"
 
 static void ov13_02227C08(UnkStruct_ov13_02227244 *param0);

@@ -1,34 +1,13 @@
-#include "unk_02002F38.h"
+#include "palette.h"
 
 #include <nitro.h>
 #include <string.h>
-
-#include "struct_defs/struct_020032D0.h"
-#include "struct_defs/struct_0200330C.h"
 
 #include "heap.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02006E3C.h"
 #include "unk_020241F0.h"
-
-typedef struct UnkStruct_02002F38_t {
-    UnkStruct_020032D0 unk_00[14];
-    u16 unk_118_0 : 2;
-    u16 unk_118_2 : 14;
-    u16 unk_11A_0 : 14;
-    u16 unk_11A_14 : 1;
-    u16 unk_11A_15 : 1;
-    u8 unk_11C;
-    u8 unk_11D[3];
-} PaletteData;
-
-typedef struct {
-    u16 unk_00_0 : 5;
-    u16 unk_00_5 : 5;
-    u16 unk_00_10 : 5;
-    u16 unk_00_15 : 1;
-} UnkStruct_0200393C;
 
 static u8 sub_0200327C(u16 param0, u16 param1);
 static void sub_02003290(PaletteData *param0, u16 param1);

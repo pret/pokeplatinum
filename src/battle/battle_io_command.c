@@ -6,7 +6,6 @@
 #include "constants/battle/battle_io.h"
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
@@ -75,6 +74,7 @@
 #include "flags.h"
 #include "heap.h"
 #include "narc.h"
+#include "palette.h"
 #include "party.h"
 #include "pokemon.h"
 #include "unk_0200762C.h"

@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_OV17_022413D8_H
 #define POKEPLATINUM_OV17_022413D8_H
 
-#include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
@@ -14,6 +13,8 @@
 #include "overlay017/struct_ov17_022449B8.h"
 #include "overlay017/struct_ov17_02246F24.h"
 #include "overlay017/struct_ov17_022472F8.h"
+
+#include "palette.h"
 
 void ov17_022413D8(void);
 void ov17_022413E4(UnkStruct_ov17_02246F24 *param0, int param1, int param2);

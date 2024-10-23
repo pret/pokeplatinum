@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV62_0223118C_H
 #define POKEPLATINUM_STRUCT_OV62_0223118C_H
 
-#include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
@@ -17,6 +16,7 @@
 
 #include "bg_window.h"
 #include "message.h"
+#include "palette.h"
 #include "touch_screen.h"
 
 typedef struct {

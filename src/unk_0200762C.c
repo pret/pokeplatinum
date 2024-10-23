@@ -14,7 +14,7 @@
 #include "heap.h"
 #include "inlines.h"
 #include "narc.h"
-#include "unk_02002F38.h"
+#include "palette.h"
 
 typedef struct {
     u8 unk_00;

@@ -7,7 +7,6 @@
 #include "constants/palette.h"
 #include "consts/sdat.h"
 
-#include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
@@ -22,6 +21,7 @@
 #include "enums.h"
 #include "heap.h"
 #include "narc.h"
+#include "palette.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
