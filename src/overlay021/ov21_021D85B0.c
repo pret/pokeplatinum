@@ -705,7 +705,7 @@ static void ov21_021D8DD4(UnkStruct_ov21_021D879C *param0, int param1, int param
     {
         u32 v3 = 24 + (208 - Font_CalcMaxLineWidth(FONT_SYSTEM, v1, 0)) / 2;
         u32 v4 = 8 + (32 - Strbuf_NumLines(v1) * 16) / 2;
-        Text_AddPrinterWithParamsAndColor(&v0->unk_04, 0, v1, v3, v4, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&v0->unk_04, FONT_SYSTEM, v1, v3, v4, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
     }
 
     Strbuf_Free(v1);
@@ -723,7 +723,7 @@ static void ov21_021D8E68(UnkStruct_ov21_021D879C *param0, int param1)
     {
         u32 v2 = 24 + (208 - Font_CalcMaxLineWidth(FONT_SYSTEM, v1, 0)) / 2;
         u32 v3 = 8 + (32 - Strbuf_NumLines(v1) * 16) / 2;
-        Text_AddPrinterWithParamsAndColor(&v0->unk_04, 0, v1, v2, v3, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&v0->unk_04, FONT_SYSTEM, v1, v2, v3, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
     }
 
     Strbuf_Free(v1);
@@ -834,7 +834,7 @@ static void ov21_021D9054(UnkStruct_ov21_021D879C *param0, int param1, int param
 
     {
         u32 v3 = 88 + Font_CalcCenterAlignment(FONT_SYSTEM, v1, 0, 80);
-        Text_AddPrinterWithParamsAndColor(&v0->unk_04, 0, v1, v3, 52, 0, ((u32)(((4 & 0xff) << 16) | ((3 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&v0->unk_04, FONT_SYSTEM, v1, v3, 52, TEXT_SPEED_INSTANT, TEXT_COLOR(4, 3, 0), NULL);
     }
 
     Strbuf_Free(v1);
@@ -886,7 +886,7 @@ static void ov21_021D90B4(UnkStruct_ov21_021D879C *param0, int param1, int param
 
     {
         u32 v4 = 88 + Font_CalcCenterAlignment(FONT_SYSTEM, v1, 0, 80);
-        Text_AddPrinterWithParamsAndColor(&v0->unk_04, 0, v1, v4, 77, 0, ((u32)(((4 & 0xff) << 16) | ((3 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&v0->unk_04, FONT_SYSTEM, v1, v4, 77, TEXT_SPEED_INSTANT, TEXT_COLOR(4, 3, 0), NULL);
     }
 
     Strbuf_Free(v1);
@@ -962,7 +962,7 @@ static void ov21_021D915C(UnkStruct_ov21_021D879C *param0, int param1, int param
 
     {
         u32 v4 = 88 + Font_CalcCenterAlignment(FONT_SYSTEM, v1, 0, 80);
-        Text_AddPrinterWithParamsAndColor(&v0->unk_04, 0, v1, v4, param3, 0, ((u32)(((4 & 0xff) << 16) | ((3 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&v0->unk_04, FONT_SYSTEM, v1, v4, param3, TEXT_SPEED_INSTANT, TEXT_COLOR(4, 3, 0), NULL);
     }
 
     Strbuf_Free(v1);
@@ -1083,7 +1083,7 @@ static void ov21_021D93F4(UnkStruct_ov21_021D879C *param0, int param1)
     {
         u32 v3 = (256 - Font_CalcMaxLineWidth(FONT_SYSTEM, v1, 0)) / 2;
 
-        Text_AddPrinterWithParamsAndColor(&v0->unk_04, 0, v1, v3, 128, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&v0->unk_04, FONT_SYSTEM, v1, v3, 128, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
     }
 
     Strbuf_Free(v1);

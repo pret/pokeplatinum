@@ -223,7 +223,7 @@ static void ov19_021D7C58(UnkStruct_ov19_021D8318 *param0, const UnkStruct_ov19_
                 v4 = Font_CalcStrbufWidth(FONT_SYSTEM, param1->unk_04, 0);
                 v3 = 84 - (v4 / 2);
 
-                Text_AddPrinterWithParamsAndColor(v2, 0, param1->unk_04, v3, 13, 0xff, (u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+                Text_AddPrinterWithParamsAndColor(v2, FONT_SYSTEM, param1->unk_04, v3, 13, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(2, 1, 0), NULL);
                 Heap_FreeToHeap(v2);
             }
 

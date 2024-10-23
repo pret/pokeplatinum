@@ -744,7 +744,7 @@ static int ov79_021D2B94(UnkStruct_ov79_021D2928 *param0)
     StringTemplate_SetStrbuf(param0->unk_1C.unk_00, 0, param0->unk_30.unk_0C, 2, 1, GAME_LANGUAGE);
     StringTemplate_Format(param0->unk_1C.unk_00, param0->unk_1C.unk_04, param0->unk_1C.unk_08[param0->unk_30.unk_09]);
 
-    param0->unk_0C = Text_AddPrinterWithParamsAndColor(&param0->unk_6C, 1, param0->unk_1C.unk_04, 0, 0, param0->unk_10->unk_0A, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+    param0->unk_0C = Text_AddPrinterWithParamsAndColor(&param0->unk_6C, FONT_MESSAGE, param0->unk_1C.unk_04, 0, 0, param0->unk_10->unk_0A, TEXT_COLOR(1, 2, 15), NULL);
     param0->unk_0E = 0;
 
     return 7;

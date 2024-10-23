@@ -118,7 +118,7 @@ int ov94_02244950(UnkStruct_ov94_0223FD4C *param0, int param1)
 
     if (!DWC_CheckInet()) {
         if (param0->unk_00->unk_40) {
-            ov94_02245824(param0, param0->unk_B98, 1, 1, 0xf0f);
+            ov94_02245824(param0, param0->unk_B98, 1, TEXT_SPEED_FAST, 0xf0f);
             ov94_0223C3F4(param0, 12, 2);
             ov94_0223C5D8(param0);
         } else {
@@ -302,7 +302,7 @@ static void ov94_02244E48(UnkStruct_ov94_0223FD4C *param0)
     BGL_AddWindow(param0->unk_04, &param0->unk_F7C, 0, 4, 1, 24, 2, 13, ((((1 + (18 + 12)) + 9) + 27 * 4) + 23 * 16));
     BGL_FillWindow(&param0->unk_F7C, 0x0);
 
-    ov94_022458CC(&param0->unk_F7C, param0->unk_BB0, 0, 1, 1, (u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0)));
+    ov94_022458CC(&param0->unk_F7C, param0->unk_BB0, 0, 1, 1, TEXT_COLOR(15, 14, 0));
 
     BGL_AddWindow(param0->unk_04, &param0->unk_F5C, 0, 2, 19, 27, 4, 13, ((1 + (18 + 12)) + 9));
     BGL_FillWindow(&param0->unk_F5C, 0x0);
@@ -331,7 +331,7 @@ static void ov94_02244F64(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_02244F8C(UnkStruct_ov94_0223FD4C *param0)
 {
-    ov94_02245824(param0, param0->unk_B9C, 17, 1, 0xf0f);
+    ov94_02245824(param0, param0->unk_B9C, 17, TEXT_SPEED_FAST, 0xf0f);
     ov94_0223C3F4(param0, 13, 1);
 
     param0->unk_110E = 1;
@@ -349,7 +349,7 @@ static int ov94_02244FC4(UnkStruct_ov94_0223FD4C *param0)
             ov94_0223C4C0(param0, 0, 0);
             param0->unk_2C = 11;
         } else {
-            ov94_02245824(param0, param0->unk_B98, 1, 1, 0xf0f);
+            ov94_02245824(param0, param0->unk_B98, 1, TEXT_SPEED_FAST, 0xf0f);
             ov94_0223C3F4(param0, 12, 2);
             ov94_0223C5D8(param0);
         }
@@ -360,7 +360,7 @@ static int ov94_02244FC4(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_0224502C(UnkStruct_ov94_0223FD4C *param0)
 {
-    ov94_02245824(param0, param0->unk_B90, 7, 1, 0xf0f);
+    ov94_02245824(param0, param0->unk_B90, 7, TEXT_SPEED_FAST, 0xf0f);
     ov94_0223C3F4(param0, 13, 16);
 
     return 3;
@@ -395,7 +395,7 @@ static int ov94_0224505C(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_022450C0(UnkStruct_ov94_0223FD4C *param0)
 {
-    ov94_02245824(param0, param0->unk_B9C, 26, 1, 0xf0f);
+    ov94_02245824(param0, param0->unk_B9C, 26, TEXT_SPEED_FAST, 0xf0f);
     ov94_0223C3F4(param0, 12, 18);
 
     return 3;
@@ -414,7 +414,7 @@ static int ov94_022450EC(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_0224510C(UnkStruct_ov94_0223FD4C *param0)
 {
-    ov94_02245824(param0, param0->unk_B9C, 27, 1, 0xf0f);
+    ov94_02245824(param0, param0->unk_B9C, 27, TEXT_SPEED_FAST, 0xf0f);
     ov94_0223C3F4(param0, 20, 11);
 
     return 3;
@@ -826,7 +826,7 @@ static int ov94_02245608(UnkStruct_ov94_0223FD4C *param0)
         break;
     }
 
-    ov94_02245824(param0, param0->unk_B90, v0, 1, 0xf0f);
+    ov94_02245824(param0, param0->unk_B90, v0, TEXT_SPEED_FAST, 0xf0f);
     ov94_0223C3F4(param0, 12, 22);
 
     return 3;
@@ -836,7 +836,7 @@ static int ov94_022456CC(UnkStruct_ov94_0223FD4C *param0)
 {
     switch (param0->unk_14E0) {
     case 0:
-        ov94_02245824(param0, param0->unk_B90, 178, 1, 0xf0f);
+        ov94_02245824(param0, param0->unk_B90, 178, TEXT_SPEED_FAST, 0xf0f);
         param0->unk_14E0++;
         break;
     case 1:
@@ -847,7 +847,7 @@ static int ov94_022456CC(UnkStruct_ov94_0223FD4C *param0)
         }
         break;
     case 2:
-        ov94_02245824(param0, param0->unk_B90, 179, 1, 0xf0f);
+        ov94_02245824(param0, param0->unk_B90, 179, TEXT_SPEED_FAST, 0xf0f);
         param0->unk_14E0++;
         break;
     case 3:
@@ -911,7 +911,7 @@ void ov94_02245824(UnkStruct_ov94_0223FD4C *param0, MessageLoader *param1, int p
     BGL_FillWindow(&param0->unk_F5C, 0xf0f);
     sub_0200E060(&param0->unk_F5C, 0, 1, 10);
 
-    param0->unk_BE0 = Text_AddPrinterWithParams(&param0->unk_F5C, 1, param0->unk_BAC, 0, 0, param3, NULL);
+    param0->unk_BE0 = Text_AddPrinterWithParams(&param0->unk_F5C, FONT_MESSAGE, param0->unk_BAC, 0, 0, param3, NULL);
     param0->unk_10E0 = 0;
 }
 
@@ -936,13 +936,14 @@ static int ov94_02245894(Window *param0, Strbuf *param1, int param2, int param3,
 void ov94_022458CC(Window *param0, Strbuf *param1, int param2, int param3, int param4, u32 param5)
 {
     param2 = ov94_02245894(param0, param1, param2, param4, param5, 1);
-    Text_AddPrinterWithParamsAndColor(param0, 1, param1, param2, param3, 0, param5, NULL);
+    Text_AddPrinterWithParamsAndColor(param0, FONT_MESSAGE, param1, param2, param3, TEXT_SPEED_INSTANT, param5, NULL);
 }
 
+// TODO: invocations
 void ov94_02245900(Window *param0, Strbuf *param1, int param2, int param3, int param4, u32 param5)
 {
     param2 = ov94_02245894(param0, param1, param2, param4, param5, 0);
-    Text_AddPrinterWithParamsAndColor(param0, 0, param1, param2, param3, 0, param5, NULL);
+    Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, param1, param2, param3, TEXT_SPEED_INSTANT, param5, NULL);
 }
 
 void ov94_02245934(UnkStruct_ov94_0223FD4C *param0)
@@ -960,7 +961,7 @@ static void ov94_0224593C(UnkStruct_ov94_0223FD4C *param0, int param1)
     BGL_FillWindow(&param0->unk_F8C, 15);
     Window_Show(&param0->unk_F8C, 1, (1 + (18 + 12)), 11);
 
-    param0->unk_BE0 = Text_AddPrinterWithParams(&param0->unk_F8C, 1, param0->unk_BDC, 0, 0, 0, NULL);
+    param0->unk_BE0 = Text_AddPrinterWithParams(&param0->unk_F8C, FONT_MESSAGE, param0->unk_BDC, 0, 0, TEXT_SPEED_INSTANT, NULL);
 
     Strbuf_Free(v0);
 }

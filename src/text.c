@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/font.h"
 #include "constants/heap.h"
 #include "constants/narc.h"
 
@@ -18,7 +17,7 @@
 #include "unk_02006E3C.h"
 #include "unk_02018340.h"
 
-static enum RenderResult TextPrinter_Render(TextPrinter *param0);
+static enum RenderResult TextPrinter_Render(TextPrinter *printer);
 static u8 Text_CreatePrinterTask(SysTaskFunc taskFunc, TextPrinter *printer, u32 priority);
 static void Text_DestroyPrinterTask(u8 printerID);
 static void Text_ZeroPrinterIconGfx(TextPrinter *printer);
@@ -121,7 +120,7 @@ u8 Text_AddPrinterWithParams(Window *window, u32 fontID, const Strbuf *strbuf, u
     return Text_AddPrinter(&template, renderDelay, callback);
 }
 
-u8 Text_AddPrinterWithParamsAndColor(Window *window, u32 fontID, const Strbuf *strbuf, u32 xOffset, u32 yOffset, u32 renderDelay, u32 color, TextPrinterCallback callback)
+u8 Text_AddPrinterWithParamsAndColor(Window *window, u32 fontID, const Strbuf *strbuf, u32 xOffset, u32 yOffset, u32 renderDelay, TextColor color, TextPrinterCallback callback)
 {
     TextPrinterTemplate template;
 
@@ -135,9 +134,9 @@ u8 Text_AddPrinterWithParamsAndColor(Window *window, u32 fontID, const Strbuf *s
     template.letterSpacing = sFontAttributesPtr[fontID].letterSpacing;
     template.lineSpacing = sFontAttributesPtr[fontID].lineSpacing;
     template.dummy14 = sFontAttributesPtr[fontID].dummy;
-    template.fgColor = (color >> FONT_COLOR_FG_SHIFT) & FONT_COLOR_MASK;
-    template.shadowColor = (color >> FONT_COLOR_SHADOW_SHIFT) & FONT_COLOR_MASK;
-    template.bgColor = (color >> FONT_COLOR_BG_SHIFT) & FONT_COLOR_MASK;
+    template.fgColor = GET_TEXT_FG_COLOR(color);
+    template.shadowColor = GET_TEXT_SHADOW_COLOR(color);
+    template.bgColor = GET_TEXT_BG_COLOR(color);
     template.glyphTable = 0;
     template.dummy1A = 0;
     template.cacheColor = 0xFF;
@@ -145,7 +144,7 @@ u8 Text_AddPrinterWithParamsAndColor(Window *window, u32 fontID, const Strbuf *s
     return Text_AddPrinter(&template, renderDelay, callback);
 }
 
-u8 Text_AddPrinterWithParamsColorAndSpacing(Window *window, u32 fontID, const Strbuf *strbuf, u32 xOffset, u32 yOffset, u32 renderDelay, u32 color, u32 letterSpacing, u32 lineSpacing, TextPrinterCallback callback)
+u8 Text_AddPrinterWithParamsColorAndSpacing(Window *window, u32 fontID, const Strbuf *strbuf, u32 xOffset, u32 yOffset, u32 renderDelay, TextColor color, u32 letterSpacing, u32 lineSpacing, TextPrinterCallback callback)
 {
     TextPrinterTemplate template;
 
@@ -159,9 +158,9 @@ u8 Text_AddPrinterWithParamsColorAndSpacing(Window *window, u32 fontID, const St
     template.letterSpacing = letterSpacing;
     template.lineSpacing = lineSpacing;
     template.dummy14 = sFontAttributesPtr[fontID].dummy;
-    template.fgColor = (color >> FONT_COLOR_FG_SHIFT) & FONT_COLOR_MASK;
-    template.shadowColor = (color >> FONT_COLOR_SHADOW_SHIFT) & FONT_COLOR_MASK;
-    template.bgColor = (color >> FONT_COLOR_BG_SHIFT) & FONT_COLOR_MASK;
+    template.fgColor = GET_TEXT_FG_COLOR(color);
+    template.shadowColor = GET_TEXT_SHADOW_COLOR(color);
+    template.bgColor = GET_TEXT_BG_COLOR(color);
     template.glyphTable = 0;
     template.dummy1A = 0;
     template.cacheColor = 0xFF;

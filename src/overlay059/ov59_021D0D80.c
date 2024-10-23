@@ -265,7 +265,7 @@ int ov59_021D0F00(OverlayManager *param0, int *param1)
         }
 
         if (v0->unk_4AA4 == 0) {
-            ov59_021D2418(v0->unk_2FC, 0, (u32)(((1 & 0xff) << 16) | ((3 & 0xff) << 8) | ((0 & 0xff) << 0)), v0);
+            ov59_021D2418(v0->unk_2FC, 0, TEXT_COLOR(1, 3, 0), v0);
         }
 
         ov59_021D26E8(v0);
@@ -692,7 +692,7 @@ static void ov59_021D16A0(UnkStruct_020961E8 *param0, OverlayManager *param1)
     BGL_FillWindow(&param0->unk_34C, 0xf0f);
     BGL_AddWindow(param0->unk_00, &param0->unk_36C, 0, 3, 1, 26, 2, 15, ((1 + (18 + 12) + 9) + 27 * 4));
 
-    ov59_021D1784(&param0->unk_36C, param0->unk_48, 0);
+    ov59_021D1784(&param0->unk_36C, param0->unk_48, TEXT_SPEED_INSTANT);
 
     {
         int v0;
@@ -700,7 +700,7 @@ static void ov59_021D16A0(UnkStruct_020961E8 *param0, OverlayManager *param1)
         BGL_AddWindow(param0->unk_00, &param0->unk_2FC[0], 0, 2, 6, 16, 11, 15, (((1 + (18 + 12) + 9) + 27 * 4) + 26 * 2));
         BGL_FillWindow(&param0->unk_2FC[0], 0);
 
-        ov59_021D2418(param0->unk_2FC, 0, (u32)(((1 & 0xff) << 16) | ((3 & 0xff) << 8) | ((0 & 0xff) << 0)), param0);
+        ov59_021D2418(param0->unk_2FC, 0, TEXT_COLOR(1, 3, 0), param0);
     }
 }
 
@@ -710,7 +710,7 @@ static void ov59_021D1784(Window *param0, Strbuf *param1, int param2)
     int v1 = (26 * 8 - v0) / 2;
 
     BGL_FillWindow(param0, 0x0);
-    Text_AddPrinterWithParamsAndColor(param0, 1, param1, v1, 1, param2, (u32)(((1 & 0xff) << 16) | ((4 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+    Text_AddPrinterWithParamsAndColor(param0, FONT_MESSAGE, param1, v1, 1, param2, TEXT_COLOR(1, 4, 0), NULL);
 }
 
 static void ov59_021D17C8(UnkStruct_020961E8 *param0)
@@ -1048,7 +1048,7 @@ static int ov59_021D1D14(UnkStruct_020961E8 *param0, int param1)
 void ov59_021D1D40(UnkStruct_020961E8 *param0)
 {
     MessageLoader_GetStrbuf(param0->unk_28, 18, param0->unk_48);
-    ov59_021D1784(&param0->unk_36C, param0->unk_48, 0);
+    ov59_021D1784(&param0->unk_36C, param0->unk_48, TEXT_SPEED_INSTANT);
     CellActor_SetAnim(param0->unk_28C[0], 37);
 
     param0->unk_0C.unk_00 = 1;
@@ -1487,11 +1487,11 @@ static BOOL ov59_021D2418(Window *param0, int param1, u32 param2, UnkStruct_0209
             v2 = MessageUtil_ExpandedStrbuf(param3->unk_24, param3->unk_28, 1, 51);
 
             if (v1 == v0) {
-                Text_AddPrinterWithParamsAndColor(&param0[0], 0, param3->unk_2C[v0], 5, 1 + v0 * 18, 0xff, (u32)(((2 & 0xff) << 16) | ((3 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
-                Text_AddPrinterWithParamsAndColor(&param0[0], 0, v2, 5 + 13 * 5, 1 + v0 * 18, 0xff, (u32)(((2 & 0xff) << 16) | ((3 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+                Text_AddPrinterWithParamsAndColor(&param0[0], FONT_SYSTEM, param3->unk_2C[v0], 5, 1 + v0 * 18, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(2, 3, 0), NULL);
+                Text_AddPrinterWithParamsAndColor(&param0[0], FONT_SYSTEM, v2, 5 + 13 * 5, 1 + v0 * 18, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(2, 3, 0), NULL);
             } else {
-                Text_AddPrinterWithParamsAndColor(&param0[0], 0, param3->unk_2C[v0], 5, 1 + v0 * 18, 0xff, param2, NULL);
-                Text_AddPrinterWithParamsAndColor(&param0[0], 0, v2, 5 + 13 * 5, 1 + v0 * 18, 0xff, param2, NULL);
+                Text_AddPrinterWithParamsAndColor(&param0[0], FONT_SYSTEM, param3->unk_2C[v0], 5, 1 + v0 * 18, TEXT_SPEED_NO_TRANSFER, param2, NULL);
+                Text_AddPrinterWithParamsAndColor(&param0[0], FONT_SYSTEM, v2, 5 + 13 * 5, 1 + v0 * 18, TEXT_SPEED_NO_TRANSFER, param2, NULL);
             }
 
             Strbuf_Free(v2);
@@ -1581,9 +1581,9 @@ static void ov59_021D2628(UnkStruct_020961E8 *param0, int param1, int param2)
     sub_0200E060(&param0->unk_34C, 0, 1, 10);
 
     if (param2 == 0) {
-        param0->unk_4C = Text_AddPrinterWithParams(&param0->unk_34C, 1, param0->unk_44, 0, 0, ov59_021D28D4(param0), NULL);
+        param0->unk_4C = Text_AddPrinterWithParams(&param0->unk_34C, FONT_MESSAGE, param0->unk_44, 0, 0, ov59_021D28D4(param0), NULL);
     } else {
-        Text_AddPrinterWithParams(&param0->unk_34C, 1, param0->unk_44, 0, 0, 0, NULL);
+        Text_AddPrinterWithParams(&param0->unk_34C, FONT_MESSAGE, param0->unk_44, 0, 0, TEXT_SPEED_INSTANT, NULL);
         param0->unk_4C = 0xff;
     }
 }

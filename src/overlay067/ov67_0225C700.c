@@ -654,7 +654,7 @@ static void ov67_0225D210(UnkStruct_ov67_0225D210 *param0, u32 param1)
     BGL_FillWindow(&param0->unk_08, 15);
     MessageLoader_GetStrbuf(param0->unk_04, param1, param0->unk_1C);
     StringTemplate_Format(param0->unk_00, param0->unk_18, param0->unk_1C);
-    Text_AddPrinterWithParams(&param0->unk_08, 1, param0->unk_18, 0, 0, 0xff, NULL);
+    Text_AddPrinterWithParams(&param0->unk_08, FONT_MESSAGE, param0->unk_18, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
 
     if (param0->unk_20 == 0) {
         Window_Show(&param0->unk_08, 1, (1 + (18 + 12)), 14);
@@ -723,7 +723,7 @@ static void ov67_0225D37C(UnkStruct_ov67_0225D210 *param0, u32 param1)
     BGL_FillWindow(&param0->unk_08, 0);
     MessageLoader_GetStrbuf(param0->unk_04, param1, param0->unk_1C);
     StringTemplate_Format(param0->unk_00, param0->unk_18, param0->unk_1C);
-    Text_AddPrinterWithParamsAndColor(&param0->unk_08, 1, param0->unk_18, Font_CalcCenterAlignment(FONT_SYSTEM, param0->unk_18, 0, 0xB0), 0, 0, 0xF0E00, 0);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_08, FONT_MESSAGE, param0->unk_18, Font_CalcCenterAlignment(FONT_SYSTEM, param0->unk_18, 0, 0xB0), 0, TEXT_SPEED_INSTANT, TEXT_COLOR(15, 14, 0), 0);
 }
 
 static void ov67_0225D3D0(UnkStruct_ov67_0225D210 *param0, u32 param1)

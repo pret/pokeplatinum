@@ -143,7 +143,7 @@ static void ov5_021E1E20(const UnkStruct_ov5_021E1FF4 *param0)
     v2 = 0;
     v0 = MessageUtil_ExpandedStrbuf(param0->unk_14, param0->unk_18, Unk_ov5_021F9CCC[0], param0->unk_04);
 
-    Text_AddPrinterWithParams(param0->unk_10, 0, v0, 0, v2, 0xff, NULL);
+    Text_AddPrinterWithParams(param0->unk_10, FONT_SYSTEM, v0, 0, v2, TEXT_SPEED_NO_TRANSFER, NULL);
     Strbuf_Free(v0);
 
     for (v4 = 1; v4 < NELEMS(Unk_ov5_021F9CCC); v4++) {
@@ -154,13 +154,13 @@ static void ov5_021E1E20(const UnkStruct_ov5_021E1FF4 *param0)
         v2 += v3;
         v0 = MessageLoader_GetNewStrbuf(param0->unk_18, Unk_ov5_021F9CCC[v4]);
 
-        Text_AddPrinterWithParams(param0->unk_10, 0, v0, 0, v2, 0xff, NULL);
+        Text_AddPrinterWithParams(param0->unk_10, FONT_SYSTEM, v0, 0, v2, TEXT_SPEED_NO_TRANSFER, NULL);
         Strbuf_Free(v0);
 
         v0 = MessageUtil_ExpandedStrbuf(param0->unk_14, param0->unk_18, Unk_ov5_021F9CBC[v4 - 1], param0->unk_04);
         v1 = 13 * 8 - Font_CalcStrbufWidth(FONT_SYSTEM, v0, Font_GetAttribute(FONT_SYSTEM, FONTATTR_LETTER_SPACING));
 
-        Text_AddPrinterWithParams(param0->unk_10, 0, v0, v1, v2, 0xff, NULL);
+        Text_AddPrinterWithParams(param0->unk_10, FONT_SYSTEM, v0, v1, v2, TEXT_SPEED_NO_TRANSFER, NULL);
         Strbuf_Free(v0);
     }
 }

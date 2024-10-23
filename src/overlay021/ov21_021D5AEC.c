@@ -739,16 +739,16 @@ static void ov21_021D63DC(UnkStruct_ov21_021D13FC *param0, int param1, int param
     MessageLoader *v1 = MessageLoader_Init(0, 26, 697, param1);
 
     MessageLoader_GetStrbuf(v1, 0, v0);
-    Text_AddPrinterWithParamsAndColor(&param0->unk_04, 0, v0, 8, 152, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_04, FONT_SYSTEM, v0, 8, 152, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
 
     MessageLoader_GetStrbuf(v1, 1, v0);
-    Text_AddPrinterWithParamsAndColor(&param0->unk_04, 0, v0, 128, 152, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_04, FONT_SYSTEM, v0, 128, 152, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
 
     Strbuf_FormatInt(v0, param2, 3, 2, 1);
-    Text_AddPrinterWithParamsAndColor(&param0->unk_04, 0, v0, 48, 170, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_04, FONT_SYSTEM, v0, 48, 170, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
 
     Strbuf_FormatInt(v0, param3, 3, 2, 1);
-    Text_AddPrinterWithParamsAndColor(&param0->unk_04, 0, v0, 180, 170, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_04, FONT_SYSTEM, v0, 180, 170, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
 
     Strbuf_Free(v0);
     MessageLoader_Free(v1);
@@ -761,9 +761,9 @@ static void ov21_021D64B0(UnkStruct_ov21_021D13FC *param0, int param1, int param
     MessageLoader *v1 = MessageLoader_Init(0, 26, 697, param1);
 
     MessageLoader_GetStrbuf(v1, 109, v0);
-    Text_AddPrinterWithParamsAndColor(&param0->unk_04, 0, v0, 8, 152, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_04, FONT_SYSTEM, v0, 8, 152, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
     Strbuf_FormatInt(v0, param2, 3, 2, 1);
-    Text_AddPrinterWithParamsAndColor(&param0->unk_04, 0, v0, 48, 170, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_04, FONT_SYSTEM, v0, 48, 170, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
     Strbuf_Free(v0);
     MessageLoader_Free(v1);
     sub_0201C3C0(param0->unk_00, 1);
@@ -1303,9 +1303,9 @@ static void ov21_021D6DF4(UnkStruct_ov21_021D71A8 *param0, UnkStruct_ov21_021D13
     v1 = ov21_021D4D6C(param1->unk_14C, 15, 2);
 
     Strbuf_FormatInt(v2, param4, 3, 2, 1);
-    Text_AddPrinterWithParamsAndColor(v1, 2, v2, 22, 0, 0xff, ((u32)(((3 & 0xff) << 16) | ((2 & 0xff) << 8) | ((1 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(v1, FONT_SUBSCREEN, v2, 22, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 2, 1), NULL);
     MessageLoader_GetStrbuf(v3, 99, v2);
-    Text_AddPrinterWithParamsAndColor(v1, 2, v2, 49, 0, 0xff, ((u32)(((3 & 0xff) << 16) | ((2 & 0xff) << 8) | ((1 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(v1, FONT_SUBSCREEN, v2, 49, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 2, 1), NULL);
 
     if (param0->unk_28[param3]) {
         ov21_021D4D1C(param0->unk_28[param3]);

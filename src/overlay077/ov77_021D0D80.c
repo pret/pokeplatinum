@@ -1273,7 +1273,7 @@ static void ov77_021D2214(BGL *param0, int param1, UnkStruct_ov77_021D1568 *para
 
         v6 = Font_CalcCenterAlignment(FONT_SYSTEM, v5, 1, param2->unk_22C.unk_07 * 8);
 
-        Text_AddPrinterWithParamsColorAndSpacing(&param2->unk_22C, 0, v5, v6, 0, 0, (u32)(((1 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0)), 1, 0, NULL);
+        Text_AddPrinterWithParamsColorAndSpacing(&param2->unk_22C, FONT_SYSTEM, v5, v6, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 1, 0), 1, 0, NULL);
         Strbuf_Free(v5);
         MessageLoader_Free(v4);
 

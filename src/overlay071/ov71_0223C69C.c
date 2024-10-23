@@ -89,7 +89,7 @@ void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
     for (v0 = 0; v0 < 7; v0++) {
         if ((v0 != 3) || (v0 == 3) && (param1->unk_04_3)) {
             MessageLoader_GetStrbuf(v1, Unk_ov71_0223D644[v0], v2);
-            Text_AddPrinterWithParamsAndColor(&param0[v0], 0, v2, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+            Text_AddPrinterWithParamsAndColor(&param0[v0], FONT_SYSTEM, v2, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
         }
     }
 
@@ -110,7 +110,7 @@ void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
 
             v5 = (8 * 17) - Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
 
-            Text_AddPrinterWithParamsAndColor(&param0[2], 0, v2, v5, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+            Text_AddPrinterWithParamsAndColor(&param0[2], FONT_SYSTEM, v2, v5, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
         }
 
         if (param1->unk_04_3) {
@@ -122,7 +122,7 @@ void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
 
             v6 = (8 * 17) - Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
 
-            Text_AddPrinterWithParamsAndColor(&param0[3], 0, v2, v6, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+            Text_AddPrinterWithParamsAndColor(&param0[3], FONT_SYSTEM, v2, v6, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
         }
 
         ov71_0223CD64(&param0[4], (8 * 17), 0, 0, v2, param1->unk_24, 9, 1);
@@ -142,7 +142,7 @@ void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
 
             StringTemplate_Format(v4, v2, v3);
             v7 = (8 * 28) - Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
-            Text_AddPrinterWithParamsAndColor(&param0[5], 0, v2, v7, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+            Text_AddPrinterWithParamsAndColor(&param0[5], FONT_SYSTEM, v2, v7, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
         }
 
         {
@@ -156,7 +156,7 @@ void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
 
             v8 = (8 * 28) - Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
 
-            Text_AddPrinterWithParamsAndColor(&param0[6], 0, v2, v8, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+            Text_AddPrinterWithParamsAndColor(&param0[6], FONT_SYSTEM, v2, v8, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
         }
 
         Strbuf_Free(v3);
@@ -538,7 +538,7 @@ static void ov71_0223CD64 (Window * param0, const u32 param1, const u32 param2, 
 
     Strbuf_FormatInt(param4, param5, param6, param7, 1);
     v0 = Font_CalcStrbufWidth(FONT_SYSTEM, param4, 0);
-    Text_AddPrinterWithParamsAndColor(param0, 0, param4, param1 - (v0 + param2), param3, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, param4, param1 - (v0 + param2), param3, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
 }
 
 static void ov71_0223CDB0 (Window * param0, const u32 param1, const u32 param2, const u32 param3, const Strbuf *param4)
@@ -546,7 +546,7 @@ static void ov71_0223CDB0 (Window * param0, const u32 param1, const u32 param2, 
     u32 v0;
 
     v0 = Font_CalcStrbufWidth(FONT_SYSTEM, param4, 0);
-    Text_AddPrinterWithParamsAndColor(param0, 0, param4, param1 - (v0 + param2), param3, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, param4, param1 - (v0 + param2), param3, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
 }
 
 void ov71_0223CDE8 (Window * param0, const TrainerCard * param1, Strbuf *param2)
@@ -575,7 +575,7 @@ void ov71_0223CDE8 (Window * param0, const TrainerCard * param1, Strbuf *param2)
         MessageLoader_GetStrbuf(v2, 16, v4);
         StringTemplate_Format(v5, v3, v4);
         v1 = (8 * 28) - Font_CalcStrbufWidth(FONT_SYSTEM, v3, 0);
-        Text_AddPrinterWithParamsAndColor(&param0[5], 0, v3, v1, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0[5], FONT_SYSTEM, v3, v1, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
 
         MessageLoader_Free(v2);
         Strbuf_Free(v3);
@@ -587,7 +587,7 @@ void ov71_0223CDE8 (Window * param0, const TrainerCard * param1, Strbuf *param2)
 void ov71_0223CECC (Window * param0, const BOOL param1, Strbuf *param2)
 {
     if (param1) {
-        Text_AddPrinterWithParamsAndColor(param0, 0, param2, (207 - 2), 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, param2, (207 - 2), 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
     } else {
         BGL_WindowColor(param0, 0, (207 - 2), 0, 5, 2 * 8);
         sub_0201A954(param0);

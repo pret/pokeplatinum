@@ -409,8 +409,8 @@ static void ov102_021D1420(UnkStruct_ov102_021D0F8C *param0)
         MessageLoader_GetStrbuf(param0->unk_34, 0, v1);
         StringTemplate_SetPlayerName(param0->unk_38, 0, param0->unk_0C);
         StringTemplate_Format(param0->unk_38, v0, v1);
-        Text_AddPrinterWithParamsAndColor(&param0->unk_14, 0, v0, 48, 32, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
-        Text_AddPrinterWithParamsAndColor(&param0->unk_24, 0, v0, 48, 32, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_14, FONT_SYSTEM, v0, 48, 32, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_24, FONT_SYSTEM, v0, 48, 32, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
         Strbuf_Free(v1);
     }
     {
@@ -423,13 +423,13 @@ static void ov102_021D1420(UnkStruct_ov102_021D0F8C *param0)
         }
 
         MessageLoader_GetStrbuf(param0->unk_34, v2, v0);
-        Text_AddPrinterWithParamsAndColor(&param0->unk_14, 0, v0, 64, 64, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
-        Text_AddPrinterWithParamsAndColor(&param0->unk_24, 0, v0, 64, 64, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_14, FONT_SYSTEM, v0, 64, 64, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_24, FONT_SYSTEM, v0, 64, 64, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
     }
     {
         MessageLoader_GetStrbuf(param0->unk_34, 3, v0);
-        Text_AddPrinterWithParamsAndColor(&param0->unk_14, 0, v0, 138, 144, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
-        Text_AddPrinterWithParamsAndColor(&param0->unk_24, 0, v0, 138, 144, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_14, FONT_SYSTEM, v0, 138, 144, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_24, FONT_SYSTEM, v0, 138, 144, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
     }
 
     Strbuf_Free(v0);

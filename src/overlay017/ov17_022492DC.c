@@ -537,8 +537,8 @@ static void ov17_02249828(UnkStruct_ov17_022492DC *param0)
     v0 = MessageLoader_GetNewStrbuf(v4, v2);
     v1 = MessageLoader_GetNewStrbuf(v4, v3);
 
-    ov17_02249BC4(param0, &param0->unk_1C[0], v0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0, 33003, 128, (8 * 0x10 - 1), 1);
-    ov17_02249BC4(param0, &param0->unk_1C[1], v1, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0, 33003, 128, (8 * 0x14 - 1), 1);
+    ov17_02249BC4(param0, &param0->unk_1C[0], v0, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), 0, 33003, 128, (8 * 0x10 - 1), 1);
+    ov17_02249BC4(param0, &param0->unk_1C[1], v1, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), 0, 33003, 128, (8 * 0x14 - 1), 1);
 
     Strbuf_Free(v0);
     Strbuf_Free(v1);
@@ -567,10 +567,10 @@ static void ov17_022498F4(UnkStruct_ov17_022492DC *param0)
     v2 = MessageLoader_GetNewStrbuf(v4, 3);
     v3 = MessageLoader_GetNewStrbuf(v4, 4);
 
-    ov17_02249BC4(param0, &param0->unk_1C[2], v0, 2, ((u32)(((1 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0xb & 0xff) << 0))), 0, 33003, 128, 24, 1);
-    ov17_02249BC4(param0, &param0->unk_1C[3], v1, 2, ((u32)(((1 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0xb & 0xff) << 0))), 0, 33003, 128, 120, 1);
-    ov17_02249BC4(param0, &param0->unk_1C[4], v2, 2, ((u32)(((1 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0xb & 0xff) << 0))), 0, 33003, 48, 64, 1);
-    ov17_02249BC4(param0, &param0->unk_1C[5], v3, 2, ((u32)(((1 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0xb & 0xff) << 0))), 0, 33003, 208, 64, 1);
+    ov17_02249BC4(param0, &param0->unk_1C[2], v0, FONT_SUBSCREEN, TEXT_COLOR(1, 1, 0xb), 0, 33003, 128, 24, 1);
+    ov17_02249BC4(param0, &param0->unk_1C[3], v1, FONT_SUBSCREEN, TEXT_COLOR(1, 1, 0xb), 0, 33003, 128, 120, 1);
+    ov17_02249BC4(param0, &param0->unk_1C[4], v2, FONT_SUBSCREEN, TEXT_COLOR(1, 1, 0xb), 0, 33003, 48, 64, 1);
+    ov17_02249BC4(param0, &param0->unk_1C[5], v3, FONT_SUBSCREEN, TEXT_COLOR(1, 1, 0xb), 0, 33003, 208, 64, 1);
 
     Strbuf_Free(v0);
     Strbuf_Free(v1);
@@ -704,7 +704,7 @@ static void ov17_02249BC4(UnkStruct_ov17_022492DC *param0, UnkStruct_ov17_02249B
     {
         Window_Init(&v1);
         BGL_AddFramelessWindow(v5, &v1, v8, 16 / 8, 0, 0);
-        Text_AddPrinterWithParamsColorAndSpacing(&v1, param3, param2, 0, 0, 0xff, param4, 0, 0, NULL);
+        Text_AddPrinterWithParamsColorAndSpacing(&v1, param3, param2, 0, 0, TEXT_SPEED_NO_TRANSFER, param4, 0, 0, NULL);
     }
 
     v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DSUB, 23);

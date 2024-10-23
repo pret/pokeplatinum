@@ -323,7 +323,7 @@ int ov107_02245FD0 (OverlayManager * param0, int * param1)
 
             ov107_02249DBC(&v0->unk_50[7], Options_Frame(v0->unk_148));
             ov104_0222E5D0(v0->unk_24, 0);
-            v0->unk_0A = ov107_022477CC(v0, 7, 1);
+            v0->unk_0A = ov107_022477CC(v0, 7, FONT_MESSAGE);
             ov107_02248350(v0, param1, 3);
             break;
         }
@@ -547,7 +547,7 @@ static BOOL ov107_022462CC (UnkStruct_ov107_02246170 * param0)
 
                 ov107_02248BEC(param0);
                 ov107_022480EC(param0, 0, 1, 4, 0);
-                param0->unk_0A = ov107_022477CC(param0, 16, 1);
+                param0->unk_0A = ov107_022477CC(param0, 16, FONT_MESSAGE);
                 ov107_02247D94(param0);
                 param0->unk_08 = 3;
             } else {
@@ -558,7 +558,7 @@ static BOOL ov107_022462CC (UnkStruct_ov107_02246170 * param0)
                 ov107_02248BEC(param0);
                 ov107_02248104(param0, 0, Pokemon_GetBoxPokemon(v8));
 
-                param0->unk_0A = ov107_022477CC(param0, 20, 1);
+                param0->unk_0A = ov107_022477CC(param0, 20, FONT_MESSAGE);
                 param0->unk_08 = 15;
             }
             break;
@@ -571,7 +571,7 @@ static BOOL ov107_022462CC (UnkStruct_ov107_02246170 * param0)
             ov107_02248BEC(param0);
             ov107_02248104(param0, 0, Pokemon_GetBoxPokemon(v8));
 
-            param0->unk_0A = ov107_022477CC(param0, 21, 1);
+            param0->unk_0A = ov107_022477CC(param0, 21, FONT_MESSAGE);
             ov107_02247DF0(param0);
             param0->unk_08 = 4;
             break;
@@ -601,7 +601,7 @@ static BOOL ov107_022462CC (UnkStruct_ov107_02246170 * param0)
 
             if (v1 < 1) {
                 ov107_02248BEC(param0);
-                param0->unk_0A = ov107_022477CC(param0, 28, 1);
+                param0->unk_0A = ov107_022477CC(param0, 28, FONT_MESSAGE);
                 param0->unk_08 = 15;
                 break;
             }
@@ -637,7 +637,7 @@ static BOOL ov107_022462CC (UnkStruct_ov107_02246170 * param0)
 
             if (param0->unk_3D0[ov107_02249C98(param0->unk_14, param0->unk_0D)] == 1) {
                 ov107_02248BEC(param0);
-                param0->unk_0A = ov107_022477CC(param0, 29, 1);
+                param0->unk_0A = ov107_022477CC(param0, 29, FONT_MESSAGE);
                 param0->unk_08 = 15;
                 break;
             } else {
@@ -651,7 +651,7 @@ static BOOL ov107_022462CC (UnkStruct_ov107_02246170 * param0)
 
             if (param0->unk_3D0[ov107_02249C98(param0->unk_14, param0->unk_0D)] == 2) {
                 ov107_02248BEC(param0);
-                param0->unk_0A = ov107_022477CC(param0, 30, 1);
+                param0->unk_0A = ov107_022477CC(param0, 30, FONT_MESSAGE);
                 param0->unk_08 = 15;
                 break;
             } else {
@@ -682,7 +682,7 @@ static BOOL ov107_022462CC (UnkStruct_ov107_02246170 * param0)
 
             if (v1 < v2) {
                 ov107_02248BEC(param0);
-                param0->unk_0A = ov107_022477CC(param0, 28, 1);
+                param0->unk_0A = ov107_022477CC(param0, 28, FONT_MESSAGE);
                 param0->unk_08 = 15;
                 return 0;
             }
@@ -730,7 +730,7 @@ static BOOL ov107_022462CC (UnkStruct_ov107_02246170 * param0)
             if (param0->unk_3D4[ov107_02249C98(param0->unk_14, param0->unk_0D)] == 0) {
                 ov107_02248BEC(param0);
                 ov107_022480EC(param0, 0, 2, 4, 0);
-                param0->unk_0A = ov107_022477CC(param0, 43, 1);
+                param0->unk_0A = ov107_022477CC(param0, 43, FONT_MESSAGE);
                 ov107_02247D94(param0);
                 param0->unk_08 = 7;
             } else {
@@ -745,7 +745,7 @@ static BOOL ov107_022462CC (UnkStruct_ov107_02246170 * param0)
             v6 = ov107_02249CAC(param0->unk_14C, param0->unk_09, 2);
 
             if (v6 == 1) {
-                param0->unk_0A = ov107_022477CC(param0, 42, 1);
+                param0->unk_0A = ov107_022477CC(param0, 42, FONT_MESSAGE);
                 param0->unk_08 = 14;
                 return 0;
             }
@@ -753,7 +753,7 @@ static BOOL ov107_022462CC (UnkStruct_ov107_02246170 * param0)
             if (param0->unk_3D8[ov107_02249C98(param0->unk_14, param0->unk_0D)] == 0) {
                 ov107_02248BEC(param0);
                 ov107_022480EC(param0, 0, 5, 4, 0);
-                param0->unk_0A = ov107_022477CC(param0, 66, 1);
+                param0->unk_0A = ov107_022477CC(param0, 66, FONT_MESSAGE);
                 ov107_02247D94(param0);
                 param0->unk_08 = 8;
             } else {
@@ -774,7 +774,7 @@ static BOOL ov107_022462CC (UnkStruct_ov107_02246170 * param0)
                 v1 = sub_02030698(param0->unk_04, sub_0205E630(param0->unk_09), sub_0205E6A8(sub_0205E630(param0->unk_09)));
 
                 ov107_022480EC(param0, 0, 50, 4, 0);
-                param0->unk_0A = ov107_022477CC(param0, 76, 1);
+                param0->unk_0A = ov107_022477CC(param0, 76, FONT_MESSAGE);
 
                 ov107_02247D94(param0);
                 param0->unk_08 = 9;
@@ -839,7 +839,7 @@ static BOOL ov107_022462CC (UnkStruct_ov107_02246170 * param0)
             if (v1 < 50) {
                 ov107_02248BB4(param0);
                 ov107_02249DBC(&param0->unk_50[7], Options_Frame(param0->unk_148));
-                param0->unk_0A = ov107_022477CC(param0, 69, 1);
+                param0->unk_0A = ov107_022477CC(param0, 69, FONT_MESSAGE);
                 param0->unk_08 = 14;
                 break;
             }
@@ -1494,7 +1494,7 @@ static u8 ov107_02247680 (UnkStruct_ov107_02246170 * param0, Window * param1, in
         break;
     }
 
-    v0 = Text_AddPrinterWithParamsAndColor(param1, param9, param0->unk_28, param3, param4, param5, (u32)((((param6) & 0xFF) << 16) | (((param7) & 0xFF) << 8) | ((param8) & 0xFF)), NULL);
+    v0 = Text_AddPrinterWithParamsAndColor(param1, param9, param0->unk_28, param3, param4, param5, TEXT_COLOR(param6, param7, param8), NULL);
     sub_0201A9A4(param1);
     
     return v0;
@@ -1520,7 +1520,7 @@ static u8 ov107_02247744 (UnkStruct_ov107_02246170 * param0, Window * param1, in
         break;
     }
 
-    v0 = Text_AddPrinterWithParamsAndColor(param1, param9, param0->unk_28, param3, param4, param5, (u32)((((param6) & 0xFF) << 16) | (((param7) & 0xFF) << 8) | ((param8) & 0xFF)), NULL);
+    v0 = Text_AddPrinterWithParamsAndColor(param1, param9, param0->unk_28, param3, param4, param5, TEXT_COLOR(param6, param7, param8), NULL);
     sub_0201A9A4(param1);
     
     return v0;
@@ -1530,7 +1530,7 @@ static u8 ov107_022477CC (UnkStruct_ov107_02246170 * param0, int param1, u8 para
 {
     u8 v0;
 
-    v0 = ov107_02247650(param0, &param0->unk_50[7], param1, 1, 1, 0xff, 1, 2, 15, param2);
+    v0 = ov107_02247650(param0, &param0->unk_50[7], param1, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, param2);
     sub_0201A9A4(&param0->unk_50[7]);
 
     return v0;
@@ -2010,7 +2010,7 @@ static void ov107_02247F14 (BmpList * param0, u32 param1, u8 param2)
     }
 
     sub_020014D0(param0, &v4);
-    ov107_02247650(v5, &v5->unk_50[9], Unk_ov107_0224A0CC[v4], 1, 1, 0xff, 1, 2, 15, 1);
+    ov107_02247650(v5, &v5->unk_50[9], Unk_ov107_0224A0CC[v4], 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
 
     return;
 }
@@ -2081,7 +2081,7 @@ static void ov107_02248028 (BmpList * param0, u32 param1, u8 param2)
         v1 = 1;
     }
 
-    ov107_02247650(v3, &v3->unk_50[7], Unk_ov107_0224A0AC[v2][v1], 1, 1, 0xff, 1, 2, 15, 1);
+    ov107_02247650(v3, &v3->unk_50[7], Unk_ov107_0224A0AC[v2][v1], 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
 
     return;
 }
@@ -2138,7 +2138,7 @@ static void ov107_02248110 (UnkStruct_ov107_02246170 * param0, u32 param1)
 
 static void ov107_0224812C (UnkStruct_ov107_02246170 * param0, Window * param1, u32 param2, u32 param3, u8 param4)
 {
-    u32 v0;
+    TextColor v0;
     const TrainerInfo * v1;
     Strbuf* v2;
 
@@ -2148,12 +2148,12 @@ static void ov107_0224812C (UnkStruct_ov107_02246170 * param0, Window * param1, 
     Strbuf_CopyChars(v2, TrainerInfo_Name(v1));
 
     if (TrainerInfo_Gender(v1) == 0) {
-        v0 = ((u32)(((7 & 0xff) << 16) | ((8 & 0xff) << 8) | (((0 & 0xff) << 0))));
+        v0 = TEXT_COLOR(7, 8, 0);
     } else {
-        v0 = ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | (((0 & 0xff) << 0))));
+        v0 = TEXT_COLOR(3, 4, 0);
     }
 
-    Text_AddPrinterWithParamsAndColor(param1, param4, v2, param2, param3, 0xff, v0, NULL);
+    Text_AddPrinterWithParamsAndColor(param1, param4, v2, param2, param3, TEXT_SPEED_NO_TRANSFER, v0, NULL);
     Strbuf_Free(v2);
 
     return;
@@ -2162,18 +2162,18 @@ static void ov107_0224812C (UnkStruct_ov107_02246170 * param0, Window * param1, 
 static void ov107_02248194 (UnkStruct_ov107_02246170 * param0, Window * param1, u32 param2, u32 param3, u8 param4)
 {
     TrainerInfo * v0;
-    u32 v1;
+    TextColor v1;
 
     v0 = CommInfo_TrainerInfo((CommSys_CurNetId() ^ 1));
 
     if (TrainerInfo_Gender(v0) == 0) {
-        v1 = ((u32)(((7 & 0xff) << 16) | ((8 & 0xff) << 8) | (((0 & 0xff) << 0))));
+        v1 = TEXT_COLOR(7, 8, 0);
     } else {
-        v1 = ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | (((0 & 0xff) << 0))));
+        v1 = TEXT_COLOR(3, 4, 0);
     }
 
     StringTemplate_SetPlayerName(param0->unk_24, 0, v0);
-    ov107_02247714(param0, param1, 1, param2, param3, 0xff, (((v1) >> 16) & 0xff), (((v1) >> 8) & 0xff), (((v1) >> 0) & 0xff), 0);
+    ov107_02247714(param0, param1, 1, param2, param3, TEXT_SPEED_NO_TRANSFER, GET_TEXT_FG_COLOR(v1), GET_TEXT_SHADOW_COLOR(v1), GET_TEXT_BG_COLOR(v1), FONT_SYSTEM);
 
     return;
 }
@@ -2204,9 +2204,9 @@ static void ov107_022481FC (UnkStruct_ov107_02246170 * param0, Window * param1, 
 
 static void ov107_02248240 (UnkStruct_ov107_02246170 * param0)
 {
-    param0->unk_0A = ov107_02247680(param0, &param0->unk_50[1], 5, 16, 1 + 4, 0xFF, 1, 2, 0, 0, 1);
+    param0->unk_0A = ov107_02247680(param0, &param0->unk_50[1], 5, 16, 1 + 4, TEXT_SPEED_NO_TRANSFER, 1, 2, 0, FONT_SYSTEM, 1);
     ov107_02249DBC(&param0->unk_50[8], Options_Frame(param0->unk_148));
-    param0->unk_0A = ov107_02247650(param0, &param0->unk_50[8], 4, 1, 1, 0xFF, 1, 2, 15, 1);
+    param0->unk_0A = ov107_02247650(param0, &param0->unk_50[8], 4, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
 }
 
 static void ov107_022482A4 (UnkStruct_ov107_02246170 * param0)
@@ -2239,7 +2239,7 @@ static void ov107_022482FC (UnkStruct_ov107_02246170 * param0)
 {
     ov107_02249DBC(&param0->unk_50[7], Options_Frame(param0->unk_148));
 
-    param0->unk_0A = ov107_02247650(param0, &param0->unk_50[7], 37, 1, 1, 0xff, 1, 2, 15, 1);
+    param0->unk_0A = ov107_02247650(param0, &param0->unk_50[7], 37, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
     param0->unk_18 = 0;
 
     ov107_02247F6C(param0);
@@ -2841,7 +2841,7 @@ static void ov107_02248A8C (UnkStruct_ov107_02246170 * param0, u8 param1)
     v0 = Party_GetPokemonBySlotIndex(param0->unk_3DC, ov107_02249C98(param0->unk_14, param1));
     ov107_02248104(param0, 0, Pokemon_GetBoxPokemon(v0));
 
-    param0->unk_0A = ov107_022477CC(param0, 47, 1);
+    param0->unk_0A = ov107_022477CC(param0, 47, FONT_MESSAGE);
 
     ov107_02248A74(param0, param1);
     ov107_02249580(param0);
@@ -2881,7 +2881,7 @@ static void ov107_02248B50 (UnkStruct_ov107_02246170 * param0, u8 param1)
     v0 = Party_GetPokemonBySlotIndex(param0->unk_3DC, ov107_02249C98(param0->unk_14, param1));
     ov107_02248104(param0, 0, Pokemon_GetBoxPokemon(v0));
 
-    param0->unk_0A = ov107_022477CC(param0, 70, 1);
+    param0->unk_0A = ov107_022477CC(param0, 70, FONT_MESSAGE);
 
     ov107_02248B38(param0, param1);
     ov107_02249580(param0);
@@ -3179,7 +3179,7 @@ asm static void ov107_02248C08 (UnkStruct_ov107_02246170 * param0, Window * para
 static void ov107_02248E54 (UnkStruct_ov107_02246170 * param0, u8 param1)
 {
     ov107_022480EC(param0, 0, ov107_02248770(param1), 4, 0);
-    param0->unk_0A = ov107_022477CC(param0, 25, 1);
+    param0->unk_0A = ov107_022477CC(param0, 25, FONT_MESSAGE);
 
     ov107_02247D94(param0);
     param0->unk_0E = param1;
@@ -3300,7 +3300,7 @@ static void ov107_02249024 (UnkStruct_ov107_02246170 * param0, u8 param1)
     ov107_02249DBC(&param0->unk_50[7], Options_Frame(param0->unk_148));
     ov107_02248104(param0, 0, Pokemon_GetBoxPokemon(v0));
 
-    param0->unk_0A = ov107_022477CC(param0, 20, 1);
+    param0->unk_0A = ov107_022477CC(param0, 20, FONT_MESSAGE);
     param0->unk_3CC[ov107_02249C98(param0->unk_14, param1)] = 1;
 
     ov107_02249BAC(param0->unk_378[ov107_02249C98(param0->unk_14, param1)], 0);
@@ -3325,10 +3325,10 @@ static void ov107_022490E8 (UnkStruct_ov107_02246170 * param0, u8 param1, u8 par
     ov107_02248104(param0, 0, Pokemon_GetBoxPokemon(v1));
 
     if (param2 == 1) {
-        param0->unk_0A = ov107_022477CC(param0, 31, 1);
+        param0->unk_0A = ov107_022477CC(param0, 31, FONT_MESSAGE);
         Sound_PlayEffect(1587);
     } else {
-        param0->unk_0A = ov107_022477CC(param0, 32, 1);
+        param0->unk_0A = ov107_022477CC(param0, 32, FONT_MESSAGE);
         Sound_PlayEffect(1588);
     }
 
@@ -3422,7 +3422,7 @@ static BOOL ov107_0224933C (UnkStruct_ov107_02246170 * param0, u16 param1, u16 p
 
     if (v0 < param1) {
         ov107_02248BEC(param0);
-        param0->unk_0A = ov107_022477CC(param0, param2, 1);
+        param0->unk_0A = ov107_022477CC(param0, param2, FONT_MESSAGE);
         param0->unk_08 = 15;
         return 0;
     }
@@ -3517,7 +3517,7 @@ static void ov107_022493CC (UnkStruct_ov107_02246170 * param0, u8 param1, u8 par
     ov107_02248C08(param0, &param0->unk_50[0]);
     ov107_02249DBC(&param0->unk_50[7], Options_Frame(param0->unk_148));
 
-    param0->unk_0A = ov107_022477CC(param0, Unk_ov107_0224A0DC[v2][v4], 1);
+    param0->unk_0A = ov107_022477CC(param0, Unk_ov107_0224A0DC[v2][v4], FONT_MESSAGE);
     return;
 }
 

@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020149F0_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/pokemon_summary.h"
@@ -16,6 +15,7 @@
 #include "overlay005/ov5_021D0D80.h"
 
 #include "bag.h"
+#include "colored_arrow.h"
 #include "comm_player_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -38,7 +38,6 @@
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_020149F0.h"
 #include "unk_02018340.h"
 #include "unk_0202602C.h"
 #include "unk_0202D778.h"
@@ -76,7 +75,7 @@ typedef struct {
     Window unk_54;
     Window unk_64;
     TrainerInfo *unk_74;
-    UnkStruct_020149F0 *unk_78;
+    ColoredArrow *unk_78;
     Window *unk_7C;
     u8 unk_80;
     s8 unk_81;
@@ -678,7 +677,7 @@ void sub_0205AB10(FieldSystem *fieldSystem, UnkFuncPtr_0205AB10 *param1)
     Window_Init(&v0->unk_54);
     Window_Init(&v0->unk_64);
 
-    v0->unk_78 = sub_020149F0(11);
+    v0->unk_78 = ColoredArrow_New(11);
     v0->unk_88 = sub_0203895C();
     v0->unk_4C = NULL;
     v0->unk_48 = NULL;
@@ -733,7 +732,7 @@ static void sub_0205AC28(UnkStruct_0205A0D8 *param0)
     StringTemplate_Free(param0->unk_28);
     Strbuf_Free(param0->unk_0C);
     Strbuf_Free(param0->unk_10);
-    sub_02014A20(param0->unk_78);
+    ColoredArrow_Free(param0->unk_78);
 
     sub_0205AAA0(param0, 1);
 }
@@ -884,16 +883,16 @@ static void sub_0205ADF8(UnkStruct_0205A0D8 *param0, int param1)
             v2 = Pokemon_GetValue((Pokemon *)(&param0->unk_48[v1 * v3]), MON_DATA_SPECIES, NULL);
 
             MessageLoader_GetStrbuf(v4, v2, param0->unk_0C);
-            Text_AddPrinterWithParams(v0, 0, param0->unk_0C, 16, v1 * 16, 0xff, NULL);
+            Text_AddPrinterWithParams(v0, FONT_SYSTEM, param0->unk_0C, 16, v1 * 16, TEXT_SPEED_NO_TRANSFER, NULL);
         }
 
         MessageLoader_GetStrbuf(param0->unk_2C, 21, param0->unk_0C);
-        Text_AddPrinterWithParams(v0, 0, param0->unk_0C, 16, v1 * 16, 0xff, NULL);
+        Text_AddPrinterWithParams(v0, FONT_SYSTEM, param0->unk_0C, 16, v1 * 16, TEXT_SPEED_NO_TRANSFER, NULL);
         MessageLoader_Free(v4);
     }
 
     BGL_WindowColor(v0, 15, 0, 0, 16, v0->unk_08 * 8);
-    sub_02014A58(param0->unk_78, &param0->unk_54, 0, param1 * 16);
+    ColoredArrow_Print(param0->unk_78, &param0->unk_54, 0, param1 * 16);
     Window_Show(&param0->unk_54, 0, 1, 11);
 
     param0->unk_81 = param1;
@@ -914,7 +913,7 @@ static void sub_0205AF18(UnkStruct_0205A0D8 *param0, int param1)
 
         for (v1 = 0; v1 < 3; v1++) {
             MessageLoader_GetStrbuf(param0->unk_2C, 22 + v1, param0->unk_0C);
-            Text_AddPrinterWithParams(v0, 0, param0->unk_0C, 16, v1 * 16, 0xff, NULL);
+            Text_AddPrinterWithParams(v0, FONT_SYSTEM, param0->unk_0C, 16, v1 * 16, TEXT_SPEED_NO_TRANSFER, NULL);
         }
     }
 
@@ -923,7 +922,7 @@ static void sub_0205AF18(UnkStruct_0205A0D8 *param0, int param1)
     param0->unk_81 = param1;
 
     BGL_WindowColor(v0, 15, 0, 0, 16, v0->unk_08 * 8);
-    sub_02014A58(param0->unk_78, param0->unk_7C, 0, param1 * 16);
+    ColoredArrow_Print(param0->unk_78, param0->unk_7C, 0, param1 * 16);
     Window_Show(param0->unk_7C, 0, 1, 11);
 }
 
@@ -960,7 +959,7 @@ static int sub_0205AFE4(UnkStruct_0205A0D8 *param0)
 
     Sound_PlayEffect(1500);
     BGL_WindowColor(param0->unk_7C, 15, 0, 0, 16, param0->unk_7C->unk_08 * 8);
-    sub_02014A58(param0->unk_78, param0->unk_7C, 0, param0->unk_81 * 16);
+    ColoredArrow_Print(param0->unk_78, param0->unk_7C, 0, param0->unk_81 * 16);
     sub_0201ACCC(param0->unk_7C);
 
     return 0;

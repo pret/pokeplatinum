@@ -325,7 +325,7 @@ static void ov94_0223C9C0(UnkStruct_ov94_0223FD4C *param0)
 {
     BGL_AddWindow(param0->unk_04, &param0->unk_F7C, 0, 1, 1, 28, 2, 13, ((1 + (18 + 12)) + 9));
     BGL_FillWindow(&param0->unk_F7C, 0x0);
-    Text_AddPrinterWithParamsAndColor(&param0->unk_F7C, 1, param0->unk_BB0, 0, 2, 0, (u32)(((15 & 0xff) << 16) | ((4 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_F7C, FONT_MESSAGE, param0->unk_BB0, 0, 2, TEXT_SPEED_INSTANT, TEXT_COLOR(15, 4, 0), NULL);
 
     {
         int v0;
@@ -418,7 +418,7 @@ static int ov94_0223CBD8(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_0223CBEC(UnkStruct_ov94_0223FD4C *param0)
 {
-    ov94_0223CF80(param0, 4, 1, 0, 0xf0f);
+    ov94_0223CF80(param0, 4, TEXT_SPEED_FAST, 0, 0xf0f);
     ov94_0223C3F4(param0, 10, 6);
     CellActor_SetAnimateFlag(param0->unk_E20, 1);
     ov94_0223C584(param0);
@@ -448,7 +448,7 @@ static int ov94_0223CC28(UnkStruct_ov94_0223FD4C *param0)
                     Sound_PlayEffect(1500);
                 } else {
                     CellActor_SetAnimateFlag(param0->unk_E20, 0);
-                    ov94_0223CF80(param0, 34, 1, 0, 0xf0f);
+                    ov94_0223CF80(param0, 34, TEXT_SPEED_FAST, 0, 0xf0f);
                     ov94_0223C3F4(param0, 11, 5);
                     Sound_PlayEffect(1523);
                     param0->unk_10E0 = 0;
@@ -592,7 +592,7 @@ static void ov94_0223CF80(UnkStruct_ov94_0223FD4C *param0, int param1, int param
     BGL_FillWindow(&param0->unk_F5C, 0xf0f);
     sub_0200E060(&param0->unk_F5C, 0, 1, 10);
 
-    param0->unk_BE0 = Text_AddPrinterWithParams(&param0->unk_F5C, 1, param0->unk_BAC, 0, 0, param2, NULL);
+    param0->unk_BE0 = Text_AddPrinterWithParams(&param0->unk_F5C, FONT_MESSAGE, param0->unk_BAC, 0, 0, param2, NULL);
 }
 
 static void ov94_0223CFD8(UnkStruct_ov94_0223FD4C *param0, int param1, int param2, int param3, u16 param4)
@@ -603,7 +603,7 @@ static void ov94_0223CFD8(UnkStruct_ov94_0223FD4C *param0, int param1, int param
     BGL_FillWindow(&param0->unk_109C, 0xf0f);
     sub_0200E060(&param0->unk_109C, 0, 1, 10);
 
-    param0->unk_BE0 = Text_AddPrinterWithParams(&param0->unk_109C, 1, param0->unk_BAC, 0, 0, param2, NULL);
+    param0->unk_BE0 = Text_AddPrinterWithParams(&param0->unk_109C, FONT_MESSAGE, param0->unk_BAC, 0, 0, param2, NULL);
 }
 
 void ov94_0223D030(Window *param0, MessageLoader *param1, int param2, u16 param3)
@@ -613,7 +613,7 @@ void ov94_0223D030(Window *param0, MessageLoader *param1, int param2, u16 param3
     v0 = MessageLoader_GetNewStrbuf(param1, param2);
 
     BGL_FillWindow(param0, param3);
-    Text_AddPrinterWithParams(param0, 1, v0, 0, 0, 0, NULL);
+    Text_AddPrinterWithParams(param0, FONT_MESSAGE, v0, 0, 0, TEXT_SPEED_INSTANT, NULL);
     Strbuf_Free(v0);
 }
 

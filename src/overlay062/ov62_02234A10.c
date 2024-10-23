@@ -49,7 +49,7 @@ static void ov62_02234A10(UnkStruct_0208C06C *param0)
     v0 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 192);
     v1 = ov62_0223429C(v2, v0);
 
-    Text_AddPrinterWithParamsAndColor(v2, 0, v0, v1, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(v2, FONT_SYSTEM, v0, v1, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 14, 0), NULL);
     Strbuf_Free(v0);
     sub_0201A9A4(v2);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);

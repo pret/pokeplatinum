@@ -252,12 +252,12 @@ static void SetupBGL(BGL *bgl, enum HeapId heapID);
 static void ov78_021D12EC(BGL *param0);
 static void MakeMessageWindow(ChooseStarterApp *app, enum HeapId heapID);
 static void ov78_021D13A0(ChooseStarterApp *param0);
-static u8 ov78_021D1FB4(Window *param0, int param1, int param2, int param3, u32 param4, u32 param5);
+static u8 ov78_021D1FB4(Window *param0, int param1, int param2, int param3, TextColor param4, u32 param5);
 static u8 ov78_021D201C(Window *param0, int param1, int param2, int param3, u32 param4, u32 param5, Strbuf **param6);
 static void ov78_021D2090(ChooseStarterApp *param0);
 static void MakeSubplaneWindow(ChooseStarterApp *param0, int param1);
 static void ov78_021D2884(ChooseStarterApp *param0);
-static void ov78_021D28A8(Window *param0, int param1, int param2, int param3, u32 param4);
+static void ov78_021D28A8(Window *param0, int param1, int param2, int param3, TextColor param4);
 static void ov78_021D2904(ChooseStarterApp *param0);
 static void MakeConfirmationWindow(ChooseStarterApp *param0, int param1);
 static void MakeSprite(ChooseStarterApp *app, enum HeapId heapID);
@@ -1185,7 +1185,7 @@ static void ov78_021D1CA8(ChooseStarterApp *param0, int param1)
         }
         break;
     case 3:
-        param0->unk_708 = ov78_021D201C(param0->messageWindow, param1, 360, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), param0->unk_704, &param0->unk_AC);
+        param0->unk_708 = ov78_021D201C(param0->messageWindow, param1, 360, 0, TEXT_COLOR(1, 2, 15), param0->unk_704, &param0->unk_AC);
         param0->unk_04++;
         break;
     case 4:
@@ -1195,7 +1195,7 @@ static void ov78_021D1CA8(ChooseStarterApp *param0, int param1)
         }
         break;
     case 5:
-        param0->unk_708 = ov78_021D201C(param0->messageWindow, param1, 360, 7, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), param0->unk_704, &param0->unk_AC);
+        param0->unk_708 = ov78_021D201C(param0->messageWindow, param1, 360, 7, TEXT_COLOR(1, 2, 15), param0->unk_704, &param0->unk_AC);
         param0->unk_04++;
         break;
     case 6:
@@ -1258,7 +1258,7 @@ static void ov78_021D1E44(ChooseStarterApp *param0, int param1)
         }
         break;
     case 2:
-        ov78_021D1FB4(param0->messageWindow, param1, 360, 1 + param0->cursorPosition, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), 0xff);
+        ov78_021D1FB4(param0->messageWindow, param1, 360, 1 + param0->cursorPosition, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
         param0->unk_B8 = sub_02002100(param0->bgl, &param0->unk_B0, (512 + (18 + 12) + 128), 1, param1);
         param0->unk_08 = 0;
         param0->unk_04++;
@@ -1284,13 +1284,13 @@ static void ov78_021D1E44(ChooseStarterApp *param0, int param1)
             param0->unk_04 = 7;
             ov78_021D2508(&param0->unk_6A8, 0);
             sub_02007DEC(param0->sprites[param0->cursorPosition], 6, 1);
-            param0->unk_708 = ov78_021D1FB4(param0->messageWindow, param1, 360, 7, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), 0xff);
+            param0->unk_708 = ov78_021D1FB4(param0->messageWindow, param1, 360, 7, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
         }
         break;
     }
 }
 
-static u8 ov78_021D1FB4(Window *param0, int param1, int param2, int param3, u32 param4, u32 param5)
+static u8 ov78_021D1FB4(Window *param0, int param1, int param2, int param3, TextColor param4, u32 param5)
 {
     MessageLoader *v0;
     Strbuf *v1;
@@ -1301,7 +1301,7 @@ static u8 ov78_021D1FB4(Window *param0, int param1, int param2, int param3, u32 
     v1 = MessageLoader_GetNewStrbuf(v0, param3);
 
     BGL_FillWindow(param0, 15);
-    v2 = Text_AddPrinterWithParamsAndColor(param0, 1, v1, 0, 0, param5, param4, NULL);
+    v2 = Text_AddPrinterWithParamsAndColor(param0, FONT_MESSAGE, v1, 0, 0, param5, param4, NULL);
     sub_0200E060(param0, 0, 512, 0);
 
     Strbuf_Free(v1);
@@ -1322,7 +1322,7 @@ static u8 ov78_021D201C(Window *param0, int param1, int param2, int param3, u32 
 
     *param6 = MessageLoader_GetNewStrbuf(v0, param3);
     BGL_FillWindow(param0, 15);
-    v1 = Text_AddPrinterWithParamsAndColor(param0, 1, *param6, 0, 0, param5, param4, NULL);
+    v1 = Text_AddPrinterWithParamsAndColor(param0, FONT_MESSAGE, *param6, 0, 0, param5, param4, NULL);
 
     sub_0200E060(param0, 0, 512, 0);
     MessageLoader_Free(v0);
@@ -1757,7 +1757,7 @@ static void MakeSubplaneWindow(ChooseStarterApp *param0, int param1)
         }
 
         BGL_AddWindow(param0->bgl, param0->unk_9C[v0], 3, v1, v2, 11, 4, 5, 1 + (64 * v0));
-        ov78_021D28A8(param0->unk_9C[v0], param1, 360, 4 + v0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0xa & 0xff) << 0))));
+        ov78_021D28A8(param0->unk_9C[v0], param1, 360, 4 + v0, TEXT_COLOR(1, 2, 10));
     }
 }
 
@@ -1771,7 +1771,7 @@ static void ov78_021D2884(ChooseStarterApp *param0)
     }
 }
 
-static void ov78_021D28A8(Window *param0, int param1, int param2, int param3, u32 param4)
+static void ov78_021D28A8(Window *param0, int param1, int param2, int param3, TextColor param4)
 {
     MessageLoader *v0;
     Strbuf *v1;
@@ -1781,7 +1781,7 @@ static void ov78_021D28A8(Window *param0, int param1, int param2, int param3, u3
     v1 = MessageLoader_GetNewStrbuf(v0, param3);
 
     BGL_FillWindow(param0, (((param4) >> 0) & 0xff));
-    Text_AddPrinterWithParamsAndColor(param0, 0, v1, 1, 0, 0xff, param4, NULL);
+    Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, v1, 1, 0, TEXT_SPEED_NO_TRANSFER, param4, NULL);
     Strbuf_Free(v1);
     MessageLoader_Free(v0);
 }

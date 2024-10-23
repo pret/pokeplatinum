@@ -2487,7 +2487,7 @@ static BOOL ScrCmd_036(ScriptContext *ctx)
 
     MessageLoader_GetStrbuf(ctx->loader, v7, *v1);
     StringTemplate_Format(*v3, *v2, *v1);
-    Text_AddPrinterWithParams(ov5_021E1B50(fieldSystem->unk_64), 1, *v2, 0, 0, 0, NULL);
+    Text_AddPrinterWithParams(ov5_021E1B50(fieldSystem->unk_64), FONT_MESSAGE, *v2, 0, 0, TEXT_SPEED_INSTANT, NULL);
 
     return 1;
 }

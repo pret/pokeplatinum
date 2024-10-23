@@ -746,7 +746,7 @@ static BOOL ov21_021E9948(PaletteData *param0, Sprite *param1)
 
 static void ov21_021E9968(Window *param0, int param1, int param2)
 {
-    ov21_021DEB8C(param0, param2, param1, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))));
+    ov21_021DEB8C(param0, param2, param1, 0, TEXT_COLOR(2, 1, 0));
     ov21_021E998C(param0, param1);
 }
 
@@ -756,7 +756,7 @@ static void ov21_021E998C(Window *param0, int param1)
     MessageLoader *v1 = MessageLoader_Init(0, 26, 697, param1);
 
     MessageLoader_GetStrbuf(v1, 110, v0);
-    Text_AddPrinterWithParamsAndColor(param0, 0, v0, 32, 0, 0, ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, v0, 32, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(3, 4, 0), NULL);
 
     Strbuf_Free(v0);
     MessageLoader_Free(v1);

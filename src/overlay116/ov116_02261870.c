@@ -407,7 +407,7 @@ void ov116_02261F70(UnkStruct_ov116_02262A8C *param0)
         v0 = MessageLoader_Init(0, 26, 410, 106);
         v1 = MessageLoader_GetNewStrbuf(v0, 0);
 
-        Text_AddPrinterWithParams(&param0->unk_1FC8, 0, v1, 0, 0, 0, NULL);
+        Text_AddPrinterWithParams(&param0->unk_1FC8, FONT_SYSTEM, v1, 0, 0, TEXT_SPEED_INSTANT, NULL);
         Strbuf_Free(v1);
         MessageLoader_Free(v0);
     }
@@ -541,9 +541,9 @@ void ov116_022620AC(UnkStruct_ov116_0226139C *param0, UnkStruct_ov116_02262A8C *
             v12 = ov116_0226208C(v3, v11);
 
             if (v10) {
-                Text_AddPrinterWithParamsColorAndSpacing(v3, 0, v11, v12, 0, 0, ((u32)(((5 & 0xff) << 16) | ((6 & 0xff) << 8) | ((15 & 0xff) << 0))), 0, 0, NULL);
+                Text_AddPrinterWithParamsColorAndSpacing(v3, FONT_SYSTEM, v11, v12, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(5, 6, 15), 0, 0, NULL);
             } else {
-                Text_AddPrinterWithParamsColorAndSpacing(v3, 0, v11, v12, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), 0, 0, NULL);
+                Text_AddPrinterWithParamsColorAndSpacing(v3, FONT_SYSTEM, v11, v12, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), 0, 0, NULL);
             }
 
             Strbuf_Free(v11);

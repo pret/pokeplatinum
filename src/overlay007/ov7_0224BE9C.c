@@ -427,7 +427,7 @@ static void ov7_0224C468(UnkStruct_ov7_0224C3EC *param0, Strbuf *param1, u32 par
     BGL_FillWindow(param0->unk_04, 15);
 
     param0->unk_10 = Strbuf_Clone(param1, param2);
-    param0->unk_0C = Text_AddPrinterWithParamsAndColor(param0->unk_04, 1, param0->unk_10, 0, 0, param0->unk_08, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+    param0->unk_0C = Text_AddPrinterWithParamsAndColor(param0->unk_04, FONT_MESSAGE, param0->unk_10, 0, 0, param0->unk_08, TEXT_COLOR(1, 2, 15), NULL);
 
     sub_0201A954(param0->unk_04);
 }
@@ -553,7 +553,7 @@ static void ov7_0224C6DC(UnkStruct_ov7_0224C620 *param0, u32 param1, u32 param2,
 
     for (v0 = 0; v0 < 3; v0++) {
         StringTemplate_Format(param0->unk_08, param0->unk_0C, param0->unk_10[v0]);
-        Text_AddPrinterWithParamsAndColor(param0->unk_04, 0, param0->unk_0C, 0, 16 * v0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(param0->unk_04, FONT_SYSTEM, param0->unk_0C, 0, 16 * v0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
     }
 
     Window_Show(param0->unk_04, 0, (1 + (18 + 12)), 11);

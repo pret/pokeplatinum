@@ -166,7 +166,7 @@ static void sub_020877C4(void);
 static void sub_02087FC0(UnkStruct_02087A10 *param0, OverlayManager *param1, NARC *param2);
 static void sub_02088350(UnkStruct_02087A10 *param0);
 static void sub_02088514(u16 *param0);
-static void sub_02088554(Window *param0, const u16 *param1, int param2, int param3, int param4, int param5, u32 param6, u8 *param7);
+static void sub_02088554(Window *param0, const u16 *param1, int param2, int param3, int param4, int param5, TextColor param6, u8 *param7);
 static void sub_02088678(Window *param0, const u16 *param1, u8 *param2, Strbuf *param3);
 static void sub_02088844(u16 param0[][13], const int param1);
 static void sub_02088754(Window *param0, u16 *param1, int param2, u16 *param3, u8 *param4, Strbuf *param5);
@@ -175,7 +175,7 @@ static int sub_02088D08(int param0, int param1, int param2, int param3, u16 *par
 static int sub_02088C9C(int param0, int param1, u16 *param2, int param3);
 static void sub_02088E1C(CellActor **param0, int param1, int param2);
 static void sub_020871B0(UnkStruct_02087A10 *param0, UnkStruct_0208737C *param1);
-static void sub_02088E58(Window *param0, u16 param1, int param2, u32 param3, u8 *param4);
+static void sub_02088E58(Window *param0, u16 param1, int param2, TextColor param3, u8 *param4);
 static void sub_02088454(UnkStruct_02087A10 *param0, int param1);
 static void sub_02088F40(int param0[], CellActor **param1, int param2);
 static void sub_020879DC(SysTask *param0, void *param1);
@@ -189,7 +189,7 @@ static void sub_02087F48(Window *param0, int param1, Strbuf *param2);
 static void sub_02088FD0(UnkStruct_02087A10 *param0);
 static int sub_02086D38(UnkStruct_02087A10 *param0, int param1);
 static int sub_02086F14(u16 *param0);
-static void *sub_02088654(Window *param0, Strbuf *param1, u8 param2, u32 param3);
+static void *sub_02088654(Window *param0, Strbuf *param1, u8 param2, TextColor param3);
 static BOOL sub_0208903C(UnkStruct_02087A10 *param0);
 
 static const int Unk_020F2984[][4] = {
@@ -987,7 +987,7 @@ static int sub_02086B64(OverlayManager *param0, int *param1)
             sub_02087544(v0, param0);
             BGL_FillWindow(&v0->unk_41C[9], 0xf0f);
             sub_0200E060(&v0->unk_41C[9], 0, (32 * 8), 10);
-            v0->unk_4BC = Text_AddPrinterWithParams(&v0->unk_41C[9], 1, v0->unk_180, 0, 0, 1, NULL);
+            v0->unk_4BC = Text_AddPrinterWithParams(&v0->unk_41C[9], FONT_MESSAGE, v0->unk_180, 0, 0, TEXT_SPEED_FAST, NULL);
             sub_0201A954(&v0->unk_41C[9]);
             v0->unk_4C0 = 6;
             break;
@@ -1750,7 +1750,7 @@ static void sub_02087D64(BGL *param0, Window *param1, int *param2, int param3, i
 
         sub_02006E60(31, 6 + param3, param0, 0 + v0, 0, (32 * 14 * 2), 1, 18);
         sub_02088260(param5, v0);
-        sub_02088E58(&param1[v0], v3, param3, (u32)(((0xe & 0xff) << 16) | ((0xf & 0xff) << 8) | ((0 & 0xff) << 0)), param7);
+        sub_02088E58(&param1[v0], v3, param3, TEXT_COLOR(14, 15, 0), param7);
         (*param2)++;
     } break;
     case 1:
@@ -1810,7 +1810,7 @@ static void sub_02087D64(BGL *param0, Window *param1, int *param2, int param3, i
 static void sub_02087F48(Window *param0, int param1, Strbuf *param2)
 {
     sub_0200E060(param0, 0, (32 * 8), 10);
-    Text_AddPrinterWithParams(param0, 1, param2, 0, 0, 0, NULL);
+    Text_AddPrinterWithParams(param0, FONT_MESSAGE, param2, 0, 0, TEXT_SPEED_INSTANT, NULL);
     sub_0201A954(param0);
 }
 
@@ -1824,7 +1824,7 @@ static void sub_02087F78(Window *param0, int param1, Strbuf *param2)
     }
 
     BGL_FillWindow(param0, 0x101);
-    Text_AddPrinterWithParamsAndColor(param0, 0, param2, v0, 0, 0, (u32)(((0xe & 0xff) << 16) | ((0xf & 0xff) << 8) | ((1 & 0xff) << 0)), NULL);
+    Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, param2, v0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(14, 15, 1), NULL);
     sub_0201A954(param0);
 }
 
@@ -1837,11 +1837,11 @@ static void sub_02087FC0(UnkStruct_02087A10 *param0, OverlayManager *param1, NAR
         sub_0200710C(param2, 6 + 3, param0->unk_160, 1, 0, (32 * 14 * 2), 1, 18);
         param0->unk_4C4 = 4;
         sub_02088844(param0->unk_3A, 4);
-        sub_02088E58(&param0->unk_41C[1], 0xa0a, 4, (u32)(((0xe & 0xff) << 16) | ((0xf & 0xff) << 8) | ((0 & 0xff) << 0)), param0->unk_514->pRawData);
+        sub_02088E58(&param0->unk_41C[1], 0xa0a, 4, TEXT_COLOR(14, 15, 0), param0->unk_514->pRawData);
     } else {
         param0->unk_4C4 = 0;
         sub_02088844(param0->unk_3A, 0);
-        sub_02088E58(&param0->unk_41C[1], 0x404, 0, (u32)(((0xe & 0xff) << 16) | ((0xf & 0xff) << 8) | ((0 & 0xff) << 0)), param0->unk_514->pRawData);
+        sub_02088E58(&param0->unk_41C[1], 0x404, 0, TEXT_COLOR(14, 15, 0), param0->unk_514->pRawData);
     }
 
     BGL_AddWindow(param0->unk_160, &param0->unk_41C[2], 2, 7, 2, 22, 2, 0, (((32 * 8) + (26 * 12)) + (26 * 12)));
@@ -1869,7 +1869,7 @@ static void sub_02087FC0(UnkStruct_02087A10 *param0, OverlayManager *param1, NAR
 
         if (param0->unk_118[0] != 0xffff) {
             GF_strcpy(param0->unk_D8, param0->unk_118);
-            sub_02088554(&param0->unk_41C[3], param0->unk_D8, 0, 0, 12, 0, (u32)(((0xe & 0xff) << 16) | ((0xf & 0xff) << 8) | ((1 & 0xff) << 0)), NULL);
+            sub_02088554(&param0->unk_41C[3], param0->unk_D8, 0, 0, 12, TEXT_SPEED_INSTANT, TEXT_COLOR(14, 15, 1), NULL);
         }
     }
 
@@ -2068,7 +2068,7 @@ static void sub_02088514(u16 *param0)
     GX_LoadOBJPltt((u16 *)&v1, (16 + 13) * 2, 2);
 }
 
-static void sub_02088554(Window *param0, const u16 *param1, int param2, int param3, int param4, int param5, u32 param6, u8 *param7)
+static void sub_02088554(Window *param0, const u16 *param1, int param2, int param3, int param4, int param5, TextColor param6, u8 *param7)
 {
     int v0 = 0, v1, v2;
     u16 v3[2];
@@ -2093,7 +2093,7 @@ static void sub_02088554(Window *param0, const u16 *param1, int param2, int para
             v2 = param2 + v0 * param4 + ((param4 - v1) / 2);
 
             Strbuf_CopyChars(v4, v3);
-            Text_AddPrinterWithParamsAndColor(param0, 0, v4, v2, param3, param5, param6, NULL);
+            Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, v4, v2, param3, param5, param6, NULL);
         }
 
         v0++;
@@ -2109,9 +2109,9 @@ static const u8 Unk_020F24D8[] = {
     0x58
 };
 
-static void *sub_02088654(Window *param0, Strbuf *param1, u8 param2, const u32 param3)
+static void *sub_02088654(Window *param0, Strbuf *param1, u8 param2, const TextColor param3)
 {
-    Text_AddPrinterWithParamsAndColor(param0, param2, param1, 0, 0, 0xff, param3, NULL);
+    Text_AddPrinterWithParamsAndColor(param0, param2, param1, 0, 0, TEXT_SPEED_NO_TRANSFER, param3, NULL);
     return param0->unk_0C;
 }
 
@@ -2122,7 +2122,7 @@ static void sub_02088678(Window *param0, const u16 *param1, u8 *param2, Strbuf *
     Strbuf *v4;
 
     BGL_FillWindow(&param0[3], 0);
-    v3 = sub_02088654(&param0[3], param3, 2, (u32)(((0xd & 0xff) << 16) | ((0xe & 0xff) << 8) | ((0xf & 0xff) << 0)));
+    v3 = sub_02088654(&param0[3], param3, FONT_SUBSCREEN, TEXT_COLOR(13, 14, 15));
     DC_FlushRange(v3, 0x20 * 4 * 16);
 
     for (v1 = 0; v1 < 4; v1++) {
@@ -2140,7 +2140,7 @@ static void sub_02088678(Window *param0, const u16 *param1, u8 *param2, Strbuf *
         BGL_FillWindow(&param0[v1], 0);
         Strbuf_CopyChars(v4, v0);
 
-        v3 = sub_02088654(&param0[v1], v4, 2, (u32)(((0xd & 0xff) << 16) | ((0xe & 0xff) << 8) | ((0xf & 0xff) << 0)));
+        v3 = sub_02088654(&param0[v1], v4, FONT_SUBSCREEN, TEXT_COLOR(13, 14, 15));
 
         DC_FlushRange(v3, 0x20 * 4);
         GXS_LoadOBJ(v3, Unk_020F24F0[v1] * 0x20, 0x20 * 4);
@@ -2240,21 +2240,21 @@ static int sub_02088898(UnkStruct_02087A10 *param0, u16 param1, int param2)
     case 0xd001:
         if (sub_02088D08(42, (42 + 40), 1, 0xd001, param0->unk_D8, param0->unk_158)) {
             BGL_FillWindow(&param0->unk_41C[3], 0x101);
-            sub_02088554(&param0->unk_41C[3], param0->unk_D8, 0, 0, 12, 0, (u32)(((0xe & 0xff) << 16) | ((0xf & 0xff) << 8) | ((1 & 0xff) << 0)), NULL);
+            sub_02088554(&param0->unk_41C[3], param0->unk_D8, 0, 0, 12, TEXT_SPEED_INSTANT, TEXT_COLOR(14, 15, 1), NULL);
             Sound_PlayEffect(1515);
         }
         break;
     case (0xd001 + 1):
         if (sub_02088D08(72, (72 + 10), 2, (0xd001 + 1), param0->unk_D8, param0->unk_158)) {
             BGL_FillWindow(&param0->unk_41C[3], 0x101);
-            sub_02088554(&param0->unk_41C[3], param0->unk_D8, 0, 0, 12, 0, (u32)(((0xe & 0xff) << 16) | ((0xf & 0xff) << 8) | ((1 & 0xff) << 0)), NULL);
+            sub_02088554(&param0->unk_41C[3], param0->unk_D8, 0, 0, 12, TEXT_SPEED_INSTANT, TEXT_COLOR(14, 15, 1), NULL);
             Sound_PlayEffect(1515);
         }
         break;
     case (0xe001 + 5):
         if (sub_02088C9C(0, (72 + 10), param0->unk_D8, param0->unk_158)) {
             BGL_FillWindow(&param0->unk_41C[3], 0x101);
-            sub_02088554(&param0->unk_41C[3], param0->unk_D8, 0, 0, 12, 0, (u32)(((0xe & 0xff) << 16) | ((0xf & 0xff) << 8) | ((1 & 0xff) << 0)), NULL);
+            sub_02088554(&param0->unk_41C[3], param0->unk_D8, 0, 0, 12, TEXT_SPEED_INSTANT, TEXT_COLOR(14, 15, 1), NULL);
             param0->unk_4F4[4]++;
             Sound_PlayEffect(1515);
         }
@@ -2282,7 +2282,7 @@ static int sub_02088898(UnkStruct_02087A10 *param0, u16 param1, int param2)
             if (param0->unk_158 == 0) {
                 sub_0201A954(&param0->unk_41C[3]);
             } else {
-                sub_02088554(&param0->unk_41C[3], param0->unk_D8, 0, 0, 12, 0, (u32)(((0xe & 0xff) << 16) | ((0xf & 0xff) << 8) | ((1 & 0xff) << 0)), NULL);
+                sub_02088554(&param0->unk_41C[3], param0->unk_D8, 0, 0, 12, TEXT_SPEED_INSTANT, TEXT_COLOR(14, 15, 1), NULL);
             }
 
             sub_02088754(&param0->unk_41C[4], param0->unk_D8, param0->unk_158, param0->unk_15A, param0->unk_528, param0->unk_17C);
@@ -2316,7 +2316,7 @@ static int sub_02088898(UnkStruct_02087A10 *param0, u16 param1, int param2)
             param0->unk_D8[param0->unk_158] = param1;
 
             BGL_FillWindow(&param0->unk_41C[3], 0x101);
-            sub_02088554(&param0->unk_41C[3], param0->unk_D8, 0, 0, 12, 0, (u32)(((0xe & 0xff) << 16) | ((0xf & 0xff) << 8) | ((1 & 0xff) << 0)), NULL);
+            sub_02088554(&param0->unk_41C[3], param0->unk_D8, 0, 0, 12, TEXT_SPEED_INSTANT, TEXT_COLOR(14, 15, 1), NULL);
 
             param0->unk_158++;
 
@@ -2448,7 +2448,7 @@ static const u8 Unk_020F24E0[] = {
     0x9
 };
 
-static void sub_02088E58(Window *param0, u16 param1, int param2, u32 param3, u8 *param4)
+static void sub_02088E58(Window *param0, u16 param1, int param2, TextColor param3, u8 *param4)
 {
     int v0, v1, v2;
 
@@ -2466,7 +2466,7 @@ static void sub_02088E58(Window *param0, u16 param1, int param2, u32 param3, u8 
     }
 
     for (v0 = 0; v0 < 5; v0++) {
-        sub_02088554(param0, Unk_02100C54[param2][v0], 0, v0 * 19 + 4, 16, 0xff, param3, param4);
+        sub_02088554(param0, Unk_02100C54[param2][v0], 0, v0 * 19 + 4, 16, TEXT_SPEED_NO_TRANSFER, param3, param4);
     }
 
     sub_0201A954(param0);

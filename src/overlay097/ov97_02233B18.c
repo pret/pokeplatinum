@@ -80,8 +80,8 @@ typedef struct {
     int unk_20;
     int unk_24;
     int unk_28;
-    u32 unk_2C;
-    u32 unk_30;
+    TextColor unk_2C;
+    TextColor unk_30;
     int unk_34;
     u16 *unk_38;
     Strbuf *unk_3C;
@@ -425,7 +425,7 @@ static void ov97_02233DD0(UnkStruct_ov97_02234A2C *param0, UnkStruct_ov97_02233D
     Strbuf *v6;
 
     if (param1->unk_44 == 0) {
-        v5 = 0xff;
+        v5 = TEXT_SPEED_NO_TRANSFER;
     } else {
         v5 = param1->unk_44;
     }
@@ -1131,7 +1131,7 @@ static void ov97_02234A2C(UnkStruct_ov97_02234A2C *param0, int param1)
     v0.unk_1C = 0;
     v0.unk_24 = 1;
     v0.unk_28 = 1;
-    v0.unk_2C = ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));
+    v0.unk_2C = TEXT_COLOR(1, 2, 0);
     v0.unk_20 = 0xA0;
 
     ov97_0223936C(param0->unk_E8E0->boxNames[param1], v1, 8 + 1, ov97_02235DBC());
@@ -1184,7 +1184,7 @@ static void ov97_02234B0C(UnkStruct_ov97_02234A2C *param0, BoxPokemonGBA *param1
     v4.unk_24 = 1;
     v4.unk_28 = 1;
     v4.unk_20 = (14 * 2 + 0xA0);
-    v4.unk_2C = ((u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));
+    v4.unk_2C = TEXT_COLOR(15, 2, 0);
     v4.unk_38 = NULL;
 
     v4.unk_34 = 44;
@@ -1436,8 +1436,8 @@ static void ov97_02234ECC(UnkStruct_ov97_02234A2C *param0)
     param0->unk_490.unk_24 = 0;
     param0->unk_490.unk_28 = 1;
     param0->unk_490.unk_20 = 0 + 1;
-    param0->unk_490.unk_2C = ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0)));
-    param0->unk_490.unk_30 = ((u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0)));
+    param0->unk_490.unk_2C = TEXT_COLOR(1, 2, 15);
+    param0->unk_490.unk_30 = TEXT_COLOR(15, 2, 15);
     param0->unk_490.unk_38 = NULL;
     param0->unk_490.unk_3C = NULL;
 }

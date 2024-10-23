@@ -60,7 +60,7 @@ typedef struct {
     u8 unk_07;
     u8 unk_08;
     u8 unk_09;
-    u32 unk_0C;
+    TextColor unk_0C;
 } UnkStruct_ov112_0225D880;
 
 typedef struct {
@@ -307,10 +307,10 @@ static const UnkStruct_ov112_0225D824 Unk_ov112_0225D824[4] = {
 };
 
 static const UnkStruct_ov112_0225D880 Unk_ov112_0225D880[4] = {
-    { 0x6, 0x0, 0x14, 0x8, 0x1, 0xA, 0x50, 0x6, 0x1, 0x30400 },
-    { 0x0, 0x6, 0x6, 0x3, 0xA1, 0x7, 0x10, 0x4, 0x1, 0xD0E00 },
-    { 0xF, 0x6, 0x6, 0x5, 0xB3, 0x7, 0x18, 0x4, 0x1, 0xD0E00 },
-    { 0x4, 0xC, 0x12, 0x3, 0xD1, 0x7, 0x4, 0x4, 0x0, 0xD0E00 }
+    { 0x6, 0x0, 0x14, 0x8, 0x1, 0xA, 0x50, 0x6, 0x1, TEXT_COLOR(3, 4, 0) },
+    { 0x0, 0x6, 0x6, 0x3, 0xA1, 0x7, 0x10, 0x4, 0x1, TEXT_COLOR(13, 14, 0) },
+    { 0xF, 0x6, 0x6, 0x5, 0xB3, 0x7, 0x18, 0x4, 0x1, TEXT_COLOR(13, 14, 0) },
+    { 0x4, 0xC, 0x12, 0x3, 0xD1, 0x7, 0x4, 0x4, 0x0, TEXT_COLOR(13, 14, 0) }
 };
 
 static u16 Unk_ov112_0225D960[4] = {
@@ -1065,7 +1065,7 @@ static void ov112_0225D460(UnkStruct_ov112_0225D44C *param0, const Strbuf *param
     GF_ASSERT((180 * 8) >= param0->unk_06);
 
     BGL_FillWindow(&param0->unk_0C, 0);
-    Text_AddPrinterWithParams(&param0->unk_0C, 1, param0->unk_08, 0, 0, 0xff, NULL);
+    Text_AddPrinterWithParams(&param0->unk_0C, FONT_MESSAGE, param0->unk_08, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
 
     param0->unk_1C = *param3;
 
@@ -1157,7 +1157,7 @@ static void ov112_0225D57C(UnkStruct_ov112_0225D6DC *param0, UnkStruct_ov112_022
                 v6 = Unk_ov112_0225D880[v0].unk_07 - Font_CalcMaxLineWidth(0, v4, 0);
                 break;
             }
-            Text_AddPrinterWithParamsAndColor(&param0->unk_00[v0], 0, v4, v6, v7, 0xFF, Unk_ov112_0225D880[v0].unk_0C, NULL);
+            Text_AddPrinterWithParamsAndColor(&param0->unk_00[v0], FONT_SYSTEM, v4, v6, v7, TEXT_SPEED_NO_TRANSFER, Unk_ov112_0225D880[v0].unk_0C, NULL);
             v7 += 16;
         }
         Strbuf_Free(v4);

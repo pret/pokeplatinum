@@ -53,6 +53,7 @@
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
 #include "unk_0200112C.h"
@@ -321,7 +322,7 @@ int ov88_0223B140(OverlayManager *param0, int *param1)
     v0->fieldSystem = v0->unk_08->fieldSystem;
 
     sub_02095E60(v0->fieldSystem, v0);
-    ov88_0223ECBC(&v0->unk_49C[23], 20, 1, v0->unk_184, v0->unk_178);
+    ov88_0223ECBC(&v0->unk_49C[23], 20, FONT_MESSAGE, v0->unk_184, v0->unk_178);
     sub_02095CD4(v0->fieldSystem);
     sub_02019120(0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -360,9 +361,9 @@ static void ov88_0223B320(UnkStruct_02095E80 *param0)
     v1 = TrainerInfo_NameNewStrbuf(v4, 26);
     v2 = MessageLoader_GetNewStrbuf(param0->unk_184, 50);
 
-    ov88_0223EC78(&param0->unk_49C[0], v0, 10, 0, 1, 1);
-    ov88_0223EC78(&param0->unk_49C[1], v1, 10, 0, 1, 1);
-    ov88_0223EC78(&param0->unk_49C[6], v2, 5, 0, 1, 1);
+    ov88_0223EC78(&param0->unk_49C[0], v0, 10, TEXT_SPEED_INSTANT, 1, 1);
+    ov88_0223EC78(&param0->unk_49C[1], v1, 10, TEXT_SPEED_INSTANT, 1, 1);
+    ov88_0223EC78(&param0->unk_49C[6], v2, 5, TEXT_SPEED_INSTANT, 1, 1);
 
     Strbuf_Free(v2);
     Strbuf_Free(v1);
@@ -384,7 +385,7 @@ static void ov88_0223B3C0(UnkStruct_02095E80 *param0)
     sub_0200DD0C(param0->unk_174, 0, (512 - (9 + (18 + 12))), 10, Options_Frame(param0->unk_08->unk_18), 26);
     sub_0200DAA4(param0->unk_174, 0, (512 - 9), 11, 0, 26);
 
-    ov88_0223ECBC(&param0->unk_49C[21], 15, 1, param0->unk_184, param0->unk_178);
+    ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
 
     sub_02019120(4, 1);
     sub_02019120(5, 1);
@@ -519,7 +520,7 @@ static void ov88_0223B748(Window *param0, StringTemplate *param1, MessageLoader 
     for (v0 = 0; v0 < Party_GetCurrentCount(param3); v0++) {
         Strbuf *v1 = MessageUtil_ExpandedStrbuf(param1, param2, 1 + param4 + v0, 26);
 
-        ov88_0223EC78(&param0[v0], v1, 8, 0, 1, 0);
+        ov88_0223EC78(&param0[v0], v1, 8, TEXT_SPEED_INSTANT, 1, 0);
         Strbuf_Free(v1);
     }
 }
@@ -743,7 +744,7 @@ static int ov88_0223B914(UnkStruct_02095E80 *param0)
         if (sub_0200AC1C(2)) {
             sub_0200E084(&param0->unk_49C[23], 0);
             sub_02019CB8(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-            ov88_0223ECBC(&param0->unk_49C[21], 15, 1, param0->unk_184, param0->unk_178);
+            ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
             ResetUnlock(2);
 
             return 1;
@@ -1295,7 +1296,7 @@ static void ov88_0223C860(Window *param0, Party *param1, int param2, int param3,
 
     Pokemon_GetValue(Party_GetPokemonBySlotIndex(param1, param2), MON_DATA_NICKNAME_STRBUF, v0);
     BGL_FillWindow(param0, 0);
-    ov88_0223EC78(param0, v0, param3, 0, param4, 1);
+    ov88_0223EC78(param0, v0, param3, TEXT_SPEED_INSTANT, param4, 1);
     Strbuf_Free(v0);
 }
 
@@ -1362,24 +1363,24 @@ static void ov88_0223C8D8(Window *param0, int param1, Party *param2, int param3,
         v0 = Strbuf_Init(10, 26);
         BGL_FillWindow(&param0[28 + param1], 0);
         MessageLoader_GetStrbuf(param4->unk_184, 41, v0);
-        ov88_0223EC78(&param0[28 + param1], v0, 9, 0xff, 6, 0);
+        ov88_0223EC78(&param0[28 + param1], v0, 9, TEXT_SPEED_NO_TRANSFER, 6, 0);
 
         v3 = Pokemon_GetValue(Party_GetPokemonBySlotIndex(param2, param3), MON_DATA_LEVEL, NULL);
         Strbuf_FormatInt(v0, v3, 3, 0, 1);
-        ov88_0223EC78(&param0[28 + param1], v0, 9, 0, 24 + 6, 0);
+        ov88_0223EC78(&param0[28 + param1], v0, 9, TEXT_SPEED_INSTANT, 24 + 6, 0);
         Strbuf_Free(v0);
     } else {
         sub_0201ACF4(&param0[28 + param1]);
     }
 
-    ov88_0223EC78(&param0[30 + param1], param4->unk_190, 7, 0, 3, 0);
+    ov88_0223EC78(&param0[30 + param1], param4->unk_190, 7, TEXT_SPEED_INSTANT, 3, 0);
 
     v2 = Pokemon_GetValue(Party_GetPokemonBySlotIndex(param2, param3), MON_DATA_HELD_ITEM, NULL);
     BGL_FillWindow(&param0[32 + param1], 0);
 
     v1 = Strbuf_Init(20, 26);
     Item_LoadName(v1, v2, 26);
-    ov88_0223EC78(&param0[32 + param1], v1, 9, 0, 3, 0);
+    ov88_0223EC78(&param0[32 + param1], v1, 9, TEXT_SPEED_INSTANT, 3, 0);
     Strbuf_Free(v1);
 }
 
@@ -1764,7 +1765,7 @@ static void ov88_0223D1EC(UnkStruct_02095E80 *param0, int param1)
 static int ov88_0223D2C4(UnkStruct_02095E80 *param0)
 {
     sub_02019CB8(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-    ov88_0223ECBC(&param0->unk_49C[23], 25, 1, param0->unk_184, param0->unk_178);
+    ov88_0223ECBC(&param0->unk_49C[23], 25, FONT_MESSAGE, param0->unk_184, param0->unk_178);
 
     param0->unk_226C = ov88_0223D318;
 
@@ -1776,14 +1777,14 @@ static int ov88_0223D318(UnkStruct_02095E80 *param0)
     switch (ov88_0223ED2C(param0->unk_174, &param0->unk_6BC, &param0->unk_6C8)) {
     case 0:
         sub_02019CB8(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-        ov88_0223ECBC(&param0->unk_49C[23], 28, 1, param0->unk_184, param0->unk_178);
+        ov88_0223ECBC(&param0->unk_49C[23], 28, FONT_MESSAGE, param0->unk_184, param0->unk_178);
         ov88_0223D058(param0, 24, 1);
         param0->unk_226C = ov88_0223DA00;
         param0->unk_5C = 0;
         break;
     case 0xfffffffe:
         sub_02019CB8(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-        ov88_0223ECBC(&param0->unk_49C[21], 15, 1, param0->unk_184, param0->unk_178);
+        ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
         param0->unk_226C = ov88_0223D150;
         break;
     default:
@@ -1796,7 +1797,7 @@ static int ov88_0223D318(UnkStruct_02095E80 *param0)
 static int ov88_0223D3E0(UnkStruct_02095E80 *param0)
 {
     sub_02019CB8(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-    ov88_0223ECBC(&param0->unk_49C[23], param0->unk_68, 1, param0->unk_184, param0->unk_178);
+    ov88_0223ECBC(&param0->unk_49C[23], param0->unk_68, FONT_MESSAGE, param0->unk_184, param0->unk_178);
     param0->unk_226C = ov88_0223D434;
 
     return 0;
@@ -1806,7 +1807,7 @@ static int ov88_0223D434(UnkStruct_02095E80 *param0)
 {
     if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
         sub_02019CB8(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-        ov88_0223ECBC(&param0->unk_49C[21], 15, 1, param0->unk_184, param0->unk_178);
+        ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
         param0->unk_226C = ov88_0223D150;
         ov88_0223DFF4(param0);
     }
@@ -1816,7 +1817,7 @@ static int ov88_0223D434(UnkStruct_02095E80 *param0)
 
 static void ov88_0223D49C(UnkStruct_02095E80 *param0, int param1)
 {
-    ov88_0223ECBC(&param0->unk_49C[23], param1, 1, param0->unk_36D0, param0->unk_36CC);
+    ov88_0223ECBC(&param0->unk_49C[23], param1, FONT_MESSAGE, param0->unk_36D0, param0->unk_36CC);
 }
 
 static int ov88_0223D4C4(UnkStruct_02095E80 *param0)
@@ -2017,7 +2018,7 @@ static int ov88_0223D854(UnkStruct_02095E80 *param0)
         MessageLoader_Free(param0->unk_36D0);
         StringTemplate_Free(param0->unk_36CC);
         CommTiming_StartSync(19);
-        ov88_0223ECBC(&param0->unk_49C[23], 28, 1, param0->unk_184, param0->unk_178);
+        ov88_0223ECBC(&param0->unk_49C[23], 28, FONT_MESSAGE, param0->unk_184, param0->unk_178);
         param0->unk_226C = ov88_0223D840;
         return 0;
     }
@@ -2049,7 +2050,7 @@ static int ov88_0223D96C(UnkStruct_02095E80 *param0)
 {
     if (0 == sub_020391DC(param0->unk_04, param0->unk_3644, 26)) {
         CommTiming_StartSync(19);
-        ov88_0223ECBC(&param0->unk_49C[23], 28, 1, param0->unk_184, param0->unk_178);
+        ov88_0223ECBC(&param0->unk_49C[23], 28, FONT_MESSAGE, param0->unk_184, param0->unk_178);
         param0->unk_226C = ov88_0223D840;
         return 0;
     }
@@ -2092,7 +2093,7 @@ static int ov88_0223DA3C(UnkStruct_02095E80 *param0)
 
     StringTemplate_SetNickname(param0->unk_17C, 0, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param0->unk_2270, param0->unk_88[0])));
     sub_02019CB8(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-    ov88_0223ECBC(&param0->unk_49C[22], 16, 1, param0->unk_184, param0->unk_17C);
+    ov88_0223ECBC(&param0->unk_49C[22], 16, FONT_MESSAGE, param0->unk_184, param0->unk_17C);
 
     param0->unk_6C0 = sub_02013A04(3, 26);
 
@@ -2116,7 +2117,7 @@ static int ov88_0223DB48(UnkStruct_02095E80 *param0)
     switch (sub_02001BE0(param0->unk_6C4)) {
     case 0:
         sub_02019CB8(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-        ov88_0223ECBC(&param0->unk_49C[21], 15, 1, param0->unk_184, param0->unk_178);
+        ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
         sub_02001BC4(param0->unk_6C4, NULL);
         sub_02013A3C(param0->unk_6C0);
         param0->unk_226C = ov88_0223D150;
@@ -2124,7 +2125,7 @@ static int ov88_0223DB48(UnkStruct_02095E80 *param0)
         break;
     case 1:
         sub_02019CB8(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-        ov88_0223ECBC(&param0->unk_49C[23], 20, 1, param0->unk_184, param0->unk_178);
+        ov88_0223ECBC(&param0->unk_49C[23], 20, FONT_MESSAGE, param0->unk_184, param0->unk_178);
         sub_02001BC4(param0->unk_6C4, NULL);
         sub_02013A3C(param0->unk_6C0);
         param0->unk_226C = ov88_0223DC84;
@@ -2132,7 +2133,7 @@ static int ov88_0223DB48(UnkStruct_02095E80 *param0)
     case 2:
     case 0xfffffffe:
         sub_02019CB8(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-        ov88_0223ECBC(&param0->unk_49C[21], 15, 1, param0->unk_184, param0->unk_178);
+        ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
         sub_02001BC4(param0->unk_6C4, NULL);
         sub_02013A3C(param0->unk_6C0);
         param0->unk_226C = ov88_0223D150;
@@ -2145,7 +2146,7 @@ static int ov88_0223DB48(UnkStruct_02095E80 *param0)
 static int ov88_0223DC84(UnkStruct_02095E80 *param0)
 {
     sub_02019CB8(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-    ov88_0223ECBC(&param0->unk_49C[23], 20, 1, param0->unk_184, param0->unk_178);
+    ov88_0223ECBC(&param0->unk_49C[23], 20, FONT_MESSAGE, param0->unk_184, param0->unk_178);
     ov88_0223D058(param0, 24, 2);
 
     param0->unk_226C = ov88_0223DCE0;
@@ -2304,7 +2305,7 @@ static int ov88_0223E110(UnkStruct_02095E80 *param0)
     StringTemplate_SetNickname(param0->unk_17C, 0, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param0->unk_2270, param0->unk_88[0])));
     StringTemplate_SetNickname(param0->unk_17C, 1, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param0->unk_2274, param0->unk_88[1] - 6)));
 
-    ov88_0223ECBC(&param0->unk_49C[23], 21, 1, param0->unk_184, param0->unk_17C);
+    ov88_0223ECBC(&param0->unk_49C[23], 21, FONT_MESSAGE, param0->unk_184, param0->unk_17C);
     param0->unk_226C = ov88_0223E20C;
 
     return 0;
@@ -2319,7 +2320,7 @@ static void ov88_0223E1AC(UnkStruct_02095E80 *param0)
 static void ov88_0223E1C0(UnkStruct_02095E80 *param0, int param1, int param2)
 {
     sub_02019CB8(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-    ov88_0223ECBC(&param0->unk_49C[param1], param2, 1, param0->unk_184, param0->unk_178);
+    ov88_0223ECBC(&param0->unk_49C[param1], param2, FONT_MESSAGE, param0->unk_184, param0->unk_178);
 }
 
 static int ov88_0223E20C(UnkStruct_02095E80 *param0)
@@ -2357,7 +2358,7 @@ static int ov88_0223E20C(UnkStruct_02095E80 *param0)
         break;
     case 0xfffffffe:
         sub_02019CB8(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-        ov88_0223ECBC(&param0->unk_49C[23], 20, 1, param0->unk_184, param0->unk_178);
+        ov88_0223ECBC(&param0->unk_49C[23], 20, FONT_MESSAGE, param0->unk_184, param0->unk_178);
         param0->unk_226C = ov88_0223E41C;
         ov88_0223D058(param0, 24, 4);
         break;
@@ -2371,7 +2372,7 @@ static int ov88_0223E20C(UnkStruct_02095E80 *param0)
 static int ov88_0223E330(UnkStruct_02095E80 *param0)
 {
     sub_02019CB8(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-    ov88_0223ECBC(&param0->unk_49C[23], 36, 1, param0->unk_184, param0->unk_17C);
+    ov88_0223ECBC(&param0->unk_49C[23], 36, FONT_MESSAGE, param0->unk_184, param0->unk_17C);
     param0->unk_226C = ov88_0223E384;
     return 0;
 }
@@ -2386,7 +2387,7 @@ static int ov88_0223E384(UnkStruct_02095E80 *param0)
         break;
     case 0xfffffffe:
         sub_02019CB8(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-        ov88_0223ECBC(&param0->unk_49C[23], 20, 1, param0->unk_184, param0->unk_178);
+        ov88_0223ECBC(&param0->unk_49C[23], 20, FONT_MESSAGE, param0->unk_184, param0->unk_178);
         param0->unk_226C = ov88_0223E41C;
         ov88_0223D058(param0, 24, 4);
         break;
@@ -2441,7 +2442,7 @@ static int ov88_0223E4BC(UnkStruct_02095E80 *param0)
 
     StringTemplate_SetNickname(param0->unk_17C, 0, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param0->unk_2274, param0->unk_88[0] - 6)));
     sub_02019CB8(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-    ov88_0223ECBC(&param0->unk_49C[22], 16, 1, param0->unk_184, param0->unk_17C);
+    ov88_0223ECBC(&param0->unk_49C[22], 16, FONT_MESSAGE, param0->unk_184, param0->unk_17C);
 
     param0->unk_6C0 = sub_02013A04(2, 26);
 
@@ -2464,7 +2465,7 @@ static int ov88_0223E5B8(UnkStruct_02095E80 *param0)
     switch (sub_02001BE0(param0->unk_6C4)) {
     case 0:
         sub_02019CB8(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-        ov88_0223ECBC(&param0->unk_49C[21], 15, 1, param0->unk_184, param0->unk_178);
+        ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
         param0->unk_226C = ov88_0223D150;
         sub_02001BC4(param0->unk_6C4, NULL);
         sub_02013A3C(param0->unk_6C0);
@@ -2474,7 +2475,7 @@ static int ov88_0223E5B8(UnkStruct_02095E80 *param0)
     case 1:
     case 0xfffffffe:
         sub_02019CB8(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-        ov88_0223ECBC(&param0->unk_49C[21], 15, 1, param0->unk_184, param0->unk_178);
+        ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
         sub_02001BC4(param0->unk_6C4, NULL);
         sub_02013A3C(param0->unk_6C0);
         param0->unk_226C = ov88_0223D150;

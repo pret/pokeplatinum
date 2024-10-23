@@ -723,7 +723,7 @@ static BOOL ov73_021D1510(UnkStruct_ov73_021D1058 *param0, u32 param1, int param
             Strbuf_Free(v1);
         }
 
-        param0->unk_58 = Text_AddPrinterWithParams(&param0->unk_1C, 1, param0->unk_5C, 0, 0, (Options_TextFrameDelay(param0->unk_08)), NULL);
+        param0->unk_58 = Text_AddPrinterWithParams(&param0->unk_1C, FONT_MESSAGE, param0->unk_5C, 0, 0, (Options_TextFrameDelay(param0->unk_08)), NULL);
         param0->unk_50 = 1;
         break;
     case 1:
@@ -855,7 +855,7 @@ static BOOL ov73_021D1784(UnkStruct_ov73_021D1058 *param0, u32 param1, int param
 
             sub_0201A8D4(param0->unk_18, &param0->unk_1C, &v1);
             BGL_WindowColor(&param0->unk_1C, 0, 0, 0, 24 * 8, 24 * 8);
-            Text_AddPrinterWithParamsAndColor(&param0->unk_1C, 0, param0->unk_5C, 0, 0, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+            Text_AddPrinterWithParamsAndColor(&param0->unk_1C, FONT_SYSTEM, param0->unk_5C, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
         } else {
             v1 = Unk_ov72_021D37E4;
 
@@ -871,7 +871,7 @@ static BOOL ov73_021D1784(UnkStruct_ov73_021D1058 *param0, u32 param1, int param
 
             sub_0201A8D4(param0->unk_18, &param0->unk_1C, &v1);
             BGL_WindowColor(&param0->unk_1C, 0, 0, 0, 24 * 8, 24 * 8);
-            Text_AddPrinterWithParamsAndColor(&param0->unk_1C, 0, param0->unk_5C, 0, 0, 0, (u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+            Text_AddPrinterWithParamsAndColor(&param0->unk_1C, FONT_SYSTEM, param0->unk_5C, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(15, 2, 0), NULL);
         }
 
         Strbuf_Free(param0->unk_5C);

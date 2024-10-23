@@ -213,8 +213,8 @@ static void ov5_021DD954(UnkStruct_ov5_021DD9C8 *param0, const Strbuf *param1)
 {
     u32 v0;
 
-    v0 = (u32)(((3 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0));
-    Text_AddPrinterWithParamsAndColor(&param0->unk_20, 0, param1, param0->unk_30, (8 * 2), 0, v0, NULL);
+    v0 = TEXT_COLOR(3, 2, 0);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_20, FONT_SYSTEM, param1, param0->unk_30, (8 * 2), TEXT_SPEED_INSTANT, v0, NULL);
 }
 
 static void ov5_021DD980(UnkStruct_ov5_021DD9C8 *param0)

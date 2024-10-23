@@ -558,7 +558,7 @@ static void *ov72_0223E060(Window *param0, Strbuf *param1, int param2, u8 param3
     v1 = Font_CalcStrbufWidth(FONT_SUBSCREEN, param1, 0);
     v0 = ((param0->unk_07 * 8) - v1) / 2;
 
-    Text_AddPrinterWithParamsAndColor(param0, param3, param1, v0, param2, 0xff, param4, NULL);
+    Text_AddPrinterWithParamsAndColor(param0, param3, param1, v0, param2, TEXT_SPEED_NO_TRANSFER, param4, NULL);
 
     return param0->unk_0C;
 }
@@ -576,7 +576,7 @@ static void ov72_0223E0A0(UnkStruct_ov72_0223DB98 *param0, OverlayManager *param
         void *v0;
         int v1;
 
-        v0 = ov72_0223E060(&param0->unk_348, param0->unk_2C, 1, 2, (u32)(((0xe & 0xff) << 16) | ((7 & 0xff) << 8) | ((2 & 0xff) << 0)));
+        v0 = ov72_0223E060(&param0->unk_348, param0->unk_2C, 1, FONT_SUBSCREEN, TEXT_COLOR(14, 7, 2));
 
         DC_FlushRange(v0, 0x20 * 8 * 2);
 
@@ -594,7 +594,7 @@ static void ov72_0223E0A0(UnkStruct_ov72_0223DB98 *param0, OverlayManager *param
         int v3 = (28 * 8 - v2) / 2;
 
         BGL_FillWindow(&param0->unk_358, 0x0);
-        Text_AddPrinterWithParamsAndColor(&param0->unk_358, 1, param0->unk_30, v3, 0, 0, (u32)(((0x1 & 0xff) << 16) | ((0x2 & 0xff) << 8) | ((0x0 & 0xff) << 0)), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_358, FONT_MESSAGE, param0->unk_30, v3, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
     }
 
     {
@@ -605,7 +605,7 @@ static void ov72_0223E0A0(UnkStruct_ov72_0223DB98 *param0, OverlayManager *param
             BGL_FillWindow(&param0->unk_2D8[v4], 0);
         }
 
-        ov72_0223E910(param0->unk_2D8, 0, (u32)(((0xe & 0xff) << 16) | ((0xd & 0xff) << 8) | ((0xf & 0xff) << 0)), param0);
+        ov72_0223E910(param0->unk_2D8, 0, TEXT_COLOR(14, 13, 15), param0);
     }
 }
 
@@ -717,7 +717,7 @@ static void ov72_0223E3A8(CellActor **param0, BOOL param1)
 static int ov72_0223E3C0(UnkStruct_ov72_0223DB98 *param0, int param1)
 {
     ov72_0223E2A8(param0);
-    ov72_0223E910(param0->unk_2D8, 0, (u32)(((0xe & 0xff) << 16) | ((0xc & 0xff) << 8) | ((0xf & 0xff) << 0)), param0);
+    ov72_0223E910(param0->unk_2D8, 0, TEXT_COLOR(14, 12, 15), param0);
     ov72_0223E914(param0);
     ov72_0223E8CC(param0);
     ov72_0223E80C(&param0->unk_328, param0->unk_4391, param0->unk_43E6, 1);
@@ -1092,7 +1092,7 @@ static void ov72_0223E910(Window *param0, int param1, u32 param2, UnkStruct_ov72
     }
 
     for (v0 = 0; v0 < 5; v0++) {
-        Text_AddPrinterWithParamsAndColor(&param0[v0], 1, param3->unk_18[v0], 0, 0, 0xff, (u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((15 & 0xff) << 0)), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0[v0], FONT_MESSAGE, param3->unk_18[v0], 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 4, 15), NULL);
         sub_0201A954(&param0[v0]);
     }
 }
@@ -1114,7 +1114,7 @@ static void ov72_0223E930(UnkStruct_ov72_0223DB98 *param0, int param1)
     BGL_FillWindow(&param0->unk_338, 0xf0f);
     sub_0200E060(&param0->unk_338, 0, 1, 10);
 
-    param0->unk_38 = Text_AddPrinterWithParams(&param0->unk_338, 1, param0->unk_34, 0, 0, Options_TextFrameDelay(param0->unk_0C), NULL);
+    param0->unk_38 = Text_AddPrinterWithParams(&param0->unk_338, FONT_MESSAGE, param0->unk_34, 0, 0, Options_TextFrameDelay(param0->unk_0C), NULL);
 }
 
 static int ov72_0223E99C(int param0)

@@ -1080,7 +1080,7 @@ static void ov99_021D2AAC(UnkStruct_ov99_021D2CB0 *param0)
         v1 = MessageLoader_GetNewStrbuf(param0->unk_20, ov99_021D4130());
         v2 = (256 - Font_CalcStrbufWidth(FONT_SYSTEM, v1, 0)) / 2;
 
-        Text_AddPrinterWithParamsColorAndSpacing(param0->unk_24, 0, v1, v2, 80, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0)), 3, 0, NULL);
+        Text_AddPrinterWithParamsColorAndSpacing(param0->unk_24, FONT_SYSTEM, v1, v2, 80, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), 3, 0, NULL);
         sub_0201ACCC(param0->unk_24);
         Strbuf_Free(v1);
     }

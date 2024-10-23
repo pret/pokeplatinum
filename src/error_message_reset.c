@@ -153,7 +153,7 @@ void ErrorMessageReset_PrintErrorAndReset(void)
     BGL_WindowColor(&window, 15, 0, 0, 26 * 8, 18 * 8);
     Window_Show(&window, 0, (512 - 9), 2);
     MessageLoader_GetStrbuf(errorMsgData, v4, errorString);
-    Text_AddPrinterWithParams(&window, 0, errorString, 0, 0, 0, NULL);
+    Text_AddPrinterWithParams(&window, FONT_SYSTEM, errorString, 0, 0, TEXT_SPEED_INSTANT, NULL);
     Strbuf_Free(errorString);
 
     GXLayers_TurnBothDispOn();

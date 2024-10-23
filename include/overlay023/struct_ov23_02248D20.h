@@ -3,17 +3,18 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/struct_020149F0_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
 
 #include "overlay023/funcptr_ov23_02248D20.h"
+
+#include "colored_arrow.h"
 
 typedef struct {
     UnkFuncPtr_ov23_02248D20 unk_00;
     UndergroundData *unk_04;
     ResourceMetadata *unk_08;
     BmpList *unk_0C;
-    UnkStruct_020149F0 *unk_10;
+    ColoredArrow *unk_10;
     u16 unk_14;
     u16 unk_16;
     u16 unk_18;

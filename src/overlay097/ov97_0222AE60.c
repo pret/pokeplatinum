@@ -533,7 +533,7 @@ static void ov97_0222B4FC(UnkStruct_0222AE60 *param0, int param1, int param2)
     sub_02019448(param0->unk_00, 2);
 }
 
-static void ov97_0222B53C(Window *param0, MessageLoader *param1, StringTemplate *param2, u32 param3, u32 param4, int param5)
+static void ov97_0222B53C(Window *param0, MessageLoader *param1, StringTemplate *param2, TextColor param3, u32 param4, int param5)
 {
     int v0, v1;
     Strbuf *v2;
@@ -542,7 +542,7 @@ static void ov97_0222B53C(Window *param0, MessageLoader *param1, StringTemplate 
     v0 = Font_CalcStrbufWidth(FONT_SYSTEM, v2, Font_GetAttribute(FONT_SYSTEM, FONTATTR_LETTER_SPACING));
     v1 = sub_0201C294(param0) * 8 - (v0 + 32);
 
-    Text_AddPrinterWithParamsAndColor(param0, 0, v2, v1, param5, 0xff, param3, NULL);
+    Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, v2, v1, param5, TEXT_SPEED_NO_TRANSFER, param3, NULL);
     Strbuf_Free(v2);
 }
 
@@ -571,15 +571,15 @@ static BOOL ov97_0222B5C0(void *param0, int param1, UnkStruct_ov97_02237808 *par
     StringTemplate *v4;
     MessageLoader *v5;
     UnkStruct_0222AE60 *v6 = (UnkStruct_0222AE60 *)param0;
-    u32 v7;
+    TextColor v7;
 
     v5 = MessageLoader_Init(1, 26, 550, 81);
     v4 = StringTemplate_Default(81);
 
     if (TrainerInfo_Gender(v6->unk_0C) == 1) {
-        v7 = ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((15 & 0xff) << 0)));
+        v7 = TEXT_COLOR(3, 4, 15);
     } else {
-        v7 = ((u32)(((7 & 0xff) << 16) | ((8 & 0xff) << 8) | ((15 & 0xff) << 0)));
+        v7 = TEXT_COLOR(7, 8, 15);
     }
 
     ov97_0223795C(v6->unk_00, param2, 3, param3, Unk_ov97_0223E014[param1].unk_08);
@@ -590,7 +590,7 @@ static BOOL ov97_0222B5C0(void *param0, int param1, UnkStruct_ov97_02237808 *par
         }
 
         v3 = MessageUtil_ExpandedStrbuf(v4, v5, Unk_ov97_0223DF40[v0], 81);
-        Text_AddPrinterWithParamsAndColor(param2->unk_10, 0, v3, 32, v0 * 16, 0xff, v7, NULL);
+        Text_AddPrinterWithParamsAndColor(param2->unk_10, FONT_SYSTEM, v3, 32, v0 * 16, TEXT_SPEED_NO_TRANSFER, v7, NULL);
         Strbuf_Free(v3);
     }
 

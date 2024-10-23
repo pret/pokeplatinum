@@ -59,7 +59,7 @@ void ov113_02260620(MessageLoader *param0, StringTemplate *param1, Window param2
     int v5 = 64;
     int v6;
     u32 v7, v8;
-    u32 v9;
+    TextColor v9;
 
     v7 = ov66_02232B8C(param4);
 
@@ -99,12 +99,12 @@ void ov113_02260620(MessageLoader *param0, StringTemplate *param1, Window param2
     BGL_FillWindow(&param2[v7], 0x0);
 
     if (ov66_0222E924(param3, v8) == 1) {
-        v9 = (u32)(((7 & 0xff) << 16) | ((8 & 0xff) << 8) | ((0 & 0xff) << 0));
+        v9 = TEXT_COLOR(7, 8, 0);
     } else {
-        v9 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0));
+        v9 = TEXT_COLOR(1, 2, 0);
     }
 
-    Text_AddPrinterWithParamsAndColor(&param2[v7], 0, v3, 0, 0, 0, v9, NULL);
+    Text_AddPrinterWithParamsAndColor(&param2[v7], FONT_SYSTEM, v3, 0, 0, TEXT_SPEED_INSTANT, v9, NULL);
     sub_0201A954(&param2[v7]);
     Strbuf_Free(v4);
     Strbuf_Free(v2);

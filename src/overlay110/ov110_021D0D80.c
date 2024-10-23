@@ -494,12 +494,12 @@ static u8 ov110_021D1324 (UnkStruct_ov110_021D0F78 * param0, Window * param1, in
         break;
     }
 
-    Text_AddPrinterWithParamsAndColor(param1, param8, param0->unk_118, param3, param4, 0, ((((u32)(param5) & 0xFF) << 16) | (((param6) & 0xFF) << 8) | ((param7) & 0xFF)), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, param8, param0->unk_118, param3, param4, TEXT_SPEED_INSTANT, TEXT_COLOR(param5, param6, param7), NULL);
 }
 
 static u8 ov110_021D13CC (UnkStruct_ov110_021D0F78 * param0, Window * param1, int param2, u8 param3)
 {
-    return ov110_021D1324 (param0, param1, param2, 0, 0, 1, 2, 0, 0, param3, 0);
+    return ov110_021D1324(param0, param1, param2, 0, 0, 1, 2, 0, FONT_SYSTEM, param3, 0);
 }
 
 static void ov110_021D13F0 (UnkStruct_ov110_021D0F78 * param0, u32 param1, s32 param2)
@@ -550,8 +550,8 @@ static void ov110_021D1468 (UnkStruct_ov110_021D0F78 * param0)
     
     v0 = 0;
     BGL_FillWindow(&param0->unk_10[v0], 0);
-    ov110_021D1324(param0, &param0->unk_10[v0], 22, 8, 0, 1, 2, 0, 0, 0, 0);
-    
+    ov110_021D1324(param0, &param0->unk_10[v0], 22, 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 0);
+
     if (param0->unk_05 == 0) {
         v2 = 26;
         v3 = 216;
@@ -562,26 +562,26 @@ static void ov110_021D1468 (UnkStruct_ov110_021D0F78 * param0)
         v2 = 28;
         v3 = 216;
     }
-    
-    ov110_021D1324(param0, &param0->unk_10[v0], v2, v3, 0, 1, 2, 0, 0, 0, 2);
+
+    ov110_021D1324(param0, &param0->unk_10[v0], v2, v3, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
     sub_0201A9A4(&param0->unk_10[v0]);
     v0 = 1;
     ov110_021D13CC(param0, &param0->unk_10[v0], 34, 1);
-    ov110_021D1324(param0, &param0->unk_10[v0], 36, 28 * 8, 0, 1, 2, 0, 0, 0, 2);
+    ov110_021D1324(param0, &param0->unk_10[v0], 36, 28 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
     sub_0201A9A4(&param0->unk_10[v0]);
     v0 = 2;
     ov110_021D13CC(param0, &param0->unk_10[v0], ov110_021D17AC(param0, 0), 1);
     ov110_021D13F0(param0, 0, sub_02030698(param0->unk_12C, sub_0205E430(0, param0->unk_05), 0xFF));
-    ov110_021D1324(param0, &param0->unk_10[v0], 38, 14 * 8, 0, 1, 2, 0, 0, 0, 1);
+    ov110_021D1324(param0, &param0->unk_10[v0], 38, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
     ov110_021D13F0(param0, 0, sub_02030698(param0->unk_12C, sub_0205E488(0, param0->unk_05), 0xFF));
-    ov110_021D1324(param0, &param0->unk_10[v0], 40, 28 * 8, 0, 1, 2, 0, 0, 0, 2);
+    ov110_021D1324(param0, &param0->unk_10[v0], 40, 28 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
     sub_0201A9A4(&param0->unk_10[v0]);
     v0 = 3;
     ov110_021D13CC(param0, &param0->unk_10[v0], 31, 1);
     ov110_021D13F0(param0, 0, sub_02030698(param0->unk_12C, sub_0205E45C(0, param0->unk_05), 0xFF));
-    ov110_021D1324(param0, &param0->unk_10[v0], 38, 14 * 8, 0, 1, 2, 0, 0, 0, 1);
+    ov110_021D1324(param0, &param0->unk_10[v0], 38, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
     ov110_021D13F0(param0, 0, sub_02030698(param0->unk_12C, sub_0205E4B4(0, param0->unk_05), 0xFF));
-    ov110_021D1324(param0, &param0->unk_10[v0], 40, 28 * 8, 0, 1, 2, 0, 0, 0, 2);
+    ov110_021D1324(param0, &param0->unk_10[v0], 40, 28 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
     sub_0201A9A4(&param0->unk_10[v0]);
 }
 
