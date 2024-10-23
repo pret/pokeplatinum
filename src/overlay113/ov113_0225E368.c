@@ -5,8 +5,6 @@
 
 #include "constants/species.h"
 
-#include "struct_decls/struct_02006C24_decl.h"
-
 #include "overlay113/ov113_02260620.h"
 #include "overlay113/struct_ov113_0225DBCC_decl.h"
 #include "overlay113/struct_ov113_0225EB20.h"
@@ -30,6 +28,7 @@
 #include "easy3d.h"
 #include "easy3d_object.h"
 #include "heap.h"
+#include "narc.h"
 #include "pokemon.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"

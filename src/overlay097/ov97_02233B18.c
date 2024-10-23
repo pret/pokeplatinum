@@ -4,7 +4,6 @@
 #include "constants/gba/species.h"
 #include "constants/species.h"
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02024440_decl.h"
 #include "struct_defs/struct_0200C738.h"

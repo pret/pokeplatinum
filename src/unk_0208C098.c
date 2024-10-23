@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-
 #include "bg_window.h"
 #include "core_sys.h"
 #include "heap.h"

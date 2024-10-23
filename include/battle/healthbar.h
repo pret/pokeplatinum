@@ -2,12 +2,12 @@
 #define POKEPLATINUM_OV16_02266F1C_H
 
 #include "struct_decls/cell_actor_data.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 
 #include "battle/struct_ov16_022674C4.h"
 
+#include "narc.h"
 #include "palette.h"
 
 #define HEALTHBAR_INFO_NONE                   0

@@ -3,13 +3,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-
 #include "overlay063/struct_ov63_0222CC3C.h"
 
 #include "easy3d.h"
 #include "easy3d_object.h"
 #include "heap.h"
+#include "narc.h"
 #include "resource_collection.h"
 #include "unk_02006E3C.h"
 #include "unk_0201CED8.h"

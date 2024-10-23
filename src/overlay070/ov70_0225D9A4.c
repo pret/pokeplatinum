@@ -5,7 +5,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_defs/struct_0200C738.h"

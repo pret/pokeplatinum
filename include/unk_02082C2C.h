@@ -1,8 +1,9 @@
 #ifndef POKEPLATINUM_UNK_02082C2C_H
 #define POKEPLATINUM_UNK_02082C2C_H
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_defs/struct_0207F248.h"
+
+#include "narc.h"
 
 void sub_02082C2C(GameWindowLayout *param0);
 void sub_02082CEC(GameWindowLayout *param0, u8 param1, u16 param2, u16 param3, NARC *param4);

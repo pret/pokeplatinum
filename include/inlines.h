@@ -3,7 +3,6 @@
 
 #include <nitro/rtc.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_defs/struct_02049FA8.h"
 
@@ -15,6 +14,7 @@
 #include "field_script_context.h"
 #include "heap.h"
 #include "map_header.h"
+#include "narc.h"
 #include "palette.h"
 #include "script_manager.h"
 #include "sys_task.h"

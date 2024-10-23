@@ -3,9 +3,8 @@
 
 #include <nnsys.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-
 #include "bg_window.h"
+#include "narc.h"
 
 u32 sub_02006E3C(u32 param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7);
 void sub_02006E60(u32 param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7);

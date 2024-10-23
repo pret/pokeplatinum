@@ -3,7 +3,6 @@
 
 #include <nitro/fx/fx.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02015064_decl.h"
 
 #include "overlay083/struct_ov83_0223D4CC_decl.h"
@@ -28,6 +27,7 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "narc.h"
 #include "sprite_resource.h"
 
 void ov83_0223D754(UnkStruct_ov83_0223D784 *param0, int param1, int param2, int param3);

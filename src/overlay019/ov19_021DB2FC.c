@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/struct_ov19_021DB6F0.h"
@@ -15,6 +13,7 @@
 #include "enums.h"
 #include "heap.h"
 #include "message.h"
+#include "narc.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"

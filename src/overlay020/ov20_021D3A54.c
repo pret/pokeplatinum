@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_020998EC_decl.h"
 
 #include "overlay020/ov20_021D0D80.h"
@@ -21,6 +20,7 @@
 #include "font.h"
 #include "heap.h"
 #include "message.h"
+#include "narc.h"
 #include "strbuf.h"
 #include "sys_task_manager.h"
 #include "text.h"

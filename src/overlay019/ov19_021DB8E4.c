@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 
 #include "overlay019/ov19_021D0D80.h"
@@ -19,6 +18,7 @@
 #include "heap.h"
 #include "item.h"
 #include "message.h"
+#include "narc.h"
 #include "pokemon.h"
 #include "strbuf.h"
 #include "sys_task.h"

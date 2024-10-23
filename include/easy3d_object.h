@@ -6,7 +6,7 @@
 
 #include "constants/heap.h"
 
-#include "struct_decls/struct_02006C24_decl.h"
+#include "narc.h"
 
 enum RotationAxis {
     ROTATION_AXIS_X = 0,

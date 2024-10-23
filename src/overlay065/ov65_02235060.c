@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-
 #include "overlay063/ov63_0222BCE8.h"
 #include "overlay063/ov63_0222BE18.h"
 #include "overlay063/ov63_0222CA88.h"
@@ -28,6 +26,7 @@
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "heap.h"
+#include "narc.h"
 #include "sprite_resource.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"

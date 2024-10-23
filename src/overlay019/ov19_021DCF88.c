@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/ov19_021DB8E4.h"
@@ -17,6 +15,7 @@
 #include "cell_actor.h"
 #include "enums.h"
 #include "heap.h"
+#include "narc.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"

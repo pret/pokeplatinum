@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
@@ -30,6 +29,7 @@
 #include "cell_actor.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "narc.h"
 #include "sprite_resource.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"

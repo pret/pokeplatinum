@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_02009508.h"
 #include "struct_defs/struct_0200C738.h"
@@ -18,6 +17,7 @@
 
 #include "cell_actor.h"
 #include "heap.h"
+#include "narc.h"
 #include "palette.h"
 #include "sprite_resource.h"
 #include "unk_020093B4.h"

@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_defs/archived_sprite.h"
@@ -19,6 +18,7 @@
 #include "game_options.h"
 #include "heap.h"
 #include "message.h"
+#include "narc.h"
 #include "pokemon.h"
 #include "strbuf.h"
 #include "string_template.h"

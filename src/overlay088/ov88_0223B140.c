@@ -6,7 +6,6 @@
 #include "constants/species.h"
 #include "consts/game_records.h"
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_02095E80_decl.h"
 #include "struct_decls/struct_party_decl.h"

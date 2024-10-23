@@ -6,7 +6,6 @@
 #include "constants/field/map_load.h"
 
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_decls/struct_0207CB08_decl.h"

@@ -6,7 +6,6 @@
 #include "constants/battle/battle_io.h"
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_party_decl.h"

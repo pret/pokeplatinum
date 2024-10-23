@@ -6,7 +6,6 @@
 #include "consts/game_records.h"
 
 #include "struct_decls/font_oam.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_0200D0F4.h"

@@ -3,12 +3,11 @@
 
 #include <nnsys.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 
 #include "cell_actor.h"
+#include "narc.h"
 
 typedef struct {
     void *unk_00;

@@ -7,8 +7,6 @@
 #include "constants/pokemon.h"
 #include "constants/trainer.h"
 
-#include "struct_decls/struct_02006C24_decl.h"
-
 #include "data/trainer_class_genders.h"
 #include "overlay006/battle_params.h"
 

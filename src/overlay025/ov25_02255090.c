@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/struct_ov25_0225517C.h"
 #include "overlay025/struct_ov25_02255224_decl.h"

@@ -5,7 +5,6 @@
 
 #include "constants/pokemon.h"
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_02099F80.h"
 

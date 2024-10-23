@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_berry_data_decl.h"
 #include "struct_defs/struct_020972FC.h"

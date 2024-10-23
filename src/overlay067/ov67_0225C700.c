@@ -6,7 +6,6 @@
 #include "consts/game_records.h"
 
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay061/struct_ov61_0222C3B0.h"

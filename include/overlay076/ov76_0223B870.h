@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_OV76_0223B870_H
 #define POKEPLATINUM_OV76_0223B870_H
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_defs/struct_0207C690.h"
@@ -10,6 +9,7 @@
 #include "overlay076/struct_ov76_0223DE00.h"
 
 #include "bg_window.h"
+#include "narc.h"
 #include "palette.h"
 
 void ov76_0223B8A8(UnkStruct_ov76_0223DE00 *param0);

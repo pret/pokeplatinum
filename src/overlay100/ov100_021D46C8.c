@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_defs/struct_020985E4.h"
 
 #include "overlay100/ov100_021D44C0.h"
@@ -20,6 +19,7 @@
 #include "game_options.h"
 #include "gx_layers.h"
 #include "message.h"
+#include "narc.h"
 #include "palette.h"
 #include "strbuf.h"
 #include "string_template.h"

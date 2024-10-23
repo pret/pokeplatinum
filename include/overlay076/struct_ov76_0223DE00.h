@@ -2,7 +2,6 @@
 #define POKEPLATINUM_STRUCT_OV76_0223DE00_H
 
 #include "struct_decls/cell_actor_data.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0202CA88_decl.h"
 #include "struct_defs/struct_0202CA28.h"
 #include "struct_defs/struct_02097F18.h"
@@ -14,6 +13,7 @@
 #include "overlay076/struct_ov76_0223DD88_sub2.h"
 #include "overlay076/struct_ov76_0223DD88_sub3.h"
 
+#include "narc.h"
 #include "pokemon.h"
 
 typedef struct {

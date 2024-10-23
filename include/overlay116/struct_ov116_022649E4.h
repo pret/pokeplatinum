@@ -3,7 +3,6 @@
 
 #include <nnsys.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_defs/struct_0207C690.h"
@@ -12,6 +11,7 @@
 
 #include "bg_window.h"
 #include "camera.h"
+#include "narc.h"
 #include "palette.h"
 
 typedef struct {

@@ -5,8 +5,6 @@
 
 #include "constants/heap.h"
 
-#include "struct_decls/struct_02006C24_decl.h"
-
 #include "nnsys/g2d/g2d_Image.h"
 
 #include "heap.h"

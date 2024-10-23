@@ -1,12 +1,12 @@
 #ifndef POKEPLATINUM_STRUCT_OV62_02246BF4_SUB2_H
 #define POKEPLATINUM_STRUCT_OV62_02246BF4_SUB2_H
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 
 #include "bg_window.h"
+#include "narc.h"
 #include "palette.h"
 #include "touch_screen.h"
 

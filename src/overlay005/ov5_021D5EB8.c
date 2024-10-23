@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay005/hblank_system.h"

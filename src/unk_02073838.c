@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_defs/struct_02073838.h"
 #include "struct_defs/struct_02073974.h"
 #include "struct_defs/struct_02073B50.h"
@@ -12,6 +11,7 @@
 
 #include "easy3d.h"
 #include "heap.h"
+#include "narc.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02006E3C.h"

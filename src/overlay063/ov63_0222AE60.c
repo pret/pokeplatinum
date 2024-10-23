@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-
 #include "overlay064/struct_ov64_022302EC.h"
 
 #include "cell_actor.h"

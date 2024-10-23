@@ -3,8 +3,6 @@
 
 #include <nitro/fx/fx.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-
 #include "field/field_system_decl.h"
 #include "overlay005/encounter_effect.h"
 #include "overlay005/hblank_system.h"
@@ -19,6 +17,7 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "enc_effects.h"
+#include "narc.h"
 #include "sys_task_manager.h"
 
 typedef struct EncounterEffect {

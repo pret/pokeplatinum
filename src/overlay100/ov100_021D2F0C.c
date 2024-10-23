@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 
@@ -20,6 +19,7 @@
 #include "camera.h"
 #include "easy3d_object.h"
 #include "heap.h"
+#include "narc.h"
 #include "palette.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"

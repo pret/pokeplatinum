@@ -2,13 +2,13 @@
 #define POKEPLATINUM_OV16_0226871C_H
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_defs/struct_0209C370.h"
 
 #include "battle/struct_ov16_02268A14_decl.h"
 #include "battle/struct_ov16_0226AC98.h"
 
 #include "bg_window.h"
+#include "narc.h"
 
 void ov16_02268744(BgConfig *param0);
 void ov16_022687A0(BgConfig *param0);

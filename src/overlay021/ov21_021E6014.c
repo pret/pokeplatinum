@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
@@ -24,6 +23,7 @@
 #include "heap.h"
 #include "message.h"
 #include "message_util.h"
+#include "narc.h"
 #include "pokedex_data_index.h"
 #include "pokedex_heightweight.h"
 #include "sprite_resource.h"

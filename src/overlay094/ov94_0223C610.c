@@ -4,8 +4,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-
 #include "overlay094/ov94_0223BCB0.h"
 #include "overlay094/ov94_02243EF8.h"
 #include "overlay094/ov94_02244950.h"
