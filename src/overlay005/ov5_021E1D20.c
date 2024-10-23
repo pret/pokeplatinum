@@ -3,11 +3,15 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/narc.h"
+#include "consts/map.h"
+
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_defs/struct_02049FA8.h"
 
 #include "overlay005/ov5_021E1D20.h"
 #include "overlay005/ov5_021EA714.h"
+#include "overlay025/poketch_system.h"
 
 #include "bg_window.h"
 #include "field_overworld_state.h"
@@ -27,181 +31,180 @@
 
 static void ov5_021E2028(FieldSystem *fieldSystem);
 
-static const int Unk_ov5_021F9CCC[] = {
-    0x0,
-    0x1,
-    0x2,
-    0x3,
-    0x4
+static const int sSaveInfoLabels[] = {
+    SAVE_INFO_LABEL_MAP_NAME,
+    SAVE_INFO_LABEL_PLAYER_NAME,
+    SAVE_INFO_LABEL_BADGE_COUNT,
+    SAVE_INFO_LABEL_POKEDEX_COUNT,
+    SAVE_INFO_LABEL_PLAY_TIME
 };
 
-static const int Unk_ov5_021F9CBC[] = {
-    0x5,
-    0x6,
-    0x7,
-    0x8
+static const int sSaveInfoValues[] = {
+    SAVE_INFO_PLAYER_NAME,
+    SAVE_INFO_BADGE_COUNT,
+    SAVE_INFO_POKEDEX_COUNT,
+    SAVE_INFO_PLAY_TIME
 };
 
-static void ov5_021E1D20(UnkStruct_ov5_021E1D20 *param0, const FieldSystem *fieldSystem)
+static void SaveInfo_SetValues(SaveInfo *saveInfo, const FieldSystem *fieldSystem)
 {
-    SaveData *v0 = fieldSystem->saveData;
-    Location *location = sub_0203A720(SaveData_GetFieldOverworldState(v0));
-    PokedexData *v2 = SaveData_Pokedex(v0);
+    SaveData *saveData = fieldSystem->saveData;
+    Location *curLocation = sub_0203A720(SaveData_GetFieldOverworldState(saveData));
+    PokedexData *pokedex = SaveData_Pokedex(saveData);
 
-    param0->unk_04 = MapHeader_GetMapLabelTextID(location->mapId);
+    saveInfo->mapLabelTextID = MapHeader_GetMapLabelTextID(curLocation->mapId);
 
-    if (sub_02027520(v2)) {
-        param0->unk_00 = sub_02026E48(v2);
+    // ravetodo: Pokedex_Obtained
+    if (sub_02027520(pokedex)) {
+        // ravetodo: Pokedex_GetCount
+        saveInfo->pokedexCount = sub_02026E48(pokedex);
     } else {
-        param0->unk_00 = 0;
+        saveInfo->pokedexCount = 0;
     }
 
-    param0->unk_08 = SaveData_GetTrainerInfo(v0);
-    param0->playTime = SaveData_GetPlayTime(v0);
+    saveInfo->trainerInfo = SaveData_GetTrainerInfo(saveData);
+    saveInfo->playTime = SaveData_GetPlayTime(saveData);
 }
 
-static void ov5_021E1D6C(StringTemplate *strTemplate, const UnkStruct_ov5_021E1D20 *param1)
+static void SaveInfoWindow_SetStrings(StringTemplate *strTemplate, const SaveInfo *saveInfo)
 {
-    int v0, v1, v2;
+    StringTemplate_SetLocationName(strTemplate, 0, saveInfo->mapLabelTextID);
+    StringTemplate_SetPlayerName(strTemplate, 1, saveInfo->trainerInfo);
+    StringTemplate_SetNumber(strTemplate, 2, TrainerInfo_BadgeCount(saveInfo->trainerInfo), 1, PADDING_MODE_NONE, CHARSET_MODE_EN);
 
-    StringTemplate_SetLocationName(strTemplate, 0, param1->unk_04);
-    StringTemplate_SetPlayerName(strTemplate, 1, param1->unk_08);
-    StringTemplate_SetNumber(strTemplate, 2, TrainerInfo_BadgeCount(param1->unk_08), 1, 0, 1);
+    int maxDigits, padding;
 
-    if (param1->unk_00 >= 100) {
-        v0 = 3;
-        v1 = 0;
-    } else if (param1->unk_00 >= 10) {
-        v0 = 3;
-        v1 = 1;
+    if (saveInfo->pokedexCount >= 100) {
+        maxDigits = 3;
+        padding = PADDING_MODE_NONE;
+    } else if (saveInfo->pokedexCount >= 10) {
+        maxDigits = 3;
+        padding = PADDING_MODE_SPACES;
     } else {
-        v0 = 3 - 1;
-        v1 = 1;
+        maxDigits = 2;
+        padding = PADDING_MODE_SPACES;
     }
 
-    StringTemplate_SetNumber(strTemplate, 3, param1->unk_00, v0, v1, 1);
-    v2 = PlayTime_GetHours(param1->playTime);
+    StringTemplate_SetNumber(strTemplate, 3, saveInfo->pokedexCount, maxDigits, padding, CHARSET_MODE_EN);
 
-    if (v2 >= 100) {
-        v0 = 3;
-        v1 = 0;
-    } else if (v2 >= 10) {
-        v0 = 3;
-        v1 = 1;
+    int playTimeHours = PlayTime_GetHours(saveInfo->playTime);
+
+    if (playTimeHours >= 100) {
+        maxDigits = 3;
+        padding = PADDING_MODE_NONE;
+    } else if (playTimeHours >= 10) {
+        maxDigits = 3;
+        padding = PADDING_MODE_SPACES;
     } else {
-        v0 = 3 - 1;
-        v1 = 1;
+        maxDigits = 2;
+        padding = PADDING_MODE_SPACES;
     }
 
-    StringTemplate_SetNumber(strTemplate, 4, v2, v0, v1, 1);
-    StringTemplate_SetNumber(strTemplate, 5, PlayTime_GetMinutes(param1->playTime), 2, 2, 1);
+    StringTemplate_SetNumber(strTemplate, 4, playTimeHours, maxDigits, padding, CHARSET_MODE_EN);
+    StringTemplate_SetNumber(strTemplate, 5, PlayTime_GetMinutes(saveInfo->playTime), 2, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
 }
 
-static int ov5_021E1E10(const UnkStruct_ov5_021E1D20 *param0)
+static int SaveInfoWindow_Height(const SaveInfo *saveInfo)
 {
-    if (param0->unk_00 != 0) {
-        return 10;
+    if (saveInfo->pokedexCount != 0) {
+        return SAVE_INFO_WINDOW_HEIGHT;
     } else {
-        return 10 - 2;
+        return SAVE_INFO_WINDOW_HEIGHT - 2;
     }
 }
 
-static void ov5_021E1E20(const UnkStruct_ov5_021E1FF4 *param0)
+static void SaveInfoWindow_PrintText(const UnkStruct_ov5_021E1FF4 *saveInfoWin)
 {
-    Strbuf *v0;
-    int v1, v2;
-    int v3;
-    int v4;
+    int fontSpacing = Font_GetAttribute(FONT_SYSTEM, FONTATTR_MAX_LETTER_HEIGHT) + Font_GetAttribute(FONT_SYSTEM, FONTATTR_LINE_SPACING);
+    int yOffset = 0;
+    Strbuf *buf = MessageUtil_ExpandedStrbuf(saveInfoWin->strTemplate, saveInfoWin->msgLoader, sSaveInfoLabels[0], saveInfoWin->heapID);
 
-    v3 = Font_GetAttribute(FONT_SYSTEM, FONTATTR_MAX_LETTER_HEIGHT) + Font_GetAttribute(FONT_SYSTEM, FONTATTR_LINE_SPACING);
-    v2 = 0;
-    v0 = MessageUtil_ExpandedStrbuf(param0->unk_14, param0->unk_18, Unk_ov5_021F9CCC[0], param0->unk_04);
+    Text_AddPrinterWithParams(saveInfoWin->window, FONT_SYSTEM, buf, 0, yOffset, TEXT_SPEED_NO_TRANSFER, NULL);
+    Strbuf_Free(buf);
 
-    Text_AddPrinterWithParams(param0->unk_10, FONT_SYSTEM, v0, 0, v2, TEXT_SPEED_NO_TRANSFER, NULL);
-    Strbuf_Free(v0);
+    int xOffset;
 
-    for (v4 = 1; v4 < NELEMS(Unk_ov5_021F9CCC); v4++) {
-        if ((Unk_ov5_021F9CCC[v4] == 3) && (param0->unk_1C.unk_00 == 0)) {
+    for (int i = 1; i < NELEMS(sSaveInfoLabels); i++) {
+        if (sSaveInfoLabels[i] == SAVE_INFO_LABEL_POKEDEX_COUNT && saveInfoWin->saveInfo.pokedexCount == 0) {
             continue;
         }
 
-        v2 += v3;
-        v0 = MessageLoader_GetNewStrbuf(param0->unk_18, Unk_ov5_021F9CCC[v4]);
+        yOffset += fontSpacing;
+        buf = MessageLoader_GetNewStrbuf(saveInfoWin->msgLoader, sSaveInfoLabels[i]);
 
-        Text_AddPrinterWithParams(param0->unk_10, FONT_SYSTEM, v0, 0, v2, TEXT_SPEED_NO_TRANSFER, NULL);
-        Strbuf_Free(v0);
+        Text_AddPrinterWithParams(saveInfoWin->window, FONT_SYSTEM, buf, 0, yOffset, TEXT_SPEED_NO_TRANSFER, NULL);
+        Strbuf_Free(buf);
 
-        v0 = MessageUtil_ExpandedStrbuf(param0->unk_14, param0->unk_18, Unk_ov5_021F9CBC[v4 - 1], param0->unk_04);
-        v1 = 13 * 8 - Font_CalcStrbufWidth(FONT_SYSTEM, v0, Font_GetAttribute(FONT_SYSTEM, FONTATTR_LETTER_SPACING));
+        buf = MessageUtil_ExpandedStrbuf(saveInfoWin->strTemplate, saveInfoWin->msgLoader, sSaveInfoValues[i - 1], saveInfoWin->heapID);
+        xOffset = SAVE_INFO_WINDOW_WIDTH * 8 - Font_CalcStrbufWidth(FONT_SYSTEM, buf, Font_GetAttribute(FONT_SYSTEM, FONTATTR_LETTER_SPACING));
 
-        Text_AddPrinterWithParams(param0->unk_10, FONT_SYSTEM, v0, v1, v2, TEXT_SPEED_NO_TRANSFER, NULL);
-        Strbuf_Free(v0);
+        Text_AddPrinterWithParams(saveInfoWin->window, FONT_SYSTEM, buf, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, NULL);
+        Strbuf_Free(buf);
     }
 }
 
-void ov5_021E1F04(UnkStruct_ov5_021E1FF4 *param0)
+// ravetodo: SaveInfoWindow_ShowWindow
+void ov5_021E1F04(UnkStruct_ov5_021E1FF4 *saveInfoWin)
 {
-    param0->unk_10 = Heap_AllocFromHeap(param0->unk_04, sizeof(Window));
+    saveInfoWin->window = Heap_AllocFromHeap(saveInfoWin->heapID, sizeof(Window));
 
-    Window_Add(param0->unk_0C, param0->unk_10, param0->unk_08, 1, 1, param0->unk_2C, param0->unk_30, 13, 393);
-    LoadStandardWindowGraphics(param0->unk_0C, param0->unk_08, 985, 11, 0, param0->unk_04);
-    Window_FillTilemap(param0->unk_10, Font_GetAttribute(FONT_SYSTEM, FONTATTR_BG_COLOR));
+    Window_Add(saveInfoWin->bgConfig, saveInfoWin->window, saveInfoWin->bgLayer, 1, 1, saveInfoWin->width, saveInfoWin->height, 13, 393);
+    LoadStandardWindowGraphics(saveInfoWin->bgConfig, saveInfoWin->bgLayer, 985, 11, 0, saveInfoWin->heapID);
+    Window_FillTilemap(saveInfoWin->window, Font_GetAttribute(FONT_SYSTEM, FONTATTR_BG_COLOR));
 
-    ov5_021E1E20(param0);
-    Window_DrawStandardFrame(param0->unk_10, 0, 985, 11);
+    SaveInfoWindow_PrintText(saveInfoWin);
+    Window_DrawStandardFrame(saveInfoWin->window, 0, 985, 11);
 }
 
-void ov5_021E1F7C(UnkStruct_ov5_021E1FF4 *param0)
+// ravetodo: SaveInfoWindow_FreeWindow
+void ov5_021E1F7C(UnkStruct_ov5_021E1FF4 *saveInfoWin)
 {
-    Window_EraseStandardFrame(param0->unk_10, 0);
-    Window_Remove(param0->unk_10);
-    Heap_FreeToHeap(param0->unk_10);
+    Window_EraseStandardFrame(saveInfoWin->window, 0);
+    Window_Remove(saveInfoWin->window);
+    Heap_FreeToHeap(saveInfoWin->window);
 }
 
-UnkStruct_ov5_021E1FF4 *ov5_021E1F98(FieldSystem *fieldSystem, int param1, u8 param2)
+// ravetodo: SaveInfoWindow_New
+UnkStruct_ov5_021E1FF4 *ov5_021E1F98(FieldSystem *fieldSystem, int heapID, u8 bgLayer)
 {
-    UnkStruct_ov5_021E1FF4 *v0;
+    UnkStruct_ov5_021E1FF4 *saveInfoWin = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov5_021E1FF4));
 
-    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov5_021E1FF4));
+    saveInfoWin->fieldSystem = fieldSystem;
+    saveInfoWin->heapID = heapID;
+    saveInfoWin->bgLayer = bgLayer;
+    saveInfoWin->bgConfig = fieldSystem->unk_08;
+    saveInfoWin->strTemplate = StringTemplate_Default(heapID);
+    saveInfoWin->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 534, heapID);
 
-    v0->fieldSystem = fieldSystem;
-    v0->unk_04 = param1;
-    v0->unk_08 = param2;
-    v0->unk_0C = fieldSystem->unk_08;
-    v0->unk_14 = StringTemplate_Default(param1);
-    v0->unk_18 = MessageLoader_Init(1, 26, 534, param1);
+    SaveInfo_SetValues(&saveInfoWin->saveInfo, saveInfoWin->fieldSystem);
+    SaveInfoWindow_SetStrings(saveInfoWin->strTemplate, &saveInfoWin->saveInfo);
 
-    ov5_021E1D20(&v0->unk_1C, v0->fieldSystem);
-    ov5_021E1D6C(v0->unk_14, &v0->unk_1C);
+    saveInfoWin->width = SAVE_INFO_WINDOW_WIDTH;
+    saveInfoWin->height = SaveInfoWindow_Height(&saveInfoWin->saveInfo);
 
-    v0->unk_2C = 13;
-    v0->unk_30 = ov5_021E1E10(&v0->unk_1C);
-
-    return v0;
+    return saveInfoWin;
 }
 
-void ov5_021E1FF4(UnkStruct_ov5_021E1FF4 *param0)
+// ravetodo: SaveInfoWindow_Free
+void ov5_021E1FF4(UnkStruct_ov5_021E1FF4 *saveInfoWin)
 {
-    MessageLoader_Free(param0->unk_18);
-    StringTemplate_Free(param0->unk_14);
-    Heap_FreeToHeap(param0);
+    MessageLoader_Free(saveInfoWin->msgLoader);
+    StringTemplate_Free(saveInfoWin->strTemplate);
+    Heap_FreeToHeap(saveInfoWin);
 }
 
+// ravetodo: FieldSystem_Save
 BOOL ov5_021E200C(FieldSystem *fieldSystem)
 {
     ov5_021E2028(fieldSystem);
-
-    if (SaveData_Save(fieldSystem->saveData) == 2) {
-        return 1;
-    } else {
-        return 0;
-    }
+    return SaveData_Save(fieldSystem->saveData) == SAVE_RESULT_OK;
 }
 
+// ravetodo: FieldSystem_SaveObjectsAndLocation
 static void ov5_021E2028(FieldSystem *fieldSystem)
 {
     FieldSystem_SaveObjects(fieldSystem);
-    ov5_021EA714(fieldSystem, 4, 0);
+    ov5_021EA714(fieldSystem, POKETCH_EVENT_SAVE, 0);
 
     fieldSystem->location->x = Player_GetXPos(fieldSystem->playerAvatar);
     fieldSystem->location->z = Player_GetZPos(fieldSystem->playerAvatar);
@@ -217,13 +220,13 @@ void ov5_021E2064(FieldSystem *fieldSystem)
     }
 
     switch (fieldSystem->location->mapId) {
-    case 466:
-    case 332:
-    case 333:
+    case MAP_HEADER_UNION_ROOM:
+    case MAP_HEADER_COMMUNICATION_CLUB_COLOSSEUM_2P:
+    case MAP_HEADER_COMMUNICATION_CLUB_COLOSSEUM_4P:
         return;
     }
 
-    if (sub_02038EB4() == 1) {
+    if (sub_02038EB4() == TRUE) {
         return;
     }
 
