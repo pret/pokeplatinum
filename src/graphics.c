@@ -7,29 +7,29 @@
 #include "heap.h"
 #include "narc.h"
 
-static u32 sub_020072D0(void *param0, BgConfig *param1, u32 param2, u32 param3, u32 param4);
-static void sub_02007314(void *param0, BgConfig *param1, u32 param2, u32 param3, u32 param4);
-static u32 sub_02007374(void *param0, int param1, u32 param2, u32 param3);
-static void sub_020073BC(void *param0, int param1, u32 param2, u32 param3, u32 param4);
-static void sub_0200749C(void *param0, NNS_G2D_VRAM_TYPE param1, u32 param2, NNSG2dImagePaletteProxy *param3);
-static u32 sub_020074EC(void *param0, int param1, u32 param2, NNS_G2D_VRAM_TYPE param3, u32 param4, NNSG2dImageProxy *param5);
-static void sub_02007534(void *param0, int param1, u32 param2, NNS_G2D_VRAM_TYPE param3, u32 param4, NNSG2dImageProxy *param5);
-static void *sub_020075A0(void *param0, NNSG2dCharacterData **param1);
-static void *sub_020075BC(void *param0, NNSG2dScreenData **param1);
-static void *sub_020075D8(void *param0, NNSG2dPaletteData **param1);
-static void *sub_020075F4(void *param0, NNSG2dCellDataBank **param1);
-static void *sub_02007610(void *param0, NNSG2dAnimBankData **param1);
+static u32 LoadTilesToBgLayer(void *ncgrBuffer, BgConfig *bgConfig, u32 bgLayer, u32 offset, u32 size);
+static void LoadTilemapToBgLayer(void *nscrBuffer, BgConfig *bgConfig, u32 bgLayer, u32 offset, u32 size);
+static u32 LoadObjectTiles(void *ncgrBuffer, enum DSScreen display, u32 offset, u32 size);
+static void LoadPaletteWithSrcOffset(void *nclrBuffer, enum PaletteLoadLocation paletteType, u32 srcOffset, u32 offset, u32 size);
+static void LoadPartialPalette(void *nclrBuffer, NNS_G2D_VRAM_TYPE vramType, u32 baseAddr, NNSG2dImagePaletteProxy *paletteProxy);
+static u32 LoadImageMapping(void *ncgrBuffer, enum ImageMappingLayout layout, u32 size, NNS_G2D_VRAM_TYPE vramType, u32 baseAddr, NNSG2dImageProxy *imageProxy);
+static void LoadImageMappingAndSetVramMode(void *ncgrBuffer, enum ImageMappingLayout layout, u32 size, NNS_G2D_VRAM_TYPE vramType, u32 baseAddr, NNSG2dImageProxy *imageProxy);
+static void *GetCharacterData(void *ncgrBuffer, NNSG2dCharacterData **outCharData);
+static void *GetScreenData(void *nscrBuffer, NNSG2dScreenData **outScreenData);
+static void *GetPaletteData(void *nclrBuffer, NNSG2dPaletteData **outPaletteData);
+static void *GetCellBank(void *ncerBuffer, NNSG2dCellDataBank **outCellData);
+static void *GetAnimBank(void *nanrBuffer, NNSG2dAnimBankData **outAnimBank);
 
 u32 sub_02006E3C(u32 param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
 {
     void *v0 = sub_02006FE8(param0, param1, param6, param7, 0);
-    return sub_020072D0(v0, param2, param3, param4, param5);
+    return LoadTilesToBgLayer(v0, param2, param3, param4, param5);
 }
 
 void sub_02006E60(u32 param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
 {
     void *v0 = sub_02006FE8(param0, param1, param6, param7, 1);
-    sub_02007314(v0, param2, param3, param4, param5);
+    LoadTilemapToBgLayer(v0, param2, param3, param4, param5);
 }
 
 void sub_02006E84(u32 param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5)
@@ -40,50 +40,50 @@ void sub_02006E84(u32 param0, u32 param1, int param2, u32 param3, u32 param4, u3
 void sub_02006E9C(u32 param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6)
 {
     void *v0 = sub_02006FE8(param0, param1, 0, param6, 1);
-    sub_020073BC(v0, param2, param3, param4, param5);
+    LoadPaletteWithSrcOffset(v0, param2, param3, param4, param5);
 }
 
 u32 sub_02006EC0(u32 param0, u32 param1, int param2, u32 param3, u32 param4, BOOL param5, u32 param6)
 {
     void *v0 = sub_02006FE8(param0, param1, param5, param6, 1);
-    return sub_02007374(v0, param2, param3, param4);
+    return LoadObjectTiles(v0, param2, param3, param4);
 }
 
 void sub_02006EE0(u32 param0, u32 param1, NNS_G2D_VRAM_TYPE param2, u32 param3, u32 param4, NNSG2dImagePaletteProxy *param5)
 {
     void *v0 = sub_02006FE8(param0, param1, 0, param4, 1);
-    sub_0200749C(v0, param2, param3, param5);
+    LoadPartialPalette(v0, param2, param3, param5);
 }
 
 u32 sub_02006F00(u32 param0, u32 param1, BOOL param2, int param3, u32 param4, NNS_G2D_VRAM_TYPE param5, u32 param6, u32 param7, NNSG2dImageProxy *param8)
 {
     void *v0 = sub_02006FE8(param0, param1, param2, param7, 1);
-    return sub_020074EC(v0, param3, param4, param5, param6, param8);
+    return LoadImageMapping(v0, param3, param4, param5, param6, param8);
 }
 
 void sub_02006F28(u32 param0, u32 param1, BOOL param2, int param3, u32 param4, NNS_G2D_VRAM_TYPE param5, u32 param6, u32 param7, NNSG2dImageProxy *param8)
 {
     void *v0 = sub_02006FE8(param0, param1, param2, param7, 1);
-    sub_02007534(v0, param3, param4, param5, param6, param8);
+    LoadImageMappingAndSetVramMode(v0, param3, param4, param5, param6, param8);
 }
 
 void *sub_02006F50(u32 param0, u32 param1, BOOL param2, NNSG2dCharacterData **param3, u32 param4)
 {
     void *v0 = sub_02006FE8(param0, param1, param2, param4, 0);
 
-    return sub_020075A0(v0, param3);
+    return GetCharacterData(v0, param3);
 }
 
 void *sub_02006F6C(u32 param0, u32 param1, BOOL param2, NNSG2dScreenData **param3, u32 param4)
 {
     void *v0 = sub_02006FE8(param0, param1, param2, param4, 0);
-    return sub_020075BC(v0, param3);
+    return GetScreenData(v0, param3);
 }
 
 void *sub_02006F88(u32 param0, u32 param1, NNSG2dPaletteData **param2, u32 param3)
 {
     void *v0 = sub_02006FE8(param0, param1, 0, param3, 0);
-    return sub_020075D8(v0, param2);
+    return GetPaletteData(v0, param2);
 }
 
 void *sub_02006FA0(u32 param0, u32 param1, BOOL param2, NNSG2dCellDataBank **param3, u32 param4)
@@ -91,13 +91,13 @@ void *sub_02006FA0(u32 param0, u32 param1, BOOL param2, NNSG2dCellDataBank **par
     void *v0;
 
     v0 = sub_02006FE8(param0, param1, param2, param4, 0);
-    return sub_020075F4(v0, param3);
+    return GetCellBank(v0, param3);
 }
 
 void *sub_02006FBC(u32 param0, u32 param1, BOOL param2, NNSG2dAnimBankData **param3, u32 param4)
 {
     void *v0 = sub_02006FE8(param0, param1, param2, param4, 0);
-    return sub_02007610(v0, param3);
+    return GetAnimBank(v0, param3);
 }
 
 void *sub_02006FD8(u32 param0, u32 param1, u32 param2)
@@ -180,13 +180,13 @@ void *sub_02007068(u32 narcIndex, u32 fileIndex, BOOL param2, u32 heapID, int pa
 u32 sub_020070E8(NARC *param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
 {
     void *v0 = sub_0200723C(param0, param1, param6, param7, 0);
-    return sub_020072D0(v0, param2, param3, param4, param5);
+    return LoadTilesToBgLayer(v0, param2, param3, param4, param5);
 }
 
 void sub_0200710C(NARC *param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
 {
     void *v0 = sub_0200723C(param0, param1, param6, param7, 1);
-    sub_02007314(v0, param2, param3, param4, param5);
+    LoadTilemapToBgLayer(v0, param2, param3, param4, param5);
 }
 
 void sub_02007130(NARC *param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5)
@@ -197,37 +197,37 @@ void sub_02007130(NARC *param0, u32 param1, int param2, u32 param3, u32 param4, 
 void sub_02007148(NARC *param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6)
 {
     void *v0 = sub_0200723C(param0, param1, 0, param6, 1);
-    sub_020073BC(v0, param2, param3, param4, param5);
+    LoadPaletteWithSrcOffset(v0, param2, param3, param4, param5);
 }
 
 void sub_0200716C(NARC *param0, u32 param1, NNS_G2D_VRAM_TYPE param2, u32 param3, u32 param4, NNSG2dImagePaletteProxy *param5)
 {
     void *v0 = sub_0200723C(param0, param1, 0, param4, 1);
-    sub_0200749C(v0, param2, param3, param5);
+    LoadPartialPalette(v0, param2, param3, param5);
 }
 
 u32 sub_0200718C(NARC *param0, u32 param1, BOOL param2, int param3, u32 param4, NNS_G2D_VRAM_TYPE param5, u32 param6, u32 param7, NNSG2dImageProxy *param8)
 {
     void *v0 = sub_0200723C(param0, param1, param2, param7, 1);
-    return sub_020074EC(v0, param3, param4, param5, param6, param8);
+    return LoadImageMapping(v0, param3, param4, param5, param6, param8);
 }
 
 void *sub_020071B4(NARC *param0, u32 param1, BOOL param2, NNSG2dCharacterData **param3, u32 param4)
 {
     void *v0 = sub_0200723C(param0, param1, param2, param4, 0);
-    return sub_020075A0(v0, param3);
+    return GetCharacterData(v0, param3);
 }
 
 void *sub_020071D0(NARC *param0, u32 param1, BOOL param2, NNSG2dScreenData **param3, u32 param4)
 {
     void *v0 = sub_0200723C(param0, param1, param2, param4, 0);
-    return sub_020075BC(v0, param3);
+    return GetScreenData(v0, param3);
 }
 
 void *sub_020071EC(NARC *param0, u32 param1, NNSG2dPaletteData **param2, u32 param3)
 {
     void *v0 = sub_0200723C(param0, param1, 0, param3, 0);
-    return sub_020075D8(v0, param2);
+    return GetPaletteData(v0, param2);
 }
 
 void *sub_02007204(NARC *param0, u32 param1, BOOL param2, NNSG2dCellDataBank **param3, u32 param4)
@@ -235,13 +235,13 @@ void *sub_02007204(NARC *param0, u32 param1, BOOL param2, NNSG2dCellDataBank **p
     void *v0;
 
     v0 = sub_0200723C(param0, param1, param2, param4, 0);
-    return sub_020075F4(v0, param3);
+    return GetCellBank(v0, param3);
 }
 
 void *sub_02007220(NARC *param0, u32 param1, BOOL param2, NNSG2dAnimBankData **param3, u32 param4)
 {
     void *v0 = sub_0200723C(param0, param1, param2, param4, 0);
-    return sub_02007610(v0, param3);
+    return GetAnimBank(v0, param3);
 }
 
 void *sub_0200723C(NARC *narc, u32 NarcFileIndex, BOOL param2, u32 param3, int param4)
@@ -289,262 +289,265 @@ void *sub_02007250(NARC *narc, u32 NarcFileIndex, BOOL param2, u32 param3, int p
     return v0;
 }
 
-static u32 sub_020072D0(void *param0, BgConfig *param1, u32 param2, u32 param3, u32 param4)
+static u32 LoadTilesToBgLayer(void *ncgrBuffer, BgConfig *bgConfig, u32 bgLayer, u32 offset, u32 size)
 {
-    if (param0 != NULL) {
-        NNSG2dCharacterData *v0;
+    if (ncgrBuffer != NULL) {
+        NNSG2dCharacterData *tiles;
 
-        if (NNS_G2dGetUnpackedBGCharacterData(param0, &v0)) {
-            if (param4 == 0) {
-                param4 = v0->szByte;
+        if (NNS_G2dGetUnpackedBGCharacterData(ncgrBuffer, &tiles)) {
+            if (size == 0) {
+                size = tiles->szByte;
             }
 
-            Bg_LoadTiles(param1, param2, v0->pRawData, param4, param3);
+            Bg_LoadTiles(bgConfig, bgLayer, tiles->pRawData, size, offset);
         }
 
-        Heap_FreeToHeap(param0);
+        Heap_FreeToHeap(ncgrBuffer);
     }
 
-    return param4;
+    return size;
 }
 
-static void sub_02007314(void *param0, BgConfig *param1, u32 param2, u32 param3, u32 param4)
+static void LoadTilemapToBgLayer(void *nscrBuffer, BgConfig *bgConfig, u32 bgLayer, u32 offset, u32 size)
 {
-    if (param0 != NULL) {
-        NNSG2dScreenData *v0;
+    if (nscrBuffer != NULL) {
+        NNSG2dScreenData *tilemap;
 
-        if (NNS_G2dGetUnpackedScreenData(param0, &v0)) {
-            if (param4 == 0) {
-                param4 = v0->szByte;
+        if (NNS_G2dGetUnpackedScreenData(nscrBuffer, &tilemap)) {
+            if (size == 0) {
+                size = tilemap->szByte;
             }
 
-            if (Bg_GetTilemapBuffer(param1, param2) != NULL) {
-                Bg_LoadTilemapBuffer(param1, param2, v0->rawData, param4);
+            if (Bg_GetTilemapBuffer(bgConfig, bgLayer) != NULL) {
+                Bg_LoadTilemapBuffer(bgConfig, bgLayer, tilemap->rawData, size);
             }
 
-            Bg_CopyTilemapBufferRangeToVRAM(param1, param2, v0->rawData, param4, param3);
+            Bg_CopyTilemapBufferRangeToVRAM(bgConfig, bgLayer, tilemap->rawData, size, offset);
         }
 
-        Heap_FreeToHeap(param0);
+        Heap_FreeToHeap(nscrBuffer);
     }
 }
 
-static u32 sub_02007374(void *param0, int param1, u32 param2, u32 param3)
-{
-    static void (*const v0[])(const void *, u32, u32) = {
-        GX_LoadOBJ,
-        GXS_LoadOBJ
-    };
+static void (*const sDisplayObjectLoadFunc[])(const void *, u32, u32) = {
+    GX_LoadOBJ,
+    GXS_LoadOBJ
+};
 
-    if (param0 != NULL) {
+static u32 LoadObjectTiles(void *ncgrBuffer, enum DSScreen display, u32 offset, u32 size)
+{
+
+    if (ncgrBuffer != NULL) {
         NNSG2dCharacterData *v1;
 
-        if (NNS_G2dGetUnpackedCharacterData(param0, &v1)) {
-            if (param3 == 0) {
-                param3 = v1->szByte;
+        if (NNS_G2dGetUnpackedCharacterData(ncgrBuffer, &v1)) {
+            if (size == 0) {
+                size = v1->szByte;
             }
 
-            DC_FlushRange(v1->pRawData, param3);
-            v0[param1](v1->pRawData, param2, param3);
+            DC_FlushRange(v1->pRawData, size);
+            sDisplayObjectLoadFunc[display](v1->pRawData, offset, size);
         }
 
-        Heap_FreeToHeap(param0);
+        Heap_FreeToHeap(ncgrBuffer);
     }
 
-    return param3;
+    return size;
 }
 
-static void sub_020073BC(void *param0, int param1, u32 param2, u32 param3, u32 param4)
+static void (*const sPaletteLoadFuncs[])(const void *, u32, u32) = {
+    GX_LoadBGPltt,
+    GX_LoadOBJPltt,
+    GX_LoadBGExtPltt,
+    GX_LoadOBJExtPltt,
+    GXS_LoadBGPltt,
+    GXS_LoadOBJPltt,
+    GXS_LoadBGExtPltt,
+    GXS_LoadOBJExtPltt
+};
+
+static void LoadPaletteWithSrcOffset(void *nclrBuffer, enum PaletteLoadLocation loadLocation, u32 srcOffset, u32 offset, u32 size)
 {
-    static void (*const v0[])(const void *, u32, u32) = {
-        GX_LoadBGPltt,
-        GX_LoadOBJPltt,
-        GX_LoadBGExtPltt,
-        GX_LoadOBJExtPltt,
-        GXS_LoadBGPltt,
-        GXS_LoadOBJPltt,
-        GXS_LoadBGExtPltt,
-        GXS_LoadOBJExtPltt
-    };
+    if (nclrBuffer != NULL) {
+        NNSG2dPaletteData *palette;
 
-    if (param0 != NULL) {
-        NNSG2dPaletteData *v1;
+        if (NNS_G2dGetUnpackedPaletteData(nclrBuffer, &palette)) {
+            palette->pRawData = (void *)((u32)palette->pRawData + srcOffset);
 
-        if (NNS_G2dGetUnpackedPaletteData(param0, &v1)) {
-            (u8 *)(v1->pRawData) += param2;
-
-            if (param4 == 0) {
-                param4 = v1->szByte - param2;
+            if (size == 0) {
+                size = palette->szByte - srcOffset;
             }
 
-            DC_FlushRange(v1->pRawData, param4);
+            DC_FlushRange(palette->pRawData, size);
 
-            switch (param1) {
-            case 2:
+            switch (loadLocation) {
+            case PAL_LOAD_MAIN_BGEXT:
                 GX_BeginLoadBGExtPltt();
-                v0[param1](v1->pRawData, param3, param4);
+                sPaletteLoadFuncs[loadLocation](palette->pRawData, offset, size);
                 GX_EndLoadBGExtPltt();
                 break;
-            case 6:
+
+            case PAL_LOAD_SUB_BGEXT:
                 GXS_BeginLoadBGExtPltt();
-                v0[param1](v1->pRawData, param3, param4);
+                sPaletteLoadFuncs[loadLocation](palette->pRawData, offset, size);
                 GXS_EndLoadBGExtPltt();
                 break;
-            case 3:
+
+            case PAL_LOAD_MAIN_OBJEXT:
                 GX_BeginLoadOBJExtPltt();
-                v0[param1](v1->pRawData, param3, param4);
+                sPaletteLoadFuncs[loadLocation](palette->pRawData, offset, size);
                 GX_EndLoadOBJExtPltt();
                 break;
-            case 7:
+
+            case PAL_LOAD_SUB_OBJEXT:
                 GXS_BeginLoadOBJExtPltt();
-                v0[param1](v1->pRawData, param3, param4);
+                sPaletteLoadFuncs[loadLocation](palette->pRawData, offset, size);
                 GXS_EndLoadOBJExtPltt();
                 break;
+
             default:
-                v0[param1](v1->pRawData, param3, param4);
+                sPaletteLoadFuncs[loadLocation](palette->pRawData, offset, size);
                 break;
             }
         }
 
-        Heap_FreeToHeap(param0);
+        Heap_FreeToHeap(nclrBuffer);
     }
 }
 
-static void sub_0200749C(void *param0, NNS_G2D_VRAM_TYPE param1, u32 param2, NNSG2dImagePaletteProxy *param3)
+static void LoadPartialPalette(void *nclrBuffer, NNS_G2D_VRAM_TYPE vramType, u32 baseAddr, NNSG2dImagePaletteProxy *paletteProxy)
 {
-    if (param0 != NULL) {
-        NNSG2dPaletteData *v0;
-        NNSG2dPaletteCompressInfo *v1;
-        BOOL v2;
+    if (nclrBuffer != NULL) {
+        NNSG2dPaletteData *palette;
+        NNSG2dPaletteCompressInfo *compPalette;
+        BOOL extended = NNS_G2dGetUnpackedPaletteCompressInfo(nclrBuffer, &compPalette);
 
-        v2 = NNS_G2dGetUnpackedPaletteCompressInfo(param0, &v1);
-
-        if (NNS_G2dGetUnpackedPaletteData(param0, &v0)) {
-            if (v2) {
-                NNS_G2dLoadPaletteEx(v0, v1, param2, param1, param3);
+        if (NNS_G2dGetUnpackedPaletteData(nclrBuffer, &palette)) {
+            if (extended) {
+                NNS_G2dLoadPaletteEx(palette, compPalette, baseAddr, vramType, paletteProxy);
             } else {
-                NNS_G2dLoadPalette(v0, param2, param1, param3);
+                NNS_G2dLoadPalette(palette, baseAddr, vramType, paletteProxy);
             }
         }
 
-        Heap_FreeToHeap(param0);
+        Heap_FreeToHeap(nclrBuffer);
     }
 }
 
-static u32 sub_020074EC(void *param0, int param1, u32 param2, NNS_G2D_VRAM_TYPE param3, u32 param4, NNSG2dImageProxy *param5)
+static void (*const sImageLayoutLoadFuncs[])(const NNSG2dCharacterData *, u32, NNS_G2D_VRAM_TYPE, NNSG2dImageProxy *) = {
+    NNS_G2dLoadImage1DMapping,
+    NNS_G2dLoadImage2DMapping
+};
+
+static u32 LoadImageMapping(void *ncgrBuffer, enum ImageMappingLayout layout, u32 size, NNS_G2D_VRAM_TYPE vramType, u32 baseAddr, NNSG2dImageProxy *imageProxy)
 {
-    static void (*const v0[])(const NNSG2dCharacterData *, u32, NNS_G2D_VRAM_TYPE, NNSG2dImageProxy *) = {
-        NNS_G2dLoadImage1DMapping,
-        NNS_G2dLoadImage2DMapping
-    };
+    u32 result = 0;
 
-    u32 v1 = 0;
+    if (ncgrBuffer != NULL) {
+        NNSG2dCharacterData *tiles;
 
-    if (param0 != NULL) {
-        NNSG2dCharacterData *v2;
-
-        if (NNS_G2dGetUnpackedCharacterData(param0, &v2)) {
-            if (param2) {
-                v2->szByte = param2;
+        if (NNS_G2dGetUnpackedCharacterData(ncgrBuffer, &tiles)) {
+            if (size) {
+                tiles->szByte = size;
             }
 
-            v0[param1](v2, param4, param3, param5);
-            v1 = v2->szByte;
+            sImageLayoutLoadFuncs[layout](tiles, baseAddr, vramType, imageProxy);
+            result = tiles->szByte;
         }
 
-        Heap_FreeToHeap(param0);
+        Heap_FreeToHeap(ncgrBuffer);
     }
 
-    return v1;
+    return result;
 }
 
-static void sub_02007534(void *param0, int param1, u32 param2, NNS_G2D_VRAM_TYPE param3, u32 param4, NNSG2dImageProxy *param5)
+static void (*const sImageLayoutLoadFuncs2[])(const NNSG2dCharacterData *, u32, NNS_G2D_VRAM_TYPE, NNSG2dImageProxy *) = {
+    NNS_G2dLoadImage1DMapping,
+    NNS_G2dLoadImage2DMapping
+};
+
+static void LoadImageMappingAndSetVramMode(void *ncgrBuffer, enum ImageMappingLayout layout, u32 size, NNS_G2D_VRAM_TYPE vramType, u32 baseAddr, NNSG2dImageProxy *imageProxy)
 {
-    static void (*const v0[])(const NNSG2dCharacterData *, u32, NNS_G2D_VRAM_TYPE, NNSG2dImageProxy *) = {
-        NNS_G2dLoadImage1DMapping,
-        NNS_G2dLoadImage2DMapping
-    };
+    if (ncgrBuffer != NULL) {
+        NNSG2dCharacterData *tiles;
 
-    if (param0 != NULL) {
-        NNSG2dCharacterData *v1;
-
-        if (NNS_G2dGetUnpackedCharacterData(param0, &v1)) {
-            if (param2) {
-                v1->szByte = param2;
+        if (NNS_G2dGetUnpackedCharacterData(ncgrBuffer, &tiles)) {
+            if (size) {
+                tiles->szByte = size;
             }
 
-            switch (param3) {
+            switch (vramType) {
             case NNS_G2D_VRAM_TYPE_2DMAIN:
-                v1->mapingType = GX_GetOBJVRamModeChar();
+                tiles->mapingType = GX_GetOBJVRamModeChar();
                 break;
             case NNS_G2D_VRAM_TYPE_2DSUB:
-                v1->mapingType = GXS_GetOBJVRamModeChar();
+                tiles->mapingType = GXS_GetOBJVRamModeChar();
                 break;
             }
 
-            v0[param1](v1, param4, param3, param5);
+            sImageLayoutLoadFuncs2[layout](tiles, baseAddr, vramType, imageProxy);
         }
 
-        Heap_FreeToHeap(param0);
+        Heap_FreeToHeap(ncgrBuffer);
     }
 }
 
-static void *sub_020075A0(void *param0, NNSG2dCharacterData **param1)
+static void *GetCharacterData(void *ncgrBuffer, NNSG2dCharacterData **outCharData)
 {
-    if (param0 != NULL) {
-        if (NNS_G2dGetUnpackedBGCharacterData(param0, param1) == 0) {
-            Heap_FreeToHeap(param0);
+    if (ncgrBuffer != NULL) {
+        if (NNS_G2dGetUnpackedBGCharacterData(ncgrBuffer, outCharData) == 0) {
+            Heap_FreeToHeap(ncgrBuffer);
             return NULL;
         }
     }
 
-    return param0;
+    return ncgrBuffer;
 }
 
-static void *sub_020075BC(void *param0, NNSG2dScreenData **param1)
+static void *GetScreenData(void *nscrBuffer, NNSG2dScreenData **outScreenData)
 {
-    if (param0 != NULL) {
-        if (NNS_G2dGetUnpackedScreenData(param0, param1) == 0) {
-            Heap_FreeToHeap(param0);
+    if (nscrBuffer != NULL) {
+        if (NNS_G2dGetUnpackedScreenData(nscrBuffer, outScreenData) == 0) {
+            Heap_FreeToHeap(nscrBuffer);
             return NULL;
         }
     }
 
-    return param0;
+    return nscrBuffer;
 }
 
-static void *sub_020075D8(void *param0, NNSG2dPaletteData **param1)
+static void *GetPaletteData(void *nclrBuffer, NNSG2dPaletteData **outPaletteData)
 {
-    if (param0 != NULL) {
-        if (NNS_G2dGetUnpackedPaletteData(param0, param1) == 0) {
-            Heap_FreeToHeap(param0);
+    if (nclrBuffer != NULL) {
+        if (NNS_G2dGetUnpackedPaletteData(nclrBuffer, outPaletteData) == 0) {
+            Heap_FreeToHeap(nclrBuffer);
             return NULL;
         }
     }
 
-    return param0;
+    return nclrBuffer;
 }
 
-static void *sub_020075F4(void *param0, NNSG2dCellDataBank **param1)
+static void *GetCellBank(void *ncerBuffer, NNSG2dCellDataBank **outCellData)
 {
-    if (param0 != NULL) {
-        if (NNS_G2dGetUnpackedCellBank(param0, param1) == 0) {
-            Heap_FreeToHeap(param0);
+    if (ncerBuffer != NULL) {
+        if (NNS_G2dGetUnpackedCellBank(ncerBuffer, outCellData) == 0) {
+            Heap_FreeToHeap(ncerBuffer);
             return NULL;
         }
     }
 
-    return param0;
+    return ncerBuffer;
 }
 
-static void *sub_02007610(void *param0, NNSG2dAnimBankData **param1)
+static void *GetAnimBank(void *nanrBuffer, NNSG2dAnimBankData **outAnimBank)
 {
-    if (param0 != NULL) {
-        if (NNS_G2dGetUnpackedAnimBank(param0, param1) == 0) {
-            Heap_FreeToHeap(param0);
+    if (nanrBuffer != NULL) {
+        if (NNS_G2dGetUnpackedAnimBank(nanrBuffer, outAnimBank) == 0) {
+            Heap_FreeToHeap(nanrBuffer);
             return NULL;
         }
     }
 
-    return param0;
+    return nanrBuffer;
 }

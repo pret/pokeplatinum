@@ -6,6 +6,22 @@
 #include "bg_window.h"
 #include "narc.h"
 
+enum PaletteLoadLocation {
+    PAL_LOAD_MAIN_BG = 0,
+    PAL_LOAD_MAIN_OBJ,
+    PAL_LOAD_MAIN_BGEXT,
+    PAL_LOAD_MAIN_OBJEXT,
+    PAL_LOAD_SUB_BG,
+    PAL_LOAD_SUB_OBJ,
+    PAL_LOAD_SUB_BGEXT,
+    PAL_LOAD_SUB_OBJEXT,
+};
+
+enum ImageMappingLayout {
+    IMAGE_MAPPING_LAYOUT_1D = 0,
+    IMAGE_MAPPING_LAYOUT_2D,
+};
+
 u32 sub_02006E3C(u32 param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7);
 void sub_02006E60(u32 param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7);
 void sub_02006E84(u32 param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5);
