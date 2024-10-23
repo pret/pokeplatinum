@@ -98,10 +98,10 @@ void Pokedex_Sort_PopulatepokedexStatus(pokedexStatus *dexStatus, UnkStruct_ov21
         Pokedex_HeightWeightData_Load(dexStatus->HWData, 1, heapID);
     }
 
-    dexStatus->pokedexSFlag_1 = param1->pokedexSFlag_1;
-    dexStatus->pokedexSFlag_2 = param1->pokedexSFlag_2;
-    dexStatus->pokedexSFlag_3 = param1->pokedexSFlag_3;
-    dexStatus->pokedexSFlag_4 = param1->pokedexSFlag_4;
+    dexStatus->fullmoonIslandVisible = param1->fullmoonIslandVisible;
+    dexStatus->newmoonIslandVisible = param1->newmoonIslandVisible;
+    dexStatus->springPathVisible = param1->springPathVisible;
+    dexStatus->seabreakPathVisible = param1->seabreakPathVisible;
 }
 
 void pokedexstatus(pokedexStatus *dexStatus)

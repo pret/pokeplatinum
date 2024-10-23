@@ -10,10 +10,10 @@ typedef struct {
     const PokedexData *unk_00;
     const TrainerInfo *unk_04;
     int timeOfDay;
-    BOOL pokedexSFlag_1;
-    BOOL pokedexSFlag_2;
-    BOOL pokedexSFlag_3;
-    BOOL pokedexSFlag_4;
+    BOOL fullmoonIslandVisible;
+    BOOL newmoonIslandVisible;
+    BOOL springPathVisible;
+    BOOL seabreakPathVisible;
     UnkStruct_0209ACBC *unk_1C;
 } UnkStruct_ov21_021D0D80;
 

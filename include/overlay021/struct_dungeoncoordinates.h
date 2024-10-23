@@ -4,7 +4,7 @@
 typedef struct {
     u8 xCoordinate;
     u8 yCoordinate;
-    u8 unk_02;
+    u8 isMtCoronet;
     u8 unused;
 } dungeonCoordinates;
 

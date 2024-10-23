@@ -154,10 +154,10 @@ int ov21_021D0D80(OverlayManager *param0, int *param1)
     v2.unk_00 = v1->unk_00;
     v2.unk_04 = v1->unk_04;
     v2.timeOfDay = v1->timeOfDay;
-    v2.pokedexSFlag_1 = v1->pokedexSFlag_1;
-    v2.pokedexSFlag_4 = v1->pokedexSFlag_4;
-    v2.pokedexSFlag_2 = v1->pokedexSFlag_2;
-    v2.pokedexSFlag_3 = v1->pokedexSFlag_3;
+    v2.fullmoonIslandVisible = v1->fullmoonIslandVisible;
+    v2.seabreakPathVisible = v1->seabreakPathVisible;
+    v2.newmoonIslandVisible = v1->newmoonIslandVisible;
+    v2.springPathVisible = v1->springPathVisible;
     v2.unk_1C = v1->unk_1C;
 
     v0->unk_00 = ov21_021D0F60(37, &v2);
@@ -322,10 +322,10 @@ UnkStruct_ov21_021D0F60 *ov21_021D0F60(int param0, const UnkStruct_ov21_021D0D80
     v2.dexData = param1->unk_00;
     v2.unk_04 = param1->unk_04;
     v2.timeOfDay = param1->timeOfDay;
-    v2.pokedexSFlag_1 = param1->pokedexSFlag_1;
-    v2.pokedexSFlag_2 = param1->pokedexSFlag_2;
-    v2.pokedexSFlag_3 = param1->pokedexSFlag_3;
-    v2.pokedexSFlag_4 = param1->pokedexSFlag_4;
+    v2.fullmoonIslandVisible = param1->fullmoonIslandVisible;
+    v2.newmoonIslandVisible = param1->newmoonIslandVisible;
+    v2.springPathVisible = param1->springPathVisible;
+    v2.seabreakPathVisible = param1->seabreakPathVisible;
     v2.unk_1C = sub_0209ACE4(param1->unk_1C);
     v2.unk_20 = sub_0209ACEC(param1->unk_1C);
 

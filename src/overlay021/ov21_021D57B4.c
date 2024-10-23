@@ -109,23 +109,23 @@ void ov21_021D58C0(u8 *mapFieldCellMatrix, u8 mapHeight, u8 mapWidth, const fiel
     }
 }
 
-u32 ov21_021D5948(u8 *mapFieldCellMatrix, int mapHeight, int mapWidth, const fieldCoordinates *fieldCoordArray, const mapsEncounteredOn *mapsEncOn, const u8 *mapArray, u32 mapArrayLength)
+u32 ov21_021D5948(u8 *mapFieldCellMatrix, int mapHeight, int mapWidth, const fieldCoordinates *fieldCoordArray, const mapsEncounteredOn *mapsEncOn, const u8 *fieldIDArray, u32 fieldIDArrayLength)
 {
-    int index;
-    int mapArrayIndex;
+    int fieldIndex;
+    int fieldIDArrayIndex;
     u32 v2 = 0;
 
-    for (index = 0; index < mapsEncOn->numMapsEncounteredOn - 1; index++) {
-        GF_ASSERT(mapsEncOn->mapsEncounteredOnArray[index]);
+    for (fieldIndex = 0; fieldIndex < mapsEncOn->numMapsEncounteredOn - 1; fieldIndex++) {
+        GF_ASSERT(mapsEncOn->mapsEncounteredOnArray[fieldIndex]);
 
-        for (mapArrayIndex = 0; mapArrayIndex < mapArrayLength; mapArrayIndex++) {
-            if (mapsEncOn->mapsEncounteredOnArray[index] == mapArray[mapArrayIndex]) {
+        for (fieldIDArrayIndex = 0; fieldIDArrayIndex < fieldIDArrayLength; fieldIDArrayIndex++) {
+            if (mapsEncOn->mapsEncounteredOnArray[fieldIndex] == fieldIDArray[fieldIDArrayIndex]) {
                 break;
             }
         }
 
-        if (mapArrayIndex >= mapArrayLength) {
-            ov21_021D58C0(mapFieldCellMatrix, mapHeight, mapWidth, &fieldCoordArray[mapsEncOn->mapsEncounteredOnArray[index]]);
+        if (fieldIDArrayIndex >= fieldIDArrayLength) {
+            ov21_021D58C0(mapFieldCellMatrix, mapHeight, mapWidth, &fieldCoordArray[mapsEncOn->mapsEncounteredOnArray[fieldIndex]]);
             v2++;
         }
     }
@@ -144,37 +144,37 @@ void ov21_021D59D8(CellActor *actor, int xOffset, int yOffset, int xScale, int y
 
     CellActor_SetPosition(actor, &position);
 
-    if (dungeonCoords->unk_02) {
+    if (dungeonCoords->isMtCoronet) {
         CellActor_SetAnim(actor, animID_2);
     } else {
         CellActor_SetAnim(actor, animID_1);
     }
 }
 
-int ov21_021D5A20(CellActor **cellActorArray, int initialNumDungeons, int param2, int xOffset, int yOffset, int xScale, int yScale, const dungeonCoordinates *dungeonCoordinatesArray, const mapsEncounteredOn *mapsEncOn, int animID_1, int animID_2, const u8 *mapArray, u32 mapArrayLength, u32 *param13)
+int ov21_021D5A20(CellActor **cellActorArray, int initialNumDungeons, int maxNumDungeons, int xOffset, int yOffset, int xScale, int yScale, const dungeonCoordinates *dungeonCoordinatesArray, const mapsEncounteredOn *dungeonsEncounteredOn, int animID_1, int animID_2, const u8 *dungeonsToSkip, u32 numDungeonsToSkip, u32 *param13)
 {
-    int index, mapArrayIndex;
+    int dungeonIndex, dungeonsToSkipIndex;
     int numDungeons = initialNumDungeons;
-    int v3 = 0;
+    int DungeonCount = 0;
 
-    for (index = 0; index < mapsEncOn->numMapsEncounteredOn - 1; index++) {
-        GF_ASSERT(mapsEncOn->mapsEncounteredOnArray[index]);
-        GF_ASSERT(numDungeons < param2);
+    for (dungeonIndex = 0; dungeonIndex < dungeonsEncounteredOn->numMapsEncounteredOn - 1; dungeonIndex++) {
+        GF_ASSERT(dungeonsEncounteredOn->mapsEncounteredOnArray[dungeonIndex]);
+        GF_ASSERT(numDungeons < maxNumDungeons);
 
-        for (mapArrayIndex = 0; mapArrayIndex < mapArrayLength; mapArrayIndex++) {
-            if (mapsEncOn->mapsEncounteredOnArray[index] == mapArray[mapArrayIndex]) {
+        for (dungeonsToSkipIndex = 0; dungeonsToSkipIndex < numDungeonsToSkip; dungeonsToSkipIndex++) {
+            if (dungeonsEncounteredOn->mapsEncounteredOnArray[dungeonIndex] == dungeonsToSkip[dungeonsToSkipIndex]) {
                 break;
             }
         }
 
-        if (mapArrayIndex >= mapArrayLength) {
-            ov21_021D59D8(cellActorArray[numDungeons], xOffset, yOffset, xScale, yScale, &dungeonCoordinatesArray[mapsEncOn->mapsEncounteredOnArray[index]], animID_1, animID_2);
+        if (dungeonsToSkipIndex >= numDungeonsToSkip) {
+            ov21_021D59D8(cellActorArray[numDungeons], xOffset, yOffset, xScale, yScale, &dungeonCoordinatesArray[dungeonsEncounteredOn->mapsEncounteredOnArray[dungeonIndex]], animID_1, animID_2);
             numDungeons++;
-            v3++;
+            DungeonCount++;
         }
     }
 
-    *param13 = v3;
+    *param13 = DungeonCount;
 
     return numDungeons;
 }

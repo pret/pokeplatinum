@@ -24,10 +24,10 @@ typedef struct {
     int unk_1758;
     u16 unk_175C;
     u16 unk_175E;
-    BOOL pokedexSFlag_1; // VarsFlags->vars[54]
-    BOOL pokedexSFlag_2; // VarsFlags->vars[55]
-    BOOL pokedexSFlag_3; // VarsFlags->vars[56]
-    BOOL pokedexSFlag_4; // VarsFlags->vars[57]
+    BOOL fullmoonIslandVisible;
+    BOOL newmoonIslandVisible;
+    BOOL springPathVisible;
+    BOOL seabreakPathVisible;
 } pokedexStatus;
 
 #endif // POKEPLATINUM_STRUCT_POKEDEXSTATUS_H
