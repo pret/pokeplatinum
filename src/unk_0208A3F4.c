@@ -67,7 +67,7 @@ void sub_0208A490 (UnkStruct_02089688 * param0)
     BgConfig *v1;
     SpriteRenderer * v2;
     SpriteGfxHandler * v3;
-    PaletteData * v4;
+    PaletteData *v4;
 
     v2 = param0->unk_2C0.unk_04;
     v3 = param0->unk_2C0.unk_08;
@@ -300,7 +300,7 @@ void sub_0208A8A0 (UnkStruct_02089688 * param0)
     SpriteTemplate v0;
     SpriteRenderer * v1;
     SpriteGfxHandler * v2;
-    PaletteData * v3;
+    PaletteData *v3;
 
     v1 = param0->unk_2C0.unk_04;
     v2 = param0->unk_2C0.unk_08;
@@ -356,7 +356,7 @@ void sub_0208A9BC (UnkStruct_02089688 * param0)
     SpriteTemplate v0;
     SpriteRenderer * v1;
     SpriteGfxHandler * v2;
-    PaletteData * v3;
+    PaletteData *v3;
 
     v1 = param0->unk_2C0.unk_04;
     v2 = param0->unk_2C0.unk_08;

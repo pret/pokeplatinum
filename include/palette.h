@@ -1,41 +1,40 @@
 #ifndef POKEPLATINUM_PALETTE_H
 #define POKEPLATINUM_PALETTE_H
 
-typedef struct {
-    u16 unk_00_0 : 5;
-    u16 unk_00_5 : 5;
-    u16 unk_00_10 : 5;
-    u16 unk_00_15 : 1;
-} UnkStruct_0200393C;
+typedef struct RgbColor {
+    u16 r : 5;
+    u16 g : 5;
+    u16 b : 5;
+    u16 unused : 1;
+} RgbColor;
 
-typedef struct {
-    u16 unk_00;
-    u16 unk_02_0 : 6;
-    u16 unk_02_6 : 5;
-    u16 unk_02_11 : 5;
-    u16 unk_04_0 : 15;
-    u16 unk_04_15 : 1;
-    u16 unk_06_0 : 4;
-    u16 unk_06_4 : 6;
-    u16 : 6;
-} UnkStruct_0200330C;
+typedef struct PaletteFadeControl {
+    u16 isOpaque;
+    u16 wait : 6;
+    u16 cur : 5;
+    u16 end : 5;
+    u16 nextRGB : 15;
+    u16 sign : 1;
+    u16 step : 4;
+    u16 waitStep : 6;
+    u16 unused : 6;
+} PaletteFadeControl;
 
-typedef struct {
-    u16 *unk_00;
-    u16 *unk_04;
-    u32 unk_08;
-    UnkStruct_0200330C unk_0C;
-} UnkStruct_020032D0;
+typedef struct PaletteBuffer {
+    u16 *unfaded;
+    u16 *faded;
+    u32 size;
+    PaletteFadeControl selected;
+} PaletteBuffer;
 
 typedef struct PaletteData {
-    UnkStruct_020032D0 unk_00[14];
-    u16 unk_118_0 : 2;
-    u16 unk_118_2 : 14;
-    u16 unk_11A_0 : 14;
-    u16 unk_11A_14 : 1;
-    u16 unk_11A_15 : 1;
-    u8 unk_11C;
-    u8 unk_11D[3];
+    PaletteBuffer buffers[14];
+    u16 selectedFlag : 2;
+    u16 selectedBuffers : 14;
+    u16 transparentBits : 14;
+    u16 callbackFlag : 1;
+    u16 autoTransparent : 1;
+    u8 forceExit;
 } PaletteData;
 
 PaletteData *sub_02002F38(int param0);

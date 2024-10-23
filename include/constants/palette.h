@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_CONSTANTS_PALETTE_H
 #define POKEPLATINUM_CONSTANTS_PALETTE_H
 
-enum PaletteBufferId {
+enum PaletteFadeBufferId {
     PLTTBUF_MAIN_BG = 0,
     PLTTBUF_SUB_BG,
     PLTTBUF_MAIN_OBJ,

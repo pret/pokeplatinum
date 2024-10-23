@@ -200,7 +200,7 @@ BOOL sub_0200A5C8(const SpriteResource *param0)
     GF_ASSERT(param0);
     GF_ASSERT(SpriteResource_GetType(param0) == 1);
 
-    v0.unk_00 = SpriteResource_GetPaletteData(param0);
+    v0.unk_00 = SpriteResource_GetPaletteFade(param0);
     v0.unk_04 = SpriteResource_GetVRAMType(param0);
     v0.unk_0C = SpriteResource_GetID(param0);
     v0.unk_08 = SpriteResource_GetPaletteIndex(param0);
@@ -230,7 +230,7 @@ BOOL sub_0200A640(const SpriteResource *param0)
     GF_ASSERT(param0);
     GF_ASSERT(SpriteResource_GetType(param0) == 1);
 
-    v0.unk_00 = SpriteResource_GetPaletteData(param0);
+    v0.unk_00 = SpriteResource_GetPaletteFade(param0);
     v0.unk_04 = SpriteResource_GetVRAMType(param0);
     v0.unk_0C = SpriteResource_GetID(param0);
     v0.unk_08 = SpriteResource_GetPaletteIndex(param0);
@@ -262,7 +262,7 @@ void sub_0200A6B8(const SpriteResource *param0)
     GF_ASSERT(param0);
 
     v1 = SpriteResource_GetID(param0);
-    v0 = SpriteResource_GetPaletteData(param0);
+    v0 = SpriteResource_GetPaletteFade(param0);
 
     sub_0201F990(v1, v0);
 }

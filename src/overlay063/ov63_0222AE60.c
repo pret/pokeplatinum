@@ -1129,7 +1129,7 @@ static void ov63_0222BC80(UnkStruct_ov63_0222AE60 *param0, SpriteResource *param
     NNSG2dPaletteData *v0;
     u32 v1[2];
 
-    v0 = SpriteResource_GetPaletteData(param1);
+    v0 = SpriteResource_GetPaletteFade(param1);
     v1[0] = sub_0200A760(param1, NNS_G2D_VRAM_TYPE_2DMAIN);
     v1[1] = sub_0200A760(param1, NNS_G2D_VRAM_TYPE_2DSUB);
 

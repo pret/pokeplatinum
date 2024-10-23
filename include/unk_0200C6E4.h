@@ -47,7 +47,7 @@ BOOL SpriteRenderer_LoadCharResObjFromOpenNarc(SpriteRenderer *renderer, SpriteG
 s8 sub_0200CC9C(SpriteRenderer *param0, SpriteGfxHandler *param1, int param2, int param3, int param4, int param5, int param6, int param7);
 s8 sub_0200CD0C(SpriteRenderer *param0, SpriteGfxHandler *param1, NARC *param2, int param3, int param4, int param5, int param6, int param7);
 u8 sub_0200CD7C(PaletteData *param0, int param1, SpriteRenderer *param2, SpriteGfxHandler *param3, int param4, int param5, int param6, int param7, int param8, int param9);
-u8 SpriteRenderer_LoadPalette(PaletteData *palette, enum PaletteBufferId paletteBuffer, SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler, NARC *narc, int fileID, BOOL compressed, int palID, int vram, int resID);
+u8 SpriteRenderer_LoadPalette(PaletteData *palette, enum PaletteFadeBufferId paletteBuffer, SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler, NARC *narc, int fileID, BOOL compressed, int palID, int vram, int resID);
 BOOL sub_0200CE0C(SpriteRenderer *param0, SpriteGfxHandler *param1, int param2, int param3, int param4, int param5);
 BOOL SpriteRenderer_LoadCellResObjFromOpenNarc(SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler, NARC *narc, int fileID, BOOL compressed, int resID);
 BOOL sub_0200CE3C(SpriteRenderer *param0, SpriteGfxHandler *param1, int param2, int param3, int param4, int param5);

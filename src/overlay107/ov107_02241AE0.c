@@ -256,7 +256,7 @@ struct UnkStruct_ov107_02241D6C_t {
     BmpList * unk_198;
     ResourceMetadata * unk_19C;
     UnkStruct_ov84_02240FA8 unk_1A0;
-    PaletteData * unk_1C0;
+    PaletteData *unk_1C0;
     UnkStruct_0200C440 * unk_1C4;
     Options * unk_1C8;
     SaveData * unk_1CC;

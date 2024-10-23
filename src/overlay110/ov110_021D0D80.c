@@ -52,7 +52,7 @@ typedef struct {
     StringTemplate * unk_114;
     Strbuf* unk_118;
     Strbuf* unk_11C;
-    PaletteData * unk_120;
+    PaletteData *unk_120;
     const Options * unk_124;
     SaveData * unk_128;
     UnkStruct_0203068C * unk_12C;

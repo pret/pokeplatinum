@@ -502,7 +502,7 @@ NNSG2dCharacterData *SpriteResource_GetTileData(const SpriteResource *spriteRes)
     return tileData->tileData;
 }
 
-NNSG2dPaletteData *SpriteResource_GetPaletteData(const SpriteResource *spriteRes)
+NNSG2dPaletteData *SpriteResource_GetPaletteFade(const SpriteResource *spriteRes)
 {
     GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_PALETTE);
 
