@@ -1,6 +1,51 @@
 #ifndef POKEPLATINUM_PALETTE_H
 #define POKEPLATINUM_PALETTE_H
 
+#include "constants/heap.h"
+
+enum PaletteBufferID {
+    PLTTBUF_MAIN_BG = 0,
+    PLTTBUF_SUB_BG,
+    PLTTBUF_MAIN_OBJ,
+    PLTTBUF_SUB_OBJ,
+    PLTTBUF_EX_BEGIN,
+
+    PLTTBUF_MAIN_EX_BG_0 = PLTTBUF_EX_BEGIN,
+    PLTTBUF_MAIN_EX_BG_1,
+    PLTTBUF_MAIN_EX_BG_2,
+    PLTTBUF_MAIN_EX_BG_3,
+    PLTTBUF_SUB_EX_BG_0,
+    PLTTBUF_SUB_EX_BG_1,
+    PLTTBUF_SUB_EX_BG_2,
+    PLTTBUF_SUB_EX_BG_3,
+    PLTTBUF_MAIN_EX_OBJ,
+    PLTTBUF_SUB_EX_OBJ,
+
+    PLTTBUF_MAX,
+};
+
+#define PLTTBUF_MAIN_BG_F      (1 << PLTTBUF_MAIN_BG)
+#define PLTTBUF_SUB_BG_F       (1 << PLTTBUF_SUB_BG)
+#define PLTTBUF_MAIN_OBJ_F     (1 << PLTTBUF_MAIN_OBJ)
+#define PLTTBUF_SUB_OBJ_F      (1 << PLTTBUF_SUB_OBJ)
+#define PLTTBUF_MAIN_EX_BG_0_F (1 << PLTTBUF_MAIN_EX_BG_0)
+#define PLTTBUF_MAIN_EX_BG_1_F (1 << PLTTBUF_MAIN_EX_BG_1)
+#define PLTTBUF_MAIN_EX_BG_2_F (1 << PLTTBUF_MAIN_EX_BG_2)
+#define PLTTBUF_MAIN_EX_BG_3_F (1 << PLTTBUF_MAIN_EX_BG_3)
+#define PLTTBUF_SUB_EX_BG_0_F  (1 << PLTTBUF_SUB_EX_BG_0)
+#define PLTTBUF_SUB_EX_BG_1_F  (1 << PLTTBUF_SUB_EX_BG_1)
+#define PLTTBUF_SUB_EX_BG_2_F  (1 << PLTTBUF_SUB_EX_BG_2)
+#define PLTTBUF_SUB_EX_BG_3_F  (1 << PLTTBUF_SUB_EX_BG_3)
+#define PLTTBUF_MAIN_EX_OBJ_F  (1 << PLTTBUF_MAIN_EX_OBJ)
+#define PLTTBUF_SUB_EX_OBJ_F   (1 << PLTTBUF_SUB_EX_OBJ)
+#define PLTTBUF_ALL_F          ((1 << PLTTBUF_MAX) - 1)
+
+enum PaletteSelector {
+    PLTTSEL_FADED,
+    PLTTSEL_UNFADED,
+    PLTTSEL_BOTH,
+};
+
 typedef struct RgbColor {
     u16 r : 5;
     u16 g : 5;
@@ -9,11 +54,11 @@ typedef struct RgbColor {
 } RgbColor;
 
 typedef struct PaletteFadeControl {
-    u16 isOpaque;
+    u16 unfadedMask;
     u16 wait : 6;
     u16 cur : 5;
     u16 end : 5;
-    u16 nextRGB : 15;
+    u16 target : 15;
     u16 sign : 1;
     u16 step : 4;
     u16 waitStep : 6;
@@ -31,37 +76,38 @@ typedef struct PaletteData {
     PaletteBuffer buffers[14];
     u16 selectedFlag : 2;
     u16 selectedBuffers : 14;
-    u16 transparentBits : 14;
-    u16 callbackFlag : 1;
+    u16 fadedBuffers : 14;
+    u16 fadeInProgress : 1;
     u16 autoTransparent : 1;
     u8 forceExit;
 } PaletteData;
 
-PaletteData *PaletteData_New(int param0);
-void PaletteData_Free(PaletteData *param0);
-void PaletteData_InitBuffer(PaletteData *param0, int param1, void *param2, void *param3, u32 param4);
-void PaletteData_AllocBuffer(PaletteData *param0, int param1, u32 param2, u32 param3);
-void PaletteData_FreeBuffer(PaletteData *param0, int param1);
-void PaletteData_LoadBuffer(PaletteData *param0, const void *param1, int param2, u16 param3, u16 param4);
-void PaletteData_LoadBufferFromFile(PaletteData *param0, u32 bankID, u32 memberIndex, u32 param3, int param4, u32 param5, u16 param6, u16 param7);
-void PaletteData_LoadBufferFromFileStart(PaletteData *param0, u32 bankID, u32 memberIndex, u32 param3, int param4, u32 param5, u16 param6);
-void PaletteData_LoadBufferFromHardware(PaletteData *param0, int param1, u16 param2, u32 param3);
-void LoadPaletteFromFile(u32 param0, u32 param1, u32 param2, u32 param3, u16 param4, void *param5);
-void PaletteData_CopyBuffer(PaletteData *param0, int param1, u16 param2, int param3, u16 param4, u16 param5);
-u16 *PaletteData_GetUnfadedBuffer(PaletteData *param0, int param1);
-u16 *PaletteData_GetFadedBuffer(PaletteData *param0, int param1);
-u8 PaletteData_StartFade(PaletteData *param0, u16 param1, u16 param2, s8 param3, u8 param4, u8 param5, u16 param6);
-void PaletteData_CommitFadedBuffers(PaletteData *param0);
-u16 PaletteData_GetSelectedBuffersMask(PaletteData *param0);
-void PaletteData_SetAutoTransparent(PaletteData *param0, int param1);
-void PaletteData_SelectAll(PaletteData *param0, u8 param1);
-void PaletteData_FillBufferRange(PaletteData *param0, int param1, int param2, u16 param3, u16 param4, u16 param5);
-u16 PaletteData_GetBufferIndexColor(PaletteData *param0, int param1, int param2, u16 param3);
-void BlendPalette(const u16 *param0, u16 *param1, u16 param2, u8 param3, u16 param4);
-void PaletteData_Blend(PaletteData *param0, int param1, u16 param2, u16 param3, u8 param4, u16 param5);
-void BlendPalettes(const u16 *param0, u16 *param1, u16 param2, u8 param3, u16 param4);
-void PaletteData_BlendMulti(PaletteData *param0, int param1, u16 param2, u8 param3, u16 param4);
-void TintPalette(u16 *param0, int param1, int param2, int param3, int param4);
-void PaletteData_TintFromFile(PaletteData *param0, u32 param1, u32 param2, u32 param3, int param4, u32 param5, u16 param6, int param7, int param8, int param9);
+void LoadPaletteFromFile(u32 narcID, u32 narcMemberIdx, u32 heapID, u32 size, u16 start, void *dest);
+void BlendPalette(const u16 *src, u16 *dest, u16 size, u8 fraction, u16 target);
+void BlendPalettes(const u16 *sources, u16 *dests, u16 toBlend, u8 fraction, u16 target);
+void TintPalette(u16 *palette, int numColorsToTint, int tintR, int tintG, int tintB);
+
+PaletteData *PaletteData_New(enum HeapId heapID);
+void PaletteData_Free(PaletteData *paletteData);
+void PaletteData_InitBuffer(PaletteData *paletteData, enum PaletteBufferID bufferID, void *unfaded, void *faded, u32 size);
+void PaletteData_AllocBuffer(PaletteData *paletteData, enum PaletteBufferID bufferID, u32 size, u32 heapID);
+void PaletteData_FreeBuffer(PaletteData *paletteData, enum PaletteBufferID bufferID);
+void PaletteData_LoadBuffer(PaletteData *paletteData, const void *src, enum PaletteBufferID bufferID, u16 destStart, u16 srcSize);
+void PaletteData_LoadBufferFromFile(PaletteData *paletteData, u32 narcID, u32 narcMemberIdx, u32 heapID, enum PaletteBufferID bufferID, u32 srcSize, u16 destStart, u16 srcStart);
+void PaletteData_LoadBufferFromFileStart(PaletteData *paletteData, u32 narcID, u32 narcMemberIdx, u32 heapID, enum PaletteBufferID bufferID, u32 srcSize, u16 destStart);
+void PaletteData_LoadBufferFromFileStartWithTint(PaletteData *paletteData, u32 narcID, u32 narcMemberIdx, u32 heapID, enum PaletteBufferID bufferID, u32 size, u16 start, int r, int g, int b);
+void PaletteData_LoadBufferFromHardware(PaletteData *paletteData, enum PaletteBufferID bufferID, u16 start, u32 size);
+void PaletteData_CopyBuffer(PaletteData *palette, enum PaletteBufferID srcBufferID, u16 srcStart, enum PaletteBufferID destBufferID, u16 destStart, u16 size);
+u16 *PaletteData_GetUnfadedBuffer(PaletteData *palette, enum PaletteBufferID bufferID);
+u16 *PaletteData_GetFadedBuffer(PaletteData *palette, enum PaletteBufferID bufferID);
+u8 PaletteData_StartFade(PaletteData *paletteData, u16 buffersToFade, u16 palettesToFade, s8 wait, u8 cur, u8 end, u16 target);
+void PaletteData_CommitFadedBuffers(PaletteData *paletteData);
+u16 PaletteData_GetSelectedBuffersMask(PaletteData *paletteData);
+void PaletteData_SetAutoTransparent(PaletteData *paletteData, int val);
+void PaletteData_SelectAll(PaletteData *paletteData, u8 val);
+void PaletteData_FillBufferRange(PaletteData *paletteData, enum PaletteBufferID bufferID, enum PaletteSelector selector, u16 fillVal, u16 start, u16 end);
+u16 PaletteData_GetBufferIndexColor(PaletteData *paletteData, enum PaletteBufferID bufferID, enum PaletteSelector selector, u16 index);
+void PaletteData_Blend(PaletteData *paletteData, enum PaletteBufferID bufferID, u16 index, u16 size, u8 fraction, u16 target);
+void PaletteData_BlendMulti(PaletteData *paletteData, enum PaletteBufferID bufferID, u16 toBlend, u8 fraction, u16 target);
 
 #endif // POKEPLATINUM_PALETTE_H

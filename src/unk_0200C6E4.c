@@ -466,7 +466,7 @@ u8 sub_0200CD7C(PaletteData *param0, int param1, SpriteRenderer *param2, SpriteG
     return v0;
 }
 
-u8 SpriteRenderer_LoadPalette(PaletteData *param0, enum PaletteFadeBufferId param1, SpriteRenderer *param2, SpriteGfxHandler *param3, NARC *param4, int param5, BOOL param6, int param7, int param8, int param9)
+u8 SpriteRenderer_LoadPalette(PaletteData *param0, enum PaletteBufferID param1, SpriteRenderer *param2, SpriteGfxHandler *param3, NARC *param4, int param5, BOOL param6, int param7, int param8, int param9)
 {
     int v0;
 

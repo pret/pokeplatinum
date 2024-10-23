@@ -176,14 +176,14 @@ void ov12_0222EAA0(UnkStruct_ov12_0221FCDC *param0)
         sub_0200D460(v1, ov12_0222339C(v0->unk_00.unk_04) + 1);
         v2 = sub_0201FAB4(CellActor_GetPaletteProxy(v1->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
 
-        PaletteData_TintFromFile(ov12_0222332C(v0->unk_00.unk_04), v4, v3, ov12_0221FDE4(v0->unk_00.unk_04), 2, 0x20, v2 * 16, 196, 196, 196);
+        PaletteData_LoadBufferFromFileStartWithTint(ov12_0222332C(v0->unk_00.unk_04), v4, v3, ov12_0221FDE4(v0->unk_00.unk_04), 2, 0x20, v2 * 16, 196, 196, 196);
         SpriteActor_SetOAMMode(v1, GX_OAM_MODE_XLU);
 
         v1 = v0->unk_30;
         sub_0200D460(v1, ov12_0222339C(v0->unk_00.unk_04) + 1);
         v2 = sub_0201FAB4(CellActor_GetPaletteProxy(v1->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
 
-        PaletteData_TintFromFile(ov12_0222332C(v0->unk_00.unk_04), v4, v3, ov12_0221FDE4(v0->unk_00.unk_04), 2, 0x20, v2 * 16, 196, 196, 196);
+        PaletteData_LoadBufferFromFileStartWithTint(ov12_0222332C(v0->unk_00.unk_04), v4, v3, ov12_0221FDE4(v0->unk_00.unk_04), 2, 0x20, v2 * 16, 196, 196, 196);
         SpriteActor_SetOAMMode(v1, GX_OAM_MODE_XLU);
     }
 

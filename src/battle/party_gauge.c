@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "constants/heap.h"
-#include "constants/palette.h"
 #include "consts/sdat.h"
 
 #include "struct_decls/struct_02006C24_decl.h"

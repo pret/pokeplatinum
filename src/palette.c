@@ -3,608 +3,606 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
+
 #include "hardware_palette.h"
 #include "heap.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02006E3C.h"
 
-static u8 sub_0200327C(u16 param0, u16 param1);
-static void sub_02003290(PaletteData *param0, u16 param1);
-static void sub_020032D0(int param0, PaletteBuffer *param1, u16 *param2);
-static void sub_0200330C(PaletteFadeControl *param0, u16 param1, s8 param2, u8 param3, u8 param4, u16 param5);
-static void sub_020033CC(SysTask *param0, void *param1);
-static void sub_02003468(PaletteData *param0);
-static void sub_02003488(PaletteData *param0);
-static void sub_020034A8(PaletteData *param0, u16 param1, u16 param2);
-static void sub_02003504(PaletteData *param0, u16 param1, u16 param2);
-static void sub_02003560(u16 *param0, u16 *param1, PaletteFadeControl *param2, u32 param3);
-static void sub_020035EC(PaletteData *param0, u8 param1, PaletteFadeControl *param2);
+#define SLOTS_PER_PALETTE 16
+#define PALETTE_SIZE      (SLOTS_PER_PALETTE)
+#define PALETTE_SIZE_EXT  (SLOTS_PER_PALETTE * 16)
 
-PaletteData *PaletteData_New(int param0)
+static u8 IsMaskedOn(u16 mask, u16 bit);
+static void FlagFadedPaletteBuffer(PaletteData *paletteData, u16 bufferID);
+static void FilterMaskToValidPalettes(int bufferID, PaletteBuffer *buffer, u16 *outMask);
+static void SetTimedFadeParams(PaletteFadeControl *fade, u16 unfadedMask, s8 wait, u8 cur, u8 end, u16 target);
+static void WaitAndApplyBlendStepToStdPaletteBuffers(PaletteData *paletteData);
+static void WaitAndApplyBlendStepToExtPaletteBuffers(PaletteData *paletteData);
+static void WaitAndApplyBlendStepToPaletteBuffer(PaletteData *paletteData, u16 bufferID, u16 paletteSize);
+static void ApplyBlendStepToPaletteBuffer(PaletteData *paletteData, u16 bufferID, u16 paletteSize);
+static void ApplyBlendStepToSinglePalette(u16 *unfaded, u16 *faded, PaletteFadeControl *fade, u32 paletteSize);
+static void UpdateFadeBlendStep(PaletteData *paletteData, u8 bufferID, PaletteFadeControl *fade);
+
+static void SysTask_FadePalette(SysTask *task, void *data);
+
+PaletteData *PaletteData_New(enum HeapId heapID)
 {
-    PaletteData *v0;
+    PaletteData *paletteData = Heap_AllocFromHeap(heapID, sizeof(PaletteData));
+    MI_CpuClear8(paletteData, sizeof(PaletteData));
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(PaletteData));
-    MI_CpuClear8(v0, sizeof(PaletteData));
-
-    return v0;
+    return paletteData;
 }
 
-void PaletteData_Free(PaletteData *param0)
+void PaletteData_Free(PaletteData *paletteData)
 {
-    Heap_FreeToHeap(param0);
+    Heap_FreeToHeap(paletteData);
 }
 
-void PaletteData_InitBuffer(PaletteData *param0, int param1, void *param2, void *param3, u32 param4)
+void PaletteData_InitBuffer(PaletteData *paletteData, enum PaletteBufferID bufferID, void *unfaded, void *faded, u32 size)
 {
-    param0->buffers[param1].unfaded = (u16 *)param2;
-    param0->buffers[param1].faded = (u16 *)param3;
-    param0->buffers[param1].size = param4;
+    paletteData->buffers[bufferID].unfaded = (u16 *)unfaded;
+    paletteData->buffers[bufferID].faded = (u16 *)faded;
+    paletteData->buffers[bufferID].size = size;
 }
 
-void PaletteData_AllocBuffer(PaletteData *param0, int param1, u32 param2, u32 param3)
+void PaletteData_AllocBuffer(PaletteData *paletteData, enum PaletteBufferID bufferID, u32 size, u32 heapID)
 {
-    void *v0;
-    void *v1;
-
-    v0 = Heap_AllocFromHeap(param3, param2);
-    v1 = Heap_AllocFromHeap(param3, param2);
-
-    PaletteData_InitBuffer(param0, param1, v0, v1, param2);
+    void *unfaded = Heap_AllocFromHeap(heapID, size);
+    void *faded = Heap_AllocFromHeap(heapID, size);
+    PaletteData_InitBuffer(paletteData, bufferID, unfaded, faded, size);
 }
 
-void PaletteData_FreeBuffer(PaletteData *param0, int param1)
+void PaletteData_FreeBuffer(PaletteData *paletteData, enum PaletteBufferID bufferID)
 {
-    Heap_FreeToHeap(param0->buffers[param1].unfaded);
-    Heap_FreeToHeap(param0->buffers[param1].faded);
+    Heap_FreeToHeap(paletteData->buffers[bufferID].unfaded);
+    Heap_FreeToHeap(paletteData->buffers[bufferID].faded);
 }
 
-void PaletteData_LoadBuffer(PaletteData *param0, const void *param1, int param2, u16 param3, u16 param4)
+void PaletteData_LoadBuffer(PaletteData *paletteData, const void *src, enum PaletteBufferID bufferID, u16 destStart, u16 srcSize)
 {
-    MI_CpuCopy16(param1, (void *)&param0->buffers[param2].unfaded[param3], (u32)param4);
-    MI_CpuCopy16(param1, (void *)&param0->buffers[param2].faded[param3], (u32)param4);
+    MI_CpuCopy16(src, paletteData->buffers[bufferID].unfaded + destStart, srcSize);
+    MI_CpuCopy16(src, paletteData->buffers[bufferID].faded + destStart, srcSize);
 }
 
-void PaletteData_LoadBufferFromFile(PaletteData *param0, u32 bankID, u32 memberIndex, u32 param3, int param4, u32 param5, u16 param6, u16 param7)
+void PaletteData_LoadBufferFromFile(PaletteData *paletteData, u32 narcID, u32 narcMemberIdx, u32 heapID, enum PaletteBufferID bufferID, u32 srcSize, u16 destStart, u16 srcStart)
 {
-    NNSG2dPaletteData *v0;
-    void *v1;
+    NNSG2dPaletteData *palette;
+    void *ptr = sub_02006F88(narcID, narcMemberIdx, &palette, heapID);
 
-    v1 = sub_02006F88(bankID, memberIndex, &v0, param3);
-    GF_ASSERT(v1 != NULL);
+    GF_ASSERT(ptr != NULL);
 
-    if (param5 == 0) {
-        param5 = v0->szByte;
+    if (srcSize == 0) {
+        srcSize = palette->szByte;
     }
 
-    GF_ASSERT(param6 * sizeof(param6) + param5 <= param0->buffers[param4].size);
+    GF_ASSERT(destStart * sizeof(destStart) + srcSize <= paletteData->buffers[bufferID].size);
 
-    PaletteData_LoadBuffer(param0, &(((u16 *)(v0->pRawData))[param7]), param4, param6, param5);
-    Heap_FreeToHeap(v1);
+    PaletteData_LoadBuffer(paletteData, (u16 *)palette->pRawData + srcStart, bufferID, destStart, srcSize);
+    Heap_FreeToHeap(ptr);
 }
 
-void PaletteData_LoadBufferFromFileStart(PaletteData *param0, u32 bankID, u32 memberIndex, u32 param3, int param4, u32 param5, u16 param6)
+void PaletteData_LoadBufferFromFileStart(PaletteData *paletteData, u32 narcID, u32 narcMemberIdx, u32 heapID, enum PaletteBufferID bufferID, u32 srcSize, u16 destStart)
 {
-    PaletteData_LoadBufferFromFile(param0, bankID, memberIndex, param3, param4, param5, param6, 0);
+    PaletteData_LoadBufferFromFile(paletteData, narcID, narcMemberIdx, heapID, bufferID, srcSize, destStart, 0);
 }
 
-void PaletteData_LoadBufferFromHardware(PaletteData *param0, int param1, u16 param2, u32 param3)
+void PaletteData_LoadBufferFromHardware(PaletteData *paletteData, enum PaletteBufferID bufferID, u16 start, u32 size)
 {
-    u16 *v0;
+    GF_ASSERT(start * sizeof(start) + size <= paletteData->buffers[bufferID].size);
 
-    GF_ASSERT(param2 * sizeof(param2) + param3 <= param0->buffers[param1].size);
+    u16 *ptr;
+    switch (bufferID) {
+    case PLTTBUF_MAIN_BG:
+        ptr = GetHardwareMainBgPaletteAddress();
+        break;
 
-    switch (param1) {
-    case 0:
-        v0 = (u16 *)GetHardwareMainBgPaletteAddress();
+    case PLTTBUF_SUB_BG:
+        ptr = GetHardwareSubBgPaletteAddress();
         break;
-    case 1:
-        v0 = (u16 *)GetHardwareSubBgPaletteAddress();
+
+    case PLTTBUF_MAIN_OBJ:
+        ptr = GetHardwareMainObjPaletteAddress();
         break;
-    case 2:
-        v0 = (u16 *)GetHardwareMainObjPaletteAddress();
+
+    case PLTTBUF_SUB_OBJ:
+        ptr = GetHardwareSubObjPaletteAddress();
         break;
-    case 3:
-        v0 = (u16 *)GetHardwareSubObjPaletteAddress();
-        break;
+
     default:
         GF_ASSERT(FALSE);
         return;
     }
 
-    PaletteData_LoadBuffer(param0, &v0[param2], param1, param2, param3);
+    PaletteData_LoadBuffer(paletteData, ptr + start, bufferID, start, size);
 }
 
-void LoadPaletteFromFile(u32 param0, u32 param1, u32 param2, u32 param3, u16 param4, void *param5)
+void LoadPaletteFromFile(u32 narcID, u32 narcMemberIdx, u32 heapID, u32 size, u16 start, void *dest)
 {
-    NNSG2dPaletteData *v0;
-    void *v1;
+    NNSG2dPaletteData *palette;
+    void *ptr = sub_02006F88(narcID, narcMemberIdx, &palette, heapID);
 
-    v1 = sub_02006F88(param0, param1, &v0, param2);
-    GF_ASSERT(v1 != NULL);
+    GF_ASSERT(ptr != NULL);
 
-    if (param3 == 0) {
-        param3 = v0->szByte;
+    if (size == 0) {
+        size = palette->szByte;
     }
 
-    MI_CpuCopy16(&(((u16 *)(v0->pRawData))[param4]), param5, param3);
-    Heap_FreeToHeap(v1);
+    MI_CpuCopy16((u16 *)palette->pRawData + start, dest, size);
+    Heap_FreeToHeap(ptr);
 }
 
-void PaletteData_CopyBuffer(PaletteData *param0, int param1, u16 param2, int param3, u16 param4, u16 param5)
+void PaletteData_CopyBuffer(PaletteData *palette, enum PaletteBufferID srcBufferID, u16 srcStart, enum PaletteBufferID destBufferID, u16 destStart, u16 size)
 {
-    MI_CpuCopy16((void *)&param0->buffers[param1].unfaded[param2], (void *)&param0->buffers[param3].unfaded[param4], param5);
-    MI_CpuCopy16((void *)&param0->buffers[param1].unfaded[param2], (void *)&param0->buffers[param3].faded[param4], param5);
+    MI_CpuCopy16(palette->buffers[srcBufferID].unfaded + srcStart, palette->buffers[destBufferID].unfaded + destStart, size);
+    MI_CpuCopy16(palette->buffers[srcBufferID].unfaded + srcStart, palette->buffers[destBufferID].faded + destStart, size);
 }
 
-u16 *PaletteData_GetUnfadedBuffer(PaletteData *param0, int param1)
+u16 *PaletteData_GetUnfadedBuffer(PaletteData *palette, enum PaletteBufferID bufferID)
 {
-    return param0->buffers[param1].unfaded;
+    return palette->buffers[bufferID].unfaded;
 }
 
-u16 *PaletteData_GetFadedBuffer(PaletteData *param0, int param1)
+u16 *PaletteData_GetFadedBuffer(PaletteData *palette, enum PaletteBufferID bufferID)
 {
-    return param0->buffers[param1].faded;
+    return palette->buffers[bufferID].faded;
 }
 
-u8 PaletteData_StartFade(PaletteData *param0, u16 param1, u16 param2, s8 param3, u8 param4, u8 param5, u16 param6)
+u8 PaletteData_StartFade(PaletteData *paletteData, u16 buffersToFade, u16 palettesToFade, s8 wait, u8 cur, u8 end, u16 target)
 {
-    u16 v0;
-    u8 v1;
-    u8 v2;
+    u16 inPalettesToFade = palettesToFade;
+    u8 palettesFaded = FALSE;
+    u8 bufferID;
 
-    v0 = param2;
-    v1 = 0;
+    for (bufferID = PLTTBUF_MAIN_BG; bufferID < PLTTBUF_MAX; bufferID++) {
+        if (IsMaskedOn(buffersToFade, bufferID) == TRUE && !IsMaskedOn(paletteData->selectedBuffers, bufferID)) {
+            FilterMaskToValidPalettes(bufferID, &paletteData->buffers[bufferID], &palettesToFade);
+            SetTimedFadeParams(&paletteData->buffers[bufferID].selected, palettesToFade, wait, cur, end, target);
+            FlagFadedPaletteBuffer(paletteData, bufferID);
 
-    for (v2 = 0; v2 < (4 + 10); v2++) {
-        if ((sub_0200327C(param1, v2) == 1) && (sub_0200327C(param0->selectedBuffers, v2) == 0)) {
-            sub_020032D0(v2, &param0->buffers[v2], &param2);
-            sub_0200330C(&param0->buffers[v2].selected, param2, param3, param4, param5, param6);
-            sub_02003290(param0, v2);
-
-            if (v2 >= 4) {
-                sub_02003504(param0, v2, 256);
+            if (bufferID >= PLTTBUF_EX_BEGIN) {
+                ApplyBlendStepToPaletteBuffer(paletteData, bufferID, PALETTE_SIZE_EXT);
             } else {
-                sub_02003504(param0, v2, 16);
+                ApplyBlendStepToPaletteBuffer(paletteData, bufferID, PALETTE_SIZE);
             }
 
-            param2 = v0;
-            v1 = 1;
+            palettesToFade = inPalettesToFade;
+            palettesFaded = TRUE;
         }
     }
 
-    if (v1 == 1) {
-        param0->selectedBuffers |= param1;
+    if (palettesFaded == TRUE) {
+        paletteData->selectedBuffers |= buffersToFade;
 
-        if (param0->callbackFlag == 0) {
-            param0->callbackFlag = 1;
-            param0->selectedFlag = 1;
-            param0->forceExit = 0;
+        if (paletteData->fadeInProgress == FALSE) {
+            paletteData->fadeInProgress = TRUE;
+            paletteData->selectedFlag = TRUE;
+            paletteData->forceExit = FALSE;
 
-            SysTask_Start(sub_020033CC, param0, (0xffffffff - 1));
+            SysTask_Start(SysTask_FadePalette, paletteData, 0xFFFFFFFE);
         }
     }
 
-    return v1;
+    return palettesFaded;
 }
 
-static u8 sub_0200327C(u16 param0, u16 param1)
+static u8 IsMaskedOn(u16 mask, u16 bit)
 {
-    if ((param0 & (1 << param1)) != 0) {
-        return 1;
+    return (mask & (1 << bit)) != 0;
+}
+
+static void FlagFadedPaletteBuffer(PaletteData *paletteData, u16 bufferID)
+{
+    if (IsMaskedOn(paletteData->fadedBuffers, bufferID) != TRUE) {
+        paletteData->fadedBuffers |= (1 << bufferID);
     }
-
-    return 0;
 }
 
-static void sub_02003290(PaletteData *param0, u16 param1)
+static void FilterMaskToValidPalettes(int bufferID, PaletteBuffer *buffer, u16 *outMask)
 {
-    if (sub_0200327C(param0->transparentBits, param1) == 1) {
-        return;
-    }
-
-    param0->transparentBits |= (1 << param1);
-}
-
-static void sub_020032D0(int param0, PaletteBuffer *param1, u16 *param2)
-{
-    u16 v0;
-    u8 v1, v2;
-
-    if (param0 < 4) {
-        v2 = param1->size / 32;
+    u8 singlePaletteSize;
+    if (bufferID < PLTTBUF_EX_BEGIN) {
+        singlePaletteSize = buffer->size / (PALETTE_SIZE * 2);
     } else {
-        v2 = param1->size / 512;
+        singlePaletteSize = buffer->size / (PALETTE_SIZE_EXT * 2);
     }
 
-    v0 = 0;
-
-    for (v1 = 0; v1 < v2; v1++) {
-        v0 += (1 << v1);
+    u16 validPalettesMask = 0;
+    for (u8 i = 0; i < singlePaletteSize; i++) {
+        validPalettesMask += (1 << i);
     }
 
-    *param2 &= v0;
+    *outMask &= validPalettesMask;
 }
 
-static void sub_0200330C(PaletteFadeControl *param0, u16 param1, s8 param2, u8 param3, u8 param4, u16 param5)
+static void SetTimedFadeParams(PaletteFadeControl *fade, u16 unfadedMask, s8 wait, u8 cur, u8 end, u16 target)
 {
-    if (param2 < 0) {
-        param0->step = 2 + abs(param2);
-        param0->wait = 0;
+    if (wait < 0) {
+        fade->step = 2 + abs(wait);
+        fade->wait = 0;
     } else {
-        param0->step = 2;
-        param0->wait = param2;
+        fade->step = 2;
+        fade->wait = wait;
     }
 
-    param0->isOpaque = param1;
-    param0->cur = param3;
-    param0->end = param4;
-    param0->nextRGB = param5;
-    param0->waitStep = param0->wait;
+    fade->unfadedMask = unfadedMask;
+    fade->cur = cur;
+    fade->end = end;
+    fade->target = target;
+    fade->waitStep = fade->wait;
 
-    if (param3 < param4) {
-        param0->sign = 0;
+    if (cur < end) {
+        fade->sign = 0;
     } else {
-        param0->sign = 1;
+        fade->sign = 1;
     }
 }
 
-static void sub_020033CC(SysTask *param0, void *param1)
+static void SysTask_FadePalette(SysTask *task, void *data)
 {
-    PaletteData *v0 = param1;
+    PaletteData *paletteData = data;
 
-    if (v0->forceExit == 1) {
-        v0->forceExit = 0;
-        v0->transparentBits = 0;
-        v0->selectedBuffers = 0;
-        v0->callbackFlag = 0;
-        SysTask_Done(param0);
+    if (paletteData->forceExit == TRUE) {
+        paletteData->forceExit = FALSE;
+        paletteData->fadedBuffers = 0;
+        paletteData->selectedBuffers = 0;
+        paletteData->fadeInProgress = FALSE;
+        SysTask_Done(task);
         return;
     }
 
-    if (v0->selectedFlag != 1) {
+    if (paletteData->selectedFlag != TRUE) {
         return;
     }
 
-    v0->transparentBits = v0->selectedBuffers;
+    paletteData->fadedBuffers = paletteData->selectedBuffers;
 
-    sub_02003468(v0);
-    sub_02003488(v0);
+    WaitAndApplyBlendStepToStdPaletteBuffers(paletteData);
+    WaitAndApplyBlendStepToExtPaletteBuffers(paletteData);
 
-    if (v0->selectedBuffers == 0) {
-        v0->callbackFlag = 0;
-        SysTask_Done(param0);
+    if (paletteData->selectedBuffers == 0) {
+        paletteData->fadeInProgress = FALSE;
+        SysTask_Done(task);
     }
 }
 
-static void sub_02003468(PaletteData *param0)
+static void WaitAndApplyBlendStepToStdPaletteBuffers(PaletteData *paletteData)
 {
-    u8 v0, v1;
-
-    for (v0 = 0; v0 < 4; v0++) {
-        sub_020034A8(param0, v0, 16);
+    for (u8 i = PLTTBUF_MAIN_BG; i < PLTTBUF_EX_BEGIN; i++) {
+        WaitAndApplyBlendStepToPaletteBuffer(paletteData, i, PALETTE_SIZE);
     }
 }
 
-static void sub_02003488(PaletteData *param0)
+static void WaitAndApplyBlendStepToExtPaletteBuffers(PaletteData *paletteData)
 {
-    u8 v0, v1;
-
-    for (v0 = 4; v0 < (4 + 10); v0++) {
-        sub_020034A8(param0, v0, 256);
+    for (u8 i = PLTTBUF_EX_BEGIN; i < PLTTBUF_MAX; i++) {
+        WaitAndApplyBlendStepToPaletteBuffer(paletteData, i, PALETTE_SIZE_EXT);
     }
 }
 
-static void sub_020034A8(PaletteData *param0, u16 param1, u16 param2)
+static void WaitAndApplyBlendStepToPaletteBuffer(PaletteData *paletteData, u16 bufferID, u16 paletteSize)
 {
-    if (sub_0200327C(param0->selectedBuffers, param1) == 0) {
+    if (!IsMaskedOn(paletteData->selectedBuffers, bufferID)) {
         return;
     }
 
-    if (param0->buffers[param1].selected.waitStep < param0->buffers[param1].selected.wait) {
-        param0->buffers[param1].selected.waitStep++;
+    if (paletteData->buffers[bufferID].selected.waitStep < paletteData->buffers[bufferID].selected.wait) {
+        paletteData->buffers[bufferID].selected.waitStep++;
         return;
-    } else {
-        param0->buffers[param1].selected.waitStep = 0;
     }
 
-    sub_02003504(param0, param1, param2);
+    paletteData->buffers[bufferID].selected.waitStep = 0;
+    ApplyBlendStepToPaletteBuffer(paletteData, bufferID, paletteSize);
 }
 
-static void sub_02003504(PaletteData *param0, u16 param1, u16 param2)
-{
-    u32 v0;
+#define BlendColor(source, target, fraction) ((source) + (((target) - (source)) * (fraction) >> 4))
 
-    for (v0 = 0; v0 < 16; v0++) {
-        if (sub_0200327C(param0->buffers[param1].selected.isOpaque, v0) == 0) {
+#define ColorR(source) ((source) & 0x1F)
+#define ColorG(source) (((source) >> 5) & 0x1F)
+#define ColorB(source) (((source) >> 10) & 0x1F)
+#define RGB(r, g, b)   (((b) << 10) | ((g) << 5) | (r))
+
+static void ApplyBlendStepToPaletteBuffer(PaletteData *paletteData, u16 bufferID, u16 paletteSize)
+{
+    for (u32 i = 0; i < SLOTS_PER_PALETTE; i++) {
+        if (!IsMaskedOn(paletteData->buffers[bufferID].selected.unfadedMask, i)) {
             continue;
         }
 
-        sub_02003560(&param0->buffers[param1].unfaded[v0 * param2], &param0->buffers[param1].faded[v0 * param2], &param0->buffers[param1].selected, param2);
+        ApplyBlendStepToSinglePalette(&paletteData->buffers[bufferID].unfaded[i * paletteSize], &paletteData->buffers[bufferID].faded[i * paletteSize], &paletteData->buffers[bufferID].selected, paletteSize);
     }
 
-    sub_020035EC(param0, param1, &param0->buffers[param1].selected);
+    UpdateFadeBlendStep(paletteData, bufferID, &paletteData->buffers[bufferID].selected);
 }
 
-static void sub_02003560(u16 *param0, u16 *param1, PaletteFadeControl *param2, u32 param3)
+static void ApplyBlendStepToSinglePalette(u16 *unfaded, u16 *faded, PaletteFadeControl *fade, u32 paletteSize)
 {
-    u32 v0;
-    u8 v1, v2, v3;
+    u32 i;
+    u8 r, g, b;
 
-    for (v0 = 0; v0 < param3; v0++) {
-        v1 = ((param0[v0] & 0x1f) + (((param2->nextRGB & 0x1f) - (param0[v0] & 0x1f)) * param2->cur >> 4));
-        v2 = (((param0[v0] >> 5) & 0x1f) + ((((param2->nextRGB >> 5) & 0x1f) - ((param0[v0] >> 5) & 0x1f)) * param2->cur >> 4));
-        v3 = (((param0[v0] >> 10) & 0x1f) + ((((param2->nextRGB >> 10) & 0x1f) - ((param0[v0] >> 10) & 0x1f)) * param2->cur >> 4));
+    for (i = 0; i < paletteSize; i++) {
+        r = BlendColor(ColorR(unfaded[i]), ColorR(fade->target), fade->cur);
+        g = BlendColor(ColorG(unfaded[i]), ColorG(fade->target), fade->cur);
+        b = BlendColor(ColorB(unfaded[i]), ColorB(fade->target), fade->cur);
 
-        param1[v0] = (v3 << 10) | (v2 << 5) | v1;
+        faded[i] = RGB(r, g, b);
     }
 }
 
-static void sub_020035EC(PaletteData *param0, u8 param1, PaletteFadeControl *param2)
+static void UpdateFadeBlendStep(PaletteData *paletteData, u8 bufferID, PaletteFadeControl *fade)
 {
-    s16 v0;
+    s16 next;
 
-    if (param2->cur == param2->end) {
-        if ((param0->selectedBuffers & (1 << param1)) != 0) {
-            param0->selectedBuffers ^= (1 << param1);
+    if (fade->cur == fade->end) {
+        if (paletteData->selectedBuffers & (1 << bufferID)) {
+            paletteData->selectedBuffers ^= (1 << bufferID);
         }
-    } else if (param2->sign == 0) {
-        v0 = param2->cur;
-        v0 += param2->step;
+    } else if (fade->sign == 0) {
+        next = fade->cur;
+        next += fade->step;
 
-        if (v0 > param2->end) {
-            v0 = param2->end;
+        if (next > fade->end) {
+            next = fade->end;
         }
 
-        param2->cur = v0;
+        fade->cur = next;
     } else {
-        v0 = param2->cur;
-        v0 -= param2->step;
+        next = fade->cur;
+        next -= fade->step;
 
-        if (v0 < param2->end) {
-            v0 = param2->end;
+        if (next < fade->end) {
+            next = fade->end;
         }
 
-        param2->cur = v0;
+        fade->cur = next;
     }
 }
 
-void PaletteData_CommitFadedBuffers(PaletteData *param0)
+void PaletteData_CommitFadedBuffers(PaletteData *paletteData)
 {
-    if ((param0->autoTransparent == 0) && (param0->selectedFlag != 1)) {
+    if (paletteData->autoTransparent == FALSE && paletteData->selectedFlag != TRUE) {
         return;
     }
 
-    {
-        int v0;
-
-        for (v0 = 0; v0 < (4 + 10); v0++) {
-            if (param0->autoTransparent == 0) {
-                if ((param0->buffers[v0].faded == NULL) || (sub_0200327C(param0->transparentBits, v0) == 0)) {
-                    continue;
-                }
+    for (int bufferID = PLTTBUF_MAIN_BG; bufferID < PLTTBUF_MAX; bufferID++) {
+        if (paletteData->autoTransparent == 0) {
+            if ((paletteData->buffers[bufferID].faded == NULL) || (IsMaskedOn(paletteData->fadedBuffers, bufferID) == 0)) {
+                continue;
             }
+        }
 
-            DC_FlushRange((void *)param0->buffers[v0].faded, param0->buffers[v0].size);
+        DC_FlushRange(paletteData->buffers[bufferID].faded, paletteData->buffers[bufferID].size);
 
-            switch (v0) {
-            case 0:
-                GX_LoadBGPltt((const void *)param0->buffers[v0].faded, 0, param0->buffers[v0].size);
-                break;
-            case 1:
-                GXS_LoadBGPltt((const void *)param0->buffers[v0].faded, 0, param0->buffers[v0].size);
-                break;
-            case 2:
-                GX_LoadOBJPltt((const void *)param0->buffers[v0].faded, 0, param0->buffers[v0].size);
-                break;
-            case 3:
-                GXS_LoadOBJPltt((const void *)param0->buffers[v0].faded, 0, param0->buffers[v0].size);
-                break;
-            case 4:
-                GX_BeginLoadBGExtPltt();
-                GX_LoadBGExtPltt((const void *)param0->buffers[v0].faded, 0x0, param0->buffers[v0].size);
-                GX_EndLoadBGExtPltt();
-                break;
-            case 5:
-                GX_BeginLoadBGExtPltt();
-                GX_LoadBGExtPltt((const void *)param0->buffers[v0].faded, 0x2000, param0->buffers[v0].size);
-                GX_EndLoadBGExtPltt();
-                break;
-            case 6:
-                GX_BeginLoadBGExtPltt();
-                GX_LoadBGExtPltt((const void *)param0->buffers[v0].faded, 0x4000, param0->buffers[v0].size);
-                GX_EndLoadBGExtPltt();
-                break;
-            case 7:
-                GX_BeginLoadBGExtPltt();
-                GX_LoadBGExtPltt((const void *)param0->buffers[v0].faded, 0x6000, param0->buffers[v0].size);
-                GX_EndLoadBGExtPltt();
-                break;
-            case 8:
-                GXS_BeginLoadBGExtPltt();
-                GXS_LoadBGExtPltt((const void *)param0->buffers[v0].faded, 0x0, param0->buffers[v0].size);
-                GXS_EndLoadBGExtPltt();
-                break;
-            case 9:
-                GXS_BeginLoadBGExtPltt();
-                GXS_LoadBGExtPltt((const void *)param0->buffers[v0].faded, 0x2000, param0->buffers[v0].size);
-                GXS_EndLoadBGExtPltt();
-                break;
-            case 10:
-                GXS_BeginLoadBGExtPltt();
-                GXS_LoadBGExtPltt((const void *)param0->buffers[v0].faded, 0x4000, param0->buffers[v0].size);
-                GXS_EndLoadBGExtPltt();
-                break;
-            case 11:
-                GXS_BeginLoadBGExtPltt();
-                GXS_LoadBGExtPltt((const void *)param0->buffers[v0].faded, 0x6000, param0->buffers[v0].size);
-                GXS_EndLoadBGExtPltt();
-                break;
-            case 12:
-                GX_BeginLoadOBJExtPltt();
-                GX_LoadOBJExtPltt((const void *)param0->buffers[v0].faded, 0, param0->buffers[v0].size);
-                GX_EndLoadOBJExtPltt();
-                break;
-            case 13:
-                GXS_BeginLoadOBJExtPltt();
-                GXS_LoadOBJExtPltt((const void *)param0->buffers[v0].faded, 0, param0->buffers[v0].size);
-                GXS_EndLoadOBJExtPltt();
-            }
+        switch (bufferID) {
+        case PLTTBUF_MAIN_BG:
+            GX_LoadBGPltt(paletteData->buffers[bufferID].faded, 0, paletteData->buffers[bufferID].size);
+            break;
+
+        case PLTTBUF_SUB_BG:
+            GXS_LoadBGPltt(paletteData->buffers[bufferID].faded, 0, paletteData->buffers[bufferID].size);
+            break;
+
+        case PLTTBUF_MAIN_OBJ:
+            GX_LoadOBJPltt(paletteData->buffers[bufferID].faded, 0, paletteData->buffers[bufferID].size);
+            break;
+
+        case PLTTBUF_SUB_OBJ:
+            GXS_LoadOBJPltt(paletteData->buffers[bufferID].faded, 0, paletteData->buffers[bufferID].size);
+            break;
+
+        case PLTTBUF_MAIN_EX_BG_0:
+            GX_BeginLoadBGExtPltt();
+            GX_LoadBGExtPltt(paletteData->buffers[bufferID].faded, 0x0, paletteData->buffers[bufferID].size);
+            GX_EndLoadBGExtPltt();
+            break;
+
+        case PLTTBUF_MAIN_EX_BG_1:
+            GX_BeginLoadBGExtPltt();
+            GX_LoadBGExtPltt(paletteData->buffers[bufferID].faded, 0x2000, paletteData->buffers[bufferID].size);
+            GX_EndLoadBGExtPltt();
+            break;
+
+        case PLTTBUF_MAIN_EX_BG_2:
+            GX_BeginLoadBGExtPltt();
+            GX_LoadBGExtPltt(paletteData->buffers[bufferID].faded, 0x4000, paletteData->buffers[bufferID].size);
+            GX_EndLoadBGExtPltt();
+            break;
+
+        case PLTTBUF_MAIN_EX_BG_3:
+            GX_BeginLoadBGExtPltt();
+            GX_LoadBGExtPltt((const void *)paletteData->buffers[bufferID].faded, 0x6000, paletteData->buffers[bufferID].size);
+            GX_EndLoadBGExtPltt();
+            break;
+
+        case PLTTBUF_SUB_EX_BG_0:
+            GXS_BeginLoadBGExtPltt();
+            GXS_LoadBGExtPltt((const void *)paletteData->buffers[bufferID].faded, 0x0, paletteData->buffers[bufferID].size);
+            GXS_EndLoadBGExtPltt();
+            break;
+
+        case PLTTBUF_SUB_EX_BG_1:
+            GXS_BeginLoadBGExtPltt();
+            GXS_LoadBGExtPltt((const void *)paletteData->buffers[bufferID].faded, 0x2000, paletteData->buffers[bufferID].size);
+            GXS_EndLoadBGExtPltt();
+            break;
+
+        case PLTTBUF_SUB_EX_BG_2:
+            GXS_BeginLoadBGExtPltt();
+            GXS_LoadBGExtPltt((const void *)paletteData->buffers[bufferID].faded, 0x4000, paletteData->buffers[bufferID].size);
+            GXS_EndLoadBGExtPltt();
+            break;
+
+        case PLTTBUF_SUB_EX_BG_3:
+            GXS_BeginLoadBGExtPltt();
+            GXS_LoadBGExtPltt((const void *)paletteData->buffers[bufferID].faded, 0x6000, paletteData->buffers[bufferID].size);
+            GXS_EndLoadBGExtPltt();
+            break;
+
+        case PLTTBUF_MAIN_EX_OBJ:
+            GX_BeginLoadOBJExtPltt();
+            GX_LoadOBJExtPltt((const void *)paletteData->buffers[bufferID].faded, 0, paletteData->buffers[bufferID].size);
+            GX_EndLoadOBJExtPltt();
+            break;
+
+        case PLTTBUF_SUB_EX_OBJ:
+            GXS_BeginLoadOBJExtPltt();
+            GXS_LoadOBJExtPltt((const void *)paletteData->buffers[bufferID].faded, 0, paletteData->buffers[bufferID].size);
+            GXS_EndLoadOBJExtPltt();
         }
     }
 
-    param0->transparentBits = param0->selectedBuffers;
+    paletteData->fadedBuffers = paletteData->selectedBuffers;
 
-    if (param0->transparentBits == 0) {
-        param0->selectedFlag = 0;
+    if (paletteData->fadedBuffers == 0) {
+        paletteData->selectedFlag = 0;
     }
 }
 
-u16 PaletteData_GetSelectedBuffersMask(PaletteData *param0)
+u16 PaletteData_GetSelectedBuffersMask(PaletteData *paletteData)
 {
-    return param0->selectedBuffers;
+    return paletteData->selectedBuffers;
 }
 
-void PaletteData_SetAutoTransparent(PaletteData *param0, int param1)
+void PaletteData_SetAutoTransparent(PaletteData *paletteData, int val)
 {
-    param0->autoTransparent = param1;
+    paletteData->autoTransparent = val;
 }
 
-void PaletteData_SelectAll(PaletteData *param0, u8 param1)
+void PaletteData_SelectAll(PaletteData *paletteData, u8 val)
 {
-    param0->selectedFlag = param1 & 0x1;
-    param0->selectedBuffers = 0xFFFFFFFF;
+    paletteData->selectedFlag = val & 1;
+    paletteData->selectedBuffers = PLTTBUF_ALL_F;
 }
 
-void PaletteData_FillBufferRange(PaletteData *param0, int param1, int param2, u16 param3, u16 param4, u16 param5)
+void PaletteData_FillBufferRange(PaletteData *paletteData, enum PaletteBufferID bufferID, enum PaletteSelector selector, u16 fillVal, u16 start, u16 end)
 {
-    GF_ASSERT(param5 * sizeof(u16) <= param0->buffers[param1].size);
+    GF_ASSERT(end * sizeof(u16) <= paletteData->buffers[bufferID].size);
 
-    if ((param2 == 1) || (param2 == 2)) {
-        MI_CpuFill16(&param0->buffers[param1].unfaded[param4], param3, (param5 - param4) * 2);
+    if (selector == PLTTSEL_UNFADED || selector == PLTTSEL_BOTH) {
+        MI_CpuFill16(&paletteData->buffers[bufferID].unfaded[start], fillVal, (end - start) * 2);
     }
 
-    if ((param2 == 0) || (param2 == 2)) {
-        MI_CpuFill16(&param0->buffers[param1].faded[param4], param3, (param5 - param4) * 2);
+    if (selector == PLTTSEL_FADED || selector == PLTTSEL_BOTH) {
+        MI_CpuFill16(&paletteData->buffers[bufferID].faded[start], fillVal, (end - start) * 2);
     }
 }
 
-u16 PaletteData_GetBufferIndexColor(PaletteData *param0, int param1, int param2, u16 param3)
+u16 PaletteData_GetBufferIndexColor(PaletteData *paletteData, enum PaletteBufferID bufferID, enum PaletteSelector selector, u16 index)
 {
-    if (param2 == 1) {
-        return param0->buffers[param1].unfaded[param3];
+    if (selector == PLTTSEL_UNFADED) {
+        return paletteData->buffers[bufferID].unfaded[index];
     }
 
-    if (param2 == 0) {
-        return param0->buffers[param1].faded[param3];
+    if (selector == PLTTSEL_FADED) {
+        return paletteData->buffers[bufferID].faded[index];
     }
 
     GF_ASSERT(FALSE);
     return 0;
 }
 
-void BlendPalette(const u16 *param0, u16 *param1, u16 param2, u8 param3, u16 param4)
+void BlendPalette(const u16 *src, u16 *dest, u16 size, u8 fraction, u16 target)
 {
-    u16 v0;
-    int v1, v2, v3;
-    int v4, v5, v6;
+    u16 i;
+    int srcR, srcG, srcB;
+    int targetR, targetG, targetB;
 
-    v4 = ((RgbColor *)&param4)->r;
-    v5 = ((RgbColor *)&param4)->g;
-    v6 = ((RgbColor *)&param4)->b;
+    targetR = ((RgbColor *)&target)->r;
+    targetG = ((RgbColor *)&target)->g;
+    targetB = ((RgbColor *)&target)->b;
 
-    for (v0 = 0; v0 < param2; v0++) {
-        v1 = ((RgbColor *)&param0[v0])->r;
-        v2 = ((RgbColor *)&param0[v0])->g;
-        v3 = ((RgbColor *)&param0[v0])->b;
+    for (i = 0; i < size; i++) {
+        srcR = ((RgbColor *)&src[i])->r;
+        srcG = ((RgbColor *)&src[i])->g;
+        srcB = ((RgbColor *)&src[i])->b;
 
-        param1[v0] = (v1 + ((v4 - v1) * param3 >> 4)) | ((v2 + ((v5 - v2) * param3 >> 4)) << 5) | ((v3 + ((v6 - v3) * param3 >> 4)) << 10);
+        dest[i] = BlendColor(srcR, targetR, fraction) | (BlendColor(srcG, targetG, fraction) << 5) | (BlendColor(srcB, targetB, fraction) << 10);
     }
 }
 
-void PaletteData_Blend(PaletteData *param0, int param1, u16 param2, u16 param3, u8 param4, u16 param5)
+void PaletteData_Blend(PaletteData *paletteData, enum PaletteBufferID bufferID, u16 index, u16 size, u8 fraction, u16 target)
 {
-    GF_ASSERT(param0->buffers[param1].unfaded != NULL && param0->buffers[param1].faded != NULL);
-    BlendPalette(&param0->buffers[param1].unfaded[param2], &param0->buffers[param1].faded[param2], param3, param4, param5);
+    GF_ASSERT(paletteData->buffers[bufferID].unfaded != NULL && paletteData->buffers[bufferID].faded != NULL);
+    BlendPalette(&paletteData->buffers[bufferID].unfaded[index], &paletteData->buffers[bufferID].faded[index], size, fraction, target);
 }
 
-void BlendPalettes(const u16 *param0, u16 *param1, u16 param2, u8 param3, u16 param4)
+void BlendPalettes(const u16 *sources, u16 *dests, u16 toBlend, u8 fraction, u16 target)
 {
-    int v0 = 0;
-
-    while (param2) {
-        if (param2 & 1) {
-            BlendPalette(&param0[v0], &param1[v0], 16, param3, param4);
+    int index = 0;
+    while (toBlend) {
+        if (toBlend & 1) {
+            BlendPalette(&sources[index], &dests[index], SLOTS_PER_PALETTE, fraction, target);
         }
 
-        param2 >>= 1;
-        v0 += 16;
+        toBlend >>= 1;
+        index += SLOTS_PER_PALETTE;
     }
 }
 
-void PaletteData_BlendMulti(PaletteData *param0, int param1, u16 param2, u8 param3, u16 param4)
+void PaletteData_BlendMulti(PaletteData *paletteData, enum PaletteBufferID bufferID, u16 toBlend, u8 fraction, u16 target)
 {
-    int v0 = 0;
+    int index = 0;
 
-    GF_ASSERT(param0->buffers[param1].unfaded != NULL && param0->buffers[param1].faded != NULL);
+    GF_ASSERT(paletteData->buffers[bufferID].unfaded != NULL && paletteData->buffers[bufferID].faded != NULL);
 
-    while (param2) {
-        if (param2 & 1) {
-            PaletteData_Blend(param0, param1, v0, 16, param3, param4);
+    while (toBlend) {
+        if (toBlend & 1) {
+            PaletteData_Blend(paletteData, bufferID, index, SLOTS_PER_PALETTE, fraction, target);
         }
 
-        param2 >>= 1;
-        v0 += 16;
+        toBlend >>= 1;
+        index += SLOTS_PER_PALETTE;
     }
 }
 
-void TintPalette(u16 *param0, int param1, int param2, int param3, int param4)
+void TintPalette(u16 *palette, int numColorsToTint, int tintR, int tintG, int tintB)
 {
-    int v0, v1, v2, v3;
-    u32 v4;
+    int i, r, g, b;
+    u32 gray;
 
-    for (v0 = 0; v0 < param1; v0++) {
-        v1 = ((*param0) & 0x1f);
-        v2 = (((*param0) >> 5) & 0x1f);
-        v3 = (((*param0) >> 10) & 0x1f);
+    for (i = 0; i < numColorsToTint; i++) {
+        r = ColorR(*palette);
+        g = ColorG(*palette);
+        b = ColorB(*palette);
 
-        v4 = (((v1) * 76 + (v2) * 151 + (v3) * 29) >> 8);
+        // 0.3 red + 0.59 g + 0.1133 b
+        gray = (76 * r + 151 * g + 29 * b) >> 8;
 
-        v1 = ((u16)((param2) * (v4)) >> 8);
-        v2 = ((u16)((param3) * (v4)) >> 8);
-        v3 = ((u16)((param4) * (v4)) >> 8);
+        r = (u16)(tintR * gray) >> 8;
+        g = (u16)(tintG * gray) >> 8;
+        b = (u16)(tintB * gray) >> 8;
 
-        if (v1 > 31) {
-            v1 = 31;
+        if (r > 31) {
+            r = 31;
         }
 
-        if (v2 > 31) {
-            v2 = 31;
+        if (g > 31) {
+            g = 31;
         }
 
-        if (v3 > 31) {
-            v3 = 31;
+        if (b > 31) {
+            b = 31;
         }
 
-        *param0 = (u16)((v3 << 10) | (v2 << 5) | v1);
-        param0++;
+        *palette = RGB(r, g, b);
+        palette++;
     }
 }
 
-void PaletteData_TintFromFile(PaletteData *param0, u32 param1, u32 param2, u32 param3, int param4, u32 param5, u16 param6, int param7, int param8, int param9)
+void PaletteData_LoadBufferFromFileStartWithTint(PaletteData *paletteData, u32 narcID, u32 narcMemberIdx, u32 heapID, enum PaletteBufferID bufferID, u32 size, u16 start, int r, int g, int b)
 {
-    NNSG2dPaletteData *v0;
-    void *v1;
+    NNSG2dPaletteData *palette;
+    void *ptr = sub_02006F88(narcID, narcMemberIdx, &palette, heapID);
 
-    v1 = sub_02006F88(param1, param2, &v0, param3);
-    GF_ASSERT(v1 != NULL);
+    GF_ASSERT(ptr != NULL);
 
-    if (param5 == 0) {
-        param5 = v0->szByte;
+    if (size == 0) {
+        size = palette->szByte;
     }
 
-    TintPalette(v0->pRawData, 16, param7, param8, param9);
-    PaletteData_LoadBuffer(param0, v0->pRawData, param4, param6, param5);
-    Heap_FreeToHeap(v1);
+    TintPalette(palette->pRawData, SLOTS_PER_PALETTE, r, g, b);
+    PaletteData_LoadBuffer(paletteData, palette->pRawData, bufferID, start, size);
+    Heap_FreeToHeap(ptr);
 }
