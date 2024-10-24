@@ -10,94 +10,91 @@
 static u32 LoadTilesToBgLayer(void *ncgrBuffer, BgConfig *bgConfig, u32 bgLayer, u32 offset, u32 size);
 static void LoadTilemapToBgLayer(void *nscrBuffer, BgConfig *bgConfig, u32 bgLayer, u32 offset, u32 size);
 static u32 LoadObjectTiles(void *ncgrBuffer, enum DSScreen display, u32 offset, u32 size);
-static void LoadPaletteWithSrcOffset(void *nclrBuffer, enum PaletteLoadLocation paletteType, u32 srcOffset, u32 offset, u32 size);
+static void LoadPaletteWithSrcOffset(void *nclrBuffer, enum PaletteLoadLocation loadLocation, u32 srcOffset, u32 offset, u32 size);
 static void LoadPartialPalette(void *nclrBuffer, NNS_G2D_VRAM_TYPE vramType, u32 baseAddr, NNSG2dImagePaletteProxy *paletteProxy);
 static u32 LoadImageMapping(void *ncgrBuffer, enum ImageMappingLayout layout, u32 size, NNS_G2D_VRAM_TYPE vramType, u32 baseAddr, NNSG2dImageProxy *imageProxy);
 static void LoadImageMappingAndSetVramMode(void *ncgrBuffer, enum ImageMappingLayout layout, u32 size, NNS_G2D_VRAM_TYPE vramType, u32 baseAddr, NNSG2dImageProxy *imageProxy);
 static void *GetCharacterData(void *ncgrBuffer, NNSG2dCharacterData **outCharData);
 static void *GetScreenData(void *nscrBuffer, NNSG2dScreenData **outScreenData);
 static void *GetPaletteData(void *nclrBuffer, NNSG2dPaletteData **outPaletteData);
-static void *GetCellBank(void *ncerBuffer, NNSG2dCellDataBank **outCellData);
+static void *GetCellBank(void *ncerBuffer, NNSG2dCellDataBank **outCellBank);
 static void *GetAnimBank(void *nanrBuffer, NNSG2dAnimBankData **outAnimBank);
 
-u32 Graphics_LoadTilesToBgLayer(u32 param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
+u32 Graphics_LoadTilesToBgLayer(u32 narcID, u32 narcMemberIdx, BgConfig *bgConfig, u32 bgLayer, u32 offset, u32 size, BOOL compressed, u32 heapID)
 {
-    void *v0 = LoadMemberFromNARC(param0, param1, param6, param7, 0);
-    return LoadTilesToBgLayer(v0, param2, param3, param4, param5);
+    void *ncgrBuffer = LoadMemberFromNARC(narcID, narcMemberIdx, compressed, heapID, FALSE);
+    return LoadTilesToBgLayer(ncgrBuffer, bgConfig, bgLayer, offset, size);
 }
 
-void Graphics_LoadTilemapToBgLayer(u32 param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
+void Graphics_LoadTilemapToBgLayer(u32 narcID, u32 narcMemberIdx, BgConfig *bgConfig, u32 bgLayer, u32 offset, u32 size, BOOL compressed, u32 heapID)
 {
-    void *v0 = LoadMemberFromNARC(param0, param1, param6, param7, 1);
-    LoadTilemapToBgLayer(v0, param2, param3, param4, param5);
+    void *nscrBuffer = LoadMemberFromNARC(narcID, narcMemberIdx, compressed, heapID, TRUE);
+    LoadTilemapToBgLayer(nscrBuffer, bgConfig, bgLayer, offset, size);
 }
 
-void Graphics_LoadPalette(u32 param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5)
+void Graphics_LoadPalette(u32 narcID, u32 narcMemberIdx, enum PaletteLoadLocation loadLocation, u32 palOffset, u32 size, u32 heapID)
 {
-    Graphics_LoadPaletteWithSrcOffset(param0, param1, param2, 0, param3, param4, param5);
+    Graphics_LoadPaletteWithSrcOffset(narcID, narcMemberIdx, loadLocation, 0, palOffset, size, heapID);
 }
 
-void Graphics_LoadPaletteWithSrcOffset(u32 param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6)
+void Graphics_LoadPaletteWithSrcOffset(u32 narcID, u32 narcMemberIdx, enum PaletteLoadLocation loadLocation, u32 srcOffset, u32 palOffset, u32 size, u32 heapID)
 {
-    void *v0 = LoadMemberFromNARC(param0, param1, 0, param6, 1);
-    LoadPaletteWithSrcOffset(v0, param2, param3, param4, param5);
+    void *nclrBuffer = LoadMemberFromNARC(narcID, narcMemberIdx, FALSE, heapID, TRUE);
+    LoadPaletteWithSrcOffset(nclrBuffer, loadLocation, srcOffset, palOffset, size);
 }
 
-u32 Graphics_LoadObjectTiles(u32 param0, u32 param1, int param2, u32 param3, u32 param4, BOOL param5, u32 param6)
+u32 Graphics_LoadObjectTiles(u32 narcID, u32 narcMemberIdx, enum DSScreen display, u32 offset, u32 size, BOOL compressed, u32 heapID)
 {
-    void *v0 = LoadMemberFromNARC(param0, param1, param5, param6, 1);
-    return LoadObjectTiles(v0, param2, param3, param4);
+    void *ncgrBuffer = LoadMemberFromNARC(narcID, narcMemberIdx, compressed, heapID, TRUE);
+    return LoadObjectTiles(ncgrBuffer, display, offset, size);
 }
 
-void Graphics_LoadPartialPalette(u32 param0, u32 param1, NNS_G2D_VRAM_TYPE param2, u32 param3, u32 param4, NNSG2dImagePaletteProxy *param5)
+void Graphics_LoadPartialPalette(u32 narcID, u32 narcMemberIdx, NNS_G2D_VRAM_TYPE vramType, u32 baseAddr, u32 heapID, NNSG2dImagePaletteProxy *paletteProxy)
 {
-    void *v0 = LoadMemberFromNARC(param0, param1, 0, param4, 1);
-    LoadPartialPalette(v0, param2, param3, param5);
+    void *nclrBuffer = LoadMemberFromNARC(narcID, narcMemberIdx, FALSE, heapID, TRUE);
+    LoadPartialPalette(nclrBuffer, vramType, baseAddr, paletteProxy);
 }
 
-u32 Graphics_LoadImageMapping(u32 param0, u32 param1, BOOL param2, int param3, u32 param4, NNS_G2D_VRAM_TYPE param5, u32 param6, u32 param7, NNSG2dImageProxy *param8)
+u32 Graphics_LoadImageMapping(u32 narcID, u32 narcMemberIdx, BOOL compressed, enum ImageMappingLayout layout, u32 size, NNS_G2D_VRAM_TYPE vramType, u32 baseAddr, u32 heapID, NNSG2dImageProxy *imageProxy)
 {
-    void *v0 = LoadMemberFromNARC(param0, param1, param2, param7, 1);
-    return LoadImageMapping(v0, param3, param4, param5, param6, param8);
+    void *ncgrBuffer = LoadMemberFromNARC(narcID, narcMemberIdx, compressed, heapID, TRUE);
+    return LoadImageMapping(ncgrBuffer, layout, size, vramType, baseAddr, imageProxy);
 }
 
-void Graphics_LoadImageMappingAndSetVramMode(u32 param0, u32 param1, BOOL param2, int param3, u32 param4, NNS_G2D_VRAM_TYPE param5, u32 param6, u32 param7, NNSG2dImageProxy *param8)
+void Graphics_LoadImageMappingAndSetVramMode(u32 narcID, u32 narcMemberIdx, BOOL compressed, enum ImageMappingLayout layout, u32 size, NNS_G2D_VRAM_TYPE vramType, u32 baseAddr, u32 heapID, NNSG2dImageProxy *imageProxy)
 {
-    void *v0 = LoadMemberFromNARC(param0, param1, param2, param7, 1);
-    LoadImageMappingAndSetVramMode(v0, param3, param4, param5, param6, param8);
+    void *ncgrBuffer = LoadMemberFromNARC(narcID, narcMemberIdx, compressed, heapID, TRUE);
+    LoadImageMappingAndSetVramMode(ncgrBuffer, layout, size, vramType, baseAddr, imageProxy);
 }
 
-void *Graphics_GetCharData(u32 param0, u32 param1, BOOL param2, NNSG2dCharacterData **param3, u32 param4)
+void *Graphics_GetCharData(u32 narcID, u32 narcMemberIdx, BOOL compressed, NNSG2dCharacterData **outCharData, u32 heapID)
 {
-    void *v0 = LoadMemberFromNARC(param0, param1, param2, param4, 0);
-
-    return GetCharacterData(v0, param3);
+    void *ncgrBuffer = LoadMemberFromNARC(narcID, narcMemberIdx, compressed, heapID, FALSE);
+    return GetCharacterData(ncgrBuffer, outCharData);
 }
 
-void *Graphics_GetScrnData(u32 param0, u32 param1, BOOL param2, NNSG2dScreenData **param3, u32 param4)
+void *Graphics_GetScrnData(u32 narcID, u32 narcMemberIdx, BOOL compressed, NNSG2dScreenData **outScreenData, u32 heapID)
 {
-    void *v0 = LoadMemberFromNARC(param0, param1, param2, param4, 0);
-    return GetScreenData(v0, param3);
+    void *nscrBuffer = LoadMemberFromNARC(narcID, narcMemberIdx, compressed, heapID, FALSE);
+    return GetScreenData(nscrBuffer, outScreenData);
 }
 
-void *Graphics_GetPlttData(u32 param0, u32 param1, NNSG2dPaletteData **param2, u32 param3)
+void *Graphics_GetPlttData(u32 narcID, u32 narcMemberIdx, NNSG2dPaletteData **outPaletteData, u32 heapID)
 {
-    void *v0 = LoadMemberFromNARC(param0, param1, 0, param3, 0);
-    return GetPaletteData(v0, param2);
+    void *nclrBuffer = LoadMemberFromNARC(narcID, narcMemberIdx, FALSE, heapID, FALSE);
+    return GetPaletteData(nclrBuffer, outPaletteData);
 }
 
-void *Graphics_GetCellBank(u32 param0, u32 param1, BOOL param2, NNSG2dCellDataBank **param3, u32 param4)
+void *Graphics_GetCellBank(u32 narcID, u32 narcMemberIdx, BOOL compressed, NNSG2dCellDataBank **outCellBank, u32 heapID)
 {
-    void *v0;
-
-    v0 = LoadMemberFromNARC(param0, param1, param2, param4, 0);
-    return GetCellBank(v0, param3);
+    void *ncerBuffer = LoadMemberFromNARC(narcID, narcMemberIdx, compressed, heapID, FALSE);
+    return GetCellBank(ncerBuffer, outCellBank);
 }
 
-void *Graphics_GetAnimBank(u32 param0, u32 param1, BOOL param2, NNSG2dAnimBankData **param3, u32 param4)
+void *Graphics_GetAnimBank(u32 narcID, u32 narcMemberIdx, BOOL compressed, NNSG2dAnimBankData **outAnimBank, u32 heapID)
 {
-    void *v0 = LoadMemberFromNARC(param0, param1, param2, param4, 0);
-    return GetAnimBank(v0, param3);
+    void *nanrBuffer = LoadMemberFromNARC(narcID, narcMemberIdx, compressed, heapID, FALSE);
+    return GetAnimBank(nanrBuffer, outAnimBank);
 }
 
 void *LoadCompressedMemberFromNARC(u32 narcID, u32 narcMemberIdx, u32 heapID)
@@ -175,71 +172,69 @@ void *LoadMemberFromNARC_OutFileSize(u32 narcID, u32 narcMemberIdx, BOOL compres
     return data;
 }
 
-u32 Graphics_LoadTilesToBgLayerFromOpenNARC(NARC *param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
+u32 Graphics_LoadTilesToBgLayerFromOpenNARC(NARC *narc, u32 narcMemberIdx, BgConfig *bgConfig, u32 bgLayer, u32 offset, u32 size, BOOL compressed, u32 heapID)
 {
-    void *v0 = LoadMemberFromOpenNARC(param0, param1, param6, param7, 0);
-    return LoadTilesToBgLayer(v0, param2, param3, param4, param5);
+    void *ncgrBuffer = LoadMemberFromOpenNARC(narc, narcMemberIdx, compressed, heapID, FALSE);
+    return LoadTilesToBgLayer(ncgrBuffer, bgConfig, bgLayer, offset, size);
 }
 
-void Graphics_LoadTilemapToBgLayerFromOpenNARC(NARC *param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
+void Graphics_LoadTilemapToBgLayerFromOpenNARC(NARC *narc, u32 narcMemberIdx, BgConfig *bgConfig, u32 bgLayer, u32 offset, u32 size, BOOL compressed, u32 heapID)
 {
-    void *v0 = LoadMemberFromOpenNARC(param0, param1, param6, param7, 1);
-    LoadTilemapToBgLayer(v0, param2, param3, param4, param5);
+    void *nscrBuffer = LoadMemberFromOpenNARC(narc, narcMemberIdx, compressed, heapID, TRUE);
+    LoadTilemapToBgLayer(nscrBuffer, bgConfig, bgLayer, offset, size);
 }
 
-void Graphics_LoadPaletteFromOpenNARC(NARC *param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5)
+void Graphics_LoadPaletteFromOpenNARC(NARC *narc, u32 narcMemberIdx, enum PaletteLoadLocation loadLocation, u32 offset, u32 size, u32 heapID)
 {
-    Graphics_LoadPaletteWithSrcOffsetFromOpenNARC(param0, param1, param2, 0, param3, param4, param5);
+    Graphics_LoadPaletteWithSrcOffsetFromOpenNARC(narc, narcMemberIdx, loadLocation, FALSE, offset, size, heapID);
 }
 
-void Graphics_LoadPaletteWithSrcOffsetFromOpenNARC(NARC *param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6)
+void Graphics_LoadPaletteWithSrcOffsetFromOpenNARC(NARC *narc, u32 narcMemberIdx, enum PaletteLoadLocation loadLocation, u32 srcOffset, u32 offset, u32 size, u32 heapID)
 {
-    void *v0 = LoadMemberFromOpenNARC(param0, param1, 0, param6, 1);
-    LoadPaletteWithSrcOffset(v0, param2, param3, param4, param5);
+    void *nclrBuffer = LoadMemberFromOpenNARC(narc, narcMemberIdx, FALSE, heapID, TRUE);
+    LoadPaletteWithSrcOffset(nclrBuffer, loadLocation, srcOffset, offset, size);
 }
 
-void Graphics_LoadPartialPaletteFromOpenNARC(NARC *param0, u32 param1, NNS_G2D_VRAM_TYPE param2, u32 param3, u32 param4, NNSG2dImagePaletteProxy *param5)
+void Graphics_LoadPartialPaletteFromOpenNARC(NARC *narc, u32 narcMemberIdx, NNS_G2D_VRAM_TYPE vramType, u32 baseAddr, u32 heapID, NNSG2dImagePaletteProxy *paletteProxy)
 {
-    void *v0 = LoadMemberFromOpenNARC(param0, param1, 0, param4, 1);
-    LoadPartialPalette(v0, param2, param3, param5);
+    void *nclrBuffer = LoadMemberFromOpenNARC(narc, narcMemberIdx, FALSE, heapID, TRUE);
+    LoadPartialPalette(nclrBuffer, vramType, baseAddr, paletteProxy);
 }
 
-u32 Graphics_LoadImageMappingFromOpenNARC(NARC *param0, u32 param1, BOOL param2, int param3, u32 param4, NNS_G2D_VRAM_TYPE param5, u32 param6, u32 param7, NNSG2dImageProxy *param8)
+u32 Graphics_LoadImageMappingFromOpenNARC(NARC *narc, u32 narcMemberIdx, BOOL compressed, enum ImageMappingLayout layout, u32 size, NNS_G2D_VRAM_TYPE vramType, u32 baseAddr, u32 heapID, NNSG2dImageProxy *imageProxy)
 {
-    void *v0 = LoadMemberFromOpenNARC(param0, param1, param2, param7, 1);
-    return LoadImageMapping(v0, param3, param4, param5, param6, param8);
+    void *ncgrBuffer = LoadMemberFromOpenNARC(narc, narcMemberIdx, compressed, heapID, TRUE);
+    return LoadImageMapping(ncgrBuffer, layout, size, vramType, baseAddr, imageProxy);
 }
 
-void *Graphics_GetCharDataFromOpenNARC(NARC *param0, u32 param1, BOOL param2, NNSG2dCharacterData **param3, u32 param4)
+void *Graphics_GetCharDataFromOpenNARC(NARC *narc, u32 narcMemberIdx, BOOL compressed, NNSG2dCharacterData **outCharData, u32 heapID)
 {
-    void *v0 = LoadMemberFromOpenNARC(param0, param1, param2, param4, 0);
-    return GetCharacterData(v0, param3);
+    void *ncgrBuffer = LoadMemberFromOpenNARC(narc, narcMemberIdx, compressed, heapID, FALSE);
+    return GetCharacterData(ncgrBuffer, outCharData);
 }
 
-void *Graphics_GetScrnDataFromOpenNARC(NARC *param0, u32 param1, BOOL param2, NNSG2dScreenData **param3, u32 param4)
+void *Graphics_GetScrnDataFromOpenNARC(NARC *narc, u32 narcMemberIdx, BOOL compressed, NNSG2dScreenData **outScreenData, u32 heapID)
 {
-    void *v0 = LoadMemberFromOpenNARC(param0, param1, param2, param4, 0);
-    return GetScreenData(v0, param3);
+    void *nscrBuffer = LoadMemberFromOpenNARC(narc, narcMemberIdx, compressed, heapID, FALSE);
+    return GetScreenData(nscrBuffer, outScreenData);
 }
 
-void *Graphics_GetPlttDataFromOpenNARC(NARC *param0, u32 param1, NNSG2dPaletteData **param2, u32 param3)
+void *Graphics_GetPlttDataFromOpenNARC(NARC *narc, u32 narcMemberIdx, NNSG2dPaletteData **outPaletteData, u32 heapID)
 {
-    void *v0 = LoadMemberFromOpenNARC(param0, param1, 0, param3, 0);
-    return GetPaletteData(v0, param2);
+    void *nclrBuffer = LoadMemberFromOpenNARC(narc, narcMemberIdx, FALSE, heapID, FALSE);
+    return GetPaletteData(nclrBuffer, outPaletteData);
 }
 
-void *Graphics_GetCellBankFromOpenNARC(NARC *param0, u32 param1, BOOL param2, NNSG2dCellDataBank **param3, u32 param4)
+void *Graphics_GetCellBankFromOpenNARC(NARC *narc, u32 narcMemberIdx, BOOL compressed, NNSG2dCellDataBank **outCellBank, u32 heapID)
 {
-    void *v0;
-
-    v0 = LoadMemberFromOpenNARC(param0, param1, param2, param4, 0);
-    return GetCellBank(v0, param3);
+    void *ncerBuffer = LoadMemberFromOpenNARC(narc, narcMemberIdx, compressed, heapID, 0);
+    return GetCellBank(ncerBuffer, outCellBank);
 }
 
-void *Graphics_GetAnimBankFromOpenNARC(NARC *param0, u32 param1, BOOL param2, NNSG2dAnimBankData **param3, u32 param4)
+void *Graphics_GetAnimBankFromOpenNARC(NARC *narc, u32 narcMemberIdx, BOOL compressed, NNSG2dAnimBankData **outAnimBank, u32 heapID)
 {
-    void *v0 = LoadMemberFromOpenNARC(param0, param1, param2, param4, 0);
-    return GetAnimBank(v0, param3);
+    void *nanrBuffer = LoadMemberFromOpenNARC(narc, narcMemberIdx, compressed, heapID, 0);
+    return GetAnimBank(nanrBuffer, outAnimBank);
 }
 
 void *LoadMemberFromOpenNARC(NARC *narc, u32 narcMemberIdx, BOOL compressed, u32 heapID, BOOL allocAtEnd)
@@ -523,10 +518,10 @@ static void *GetPaletteData(void *nclrBuffer, NNSG2dPaletteData **outPaletteData
     return nclrBuffer;
 }
 
-static void *GetCellBank(void *ncerBuffer, NNSG2dCellDataBank **outCellData)
+static void *GetCellBank(void *ncerBuffer, NNSG2dCellDataBank **outCellBank)
 {
     if (ncerBuffer != NULL) {
-        if (NNS_G2dGetUnpackedCellBank(ncerBuffer, outCellData) == 0) {
+        if (NNS_G2dGetUnpackedCellBank(ncerBuffer, outCellBank) == 0) {
             Heap_FreeToHeap(ncerBuffer);
             return NULL;
         }
