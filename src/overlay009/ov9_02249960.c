@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_02027860_decl.h"
 #include "struct_decls/struct_02039E30_decl.h"
@@ -2661,7 +2660,7 @@ static void ov9_0224AEE4(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224B064 
         {
             NNSG2dPaletteData *v1;
 
-            v1 = SpriteResource_GetPaletteData(param1->unk_1BC[0]);
+            v1 = SpriteResource_GetPaletteFade(param1->unk_1BC[0]);
             {
                 int v2 = 0;
                 UnkStruct_ov9_0224ADC0 *v3 = &param0->unk_1D00;

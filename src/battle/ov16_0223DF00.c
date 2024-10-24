@@ -14,7 +14,6 @@
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
@@ -55,6 +54,7 @@
 #include "heap.h"
 #include "item.h"
 #include "message.h"
+#include "palette.h"
 #include "party.h"
 #include "pokemon.h"
 #include "poketch_data.h"
@@ -64,7 +64,6 @@
 #include "text.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
-#include "unk_02002F38.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
@@ -1135,7 +1134,7 @@ void ov16_0223EF8C(BattleSystem *param0)
     param0->unk_220 = Heap_AllocFromHeap(5, 0x200);
 
     MI_CpuCopy32((void *)(HW_BG_VRAM + 0x10000), param0->unk_21C, 0x10000);
-    MI_CpuCopy32(sub_02003164(param0->unk_28, 0), param0->unk_220, HW_BG_PLTT_SIZE);
+    MI_CpuCopy32(PaletteData_GetUnfadedBuffer(param0->unk_28, 0), param0->unk_220, HW_BG_PLTT_SIZE);
 
     v7 = G2_GetOBJCharPtr();
     v0 = SpriteActor_ImageProxy(param0->unk_17C[1].unk_00->unk_00);

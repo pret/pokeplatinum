@@ -6,7 +6,6 @@
 #include "consts/game_records.h"
 
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay061/struct_ov61_0222C3B0.h"
@@ -23,6 +22,7 @@
 #include "font.h"
 #include "game_options.h"
 #include "game_records.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "inlines.h"
@@ -37,7 +37,6 @@
 #include "text.h"
 #include "unk_02001AF4.h"
 #include "unk_020041CC.h"
-#include "unk_02006E3C.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
@@ -588,12 +587,12 @@ static void ov67_0225CE30(UnkStruct_ov67_0225D154 *param0, u32 param1)
     }
 
     {
-        sub_02006E84(92, 3, 0, 0, 11 * 32, param1);
-        sub_02006E84(92, 3, 4, 0, 11 * 32, param1);
-        sub_02006E3C(92, 2, param0->unk_0C, Unk_ov67_0225D3F4[0], 0, 0, 0, param1);
-        sub_02006E3C(92, 10, param0->unk_0C, Unk_ov67_0225D3F4[2], 0, 0, 0, param1);
-        sub_02006E60(92, 5, param0->unk_0C, Unk_ov67_0225D3F4[0], 0, 0, 0, param1);
-        sub_02006E60(92, 11, param0->unk_0C, Unk_ov67_0225D3F4[2], 0, 0, 0, param1);
+        Graphics_LoadPalette(92, 3, 0, 0, 11 * 32, param1);
+        Graphics_LoadPalette(92, 3, 4, 0, 11 * 32, param1);
+        Graphics_LoadTilesToBgLayer(92, 2, param0->unk_0C, Unk_ov67_0225D3F4[0], 0, 0, 0, param1);
+        Graphics_LoadTilesToBgLayer(92, 10, param0->unk_0C, Unk_ov67_0225D3F4[2], 0, 0, 0, param1);
+        Graphics_LoadTilemapToBgLayer(92, 5, param0->unk_0C, Unk_ov67_0225D3F4[0], 0, 0, 0, param1);
+        Graphics_LoadTilemapToBgLayer(92, 11, param0->unk_0C, Unk_ov67_0225D3F4[2], 0, 0, 0, param1);
     }
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);

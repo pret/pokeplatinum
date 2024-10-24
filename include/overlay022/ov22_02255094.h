@@ -4,14 +4,13 @@
 #include <nitro/fx/fx.h>
 #include <nnsys.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-
 #include "overlay022/struct_ov22_022550D4.h"
 #include "overlay022/struct_ov22_02255CB8.h"
 #include "overlay022/struct_ov22_0225A0E4.h"
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "narc.h"
 
 void ov22_02255094(void);
 void ov22_022550B4(void);

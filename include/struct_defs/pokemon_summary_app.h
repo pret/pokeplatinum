@@ -6,7 +6,6 @@
 #include "struct_decls/cell_actor_data.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
@@ -19,6 +18,7 @@
 #include "camera.h"
 #include "cell_actor.h"
 #include "message.h"
+#include "narc.h"
 #include "strbuf.h"
 #include "string_template.h"
 

@@ -1,9 +1,9 @@
 #ifndef POKEPLATINUM_STRUCT_OV62_0223E01C_SUB2_H
 #define POKEPLATINUM_STRUCT_OV62_0223E01C_SUB2_H
 
-#include "struct_decls/struct_02006C24_decl.h"
-
 #include "overlay062/struct_ov62_0223E01C_sub1_sub1.h"
+
+#include "narc.h"
 
 typedef struct {
     NARC *unk_00;

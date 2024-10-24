@@ -3,15 +3,14 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-
 #include "overlay063/struct_ov63_0222CC3C.h"
 
 #include "easy3d.h"
 #include "easy3d_object.h"
+#include "graphics.h"
 #include "heap.h"
+#include "narc.h"
 #include "resource_collection.h"
-#include "unk_02006E3C.h"
 #include "unk_0201CED8.h"
 
 void ov70_0225C700(const UnkStruct_ov63_0222CC3C *param0, VecFx32 *param1)
@@ -36,7 +35,7 @@ void ov70_0225C730(void **param0, NARC *param1, u32 param2, u32 param3)
     NNSGfdPlttKey v4;
     NNSG3dResTex *v5;
 
-    v1 = sub_0200723C(param1, param2, 0, param3, 1);
+    v1 = LoadMemberFromOpenNARC(param1, param2, 0, param3, 1);
 
     {
         v5 = NNS_G3dGetTex(v1);

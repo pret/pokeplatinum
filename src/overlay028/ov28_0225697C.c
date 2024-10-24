@@ -13,9 +13,9 @@
 #include "overlay028/struct_ov28_0225697C_decl.h"
 
 #include "bg_window.h"
+#include "graphics.h"
 #include "heap.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
 
 struct UnkStruct_ov28_0225697C_t {
     const UnkStruct_ov28_0225697C_1 *unk_00;
@@ -542,8 +542,8 @@ static void ov28_02256A08(SysTask *param0, void *param1)
     v3 = ov25_0225523C(param1);
 
     Bg_InitFromTemplate(v3->unk_04, 6, &v0, 0);
-    sub_02006E3C(12, 16, v3->unk_04, 6, 0, 0, 1, 8);
-    sub_02006E60(12, 17, v3->unk_04, 6, 0, 0, 1, 8);
+    Graphics_LoadTilesToBgLayer(12, 16, v3->unk_04, 6, 0, 0, 1, 8);
+    Graphics_LoadTilemapToBgLayer(12, 17, v3->unk_04, 6, 0, 0, 1, 8);
 
     ov28_02256AA4(v3);
     ov25_022546B8(0, 0);

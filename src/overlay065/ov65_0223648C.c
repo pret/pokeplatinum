@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0207DE04.h"
 #include "struct_defs/struct_0207DFAC.h"
@@ -33,6 +32,7 @@
 #include "font.h"
 #include "game_options.h"
 #include "game_overlay.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "journal.h"
@@ -48,7 +48,6 @@
 #include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A784.h"
 #include "unk_0200DA60.h"
@@ -712,16 +711,16 @@ static void ov65_02236840(UnkStruct_ov65_02236840 *param0, u32 param1)
 
     v0 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, param1);
 
-    sub_02007130(v0, 13, 0, 5 * 32, 1 * 32, param1);
-    sub_020070E8(v0, 12, param0->unk_00, 2, 0 * 32, (24 * 2) * 32, 0, param1);
+    Graphics_LoadPaletteFromOpenNARC(v0, 13, 0, 5 * 32, 1 * 32, param1);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 12, param0->unk_00, 2, 0 * 32, (24 * 2) * 32, 0, param1);
 
-    param0->unk_244 = sub_020071D0(v0, 14, 0, &param0->unk_248, param1);
+    param0->unk_244 = Graphics_GetScrnDataFromOpenNARC(v0, 14, 0, &param0->unk_248, param1);
 
     {
-        param0->unk_250 = sub_020071EC(v0, 44, &param0->unk_254, param1);
+        param0->unk_250 = Graphics_GetPlttDataFromOpenNARC(v0, 44, &param0->unk_254, param1);
 
-        sub_020070E8(v0, 45, param0->unk_00, 0, 0, 0, 0, param1);
-        sub_0200710C(v0, 46, param0->unk_00, 0, 0, 0, 0, param1);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 45, param0->unk_00, 0, 0, 0, 0, param1);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 46, param0->unk_00, 0, 0, 0, 0, param1);
         ov65_022372EC(param0, 0);
 
         param0->unk_258 = 3;

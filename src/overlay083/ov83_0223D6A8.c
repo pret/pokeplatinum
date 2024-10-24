@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02015064_decl.h"
 #include "struct_decls/struct_02015128_decl.h"
 #include "struct_decls/struct_020151A4_decl.h"
@@ -41,6 +40,7 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "font.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "narc.h"
@@ -51,7 +51,6 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200DA60.h"
@@ -132,7 +131,7 @@ static UnkStruct_02015128 *ov83_0223D6BC(UnkStruct_02015064 *param0, u32 param1,
     NNSG2dCharacterData *v2;
     UnkStruct_02015128 *v3;
 
-    v1 = sub_020071B4(param3, param1, 0, &v2, param2);
+    v1 = Graphics_GetCharDataFromOpenNARC(param3, param1, 0, &v2, param2);
     v0.unk_00 = param0;
     v0.unk_04 = v2;
     v3 = sub_02015128(&v0);
@@ -149,7 +148,7 @@ static UnkStruct_020151A4 *ov83_0223D6EC(UnkStruct_02015064 *param0, u32 param1,
     NNSG2dPaletteData *v2;
     UnkStruct_020151A4 *v3;
 
-    v1 = sub_020071EC(param3, param1, &v2, param2);
+    v1 = Graphics_GetPlttDataFromOpenNARC(param3, param1, &v2, param2);
     v0.unk_00 = param0;
     v0.unk_04 = v2;
     v0.unk_08 = 1;
@@ -649,8 +648,8 @@ static void ov83_0223E15C(UnkStruct_ov83_0223E138 *param0, u32 param1, NARC *par
 {
     int v0;
 
-    sub_02007130(param2, 1, 4, 2 * 32, 2 * 32, param1);
-    sub_020070E8(param2, 0, param0->unk_04, 5, 0, 0, 0, param1);
+    Graphics_LoadPaletteFromOpenNARC(param2, 1, 4, 2 * 32, 2 * 32, param1);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param2, 0, param0->unk_04, 5, 0, 0, 0, param1);
 
     if (param0->unk_14 == 1) {
         v0 = 2;
@@ -658,12 +657,12 @@ static void ov83_0223E15C(UnkStruct_ov83_0223E138 *param0, u32 param1, NARC *par
         v0 = 3;
     }
 
-    param0->unk_20 = sub_020071D0(param2, v0, 0, &param0->unk_24, param1);
+    param0->unk_20 = Graphics_GetScrnDataFromOpenNARC(param2, v0, 0, &param0->unk_24, param1);
 
     Bg_LoadToTilemapRect(param0->unk_04, 5, param0->unk_24->rawData, 0, 0, param0->unk_24->screenWidth / 8, param0->unk_24->screenHeight / 8);
     Bg_ChangeTilemapRectPalette(param0->unk_04, 5, 0, 0, param0->unk_24->screenWidth / 8, param0->unk_24->screenHeight / 8, 2 + 1);
 
-    param0->unk_28 = sub_020071D0(param2, 4, 0, &param0->unk_2C, param1);
+    param0->unk_28 = Graphics_GetScrnDataFromOpenNARC(param2, 4, 0, &param0->unk_2C, param1);
 
     Bg_ScheduleTilemapTransfer(param0->unk_04, 5);
 }
@@ -1086,10 +1085,10 @@ static void ov83_0223E844(UnkStruct_ov83_0223E824 *param0, u32 param1, NARC *par
     void *v0;
     NNSG2dScreenData *v1;
 
-    sub_02007130(param2, 6, 0, 4 * 32, 1 * 32, param1);
-    sub_020070E8(param2, 5, param0->unk_04, 1, 0, 0, 0, param1);
+    Graphics_LoadPaletteFromOpenNARC(param2, 6, 0, 4 * 32, 1 * 32, param1);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param2, 5, param0->unk_04, 1, 0, 0, 0, param1);
 
-    v0 = sub_020071D0(param2, 7, 0, &v1, param1);
+    v0 = Graphics_GetScrnDataFromOpenNARC(param2, 7, 0, &v1, param1);
 
     Bg_LoadToTilemapRect(param0->unk_04, 1, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Bg_ChangeTilemapRectPalette(param0->unk_04, 1, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8, 4);

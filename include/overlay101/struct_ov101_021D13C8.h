@@ -3,7 +3,6 @@
 
 #include <nnsys.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_020711EC_decl.h"
 
 #include "overlay101/struct_ov101_021D148C.h"
@@ -17,6 +16,7 @@
 
 #include "bg_window.h"
 #include "enums.h"
+#include "narc.h"
 
 typedef struct UnkStruct_ov101_021D13C8_t {
     u32 unk_00;

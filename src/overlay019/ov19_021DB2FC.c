@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/struct_ov19_021DB6F0.h"
@@ -13,13 +11,14 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "enums.h"
+#include "graphics.h"
 #include "heap.h"
 #include "message.h"
+#include "narc.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
 #include "unk_02001AF4.h"
-#include "unk_02006E3C.h"
 #include "unk_0200DA60.h"
 
 static void ov19_021DB4B4(BgConfig *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5);
@@ -43,7 +42,7 @@ BOOL ov19_021DB2FC(UnkStruct_ov19_021DB6F0 *param0, UnkStruct_ov19_021D61B0 *par
     param0->unk_1C = 0;
     param0->unk_1E = 0;
     param0->unk_18 = NULL;
-    param0->unk_24 = sub_020071B4(param8, 25, 1, &(param0->unk_28), 10);
+    param0->unk_24 = Graphics_GetCharDataFromOpenNARC(param8, 25, 1, &(param0->unk_28), 10);
 
     if ((param0->unk_24 == NULL) || (param0->unk_30 == NULL) || (param0->unk_34 == NULL)) {
         return 0;
@@ -99,8 +98,8 @@ void ov19_021DB3C4(UnkStruct_ov19_021DB6F0 *param0)
         }
     }
 
-    sub_02006E3C(38, 0, param0->unk_00, 1, 512, 0, 0, 10);
-    sub_02006E84(38, 24, 0, 7 * 0x20, 0x20, 10);
+    Graphics_LoadTilesToBgLayer(38, 0, param0->unk_00, 1, 512, 0, 0, 10);
+    Graphics_LoadPalette(38, 24, 0, 7 * 0x20, 0x20, 10);
     sub_0200DD0C(param0->unk_00, 1, 521, 8, param0->unk_20, 10);
 }
 

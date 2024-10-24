@@ -5,7 +5,6 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_defs/struct_02013A04_t.h"
@@ -21,6 +20,7 @@
 #include "easy3d.h"
 #include "font.h"
 #include "game_options.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
@@ -35,7 +35,6 @@
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02013A04.h"
@@ -736,7 +735,7 @@ static void ov92_021D1530(UnkStruct_ov92_021D1B24 *param0)
         u32 v3;
         int v4, v5;
 
-        v1 = sub_02007250(v0, 18, 0, param0->unk_00, 0, &v3);
+        v1 = LoadMemberFromOpenNARC_OutFileSize(v0, 18, 0, param0->unk_00, 0, &v3);
         v2 = (UnkStruct_ov92_021D1530 *)v1;
         v5 = v3 / 6;
 
@@ -764,7 +763,7 @@ static void ov92_021D1530(UnkStruct_ov92_021D1B24 *param0)
 
         while (v12 < v11) {
             v9 = sub_02099764(v12);
-            v6 = sub_02007250(v0, v9, 0, param0->unk_00, 0, &v8);
+            v6 = LoadMemberFromOpenNARC_OutFileSize(v0, v9, 0, param0->unk_00, 0, &v8);
             v7 = (UnkStruct_ov69_0225C980 *)v6;
             v13 = v8 / 4;
 
@@ -920,9 +919,9 @@ static void ov92_021D1888(UnkStruct_ov92_021D1B24 *param0, NARC *param1)
     Bg_InitFromTemplate(param0->unk_B810, 6, &Unk_ov92_021D2970, 0);
     Bg_ClearTilemap(param0->unk_B810, 6);
     Bg_InitFromTemplate(param0->unk_B810, 7, &Unk_ov92_021D298C, 0);
-    sub_020070E8(param1, 5, param0->unk_B810, 7, 0, 0, 0, param0->unk_00);
-    sub_02007130(param1, 6, 4, 0 * (2 * 16), (2 * 16) * 4, param0->unk_00);
-    sub_0200710C(param1, 7, param0->unk_B810, 7, 0, 0, 0, param0->unk_00);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 5, param0->unk_B810, 7, 0, 0, 0, param0->unk_00);
+    Graphics_LoadPaletteFromOpenNARC(param1, 6, 4, 0 * (2 * 16), (2 * 16) * 4, param0->unk_00);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 7, param0->unk_B810, 7, 0, 0, 0, param0->unk_00);
     sub_0200DD0C(param0->unk_B810, 6, (512 - (18 + 12)), 6, Options_Frame(param0->unk_08), param0->unk_00);
     sub_0200DAA4(param0->unk_B810, 6, ((512 - (18 + 12)) - 9), 7, 0, param0->unk_00);
     Font_LoadTextPalette(4, 4 * (2 * 16), param0->unk_00);
@@ -937,9 +936,9 @@ static void ov92_021D1888(UnkStruct_ov92_021D1B24 *param0, NARC *param1)
     Bg_InitFromTemplate(param0->unk_B810, 2, &Unk_ov92_021D2970, 0);
     Bg_ClearTilemap(param0->unk_B810, 2);
     Bg_InitFromTemplate(param0->unk_B810, 3, &Unk_ov92_021D298C, 0);
-    sub_020070E8(param1, 5, param0->unk_B810, 3, 0, 0, 0, param0->unk_00);
-    sub_02007130(param1, 6, 0, 0 * (2 * 16), (2 * 16) * 4, param0->unk_00);
-    sub_0200710C(param1, 7, param0->unk_B810, 3, 0, 0, 0, param0->unk_00);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 5, param0->unk_B810, 3, 0, 0, 0, param0->unk_00);
+    Graphics_LoadPaletteFromOpenNARC(param1, 6, 0, 0 * (2 * 16), (2 * 16) * 4, param0->unk_00);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 7, param0->unk_B810, 3, 0, 0, 0, param0->unk_00);
     sub_0200DAA4(param0->unk_B810, 2, ((512 - (18 + 12)) - 9), 7, 0, param0->unk_00);
     Font_LoadTextPalette(0, 4 * (2 * 16), param0->unk_00);
     Bg_ClearTilesRange(2, 32, 0, param0->unk_00);

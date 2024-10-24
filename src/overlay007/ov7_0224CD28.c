@@ -6,7 +6,6 @@
 #include "consts/game_records.h"
 
 #include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/struct_02081CF4.h"
 
@@ -26,6 +25,7 @@
 #include "font.h"
 #include "game_options.h"
 #include "game_records.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "item.h"
@@ -43,7 +43,6 @@
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_0200A328.h"
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
@@ -486,18 +485,18 @@ static void ov7_0224D474(UnkStruct_ov7_0224D008 *param0)
 
     v0 = NARC_ctor(NARC_INDEX_GRAPHIC__SHOP_GRA, 11);
 
-    sub_020070E8(v0, 0, param0->unk_00, 1, 0, 0, 0, 11);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 0, param0->unk_00, 1, 0, 0, 0, 11);
 
     if ((param0->unk_2A9 == 0) || (param0->unk_2A9 == 3)) {
-        sub_0200710C(v0, 2, param0->unk_00, 1, 0, 0, 0, 11);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 2, param0->unk_00, 1, 0, 0, 0, 11);
     } else {
-        sub_0200710C(v0, 3, param0->unk_00, 1, 0, 0, 0, 11);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 3, param0->unk_00, 1, 0, 0, 0, 11);
     }
 
     if (param0->unk_2A9 == 3) {
-        sub_02007130(v0, 11, 0, 0, 32, 11);
+        Graphics_LoadPaletteFromOpenNARC(v0, 11, 0, 0, 32, 11);
     } else {
-        sub_02007130(v0, 1, 0, 0, 32, 11);
+        Graphics_LoadPaletteFromOpenNARC(v0, 1, 0, 0, 32, 11);
     }
 
     sub_0200DAA4(param0->unk_00, 3, (1 + (18 + 12)), 11, 0, 11);

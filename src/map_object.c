@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02061830_sub1_decl.h"
 #include "struct_defs/struct_02061D3C.h"
 #include "struct_defs/struct_020EDF0C.h"
@@ -28,6 +27,7 @@
 #include "heap.h"
 #include "map_header_data.h"
 #include "map_object_move.h"
+#include "narc.h"
 #include "script_manager.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"

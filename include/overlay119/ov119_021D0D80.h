@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_OV119_021D0D80_H
 #define POKEPLATINUM_OV119_021D0D80_H
 
-#include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_defs/struct_0207C690.h"
 
@@ -11,6 +10,7 @@
 #include "overlay119/struct_ov119_021D1930.h"
 
 #include "bg_window.h"
+#include "palette.h"
 #include "pokemon.h"
 
 void ov119_021D0D80(void);

@@ -5,7 +5,6 @@
 
 #include "consts/game_records.h"
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_020961E8_decl.h"
 #include "struct_defs/struct_0203DE34.h"
 #include "struct_defs/struct_020961E8_t.h"
@@ -24,6 +23,7 @@
 #include "font.h"
 #include "game_options.h"
 #include "game_records.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "journal.h"
@@ -41,7 +41,6 @@
 #include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
@@ -534,7 +533,7 @@ static void ov59_021D1250(UnkStruct_020961E8 *param0, NARC *param1)
     param0->unk_0C.unk_00 = 0;
     param0->unk_0C.unk_08 = 0;
     param0->unk_0C.unk_04 = 0;
-    param0->unk_0C.unk_0C = sub_020071EC(param1, 1, &param0->unk_0C.unk_10, 51);
+    param0->unk_0C.unk_0C = Graphics_GetPlttDataFromOpenNARC(param1, 1, &param0->unk_0C.unk_10, 51);
     param0->unk_4AA8 = 0;
     param0->unk_384 = NULL;
     param0->unk_4AAC = 2;
@@ -571,14 +570,14 @@ static void ov59_021D1388(UnkStruct_020961E8 *param0, NARC *param1)
 {
     BgConfig *v0 = param0->unk_00;
 
-    sub_02007130(param1, 0, 0, 0, 16 * 16 * 2, 51);
-    sub_02006E84(12, 12, 4, 0, 16 * 2, 51);
+    Graphics_LoadPaletteFromOpenNARC(param1, 0, 0, 0, 16 * 16 * 2, 51);
+    Graphics_LoadPalette(12, 12, 4, 0, 16 * 2, 51);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 51);
     Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, 51);
-    sub_02006E3C(12, 10, v0, 6, 0, 0, 1, 51);
-    sub_02006E60(12, 11, v0, 6, 0, 0, 1, 51);
-    sub_020070E8(param1, 2, v0, 1, 0, 32 * 8 * 0x20, 1, 51);
-    sub_0200710C(param1, 3, v0, 1, 0, 32 * 24 * 2, 1, 51);
+    Graphics_LoadTilesToBgLayer(12, 10, v0, 6, 0, 0, 1, 51);
+    Graphics_LoadTilemapToBgLayer(12, 11, v0, 6, 0, 0, 1, 51);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 1, 0, 32 * 8 * 0x20, 1, 51);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 3, v0, 1, 0, 32 * 24 * 2, 1, 51);
     sub_0200DD0C(v0, 0, 1, 10, Options_Frame(param0->unk_08->unk_08), 51);
     sub_0200DAA4(v0, 0, 1 + (18 + 12), 11, 0, 51);
 }
@@ -1650,10 +1649,10 @@ static void ov59_021D26E8(UnkStruct_020961E8 *param0)
 
 static void ov59_021D27FC(UnkStruct_020961E8 *param0, NARC *param1)
 {
-    param0->unk_398[0] = sub_02006F88(104, 8, &(param0->unk_3A0[0]), 51);
-    param0->unk_398[1] = sub_020071EC(param1, 7, &(param0->unk_3A0[1]), 51);
-    param0->unk_388[0] = sub_02006F50(104, 32, 1, &(param0->unk_390[0]), 51);
-    param0->unk_388[1] = sub_020071B4(param1, 9, 1, &(param0->unk_390[1]), 51);
+    param0->unk_398[0] = Graphics_GetPlttData(104, 8, &(param0->unk_3A0[0]), 51);
+    param0->unk_398[1] = Graphics_GetPlttDataFromOpenNARC(param1, 7, &(param0->unk_3A0[1]), 51);
+    param0->unk_388[0] = Graphics_GetCharData(104, 32, 1, &(param0->unk_390[0]), 51);
+    param0->unk_388[1] = Graphics_GetCharDataFromOpenNARC(param1, 9, 1, &(param0->unk_390[1]), 51);
 }
 
 static const u16 Unk_ov59_021D3290[] = {

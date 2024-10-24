@@ -14,15 +14,15 @@
 #include "overlay062/struct_ov62_02233F74.h"
 
 #include "bg_window.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
+#include "palette.h"
 #include "savedata.h"
 #include "strbuf.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_02002F38.h"
-#include "unk_02006E3C.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
@@ -110,9 +110,9 @@ static BOOL ov62_02235EBC(UnkStruct_0208C06C *param0)
             param0->unk_08++;
         }
 
-        sub_02003A2C(param0->unk_14.unk_14, 2, 0xC, v0->unk_08, param0->unk_14.unk_44);
-        sub_02003A2C(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
-        sub_02003A2C(param0->unk_14.unk_14, 1, 0x2, v0->unk_08, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 2, 0xC, v0->unk_08, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0x2, v0->unk_08, param0->unk_14.unk_44);
         break;
     case 1:
         ov62_02234540(param0, 1);
@@ -126,8 +126,8 @@ static BOOL ov62_02235EBC(UnkStruct_0208C06C *param0)
         Bg_SetPriority(5, 3);
         Bg_SetPriority(6, 1);
         Bg_SetPriority(7, 2);
-        sub_020070E8(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
-        sub_020070E8(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
         param0->unk_08++;
         break;
     default:
@@ -199,7 +199,7 @@ static BOOL ov62_0223604C(UnkStruct_0208C06C *param0)
             param0->unk_08++;
         }
 
-        sub_02003A2C(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
         break;
     default:
         ov62_0222FB60(param0, 3);
@@ -358,12 +358,12 @@ static BOOL ov62_022363CC(UnkStruct_0208C06C *param0)
             param0->unk_08++;
         }
 
-        sub_02003A2C(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
         break;
     case 2:
         ov62_022362B8(param0);
         ov62_02231AAC(param0, 296);
-        sub_0200710C(param0->unk_14.unk_00, 84, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, 84, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
         param0->unk_08++;
@@ -377,7 +377,7 @@ static BOOL ov62_022363CC(UnkStruct_0208C06C *param0)
             param0->unk_08++;
         }
 
-        sub_02003A2C(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
         break;
     case 4:
         if (TouchScreen_LocationPressed(&Unk_ov62_02248C14[0])) {
@@ -415,7 +415,7 @@ static BOOL ov62_022363CC(UnkStruct_0208C06C *param0)
             param0->unk_08++;
         }
 
-        sub_02003A2C(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
         break;
     default:
         if (v0->unk_198 == 1) {
@@ -545,7 +545,7 @@ static BOOL ov62_022367B4(UnkStruct_0208C06C *param0)
             param0->unk_08++;
         }
 
-        sub_02003A2C(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
         break;
     case 2:
         ov62_0223376C(param0, 1);
@@ -566,13 +566,13 @@ static BOOL ov62_022367B4(UnkStruct_0208C06C *param0)
         if (ov62_02231664(&v0->unk_08, 0)) {
             ov62_022318E8(param0);
             ov62_02231688(&v0->unk_08);
-            sub_02003A2C(param0->unk_14.unk_14, 2, 0xC, 16, param0->unk_14.unk_44);
+            PaletteData_BlendMulti(param0->unk_14.unk_14, 2, 0xC, 16, param0->unk_14.unk_44);
             ov62_0222FB44(param0, 1, 1, param0->unk_10);
             ov62_0222FB60(param0, 5);
             Heap_FreeToHeap(v0);
         } else {
-            sub_02003A2C(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
-            sub_02003A2C(param0->unk_14.unk_14, 1, 0x2, v0->unk_08, param0->unk_14.unk_44);
+            PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
+            PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0x2, v0->unk_08, param0->unk_14.unk_44);
         }
 
         break;
@@ -627,7 +627,7 @@ static BOOL ov62_02236920(UnkStruct_0208C06C *param0)
             v0->unk_198 = 0;
         }
 
-        sub_02003A2C(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
         break;
     case 4:
         sub_0200F174(0, 1, 1, 0x0, 6, 1, 102);

@@ -5,8 +5,6 @@
 
 #include "struct_decls/battle_system.h"
 #include "struct_decls/font_oam.h"
-#include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
@@ -37,11 +35,14 @@
 #include "core_sys.h"
 #include "enums.h"
 #include "font.h"
+#include "graphics.h"
 #include "heap.h"
 #include "inlines.h"
 #include "message.h"
 #include "message_util.h"
 #include "move_table.h"
+#include "narc.h"
+#include "palette.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "render_text.h"
@@ -51,9 +52,7 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_02002F38.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
 #include "unk_02012744.h"
@@ -1094,7 +1093,7 @@ void *ov16_022687C8(NARC *param0, NARC *param1, BattleSystem *param2, int param3
                 v6 = Unk_ov16_02270264[v5];
             }
 
-            v4 = sub_02006F6C(7, v6, 1, &v3, 5);
+            v4 = Graphics_GetScrnData(7, v6, 1, &v3, 5);
 
             MI_CpuCopy32(v3->rawData, v0->unk_3C[v5], 0x800);
             Heap_FreeToHeap(v4);
@@ -1108,13 +1107,13 @@ void *ov16_022687C8(NARC *param0, NARC *param1, BattleSystem *param2, int param3
         v8 = (BattleSystem_BattleType(param2) & 0x80) ? 340 : 242;
         v0->unk_58 = Heap_AllocFromHeap(5, 0x200);
 
-        PaletteSys_LoadPalette(v1, 7, v8, 5, 1, 0, 0);
+        PaletteData_LoadBufferFromFileStart(v1, 7, v8, 5, 1, 0, 0);
 
         if (Unk_ov16_022704E4[v2].unk_00 != 0xffff) {
-            PaletteSys_LoadPalette(v1, 7, Unk_ov16_022704E4[v2].unk_00, 5, 1, 0x20, 0);
+            PaletteData_LoadBufferFromFileStart(v1, 7, Unk_ov16_022704E4[v2].unk_00, 5, 1, 0x20, 0);
         }
 
-        v7 = sub_02003164(v1, 1);
+        v7 = PaletteData_GetUnfadedBuffer(v1, 1);
         MI_CpuCopy16(v7, v0->unk_58, 0x200);
     }
 
@@ -1155,7 +1154,7 @@ void *ov16_022687C8(NARC *param0, NARC *param1, BattleSystem *param2, int param3
             v15 = 267;
         }
 
-        v14 = sub_02006F88(7, v15, &v13, 5);
+        v14 = Graphics_GetPlttData(7, v15, &v13, 5);
 
         if (BattleSystem_BattleType(param2) & 0x80) {
             MI_CpuCopy16(v13->pRawData, v0->unk_60, 0x40);
@@ -1222,7 +1221,7 @@ void ov16_02268A88(UnkStruct_ov16_02268A14 *param0)
             v5 = 28;
         }
 
-        sub_02006E3C(7, v5, v0, 4, 0, 0x6000, 1, 5);
+        Graphics_LoadTilesToBgLayer(7, v5, v0, 4, 0, 0x6000, 1, 5);
     }
 
     sub_0207C9EC(v1, v2, 20017, 20017);
@@ -1296,17 +1295,17 @@ void ov16_02268C04(NARC *param0, NARC *param1, UnkStruct_ov16_02268A14 *param2, 
             v6 = v0->unk_00;
         }
 
-        sub_020070E8(param0, v6, v3, 4, 0, (0x6000 - (32 * 12 * 0x20)), 1, 5);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param0, v6, v3, 4, 0, (0x6000 - (32 * 12 * 0x20)), 1, 5);
 
         if (param2->unk_66D == 0) {
-            sub_020070E8(param0, 37, v3, 4, ((0x6000 - (32 * 12 * 0x20)) / 0x20), (32 * 12 * 0x20), 1, 5);
+            Graphics_LoadTilesToBgLayerFromOpenNARC(param0, 37, v3, 4, ((0x6000 - (32 * 12 * 0x20)) / 0x20), (32 * 12 * 0x20), 1, 5);
         } else {
-            sub_020070E8(param0, 38, v3, 4, ((0x6000 - (32 * 12 * 0x20)) / 0x20), (32 * 12 * 0x20), 1, 5);
+            Graphics_LoadTilesToBgLayerFromOpenNARC(param0, 38, v3, 4, ((0x6000 - (32 * 12 * 0x20)) / 0x20), (32 * 12 * 0x20), 1, 5);
         }
     }
 
     if (1) {
-        sub_02002FBC(BattleSystem_PaletteSys(param2->unk_00), param2->unk_58, 1, 0, 0x200);
+        PaletteData_LoadBuffer(BattleSystem_PaletteSys(param2->unk_00), param2->unk_58, 1, 0, 0x200);
     }
 
     for (v2 = 0; v2 < 4; v2++) {
@@ -2035,7 +2034,7 @@ static void ov16_02269E94(UnkStruct_ov16_02268A14 *param0, int param1, int param
         NNSG2dScreenData *v3;
         void *v4;
 
-        v4 = sub_02006F6C(7, 46, 1, &v3, 5);
+        v4 = Graphics_GetScrnData(7, 46, 1, &v3, 5);
         MI_CpuCopy32(v3->rawData, param0->unk_3C[6], 0x800);
         Heap_FreeToHeap(v4);
 
@@ -2801,7 +2800,7 @@ void ov16_0226AC98(UnkStruct_ov16_02268A14 *param0, int param1, const UnkStruct_
     for (v4 = 0; v4 < 4; v4++) {
         if ((param2->unk_00[v4] != v0->unk_00.unk_00[v4]) && (param2->unk_00[v4] != 0)) {
             v5 = MoveTable_LoadParam(param2->unk_00[v4], MOVEATTRIBUTE_TYPE);
-            v1 = sub_02006F50(sub_0207C944(), sub_0207C908(v5), 1, &v2, 5);
+            v1 = Graphics_GetCharData(sub_0207C944(), sub_0207C908(v5), 1, &v2, 5);
             MI_CpuCopy32(v2->pRawData, v0->unk_18[v4], v3);
             Heap_FreeToHeap(v1);
         }
@@ -2946,7 +2945,7 @@ static void ov16_0226B088(UnkStruct_ov16_02268A14 *param0, int param1)
 
     for (v1 = param1; v1 < 4; v1++) {
         ov16_0226B31C(param0, &Unk_ov16_0227022C[v1], &Unk_ov16_02270274[v1], 3, 0);
-        sub_02002FBC(v0, &param0->unk_58[0xe * 16], 1, (8 + v1) * 16, 0x20);
+        PaletteData_LoadBuffer(v0, &param0->unk_58[0xe * 16], 1, (8 + v1) * 16, 0x20);
     }
 }
 
@@ -2962,7 +2961,7 @@ static void ov16_0226B0DC(UnkStruct_ov16_02268A14 *param0, int param1)
 
     ov16_0226B31C(param0, &Unk_ov16_022701FC[param1], &Unk_ov16_022702C4[param1], 4, 0);
 
-    sub_02002FBC(v0, &param0->unk_58[0xe * 16], 1, v2[param1] * 16, 0x20);
+    PaletteData_LoadBuffer(v0, &param0->unk_58[0xe * 16], 1, v2[param1] * 16, 0x20);
     Bg_ScheduleTilemapTransfer(v3, 4);
     Bg_FillTilemapRect(v3, 5, (0x6000 / 0x20 - 1), Unk_ov16_022702C4[param1].unk_02, Unk_ov16_022702C4[param1].unk_00, Unk_ov16_022702C4[param1].unk_03 - Unk_ov16_022702C4[param1].unk_02 + 1, Unk_ov16_022702C4[param1].unk_01 - Unk_ov16_022702C4[param1].unk_00 + 1, 17);
     Bg_ScheduleTilemapTransfer(v3, 5);
@@ -3132,9 +3131,9 @@ static void inline_ov16_0226B318_1(SysTask *param0, void *param1)
             v5 = 1;
         }
 
-        sub_020039B0(v3, 1, v1->unk_09 * 16, 16, (v1->unk_04 >> 8) / 2, 0x7fff);
-        sub_020039B0(v3, 1, v1->unk_09 * 16 + 1, 1, v1->unk_04 >> 8, 0x7b1a);
-        sub_020039B0(v3, 1, v1->unk_09 * 16 + 0xa, 1, v1->unk_04 >> 8, 0x4634);
+        PaletteData_Blend(v3, 1, v1->unk_09 * 16, 16, (v1->unk_04 >> 8) / 2, 0x7fff);
+        PaletteData_Blend(v3, 1, v1->unk_09 * 16 + 1, 1, v1->unk_04 >> 8, 0x7b1a);
+        PaletteData_Blend(v3, 1, v1->unk_09 * 16 + 0xa, 1, v1->unk_04 >> 8, 0x4634);
 
         if (v5 == 1) {
             inline_ov16_0226B318_1_sub(v0);
@@ -3179,9 +3178,9 @@ static void inline_ov16_0226B314_1(SysTask *param0, void *param1)
 
         for (v4 = 0; v4 < 4; v4++) {
             if (v6[v4] == 1) {
-                sub_020039B0(v3, 1, Unk_ov16_02270A0C[v4] * 16, 16, (v1->unk_04 >> 8) / 2, 0x7fff);
-                sub_020039B0(v3, 1, Unk_ov16_02270A0C[v4] * 16 + 1, 1, v1->unk_04 >> 8, 0x7b1a);
-                sub_020039B0(v3, 1, Unk_ov16_02270A0C[v4] * 16 + 0xa, 1, v1->unk_04 >> 8, 0x4634);
+                PaletteData_Blend(v3, 1, Unk_ov16_02270A0C[v4] * 16, 16, (v1->unk_04 >> 8) / 2, 0x7fff);
+                PaletteData_Blend(v3, 1, Unk_ov16_02270A0C[v4] * 16 + 1, 1, v1->unk_04 >> 8, 0x7b1a);
+                PaletteData_Blend(v3, 1, Unk_ov16_02270A0C[v4] * 16 + 0xa, 1, v1->unk_04 >> 8, 0x4634);
             }
         }
 
@@ -3713,12 +3712,12 @@ static void ov16_0226BCE4(SysTask *param0, void *param1)
 
     v3 = BattleSystem_PaletteSys(v0->unk_00);
 
-    if (sub_0200384C(v3) != 0) {
+    if (PaletteData_GetSelectedBuffersMask(v3) != 0) {
         return;
     }
 
     {
-        sub_020039B0(v3, 1, 16 * 0 + 1, 1, v0->unk_676 >> 8, 0x7e37);
+        PaletteData_Blend(v3, 1, 16 * 0 + 1, 1, v0->unk_676 >> 8, 0x7e37);
 
         if (v0->unk_674 == 0) {
             v0->unk_676 += 0x200;
@@ -3752,11 +3751,11 @@ static void ov16_0226BD74(SysTask *param0, void *param1)
 
     v1 = BattleSystem_PaletteSys(v0->unk_00);
 
-    if (sub_0200384C(v1) != 0) {
+    if (PaletteData_GetSelectedBuffersMask(v1) != 0) {
         return;
     }
 
-    v2 = sub_0200316C(v1, 1);
+    v2 = PaletteData_GetFadedBuffer(v1, 1);
     v3 = (16 - 8) * 2;
 
     if (gCoreSys.touchHeld && ((v4 == 1) || (v5 == 1))) {
@@ -4584,7 +4583,7 @@ void ov16_0226CEB0(UnkStruct_ov16_02268A14 *param0, int param1)
     GF_ASSERT(param0->unk_66B == 18);
 
     sub_0200DAA4(v0, 5, 0x20, 1, 0, 5);
-    sub_02003070(v1, 1, 1 * 16, 0x20);
+    PaletteData_LoadBufferFromHardware(v1, 1, 1 * 16, 0x20);
 
     {
         int v2 = 0x20, v3 = 1;

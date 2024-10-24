@@ -6,18 +6,18 @@
 #include "bg_window.h"
 #include "core_sys.h"
 #include "font.h"
+#include "graphics.h"
 #include "gx_layers.h"
+#include "hardware_palette.h"
 #include "heap.h"
 #include "message.h"
 #include "overlay_manager.h"
+#include "palette.h"
 #include "strbuf.h"
 #include "text.h"
-#include "unk_02002F38.h"
 #include "unk_020041CC.h"
-#include "unk_02006E3C.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_020241F0.h"
 
 typedef struct {
     int unk_00;
@@ -83,9 +83,9 @@ int ov73_021D3280 (OverlayManager * param0, int * param1)
         GXLayers_TurnBothDispOn();
 
         {
-            u16 * v2 = (u16 *)sub_020241F0();
+            u16 *v2 = (u16 *)GetHardwareMainBgPaletteAddress();
 
-            sub_020039F8(v2, v2, 0xFFFC, 7, 0x0);
+            BlendPalettes(v2, v2, 0xFFFC, 7, 0x0);
             GX_LoadBGPltt((const void *)v2, 0, 16 * 0x20);
         }
 
@@ -239,8 +239,8 @@ static void ov73_021D342C (UnkStruct_ov73_021D342C * param0)
             v4 = 4;
 
             Bg_InitFromTemplate(param0->unk_04, v2, &v6, 0);
-            sub_02006E3C(136, v3, param0->unk_04, v2, 0, 0, 0, param0->unk_00);
-            sub_02006E60(136, v4, param0->unk_04, v2, 0, 0, 0, param0->unk_00);
+            Graphics_LoadTilesToBgLayer(136, v3, param0->unk_04, v2, 0, 0, 0, param0->unk_00);
+            Graphics_LoadTilemapToBgLayer(136, v4, param0->unk_04, v2, 0, 0, 0, param0->unk_00);
         }
         {
             BgTemplate v7 = {
@@ -264,8 +264,8 @@ static void ov73_021D342C (UnkStruct_ov73_021D342C * param0)
             v4 = 5;
 
             Bg_InitFromTemplate(param0->unk_04, v2, &v7, 0);
-            sub_02006E3C(136, v3, param0->unk_04, v2, 0, 0, 0, param0->unk_00);
-            sub_02006E60(136, v4, param0->unk_04, v2, 0, 0, 0, param0->unk_00);
+            Graphics_LoadTilesToBgLayer(136, v3, param0->unk_04, v2, 0, 0, 0, param0->unk_00);
+            Graphics_LoadTilemapToBgLayer(136, v4, param0->unk_04, v2, 0, 0, 0, param0->unk_00);
         }
         {
             BgTemplate v8 = {
@@ -289,12 +289,12 @@ static void ov73_021D342C (UnkStruct_ov73_021D342C * param0)
             v4 = 7;
 
             Bg_InitFromTemplate(param0->unk_04, v2, &v8, 0);
-            sub_02006E3C(136, v3, param0->unk_04, v2, 0, 0, 0, param0->unk_00);
-            sub_02006E60(136, v4, param0->unk_04, v2, 0, 0, 0, param0->unk_00);
+            Graphics_LoadTilesToBgLayer(136, v3, param0->unk_04, v2, 0, 0, 0, param0->unk_00);
+            Graphics_LoadTilemapToBgLayer(136, v4, param0->unk_04, v2, 0, 0, 0, param0->unk_00);
         }
     }
-    sub_02006E84(136, 6, 0, 0, 0, param0->unk_00);
-    sub_02006E9C(136, 9, 0, 0x20 * 2, 0x20 * 2, 0x20 * 14, param0->unk_00);
+    Graphics_LoadPalette(136, 6, 0, 0, 0, param0->unk_00);
+    Graphics_LoadPaletteWithSrcOffset(136, 9, 0, 0x20 * 2, 0x20 * 2, 0x20 * 14, param0->unk_00);
     Font_LoadTextPalette(0, 1 * (2 * 16), param0->unk_00);
     Bg_MaskPalette(0, 0x0);
     Bg_MaskPalette(4, 0x0);

@@ -15,8 +15,8 @@
 #include "heap.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "palette.h"
 #include "strbuf.h"
-#include "unk_02002F38.h"
 #include "unk_0200C6E4.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
@@ -61,13 +61,13 @@ static int sub_020890F4(OverlayManager *param0, int *param1)
 
     v0->unk_2C0.unk_00 = NARC_ctor(NARC_INDEX_ARC__CODEIN_GRA, 101);
     v0->unk_2C0.unk_0C = BgConfig_New(101);
-    v0->unk_2C0.unk_10 = sub_02002F38(101);
+    v0->unk_2C0.unk_10 = PaletteData_New(101);
 
-    sub_02003858(v0->unk_2C0.unk_10, 1);
-    sub_02002F70(v0->unk_2C0.unk_10, 0, 0x200, 101);
-    sub_02002F70(v0->unk_2C0.unk_10, 1, 0x200, 101);
-    sub_02002F70(v0->unk_2C0.unk_10, 2, 0x200, 101);
-    sub_02002F70(v0->unk_2C0.unk_10, 3, 0x200, 101);
+    PaletteData_SetAutoTransparent(v0->unk_2C0.unk_10, 1);
+    PaletteData_AllocBuffer(v0->unk_2C0.unk_10, 0, 0x200, 101);
+    PaletteData_AllocBuffer(v0->unk_2C0.unk_10, 1, 0x200, 101);
+    PaletteData_AllocBuffer(v0->unk_2C0.unk_10, 2, 0x200, 101);
+    PaletteData_AllocBuffer(v0->unk_2C0.unk_10, 3, 0x200, 101);
     sub_0208945C(v0->unk_2C0.unk_0C);
     sub_0208A3F4(v0);
     sub_02089688(v0);
@@ -133,11 +133,11 @@ static int sub_0208927C(OverlayManager *param0, int *param1)
     Bg_FreeTilemapBuffer(v0->unk_2C0.unk_0C, 6);
     Bg_FreeTilemapBuffer(v0->unk_2C0.unk_0C, 7);
     Heap_FreeToHeap(v0->unk_2C0.unk_0C);
-    sub_02002FA0(v0->unk_2C0.unk_10, 0);
-    sub_02002FA0(v0->unk_2C0.unk_10, 1);
-    sub_02002FA0(v0->unk_2C0.unk_10, 2);
-    sub_02002FA0(v0->unk_2C0.unk_10, 3);
-    sub_02002F54(v0->unk_2C0.unk_10);
+    PaletteData_FreeBuffer(v0->unk_2C0.unk_10, 0);
+    PaletteData_FreeBuffer(v0->unk_2C0.unk_10, 1);
+    PaletteData_FreeBuffer(v0->unk_2C0.unk_10, 2);
+    PaletteData_FreeBuffer(v0->unk_2C0.unk_10, 3);
+    PaletteData_Free(v0->unk_2C0.unk_10);
     NARC_dtor(v0->unk_2C0.unk_00);
 
     {
@@ -353,7 +353,7 @@ static void sub_020895CC(void *param0)
 
     sub_0201DCAC();
     sub_0200C800();
-    sub_02003694(v0->unk_2C0.unk_10);
+    PaletteData_CommitFadedBuffers(v0->unk_2C0.unk_10);
     Bg_RunScheduledUpdates(v0->unk_2C0.unk_0C);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);

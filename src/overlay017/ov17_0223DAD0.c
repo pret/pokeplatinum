@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay011/ov11_0221F840.h"
@@ -29,20 +28,20 @@
 #include "font.h"
 #include "game_options.h"
 #include "game_overlay.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "palette.h"
 #include "pokemon.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02002F38.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
@@ -247,13 +246,13 @@ int ov17_0223DAD0(OverlayManager *param0, int *param1)
     v0->unk_14.unk_00 = &v0->unk_00->unk_00;
 
     ov17_0223E458(v0);
-    v0->unk_14.unk_90 = sub_02002F38(23);
+    v0->unk_14.unk_90 = PaletteData_New(23);
 
-    sub_02003858(v0->unk_14.unk_90, 1);
-    sub_02002F70(v0->unk_14.unk_90, 0, 0x200, 23);
-    sub_02002F70(v0->unk_14.unk_90, 1, 0x200, 23);
-    sub_02002F70(v0->unk_14.unk_90, 2, (((16 - 2) * 16) * sizeof(u16)), 23);
-    sub_02002F70(v0->unk_14.unk_90, 3, 0x200, 23);
+    PaletteData_SetAutoTransparent(v0->unk_14.unk_90, 1);
+    PaletteData_AllocBuffer(v0->unk_14.unk_90, 0, 0x200, 23);
+    PaletteData_AllocBuffer(v0->unk_14.unk_90, 1, 0x200, 23);
+    PaletteData_AllocBuffer(v0->unk_14.unk_90, 2, (((16 - 2) * 16) * sizeof(u16)), 23);
+    PaletteData_AllocBuffer(v0->unk_14.unk_90, 3, 0x200, 23);
 
     v0->unk_1050.unk_00 = Heap_AllocFromHeap(23, 0x200);
     ov17_0224CDB4(v0, 1);
@@ -430,11 +429,11 @@ int ov17_0223DF0C(OverlayManager *param0, int *param1)
     sub_020127BC(v0->unk_14.unk_94);
     Font_Free(FONT_SUBSCREEN);
     Heap_FreeToHeap(v0->unk_1050.unk_00);
-    sub_02002FA0(v0->unk_14.unk_90, 0);
-    sub_02002FA0(v0->unk_14.unk_90, 1);
-    sub_02002FA0(v0->unk_14.unk_90, 2);
-    sub_02002FA0(v0->unk_14.unk_90, 3);
-    sub_02002F54(v0->unk_14.unk_90);
+    PaletteData_FreeBuffer(v0->unk_14.unk_90, 0);
+    PaletteData_FreeBuffer(v0->unk_14.unk_90, 1);
+    PaletteData_FreeBuffer(v0->unk_14.unk_90, 2);
+    PaletteData_FreeBuffer(v0->unk_14.unk_90, 3);
+    PaletteData_Free(v0->unk_14.unk_90);
     Strbuf_Free(v0->unk_14.unk_8C);
     StringTemplate_Free(v0->unk_14.unk_88);
     MessageLoader_Free(v0->unk_14.unk_84);
@@ -498,7 +497,7 @@ static void ov17_0223E09C(void *param0)
 
     sub_0201DCAC();
     sub_0200C800();
-    sub_02003694(v0->unk_14.unk_90);
+    PaletteData_CommitFadedBuffers(v0->unk_14.unk_90);
     Bg_RunScheduledUpdates(v0->unk_14.unk_60);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
@@ -516,12 +515,12 @@ static void ov17_0223E18C(UnkStruct_ov17_0224DF54 *param0)
         return;
     }
 
-    v0 = sub_0200316C(param0->unk_14.unk_90, 0);
+    v0 = PaletteData_GetFadedBuffer(param0->unk_14.unk_90, 0);
 
     MI_CpuCopy16(v1->unk_00, v0, 0x200);
 
     if (v1->unk_10 == 1) {
-        sub_020039F8(v1->unk_00, v0, v1->unk_06, v1->unk_08 >> 8, v1->unk_0E);
+        BlendPalettes(v1->unk_00, v0, v1->unk_06, v1->unk_08 >> 8, v1->unk_0E);
 
         if (v1->unk_08 == v1->unk_0A) {
             v1->unk_10 = 0;
@@ -784,7 +783,7 @@ static void ov17_0223E67C(UnkStruct_ov17_0224DF54 *param0, NARC *param1)
 {
     int v0;
 
-    sub_020070E8(param1, 13, param0->unk_14.unk_60, 3, 0, 0, 1, 23);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 13, param0->unk_14.unk_60, 3, 0, 0, 1, 23);
 
     {
         int v1, v2;
@@ -792,21 +791,21 @@ static void ov17_0223E67C(UnkStruct_ov17_0224DF54 *param0, NARC *param1)
 
         ov17_0223E3CC(param0, &v1, &v2);
         v3 = ov17_0223F0BC(v2, 0);
-        sub_0200710C(param1, v3, param0->unk_14.unk_60, 3, 0, 0, 1, 23);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, v3, param0->unk_14.unk_60, 3, 0, 0, 1, 23);
     }
 
-    PaletteSys_LoadPalette(param0->unk_14.unk_90, 45, 32, 23, 0, 0, 0);
-    PaletteSys_LoadPalette(param0->unk_14.unk_90, 45, 36, 23, 0, 0x20, 13 * 16);
+    PaletteData_LoadBufferFromFileStart(param0->unk_14.unk_90, 45, 32, 23, 0, 0, 0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_14.unk_90, 45, 36, 23, 0, 0x20, 13 * 16);
 
     v0 = Options_Frame(param0->unk_00->unk_196C);
     sub_0200DD0C(param0->unk_14.unk_60, 1, 1, 15, v0, 23);
-    PaletteSys_LoadPalette(param0->unk_14.unk_90, 38, sub_0200DD08(v0), 23, 0, 0x20, 14 * 16);
+    PaletteData_LoadBufferFromFileStart(param0->unk_14.unk_90, 38, sub_0200DD08(v0), 23, 0, 0x20, 14 * 16);
     ov17_0224C848(param0);
 
     {
         u16 *v4;
 
-        v4 = sub_02003164(param0->unk_14.unk_90, 0);
+        v4 = PaletteData_GetUnfadedBuffer(param0->unk_14.unk_90, 0);
         MI_CpuCopy16(v4, param0->unk_1050.unk_00, 0x200);
     }
 }

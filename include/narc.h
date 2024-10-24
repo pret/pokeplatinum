@@ -1,9 +1,7 @@
-#ifndef POKEPLATINUM_UNK_020068C8_H
-#define POKEPLATINUM_UNK_020068C8_H
+#ifndef POKEPLATINUM_NARC_H
+#define POKEPLATINUM_NARC_H
 
 #include "constants/narc.h"
-
-#include "struct_decls/struct_02006C24_decl.h"
 
 /*
  * The NARC struct wraps NitroSDK type FSFile and manages the important
@@ -11,12 +9,12 @@
  *
  * FATB defines the regions within the FIMG to which the data are allocated.
  */
-struct NARC {
-    FSFile unk_00;
-    u32 unk_AC;
-    u32 unk_B0;
-    u16 unk_B4;
-};
+typedef struct NARC {
+    FSFile file;
+    u32 fatbStart;
+    u32 fimgStart;
+    u16 numFiles;
+} NARC;
 
 /*
  * Reads the entire content of an archive member into an existing buffer
@@ -146,7 +144,7 @@ void NARC_ReadFromMember(NARC *narc, u32 memberIndex, u32 offset, u32 bytesToRea
  */
 void NARC_ReadFile(NARC *narc, u32 bytesToRead, void *dest);
 
-void sub_02006E28(NARC *param0, u32 param1);
+void NARC_Seek(NARC *narc, u32 offset);
 
 /*
  * Gets the total number of archive members
@@ -157,4 +155,4 @@ void sub_02006E28(NARC *param0, u32 param1);
  */
 u16 NARC_GetFileCount(NARC *narc);
 
-#endif // POKEPLATINUM_UNK_020068C8_H
+#endif // POKEPLATINUM_NARC_H

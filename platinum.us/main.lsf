@@ -22,7 +22,7 @@ Static main
 	Object main.nef.p/src_unk_020021B0.c.o
 	Object main.nef.p/src_render_text.c.o
 	Object main.nef.p/src_font.c.o
-	Object main.nef.p/src_unk_02002F38.c.o
+	Object main.nef.p/src_palette.c.o
 	Object main.nef.p/src_unk_02003B60.c.o
 	Object main.nef.p/src_unk_020041CC.c.o
 	Object main.nef.p/src_unk_02005474.c.o
@@ -31,7 +31,7 @@ Static main
 	Object main.nef.p/src_unk_0200679C.c.o
 	Object main.nef.p/src_overlay_manager.c.o
 	Object main.nef.p/src_narc.c.o
-	Object main.nef.p/src_unk_02006E3C.c.o
+	Object main.nef.p/src_graphics.c.o
 	Object main.nef.p/src_unk_0200762C.c.o
 	Object main.nef.p/src_unk_020093B4.c.o
 	Object main.nef.p/src_sprite_resource.c.o
@@ -98,7 +98,7 @@ Static main
 	Object main.nef.p/src_unk_02023FCC.c.o
 	Object main.nef.p/src_unk_0202414C.c.o
 	Object main.nef.p/src_unk_0202419C.c.o
-	Object main.nef.p/src_unk_020241F0.c.o
+	Object main.nef.p/src_hardware_palette.c.o
 	Object main.nef.p/src_unk_02024220.c.o
 	Object main.nef.p/src_unk_02024358.c.o
 	Object main.nef.p/src_savedata_save_table.c.o

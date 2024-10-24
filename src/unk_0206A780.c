@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0206A844.h"
 

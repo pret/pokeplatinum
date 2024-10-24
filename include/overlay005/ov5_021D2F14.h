@@ -2,7 +2,6 @@
 #define POKEPLATINUM_OV5_021D2F14_H
 
 #include "struct_decls/cell_actor_data.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_defs/sprite_template.h"
 
 #include "overlay005/struct_ov5_021D30A8.h"
@@ -11,6 +10,7 @@
 #include "overlay104/struct_ov104_02241308.h"
 
 #include "cell_actor.h"
+#include "narc.h"
 
 void ov5_021D2F14(UnkStruct_ov5_021D30A8 *param0, const UnkStruct_ov7_0224F2EC *param1, u32 param2, u32 param3);
 void ov5_021D30A8(UnkStruct_ov5_021D30A8 *param0);

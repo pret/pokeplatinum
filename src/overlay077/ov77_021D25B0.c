@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -19,6 +18,7 @@
 #include "camera.h"
 #include "core_sys.h"
 #include "easy3d.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "narc.h"
@@ -27,7 +27,6 @@
 #include "sys_task_manager.h"
 #include "unk_02000C88.h"
 #include "unk_020041CC.h"
-#include "unk_02006E3C.h"
 #include "unk_0200A784.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
@@ -1068,25 +1067,25 @@ static void ov77_021D2F0C(UnkStruct_ov77_021D2E9C *param0)
 
 static void ov77_021D2F38(UnkStruct_ov77_021D2F38 *param0)
 {
-    sub_02006E3C(128, 16, param0->unk_0C, 2, 0, 0, 0, 76);
-    sub_02006E3C(128, 16, param0->unk_0C, 6, 0, 0, 0, 76);
-    sub_02006E60(128, 17, param0->unk_0C, 2, 0, 0, 0, 76);
-    sub_02006E60(128, 18, param0->unk_0C, 6, 0, 0, 0, 76);
+    Graphics_LoadTilesToBgLayer(128, 16, param0->unk_0C, 2, 0, 0, 0, 76);
+    Graphics_LoadTilesToBgLayer(128, 16, param0->unk_0C, 6, 0, 0, 0, 76);
+    Graphics_LoadTilemapToBgLayer(128, 17, param0->unk_0C, 2, 0, 0, 0, 76);
+    Graphics_LoadTilemapToBgLayer(128, 18, param0->unk_0C, 6, 0, 0, 0, 76);
 
-    sub_02006E84(128, 15, 0, 0, 0, 76);
-    sub_02006E84(128, 15, 4, 0, 0, 76);
+    Graphics_LoadPalette(128, 15, 0, 0, 0, 76);
+    Graphics_LoadPalette(128, 15, 4, 0, 0, 76);
 
-    sub_02006E3C(48, 15, param0->unk_0C, 1, 0, 0, 0, 76);
-    sub_02006E60(48, 13, param0->unk_0C, 1, 0, 0, 0, 76);
+    Graphics_LoadTilesToBgLayer(48, 15, param0->unk_0C, 1, 0, 0, 0, 76);
+    Graphics_LoadTilemapToBgLayer(48, 13, param0->unk_0C, 1, 0, 0, 0, 76);
 
-    sub_02006E84(48, 14, 0, 0, 2 * 16 * 1, 76);
+    Graphics_LoadPalette(48, 14, 0, 0, 2 * 16 * 1, 76);
 
-    sub_02006E60(128, 19, param0->unk_0C, 3, 0, 0, 0, 76);
-    sub_02006E60(128, 19, param0->unk_0C, 7, 0, 0, 0, 76);
-    sub_02006E3C(128, 114, param0->unk_0C, 5, 0, 0, 0, 76);
-    sub_02006E60(128, 113, param0->unk_0C, 5, 0, 0, 0, 76);
+    Graphics_LoadTilemapToBgLayer(128, 19, param0->unk_0C, 3, 0, 0, 0, 76);
+    Graphics_LoadTilemapToBgLayer(128, 19, param0->unk_0C, 7, 0, 0, 0, 76);
+    Graphics_LoadTilesToBgLayer(128, 114, param0->unk_0C, 5, 0, 0, 0, 76);
+    Graphics_LoadTilemapToBgLayer(128, 113, param0->unk_0C, 5, 0, 0, 0, 76);
 
-    sub_02006E84(128, 115, 4, 0, 2 * 16 * 1, 76);
+    Graphics_LoadPalette(128, 115, 4, 0, 2 * 16 * 1, 76);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
@@ -1478,41 +1477,41 @@ static void ov77_021D37C0(UnkStruct_ov77_021D37C0 *param0)
     v1 = NARC_ctor(NARC_INDEX_DEMO__TITLE__OP_DEMO, 76);
 
     {
-        sub_02007148(v1, 96, 0, 0x20 * 0xc, 0x20 * 0xc, 0x20 * 2, 76);
-        sub_020070E8(v1, 95, param0->unk_10, 3, 0, 0, 0, 76);
-        sub_0200710C(v1, 12, param0->unk_10, 3, 0, 0, 0, 76);
+        Graphics_LoadPaletteWithSrcOffsetFromOpenNARC(v1, 96, 0, 0x20 * 0xc, 0x20 * 0xc, 0x20 * 2, 76);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 95, param0->unk_10, 3, 0, 0, 0, 76);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 12, param0->unk_10, 3, 0, 0, 0, 76);
 
-        sub_02007148(v1, 13, 0, 0x20 * 0xe, 0x20 * 0xe, 0x20 * 2, 76);
-        sub_020070E8(v1, 14, param0->unk_10, 2, 0, 0, 0, 76);
-        sub_0200710C(v1, 12, param0->unk_10, 2, 0, 0, 0, 76);
+        Graphics_LoadPaletteWithSrcOffsetFromOpenNARC(v1, 13, 0, 0x20 * 0xe, 0x20 * 0xe, 0x20 * 2, 76);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 14, param0->unk_10, 2, 0, 0, 0, 76);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 12, param0->unk_10, 2, 0, 0, 0, 76);
 
         {
             NARC *v2;
 
             v2 = NARC_ctor(NARC_INDEX_DATA__WEATHER_SYS, 76);
 
-            sub_020070E8(v2, 56, param0->unk_10, 1, 0, 0, 0, 76);
-            sub_0200710C(v2, 57, param0->unk_10, 1, 0, 0, 0, 76);
-            sub_0200710C(v2, 57, param0->unk_10, 1, 32 * 32, 0, 0, 76);
-            sub_02007130(v2, 55, 0, 0x20 * 0, 0x20, 76);
+            Graphics_LoadTilesToBgLayerFromOpenNARC(v2, 56, param0->unk_10, 1, 0, 0, 0, 76);
+            Graphics_LoadTilemapToBgLayerFromOpenNARC(v2, 57, param0->unk_10, 1, 0, 0, 0, 76);
+            Graphics_LoadTilemapToBgLayerFromOpenNARC(v2, 57, param0->unk_10, 1, 32 * 32, 0, 0, 76);
+            Graphics_LoadPaletteFromOpenNARC(v2, 55, 0, 0x20 * 0, 0x20, 76);
             NARC_dtor(v2);
         }
     }
 
     {
-        sub_02007130(v1, 61, 4, 0, 0, 76);
-        sub_020070E8(v1, 59, param0->unk_10, 5, 0, 0, 0, 76);
-        sub_0200710C(v1, 63, param0->unk_10, 5, 0, 0, 0, 76);
-        sub_020070E8(v1, 58, param0->unk_10, 6, 0, 0, 0, 76);
-        sub_0200710C(v1, 62, param0->unk_10, 6, 0, 0, 0, 76);
-        sub_020070E8(v1, 60, param0->unk_10, 7, 0, 0, 0, 76);
-        sub_0200710C(v1, 64, param0->unk_10, 7, 0, 0, 0, 76);
+        Graphics_LoadPaletteFromOpenNARC(v1, 61, 4, 0, 0, 76);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 59, param0->unk_10, 5, 0, 0, 0, 76);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 63, param0->unk_10, 5, 0, 0, 0, 76);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 58, param0->unk_10, 6, 0, 0, 0, 76);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 62, param0->unk_10, 6, 0, 0, 0, 76);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 60, param0->unk_10, 7, 0, 0, 0, 76);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 64, param0->unk_10, 7, 0, 0, 0, 76);
     }
 
     {
-        sub_020070E8(v1, 14, param0->unk_10, 4, 0, 0, 0, 76);
-        sub_0200710C(v1, 12, param0->unk_10, 4, 0, 0, 0, 76);
-        sub_02007148(v1, 13, 4, 0x20 * 0xe, 0x20 * 0xe, 0x20 * 2, 76);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 14, param0->unk_10, 4, 0, 0, 0, 76);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 12, param0->unk_10, 4, 0, 0, 0, 76);
+        Graphics_LoadPaletteWithSrcOffsetFromOpenNARC(v1, 13, 4, 0x20 * 0xe, 0x20 * 0xe, 0x20 * 2, 76);
     }
 
     ov77_021D5564(param0->unk_14);
@@ -1545,14 +1544,14 @@ static void ov77_021D3A10(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
 
     v1 = NARC_ctor(NARC_INDEX_DEMO__TITLE__OP_DEMO, 76);
 
-    sub_02007130(v1, 68, 0, 0, 0, 76);
+    Graphics_LoadPaletteFromOpenNARC(v1, 68, 0, 0, 0, 76);
 
-    sub_020070E8(v1, 66, param1->unk_10, 1, 0, 0, 0, 76);
-    sub_0200710C(v1, 70, param1->unk_10, 1, 0, 0, 0, 76);
-    sub_020070E8(v1, 65, param1->unk_10, 2, 0, 0, 0, 76);
-    sub_0200710C(v1, 69, param1->unk_10, 2, 0, 0, 0, 76);
-    sub_020070E8(v1, 67, param1->unk_10, 3, 0, 0, 0, 76);
-    sub_0200710C(v1, 71, param1->unk_10, 3, 0, 0, 0, 76);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 66, param1->unk_10, 1, 0, 0, 0, 76);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 70, param1->unk_10, 1, 0, 0, 0, 76);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 65, param1->unk_10, 2, 0, 0, 0, 76);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 69, param1->unk_10, 2, 0, 0, 0, 76);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 67, param1->unk_10, 3, 0, 0, 0, 76);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 71, param1->unk_10, 3, 0, 0, 0, 76);
 
     MI_CpuClear16((void *)HW_BG_PLTT, 2);
     MI_CpuClear16((void *)HW_DB_BG_PLTT, 2);
@@ -1576,28 +1575,28 @@ static void ov77_021D3B5C(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
 
     v1 = NARC_ctor(NARC_INDEX_DEMO__TITLE__OP_DEMO, 76);
 
-    sub_02007130(v1, 72, 0, 0, 0, 76);
-    sub_02007130(v1, 72, 4, 0, 0, 76);
+    Graphics_LoadPaletteFromOpenNARC(v1, 72, 0, 0, 0, 76);
+    Graphics_LoadPaletteFromOpenNARC(v1, 72, 4, 0, 0, 76);
 
     param1->unk_240 = Heap_AllocFromHeap(76, 0x200);
 
     MI_CpuCopy16((void *)HW_BG_PLTT, param1->unk_240, 0x200);
     MI_CpuClear16(param1->unk_240, 2);
 
-    sub_020070E8(v1, 73, param1->unk_10, 1, 0, 0, 0, 76);
-    sub_0200710C(v1, 76, param1->unk_10, 1, 0, 0, 0, 76);
-    sub_020070E8(v1, 73, param1->unk_10, 5, 0, 0, 0, 76);
-    sub_0200710C(v1, 76, param1->unk_10, 5, 0, 0, 0, 76);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 73, param1->unk_10, 1, 0, 0, 0, 76);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 76, param1->unk_10, 1, 0, 0, 0, 76);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 73, param1->unk_10, 5, 0, 0, 0, 76);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 76, param1->unk_10, 5, 0, 0, 0, 76);
 
-    sub_020070E8(v1, 74, param1->unk_10, 2, 0, 0, 0, 76);
-    sub_0200710C(v1, 77, param1->unk_10, 2, 0, 0, 0, 76);
-    sub_020070E8(v1, 74, param1->unk_10, 6, 0, 0, 0, 76);
-    sub_0200710C(v1, 77, param1->unk_10, 6, 0, 0, 0, 76);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 74, param1->unk_10, 2, 0, 0, 0, 76);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 77, param1->unk_10, 2, 0, 0, 0, 76);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 74, param1->unk_10, 6, 0, 0, 0, 76);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 77, param1->unk_10, 6, 0, 0, 0, 76);
 
-    sub_020070E8(v1, 75, param1->unk_10, 3, 0, 0, 0, 76);
-    sub_0200710C(v1, 78, param1->unk_10, 3, 0, 0, 0, 76);
-    sub_020070E8(v1, 75, param1->unk_10, 7, 0, 0, 0, 76);
-    sub_0200710C(v1, 78, param1->unk_10, 7, 0, 0, 0, 76);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 75, param1->unk_10, 3, 0, 0, 0, 76);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 78, param1->unk_10, 3, 0, 0, 0, 76);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 75, param1->unk_10, 7, 0, 0, 0, 76);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 78, param1->unk_10, 7, 0, 0, 0, 76);
 
     MI_CpuClear16((void *)HW_BG_PLTT, 2);
     MI_CpuClear16((void *)HW_DB_BG_PLTT, 2);
@@ -1621,10 +1620,10 @@ static void ov77_021D3D4C(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
 
     v1 = NARC_ctor(NARC_INDEX_DEMO__TITLE__OP_DEMO, 76);
 
-    sub_020070E8(v1, 79, param1->unk_10, 0, 0, 0, 0, 76);
-    sub_0200710C(v1, 80, param1->unk_10, 0, 0, 0, 0, 76);
-    sub_020070E8(v1, 81, param1->unk_10, 4, 0, 0, 0, 76);
-    sub_0200710C(v1, 82, param1->unk_10, 4, 0, 0, 0, 76);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 79, param1->unk_10, 0, 0, 0, 0, 76);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 80, param1->unk_10, 0, 0, 0, 0, 76);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 81, param1->unk_10, 4, 0, 0, 0, 76);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 82, param1->unk_10, 4, 0, 0, 0, 76);
 
     NARC_dtor(v1);
 }
@@ -2533,9 +2532,9 @@ static void ov77_021D52C8(UnkStruct_ov77_021D2E9C *param0)
 
 static void ov77_021D5308(UnkStruct_ov77_021D5308 *param0)
 {
-    sub_02006E84(128, 99, 0, 0, 0, 76);
-    sub_02006E3C(128, 98, param0->unk_08, 2, 0, 0, 0, 76);
-    sub_02006E60(128, 97, param0->unk_08, 2, 0, 0, 0, 76);
+    Graphics_LoadPalette(128, 99, 0, 0, 0, 76);
+    Graphics_LoadTilesToBgLayer(128, 98, param0->unk_08, 2, 0, 0, 0, 76);
+    Graphics_LoadTilemapToBgLayer(128, 97, param0->unk_08, 2, 0, 0, 0, 76);
 
     GXLayers_DisableEngineALayers();
     GXLayers_EngineASetLayers(0);

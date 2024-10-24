@@ -23,6 +23,7 @@
 #include "bg_window.h"
 #include "camera.h"
 #include "cell_actor.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
@@ -34,7 +35,6 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02006E3C.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
 #include "unk_0202419C.h"
@@ -2897,7 +2897,7 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapId he
         memset(encEffect->param, 0, sizeof(UnkStruct_ov5_021E52A8));
         v0 = encEffect->param;
 
-        sub_02007130(encEffect->narc, 11, 0, 2 * 0x20, 0x20, heapID);
+        Graphics_LoadPaletteFromOpenNARC(encEffect->narc, 11, 0, 2 * 0x20, 0x20, heapID);
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
         Window_Add(encEffect->fieldSystem->unk_08, &v0->unk_2E0, 2, 0, 10, 16, 2, 2, 1);
@@ -3332,7 +3332,7 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
         {
             Strbuf *v9;
 
-            sub_02007130(encEffect->narc, 11, 0, 2 * 0x20, 0x20, heapID);
+            Graphics_LoadPaletteFromOpenNARC(encEffect->narc, 11, 0, 2 * 0x20, 0x20, heapID);
 
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
             Window_Add(encEffect->fieldSystem->unk_08, &v0->unk_358, 2, 21, 13, 11, 2, 2, 1);

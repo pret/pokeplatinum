@@ -33,7 +33,7 @@
 #include "heap.h"
 #include "narc.h"
 #include "overlay_manager.h"
-#include "unk_02002F38.h"
+#include "palette.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
@@ -74,7 +74,7 @@ static void ov116_022604C4(UnkStruct_ov116_0226139C *param0)
         void *v1 = sub_020394A8(106);
 
         NNS_G2dGetUnpackedPaletteData(v1, &v0);
-        sub_02002FBC(param0->unk_48.unk_14, v0->pRawData, 2, 14 * 16, 32);
+        PaletteData_LoadBuffer(param0->unk_48.unk_14, v0->pRawData, 2, 14 * 16, 32);
         Heap_FreeToHeap(v1);
     }
 
@@ -227,7 +227,7 @@ static void ov116_022604C4(UnkStruct_ov116_0226139C *param0)
     }
 
     param0->unk_7C = ov114_0225CAD4(sub_0200D9B0(param0->unk_48.unk_0C), 106);
-    sub_02003070(param0->unk_48.unk_14, 2, 0 * 16, 16 * 0x20);
+    PaletteData_LoadBufferFromHardware(param0->unk_48.unk_14, 2, 0 * 16, 16 * 0x20);
 
     if (param0->unk_80->unk_3C) {
         ov4_021D1E74(106);
@@ -763,17 +763,17 @@ static void ov116_022612CC(UnkStruct_ov116_0226139C *param0)
     param0->unk_48.unk_00 = NARC_ctor(NARC_INDEX_ARC__MANENE, 106);
     param0->unk_48.unk_04 = NARC_ctor(NARC_INDEX_GRAPHIC__BUCKET, 106);
     param0->unk_48.unk_10 = BgConfig_New(106);
-    param0->unk_48.unk_14 = sub_02002F38(106);
+    param0->unk_48.unk_14 = PaletteData_New(106);
     param0->unk_48.unk_18 = sub_02024220(106, 0, 1, 0, 4, NULL);
     param0->unk_48.camera = Camera_Alloc(106);
 
     ov116_02261C88(param0);
 
-    sub_02003858(param0->unk_48.unk_14, 1);
-    sub_02002F70(param0->unk_48.unk_14, 0, 0x200, 106);
-    sub_02002F70(param0->unk_48.unk_14, 1, 0x200, 106);
-    sub_02002F70(param0->unk_48.unk_14, 2, 0x200, 106);
-    sub_02002F70(param0->unk_48.unk_14, 3, 0x200, 106);
+    PaletteData_SetAutoTransparent(param0->unk_48.unk_14, 1);
+    PaletteData_AllocBuffer(param0->unk_48.unk_14, 0, 0x200, 106);
+    PaletteData_AllocBuffer(param0->unk_48.unk_14, 1, 0x200, 106);
+    PaletteData_AllocBuffer(param0->unk_48.unk_14, 2, 0x200, 106);
+    PaletteData_AllocBuffer(param0->unk_48.unk_14, 3, 0x200, 106);
 
     ov116_02261494(param0->unk_48.unk_10);
     ov116_022616CC(param0);
@@ -818,11 +818,11 @@ void ov116_0226139C(UnkStruct_ov116_0226139C *param0)
     Bg_FreeTilemapBuffer(param0->unk_48.unk_10, 6);
     Bg_FreeTilemapBuffer(param0->unk_48.unk_10, 7);
     Heap_FreeToHeap(param0->unk_48.unk_10);
-    sub_02002FA0(param0->unk_48.unk_14, 0);
-    sub_02002FA0(param0->unk_48.unk_14, 1);
-    sub_02002FA0(param0->unk_48.unk_14, 2);
-    sub_02002FA0(param0->unk_48.unk_14, 3);
-    sub_02002F54(param0->unk_48.unk_14);
+    PaletteData_FreeBuffer(param0->unk_48.unk_14, 0);
+    PaletteData_FreeBuffer(param0->unk_48.unk_14, 1);
+    PaletteData_FreeBuffer(param0->unk_48.unk_14, 2);
+    PaletteData_FreeBuffer(param0->unk_48.unk_14, 3);
+    PaletteData_Free(param0->unk_48.unk_14);
     NARC_dtor(param0->unk_48.unk_00);
     NARC_dtor(param0->unk_48.unk_04);
     sub_020242C4(param0->unk_48.unk_18);
@@ -1109,7 +1109,7 @@ static void ov116_02261794(void *param0)
 
     sub_0201DCAC();
     sub_0200C800();
-    sub_02003694(v0->unk_48.unk_14);
+    PaletteData_CommitFadedBuffers(v0->unk_48.unk_14);
     Bg_RunScheduledUpdates(v0->unk_48.unk_10);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);

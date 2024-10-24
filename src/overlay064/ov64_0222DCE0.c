@@ -6,7 +6,6 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
@@ -32,6 +31,7 @@
 #include "font.h"
 #include "game_options.h"
 #include "game_overlay.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "inlines.h"
@@ -51,7 +51,6 @@
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
@@ -942,15 +941,15 @@ static void ov64_0222E290 (UnkStruct_ov64_0222E21C * param0, u32 param1)
         Bg_ClearTilemap(param0->unk_00, Unk_ov64_02232258[v0]);
     }
 
-    sub_02007130(param0->unk_21C, 0, 0, 0, ((6 + 1) - 0) * 32, param1);
-    sub_02007130(param0->unk_21C, 0, 4, 0, ((4 + 1) - 0) * 32, param1);
+    Graphics_LoadPaletteFromOpenNARC(param0->unk_21C, 0, 0, 0, ((6 + 1) - 0) * 32, param1);
+    Graphics_LoadPaletteFromOpenNARC(param0->unk_21C, 0, 4, 0, ((4 + 1) - 0) * 32, param1);
 
-    sub_020070E8(param0->unk_21C, 18, param0->unk_00, Unk_ov64_02232258[0], 0, 0, 0, param1);
-    sub_020070E8(param0->unk_21C, 18, param0->unk_00, Unk_ov64_02232258[2], 0, 0, 0, param1);
-    sub_020070E8(param0->unk_21C, 13, param0->unk_00, Unk_ov64_02232258[4], 0, 0, 0, param1);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_21C, 18, param0->unk_00, Unk_ov64_02232258[0], 0, 0, 0, param1);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_21C, 18, param0->unk_00, Unk_ov64_02232258[2], 0, 0, 0, param1);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_21C, 13, param0->unk_00, Unk_ov64_02232258[4], 0, 0, 0, param1);
 
-    sub_0200710C(param0->unk_21C, 12, param0->unk_00, Unk_ov64_02232258[0], 0, 0, 0, param1);
-    sub_0200710C(param0->unk_21C, 14, param0->unk_00, Unk_ov64_02232258[4], 0, 0, 0, param1);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_21C, 12, param0->unk_00, Unk_ov64_02232258[0], 0, 0, 0, param1);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_21C, 14, param0->unk_00, Unk_ov64_02232258[4], 0, 0, 0, param1);
 }
 
 static void ov64_0222E3AC (UnkStruct_ov64_0222E21C * param0)
@@ -1077,7 +1076,7 @@ static void ov64_0222E6D8 (UnkStruct_ov64_0222E21C * param0, u32 param1)
     int v1;
 
     for (v1 = 0; v1 < 2; v1++) {
-        param0->unk_278.unk_00[v1] = sub_020071D0(param0->unk_21C, v0[v1], 0, &param0->unk_278.unk_08[v1], param1);
+        param0->unk_278.unk_00[v1] = Graphics_GetScrnDataFromOpenNARC(param0->unk_21C, v0[v1], 0, &param0->unk_278.unk_08[v1], param1);
     }
 }
 
@@ -1566,7 +1565,7 @@ asm static void ov64_0222EC94 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_
     mov r1, #1
     mov r2, #0
     add r3, #0x18
-    bl sub_020071D0
+    bl Graphics_GetScrnDataFromOpenNARC
     ldr r1, [sp, #0x14]
     str r0, [r1, #0x14]
     add sp, #0x30
@@ -3114,7 +3113,7 @@ asm static void ov64_02230680 (UnkStruct_ov64_02230620 * param0, UnkStruct_ov64_
     mov r1, #0xb
     mov r2, #0
     add r3, #0x24
-    bl sub_020071D0
+    bl Graphics_GetScrnDataFromOpenNARC
     str r0, [r5, #0x20]
     add sp, #0x28
     pop {r3, r4, r5, r6, r7, pc}
@@ -3478,7 +3477,7 @@ static void ov64_02230F24 (UnkStruct_ov64_02230F60 * param0, UnkStruct_ov64_0222
     int v1;
 
     for (v1 = 0; v1 < 7; v1++) {
-        param0->unk_00[v1] = sub_020071D0(param1->unk_21C, v0[v1], 0, &param0->unk_1C[v1], param2);
+        param0->unk_00[v1] = Graphics_GetScrnDataFromOpenNARC(param1->unk_21C, v0[v1], 0, &param0->unk_1C[v1], param2);
     }
 }
 
@@ -3951,7 +3950,7 @@ asm static void ov64_02231164 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     ldr r1, [sp, #0x40]
     mov r2, #0
     lsl r3, r3, #6
-    bl sub_02006E84
+    bl Graphics_LoadPalette
     ldr r0, [sp, #0x30]
     cmp r0, #0
     bne _0223148A

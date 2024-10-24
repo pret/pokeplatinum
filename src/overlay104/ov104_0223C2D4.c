@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0209B75C_decl.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0207C690.h"
@@ -40,17 +39,17 @@
 
 #include "bg_window.h"
 #include "game_options.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "narc.h"
+#include "palette.h"
 #include "render_text.h"
 #include "save_player.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
-#include "unk_02002F38.h"
 #include "unk_020041CC.h"
-#include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
@@ -154,13 +153,13 @@ UnkStruct_ov104_0223C4CC *ov104_0223C2D4(UnkStruct_0209B75C *param0)
     }
 
     v0->unk_0C = ov104_0223CF4C(94);
-    v0->unk_04 = sub_02002F38(94);
+    v0->unk_04 = PaletteData_New(94);
 
-    sub_02003858(v0->unk_04, 1);
-    sub_02002F70(v0->unk_04, 0, 0x200, 94);
-    sub_02002F70(v0->unk_04, 1, 0x200, 94);
-    sub_02002F70(v0->unk_04, 2, 0x200 - 0x40, 94);
-    sub_02002F70(v0->unk_04, 3, 0x200, 94);
+    PaletteData_SetAutoTransparent(v0->unk_04, 1);
+    PaletteData_AllocBuffer(v0->unk_04, 0, 0x200, 94);
+    PaletteData_AllocBuffer(v0->unk_04, 1, 0x200, 94);
+    PaletteData_AllocBuffer(v0->unk_04, 2, 0x200 - 0x40, 94);
+    PaletteData_AllocBuffer(v0->unk_04, 3, 0x200, 94);
 
     v0->unk_00 = BgConfig_New(94);
 
@@ -226,11 +225,11 @@ void ov104_0223C4CC(UnkStruct_ov104_0223C4CC *param0)
 
     sub_0201DC3C();
 
-    sub_02002FA0(param0->unk_04, 0);
-    sub_02002FA0(param0->unk_04, 1);
-    sub_02002FA0(param0->unk_04, 2);
-    sub_02002FA0(param0->unk_04, 3);
-    sub_02002F54(param0->unk_04);
+    PaletteData_FreeBuffer(param0->unk_04, 0);
+    PaletteData_FreeBuffer(param0->unk_04, 1);
+    PaletteData_FreeBuffer(param0->unk_04, 2);
+    PaletteData_FreeBuffer(param0->unk_04, 3);
+    PaletteData_Free(param0->unk_04);
     Heap_FreeToHeap(param0->unk_00);
     SysTask_Done(param0->unk_94);
     SysTask_Done(param0->unk_98);
@@ -326,7 +325,7 @@ static void ov104_0223C6EC(void *param0)
 
     sub_0201DCAC();
     sub_0200C800();
-    sub_02003694(v0->unk_04);
+    PaletteData_CommitFadedBuffers(v0->unk_04);
     Bg_RunScheduledUpdates(v0->unk_00);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
@@ -614,8 +613,8 @@ static void ov104_0223C948(BgConfig *param0, int param1)
 
 static void ov104_0223CB80(UnkStruct_ov104_0223C4CC *param0)
 {
-    PaletteSys_LoadPalette(param0->unk_04, 14, 6, 94, 0, 0x20, 14 * 16);
-    PaletteSys_LoadPalette(param0->unk_04, 14, 7, 94, 0, 0x20, 13 * 16);
+    PaletteData_LoadBufferFromFileStart(param0->unk_04, 14, 6, 94, 0, 0x20, 14 * 16);
+    PaletteData_LoadBufferFromFileStart(param0->unk_04, 14, 7, 94, 0, 0x20, 13 * 16);
 
     {
         UnkStruct_ov104_02230BE4 *v0;
@@ -623,11 +622,11 @@ static void ov104_0223CB80(UnkStruct_ov104_0223C4CC *param0)
         v0 = sub_0209B970(param0->unk_08);
 
         sub_0200DD0C(param0->unk_00, 1, (1024 - (18 + 12)), 11, Options_Frame(v0->unk_04), 94);
-        sub_02003070(param0->unk_04, 0, 11 * 16, 0x20);
+        PaletteData_LoadBufferFromHardware(param0->unk_04, 0, 11 * 16, 0x20);
     }
 
     sub_0200DAA4(param0->unk_00, 1, ((1024 - (18 + 12)) - 9), 12, 0, 94);
-    sub_02003070(param0->unk_04, 0, 12 * 16, 0x20);
+    PaletteData_LoadBufferFromHardware(param0->unk_04, 0, 12 * 16, 0x20);
 }
 
 static void ov104_0223CC10(UnkStruct_ov104_0223C4CC *param0)
@@ -636,9 +635,9 @@ static void ov104_0223CC10(UnkStruct_ov104_0223C4CC *param0)
 
     v0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 94);
 
-    sub_020070E8(v0, 125, param0->unk_00, 4, 0, 0, 1, 94);
-    sub_0200710C(v0, 126, param0->unk_00, 4, 0, 0, 1, 94);
-    PaletteSys_LoadPalette(param0->unk_04, 150, 171, 94, 1, 0x20, 0 * 16);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 125, param0->unk_00, 4, 0, 0, 1, 94);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 126, param0->unk_00, 4, 0, 0, 1, 94);
+    PaletteData_LoadBufferFromFileStart(param0->unk_04, 150, 171, 94, 1, 0x20, 0 * 16);
     NARC_dtor(v0);
 }
 
@@ -702,15 +701,15 @@ static void ov104_0223CC74(UnkStruct_ov104_0223C4CC *param0, int param1, const T
         v2 = ov104_0222EA90(param1, 5);
         v3 = NARC_ctor(v2, 94);
 
-        sub_020070E8(v3, ov104_0222EA90(param1, 7), param0->unk_00, 3, 0, 0, 1, 94);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(v3, ov104_0222EA90(param1, 7), param0->unk_00, 3, 0, 0, 1, 94);
 
         if (v4 == GX_BGMODE_0) {
-            PaletteSys_LoadPalette(param0->unk_04, v2, ov104_0222EA90(param1, 8), 94, 0, ((10 - 0 + 1) * 0x20), 0 * 16);
+            PaletteData_LoadBufferFromFileStart(param0->unk_04, v2, ov104_0222EA90(param1, 8), 94, 0, ((10 - 0 + 1) * 0x20), 0 * 16);
         } else {
             NNSG2dPaletteData *v5;
             void *v6;
 
-            v6 = sub_020071EC(v3, ov104_0222EA90(param1, 8), &v5, 94);
+            v6 = Graphics_GetPlttDataFromOpenNARC(v3, ov104_0222EA90(param1, 8), &v5, 94);
             DC_FlushRange(v5->pRawData, v5->szByte);
 
             GX_BeginLoadBGExtPltt();
@@ -720,12 +719,12 @@ static void ov104_0223CC74(UnkStruct_ov104_0223C4CC *param0, int param1, const T
             Heap_FreeToHeap(v6);
         }
 
-        sub_020038B0(param0->unk_04, 0, 2, 0x0, 0, 1);
-        sub_0200710C(v3, ov104_0222EA90(param1, 6), param0->unk_00, 3, 0, 0, 1, 94);
+        PaletteData_FillBufferRange(param0->unk_04, 0, 2, 0x0, 0, 1);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v3, ov104_0222EA90(param1, 6), param0->unk_00, 3, 0, 0, 1, 94);
 
         if (ov104_0222EA90(param1, 9) != 0xffff) {
-            sub_020070E8(v3, ov104_0222EA90(param1, 10), param0->unk_00, 2, 0, 0, 1, 94);
-            sub_0200710C(v3, ov104_0222EA90(param1, 9), param0->unk_00, 2, 0, 0, 1, 94);
+            Graphics_LoadTilesToBgLayerFromOpenNARC(v3, ov104_0222EA90(param1, 10), param0->unk_00, 2, 0, 0, 1, 94);
+            Graphics_LoadTilemapToBgLayerFromOpenNARC(v3, ov104_0222EA90(param1, 9), param0->unk_00, 2, 0, 0, 1, 94);
 
             if (v4 == GX_BGMODE_0) {
                 (void)0;
@@ -733,7 +732,7 @@ static void ov104_0223CC74(UnkStruct_ov104_0223C4CC *param0, int param1, const T
                 NNSG2dPaletteData *v7;
                 void *v8;
 
-                v8 = sub_020071EC(v3, ov104_0222EA90(param1, 11), &v7, 94);
+                v8 = Graphics_GetPlttDataFromOpenNARC(v3, ov104_0222EA90(param1, 11), &v7, 94);
                 DC_FlushRange(v7->pRawData, v7->szByte);
 
                 GX_BeginLoadBGExtPltt();

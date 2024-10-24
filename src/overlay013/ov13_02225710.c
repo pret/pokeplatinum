@@ -8,7 +8,7 @@
 
 #include "bg_window.h"
 #include "heap.h"
-#include "unk_02002F38.h"
+#include "palette.h"
 #include "unk_0200C6E4.h"
 
 typedef struct {
@@ -699,9 +699,9 @@ void ov13_022260EC(UnkStruct_ov13_022213F0 *param0, u8 param1)
 void ov13_02226444(UnkStruct_ov13_022213F0 *param0, u8 param1)
 {
     if (param1 == 3) {
-        sub_02002FBC(param0->unk_1E4, &param0->unk_1F5C[16], 1, 12 * 16, 0x20);
+        PaletteData_LoadBuffer(param0->unk_1E4, &param0->unk_1F5C[16], 1, 12 * 16, 0x20);
     } else {
-        sub_02002FBC(param0->unk_1E4, &param0->unk_1F5C[0], 1, 12 * 16, 0x20);
+        PaletteData_LoadBuffer(param0->unk_1E4, &param0->unk_1F5C[0], 1, 12 * 16, 0x20);
     }
 }
 

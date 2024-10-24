@@ -11,9 +11,9 @@
 #include "overlay012/struct_ov12_0223595C.h"
 
 #include "bg_window.h"
+#include "graphics.h"
+#include "palette.h"
 #include "sys_task_manager.h"
-#include "unk_02002F38.h"
-#include "unk_02006E3C.h"
 #include "unk_0200C6E4.h"
 
 typedef struct {
@@ -65,10 +65,10 @@ static void ov12_02234E54(UnkStruct_ov12_02234E54 *param0, int param1)
     v1 = ov12_02223428(param0->unk_18.unk_04, 3);
 
     Bg_SetPriority(param1, v1);
-    sub_02006E3C(param0->unk_00.unk_00, Unk_ov12_0223A1D8[param0->unk_00.unk_04][0], param0->unk_18.unk_14, param1, 0, 0, 1, v0);
-    PaletteSys_LoadPalette(param0->unk_18.unk_18, param0->unk_00.unk_00, Unk_ov12_0223A1D8[param0->unk_00.unk_04][1], v0, 0, 0x20, (8 * 16));
+    Graphics_LoadTilesToBgLayer(param0->unk_00.unk_00, Unk_ov12_0223A1D8[param0->unk_00.unk_04][0], param0->unk_18.unk_14, param1, 0, 0, 1, v0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_18.unk_18, param0->unk_00.unk_00, Unk_ov12_0223A1D8[param0->unk_00.unk_04][1], v0, 0, 0x20, (8 * 16));
     Bg_ClearTilemap(param0->unk_18.unk_14, param1);
-    sub_02006E60(param0->unk_00.unk_00, Unk_ov12_0223A1D8[param0->unk_00.unk_04][2], param0->unk_18.unk_14, param1, 0, 0, 1, v0);
+    Graphics_LoadTilemapToBgLayer(param0->unk_00.unk_00, Unk_ov12_0223A1D8[param0->unk_00.unk_04][2], param0->unk_18.unk_14, param1, 0, 0, 1, v0);
 }
 
 static void ov12_02234EF0(SysTask *param0, void *param1)

@@ -14,14 +14,14 @@
 #include "overlay006/struct_ov6_0223E6EC.h"
 
 #include "bg_window.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "map_header.h"
+#include "palette.h"
 #include "player_avatar.h"
 #include "script_manager.h"
-#include "unk_02002F38.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_020508D4.h"
 #include "unk_02054D00.h"
 
@@ -62,7 +62,7 @@ static void ov5_021F007C(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
 {
     UnkStruct_ov5_021F007C *v0 = param2;
 
-    v0->unk_00 = sub_02006F88(65, 55, &v0->unk_04, 4);
+    v0->unk_00 = Graphics_GetPlttData(65, 55, &v0->unk_04, 4);
     v0->unk_3C = 0;
 
     ov5_021F02B8(&v0->unk_28, 0, 8, 19);
@@ -76,7 +76,7 @@ static void ov5_021F00BC(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
 {
     UnkStruct_ov5_021F007C *v0 = param2;
 
-    v0->unk_00 = sub_02006F88(65, 55, &v0->unk_04, 4);
+    v0->unk_00 = Graphics_GetPlttData(65, 55, &v0->unk_04, 4);
     v0->unk_3C = 0;
 
     ov5_021F02B8(&v0->unk_28, 8, 0, 19);
@@ -105,7 +105,7 @@ static void ov5_021F00F0(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
         v1->unk_3C = 1;
     }
 
-    sub_020039F8(v1->unk_04->pRawData, v1->unk_08, 0x1, v1->unk_28.unk_00, (GX_RGB(31, 10, 23)));
+    BlendPalettes(v1->unk_04->pRawData, v1->unk_08, 0x1, v1->unk_28.unk_00, (GX_RGB(31, 10, 23)));
     Bg_LoadPalette(2, v1->unk_08, 32, 6 * 32);
 }
 

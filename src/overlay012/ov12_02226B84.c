@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
@@ -26,12 +25,12 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "graphics.h"
 #include "heap.h"
 #include "inlines.h"
+#include "palette.h"
 #include "spl.h"
 #include "sys_task_manager.h"
-#include "unk_02002F38.h"
-#include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
 #include "unk_02014000.h"
@@ -645,8 +644,8 @@ void ov12_02226EB0(UnkStruct_ov12_0221FCDC *param0)
     {
         int v2 = ov12_02220280(param0, 0);
 
-        sub_02006E3C(7, ov12_022234E4(v2, 0), v0->unk_1C.unk_14, 2, 0, 0, 1, ov12_0221FDE4(param0));
-        PaletteSys_LoadPalette(v0->unk_1C.unk_18, 7, ov12_022234E4(v2, 1), ov12_0221FDE4(param0), 0, 0x20, (9 * 16));
+        Graphics_LoadTilesToBgLayer(7, ov12_022234E4(v2, 0), v0->unk_1C.unk_14, 2, 0, 0, 1, ov12_0221FDE4(param0));
+        PaletteData_LoadBufferFromFileStart(v0->unk_1C.unk_18, 7, ov12_022234E4(v2, 1), ov12_0221FDE4(param0), 0, 0x20, (9 * 16));
         Bg_ClearTilemap(v0->unk_1C.unk_14, 2);
 
         {
@@ -658,7 +657,7 @@ void ov12_02226EB0(UnkStruct_ov12_0221FCDC *param0)
                 v3 = 3;
             }
 
-            sub_02006E60(7, ov12_022234E4(v2, v3), v0->unk_1C.unk_14, 2, 0, 0, 1, ov12_0221FDE4(param0));
+            Graphics_LoadTilemapToBgLayer(7, ov12_022234E4(v2, v3), v0->unk_1C.unk_14, 2, 0, 0, 1, ov12_0221FDE4(param0));
         }
     }
 
@@ -805,8 +804,8 @@ void ov12_022271D8(UnkStruct_ov12_0221FCDC *param0)
     {
         int v2 = ov12_02220280(param0, 0);
 
-        sub_02006E3C(7, ov12_022234E4(v2, 0), v0->unk_1C.unk_14, 2, 0, 0, 1, ov12_0221FDE4(param0));
-        PaletteSys_LoadPalette(v0->unk_1C.unk_18, 7, ov12_022234E4(v2, 1), ov12_0221FDE4(param0), 0, 0x20, (9 * 16));
+        Graphics_LoadTilesToBgLayer(7, ov12_022234E4(v2, 0), v0->unk_1C.unk_14, 2, 0, 0, 1, ov12_0221FDE4(param0));
+        PaletteData_LoadBufferFromFileStart(v0->unk_1C.unk_18, 7, ov12_022234E4(v2, 1), ov12_0221FDE4(param0), 0, 0x20, (9 * 16));
         Bg_ClearTilemap(v0->unk_1C.unk_14, 2);
 
         {
@@ -818,7 +817,7 @@ void ov12_022271D8(UnkStruct_ov12_0221FCDC *param0)
                 v3 = 3;
             }
 
-            sub_02006E60(7, ov12_022234E4(v2, v3), v0->unk_1C.unk_14, 2, 0, 0, 1, ov12_0221FDE4(param0));
+            Graphics_LoadTilemapToBgLayer(7, ov12_022234E4(v2, v3), v0->unk_1C.unk_14, 2, 0, 0, 1, ov12_0221FDE4(param0));
         }
     }
 
@@ -1060,7 +1059,7 @@ static void ov12_02227808(SysTask *param0, void *param1)
 {
     UnkStruct_ov12_02227808 *v0 = param1;
 
-    if (sub_0200384C(v0->unk_04) == 0) {
+    if (PaletteData_GetSelectedBuffersMask(v0->unk_04) == 0) {
         Heap_FreeToHeap(v0);
         ov12_02220220(v0->unk_00, param0);
     }
@@ -1091,7 +1090,7 @@ void ov12_02227828(UnkStruct_ov12_0221FCDC *param0)
         break;
     }
 
-    sub_02003178(v0->unk_04, 0x1, v1, ov12_02220280(param0, 1), ov12_02220280(param0, 2), ov12_02220280(param0, 3), ov12_02220280(param0, 4));
+    PaletteData_StartFade(v0->unk_04, 0x1, v1, ov12_02220280(param0, 1), ov12_02220280(param0, 2), ov12_02220280(param0, 3), ov12_02220280(param0, 4));
     ov12_022201E8(v0->unk_00, ov12_02227808, v0);
 }
 

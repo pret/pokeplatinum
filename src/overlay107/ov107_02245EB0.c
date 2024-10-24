@@ -5,8 +5,6 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_020302DC_decl.h"
@@ -37,11 +35,13 @@
 #include "font.h"
 #include "game_options.h"
 #include "game_overlay.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "palette.h"
 #include "party.h"
 #include "pokemon.h"
 #include "save_player.h"
@@ -52,9 +52,7 @@
 #include "trainer_info.h"
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
-#include "unk_02002F38.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A784.h"
 #include "unk_0200C440.h"
@@ -111,7 +109,7 @@ struct UnkStruct_ov107_02246170_t {
     ResourceMetadata unk_120[3];
     BmpList * unk_138;
     ResourceMetadata * unk_13C;
-    PaletteData * unk_140;
+    PaletteData *unk_140;
     UnkStruct_0200C440 * unk_144;
     Options * unk_148;
     SaveData * unk_14C;
@@ -1071,9 +1069,9 @@ static void ov107_02246D84 (UnkStruct_ov107_02246170 * param0)
 
     sub_02039794();
 
-    sub_02002FA0(param0->unk_140, 2);
-    sub_02002FA0(param0->unk_140, 0);
-    sub_02002F54(param0->unk_140);
+    PaletteData_FreeBuffer(param0->unk_140, 2);
+    PaletteData_FreeBuffer(param0->unk_140, 0);
+    PaletteData_Free(param0->unk_140);
 
     param0->unk_140 = NULL;
 
@@ -1204,10 +1202,10 @@ static void ov107_02247220 (UnkStruct_ov107_02246170 * param0)
     ov107_02247320();
     ov107_02247340(param0->unk_4C);
 
-    param0->unk_140 = sub_02002F38(100);
+    param0->unk_140 = PaletteData_New(100);
 
-    sub_02002F70(param0->unk_140, 2, (32 * 16), 100);
-    sub_02002F70(param0->unk_140, 0, (32 * 16), 100);
+    PaletteData_AllocBuffer(param0->unk_140, 2, (32 * 16), 100);
+    PaletteData_AllocBuffer(param0->unk_140, 0, (32 * 16), 100);
 
     ov107_02247484(param0, 3);
     ov107_022474F8();
@@ -1246,7 +1244,7 @@ static void ov107_022472E8 (void * param0)
     UnkStruct_ov107_02246170 * v0 = param0;
 
     if (v0->unk_140 != NULL) {
-        sub_02003694(v0->unk_140);
+        PaletteData_CommitFadedBuffers(v0->unk_140);
     }
 
     Bg_RunScheduledUpdates(v0->unk_4C);
@@ -1405,12 +1403,12 @@ static void ov107_02247340(BgConfig *param0)
 
 static void ov107_02247484 (UnkStruct_ov107_02246170 * param0, u32 param1)
 {
-    sub_020070E8(param0->unk_3E0, 44, param0->unk_4C, param1, 0, 0, 1, 100);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_3E0, 44, param0->unk_4C, param1, 0, 0, 1, 100);
 
     if (ov104_0223BA14(param0->unk_09) == 0) {
-        sub_0200710C(param0->unk_3E0, 40, param0->unk_4C, param1, 0, 0, 1, 100);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_3E0, 40, param0->unk_4C, param1, 0, 0, 1, 100);
     } else {
-        sub_0200710C(param0->unk_3E0, 41, param0->unk_4C, param1, 0, 0, 1, 100);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_3E0, 41, param0->unk_4C, param1, 0, 0, 1, 100);
     }
 
     return;
@@ -1421,7 +1419,7 @@ static void ov107_022474F8 (void)
     void * v0;
     NNSG2dPaletteData * v1;
 
-    v0 = sub_02006F88(150, 138, &v1, 100);
+    v0 = Graphics_GetPlttData(150, 138, &v1, 100);
 
     DC_FlushRange(v1->pRawData, (sizeof(u16) * 16 * 4));
     GX_LoadBGPltt(v1->pRawData, 0, (sizeof(u16) * 16 * 4));
@@ -1432,8 +1430,8 @@ static void ov107_022474F8 (void)
 
 static void ov107_0224752C (UnkStruct_ov107_02246170 * param0, u32 param1)
 {
-    sub_020070E8(param0->unk_3E0, 44, param0->unk_4C, param1, 0, 0, 1, 100);
-    sub_0200710C(param0->unk_3E0, 42, param0->unk_4C, param1, 0, 0, 1, 100);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_3E0, 44, param0->unk_4C, param1, 0, 0, 1, 100);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_3E0, 42, param0->unk_4C, param1, 0, 0, 1, 100);
 
     return;
 }
@@ -1443,7 +1441,7 @@ static void ov107_02247574 (void)
     void * v0;
     NNSG2dPaletteData * v1;
 
-    v0 = sub_02006F88(150, 138, &v1, 100);
+    v0 = Graphics_GetPlttData(150, 138, &v1, 100);
 
     DC_FlushRange(v1->pRawData, (sizeof(u16) * 16 * 4));
     GX_LoadBGPltt(v1->pRawData, 0, (sizeof(u16) * 16 * 4));
@@ -1454,17 +1452,17 @@ static void ov107_02247574 (void)
 
 static void ov107_022475A8 (UnkStruct_ov107_02246170 * param0, u32 param1)
 {
-    sub_020070E8(param0->unk_3E0, 44, param0->unk_4C, param1, 0, 0, 1, 100);
-    sub_0200710C(param0->unk_3E0, 43, param0->unk_4C, param1, 0, 0, 1, 100);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_3E0, 44, param0->unk_4C, param1, 0, 0, 1, 100);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_3E0, 43, param0->unk_4C, param1, 0, 0, 1, 100);
 
     return;
 }
 
 static void ov107_022475F0 (UnkStruct_ov107_02246170 * param0, u32 param1)
 {
-    sub_020070E8(param0->unk_3E0, 125, param0->unk_4C, param1, 0, 0, 1, 100);
-    sub_0200710C(param0->unk_3E0, 126, param0->unk_4C, param1, 0, 0, 1, 100);
-    sub_02007130(param0->unk_3E0, 171, 4, 0, 0x20, 100);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_3E0, 125, param0->unk_4C, param1, 0, 0, 1, 100);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_3E0, 126, param0->unk_4C, param1, 0, 0, 1, 100);
+    Graphics_LoadPaletteFromOpenNARC(param0->unk_3E0, 171, 4, 0, 0x20, 100);
 
     return;
 }

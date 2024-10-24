@@ -4,9 +4,9 @@
 #include <string.h>
 
 #include "bg_window.h"
+#include "graphics.h"
 #include "heap.h"
 #include "unk_020021B0.h"
-#include "unk_02006E3C.h"
 
 typedef struct UnkStruct_0200C440_t {
     void *unk_00;
@@ -36,7 +36,7 @@ UnkStruct_0200C440 *sub_0200C440(u32 param0, u32 param1, u32 param2, u32 param3)
         u32 v1;
         u8 *v2;
 
-        v0->unk_00 = sub_02006F50(14, 4, 1, &v0->unk_04, param3);
+        v0->unk_00 = Graphics_GetCharData(14, 4, 1, &v0->unk_04, param3);
         v2 = v0->unk_04->pRawData;
 
         for (v1 = 0; v1 < v0->unk_04->szByte; v1++) {

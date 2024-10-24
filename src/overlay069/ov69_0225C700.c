@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_defs/struct_0200C738.h"
@@ -28,6 +27,7 @@
 #include "easy3d_object.h"
 #include "font.h"
 #include "game_options.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
@@ -42,7 +42,6 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
@@ -807,7 +806,7 @@ static void ov69_0225C980(UnkStruct_ov69_0225CA7C *param0, const UnkStruct_ov66_
         u32 v3;
         int v4, v5;
 
-        v1 = sub_02007250(v0, 18, 0, param2, 0, &v3);
+        v1 = LoadMemberFromOpenNARC_OutFileSize(v0, 18, 0, param2, 0, &v3);
         v2 = (UnkStruct_ov92_021D1530 *)v1;
         v5 = v3 / 6;
 
@@ -835,7 +834,7 @@ static void ov69_0225C980(UnkStruct_ov69_0225CA7C *param0, const UnkStruct_ov66_
 
         while (v12 < v11) {
             v9 = sub_02099764(v12);
-            v6 = sub_02007250(v0, v9, 0, param2, 0, &v8);
+            v6 = LoadMemberFromOpenNARC_OutFileSize(v0, v9, 0, param2, 0, &v8);
             v7 = (UnkStruct_ov69_0225C980 *)v6;
             v13 = v8 / 4;
 
@@ -1424,16 +1423,16 @@ static void ov69_0225D3A4(UnkStruct_ov69_0225D35C *param0, Options *param1, u32 
         }
     }
 
-    sub_02007130(param0->unk_1A8, 5, 4, 0, 0, param2);
+    Graphics_LoadPaletteFromOpenNARC(param0->unk_1A8, 5, 4, 0, 0, param2);
 
     {
-        sub_020070E8(param0->unk_1A8, 11, param0->unk_00, 4, 0, 0, 0, param2);
-        sub_0200710C(param0->unk_1A8, 12, param0->unk_00, 4, 0, 0, 0, param2);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_1A8, 11, param0->unk_00, 4, 0, 0, 0, param2);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_1A8, 12, param0->unk_00, 4, 0, 0, 0, param2);
     }
 
     {
-        sub_020070E8(param0->unk_1A8, 4, param0->unk_00, 6, 0, 0, 0, param2);
-        sub_0200710C(param0->unk_1A8, 18, param0->unk_00, 7, 0, 0, 0, param2);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_1A8, 4, param0->unk_00, 6, 0, 0, 0, param2);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_1A8, 18, param0->unk_00, 7, 0, 0, 0, param2);
     }
 
     Font_LoadScreenIndicatorsPalette(0, 1 * 0x20, param2);
@@ -2040,7 +2039,7 @@ static void ov69_0225DEC0(UnkStruct_ov69_0225E084 *param0, UnkStruct_ov69_0225D3
     ov69_0225E590(param0, param1, param3);
 
     {
-        param0->unk_94 = sub_020071D0(param1->unk_1A8, 19, 0, &param0->unk_98, param3);
+        param0->unk_94 = Graphics_GetScrnDataFromOpenNARC(param1->unk_1A8, 19, 0, &param0->unk_98, param3);
     }
 
     ov69_0225E960(&param0->unk_1B8, param1, &param0->unk_2E4, param3);
@@ -2540,7 +2539,7 @@ static void ov69_0225E748(UnkStruct_ov69_0225E7DC *param0, UnkStruct_ov69_0225D3
         param0->unk_18 = param2->unk_04;
 
         for (v0 = 0; v0 < param0->unk_18; v0++) {
-            param0->unk_08[v0] = sub_020071D0(
+            param0->unk_08[v0] = Graphics_GetScrnDataFromOpenNARC(
                 param1->unk_1A8, param2->unk_00[v0], 0, &param0->unk_10[v0], param4);
         }
     }
@@ -2548,7 +2547,7 @@ static void ov69_0225E748(UnkStruct_ov69_0225E7DC *param0, UnkStruct_ov69_0225D3
     if (param2->unk_08 > 0) {
         param0->unk_24 = param2->unk_08;
         param0->unk_26 = param2->unk_0A;
-        param0->unk_1C = sub_020071EC(param1->unk_1A8, param2->unk_06, &param0->unk_20, param4);
+        param0->unk_1C = Graphics_GetPlttDataFromOpenNARC(param1->unk_1A8, param2->unk_06, &param0->unk_20, param4);
     }
 }
 

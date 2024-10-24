@@ -8,7 +8,6 @@
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
-#include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
@@ -36,6 +35,7 @@
 #include "bg_window.h"
 #include "game_options.h"
 #include "message.h"
+#include "palette.h"
 #include "poketch_data.h"
 #include "strbuf.h"
 #include "string_template.h"

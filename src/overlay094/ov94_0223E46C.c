@@ -4,8 +4,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-
 #include "overlay094/const_ov94_02245FD4.h"
 #include "overlay094/ov94_0223B140.h"
 #include "overlay094/ov94_0223BCB0.h"
@@ -22,6 +20,7 @@
 #include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
+#include "graphics.h"
 #include "heap.h"
 #include "inlines.h"
 #include "message.h"
@@ -32,7 +31,6 @@
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02013A04.h"
@@ -275,13 +273,13 @@ static void ov94_0223E6B8(UnkStruct_ov94_0223FD4C *param0)
     BgConfig *v0 = param0->unk_04;
     NARC *v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, 62);
 
-    sub_02007130(v1, 3, 0, 0, 16 * 3 * 2, 62);
-    sub_02007130(v1, 5, 4, 0, 16 * 8 * 2, 62);
+    Graphics_LoadPaletteFromOpenNARC(v1, 3, 0, 0, 16 * 3 * 2, 62);
+    Graphics_LoadPaletteFromOpenNARC(v1, 5, 4, 0, 16 * 8 * 2, 62);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 62);
     sub_0200DD0C(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), 62);
     sub_0200DAA4(v0, 0, (1 + (18 + 12)), 11, 0, 62);
-    sub_020070E8(v1, 13, v0, 1, 0, 16 * 5 * 0x20, 1, 62);
-    sub_0200710C(v1, 26, v0, 1, 0, 32 * 24 * 2, 1, 62);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 13, v0, 1, 0, 16 * 5 * 0x20, 1, 62);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 26, v0, 1, 0, 32 * 24 * 2, 1, 62);
     NARC_dtor(v1);
 }
 

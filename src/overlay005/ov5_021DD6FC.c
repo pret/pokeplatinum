@@ -7,6 +7,7 @@
 #include "field/field_system_sub2_t.h"
 
 #include "bg_window.h"
+#include "graphics.h"
 #include "heap.h"
 #include "map_header.h"
 #include "message.h"
@@ -14,7 +15,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02006E3C.h"
 #include "unk_02071CFC.h"
 
 typedef struct UnkStruct_ov5_021DD9C8_t {
@@ -64,9 +64,9 @@ static void ov5_021DD744(UnkStruct_ov5_021DD9C8 *param0, u8 param1, u16 param2, 
 
     v3 = param0->unk_31 * 2;
 
-    param0->unk_38 = sub_02006F50(160, v3, 0, &param0->unk_34, 4);
+    param0->unk_38 = Graphics_GetCharData(160, v3, 0, &param0->unk_34, 4);
     Bg_LoadTiles(param0->unk_1C, param1, param0->unk_34->pRawData, param0->unk_34->szByte, param2);
-    v0 = sub_02006F88(160, v3 + 1, &v2, 4);
+    v0 = Graphics_GetPlttData(160, v3 + 1, &v2, 4);
 
     ov5_021DD6FC(v2->pRawData, 1, param3);
     Heap_FreeToHeap(v0);

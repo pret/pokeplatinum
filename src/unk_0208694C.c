@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02087A10_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0208737C.h"
@@ -16,6 +15,7 @@
 #include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
@@ -33,7 +33,6 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
-#include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
@@ -1504,19 +1503,19 @@ static void sub_0208769C(UnkStruct_02087A10 *param0, NARC *param1)
 {
     BgConfig *v0 = param0->unk_160;
 
-    sub_02007130(param1, 0, 0, 0, 16 * 3 * 2, 18);
-    sub_02006E84(12, 12, 4, 0, 16 * 2, 18);
+    Graphics_LoadPaletteFromOpenNARC(param1, 0, 0, 0, 16 * 3 * 2, 18);
+    Graphics_LoadPalette(12, 12, 4, 0, 16 * 2, 18);
     Bg_MaskPalette(4, 0);
-    sub_020070E8(param1, 2, v0, 2, 0, ((32 * 8) * 0x20), 1, 18);
-    sub_0200710C(param1, 4, v0, 2, 0, 32 * 24 * 2, 1, 18);
-    sub_020070E8(param1, 2, v0, 1, 0, 32 * 8 * 0x20, 1, 18);
-    sub_0200710C(param1, 6, v0, 1, 0, (32 * 14 * 2), 1, 18);
-    sub_0200710C(param1, 7, v0, 0, 0, (32 * 14 * 2), 1, 18);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 2, 0, ((32 * 8) * 0x20), 1, 18);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 4, v0, 2, 0, 32 * 24 * 2, 1, 18);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 1, 0, 32 * 8 * 0x20, 1, 18);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 6, v0, 1, 0, (32 * 14 * 2), 1, 18);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 7, v0, 0, 0, (32 * 14 * 2), 1, 18);
     Font_LoadScreenIndicatorsPalette(0, 12 * 32, 18);
     sub_0200DD0C(param0->unk_160, 4, (32 * 8), 10, Options_Frame(param0->unk_18), 18);
     Font_LoadScreenIndicatorsPalette(4, 12 * 32, 18);
 
-    param0->unk_510 = sub_020071B4(param1, 16, 1, &param0->unk_514, 18);
+    param0->unk_510 = Graphics_GetCharDataFromOpenNARC(param1, 16, 1, &param0->unk_514, 18);
 }
 
 void sub_020877C4(void)
@@ -1555,10 +1554,10 @@ static void sub_020877F4(UnkStruct_02087A10 *param0, NARC *param1)
     param0->unk_328[0][3] = SpriteResourceCollection_AddFrom(param0->unk_318[3], param1, 14, 1, 0, 3, 18);
 
     if (param0->unk_00 == 1) {
-        param0->unk_518 = sub_02006F50(19, PokeIconSpriteIndex(param0->unk_04, 0, param0->unk_08), 0, &param0->unk_51C, 18);
+        param0->unk_518 = Graphics_GetCharData(19, PokeIconSpriteIndex(param0->unk_04, 0, param0->unk_08), 0, &param0->unk_51C, 18);
         DC_FlushRange(param0->unk_51C, 0x20 * 4 * 4);
 
-        param0->unk_520 = sub_02006F88(19, PokeIconPalettesFileIndex(), &param0->unk_524, 18);
+        param0->unk_520 = Graphics_GetPlttData(19, PokeIconPalettesFileIndex(), &param0->unk_524, 18);
         DC_FlushRange(param0->unk_524, 0x20 * 4);
     }
 
@@ -1744,7 +1743,7 @@ static void sub_02087D64(BgConfig *param0, Window *param1, int *param2, int para
     case 0: {
         u16 v3 = Unk_020F24DC[param3] | (Unk_020F24DC[param3] << 4);
 
-        sub_02006E60(31, 6 + param3, param0, 0 + v0, 0, (32 * 14 * 2), 1, 18);
+        Graphics_LoadTilemapToBgLayer(31, 6 + param3, param0, 0 + v0, 0, (32 * 14 * 2), 1, 18);
         sub_02088260(param5, v0);
         sub_02088E58(&param1[v0], v3, param3, TEXT_COLOR(14, 15, 0), param7);
         (*param2)++;
@@ -1830,7 +1829,7 @@ static void sub_02087FC0(UnkStruct_02087A10 *param0, OverlayManager *param1, NAR
     Window_Add(param0->unk_160, &param0->unk_41C[1], 1, 2, 1, 26, 12, 1, ((32 * 8) + (26 * 12)));
 
     if (param0->unk_00 == 4) {
-        sub_0200710C(param2, 6 + 3, param0->unk_160, 1, 0, (32 * 14 * 2), 1, 18);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param2, 6 + 3, param0->unk_160, 1, 0, (32 * 14 * 2), 1, 18);
         param0->unk_4C4 = 4;
         sub_02088844(param0->unk_3A, 4);
         sub_02088E58(&param0->unk_41C[1], 0xa0a, 4, TEXT_COLOR(14, 15, 0), param0->unk_514->pRawData);

@@ -28,6 +28,7 @@
 #include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
+#include "graphics.h"
 #include "heap.h"
 #include "message.h"
 #include "message_util.h"
@@ -41,7 +42,6 @@
 #include "unk_02001AF4.h"
 #include "unk_020021B0.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02013A04.h"
@@ -456,12 +456,12 @@ static void ov94_0224170C(UnkStruct_ov94_0223FD4C *param0)
 {
     BgConfig *v0 = param0->unk_04;
 
-    sub_02006E84(104, 1, 0, 0, 16 * 3 * 2, 62);
+    Graphics_LoadPalette(104, 1, 0, 0, 16 * 3 * 2, 62);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 62);
     sub_0200DD0C(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), 62);
     sub_0200DAA4(v0, 0, (1 + (18 + 12)), 11, 0, 62);
-    sub_02006E3C(104, 11, v0, 1, 0, 16 * 5 * 0x20, 1, 62);
-    sub_02006E60(104, 23, v0, 1, 0, 32 * 24 * 2, 1, 62);
+    Graphics_LoadTilesToBgLayer(104, 11, v0, 1, 0, 16 * 5 * 0x20, 1, 62);
+    Graphics_LoadTilemapToBgLayer(104, 23, v0, 1, 0, 32 * 24 * 2, 1, 62);
 }
 
 static void ov94_022417A0(UnkStruct_ov94_0223FD4C *param0)
@@ -1013,7 +1013,7 @@ u16 *ov94_Pokedex_Alphabetical(int heapID, int unused, int *pokedexLength)
     u32 pokedexSize;
     u16 *pokedexAlphabetical;
 
-    pokedexAlphabetical = sub_02007068(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_DATA, 13, 0, heapID, 0, &pokedexSize);
+    pokedexAlphabetical = LoadMemberFromNARC_OutFileSize(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_DATA, 13, 0, heapID, 0, &pokedexSize);
     *pokedexLength = pokedexSize / (sizeof(u16));
 
     return pokedexAlphabetical;
@@ -1027,7 +1027,7 @@ u8 *ov94_02242548(int param0)
 
     MI_CpuClearFast(v4, NATIONAL_DEX_COUNT + 1);
 
-    v3 = sub_02007068(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_DATA, 12, 0, param0, 0, &v0);
+    v3 = LoadMemberFromNARC_OutFileSize(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_DATA, 12, 0, param0, 0, &v0);
     v1 = v0 / (sizeof(u16));
 
     for (v2 = 0; v2 < v1; v2++) {

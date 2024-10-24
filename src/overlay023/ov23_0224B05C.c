@@ -40,6 +40,7 @@
 #include "field_map_change.h"
 #include "field_system.h"
 #include "game_records.h"
+#include "graphics.h"
 #include "heap.h"
 #include "journal.h"
 #include "map_object_move.h"
@@ -52,7 +53,6 @@
 #include "trainer_info.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02013A04.h"
@@ -1641,7 +1641,7 @@ static BOOL ov23_0224C790(TaskManager *param0)
         CommSys_EnableSendMovementData();
         sub_020594FC();
 
-        sub_02006E84(50, 52, 0, 10 * 0x20, 4 * 0x20, 4);
+        Graphics_LoadPalette(50, 52, 0, 10 * 0x20, 4 * 0x20, 4);
         sub_0200DAA4(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 2, 4);
 
         if (v1->unk_2D) {

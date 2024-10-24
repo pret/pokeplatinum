@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/ov19_021DB8E4.h"
@@ -16,12 +14,13 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "enums.h"
+#include "graphics.h"
 #include "heap.h"
+#include "narc.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02006E3C.h"
 #include "unk_0201D15C.h"
 #include "unk_020797C8.h"
 
@@ -419,10 +418,10 @@ void ov19_021DD078(UnkStruct_ov19_021DCF88 *param0)
 void ov19_021DD114(UnkStruct_ov19_021DCF88 *param0, NARC *param1)
 {
     if (param0) {
-        sub_020070E8(param1, 127, param0->unk_08, 7, 0, 0, 1, 10);
-        sub_0200710C(param1, 124, param0->unk_08, 7, 0, 0, 1, 10);
-        sub_0200710C(param1, 125, param0->unk_08, 6, 0, 0, 1, 10);
-        sub_0200710C(param1, 126, param0->unk_08, 5, 0, 0, 1, 10);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 127, param0->unk_08, 7, 0, 0, 1, 10);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 124, param0->unk_08, 7, 0, 0, 1, 10);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 125, param0->unk_08, 6, 0, 0, 1, 10);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 126, param0->unk_08, 5, 0, 0, 1, 10);
         Bg_FillTilesRange(param0->unk_08, 4, 0x0, 1, 0);
         Bg_FillTilemapRect(param0->unk_08, 4, 0x0, 0, 0, 32, 32, 17);
         Bg_CopyTilemapBufferToVRAM(param0->unk_08, 4);
@@ -431,7 +430,7 @@ void ov19_021DD114(UnkStruct_ov19_021DCF88 *param0, NARC *param1)
         Window_FillTilemap(&(param0->unk_88), 0x0);
         Window_CopyToVRAM(&param0->unk_88);
         ov19_021DE324(param0);
-        sub_02007130(param1, 128, 4, 0, 0x20 * 3, 10);
+        Graphics_LoadPaletteFromOpenNARC(param1, 128, 4, 0, 0x20 * 3, 10);
         ov19_021DD224(param0, param1);
     }
 }
@@ -444,7 +443,7 @@ static void ov19_021DD224(UnkStruct_ov19_021DCF88 *param0, NARC *param1)
     ov19_021DD2BC(param0, param1);
 
     NNS_G2dInitImageProxy(&v1);
-    sub_0200718C(param1, 138, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DSUB, 0 * 0x20, 10, &(v1));
+    Graphics_LoadImageMappingFromOpenNARC(param1, 138, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DSUB, 0 * 0x20, 10, &(v1));
 
     ov19_021D783C(&v0, &v1, &(param0->unk_18), param0->unk_9C, param0->unk_A4, 3);
 
@@ -460,13 +459,13 @@ static void ov19_021DD224(UnkStruct_ov19_021DCF88 *param0, NARC *param1)
 
 static void ov19_021DD2BC(UnkStruct_ov19_021DCF88 *param0, NARC *param1)
 {
-    param0->unk_98 = sub_02007204(param1, 139, 1, &(param0->unk_9C), 10);
-    param0->unk_A0 = sub_02007220(param1, 140, 1, &(param0->unk_A4), 10);
-    param0->unk_A8 = sub_02007204(param1, 142, 1, &(param0->unk_AC), 10);
-    param0->unk_B0 = sub_02007220(param1, 143, 1, &(param0->unk_B4), 10);
+    param0->unk_98 = Graphics_GetCellBankFromOpenNARC(param1, 139, 1, &(param0->unk_9C), 10);
+    param0->unk_A0 = Graphics_GetAnimBankFromOpenNARC(param1, 140, 1, &(param0->unk_A4), 10);
+    param0->unk_A8 = Graphics_GetCellBankFromOpenNARC(param1, 142, 1, &(param0->unk_AC), 10);
+    param0->unk_B0 = Graphics_GetAnimBankFromOpenNARC(param1, 143, 1, &(param0->unk_B4), 10);
 
     NNS_G2dInitImagePaletteProxy(&(param0->unk_18));
-    sub_0200716C(param1, 144, NNS_G2D_VRAM_TYPE_2DSUB, 0, 10, &(param0->unk_18));
+    Graphics_LoadPartialPaletteFromOpenNARC(param1, 144, NNS_G2D_VRAM_TYPE_2DSUB, 0, 10, &(param0->unk_18));
 }
 
 static SysTask *ov19_021DD344(UnkStruct_ov19_021DCF88 *param0, SysTaskFunc param1, void *param2)
@@ -934,7 +933,7 @@ static void ov19_021DD9DC(UnkStruct_ov19_021DCF88 *param0)
     v2 = ov19_021D5EC8(param0->unk_04);
 
     NNS_G2dInitImageProxy(&v1);
-    sub_02006F00(18, 141, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DSUB, 192 * 0x20, 10, &v1);
+    Graphics_LoadImageMapping(18, 141, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DSUB, 192 * 0x20, 10, &v1);
 
     for (v3 = 0; v3 < 8; v3++) {
         ov19_021D783C(&v0, &v1, &(param0->unk_18), param0->unk_AC, param0->unk_B4, 2);

@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 
 #include "overlay019/ov19_021D0D80.h"
@@ -16,15 +15,16 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "font.h"
+#include "graphics.h"
 #include "heap.h"
 #include "item.h"
 #include "message.h"
+#include "narc.h"
 #include "pokemon.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02006E3C.h"
 #include "unk_0200C440.h"
 #include "unk_020797C8.h"
 
@@ -76,17 +76,17 @@ BOOL ov19_021DB8E4(UnkStruct_ov19_021DBA9C *param0, UnkStruct_ov19_021D61B0 *par
     param0->unk_0C = param2;
     param0->unk_08 = param4;
 
-    sub_020070E8(param5, 4, param3, 1, 0, 0, 1, 10);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param5, 4, param3, 1, 0, 0, 1, 10);
 
     {
         NNSG2dPaletteData *v1;
         void *v2;
 
-        v2 = sub_020071EC(param5, 27, &v1, 10);
+        v2 = Graphics_GetPlttDataFromOpenNARC(param5, 27, &v1, 10);
         MI_CpuCopy16(v1->pRawData, &(param0->unk_E4[0][0]), 0x40);
         Heap_FreeToHeap(v2);
 
-        v2 = sub_020071EC(param5, 20, &v1, 10);
+        v2 = Graphics_GetPlttDataFromOpenNARC(param5, 20, &v1, 10);
         MI_CpuCopy16(v1->pRawData, &(param0->unk_E4[0][32]), 0x20);
         Heap_FreeToHeap(v2);
 
@@ -109,10 +109,10 @@ BOOL ov19_021DB8E4(UnkStruct_ov19_021DBA9C *param0, UnkStruct_ov19_021D61B0 *par
         GXS_LoadOBJPltt(param0->unk_E4[0], 13 * 0x20, 96);
     }
 
-    param0->unk_14 = sub_020071B4(param5, 17, 1, &(param0->unk_18), 10);
-    param0->unk_1C = sub_02007204(param5, 18, 1, &(param0->unk_20), 10);
-    param0->unk_34 = sub_020071D0(param5, 2, 1, &(param0->unk_38), 10);
-    param0->unk_2C = sub_020071D0(param5, 3, 1, &(param0->unk_30), 10);
+    param0->unk_14 = Graphics_GetCharDataFromOpenNARC(param5, 17, 1, &(param0->unk_18), 10);
+    param0->unk_1C = Graphics_GetCellBankFromOpenNARC(param5, 18, 1, &(param0->unk_20), 10);
+    param0->unk_34 = Graphics_GetScrnDataFromOpenNARC(param5, 2, 1, &(param0->unk_38), 10);
+    param0->unk_2C = Graphics_GetScrnDataFromOpenNARC(param5, 3, 1, &(param0->unk_30), 10);
     param0->unk_44 = sub_0200C440(2, 13, 4, 10);
     param0->unk_4BFC = Strbuf_Init(500, 10);
     param0->unk_10 = NULL;
@@ -717,11 +717,11 @@ static void ov19_021DC4F8(UnkStruct_ov19_021DBA9C *param0, u32 param1)
         ov19_021D783C(&v0, &v2, ov19_021D77D0(param0->unk_00), v1->unk_1C, v1->unk_20, 0);
         NNS_G2dInitImageProxy(&v2);
 
-        v4 = sub_02006F50(16, Item_FileID(param1, 1), 0, &v3, 10);
+        v4 = Graphics_GetCharData(16, Item_FileID(param1, 1), 0, &v3, 10);
         v3->mapingType = GX_GetOBJVRamModeChar();
         NNS_G2dLoadImage1DMapping(v3, 1520 * 0x20, NNS_G2D_VRAM_TYPE_2DMAIN, &v2);
 
-        sub_02006E84(16, Item_FileID(param1, 2), 1, 6 * 0x20, 0x20, 10);
+        Graphics_LoadPalette(16, Item_FileID(param1, 2), 1, 6 * 0x20, 0x20, 10);
         param0->unk_90 = ov19_021D785C(param0->unk_08, &v0, 18, 224, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
 
         if (param0->unk_90) {

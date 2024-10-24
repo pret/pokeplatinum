@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -27,6 +26,7 @@
 #include "core_sys.h"
 #include "easy3d_object.h"
 #include "field_system.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "map_object.h"
@@ -35,7 +35,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_0201D15C.h"
 #include "unk_020508D4.h"
 #include "unk_020655F4.h"
@@ -2061,9 +2060,9 @@ UnkStruct_ov6_022401B8 *ov6_02240104(u32 param0, FieldSystem *fieldSystem)
     {
         BgConfig *v1 = sub_0203D170(v0->fieldSystem);
 
-        sub_02006E3C(172, 74, v1, 2, 0, 0, 0, param0);
-        sub_02006E60(172, 76, v1, 2, 0, 0, 0, param0);
-        sub_02006E84(172, 75, 0, 0x20 * 6, 0x20, param0);
+        Graphics_LoadTilesToBgLayer(172, 74, v1, 2, 0, 0, 0, param0);
+        Graphics_LoadTilemapToBgLayer(172, 76, v1, 2, 0, 0, 0, param0);
+        Graphics_LoadPalette(172, 75, 0, 0x20 * 6, 0x20, param0);
         Bg_SetPriority(2, 1);
 
         v0->unk_34.unk_00 = 0;

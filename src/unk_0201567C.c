@@ -3,13 +3,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02002F38_decl.h"
-
 #include "bg_window.h"
+#include "hardware_palette.h"
+#include "palette.h"
 #include "sys_task_manager.h"
-#include "unk_02002F38.h"
 #include "unk_0200679C.h"
-#include "unk_020241F0.h"
 
 typedef void (*UnkFuncPtr_020157E4)(void *, u16 *);
 
@@ -43,18 +41,18 @@ void *sub_0201567C(PaletteData *param0, u16 param1, u16 param2, u32 param3)
 
     if (param0 != NULL) {
         if (param1 == 0) {
-            v2 = sub_02003164(param0, 0);
+            v2 = PaletteData_GetUnfadedBuffer(param0, 0);
             v0->unk_04 = sub_02015870;
         } else {
-            v2 = sub_02003164(param0, 1);
+            v2 = PaletteData_GetUnfadedBuffer(param0, 1);
             v0->unk_04 = sub_0201588C;
         }
     } else {
         if (param1 == 0) {
-            v2 = (u16 *)sub_020241F0();
+            v2 = (u16 *)GetHardwareMainBgPaletteAddress();
             v0->unk_04 = sub_02015840;
         } else {
-            v2 = (u16 *)sub_02024200();
+            v2 = (u16 *)GetHardwareSubBgPaletteAddress();
             v0->unk_04 = sub_02015858;
         }
     }
@@ -166,11 +164,11 @@ static void sub_02015858(void *param0, u16 *param1)
 static void sub_02015870(void *param0, u16 *param1)
 {
     UnkStruct_020157E4 *v0 = (UnkStruct_020157E4 *)param0;
-    sub_02002FBC(v0->unk_08, param1, 0, v0->unk_4D * 16, 0x20);
+    PaletteData_LoadBuffer(v0->unk_08, param1, 0, v0->unk_4D * 16, 0x20);
 }
 
 static void sub_0201588C(void *param0, u16 *param1)
 {
     UnkStruct_020157E4 *v0 = (UnkStruct_020157E4 *)param0;
-    sub_02002FBC(v0->unk_08, param1, 1, v0->unk_4D * 16, 0x20);
+    PaletteData_LoadBuffer(v0->unk_08, param1, 1, v0->unk_4D * 16, 0x20);
 }

@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_0202F298_decl.h"
@@ -38,10 +36,12 @@
 #include "enums.h"
 #include "font.h"
 #include "game_records.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
+#include "palette.h"
 #include "pokemon_icon.h"
 #include "savedata_misc.h"
 #include "strbuf.h"
@@ -50,9 +50,7 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_02002F38.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
@@ -169,10 +167,10 @@ void ov62_022317CC(UnkStruct_0208C06C *param0, int param1)
     SpriteGfxHandler *v2 = param0->unk_14.unk_08;
     NARC *v3 = param0->unk_14.unk_00;
 
-    PaletteSys_LoadPalette(v0, 162, ov62_02231710(param0, 3), 102, 0, 0x20 * (8 + 1), 0);
-    PaletteSys_LoadPalette(v0, 162, ov62_02231710(param0, 3), 102, 1, 0x20 * (8 + 1), 0);
-    PaletteSys_LoadPalette(v0, 162, ov62_02231710(param0, 0), 102, 0, 0x20, 14 * 16);
-    PaletteSys_LoadPalette(v0, 162, ov62_02231710(param0, 0), 102, 1, 0x20, 14 * 16);
+    PaletteData_LoadBufferFromFileStart(v0, 162, ov62_02231710(param0, 3), 102, 0, 0x20 * (8 + 1), 0);
+    PaletteData_LoadBufferFromFileStart(v0, 162, ov62_02231710(param0, 3), 102, 1, 0x20 * (8 + 1), 0);
+    PaletteData_LoadBufferFromFileStart(v0, 162, ov62_02231710(param0, 0), 102, 0, 0x20, 14 * 16);
+    PaletteData_LoadBufferFromFileStart(v0, 162, ov62_02231710(param0, 0), 102, 1, 0x20, 14 * 16);
     sub_0208B63C(param0->unk_6F0, param0->unk_14.unk_48);
     sub_0208B63C(param0->unk_6F0, param0->unk_14.unk_48);
     SpriteGfxHandler_UnloadPlttObjById(v2, 9999);
@@ -183,10 +181,10 @@ void ov62_022317CC(UnkStruct_0208C06C *param0, int param1)
 
 void ov62_022318E8(UnkStruct_0208C06C *param0)
 {
-    sub_02003A2C(param0->unk_14.unk_14, 2, 0xFFFF, 0, param0->unk_14.unk_44);
-    sub_02003A2C(param0->unk_14.unk_14, 0, 0xFFFF, 0, param0->unk_14.unk_44);
-    sub_02003A2C(param0->unk_14.unk_14, 3, 0xFFFF, 0, param0->unk_14.unk_44);
-    sub_02003A2C(param0->unk_14.unk_14, 1, 0xFFFF, 0, param0->unk_14.unk_44);
+    PaletteData_BlendMulti(param0->unk_14.unk_14, 2, 0xFFFF, 0, param0->unk_14.unk_44);
+    PaletteData_BlendMulti(param0->unk_14.unk_14, 0, 0xFFFF, 0, param0->unk_14.unk_44);
+    PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xFFFF, 0, param0->unk_14.unk_44);
+    PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0xFFFF, 0, param0->unk_14.unk_44);
 }
 
 u16 *ov62_Pokedex_Alphabetical(int heapID, int unused, int *pokedexLength)
@@ -194,7 +192,7 @@ u16 *ov62_Pokedex_Alphabetical(int heapID, int unused, int *pokedexLength)
     u32 pokedexSize;
     u16 *pokedexAlphabetical;
 
-    pokedexAlphabetical = sub_02007068(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_DATA, 13, 0, heapID, 0, &pokedexSize);
+    pokedexAlphabetical = LoadMemberFromNARC_OutFileSize(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_DATA, 13, 0, heapID, 0, &pokedexSize);
     *pokedexLength = pokedexSize / sizeof(u16);
 
     return pokedexAlphabetical;
@@ -2713,7 +2711,7 @@ int ov62_0223438C(u64 param0)
 
 void ov62_022343B8(UnkStruct_0208C06C *param0, int param1, int param2)
 {
-    sub_0200710C(param0->unk_14.unk_00, param1, param0->unk_14.unk_10, param2, 0, 0, 0, 102);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, param1, param0->unk_14.unk_10, param2, 0, 0, 0, 102);
 }
 
 static void ov62_022343D8(SysTask *param0, void *param1)

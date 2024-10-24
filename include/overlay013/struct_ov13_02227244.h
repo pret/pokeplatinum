@@ -2,7 +2,6 @@
 #define POKEPLATINUM_STRUCT_OV13_02227244_H
 
 #include "struct_decls/cell_actor_data.h"
-#include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 
@@ -13,6 +12,7 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "message.h"
+#include "palette.h"
 #include "strbuf.h"
 #include "string_template.h"
 

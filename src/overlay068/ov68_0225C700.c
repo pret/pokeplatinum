@@ -6,7 +6,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02030EC4_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02099F80.h"
@@ -26,6 +25,7 @@
 #include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
@@ -40,7 +40,6 @@
 #include "trainer_info.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
@@ -497,9 +496,9 @@ static void ov68_0225C9A0(UnkStruct_ov68_0225C91C *param0, Options *param1, u32 
     sub_0200DAA4(param0->unk_00, 1, (1 + (18 + 12)), 6, 0, param2);
 
     {
-        sub_02006E3C(169, 2, param0->unk_00, 4, 0, 0, 0, param2);
-        sub_02006E60(169, 6, param0->unk_00, 4, 0, 0, 0, param2);
-        sub_02006E84(169, 0, 4, 0, 0, param2);
+        Graphics_LoadTilesToBgLayer(169, 2, param0->unk_00, 4, 0, 0, 0, param2);
+        Graphics_LoadTilemapToBgLayer(169, 6, param0->unk_00, 4, 0, 0, 0, param2);
+        Graphics_LoadPalette(169, 0, 4, 0, 0, param2);
     }
 }
 
@@ -664,9 +663,9 @@ static void ov68_0225CCC8(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB7
 static void ov68_0225CCD0(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, u32 param3)
 {
     {
-        sub_02007130(param2->unk_1A4, 199, 0, 0, 4 * 32, param3);
-        sub_020070E8(param2->unk_1A4, 200, param2->unk_00, 0, 0, 0, 0, param3);
-        sub_0200710C(param2->unk_1A4, 201, param2->unk_00, 0, 0, 0, 0, param3);
+        Graphics_LoadPaletteFromOpenNARC(param2->unk_1A4, 199, 0, 0, 4 * 32, param3);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param2->unk_1A4, 200, param2->unk_00, 0, 0, 0, 0, param3);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param2->unk_1A4, 201, param2->unk_00, 0, 0, 0, 0, param3);
     }
 
     {
@@ -1034,9 +1033,9 @@ static void ov68_0225D380(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB7
 static void ov68_0225D388(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov66_02231374 *param3, u32 param4)
 {
     {
-        sub_02007130(param2->unk_1A4, 199, 0, 0, 4 * 32, param4);
-        sub_020070E8(param2->unk_1A4, 200, param2->unk_00, 0, 0, 0, 0, param4);
-        sub_0200710C(param2->unk_1A4, 202, param2->unk_00, 0, 0, 0, 0, param4);
+        Graphics_LoadPaletteFromOpenNARC(param2->unk_1A4, 199, 0, 0, 4 * 32, param4);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param2->unk_1A4, 200, param2->unk_00, 0, 0, 0, 0, param4);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param2->unk_1A4, 202, param2->unk_00, 0, 0, 0, 0, param4);
     }
 
     {
@@ -1050,7 +1049,7 @@ static void ov68_0225D388(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB
     ov68_0225D89C(param0, param1, 109, TEXT_COLOR(3, 4, 0));
 
     {
-        param0->unk_80 = sub_020071B4(param2->unk_1A4, 200, 0, &param0->unk_84, param4);
+        param0->unk_80 = Graphics_GetCharDataFromOpenNARC(param2->unk_1A4, 200, 0, &param0->unk_84, param4);
     }
 
     {
@@ -1423,7 +1422,7 @@ static BOOL ov68_0225DA74(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225C9
 static void ov68_0225DB3C(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, u32 param3)
 {
     {
-        sub_0200710C(param2->unk_1A4, 203, param2->unk_00, 0, 0, 0, 0, param3);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param2->unk_1A4, 203, param2->unk_00, 0, 0, 0, 0, param3);
     }
 
     {

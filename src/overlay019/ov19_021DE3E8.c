@@ -15,11 +15,11 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "graphics.h"
 #include "heap.h"
 #include "item.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
 
 static const struct {
     u32 unk_00;
@@ -107,7 +107,7 @@ static void ov19_021DE450(UnkStruct_ov19_021DE3E8 *param0)
         int v4;
 
         ov19_021D783C(&v0, &v1, ov19_021D77D0(param0->unk_04), param0->unk_14->unk_1C, param0->unk_14->unk_20, 0);
-        v3 = sub_02006F50(16, Item_FileID(1, 1), 0, &v2, 10);
+        v3 = Graphics_GetCharData(16, Item_FileID(1, 1), 0, &v2, 10);
 
         if (v3) {
             int v5;
@@ -225,8 +225,8 @@ static void ov19_021DE5D4(UnkStruct_ov19_021DE3E8 *param0)
             v2 = 2;
         }
 
-        sub_02006EC0(16, Item_FileID(v0, 1), 0, Unk_ov19_021E04CC[v3].unk_00, 0, 0, 10);
-        sub_02006E84(16, Item_FileID(v0, 2), 1, Unk_ov19_021E04CC[v3].unk_04 * 0x20, 0x20, 10);
+        Graphics_LoadObjectTiles(16, Item_FileID(v0, 1), 0, Unk_ov19_021E04CC[v3].unk_00, 0, 0, 10);
+        Graphics_LoadPalette(16, Item_FileID(v0, 2), 1, Unk_ov19_021E04CC[v3].unk_04 * 0x20, 0x20, 10);
         CellActor_SetExplicitPriority(param0->unk_1C[v3], v2);
 
         ov19_021D78AC(param0->unk_1C[v3], 2);
@@ -266,8 +266,8 @@ static void ov19_021DE718(UnkStruct_ov19_021DE3E8 *param0, int param1, int param
 
         ov19_021DE694(param0, &v0, &v1);
 
-        sub_02006EC0(16, Item_FileID(param2, 1), 0, Unk_ov19_021E04CC[param1].unk_00, 0, 0, 10);
-        sub_02006E84(16, Item_FileID(param2, 2), 1, Unk_ov19_021E04CC[param1].unk_04 * 0x20, 0x20, 10);
+        Graphics_LoadObjectTiles(16, Item_FileID(param2, 1), 0, Unk_ov19_021E04CC[param1].unk_00, 0, 0, 10);
+        Graphics_LoadPalette(16, Item_FileID(param2, 2), 1, Unk_ov19_021E04CC[param1].unk_04 * 0x20, 0x20, 10);
         CellActor_SetExplicitPriority(param0->unk_1C[param1], v1);
 
         ov19_021D78AC(param0->unk_1C[param1], 3);

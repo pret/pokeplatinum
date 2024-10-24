@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_defs/sprite_template.h"
@@ -26,8 +25,8 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "heap.h"
+#include "palette.h"
 #include "sys_task_manager.h"
-#include "unk_02002F38.h"
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
 #include "unk_0201F834.h"
@@ -737,10 +736,10 @@ void ov12_0222B68C(UnkStruct_ov12_0221FCDC *param0)
             sub_0200D460(v0->unk_18[3], v4);
 
             v2 = sub_0201FAB4(CellActor_GetPaletteProxy(v0->unk_18[0]->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
-            sub_02003B08(ov12_0222332C(v0->unk_0C), v5, v3, ov12_0221FDE4(param0), 2, 0x20, v2 * 16, 128, 128, 128);
+            PaletteData_LoadBufferFromFileStartWithTint(ov12_0222332C(v0->unk_0C), v5, v3, ov12_0221FDE4(param0), 2, 0x20, v2 * 16, 128, 128, 128);
 
             v2 = sub_0201FAB4(CellActor_GetPaletteProxy(v0->unk_18[2]->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
-            sub_02003B08(ov12_0222332C(v0->unk_0C), v5, v3, ov12_0221FDE4(param0), 2, 0x20, v2 * 16, 196, 196, 196);
+            PaletteData_LoadBufferFromFileStartWithTint(ov12_0222332C(v0->unk_0C), v5, v3, ov12_0221FDE4(param0), 2, 0x20, v2 * 16, 196, 196, 196);
         } else {
             sub_0200D474(v0->unk_18[0], 20);
             sub_0200D474(v0->unk_18[1], 20);
@@ -756,10 +755,10 @@ void ov12_0222B68C(UnkStruct_ov12_0221FCDC *param0)
             sub_0200D460(v0->unk_18[3], v4);
 
             v2 = sub_0201FAB4(CellActor_GetPaletteProxy(v0->unk_18[0]->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
-            sub_02003B08(ov12_0222332C(v0->unk_0C), v5, v3, ov12_0221FDE4(param0), 2, 0x20, v2 * 16, 196, 196, 196);
+            PaletteData_LoadBufferFromFileStartWithTint(ov12_0222332C(v0->unk_0C), v5, v3, ov12_0221FDE4(param0), 2, 0x20, v2 * 16, 196, 196, 196);
 
             v2 = sub_0201FAB4(CellActor_GetPaletteProxy(v0->unk_18[2]->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
-            sub_02003B08(ov12_0222332C(v0->unk_0C), v5, v3, ov12_0221FDE4(param0), 2, 0x20, v2 * 16, 128, 128, 128);
+            PaletteData_LoadBufferFromFileStartWithTint(ov12_0222332C(v0->unk_0C), v5, v3, ov12_0221FDE4(param0), 2, 0x20, v2 * 16, 128, 128, 128);
         }
     }
 
@@ -962,12 +961,12 @@ static void ov12_0222BD48(SysTask *param0, void *param1)
 
     switch (v0->unk_00) {
     case 0:
-        sub_02003178(v0->unk_04, 0x1, ov12_02222354(v0->unk_08), -2, 0, 16, 0x7FFF);
+        PaletteData_StartFade(v0->unk_04, 0x1, ov12_02222354(v0->unk_08), -2, 0, 16, 0x7FFF);
         sub_020086FC(v0->unk_10, 0, 16, 0, 0x0);
         v0->unk_00++;
         break;
     case 1:
-        if ((sub_0200384C(v0->unk_04) == 0) && (sub_020087B4(v0->unk_10) == 0)) {
+        if ((PaletteData_GetSelectedBuffersMask(v0->unk_04) == 0) && (sub_020087B4(v0->unk_10) == 0)) {
             v0->unk_00++;
         }
         break;
@@ -977,12 +976,12 @@ static void ov12_0222BD48(SysTask *param0, void *param1)
         }
         break;
     case 3:
-        sub_02003178(v0->unk_04, 0x1, ov12_02222354(v0->unk_08), -2, 16, 0, 0x7FFF);
+        PaletteData_StartFade(v0->unk_04, 0x1, ov12_02222354(v0->unk_08), -2, 16, 0, 0x7FFF);
         sub_020086FC(v0->unk_10, 16, 0, 0, 0x0);
         v0->unk_00++;
         break;
     case 4:
-        if ((sub_0200384C(v0->unk_04) == 0) && (sub_020087B4(v0->unk_10) == 0)) {
+        if ((PaletteData_GetSelectedBuffersMask(v0->unk_04) == 0) && (sub_020087B4(v0->unk_10) == 0)) {
             v0->unk_00++;
         }
         break;
@@ -1140,7 +1139,7 @@ void ov12_0222C0C0(UnkStruct_ov12_0221FCDC *param0)
         int v3 = ov12_02223344(v0->unk_04, ov12_02220240(v0->unk_04));
 
         v1 = sub_0201FAB4(CellActor_GetPaletteProxy(v0->unk_0C->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
-        sub_02003B08(ov12_0222332C(v0->unk_04), v3, v2, ov12_0221FDE4(param0), 2, 0x20, v1 * 16, 256, 256, 256);
+        PaletteData_LoadBufferFromFileStartWithTint(ov12_0222332C(v0->unk_04), v3, v2, ov12_0221FDE4(param0), 2, 0x20, v1 * 16, 256, 256, 256);
     }
 
     SpriteActor_EnableObject(v0->unk_0C, 0);
@@ -1323,11 +1322,11 @@ static void ov12_0222C4A8(SysTask *param0, void *param1)
 
     switch (v1->unk_00) {
     case 0:
-        sub_02003178(ov12_0222332C(v1->unk_0C), 0x1, ov12_02222354(v1->unk_0C), 1, 0, 10, 0x0);
+        PaletteData_StartFade(ov12_0222332C(v1->unk_0C), 0x1, ov12_02222354(v1->unk_0C), 1, 0, 10, 0x0);
         v1->unk_00++;
         break;
     case 1:
-        if (sub_0200384C(ov12_0222332C(v1->unk_0C)) != 0) {
+        if (PaletteData_GetSelectedBuffersMask(ov12_0222332C(v1->unk_0C)) != 0) {
             break;
         }
 
@@ -1336,9 +1335,9 @@ static void ov12_0222C4A8(SysTask *param0, void *param1)
         ov12_02226108(&v1->unk_B4, Unk_ov12_0223A0EE[v1->unk_01], 0, 0, 5);
 
         if (v1->unk_02 == 0) {
-            sub_02003A2C(ov12_0222332C(v1->unk_0C), 0, 0xFF, 10, 0x0);
+            PaletteData_BlendMulti(ov12_0222332C(v1->unk_0C), 0, 0xFF, 10, 0x0);
         } else {
-            sub_02003A2C(ov12_0222332C(v1->unk_0C), 0, 0xFF, 10, 0x7FFF);
+            PaletteData_BlendMulti(ov12_0222332C(v1->unk_0C), 0, 0xFF, 10, 0x7FFF);
         }
 
         v1->unk_03 = 3;
@@ -1358,7 +1357,7 @@ static void ov12_0222C4A8(SysTask *param0, void *param1)
             v1->unk_03--;
 
             if (v1->unk_03 == 0) {
-                sub_02003A2C(ov12_0222332C(v1->unk_0C), 0, 0xFF, 0, 0);
+                PaletteData_BlendMulti(ov12_0222332C(v1->unk_0C), 0, 0xFF, 0, 0);
             }
         }
 

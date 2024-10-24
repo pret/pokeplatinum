@@ -25,9 +25,9 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "palette.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02002F38.h"
 #include "unk_020041CC.h"
 #include "unk_020093B4.h"
 #include "unk_0200A9DC.h"
@@ -110,13 +110,13 @@ int ov99_021D0D80(OverlayManager *param0, int *param1)
 
     v0->unk_00 = OverlayManager_Args(param0);
     v0->unk_10 = ov99_021D19AC(75);
-    v0->unk_0C = sub_02002F38(75);
+    v0->unk_0C = PaletteData_New(75);
 
-    sub_02002F70(v0->unk_0C, 0, 0x200, 75);
-    sub_02002F70(v0->unk_0C, 1, 0x200, 75);
-    sub_02002F70(v0->unk_0C, 2, 0x200 - 0x40, 75);
-    sub_02002F70(v0->unk_0C, 3, 0x200, 75);
-    sub_02003858(v0->unk_0C, 1);
+    PaletteData_AllocBuffer(v0->unk_0C, 0, 0x200, 75);
+    PaletteData_AllocBuffer(v0->unk_0C, 1, 0x200, 75);
+    PaletteData_AllocBuffer(v0->unk_0C, 2, 0x200 - 0x40, 75);
+    PaletteData_AllocBuffer(v0->unk_0C, 3, 0x200, 75);
+    PaletteData_SetAutoTransparent(v0->unk_0C, 1);
 
     v0->unk_08 = BgConfig_New(75);
 
@@ -271,11 +271,11 @@ int ov99_021D11A8(OverlayManager *param0, int *param1)
     MessageLoader_Free(v0->unk_20);
     sub_0200D0B0(v0->unk_18, v0->unk_1C);
     sub_0200C8D4(v0->unk_18);
-    sub_02002FA0(v0->unk_0C, 0);
-    sub_02002FA0(v0->unk_0C, 1);
-    sub_02002FA0(v0->unk_0C, 2);
-    sub_02002FA0(v0->unk_0C, 3);
-    sub_02002F54(v0->unk_0C);
+    PaletteData_FreeBuffer(v0->unk_0C, 0);
+    PaletteData_FreeBuffer(v0->unk_0C, 1);
+    PaletteData_FreeBuffer(v0->unk_0C, 2);
+    PaletteData_FreeBuffer(v0->unk_0C, 3);
+    PaletteData_Free(v0->unk_0C);
 
     ov99_021D19A0(v0);
 
@@ -355,7 +355,7 @@ static void ov99_021D1350(void *param0)
 
     sub_0201DCAC();
     sub_0200C800();
-    sub_02003694(v0->unk_0C);
+    PaletteData_CommitFadedBuffers(v0->unk_0C);
     Bg_RunScheduledUpdates(v0->unk_08);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
@@ -673,8 +673,8 @@ static void ov99_021D1580(BgConfig *param0)
 
 static void ov99_021D16E4(UnkStruct_ov99_021D2CB0 *param0)
 {
-    PaletteSys_LoadPalette(param0->unk_0C, 127, 85, 75, 0, 0x20, 15 * 16);
-    PaletteSys_LoadPalette(param0->unk_0C, 127, 85, 75, 1, 0x20, 15 * 16);
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C, 127, 85, 75, 0, 0x20, 15 * 16);
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C, 127, 85, 75, 1, 0x20, 15 * 16);
 }
 
 static void ov99_021D1720(UnkStruct_ov99_021D2CB0 *param0)

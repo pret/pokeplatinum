@@ -24,7 +24,7 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
-#include "unk_02002F38.h"
+#include "palette.h"
 #include "unk_020041CC.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
@@ -76,8 +76,8 @@ int ov100_021D0D80(OverlayManager *param0, int *param1)
         Window_CopyToVRAM(v1);
 
         sub_0200DD0C(v0->unk_0C.unk_0C, 1, 500, 15, v2, 111);
-        PaletteSys_LoadPalette(v0->unk_0C.unk_10, 38, sub_0200DD08(v2), 111, 0, 0x20, 15 * 16);
-        PaletteSys_LoadPalette(v0->unk_0C.unk_10, 14, 7, 111, 0, 0x20, 14 * 16);
+        PaletteData_LoadBufferFromFileStart(v0->unk_0C.unk_10, 38, sub_0200DD08(v2), 111, 0, 0x20, 15 * 16);
+        PaletteData_LoadBufferFromFileStart(v0->unk_0C.unk_10, 14, 7, 111, 0, 0x20, 14 * 16);
         sub_0200E060(v1, 0, 500, 15);
 
         ov100_021D4788(&v0->unk_0C);
@@ -218,16 +218,16 @@ static void ov100_021D1034(UnkStruct_ov100_021D46C8 *param0)
 
     param0->unk_00 = NARC_ctor(NARC_INDEX_ARC__DEMO_TENGAN_GRA, 111);
     param0->unk_0C = BgConfig_New(111);
-    param0->unk_10 = sub_02002F38(111);
+    param0->unk_10 = PaletteData_New(111);
     param0->unk_14 = sub_02024220(111, 0, 1, 0, 4, NULL);
     param0->camera = Camera_Alloc(111);
     param0->unk_2C = MessageLoader_Init(0, 26, 234, 111);
 
-    sub_02003858(param0->unk_10, 1);
-    sub_02002F70(param0->unk_10, 0, 0x200, 111);
-    sub_02002F70(param0->unk_10, 1, 0x200, 111);
-    sub_02002F70(param0->unk_10, 2, 0x200, 111);
-    sub_02002F70(param0->unk_10, 3, 0x200, 111);
+    PaletteData_SetAutoTransparent(param0->unk_10, 1);
+    PaletteData_AllocBuffer(param0->unk_10, 0, 0x200, 111);
+    PaletteData_AllocBuffer(param0->unk_10, 1, 0x200, 111);
+    PaletteData_AllocBuffer(param0->unk_10, 2, 0x200, 111);
+    PaletteData_AllocBuffer(param0->unk_10, 3, 0x200, 111);
 
     ov100_021D1208(param0->unk_0C);
     ov100_021D0FA0(param0);
@@ -256,11 +256,11 @@ static void ov100_021D111C(UnkStruct_ov100_021D46C8 *param0)
     Bg_FreeTilemapBuffer(param0->unk_0C, 7);
     Heap_FreeToHeap(param0->unk_0C);
 
-    sub_02002FA0(param0->unk_10, 0);
-    sub_02002FA0(param0->unk_10, 1);
-    sub_02002FA0(param0->unk_10, 2);
-    sub_02002FA0(param0->unk_10, 3);
-    sub_02002F54(param0->unk_10);
+    PaletteData_FreeBuffer(param0->unk_10, 0);
+    PaletteData_FreeBuffer(param0->unk_10, 1);
+    PaletteData_FreeBuffer(param0->unk_10, 2);
+    PaletteData_FreeBuffer(param0->unk_10, 3);
+    PaletteData_Free(param0->unk_10);
 
     NARC_dtor(param0->unk_00);
     sub_020242C4(param0->unk_14);
@@ -448,7 +448,7 @@ static void ov100_021D13B4(void *param0)
 
     sub_0201DCAC();
     sub_0200C800();
-    sub_02003694(v0->unk_0C.unk_10);
+    PaletteData_CommitFadedBuffers(v0->unk_0C.unk_10);
     Bg_RunScheduledUpdates(v0->unk_0C.unk_0C);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);

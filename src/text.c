@@ -8,12 +8,12 @@
 
 #include "bg_window.h"
 #include "font.h"
+#include "graphics.h"
 #include "heap.h"
 #include "render_text.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
 
 static enum RenderResult TextPrinter_Render(TextPrinter *printer);
 static u8 Text_CreatePrinterTask(SysTaskFunc taskFunc, TextPrinter *printer, u32 priority);
@@ -324,7 +324,7 @@ static u8 *Text_LoadScreenIndicatorGfx(void)
     NNSG2dCharacterData *g2dCharData;
 
     u8 *gfx = Heap_AllocFromHeap(HEAP_ID_SYSTEM, 24 * 64); // These numbers are file dimensions. Curiously, this only loads the bottom-screen indicators.
-    void *ncgr = sub_02006F50(NARC_INDEX_GRAPHIC__PL_FONT, 5, FALSE, &g2dCharData, HEAP_ID_SYSTEM);
+    void *ncgr = Graphics_GetCharData(NARC_INDEX_GRAPHIC__PL_FONT, 5, FALSE, &g2dCharData, HEAP_ID_SYSTEM);
 
     MI_CpuCopy32(g2dCharData->pRawData, gfx, 24 * 64);
     Heap_FreeToHeap(ncgr);

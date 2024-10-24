@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_defs/struct_020985E4.h"
 
 #include "overlay100/ov100_021D44C0.h"
@@ -20,11 +19,12 @@
 #include "game_options.h"
 #include "gx_layers.h"
 #include "message.h"
+#include "narc.h"
+#include "palette.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02002F38.h"
 #include "unk_0200DA60.h"
 
 int ov100_021D46C8(UnkStruct_ov100_021D46C8 *param0, UnkStruct_020985E4 *param1, int param2)
@@ -272,8 +272,8 @@ void ov100_021D4BF0(UnkStruct_ov100_021D46C8 *param0)
         }
     }
 
-    sub_020039B0(param0->unk_10, 1, 0, 4, param0->unk_C1 / 8, 0xCCCC);
-    sub_020039B0(param0->unk_10, 1, 4, 6, param0->unk_C1 / 8, 0xCCCC);
+    PaletteData_Blend(param0->unk_10, 1, 0, 4, param0->unk_C1 / 8, 0xCCCC);
+    PaletteData_Blend(param0->unk_10, 1, 4, 6, param0->unk_C1 / 8, 0xCCCC);
 }
 
 void ov100_021D4C94(UnkStruct_ov100_021D46C8 *param0, int param1)
@@ -331,7 +331,7 @@ void ov100_021D4C94(UnkStruct_ov100_021D46C8 *param0, int param1)
         }
     }
 
-    sub_020039B0(param0->unk_10, 1, v3[v0][0], v3[v0][1], param0->unk_C1 / v1[v0], v4[v0]);
+    PaletteData_Blend(param0->unk_10, 1, v3[v0][0], v3[v0][1], param0->unk_C1 / v1[v0], v4[v0]);
 }
 
 void ov100_021D4DC8(int param0)

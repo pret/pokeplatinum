@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_020308A0_decl.h"
@@ -17,18 +15,18 @@
 #include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "palette.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_02002F38.h"
-#include "unk_02006E3C.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_0202D05C.h"
@@ -53,7 +51,7 @@ typedef struct {
     StringTemplate * unk_114;
     Strbuf* unk_118;
     Strbuf* unk_11C;
-    PaletteData * unk_120;
+    PaletteData *unk_120;
     const Options * unk_124;
     SaveData * unk_128;
     UnkStruct_0203068C * unk_12C;
@@ -168,9 +166,9 @@ int ov110_021D0EF0 (OverlayManager * param0, int * param1)
     int v0;
     UnkStruct_ov110_021D0F78 * v1 = OverlayManager_Data(param0);
 
-    sub_02002FA0(v1->unk_120, 2);
-    sub_02002FA0(v1->unk_120, 0);
-    sub_02002F54(v1->unk_120);
+    PaletteData_FreeBuffer(v1->unk_120, 2);
+    PaletteData_FreeBuffer(v1->unk_120, 0);
+    PaletteData_Free(v1->unk_120);
 
     v1->unk_120 = NULL;
 
@@ -254,7 +252,7 @@ static void ov110_021D1048 (void * param0)
     UnkStruct_ov110_021D0F78 * v0 = param0;
 
     if (v0->unk_120 != NULL) {
-        sub_02003694(v0->unk_120);
+        PaletteData_CommitFadedBuffers(v0->unk_120);
     }
 
     Bg_RunScheduledUpdates(v0->unk_0C);
@@ -373,10 +371,10 @@ static void ov110_021D1180 (UnkStruct_ov110_021D0F78 * param0)
     ov110_021D1078();
     ov110_021D1098(param0->unk_0C);
 
-    param0->unk_120 = sub_02002F38(114);
+    param0->unk_120 = PaletteData_New(114);
 
-    sub_02002F70(param0->unk_120, 2, (32 * 16), 114);
-    sub_02002F70(param0->unk_120, 0, (32 * 16), 114);
+    PaletteData_AllocBuffer(param0->unk_120, 2, (32 * 16), 114);
+    PaletteData_AllocBuffer(param0->unk_120, 0, (32 * 16), 114);
 
     ov110_021D123C(param0, 2);
     ov110_021D128C();
@@ -439,8 +437,8 @@ static void ov110_021D123C (UnkStruct_ov110_021D0F78 * param0, u32 param1)
 
     v0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 114);
 
-    sub_020070E8(v0, 124, param0->unk_0C, param1, 0, 0, 1, 114);
-    sub_0200710C(v0, 123, param0->unk_0C, param1, 0, 0, 1, 114);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 124, param0->unk_0C, param1, 0, 0, 1, 114);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 123, param0->unk_0C, param1, 0, 0, 1, 114);
     NARC_dtor(v0);
 
     return;
@@ -451,7 +449,7 @@ static void ov110_021D128C (void)
     void * v0;
     NNSG2dPaletteData * v1;
 
-    v0 = sub_02006F88(150, 170, &v1, 114);
+    v0 = Graphics_GetPlttData(150, 170, &v1, 114);
 
     DC_FlushRange(v1->pRawData, (sizeof(u16) * 16 * 2));
     GX_LoadBGPltt(v1->pRawData, 0, (sizeof(u16) * 16 * 2));
@@ -466,9 +464,9 @@ static void ov110_021D12C0 (UnkStruct_ov110_021D0F78 * param0, u32 param1)
 
     v0 = NARC_ctor(NARC_INDEX_GRAPHIC__POKETCH, 114);
 
-    sub_020070E8(v0, 10, param0->unk_0C, param1, 0, 0, 1, 114);
-    sub_0200710C(v0, 11, param0->unk_0C, param1, 0, 0, 1, 114);
-    sub_02007130(v0, 12, 4, 0, 0x20, 114);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 10, param0->unk_0C, param1, 0, 0, 1, 114);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 11, param0->unk_0C, param1, 0, 0, 1, 114);
+    Graphics_LoadPaletteFromOpenNARC(v0, 12, 4, 0, 0x20, 114);
     NARC_dtor(v0);
 
     return;

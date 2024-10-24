@@ -19,18 +19,18 @@
 #include "bg_window.h"
 #include "font.h"
 #include "game_overlay.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
 #include "overlay_manager.h"
+#include "palette.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02002F38.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
@@ -160,13 +160,13 @@ int ov17_0224F4D4(OverlayManager *param0, int *param1)
     ov17_0224FE1C(v0);
 
     v0->unk_127B = 0;
-    v0->unk_10.unk_C0 = sub_02002F38(24);
+    v0->unk_10.unk_C0 = PaletteData_New(24);
 
-    sub_02003858(v0->unk_10.unk_C0, 1);
-    sub_02002F70(v0->unk_10.unk_C0, 0, 0x200, 24);
-    sub_02002F70(v0->unk_10.unk_C0, 1, 0x200, 24);
-    sub_02002F70(v0->unk_10.unk_C0, 2, (((16 - 2) * 16) * sizeof(u16)), 24);
-    sub_02002F70(v0->unk_10.unk_C0, 3, 0x200, 24);
+    PaletteData_SetAutoTransparent(v0->unk_10.unk_C0, 1);
+    PaletteData_AllocBuffer(v0->unk_10.unk_C0, 0, 0x200, 24);
+    PaletteData_AllocBuffer(v0->unk_10.unk_C0, 1, 0x200, 24);
+    PaletteData_AllocBuffer(v0->unk_10.unk_C0, 2, (((16 - 2) * 16) * sizeof(u16)), 24);
+    PaletteData_AllocBuffer(v0->unk_10.unk_C0, 3, 0x200, 24);
 
     v0->unk_10.unk_20 = BgConfig_New(24);
 
@@ -308,11 +308,11 @@ int ov17_0224F86C(OverlayManager *param0, int *param1)
     sub_020127BC(v0->unk_10.unk_C4);
     Font_Free(FONT_SUBSCREEN);
 
-    sub_02002FA0(v0->unk_10.unk_C0, 0);
-    sub_02002FA0(v0->unk_10.unk_C0, 1);
-    sub_02002FA0(v0->unk_10.unk_C0, 2);
-    sub_02002FA0(v0->unk_10.unk_C0, 3);
-    sub_02002F54(v0->unk_10.unk_C0);
+    PaletteData_FreeBuffer(v0->unk_10.unk_C0, 0);
+    PaletteData_FreeBuffer(v0->unk_10.unk_C0, 1);
+    PaletteData_FreeBuffer(v0->unk_10.unk_C0, 2);
+    PaletteData_FreeBuffer(v0->unk_10.unk_C0, 3);
+    PaletteData_Free(v0->unk_10.unk_C0);
 
     Strbuf_Free(v0->unk_10.unk_BC);
     StringTemplate_Free(v0->unk_10.unk_B8);
@@ -361,7 +361,7 @@ static void ov17_0224FA24(void *param0)
     sub_02008A94(v0->unk_10.unk_04);
     sub_0201DCAC();
     sub_0200C800();
-    sub_02003694(v0->unk_10.unk_C0);
+    PaletteData_CommitFadedBuffers(v0->unk_10.unk_C0);
     Bg_RunScheduledUpdates(v0->unk_10.unk_20);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
@@ -612,9 +612,9 @@ static void ov17_0224FE68(UnkStruct_ov17_0224FCA0 *param0)
 
 static void ov17_0224FE70(UnkStruct_ov17_0224FCA0 *param0)
 {
-    sub_02006E3C(45, 19, param0->unk_10.unk_20, 4, 0, 0, 1, 24);
-    sub_02006E60(45, 20, param0->unk_10.unk_20, 4, 0, 0, 1, 24);
-    PaletteSys_LoadPalette(param0->unk_10.unk_C0, 45, 34, 24, 1, 0, 0);
+    Graphics_LoadTilesToBgLayer(45, 19, param0->unk_10.unk_20, 4, 0, 0, 1, 24);
+    Graphics_LoadTilemapToBgLayer(45, 20, param0->unk_10.unk_20, 4, 0, 0, 1, 24);
+    PaletteData_LoadBufferFromFileStart(param0->unk_10.unk_C0, 45, 34, 24, 1, 0, 0);
 }
 
 static void ov17_0224FEC8(UnkStruct_ov17_0224FCA0 *param0)

@@ -16,6 +16,7 @@
 #include "field_overworld_state.h"
 #include "field_system.h"
 #include "font.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
@@ -27,7 +28,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -99,7 +99,7 @@ static void sub_020528D0(BgConfig *param0)
     GXLayers_SetBanks(&v0);
     SetAllGraphicsModes(&v1);
     Bg_InitFromTemplate(param0, 3, &v2, 0);
-    sub_02006E84(14, 6, 0, 13 * 0x20, 0x20, 11);
+    Graphics_LoadPalette(14, 6, 0, 13 * 0x20, 0x20, 11);
 }
 
 static void sub_02052914(FieldSystem *fieldSystem, TaskManager *param1)

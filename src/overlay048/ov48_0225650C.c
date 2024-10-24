@@ -18,13 +18,13 @@
 #include "overlay048/struct_ov48_0225650C_decl.h"
 
 #include "bg_window.h"
+#include "graphics.h"
 #include "heap.h"
 #include "message.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02006E3C.h"
 
 struct UnkStruct_ov48_0225650C_t {
     const UnkStruct_ov48_0225650C_1 *unk_00;
@@ -133,10 +133,10 @@ static void ov48_022565A8(SysTask *param0, void *param1)
 
     Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
 
-    v4 = sub_02006E3C(12, 117, v2->unk_04, 6, 0, 0, 1, 8);
+    v4 = Graphics_LoadTilesToBgLayer(12, 117, v2->unk_04, 6, 0, 0, 1, 8);
     v4 /= 0x20;
 
-    sub_02006E60(12, 116, v2->unk_04, 6, 0, 0, 1, 8);
+    Graphics_LoadTilemapToBgLayer(12, 116, v2->unk_04, 6, 0, 0, 1, 8);
 
     ov25_022546B8(0, 0);
     ov48_02256650(v2, v4);
@@ -239,7 +239,7 @@ static void ov48_022567FC(UnkStruct_ov48_0225650C *param0)
 
     v0 = param0->unk_00;
 
-    sub_02006EC0(12, 120, 1, 0, 0, 1, 8);
+    Graphics_LoadObjectTiles(12, 120, 1, 0, 0, 1, 8);
 
     ov25_02255958(&param0->unk_138, 12, 118, 119, 8);
 

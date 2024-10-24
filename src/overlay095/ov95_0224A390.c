@@ -16,12 +16,12 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "enums.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_0201D15C.h"
@@ -288,14 +288,14 @@ static void ov95_0224A518(UnkStruct_ov95_0224A42C *param0)
         break;
     }
 
-    sub_02006E3C(93, v4, param0->unk_24, 3, 0, 0, 1, 58);
-    sub_02006E3C(93, v4, param0->unk_24, 7, 0, 0, 1, 58);
+    Graphics_LoadTilesToBgLayer(93, v4, param0->unk_24, 3, 0, 0, 1, 58);
+    Graphics_LoadTilesToBgLayer(93, v4, param0->unk_24, 7, 0, 0, 1, 58);
 
-    sub_02006E60(93, v3, param0->unk_24, 3, 0, 0, 1, 58);
-    sub_02006E60(93, v3, param0->unk_24, 7, 0, 0, 1, 58);
+    Graphics_LoadTilemapToBgLayer(93, v3, param0->unk_24, 3, 0, 0, 1, 58);
+    Graphics_LoadTilemapToBgLayer(93, v3, param0->unk_24, 7, 0, 0, 1, 58);
 
-    sub_02006E9C(93, v5, 0, v6, 0, 0x20, 58);
-    sub_02006E9C(93, v5, 4, v6, 0, 0x20, 58);
+    Graphics_LoadPaletteWithSrcOffset(93, v5, 0, v6, 0, 0x20, 58);
+    Graphics_LoadPaletteWithSrcOffset(93, v5, 4, v6, 0, 0x20, 58);
 
     Bg_SetOffset(param0->unk_24, 3, 3, 0);
     Bg_SetOffset(param0->unk_24, 7, 3, 256);
@@ -388,8 +388,8 @@ static void ov95_0224A7B0(UnkStruct_ov95_0224A42C *param0)
     NNS_G2dInitImagePaletteProxy(&v0);
     NNS_G2dInitImageProxy(&v1);
 
-    sub_02006F00(93, 9, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &v1);
-    sub_02006EE0(93, 10, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &v0);
+    Graphics_LoadImageMapping(93, 9, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &v1);
+    Graphics_LoadPartialPalette(93, 10, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &v0);
 
     ov95_022475C4(&v2, &param0->unk_10, &v1, &v0, 1);
     param0->unk_20[0] = ov95_022475E4(param0->unk_00, &v2, 128, 96, 0, NNS_G2D_VRAM_TYPE_2DMAIN);

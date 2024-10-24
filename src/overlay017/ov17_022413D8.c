@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_defs/sprite_template.h"
@@ -29,19 +27,20 @@
 #include "assert.h"
 #include "bg_window.h"
 #include "game_options.h"
+#include "graphics.h"
 #include "heap.h"
 #include "inlines.h"
 #include "message.h"
+#include "narc.h"
+#include "palette.h"
 #include "pokemon.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02002F38.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
@@ -458,7 +457,7 @@ static void ov17_022414C0(SysTask *param0, void *param1)
         return;
     }
 
-    sub_020039B0(v0->unk_00, 0, Unk_ov17_022536B4[v0->unk_0A] * 16 + 1, 4, v0->unk_08 >> 8, 0x7fff);
+    PaletteData_Blend(v0->unk_00, 0, Unk_ov17_022536B4[v0->unk_0A] * 16 + 1, 4, v0->unk_08 >> 8, 0x7fff);
 
     if (v0->unk_08 == 0) {
         v0->unk_0B = 0;
@@ -1755,7 +1754,7 @@ static void ov17_022431E8(SysTask *param0, void *param1)
             v1 = 2;
         }
 
-        sub_02006E60(45, v1, v0->unk_00->unk_0C.unk_24, 3, 0, 0, 1, 21);
+        Graphics_LoadTilemapToBgLayer(45, v1, v0->unk_00->unk_0C.unk_24, 3, 0, 0, 1, 21);
     }
 
         v0->unk_08++;
@@ -1790,7 +1789,7 @@ static void ov17_022431E8(SysTask *param0, void *param1)
                     v0->unk_0F = v2;
                 }
 
-                sub_020039B0(v0->unk_00->unk_0C.unk_50, 0, (0 * 16 + 1), 2, v0->unk_0F, 0x237e);
+                PaletteData_Blend(v0->unk_00->unk_0C.unk_50, 0, (0 * 16 + 1), 2, v0->unk_0F, 0x237e);
             }
         }
         break;
@@ -1803,7 +1802,7 @@ static void ov17_022431E8(SysTask *param0, void *param1)
                     v0->unk_0F = 0;
                 }
 
-                sub_020039B0(v0->unk_00->unk_0C.unk_50, 0, (0 * 16 + 1), 2, v0->unk_0F, 0x237e);
+                PaletteData_Blend(v0->unk_00->unk_0C.unk_50, 0, (0 * 16 + 1), 2, v0->unk_0F, 0x237e);
                 break;
             }
         }

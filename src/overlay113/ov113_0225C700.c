@@ -7,8 +7,6 @@
 #include "constants/species.h"
 
 #include "struct_decls/font_oam.h"
-#include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
@@ -47,11 +45,13 @@
 #include "easy3d_object.h"
 #include "font.h"
 #include "game_options.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "palette.h"
 #include "party.h"
 #include "pokemon.h"
 #include "render_text.h"
@@ -62,9 +62,7 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02002F38.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
@@ -371,14 +369,14 @@ int ov113_0225C700(OverlayManager *param0, int *param1)
     v0->unk_19D4 = (32 << 8);
     v0->unk_19D8 = v0->unk_19D4;
     v0->unk_14 = ov113_0225DC6C(118);
-    v0->unk_0C = sub_02002F38(118);
+    v0->unk_0C = PaletteData_New(118);
 
-    sub_02003858(v0->unk_0C, 1);
-    sub_02002F70(v0->unk_0C, 0, 0x200, 118);
-    sub_02002F70(v0->unk_0C, 1, 0x200, 118);
-    sub_02002F70(v0->unk_0C, 2, 0x200 - 0x40, 118);
-    sub_02002F70(v0->unk_0C, 3, 0x200, 118);
-    sub_02003858(v0->unk_0C, 1);
+    PaletteData_SetAutoTransparent(v0->unk_0C, 1);
+    PaletteData_AllocBuffer(v0->unk_0C, 0, 0x200, 118);
+    PaletteData_AllocBuffer(v0->unk_0C, 1, 0x200, 118);
+    PaletteData_AllocBuffer(v0->unk_0C, 2, 0x200 - 0x40, 118);
+    PaletteData_AllocBuffer(v0->unk_0C, 3, 0x200, 118);
+    PaletteData_SetAutoTransparent(v0->unk_0C, 1);
 
     v0->unk_08 = BgConfig_New(118);
 
@@ -500,8 +498,8 @@ int ov113_0225CA04(OverlayManager *param0, int *param1)
                 ov113_0225E068(v0, v2);
             } else if (((*param1) == 2) && (v2 == 0xfe)) {
                 Sound_PlayEffect(1509);
-                sub_020039B0(v0->unk_0C, 0, (0 * 16 + 9), 1, 8, 0x0);
-                sub_020039B0(v0->unk_0C, 2, v0->unk_921 * 16, 16, 8, 0x0);
+                PaletteData_Blend(v0->unk_0C, 0, (0 * 16 + 9), 1, 8, 0x0);
+                PaletteData_Blend(v0->unk_0C, 2, v0->unk_921 * 16, 16, 8, 0x0);
                 *param1 = 3;
             }
         }
@@ -532,7 +530,7 @@ int ov113_0225CA04(OverlayManager *param0, int *param1)
 
         break;
     case 5:
-        sub_02003070(v0->unk_0C, 0, 11 * 16, 0x20 * 2);
+        PaletteData_LoadBufferFromHardware(v0->unk_0C, 0, 11 * 16, 0x20 * 2);
         {
             u32 v4 = sub_020159FC(v0->unk_24);
 
@@ -549,8 +547,8 @@ int ov113_0225CA04(OverlayManager *param0, int *param1)
                 sub_02015A54(v0->unk_24);
                 v0->unk_28 = 0;
                 sub_0200E084(&v0->unk_B4, 0);
-                sub_020039B0(v0->unk_0C, 0, (0 * 16 + 9), 1, 0, 0x0);
-                sub_020039B0(v0->unk_0C, 2, v0->unk_921 * 16, 16, 0, 0x0);
+                PaletteData_Blend(v0->unk_0C, 0, (0 * 16 + 9), 1, 0, 0x0);
+                PaletteData_Blend(v0->unk_0C, 2, v0->unk_921 * 16, 16, 0, 0x0);
                 *param1 = 2;
                 break;
             }
@@ -649,11 +647,11 @@ int ov113_0225CDFC(OverlayManager *param0, int *param1)
     Heap_FreeToHeap(v0->unk_08);
     sub_0200D0B0(v0->unk_1C, v0->unk_20);
     sub_0200C8D4(v0->unk_1C);
-    sub_02002FA0(v0->unk_0C, 0);
-    sub_02002FA0(v0->unk_0C, 1);
-    sub_02002FA0(v0->unk_0C, 2);
-    sub_02002FA0(v0->unk_0C, 3);
-    sub_02002F54(v0->unk_0C);
+    PaletteData_FreeBuffer(v0->unk_0C, 0);
+    PaletteData_FreeBuffer(v0->unk_0C, 1);
+    PaletteData_FreeBuffer(v0->unk_0C, 2);
+    PaletteData_FreeBuffer(v0->unk_0C, 3);
+    PaletteData_Free(v0->unk_0C);
 
     ov113_0225DAFC(v0);
     ov113_0225DA9C(v0);
@@ -695,7 +693,7 @@ static void ov113_0225CF18(void *param0)
 
     sub_0201DCAC();
     sub_0200C800();
-    sub_02003694(v0->unk_0C);
+    PaletteData_CommitFadedBuffers(v0->unk_0C);
     Bg_RunScheduledUpdates(v0->unk_08);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
@@ -890,19 +888,19 @@ static void ov113_0225D160(UnkStruct_ov113_0225DBCC *param0, NARC *param1)
     BgConfig *v0 = param0->unk_08;
     u16 *v1;
 
-    PaletteSys_LoadPalette(param0->unk_0C, 187, 19, 118, 0, 0x200 - 0x40, 0);
-    sub_020070E8(param1, 18, param0->unk_08, 2, 0, 0, 0, 118);
-    sub_0200710C(param1, 17, param0->unk_08, 2, 0, 0, 0, 118);
-    sub_0200710C(param1, 20, param0->unk_08, 3, 0, 0, 0, 118);
-    PaletteSys_LoadPalette(param0->unk_0C, 187, 23, 118, 1, 0, 0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C, 187, 19, 118, 0, 0x200 - 0x40, 0);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 18, param0->unk_08, 2, 0, 0, 0, 118);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 17, param0->unk_08, 2, 0, 0, 0, 118);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 20, param0->unk_08, 3, 0, 0, 0, 118);
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C, 187, 23, 118, 1, 0, 0);
 
     if (param0->unk_00->unk_04 == 0) {
-        sub_02003120(param0->unk_0C, 1, 16 * 1, 1, 16 * 0, 0x20);
+        PaletteData_CopyBuffer(param0->unk_0C, 1, 16 * 1, 1, 16 * 0, 0x20);
     }
 
-    sub_020070E8(param1, 22, param0->unk_08, 6, 0, 0, 0, 118);
-    sub_0200710C(param1, 21, param0->unk_08, 6, 0, 0, 0, 118);
-    sub_0200710C(param1, 24, param0->unk_08, 7, 0, 0, 0, 118);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 22, param0->unk_08, 6, 0, 0, 0, 118);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 21, param0->unk_08, 6, 0, 0, 0, 118);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 24, param0->unk_08, 7, 0, 0, 0, 118);
 
     v1 = Bg_GetTilemapBuffer(param0->unk_08, 6);
 
@@ -913,14 +911,14 @@ static void ov113_0225D160(UnkStruct_ov113_0225DBCC *param0, NARC *param1)
         int v2;
         v2 = Options_Frame(SaveData_Options(param0->unk_04));
 
-        PaletteSys_LoadPalette(param0->unk_0C, 38, sub_0200DD08(v2), 118, 0, 0x20, 14 * 16);
+        PaletteData_LoadBufferFromFileStart(param0->unk_0C, 38, sub_0200DD08(v2), 118, 0, 0x20, 14 * 16);
         sub_0200DD0C(param0->unk_08, 1, 1, 14, v2, 118);
-        PaletteSys_LoadPalette(param0->unk_0C, 14, 6, 118, 0, 0x20, 13 * 16);
+        PaletteData_LoadBufferFromFileStart(param0->unk_0C, 14, 6, 118, 0, 0x20, 13 * 16);
 
         if (param0->unk_00->unk_04 == 0) {
-            PaletteSys_LoadPalette(param0->unk_0C, 14, 6, 118, 1, 0x20, 13 * 16);
+            PaletteData_LoadBufferFromFileStart(param0->unk_0C, 14, 6, 118, 1, 0x20, 13 * 16);
         } else {
-            PaletteSys_LoadPalette(param0->unk_0C, 187, 25, 118, 1, 0x20, 13 * 16);
+            PaletteData_LoadBufferFromFileStart(param0->unk_0C, 187, 25, 118, 1, 0x20, 13 * 16);
         }
     }
 
@@ -952,7 +950,7 @@ static void ov113_0225D304(UnkStruct_ov113_0225DBCC *param0, NARC *param1)
         v2 = 0x7fff;
     }
 
-    sub_020038B0(param0->unk_0C, 2, 2, v2, v1 * 16, v1 * 16 + 16);
+    PaletteData_FillBufferRange(param0->unk_0C, 2, 2, v2, v1 * 16, v1 * 16 + 16);
     SpriteRenderer_LoadCharResObjFromOpenNarc(param0->unk_1C, param0->unk_20, param1, 2, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 10008);
     SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_1C, param0->unk_20, param1, 1, 0, 10003);
     SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_1C, param0->unk_20, param1, 0, 0, 10003);
@@ -1085,8 +1083,8 @@ static void ov113_0225D7CC(UnkStruct_ov113_0225DBCC *param0)
     u16 *v2, *v3;
     int v4 = 0;
 
-    v2 = sub_02003164(param0->unk_0C, 2);
-    v3 = sub_0200316C(param0->unk_0C, 2);
+    v2 = PaletteData_GetUnfadedBuffer(param0->unk_0C, 2);
+    v3 = PaletteData_GetFadedBuffer(param0->unk_0C, 2);
 
     for (v0 = 0; v0 < 6; v0++) {
         if ((param0->unk_8D8[v0].unk_02 == 0) || (param0->unk_8D8[v0].unk_02 > NATIONAL_DEX_COUNT)) {
@@ -1103,7 +1101,7 @@ static void ov113_0225D7CC(UnkStruct_ov113_0225DBCC *param0)
             v2[1 * 16 + 1 + v0] = param0->unk_8D8[v0].unk_00;
             v3[1 * 16 + 1 + v0] = param0->unk_8D8[v0].unk_00;
 
-            sub_0200393C(&v2[1 * 16 + 1 + v0], &v2[2 * 16 + 1 + v0], 1, 12, 0x0);
+            BlendPalette(&v2[1 * 16 + 1 + v0], &v2[2 * 16 + 1 + v0], 1, 12, 0x0);
             v3[2 * 16 + 1 + v0] = v2[2 * 16 + 1 + v0];
 
             if (v4 == 0) {
@@ -1130,13 +1128,13 @@ static BOOL ov113_0225D938(int param0, int param1, CellActorData *param2, NARC *
     }
 
     if (PokemonHasOverworldFootprint(param0, param1, param6) == 1) {
-        v2 = sub_0200723C(param4, 3 + param0, 1, 118, 1);
+        v2 = LoadMemberFromOpenNARC(param4, 3 + param0, 1, 118, 1);
         NNS_G2dGetUnpackedCharacterData(v2, &v3);
         DC_FlushRange(v3->pRawData, 0x20 * 8);
         v4 = &((u8 *)v3->pRawData)[0x20 * 4];
         v5 = v3->pRawData;
     } else {
-        v2 = sub_0200723C(param3, 16, 0, 118, 1);
+        v2 = LoadMemberFromOpenNARC(param3, 16, 0, 118, 1);
         NNS_G2dGetUnpackedCharacterData(v2, &v3);
         DC_FlushRange(v3->pRawData, 0x20 * 4);
         v4 = v3->pRawData;
@@ -1364,7 +1362,7 @@ BOOL ov113_0225DDC0(UnkStruct_ov113_0225DBCC *param0, const UnkStruct_ov113_0226
                 param0->unk_9AC[v1] = param1->unk_00;
                 ov113_0225D938(param1->unk_02, param1->unk_08, param0->unk_970[v1], param0->unk_160, param0->unk_164, NNS_G2D_VRAM_TYPE_2DSUB, param0->unk_19E0);
                 SpriteActor_EnableObject(param0->unk_970[v1], 1);
-                sub_020038B0(param0->unk_0C, 1, 2, param1->unk_00, (2 * 16 + 1) + v1, (2 * 16 + 1) + v1 + 1);
+                PaletteData_FillBufferRange(param0->unk_0C, 1, 2, param1->unk_00, (2 * 16 + 1) + v1, (2 * 16 + 1) + v1 + 1);
             }
         }
 
@@ -1480,11 +1478,11 @@ static void ov113_0225E0D4(UnkStruct_ov113_0225DBCC *param0, int param1)
 {
     u16 *v0, *v1;
 
-    v0 = sub_02003164(param0->unk_0C, 2);
-    v1 = sub_0200316C(param0->unk_0C, 2);
+    v0 = PaletteData_GetUnfadedBuffer(param0->unk_0C, 2);
+    v1 = PaletteData_GetFadedBuffer(param0->unk_0C, 2);
 
     MI_CpuCopy16(&v0[1 * 16 + 1], &v1[1 * 16 + 1], 6 * 2);
-    sub_0200393C(&v0[1 * 16 + 1 + param1], &v1[1 * 16 + 1 + param1], 1, 6, 0x0);
+    BlendPalette(&v0[1 * 16 + 1 + param1], &v1[1 * 16 + 1 + param1], 1, 6, 0x0);
 }
 
 static void ov113_0225E118(UnkStruct_ov113_0225DBCC *param0)

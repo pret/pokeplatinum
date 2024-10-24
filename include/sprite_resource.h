@@ -5,8 +5,7 @@
 
 #include "constants/heap.h"
 
-#include "struct_decls/struct_02006C24_decl.h"
-
+#include "narc.h"
 #include "resource_collection.h"
 
 enum SpriteResourceType {
@@ -87,7 +86,7 @@ void SpriteResourceCollection_Clear(SpriteResourceCollection *spriteResources);
 SpriteResource *SpriteResourceCollection_Find(const SpriteResourceCollection *spriteResources, int id);
 int SpriteResource_GetID(const SpriteResource *spriteRes);
 NNSG2dCharacterData *SpriteResource_GetTileData(const SpriteResource *spriteRes);
-NNSG2dPaletteData *SpriteResource_GetPaletteData(const SpriteResource *spriteRes);
+NNSG2dPaletteData *SpriteResource_GetPaletteFade(const SpriteResource *spriteRes);
 NNSG2dCellDataBank *SpriteResource_GetSpriteData(const SpriteResource *spriteRes);
 NNSG2dCellAnimBankData *SpriteResource_GetSpriteAnimData(const SpriteResource *spriteRes);
 NNSG2dMultiCellDataBank *SpriteResource_GetMultiSpriteData(const SpriteResource *spriteRes);

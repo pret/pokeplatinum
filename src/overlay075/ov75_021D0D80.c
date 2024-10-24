@@ -4,8 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_defs/sprite_template.h"
@@ -27,6 +25,7 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "palette.h"
 #include "pokemon_icon.h"
 #include "render_text.h"
 #include "strbuf.h"
@@ -34,7 +33,6 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_02001AF4.h"
-#include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_0200A784.h"
 #include "unk_0200C6E4.h"
@@ -334,7 +332,7 @@ static int ov75_021D108C(UnkStruct_ov75_021D1184 *param0)
         param0->unk_0F = Text_AddPrinterWithParamsAndColor(&param0->unk_44[5], FONT_MESSAGE, v1, 0, 0, param0->unk_10, TEXT_COLOR(1, 2, 15), NULL);
 
         Strbuf_Free(v1);
-        sub_020039B0(param0->unk_30, 0, 34 + param0->unk_17, 1, 0, 0x7FFF);
+        PaletteData_Blend(param0->unk_30, 0, 34 + param0->unk_17, 1, 0, 0x7FFF);
 
         param0->unk_17 = param0->unk_16;
         param0->unk_15 = 0;
@@ -400,14 +398,14 @@ static int ov75_021D1184(UnkStruct_ov75_021D1184 *param0)
 
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG3, 28, 4);
 
-        sub_02003178(param0->unk_30, (0x1 | 0x4), 0xFFFF, -1, 16, 0, 0x0);
+        PaletteData_StartFade(param0->unk_30, (0x1 | 0x4), 0xFFFF, -1, 16, 0, 0x0);
         break;
     case 2:
         if (param0->unk_AC != NULL) {
             sub_0200C7EC(param0->unk_AC);
         }
 
-        if (sub_0200384C(param0->unk_30)) {
+        if (PaletteData_GetSelectedBuffersMask(param0->unk_30)) {
             return 0;
         }
         break;
@@ -427,10 +425,10 @@ static int ov75_021D1184(UnkStruct_ov75_021D1184 *param0)
             return 0;
         }
 
-        sub_02003178(param0->unk_30, (0x1 | 0x4), 0xFFFF, -1, 0, 16, 0x0);
+        PaletteData_StartFade(param0->unk_30, (0x1 | 0x4), 0xFFFF, -1, 0, 16, 0x0);
     } break;
     case 4:
-        if (sub_0200384C(param0->unk_30)) {
+        if (PaletteData_GetSelectedBuffersMask(param0->unk_30)) {
             if (param0->unk_AC != NULL) {
                 sub_0200C7EC(param0->unk_AC);
             }
@@ -464,7 +462,7 @@ static void ov75_021D131C(void *param0)
     UnkStruct_ov75_021D1184 *v0 = (UnkStruct_ov75_021D1184 *)param0;
 
     if (v0->unk_30 != NULL) {
-        sub_02003694(v0->unk_30);
+        PaletteData_CommitFadedBuffers(v0->unk_30);
     }
 
     if (v0->unk_A8 != NULL) {
@@ -491,13 +489,13 @@ static void ov75_021D1358(SysTask *param0, void *param1)
     }
 
     if (v0->unk_17 != v0->unk_16) {
-        sub_020039B0(v0->unk_30, 0, 34 + v0->unk_17, 1, 0, 0x7FFF);
+        PaletteData_Blend(v0->unk_30, 0, 34 + v0->unk_17, 1, 0, 0x7FFF);
         v0->unk_17 = v0->unk_16;
         v0->unk_15 = 0;
         v0->unk_14 = 0;
     }
 
-    sub_020039B0(v0->unk_30, 0, 34 + v0->unk_16, 1, v0->unk_14, 0x7FFF);
+    PaletteData_Blend(v0->unk_30, 0, 34 + v0->unk_16, 1, v0->unk_14, 0x7FFF);
 
     if (v0->unk_15) {
         if (v0->unk_14-- == 1) {
@@ -727,25 +725,25 @@ static void ov75_021D1598(UnkStruct_ov75_021D1184 *param0)
     NNS_G2dGetUnpackedPaletteData(v2, &v4);
     Bg_LoadPalette(4, v4->pRawData, v4->szByte, 0);
 
-    param0->unk_30 = sub_02002F38(param0->unk_00);
+    param0->unk_30 = PaletteData_New(param0->unk_00);
 
-    sub_02002F70(param0->unk_30, 0, 32 * UnkEnum_ov75_021D1598_07, param0->unk_00);
-    sub_02002F70(param0->unk_30, 2, 32 * 3, param0->unk_00);
-    sub_02002FBC(param0->unk_30, v4->pRawData, 0, 0, 32 * 3);
+    PaletteData_AllocBuffer(param0->unk_30, 0, 32 * UnkEnum_ov75_021D1598_07, param0->unk_00);
+    PaletteData_AllocBuffer(param0->unk_30, 2, 32 * 3, param0->unk_00);
+    PaletteData_LoadBuffer(param0->unk_30, v4->pRawData, 0, 0, 32 * 3);
 
     if (param0->unk_0C == 1) {
-        sub_02002FBC(param0->unk_30, &(((u16 *)v4->pRawData)[16 * 3]), 0, 16, 32);
+        PaletteData_LoadBuffer(param0->unk_30, &(((u16 *)v4->pRawData)[16 * 3]), 0, 16, 32);
     }
 
-    PaletteSys_LoadPalette(param0->unk_30, 19, 0, param0->unk_00, 2, 32 * 3, 0);
-    PaletteSys_LoadPalette(param0->unk_30, 14, 6, param0->unk_00, 0, 32, 16 * UnkEnum_ov75_021D1598_03);
-    PaletteSys_LoadPalette(param0->unk_30, 14, 7, param0->unk_00, 0, 32, 16 * UnkEnum_ov75_021D1598_04);
-    PaletteSys_LoadPalette(param0->unk_30, 38, 24, param0->unk_00, 0, 32, 16 * UnkEnum_ov75_021D1598_05);
-    PaletteSys_LoadPalette(param0->unk_30, 38, 25 + param0->unk_0A, param0->unk_00, 0, 32, 16 * UnkEnum_ov75_021D1598_06);
-    sub_020039B0(param0->unk_30, 0, 0, 16 * UnkEnum_ov75_021D1598_07, 16, 0x0);
-    sub_020039B0(param0->unk_30, 2, 0, 16 * 3, 16, 0x0);
-    sub_02003858(param0->unk_30, 1);
-    sub_02003694(param0->unk_30);
+    PaletteData_LoadBufferFromFileStart(param0->unk_30, 19, 0, param0->unk_00, 2, 32 * 3, 0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_30, 14, 6, param0->unk_00, 0, 32, 16 * UnkEnum_ov75_021D1598_03);
+    PaletteData_LoadBufferFromFileStart(param0->unk_30, 14, 7, param0->unk_00, 0, 32, 16 * UnkEnum_ov75_021D1598_04);
+    PaletteData_LoadBufferFromFileStart(param0->unk_30, 38, 24, param0->unk_00, 0, 32, 16 * UnkEnum_ov75_021D1598_05);
+    PaletteData_LoadBufferFromFileStart(param0->unk_30, 38, 25 + param0->unk_0A, param0->unk_00, 0, 32, 16 * UnkEnum_ov75_021D1598_06);
+    PaletteData_Blend(param0->unk_30, 0, 0, 16 * UnkEnum_ov75_021D1598_07, 16, 0x0);
+    PaletteData_Blend(param0->unk_30, 2, 0, 16 * 3, 16, 0x0);
+    PaletteData_SetAutoTransparent(param0->unk_30, 1);
+    PaletteData_CommitFadedBuffers(param0->unk_30);
     Heap_FreeToHeap(v2);
 
     v1 = NARC_GetMemberSize(v5, v7);
@@ -779,9 +777,9 @@ static void ov75_021D1868(UnkStruct_ov75_021D1184 *param0)
 {
     Heap_FreeToHeap(param0->unk_38);
     Heap_FreeToHeap(param0->unk_34);
-    sub_02002FA0(param0->unk_30, 2);
-    sub_02002FA0(param0->unk_30, 0);
-    sub_02002F54(param0->unk_30);
+    PaletteData_FreeBuffer(param0->unk_30, 2);
+    PaletteData_FreeBuffer(param0->unk_30, 0);
+    PaletteData_Free(param0->unk_30);
 
     param0->unk_30 = NULL;
 

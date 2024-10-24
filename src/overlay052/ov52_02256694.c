@@ -18,12 +18,12 @@
 
 #include "bg_window.h"
 #include "font.h"
+#include "graphics.h"
 #include "heap.h"
 #include "message.h"
 #include "strbuf.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02006E3C.h"
 
 struct UnkStruct_ov52_02256694_t {
     const UnkStruct_ov52_02256694_1 *unk_00;
@@ -122,7 +122,7 @@ static void ov52_0225670C(UnkStruct_ov52_02256694 *param0, const UnkStruct_ov52_
     };
     int v1;
 
-    sub_02006EC0(12, 99, 1, 0, 0, 1, 8);
+    Graphics_LoadObjectTiles(12, 99, 1, 0, 0, 1, 8);
     ov25_02255958(&param0->unk_44, 12, 97, 98, 8);
 
     for (v1 = 0; v1 < 4; v1++) {
@@ -207,10 +207,10 @@ static void ov52_022567F4(SysTask *param0, void *param1)
 
     Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
 
-    v5 = sub_02006E3C(12, 96, v2->unk_04, 6, 0, 0, 1, 8);
+    v5 = Graphics_LoadTilesToBgLayer(12, 96, v2->unk_04, 6, 0, 0, 1, 8);
     v5 /= 0x20;
 
-    sub_02006E60(12, 95, v2->unk_04, 6, 0, 0, 1, 8);
+    Graphics_LoadTilemapToBgLayer(12, 95, v2->unk_04, 6, 0, 0, 1, 8);
     ov25_022546B8(0, 0);
 
     Window_Add(v2->unk_04, &v2->unk_20, 6, 2, 2, 24, 20, 0, v5);

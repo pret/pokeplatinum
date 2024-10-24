@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_defs/struct_0202BC58.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -13,6 +12,7 @@
 #include "bg_window.h"
 #include "core_sys.h"
 #include "font.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "journal.h"
@@ -26,7 +26,6 @@
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_020393C8.h"
@@ -293,13 +292,13 @@ static void ov81_021D1050(UnkStruct_ov81_021D1610 *param0)
     v1 = NARC_ctor(NARC_INDEX_GRAPHIC__F_NOTE_GRA, 42);
 
     if (TrainerInfo_Gender(param0->unk_48) == 0) {
-        sub_020070E8(v1, 2, param0->unk_00, 2, 0, 0, 0, 42);
-        sub_0200710C(v1, 0, param0->unk_00, 2, 0, 0, 0, 42);
-        sub_02007130(v1, 4, 0, 0, 0, 42);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 2, param0->unk_00, 2, 0, 0, 0, 42);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 0, param0->unk_00, 2, 0, 0, 0, 42);
+        Graphics_LoadPaletteFromOpenNARC(v1, 4, 0, 0, 0, 42);
     } else {
-        sub_020070E8(v1, 3, param0->unk_00, 2, 0, 0, 0, 42);
-        sub_0200710C(v1, 1, param0->unk_00, 2, 0, 0, 0, 42);
-        sub_02007130(v1, 5, 0, 0, 0, 42);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 3, param0->unk_00, 2, 0, 0, 0, 42);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 1, param0->unk_00, 2, 0, 0, 0, 42);
+        Graphics_LoadPaletteFromOpenNARC(v1, 5, 0, 0, 0, 42);
     }
 
     NARC_dtor(v1);

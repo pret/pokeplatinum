@@ -17,11 +17,11 @@
 #include "overlay044/struct_ov44_022565BC_decl.h"
 
 #include "bg_window.h"
+#include "graphics.h"
 #include "heap.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
 
 struct UnkStruct_ov44_022565BC_t {
     const UnkStruct_ov44_022565BC_1 *unk_00;
@@ -140,7 +140,7 @@ static void ov44_0225660C(UnkStruct_ov44_022565BC *param0, const UnkStruct_ov44_
 
     ov25_02255360(1);
 
-    v2 = sub_02006EC0(12, 74, 1, 0, 0, 1, 8);
+    v2 = Graphics_LoadObjectTiles(12, 74, 1, 0, 0, 1, 8);
     v2 /= 20;
     param0->unk_64 = v2;
 
@@ -239,8 +239,8 @@ static void ov44_02256794(SysTask *param0, void *param1)
     v3 = ov25_02255240(param1);
 
     Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
-    sub_02006E3C(12, 71, v2->unk_04, 6, 0, 0, 1, 8);
-    sub_02006E60(12, 70, v2->unk_04, 6, 0, 0, 1, 8);
+    Graphics_LoadTilesToBgLayer(12, 71, v2->unk_04, 6, 0, 0, 1, 8);
+    Graphics_LoadTilemapToBgLayer(12, 70, v2->unk_04, 6, 0, 0, 1, 8);
 
     ov25_022546B8(0, 0);
     Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);

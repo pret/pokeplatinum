@@ -2,7 +2,6 @@
 #define POKEPLATINUM_STRUCT_OV21_021D13FC_H
 
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02015064_decl.h"
 #include "struct_defs/struct_0200C738.h"
@@ -15,6 +14,7 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "narc.h"
 #include "sprite_resource.h"
 #include "sys_task_manager.h"
 

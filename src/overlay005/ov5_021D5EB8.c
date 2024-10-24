@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay005/hblank_system.h"
@@ -16,6 +14,7 @@
 #include "camera.h"
 #include "cell_actor.h"
 #include "enums.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "narc.h"
@@ -23,7 +22,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
@@ -815,7 +813,7 @@ static void ov5_021D6290(SpriteResourceTable *param0, int param1, int param2)
     void *v1;
 
     v0 = SpriteResourceTable_GetArrayElement(param0, param1);
-    v1 = sub_02006FE8(65, param2, 0, 4, 1);
+    v1 = LoadMemberFromNARC(65, param2, 0, 4, 1);
 
     SpriteResourceTable_LoadFromBinary(v1, v0, 4);
     Heap_FreeToHeap(v1);

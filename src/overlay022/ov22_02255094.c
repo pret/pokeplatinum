@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02015128_decl.h"
 #include "struct_decls/struct_020151A4_decl.h"
 #include "struct_defs/struct_02099F80.h"
@@ -18,12 +17,12 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "core_sys.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "narc.h"
 #include "resource_collection.h"
 #include "sprite_resource.h"
-#include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
@@ -746,7 +745,7 @@ static void ov22_02255ACC(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255C
     void *v2;
 
     for (v0 = 0; v0 < 100; v0++) {
-        v2 = sub_0200723C(param0->unk_5C, v0 + 1, 0, 14, 1);
+        v2 = LoadMemberFromOpenNARC(param0->unk_5C, v0 + 1, 0, 14, 1);
 
         GF_ASSERT(v2);
 
@@ -756,7 +755,7 @@ static void ov22_02255ACC(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255C
         param1->unk_00[v1].unk_00 = param0->unk_00;
     }
 
-    v2 = sub_0200723C(param0->unk_5C, 0, 0, 14, 1);
+    v2 = LoadMemberFromOpenNARC(param0->unk_5C, 0, 0, 14, 1);
 
     ResourceCollection_Add(param1->unk_14, v2, 0);
     NNS_G2dGetUnpackedPaletteData(v2, &param1->unk_08[0].unk_04);
@@ -772,14 +771,14 @@ static void ov22_02255B50(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255C
     int v2;
 
     for (v0 = 0; v0 < 18; v0++) {
-        v1 = sub_0200723C(param0->unk_5C, v0 + 206, 0, 14, 1);
+        v1 = LoadMemberFromOpenNARC(param0->unk_5C, v0 + 206, 0, 14, 1);
         v2 = v0 + 100;
 
         param1->unk_00[v2].unk_04 = ov22_02255340(param0, v1, v2);
         param1->unk_00[v2].unk_00 = param0->unk_00;
 
         v2 = v0 + 1;
-        v1 = sub_0200723C(param0->unk_5C, (v0) * 4 + 134 + 1, 0, 14, 1);
+        v1 = LoadMemberFromOpenNARC(param0->unk_5C, (v0) * 4 + 134 + 1, 0, 14, 1);
 
         ResourceCollection_Add(param1->unk_14, v1, v2);
         NNS_G2dGetUnpackedPaletteData(v1, &param1->unk_08[v2].unk_04);
@@ -792,7 +791,7 @@ static void ov22_02255B50(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255C
 
 static void ov22_02255BF4(UnkStruct_ov22_0225A0E4 *param0, int param1)
 {
-    param0->unk_30 = sub_0200723C(param0->unk_5C, 235, 0, param1, 0);
+    param0->unk_30 = LoadMemberFromOpenNARC(param0->unk_5C, 235, 0, param1, 0);
 }
 
 static void ov22_02255C14(UnkStruct_ov22_0225A0E4 *param0)

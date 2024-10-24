@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/sprite_animation_frame.h"
@@ -20,6 +19,7 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "enums.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
@@ -31,7 +31,6 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -289,12 +288,12 @@ static int ov95_0224B520(UnkStruct_ov95_0224B4D4 *param0, int *param1)
 
     Window_Add(param0->unk_58, &(param0->unk_5C), 1, 2, 19, 27, 4, 1, 1);
     Window_FillTilemap(&(param0->unk_5C), 0xf);
-    sub_02006E84(14, 7, 0, 1 * 0x20, 0x20, 58);
+    Graphics_LoadPalette(14, 7, 0, 1 * 0x20, 0x20, 58);
     Bg_CopyTilemapBufferToVRAM(param0->unk_58, 1);
 
-    sub_02006E3C(93, 22, param0->unk_58, 2, 0, 0, 1, 58);
-    sub_02006E60(93, 21, param0->unk_58, 2, 0, 0, 1, 58);
-    sub_02006E84(93, 23, 0, 0 * 0x20, 0x20, 58);
+    Graphics_LoadTilesToBgLayer(93, 22, param0->unk_58, 2, 0, 0, 1, 58);
+    Graphics_LoadTilemapToBgLayer(93, 21, param0->unk_58, 2, 0, 0, 1, 58);
+    Graphics_LoadPalette(93, 23, 0, 0 * 0x20, 0x20, 58);
 
     ov95_0224B9C0(param0);
 
@@ -521,8 +520,8 @@ static void ov95_0224BAE8(UnkStruct_ov95_0224B4D4 *param0)
     NNS_G2dInitImagePaletteProxy(&v0);
     NNS_G2dInitImageProxy(&v1);
 
-    sub_02006F00(93, 9, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &v1);
-    sub_02006EE0(93, 10, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &v0);
+    Graphics_LoadImageMapping(93, 9, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &v1);
+    Graphics_LoadPartialPalette(93, 10, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &v0);
 
     ov95_022475C4(&v2, &param0->unk_48, &v1, &v0, 2);
 

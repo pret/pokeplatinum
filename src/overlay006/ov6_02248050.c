@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -15,12 +14,12 @@
 #include "overlay006/struct_ov6_0223E6EC.h"
 
 #include "easy3d_object.h"
+#include "graphics.h"
 #include "heap.h"
 #include "map_object.h"
 #include "narc.h"
 #include "player_avatar.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 
 typedef struct {
     Easy3DObject unk_00;
@@ -620,7 +619,7 @@ static void ov6_022487F8(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     Easy3DModel_LoadFrom(&v0->unk_00, v2, 8, 4);
 
     for (v1 = 0; v1 < 4; v1++) {
-        v0->unk_CD0[v1] = sub_0200723C(v2, 4 + v1, 0, 4, 0);
+        v0->unk_CD0[v1] = LoadMemberFromOpenNARC(v2, 4 + v1, 0, 4, 0);
     }
 
     for (v1 = 0; v1 < 16; v1++) {

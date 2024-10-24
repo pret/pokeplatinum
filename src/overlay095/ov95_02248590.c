@@ -18,12 +18,12 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "enums.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_0200F174.h"
 #include "unk_0201D15C.h"
 #include "unk_0202419C.h"
@@ -481,22 +481,22 @@ static void ov95_022488A4(UnkStruct_ov95_02248688 *param0)
         OS_RestoreInterrupts(v6);
     }
 
-    sub_02006E3C(93, 2, param0->unk_C0, 2, 0, 0, 1, 58);
-    sub_02006E3C(93, 2, param0->unk_C0, 6, 0, 0, 1, 58);
-    sub_02006E60(93, 0, param0->unk_C0, 2, 0, 0, 1, 58);
-    sub_02006E60(93, 0, param0->unk_C0, 6, 0, 0, 1, 58);
+    Graphics_LoadTilesToBgLayer(93, 2, param0->unk_C0, 2, 0, 0, 1, 58);
+    Graphics_LoadTilesToBgLayer(93, 2, param0->unk_C0, 6, 0, 0, 1, 58);
+    Graphics_LoadTilemapToBgLayer(93, 0, param0->unk_C0, 2, 0, 0, 1, 58);
+    Graphics_LoadTilemapToBgLayer(93, 0, param0->unk_C0, 6, 0, 0, 1, 58);
 
     v5 = ov95_02247644(param0->unk_00);
 
-    sub_02006E84(93, 3, 0, 0, 0x20, 58);
-    sub_02006E84(93, 3, 4, 0, 0x20, 58);
-    sub_02006E9C(93, 3, 0, v4[v5], 0x20, 0x40, 58);
-    sub_02006E9C(93, 3, 4, v4[v5], 0x20, 0x40, 58);
+    Graphics_LoadPalette(93, 3, 0, 0, 0x20, 58);
+    Graphics_LoadPalette(93, 3, 4, 0, 0x20, 58);
+    Graphics_LoadPaletteWithSrcOffset(93, 3, 0, v4[v5], 0x20, 0x40, 58);
+    Graphics_LoadPaletteWithSrcOffset(93, 3, 4, v4[v5], 0x20, 0x40, 58);
 
-    sub_02006E3C(93, 5, param0->unk_C0, 3, 0, 0, 1, 58);
-    sub_02006E3C(93, 5, param0->unk_C0, 7, 0, 0, 1, 58);
-    sub_02006E60(93, 4, param0->unk_C0, 3, 0, 0, 1, 58);
-    sub_02006E60(93, 4, param0->unk_C0, 7, 0, 0, 1, 58);
+    Graphics_LoadTilesToBgLayer(93, 5, param0->unk_C0, 3, 0, 0, 1, 58);
+    Graphics_LoadTilesToBgLayer(93, 5, param0->unk_C0, 7, 0, 0, 1, 58);
+    Graphics_LoadTilemapToBgLayer(93, 4, param0->unk_C0, 3, 0, 0, 1, 58);
+    Graphics_LoadTilemapToBgLayer(93, 4, param0->unk_C0, 7, 0, 0, 1, 58);
 
     {
         u8 *v7 = Heap_AllocFromHeap(58, 96);
@@ -607,10 +607,10 @@ static void ov95_02248CA8(UnkStruct_ov95_02248688 *param0)
     NNS_G2dInitImagePaletteProxy(&v0);
     NNS_G2dInitImageProxy(&v1);
 
-    sub_02006F00(93, 13, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &v1);
-    sub_02006F00(93, 13, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DSUB, 0, 58, &v1);
-    sub_02006EE0(93, 14, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &v0);
-    sub_02006EE0(93, 14, NNS_G2D_VRAM_TYPE_2DSUB, 0, 58, &v0);
+    Graphics_LoadImageMapping(93, 13, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &v1);
+    Graphics_LoadImageMapping(93, 13, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DSUB, 0, 58, &v1);
+    Graphics_LoadPartialPalette(93, 14, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &v0);
+    Graphics_LoadPartialPalette(93, 14, NNS_G2D_VRAM_TYPE_2DSUB, 0, 58, &v0);
     ov95_022475C4(&v2, &param0->unk_0C, &v1, &v0, 1);
     MTRNG_SetSeed(UnkEnum_ov95_02248CA8_00);
 

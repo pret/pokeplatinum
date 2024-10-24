@@ -5,8 +5,6 @@
 
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
@@ -33,6 +31,7 @@
 #include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "item.h"
@@ -40,6 +39,7 @@
 #include "map_header.h"
 #include "message.h"
 #include "narc.h"
+#include "palette.h"
 #include "party.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
@@ -51,10 +51,8 @@
 #include "trainer_data.h"
 #include "trainer_info.h"
 #include "unk_02001AF4.h"
-#include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
-#include "unk_02006E3C.h"
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
@@ -560,9 +558,9 @@ static u8 ov10_0221FB28(UnkStruct_ov10_0221FB28 *param0)
     ov10_0221F900();
 
     param0->unk_0C = BgConfig_New(param0->unk_00->unk_24);
-    param0->unk_08 = sub_02002F38(param0->unk_00->unk_24);
+    param0->unk_08 = PaletteData_New(param0->unk_00->unk_24);
 
-    sub_02002F70(param0->unk_08, 0, 32 * 16, param0->unk_00->unk_24);
+    PaletteData_AllocBuffer(param0->unk_08, 0, 32 * 16, param0->unk_00->unk_24);
     Bg_MaskPalette(4, 0x0);
 
     param0->unk_B76 = 0;
@@ -1099,19 +1097,19 @@ static u8 ov10_0222094C(UnkStruct_ov10_0221FB28 *param0)
 {
     if (ov10_02220AD0() == 1) {
         if (param0->unk_00->unk_2A == 1) {
-            sub_02003120(param0->unk_08, 0, 4 * 16, 0, 3 * 16, 0x20);
+            PaletteData_CopyBuffer(param0->unk_08, 0, 4 * 16, 0, 3 * 16, 0x20);
         } else {
-            sub_02003120(param0->unk_08, 0, 4 * 16, 0, 0 * 16, 0x20);
+            PaletteData_CopyBuffer(param0->unk_08, 0, 4 * 16, 0, 0 * 16, 0x20);
         }
     } else {
         if (param0->unk_00->unk_2A == 1) {
-            sub_02003120(param0->unk_08, 0, 4 * 16, 0, 0 * 16, 0x20);
+            PaletteData_CopyBuffer(param0->unk_08, 0, 4 * 16, 0, 0 * 16, 0x20);
         } else {
-            sub_02003120(param0->unk_08, 0, 4 * 16, 0, 3 * 16, 0x20);
+            PaletteData_CopyBuffer(param0->unk_08, 0, 4 * 16, 0, 3 * 16, 0x20);
         }
     }
 
-    sub_0200387C(param0->unk_08, 1);
+    PaletteData_SelectAll(param0->unk_08, 1);
     Sound_PlayEffect(1819);
     param0->unk_B75 = 64;
     return 1;
@@ -1167,8 +1165,8 @@ static u8 ov10_02220A50(SysTask *param0, UnkStruct_ov10_0221FB28 *param1)
     ov10_02220BE8(param1);
 
     sub_0201DC3C();
-    sub_02002FA0(param1->unk_08, 0);
-    sub_02002F54(param1->unk_08);
+    PaletteData_FreeBuffer(param1->unk_08, 0);
+    PaletteData_Free(param1->unk_08);
 
     param1->unk_00->unk_2B = 1;
     SysTask_FinishAndFreeParam(param0);
@@ -1267,7 +1265,7 @@ static void ov10_02220C64(void *param0)
     UnkStruct_ov10_0221FB28 *v0 = param0;
 
     Bg_RunScheduledUpdates(v0->unk_0C);
-    sub_02003694(v0->unk_08);
+    PaletteData_CommitFadedBuffers(v0->unk_08);
     sub_0201DCAC();
     sub_0200C800();
 
@@ -1434,12 +1432,12 @@ static void ov10_02220E70(UnkStruct_ov10_0221FB28 *param0)
 
     v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__VS_DEMO_GRA, param0->unk_00->unk_24);
 
-    sub_020070E8(v0, 0, param0->unk_0C, 1, 0, 0, 0, param0->unk_00->unk_24);
-    sub_0200710C(v0, 4, param0->unk_0C, 1, 0, 0, 0, param0->unk_00->unk_24);
-    sub_0200710C(v0, 2, param0->unk_0C, 2, 0, 0, 0, param0->unk_00->unk_24);
-    sub_0200710C(v0, 3, param0->unk_0C, 3, 0, 0, 0, param0->unk_00->unk_24);
-    sub_02007130(v0, 1, 0, 0, 0, param0->unk_00->unk_24);
-    sub_02003070(param0->unk_08, 0, 0, 0x20 * 5);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 0, param0->unk_0C, 1, 0, 0, 0, param0->unk_00->unk_24);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 4, param0->unk_0C, 1, 0, 0, 0, param0->unk_00->unk_24);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 2, param0->unk_0C, 2, 0, 0, 0, param0->unk_00->unk_24);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 3, param0->unk_0C, 3, 0, 0, 0, param0->unk_00->unk_24);
+    Graphics_LoadPaletteFromOpenNARC(v0, 1, 0, 0, 0, param0->unk_00->unk_24);
+    PaletteData_LoadBufferFromHardware(param0->unk_08, 0, 0, 0x20 * 5);
     Bg_MaskPalette(1, 0x18c6);
     NARC_dtor(v0);
 }
@@ -1452,11 +1450,11 @@ static void ov10_02220F1C(UnkStruct_ov10_0221FB28 *param0)
     v0 = Options_Frame(param0->unk_00->unk_00->unk_108);
 
     sub_0200DD0C(param0->unk_0C, 0, 1, 15, v0, param0->unk_00->unk_24);
-    sub_02003070(param0->unk_08, 0, 15 * 16, 0x20 * 1);
+    PaletteData_LoadBufferFromHardware(param0->unk_08, 0, 15 * 16, 0x20 * 1);
     sub_0200DAA4(param0->unk_0C, 0, (1 + (18 + 12)), 14, 0, param0->unk_00->unk_24);
-    sub_02003070(param0->unk_08, 0, 14 * 16, 0x20 * 1);
+    PaletteData_LoadBufferFromHardware(param0->unk_08, 0, 14 * 16, 0x20 * 1);
     Font_LoadTextPalette(0, 13 * 0x20, param0->unk_00->unk_24);
-    sub_02003070(param0->unk_08, 0, 13 * 16, 0x20 * 1);
+    PaletteData_LoadBufferFromHardware(param0->unk_08, 0, 13 * 16, 0x20 * 1);
     Window_Add(param0->unk_0C, &param0->unk_B7C, 0, 0x2, 0x13, 27, 4, 13, ((1 + (18 + 12)) + 9));
     Window_Add(param0->unk_0C, &param0->unk_B8C, 0, 0x2, 0x13, 27, 4, 13, ((1 + (18 + 12)) + 9));
 }
@@ -1923,8 +1921,8 @@ static void ov10_02221A3C(UnkStruct_ov10_0221FB28 *param0)
 
     v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, param0->unk_00->unk_24);
 
-    sub_020070E8(v0, 15, param0->unk_0C, 3, 0, 0, 0, param0->unk_00->unk_24);
-    sub_0200710C(v0, 17, param0->unk_0C, 3, 0, 0, 0, param0->unk_00->unk_24);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 15, param0->unk_0C, 3, 0, 0, 0, param0->unk_00->unk_24);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 17, param0->unk_0C, 3, 0, 0, 0, param0->unk_00->unk_24);
 
     {
         NNSG2dPaletteData *v1;

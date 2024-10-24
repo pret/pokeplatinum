@@ -10,9 +10,9 @@
 #include "overlay055/struct_ov55_0225632C_decl.h"
 
 #include "bg_window.h"
+#include "graphics.h"
 #include "heap.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
 
 struct UnkStruct_ov55_0225632C_t {
     const UnkStruct_ov55_0225632C_1 *unk_00;
@@ -104,9 +104,9 @@ static void ov55_022563C8(SysTask *param0, void *param1)
     v2 = ov25_0225523C(param1);
 
     Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
-    sub_02006E3C(12, 8, v2->unk_04, 6, 0, 0, 0, 8);
+    Graphics_LoadTilesToBgLayer(12, 8, v2->unk_04, 6, 0, 0, 0, 8);
     Bg_FillTilemapRect(v2->unk_04, 6, 0, 0, 0, 32, 24, 0);
-    sub_02006E84(12, 9, 4, 0 * 0x20, 0x20, 8);
+    Graphics_LoadPalette(12, 9, 4, 0 * 0x20, 0x20, 8);
 
     ov25_02255440(v2->unk_04, v2->unk_00->unk_00, 6);
     Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);

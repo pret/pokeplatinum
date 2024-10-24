@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -22,17 +21,17 @@
 #include "core_sys.h"
 #include "enums.h"
 #include "font.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "palette.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "text.h"
-#include "unk_02002F38.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A784.h"
 #include "unk_0200F174.h"
@@ -508,17 +507,17 @@ static void ov112_0225CA34(UnkStruct_ov112_0225C9BC *param0, u32 param1)
     }
 
     {
-        sub_02007130(param0->unk_1A4, 0, 0, 0, 0, param1);
+        Graphics_LoadPaletteFromOpenNARC(param0->unk_1A4, 0, 0, 0, 0, param1);
         Font_LoadScreenIndicatorsPalette(0, 10 * 32, param1);
-        sub_020070E8(param0->unk_1A4, 1, param0->unk_00, 1, 0, 0, 0, param1);
-        sub_0200710C(param0->unk_1A4, 3, param0->unk_00, 1, 0, 0, 0, param1);
-        sub_0200710C(param0->unk_1A4, 4, param0->unk_00, 2, 0, 0, 0, param1);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_1A4, 1, param0->unk_00, 1, 0, 0, 0, param1);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_1A4, 3, param0->unk_00, 1, 0, 0, 0, param1);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_1A4, 4, param0->unk_00, 2, 0, 0, 0, param1);
     }
 
     {
-        sub_02007130(param0->unk_1A4, 0, 4, 0, 0, param1);
-        sub_020070E8(param0->unk_1A4, 2, param0->unk_00, 4, 0, 0, 0, param1);
-        sub_0200710C(param0->unk_1A4, 6, param0->unk_00, 4, 0, 0, 0, param1);
+        Graphics_LoadPaletteFromOpenNARC(param0->unk_1A4, 0, 4, 0, 0, param1);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_1A4, 2, param0->unk_00, 4, 0, 0, 0, param1);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_1A4, 6, param0->unk_00, 4, 0, 0, 0, param1);
     }
 }
 
@@ -581,7 +580,7 @@ static void ov112_0225CC38(UnkStruct_ov112_0225C9BC *param0)
 
 static void ov112_0225CC64(UnkStruct_ov112_0225CC84 *param0, UnkStruct_ov112_0225C9BC *param1, u32 param2)
 {
-    param0->unk_00 = sub_020071D0(param1->unk_1A4, 5, 0, &param0->unk_04, param2);
+    param0->unk_00 = Graphics_GetScrnDataFromOpenNARC(param1->unk_1A4, 5, 0, &param0->unk_04, param2);
 }
 
 static void ov112_0225CC84(UnkStruct_ov112_0225CC84 *param0)
@@ -958,7 +957,7 @@ static void ov112_0225D1EC(UnkStruct_ov112_0225D2D0 *param0, UnkStruct_ov112_022
     }
 
     param0->unk_90 = Strbuf_Init(256, param2);
-    param0->unk_94 = sub_020071EC(param1->unk_1A4, 0, &param0->unk_98, param2);
+    param0->unk_94 = Graphics_GetPlttDataFromOpenNARC(param1->unk_1A4, 0, &param0->unk_98, param2);
 
     Bg_LoadPalette(0, &((u8 *)param0->unk_98->pRawData)[(7 * 0x20) + (7 * 2)], 0x4, (7 * 0x20) + (13 * 2));
     Bg_LoadPalette(0, &((u8 *)param0->unk_98->pRawData)[(7 * 0x20) + (7 * 2)], 0x4, (8 * 0x20) + (13 * 2));
@@ -1237,7 +1236,7 @@ static void ov112_0225D784(UnkStruct_ov112_0225D73C *param0)
 
     v1 = 0xe;
 
-    sub_0200393C(&v1, &param0->unk_04, 1, v0, 0x19);
+    BlendPalette(&v1, &param0->unk_04, 1, v0, 0x19);
     DC_FlushRange(&param0->unk_04, 2);
     GX_LoadBGPltt(&param0->unk_04, param0->unk_06, 2);
 

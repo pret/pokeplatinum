@@ -4,10 +4,11 @@
 #include <nnsys.h>
 
 #include "struct_decls/cell_actor_data.h"
-#include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_defs/sprite_template.h"
+
+#include "palette.h"
 
 u32 sub_0207C908(int param0);
 u32 sub_0207C920(void);

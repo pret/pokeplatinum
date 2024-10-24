@@ -4,7 +4,6 @@
 #include <nitro/sinit.h>
 #include <string.h>
 
-#include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_defs/sprite_template.h"
@@ -17,6 +16,7 @@
 
 #include "core_sys.h"
 #include "game_overlay.h"
+#include "palette.h"
 #include "touch_screen.h"
 #include "unk_0200C6E4.h"
 #include "unk_0202C9F4.h"

@@ -3,9 +3,8 @@
 
 #include <nnsys.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-
 #include "bg_window.h"
+#include "narc.h"
 
 enum BarColor {
     BARCOLOR_EMPTY = 0,

@@ -5,8 +5,6 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
@@ -44,6 +42,7 @@
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
+#include "palette.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "render_text.h"
@@ -55,7 +54,6 @@
 #include "text.h"
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
-#include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
@@ -941,10 +939,10 @@ void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, int param
         v12 = CellActor_GetPaletteProxy(v5->unk_00);
         v13 = sub_0201FAB4(v12, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-        PaletteSys_LoadPalette(v2, v3.archive, v3.palette, param2, 2, 0x20, v13 * 16);
+        PaletteData_LoadBufferFromFileStart(v2, v3.archive, v3.palette, param2, 2, 0x20, v13 * 16);
 
         if (param8 > 0) {
-            sub_020039B0(v2, 2, v13 * 16, 16, param8, param9);
+            PaletteData_Blend(v2, 2, v13 * 16, 16, param8, param9);
         }
     }
 

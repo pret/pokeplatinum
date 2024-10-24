@@ -4,8 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0200C738.h"
@@ -25,10 +23,12 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
+#include "palette.h"
 #include "pokedex_data_index.h"
 #include "pokemon.h"
 #include "sprite_resource.h"
@@ -36,9 +36,7 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02002F38.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
@@ -637,25 +635,25 @@ static void ov21_021E96A8(BgConfig *param0, int param1, NARC *param2)
     void *v0;
     NNSG2dScreenData *v1;
 
-    sub_02007130(param2, 6, 0, 0, 0, param1);
-    sub_020070E8(param2, 33, param0, 3, 0, 0, 1, param1);
+    Graphics_LoadPaletteFromOpenNARC(param2, 6, 0, 0, 0, param1);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param2, 33, param0, 3, 0, 0, 1, param1);
 
-    v0 = sub_020071D0(param2, 50, 1, &v1, param1);
+    v0 = Graphics_GetScrnDataFromOpenNARC(param2, 50, 1, &v1, param1);
 
     Bg_LoadToTilemapRect(param0, 3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
 
-    v0 = sub_020071D0(param2, 51, 1, &v1, param1);
+    v0 = Graphics_GetScrnDataFromOpenNARC(param2, 51, 1, &v1, param1);
 
     Bg_LoadToTilemapRect(param0, 3, v1->rawData, 0, 3, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
 
-    v0 = sub_020071D0(param2, 52, 1, &v1, param1);
+    v0 = Graphics_GetScrnDataFromOpenNARC(param2, 52, 1, &v1, param1);
 
     Bg_LoadToTilemapRect(param0, 3, v1->rawData, 12, 8, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
 
-    v0 = sub_020071D0(param2, 54, 1, &v1, param1);
+    v0 = Graphics_GetScrnDataFromOpenNARC(param2, 54, 1, &v1, param1);
 
     Bg_LoadToTilemapRect(param0, 3, v1->rawData, 0, 16, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
@@ -667,9 +665,9 @@ static void ov21_021E97C4(BgConfig *param0, int param1, NARC *param2)
     void *v0;
     NNSG2dScreenData *v1;
 
-    sub_020070E8(param2, 33, param0, 2, 0, 0, 1, param1);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param2, 33, param0, 2, 0, 0, 1, param1);
 
-    v0 = sub_020071D0(param2, 57, 1, &v1, param1);
+    v0 = Graphics_GetScrnDataFromOpenNARC(param2, 57, 1, &v1, param1);
 
     Bg_LoadToTilemapRect(param0, 2, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
@@ -716,22 +714,22 @@ static void ov21_021E9828(SysTask *param0, void *param1)
 
 static void ov21_021E98D8(PaletteData *param0, Sprite *param1)
 {
-    sub_02003070(param0, 0, 0, 32 * 0x10);
-    sub_02003070(param0, 2, 0, (((16 - 2) * 16) * sizeof(u16)));
+    PaletteData_LoadBufferFromHardware(param0, 0, 0, 32 * 0x10);
+    PaletteData_LoadBufferFromHardware(param0, 2, 0, (((16 - 2) * 16) * sizeof(u16)));
 }
 
 static void ov21_021E98F8(PaletteData *param0, Sprite *param1, int param2, int param3, int param4, int param5, int param6)
 {
     sub_020086FC(param1, param2, param4, param5, param6);
-    sub_02003178(param0, 0x1 | 0x4, 0xffff, param5, param3, param4, param6);
-    sub_02003858(param0, 0);
+    PaletteData_StartFade(param0, 0x1 | 0x4, 0xffff, param5, param3, param4, param6);
+    PaletteData_SetAutoTransparent(param0, 0);
 }
 
 static BOOL ov21_021E9948(PaletteData *param0, Sprite *param1)
 {
     BOOL v0[2];
 
-    v0[0] = sub_0200384C(param0);
+    v0[0] = PaletteData_GetSelectedBuffersMask(param0);
     v0[1] = sub_020087B4(param1);
 
     if ((v0[0] == 0) && (v0[1] == 0)) {
@@ -787,12 +785,12 @@ static void ov21_021E9A40(UnkStruct_ov21_021E9A9C *param0, int param1, int param
     int v0;
 
     if (param2 == 0) {
-        param0->unk_00[0] = sub_020071EC(param3, 23, &param0->unk_08[0], param1);
+        param0->unk_00[0] = Graphics_GetPlttDataFromOpenNARC(param3, 23, &param0->unk_08[0], param1);
     } else {
-        param0->unk_00[0] = sub_020071EC(param3, 24, &param0->unk_08[0], param1);
+        param0->unk_00[0] = Graphics_GetPlttDataFromOpenNARC(param3, 24, &param0->unk_08[0], param1);
     }
 
-    param0->unk_00[1] = sub_020071EC(param3, 26, &param0->unk_08[1], param1);
+    param0->unk_00[1] = Graphics_GetPlttDataFromOpenNARC(param3, 26, &param0->unk_08[1], param1);
     param0->unk_10 = 0;
     param0->unk_1C = 0;
 

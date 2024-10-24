@@ -4,8 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_020304A0_decl.h"
 #include "struct_decls/struct_020305B8_decl.h"
@@ -31,11 +29,13 @@
 #include "font.h"
 #include "game_options.h"
 #include "game_overlay.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "palette.h"
 #include "party.h"
 #include "pokemon.h"
 #include "save_player.h"
@@ -44,9 +44,7 @@
 #include "string_template.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_02002F38.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A784.h"
 #include "unk_0200F174.h"
@@ -765,9 +763,9 @@ static void ov108_02242238(UnkStruct_ov108_02241DB0 *param0)
     }
 
     sub_02039794();
-    sub_02002FA0(param0->unk_D4, 2);
-    sub_02002FA0(param0->unk_D4, 0);
-    sub_02002F54(param0->unk_D4);
+    PaletteData_FreeBuffer(param0->unk_D4, 2);
+    PaletteData_FreeBuffer(param0->unk_D4, 0);
+    PaletteData_Free(param0->unk_D4);
 
     param0->unk_D4 = NULL;
     ov108_02243194(&param0->unk_E8);
@@ -877,10 +875,10 @@ static void ov108_02242658(UnkStruct_ov108_02241DB0 *param0)
     ov108_02242740();
     ov108_02242760(param0->unk_90);
 
-    param0->unk_D4 = sub_02002F38(103);
+    param0->unk_D4 = PaletteData_New(103);
 
-    sub_02002F70(param0->unk_D4, 2, (32 * 16), 103);
-    sub_02002F70(param0->unk_D4, 0, (32 * 16), 103);
+    PaletteData_AllocBuffer(param0->unk_D4, 2, (32 * 16), 103);
+    PaletteData_AllocBuffer(param0->unk_D4, 0, (32 * 16), 103);
 
     ov108_02242828(param0, 3);
     ov108_022428C0();
@@ -913,7 +911,7 @@ static void ov108_02242708(void *param0)
     UnkStruct_ov108_02241DB0 *v0 = param0;
 
     if (v0->unk_D4 != NULL) {
-        sub_02003694(v0->unk_D4);
+        PaletteData_CommitFadedBuffers(v0->unk_D4);
     }
 
     Bg_RunScheduledUpdates(v0->unk_90);
@@ -1029,7 +1027,7 @@ static void ov108_02242828(UnkStruct_ov108_02241DB0 *param0, u32 param1)
 {
     u32 v0;
 
-    sub_020070E8(param0->unk_3D0, 120, param0->unk_90, param1, 0, 0, 1, 103);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_3D0, 120, param0->unk_90, param1, 0, 0, 1, 103);
 
     if (ov104_0223C000(param0->unk_09) == 0) {
         v0 = 116;
@@ -1037,7 +1035,7 @@ static void ov108_02242828(UnkStruct_ov108_02241DB0 *param0, u32 param1)
         v0 = 118;
     }
 
-    sub_0200710C(param0->unk_3D0, v0, param0->unk_90, param1, 0, 0, 1, 103);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_3D0, v0, param0->unk_90, param1, 0, 0, 1, 103);
     return;
 }
 
@@ -1051,7 +1049,7 @@ static void ov108_02242884(UnkStruct_ov108_02241DB0 *param0, u32 param1)
         v0 = 119;
     }
 
-    sub_0200710C(param0->unk_3D0, v0, param0->unk_90, param1, 0, 0, 1, 103);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_3D0, v0, param0->unk_90, param1, 0, 0, 1, 103);
     return;
 }
 
@@ -1060,7 +1058,7 @@ static void ov108_022428C0(void)
     void *v0;
     NNSG2dPaletteData *v1;
 
-    v0 = sub_02006F88(150, 167, &v1, 103);
+    v0 = Graphics_GetPlttData(150, 167, &v1, 103);
 
     DC_FlushRange(v1->pRawData, (sizeof(u16) * 16 * 7));
     GX_LoadBGPltt(v1->pRawData, 0, (sizeof(u16) * 16 * 7));
@@ -1071,9 +1069,9 @@ static void ov108_022428C0(void)
 
 static void ov108_022428F4(UnkStruct_ov108_02241DB0 *param0, u32 param1)
 {
-    sub_020070E8(param0->unk_3D0, 122, param0->unk_90, param1, 0, 0, 1, 103);
-    sub_02007130(param0->unk_3D0, 168, 4, 0, (sizeof(u16) * 16 * 2), 103);
-    sub_0200710C(param0->unk_3D0, 121, param0->unk_90, param1, 0, 0, 1, 103);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_3D0, 122, param0->unk_90, param1, 0, 0, 1, 103);
+    Graphics_LoadPaletteFromOpenNARC(param0->unk_3D0, 168, 4, 0, (sizeof(u16) * 16 * 2), 103);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_3D0, 121, param0->unk_90, param1, 0, 0, 1, 103);
 
     return;
 }

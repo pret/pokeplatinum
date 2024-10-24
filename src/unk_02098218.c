@@ -24,10 +24,10 @@
 #include "map_header.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "palette.h"
 #include "pokemon.h"
 #include "save_player.h"
 #include "trainer_info.h"
-#include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
 #include "unk_0200F174.h"
@@ -82,13 +82,13 @@ static int sub_02098218(OverlayManager *param0, int *param1)
     sub_0201DBEC(64, 71);
 
     v1->unk_04.unk_54 = sub_02015F84(71, 1, 0);
-    v1->unk_04.unk_04 = sub_02002F38(71);
+    v1->unk_04.unk_04 = PaletteData_New(71);
 
-    sub_02003858(v1->unk_04.unk_04, 1);
-    sub_02002F70(v1->unk_04.unk_04, 0, 0x200, 71);
-    sub_02002F70(v1->unk_04.unk_04, 2, 0x200, 71);
-    sub_02002F70(v1->unk_04.unk_04, 1, 0x200, 71);
-    sub_02002F70(v1->unk_04.unk_04, 3, 0x200, 71);
+    PaletteData_SetAutoTransparent(v1->unk_04.unk_04, 1);
+    PaletteData_AllocBuffer(v1->unk_04.unk_04, 0, 0x200, 71);
+    PaletteData_AllocBuffer(v1->unk_04.unk_04, 2, 0x200, 71);
+    PaletteData_AllocBuffer(v1->unk_04.unk_04, 1, 0x200, 71);
+    PaletteData_AllocBuffer(v1->unk_04.unk_04, 3, 0x200, 71);
 
     ov119_021D0D80();
     ov119_021D0DA8();
@@ -166,11 +166,11 @@ static int sub_02098388(OverlayManager *param0, int *param1)
     GXLayers_EngineAToggleLayers(3, 0);
     GXLayers_EngineBToggleLayers(4, 0);
 
-    sub_02002FA0(v0->unk_04.unk_04, 0);
-    sub_02002FA0(v0->unk_04.unk_04, 2);
-    sub_02002FA0(v0->unk_04.unk_04, 1);
-    sub_02002FA0(v0->unk_04.unk_04, 3);
-    sub_02002F54(v0->unk_04.unk_04);
+    PaletteData_FreeBuffer(v0->unk_04.unk_04, 0);
+    PaletteData_FreeBuffer(v0->unk_04.unk_04, 2);
+    PaletteData_FreeBuffer(v0->unk_04.unk_04, 1);
+    PaletteData_FreeBuffer(v0->unk_04.unk_04, 3);
+    PaletteData_Free(v0->unk_04.unk_04);
 
     Bg_FreeTilemapBuffer(v0->unk_04.unk_00, 1);
     Bg_FreeTilemapBuffer(v0->unk_04.unk_00, 2);

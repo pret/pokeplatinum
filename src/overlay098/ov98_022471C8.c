@@ -6,7 +6,6 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02025CCC_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
@@ -26,6 +25,7 @@
 #include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "inlines.h"
@@ -41,7 +41,6 @@
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_0200A784.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -628,17 +627,17 @@ static void ov98_02247704 (UnkStruct_ov98_02247704 * param0)
 
     v1 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, 109);
 
-    sub_02007130(v1, 3, 0, 0, 0, 109);
-    sub_02007130(v1, 3, 4, 0, 0, 109);
+    Graphics_LoadPaletteFromOpenNARC(v1, 3, 0, 0, 0, 109);
+    Graphics_LoadPaletteFromOpenNARC(v1, 3, 4, 0, 0, 109);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 109);
     Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, 109);
     sub_0200DD0C(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_08), 109);
     sub_0200DAA4(v0, 0, (1 + (18 + 12)), 11, 0, 109);
     sub_0200DAA4(v0, 2, (1 + (18 + 12)), 11, 0, 109);
-    sub_020070E8(v1, 2, v0, 1, 0, 0, 0, 109);
-    sub_0200710C(v1, 5, v0, 1, 0, 32 * 24 * 2, 0, 109);
-    sub_020070E8(v1, 10, v0, 5, 0, 0, 0, 109);
-    sub_0200710C(v1, 11, v0, 5, 0, 32 * 24 * 2, 0, 109);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 2, v0, 1, 0, 0, 0, 109);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 5, v0, 1, 0, 32 * 24 * 2, 0, 109);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 10, v0, 5, 0, 0, 0, 109);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 11, v0, 5, 0, 32 * 24 * 2, 0, 109);
     Bg_MaskPalette(0, 0);
     Bg_MaskPalette(4, 0);
 
@@ -651,9 +650,9 @@ static void ov98_02247704 (UnkStruct_ov98_02247704 * param0)
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
 
-        sub_020070E8(v1, 11, v0, 3, 0, 0, 0, 109);
-        sub_0200710C(v1, 10, v0, 3, 0, 0, 0, 109);
-        sub_02007130(v1, 12, 0, 9 * 0x20, 0x20, 109);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 11, v0, 3, 0, 0, 0, 109);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 10, v0, 3, 0, 0, 0, 109);
+        Graphics_LoadPaletteFromOpenNARC(v1, 12, 0, 9 * 0x20, 0x20, 109);
 
         NARC_dtor(v1);
     }

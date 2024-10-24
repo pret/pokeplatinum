@@ -6,7 +6,6 @@
 #include "constants/species.h"
 #include "consts/game_records.h"
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_02095E80_decl.h"
 #include "struct_decls/struct_party_decl.h"
@@ -32,6 +31,7 @@
 #include "font.h"
 #include "game_options.h"
 #include "game_records.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "inlines.h"
@@ -59,7 +59,6 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_02006224.h"
-#include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
@@ -529,7 +528,7 @@ static void ov88_0223B7A0(Party *param0, int param1, UnkStruct_02095E80 *param2)
     for (v0 = 0; v0 < Party_GetCurrentCount(param0); v0++) {
         v1 = v0 + param1;
 
-        param2->unk_7E8[v1] = sub_02006F50(19, PokeIconSpriteIndex(param2->unk_6F4[v1].unk_00, param2->unk_6F4[v1].unk_05, param2->unk_6F4[v1].unk_06), 0, &param2->unk_818[v1], 26);
+        param2->unk_7E8[v1] = Graphics_GetCharData(19, PokeIconSpriteIndex(param2->unk_6F4[v1].unk_00, param2->unk_6F4[v1].unk_05, param2->unk_6F4[v1].unk_06), 0, &param2->unk_818[v1], 26);
 
         DC_FlushRange(param2->unk_818[v1]->pRawData, 0x20 * 4 * 4);
 
@@ -910,7 +909,7 @@ static void ov88_0223C0E0(void *param0)
         int v1 = v0->unk_2168 - 1;
 
         GXS_LoadOBJ(v0->unk_848[v1], 0 + v1 * (0x20 * 10 * 10), (0x20 * 10 * 10));
-        sub_02006E84(v0->unk_2148[v1].archive, v0->unk_2148[v1].palette, 5, 0x20 * (2 + v1), 32, 26);
+        Graphics_LoadPalette(v0->unk_2148[v1].archive, v0->unk_2148[v1].palette, 5, 0x20 * (2 + v1), 32, 26);
 
         v0->unk_2168 = 0;
     }
@@ -1175,7 +1174,7 @@ static void ov88_0223C44C(BgConfig *param0)
 
 static void ov88_0223C488(NARC *param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
 {
-    void *v0 = sub_0200723C(param0, param1, param6, param7, 1);
+    void *v0 = LoadMemberFromOpenNARC(param0, param1, param6, param7, 1);
 
     if (v0 != NULL) {
         NNSG2dScreenData *v1;
@@ -1204,21 +1203,21 @@ static void ov88_0223C504(UnkStruct_02095E80 *param0, NARC *param1)
 {
     BgConfig *v0 = param0->unk_174;
 
-    sub_02007130(param1, 0, 4, 0, 16 * 9 * 2, 26);
-    sub_02007130(param1, 0, 0, 0, 16 * 9 * 2, 26);
+    Graphics_LoadPaletteFromOpenNARC(param1, 0, 4, 0, 16 * 9 * 2, 26);
+    Graphics_LoadPaletteFromOpenNARC(param1, 0, 0, 0, 16 * 9 * 2, 26);
     Bg_MaskPalette(0, 0);
     Bg_MaskPalette(4, 0);
     Font_LoadScreenIndicatorsPalette(0, 13 * 32, 26);
-    sub_020070E8(param1, 1, v0, 2, 0, 16 * 18 * 0x20, 1, 26);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 1, v0, 2, 0, 16 * 18 * 0x20, 1, 26);
 
     ov88_0223C488(param1, 3, v0, 2, 0, 32 * 24 * 2, 1, 26);
 
-    sub_0200710C(param1, 4, v0, 3, 0, 32 * 24 * 2, 1, 26);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 4, v0, 3, 0, 32 * 24 * 2, 1, 26);
     Font_LoadScreenIndicatorsPalette(0, 2 * 32, 26);
     Font_LoadTextPalette(0, 3 * 32, 26);
-    sub_020070E8(param1, 2, v0, 5, 0, 16 * 4 * 0x20, 1, 26);
-    sub_0200710C(param1, 5, v0, 5, 0, 32 * 24 * 2, 1, 26);
-    sub_0200710C(param1, 6, v0, 6, 0, 32 * 24 * 2, 1, 26);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 5, 0, 16 * 4 * 0x20, 1, 26);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 5, v0, 5, 0, 32 * 24 * 2, 1, 26);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 6, v0, 6, 0, 32 * 24 * 2, 1, 26);
     Font_LoadScreenIndicatorsPalette(4, 2 * 32, 26);
     Font_LoadTextPalette(4, 3 * 32, 26);
     Bg_ClearTilemap(v0, 4);
@@ -1265,7 +1264,7 @@ static void ov88_0223C66C(UnkStruct_02095E80 *param0, NARC *param1)
     sub_0200A328(param0->unk_334[1][0]);
     sub_0200A5C8(param0->unk_334[0][1]);
     sub_0200A5C8(param0->unk_334[1][1]);
-    sub_02006E84(19, PokeIconPalettesFileIndex(), 1, 10 * 0x20, 0x20 * 4, 26);
+    Graphics_LoadPalette(19, PokeIconPalettesFileIndex(), 1, 10 * 0x20, 0x20 * 4, 26);
 }
 
 static int ov88_0223C800(int param0, Pokemon *param1, u8 *param2, ArchivedSprite *param3)

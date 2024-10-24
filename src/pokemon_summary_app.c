@@ -5,7 +5,6 @@
 
 #include "constants/pokemon.h"
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -14,6 +13,7 @@
 #include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "item.h"
@@ -31,7 +31,6 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_02006224.h"
-#include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
@@ -461,16 +460,16 @@ static void sub_0208C76C(BgConfig *param0)
 
 static void sub_0208C7AC(PokemonSummaryApp *param0, NARC *param1)
 {
-    sub_020070E8(param1, 0, param0->bgl, 3, 0, 0, 0, 19);
-    sub_0200710C(param1, 3, param0->bgl, 3, 0, 0, 0, 19);
-    sub_02007130(param1, 1, 0, 0, 0, 19);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 0, param0->bgl, 3, 0, 0, 0, 19);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 3, param0->bgl, 3, 0, 0, 0, 19);
+    Graphics_LoadPaletteFromOpenNARC(param1, 1, 0, 0, 0, 19);
 
-    sub_0200710C(param1, 11, param0->bgl, 2, 0, 0, 0, 19);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 11, param0->bgl, 2, 0, 0, 0, 19);
 
-    sub_020070E8(param1, 2, param0->bgl, 4, 0, 0, 0, 19);
-    sub_020070E8(param1, 16, param0->bgl, 5, 0, 0, 0, 19);
-    sub_0200710C(param1, 15, param0->bgl, 5, 0, 0, 0, 19);
-    sub_02007130(param1, 14, 4, 0, 0, 19);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, param0->bgl, 4, 0, 0, 0, 19);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 16, param0->bgl, 5, 0, 0, 0, 19);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 15, param0->bgl, 5, 0, 0, 0, 19);
+    Graphics_LoadPaletteFromOpenNARC(param1, 14, 4, 0, 0, 19);
 }
 
 static void sub_0208C86C(void)

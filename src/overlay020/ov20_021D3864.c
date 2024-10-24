@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_020998EC_decl.h"
 
 #include "overlay020/ov20_021D2098.h"
@@ -13,11 +12,12 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "font.h"
+#include "graphics.h"
 #include "heap.h"
 #include "message.h"
+#include "narc.h"
 #include "strbuf.h"
 #include "text.h"
-#include "unk_02006E3C.h"
 
 typedef struct UnkStruct_ov20_021D3980_t {
     UnkStruct_ov20_021D2128 *unk_00;
@@ -62,8 +62,8 @@ void ov20_021D3898(UnkStruct_ov20_021D3980 *param0, NARC *param1)
 
     v2 = ov20_021D2E04(param0->unk_00);
 
-    sub_0200710C(param1, 4, v2, 3, 0, 0, 1, 35);
-    sub_020070E8(param1, 5, v2, 3, 0, 0, 1, 35);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 4, v2, 3, 0, 0, 1, 35);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 5, v2, 3, 0, 0, 1, 35);
 
     ov20_021D390C(v2, &v0, 0);
     ov20_021D390C(v2, &v1, 1);

@@ -1,13 +1,14 @@
 #ifndef POKEPLATINUM_OV17_022476F8_H
 #define POKEPLATINUM_OV17_022476F8_H
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 
 #include "overlay017/struct_ov17_022476F8.h"
 #include "overlay017/struct_ov17_0224792C.h"
 #include "overlay017/struct_ov17_02247A48.h"
+
+#include "narc.h"
 
 void ov17_022476F8(UnkStruct_ov17_022476F8 *param0, int param1);
 void ov17_02247734(UnkStruct_ov17_022476F8 *param0);

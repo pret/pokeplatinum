@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_defs/struct_0200C738.h"
@@ -27,6 +26,7 @@
 #include "enums.h"
 #include "font.h"
 #include "game_options.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
@@ -42,7 +42,6 @@
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
@@ -1680,12 +1679,12 @@ static void ov114_0225D5BC(UnkStruct_ov114_0225D678 *param0, u32 param1)
 
     v0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__WIFI_LOBBY_MINIGAME__WLMNGM_TOOL, param1);
 
-    sub_02007130(v0, 4, 0, 0, 9 * 32, param1);
-    sub_020070E8(v0, 6, param0->unk_30.unk_00, 1, 0, 0, 0, param1);
+    Graphics_LoadPaletteFromOpenNARC(v0, 4, 0, 0, 9 * 32, param1);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 6, param0->unk_30.unk_00, 1, 0, 0, 0, param1);
 
-    param0->unk_260 = sub_020071D0(v0, 9, 0, &param0->unk_264, param1);
+    param0->unk_260 = Graphics_GetScrnDataFromOpenNARC(v0, 9, 0, &param0->unk_264, param1);
 
-    sub_0200710C(v0, 8, param0->unk_30.unk_00, 3, 0, 0, 0, param1);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 8, param0->unk_30.unk_00, 3, 0, 0, 0, param1);
     ov114_0225E550(v0, param0->unk_04, param1);
 
     param0->unk_22C = ov114_0225CD54(&param0->unk_214, v0, 11, 5, 12, 13, 14, 5000, param1);
@@ -2298,8 +2297,8 @@ static void ov114_0225E1A4(UnkStruct_ov114_0225E1A4 *param0, UnkStruct_ov114_022
     param0->unk_10 = param3;
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
-    sub_020070E8(param4, 7, param1->unk_00, 0, 0, 0, 0, param5);
-    sub_0200710C(param4, 10, param1->unk_00, 0, 0, 0, 0, param5);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param4, 7, param1->unk_00, 0, 0, 0, 0, param5);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param4, 10, param1->unk_00, 0, 0, 0, 0, param5);
 }
 
 static void ov114_0225E234(UnkStruct_ov114_0225E1A4 *param0)
@@ -2466,8 +2465,8 @@ static void ov114_0225E550(NARC *param0, u32 param1, u32 param2)
         break;
     }
 
-    sub_02007148(param0, 5, 0, v0 * 32, 5 * 32, 32, param2);
-    sub_02007148(param0, 5, 4, v0 * 32, 5 * 32, 32, param2);
+    Graphics_LoadPaletteWithSrcOffsetFromOpenNARC(param0, 5, 0, v0 * 32, 5 * 32, 32, param2);
+    Graphics_LoadPaletteWithSrcOffsetFromOpenNARC(param0, 5, 4, v0 * 32, 5 * 32, 32, param2);
 }
 
 static UnkStruct_ov114_0225E854 *ov114_0225E5A8(const UnkStruct_ov114_0225C76C *param0, const UnkStruct_ov114_0225C9A8 *param1, u32 param2, u32 param3)
@@ -2548,21 +2547,21 @@ static void ov114_0225E744(UnkStruct_ov114_0225E854 *param0, u32 param1)
 
     v0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__WIFI_LOBBY_MINIGAME__WLMNGM_TOOL, param1);
 
-    sub_02007130(v0, 4, 0, 0, 9 * 32, param1);
-    sub_02007130(v0, 4, 4, 0, 9 * 32, param1);
-    sub_020070E8(v0, 6, param0->unk_4C.unk_00, 1, 0, 0, 0, param1);
-    sub_020070E8(v0, 6, param0->unk_4C.unk_00, 5, 0, 0x4000, 0, param1);
+    Graphics_LoadPaletteFromOpenNARC(v0, 4, 0, 0, 9 * 32, param1);
+    Graphics_LoadPaletteFromOpenNARC(v0, 4, 4, 0, 9 * 32, param1);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 6, param0->unk_4C.unk_00, 1, 0, 0, 0, param1);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 6, param0->unk_4C.unk_00, 5, 0, 0x4000, 0, param1);
 
     {
         int v1;
 
         for (v1 = 0; v1 < 1; v1++) {
-            param0->unk_2B8[v1] = sub_020071D0(v0, 9 + v1, 0, &param0->unk_2BC[v1], param1);
+            param0->unk_2B8[v1] = Graphics_GetScrnDataFromOpenNARC(v0, 9 + v1, 0, &param0->unk_2BC[v1], param1);
         }
     }
 
-    sub_0200710C(v0, 8, param0->unk_4C.unk_00, 3, 0, 0, 0, param1);
-    sub_0200710C(v0, 8, param0->unk_4C.unk_00, 5, 0, 0, 0, param1);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 8, param0->unk_4C.unk_00, 3, 0, 0, 0, param1);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 8, param0->unk_4C.unk_00, 5, 0, 0, 0, param1);
 
     ov114_0225E550(v0, param0->unk_07, param1);
 
@@ -3143,7 +3142,7 @@ static void ov114_0225F124(SysTask *param0, void *param1)
 
 static void ov114_0225F148(UnkStruct_ov114_0225E854 *param0, NARC *param1, u32 param2)
 {
-    param0->unk_6B8 = sub_020071EC(param1, 5, &param0->unk_6BC, param2);
+    param0->unk_6B8 = Graphics_GetPlttDataFromOpenNARC(param1, 5, &param0->unk_6BC, param2);
 }
 
 static void ov114_0225F168(UnkStruct_ov114_0225E854 *param0)
@@ -3370,9 +3369,9 @@ static void ov114_0225F484(UnkStruct_ov114_0225F578 *param0, UnkStruct_ov114_022
     memset(param0, 0, sizeof(UnkStruct_ov114_0225F578));
 
     {
-        sub_02007130(param4, 24, 0, (13 + 1) * 32, 32, param5);
-        sub_020070E8(param4, 25, param1->unk_00, 2, ((1 + (18 + 12)) + (27 * 4)), 0, 0, param5);
-        param0->unk_00 = sub_020071D0(param4, 26, 0, &param0->unk_04, param5);
+        Graphics_LoadPaletteFromOpenNARC(param4, 24, 0, (13 + 1) * 32, 32, param5);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param4, 25, param1->unk_00, 2, ((1 + (18 + 12)) + (27 * 4)), 0, 0, param5);
+        param0->unk_00 = Graphics_GetScrnDataFromOpenNARC(param4, 26, 0, &param0->unk_04, param5);
     }
 
     {

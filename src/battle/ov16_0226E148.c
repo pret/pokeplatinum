@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/struct_02006C24_decl.h"
 
 #include "battle/ov16_0223DF00.h"
 #include "battle/ov16_0226871C.h"

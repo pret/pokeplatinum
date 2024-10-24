@@ -1,14 +1,13 @@
 #ifndef POKEPLATINUM_OV19_021DCF88_H
 #define POKEPLATINUM_OV19_021DCF88_H
 
-#include "struct_decls/struct_02006C24_decl.h"
-
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/struct_ov19_021DCF88_decl.h"
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "narc.h"
 
 BOOL ov19_021DCF88(UnkStruct_ov19_021DCF88 **param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, CellActorCollection *param4);
 void ov19_021DD078(UnkStruct_ov19_021DCF88 *param0);

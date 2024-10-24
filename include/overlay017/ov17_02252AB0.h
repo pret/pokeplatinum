@@ -1,11 +1,12 @@
 #ifndef POKEPLATINUM_OV17_02252AB0_H
 #define POKEPLATINUM_OV17_02252AB0_H
 
-#include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 
 #include "overlay017/struct_ov17_02252B48_decl.h"
+
+#include "palette.h"
 
 void ov17_02252AB0(SpriteRenderer *param0, SpriteGfxHandler *param1, PaletteData *param2, u32 param3, u32 param4, u32 param5, u32 param6);
 void ov17_02252B20(SpriteGfxHandler *param0, u32 param1, u32 param2, u32 param3, u32 param4);

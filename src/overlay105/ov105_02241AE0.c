@@ -5,8 +5,6 @@
 
 #include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_party_decl.h"
@@ -39,11 +37,13 @@
 #include "font.h"
 #include "game_options.h"
 #include "game_overlay.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "palette.h"
 #include "party.h"
 #include "pokemon.h"
 #include "pokemon_summary_app.h"
@@ -54,9 +54,7 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_02001AF4.h"
-#include "unk_02002F38.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A784.h"
@@ -2135,7 +2133,7 @@ static void ov105_0224451C(void *param0)
     sub_02008A94(v0->unk_128);
 
     if (v0->unk_120 != NULL) {
-        sub_02003694(v0->unk_120);
+        PaletteData_CommitFadedBuffers(v0->unk_120);
     }
 
     Bg_RunScheduledUpdates(v0->unk_4C);
@@ -2273,10 +2271,10 @@ static void ov105_02244678(UnkStruct_ov105_02241FF4 *param0)
     ov105_02244564();
     ov105_02244584(param0->unk_4C);
 
-    param0->unk_120 = sub_02002F38(93);
+    param0->unk_120 = PaletteData_New(93);
 
-    sub_02002F70(param0->unk_120, 2, (32 * 16), 93);
-    sub_02002F70(param0->unk_120, 0, (32 * 16), 93);
+    PaletteData_AllocBuffer(param0->unk_120, 2, (32 * 16), 93);
+    PaletteData_AllocBuffer(param0->unk_120, 0, (32 * 16), 93);
 
     ov105_02244AF8();
 
@@ -2447,12 +2445,12 @@ static void ov105_02244924(UnkStruct_ov105_02241FF4 *param0, u32 param1)
 
 static void ov105_022449A4(UnkStruct_ov105_02241FF4 *param0, u32 param1)
 {
-    sub_020070E8(param0->unk_338, 4, param0->unk_4C, param1, 0, 0, 1, 93);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_338, 4, param0->unk_4C, param1, 0, 0, 1, 93);
 
     if (ov104_0223AED4(param0->unk_09) == 0) {
-        sub_0200710C(param0->unk_338, 5, param0->unk_4C, param1, 0, 0, 1, 93);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 5, param0->unk_4C, param1, 0, 0, 1, 93);
     } else {
-        sub_0200710C(param0->unk_338, 11, param0->unk_4C, param1, 0, 0, 1, 93);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 11, param0->unk_4C, param1, 0, 0, 1, 93);
     }
 
     return;
@@ -2460,24 +2458,24 @@ static void ov105_022449A4(UnkStruct_ov105_02241FF4 *param0, u32 param1)
 
 static void ov105_02244A18(UnkStruct_ov105_02241FF4 *param0, u32 param1)
 {
-    sub_020070E8(param0->unk_338, 4, param0->unk_4C, param1, 0, 0, 1, 93);
-    sub_0200710C(param0->unk_338, 7, param0->unk_4C, param1, 0, 0, 1, 93);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_338, 4, param0->unk_4C, param1, 0, 0, 1, 93);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 7, param0->unk_4C, param1, 0, 0, 1, 93);
 
     return;
 }
 
 static void ov105_02244A60(UnkStruct_ov105_02241FF4 *param0, u32 param1)
 {
-    sub_020070E8(param0->unk_338, 4, param0->unk_4C, param1, 0, 0, 1, 93);
-    sub_0200710C(param0->unk_338, 8, param0->unk_4C, param1, 0, 0, 1, 93);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_338, 4, param0->unk_4C, param1, 0, 0, 1, 93);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 8, param0->unk_4C, param1, 0, 0, 1, 93);
 
     return;
 }
 
 static void ov105_02244AA8(UnkStruct_ov105_02241FF4 *param0, u32 param1)
 {
-    sub_020070E8(param0->unk_338, 4, param0->unk_4C, param1, 0, 0, 1, 93);
-    sub_0200710C(param0->unk_338, 9, param0->unk_4C, param1, 0, 0, 1, 93);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_338, 4, param0->unk_4C, param1, 0, 0, 1, 93);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 9, param0->unk_4C, param1, 0, 0, 1, 93);
     Bg_SetPriority(1, 2);
 
     return;
@@ -2488,7 +2486,7 @@ static void ov105_02244AF8(void)
     void *v0;
     NNSG2dPaletteData *v1;
 
-    v0 = sub_02006F88(150, 130, &v1, 93);
+    v0 = Graphics_GetPlttData(150, 130, &v1, 93);
 
     DC_FlushRange(v1->pRawData, (sizeof(u16) * 16 * 11));
     GX_LoadBGPltt(v1->pRawData, 0, (sizeof(u16) * 16 * 11));
@@ -2499,9 +2497,9 @@ static void ov105_02244AF8(void)
 
 static void ov105_02244B30(UnkStruct_ov105_02241FF4 *param0, u32 param1)
 {
-    sub_020070E8(param0->unk_338, 125, param0->unk_4C, param1, 0, 0, 1, 93);
-    sub_0200710C(param0->unk_338, 126, param0->unk_4C, param1, 0, 0, 1, 93);
-    sub_02007130(param0->unk_338, 171, 4, 0, 0x20, 93);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_338, 125, param0->unk_4C, param1, 0, 0, 1, 93);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 126, param0->unk_4C, param1, 0, 0, 1, 93);
+    Graphics_LoadPaletteFromOpenNARC(param0->unk_338, 171, 4, 0, 0x20, 93);
 
     return;
 }
@@ -2509,9 +2507,9 @@ static void ov105_02244B30(UnkStruct_ov105_02241FF4 *param0, u32 param1)
 static void ov105_02244B90(UnkStruct_ov105_02241FF4 *param0, u32 param1)
 {
     if (ov104_0223AED4(param0->unk_09) == 0) {
-        sub_0200710C(param0->unk_338, 5, param0->unk_4C, 3, 0, 0, 1, 93);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 5, param0->unk_4C, 3, 0, 0, 1, 93);
     } else {
-        sub_0200710C(param0->unk_338, 11, param0->unk_4C, 3, 0, 0, 1, 93);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 11, param0->unk_4C, 3, 0, 0, 1, 93);
     }
 
     return;
@@ -2519,16 +2517,16 @@ static void ov105_02244B90(UnkStruct_ov105_02241FF4 *param0, u32 param1)
 
 static void ov105_02244BE4(UnkStruct_ov105_02241FF4 *param0, u32 param1)
 {
-    sub_0200710C(param0->unk_338, 7, param0->unk_4C, 3, 0, 0, 1, 93);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 7, param0->unk_4C, 3, 0, 0, 1, 93);
     return;
 }
 
 static void ov105_02244C0C(UnkStruct_ov105_02241FF4 *param0, u32 param1)
 {
     if (ov104_0223AED4(param0->unk_09) == 0) {
-        sub_0200710C(param0->unk_338, 10, param0->unk_4C, 3, 0, 0, 1, 93);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 10, param0->unk_4C, 3, 0, 0, 1, 93);
     } else {
-        sub_0200710C(param0->unk_338, 12, param0->unk_4C, 3, 0, 0, 1, 93);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 12, param0->unk_4C, 3, 0, 0, 1, 93);
     }
 
     return;
@@ -2776,9 +2774,9 @@ static void ov105_022451B4(UnkStruct_ov105_02241FF4 *param0)
 
     sub_02039794();
 
-    sub_02002FA0(param0->unk_120, 2);
-    sub_02002FA0(param0->unk_120, 0);
-    sub_02002F54(param0->unk_120);
+    PaletteData_FreeBuffer(param0->unk_120, 2);
+    PaletteData_FreeBuffer(param0->unk_120, 0);
+    PaletteData_Free(param0->unk_120);
 
     param0->unk_120 = NULL;
 

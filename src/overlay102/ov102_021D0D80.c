@@ -9,6 +9,7 @@
 #include "bg_window.h"
 #include "core_sys.h"
 #include "font.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
@@ -19,7 +20,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02006E3C.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 
@@ -368,23 +368,23 @@ static void ov102_021D1274(UnkStruct_ov102_021D0F8C *param0)
         v5 = 5;
     }
 
-    sub_02006E60(132, v0, param0->unk_10, 3, 0, 0, 0, param0->unk_00);
-    sub_02006E3C(132, v1, param0->unk_10, 3, 0, 0, 0, param0->unk_00);
-    sub_02006E84(132, v2, 0, 0 * (2 * 16), (2 * 16), param0->unk_00);
-    sub_02006E60(132, v0, param0->unk_10, 7, 0, 0, 0, param0->unk_00);
-    sub_02006E3C(132, v1, param0->unk_10, 7, 0, 0, 0, param0->unk_00);
-    sub_02006E84(132, v2, 4, 0 * (2 * 16), (2 * 16), param0->unk_00);
+    Graphics_LoadTilemapToBgLayer(132, v0, param0->unk_10, 3, 0, 0, 0, param0->unk_00);
+    Graphics_LoadTilesToBgLayer(132, v1, param0->unk_10, 3, 0, 0, 0, param0->unk_00);
+    Graphics_LoadPalette(132, v2, 0, 0 * (2 * 16), (2 * 16), param0->unk_00);
+    Graphics_LoadTilemapToBgLayer(132, v0, param0->unk_10, 7, 0, 0, 0, param0->unk_00);
+    Graphics_LoadTilesToBgLayer(132, v1, param0->unk_10, 7, 0, 0, 0, param0->unk_00);
+    Graphics_LoadPalette(132, v2, 4, 0 * (2 * 16), (2 * 16), param0->unk_00);
 
-    sub_02006E60(132, v3, param0->unk_10, 1, 0, 0, 0, param0->unk_00);
+    Graphics_LoadTilemapToBgLayer(132, v3, param0->unk_10, 1, 0, 0, 0, param0->unk_00);
     Bg_ChangeTilemapRectPalette(param0->unk_10, 1, 0, 0, 32, 24, 1);
     Bg_CopyTilemapBufferToVRAM(param0->unk_10, 1);
-    sub_02006E3C(132, v4, param0->unk_10, 1, 0, 0, 0, param0->unk_00);
-    sub_02006E84(132, v5, 0, 1 * (2 * 16), (2 * 16), param0->unk_00);
-    sub_02006E60(132, v3, param0->unk_10, 5, 0, 0, 0, param0->unk_00);
+    Graphics_LoadTilesToBgLayer(132, v4, param0->unk_10, 1, 0, 0, 0, param0->unk_00);
+    Graphics_LoadPalette(132, v5, 0, 1 * (2 * 16), (2 * 16), param0->unk_00);
+    Graphics_LoadTilemapToBgLayer(132, v3, param0->unk_10, 5, 0, 0, 0, param0->unk_00);
     Bg_ChangeTilemapRectPalette(param0->unk_10, 5, 0, 0, 32, 24, 1);
     Bg_CopyTilemapBufferToVRAM(param0->unk_10, 5);
-    sub_02006E3C(132, v4, param0->unk_10, 5, 0, 0, 0, param0->unk_00);
-    sub_02006E84(132, v5, 4, 1 * (2 * 16), (2 * 16), param0->unk_00);
+    Graphics_LoadTilesToBgLayer(132, v4, param0->unk_10, 5, 0, 0, 0, param0->unk_00);
+    Graphics_LoadPalette(132, v5, 4, 1 * (2 * 16), (2 * 16), param0->unk_00);
 
     Bg_ClearTilesRange(0, 32, 0, param0->unk_00);
     Bg_ClearTilesRange(4, 32, 0, param0->unk_00);

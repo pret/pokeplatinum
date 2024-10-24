@@ -5,7 +5,6 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
@@ -26,6 +25,7 @@
 #include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
@@ -41,7 +41,6 @@
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -604,9 +603,9 @@ static void ov91_021D1098(BgConfig *param0)
 
 static void ov91_021D10C8(UnkStruct_ov91_021D0ED8 *param0, NARC *param1)
 {
-    sub_020070E8(param1, 10, param0->unk_04, 2, 0, 0, 0, 67);
-    sub_0200710C(param1, 11, param0->unk_04, 2, 0, 0, 0, 67);
-    sub_02007130(param1, 12, 0, 0, 0, 67);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 10, param0->unk_04, 2, 0, 0, 0, 67);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 11, param0->unk_04, 2, 0, 0, 0, 67);
+    Graphics_LoadPaletteFromOpenNARC(param1, 12, 0, 0, 0, 67);
     Font_LoadScreenIndicatorsPalette(0, 14 * 32, 67);
     sub_0200DAA4(param0->unk_04, 0, 1, 12, 0, 67);
     sub_0200DD0C(param0->unk_04, 0, (1 + 9), 13, Options_Frame(param0->unk_00->unk_08), 67);

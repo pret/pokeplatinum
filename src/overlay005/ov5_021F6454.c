@@ -25,6 +25,7 @@
 #include "bg_window.h"
 #include "field_script_context.h"
 #include "game_records.h"
+#include "graphics.h"
 #include "heap.h"
 #include "inlines.h"
 #include "map_object.h"
@@ -42,7 +43,6 @@
 #include "unk_0200112C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_0201D15C.h"
@@ -200,7 +200,7 @@ static u16 *ov5_021F65FC(int heapID, int fileIndex, int *pokedexLength)
     u32 pokedexSize;
     u16 *pokedex;
 
-    pokedex = sub_02007068(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_DATA, fileIndex, 0, heapID, 0, &pokedexSize);
+    pokedex = LoadMemberFromNARC_OutFileSize(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_DATA, fileIndex, 0, heapID, 0, &pokedexSize);
     *pokedexLength = pokedexSize / (sizeof(u16));
 
     return pokedex;

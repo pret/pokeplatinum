@@ -17,9 +17,9 @@
 #include "overlay049/struct_ov49_022563D4_decl.h"
 
 #include "bg_window.h"
+#include "graphics.h"
 #include "heap.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
 
 struct UnkStruct_ov49_022563D4_t {
     const UnkStruct_ov49_022563D4_1 *unk_00;
@@ -66,7 +66,7 @@ static void ov49_02256410(UnkStruct_ov49_022563D4 *param0, const UnkStruct_ov49_
         0
     };
 
-    sub_02006EC0(12, 69, 1, 0, 0, 1, 8);
+    Graphics_LoadObjectTiles(12, 69, 1, 0, 0, 1, 8);
 
     ov25_02255958(&param0->unk_28, 12, 67, 68, 8);
     param0->unk_24 = ov25_02255810(param0->unk_20, &v0, &param0->unk_28);
@@ -147,8 +147,8 @@ static void ov49_022564E4(SysTask *param0, void *param1)
     v3 = ov25_02255240(param1);
 
     Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
-    sub_02006E3C(12, 66, v2->unk_04, 6, 0, 0, 1, 8);
-    sub_02006E60(12, 65, v2->unk_04, 6, 0, 0, 1, 8);
+    Graphics_LoadTilesToBgLayer(12, 66, v2->unk_04, 6, 0, 0, 1, 8);
+    Graphics_LoadTilemapToBgLayer(12, 65, v2->unk_04, 6, 0, 0, 1, 8);
 
     ov25_022546B8(0, 0);
     Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);

@@ -5,7 +5,6 @@
 #include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
@@ -21,6 +20,7 @@
 #include "overlay022/struct_ov22_02258A48.h"
 
 #include "bg_window.h"
+#include "palette.h"
 #include "touch_screen.h"
 
 typedef struct {

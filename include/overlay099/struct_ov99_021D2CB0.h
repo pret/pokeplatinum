@@ -2,8 +2,6 @@
 #define POKEPLATINUM_STRUCT_OV99_021D2CB0_H
 
 #include "struct_decls/cell_actor_data.h"
-#include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_defs/struct_0203E274.h"
@@ -18,6 +16,8 @@
 #include "camera.h"
 #include "easy3d_object.h"
 #include "message.h"
+#include "narc.h"
+#include "palette.h"
 #include "sys_task_manager.h"
 
 typedef struct {

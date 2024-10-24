@@ -9,10 +9,10 @@
 
 #include "camera.h"
 #include "easy3d.h"
+#include "graphics.h"
 #include "heap.h"
 #include "inlines.h"
 #include "narc.h"
-#include "unk_02006E3C.h"
 #include "unk_0201CED8.h"
 
 struct UnkStruct_ov95_02247958_t {
@@ -142,7 +142,7 @@ UnkStruct_ov95_02247958 *ov95_022478B4(UnkStruct_ov95_0224773C *param0, int para
 {
     UnkStruct_ov95_02247958 *v0 = &param0->unk_18[param1];
 
-    v0->unk_00 = sub_02006FE8(param2, param3, 0, 58, 1);
+    v0->unk_00 = LoadMemberFromNARC(param2, param3, 0, 58, 1);
     DC_FlushRange(v0->unk_00, NARC_GetMemberSizeByIndexPair(param2, param3));
 
     if (v0->unk_00) {

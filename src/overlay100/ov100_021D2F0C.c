@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 
@@ -20,15 +18,16 @@
 #include "bg_window.h"
 #include "camera.h"
 #include "easy3d_object.h"
+#include "graphics.h"
 #include "heap.h"
+#include "narc.h"
+#include "palette.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02002F38.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_0200F174.h"
 #include "unk_0202419C.h"
 
@@ -50,9 +49,9 @@ static void ov100_021D2F0C(BgConfig *param0, PaletteData *param1)
     int v4 = 4;
     int v5 = 111;
 
-    sub_02006E3C(v0, v1, param0, v4, 0, 0, 1, v5);
-    sub_02006E60(v0, v2, param0, v4, 0, 0, 1, v5);
-    PaletteSys_LoadPalette(param1, v0, v3, v5, 1, 0x20 * 1, 0);
+    Graphics_LoadTilesToBgLayer(v0, v1, param0, v4, 0, 0, 1, v5);
+    Graphics_LoadTilemapToBgLayer(v0, v2, param0, v4, 0, 0, 1, v5);
+    PaletteData_LoadBufferFromFileStart(param1, v0, v3, v5, 1, 0x20 * 1, 0);
 }
 
 static void ov100_021D2F64(UnkStruct_ov100_021D3084 *param0)

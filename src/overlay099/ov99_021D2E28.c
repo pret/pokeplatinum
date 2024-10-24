@@ -12,7 +12,7 @@
 #include "overlay099/struct_ov99_021D3A40.h"
 
 #include "bg_window.h"
-#include "unk_02002F38.h"
+#include "palette.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200C6E4.h"
 #include "unk_0201D15C.h"
@@ -315,9 +315,9 @@ static void ov99_021D330C(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2E
         }
     }
 
-    v5 = sub_0200316C(param0->unk_0C, 1);
+    v5 = PaletteData_GetFadedBuffer(param0->unk_0C, 1);
 
     for (v1 = 0; v1 < 16; v1++) {
-        sub_0200393C(&param1->unk_08[v2][v1], &v5[(2 * 16) + v1], 1, v3, param1->unk_08[v4][v1]);
+        BlendPalette(&param1->unk_08[v2][v1], &v5[(2 * 16) + v1], 1, v3, param1->unk_08[v4][v1]);
     }
 }

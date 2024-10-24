@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02015128_decl.h"
 #include "struct_decls/struct_020151A4_decl.h"
 #include "struct_decls/struct_02015214_decl.h"
@@ -29,6 +28,7 @@
 #include "message.h"
 #include "message_util.h"
 #include "narc.h"
+#include "palette.h"
 #include "pokedex_data_index.h"
 #include "pokedex_heightweight.h"
 #include "pokemon_icon.h"
@@ -37,7 +37,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02002F38.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_02015064.h"
@@ -1082,15 +1081,15 @@ static const UnkStruct_ov21_021E9DB0 *ov21_021E83D8(const UnkStruct_ov21_021E9DB
 
 static void ov21_021E8400(UnkStruct_ov21_021E7714 *param0, u8 param1, u16 param2)
 {
-    NNSG2dPaletteData *v0 = SpriteResource_GetPaletteData(param0->unk_14[1]);
+    NNSG2dPaletteData *v0 = SpriteResource_GetPaletteFade(param0->unk_14[1]);
     const NNSG2dImagePaletteProxy *v1 = sub_0200A72C(param0->unk_14[1], NULL);
 
-    sub_0200393C(v0->pRawData, param0->unk_BC, 3 * 16, param1, param2);
+    BlendPalette(v0->pRawData, param0->unk_BC, 3 * 16, param1, param2);
     sub_0201DC68(NNS_GFD_DST_2D_OBJ_PLTT_MAIN, NNS_G2dGetImagePaletteLocation(v1, NNS_G2D_VRAM_TYPE_2DMAIN), param0->unk_BC, 3 * 32);
 
-    v0 = SpriteResource_GetPaletteData(param0->unk_24[1]);
+    v0 = SpriteResource_GetPaletteFade(param0->unk_24[1]);
     v1 = sub_0200A72C(param0->unk_24[1], NULL);
 
-    sub_0200393C(v0->pRawData, param0->unk_C0, 5 * 16, param1, param2);
+    BlendPalette(v0->pRawData, param0->unk_C0, 5 * 16, param1, param2);
     sub_0201DC68(NNS_GFD_DST_2D_OBJ_PLTT_MAIN, NNS_G2dGetImagePaletteLocation(v1, NNS_G2D_VRAM_TYPE_2DMAIN), param0->unk_C0, 5 * 32);
 }

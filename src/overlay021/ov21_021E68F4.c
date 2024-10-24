@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 
 #include "overlay021/ov21_021D0D80.h"
@@ -26,6 +25,7 @@
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "heap.h"
+#include "narc.h"
 #include "sprite_resource.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"

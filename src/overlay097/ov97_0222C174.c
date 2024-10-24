@@ -23,6 +23,7 @@
 #include "enums.h"
 #include "font.h"
 #include "game_options.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
@@ -38,7 +39,6 @@
 #include "unk_02000C88.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_0200DA60.h"
 #include "unk_0202631C.h"
 #include "unk_0202DAB4.h"
@@ -547,9 +547,9 @@ static void ov97_0222C254(UnkStruct_ov97_0222C388 *param0)
     v0 = Options_Frame(param0->unk_14);
 
     sub_0200DD0C(param0->unk_04, 0, (1 + 9), 2, v0, param0->unk_00);
-    sub_02006E84(116, 0, 0, 16 * 2 * 8, 16 * 2, param0->unk_00);
-    sub_02006E3C(116, 1, param0->unk_04, 1, 0, 10 * 16 * 0x20, 1, param0->unk_00);
-    sub_02006E60(116, 2, param0->unk_04, 1, 0, 32 * 24 * 2, 1, param0->unk_00);
+    Graphics_LoadPalette(116, 0, 0, 16 * 2 * 8, 16 * 2, param0->unk_00);
+    Graphics_LoadTilesToBgLayer(116, 1, param0->unk_04, 1, 0, 10 * 16 * 0x20, 1, param0->unk_00);
+    Graphics_LoadTilemapToBgLayer(116, 2, param0->unk_04, 1, 0, 32 * 24 * 2, 1, param0->unk_00);
     Bg_ChangeTilemapRectPalette(param0->unk_04, 1, 0, 0, 32, 24, 8);
     Bg_CopyTilemapBufferToVRAM(param0->unk_04, 1);
 
@@ -558,9 +558,9 @@ static void ov97_0222C254(UnkStruct_ov97_0222C388 *param0)
 
 static void ov97_0222C388(UnkStruct_ov97_0222C388 *param0)
 {
-    sub_02006E84(116, 0, 4, 16 * 2 * 8, 16 * 2, param0->unk_00);
-    sub_02006E3C(116, 1, param0->unk_04, 4, 0, 10 * 16 * 0x20, 1, param0->unk_00);
-    sub_02006E60(116, 2, param0->unk_04, 4, 0, 32 * 24 * 2, 1, param0->unk_00);
+    Graphics_LoadPalette(116, 0, 4, 16 * 2 * 8, 16 * 2, param0->unk_00);
+    Graphics_LoadTilesToBgLayer(116, 1, param0->unk_04, 4, 0, 10 * 16 * 0x20, 1, param0->unk_00);
+    Graphics_LoadTilemapToBgLayer(116, 2, param0->unk_04, 4, 0, 32 * 24 * 2, 1, param0->unk_00);
     Bg_ChangeTilemapRectPalette(param0->unk_04, 4, 0, 0, 32, 24, 8);
     Bg_CopyTilemapBufferToVRAM(param0->unk_04, 4);
 }

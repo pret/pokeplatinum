@@ -11,9 +11,9 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "easy3d_object.h"
+#include "graphics.h"
 #include "heap.h"
-#include "unk_02002F38.h"
-#include "unk_02006E3C.h"
+#include "palette.h"
 #include "unk_0200C6E4.h"
 #include "unk_0201D15C.h"
 
@@ -182,7 +182,7 @@ void ov99_021D439C(UnkStruct_ov99_021D2CB0 *param0, int param1, int param2, int 
         break;
     }
 
-    v2 = sub_020071EC(param0->unk_10F8, v3->unk_04, &v1, 75);
+    v2 = Graphics_GetPlttDataFromOpenNARC(param0->unk_10F8, v3->unk_04, &v1, 75);
 
     DC_FlushRange(v1->pRawData, v1->szByte);
     GX_BeginLoadBGExtPltt();
@@ -196,10 +196,10 @@ void ov99_021D439C(UnkStruct_ov99_021D2CB0 *param0, int param1, int param2, int 
     GX_EndLoadBGExtPltt();
 
     Heap_FreeToHeap(v2);
-    sub_020038B0(param0->unk_0C, 0, 2, 0x0, 0, 1);
-    sub_020038B0(param0->unk_0C, 1, 2, 0x0, 0, 1);
-    sub_020070E8(param0->unk_10F8, v3->unk_00, param0->unk_08, param2, 0, 0, 0, 75);
-    sub_0200710C(param0->unk_10F8, v3->unk_02, param0->unk_08, param2, 0, 0, 0, 75);
+    PaletteData_FillBufferRange(param0->unk_0C, 0, 2, 0x0, 0, 1);
+    PaletteData_FillBufferRange(param0->unk_0C, 1, 2, 0x0, 0, 1);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_10F8, v3->unk_00, param0->unk_08, param2, 0, 0, 0, 75);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_10F8, v3->unk_02, param0->unk_08, param2, 0, 0, 0, 75);
     Bg_SetOffset(v0, param2, 0, v3->unk_06);
     Bg_SetOffset(v0, param2, 3, v3->unk_08);
 }

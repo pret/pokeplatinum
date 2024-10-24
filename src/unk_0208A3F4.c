@@ -4,8 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/font_oam.h"
-#include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_defs/sprite_template.h"
@@ -21,12 +19,13 @@
 #include "bg_window.h"
 #include "font.h"
 #include "game_options.h"
+#include "graphics.h"
 #include "inlines.h"
 #include "message.h"
+#include "narc.h"
+#include "palette.h"
 #include "strbuf.h"
 #include "text.h"
-#include "unk_02002F38.h"
-#include "unk_02006E3C.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
 #include "unk_02012744.h"
@@ -68,7 +67,7 @@ void sub_0208A490 (UnkStruct_02089688 * param0)
     BgConfig *v1;
     SpriteRenderer * v2;
     SpriteGfxHandler * v3;
-    PaletteData * v4;
+    PaletteData *v4;
 
     v2 = param0->unk_2C0.unk_04;
     v3 = param0->unk_2C0.unk_08;
@@ -76,13 +75,13 @@ void sub_0208A490 (UnkStruct_02089688 * param0)
     v1 = param0->unk_2C0.unk_0C;
     v0 = param0->unk_2C0.unk_00;
 
-    sub_020070E8(v0, 12, v1, 1, 0, 0, 0, 101);
-    sub_0200710C(v0, 14, v1, 1, 0, 0, 0, 101);
-    PaletteSys_LoadPalette(v4, 159, 13, 101, 0, 0x20 * 1, 0);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 12, v1, 1, 0, 0, 0, 101);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 14, v1, 1, 0, 0, 0, 101);
+    PaletteData_LoadBufferFromFileStart(v4, 159, 13, 101, 0, 0x20 * 1, 0);
 
-    sub_020070E8(v0, 15, v1, 5, 0, 0, 0, 101);
-    sub_0200710C(v0, 17, v1, 5, 0, 0, 0, 101);
-    PaletteSys_LoadPalette(v4, 159, 16, 101, 1, 0x20 * 1, 0);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 15, v1, 5, 0, 0, 0, 101);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 17, v1, 5, 0, 0, 0, 101);
+    PaletteData_LoadBufferFromFileStart(v4, 159, 16, 101, 1, 0x20 * 1, 0);
 
     SpriteRenderer_LoadPalette(v4, 2, v2, v3, v0, 1, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 1000);
     SpriteRenderer_LoadCharResObjFromOpenNarc(v2, v3, v0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1000);
@@ -103,8 +102,8 @@ void sub_0208A490 (UnkStruct_02089688 * param0)
         int v5 = Options_Frame(param0->unk_38C.unk_20);
 
         sub_0200DD0C(v1, 4, 1, 10, v5, 101);
-        PaletteSys_LoadPalette(v4, 38, sub_0200DD08(v5), 101, 1, 0x20, 11 * 16);
-        PaletteSys_LoadPalette(v4, 14, 7, 101, 1, 0x20, 12 * 16);
+        PaletteData_LoadBufferFromFileStart(v4, 38, sub_0200DD08(v5), 101, 1, 0x20, 11 * 16);
+        PaletteData_LoadBufferFromFileStart(v4, 14, 7, 101, 1, 0x20, 12 * 16);
     }
 }
 
@@ -301,7 +300,7 @@ void sub_0208A8A0 (UnkStruct_02089688 * param0)
     SpriteTemplate v0;
     SpriteRenderer * v1;
     SpriteGfxHandler * v2;
-    PaletteData * v3;
+    PaletteData *v3;
 
     v1 = param0->unk_2C0.unk_04;
     v2 = param0->unk_2C0.unk_08;
@@ -357,7 +356,7 @@ void sub_0208A9BC (UnkStruct_02089688 * param0)
     SpriteTemplate v0;
     SpriteRenderer * v1;
     SpriteGfxHandler * v2;
-    PaletteData * v3;
+    PaletteData *v3;
 
     v1 = param0->unk_2C0.unk_04;
     v2 = param0->unk_2C0.unk_08;

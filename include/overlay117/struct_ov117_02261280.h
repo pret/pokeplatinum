@@ -3,7 +3,6 @@
 
 #include <nnsys.h>
 
-#include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
@@ -32,6 +31,7 @@
 #include "bg_window.h"
 #include "camera.h"
 #include "message.h"
+#include "palette.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"

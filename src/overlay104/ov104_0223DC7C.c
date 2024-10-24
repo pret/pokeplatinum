@@ -2,8 +2,6 @@
 #include <string.h>
 
 #include "struct_decls/font_oam.h"
-#include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
@@ -15,16 +13,16 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "font.h"
+#include "graphics.h"
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
+#include "palette.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02002F38.h"
 #include "unk_0200679C.h"
-#include "unk_02006E3C.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
@@ -285,7 +283,7 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 param1, const U
             SpriteRenderer_LoadCharResObjFromOpenNarc(param0->unk_14, param0->unk_18, param0->unk_24, param2->unk_05, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 2010);
             SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_14, param0->unk_18, param0->unk_24, param2->unk_06, 0, 2002);
             SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_14, param0->unk_18, param0->unk_24, param2->unk_07, 0, 2002);
-            sub_020039B0(param0->unk_1C, 2, param0->unk_160 * 16, 16, 14, (GX_RGB(0, 0, 0)));
+            PaletteData_Blend(param0->unk_1C, 2, param0->unk_160 * 16, 16, 14, (GX_RGB(0, 0, 0)));
 
             v7 = SpriteRenderer_LoadPalette(param0->unk_1C, 2, param0->unk_14, param0->unk_18, param0->unk_24, 51, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 2003);
             param0->unk_164 |= 1 << v7;
@@ -369,8 +367,8 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 param1, const U
         break;
     case 12:
         if (ScreenWipe_Done()) {
-            sub_02003A2C(param0->unk_1C, 2, param0->unk_164 ^ 0x3fff, 14, 0x0);
-            sub_020039B0(param0->unk_1C, 2, param0->unk_160 * 16, 16, 0, (GX_RGB(0, 0, 0)));
+            PaletteData_BlendMulti(param0->unk_1C, 2, param0->unk_164 ^ 0x3fff, 14, 0x0);
+            PaletteData_Blend(param0->unk_1C, 2, param0->unk_160 * 16, 16, 0, (GX_RGB(0, 0, 0)));
             sub_0200AB4C(-14, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD, 1);
             sub_020129D0(v0->unk_7C.unk_00, 1);
             param0->unk_00++;
@@ -622,9 +620,9 @@ static void ov104_0223E5A8(UnkStruct_ov104_0223DD30 *param0, const UnkStruct_ov1
     G2_SetWnd0Position(0, 0, 0, 0);
     G2_SetWnd1Position(0, 0, 0, 0);
 
-    PaletteSys_LoadPalette(param0->unk_1C, 112, param1->unk_08, 94, 0, 0x20, 12 * 16);
-    sub_020070E8(param0->unk_24, param1->unk_09, param0->unk_10, 1, 0, 0, 0, 94);
-    sub_0200710C(param0->unk_24, param1->unk_0A, param0->unk_10, 1, 0, 0, 0, 94);
+    PaletteData_LoadBufferFromFileStart(param0->unk_1C, 112, param1->unk_08, 94, 0, 0x20, 12 * 16);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_24, param1->unk_09, param0->unk_10, 1, 0, 0, 0, 94);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_24, param1->unk_0A, param0->unk_10, 1, 0, 0, 0, 94);
     Bg_ChangeTilemapRectPalette(param0->unk_10, 1, 0, 0, 32, 32, 12);
     Bg_ScheduleTilemapTransfer(param0->unk_10, 1);
 
@@ -632,7 +630,7 @@ static void ov104_0223E5A8(UnkStruct_ov104_0223DD30 *param0, const UnkStruct_ov1
         void *v0;
         NNSG2dPaletteData *v1;
 
-        v0 = sub_02006F88(112, param1->unk_08, &v1, 94);
+        v0 = Graphics_GetPlttData(112, param1->unk_08, &v1, 94);
 
         MI_CpuCopy16(v1->pRawData, param0->unk_40, 8 * 32);
         Heap_FreeToHeap(v0);
@@ -658,7 +656,7 @@ static void ov104_0223E6BC(SysTask *param0, void *param1)
         v0->unk_3C = 0;
     }
 
-    sub_02002FBC(v0->unk_1C, &v0->unk_40[v0->unk_3C * 16], 0, 12 * 16, 0x20);
+    PaletteData_LoadBuffer(v0->unk_1C, &v0->unk_40[v0->unk_3C * 16], 0, 12 * 16, 0x20);
 }
 
 static void ov104_0223E6F0(UnkStruct_ov104_0223DD30 *param0, int param1)

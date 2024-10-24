@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_defs/sprite_template.h"
@@ -21,14 +19,15 @@
 #include "bg_window.h"
 #include "camera.h"
 #include "easy3d_object.h"
+#include "graphics.h"
 #include "heap.h"
+#include "narc.h"
+#include "palette.h"
 #include "sys_task.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02002F38.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_0201D15C.h"
@@ -79,10 +78,10 @@ static void ov100_021D1C98(UnkStruct_ov100_021D1C98 *param0)
     PaletteData *v4 = param0->unk_1EBC->unk_10;
     int v5 = 50000;
 
-    sub_020070E8(v0, 18, v1, 5, 0, 0, 0, 111);
-    sub_0200710C(v0, 20, v1, 5, 0, 0, 0, 111);
-    PaletteSys_LoadPalette(v4, 172, 19, 111, 1, 0x20 * 2, 0);
-    PaletteSys_LoadPalette(v4, 172, 19, 111, 0, 0x20 * 2, 0);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 18, v1, 5, 0, 0, 0, 111);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 20, v1, 5, 0, 0, 0, 111);
+    PaletteData_LoadBufferFromFileStart(v4, 172, 19, 111, 1, 0x20 * 2, 0);
+    PaletteData_LoadBufferFromFileStart(v4, 172, 19, 111, 0, 0x20 * 2, 0);
 
     SpriteRenderer_LoadPalette(v4, 3, v2, v3, v0, 50, 0, 3, NNS_G2D_VRAM_TYPE_2DSUB, v5);
     SpriteRenderer_LoadCellResObjFromOpenNarc(v2, v3, v0, 48, 0, v5);

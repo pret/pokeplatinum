@@ -5,7 +5,6 @@
 #include <nnsys.h>
 
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 
 #include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D22F8.h"
@@ -17,6 +16,7 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "narc.h"
 #include "sprite_resource.h"
 
 void ov21_021D1FA4(UnkStruct_ov21_021D13FC *param0, int param1);

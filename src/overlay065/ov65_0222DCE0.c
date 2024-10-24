@@ -6,7 +6,6 @@
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02012B20_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
@@ -41,6 +40,7 @@
 #include "font.h"
 #include "game_options.h"
 #include "game_overlay.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "inlines.h"
@@ -66,7 +66,6 @@
 #include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
@@ -1212,17 +1211,17 @@ static UnkStruct_ov65_022354D8 * ov65_0222E8D4 (UnkStruct_ov65_0222EBE0 * param0
 
 static void ov65_0222E90C(BgConfig *param0, UnkStruct_ov65_0222E99C *param1, NARC *param2, u32 param3)
 {
-    sub_02007130(param2, 13, 0, 8 * 32, 2 * 32, param3);
-    sub_02007130(param2, 13, 4, 13 * 32, 2 * 32, param3);
-    sub_020070E8(param2, 12, param0, 1, 0, 0, 0, param3);
-    sub_020070E8(param2, 12, param0, 6, 0, 0, 0, param3);
+    Graphics_LoadPaletteFromOpenNARC(param2, 13, 0, 8 * 32, 2 * 32, param3);
+    Graphics_LoadPaletteFromOpenNARC(param2, 13, 4, 13 * 32, 2 * 32, param3);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param2, 12, param0, 1, 0, 0, 0, param3);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param2, 12, param0, 6, 0, 0, 0, param3);
 
     if (param1->unk_08 == NULL) {
-        param1->unk_08 = sub_020071B4(param2, 12, 0, &param1->unk_0C, param3);
+        param1->unk_08 = Graphics_GetCharDataFromOpenNARC(param2, 12, 0, &param1->unk_0C, param3);
     }
 
     if (param1->unk_00 == NULL) {
-        param1->unk_00 = sub_020071D0(param2, 14, 0, &param1->unk_04, param3);
+        param1->unk_00 = Graphics_GetScrnDataFromOpenNARC(param2, 14, 0, &param1->unk_04, param3);
     }
 }
 
@@ -1454,16 +1453,16 @@ static void ov65_0222ECA8 (UnkStruct_ov65_0222EBE0 * param0, NARC * param1)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
 
-    sub_02007130(param1, 3, 0, 0, 0, 54);
-    sub_02007130(param1, 3, 4, 0, 0, 54);
+    Graphics_LoadPaletteFromOpenNARC(param1, 3, 0, 0, 0, 54);
+    Graphics_LoadPaletteFromOpenNARC(param1, 3, 4, 0, 0, 54);
 
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 54);
     Font_LoadScreenIndicatorsPalette(0, 12 * 0x20, 54);
 
-    sub_020070E8(param1, 2, v0, 0, 0, 0, 0, 54);
-    sub_0200710C(param1, 5, v0, 0, 0, 0, 0, 54);
-    sub_020070E8(param1, 10, v0, 4, 0, 0, 0, 54);
-    sub_0200710C(param1, 11, v0, 4, 0, 0, 0, 54);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 0, 0, 0, 0, 54);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 5, v0, 0, 0, 0, 0, 54);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 10, v0, 4, 0, 0, 0, 54);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 11, v0, 4, 0, 0, 0, 54);
 
     {
         int v1 = Options_Frame(SaveData_Options(param0->unk_160));
@@ -5142,22 +5141,22 @@ static void ov65_022332FC (UnkStruct_ov65_0222EBE0 * param0, NARC * param1, u32 
     int v2, v3;
 
     Bg_ClearTilemap(param0->unk_15C, 4);
-    sub_02007130(param1, 16, 4, 0 * 32, 4 * 32, param2);
-    sub_02007130(param1, 19, 4, 4 * 32, 5 * 32, param2);
-    sub_020070E8(param1, 15, param0->unk_15C, 4, 0, 0, 0, param2);
-    sub_020070E8(param1, 18, param0->unk_15C, 6, (0 + 48), 0, 0, param2);
-    sub_0200710C(param1, 17, param0->unk_15C, 4, 0, 0, 0, param2);
+    Graphics_LoadPaletteFromOpenNARC(param1, 16, 4, 0 * 32, 4 * 32, param2);
+    Graphics_LoadPaletteFromOpenNARC(param1, 19, 4, 4 * 32, 5 * 32, param2);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 15, param0->unk_15C, 4, 0, 0, 0, param2);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 18, param0->unk_15C, 6, (0 + 48), 0, 0, param2);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 17, param0->unk_15C, 4, 0, 0, 0, param2);
 
-    param0->unk_BE0.unk_04 = sub_020071D0(param1, 20, 0, &param0->unk_BE0.unk_08, param2);
+    param0->unk_BE0.unk_04 = Graphics_GetScrnDataFromOpenNARC(param1, 20, 0, &param0->unk_BE0.unk_08, param2);
 
     ov65_022335F8(param0->unk_BE0.unk_08, (0 + 48));
 
     for (v0 = 0; v0 < 7; v0++) {
-        param0->unk_BE0.unk_0C[v0] = sub_020071D0(param1, 21 + v0, 0, &param0->unk_BE0.unk_28[v0], param2);
+        param0->unk_BE0.unk_0C[v0] = Graphics_GetScrnDataFromOpenNARC(param1, 21 + v0, 0, &param0->unk_BE0.unk_28[v0], param2);
         ov65_022335F8(param0->unk_BE0.unk_28[v0], (0 + 48));
     }
 
-    param0->unk_BE0.unk_44 = sub_020071D0(param1, 28, 0, &param0->unk_BE0.unk_48, param2);
+    param0->unk_BE0.unk_44 = Graphics_GetScrnDataFromOpenNARC(param1, 28, 0, &param0->unk_BE0.unk_48, param2);
 
     ov65_022335F8(param0->unk_BE0.unk_48, (0 + 48));
     Font_LoadScreenIndicatorsPalette(4, 15 * 32, param2);

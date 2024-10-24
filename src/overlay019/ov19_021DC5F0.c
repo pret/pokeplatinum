@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/ov19_021D79F8.h"
@@ -17,12 +15,13 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "graphics.h"
 #include "heap.h"
+#include "narc.h"
 #include "party.h"
 #include "pokemon.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
 
 static const struct {
     u16 unk_00;
@@ -69,7 +68,7 @@ BOOL ov19_021DC5F0(UnkStruct_ov19_021DC680 *param0, UnkStruct_ov19_021D61B0 *par
     ov19_021DA3CC(param0->unk_38, param0->unk_3C, 6);
 
     param0->unk_1C = Heap_AllocFromHeap(10, sizeof(VecFx32) * 6 * 8);
-    param0->unk_14 = sub_020071D0(param5, 6, 1, &(param0->unk_18), 10);
+    param0->unk_14 = Graphics_GetScrnDataFromOpenNARC(param5, 6, 1, &(param0->unk_18), 10);
 
     if ((param0->unk_14 == NULL) || (param0->unk_1C == NULL)) {
         return 0;

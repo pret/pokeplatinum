@@ -19,6 +19,7 @@
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "font.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
@@ -33,7 +34,6 @@
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
-#include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_02014A84.h"
@@ -185,7 +185,7 @@ static void ov56_02256294(UnkStruct_ov56_02256468 *param0)
     param0->unk_2D8.unk_06 = 0;
     param0->unk_18 = StringTemplate_Default(4);
     param0->unk_1C = MessageLoader_Init(0, 26, 635, 4);
-    param0->unk_20 = sub_02006F6C(74, 3, 1, &(param0->unk_24), 4);
+    param0->unk_20 = Graphics_GetScrnData(74, 3, 1, &(param0->unk_24), 4);
 }
 
 static void ov56_022562EC(BgConfig *param0, UnkStruct_ov56_022562EC *param1)
@@ -368,9 +368,9 @@ static void ov56_02256508(BgConfig *param0)
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
     }
 
-    sub_02006E84(74, 0, 4, 0, 0x20 * 3, 4);
-    sub_02006E3C(74, 2, param0, 7, 0, (32 * 5) * 0x20, 1, 4);
-    sub_02006E60(74, 4, param0, 7, 0, 32 * 24 * 2, 1, 4);
+    Graphics_LoadPalette(74, 0, 4, 0, 0x20 * 3, 4);
+    Graphics_LoadTilesToBgLayer(74, 2, param0, 7, 0, (32 * 5) * 0x20, 1, 4);
+    Graphics_LoadTilemapToBgLayer(74, 4, param0, 7, 0, 32 * 24 * 2, 1, 4);
     sub_0205D8CC(4, 0);
 }
 

@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/font_oam.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_defs/sprite_manager_allocation.h"
@@ -36,13 +35,13 @@
 #include "communication_system.h"
 #include "error_handling.h"
 #include "font.h"
+#include "graphics.h"
 #include "message.h"
 #include "narc.h"
+#include "palette.h"
 #include "strbuf.h"
 #include "text.h"
-#include "unk_02002F38.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
 #include "unk_0201D15C.h"
@@ -392,8 +391,8 @@ void ov117_02263AF0(BgConfig *param0, int param1, int param2, UnkStruct_ov117_02
 
     v0 = NARC_ctor(NARC_INDEX_APPLICATION__BALLOON__GRAPHIC__BALLOON_GRA, 110);
 
-    sub_020070E8(v0, Unk_ov117_02266BEC[param2].unk_00, param0, 7, 0, 0, 0, 110);
-    sub_0200710C(v0, Unk_ov117_02266BEC[param2].unk_02, param0, 7, 0, 0, 0, 110);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, Unk_ov117_02266BEC[param2].unk_00, param0, 7, 0, 0, 0, 110);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, Unk_ov117_02266BEC[param2].unk_02, param0, 7, 0, 0, 0, 110);
     NARC_dtor(v0);
 
     MI_CpuClear8(param3, sizeof(UnkStruct_ov117_02263DAC));
@@ -1241,7 +1240,7 @@ void ov117_02264AF0(UnkStruct_ov117_02261280 *param0)
         v4 = Unk_ov117_02266B72[v2];
 
         for (v1 = 0; v1 < 3; v1++) {
-            v0[v2][v1] = sub_02003910(param0->unk_8C, 1, 1, v4 + v1);
+            v0[v2][v1] = PaletteData_GetBufferIndexColor(param0->unk_8C, 1, 1, v4 + v1);
         }
     }
 
@@ -1253,8 +1252,8 @@ void ov117_02264AF0(UnkStruct_ov117_02261280 *param0)
         }
     }
 
-    v8 = sub_02003164(param0->unk_8C, 1);
-    v9 = sub_0200316C(param0->unk_8C, 1);
+    v8 = PaletteData_GetUnfadedBuffer(param0->unk_8C, 1);
+    v9 = PaletteData_GetFadedBuffer(param0->unk_8C, 1);
 
     for (v1 = 0; v1 < param0->unk_00->unk_30; v1++) {
         v4 = v1;
@@ -1282,7 +1281,7 @@ void ov117_02264BF8(UnkStruct_ov117_02261280 *param0)
         v4 = Unk_ov117_02266B8A[v2];
 
         for (v1 = 0; v1 < 16; v1++) {
-            v0[v2][v1] = sub_02003910(param0->unk_8C, 3, 1, v10 * 16 + v4 + v1);
+            v0[v2][v1] = PaletteData_GetBufferIndexColor(param0->unk_8C, 3, 1, v10 * 16 + v4 + v1);
         }
     }
 
@@ -1294,8 +1293,8 @@ void ov117_02264BF8(UnkStruct_ov117_02261280 *param0)
         }
     }
 
-    v8 = sub_02003164(param0->unk_8C, 3);
-    v9 = sub_0200316C(param0->unk_8C, 3);
+    v8 = PaletteData_GetUnfadedBuffer(param0->unk_8C, 3);
+    v9 = PaletteData_GetFadedBuffer(param0->unk_8C, 3);
 
     for (v1 = 0; v1 < param0->unk_00->unk_30; v1++) {
         v4 = v1;
@@ -1323,7 +1322,7 @@ void ov117_02264D1C(UnkStruct_ov117_02261280 *param0)
         v4 = Unk_ov117_02266B82[v2];
 
         for (v1 = 0; v1 < 1; v1++) {
-            v0[v2][v1] = sub_02003910(param0->unk_8C, 3, 1, v10 * 16 + v4 + v1);
+            v0[v2][v1] = PaletteData_GetBufferIndexColor(param0->unk_8C, 3, 1, v10 * 16 + v4 + v1);
         }
     }
 
@@ -1335,8 +1334,8 @@ void ov117_02264D1C(UnkStruct_ov117_02261280 *param0)
         }
     }
 
-    v8 = sub_02003164(param0->unk_8C, 3);
-    v9 = sub_0200316C(param0->unk_8C, 3);
+    v8 = PaletteData_GetUnfadedBuffer(param0->unk_8C, 3);
+    v9 = PaletteData_GetFadedBuffer(param0->unk_8C, 3);
 
     for (v1 = 0; v1 < param0->unk_00->unk_30; v1++) {
         v4 = v1;

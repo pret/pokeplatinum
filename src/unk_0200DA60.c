@@ -14,6 +14,7 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "narc.h"
@@ -23,7 +24,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_0200679C.h"
-#include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "unk_0200A328.h"
 #include "unk_0200C6E4.h"
@@ -82,9 +82,9 @@ static const SpriteTemplate Unk_020E5040 = {
 void Window_SetFrame(BgConfig *param0, u8 param1, u16 param2, u8 param3, u32 param4)
 {
     if (param3 == 0) {
-        sub_02006E3C(38, 0, param0, param1, param2, 0, 0, param4);
+        Graphics_LoadTilesToBgLayer(38, 0, param0, param1, param2, 0, 0, param4);
     } else {
-        sub_02006E3C(38, 1, param0, param1, param2, 0, 0, param4);
+        Graphics_LoadTilesToBgLayer(38, 1, param0, param1, param2, 0, 0, param4);
     }
 }
 
@@ -103,7 +103,7 @@ void sub_0200DAA4(BgConfig *param0, u8 param1, u16 param2, u8 param3, u8 param4,
         v0 = 1;
     }
 
-    sub_02006E3C(38, v0, param0, param1, param2, 0, 0, param5);
+    Graphics_LoadTilesToBgLayer(38, v0, param0, param1, param2, 0, 0, param5);
 
     if (param4 == 2) {
         v0 = 45;
@@ -112,9 +112,9 @@ void sub_0200DAA4(BgConfig *param0, u8 param1, u16 param2, u8 param3, u8 param4,
     }
 
     if (param1 < 4) {
-        sub_02006E84(38, v0, 0, param3 * 0x20, 0x20, param5);
+        Graphics_LoadPalette(38, v0, 0, param3 * 0x20, 0x20, param5);
     } else {
-        sub_02006E84(38, v0, 4, param3 * 0x20, 0x20, param5);
+        Graphics_LoadPalette(38, v0, 4, param3 * 0x20, 0x20, param5);
     }
 }
 
@@ -164,12 +164,12 @@ u32 sub_0200DD08(u32 param0)
 
 void sub_0200DD0C(BgConfig *param0, u8 param1, u16 param2, u8 param3, u8 param4, u32 param5)
 {
-    sub_02006E3C(38, sub_0200DD04(param4), param0, param1, param2, 0, 0, param5);
+    Graphics_LoadTilesToBgLayer(38, sub_0200DD04(param4), param0, param1, param2, 0, 0, param5);
 
     if (param1 < 4) {
-        sub_02006E84(38, sub_0200DD08(param4), 0, param3 * 0x20, 0x20, param5);
+        Graphics_LoadPalette(38, sub_0200DD08(param4), 0, param3 * 0x20, 0x20, param5);
     } else {
-        sub_02006E84(38, sub_0200DD08(param4), 4, param3 * 0x20, 0x20, param5);
+        Graphics_LoadPalette(38, sub_0200DD08(param4), 4, param3 * 0x20, 0x20, param5);
     }
 }
 
@@ -255,7 +255,7 @@ static void sub_0200E130(Window *param0, u16 param1)
     {
         NNSG2dCharacterData *v7;
 
-        v4 = sub_02006F50(38, 22, 0, &v7, v0);
+        v4 = Graphics_GetCharData(38, 22, 0, &v7, v0);
         v3 = (u8 *)v7->pRawData;
     }
 
@@ -281,7 +281,7 @@ void sub_0200E218(BgConfig *param0, u8 param1, u16 param2, u8 param3, u8 param4,
     u32 v3;
     u8 v4, v5;
 
-    v0 = sub_02006F50(38, sub_0200DD04(param4), 0, &v1, param5);
+    v0 = Graphics_GetCharData(38, sub_0200DD04(param4), 0, &v1, param5);
     v2 = Heap_AllocFromHeap(param5, 0x20 * 18);
 
     memcpy(v2, v1->pRawData, 0x20 * 18);
@@ -308,7 +308,7 @@ void sub_0200E218(BgConfig *param0, u8 param1, u16 param2, u8 param3, u8 param4,
 
 void sub_0200E2A4(BgConfig *param0, u8 param1, u16 param2, u8 param3, u8 param4, u16 param5, u32 param6)
 {
-    sub_02006E3C(
+    Graphics_LoadTilesToBgLayer(
         36, 0, param0, param1, param2, (18 + 12) * 0x20, 0, param6);
 
     {
@@ -337,7 +337,7 @@ static void sub_0200E31C(BgConfig *param0, u8 param1, u16 param2, u8 param3, u16
         param4 += 2;
     }
 
-    sub_02006E3C(36, param4, param0, param1, param2, 24 * 0x20, 0, param5);
+    Graphics_LoadTilesToBgLayer(36, param4, param0, param1, param2, 24 * 0x20, 0, param5);
 }
 
 static void sub_0200E354(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6, u16 param7)
@@ -446,7 +446,7 @@ void *sub_0200E7FC(Window *param0, u32 param1)
     {
         NNSG2dCharacterData *v8;
 
-        v5 = sub_02006F50(38, 23, 0, &v8, v1);
+        v5 = Graphics_GetCharData(38, 23, 0, &v8, v1);
         v3 = (u8 *)v8->pRawData;
     }
 

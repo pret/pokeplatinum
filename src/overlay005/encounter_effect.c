@@ -7,7 +7,6 @@
 #include "constants/battle.h"
 #include "constants/heap.h"
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -30,16 +29,16 @@
 #include "camera.h"
 #include "cell_actor.h"
 #include "enc_effects.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "narc.h"
+#include "palette.h"
 #include "pokemon.h"
 #include "sprite_resource.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02002F38.h"
 #include "unk_0200679C.h"
-#include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_02014000.h"
@@ -715,10 +714,10 @@ void ov5_021DE3D0(NARC *param0, u32 param1, u32 param2, u32 param3, u32 param4, 
     void *v0;
     NNSG2dScreenData *v1;
 
-    sub_02007130(param0, param3, 0, param4 * 32, param5 * 32, 4);
-    sub_020070E8(param0, param2, param6, param7, 0, 0, 0, 4);
+    Graphics_LoadPaletteFromOpenNARC(param0, param3, 0, param4 * 32, param5 * 32, 4);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0, param2, param6, param7, 0, 0, 0, 4);
 
-    v0 = sub_020071D0(param0, param1, 0, &v1, 4);
+    v0 = Graphics_GetScrnDataFromOpenNARC(param0, param1, 0, &v1, 4);
 
     Bg_LoadToTilemapRect(param6, param7, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Bg_ChangeTilemapRectPalette(param6, param7, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8, param4);
@@ -782,8 +781,8 @@ void ov5_021DE5D0(CellActor *param0, u32 param1, u32 param2, u8 param3, u16 para
 
     sub_02076AAC(param2, 2, &v0);
     v3 = Heap_AllocFromHeap(param1, 32);
-    v2 = sub_02006F88(v0.unk_00, v0.unk_08, &v1, param1);
-    sub_0200393C(v1->pRawData, v3, 16, param3, param4);
+    v2 = Graphics_GetPlttData(v0.unk_00, v0.unk_08, &v1, param1);
+    BlendPalette(v1->pRawData, v3, 16, param3, param4);
 
     ov5_021DE67C(param0, v3, 32);
 
@@ -1444,7 +1443,7 @@ void ov5_021DF0CC(NARC *param0, u32 param1)
     v1 = sub_02014784(Unk_ov5_02202120->unk_08);
     Camera_SetClipping(FX32_ONE, FX32_ONE * 900, v1);
 
-    v0 = sub_0200723C(param0, param1, 0, 4, 0);
+    v0 = LoadMemberFromOpenNARC(param0, param1, 0, 4, 0);
     sub_020144CC(Unk_ov5_02202120->unk_08, v0, 0 | 0, 0);
 }
 

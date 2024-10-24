@@ -5,7 +5,6 @@
 
 #include "consts/game_records.h"
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
@@ -33,6 +32,7 @@
 #include "core_sys.h"
 #include "field_system.h"
 #include "game_records.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "map_object_move.h"
@@ -45,7 +45,6 @@
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A9DC.h"
@@ -2347,23 +2346,23 @@ static void ov23_022451C8(SysTask *param0, void *param1)
         break;
     case 1:
         sub_0200AAE0(1, 10, 0, GX_BLEND_PLANEMASK_BG0, 1);
-        sub_02006E3C(50, 9, v0->unk_10, 2, 0, 8 * 6 * 6, 0, 4);
+        Graphics_LoadTilesToBgLayer(50, 9, v0->unk_10, 2, 0, 8 * 6 * 6, 0, 4);
         v0->unk_00++;
         break;
     case 2:
-        sub_02006E84(50, 10, 0, 0, 32, 4);
+        Graphics_LoadPalette(50, 10, 0, 0, 32, 4);
         v0->unk_00++;
         break;
     case 3:
         sub_0200AAE0(1, 0, 10, GX_BLEND_PLANEMASK_BG0, 1);
 
         if (Unk_ov23_02257764->unk_B9F == 19) {
-            sub_02006E60(50, 8, v0->unk_10, 2, 0, 32 * 24 * 2, 0, 4);
+            Graphics_LoadTilemapToBgLayer(50, 8, v0->unk_10, 2, 0, 32 * 24 * 2, 0, 4);
         } else {
             u16 v2[] = { 11, 12, 13, 14 };
             u16 v3 = LCRNG_Next() % 4;
 
-            sub_02006E60(50, v2[v3], v0->unk_10, 2, 0, 32 * 24 * 2, 0, 4);
+            Graphics_LoadTilemapToBgLayer(50, v2[v3], v0->unk_10, 2, 0, 32 * 24 * 2, 0, 4);
         }
 
         Bg_SetPriority(0, 3);

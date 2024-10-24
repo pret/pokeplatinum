@@ -3,19 +3,17 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/struct_ov25_0225517C.h"
 #include "overlay025/struct_ov25_02255224_decl.h"
 
 #include "bg_window.h"
+#include "graphics.h"
 #include "heap.h"
 #include "narc.h"
 #include "pokemon_icon.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
 
 struct UnkStruct_ov25_02255224_t {
     u32 unk_00;
@@ -255,7 +253,7 @@ void ov25_02255360(u32 param0)
     void *v0;
     NNSG2dPaletteData *v1;
 
-    v0 = sub_02006F88(19, PokeIconPalettesFileIndex(), &v1, 8);
+    v0 = Graphics_GetPlttData(19, PokeIconPalettesFileIndex(), &v1, 8);
 
     if (v0) {
         ov25_02255290(v1->pRawData, 4 * 0x10);

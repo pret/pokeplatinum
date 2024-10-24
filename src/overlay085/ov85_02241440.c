@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_berry_data_decl.h"
 #include "struct_defs/struct_020972FC.h"
@@ -16,6 +15,7 @@
 #include "camera.h"
 #include "core_sys.h"
 #include "font.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
@@ -24,7 +24,6 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_02006E3C.h"
 #include "unk_0200C440.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
@@ -420,10 +419,10 @@ static void ov85_022416E8(BgConfig *param0)
 
 static void ov85_02241718(UnkStruct_ov85_022417E4 *param0, NARC *param1)
 {
-    sub_020070E8(param1, 2, param0->unk_00, 2, 0, 0, 0, 36);
-    sub_0200710C(param1, 0, param0->unk_00, 2, 0, 0, 0, 36);
-    sub_0200710C(param1, 1, param0->unk_00, 3, 0, 0, 0, 36);
-    sub_02007130(param1, 3, 0, 0, 0, 36);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, param0->unk_00, 2, 0, 0, 0, 36);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 0, param0->unk_00, 2, 0, 0, 0, 36);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 1, param0->unk_00, 3, 0, 0, 0, 36);
+    Graphics_LoadPaletteFromOpenNARC(param1, 3, 0, 0, 0, 36);
 
     {
         u16 *v0;
@@ -789,8 +788,8 @@ static int ov85_02241DF8(UnkStruct_ov85_022417E4 *param0)
 
 static void ov85_02241E60(UnkStruct_ov85_022417E4 *param0, NARC *param1)
 {
-    sub_020070E8(param1, ov85_02241EB0(param0->unk_1F8->unk_08), param0->unk_00, 1, 1, 0, 0, 36);
-    sub_02007130(param1, ov85_02241EB4(param0->unk_1F8->unk_08), 0, 3 * 0x20, 0x20, 36);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, ov85_02241EB0(param0->unk_1F8->unk_08), param0->unk_00, 1, 1, 0, 0, 36);
+    Graphics_LoadPaletteFromOpenNARC(param1, ov85_02241EB4(param0->unk_1F8->unk_08), 0, 3 * 0x20, 0x20, 36);
 }
 
 u32 ov85_02241EB0(u32 param0)

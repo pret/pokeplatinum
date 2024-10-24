@@ -3,7 +3,6 @@
 
 #include <nitro/fx/fx.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02039E30_decl.h"
 
 #include "field/field_system_decl.h"
@@ -14,6 +13,8 @@
 #include "overlay005/struct_ov5_021E8F60_decl.h"
 #include "overlay005/struct_ov5_021EF13C_decl.h"
 #include "overlay005/struct_ov5_021EF76C_decl.h"
+
+#include "narc.h"
 
 void ov5_021E7A54(UnkStruct_ov5_021E8F60 *param0);
 void ov5_021E8188(FieldSystem *fieldSystem, UnkStruct_ov5_021E8F60 *param1);

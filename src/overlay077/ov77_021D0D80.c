@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -14,6 +13,7 @@
 #include "easy3d.h"
 #include "easy3d_object.h"
 #include "font.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
@@ -24,7 +24,6 @@
 #include "unk_02000C88.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
@@ -949,8 +948,8 @@ static void ov77_021D1CC0(BgConfig *param0, int param1)
         Bg_InitFromTemplate(param0, 5, &v0, 0);
     }
 
-    sub_02006E3C(48, 23, param0, 5, 0, 0, 0, param1);
-    sub_02006E60(48, 25, param0, 5, 0, 0, 0, param1);
+    Graphics_LoadTilesToBgLayer(48, 23, param0, 5, 0, 0, 0, param1);
+    Graphics_LoadTilemapToBgLayer(48, 25, param0, 5, 0, 0, 0, param1);
 
     G2_BlendNone();
     G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, GX_BLEND_PLANEMASK_BG3, 10, 10);
@@ -982,7 +981,7 @@ static void ov77_021D1D48(BgConfig *param0, int param1)
         Bg_InitFromTemplate(param0, 4, &v0, 0);
     }
 
-    sub_02006E60(48, 22, param0, 4, 0, 0, 0, param1);
+    Graphics_LoadTilemapToBgLayer(48, 22, param0, 4, 0, 0, 0, param1);
 
     G2S_SetBG0Priority(0);
     G2S_SetBG1Priority(1);
@@ -1217,16 +1216,16 @@ static void ov77_021D2214(BgConfig *param0, int param1, UnkStruct_ov77_021D1568 
     {
         int v0, v1;
 
-        sub_02006E3C(48, 23, param0, 7, 0, 0, 0, param1);
-        sub_02006E3C(48, 26, param0, 3, 0, 0, 0, param1);
-        sub_02006E60(48, 24, param0, 7, 0, 0, 0, param1);
-        sub_02006E60(48, 27, param0, 3, 0, 0, 0, param1);
+        Graphics_LoadTilesToBgLayer(48, 23, param0, 7, 0, 0, 0, param1);
+        Graphics_LoadTilesToBgLayer(48, 26, param0, 3, 0, 0, 0, param1);
+        Graphics_LoadTilemapToBgLayer(48, 24, param0, 7, 0, 0, 0, param1);
+        Graphics_LoadTilemapToBgLayer(48, 27, param0, 3, 0, 0, 0, param1);
 
         v0 = 7;
         v1 = 6;
 
-        sub_02006E84(48, v0, 4, 0, 0, param1);
-        sub_02006E84(48, v1, 0, 0, 0, param1);
+        Graphics_LoadPalette(48, v0, 4, 0, 0, param1);
+        Graphics_LoadPalette(48, v1, 0, 0, 0, param1);
     }
     {
         int v2, v3;
@@ -1234,19 +1233,19 @@ static void ov77_021D2214(BgConfig *param0, int param1, UnkStruct_ov77_021D1568 
         v2 = 12;
         v3 = 11;
 
-        sub_02006E3C(48, v2, param0, 6, 0, 0, 0, param1);
-        sub_02006E84(48, v3, 6, 0x4000, 0, param1);
-        sub_02006E60(48, 22, param0, 6, 0, 0, 0, param1);
+        Graphics_LoadTilesToBgLayer(48, v2, param0, 6, 0, 0, 0, param1);
+        Graphics_LoadPalette(48, v3, 6, 0x4000, 0, param1);
+        Graphics_LoadTilemapToBgLayer(48, 22, param0, 6, 0, 0, 0, param1);
     }
     {
-        sub_02006E3C(128, 14, param0, 5, 0, 0, 0, param1);
-        sub_02006E84(128, 13, 6, 0x2000, 0, param1);
-        sub_02006E60(128, 12, param0, 5, 0, 0, 0, param1);
+        Graphics_LoadTilesToBgLayer(128, 14, param0, 5, 0, 0, 0, param1);
+        Graphics_LoadPalette(128, 13, 6, 0x2000, 0, param1);
+        Graphics_LoadTilemapToBgLayer(128, 12, param0, 5, 0, 0, 0, param1);
     }
     {
-        sub_02006E3C(48, 5, param0, 1, 0, 0, 0, param1);
-        sub_02006E60(48, 3, param0, 1, 0, 0, 0, param1);
-        sub_02006E84(48, 4, 0, 32 * 1, 32 * 3, param1);
+        Graphics_LoadTilesToBgLayer(48, 5, param0, 1, 0, 0, 0, param1);
+        Graphics_LoadTilemapToBgLayer(48, 3, param0, 1, 0, 0, 0, param1);
+        Graphics_LoadPalette(48, 4, 0, 32 * 1, 32 * 3, param1);
     }
 
     Bg_MaskPalette(0, 0x0);

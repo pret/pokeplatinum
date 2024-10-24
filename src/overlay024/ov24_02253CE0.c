@@ -3,12 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-
 #include "bg_window.h"
+#include "graphics.h"
 #include "heap.h"
 #include "narc.h"
-#include "unk_02006E3C.h"
 
 void ov24_02253CE0(BgConfig *param0)
 {
@@ -44,9 +42,9 @@ void ov24_02253CE0(BgConfig *param0)
 
         v1 = NARC_ctor(NARC_INDEX_GRAPHIC__POKETCH, 8);
 
-        sub_020070E8(v1, 10, param0, 4, 0, 0, 1, 8);
-        sub_0200710C(v1, 11, param0, 4, 0, 0, 1, 8);
-        sub_02007130(v1, 12, 4, 0, 0x20, 8);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 10, param0, 4, 0, 0, 1, 8);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 11, param0, 4, 0, 0, 1, 8);
+        Graphics_LoadPaletteFromOpenNARC(v1, 12, 4, 0, 0x20, 8);
         NARC_dtor(v1);
     }
 

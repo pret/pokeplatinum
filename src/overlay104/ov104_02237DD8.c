@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_020304A0_decl.h"
 #include "struct_decls/struct_020305B8_decl.h"
 #include "struct_decls/struct_party_decl.h"
@@ -22,14 +21,14 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "narc.h"
+#include "palette.h"
 #include "party.h"
 #include "pokemon.h"
 #include "savedata.h"
-#include "unk_02002F38.h"
-#include "unk_02006E3C.h"
 #include "unk_0201D15C.h"
 #include "unk_02030494.h"
 #include "unk_0203061C.h"
@@ -637,14 +636,14 @@ void ov104_02238658(void *param0, UnkStruct_ov104_0223C4CC *param1)
     if (v1->unk_13 != 32) {
         v0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 94);
 
-        sub_020070E8(v0, Unk_ov104_0223FBBA[v1->unk_13][0], param1->unk_00, 2, 0, 0, 1, 94);
-        sub_0200710C(v0, Unk_ov104_0223FBBA[v1->unk_13][1], param1->unk_00, 2, 0, 0, 1, 94);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(v0, Unk_ov104_0223FBBA[v1->unk_13][0], param1->unk_00, 2, 0, 0, 1, 94);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, Unk_ov104_0223FBBA[v1->unk_13][1], param1->unk_00, 2, 0, 0, 1, 94);
 
         {
             NNSG2dPaletteData *v2;
             void *v3;
 
-            v3 = sub_020071EC(v0, Unk_ov104_0223FBBA[v1->unk_13][2], &v2, 94);
+            v3 = Graphics_GetPlttDataFromOpenNARC(v0, Unk_ov104_0223FBBA[v1->unk_13][2], &v2, 94);
             DC_FlushRange(v2->pRawData, v2->szByte);
 
             GX_BeginLoadBGExtPltt();
@@ -672,7 +671,7 @@ void ov104_02238728(void *param0, UnkStruct_ov104_0223C4CC *param1)
     v1 = (UnkStruct_ov104_0223BFFC *)param0;
     v0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 94);
 
-    sub_0200710C(v0, 53, param1->unk_00, 3, 0, 0, 1, 94);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 53, param1->unk_00, 3, 0, 0, 1, 94);
     Bg_ScheduleTilemapTransfer(param1->unk_00, 3);
     NARC_dtor(v0);
 
@@ -901,9 +900,9 @@ void ov104_02238AB4(u8 param0, u8 param1)
     memset(v5, 0, 0x1000 * 2);
 
     v4 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 94);
-    v3 = sub_020071EC(v4, v0, &v2, 94);
+    v3 = Graphics_GetPlttDataFromOpenNARC(v4, v0, &v2, 94);
 
-    sub_0200393C(v2->pRawData, v5, 0x1000, param0, 0x0);
+    BlendPalette(v2->pRawData, v5, 0x1000, param0, 0x0);
     DC_FlushRange(v5, 0x1000 * 2);
 
     GX_BeginLoadBGExtPltt();

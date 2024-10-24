@@ -5,7 +5,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_defs/struct_0203E0FC.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -27,6 +26,7 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "game_options.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "inlines.h"
@@ -39,7 +39,6 @@
 #include "trainer_info.h"
 #include "unk_02001AF4.h"
 #include "unk_020041CC.h"
-#include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
@@ -348,7 +347,7 @@ static void ov94_0223C0D4(UnkStruct_ov94_0223FD4C *param0)
         int v4, v5, v6, v7;
         u16 *v8;
 
-        v2 = sub_02006F88(19, PokeIconPalettesFileIndex(), &v3, 62);
+        v2 = Graphics_GetPlttData(19, PokeIconPalettesFileIndex(), &v3, 62);
 
         DC_FlushRange(v3->pRawData, (3 * 16) * 2);
         GX_LoadOBJPltt(v3->pRawData, 3 * 0x20, (3 * 16) * 2);

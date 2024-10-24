@@ -6,8 +6,6 @@
 
 #include "constants/heap.h"
 
-#include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_defs/sprite_template.h"
@@ -23,13 +21,13 @@
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
+#include "palette.h"
 #include "pokemon.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02002F38.h"
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
 #include "unk_0201D15C.h"
@@ -1790,7 +1788,7 @@ static void ov16_02268380(SysTask *param0, void *param1)
             v0->unk_08++;
         }
 
-        sub_020039B0(v3, 2, v0->unk_09 * 16 + 0, 16, v0->unk_0A, 0x73a5);
+        PaletteData_Blend(v3, 2, v0->unk_09 * 16 + 0, 16, v0->unk_0A, 0x73a5);
         break;
     case 2:
         v0->unk_0A -= 2;
@@ -1800,7 +1798,7 @@ static void ov16_02268380(SysTask *param0, void *param1)
             v0->unk_08++;
         }
 
-        sub_020039B0(v3, 2, v0->unk_09 * 16 + 0, 16, v0->unk_0A, 0x73a5);
+        PaletteData_Blend(v3, 2, v0->unk_09 * 16 + 0, 16, v0->unk_0A, 0x73a5);
         break;
     default:
         v2 = sub_0200D05C(v1, 20006, NNS_G2D_VRAM_TYPE_2DMAIN);

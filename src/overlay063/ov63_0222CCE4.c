@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02002F38_decl.h"
-
 #include "overlay063/ov63_0222AE60.h"
 #include "overlay063/ov63_0222BE18.h"
 #include "overlay063/struct_ov63_0222BB38_decl.h"
@@ -16,6 +14,7 @@
 
 #include "cell_actor.h"
 #include "heap.h"
+#include "palette.h"
 
 static BOOL ov63_0222D07C(const UnkStruct_ov63_0222CE44 *param0);
 static UnkStruct_ov63_0222CE44 *ov63_0222D08C(UnkStruct_ov63_0222CD2C *param0);

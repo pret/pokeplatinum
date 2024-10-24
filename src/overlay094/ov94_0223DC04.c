@@ -18,6 +18,7 @@
 #include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
+#include "graphics.h"
 #include "message.h"
 #include "message_util.h"
 #include "pokemon.h"
@@ -26,7 +27,6 @@
 #include "text.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_020393C8.h"
@@ -209,8 +209,8 @@ static void ov94_0223DE04(UnkStruct_ov94_0223FD4C *param0)
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 62);
     sub_0200DD0C(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), 62);
     sub_0200DAA4(v0, 0, (1 + (18 + 12)), 11, 0, 62);
-    sub_02006E3C(104, 17, v0, 1, 0, 16 * 5 * 0x20, 1, 62);
-    sub_02006E84(104, 7, 0, 0, 16 * 3 * 2, 62);
+    Graphics_LoadTilesToBgLayer(104, 17, v0, 1, 0, 16 * 5 * 0x20, 1, 62);
+    Graphics_LoadPalette(104, 7, 0, 0, 16 * 3 * 2, 62);
 }
 
 static void ov94_0223DE7C(UnkStruct_ov94_0223FD4C *param0)
@@ -401,10 +401,10 @@ static int ov94_0223E1D0(UnkStruct_ov94_0223FD4C *param0)
 static void ov94_0223E240(UnkStruct_ov94_0223FD4C *param0)
 {
     if (param0->unk_10E == 0) {
-        sub_02006E60(104, 27, param0->unk_04, 1, 0, 32 * 24 * 2, 1, 62);
+        Graphics_LoadTilemapToBgLayer(104, 27, param0->unk_04, 1, 0, 32 * 24 * 2, 1, 62);
         ov94_0223E3B0(&param0->unk_FCC[9], param0->unk_B90, param0->unk_B94, &param0->unk_250[param0->unk_11C].unk_F0);
     } else {
-        sub_02006E60(104, 28, param0->unk_04, 1, 0, 32 * 24 * 2, 1, 62);
+        Graphics_LoadTilemapToBgLayer(104, 28, param0->unk_04, 1, 0, 32 * 24 * 2, 1, 62);
         ov94_0223E424(&param0->unk_FCC[9], param0->unk_BB4[0], param0->unk_BB4[1]);
     }
 }

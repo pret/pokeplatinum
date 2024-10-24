@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
 
@@ -23,11 +22,13 @@
 #include "bg_window.h"
 #include "core_sys.h"
 #include "font.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "item.h"
 #include "message.h"
 #include "narc.h"
+#include "palette.h"
 #include "party.h"
 #include "pokemon.h"
 #include "strbuf.h"
@@ -35,10 +36,8 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
-#include "unk_02006E3C.h"
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
@@ -216,7 +215,7 @@ static u8 ov13_0222668C(UnkStruct_ov13_02227244 *param0)
 
     ov13_02228008(param0, param0->unk_114C);
     ov13_022280F0(param0, param0->unk_114C);
-    sub_02003178(param0->unk_08, (0x2 | 0x8), 0xffff, -8, 16, 0, 0);
+    PaletteData_StartFade(param0->unk_08, (0x2 | 0x8), 0xffff, -8, 16, 0, 0);
 
     if (param0->unk_00->unk_14 == 1) {
         return 12;
@@ -227,7 +226,7 @@ static u8 ov13_0222668C(UnkStruct_ov13_02227244 *param0)
 
 static u8 ov13_02226760(UnkStruct_ov13_02227244 *param0)
 {
-    if (sub_0200384C(param0->unk_08) != 0) {
+    if (PaletteData_GetSelectedBuffersMask(param0->unk_08) != 0) {
         return 1;
     }
 
@@ -535,13 +534,13 @@ static u8 ov13_02226CBC(UnkStruct_ov13_02227244 *param0)
 
 static u8 ov13_02226CD4(UnkStruct_ov13_02227244 *param0)
 {
-    sub_02003178(param0->unk_08, (0x2 | 0x8), 0xffff, -8, 0, 16, 0);
+    PaletteData_StartFade(param0->unk_08, (0x2 | 0x8), 0xffff, -8, 0, 16, 0);
     return 14;
 }
 
 static u8 ov13_02226CFC(SysTask *param0, UnkStruct_ov13_02227244 *param1)
 {
-    if (sub_0200384C(param1->unk_08) != 0) {
+    if (PaletteData_GetSelectedBuffersMask(param1->unk_08) != 0) {
         return 0;
     }
 
@@ -576,7 +575,7 @@ static u8 ov13_02226CFC(SysTask *param0, UnkStruct_ov13_02227244 *param1)
 
 static u8 ov13_02226D94(UnkStruct_ov13_02227244 *param0)
 {
-    if (sub_0200384C(param0->unk_08) != 0) {
+    if (PaletteData_GetSelectedBuffersMask(param0->unk_08) != 0) {
         return 12;
     }
 
@@ -727,8 +726,8 @@ static void ov13_02226FC4(UnkStruct_ov13_02227244 *param0)
 
     v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__B_BAG_GRA, param0->unk_00->unk_0C);
 
-    sub_020070E8(v0, 2, param0->unk_04, 6, 0, 0, 0, param0->unk_00->unk_0C);
-    sub_0200710C(v0, 0, param0->unk_04, 6, 0, 0, 0, param0->unk_00->unk_0C);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 2, param0->unk_04, 6, 0, 0, 0, param0->unk_00->unk_0C);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 0, param0->unk_04, 6, 0, 0, 0, param0->unk_00->unk_0C);
 
     {
         NNSG2dScreenData *v1;
@@ -743,14 +742,14 @@ static void ov13_02226FC4(UnkStruct_ov13_02227244 *param0)
     }
 
     NARC_dtor(v0);
-    PaletteSys_LoadPalette(param0->unk_08, 77, 3, param0->unk_00->unk_0C, 1, 0x20 * 12, 0);
-    PaletteSys_LoadPalette(param0->unk_08, 14, 7, param0->unk_00->unk_0C, 1, 0x20, 15 * 16);
+    PaletteData_LoadBufferFromFileStart(param0->unk_08, 77, 3, param0->unk_00->unk_0C, 1, 0x20 * 12, 0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_08, 14, 7, param0->unk_00->unk_0C, 1, 0x20, 15 * 16);
 
     {
         int v4 = ov16_0223EDE0(param0->unk_00->unk_00);
 
-        sub_02006E3C(38, sub_0200DD04(v4), param0->unk_04, 4, 1024 - (18 + 12), 0, 0, param0->unk_00->unk_0C);
-        PaletteSys_LoadPalette(param0->unk_08, 38, sub_0200DD08(v4), param0->unk_00->unk_0C, 1, 0x20, 14 * 16);
+        Graphics_LoadTilesToBgLayer(38, sub_0200DD04(v4), param0->unk_04, 4, 1024 - (18 + 12), 0, 0, param0->unk_00->unk_0C);
+        PaletteData_LoadBufferFromFileStart(param0->unk_08, 38, sub_0200DD08(v4), param0->unk_00->unk_0C, 1, 0x20, 14 * 16);
     }
 }
 

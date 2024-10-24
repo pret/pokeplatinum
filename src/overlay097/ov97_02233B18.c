@@ -4,7 +4,6 @@
 #include "constants/gba/species.h"
 #include "constants/species.h"
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02024440_decl.h"
 #include "struct_defs/struct_0200C738.h"
@@ -28,6 +27,7 @@
 #include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "item.h"
@@ -48,7 +48,6 @@
 #include "unk_02000C88.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
@@ -529,7 +528,7 @@ static void ov97_02233FA4(UnkStruct_ov97_02234A2C *param0)
 
     sub_0200A328(param0->unk_1D0[0]);
     sub_0200A5C8(param0->unk_1D0[1]);
-    sub_02006E84(19, PokeIconPalettesFileIndex(), 1, 8 * 0x20, 0, 78);
+    Graphics_LoadPalette(19, PokeIconPalettesFileIndex(), 1, 8 * 0x20, 0, 78);
 }
 
 static void ov97_022340B0(UnkStruct_ov97_02234A2C *param0)
@@ -1404,14 +1403,14 @@ static void ov97_02234DFC(UnkStruct_ov97_02234A2C *param0)
     Text_ResetAllPrinters();
 
     Font_LoadTextPalette(0, 15 * 32, 78);
-    sub_02006E84(116, 19, 0, 0, 32 * 6, 78);
-    sub_02006E3C(116, 22, param0->unk_20, 2, 0, 10 * 16 * 0x20, 1, 78);
+    Graphics_LoadPalette(116, 19, 0, 0, 32 * 6, 78);
+    Graphics_LoadTilesToBgLayer(116, 22, param0->unk_20, 2, 0, 10 * 16 * 0x20, 1, 78);
     Font_InitManager(FONT_SUBSCREEN, 78);
 }
 
 static void ov97_02234E7C(UnkStruct_ov97_02234A2C *param0)
 {
-    sub_02006E60(116, 20, param0->unk_20, 2, 0, 32 * 24 * 2, 1, 78);
+    Graphics_LoadTilemapToBgLayer(116, 20, param0->unk_20, 2, 0, 32 * 24 * 2, 1, 78);
     Bg_ChangeTilemapRectPalette(param0->unk_20, 2, 0, 0, 32, 24, Unk_ov97_0223EA60[param0->unk_00]);
     Bg_CopyTilemapBufferToVRAM(param0->unk_20, 2);
 }
@@ -1478,7 +1477,7 @@ static void ov97_02234F88(UnkStruct_ov97_02234A2C *param0)
         ov97_02234278(v1, v2, v4, v3, v0, param0->unk_478[v0]);
     }
 
-    sub_02006E60(116, 21, param0->unk_20, 2, 0, 32 * 24 * 2, 1, 78);
+    Graphics_LoadTilemapToBgLayer(116, 21, param0->unk_20, 2, 0, 32 * 24 * 2, 1, 78);
     Bg_ChangeTilemapRectPalette(param0->unk_20, 2, 0, 0, 32, 24, Unk_ov97_0223EA60[param0->unk_00]);
     Bg_CopyTilemapBufferToVRAM(param0->unk_20, 2);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);

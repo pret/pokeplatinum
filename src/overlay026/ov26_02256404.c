@@ -11,9 +11,9 @@
 #include "overlay026/struct_ov26_02256404_decl.h"
 
 #include "bg_window.h"
+#include "graphics.h"
 #include "heap.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
 
 struct UnkStruct_ov26_02256404_t {
     const UnkStruct_ov26_02256404_1 *unk_00;
@@ -43,7 +43,7 @@ BOOL ov26_02256404(UnkStruct_ov26_02256404 **param0, const UnkStruct_ov26_022564
         v0->unk_00 = param1;
         v0->unk_04 = ov25_02254674();
 
-        v2 = sub_02006F6C(12, 25, 1, &v1, 8);
+        v2 = Graphics_GetScrnData(12, 25, 1, &v1, 8);
 
         if (v2 == NULL) {
             Heap_FreeToHeap(v0);
@@ -136,8 +136,8 @@ static void ov26_022564F8(SysTask *param0, void *param1)
     v2 = ov25_0225523C(param1);
 
     Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
-    sub_02006E3C(12, 23, v2->unk_04, 6, 0, 0, 1, 8);
-    sub_02006E60(12, 24, v2->unk_04, 6, 0, 0, 1, 8);
+    Graphics_LoadTilesToBgLayer(12, 23, v2->unk_04, 6, 0, 0, 1, 8);
+    Graphics_LoadTilemapToBgLayer(12, 24, v2->unk_04, 6, 0, 0, 1, 8);
 
     ov25_022546B8(0, 0);
     ov26_022565F4(v2);

@@ -4,12 +4,13 @@
 #include <nitro/fx/fx.h>
 #include <nnsys.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_defs/struct_02073838.h"
 #include "struct_defs/struct_02073974.h"
 #include "struct_defs/struct_02073B50.h"
 
 #include "overlay005/struct_ov5_02201C58.h"
+
+#include "narc.h"
 
 void sub_02073838(UnkStruct_02073838 *param0);
 void sub_02073848(UnkStruct_02073838 *param0, NNSG3dResFileHeader *param1, u32 param2);

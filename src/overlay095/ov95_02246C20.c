@@ -23,6 +23,7 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "game_options.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
@@ -34,7 +35,6 @@
 #include "sys_task_manager.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A784.h"
 #include "unk_0200F174.h"
@@ -276,7 +276,7 @@ UnkStruct_ov95_02247004 *ov95_02246F30(BOOL *param0, int param1)
         u32 v3;
         int v4;
 
-        v2 = sub_02006F88(93, 6, &v1, 57);
+        v2 = Graphics_GetPlttData(93, 6, &v1, 57);
 
         if (v2) {
             MI_CpuFill16(v0->unk_00, 0x0, 96);
@@ -588,7 +588,7 @@ void ov95_022473E8(UnkStruct_ov95_02247628 *param0, int param1, u32 param2, u32 
     }
 
     v1 = (param2 >= 4) ? 4 : 0;
-    sub_02006E84(v0.archive, v0.palette, v1, param3 * 0x20, 0x20, 57);
+    Graphics_LoadPalette(v0.archive, v0.palette, v1, param3 * 0x20, 0x20, 57);
 }
 
 void ov95_022474D4(UnkStruct_ov95_02247628 *param0, int param1, u32 param2, u32 param3, u32 param4, u32 param5)
@@ -603,7 +603,7 @@ void ov95_022474D4(UnkStruct_ov95_02247628 *param0, int param1, u32 param2, u32 
         v2 = (param0->unk_1AC) ? 263 : 262;
     }
 
-    v0 = sub_02006F6C(7, v2, 0, &v1, 57);
+    v0 = Graphics_GetScrnData(7, v2, 0, &v1, 57);
 
     if (v0) {
         Bg_CopyToTilemapRect(param0->unk_08, param2, param4, param5, 10, 10, v1->rawData, 0, 0, 32, 32);
@@ -614,8 +614,8 @@ void ov95_022474D4(UnkStruct_ov95_02247628 *param0, int param1, u32 param2, u32 
 
 void ov95_02247568(UnkStruct_ov95_02247568 *param0, u32 param1, u32 param2, u32 param3)
 {
-    param0->unk_00 = sub_02006FA0(param1, param2, 1, &(param0->unk_08), 58);
-    param0->unk_04 = sub_02006FBC(param1, param3, 1, &(param0->unk_0C), 58);
+    param0->unk_00 = Graphics_GetCellBank(param1, param2, 1, &(param0->unk_08), 58);
+    param0->unk_04 = Graphics_GetAnimBank(param1, param3, 1, &(param0->unk_0C), 58);
 }
 
 void ov95_022475A0(UnkStruct_ov95_02247568 *param0)

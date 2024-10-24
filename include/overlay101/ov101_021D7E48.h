@@ -3,12 +3,11 @@
 
 #include <nitro/fx/fx.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-
 #include "overlay101/struct_ov101_021D7E48_decl.h"
 #include "overlay101/struct_ov101_021D8544.h"
 
 #include "cell_actor.h"
+#include "narc.h"
 
 UnkStruct_ov101_021D7E48 *ov101_021D7E48(u32 param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, u32 param9, u32 param10);
 void ov101_021D7FB4(UnkStruct_ov101_021D7E48 *param0);
