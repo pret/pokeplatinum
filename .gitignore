@@ -78,7 +78,8 @@ cmake-build-*
 diff.txt
 
 .vs/
-.vscode/
+.vscode/*
+!.vscode/launch.json
 
 temp_asm/
 asm_old/
