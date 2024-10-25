@@ -15,8 +15,7 @@
             "compressed": false,
             "id": 1,
             "vramType": 1,
-            "paletteCount": 3,
-            "description": "BATTLE_ICON_PALETTE"
+            "paletteCount": 3
         },
         {
             "narc": 39,
