@@ -12,13 +12,13 @@
 #include "struct_defs/struct_0202EA80.h"
 #include "struct_defs/struct_0202EE10.h"
 
+#include "charcode_util.h"
 #include "game_records.h"
 #include "heap.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "unk_020021B0.h"
 #include "unk_0202B37C.h"
 #include "unk_0203061C.h"
 

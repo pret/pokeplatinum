@@ -1,4 +1,4 @@
-#include "unk_020021B0.h"
+#include "charcode_util.h"
 
 #include <nitro.h>
 #include <string.h>

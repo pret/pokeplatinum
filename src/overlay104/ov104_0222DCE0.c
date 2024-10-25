@@ -15,6 +15,7 @@
 #include "overlay104/struct_ov104_0223A348_sub2.h"
 
 #include "cell_actor.h"
+#include "charcode_util.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "flags.h"
@@ -29,7 +30,6 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "trainer_info.h"
-#include "unk_020021B0.h"
 #include "unk_0201D15C.h"
 #include "unk_0202C858.h"
 #include "unk_02038F8C.h"

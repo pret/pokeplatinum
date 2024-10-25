@@ -22,6 +22,7 @@
 #include "savedata/save_table.h"
 
 #include "bag.h"
+#include "charcode_util.h"
 #include "communication_system.h"
 #include "core_sys.h"
 #include "field_overworld_state.h"
@@ -40,7 +41,6 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "unk_020021B0.h"
 #include "unk_02025CB0.h"
 #include "unk_0202602C.h"
 #include "unk_0202631C.h"

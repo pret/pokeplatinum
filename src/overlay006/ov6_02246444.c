@@ -12,10 +12,10 @@
 #include "overlay006/struct_ov6_022465F4_decl.h"
 #include "savedata/save_table.h"
 
+#include "charcode_util.h"
 #include "heap.h"
 #include "save_player.h"
 #include "trainer_info.h"
-#include "unk_020021B0.h"
 #include "unk_0202E2CC.h"
 
 struct UnkStruct_ov6_022465F4_t {

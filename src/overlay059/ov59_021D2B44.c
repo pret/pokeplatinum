@@ -9,12 +9,12 @@
 
 #include "savedata/save_table.h"
 
+#include "charcode_util.h"
 #include "communication_information.h"
 #include "heap.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "trainer_info.h"
-#include "unk_020021B0.h"
 
 __attribute__((aligned(4))) static const u8 Unk_ov59_021D33B0[] = {
     0x2,

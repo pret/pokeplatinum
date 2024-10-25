@@ -5,9 +5,9 @@
 
 #include "struct_defs/struct_02027F8C.h"
 
+#include "charcode_util.h"
 #include "heap.h"
 #include "savedata.h"
-#include "unk_020021B0.h"
 
 int PalPad_SaveSize(void)
 {

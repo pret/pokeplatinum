@@ -9,6 +9,7 @@
 #include "struct_defs/struct_02028430.h"
 #include "struct_defs/union_02028328.h"
 
+#include "charcode_util.h"
 #include "heap.h"
 #include "party.h"
 #include "pokemon.h"
@@ -16,7 +17,6 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "trainer_info.h"
-#include "unk_020021B0.h"
 #include "unk_02014A84.h"
 
 static int sub_020284E8(UnkStruct_0202818C *param0, int param1);

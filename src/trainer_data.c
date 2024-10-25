@@ -10,6 +10,7 @@
 #include "data/trainer_class_genders.h"
 #include "overlay006/battle_params.h"
 
+#include "charcode_util.h"
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
@@ -19,7 +20,6 @@
 #include "savedata_misc.h"
 #include "strbuf.h"
 #include "trainer_data.h"
-#include "unk_020021B0.h"
 #include "unk_0201D15C.h"
 
 static void TrainerData_BuildParty(BattleParams *battleParams, int battler, int heapID);

@@ -6,9 +6,9 @@
 #include "struct_defs/struct_0202B4A0.h"
 #include "struct_defs/struct_0202B510.h"
 
+#include "charcode_util.h"
 #include "savedata.h"
 #include "strbuf.h"
-#include "unk_020021B0.h"
 #include "unk_0201D15C.h"
 
 UnkStruct_0202B4A0 *Unk_021C079C;

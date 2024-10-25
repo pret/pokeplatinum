@@ -14,6 +14,7 @@
 
 #include "field/field_system.h"
 
+#include "charcode_util.h"
 #include "field_system.h"
 #include "game_records.h"
 #include "heap.h"
@@ -21,7 +22,6 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "trainer_info.h"
-#include "unk_020021B0.h"
 #include "unk_0202631C.h"
 #include "unk_0202854C.h"
 #include "unk_0202C7FC.h"

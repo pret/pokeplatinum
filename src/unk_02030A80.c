@@ -9,6 +9,7 @@
 #include "struct_defs/struct_0202F298_sub1.h"
 #include "struct_defs/struct_02030A80.h"
 
+#include "charcode_util.h"
 #include "heap.h"
 #include "pokemon.h"
 #include "save_player.h"
@@ -16,7 +17,6 @@
 #include "savedata_misc.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "unk_020021B0.h"
 #include "unk_02014A84.h"
 #include "unk_02014D38.h"
 #include "unk_02025CB0.h"

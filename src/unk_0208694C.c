@@ -12,6 +12,7 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "charcode_util.h"
 #include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
@@ -29,7 +30,6 @@
 #include "string_template.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_020021B0.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200679C.h"

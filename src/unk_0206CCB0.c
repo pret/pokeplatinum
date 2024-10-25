@@ -34,6 +34,7 @@
 #include "savedata/save_table.h"
 
 #include "bag.h"
+#include "charcode_util.h"
 #include "field_system.h"
 #include "heap.h"
 #include "inlines.h"
@@ -48,7 +49,6 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "trainer_info.h"
-#include "unk_020021B0.h"
 #include "unk_0201D15C.h"
 #include "unk_0202631C.h"
 #include "unk_02027B70.h"

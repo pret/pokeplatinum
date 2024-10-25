@@ -31,6 +31,7 @@
 #include "battle/scripts/sub_seq.naix"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 
+#include "charcode_util.h"
 #include "flags.h"
 #include "heap.h"
 #include "item.h"
@@ -43,7 +44,6 @@
 #include "strbuf.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
-#include "unk_020021B0.h"
 #include "unk_020366A0.h"
 #include "unk_0208C098.h"
 

@@ -33,6 +33,7 @@
 #include "overlay005/struct_ov5_021DE5D0.h"
 
 #include "cell_actor.h"
+#include "charcode_util.h"
 #include "flags.h"
 #include "heap.h"
 #include "inlines.h"
@@ -48,7 +49,6 @@
 #include "strbuf.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
-#include "unk_020021B0.h"
 #include "unk_02005474.h"
 #include "unk_02006224.h"
 #include "unk_0200C6E4.h"

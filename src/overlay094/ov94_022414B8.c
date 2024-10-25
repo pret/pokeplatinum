@@ -25,6 +25,7 @@
 #include "overlay094/struct_ov94_02242AAC.h"
 
 #include "bg_window.h"
+#include "charcode_util.h"
 #include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
@@ -40,7 +41,6 @@
 #include "trainer_info.h"
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
-#include "unk_020021B0.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"

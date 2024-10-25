@@ -5,9 +5,9 @@
 
 #include "constants/charcode.h"
 
+#include "charcode_util.h"
 #include "heap.h"
 #include "strbuf.h"
-#include "unk_020021B0.h"
 
 #define MONEY_MAX 999999
 
