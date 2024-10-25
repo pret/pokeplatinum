@@ -7,106 +7,100 @@
 #include "message.h"
 #include "strbuf.h"
 
-static StringList *FindFirstEmptyEntry(StringList *param0, u32 *param1);
-static void FreeEntries(StringList *param0);
+static StringList *FindFirstEmptyEntry(StringList *list, u32 *outHeapID);
+static void FreeEntries(StringList *list);
 
-StringList *StringList_New(u32 param0, u32 param1)
+StringList *StringList_New(u32 capacity, u32 heapID)
 {
-    StringList *v0 = Heap_AllocFromHeap(param1, sizeof(StringList) * (param0 + 1));
+    StringList *list = Heap_AllocFromHeap(heapID, sizeof(StringList) * (capacity + 1));
 
-    if (v0) {
-        u32 v1;
-
-        for (v1 = 0; v1 < param0; v1++) {
-            v0[v1].entry = NULL;
-            v0[v1].index = 0;
+    if (list) {
+        u32 i;
+        for (i = 0; i < capacity; i++) {
+            list[i].entry = NULL;
+            list[i].index = 0;
         }
 
-        v0[v1].entry = ((const void *)0xffffffff);
-        v0[v1].index = param1;
+        // This entry is special; it should always have an index value equal
+        // to the heap on which this list was allocated.
+        list[i].entry = STRING_LIST_TERMINATOR;
+        list[i].index = heapID;
     }
 
-    return v0;
+    return list;
 }
 
-void StringList_Free(StringList *param0)
+void StringList_Free(StringList *list)
 {
-    FreeEntries(param0);
-    Heap_FreeToHeap(param0);
+    FreeEntries(list);
+    Heap_FreeToHeap(list);
 }
 
-void StringList_AddFromMessageBank(StringList *param0, const MessageLoader *param1, u32 param2, u32 param3)
+void StringList_AddFromMessageBank(StringList *list, const MessageLoader *loader, u32 bankEntry, u32 index)
 {
-    u32 v0;
+    u32 tmp;
+    list = FindFirstEmptyEntry(list, &tmp);
 
-    param0 = FindFirstEmptyEntry(param0, &v0);
-
-    if (param0) {
-        param0->entry = MessageLoader_GetNewStrbuf(param1, param2);
-        param0->index = param3;
-    }
-}
-
-void StringList_AddFromStrbuf(StringList *param0, const Strbuf *param1, u32 param2)
-{
-    u32 v0;
-
-    param0 = FindFirstEmptyEntry(param0, &v0);
-
-    if (param0) {
-        param0->entry = Strbuf_Clone(param1, v0);
-        param0->index = param2;
+    if (list) {
+        list->entry = MessageLoader_GetNewStrbuf(loader, bankEntry);
+        list->index = index;
     }
 }
 
-void StringList_AddFromEntry(StringList *param0, const StringList *param1)
+void StringList_AddFromStrbuf(StringList *list, const Strbuf *strbuf, u32 index)
 {
-    u32 v0;
+    u32 heapID;
+    list = FindFirstEmptyEntry(list, &heapID);
 
-    param0 = FindFirstEmptyEntry(param0, &v0);
-
-    if (param0) {
-        param0->entry = param1->entry;
-        param0->index = param1->index;
+    if (list) {
+        list->entry = Strbuf_Clone(strbuf, heapID);
+        list->index = index;
     }
 }
 
-static StringList *FindFirstEmptyEntry(StringList *param0, u32 *param1)
+void StringList_AddFromEntry(StringList *list, const StringList *entry)
 {
-    StringList *v0;
+    u32 tmp;
+    list = FindFirstEmptyEntry(list, &tmp);
 
-    while (param0->entry != NULL) {
-        if (param0->entry == ((const void *)0xffffffff)) {
-            GF_ASSERT(0);
+    if (list) {
+        list->entry = entry->entry;
+        list->index = entry->index;
+    }
+}
+
+static StringList *FindFirstEmptyEntry(StringList *list, u32 *outHeapID)
+{
+    while (list->entry != NULL) {
+        if (list->entry == STRING_LIST_TERMINATOR) {
+            GF_ASSERT(FALSE);
             return NULL;
         }
 
-        param0++;
+        list++;
     }
 
-    v0 = param0;
+    StringList *empty = list;
 
-    while (param0->entry != ((const void *)0xffffffff)) {
-        param0++;
+    // Keep going, so we can also get the heap ID
+    while (list->entry != STRING_LIST_TERMINATOR) {
+        list++;
     }
 
-    *param1 = param0->index;
-
-    return v0;
+    *outHeapID = list->index;
+    return empty;
 }
 
-static void FreeEntries(StringList *param0)
+static void FreeEntries(StringList *list)
 {
-    StringList *v0 = param0;
-
-    while (v0->entry != ((const void *)0xffffffff)) {
-        if (v0->entry == NULL) {
+    StringList *tmp = list;
+    while (tmp->entry != STRING_LIST_TERMINATOR) {
+        if (tmp->entry == NULL) {
             break;
         }
 
-        Strbuf_Free((Strbuf *)(v0->entry));
-
-        v0->entry = NULL;
-        v0++;
+        Strbuf_Free(tmp->entry);
+        tmp->entry = NULL;
+        tmp++;
     }
 }

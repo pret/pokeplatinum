@@ -4,15 +4,17 @@
 #include "message.h"
 #include "strbuf.h"
 
+#define STRING_LIST_TERMINATOR ((void *)0xFFFFFFFF)
+
 typedef struct StringList {
-    const void *entry;
+    void *entry;
     u32 index;
 } StringList;
 
-StringList *StringList_New(u32 param0, u32 param1);
-void StringList_Free(StringList *param0);
-void StringList_AddFromMessageBank(StringList *param0, const MessageLoader *param1, u32 param2, u32 param3);
-void StringList_AddFromStrbuf(StringList *param0, const Strbuf *param1, u32 param2);
-void StringList_AddFromEntry(StringList *param0, const StringList *param1);
+StringList *StringList_New(u32 capacity, u32 heapID);
+void StringList_Free(StringList *list);
+void StringList_AddFromMessageBank(StringList *list, const MessageLoader *loader, u32 bankEntry, u32 index);
+void StringList_AddFromStrbuf(StringList *list, const Strbuf *strbuf, u32 index);
+void StringList_AddFromEntry(StringList *list, const StringList *entry);
 
 #endif // POKEPLATINUM_STRING_LIST_H
