@@ -478,25 +478,25 @@ static u32 ov5_021DC7A8(UnkStruct_ov5_021DC1A4 *param0)
 
 static void ov5_021DC7E4(UnkStruct_ov5_021DC1A4 *param0)
 {
-    param0->unk_19C.unk_00 = param0->unk_1C4;
-    param0->unk_19C.unk_04 = ov5_021DC918;
-    param0->unk_19C.unk_08 = ov5_021DC8F4;
-    param0->unk_19C.unk_0C = &param0->unk_08;
-    param0->unk_19C.unk_10 = param0->unk_9B;
-    param0->unk_19C.unk_12 = 8;
-    param0->unk_19C.unk_14 = 1;
-    param0->unk_19C.unk_15 = 12;
-    param0->unk_19C.unk_16 = 2;
-    param0->unk_19C.unk_17_0 = 1;
-    param0->unk_19C.unk_17_4 = 1;
-    param0->unk_19C.unk_18_0 = 15;
-    param0->unk_19C.unk_18_4 = 2;
-    param0->unk_19C.unk_1A_0 = 0;
-    param0->unk_19C.unk_1A_3 = 16;
-    param0->unk_19C.unk_1A_7 = 1;
-    param0->unk_19C.unk_1A_9 = 0;
-    param0->unk_19C.unk_1A_15 = 0;
-    param0->unk_19C.unk_1C = (void *)param0;
+    param0->unk_19C.choices = param0->unk_1C4;
+    param0->unk_19C.cursorCallback = ov5_021DC918;
+    param0->unk_19C.printCallback = ov5_021DC8F4;
+    param0->unk_19C.window = &param0->unk_08;
+    param0->unk_19C.count = param0->unk_9B;
+    param0->unk_19C.maxDisplay = 8;
+    param0->unk_19C.headerXOffset = 1;
+    param0->unk_19C.textXOffset = 12;
+    param0->unk_19C.cursorXOffset = 2;
+    param0->unk_19C.yOffset = 1;
+    param0->unk_19C.textColorFg = 1;
+    param0->unk_19C.textColorBg = 15;
+    param0->unk_19C.textColorShadow = 2;
+    param0->unk_19C.letterSpacing = 0;
+    param0->unk_19C.lineSpacing = 0;
+    param0->unk_19C.pagerMode = 1;
+    param0->unk_19C.fontID = FONT_SYSTEM;
+    param0->unk_19C.cursorType = 0;
+    param0->unk_19C.tmp = (void *)param0;
 
     return;
 }
@@ -583,7 +583,7 @@ static void ov5_021DCA28(UnkStruct_ov5_021DC1A4 *param0)
 
     Sound_PlayEffect(1500);
     sub_02001384(param0->unk_1BC, NULL, NULL);
-    Window_Clear(param0->unk_19C.unk_0C, 0);
+    Window_Clear(param0->unk_19C.window, 0);
     Window_Remove(&param0->unk_08);
 
     for (v0 = 0; v0 < 28; v0++) {

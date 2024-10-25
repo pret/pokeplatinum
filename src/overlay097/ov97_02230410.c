@@ -311,9 +311,9 @@ static void ov97_02230530(UnkStruct_ov97_02230868 *param0, UnkStruct_ov97_0223E6
 
     v1 = Unk_ov97_0223E660;
 
-    v1.unk_00 = param0->unk_2C2C;
-    v1.unk_10 = param2;
-    v1.unk_0C = param3;
+    v1.choices = param0->unk_2C2C;
+    v1.count = param2;
+    v1.window = param3;
 
     param0->unk_2C28 = sub_0200112C(&v1, 0, param4, 87);
 }

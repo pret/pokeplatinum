@@ -2479,16 +2479,16 @@ static void ov107_02244240 (UnkStruct_ov107_02241D6C * param0, u8 param1)
     StringList_AddFromMessageBank(param0->unk_19C, param0->unk_20, 13, 0xfffffffe);
 
     param0->unk_1A0 = Unk_ov107_02249EE4;
-    param0->unk_1A0.unk_00 = param0->unk_19C;
-    param0->unk_1A0.unk_0C = &param0->unk_50[5];
-    param0->unk_1A0.unk_1C = param0;
-    param0->unk_1A0.unk_04 = ov107_0224440C;
-    param0->unk_1A0.unk_08 = ov107_02244560;
-    param0->unk_1A0.unk_10 = (v1 + 1);
-    param0->unk_1A0.unk_18_0 = 0;
-    param0->unk_1A0.unk_12 = 6;
-    param0->unk_1A0.unk_15 = 0;
-    param0->unk_1A0.unk_1A_15 = 1;
+    param0->unk_1A0.choices = param0->unk_19C;
+    param0->unk_1A0.window = &param0->unk_50[5];
+    param0->unk_1A0.tmp = param0;
+    param0->unk_1A0.cursorCallback = ov107_0224440C;
+    param0->unk_1A0.printCallback = ov107_02244560;
+    param0->unk_1A0.count = (v1 + 1);
+    param0->unk_1A0.textColorBg = 0;
+    param0->unk_1A0.maxDisplay = 6;
+    param0->unk_1A0.textXOffset = 0;
+    param0->unk_1A0.cursorType = 1;
     param0->unk_198 = sub_0200112C(&param0->unk_1A0, 0, 0, 100);
 
     ov107_02245650(param0, &param0->unk_50[5]);
@@ -2573,14 +2573,14 @@ static void ov107_022445C4 (UnkStruct_ov107_02241D6C * param0)
     }
 
     param0->unk_1A0 = Unk_ov107_02249EE4;
-    param0->unk_1A0.unk_00 = param0->unk_19C;
-    param0->unk_1A0.unk_0C = &param0->unk_50[10];
-    param0->unk_1A0.unk_1C = param0;
-    param0->unk_1A0.unk_04 = ov107_02244690;
-    param0->unk_1A0.unk_08 = ov107_02244708;
-    param0->unk_1A0.unk_10 = (NELEMS(Unk_ov107_02249FF0));
-    param0->unk_1A0.unk_12 = (NELEMS(Unk_ov107_02249FF0));
-    param0->unk_1A0.unk_18_0 = 15;
+    param0->unk_1A0.choices = param0->unk_19C;
+    param0->unk_1A0.window = &param0->unk_50[10];
+    param0->unk_1A0.tmp = param0;
+    param0->unk_1A0.cursorCallback = ov107_02244690;
+    param0->unk_1A0.printCallback = ov107_02244708;
+    param0->unk_1A0.count = (NELEMS(Unk_ov107_02249FF0));
+    param0->unk_1A0.maxDisplay = (NELEMS(Unk_ov107_02249FF0));
+    param0->unk_1A0.textColorBg = 15;
     param0->unk_198 = sub_0200112C(&param0->unk_1A0, 0, 0, 100);
 
     ov107_02245650(param0, &param0->unk_50[10]);
@@ -2681,14 +2681,14 @@ static void ov107_02244780 (UnkStruct_ov107_02241D6C * param0)
     }
 
     param0->unk_1A0 = Unk_ov107_02249EE4;
-    param0->unk_1A0.unk_00 = param0->unk_19C;
-    param0->unk_1A0.unk_0C = &param0->unk_50[11];
-    param0->unk_1A0.unk_1C = param0;
-    param0->unk_1A0.unk_04 = ov107_0224486C;
-    param0->unk_1A0.unk_08 = ov107_022448E8;
-    param0->unk_1A0.unk_10 = (NELEMS(Unk_ov107_02249F54));
-    param0->unk_1A0.unk_12 = (NELEMS(Unk_ov107_02249F54));
-    param0->unk_1A0.unk_18_0 = 15;
+    param0->unk_1A0.choices = param0->unk_19C;
+    param0->unk_1A0.window = &param0->unk_50[11];
+    param0->unk_1A0.tmp = param0;
+    param0->unk_1A0.cursorCallback = ov107_0224486C;
+    param0->unk_1A0.printCallback = ov107_022448E8;
+    param0->unk_1A0.count = (NELEMS(Unk_ov107_02249F54));
+    param0->unk_1A0.maxDisplay = (NELEMS(Unk_ov107_02249F54));
+    param0->unk_1A0.textColorBg = 15;
     param0->unk_198 = sub_0200112C(&param0->unk_1A0, 0, 0, 100);
 
     ov107_02245650(param0, &param0->unk_50[11]);
@@ -2797,15 +2797,15 @@ static void ov107_02244944 (UnkStruct_ov107_02241D6C * param0)
     }
 
     param0->unk_1A0 = Unk_ov107_02249EE4;
-    param0->unk_1A0.unk_00 = param0->unk_19C;
-    param0->unk_1A0.unk_0C = &param0->unk_50[9];
-    param0->unk_1A0.unk_1C = param0;
-    param0->unk_1A0.unk_04 = ov107_02244A1C;
-    param0->unk_1A0.unk_08 = NULL;
-    param0->unk_1A0.unk_10 = 5;
-    param0->unk_1A0.unk_12 = 5;
-    param0->unk_1A0.unk_18_0 = 15;
-    param0->unk_1A0.unk_1C = param0;
+    param0->unk_1A0.choices = param0->unk_19C;
+    param0->unk_1A0.window = &param0->unk_50[9];
+    param0->unk_1A0.tmp = param0;
+    param0->unk_1A0.cursorCallback = ov107_02244A1C;
+    param0->unk_1A0.printCallback = NULL;
+    param0->unk_1A0.count = 5;
+    param0->unk_1A0.maxDisplay = 5;
+    param0->unk_1A0.textColorBg = 15;
+    param0->unk_1A0.tmp = param0;
     param0->unk_198 = sub_0200112C(&param0->unk_1A0, param0->unk_18, param0->unk_1A, 100);
 
     ov107_02245650(param0, &param0->unk_50[9]);

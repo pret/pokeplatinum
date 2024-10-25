@@ -20,6 +20,7 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "field_script_context.h"
+#include "font.h"
 #include "game_records.h"
 #include "graphics.h"
 #include "heap.h"
@@ -315,25 +316,25 @@ static void ov5_021F6830(UnkStruct_ov5_021F6704 *param0, u32 param1, u32 param2,
 
 static void ov5_021F68BC(UnkStruct_ov5_021F6704 *param0)
 {
-    param0->unk_21C.unk_00 = param0->unk_244;
-    param0->unk_21C.unk_04 = ov5_021F69F0;
-    param0->unk_21C.unk_08 = ov5_021F69CC;
-    param0->unk_21C.unk_0C = &param0->unk_08;
-    param0->unk_21C.unk_10 = param0->unk_20B;
-    param0->unk_21C.unk_12 = 8;
-    param0->unk_21C.unk_14 = 1;
-    param0->unk_21C.unk_15 = 12;
-    param0->unk_21C.unk_16 = 2;
-    param0->unk_21C.unk_17_0 = 1;
-    param0->unk_21C.unk_17_4 = 1;
-    param0->unk_21C.unk_18_0 = 15;
-    param0->unk_21C.unk_18_4 = 2;
-    param0->unk_21C.unk_1A_0 = 0;
-    param0->unk_21C.unk_1A_3 = 16;
-    param0->unk_21C.unk_1A_7 = 1;
-    param0->unk_21C.unk_1A_9 = 0;
-    param0->unk_21C.unk_1A_15 = 0;
-    param0->unk_21C.unk_1C = (void *)param0;
+    param0->unk_21C.choices = param0->unk_244;
+    param0->unk_21C.cursorCallback = ov5_021F69F0;
+    param0->unk_21C.printCallback = ov5_021F69CC;
+    param0->unk_21C.window = &param0->unk_08;
+    param0->unk_21C.count = param0->unk_20B;
+    param0->unk_21C.maxDisplay = 8;
+    param0->unk_21C.headerXOffset = 1;
+    param0->unk_21C.textXOffset = 12;
+    param0->unk_21C.cursorXOffset = 2;
+    param0->unk_21C.yOffset = 1;
+    param0->unk_21C.textColorFg = 1;
+    param0->unk_21C.textColorBg = 15;
+    param0->unk_21C.textColorShadow = 2;
+    param0->unk_21C.letterSpacing = 0;
+    param0->unk_21C.lineSpacing = 0;
+    param0->unk_21C.pagerMode = 1;
+    param0->unk_21C.fontID = FONT_SYSTEM;
+    param0->unk_21C.cursorType = 0;
+    param0->unk_21C.tmp = (void *)param0;
 
     return;
 }
@@ -416,7 +417,7 @@ static void ov5_021F6AD4(UnkStruct_ov5_021F6704 *param0)
 
     Sound_PlayEffect(1500);
     sub_02001384(param0->unk_23C, NULL, NULL);
-    Window_Clear(param0->unk_21C.unk_0C, 0);
+    Window_Clear(param0->unk_21C.window, 0);
     Window_Remove(&param0->unk_08);
 
     for (v0 = 0; v0 < 120; v0++) {

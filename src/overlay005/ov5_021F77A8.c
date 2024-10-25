@@ -14,6 +14,7 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "field_script_context.h"
+#include "font.h"
 #include "heap.h"
 #include "inlines.h"
 #include "list_menu.h"
@@ -513,25 +514,25 @@ static void ov5_021F7FF8(UnkStruct_ov5_021F7ED8 *param0, u32 param1, u32 param2,
 
 static void ov5_021F8090(UnkStruct_ov5_021F7ED8 *param0)
 {
-    param0->unk_D0.unk_00 = param0->unk_F8;
-    param0->unk_D0.unk_04 = ov5_021F819C;
-    param0->unk_D0.unk_08 = NULL;
-    param0->unk_D0.unk_0C = &param0->unk_08;
-    param0->unk_D0.unk_10 = param0->unk_C7;
-    param0->unk_D0.unk_12 = 8;
-    param0->unk_D0.unk_14 = 1;
-    param0->unk_D0.unk_15 = 12;
-    param0->unk_D0.unk_16 = 2;
-    param0->unk_D0.unk_17_0 = 1;
-    param0->unk_D0.unk_17_4 = 1;
-    param0->unk_D0.unk_18_0 = 15;
-    param0->unk_D0.unk_18_4 = 2;
-    param0->unk_D0.unk_1A_0 = 0;
-    param0->unk_D0.unk_1A_3 = 16;
-    param0->unk_D0.unk_1A_7 = 1;
-    param0->unk_D0.unk_1A_9 = 0;
-    param0->unk_D0.unk_1A_15 = 0;
-    param0->unk_D0.unk_1C = (void *)param0;
+    param0->unk_D0.choices = param0->unk_F8;
+    param0->unk_D0.cursorCallback = ov5_021F819C;
+    param0->unk_D0.printCallback = NULL;
+    param0->unk_D0.window = &param0->unk_08;
+    param0->unk_D0.count = param0->unk_C7;
+    param0->unk_D0.maxDisplay = 8;
+    param0->unk_D0.headerXOffset = 1;
+    param0->unk_D0.textXOffset = 12;
+    param0->unk_D0.cursorXOffset = 2;
+    param0->unk_D0.yOffset = 1;
+    param0->unk_D0.textColorFg = 1;
+    param0->unk_D0.textColorBg = 15;
+    param0->unk_D0.textColorShadow = 2;
+    param0->unk_D0.letterSpacing = 0;
+    param0->unk_D0.lineSpacing = 0;
+    param0->unk_D0.pagerMode = 1;
+    param0->unk_D0.fontID = FONT_SYSTEM;
+    param0->unk_D0.cursorType = 0;
+    param0->unk_D0.tmp = (void *)param0;
 
     return;
 }
@@ -599,7 +600,7 @@ static void ov5_021F8250(UnkStruct_ov5_021F7ED8 *param0)
 
     Sound_PlayEffect(1500);
     sub_02001384(param0->unk_F0, NULL, NULL);
-    Window_Clear(param0->unk_D0.unk_0C, 0);
+    Window_Clear(param0->unk_D0.window, 0);
     Window_Remove(&param0->unk_08);
 
     for (v0 = 0; v0 < ((NELEMS(sTeachableMoves)) + 1); v0++) {

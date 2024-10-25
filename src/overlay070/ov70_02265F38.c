@@ -865,13 +865,13 @@ static void ov70_02266B30(UnkStruct_ov70_02266AF0 *param0, UnkStruct_ov70_0225DE
     }
 
     param0->unk_18 = Unk_ov70_0226DC94;
-    param0->unk_18.unk_10 = param0->unk_38;
+    param0->unk_18.count = param0->unk_38;
 
-    if (param0->unk_18.unk_12 > param0->unk_38) {
-        param0->unk_18.unk_12 = param0->unk_38;
+    if (param0->unk_18.maxDisplay > param0->unk_38) {
+        param0->unk_18.maxDisplay = param0->unk_38;
     }
 
-    param0->unk_18.unk_00 = ov70_0225E054(param1);
+    param0->unk_18.choices = ov70_0225E054(param1);
 }
 
 static void ov70_02266BA0(UnkStruct_ov70_02266AF0 *param0, UnkStruct_ov70_0225DEE8 *param1)

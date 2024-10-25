@@ -202,8 +202,8 @@ static void CommClubMan_CreateList(ListMenuTemplate param0, u8 param1, u8 param2
     Window_Show(&sCommClubMan->unk_20, 1, 1024 - (18 + 12) - 9, 11);
 
     ListMenuTemplate v0 = param0;
-    v0.unk_00 = sCommClubMan->unk_64;
-    v0.unk_0C = &sCommClubMan->unk_20;
+    v0.choices = sCommClubMan->unk_64;
+    v0.window = &sCommClubMan->unk_20;
 
     sCommClubMan->unk_5C = sub_0200112C(&v0, 0, 0, 4);
     Window_CopyToVRAM(&sCommClubMan->unk_20);

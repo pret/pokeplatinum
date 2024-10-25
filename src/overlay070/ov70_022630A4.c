@@ -2698,7 +2698,7 @@ static void ov70_022653DC(UnkStruct_ov70_022653DC *param0, UnkStruct_ov70_0225DE
     ov70_0225E044(param1, v1, 0);
 
     param0->unk_08 = Unk_ov70_0226DA98;
-    param0->unk_08.unk_00 = ov70_0225E054(param1);
+    param0->unk_08.choices = ov70_0225E054(param1);
 }
 
 static void ov70_02265450(UnkStruct_ov70_022653DC *param0, UnkStruct_ov70_0225DEE8 *param1)

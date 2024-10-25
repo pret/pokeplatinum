@@ -280,12 +280,12 @@ static BOOL ov5_021EAB58(UnkStruct_ov5_021EAE78 *param0)
 
     v1 = Unk_ov5_021FAF08;
 
-    v1.unk_10 = v2 + 1;
-    v1.unk_12 = v3;
-    v1.unk_00 = param0->unk_00;
-    v1.unk_0C = &param0->unk_20;
-    v1.unk_04 = ov5_021EAF90;
-    v1.unk_1C = param0;
+    v1.count = v2 + 1;
+    v1.maxDisplay = v3;
+    v1.choices = param0->unk_00;
+    v1.window = &param0->unk_20;
+    v1.cursorCallback = ov5_021EAF90;
+    v1.tmp = param0;
 
     param0->unk_04 = sub_0200112C(&v1, 0, 0, 4);
     Window_CopyToVRAM(&param0->unk_20);

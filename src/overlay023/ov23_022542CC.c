@@ -197,11 +197,11 @@ static void ov23_0225437C(UnkStruct_ov23_022542D8 *param0)
     }
 
     v0 = Unk_ov23_02256B3C;
-    v0.unk_10 = v3 + 1;
-    v0.unk_12 = v4;
-    v0.unk_00 = param0->unk_24;
-    v0.unk_0C = &param0->unk_04;
-    v0.unk_04 = ov23_02254350;
+    v0.count = v3 + 1;
+    v0.maxDisplay = v4;
+    v0.choices = param0->unk_24;
+    v0.window = &param0->unk_04;
+    v0.cursorCallback = ov23_02254350;
 
     param0->unk_28 = sub_0200112C(&v0, *(param0->unk_30), *(param0->unk_34), 4);
     Window_CopyToVRAM(&param0->unk_04);
@@ -472,13 +472,13 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
     ov23_02253DFC(ov23_022421DC(), 626, 0);
 
     v1 = Unk_ov23_02256B3C;
-    v1.unk_08 = ov23_02254564;
-    v1.unk_10 = v4 + 1;
-    v1.unk_12 = v5;
-    v1.unk_00 = param0->unk_28;
-    v1.unk_0C = &param0->unk_08;
-    v1.unk_04 = ov23_022546A0;
-    v1.unk_1C = v0;
+    v1.printCallback = ov23_02254564;
+    v1.count = v4 + 1;
+    v1.maxDisplay = v5;
+    v1.choices = param0->unk_28;
+    v1.window = &param0->unk_08;
+    v1.cursorCallback = ov23_022546A0;
+    v1.tmp = v0;
 
     param0->unk_2C = ov23_02248C08(&v1, *(param0->unk_38), *(param0->unk_3C), 4, sub_02028A10, v0, 1);
 

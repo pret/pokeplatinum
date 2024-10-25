@@ -2279,13 +2279,13 @@ static void ov70_02268E44(UnkStruct_ov70_02268E44 *param0, UnkStruct_ov70_0225DE
     }
 
     param0->unk_00 = Unk_ov70_0226DCBC;
-    param0->unk_00.unk_10 = param0->unk_20;
+    param0->unk_00.count = param0->unk_20;
 
-    if (param0->unk_00.unk_12 > param0->unk_20) {
-        param0->unk_00.unk_12 = param0->unk_20;
+    if (param0->unk_00.maxDisplay > param0->unk_20) {
+        param0->unk_00.maxDisplay = param0->unk_20;
     }
 
-    param0->unk_00.unk_00 = ov70_0225E054(param1);
+    param0->unk_00.choices = ov70_0225E054(param1);
 }
 
 static void ov70_02268EEC(UnkStruct_ov70_02268E44 *param0, UnkStruct_ov70_0225DEE8 *param1, u32 param2, u32 param3, u32 param4, u32 param5)
@@ -2322,13 +2322,13 @@ static void ov70_02268EEC(UnkStruct_ov70_02268E44 *param0, UnkStruct_ov70_0225DE
     }
 
     param0->unk_00 = Unk_ov70_0226DCBC;
-    param0->unk_00.unk_10 = param0->unk_20;
+    param0->unk_00.count = param0->unk_20;
 
-    if (param0->unk_00.unk_12 > param0->unk_20) {
-        param0->unk_00.unk_12 = param0->unk_20;
+    if (param0->unk_00.maxDisplay > param0->unk_20) {
+        param0->unk_00.maxDisplay = param0->unk_20;
     }
 
-    param0->unk_00.unk_00 = ov70_0225E054(param1);
+    param0->unk_00.choices = ov70_0225E054(param1);
 }
 
 static void ov70_02268FB8(UnkStruct_ov70_02268E44 *param0, UnkStruct_ov70_0225DEE8 *param1)
@@ -2355,9 +2355,9 @@ static void ov70_02268FB8(UnkStruct_ov70_02268E44 *param0, UnkStruct_ov70_0225DE
     }
 
     param0->unk_00 = Unk_ov70_0226DCBC;
-    param0->unk_00.unk_10 = param0->unk_20;
-    param0->unk_00.unk_12 = param0->unk_20;
-    param0->unk_00.unk_00 = ov70_0225E054(param1);
+    param0->unk_00.count = param0->unk_20;
+    param0->unk_00.maxDisplay = param0->unk_20;
+    param0->unk_00.choices = ov70_0225E054(param1);
 }
 
 static void ov70_02269018(UnkStruct_ov70_02268E44 *param0, UnkStruct_ov70_0225DEE8 *param1)
@@ -2379,9 +2379,9 @@ static void ov70_02269018(UnkStruct_ov70_02268E44 *param0, UnkStruct_ov70_0225DE
     ov70_0225E044(param1, v1, 4 - 1);
 
     param0->unk_00 = Unk_ov70_0226DCBC;
-    param0->unk_00.unk_10 = param0->unk_20;
-    param0->unk_00.unk_12 = param0->unk_20;
-    param0->unk_00.unk_00 = ov70_0225E054(param1);
+    param0->unk_00.count = param0->unk_20;
+    param0->unk_00.maxDisplay = param0->unk_20;
+    param0->unk_00.choices = ov70_0225E054(param1);
 }
 
 static void ov70_02269090(UnkStruct_ov70_02268E44 *param0, UnkStruct_ov70_0225DEE8 *param1)
@@ -2403,9 +2403,9 @@ static void ov70_02269090(UnkStruct_ov70_02268E44 *param0, UnkStruct_ov70_0225DE
     ov70_0225E044(param1, v1, 4 - 1);
 
     param0->unk_00 = Unk_ov70_0226DCBC;
-    param0->unk_00.unk_10 = param0->unk_20;
-    param0->unk_00.unk_12 = param0->unk_20;
-    param0->unk_00.unk_00 = ov70_0225E054(param1);
+    param0->unk_00.count = param0->unk_20;
+    param0->unk_00.maxDisplay = param0->unk_20;
+    param0->unk_00.choices = ov70_0225E054(param1);
 }
 
 static void ov70_02269108(UnkStruct_ov70_02268E44 *param0, UnkStruct_ov70_0225DEE8 *param1)

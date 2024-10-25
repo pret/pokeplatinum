@@ -253,10 +253,10 @@ static void ov23_0224DD2C(UnkStruct_ov23_0224E280 *param0)
 
     MI_CpuCopy8(ov23_02253D40(), &v0, sizeof(ListMenuTemplate));
 
-    v0.unk_00 = param0->unk_1C;
-    v0.unk_0C = &param0->unk_0C;
-    v0.unk_10 = NELEMS(Unk_ov23_022568B4);
-    v0.unk_12 = NELEMS(Unk_ov23_022568B4);
+    v0.choices = param0->unk_1C;
+    v0.window = &param0->unk_0C;
+    v0.count = NELEMS(Unk_ov23_022568B4);
+    v0.maxDisplay = NELEMS(Unk_ov23_022568B4);
 
     param0->unk_3A = 0;
     param0->unk_20 = sub_0200112C(&v0, 0, 0, 4);
@@ -327,8 +327,8 @@ static void ov23_0224DE3C(UnkStruct_ov23_0224E280 *param0)
     }
 
     v0 = Unk_ov23_02256894;
-    v0.unk_00 = param0->unk_1C;
-    v0.unk_0C = &param0->unk_0C;
+    v0.choices = param0->unk_1C;
+    v0.window = &param0->unk_0C;
 
     param0->unk_3A = 0;
     param0->unk_20 = sub_0200112C(&v0, 0, 0, 4);
@@ -403,8 +403,8 @@ static void ov23_0224DFA0(UnkStruct_ov23_0224E280 *param0)
     }
 
     v0 = Unk_ov23_02256894;
-    v0.unk_00 = param0->unk_1C;
-    v0.unk_0C = &param0->unk_0C;
+    v0.choices = param0->unk_1C;
+    v0.window = &param0->unk_0C;
 
     param0->unk_3A = 0;
     param0->unk_20 = sub_0200112C(&v0, 0, 0, 4);
@@ -997,10 +997,10 @@ static void ov23_0224EAA4(UnkStruct_ov23_022577B0 *param0)
     }
 
     v0 = Unk_ov23_02256894;
-    v0.unk_00 = param0->unk_18;
-    v0.unk_0C = &param0->unk_08;
-    v0.unk_10 = v1;
-    v0.unk_12 = v1;
+    v0.choices = param0->unk_18;
+    v0.window = &param0->unk_08;
+    v0.count = v1;
+    v0.maxDisplay = v1;
 
     param0->unk_36 = 0;
     param0->unk_1C = sub_0200112C(&v0, 0, 0, 4);

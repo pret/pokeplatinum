@@ -1751,14 +1751,14 @@ static BOOL ov70_0225EE08(const UnkStruct_ov70_0225EC20 *param0, u32 param1)
 static void ov70_0225EE30(UnkStruct_ov70_0225EC20 *param0, const ListMenuTemplate *param1, UnkStruct_ov70_0225E4EC *param2, u16 param3, u16 param4, u32 param5, u8 param6, u8 param7, u8 param8)
 {
     GF_ASSERT(param0->unk_30 == NULL);
-    GF_ASSERT((param1->unk_12 * 2) < 18);
+    GF_ASSERT((param1->maxDisplay * 2) < 18);
 
     param0->unk_00 = *param1;
-    param0->unk_00.unk_0C = &param0->unk_20;
-    param0->unk_3A = param1->unk_10;
-    param0->unk_00.unk_04 = ov70_0225EF58;
+    param0->unk_00.window = &param0->unk_20;
+    param0->unk_3A = param1->count;
+    param0->unk_00.cursorCallback = ov70_0225EF58;
 
-    Window_Add(param2->unk_00, &param0->unk_20, Unk_ov70_0226D5CC[0], param6, param7, param8, param1->unk_12 * 2, 5, ((((1 + (18 + 12)) + ((18 + 12) + 24)) + 9) + (27 * 4)));
+    Window_Add(param2->unk_00, &param0->unk_20, Unk_ov70_0226D5CC[0], param6, param7, param8, param1->maxDisplay * 2, 5, ((((1 + (18 + 12)) + ((18 + 12) + 24)) + 9) + (27 * 4)));
     Window_FillTilemap(&param0->unk_20, 15);
     Window_Show(&param0->unk_20, 1, ((1 + (18 + 12)) + ((18 + 12) + 24)), 3);
 
@@ -1901,8 +1901,8 @@ static void ov70_0225F098(UnkStruct_ov70_0225F098 *param0, UnkStruct_ov70_0225F2
     StringList_AddFromStrbuf(param0->unk_00, v0, 1);
 
     param0->unk_04 = Unk_ov70_0226D644;
-    param0->unk_04.unk_10 = 2;
-    param0->unk_04.unk_00 = param0->unk_00;
+    param0->unk_04.count = 2;
+    param0->unk_04.choices = param0->unk_00;
 }
 
 static void ov70_0225F100(UnkStruct_ov70_0225F098 *param0)

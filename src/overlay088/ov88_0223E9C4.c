@@ -213,11 +213,11 @@ ListMenu *ov88_0223ED94(StringList *param0, int param1, Window *param2, BgConfig
     Window_Show(param2, 0, (512 - 9), 11);
 
     v1 = Unk_ov88_0223F150;
-    v1.unk_10 = param1 + 1;
-    v1.unk_12 = v2;
-    v1.unk_00 = param0;
-    v1.unk_0C = param2;
-    v1.unk_04 = ov88_0223EE14;
+    v1.count = param1 + 1;
+    v1.maxDisplay = v2;
+    v1.choices = param0;
+    v1.window = param2;
+    v1.cursorCallback = ov88_0223EE14;
     v0 = sub_0200112C(&v1, 0, 0, 26);
 
     return v0;

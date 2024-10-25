@@ -5,49 +5,56 @@
 #include "colored_arrow.h"
 #include "string_list.h"
 
+#define LIST_NOTHING_CHOSEN -1
+#define LIST_CANCEL         -2
+#define LIST_HEADER         -3
+
 typedef struct ListMenu ListMenu;
 
+typedef void (*CursorCallback)(ListMenu *menu, u32 index, u8 onInit);
+typedef void (*PrintCallback)(ListMenu *menu, u32 index, u8 yOffset);
+
 typedef struct ListMenuTemplate {
-    const StringList *unk_00;
-    void (*unk_04)(ListMenu *, u32, u8);
-    void (*unk_08)(ListMenu *, u32, u8);
-    Window *unk_0C;
-    u16 unk_10;
-    u16 unk_12;
-    u8 unk_14;
-    u8 unk_15;
-    u8 unk_16;
-    u8 unk_17_0 : 4;
-    u8 unk_17_4 : 4;
-    u8 unk_18_0 : 4;
-    u8 unk_18_4 : 4;
-    u16 unk_1A_0 : 3;
-    u16 unk_1A_3 : 4;
-    u16 unk_1A_7 : 2;
-    u16 unk_1A_9 : 6;
-    u16 unk_1A_15 : 1;
-    void *unk_1C;
+    const StringList *choices;
+    CursorCallback cursorCallback;
+    PrintCallback printCallback;
+    Window *window;
+    u16 count;
+    u16 maxDisplay;
+    u8 headerXOffset;
+    u8 textXOffset;
+    u8 cursorXOffset;
+    u8 yOffset : 4;
+    u8 textColorFg : 4;
+    u8 textColorBg : 4;
+    u8 textColorShadow : 4;
+    u16 letterSpacing : 3;
+    u16 lineSpacing : 4;
+    u16 pagerMode : 2;
+    u16 fontID : 6;
+    u16 cursorType : 1;
+    void *tmp;
 } ListMenuTemplate;
 
 struct ListMenu {
-    ListMenuTemplate unk_00;
+    ListMenuTemplate template;
     struct {
-        u8 unk_00_0 : 4;
-        u8 unk_00_4 : 4;
-        u8 unk_01_0 : 4;
-        u8 unk_02_0 : 6;
-        u8 unk_03_0 : 6;
-        u8 unk_04_0 : 7;
-        u8 unk_04_7 : 1;
-    } unk_1F;
-    ColoredArrow *unk_24;
-    u16 unk_28;
-    u16 unk_2A;
-    u8 unk_2C;
-    u8 unk_2D;
-    u8 unk_2E;
-    u8 unk_2F;
-    u8 unk_30;
+        u8 textColorFg : 4;
+        u8 textColorBg : 4;
+        u8 textColorShadow : 4;
+        u8 letterSpacing : 6;
+        u8 dummy : 6;
+        u8 fontID : 7;
+        u8 prefer : 1;
+    } altFont;
+    ColoredArrow *cursor;
+    u16 listPos;
+    u16 cursorPos;
+    u8 dummy2C;
+    u8 dummy2D;
+    u8 dummy2E;
+    u8 lastAction;
+    u8 heapID;
 };
 
 ListMenu *sub_0200112C(const ListMenuTemplate *param0, u16 param1, u16 param2, u8 param3);

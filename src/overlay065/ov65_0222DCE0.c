@@ -3246,30 +3246,30 @@ static int ov65_02230E04 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
     if (ov65_0222DCF8(param0) == 1) {
         v1++;
-        v2.unk_10++;
-        v2.unk_12++;
+        v2.count++;
+        v2.maxDisplay++;
         v3[v1 - 1] = Unk_ov65_02239C28;
     }
 
     if (ov65_0222DCE0(param0) == 1) {
         v1++;
-        v2.unk_10++;
-        v2.unk_12++;
+        v2.count++;
+        v2.maxDisplay++;
 
         v3[v1 - 1] = Unk_ov65_02239C30;
     }
 
     if (ov65_0222DD1C(param0) == 1) {
         v1++;
-        v2.unk_10++;
-        v2.unk_12++;
+        v2.count++;
+        v2.maxDisplay++;
         v3[v1 - 1] = Unk_ov65_02239C38;
     }
 
     {
         v1++;
-        v2.unk_10++;
-        v2.unk_12++;
+        v2.count++;
+        v2.maxDisplay++;
         v3[v1 - 1] = Unk_ov65_02239C20;
     }
 
@@ -3287,8 +3287,8 @@ static int ov65_02230E04 (UnkStruct_ov65_0222EBE0 * param0, int param1)
     Window_Add(param0->unk_15C, &param0->unk_380, 2, 16, 3, 15, v1 * 2, 13, ((((((512 - (18 + 12)) - 9) - 10) - (18 + 12 + 24)) - (27 * 4)) - (11 * 22)) - v1 * 2);
     Window_Show(&param0->unk_380, 1, ((512 - (18 + 12)) - 9), 11);
 
-    v2.unk_00 = param0->unk_154;
-    v2.unk_0C = &param0->unk_380;
+    v2.choices = param0->unk_154;
+    v2.window = &param0->unk_380;
 
     param0->unk_158 = sub_0200112C(&v2, 0, param0->unk_3D4, 54);
 
@@ -3480,8 +3480,8 @@ static int ov65_0223128C (UnkStruct_ov65_0222EBE0 * param0, int param1)
     Window_Add(param0->unk_15C, &param0->unk_380, 2, 16, 9, 15, v1 * 2, 13, ((((((512 - (18 + 12)) - 9) - 10) - (18 + 12 + 24)) - (27 * 4)) - (11 * 22)) - v1 * 2);
     Window_Show(&param0->unk_380, 1, ((512 - (18 + 12)) - 9), 11);
 
-    v2.unk_00 = param0->unk_154;
-    v2.unk_0C = &param0->unk_380;
+    v2.choices = param0->unk_154;
+    v2.window = &param0->unk_380;
 
     param0->unk_158 = sub_0200112C(&v2, 0, param0->unk_3D6[param0->unk_3DC], 54);
 
@@ -3729,15 +3729,15 @@ static int ov65_022316F0 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         for (v5 = 0; v5 < NELEMS(Unk_ov65_02238968); v5++) {
             if (v5 == 0) {
                 if (ov65_0222DE68(v9) || (v9 == 0) || (v9 == 28) || (v9 >= 29)) {
-                    v7.unk_12 -= 1;
-                    v7.unk_10 -= 1;
+                    v7.maxDisplay -= 1;
+                    v7.count -= 1;
                     v6 -= 1;
                 } else if (v9 == 16) {
                     if (v10 == 2) {
                         StringList_AddFromMessageBank(param0->unk_154, param0->unk_168, 36, Unk_ov65_02238968[v5].unk_04);
                     } else {
-                        v7.unk_12 -= 1;
-                        v7.unk_10 -= 1;
+                        v7.maxDisplay -= 1;
+                        v7.count -= 1;
                         v6 -= 1;
                     }
                 } else {
@@ -3751,8 +3751,8 @@ static int ov65_022316F0 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         Window_Add(param0->unk_15C, &param0->unk_380, 2, 16, 11 + ((3 - v6) * 2), 15, v6 * 2, 13, ((((((512 - (18 + 12)) - 9) - 10) - (18 + 12 + 24)) - (27 * 4)) - (11 * 22)));
         Window_Show(&param0->unk_380, 1, ((512 - (18 + 12)) - 9), 11);
 
-        v7.unk_00 = param0->unk_154;
-        v7.unk_0C = &param0->unk_380;
+        v7.choices = param0->unk_154;
+        v7.window = &param0->unk_380;
 
         param0->unk_158 = sub_0200112C(&v7, 0, 0, 54);
 

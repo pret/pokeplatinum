@@ -1975,14 +1975,14 @@ static void ov107_02247E5C (UnkStruct_ov107_02246170 * param0)
 
     v1 = Unk_ov107_0224A17C;
 
-    v1.unk_00 = param0->unk_13C;
-    v1.unk_0C = &param0->unk_50[5];
-    v1.unk_1C = param0;
-    v1.unk_04 = ov107_02247F14;
-    v1.unk_08 = NULL;
-    v1.unk_10 = (NELEMS(Unk_ov107_0224A1BC));
-    v1.unk_18_0 = 15;
-    v1.unk_12 = 4;
+    v1.choices = param0->unk_13C;
+    v1.window = &param0->unk_50[5];
+    v1.tmp = param0;
+    v1.cursorCallback = ov107_02247F14;
+    v1.printCallback = NULL;
+    v1.count = (NELEMS(Unk_ov107_0224A1BC));
+    v1.textColorBg = 15;
+    v1.maxDisplay = 4;
 
     param0->unk_138 = sub_0200112C(&v1, param0->unk_1C, param0->unk_1E, 100);
     param0->unk_0F_1 = 1;
@@ -2037,14 +2037,14 @@ static void ov107_02247F6C (UnkStruct_ov107_02246170 * param0)
 
     v1 = Unk_ov107_0224A17C;
 
-    v1.unk_00 = param0->unk_13C;
-    v1.unk_0C = &param0->unk_50[6];
-    v1.unk_1C = param0;
-    v1.unk_04 = ov107_02248028;
-    v1.unk_08 = ov107_022480A0;
-    v1.unk_10 = (NELEMS(Unk_ov107_0224A19C));
-    v1.unk_18_0 = 15;
-    v1.unk_12 = 4;
+    v1.choices = param0->unk_13C;
+    v1.window = &param0->unk_50[6];
+    v1.tmp = param0;
+    v1.cursorCallback = ov107_02248028;
+    v1.printCallback = ov107_022480A0;
+    v1.count = (NELEMS(Unk_ov107_0224A19C));
+    v1.textColorBg = 15;
+    v1.maxDisplay = 4;
 
     param0->unk_138 = sub_0200112C(&v1, 0, 0, 100);
     param0->unk_0F_1 = 1;

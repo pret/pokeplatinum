@@ -926,10 +926,10 @@ static void ov91_021D1784(UnkStruct_ov91_021D0ED8 *param0)
     MessageLoader_Free(v0);
 
     v1 = Unk_ov91_021D27BC;
-    v1.unk_00 = param0->unk_108;
-    v1.unk_0C = &param0->unk_08[13];
-    v1.unk_10 = param0->unk_184;
-    v1.unk_1C = (void *)param0;
+    v1.choices = param0->unk_108;
+    v1.window = &param0->unk_08[13];
+    v1.count = param0->unk_184;
+    v1.tmp = (void *)param0;
 
     param0->unk_104 = sub_0200112C(&v1, param0->unk_00->unk_12, param0->unk_00->unk_10, 67);
 

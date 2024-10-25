@@ -35,14 +35,14 @@ UnkStruct_ov23_02248D20 *ov23_02248C08(ListMenuTemplate *param0, u16 param1, u16
         v0->unk_1D = param3;
 
         {
-            StringList *v1 = StringList_New(param0->unk_10, v0->unk_1D);
+            StringList *v1 = StringList_New(param0->count, v0->unk_1D);
             int v2;
 
-            for (v2 = 0; v2 < param0->unk_10; v2++) {
-                StringList_AddFromEntry(v1, &param0->unk_00[v2]);
+            for (v2 = 0; v2 < param0->count; v2++) {
+                StringList_AddFromEntry(v1, &param0->choices[v2]);
             }
 
-            param0->unk_00 = v1;
+            param0->choices = v1;
             v0->unk_08 = v1;
         }
     }

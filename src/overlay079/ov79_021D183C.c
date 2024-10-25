@@ -181,10 +181,10 @@ void ov79_021D196C(UnkStruct_ov79_021D0E1C *param0)
         param0->unk_20->unk_02 = 0;
     }
 
-    param0->unk_84.unk_0C = &(param0->unk_E8[0]);
-    param0->unk_84.unk_00 = param0->unk_CC;
-    param0->unk_84.unk_1C = (void *)param0;
-    param0->unk_84.unk_10 = param0->unk_1C;
+    param0->unk_84.window = &(param0->unk_E8[0]);
+    param0->unk_84.choices = param0->unk_CC;
+    param0->unk_84.tmp = (void *)param0;
+    param0->unk_84.count = param0->unk_1C;
     param0->unk_16 = 0;
     param0->unk_C4 = sub_0200112C(&param0->unk_84, param0->unk_80, param0->unk_82, param0->unk_00);
     param0->unk_16 = 1;
@@ -375,10 +375,10 @@ void ov79_021D1ED8(UnkStruct_ov79_021D0E1C *param0)
 
     MI_CpuCopy8(&Unk_ov79_021D3B90, &param0->unk_A4, sizeof(ListMenuTemplate));
 
-    param0->unk_A4.unk_0C = &(param0->unk_E8[3]);
-    param0->unk_A4.unk_00 = param0->unk_D0;
-    param0->unk_A4.unk_1C = (void *)param0;
-    param0->unk_A4.unk_10 = 3;
+    param0->unk_A4.window = &(param0->unk_E8[3]);
+    param0->unk_A4.choices = param0->unk_D0;
+    param0->unk_A4.tmp = (void *)param0;
+    param0->unk_A4.count = 3;
 
     Window_Show(&param0->unk_E8[3], 1, 1 + 18 + 12, 15);
 

@@ -617,9 +617,9 @@ static void ov7_0224C768(UnkStruct_ov7_0224C768 *param0, BgConfig *param1, u32 p
     Strbuf_Free(param0->unk_128);
     Strbuf_Free(v1);
 
-    v5.unk_0C = param0->unk_04;
-    v5.unk_10 = param0->unk_120;
-    v5.unk_00 = param0->unk_0C;
+    v5.window = param0->unk_04;
+    v5.count = param0->unk_120;
+    v5.choices = param0->unk_0C;
 
     param0->unk_08 = sub_0200112C(&v5, 0, 0, param2);
 

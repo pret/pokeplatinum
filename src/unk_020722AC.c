@@ -703,13 +703,13 @@ static void sub_020729B4(UnkStruct_02072334 *param0)
 
     MI_CpuCopy8((void *)&Unk_020F0504, (void *)&(param0->unk_140), sizeof(ListMenuTemplate));
 
-    param0->unk_140.unk_0C = &(param0->unk_174);
-    param0->unk_140.unk_00 = param0->unk_164;
-    param0->unk_140.unk_1C = (void *)param0;
-    param0->unk_140.unk_10 = v1;
-    param0->unk_140.unk_17_0 = 6;
-    param0->unk_140.unk_04 = sub_02072C0C;
-    param0->unk_140.unk_08 = sub_02072BBC;
+    param0->unk_140.window = &(param0->unk_174);
+    param0->unk_140.choices = param0->unk_164;
+    param0->unk_140.tmp = (void *)param0;
+    param0->unk_140.count = v1;
+    param0->unk_140.yOffset = 6;
+    param0->unk_140.cursorCallback = sub_02072C0C;
+    param0->unk_140.printCallback = sub_02072BBC;
 
     if (param0->unk_13B_4) {
         if (param0->unk_13C == 0) {
@@ -800,13 +800,13 @@ static void sub_02072C98(UnkStruct_02072334 *param0, u8 param1, u8 param2)
 
     MI_CpuCopy8((void *)&Unk_020F0504, (void *)&(param0->unk_140), sizeof(ListMenuTemplate));
 
-    param0->unk_140.unk_0C = &(param0->unk_174);
-    param0->unk_140.unk_00 = param0->unk_164;
-    param0->unk_140.unk_1C = (void *)param0;
-    param0->unk_140.unk_10 = v1;
-    param0->unk_140.unk_12 = 4;
-    param0->unk_140.unk_1A_7 = 0;
-    param0->unk_140.unk_04 = sub_02072DA4;
+    param0->unk_140.window = &(param0->unk_174);
+    param0->unk_140.choices = param0->unk_164;
+    param0->unk_140.tmp = (void *)param0;
+    param0->unk_140.count = v1;
+    param0->unk_140.maxDisplay = 4;
+    param0->unk_140.pagerMode = 0;
+    param0->unk_140.cursorCallback = sub_02072DA4;
     param0->unk_160 = sub_0200112C(&(param0->unk_140), param1, param2, param0->unk_00);
 
     Window_Show(&param0->unk_174, 0, (1024 - (18 + 12) - 9), 11);

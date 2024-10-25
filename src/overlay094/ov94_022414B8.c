@@ -1103,8 +1103,8 @@ ListMenu *ov94_022426A8(UnkStruct_ov94_0223FD4C *param0, StringList **param1, Wi
     }
 
     v0 = Unk_ov94_0224608C;
-    v0.unk_00 = *param1;
-    v0.unk_0C = param2;
+    v0.choices = *param1;
+    v0.window = param2;
 
     Window_Show(param2, 0, (1 + (18 + 12)), 11);
 
@@ -1178,9 +1178,9 @@ ListMenu *ov94_022427C0(UnkStruct_ov94_0223FD4C *param0, StringList **param1, Wi
     v2 = ov94_02242718(param1, param4, param3, param5->unk_18, param5->unk_14, param5->unk_1C, v3, param6);
 
     v0 = Unk_ov94_0224608C;
-    v0.unk_10 = v2;
-    v0.unk_00 = *param1;
-    v0.unk_0C = param2;
+    v0.count = v2;
+    v0.choices = *param1;
+    v0.window = param2;
 
     Window_Show(param2, 0, (1 + (18 + 12)), 11);
 
@@ -1206,9 +1206,9 @@ ListMenu *ov94_02242840(StringList **param0, Window *param1, MessageLoader *para
     }
 
     v0 = Unk_ov94_0224608C;
-    v0.unk_10 = 4;
-    v0.unk_00 = *param0;
-    v0.unk_0C = param1;
+    v0.count = 4;
+    v0.choices = *param0;
+    v0.window = param1;
 
     Window_Show(param1, 0, (1 + (18 + 12)), 11);
 
@@ -1237,9 +1237,9 @@ ListMenu *ov94_022428B0(StringList **param0, Window *param1, MessageLoader *para
     }
 
     v0 = Unk_ov94_0224608C;
-    v0.unk_10 = v3;
-    v0.unk_00 = *param0;
-    v0.unk_0C = param1;
+    v0.count = v3;
+    v0.choices = *param0;
+    v0.window = param1;
 
     Window_Show(param1, 0, (1 + (18 + 12)), 11);
 
@@ -1302,9 +1302,9 @@ ListMenu *ov94_022429B4(StringList **param0, Window *param1, MessageLoader *para
     StringList_AddFromMessageBank(*param0, param3, 168, v2 - 1);
 
     v0 = Unk_ov94_0224608C;
-    v0.unk_10 = v2;
-    v0.unk_00 = *param0;
-    v0.unk_0C = param1;
+    v0.count = v2;
+    v0.choices = *param0;
+    v0.window = param1;
 
     Window_Show(param1, 1, (1 + (18 + 12)), 11);
 

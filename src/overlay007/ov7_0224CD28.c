@@ -637,15 +637,15 @@ static void ov7_0224D6BC(UnkStruct_ov7_0224D008 *param0)
     v2 = Unk_ov7_0224F308;
 
     if ((v4 <= 420) && (v4 >= 328)) {
-        v2.unk_15 = 35;
+        v2.textXOffset = 35;
     } else {
-        v2.unk_15 = 0;
+        v2.textXOffset = 0;
     }
 
-    v2.unk_00 = param0->unk_7C;
-    v2.unk_0C = &param0->unk_08[0];
-    v2.unk_10 = param0->unk_294 + 1;
-    v2.unk_1C = (void *)param0;
+    v2.choices = param0->unk_7C;
+    v2.window = &param0->unk_08[0];
+    v2.count = param0->unk_294 + 1;
+    v2.tmp = (void *)param0;
 
     param0->unk_78 = sub_0200112C(&v2, 0, 0, 11);
 }

@@ -243,15 +243,15 @@ static void *ov23_022524B8(UnkStruct_ov23_02250CD4 *param0)
 
     MI_CpuCopy8(ov23_02253D40(), &v0, sizeof(ListMenuTemplate));
 
-    v0.unk_00 = param0->unk_40;
-    v0.unk_0C = &param0->unk_10;
-    v0.unk_10 = v1;
-    v0.unk_12 = v1;
+    v0.choices = param0->unk_40;
+    v0.window = &param0->unk_10;
+    v0.count = v1;
+    v0.maxDisplay = v1;
 
     param0->unk_294 = ov23_02243154(19);
     param0->unk_290 = ov23_0224318C(19);
 
-    ov23_02251238(param0, v0.unk_12, v0.unk_10);
+    ov23_02251238(param0, v0.maxDisplay, v0.count);
 
     param0->unk_48 = sub_0200112C(&v0, param0->unk_294, param0->unk_290, 4);
     param0->unk_2AE = param0->unk_290;
@@ -426,19 +426,19 @@ static void ov23_02252A18(UnkStruct_ov23_02250CD4 *param0)
 
     MI_CpuCopy8(ov23_02253D40(), &v0, sizeof(ListMenuTemplate));
 
-    v0.unk_00 = param0->unk_40;
-    v0.unk_0C = &param0->unk_10;
-    v0.unk_10 = v1;
-    v0.unk_12 = v1;
-    v0.unk_04 = ov23_0225265C;
-    v0.unk_1C = param0;
+    v0.choices = param0->unk_40;
+    v0.window = &param0->unk_10;
+    v0.count = v1;
+    v0.maxDisplay = v1;
+    v0.cursorCallback = ov23_0225265C;
+    v0.tmp = param0;
 
     param0->unk_268 = ov23_02252A04;
     param0->unk_294 = ov23_02243154(13 + param0->unk_2AC);
     param0->unk_290 = ov23_0224318C(13 + param0->unk_2AC);
     param0->unk_2AE = param0->unk_290;
 
-    ov23_02251238(param0, v0.unk_12, v0.unk_10);
+    ov23_02251238(param0, v0.maxDisplay, v0.count);
     param0->unk_48 = sub_0200112C(&v0, param0->unk_294, param0->unk_290, 4);
     Window_CopyToVRAM(&param0->unk_10);
 }

@@ -750,8 +750,8 @@ static int ov98_02247B98 (UnkStruct_ov98_02247704 * param0)
             StringList_AddFromMessageBank(param0->unk_A0, param0->unk_34, v4[v1].unk_00, v4[v1].unk_04);
         }
 
-        v2.unk_0C = &param0->unk_78;
-        v2.unk_00 = param0->unk_A0;
+        v2.window = &param0->unk_78;
+        v2.choices = param0->unk_A0;
         param0->unk_A4 = sub_0200112C(&v2, 0, 0, 109);
 
         Window_Show(&param0->unk_78, 1, (1 + (18 + 12)), 11);

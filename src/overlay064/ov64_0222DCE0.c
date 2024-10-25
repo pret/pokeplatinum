@@ -2411,12 +2411,12 @@ static void ov64_0222FA70 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222
     v0 = Unk_ov64_0223226C;
 
     if (v2 == 2) {
-        v0.unk_00 = param0->unk_F0[1];
+        v0.choices = param0->unk_F0[1];
     } else {
-        v0.unk_00 = param0->unk_F0[0];
+        v0.choices = param0->unk_F0[0];
     }
 
-    v0.unk_0C = &param0->unk_E0;
+    v0.window = &param0->unk_E0;
     param0->unk_F8 = sub_0200112C(&v0, 0, 0, param3);
 
     Window_Show(&param0->unk_E0, 1, 1, 9);

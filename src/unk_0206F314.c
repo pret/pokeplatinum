@@ -694,13 +694,13 @@ static void sub_0206FDC0(UnkStruct_0206F7F8 *param0, u16 param1, u16 param2)
 
     MI_CpuCopy8((void *)&Unk_020F02B0, (void *)&(param0->unk_A0), sizeof(ListMenuTemplate));
 
-    param0->unk_A0.unk_0C = &(param0->unk_D4);
-    param0->unk_A0.unk_00 = param0->unk_C4;
-    param0->unk_A0.unk_1C = (void *)param0;
-    param0->unk_A0.unk_10 = v1;
-    param0->unk_A0.unk_17_0 = 0;
-    param0->unk_A0.unk_04 = sub_0206FF60;
-    param0->unk_A0.unk_08 = NULL;
+    param0->unk_A0.window = &(param0->unk_D4);
+    param0->unk_A0.choices = param0->unk_C4;
+    param0->unk_A0.tmp = (void *)param0;
+    param0->unk_A0.count = v1;
+    param0->unk_A0.yOffset = 0;
+    param0->unk_A0.cursorCallback = sub_0206FF60;
+    param0->unk_A0.printCallback = NULL;
     param0->unk_C0 = sub_0200112C(&(param0->unk_A0), param1, param2, param0->unk_00);
 
     Window_Show(&param0->unk_D4, 0, (1024 - (18 + 12) - 9), 11);

@@ -785,15 +785,15 @@ static BOOL ov73_021D1648(UnkStruct_ov73_021D1058 *param0, int param1, int param
         }
 
         v1 = Unk_ov72_021D390C;
-        v1.unk_00 = param0->unk_44;
-        v1.unk_10 = v5;
-        v1.unk_12 = v5;
-        v1.unk_04 = ov73_021D1634;
-        v1.unk_0C = &param0->unk_30;
+        v1.choices = param0->unk_44;
+        v1.count = v5;
+        v1.maxDisplay = v5;
+        v1.cursorCallback = ov73_021D1634;
+        v1.window = &param0->unk_30;
 
         param0->unk_40 = sub_0200112C(&v1, 0, 0, param0->unk_00);
 
-        Window_Show(v1.unk_0C, 1, ((0x400 - (18 + 12)) - 9), 3);
+        Window_Show(v1.window, 1, ((0x400 - (18 + 12)) - 9), 3);
         Window_CopyToVRAM(&param0->unk_30);
 
         param0->unk_2C = 1;

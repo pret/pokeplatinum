@@ -147,11 +147,11 @@ static void ov7_0224B5A8(UnkStruct_ov7_0224B4E8 *param0)
     }
 
     v0 = Unk_ov7_0224F188;
-    v0.unk_10 = v3 + 2;
-    v0.unk_12 = v3 + 2;
-    v0.unk_00 = param0->unk_08;
-    v0.unk_0C = &param0->unk_34;
-    v0.unk_1C = param0;
+    v0.count = v3 + 2;
+    v0.maxDisplay = v3 + 2;
+    v0.choices = param0->unk_08;
+    v0.window = &param0->unk_34;
+    v0.tmp = param0;
 
     param0->unk_00 = sub_0200112C(&v0, 0, param0->unk_78, 4);
     Window_CopyToVRAM(&param0->unk_34);
@@ -237,11 +237,11 @@ static void ov7_0224B788(UnkStruct_ov7_0224B4E8 *param0)
     }
 
     v0 = Unk_ov7_0224F188;
-    v0.unk_10 = v1;
-    v0.unk_12 = v1;
-    v0.unk_00 = param0->unk_0C;
-    v0.unk_0C = &param0->unk_44;
-    v0.unk_1C = param0;
+    v0.count = v1;
+    v0.maxDisplay = v1;
+    v0.choices = param0->unk_0C;
+    v0.window = &param0->unk_44;
+    v0.tmp = param0;
 
     param0->unk_04 = sub_0200112C(&v0, 0, param0->unk_7A, 4);
     Window_CopyToVRAM(&param0->unk_44);

@@ -1023,19 +1023,19 @@ static void ov92_021D1C4C(UnkStruct_ov92_021D1B24 *param0, Window *param1, const
     int v1;
 
     Window_AddFromTemplate(param0->unk_B810, param1, param2);
-    param0->unk_B858 = StringList_New(param3->unk_10, param0->unk_00);
+    param0->unk_B858 = StringList_New(param3->count, param0->unk_00);
 
-    for (v1 = 0; v1 < param3->unk_10; v1++) {
+    for (v1 = 0; v1 < param3->count; v1++) {
         StringList_AddFromMessageBank(param0->unk_B858, param0->unk_B860, param4[v1].unk_00, param4[v1].unk_04);
     }
 
     v0 = *param3;
-    v0.unk_00 = param0->unk_B858;
-    v0.unk_0C = param1;
-    v0.unk_04 = ov92_021D1C38;
+    v0.choices = param0->unk_B858;
+    v0.window = param1;
+    v0.cursorCallback = ov92_021D1C38;
     param0->unk_B854 = sub_0200112C(&v0, 0, 0, param0->unk_00);
 
-    Window_Show(v0.unk_0C, 1, ((512 - (18 + 12)) - 9), 7);
+    Window_Show(v0.window, 1, ((512 - (18 + 12)) - 9), 7);
     Window_CopyToVRAM(param1);
 }
 
@@ -1056,14 +1056,14 @@ static void ov92_021D1CF4(UnkStruct_ov92_021D1B24 *param0, Window *param1, const
     MessageLoader_Free(v1);
 
     v0 = *param3;
-    v0.unk_00 = param0->unk_B858;
-    v0.unk_10 = param6;
-    v0.unk_0C = param1;
-    v0.unk_04 = ov92_021D1C38;
+    v0.choices = param0->unk_B858;
+    v0.count = param6;
+    v0.window = param1;
+    v0.cursorCallback = ov92_021D1C38;
 
     param0->unk_B854 = sub_0200112C(&v0, 0, 0, param0->unk_00);
 
-    Window_Show(v0.unk_0C, 1, ((512 - (18 + 12)) - 9), 7);
+    Window_Show(v0.window, 1, ((512 - (18 + 12)) - 9), 7);
     Window_CopyToVRAM(param1);
 }
 

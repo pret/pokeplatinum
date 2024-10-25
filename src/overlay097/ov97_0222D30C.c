@@ -796,9 +796,9 @@ static void ov97_0222DD1C(OverlayManager *param0, UnkStruct_ov97_0223E5B8 *param
 
     v1 = Unk_ov97_0223E5D0;
 
-    v1.unk_00 = v2->unk_7C;
-    v1.unk_10 = v1.unk_12 = param2;
-    v1.unk_0C = param3;
+    v1.choices = v2->unk_7C;
+    v1.count = v1.maxDisplay = param2;
+    v1.window = param3;
 
     if (v2->unk_78) {
         sub_02001384(v2->unk_78, NULL, NULL);

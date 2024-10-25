@@ -568,32 +568,32 @@ static u32 ov104_022327F0(UnkStruct_ov104_02232B5C *param0)
 
 static void ov104_02232830(UnkStruct_ov104_02232B5C *param0)
 {
-    param0->unk_194.unk_00 = param0->unk_1BC;
-    param0->unk_194.unk_04 = ov104_02232960;
-    param0->unk_194.unk_08 = ov104_0223293C;
-    param0->unk_194.unk_0C = &param0->unk_08;
+    param0->unk_194.choices = param0->unk_1BC;
+    param0->unk_194.cursorCallback = ov104_02232960;
+    param0->unk_194.printCallback = ov104_0223293C;
+    param0->unk_194.window = &param0->unk_08;
 
-    param0->unk_194.unk_10 = param0->unk_9B;
-    param0->unk_194.unk_12 = 8;
+    param0->unk_194.count = param0->unk_9B;
+    param0->unk_194.maxDisplay = 8;
 
-    param0->unk_194.unk_14 = 1;
-    param0->unk_194.unk_15 = 12;
-    param0->unk_194.unk_16 = 2;
-    param0->unk_194.unk_17_0 = 1;
+    param0->unk_194.headerXOffset = 1;
+    param0->unk_194.textXOffset = 12;
+    param0->unk_194.cursorXOffset = 2;
+    param0->unk_194.yOffset = 1;
 
-    param0->unk_194.unk_17_4 = 1;
-    param0->unk_194.unk_18_0 = 15;
-    param0->unk_194.unk_18_4 = 2;
+    param0->unk_194.textColorFg = 1;
+    param0->unk_194.textColorBg = 15;
+    param0->unk_194.textColorShadow = 2;
 
-    param0->unk_194.unk_1A_0 = 0;
-    param0->unk_194.unk_1A_3 = 16;
+    param0->unk_194.letterSpacing = 0;
+    param0->unk_194.lineSpacing = 0;
 
-    param0->unk_194.unk_1A_7 = 0;
+    param0->unk_194.pagerMode = 0;
 
-    param0->unk_194.unk_1A_9 = 0;
-    param0->unk_194.unk_1A_15 = 0;
+    param0->unk_194.fontID = FONT_SYSTEM;
+    param0->unk_194.cursorType = 0;
 
-    param0->unk_194.unk_1C = (void *)param0;
+    param0->unk_194.tmp = (void *)param0;
     return;
 }
 
@@ -682,7 +682,7 @@ static void ov104_02232A58(UnkStruct_ov104_02232B5C *param0, u8 param1)
     }
 
     sub_02001384(param0->unk_1B4, NULL, NULL);
-    Window_Clear(param0->unk_194.unk_0C, 0);
+    Window_Clear(param0->unk_194.window, 0);
     Window_Remove(&param0->unk_08);
 
     for (v0 = 0; v0 < 28; v0++) {
