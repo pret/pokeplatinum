@@ -49,7 +49,7 @@ static void ov6_02246458(UnkStruct_ov6_022465F4 *param0, int param1)
 
 static void ov6_0224645C(UnkStruct_ov6_022465F4 *param0, const u16 *param1)
 {
-    sub_020021D0(param0->unk_04, param1, 7 + 1);
+    CharCode_CopyNumChars(param0->unk_04, param1, 7 + 1);
 }
 
 static void ov6_02246468(UnkStruct_ov6_022465F4 *param0, UnkStruct_0202E4D4 *param1)

@@ -446,7 +446,7 @@ void ov104_0222E284(BattleParams *param0, UnkStruct_ov104_0223A348_sub1 *param1,
     param0->trainerIDs[param3] = param1->unk_00;
     param0->trainerData[param3].class = param1->unk_04;
 
-    GF_strcpy(&param0->trainerData[param3].name[0], &param1->unk_08[0]);
+    CharCode_Copy(&param0->trainerData[param3].name[0], &param1->unk_08[0]);
 
     v0 = (Sentence *)&param1->unk_20[0];
     param0->trainerData[param3].winMsg = *v0;

@@ -6275,7 +6275,7 @@ BOOL BattleSystem_TrainerIsOT(BattleSystem *battleSys, BattleContext *battleCtx)
 
     if (trID == ATTACKING_MON.OTId
         && trGender == ATTACKING_MON.OTGender
-        && GF_strncmp(trName, ATTACKING_MON.OTName, TRAINER_NAME_LEN) == 0) {
+        && CharCode_CompareNumChars(trName, ATTACKING_MON.OTName, TRAINER_NAME_LEN) == 0) {
         return TRUE;
     }
 
@@ -6294,7 +6294,7 @@ BOOL BattleSystem_PokemonIsOT(BattleSystem *battleSys, Pokemon *mon)
 
     if (trID == Pokemon_GetValue(mon, MON_DATA_OT_ID, NULL)
         && trGender == Pokemon_GetValue(mon, MON_DATA_OT_GENDER, NULL)
-        && GF_strncmp(trName, monOTName, TRAINER_NAME_LEN) == 0) {
+        && CharCode_CompareNumChars(trName, monOTName, TRAINER_NAME_LEN) == 0) {
         return TRUE;
     }
 

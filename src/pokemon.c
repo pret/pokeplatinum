@@ -1490,7 +1490,7 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
         charcode_t baseName[MON_NAME_LEN + 1];
 
         MessageLoader_GetSpeciesName(monDataBlockA->species, HEAP_ID_SYSTEM, baseName);
-        monDataBlockB->hasNickname = GF_strcmp(baseName, u16Value);
+        monDataBlockB->hasNickname = CharCode_Compare(baseName, u16Value);
     }
         // fall-through
     case MON_DATA_NICKNAME:
@@ -1506,7 +1506,7 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
         MessageLoader_GetSpeciesName(monDataBlockA->species, HEAP_ID_SYSTEM, baseName);
         Strbuf_ToChars(value, nickname, NELEMS(nickname));
 
-        monDataBlockB->hasNickname = GF_strcmp(baseName, nickname);
+        monDataBlockB->hasNickname = CharCode_Compare(baseName, nickname);
     }
         // fall-through
     case MON_DATA_NICKNAME_STRBUF:

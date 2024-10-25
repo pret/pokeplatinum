@@ -35,7 +35,7 @@ static const int Unk_020E4CA8[] = {
     1000000000,
 };
 
-u16 *GF_strcpy(u16 *param0, const u16 *param1)
+u16 *CharCode_Copy(u16 *param0, const u16 *param1)
 {
     while (*param1 != 0xffff) {
         *param0 = *param1;
@@ -47,7 +47,7 @@ u16 *GF_strcpy(u16 *param0, const u16 *param1)
     return param0;
 }
 
-u16 *sub_020021D0(u16 *param0, const u16 *param1, u32 param2)
+u16 *CharCode_CopyNumChars(u16 *param0, const u16 *param1, u32 param2)
 {
     u32 v0;
 
@@ -58,7 +58,7 @@ u16 *sub_020021D0(u16 *param0, const u16 *param1, u32 param2)
     return &param0[param2];
 }
 
-u32 GF_strlen(const u16 *param0)
+u32 CharCode_Length(const u16 *param0)
 {
     u32 v0 = 0;
 
@@ -69,7 +69,7 @@ u32 GF_strlen(const u16 *param0)
     return v0;
 }
 
-BOOL GF_strcmp(const u16 *param0, const u16 *param1)
+BOOL CharCode_Compare(const u16 *param0, const u16 *param1)
 {
     while (*param0 == *param1) {
         if (*param0 == 0xffff) {
@@ -83,7 +83,7 @@ BOOL GF_strcmp(const u16 *param0, const u16 *param1)
     return 1;
 }
 
-BOOL GF_strncmp(const u16 *param0, const u16 *param1, u32 param2)
+BOOL CharCode_CompareNumChars(const u16 *param0, const u16 *param1, u32 param2)
 {
     while (*param0 == *param1) {
         if (param2 == 0) {
@@ -102,7 +102,7 @@ BOOL GF_strncmp(const u16 *param0, const u16 *param1, u32 param2)
     return 1;
 }
 
-u16 *sub_02002278(u16 *param0, u16 param1, u32 param2)
+u16 *CharCode_FillWith(u16 *param0, u16 param1, u32 param2)
 {
     u32 v0;
 
@@ -113,12 +113,12 @@ u16 *sub_02002278(u16 *param0, u16 param1, u32 param2)
     return &param0[v0];
 }
 
-u16 *sub_02002294(u16 *param0, u32 param1)
+u16 *CharCode_FillWithEOS(u16 *param0, u32 param1)
 {
-    return sub_02002278(param0, 0xffff, param1);
+    return CharCode_FillWith(param0, 0xffff, param1);
 }
 
-u16 *sub_020022A4(u16 *param0, s32 param1, u32 param2, u32 param3)
+u16 *CharCode_FromInt(u16 *param0, s32 param1, u32 param2, u32 param3)
 {
     u32 v0;
     u32 v1;

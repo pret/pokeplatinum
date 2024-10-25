@@ -1054,7 +1054,7 @@ void ov94_022425A8(UnkStruct_ov94_0223BA88 *param0, UnkStruct_ov94_0223FD4C *par
         Pokemon_FromBoxPokemon(param1->unk_114, (Pokemon *)param0->unk_00.unk_00);
     }
 
-    sub_020021D0(param0->unk_10C, TrainerInfo_Name(param1->unk_00->unk_1C), 8);
+    CharCode_CopyNumChars(param0->unk_10C, TrainerInfo_Name(param1->unk_00->unk_1C), 8);
 
     param0->unk_11C = TrainerInfo_ID_LowHalf(param1->unk_00->unk_1C);
     param0->unk_11E = sub_0202C8C0(param1->unk_00->unk_18);

@@ -160,7 +160,7 @@ static void ov59_021D2B90(SaveData *param0, UnkStruct_0202E794 *param1, UnkStruc
         param1->unk_05 = GAME_VERSION;
         param1->unk_06 = GAME_LANGUAGE;
 
-        sub_020021D0(param1->unk_08, TrainerInfo_Name(v1), 7 + 1);
+        CharCode_CopyNumChars(param1->unk_08, TrainerInfo_Name(v1), 7 + 1);
 
         param1->unk_18 = param2[v0].unk_00;
         param1->unk_18.unk_01 = 0;

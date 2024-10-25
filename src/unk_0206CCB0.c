@@ -622,7 +622,7 @@ void sub_0206D088(TVBroadcast *param0, u8 param1, const TrainerInfo *param2)
     v0->unk_00 = 1;
     v0->unk_01 = param1;
 
-    GF_strcpy(v0->unk_06, TrainerInfo_Name(param2));
+    CharCode_Copy(v0->unk_06, TrainerInfo_Name(param2));
 
     v0->unk_03 = TrainerInfo_RegionCode(param2);
     v0->unk_04 = TrainerInfo_GameCode(param2);
@@ -827,7 +827,7 @@ static void sub_0206D3E4(FieldSystem *fieldSystem, int param1)
     GF_ASSERT(sizeof(UnkUnion_0206D1B8) == 40);
     MI_CpuClearFast(&v0, 40);
 
-    sub_020021D0(v1->unk_00, sub_0202B42C(v2, 1, 0), 10 + 1);
+    CharCode_CopyNumChars(v1->unk_00, sub_0202B42C(v2, 1, 0), 10 + 1);
     sub_0206CD70(fieldSystem, 2, param1, v1);
 }
 

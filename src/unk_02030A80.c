@@ -53,7 +53,7 @@ void sub_02030AA0(UnkStruct_02030A80 *param0, SaveData *param1)
 
     MiscSaveBlock_FavoriteMon(v3, &v4, &v5, &v6);
     MI_CpuClear8(param0, sizeof(UnkStruct_02030A80));
-    GF_strcpy(param0->unk_00, TrainerInfo_Name(v0));
+    CharCode_Copy(param0->unk_00, TrainerInfo_Name(v0));
 
     param0->unk_10 = TrainerInfo_ID(v0);
     param0->unk_14 = TrainerInfo_Gender(v0);

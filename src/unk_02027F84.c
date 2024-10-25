@@ -41,7 +41,7 @@ u8 sub_02027FC4(const UnkStruct_02027F8C *param0, int param1)
 
 BOOL sub_02027FCC(const UnkStruct_02027F8C *param0, const UnkStruct_02027F8C *param1)
 {
-    if (0 == GF_strcmp(param0->unk_00, param1->unk_00)) {
+    if (0 == CharCode_Compare(param0->unk_00, param1->unk_00)) {
         if (param0->unk_10 == param1->unk_10) {
             return 1;
         }
