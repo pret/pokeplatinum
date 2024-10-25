@@ -1,13 +1,16 @@
 #ifndef POKEPLATINUM_CHARCODE_UTIL_H
 #define POKEPLATINUM_CHARCODE_UTIL_H
 
-u16 *CharCode_Copy(u16 *param0, const u16 *param1);
-u16 *CharCode_CopyNumChars(u16 *param0, const u16 *param1, u32 param2);
-u32 CharCode_Length(const u16 *param0);
-BOOL CharCode_Compare(const u16 *param0, const u16 *param1);
-BOOL CharCode_CompareNumChars(const u16 *param0, const u16 *param1, u32 param2);
-u16 *CharCode_FillWith(u16 *param0, u16 param1, u32 param2);
-u16 *CharCode_FillWithEOS(u16 *param0, u32 param1);
-u16 *CharCode_FromInt(u16 *param0, s32 param1, u32 param2, u32 param3);
+#include "charcode.h"
+#include "strbuf.h"
+
+charcode_t *CharCode_Copy(charcode_t *dst, const charcode_t *src);
+charcode_t *CharCode_CopyNumChars(charcode_t *dst, const charcode_t *src, u32 num);
+u32 CharCode_Length(const charcode_t *str);
+BOOL CharCode_Compare(const charcode_t *str1, const charcode_t *str2);
+BOOL CharCode_CompareNumChars(const charcode_t *str1, const charcode_t *str2, u32 num);
+charcode_t *CharCode_FillWith(charcode_t *str, charcode_t fill, u32 num);
+charcode_t *CharCode_FillWithEOS(charcode_t *str, u32 num);
+charcode_t *CharCode_FromInt(charcode_t *str, s32 i, enum PaddingMode paddingMode, u32 digits);
 
 #endif // POKEPLATINUM_CHARCODE_UTIL_H

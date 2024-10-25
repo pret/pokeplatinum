@@ -3,26 +3,30 @@
 #include <nitro.h>
 #include <string.h>
 
-static const u16 Unk_020E4C88[] = {
-    0xA2,
-    0xA3,
-    0xA4,
-    0xA5,
-    0xA6,
-    0xA7,
-    0xA8,
-    0xA9,
-    0xAA,
-    0xAB,
-    0xAC,
-    0xAD,
-    0xAE,
-    0xaf,
-    0xB0,
-    0xB1
+#include "constants/charcode.h"
+
+#include "charcode.h"
+
+static const charcode_t sHexadecimalDigits[] = {
+    CHAR_JP_0,
+    CHAR_JP_1,
+    CHAR_JP_2,
+    CHAR_JP_3,
+    CHAR_JP_4,
+    CHAR_JP_5,
+    CHAR_JP_6,
+    CHAR_JP_7,
+    CHAR_JP_8,
+    CHAR_JP_9,
+    CHAR_JP_A,
+    CHAR_JP_B,
+    CHAR_JP_C,
+    CHAR_JP_D,
+    CHAR_JP_E,
+    CHAR_JP_F,
 };
 
-static const int Unk_020E4CA8[] = {
+static const int sPowersOfTen[] = {
     1,
     10,
     100,
@@ -35,115 +39,110 @@ static const int Unk_020E4CA8[] = {
     1000000000,
 };
 
-u16 *CharCode_Copy(u16 *param0, const u16 *param1)
+charcode_t *CharCode_Copy(charcode_t *dst, const charcode_t *src)
 {
-    while (*param1 != 0xffff) {
-        *param0 = *param1;
-        param0++;
-        param1++;
+    while (*src != CHAR_EOS) {
+        *dst = *src;
+        dst++;
+        src++;
     }
 
-    *param0 = 0xffff;
-    return param0;
+    *dst = 0xffff;
+    return dst;
 }
 
-u16 *CharCode_CopyNumChars(u16 *param0, const u16 *param1, u32 param2)
+charcode_t *CharCode_CopyNumChars(charcode_t *dst, const charcode_t *src, u32 num)
 {
-    u32 v0;
-
-    for (v0 = 0; v0 < param2; v0++) {
-        param0[v0] = param1[v0];
+    for (int i = 0; i < num; i++) {
+        dst[i] = src[i];
     }
 
-    return &param0[param2];
+    return &dst[num];
 }
 
-u32 CharCode_Length(const u16 *param0)
+u32 CharCode_Length(const charcode_t *str)
 {
-    u32 v0 = 0;
-
-    while (param0[v0] != 0xffff) {
-        v0++;
+    u32 i = 0;
+    while (str[i] != CHAR_EOS) {
+        i++;
     }
 
-    return v0;
+    return i;
 }
 
-BOOL CharCode_Compare(const u16 *param0, const u16 *param1)
+int CharCode_Compare(const charcode_t *str1, const charcode_t *str2)
 {
-    while (*param0 == *param1) {
-        if (*param0 == 0xffff) {
+    while (*str1 == *str2) {
+        if (*str1 == CHAR_EOS) {
             return 0;
         }
 
-        param0++;
-        param1++;
+        str1++;
+        str2++;
     }
 
     return 1;
 }
 
-BOOL CharCode_CompareNumChars(const u16 *param0, const u16 *param1, u32 param2)
+int CharCode_CompareNumChars(const charcode_t *str1, const charcode_t *str2, u32 num)
 {
-    while (*param0 == *param1) {
-        if (param2 == 0) {
+    while (*str1 == *str2) {
+        if (num == 0) {
             return 0;
         }
 
-        if ((*param0 == 0xffff) && (*param1 == 0xffff)) {
+        if (*str1 == CHAR_EOS && *str2 == CHAR_EOS) {
             return 0;
         }
 
-        param2--;
-        param0++;
-        param1++;
+        num--;
+        str1++;
+        str2++;
     }
 
     return 1;
 }
 
-u16 *CharCode_FillWith(u16 *param0, u16 param1, u32 param2)
+charcode_t *CharCode_FillWith(charcode_t *str, charcode_t fill, u32 num)
 {
-    u32 v0;
-
-    for (v0 = 0; v0 < param2; v0++) {
-        param0[v0] = param1;
+    int i;
+    for (i = 0; i < num; i++) {
+        str[i] = fill;
     }
 
-    return &param0[v0];
+    return &str[i];
 }
 
-u16 *CharCode_FillWithEOS(u16 *param0, u32 param1)
+charcode_t *CharCode_FillWithEOS(charcode_t *str, u32 num)
 {
-    return CharCode_FillWith(param0, 0xffff, param1);
+    return CharCode_FillWith(str, CHAR_EOS, num);
 }
 
-u16 *CharCode_FromInt(u16 *param0, s32 param1, u32 param2, u32 param3)
+charcode_t *CharCode_FromInt(charcode_t *str, s32 i, enum PaddingMode paddingMode, u32 digits)
 {
-    u32 v0;
-    u32 v1;
-    u32 v2;
+    u32 j;
+    u32 diff;
+    u16 digit;
 
-    for (v0 = Unk_020E4CA8[param3 - 1]; v0 > 0; v0 /= 10) {
-        v2 = (u16)(param1 / v0);
-        v1 = (u32)(param1 - (v0 * v2));
+    for (j = sPowersOfTen[digits - 1]; j > 0; j /= 10) {
+        digit = i / j;
+        diff = i - (j * digit);
 
-        if (param2 == 2) {
-            *param0 = (u16)(v2 >= 10 ? 0xe2 : Unk_020E4C88[v2]);
-            param0++;
-        } else if ((v2 != 0) || (v0 == 1)) {
-            param2 = 2;
-            *param0 = (u16)(v2 >= 10 ? 0xe2 : Unk_020E4C88[v2]);
-            param0++;
-        } else if (param2 == 1) {
-            *param0 = 0x1;
-            param0++;
+        if (paddingMode == PADDING_MODE_ZEROES) {
+            *str = digit >= 10 ? CHAR_JP_QUESTION : sHexadecimalDigits[digit];
+            str++;
+        } else if (digit != 0 || j == 1) {
+            paddingMode = PADDING_MODE_ZEROES;
+            *str = digit >= 10 ? CHAR_JP_QUESTION : sHexadecimalDigits[digit];
+            str++;
+        } else if (paddingMode == PADDING_MODE_SPACES) {
+            *str = CHAR_JP_SPACE;
+            str++;
         }
 
-        param1 = v1;
+        i = diff;
     }
 
-    *param0 = 0xffff;
-
-    return param0;
+    *str = CHAR_EOS;
+    return str;
 }
