@@ -5,7 +5,6 @@
 
 #include "consts/game_records.h"
 
-#include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 
 #include "field/field_system.h"
@@ -15,7 +14,6 @@
 #include "overlay023/ov23_02253598.h"
 #include "overlay023/ov23_02253D40.h"
 #include "overlay023/struct_ov23_02250CD4.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 
 #include "bg_window.h"
 #include "comm_player_manager.h"
@@ -25,12 +23,12 @@
 #include "field_system.h"
 #include "game_records.h"
 #include "heap.h"
+#include "list_menu.h"
 #include "message.h"
 #include "string_list.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
-#include "unk_0200112C.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
@@ -63,7 +61,7 @@ typedef struct {
     FieldSystem *fieldSystem;
     Window unk_0C;
     StringList *unk_1C;
-    BmpList *unk_20;
+    ListMenu *unk_20;
     UIControlData *unk_24;
     UnkStruct_ov23_0224F184 unk_28;
     UnkFuncPtr_ov23_0224DCB8 unk_2C;
@@ -85,7 +83,7 @@ typedef struct {
     FieldSystem *fieldSystem;
     Window unk_08;
     StringList *unk_18;
-    BmpList *unk_1C;
+    ListMenu *unk_1C;
     UIControlData *unk_20;
     UnkStruct_ov23_0224F184 unk_24;
     UnkFuncPtr_ov23_0224DCB8 unk_28;
@@ -124,7 +122,7 @@ static const struct {
     { 0x6, (u32)ov23_0224E8E0 }
 };
 
-static const UnkStruct_ov84_02240FA8 Unk_ov23_02256894 = {
+static const ListMenuTemplate Unk_ov23_02256894 = {
     NULL,
     NULL,
     NULL,
@@ -209,7 +207,7 @@ static void ov23_0224DC90(UnkStruct_ov23_022577B0 *param0, int param1)
 void ov23_0224DCB8(int param0, UnkFuncPtr_ov23_0224DCB8 param1, FieldSystem *fieldSystem)
 {
     UnkStruct_ov23_0224E280 *v0;
-    UnkStruct_ov84_02240FA8 v1;
+    ListMenuTemplate v1;
 
     v0 = Heap_AllocFromHeap(33, sizeof(UnkStruct_ov23_0224E280));
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_0224E280));
@@ -233,7 +231,7 @@ void ov23_0224DCB8(int param0, UnkFuncPtr_ov23_0224DCB8 param1, FieldSystem *fie
 
 static void ov23_0224DD2C(UnkStruct_ov23_0224E280 *param0)
 {
-    UnkStruct_ov84_02240FA8 v0;
+    ListMenuTemplate v0;
 
     param0->unk_1C = StringList_New(NELEMS(Unk_ov23_022568B4), 4);
 
@@ -253,7 +251,7 @@ static void ov23_0224DD2C(UnkStruct_ov23_0224E280 *param0)
         MessageLoader_Free(v1);
     }
 
-    MI_CpuCopy8(ov23_02253D40(), &v0, sizeof(UnkStruct_ov84_02240FA8));
+    MI_CpuCopy8(ov23_02253D40(), &v0, sizeof(ListMenuTemplate));
 
     v0.unk_00 = param0->unk_1C;
     v0.unk_0C = &param0->unk_0C;
@@ -294,7 +292,7 @@ static void ov23_0224DDE4(SysTask *param0, UnkStruct_ov23_0224E280 *param1)
 
 static void ov23_0224DE3C(UnkStruct_ov23_0224E280 *param0)
 {
-    UnkStruct_ov84_02240FA8 v0;
+    ListMenuTemplate v0;
 
     param0->unk_1C = StringList_New(4, 4);
 
@@ -382,7 +380,7 @@ static BOOL ov23_0224DF1C(SysTask *param0, void *param1)
 
 static void ov23_0224DFA0(UnkStruct_ov23_0224E280 *param0)
 {
-    UnkStruct_ov84_02240FA8 v0;
+    ListMenuTemplate v0;
 
     param0->unk_1C = StringList_New(4, 4);
 
@@ -975,7 +973,7 @@ static void ov23_0224EA70(UnkStruct_ov23_022577B0 *param0)
 
 static void ov23_0224EAA4(UnkStruct_ov23_022577B0 *param0)
 {
-    UnkStruct_ov84_02240FA8 v0;
+    ListMenuTemplate v0;
     const int v1 = 4 + 1;
 
     param0->unk_18 = StringList_New(v1, 4);

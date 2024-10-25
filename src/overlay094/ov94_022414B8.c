@@ -7,9 +7,7 @@
 #include "constants/species.h"
 
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/struct_0200112C_decl.h"
 
-#include "overlay084/struct_ov84_02240FA8.h"
 #include "overlay094/const_ov94_02245FD4.h"
 #include "overlay094/const_ov94_02245FD8.h"
 #include "overlay094/ov94_0223BCB0.h"
@@ -29,6 +27,7 @@
 #include "game_options.h"
 #include "graphics.h"
 #include "heap.h"
+#include "list_menu.h"
 #include "message.h"
 #include "message_util.h"
 #include "narc.h"
@@ -38,7 +37,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200112C.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
@@ -1071,7 +1069,7 @@ static void ov94_02242668(UnkStruct_ov94_0223BA88 *param0, UnkStruct_ov94_0223FD
     param0->unk_F0 = param1->unk_B74;
 }
 
-static const UnkStruct_ov84_02240FA8 Unk_ov94_0224608C = {
+static const ListMenuTemplate Unk_ov94_0224608C = {
     NULL,
     NULL,
     NULL,
@@ -1093,9 +1091,9 @@ static const UnkStruct_ov84_02240FA8 Unk_ov94_0224608C = {
     NULL
 };
 
-BmpList *ov94_022426A8(UnkStruct_ov94_0223FD4C *param0, StringList **param1, Window *param2, MessageLoader *param3)
+ListMenu *ov94_022426A8(UnkStruct_ov94_0223FD4C *param0, StringList **param1, Window *param2, MessageLoader *param3)
 {
-    UnkStruct_ov84_02240FA8 v0;
+    ListMenuTemplate v0;
     int v1;
 
     *param1 = StringList_New(9, 62);
@@ -1169,9 +1167,9 @@ static int ov94_02242718(StringList **param0, MessageLoader *param1, MessageLoad
     return v2 + 1;
 }
 
-BmpList *ov94_022427C0(UnkStruct_ov94_0223FD4C *param0, StringList **param1, Window *param2, MessageLoader *param3, MessageLoader *param4, UnkStruct_ov94_0223FD4C_sub3 *param5, PokedexData *param6)
+ListMenu *ov94_022427C0(UnkStruct_ov94_0223FD4C *param0, StringList **param1, Window *param2, MessageLoader *param3, MessageLoader *param4, UnkStruct_ov94_0223FD4C_sub3 *param5, PokedexData *param6)
 {
-    UnkStruct_ov84_02240FA8 v0;
+    ListMenuTemplate v0;
     int v1, v2, v3;
 
     Window_FillTilemap(param2, 0xf0f);
@@ -1196,9 +1194,9 @@ static Unk_ov94_0224693C[][2] = {
     { 0x79, 0xFFFFFFFE }
 };
 
-BmpList *ov94_02242840(StringList **param0, Window *param1, MessageLoader *param2)
+ListMenu *ov94_02242840(StringList **param0, Window *param1, MessageLoader *param2)
 {
-    UnkStruct_ov84_02240FA8 v0;
+    ListMenuTemplate v0;
     int v1;
 
     *param0 = StringList_New(4, 62);
@@ -1217,9 +1215,9 @@ BmpList *ov94_02242840(StringList **param0, Window *param1, MessageLoader *param
     return sub_0200112C(&v0, 0, 0, 62);
 }
 
-BmpList *ov94_022428B0(StringList **param0, Window *param1, MessageLoader *param2, int param3)
+ListMenu *ov94_022428B0(StringList **param0, Window *param1, MessageLoader *param2, int param3)
 {
-    UnkStruct_ov84_02240FA8 v0;
+    ListMenuTemplate v0;
     int v1;
     const UnkStruct_ov94_022460AC *v2;
     int v3;
@@ -1287,9 +1285,9 @@ int ov94_02242970(int param0, int param1, int param2)
     return 0;
 }
 
-BmpList *ov94_022429B4(StringList **param0, Window *param1, MessageLoader *param2, MessageLoader *param3)
+ListMenu *ov94_022429B4(StringList **param0, Window *param1, MessageLoader *param2, MessageLoader *param3)
 {
-    UnkStruct_ov84_02240FA8 v0;
+    ListMenuTemplate v0;
     int v1;
     int v2 = NELEMS(Unk_ov94_02246174) + 2;
 
@@ -1322,7 +1320,7 @@ void ov94_02242A44(UnkStruct_ov94_0223FD4C *param0, int param1)
     }
 }
 
-u32 ov94_02242A6C(BmpList *param0, u16 *param1)
+u32 ov94_02242A6C(ListMenu *param0, u16 *param1)
 {
     u16 v0;
     u32 v1 = sub_02001288(param0);

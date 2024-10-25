@@ -9,7 +9,6 @@
 #include "struct_defs/struct_0203CC84.h"
 
 #include "overlay077/const_ov77_021D742C.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 #include "overlay097/ov97_0222D04C.h"
 #include "overlay097/ov97_02232054.h"
 #include "overlay097/ov97_02237520.h"
@@ -32,6 +31,7 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "list_menu.h"
 #include "message.h"
 #include "message_util.h"
 #include "overlay_manager.h"
@@ -47,7 +47,6 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_02000C88.h"
-#include "unk_0200112C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
@@ -183,7 +182,7 @@ UnkStruct_ov97_0223E5B8 Unk_ov97_0223E588[] = {
     { 0x13, (u32)ov97_0222D9F0 }
 };
 
-static UnkStruct_ov84_02240FA8 Unk_ov97_0223E5D0 = {
+static ListMenuTemplate Unk_ov97_0223E5D0 = {
     NULL,
     ov97_022383C4,
     NULL,
@@ -779,7 +778,7 @@ static void ov97_0222DC9C(BgConfig *param0)
 static void ov97_0222DD1C(OverlayManager *param0, UnkStruct_ov97_0223E5B8 *param1, int param2, Window *param3, u32 param4)
 {
     int v0;
-    UnkStruct_ov84_02240FA8 v1;
+    ListMenuTemplate v1;
     UnkStruct_ov97_0222D04C *v2 = OverlayManager_Data(param0);
 
     if (v2->unk_7C) {

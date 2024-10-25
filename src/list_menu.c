@@ -1,10 +1,8 @@
-#include "unk_0200112C.h"
+#include "list_menu.h"
 
 #include <nitro.h>
 #include <nnsys.h>
 #include <string.h>
-
-#include "overlay084/struct_ov84_02240FA8.h"
 
 #include "bg_window.h"
 #include "colored_arrow.h"
@@ -14,41 +12,18 @@
 #include "string_list.h"
 #include "text.h"
 
-typedef struct {
-    u8 unk_00_0 : 4;
-    u8 unk_00_4 : 4;
-    u8 unk_01_0 : 4;
-    u8 unk_02_0 : 6;
-    u8 unk_03_0 : 6;
-    u8 unk_04_0 : 7;
-    u8 unk_04_7 : 1;
-} UnkStruct_0200112C_sub1;
+static void sub_020015D0(ListMenu *param0, void *param1, u8 param2, u8 param3);
+static void sub_02001688(ListMenu *param0, u16 param1, u16 param2, u16 param3);
+static void sub_02001720(ListMenu *param0);
+static void sub_02001778(ListMenu *param0, u16 param1);
+static u8 sub_020017E0(ListMenu *param0, u8 param1);
+static void sub_02001900(ListMenu *param0, u8 param1, u8 param2);
+static u8 sub_02001A18(ListMenu *param0, u8 param1, u8 param2, u8 param3);
+static void sub_02001AD8(ListMenu *param0, u8 param1);
 
-typedef struct UnkStruct_0200112C_t {
-    UnkStruct_ov84_02240FA8 unk_00;
-    UnkStruct_0200112C_sub1 unk_1F;
-    ColoredArrow *unk_24;
-    u16 unk_28;
-    u16 unk_2A;
-    u8 unk_2C;
-    u8 unk_2D;
-    u8 unk_2E;
-    u8 unk_2F;
-    u8 unk_30;
-} BmpList;
-
-static void sub_020015D0(BmpList *param0, void *param1, u8 param2, u8 param3);
-static void sub_02001688(BmpList *param0, u16 param1, u16 param2, u16 param3);
-static void sub_02001720(BmpList *param0);
-static void sub_02001778(BmpList *param0, u16 param1);
-static u8 sub_020017E0(BmpList *param0, u8 param1);
-static void sub_02001900(BmpList *param0, u8 param1, u8 param2);
-static u8 sub_02001A18(BmpList *param0, u8 param1, u8 param2, u8 param3);
-static void sub_02001AD8(BmpList *param0, u8 param1);
-
-BmpList *sub_0200112C(const UnkStruct_ov84_02240FA8 *param0, u16 param1, u16 param2, u8 param3)
+ListMenu *sub_0200112C(const ListMenuTemplate *param0, u16 param1, u16 param2, u8 param3)
 {
-    BmpList *v0 = (BmpList *)Heap_AllocFromHeap(param3, sizeof(BmpList));
+    ListMenu *v0 = (ListMenu *)Heap_AllocFromHeap(param3, sizeof(ListMenu));
 
     v0->unk_00 = *param0;
     v0->unk_24 = ColoredArrow_New(param3);
@@ -81,7 +56,7 @@ BmpList *sub_0200112C(const UnkStruct_ov84_02240FA8 *param0, u16 param1, u16 par
     return v0;
 }
 
-u32 sub_02001288(BmpList *param0)
+u32 sub_02001288(ListMenu *param0)
 {
     u16 v0, v1;
 
@@ -146,7 +121,7 @@ u32 sub_02001288(BmpList *param0)
     return 0xffffffff;
 }
 
-void sub_02001384(BmpList *param0, u16 *param1, u16 *param2)
+void sub_02001384(ListMenu *param0, u16 *param1, u16 *param2)
 {
     if (param1 != NULL) {
         *param1 = param0->unk_28;
@@ -160,7 +135,7 @@ void sub_02001384(BmpList *param0, u16 *param1, u16 *param2)
     Heap_FreeToHeapExplicit(param0->unk_30, param0);
 }
 
-void sub_020013AC(BmpList *param0)
+void sub_020013AC(ListMenu *param0)
 {
     Window_FillTilemap(param0->unk_00.unk_0C, param0->unk_00.unk_18_0);
     sub_02001688(param0, param0->unk_28, 0, param0->unk_00.unk_12);
@@ -168,14 +143,14 @@ void sub_020013AC(BmpList *param0)
     Window_CopyToVRAM(param0->unk_00.unk_0C);
 }
 
-void sub_020013D8(BmpList *param0, u8 param1, u8 param2, u8 param3)
+void sub_020013D8(ListMenu *param0, u8 param1, u8 param2, u8 param3)
 {
     param0->unk_00.unk_17_4 = param1;
     param0->unk_00.unk_18_0 = param2;
     param0->unk_00.unk_18_4 = param3;
 }
 
-u32 sub_02001408(BmpList *param0, UnkStruct_ov84_02240FA8 *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 *param6, u16 *param7)
+u32 sub_02001408(ListMenu *param0, ListMenuTemplate *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 *param6, u16 *param7)
 {
     if (param1) {
         param0->unk_00 = *param1;
@@ -203,7 +178,7 @@ u32 sub_02001408(BmpList *param0, UnkStruct_ov84_02240FA8 *param1, u16 param2, u
     return 0xffffffff;
 }
 
-void sub_0200147C(BmpList *param0, u8 param1, u8 param2, u8 param3)
+void sub_0200147C(ListMenu *param0, u8 param1, u8 param2, u8 param3)
 {
     param0->unk_1F.unk_00_0 = param1;
     param0->unk_1F.unk_00_4 = param2;
@@ -211,12 +186,12 @@ void sub_0200147C(BmpList *param0, u8 param1, u8 param2, u8 param3)
     param0->unk_1F.unk_04_7 = 1;
 }
 
-void sub_020014D0(BmpList *param0, u16 *param1)
+void sub_020014D0(ListMenu *param0, u16 *param1)
 {
     *param1 = (u16)(param0->unk_28 + param0->unk_2A);
 }
 
-void sub_020014DC(BmpList *param0, u16 *param1, u16 *param2)
+void sub_020014DC(ListMenu *param0, u16 *param1, u16 *param2)
 {
     if (param1 != NULL) {
         *param1 = param0->unk_28;
@@ -227,17 +202,17 @@ void sub_020014DC(BmpList *param0, u16 *param1, u16 *param2)
     }
 }
 
-u8 sub_020014F0(BmpList *param0)
+u8 sub_020014F0(ListMenu *param0)
 {
     return param0->unk_2F;
 }
 
-u32 sub_020014F8(BmpList *param0, u16 param1)
+u32 sub_020014F8(ListMenu *param0, u16 param1)
 {
     return param0->unk_00.unk_00[param1].index;
 }
 
-u32 sub_02001504(BmpList *param0, u8 param1)
+u32 sub_02001504(ListMenu *param0, u8 param1)
 {
     u32 v0;
 
@@ -306,12 +281,12 @@ u32 sub_02001504(BmpList *param0, u8 param1)
     return v0;
 }
 
-void sub_020015CC(BmpList *param0, StringList *param1)
+void sub_020015CC(ListMenu *param0, StringList *param1)
 {
     param0->unk_00.unk_00 = param1;
 }
 
-static void sub_020015D0(BmpList *param0, void *param1, u8 param2, u8 param3)
+static void sub_020015D0(ListMenu *param0, void *param1, u8 param2, u8 param3)
 {
     if (param1 == NULL) {
         return;
@@ -324,7 +299,7 @@ static void sub_020015D0(BmpList *param0, void *param1, u8 param2, u8 param3)
     }
 }
 
-static void sub_02001688(BmpList *param0, u16 param1, u16 param2, u16 param3)
+static void sub_02001688(ListMenu *param0, u16 param1, u16 param2, u16 param3)
 {
     int v0;
     u8 v1, v2, v3;
@@ -349,7 +324,7 @@ static void sub_02001688(BmpList *param0, u16 param1, u16 param2, u16 param3)
     }
 }
 
-static void sub_02001720(BmpList *param0)
+static void sub_02001720(ListMenu *param0)
 {
     u8 v0, v1, v2;
 
@@ -370,7 +345,7 @@ static void sub_02001720(BmpList *param0)
     }
 }
 
-static void sub_02001778(BmpList *param0, u16 param1)
+static void sub_02001778(ListMenu *param0, u16 param1)
 {
     u8 v0;
 
@@ -386,7 +361,7 @@ static void sub_02001778(BmpList *param0, u16 param1)
     }
 }
 
-static u8 sub_020017E0(BmpList *param0, u8 param1)
+static u8 sub_020017E0(ListMenu *param0, u8 param1)
 {
     u16 v0, v1, v2;
 
@@ -464,7 +439,7 @@ static u8 sub_020017E0(BmpList *param0, u8 param1)
     return 2;
 }
 
-static void sub_02001900(BmpList *param0, u8 param1, u8 param2)
+static void sub_02001900(ListMenu *param0, u8 param1, u8 param2)
 {
     u8 v0;
     u16 v1;
@@ -491,7 +466,7 @@ static void sub_02001900(BmpList *param0, u8 param1, u8 param2)
     }
 }
 
-static u8 sub_02001A18(BmpList *param0, u8 param1, u8 param2, u8 param3)
+static u8 sub_02001A18(ListMenu *param0, u8 param1, u8 param2, u8 param3)
 {
     u16 v0;
     u8 v1, v2;
@@ -540,7 +515,7 @@ static u8 sub_02001A18(BmpList *param0, u8 param1, u8 param2, u8 param3)
     return 0;
 }
 
-static void sub_02001AD8(BmpList *param0, u8 param1)
+static void sub_02001AD8(ListMenu *param0, u8 param1)
 {
     if (param0->unk_00.unk_04 != NULL) {
         param0->unk_00.unk_04(param0, param0->unk_00.unk_00[param0->unk_28 + param0->unk_2A].index, param1);

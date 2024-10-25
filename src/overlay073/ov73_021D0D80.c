@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_02015958.h"
@@ -10,7 +9,6 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay057/const_ov57_021D0F80.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 
 #include "bg_window.h"
 #include "core_sys.h"
@@ -19,6 +17,7 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "list_menu.h"
 #include "message.h"
 #include "overlay_manager.h"
 #include "palette.h"
@@ -34,7 +33,6 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_02000C88.h"
-#include "unk_0200112C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200A9DC.h"
@@ -61,7 +59,7 @@ typedef struct {
     Window unk_1C;
     int unk_2C;
     Window unk_30;
-    BmpList *unk_40;
+    ListMenu *unk_40;
     StringList *unk_44;
     int unk_48;
     MessageLoader *unk_4C;
@@ -644,7 +642,7 @@ const WindowTemplate Unk_ov72_021D37D4 = {
     0x12D
 };
 
-static const UnkStruct_ov84_02240FA8 Unk_ov72_021D390C = {
+static const ListMenuTemplate Unk_ov72_021D390C = {
     NULL,
     NULL,
     NULL,
@@ -736,7 +734,7 @@ static BOOL ov73_021D1510(UnkStruct_ov73_021D1058 *param0, u32 param1, int param
     return v0;
 }
 
-static void ov73_021D1634(BmpList *param0, u32 param1, u8 param2)
+static void ov73_021D1634(ListMenu *param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
         Sound_PlayEffect(1500);
@@ -746,7 +744,7 @@ static void ov73_021D1634(BmpList *param0, u32 param1, u8 param2)
 static BOOL ov73_021D1648(UnkStruct_ov73_021D1058 *param0, int param1, int param2)
 {
     BOOL v0 = 0;
-    UnkStruct_ov84_02240FA8 v1;
+    ListMenuTemplate v1;
     const WindowTemplate *v2;
     const UnkStruct_ov72_021D3840 *v3;
     int v4, v5;

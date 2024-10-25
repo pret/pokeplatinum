@@ -3,12 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay084/struct_ov84_02240FA8.h"
 #include "overlay092/struct_ov92_021D28C0.h"
 #include "overlay115/camera_angle.h"
 
@@ -21,6 +19,7 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "list_menu.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
@@ -31,7 +30,6 @@
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_0200112C.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
@@ -77,7 +75,7 @@ typedef struct {
     Window unk_B824;
     Window unk_B834;
     Window unk_B844;
-    BmpList *unk_B854;
+    ListMenu *unk_B854;
     StringList *unk_B858;
     UIControlData *unk_B85C;
     MessageLoader *unk_B860;
@@ -140,8 +138,8 @@ static int ov92_021D16F8(int param0);
 static void ov92_021D1700(UnkStruct_ov92_021D1B24 *param0);
 static void ov92_021D1818(int param0, int param1, int *param2, int *param3, int *param4, int *param5);
 static BOOL ov92_021D1B70(UnkStruct_ov92_021D1B24 *param0, u32 param1, int param2);
-static void ov92_021D1C4C(UnkStruct_ov92_021D1B24 *param0, Window *param1, const WindowTemplate *param2, const UnkStruct_ov84_02240FA8 *param3, const UnkStruct_ov92_021D2958 *param4);
-static void ov92_021D1CF4(UnkStruct_ov92_021D1B24 *param0, Window *param1, const WindowTemplate *param2, const UnkStruct_ov84_02240FA8 *param3, u32 param4, const u8 *param5, u32 param6);
+static void ov92_021D1C4C(UnkStruct_ov92_021D1B24 *param0, Window *param1, const WindowTemplate *param2, const ListMenuTemplate *param3, const UnkStruct_ov92_021D2958 *param4);
+static void ov92_021D1CF4(UnkStruct_ov92_021D1B24 *param0, Window *param1, const WindowTemplate *param2, const ListMenuTemplate *param3, u32 param4, const u8 *param5, u32 param6);
 static void ov92_021D1DB4(UnkStruct_ov92_021D1B24 *param0);
 static void ov92_021D1DEC(UnkStruct_ov92_021D1B24 *param0);
 static void ov92_021D1EBC(UnkStruct_ov92_021D1B24 *param0, int param1, int param2);
@@ -259,7 +257,7 @@ static const UnkStruct_ov92_021D2958 Unk_ov92_021D2958[] = {
     { 0xC, 0x2 }
 };
 
-static const UnkStruct_ov84_02240FA8 Unk_ov92_021D29A8 = {
+static const ListMenuTemplate Unk_ov92_021D29A8 = {
     NULL,
     NULL,
     NULL,
@@ -280,7 +278,7 @@ static const UnkStruct_ov84_02240FA8 Unk_ov92_021D29A8 = {
     0x0
 };
 
-static const UnkStruct_ov84_02240FA8 Unk_ov92_021D29C8 = {
+static const ListMenuTemplate Unk_ov92_021D29C8 = {
     NULL,
     NULL,
     NULL,
@@ -1012,16 +1010,16 @@ static BOOL ov92_021D1B70(UnkStruct_ov92_021D1B24 *param0, u32 param1, int param
     return v0;
 }
 
-static void ov92_021D1C38(BmpList *param0, u32 param1, u8 param2)
+static void ov92_021D1C38(ListMenu *param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
         Sound_PlayEffect(1500);
     }
 }
 
-static void ov92_021D1C4C(UnkStruct_ov92_021D1B24 *param0, Window *param1, const WindowTemplate *param2, const UnkStruct_ov84_02240FA8 *param3, const UnkStruct_ov92_021D2958 *param4)
+static void ov92_021D1C4C(UnkStruct_ov92_021D1B24 *param0, Window *param1, const WindowTemplate *param2, const ListMenuTemplate *param3, const UnkStruct_ov92_021D2958 *param4)
 {
-    UnkStruct_ov84_02240FA8 v0;
+    ListMenuTemplate v0;
     int v1;
 
     Window_AddFromTemplate(param0->unk_B810, param1, param2);
@@ -1041,9 +1039,9 @@ static void ov92_021D1C4C(UnkStruct_ov92_021D1B24 *param0, Window *param1, const
     Window_CopyToVRAM(param1);
 }
 
-static void ov92_021D1CF4(UnkStruct_ov92_021D1B24 *param0, Window *param1, const WindowTemplate *param2, const UnkStruct_ov84_02240FA8 *param3, u32 param4, const u8 *param5, u32 param6)
+static void ov92_021D1CF4(UnkStruct_ov92_021D1B24 *param0, Window *param1, const WindowTemplate *param2, const ListMenuTemplate *param3, u32 param4, const u8 *param5, u32 param6)
 {
-    UnkStruct_ov84_02240FA8 v0;
+    ListMenuTemplate v0;
     MessageLoader *v1;
     int v2;
 

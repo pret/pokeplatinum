@@ -1,13 +1,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_0202442C_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0202DBAC.h"
 #include "struct_defs/struct_0203CC84.h"
 
-#include "overlay084/struct_ov84_02240FA8.h"
 #include "overlay097/ov97_0222D04C.h"
 #include "overlay097/ov97_02232054.h"
 #include "overlay097/ov97_02237694.h"
@@ -27,6 +25,7 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "list_menu.h"
 #include "message.h"
 #include "message_util.h"
 #include "overlay_manager.h"
@@ -42,7 +41,6 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_02000C88.h"
-#include "unk_0200112C.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -82,7 +80,7 @@ typedef struct {
     UnkStruct_0202DBAC *unk_2C14[3];
     int unk_2C20;
     int unk_2C24;
-    BmpList *unk_2C28;
+    ListMenu *unk_2C28;
     StringList *unk_2C2C;
     Window unk_2C30;
     Window unk_2C40;
@@ -208,7 +206,7 @@ UnkStruct_ov97_0223E640 Unk_ov97_0223E620[] = {
     { 0x41, (u32)ov97_02230834 }
 };
 
-static UnkStruct_ov84_02240FA8 Unk_ov97_0223E660 = {
+static ListMenuTemplate Unk_ov97_0223E660 = {
     NULL,
     ov97_022383C4,
     NULL,
@@ -292,7 +290,7 @@ static void ov97_02230518(Window *param0, u8 param1)
 static void ov97_02230530(UnkStruct_ov97_02230868 *param0, UnkStruct_ov97_0223E640 *param1, int param2, Window *param3, int param4)
 {
     int v0;
-    UnkStruct_ov84_02240FA8 v1;
+    ListMenuTemplate v1;
 
     if (param0->unk_2C2C) {
         StringList_Free(param0->unk_2C2C);

@@ -3,13 +3,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
 #include "struct_defs/struct_0200C738.h"
 
 #include "overlay007/struct_ov7_0224BEFC_decl.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -18,6 +16,7 @@
 #include "font.h"
 #include "game_options.h"
 #include "heap.h"
+#include "list_menu.h"
 #include "message.h"
 #include "narc.h"
 #include "save_player.h"
@@ -27,7 +26,6 @@
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_0200112C.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
@@ -86,7 +84,7 @@ typedef struct {
 typedef struct {
     u32 unk_00;
     Window *unk_04;
-    BmpList *unk_08;
+    ListMenu *unk_08;
     StringList unk_0C[23];
     Strbuf *unk_C4[23];
     s32 unk_120;
@@ -563,7 +561,7 @@ static void ov7_0224C768(UnkStruct_ov7_0224C768 *param0, BgConfig *param1, u32 p
     static const u8 v4[2] = {
         8, 136
     };
-    static UnkStruct_ov84_02240FA8 v5 = {
+    static ListMenuTemplate v5 = {
         NULL,
         NULL,
         NULL,

@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV65_0222EBE0_T_H
 #define POKEPLATINUM_STRUCT_OV65_0222EBE0_T_H
 
-#include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
@@ -16,6 +15,7 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "list_menu.h"
 #include "message.h"
 #include "overlay_manager.h"
 #include "savedata.h"
@@ -33,9 +33,9 @@ struct UnkStruct_ov65_0222EBE0_t {
     int unk_4C[32];
     int unk_CC[32];
     StringList *unk_14C;
-    BmpList *unk_150;
+    ListMenu *unk_150;
     StringList *unk_154;
-    BmpList *unk_158;
+    ListMenu *unk_158;
     BgConfig *unk_15C;
     SaveData *unk_160;
     StringTemplate *unk_164;

@@ -5,7 +5,6 @@
 
 #include "constants/field/map_load.h"
 
-#include "struct_decls/struct_0200112C_decl.h"
 #include "struct_defs/struct_0202D7B0.h"
 #include "struct_defs/struct_0207CB08.h"
 #include "struct_defs/struct_02099F80.h"
@@ -18,7 +17,6 @@
 #include "overlay084/struct_ov84_0223B5A0.h"
 #include "overlay084/struct_ov84_0223BE5C.h"
 #include "overlay084/struct_ov84_0223C920.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -29,6 +27,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "item.h"
+#include "list_menu.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
@@ -40,7 +39,6 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_0200112C.h"
 #include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
@@ -78,8 +76,8 @@ static void ov84_0223BFBC(UnkStruct_ov84_0223B5A0 *param0);
 static void ov84_0223C194(u16 *param0, u16 *param1, u8 param2);
 static void ov84_0223C1D0(u16 *param0, u16 *param1, u8 param2, u8 param3);
 static void ov84_0223C224(UnkStruct_ov84_0223B5A0 *param0, u16 param1, u16 param2);
-static void ov84_0223C2AC(BmpList *param0, u32 param1, u8 param2);
-static void ov84_0223C3B8(BmpList *param0, u32 param1, u8 param2);
+static void ov84_0223C2AC(ListMenu *param0, u32 param1, u8 param2);
+static void ov84_0223C3B8(ListMenu *param0, u32 param1, u8 param2);
 static void ov84_0223C4E0(UnkStruct_ov84_0223B5A0 *param0);
 static void ov84_0223BE24(UnkStruct_ov84_0223B5A0 *param0);
 static u8 ov84_02240C30(UnkStruct_ov84_0223B5A0 *param0, u8 param1);
@@ -164,7 +162,7 @@ const OverlayManagerTemplate Unk_ov84_02241130 = {
     0xFFFFFFFF
 };
 
-static const UnkStruct_ov84_02240FA8 Unk_ov84_02240FA8 = {
+static const ListMenuTemplate Unk_ov84_02240FA8 = {
     NULL,
     ov84_0223C2AC,
     ov84_0223C3B8,
@@ -1069,7 +1067,7 @@ static void ov84_0223C1D0(u16 *param0, u16 *param1, u8 param2, u8 param3)
 
 static void ov84_0223C224(UnkStruct_ov84_0223B5A0 *param0, u16 param1, u16 param2)
 {
-    UnkStruct_ov84_02240FA8 v0;
+    ListMenuTemplate v0;
 
     v0 = Unk_ov84_02240FA8;
     v0.unk_00 = param0->unk_160;
@@ -1087,7 +1085,7 @@ static void ov84_0223C224(UnkStruct_ov84_0223B5A0 *param0, u16 param1, u16 param
     Window_ScheduleCopyToVRAM(&param0->unk_04[0]);
 }
 
-static void ov84_0223C2AC(BmpList *param0, u32 param1, u8 param2)
+static void ov84_0223C2AC(ListMenu *param0, u32 param1, u8 param2)
 {
     UnkStruct_ov84_0223B5A0 *v0 = (UnkStruct_ov84_0223B5A0 *)sub_02001504(param0, 19);
 
@@ -1134,7 +1132,7 @@ static void ov84_0223C2AC(BmpList *param0, u32 param1, u8 param2)
     }
 }
 
-static void ov84_0223C3B8(BmpList *param0, u32 param1, u8 param2)
+static void ov84_0223C3B8(ListMenu *param0, u32 param1, u8 param2)
 {
     UnkStruct_ov84_0223B5A0 *v0 = (UnkStruct_ov84_0223B5A0 *)sub_02001504(param0, 19);
     UnkStruct_ov84_0223BE5C *v1 = &v0->unk_C4->unk_04[v0->unk_C4->unk_64];

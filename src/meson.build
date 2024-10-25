@@ -15,7 +15,7 @@ pokeplatinum_c = files(
     'party.c',
     'poffin.c',
     'strbuf.c',
-    'unk_0200112C.c',
+    'list_menu.c',
     'unk_02001AF4.c',
     'charcode_util.c',
     'render_text.c',

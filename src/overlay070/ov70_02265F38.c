@@ -16,12 +16,12 @@
 #include "overlay070/struct_ov70_0225DEE8_decl.h"
 #include "overlay070/struct_ov70_02263344_decl.h"
 #include "overlay070/struct_ov70_02265F38.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 
 #include "communication_information.h"
 #include "communication_system.h"
 #include "core_sys.h"
 #include "enums.h"
+#include "list_menu.h"
 #include "strbuf.h"
 #include "unk_02005474.h"
 #include "unk_020363E8.h"
@@ -49,7 +49,7 @@ typedef struct {
     s32 unk_0C;
     s32 unk_10;
     BOOL unk_14;
-    UnkStruct_ov84_02240FA8 unk_18;
+    ListMenuTemplate unk_18;
     u32 unk_38;
     UnkStruct_ov70_02266C68 unk_3C;
 } UnkStruct_ov70_02266AF0;
@@ -70,7 +70,7 @@ static void ov70_02266CFC(UnkStruct_ov70_02266C68 *param0, UnkStruct_ov70_0225DE
 static void ov70_02266CF0(UnkStruct_ov70_02266C68 *param0, UnkStruct_ov70_0225DEE8 *param1, BOOL param2);
 static void ov70_02266D08(UnkStruct_ov70_02266C68 *param0, UnkStruct_ov70_0225DEE8 *param1, BOOL param2, BOOL param3);
 
-static const UnkStruct_ov84_02240FA8 Unk_ov70_0226DC94 = {
+static const ListMenuTemplate Unk_ov70_0226DC94 = {
     NULL,
     NULL,
     NULL,

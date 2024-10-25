@@ -3,25 +3,22 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-
-#include "overlay084/struct_ov84_02240FA8.h"
 
 #include "bg_window.h"
 #include "font.h"
 #include "game_options.h"
+#include "list_menu.h"
 #include "message.h"
 #include "message_util.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "text.h"
-#include "unk_0200112C.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 
-static void ov88_0223EE14(BmpList *param0, u32 param1, u8 param2);
+static void ov88_0223EE14(ListMenu *param0, u32 param1, u8 param2);
 
 static const u16 Unk_ov88_0223F1A8[][5] = {
     { 0x4, 0x1, 0x9, 0x2, 0x1 },
@@ -184,7 +181,7 @@ void ov88_0223ED80(Window *param0)
     Window_Show(param0, 0, (512 - 9), 11);
 }
 
-static const UnkStruct_ov84_02240FA8 Unk_ov88_0223F150 = {
+static const ListMenuTemplate Unk_ov88_0223F150 = {
     NULL,
     NULL,
     NULL,
@@ -206,10 +203,10 @@ static const UnkStruct_ov84_02240FA8 Unk_ov88_0223F150 = {
     NULL
 };
 
-BmpList *ov88_0223ED94(StringList *param0, int param1, Window *param2, BgConfig *param3)
+ListMenu *ov88_0223ED94(StringList *param0, int param1, Window *param2, BgConfig *param3)
 {
-    BmpList *v0;
-    UnkStruct_ov84_02240FA8 v1;
+    ListMenu *v0;
+    ListMenuTemplate v1;
     int v2 = 5;
 
     Window_Add(param3, param2, 0, 19, 1, 12, v2 * 2, 13, (512 - (9 + (18 + 12))) - (10 * (v2 + 2) * 2));
@@ -226,7 +223,7 @@ BmpList *ov88_0223ED94(StringList *param0, int param1, Window *param2, BgConfig 
     return v0;
 }
 
-static void ov88_0223EE14(BmpList *param0, u32 param1, u8 param2)
+static void ov88_0223EE14(ListMenu *param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
         Sound_PlayEffect(1500);

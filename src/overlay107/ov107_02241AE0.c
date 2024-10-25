@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_020302DC_decl.h"
@@ -13,7 +12,6 @@
 #include "struct_defs/struct_02081CF4.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay084/struct_ov84_02240FA8.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0223B6F4.h"
 #include "overlay104/struct_ov104_0223597C.h"
@@ -36,6 +34,7 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "list_menu.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
@@ -49,7 +48,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200112C.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
@@ -250,9 +248,9 @@ struct UnkStruct_ov107_02241D6C_t {
     UnkStruct_02081CF4 unk_170;
     UIControlData * unk_17C;
     StringList unk_180[3];
-    BmpList * unk_198;
+    ListMenu *unk_198;
     StringList *unk_19C;
-    UnkStruct_ov84_02240FA8 unk_1A0;
+    ListMenuTemplate unk_1A0;
     PaletteData *unk_1C0;
     UnkStruct_0200C440 * unk_1C4;
     Options * unk_1C8;
@@ -337,16 +335,16 @@ static void ov107_0224414C(UnkStruct_ov107_02241D6C * param0, Window * param1, u
 static void ov107_022441B0(UnkStruct_ov107_02241D6C * param0, u8 param1, u8 param2, int param3);
 static void ov107_022441DC(UnkStruct_ov107_02241D6C * param0);
 static void ov107_02244240(UnkStruct_ov107_02241D6C * param0, u8 param1);
-static void ov107_0224440C(BmpList * param0, u32 param1, u8 param2);
-static void ov107_02244560(BmpList * param0, u32 param1, u8 param2);
+static void ov107_0224440C(ListMenu *param0, u32 param1, u8 param2);
+static void ov107_02244560(ListMenu *param0, u32 param1, u8 param2);
 static void ov107_022445C4(UnkStruct_ov107_02241D6C * param0);
-static void ov107_02244690(BmpList * param0, u32 param1, u8 param2);
-static void ov107_02244708(BmpList * param0, u32 param1, u8 param2);
+static void ov107_02244690(ListMenu *param0, u32 param1, u8 param2);
+static void ov107_02244708(ListMenu *param0, u32 param1, u8 param2);
 static void ov107_02244780(UnkStruct_ov107_02241D6C * param0);
-static void ov107_0224486C(BmpList * param0, u32 param1, u8 param2);
-static void ov107_022448E8(BmpList * param0, u32 param1, u8 param2);
+static void ov107_0224486C(ListMenu *param0, u32 param1, u8 param2);
+static void ov107_022448E8(ListMenu *param0, u32 param1, u8 param2);
 static void ov107_02244944(UnkStruct_ov107_02241D6C * param0);
-static void ov107_02244A1C(BmpList * param0, u32 param1, u8 param2);
+static void ov107_02244A1C(ListMenu *param0, u32 param1, u8 param2);
 static void ov107_02244A74(UnkStruct_ov107_02241D6C * param0, u32 param1, s32 param2, u32 param3, int param4);
 static void ov107_02244A8C(UnkStruct_ov107_02241D6C * param0, u32 param1, BoxPokemon * param2);
 static void ov107_02244A98(UnkStruct_ov107_02241D6C * param0, u32 param1);
@@ -430,7 +428,7 @@ static const u16 Unk_ov107_02249E34[3][3] = {
     {0x0, 0x0, 0x0}
 };
 
-static const UnkStruct_ov84_02240FA8 Unk_ov107_02249EE4 = {
+static const ListMenuTemplate Unk_ov107_02249EE4 = {
     NULL,
     ov107_0224440C,
     ov107_02244560,
@@ -762,7 +760,7 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
 
         if (gCoreSys.pressedKeys & PAD_KEY_UP) {
             if (param0->unk_16 == 0) {
-                sub_02001408(param0->unk_198, (UnkStruct_ov84_02240FA8 *)&param0->unk_1A0, 0, ((NELEMS(Unk_ov107_02249FF0)) - 1), 1, PAD_KEY_DOWN, NULL, NULL);
+                sub_02001408(param0->unk_198, (ListMenuTemplate *)&param0->unk_1A0, 0, ((NELEMS(Unk_ov107_02249FF0)) - 1), 1, PAD_KEY_DOWN, NULL, NULL);
                 sub_020013AC(param0->unk_198);
                 Sound_PlayEffect(1500);
                 ov107_0224379C(param0, &param0->unk_50[6], 28, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
@@ -770,7 +768,7 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
             }
         } else if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
             if (param0->unk_16 == ((NELEMS(Unk_ov107_02249FF0)) - 1)) {
-                sub_02001408(param0->unk_198, (UnkStruct_ov84_02240FA8 *)&param0->unk_1A0, 0, 0, 1, PAD_KEY_UP, NULL, NULL);
+                sub_02001408(param0->unk_198, (ListMenuTemplate *)&param0->unk_1A0, 0, 0, 1, PAD_KEY_UP, NULL, NULL);
                 sub_020013AC(param0->unk_198);
                 Sound_PlayEffect(1500);
                 ov107_0224379C(param0, &param0->unk_50[6], 24, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
@@ -2499,7 +2497,7 @@ static void ov107_02244240 (UnkStruct_ov107_02241D6C * param0, u8 param1)
     return;
 }
 
-static void ov107_0224440C (BmpList * param0, u32 param1, u8 param2)
+static void ov107_0224440C(ListMenu *param0, u32 param1, u8 param2)
 {
     u32 v0, v1;
     u16 v2, v3, v4, v5;
@@ -2545,7 +2543,7 @@ static void ov107_0224440C (BmpList * param0, u32 param1, u8 param2)
     return;
 }
 
-static void ov107_02244560 (BmpList * param0, u32 param1, u8 param2)
+static void ov107_02244560(ListMenu *param0, u32 param1, u8 param2)
 {
     UnkStruct_ov107_02241D6C * v0 = (UnkStruct_ov107_02241D6C *)sub_02001504(param0, 19);
 
@@ -2590,7 +2588,7 @@ static void ov107_022445C4 (UnkStruct_ov107_02241D6C * param0)
     return;
 }
 
-static void ov107_02244690 (BmpList * param0, u32 param1, u8 param2)
+static void ov107_02244690(ListMenu *param0, u32 param1, u8 param2)
 {
     u8 v0;
     u16 v1;
@@ -2624,7 +2622,7 @@ static void ov107_02244690 (BmpList * param0, u32 param1, u8 param2)
     return;
 }
 
-static void ov107_02244708 (BmpList * param0, u32 param1, u8 param2)
+static void ov107_02244708(ListMenu *param0, u32 param1, u8 param2)
 {
     u16 v0;
     u8 v1, v2;
@@ -2701,7 +2699,7 @@ static void ov107_02244780 (UnkStruct_ov107_02241D6C * param0)
     return;
 }
 
-static void ov107_0224486C (BmpList * param0, u32 param1, u8 param2)
+static void ov107_0224486C(ListMenu *param0, u32 param1, u8 param2)
 {
     u16 v0;
     u8 v1;
@@ -2738,7 +2736,7 @@ static void ov107_0224486C (BmpList * param0, u32 param1, u8 param2)
     return;
 }
 
-static void ov107_022448E8 (BmpList * param0, u32 param1, u8 param2)
+static void ov107_022448E8(ListMenu *param0, u32 param1, u8 param2)
 {
     u8 v0, v1;
     UnkStruct_ov107_02241D6C * v2 = (UnkStruct_ov107_02241D6C *)sub_02001504(param0, 19);
@@ -2816,7 +2814,7 @@ static void ov107_02244944 (UnkStruct_ov107_02241D6C * param0)
     return;
 }
 
-static void ov107_02244A1C (BmpList * param0, u32 param1, u8 param2)
+static void ov107_02244A1C(ListMenu *param0, u32 param1, u8 param2)
 {
     UnkStruct_ov107_02241D6C * v0;
     u16 v1;

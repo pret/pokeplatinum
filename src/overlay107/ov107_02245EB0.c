@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_020302DC_decl.h"
@@ -13,7 +12,6 @@
 #include "struct_defs/struct_02081CF4.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay084/struct_ov84_02240FA8.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0223B6F4.h"
 #include "overlay104/struct_ov104_0223597C.h"
@@ -36,6 +34,7 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "list_menu.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
@@ -49,7 +48,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200112C.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
@@ -105,7 +103,7 @@ struct UnkStruct_ov107_02246170_t {
     UnkStruct_02081CF4 unk_110;
     UIControlData * unk_11C;
     StringList unk_120[3];
-    BmpList * unk_138;
+    ListMenu *unk_138;
     StringList *unk_13C;
     PaletteData *unk_140;
     UnkStruct_0200C440 * unk_144;
@@ -178,10 +176,10 @@ static void ov107_02247D68(UnkStruct_ov107_02246170 * param0, u8 param1, u8 para
 static void ov107_02247D94(UnkStruct_ov107_02246170 * param0);
 static void ov107_02247DF0(UnkStruct_ov107_02246170 * param0);
 static void ov107_02247E5C(UnkStruct_ov107_02246170 * param0);
-static void ov107_02247F14(BmpList * param0, u32 param1, u8 param2);
+static void ov107_02247F14(ListMenu *param0, u32 param1, u8 param2);
 static void ov107_02247F6C(UnkStruct_ov107_02246170 * param0);
-static void ov107_02248028(BmpList * param0, u32 param1, u8 param2);
-static void ov107_022480A0(BmpList * param0, u32 param1, u8 param2);
+static void ov107_02248028(ListMenu *param0, u32 param1, u8 param2);
+static void ov107_022480A0(ListMenu *param0, u32 param1, u8 param2);
 static void ov107_022480EC(UnkStruct_ov107_02246170 * param0, u32 param1, s32 param2, u32 param3, int param4);
 static void ov107_02248104(UnkStruct_ov107_02246170 * param0, u32 param1, BoxPokemon * param2);
 static void ov107_02248110(UnkStruct_ov107_02246170 * param0, u32 param1);
@@ -1925,7 +1923,7 @@ static void ov107_02247DF0 (UnkStruct_ov107_02246170 * param0)
     return;
 }
 
-static const UnkStruct_ov84_02240FA8 Unk_ov107_0224A17C = {
+static const ListMenuTemplate Unk_ov107_0224A17C = {
     NULL,
     NULL,
     NULL,
@@ -1964,7 +1962,7 @@ static const u32 Unk_ov107_0224A0CC[] = {
 static void ov107_02247E5C (UnkStruct_ov107_02246170 * param0)
 {
     int v0;
-    UnkStruct_ov84_02240FA8 v1;
+    ListMenuTemplate v1;
 
     ov107_02249D84(param0->unk_4C, &param0->unk_50[5]);
     Window_FillTilemap(&param0->unk_50[5], 15);
@@ -1993,7 +1991,7 @@ static void ov107_02247E5C (UnkStruct_ov107_02246170 * param0)
     return;
 }
 
-static void ov107_02247F14 (BmpList * param0, u32 param1, u8 param2)
+static void ov107_02247F14(ListMenu *param0, u32 param1, u8 param2)
 {
     u32 v0, v1;
     u16 v2, v3, v4;
@@ -2026,7 +2024,7 @@ static const u16 Unk_ov107_0224A0AC[][2] = {
 static void ov107_02247F6C (UnkStruct_ov107_02246170 * param0)
 {
     int v0;
-    UnkStruct_ov84_02240FA8 v1;
+    ListMenuTemplate v1;
 
     ov107_02249D84(param0->unk_4C, &param0->unk_50[6]);
     Window_FillTilemap(&param0->unk_50[6], 15);
@@ -2055,7 +2053,7 @@ static void ov107_02247F6C (UnkStruct_ov107_02246170 * param0)
     return;
 }
 
-static void ov107_02248028 (BmpList * param0, u32 param1, u8 param2)
+static void ov107_02248028(ListMenu *param0, u32 param1, u8 param2)
 {
     u8 v0, v1;
     u16 v2;
@@ -2080,7 +2078,7 @@ static void ov107_02248028 (BmpList * param0, u32 param1, u8 param2)
     return;
 }
 
-static void ov107_022480A0 (BmpList * param0, u32 param1, u8 param2)
+static void ov107_022480A0(ListMenu *param0, u32 param1, u8 param2)
 {
     u8 v0, v1;
     UnkStruct_ov107_02246170 * v2 = (UnkStruct_ov107_02246170 *)sub_02001504(param0, 19);

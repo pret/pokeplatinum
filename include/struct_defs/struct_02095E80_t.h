@@ -4,7 +4,6 @@
 #include <nitro/fx/fx.h>
 #include <nnsys.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
@@ -23,6 +22,7 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "list_menu.h"
 #include "message.h"
 #include "overlay_manager.h"
 #include "savedata.h"
@@ -126,7 +126,7 @@ struct UnkStruct_02095E80_t {
     StringTemplate *unk_36CC;
     MessageLoader *unk_36D0;
     StringList *unk_36D4;
-    BmpList *unk_36D8;
+    ListMenu *unk_36D8;
     Window unk_36DC;
     UnkStruct_0202B370 *unk_36EC;
     int unk_36F0;

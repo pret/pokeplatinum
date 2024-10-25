@@ -6,12 +6,10 @@
 #include "constants/communication/comm_type.h"
 #include "consts/sdat.h"
 
-#include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 
 #include "field/field_system.h"
 #include "gmm/message_bank_unk_0353.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 
 #include "bg_window.h"
 #include "communication_information.h"
@@ -20,6 +18,7 @@
 #include "field_comm_manager.h"
 #include "field_system.h"
 #include "heap.h"
+#include "list_menu.h"
 #include "message.h"
 #include "render_text.h"
 #include "save_player.h"
@@ -30,7 +29,6 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200112C.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
@@ -51,7 +49,7 @@ typedef struct CommClubManager {
     StringTemplate *unk_50;
     StringTemplate *unk_54;
     StringTemplate *strTempMsg;
-    BmpList *unk_5C;
+    ListMenu *unk_5C;
     UIControlData *unk_60;
     StringList *unk_64;
     FieldSystem *fieldSystem;
@@ -88,9 +86,9 @@ static void CommClubMan_SetTask(CommClubManTaskFunc param0);
 static void CommClubMan_PrintMessage(int param0, BOOL param1);
 static void CommClubMan_StartBattleClient(CommClubManager *param0);
 static void ov7_0224A510(CommClubManager *param0);
-static void ov7_02249C44(BmpList *param0, u32 param1, u8 param2);
-static void ov7_02249C64(BmpList *param0, u32 param1, u8 param2);
-static void ov7_02249C94(BmpList *param0, u32 param1, u8 param2);
+static void ov7_02249C44(ListMenu *param0, u32 param1, u8 param2);
+static void ov7_02249C64(ListMenu *param0, u32 param1, u8 param2);
+static void ov7_02249C94(ListMenu *param0, u32 param1, u8 param2);
 static void CommClubMan_PrintChooseJoinMsg(CommClubManager *param0);
 static void CommClubMan_DisplayPersonalTrainerInfo(CommClubManager *param0);
 static void ov7_02249F54(SysTask *param0, void *param1);
@@ -104,7 +102,7 @@ static void CommClubMan_Disconnect(void);
 static void ov7_0224A53C(CommClubManager *param0);
 static void ov7_0224A5D0(void);
 static void ov7_0224A64C(CommClubManager *param0);
-static void ov7_0224A438(BmpList *param0, u32 param1, u8 param2);
+static void ov7_0224A438(ListMenu *param0, u32 param1, u8 param2);
 static void ov7_0224A72C(SysTask *param0, void *param1);
 static void ov7_0224A7D0(SysTask *param0, void *param1);
 static void ov7_0224A97C(SysTask *param0, void *param1);
@@ -195,7 +193,7 @@ static inline void CommClubMan_PrintMessageFastSpeed(int msgId, BOOL format)
     sCommClubMan->printMsgIndex = Text_AddPrinterWithParams(&sCommClubMan->msgWindow, FONT_MESSAGE, sCommClubMan->strBuff[5], 0, 0, TEXT_SPEED_FAST, NULL);
 }
 
-static void CommClubMan_CreateList(UnkStruct_ov84_02240FA8 param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 param5)
+static void CommClubMan_CreateList(ListMenuTemplate param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 param5)
 {
     if (!Window_IsInUse(&sCommClubMan->unk_20)) {
         Window_Add(sCommClubMan->fieldSystem->unk_08, &sCommClubMan->unk_20, 3, param1, param2, param3, param4, 13, param5);
@@ -203,7 +201,7 @@ static void CommClubMan_CreateList(UnkStruct_ov84_02240FA8 param0, u8 param1, u8
 
     Window_Show(&sCommClubMan->unk_20, 1, 1024 - (18 + 12) - 9, 11);
 
-    UnkStruct_ov84_02240FA8 v0 = param0;
+    ListMenuTemplate v0 = param0;
     v0.unk_00 = sCommClubMan->unk_64;
     v0.unk_0C = &sCommClubMan->unk_20;
 
@@ -283,7 +281,7 @@ static void CommClubMan_StartBattleClient(CommClubManager *man)
     FieldCommMan_StartBattleClient(man->fieldSystem, man->commType, CommClubMan_Regulation());
 }
 
-static const UnkStruct_ov84_02240FA8 Unk_ov7_0224ED34 = {
+static const ListMenuTemplate Unk_ov7_0224ED34 = {
     NULL,
     ov7_02249C44,
     ov7_02249C64,
@@ -305,7 +303,7 @@ static const UnkStruct_ov84_02240FA8 Unk_ov7_0224ED34 = {
     NULL
 };
 
-static void ov7_02249C44(BmpList *param0, u32 param1, u8 param2)
+static void ov7_02249C44(ListMenu *param0, u32 param1, u8 param2)
 {
     sCommClubMan->unk_98 = 1;
 
@@ -314,14 +312,14 @@ static void ov7_02249C44(BmpList *param0, u32 param1, u8 param2)
     }
 }
 
-static void ov7_02249C64(BmpList *param0, u32 param1, u8 param2)
+static void ov7_02249C64(ListMenu *param0, u32 param1, u8 param2)
 {
     for (int v0 = 0; v0 < sub_02001504(param0, 3); v0++) {
         ov7_02249C94(param0, 0, v0);
     }
 }
 
-static void ov7_02249C94(BmpList *param0, u32 param1, u8 param2)
+static void ov7_02249C94(ListMenu *param0, u32 param1, u8 param2)
 {
     int v0 = sub_02033808();
     u16 cnt = 0;
@@ -623,7 +621,7 @@ static void CommClubTask_LeaveGroup(SysTask *task, void *data)
     }
 }
 
-static const UnkStruct_ov84_02240FA8 Unk_ov7_0224ED14 = {
+static const ListMenuTemplate Unk_ov7_0224ED14 = {
     NULL,
     NULL,
     NULL,
@@ -645,7 +643,7 @@ static const UnkStruct_ov84_02240FA8 Unk_ov7_0224ED14 = {
     NULL
 };
 
-static void ov7_0224A438(BmpList *param0, u32 param1, u8 param2)
+static void ov7_0224A438(ListMenu *param0, u32 param1, u8 param2)
 {
     u16 v0 = 0;
 

@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_defs/struct_0206A844.h"
 
@@ -14,16 +13,15 @@
 #include "overlay023/struct_ov23_02248D20.h"
 #include "overlay023/struct_ov23_022542D8_decl.h"
 #include "overlay023/struct_ov23_02254594_decl.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 
 #include "bg_window.h"
 #include "heap.h"
+#include "list_menu.h"
 #include "message.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_0200112C.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_0202854C.h"
@@ -34,7 +32,7 @@ typedef struct UnkStruct_ov23_022542D8_t {
     Window unk_04;
     Window unk_14;
     StringList *unk_24;
-    BmpList *unk_28;
+    ListMenu *unk_28;
     Strbuf *unk_2C;
     u16 *unk_30;
     u16 *unk_34;
@@ -50,7 +48,7 @@ typedef struct UnkStruct_ov23_02254594_t {
     Window unk_18;
     StringList *unk_28;
     UnkStruct_ov23_02248D20 *unk_2C;
-    BmpList *unk_30;
+    ListMenu *unk_30;
     Strbuf *unk_34;
     u16 *unk_38;
     u16 *unk_3C;
@@ -70,7 +68,7 @@ static void ov23_02254958(UnkStruct_ov23_02254594 *param0);
 static void ov23_022549A8(UnkStruct_0206A844 *param0, const u16 param1, const u16 param2, const u16 param3);
 static void ov23_022549EC(UnkStruct_ov23_022542D8 *param0);
 
-static const UnkStruct_ov84_02240FA8 Unk_ov23_02256B3C = {
+static const ListMenuTemplate Unk_ov23_02256B3C = {
     NULL,
     NULL,
     NULL,
@@ -140,7 +138,7 @@ BOOL ov23_02254318(UnkStruct_ov23_022542D8 *param0)
     return 0;
 }
 
-static void ov23_02254350(BmpList *param0, u32 param1, u8 param2)
+static void ov23_02254350(ListMenu *param0, u32 param1, u8 param2)
 {
     const int v0[4] = {
         5,
@@ -154,7 +152,7 @@ static void ov23_02254350(BmpList *param0, u32 param1, u8 param2)
 
 static void ov23_0225437C(UnkStruct_ov23_022542D8 *param0)
 {
-    UnkStruct_ov84_02240FA8 v0;
+    ListMenuTemplate v0;
     int v1, v2;
     int v3 = 3;
     int v4 = 4;
@@ -256,7 +254,7 @@ static void ov23_0225451C(UnkStruct_ov23_022542D8 *param0)
     StringList_Free(param0->unk_24);
 }
 
-static void ov23_02254564(BmpList *param0, u32 param1, u8 param2)
+static void ov23_02254564(ListMenu *param0, u32 param1, u8 param2)
 {
     u8 v0;
 
@@ -362,7 +360,7 @@ static void ov23_0225461C(UnkStruct_ov23_02254594 *param0)
     return;
 }
 
-static void ov23_022546A0(BmpList *param0, u32 param1, u8 param2)
+static void ov23_022546A0(ListMenu *param0, u32 param1, u8 param2)
 {
     int v0;
     UndergroundData *v1;
@@ -386,7 +384,7 @@ static void ov23_022546A0(BmpList *param0, u32 param1, u8 param2)
 static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
 {
     UndergroundData *v0;
-    UnkStruct_ov84_02240FA8 v1;
+    ListMenuTemplate v1;
     int v2, v3;
     int v4;
     int v5;

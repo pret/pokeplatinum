@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
@@ -18,7 +17,6 @@
 #include "overlay063/ov63_0222D77C.h"
 #include "overlay063/struct_ov63_0222BEC0_decl.h"
 #include "overlay063/struct_ov63_0222CCB8.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 #include "overlay104/ov104_0222E63C.h"
 #include "overlay104/ov104_0222E930.h"
 #include "overlay104/struct_ov104_0222E930_decl.h"
@@ -38,6 +36,7 @@
 #include "font.h"
 #include "game_options.h"
 #include "heap.h"
+#include "list_menu.h"
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
@@ -51,7 +50,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_0200112C.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
@@ -88,8 +86,8 @@ typedef struct UnkStruct_ov104_02232B5C_t {
     UnkStruct_02081CF4 unk_A4;
     UIControlData *unk_B0;
     StringList unk_B4[28];
-    UnkStruct_ov84_02240FA8 unk_194;
-    BmpList *unk_1B4;
+    ListMenuTemplate unk_194;
+    ListMenu *unk_1B4;
     u16 unk_1B8;
     u16 unk_1BA;
     StringList unk_1BC[28];
@@ -125,8 +123,8 @@ void ov104_02232624(UnkStruct_ov104_02232B5C *param0);
 static void ov104_02232750(UnkStruct_ov104_02232B5C *param0, u32 param1, u32 param2, u32 param3);
 static u32 ov104_022327F0(UnkStruct_ov104_02232B5C *param0);
 static void ov104_02232830(UnkStruct_ov104_02232B5C *param0);
-static void ov104_0223293C(BmpList *param0, u32 param1, u8 param2);
-static void ov104_02232960(BmpList *param0, u32 param1, u8 param2);
+static void ov104_0223293C(ListMenu *param0, u32 param1, u8 param2);
+static void ov104_02232960(ListMenu *param0, u32 param1, u8 param2);
 static void ov104_0223296C(SysTask *param0, void *param1);
 static void ov104_02232A58(UnkStruct_ov104_02232B5C *param0, u8 param1);
 static void ov104_02232B2C(UnkStruct_ov104_02232B5C *param0);
@@ -513,7 +511,7 @@ void ov104_02232624(UnkStruct_ov104_02232B5C *param0)
     }
     Window_Show(&param0->unk_08, 1, 985, 12);
     ov104_02232830(param0);
-    param0->unk_1B4 = sub_0200112C((const UnkStruct_ov84_02240FA8 *)&param0->unk_194, 0, param0->unk_96, param0->unk_00->unk_34);
+    param0->unk_1B4 = sub_0200112C((const ListMenuTemplate *)&param0->unk_194, 0, param0->unk_96, param0->unk_00->unk_34);
     ov104_02232B2C(param0);
     param0->unk_04 = SysTask_Start(ov104_0223296C, param0, 0);
 }
@@ -599,7 +597,7 @@ static void ov104_02232830(UnkStruct_ov104_02232B5C *param0)
     return;
 }
 
-static void ov104_0223293C(BmpList *param0, u32 param1, u8 param2)
+static void ov104_0223293C(ListMenu *param0, u32 param1, u8 param2)
 {
     if (param1 == 0xfffffffd) {
         sub_0200147C(param0, 3, 15, 4);
@@ -608,7 +606,7 @@ static void ov104_0223293C(BmpList *param0, u32 param1, u8 param2)
     }
 }
 
-static void ov104_02232960(BmpList *param0, u32 param1, u8 param2)
+static void ov104_02232960(ListMenu *param0, u32 param1, u8 param2)
 {
     u32 v0, v1;
     u16 v2 = 0;

@@ -17,7 +17,6 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay022/struct_ov22_022559F8.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 #include "overlay088/ov88_0223E9C4.h"
 #include "overlay088/struct_ov88_0223C370.h"
 #include "overlay088/struct_ov88_0223C8AC.h"
@@ -38,6 +37,7 @@
 #include "inlines.h"
 #include "item.h"
 #include "journal.h"
+#include "list_menu.h"
 #include "message.h"
 #include "message_util.h"
 #include "narc.h"
@@ -55,7 +55,6 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_0200112C.h"
 #include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
@@ -1903,7 +1902,7 @@ static int ov88_0223D5B8(UnkStruct_02095E80 *param0)
 
 static int ov88_0223D69C(UnkStruct_02095E80 *param0)
 {
-    UnkStruct_ov84_02240FA8 v0;
+    ListMenuTemplate v0;
     int v1 = sub_0202AF94(param0->unk_36EC);
     int v2 = 5;
 

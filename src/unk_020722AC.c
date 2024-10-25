@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02028430_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
@@ -15,7 +14,6 @@
 #include "overlay005/ov5_021D37AC.h"
 #include "overlay005/ov5_021D431C.h"
 #include "overlay006/ov6_02247078.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -25,6 +23,7 @@
 #include "game_options.h"
 #include "heap.h"
 #include "item.h"
+#include "list_menu.h"
 #include "message.h"
 #include "party.h"
 #include "pokemon.h"
@@ -37,7 +36,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_0200112C.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
@@ -99,8 +97,8 @@ typedef struct {
     u8 unk_13B_6 : 2;
     u16 unk_13C;
     u16 unk_13E;
-    UnkStruct_ov84_02240FA8 unk_140;
-    BmpList *unk_160;
+    ListMenuTemplate unk_140;
+    ListMenu *unk_160;
     StringList *unk_164;
     UIControlData *unk_168;
     FieldSystem *fieldSystem;
@@ -141,10 +139,10 @@ static void sub_02072EB8(UnkStruct_02072EB8 *param0, u8 param1);
 static void sub_02072ED0(UnkStruct_02072EB8 *param0, u8 param1, int param2);
 static void sub_02072F04(UnkStruct_02072EB8 *param0, u8 param1);
 static void sub_020729B4(UnkStruct_02072334 *param0);
-static void sub_02072BBC(BmpList *param0, u32 param1, u8 param2);
-static void sub_02072C0C(BmpList *param0, u32 param1, u8 param2);
+static void sub_02072BBC(ListMenu *param0, u32 param1, u8 param2);
+static void sub_02072C0C(ListMenu *param0, u32 param1, u8 param2);
 static void sub_02072C98(UnkStruct_02072334 *param0, u8 param1, u8 param2);
-static void sub_02072DA4(BmpList *param0, u32 param1, u8 param2);
+static void sub_02072DA4(ListMenu *param0, u32 param1, u8 param2);
 static void sub_02072DB8(UnkStruct_02072334 *param0);
 static void sub_02072E4C(UnkStruct_02072334 *param0);
 static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *param1, int param2);
@@ -166,7 +164,7 @@ static int sub_020734F4(UnkStruct_02072334 *param0, u8 param1);
 static int sub_02073524(UnkStruct_02072334 *param0, int param1);
 static int sub_020735E8(UnkStruct_02072334 *param0);
 
-static const UnkStruct_ov84_02240FA8 Unk_020F0504 = {
+static const ListMenuTemplate Unk_020F0504 = {
     NULL,
     NULL,
     NULL,
@@ -703,7 +701,7 @@ static void sub_020729B4(UnkStruct_02072334 *param0)
     StringList_AddFromStrbuf(param0->unk_164, param0->unk_110.unk_08, 0xFFFF);
     v1++;
 
-    MI_CpuCopy8((void *)&Unk_020F0504, (void *)&(param0->unk_140), sizeof(UnkStruct_ov84_02240FA8));
+    MI_CpuCopy8((void *)&Unk_020F0504, (void *)&(param0->unk_140), sizeof(ListMenuTemplate));
 
     param0->unk_140.unk_0C = &(param0->unk_174);
     param0->unk_140.unk_00 = param0->unk_164;
@@ -737,7 +735,7 @@ static void sub_020729B4(UnkStruct_02072334 *param0)
     param0->unk_13B_0 = 0;
 }
 
-static void sub_02072BBC(BmpList *param0, u32 param1, u8 param2)
+static void sub_02072BBC(ListMenu *param0, u32 param1, u8 param2)
 {
     UnkStruct_02072334 *v0 = (UnkStruct_02072334 *)sub_02001504(param0, 19);
 
@@ -752,7 +750,7 @@ static void sub_02072BBC(BmpList *param0, u32 param1, u8 param2)
     }
 }
 
-static void sub_02072C0C(BmpList *param0, u32 param1, u8 param2)
+static void sub_02072C0C(ListMenu *param0, u32 param1, u8 param2)
 {
     u16 v0, v1, v2;
     UnkStruct_02072334 *v3 = (UnkStruct_02072334 *)sub_02001504(param0, 19);
@@ -800,7 +798,7 @@ static void sub_02072C98(UnkStruct_02072334 *param0, u8 param1, u8 param2)
         StringList_AddFromMessageBank(param0->unk_164, param0->unk_10C, Unk_020F0524[v0].unk_00, Unk_020F0524[v0].unk_04);
     }
 
-    MI_CpuCopy8((void *)&Unk_020F0504, (void *)&(param0->unk_140), sizeof(UnkStruct_ov84_02240FA8));
+    MI_CpuCopy8((void *)&Unk_020F0504, (void *)&(param0->unk_140), sizeof(ListMenuTemplate));
 
     param0->unk_140.unk_0C = &(param0->unk_174);
     param0->unk_140.unk_00 = param0->unk_164;
@@ -817,7 +815,7 @@ static void sub_02072C98(UnkStruct_02072334 *param0, u8 param1, u8 param2)
     param0->unk_13B_0 = 1;
 }
 
-static void sub_02072DA4(BmpList *param0, u32 param1, u8 param2)
+static void sub_02072DA4(ListMenu *param0, u32 param1, u8 param2)
 {
     if (!param2) {
         Sound_PlayEffect(1500);

@@ -3,19 +3,18 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_defs/struct_02081CF4.h"
 
 #include "field/field_system.h"
 #include "overlay005/struct_ov5_021DC1A4_decl.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 
 #include "bg_window.h"
 #include "coins.h"
 #include "core_sys.h"
 #include "font.h"
 #include "heap.h"
+#include "list_menu.h"
 #include "message.h"
 #include "save_player.h"
 #include "strbuf.h"
@@ -25,7 +24,6 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200112C.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
@@ -59,8 +57,8 @@ struct UnkStruct_ov5_021DC1A4_t {
     UnkStruct_02081CF4 unk_AC;
     UIControlData *unk_B8;
     StringList unk_BC[28];
-    UnkStruct_ov84_02240FA8 unk_19C;
-    BmpList *unk_1BC;
+    ListMenuTemplate unk_19C;
+    ListMenu *unk_1BC;
     u16 unk_1C0;
     u16 unk_1C2;
     StringList unk_1C4[28];
@@ -86,8 +84,8 @@ static void ov5_021DC530(UnkStruct_ov5_021DC1A4 *param0, u32 param1);
 static void ov5_021DC708(UnkStruct_ov5_021DC1A4 *param0, u32 param1, u32 param2, u32 param3);
 static u32 ov5_021DC7A8(UnkStruct_ov5_021DC1A4 *param0);
 static void ov5_021DC7E4(UnkStruct_ov5_021DC1A4 *param0);
-static void ov5_021DC8F4(BmpList *param0, u32 param1, u8 param2);
-static void ov5_021DC918(BmpList *param0, u32 param1, u8 param2);
+static void ov5_021DC8F4(ListMenu *param0, u32 param1, u8 param2);
+static void ov5_021DC918(ListMenu *param0, u32 param1, u8 param2);
 static void ov5_021DC95C(SysTask *param0, void *param1);
 static void ov5_021DCA28(UnkStruct_ov5_021DC1A4 *param0);
 static void ov5_021DCA90(UnkStruct_ov5_021DC1A4 *param0, u16 param1, u32 param2);
@@ -387,7 +385,7 @@ static void ov5_021DC530(UnkStruct_ov5_021DC1A4 *param0, u32 param1)
     Window_Show(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
 
     ov5_021DC7E4(param0);
-    param0->unk_1BC = sub_0200112C((const UnkStruct_ov84_02240FA8 *)&param0->unk_19C, 0, param0->unk_96, 4);
+    param0->unk_1BC = sub_0200112C((const ListMenuTemplate *)&param0->unk_19C, 0, param0->unk_96, 4);
 
     ov5_021DCAF4(param0);
     param0->unk_04 = SysTask_Start(ov5_021DC95C, param0, 0);
@@ -421,7 +419,7 @@ void ov5_021DC600(UnkStruct_ov5_021DC1A4 *param0, u16 *param1, u16 *param2)
     param0->unk_A4 = param1;
     param0->unk_A8 = param2;
     param0->unk_2DC = ((*param0->unk_A4) + (*param0->unk_A8));
-    param0->unk_1BC = sub_0200112C((const UnkStruct_ov84_02240FA8 *)&param0->unk_19C, *param1, *param2, 4);
+    param0->unk_1BC = sub_0200112C((const ListMenuTemplate *)&param0->unk_19C, *param1, *param2, 4);
 
     ov5_021DCAF4(param0);
 
@@ -503,7 +501,7 @@ static void ov5_021DC7E4(UnkStruct_ov5_021DC1A4 *param0)
     return;
 }
 
-static void ov5_021DC8F4(BmpList *param0, u32 param1, u8 param2)
+static void ov5_021DC8F4(ListMenu *param0, u32 param1, u8 param2)
 {
     if (param1 == 0xfffffffd) {
         sub_0200147C(param0, 3, 15, 4);
@@ -512,7 +510,7 @@ static void ov5_021DC8F4(BmpList *param0, u32 param1, u8 param2)
     }
 }
 
-static void ov5_021DC918(BmpList *param0, u32 param1, u8 param2)
+static void ov5_021DC918(ListMenu *param0, u32 param1, u8 param2)
 {
     u32 v0, v1;
     u16 v2 = 0;

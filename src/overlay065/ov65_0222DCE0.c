@@ -5,7 +5,6 @@
 #include <string.h>
 
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02012B20_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
@@ -25,7 +24,6 @@
 #include "overlay065/struct_ov65_0222F6EC.h"
 #include "overlay065/struct_ov65_02234E50.h"
 #include "overlay065/struct_ov65_022354D8.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 #include "overlay098/struct_ov98_02247168.h"
 
 #include "assert.h"
@@ -45,6 +43,7 @@
 #include "heap.h"
 #include "inlines.h"
 #include "journal.h"
+#include "list_menu.h"
 #include "message.h"
 #include "message_util.h"
 #include "narc.h"
@@ -63,7 +62,6 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_0200112C.h"
 #include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
@@ -2352,7 +2350,7 @@ static void ov65_0222FD70 (UnkStruct_ov65_0222EBE0 * param0)
     Window_ScheduleCopyToVRAM(&param0->unk_340);
 }
 
-static void ov65_0222FED8 (BmpList * param0, u32 param1, u8 param2)
+static void ov65_0222FED8(ListMenu *param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
         Sound_PlayEffect(1500);
@@ -3170,7 +3168,7 @@ UnkStruct_ov65_02239CDC Unk_ov65_02239C9C[] = {
     {0x29, (u32)0xfffffffe}
 };
 
-static UnkStruct_ov84_02240FA8 Unk_ov65_02239CBC = {
+static ListMenuTemplate Unk_ov65_02239CBC = {
     NULL,
     ov65_0222FED8,
     NULL,
@@ -3192,7 +3190,7 @@ static UnkStruct_ov84_02240FA8 Unk_ov65_02239CBC = {
     NULL
 };
 
-static const UnkStruct_ov84_02240FA8 Unk_ov65_02238AD0 = {
+static const ListMenuTemplate Unk_ov65_02238AD0 = {
     NULL,
     ov65_0222FED8,
     NULL,
@@ -3214,7 +3212,7 @@ static const UnkStruct_ov84_02240FA8 Unk_ov65_02238AD0 = {
     NULL
 };
 
-static const UnkStruct_ov84_02240FA8 Unk_ov65_02238AF0 = {
+static const ListMenuTemplate Unk_ov65_02238AF0 = {
     NULL,
     ov65_0222FED8,
     NULL,
@@ -3239,7 +3237,7 @@ static const UnkStruct_ov84_02240FA8 Unk_ov65_02238AF0 = {
 static int ov65_02230E04 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
     int v0, v1;
-    UnkStruct_ov84_02240FA8 v2;
+    ListMenuTemplate v2;
     UnkStruct_ov65_02239CDC * v3;
 
     v1 = 3;
@@ -3437,7 +3435,7 @@ static int ov65_02231200 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 static int ov65_0223128C (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
     int v0, v1;
-    UnkStruct_ov84_02240FA8 v2;
+    ListMenuTemplate v2;
     UnkStruct_ov65_02239CDC * v3;
 
     switch (param1) {
@@ -3563,7 +3561,7 @@ static const struct {
     {0x29, (u32)0xfffffffe}
 };
 
-static const UnkStruct_ov84_02240FA8 Unk_ov65_02238A90 = {
+static const ListMenuTemplate Unk_ov65_02238A90 = {
     NULL,
     ov65_0222FED8,
     NULL,
@@ -3711,7 +3709,7 @@ static int ov65_022316F0 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
     {
         int v5, v6;
-        UnkStruct_ov84_02240FA8 v7;
+        ListMenuTemplate v7;
         u16 v8, v9, v10;
         UnkStruct_0207E060 * v11;
 

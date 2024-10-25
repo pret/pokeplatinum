@@ -9,9 +9,9 @@
 #include "overlay070/struct_ov70_02261E10_decl.h"
 #include "overlay070/struct_ov70_022630A4_decl.h"
 #include "overlay070/struct_ov70_02263910.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 
 #include "enums.h"
+#include "list_menu.h"
 #include "overlay_manager.h"
 #include "strbuf.h"
 #include "string_list.h"
@@ -52,8 +52,8 @@ void ov70_0225E034(UnkStruct_ov70_0225DEE8 *param0);
 void ov70_0225E044(UnkStruct_ov70_0225DEE8 *param0, const Strbuf *param1, u32 param2);
 const StringList *ov70_0225E054(const UnkStruct_ov70_0225DEE8 *param0);
 BOOL ov70_0225E064(const UnkStruct_ov70_0225DEE8 *param0, u32 param1);
-void ov70_0225E074(UnkStruct_ov70_0225DEE8 *param0, const UnkStruct_ov84_02240FA8 *param1, u16 param2, u16 param3);
-void ov70_0225E0A4(UnkStruct_ov70_0225DEE8 *param0, const UnkStruct_ov84_02240FA8 *param1, u16 param2, u16 param3, u8 param4, u8 param5, u8 param6);
+void ov70_0225E074(UnkStruct_ov70_0225DEE8 *param0, const ListMenuTemplate *param1, u16 param2, u16 param3);
+void ov70_0225E0A4(UnkStruct_ov70_0225DEE8 *param0, const ListMenuTemplate *param1, u16 param2, u16 param3, u8 param4, u8 param5, u8 param6);
 u32 ov70_0225E0D4(UnkStruct_ov70_0225DEE8 *param0);
 void ov70_0225E0E4(UnkStruct_ov70_0225DEE8 *param0, u16 *param1, u16 *param2);
 void ov70_0225E0F4(UnkStruct_ov70_0225DEE8 *param0, BOOL param1);

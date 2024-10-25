@@ -3,23 +3,21 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
 
 #include "overlay023/funcptr_ov23_02248D20.h"
 #include "overlay023/struct_ov23_02248D20.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 
 #include "bg_window.h"
 #include "colored_arrow.h"
 #include "core_sys.h"
 #include "heap.h"
+#include "list_menu.h"
 #include "string_list.h"
-#include "unk_0200112C.h"
 #include "unk_02005474.h"
 #include "unk_0202854C.h"
 
-UnkStruct_ov23_02248D20 *ov23_02248C08(UnkStruct_ov84_02240FA8 *param0, u16 param1, u16 param2, u8 param3, UnkFuncPtr_ov23_02248D20 param4, UndergroundData *param5, BOOL param6)
+UnkStruct_ov23_02248D20 *ov23_02248C08(ListMenuTemplate *param0, u16 param1, u16 param2, u8 param3, UnkFuncPtr_ov23_02248D20 param4, UndergroundData *param5, BOOL param6)
 {
     UnkStruct_ov23_02248D20 *v0 = (UnkStruct_ov23_02248D20 *)Heap_AllocFromHeap(param3, sizeof(UnkStruct_ov23_02248D20));
 
@@ -83,7 +81,7 @@ static void ov23_02248CA4(u16 param0, u16 param1, UnkStruct_ov23_02248D20 *param
 
 u32 ov23_02248D20(UnkStruct_ov23_02248D20 *param0)
 {
-    BmpList *v0 = param0->unk_0C;
+    ListMenu *v0 = param0->unk_0C;
     u16 v1, v2, v3;
     int v4, v5;
     u32 v6;
@@ -204,7 +202,7 @@ u32 ov23_02248D20(UnkStruct_ov23_02248D20 *param0)
 
 void ov23_02248EF8(UnkStruct_ov23_02248D20 *param0, u16 *param1, u16 *param2)
 {
-    BmpList *v0 = param0->unk_0C;
+    ListMenu *v0 = param0->unk_0C;
 
     sub_02001384(v0, param1, param2);
 

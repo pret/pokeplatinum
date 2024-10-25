@@ -4,7 +4,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02025CCC_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
@@ -12,7 +11,6 @@
 
 #include "overlay004/ov4_021D0D80.h"
 #include "overlay061/struct_ov61_0222C3B0.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 #include "overlay094/ov94_0223B140.h"
 #include "overlay098/ov98_02246C20.h"
 #include "overlay098/ov98_022499C8.h"
@@ -27,6 +25,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "inlines.h"
+#include "list_menu.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
@@ -37,7 +36,6 @@
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_0200112C.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200A784.h"
@@ -83,7 +81,7 @@ typedef struct {
     int unk_98;
     int unk_9C;
     StringList *unk_A0;
-    BmpList * unk_A4;
+    ListMenu *unk_A4;
     int unk_A8;
     int unk_AC;
     int unk_B0;
@@ -160,8 +158,8 @@ static int ov98_02249894(Window * param0, Strbuf *param1, int param2, int param3
 void ov98_022498CC(Window *param0, Strbuf *param1, int param2, int param3, int param4, TextColor param5);
 static void ov98_02249900(UnkStruct_ov98_02247704 * param0, int param1);
 static void ov98_02249964(UnkStruct_ov98_02247704 * param0, int param1, int param2);
-static void ov98_022499A0(BmpList * param0, u32 param1, u8 param2);
-static void ov98_022499B4(BmpList * param0, u32 param1, u8 param2);
+static void ov98_022499A0(ListMenu *param0, u32 param1, u8 param2);
+static void ov98_022499B4(ListMenu *param0, u32 param1, u8 param2);
 
 static int (* Unk_ov98_02249D70[])(UnkStruct_ov98_02247704 *) = {
     ov98_02247B98,
@@ -212,7 +210,7 @@ static const UnkStruct_ov98_02249BDC Unk_ov98_02249BEC[] = {
     {0x4, 0x1D}
 };
 
-static const UnkStruct_ov84_02240FA8 Unk_ov98_02249C0C = {
+static const ListMenuTemplate Unk_ov98_02249C0C = {
     NULL,
     ov98_022499A0,
     NULL,
@@ -245,7 +243,7 @@ static const UnkStruct_ov98_02249BDC Unk_ov98_02249BDC[] = {
     {0x4, 0x1D}
 };
 
-static const UnkStruct_ov84_02240FA8 Unk_ov98_02249C2C = {
+static const ListMenuTemplate Unk_ov98_02249C2C = {
     NULL,
     ov98_022499B4,
     NULL,
@@ -727,7 +725,7 @@ static int ov98_02247B98 (UnkStruct_ov98_02247704 * param0)
     case 0:
     {
         int v1;
-        UnkStruct_ov84_02240FA8 v2;
+        ListMenuTemplate v2;
         const u8 * v3;
         const UnkStruct_ov98_02249BDC * v4;
         int v5;
@@ -2512,14 +2510,14 @@ static void ov98_02249964 (UnkStruct_ov98_02247704 * param0, int param1, int par
     ov98_02249900(param0, v0);
 }
 
-static void ov98_022499A0 (BmpList * param0, u32 param1, u8 param2)
+static void ov98_022499A0(ListMenu *param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
         Sound_PlayEffect(1500);
     }
 }
 
-static void ov98_022499B4 (BmpList * param0, u32 param1, u8 param2)
+static void ov98_022499B4(ListMenu *param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
         Sound_PlayEffect(1500);

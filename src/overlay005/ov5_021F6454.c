@@ -5,7 +5,6 @@
 
 #include "consts/game_records.h"
 
-#include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_020308A0_decl.h"
@@ -17,7 +16,6 @@
 #include "overlay005/ov5_021EB1A0.h"
 #include "overlay005/ov5_021ECE40.h"
 #include "overlay005/struct_ov5_021F6704_decl.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -26,6 +24,7 @@
 #include "graphics.h"
 #include "heap.h"
 #include "inlines.h"
+#include "list_menu.h"
 #include "map_object.h"
 #include "message.h"
 #include "narc.h"
@@ -39,7 +38,6 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0200112C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
@@ -82,8 +80,8 @@ struct UnkStruct_ov5_021F6704_t {
     u16 *unk_210;
     u16 *unk_214;
     u16 *unk_218;
-    UnkStruct_ov84_02240FA8 unk_21C;
-    BmpList *unk_23C;
+    ListMenuTemplate unk_21C;
+    ListMenu *unk_23C;
     u16 unk_240;
     u16 unk_242;
     StringList unk_244[120];
@@ -107,8 +105,8 @@ void ov5_021F6760(UnkStruct_ov5_021F6704 *param0, u32 param1, u32 param2, u32 pa
 static void ov5_021F6768(UnkStruct_ov5_021F6704 *param0);
 static void ov5_021F6830(UnkStruct_ov5_021F6704 *param0, u32 param1, u32 param2, u32 param3);
 static void ov5_021F68BC(UnkStruct_ov5_021F6704 *param0);
-static void ov5_021F69CC(BmpList *param0, u32 param1, u8 param2);
-static void ov5_021F69F0(BmpList *param0, u32 param1, u8 param2);
+static void ov5_021F69CC(ListMenu *param0, u32 param1, u8 param2);
+static void ov5_021F69F0(ListMenu *param0, u32 param1, u8 param2);
 static void ov5_021F6A34(SysTask *param0, void *param1);
 static void ov5_021F6AD4(UnkStruct_ov5_021F6704 *param0);
 
@@ -283,7 +281,7 @@ static void ov5_021F6768(UnkStruct_ov5_021F6704 *param0)
     Window_Show(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
     ov5_021F68BC(param0);
 
-    param0->unk_23C = sub_0200112C((const UnkStruct_ov84_02240FA8 *)&param0->unk_21C, *param0->unk_214, *param0->unk_218, 4);
+    param0->unk_23C = sub_0200112C((const ListMenuTemplate *)&param0->unk_21C, *param0->unk_214, *param0->unk_218, 4);
     param0->unk_04 = SysTask_Start(ov5_021F6A34, param0, 0);
 
     return;
@@ -340,7 +338,7 @@ static void ov5_021F68BC(UnkStruct_ov5_021F6704 *param0)
     return;
 }
 
-static void ov5_021F69CC(BmpList *param0, u32 param1, u8 param2)
+static void ov5_021F69CC(ListMenu *param0, u32 param1, u8 param2)
 {
     if (param1 == 0xfffffffd) {
         sub_0200147C(param0, 3, 15, 4);
@@ -349,7 +347,7 @@ static void ov5_021F69CC(BmpList *param0, u32 param1, u8 param2)
     }
 }
 
-static void ov5_021F69F0(BmpList *param0, u32 param1, u8 param2)
+static void ov5_021F69F0(ListMenu *param0, u32 param1, u8 param2)
 {
     u32 v0, v1;
     u16 v2 = 0;

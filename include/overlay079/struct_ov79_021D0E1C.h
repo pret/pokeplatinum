@@ -3,7 +3,6 @@
 
 #include <nnsys.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
@@ -13,10 +12,10 @@
 #include "struct_defs/struct_0209916C.h"
 
 #include "overlay079/struct_ov79_021D0E1C_sub1.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "list_menu.h"
 #include "message.h"
 #include "string_list.h"
 
@@ -42,10 +41,10 @@ typedef struct UnkStruct_ov79_021D0E1C_t {
     UnkStruct_ov79_021D0E1C_sub1 unk_30;
     u16 unk_80;
     u16 unk_82;
-    UnkStruct_ov84_02240FA8 unk_84;
-    UnkStruct_ov84_02240FA8 unk_A4;
-    BmpList *unk_C4;
-    BmpList *unk_C8;
+    ListMenuTemplate unk_84;
+    ListMenuTemplate unk_A4;
+    ListMenu *unk_C4;
+    ListMenu *unk_C8;
     StringList *unk_CC;
     StringList *unk_D0;
     UIControlData *unk_D4;

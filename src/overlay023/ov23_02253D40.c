@@ -5,11 +5,11 @@
 
 #include "overlay023/struct_ov23_02253E2C_decl.h"
 #include "overlay023/struct_ov23_02253F60.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 
 #include "bg_window.h"
 #include "core_sys.h"
 #include "heap.h"
+#include "list_menu.h"
 #include "message.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -43,7 +43,7 @@ typedef struct UnkStruct_ov23_02253E2C_t {
 void ov23_022421EC(void);
 static void ov23_02253FA4(UnkStruct_ov23_02253E2C *param0, BOOL param1);
 
-static const UnkStruct_ov84_02240FA8 Unk_ov23_022569E0 = {
+static const ListMenuTemplate Unk_ov23_022569E0 = {
     NULL,
     NULL,
     NULL,
@@ -65,7 +65,7 @@ static const UnkStruct_ov84_02240FA8 Unk_ov23_022569E0 = {
     NULL
 };
 
-const UnkStruct_ov84_02240FA8 *ov23_02253D40(void)
+const ListMenuTemplate *ov23_02253D40(void)
 {
     return &Unk_ov23_022569E0;
 }

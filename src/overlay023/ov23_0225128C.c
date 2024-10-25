@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
@@ -25,7 +24,6 @@
 #include "overlay023/ov23_02254A14.h"
 #include "overlay023/struct_ov23_0224271C.h"
 #include "overlay023/struct_ov23_02250CD4.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 
 #include "bg_window.h"
 #include "camera.h"
@@ -35,6 +33,7 @@
 #include "core_sys.h"
 #include "field_system.h"
 #include "heap.h"
+#include "list_menu.h"
 #include "message.h"
 #include "player_avatar.h"
 #include "save_player.h"
@@ -43,7 +42,6 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0200112C.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200A9DC.h"
@@ -263,7 +261,7 @@ static int ov23_0225144C(int param0, UnkStruct_ov23_02250CD4 *param1)
     return 0;
 }
 
-static void ov23_0225148C(BmpList *param0, u32 param1, u8 param2)
+static void ov23_0225148C(ListMenu *param0, u32 param1, u8 param2)
 {
     UnkStruct_ov23_02250CD4 *v0 = (UnkStruct_ov23_02250CD4 *)sub_02001504(param0, 19);
     int v1 = param1;
@@ -275,7 +273,7 @@ static void ov23_0225148C(BmpList *param0, u32 param1, u8 param2)
     ov23_02253F60(ov23_022421BC(), 6 + v1, 0, NULL);
 }
 
-static void ov23_022514B0(BmpList *param0, u32 param1, u8 param2)
+static void ov23_022514B0(ListMenu *param0, u32 param1, u8 param2)
 {
     UnkStruct_ov23_02250CD4 *v0 = (UnkStruct_ov23_02250CD4 *)sub_02001504(param0, 19);
     int v1 = param1;
@@ -345,7 +343,7 @@ static BOOL ov23_022514D8(SysTask *param0, void *param1)
 
 static void ov23_022515D8(UnkStruct_ov23_02250CD4 *param0, int param1, int param2, UnkFuncPtr_ov23_022515D8 param3, int param4)
 {
-    UnkStruct_ov84_02240FA8 v0;
+    ListMenuTemplate v0;
     int v1 = param2 + 1;
     BOOL v2 = 1;
 
@@ -378,7 +376,7 @@ static void ov23_022515D8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
         MessageLoader_Free(v3);
     }
 
-    MI_CpuCopy8(ov23_02253D40(), &v0, sizeof(UnkStruct_ov84_02240FA8));
+    MI_CpuCopy8(ov23_02253D40(), &v0, sizeof(ListMenuTemplate));
 
     v0.unk_10 = v1;
     v0.unk_12 = v1;
@@ -396,7 +394,7 @@ static void ov23_022515D8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
 
 static void ov23_022516E8(UnkStruct_ov23_02250CD4 *param0, int param1, int param2, UnkFuncPtr_ov23_022515D8 param3, int param4)
 {
-    UnkStruct_ov84_02240FA8 v0;
+    ListMenuTemplate v0;
     int v1 = param2 + 1;
     BOOL v2 = 1;
 
@@ -424,7 +422,7 @@ static void ov23_022516E8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
         MessageLoader_Free(v3);
     }
 
-    MI_CpuCopy8(ov23_02253D40(), &v0, sizeof(UnkStruct_ov84_02240FA8));
+    MI_CpuCopy8(ov23_02253D40(), &v0, sizeof(ListMenuTemplate));
 
     v0.unk_10 = param2 + 1;
     v0.unk_12 = v1;
@@ -836,7 +834,7 @@ static void ov23_02251C04(SysTask *param0, void *param1)
 
 static void ov23_02251F94(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov84_02240FA8 v0;
+    ListMenuTemplate v0;
     UnkStruct_ov23_02250CD4 *v1;
     const int v2 = 6;
 

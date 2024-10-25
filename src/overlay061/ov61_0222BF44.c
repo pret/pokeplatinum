@@ -4,7 +4,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02025CCC_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
@@ -22,6 +21,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "inlines.h"
+#include "list_menu.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
@@ -73,7 +73,7 @@ typedef struct {
     int unk_94;
     int unk_98;
     StringList *unk_9C;
-    BmpList *unk_A0;
+    ListMenu *unk_A0;
     UnkStruct_ov61_0222C3B0 unk_A4;
 } UnkStruct_ov61_0222C664;
 

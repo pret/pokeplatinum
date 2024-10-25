@@ -4,7 +4,6 @@
 #include <dwc.h>
 #include <nnsys.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
@@ -26,6 +25,7 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "list_menu.h"
 #include "message.h"
 #include "overlay_manager.h"
 #include "pokemon.h"
@@ -124,7 +124,7 @@ typedef struct UnkStruct_ov94_0223FD4C_t {
     StringList *unk_10CC;
     UIControlData *unk_10D0;
     UIControlData *unk_10D4;
-    BmpList *unk_10D8;
+    ListMenu *unk_10D8;
     void *unk_10DC;
     int unk_10E0;
     UnkStruct_ov94_0223FD4C_sub3 *unk_10E4;

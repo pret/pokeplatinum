@@ -17,15 +17,15 @@
 #include "overlay070/struct_ov70_0225DEE8_decl.h"
 #include "overlay070/struct_ov70_022630A4_decl.h"
 #include "overlay070/struct_ov70_02263344_decl.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 
 #include "enums.h"
+#include "list_menu.h"
 #include "strbuf.h"
 #include "unk_02005474.h"
 #include "unk_0201D15C.h"
 
 typedef struct {
-    UnkStruct_ov84_02240FA8 unk_00;
+    ListMenuTemplate unk_00;
     u32 unk_20;
 } UnkStruct_ov70_02268E44;
 
@@ -100,7 +100,7 @@ static void ov70_02269144(UnkStruct_ov70_02269114 *param0, UnkStruct_ov66_0222DF
 static BOOL ov70_02269178(const UnkStruct_ov70_02269114 *param0);
 static u16 ov70_02269188(const UnkStruct_ov70_02269114 *param0);
 
-static const UnkStruct_ov84_02240FA8 Unk_ov70_0226DCBC = {
+static const ListMenuTemplate Unk_ov70_0226DCBC = {
     NULL,
     NULL,
     NULL,

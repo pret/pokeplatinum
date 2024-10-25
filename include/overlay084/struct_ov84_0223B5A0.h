@@ -2,7 +2,6 @@
 #define POKEPLATINUM_STRUCT_OV84_0223B5A0_H
 
 #include "struct_decls/cell_actor_data.h"
-#include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
@@ -15,6 +14,7 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "game_options.h"
+#include "list_menu.h"
 #include "message.h"
 #include "narc.h"
 #include "strbuf.h"
@@ -42,7 +42,7 @@ typedef struct {
     Strbuf *unk_124[12];
     StringList *unk_154;
     UIControlData *unk_158;
-    BmpList *unk_15C;
+    ListMenu *unk_15C;
     StringList *unk_160;
     Strbuf *unk_164[165];
     Strbuf *unk_3F8;

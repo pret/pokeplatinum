@@ -3,13 +3,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 
 #include "field/field_system.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -18,6 +16,7 @@
 #include "field_system.h"
 #include "game_options.h"
 #include "heap.h"
+#include "list_menu.h"
 #include "message.h"
 #include "save_player.h"
 #include "savedata.h"
@@ -26,7 +25,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200112C.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
@@ -38,7 +36,7 @@
 
 typedef struct {
     StringList *unk_00;
-    BmpList *unk_04;
+    ListMenu *unk_04;
     Strbuf *unk_08;
     Strbuf *unk_0C;
     Window unk_10;
@@ -58,7 +56,7 @@ typedef struct {
 
 static void ov5_021EAE78(UnkStruct_ov5_021EAE78 *param0, int param1);
 static void ov5_021EAF1C(UnkStruct_ov5_021EAE78 *param0);
-static void ov5_021EAF90(BmpList *param0, u32 param1, u8 param2);
+static void ov5_021EAF90(ListMenu *param0, u32 param1, u8 param2);
 
 static BOOL ov5_021EA874(UnkStruct_ov5_021EAE78 *param0)
 {
@@ -232,7 +230,7 @@ static BOOL ov5_021EAB28(UnkStruct_ov5_021EAE78 *param0)
     return 0;
 }
 
-static const UnkStruct_ov84_02240FA8 Unk_ov5_021FAF08 = {
+static const ListMenuTemplate Unk_ov5_021FAF08 = {
     NULL,
     NULL,
     NULL,
@@ -257,7 +255,7 @@ static const UnkStruct_ov84_02240FA8 Unk_ov5_021FAF08 = {
 static BOOL ov5_021EAB58(UnkStruct_ov5_021EAE78 *param0)
 {
     UnkStruct_0202B370 *v0 = sub_0202B370(param0->unk_34);
-    UnkStruct_ov84_02240FA8 v1;
+    ListMenuTemplate v1;
     int v2 = sub_0202AF94(v0);
     int v3 = 5;
 
@@ -485,7 +483,7 @@ void ov5_021EAF50(FieldSystem *fieldSystem)
     }
 }
 
-static void ov5_021EAF90(BmpList *param0, u32 param1, u8 param2)
+static void ov5_021EAF90(ListMenu *param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
         Sound_PlayEffect(1500);

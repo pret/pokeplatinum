@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0202E8C0_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
@@ -15,7 +14,6 @@
 #include "field/field_system.h"
 #include "overlay005/ov5_021D2F14.h"
 #include "overlay005/struct_ov5_021D30A8.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 #include "overlay104/struct_ov104_02241308.h"
 
 #include "bg_window.h"
@@ -24,6 +22,7 @@
 #include "font.h"
 #include "game_options.h"
 #include "heap.h"
+#include "list_menu.h"
 #include "message.h"
 #include "narc.h"
 #include "save_player.h"
@@ -32,7 +31,6 @@
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_0200112C.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
@@ -94,8 +92,8 @@ typedef struct {
     u16 unk_26;
     u16 unk_28;
     UnkStruct_0206F7F8_sub1 unk_2C;
-    UnkStruct_ov84_02240FA8 unk_A0;
-    BmpList *unk_C0;
+    ListMenuTemplate unk_A0;
+    ListMenu *unk_C0;
     StringList *unk_C4;
     UIControlData *unk_C8;
     FieldSystem *fieldSystem;
@@ -129,7 +127,7 @@ static void sub_0206FCC4(UnkStruct_0206F7F8 *param0);
 static void sub_0206FD94(UnkStruct_0206F7F8 *param0);
 static void sub_0206FDC0(UnkStruct_0206F7F8 *param0, u16 param1, u16 param2);
 static void sub_0206FF10(UnkStruct_0206F7F8 *param0);
-static void sub_0206FF60(BmpList *param0, u32 param1, u8 param2);
+static void sub_0206FF60(ListMenu *param0, u32 param1, u8 param2);
 static void sub_0206FFB4(UnkStruct_0206F7F8 *param0);
 static void sub_0206FFE4(UnkStruct_0206F7F8 *param0);
 static void sub_02070010(UnkStruct_0206F7F8 *param0);
@@ -137,7 +135,7 @@ static void sub_02070050(UnkStruct_0206F7F8 *param0, BOOL param1);
 static void sub_020701DC(UnkStruct_0206F7F8 *param0, u16 param1);
 static void sub_02070288(UnkStruct_0206F7F8 *param0);
 
-static const UnkStruct_ov84_02240FA8 Unk_020F02B0 = {
+static const ListMenuTemplate Unk_020F02B0 = {
     NULL,
     NULL,
     NULL,
@@ -694,7 +692,7 @@ static void sub_0206FDC0(UnkStruct_0206F7F8 *param0, u16 param1, u16 param2)
 
     StringList_AddFromStrbuf(param0->unk_C4, param0->unk_2C.unk_0C, 0xFFFF);
 
-    MI_CpuCopy8((void *)&Unk_020F02B0, (void *)&(param0->unk_A0), sizeof(UnkStruct_ov84_02240FA8));
+    MI_CpuCopy8((void *)&Unk_020F02B0, (void *)&(param0->unk_A0), sizeof(ListMenuTemplate));
 
     param0->unk_A0.unk_0C = &(param0->unk_D4);
     param0->unk_A0.unk_00 = param0->unk_C4;
@@ -724,7 +722,7 @@ static void sub_0206FF10(UnkStruct_0206F7F8 *param0)
     Bg_ScheduleTilemapTransfer(param0->unk_D0, 3);
 }
 
-static void sub_0206FF60(BmpList *param0, u32 param1, u8 param2)
+static void sub_0206FF60(ListMenu *param0, u32 param1, u8 param2)
 {
     u16 v0, v1, v2;
     UnkStruct_0206F7F8 *v3 = (UnkStruct_0206F7F8 *)sub_02001504(param0, 19);

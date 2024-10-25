@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_02081CF4.h"
@@ -28,7 +27,6 @@
 #include "overlay023/ov23_02253598.h"
 #include "overlay023/ov23_02253D40.h"
 #include "overlay023/struct_ov23_02250CD4.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 #include "overlay104/struct_ov104_02241308.h"
 
 #include "bag.h"
@@ -41,6 +39,7 @@
 #include "field_system.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "list_menu.h"
 #include "message.h"
 #include "narc.h"
 #include "player_avatar.h"
@@ -51,7 +50,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
-#include "unk_0200112C.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200A9DC.h"
@@ -128,7 +126,7 @@ static const struct {
     { 0x7F, (u32)ov23_02250930 }
 };
 
-static const UnkStruct_ov84_02240FA8 Unk_ov23_02256904 = {
+static const ListMenuTemplate Unk_ov23_02256904 = {
     NULL,
     NULL,
     NULL,
@@ -422,7 +420,7 @@ BOOL ov23_0224F744(int param0)
 void ov23_0224F758(UnkFuncPtr_ov23_0224F758 param0, FieldSystem *fieldSystem)
 {
     UnkStruct_ov23_02250CD4 *v0;
-    UnkStruct_ov84_02240FA8 v1;
+    ListMenuTemplate v1;
 
     Sound_PlayEffect(1533);
     ov23_022430D0(2);
@@ -710,7 +708,7 @@ static UnkStruct_ov23_02257644 Unk_ov23_0225765C[] = {
 
 static void ov23_0224FBFC(UnkStruct_ov23_02250CD4 *param0, int param1)
 {
-    UnkStruct_ov84_02240FA8 v0;
+    ListMenuTemplate v0;
     int v1, v2;
     int v3 = 11;
     int v4 = 6;
@@ -798,7 +796,7 @@ void ov23_0224FD68(int param0)
     }
 }
 
-void ov23_0224FD84(BmpList *param0, u32 param1, u8 param2)
+void ov23_0224FD84(ListMenu *param0, u32 param1, u8 param2)
 {
     UnkStruct_ov23_02250CD4 *v0 = (UnkStruct_ov23_02250CD4 *)sub_02001504(param0, 19);
     UnkFuncPtr_ov23_0224FD84 v1 = v0->unk_268;
@@ -840,7 +838,7 @@ static void ov23_0224FE38(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
 {
     UnkFuncPtr_ov23_0224FE38 v0 = param0->unk_264;
     UnkFuncPtr_ov23_0224FD84 v1 = param0->unk_268;
-    UnkStruct_ov84_02240FA8 v2;
+    ListMenuTemplate v2;
     int v3 = v0(param0);
     int v4 = 6;
 
@@ -987,7 +985,7 @@ void ov23_02250128(int param0)
     sub_02028C6C(Unk_ov23_022577B8->unk_00, Unk_ov23_022577B8->unk_04);
 }
 
-static void ov23_0225014C(BmpList *param0, u32 param1, u8 param2)
+static void ov23_0225014C(ListMenu *param0, u32 param1, u8 param2)
 {
     UnkStruct_ov23_02250CD4 *v0 = (UnkStruct_ov23_02250CD4 *)sub_02001504(param0, 19);
     UnkFuncPtr_ov23_0224FD84 v1 = v0->unk_268;
@@ -1031,7 +1029,7 @@ static void ov23_0225021C(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
     UnkFuncPtr_ov23_0224FE38 v0 = param0->unk_264;
     UnkFuncPtr_ov23_0224FD84 v1 = param0->unk_268;
     UnkFuncPtr_ov23_0225021C v2 = param0->unk_26C;
-    UnkStruct_ov84_02240FA8 v3;
+    ListMenuTemplate v3;
     int v4 = v0(param0);
     int v5 = 6;
 
@@ -1167,7 +1165,7 @@ static BOOL ov23_0225044C(SysTask *param0, void *param1)
     return 1;
 }
 
-void ov23_02250540(BmpList *param0, u32 param1, u8 param2)
+void ov23_02250540(ListMenu *param0, u32 param1, u8 param2)
 {
     UnkStruct_ov23_02250CD4 *v0 = (UnkStruct_ov23_02250CD4 *)sub_02001504(param0, 19);
     UnkFuncPtr_ov23_0224FD84 v1 = v0->unk_268;
@@ -1207,7 +1205,7 @@ static void ov23_022505EC(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
 {
     UnkFuncPtr_ov23_0224FE38 v0 = param0->unk_264;
     UnkFuncPtr_ov23_0224FD84 v1 = param0->unk_268;
-    UnkStruct_ov84_02240FA8 v2;
+    ListMenuTemplate v2;
     int v3 = v0(param0);
     int v4 = 6;
 
@@ -1418,7 +1416,7 @@ static void ov23_02250A14(UnkStruct_ov23_02250CD4 *param0)
 void ov23_02250A50(UnkFuncPtr_ov23_0224F758 param0, FieldSystem *fieldSystem)
 {
     UnkStruct_ov23_02250CD4 *v0;
-    UnkStruct_ov84_02240FA8 v1;
+    ListMenuTemplate v1;
 
     v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov23_02250CD4));
 
@@ -1533,7 +1531,7 @@ static void ov23_02250B9C(SysTask *param0, void *param1)
     }
 }
 
-void ov23_02250C3C(BmpList *param0, u32 param1, u8 param2)
+void ov23_02250C3C(ListMenu *param0, u32 param1, u8 param2)
 {
     UnkStruct_ov23_02250CD4 *v0 = (UnkStruct_ov23_02250CD4 *)sub_02001504(param0, 19);
     UnkFuncPtr_ov23_0224FD84 v1 = v0->unk_268;
@@ -1549,7 +1547,7 @@ void ov23_02250C3C(BmpList *param0, u32 param1, u8 param2)
     ov23_02253F60(ov23_022421DC(), v2, 0, NULL);
 }
 
-static void ov23_02250C74(BmpList *param0, u32 param1, u8 param2)
+static void ov23_02250C74(ListMenu *param0, u32 param1, u8 param2)
 {
     UnkStruct_ov23_02250CD4 *v0 = (UnkStruct_ov23_02250CD4 *)sub_02001504(param0, 19);
     int v1 = param1;
@@ -1608,7 +1606,7 @@ static void ov23_02250D90(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
 {
     UnkFuncPtr_ov23_0224FE38 v0 = param0->unk_264;
     UnkFuncPtr_ov23_0224FD84 v1 = param0->unk_268;
-    UnkStruct_ov84_02240FA8 v2;
+    ListMenuTemplate v2;
     int v3 = v0(param0);
     int v4 = 6;
 
@@ -1842,7 +1840,7 @@ static BOOL ov23_022510F0(SysTask *param0, void *param1)
 void *ov23_022511B0(UnkFuncPtr_ov23_0224F758 param0, FieldSystem *fieldSystem)
 {
     UnkStruct_ov23_02250CD4 *v0;
-    UnkStruct_ov84_02240FA8 v1;
+    ListMenuTemplate v1;
 
     v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov23_02250CD4));
 

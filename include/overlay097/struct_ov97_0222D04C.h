@@ -3,7 +3,6 @@
 
 #include <dwc.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
 #include "struct_defs/struct_0200C738.h"
 
 #include "overlay097/struct_ov97_0223829C.h"
@@ -12,6 +11,7 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "game_options.h"
+#include "list_menu.h"
 #include "message.h"
 #include "savedata.h"
 #include "sprite_resource.h"
@@ -33,7 +33,7 @@ typedef struct {
     int unk_6C;
     int unk_70;
     int unk_74;
-    BmpList *unk_78;
+    ListMenu *unk_78;
     StringList *unk_7C;
     int unk_80;
     int unk_84;

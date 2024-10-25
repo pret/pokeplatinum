@@ -6,19 +6,17 @@
 #include "constants/forms.h"
 #include "constants/species.h"
 
-#include "struct_decls/struct_0200112C_decl.h"
-
 #include "field/field_system.h"
 #include "overlay005/ov5_021DC018.h"
 #include "overlay005/struct_ov5_021DC1A4_decl.h"
 #include "overlay005/struct_ov5_021F7ED8_decl.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 
 #include "bag.h"
 #include "bg_window.h"
 #include "field_script_context.h"
 #include "heap.h"
 #include "inlines.h"
+#include "list_menu.h"
 #include "message.h"
 #include "party.h"
 #include "pokemon.h"
@@ -29,7 +27,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "tutor_movesets.h"
-#include "unk_0200112C.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -58,8 +55,8 @@ struct UnkStruct_ov5_021F7ED8_t {
     u8 unk_C7;
     u16 *unk_C8;
     u16 *unk_CC;
-    UnkStruct_ov84_02240FA8 unk_D0;
-    BmpList *unk_F0;
+    ListMenuTemplate unk_D0;
+    ListMenu *unk_F0;
     u16 unk_F4;
     u16 unk_F6;
     StringList unk_F8[39];
@@ -84,7 +81,7 @@ void ov5_021F7F2C(UnkStruct_ov5_021F7ED8 *param0, u32 param1, u32 param2, u32 pa
 static void ov5_021F7F34(UnkStruct_ov5_021F7ED8 *param0);
 static void ov5_021F7FF8(UnkStruct_ov5_021F7ED8 *param0, u32 param1, u32 param2, u32 param3);
 static void ov5_021F8090(UnkStruct_ov5_021F7ED8 *param0);
-static void ov5_021F819C(BmpList *param0, u32 param1, u8 param2);
+static void ov5_021F819C(ListMenu *param0, u32 param1, u8 param2);
 static void ov5_021F81A8(SysTask *param0, void *param1);
 static void ov5_021F8250(UnkStruct_ov5_021F7ED8 *param0);
 
@@ -482,7 +479,7 @@ static void ov5_021F7F34(UnkStruct_ov5_021F7ED8 *param0)
     Window_Show(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
     ov5_021F8090(param0);
 
-    param0->unk_F0 = sub_0200112C((const UnkStruct_ov84_02240FA8 *)&param0->unk_D0, 0, param0->unk_C2, 4);
+    param0->unk_F0 = sub_0200112C((const ListMenuTemplate *)&param0->unk_D0, 0, param0->unk_C2, 4);
     param0->unk_04 = SysTask_Start(ov5_021F81A8, param0, 0);
 
     return;
@@ -539,7 +536,7 @@ static void ov5_021F8090(UnkStruct_ov5_021F7ED8 *param0)
     return;
 }
 
-static void ov5_021F819C(BmpList *param0, u32 param1, u8 param2)
+static void ov5_021F819C(ListMenu *param0, u32 param1, u8 param2)
 {
     u32 v0, v1;
     u16 v2 = 0;

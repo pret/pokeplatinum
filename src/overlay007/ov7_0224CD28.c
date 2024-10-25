@@ -5,7 +5,6 @@
 
 #include "consts/game_records.h"
 
-#include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/struct_02081CF4.h"
 
@@ -15,7 +14,6 @@
 #include "overlay007/struct_ov7_0224D008.h"
 #include "overlay007/struct_ov7_0224F2EC.h"
 #include "overlay007/struct_ov7_0224F358.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -30,6 +28,7 @@
 #include "heap.h"
 #include "item.h"
 #include "journal.h"
+#include "list_menu.h"
 #include "map_header.h"
 #include "message.h"
 #include "narc.h"
@@ -41,7 +40,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200112C.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200A328.h"
@@ -78,8 +76,8 @@ static u8 ov7_0224D620(UnkStruct_ov7_0224D008 *param0);
 static u8 ov7_0224DC84(UnkStruct_ov7_0224D008 *param0);
 static u8 ov7_0224E950(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1);
 static void ov7_0224D6BC(UnkStruct_ov7_0224D008 *param0);
-static void ov7_0224D85C(BmpList *param0, u32 param1, u8 param2);
-static void ov7_0224D9B8(BmpList *param0, u32 param1, u8 param2);
+static void ov7_0224D85C(ListMenu *param0, u32 param1, u8 param2);
+static void ov7_0224D9B8(ListMenu *param0, u32 param1, u8 param2);
 static void ov7_0224DAF8(UnkStruct_ov7_0224D008 *param0, u8 param1);
 static u8 ov7_0224DE94(UnkStruct_ov7_0224D008 *param0);
 static u8 ov7_0224DFB0(UnkStruct_ov7_0224D008 *param0);
@@ -554,7 +552,7 @@ static u8 ov7_0224D620(UnkStruct_ov7_0224D008 *param0)
     return 4;
 }
 
-static const UnkStruct_ov84_02240FA8 Unk_ov7_0224F308 = {
+static const ListMenuTemplate Unk_ov7_0224F308 = {
     NULL,
     ov7_0224D85C,
     ov7_0224D9B8,
@@ -591,7 +589,7 @@ static void ov7_0224D6BC(UnkStruct_ov7_0224D008 *param0)
 {
     MessageLoader *v0;
     Strbuf *v1;
-    UnkStruct_ov84_02240FA8 v2;
+    ListMenuTemplate v2;
     u32 v3;
     u32 v4;
     MessageLoader *v5;
@@ -652,7 +650,7 @@ static void ov7_0224D6BC(UnkStruct_ov7_0224D008 *param0)
     param0->unk_78 = sub_0200112C(&v2, 0, 0, 11);
 }
 
-static void ov7_0224D85C(BmpList *param0, u32 param1, u8 param2)
+static void ov7_0224D85C(ListMenu *param0, u32 param1, u8 param2)
 {
     UnkStruct_ov7_0224D008 *v0 = (UnkStruct_ov7_0224D008 *)sub_02001504(param0, 19);
 
@@ -717,7 +715,7 @@ static void ov7_0224D85C(BmpList *param0, u32 param1, u8 param2)
     Window_ScheduleCopyToVRAM(&v0->unk_08[1]);
 }
 
-static void ov7_0224D9B8(BmpList *param0, u32 param1, u8 param2)
+static void ov7_0224D9B8(ListMenu *param0, u32 param1, u8 param2)
 {
     UnkStruct_ov7_0224D008 *v0 = (UnkStruct_ov7_0224D008 *)sub_02001504(param0, 19);
 

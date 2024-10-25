@@ -4,7 +4,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0207C690.h"
@@ -36,7 +35,6 @@
 #include "overlay070/struct_ov70_02263910.h"
 #include "overlay070/struct_ov70_02269204_decl.h"
 #include "overlay070/struct_ov70_0226C6F8_decl.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 
 #include "bg_window.h"
 #include "cell_actor.h"
@@ -48,6 +46,7 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "list_menu.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
@@ -64,7 +63,6 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_0200112C.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
@@ -115,9 +113,9 @@ typedef struct {
 } UnkStruct_ov70_0225E9C8;
 
 typedef struct {
-    UnkStruct_ov84_02240FA8 unk_00;
+    ListMenuTemplate unk_00;
     Window unk_20;
-    BmpList *unk_30;
+    ListMenu *unk_30;
     StringList *unk_34;
     u16 unk_38;
     u16 unk_3A;
@@ -128,7 +126,7 @@ typedef struct {
 
 typedef struct {
     StringList *unk_00;
-    UnkStruct_ov84_02240FA8 unk_04;
+    ListMenuTemplate unk_04;
 } UnkStruct_ov70_0225F098;
 
 typedef struct {
@@ -259,10 +257,10 @@ static void ov70_0225EDE0(UnkStruct_ov70_0225EC20 *param0);
 static void ov70_0225EDF8(UnkStruct_ov70_0225EC20 *param0, const Strbuf *param1, u32 param2);
 static const StringList *ov70_0225EE04(const UnkStruct_ov70_0225EC20 *param0);
 static BOOL ov70_0225EE08(const UnkStruct_ov70_0225EC20 *param0, u32 param1);
-static void ov70_0225EE30(UnkStruct_ov70_0225EC20 *param0, const UnkStruct_ov84_02240FA8 *param1, UnkStruct_ov70_0225E4EC *param2, u16 param3, u16 param4, u32 param5, u8 param6, u8 param7, u8 param8);
+static void ov70_0225EE30(UnkStruct_ov70_0225EC20 *param0, const ListMenuTemplate *param1, UnkStruct_ov70_0225E4EC *param2, u16 param3, u16 param4, u32 param5, u8 param6, u8 param7, u8 param8);
 static u32 ov70_0225EED8(UnkStruct_ov70_0225EC20 *param0);
 static void ov70_0225EF14(UnkStruct_ov70_0225EC20 *param0, u16 *param1, u16 *param2);
-static void ov70_0225EF58(BmpList *param0, u32 param1, u8 param2);
+static void ov70_0225EF58(ListMenu *param0, u32 param1, u8 param2);
 static void ov70_0225EF6C(UnkStruct_ov70_0225EC20 *param0, BOOL param1);
 static void ov70_0225EF70(UnkStruct_ov70_0225EC20 *param0);
 static void ov70_0225EFD4(UnkStruct_ov70_0225EFD4 *param0, UnkStruct_ov70_0225E4EC *param1, u32 param2);
@@ -564,7 +562,7 @@ static const UnkStruct_ov22_022559F8 Unk_ov70_0226D5DC = {
     0x70,
 };
 
-static const UnkStruct_ov84_02240FA8 Unk_ov70_0226D644 = {
+static const ListMenuTemplate Unk_ov70_0226D644 = {
     NULL,
     NULL,
     NULL,
@@ -984,12 +982,12 @@ BOOL ov70_0225E064(const UnkStruct_ov70_0225DEE8 *param0, u32 param1)
     return ov70_0225EE08(&param0->unk_39C, param1);
 }
 
-void ov70_0225E074(UnkStruct_ov70_0225DEE8 *param0, const UnkStruct_ov84_02240FA8 *param1, u16 param2, u16 param3)
+void ov70_0225E074(UnkStruct_ov70_0225DEE8 *param0, const ListMenuTemplate *param1, u16 param2, u16 param3)
 {
     ov70_0225EE30(&param0->unk_39C, param1, &param0->unk_3C, param2, param3, 112, 16, 3, 15);
 }
 
-extern void ov70_0225E0A4(UnkStruct_ov70_0225DEE8 *param0, const UnkStruct_ov84_02240FA8 *param1, u16 param2, u16 param3, u8 param4, u8 param5, u8 param6)
+extern void ov70_0225E0A4(UnkStruct_ov70_0225DEE8 *param0, const ListMenuTemplate *param1, u16 param2, u16 param3, u8 param4, u8 param5, u8 param6)
 {
     ov70_0225EE30(&param0->unk_39C, param1, &param0->unk_3C, param2, param3, 112, param4, param5, param6);
 }
@@ -1750,7 +1748,7 @@ static BOOL ov70_0225EE08(const UnkStruct_ov70_0225EC20 *param0, u32 param1)
     return 0;
 }
 
-static void ov70_0225EE30(UnkStruct_ov70_0225EC20 *param0, const UnkStruct_ov84_02240FA8 *param1, UnkStruct_ov70_0225E4EC *param2, u16 param3, u16 param4, u32 param5, u8 param6, u8 param7, u8 param8)
+static void ov70_0225EE30(UnkStruct_ov70_0225EC20 *param0, const ListMenuTemplate *param1, UnkStruct_ov70_0225E4EC *param2, u16 param3, u16 param4, u32 param5, u8 param6, u8 param7, u8 param8)
 {
     GF_ASSERT(param0->unk_30 == NULL);
     GF_ASSERT((param1->unk_12 * 2) < 18);
@@ -1815,7 +1813,7 @@ static void ov70_0225EF14(UnkStruct_ov70_0225EC20 *param0, u16 *param1, u16 *par
     }
 }
 
-static void ov70_0225EF58(BmpList *param0, u32 param1, u8 param2)
+static void ov70_0225EF58(ListMenu *param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
         Sound_PlayEffect(1500);

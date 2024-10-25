@@ -3,19 +3,18 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02098700_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0202610C.h"
 
 #include "field/field_system.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 
 #include "bg_window.h"
 #include "core_sys.h"
 #include "font.h"
 #include "heap.h"
+#include "list_menu.h"
 #include "message.h"
 #include "party.h"
 #include "save_player.h"
@@ -23,7 +22,6 @@
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_0200112C.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_0202602C.h"
@@ -33,8 +31,8 @@
 #include "unk_0207A2A8.h"
 
 typedef struct {
-    BmpList *unk_00;
-    BmpList *unk_04;
+    ListMenu *unk_00;
+    ListMenu *unk_04;
     StringList *unk_08;
     StringList *unk_0C;
     FieldSystem *fieldSystem;
@@ -63,7 +61,7 @@ typedef struct {
     u32 unk_04;
 } UnkStruct_ov7_0224F4D8;
 
-static const UnkStruct_ov84_02240FA8 Unk_ov7_0224F188 = {
+static const ListMenuTemplate Unk_ov7_0224F188 = {
     NULL,
     NULL,
     NULL,
@@ -119,7 +117,7 @@ static void ov7_0224B57C(UnkStruct_ov7_0224B4E8 *param0, int param1)
 
 static void ov7_0224B5A8(UnkStruct_ov7_0224B4E8 *param0)
 {
-    UnkStruct_ov84_02240FA8 v0;
+    ListMenuTemplate v0;
     Window *v1 = &(param0->unk_34);
     BattleRegulation *v2 = sub_0202610C(param0->fieldSystem->saveData, 0);
     int v3 = 5;
@@ -217,7 +215,7 @@ static UnkStruct_ov7_0224F4D8 Unk_ov7_0224F4D8[] = {
 
 static void ov7_0224B788(UnkStruct_ov7_0224B4E8 *param0)
 {
-    UnkStruct_ov84_02240FA8 v0;
+    ListMenuTemplate v0;
     int v1 = 3, v2;
     int v3 = 10;
     int v4 = 9;

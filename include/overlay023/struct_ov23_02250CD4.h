@@ -2,7 +2,6 @@
 #define POKEPLATINUM_STRUCT_OV23_02250CD4_H
 
 #include "struct_decls/cell_actor_data.h"
-#include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_defs/struct_0206A844.h"
 
@@ -16,6 +15,7 @@
 #include "overlay023/struct_ov23_02248D20.h"
 
 #include "bg_window.h"
+#include "list_menu.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
@@ -31,9 +31,9 @@ typedef struct {
     Window unk_30;
     StringList *unk_40;
     StringList *unk_44;
-    BmpList *unk_48;
+    ListMenu *unk_48;
     UnkStruct_ov23_02248D20 *unk_4C;
-    BmpList *unk_50;
+    ListMenu *unk_50;
     UIControlData *unk_54;
     StringList *unk_58;
     UIControlData *unk_5C;

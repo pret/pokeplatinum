@@ -5,7 +5,6 @@
 
 #include "constants/species.h"
 
-#include "struct_decls/struct_0200112C_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0202DF40.h"
 
@@ -25,6 +24,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "item.h"
+#include "list_menu.h"
 #include "message.h"
 #include "message_util.h"
 #include "overlay_manager.h"
@@ -784,7 +784,7 @@ void ov97_02238324(UnkStruct_ov97_0223829C *param0, UnkUnion_ov97_0222D2B0 *para
     Heap_FreeToHeap(v1);
 }
 
-void ov97_022383C4(BmpList *param0, u32 param1, u8 param2)
+void ov97_022383C4(ListMenu *param0, u32 param1, u8 param2)
 {
     switch (param2) {
     case 0:
