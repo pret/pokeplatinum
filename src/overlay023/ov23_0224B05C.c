@@ -6,12 +6,10 @@
 #include "consts/game_records.h"
 
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_02029894_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_02049FA8.h"
 #include "struct_defs/struct_02081CF4.h"
 
@@ -48,6 +46,7 @@
 #include "player_avatar.h"
 #include "savedata.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
@@ -55,7 +54,6 @@
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02013A04.h"
 #include "unk_0202854C.h"
 #include "unk_02030EE0.h"
 #include "unk_02033200.h"
@@ -1017,12 +1015,12 @@ static UIControlData *ov23_0224BD90(BgConfig *param0, const WindowTemplate *para
 {
     UnkStruct_02081CF4 v0;
     MessageLoader *v1 = ov23_02253E3C(ov23_0224219C());
-    ResourceMetadata *v2;
+    StringList *v2;
 
-    v2 = sub_02013A04(2, param4);
+    v2 = StringList_New(2, param4);
 
-    sub_02013A4C(v2, v1, 38, 0);
-    sub_02013A4C(v2, v1, 39, 1);
+    StringList_AddFromMessageBank(v2, v1, 38, 0);
+    StringList_AddFromMessageBank(v2, v1, 39, 1);
 
     v0.unk_00 = v2;
     v0.unk_04 = Window_New(param4, 1);

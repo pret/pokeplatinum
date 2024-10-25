@@ -37,6 +37,7 @@
 #include "save_player.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
@@ -48,7 +49,6 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02013A04.h"
 #include "unk_0202854C.h"
 #include "unk_0202C9F4.h"
 #include "unk_0202D05C.h"
@@ -328,25 +328,25 @@ static void ov7_0224D040(UnkStruct_ov7_0224D008 *param0)
 
     if (param0->unk_2A9 == 0) {
         v1 = 3;
-        param0->unk_84 = sub_02013A04(v1, 11);
+        param0->unk_84 = StringList_New(v1, 11);
 
-        sub_02013A4C(param0->unk_84, param0->unk_88, 15, 2);
-        sub_02013A4C(param0->unk_84, param0->unk_88, 16, 14);
-        sub_02013A4C(param0->unk_84, param0->unk_88, 17, 0xfffffffe);
+        StringList_AddFromMessageBank(param0->unk_84, param0->unk_88, 15, 2);
+        StringList_AddFromMessageBank(param0->unk_84, param0->unk_88, 16, 14);
+        StringList_AddFromMessageBank(param0->unk_84, param0->unk_88, 17, 0xfffffffe);
         Window_Add(param0->unk_00, &param0->unk_08[0], 3, 1, 1, 13, 6, 13, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (13 * 6)));
     } else if (param0->unk_2A9 == 3) {
         v1 = 2;
-        param0->unk_84 = sub_02013A04(v1, 11);
+        param0->unk_84 = StringList_New(v1, 11);
 
-        sub_02013A4C(param0->unk_84, param0->unk_88, 29, 2);
-        sub_02013A4C(param0->unk_84, param0->unk_88, 30, 0xfffffffe);
+        StringList_AddFromMessageBank(param0->unk_84, param0->unk_88, 29, 2);
+        StringList_AddFromMessageBank(param0->unk_84, param0->unk_88, 30, 0xfffffffe);
         Window_Add(param0->unk_00, &param0->unk_08[0], 3, 23, 13, 7, 4, 13, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (13 * 6)));
     } else {
         v1 = 2;
-        param0->unk_84 = sub_02013A04(v1, 11);
+        param0->unk_84 = StringList_New(v1, 11);
 
-        sub_02013A4C(param0->unk_84, param0->unk_88, 15, 2);
-        sub_02013A4C(param0->unk_84, param0->unk_88, 17, 0xfffffffe);
+        StringList_AddFromMessageBank(param0->unk_84, param0->unk_88, 15, 2);
+        StringList_AddFromMessageBank(param0->unk_84, param0->unk_88, 17, 0xfffffffe);
         Window_Add(param0->unk_00, &param0->unk_08[0], 3, 1, 1, 13, 4, 13, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (13 * 6)));
     }
 
@@ -387,7 +387,7 @@ static void ov7_0224D21C(UnkStruct_ov7_0224D008 *param0)
     Window_Clear(&param0->unk_08[0], 1);
     Window_ClearAndCopyToVRAM(&param0->unk_08[0]);
     sub_02001BC4(param0->unk_80, NULL);
-    sub_02013A3C(param0->unk_84);
+    StringList_Free(param0->unk_84);
     Window_Remove(&param0->unk_08[0]);
 }
 
@@ -606,28 +606,28 @@ static void ov7_0224D6BC(UnkStruct_ov7_0224D008 *param0)
         v0 = MessageLoader_Init(0, 26, 12, 11);
     }
 
-    param0->unk_7C = sub_02013A04(param0->unk_294 + 1, 11);
+    param0->unk_7C = StringList_New(param0->unk_294 + 1, 11);
 
     for (v3 = 0; v3 < param0->unk_294; v3++) {
         v4 = ov7_0224D698(param0, param0->unk_290[v3]);
 
         if ((v4 <= 420) && (v4 >= 328)) {
             v1 = MessageLoader_GetNewStrbuf(v5, Item_MoveForTMHM(v4));
-            sub_02013A6C(param0->unk_7C, v1, param0->unk_290[v3]);
+            StringList_AddFromStrbuf(param0->unk_7C, v1, param0->unk_290[v3]);
             Strbuf_Free(v1);
 
             v6 = 1;
         } else {
             v1 = MessageLoader_GetNewStrbuf(v0, v4);
-            sub_02013A6C(param0->unk_7C, v1, param0->unk_290[v3]);
+            StringList_AddFromStrbuf(param0->unk_7C, v1, param0->unk_290[v3]);
             Strbuf_Free(v1);
         }
     }
 
     if (v6) {
-        sub_02013A4C(param0->unk_7C, param0->unk_88, 26, 0xfffffffe);
+        StringList_AddFromMessageBank(param0->unk_7C, param0->unk_88, 26, 0xfffffffe);
     } else {
-        sub_02013A4C(param0->unk_7C, param0->unk_88, 8, 0xfffffffe);
+        StringList_AddFromMessageBank(param0->unk_7C, param0->unk_88, 8, 0xfffffffe);
     }
 
     MessageLoader_Free(v0);
@@ -836,7 +836,7 @@ static u8 ov7_0224DC84(UnkStruct_ov7_0224D008 *param0)
         break;
     case 0xfffffffe:
         sub_02001384(param0->unk_78, NULL, NULL);
-        sub_02013A3C(param0->unk_7C);
+        StringList_Free(param0->unk_7C);
         ov7_0224D44C(param0);
         ov7_0224D5D8(param0);
         Bg_ClearTilemap(param0->unk_00, 1);

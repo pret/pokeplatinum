@@ -2,12 +2,12 @@
 #define POKEPLATINUM_STRUCT_OV84_02240FA8_H
 
 #include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 
 #include "bg_window.h"
+#include "string_list.h"
 
 typedef struct {
-    const ResourceMetadata *unk_00;
+    const StringList *unk_00;
     void (*unk_04)(BmpList *, u32, u8);
     void (*unk_08)(BmpList *, u32, u8);
     Window *unk_0C;

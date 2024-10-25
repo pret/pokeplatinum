@@ -7,7 +7,6 @@
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_defs/struct_020158A8.h"
 #include "struct_defs/struct_0203D9B8.h"
 #include "struct_defs/struct_0209903C.h"
@@ -19,6 +18,7 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "message.h"
+#include "string_list.h"
 
 typedef struct UnkStruct_ov79_021D0E1C_t {
     int unk_00;
@@ -46,8 +46,8 @@ typedef struct UnkStruct_ov79_021D0E1C_t {
     UnkStruct_ov84_02240FA8 unk_A4;
     BmpList *unk_C4;
     BmpList *unk_C8;
-    ResourceMetadata *unk_CC;
-    ResourceMetadata *unk_D0;
+    StringList *unk_CC;
+    StringList *unk_D0;
     UIControlData *unk_D4;
     void *unk_D8;
     void *unk_DC;

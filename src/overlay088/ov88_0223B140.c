@@ -50,6 +50,7 @@
 #include "savedata.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "touch_screen.h"
@@ -66,7 +67,6 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
-#include "unk_02013A04.h"
 #include "unk_02017728.h"
 #include "unk_0201D15C.h"
 #include "unk_0201DBEC.h"
@@ -1896,7 +1896,7 @@ static int ov88_0223D5B8(UnkStruct_02095E80 *param0)
     Window_Clear(&param0->unk_36DC, 0);
     Window_Remove(&param0->unk_36DC);
     sub_02001384(param0->unk_36D8, NULL, NULL);
-    sub_02013A3C(param0->unk_36D4);
+    StringList_Free(param0->unk_36D4);
 
     return 0;
 }
@@ -1907,7 +1907,7 @@ static int ov88_0223D69C(UnkStruct_02095E80 *param0)
     int v1 = sub_0202AF94(param0->unk_36EC);
     int v2 = 5;
 
-    param0->unk_36D4 = sub_02013A04(v1 + 1, 26);
+    param0->unk_36D4 = StringList_New(v1 + 1, 26);
 
     {
         MessageLoader *v3;
@@ -1917,11 +1917,11 @@ static int ov88_0223D69C(UnkStruct_02095E80 *param0)
         for (v5 = 0; v5 < 32; v5++) {
             if (sub_0202AF78(param0->unk_36EC, v5)) {
                 Strbuf_CopyChars(v4, sub_0202AEF0(param0->unk_36EC, v5));
-                sub_02013A6C(param0->unk_36D4, v4, v5);
+                StringList_AddFromStrbuf(param0->unk_36D4, v4, v5);
             }
         }
 
-        sub_02013A4C(param0->unk_36D4, param0->unk_36D0, 11, 0xfffffffe);
+        StringList_AddFromMessageBank(param0->unk_36D4, param0->unk_36D0, 11, 0xfffffffe);
         Strbuf_Free(v4);
     }
 
@@ -2090,11 +2090,11 @@ static int ov88_0223DA3C(UnkStruct_02095E80 *param0)
     Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
     ov88_0223ECBC(&param0->unk_49C[22], 16, FONT_MESSAGE, param0->unk_184, param0->unk_17C);
 
-    param0->unk_6C0 = sub_02013A04(3, 26);
+    param0->unk_6C0 = StringList_New(3, 26);
 
-    sub_02013A4C(param0->unk_6C0, param0->unk_184, 17, 0);
-    sub_02013A4C(param0->unk_6C0, param0->unk_184, 18, 1);
-    sub_02013A4C(param0->unk_6C0, param0->unk_184, 19, 2);
+    StringList_AddFromMessageBank(param0->unk_6C0, param0->unk_184, 17, 0);
+    StringList_AddFromMessageBank(param0->unk_6C0, param0->unk_184, 18, 1);
+    StringList_AddFromMessageBank(param0->unk_6C0, param0->unk_184, 19, 2);
 
     v0.unk_00 = param0->unk_6C0;
     v0.unk_04 = &param0->unk_49C[24];
@@ -2114,7 +2114,7 @@ static int ov88_0223DB48(UnkStruct_02095E80 *param0)
         Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
         ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
         sub_02001BC4(param0->unk_6C4, NULL);
-        sub_02013A3C(param0->unk_6C0);
+        StringList_Free(param0->unk_6C0);
         param0->unk_226C = ov88_0223D150;
         return 3;
         break;
@@ -2122,7 +2122,7 @@ static int ov88_0223DB48(UnkStruct_02095E80 *param0)
         Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
         ov88_0223ECBC(&param0->unk_49C[23], 20, FONT_MESSAGE, param0->unk_184, param0->unk_178);
         sub_02001BC4(param0->unk_6C4, NULL);
-        sub_02013A3C(param0->unk_6C0);
+        StringList_Free(param0->unk_6C0);
         param0->unk_226C = ov88_0223DC84;
         break;
     case 2:
@@ -2130,7 +2130,7 @@ static int ov88_0223DB48(UnkStruct_02095E80 *param0)
         Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
         ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
         sub_02001BC4(param0->unk_6C4, NULL);
-        sub_02013A3C(param0->unk_6C0);
+        StringList_Free(param0->unk_6C0);
         param0->unk_226C = ov88_0223D150;
         break;
     }
@@ -2439,10 +2439,10 @@ static int ov88_0223E4BC(UnkStruct_02095E80 *param0)
     Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
     ov88_0223ECBC(&param0->unk_49C[22], 16, FONT_MESSAGE, param0->unk_184, param0->unk_17C);
 
-    param0->unk_6C0 = sub_02013A04(2, 26);
+    param0->unk_6C0 = StringList_New(2, 26);
 
-    sub_02013A4C(param0->unk_6C0, param0->unk_184, 17, 0);
-    sub_02013A4C(param0->unk_6C0, param0->unk_184, 19, 1);
+    StringList_AddFromMessageBank(param0->unk_6C0, param0->unk_184, 17, 0);
+    StringList_AddFromMessageBank(param0->unk_6C0, param0->unk_184, 19, 1);
 
     v0.unk_00 = param0->unk_6C0;
     v0.unk_04 = &param0->unk_49C[25];
@@ -2463,7 +2463,7 @@ static int ov88_0223E5B8(UnkStruct_02095E80 *param0)
         ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
         param0->unk_226C = ov88_0223D150;
         sub_02001BC4(param0->unk_6C4, NULL);
-        sub_02013A3C(param0->unk_6C0);
+        StringList_Free(param0->unk_6C0);
         return 3;
         break;
 
@@ -2472,7 +2472,7 @@ static int ov88_0223E5B8(UnkStruct_02095E80 *param0)
         Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
         ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
         sub_02001BC4(param0->unk_6C4, NULL);
-        sub_02013A3C(param0->unk_6C0);
+        StringList_Free(param0->unk_6C0);
         param0->unk_226C = ov88_0223D150;
         break;
     }

@@ -8,8 +8,6 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
-#include "struct_defs/struct_02013A04_t.h"
 
 #include "field/field_system.h"
 #include "gmm/message_bank_unk_0353.h"
@@ -26,6 +24,7 @@
 #include "render_text.h"
 #include "save_player.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -35,7 +34,6 @@
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
-#include "unk_02013A04.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
@@ -55,7 +53,7 @@ typedef struct CommClubManager {
     StringTemplate *strTempMsg;
     BmpList *unk_5C;
     UIControlData *unk_60;
-    ResourceMetadata *unk_64;
+    StringList *unk_64;
     FieldSystem *fieldSystem;
     CommClubManTaskFunc commClubTask;
     UnkFuncPtr_ov7_02249C2C_1 unk_70;
@@ -436,13 +434,13 @@ static void ov7_02249F54(SysTask *task, void *data)
     if (FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
         int v2;
 
-        sCommClubMan->unk_64 = sub_02013A04(16, 4);
+        sCommClubMan->unk_64 = StringList_New(16, 4);
 
         for (v2 = 0; v2 < 16; v2++) {
             StringTemplate_SetNumber(sCommClubMan->unk_50, 0, v2 + 1, 2, 2, 1);
             MessageLoader_GetStrbuf(sCommClubMan->msgLoader, pl_msg_00000353_00064, sCommClubMan->strBuff[1]);
             StringTemplate_Format(sCommClubMan->unk_50, sCommClubMan->strBuff[0], sCommClubMan->strBuff[1]);
-            sub_02013A6C(sCommClubMan->unk_64, sCommClubMan->strBuff[0], 0);
+            StringList_AddFromStrbuf(sCommClubMan->unk_64, sCommClubMan->strBuff[0], 0);
         }
 
         CommClubMan_CreateList(Unk_ov7_0224ED34, 1, 2, 20, 5 * 2, 1);
@@ -848,10 +846,10 @@ static void ov7_0224A72C(SysTask *task, void *param1)
     if (FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
         int netId;
 
-        sCommClubMan->unk_64 = sub_02013A04(5, 4);
+        sCommClubMan->unk_64 = StringList_New(5, 4);
 
         for (netId = 0; netId < 5; netId++) {
-            sub_02013A4C(sCommClubMan->unk_64, sCommClubMan->msgLoader, pl_msg_00000353_00069, 0);
+            StringList_AddFromMessageBank(sCommClubMan->unk_64, sCommClubMan->msgLoader, pl_msg_00000353_00069, 0);
         }
 
         sCommClubMan->unk_98 = 1;
@@ -1376,7 +1374,7 @@ static void CommClubMan_DestroyList(SysTask *task, CommClubManager *param1)
 {
     Window_FillTilemap(&sCommClubMan->msgWindow, 15);
     Window_Clear(&param1->unk_20, 0);
-    sub_02013A3C(param1->unk_64);
+    StringList_Free(param1->unk_64);
     sub_02001384(param1->unk_5C, NULL, NULL);
     Window_ClearAndCopyToVRAM(&param1->unk_20);
     Window_Remove(&param1->unk_20);

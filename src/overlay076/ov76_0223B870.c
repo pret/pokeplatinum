@@ -35,6 +35,7 @@
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
@@ -44,7 +45,6 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
-#include "unk_02013A04.h"
 #include "unk_02014000.h"
 #include "unk_0201E86C.h"
 #include "unk_0202419C.h"
@@ -493,7 +493,7 @@ void ov76_0223BF74(BgConfig *param0, Window *param1, int param2, UnkStruct_ov76_
     Window_Init(param1);
     Window_Add(param0, param1, param2, v2, v3, v4, v5, 14, v6);
 
-    param3->unk_D4.unk_C8 = sub_02013A04(v7, 53);
+    param3->unk_D4.unk_C8 = StringList_New(v7, 53);
 
     {
         int v9;
@@ -503,7 +503,7 @@ void ov76_0223BF74(BgConfig *param0, Window *param1, int param2, UnkStruct_ov76_
         for (v9 = 0; v9 < v7; v9++) {
             v10 = MessageLoader_GetNewStrbuf(v11, Unk_ov76_0223EF3C[v8[v9]].unk_00);
 
-            sub_02013A6C(param3->unk_D4.unk_C8, v10, Unk_ov76_0223EF3C[v8[v9]].unk_04);
+            StringList_AddFromStrbuf(param3->unk_D4.unk_C8, v10, Unk_ov76_0223EF3C[v8[v9]].unk_04);
             Strbuf_Free(v10);
         }
 

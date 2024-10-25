@@ -5,10 +5,8 @@
 
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/pokemon_summary.h"
-#include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_02081CF4.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -42,6 +40,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
@@ -97,7 +96,7 @@ struct UnkStruct_ov106_02243118_t {
     Window unk_4C[4];
     UnkStruct_02081CF4 unk_8C;
     UIControlData *unk_98;
-    ResourceMetadata unk_9C[2];
+    StringList unk_9C[2];
     PaletteData *unk_AC;
     UnkStruct_0200C440 *unk_B0;
     Options *unk_B4;
@@ -1079,8 +1078,8 @@ static void ov106_022429B0(UnkStruct_ov106_02243118 *param0, Window *param1, u8 
     int v0;
 
     for (v0 = 0; v0 < 2; v0++) {
-        param0->unk_9C[v0].unk_00 = NULL;
-        param0->unk_9C[v0].unk_04 = 0;
+        param0->unk_9C[v0].entry = NULL;
+        param0->unk_9C[v0].index = 0;
     }
 
     param0->unk_8C.unk_00 = param0->unk_9C;
@@ -1102,8 +1101,8 @@ static void ov106_02242A28(UnkStruct_ov106_02243118 *param0, u8 param1, u8 param
 
     MessageLoader_GetStrbuf(param0->unk_20, param3, param0->unk_30[param1]);
 
-    param0->unk_9C[param1].unk_00 = (const void *)param0->unk_30[param1];
-    param0->unk_9C[param1].unk_04 = param2;
+    param0->unk_9C[param1].entry = (const void *)param0->unk_30[param1];
+    param0->unk_9C[param1].index = param2;
 
     return;
 }

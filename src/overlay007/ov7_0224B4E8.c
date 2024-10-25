@@ -4,11 +4,9 @@
 #include <string.h>
 
 #include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02098700_decl.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_0202610C.h"
 
 #include "field/field_system.h"
@@ -22,12 +20,12 @@
 #include "party.h"
 #include "save_player.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "unk_0200112C.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
-#include "unk_02013A04.h"
 #include "unk_0202602C.h"
 #include "unk_02026150.h"
 #include "unk_020508D4.h"
@@ -37,8 +35,8 @@
 typedef struct {
     BmpList *unk_00;
     BmpList *unk_04;
-    ResourceMetadata *unk_08;
-    ResourceMetadata *unk_0C;
+    StringList *unk_08;
+    StringList *unk_0C;
     FieldSystem *fieldSystem;
     Strbuf *unk_14;
     Strbuf *unk_18;
@@ -133,21 +131,21 @@ static void ov7_0224B5A8(UnkStruct_ov7_0224B4E8 *param0)
     if (Window_IsInUse(v1) == 0) {
         int v4;
 
-        param0->unk_08 = sub_02013A04(v3 + 2, 4);
+        param0->unk_08 = StringList_New(v3 + 2, 4);
 
         Window_Add(param0->fieldSystem->unk_08, v1, 3, 1, 1, 16, (v3 + 2) * 2, 13, 1);
         Window_Show(&param0->unk_34, 1, 1024 - (18 + 12) - 9, 11);
-        sub_02013A4C(param0->unk_08, param0->unk_68, 123, 12);
+        StringList_AddFromMessageBank(param0->unk_08, param0->unk_68, 123, 12);
 
         for (v4 = 0; v4 < v3; v4++) {
             ov7_0224B57C(param0, v4);
 
             MessageLoader_GetStrbuf(param0->unk_68, 113, param0->unk_1C);
             StringTemplate_Format(param0->unk_64, param0->unk_20, param0->unk_1C);
-            sub_02013A6C(param0->unk_08, param0->unk_20, v4);
+            StringList_AddFromStrbuf(param0->unk_08, param0->unk_20, v4);
         }
 
-        sub_02013A4C(param0->unk_08, param0->unk_68, 114, 0xfffffffe);
+        StringList_AddFromMessageBank(param0->unk_08, param0->unk_68, 114, 0xfffffffe);
     }
 
     v0 = Unk_ov7_0224F188;
@@ -168,7 +166,7 @@ static void ov7_0224B6AC(UnkStruct_ov7_0224B4E8 *param0)
         Window_Clear(&param0->unk_34, 1);
         Bg_ScheduleTilemapTransfer(param0->unk_34.bgConfig, param0->unk_34.bgLayer);
         Window_Remove(&param0->unk_34);
-        sub_02013A3C(param0->unk_08);
+        StringList_Free(param0->unk_08);
 
         param0->unk_00 = NULL;
     }
@@ -226,7 +224,7 @@ static void ov7_0224B788(UnkStruct_ov7_0224B4E8 *param0)
     int v5 = 22;
     UnkStruct_ov7_0224F4D8 *v6 = Unk_ov7_0224F4D8;
 
-    param0->unk_0C = sub_02013A04(v1, 4);
+    param0->unk_0C = StringList_New(v1, 4);
 
     Window_Add(param0->fieldSystem->unk_08, &param0->unk_44, 3, v5, v3, v4, v1 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - v4 * v1 * 2);
     Window_Show(&param0->unk_44, 1, 1024 - (18 + 12) - 9, 11);
@@ -235,7 +233,7 @@ static void ov7_0224B788(UnkStruct_ov7_0224B4E8 *param0)
         int v7;
 
         for (v7 = 0; v7 < v1; v7++) {
-            sub_02013A4C(param0->unk_0C, param0->unk_68, v6->unk_00, v6->unk_04);
+            StringList_AddFromMessageBank(param0->unk_0C, param0->unk_68, v6->unk_00, v6->unk_04);
             v6++;
         }
     }
@@ -284,7 +282,7 @@ static int ov7_0224B83C(UnkStruct_ov7_0224B4E8 *param0)
         Window_Clear(&param0->unk_44, 1);
         Bg_ScheduleTilemapTransfer(param0->unk_44.bgConfig, param0->unk_44.bgLayer);
         Window_Remove(&param0->unk_44);
-        sub_02013A3C(param0->unk_0C);
+        StringList_Free(param0->unk_0C);
 
         param0->unk_04 = NULL;
     }

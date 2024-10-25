@@ -2,10 +2,8 @@
 #include <string.h>
 
 #include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_defs/archived_sprite.h"
-#include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/struct_0203CC84.h"
 #include "struct_defs/struct_0208737C.h"
@@ -30,6 +28,7 @@
 #include "savedata.h"
 #include "savedata_misc.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
 #include "text.h"
@@ -42,7 +41,6 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
-#include "unk_02013A04.h"
 #include "unk_0201567C.h"
 #include "unk_02015920.h"
 #include "unk_02017728.h"
@@ -64,7 +62,7 @@ typedef struct {
     int unk_2C;
     Window unk_30;
     BmpList *unk_40;
-    ResourceMetadata *unk_44;
+    StringList *unk_44;
     int unk_48;
     MessageLoader *unk_4C;
     int unk_50;
@@ -782,10 +780,10 @@ static BOOL ov73_021D1648(UnkStruct_ov73_021D1058 *param0, int param1, int param
 
         Window_AddFromTemplate(param0->unk_18, &param0->unk_30, v2);
 
-        param0->unk_44 = sub_02013A04(v5, param0->unk_00);
+        param0->unk_44 = StringList_New(v5, param0->unk_00);
 
         for (v4 = 0; v4 < v5; v4++) {
-            sub_02013A4C(param0->unk_44, param0->unk_4C, v3[v4].unk_00, v3[v4].unk_04);
+            StringList_AddFromMessageBank(param0->unk_44, param0->unk_4C, v3[v4].unk_00, v3[v4].unk_04);
         }
 
         v1 = Unk_ov72_021D390C;
@@ -816,7 +814,7 @@ static BOOL ov73_021D1648(UnkStruct_ov73_021D1058 *param0, int param1, int param
         Window_Clear(&param0->unk_30, 0);
         Window_Remove(&param0->unk_30);
         sub_02001384(param0->unk_40, NULL, NULL);
-        sub_02013A3C(param0->unk_44);
+        StringList_Free(param0->unk_44);
         Sound_PlayEffect(1500);
 
         param0->unk_2C = 0;

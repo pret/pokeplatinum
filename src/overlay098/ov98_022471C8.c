@@ -6,10 +6,8 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02025CCC_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
-#include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay004/ov4_021D0D80.h"
@@ -36,6 +34,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "unk_0200112C.h"
@@ -44,7 +43,6 @@
 #include "unk_0200A784.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02013A04.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
@@ -84,7 +82,7 @@ typedef struct {
     int unk_94;
     int unk_98;
     int unk_9C;
-    ResourceMetadata * unk_A0;
+    StringList *unk_A0;
     BmpList * unk_A4;
     int unk_A8;
     int unk_AC;
@@ -748,10 +746,10 @@ static int ov98_02247B98 (UnkStruct_ov98_02247704 * param0)
 
         Window_Add(param0->unk_04, &param0->unk_78, 0, v3[0], v3[1], v3[2], v3[3], 13, (((1 + (18 + 12)) + 9) + 27 * 4));
 
-        param0->unk_A0 = sub_02013A04(v5, 109);
+        param0->unk_A0 = StringList_New(v5, 109);
 
         for (v1 = 0; v1 < v5; v1++) {
-            sub_02013A4C(param0->unk_A0, param0->unk_34, v4[v1].unk_00, v4[v1].unk_04);
+            StringList_AddFromMessageBank(param0->unk_A0, param0->unk_34, v4[v1].unk_00, v4[v1].unk_04);
         }
 
         v2.unk_0C = &param0->unk_78;
@@ -785,7 +783,7 @@ static int ov98_02247B98 (UnkStruct_ov98_02247704 * param0)
         }
         break;
     default:
-        sub_02013A3C(param0->unk_A0);
+        StringList_Free(param0->unk_A0);
         sub_02001384(param0->unk_A4, NULL, NULL);
         Window_Clear(&param0->unk_78, 1);
         Window_ClearAndCopyToVRAM(&param0->unk_78);

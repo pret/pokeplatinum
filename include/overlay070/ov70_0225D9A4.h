@@ -1,8 +1,6 @@
 #ifndef POKEPLATINUM_OV70_0225D9A4_H
 #define POKEPLATINUM_OV70_0225D9A4_H
 
-#include "struct_decls/struct_02013A04_decl.h"
-
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
 #include "overlay070/struct_ov70_0225C894_decl.h"
 #include "overlay070/struct_ov70_0225CA20_decl.h"
@@ -16,6 +14,7 @@
 #include "enums.h"
 #include "overlay_manager.h"
 #include "strbuf.h"
+#include "string_list.h"
 
 int ov70_0225D9A4(OverlayManager *param0, int *param1);
 int ov70_0225DB90(OverlayManager *param0, int *param1);
@@ -51,7 +50,7 @@ void ov70_0225E00C(UnkStruct_ov70_0225DEE8 *param0, u32 param1);
 void ov70_0225E020(UnkStruct_ov70_0225DEE8 *param0, u32 param1, u32 param2);
 void ov70_0225E034(UnkStruct_ov70_0225DEE8 *param0);
 void ov70_0225E044(UnkStruct_ov70_0225DEE8 *param0, const Strbuf *param1, u32 param2);
-const ResourceMetadata *ov70_0225E054(const UnkStruct_ov70_0225DEE8 *param0);
+const StringList *ov70_0225E054(const UnkStruct_ov70_0225DEE8 *param0);
 BOOL ov70_0225E064(const UnkStruct_ov70_0225DEE8 *param0, u32 param1);
 void ov70_0225E074(UnkStruct_ov70_0225DEE8 *param0, const UnkStruct_ov84_02240FA8 *param1, u16 param2, u16 param3);
 void ov70_0225E0A4(UnkStruct_ov70_0225DEE8 *param0, const UnkStruct_ov84_02240FA8 *param1, u16 param2, u16 param3, u8 param4, u8 param5, u8 param6);

@@ -1,12 +1,11 @@
 #ifndef POKEPLATINUM_STRUCT_02081CF4_H
 #define POKEPLATINUM_STRUCT_02081CF4_H
 
-#include "struct_decls/struct_02013A04_decl.h"
-
 #include "bg_window.h"
+#include "string_list.h"
 
 typedef struct {
-    const ResourceMetadata *unk_00;
+    const StringList *unk_00;
     Window *unk_04;
     u8 unk_08;
     u8 unk_09;

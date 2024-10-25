@@ -4,7 +4,6 @@
 #include <dwc.h>
 
 #include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_defs/struct_0200C738.h"
 
 #include "overlay097/struct_ov97_0223829C.h"
@@ -17,6 +16,7 @@
 #include "savedata.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 
 typedef struct {
@@ -34,7 +34,7 @@ typedef struct {
     int unk_70;
     int unk_74;
     BmpList *unk_78;
-    ResourceMetadata *unk_7C;
+    StringList *unk_7C;
     int unk_80;
     int unk_84;
     int unk_88;

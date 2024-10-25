@@ -29,6 +29,7 @@
 #include "party.h"
 #include "pokemon.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "unk_02001AF4.h"
@@ -36,7 +37,6 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
-#include "unk_02013A04.h"
 #include "unk_020393C8.h"
 
 static void ov94_0223D1D4(BgConfig *param0);
@@ -411,10 +411,10 @@ static int ov94_0223D6B8(UnkStruct_ov94_0223FD4C *param0)
     v0.unk_0B_4 = 0;
     v0.unk_0B_6 = 0;
 
-    param0->unk_10CC = sub_02013A04(2, 62);
+    param0->unk_10CC = StringList_New(2, 62);
 
-    sub_02013A4C(param0->unk_10CC, param0->unk_B90, 54, 1);
-    sub_02013A4C(param0->unk_10CC, param0->unk_B90, 55, 2);
+    StringList_AddFromMessageBank(param0->unk_10CC, param0->unk_B90, 54, 1);
+    StringList_AddFromMessageBank(param0->unk_10CC, param0->unk_B90, 55, 2);
 
     v0.unk_00 = param0->unk_10CC;
     v0.unk_04 = &param0->unk_F9C[0];
@@ -432,7 +432,7 @@ static int ov94_0223D754(UnkStruct_ov94_0223FD4C *param0)
     switch (sub_02001BE0(param0->unk_10D4)) {
     case 1:
         sub_02001BC4(param0->unk_10D4, NULL);
-        sub_02013A3C(param0->unk_10CC);
+        StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
 
         {
@@ -455,7 +455,7 @@ static int ov94_0223D754(UnkStruct_ov94_0223FD4C *param0)
     case 2:
     case 0xfffffffe:
         sub_02001BC4(param0->unk_10D4, NULL);
-        sub_02013A3C(param0->unk_10CC);
+        StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
 
         param0->unk_2C = 2;

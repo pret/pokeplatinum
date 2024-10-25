@@ -5,10 +5,8 @@
 #include <string.h>
 
 #include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_defs/struct_0200C738.h"
-#include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -59,6 +57,7 @@
 #include "savedata.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -72,7 +71,6 @@
 #include "unk_0200A784.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02013A04.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
@@ -120,7 +118,7 @@ typedef struct {
     UnkStruct_ov84_02240FA8 unk_00;
     Window unk_20;
     BmpList *unk_30;
-    ResourceMetadata *unk_34;
+    StringList *unk_34;
     u16 unk_38;
     u16 unk_3A;
     BOOL unk_3C;
@@ -129,7 +127,7 @@ typedef struct {
 } UnkStruct_ov70_0225EC20;
 
 typedef struct {
-    ResourceMetadata *unk_00;
+    StringList *unk_00;
     UnkStruct_ov84_02240FA8 unk_04;
 } UnkStruct_ov70_0225F098;
 
@@ -259,7 +257,7 @@ static void ov70_0225ED4C(UnkStruct_ov70_0225EC20 *param0, UnkStruct_ov70_0225E4
 static void ov70_0225EDA8(UnkStruct_ov70_0225EC20 *param0, u32 param1, u32 param2, u32 param3);
 static void ov70_0225EDE0(UnkStruct_ov70_0225EC20 *param0);
 static void ov70_0225EDF8(UnkStruct_ov70_0225EC20 *param0, const Strbuf *param1, u32 param2);
-static const ResourceMetadata *ov70_0225EE04(const UnkStruct_ov70_0225EC20 *param0);
+static const StringList *ov70_0225EE04(const UnkStruct_ov70_0225EC20 *param0);
 static BOOL ov70_0225EE08(const UnkStruct_ov70_0225EC20 *param0, u32 param1);
 static void ov70_0225EE30(UnkStruct_ov70_0225EC20 *param0, const UnkStruct_ov84_02240FA8 *param1, UnkStruct_ov70_0225E4EC *param2, u16 param3, u16 param4, u32 param5, u8 param6, u8 param7, u8 param8);
 static u32 ov70_0225EED8(UnkStruct_ov70_0225EC20 *param0);
@@ -976,7 +974,7 @@ void ov70_0225E044(UnkStruct_ov70_0225DEE8 *param0, const Strbuf *param1, u32 pa
     ov70_0225EDF8(&param0->unk_39C, param1, param2);
 }
 
-const ResourceMetadata *ov70_0225E054(const UnkStruct_ov70_0225DEE8 *param0)
+const StringList *ov70_0225E054(const UnkStruct_ov70_0225DEE8 *param0)
 {
     return ov70_0225EE04(&param0->unk_39C);
 }
@@ -1712,18 +1710,18 @@ static void ov70_0225EDA8(UnkStruct_ov70_0225EC20 *param0, u32 param1, u32 param
 {
     int v0;
     GF_ASSERT(param0->unk_34 == NULL);
-    param0->unk_34 = sub_02013A04(param1, param2);
+    param0->unk_34 = StringList_New(param1, param2);
     param0->unk_38 = param1;
 
     for (v0 = 0; v0 < param1; v0++) {
-        param0->unk_34[v0].unk_04 = param3;
+        param0->unk_34[v0].index = param3;
     }
 }
 
 static void ov70_0225EDE0(UnkStruct_ov70_0225EC20 *param0)
 {
     if (param0->unk_34 != NULL) {
-        sub_02013A3C(param0->unk_34);
+        StringList_Free(param0->unk_34);
         param0->unk_34 = NULL;
         param0->unk_38 = 0;
     }
@@ -1731,10 +1729,10 @@ static void ov70_0225EDE0(UnkStruct_ov70_0225EC20 *param0)
 
 static void ov70_0225EDF8(UnkStruct_ov70_0225EC20 *param0, const Strbuf *param1, u32 param2)
 {
-    sub_02013A6C(param0->unk_34, param1, param2);
+    StringList_AddFromStrbuf(param0->unk_34, param1, param2);
 }
 
-static const ResourceMetadata *ov70_0225EE04(const UnkStruct_ov70_0225EC20 *param0)
+static const StringList *ov70_0225EE04(const UnkStruct_ov70_0225EC20 *param0)
 {
     return param0->unk_34;
 }
@@ -1744,7 +1742,7 @@ static BOOL ov70_0225EE08(const UnkStruct_ov70_0225EC20 *param0, u32 param1)
     int v0;
 
     for (v0 = 0; v0 < param0->unk_38; v0++) {
-        if (param0->unk_34[v0].unk_04 == param1) {
+        if (param0->unk_34[v0].index == param1) {
             return 1;
         }
     }
@@ -1897,12 +1895,12 @@ static void ov70_0225F098(UnkStruct_ov70_0225F098 *param0, UnkStruct_ov70_0225F2
     Strbuf *v0;
 
     GF_ASSERT(param0->unk_00 == NULL);
-    param0->unk_00 = sub_02013A04(2, param2);
+    param0->unk_00 = StringList_New(2, param2);
 
     v0 = ov70_0225F288(param1, 1, 67);
-    sub_02013A6C(param0->unk_00, v0, 0);
+    StringList_AddFromStrbuf(param0->unk_00, v0, 0);
     v0 = ov70_0225F288(param1, 1, 66);
-    sub_02013A6C(param0->unk_00, v0, 1);
+    StringList_AddFromStrbuf(param0->unk_00, v0, 1);
 
     param0->unk_04 = Unk_ov70_0226D644;
     param0->unk_04.unk_10 = 2;
@@ -1912,7 +1910,7 @@ static void ov70_0225F098(UnkStruct_ov70_0225F098 *param0, UnkStruct_ov70_0225F2
 static void ov70_0225F100(UnkStruct_ov70_0225F098 *param0)
 {
     if (param0->unk_00 != NULL) {
-        sub_02013A3C(param0->unk_00);
+        StringList_Free(param0->unk_00);
         param0->unk_00 = NULL;
     }
 }

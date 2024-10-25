@@ -6,14 +6,12 @@
 #include "consts/game_records.h"
 
 #include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_020308A0_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_defs/struct_02013A04_t.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021EB1A0.h"
@@ -37,6 +35,7 @@
 #include "savedata_misc.h"
 #include "script_manager.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -87,7 +86,7 @@ struct UnkStruct_ov5_021F6704_t {
     BmpList *unk_23C;
     u16 unk_240;
     u16 unk_242;
-    ResourceMetadata unk_244[120];
+    StringList unk_244[120];
     u16 unk_604[120];
     u16 unk_6F4;
 };
@@ -236,8 +235,8 @@ static void ov5_021F6624(FieldSystem *fieldSystem, UnkStruct_ov5_021F6704 *param
     param1->unk_6F4 = param4;
 
     for (v0 = 0; v0 < 120; v0++) {
-        param1->unk_244[v0].unk_00 = NULL;
-        param1->unk_244[v0].unk_04 = 0;
+        param1->unk_244[v0].entry = NULL;
+        param1->unk_244[v0].index = 0;
         param1->unk_604[v0] = 0xff;
     }
 
@@ -300,14 +299,14 @@ static void ov5_021F6830(UnkStruct_ov5_021F6704 *param0, u32 param1, u32 param2,
 
         MessageLoader_GetStrbuf(param0->unk_1FC, param1, v2);
         StringTemplate_Format(param0->unk_200, param0->unk_1C[param0->unk_20B], v2);
-        param0->unk_244[param0->unk_20B].unk_00 = (const void *)param0->unk_1C[param0->unk_20B];
+        param0->unk_244[param0->unk_20B].entry = (const void *)param0->unk_1C[param0->unk_20B];
         Strbuf_Free(v2);
     }
 
     if (param3 == 0xfa) {
-        param0->unk_244[param0->unk_20B].unk_04 = 0xfffffffd;
+        param0->unk_244[param0->unk_20B].index = 0xfffffffd;
     } else {
-        param0->unk_244[param0->unk_20B].unk_04 = param3;
+        param0->unk_244[param0->unk_20B].index = param3;
     }
 
     param0->unk_604[param0->unk_20B] = param2;

@@ -24,6 +24,7 @@
 #include "poffin.h"
 #include "render_text.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
@@ -31,7 +32,6 @@
 #include "unk_02005474.h"
 #include "unk_0200C440.h"
 #include "unk_0200DA60.h"
-#include "unk_02013A04.h"
 
 static void ov84_0223F9B0(UnkStruct_ov84_0223B5A0 *param0, u32 param1);
 static BOOL ov84_022400E0(TextPrinterTemplate *param0, u16 param1);
@@ -415,10 +415,10 @@ void ov84_0223FB70(UnkStruct_ov84_0223B5A0 *param0, u8 *param1, u8 param2)
         v5 = 3;
     }
 
-    param0->unk_154 = sub_02013A04(param2, 6);
+    param0->unk_154 = StringList_New(param2, 6);
 
     for (v4 = 0; v4 < param2; v4++) {
-        sub_02013A6C(param0->unk_154, param0->unk_124[param1[v4]], ov84_0223D84C(param1[v4]));
+        StringList_AddFromStrbuf(param0->unk_154, param0->unk_124[param1[v4]], ov84_0223D84C(param1[v4]));
     }
 
     v0.unk_00 = param0->unk_154;
@@ -480,7 +480,7 @@ void ov84_0223FD84(UnkStruct_ov84_0223B5A0 *param0)
     Window_Clear(&param0->unk_B4[0], 1);
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_B4[0]);
     sub_02001BC4(param0->unk_158, NULL);
-    sub_02013A3C(param0->unk_154);
+    StringList_Free(param0->unk_154);
     Window_Remove(&param0->unk_B4[0]);
     Window_FillTilemap(&param0->unk_04[1], 0);
     ov84_0223F528(param0, param0->unk_C4->unk_66);

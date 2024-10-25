@@ -5,8 +5,6 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
-#include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_02081CF4.h"
 
 #include "field/field_system.h"
@@ -21,6 +19,7 @@
 #include "message.h"
 #include "save_player.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -59,12 +58,12 @@ struct UnkStruct_ov5_021DC1A4_t {
     u16 *unk_A8;
     UnkStruct_02081CF4 unk_AC;
     UIControlData *unk_B8;
-    ResourceMetadata unk_BC[28];
+    StringList unk_BC[28];
     UnkStruct_ov84_02240FA8 unk_19C;
     BmpList *unk_1BC;
     u16 unk_1C0;
     u16 unk_1C2;
-    ResourceMetadata unk_1C4[28];
+    StringList unk_1C4[28];
     u16 unk_2A4[28];
     u16 unk_2DC;
 };
@@ -132,13 +131,13 @@ static void ov5_021DC018(FieldSystem *fieldSystem, UnkStruct_ov5_021DC1A4 *param
     param1->unk_2DC = param4;
 
     for (v0 = 0; v0 < 28; v0++) {
-        param1->unk_BC[v0].unk_00 = NULL;
-        param1->unk_BC[v0].unk_04 = 0;
+        param1->unk_BC[v0].entry = NULL;
+        param1->unk_BC[v0].index = 0;
     }
 
     for (v0 = 0; v0 < 28; v0++) {
-        param1->unk_1C4[v0].unk_00 = NULL;
-        param1->unk_1C4[v0].unk_04 = 0;
+        param1->unk_1C4[v0].entry = NULL;
+        param1->unk_1C4[v0].index = 0;
         param1->unk_2A4[v0] = 0xff;
     }
 
@@ -216,11 +215,11 @@ static void ov5_021DC290(UnkStruct_ov5_021DC1A4 *param0, u32 param1, u32 param2)
 
         MessageLoader_GetStrbuf(param0->unk_8C, param1, v2);
         StringTemplate_Format(param0->unk_90, param0->unk_1C[param0->unk_9B], v2);
-        param0->unk_BC[param0->unk_9B].unk_00 = (const void *)param0->unk_1C[param0->unk_9B];
+        param0->unk_BC[param0->unk_9B].entry = (const void *)param0->unk_1C[param0->unk_9B];
         Strbuf_Free(v2);
     }
 
-    param0->unk_BC[param0->unk_9B].unk_04 = param2;
+    param0->unk_BC[param0->unk_9B].index = param2;
     param0->unk_9B++;
 
     return;
@@ -235,11 +234,11 @@ static u32 ov5_021DC300(UnkStruct_ov5_021DC1A4 *param0)
     v2 = 0;
 
     for (v0 = 0; v0 < param0->unk_9B; v0++) {
-        if (param0->unk_BC[v0].unk_00 == NULL) {
+        if (param0->unk_BC[v0].entry == NULL) {
             break;
         }
 
-        v1 = Font_CalcStringWidthWithCursorControl(FONT_SYSTEM, (Strbuf *)param0->unk_BC[v0].unk_00);
+        v1 = Font_CalcStringWidthWithCursorControl(FONT_SYSTEM, (Strbuf *)param0->unk_BC[v0].entry);
 
         if (v2 < v1) {
             v2 = v1;
@@ -440,14 +439,14 @@ static void ov5_021DC708(UnkStruct_ov5_021DC1A4 *param0, u32 param1, u32 param2,
 
         MessageLoader_GetStrbuf(param0->unk_8C, param1, v2);
         StringTemplate_Format(param0->unk_90, param0->unk_1C[param0->unk_9B], v2);
-        param0->unk_1C4[param0->unk_9B].unk_00 = (const void *)param0->unk_1C[param0->unk_9B];
+        param0->unk_1C4[param0->unk_9B].entry = (const void *)param0->unk_1C[param0->unk_9B];
         Strbuf_Free(v2);
     }
 
     if (param3 == 0xfa) {
-        param0->unk_1C4[param0->unk_9B].unk_04 = 0xfffffffd;
+        param0->unk_1C4[param0->unk_9B].index = 0xfffffffd;
     } else {
-        param0->unk_1C4[param0->unk_9B].unk_04 = param3;
+        param0->unk_1C4[param0->unk_9B].index = param3;
     }
 
     param0->unk_2A4[param0->unk_9B] = param2;
@@ -465,11 +464,11 @@ static u32 ov5_021DC7A8(UnkStruct_ov5_021DC1A4 *param0)
     v2 = 0;
 
     for (v0 = 0; v0 < param0->unk_9B; v0++) {
-        if (param0->unk_1C4[v0].unk_00 == NULL) {
+        if (param0->unk_1C4[v0].entry == NULL) {
             break;
         }
 
-        v1 = Font_CalcStringWidthWithCursorControl(FONT_SYSTEM, (Strbuf *)param0->unk_1C4[v0].unk_00);
+        v1 = Font_CalcStringWidthWithCursorControl(FONT_SYSTEM, (Strbuf *)param0->unk_1C4[v0].entry);
 
         if (v2 < v1) {
             v2 = v1;

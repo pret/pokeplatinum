@@ -6,10 +6,8 @@
 #include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/pokemon_summary.h"
-#include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02081CF4.h"
 #include "struct_defs/struct_02099F80.h"
@@ -50,6 +48,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
@@ -106,7 +105,7 @@ struct UnkStruct_ov105_02241FF4_t {
     Window unk_50[10];
     UnkStruct_02081CF4 unk_F0;
     UIControlData *unk_FC;
-    ResourceMetadata unk_100[4];
+    StringList unk_100[4];
     PaletteData *unk_120;
     GenericPointerData *unk_124;
     UnkStruct_02007768 *unk_128;
@@ -2564,8 +2563,8 @@ static void ov105_02244D48(UnkStruct_ov105_02241FF4 *param0, Window *param1, u8 
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_100[v0].unk_00 = NULL;
-        param0->unk_100[v0].unk_04 = 0;
+        param0->unk_100[v0].entry = NULL;
+        param0->unk_100[v0].index = 0;
     }
 
     param0->unk_F0.unk_00 = param0->unk_100;
@@ -2587,8 +2586,8 @@ static void ov105_02244DC4(UnkStruct_ov105_02241FF4 *param0, u8 param1, u8 param
 
     MessageLoader_GetStrbuf(param0->unk_1C, param3, param0->unk_2C[param1]);
 
-    param0->unk_100[param1].unk_00 = (const void *)param0->unk_2C[param1];
-    param0->unk_100[param1].unk_04 = param2;
+    param0->unk_100[param1].entry = (const void *)param0->unk_2C[param1];
+    param0->unk_100[param1].index = param2;
 
     return;
 }

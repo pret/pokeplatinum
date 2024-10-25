@@ -5,12 +5,10 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_0202E8C0_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
-#include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_0202EE10.h"
 #include "struct_defs/struct_0202EE10_sub1.h"
 
@@ -31,6 +29,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "unk_0200112C.h"
@@ -38,7 +37,6 @@
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
-#include "unk_02013A04.h"
 #include "unk_0202E840.h"
 #include "unk_020508D4.h"
 
@@ -98,7 +96,7 @@ typedef struct {
     UnkStruct_0206F7F8_sub1 unk_2C;
     UnkStruct_ov84_02240FA8 unk_A0;
     BmpList *unk_C0;
-    ResourceMetadata *unk_C4;
+    StringList *unk_C4;
     UIControlData *unk_C8;
     FieldSystem *fieldSystem;
     BgConfig *unk_D0;
@@ -685,16 +683,16 @@ static void sub_0206FDC0(UnkStruct_0206F7F8 *param0, u16 param1, u16 param2)
     int v0, v1;
 
     v1 = param0->unk_18 + 1;
-    param0->unk_C4 = sub_02013A04(v1, param0->unk_00);
+    param0->unk_C4 = StringList_New(v1, param0->unk_00);
 
     Window_Add(param0->unk_D0, &param0->unk_D4, 1, 4, 1, 24, v1 * 2, 13, 1);
     Window_FillTilemap(&param0->unk_D4, ((15 << 4) | 15));
 
     for (v0 = 0; v0 < param0->unk_18; v0++) {
-        sub_02013A6C(param0->unk_C4, param0->unk_2C.unk_38[v0], v0);
+        StringList_AddFromStrbuf(param0->unk_C4, param0->unk_2C.unk_38[v0], v0);
     }
 
-    sub_02013A6C(param0->unk_C4, param0->unk_2C.unk_0C, 0xFFFF);
+    StringList_AddFromStrbuf(param0->unk_C4, param0->unk_2C.unk_0C, 0xFFFF);
 
     MI_CpuCopy8((void *)&Unk_020F02B0, (void *)&(param0->unk_A0), sizeof(UnkStruct_ov84_02240FA8));
 
@@ -718,7 +716,7 @@ static void sub_0206FDC0(UnkStruct_0206F7F8 *param0, u16 param1, u16 param2)
 static void sub_0206FF10(UnkStruct_0206F7F8 *param0)
 {
     sub_02001384(param0->unk_C0, &(param0->unk_22), &(param0->unk_24));
-    sub_02013A3C(param0->unk_C4);
+    StringList_Free(param0->unk_C4);
     Window_ClearAndCopyToVRAM(&(param0->unk_D4));
     Window_Clear(&(param0->unk_D4), 0);
     Window_Remove(&(param0->unk_D4));

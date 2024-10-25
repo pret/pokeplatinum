@@ -6,7 +6,6 @@
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02098700_decl.h"
 #include "struct_defs/funcptr_0207F248_sub1.h"
 #include "struct_defs/struct_0207C690.h"
@@ -22,6 +21,7 @@
 #include "cell_actor.h"
 #include "message.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 
 typedef struct {
@@ -43,7 +43,7 @@ typedef struct {
     Strbuf *unk_6A4;
     Strbuf *unk_6A8;
     Strbuf *unk_6AC[20];
-    ResourceMetadata *unk_6FC;
+    StringList *unk_6FC;
     UIControlData *unk_700;
     StrBufWrapper unk_704[6];
     const ByteFlagSet *unk_7F4;

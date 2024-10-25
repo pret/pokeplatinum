@@ -6,7 +6,6 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_defs/pokemon_summary.h"
@@ -32,6 +31,7 @@
 #include "pokemon.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
@@ -121,7 +121,7 @@ typedef struct UnkStruct_ov94_0223FD4C_t {
     Window unk_FCC[13];
     Window unk_109C;
     Window unk_10AC[2];
-    ResourceMetadata *unk_10CC;
+    StringList *unk_10CC;
     UIControlData *unk_10D0;
     UIControlData *unk_10D4;
     BmpList *unk_10D8;

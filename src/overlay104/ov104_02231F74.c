@@ -7,12 +7,10 @@
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/sentence.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
-#include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_02081CF4.h"
 
 #include "overlay063/ov63_0222BE18.h"
@@ -48,6 +46,7 @@
 #include "render_text.h"
 #include "save_player.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -88,12 +87,12 @@ typedef struct UnkStruct_ov104_02232B5C_t {
     u16 *unk_A0;
     UnkStruct_02081CF4 unk_A4;
     UIControlData *unk_B0;
-    ResourceMetadata unk_B4[28];
+    StringList unk_B4[28];
     UnkStruct_ov84_02240FA8 unk_194;
     BmpList *unk_1B4;
     u16 unk_1B8;
     u16 unk_1BA;
-    ResourceMetadata unk_1BC[28];
+    StringList unk_1BC[28];
     u16 unk_29C[28];
     u16 unk_2D4;
 } UnkStruct_ov104_02232B5C;
@@ -263,13 +262,13 @@ static void ov104_0223214C(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_022
     param1->unk_2D4 = param4;
 
     for (v0 = 0; v0 < 28; v0++) {
-        param1->unk_B4[v0].unk_00 = NULL;
-        param1->unk_B4[v0].unk_04 = 0;
+        param1->unk_B4[v0].entry = NULL;
+        param1->unk_B4[v0].index = 0;
     }
 
     for (v0 = 0; v0 < 28; v0++) {
-        param1->unk_1BC[v0].unk_00 = NULL;
-        param1->unk_1BC[v0].unk_04 = 0;
+        param1->unk_1BC[v0].entry = NULL;
+        param1->unk_1BC[v0].index = 0;
         param1->unk_29C[v0] = 0xff;
     }
 
@@ -343,12 +342,12 @@ static void ov104_02232390(UnkStruct_ov104_02232B5C *param0, u32 param1, u32 par
 
         MessageLoader_GetStrbuf(param0->unk_8C, param1, v2);
         StringTemplate_Format(param0->unk_90, param0->unk_1C[param0->unk_9B], v2);
-        param0->unk_B4[param0->unk_9B].unk_00 = (const void *)param0->unk_1C[param0->unk_9B];
+        param0->unk_B4[param0->unk_9B].entry = (const void *)param0->unk_1C[param0->unk_9B];
         Strbuf_Free(v2);
     }
 
     param0->unk_29C[param0->unk_9B] = param2;
-    param0->unk_B4[param0->unk_9B].unk_04 = param3;
+    param0->unk_B4[param0->unk_9B].index = param3;
     param0->unk_9B++;
 
     return;
@@ -363,11 +362,11 @@ static u32 ov104_02232414(UnkStruct_ov104_02232B5C *param0)
     v2 = 0;
 
     for (v0 = 0; v0 < param0->unk_9B; v0++) {
-        if (param0->unk_B4[v0].unk_00 == NULL) {
+        if (param0->unk_B4[v0].entry == NULL) {
             break;
         }
 
-        v1 = Font_CalcStrbufWidth(FONT_SYSTEM, (Strbuf *)param0->unk_B4[v0].unk_00, 0);
+        v1 = Font_CalcStrbufWidth(FONT_SYSTEM, (Strbuf *)param0->unk_B4[v0].entry, 0);
 
         if (v2 < v1) {
             v2 = v1;
@@ -529,15 +528,15 @@ static void ov104_02232750(UnkStruct_ov104_02232B5C *param0, u32 param1, u32 par
 
         MessageLoader_GetStrbuf(param0->unk_8C, param1, v2);
         StringTemplate_Format(param0->unk_90, param0->unk_1C[param0->unk_9B], v2);
-        param0->unk_1BC[param0->unk_9B].unk_00 = (const void *)param0->unk_1C[param0->unk_9B];
+        param0->unk_1BC[param0->unk_9B].entry = (const void *)param0->unk_1C[param0->unk_9B];
 
         Strbuf_Free(v2);
     }
 
     if (param3 == 0xfa) {
-        param0->unk_1BC[param0->unk_9B].unk_04 = 0xfffffffd;
+        param0->unk_1BC[param0->unk_9B].index = 0xfffffffd;
     } else {
-        param0->unk_1BC[param0->unk_9B].unk_04 = param3;
+        param0->unk_1BC[param0->unk_9B].index = param3;
     }
 
     param0->unk_29C[param0->unk_9B] = param2;
@@ -555,11 +554,11 @@ static u32 ov104_022327F0(UnkStruct_ov104_02232B5C *param0)
     v2 = 0;
 
     for (v0 = 0; v0 < param0->unk_9B; v0++) {
-        if (param0->unk_1BC[v0].unk_00 == NULL) {
+        if (param0->unk_1BC[v0].entry == NULL) {
             break;
         }
 
-        v1 = Font_CalcStrbufWidth(FONT_SYSTEM, (Strbuf *)param0->unk_1BC[v0].unk_00, 0);
+        v1 = Font_CalcStrbufWidth(FONT_SYSTEM, (Strbuf *)param0->unk_1BC[v0].entry, 0);
 
         if (v2 < v1) {
             v2 = v1;

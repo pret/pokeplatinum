@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02013A04_decl.h"
-#include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_02081CF4.h"
 
 #include "bg_window.h"
@@ -13,10 +11,10 @@
 #include "font.h"
 #include "heap.h"
 #include "message.h"
+#include "string_list.h"
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
-#include "unk_02013A04.h"
 
 typedef struct UIControlData_t {
     UnkStruct_02081CF4 unk_00;
@@ -92,7 +90,7 @@ u32 sub_02001BE0(UIControlData *param0)
 
     if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
         Sound_PlayEffect(1500);
-        return param0->unk_00.unk_00[param0->unk_15].unk_04;
+        return param0->unk_00.unk_00[param0->unk_15].index;
     }
 
     if (gCoreSys.pressedKeys & param0->unk_10) {
@@ -141,7 +139,7 @@ u32 sub_02001C94(UIControlData *param0, u16 param1)
 
     if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
         Sound_PlayEffect(1500);
-        return param0->unk_00.unk_00[param0->unk_15].unk_04;
+        return param0->unk_00.unk_00[param0->unk_15].index;
     }
 
     if (gCoreSys.pressedKeys & param0->unk_10) {
@@ -189,7 +187,7 @@ u32 sub_02001D44(UIControlData *param0, u8 param1)
     switch (param1) {
     case 0:
         Sound_PlayEffect(1500);
-        return param0->unk_00.unk_00[param0->unk_15].unk_04;
+        return param0->unk_00.unk_00[param0->unk_15].index;
     case 1:
         Sound_PlayEffect(1500);
         return 0xfffffffe;
@@ -306,7 +304,7 @@ static u8 sub_02001E24(UIControlData *param0, u8 param1)
         }
     }
 
-    if (param0->unk_00.unk_00[v0].unk_04 == 0xfffffffd) {
+    if (param0->unk_00.unk_00[v0].index == 0xfffffffd) {
         return 0;
     }
 
@@ -320,7 +318,7 @@ static u8 sub_02001F1C(UIControlData *param0)
     u8 v1, v2;
 
     for (v1 = 0; v1 < param0->unk_00.unk_09 * param0->unk_00.unk_0A; v1++) {
-        v2 = Font_CalcStrbufWidth(param0->unk_00.unk_08, param0->unk_00.unk_00[v1].unk_00, 0);
+        v2 = Font_CalcStrbufWidth(param0->unk_00.unk_08, param0->unk_00.unk_00[v1].entry, 0);
 
         if (v0 < v2) {
             v0 = v2;
@@ -343,7 +341,7 @@ static void sub_02001F5C(UIControlData *param0)
 
     for (v4 = 0; v4 < param0->unk_00.unk_09; v4++) {
         for (v5 = 0; v5 < param0->unk_00.unk_0A; v5++) {
-            v0 = param0->unk_00.unk_00[v4 * param0->unk_00.unk_0A + v5].unk_00;
+            v0 = param0->unk_00.unk_00[v4 * param0->unk_00.unk_0A + v5].entry;
             v2 = (param0->unk_1A + param0->unk_00.unk_0B_0) * v5 + param0->unk_18;
 
             Text_AddPrinterWithParams(param0->unk_00.unk_04, param0->unk_00.unk_08, v0, v1, v2, TEXT_SPEED_NO_TRANSFER, NULL);
@@ -375,13 +373,13 @@ UIControlData *sub_02002054(BgConfig *param0, const WindowTemplate *param1, u16 
 {
     UnkStruct_02081CF4 v0;
     MessageLoader *v1;
-    ResourceMetadata *v2;
+    StringList *v2;
 
     v1 = MessageLoader_Init(1, 26, 361, param5);
-    v2 = sub_02013A04(2, param5);
+    v2 = StringList_New(2, param5);
 
-    sub_02013A4C(v2, v1, 41, 0);
-    sub_02013A4C(v2, v1, 42, 0xfffffffe);
+    StringList_AddFromMessageBank(v2, v1, 41, 0);
+    StringList_AddFromMessageBank(v2, v1, 42, 0xfffffffe);
     MessageLoader_Free(v1);
 
     v0.unk_00 = v2;
@@ -431,7 +429,7 @@ void sub_02002154(UIControlData *param0, u32 param1)
     Window_Clear(param0->unk_00.unk_04, 0);
     Window_Remove(param0->unk_00.unk_04);
     Heap_FreeToHeapExplicit(param1, param0->unk_00.unk_04);
-    sub_02013A3C((ResourceMetadata *)param0->unk_00.unk_00);
+    StringList_Free((StringList *)param0->unk_00.unk_00);
     sub_02001BC4(param0, NULL);
 }
 

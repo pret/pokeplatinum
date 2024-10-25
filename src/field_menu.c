@@ -58,6 +58,7 @@
 #include "savedata.h"
 #include "script_manager.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
@@ -67,7 +68,6 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02013A04.h"
 #include "unk_02014A84.h"
 #include "unk_0202631C.h"
 #include "unk_02028124.h"
@@ -533,7 +533,7 @@ static void sub_0203ADFC(TaskManager *taskMan)
 
     v2 = MessageLoader_Init(0, 26, 367, 11);
 
-    menu->unk_24 = sub_02013A04(v5, 11);
+    menu->unk_24 = StringList_New(v5, 11);
     menu->unk_28 = 0;
 
     for (v4 = 0; v4 < v5; v4++) {
@@ -548,13 +548,13 @@ static void sub_0203ADFC(TaskManager *taskMan)
 
             StringTemplate_SetPlayerName(v6, 0, SaveData_GetTrainerInfo(fieldSystem->saveData));
             StringTemplate_Format(v6, v7, v8);
-            sub_02013A6C(menu->unk_24, v7, menu->unk_30[v4]);
+            StringList_AddFromStrbuf(menu->unk_24, v7, menu->unk_30[v4]);
 
             Strbuf_Free(v8);
             Strbuf_Free(v7);
             StringTemplate_Free(v6);
         } else {
-            sub_02013A4C(
+            StringList_AddFromMessageBank(
                 menu->unk_24, v2, Unk_020EA05C[menu->unk_30[v4]][0], menu->unk_30[v4]);
         }
 
@@ -642,7 +642,7 @@ static void FieldMenu_Close(FieldMenu *menu)
 {
     sub_0203B4E8(menu);
     sub_02001BC4(menu->unk_20, NULL);
-    sub_02013A3C(menu->unk_24);
+    StringList_Free(menu->unk_24);
 
     menu->unk_20 = NULL;
 }

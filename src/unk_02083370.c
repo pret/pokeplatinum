@@ -21,13 +21,13 @@
 #include "message.h"
 #include "party.h"
 #include "pokemon.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
-#include "unk_02013A04.h"
 #include "unk_0207070C.h"
 #include "unk_0207E0B8.h"
 #include "unk_020819DC.h"
@@ -119,7 +119,7 @@ void sub_0208337C(GameWindowLayout *param0)
     Window_Clear(&param0->unk_254[0], 1);
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_254[0]);
     sub_02001BC4(param0->unk_700, NULL);
-    sub_02013A3C(param0->unk_6FC);
+    StringList_Free(param0->unk_6FC);
     Window_Remove(&param0->unk_254[0]);
 }
 
@@ -130,11 +130,11 @@ static void sub_020833BC(GameWindowLayout *param0, int *param1)
     sub_0208337C(param0);
     sub_020826F4(param0, 38, 0);
 
-    param0->unk_6FC = sub_02013A04(3, 12);
+    param0->unk_6FC = StringList_New(3, 12);
 
-    sub_02013A6C(param0->unk_6FC, param0->unk_6AC[3], sub_02083370(3));
-    sub_02013A6C(param0->unk_6FC, param0->unk_6AC[4], sub_02083370(4));
-    sub_02013A6C(param0->unk_6FC, param0->unk_6AC[9], sub_02083370(9));
+    StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[3], sub_02083370(3));
+    StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[4], sub_02083370(4));
+    StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[9], sub_02083370(9));
 
     v0.unk_00 = param0->unk_6FC;
     v0.unk_04 = &param0->unk_04[35];
@@ -154,7 +154,7 @@ static void sub_020833BC(GameWindowLayout *param0, int *param1)
 static void sub_0208347C(GameWindowLayout *param0, int *param1)
 {
     sub_02001BC4(param0->unk_700, NULL);
-    sub_02013A3C(param0->unk_6FC);
+    StringList_Free(param0->unk_6FC);
 
     param0->unk_5A4->unk_23 = 3;
     *param1 = 32;
@@ -169,7 +169,7 @@ static void sub_020834B0(GameWindowLayout *param0, int *param1)
 
     Window_Clear(&param0->unk_04[35], 1);
     sub_02001BC4(param0->unk_700, NULL);
-    sub_02013A3C(param0->unk_6FC);
+    StringList_Free(param0->unk_6FC);
 
     fieldSystem = param0->unk_5A4->unk_1C;
 
@@ -258,11 +258,11 @@ static void sub_02083700(GameWindowLayout *param0, int *param1)
     sub_0208337C(param0);
     sub_020826F4(param0, 39, 0);
 
-    param0->unk_6FC = sub_02013A04(3, 12);
+    param0->unk_6FC = StringList_New(3, 12);
 
-    sub_02013A6C(param0->unk_6FC, param0->unk_6AC[6], sub_02083370(6));
-    sub_02013A6C(param0->unk_6FC, param0->unk_6AC[7], sub_02083370(7));
-    sub_02013A6C(param0->unk_6FC, param0->unk_6AC[9], sub_02083370(9));
+    StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[6], sub_02083370(6));
+    StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[7], sub_02083370(7));
+    StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[9], sub_02083370(9));
 
     v0.unk_00 = param0->unk_6FC;
     v0.unk_04 = &param0->unk_04[35];
@@ -282,7 +282,7 @@ static void sub_02083700(GameWindowLayout *param0, int *param1)
 static void sub_020837C0(GameWindowLayout *param0, int *param1)
 {
     sub_02001BC4(param0->unk_700, NULL);
-    sub_02013A3C(param0->unk_6FC);
+    StringList_Free(param0->unk_6FC);
 
     param0->unk_5A4->unk_23 = 7;
     *param1 = 32;
@@ -292,7 +292,7 @@ static void sub_020837F4(GameWindowLayout *param0, int *param1)
 {
     Window_Clear(&param0->unk_04[35], 1);
     sub_02001BC4(param0->unk_700, NULL);
-    sub_02013A3C(param0->unk_6FC);
+    StringList_Free(param0->unk_6FC);
     sub_02082708(param0, 43, 1);
 
     param0->unk_B04.unk_00 = sub_0208384C;
@@ -390,7 +390,7 @@ static void sub_020839FC(GameWindowLayout *param0, int *param1)
 {
     if (param0->unk_704[param0->unk_B11].unk_12 == 0) {
         sub_02001BC4(param0->unk_700, NULL);
-        sub_02013A3C(param0->unk_6FC);
+        StringList_Free(param0->unk_6FC);
         param0->unk_5A4->unk_23 = 0;
         *param1 = 32;
         return;
@@ -807,7 +807,7 @@ static void sub_020846CC(GameWindowLayout *param0, int *param1)
     param0->unk_5A4->unk_23 = 0;
 
     sub_02001BC4(param0->unk_700, NULL);
-    sub_02013A3C(param0->unk_6FC);
+    StringList_Free(param0->unk_6FC);
 
     *param1 = 32;
 }
@@ -817,7 +817,7 @@ static void sub_020846FC(GameWindowLayout *param0, int *param1)
     param0->unk_5A4->unk_23 = 0;
 
     sub_02001BC4(param0->unk_700, NULL);
-    sub_02013A3C(param0->unk_6FC);
+    StringList_Free(param0->unk_6FC);
 
     *param1 = 32;
 }
@@ -827,7 +827,7 @@ static void sub_0208472C(GameWindowLayout *param0, int *param1)
     param0->unk_5A4->unk_23 = 1;
 
     sub_02001BC4(param0->unk_700, NULL);
-    sub_02013A3C(param0->unk_6FC);
+    StringList_Free(param0->unk_6FC);
 
     *param1 = 32;
 }
@@ -878,7 +878,7 @@ static void sub_02084808(GameWindowLayout *param0, int *param1)
     switch (v1) {
     case 0:
         sub_02001BC4(param0->unk_700, NULL);
-        sub_02013A3C(param0->unk_6FC);
+        StringList_Free(param0->unk_6FC);
         *param1 = 32;
         return;
     case 1:

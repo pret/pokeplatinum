@@ -41,6 +41,7 @@
 #include "savedata.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -53,7 +54,6 @@
 #include "unk_0200A328.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02013A04.h"
 #include "unk_02017728.h"
 #include "unk_0201D15C.h"
 #include "unk_0202DAB4.h"
@@ -236,7 +236,7 @@ static void ov97_0222D34C(OverlayManager *param0)
     ov97_02237DA0();
 
     if (v1->unk_7C) {
-        sub_02013A3C(v1->unk_7C);
+        StringList_Free(v1->unk_7C);
     }
 
     if (v1->unk_78) {
@@ -783,14 +783,14 @@ static void ov97_0222DD1C(OverlayManager *param0, UnkStruct_ov97_0223E5B8 *param
     UnkStruct_ov97_0222D04C *v2 = OverlayManager_Data(param0);
 
     if (v2->unk_7C) {
-        sub_02013A3C(v2->unk_7C);
+        StringList_Free(v2->unk_7C);
     }
 
-    v2->unk_7C = sub_02013A04(param2, 86);
+    v2->unk_7C = StringList_New(param2, 86);
     v2->unk_10 = MessageLoader_Init(0, 26, 421, 86);
 
     for (v0 = 0; v0 < param2; v0++) {
-        sub_02013A4C(v2->unk_7C, v2->unk_10, param1[v0].unk_00, param1[v0].unk_04);
+        StringList_AddFromMessageBank(v2->unk_7C, v2->unk_10, param1[v0].unk_00, param1[v0].unk_04);
     }
 
     MessageLoader_Free(v2->unk_10);

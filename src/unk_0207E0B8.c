@@ -31,6 +31,7 @@
 #include "pokemon.h"
 #include "pokemon_summary_app.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "touch_screen.h"
@@ -41,7 +42,6 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02013A04.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E010.h"
@@ -558,7 +558,7 @@ static int sub_0207E634(GameWindowLayout *param0)
         Window_Clear(&param0->unk_04[35], 1);
         Window_ClearAndScheduleCopyToVRAM(&param0->unk_04[35]);
         sub_02001BC4(param0->unk_700, NULL);
-        sub_02013A3C(param0->unk_6FC);
+        StringList_Free(param0->unk_6FC);
         sub_020826E0(param0, 29, 1);
         sub_0200D414(param0->unk_5B0[6], 0);
         return 1;

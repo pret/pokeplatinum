@@ -15,6 +15,7 @@
 #include "font.h"
 #include "render_text.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "unk_0200112C.h"
@@ -22,7 +23,6 @@
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
-#include "unk_02013A04.h"
 #include "unk_020158A8.h"
 #include "unk_02098FFC.h"
 
@@ -151,7 +151,7 @@ void ov79_021D196C(UnkStruct_ov79_021D0E1C *param0)
     UnkStruct_020989DC *v2;
 
     param0->unk_1C = ov79_021D18B4(param0->unk_20, param0);
-    param0->unk_CC = sub_02013A04(param0->unk_1C, param0->unk_00);
+    param0->unk_CC = StringList_New(param0->unk_1C, param0->unk_00);
 
     for (v0 = param0->unk_1E; v0 != 0xFF; v0 = v1) {
         v2 = &(param0->unk_20->unk_1C[v0]);
@@ -160,10 +160,10 @@ void ov79_021D196C(UnkStruct_ov79_021D0E1C *param0)
         StringTemplate_SetStrbuf(param0->unk_30.unk_00, 0, sub_02015918(param0->unk_28, v2->unk_02), 0, 0, GAME_LANGUAGE);
         StringTemplate_SetNumber(param0->unk_30.unk_00, 1, v2->unk_01, 2, 2, 1);
         StringTemplate_Format(param0->unk_30.unk_00, param0->unk_30.unk_04, param0->unk_30.unk_0C);
-        sub_02013A6C(param0->unk_CC, param0->unk_30.unk_04, v2->unk_05);
+        StringList_AddFromStrbuf(param0->unk_CC, param0->unk_30.unk_04, v2->unk_05);
     }
 
-    sub_02013A6C(param0->unk_CC, param0->unk_30.unk_08, 0xFF);
+    StringList_AddFromStrbuf(param0->unk_CC, param0->unk_30.unk_08, 0xFF);
     MI_CpuCopy8(&Unk_ov79_021D3BB0, &param0->unk_84, sizeof(UnkStruct_ov84_02240FA8));
 
     param0->unk_82 = param0->unk_20->unk_06;
@@ -201,7 +201,7 @@ void ov79_021D1AB8(UnkStruct_ov79_021D0E1C *param0, BOOL param1)
     }
 
     sub_02001384(param0->unk_C4, &(param0->unk_80), &(param0->unk_82));
-    sub_02013A3C(param0->unk_CC);
+    StringList_Free(param0->unk_CC);
 
     param0->unk_20->unk_04 = param0->unk_80;
     param0->unk_20->unk_06 = param0->unk_82;
@@ -369,10 +369,10 @@ void ov79_021D1ED8(UnkStruct_ov79_021D0E1C *param0)
 {
     u8 v0 = 0;
 
-    param0->unk_D0 = sub_02013A04(3, param0->unk_00);
+    param0->unk_D0 = StringList_New(3, param0->unk_00);
 
     for (v0 = 0; v0 < 3; v0++) {
-        sub_02013A4C(param0->unk_D0, param0->unk_2C, 1 + v0, v0);
+        StringList_AddFromMessageBank(param0->unk_D0, param0->unk_2C, 1 + v0, v0);
     }
 
     MI_CpuCopy8(&Unk_ov79_021D3B90, &param0->unk_A4, sizeof(UnkStruct_ov84_02240FA8));
@@ -395,7 +395,7 @@ void ov79_021D1F60(UnkStruct_ov79_021D0E1C *param0)
     Window_ClearAndCopyToVRAM(&param0->unk_E8[3]);
 
     sub_02001384(param0->unk_C8, &v1, &v0);
-    sub_02013A3C(param0->unk_D0);
+    StringList_Free(param0->unk_D0);
 
     param0->unk_C8 = NULL;
     param0->unk_D0 = NULL;

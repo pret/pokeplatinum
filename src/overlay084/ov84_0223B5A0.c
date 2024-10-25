@@ -35,6 +35,7 @@
 #include "render_text.h"
 #include "save_player.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "touch_screen.h"
@@ -47,7 +48,6 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02013A04.h"
 #include "unk_02017728.h"
 #include "unk_0201D15C.h"
 #include "unk_0201DBEC.h"
@@ -956,9 +956,9 @@ static void ov84_0223BFBC(UnkStruct_ov84_0223B5A0 *param0)
     u32 v1;
 
     v0 = &param0->unk_C4->unk_04[param0->unk_C4->unk_64];
-    param0->unk_160 = sub_02013A04(Unk_ov84_02241118[v0->unk_08] + 3, 6);
+    param0->unk_160 = StringList_New(Unk_ov84_02241118[v0->unk_08] + 3, 6);
 
-    sub_02013A4C(param0->unk_160, param0->unk_114, 32, 0xfffffffd);
+    StringList_AddFromMessageBank(param0->unk_160, param0->unk_114, 32, 0xfffffffd);
 
     if (v0->unk_08 == 3) {
         for (v1 = 0; v1 < Unk_ov84_02241118[v0->unk_08]; v1++) {
@@ -967,11 +967,11 @@ static void ov84_0223BFBC(UnkStruct_ov84_0223B5A0 *param0)
             }
 
             ov84_0223BE94(param0->unk_120, param0->unk_164[v1], v0->unk_00[v1].item, 6);
-            sub_02013A6C(param0->unk_160, param0->unk_164[v1], v1);
+            StringList_AddFromStrbuf(param0->unk_160, param0->unk_164[v1], v1);
         }
 
-        sub_02013A4C(param0->unk_160, param0->unk_114, 32, 0xfffffffe);
-        sub_02013A4C(param0->unk_160, param0->unk_114, 32, 0xfffffffd);
+        StringList_AddFromMessageBank(param0->unk_160, param0->unk_114, 32, 0xfffffffe);
+        StringList_AddFromMessageBank(param0->unk_160, param0->unk_114, 32, 0xfffffffd);
 
         v0->unk_09 = v1 + 3;
     } else {
@@ -981,20 +981,20 @@ static void ov84_0223BFBC(UnkStruct_ov84_0223B5A0 *param0)
             }
 
             ov84_0223BE84(param0->unk_11C, param0->unk_164[v1], v0->unk_00[v1].item, 6);
-            sub_02013A6C(param0->unk_160, param0->unk_164[v1], v1);
+            StringList_AddFromStrbuf(param0->unk_160, param0->unk_164[v1], v1);
         }
 
         if (param0->unk_C4->unk_65 != 5) {
             if (v0->unk_08 == 4) {
-                sub_02013A4C(param0->unk_160, param0->unk_114, 32, 0xfffffffe);
+                StringList_AddFromMessageBank(param0->unk_160, param0->unk_114, 32, 0xfffffffe);
             } else {
-                sub_02013A4C(param0->unk_160, param0->unk_114, 41, 0xfffffffe);
+                StringList_AddFromMessageBank(param0->unk_160, param0->unk_114, 41, 0xfffffffe);
             }
 
-            sub_02013A4C(param0->unk_160, param0->unk_114, 32, 0xfffffffd);
+            StringList_AddFromMessageBank(param0->unk_160, param0->unk_114, 32, 0xfffffffd);
             v0->unk_09 = v1 + 3;
         } else {
-            sub_02013A4C(param0->unk_160, param0->unk_114, 32, 0xfffffffd);
+            StringList_AddFromMessageBank(param0->unk_160, param0->unk_114, 32, 0xfffffffd);
             v0->unk_09 = v1 + 2;
         }
     }
@@ -1177,7 +1177,7 @@ static void ov84_0223C3B8(BmpList *param0, u32 param1, u8 param2)
 static void ov84_0223C4E0(UnkStruct_ov84_0223B5A0 *param0)
 {
     sub_02001384(param0->unk_15C, &param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06, &param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04);
-    sub_02013A3C(param0->unk_160);
+    StringList_Free(param0->unk_160);
     param0->unk_15C = NULL;
 }
 
@@ -1537,7 +1537,7 @@ static u8 ov84_0223CBD8(UnkStruct_ov84_0223B5A0 *param0)
         } else {
             if (param0->unk_15C != NULL) {
                 sub_02001384(param0->unk_15C, &param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06, &param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04);
-                sub_02013A3C(param0->unk_160);
+                StringList_Free(param0->unk_160);
             }
 
             param0->unk_C4->unk_64 = v0->unk_00;
@@ -1912,7 +1912,7 @@ static void ov84_0223D42C(UnkStruct_ov84_0223B5A0 *param0)
 
     if (!((param0->unk_47B == v1) || (param0->unk_47B == (v1 - 1)))) {
         Item_MoveInPocket(v0->unk_00, param0->unk_47B - 1, v1 - 1);
-        sub_02013A3C(param0->unk_160);
+        StringList_Free(param0->unk_160);
         ov84_0223BFBC(param0);
     }
 
@@ -2310,7 +2310,7 @@ static void ov84_0223DCF8(UnkStruct_ov84_0223B5A0 *param0)
 {
     Pocket_TryRemoveItem(param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_00, param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_09 - 3, param0->unk_C4->unk_66, param0->unk_488, 6);
     sub_02001384(param0->unk_15C, &param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06, &param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04);
-    sub_02013A3C(param0->unk_160);
+    StringList_Free(param0->unk_160);
 
     ov84_0223BFBC(param0);
     ov84_0223C194(&param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06, &param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04, param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_09);

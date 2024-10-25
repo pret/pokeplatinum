@@ -39,6 +39,7 @@
 #include "player_avatar.h"
 #include "save_player.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -48,7 +49,6 @@
 #include "unk_0200A9DC.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02013A04.h"
 #include "unk_0202854C.h"
 #include "unk_02033200.h"
 #include "unk_020508D4.h"
@@ -356,7 +356,7 @@ static void ov23_022515D8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
 
     ov23_0224FB7C(param0);
 
-    param0->unk_40 = sub_02013A04(v1, 4);
+    param0->unk_40 = StringList_New(v1, 4);
 
     Window_Add(param0->fieldSystem->unk_08, &param0->unk_10, 3, 17, 3, 14, v1 * 2, 13, 2);
     Window_Show(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
@@ -369,9 +369,9 @@ static void ov23_022515D8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
 
         for (v4 = 0; v4 < v1; v4++) {
             if (v4 == (v1 - 1)) {
-                sub_02013A4C(param0->unk_40, v3, param1 + 5, 0xfffffffe);
+                StringList_AddFromMessageBank(param0->unk_40, v3, param1 + 5, 0xfffffffe);
             } else {
-                sub_02013A4C(param0->unk_40, v3, param1 + v4, v4);
+                StringList_AddFromMessageBank(param0->unk_40, v3, param1 + v4, v4);
             }
         }
 
@@ -402,7 +402,7 @@ static void ov23_022516E8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
 
     ov23_0224FB7C(param0);
 
-    param0->unk_40 = sub_02013A04(v1, 4);
+    param0->unk_40 = StringList_New(v1, 4);
 
     Window_Add(param0->fieldSystem->unk_08, &param0->unk_10, 3, 17, 3, 14, v1 * 2, 13, (2 + 14 * 16));
     Window_Show(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
@@ -415,9 +415,9 @@ static void ov23_022516E8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
 
         for (v4 = 0; v4 < v1; v4++) {
             if (v4 == param2) {
-                sub_02013A4C(param0->unk_40, v3, param1 + v4, 0xfffffffe);
+                StringList_AddFromMessageBank(param0->unk_40, v3, param1 + v4, 0xfffffffe);
             } else {
-                sub_02013A4C(param0->unk_40, v3, param1 + v4, v4);
+                StringList_AddFromMessageBank(param0->unk_40, v3, param1 + v4, v4);
             }
         }
 

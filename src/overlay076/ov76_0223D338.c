@@ -32,6 +32,7 @@
 #include "narc.h"
 #include "palette.h"
 #include "pokemon.h"
+#include "string_list.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
@@ -42,7 +43,6 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
-#include "unk_02013A04.h"
 #include "unk_02015920.h"
 #include "unk_02015F84.h"
 #include "unk_02017728.h"
@@ -188,7 +188,7 @@ static int ov76_0223D4C4(UnkStruct_ov76_0223DE00 *param0)
     Window_Clear(&param0->unk_D4.unk_18[1], 1);
     Window_ClearAndCopyToVRAM(&param0->unk_D4.unk_18[1]);
     sub_02001BC4(param0->unk_D4.unk_CC, NULL);
-    sub_02013A3C(param0->unk_D4.unk_C8);
+    StringList_Free(param0->unk_D4.unk_C8);
     Window_Remove(&param0->unk_D4.unk_18[1]);
 
     return 1;

@@ -32,13 +32,13 @@
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02013A04.h"
 #include "unk_020393C8.h"
 #include "unk_020797C8.h"
 
@@ -684,11 +684,11 @@ static int ov94_022405DC(UnkStruct_ov94_0223FD4C *param0)
     v0.unk_0B_4 = 0;
     v0.unk_0B_6 = 0;
 
-    param0->unk_10CC = sub_02013A04(3, 62);
+    param0->unk_10CC = StringList_New(3, 62);
 
-    sub_02013A4C(param0->unk_10CC, param0->unk_B90, 94, 1);
-    sub_02013A4C(param0->unk_10CC, param0->unk_B90, 95, 2);
-    sub_02013A4C(param0->unk_10CC, param0->unk_B90, 96, 3);
+    StringList_AddFromMessageBank(param0->unk_10CC, param0->unk_B90, 94, 1);
+    StringList_AddFromMessageBank(param0->unk_10CC, param0->unk_B90, 95, 2);
+    StringList_AddFromMessageBank(param0->unk_10CC, param0->unk_B90, 96, 3);
 
     v0.unk_00 = param0->unk_10CC;
     v0.unk_04 = &param0->unk_F9C[0];
@@ -708,14 +708,14 @@ static int ov94_02240688(UnkStruct_ov94_0223FD4C *param0)
     switch (sub_02001BE0(param0->unk_10D4)) {
     case 1:
         sub_02001BC4(param0->unk_10D4, NULL);
-        sub_02013A3C(param0->unk_10CC);
+        StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
         param0->unk_2C = 2;
         ov94_0223C4C0(param0, 8, 5);
         break;
     case 2:
         sub_02001BC4(param0->unk_10D4, NULL);
-        sub_02013A3C(param0->unk_10CC);
+        StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
 
         v0 = ov94_022411DC(param0->unk_00->unk_08, param0->unk_00->unk_0C, param0->unk_110, param0->unk_112);
@@ -754,7 +754,7 @@ static int ov94_02240688(UnkStruct_ov94_0223FD4C *param0)
     case 3:
     case 0xfffffffe:
         sub_02001BC4(param0->unk_10D4, NULL);
-        sub_02013A3C(param0->unk_10CC);
+        StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
         sub_0200E084(&param0->unk_F5C, 0);
         param0->unk_2C = 1;
@@ -775,11 +775,11 @@ static int ov94_02240830(UnkStruct_ov94_0223FD4C *param0)
     v0.unk_0B_4 = 0;
     v0.unk_0B_6 = 0;
 
-    param0->unk_10CC = sub_02013A04(3, 62);
+    param0->unk_10CC = StringList_New(3, 62);
 
-    sub_02013A4C(param0->unk_10CC, param0->unk_B90, 84, 1);
-    sub_02013A4C(param0->unk_10CC, param0->unk_B90, 85, 2);
-    sub_02013A4C(param0->unk_10CC, param0->unk_B90, 86, 3);
+    StringList_AddFromMessageBank(param0->unk_10CC, param0->unk_B90, 84, 1);
+    StringList_AddFromMessageBank(param0->unk_10CC, param0->unk_B90, 85, 2);
+    StringList_AddFromMessageBank(param0->unk_10CC, param0->unk_B90, 86, 3);
 
     v0.unk_00 = param0->unk_10CC;
     v0.unk_04 = &param0->unk_F9C[0];
@@ -800,14 +800,14 @@ static int ov94_022408E8(UnkStruct_ov94_0223FD4C *param0)
     switch (sub_02001BE0(param0->unk_10D4)) {
     case 1:
         sub_02001BC4(param0->unk_10D4, NULL);
-        sub_02013A3C(param0->unk_10CC);
+        StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
         param0->unk_2C = 2;
         ov94_0223C4C0(param0, 8, 6);
         break;
     case 2:
         sub_02001BC4(param0->unk_10D4, NULL);
-        sub_02013A3C(param0->unk_10CC);
+        StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
 
         v0 = ov94_022411DC(param0->unk_00->unk_08, param0->unk_00->unk_0C, param0->unk_110, param0->unk_112);
@@ -843,7 +843,7 @@ static int ov94_022408E8(UnkStruct_ov94_0223FD4C *param0)
     case 3:
     case 0xfffffffe:
         sub_02001BC4(param0->unk_10D4, NULL);
-        sub_02013A3C(param0->unk_10CC);
+        StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
         sub_0200E084(&param0->unk_F5C, 0);
         param0->unk_2C = 1;

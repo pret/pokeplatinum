@@ -7,11 +7,9 @@
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_defs/pokemon_summary.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
-#include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_020997B8.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -36,6 +34,7 @@
 #include "pokemon_summary_app.h"
 #include "render_text.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "unk_0200112C.h"
@@ -44,7 +43,6 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02013A04.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
 #include "unk_0207C908.h"
@@ -61,7 +59,7 @@ typedef struct {
     StringTemplate *unk_FC;
     Strbuf *unk_100;
     BmpList *unk_104;
-    ResourceMetadata *unk_108;
+    StringList *unk_108;
     UIControlData *unk_10C;
     SpriteRenderer *unk_110;
     SpriteGfxHandler *unk_114;
@@ -911,17 +909,17 @@ static void ov91_021D1784(UnkStruct_ov91_021D0ED8 *param0)
     u32 v2;
 
     param0->unk_184 = (u8)ov91_021D175C(param0) + 1;
-    param0->unk_108 = sub_02013A04(param0->unk_184, 67);
+    param0->unk_108 = StringList_New(param0->unk_184, 67);
 
     v0 = MessageLoader_Init(
         0, 26, 647, 67);
 
     for (v2 = 0; v2 < param0->unk_184; v2++) {
         if (param0->unk_00->unk_0C[v2] != 0xffff) {
-            sub_02013A4C(
+            StringList_AddFromMessageBank(
                 param0->unk_108, v0, param0->unk_00->unk_0C[v2], param0->unk_00->unk_0C[v2]);
         } else {
-            sub_02013A4C(
+            StringList_AddFromMessageBank(
                 param0->unk_108, param0->unk_F8, 32, 0xfffffffe);
             break;
         }
@@ -943,7 +941,7 @@ static void ov91_021D1784(UnkStruct_ov91_021D0ED8 *param0)
 static void ov91_021D1868(UnkStruct_ov91_021D0ED8 *param0)
 {
     sub_02001384(param0->unk_104, &param0->unk_00->unk_12, &param0->unk_00->unk_10);
-    sub_02013A3C(param0->unk_108);
+    StringList_Free(param0->unk_108);
 }
 
 static void ov91_021D188C(BmpList *param0, u32 param1, u8 param2)

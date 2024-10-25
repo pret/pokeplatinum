@@ -4,9 +4,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
-#include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_0206A844.h"
 
 #include "field/field_system.h"
@@ -22,12 +20,12 @@
 #include "heap.h"
 #include "message.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "unk_0200112C.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
-#include "unk_02013A04.h"
 #include "unk_0202854C.h"
 #include "unk_0206A780.h"
 
@@ -35,7 +33,7 @@ typedef struct UnkStruct_ov23_022542D8_t {
     FieldSystem *fieldSystem;
     Window unk_04;
     Window unk_14;
-    ResourceMetadata *unk_24;
+    StringList *unk_24;
     BmpList *unk_28;
     Strbuf *unk_2C;
     u16 *unk_30;
@@ -50,7 +48,7 @@ typedef struct UnkStruct_ov23_02254594_t {
     UnkStruct_0206A844 *unk_04;
     Window unk_08;
     Window unk_18;
-    ResourceMetadata *unk_28;
+    StringList *unk_28;
     UnkStruct_ov23_02248D20 *unk_2C;
     BmpList *unk_30;
     Strbuf *unk_34;
@@ -161,7 +159,7 @@ static void ov23_0225437C(UnkStruct_ov23_022542D8 *param0)
     int v3 = 3;
     int v4 = 4;
 
-    param0->unk_24 = sub_02013A04(v3 + 1, 4);
+    param0->unk_24 = StringList_New(v3 + 1, 4);
 
     v1 = 12 * v4 * 2;
     v2 = 7 * (1 * 2);
@@ -194,7 +192,7 @@ static void ov23_0225437C(UnkStruct_ov23_022542D8 *param0)
         }
 
         for (v6 = 0; v6 < v3 + 1; v6++) {
-            sub_02013A4C(param0->unk_24, v5, v7[v6], v6);
+            StringList_AddFromMessageBank(param0->unk_24, v5, v7[v6], v6);
         }
 
         MessageLoader_Free(v5);
@@ -255,7 +253,7 @@ static void ov23_0225451C(UnkStruct_ov23_022542D8 *param0)
     Bg_ScheduleTilemapTransfer(param0->unk_04.bgConfig, param0->unk_04.bgLayer);
     Window_Remove(&param0->unk_04);
     Window_Remove(&param0->unk_14);
-    sub_02013A3C(param0->unk_24);
+    StringList_Free(param0->unk_24);
 }
 
 static void ov23_02254564(BmpList *param0, u32 param1, u8 param2)
@@ -402,7 +400,7 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
         v5 = 7;
     }
 
-    param0->unk_28 = sub_02013A04(v4 + 1, 4);
+    param0->unk_28 = StringList_New(v4 + 1, 4);
 
     v2 = 12 * 7 * 2;
     v3 = 8 * (2 * 2);
@@ -464,12 +462,12 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
             }
 
             v10 = (v7 << 1) + v11;
-            sub_02013A4C(param0->unk_28, v6, v8, v10);
+            StringList_AddFromMessageBank(param0->unk_28, v6, v8, v10);
         }
 
         v10 = (v7 << 1) + 1;
 
-        sub_02013A4C(param0->unk_28, v6, 277, v10);
+        StringList_AddFromMessageBank(param0->unk_28, v6, 277, v10);
         MessageLoader_Free(v6);
     }
 
@@ -508,7 +506,7 @@ static void ov23_02254958(UnkStruct_ov23_02254594 *param0)
     Bg_ScheduleTilemapTransfer(param0->unk_08.bgConfig, param0->unk_08.bgLayer);
     Window_Remove(&param0->unk_08);
     Window_Remove(&param0->unk_18);
-    sub_02013A3C(param0->unk_28);
+    StringList_Free(param0->unk_28);
     sub_0206A844(param0->unk_04);
 }
 

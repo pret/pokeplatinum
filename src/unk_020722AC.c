@@ -3,11 +3,9 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02028430_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_0202818C.h"
 #include "struct_defs/struct_0206A844.h"
 #include "struct_defs/struct_02097728.h"
@@ -34,6 +32,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -43,7 +42,6 @@
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02013A04.h"
 #include "unk_02028124.h"
 #include "unk_0203D1B8.h"
 #include "unk_020508D4.h"
@@ -103,7 +101,7 @@ typedef struct {
     u16 unk_13E;
     UnkStruct_ov84_02240FA8 unk_140;
     BmpList *unk_160;
-    ResourceMetadata *unk_164;
+    StringList *unk_164;
     UIControlData *unk_168;
     FieldSystem *fieldSystem;
     BgConfig *unk_170;
@@ -689,7 +687,7 @@ static void sub_020729B4(UnkStruct_02072334 *param0)
     Window_FillTilemap(&param0->unk_174, ((15 << 4) | 15));
     Window_FillTilemap(&param0->unk_194, ((15 << 4) | 15));
 
-    param0->unk_164 = sub_02013A04(param0->unk_1B + 1, param0->unk_00);
+    param0->unk_164 = StringList_New(param0->unk_1B + 1, param0->unk_00);
 
     for (v0 = 0; v0 < 20; v0++) {
         v2 = &(param0->unk_1C[v0]);
@@ -698,11 +696,11 @@ static void sub_020729B4(UnkStruct_02072334 *param0)
             continue;
         }
 
-        sub_02013A6C(param0->unk_164, v2->unk_08, v2->unk_00);
+        StringList_AddFromStrbuf(param0->unk_164, v2->unk_08, v2->unk_00);
         v1++;
     }
 
-    sub_02013A6C(param0->unk_164, param0->unk_110.unk_08, 0xFFFF);
+    StringList_AddFromStrbuf(param0->unk_164, param0->unk_110.unk_08, 0xFFFF);
     v1++;
 
     MI_CpuCopy8((void *)&Unk_020F0504, (void *)&(param0->unk_140), sizeof(UnkStruct_ov84_02240FA8));
@@ -793,13 +791,13 @@ static void sub_02072C98(UnkStruct_02072334 *param0, u8 param1, u8 param2)
     };
 
     v1 = NELEMS(Unk_020F0524);
-    param0->unk_164 = sub_02013A04(v1, param0->unk_00);
+    param0->unk_164 = StringList_New(v1, param0->unk_00);
 
     Window_AddFromTemplate(param0->unk_170, &(param0->unk_174), &v2);
     Window_FillTilemap(&param0->unk_174, ((15 << 4) | 15));
 
     for (v0 = 0; v0 < v1; v0++) {
-        sub_02013A4C(param0->unk_164, param0->unk_10C, Unk_020F0524[v0].unk_00, Unk_020F0524[v0].unk_04);
+        StringList_AddFromMessageBank(param0->unk_164, param0->unk_10C, Unk_020F0524[v0].unk_00, Unk_020F0524[v0].unk_04);
     }
 
     MI_CpuCopy8((void *)&Unk_020F0504, (void *)&(param0->unk_140), sizeof(UnkStruct_ov84_02240FA8));
@@ -831,7 +829,7 @@ static void sub_02072DB8(UnkStruct_02072334 *param0)
     u16 v0, v1;
 
     sub_02001384(param0->unk_160, &v0, &v1);
-    sub_02013A3C(param0->unk_164);
+    StringList_Free(param0->unk_164);
 
     Window_ClearAndCopyToVRAM(&(param0->unk_194));
     Window_Clear(&(param0->unk_194), 0);
@@ -859,7 +857,7 @@ static void sub_02072E4C(UnkStruct_02072334 *param0)
     Window_ClearAndCopyToVRAM(&(param0->unk_174));
     Window_Clear(&(param0->unk_174), 0);
     sub_02001384(param0->unk_160, &v0, &v1);
-    sub_02013A3C(param0->unk_164);
+    StringList_Free(param0->unk_164);
     Window_Remove(&(param0->unk_174));
     sub_02073398(param0);
     Bg_ScheduleTilemapTransfer(param0->unk_170, 3);

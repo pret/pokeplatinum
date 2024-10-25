@@ -5,9 +5,7 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
-#include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay084/struct_ov84_02240FA8.h"
@@ -30,6 +28,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "unk_0200112C.h"
@@ -37,7 +36,6 @@
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02013A04.h"
 #include "unk_02017728.h"
 #include "unk_0201D15C.h"
 #include "unk_0202419C.h"
@@ -80,7 +78,7 @@ typedef struct {
     Window unk_B834;
     Window unk_B844;
     BmpList *unk_B854;
-    ResourceMetadata *unk_B858;
+    StringList *unk_B858;
     UIControlData *unk_B85C;
     MessageLoader *unk_B860;
     int unk_B864;
@@ -1027,10 +1025,10 @@ static void ov92_021D1C4C(UnkStruct_ov92_021D1B24 *param0, Window *param1, const
     int v1;
 
     Window_AddFromTemplate(param0->unk_B810, param1, param2);
-    param0->unk_B858 = sub_02013A04(param3->unk_10, param0->unk_00);
+    param0->unk_B858 = StringList_New(param3->unk_10, param0->unk_00);
 
     for (v1 = 0; v1 < param3->unk_10; v1++) {
-        sub_02013A4C(param0->unk_B858, param0->unk_B860, param4[v1].unk_00, param4[v1].unk_04);
+        StringList_AddFromMessageBank(param0->unk_B858, param0->unk_B860, param4[v1].unk_00, param4[v1].unk_04);
     }
 
     v0 = *param3;
@@ -1051,10 +1049,10 @@ static void ov92_021D1CF4(UnkStruct_ov92_021D1B24 *param0, Window *param1, const
 
     Window_AddFromTemplate(param0->unk_B810, param1, param2);
     v1 = MessageLoader_Init(0, 26, param4, param0->unk_00);
-    param0->unk_B858 = sub_02013A04(param6, param0->unk_00);
+    param0->unk_B858 = StringList_New(param6, param0->unk_00);
 
     for (v2 = 0; v2 < param6; v2++) {
-        sub_02013A4C(param0->unk_B858, v1, param5[v2], v2);
+        StringList_AddFromMessageBank(param0->unk_B858, v1, param5[v2], v2);
     }
 
     MessageLoader_Free(v1);
@@ -1076,7 +1074,7 @@ static void ov92_021D1DB4(UnkStruct_ov92_021D1B24 *param0)
     Window_Clear(&param0->unk_B824, 0);
     Window_Remove(&param0->unk_B824);
     sub_02001384(param0->unk_B854, NULL, NULL);
-    sub_02013A3C(param0->unk_B858);
+    StringList_Free(param0->unk_B858);
 }
 
 static void ov92_021D1DEC(UnkStruct_ov92_021D1B24 *param0)

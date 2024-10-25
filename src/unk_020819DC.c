@@ -14,13 +14,13 @@
 #include "pokemon.h"
 #include "render_text.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200C440.h"
 #include "unk_0200DA60.h"
-#include "unk_02013A04.h"
 #include "unk_0207E0B8.h"
 #include "unk_02083370.h"
 #include "unk_02084B70.h"
@@ -200,15 +200,15 @@ void sub_02081CF4(GameWindowLayout *param0, const u8 *param1, u8 param2)
 
     Window_Add(param0->unk_00, &param0->unk_254[0], 0, 19, 23 - param2 * 2, 12, param2 * 2, 0, (((((((((((((((((((((((((((((((1 + 9) + (18 + 12)) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 5 * 2) + 7 * 2) + 20 * 2) + 13 * 4) + 27 * 4));
 
-    param0->unk_6FC = sub_02013A04(param2, 12);
+    param0->unk_6FC = StringList_New(param2, 12);
     v2 = 0;
 
     for (v1 = 0; v1 < param2; v1++) {
         if (param1[v1] >= 16) {
-            sub_02013A6C(param0->unk_6FC, param0->unk_6AC[16 + v2], sub_02083370((u8)param1[v1]));
+            StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[16 + v2], sub_02083370((u8)param1[v1]));
             v2++;
         } else {
-            sub_02013A6C(param0->unk_6FC, param0->unk_6AC[param1[v1]], sub_02083370((u8)param1[v1]));
+            StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[param1[v1]], sub_02083370((u8)param1[v1]));
         }
     }
 

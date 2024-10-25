@@ -9,7 +9,6 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_defs/sprite_manager_allocation.h"
@@ -21,6 +20,7 @@
 
 #include "bg_window.h"
 #include "palette.h"
+#include "string_list.h"
 #include "touch_screen.h"
 
 typedef struct {
@@ -31,7 +31,7 @@ typedef struct {
     BgConfig *unk_10;
     PaletteData *unk_14;
     Window unk_18[11];
-    ResourceMetadata *unk_C8;
+    StringList *unk_C8;
     UIControlData *unk_CC;
     UnkStruct_02007768 *unk_D0;
     Sprite *unk_D4;

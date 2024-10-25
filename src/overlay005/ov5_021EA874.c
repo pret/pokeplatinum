@@ -5,10 +5,8 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_defs/struct_02013A04_t.h"
 
 #include "field/field_system.h"
 #include "overlay084/struct_ov84_02240FA8.h"
@@ -24,6 +22,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
@@ -31,7 +30,6 @@
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
-#include "unk_02013A04.h"
 #include "unk_0202ACE0.h"
 #include "unk_0203061C.h"
 #include "unk_0203909C.h"
@@ -39,7 +37,7 @@
 #include "unk_0205D8CC.h"
 
 typedef struct {
-    ResourceMetadata *unk_00;
+    StringList *unk_00;
     BmpList *unk_04;
     Strbuf *unk_08;
     Strbuf *unk_0C;
@@ -263,7 +261,7 @@ static BOOL ov5_021EAB58(UnkStruct_ov5_021EAE78 *param0)
     int v2 = sub_0202AF94(v0);
     int v3 = 5;
 
-    param0->unk_00 = sub_02013A04(v2 + 1, 4);
+    param0->unk_00 = StringList_New(v2 + 1, 4);
 
     Window_Add(param0->fieldSystem->unk_08, &param0->unk_20, 3, 19, 1, 12, v3 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (10 * (v3 + 2) * 2));
     Window_Show(&param0->unk_20, 1, 1024 - (18 + 12) - 9, 11);
@@ -275,11 +273,11 @@ static BOOL ov5_021EAB58(UnkStruct_ov5_021EAE78 *param0)
         for (v5 = 0; v5 < 32; v5++) {
             if (sub_0202AF78(v0, v5)) {
                 Strbuf_CopyChars(param0->unk_08, sub_0202AEF0(v0, v5));
-                sub_02013A6C(param0->unk_00, param0->unk_08, v5);
+                StringList_AddFromStrbuf(param0->unk_00, param0->unk_08, v5);
             }
         }
 
-        sub_02013A4C(param0->unk_00, param0->unk_3C, 11, 0xfffffffe);
+        StringList_AddFromMessageBank(param0->unk_00, param0->unk_3C, 11, 0xfffffffe);
     }
 
     v1 = Unk_ov5_021FAF08;
@@ -336,7 +334,7 @@ static BOOL ov5_021EAC44(UnkStruct_ov5_021EAE78 *param0)
     Window_Clear(&param0->unk_20, 0);
     Window_Remove(&param0->unk_20);
     sub_02001384(param0->unk_04, NULL, NULL);
-    sub_02013A3C(param0->unk_00);
+    StringList_Free(param0->unk_00);
 
     return 0;
 }

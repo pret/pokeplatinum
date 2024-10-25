@@ -58,6 +58,7 @@
 #include "savedata.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "touch_screen.h"
@@ -72,7 +73,6 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
-#include "unk_02013A04.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
@@ -1566,7 +1566,7 @@ static void ov65_0222EF4C (UnkStruct_ov65_0222EBE0 * param0)
     }
 
     if (param0->unk_14C) {
-        sub_02013A3C(param0->unk_14C);
+        StringList_Free(param0->unk_14C);
         param0->unk_14C = NULL;
     }
 
@@ -2076,7 +2076,7 @@ static int ov65_0222F90C (UnkStruct_ov65_0222EBE0 * param0, int param1)
             Window_Remove(&param0->unk_370);
             sub_02001384(param0->unk_150, NULL, NULL);
             param0->unk_150 = NULL;
-            sub_02013A3C(param0->unk_14C);
+            StringList_Free(param0->unk_14C);
             param0->unk_14C = NULL;
         }
 
@@ -2411,7 +2411,7 @@ static int ov65_0222FFAC (UnkStruct_ov65_0222EBE0 * param0, int param1)
         Window_Remove(&param0->unk_370);
         sub_02001384(param0->unk_150, NULL, NULL);
         param0->unk_150 = NULL;
-        sub_02013A3C(param0->unk_14C);
+        StringList_Free(param0->unk_14C);
         param0->unk_14C = NULL;
     }
 
@@ -3275,10 +3275,10 @@ static int ov65_02230E04 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         v3[v1 - 1] = Unk_ov65_02239C20;
     }
 
-    param0->unk_154 = sub_02013A04(v1, 54);
+    param0->unk_154 = StringList_New(v1, 54);
 
     for (v0 = 0; v0 < v1; v0++) {
-        sub_02013A4C(param0->unk_154, param0->unk_168, v3[v0].unk_00, v3[v0].unk_04);
+        StringList_AddFromMessageBank(param0->unk_154, param0->unk_168, v3[v0].unk_00, v3[v0].unk_04);
     }
 
     if (Window_IsInUse(&param0->unk_380)) {
@@ -3316,7 +3316,7 @@ static int ov65_02230FBC (UnkStruct_ov65_0222EBE0 * param0, int param1)
             Window_Clear(&param0->unk_380, 0);
             Window_Remove(&param0->unk_380);
             sub_02001384(param0->unk_158, NULL, &param0->unk_3D4);
-            sub_02013A3C(param0->unk_154);
+            StringList_Free(param0->unk_154);
             ov65_02232DFC(param0);
         }
 
@@ -3360,7 +3360,7 @@ static int ov65_02230FBC (UnkStruct_ov65_0222EBE0 * param0, int param1)
             Window_Clear(&param0->unk_380, 0);
             Window_Remove(&param0->unk_380);
             sub_02001384(param0->unk_158, NULL, &param0->unk_3D4);
-            sub_02013A3C(param0->unk_154);
+            StringList_Free(param0->unk_154);
             ov65_0223128C(param0, v0);
             param0->unk_3A8 = 38;
             return param1;
@@ -3395,7 +3395,7 @@ static int ov65_02230FBC (UnkStruct_ov65_0222EBE0 * param0, int param1)
     Window_Clear(&param0->unk_380, 0);
     Window_Remove(&param0->unk_380);
     sub_02001384(param0->unk_158, NULL, &param0->unk_3D4);
-    sub_02013A3C(param0->unk_154);
+    StringList_Free(param0->unk_154);
 
     return param1;
 }
@@ -3461,16 +3461,16 @@ static int ov65_0223128C (UnkStruct_ov65_0222EBE0 * param0, int param1)
         break;
     }
 
-    param0->unk_154 = sub_02013A04(v1, 54);
+    param0->unk_154 = StringList_New(v1, 54);
 
     for (v0 = 0; v0 < v1; v0++) {
         if (v3[v0].unk_00 != 71) {
-            sub_02013A4C(param0->unk_154, param0->unk_168, v3[v0].unk_00, v3[v0].unk_04);
+            StringList_AddFromMessageBank(param0->unk_154, param0->unk_168, v3[v0].unk_00, v3[v0].unk_04);
         } else {
             StringTemplate_SetPlazaMinigameName(param0->unk_164, 0, v0);
             MessageLoader_GetStrbuf(param0->unk_168, v3[v0].unk_00, param0->unk_170);
             StringTemplate_Format(param0->unk_164, param0->unk_178, param0->unk_170);
-            sub_02013A6C(param0->unk_154, param0->unk_178, v3[v0].unk_04);
+            StringList_AddFromStrbuf(param0->unk_154, param0->unk_178, v3[v0].unk_04);
         }
     }
 
@@ -3503,7 +3503,7 @@ static int ov65_02231440 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         Window_Clear(&param0->unk_380, 0);
         Window_Remove(&param0->unk_380);
         sub_02001384(param0->unk_158, NULL, &param0->unk_3D6[param0->unk_3DC]);
-        sub_02013A3C(param0->unk_154);
+        StringList_Free(param0->unk_154);
         ov65_02232DFC(param0);
         return param1;
     }
@@ -3550,7 +3550,7 @@ static int ov65_02231440 (UnkStruct_ov65_0222EBE0 * param0, int param1)
     Window_Clear(&param0->unk_380, 0);
     Window_Remove(&param0->unk_380);
     sub_02001384(param0->unk_158, NULL, &param0->unk_3D6[param0->unk_3DC]);
-    sub_02013A3C(param0->unk_154);
+    StringList_Free(param0->unk_154);
 
     return param1;
 }
@@ -3725,7 +3725,7 @@ static int ov65_022316F0 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         param0->unk_3E0 = v10;
 
         v10 += param0->unk_04->unk_00.unk_21;
-        param0->unk_154 = sub_02013A04(v6, 54);
+        param0->unk_154 = StringList_New(v6, 54);
         v5 = 0;
 
         for (v5 = 0; v5 < NELEMS(Unk_ov65_02238968); v5++) {
@@ -3736,17 +3736,17 @@ static int ov65_022316F0 (UnkStruct_ov65_0222EBE0 * param0, int param1)
                     v6 -= 1;
                 } else if (v9 == 16) {
                     if (v10 == 2) {
-                        sub_02013A4C(param0->unk_154, param0->unk_168, 36, Unk_ov65_02238968[v5].unk_04);
+                        StringList_AddFromMessageBank(param0->unk_154, param0->unk_168, 36, Unk_ov65_02238968[v5].unk_04);
                     } else {
                         v7.unk_12 -= 1;
                         v7.unk_10 -= 1;
                         v6 -= 1;
                     }
                 } else {
-                    sub_02013A4C(param0->unk_154, param0->unk_168, Unk_ov65_02238968[v5].unk_00, Unk_ov65_02238968[v5].unk_04);
+                    StringList_AddFromMessageBank(param0->unk_154, param0->unk_168, Unk_ov65_02238968[v5].unk_00, Unk_ov65_02238968[v5].unk_04);
                 }
             } else {
-                sub_02013A4C(param0->unk_154, param0->unk_168, Unk_ov65_02238968[v5].unk_00, Unk_ov65_02238968[v5].unk_04);
+                StringList_AddFromMessageBank(param0->unk_154, param0->unk_168, Unk_ov65_02238968[v5].unk_00, Unk_ov65_02238968[v5].unk_04);
             }
         }
 
@@ -3870,7 +3870,7 @@ static int ov65_02231A98 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         Window_Clear(&param0->unk_380, 0);
         Window_Remove(&param0->unk_380);
         sub_02001384(param0->unk_158, NULL, NULL);
-        sub_02013A3C(param0->unk_154);
+        StringList_Free(param0->unk_154);
 
         if (v7 != NULL) {
             ov65_0223556C(&param0->unk_3EC, v7);
@@ -4034,7 +4034,7 @@ static int ov65_02231A98 (UnkStruct_ov65_0222EBE0 * param0, int param1)
     Window_Clear(&param0->unk_380, 0);
     Window_Remove(&param0->unk_380);
     sub_02001384(param0->unk_158, NULL, NULL);
-    sub_02013A3C(param0->unk_154);
+    StringList_Free(param0->unk_154);
 
     if (v7 != NULL) {
         ov65_0223556C(&param0->unk_3EC, v7);

@@ -4,9 +4,6 @@
 #include <nnsys.h>
 #include <string.h>
 
-#include "struct_decls/struct_02013A04_decl.h"
-#include "struct_defs/struct_02013A04_t.h"
-
 #include "overlay084/struct_ov84_02240FA8.h"
 
 #include "bg_window.h"
@@ -14,6 +11,7 @@
 #include "core_sys.h"
 #include "font.h"
 #include "heap.h"
+#include "string_list.h"
 #include "text.h"
 
 typedef struct {
@@ -90,7 +88,7 @@ u32 sub_02001288(BmpList *param0)
     param0->unk_2F = 0;
 
     if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
-        return param0->unk_00.unk_00[param0->unk_28 + param0->unk_2A].unk_04;
+        return param0->unk_00.unk_00[param0->unk_28 + param0->unk_2A].index;
     }
 
     if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
@@ -236,7 +234,7 @@ u8 sub_020014F0(BmpList *param0)
 
 u32 sub_020014F8(BmpList *param0, u16 param1)
 {
-    return param0->unk_00.unk_00[param1].unk_04;
+    return param0->unk_00.unk_00[param1].index;
 }
 
 u32 sub_02001504(BmpList *param0, u8 param1)
@@ -308,7 +306,7 @@ u32 sub_02001504(BmpList *param0, u8 param1)
     return v0;
 }
 
-void sub_020015CC(BmpList *param0, ResourceMetadata *param1)
+void sub_020015CC(BmpList *param0, StringList *param1)
 {
     param0->unk_00.unk_00 = param1;
 }
@@ -334,7 +332,7 @@ static void sub_02001688(BmpList *param0, u16 param1, u16 param2, u16 param3)
     v3 = Font_GetAttribute(param0->unk_00.unk_1A_9, 1) + param0->unk_00.unk_1A_3;
 
     for (v0 = 0; v0 < param3; v0++) {
-        if (param0->unk_00.unk_00[param1].unk_04 != 0xfffffffd) {
+        if (param0->unk_00.unk_00[param1].index != 0xfffffffd) {
             v1 = param0->unk_00.unk_15;
         } else {
             v1 = param0->unk_00.unk_14;
@@ -343,10 +341,10 @@ static void sub_02001688(BmpList *param0, u16 param1, u16 param2, u16 param3)
         v2 = (u8)(((v0 + param2) * v3) + param0->unk_00.unk_17_0);
 
         if (param0->unk_00.unk_08 != NULL) {
-            param0->unk_00.unk_08(param0, param0->unk_00.unk_00[param1].unk_04, v2);
+            param0->unk_00.unk_08(param0, param0->unk_00.unk_00[param1].index, v2);
         }
 
-        sub_020015D0(param0, (void *)param0->unk_00.unk_00[param1].unk_00, v1, v2);
+        sub_020015D0(param0, (void *)param0->unk_00.unk_00[param1].entry, v1, v2);
         param1++;
     }
 }
@@ -406,7 +404,7 @@ static u8 sub_020017E0(BmpList *param0, u8 param1)
             while (v1 > 0) {
                 v1--;
 
-                if (param0->unk_00.unk_00[v0 + v1].unk_04 != 0xfffffffd) {
+                if (param0->unk_00.unk_00[v0 + v1].index != 0xfffffffd) {
                     param0->unk_2A = v1;
                     return 1;
                 }
@@ -418,7 +416,7 @@ static u8 sub_020017E0(BmpList *param0, u8 param1)
         while (v1 > v2) {
             v1--;
 
-            if (param0->unk_00.unk_00[v0 + v1].unk_04 != 0xfffffffd) {
+            if (param0->unk_00.unk_00[v0 + v1].index != 0xfffffffd) {
                 param0->unk_2A = v1;
                 return 1;
             }
@@ -439,7 +437,7 @@ static u8 sub_020017E0(BmpList *param0, u8 param1)
             while (v1 < (param0->unk_00.unk_12 - 1)) {
                 v1++;
 
-                if (param0->unk_00.unk_00[v0 + v1].unk_04 != 0xfffffffd) {
+                if (param0->unk_00.unk_00[v0 + v1].index != 0xfffffffd) {
                     param0->unk_2A = v1;
                     return 1;
                 }
@@ -451,7 +449,7 @@ static u8 sub_020017E0(BmpList *param0, u8 param1)
         while (v1 < v2) {
             v1++;
 
-            if (param0->unk_00.unk_00[v0 + v1].unk_04 != 0xfffffffd) {
+            if (param0->unk_00.unk_00[v0 + v1].index != 0xfffffffd) {
                 param0->unk_2A = v1;
                 return 1;
             }
@@ -513,7 +511,7 @@ static u8 sub_02001A18(BmpList *param0, u8 param1, u8 param2, u8 param3)
             }
 
             v4++;
-        } while (param0->unk_00.unk_00[param0->unk_28 + param0->unk_2A].unk_04 == 0xfffffffd);
+        } while (param0->unk_00.unk_00[param0->unk_28 + param0->unk_2A].index == 0xfffffffd);
     }
 
     if (param1) {
@@ -545,6 +543,6 @@ static u8 sub_02001A18(BmpList *param0, u8 param1, u8 param2, u8 param3)
 static void sub_02001AD8(BmpList *param0, u8 param1)
 {
     if (param0->unk_00.unk_04 != NULL) {
-        param0->unk_00.unk_04(param0, param0->unk_00.unk_00[param0->unk_28 + param0->unk_2A].unk_04, param1);
+        param0->unk_00.unk_04(param0, param0->unk_00.unk_00[param0->unk_28 + param0->unk_2A].index, param1);
     }
 }

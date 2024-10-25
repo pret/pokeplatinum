@@ -7,8 +7,6 @@
 #include "constants/species.h"
 
 #include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
-#include "struct_defs/struct_02013A04_t.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021DC018.h"
@@ -26,6 +24,7 @@
 #include "pokemon.h"
 #include "script_manager.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -63,7 +62,7 @@ struct UnkStruct_ov5_021F7ED8_t {
     BmpList *unk_F0;
     u16 unk_F4;
     u16 unk_F6;
-    ResourceMetadata unk_F8[39];
+    StringList unk_F8[39];
     u16 unk_230[39];
     u16 unk_27E;
 };
@@ -434,8 +433,8 @@ static void ov5_021F7E18(FieldSystem *fieldSystem, UnkStruct_ov5_021F7ED8 *param
     param1->unk_27E = param4;
 
     for (v0 = 0; v0 < ((NELEMS(sTeachableMoves)) + 1); v0++) {
-        param1->unk_F8[v0].unk_00 = NULL;
-        param1->unk_F8[v0].unk_04 = 0;
+        param1->unk_F8[v0].entry = NULL;
+        param1->unk_F8[v0].index = 0;
         param1->unk_230[v0] = 0xff;
     }
 
@@ -499,14 +498,14 @@ static void ov5_021F7FF8(UnkStruct_ov5_021F7ED8 *param0, u32 param1, u32 param2,
 
         MessageLoader_GetStrbuf(param0->unk_B8, param1, v2);
         StringTemplate_Format(param0->unk_BC, param0->unk_1C[param0->unk_C7], v2);
-        param0->unk_F8[param0->unk_C7].unk_00 = (const void *)param0->unk_1C[param0->unk_C7];
+        param0->unk_F8[param0->unk_C7].entry = (const void *)param0->unk_1C[param0->unk_C7];
         Strbuf_Free(v2);
     }
 
     if (param3 == 0xfa) {
-        param0->unk_F8[param0->unk_C7].unk_04 = 0xfffffffd;
+        param0->unk_F8[param0->unk_C7].index = 0xfffffffd;
     } else {
-        param0->unk_F8[param0->unk_C7].unk_04 = param3;
+        param0->unk_F8[param0->unk_C7].index = param3;
     }
 
     param0->unk_230[param0->unk_C7] = param2;

@@ -4,7 +4,6 @@
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0207DFAC.h"
@@ -22,6 +21,7 @@
 #include "savedata.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "trainer_info.h"
 
 struct UnkStruct_ov65_0222EBE0_t {
@@ -32,9 +32,9 @@ struct UnkStruct_ov65_0222EBE0_t {
     u8 unk_2C[32];
     int unk_4C[32];
     int unk_CC[32];
-    ResourceMetadata *unk_14C;
+    StringList *unk_14C;
     BmpList *unk_150;
-    ResourceMetadata *unk_154;
+    StringList *unk_154;
     BmpList *unk_158;
     BgConfig *unk_15C;
     SaveData *unk_160;

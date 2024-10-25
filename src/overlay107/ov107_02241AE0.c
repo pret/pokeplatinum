@@ -6,12 +6,10 @@
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_020302DC_decl.h"
 #include "struct_decls/struct_0203041C_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_02081CF4.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -47,6 +45,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
@@ -58,7 +57,6 @@
 #include "unk_0200C440.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02013A04.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
 #include "unk_020302D0.h"
@@ -251,9 +249,9 @@ struct UnkStruct_ov107_02241D6C_t {
     Window unk_50[18];
     UnkStruct_02081CF4 unk_170;
     UIControlData * unk_17C;
-    ResourceMetadata unk_180[3];
+    StringList unk_180[3];
     BmpList * unk_198;
-    ResourceMetadata * unk_19C;
+    StringList *unk_19C;
     UnkStruct_ov84_02240FA8 unk_1A0;
     PaletteData *unk_1C0;
     UnkStruct_0200C440 * unk_1C4;
@@ -2397,8 +2395,8 @@ static void ov107_0224414C (UnkStruct_ov107_02241D6C * param0, Window * param1, 
     int v0;
 
     for (v0 = 0; v0 < 3; v0++) {
-        param0->unk_180[v0].unk_00 = NULL;
-        param0->unk_180[v0].unk_04 = 0;
+        param0->unk_180[v0].entry = NULL;
+        param0->unk_180[v0].index = 0;
     }
 
     param0->unk_170.unk_00 = param0->unk_180;
@@ -2420,8 +2418,8 @@ static void ov107_022441B0 (UnkStruct_ov107_02241D6C * param0, u8 param1, u8 par
 
     MessageLoader_GetStrbuf(param0->unk_20, param3, param0->unk_30[param1]);
 
-    param0->unk_180[param1].unk_00 = (const void *)param0->unk_30[param1];
-    param0->unk_180[param1].unk_04 = param2;
+    param0->unk_180[param1].entry = (const void *)param0->unk_30[param1];
+    param0->unk_180[param1].index = param2;
 
     return;
 }
@@ -2468,7 +2466,7 @@ static void ov107_02244240 (UnkStruct_ov107_02241D6C * param0, u8 param1)
         v1 = Unk_ov107_02249E06[v0 - 1];
     }
 
-    param0->unk_19C = sub_02013A04((v1 + 1), 100);
+    param0->unk_19C = StringList_New((v1 + 1), 100);
 
     for (v4 = 0; v4 < v1; v4++) {
         if (param1 == 6) {
@@ -2477,10 +2475,10 @@ static void ov107_02244240 (UnkStruct_ov107_02241D6C * param0, u8 param1)
             v3 = Unk_ov107_02249F84[v4];
         }
 
-        sub_02013A4C(param0->unk_19C, v5, v3, v4);
+        StringList_AddFromMessageBank(param0->unk_19C, v5, v3, v4);
     }
 
-    sub_02013A4C(param0->unk_19C, param0->unk_20, 13, 0xfffffffe);
+    StringList_AddFromMessageBank(param0->unk_19C, param0->unk_20, 13, 0xfffffffe);
 
     param0->unk_1A0 = Unk_ov107_02249EE4;
     param0->unk_1A0.unk_00 = param0->unk_19C;
@@ -2570,10 +2568,10 @@ static void ov107_022445C4 (UnkStruct_ov107_02241D6C * param0)
     ov107_02249D84(param0->unk_4C, &param0->unk_50[10]);
     Window_FillTilemap(&param0->unk_50[10], 15);
 
-    param0->unk_19C = sub_02013A04((NELEMS(Unk_ov107_02249FF0)), 100);
+    param0->unk_19C = StringList_New((NELEMS(Unk_ov107_02249FF0)), 100);
 
     for (v3 = 0; v3 < (NELEMS(Unk_ov107_02249FF0)); v3++) {
-        sub_02013A4C(param0->unk_19C, param0->unk_20, Unk_ov107_02249FF0[v3][1], Unk_ov107_02249FF0[v3][2]);
+        StringList_AddFromMessageBank(param0->unk_19C, param0->unk_20, Unk_ov107_02249FF0[v3][1], Unk_ov107_02249FF0[v3][2]);
     }
 
     param0->unk_1A0 = Unk_ov107_02249EE4;
@@ -2678,10 +2676,10 @@ static void ov107_02244780 (UnkStruct_ov107_02241D6C * param0)
     ov107_02249D84(param0->unk_4C, &param0->unk_50[11]);
     Window_FillTilemap(&param0->unk_50[11], 15);
 
-    param0->unk_19C = sub_02013A04((NELEMS(Unk_ov107_02249F54)), 100);
+    param0->unk_19C = StringList_New((NELEMS(Unk_ov107_02249F54)), 100);
 
     for (v3 = 0; v3 < (NELEMS(Unk_ov107_02249F54)); v3++) {
-        sub_02013A4C(param0->unk_19C, param0->unk_20, Unk_ov107_02249F54[v3][1], Unk_ov107_02249F54[v3][2]);
+        StringList_AddFromMessageBank(param0->unk_19C, param0->unk_20, Unk_ov107_02249F54[v3][1], Unk_ov107_02249F54[v3][2]);
     }
 
     param0->unk_1A0 = Unk_ov107_02249EE4;
@@ -2794,10 +2792,10 @@ static void ov107_02244944 (UnkStruct_ov107_02241D6C * param0)
     ov107_02249D84(param0->unk_4C, &param0->unk_50[9]);
     Window_FillTilemap(&param0->unk_50[9], 15);
 
-    param0->unk_19C = sub_02013A04(5, 100);
+    param0->unk_19C = StringList_New(5, 100);
 
     for (v0 = 0; v0 < 5; v0++) {
-        sub_02013A4C(param0->unk_19C, param0->unk_20, Unk_ov107_02249F2C[v0][0], Unk_ov107_02249F2C[v0][1]);
+        StringList_AddFromMessageBank(param0->unk_19C, param0->unk_20, Unk_ov107_02249F2C[v0][0], Unk_ov107_02249F2C[v0][1]);
     }
 
     param0->unk_1A0 = Unk_ov107_02249EE4;
@@ -3711,7 +3709,7 @@ static void ov107_02245730 (UnkStruct_ov107_02241D6C * param0)
         Window_FillTilemap(v0, 0);
         Window_ClearAndScheduleCopyToVRAM(v0);
 
-        sub_02013A3C(param0->unk_19C);
+        StringList_Free(param0->unk_19C);
         sub_02001384(param0->unk_198, NULL, NULL);
     }
 

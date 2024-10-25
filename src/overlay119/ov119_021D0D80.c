@@ -32,6 +32,7 @@
 #include "pokemon.h"
 #include "spl.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "unk_02001AF4.h"
@@ -39,7 +40,6 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02013A04.h"
 #include "unk_02014000.h"
 #include "unk_0201DBEC.h"
 #include "unk_0202419C.h"
@@ -334,7 +334,7 @@ void ov119_021D11E4(UnkStruct_ov119_021D0FD0 *param0, BgConfig *param1, Window *
     Window_Init(param2);
     Window_Add(param1, param2, param3, param4, param5, param6, param7, param9, param8);
 
-    param0->unk_04.unk_44 = sub_02013A04(2, 71);
+    param0->unk_04.unk_44 = StringList_New(2, 71);
 
     {
         int v1;
@@ -343,7 +343,7 @@ void ov119_021D11E4(UnkStruct_ov119_021D0FD0 *param0, BgConfig *param1, Window *
 
         for (v1 = 0; v1 < 2; v1++) {
             v2 = MessageLoader_GetNewStrbuf(v3, 2 + v1);
-            sub_02013A6C(param0->unk_04.unk_44, v2, v1);
+            StringList_AddFromStrbuf(param0->unk_04.unk_44, v2, v1);
             Strbuf_Free(v2);
         }
 
@@ -369,7 +369,7 @@ void ov119_021D12CC(UnkStruct_ov119_021D0FD0 *param0)
     Window_ClearAndCopyToVRAM(&param0->unk_04.unk_14[1]);
     Window_Remove(&param0->unk_04.unk_14[1]);
     sub_02001BC4(param0->unk_04.unk_48, NULL);
-    sub_02013A3C(param0->unk_04.unk_44);
+    StringList_Free(param0->unk_04.unk_44);
 }
 
 void ov119_021D12F8(Window *param0)

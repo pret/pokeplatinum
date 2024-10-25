@@ -7,7 +7,6 @@
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_0207CB08_decl.h"
 
 #include "overlay084/struct_ov84_0223B5A0_sub1.h"
@@ -19,6 +18,7 @@
 #include "message.h"
 #include "narc.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "trainer_info.h"
 
@@ -40,10 +40,10 @@ typedef struct {
     MessageLoader *unk_11C;
     MessageLoader *unk_120;
     Strbuf *unk_124[12];
-    ResourceMetadata *unk_154;
+    StringList *unk_154;
     UIControlData *unk_158;
     BmpList *unk_15C;
-    ResourceMetadata *unk_160;
+    StringList *unk_160;
     Strbuf *unk_164[165];
     Strbuf *unk_3F8;
     Strbuf *unk_3FC;

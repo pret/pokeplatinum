@@ -27,13 +27,13 @@
 #include "narc.h"
 #include "pokemon.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "text.h"
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02013A04.h"
 #include "unk_0202DA40.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
@@ -776,13 +776,13 @@ static int ov94_0223F190(UnkStruct_ov94_0223FD4C *param0)
     case 8:
     case 9:
         sub_02001384(param0->unk_10D8, &param0->unk_10E4->unk_06, &param0->unk_10E4->unk_04);
-        sub_02013A3C(param0->unk_10CC);
+        StringList_Free(param0->unk_10CC);
         Sound_PlayEffect(1500);
         param0->unk_2C = 6;
         break;
     case 0xfffffffe:
         sub_02001384(param0->unk_10D8, &param0->unk_10E4->unk_06, &param0->unk_10E4->unk_04);
-        sub_02013A3C(param0->unk_10CC);
+        StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
         sub_0200E084(&param0->unk_F5C, 0);
         Window_Remove(&param0->unk_F9C[0]);
@@ -813,7 +813,7 @@ static int ov94_0223F2B0(UnkStruct_ov94_0223FD4C *param0)
         break;
     case 0xfffffffe:
         sub_02001384(param0->unk_10D8, &param0->unk_10E4->unk_0A, &param0->unk_10E4->unk_08);
-        sub_02013A3C(param0->unk_10CC);
+        StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[1], 0);
         Sound_PlayEffect(1500);
         param0->unk_2C = 4;
@@ -821,7 +821,7 @@ static int ov94_0223F2B0(UnkStruct_ov94_0223FD4C *param0)
         break;
     default:
         sub_02001384(param0->unk_10D8, &param0->unk_10E4->unk_0A, &param0->unk_10E4->unk_08);
-        sub_02013A3C(param0->unk_10CC);
+        StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
         Window_Clear(&param0->unk_F9C[1], 0);
         Window_Remove(&param0->unk_F9C[0]);
@@ -874,7 +874,7 @@ static int ov94_0223F4B0(UnkStruct_ov94_0223FD4C *param0)
     switch (v0 = ov94_02242A6C(param0->unk_10D8, &param0->unk_108)) {
     case 0xfffffffe:
         sub_02001384(param0->unk_10D8, NULL, NULL);
-        sub_02013A3C(param0->unk_10CC);
+        StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
         sub_0200E084(&param0->unk_F5C, 0);
         Window_Remove(&param0->unk_F9C[0]);
@@ -885,7 +885,7 @@ static int ov94_0223F4B0(UnkStruct_ov94_0223FD4C *param0)
     case 1:
     case 2:
         sub_02001384(param0->unk_10D8, NULL, NULL);
-        sub_02013A3C(param0->unk_10CC);
+        StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
         Window_Remove(&param0->unk_F9C[0]);
         Sound_PlayEffect(1500);
@@ -931,7 +931,7 @@ static int ov94_0223F638(UnkStruct_ov94_0223FD4C *param0)
     case 0xfffffffe:
     case 11:
         sub_02001384(param0->unk_10D8, NULL, NULL);
-        sub_02013A3C(param0->unk_10CC);
+        StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
         sub_0200E084(&param0->unk_F5C, 0);
         Window_Remove(&param0->unk_F9C[0]);
@@ -940,7 +940,7 @@ static int ov94_0223F638(UnkStruct_ov94_0223FD4C *param0)
         break;
     default:
         sub_02001384(param0->unk_10D8, NULL, NULL);
-        sub_02013A3C(param0->unk_10CC);
+        StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
         Window_Remove(&param0->unk_F9C[0]);
         Sound_PlayEffect(1500);
@@ -986,7 +986,7 @@ static int ov94_0223F7C0(UnkStruct_ov94_0223FD4C *param0)
         (void)0;
     } else if ((v0 == 0xfffffffe) || (v0 == (Unk_ov94_02245FD4 + 1))) {
         sub_02001384(param0->unk_10D8, NULL, NULL);
-        sub_02013A3C(param0->unk_10CC);
+        StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
         sub_0200E084(&param0->unk_F5C, 0);
         Window_Remove(&param0->unk_F9C[0]);
@@ -994,7 +994,7 @@ static int ov94_0223F7C0(UnkStruct_ov94_0223FD4C *param0)
         param0->unk_2C = 0;
     } else {
         sub_02001384(param0->unk_10D8, NULL, NULL);
-        sub_02013A3C(param0->unk_10CC);
+        StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
         Window_Remove(&param0->unk_F9C[0]);
         Sound_PlayEffect(1500);

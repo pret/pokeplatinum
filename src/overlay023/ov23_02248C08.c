@@ -4,9 +4,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
-#include "struct_defs/struct_02013A04_t.h"
 
 #include "overlay023/funcptr_ov23_02248D20.h"
 #include "overlay023/struct_ov23_02248D20.h"
@@ -16,9 +14,9 @@
 #include "colored_arrow.h"
 #include "core_sys.h"
 #include "heap.h"
+#include "string_list.h"
 #include "unk_0200112C.h"
 #include "unk_02005474.h"
-#include "unk_02013A04.h"
 #include "unk_0202854C.h"
 
 UnkStruct_ov23_02248D20 *ov23_02248C08(UnkStruct_ov84_02240FA8 *param0, u16 param1, u16 param2, u8 param3, UnkFuncPtr_ov23_02248D20 param4, UndergroundData *param5, BOOL param6)
@@ -39,11 +37,11 @@ UnkStruct_ov23_02248D20 *ov23_02248C08(UnkStruct_ov84_02240FA8 *param0, u16 para
         v0->unk_1D = param3;
 
         {
-            ResourceMetadata *v1 = sub_02013A04(param0->unk_10, v0->unk_1D);
+            StringList *v1 = StringList_New(param0->unk_10, v0->unk_1D);
             int v2;
 
             for (v2 = 0; v2 < param0->unk_10; v2++) {
-                sub_02013A90(v1, &param0->unk_00[v2]);
+                StringList_AddFromEntry(v1, &param0->unk_00[v2]);
             }
 
             param0->unk_00 = v1;
@@ -89,7 +87,7 @@ u32 ov23_02248D20(UnkStruct_ov23_02248D20 *param0)
     u16 v1, v2, v3;
     int v4, v5;
     u32 v6;
-    ResourceMetadata *v7;
+    StringList *v7;
 
     if (param0->unk_00) {
         int v8 = sub_02001504(v0, 2);
@@ -112,19 +110,19 @@ u32 ov23_02248D20(UnkStruct_ov23_02248D20 *param0)
 
                 param0->unk_00(param0->unk_04, param0->unk_14 + param0->unk_16, v1 + v2);
 
-                v7 = sub_02013A04(v8, param0->unk_1D);
+                v7 = StringList_New(v8, param0->unk_1D);
                 v5 = 0;
 
                 for (v4 = 0; v4 < v8; v4++) {
                     if (v4 == (param0->unk_14 + param0->unk_16)) {
                         v5++;
                     } else {
-                        sub_02013A90(v7, &param0->unk_08[v5]);
+                        StringList_AddFromEntry(v7, &param0->unk_08[v5]);
                         v5++;
                     }
 
                     if ((v4) == (v1 + v2)) {
-                        sub_02013A90(v7, &param0->unk_08[param0->unk_14 + param0->unk_16]);
+                        StringList_AddFromEntry(v7, &param0->unk_08[param0->unk_14 + param0->unk_16]);
                     }
                 }
 
@@ -142,14 +140,14 @@ u32 ov23_02248D20(UnkStruct_ov23_02248D20 *param0)
                         }
 
                         v9 = (v4 << 1) + v10;
-                        v7[v4].unk_04 = v9;
+                        v7[v4].index = v9;
                     }
 
                     v9 = (v4 << 1) + 1;
-                    v7[v4].unk_04 = v9;
+                    v7[v4].index = v9;
                 } else {
                     for (v4 = 0; v4 < v8 - 1; v4++) {
-                        v7[v4].unk_04 = v4;
+                        v7[v4].index = v4;
                     }
                 }
 

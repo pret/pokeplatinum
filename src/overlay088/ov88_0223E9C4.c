@@ -5,8 +5,6 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
-#include "struct_defs/struct_02013A04_t.h"
 
 #include "overlay084/struct_ov84_02240FA8.h"
 
@@ -16,6 +14,7 @@
 #include "message.h"
 #include "message_util.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "text.h"
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
@@ -207,7 +206,7 @@ static const UnkStruct_ov84_02240FA8 Unk_ov88_0223F150 = {
     NULL
 };
 
-BmpList *ov88_0223ED94(ResourceMetadata *param0, int param1, Window *param2, BgConfig *param3)
+BmpList *ov88_0223ED94(StringList *param0, int param1, Window *param2, BgConfig *param3)
 {
     BmpList *v0;
     UnkStruct_ov84_02240FA8 v1;

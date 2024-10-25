@@ -7,8 +7,6 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
-#include "struct_defs/struct_02013A04_t.h"
 
 #include "field/field_system.h"
 #include "overlay023/funcptr_ov23_0224DCB8.h"
@@ -28,6 +26,7 @@
 #include "game_records.h"
 #include "heap.h"
 #include "message.h"
+#include "string_list.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
@@ -35,7 +34,6 @@
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
-#include "unk_02013A04.h"
 #include "unk_0201D15C.h"
 #include "unk_0202854C.h"
 #include "unk_020573FC.h"
@@ -64,7 +62,7 @@ typedef struct {
     UnkStruct_ov23_02250CD4 *unk_04;
     FieldSystem *fieldSystem;
     Window unk_0C;
-    ResourceMetadata *unk_1C;
+    StringList *unk_1C;
     BmpList *unk_20;
     UIControlData *unk_24;
     UnkStruct_ov23_0224F184 unk_28;
@@ -86,7 +84,7 @@ typedef struct {
     SysTask *unk_00;
     FieldSystem *fieldSystem;
     Window unk_08;
-    ResourceMetadata *unk_18;
+    StringList *unk_18;
     BmpList *unk_1C;
     UIControlData *unk_20;
     UnkStruct_ov23_0224F184 unk_24;
@@ -237,7 +235,7 @@ static void ov23_0224DD2C(UnkStruct_ov23_0224E280 *param0)
 {
     UnkStruct_ov84_02240FA8 v0;
 
-    param0->unk_1C = sub_02013A04(NELEMS(Unk_ov23_022568B4), 4);
+    param0->unk_1C = StringList_New(NELEMS(Unk_ov23_022568B4), 4);
 
     Window_Add(param0->fieldSystem->unk_08, &param0->unk_0C, 3, 1, 1, 10, NELEMS(Unk_ov23_022568B4) * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (10 * NELEMS(Unk_ov23_022568B4) * 2));
     Window_Show(&param0->unk_0C, 1, 1024 - (18 + 12) - 9, 11);
@@ -249,7 +247,7 @@ static void ov23_0224DD2C(UnkStruct_ov23_0224E280 *param0)
         v1 = MessageLoader_Init(0, 26, 634, 4);
 
         for (v2 = 0; v2 < NELEMS(Unk_ov23_022568B4); v2++) {
-            sub_02013A4C(param0->unk_1C, v1, Unk_ov23_022568B4[v2].unk_00, Unk_ov23_022568B4[v2].unk_04);
+            StringList_AddFromMessageBank(param0->unk_1C, v1, Unk_ov23_022568B4[v2].unk_00, Unk_ov23_022568B4[v2].unk_04);
         }
 
         MessageLoader_Free(v1);
@@ -298,7 +296,7 @@ static void ov23_0224DE3C(UnkStruct_ov23_0224E280 *param0)
 {
     UnkStruct_ov84_02240FA8 v0;
 
-    param0->unk_1C = sub_02013A04(4, 4);
+    param0->unk_1C = StringList_New(4, 4);
 
     Window_Add(param0->fieldSystem->unk_08, &param0->unk_0C, 3, 1, 1, 16, 4 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (16 * 4 * 2));
     Window_Show(&param0->unk_0C, 1, 1024 - (18 + 12) - 9, 11);
@@ -321,7 +319,7 @@ static void ov23_0224DE3C(UnkStruct_ov23_0224E280 *param0)
 
             if (v3 == v2) {
                 v4[v2] = v5;
-                sub_02013A4C(param0->unk_1C, v1, 0 + v5, v5);
+                StringList_AddFromMessageBank(param0->unk_1C, v1, 0 + v5, v5);
             } else {
                 v2--;
             }
@@ -386,7 +384,7 @@ static void ov23_0224DFA0(UnkStruct_ov23_0224E280 *param0)
 {
     UnkStruct_ov84_02240FA8 v0;
 
-    param0->unk_1C = sub_02013A04(4, 4);
+    param0->unk_1C = StringList_New(4, 4);
 
     Window_Add(param0->fieldSystem->unk_08, &param0->unk_0C, 3, 1, 1, 16, 4 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (16 * 4 * 2));
     Window_Show(&param0->unk_0C, 1, 1024 - (18 + 12) - 9, 11);
@@ -400,7 +398,7 @@ static void ov23_0224DFA0(UnkStruct_ov23_0224E280 *param0)
         for (v2 = 0; v2 < 4; v2++) {
             u32 v3 = 4 * param0->unk_32 + v2;
 
-            sub_02013A4C(param0->unk_1C, v1, 0 + v3, v2);
+            StringList_AddFromMessageBank(param0->unk_1C, v1, 0 + v3, v2);
         }
 
         MessageLoader_Free(v1);
@@ -539,7 +537,7 @@ static void ov23_0224E244(SysTask *param0, UnkStruct_ov23_0224E280 *param1)
         sub_02001384(param1->unk_20, NULL, NULL);
         Window_ClearAndCopyToVRAM(&param1->unk_0C);
         Window_Remove(&param1->unk_0C);
-        sub_02013A3C(param1->unk_1C);
+        StringList_Free(param1->unk_1C);
         param1->unk_1C = NULL;
     }
 }
@@ -956,7 +954,7 @@ static void ov23_0224EA08(SysTask *param0, UnkStruct_ov23_022577B0 *param1)
         sub_02001384(param1->unk_1C, NULL, NULL);
         Window_ClearAndCopyToVRAM(&param1->unk_08);
         Window_Remove(&param1->unk_08);
-        sub_02013A3C(param1->unk_18);
+        StringList_Free(param1->unk_18);
 
         param1->unk_18 = NULL;
     }
@@ -980,7 +978,7 @@ static void ov23_0224EAA4(UnkStruct_ov23_022577B0 *param0)
     UnkStruct_ov84_02240FA8 v0;
     const int v1 = 4 + 1;
 
-    param0->unk_18 = sub_02013A04(v1, 4);
+    param0->unk_18 = StringList_New(v1, 4);
 
     Window_Add(param0->fieldSystem->unk_08, &param0->unk_08, 3, 1, 1, 16, v1 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (16 * v1 * 2));
     Window_Show(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
@@ -993,10 +991,10 @@ static void ov23_0224EAA4(UnkStruct_ov23_022577B0 *param0)
         for (v3 = 0; v3 < 4; v3++) {
             u32 v4 = 4 * param0->unk_2E + v3;
 
-            sub_02013A4C(param0->unk_18, v2, 0 + v4, v3);
+            StringList_AddFromMessageBank(param0->unk_18, v2, 0 + v4, v3);
         }
 
-        sub_02013A4C(param0->unk_18, v2, 48, 51);
+        StringList_AddFromMessageBank(param0->unk_18, v2, 48, 51);
         MessageLoader_Free(v2);
     }
 

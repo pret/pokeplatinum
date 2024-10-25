@@ -6,10 +6,8 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02025CCC_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
-#include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_02017498.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -30,6 +28,7 @@
 #include "render_text.h"
 #include "save_player.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "unk_02001AF4.h"
@@ -73,7 +72,7 @@ typedef struct {
     int unk_90;
     int unk_94;
     int unk_98;
-    ResourceMetadata *unk_9C;
+    StringList *unk_9C;
     BmpList *unk_A0;
     UnkStruct_ov61_0222C3B0 unk_A4;
 } UnkStruct_ov61_0222C664;

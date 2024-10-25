@@ -6,10 +6,8 @@
 #include "constants/heap.h"
 
 #include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
-#include "struct_defs/struct_02013A04_t.h"
 
 #include "overlay023/funcptr_ov23_0224DCB8.h"
 #include "overlay023/funcptr_ov23_02253834.h"
@@ -27,6 +25,7 @@
 #include "message.h"
 #include "savedata.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -42,7 +41,7 @@ typedef struct {
     UnkFuncPtr_ov23_02253834 unk_00;
     void *unk_04;
     Window unk_08;
-    ResourceMetadata *unk_18;
+    StringList *unk_18;
     BmpList *unk_1C;
     UnkFuncPtr_ov23_0224DCB8 unk_20;
     u16 unk_24;

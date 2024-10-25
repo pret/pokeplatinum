@@ -6,11 +6,9 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_defs/struct_0200C738.h"
-#include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/struct_02089438.h"
 #include "struct_defs/struct_02099F80.h"
@@ -45,6 +43,7 @@
 #include "savedata.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
@@ -57,7 +56,6 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
-#include "unk_02013A04.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
@@ -177,7 +175,7 @@ typedef struct {
     u32 unk_D8;
     u32 unk_DC;
     Window unk_E0;
-    ResourceMetadata * unk_F0[2];
+    StringList *unk_F0[2];
     BmpList * unk_F8;
     UIControlData * unk_FC;
     s32 unk_100;
@@ -2081,7 +2079,7 @@ asm static void ov64_0222F414 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_
  _0222F530:
     ldr r1, [sp, #0x18]
     mov r0, #4
-    bl sub_02013A04
+    bl StringList_New
     add r1, r6, #0
     add r1, #0xf4
     ldr r5, [sp, #0x20]
@@ -2096,7 +2094,7 @@ asm static void ov64_0222F414 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_
     ldr r1, [r7, r1]
     ldr r2, [r5, #0]
     ldr r3, [r5, #4]
-    bl sub_02013A4C
+    bl StringList_AddFromMessageBank
     add r4, r4, #1
     add r5, #8
     cmp r4, #4
@@ -2172,7 +2170,7 @@ static void ov64_0222F5F4 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222
     Strbuf_Free(param0->unk_D4);
 
     for (v0 = 0; v0 < 2; v0++) {
-        sub_02013A3C(param0->unk_F0[v0]);
+        StringList_Free(param0->unk_F0[v0]);
     }
 
     Window_Remove(&param0->unk_E0);

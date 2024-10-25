@@ -5,10 +5,8 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
 #include "struct_defs/struct_0200C738.h"
-#include "struct_defs/struct_02013A04_t.h"
 
 #include "overlay007/struct_ov7_0224BEFC_decl.h"
 #include "overlay084/struct_ov84_02240FA8.h"
@@ -26,6 +24,7 @@
 #include "savedata.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "unk_0200112C.h"
@@ -88,7 +87,7 @@ typedef struct {
     u32 unk_00;
     Window *unk_04;
     BmpList *unk_08;
-    ResourceMetadata unk_0C[23];
+    StringList unk_0C[23];
     Strbuf *unk_C4[23];
     s32 unk_120;
     StringTemplate *unk_124;
@@ -608,13 +607,13 @@ static void ov7_0224C768(UnkStruct_ov7_0224C768 *param0, BgConfig *param1, u32 p
         StringTemplate_Format(param0->unk_124, param0->unk_128, v1);
 
         param0->unk_C4[v0] = Strbuf_Clone(param0->unk_128, param2);
-        param0->unk_0C[v0].unk_00 = param0->unk_C4[v0];
-        param0->unk_0C[v0].unk_04 = v0;
+        param0->unk_0C[v0].entry = param0->unk_C4[v0];
+        param0->unk_0C[v0].index = v0;
     }
 
     param0->unk_C4[param4] = MessageLoader_GetNewStrbuf(param5, 19);
-    param0->unk_0C[param4].unk_00 = param0->unk_C4[param4];
-    param0->unk_0C[param4].unk_04 = param4;
+    param0->unk_0C[param4].entry = param0->unk_C4[param4];
+    param0->unk_0C[param4].index = param4;
 
     StringTemplate_Free(param0->unk_124);
     Strbuf_Free(param0->unk_128);
