@@ -10,7 +10,6 @@
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200C738.h"
 
-#include "overlay007/struct_ov7_0224F2EC.h"
 #include "overlay007/struct_ov7_0224F358.h"
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_02241308.h"
@@ -19,6 +18,7 @@
 #include "cell_actor.h"
 #include "narc.h"
 #include "palette.h"
+#include "sprite_resource.h"
 
 SpriteRenderer *sub_0200C6E4(int param0);
 SpriteGfxHandler *sub_0200C704(SpriteRenderer *param0);
@@ -36,7 +36,7 @@ void sub_0200C880(SpriteRenderer *param0);
 void sub_0200C8A0(SpriteRenderer *param0, SpriteGfxHandler *param1);
 void sub_0200C8B0(SpriteRenderer *param0, SpriteGfxHandler *param1);
 void sub_0200C8D4(SpriteRenderer *param0);
-BOOL sub_0200C8F0(SpriteRenderer *param0, SpriteGfxHandler *param1, const UnkStruct_ov7_0224F2EC *param2);
+BOOL LoadSpriteResourceData(SpriteRenderer *param0, SpriteGfxHandler *param1, const SpriteResourceDataPath *param2);
 CellActor *sub_0200CA08(SpriteRenderer *param0, SpriteGfxHandler *param1, const UnkStruct_ov7_0224F358 *param2);
 CellActor *sub_0200CA44(SpriteRenderer *param0, SpriteGfxHandler *param1, int param2, s16 param3, s16 param4, s16 param5, u16 param6, int param7, int param8, int param9, int param10, int param11, int param12, int param13);
 BOOL sub_0200CB30(SpriteRenderer *param0, SpriteGfxHandler *param1, const UnkStruct_ov104_02241308 *param2);

@@ -12,7 +12,6 @@
 #include "struct_defs/struct_02049A68.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay007/struct_ov7_0224F2EC.h"
 #include "overlay007/struct_ov7_0224F358.h"
 #include "overlay090/struct_ov90_021D0D80.h"
 #include "overlay090/struct_ov90_021D1750.h"
@@ -31,6 +30,7 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "save_player.h"
+#include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
@@ -886,7 +886,7 @@ static void ov90_021D1ABC(UnkStruct_ov90_021D0ECC *param0)
     }
 
     {
-        UnkStruct_ov7_0224F2EC v2 = {
+        SpriteResourceDataPath v2 = {
             "data/btower_chr.resdat",
             "data/btower_pal.resdat",
             "data/btower_cell.resdat",
@@ -896,7 +896,7 @@ static void ov90_021D1ABC(UnkStruct_ov90_021D0ECC *param0)
             "data/btower_celact.cldat"
         };
 
-        sub_0200C8F0(param0->unk_29C, param0->unk_2A0, &v2);
+        LoadSpriteResourceData(param0->unk_29C, param0->unk_2A0, &v2);
     }
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 }

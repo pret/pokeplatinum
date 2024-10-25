@@ -8,7 +8,6 @@
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0200D0F4.h"
 
-#include "overlay007/struct_ov7_0224F2EC.h"
 #include "overlay007/struct_ov7_0224F358.h"
 #include "overlay022/struct_ov22_022559F8.h"
 #include "overlay104/struct_ov104_022412F4.h"
@@ -229,56 +228,56 @@ void sub_0200C8D4(SpriteRenderer *param0)
     Heap_FreeToHeap(param0);
 }
 
-BOOL sub_0200C8F0(SpriteRenderer *param0, SpriteGfxHandler *param1, const UnkStruct_ov7_0224F2EC *param2)
+BOOL LoadSpriteResourceData(SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler, const SpriteResourceDataPath *resourcePaths)
 {
-    int v0;
-    int v1 = 6;
-    int v2;
-    SpriteResourceTable *v3;
-    void *v4;
+    int entryIndex;
+    int numEntries = 6;
+    int size;
+    SpriteResourceTable *resourceTable;
+    void *resourceEntryData;
 
-    if ((param0 == NULL) || (param1 == NULL)) {
+    if ((renderer == NULL) || (gfxHandler == NULL)) {
         return 0;
     }
 
-    if (param2->val2.unk_10 == NULL) {
-        v1 = 6 - 2;
+    if (resourcePaths->paths.multiCellsDataPath == NULL) {
+        numEntries = 6 - 2;
     }
 
-    param1->unk_54 = v1;
-    v2 = SpriteResourceTable_Size();
-    param1->unk_08 = Heap_AllocFromHeap(param0->unk_00, v2 * v1);
+    gfxHandler->unk_54 = numEntries;
+    size = SpriteResourceTable_Size();
+    gfxHandler->unk_08 = Heap_AllocFromHeap(renderer->unk_00, size * numEntries);
 
-    for (v0 = 0; v0 < v1; v0++) {
-        v3 = SpriteResourceTable_GetArrayElement(param1->unk_08, v0);
-        v4 = ReadFileToHeap(param0->unk_00, param2->val1[v0]);
+    for (entryIndex = 0; entryIndex < numEntries; entryIndex++) {
+        resourceTable = SpriteResourceTable_GetArrayElement(gfxHandler->unk_08, entryIndex);
+        resourceEntryData = ReadFileToHeap(renderer->unk_00, resourcePaths->val1[entryIndex]);
 
-        SpriteResourceTable_LoadFromBinary(v4, v3, param0->unk_00);
-        Heap_FreeToHeap(v4);
+        SpriteResourceTable_LoadFromBinary(resourceEntryData, resourceTable, renderer->unk_00);
+        Heap_FreeToHeap(resourceEntryData);
     }
 
-    for (v0 = 0; v0 < v1; v0++) {
-        v3 = SpriteResourceTable_GetArrayElement(param1->unk_08, v0);
-        v2 = SpriteResourceTable_GetCount(v3);
+    for (entryIndex = 0; entryIndex < numEntries; entryIndex++) {
+        resourceTable = SpriteResourceTable_GetArrayElement(gfxHandler->unk_08, entryIndex);
+        size = SpriteResourceTable_GetCount(resourceTable);
 
-        param1->unk_0C[v0] = SpriteResourceCollection_New(v2, v0, param0->unk_00);
+        gfxHandler->unk_0C[entryIndex] = SpriteResourceCollection_New(size, entryIndex, renderer->unk_00);
     }
 
-    for (v0 = 0; v0 < v1; v0++) {
-        v3 = SpriteResourceTable_GetArrayElement(param1->unk_08, v0);
-        v2 = SpriteResourceTable_GetCount(v3);
+    for (entryIndex = 0; entryIndex < numEntries; entryIndex++) {
+        resourceTable = SpriteResourceTable_GetArrayElement(gfxHandler->unk_08, entryIndex);
+        size = SpriteResourceTable_GetCount(resourceTable);
 
-        param1->unk_24[v0] = SpriteResourceList_New(v2, param0->unk_00);
-        param1->unk_3C[v0] = SpriteResourceCollection_Extend(param1->unk_0C[v0], v3, param1->unk_24[v0], param0->unk_00);
+        gfxHandler->unk_24[entryIndex] = SpriteResourceList_New(size, renderer->unk_00);
+        gfxHandler->unk_3C[entryIndex] = SpriteResourceCollection_Extend(gfxHandler->unk_0C[entryIndex], resourceTable, gfxHandler->unk_24[entryIndex], renderer->unk_00);
     }
 
-    sub_0200A368(param1->unk_24[0]);
-    sub_0200A60C(param1->unk_24[1]);
+    sub_0200A368(gfxHandler->unk_24[0]);
+    sub_0200A60C(gfxHandler->unk_24[1]);
 
-    v4 = ReadFileToHeap(param0->unk_00, param2->val2.unk_18);
-    param1->unk_04 = sub_02009508(v4, param0->unk_00, param1->unk_0C[0], param1->unk_0C[1], param1->unk_0C[2], param1->unk_0C[3], param1->unk_0C[4], param1->unk_0C[5]);
+    resourceEntryData = ReadFileToHeap(renderer->unk_00, resourcePaths->paths.combinedResourceDataPath);
+    gfxHandler->unk_04 = sub_02009508(resourceEntryData, renderer->unk_00, gfxHandler->unk_0C[0], gfxHandler->unk_0C[1], gfxHandler->unk_0C[2], gfxHandler->unk_0C[3], gfxHandler->unk_0C[4], gfxHandler->unk_0C[5]);
 
-    Heap_FreeToHeap(v4);
+    Heap_FreeToHeap(resourceEntryData);
     return 1;
 }
 

@@ -1,12 +1,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay007/struct_ov7_0224F2EC.h"
 #include "overlay080/struct_ov80_021D2A08.h"
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_0224133C.h"
 
 #include "gx_layers.h"
+#include "sprite_resource.h"
 #include "unk_0200C6E4.h"
 #include "unk_0201DBEC.h"
 
@@ -48,7 +48,7 @@ void ov80_021D2A08(UnkStruct_ov80_021D2A08 *param0)
     }
 
     {
-        UnkStruct_ov7_0224F2EC v2 = {
+        SpriteResourceDataPath v2 = {
             "data/tmapn_chr.resdat",
             "data/tmapn_pal.resdat",
             "data/tmapn_cell.resdat",
@@ -58,7 +58,7 @@ void ov80_021D2A08(UnkStruct_ov80_021D2A08 *param0)
             "data/tmapn_celact.cldat"
         };
 
-        sub_0200C8F0(param0->unk_D8, param0->unk_DC, &v2);
+        LoadSpriteResourceData(param0->unk_D8, param0->unk_DC, &v2);
     }
 }
 

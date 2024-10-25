@@ -61,6 +61,19 @@ typedef struct SpriteResourceList {
     int count;
 } SpriteResourceList;
 
+typedef union {
+    const char *val1[7];
+    struct {
+        const char *tilesDataPath;
+        const char *palettesDataPath;
+        const char *cellsDataPath;
+        const char *animsDataPath;
+        const char *multiCellsDataPath;
+        const char *multiAnimsDataPath;
+        const char *combinedResourceDataPath;
+    } paths;
+} SpriteResourceDataPath;
+
 SpriteResourceCollection *SpriteResourceCollection_New(int capacity, enum SpriteResourceType type, enum HeapId heapID);
 void SpriteResourceCollection_Delete(SpriteResourceCollection *spriteResources);
 SpriteResource *SpriteResourceCollection_AddFromTable(SpriteResourceCollection *spriteResources, const SpriteResourceTable *table, int index, enum HeapId heapID);

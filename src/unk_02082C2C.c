@@ -8,7 +8,6 @@
 #include "struct_defs/struct_020831B4.h"
 
 #include "data/plist_pal.h"
-#include "overlay007/struct_ov7_0224F2EC.h"
 #include "overlay007/struct_ov7_0224F358.h"
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_0224133C.h"
@@ -22,6 +21,7 @@
 #include "party.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
+#include "sprite_resource.h"
 #include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
 #include "unk_0201DBEC.h"
@@ -63,7 +63,7 @@ void sub_02082C2C(GameWindowLayout *param0)
     }
 
     {
-        UnkStruct_ov7_0224F2EC v3 = {
+        SpriteResourceDataPath v3 = {
             "data/plist_chr.resdat",
             "data/plist_pal.resdat",
             "data/plist_cell.resdat",
@@ -73,7 +73,7 @@ void sub_02082C2C(GameWindowLayout *param0)
             "data/plist_h.cldat"
         };
 
-        sub_0200C8F0(param0->unk_5A8, param0->unk_5AC, &v3);
+        LoadSpriteResourceData(param0->unk_5A8, param0->unk_5AC, &v3);
     }
 }
 

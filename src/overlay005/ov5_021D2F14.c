@@ -8,7 +8,6 @@
 #include "struct_defs/struct_0200D0F4.h"
 
 #include "overlay005/struct_ov5_021D30A8.h"
-#include "overlay007/struct_ov7_0224F2EC.h"
 #include "overlay007/struct_ov7_0224F358.h"
 #include "overlay104/struct_ov104_02241308.h"
 
@@ -24,7 +23,7 @@ static BOOL ov5_021D3478(SpriteResourceList *param0, SpriteResource *param1);
 static void ov5_021D34AC(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, int param3, int param4, int param5);
 static void ov5_021D3518(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, int param3, int param4, int param5);
 
-void ov5_021D2F14(UnkStruct_ov5_021D30A8 *param0, const UnkStruct_ov7_0224F2EC *param1, u32 param2, u32 param3)
+void ov5_021D2F14(UnkStruct_ov5_021D30A8 *param0, const SpriteResourceDataPath *param1, u32 param2, u32 param3)
 {
     SpriteResourceTable *v0;
     SpriteResourceTable *v1;
@@ -35,7 +34,7 @@ void ov5_021D2F14(UnkStruct_ov5_021D30A8 *param0, const UnkStruct_ov7_0224F2EC *
     param0->unk_00 = sub_020095C4(param2, &param0->unk_04, param3);
     param0->unk_1C6 = param3;
 
-    if (param1->val2.unk_10 == NULL) {
+    if (param1->paths.multiCellsDataPath == NULL) {
         param0->unk_1C4 = 6 - 2;
     } else {
         param0->unk_1C4 = 6;
@@ -73,7 +72,7 @@ void ov5_021D2F14(UnkStruct_ov5_021D30A8 *param0, const UnkStruct_ov7_0224F2EC *
     sub_0200A41C(param0->unk_1AC[0]);
     sub_0200A684(param0->unk_1AC[1]);
 
-    v2 = ReadFileToHeap(param3, param1->val2.unk_18);
+    v2 = ReadFileToHeap(param3, param1->paths.combinedResourceDataPath);
     param0->unk_190 = sub_02009508(v2, param3, param0->unk_194[0], param0->unk_194[1], param0->unk_194[2], param0->unk_194[3], param0->unk_194[4], param0->unk_194[5]);
 
     Heap_FreeToHeap(v2);

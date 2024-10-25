@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay007/struct_ov7_0224F2EC.h"
 #include "overlay079/struct_ov79_021D0E1C.h"
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_0224133C.h"
@@ -11,6 +10,7 @@
 #include "cell_actor.h"
 #include "communication_system.h"
 #include "gx_layers.h"
+#include "sprite_resource.h"
 #include "unk_0200A784.h"
 #include "unk_0200C6E4.h"
 #include "unk_0201DBEC.h"
@@ -55,7 +55,7 @@ void ov79_021D20F4(UnkStruct_ov79_021D0E1C *param0)
     }
 
     {
-        UnkStruct_ov7_0224F2EC v2 = {
+        SpriteResourceDataPath v2 = {
             "data/porucase_chr.resdat",
             "data/porucase_pal.resdat",
             "data/porucase_cell.resdat",
@@ -65,7 +65,7 @@ void ov79_021D20F4(UnkStruct_ov79_021D0E1C *param0)
             "data/porucase_celact.cldat"
         };
 
-        sub_0200C8F0(param0->unk_1B8, param0->unk_1BC, &v2);
+        LoadSpriteResourceData(param0->unk_1B8, param0->unk_1BC, &v2);
     }
 
     param0->unk_1F8 = sub_02098FFC(param0->unk_00, 1, 1, (NNS_G2D_VRAM_TYPE_2DMAIN), 0);

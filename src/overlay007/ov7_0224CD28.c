@@ -9,7 +9,6 @@
 #include "overlay005/fieldmap.h"
 #include "overlay005/ov5_021D2F14.h"
 #include "overlay007/struct_ov7_0224D008.h"
-#include "overlay007/struct_ov7_0224F2EC.h"
 #include "overlay007/struct_ov7_0224F358.h"
 
 #include "bag.h"
@@ -1438,7 +1437,7 @@ static void ov7_0224EA54(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param
     param1->unk_2A4 = FieldMessage_Print(&param1->unk_08[1], param1->unk_298, param1->unk_278, 1);
 }
 
-static const UnkStruct_ov7_0224F2EC Unk_ov7_0224F2EC = {
+static const SpriteResourceDataPath Unk_ov7_0224F2EC = {
     "data/shop_chr.resdat",
     "data/shop_pal.resdat",
     "data/shop_cell.resdat",

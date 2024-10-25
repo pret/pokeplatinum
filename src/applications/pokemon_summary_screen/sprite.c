@@ -8,7 +8,6 @@
 #include "applications/pokemon_summary_screen/main.h"
 #include "applications/pokemon_summary_screen/subscreen.h"
 #include "data/pst_pal.h"
-#include "overlay007/struct_ov7_0224F2EC.h"
 #include "overlay007/struct_ov7_0224F358.h"
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_0224133C.h"
@@ -20,6 +19,8 @@
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "ribbon.h"
+#include "pokemon_summary_app.h"
+#include "sprite_resource.h"
 #include "unk_0200C6E4.h"
 #include "unk_0201DBEC.h"
 #include "unk_0207C908.h"
@@ -161,7 +162,7 @@ void sub_0208EA44(PokemonSummaryScreen *param0)
     }
 
     {
-        UnkStruct_ov7_0224F2EC v2 = {
+        SpriteResourceDataPath v2 = {
             "data/pst_chr.resdat",
             "data/pst_pal.resdat",
             "data/pst_cell.resdat",
@@ -171,7 +172,7 @@ void sub_0208EA44(PokemonSummaryScreen *param0)
             "data/pst_h.cldat"
         };
 
-        sub_0200C8F0(param0->renderer, param0->gfxHandler, &v2);
+        LoadSpriteResourceData(param0->renderer, param0->gfxHandler, &v2);
     }
 }
 
