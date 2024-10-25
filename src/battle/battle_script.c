@@ -9989,7 +9989,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
             }
 
             if (BattleSystem_PokemonIsOT(data->battleSys, mon) == FALSE) {
-                if (Pokemon_GetValue(mon, MON_DATA_LANGUAGE, NULL) != Unk_020E4C44) {
+                if (Pokemon_GetValue(mon, MON_DATA_LANGUAGE, NULL) != gGameLanguage) {
                     totalExp = totalExp * 170 / 100;
                 } else {
                     totalExp = totalExp * 150 / 100;

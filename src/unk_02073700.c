@@ -27,8 +27,8 @@ void sub_02073700(SaveData *param0, int param1, UnkStruct_ov96_0223B450_sub1 *pa
     MI_CpuCopy8(TrainerInfo_Name(v1), param2->unk_A8, 8 * 2);
     *((u32 *)param2->unk_BC) = TrainerInfo_ID(v1);
 
-    param2->unk_B8 = Unk_020E4C40;
-    param2->unk_B9 = Unk_020E4C44;
+    param2->unk_B8 = gGameVersion;
+    param2->unk_B9 = gGameLanguage;
     param2->unk_BA = (u8)sub_0202C8C0(v2);
     param2->unk_BB = (u8)sub_0202C8C4(v2);
     param2->unk_C8_val1_1 = TrainerInfo_Gender(v1);

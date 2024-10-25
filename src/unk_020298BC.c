@@ -563,7 +563,7 @@ void sub_02029F5C(UnkStruct_02029C68 *param0)
     GF_ASSERT(inline_02029CA8(param0));
 
     param0->unk_00 = 0x2345;
-    param0->unk_71 = Unk_020E4C44;
+    param0->unk_71 = gGameLanguage;
 }
 
 void sub_02029F84(UnkStruct_02029C68 *param0)

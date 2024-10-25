@@ -45,8 +45,8 @@ void sub_02028124(UnkStruct_0202818C *param0)
 
     param0->unk_00 = 0;
     param0->unk_04 = 0;
-    param0->unk_05 = Unk_020E4C44;
-    param0->unk_06 = Unk_020E4C40;
+    param0->unk_05 = gGameLanguage;
+    param0->unk_06 = gGameVersion;
     param0->unk_07 = 0xFFFF;
 
     CharCode_FillWithEOS(param0->unk_08, 8);

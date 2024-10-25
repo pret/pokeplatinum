@@ -229,7 +229,7 @@ u32 ov104_0222DD6C(UnkStruct_ov104_0223A348_sub2 *param0, u16 param1, u32 param2
     }
 
     param0->unk_1E_val2 = 0;
-    param0->unk_1F = Unk_020E4C44;
+    param0->unk_1F = gGameLanguage;
 
     v0 = PokemonPersonalData_GetSpeciesValue(param0->unk_00_val1_0, 25);
 
