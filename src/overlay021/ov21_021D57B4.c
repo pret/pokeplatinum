@@ -151,7 +151,7 @@ void ov21_021D59D8(CellActor *actor, int xOffset, int yOffset, int xScale, int y
     }
 }
 
-int ov21_021D5A20(CellActor **cellActorArray, int initialNumDungeons, int maxNumDungeons, int xOffset, int yOffset, int xScale, int yScale, const dungeonCoordinates *dungeonCoordinatesArray, const mapsEncounteredOn *dungeonsEncounteredOn, int animID_1, int animID_2, const u8 *dungeonsToSkip, u32 numDungeonsToSkip, u32 *param13)
+int ov21_021D5A20(CellActor **cellActorArray, int initialNumDungeons, int maxNumDungeons, int xOffset, int yOffset, int xScale, int yScale, const dungeonCoordinates *dungeonCoordinatesArray, const mapsEncounteredOn *dungeonsEncounteredOn, int animID_1, int animID_2, const u8 *dungeonsToSkip, u32 numDungeonsToSkip, u32 *dungeonsModified)
 {
     int dungeonIndex, dungeonsToSkipIndex;
     int numDungeons = initialNumDungeons;
@@ -174,7 +174,7 @@ int ov21_021D5A20(CellActor **cellActorArray, int initialNumDungeons, int maxNum
         }
     }
 
-    *param13 = DungeonCount;
+    *dungeonsModified = DungeonCount;
 
     return numDungeons;
 }

@@ -2692,7 +2692,7 @@ static void ov21_021DBDC8(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D95
     v0.unk_18 = 0;
     v0.unk_1C = 0;
     v0.unk_20 = NNS_G2D_VRAM_TYPE_2DSUB;
-    v0.unk_24 = param2;
+    v0.heapID = param2;
 
     ov21_021DBEC8(param0, &v0, v2->unk_14C);
     ov21_021DBE98(param0, &v0, v2->unk_14C, param0->unk_104, param0->unk_108);
@@ -2717,7 +2717,7 @@ static void ov21_021DBE3C(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D95
     v0.unk_18 = 0;
     v0.unk_1C = 0;
     v0.unk_20 = NNS_G2D_VRAM_TYPE_2DSUB;
-    v0.unk_24 = param2;
+    v0.heapID = param2;
 
     ov21_021DC068(param0);
     ov21_021DBE98(param0, &v0, v2->unk_14C, param0->unk_104, param0->unk_108);

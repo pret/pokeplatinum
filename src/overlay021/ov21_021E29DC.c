@@ -725,7 +725,7 @@ static void ov21_021E3270(UnkStruct_ov21_021E2BBC *param0, UnkStruct_ov21_021E32
     v1.unk_1C = 0;
     v1.unk_0C = NULL;
     v1.unk_20 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v1.unk_24 = param2;
+    v1.heapID = param2;
 
     v3 = sub_0201FAB4(v1.unk_08, NNS_G2D_VRAM_TYPE_2DMAIN);
 

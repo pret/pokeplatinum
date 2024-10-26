@@ -554,7 +554,7 @@ static void ov21_021E136C(UnkStruct_ov21_021E14D4 *param0, UnkStruct_ov21_021E0D
     v5.unk_18 = 0;
     v5.unk_1C = 32 - 1;
     v5.unk_20 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v5.unk_24 = param3;
+    v5.heapID = param3;
     v5.unk_04 = v4;
 
     param0->unk_04 = ov21_021D4CA0(&v5);

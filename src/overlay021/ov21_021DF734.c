@@ -1070,7 +1070,7 @@ static void ov21_021E09A4(UnkStruct_ov21_021DFFF8 *param0, UnkStruct_ov21_021DF8
     v1.unk_18 = 3;
     v1.unk_1C = 0;
     v1.unk_20 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v1.unk_24 = param3;
+    v1.heapID = param3;
 
     v3 = sub_0201FAB4(v1.unk_08, NNS_G2D_VRAM_TYPE_2DMAIN);
     v0 = ov21_021D4D6C(v2->unk_14C, 16, 2);

@@ -756,7 +756,7 @@ void ov21_021D1778(UnkStruct_ov21_021D13FC *param0, const pokedexStatus *param1,
     v2.unk_18 = 0;
     v2.unk_1C = 0;
     v2.unk_20 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v2.unk_24 = param2;
+    v2.heapID = param2;
 
     v3 = ov21_021D16D8(param0, param1, param2, pokeCaughtStatus->species);
     v2.unk_04 = v3;

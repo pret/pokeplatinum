@@ -882,7 +882,7 @@ static void ov21_021D67EC(UnkStruct_ov21_021D71A8 *param0, UnkStruct_ov21_021D13
     v4.unk_18 = 2;
     v4.unk_1C = 0;
     v4.unk_20 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v4.unk_24 = param3;
+    v4.heapID = param3;
 
     v1 = ov21_021D3898(param2->unk_04) - 4;
     v2 = param0->unk_24;
@@ -1269,7 +1269,7 @@ static void ov21_021D6D78(UnkStruct_ov21_021D71A8 *param0, UnkStruct_ov21_021D13
     v0.unk_18 = 2;
     v0.unk_1C = 0;
     v0.unk_20 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v0.unk_24 = param3;
+    v0.heapID = param3;
 
     v1 = ov21_021D16D8(param1, param2->unk_04, param3, pokeCaughtStatus->species);
 
@@ -1298,7 +1298,7 @@ static void ov21_021D6DF4(UnkStruct_ov21_021D71A8 *param0, UnkStruct_ov21_021D13
     v0.unk_18 = 2;
     v0.unk_1C = 0;
     v0.unk_20 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v0.unk_24 = param2;
+    v0.heapID = param2;
 
     v1 = ov21_021D4D6C(param1->unk_14C, 15, 2);
 
