@@ -25,6 +25,7 @@
 #include "overlay094/struct_ov94_02242AAC.h"
 
 #include "bg_window.h"
+#include "charcode_util.h"
 #include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
@@ -40,7 +41,6 @@
 #include "trainer_info.h"
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
-#include "unk_020021B0.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -1054,7 +1054,7 @@ void ov94_022425A8(UnkStruct_ov94_0223BA88 *param0, UnkStruct_ov94_0223FD4C *par
         Pokemon_FromBoxPokemon(param1->unk_114, (Pokemon *)param0->unk_00.unk_00);
     }
 
-    sub_020021D0(param0->unk_10C, TrainerInfo_Name(param1->unk_00->unk_1C), 8);
+    CharCode_CopyNumChars(param0->unk_10C, TrainerInfo_Name(param1->unk_00->unk_1C), 8);
 
     param0->unk_11C = TrainerInfo_ID_LowHalf(param1->unk_00->unk_1C);
     param0->unk_11E = sub_0202C8C0(param1->unk_00->unk_18);

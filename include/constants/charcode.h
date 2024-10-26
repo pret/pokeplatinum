@@ -15,6 +15,12 @@ enum {
     CHAR_JP_7,
     CHAR_JP_8,
     CHAR_JP_9,
+    CHAR_JP_A,
+    CHAR_JP_B,
+    CHAR_JP_C,
+    CHAR_JP_D,
+    CHAR_JP_E,
+    CHAR_JP_F,
 
     CHAR_JP_QUESTION = 0x00E2,
 

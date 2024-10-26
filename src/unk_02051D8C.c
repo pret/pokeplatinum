@@ -22,6 +22,7 @@
 #include "savedata/save_table.h"
 
 #include "bag.h"
+#include "charcode_util.h"
 #include "communication_system.h"
 #include "core_sys.h"
 #include "field_overworld_state.h"
@@ -40,7 +41,6 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "unk_020021B0.h"
 #include "unk_02025CB0.h"
 #include "unk_0202602C.h"
 #include "unk_0202631C.h"
@@ -423,7 +423,7 @@ void sub_020524E4(BattleParams *param0, const FieldSystem *fieldSystem, const Pa
         int v12 = TrainerInfo_Gender(v0);
 
         param0->trainerData[0].class = sub_0205CA14(v12, v11, 1);
-        GF_strcpy(&param0->trainerData[0].name[0], TrainerInfo_Name(param0->unk_D0[0]));
+        CharCode_Copy(&param0->trainerData[0].name[0], TrainerInfo_Name(param0->unk_D0[0]));
         param0->trainerData[2] = param0->trainerData[0];
     } else {
         sub_02052894(param0);
@@ -570,6 +570,6 @@ BOOL BattleParams_PlayerDidNotCapture(u32 battleResult)
 void sub_02052894(BattleParams *param0)
 {
     param0->trainerData[0].class = TrainerInfo_Gender(param0->unk_D0[0]);
-    GF_strcpy(&param0->trainerData[0].name[0], TrainerInfo_Name(param0->unk_D0[0]));
+    CharCode_Copy(&param0->trainerData[0].name[0], TrainerInfo_Name(param0->unk_D0[0]));
     param0->trainerData[2] = param0->trainerData[0];
 }

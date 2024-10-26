@@ -21,7 +21,7 @@
 #define SPANISH  7
 #define KOREAN   8
 
-extern const u8 Unk_020E4C40;
-extern const u8 Unk_020E4C44;
+extern const u8 gGameVersion;
+extern const u8 gGameLanguage;
 
 #endif // POKEPLATINUM_PM_VERSION_H

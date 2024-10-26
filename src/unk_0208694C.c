@@ -12,6 +12,7 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "charcode_util.h"
 #include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
@@ -29,7 +30,6 @@
 #include "string_template.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_020021B0.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
@@ -1127,11 +1127,11 @@ static int sub_02086F3C(OverlayManager *param0, int *param1)
         Heap_FreeToHeap(v4);
     }
 
-    if ((v0->unk_158 == 0) || (GF_strcmp(v0->unk_D8, v0->unk_118) == 0) || sub_02086F14(v0->unk_D8)) {
+    if ((v0->unk_158 == 0) || (CharCode_Compare(v0->unk_D8, v0->unk_118) == 0) || sub_02086F14(v0->unk_D8)) {
         sub_02086E6C(v0, v1);
     } else {
-        GF_strcpy(v0->unk_118, v0->unk_D8);
-        GF_strcpy(v1->unk_1C, v0->unk_D8);
+        CharCode_Copy(v0->unk_118, v0->unk_D8);
+        CharCode_Copy(v1->unk_1C, v0->unk_D8);
         Strbuf_CopyChars(v1->unk_18, v0->unk_D8);
     }
 
@@ -1413,7 +1413,7 @@ static void sub_0208737C(UnkStruct_02087A10 *param0, OverlayManager *param1)
     param0->unk_178 = MessageUtil_ExpandedStrbuf(param0->unk_168, param0->unk_16C, Unk_020F2850[param0->unk_00], 18);
     param0->unk_17C = MessageUtil_ExpandedStrbuf(param0->unk_168, param0->unk_16C, 8, 18);
     param0->unk_184 = MessageLoader_GetNewStrbuf(param0->unk_16C, 7);
-    param0->unk_158 = GF_strlen(param0->unk_118);
+    param0->unk_158 = CharCode_Length(param0->unk_118);
     param0->unk_1C.unk_00 = 0;
     param0->unk_1C.unk_04 = 1;
     param0->unk_1C.unk_08 = -1;
@@ -1863,7 +1863,7 @@ static void sub_02087FC0(UnkStruct_02087A10 *param0, OverlayManager *param1, NAR
         UnkStruct_0208737C *v1 = (UnkStruct_0208737C *)OverlayManager_Args(param1);
 
         if (param0->unk_118[0] != 0xffff) {
-            GF_strcpy(param0->unk_D8, param0->unk_118);
+            CharCode_Copy(param0->unk_D8, param0->unk_118);
             sub_02088554(&param0->unk_41C[3], param0->unk_D8, 0, 0, 12, TEXT_SPEED_INSTANT, TEXT_COLOR(14, 15, 1), NULL);
         }
     }

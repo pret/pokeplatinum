@@ -9,6 +9,7 @@
 #include "struct_defs/struct_02028430.h"
 #include "struct_defs/union_02028328.h"
 
+#include "charcode_util.h"
 #include "heap.h"
 #include "party.h"
 #include "pokemon.h"
@@ -16,7 +17,6 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "trainer_info.h"
-#include "unk_020021B0.h"
 #include "unk_02014A84.h"
 
 static int sub_020284E8(UnkStruct_0202818C *param0, int param1);
@@ -45,11 +45,11 @@ void sub_02028124(UnkStruct_0202818C *param0)
 
     param0->unk_00 = 0;
     param0->unk_04 = 0;
-    param0->unk_05 = Unk_020E4C44;
-    param0->unk_06 = Unk_020E4C40;
+    param0->unk_05 = gGameLanguage;
+    param0->unk_06 = gGameVersion;
     param0->unk_07 = 0xFFFF;
 
-    sub_02002294(param0->unk_08, 8);
+    CharCode_FillWithEOS(param0->unk_08, 8);
 
     for (v0 = 0; v0 < 3; v0++) {
         param0->unk_18[v0].val2 = 0xFFFF;
@@ -101,7 +101,7 @@ void sub_020281AC(UnkStruct_0202818C *param0, u8 param1, u8 param2, SaveData *pa
     v9 = Party_GetFromSavedata(param3);
     v8 = SaveData_GetTrainerInfo(param3);
 
-    GF_strcpy(param0->unk_08, TrainerInfo_Name(v8));
+    CharCode_Copy(param0->unk_08, TrainerInfo_Name(v8));
 
     param0->unk_04 = (u8)TrainerInfo_Gender(v8);
     param0->unk_00 = TrainerInfo_ID(v8);

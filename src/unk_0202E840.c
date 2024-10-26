@@ -12,13 +12,13 @@
 #include "struct_defs/struct_0202EA80.h"
 #include "struct_defs/struct_0202EE10.h"
 
+#include "charcode_util.h"
 #include "game_records.h"
 #include "heap.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "unk_020021B0.h"
 #include "unk_0202B37C.h"
 #include "unk_0203061C.h"
 
@@ -52,13 +52,13 @@ void sub_0202E858(UnkStruct_0202E858 *param0)
     param0->unk_00 = 0;
     param0->unk_04 = 0;
 
-    sub_02002294(param0->unk_08, 7 + 1);
+    CharCode_FillWithEOS(param0->unk_08, 7 + 1);
     SaveData_SetChecksum(28);
 }
 
 BOOL sub_0202E870(UnkStruct_0202E858 *param0)
 {
-    if (GF_strlen(param0->unk_08) == 0) {
+    if (CharCode_Length(param0->unk_08) == 0) {
         return 0;
     }
 
@@ -229,7 +229,7 @@ static BOOL sub_0202EA98(const UnkStruct_0202E858 *param0, const UnkStruct_0202E
         return 0;
     }
 
-    if (GF_strcmp(param0->unk_08, param1->unk_08)) {
+    if (CharCode_Compare(param0->unk_08, param1->unk_08)) {
         return 0;
     }
 

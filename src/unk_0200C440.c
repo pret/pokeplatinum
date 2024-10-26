@@ -4,9 +4,9 @@
 #include <string.h>
 
 #include "bg_window.h"
+#include "charcode_util.h"
 #include "graphics.h"
 #include "heap.h"
-#include "unk_020021B0.h"
 
 typedef struct UnkStruct_0200C440_t {
     void *unk_00;
@@ -97,7 +97,7 @@ void sub_0200C5BC(UnkStruct_0200C440 *param0, s32 param1, u32 param2, int param3
 {
     int v0;
 
-    sub_020022A4(param0->unk_08, param1, param3, param2);
+    CharCode_FromInt(param0->unk_08, param1, param3, param2);
 
     for (v0 = 0; param0->unk_08[v0] != 0xffff; v0++) {
         if ((param0->unk_08[v0] >= 0xa2) && (param0->unk_08[v0] <= 0xab)) {
@@ -125,7 +125,7 @@ void sub_0200C67C(UnkStruct_0200C440 *param0, s32 param1, u32 param2, int param3
     v2 = param4;
     v1 = param0->unk_28 | (param0->unk_28 << 4);
 
-    sub_020022A4(param0->unk_08, param1, param3, param2);
+    CharCode_FromInt(param0->unk_08, param1, param3, param2);
 
     for (v0 = 0; param0->unk_08[v0] != 0xffff; v0++) {
         if ((param0->unk_08[v0] >= 0xa2) && (param0->unk_08[v0] <= 0xab)) {

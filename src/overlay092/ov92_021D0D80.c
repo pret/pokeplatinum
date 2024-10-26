@@ -322,7 +322,7 @@ int ov92_021D0D80(OverlayManager *param0, int *param1)
     memset(v0, 0, sizeof(UnkStruct_ov92_021D1B24));
     v0->unk_00 = v1;
 
-    if (Unk_020E4C44 == 1) {
+    if (gGameLanguage == 1) {
         v0->unk_BAF0 = 1;
     } else {
         v0->unk_BAF0 = 0;

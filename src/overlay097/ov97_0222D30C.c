@@ -1098,7 +1098,7 @@ static int ov97_0222E2DC(OverlayManager *param0, int *param1)
 
     if (ov97_02237624()) {
         v0->unk_1638 = 2;
-        sub_02017B70(Unk_020E4C40);
+        sub_02017B70(gGameVersion);
         ov97_02238400(1);
     }
 

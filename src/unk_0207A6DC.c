@@ -19,13 +19,13 @@
 #include "battle/battle_io.h"
 #include "battle/ov16_0223DF00.h"
 
+#include "charcode_util.h"
 #include "communication_system.h"
 #include "heap.h"
 #include "party.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
-#include "unk_020021B0.h"
 #include "unk_02027F84.h"
 #include "unk_0202CC64.h"
 #include "unk_0202F1D4.h"
@@ -656,7 +656,7 @@ static void sub_0207ADD4(TrainerInfo *param0, UnkStruct_02027F8C *param1, UnkStr
 {
     int v0;
 
-    GF_strcpy(param2->unk_00, TrainerInfo_Name(param0));
+    CharCode_Copy(param2->unk_00, TrainerInfo_Name(param0));
 
     param2->unk_10 = TrainerInfo_ID(param0);
     param2->unk_14 = TrainerInfo_RegionCode(param0);

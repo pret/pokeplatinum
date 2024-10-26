@@ -48,8 +48,6 @@
 #include "unk_020366A0.h"
 #include "unk_0209A74C.h"
 
-#include "constdata/const_020E4C44.h"
-
 FS_EXTERN_OVERLAY(overlay57);
 FS_EXTERN_OVERLAY(overlay77);
 FS_EXTERN_OVERLAY(overlay97);
@@ -245,7 +243,7 @@ static void ov97_0222AF1C(UnkStruct_0222AE60 *param0)
         return;
     }
 
-    if (ov97_02235DBC() != Unk_020E4C44) {
+    if (ov97_02235DBC() != gGameLanguage) {
         return;
     }
 

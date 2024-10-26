@@ -1351,7 +1351,7 @@ static void ov69_0225D2A8(UnkStruct_ov69_0225CE64 *param0, const UnkStruct_ov66_
     param0->unk_04.unk_00_1 = 0;
     param0->unk_04.unk_00_0 = 0;
 
-    if (Unk_020E4C44 == 1) {
+    if (gGameLanguage == 1) {
         param0->unk_04.unk_00_1 = 1;
     } else {
         param0->unk_04.unk_00_1 = 0;

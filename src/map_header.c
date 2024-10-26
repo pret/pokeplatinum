@@ -35,7 +35,7 @@ const u16 MapHeader_GetMapMatrixID(u32 headerID)
     mapMatrixID = sMapHeaders[headerID].mapMatrixID;
 
     if (mapMatrixID == 22) {
-        if (Unk_020E4C40 == 11) {
+        if (gGameVersion == 11) {
             mapMatrixID = 23;
         }
     }

@@ -25,6 +25,7 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "charcode_util.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "core_sys.h"
@@ -55,7 +56,6 @@
 #include "trainer_info.h"
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
-#include "unk_020021B0.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_02006224.h"
@@ -1667,7 +1667,7 @@ static void ov88_0223D0D4(TrainerInfo *param0, UnkStruct_02027F8C *param1, UnkSt
 {
     int v0;
 
-    GF_strcpy(param2->unk_00, TrainerInfo_Name(param0));
+    CharCode_Copy(param2->unk_00, TrainerInfo_Name(param0));
 
     param2->unk_10 = TrainerInfo_ID(param0);
     param2->unk_14 = TrainerInfo_RegionCode(param0);

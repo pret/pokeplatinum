@@ -736,8 +736,8 @@ static BOOL ov66_02232068(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_
 {
     Strbuf *v0;
 
-    StringTemplate_SetStrbuf(param2, 0, param0->unk_10[0], 0, 1, Unk_020E4C44);
-    StringTemplate_SetStrbuf(param2, 1, param0->unk_10[1], 0, 1, Unk_020E4C44);
+    StringTemplate_SetStrbuf(param2, 0, param0->unk_10[0], 0, 1, gGameLanguage);
+    StringTemplate_SetStrbuf(param2, 1, param0->unk_10[1], 0, 1, gGameLanguage);
 
     v0 = MessageLoader_GetNewStrbuf(param3, 7);
 
@@ -751,8 +751,8 @@ static BOOL ov66_022320BC(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_
 {
     Strbuf *v0;
 
-    StringTemplate_SetStrbuf(param2, 0, param0->unk_10[0], 0, 1, Unk_020E4C44);
-    StringTemplate_SetStrbuf(param2, 1, param0->unk_10[1], 0, 1, Unk_020E4C44);
+    StringTemplate_SetStrbuf(param2, 0, param0->unk_10[0], 0, 1, gGameLanguage);
+    StringTemplate_SetStrbuf(param2, 1, param0->unk_10[1], 0, 1, gGameLanguage);
     StringTemplate_SetPlazaItemName(param2, 2, param0->unk_04[0]);
 
     v0 = MessageLoader_GetNewStrbuf(param3, 8);
@@ -774,21 +774,21 @@ static BOOL ov66_0223211C(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_
 
         switch (param0->unk_04[1]) {
         case 3:
-            StringTemplate_SetStrbuf(param2, 1, param0->unk_10[0], 0, 1, Unk_020E4C44);
-            StringTemplate_SetStrbuf(param2, 2, param0->unk_10[1], 0, 1, Unk_020E4C44);
-            StringTemplate_SetStrbuf(param2, 3, param0->unk_10[2], 0, 1, Unk_020E4C44);
+            StringTemplate_SetStrbuf(param2, 1, param0->unk_10[0], 0, 1, gGameLanguage);
+            StringTemplate_SetStrbuf(param2, 2, param0->unk_10[1], 0, 1, gGameLanguage);
+            StringTemplate_SetStrbuf(param2, 3, param0->unk_10[2], 0, 1, gGameLanguage);
             v1 = 18;
             break;
         case 2:
-            StringTemplate_SetStrbuf(param2, 1, param0->unk_10[0], 0, 1, Unk_020E4C44);
-            StringTemplate_SetStrbuf(param2, 2, param0->unk_10[1], 0, 1, Unk_020E4C44);
+            StringTemplate_SetStrbuf(param2, 1, param0->unk_10[0], 0, 1, gGameLanguage);
+            StringTemplate_SetStrbuf(param2, 2, param0->unk_10[1], 0, 1, gGameLanguage);
             v1 = 19;
             break;
         case 4:
-            StringTemplate_SetStrbuf(param2, 1, param0->unk_10[0], 0, 1, Unk_020E4C44);
-            StringTemplate_SetStrbuf(param2, 2, param0->unk_10[1], 0, 1, Unk_020E4C44);
-            StringTemplate_SetStrbuf(param2, 3, param0->unk_10[2], 0, 1, Unk_020E4C44);
-            StringTemplate_SetStrbuf(param2, 4, param0->unk_10[3], 0, 1, Unk_020E4C44);
+            StringTemplate_SetStrbuf(param2, 1, param0->unk_10[0], 0, 1, gGameLanguage);
+            StringTemplate_SetStrbuf(param2, 2, param0->unk_10[1], 0, 1, gGameLanguage);
+            StringTemplate_SetStrbuf(param2, 3, param0->unk_10[2], 0, 1, gGameLanguage);
+            StringTemplate_SetStrbuf(param2, 4, param0->unk_10[3], 0, 1, gGameLanguage);
             v1 = 6;
             break;
         default:
@@ -797,7 +797,7 @@ static BOOL ov66_0223211C(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_
 
         v0 = MessageLoader_GetNewStrbuf(param3, v1);
     } else {
-        StringTemplate_SetStrbuf(param2, 1, param0->unk_10[0], 0, 1, Unk_020E4C44);
+        StringTemplate_SetStrbuf(param2, 1, param0->unk_10[0], 0, 1, gGameLanguage);
         StringTemplate_SetNumber(param2, 2, 4 - param0->unk_04[1], 1, 1, 1);
 
         v0 = MessageLoader_GetNewStrbuf(param3, 5);
@@ -814,7 +814,7 @@ static BOOL ov66_02232258(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_
     Strbuf *v0;
 
     StringTemplate_SetPlazaMinigameName(param2, 0, param0->unk_04[0]);
-    StringTemplate_SetStrbuf(param2, 1, param0->unk_10[0], 0, 1, Unk_020E4C44);
+    StringTemplate_SetStrbuf(param2, 1, param0->unk_10[0], 0, 1, gGameLanguage);
     StringTemplate_SetNumber(param2, 2, 8 - param0->unk_04[1], 1, 1, 1);
 
     v0 = MessageLoader_GetNewStrbuf(param3, 9);
@@ -832,7 +832,7 @@ static BOOL ov66_022322B8(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_
     u32 v2;
 
     for (v1 = 0; v1 < param0->unk_04[0]; v1++) {
-        StringTemplate_SetStrbuf(param2, v1, param0->unk_10[v1], 0, 1, Unk_020E4C44);
+        StringTemplate_SetStrbuf(param2, v1, param0->unk_10[v1], 0, 1, gGameLanguage);
     }
 
     if (param0->unk_00 == 4) {
@@ -924,7 +924,7 @@ static BOOL ov66_022323C4(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_
     StringTemplate_SetPlazaMinigameName(param2, 0, param0->unk_04[0]);
 
     for (v2 = 0; v2 < param0->unk_04[1]; v2++) {
-        StringTemplate_SetStrbuf(param2, v2 + 1, param0->unk_10[v2], 0, 1, Unk_020E4C44);
+        StringTemplate_SetStrbuf(param2, v2 + 1, param0->unk_10[v2], 0, 1, gGameLanguage);
     }
 
     if ((param0->unk_04[0] == UnkEnum_ov66_022324D0_00) || (param0->unk_04[0] == UnkEnum_ov66_022324D0_01)) {

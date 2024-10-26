@@ -14,6 +14,7 @@
 
 #include "field/field_system.h"
 
+#include "charcode_util.h"
 #include "field_system.h"
 #include "game_records.h"
 #include "heap.h"
@@ -21,7 +22,6 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "trainer_info.h"
-#include "unk_020021B0.h"
 #include "unk_0202631C.h"
 #include "unk_0202854C.h"
 #include "unk_0202C7FC.h"
@@ -174,7 +174,7 @@ static void sub_02072038(const u16 param0, const u8 param1, const u16 *param2, c
     param7->unk_28 = param0;
     param7->unk_04_2 = param1;
 
-    sub_020021D0(param7->unk_08, param2, 7 + 1);
+    CharCode_CopyNumChars(param7->unk_08, param2, 7 + 1);
 
     param7->unk_1C = param3;
     param7->unk_20 = param4;
