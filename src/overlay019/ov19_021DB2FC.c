@@ -255,7 +255,7 @@ void ov19_021DB748(UnkStruct_ov19_021DB6F0 *param0, const UnkStruct_ov19_021DF96
     v1 = (8 - param1->unk_21) * 16;
 
     Window_FillRectWithColor(v0, 15, 0, v1, 10, param1->unk_21 * 16);
-    Menu_DrawCursorBitmap(v0, 0, v1 + (param1->unk_20 * 16));
+    Window_DrawMenuCursor(v0, 0, v1 + (param1->unk_20 * 16));
     Window_LoadTiles(v0);
 }
 

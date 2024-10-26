@@ -1258,9 +1258,9 @@ static u8 ov84_0223C5B8(UnkStruct_ov84_0223B5A0 *param0)
     case 0xffffffff: {
         u8 v4 = ListMenu_GetLastAction(param0->unk_15C);
 
-        if (v4 == 1) {
+        if (v4 == LIST_MENU_ACTION_MOVE_UP) {
             ov84_0223EB08(param0, 36);
-        } else if (v4 == 2) {
+        } else if (v4 == LIST_MENU_ACTION_MOVE_DOWN) {
             ov84_0223EB08(param0, -36);
         }
     } break;
@@ -1878,9 +1878,9 @@ static u8 ov84_0223D2F8(UnkStruct_ov84_0223B5A0 *param0)
     case 0xffffffff: {
         u8 v4 = ListMenu_GetLastAction(param0->unk_15C);
 
-        if (v4 == 1) {
+        if (v4 == LIST_MENU_ACTION_MOVE_UP) {
             ov84_0223EB08(param0, 36);
-        } else if (v4 == 2) {
+        } else if (v4 == LIST_MENU_ACTION_MOVE_DOWN) {
             ov84_0223EB08(param0, -36);
         }
     } break;
@@ -2052,9 +2052,9 @@ static int ov84_0223D730(UnkStruct_ov84_0223B5A0 *param0)
     case 0xffffffff: {
         u8 v1 = Menu_GetLastAction(param0->unk_158);
 
-        if (v1 == 1) {
+        if (v1 == MENU_ACTION_MOVE_UP) {
             ov84_0223EB08(param0, 18);
-        } else if (v1 == 2) {
+        } else if (v1 == MENU_ACTION_MOVE_DOWN) {
             ov84_0223EB08(param0, -18);
         }
     } break;
@@ -2241,9 +2241,9 @@ static int ov84_0223DA14(UnkStruct_ov84_0223B5A0 *param0)
         case 0xffffffff: {
             u8 v3 = Menu_GetLastAction(param0->unk_158);
 
-            if (v3 == 1) {
+            if (v3 == MENU_ACTION_MOVE_UP) {
                 ov84_0223EB08(param0, 18);
-            } else if (v3 == 2) {
+            } else if (v3 == MENU_ACTION_MOVE_DOWN) {
                 ov84_0223EB08(param0, -18);
             }
         } break;
@@ -2475,9 +2475,9 @@ static int ov84_0223E01C(UnkStruct_ov84_0223B5A0 *param0)
     case 0xffffffff: {
         u8 v2 = Menu_GetLastAction(param0->unk_158);
 
-        if (v2 == 1) {
+        if (v2 == MENU_ACTION_MOVE_UP) {
             ov84_0223EB08(param0, 18);
-        } else if (v2 == 2) {
+        } else if (v2 == MENU_ACTION_MOVE_DOWN) {
             ov84_0223EB08(param0, -18);
         }
     } break;
@@ -2811,9 +2811,9 @@ static int ov84_0223E7CC(UnkStruct_ov84_0223B5A0 *param0)
     case 0xffffffff: {
         u8 v2 = Menu_GetLastAction(param0->unk_158);
 
-        if (v2 == 1) {
+        if (v2 == MENU_ACTION_MOVE_UP) {
             ov84_0223EB08(param0, 18);
-        } else if (v2 == 2) {
+        } else if (v2 == MENU_ACTION_MOVE_DOWN) {
             ov84_0223EB08(param0, -18);
         }
     } break;
