@@ -8,18 +8,15 @@
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
-#include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0206D140_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_0209C370.h"
 #include "struct_defs/trainer_data.h"
@@ -35,8 +32,10 @@
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 
 #include "bag.h"
+#include "bg_window.h"
 #include "game_options.h"
 #include "message.h"
+#include "palette.h"
 #include "poketch_data.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -45,7 +44,7 @@
 
 struct BattleSystem {
     GenericPointerData *unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     Window *windows;
     MessageLoader *unk_0C;
     MessageLoader *unk_10;

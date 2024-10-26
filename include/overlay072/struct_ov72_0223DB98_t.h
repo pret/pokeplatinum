@@ -2,14 +2,13 @@
 #define POKEPLATINUM_STRUCT_OV72_0223DB98_T_H
 
 #include "struct_decls/struct_02015920_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0200C738.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay072/struct_ov72_0223E7D8.h"
 #include "overlay072/struct_ov72_0223E80C.h"
 #include "overlay072/struct_ov72_0223EAD8.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "game_options.h"
 #include "game_records.h"
@@ -19,7 +18,7 @@
 #include "string_template.h"
 
 struct UnkStruct_ov72_0223DB98_t {
-    BGL *unk_00;
+    BgConfig *unk_00;
     BOOL unk_04;
     GameRecords *records;
     Options *unk_0C;

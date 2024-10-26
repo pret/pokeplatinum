@@ -5,23 +5,22 @@
 #include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_defs/sprite_manager_allocation.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
 
 #include "overlay012/struct_ball_rotation_decl.h"
 #include "overlay012/struct_ov12_02235FE0_decl.h"
 #include "overlay022/struct_ov22_02258A48.h"
 
+#include "bg_window.h"
+#include "palette.h"
 #include "touch_screen.h"
 
 typedef struct {
@@ -29,7 +28,7 @@ typedef struct {
     BOOL unk_04;
     SpriteRenderer *unk_08;
     SpriteGfxHandler *unk_0C;
-    BGL *unk_10;
+    BgConfig *unk_10;
     PaletteData *unk_14;
     Window unk_18[11];
     ResourceMetadata *unk_C8;

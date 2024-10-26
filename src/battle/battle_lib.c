@@ -31,6 +31,7 @@
 #include "battle/scripts/sub_seq.naix"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 
+#include "charcode_util.h"
 #include "flags.h"
 #include "heap.h"
 #include "item.h"
@@ -43,7 +44,6 @@
 #include "strbuf.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
-#include "unk_020021B0.h"
 #include "unk_020366A0.h"
 #include "unk_0208C098.h"
 
@@ -6275,7 +6275,7 @@ BOOL BattleSystem_TrainerIsOT(BattleSystem *battleSys, BattleContext *battleCtx)
 
     if (trID == ATTACKING_MON.OTId
         && trGender == ATTACKING_MON.OTGender
-        && GF_strncmp(trName, ATTACKING_MON.OTName, TRAINER_NAME_LEN) == 0) {
+        && CharCode_CompareNumChars(trName, ATTACKING_MON.OTName, TRAINER_NAME_LEN) == 0) {
         return TRUE;
     }
 
@@ -6294,7 +6294,7 @@ BOOL BattleSystem_PokemonIsOT(BattleSystem *battleSys, Pokemon *mon)
 
     if (trID == Pokemon_GetValue(mon, MON_DATA_OT_ID, NULL)
         && trGender == Pokemon_GetValue(mon, MON_DATA_OT_GENDER, NULL)
-        && GF_strncmp(trName, monOTName, TRAINER_NAME_LEN) == 0) {
+        && CharCode_CompareNumChars(trName, monOTName, TRAINER_NAME_LEN) == 0) {
         return TRUE;
     }
 

@@ -3,13 +3,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-#include "struct_defs/struct_0205AA50.h"
-
 #include "overlay023/struct_ov23_02253E2C_decl.h"
 #include "overlay023/struct_ov23_02253F60.h"
 #include "overlay084/struct_ov84_02240FA8.h"
 
+#include "bg_window.h"
 #include "core_sys.h"
 #include "heap.h"
 #include "message.h"
@@ -20,13 +18,12 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_0200DA60.h"
-#include "unk_02018340.h"
 
 typedef struct UnkStruct_ov23_02253E2C_t {
     Strbuf *unk_00;
     Strbuf *unk_04;
     Window unk_08;
-    BGL *unk_18;
+    BgConfig *unk_18;
     UnkStruct_ov23_02253F60 unk_1C;
     SysTask *unk_20;
     MessageLoader *unk_24;
@@ -73,7 +70,7 @@ const UnkStruct_ov84_02240FA8 *ov23_02253D40(void)
     return &Unk_ov23_022569E0;
 }
 
-UnkStruct_ov23_02253E2C *ov23_02253D48(int param0, int param1, BGL *param2, int param3, int param4)
+UnkStruct_ov23_02253E2C *ov23_02253D48(int param0, int param1, BgConfig *param2, int param3, int param4)
 {
     int v0 = param4;
     UnkStruct_ov23_02253E2C *v1 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov23_02253E2C));
@@ -124,7 +121,7 @@ void ov23_02253DFC(UnkStruct_ov23_02253E2C *param0, int param1, int param2)
     }
 }
 
-void ov23_02253E2C(UnkStruct_ov23_02253E2C *param0, BGL *param1, u16 param2, u16 param3)
+void ov23_02253E2C(UnkStruct_ov23_02253E2C *param0, BgConfig *param1, u16 param2, u16 param3)
 {
     param0->unk_18 = param1;
     param0->unk_42 = param2;
@@ -171,11 +168,11 @@ static int ov23_02253E90(UnkStruct_ov23_02253E2C *param0, BOOL param1, UnkStruct
     ov23_02253FA4(param0, 0);
     ov23_022421EC();
 
-    if (!BGL_WindowAdded(&param0->unk_08)) {
-        BGL_AddWindow(param0->unk_18, &param0->unk_08, 3, 2, 19, 27, 4, 12, param0->unk_40);
+    if (!Window_IsInUse(&param0->unk_08)) {
+        Window_Add(param0->unk_18, &param0->unk_08, 3, 2, 19, 27, 4, 12, param0->unk_40);
     }
 
-    BGL_FillWindow(&param0->unk_08, 15);
+    Window_FillTilemap(&param0->unk_08, 15);
     sub_0200E060(&param0->unk_08, 1, param0->unk_42, 10);
 
     if (param1) {
@@ -240,13 +237,13 @@ static void ov23_02253FA4(UnkStruct_ov23_02253E2C *param0, int param1)
             break;
         case 1:
             sub_0200E084(&param0->unk_08, 1);
-            sub_0201ACF4(&param0->unk_08);
-            BGL_DeleteWindow(&param0->unk_08);
+            Window_ClearAndCopyToVRAM(&param0->unk_08);
+            Window_Remove(&param0->unk_08);
             break;
         case 2:
             sub_0200E084(&param0->unk_08, 1);
-            sub_0201AD10(&param0->unk_08);
-            BGL_DeleteWindow(&param0->unk_08);
+            Window_ClearAndScheduleCopyToVRAM(&param0->unk_08);
+            Window_Remove(&param0->unk_08);
             break;
         }
 

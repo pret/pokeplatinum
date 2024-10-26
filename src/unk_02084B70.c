@@ -9,6 +9,7 @@
 #include "field/field_system.h"
 
 #include "bag.h"
+#include "bg_window.h"
 #include "core_sys.h"
 #include "heap.h"
 #include "item.h"
@@ -25,7 +26,6 @@
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
-#include "unk_02018340.h"
 #include "unk_0207E0B8.h"
 #include "unk_020819DC.h"
 #include "unk_02082C2C.h"
@@ -527,7 +527,7 @@ static int sub_02085704(void *param0)
     }
 
     sub_02082098(v0, v0->unk_B11);
-    BGL_FillWindow(&v0->unk_04[3 + v0->unk_B11 * 5], 0);
+    Window_FillTilemap(&v0->unk_04[3 + v0->unk_B11 * 5], 0);
     sub_02082058(v0, v0->unk_B11);
     sub_02082104(v0, v0->unk_B11);
 
@@ -618,7 +618,7 @@ int sub_02085804(GameWindowLayout *param0)
         param0->unk_704[param0->unk_B11].unk_06++;
 
         sub_02082098(param0, param0->unk_B11);
-        BGL_FillWindow(&param0->unk_04[3 + param0->unk_B11 * 5], 0);
+        Window_FillTilemap(&param0->unk_04[3 + param0->unk_B11 * 5], 0);
         sub_02082058(param0, param0->unk_B11);
         sub_02082104(param0, param0->unk_B11);
 

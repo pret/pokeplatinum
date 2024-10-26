@@ -1,11 +1,10 @@
 #ifndef POKEPLATINUM_OV113_02260620_H
 #define POKEPLATINUM_OV113_02260620_H
 
-#include "struct_defs/struct_0205AA50.h"
-
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
 #include "overlay113/struct_ov113_02260818.h"
 
+#include "bg_window.h"
 #include "message.h"
 #include "string_template.h"
 

@@ -22,14 +22,14 @@
 #include "overlay012/struct_ov12_02235998.h"
 #include "overlay012/struct_ov12_022380DC.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "heap.h"
+#include "palette.h"
 #include "pokemon.h"
 #include "sys_task_manager.h"
-#include "unk_02002F38.h"
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
-#include "unk_02018340.h"
 #include "unk_0201F834.h"
 
 typedef struct {
@@ -176,14 +176,14 @@ void ov12_0222EAA0(UnkStruct_ov12_0221FCDC *param0)
         sub_0200D460(v1, ov12_0222339C(v0->unk_00.unk_04) + 1);
         v2 = sub_0201FAB4(CellActor_GetPaletteProxy(v1->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
 
-        sub_02003B08(ov12_0222332C(v0->unk_00.unk_04), v4, v3, ov12_0221FDE4(v0->unk_00.unk_04), 2, 0x20, v2 * 16, 196, 196, 196);
+        PaletteData_LoadBufferFromFileStartWithTint(ov12_0222332C(v0->unk_00.unk_04), v4, v3, ov12_0221FDE4(v0->unk_00.unk_04), 2, 0x20, v2 * 16, 196, 196, 196);
         SpriteActor_SetOAMMode(v1, GX_OAM_MODE_XLU);
 
         v1 = v0->unk_30;
         sub_0200D460(v1, ov12_0222339C(v0->unk_00.unk_04) + 1);
         v2 = sub_0201FAB4(CellActor_GetPaletteProxy(v1->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
 
-        sub_02003B08(ov12_0222332C(v0->unk_00.unk_04), v4, v3, ov12_0221FDE4(v0->unk_00.unk_04), 2, 0x20, v2 * 16, 196, 196, 196);
+        PaletteData_LoadBufferFromFileStartWithTint(ov12_0222332C(v0->unk_00.unk_04), v4, v3, ov12_0221FDE4(v0->unk_00.unk_04), 2, 0x20, v2 * 16, 196, 196, 196);
         SpriteActor_SetOAMMode(v1, GX_OAM_MODE_XLU);
     }
 
@@ -672,7 +672,7 @@ void ov12_0222F5EC(UnkStruct_ov12_0221FCDC *param0)
         switch (v1) {
         case 3:
         case 4:
-            BGL_SetPriority(2, (ov12_0222339C(param0) - 1));
+            Bg_SetPriority(2, (ov12_0222339C(param0) - 1));
             break;
         }
     }

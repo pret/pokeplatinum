@@ -34,19 +34,19 @@
 #include "overlay022/struct_ov22_0225AF8C.h"
 
 #include "assert.h"
+#include "bg_window.h"
 #include "core_sys.h"
+#include "graphics.h"
 #include "heap.h"
+#include "palette.h"
 #include "pokemon.h"
 #include "spl.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02002F38.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200DA60.h"
-#include "unk_02018340.h"
 #include "unk_020933F8.h"
 #include "unk_02094EDC.h"
 
@@ -259,7 +259,7 @@ static void ov17_02247B00(UnkStruct_ov17_0224F30C *param0, void *param1, const U
         v0->unk_F5B = (Unk_ov17_02254468[0] + 4) * 8;
     }
 
-    sub_02006E60(45, 21, v0->unk_0C.unk_24, 2, 0, 0, 1, 22);
+    Graphics_LoadTilemapToBgLayer(45, 21, v0->unk_0C.unk_24, 2, 0, 0, 1, 22);
     SysTask_Start(ov17_02247C5C, v2, 30000);
 }
 
@@ -284,8 +284,8 @@ static void ov17_02247C5C(SysTask *param0, void *param1)
         break;
     case 3:
         G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 1);
-        sub_02003A2C(v0->unk_00->unk_0C.unk_44, 0, 0x1fff, 0, 0x0);
-        sub_02003A2C(v0->unk_00->unk_0C.unk_44, 2, 0x3fff, 0, 0x0);
+        PaletteData_BlendMulti(v0->unk_00->unk_0C.unk_44, 0, 0x1fff, 0, 0x0);
+        PaletteData_BlendMulti(v0->unk_00->unk_0C.unk_44, 2, 0x3fff, 0, 0x0);
         Sound_PlayEffect(1772);
         v0->unk_10++;
         break;
@@ -625,7 +625,7 @@ static void ov17_022482B0(SysTask *param0, void *param1)
             u16 *v1, *v2;
             int v3, v4, v5, v6, v7;
 
-            v1 = sub_02019FE4(v0->unk_00->unk_0C.unk_24, 2);
+            v1 = Bg_GetTilemapBuffer(v0->unk_00->unk_0C.unk_24, 2);
 
             for (v4 = 0; v4 < 4; v4++) {
                 if (Unk_ov17_02254468[v0->unk_11] + v4 < 0) {
@@ -656,7 +656,7 @@ static void ov17_022482B0(SysTask *param0, void *param1)
                 }
             }
 
-            sub_0201C3C0(v0->unk_00->unk_0C.unk_24, 2);
+            Bg_ScheduleTilemapTransfer(v0->unk_00->unk_0C.unk_24, 2);
         }
 
         v0->unk_12++;
@@ -727,7 +727,7 @@ static void ov17_02248464(SysTask *param0, void *param1)
             int v3, v4, v5, v6, v7;
             int v8;
 
-            v1 = sub_02019FE4(v0->unk_00->unk_0C.unk_24, 2);
+            v1 = Bg_GetTilemapBuffer(v0->unk_00->unk_0C.unk_24, 2);
 
             for (v4 = 0; v4 < 4; v4++) {
                 v8 = Unk_ov17_02254468[NELEMS(Unk_ov17_02254468) - 1 - v0->unk_11];
@@ -763,7 +763,7 @@ static void ov17_02248464(SysTask *param0, void *param1)
                 }
             }
 
-            sub_0201C3C0(v0->unk_00->unk_0C.unk_24, 2);
+            Bg_ScheduleTilemapTransfer(v0->unk_00->unk_0C.unk_24, 2);
         }
 
         v0->unk_12++;
@@ -1194,7 +1194,7 @@ static void ov17_02248DA4(SysTask *param0, void *param1)
     case 0:
         if (v0->unk_17 != 0) {
             sub_0200E060(&v0->unk_00->unk_0C.unk_28[0], 1, 1, 14);
-            sub_0201C3C0(v0->unk_00->unk_0C.unk_24, 1);
+            Bg_ScheduleTilemapTransfer(v0->unk_00->unk_0C.unk_24, 1);
             ov17_02247A08(v0->unk_00, v0->unk_17, &v0->unk_13);
             v0->unk_10++;
         } else {
@@ -1213,7 +1213,7 @@ static void ov17_02248DA4(SysTask *param0, void *param1)
             v0->unk_10++;
         } else if (v0->unk_12 >= v0->unk_18) {
             sub_0200E084(&v0->unk_00->unk_0C.unk_28[0], 1);
-            sub_0201C3C0(v0->unk_00->unk_0C.unk_24, 1);
+            Bg_ScheduleTilemapTransfer(v0->unk_00->unk_0C.unk_24, 1);
             v0->unk_10++;
         }
         break;
@@ -1278,8 +1278,8 @@ static void ov17_02248EC4(SysTask *param0, void *param1)
         break;
     case 1:
         if (sub_0200AC1C(1) == 1) {
-            sub_020038B0(v0->unk_00->unk_0C.unk_44, 0, 0, 0x0, 0, (13 * 16));
-            sub_020038B0(v0->unk_00->unk_0C.unk_44, 2, 0, 0x0, 0, ((16 - 2) * 16));
+            PaletteData_FillBufferRange(v0->unk_00->unk_0C.unk_44, 0, 0, 0x0, 0, (13 * 16));
+            PaletteData_FillBufferRange(v0->unk_00->unk_0C.unk_44, 2, 0, 0x0, 0, ((16 - 2) * 16));
             v0->unk_10++;
         }
         break;
@@ -1362,7 +1362,7 @@ static void ov17_02249014(SysTask *param0, void *param1)
             u16 *v2, *v3;
             int v4, v5, v6, v7, v8;
 
-            v2 = sub_02019FE4(v0->unk_00->unk_0C.unk_24, 2);
+            v2 = Bg_GetTilemapBuffer(v0->unk_00->unk_0C.unk_24, 2);
 
             for (v5 = 0; v5 < 4; v5++) {
                 if (Unk_ov17_02254468[v0->unk_11] + v5 < 0) {
@@ -1393,7 +1393,7 @@ static void ov17_02249014(SysTask *param0, void *param1)
                 }
             }
 
-            sub_0201C3C0(v0->unk_00->unk_0C.unk_24, 2);
+            Bg_ScheduleTilemapTransfer(v0->unk_00->unk_0C.unk_24, 2);
         }
 
         {

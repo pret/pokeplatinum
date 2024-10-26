@@ -11,10 +11,10 @@
 
 #include "cell_actor.h"
 #include "gx_layers.h"
+#include "palette.h"
 #include "pokemon.h"
 #include "text.h"
 #include "unk_02001AF4.h"
-#include "unk_02002F38.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
@@ -545,7 +545,7 @@ static BOOL ov119_021D1FAC(UnkStruct_ov119_021D0FD0 *param0)
         if ((++param0->unk_64) >= 10) {
             param0->unk_64 = 0;
 
-            sub_02003178(param0->unk_04.unk_04, 0x1, 0xFFFF, 0, 0, 16, 0xFFFF);
+            PaletteData_StartFade(param0->unk_04.unk_04, 0x1, 0xFFFF, 0, 0, 16, 0xFFFF);
 
             {
                 NNSG2dImagePaletteProxy *v1;
@@ -554,7 +554,7 @@ static BOOL ov119_021D1FAC(UnkStruct_ov119_021D0FD0 *param0)
                 v1 = CellActor_GetPaletteProxy(param0->unk_78->unk_00);
                 v2 = sub_0201FAB4(v1, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-                sub_02003178(param0->unk_04.unk_04, 0x4, 0xFFFF ^ (1 << v2), 0, 0, 16, 0xFFFF);
+                PaletteData_StartFade(param0->unk_04.unk_04, 0x4, 0xFFFF ^ (1 << v2), 0, 0, 16, 0xFFFF);
             }
 
             sub_020086FC(param0->unk_70, 0, 16, 0, 0xFFFF);
@@ -581,7 +581,7 @@ static BOOL ov119_021D1FAC(UnkStruct_ov119_021D0FD0 *param0)
             v5++;
         }
 
-        if ((sub_0200384C(param0->unk_04.unk_04) != 0) || (v5 != 2) || (sub_020087B4(param0->unk_70) != 0)) {
+        if ((PaletteData_GetSelectedBuffersMask(param0->unk_04.unk_04) != 0) || (v5 != 2) || (sub_020087B4(param0->unk_70) != 0)) {
             break;
         }
 
@@ -598,14 +598,14 @@ static BOOL ov119_021D1FAC(UnkStruct_ov119_021D0FD0 *param0)
             param0->unk_64 = 0;
 
             sub_020086FC(param0->unk_70, 16, 0, 0, 0xFFFF);
-            sub_02003178(param0->unk_04.unk_04, 0x1, 0xFFFF, 0, 16, 0, 0xFFFF);
-            sub_02003178(param0->unk_04.unk_04, 0x4, 0xFFFF, 0, 16, 0, 0xFFFF);
+            PaletteData_StartFade(param0->unk_04.unk_04, 0x1, 0xFFFF, 0, 16, 0, 0xFFFF);
+            PaletteData_StartFade(param0->unk_04.unk_04, 0x4, 0xFFFF, 0, 16, 0, 0xFFFF);
 
             param0->unk_68++;
         }
         break;
     case 5:
-        if ((sub_0200384C(param0->unk_04.unk_04) != 0) || (sub_020087B4(param0->unk_70) != 0)) {
+        if ((PaletteData_GetSelectedBuffersMask(param0->unk_04.unk_04) != 0) || (sub_020087B4(param0->unk_70) != 0)) {
             break;
         }
 
@@ -651,7 +651,7 @@ static BOOL ov119_021D21BC(UnkStruct_ov119_021D0FD0 *param0)
 
         if ((++param0->unk_64) >= 160) {
             param0->unk_64 = 0;
-            sub_02003178(param0->unk_04.unk_04, 0x1, 0xFFFF, 0, 0, 16, 0xFFFF);
+            PaletteData_StartFade(param0->unk_04.unk_04, 0x1, 0xFFFF, 0, 0, 16, 0xFFFF);
 
             {
                 NNSG2dImagePaletteProxy *v0;
@@ -660,7 +660,7 @@ static BOOL ov119_021D21BC(UnkStruct_ov119_021D0FD0 *param0)
                 v0 = CellActor_GetPaletteProxy(param0->unk_78->unk_00);
                 v1 = sub_0201FAB4(v0, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-                sub_02003178(param0->unk_04.unk_04, 0x4, 0xFFFF ^ (1 << v1), 0, 0, 16, 0xFFFF);
+                PaletteData_StartFade(param0->unk_04.unk_04, 0x4, 0xFFFF ^ (1 << v1), 0, 0, 16, 0xFFFF);
             }
 
             sub_020086FC(param0->unk_70, 0, 16, 0, 0xFFFF);
@@ -687,7 +687,7 @@ static BOOL ov119_021D21BC(UnkStruct_ov119_021D0FD0 *param0)
             v4++;
         }
 
-        if ((sub_0200384C(param0->unk_04.unk_04) != 0) || (v4 != 2) || (sub_020087B4(param0->unk_70) != 0)) {
+        if ((PaletteData_GetSelectedBuffersMask(param0->unk_04.unk_04) != 0) || (v4 != 2) || (sub_020087B4(param0->unk_70) != 0)) {
             break;
         }
 
@@ -705,14 +705,14 @@ static BOOL ov119_021D21BC(UnkStruct_ov119_021D0FD0 *param0)
             param0->unk_64 = 0;
 
             sub_020086FC(param0->unk_70, 16, 0, 0, 0xFFFF);
-            sub_02003178(param0->unk_04.unk_04, 0x1, 0xFFFF, 0, 16, 0, 0xFFFF);
-            sub_02003178(param0->unk_04.unk_04, 0x4, 0xFFFF, 0, 16, 0, 0xFFFF);
+            PaletteData_StartFade(param0->unk_04.unk_04, 0x1, 0xFFFF, 0, 16, 0, 0xFFFF);
+            PaletteData_StartFade(param0->unk_04.unk_04, 0x4, 0xFFFF, 0, 16, 0, 0xFFFF);
 
             param0->unk_68++;
         }
         break;
     case 4:
-        if ((sub_0200384C(param0->unk_04.unk_04) != 0) || (sub_020087B4(param0->unk_70) != 0)) {
+        if ((PaletteData_GetSelectedBuffersMask(param0->unk_04.unk_04) != 0) || (sub_020087B4(param0->unk_70) != 0)) {
             break;
         }
 

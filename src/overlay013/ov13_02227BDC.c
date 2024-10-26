@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
@@ -22,7 +21,7 @@
 #include "gx_layers.h"
 #include "item.h"
 #include "narc.h"
-#include "unk_02002F38.h"
+#include "palette.h"
 #include "unk_0200C6E4.h"
 
 static void ov13_02227C08(UnkStruct_ov13_02227244 *param0);
@@ -115,7 +114,7 @@ static void ov13_02227D10(UnkStruct_ov13_02227244 *param0, u16 param1, u32 param
 
 static void ov13_02227D48(UnkStruct_ov13_02227244 *param0, u16 param1, u16 param2, u32 param3)
 {
-    PaletteSys_LoadPalette(param0->unk_08, 16, Item_FileID(param1, 2), param0->unk_00->unk_0C, 3, 0x20, param2 * 16);
+    PaletteData_LoadBufferFromFileStart(param0->unk_08, 16, Item_FileID(param1, 2), param0->unk_00->unk_0C, 3, 0x20, param2 * 16);
 }
 
 static CellActorData *ov13_02227D78(UnkStruct_ov13_02227244 *param0, u32 param1)

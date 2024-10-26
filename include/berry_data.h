@@ -1,9 +1,9 @@
 #ifndef POKEPLATINUM_BERRY_DATA_H
 #define POKEPLATINUM_BERRY_DATA_H
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_berry_data_decl.h"
 
+#include "narc.h"
 #include "strbuf.h"
 
 #define FIRMNESS_VERY_SOFT  1

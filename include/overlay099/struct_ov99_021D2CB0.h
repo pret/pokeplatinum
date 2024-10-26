@@ -2,13 +2,9 @@
 #define POKEPLATINUM_STRUCT_OV99_021D2CB0_H
 
 #include "struct_decls/cell_actor_data.h"
-#include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0203E274.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
 
 #include "overlay099/struct_ov99_021D2CB0_sub1.h"
@@ -16,15 +12,18 @@
 #include "overlay099/struct_ov99_021D3A40.h"
 #include "overlay099/struct_ov99_021D3E78_decl.h"
 
+#include "bg_window.h"
 #include "camera.h"
 #include "easy3d_object.h"
 #include "message.h"
+#include "narc.h"
+#include "palette.h"
 #include "sys_task_manager.h"
 
 typedef struct {
     UnkStruct_0203E274 *unk_00;
     BOOL unk_04;
-    BGL *unk_08;
+    BgConfig *unk_08;
     PaletteData *unk_0C;
     GenericPointerData *unk_10;
     SysTask *unk_14;

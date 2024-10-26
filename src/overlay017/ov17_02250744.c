@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_02095C48.h"
@@ -16,11 +15,14 @@
 #include "overlay017/struct_ov17_02254C0C.h"
 
 #include "assert.h"
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "game_options.h"
+#include "graphics.h"
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
+#include "palette.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "strbuf.h"
@@ -28,13 +30,10 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02002F38.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_020933F8.h"
 #include "unk_02094EDC.h"
@@ -252,7 +251,7 @@ static void ov17_022508E4(UnkStruct_ov17_0224FCA0 *param0, MessageLoader *param1
     ov17_022507F0(param0, param3, param4);
 
     StringTemplate_Format(param0->unk_10.unk_B8, param0->unk_10.unk_BC, v0);
-    BGL_FillWindow(&param0->unk_10.unk_24[0], 0xff);
+    Window_FillTilemap(&param0->unk_10.unk_24[0], 0xff);
 
     param0->unk_10.unk_388 = Text_AddPrinterWithParams(&param0->unk_10.unk_24[0], FONT_MESSAGE, param0->unk_10.unk_BC, 0, 0, v1, NULL);
 
@@ -283,17 +282,17 @@ void ov17_022509AC(UnkStruct_ov17_0224FCA0 *param0)
 
     v1 = NARC_ctor(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 24);
 
-    sub_020070E8(v1, 23, param0->unk_10.unk_20, 3, 0, 0, 1, 24);
-    sub_0200710C(v1, 22, param0->unk_10.unk_20, 3, 0, 0, 1, 24);
-    sub_02019EBC(param0->unk_10.unk_20, 1);
-    PaletteSys_LoadPalette(param0->unk_10.unk_C0, 45, 35, 24, 0, 0, 0);
-    PaletteSys_LoadPalette(param0->unk_10.unk_C0, 45, 36, 24, 0, 0x20, 13 * 16);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 23, param0->unk_10.unk_20, 3, 0, 0, 1, 24);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 22, param0->unk_10.unk_20, 3, 0, 0, 1, 24);
+    Bg_ClearTilemap(param0->unk_10.unk_20, 1);
+    PaletteData_LoadBufferFromFileStart(param0->unk_10.unk_C0, 45, 35, 24, 0, 0, 0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_10.unk_C0, 45, 36, 24, 0, 0x20, 13 * 16);
 
     v0 = Options_Frame(param0->unk_00->unk_196C);
 
     sub_0200DD0C(param0->unk_10.unk_20, 1, 1, 15, v0, 24);
-    PaletteSys_LoadPalette(param0->unk_10.unk_C0, 38, sub_0200DD08(v0), 24, 0, 0x20, 14 * 16);
-    sub_02019EBC(param0->unk_10.unk_20, 2);
+    PaletteData_LoadBufferFromFileStart(param0->unk_10.unk_C0, 38, sub_0200DD08(v0), 24, 0, 0x20, 14 * 16);
+    Bg_ClearTilemap(param0->unk_10.unk_20, 2);
     NARC_dtor(v1);
 }
 
@@ -321,17 +320,17 @@ void ov17_02250B00(UnkStruct_ov17_0224FCA0 *param0)
 
     v1 = NARC_ctor(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 24);
 
-    sub_020070E8(v1, 27, param0->unk_10.unk_20, 3, 0, 0, 1, 24);
-    sub_0200710C(v1, 25, param0->unk_10.unk_20, 3, 0, 0, 1, 24);
-    sub_0200710C(v1, 26, param0->unk_10.unk_20, 2, 0, 0, 1, 24);
-    sub_02019EBC(param0->unk_10.unk_20, 1);
-    PaletteSys_LoadPalette(param0->unk_10.unk_C0, 45, 39, 24, 0, 0, 0);
-    PaletteSys_LoadPalette(param0->unk_10.unk_C0, 45, 36, 24, 0, 0x20, 13 * 16);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 27, param0->unk_10.unk_20, 3, 0, 0, 1, 24);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 25, param0->unk_10.unk_20, 3, 0, 0, 1, 24);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 26, param0->unk_10.unk_20, 2, 0, 0, 1, 24);
+    Bg_ClearTilemap(param0->unk_10.unk_20, 1);
+    PaletteData_LoadBufferFromFileStart(param0->unk_10.unk_C0, 45, 39, 24, 0, 0, 0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_10.unk_C0, 45, 36, 24, 0, 0x20, 13 * 16);
 
     v0 = Options_Frame(param0->unk_00->unk_196C);
 
     sub_0200DD0C(param0->unk_10.unk_20, 1, 1, 15, v0, 24);
-    PaletteSys_LoadPalette(param0->unk_10.unk_C0, 38, sub_0200DD08(v0), 24, 0, 0x20, 14 * 16);
+    PaletteData_LoadBufferFromFileStart(param0->unk_10.unk_C0, 38, sub_0200DD08(v0), 24, 0, 0x20, 14 * 16);
 
     {
         Strbuf *v2;
@@ -342,8 +341,8 @@ void ov17_02250B00(UnkStruct_ov17_0224FCA0 *param0)
         for (v3 = 0; v3 < 4; v3++) {
             v4 = param0->unk_39A.unk_30[v3];
             Pokemon_GetValue(param0->unk_10.unk_00->unk_00[v4], MON_DATA_NICKNAME_STRBUF, v2);
-            BGL_FillWindow(&param0->unk_10.unk_24[1 + v3], 0x0);
-            BGL_FillWindow(&param0->unk_10.unk_24[5 + v3], 0x0);
+            Window_FillTilemap(&param0->unk_10.unk_24[1 + v3], 0x0);
+            Window_FillTilemap(&param0->unk_10.unk_24[5 + v3], 0x0);
             Text_AddPrinterWithParamsAndColor(&param0->unk_10.unk_24[1 + v3], FONT_SYSTEM, v2, 0, 3, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
             Text_AddPrinterWithParamsAndColor(&param0->unk_10.unk_24[5 + v3], FONT_SYSTEM, param0->unk_00->unk_00.unk_D8[v4], 0, 3, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
         }
@@ -363,8 +362,8 @@ void ov17_02250B00(UnkStruct_ov17_0224FCA0 *param0)
 
 void ov17_02250CEC(UnkStruct_ov17_0224FCA0 *param0)
 {
-    sub_020038B0(param0->unk_10.unk_C0, 1, 2, 0x0, 0, 16 * 16);
-    sub_020038B0(param0->unk_10.unk_C0, 3, 2, 0x0, 0, 16 * 16);
+    PaletteData_FillBufferRange(param0->unk_10.unk_C0, 1, 2, 0x0, 0, 16 * 16);
+    PaletteData_FillBufferRange(param0->unk_10.unk_C0, 3, 2, 0x0, 0, 16 * 16);
 }
 
 void ov17_02250D24(UnkStruct_ov17_0224FCA0 *param0)

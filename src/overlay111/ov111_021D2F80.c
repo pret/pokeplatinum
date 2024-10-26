@@ -3,13 +3,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-
 #include "overlay022/struct_ov22_022559F8.h"
 #include "overlay111/struct_ov111_021D2F80.h"
 
 #include "cell_actor.h"
 #include "gx_layers.h"
+#include "narc.h"
 #include "sprite_resource.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"

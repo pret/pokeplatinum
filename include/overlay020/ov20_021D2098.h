@@ -1,12 +1,12 @@
 #ifndef POKEPLATINUM_OV20_021D2098_H
 #define POKEPLATINUM_OV20_021D2098_H
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020998EC_decl.h"
 
 #include "overlay020/struct_ov20_021D16E8_decl.h"
 #include "overlay020/struct_ov20_021D2128_decl.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "sys_task_manager.h"
 
@@ -17,7 +17,7 @@ void ov20_021D21A0(UnkStruct_ov20_021D2128 *param0, int param1);
 BOOL ov20_021D21F8(UnkStruct_ov20_021D2128 *param0);
 BOOL ov20_021D2210(UnkStruct_ov20_021D2128 *param0, int param1);
 u32 ov20_021D2DF4(UnkStruct_ov20_021D2128 *param0);
-BGL *ov20_021D2E04(UnkStruct_ov20_021D2128 *param0);
+BgConfig *ov20_021D2E04(UnkStruct_ov20_021D2128 *param0);
 CellActorCollection *ov20_021D2E08(UnkStruct_ov20_021D2128 *param0);
 void ov20_021D2E0C(UnkStruct_ov20_021D2128 *param0, CellActorResourceData *param1, u32 param2, u32 param3);
 CellActor *ov20_021D2E50(UnkStruct_ov20_021D2128 *param0, CellActorResourceData *param1, u32 param2, u32 param3, u32 param4, int param5);

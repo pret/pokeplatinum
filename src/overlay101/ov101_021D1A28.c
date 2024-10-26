@@ -32,13 +32,13 @@
 #include "overlay101/struct_ov101_021D9934.h"
 #include "overlay101/struct_ov101_021D9AE4.h"
 
+#include "bg_window.h"
 #include "core_sys.h"
 #include "enums.h"
 #include "heap.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_020711EC.h"
 
@@ -3813,7 +3813,7 @@ static void ov101_021D4F18(const u16 *param0, const u16 *param1, u16 param2, u16
 
 static void ov101_021D4F40(UnkStruct_ov101_021D13C8 *param0, u32 param1, int param2, u16 *param3)
 {
-    sub_0201972C(param1, param3, 32, 32 * param2);
+    Bg_LoadPalette(param1, param3, 32, 32 * param2);
 }
 
 static int Unk_ov101_021D9E60[UnkEnum_ov101_021D4F58_05] = {
@@ -4644,16 +4644,16 @@ static void ov101_021D58F4(UnkStruct_ov101_021D13C8 *param0, UnkEnum_ov101_021D2
 {
     const int *v0 = Unk_ov101_021D8740[param1];
 
-    sub_02019E2C(param0->unk_43C, 1, v0[0], v0[1], 3, 2, 6);
-    sub_0201C3C0(param0->unk_43C, 1);
+    Bg_ChangeTilemapRectPalette(param0->unk_43C, 1, v0[0], v0[1], 3, 2, 6);
+    Bg_ScheduleTilemapTransfer(param0->unk_43C, 1);
 }
 
 static void ov101_021D5938(UnkStruct_ov101_021D13C8 *param0, UnkEnum_ov101_021D2BDC param1)
 {
     const int *v0 = Unk_ov101_021D8740[param1];
 
-    sub_02019E2C(param0->unk_43C, 1, v0[0], v0[1], 3, 2, 5);
-    sub_0201C3C0(param0->unk_43C, 1);
+    Bg_ChangeTilemapRectPalette(param0->unk_43C, 1, v0[0], v0[1], 3, 2, 5);
+    Bg_ScheduleTilemapTransfer(param0->unk_43C, 1);
 }
 
 static u32 ov101_021D597C(UnkStruct_ov101_021D13C8 *param0)

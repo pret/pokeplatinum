@@ -20,11 +20,11 @@
 #include "overlay012/struct_ov12_02235350.h"
 #include "overlay012/struct_ov12_0223595C.h"
 
+#include "bg_window.h"
 #include "heap.h"
 #include "sys_task_manager.h"
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 
 typedef struct {
@@ -767,7 +767,7 @@ void ov12_0222E1A8(UnkStruct_ov12_0221FCDC *param0)
     ov12_02226424(&v0->unk_2C, 16, 2, 2, 16, 16);
     ov12_02222590(v0->unk_04.unk_04, 2);
 
-    sub_02019120(2, 1);
+    Bg_ToggleLayer(2, 1);
     ov12_022201E8(v0->unk_04.unk_04, ov12_0222E080, v0);
 }
 

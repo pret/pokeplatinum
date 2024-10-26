@@ -3,8 +3,6 @@
 
 #include "struct_decls/cell_actor_data.h"
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "battle/struct_ov16_0225BFFC_sub1.h"
 #include "battle/struct_ov16_022674C4.h"
@@ -12,6 +10,8 @@
 #include "overlay012/struct_ball_rotation_decl.h"
 #include "overlay012/struct_ov12_02223764.h"
 
+#include "bg_window.h"
+#include "narc.h"
 #include "sys_task_manager.h"
 
 #define DATA_BUF_SIZE 256

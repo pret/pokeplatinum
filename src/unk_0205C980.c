@@ -3,9 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "graphics.h"
 #include "heap.h"
 #include "string_template.h"
-#include "unk_02006E3C.h"
 
 static const int Unk_020ED7F0[][3] = {
     { 0x3, 0x3C, 0x3C },
@@ -102,7 +102,7 @@ u16 *sub_0205CA4C(int param0)
     u16 *v4, *v5;
     int v6;
 
-    v0 = sub_02006F88(86, 7, &v2, param0);
+    v0 = Graphics_GetPlttData(86, 7, &v2, param0);
     v4 = Heap_AllocFromHeap(param0, 16 * 18 * 2);
     v5 = (u16 *)v2->pRawData;
 

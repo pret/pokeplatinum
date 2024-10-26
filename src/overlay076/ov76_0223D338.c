@@ -6,8 +6,6 @@
 #include "consts/game_records.h"
 
 #include "struct_decls/font_oam.h"
-#include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_0200D0F4.h"
@@ -25,20 +23,19 @@
 #include "overlay076/ov76_0223B870.h"
 #include "overlay076/struct_ov76_0223BF74.h"
 #include "overlay076/struct_ov76_0223DE00.h"
-#include "overlay084/struct_ov84_0223BA5C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
 #include "core_sys.h"
 #include "game_records.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "narc.h"
+#include "palette.h"
 #include "pokemon.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
 #include "unk_02001AF4.h"
-#include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
@@ -49,7 +46,6 @@
 #include "unk_02015920.h"
 #include "unk_02015F84.h"
 #include "unk_02017728.h"
-#include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_02023FCC.h"
 #include "unk_0202C9F4.h"
@@ -190,10 +186,10 @@ static void ov76_0223D494(UnkStruct_ov76_0223DE00 *param0, int param1, int param
 static int ov76_0223D4C4(UnkStruct_ov76_0223DE00 *param0)
 {
     Window_Clear(&param0->unk_D4.unk_18[1], 1);
-    sub_0201ACF4(&param0->unk_D4.unk_18[1]);
+    Window_ClearAndCopyToVRAM(&param0->unk_D4.unk_18[1]);
     sub_02001BC4(param0->unk_D4.unk_CC, NULL);
     sub_02013A3C(param0->unk_D4.unk_C8);
-    BGL_DeleteWindow(&param0->unk_D4.unk_18[1]);
+    Window_Remove(&param0->unk_D4.unk_18[1]);
 
     return 1;
 }
@@ -436,7 +432,7 @@ static BOOL ov76_0223D674(UnkStruct_ov76_0223DE00 *param0)
         if (ScreenWipe_Done() != 1) {
             break;
         }
-        BGL_DeleteWindow(&param0->unk_D4.unk_18[0]);
+        Window_Remove(&param0->unk_D4.unk_18[0]);
         ov76_0223C8BC(param0);
         ov76_0223C32C(param0);
         ov76_0223D31C(param0);
@@ -796,26 +792,26 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
             break;
         }
 
-        sub_02003178(param0->unk_D4.unk_14, 0x1, (1 << 0) | (1 << 1), 0, 0, 16, 0);
-        sub_02003178(param0->unk_D4.unk_14, 0x4, 0xFFFF, 0, 0, 16, 0);
+        PaletteData_StartFade(param0->unk_D4.unk_14, 0x1, (1 << 0) | (1 << 1), 0, 0, 16, 0);
+        PaletteData_StartFade(param0->unk_D4.unk_14, 0x4, 0xFFFF, 0, 0, 16, 0);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
         GXLayers_EngineBToggleLayers((GX_PLANEMASK_BG2), 1);
-        BGL_SetPriority(7, 1);
+        Bg_SetPriority(7, 1);
         ov76_0223D2F4(param0, 1);
         ov76_0223C568(param0, 1);
         ov76_0223B96C(param0, 1);
         param0->unk_3D4++;
         break;
     case 2:
-        if (sub_0200384C(param0->unk_D4.unk_14) != 0) {
+        if (PaletteData_GetSelectedBuffersMask(param0->unk_D4.unk_14) != 0) {
             break;
         }
-        BGL_SetPriority(3, 1);
-        sub_02003178(param0->unk_D4.unk_14, 0x1, (1 << 1), 0, 16, 0, 0);
+        Bg_SetPriority(3, 1);
+        PaletteData_StartFade(param0->unk_D4.unk_14, 0x1, (1 << 1), 0, 16, 0, 0);
         param0->unk_3D4++;
         break;
     case 3:
-        if (sub_0200384C(param0->unk_D4.unk_14) != 0) {
+        if (PaletteData_GetSelectedBuffersMask(param0->unk_D4.unk_14) != 0) {
             break;
         }
         ov76_0223DCB8(param0, 1);
@@ -827,8 +823,8 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
         switch (param0->unk_3DC) {
         case 0:
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-            sub_02003178(param0->unk_D4.unk_14, 0x2, (1 << 0) | (1 << 1) | (1 << 3) | (1 << 11), 0, 0, 10, 0);
-            sub_02003178(param0->unk_D4.unk_14, 0x8, 0xFFFF, 0, 0, 10, 0);
+            PaletteData_StartFade(param0->unk_D4.unk_14, 0x2, (1 << 0) | (1 << 1) | (1 << 3) | (1 << 11), 0, 0, 10, 0);
+            PaletteData_StartFade(param0->unk_D4.unk_14, 0x8, 0xFFFF, 0, 0, 10, 0);
             ov76_0223DCB8(param0, 0);
             param0->unk_3E0 = 0;
             ov76_0223D3CC(param0);
@@ -838,7 +834,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
             param0->unk_3DC++;
             break;
         case 1:
-            if (sub_0200384C(param0->unk_D4.unk_14) != 0) {
+            if (PaletteData_GetSelectedBuffersMask(param0->unk_D4.unk_14) != 0) {
                 break;
             }
 
@@ -954,8 +950,8 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
             BOOL v6 = ov76_0223DEF4(param0);
 
             if ((ov12_022377F8(param0->unk_D4.unk_158) == 0) && (v6 == 0)) {
-                sub_02003178(param0->unk_D4.unk_14, 0x2, (1 << 0) | (1 << 1) | (1 << 3) | (1 << 11), 0, 10, 0, 0);
-                sub_02003178(param0->unk_D4.unk_14, 0x8, 0xFFFF, 0, 10, 0, 0);
+                PaletteData_StartFade(param0->unk_D4.unk_14, 0x2, (1 << 0) | (1 << 1) | (1 << 3) | (1 << 11), 0, 10, 0, 0);
+                PaletteData_StartFade(param0->unk_D4.unk_14, 0x8, 0xFFFF, 0, 10, 0, 0);
                 ov76_0223DF70(param0, 1);
                 ov76_0223DF84(param0);
                 ov12_0223783C(param0->unk_D4.unk_158);
@@ -963,7 +959,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
             }
         } break;
         default:
-            if (sub_0200384C(param0->unk_D4.unk_14) != 0) {
+            if (PaletteData_GetSelectedBuffersMask(param0->unk_D4.unk_14) != 0) {
                 break;
             }
 
@@ -1010,18 +1006,18 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
                 break;
             }
 
-            sub_02003178(param0->unk_D4.unk_14, 0x2, (1 << 0) | (1 << 1) | (1 << 3) | (1 << 11), 0, 0, 10, 0);
-            sub_02003178(param0->unk_D4.unk_14, 0x8, 0xFFFF, 0, 0, 10, 0);
+            PaletteData_StartFade(param0->unk_D4.unk_14, 0x2, (1 << 0) | (1 << 1) | (1 << 3) | (1 << 11), 0, 0, 10, 0);
+            PaletteData_StartFade(param0->unk_D4.unk_14, 0x8, 0xFFFF, 0, 0, 10, 0);
             ov76_0223DCB8(param0, 0);
             GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
             param0->unk_3DC++;
             break;
         case 1:
-            if (sub_0200384C(param0->unk_D4.unk_14) != 0) {
+            if (PaletteData_GetSelectedBuffersMask(param0->unk_D4.unk_14) != 0) {
                 break;
             }
 
-            sub_02003858(param0->unk_D4.unk_14, 0);
+            PaletteData_SetAutoTransparent(param0->unk_D4.unk_14, 0);
             ov76_0223CA98(param0->unk_D4.unk_10, &param0->unk_D4.unk_18[2], 4, 2, 1, 27, 4, (0 + ((1 + (18 + 12)) + 9)));
 
             {
@@ -1052,12 +1048,12 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
             case 1:
             case 2:
                 param0->unk_3E0 = v10;
-                sub_02003858(param0->unk_D4.unk_14, 1);
+                PaletteData_SetAutoTransparent(param0->unk_D4.unk_14, 1);
                 sub_02015A54(param0->unk_D4.unk_150);
                 sub_02015938(param0->unk_D4.unk_150);
                 sub_0200E084(&param0->unk_D4.unk_18[2], 1);
-                sub_0201ACF4(&param0->unk_D4.unk_18[2]);
-                BGL_DeleteWindow(&param0->unk_D4.unk_18[2]);
+                Window_ClearAndCopyToVRAM(&param0->unk_D4.unk_18[2]);
+                Window_Remove(&param0->unk_D4.unk_18[2]);
                 param0->unk_3DC++;
                 break;
             case 0:
@@ -1066,12 +1062,12 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
             }
         } break;
         case 4:
-            sub_02003178(param0->unk_D4.unk_14, 0x2, (1 << 0) | (1 << 1) | (1 << 3) | (1 << 11), 0, 10, 0, 0);
-            sub_02003178(param0->unk_D4.unk_14, 0x8, 0xFFFF, 0, 10, 0, 0);
+            PaletteData_StartFade(param0->unk_D4.unk_14, 0x2, (1 << 0) | (1 << 1) | (1 << 3) | (1 << 11), 0, 10, 0, 0);
+            PaletteData_StartFade(param0->unk_D4.unk_14, 0x8, 0xFFFF, 0, 10, 0, 0);
             param0->unk_3DC++;
             break;
         case 5:
-            if (sub_0200384C(param0->unk_D4.unk_14) != 0) {
+            if (PaletteData_GetSelectedBuffersMask(param0->unk_D4.unk_14) != 0) {
                 break;
             }
 
@@ -1099,19 +1095,19 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
     } break;
     case 8:
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-        sub_02003178(param0->unk_D4.unk_14, 0x1, (1 << 1), 0, 0, 16, 0);
+        PaletteData_StartFade(param0->unk_D4.unk_14, 0x1, (1 << 1), 0, 0, 16, 0);
         param0->unk_3D4++;
         break;
     case 9:
 
-        if (sub_0200384C(param0->unk_D4.unk_14) != 0) {
+        if (PaletteData_GetSelectedBuffersMask(param0->unk_D4.unk_14) != 0) {
             break;
         }
 
-        sub_02003178(param0->unk_D4.unk_14, 0x1, (1 << 0), 0, 16, 0, 0);
-        sub_02003178(param0->unk_D4.unk_14, 0x4, 0xFFFF, 0, 16, 0, 0);
-        BGL_SetPriority(3, 3);
-        BGL_SetPriority(7, 3);
+        PaletteData_StartFade(param0->unk_D4.unk_14, 0x1, (1 << 0), 0, 16, 0, 0);
+        PaletteData_StartFade(param0->unk_D4.unk_14, 0x4, 0xFFFF, 0, 16, 0, 0);
+        Bg_SetPriority(3, 3);
+        Bg_SetPriority(7, 3);
         GXLayers_EngineBToggleLayers((GX_PLANEMASK_BG2), 0);
         ov76_0223D2F4(param0, 0);
         ov76_0223C568(param0, 0);
@@ -1121,7 +1117,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
         param0->unk_3D4++;
         break;
     case 10:
-        if (sub_0200384C(param0->unk_D4.unk_14) != 0) {
+        if (PaletteData_GetSelectedBuffersMask(param0->unk_D4.unk_14) != 0) {
             break;
         }
 
@@ -1195,7 +1191,7 @@ static BOOL ov76_0223E8A4(UnkStruct_ov76_0223DE00 *param0)
             break;
         }
 
-        BGL_DeleteWindow(&param0->unk_D4.unk_18[0]);
+        Window_Remove(&param0->unk_D4.unk_18[0]);
         ov76_0223C8BC(param0);
         ov76_0223C32C(param0);
         ov76_0223D31C(param0);
@@ -1328,7 +1324,7 @@ void ov76_0223EB54(int param0)
     DisableHBlank();
 }
 
-void ov76_0223EB64(BGL *param0)
+void ov76_0223EB64(BgConfig *param0)
 {
     GXLayers_DisableEngineALayers();
 
@@ -1355,18 +1351,18 @@ void ov76_0223EB64(BGL *param0)
     }
 
     {
-        UnkStruct_ov84_0223BA5C v1 = {
+        GraphicsModes v1 = {
             GX_DISPMODE_GRAPHICS,
             GX_BGMODE_0,
             GX_BGMODE_0,
             GX_BG0_AS_3D,
         };
 
-        sub_02018368(&v1);
+        SetAllGraphicsModes(&v1);
     }
 
     {
-        UnkStruct_ov97_0222DB78 v2[] = {
+        BgTemplate v2[] = {
             {
                 0,
                 0,
@@ -1414,19 +1410,19 @@ void ov76_0223EB64(BGL *param0)
             },
         };
 
-        sub_020183C4(param0, 1, &v2[0], 0);
-        sub_020183C4(param0, 2, &v2[1], 0);
-        sub_020183C4(param0, 3, &v2[2], 0);
-        sub_02019EBC(param0, 1);
-        sub_02019EBC(param0, 2);
-        sub_02019EBC(param0, 3);
+        Bg_InitFromTemplate(param0, 1, &v2[0], 0);
+        Bg_InitFromTemplate(param0, 2, &v2[1], 0);
+        Bg_InitFromTemplate(param0, 3, &v2[2], 0);
+        Bg_ClearTilemap(param0, 1);
+        Bg_ClearTilemap(param0, 2);
+        Bg_ClearTilemap(param0, 3);
 
         G2_SetBG0Priority(1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     }
 
     {
-        UnkStruct_ov97_0222DB78 v3[] = {
+        BgTemplate v3[] = {
             {
                 0,
                 0,
@@ -1489,14 +1485,14 @@ void ov76_0223EB64(BGL *param0)
             },
         };
 
-        sub_020183C4(param0, 4, &v3[0], 0);
-        sub_020183C4(param0, 5, &v3[1], 0);
-        sub_020183C4(param0, 6, &v3[2], 0);
-        sub_020183C4(param0, 7, &v3[3], 0);
-        sub_02019EBC(param0, 4);
-        sub_02019EBC(param0, 5);
-        sub_02019EBC(param0, 6);
-        sub_02019EBC(param0, 7);
+        Bg_InitFromTemplate(param0, 4, &v3[0], 0);
+        Bg_InitFromTemplate(param0, 5, &v3[1], 0);
+        Bg_InitFromTemplate(param0, 6, &v3[2], 0);
+        Bg_InitFromTemplate(param0, 7, &v3[3], 0);
+        Bg_ClearTilemap(param0, 4);
+        Bg_ClearTilemap(param0, 5);
+        Bg_ClearTilemap(param0, 6);
+        Bg_ClearTilemap(param0, 7);
         GXLayers_EngineBToggleLayers((GX_PLANEMASK_BG2), 0);
     }
 }
@@ -1508,8 +1504,8 @@ void ov76_0223ECB0(void *param0)
     sub_02008A94(v0->unk_D4.unk_D0);
     sub_0201DCAC();
     sub_0200C800();
-    sub_02003694(v0->unk_D4.unk_14);
-    sub_0201C2B8(v0->unk_D4.unk_10);
+    PaletteData_CommitFadedBuffers(v0->unk_D4.unk_14);
+    Bg_RunScheduledUpdates(v0->unk_D4.unk_10);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }

@@ -3,20 +3,17 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
-
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/struct_ov25_0225517C.h"
 #include "overlay025/struct_ov25_02255224_decl.h"
 
+#include "bg_window.h"
+#include "graphics.h"
 #include "heap.h"
 #include "narc.h"
 #include "pokemon_icon.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
-#include "unk_02018340.h"
 
 struct UnkStruct_ov25_02255224_t {
     u32 unk_00;
@@ -256,7 +253,7 @@ void ov25_02255360(u32 param0)
     void *v0;
     NNSG2dPaletteData *v1;
 
-    v0 = sub_02006F88(19, PokeIconPalettesFileIndex(), &v1, 8);
+    v0 = Graphics_GetPlttData(19, PokeIconPalettesFileIndex(), &v1, 8);
 
     if (v0) {
         ov25_02255290(v1->pRawData, 4 * 0x10);
@@ -295,7 +292,7 @@ void ov25_022553A0(u32 param0, const u32 *param1, u32 param2, BOOL param3)
     }
 }
 
-void ov25_02255440(BGL *param0, u32 param1, u32 param2)
+void ov25_02255440(BgConfig *param0, u32 param1, u32 param2)
 {
     u16 v0[4];
     u32 v1;
@@ -308,7 +305,7 @@ void ov25_02255440(BGL *param0, u32 param1, u32 param2)
         (v0)[3] = v2 + 9;
     }
 
-    sub_020198C0(param0, param2, v0, 9 + 0, 11, 2, 2);
+    Bg_LoadToTilemapRect(param0, param2, v0, 9 + 0, 11, 2, 2);
 
     {
         u32 v2 = ((2 / 4) * 16) + ((2 & 3) * 2);
@@ -318,7 +315,7 @@ void ov25_02255440(BGL *param0, u32 param1, u32 param2)
         (v0)[3] = v2 + 9;
     }
 
-    sub_020198C0(param0, param2, v0, 9 + 2, 11, 2, 2);
+    Bg_LoadToTilemapRect(param0, param2, v0, 9 + 2, 11, 2, 2);
 
     {
         u32 v2 = ((3 / 4) * 16) + ((3 & 3) * 2);
@@ -328,7 +325,7 @@ void ov25_02255440(BGL *param0, u32 param1, u32 param2)
         (v0)[3] = v2 + 9;
     }
 
-    sub_020198C0(param0, param2, v0, 9 + 4, 11, 2, 2);
+    Bg_LoadToTilemapRect(param0, param2, v0, 9 + 4, 11, 2, 2);
 
     v1 = param1 / 10;
     param1 -= (v1 * 10);
@@ -343,7 +340,7 @@ void ov25_02255440(BGL *param0, u32 param1, u32 param2)
         (v0)[3] = v2 + 9;
     }
 
-    sub_020198C0(param0, param2, v0, 9 + 6, 11, 2, 2);
+    Bg_LoadToTilemapRect(param0, param2, v0, 9 + 6, 11, 2, 2);
 
     {
         u32 v2 = (((param1) / 4) * 16) + (((param1) & 3) * 2);
@@ -353,5 +350,5 @@ void ov25_02255440(BGL *param0, u32 param1, u32 param2)
         (v0)[3] = v2 + 9;
     }
 
-    sub_020198C0(param0, param2, v0, 9 + 8, 11, 2, 2);
+    Bg_LoadToTilemapRect(param0, param2, v0, 9 + 8, 11, 2, 2);
 }

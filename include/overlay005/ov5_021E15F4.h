@@ -4,13 +4,13 @@
 #include <nitro/fx/fx.h>
 #include <nnsys.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-
 #include "overlay005/struct_ov5_021D3CAC_decl.h"
 #include "overlay005/struct_ov5_021D5894.h"
 #include "overlay005/struct_ov5_021E1608_decl.h"
 #include "overlay005/struct_ov5_021E1890_decl.h"
 #include "overlay005/struct_ov5_021EF76C_decl.h"
+
+#include "narc.h"
 
 UnkStruct_ov5_021E1608 *ov5_021E15F4(const u8 param0);
 void ov5_021E1608(UnkStruct_ov5_021E1608 *param0);

@@ -8,12 +8,12 @@
 #include "overlay094/struct_ov94_0223FD4C.h"
 
 #include "cell_actor.h"
+#include "graphics.h"
 #include "heap.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
-#include "unk_02006E3C.h"
 #include "unk_0205C980.h"
 
 typedef struct {
@@ -281,8 +281,8 @@ void ov94_022442E4(UnkStruct_ov94_0223FD4C *param0)
 
 static void ov94_0224432C(UnkStruct_ov94_0223FD4C *param0)
 {
-    param0->unk_10FC = sub_02006F88(86, 7, &(param0->unk_1100), 62);
-    param0->unk_10F4 = sub_02006F50(86, 9, 1, &(param0->unk_10F8), 62);
+    param0->unk_10FC = Graphics_GetPlttData(86, 7, &(param0->unk_1100), 62);
+    param0->unk_10F4 = Graphics_GetCharData(86, 9, 1, &(param0->unk_10F8), 62);
 
     DC_FlushRange(param0->unk_10F8, (256 * 256 / 2));
 }

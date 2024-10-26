@@ -5,19 +5,16 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay007/struct_ov7_0224BEFC_decl.h"
-#include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_02240FA8.h"
 
 #include "bag.h"
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "font.h"
@@ -37,7 +34,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200DA60.h"
-#include "unk_02018340.h"
 #include "unk_020298BC.h"
 #include "unk_0205D8CC.h"
 
@@ -116,7 +112,7 @@ typedef struct {
 
 typedef struct {
     u32 unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     UnkStruct_ov7_0224C620 *unk_08;
     const UnkStruct_ov7_0224F1B4 *unk_0C;
     Bag *unk_10;
@@ -128,7 +124,7 @@ typedef struct UnkStruct_ov7_0224BEFC_t {
     SaveData *unk_08;
     UnkStruct_02029D04 *unk_0C;
     Bag *unk_10;
-    BGL *unk_14;
+    BgConfig *unk_14;
     u32 unk_18;
     CellActorCollection *unk_1C;
     UnkStruct_0200C738 unk_20;
@@ -147,16 +143,16 @@ static void ov7_0224C3B8(UnkStruct_ov7_0224BEFC *param0);
 static void ov7_0224C3CC(UnkStruct_ov7_0224BEFC *param0);
 static void ov7_0224C3E0(UnkStruct_ov7_0224BEFC *param0);
 static void ov7_0224C338(UnkStruct_ov7_0224BEFC *param0);
-static void ov7_0224C3EC(UnkStruct_ov7_0224C3EC *param0, BGL *param1, u32 param2, u32 param3);
+static void ov7_0224C3EC(UnkStruct_ov7_0224C3EC *param0, BgConfig *param1, u32 param2, u32 param3);
 static void ov7_0224C444(UnkStruct_ov7_0224C3EC *param0);
 static void ov7_0224C468(UnkStruct_ov7_0224C3EC *param0, Strbuf *param1, u32 param2);
 static BOOL ov7_0224C4B8(UnkStruct_ov7_0224C3EC *param0);
 static void ov7_0224C4E0(UnkStruct_ov7_0224C3EC *param0, MessageLoader *param1, u32 param2, const UnkStruct_ov7_0224F1B4 *param3, u32 param4);
 static void ov7_0224C580(UnkStruct_ov7_0224C3EC *param0, MessageLoader *param1, u32 param2, const UnkStruct_ov7_0224F1B4 *param3, u32 param4);
-static void ov7_0224C620(UnkStruct_ov7_0224C620 *param0, BGL *param1, MessageLoader *param2, u32 param3);
+static void ov7_0224C620(UnkStruct_ov7_0224C620 *param0, BgConfig *param1, MessageLoader *param2, u32 param3);
 static void ov7_0224C698(UnkStruct_ov7_0224C620 *param0);
 static void ov7_0224C6DC(UnkStruct_ov7_0224C620 *param0, u32 param1, u32 param2, u32 param3);
-static void ov7_0224C768(UnkStruct_ov7_0224C768 *param0, BGL *param1, u32 param2, const UnkStruct_ov7_0224F1B4 *param3, u32 param4, MessageLoader *param5, void *param6, UnkFuncPtr_ov7_0224C768 param7, CellActorCollection *param8);
+static void ov7_0224C768(UnkStruct_ov7_0224C768 *param0, BgConfig *param1, u32 param2, const UnkStruct_ov7_0224F1B4 *param3, u32 param4, MessageLoader *param5, void *param6, UnkFuncPtr_ov7_0224C768 param7, CellActorCollection *param8);
 static void ov7_0224C934(UnkStruct_ov7_0224C768 *param0);
 static u32 ov7_0224C9A4(UnkStruct_ov7_0224C768 *param0);
 static void ov7_0224CA0C(UnkStruct_ov7_0224C768 *param0);
@@ -164,17 +160,17 @@ static void ov7_0224CA34(UnkStruct_ov7_0224C768 *param0);
 static void ov7_0224CA54(CellActorResourceData *param0, UnkStruct_ov7_0224C768 *param1, u32 param2);
 static void ov7_0224CB40(UnkStruct_ov7_0224C768 *param0);
 static void ov7_0224CB70(UnkStruct_ov7_0224C768 *param0);
-static void ov7_0224CC44(UnkStruct_ov7_0224CC44 *param0, BGL *param1, u32 param2);
+static void ov7_0224CC44(UnkStruct_ov7_0224CC44 *param0, BgConfig *param1, u32 param2);
 static void ov7_0224CC6C(UnkStruct_ov7_0224CC44 *param0);
 static u32 ov7_0224CC78(UnkStruct_ov7_0224CC44 *param0);
-static void ov7_0224CBD0(UnkStruct_ov7_0224CBE4 *param0, UnkStruct_ov7_0224C620 *param1, const UnkStruct_ov7_0224F1B4 *param2, Bag *param3, u32 param4, BGL *param5);
+static void ov7_0224CBD0(UnkStruct_ov7_0224CBE4 *param0, UnkStruct_ov7_0224C620 *param1, const UnkStruct_ov7_0224F1B4 *param2, Bag *param3, u32 param4, BgConfig *param5);
 static void ov7_0224CBE4(void *param0, u32 param1);
 static BOOL ov7_0224CC88(const UnkStruct_02029D04 *param0, const UnkStruct_ov7_0224F1B4 *param1, u32 param2);
 static BOOL ov7_0224CCB8(Bag *param0, const UnkStruct_ov7_0224F1B4 *param1, u32 param2, u32 param3);
 static BOOL ov7_0224CCE4(const UnkStruct_02029D04 *param0, const UnkStruct_ov7_0224F1B4 *param1, u32 param2);
 static void ov7_0224CCF4(UnkStruct_02029D04 *param0, Bag *param1, const UnkStruct_ov7_0224F1B4 *param2, u32 param3, u32 param4);
 
-UnkStruct_ov7_0224BEFC *ov7_0224BE9C(u32 param0, SaveData *param1, BGL *param2)
+UnkStruct_ov7_0224BEFC *ov7_0224BE9C(u32 param0, SaveData *param1, BgConfig *param2)
 {
     UnkStruct_ov7_0224BEFC *v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov7_0224BEFC));
 
@@ -246,7 +242,7 @@ BOOL ov7_0224BF2C(UnkStruct_ov7_0224BEFC *param0)
         v1 = ov7_0224C9A4(&param0->unk_1E8);
 
         if ((v1 != 0xffffffff) && (v1 != 0xfffffffe)) {
-            sub_02019CB8(param0->unk_14, 3, 0, 0, 0, 32, 18, 17);
+            Bg_FillTilemapRect(param0->unk_14, 3, 0, 0, 0, 32, 18, 17);
 
             ov7_0224CA34(&param0->unk_1E8);
             ov7_0224C4E0(&param0->unk_1B8, param0->unk_1AC, param0->unk_18, Unk_ov7_0224F1B4, param0->unk_1E8.unk_12C);
@@ -372,12 +368,12 @@ static void ov7_0224C35C(UnkStruct_ov7_0224BEFC *param0)
     Font_LoadScreenIndicatorsPalette(0, 12 * 32, param0->unk_18);
     sub_0200DAA4(param0->unk_14, 3, (1 + (18 + 12)), 11, 0, param0->unk_18);
     Font_LoadTextPalette(0, 13 * 32, param0->unk_18);
-    sub_02019EBC(param0->unk_14, 3);
+    Bg_ClearTilemap(param0->unk_14, 3);
 }
 
 static void ov7_0224C3B8(UnkStruct_ov7_0224BEFC *param0)
 {
-    sub_02019EBC(param0->unk_14, 3);
+    Bg_ClearTilemap(param0->unk_14, 3);
     sub_0205D8CC(0, 1);
 }
 
@@ -391,17 +387,17 @@ static void ov7_0224C3E0(UnkStruct_ov7_0224BEFC *param0)
     CellActorCollection_Delete(param0->unk_1C);
 }
 
-static void ov7_0224C3EC(UnkStruct_ov7_0224C3EC *param0, BGL *param1, u32 param2, u32 param3)
+static void ov7_0224C3EC(UnkStruct_ov7_0224C3EC *param0, BgConfig *param1, u32 param2, u32 param3)
 {
     if (param0->unk_00 == 1) {
         return;
     }
 
     param0->unk_08 = param3;
-    param0->unk_04 = sub_0201A778(param2, 1);
+    param0->unk_04 = Window_New(param2, 1);
 
-    BGL_AddWindow(param1, param0->unk_04, 3, 2, 19, 27, 4, 12, ((1 + (18 + 12)) + 9));
-    BGL_FillWindow(param0->unk_04, 15);
+    Window_Add(param1, param0->unk_04, 3, 2, 19, 27, 4, 12, ((1 + (18 + 12)) + 9));
+    Window_FillTilemap(param0->unk_04, 15);
     sub_0200E060(param0->unk_04, 0, 1, 10);
 
     param0->unk_00 = 1;
@@ -413,9 +409,9 @@ static void ov7_0224C444(UnkStruct_ov7_0224C3EC *param0)
         return;
     }
 
-    sub_0201ACF4(param0->unk_04);
-    BGL_DeleteWindow(param0->unk_04);
-    sub_0201A928(param0->unk_04, 1);
+    Window_ClearAndCopyToVRAM(param0->unk_04);
+    Window_Remove(param0->unk_04);
+    Windows_Delete(param0->unk_04, 1);
 
     param0->unk_00 = 0;
 }
@@ -424,12 +420,12 @@ static void ov7_0224C468(UnkStruct_ov7_0224C3EC *param0, Strbuf *param1, u32 par
 {
     GF_ASSERT(param0->unk_10 == NULL);
 
-    BGL_FillWindow(param0->unk_04, 15);
+    Window_FillTilemap(param0->unk_04, 15);
 
     param0->unk_10 = Strbuf_Clone(param1, param2);
     param0->unk_0C = Text_AddPrinterWithParamsAndColor(param0->unk_04, FONT_MESSAGE, param0->unk_10, 0, 0, param0->unk_08, TEXT_COLOR(1, 2, 15), NULL);
 
-    sub_0201A954(param0->unk_04);
+    Window_CopyToVRAM(param0->unk_04);
 }
 
 static BOOL ov7_0224C4B8(UnkStruct_ov7_0224C3EC *param0)
@@ -500,7 +496,7 @@ static void ov7_0224C580(UnkStruct_ov7_0224C3EC *param0, MessageLoader *param1, 
     Strbuf_Free(v0);
 }
 
-static void ov7_0224C620(UnkStruct_ov7_0224C620 *param0, BGL *param1, MessageLoader *param2, u32 param3)
+static void ov7_0224C620(UnkStruct_ov7_0224C620 *param0, BgConfig *param1, MessageLoader *param2, u32 param3)
 {
     int v0;
 
@@ -508,8 +504,8 @@ static void ov7_0224C620(UnkStruct_ov7_0224C620 *param0, BGL *param1, MessageLoa
         return;
     }
 
-    param0->unk_04 = sub_0201A778(param3, 1);
-    BGL_AddWindow(param1, param0->unk_04, 3, 1, 11, 14, 6, 13, (((1 + (18 + 12)) + 9) + (27 * 4)));
+    param0->unk_04 = Window_New(param3, 1);
+    Window_Add(param1, param0->unk_04, 3, 1, 11, 14, 6, 13, (((1 + (18 + 12)) + 9) + (27 * 4)));
     param0->unk_08 = StringTemplate_Default(param3);
 
     for (v0 = 0; v0 < 3; v0++) {
@@ -517,7 +513,7 @@ static void ov7_0224C620(UnkStruct_ov7_0224C620 *param0, BGL *param1, MessageLoa
     }
 
     param0->unk_0C = Strbuf_Init(32, param3);
-    BGL_FillWindow(param0->unk_04, 15);
+    Window_FillTilemap(param0->unk_04, 15);
     param0->unk_00 = 1;
 }
 
@@ -535,9 +531,9 @@ static void ov7_0224C698(UnkStruct_ov7_0224C620 *param0)
 
     Strbuf_Free(param0->unk_0C);
     StringTemplate_Free(param0->unk_08);
-    sub_0201ACF4(param0->unk_04);
-    BGL_DeleteWindow(param0->unk_04);
-    sub_0201A928(param0->unk_04, 1);
+    Window_ClearAndCopyToVRAM(param0->unk_04);
+    Window_Remove(param0->unk_04);
+    Windows_Delete(param0->unk_04, 1);
 
     param0->unk_00 = 0;
 }
@@ -549,7 +545,7 @@ static void ov7_0224C6DC(UnkStruct_ov7_0224C620 *param0, u32 param1, u32 param2,
     StringTemplate_SetItemName(param0->unk_08, 0, param1 + 149);
     StringTemplate_SetNumber(param0->unk_08, 1, param2, 3, 1, 1);
     StringTemplate_SetNumber(param0->unk_08, 2, param3, 3, 1, 1);
-    BGL_FillWindow(param0->unk_04, 15);
+    Window_FillTilemap(param0->unk_04, 15);
 
     for (v0 = 0; v0 < 3; v0++) {
         StringTemplate_Format(param0->unk_08, param0->unk_0C, param0->unk_10[v0]);
@@ -559,7 +555,7 @@ static void ov7_0224C6DC(UnkStruct_ov7_0224C620 *param0, u32 param1, u32 param2,
     Window_Show(param0->unk_04, 0, (1 + (18 + 12)), 11);
 }
 
-static void ov7_0224C768(UnkStruct_ov7_0224C768 *param0, BGL *param1, u32 param2, const UnkStruct_ov7_0224F1B4 *param3, u32 param4, MessageLoader *param5, void *param6, UnkFuncPtr_ov7_0224C768 param7, CellActorCollection *param8)
+static void ov7_0224C768(UnkStruct_ov7_0224C768 *param0, BgConfig *param1, u32 param2, const UnkStruct_ov7_0224F1B4 *param3, u32 param4, MessageLoader *param5, void *param6, UnkFuncPtr_ov7_0224C768 param7, CellActorCollection *param8)
 {
     int v0;
     Strbuf *v1;
@@ -598,9 +594,9 @@ static void ov7_0224C768(UnkStruct_ov7_0224C768 *param0, BGL *param1, u32 param2
     param0->unk_120 = param4 + 1;
     param0->unk_130 = param6;
     param0->unk_134 = param7;
-    param0->unk_04 = sub_0201A778(param2, 1);
+    param0->unk_04 = Window_New(param2, 1);
 
-    BGL_AddWindow(param1, param0->unk_04, 3, 17, 1, 14, 16, 13, ((((1 + (18 + 12)) + 9) + (27 * 4)) + (14 * 6)));
+    Window_Add(param1, param0->unk_04, 3, 17, 1, 14, 16, 13, ((((1 + (18 + 12)) + 9) + (27 * 4)) + (14 * 6)));
 
     param0->unk_124 = StringTemplate_Default(param2);
     param0->unk_128 = Strbuf_Init(32, param2);
@@ -673,9 +669,9 @@ static void ov7_0224C934(UnkStruct_ov7_0224C768 *param0)
     }
 
     sub_02001384(param0->unk_08, NULL, NULL);
-    sub_0201ACF4(param0->unk_04);
-    BGL_DeleteWindow(param0->unk_04);
-    sub_0201A928(param0->unk_04, 1);
+    Window_ClearAndCopyToVRAM(param0->unk_04);
+    Window_Remove(param0->unk_04);
+    Windows_Delete(param0->unk_04, 1);
 
     param0->unk_00 = 1;
 }
@@ -766,7 +762,7 @@ static void ov7_0224CB70(UnkStruct_ov7_0224C768 *param0)
     }
 }
 
-static void ov7_0224CBD0(UnkStruct_ov7_0224CBE4 *param0, UnkStruct_ov7_0224C620 *param1, const UnkStruct_ov7_0224F1B4 *param2, Bag *param3, u32 param4, BGL *param5)
+static void ov7_0224CBD0(UnkStruct_ov7_0224CBE4 *param0, UnkStruct_ov7_0224C620 *param1, const UnkStruct_ov7_0224F1B4 *param2, Bag *param3, u32 param4, BgConfig *param5)
 {
     param0->unk_04 = param5;
     param0->unk_08 = param1;
@@ -784,14 +780,14 @@ static void ov7_0224CBE4(void *param0, u32 param1)
         v1 = Bag_GetItemQuantity(v0->unk_10, v0->unk_0C[param1].unk_04 + 149, v0->unk_00);
         ov7_0224C6DC(v0->unk_08, v0->unk_0C[param1].unk_04, v0->unk_0C[param1].unk_08, v1);
     } else {
-        sub_02019CB8(v0->unk_04, 3, 0, 1 - 1, 11 - 1, 14 + 2, 6 + 2, 17);
-        sub_02019448(v0->unk_04, 3);
+        Bg_FillTilemapRect(v0->unk_04, 3, 0, 1 - 1, 11 - 1, 14 + 2, 6 + 2, 17);
+        Bg_CopyTilemapBufferToVRAM(v0->unk_04, 3);
     }
 }
 
-static void ov7_0224CC44(UnkStruct_ov7_0224CC44 *param0, BGL *param1, u32 param2)
+static void ov7_0224CC44(UnkStruct_ov7_0224CC44 *param0, BgConfig *param1, u32 param2)
 {
-    static const UnkStruct_ov61_0222C884 v0 = {
+    static const WindowTemplate v0 = {
         3,
         24,
         13,

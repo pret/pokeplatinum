@@ -8,9 +8,9 @@
 #include "overlay005/struct_ov5_021D5894.h"
 
 #include "ascii_util.h"
+#include "graphics.h"
 #include "heap.h"
 #include "rtc.h"
-#include "unk_02006E3C.h"
 
 typedef struct UnkStruct_ov5_021D538C_t {
     u32 unk_00;
@@ -147,7 +147,7 @@ static u32 ov5_021D53D4(u32 param0, UnkStruct_ov5_021D52F4 **param1)
     char v7[256];
     UnkStruct_ov5_021D52F4 *v8;
 
-    v4 = sub_02006FE8(176, param0, 0, 4, 0);
+    v4 = LoadMemberFromNARC(176, param0, 0, 4, 0);
     v3 = v4;
     v2 = 0;
 

@@ -4,11 +4,9 @@
 #include "struct_decls/battle_system.h"
 #include "struct_decls/cell_actor_data.h"
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/sprite_template.h"
 
 #include "battle/struct_ov16_02264408.h"
@@ -19,6 +17,8 @@
 #include "overlay012/struct_ov12_02223764.h"
 #include "overlay012/struct_ov12_022380DC.h"
 
+#include "bg_window.h"
+#include "palette.h"
 #include "spl.h"
 #include "sys_task_manager.h"
 
@@ -42,7 +42,7 @@ u16 ov12_02220248(UnkStruct_ov12_0221FCDC *param0);
 UnkStruct_02014014 *ov12_02220250(UnkStruct_ov12_0221FCDC *param0);
 UnkStruct_02014014 *ov12_02220260(UnkStruct_ov12_0221FCDC *param0, int param1);
 SPLEmitter *ov12_0222026C(UnkStruct_ov12_0221FCDC *param0, int param1);
-BGL *ov12_02220278(UnkStruct_ov12_0221FCDC *param0);
+BgConfig *ov12_02220278(UnkStruct_ov12_0221FCDC *param0);
 s32 ov12_02220280(UnkStruct_ov12_0221FCDC *param0, int param1);
 CellActorData *ov12_02220298(UnkStruct_ov12_0221FCDC *param0, int param1);
 CellActorData *ov12_022202C0(UnkStruct_ov12_0221FCDC *param0, int param1);

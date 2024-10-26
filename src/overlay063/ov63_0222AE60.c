@@ -3,16 +3,13 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
-
 #include "overlay064/struct_ov64_022302EC.h"
 
 #include "cell_actor.h"
 #include "heap.h"
 #include "narc.h"
+#include "palette.h"
 #include "sprite_resource.h"
-#include "unk_02002F38.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 
@@ -1130,15 +1127,15 @@ static void ov63_0222BC80(UnkStruct_ov63_0222AE60 *param0, SpriteResource *param
     NNSG2dPaletteData *v0;
     u32 v1[2];
 
-    v0 = SpriteResource_GetPaletteData(param1);
+    v0 = SpriteResource_GetPaletteFade(param1);
     v1[0] = sub_0200A760(param1, NNS_G2D_VRAM_TYPE_2DMAIN);
     v1[1] = sub_0200A760(param1, NNS_G2D_VRAM_TYPE_2DSUB);
 
     if (v1[0] != (NNS_G2D_VRAM_ADDR_NOT_INITIALIZED)) {
-        sub_02002FBC(param0->unk_04, v0->pRawData, 2, v1[0] * 16, param2 * 32);
+        PaletteData_LoadBuffer(param0->unk_04, v0->pRawData, 2, v1[0] * 16, param2 * 32);
     }
 
     if (v1[1] != (NNS_G2D_VRAM_ADDR_NOT_INITIALIZED)) {
-        sub_02002FBC(param0->unk_04, v0->pRawData, 3, v1[1] * 16, param2 * 32);
+        PaletteData_LoadBuffer(param0->unk_04, v0->pRawData, 3, v1[1] * 16, param2 * 32);
     }
 }

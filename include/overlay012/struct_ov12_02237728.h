@@ -2,8 +2,9 @@
 #define POKEPLATINUM_STRUCT_OV12_02237728_H
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
+
+#include "palette.h"
 
 typedef struct BallThrow {
     int type;

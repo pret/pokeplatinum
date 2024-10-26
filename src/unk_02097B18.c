@@ -18,23 +18,23 @@
 #include "savedata/save_table.h"
 
 #include "bag.h"
+#include "bg_window.h"
 #include "game_options.h"
 #include "game_overlay.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "palette.h"
 #include "party.h"
 #include "pokemon.h"
 #include "save_player.h"
 #include "savedata.h"
-#include "unk_02002F38.h"
 #include "unk_020041CC.h"
 #include "unk_0200762C.h"
 #include "unk_0200F174.h"
 #include "unk_02015F84.h"
 #include "unk_02017728.h"
-#include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_02023FCC.h"
@@ -142,14 +142,14 @@ static int sub_02097B18(OverlayManager *param0, int *param1)
         }
     }
 
-    v0->unk_D4.unk_10 = sub_02018340(53);
+    v0->unk_D4.unk_10 = BgConfig_New(53);
     sub_0201DBEC(64, 53);
-    v0->unk_D4.unk_14 = sub_02002F38(53);
-    sub_02003858(v0->unk_D4.unk_14, 1);
-    sub_02002F70(v0->unk_D4.unk_14, 0, 0x200, 53);
-    sub_02002F70(v0->unk_D4.unk_14, 1, 0x200, 53);
-    sub_02002F70(v0->unk_D4.unk_14, 2, 0x200, 53);
-    sub_02002F70(v0->unk_D4.unk_14, 3, 0x200, 53);
+    v0->unk_D4.unk_14 = PaletteData_New(53);
+    PaletteData_SetAutoTransparent(v0->unk_D4.unk_14, 1);
+    PaletteData_AllocBuffer(v0->unk_D4.unk_14, 0, 0x200, 53);
+    PaletteData_AllocBuffer(v0->unk_D4.unk_14, 1, 0x200, 53);
+    PaletteData_AllocBuffer(v0->unk_D4.unk_14, 2, 0x200, 53);
+    PaletteData_AllocBuffer(v0->unk_D4.unk_14, 3, 0x200, 53);
 
     ov76_0223EB64(v0->unk_D4.unk_10);
     ov76_0223BF10();
@@ -233,19 +233,19 @@ static int sub_02097D88(OverlayManager *param0, int *param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
-    sub_02019044(v0->unk_D4.unk_10, 1);
-    sub_02019044(v0->unk_D4.unk_10, 2);
-    sub_02019044(v0->unk_D4.unk_10, 3);
-    sub_02019044(v0->unk_D4.unk_10, 4);
-    sub_02019044(v0->unk_D4.unk_10, 5);
-    sub_02019044(v0->unk_D4.unk_10, 6);
-    sub_02019044(v0->unk_D4.unk_10, 7);
+    Bg_FreeTilemapBuffer(v0->unk_D4.unk_10, 1);
+    Bg_FreeTilemapBuffer(v0->unk_D4.unk_10, 2);
+    Bg_FreeTilemapBuffer(v0->unk_D4.unk_10, 3);
+    Bg_FreeTilemapBuffer(v0->unk_D4.unk_10, 4);
+    Bg_FreeTilemapBuffer(v0->unk_D4.unk_10, 5);
+    Bg_FreeTilemapBuffer(v0->unk_D4.unk_10, 6);
+    Bg_FreeTilemapBuffer(v0->unk_D4.unk_10, 7);
     Heap_FreeToHeap(v0->unk_D4.unk_10);
-    sub_02002FA0(v0->unk_D4.unk_14, 0);
-    sub_02002FA0(v0->unk_D4.unk_14, 1);
-    sub_02002FA0(v0->unk_D4.unk_14, 2);
-    sub_02002FA0(v0->unk_D4.unk_14, 3);
-    sub_02002F54(v0->unk_D4.unk_14);
+    PaletteData_FreeBuffer(v0->unk_D4.unk_14, 0);
+    PaletteData_FreeBuffer(v0->unk_D4.unk_14, 1);
+    PaletteData_FreeBuffer(v0->unk_D4.unk_14, 2);
+    PaletteData_FreeBuffer(v0->unk_D4.unk_14, 3);
+    PaletteData_Free(v0->unk_D4.unk_14);
     sub_02097F20(v0->unk_00, v0->unk_3C4[0]);
     Heap_FreeToHeap(v0->unk_428);
     ov76_0223B678(v0);

@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/ov19_021D79F8.h"
@@ -18,10 +16,11 @@
 #include "overlay019/struct_ov19_021DCD18.h"
 
 #include "cell_actor.h"
+#include "graphics.h"
 #include "heap.h"
+#include "narc.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
 #include "unk_0201D15C.h"
 
 typedef struct {
@@ -81,8 +80,8 @@ BOOL ov19_021D8B54(UnkStruct_ov19_021D8E00 *param0, UnkStruct_ov19_021D61B0 *par
     param0->unk_10 = NULL;
     param0->unk_754 = 0;
     param0->unk_78E = 1;
-    param0->unk_14 = sub_02007204(param4, 13, 1, &(param0->unk_1C), 10);
-    param0->unk_18 = sub_02007220(param4, 14, 1, &(param0->unk_20), 10);
+    param0->unk_14 = Graphics_GetCellBankFromOpenNARC(param4, 13, 1, &(param0->unk_1C), 10);
+    param0->unk_18 = Graphics_GetAnimBankFromOpenNARC(param4, 14, 1, &(param0->unk_20), 10);
 
     if ((param0->unk_14 == NULL) || (param0->unk_18 == NULL)) {
         return 0;
@@ -98,7 +97,7 @@ void ov19_021D8C1C(UnkStruct_ov19_021D8E00 *param0, NARC *param1)
 
     NNS_G2dInitImageProxy(&(param0->unk_24));
 
-    sub_0200718C(param1, 12, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0 * 0x20, 10, &(param0->unk_24));
+    Graphics_LoadImageMappingFromOpenNARC(param1, 12, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0 * 0x20, 10, &(param0->unk_24));
     ov19_021D783C(&v0, &(param0->unk_24), ov19_021D77D0(param0->unk_794), param0->unk_1C, param0->unk_20, ((param0->unk_785 == 1) ? 1 : 2));
     ov19_021D9D48(&param0->unk_764, &param0->unk_768, &param0->unk_785, param0);
 

@@ -1,16 +1,16 @@
 #ifndef POKEPLATINUM_STRUCT_0207A778_H
 #define POKEPLATINUM_STRUCT_0207A778_H
 
-#include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02027F8C_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay006/battle_params.h"
 
+#include "bg_window.h"
+#include "palette.h"
+
 typedef struct {
     BattleParams *unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     Window *unk_08;
     PaletteData *unk_0C;
     UnkStruct_02027F8C *unk_10[4];

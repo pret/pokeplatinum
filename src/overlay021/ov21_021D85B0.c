@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
@@ -20,9 +19,11 @@
 #include "overlay021/struct_ov21_021E6B20.h"
 #include "overlay021/struct_pokedexstatus.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "font.h"
 #include "heap.h"
+#include "narc.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "text.h"
@@ -31,7 +32,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A9DC.h"
-#include "unk_02018340.h"
 
 typedef struct {
     int *unk_00;
@@ -534,10 +534,10 @@ static int ov21_021D89F4(void *param0, UnkStruct_ov21_021E6B20 *param1, const vo
 
 static void ov21_021D8A7C(UnkStruct_ov21_021D9320 *param0, UnkStruct_ov21_021D879C *param1, const UnkStruct_ov21_021D8788 *param2, const UnkStruct_ov21_021D87CC *param3, int param4)
 {
-    sub_02019EBC(param1->unk_00->unk_00, 2);
-    sub_02019EBC(param1->unk_00->unk_00, 1);
-    BGL_FillWindow(&param1->unk_00->unk_04, 0);
-    sub_0201C2B4(&param1->unk_00->unk_04, 7);
+    Bg_ClearTilemap(param1->unk_00->unk_00, 2);
+    Bg_ClearTilemap(param1->unk_00->unk_00, 1);
+    Window_FillTilemap(&param1->unk_00->unk_04, 0);
+    Window_SetPalette(&param1->unk_00->unk_04, 7);
 
     ov21_021D8C00(param1);
     ov21_021D8B8C(param1, param2, param4);
@@ -553,8 +553,8 @@ static void ov21_021D8A7C(UnkStruct_ov21_021D9320 *param0, UnkStruct_ov21_021D87
     ov21_021D9240(param1, param2->unk_1C, param4);
     ov21_021D924C(param0, param2->unk_20);
 
-    BGL_SetPriority(1, 1);
-    BGL_SetPriority(2, 0);
+    Bg_SetPriority(1, 1);
+    Bg_SetPriority(2, 0);
 }
 
 static void ov21_021D8B40(UnkStruct_ov21_021D9320 *param0, UnkStruct_ov21_021D879C *param1)
@@ -563,11 +563,11 @@ static void ov21_021D8B40(UnkStruct_ov21_021D9320 *param0, UnkStruct_ov21_021D87
     ov21_021D8CC8(param0, param1);
     ov21_021D8BEC(param0, param1);
 
-    sub_02019EBC(param1->unk_00->unk_00, 1);
-    BGL_FillWindow(&param1->unk_00->unk_04, 0);
-    sub_0201C2B4(&param1->unk_00->unk_04, 0);
-    BGL_SetPriority(1, 0);
-    BGL_SetPriority(2, 1);
+    Bg_ClearTilemap(param1->unk_00->unk_00, 1);
+    Window_FillTilemap(&param1->unk_00->unk_04, 0);
+    Window_SetPalette(&param1->unk_00->unk_04, 0);
+    Bg_SetPriority(1, 0);
+    Bg_SetPriority(2, 1);
 }
 
 static void ov21_021D8B8C(UnkStruct_ov21_021D879C *param0, const UnkStruct_ov21_021D8788 *param1, int param2)
@@ -681,7 +681,7 @@ static void ov21_021D8DD4(UnkStruct_ov21_021D879C *param0, int param1, int param
     Strbuf *v1;
     int v2;
 
-    BGL_WindowColor(&v0->unk_04, 0, 24, 8, 208, 32);
+    Window_FillRectWithColor(&v0->unk_04, 0, 24, 8, 208, 32);
 
     switch (param1) {
     case 0:
@@ -716,7 +716,7 @@ static void ov21_021D8E68(UnkStruct_ov21_021D879C *param0, int param1)
     UnkStruct_ov21_021D13FC *v0 = param0->unk_00;
     Strbuf *v1;
 
-    BGL_WindowColor(&v0->unk_04, 0, 24, 8, 208, 32);
+    Window_FillRectWithColor(&v0->unk_04, 0, 24, 8, 208, 32);
 
     v1 = ov21_021D1CE0(93, param1);
 
@@ -788,7 +788,7 @@ static void ov21_021D8F98(UnkStruct_ov21_021D879C *param0, int param1, int param
 
     v0 = ov21_021D27B8(param0->unk_00, 43, 1, &v1, param2);
 
-    sub_020198C0(param0->unk_00->unk_00, 3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
+    Bg_LoadToTilemapRect(param0->unk_00->unk_00, 3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
 
     v2 = 6;
@@ -816,9 +816,9 @@ static void ov21_021D8F98(UnkStruct_ov21_021D879C *param0, int param1, int param
 
     v0 = ov21_021D27B8(param0->unk_00, v4, 1, &v1, param2);
 
-    sub_020198C0(param0->unk_00->unk_00, 3, v1->rawData, v2, v3, v1->screenWidth / 8, v1->screenHeight / 8);
+    Bg_LoadToTilemapRect(param0->unk_00->unk_00, 3, v1->rawData, v2, v3, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
-    sub_0201C3C0(param0->unk_00->unk_00, 3);
+    Bg_ScheduleTilemapTransfer(param0->unk_00->unk_00, 3);
 }
 
 static void ov21_021D9054(UnkStruct_ov21_021D879C *param0, int param1, int param2)
@@ -827,7 +827,7 @@ static void ov21_021D9054(UnkStruct_ov21_021D879C *param0, int param1, int param
     Strbuf *v1;
     int v2;
 
-    BGL_WindowColor(&v0->unk_04, 0, 88, 52, 80, 16);
+    Window_FillRectWithColor(&v0->unk_04, 0, 88, 52, 80, 16);
 
     v2 = 81 + param1;
     v1 = ov21_021D1CE0(v2, param2);
@@ -847,7 +847,7 @@ static void ov21_021D90B4(UnkStruct_ov21_021D879C *param0, int param1, int param
     int v2;
     int v3;
 
-    BGL_WindowColor(&v0->unk_04, 0, 88, 77, 80, 16);
+    Window_FillRectWithColor(&v0->unk_04, 0, 88, 77, 80, 16);
 
     switch (param1) {
     case 0:
@@ -899,7 +899,7 @@ static void ov21_021D915C(UnkStruct_ov21_021D879C *param0, int param1, int param
     int v2;
     int v3;
 
-    BGL_WindowColor(&v0->unk_04, 0, 88, param3, 80, 16);
+    Window_FillRectWithColor(&v0->unk_04, 0, 88, param3, 80, 16);
 
     switch (param1) {
     case 0:
@@ -1059,8 +1059,8 @@ static void ov21_021D9390(UnkStruct_ov21_021D9320 *param0, UnkStruct_ov21_021D87
         ov21_021D93F4(param1, param3);
     } else if (param2->unk_34 == 0) {
         CellActor_SetDrawFlag(param0->unk_58, 0);
-        BGL_FillWindow(&param1->unk_00->unk_04, 0);
-        sub_0201A9A4(&param1->unk_00->unk_04);
+        Window_FillTilemap(&param1->unk_00->unk_04, 0);
+        Window_ScheduleCopyToVRAM(&param1->unk_00->unk_04);
     }
 
     v1 = 4 - param2->unk_34;
@@ -1076,7 +1076,7 @@ static void ov21_021D93F4(UnkStruct_ov21_021D879C *param0, int param1)
     Strbuf *v1;
     int v2;
 
-    BGL_FillWindow(&param0->unk_00->unk_04, 0);
+    Window_FillTilemap(&param0->unk_00->unk_04, 0);
 
     v1 = ov21_021D1CE0(94, param1);
 
@@ -1087,15 +1087,15 @@ static void ov21_021D93F4(UnkStruct_ov21_021D879C *param0, int param1)
     }
 
     Strbuf_Free(v1);
-    BGL_SetPriority(1, 0);
-    BGL_SetPriority(2, 1);
+    Bg_SetPriority(1, 0);
+    Bg_SetPriority(2, 1);
 }
 
 static void ov21_021D9454(UnkStruct_ov21_021D879C *param0, UnkStruct_ov21_021D9320 *param1, int param2)
 {
-    BGL_SetPriority(1, 1);
-    BGL_SetPriority(2, 0);
-    BGL_FillWindow(&param0->unk_00->unk_04, 0);
+    Bg_SetPriority(1, 1);
+    Bg_SetPriority(2, 0);
+    Window_FillTilemap(&param0->unk_00->unk_04, 0);
 
     ov21_021D8F98(param0, param1->unk_00, param2);
     ov21_021D8DD4(param0, param1->unk_00, param2);

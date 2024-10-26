@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02023FCC_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0208C06C.h"
 
 #include "overlay061/ov61_0222B008.h"
@@ -23,22 +22,22 @@
 #include "overlay062/struct_ov62_02248CDC.h"
 #include "overlay062/struct_ov62_02249380.h"
 
+#include "bg_window.h"
 #include "game_records.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
+#include "palette.h"
 #include "play_time.h"
 #include "save_player.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_02002F38.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
-#include "unk_02018340.h"
 #include "unk_02023FCC.h"
 #include "unk_02030A80.h"
 #include "unk_0208B284.h"
@@ -340,15 +339,15 @@ static void ov62_0223CF2C (UnkStruct_0208C06C * param0)
 
     for (v3 = 0; v3 < 2; v3++) {
         v1 = &v0->unk_84[v3];
-        BGL_AddWindow(param0->unk_14.unk_10, v1, 6, Unk_ov62_02248EA0[v3][0], Unk_ov62_02248EA0[v3][1], Unk_ov62_02248EA0[v3][2], Unk_ov62_02248EA0[v3][3], 14, v2);
+        Window_Add(param0->unk_14.unk_10, v1, 6, Unk_ov62_02248EA0[v3][0], Unk_ov62_02248EA0[v3][1], Unk_ov62_02248EA0[v3][2], Unk_ov62_02248EA0[v3][3], 14, v2);
         v2 += (Unk_ov62_02248EA0[v3][2] * Unk_ov62_02248EA0[v3][3]);
-        BGL_FillWindow(v1, 0x0);
+        Window_FillTilemap(v1, 0x0);
 
         v5 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 80 + v3);
         v4 = ov62_0223429C(v1, v5);
 
         Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, v5, v4, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 0), NULL);
-        sub_0201A9A4(v1);
+        Window_ScheduleCopyToVRAM(v1);
         Strbuf_Free(v5);
     }
 }
@@ -360,8 +359,8 @@ static void ov62_0223CFE0 (UnkStruct_0208C06C * param0)
     int v2;
 
     for (v2 = 0; v2 < 2; v2++) {
-        sub_0201ACF4(&v0->unk_84[v2]);
-        BGL_DeleteWindow(&v0->unk_84[v2]);
+        Window_ClearAndCopyToVRAM(&v0->unk_84[v2]);
+        Window_Remove(&v0->unk_84[v2]);
     }
 }
 
@@ -387,20 +386,20 @@ static void ov62_0223D004 (UnkStruct_0208C06C * param0)
         Window_Init(v1);
 
         if (v0->unk_1C == 0) {
-            BGL_AddWindow(param0->unk_14.unk_10, v1, 2, Unk_ov62_02248EC0[v3][0], Unk_ov62_02248EC0[v3][1], Unk_ov62_02248EC0[v3][2], Unk_ov62_02248EC0[v3][3], 14, v2);
+            Window_Add(param0->unk_14.unk_10, v1, 2, Unk_ov62_02248EC0[v3][0], Unk_ov62_02248EC0[v3][1], Unk_ov62_02248EC0[v3][2], Unk_ov62_02248EC0[v3][3], 14, v2);
             v2 += (Unk_ov62_02248EC0[v3][2] * Unk_ov62_02248EC0[v3][3]);
         } else {
-            BGL_AddWindow(param0->unk_14.unk_10, v1, 2, Unk_ov62_02248EE0[v3][0], Unk_ov62_02248EE0[v3][1], Unk_ov62_02248EE0[v3][2], Unk_ov62_02248EE0[v3][3], 14, v2);
+            Window_Add(param0->unk_14.unk_10, v1, 2, Unk_ov62_02248EE0[v3][0], Unk_ov62_02248EE0[v3][1], Unk_ov62_02248EE0[v3][2], Unk_ov62_02248EE0[v3][3], 14, v2);
             v2 += (Unk_ov62_02248EE0[v3][2] * Unk_ov62_02248EE0[v3][3]);
         }
 
-        BGL_FillWindow(v1, 0x0);
+        Window_FillTilemap(v1, 0x0);
 
         v5 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 67);
         v4 = 0;
 
         Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, v5, v4, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 0), NULL);
-        sub_0201A9A4(v1);
+        Window_ScheduleCopyToVRAM(v1);
         Strbuf_Free(v5);
     }
 }
@@ -422,8 +421,8 @@ static void ov62_0223D100 (UnkStruct_0208C06C * param0)
     }
 
     for (v3 = 0; v3 < v6; v3++) {
-        sub_0201ACF4(&v0->unk_24[v3]);
-        BGL_DeleteWindow(&v0->unk_24[v3]);
+        Window_ClearAndCopyToVRAM(&v0->unk_24[v3]);
+        Window_Remove(&v0->unk_24[v3]);
     }
 }
 
@@ -556,7 +555,7 @@ asm static void ov62_0223D160 (UnkStruct_0208C06C * param0)
     add r0, r4, #0
     add r0, #0x24
     mov r1, #0
-    bl BGL_FillWindow
+    bl Window_FillTilemap
     ldr r0, [r4, #0x1c]
     cmp r0, #0
     ldr r0, [r5, #0x4c]
@@ -596,13 +595,13 @@ asm static void ov62_0223D160 (UnkStruct_0208C06C * param0)
     bl Text_AddPrinterWithParamsAndColor
     add r0, r4, #0
     add r0, #0x24
-    bl sub_0201A9A4
+    bl Window_ScheduleCopyToVRAM
     add r0, r7, #0
     bl Strbuf_Free
     add r0, r4, #0
     add r0, #0x34
     mov r1, #0
-    bl BGL_FillWindow
+    bl Window_FillTilemap
     ldr r0, [r4, #0x1c]
     cmp r0, #0
     ldr r0, [r5, #0x48]
@@ -630,7 +629,7 @@ asm static void ov62_0223D160 (UnkStruct_0208C06C * param0)
     bl Text_AddPrinterWithParamsAndColor
     add r0, r4, #0
     add r0, #0x34
-    bl sub_0201A9A4
+    bl Window_ScheduleCopyToVRAM
     add r0, r7, #0
     bl Strbuf_Free
     ldr r0, = 0x88C
@@ -771,7 +770,7 @@ asm static void ov62_0223D160 (UnkStruct_0208C06C * param0)
     bl Text_AddPrinterWithParamsAndColor
     add r4, #0x34
     add r0, r4, #0
-    bl sub_0201A9A4
+    bl Window_ScheduleCopyToVRAM
     add r0, r7, #0
     bl Strbuf_Free
     ldr r0, [sp, #0x1c]
@@ -905,10 +904,10 @@ static BOOL ov62_0223D5A4 (UnkStruct_0208C06C * param0)
     ov62_0223D518(v0);
     v0->unk_744 = param0->unk_14.unk_34;
 
-    sub_02019EBC(param0->unk_14.unk_10, 2);
-    sub_02019EBC(param0->unk_14.unk_10, 3);
-    sub_02019EBC(param0->unk_14.unk_10, 6);
-    sub_02019EBC(param0->unk_14.unk_10, 7);
+    Bg_ClearTilemap(param0->unk_14.unk_10, 2);
+    Bg_ClearTilemap(param0->unk_14.unk_10, 3);
+    Bg_ClearTilemap(param0->unk_14.unk_10, 6);
+    Bg_ClearTilemap(param0->unk_14.unk_10, 7);
 
     ov62_022315C8(&v0->unk_00, &v0->unk_04, 0);
     v0->unk_DC = sub_02023FCC(Unk_ov62_02248E94, NELEMS(Unk_ov62_02248E94), ov62_0223D540, param0, 102);
@@ -927,9 +926,9 @@ static BOOL ov62_0223D644 (UnkStruct_0208C06C * param0)
             param0->unk_08++;
         }
 
-        sub_02003A2C(param0->unk_14.unk_14, 2, 0xC, v0->unk_08, param0->unk_14.unk_44);
-        sub_02003A2C(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
-        sub_02003A2C(param0->unk_14.unk_14, 1, 0x2, v0->unk_08, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 2, 0xC, v0->unk_08, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0x2, v0->unk_08, param0->unk_14.unk_44);
         break;
     case 1:
         ov62_02234540(param0, 1);
@@ -937,15 +936,15 @@ static BOOL ov62_0223D644 (UnkStruct_0208C06C * param0)
         ov62_0223D424(param0);
         ov62_02234540(param0, 0);
 
-        BGL_SetPriority(0, 1);
-        BGL_SetPriority(1, 3);
-        BGL_SetPriority(2, 0);
-        BGL_SetPriority(3, 1);
+        Bg_SetPriority(0, 1);
+        Bg_SetPriority(1, 3);
+        Bg_SetPriority(2, 0);
+        Bg_SetPriority(3, 1);
 
-        BGL_SetPriority(4, 1);
-        BGL_SetPriority(5, 3);
-        BGL_SetPriority(6, 0);
-        BGL_SetPriority(7, 2);
+        Bg_SetPriority(4, 1);
+        Bg_SetPriority(5, 3);
+        Bg_SetPriority(6, 0);
+        Bg_SetPriority(7, 2);
 
         ov62_0223376C(param0, 0);
         sub_0208B9E0(param0->unk_6F0, 0);
@@ -1058,10 +1057,10 @@ static BOOL ov62_0223D744 (UnkStruct_0208C06C * param0)
         ov62_0223146C(param0);
         ov62_02234540(param0, 0);
 
-        sub_02019EBC(param0->unk_14.unk_10, 2);
-        sub_02019EBC(param0->unk_14.unk_10, 6);
-        sub_02019EBC(param0->unk_14.unk_10, 3);
-        sub_02019EBC(param0->unk_14.unk_10, 7);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 2);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 6);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 3);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 7);
         ov62_0223376C(param0, 1);
         param0->unk_08++;
         break;
@@ -1073,13 +1072,13 @@ static BOOL ov62_0223D744 (UnkStruct_0208C06C * param0)
         if (ov62_02231664(&v0->unk_08, 0)) {
             ov62_022318E8(param0);
             ov62_02231688(&v0->unk_08);
-            sub_02003A2C(param0->unk_14.unk_14, 2, 0xC, 16, param0->unk_14.unk_44);
+            PaletteData_BlendMulti(param0->unk_14.unk_14, 2, 0xC, 16, param0->unk_14.unk_44);
             ov62_0222FB44(param0, 1, 1, param0->unk_10);
             ov62_0222FB60(param0, 5);
             Heap_FreeToHeap(v0);
         } else {
-            sub_02003A2C(param0->unk_14.unk_14, 1, 0x2, v0->unk_08, param0->unk_14.unk_44);
-            sub_02003A2C(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
+            PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0x2, v0->unk_08, param0->unk_14.unk_44);
+            PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
         }
         break;
     default:
@@ -1099,10 +1098,10 @@ static BOOL ov62_0223DAE8 (UnkStruct_0208C06C * param0)
 
     switch (param0->unk_08) {
     case 0:
-        sub_020070E8(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
-        sub_020070E8(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
-        sub_0200710C(param0->unk_14.unk_00, 33, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
-        sub_0200710C(param0->unk_14.unk_00, 34, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, 33, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, 34, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
 
         ov62_0223D004(param0);
         ov62_0223D160(param0);
@@ -1126,8 +1125,8 @@ static BOOL ov62_0223DAE8 (UnkStruct_0208C06C * param0)
             param0->unk_08++;
         }
 
-        sub_02003A2C(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
-        sub_02003A2C(param0->unk_14.unk_14, 2, 0xC, v0->unk_08, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 2, 0xC, v0->unk_08, param0->unk_14.unk_44);
         break;
     default:
         ov62_0222FB60(param0, 6);
@@ -1178,8 +1177,8 @@ static BOOL ov62_0223DC6C (UnkStruct_0208C06C * param0)
             param0->unk_08++;
         }
 
-        sub_02003A2C(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
-        sub_02003A2C(param0->unk_14.unk_14, 2, 0xC, v0->unk_08, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 2, 0xC, v0->unk_08, param0->unk_14.unk_44);
         break;
     default:
         ov62_0222FB60(param0, 8);
@@ -1208,10 +1207,10 @@ static BOOL ov62_0223DD44 (UnkStruct_0208C06C * param0)
         ov62_02231688(&v0->unk_08);
         ov62_0223146C(param0);
         ov62_02234540(param0, 0);
-        sub_02019EBC(param0->unk_14.unk_10, 2);
-        sub_02019EBC(param0->unk_14.unk_10, 6);
-        sub_02019EBC(param0->unk_14.unk_10, 3);
-        sub_02019EBC(param0->unk_14.unk_10, 7);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 2);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 6);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 3);
+        Bg_ClearTilemap(param0->unk_14.unk_10, 7);
         ov62_0223376C(param0, 1);
         param0->unk_08++;
         break;
@@ -1223,13 +1222,13 @@ static BOOL ov62_0223DD44 (UnkStruct_0208C06C * param0)
         if (ov62_02231664(&v0->unk_08, 0)) {
             ov62_022318E8(param0);
             ov62_02231688(&v0->unk_08);
-            sub_02003A2C(param0->unk_14.unk_14, 2, 0xC, 16, param0->unk_14.unk_44);
+            PaletteData_BlendMulti(param0->unk_14.unk_14, 2, 0xC, 16, param0->unk_14.unk_44);
             ov62_0222FB44(param0, 1, 1, param0->unk_10);
             ov62_0222FB60(param0, 5);
             Heap_FreeToHeap(v0);
         } else {
-            sub_02003A2C(param0->unk_14.unk_14, 1, 0x2, v0->unk_08, param0->unk_14.unk_44);
-            sub_02003A2C(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
+            PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0x2, v0->unk_08, param0->unk_14.unk_44);
+            PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
         }
 
         break;

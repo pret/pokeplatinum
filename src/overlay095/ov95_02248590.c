@@ -3,10 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay095/ov95_02246C20.h"
 #include "overlay095/ov95_022476F0.h"
 #include "overlay095/struct_ov95_02247004_decl.h"
@@ -15,19 +13,18 @@
 #include "overlay095/struct_ov95_02247628_decl.h"
 #include "overlay095/struct_ov95_0224773C_decl.h"
 #include "overlay095/struct_ov95_02247958_decl.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 #include "overlay115/camera_angle.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "enums.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_0200F174.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0202419C.h"
 
@@ -130,7 +127,7 @@ typedef struct {
     UnkStruct_ov95_02247568 unk_0C;
     CellActor *unk_1C[20][2];
     u32 unk_BC;
-    BGL *unk_C0;
+    BgConfig *unk_C0;
     UnkStruct_ov95_02247004 *unk_C4;
     BOOL unk_C8;
     UnkStruct_ov95_022472C4 *unk_CC;
@@ -155,7 +152,7 @@ typedef struct {
 typedef struct {
     UnkStruct_ov95_02248688 *unk_00;
     UnkStruct_ov95_02248E5C unk_04;
-    BGL *unk_154;
+    BgConfig *unk_154;
     fx32 unk_158;
     fx32 unk_15C;
     fx32 unk_160;
@@ -424,13 +421,13 @@ static void ov95_022488A4(UnkStruct_ov95_02248688 *param0)
         GX_VRAM_TEX_0_A,
         GX_VRAM_TEXPLTT_0123_E
     };
-    static const UnkStruct_ov84_0223BA5C v1 = {
+    static const GraphicsModes v1 = {
         GX_DISPMODE_GRAPHICS,
         GX_BGMODE_4,
         GX_BGMODE_4,
         GX_BG0_AS_3D
     };
-    static const UnkStruct_ov97_0222DB78 v2 = {
+    static const BgTemplate v2 = {
         0,
         0,
         0,
@@ -445,7 +442,7 @@ static void ov95_022488A4(UnkStruct_ov95_02248688 *param0)
         0,
         0
     };
-    static const UnkStruct_ov97_0222DB78 v3 = {
+    static const BgTemplate v3 = {
         0,
         0,
         0x800,
@@ -470,36 +467,36 @@ static void ov95_022488A4(UnkStruct_ov95_02248688 *param0)
 
     GXLayers_SetBanks(&v0);
     GX_SetDispSelect(GX_DISP_SELECT_SUB_MAIN);
-    sub_02018368(&v1);
+    SetAllGraphicsModes(&v1);
 
-    sub_020183C4(param0->unk_C0, 2, &v2, 1);
-    sub_020183C4(param0->unk_C0, 6, &v2, 1);
+    Bg_InitFromTemplate(param0->unk_C0, 2, &v2, 1);
+    Bg_InitFromTemplate(param0->unk_C0, 6, &v2, 1);
 
     {
         OSIntrMode v6 = OS_DisableInterrupts();
 
-        sub_020183C4(param0->unk_C0, 3, &v3, 2);
-        sub_020183C4(param0->unk_C0, 7, &v3, 2);
+        Bg_InitFromTemplate(param0->unk_C0, 3, &v3, 2);
+        Bg_InitFromTemplate(param0->unk_C0, 7, &v3, 2);
 
         OS_RestoreInterrupts(v6);
     }
 
-    sub_02006E3C(93, 2, param0->unk_C0, 2, 0, 0, 1, 58);
-    sub_02006E3C(93, 2, param0->unk_C0, 6, 0, 0, 1, 58);
-    sub_02006E60(93, 0, param0->unk_C0, 2, 0, 0, 1, 58);
-    sub_02006E60(93, 0, param0->unk_C0, 6, 0, 0, 1, 58);
+    Graphics_LoadTilesToBgLayer(93, 2, param0->unk_C0, 2, 0, 0, 1, 58);
+    Graphics_LoadTilesToBgLayer(93, 2, param0->unk_C0, 6, 0, 0, 1, 58);
+    Graphics_LoadTilemapToBgLayer(93, 0, param0->unk_C0, 2, 0, 0, 1, 58);
+    Graphics_LoadTilemapToBgLayer(93, 0, param0->unk_C0, 6, 0, 0, 1, 58);
 
     v5 = ov95_02247644(param0->unk_00);
 
-    sub_02006E84(93, 3, 0, 0, 0x20, 58);
-    sub_02006E84(93, 3, 4, 0, 0x20, 58);
-    sub_02006E9C(93, 3, 0, v4[v5], 0x20, 0x40, 58);
-    sub_02006E9C(93, 3, 4, v4[v5], 0x20, 0x40, 58);
+    Graphics_LoadPalette(93, 3, 0, 0, 0x20, 58);
+    Graphics_LoadPalette(93, 3, 4, 0, 0x20, 58);
+    Graphics_LoadPaletteWithSrcOffset(93, 3, 0, v4[v5], 0x20, 0x40, 58);
+    Graphics_LoadPaletteWithSrcOffset(93, 3, 4, v4[v5], 0x20, 0x40, 58);
 
-    sub_02006E3C(93, 5, param0->unk_C0, 3, 0, 0, 1, 58);
-    sub_02006E3C(93, 5, param0->unk_C0, 7, 0, 0, 1, 58);
-    sub_02006E60(93, 4, param0->unk_C0, 3, 0, 0, 1, 58);
-    sub_02006E60(93, 4, param0->unk_C0, 7, 0, 0, 1, 58);
+    Graphics_LoadTilesToBgLayer(93, 5, param0->unk_C0, 3, 0, 0, 1, 58);
+    Graphics_LoadTilesToBgLayer(93, 5, param0->unk_C0, 7, 0, 0, 1, 58);
+    Graphics_LoadTilemapToBgLayer(93, 4, param0->unk_C0, 3, 0, 0, 1, 58);
+    Graphics_LoadTilemapToBgLayer(93, 4, param0->unk_C0, 7, 0, 0, 1, 58);
 
     {
         u8 *v7 = Heap_AllocFromHeap(58, 96);
@@ -519,11 +516,11 @@ static void ov95_022488A4(UnkStruct_ov95_02248688 *param0)
         }
     }
 
-    sub_02019184(param0->unk_C0, 6, 3, -256);
-    sub_02019120(7, 0);
+    Bg_SetOffset(param0->unk_C0, 6, 3, -256);
+    Bg_ToggleLayer(7, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
-    sub_02019184(param0->unk_C0, 3, 3, 0);
+    Bg_SetOffset(param0->unk_C0, 3, 3, 0);
 
     param0->unk_C4 = ov95_02246F30(&(param0->unk_C8), 1);
     param0->unk_CC = ov95_022472C4(param0->unk_C0, UnkEnum_ov95_022488A4_00, 0x1000, UnkEnum_ov95_022488A4_01, UnkEnum_ov95_022488A4_02, 0, &(param0->unk_D0));
@@ -535,10 +532,10 @@ static void ov95_02248B3C(UnkStruct_ov95_02248688 *param0)
         ov95_02247018(param0->unk_C4);
     }
 
-    sub_02019044(param0->unk_C0, 2);
-    sub_02019044(param0->unk_C0, 6);
-    sub_02019044(param0->unk_C0, 3);
-    sub_02019044(param0->unk_C0, 7);
+    Bg_FreeTilemapBuffer(param0->unk_C0, 2);
+    Bg_FreeTilemapBuffer(param0->unk_C0, 6);
+    Bg_FreeTilemapBuffer(param0->unk_C0, 3);
+    Bg_FreeTilemapBuffer(param0->unk_C0, 7);
 }
 
 static void ov95_02248B84(UnkStruct_ov95_02248688 *param0)
@@ -610,10 +607,10 @@ static void ov95_02248CA8(UnkStruct_ov95_02248688 *param0)
     NNS_G2dInitImagePaletteProxy(&v0);
     NNS_G2dInitImageProxy(&v1);
 
-    sub_02006F00(93, 13, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &v1);
-    sub_02006F00(93, 13, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DSUB, 0, 58, &v1);
-    sub_02006EE0(93, 14, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &v0);
-    sub_02006EE0(93, 14, NNS_G2D_VRAM_TYPE_2DSUB, 0, 58, &v0);
+    Graphics_LoadImageMapping(93, 13, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &v1);
+    Graphics_LoadImageMapping(93, 13, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DSUB, 0, 58, &v1);
+    Graphics_LoadPartialPalette(93, 14, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &v0);
+    Graphics_LoadPartialPalette(93, 14, NNS_G2D_VRAM_TYPE_2DSUB, 0, 58, &v0);
     ov95_022475C4(&v2, &param0->unk_0C, &v1, &v0, 1);
     MTRNG_SetSeed(UnkEnum_ov95_02248CA8_00);
 
@@ -660,10 +657,10 @@ static void ov95_02248E00(SysTask *param0, void *param1)
     if (v0->unk_168) {
         v0->unk_168 = 0;
 
-        sub_02019184(v0->unk_C0, 2, 3, -256);
-        sub_02019184(v0->unk_C0, 6, 3, 0);
-        sub_02019120(3, 0);
-        sub_02019120(7, 1);
+        Bg_SetOffset(v0->unk_C0, 2, 3, -256);
+        Bg_SetOffset(v0->unk_C0, 6, 3, 0);
+        Bg_ToggleLayer(3, 0);
+        Bg_ToggleLayer(7, 1);
         GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
         SysTask_Done(param0);
     }
@@ -743,8 +740,8 @@ static void ov95_02248FAC(UnkStruct_ov95_02248688 *param0, SysTask **param1)
     if (v0) {
         v0->unk_00 = param0;
         v0->unk_154 = param0->unk_C0;
-        v0->unk_158 = sub_020192F8(v0->unk_154, 2) << 12;
-        v0->unk_15C = sub_020192F8(v0->unk_154, 6) << 12;
+        v0->unk_158 = Bg_GetYOffset(v0->unk_154, 2) << 12;
+        v0->unk_15C = Bg_GetYOffset(v0->unk_154, 6) << 12;
         v0->unk_160 = 0;
         v0->unk_164 = 0;
         v0->unk_168 = param1;
@@ -766,8 +763,8 @@ static void ov95_02249020(SysTask *param0, void *param1)
         v0->unk_160 += UnkEnum_ov95_02249020_00;
         v0->unk_164 += v0->unk_160;
 
-        sub_02019184(v0->unk_154, 2, 3, (v0->unk_158 - v0->unk_164) >> 12);
-        sub_02019184(v0->unk_154, 6, 3, (v0->unk_15C - v0->unk_164) >> 12);
+        Bg_SetOffset(v0->unk_154, 2, 3, (v0->unk_158 - v0->unk_164) >> 12);
+        Bg_SetOffset(v0->unk_154, 6, 3, (v0->unk_15C - v0->unk_164) >> 12);
 
         if (v0->unk_164 >= (128 << 12)) {
             if (v0->unk_16C == NULL) {

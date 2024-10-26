@@ -12,10 +12,10 @@
 #include "overlay022/struct_ov22_0225A0E4.h"
 
 #include "core_sys.h"
+#include "graphics.h"
 #include "heap.h"
 #include "pokemon.h"
 #include "touch_screen.h"
-#include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 
 static int ov22_0225936C(char *param0, int param1);
@@ -27,7 +27,7 @@ void ov22_02259098(UnkStruct_ov22_0225A0E4 *param0, ArchivedSprite *param1)
     void *v0;
     NNSG2dCharacterData *v1;
 
-    v0 = sub_02006FE8(param1->archive, param1->character, 0, 14, 0);
+    v0 = LoadMemberFromNARC(param1->archive, param1->character, 0, 14, 0);
     v1 = ov22_02255340(param0, v0, (100 + 18));
 
     sub_020093A0((u8 *)v1->pRawData, param1->archive);
@@ -66,7 +66,7 @@ void ov22_022590D4(UnkStruct_020298D8 *param0, UnkStruct_02007768 *param1, Pokem
         void *v4;
         NNSG2dCharacterData *v5;
 
-        v4 = sub_02006FE8(param3->archive, param3->character, 0, param4, 0);
+        v4 = LoadMemberFromNARC(param3->archive, param3->character, 0, param4, 0);
 
         NNS_G2dGetUnpackedCharacterData(v4, &v5);
         sub_020093A0((u8 *)v5->pRawData, param3->archive);

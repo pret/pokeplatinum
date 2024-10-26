@@ -3,19 +3,14 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
-
-#include "overlay097/struct_ov97_0222DB78.h"
-
+#include "bg_window.h"
+#include "graphics.h"
 #include "heap.h"
 #include "narc.h"
-#include "unk_02006E3C.h"
-#include "unk_02018340.h"
 
-void ov24_02253CE0(BGL *param0)
+void ov24_02253CE0(BgConfig *param0)
 {
-    static const UnkStruct_ov97_0222DB78 v0 = {
+    static const BgTemplate v0 = {
         0,
         0,
         0x800,
@@ -40,16 +35,16 @@ void ov24_02253CE0(BGL *param0)
 #endif // SDK_ARM9
     GXS_SetOBJVRamModeChar(GX_OBJVRAMMODE_CHAR_1D_32K);
 
-    sub_020183C4(param0, 4, &v0, 0);
+    Bg_InitFromTemplate(param0, 4, &v0, 0);
 
     {
         NARC *v1;
 
         v1 = NARC_ctor(NARC_INDEX_GRAPHIC__POKETCH, 8);
 
-        sub_020070E8(v1, 10, param0, 4, 0, 0, 1, 8);
-        sub_0200710C(v1, 11, param0, 4, 0, 0, 1, 8);
-        sub_02007130(v1, 12, 4, 0, 0x20, 8);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 10, param0, 4, 0, 0, 1, 8);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 11, param0, 4, 0, 0, 1, 8);
+        Graphics_LoadPaletteFromOpenNARC(v1, 12, 4, 0, 0x20, 8);
         NARC_dtor(v1);
     }
 
@@ -57,13 +52,13 @@ void ov24_02253CE0(BGL *param0)
     GXS_SetVisiblePlane(GX_PLANEMASK_BG0);
 }
 
-void ov24_02253DA4(BGL *param0)
+void ov24_02253DA4(BgConfig *param0)
 {
-    sub_02019044(param0, 4);
+    Bg_FreeTilemapBuffer(param0, 4);
     Heap_Destroy(8);
 }
 
-BOOL ov24_02253DB4(BGL *param0)
+BOOL ov24_02253DB4(BgConfig *param0)
 {
     return 1;
 }

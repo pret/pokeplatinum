@@ -4,7 +4,6 @@
 #include <nitro/gx.h>
 
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 
@@ -17,6 +16,8 @@
 #include "overlay017/struct_ov17_0224DF54.h"
 #include "overlay017/struct_ov17_0224EDE0.h"
 #include "overlay017/struct_ov17_02253084.h"
+
+#include "narc.h"
 
 s16 ov17_0224A0FC(int param0);
 s16 ov17_0224A10C(int param0);

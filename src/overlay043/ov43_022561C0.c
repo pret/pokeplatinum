@@ -2,14 +2,13 @@
 #include <nitro/sinit.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-
 #include "overlay025/poketch_button.h"
 #include "overlay025/poketch_system.h"
 #include "overlay043/ov43_02256544.h"
 #include "overlay043/struct_ov43_02256544_1.h"
 #include "overlay043/struct_ov43_02256544_decl.h"
 
+#include "bg_window.h"
 #include "heap.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -30,8 +29,8 @@ typedef struct {
 
 static void NitroStaticInit(void);
 
-static BOOL ov43_022561D4(void **param0, PoketchSystem *poketchSys, BGL *param2, u32 param3);
-static BOOL ov43_0225621C(UnkStruct_ov43_0225621C *param0, PoketchSystem *poketchSys, BGL *param2, u32 param3);
+static BOOL ov43_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3);
+static BOOL ov43_0225621C(UnkStruct_ov43_0225621C *param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3);
 static void ov43_02256288(UnkStruct_ov43_02256544_1 *param0);
 static void ov43_022562A8(UnkStruct_ov43_0225621C *param0);
 static void ov43_022562CC(SysTask *param0, void *param1);
@@ -49,7 +48,7 @@ static void NitroStaticInit(void)
     PoketchSystem_SetAppFunctions(ov43_022561D4, ov43_02256310);
 }
 
-static BOOL ov43_022561D4(void **param0, PoketchSystem *poketchSys, BGL *param2, u32 param3)
+static BOOL ov43_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3)
 {
     UnkStruct_ov43_0225621C *v0 = (UnkStruct_ov43_0225621C *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov43_0225621C));
 
@@ -67,7 +66,7 @@ static BOOL ov43_022561D4(void **param0, PoketchSystem *poketchSys, BGL *param2,
     return 0;
 }
 
-static BOOL ov43_0225621C(UnkStruct_ov43_0225621C *param0, PoketchSystem *poketchSys, BGL *param2, u32 param3)
+static BOOL ov43_0225621C(UnkStruct_ov43_0225621C *param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3)
 {
     static const TouchScreenHitTable v0[] = {
         { 112, 144, 16, 40 },

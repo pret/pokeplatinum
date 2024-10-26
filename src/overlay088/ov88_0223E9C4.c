@@ -6,13 +6,11 @@
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/struct_0205AA50.h"
 
-#include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_02240FA8.h"
 
+#include "bg_window.h"
 #include "font.h"
 #include "game_options.h"
 #include "message.h"
@@ -23,7 +21,6 @@
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
-#include "unk_02018340.h"
 
 static void ov88_0223EE14(BmpList *param0, u32 param1, u8 param2);
 
@@ -55,42 +52,42 @@ static const u16 Unk_ov88_0223F170[][2] = {
     { 0x14, 0xA }
 };
 
-void ov88_0223E9C4(BGL *param0, Window *param1, Options *param2)
+void ov88_0223E9C4(BgConfig *param0, Window *param1, Options *param2)
 {
     int v0;
 
-    BGL_AddWindow(param0, &param1[0], 1, 2, 1, 10, 2, 8, 1);
-    BGL_FillWindow(&param1[0], 0);
+    Window_Add(param0, &param1[0], 1, 2, 1, 10, 2, 8, 1);
+    Window_FillTilemap(&param1[0], 0);
 
-    BGL_AddWindow(param0, &param1[1], 1, 20, 1, 10, 2, 8, (1 + (10 * 2)));
-    BGL_FillWindow(&param1[1], 0);
+    Window_Add(param0, &param1[1], 1, 20, 1, 10, 2, 8, (1 + (10 * 2)));
+    Window_FillTilemap(&param1[1], 0);
 
-    BGL_AddWindow(param0, &param1[6], 1, 26, 21, 5, 2, 8, ((1 + (10 * 2)) + (10 * 2)));
-    BGL_FillWindow(&param1[6], 0);
+    Window_Add(param0, &param1[6], 1, 26, 21, 5, 2, 8, ((1 + (10 * 2)) + (10 * 2)));
+    Window_FillTilemap(&param1[6], 0);
 
     sub_0200DD0C(param0, 0, (512 - (9 + (18 + 12))), 10, Options_Frame(param2), 26);
     sub_0200DAA4(param0, 0, (512 - 9), 11, 0, 26);
 
-    BGL_AddWindow(param0, &param1[21], 0, 2, 21, 20, 2, 13, 1);
-    BGL_FillWindow(&param1[21], 0);
-    BGL_AddWindow(param0, &param1[22], 0, 2, 19, 14, 4, 13, (20 * 2));
-    BGL_FillWindow(&param1[22], 0);
-    BGL_AddWindow(param0, &param1[23], 0, 2, 19, 27, 4, 13, (14 * 4));
-    BGL_FillWindow(&param1[23], 0);
+    Window_Add(param0, &param1[21], 0, 2, 21, 20, 2, 13, 1);
+    Window_FillTilemap(&param1[21], 0);
+    Window_Add(param0, &param1[22], 0, 2, 19, 14, 4, 13, (20 * 2));
+    Window_FillTilemap(&param1[22], 0);
+    Window_Add(param0, &param1[23], 0, 2, 19, 27, 4, 13, (14 * 4));
+    Window_FillTilemap(&param1[23], 0);
 
-    BGL_AddWindow(param0, &param1[24], 0, 20, 17, 11, 6, 13, ((14 * 4) + (27 * 4)));
-    BGL_FillWindow(&param1[24], 0);
-    BGL_AddWindow(param0, &param1[25], 0, 20, 19, 11, 4, 13, (((14 * 4) + (27 * 4)) + (11 * 6)));
-    BGL_FillWindow(&param1[25], 0);
+    Window_Add(param0, &param1[24], 0, 20, 17, 11, 6, 13, ((14 * 4) + (27 * 4)));
+    Window_FillTilemap(&param1[24], 0);
+    Window_Add(param0, &param1[25], 0, 20, 19, 11, 4, 13, (((14 * 4) + (27 * 4)) + (11 * 6)));
+    Window_FillTilemap(&param1[25], 0);
 
     for (v0 = 0; v0 < 14; v0++) {
-        BGL_AddWindow(param0, &param1[7 + v0], 1, Unk_ov88_0223F170[v0][0], Unk_ov88_0223F170[v0][1], 8, 2, 8, (((1 + (10 * 2)) + (10 * 2)) + (5 * 2)) + v0 * (8 * 2));
-        BGL_FillWindow(&param1[7 + v0], 0);
+        Window_Add(param0, &param1[7 + v0], 1, Unk_ov88_0223F170[v0][0], Unk_ov88_0223F170[v0][1], 8, 2, 8, (((1 + (10 * 2)) + (10 * 2)) + (5 * 2)) + v0 * (8 * 2));
+        Window_FillTilemap(&param1[7 + v0], 0);
     }
 
     for (v0 = 0; v0 < 8; v0++) {
-        BGL_AddWindow(param0, &param1[26 + v0], 4, Unk_ov88_0223F1A8[v0][0], Unk_ov88_0223F1A8[v0][1], Unk_ov88_0223F1A8[v0][2], Unk_ov88_0223F1A8[v0][3], 8, Unk_ov88_0223F1A8[v0][4]);
-        BGL_FillWindow(&param1[26 + v0], 0);
+        Window_Add(param0, &param1[26 + v0], 4, Unk_ov88_0223F1A8[v0][0], Unk_ov88_0223F1A8[v0][1], Unk_ov88_0223F1A8[v0][2], Unk_ov88_0223F1A8[v0][3], 8, Unk_ov88_0223F1A8[v0][4]);
+        Window_FillTilemap(&param1[26 + v0], 0);
     }
 }
 
@@ -99,22 +96,22 @@ void ov88_0223EC04(Window *param0)
     int v0;
 
     for (v0 = 0; v0 < 14; v0++) {
-        BGL_DeleteWindow(&param0[7 + v0]);
+        Window_Remove(&param0[7 + v0]);
     }
 
     for (v0 = 0; v0 < 8; v0++) {
-        BGL_DeleteWindow(&param0[26 + v0]);
+        Window_Remove(&param0[26 + v0]);
     }
 
-    BGL_DeleteWindow(&param0[0]);
-    BGL_DeleteWindow(&param0[1]);
-    BGL_DeleteWindow(&param0[6]);
+    Window_Remove(&param0[0]);
+    Window_Remove(&param0[1]);
+    Window_Remove(&param0[6]);
 
-    BGL_DeleteWindow(&param0[21]);
-    BGL_DeleteWindow(&param0[22]);
-    BGL_DeleteWindow(&param0[23]);
-    BGL_DeleteWindow(&param0[24]);
-    BGL_DeleteWindow(&param0[25]);
+    Window_Remove(&param0[21]);
+    Window_Remove(&param0[22]);
+    Window_Remove(&param0[23]);
+    Window_Remove(&param0[24]);
+    Window_Remove(&param0[25]);
 }
 
 void ov88_0223EC78(Window *param0, Strbuf *param1, int param2, u32 param3, int param4, int param5)
@@ -125,7 +122,7 @@ void ov88_0223EC78(Window *param0, Strbuf *param1, int param2, u32 param3, int p
         int v1;
 
         v1 = Font_CalcStrbufWidth(FONT_SYSTEM, param1, 0);
-        v0 = ((param0->unk_07 * 8) - v1) / 2;
+        v0 = ((param0->width * 8) - v1) / 2;
     } else {
         v0 = param4;
     }
@@ -146,14 +143,14 @@ int ov88_0223ECBC(Window *param0, int param1, int param2, MessageLoader *param3,
         Window_Show(param0, 0, (512 - 9), 11);
     }
 
-    BGL_FillWindow(param0, 15);
+    Window_FillTilemap(param0, 15);
     v1 = Text_AddPrinterWithParamsAndColor(param0, param2, v0, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
     Strbuf_Free(v0);
 
     return v1;
 }
 
-static const UnkStruct_ov61_0222C884 Unk_ov88_0223F148 = {
+static const WindowTemplate Unk_ov88_0223F148 = {
     0x0,
     0x19,
     0xD,
@@ -163,7 +160,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov88_0223F148 = {
     0x112
 };
 
-u32 ov88_0223ED2C(BGL *param0, UIControlData **param1, int *param2)
+u32 ov88_0223ED2C(BgConfig *param0, UIControlData **param1, int *param2)
 {
     u32 v0 = 0xffffffff;
 
@@ -210,13 +207,13 @@ static const UnkStruct_ov84_02240FA8 Unk_ov88_0223F150 = {
     NULL
 };
 
-BmpList *ov88_0223ED94(ResourceMetadata *param0, int param1, Window *param2, BGL *param3)
+BmpList *ov88_0223ED94(ResourceMetadata *param0, int param1, Window *param2, BgConfig *param3)
 {
     BmpList *v0;
     UnkStruct_ov84_02240FA8 v1;
     int v2 = 5;
 
-    BGL_AddWindow(param3, param2, 0, 19, 1, 12, v2 * 2, 13, (512 - (9 + (18 + 12))) - (10 * (v2 + 2) * 2));
+    Window_Add(param3, param2, 0, 19, 1, 12, v2 * 2, 13, (512 - (9 + (18 + 12))) - (10 * (v2 + 2) * 2));
     Window_Show(param2, 0, (512 - 9), 11);
 
     v1 = Unk_ov88_0223F150;

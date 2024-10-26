@@ -4,15 +4,14 @@
 #include <nnsys.h>
 
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0203DE34.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_020961E8_sub1.h"
 
 #include "overlay059/struct_ov59_021D109C.h"
 #include "overlay059/struct_ov59_021D30E0.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "message.h"
 #include "savedata.h"
@@ -23,7 +22,7 @@
 #include "trainer_info.h"
 
 struct UnkStruct_020961E8_t {
-    BGL *unk_00;
+    BgConfig *unk_00;
     BOOL unk_04;
     UnkStruct_0203DE34 *unk_08;
     UnkStruct_ov59_021D109C unk_0C;

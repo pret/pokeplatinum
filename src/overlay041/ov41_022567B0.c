@@ -3,9 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-#include "struct_defs/struct_0205AA50.h"
-
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/ov25_02255090.h"
 #include "overlay025/ov25_02255540.h"
@@ -18,19 +15,17 @@
 #include "overlay025/struct_ov25_02255958.h"
 #include "overlay041/struct_ov41_022567B0_1.h"
 #include "overlay041/struct_ov41_022567B0_decl.h"
-#include "overlay061/struct_ov61_0222C884.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
+#include "graphics.h"
 #include "heap.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_02099D44.h"
 
 struct UnkStruct_ov41_022567B0_t {
     const UnkStruct_ov41_022567B0_1 *unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     u32 unk_08[6];
     UnkStruct_ov25_022555E8 *unk_20;
     UnkStruct_ov25_022558C4 *unk_24[4];
@@ -59,7 +54,7 @@ static void ov41_02256B60(SysTask *param0, void *param1);
 static void ov41_02256B8C(SysTask *param0, void *param1);
 static void ov41_02256D1C(SysTask *param0, void *param1);
 
-BOOL ov41_022567B0(UnkStruct_ov41_022567B0 **param0, const UnkStruct_ov41_022567B0_1 *param1, BGL *param2)
+BOOL ov41_022567B0(UnkStruct_ov41_022567B0 **param0, const UnkStruct_ov41_022567B0_1 *param1, BgConfig *param2)
 {
     UnkStruct_ov41_022567B0 *v0 = (UnkStruct_ov41_022567B0 *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov41_022567B0));
 
@@ -128,7 +123,7 @@ static void ov41_0225680C(UnkStruct_ov41_022567B0 *param0, const UnkStruct_ov41_
     };
     int v1;
 
-    sub_02006EC0(12, 89, 1, 0, 0, 1, 8);
+    Graphics_LoadObjectTiles(12, 89, 1, 0, 0, 1, 8);
     ov25_02255958(&param0->unk_34, 12, 87, 88, 8);
 
     for (v1 = 0; v1 < 4; v1++) {
@@ -185,7 +180,7 @@ static void ov41_022568C8(UnkStruct_ov25_02255224 *param0)
 
 static void ov41_022568DC(SysTask *param0, void *param1)
 {
-    static const UnkStruct_ov97_0222DB78 v0 = {
+    static const BgTemplate v0 = {
         0,
         0,
         0,
@@ -200,7 +195,7 @@ static void ov41_022568DC(SysTask *param0, void *param1)
         0,
         0
     };
-    static const UnkStruct_ov97_0222DB78 v1 = {
+    static const BgTemplate v1 = {
         0,
         0,
         0x800,
@@ -222,21 +217,21 @@ static void ov41_022568DC(SysTask *param0, void *param1)
     GF_ASSERT(GF_heap_c_dummy_return_true(8));
     v3 = ov25_0225523C(param1);
 
-    sub_020183C4(v3->unk_04, 6, &v0, 0);
-    sub_020183C4(v3->unk_04, 7, &v1, 0);
+    Bg_InitFromTemplate(v3->unk_04, 6, &v0, 0);
+    Bg_InitFromTemplate(v3->unk_04, 7, &v1, 0);
 
     GF_ASSERT(GF_heap_c_dummy_return_true(8));
 
-    v4 = sub_02006E3C(12, 86, v3->unk_04, 6, 0, 0, 1, 8);
+    v4 = Graphics_LoadTilesToBgLayer(12, 86, v3->unk_04, 6, 0, 0, 1, 8);
     v4 /= 0x20;
 
-    sub_02006E60(12, 85, v3->unk_04, 6, 0, 0, 1, 8);
+    Graphics_LoadTilemapToBgLayer(12, 85, v3->unk_04, 6, 0, 0, 1, 8);
     ov25_022546B8(0, 0);
 
     GF_ASSERT(GF_heap_c_dummy_return_true(8));
 
     ov41_022569BC(v3, v4);
-    sub_02019448(v3->unk_04, 7);
+    Bg_CopyTilemapBufferToVRAM(v3->unk_04, 7);
 
     v2 = GXS_GetDispCnt();
     GXS_SetVisiblePlane(v2.visiblePlane | GX_PLANEMASK_BG2 | GX_PLANEMASK_OBJ);
@@ -247,21 +242,21 @@ static void ov41_022568DC(SysTask *param0, void *param1)
 
 static void ov41_022569BC(UnkStruct_ov41_022567B0 *param0, u32 param1)
 {
-    UnkStruct_ov61_0222C884 v0 = {
+    WindowTemplate v0 = {
         7, 2, 2, 20, 19, 0, 0
     };
 
     param0->unk_58 = param1;
-    v0.unk_06 = param1;
+    v0.baseTile = param1;
 
-    sub_0201A8D4(param0->unk_04, &param0->unk_48, &v0);
+    Window_AddFromTemplate(param0->unk_04, &param0->unk_48, &v0);
 
-    if (sub_02099DD0(param0->unk_00->unk_08, param0->unk_48.unk_0C, (20 * 19 * 0x20)) == 0) {
-        BGL_FillWindow(&param0->unk_48, 0x4);
+    if (sub_02099DD0(param0->unk_00->unk_08, param0->unk_48.pixels, (20 * 19 * 0x20)) == 0) {
+        Window_FillTilemap(&param0->unk_48, 0x4);
     }
 
-    sub_0201A9F4(&param0->unk_48);
-    sub_0201ACCC(&param0->unk_48);
+    Window_PutToTilemap(&param0->unk_48);
+    Window_LoadTiles(&param0->unk_48);
 }
 
 static void ov41_02256A1C(SysTask *param0, void *param1)
@@ -274,10 +269,10 @@ static void ov41_02256A1C(SysTask *param0, void *param1)
         ov25_0225524C(param1);
         break;
     case 1:
-        sub_02099DA8(v0->unk_00->unk_08, v0->unk_48.unk_0C, (20 * 19 * 0x20));
-        BGL_DeleteWindow(&v0->unk_48);
-        sub_02019044(v0->unk_04, 6);
-        sub_02019044(v0->unk_04, 7);
+        sub_02099DA8(v0->unk_00->unk_08, v0->unk_48.pixels, (20 * 19 * 0x20));
+        Window_Remove(&v0->unk_48);
+        Bg_FreeTilemapBuffer(v0->unk_04, 6);
+        Bg_FreeTilemapBuffer(v0->unk_04, 7);
         ov41_022568C8(param1);
     }
 }
@@ -287,7 +282,7 @@ static void ov41_02256A74(SysTask *param0, void *param1)
     UnkStruct_ov41_022567B0 *v0;
 
     v0 = ov25_0225523C(param1);
-    sub_0201ACCC(&v0->unk_48);
+    Window_LoadTiles(&v0->unk_48);
     ov41_022568C8(param1);
 }
 
@@ -301,8 +296,8 @@ static void ov41_02256A8C(SysTask *param0, void *param1)
     v1 = v4->unk_00->unk_04 * 2;
     v3 = ((v1 >> 3) * 20) + (v0 >> 3);
 
-    BGL_WindowColor(&v4->unk_48, 0x1, v0, v1, 2, 2);
-    GXS_LoadBG3Char((u8 *)(v4->unk_48.unk_0C) + (v3 * 0x20), (v4->unk_58 + v3) * 0x20, 0x20);
+    Window_FillRectWithColor(&v4->unk_48, 0x1, v0, v1, 2, 2);
+    GXS_LoadBG3Char((u8 *)(v4->unk_48.pixels) + (v3 * 0x20), (v4->unk_58 + v3) * 0x20, 0x20);
     ov41_022568C8(param1);
 }
 
@@ -311,7 +306,7 @@ static void ov41_02256AE4(SysTask *param0, void *param1)
     UnkStruct_ov41_022567B0 *v0;
 
     v0 = ov25_0225523C(param1);
-    sub_0201ACCC(&v0->unk_48);
+    Window_LoadTiles(&v0->unk_48);
     ov41_022568C8(param1);
 }
 
@@ -331,8 +326,8 @@ static void ov41_02256B60(SysTask *param0, void *param1)
     UnkStruct_ov41_022567B0 *v0 = ov25_0225523C(param1);
     const UnkStruct_ov41_022567B0_1 *v1 = ov25_02255240(param1);
 
-    BGL_FillWindow(&v0->unk_48, 0x4);
-    sub_0201ACCC(&v0->unk_48);
+    Window_FillTilemap(&v0->unk_48, 0x4);
+    Window_LoadTiles(&v0->unk_48);
     ov41_022568C8(param1);
 }
 

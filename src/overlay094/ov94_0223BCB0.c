@@ -5,14 +5,10 @@
 #include <string.h>
 
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0203E0FC.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay022/struct_ov22_022559F8.h"
-#include "overlay061/struct_ov61_0222C884.h"
-#include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay094/ov94_0223B140.h"
 #include "overlay094/ov94_0223C610.h"
 #include "overlay094/ov94_0223D0C4.h"
@@ -27,8 +23,10 @@
 #include "overlay094/ov94_02244950.h"
 #include "overlay094/struct_ov94_0223FD4C.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "game_options.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "inlines.h"
@@ -41,14 +39,12 @@
 #include "trainer_info.h"
 #include "unk_02001AF4.h"
 #include "unk_020041CC.h"
-#include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
@@ -105,18 +101,18 @@ int ov94_0223BCB0(OverlayManager *param0, int *param1)
 
         v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov94_0223FD4C), 62);
         memset(v0, 0, sizeof(UnkStruct_ov94_0223FD4C));
-        v0->unk_04 = sub_02018340(62);
+        v0->unk_04 = BgConfig_New(62);
         Unk_ov94_02246C08 = v0;
 
         {
-            UnkStruct_ov84_0223BA5C v1 = {
+            GraphicsModes v1 = {
                 GX_DISPMODE_GRAPHICS,
                 GX_BGMODE_0,
                 GX_BGMODE_0,
                 GX_BG0_AS_2D,
             };
 
-            sub_02018368(&v1);
+            SetAllGraphicsModes(&v1);
         }
 
         v0->unk_B8C = StringTemplate_New(11, 64, 62);
@@ -351,7 +347,7 @@ static void ov94_0223C0D4(UnkStruct_ov94_0223FD4C *param0)
         int v4, v5, v6, v7;
         u16 *v8;
 
-        v2 = sub_02006F88(19, PokeIconPalettesFileIndex(), &v3, 62);
+        v2 = Graphics_GetPlttData(19, PokeIconPalettesFileIndex(), &v3, 62);
 
         DC_FlushRange(v3->pRawData, (3 * 16) * 2);
         GX_LoadOBJPltt(v3->pRawData, 3 * 0x20, (3 * 16) * 2);
@@ -401,7 +397,7 @@ static void ov94_0223C32C(UnkStruct_ov94_0223FD4C *param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static const UnkStruct_ov61_0222C884 Unk_ov94_022459F8 = {
+static const WindowTemplate Unk_ov94_022459F8 = {
     0x0,
     0x17,
     0xD,
@@ -411,13 +407,13 @@ static const UnkStruct_ov61_0222C884 Unk_ov94_022459F8 = {
     0x0
 };
 
-UIControlData *ov94_0223C3C0(BGL *param0, int param1, int param2)
+UIControlData *ov94_0223C3C0(BgConfig *param0, int param1, int param2)
 {
-    UnkStruct_ov61_0222C884 v0;
+    WindowTemplate v0;
 
     v0 = Unk_ov94_022459F8;
-    v0.unk_02 = param1;
-    v0.unk_06 = param2;
+    v0.tilemapTop = param1;
+    v0.baseTile = param2;
 
     return sub_02002100(param0, &v0, (1 + (18 + 12)), 11, 62);
 }

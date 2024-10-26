@@ -3,33 +3,31 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-
 #include "overlay104/struct_ov104_0223C23C_decl.h"
 
+#include "bg_window.h"
 #include "heap.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02018340.h"
 
 typedef struct {
     SysTask *unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     u16 unk_08;
     u16 unk_0A;
 } UnkStruct_ov104_0223C188;
 
 struct UnkStruct_ov104_0223C23C_t {
-    BGL *unk_00;
+    BgConfig *unk_00;
     UnkStruct_ov104_0223C188 *unk_04;
 };
 
-UnkStruct_ov104_0223C23C *ov104_0223C164(BGL *param0);
-static UnkStruct_ov104_0223C188 *ov104_0223C188(BGL *param0);
+UnkStruct_ov104_0223C23C *ov104_0223C164(BgConfig *param0);
+static UnkStruct_ov104_0223C188 *ov104_0223C188(BgConfig *param0);
 static void ov104_0223C1BC(SysTask *param0, void *param1);
 static void ov104_0223C208(u16 *param0, u8 param1);
 
-UnkStruct_ov104_0223C23C *ov104_0223C164(BGL *param0)
+UnkStruct_ov104_0223C23C *ov104_0223C164(BgConfig *param0)
 {
     UnkStruct_ov104_0223C23C *v0;
 
@@ -40,7 +38,7 @@ UnkStruct_ov104_0223C23C *ov104_0223C164(BGL *param0)
     return v0;
 }
 
-static UnkStruct_ov104_0223C188 *ov104_0223C188(BGL *param0)
+static UnkStruct_ov104_0223C188 *ov104_0223C188(BgConfig *param0)
 {
     UnkStruct_ov104_0223C188 *v0;
 
@@ -70,8 +68,8 @@ static void ov104_0223C1BC(SysTask *param0, void *param1)
 
     ov104_0223C208(v1, v2->unk_08);
 
-    sub_020198C0(v2->unk_04, 3, v1, 14, 2, 2, 2);
-    sub_0201C3C0(v2->unk_04, 3);
+    Bg_LoadToTilemapRect(v2->unk_04, 3, v1, 14, 2, 2, 2);
+    Bg_ScheduleTilemapTransfer(v2->unk_04, 3);
 
     return;
 }

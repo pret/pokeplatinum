@@ -3,10 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
@@ -25,9 +22,11 @@
 #include "overlay021/struct_ov21_021E6B20.h"
 #include "overlay021/struct_pokedexstatus.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "heap.h"
+#include "narc.h"
 #include "sprite_resource.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
@@ -35,7 +34,6 @@
 #include "unk_0200A328.h"
 #include "unk_0200A9DC.h"
 #include "unk_02012744.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201F834.h"
 #include "unk_02023FCC.h"
@@ -519,7 +517,7 @@ static void ov21_021D7C64(UnkStruct_ov21_021D7C64 *param0, UnkStruct_ov21_021D77
     ov21_021D7E80(param0, param1, param2, param3);
     ov21_021D8018(param0, param1, param2, param3);
 
-    BGL_SetPriority(7, 3);
+    Bg_SetPriority(7, 3);
 }
 
 static void ov21_021D7CAC(UnkStruct_ov21_021D7C64 *param0, UnkStruct_ov21_021D77E8 *param1, int param2)
@@ -529,14 +527,14 @@ static void ov21_021D7CAC(UnkStruct_ov21_021D7C64 *param0, UnkStruct_ov21_021D77
     ov21_021D7E3C(param0, param1);
     ov21_021D828C(param1, param2);
 
-    BGL_SetPriority(7, 1);
+    Bg_SetPriority(7, 1);
 }
 
 static void ov21_021D7CD8(UnkStruct_ov21_021D77E8 *param0, const UnkStruct_ov21_021D77D4 *param1, int param2)
 {
     void *v0;
     NNSG2dScreenData *v1;
-    BGL *v2 = param0->unk_00->unk_00;
+    BgConfig *v2 = param0->unk_00->unk_00;
 
     ov21_021D276C(param0->unk_00, 0, 4, 0, 0, param2);
 
@@ -552,9 +550,9 @@ static void ov21_021D7CD8(UnkStruct_ov21_021D77E8 *param0, const UnkStruct_ov21_
 
     v0 = ov21_021D27B8(param0->unk_00, 41, 1, &v1, param2);
 
-    sub_020198C0(v2, 6, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
+    Bg_LoadToTilemapRect(v2, 6, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
-    sub_0201C3C0(v2, 6);
+    Bg_ScheduleTilemapTransfer(v2, 6);
 }
 
 static void ov21_021D7D8C(UnkStruct_ov21_021D7C64 *param0, UnkStruct_ov21_021D77E8 *param1, int param2)
@@ -760,25 +758,25 @@ static void ov21_021D820C(UnkStruct_ov21_021D77E8 *param0, int param1)
 {
     void *v0;
     NNSG2dScreenData *v1;
-    BGL *v2 = param0->unk_00->unk_00;
+    BgConfig *v2 = param0->unk_00->unk_00;
 
     ov21_021D2724(param0->unk_00, 27, v2, 7, 0, 0, 1, param1);
 
     v0 = ov21_021D27B8(param0->unk_00, 37, 1, &v1, param1);
 
-    sub_020198C0(v2, 7, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
+    Bg_LoadToTilemapRect(v2, 7, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
-    sub_0201C3C0(v2, 7);
-    sub_02019184(v2, 7, 0, -120);
-    sub_02019184(v2, 7, 3, 0);
+    Bg_ScheduleTilemapTransfer(v2, 7);
+    Bg_SetOffset(v2, 7, 0, -120);
+    Bg_SetOffset(v2, 7, 3, 0);
 }
 
 static void ov21_021D828C(UnkStruct_ov21_021D77E8 *param0, int param1)
 {
-    BGL *v0 = param0->unk_00->unk_00;
+    BgConfig *v0 = param0->unk_00->unk_00;
 
-    sub_02019690(7, 64, 0, param1);
-    sub_02019EBC(v0, 7);
+    Bg_ClearTilesRange(7, 64, 0, param1);
+    Bg_ClearTilemap(v0, 7);
 }
 
 static void ov21_021D82A8(UnkStruct_ov21_021D7A64 *param0, UnkStruct_ov21_021D77D4 *param1)
@@ -846,9 +844,9 @@ static void ov21_021D8354(UnkStruct_ov21_021D7C64 *param0, UnkStruct_ov21_021D77
     param0->unk_28 += v0;
     param0->unk_28 &= 0xffff;
 
-    sub_0201C660(param1->unk_00->unk_00, 7, 0, param0->unk_28 / 182);
-    sub_0201C718(param1->unk_00->unk_00, 7, 9, 128);
-    sub_0201C718(param1->unk_00->unk_00, 7, 12, 104);
+    Bg_ScheduleAffineRotation(param1->unk_00->unk_00, 7, 0, param0->unk_28 / 182);
+    Bg_ScheduleAffineRotationCenter(param1->unk_00->unk_00, 7, 9, 128);
+    Bg_ScheduleAffineRotationCenter(param1->unk_00->unk_00, 7, 12, 104);
 
     param0->unk_2A = param0->unk_28;
 }
@@ -869,9 +867,9 @@ static void ov21_021D83C0(UnkStruct_ov21_021D7C64 *param0, UnkStruct_ov21_021D77
     param0->unk_28 = param0->unk_2A + v0;
     param0->unk_28 &= 0xffff;
 
-    sub_0201C660(param1->unk_00->unk_00, 7, 0, param0->unk_28 / 182);
-    sub_0201C718(param1->unk_00->unk_00, 7, 9, 128);
-    sub_0201C718(param1->unk_00->unk_00, 7, 12, 104);
+    Bg_ScheduleAffineRotation(param1->unk_00->unk_00, 7, 0, param0->unk_28 / 182);
+    Bg_ScheduleAffineRotationCenter(param1->unk_00->unk_00, 7, 9, 128);
+    Bg_ScheduleAffineRotationCenter(param1->unk_00->unk_00, 7, 12, 104);
 
     if (param2->unk_1C->unk_0C == 0) {
         param0->unk_2A = param0->unk_28;

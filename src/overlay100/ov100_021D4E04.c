@@ -3,13 +3,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0205AA50.h"
-
 #include "overlay005/struct_ov5_021DDF24_sub1.h"
 #include "overlay100/struct_ov100_021D4E3C.h"
 #include "overlay100/struct_ov100_021D4EBC.h"
 #include "overlay104/ov104_0223E894.h"
 
+#include "bg_window.h"
 #include "buffer_manager.h"
 #include "heap.h"
 #include "inlines.h"

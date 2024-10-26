@@ -1,8 +1,7 @@
 #ifndef POKEPLATINUM_MESSAGE_H
 #define POKEPLATINUM_MESSAGE_H
 
-#include "struct_decls/struct_02006C24_decl.h"
-
+#include "narc.h"
 #include "strbuf.h"
 
 typedef struct MessageBankEntry {

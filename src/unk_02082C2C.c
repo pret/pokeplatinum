@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0207F248.h"
 #include "struct_defs/struct_020831B4.h"
@@ -14,6 +13,7 @@
 #include "overlay104/struct_ov104_0224133C.h"
 
 #include "cell_actor.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "item.h"
@@ -21,7 +21,6 @@
 #include "party.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
-#include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
 #include "unk_0201DBEC.h"
@@ -123,7 +122,7 @@ void sub_02082DA8(GameWindowLayout *param0, u8 param1)
     v3 = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
     v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 12);
     v4 = NNS_G2dGetImageLocation(SpriteActor_ImageProxy(param0->unk_704[param1].unk_24), NNS_G2D_VRAM_TYPE_2DMAIN);
-    v5 = sub_0200723C(v1, Pokemon_IconSpriteIndex(v0), 0, 12, 1);
+    v5 = LoadMemberFromOpenNARC(v1, Pokemon_IconSpriteIndex(v0), 0, 12, 1);
     v7 = NNS_G2dGetUnpackedCharacterData(v5, &v6);
 
     if (v7) {

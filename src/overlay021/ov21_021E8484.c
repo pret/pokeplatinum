@@ -3,9 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
@@ -23,16 +21,17 @@
 #include "overlay021/struct_ov21_021E6B20.h"
 #include "overlay021/struct_pokedexstatus.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "heap.h"
+#include "narc.h"
 #include "sprite_resource.h"
 #include "touch_screen.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A9DC.h"
 #include "unk_02012744.h"
-#include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201F834.h"
 #include "unk_02023FCC.h"
@@ -501,9 +500,9 @@ static void ov21_021E898C(UnkStruct_ov21_021E8584 *param0, int param1)
 
     v0 = ov21_021D27B8(param0->unk_00, 58, 1, &v1, param1);
 
-    sub_020198C0(param0->unk_00->unk_00, 6, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
+    Bg_LoadToTilemapRect(param0->unk_00->unk_00, 6, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
-    sub_0201C3C0(param0->unk_00->unk_00, 6);
+    Bg_ScheduleTilemapTransfer(param0->unk_00->unk_00, 6);
 }
 
 static void ov21_021E89F4(UnkStruct_ov21_021E8794 *param0, UnkStruct_ov21_021E8584 *param1, int param2)

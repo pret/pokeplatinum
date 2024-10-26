@@ -3,9 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0205AA50.h"
-
-#include "unk_02018340.h"
+#include "bg_window.h"
 
 static void ov21_021D5248(Window *param0, u8 *param1, u16 cellWidth, u16 cellHeight, int mapScale, int cellType, u8 yCoord, u8 xCoord);
 static void MapFieldCellMatrix_CellType(u8 *mapFieldCellMatrix, int y, int x, int mapHeight, int mapWidth);
@@ -45,7 +43,7 @@ static void ov21_021D5248(Window *param0, u8 *param1, u16 cellWidth, u16 cellHei
         v1 = v0 / cellWidth;
         v0 = v0 % cellWidth;
 
-        sub_0201ADDC(param0, param1, v0, v1, cellWidth, cellHeight, yCoord, xCoord, mapScale, mapScale);
+        Window_BlitBitmapRect(param0, param1, v0, v1, cellWidth, cellHeight, yCoord, xCoord, mapScale, mapScale);
     }
 }
 

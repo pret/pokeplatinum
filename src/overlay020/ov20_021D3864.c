@@ -3,24 +3,21 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020998EC_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay020/ov20_021D2098.h"
 #include "overlay020/struct_ov20_021D16E8_decl.h"
 #include "overlay020/struct_ov20_021D2128_decl.h"
-#include "overlay061/struct_ov61_0222C884.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "font.h"
+#include "graphics.h"
 #include "heap.h"
 #include "message.h"
+#include "narc.h"
 #include "strbuf.h"
 #include "text.h"
-#include "unk_02006E3C.h"
-#include "unk_02018340.h"
 
 typedef struct UnkStruct_ov20_021D3980_t {
     UnkStruct_ov20_021D2128 *unk_00;
@@ -29,7 +26,7 @@ typedef struct UnkStruct_ov20_021D3980_t {
     CellActor *unk_0C;
 } UnkStruct_ov20_021D3980;
 
-static void ov20_021D390C(BGL *param0, const UnkStruct_ov61_0222C884 *param1, u32 param2);
+static void ov20_021D390C(BgConfig *param0, const WindowTemplate *param1, u32 param2);
 static void ov20_021D3980(UnkStruct_ov20_021D3980 *param0);
 
 UnkStruct_ov20_021D3980 *ov20_021D3864(UnkStruct_ov20_021D2128 *param0, const UnkStruct_ov20_021D16E8 *param1, const UnkStruct_020998EC *param2)
@@ -55,43 +52,43 @@ void ov20_021D3880(UnkStruct_ov20_021D3980 *param0)
 
 void ov20_021D3898(UnkStruct_ov20_021D3980 *param0, NARC *param1)
 {
-    static const UnkStruct_ov61_0222C884 v0 = {
+    static const WindowTemplate v0 = {
         3, 3, 6, 10, 2, 13, 64
     };
-    static const UnkStruct_ov61_0222C884 v1 = {
+    static const WindowTemplate v1 = {
         3, 19, 6, 10, 2, 13, 84
     };
-    BGL *v2;
+    BgConfig *v2;
 
     v2 = ov20_021D2E04(param0->unk_00);
 
-    sub_0200710C(param1, 4, v2, 3, 0, 0, 1, 35);
-    sub_020070E8(param1, 5, v2, 3, 0, 0, 1, 35);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 4, v2, 3, 0, 0, 1, 35);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 5, v2, 3, 0, 0, 1, 35);
 
     ov20_021D390C(v2, &v0, 0);
     ov20_021D390C(v2, &v1, 1);
     ov20_021D3980(param0);
 
-    sub_02019448(v2, 3);
+    Bg_CopyTilemapBufferToVRAM(v2, 3);
 }
 
-static void ov20_021D390C(BGL *param0, const UnkStruct_ov61_0222C884 *param1, u32 param2)
+static void ov20_021D390C(BgConfig *param0, const WindowTemplate *param1, u32 param2)
 {
     Window v0;
     Strbuf *v1;
     u32 v2;
 
-    sub_0201A8D4(param0, &v0, param1);
-    sub_0201A9F4(&v0);
-    BGL_FillWindow(&v0, 14);
+    Window_AddFromTemplate(param0, &v0, param1);
+    Window_PutToTilemap(&v0);
+    Window_FillTilemap(&v0, 14);
 
     v1 = MessageBank_GetNewStrbufFromNARC(26, 438, param2, 35);
-    v2 = ((param1->unk_03 * 8) - Font_CalcStrbufWidth(FONT_SYSTEM, v1, 0)) / 2;
+    v2 = ((param1->width * 8) - Font_CalcStrbufWidth(FONT_SYSTEM, v1, 0)) / 2;
 
     Text_AddPrinterWithParamsAndColor(&v0, FONT_SYSTEM, v1, v2, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 14), NULL);
-    sub_0201ACCC(&v0);
+    Window_LoadTiles(&v0);
     Strbuf_Free(v1);
-    BGL_DeleteWindow(&v0);
+    Window_Remove(&v0);
 }
 
 static void ov20_021D3980(UnkStruct_ov20_021D3980 *param0)
@@ -149,10 +146,10 @@ void ov20_021D39EC(UnkStruct_ov20_021D3980 *param0, int param1)
 
 void ov20_021D3A2C(UnkStruct_ov20_021D3980 *param0)
 {
-    sub_02019184(ov20_021D2E04(param0->unk_00), 3, 3, 64);
+    Bg_SetOffset(ov20_021D2E04(param0->unk_00), 3, 3, 64);
 }
 
 void ov20_021D3A40(UnkStruct_ov20_021D3980 *param0)
 {
-    sub_02019184(ov20_021D2E04(param0->unk_00), 3, 3, 0);
+    Bg_SetOffset(ov20_021D2E04(param0->unk_00), 3, 3, 0);
 }

@@ -3,13 +3,12 @@
 
 #include <nnsys.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-
 #include "field/field_system_decl.h"
 #include "overlay025/poketch_button.h"
 #include "overlay025/struct_ov25_02254560_1.h"
 #include "overlay025/struct_ov25_02254560_decl.h"
 
+#include "bg_window.h"
 #include "poketch_data.h"
 #include "savedata.h"
 #include "sys_task_manager.h"
@@ -75,7 +74,7 @@ enum PoketchEventID {
 
 typedef struct PoketchSystem PoketchSystem;
 
-typedef BOOL (*PoketchAppInitFunction)(void **app, PoketchSystem *poketchSys, BGL *bgl, u32 appID);
+typedef BOOL (*PoketchAppInitFunction)(void **app, PoketchSystem *poketchSys, BgConfig *bgl, u32 appID);
 typedef void (*PoketchAppShutdownFunction)(void *app);
 typedef void (*PoketchAppSaveFunction)(void *app);
 
@@ -107,7 +106,7 @@ struct PoketchSystem {
     PoketchAppSaveFunction currAppSave;
     void *appSaveData;
 
-    BGL *bgl;
+    BgConfig *bgl;
     NNSG2dOamManagerInstance *oamManager;
 
     SaveData *saveData;
@@ -116,7 +115,7 @@ struct PoketchSystem {
     enum ButtonDir buttonDir;
 };
 
-void PoketchSystem_Create(FieldSystem *fieldSystem, PoketchSystem **poketchSys, SaveData *saveData, BGL *bgl, NNSG2dOamManagerInstance *oamManager);
+void PoketchSystem_Create(FieldSystem *fieldSystem, PoketchSystem **poketchSys, SaveData *saveData, BgConfig *bgl, NNSG2dOamManagerInstance *oamManager);
 void PoketchSystem_StartShutdown(PoketchSystem *poketchSys);
 BOOL PoketchSystem_IsSystemShutdown(PoketchSystem *poketchSys);
 void PoketchSystem_SendEvent(PoketchSystem *poketchSys, enum PoketchEventID eventID, u32);

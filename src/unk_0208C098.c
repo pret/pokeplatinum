@@ -3,14 +3,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
-
+#include "bg_window.h"
 #include "core_sys.h"
 #include "heap.h"
 #include "narc.h"
 #include "unk_0200F174.h"
-#include "unk_02018340.h"
 
 __attribute__((aligned(4))) static const u16 Unk_020F4030[] = {
     0x20,
@@ -156,7 +153,7 @@ u8 sub_0208C15C(s16 *param0, u16 param1)
     return 0;
 }
 
-void sub_0208C210(BGL *param0, int param1, NARC *param2, int param3, int param4, int param5, int param6, u16 param7, u16 param8)
+void sub_0208C210(BgConfig *param0, int param1, NARC *param2, int param3, int param4, int param5, int param6, u16 param7, u16 param8)
 {
     u32 v0;
     void *v1;
@@ -177,7 +174,7 @@ void sub_0208C210(BGL *param0, int param1, NARC *param2, int param3, int param4,
             param7 = v2->szByte;
         }
 
-        sub_0201958C(param0, param5, v2->pRawData, param7, param8);
+        Bg_LoadTiles(param0, param5, v2->pRawData, param7, param8);
         break;
     case 1:
         NNS_G2dGetUnpackedScreenData(v1, &v3);
@@ -186,11 +183,11 @@ void sub_0208C210(BGL *param0, int param1, NARC *param2, int param3, int param4,
             param7 = v3->szByte;
         }
 
-        if (sub_02019FE4(param0, param5) != NULL) {
-            sub_02019574(param0, param5, v3->rawData, param7);
+        if (Bg_GetTilemapBuffer(param0, param5) != NULL) {
+            Bg_LoadTilemapBuffer(param0, param5, v3->rawData, param7);
         }
 
-        sub_02019460(param0, param5, v3->rawData, param7, param8);
+        Bg_CopyTilemapBufferRangeToVRAM(param0, param5, v3->rawData, param7, param8);
         break;
     case 2:
         NNS_G2dGetUnpackedPaletteData(v1, &v4);
@@ -199,7 +196,7 @@ void sub_0208C210(BGL *param0, int param1, NARC *param2, int param3, int param4,
             param7 = v4->szByte;
         }
 
-        sub_0201972C(param5, v4->pRawData, param7, param8);
+        Bg_LoadPalette(param5, v4->pRawData, param7, param8);
     }
 
     Heap_FreeToHeap(v1);

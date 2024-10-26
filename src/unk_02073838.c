@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_defs/struct_02073838.h"
 #include "struct_defs/struct_02073974.h"
 #include "struct_defs/struct_02073B50.h"
@@ -11,10 +10,11 @@
 #include "overlay005/struct_ov5_02201C58.h"
 
 #include "easy3d.h"
+#include "graphics.h"
 #include "heap.h"
+#include "narc.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
 #include "unk_0201E190.h"
 
 static void sub_020739D8(UnkStruct_02073974 *param0, void *param1, u32 param2);
@@ -55,7 +55,7 @@ void sub_02073848(UnkStruct_02073838 *param0, NNSG3dResFileHeader *param1, u32 p
 
 void sub_0207389C(UnkStruct_02073838 *param0, u32 param1, NARC *param2, u32 param3, u32 param4, int param5)
 {
-    NNSG3dResFileHeader *v0 = sub_0200723C(param2, param3, 0, param4, param5);
+    NNSG3dResFileHeader *v0 = LoadMemberFromOpenNARC(param2, param3, 0, param4, param5);
     sub_02073848(param0, v0, param1);
 }
 
@@ -139,7 +139,7 @@ void sub_020739A8(UnkStruct_02073974 *param0, UnkStruct_02073974 *param1, u32 pa
 
 void sub_020739B4(UnkStruct_02073974 *param0, u32 param1, NARC *param2, u32 param3, u32 param4, int param5)
 {
-    void *v0 = sub_0200723C(param2, param3, 0, param4, param5);
+    void *v0 = LoadMemberFromOpenNARC(param2, param3, 0, param4, param5);
     sub_02073980(param0, v0, param1);
 }
 

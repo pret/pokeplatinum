@@ -10,9 +10,9 @@
 #include "overlay021/struct_ov21_021D5844.h"
 
 #include "cell_actor.h"
+#include "graphics.h"
 #include "heap.h"
 #include "narc.h"
-#include "unk_02006E3C.h"
 
 void PokedexEncData_PopulateMapsEncounteredOn(mapsEncounteredOn *mapsEncOn, int species, int encounterCategory, int heapID)
 {
@@ -52,7 +52,7 @@ void PokedexEncData_PopulateMapsEncounteredOn(mapsEncounteredOn *mapsEncOn, int 
         break;
     }
 
-    mapsEncOn->mapsEncounteredOnArray = (int *)sub_02007068(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_ENC_PLATINUM, fileIndex + species, 0, heapID, 0, &fileSize);
+    mapsEncOn->mapsEncounteredOnArray = (int *)LoadMemberFromNARC_OutFileSize(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_ENC_PLATINUM, fileIndex + species, 0, heapID, 0, &fileSize);
     mapsEncOn->numMapsEncounteredOn = fileSize / sizeof(int);
 }
 
@@ -72,7 +72,7 @@ dungeonCoordinates *PokedexEncData_GetDungeonLocations(int heapID, int *numDunge
     dungeonCoordinates *dungeonCoordinatesArray;
     u32 fileSize;
 
-    dungeonCoordinatesArray = (dungeonCoordinates *)sub_02007068(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_ENC_PLATINUM, 0, 0, heapID, 0, &fileSize);
+    dungeonCoordinatesArray = (dungeonCoordinates *)LoadMemberFromNARC_OutFileSize(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_ENC_PLATINUM, 0, 0, heapID, 0, &fileSize);
 
     if (numDungeons) {
         *numDungeons = fileSize / sizeof(dungeonCoordinates);
@@ -86,7 +86,7 @@ fieldCoordinates *PokedexEncData_GetFieldLocations(int heapID, int *numFields)
     fieldCoordinates *fieldCoordinatesArray;
     u32 fileSize;
 
-    fieldCoordinatesArray = (fieldCoordinates *)sub_02007068(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_ENC_PLATINUM, 2, 0, heapID, 0, &fileSize);
+    fieldCoordinatesArray = (fieldCoordinates *)LoadMemberFromNARC_OutFileSize(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_ENC_PLATINUM, 2, 0, heapID, 0, &fileSize);
 
     if (numFields) {
         *numFields = fileSize / sizeof(fieldCoordinates);

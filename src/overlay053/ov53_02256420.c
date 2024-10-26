@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/ov25_02255090.h"
 #include "overlay025/ov25_02255540.h"
@@ -17,18 +15,17 @@
 #include "overlay025/struct_ov25_02255958.h"
 #include "overlay053/struct_ov53_02256420_1.h"
 #include "overlay053/struct_ov53_02256420_decl.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
+#include "graphics.h"
 #include "heap.h"
 #include "pokemon_icon.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 
 struct UnkStruct_ov53_02256420_t {
     const UnkStruct_ov53_02256420_1 *unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     u32 unk_08[6];
     UnkStruct_ov25_022555E8 *unk_20;
     UnkStruct_ov25_022558C4 *unk_24[16];
@@ -51,7 +48,7 @@ static void ov53_022566AC(UnkStruct_ov53_02256420 *param0, const UnkStruct_ov53_
 static void ov53_02256840(UnkStruct_ov53_02256420 *param0);
 static void ov53_02256874(UnkStruct_ov25_022558C4 **param0, u32 param1);
 
-BOOL ov53_02256420(UnkStruct_ov53_02256420 **param0, const UnkStruct_ov53_02256420_1 *param1, BGL *param2)
+BOOL ov53_02256420(UnkStruct_ov53_02256420 **param0, const UnkStruct_ov53_02256420_1 *param1, BgConfig *param2)
 {
     UnkStruct_ov53_02256420 *v0 = (UnkStruct_ov53_02256420 *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov53_02256420));
 
@@ -106,7 +103,7 @@ static void ov53_0225649C(UnkStruct_ov25_02255224 *param0)
 
 static void ov53_022564B0(SysTask *param0, void *param1)
 {
-    static const UnkStruct_ov97_0222DB78 v0 = {
+    static const BgTemplate v0 = {
         0,
         0,
         0,
@@ -128,9 +125,9 @@ static void ov53_022564B0(SysTask *param0, void *param1)
     v2 = ov25_0225523C(param1);
     v3 = ov25_02255240(param1);
 
-    sub_020183C4(v2->unk_04, 6, &v0, 0);
-    sub_02006E3C(12, 122, v2->unk_04, 6, 0, 0, 1, 8);
-    sub_02006E60(12, 121, v2->unk_04, 6, 0, 0, 1, 8);
+    Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
+    Graphics_LoadTilesToBgLayer(12, 122, v2->unk_04, 6, 0, 0, 1, 8);
+    Graphics_LoadTilemapToBgLayer(12, 121, v2->unk_04, 6, 0, 0, 1, 8);
 
     ov25_022546B8(0, 0);
     ov53_022566AC(v2, v3);
@@ -145,7 +142,7 @@ static void ov53_02256548(SysTask *param0, void *param1)
     UnkStruct_ov53_02256420 *v0 = ov25_0225523C(param1);
 
     ov53_02256840(v0);
-    sub_02019044(v0->unk_04, 6);
+    Bg_FreeTilemapBuffer(v0->unk_04, 6);
     ov53_0225649C(param1);
 }
 
@@ -350,7 +347,7 @@ static void ov53_022566AC(UnkStruct_ov53_02256420 *param0, const UnkStruct_ov53_
     ov25_02255958(&param0->unk_78, 12, 5, 6, 8);
     ov25_02255958(&param0->unk_64, 12, 123, 124, 8);
 
-    v1 = sub_02006EC0(12, 125, 1, 0, 0, 1, 8);
+    v1 = Graphics_LoadObjectTiles(12, 125, 1, 0, 0, 1, 8);
     v1 /= 0x20;
     param0->unk_AC = v1;
 

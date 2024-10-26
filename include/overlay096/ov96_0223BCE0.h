@@ -1,10 +1,9 @@
 #ifndef POKEPLATINUM_OV96_0223BCE0_H
 #define POKEPLATINUM_OV96_0223BCE0_H
 
-#include "struct_defs/struct_0205AA50.h"
-
 #include "overlay096/struct_ov96_0223BF40_decl.h"
 
+#include "bg_window.h"
 #include "strbuf.h"
 #include "text.h"
 

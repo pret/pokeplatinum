@@ -7,7 +7,6 @@
 
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_02029894_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
@@ -32,8 +31,8 @@
 #include "overlay023/ov23_02253598.h"
 #include "overlay023/ov23_02253D40.h"
 #include "overlay023/struct_ov23_0224271C.h"
-#include "overlay061/struct_ov61_0222C884.h"
 
+#include "bg_window.h"
 #include "comm_player_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -41,6 +40,7 @@
 #include "field_map_change.h"
 #include "field_system.h"
 #include "game_records.h"
+#include "graphics.h"
 #include "heap.h"
 #include "journal.h"
 #include "map_object_move.h"
@@ -53,11 +53,9 @@
 #include "trainer_info.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02013A04.h"
-#include "unk_02018340.h"
 #include "unk_0202854C.h"
 #include "unk_02030EE0.h"
 #include "unk_02033200.h"
@@ -199,7 +197,7 @@ static void ov23_0224DC24(void);
 
 static UnkStruct_ov23_022577AC *Unk_ov23_022577AC = NULL;
 
-static const UnkStruct_ov61_0222C884 Unk_ov23_02256864 = {
+static const WindowTemplate Unk_ov23_02256864 = {
     0x3,
     0x19,
     0xD,
@@ -209,7 +207,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov23_02256864 = {
     0x21F
 };
 
-static const UnkStruct_ov61_0222C884 Unk_ov23_0225686C = {
+static const WindowTemplate Unk_ov23_0225686C = {
     0x3,
     0x10,
     0xD,
@@ -1015,7 +1013,7 @@ static int ov23_0224BD1C(int param0, BOOL param1)
     return v1;
 }
 
-static UIControlData *ov23_0224BD90(BGL *param0, const UnkStruct_ov61_0222C884 *param1, u16 param2, u8 param3, u32 param4)
+static UIControlData *ov23_0224BD90(BgConfig *param0, const WindowTemplate *param1, u16 param2, u8 param3, u32 param4)
 {
     UnkStruct_02081CF4 v0;
     MessageLoader *v1 = ov23_02253E3C(ov23_0224219C());
@@ -1027,7 +1025,7 @@ static UIControlData *ov23_0224BD90(BGL *param0, const UnkStruct_ov61_0222C884 *
     sub_02013A4C(v2, v1, 39, 1);
 
     v0.unk_00 = v2;
-    v0.unk_04 = sub_0201A778(param4, 1);
+    v0.unk_04 = Window_New(param4, 1);
     v0.unk_08 = 0;
     v0.unk_09 = 1;
     v0.unk_0A = 2;
@@ -1035,7 +1033,7 @@ static UIControlData *ov23_0224BD90(BGL *param0, const UnkStruct_ov61_0222C884 *
     v0.unk_0B_4 = 0;
     v0.unk_0B_0 = 0;
 
-    sub_0201A8D4(param0, v0.unk_04, param1);
+    Window_AddFromTemplate(param0, v0.unk_04, param1);
     Window_Show(v0.unk_04, 1, param2, param3);
 
     return sub_02001B7C(&v0, 8, 0, 0, param4, PAD_BUTTON_B);
@@ -1643,7 +1641,7 @@ static BOOL ov23_0224C790(TaskManager *param0)
         CommSys_EnableSendMovementData();
         sub_020594FC();
 
-        sub_02006E84(50, 52, 0, 10 * 0x20, 4 * 0x20, 4);
+        Graphics_LoadPalette(50, 52, 0, 10 * 0x20, 4 * 0x20, 4);
         sub_0200DAA4(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 2, 4);
 
         if (v1->unk_2D) {

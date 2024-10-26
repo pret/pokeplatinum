@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_defs/archived_sprite.h"
@@ -15,9 +14,11 @@
 #include "overlay017/struct_ov17_02247A48.h"
 #include "overlay017/struct_ov17_0225442C.h"
 
+#include "bg_window.h"
 #include "game_options.h"
 #include "heap.h"
 #include "message.h"
+#include "narc.h"
 #include "pokemon.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -27,7 +28,6 @@
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 
 typedef struct {
@@ -218,7 +218,7 @@ static void ov17_02247990(UnkStruct_ov17_02247A48 *param0, MessageLoader *param1
     ov17_0224792C(param0, param3, param4);
 
     StringTemplate_Format(param0->unk_0C.unk_3C, param0->unk_0C.unk_40, v0);
-    BGL_FillWindow(&param0->unk_0C.unk_28[0], 0xff);
+    Window_FillTilemap(&param0->unk_0C.unk_28[0], 0xff);
 
     param0->unk_0C.unk_C4 = Text_AddPrinterWithParams(&param0->unk_0C.unk_28[0], FONT_MESSAGE, param0->unk_0C.unk_40, 0, 0, v1, NULL);
     Strbuf_Free(v0);

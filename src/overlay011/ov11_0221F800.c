@@ -3,9 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02002F38_decl.h"
-
-#include "unk_02002F38.h"
+#include "palette.h"
 
 __attribute__((aligned(4))) const u16 Unk_ov11_0221F94C[] = {
     0x75CD,
@@ -435,5 +433,5 @@ void ov11_0221F81C(PaletteData *param0, int param1, int param2, int param3, int 
     const u16 *v0;
 
     v0 = ov11_0221F800(param1);
-    sub_02002FBC(param0, v0, param3, param4 * 16, 0x20);
+    PaletteData_LoadBuffer(param0, v0, param3, param4 * 16, 0x20);
 }

@@ -4,13 +4,10 @@
 #include <string.h>
 
 #include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02081CF4.h"
 
-#include "overlay061/struct_ov61_0222C884.h"
-
+#include "bg_window.h"
 #include "colored_arrow.h"
 #include "core_sys.h"
 #include "font.h"
@@ -20,7 +17,6 @@
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
-#include "unk_02018340.h"
 
 typedef struct UIControlData_t {
     UnkStruct_02081CF4 unk_00;
@@ -37,8 +33,8 @@ typedef struct UIControlData_t {
     u8 unk_1C;
 } UIControlData;
 
-static void sub_0200DB10(BGL *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6, u16 param7);
-static void sub_0200DD7C(BGL *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6, u16 param7);
+static void sub_0200DB10(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6, u16 param7);
+static void sub_0200DD7C(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6, u16 param7);
 static BOOL sub_02001DCC(UIControlData *param0, u8 param1, u16 param2);
 static u8 sub_02001E24(UIControlData *param0, u8 param1);
 static u8 sub_02001F1C(UIControlData *param0);
@@ -71,7 +67,7 @@ UIControlData *sub_02001B7C(const UnkStruct_02081CF4 *param0, u8 param1, u8 para
 {
     UIControlData *v0 = sub_02001AF4(param0, param1, param2, param3, param4, param5);
 
-    sub_0201A954(v0->unk_00.unk_04);
+    Window_CopyToVRAM(v0->unk_00.unk_04);
     return v0;
 }
 
@@ -239,7 +235,7 @@ static BOOL sub_02001DCC(UIControlData *param0, u8 param1, u16 param2)
         v3 = Font_GetAttribute(param0->unk_00.unk_08, 6);
 
         sub_02002018(param0, &v1, &v2, v0);
-        BGL_WindowColor(param0->unk_00.unk_04, v3, v1, v2, 8, param0->unk_1A);
+        Window_FillRectWithColor(param0->unk_00.unk_04, v3, v1, v2, 8, param0->unk_1A);
     }
 
     sub_02001FE8(param0);
@@ -340,7 +336,7 @@ static void sub_02001F5C(UIControlData *param0)
     u8 v1, v2, v3;
     u8 v4, v5;
 
-    BGL_FillWindow(param0->unk_00.unk_04, Font_GetAttribute(param0->unk_00.unk_08, 6));
+    Window_FillTilemap(param0->unk_00.unk_04, Font_GetAttribute(param0->unk_00.unk_08, 6));
 
     v1 = param0->unk_17;
     v3 = param0->unk_16 + param0->unk_19 * 2;
@@ -375,7 +371,7 @@ static void sub_02002018(UIControlData *param0, u8 *param1, u8 *param2, u8 param
     *param2 = (param3 % param0->unk_00.unk_0A) * (param0->unk_1A + param0->unk_00.unk_0B_0) + param0->unk_18;
 }
 
-UIControlData *sub_02002054(BGL *param0, const UnkStruct_ov61_0222C884 *param1, u16 param2, u8 param3, u8 param4, u32 param5)
+UIControlData *sub_02002054(BgConfig *param0, const WindowTemplate *param1, u16 param2, u8 param3, u8 param4, u32 param5)
 {
     UnkStruct_02081CF4 v0;
     MessageLoader *v1;
@@ -389,7 +385,7 @@ UIControlData *sub_02002054(BGL *param0, const UnkStruct_ov61_0222C884 *param1, 
     MessageLoader_Free(v1);
 
     v0.unk_00 = v2;
-    v0.unk_04 = sub_0201A778(param5, 1);
+    v0.unk_04 = Window_New(param5, 1);
     v0.unk_08 = 0;
     v0.unk_09 = 1;
     v0.unk_0A = 2;
@@ -397,13 +393,13 @@ UIControlData *sub_02002054(BGL *param0, const UnkStruct_ov61_0222C884 *param1, 
     v0.unk_0B_4 = 0;
     v0.unk_0B_6 = 0;
 
-    sub_0201A8D4(param0, v0.unk_04, param1);
+    Window_AddFromTemplate(param0, v0.unk_04, param1);
     Window_Show(v0.unk_04, 1, param2, param3);
 
     return sub_02001B7C(&v0, 8, 0, param4, param5, PAD_BUTTON_B);
 }
 
-UIControlData *sub_02002100(BGL *param0, const UnkStruct_ov61_0222C884 *param1, u16 param2, u8 param3, u32 param4)
+UIControlData *sub_02002100(BgConfig *param0, const WindowTemplate *param1, u16 param2, u8 param3, u32 param4)
 {
     return sub_02002054(param0, param1, param2, param3, 0, param4);
 }
@@ -433,7 +429,7 @@ u32 sub_02002134(UIControlData *param0, u8 param1, u32 param2)
 void sub_02002154(UIControlData *param0, u32 param1)
 {
     Window_Clear(param0->unk_00.unk_04, 0);
-    BGL_DeleteWindow(param0->unk_00.unk_04);
+    Window_Remove(param0->unk_00.unk_04);
     Heap_FreeToHeapExplicit(param1, param0->unk_00.unk_04);
     sub_02013A3C((ResourceMetadata *)param0->unk_00.unk_00);
     sub_02001BC4(param0, NULL);
@@ -508,5 +504,5 @@ void sub_02002180(Window *param0, u32 param1, u32 param2)
         0x0
     };
 
-    sub_0201ADDC(param0, (void *)v0, 0, 0, 8, 16, param1, param2, 8, 16);
+    Window_BlitBitmapRect(param0, (void *)v0, 0, 0, 8, 16, param1, param2, 8, 16);
 }

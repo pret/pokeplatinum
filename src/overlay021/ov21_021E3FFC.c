@@ -4,8 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
@@ -20,15 +18,16 @@
 #include "overlay021/struct_ov21_021E6B20.h"
 #include "overlay021/struct_pokedexstatus.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "heap.h"
+#include "narc.h"
 #include "sprite_resource.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
-#include "unk_02018340.h"
 
 typedef struct {
     int *unk_00;
@@ -522,17 +521,17 @@ static void ov21_021E45FC(UnkStruct_ov21_021E4108 *param0, const UnkStruct_ov21_
     ov21_021D2724(param0->unk_00, 33, param0->unk_00->unk_00, 3, 0, 0, 1, param2);
     v0 = ov21_021D27B8(param0->unk_00, 70, 1, &v1, param2);
 
-    sub_020198C0(param0->unk_00->unk_00, 3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
+    Bg_LoadToTilemapRect(param0->unk_00->unk_00, 3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
-    sub_0201C3C0(param0->unk_00->unk_00, 3);
+    Bg_ScheduleTilemapTransfer(param0->unk_00->unk_00, 3);
 }
 
 static void ov21_021E4664(UnkStruct_ov21_021E4108 *param0)
 {
-    sub_0201C63C(param0->unk_00->unk_00, 1, 0, 0);
-    BGL_WindowColor(&param0->unk_00->unk_04, 0, 0, 0, 256, 192);
-    sub_02019EBC(param0->unk_00->unk_00, 1);
-    sub_0201C2B4(&param0->unk_00->unk_04, 0);
+    Bg_ScheduleScroll(param0->unk_00->unk_00, 1, 0, 0);
+    Window_FillRectWithColor(&param0->unk_00->unk_04, 0, 0, 0, 256, 192);
+    Bg_ClearTilemap(param0->unk_00->unk_00, 1);
+    Window_SetPalette(&param0->unk_00->unk_04, 0);
 }
 
 static void ov21_021E46A8(UnkStruct_ov21_021E4360 *param0, UnkStruct_ov21_021E4108 *param1, int param2)
@@ -629,7 +628,7 @@ static void ov21_021E48B0(UnkStruct_ov21_021E4360 *param0, UnkStruct_ov21_021E41
     int v2;
     int v3;
 
-    BGL_WindowColor(&param1->unk_00->unk_04, 0, param6, param7 - 32, 1 * (param5), 32 * 2);
+    Window_FillRectWithColor(&param1->unk_00->unk_04, 0, param6, param7 - 32, 1 * (param5), 32 * 2);
 
     v3 = param4 - param3;
 
@@ -675,7 +674,7 @@ static void ov21_021E495C(Window *param0, u8 param1, int param2, int param3, int
     v2++;
     v2 *= 1;
 
-    BGL_WindowColor(param0, 6, param2, v1, 1, v2);
+    Window_FillRectWithColor(param0, 6, param2, v1, 1, v2);
 
     *param4 = v0;
 }
@@ -684,7 +683,7 @@ static void ov21_021E49D0(UnkStruct_ov21_021E4108 *param0, int param1, int param
 {
     int v0;
 
-    BGL_WindowColor(&param0->unk_00->unk_04, 0, param3, param4 - 32, 1 * (param2 - param1), 32 * 2);
+    Window_FillRectWithColor(&param0->unk_00->unk_04, 0, param3, param4 - 32, 1 * (param2 - param1), 32 * 2);
 
     for (v0 = param1; v0 < param2; v0++) {
         ov21_021E495C(&param0->unk_00->unk_04, 0, param3, param4, param5);
@@ -711,17 +710,17 @@ static void ov21_021E4A28(UnkStruct_ov21_021E4360 *param0, UnkStruct_ov21_021E41
         ov21_021E49D0(param1, 0, 4, v0, 151, &param0->unk_328);
     }
 
-    sub_0201C63C(param1->unk_00->unk_00, 1, 0, param0->unk_324);
-    sub_0201A9A4(&param1->unk_00->unk_04);
+    Bg_ScheduleScroll(param1->unk_00->unk_00, 1, 0, param0->unk_324);
+    Window_ScheduleCopyToVRAM(&param1->unk_00->unk_04);
 
     param0->unk_32C = param2->unk_04;
 }
 
 static void ov21_021E4ABC(UnkStruct_ov21_021E4360 *param0, UnkStruct_ov21_021E4108 *param1)
 {
-    sub_0201C2B4(&param1->unk_00->unk_04, 9);
+    Window_SetPalette(&param1->unk_00->unk_04, 9);
     ov21_021E49D0(param1, 0, 256, 0, 151, &param0->unk_328);
-    sub_0201A954(&param1->unk_00->unk_04);
+    Window_CopyToVRAM(&param1->unk_00->unk_04);
 }
 
 static void ov21_021E4AF4(UnkStruct_ov21_021E4360 *param0)

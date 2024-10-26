@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV21_021D517C_H
 #define POKEPLATINUM_OV21_021D517C_H
 
-#include "struct_defs/struct_0205AA50.h"
+#include "bg_window.h"
 
 enum CellNeighbors {
     CN_ALONE = 0,

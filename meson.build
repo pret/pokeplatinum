@@ -19,7 +19,6 @@ public_includes = include_directories('include', 'asm', 'res')
 ###                    COMPILER FLAGS                    ###
 ############################################################
 c_args = [
-    '-O4,p',
     '-proc', 'arm946e',
     '-enum', 'int',
     '-lang', 'c99',
@@ -35,6 +34,15 @@ c_args = [
     '-sym', 'on'
 ]
 
+if get_option('gdb_debugging')
+    c_args += [
+        '-O1,p',
+        '-inline', 'off'
+    ]
+else
+    c_args += '-O4,p'
+endif
+
 add_global_arguments(c_args,
     language: 'c',
     native: false
@@ -45,6 +53,10 @@ pokeplatinum_args = [
     '-DGAME_VERSION=PLATINUM',
     '-DGAME_LANGUAGE=ENGLISH'
 ]
+
+if get_option('gdb_debugging')
+    pokeplatinum_args += '-DGDB_DEBUGGING'
+endif
 
 asm_args = [
     '-proc', 'arm5TE',
@@ -226,6 +238,33 @@ pokeplatinum_nds = custom_target('pokeplatinum.us.nds',
         '@OUTPUT1@'
     ],
     build_by_default: true
+)
+
+############################################################
+###                   GDB HELPERS                        ###
+############################################################
+nef_fixer = custom_target('debug.nef',
+    output: [
+        'debug.nef'
+    ],
+    input: [
+        main
+    ],
+    command : [
+        nef_fixer_py, '@INPUT@', '@OUTPUT@'
+    ]
+)
+
+ovly_mapper = custom_target('overlay.map',
+    output: [
+        'overlay.map'
+    ],
+    input: [
+        main_lsf
+    ],
+    command : [
+        overlay_mapper_py, '@INPUT@', '@OUTPUT@'
+    ]
 )
 
 

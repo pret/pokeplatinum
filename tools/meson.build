@@ -5,6 +5,7 @@ subdir('json2bin')
 subdir('msgenc')
 subdir('postconf')
 subdir('scripts')
+subdir('debug')
 
 # Prebuilt tools
 mwrap_exe = find_program('cw/mwrap', native: true)

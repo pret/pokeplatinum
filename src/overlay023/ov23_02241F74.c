@@ -34,6 +34,7 @@
 #include "core_sys.h"
 #include "field_system.h"
 #include "game_options.h"
+#include "graphics.h"
 #include "heap.h"
 #include "message.h"
 #include "save_player.h"
@@ -43,7 +44,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
-#include "unk_02006E3C.h"
 #include "unk_0200DA60.h"
 #include "unk_0202854C.h"
 #include "unk_02030EE0.h"
@@ -144,7 +144,7 @@ static void CommManUnderground_Init(CommManUnderground *param0, FieldSystem *fie
     sCommManUnderground->unk_128 = ov23_02253D48(630, 33, fieldSystem->unk_08, v0, 0);
 
     sub_0200DD0C(sCommManUnderground->fieldSystem->unk_08, 3, (1024 - (18 + 12)), 10, 0, 4);
-    sub_02006E84(50, 52, 0, 10 * 0x20, 4 * 0x20, 4);
+    Graphics_LoadPalette(50, 52, 0, 10 * 0x20, 4 * 0x20, 4);
     sub_0200DAA4(sCommManUnderground->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 2, 4);
 
     for (v1 = 0; v1 < (7 + 1); v1++) {

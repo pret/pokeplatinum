@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-
 #include "heap.h"
 #include "narc.h"
 #include "unk_02005474.h"

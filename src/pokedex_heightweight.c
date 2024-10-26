@@ -3,12 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-
+#include "graphics.h"
 #include "heap.h"
 #include "narc.h"
 #include "pokedex_data_index.h"
-#include "unk_02006E3C.h"
 
 typedef struct HeightWeightData {
     int *height;
@@ -130,36 +128,36 @@ short Pokedex_HeightWeightData_PokemonScale(const HeightWeightData *HWData, int 
 
 static int *Pokedex_Height_Array(NARC *pokedexDataNARC, int param1)
 {
-    void *height = sub_0200723C(pokedexDataNARC, 0, 0, param1, 0);
+    void *height = LoadMemberFromOpenNARC(pokedexDataNARC, 0, 0, param1, 0);
     return (int *)height;
 }
 
 static int *Pokedex_Weight_Array(NARC *pokedexDataNARC, int param1)
 {
-    void *weight = sub_0200723C(pokedexDataNARC, 1, 0, param1, 0);
+    void *weight = LoadMemberFromOpenNARC(pokedexDataNARC, 1, 0, param1, 0);
     return (int *)weight;
 }
 
 static void Pokedex_Comparison_Pos_M_Array(NARC *pokedexDataNARC, short **trainerPos, short **pokemonPos, int param3)
 {
-    *trainerPos = (short *)sub_0200723C(pokedexDataNARC, 9, 0, param3, 0);
-    *pokemonPos = (short *)sub_0200723C(pokedexDataNARC, 10, 0, param3, 0);
+    *trainerPos = (short *)LoadMemberFromOpenNARC(pokedexDataNARC, 9, 0, param3, 0);
+    *pokemonPos = (short *)LoadMemberFromOpenNARC(pokedexDataNARC, 10, 0, param3, 0);
 }
 
 static void Pokedex_Comparison_Pos_F_Array(NARC *pokedexDataNARC, short **trainerPos, short **pokemonPos, int param3)
 {
-    *trainerPos = (short *)sub_0200723C(pokedexDataNARC, 7, 0, param3, 0);
-    *pokemonPos = (short *)sub_0200723C(pokedexDataNARC, 8, 0, param3, 0);
+    *trainerPos = (short *)LoadMemberFromOpenNARC(pokedexDataNARC, 7, 0, param3, 0);
+    *pokemonPos = (short *)LoadMemberFromOpenNARC(pokedexDataNARC, 8, 0, param3, 0);
 }
 
 static void Pokedex_Comparison_Scale_M_Array(NARC *pokedexDataNARC, short **trainerScale, short **pokemonScale, int param3)
 {
-    *trainerScale = (short *)sub_0200723C(pokedexDataNARC, 5, 0, param3, 0);
-    *pokemonScale = (short *)sub_0200723C(pokedexDataNARC, 6, 0, param3, 0);
+    *trainerScale = (short *)LoadMemberFromOpenNARC(pokedexDataNARC, 5, 0, param3, 0);
+    *pokemonScale = (short *)LoadMemberFromOpenNARC(pokedexDataNARC, 6, 0, param3, 0);
 }
 
 static void Pokedex_Comparison_Scale_F_Array(NARC *pokedexDataNARC, short **trainerScale, short **pokemonScale, int param3)
 {
-    *trainerScale = (short *)sub_0200723C(pokedexDataNARC, 3, 0, param3, 0);
-    *pokemonScale = (short *)sub_0200723C(pokedexDataNARC, 4, 0, param3, 0);
+    *trainerScale = (short *)LoadMemberFromOpenNARC(pokedexDataNARC, 3, 0, param3, 0);
+    *pokemonScale = (short *)LoadMemberFromOpenNARC(pokedexDataNARC, 4, 0, param3, 0);
 }

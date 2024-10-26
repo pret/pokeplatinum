@@ -1591,7 +1591,7 @@ void BoxMonGBAToBoxMon(BoxPokemonGBA *param0, BoxPokemon *param1)
 
     BoxPokemon_SetValue(param1, 118, &v6[0]);
 
-    if (GetGBABoxMonData(param0, 3, NULL) != Unk_020E4C44) {
+    if (GetGBABoxMonData(param0, 3, NULL) != gGameLanguage) {
         v1 = 1;
         BoxPokemon_SetValue(param1, 77, &v1);
     }

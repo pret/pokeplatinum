@@ -5,7 +5,6 @@
 
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay022/funcptr_ov22_02259D78.h"
 #include "overlay022/ov22_02255094.h"
@@ -16,6 +15,7 @@
 #include "overlay022/struct_ov22_0225A0E4.h"
 #include "overlay022/struct_ov22_0225A154.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "error_handling.h"
 #include "font.h"
@@ -28,7 +28,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_02012744.h"
-#include "unk_02018340.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "unk_02023FCC.h"
@@ -436,9 +435,9 @@ static Window *ov22_0225A348(UnkStruct_ov22_0225A0E4 *param0, u32 param1, u32 pa
     GF_ASSERT(v0);
     v1 = MessageLoader_GetNewStrbuf(v0, param3);
 
-    v2 = sub_0201A778(14, 1);
+    v2 = Window_New(14, 1);
     Window_Init(v2);
-    BGL_AddFramelessWindow(param0->unk_40, v2, param4, param5, 0, 0);
+    Window_AddToTopLeftCorner(param0->unk_40, v2, param4, param5, 0, 0);
 
     {
         u32 v3 = Font_CalcCenterAlignment(FONT_SUBSCREEN, v1, 0, param4 * 8);
@@ -453,7 +452,7 @@ static Window *ov22_0225A348(UnkStruct_ov22_0225A0E4 *param0, u32 param1, u32 pa
 
 static void ov22_0225A3D0(Window *param0)
 {
-    sub_0201A928(param0, 1);
+    Windows_Delete(param0, 1);
 }
 
 static void ov22_0225A3DC(UnkStruct_ov22_02259C58 *param0, int param1, int param2)

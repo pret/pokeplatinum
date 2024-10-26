@@ -3,9 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02095C60.h"
 
 #include "overlay022/ov22_022597BC.h"
@@ -18,10 +15,12 @@
 #include "overlay022/struct_ov22_0225AD68.h"
 #include "overlay022/struct_ov22_0225AE9C.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "font.h"
 #include "game_options.h"
 #include "message.h"
+#include "narc.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "sys_task.h"
@@ -30,12 +29,11 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200DA60.h"
-#include "unk_02018340.h"
 #include "unk_02095AF0.h"
 
-static void ov22_0225A6E0(UnkStruct_ov22_022597BC *param0, BGL *param1);
-static void ov22_0225A718(BGL *param0, const Options *param1);
-static void ov22_0225A748(Window **param0, BGL *param1, int param2, int param3, int param4, int param5, int param6, BOOL param7);
+static void ov22_0225A6E0(UnkStruct_ov22_022597BC *param0, BgConfig *param1);
+static void ov22_0225A718(BgConfig *param0, const Options *param1);
+static void ov22_0225A748(Window **param0, BgConfig *param1, int param2, int param3, int param4, int param5, int param6, BOOL param7);
 static void ov22_0225A7B8(UnkStruct_ov22_022597BC *param0);
 static void ov22_0225A7C0(Window *param0);
 static s32 ov22_0225A7CC(Window *param0, int param1, int param2, int param3, int param4, int param5, u32 param6);
@@ -45,7 +43,7 @@ static s32 ov22_0225A8B4(Window *param0, int param1, int param2, int param3, int
 static void ov22_0225A914(UnkStruct_ov22_0225A914 *param0, CellActorCollection *param1, SpriteResourceCollection **param2, int param3, NARC *param4);
 static void ov22_0225A9C8(UnkStruct_ov22_0225A914 *param0, int param1);
 static void ov22_0225AA10(UnkStruct_ov22_0225A914 *param0, SpriteResourceCollection **param1);
-static void ov22_0225AB54(UnkStruct_ov22_0225AB54 *param0, CellActorCollection *param1, SpriteResourceCollection **param2, int param3, BGL *param4, UnkStruct_02095C60 *param5, NARC *param6);
+static void ov22_0225AB54(UnkStruct_ov22_0225AB54 *param0, CellActorCollection *param1, SpriteResourceCollection **param2, int param3, BgConfig *param4, UnkStruct_02095C60 *param5, NARC *param6);
 static void ov22_0225AC58(UnkStruct_ov22_0225AB54 *param0, SpriteResourceCollection **param1);
 static void ov22_0225AC8C(UnkStruct_ov22_0225AB54 *param0);
 static void ov22_0225AD5C(UnkStruct_ov22_0225AB54 *param0);
@@ -84,7 +82,7 @@ void ov22_0225A428(UnkStruct_ov22_0225A428 *param0, UnkStruct_ov22_02256BAC *par
 
     if (param2 & 32) {
         ov22_0225A748(&param0->unk_134, param1->unk_00, 2, 1, 27, 2, (18 + 12) + (1 + (27 * 4)), 1);
-        BGL_FillWindow(param0->unk_134, 15);
+        Window_FillTilemap(param0->unk_134, 15);
         ov22_0225A860(param0->unk_134, 26, param1->unk_14, 6, 0, 0, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
         ov22_0225A860(param0->unk_134, 26, param1->unk_14, param1->unk_18, 72, 0, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
         sub_0200E060(param0->unk_134, 0, 1, 1);
@@ -175,7 +173,7 @@ BOOL ov22_0225A6D4(const UnkStruct_ov22_0225A428 *param0)
     return ov22_0225AF34(&param0->unk_A0.unk_30);
 }
 
-static void ov22_0225A6E0(UnkStruct_ov22_022597BC *param0, BGL *param1)
+static void ov22_0225A6E0(UnkStruct_ov22_022597BC *param0, BgConfig *param1)
 {
     UnkStruct_ov22_022599A0 v0;
 
@@ -195,7 +193,7 @@ static void ov22_0225A6E0(UnkStruct_ov22_022597BC *param0, BGL *param1)
     ov22_022597BC(param0, &v0);
 }
 
-static void ov22_0225A718(BGL *param0, const Options *param1)
+static void ov22_0225A718(BgConfig *param0, const Options *param1)
 {
     int v0 = Options_Frame(param1);
 
@@ -203,19 +201,19 @@ static void ov22_0225A718(BGL *param0, const Options *param1)
     Font_LoadScreenIndicatorsPalette(4, 2 * 32, 14);
 }
 
-static void ov22_0225A748(Window **param0, BGL *param1, int param2, int param3, int param4, int param5, int param6, BOOL param7)
+static void ov22_0225A748(Window **param0, BgConfig *param1, int param2, int param3, int param4, int param5, int param6, BOOL param7)
 {
-    *param0 = sub_0201A778(14, 1);
+    *param0 = Window_New(14, 1);
 
     Window_Init(*param0);
-    BGL_AddWindow(param1, *param0, 5, param2, param3, param4, param5, 2, param6);
-    BGL_FillWindow(*param0, 15);
+    Window_Add(param1, *param0, 5, param2, param3, param4, param5, 2, param6);
+    Window_FillTilemap(*param0, 15);
 
     if (param7) {
         sub_0200E060(*param0, 0, 1, 1);
     }
 
-    sub_0201A954(*param0);
+    Window_CopyToVRAM(*param0);
 }
 
 static void ov22_0225A7B8(UnkStruct_ov22_022597BC *param0)
@@ -225,14 +223,14 @@ static void ov22_0225A7B8(UnkStruct_ov22_022597BC *param0)
 
 static void ov22_0225A7C0(Window *param0)
 {
-    sub_0201A928(param0, 1);
+    Windows_Delete(param0, 1);
 }
 
 static s32 ov22_0225A7CC(Window *param0, int param1, int param2, int param3, int param4, int param5, u32 param6)
 {
     s32 v0;
 
-    BGL_FillWindow(param0, 15);
+    Window_FillTilemap(param0, 15);
     v0 = ov22_0225A860(param0, param1, param2, param3, param4, param5, TEXT_COLOR(1, 2, 15), param6);
     sub_0200E060(param0, 0, 1, 1);
 
@@ -243,7 +241,7 @@ static s32 ov22_0225A814(Window *param0, int param1, int param2, int param3, int
 {
     s32 v0;
 
-    BGL_FillWindow(param0, 15);
+    Window_FillTilemap(param0, 15);
     v0 = ov22_0225A8B4(param0, param1, param2, param3, param4, param5, TEXT_COLOR(1, 2, 15), param6, param7);
     sub_0200E060(param0, 0, 1, 1);
 
@@ -378,7 +376,7 @@ static void ov22_0225AAF4(SpriteResource **param0, SpriteResourceCollection **pa
     sub_020093B4(param2, SpriteResource_GetID(param0[0]), SpriteResource_GetID(param0[1]), SpriteResource_GetID(param0[2]), SpriteResource_GetID(param0[3]), 0xffffffff, 0xffffffff, 0, param3, param1[0], param1[1], param1[2], param1[3], NULL, NULL);
 }
 
-static void ov22_0225AB54(UnkStruct_ov22_0225AB54 *param0, CellActorCollection *param1, SpriteResourceCollection **param2, int param3, BGL *param4, UnkStruct_02095C60 *param5, NARC *param6)
+static void ov22_0225AB54(UnkStruct_ov22_0225AB54 *param0, CellActorCollection *param1, SpriteResourceCollection **param2, int param3, BgConfig *param4, UnkStruct_02095C60 *param5, NARC *param6)
 {
     CellActorResourceData v0;
     CellActorInitParams v1;
@@ -411,12 +409,12 @@ static void ov22_0225AB54(UnkStruct_ov22_0225AB54 *param0, CellActorCollection *
     ov22_0225ACE4(param0);
     ov22_0225A748(&param0->unk_18, param4, 10, 8, 14, 4, (18 + 12) + ((1 + (27 * 4)) + (27 * 2)), 0);
 
-    BGL_FillWindow(param0->unk_18, 0);
+    Window_FillTilemap(param0->unk_18, 0);
 
     ov22_0225A860(param0->unk_18, 26, 385, 4, 0, 4, TEXT_COLOR(1, 2, 0), TEXT_SPEED_NO_TRANSFER);
     ov22_0225A860(param0->unk_18, 26, 385, 5, 0 + 72, 4, TEXT_COLOR(1, 2, 0), TEXT_SPEED_NO_TRANSFER);
 
-    sub_0201A954(param0->unk_18);
+    Window_CopyToVRAM(param0->unk_18);
 }
 
 static void ov22_0225AC58(UnkStruct_ov22_0225AB54 *param0, SpriteResourceCollection **param1)

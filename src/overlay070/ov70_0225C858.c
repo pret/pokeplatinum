@@ -6,8 +6,8 @@
 #include "overlay063/ov63_0222BCE8.h"
 #include "overlay063/struct_ov63_0222BCE8_decl.h"
 
+#include "graphics.h"
 #include "heap.h"
-#include "unk_02006E3C.h"
 
 typedef struct UnkStruct_ov70_0225C894_t {
     UnkStruct_ov63_0222BCE8 *unk_00;
@@ -21,7 +21,7 @@ UnkStruct_ov70_0225C894 *ov70_0225C858(u32 param0)
     v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov70_0225C894));
     v0->unk_00 = ov63_0222BCE8(35, 42, param0);
 
-    v1 = sub_02006FE8(174, 0, 0, param0, 1);
+    v1 = LoadMemberFromNARC(174, 0, 0, param0, 1);
 
     ov63_0222BD50(v0->unk_00, v1);
     Heap_FreeToHeap(v1);

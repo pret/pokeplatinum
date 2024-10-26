@@ -7,7 +7,6 @@
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_02095E80_decl.h"
@@ -17,13 +16,13 @@
 #include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02027F8C.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02095E80_sub1.h"
 
 #include "field/field_system_decl.h"
 #include "overlay088/struct_ov88_0223C370.h"
 #include "overlay088/struct_ov88_0223C8AC.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "message.h"
 #include "overlay_manager.h"
@@ -62,7 +61,7 @@ struct UnkStruct_02095E80_t {
     u32 unk_154[2][3];
     int unk_16C;
     int unk_170;
-    BGL *unk_174;
+    BgConfig *unk_174;
     StringTemplate *unk_178;
     StringTemplate *unk_17C;
     StringTemplate *unk_180;

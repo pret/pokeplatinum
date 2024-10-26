@@ -4,8 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1F90.h"
@@ -25,10 +23,12 @@
 #include "overlay021/struct_ov21_021E6A68.h"
 #include "overlay021/struct_ov21_021E6B20.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "font.h"
 #include "heap.h"
 #include "message.h"
+#include "narc.h"
 #include "pokedex_data_index.h"
 #include "pokemon.h"
 #include "sprite_resource.h"
@@ -39,7 +39,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_02012744.h"
-#include "unk_02018340.h"
 
 typedef struct {
     UnkStruct_ov21_021D13FC *unk_00;
@@ -379,13 +378,13 @@ static void ov21_021DEA0C(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE7
 {
     ov21_021DF35C(param0);
 
-    BGL_FillWindow(&param1->unk_00->unk_04, 0);
+    Window_FillTilemap(&param1->unk_00->unk_04, 0);
 
     ov21_021DED68(param0, param1);
     ov21_021DF1F8(param0);
     ov21_021DF054(param0, param1);
 
-    sub_02019EBC(param1->unk_00->unk_00, 1);
+    Bg_ClearTilemap(param1->unk_00->unk_00, 1);
 }
 
 static void ov21_021DEA44(UnkStruct_ov21_021DE760 *param0, int param1)
@@ -396,21 +395,21 @@ static void ov21_021DEA44(UnkStruct_ov21_021DE760 *param0, int param1)
     ov21_021D2724(param0->unk_00, 33, param0->unk_00->unk_00, 3, 0, 0, 1, param1);
 
     v0 = ov21_021D27B8(param0->unk_00, 50, 1, &v1, param1);
-    sub_020198C0(param0->unk_00->unk_00, 3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
+    Bg_LoadToTilemapRect(param0->unk_00->unk_00, 3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
 
     v0 = ov21_021D27B8(param0->unk_00, 51, 1, &v1, param1);
-    sub_020198C0(param0->unk_00->unk_00, 3, v1->rawData, 0, 3, v1->screenWidth / 8, v1->screenHeight / 8);
+    Bg_LoadToTilemapRect(param0->unk_00->unk_00, 3, v1->rawData, 0, 3, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
 
     v0 = ov21_021D27B8(param0->unk_00, 52, 1, &v1, param1);
-    sub_020198C0(param0->unk_00->unk_00, 3, v1->rawData, 12, 8, v1->screenWidth / 8, v1->screenHeight / 8);
+    Bg_LoadToTilemapRect(param0->unk_00->unk_00, 3, v1->rawData, 12, 8, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
 
     v0 = ov21_021D27B8(param0->unk_00, 54, 1, &v1, param1);
-    sub_020198C0(param0->unk_00->unk_00, 3, v1->rawData, 0, 16, v1->screenWidth / 8, v1->screenHeight / 8);
+    Bg_LoadToTilemapRect(param0->unk_00->unk_00, 3, v1->rawData, 0, 16, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
-    sub_0201C3C0(param0->unk_00->unk_00, 3);
+    Bg_ScheduleTilemapTransfer(param0->unk_00->unk_00, 3);
 }
 
 static void ov21_021DEB58(UnkStruct_ov21_021DE760 *param0, const UnkStruct_ov21_021DE6D4 *param1, int param2)

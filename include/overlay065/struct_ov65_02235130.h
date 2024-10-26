@@ -1,8 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV65_02235130_H
 #define POKEPLATINUM_STRUCT_OV65_02235130_H
 
-#include "struct_decls/struct_02018340_decl.h"
-
 #include "overlay063/struct_ov63_0222BCE8_decl.h"
 #include "overlay063/struct_ov63_0222BE18_decl.h"
 #include "overlay063/struct_ov63_0222CD2C.h"
@@ -13,12 +11,14 @@
 #include "overlay065/struct_ov65_022358CC.h"
 #include "overlay065/struct_ov65_02236318.h"
 
+#include "bg_window.h"
+
 typedef struct UnkStruct_ov65_02235130_t {
     BOOL unk_00;
     u32 unk_04;
     u32 unk_08;
     BOOL unk_0C;
-    BGL *unk_10;
+    BgConfig *unk_10;
     UnkStruct_ov65_022358CC unk_14;
     UnkStruct_ov65_022354D8 unk_1F0[48];
     UnkStruct_ov65_022354D8 *unk_730;

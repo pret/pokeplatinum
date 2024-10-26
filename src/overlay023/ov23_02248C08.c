@@ -7,12 +7,12 @@
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay023/funcptr_ov23_02248D20.h"
 #include "overlay023/struct_ov23_02248D20.h"
 #include "overlay084/struct_ov84_02240FA8.h"
 
+#include "bg_window.h"
 #include "colored_arrow.h"
 #include "core_sys.h"
 #include "heap.h"

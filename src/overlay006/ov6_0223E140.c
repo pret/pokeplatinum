@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -21,14 +19,14 @@
 #include "overlay006/funcptr_ov6_0223E6EC.h"
 #include "overlay006/struct_ov6_0223E6EC.h"
 #include "overlay006/struct_ov6_0223FDE4_decl.h"
-#include "overlay084/struct_ov84_0223BA5C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 #include "overlay115/camera_angle.h"
 
+#include "bg_window.h"
 #include "camera.h"
 #include "core_sys.h"
 #include "easy3d_object.h"
 #include "field_system.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "map_object.h"
@@ -37,8 +35,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_020508D4.h"
 #include "unk_020655F4.h"
@@ -258,9 +254,9 @@ static void ov6_0223E140(UnkStruct_ov6_0223E140 *param0);
 static void ov6_0223E198(UnkStruct_ov6_0223E140 *param0);
 static u32 ov6_0223E1AC(const UnkStruct_ov6_0223E140 *param0);
 static void ov6_0223E1B0(void);
-static void ov6_0223E1D0(BGL *param0);
-static void ov6_0223E2AC(BGL *param0);
-static void ov6_0223E2A4(BGL *param0);
+static void ov6_0223E1D0(BgConfig *param0);
+static void ov6_0223E2AC(BgConfig *param0);
+static void ov6_0223E2A4(BgConfig *param0);
 static MotionBlur *ov6_0223E2BC(int param0, int param1);
 static void ov6_0223E2E8(UnkStruct_ov6_0223E140 *param0);
 static void ov6_0223E234(UnkStruct_ov6_0223E140 *param0);
@@ -368,24 +364,24 @@ static void ov6_0223E1B0(void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov6_0223E1D0(BGL *param0)
+static void ov6_0223E1D0(BgConfig *param0)
 {
     {
-        UnkStruct_ov84_0223BA5C v0 = {
+        GraphicsModes v0 = {
             GX_DISPMODE_GRAPHICS,
             GX_BGMODE_0,
             GX_BGMODE_0,
             GX_BG0_AS_3D
         };
 
-        sub_02018368(&v0);
+        SetAllGraphicsModes(&v0);
     }
 
     GXLayers_EngineAToggleLayers(
         GX_PLANEMASK_BG0, 1);
 
     {
-        UnkStruct_ov97_0222DB78 v1 = {
+        BgTemplate v1 = {
             0,
             0,
             0x800,
@@ -401,9 +397,9 @@ static void ov6_0223E1D0(BGL *param0)
             0
         };
 
-        sub_020183C4(param0, 3, &v1, 0);
-        sub_02019690(3, 32, 0, 4);
-        sub_02019EBC(param0, 3);
+        Bg_InitFromTemplate(param0, 3, &v1, 0);
+        Bg_ClearTilesRange(3, 32, 0, 4);
+        Bg_ClearTilemap(param0, 3);
     }
 }
 
@@ -438,12 +434,12 @@ static void ov6_0223E280(SysTask *param0, void *param1)
     SysTask_Done(param0);
 }
 
-static void ov6_0223E2A4(BGL *param0)
+static void ov6_0223E2A4(BgConfig *param0)
 {
     ov5_021D143C(param0);
 }
 
-static void ov6_0223E2AC(BGL *param0)
+static void ov6_0223E2AC(BgConfig *param0)
 {
     ov5_021D1434(param0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
@@ -2062,12 +2058,12 @@ UnkStruct_ov6_022401B8 *ov6_02240104(u32 param0, FieldSystem *fieldSystem)
     ov6_02240260(&v0->unk_34, v0->unk_11C, &v0->unk_10C);
 
     {
-        BGL *v1 = sub_0203D170(v0->fieldSystem);
+        BgConfig *v1 = sub_0203D170(v0->fieldSystem);
 
-        sub_02006E3C(172, 74, v1, 2, 0, 0, 0, param0);
-        sub_02006E60(172, 76, v1, 2, 0, 0, 0, param0);
-        sub_02006E84(172, 75, 0, 0x20 * 6, 0x20, param0);
-        BGL_SetPriority(2, 1);
+        Graphics_LoadTilesToBgLayer(172, 74, v1, 2, 0, 0, 0, param0);
+        Graphics_LoadTilemapToBgLayer(172, 76, v1, 2, 0, 0, 0, param0);
+        Graphics_LoadPalette(172, 75, 0, 0x20 * 6, 0x20, param0);
+        Bg_SetPriority(2, 1);
 
         v0->unk_34.unk_00 = 0;
         v0->unk_34.unk_04 = 31;

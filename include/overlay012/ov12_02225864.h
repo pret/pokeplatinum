@@ -3,7 +3,6 @@
 
 #include "struct_decls/cell_actor_data.h"
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_02002F38_decl.h"
 
 #include "overlay012/funcptr_ov12_02226274.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
@@ -14,6 +13,8 @@
 #include "overlay012/struct_ov12_02226504_decl.h"
 #include "overlay012/struct_ov12_0222660C_decl.h"
 #include "overlay012/struct_ov12_022267D4_decl.h"
+
+#include "palette.h"
 
 void ov12_02225864(int param0, int param1, s16 *param2, s16 *param3);
 void ov12_02225898(UnkStruct_ov12_0221FCDC *param0, int param1, s16 *param2, s16 *param3);

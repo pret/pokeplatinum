@@ -23,6 +23,7 @@
 #include "overlay017/struct_ov17_022529C8.h"
 #include "overlay017/struct_ov17_022539E4.h"
 
+#include "bg_window.h"
 #include "heap.h"
 #include "pokemon.h"
 #include "sys_task.h"
@@ -32,7 +33,6 @@
 #include "unk_0200A9DC.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02018340.h"
 
 static int ov17_02251DAC(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3);
 static void ov17_02251DC0(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3);
@@ -208,7 +208,7 @@ static void ov17_02251EAC(SysTask *param0, void *param1)
             u16 *v1, *v2;
             int v3, v4, v5, v6, v7;
 
-            v1 = sub_02019FE4(v0->unk_00->unk_10.unk_20, 2);
+            v1 = Bg_GetTilemapBuffer(v0->unk_00->unk_10.unk_20, 2);
 
             for (v4 = 0; v4 < 4; v4++) {
                 if (Unk_ov17_02254CF8[v0->unk_11] + v4 < 0) {
@@ -239,7 +239,7 @@ static void ov17_02251EAC(SysTask *param0, void *param1)
                 }
             }
 
-            sub_0201C3C0(v0->unk_00->unk_10.unk_20, 2);
+            Bg_ScheduleTilemapTransfer(v0->unk_00->unk_10.unk_20, 2);
         }
 
         v0->unk_12++;
@@ -309,7 +309,7 @@ static void ov17_02252060(SysTask *param0, void *param1)
             int v3, v4, v5, v6, v7;
             int v8;
 
-            v1 = sub_02019FE4(v0->unk_00->unk_10.unk_20, 2);
+            v1 = Bg_GetTilemapBuffer(v0->unk_00->unk_10.unk_20, 2);
 
             for (v4 = 0; v4 < 4; v4++) {
                 v8 = Unk_ov17_02254CF8[NELEMS(Unk_ov17_02254CF8) - 1 - v0->unk_11];
@@ -345,7 +345,7 @@ static void ov17_02252060(SysTask *param0, void *param1)
                 }
             }
 
-            sub_0201C3C0(v0->unk_00->unk_10.unk_20, 2);
+            Bg_ScheduleTilemapTransfer(v0->unk_00->unk_10.unk_20, 2);
         }
 
         v0->unk_12++;
@@ -426,7 +426,7 @@ static void ov17_0225228C(SysTask *param0, void *param1)
         if (v0->unk_1A != 0) {
             if (v0->unk_1D == 0) {
                 sub_0200E060(&v0->unk_00->unk_10.unk_24[0], 1, 1, 14);
-                sub_0201C3C0(v0->unk_00->unk_10.unk_20, 1);
+                Bg_ScheduleTilemapTransfer(v0->unk_00->unk_10.unk_20, 1);
             }
 
             ov17_02250968(v0->unk_00, v0->unk_1A, &v0->unk_14);
@@ -447,7 +447,7 @@ static void ov17_0225228C(SysTask *param0, void *param1)
             v0->unk_10++;
         } else if (v0->unk_12 >= v0->unk_1B) {
             sub_0200E084(&v0->unk_00->unk_10.unk_24[0], 1);
-            sub_0201C3C0(v0->unk_00->unk_10.unk_20, 1);
+            Bg_ScheduleTilemapTransfer(v0->unk_00->unk_10.unk_20, 1);
             v0->unk_10++;
         }
         break;
@@ -520,8 +520,8 @@ static void ov17_022523AC(SysTask *param0, void *param1)
 
         sub_0200E060(&v0->unk_00->unk_10.unk_24[0], 0, 1, 14);
 
-        BGL_FillWindow(&v0->unk_00->unk_10.unk_24[0], 0xff);
-        sub_0201A954(&v0->unk_00->unk_10.unk_24[0]);
+        Window_FillTilemap(&v0->unk_00->unk_10.unk_24[0], 0xff);
+        Window_CopyToVRAM(&v0->unk_00->unk_10.unk_24[0]);
 
         {
             int v1;

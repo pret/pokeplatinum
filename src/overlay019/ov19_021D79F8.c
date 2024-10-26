@@ -3,9 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay019/ov19_021D61B0.h"
@@ -18,16 +16,16 @@
 #include "overlay019/struct_ov19_021DA384.h"
 #include "overlay019/struct_ov19_021DCD18.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "font.h"
+#include "graphics.h"
 #include "heap.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02006E3C.h"
-#include "unk_02018340.h"
 #include "unk_020797C8.h"
 
 static const struct {
@@ -106,7 +104,7 @@ static const u16 Unk_ov19_021E0138[] = {
     10,
 };
 
-BOOL ov19_021D79F8(UnkStruct_ov19_021D8318 *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BGL *param3, CellActorCollection *param4)
+BOOL ov19_021D79F8(UnkStruct_ov19_021D8318 *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, CellActorCollection *param4)
 {
     param0->unk_00 = param2->unk_40.unk_00;
     param0->unk_01 = 11;
@@ -134,12 +132,12 @@ void ov19_021D7A74(UnkStruct_ov19_021D8318 *param0)
 
 void ov19_021D7A9C(UnkStruct_ov19_021D8318 *param0)
 {
-    param0->unk_0C = sub_020192EC(param0->unk_58F4, 3);
+    param0->unk_0C = Bg_GetXOffset(param0->unk_58F4, 3);
     param0->unk_0C -= param0->unk_585C;
     param0->unk_0C &= (REG_G2_BG3HOFS_OFFSET_MASK);
 
-    sub_02019184(param0->unk_58F4, 3, 0, param0->unk_0C);
-    sub_02019CB8(param0->unk_58F4, 3, 0x18, 0, 0, 64, 32, 9);
+    Bg_SetOffset(param0->unk_58F4, 3, 0, param0->unk_0C);
+    Bg_FillTilemapRect(param0->unk_58F4, 3, 0x18, 0, 0, 64, 32, 9);
 }
 
 static void ov19_021D7AF4(const UnkStruct_ov19_021D8318 *param0, int param1, u32 *param2, u32 *param3, u32 *param4)
@@ -176,7 +174,7 @@ static void ov19_021D7BC0(UnkStruct_ov19_021D8318 *param0, const UnkStruct_ov19_
     NNSG2dPaletteData *v0;
     void *v1;
 
-    v1 = sub_02006F88(18, Unk_ov19_021E0178[param1->unk_01].unk_02, &v0, 10);
+    v1 = Graphics_GetPlttData(18, Unk_ov19_021E0178[param1->unk_01].unk_02, &v0, 10);
 
     if (v1) {
         int v2;
@@ -202,7 +200,7 @@ static void ov19_021D7C58(UnkStruct_ov19_021D8318 *param0, const UnkStruct_ov19_
 {
     void *v0;
 
-    v0 = sub_02006FE8(18, Unk_ov19_021E0178[param1->unk_01].unk_01, 1, 10, 1);
+    v0 = LoadMemberFromNARC(18, Unk_ov19_021E0178[param1->unk_01].unk_01, 1, 10, 1);
 
     if (v0 != NULL) {
         NNSG2dCharacterData *v1;
@@ -210,15 +208,15 @@ static void ov19_021D7C58(UnkStruct_ov19_021D8318 *param0, const UnkStruct_ov19_
         if (NNS_G2dGetUnpackedBGCharacterData(v0, &v1)) {
             Window *v2;
 
-            v2 = sub_0201A778(10, 1);
+            v2 = Window_New(10, 1);
 
             if (v2) {
                 u32 v3, v4;
 
-                v2->unk_00 = param0->unk_58F4;
-                v2->unk_07 = 21;
-                v2->unk_08 = 4;
-                v2->unk_0C = v1->pRawData;
+                v2->bgConfig = param0->unk_58F4;
+                v2->width = 21;
+                v2->height = 4;
+                v2->pixels = v1->pRawData;
 
                 v4 = Font_CalcStrbufWidth(FONT_SYSTEM, param1->unk_04, 0);
                 v3 = 84 - (v4 / 2);
@@ -227,7 +225,7 @@ static void ov19_021D7C58(UnkStruct_ov19_021D8318 *param0, const UnkStruct_ov19_
                 Heap_FreeToHeap(v2);
             }
 
-            sub_0201958C(param0->unk_58F4, 3, v1->pRawData, v1->szByte, param2);
+            Bg_LoadTiles(param0->unk_58F4, 3, v1->pRawData, v1->szByte, param2);
         }
 
         Heap_FreeToHeap(v0);
@@ -238,27 +236,27 @@ static void ov19_021D7D00(UnkStruct_ov19_021D8318 *param0, const UnkStruct_ov19_
 {
     void *v0;
 
-    v0 = sub_02006FE8(18, Unk_ov19_021E0178[param1->unk_01].unk_00, 1, 10, 1);
+    v0 = LoadMemberFromNARC(18, Unk_ov19_021E0178[param1->unk_01].unk_00, 1, 10, 1);
 
     if (v0) {
         u16 *v1;
         NNSG2dScreenData *v2;
 
         NNS_G2dGetUnpackedScreenData(v0, &v2);
-        v1 = sub_02019FE4(param0->unk_58F4, 3);
+        v1 = Bg_GetTilemapBuffer(param0->unk_58F4, 3);
 
         if (v1) {
             ov19_021D8764(v1, (const u16 *)(v2->rawData), param2, param3, param4);
         }
 
         Heap_FreeToHeap(v0);
-        sub_02019460(param0->unk_58F4, 3, v1, 0x1000, 0);
+        Bg_CopyTilemapBufferRangeToVRAM(param0->unk_58F4, 3, v1, 0x1000, 0);
     }
 }
 
 void ov19_021D7D70(UnkStruct_ov19_021D8318 *param0, const UnkStruct_ov19_021D4F5C *param1, int param2)
 {
-    param0->unk_08 = (sub_020192EC(param0->unk_58F4, 3) & (REG_G2_BG3HOFS_OFFSET_MASK)) << FX32_SHIFT;
+    param0->unk_08 = (Bg_GetXOffset(param0->unk_58F4, 3) & (REG_G2_BG3HOFS_OFFSET_MASK)) << FX32_SHIFT;
     param0->unk_14 = param0->unk_08 + ((((21 + 2) * 8) * param2) << FX32_SHIFT);
     param0->unk_10 = (param0->unk_14 - param0->unk_08) / (15 * 2);
     param0->unk_14 >>= FX32_SHIFT;
@@ -324,11 +322,11 @@ static void ov19_021D7E6C(SysTask *param0, void *param1)
             v0->unk_98++;
             v0->unk_0C = (v0->unk_08 >> FX32_SHIFT) & (REG_G2_BG3HOFS_OFFSET_MASK);
             v0->unk_08 += v0->unk_10;
-            sub_02019184(v0->unk_58F4, 3, 0, v0->unk_0C);
+            Bg_SetOffset(v0->unk_58F4, 3, 0, v0->unk_0C);
             v0->unk_04--;
         }
     } else {
-        sub_02019184(v0->unk_58F4, 3, 0, v0->unk_14);
+        Bg_SetOffset(v0->unk_58F4, 3, 0, v0->unk_14);
         ov19_021D870C(v0, v0->unk_A8[v2]);
         SysTask_Done(param0);
     }

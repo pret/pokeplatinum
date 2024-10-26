@@ -6,16 +6,14 @@
 #include "constants/heap.h"
 #include "constants/narc.h"
 
-#include "struct_defs/struct_0205AA50.h"
-
+#include "bg_window.h"
 #include "font.h"
+#include "graphics.h"
 #include "heap.h"
 #include "render_text.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
-#include "unk_02018340.h"
 
 static enum RenderResult TextPrinter_Render(TextPrinter *printer);
 static u8 Text_CreatePrinterTask(SysTaskFunc taskFunc, TextPrinter *printer, u32 priority);
@@ -216,7 +214,7 @@ u8 Text_AddPrinter(const TextPrinterTemplate *template, u32 renderDelay, TextPri
     }
 
     if (renderDelay != TEXT_SPEED_NO_TRANSFER) {
-        sub_0201A954(printer->template.window);
+        Window_CopyToVRAM(printer->template.window);
     }
 
     Text_FreePrinterIconGfx(printer);
@@ -239,7 +237,7 @@ static void SysTask_RunTextPrinter(SysTask *task, void *data)
 
         switch (TextPrinter_Render(printer)) {
         case RENDER_PRINT:
-            sub_0201A954(printer->template.window);
+            Window_CopyToVRAM(printer->template.window);
             // fall-through
 
         case RENDER_UPDATE:
@@ -326,7 +324,7 @@ static u8 *Text_LoadScreenIndicatorGfx(void)
     NNSG2dCharacterData *g2dCharData;
 
     u8 *gfx = Heap_AllocFromHeap(HEAP_ID_SYSTEM, 24 * 64); // These numbers are file dimensions. Curiously, this only loads the bottom-screen indicators.
-    void *ncgr = sub_02006F50(NARC_INDEX_GRAPHIC__PL_FONT, 5, FALSE, &g2dCharData, HEAP_ID_SYSTEM);
+    void *ncgr = Graphics_GetCharData(NARC_INDEX_GRAPHIC__PL_FONT, 5, FALSE, &g2dCharData, HEAP_ID_SYSTEM);
 
     MI_CpuCopy32(g2dCharData->pRawData, gfx, 24 * 64);
     Heap_FreeToHeap(ncgr);
@@ -344,9 +342,9 @@ void Text_RenderScreenIndicator(TextPrinter *printer, u16 unusedX, u16 unusedY, 
 
     u8 *tiles = printer->iconGfx;
     tiles = &tiles[indicator * 24 * 16];
-    unusedX = (sub_0201C294(window) - 3) * 8;
+    unusedX = (Window_GetWidth(window) - 3) * 8;
 
-    sub_0201ADDC(window, tiles, 0, 0, 24, 32, unusedX, 0, 24, 32);
+    Window_BlitBitmapRect(window, tiles, 0, 0, 24, 32, unusedX, 0, 24, 32);
 }
 
 static void Text_FreePrinterIconGfx(TextPrinter *printer)

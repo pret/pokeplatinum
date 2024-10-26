@@ -5,15 +5,11 @@
 
 #include "consts/game_records.h"
 
-#include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02073838.h"
 #include "struct_defs/struct_02073974.h"
 #include "struct_defs/struct_02073B50.h"
@@ -23,10 +19,7 @@
 #include "struct_defs/struct_0209C194.h"
 
 #include "overlay005/struct_ov5_02201C58.h"
-#include "overlay061/struct_ov61_0222C884.h"
 #include "overlay072/struct_ov72_0223E2A8.h"
-#include "overlay084/struct_ov84_0223BA5C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_02241308.h"
 #include "overlay104/struct_ov104_0224133C.h"
@@ -35,6 +28,7 @@
 #include "overlay115/camera_angle.h"
 
 #include "bag.h"
+#include "bg_window.h"
 #include "camera.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -47,6 +41,7 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "palette.h"
 #include "party.h"
 #include "pokemon.h"
 #include "strbuf.h"
@@ -55,7 +50,6 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02002F38.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
@@ -63,7 +57,6 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
@@ -302,7 +295,7 @@ typedef struct UnkStruct_ov109_021D0F70_t {
     UnkStruct_ov109_021D28C4 unk_D0C;
     UnkStruct_ov109_021D294C unk_D2C;
     NARC *unk_D80;
-    BGL *unk_D84;
+    BgConfig *unk_D84;
     NNSG2dScreenData *unk_D88;
     NNSG2dCharacterData *unk_D8C;
     NNSG2dPaletteData *unk_D90;
@@ -429,8 +422,8 @@ static BOOL ov109_021D3CD8(UnkStruct_ov109_021D0F70 *param0);
 static int ov109_021D3D1C(UnkStruct_ov109_021D0F70 *param0);
 static BOOL ov109_021D3D3C(UnkStruct_ov109_021D0F70 *param0);
 
-static const UnkStruct_ov61_0222C884 Unk_ov109_021D59B8[1];
-static const UnkStruct_ov61_0222C884 *const Unk_ov109_021D5A68[5 + 1];
+static const WindowTemplate Unk_ov109_021D59B8[1];
+static const WindowTemplate *const Unk_ov109_021D5A68[5 + 1];
 static const u16 Unk_ov109_021D5C44[5 + 1][5];
 static const u16 Unk_ov109_021D5C80[5 + 1][5];
 static const UnkStruct_ov109_021D5C14 Unk_ov109_021D5C14[5 + 1];
@@ -1561,8 +1554,8 @@ static void ov109_021D1C00(void *param0)
 
     sub_0201DCAC();
     sub_0200C800();
-    sub_02003694(v0->unk_D9C);
-    sub_0201C2B8(v0->unk_D84);
+    PaletteData_CommitFadedBuffers(v0->unk_D9C);
+    Bg_RunScheduledUpdates(v0->unk_D84);
 }
 
 static void ov109_021D1C28(UnkStruct_ov109_021D0F70 *param0)
@@ -1693,22 +1686,22 @@ static void ov109_021D1E1C(UnkStruct_ov109_021D0F70 *param0)
 
 static void ov109_021D1EC8(UnkStruct_ov109_021D0F70 *param0)
 {
-    param0->unk_D84 = sub_02018340(95);
+    param0->unk_D84 = BgConfig_New(95);
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
 
     {
-        UnkStruct_ov84_0223BA5C v0 = {
+        GraphicsModes v0 = {
             GX_DISPMODE_GRAPHICS,
             GX_BGMODE_0,
             GX_BGMODE_0,
             GX_BG0_AS_3D
         };
 
-        sub_02018368(&v0);
+        SetAllGraphicsModes(&v0);
     }
 
     {
-        UnkStruct_ov97_0222DB78 v1 = {
+        BgTemplate v1 = {
             0,
             0,
             0x800,
@@ -1724,13 +1717,13 @@ static void ov109_021D1EC8(UnkStruct_ov109_021D0F70 *param0)
             0
         };
 
-        sub_020183C4(param0->unk_D84, 1, &v1, 0);
-        sub_02019EBC(param0->unk_D84, 1);
-        sub_02019690(1, 32, 0, 95);
+        Bg_InitFromTemplate(param0->unk_D84, 1, &v1, 0);
+        Bg_ClearTilemap(param0->unk_D84, 1);
+        Bg_ClearTilesRange(1, 32, 0, 95);
     }
 
     {
-        UnkStruct_ov97_0222DB78 v2 = {
+        BgTemplate v2 = {
             0,
             0,
             0x800,
@@ -1746,12 +1739,12 @@ static void ov109_021D1EC8(UnkStruct_ov109_021D0F70 *param0)
             0
         };
 
-        sub_020183C4(param0->unk_D84, 2, &v2, 0);
-        sub_02019EBC(param0->unk_D84, 2);
+        Bg_InitFromTemplate(param0->unk_D84, 2, &v2, 0);
+        Bg_ClearTilemap(param0->unk_D84, 2);
     }
 
     {
-        UnkStruct_ov97_0222DB78 v3 = {
+        BgTemplate v3 = {
             0,
             0,
             0x800,
@@ -1767,12 +1760,12 @@ static void ov109_021D1EC8(UnkStruct_ov109_021D0F70 *param0)
             0
         };
 
-        sub_020183C4(param0->unk_D84, 3, &v3, 0);
-        sub_02019EBC(param0->unk_D84, 3);
+        Bg_InitFromTemplate(param0->unk_D84, 3, &v3, 0);
+        Bg_ClearTilemap(param0->unk_D84, 3);
     }
 
     {
-        UnkStruct_ov97_0222DB78 v4 = {
+        BgTemplate v4 = {
             0,
             0,
             0x800,
@@ -1788,12 +1781,12 @@ static void ov109_021D1EC8(UnkStruct_ov109_021D0F70 *param0)
             0
         };
 
-        sub_020183C4(param0->unk_D84, 6, &v4, 0);
-        sub_02019EBC(param0->unk_D84, 6);
+        Bg_InitFromTemplate(param0->unk_D84, 6, &v4, 0);
+        Bg_ClearTilemap(param0->unk_D84, 6);
     }
 
     {
-        UnkStruct_ov97_0222DB78 v5 = {
+        BgTemplate v5 = {
             0,
             0,
             0x800,
@@ -1809,8 +1802,8 @@ static void ov109_021D1EC8(UnkStruct_ov109_021D0F70 *param0)
             0
         };
 
-        sub_020183C4(param0->unk_D84, 7, &v5, 0);
-        sub_02019EBC(param0->unk_D84, 7);
+        Bg_InitFromTemplate(param0->unk_D84, 7, &v5, 0);
+        Bg_ClearTilemap(param0->unk_D84, 7);
     }
 }
 
@@ -1820,63 +1813,63 @@ static void ov109_021D2004(UnkStruct_ov109_021D0F70 *param0)
 
     v0 = ov109_021D3A2C(param0, 17, 0);
     NNS_G2dGetUnpackedPaletteData(v0, &param0->unk_D90);
-    sub_02002FBC(param0->unk_D9C, param0->unk_D90->pRawData, 0, (32 * 0), (32 * 2));
+    PaletteData_LoadBuffer(param0->unk_D9C, param0->unk_D90->pRawData, 0, (32 * 0), (32 * 2));
     Heap_FreeToHeap(v0);
 
     v0 = ov109_021D3A2C(param0, 20, 0);
     NNS_G2dGetUnpackedPaletteData(v0, &param0->unk_D90);
-    sub_02002FBC(param0->unk_D9C, param0->unk_D90->pRawData, 1, (32 * 0), (32 * 2));
+    PaletteData_LoadBuffer(param0->unk_D9C, param0->unk_D90->pRawData, 1, (32 * 0), (32 * 2));
     Heap_FreeToHeap(v0);
 
-    sub_02003A2C(param0->unk_D9C, 1, 0xffff, 8, 0);
+    PaletteData_BlendMulti(param0->unk_D9C, 1, 0xffff, 8, 0);
 
     v0 = ov109_021D3A2C(param0, 16, 0);
     NNS_G2dGetUnpackedCharacterData(v0, &param0->unk_D8C);
-    sub_0201958C(param0->unk_D84, 3, param0->unk_D8C->pRawData, param0->unk_D8C->szByte, (32 * 0));
+    Bg_LoadTiles(param0->unk_D84, 3, param0->unk_D8C->pRawData, param0->unk_D8C->szByte, (32 * 0));
     Heap_FreeToHeap(v0);
 
     v0 = ov109_021D3A2C(param0, 22, 0);
     NNS_G2dGetUnpackedCharacterData(v0, &param0->unk_D8C);
-    sub_0201958C(param0->unk_D84, 6, param0->unk_D8C->pRawData, param0->unk_D8C->szByte, (32 * 0));
+    Bg_LoadTiles(param0->unk_D84, 6, param0->unk_D8C->pRawData, param0->unk_D8C->szByte, (32 * 0));
     Heap_FreeToHeap(v0);
 
     v0 = ov109_021D3A2C(param0, 21, 0);
     NNS_G2dGetUnpackedCharacterData(v0, &param0->unk_D8C);
-    sub_0201958C(param0->unk_D84, 7, param0->unk_D8C->pRawData, param0->unk_D8C->szByte, (32 * 0));
+    Bg_LoadTiles(param0->unk_D84, 7, param0->unk_D8C->pRawData, param0->unk_D8C->szByte, (32 * 0));
     Heap_FreeToHeap(v0);
 
     v0 = ov109_021D3A2C(param0, 19, 0);
     NNS_G2dGetUnpackedScreenData(v0, &param0->unk_D88);
-    sub_02019574(param0->unk_D84, 2, (void *)param0->unk_D88->rawData, param0->unk_D88->szByte);
-    sub_02019448(param0->unk_D84, 2);
+    Bg_LoadTilemapBuffer(param0->unk_D84, 2, (void *)param0->unk_D88->rawData, param0->unk_D88->szByte);
+    Bg_CopyTilemapBufferToVRAM(param0->unk_D84, 2);
     Heap_FreeToHeap(v0);
 
     v0 = ov109_021D3A2C(param0, 18, 0);
     NNS_G2dGetUnpackedScreenData(v0, &param0->unk_D88);
-    sub_02019574(param0->unk_D84, 3, (void *)param0->unk_D88->rawData, param0->unk_D88->szByte);
-    sub_02019448(param0->unk_D84, 3);
+    Bg_LoadTilemapBuffer(param0->unk_D84, 3, (void *)param0->unk_D88->rawData, param0->unk_D88->szByte);
+    Bg_CopyTilemapBufferToVRAM(param0->unk_D84, 3);
     Heap_FreeToHeap(v0);
 
     v0 = ov109_021D3A2C(param0, 24, 0);
     NNS_G2dGetUnpackedScreenData(v0, &param0->unk_D88);
-    sub_02019574(param0->unk_D84, 6, (void *)param0->unk_D88->rawData, param0->unk_D88->szByte);
-    sub_02019448(param0->unk_D84, 6);
+    Bg_LoadTilemapBuffer(param0->unk_D84, 6, (void *)param0->unk_D88->rawData, param0->unk_D88->szByte);
+    Bg_CopyTilemapBufferToVRAM(param0->unk_D84, 6);
     Heap_FreeToHeap(v0);
 
     v0 = ov109_021D3A2C(param0, 23, 0);
     NNS_G2dGetUnpackedScreenData(v0, &param0->unk_D88);
-    sub_02019574(param0->unk_D84, 7, (void *)param0->unk_D88->rawData, param0->unk_D88->szByte);
-    sub_02019448(param0->unk_D84, 7);
+    Bg_LoadTilemapBuffer(param0->unk_D84, 7, (void *)param0->unk_D88->rawData, param0->unk_D88->szByte);
+    Bg_CopyTilemapBufferToVRAM(param0->unk_D84, 7);
     Heap_FreeToHeap(v0);
 }
 
 static void ov109_021D2204(UnkStruct_ov109_021D0F70 *param0)
 {
-    sub_02019044(param0->unk_D84, 1);
-    sub_02019044(param0->unk_D84, 2);
-    sub_02019044(param0->unk_D84, 3);
-    sub_02019044(param0->unk_D84, 6);
-    sub_02019044(param0->unk_D84, 7);
+    Bg_FreeTilemapBuffer(param0->unk_D84, 1);
+    Bg_FreeTilemapBuffer(param0->unk_D84, 2);
+    Bg_FreeTilemapBuffer(param0->unk_D84, 3);
+    Bg_FreeTilemapBuffer(param0->unk_D84, 6);
+    Bg_FreeTilemapBuffer(param0->unk_D84, 7);
     Heap_FreeToHeap(param0->unk_D84);
 }
 
@@ -1887,8 +1880,8 @@ static void ov109_021D2248(UnkStruct_ov109_021D0F70 *param0, u32 param1)
     v0 = ov109_021D3A2C(param0, param1, 0);
     NNS_G2dGetUnpackedScreenData(v0, &param0->unk_D88);
 
-    sub_02019574(param0->unk_D84, 6, (void *)param0->unk_D88->rawData, param0->unk_D88->szByte);
-    sub_02019448(param0->unk_D84, 6);
+    Bg_LoadTilemapBuffer(param0->unk_D84, 6, (void *)param0->unk_D88->rawData, param0->unk_D88->szByte);
+    Bg_CopyTilemapBufferToVRAM(param0->unk_D84, 6);
     Heap_FreeToHeap(v0);
 }
 
@@ -1909,27 +1902,27 @@ static void ov109_021D22A4(UnkStruct_ov109_021D0F70 *param0)
 
 static void ov109_021D22B0(UnkStruct_ov109_021D0F70 *param0)
 {
-    param0->unk_D9C = sub_02002F38(95);
+    param0->unk_D9C = PaletteData_New(95);
 
-    sub_02003858(param0->unk_D9C, 1);
-    sub_02002F70(param0->unk_D9C, 0, 0x200, 95);
-    sub_02002F70(param0->unk_D9C, 2, 0x200, 95);
-    sub_02002F70(param0->unk_D9C, 1, 0x200, 95);
-    sub_02002F70(param0->unk_D9C, 3, 0x200, 95);
+    PaletteData_SetAutoTransparent(param0->unk_D9C, 1);
+    PaletteData_AllocBuffer(param0->unk_D9C, 0, 0x200, 95);
+    PaletteData_AllocBuffer(param0->unk_D9C, 2, 0x200, 95);
+    PaletteData_AllocBuffer(param0->unk_D9C, 1, 0x200, 95);
+    PaletteData_AllocBuffer(param0->unk_D9C, 3, 0x200, 95);
 }
 
 static void ov109_021D2308(UnkStruct_ov109_021D0F70 *param0)
 {
-    sub_02002FA0(param0->unk_D9C, 0);
-    sub_02002FA0(param0->unk_D9C, 2);
-    sub_02002FA0(param0->unk_D9C, 1);
-    sub_02002FA0(param0->unk_D9C, 3);
-    sub_02002F54(param0->unk_D9C);
+    PaletteData_FreeBuffer(param0->unk_D9C, 0);
+    PaletteData_FreeBuffer(param0->unk_D9C, 2);
+    PaletteData_FreeBuffer(param0->unk_D9C, 1);
+    PaletteData_FreeBuffer(param0->unk_D9C, 3);
+    PaletteData_Free(param0->unk_D9C);
 }
 
 static void ov109_021D2344(UnkStruct_ov109_021D0F70 *param0, u32 param1)
 {
-    sub_02003A2C(param0->unk_D9C, 1, 0xffff, param1, 0);
+    PaletteData_BlendMulti(param0->unk_D9C, 1, 0xffff, param1, 0);
 }
 
 static void ov109_021D2368(UnkStruct_ov109_021D0F70 *param0)
@@ -2004,7 +1997,7 @@ static void ov109_021D2408(UnkStruct_ov109_021D0F70 *param0)
         void *v6 = sub_020394A8(95);
 
         NNS_G2dGetUnpackedPaletteData(v6, &v5);
-        sub_02002FBC(v2, v5->pRawData, 2, 14 * 16, 32);
+        PaletteData_LoadBuffer(v2, v5->pRawData, 2, 14 * 16, 32);
         Heap_FreeToHeap(v6);
     }
 }
@@ -2028,14 +2021,14 @@ static void ov109_021D24F8(UnkStruct_ov109_021D0F70 *param0)
 
     sub_0200DAA4(param0->unk_D84, 1, 1, 15, 0, 95);
     sub_0200DD0C(param0->unk_D84, 1, (1 + 9), 14, param0->unk_CC->unk_14.unk_04, 95);
-    PaletteSys_LoadPalette(param0->unk_D9C, 38, sub_0200DD08(param0->unk_CC->unk_14.unk_04), 95, 0, 0x20, 14 * 16);
-    PaletteSys_LoadPalette(param0->unk_D9C, 14, 7, 95, 0, 0x20, 15 * 16);
+    PaletteData_LoadBufferFromFileStart(param0->unk_D9C, 38, sub_0200DD08(param0->unk_CC->unk_14.unk_04), 95, 0, 0x20, 14 * 16);
+    PaletteData_LoadBufferFromFileStart(param0->unk_D9C, 14, 7, 95, 0, 0x20, 15 * 16);
 
     v1->unk_04 = MessageLoader_Init(0, 26, 376, 95);
     v1->unk_08 = StringTemplate_Default(95);
 
     for (v0 = 0; v0 < 1; v0++) {
-        sub_0201A8D4(param0->unk_D84, &v1->unk_0C[v0], &Unk_ov109_021D59B8[v0]);
+        Window_AddFromTemplate(param0->unk_D84, &v1->unk_0C[v0], &Unk_ov109_021D59B8[v0]);
     }
 
     v1->unk_6C = Strbuf_Init(0x100, 95);
@@ -2053,8 +2046,8 @@ static void ov109_021D25E8(UnkStruct_ov109_021D0F70 *param0)
     UnkStruct_ov109_021D24F8 *v1 = &param0->unk_C9C;
 
     for (v0 = 0; v0 < 1; v0++) {
-        sub_0201ACF4(&v1->unk_0C[v0]);
-        BGL_DeleteWindow(&v1->unk_0C[v0]);
+        Window_ClearAndCopyToVRAM(&v1->unk_0C[v0]);
+        Window_Remove(&v1->unk_0C[v0]);
     }
 
     ov109_021D27F0(param0);
@@ -2073,12 +2066,12 @@ static void ov109_021D2634(UnkStruct_ov109_021D0F70 *param0, u32 param1)
     UnkStruct_ov109_021D24F8 *v0 = &param0->unk_C9C;
     Window *v1 = &v0->unk_0C[0];
 
-    BGL_FillWindow(v1, 15);
+    Window_FillTilemap(v1, 15);
     sub_0200E060(v1, 1, (1 + 9), 14);
-    BGL_FillWindow(v1, 15);
+    Window_FillTilemap(v1, 15);
     MessageLoader_GetStrbuf(v0->unk_04, param1, v0->unk_6C);
     Text_AddPrinterWithParams(v1, FONT_MESSAGE, v0->unk_6C, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
-    sub_0201A9A4(v1);
+    Window_ScheduleCopyToVRAM(v1);
 }
 
 static void ov109_021D268C(UnkStruct_ov109_021D0F70 *param0, u32 param1, const TrainerInfo *param2)
@@ -2096,9 +2089,9 @@ static void ov109_021D268C(UnkStruct_ov109_021D0F70 *param0, u32 param1, const T
     StringTemplate_Format(v1->unk_08, v1->unk_6C, v0);
     Strbuf_Free(v0);
     sub_0200E060(v2, 1, (1 + 9), 14);
-    BGL_FillWindow(v2, 15);
+    Window_FillTilemap(v2, 15);
     Text_AddPrinterWithParams(v2, FONT_MESSAGE, v1->unk_6C, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
-    sub_0201A9A4(v2);
+    Window_ScheduleCopyToVRAM(v2);
 }
 
 static void ov109_021D2714(UnkStruct_ov109_021D0F70 *param0, u32 param1, u32 param2)
@@ -2115,9 +2108,9 @@ static void ov109_021D2714(UnkStruct_ov109_021D0F70 *param0, u32 param1, u32 par
     StringTemplate_Format(v1->unk_08, v1->unk_6C, v0);
     Strbuf_Free(v0);
     sub_0200E060(v2, 1, (1 + 9), 14);
-    BGL_FillWindow(v2, 15);
+    Window_FillTilemap(v2, 15);
     Text_AddPrinterWithParams(v2, FONT_MESSAGE, v1->unk_6C, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
-    sub_0201A9A4(v2);
+    Window_ScheduleCopyToVRAM(v2);
 }
 
 static void ov109_021D2788(UnkStruct_ov109_021D0F70 *param0)
@@ -2126,20 +2119,20 @@ static void ov109_021D2788(UnkStruct_ov109_021D0F70 *param0)
     Window *v1 = &v0->unk_0C[0];
 
     sub_0200E084(v1, 1);
-    BGL_FillWindow(v1, 0);
-    sub_0201A9A4(v1);
+    Window_FillTilemap(v1, 0);
+    Window_ScheduleCopyToVRAM(v1);
 }
 
 static void ov109_021D27AC(UnkStruct_ov109_021D0F70 *param0, int param1)
 {
     int v0;
     UnkStruct_ov109_021D24F8 *v1 = &param0->unk_C9C;
-    const UnkStruct_ov61_0222C884 *v2 = Unk_ov109_021D5A68[param1];
+    const WindowTemplate *v2 = Unk_ov109_021D5A68[param1];
 
     v1->unk_00 = param1;
 
     for (v0 = 0; v0 < param1; v0++) {
-        sub_0201A8D4(param0->unk_D84, &v1->unk_1C[v0], &v2[v0]);
+        Window_AddFromTemplate(param0->unk_D84, &v1->unk_1C[v0], &v2[v0]);
     }
 }
 
@@ -2149,8 +2142,8 @@ static void ov109_021D27F0(UnkStruct_ov109_021D0F70 *param0)
     UnkStruct_ov109_021D24F8 *v1 = &param0->unk_C9C;
 
     for (v0 = 0; v0 < v1->unk_00; v0++) {
-        sub_0201ACF4(&v1->unk_1C[v0]);
-        BGL_DeleteWindow(&v1->unk_1C[v0]);
+        Window_ClearAndCopyToVRAM(&v1->unk_1C[v0]);
+        Window_Remove(&v1->unk_1C[v0]);
     }
 }
 
@@ -2159,9 +2152,9 @@ static void ov109_021D2820(UnkStruct_ov109_021D0F70 *param0, Strbuf *param1, int
     UnkStruct_ov109_021D24F8 *v0 = &param0->unk_C9C;
     Window *v1 = &v0->unk_1C[param2];
     Window_Show(v1, 1, 1, 14);
-    BGL_FillWindow(v1, 15);
+    Window_FillTilemap(v1, 15);
     Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, param1, Font_CalcCenterAlignment(FONT_SYSTEM, param1, 0, 8 * 8), 0, TEXT_SPEED_NO_TRANSFER, param3, NULL);
-    sub_0201A9A4(v1);
+    Window_ScheduleCopyToVRAM(v1);
 }
 
 static void ov109_021D2874(UnkStruct_ov109_021D0F70 *param0, Strbuf *param1, int param2, int param3)
@@ -2181,8 +2174,8 @@ static void ov109_021D28A0(UnkStruct_ov109_021D0F70 *param0, int param1)
     Window *v1 = &v0->unk_1C[param1];
 
     sub_0200E084(v1, 1);
-    BGL_FillWindow(v1, 0);
-    sub_0201A9A4(v1);
+    Window_FillTilemap(v1, 0);
+    Window_ScheduleCopyToVRAM(v1);
 }
 
 static void ov109_021D28C4(UnkStruct_ov109_021D0F70 *param0)
@@ -3644,7 +3637,7 @@ static BOOL ov109_021D3D3C(UnkStruct_ov109_021D0F70 *param0)
     return 0;
 }
 
-static const UnkStruct_ov61_0222C884 Unk_ov109_021D59B8[1] = {
+static const WindowTemplate Unk_ov109_021D59B8[1] = {
     0x1,
     0x2,
     0x13,
@@ -3654,25 +3647,25 @@ static const UnkStruct_ov61_0222C884 Unk_ov109_021D59B8[1] = {
     0x28
 };
 
-static const UnkStruct_ov61_0222C884 Unk_ov109_021D5A04[2] = {
+static const WindowTemplate Unk_ov109_021D5A04[2] = {
     { 0x1, 0xC, 0x12, 0x8, 0x2, 0xF, 0x94 },
     { 0x1, 0xC, 0x6, 0x8, 0x2, 0xF, 0xBC }
 };
 
-static const UnkStruct_ov61_0222C884 Unk_ov109_021D5AB0[3] = {
+static const WindowTemplate Unk_ov109_021D5AB0[3] = {
     { 0x1, 0xC, 0x12, 0x8, 0x2, 0xF, 0x94 },
     { 0x1, 0x5, 0xA, 0x8, 0x2, 0xF, 0xBC },
     { 0x1, 0x13, 0xA, 0x8, 0x2, 0xF, 0xE4 }
 };
 
-static const UnkStruct_ov61_0222C884 Unk_ov109_021D5B54[4] = {
+static const WindowTemplate Unk_ov109_021D5B54[4] = {
     { 0x1, 0xC, 0x12, 0x8, 0x2, 0xF, 0x94 },
     { 0x1, 0x4, 0xD, 0x8, 0x2, 0xF, 0xBC },
     { 0x1, 0xC, 0x6, 0x8, 0x2, 0xF, 0xE4 },
     { 0x1, 0x14, 0xD, 0x8, 0x2, 0xF, 0x10C }
 };
 
-static const UnkStruct_ov61_0222C884 Unk_ov109_021D5B94[5] = {
+static const WindowTemplate Unk_ov109_021D5B94[5] = {
     { 0x1, 0xC, 0x13, 0x8, 0x2, 0xF, 0x94 },
     { 0x1, 0x4, 0xE, 0x8, 0x2, 0xF, 0xBC },
     { 0x1, 0x6, 0x9, 0x8, 0x2, 0xF, 0xE4 },
@@ -3680,7 +3673,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov109_021D5B94[5] = {
     { 0x1, 0x14, 0xE, 0x8, 0x2, 0xF, 0X134 }
 };
 
-static const UnkStruct_ov61_0222C884 *const Unk_ov109_021D5A68[5 + 1] = {
+static const WindowTemplate *const Unk_ov109_021D5A68[5 + 1] = {
     NULL,
     NULL,
     Unk_ov109_021D5A04,

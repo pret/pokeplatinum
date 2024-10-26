@@ -5,13 +5,11 @@
 
 #include "constants/charcode.h"
 
-#include "struct_defs/struct_0205AA50.h"
-
+#include "bg_window.h"
 #include "charcode.h"
 #include "heap.h"
 #include "strbuf.h"
 #include "text.h"
-#include "unk_02018340.h"
 
 ColoredArrow *ColoredArrow_New(u32 heapID)
 {
@@ -55,5 +53,5 @@ void ColoredArrow_SetColor(ColoredArrow *arrow, TextColor color)
 void ColoredArrow_Print(const ColoredArrow *arrow, Window *window, u32 xOffset, u32 yOffset)
 {
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, arrow->strbuf, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, arrow->color, NULL);
-    sub_0201ACCC(window);
+    Window_LoadTiles(window);
 }

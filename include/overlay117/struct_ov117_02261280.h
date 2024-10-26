@@ -3,13 +3,10 @@
 
 #include <nnsys.h>
 
-#include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
 
 #include "overlay114/struct_ov114_0225CAD4_decl.h"
@@ -31,8 +28,10 @@
 #include "overlay117/struct_ov117_02265EC8.h"
 #include "overlay117/struct_ov117_02266274.h"
 
+#include "bg_window.h"
 #include "camera.h"
 #include "message.h"
+#include "palette.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
@@ -46,7 +45,7 @@ typedef struct UnkStruct_ov117_02261280_t {
     int unk_20;
     SpriteRenderer *unk_24;
     SpriteGfxHandler *unk_28;
-    BGL *unk_2C;
+    BgConfig *unk_2C;
     Window unk_30[5];
     MessageLoader *unk_80;
     StringTemplate *unk_84;

@@ -8,9 +8,9 @@
 #include "overlay013/ov13_02227A4C.h"
 #include "overlay013/struct_ov13_02227244.h"
 
+#include "bg_window.h"
 #include "heap.h"
 #include "unk_0200C6E4.h"
-#include "unk_02018340.h"
 
 typedef struct {
     u8 unk_00;
@@ -345,8 +345,8 @@ static void ov13_022286B8(UnkStruct_ov13_02227244 *param0, u8 param1, u8 param2,
 
     ov13_0222863C(param0, v0, param1, param2, param3);
 
-    sub_020198C0(param0->unk_04, 6, v0, Unk_ov13_02229D7C[param1].unk_00, Unk_ov13_02229D7C[param1].unk_01, Unk_ov13_02229D7C[param1].unk_02, Unk_ov13_02229D7C[param1].unk_03);
-    sub_0201C3C0(param0->unk_04, 6);
+    Bg_LoadToTilemapRect(param0->unk_04, 6, v0, Unk_ov13_02229D7C[param1].unk_00, Unk_ov13_02229D7C[param1].unk_01, Unk_ov13_02229D7C[param1].unk_02, Unk_ov13_02229D7C[param1].unk_03);
+    Bg_ScheduleTilemapTransfer(param0->unk_04, 6);
     Heap_FreeToHeap(v0);
 }
 
@@ -383,8 +383,8 @@ static void ov13_0222872C(UnkStruct_ov13_02227244 *param0, u8 param1, u8 param2)
             break;
         }
 
-        sub_0201C04C(&param0->unk_2C[v0[v1]], v2, v3, 0);
-        sub_0201A9A4(&param0->unk_2C[v0[v1]]);
+        Window_Scroll(&param0->unk_2C[v0[v1]], v2, v3, 0);
+        Window_ScheduleCopyToVRAM(&param0->unk_2C[v0[v1]]);
     }
 }
 

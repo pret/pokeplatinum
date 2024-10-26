@@ -3,23 +3,20 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-
 #include "overlay025/ov25_02255090.h"
 #include "overlay025/struct_ov25_0225517C.h"
 #include "overlay025/struct_ov25_02255224_decl.h"
 #include "overlay055/struct_ov55_0225632C_1.h"
 #include "overlay055/struct_ov55_0225632C_decl.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
+#include "graphics.h"
 #include "heap.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
-#include "unk_02018340.h"
 
 struct UnkStruct_ov55_0225632C_t {
     const UnkStruct_ov55_0225632C_1 *unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     u32 unk_08[10];
 };
 
@@ -27,14 +24,14 @@ static void ov55_022563B4(UnkStruct_ov25_02255224 *param0);
 static void ov55_022563C8(SysTask *param0, void *param1);
 static void ov55_02256468(SysTask *param0, void *param1);
 
-BOOL ov55_0225632C(UnkStruct_ov55_0225632C **param0, const UnkStruct_ov55_0225632C_1 *param1, BGL *param2)
+BOOL ov55_0225632C(UnkStruct_ov55_0225632C **param0, const UnkStruct_ov55_0225632C_1 *param1, BgConfig *param2)
 {
     UnkStruct_ov55_0225632C *v0 = (UnkStruct_ov55_0225632C *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov55_0225632C));
 
     if (v0 != NULL) {
         ov25_02255090(v0->unk_08, 8);
         v0->unk_00 = param1;
-        v0->unk_04 = sub_02018340(8);
+        v0->unk_04 = BgConfig_New(8);
 
         if (v0->unk_04 != NULL) {
             *param0 = v0;
@@ -86,7 +83,7 @@ static void ov55_022563B4(UnkStruct_ov25_02255224 *param0)
 
 static void ov55_022563C8(SysTask *param0, void *param1)
 {
-    static const UnkStruct_ov97_0222DB78 v0 = {
+    static const BgTemplate v0 = {
         0,
         0,
         0x800,
@@ -106,13 +103,13 @@ static void ov55_022563C8(SysTask *param0, void *param1)
 
     v2 = ov25_0225523C(param1);
 
-    sub_020183C4(v2->unk_04, 6, &v0, 0);
-    sub_02006E3C(12, 8, v2->unk_04, 6, 0, 0, 0, 8);
-    sub_02019CB8(v2->unk_04, 6, 0, 0, 0, 32, 24, 0);
-    sub_02006E84(12, 9, 4, 0 * 0x20, 0x20, 8);
+    Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
+    Graphics_LoadTilesToBgLayer(12, 8, v2->unk_04, 6, 0, 0, 0, 8);
+    Bg_FillTilemapRect(v2->unk_04, 6, 0, 0, 0, 32, 24, 0);
+    Graphics_LoadPalette(12, 9, 4, 0 * 0x20, 0x20, 8);
 
     ov25_02255440(v2->unk_04, v2->unk_00->unk_00, 6);
-    sub_02019448(v2->unk_04, 6);
+    Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);
 
     v1 = GXS_GetDispCnt();
     GXS_SetVisiblePlane(v1.visiblePlane | GX_PLANEMASK_BG2);
@@ -124,6 +121,6 @@ static void ov55_02256468(SysTask *param0, void *param1)
 {
     UnkStruct_ov55_0225632C *v0 = ov25_0225523C(param1);
 
-    sub_02019044(v0->unk_04, 6);
+    Bg_FreeTilemapBuffer(v0->unk_04, 6);
     ov55_022563B4(param1);
 }

@@ -8,10 +8,10 @@
 
 #include "overlay096/struct_ov96_0223B574.h"
 
+#include "charcode_util.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "trainer_info.h"
-#include "unk_020021B0.h"
 #include "unk_0201D15C.h"
 #include "unk_0202C858.h"
 
@@ -122,7 +122,7 @@ static void sub_02030DD0(SaveData *param0, UnkStruct_ov96_0223B574 *param1)
     param1->unk_03 = sub_0202C8C4(v0);
     param1->unk_04 = TrainerInfo_ID(v1);
 
-    GF_strcpy(param1->unk_08, TrainerInfo_Name(v1));
+    CharCode_Copy(param1->unk_08, TrainerInfo_Name(v1));
     param1->unk_10 = 0;
 
     strcpy(param1->unk_1C, v2);

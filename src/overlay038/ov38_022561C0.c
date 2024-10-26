@@ -2,13 +2,12 @@
 #include <nitro/sinit.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-
 #include "overlay025/poketch_system.h"
 #include "overlay038/ov38_0225632C.h"
 #include "overlay038/struct_ov38_0225632C_1.h"
 #include "overlay038/struct_ov38_0225632C_decl.h"
 
+#include "bg_window.h"
 #include "heap.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -24,10 +23,10 @@ typedef struct {
 
 static void NitroStaticInit(void);
 
-static BOOL ov38_022561D4(void **param0, PoketchSystem *poketchSys, BGL *param2, u32 param3);
+static BOOL ov38_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3);
 static void ov38_02256254(SysTask *param0, void *param1);
 static void ov38_02256288(void *param0);
-static BOOL ov38_0225621C(UnkStruct_ov38_0225621C *param0, PoketchSystem *poketchSys, BGL *param2, u32 param3);
+static BOOL ov38_0225621C(UnkStruct_ov38_0225621C *param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3);
 static void ov38_02256240(UnkStruct_ov38_0225621C *param0);
 static void ov38_02256290(UnkStruct_ov38_0225621C *param0, u32 param1);
 static BOOL ov38_022562A4(UnkStruct_ov38_0225621C *param0);
@@ -39,7 +38,7 @@ static void NitroStaticInit(void)
     PoketchSystem_SetAppFunctions(ov38_022561D4, ov38_02256288);
 }
 
-static BOOL ov38_022561D4(void **param0, PoketchSystem *poketchSys, BGL *param2, u32 param3)
+static BOOL ov38_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3)
 {
     UnkStruct_ov38_0225621C *v0 = (UnkStruct_ov38_0225621C *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov38_0225621C));
 
@@ -57,7 +56,7 @@ static BOOL ov38_022561D4(void **param0, PoketchSystem *poketchSys, BGL *param2,
     return 0;
 }
 
-static BOOL ov38_0225621C(UnkStruct_ov38_0225621C *param0, PoketchSystem *poketchSys, BGL *param2, u32 param3)
+static BOOL ov38_0225621C(UnkStruct_ov38_0225621C *param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3)
 {
     if (ov38_0225632C(&(param0->unk_08), &(param0->unk_04), param2)) {
         param0->unk_00 = 0;

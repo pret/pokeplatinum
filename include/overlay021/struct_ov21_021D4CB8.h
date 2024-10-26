@@ -3,10 +3,9 @@
 
 #include <nnsys.h>
 
-#include "struct_defs/struct_0205AA50.h"
-
 #include "overlay021/struct_ov21_021D4C0C_decl.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "heap.h"
 

@@ -2,7 +2,8 @@
 #define POKEPLATINUM_UNK_0208EA44_H
 
 #include "struct_defs/pokemon_summary_app.h"
-#include "struct_defs/struct_0205AA50.h"
+
+#include "bg_window.h"
 
 void sub_0208EA44(PokemonSummaryApp *param0);
 void sub_0208EAF4(PokemonSummaryApp *param0);

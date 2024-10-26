@@ -5,7 +5,6 @@
 
 #include "constants/map_object.h"
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_02061D3C.h"
@@ -22,6 +21,7 @@
 #include "overlay005/struct_ov5_021ED0A4.h"
 
 #include "map_header_data.h"
+#include "narc.h"
 #include "sys_task_manager.h"
 
 MapObjectManager *MapObjectMan_New(FieldSystem *fieldSystem, int param1, int param2);

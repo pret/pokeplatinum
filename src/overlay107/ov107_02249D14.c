@@ -3,25 +3,20 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-#include "struct_defs/struct_0205AA50.h"
-
-#include "overlay061/struct_ov61_0222C884.h"
-
+#include "bg_window.h"
 #include "unk_0200DA60.h"
-#include "unk_02018340.h"
 
 typedef struct {
-    const UnkStruct_ov61_0222C884 *unk_00;
+    const WindowTemplate *unk_00;
     u32 unk_04;
 } UnkStruct_ov107_0224A218;
 
-void ov107_02249D14(BGL *param0, Window *param1, u8 param2);
+void ov107_02249D14(BgConfig *param0, Window *param1, u8 param2);
 void ov107_02249D5C(Window *param0, u8 param1);
-void ov107_02249D84(BGL *param0, Window *param1);
+void ov107_02249D84(BgConfig *param0, Window *param1);
 void ov107_02249DBC(Window *param0, int param1);
 
-static const UnkStruct_ov61_0222C884 Unk_ov107_0224A288[] = {
+static const WindowTemplate Unk_ov107_0224A288[] = {
     { 0x1, 0x2, 0x1, 0x1D, 0x2, 0xD, 0x1 },
     { 0x1, 0x1A, 0x13, 0x4, 0x3, 0xD, 0x3B },
     { 0x1, 0x0, 0x4, 0x20, 0x2, 0xD, 0x47 },
@@ -42,7 +37,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov107_0224A288[] = {
     { 0x0, 0x1, 0xD, 0xB, 0x2, 0xD, 0x2F4 }
 };
 
-static const UnkStruct_ov61_0222C884 Unk_ov107_0224A228[] = {
+static const WindowTemplate Unk_ov107_0224A228[] = {
     { 0x1, 0x2, 0x1, 0x1D, 0x2, 0xD, 0x1 },
     { 0x1, 0x1A, 0x13, 0x4, 0x3, 0xD, 0x3B },
     { 0x1, 0x0, 0x4, 0x20, 0x2, 0xD, 0x47 },
@@ -62,15 +57,15 @@ static const UnkStruct_ov107_0224A218 Unk_ov107_0224A218[2] = {
     { Unk_ov107_0224A228, 0xC }
 };
 
-void ov107_02249D14(BGL *param0, Window *param1, u8 param2)
+void ov107_02249D14(BgConfig *param0, Window *param1, u8 param2)
 {
     u8 v0;
-    const UnkStruct_ov61_0222C884 *v1 = Unk_ov107_0224A218[param2].unk_00;
+    const WindowTemplate *v1 = Unk_ov107_0224A218[param2].unk_00;
     u32 v2 = Unk_ov107_0224A218[param2].unk_04;
 
     for (v0 = 0; v0 < v2; v0++) {
-        sub_0201A8D4(param0, &param1[v0], &v1[v0]);
-        BGL_FillWindow(&param1[v0], 0);
+        Window_AddFromTemplate(param0, &param1[v0], &v1[v0]);
+        Window_FillTilemap(&param1[v0], 0);
     }
 
     return;
@@ -82,15 +77,15 @@ void ov107_02249D5C(Window *param0, u8 param1)
     u32 v1 = Unk_ov107_0224A218[param1].unk_04;
 
     for (v0 = 0; v0 < v1; v0++) {
-        BGL_DeleteWindow(&param0[v0]);
+        Window_Remove(&param0[v0]);
     }
 
     return;
 }
 
-void ov107_02249D84(BGL *param0, Window *param1)
+void ov107_02249D84(BgConfig *param0, Window *param1)
 {
-    sub_0200DAA4(param0, sub_0201C290(param1), (1024 - 9), 11, 0, 100);
+    sub_0200DAA4(param0, Window_GetBgLayer(param1), (1024 - 9), 11, 0, 100);
     Window_Show(param1, 1, (1024 - 9), 11);
 
     return;
@@ -98,10 +93,10 @@ void ov107_02249D84(BGL *param0, Window *param1)
 
 void ov107_02249DBC(Window *param0, int param1)
 {
-    sub_0200DD0C(param0->unk_00, sub_0201C290(param0), ((1024 - 9) - (18 + 12)), 10, param1, 100);
-    BGL_FillWindow(param0, 15);
+    sub_0200DD0C(param0->bgConfig, Window_GetBgLayer(param0), ((1024 - 9) - (18 + 12)), 10, param1, 100);
+    Window_FillTilemap(param0, 15);
     sub_0200E060(param0, 1, ((1024 - 9) - (18 + 12)), 10);
-    sub_0201A9A4(param0);
+    Window_ScheduleCopyToVRAM(param0);
 
     return;
 }

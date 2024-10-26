@@ -2,16 +2,13 @@
 #include <string.h>
 
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0202442C_decl.h"
 #include "struct_defs/struct_0202DBAC.h"
 #include "struct_defs/struct_0202DF40.h"
 #include "struct_defs/struct_0203CC84.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay077/const_ov77_021D742C.h"
-#include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/ov97_02232DC8.h"
 #include "overlay097/ov97_02233408.h"
 #include "overlay097/ov97_02237694.h"
@@ -20,11 +17,13 @@
 #include "overlay097/struct_ov97_02237808.h"
 #include "savedata/save_table.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "enums.h"
 #include "font.h"
 #include "game_options.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
@@ -40,9 +39,7 @@
 #include "unk_02000C88.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_0200DA60.h"
-#include "unk_02018340.h"
 #include "unk_0202631C.h"
 #include "unk_0202DAB4.h"
 #include "unk_02033200.h"
@@ -351,7 +348,7 @@ UnkStruct_ov97_0223E0B0 Unk_ov97_0223E0B0[] = {
 
 typedef struct {
     int unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     SaveData *unk_08;
     PokedexData *unk_0C;
     TrainerInfo *unk_10;
@@ -438,7 +435,7 @@ enum {
 static void ov97_0222C388(UnkStruct_ov97_0222C388 *param0);
 int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0);
 MysteryGift *SaveData_MysteryGift(SaveData *param0);
-void ov97_02231FFC(BGL *param0, void *, int param2);
+void ov97_02231FFC(BgConfig *param0, void *, int param2);
 
 static u16 ov97_0222C174(u16 param0)
 {
@@ -528,7 +525,7 @@ static void ov97_0222C254(UnkStruct_ov97_0222C388 *param0)
         GX_VRAM_TEX_0_B,
         GX_VRAM_TEXPLTT_01_FG
     };
-    UnkStruct_ov84_0223BA5C v2 = {
+    GraphicsModes v2 = {
         GX_DISPMODE_GRAPHICS,
         GX_BGMODE_0,
         GX_BGMODE_0,
@@ -537,7 +534,7 @@ static void ov97_0222C254(UnkStruct_ov97_0222C388 *param0)
 
     GXLayers_SetBanks(&v1);
 
-    sub_02018368(&v2);
+    SetAllGraphicsModes(&v2);
     ov97_022376FC(param0->unk_04, 0, 1, 0xF000, 0x0);
     ov97_022376FC(param0->unk_04, 1, 1, 0xF800, 0x4000);
     ov97_022376FC(param0->unk_04, 4, 1, 0x7800, 0x0);
@@ -550,29 +547,29 @@ static void ov97_0222C254(UnkStruct_ov97_0222C388 *param0)
     v0 = Options_Frame(param0->unk_14);
 
     sub_0200DD0C(param0->unk_04, 0, (1 + 9), 2, v0, param0->unk_00);
-    sub_02006E84(116, 0, 0, 16 * 2 * 8, 16 * 2, param0->unk_00);
-    sub_02006E3C(116, 1, param0->unk_04, 1, 0, 10 * 16 * 0x20, 1, param0->unk_00);
-    sub_02006E60(116, 2, param0->unk_04, 1, 0, 32 * 24 * 2, 1, param0->unk_00);
-    sub_02019E2C(param0->unk_04, 1, 0, 0, 32, 24, 8);
-    sub_02019448(param0->unk_04, 1);
+    Graphics_LoadPalette(116, 0, 0, 16 * 2 * 8, 16 * 2, param0->unk_00);
+    Graphics_LoadTilesToBgLayer(116, 1, param0->unk_04, 1, 0, 10 * 16 * 0x20, 1, param0->unk_00);
+    Graphics_LoadTilemapToBgLayer(116, 2, param0->unk_04, 1, 0, 32 * 24 * 2, 1, param0->unk_00);
+    Bg_ChangeTilemapRectPalette(param0->unk_04, 1, 0, 0, 32, 24, 8);
+    Bg_CopyTilemapBufferToVRAM(param0->unk_04, 1);
 
     ov97_0222C388(param0);
 }
 
 static void ov97_0222C388(UnkStruct_ov97_0222C388 *param0)
 {
-    sub_02006E84(116, 0, 4, 16 * 2 * 8, 16 * 2, param0->unk_00);
-    sub_02006E3C(116, 1, param0->unk_04, 4, 0, 10 * 16 * 0x20, 1, param0->unk_00);
-    sub_02006E60(116, 2, param0->unk_04, 4, 0, 32 * 24 * 2, 1, param0->unk_00);
-    sub_02019E2C(param0->unk_04, 4, 0, 0, 32, 24, 8);
-    sub_02019448(param0->unk_04, 4);
+    Graphics_LoadPalette(116, 0, 4, 16 * 2 * 8, 16 * 2, param0->unk_00);
+    Graphics_LoadTilesToBgLayer(116, 1, param0->unk_04, 4, 0, 10 * 16 * 0x20, 1, param0->unk_00);
+    Graphics_LoadTilemapToBgLayer(116, 2, param0->unk_04, 4, 0, 32 * 24 * 2, 1, param0->unk_00);
+    Bg_ChangeTilemapRectPalette(param0->unk_04, 4, 0, 0, 32, 24, 8);
+    Bg_CopyTilemapBufferToVRAM(param0->unk_04, 4);
 }
 
 static BOOL ov97_0222C404(UnkStruct_ov97_0222C388 *param0)
 {
     UnkStruct_ov97_02237808 v0;
 
-    if (BGL_WindowAdded(&param0->unk_18) == 0) {
+    if (Window_IsInUse(&param0->unk_18) == 0) {
         ov97_02237808(&v0, &param0->unk_18, 0, 14, 1, 1);
         ov97_02237858(&v0, 22, 16, param0->unk_144);
         ov97_0223795C(param0->unk_04, &v0, 5, 4, 2);
@@ -580,7 +577,7 @@ static BOOL ov97_0222C404(UnkStruct_ov97_0222C388 *param0)
     } else {
         if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Window_Clear(&param0->unk_18, 0);
-            BGL_DeleteWindow(&param0->unk_18);
+            Window_Remove(&param0->unk_18);
             return 0;
         }
     }
@@ -659,19 +656,19 @@ static void ov97_0222C688(OverlayManager *param0)
 
     ov97_02237DA0();
 
-    if (BGL_WindowAdded(&v1->unk_18) == 1) {
-        sub_0201ACF4(&v1->unk_18);
-        BGL_DeleteWindow(&v1->unk_18);
-        sub_0201ACF4(&v1->unk_28);
-        BGL_DeleteWindow(&v1->unk_28);
-        sub_0201ACF4(&v1->unk_38);
-        BGL_DeleteWindow(&v1->unk_38);
+    if (Window_IsInUse(&v1->unk_18) == 1) {
+        Window_ClearAndCopyToVRAM(&v1->unk_18);
+        Window_Remove(&v1->unk_18);
+        Window_ClearAndCopyToVRAM(&v1->unk_28);
+        Window_Remove(&v1->unk_28);
+        Window_ClearAndCopyToVRAM(&v1->unk_38);
+        Window_Remove(&v1->unk_38);
     }
 
-    sub_02019044(v1->unk_04, 0);
-    sub_02019044(v1->unk_04, 1);
-    sub_02019044(v1->unk_04, 4);
-    sub_02019044(v1->unk_04, 5);
+    Bg_FreeTilemapBuffer(v1->unk_04, 0);
+    Bg_FreeTilemapBuffer(v1->unk_04, 1);
+    Bg_FreeTilemapBuffer(v1->unk_04, 4);
+    Bg_FreeTilemapBuffer(v1->unk_04, 5);
     Heap_FreeToHeap(v1->unk_04);
 }
 
@@ -682,7 +679,7 @@ static int ov97_0222C6F8(OverlayManager *param0, int *param1)
     v0 = ov97_022376C4(param0, 85, sizeof(UnkStruct_ov97_0222C388), 0x20000);
 
     v0->unk_00 = 85;
-    v0->unk_04 = sub_02018340(v0->unk_00);
+    v0->unk_04 = BgConfig_New(v0->unk_00);
     v0->unk_08 = ((UnkStruct_0203CC84 *)OverlayManager_Args(param0))->unk_08;
     v0->unk_10 = SaveData_GetTrainerInfo(v0->unk_08);
     v0->unk_0C = SaveData_Pokedex(v0->unk_08);
