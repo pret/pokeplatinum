@@ -47,7 +47,7 @@ typedef struct UnkStruct_ov79_021D0E1C_t {
     ListMenu *unk_C8;
     StringList *unk_CC;
     StringList *unk_D0;
-    UIControlData *unk_D4;
+    Menu *unk_D4;
     void *unk_D8;
     void *unk_DC;
     NNSG2dScreenData *unk_E0;

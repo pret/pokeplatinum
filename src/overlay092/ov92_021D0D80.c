@@ -76,7 +76,7 @@ typedef struct {
     Window unk_B844;
     ListMenu *unk_B854;
     StringList *unk_B858;
-    UIControlData *unk_B85C;
+    Menu *unk_B85C;
     MessageLoader *unk_B860;
     int unk_B864;
     int unk_B868;

@@ -81,8 +81,8 @@ typedef struct UnkStruct_ov104_02232B5C_t {
     u8 unk_9B;
     u16 *unk_9C;
     u16 *unk_A0;
-    UnkStruct_02081CF4 unk_A4;
-    UIControlData *unk_B0;
+    MenuTemplate unk_A4;
+    Menu *unk_B0;
     StringList unk_B4[28];
     ListMenuTemplate unk_194;
     ListMenu *unk_1B4;
@@ -374,18 +374,18 @@ static u32 ov104_02232414(UnkStruct_ov104_02232B5C *param0)
 
 static void ov104_02232454(UnkStruct_ov104_02232B5C *param0)
 {
-    param0->unk_A4.unk_00 = param0->unk_B4;
-    param0->unk_A4.unk_04 = &param0->unk_08;
-    param0->unk_A4.unk_08 = 0;
-    param0->unk_A4.unk_09 = 1;
-    param0->unk_A4.unk_0A = param0->unk_9B;
-    param0->unk_A4.unk_0B_0 = 0;
-    param0->unk_A4.unk_0B_4 = 0;
+    param0->unk_A4.choices = param0->unk_B4;
+    param0->unk_A4.window = &param0->unk_08;
+    param0->unk_A4.fontID = FONT_SYSTEM;
+    param0->unk_A4.xSize = 1;
+    param0->unk_A4.ySize = param0->unk_9B;
+    param0->unk_A4.lineSpacing = 0;
+    param0->unk_A4.suppressCursor = FALSE;
 
     if (param0->unk_9B >= 4) {
-        param0->unk_A4.unk_0B_6 = 1;
+        param0->unk_A4.loopAround = TRUE;
     } else {
-        param0->unk_A4.unk_0B_6 = 0;
+        param0->unk_A4.loopAround = FALSE;
     }
 
     return;
@@ -440,8 +440,8 @@ static void ov104_02232570(UnkStruct_ov104_02232B5C *param0)
     Sound_PlayEffect(1500);
 
     sub_02001BC4(param0->unk_B0, NULL);
-    Window_Clear(param0->unk_A4.unk_04, 0);
-    Window_Remove(param0->unk_A4.unk_04);
+    Window_Clear(param0->unk_A4.window, 0);
+    Window_Remove(param0->unk_A4.window);
 
     for (v0 = 0; v0 < 28; v0++) {
         Strbuf_Free(param0->unk_1C[v0]);

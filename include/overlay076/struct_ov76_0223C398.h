@@ -32,7 +32,7 @@ typedef struct {
     PaletteData *unk_14;
     Window unk_18[11];
     StringList *unk_C8;
-    UIControlData *unk_CC;
+    Menu *unk_CC;
     UnkStruct_02007768 *unk_D0;
     Sprite *unk_D4;
     int unk_D8;

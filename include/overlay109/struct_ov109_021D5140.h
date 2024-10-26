@@ -52,7 +52,7 @@ typedef struct UnkStruct_ov109_021D5140_t {
     Window unk_36C;
     Window unk_37C;
     Window *unk_38C[2];
-    UIControlData *unk_394;
+    Menu *unk_394;
     void *unk_398[2];
     NNSG2dCharacterData *unk_3A0[2];
     void *unk_3A8[2];

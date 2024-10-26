@@ -28,7 +28,7 @@ typedef struct {
     Window unk_68;
     ListMenu *unk_78;
     StringList *unk_7C;
-    UIControlData *unk_80;
+    Menu *unk_80;
     StringList *unk_84;
     MessageLoader *unk_88;
     StringTemplate *unk_8C;

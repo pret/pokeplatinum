@@ -57,7 +57,7 @@ typedef struct {
     Strbuf *unk_100;
     ListMenu *unk_104;
     StringList *unk_108;
-    UIControlData *unk_10C;
+    Menu *unk_10C;
     SpriteRenderer *unk_110;
     SpriteGfxHandler *unk_114;
     CellActorData *unk_118[13];

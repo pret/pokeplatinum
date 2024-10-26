@@ -48,7 +48,7 @@ struct UnkStruct_020961E8_t {
     Window unk_35C;
     Window unk_36C;
     Window *unk_37C[2];
-    UIControlData *unk_384;
+    Menu *unk_384;
     void *unk_388[2];
     NNSG2dCharacterData *unk_390[2];
     void *unk_398[2];

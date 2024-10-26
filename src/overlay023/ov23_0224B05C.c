@@ -35,6 +35,7 @@
 #include "core_sys.h"
 #include "field_map_change.h"
 #include "field_system.h"
+#include "font.h"
 #include "game_records.h"
 #include "graphics.h"
 #include "heap.h"
@@ -122,7 +123,7 @@ typedef struct {
 
 typedef struct {
     FieldSystem *fieldSystem;
-    UIControlData *unk_04;
+    Menu *unk_04;
     SysTask *unk_08;
     int unk_0C;
     int unk_10;
@@ -143,7 +144,7 @@ typedef struct {
 typedef struct {
     FieldSystem *fieldSystem;
     SysTask *unk_04;
-    UIControlData *unk_08;
+    Menu *unk_08;
     int unk_0C;
     u8 unk_10;
     u8 unk_11;
@@ -1009,9 +1010,9 @@ static int ov23_0224BD1C(int param0, BOOL param1)
     return v1;
 }
 
-static UIControlData *ov23_0224BD90(BgConfig *param0, const WindowTemplate *param1, u16 param2, u8 param3, u32 param4)
+static Menu *ov23_0224BD90(BgConfig *param0, const WindowTemplate *param1, u16 param2, u8 param3, u32 param4)
 {
-    UnkStruct_02081CF4 v0;
+    MenuTemplate v0;
     MessageLoader *v1 = ov23_02253E3C(ov23_0224219C());
     StringList *v2;
 
@@ -1020,17 +1021,17 @@ static UIControlData *ov23_0224BD90(BgConfig *param0, const WindowTemplate *para
     StringList_AddFromMessageBank(v2, v1, 38, 0);
     StringList_AddFromMessageBank(v2, v1, 39, 1);
 
-    v0.unk_00 = v2;
-    v0.unk_04 = Window_New(param4, 1);
-    v0.unk_08 = 0;
-    v0.unk_09 = 1;
-    v0.unk_0A = 2;
-    v0.unk_0B_0 = 0;
-    v0.unk_0B_4 = 0;
-    v0.unk_0B_0 = 0;
+    v0.choices = v2;
+    v0.window = Window_New(param4, 1);
+    v0.fontID = FONT_SYSTEM;
+    v0.xSize = 1;
+    v0.ySize = 2;
+    v0.lineSpacing = 0;
+    v0.suppressCursor = FALSE;
+    v0.lineSpacing = 0;
 
-    Window_AddFromTemplate(param0, v0.unk_04, param1);
-    Window_Show(v0.unk_04, 1, param2, param3);
+    Window_AddFromTemplate(param0, v0.window, param1);
+    Window_Show(v0.window, 1, param2, param3);
 
     return sub_02001B7C(&v0, 8, 0, 0, param4, PAD_BUTTON_B);
 }

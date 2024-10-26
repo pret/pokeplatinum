@@ -33,7 +33,7 @@ typedef struct {
     BgConfig *unk_14;
     MessageLoader *unk_18;
     Window unk_1C;
-    UIControlData *unk_2C;
+    Menu *unk_2C;
     SaveData *unk_30;
     void *unk_34;
 } UnkStruct_02099DFC;

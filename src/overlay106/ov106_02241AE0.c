@@ -92,8 +92,8 @@ struct UnkStruct_ov106_02243118_t {
     u16 unk_38[8];
     BgConfig *unk_48;
     Window unk_4C[4];
-    UnkStruct_02081CF4 unk_8C;
-    UIControlData *unk_98;
+    MenuTemplate unk_8C;
+    Menu *unk_98;
     StringList unk_9C[2];
     PaletteData *unk_AC;
     UnkStruct_0200C440 *unk_B0;
@@ -1080,14 +1080,14 @@ static void ov106_022429B0(UnkStruct_ov106_02243118 *param0, Window *param1, u8 
         param0->unk_9C[v0].index = 0;
     }
 
-    param0->unk_8C.unk_00 = param0->unk_9C;
-    param0->unk_8C.unk_04 = param1;
-    param0->unk_8C.unk_08 = 0;
-    param0->unk_8C.unk_09 = 1;
-    param0->unk_8C.unk_0A = param2;
-    param0->unk_8C.unk_0B_0 = 0;
-    param0->unk_8C.unk_0B_4 = 0;
-    param0->unk_8C.unk_0B_6 = 1;
+    param0->unk_8C.choices = param0->unk_9C;
+    param0->unk_8C.window = param1;
+    param0->unk_8C.fontID = FONT_SYSTEM;
+    param0->unk_8C.xSize = 1;
+    param0->unk_8C.ySize = param2;
+    param0->unk_8C.lineSpacing = 0;
+    param0->unk_8C.suppressCursor = FALSE;
+    param0->unk_8C.loopAround = TRUE;
 
     return;
 }
@@ -1617,7 +1617,7 @@ static void ov106_02243200(UnkStruct_ov106_02243118 *param0)
     if (param0->unk_0F == 1) {
         param0->unk_0F = 0;
         sub_02001BC4(param0->unk_98, NULL);
-        Window_Clear(param0->unk_8C.unk_04, 0);
+        Window_Clear(param0->unk_8C.window, 0);
     }
 
     return;

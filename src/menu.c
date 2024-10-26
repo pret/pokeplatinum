@@ -14,29 +14,27 @@
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 
-static void sub_0200DB10(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6, u16 param7);
-static void sub_0200DD7C(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6, u16 param7);
-static BOOL sub_02001DCC(UIControlData *param0, u8 param1, u16 param2);
-static u8 sub_02001E24(UIControlData *param0, u8 param1);
-static u8 sub_02001F1C(UIControlData *param0);
-static void sub_02001F5C(UIControlData *param0);
-static void sub_02001FE8(UIControlData *param0);
-static void sub_02002018(UIControlData *param0, u8 *param1, u8 *param2, u8 param3);
+static BOOL sub_02001DCC(Menu *param0, u8 param1, u16 param2);
+static u8 sub_02001E24(Menu *param0, u8 param1);
+static u8 sub_02001F1C(Menu *param0);
+static void sub_02001F5C(Menu *param0);
+static void sub_02001FE8(Menu *param0);
+static void sub_02002018(Menu *param0, u8 *param1, u8 *param2, u8 param3);
 
-UIControlData *sub_02001AF4(const UnkStruct_02081CF4 *param0, u8 param1, u8 param2, u8 param3, u8 param4, u32 param5)
+Menu *sub_02001AF4(const MenuTemplate *param0, u8 param1, u8 param2, u8 param3, u8 param4, u32 param5)
 {
-    UIControlData *v0 = (UIControlData *)Heap_AllocFromHeap(param4, sizeof(UIControlData));
+    Menu *v0 = (Menu *)Heap_AllocFromHeap(param4, sizeof(Menu));
 
-    v0->unk_00 = *param0;
-    v0->unk_0C = ColoredArrow_New(param4);
-    v0->unk_10 = param5;
-    v0->unk_15 = param3;
-    v0->unk_16 = sub_02001F1C(v0);
-    v0->unk_1C = param4;
-    v0->unk_17 = param1;
-    v0->unk_18 = param2;
-    v0->unk_19 = Font_GetAttribute(param0->unk_08, 0) + Font_GetAttribute(param0->unk_08, 2);
-    v0->unk_1A = Font_GetAttribute(param0->unk_08, 1) + Font_GetAttribute(param0->unk_08, 3);
+    v0->template = *param0;
+    v0->cursor = ColoredArrow_New(param4);
+    v0->cancelKeys = param5;
+    v0->cursorPos = param3;
+    v0->width = sub_02001F1C(v0);
+    v0->heapID = param4;
+    v0->xOffset = param1;
+    v0->yOffset = param2;
+    v0->letterWidth = Font_GetAttribute(param0->fontID, 0) + Font_GetAttribute(param0->fontID, 2);
+    v0->lineHeight = Font_GetAttribute(param0->fontID, 1) + Font_GetAttribute(param0->fontID, 3);
 
     sub_02001F5C(v0);
     sub_02001FE8(v0);
@@ -44,46 +42,46 @@ UIControlData *sub_02001AF4(const UnkStruct_02081CF4 *param0, u8 param1, u8 para
     return v0;
 }
 
-UIControlData *sub_02001B7C(const UnkStruct_02081CF4 *param0, u8 param1, u8 param2, u8 param3, u8 param4, u32 param5)
+Menu *sub_02001B7C(const MenuTemplate *param0, u8 param1, u8 param2, u8 param3, u8 param4, u32 param5)
 {
-    UIControlData *v0 = sub_02001AF4(param0, param1, param2, param3, param4, param5);
+    Menu *v0 = sub_02001AF4(param0, param1, param2, param3, param4, param5);
 
-    Window_CopyToVRAM(v0->unk_00.unk_04);
+    Window_CopyToVRAM(v0->template.window);
     return v0;
 }
 
-UIControlData *sub_02001B9C(const UnkStruct_02081CF4 *param0, u8 param1, u8 param2)
+Menu *sub_02001B9C(const MenuTemplate *param0, u8 param1, u8 param2)
 {
-    return sub_02001B7C(param0, Font_GetAttribute(param0->unk_08, 0), 0, param1, param2, PAD_BUTTON_B);
+    return sub_02001B7C(param0, Font_GetAttribute(param0->fontID, 0), 0, param1, param2, PAD_BUTTON_B);
 }
 
-void sub_02001BC4(UIControlData *param0, u8 *param1)
+void sub_02001BC4(Menu *param0, u8 *param1)
 {
     if (param1 != NULL) {
-        *param1 = param0->unk_15;
+        *param1 = param0->cursorPos;
     }
 
-    ColoredArrow_Free(param0->unk_0C);
-    Heap_FreeToHeapExplicit(param0->unk_1C, param0);
+    ColoredArrow_Free(param0->cursor);
+    Heap_FreeToHeapExplicit(param0->heapID, param0);
 }
 
-u32 sub_02001BE0(UIControlData *param0)
+u32 sub_02001BE0(Menu *param0)
 {
-    param0->unk_1B = 0;
+    param0->lastAction = 0;
 
     if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
         Sound_PlayEffect(1500);
-        return param0->unk_00.unk_00[param0->unk_15].index;
+        return param0->template.choices[param0->cursorPos].index;
     }
 
-    if (gCoreSys.pressedKeys & param0->unk_10) {
+    if (gCoreSys.pressedKeys & param0->cancelKeys) {
         Sound_PlayEffect(1500);
         return 0xfffffffe;
     }
 
     if (gCoreSys.pressedKeys & PAD_KEY_UP) {
         if (sub_02001DCC(param0, 0, 1500) == 1) {
-            param0->unk_1B = 1;
+            param0->lastAction = 1;
         }
 
         return 0xffffffff;
@@ -91,7 +89,7 @@ u32 sub_02001BE0(UIControlData *param0)
 
     if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
         if (sub_02001DCC(param0, 1, 1500) == 1) {
-            param0->unk_1B = 2;
+            param0->lastAction = 2;
         }
 
         return 0xffffffff;
@@ -99,7 +97,7 @@ u32 sub_02001BE0(UIControlData *param0)
 
     if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
         if (sub_02001DCC(param0, 2, 1500) == 1) {
-            param0->unk_1B = 3;
+            param0->lastAction = 3;
         }
 
         return 0xffffffff;
@@ -107,7 +105,7 @@ u32 sub_02001BE0(UIControlData *param0)
 
     if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
         if (sub_02001DCC(param0, 3, 1500) == 1) {
-            param0->unk_1B = 4;
+            param0->lastAction = 4;
         }
 
         return 0xffffffff;
@@ -116,23 +114,23 @@ u32 sub_02001BE0(UIControlData *param0)
     return 0xffffffff;
 }
 
-u32 sub_02001C94(UIControlData *param0, u16 param1)
+u32 sub_02001C94(Menu *param0, u16 param1)
 {
-    param0->unk_1B = 0;
+    param0->lastAction = 0;
 
     if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
         Sound_PlayEffect(1500);
-        return param0->unk_00.unk_00[param0->unk_15].index;
+        return param0->template.choices[param0->cursorPos].index;
     }
 
-    if (gCoreSys.pressedKeys & param0->unk_10) {
+    if (gCoreSys.pressedKeys & param0->cancelKeys) {
         Sound_PlayEffect(1500);
         return 0xfffffffe;
     }
 
     if (gCoreSys.pressedKeys & PAD_KEY_UP) {
         if (sub_02001DCC(param0, 0, param1) == 1) {
-            param0->unk_1B = 1;
+            param0->lastAction = 1;
         }
 
         return 0xffffffff;
@@ -140,7 +138,7 @@ u32 sub_02001C94(UIControlData *param0, u16 param1)
 
     if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
         if (sub_02001DCC(param0, 1, param1) == 1) {
-            param0->unk_1B = 2;
+            param0->lastAction = 2;
         }
 
         return 0xffffffff;
@@ -148,7 +146,7 @@ u32 sub_02001C94(UIControlData *param0, u16 param1)
 
     if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
         if (sub_02001DCC(param0, 2, param1) == 1) {
-            param0->unk_1B = 3;
+            param0->lastAction = 3;
         }
 
         return 0xffffffff;
@@ -156,7 +154,7 @@ u32 sub_02001C94(UIControlData *param0, u16 param1)
 
     if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
         if (sub_02001DCC(param0, 3, param1) == 1) {
-            param0->unk_1B = 4;
+            param0->lastAction = 4;
         }
 
         return 0xffffffff;
@@ -165,12 +163,12 @@ u32 sub_02001C94(UIControlData *param0, u16 param1)
     return 0xffffffff;
 }
 
-u32 sub_02001D44(UIControlData *param0, u8 param1)
+u32 sub_02001D44(Menu *param0, u8 param1)
 {
     switch (param1) {
     case 0:
         Sound_PlayEffect(1500);
-        return param0->unk_00.unk_00[param0->unk_15].index;
+        return param0->template.choices[param0->cursorPos].index;
     case 1:
         Sound_PlayEffect(1500);
         return 0xfffffffe;
@@ -191,19 +189,19 @@ u32 sub_02001D44(UIControlData *param0, u8 param1)
     return 0xffffffff;
 }
 
-u8 sub_02001DC4(UIControlData *param0)
+u8 sub_02001DC4(Menu *param0)
 {
-    return param0->unk_15;
+    return param0->cursorPos;
 }
 
-u8 sub_02001DC8(UIControlData *param0)
+u8 sub_02001DC8(Menu *param0)
 {
-    return param0->unk_1B;
+    return param0->lastAction;
 }
 
-static BOOL sub_02001DCC(UIControlData *param0, u8 param1, u16 param2)
+static BOOL sub_02001DCC(Menu *param0, u8 param1, u16 param2)
 {
-    u8 v0 = param0->unk_15;
+    u8 v0 = param0->cursorPos;
 
     if (sub_02001E24(param0, param1) == 0) {
         return 0;
@@ -213,10 +211,10 @@ static BOOL sub_02001DCC(UIControlData *param0, u8 param1, u16 param2)
         u8 v1, v2;
         u8 v3;
 
-        v3 = Font_GetAttribute(param0->unk_00.unk_08, 6);
+        v3 = Font_GetAttribute(param0->template.fontID, 6);
 
         sub_02002018(param0, &v1, &v2, v0);
-        Window_FillRectWithColor(param0->unk_00.unk_04, v3, v1, v2, 8, param0->unk_1A);
+        Window_FillRectWithColor(param0->template.window, v3, v1, v2, 8, param0->lineHeight);
     }
 
     sub_02001FE8(param0);
@@ -225,83 +223,83 @@ static BOOL sub_02001DCC(UIControlData *param0, u8 param1, u16 param2)
     return 1;
 }
 
-static u8 sub_02001E24(UIControlData *param0, u8 param1)
+static u8 sub_02001E24(Menu *param0, u8 param1)
 {
     s8 v0;
 
     if (param1 == 0) {
-        if (param0->unk_00.unk_0A <= 1) {
+        if (param0->template.ySize <= 1) {
             return 0;
         }
 
-        if ((param0->unk_15 % param0->unk_00.unk_0A) == 0) {
-            if (param0->unk_00.unk_0B_6 == 0) {
+        if ((param0->cursorPos % param0->template.ySize) == 0) {
+            if (param0->template.loopAround == FALSE) {
                 return 0;
             }
 
-            v0 = param0->unk_15 + (param0->unk_00.unk_0A - 1);
+            v0 = param0->cursorPos + (param0->template.ySize - 1);
         } else {
-            v0 = param0->unk_15 - 1;
+            v0 = param0->cursorPos - 1;
         }
     } else if (param1 == 1) {
-        if (param0->unk_00.unk_0A <= 1) {
+        if (param0->template.ySize <= 1) {
             return 0;
         }
 
-        if ((param0->unk_15 % param0->unk_00.unk_0A) == (param0->unk_00.unk_0A - 1)) {
-            if (param0->unk_00.unk_0B_6 == 0) {
+        if ((param0->cursorPos % param0->template.ySize) == (param0->template.ySize - 1)) {
+            if (param0->template.loopAround == FALSE) {
                 return 0;
             }
 
-            v0 = param0->unk_15 - (param0->unk_00.unk_0A - 1);
+            v0 = param0->cursorPos - (param0->template.ySize - 1);
         } else {
-            v0 = param0->unk_15 + 1;
+            v0 = param0->cursorPos + 1;
         }
     } else if (param1 == 2) {
-        if (param0->unk_00.unk_09 <= 1) {
+        if (param0->template.xSize <= 1) {
             return 0;
         }
 
-        if (param0->unk_15 < param0->unk_00.unk_0A) {
-            if (param0->unk_00.unk_0B_6 == 0) {
+        if (param0->cursorPos < param0->template.ySize) {
+            if (param0->template.loopAround == FALSE) {
                 return 0;
             }
 
-            v0 = param0->unk_15 + (param0->unk_00.unk_0A * (param0->unk_00.unk_09 - 1));
+            v0 = param0->cursorPos + (param0->template.ySize * (param0->template.xSize - 1));
         } else {
-            v0 = param0->unk_15 - param0->unk_00.unk_0A;
+            v0 = param0->cursorPos - param0->template.ySize;
         }
     } else {
-        if (param0->unk_00.unk_09 <= 1) {
+        if (param0->template.xSize <= 1) {
             return 0;
         }
 
-        if (param0->unk_15 >= (param0->unk_00.unk_0A * (param0->unk_00.unk_09 - 1))) {
-            if (param0->unk_00.unk_0B_6 == 0) {
+        if (param0->cursorPos >= (param0->template.ySize * (param0->template.xSize - 1))) {
+            if (param0->template.loopAround == FALSE) {
                 return 0;
             }
 
-            v0 = param0->unk_15 % param0->unk_00.unk_0A;
+            v0 = param0->cursorPos % param0->template.ySize;
         } else {
-            v0 = param0->unk_15 + param0->unk_00.unk_0A;
+            v0 = param0->cursorPos + param0->template.ySize;
         }
     }
 
-    if (param0->unk_00.unk_00[v0].index == 0xfffffffd) {
+    if (param0->template.choices[v0].index == 0xfffffffd) {
         return 0;
     }
 
-    param0->unk_15 = v0;
+    param0->cursorPos = v0;
     return 1;
 }
 
-static u8 sub_02001F1C(UIControlData *param0)
+static u8 sub_02001F1C(Menu *param0)
 {
     u8 v0 = 0;
     u8 v1, v2;
 
-    for (v1 = 0; v1 < param0->unk_00.unk_09 * param0->unk_00.unk_0A; v1++) {
-        v2 = Font_CalcStrbufWidth(param0->unk_00.unk_08, param0->unk_00.unk_00[v1].entry, 0);
+    for (v1 = 0; v1 < param0->template.xSize * param0->template.ySize; v1++) {
+        v2 = Font_CalcStrbufWidth(param0->template.fontID, param0->template.choices[v1].entry, 0);
 
         if (v0 < v2) {
             v0 = v2;
@@ -311,50 +309,50 @@ static u8 sub_02001F1C(UIControlData *param0)
     return v0;
 }
 
-static void sub_02001F5C(UIControlData *param0)
+static void sub_02001F5C(Menu *param0)
 {
     const void *v0;
     u8 v1, v2, v3;
     u8 v4, v5;
 
-    Window_FillTilemap(param0->unk_00.unk_04, Font_GetAttribute(param0->unk_00.unk_08, 6));
+    Window_FillTilemap(param0->template.window, Font_GetAttribute(param0->template.fontID, 6));
 
-    v1 = param0->unk_17;
-    v3 = param0->unk_16 + param0->unk_19 * 2;
+    v1 = param0->xOffset;
+    v3 = param0->width + param0->letterWidth * 2;
 
-    for (v4 = 0; v4 < param0->unk_00.unk_09; v4++) {
-        for (v5 = 0; v5 < param0->unk_00.unk_0A; v5++) {
-            v0 = param0->unk_00.unk_00[v4 * param0->unk_00.unk_0A + v5].entry;
-            v2 = (param0->unk_1A + param0->unk_00.unk_0B_0) * v5 + param0->unk_18;
+    for (v4 = 0; v4 < param0->template.xSize; v4++) {
+        for (v5 = 0; v5 < param0->template.ySize; v5++) {
+            v0 = param0->template.choices[v4 * param0->template.ySize + v5].entry;
+            v2 = (param0->lineHeight + param0->template.lineSpacing) * v5 + param0->yOffset;
 
-            Text_AddPrinterWithParams(param0->unk_00.unk_04, param0->unk_00.unk_08, v0, v1, v2, TEXT_SPEED_NO_TRANSFER, NULL);
+            Text_AddPrinterWithParams(param0->template.window, param0->template.fontID, v0, v1, v2, TEXT_SPEED_NO_TRANSFER, NULL);
         }
 
         v1 += v3;
     }
 }
 
-static void sub_02001FE8(UIControlData *param0)
+static void sub_02001FE8(Menu *param0)
 {
     u8 v0, v1;
 
-    if (param0->unk_00.unk_0B_4 == 1) {
+    if (param0->template.suppressCursor == TRUE) {
         return;
     }
 
-    sub_02002018(param0, &v0, &v1, param0->unk_15);
-    ColoredArrow_Print(param0->unk_0C, param0->unk_00.unk_04, v0, v1);
+    sub_02002018(param0, &v0, &v1, param0->cursorPos);
+    ColoredArrow_Print(param0->cursor, param0->template.window, v0, v1);
 }
 
-static void sub_02002018(UIControlData *param0, u8 *param1, u8 *param2, u8 param3)
+static void sub_02002018(Menu *param0, u8 *param1, u8 *param2, u8 param3)
 {
-    *param1 = (param3 / param0->unk_00.unk_0A) * (param0->unk_16 + param0->unk_19 * 2);
-    *param2 = (param3 % param0->unk_00.unk_0A) * (param0->unk_1A + param0->unk_00.unk_0B_0) + param0->unk_18;
+    *param1 = (param3 / param0->template.ySize) * (param0->width + param0->letterWidth * 2);
+    *param2 = (param3 % param0->template.ySize) * (param0->lineHeight + param0->template.lineSpacing) + param0->yOffset;
 }
 
-UIControlData *sub_02002054(BgConfig *param0, const WindowTemplate *param1, u16 param2, u8 param3, u8 param4, u32 param5)
+Menu *sub_02002054(BgConfig *param0, const WindowTemplate *param1, u16 param2, u8 param3, u8 param4, u32 param5)
 {
-    UnkStruct_02081CF4 v0;
+    MenuTemplate v0;
     MessageLoader *v1;
     StringList *v2;
 
@@ -365,27 +363,27 @@ UIControlData *sub_02002054(BgConfig *param0, const WindowTemplate *param1, u16 
     StringList_AddFromMessageBank(v2, v1, 42, 0xfffffffe);
     MessageLoader_Free(v1);
 
-    v0.unk_00 = v2;
-    v0.unk_04 = Window_New(param5, 1);
-    v0.unk_08 = 0;
-    v0.unk_09 = 1;
-    v0.unk_0A = 2;
-    v0.unk_0B_0 = 0;
-    v0.unk_0B_4 = 0;
-    v0.unk_0B_6 = 0;
+    v0.choices = v2;
+    v0.window = Window_New(param5, 1);
+    v0.fontID = 0;
+    v0.xSize = 1;
+    v0.ySize = 2;
+    v0.lineSpacing = 0;
+    v0.suppressCursor = FALSE;
+    v0.loopAround = FALSE;
 
-    Window_AddFromTemplate(param0, v0.unk_04, param1);
-    Window_Show(v0.unk_04, 1, param2, param3);
+    Window_AddFromTemplate(param0, v0.window, param1);
+    Window_Show(v0.window, 1, param2, param3);
 
     return sub_02001B7C(&v0, 8, 0, param4, param5, PAD_BUTTON_B);
 }
 
-UIControlData *sub_02002100(BgConfig *param0, const WindowTemplate *param1, u16 param2, u8 param3, u32 param4)
+Menu *sub_02002100(BgConfig *param0, const WindowTemplate *param1, u16 param2, u8 param3, u32 param4)
 {
     return sub_02002054(param0, param1, param2, param3, 0, param4);
 }
 
-u32 sub_02002114(UIControlData *param0, u32 param1)
+u32 sub_02002114(Menu *param0, u32 param1)
 {
     u32 v0 = sub_02001BE0(param0);
 
@@ -396,7 +394,7 @@ u32 sub_02002114(UIControlData *param0, u32 param1)
     return v0;
 }
 
-u32 sub_02002134(UIControlData *param0, u8 param1, u32 param2)
+u32 sub_02002134(Menu *param0, u8 param1, u32 param2)
 {
     u32 v0 = sub_02001D44(param0, param1);
 
@@ -407,12 +405,12 @@ u32 sub_02002134(UIControlData *param0, u8 param1, u32 param2)
     return v0;
 }
 
-void sub_02002154(UIControlData *param0, u32 param1)
+void sub_02002154(Menu *param0, u32 param1)
 {
-    Window_Clear(param0->unk_00.unk_04, 0);
-    Window_Remove(param0->unk_00.unk_04);
-    Heap_FreeToHeapExplicit(param1, param0->unk_00.unk_04);
-    StringList_Free((StringList *)param0->unk_00.unk_00);
+    Window_Clear(param0->template.window, 0);
+    Window_Remove(param0->template.window);
+    Heap_FreeToHeapExplicit(param1, param0->template.window);
+    StringList_Free((StringList *)param0->template.choices);
     sub_02001BC4(param0, NULL);
 }
 

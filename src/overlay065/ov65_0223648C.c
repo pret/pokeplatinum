@@ -114,7 +114,7 @@ typedef struct {
     Window unk_210;
     Window unk_220;
     Window unk_230;
-    UIControlData *unk_240;
+    Menu *unk_240;
     void *unk_244;
     NNSG2dScreenData *unk_248;
     void *unk_24C;

@@ -99,7 +99,7 @@ typedef struct {
     ListMenuTemplate unk_140;
     ListMenu *unk_160;
     StringList *unk_164;
-    UIControlData *unk_168;
+    Menu *unk_168;
     FieldSystem *fieldSystem;
     BgConfig *unk_170;
     Window unk_174;

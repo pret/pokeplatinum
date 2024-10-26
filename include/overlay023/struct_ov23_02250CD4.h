@@ -34,9 +34,9 @@ typedef struct {
     ListMenu *unk_48;
     UnkStruct_ov23_02248D20 *unk_4C;
     ListMenu *unk_50;
-    UIControlData *unk_54;
+    Menu *unk_54;
     StringList *unk_58;
-    UIControlData *unk_5C;
+    Menu *unk_5C;
     UnkFuncPtr_ov23_022515D8 unk_60;
     UnkFuncPtr_ov23_022515D8 unk_64;
     Strbuf *unk_68;

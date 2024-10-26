@@ -16,6 +16,7 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "core_sys.h"
+#include "font.h"
 #include "heap.h"
 #include "menu.h"
 #include "message.h"
@@ -124,7 +125,7 @@ void sub_0208337C(GameWindowLayout *param0)
 
 static void sub_020833BC(GameWindowLayout *param0, int *param1)
 {
-    UnkStruct_02081CF4 v0;
+    MenuTemplate v0;
 
     sub_0208337C(param0);
     sub_020826F4(param0, 38, 0);
@@ -135,14 +136,14 @@ static void sub_020833BC(GameWindowLayout *param0, int *param1)
     StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[4], sub_02083370(4));
     StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[9], sub_02083370(9));
 
-    v0.unk_00 = param0->unk_6FC;
-    v0.unk_04 = &param0->unk_04[35];
-    v0.unk_08 = 0;
-    v0.unk_09 = 1;
-    v0.unk_0A = 3;
-    v0.unk_0B_0 = 0;
-    v0.unk_0B_4 = 0;
-    v0.unk_0B_6 = 0;
+    v0.choices = param0->unk_6FC;
+    v0.window = &param0->unk_04[35];
+    v0.fontID = FONT_SYSTEM;
+    v0.xSize = 1;
+    v0.ySize = 3;
+    v0.lineSpacing = 0;
+    v0.suppressCursor = FALSE;
+    v0.loopAround = FALSE;
 
     Window_Show(&param0->unk_04[35], 1, 1, 14);
 
@@ -252,7 +253,7 @@ int sub_020836E4(GameWindowLayout *param0)
 
 static void sub_02083700(GameWindowLayout *param0, int *param1)
 {
-    UnkStruct_02081CF4 v0;
+    MenuTemplate v0;
 
     sub_0208337C(param0);
     sub_020826F4(param0, 39, 0);
@@ -263,14 +264,14 @@ static void sub_02083700(GameWindowLayout *param0, int *param1)
     StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[7], sub_02083370(7));
     StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[9], sub_02083370(9));
 
-    v0.unk_00 = param0->unk_6FC;
-    v0.unk_04 = &param0->unk_04[35];
-    v0.unk_08 = 0;
-    v0.unk_09 = 1;
-    v0.unk_0A = 3;
-    v0.unk_0B_0 = 0;
-    v0.unk_0B_4 = 0;
-    v0.unk_0B_6 = 0;
+    v0.choices = param0->unk_6FC;
+    v0.window = &param0->unk_04[35];
+    v0.fontID = FONT_SYSTEM;
+    v0.xSize = 1;
+    v0.ySize = 3;
+    v0.lineSpacing = 0;
+    v0.suppressCursor = FALSE;
+    v0.loopAround = FALSE;
 
     Window_Show(&param0->unk_04[35], 1, 1, 14);
 

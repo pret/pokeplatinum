@@ -65,7 +65,7 @@ typedef struct {
     Window unk_54;
     Window unk_64;
     Window unk_74;
-    UIControlData *unk_84;
+    Menu *unk_84;
     void *unk_88;
     int unk_8C;
     int unk_90;
@@ -92,7 +92,7 @@ static void ov61_0222C7F8(UnkStruct_ov61_0222C664 *param0, int param1, int param
 static int ov61_0222C834(int param0);
 static void ov61_0222C850(UnkStruct_ov61_0222C664 *param0);
 static void ov61_0222C86C(UnkStruct_ov61_0222C664 *param0);
-static UIControlData *ov61_0222C884(BgConfig *param0, int param1, int param2);
+static Menu *ov61_0222C884(BgConfig *param0, int param1, int param2);
 static void ov61_0222C8B8(UnkStruct_ov61_0222C664 *param0, MessageLoader *param1, int param2, int param3, u16 param4);
 static void ov61_0222C920(UnkStruct_ov61_0222C664 *param0, int param1, int param2);
 static BOOL ov61_0222C928(int param0, int param1);
@@ -548,7 +548,7 @@ static void ov61_0222C86C(UnkStruct_ov61_0222C664 *param0)
     }
 }
 
-static UIControlData *ov61_0222C884(BgConfig *param0, int param1, int param2)
+static Menu *ov61_0222C884(BgConfig *param0, int param1, int param2)
 {
     WindowTemplate v0;
 

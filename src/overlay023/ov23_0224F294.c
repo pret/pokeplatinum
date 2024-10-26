@@ -36,6 +36,7 @@
 #include "core_sys.h"
 #include "field_map_change.h"
 #include "field_system.h"
+#include "font.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "list_menu.h"
@@ -469,7 +470,7 @@ static u32 ov23_0224F7D4(u8 *param0)
 
 static void ov23_0224F7F4(UnkStruct_ov23_02250CD4 *param0)
 {
-    UnkStruct_02081CF4 v0;
+    MenuTemplate v0;
     const int v1 = 4;
     u8 v2[7];
     int v3;
@@ -501,18 +502,18 @@ static void ov23_0224F7F4(UnkStruct_ov23_02250CD4 *param0)
 
     param0->unk_29C = param0->fieldSystem->unk_90;
 
-    v0.unk_00 = param0->unk_40;
-    v0.unk_04 = &param0->unk_10;
-    v0.unk_08 = 1;
-    v0.unk_09 = 1;
-    v0.unk_0A = NELEMS(Unk_ov23_02256924);
-    v0.unk_0B_0 = 8;
-    v0.unk_0B_4 = 1;
+    v0.choices = param0->unk_40;
+    v0.window = &param0->unk_10;
+    v0.fontID = FONT_MESSAGE;
+    v0.xSize = 1;
+    v0.ySize = NELEMS(Unk_ov23_02256924);
+    v0.lineSpacing = 8;
+    v0.suppressCursor = TRUE;
 
     if (NELEMS(Unk_ov23_02256924) >= 4) {
-        v0.unk_0B_6 = 1;
+        v0.loopAround = TRUE;
     } else {
-        v0.unk_0B_6 = 0;
+        v0.loopAround = FALSE;
     }
 
     param0->unk_54 = sub_02001AF4(&v0, 28, 4, param0->unk_29C, 11, PAD_BUTTON_B | PAD_BUTTON_X);

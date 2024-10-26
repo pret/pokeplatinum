@@ -44,7 +44,7 @@ typedef struct {
     Strbuf *unk_6A8;
     Strbuf *unk_6AC[20];
     StringList *unk_6FC;
-    UIControlData *unk_700;
+    Menu *unk_700;
     StrBufWrapper unk_704[6];
     const ByteFlagSet *unk_7F4;
     DualArrayShortData unk_7F8;

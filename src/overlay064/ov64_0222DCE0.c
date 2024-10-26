@@ -140,7 +140,7 @@ typedef struct {
     void * unk_14;
     NNSG2dScreenData * unk_18;
     Window unk_1C;
-    UIControlData * unk_2C;
+    Menu *unk_2C;
     u32 unk_30;
     u32 unk_34;
     Strbuf* unk_38;
@@ -174,7 +174,7 @@ typedef struct {
     Window unk_E0;
     StringList *unk_F0[2];
     ListMenu *unk_F8;
-    UIControlData * unk_FC;
+    Menu *unk_FC;
     s32 unk_100;
     CellActor * unk_104;
     u32 unk_108;

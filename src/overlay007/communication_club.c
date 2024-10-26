@@ -48,7 +48,7 @@ typedef struct CommClubManager {
     StringTemplate *unk_54;
     StringTemplate *strTempMsg;
     ListMenu *unk_5C;
-    UIControlData *unk_60;
+    Menu *unk_60;
     StringList *unk_64;
     FieldSystem *fieldSystem;
     CommClubManTaskFunc commClubTask;

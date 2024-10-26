@@ -87,7 +87,7 @@ typedef struct {
     NNSG2dScreenData *unk_3C;
     NNSG2dScreenData *unk_40;
     Window unk_44[6];
-    UIControlData *unk_A4;
+    Menu *unk_A4;
     SpriteRenderer *unk_A8;
     SpriteGfxHandler *unk_AC;
     CellActorData *unk_B0[3];

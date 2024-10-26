@@ -15,7 +15,7 @@
 typedef struct {
     Window unk_00;
     Window unk_10;
-    UIControlData *unk_20;
+    Menu *unk_20;
     StringList *unk_24;
     u16 unk_28;
     u16 state;

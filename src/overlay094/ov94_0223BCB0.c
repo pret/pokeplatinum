@@ -406,7 +406,7 @@ static const WindowTemplate Unk_ov94_022459F8 = {
     0x0
 };
 
-UIControlData *ov94_0223C3C0(BgConfig *param0, int param1, int param2)
+Menu *ov94_0223C3C0(BgConfig *param0, int param1, int param2)
 {
     WindowTemplate v0;
 

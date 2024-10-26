@@ -207,7 +207,7 @@ typedef struct ChooseStarterApp {
     int unk_A8;
     Strbuf *unk_AC;
     WindowTemplate unk_B0;
-    UIControlData *unk_B8;
+    Menu *unk_B8;
     UnkStruct_0200C738 unk_BC;
     CellActorCollection *unk_248;
     SpriteResourceCollection *unk_24C[6];

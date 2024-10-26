@@ -68,7 +68,7 @@ typedef struct {
 typedef struct {
     int unk_00;
     FieldSystem *fieldSystem;
-    UIControlData *unk_08;
+    Menu *unk_08;
     UnkStruct_ov23_022513B0 unk_0C;
     SysTask *unk_10;
 } UnkStruct_ov23_02252038;

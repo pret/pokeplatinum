@@ -46,7 +46,7 @@ struct UnkStruct_ov65_0222EBE0_t {
     Strbuf *unk_178;
     Strbuf *unk_17C;
     int unk_180;
-    UIControlData *unk_184;
+    Menu *unk_184;
     void *unk_188;
     CellActorCollection *unk_18C;
     UnkStruct_0200C738 unk_190;

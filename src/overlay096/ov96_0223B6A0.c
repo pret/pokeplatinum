@@ -330,7 +330,7 @@ static const WindowTemplate Unk_ov96_0223DA78 = {
     0x0
 };
 
-UIControlData *ov96_0223BBC8(BgConfig *param0, int param1, int param2)
+Menu *ov96_0223BBC8(BgConfig *param0, int param1, int param2)
 {
     WindowTemplate v0;
 

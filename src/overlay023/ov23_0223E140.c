@@ -146,7 +146,7 @@ typedef struct {
     CellActorResourceData unk_204[2];
     CellActor *unk_24C[8];
     UnkStruct_ov23_0223E6F8 unk_26C[250];
-    UIControlData *unk_848;
+    Menu *unk_848;
     UnkStruct_ov23_0223E6F8 *unk_84C[8];
     u8 unk_86C[8];
     UnkStruct_ov23_0223FC9C unk_874[8];

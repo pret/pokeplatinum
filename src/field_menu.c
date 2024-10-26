@@ -39,6 +39,7 @@
 #include "cell_actor.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
+#include "font.h"
 #include "game_records.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -519,7 +520,7 @@ static void sub_0203ADFC(TaskManager *taskMan)
     FieldSystem *fieldSystem;
     FieldMenu *menu;
     MessageLoader *v2;
-    UnkStruct_02081CF4 v3;
+    MenuTemplate v3;
     u32 v4, v5;
 
     fieldSystem = TaskManager_FieldSystem(taskMan);
@@ -565,18 +566,18 @@ static void sub_0203ADFC(TaskManager *taskMan)
     fieldSystem->unk_90 = menu->unk_30[menu->unk_28];
     MessageLoader_Free(v2);
 
-    v3.unk_00 = menu->unk_24;
-    v3.unk_04 = &menu->unk_00;
-    v3.unk_08 = 1;
-    v3.unk_09 = 1;
-    v3.unk_0A = v5;
-    v3.unk_0B_0 = 8;
-    v3.unk_0B_4 = 1;
+    v3.choices = menu->unk_24;
+    v3.window = &menu->unk_00;
+    v3.fontID = FONT_MESSAGE;
+    v3.xSize = 1;
+    v3.ySize = v5;
+    v3.lineSpacing = 8;
+    v3.suppressCursor = TRUE;
 
     if (v5 >= 4) {
-        v3.unk_0B_6 = 1;
+        v3.loopAround = TRUE;
     } else {
-        v3.unk_0B_6 = 0;
+        v3.loopAround = FALSE;
     }
 
     menu->unk_20 = sub_02001AF4(&v3, 28, 4, menu->unk_28, 11, PAD_BUTTON_B | PAD_BUTTON_X);

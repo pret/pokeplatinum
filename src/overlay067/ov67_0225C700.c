@@ -63,7 +63,7 @@ typedef struct {
     UnkStruct_ov67_0225D210 unk_40;
     UnkStruct_ov67_0225D210 unk_70;
     UnkStruct_ov67_0225D210 unk_A0;
-    UIControlData *unk_D0;
+    Menu *unk_D0;
     UnkStruct_ov61_0222C3B0 unk_D4;
 } UnkStruct_ov67_0225D154;
 

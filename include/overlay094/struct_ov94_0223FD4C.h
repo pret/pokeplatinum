@@ -122,8 +122,8 @@ typedef struct UnkStruct_ov94_0223FD4C_t {
     Window unk_109C;
     Window unk_10AC[2];
     StringList *unk_10CC;
-    UIControlData *unk_10D0;
-    UIControlData *unk_10D4;
+    Menu *unk_10D0;
+    Menu *unk_10D4;
     ListMenu *unk_10D8;
     void *unk_10DC;
     int unk_10E0;

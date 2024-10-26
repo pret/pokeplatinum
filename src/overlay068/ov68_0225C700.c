@@ -96,7 +96,7 @@ typedef struct {
     Window unk_08;
     Strbuf *unk_18;
     void *unk_1C;
-    UIControlData *unk_20;
+    Menu *unk_20;
 } UnkStruct_ov68_0225D128;
 
 typedef struct {

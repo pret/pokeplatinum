@@ -194,7 +194,7 @@ void sub_02081CAC(GameWindowLayout *param0, u16 param1, u8 param2)
 
 void sub_02081CF4(GameWindowLayout *param0, const u8 *param1, u8 param2)
 {
-    UnkStruct_02081CF4 v0;
+    MenuTemplate v0;
     u16 v1, v2;
 
     Window_Add(param0->unk_00, &param0->unk_254[0], 0, 19, 23 - param2 * 2, 12, param2 * 2, 0, (((((((((((((((((((((((((((((((1 + 9) + (18 + 12)) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 5 * 2) + 7 * 2) + 20 * 2) + 13 * 4) + 27 * 4));
@@ -211,18 +211,18 @@ void sub_02081CF4(GameWindowLayout *param0, const u8 *param1, u8 param2)
         }
     }
 
-    v0.unk_00 = param0->unk_6FC;
-    v0.unk_04 = &param0->unk_254[0];
-    v0.unk_08 = 0;
-    v0.unk_09 = 1;
-    v0.unk_0A = param2;
-    v0.unk_0B_0 = 0;
-    v0.unk_0B_4 = 0;
+    v0.choices = param0->unk_6FC;
+    v0.window = &param0->unk_254[0];
+    v0.fontID = FONT_SYSTEM;
+    v0.xSize = 1;
+    v0.ySize = param2;
+    v0.lineSpacing = 0;
+    v0.suppressCursor = FALSE;
 
     if (param2 >= 4) {
-        v0.unk_0B_6 = 1;
+        v0.loopAround = TRUE;
     } else {
-        v0.unk_0B_6 = 0;
+        v0.loopAround = FALSE;
     }
 
     Window_Show(&param0->unk_254[0], 1, 1, 14);

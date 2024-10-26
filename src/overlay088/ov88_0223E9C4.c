@@ -154,7 +154,7 @@ static const WindowTemplate Unk_ov88_0223F148 = {
     0x112
 };
 
-u32 ov88_0223ED2C(BgConfig *param0, UIControlData **param1, int *param2)
+u32 ov88_0223ED2C(BgConfig *param0, Menu **param1, int *param2)
 {
     u32 v0 = 0xffffffff;
 

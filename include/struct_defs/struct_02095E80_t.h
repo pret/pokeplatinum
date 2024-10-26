@@ -83,9 +83,9 @@ struct UnkStruct_02095E80_t {
     CellActor *unk_47C;
     SysTask *unk_480[7];
     Window unk_49C[34];
-    UIControlData *unk_6BC;
+    Menu *unk_6BC;
     StringList *unk_6C0;
-    UIControlData *unk_6C4;
+    Menu *unk_6C4;
     int unk_6C8;
     int unk_6CC;
     int unk_6D0;

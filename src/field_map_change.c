@@ -125,7 +125,7 @@ typedef struct MapChangeUndergroundData {
     Window unk_24;
     Strbuf *unk_34;
     u8 unk_38;
-    UIControlData *unk_3C;
+    Menu *unk_3C;
 } MapChangeUndergroundData;
 
 typedef struct MapChangeUnionData {

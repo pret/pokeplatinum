@@ -320,7 +320,7 @@ static void ov7_0224D018(UnkStruct_ov7_0224D008 *param0)
 
 static void ov7_0224D040(UnkStruct_ov7_0224D008 *param0)
 {
-    UnkStruct_02081CF4 v0;
+    MenuTemplate v0;
     u8 v1;
 
     if (param0->unk_2A9 == 0) {
@@ -347,14 +347,14 @@ static void ov7_0224D040(UnkStruct_ov7_0224D008 *param0)
         Window_Add(param0->unk_00, &param0->unk_08[0], 3, 1, 1, 13, 4, 13, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (13 * 6)));
     }
 
-    v0.unk_00 = param0->unk_84;
-    v0.unk_04 = &param0->unk_08[0];
-    v0.unk_08 = 0;
-    v0.unk_09 = 1;
-    v0.unk_0A = v1;
-    v0.unk_0B_0 = 0;
-    v0.unk_0B_4 = 0;
-    v0.unk_0B_6 = 0;
+    v0.choices = param0->unk_84;
+    v0.window = &param0->unk_08[0];
+    v0.fontID = FONT_SYSTEM;
+    v0.xSize = 1;
+    v0.ySize = v1;
+    v0.lineSpacing = 0;
+    v0.suppressCursor = FALSE;
+    v0.loopAround = FALSE;
 
     sub_0200DAA4(param0->unk_00, 3, 1024 - (18 + 12) - 9, 11, 0, 11);
     Window_Show(&param0->unk_08[0], 1, 1024 - (18 + 12) - 9, 11);

@@ -10,6 +10,7 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "core_sys.h"
+#include "font.h"
 #include "heap.h"
 #include "item.h"
 #include "map_header.h"
@@ -1175,7 +1176,7 @@ static u8 sub_02086614(GameWindowLayout *param0, u8 param1)
 
 void sub_020866A0(GameWindowLayout *param0, u8 param1)
 {
-    UnkStruct_02081CF4 v0;
+    MenuTemplate v0;
     u8 v1;
 
     if (param1 == 0) {
@@ -1191,18 +1192,18 @@ void sub_020866A0(GameWindowLayout *param0, u8 param1)
     v1 += sub_02086614(param0, 2);
     v1 += sub_02086614(param0, 3);
 
-    v0.unk_00 = param0->unk_6FC;
-    v0.unk_04 = &param0->unk_04[36];
-    v0.unk_08 = 0;
-    v0.unk_09 = 1;
-    v0.unk_0A = 4;
-    v0.unk_0B_0 = 0;
-    v0.unk_0B_4 = 0;
+    v0.choices = param0->unk_6FC;
+    v0.window = &param0->unk_04[36];
+    v0.fontID = FONT_SYSTEM;
+    v0.xSize = 1;
+    v0.ySize = 4;
+    v0.lineSpacing = 0;
+    v0.suppressCursor = FALSE;
 
     if (v1 == 4) {
-        v0.unk_0B_6 = 1;
+        v0.loopAround = TRUE;
     } else {
-        v0.unk_0B_6 = 0;
+        v0.loopAround = FALSE;
     }
 
     Window_Show(&param0->unk_04[36], 1, 1, 14);

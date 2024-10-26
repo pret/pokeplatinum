@@ -2657,7 +2657,7 @@ static BOOL ScrCmd_03C(ScriptContext *ctx)
 static BOOL ScrCmd_03E(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    UIControlData **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_UI_CONTROL);
+    Menu **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_UI_CONTROL);
     u16 v2 = ScriptContext_ReadHalfWord(ctx);
 
     sub_0200DAA4(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
@@ -2674,7 +2674,7 @@ static BOOL sub_02040824(ScriptContext *ctx)
 {
     u32 v0;
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    UIControlData **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_UI_CONTROL);
+    Menu **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_UI_CONTROL);
     u16 *v3 = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
 
     v0 = sub_02002114(*v2, 4);

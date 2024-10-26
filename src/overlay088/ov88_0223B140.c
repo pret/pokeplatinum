@@ -2075,14 +2075,14 @@ static int ov88_0223DA00(UnkStruct_02095E80 *param0)
 
 static int ov88_0223DA3C(UnkStruct_02095E80 *param0)
 {
-    UnkStruct_02081CF4 v0;
+    MenuTemplate v0;
 
-    v0.unk_08 = 0;
-    v0.unk_09 = 1;
-    v0.unk_0A = 3;
-    v0.unk_0B_0 = 0;
-    v0.unk_0B_4 = 0;
-    v0.unk_0B_6 = 0;
+    v0.fontID = FONT_SYSTEM;
+    v0.xSize = 1;
+    v0.ySize = 3;
+    v0.lineSpacing = 0;
+    v0.suppressCursor = FALSE;
+    v0.loopAround = FALSE;
 
     StringTemplate_SetNickname(param0->unk_17C, 0, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param0->unk_2270, param0->unk_88[0])));
     Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
@@ -2094,8 +2094,8 @@ static int ov88_0223DA3C(UnkStruct_02095E80 *param0)
     StringList_AddFromMessageBank(param0->unk_6C0, param0->unk_184, 18, 1);
     StringList_AddFromMessageBank(param0->unk_6C0, param0->unk_184, 19, 2);
 
-    v0.unk_00 = param0->unk_6C0;
-    v0.unk_04 = &param0->unk_49C[24];
+    v0.choices = param0->unk_6C0;
+    v0.window = &param0->unk_49C[24];
 
     ov88_0223ED80(&param0->unk_49C[24]);
 
@@ -2424,14 +2424,14 @@ static int ov88_0223E478(UnkStruct_02095E80 *param0)
 
 static int ov88_0223E4BC(UnkStruct_02095E80 *param0)
 {
-    UnkStruct_02081CF4 v0;
+    MenuTemplate v0;
 
-    v0.unk_08 = 0;
-    v0.unk_09 = 1;
-    v0.unk_0A = 2;
-    v0.unk_0B_0 = 0;
-    v0.unk_0B_4 = 0;
-    v0.unk_0B_6 = 0;
+    v0.fontID = FONT_SYSTEM;
+    v0.xSize = 1;
+    v0.ySize = 2;
+    v0.lineSpacing = 0;
+    v0.suppressCursor = FALSE;
+    v0.loopAround = FALSE;
 
     StringTemplate_SetNickname(param0->unk_17C, 0, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param0->unk_2274, param0->unk_88[0] - 6)));
     Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
@@ -2442,8 +2442,8 @@ static int ov88_0223E4BC(UnkStruct_02095E80 *param0)
     StringList_AddFromMessageBank(param0->unk_6C0, param0->unk_184, 17, 0);
     StringList_AddFromMessageBank(param0->unk_6C0, param0->unk_184, 19, 1);
 
-    v0.unk_00 = param0->unk_6C0;
-    v0.unk_04 = &param0->unk_49C[25];
+    v0.choices = param0->unk_6C0;
+    v0.window = &param0->unk_49C[25];
 
     ov88_0223ED80(&param0->unk_49C[25]);
 

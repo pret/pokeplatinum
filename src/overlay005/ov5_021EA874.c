@@ -45,7 +45,7 @@ typedef struct {
     StringTemplate *unk_38;
     MessageLoader *unk_3C;
     int unk_40;
-    UIControlData *unk_44;
+    Menu *unk_44;
     int unk_48;
     int unk_4C[8];
     int unk_6C[8];

@@ -192,8 +192,8 @@ struct UnkStruct_ov108_02241DB0_t {
     u16 unk_80[8];
     BgConfig *unk_90;
     Window unk_94[2];
-    UnkStruct_02081CF4 unk_B4;
-    UIControlData *unk_C0;
+    MenuTemplate unk_B4;
+    Menu *unk_C0;
     StringList unk_C4[2];
     PaletteData *unk_D4;
     Options *unk_D8;

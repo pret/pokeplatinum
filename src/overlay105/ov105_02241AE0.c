@@ -101,8 +101,8 @@ struct UnkStruct_ov105_02241FF4_t {
     u16 unk_3C[8];
     BgConfig *unk_4C;
     Window unk_50[10];
-    UnkStruct_02081CF4 unk_F0;
-    UIControlData *unk_FC;
+    MenuTemplate unk_F0;
+    Menu *unk_FC;
     StringList unk_100[4];
     PaletteData *unk_120;
     GenericPointerData *unk_124;
@@ -930,7 +930,7 @@ static BOOL ov105_022426E0(UnkStruct_ov105_02241FF4 *param0)
             break;
         case 0:
             sub_02001BC4(param0->unk_FC, NULL);
-            ov105_02245A98(param0->unk_F0.unk_04);
+            ov105_02245A98(param0->unk_F0.window);
             ov105_02246060(param0->unk_310);
             param0->unk_310 = NULL;
             param0->unk_13_6 = 1;
@@ -940,7 +940,7 @@ static BOOL ov105_022426E0(UnkStruct_ov105_02241FF4 *param0)
         case 1:
             sub_02001BC4(param0->unk_FC, NULL);
 
-            ov105_02245A98(param0->unk_F0.unk_04);
+            ov105_02245A98(param0->unk_F0.window);
             ov105_02242A58(param0);
 
             if (ov104_0223AED4(param0->unk_09) == 1) {
@@ -951,7 +951,7 @@ static BOOL ov105_022426E0(UnkStruct_ov105_02241FF4 *param0)
         case 3:
             sub_02001BC4(param0->unk_FC, NULL);
 
-            ov105_02245A98(param0->unk_F0.unk_04);
+            ov105_02245A98(param0->unk_F0.window);
             ov105_02242B54(param0);
 
             if (ov104_0223AED4(param0->unk_09) == 1) {
@@ -963,7 +963,7 @@ static BOOL ov105_022426E0(UnkStruct_ov105_02241FF4 *param0)
         case 2:
         default:
             sub_02001BC4(param0->unk_FC, NULL);
-            ov105_02245A98(param0->unk_F0.unk_04);
+            ov105_02245A98(param0->unk_F0.window);
             ov105_022461A4(param0->unk_30C, 0);
             ov105_02246060(param0->unk_310);
             param0->unk_310 = NULL;
@@ -1225,7 +1225,7 @@ static BOOL ov105_02242D04(UnkStruct_ov105_02241FF4 *param0)
             break;
         case 0:
             sub_02001BC4(param0->unk_FC, NULL);
-            ov105_02245A98(param0->unk_F0.unk_04);
+            ov105_02245A98(param0->unk_F0.window);
             ov105_02246060(param0->unk_310);
             param0->unk_310 = NULL;
             param0->unk_08++;
@@ -1236,7 +1236,7 @@ static BOOL ov105_02242D04(UnkStruct_ov105_02241FF4 *param0)
             ov105_02246074(param0->unk_30C, 1);
             sub_02001BC4(param0->unk_FC, NULL);
 
-            ov105_02245A98(param0->unk_F0.unk_04);
+            ov105_02245A98(param0->unk_F0.window);
             ov105_02246060(param0->unk_310);
 
             param0->unk_310 = NULL;
@@ -1460,7 +1460,7 @@ static BOOL ov105_022434BC(UnkStruct_ov105_02241FF4 *param0)
             break;
         case 0:
             sub_02001BC4(param0->unk_FC, NULL);
-            ov105_02245A98(param0->unk_F0.unk_04);
+            ov105_02245A98(param0->unk_F0.window);
             ov105_02246060(param0->unk_310);
             param0->unk_310 = NULL;
             param0->unk_13_6 = 1;
@@ -1469,14 +1469,14 @@ static BOOL ov105_022434BC(UnkStruct_ov105_02241FF4 *param0)
             break;
         case 4:
             sub_02001BC4(param0->unk_FC, NULL);
-            ov105_02245A98(param0->unk_F0.unk_04);
+            ov105_02245A98(param0->unk_F0.window);
             ov105_02243738(param0);
             return 1;
         case 0xfffffffe:
         case 2:
         default:
             sub_02001BC4(param0->unk_FC, NULL);
-            ov105_02245A98(param0->unk_F0.unk_04);
+            ov105_02245A98(param0->unk_F0.window);
             ov105_022461A4(param0->unk_30C, 0);
             ov105_02246060(param0->unk_310);
             param0->unk_310 = NULL;
@@ -1563,7 +1563,7 @@ static BOOL ov105_02243818(UnkStruct_ov105_02241FF4 *param0)
             break;
         case 0:
             sub_02001BC4(param0->unk_FC, NULL);
-            ov105_02245A98(param0->unk_F0.unk_04);
+            ov105_02245A98(param0->unk_F0.window);
             ov105_02246060(param0->unk_310);
             param0->unk_310 = NULL;
             param0->unk_13_3 = 0;
@@ -1578,7 +1578,7 @@ static BOOL ov105_02243818(UnkStruct_ov105_02241FF4 *param0)
         case 1:
         default:
             sub_02001BC4(param0->unk_FC, NULL);
-            ov105_02245A98(param0->unk_F0.unk_04);
+            ov105_02245A98(param0->unk_F0.window);
             ov105_02246060(param0->unk_310);
             param0->unk_310 = NULL;
             ov105_0224396C(param0);
@@ -1686,7 +1686,7 @@ static BOOL ov105_02243A3C(UnkStruct_ov105_02241FF4 *param0)
 
         case 0:
             sub_02001BC4(param0->unk_FC, NULL);
-            ov105_02245A98(param0->unk_F0.unk_04);
+            ov105_02245A98(param0->unk_F0.window);
             ov105_02243D84(param0);
 
             if (ov104_0223AED4(param0->unk_09) == 1) {
@@ -1699,7 +1699,7 @@ static BOOL ov105_02243A3C(UnkStruct_ov105_02241FF4 *param0)
         case 1:
         default:
             sub_02001BC4(param0->unk_FC, NULL);
-            ov105_02245A98(param0->unk_F0.unk_04);
+            ov105_02245A98(param0->unk_F0.window);
             ov105_02243DE4(param0);
             param0->unk_08 = 1;
             break;
@@ -1793,7 +1793,7 @@ static BOOL ov105_02243E84(UnkStruct_ov105_02241FF4 *param0)
         case 0:
             sub_02001BC4(param0->unk_FC, NULL);
 
-            ov105_02245A98(param0->unk_F0.unk_04);
+            ov105_02245A98(param0->unk_F0.window);
             ov105_02246060(param0->unk_310);
 
             param0->unk_310 = NULL;
@@ -2081,7 +2081,7 @@ static BOOL ov105_02244424(UnkStruct_ov105_02241FF4 *param0)
 
         if (param0->unk_310 != NULL) {
             sub_02001BC4(param0->unk_FC, NULL);
-            ov105_02245A98(param0->unk_F0.unk_04);
+            ov105_02245A98(param0->unk_F0.window);
             ov105_02246060(param0->unk_310);
             param0->unk_310 = NULL;
         }
@@ -2565,14 +2565,14 @@ static void ov105_02244D48(UnkStruct_ov105_02241FF4 *param0, Window *param1, u8 
         param0->unk_100[v0].index = 0;
     }
 
-    param0->unk_F0.unk_00 = param0->unk_100;
-    param0->unk_F0.unk_04 = param1;
-    param0->unk_F0.unk_08 = 0;
-    param0->unk_F0.unk_09 = 1;
-    param0->unk_F0.unk_0A = param2;
-    param0->unk_F0.unk_0B_0 = 0;
-    param0->unk_F0.unk_0B_4 = 1;
-    param0->unk_F0.unk_0B_6 = 1;
+    param0->unk_F0.choices = param0->unk_100;
+    param0->unk_F0.window = param1;
+    param0->unk_F0.fontID = FONT_SYSTEM;
+    param0->unk_F0.xSize = 1;
+    param0->unk_F0.ySize = param2;
+    param0->unk_F0.lineSpacing = 0;
+    param0->unk_F0.suppressCursor = TRUE;
+    param0->unk_F0.loopAround = TRUE;
 
     return;
 }

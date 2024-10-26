@@ -27,7 +27,7 @@ typedef struct {
     NARC *unk_3C;
     UnkStruct_ov119_021D14DC *unk_40;
     StringList *unk_44;
-    UIControlData *unk_48;
+    Menu *unk_48;
     SpriteGfxHandler *unk_4C;
     SpriteRenderer *unk_50;
     PokemonAnimationSys *unk_54;

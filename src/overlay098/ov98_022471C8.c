@@ -73,7 +73,7 @@ typedef struct {
     Window unk_58;
     Window unk_68;
     Window unk_78;
-    UIControlData * unk_88;
+    Menu *unk_88;
     void * unk_8C;
     int unk_90;
     int unk_94;
@@ -112,7 +112,7 @@ static void ov98_02247ACC(UnkStruct_ov98_02247704 * param0);
 static void ov98_02247AE8(UnkStruct_ov98_02247704 * param0, int param1, int param2);
 static void ov98_02247AF0(UnkStruct_ov98_02247704 * param0);
 static void ov98_02247B0C(UnkStruct_ov98_02247704 * param0);
-static UIControlData *ov98_02247B24(BgConfig *param0, int param1, int param2);
+static Menu *ov98_02247B24(BgConfig *param0, int param1, int param2);
 static int ov98_02247B98(UnkStruct_ov98_02247704 * param0);
 static int ov98_02247D30(UnkStruct_ov98_02247704 * param0);
 static int ov98_02247D50(UnkStruct_ov98_02247704 * param0);
@@ -694,7 +694,7 @@ static void ov98_02247B0C (UnkStruct_ov98_02247704 * param0)
     }
 }
 
-static UIControlData *ov98_02247B24(BgConfig *param0, int param1, int param2)
+static Menu *ov98_02247B24(BgConfig *param0, int param1, int param2)
 {
     WindowTemplate v0;
 
@@ -705,7 +705,7 @@ static UIControlData *ov98_02247B24(BgConfig *param0, int param1, int param2)
     return sub_02002100(param0, &v0, (1 + (18 + 12)), 11, 109);
 }
 
-static UIControlData *ov98_02247B58(BgConfig *param0, int param1, int param2, int param3)
+static Menu *ov98_02247B58(BgConfig *param0, int param1, int param2, int param3)
 {
     WindowTemplate v0;
 

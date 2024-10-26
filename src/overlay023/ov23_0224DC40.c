@@ -60,7 +60,7 @@ typedef struct {
     Window unk_0C;
     StringList *unk_1C;
     ListMenu *unk_20;
-    UIControlData *unk_24;
+    Menu *unk_24;
     UnkStruct_ov23_0224F184 unk_28;
     UnkFuncPtr_ov23_0224DCB8 unk_2C;
     u16 unk_30;
@@ -82,7 +82,7 @@ typedef struct {
     Window unk_08;
     StringList *unk_18;
     ListMenu *unk_1C;
-    UIControlData *unk_20;
+    Menu *unk_20;
     UnkStruct_ov23_0224F184 unk_24;
     UnkFuncPtr_ov23_0224DCB8 unk_28;
     u16 unk_2C;

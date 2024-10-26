@@ -674,14 +674,14 @@ static int ov94_022405CC(int param0, int param1, int param2)
 
 static int ov94_022405DC(UnkStruct_ov94_0223FD4C *param0)
 {
-    UnkStruct_02081CF4 v0;
+    MenuTemplate v0;
 
-    v0.unk_08 = 0;
-    v0.unk_09 = 1;
-    v0.unk_0A = 3;
-    v0.unk_0B_0 = 0;
-    v0.unk_0B_4 = 0;
-    v0.unk_0B_6 = 0;
+    v0.fontID = FONT_SYSTEM;
+    v0.xSize = 1;
+    v0.ySize = 3;
+    v0.lineSpacing = 0;
+    v0.suppressCursor = FALSE;
+    v0.loopAround = FALSE;
 
     param0->unk_10CC = StringList_New(3, 62);
 
@@ -689,8 +689,8 @@ static int ov94_022405DC(UnkStruct_ov94_0223FD4C *param0)
     StringList_AddFromMessageBank(param0->unk_10CC, param0->unk_B90, 95, 2);
     StringList_AddFromMessageBank(param0->unk_10CC, param0->unk_B90, 96, 3);
 
-    v0.unk_00 = param0->unk_10CC;
-    v0.unk_04 = &param0->unk_F9C[0];
+    v0.choices = param0->unk_10CC;
+    v0.window = &param0->unk_F9C[0];
 
     Window_Show(&param0->unk_F9C[0], 1, (1 + (18 + 12)), 11);
 
@@ -765,14 +765,14 @@ static int ov94_02240688(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_02240830(UnkStruct_ov94_0223FD4C *param0)
 {
-    UnkStruct_02081CF4 v0;
+    MenuTemplate v0;
 
-    v0.unk_08 = 0;
-    v0.unk_09 = 1;
-    v0.unk_0A = 3;
-    v0.unk_0B_0 = 0;
-    v0.unk_0B_4 = 0;
-    v0.unk_0B_6 = 0;
+    v0.fontID = FONT_SYSTEM;
+    v0.xSize = 1;
+    v0.ySize = 3;
+    v0.lineSpacing = 0;
+    v0.suppressCursor = FALSE;
+    v0.loopAround = FALSE;
 
     param0->unk_10CC = StringList_New(3, 62);
 
@@ -780,10 +780,10 @@ static int ov94_02240830(UnkStruct_ov94_0223FD4C *param0)
     StringList_AddFromMessageBank(param0->unk_10CC, param0->unk_B90, 85, 2);
     StringList_AddFromMessageBank(param0->unk_10CC, param0->unk_B90, 86, 3);
 
-    v0.unk_00 = param0->unk_10CC;
-    v0.unk_04 = &param0->unk_F9C[0];
+    v0.choices = param0->unk_10CC;
+    v0.window = &param0->unk_F9C[0];
 
-    Window_FillTilemap(v0.unk_04, 0xf0f);
+    Window_FillTilemap(v0.window, 0xf0f);
     Window_Show(&param0->unk_F9C[0], 1, (1 + (18 + 12)), 11);
 
     param0->unk_10D4 = sub_02001B7C(&v0, 9, 0, 0, 62, PAD_BUTTON_B);

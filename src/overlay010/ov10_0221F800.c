@@ -133,7 +133,7 @@ typedef struct UnkStruct_ov10_0221FB28_t {
     Strbuf *unk_BA8;
     int unk_BAC;
     int unk_BB0;
-    UIControlData *unk_BB4;
+    Menu *unk_BB4;
     void *unk_BB8;
     int unk_BBC;
     int unk_BC0;

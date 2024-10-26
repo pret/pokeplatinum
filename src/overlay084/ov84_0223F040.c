@@ -399,7 +399,7 @@ void ov84_0223FB50(UnkStruct_ov84_0223B5A0 *param0)
 
 void ov84_0223FB70(UnkStruct_ov84_0223B5A0 *param0, u8 *param1, u8 param2)
 {
-    UnkStruct_02081CF4 v0;
+    MenuTemplate v0;
     UnkStruct_ov84_0223BE5C *v1;
     Strbuf *v2;
     Strbuf *v3;
@@ -420,18 +420,18 @@ void ov84_0223FB70(UnkStruct_ov84_0223B5A0 *param0, u8 *param1, u8 param2)
         StringList_AddFromStrbuf(param0->unk_154, param0->unk_124[param1[v4]], ov84_0223D84C(param1[v4]));
     }
 
-    v0.unk_00 = param0->unk_154;
-    v0.unk_04 = &param0->unk_B4[0];
-    v0.unk_08 = 0;
-    v0.unk_09 = 1;
-    v0.unk_0A = param2;
-    v0.unk_0B_0 = 0;
-    v0.unk_0B_4 = 0;
+    v0.choices = param0->unk_154;
+    v0.window = &param0->unk_B4[0];
+    v0.fontID = FONT_SYSTEM;
+    v0.xSize = 1;
+    v0.ySize = param2;
+    v0.lineSpacing = 0;
+    v0.suppressCursor = FALSE;
 
     if (param2 >= 4) {
-        v0.unk_0B_6 = 1;
+        v0.loopAround = TRUE;
     } else {
-        v0.unk_0B_6 = 0;
+        v0.loopAround = FALSE;
     }
 
     param0->unk_158 = sub_02001AF4(&v0, 8, 0, 0, 6, PAD_BUTTON_B);

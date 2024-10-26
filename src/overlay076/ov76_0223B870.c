@@ -443,7 +443,7 @@ void ov76_0223BF50(void)
 
 void ov76_0223BF74(BgConfig *param0, Window *param1, int param2, UnkStruct_ov76_0223DE00 *param3, int param4)
 {
-    UnkStruct_02081CF4 v0;
+    MenuTemplate v0;
     int v1;
     int v2, v3, v4, v5, v6, v7;
     int v8[4];
@@ -509,14 +509,14 @@ void ov76_0223BF74(BgConfig *param0, Window *param1, int param2, UnkStruct_ov76_
         MessageLoader_Free(v11);
     }
 
-    v0.unk_00 = param3->unk_D4.unk_C8;
-    v0.unk_08 = 0;
-    v0.unk_04 = param1;
-    v0.unk_09 = 1;
-    v0.unk_0A = v7;
-    v0.unk_0B_0 = 0;
-    v0.unk_0B_4 = 0;
-    v0.unk_0B_6 = 1;
+    v0.choices = param3->unk_D4.unk_C8;
+    v0.fontID = FONT_SYSTEM;
+    v0.window = param1;
+    v0.xSize = 1;
+    v0.ySize = v7;
+    v0.lineSpacing = 0;
+    v0.suppressCursor = FALSE;
+    v0.loopAround = TRUE;
 
     Window_Show(param1, 1, (1 + (18 + 12)), 13);
     param3->unk_D4.unk_CC = sub_02001B7C(&v0, 8, 0, 0, 53, PAD_BUTTON_B);

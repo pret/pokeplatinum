@@ -51,8 +51,8 @@ struct UnkStruct_ov5_021DC1A4_t {
     u16 *unk_A0;
     u16 *unk_A4;
     u16 *unk_A8;
-    UnkStruct_02081CF4 unk_AC;
-    UIControlData *unk_B8;
+    MenuTemplate unk_AC;
+    Menu *unk_B8;
     StringList unk_BC[28];
     ListMenuTemplate unk_19C;
     ListMenu *unk_1BC;
@@ -245,18 +245,18 @@ static u32 ov5_021DC300(UnkStruct_ov5_021DC1A4 *param0)
 
 static void ov5_021DC33C(UnkStruct_ov5_021DC1A4 *param0)
 {
-    param0->unk_AC.unk_00 = param0->unk_BC;
-    param0->unk_AC.unk_04 = &param0->unk_08;
-    param0->unk_AC.unk_08 = 0;
-    param0->unk_AC.unk_09 = 1;
-    param0->unk_AC.unk_0A = param0->unk_9B;
-    param0->unk_AC.unk_0B_0 = 0;
-    param0->unk_AC.unk_0B_4 = 0;
+    param0->unk_AC.choices = param0->unk_BC;
+    param0->unk_AC.window = &param0->unk_08;
+    param0->unk_AC.fontID = FONT_SYSTEM;
+    param0->unk_AC.xSize = 1;
+    param0->unk_AC.ySize = param0->unk_9B;
+    param0->unk_AC.lineSpacing = 0;
+    param0->unk_AC.suppressCursor = FALSE;
 
     if (param0->unk_9B >= 4) {
-        param0->unk_AC.unk_0B_6 = 1;
+        param0->unk_AC.loopAround = TRUE;
     } else {
-        param0->unk_AC.unk_0B_6 = 0;
+        param0->unk_AC.loopAround = FALSE;
     }
 
     return;
@@ -304,8 +304,8 @@ void ov5_021DC424(UnkStruct_ov5_021DC1A4 *param0)
 
     Sound_PlayEffect(1500);
     sub_02001BC4(param0->unk_B8, NULL);
-    Window_Clear(param0->unk_AC.unk_04, 0);
-    Window_Remove(param0->unk_AC.unk_04);
+    Window_Clear(param0->unk_AC.window, 0);
+    Window_Remove(param0->unk_AC.window);
 
     for (v0 = 0; v0 < 28; v0++) {
         Strbuf_Free(param0->unk_1C[v0]);
@@ -646,7 +646,7 @@ void ov5_021DCB24(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 *param3, S
     ov5_021DCC00(v3, 15, 0, 0);
     ov5_021DCC00(v3, 16, (8 * 4), 16);
 
-    v3->unk_AC.unk_04 = &v3->unk_08;
+    v3->unk_AC.window = &v3->unk_08;
     Window_CopyToVRAM(&v3->unk_08);
     v3->unk_04 = SysTask_Start(ov5_021DCC64, v3, 0);
 
@@ -675,8 +675,8 @@ static void ov5_021DCC64(SysTask *param0, void *param1)
     v1 = (UnkStruct_ov5_021DC1A4 *)param1;
 
     if (*v1->unk_A0 == 0xffff) {
-        Window_Clear(v1->unk_AC.unk_04, 0);
-        Window_Remove(v1->unk_AC.unk_04);
+        Window_Clear(v1->unk_AC.window, 0);
+        Window_Remove(v1->unk_AC.window);
 
         for (v0 = 0; v0 < 28; v0++) {
             Strbuf_Free(v1->unk_1C[v0]);
@@ -792,13 +792,13 @@ void ov5_021DCD94(UnkStruct_ov5_021DC1A4 *param0, u8 param1)
 
 static void ov5_021DCE64(UnkStruct_ov5_021DC1A4 *param0, u8 param1, u8 param2)
 {
-    param0->unk_AC.unk_00 = param0->unk_BC;
-    param0->unk_AC.unk_04 = &param0->unk_08;
-    param0->unk_AC.unk_08 = 0;
-    param0->unk_AC.unk_09 = param1;
-    param0->unk_AC.unk_0A = param2;
-    param0->unk_AC.unk_0B_0 = 0;
-    param0->unk_AC.unk_0B_4 = 0;
+    param0->unk_AC.choices = param0->unk_BC;
+    param0->unk_AC.window = &param0->unk_08;
+    param0->unk_AC.fontID = FONT_SYSTEM;
+    param0->unk_AC.xSize = param1;
+    param0->unk_AC.ySize = param2;
+    param0->unk_AC.lineSpacing = 0;
+    param0->unk_AC.suppressCursor = FALSE;
 
     return;
 }
@@ -984,7 +984,7 @@ UnkStruct_ov5_021DC1A4 *ov5_021DD250(FieldSystem *fieldSystem, u8 param1, u8 par
     StringTemplate_SetNumber(param4, 0, param8, 3, 1, 1);
     ov5_021DCC00(v0, 277, 0, (96 + 16));
 
-    v0->unk_AC.unk_04 = &v0->unk_08;
+    v0->unk_AC.window = &v0->unk_08;
     Window_CopyToVRAM(&v0->unk_08);
 
     return v0;
@@ -994,8 +994,8 @@ void ov5_021DD3A8(UnkStruct_ov5_021DC1A4 *param0)
 {
     int v0;
 
-    Window_Clear(param0->unk_AC.unk_04, 0);
-    Window_Remove(param0->unk_AC.unk_04);
+    Window_Clear(param0->unk_AC.window, 0);
+    Window_Remove(param0->unk_AC.window);
 
     for (v0 = 0; v0 < 28; v0++) {
         Strbuf_Free(param0->unk_1C[v0]);

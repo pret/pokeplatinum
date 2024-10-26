@@ -401,22 +401,22 @@ static int ov94_0223D664(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_0223D6B8(UnkStruct_ov94_0223FD4C *param0)
 {
-    UnkStruct_02081CF4 v0;
+    MenuTemplate v0;
 
-    v0.unk_08 = 0;
-    v0.unk_09 = 1;
-    v0.unk_0A = 2;
-    v0.unk_0B_0 = 0;
-    v0.unk_0B_4 = 0;
-    v0.unk_0B_6 = 0;
+    v0.fontID = FONT_SYSTEM;
+    v0.xSize = 1;
+    v0.ySize = 2;
+    v0.lineSpacing = 0;
+    v0.suppressCursor = FALSE;
+    v0.loopAround = FALSE;
 
     param0->unk_10CC = StringList_New(2, 62);
 
     StringList_AddFromMessageBank(param0->unk_10CC, param0->unk_B90, 54, 1);
     StringList_AddFromMessageBank(param0->unk_10CC, param0->unk_B90, 55, 2);
 
-    v0.unk_00 = param0->unk_10CC;
-    v0.unk_04 = &param0->unk_F9C[0];
+    v0.choices = param0->unk_10CC;
+    v0.window = &param0->unk_F9C[0];
 
     Window_Show(&param0->unk_F9C[0], 0, (1 + (18 + 12)), 11);
 

@@ -102,7 +102,7 @@ typedef void (*UnkFuncPtr_ov7_0224C768)(void *, u32);
 
 typedef struct {
     u32 unk_00;
-    UIControlData *unk_04;
+    Menu *unk_04;
     u32 unk_08;
 } UnkStruct_ov7_0224CC44;
 

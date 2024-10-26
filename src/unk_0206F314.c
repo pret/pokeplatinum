@@ -94,7 +94,7 @@ typedef struct {
     ListMenuTemplate unk_A0;
     ListMenu *unk_C0;
     StringList *unk_C4;
-    UIControlData *unk_C8;
+    Menu *unk_C8;
     FieldSystem *fieldSystem;
     BgConfig *unk_D0;
     Window unk_D4;

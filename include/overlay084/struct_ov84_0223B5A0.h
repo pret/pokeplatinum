@@ -41,7 +41,7 @@ typedef struct {
     MessageLoader *unk_120;
     Strbuf *unk_124[12];
     StringList *unk_154;
-    UIControlData *unk_158;
+    Menu *unk_158;
     ListMenu *unk_15C;
     StringList *unk_160;
     Strbuf *unk_164[165];

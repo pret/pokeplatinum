@@ -98,8 +98,8 @@ struct UnkStruct_ov107_02246170_t {
     u16 unk_3C[8];
     BgConfig *unk_4C;
     Window unk_50[12];
-    UnkStruct_02081CF4 unk_110;
-    UIControlData * unk_11C;
+    MenuTemplate unk_110;
+    Menu *unk_11C;
     StringList unk_120[3];
     ListMenu *unk_138;
     StringList *unk_13C;
@@ -1869,14 +1869,14 @@ static void ov107_02247D04 (UnkStruct_ov107_02246170 * param0, Window * param1, 
         param0->unk_120[v0].index = 0;
     }
 
-    param0->unk_110.unk_00 = param0->unk_120;
-    param0->unk_110.unk_04 = param1;
-    param0->unk_110.unk_08 = 0;
-    param0->unk_110.unk_09 = 1;
-    param0->unk_110.unk_0A = param2;
-    param0->unk_110.unk_0B_0 = 0;
-    param0->unk_110.unk_0B_4 = 0;
-    param0->unk_110.unk_0B_6 = 1;
+    param0->unk_110.choices = param0->unk_120;
+    param0->unk_110.window = param1;
+    param0->unk_110.fontID = FONT_SYSTEM;
+    param0->unk_110.xSize = 1;
+    param0->unk_110.ySize = param2;
+    param0->unk_110.lineSpacing = 0;
+    param0->unk_110.suppressCursor = FALSE;
+    param0->unk_110.loopAround = TRUE;
 
     return;
 }
@@ -2885,8 +2885,8 @@ static void ov107_02248BB4 (UnkStruct_ov107_02246170 * param0)
     if (param0->unk_0F_2 == 1) {
         param0->unk_0F_2 = 0;
         sub_02001BC4(param0->unk_11C, NULL);
-        Window_Clear(param0->unk_110.unk_04, 1);
-        Window_ClearAndScheduleCopyToVRAM(param0->unk_110.unk_04);
+        Window_Clear(param0->unk_110.window, 1);
+        Window_ClearAndScheduleCopyToVRAM(param0->unk_110.window);
     }
 
     return;

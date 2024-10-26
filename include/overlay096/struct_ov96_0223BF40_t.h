@@ -73,7 +73,7 @@ struct UnkStruct_ov96_0223BF40_t {
     Window unk_E78;
     Window unk_E88[3];
     Window unk_EB8[11];
-    UIControlData *unk_F68;
+    Menu *unk_F68;
     void *unk_F6C;
     int unk_F70;
     int unk_F74;

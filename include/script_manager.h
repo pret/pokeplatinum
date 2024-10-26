@@ -117,7 +117,7 @@ typedef struct ScriptManager {
     BOOL battleResult;
     UnkStruct_ov5_021DC1A4 *unk_10; // appears to be used for multichoice windows
     Window window;
-    UIControlData *ctrlUI;
+    Menu *ctrlUI;
     int playerDir;
     MapObject *targetObject;
     MapObject *cameraObject;
