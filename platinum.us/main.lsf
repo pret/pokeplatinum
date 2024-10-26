@@ -44,7 +44,7 @@ Static main
 	Object main.nef.p/src_unk_0200C440.c.o
 	Object main.nef.p/src_unk_0200C6E4.c.o
 	Object main.nef.p/src_sys_task.c.o
-	Object main.nef.p/src_unk_0200DA60.c.o
+	Object main.nef.p/src_render_window.c.o
 	Object main.nef.p/src_unk_0200F174.c.o
 	Object main.nef.p/src_unk_0200F85C.c.o
 	Object main.nef.p/src_unk_02012480.c.o

@@ -23,11 +23,11 @@
 #include "message.h"
 #include "message_util.h"
 #include "pokemon.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_020393C8.h"
 

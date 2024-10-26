@@ -21,11 +21,11 @@
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200DA60.h"
 
 int ov100_021D46C8(UnkStruct_ov100_021D46C8 *param0, UnkStruct_020985E4 *param1, int param2)
 {

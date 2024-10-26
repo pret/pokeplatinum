@@ -11,11 +11,11 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "text.h"
 #include "unk_02000C88.h"
 #include "unk_0200A9DC.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 

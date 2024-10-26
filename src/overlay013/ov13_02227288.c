@@ -11,10 +11,10 @@
 #include "item.h"
 #include "message.h"
 #include "render_text.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_0200DA60.h"
 
 static void ov13_022273CC(UnkStruct_ov13_02227244 *param0);
 static void ov13_02227888(UnkStruct_ov13_02227244 *param0);

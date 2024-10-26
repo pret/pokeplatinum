@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "bg_window.h"
-#include "unk_0200DA60.h"
+#include "render_window.h"
 
 void ov106_022436E0(BgConfig *param0, Window *param1);
 void ov106_02243710(Window *param0);

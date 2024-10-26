@@ -22,6 +22,7 @@
 #include "heap.h"
 #include "list_menu.h"
 #include "message.h"
+#include "render_window.h"
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_list.h"
@@ -31,7 +32,6 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
-#include "unk_0200DA60.h"
 #include "unk_0202854C.h"
 
 typedef int (*UnkFuncPtr_ov23_022576EC)(const SecretBaseRecord *);

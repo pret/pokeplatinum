@@ -14,10 +14,10 @@
 #include "font.h"
 #include "heap.h"
 #include "message.h"
+#include "render_window.h"
 #include "string_list.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_0200DA60.h"
 
 static BOOL TryMovingCursorAndPlaySound(Menu *menu, u8 direction, u16 sound);
 static u8 TryMovingCursor(Menu *menu, u8 direction);

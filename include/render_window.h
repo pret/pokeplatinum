@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_0200DA60_H
-#define POKEPLATINUM_UNK_0200DA60_H
+#ifndef POKEPLATINUM_RENDER_WINDOW_H
+#define POKEPLATINUM_RENDER_WINDOW_H
 
 #include "bg_window.h"
 #include "pokemon.h"
@@ -27,4 +27,4 @@ void sub_0200EBC8(void *param0);
 u8 *sub_0200EBF0(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 param5, u16 param6, u8 param7, int param8);
 u8 *sub_0200EC48(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 param5, Pokemon *param6, int param7);
 
-#endif // POKEPLATINUM_UNK_0200DA60_H
+#endif // POKEPLATINUM_RENDER_WINDOW_H

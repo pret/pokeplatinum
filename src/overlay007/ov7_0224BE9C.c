@@ -19,6 +19,7 @@
 #include "menu.h"
 #include "message.h"
 #include "narc.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "sprite_resource.h"
@@ -29,7 +30,6 @@
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
-#include "unk_0200DA60.h"
 #include "unk_020298BC.h"
 #include "unk_0205D8CC.h"
 

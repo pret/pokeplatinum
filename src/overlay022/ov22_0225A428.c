@@ -21,6 +21,7 @@
 #include "game_options.h"
 #include "message.h"
 #include "narc.h"
+#include "render_window.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "sys_task.h"
@@ -28,7 +29,6 @@
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
-#include "unk_0200DA60.h"
 #include "unk_02095AF0.h"
 
 static void ov22_0225A6E0(UnkStruct_ov22_022597BC *param0, BgConfig *param1);

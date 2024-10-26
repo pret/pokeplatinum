@@ -23,6 +23,7 @@
 #include "narc.h"
 #include "poffin.h"
 #include "render_text.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
@@ -30,7 +31,6 @@
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_0200C440.h"
-#include "unk_0200DA60.h"
 
 static void ov84_0223F9B0(UnkStruct_ov84_0223B5A0 *param0, u32 param1);
 static BOOL ov84_022400E0(TextPrinterTemplate *param0, u16 param1);

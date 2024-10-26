@@ -7,9 +7,9 @@
 #include "font.h"
 #include "game_options.h"
 #include "render_text.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "text.h"
-#include "unk_0200DA60.h"
 
 void sub_0205D8CC(u32 param0, u32 param1)
 {

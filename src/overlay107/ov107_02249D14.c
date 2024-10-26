@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "bg_window.h"
-#include "unk_0200DA60.h"
+#include "render_window.h"
 
 typedef struct {
     const WindowTemplate *unk_00;

@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "bg_window.h"
-#include "unk_0200DA60.h"
+#include "render_window.h"
 
 static const WindowTemplate Unk_ov111_021D38B8[] = {
     { 0x2, 0x2, 0x1, 0x1B, 0x4, 0xC, 0x1 },

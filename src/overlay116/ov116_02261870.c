@@ -23,11 +23,11 @@
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
 #include "unk_0202419C.h"
 
 static inline void inline_ov116_02261940(UnkStruct_ov116_0226501C *param0);

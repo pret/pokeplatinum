@@ -24,10 +24,10 @@
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "text.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
 #include "unk_02012744.h"
 #include "unk_0201E86C.h"
 

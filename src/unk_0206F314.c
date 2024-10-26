@@ -25,6 +25,7 @@
 #include "menu.h"
 #include "message.h"
 #include "narc.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
@@ -33,7 +34,6 @@
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
 #include "unk_0202E840.h"
 #include "unk_020508D4.h"
 

@@ -44,6 +44,7 @@
 #include "message.h"
 #include "narc.h"
 #include "player_avatar.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "strbuf.h"
 #include "string_list.h"
@@ -54,7 +55,6 @@
 #include "unk_02005474.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
 #include "unk_0202854C.h"
 #include "unk_0206A780.h"
 

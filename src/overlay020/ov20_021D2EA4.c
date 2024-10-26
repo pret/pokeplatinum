@@ -19,10 +19,10 @@
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_0200DA60.h"
 #include "unk_02014D38.h"
 
 typedef struct {

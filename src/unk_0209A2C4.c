@@ -12,11 +12,11 @@
 #include "menu.h"
 #include "message.h"
 #include "overlay_manager.h"
+#include "render_window.h"
 #include "savedata.h"
 #include "strbuf.h"
 #include "text.h"
 #include "unk_02000C88.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 

@@ -11,13 +11,13 @@
 #include "heap.h"
 #include "list_menu.h"
 #include "message.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200DA60.h"
 
 typedef struct UnkStruct_ov23_02253E2C_t {
     Strbuf *unk_00;
