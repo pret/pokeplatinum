@@ -11,13 +11,13 @@
 #include "overlay021/struct_speciesCaughtStatus.h"
 
 #include "core_sys.h"
+#include "graphics.h"
 #include "heap.h"
 #include "narc.h"
 #include "pokedex_data_index.h"
 #include "pokedex_heightweight.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "unk_02006E3C.h"
 #include "unk_0202631C.h"
 
 static void Pokedex_Sort_Encountered(u16 *pokedexPreFilterArray, int *numEncountered, const PokedexData *dexData, const u16 *speciesArray, int pokedexLength);
@@ -704,7 +704,7 @@ static u16 *Pokedex_Sort_SortedArray(int heapID, int pokedexSort, int *pokedexLe
     GF_ASSERT(47 > pokedexSort);
 
     pokedexDataNarcIndex = Pokedex_Data_NARC_Index();
-    pokedexSortedArray = sub_02007068(pokedexDataNarcIndex, 11 + pokedexSort, 0, heapID, 0, &pokedexSize);
+    pokedexSortedArray = LoadMemberFromNARC_OutFileSize(pokedexDataNarcIndex, 11 + pokedexSort, 0, heapID, 0, &pokedexSize);
     *pokedexLength = pokedexSize / (sizeof(u16));
 
     return pokedexSortedArray;
