@@ -1762,7 +1762,7 @@ static void ov70_0225EE30(UnkStruct_ov70_0225EC20 *param0, const ListMenuTemplat
     Window_FillTilemap(&param0->unk_20, 15);
     Window_Show(&param0->unk_20, 1, ((1 + (18 + 12)) + ((18 + 12) + 24)), 3);
 
-    param0->unk_30 = sub_0200112C(&param0->unk_00, param3, param4, param5);
+    param0->unk_30 = ListMenu_New(&param0->unk_00, param3, param4, param5);
 
     Window_ScheduleCopyToVRAM(&param0->unk_20);
 }
@@ -1775,7 +1775,7 @@ static u32 ov70_0225EED8(UnkStruct_ov70_0225EC20 *param0)
         return 0xfffffffe;
     }
 
-    v0 = sub_02001288(param0->unk_30);
+    v0 = ListMenu_ProcessInput(param0->unk_30);
 
     switch (v0) {
     case 0xffffffff:
@@ -1798,7 +1798,7 @@ static void ov70_0225EF14(UnkStruct_ov70_0225EC20 *param0, u16 *param1, u16 *par
         return;
     }
 
-    sub_02001384(param0->unk_30, param1, param2);
+    ListMenu_Free(param0->unk_30, param1, param2);
 
     param0->unk_30 = NULL;
 
@@ -1835,7 +1835,7 @@ static void ov70_0225EF70(UnkStruct_ov70_0225EC20 *param0)
         return;
     }
 
-    sub_020014DC(param0->unk_30, &v0, NULL);
+    ListMenu_GetListAndCursorPos(param0->unk_30, &v0, NULL);
 
     if (v0 <= 0) {
         CellActor_SetDrawFlag(param0->unk_50[0], 0);

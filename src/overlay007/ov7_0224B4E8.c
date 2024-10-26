@@ -153,14 +153,14 @@ static void ov7_0224B5A8(UnkStruct_ov7_0224B4E8 *param0)
     v0.window = &param0->unk_34;
     v0.tmp = param0;
 
-    param0->unk_00 = sub_0200112C(&v0, 0, param0->unk_78, 4);
+    param0->unk_00 = ListMenu_New(&v0, 0, param0->unk_78, 4);
     Window_CopyToVRAM(&param0->unk_34);
 }
 
 static void ov7_0224B6AC(UnkStruct_ov7_0224B4E8 *param0)
 {
     if (param0->unk_00) {
-        sub_02001384(param0->unk_00, NULL, NULL);
+        ListMenu_Free(param0->unk_00, NULL, NULL);
         Window_Clear(&param0->unk_34, 1);
         Bg_ScheduleTilemapTransfer(param0->unk_34.bgConfig, param0->unk_34.bgLayer);
         Window_Remove(&param0->unk_34);
@@ -175,11 +175,11 @@ static int ov7_0224B6E8(UnkStruct_ov7_0224B4E8 *param0)
     int v0;
     u16 v1;
 
-    v0 = sub_02001288(param0->unk_00);
-    sub_020014DC(param0->unk_00, NULL, &param0->unk_78);
+    v0 = ListMenu_ProcessInput(param0->unk_00);
+    ListMenu_GetListAndCursorPos(param0->unk_00, NULL, &param0->unk_78);
 
     v1 = param0->unk_80;
-    sub_020014D0(param0->unk_00, &param0->unk_80);
+    ListMenu_CalcTrueCursorPos(param0->unk_00, &param0->unk_80);
 
     if (v1 != param0->unk_80) {
         Sound_PlayEffect(1500);
@@ -243,7 +243,7 @@ static void ov7_0224B788(UnkStruct_ov7_0224B4E8 *param0)
     v0.window = &param0->unk_44;
     v0.tmp = param0;
 
-    param0->unk_04 = sub_0200112C(&v0, 0, param0->unk_7A, 4);
+    param0->unk_04 = ListMenu_New(&v0, 0, param0->unk_7A, 4);
     Window_CopyToVRAM(&param0->unk_44);
 }
 
@@ -252,11 +252,11 @@ static int ov7_0224B83C(UnkStruct_ov7_0224B4E8 *param0)
     int v0;
     u16 v1;
 
-    v0 = sub_02001288(param0->unk_04);
-    sub_020014DC(param0->unk_04, NULL, &param0->unk_7A);
+    v0 = ListMenu_ProcessInput(param0->unk_04);
+    ListMenu_GetListAndCursorPos(param0->unk_04, NULL, &param0->unk_7A);
 
     v1 = param0->unk_82;
-    sub_020014D0(param0->unk_04, &param0->unk_82);
+    ListMenu_CalcTrueCursorPos(param0->unk_04, &param0->unk_82);
 
     if (v1 != param0->unk_82) {
         Sound_PlayEffect(1500);
@@ -276,7 +276,7 @@ static int ov7_0224B83C(UnkStruct_ov7_0224B4E8 *param0)
     }
 
     if (param0->unk_04) {
-        sub_02001384(param0->unk_04, NULL, NULL);
+        ListMenu_Free(param0->unk_04, NULL, NULL);
         Window_Clear(&param0->unk_44, 1);
         Bg_ScheduleTilemapTransfer(param0->unk_44.bgConfig, param0->unk_44.bgLayer);
         Window_Remove(&param0->unk_44);

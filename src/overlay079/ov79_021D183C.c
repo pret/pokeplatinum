@@ -186,7 +186,7 @@ void ov79_021D196C(UnkStruct_ov79_021D0E1C *param0)
     param0->unk_84.tmp = (void *)param0;
     param0->unk_84.count = param0->unk_1C;
     param0->unk_16 = 0;
-    param0->unk_C4 = sub_0200112C(&param0->unk_84, param0->unk_80, param0->unk_82, param0->unk_00);
+    param0->unk_C4 = ListMenu_New(&param0->unk_84, param0->unk_80, param0->unk_82, param0->unk_00);
     param0->unk_16 = 1;
 }
 
@@ -198,7 +198,7 @@ void ov79_021D1AB8(UnkStruct_ov79_021D0E1C *param0, BOOL param1)
         Window_ClearAndCopyToVRAM(&param0->unk_E8[0]);
     }
 
-    sub_02001384(param0->unk_C4, &(param0->unk_80), &(param0->unk_82));
+    ListMenu_Free(param0->unk_C4, &(param0->unk_80), &(param0->unk_82));
     StringList_Free(param0->unk_CC);
 
     param0->unk_20->unk_04 = param0->unk_80;
@@ -304,7 +304,7 @@ static void ov79_021D1D20(UnkStruct_ov79_021D0E1C *param0, UnkStruct_020989DC *p
 
 static void ov79_021D1D88(ListMenu *param0, u32 param1, u8 param2)
 {
-    UnkStruct_ov79_021D0E1C *v0 = (UnkStruct_ov79_021D0E1C *)sub_02001504(param0, 19);
+    UnkStruct_ov79_021D0E1C *v0 = (UnkStruct_ov79_021D0E1C *)ListMenu_GetAttribute(param0, 19);
     TextColor v1;
 
     v1 = TEXT_COLOR(1, 2, 0);
@@ -312,7 +312,7 @@ static void ov79_021D1D88(ListMenu *param0, u32 param1, u8 param2)
 
 static void ov79_021D1D94(ListMenu *param0, u32 param1, u8 param2)
 {
-    UnkStruct_ov79_021D0E1C *v0 = (UnkStruct_ov79_021D0E1C *)sub_02001504(param0, 19);
+    UnkStruct_ov79_021D0E1C *v0 = (UnkStruct_ov79_021D0E1C *)ListMenu_GetAttribute(param0, 19);
     TextColor v1;
     u16 v2, v3;
     u8 v4 = 0;
@@ -323,7 +323,7 @@ static void ov79_021D1D94(ListMenu *param0, u32 param1, u8 param2)
         Sound_PlayEffect(1500);
     }
 
-    sub_020014DC(param0, &v2, &v3);
+    ListMenu_GetListAndCursorPos(param0, &v2, &v3);
     SpriteActor_SetPositionXY(v0->unk_1C0[0], 105, v3 * 16 + 40);
 
     if (v2 == 0) {
@@ -382,7 +382,7 @@ void ov79_021D1ED8(UnkStruct_ov79_021D0E1C *param0)
 
     Window_Show(&param0->unk_E8[3], 1, 1 + 18 + 12, 15);
 
-    param0->unk_C8 = sub_0200112C(&param0->unk_A4, 0, 0, param0->unk_00);
+    param0->unk_C8 = ListMenu_New(&param0->unk_A4, 0, 0, param0->unk_00);
 }
 
 void ov79_021D1F60(UnkStruct_ov79_021D0E1C *param0)
@@ -392,7 +392,7 @@ void ov79_021D1F60(UnkStruct_ov79_021D0E1C *param0)
     Window_Clear(&(param0->unk_E8[3]), 0);
     Window_ClearAndCopyToVRAM(&param0->unk_E8[3]);
 
-    sub_02001384(param0->unk_C8, &v1, &v0);
+    ListMenu_Free(param0->unk_C8, &v1, &v0);
     StringList_Free(param0->unk_D0);
 
     param0->unk_C8 = NULL;

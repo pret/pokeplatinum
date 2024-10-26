@@ -717,7 +717,7 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
         }
         break;
     case 1:
-        v6 = sub_02001288(param0->unk_198);
+        v6 = ListMenu_ProcessInput(param0->unk_198);
         ov107_02249CE0(v6, 1500);
 
         switch (v6) {
@@ -756,30 +756,30 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
         }
         break;
     case 2:
-        sub_020014D0(param0->unk_198, &param0->unk_16);
+        ListMenu_CalcTrueCursorPos(param0->unk_198, &param0->unk_16);
 
         if (gCoreSys.pressedKeys & PAD_KEY_UP) {
             if (param0->unk_16 == 0) {
-                sub_02001408(param0->unk_198, (ListMenuTemplate *)&param0->unk_1A0, 0, ((NELEMS(Unk_ov107_02249FF0)) - 1), 1, PAD_KEY_DOWN, NULL, NULL);
-                sub_020013AC(param0->unk_198);
+                ListMenu_TestInput(param0->unk_198, (ListMenuTemplate *)&param0->unk_1A0, 0, ((NELEMS(Unk_ov107_02249FF0)) - 1), 1, PAD_KEY_DOWN, NULL, NULL);
+                ListMenu_Draw(param0->unk_198);
                 Sound_PlayEffect(1500);
                 ov107_0224379C(param0, &param0->unk_50[6], 28, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
                 return 0;
             }
         } else if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
             if (param0->unk_16 == ((NELEMS(Unk_ov107_02249FF0)) - 1)) {
-                sub_02001408(param0->unk_198, (ListMenuTemplate *)&param0->unk_1A0, 0, 0, 1, PAD_KEY_UP, NULL, NULL);
-                sub_020013AC(param0->unk_198);
+                ListMenu_TestInput(param0->unk_198, (ListMenuTemplate *)&param0->unk_1A0, 0, 0, 1, PAD_KEY_UP, NULL, NULL);
+                ListMenu_Draw(param0->unk_198);
                 Sound_PlayEffect(1500);
                 ov107_0224379C(param0, &param0->unk_50[6], 24, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
                 return 0;
             }
         }
 
-        v6 = sub_02001288(param0->unk_198);
+        v6 = ListMenu_ProcessInput(param0->unk_198);
 
         ov107_02249CE0(v6, 1500);
-        sub_020014D0(param0->unk_198, &param0->unk_16);
+        ListMenu_CalcTrueCursorPos(param0->unk_198, &param0->unk_16);
 
         switch (v6) {
         case 0xffffffff:
@@ -957,9 +957,9 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
         break;
     case 8:
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
-        v6 = sub_02001288(param0->unk_198);
+        v6 = ListMenu_ProcessInput(param0->unk_198);
         ov107_02249CE0(v6, 1500);
-        sub_020014D0(param0->unk_198, &param0->unk_16);
+        ListMenu_CalcTrueCursorPos(param0->unk_198, &param0->unk_16);
 
         switch (v6) {
         case 0xffffffff:
@@ -1013,9 +1013,9 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
         }
         break;
     case 9:
-        v6 = sub_02001288(param0->unk_198);
+        v6 = ListMenu_ProcessInput(param0->unk_198);
         ov107_02249CE0(v6, 1500);
-        sub_020014D0(param0->unk_198, &param0->unk_16);
+        ListMenu_CalcTrueCursorPos(param0->unk_198, &param0->unk_16);
 
         switch (v6) {
         case 0xffffffff:
@@ -2314,7 +2314,7 @@ static void ov107_02244018 (UnkStruct_ov107_02241D6C * param0)
 
 static void ov107_0224403C (UnkStruct_ov107_02241D6C * param0)
 {
-    sub_020014DC(param0->unk_198, &param0->unk_18, &param0->unk_1A);
+    ListMenu_GetListAndCursorPos(param0->unk_198, &param0->unk_18, &param0->unk_1A);
 
     ov107_02245288(&param0->unk_50[8]);
     ov107_02245730(param0);
@@ -2489,7 +2489,7 @@ static void ov107_02244240 (UnkStruct_ov107_02241D6C * param0, u8 param1)
     param0->unk_1A0.maxDisplay = 6;
     param0->unk_1A0.textXOffset = 0;
     param0->unk_1A0.cursorType = 1;
-    param0->unk_198 = sub_0200112C(&param0->unk_1A0, 0, 0, 100);
+    param0->unk_198 = ListMenu_New(&param0->unk_1A0, 0, 0, 100);
 
     ov107_02245650(param0, &param0->unk_50[5]);
     MessageLoader_Free(v5);
@@ -2501,19 +2501,19 @@ static void ov107_0224440C(ListMenu *param0, u32 param1, u8 param2)
 {
     u32 v0, v1;
     u16 v2, v3, v4, v5;
-    UnkStruct_ov107_02241D6C * v6 = (UnkStruct_ov107_02241D6C *)sub_02001504(param0, 19);
+    UnkStruct_ov107_02241D6C *v6 = (UnkStruct_ov107_02241D6C *)ListMenu_GetAttribute(param0, 19);
 
     if (param2 == 0) {
         Sound_PlayEffect(1500);
-        sub_020014D0(v6->unk_198, &v5);
+        ListMenu_CalcTrueCursorPos(v6->unk_198, &v5);
     } else {
         v5 = 0;
     }
 
-    v0 = sub_02001504(param0, 2);
-    v1 = sub_02001504(param0, 3);
+    v0 = ListMenu_GetAttribute(param0, 2);
+    v1 = ListMenu_GetAttribute(param0, 3);
 
-    sub_020014DC(param0, &v3, &v4);
+    ListMenu_GetListAndCursorPos(param0, &v3, &v4);
 
     if (v3 == 0) {
         ov107_02249BAC(v6->unk_3E8, 0);
@@ -2545,7 +2545,7 @@ static void ov107_0224440C(ListMenu *param0, u32 param1, u8 param2)
 
 static void ov107_02244560(ListMenu *param0, u32 param1, u8 param2)
 {
-    UnkStruct_ov107_02241D6C * v0 = (UnkStruct_ov107_02241D6C *)sub_02001504(param0, 19);
+    UnkStruct_ov107_02241D6C *v0 = (UnkStruct_ov107_02241D6C *)ListMenu_GetAttribute(param0, 19);
 
     if (param1 != 0xfffffffe) {
         ov107_02244A74(v0, 0, ov107_02244D5C(v0, param1, v0->unk_13), 4, 1);
@@ -2581,7 +2581,7 @@ static void ov107_022445C4 (UnkStruct_ov107_02241D6C * param0)
     param0->unk_1A0.count = (NELEMS(Unk_ov107_02249FF0));
     param0->unk_1A0.maxDisplay = (NELEMS(Unk_ov107_02249FF0));
     param0->unk_1A0.textColorBg = 15;
-    param0->unk_198 = sub_0200112C(&param0->unk_1A0, 0, 0, 100);
+    param0->unk_198 = ListMenu_New(&param0->unk_1A0, 0, 0, 100);
 
     ov107_02245650(param0, &param0->unk_50[10]);
 
@@ -2592,7 +2592,7 @@ static void ov107_02244690(ListMenu *param0, u32 param1, u8 param2)
 {
     u8 v0;
     u16 v1;
-    UnkStruct_ov107_02241D6C * v2 = (UnkStruct_ov107_02241D6C *)sub_02001504(param0, 19);
+    UnkStruct_ov107_02241D6C *v2 = (UnkStruct_ov107_02241D6C *)ListMenu_GetAttribute(param0, 19);
 
     if (param2 == 0) {
         Sound_PlayEffect(1500);
@@ -2626,9 +2626,9 @@ static void ov107_02244708(ListMenu *param0, u32 param1, u8 param2)
 {
     u16 v0;
     u8 v1, v2;
-    UnkStruct_ov107_02241D6C * v3 = (UnkStruct_ov107_02241D6C *)sub_02001504(param0, 19);
+    UnkStruct_ov107_02241D6C *v3 = (UnkStruct_ov107_02241D6C *)ListMenu_GetAttribute(param0, 19);
 
-    sub_020014D0(param0, &v0);
+    ListMenu_CalcTrueCursorPos(param0, &v0);
     v1 = ov107_02249CAC(v3->unk_1CC, v3->unk_09, 0);
 
     switch (param1) {
@@ -2653,7 +2653,7 @@ static void ov107_02244708(ListMenu *param0, u32 param1, u8 param2)
         break;
     }
 
-    sub_020013D8(param0, v2, 15, 2);
+    ListMenu_SetTextColors(param0, v2, 15, 2);
     return;
 }
 
@@ -2689,7 +2689,7 @@ static void ov107_02244780 (UnkStruct_ov107_02241D6C * param0)
     param0->unk_1A0.count = (NELEMS(Unk_ov107_02249F54));
     param0->unk_1A0.maxDisplay = (NELEMS(Unk_ov107_02249F54));
     param0->unk_1A0.textColorBg = 15;
-    param0->unk_198 = sub_0200112C(&param0->unk_1A0, 0, 0, 100);
+    param0->unk_198 = ListMenu_New(&param0->unk_1A0, 0, 0, 100);
 
     ov107_02245650(param0, &param0->unk_50[11]);
 
@@ -2703,7 +2703,7 @@ static void ov107_0224486C(ListMenu *param0, u32 param1, u8 param2)
 {
     u16 v0;
     u8 v1;
-    UnkStruct_ov107_02241D6C * v2 = (UnkStruct_ov107_02241D6C *)sub_02001504(param0, 19);
+    UnkStruct_ov107_02241D6C *v2 = (UnkStruct_ov107_02241D6C *)ListMenu_GetAttribute(param0, 19);
 
     if (param2 == 0) {
         Sound_PlayEffect(1500);
@@ -2739,7 +2739,7 @@ static void ov107_0224486C(ListMenu *param0, u32 param1, u8 param2)
 static void ov107_022448E8(ListMenu *param0, u32 param1, u8 param2)
 {
     u8 v0, v1;
-    UnkStruct_ov107_02241D6C * v2 = (UnkStruct_ov107_02241D6C *)sub_02001504(param0, 19);
+    UnkStruct_ov107_02241D6C *v2 = (UnkStruct_ov107_02241D6C *)ListMenu_GetAttribute(param0, 19);
 
     v0 = ov107_02249CAC(v2->unk_1CC, v2->unk_09, 1);
 
@@ -2763,7 +2763,7 @@ static void ov107_022448E8(ListMenu *param0, u32 param1, u8 param2)
         break;
     }
 
-    sub_020013D8(param0, v1, 15, 2);
+    ListMenu_SetTextColors(param0, v1, 15, 2);
     return;
 }
 
@@ -2806,7 +2806,7 @@ static void ov107_02244944 (UnkStruct_ov107_02241D6C * param0)
     param0->unk_1A0.maxDisplay = 5;
     param0->unk_1A0.textColorBg = 15;
     param0->unk_1A0.tmp = param0;
-    param0->unk_198 = sub_0200112C(&param0->unk_1A0, param0->unk_18, param0->unk_1A, 100);
+    param0->unk_198 = ListMenu_New(&param0->unk_1A0, param0->unk_18, param0->unk_1A, 100);
 
     ov107_02245650(param0, &param0->unk_50[9]);
     Window_ScheduleCopyToVRAM(&param0->unk_50[9]);
@@ -2819,13 +2819,13 @@ static void ov107_02244A1C(ListMenu *param0, u32 param1, u8 param2)
     UnkStruct_ov107_02241D6C * v0;
     u16 v1;
 
-    v0 = (UnkStruct_ov107_02241D6C *)sub_02001504(param0, 19);
+    v0 = (UnkStruct_ov107_02241D6C *)ListMenu_GetAttribute(param0, 19);
 
     if (param2 == 0) {
         Sound_PlayEffect(1500);
     }
 
-    sub_020014D0(param0, &v1);
+    ListMenu_CalcTrueCursorPos(param0, &v1);
     ov107_0224379C(v0, &v0->unk_50[8], Unk_ov107_02249E18[v1], 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
 
     return;
@@ -3688,8 +3688,8 @@ static void ov107_022456E4 (UnkStruct_ov107_02241D6C * param0)
     ov107_02245288(&param0->unk_50[6]);
     ov107_02249BAC(param0->unk_3F0, 1);
 
-    sub_020013AC(param0->unk_198);
-    sub_020014D0(param0->unk_198, &v0);
+    ListMenu_Draw(param0->unk_198);
+    ListMenu_CalcTrueCursorPos(param0->unk_198, &v0);
 
     ov107_02243EF8(param0, &param0->unk_50[12], ov107_02244DE0(param0, v0, param0->unk_13));
     return;
@@ -3701,14 +3701,14 @@ static void ov107_02245730 (UnkStruct_ov107_02241D6C * param0)
 
     if (param0->unk_0E_0 == 1) {
         param0->unk_0E_0 = 0;
-        v0 = (Window *)sub_02001504(param0->unk_198, 18);
+        v0 = (Window *)ListMenu_GetAttribute(param0->unk_198, 18);
 
         Window_Clear(v0, 1);
         Window_FillTilemap(v0, 0);
         Window_ClearAndScheduleCopyToVRAM(v0);
 
         StringList_Free(param0->unk_19C);
-        sub_02001384(param0->unk_198, NULL, NULL);
+        ListMenu_Free(param0->unk_198, NULL, NULL);
     }
 
     return;

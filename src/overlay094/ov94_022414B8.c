@@ -563,13 +563,13 @@ static int ov94_02241A58(UnkStruct_ov94_0223FD4C *param0)
     case 7:
     case 8:
     case 9:
-        sub_02001384(param0->unk_10D8, &param0->unk_10E4->unk_06, &param0->unk_10E4->unk_04);
+        ListMenu_Free(param0->unk_10D8, &param0->unk_10E4->unk_06, &param0->unk_10E4->unk_04);
         StringList_Free(param0->unk_10CC);
         param0->unk_2C = 5;
         Sound_PlayEffect(1500);
         break;
     case 0xfffffffe:
-        sub_02001384(param0->unk_10D8, &param0->unk_10E4->unk_06, &param0->unk_10E4->unk_04);
+        ListMenu_Free(param0->unk_10D8, &param0->unk_10E4->unk_06, &param0->unk_10E4->unk_04);
         StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
         sub_0200E084(&param0->unk_F5C, 0);
@@ -622,7 +622,7 @@ static int ov94_02241BAC(UnkStruct_ov94_0223FD4C *param0)
     case 0xffffffff:
         break;
     case 0xfffffffe:
-        sub_02001384(param0->unk_10D8, &param0->unk_10E4->unk_0A, &param0->unk_10E4->unk_08);
+        ListMenu_Free(param0->unk_10D8, &param0->unk_10E4->unk_0A, &param0->unk_10E4->unk_08);
         StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[1], 0);
         Window_Remove(&param0->unk_F9C[0]);
@@ -632,7 +632,7 @@ static int ov94_02241BAC(UnkStruct_ov94_0223FD4C *param0)
         ov94_02242AC4(&param0->unk_111C, param0->unk_10E4->unk_06 + param0->unk_10E4->unk_04, param0->unk_10E4->unk_0A, param0->unk_10E4->unk_08);
         break;
     default:
-        sub_02001384(param0->unk_10D8, &param0->unk_10E4->unk_0A, &param0->unk_10E4->unk_08);
+        ListMenu_Free(param0->unk_10D8, &param0->unk_10E4->unk_0A, &param0->unk_10E4->unk_08);
         StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
         Window_Clear(&param0->unk_F9C[1], 0);
@@ -684,7 +684,7 @@ static int ov94_02241DA0(UnkStruct_ov94_0223FD4C *param0)
 
     switch (v0 = ov94_02242A6C(param0->unk_10D8, &param0->unk_108)) {
     case 0xfffffffe:
-        sub_02001384(param0->unk_10D8, NULL, NULL);
+        ListMenu_Free(param0->unk_10D8, NULL, NULL);
         StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
         sub_0200E084(&param0->unk_F5C, 0);
@@ -696,7 +696,7 @@ static int ov94_02241DA0(UnkStruct_ov94_0223FD4C *param0)
     case 0:
     case 1:
     case 2:
-        sub_02001384(param0->unk_10D8, NULL, NULL);
+        ListMenu_Free(param0->unk_10D8, NULL, NULL);
         StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
         Window_Remove(&param0->unk_F9C[0]);
@@ -739,7 +739,7 @@ static int ov94_02241F28(UnkStruct_ov94_0223FD4C *param0)
         break;
     case 0xfffffffe:
     case 12:
-        sub_02001384(param0->unk_10D8, NULL, NULL);
+        ListMenu_Free(param0->unk_10D8, NULL, NULL);
         StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
         sub_0200E084(&param0->unk_F5C, 0);
@@ -754,7 +754,7 @@ static int ov94_02241F28(UnkStruct_ov94_0223FD4C *param0)
         break;
     default:
         Sound_PlayEffect(1500);
-        sub_02001384(param0->unk_10D8, NULL, NULL);
+        ListMenu_Free(param0->unk_10D8, NULL, NULL);
         StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
         Window_Remove(&param0->unk_F9C[0]);
@@ -1108,7 +1108,7 @@ ListMenu *ov94_022426A8(UnkStruct_ov94_0223FD4C *param0, StringList **param1, Wi
 
     Window_Show(param2, 0, (1 + (18 + 12)), 11);
 
-    return sub_0200112C(&v0, param0->unk_10E4->unk_06, param0->unk_10E4->unk_04, 62);
+    return ListMenu_New(&v0, param0->unk_10E4->unk_06, param0->unk_10E4->unk_04, 62);
 }
 
 static u16 Unk_ov94_02246928[] = {
@@ -1184,7 +1184,7 @@ ListMenu *ov94_022427C0(UnkStruct_ov94_0223FD4C *param0, StringList **param1, Wi
 
     Window_Show(param2, 0, (1 + (18 + 12)), 11);
 
-    return sub_0200112C(&v0, param0->unk_111C.unk_04[v3], param0->unk_111C.unk_16[v3], 62);
+    return ListMenu_New(&v0, param0->unk_111C.unk_04[v3], param0->unk_111C.unk_16[v3], 62);
 }
 
 static Unk_ov94_0224693C[][2] = {
@@ -1212,7 +1212,7 @@ ListMenu *ov94_02242840(StringList **param0, Window *param1, MessageLoader *para
 
     Window_Show(param1, 0, (1 + (18 + 12)), 11);
 
-    return sub_0200112C(&v0, 0, 0, 62);
+    return ListMenu_New(&v0, 0, 0, 62);
 }
 
 ListMenu *ov94_022428B0(StringList **param0, Window *param1, MessageLoader *param2, int param3)
@@ -1243,7 +1243,7 @@ ListMenu *ov94_022428B0(StringList **param0, Window *param1, MessageLoader *para
 
     Window_Show(param1, 0, (1 + (18 + 12)), 11);
 
-    return sub_0200112C(&v0, 0, 0, 62);
+    return ListMenu_New(&v0, 0, 0, 62);
 }
 
 void ov94_02242934(UnkStruct_ov94_0223BA88_sub3 *param0, int param1, int param2)
@@ -1308,7 +1308,7 @@ ListMenu *ov94_022429B4(StringList **param0, Window *param1, MessageLoader *para
 
     Window_Show(param1, 1, (1 + (18 + 12)), 11);
 
-    return sub_0200112C(&v0, 0, 0, 62);
+    return ListMenu_New(&v0, 0, 0, 62);
 }
 
 void ov94_02242A44(UnkStruct_ov94_0223FD4C *param0, int param1)
@@ -1323,9 +1323,9 @@ void ov94_02242A44(UnkStruct_ov94_0223FD4C *param0, int param1)
 u32 ov94_02242A6C(ListMenu *param0, u16 *param1)
 {
     u16 v0;
-    u32 v1 = sub_02001288(param0);
+    u32 v1 = ListMenu_ProcessInput(param0);
 
-    sub_020014D0(param0, &v0);
+    ListMenu_CalcTrueCursorPos(param0, &v0);
 
     if (*param1 != v0) {
         if (*param1 != 0xffff) {

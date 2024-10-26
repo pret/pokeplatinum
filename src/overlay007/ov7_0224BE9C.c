@@ -621,7 +621,7 @@ static void ov7_0224C768(UnkStruct_ov7_0224C768 *param0, BgConfig *param1, u32 p
     v5.count = param0->unk_120;
     v5.choices = param0->unk_0C;
 
-    param0->unk_08 = sub_0200112C(&v5, 0, 0, param2);
+    param0->unk_08 = ListMenu_New(&v5, 0, 0, param2);
 
     Window_Show(param0->unk_04, 0, (1 + (18 + 12)), 11);
 
@@ -665,7 +665,7 @@ static void ov7_0224C934(UnkStruct_ov7_0224C768 *param0)
         Strbuf_Free(param0->unk_C4[v0]);
     }
 
-    sub_02001384(param0->unk_08, NULL, NULL);
+    ListMenu_Free(param0->unk_08, NULL, NULL);
     Window_ClearAndCopyToVRAM(param0->unk_04);
     Window_Remove(param0->unk_04);
     Windows_Delete(param0->unk_04, 1);
@@ -678,10 +678,10 @@ static u32 ov7_0224C9A4(UnkStruct_ov7_0224C768 *param0)
     u32 v0;
     u16 v1;
 
-    v0 = sub_02001288(param0->unk_08);
+    v0 = ListMenu_ProcessInput(param0->unk_08);
 
     if (v0 == 0xffffffff) {
-        sub_020014D0(param0->unk_08, &v1);
+        ListMenu_CalcTrueCursorPos(param0->unk_08, &v1);
 
         if (param0->unk_12C != v1) {
             param0->unk_12C = v1;
@@ -744,7 +744,7 @@ static void ov7_0224CB70(UnkStruct_ov7_0224C768 *param0)
 {
     u16 v0;
 
-    sub_020014DC(param0->unk_08, &v0, NULL);
+    ListMenu_GetListAndCursorPos(param0->unk_08, &v0, NULL);
 
     if (v0 <= 0) {
         CellActor_SetDrawFlag(param0->unk_158[0], 0);

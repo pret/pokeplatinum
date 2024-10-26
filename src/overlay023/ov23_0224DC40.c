@@ -259,7 +259,7 @@ static void ov23_0224DD2C(UnkStruct_ov23_0224E280 *param0)
     v0.maxDisplay = NELEMS(Unk_ov23_022568B4);
 
     param0->unk_3A = 0;
-    param0->unk_20 = sub_0200112C(&v0, 0, 0, 4);
+    param0->unk_20 = ListMenu_New(&v0, 0, 0, 4);
 
     Window_CopyToVRAM(&param0->unk_0C);
     sub_020594FC();
@@ -331,7 +331,7 @@ static void ov23_0224DE3C(UnkStruct_ov23_0224E280 *param0)
     v0.window = &param0->unk_0C;
 
     param0->unk_3A = 0;
-    param0->unk_20 = sub_0200112C(&v0, 0, 0, 4);
+    param0->unk_20 = ListMenu_New(&v0, 0, 0, 4);
 
     Window_CopyToVRAM(&param0->unk_0C);
 }
@@ -342,7 +342,7 @@ static BOOL ov23_0224DF1C(SysTask *param0, void *param1)
     u32 v1;
     u16 v2;
 
-    v1 = sub_02001288(v0->unk_20);
+    v1 = ListMenu_ProcessInput(v0->unk_20);
     ov23_0224F270(v0);
 
     if (CommSys_CheckError()) {
@@ -407,7 +407,7 @@ static void ov23_0224DFA0(UnkStruct_ov23_0224E280 *param0)
     v0.window = &param0->unk_0C;
 
     param0->unk_3A = 0;
-    param0->unk_20 = sub_0200112C(&v0, 0, 0, 4);
+    param0->unk_20 = ListMenu_New(&v0, 0, 0, 4);
 
     Window_CopyToVRAM(&param0->unk_0C);
 }
@@ -418,7 +418,7 @@ static BOOL ov23_0224E05C(SysTask *param0, void *param1)
     u32 v1;
     UnkStruct_ov23_0224DF1C v2;
 
-    v1 = sub_02001288(v0->unk_20);
+    v1 = ListMenu_ProcessInput(v0->unk_20);
     ov23_0224F270(v0);
 
     if (CommSys_CheckError()) {
@@ -499,7 +499,7 @@ static BOOL ov23_0224E1E0(SysTask *param0, void *param1)
     UnkStruct_ov23_0224E280 *v0 = param1;
     u32 v1;
 
-    v1 = sub_02001288(v0->unk_20);
+    v1 = ListMenu_ProcessInput(v0->unk_20);
     ov23_0224F270(v0);
 
     if (CommSys_CheckError()) {
@@ -532,7 +532,7 @@ static void ov23_0224E244(SysTask *param0, UnkStruct_ov23_0224E280 *param1)
 {
     if (param1->unk_1C) {
         Window_Clear(&param1->unk_0C, 1);
-        sub_02001384(param1->unk_20, NULL, NULL);
+        ListMenu_Free(param1->unk_20, NULL, NULL);
         Window_ClearAndCopyToVRAM(&param1->unk_0C);
         Window_Remove(&param1->unk_0C);
         StringList_Free(param1->unk_1C);
@@ -949,7 +949,7 @@ static void ov23_0224EA08(SysTask *param0, UnkStruct_ov23_022577B0 *param1)
 {
     if (param1->unk_18) {
         Window_Clear(&param1->unk_08, 1);
-        sub_02001384(param1->unk_1C, NULL, NULL);
+        ListMenu_Free(param1->unk_1C, NULL, NULL);
         Window_ClearAndCopyToVRAM(&param1->unk_08);
         Window_Remove(&param1->unk_08);
         StringList_Free(param1->unk_18);
@@ -1003,7 +1003,7 @@ static void ov23_0224EAA4(UnkStruct_ov23_022577B0 *param0)
     v0.maxDisplay = v1;
 
     param0->unk_36 = 0;
-    param0->unk_1C = sub_0200112C(&v0, 0, 0, 4);
+    param0->unk_1C = ListMenu_New(&v0, 0, 0, 4);
 
     Window_CopyToVRAM(&param0->unk_08);
 }
@@ -1015,10 +1015,10 @@ static BOOL ov23_0224EB74(SysTask *param0, void *param1)
     UnkStruct_ov23_0224DF1C v2;
     u16 v3;
 
-    v1 = sub_02001288(v0->unk_1C);
+    v1 = ListMenu_ProcessInput(v0->unk_1C);
     v3 = v0->unk_36;
 
-    sub_020014D0(v0->unk_1C, &v0->unk_36);
+    ListMenu_CalcTrueCursorPos(v0->unk_1C, &v0->unk_36);
 
     if (v3 != v0->unk_36) {
         Sound_PlayEffect(1500);
@@ -1414,7 +1414,7 @@ static void ov23_0224F270(UnkStruct_ov23_0224E280 *param0)
     u16 v0;
 
     v0 = param0->unk_3A;
-    sub_020014D0(param0->unk_20, &param0->unk_3A);
+    ListMenu_CalcTrueCursorPos(param0->unk_20, &param0->unk_3A);
 
     if (v0 != param0->unk_3A) {
         Sound_PlayEffect(1500);

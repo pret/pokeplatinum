@@ -250,7 +250,7 @@ static void sub_02072390(SysTask *param0, void *param1)
     UnkStruct_02072334 *v0 = (UnkStruct_02072334 *)param1;
     s32 v1;
 
-    v1 = sub_02001288(v0->unk_160);
+    v1 = ListMenu_ProcessInput(v0->unk_160);
 
     if (v0->unk_1A4 != NULL) {
         sub_0206A870(v0->unk_1A4);
@@ -310,7 +310,7 @@ static void sub_02072470(SysTask *param0, void *param1)
     UnkStruct_02072334 *v0 = (UnkStruct_02072334 *)param1;
     s32 v1;
 
-    v1 = sub_02001288(v0->unk_160);
+    v1 = ListMenu_ProcessInput(v0->unk_160);
 
     if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
         sub_02072EA4(v0, sub_02072534, sub_02072370);
@@ -725,7 +725,7 @@ static void sub_020729B4(UnkStruct_02072334 *param0)
         param0->unk_13B_4 = 0;
     }
 
-    param0->unk_160 = sub_0200112C(&(param0->unk_140), param0->unk_13C, param0->unk_13E, param0->unk_00);
+    param0->unk_160 = ListMenu_New(&(param0->unk_140), param0->unk_13C, param0->unk_13E, param0->unk_00);
 
     Window_Show(&param0->unk_174, 0, (1024 - (18 + 12) - 9), 11);
     Text_AddPrinterWithParamsAndColor(&param0->unk_194, FONT_SYSTEM, param0->unk_110.unk_0C, 2, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
@@ -737,15 +737,15 @@ static void sub_020729B4(UnkStruct_02072334 *param0)
 
 static void sub_02072BBC(ListMenu *param0, u32 param1, u8 param2)
 {
-    UnkStruct_02072334 *v0 = (UnkStruct_02072334 *)sub_02001504(param0, 19);
+    UnkStruct_02072334 *v0 = (UnkStruct_02072334 *)ListMenu_GetAttribute(param0, 19);
 
     if (param1 == 0xFFFF) {
-        sub_0200147C(param0, 1, 15, 2);
+        ListMenu_SetAltTextColors(param0, 1, 15, 2);
     } else {
         if (v0->unk_1C[param1].unk_04) {
-            sub_0200147C(param0, 3, 15, 4);
+            ListMenu_SetAltTextColors(param0, 3, 15, 4);
         } else {
-            sub_0200147C(param0, 7, 15, 8);
+            ListMenu_SetAltTextColors(param0, 7, 15, 8);
         }
     }
 }
@@ -753,10 +753,10 @@ static void sub_02072BBC(ListMenu *param0, u32 param1, u8 param2)
 static void sub_02072C0C(ListMenu *param0, u32 param1, u8 param2)
 {
     u16 v0, v1, v2;
-    UnkStruct_02072334 *v3 = (UnkStruct_02072334 *)sub_02001504(param0, 19);
+    UnkStruct_02072334 *v3 = (UnkStruct_02072334 *)ListMenu_GetAttribute(param0, 19);
 
-    sub_020014DC(param0, &v0, &v1);
-    v2 = sub_02001504(param0, 2);
+    ListMenu_GetListAndCursorPos(param0, &v0, &v1);
+    v2 = ListMenu_GetAttribute(param0, 2);
 
     if (!param2) {
         Sound_PlayEffect(1500);
@@ -807,7 +807,7 @@ static void sub_02072C98(UnkStruct_02072334 *param0, u8 param1, u8 param2)
     param0->unk_140.maxDisplay = 4;
     param0->unk_140.pagerMode = 0;
     param0->unk_140.cursorCallback = sub_02072DA4;
-    param0->unk_160 = sub_0200112C(&(param0->unk_140), param1, param2, param0->unk_00);
+    param0->unk_160 = ListMenu_New(&(param0->unk_140), param1, param2, param0->unk_00);
 
     Window_Show(&param0->unk_174, 0, (1024 - (18 + 12) - 9), 11);
     Bg_ScheduleTilemapTransfer(param0->unk_170, 3);
@@ -826,7 +826,7 @@ static void sub_02072DB8(UnkStruct_02072334 *param0)
 {
     u16 v0, v1;
 
-    sub_02001384(param0->unk_160, &v0, &v1);
+    ListMenu_Free(param0->unk_160, &v0, &v1);
     StringList_Free(param0->unk_164);
 
     Window_ClearAndCopyToVRAM(&(param0->unk_194));
@@ -854,7 +854,7 @@ static void sub_02072E4C(UnkStruct_02072334 *param0)
 
     Window_ClearAndCopyToVRAM(&(param0->unk_174));
     Window_Clear(&(param0->unk_174), 0);
-    sub_02001384(param0->unk_160, &v0, &v1);
+    ListMenu_Free(param0->unk_160, &v0, &v1);
     StringList_Free(param0->unk_164);
     Window_Remove(&(param0->unk_174));
     sub_02073398(param0);

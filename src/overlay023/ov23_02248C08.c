@@ -48,7 +48,7 @@ UnkStruct_ov23_02248D20 *ov23_02248C08(ListMenuTemplate *param0, u16 param1, u16
     }
 
     v0->unk_20 = (param1 + param2);
-    v0->unk_0C = sub_0200112C(param0, param1, param2, param3);
+    v0->unk_0C = ListMenu_New(param0, param1, param2, param3);
 
     return v0;
 }
@@ -56,7 +56,7 @@ UnkStruct_ov23_02248D20 *ov23_02248C08(ListMenuTemplate *param0, u16 param1, u16
 static void ov23_02248CA4(u16 param0, u16 param1, UnkStruct_ov23_02248D20 *param2)
 {
     u16 v0 = param2->unk_14 + param2->unk_16;
-    u16 v1 = sub_02001504(param2->unk_0C, 3);
+    u16 v1 = ListMenu_GetAttribute(param2->unk_0C, 3);
 
     if ((param2->unk_18 != param0) || (param2->unk_1A != param1)) {
         param2->unk_18 = param0;
@@ -70,10 +70,10 @@ static void ov23_02248CA4(u16 param0, u16 param1, UnkStruct_ov23_02248D20 *param
     }
 
     {
-        int v2 = sub_02001504(param2->unk_0C, 7);
-        u8 v3 = sub_02001504(param2->unk_0C, 9);
-        int v4 = (v0 - param0) * v3 + sub_02001504(param2->unk_0C, 8);
-        Window *v5 = (Window *)sub_02001504(param2->unk_0C, 18);
+        int v2 = ListMenu_GetAttribute(param2->unk_0C, 7);
+        u8 v3 = ListMenu_GetAttribute(param2->unk_0C, 9);
+        int v4 = (v0 - param0) * v3 + ListMenu_GetAttribute(param2->unk_0C, 8);
+        Window *v5 = (Window *)ListMenu_GetAttribute(param2->unk_0C, 18);
 
         ColoredArrow_Print(param2->unk_10, v5, v2, v4);
     }
@@ -88,9 +88,9 @@ u32 ov23_02248D20(UnkStruct_ov23_02248D20 *param0)
     StringList *v7;
 
     if (param0->unk_00) {
-        int v8 = sub_02001504(v0, 2);
+        int v8 = ListMenu_GetAttribute(v0, 2);
 
-        sub_020014DC(v0, &v1, &v2);
+        ListMenu_GetListAndCursorPos(v0, &v1, &v2);
 
         if (param0->unk_1C) {
             ov23_02248CA4(v1, v2, param0);
@@ -152,10 +152,10 @@ u32 ov23_02248D20(UnkStruct_ov23_02248D20 *param0)
                 Heap_FreeToHeap(param0->unk_08);
                 param0->unk_08 = v7;
 
-                sub_020015CC(v0, v7);
+                ListMenu_SetChoices(v0, v7);
                 param0->unk_1C = 0;
 
-                sub_020013AC(v0);
+                ListMenu_Draw(v0);
                 return 0xffffffff;
             }
         } else {
@@ -177,10 +177,10 @@ u32 ov23_02248D20(UnkStruct_ov23_02248D20 *param0)
         }
     }
 
-    v6 = sub_02001288(v0);
+    v6 = ListMenu_ProcessInput(v0);
     v3 = param0->unk_20;
 
-    sub_020014D0(v0, &param0->unk_20);
+    ListMenu_CalcTrueCursorPos(v0, &param0->unk_20);
 
     if (v3 != param0->unk_20) {
         Sound_PlayEffect(1500);
@@ -204,7 +204,7 @@ void ov23_02248EF8(UnkStruct_ov23_02248D20 *param0, u16 *param1, u16 *param2)
 {
     ListMenu *v0 = param0->unk_0C;
 
-    sub_02001384(v0, param1, param2);
+    ListMenu_Free(v0, param1, param2);
 
     if (param0->unk_00) {
         ColoredArrow_Free(param0->unk_10);

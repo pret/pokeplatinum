@@ -405,7 +405,7 @@ int ov92_021D0EB8(OverlayManager *param0, int *param1)
         }
         break;
     case 4: {
-        int v3 = sub_02001288(v0->unk_B854);
+        int v3 = ListMenu_ProcessInput(v0->unk_B854);
 
         if (v3 == 0xffffffff) {
             break;
@@ -460,7 +460,7 @@ int ov92_021D0EB8(OverlayManager *param0, int *param1)
         }
         break;
     case 8: {
-        int v5 = sub_02001288(v0->unk_B854);
+        int v5 = ListMenu_ProcessInput(v0->unk_B854);
 
         if (v5 == 0xffffffff) {
             break;
@@ -502,7 +502,7 @@ int ov92_021D0EB8(OverlayManager *param0, int *param1)
         }
         break;
     case 10: {
-        int v7 = sub_02001288(v0->unk_B854);
+        int v7 = ListMenu_ProcessInput(v0->unk_B854);
 
         if (v7 == 0xffffffff) {
             break;
@@ -1033,7 +1033,7 @@ static void ov92_021D1C4C(UnkStruct_ov92_021D1B24 *param0, Window *param1, const
     v0.choices = param0->unk_B858;
     v0.window = param1;
     v0.cursorCallback = ov92_021D1C38;
-    param0->unk_B854 = sub_0200112C(&v0, 0, 0, param0->unk_00);
+    param0->unk_B854 = ListMenu_New(&v0, 0, 0, param0->unk_00);
 
     Window_Show(v0.window, 1, ((512 - (18 + 12)) - 9), 7);
     Window_CopyToVRAM(param1);
@@ -1061,7 +1061,7 @@ static void ov92_021D1CF4(UnkStruct_ov92_021D1B24 *param0, Window *param1, const
     v0.window = param1;
     v0.cursorCallback = ov92_021D1C38;
 
-    param0->unk_B854 = sub_0200112C(&v0, 0, 0, param0->unk_00);
+    param0->unk_B854 = ListMenu_New(&v0, 0, 0, param0->unk_00);
 
     Window_Show(v0.window, 1, ((512 - (18 + 12)) - 9), 7);
     Window_CopyToVRAM(param1);
@@ -1071,7 +1071,7 @@ static void ov92_021D1DB4(UnkStruct_ov92_021D1B24 *param0)
 {
     Window_Clear(&param0->unk_B824, 0);
     Window_Remove(&param0->unk_B824);
-    sub_02001384(param0->unk_B854, NULL, NULL);
+    ListMenu_Free(param0->unk_B854, NULL, NULL);
     StringList_Free(param0->unk_B858);
 }
 

@@ -239,7 +239,7 @@ static void ov97_0222D34C(OverlayManager *param0)
     }
 
     if (v1->unk_78) {
-        sub_02001384(v1->unk_78, NULL, NULL);
+        ListMenu_Free(v1->unk_78, NULL, NULL);
     }
 
     Window_ClearAndCopyToVRAM(&v1->unk_18);
@@ -801,10 +801,10 @@ static void ov97_0222DD1C(OverlayManager *param0, UnkStruct_ov97_0223E5B8 *param
     v1.window = param3;
 
     if (v2->unk_78) {
-        sub_02001384(v2->unk_78, NULL, NULL);
+        ListMenu_Free(v2->unk_78, NULL, NULL);
     }
 
-    v2->unk_78 = sub_0200112C(&v1, 0, 0, 86);
+    v2->unk_78 = ListMenu_New(&v1, 0, 0, 86);
 
     if (param4 != -1) {
         ov97_0222DE78(param0, &v2->unk_18, param4);
@@ -886,7 +886,7 @@ static void ov97_0222DF70(OverlayManager *param0, int *param1, int (*param2)(Ove
     UnkStruct_ov97_0222D04C *v2 = OverlayManager_Data(param0);
     static int (*v3)(OverlayManager *);
 
-    v0 = sub_02001288(v2->unk_78);
+    v0 = ListMenu_ProcessInput(v2->unk_78);
 
     switch (v0) {
     case 0xffffffff:

@@ -791,7 +791,7 @@ static BOOL ov73_021D1648(UnkStruct_ov73_021D1058 *param0, int param1, int param
         v1.cursorCallback = ov73_021D1634;
         v1.window = &param0->unk_30;
 
-        param0->unk_40 = sub_0200112C(&v1, 0, 0, param0->unk_00);
+        param0->unk_40 = ListMenu_New(&v1, 0, 0, param0->unk_00);
 
         Window_Show(v1.window, 1, ((0x400 - (18 + 12)) - 9), 3);
         Window_CopyToVRAM(&param0->unk_30);
@@ -799,7 +799,7 @@ static BOOL ov73_021D1648(UnkStruct_ov73_021D1058 *param0, int param1, int param
         param0->unk_2C = 1;
         break;
     case 1:
-        param0->unk_48 = sub_02001288(param0->unk_40);
+        param0->unk_48 = ListMenu_ProcessInput(param0->unk_40);
 
         if (param0->unk_48 == 0xffffffff) {
             break;
@@ -811,7 +811,7 @@ static BOOL ov73_021D1648(UnkStruct_ov73_021D1058 *param0, int param1, int param
 
         Window_Clear(&param0->unk_30, 0);
         Window_Remove(&param0->unk_30);
-        sub_02001384(param0->unk_40, NULL, NULL);
+        ListMenu_Free(param0->unk_40, NULL, NULL);
         StringList_Free(param0->unk_44);
         Sound_PlayEffect(1500);
 

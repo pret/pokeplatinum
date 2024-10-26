@@ -263,7 +263,7 @@ static int ov23_0225144C(int param0, UnkStruct_ov23_02250CD4 *param1)
 
 static void ov23_0225148C(ListMenu *param0, u32 param1, u8 param2)
 {
-    UnkStruct_ov23_02250CD4 *v0 = (UnkStruct_ov23_02250CD4 *)sub_02001504(param0, 19);
+    UnkStruct_ov23_02250CD4 *v0 = (UnkStruct_ov23_02250CD4 *)ListMenu_GetAttribute(param0, 19);
     int v1 = param1;
 
     if (param1 == 0xfffffffe) {
@@ -275,7 +275,7 @@ static void ov23_0225148C(ListMenu *param0, u32 param1, u8 param2)
 
 static void ov23_022514B0(ListMenu *param0, u32 param1, u8 param2)
 {
-    UnkStruct_ov23_02250CD4 *v0 = (UnkStruct_ov23_02250CD4 *)sub_02001504(param0, 19);
+    UnkStruct_ov23_02250CD4 *v0 = (UnkStruct_ov23_02250CD4 *)ListMenu_GetAttribute(param0, 19);
     int v1 = param1;
 
     if (param1 == 0xfffffffe) {
@@ -291,8 +291,8 @@ static BOOL ov23_022514D8(SysTask *param0, void *param1)
     u32 v1;
     u16 v2, v3;
 
-    v1 = sub_02001288(v0->unk_48);
-    sub_020014DC(v0->unk_48, &v2, &v3);
+    v1 = ListMenu_ProcessInput(v0->unk_48);
+    ListMenu_GetListAndCursorPos(v0->unk_48, &v2, &v3);
 
     ov23_022430E0(23, v3, v2);
     ov23_022521C8(v0);
@@ -389,7 +389,7 @@ static void ov23_022515D8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
 
     v0.tmp = param0;
     ov23_02251238(param0, v1, v0.count);
-    param0->unk_48 = sub_0200112C(&v0, param0->unk_294, param0->unk_290, 4);
+    param0->unk_48 = ListMenu_New(&v0, param0->unk_294, param0->unk_290, 4);
 }
 
 static void ov23_022516E8(UnkStruct_ov23_02250CD4 *param0, int param1, int param2, UnkFuncPtr_ov23_022515D8 param3, int param4)
@@ -435,7 +435,7 @@ static void ov23_022516E8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
 
     v0.tmp = param0;
     ov23_02251238(param0, v1, v0.count);
-    param0->unk_48 = sub_0200112C(&v0, param0->unk_294, param0->unk_290, 4);
+    param0->unk_48 = ListMenu_New(&v0, param0->unk_294, param0->unk_290, 4);
 }
 
 static BOOL ov23_022517E0(SysTask *param0, void *param1)
@@ -444,8 +444,8 @@ static BOOL ov23_022517E0(SysTask *param0, void *param1)
     u32 v1;
     u16 v2, v3;
 
-    v1 = sub_02001288(v0->unk_48);
-    sub_020014DC(v0->unk_48, &v2, &v3);
+    v1 = ListMenu_ProcessInput(v0->unk_48);
+    ListMenu_GetListAndCursorPos(v0->unk_48, &v2, &v3);
 
     ov23_022430E0(22, v3, v2);
     ov23_022521C8(v0);
@@ -494,7 +494,7 @@ static BOOL ov23_02251894(SysTask *param0, void *param1)
 
     v1 = ov23_02248D20(v0->unk_4C);
 
-    sub_020014DC(v0->unk_4C->unk_0C, &v3, &v4);
+    ListMenu_GetListAndCursorPos(v0->unk_4C->unk_0C, &v3, &v4);
     ov23_022430E0(2, v4, v3);
 
     if (v1 == 0xfffffffe) {
@@ -503,7 +503,7 @@ static BOOL ov23_02251894(SysTask *param0, void *param1)
 
     switch (v1) {
     case 0xffffffff:
-        ov23_0225128C(v0, v3, sub_02001504(v0->unk_4C->unk_0C, 2), 6);
+        ov23_0225128C(v0, v3, ListMenu_GetAttribute(v0->unk_4C->unk_0C, 2), 6);
         return 0;
     case 0xfffffffe:
         ov23_02254044(ov23_022421DC());
@@ -537,7 +537,7 @@ static BOOL ov23_02251960(SysTask *param0, void *param1)
 
     v1 = ov23_02248D20(v0->unk_4C);
 
-    sub_020014DC(v0->unk_4C->unk_0C, &v3, &v4);
+    ListMenu_GetListAndCursorPos(v0->unk_4C->unk_0C, &v3, &v4);
     ov23_022430E0(6, v4, v3);
 
     if (v1 == 0xfffffffe) {
@@ -546,7 +546,7 @@ static BOOL ov23_02251960(SysTask *param0, void *param1)
 
     switch (v1) {
     case 0xffffffff:
-        ov23_0225128C(v0, v3, sub_02001504(v0->unk_4C->unk_0C, 2), 6);
+        ov23_0225128C(v0, v3, ListMenu_GetAttribute(v0->unk_4C->unk_0C, 2), 6);
         return 0;
     case 0xfffffffe:
         ov23_02254044(ov23_022421DC());
@@ -957,7 +957,7 @@ static void ov23_022521C8(UnkStruct_ov23_02250CD4 *param0)
     u16 v0;
 
     v0 = param0->unk_2AE;
-    sub_020014D0(param0->unk_48, &param0->unk_2AE);
+    ListMenu_CalcTrueCursorPos(param0->unk_48, &param0->unk_2AE);
 
     if (v0 != param0->unk_2AE) {
         Sound_PlayEffect(1500);

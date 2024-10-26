@@ -511,7 +511,7 @@ void ov104_02232624(UnkStruct_ov104_02232B5C *param0)
     }
     Window_Show(&param0->unk_08, 1, 985, 12);
     ov104_02232830(param0);
-    param0->unk_1B4 = sub_0200112C((const ListMenuTemplate *)&param0->unk_194, 0, param0->unk_96, param0->unk_00->unk_34);
+    param0->unk_1B4 = ListMenu_New((const ListMenuTemplate *)&param0->unk_194, 0, param0->unk_96, param0->unk_00->unk_34);
     ov104_02232B2C(param0);
     param0->unk_04 = SysTask_Start(ov104_0223296C, param0, 0);
 }
@@ -600,9 +600,9 @@ static void ov104_02232830(UnkStruct_ov104_02232B5C *param0)
 static void ov104_0223293C(ListMenu *param0, u32 param1, u8 param2)
 {
     if (param1 == 0xfffffffd) {
-        sub_0200147C(param0, 3, 15, 4);
+        ListMenu_SetAltTextColors(param0, 3, 15, 4);
     } else {
-        sub_0200147C(param0, 1, 15, 2);
+        ListMenu_SetAltTextColors(param0, 1, 15, 2);
     }
 }
 
@@ -611,7 +611,7 @@ static void ov104_02232960(ListMenu *param0, u32 param1, u8 param2)
     u32 v0, v1;
     u16 v2 = 0;
     u16 v3 = 0;
-    UnkStruct_ov104_02232B5C *v4 = (UnkStruct_ov104_02232B5C *)sub_02001504(param0, 19);
+    UnkStruct_ov104_02232B5C *v4 = (UnkStruct_ov104_02232B5C *)ListMenu_GetAttribute(param0, 19);
 
     return;
 }
@@ -633,10 +633,10 @@ static void ov104_0223296C(SysTask *param0, void *param1)
         return;
     }
 
-    v1 = sub_02001288(v2->unk_1B4);
+    v1 = ListMenu_ProcessInput(v2->unk_1B4);
 
     v0 = v2->unk_2D4;
-    sub_020014D0(v2->unk_1B4, &v2->unk_2D4);
+    ListMenu_CalcTrueCursorPos(v2->unk_1B4, &v2->unk_2D4);
 
     if (v0 != v2->unk_2D4) {
         Sound_PlayEffect(1500);
@@ -681,7 +681,7 @@ static void ov104_02232A58(UnkStruct_ov104_02232B5C *param0, u8 param1)
         Sound_PlayEffect(1500);
     }
 
-    sub_02001384(param0->unk_1B4, NULL, NULL);
+    ListMenu_Free(param0->unk_1B4, NULL, NULL);
     Window_Clear(param0->unk_194.window, 0);
     Window_Remove(&param0->unk_08);
 
@@ -718,7 +718,7 @@ static void ov104_02232AC4(UnkStruct_ov104_02232B5C *param0, u16 param1, u32 par
 
 static void ov104_02232B2C(UnkStruct_ov104_02232B5C *param0)
 {
-    sub_020014D0(param0->unk_1B4, &param0->unk_1BA);
+    ListMenu_CalcTrueCursorPos(param0->unk_1B4, &param0->unk_1BA);
 
     if (param0->unk_29C[param0->unk_1BA] != 0xff) {
         ov104_02232AC4(param0, param0->unk_29C[param0->unk_1BA], TEXT_SPEED_INSTANT);

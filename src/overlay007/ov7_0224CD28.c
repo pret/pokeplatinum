@@ -647,12 +647,12 @@ static void ov7_0224D6BC(UnkStruct_ov7_0224D008 *param0)
     v2.count = param0->unk_294 + 1;
     v2.tmp = (void *)param0;
 
-    param0->unk_78 = sub_0200112C(&v2, 0, 0, 11);
+    param0->unk_78 = ListMenu_New(&v2, 0, 0, 11);
 }
 
 static void ov7_0224D85C(ListMenu *param0, u32 param1, u8 param2)
 {
-    UnkStruct_ov7_0224D008 *v0 = (UnkStruct_ov7_0224D008 *)sub_02001504(param0, 19);
+    UnkStruct_ov7_0224D008 *v0 = (UnkStruct_ov7_0224D008 *)ListMenu_GetAttribute(param0, 19);
 
     if (param2 != 1) {
         Sound_PlayEffect(1592);
@@ -696,7 +696,7 @@ static void ov7_0224D85C(ListMenu *param0, u32 param1, u8 param2)
         u32 v4;
         u16 v5, v6;
 
-        sub_020014DC(param0, &v5, &v6);
+        ListMenu_GetListAndCursorPos(param0, &v5, &v6);
 
         if (v5 == 0) {
             CellActor_SetDrawFlag(v0->unk_25C[0], 0);
@@ -704,7 +704,7 @@ static void ov7_0224D85C(ListMenu *param0, u32 param1, u8 param2)
             CellActor_SetDrawFlag(v0->unk_25C[0], 1);
         }
 
-        v4 = sub_02001504(param0, 2);
+        v4 = ListMenu_GetAttribute(param0, 2);
 
         if ((v4 > 7) && (v4 > v5 + 7)) {
             CellActor_SetDrawFlag(v0->unk_25C[1], 1);
@@ -717,7 +717,7 @@ static void ov7_0224D85C(ListMenu *param0, u32 param1, u8 param2)
 
 static void ov7_0224D9B8(ListMenu *param0, u32 param1, u8 param2)
 {
-    UnkStruct_ov7_0224D008 *v0 = (UnkStruct_ov7_0224D008 *)sub_02001504(param0, 19);
+    UnkStruct_ov7_0224D008 *v0 = (UnkStruct_ov7_0224D008 *)ListMenu_GetAttribute(param0, 19);
 
     if (param1 != 0xfffffffe) {
         Strbuf *v1;
@@ -821,9 +821,9 @@ static u8 ov7_0224DC84(UnkStruct_ov7_0224D008 *param0)
     u32 v0;
     u16 v1, v2;
 
-    sub_020014DC(param0->unk_78, NULL, &v1);
-    v0 = sub_02001288(param0->unk_78);
-    sub_020014DC(param0->unk_78, NULL, &v2);
+    ListMenu_GetListAndCursorPos(param0->unk_78, NULL, &v1);
+    v0 = ListMenu_ProcessInput(param0->unk_78);
+    ListMenu_GetListAndCursorPos(param0->unk_78, NULL, &v2);
 
     if (v1 != v2) {
         SpriteActor_SetPositionXY(param0->unk_25C[2], (176 - 4), 24 + v2 * 16);
@@ -833,7 +833,7 @@ static u8 ov7_0224DC84(UnkStruct_ov7_0224D008 *param0)
     case 0xffffffff:
         break;
     case 0xfffffffe:
-        sub_02001384(param0->unk_78, NULL, NULL);
+        ListMenu_Free(param0->unk_78, NULL, NULL);
         StringList_Free(param0->unk_7C);
         ov7_0224D44C(param0);
         ov7_0224D5D8(param0);

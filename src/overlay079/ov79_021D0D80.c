@@ -251,7 +251,7 @@ static int ov79_021D0FEC(UnkStruct_ov79_021D0E1C *param0)
 
     if (gCoreSys.heldKeys != 0) {
         if (param0->unk_14 == 0) {
-            v0 = sub_02001288(param0->unk_C4);
+            v0 = ListMenu_ProcessInput(param0->unk_C4);
         }
     } else {
         if (v1 >= 0) {
@@ -307,7 +307,7 @@ static int ov79_021D10B8(UnkStruct_ov79_021D0E1C *param0)
 {
     u32 v0;
 
-    v0 = sub_02001288(param0->unk_C8);
+    v0 = ListMenu_ProcessInput(param0->unk_C8);
 
     if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
         Sound_PlayEffect(1500);

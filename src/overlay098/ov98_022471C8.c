@@ -752,7 +752,7 @@ static int ov98_02247B98 (UnkStruct_ov98_02247704 * param0)
 
         v2.window = &param0->unk_78;
         v2.choices = param0->unk_A0;
-        param0->unk_A4 = sub_0200112C(&v2, 0, 0, 109);
+        param0->unk_A4 = ListMenu_New(&v2, 0, 0, 109);
 
         Window_Show(&param0->unk_78, 1, (1 + (18 + 12)), 11);
         sub_0200E084(&param0->unk_48, 1);
@@ -762,7 +762,7 @@ static int ov98_02247B98 (UnkStruct_ov98_02247704 * param0)
         param0->unk_94++;
         break;
     case 1:
-        v0 = sub_02001288(param0->unk_A4);
+        v0 = ListMenu_ProcessInput(param0->unk_A4);
 
         switch (v0) {
         case 0xffffffff:
@@ -782,7 +782,7 @@ static int ov98_02247B98 (UnkStruct_ov98_02247704 * param0)
         break;
     default:
         StringList_Free(param0->unk_A0);
-        sub_02001384(param0->unk_A4, NULL, NULL);
+        ListMenu_Free(param0->unk_A4, NULL, NULL);
         Window_Clear(&param0->unk_78, 1);
         Window_ClearAndCopyToVRAM(&param0->unk_78);
         Window_Remove(&param0->unk_78);

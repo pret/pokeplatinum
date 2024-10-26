@@ -1863,7 +1863,7 @@ static int ov88_0223D5B8(UnkStruct_02095E80 *param0)
     int v0;
     TrainerInfo *v1;
 
-    v0 = sub_02001288(param0->unk_36D8);
+    v0 = ListMenu_ProcessInput(param0->unk_36D8);
 
     switch (v0) {
     case 0xffffffff:
@@ -1894,7 +1894,7 @@ static int ov88_0223D5B8(UnkStruct_02095E80 *param0)
 
     Window_Clear(&param0->unk_36DC, 0);
     Window_Remove(&param0->unk_36DC);
-    sub_02001384(param0->unk_36D8, NULL, NULL);
+    ListMenu_Free(param0->unk_36D8, NULL, NULL);
     StringList_Free(param0->unk_36D4);
 
     return 0;

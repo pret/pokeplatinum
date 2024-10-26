@@ -287,7 +287,7 @@ static BOOL ov5_021EAB58(UnkStruct_ov5_021EAE78 *param0)
     v1.cursorCallback = ov5_021EAF90;
     v1.tmp = param0;
 
-    param0->unk_04 = sub_0200112C(&v1, 0, 0, 4);
+    param0->unk_04 = ListMenu_New(&v1, 0, 0, 4);
     Window_CopyToVRAM(&param0->unk_20);
     param0->unk_48 = 9;
 
@@ -299,7 +299,7 @@ static BOOL ov5_021EAC44(UnkStruct_ov5_021EAE78 *param0)
     TrainerInfo *v0;
     int v1;
 
-    v1 = sub_02001288(param0->unk_04);
+    v1 = ListMenu_ProcessInput(param0->unk_04);
 
     switch (v1) {
     case 0xffffffff:
@@ -331,7 +331,7 @@ static BOOL ov5_021EAC44(UnkStruct_ov5_021EAE78 *param0)
 
     Window_Clear(&param0->unk_20, 0);
     Window_Remove(&param0->unk_20);
-    sub_02001384(param0->unk_04, NULL, NULL);
+    ListMenu_Free(param0->unk_04, NULL, NULL);
     StringList_Free(param0->unk_00);
 
     return 0;

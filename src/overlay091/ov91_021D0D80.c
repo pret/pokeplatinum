@@ -666,9 +666,9 @@ static int ov91_021D122C(UnkStruct_ov91_021D0ED8 *param0)
         return 1;
     }
 
-    sub_020014DC(param0->unk_104, &v1, &v2);
-    v0 = sub_02001288(param0->unk_104);
-    sub_020014DC(param0->unk_104, &param0->unk_00->unk_12, &param0->unk_00->unk_10);
+    ListMenu_GetListAndCursorPos(param0->unk_104, &v1, &v2);
+    v0 = ListMenu_ProcessInput(param0->unk_104);
+    ListMenu_GetListAndCursorPos(param0->unk_104, &param0->unk_00->unk_12, &param0->unk_00->unk_10);
     ov91_021D237C(param0, v1, param0->unk_00->unk_12);
 
     if (param0->unk_00->unk_10 != v2) {
@@ -931,20 +931,20 @@ static void ov91_021D1784(UnkStruct_ov91_021D0ED8 *param0)
     v1.count = param0->unk_184;
     v1.tmp = (void *)param0;
 
-    param0->unk_104 = sub_0200112C(&v1, param0->unk_00->unk_12, param0->unk_00->unk_10, 67);
+    param0->unk_104 = ListMenu_New(&v1, param0->unk_00->unk_12, param0->unk_00->unk_10, 67);
 
     Window_ScheduleCopyToVRAM(&param0->unk_08[13]);
 }
 
 static void ov91_021D1868(UnkStruct_ov91_021D0ED8 *param0)
 {
-    sub_02001384(param0->unk_104, &param0->unk_00->unk_12, &param0->unk_00->unk_10);
+    ListMenu_Free(param0->unk_104, &param0->unk_00->unk_12, &param0->unk_00->unk_10);
     StringList_Free(param0->unk_108);
 }
 
 static void ov91_021D188C(ListMenu *param0, u32 param1, u8 param2)
 {
-    UnkStruct_ov91_021D0ED8 *v0 = (UnkStruct_ov91_021D0ED8 *)sub_02001504(param0, 19);
+    UnkStruct_ov91_021D0ED8 *v0 = (UnkStruct_ov91_021D0ED8 *)ListMenu_GetAttribute(param0, 19);
 
     if (param2 != 1) {
         Sound_PlayEffect(1501);

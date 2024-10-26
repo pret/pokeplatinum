@@ -672,7 +672,7 @@ void ov23_0224FB7C(UnkStruct_ov23_02250CD4 *param0)
     }
 
     if (param0->unk_48) {
-        sub_02001384(param0->unk_48, NULL, NULL);
+        ListMenu_Free(param0->unk_48, NULL, NULL);
         param0->unk_48 = NULL;
     } else if (param0->unk_25C) {
         ov23_0224F460(param0);
@@ -757,13 +757,13 @@ static void ov23_0224FBFC(UnkStruct_ov23_02250CD4 *param0, int param1)
     v0.window = &param0->unk_20;
     v0.tmp = param0;
 
-    param0->unk_50 = sub_0200112C(&v0, 0, 0, 4);
+    param0->unk_50 = ListMenu_New(&v0, 0, 0, 4);
 }
 
 static void ov23_0224FCF4(UnkStruct_ov23_02250CD4 *param0)
 {
     if (param0->unk_50) {
-        sub_02001384(param0->unk_50, NULL, NULL);
+        ListMenu_Free(param0->unk_50, NULL, NULL);
         Bg_ScheduleTilemapTransfer(param0->unk_20.bgConfig, param0->unk_20.bgLayer);
         StringList_Free(param0->unk_44);
 
@@ -798,7 +798,7 @@ void ov23_0224FD68(int param0)
 
 void ov23_0224FD84(ListMenu *param0, u32 param1, u8 param2)
 {
-    UnkStruct_ov23_02250CD4 *v0 = (UnkStruct_ov23_02250CD4 *)sub_02001504(param0, 19);
+    UnkStruct_ov23_02250CD4 *v0 = (UnkStruct_ov23_02250CD4 *)ListMenu_GetAttribute(param0, 19);
     UnkFuncPtr_ov23_0224FD84 v1 = v0->unk_268;
     int v2 = param1;
     int v3 = v1(v2, v0);
@@ -886,7 +886,7 @@ static BOOL ov23_0224FF58(SysTask *param0, void *param1)
 
     v1 = ov23_02248D20(v0->unk_4C);
 
-    sub_020014DC(v0->unk_4C->unk_0C, &v2, &v3);
+    ListMenu_GetListAndCursorPos(v0->unk_4C->unk_0C, &v2, &v3);
     ov23_022430E0(8, v3, v2);
 
     if (CommSys_CheckError()) {
@@ -899,7 +899,7 @@ static BOOL ov23_0224FF58(SysTask *param0, void *param1)
 
     switch (v1) {
     case 0xffffffff:
-        ov23_0225128C(v0, v2, sub_02001504(v0->unk_4C->unk_0C, 2), 6);
+        ov23_0225128C(v0, v2, ListMenu_GetAttribute(v0->unk_4C->unk_0C, 2), 6);
         return 0;
     case 0xfffffffe:
         ov23_0224FD3C(v0);
@@ -937,10 +937,10 @@ static BOOL ov23_02250048(SysTask *param0, void *param1)
     u32 v1;
     u16 v2;
 
-    v1 = sub_02001288(v0->unk_50);
+    v1 = ListMenu_ProcessInput(v0->unk_50);
     v2 = v0->unk_2B0;
 
-    sub_020014D0(v0->unk_50, &v0->unk_2B0);
+    ListMenu_CalcTrueCursorPos(v0->unk_50, &v0->unk_2B0);
 
     if (v2 != v0->unk_2B0) {
         Sound_PlayEffect(1500);
@@ -987,7 +987,7 @@ void ov23_02250128(int param0)
 
 static void ov23_0225014C(ListMenu *param0, u32 param1, u8 param2)
 {
-    UnkStruct_ov23_02250CD4 *v0 = (UnkStruct_ov23_02250CD4 *)sub_02001504(param0, 19);
+    UnkStruct_ov23_02250CD4 *v0 = (UnkStruct_ov23_02250CD4 *)ListMenu_GetAttribute(param0, 19);
     UnkFuncPtr_ov23_0224FD84 v1 = v0->unk_268;
     int v2 = param1;
     int v3 = v1(v2, v0);
@@ -1080,7 +1080,7 @@ static BOOL ov23_02250378(SysTask *param0, void *param1)
 
     v1 = ov23_02248D20(v0->unk_4C);
 
-    sub_020014DC(v0->unk_4C->unk_0C, &v2, &v3);
+    ListMenu_GetListAndCursorPos(v0->unk_4C->unk_0C, &v2, &v3);
     ov23_022430E0(9, v3, v2);
 
     if (CommSys_CheckError()) {
@@ -1093,7 +1093,7 @@ static BOOL ov23_02250378(SysTask *param0, void *param1)
 
     switch (v1) {
     case 0xffffffff:
-        ov23_0225128C(v0, v2, sub_02001504(v0->unk_4C->unk_0C, 2), 6);
+        ov23_0225128C(v0, v2, ListMenu_GetAttribute(v0->unk_4C->unk_0C, 2), 6);
         return 0;
     case 0xfffffffe:
         ov23_0224FD3C(v0);
@@ -1120,10 +1120,10 @@ static BOOL ov23_0225044C(SysTask *param0, void *param1)
     u32 v1;
     u16 v2;
 
-    v1 = sub_02001288(v0->unk_50);
+    v1 = ListMenu_ProcessInput(v0->unk_50);
     v2 = v0->unk_2B0;
 
-    sub_020014D0(v0->unk_50, &v0->unk_2B0);
+    ListMenu_CalcTrueCursorPos(v0->unk_50, &v0->unk_2B0);
 
     if (v2 != v0->unk_2B0) {
         Sound_PlayEffect(1500);
@@ -1167,7 +1167,7 @@ static BOOL ov23_0225044C(SysTask *param0, void *param1)
 
 void ov23_02250540(ListMenu *param0, u32 param1, u8 param2)
 {
-    UnkStruct_ov23_02250CD4 *v0 = (UnkStruct_ov23_02250CD4 *)sub_02001504(param0, 19);
+    UnkStruct_ov23_02250CD4 *v0 = (UnkStruct_ov23_02250CD4 *)ListMenu_GetAttribute(param0, 19);
     UnkFuncPtr_ov23_0224FD84 v1 = v0->unk_268;
     int v2 = param1;
     int v3 = v1(v2, v0);
@@ -1252,7 +1252,7 @@ static BOOL ov23_02250704(SysTask *param0, void *param1)
 
     v1 = ov23_02248D20(v0->unk_4C);
 
-    sub_020014DC(v0->unk_4C->unk_0C, &v2, &v3);
+    ListMenu_GetListAndCursorPos(v0->unk_4C->unk_0C, &v2, &v3);
     ov23_022430E0(11, v3, v2);
 
     if (CommSys_CheckError()) {
@@ -1265,7 +1265,7 @@ static BOOL ov23_02250704(SysTask *param0, void *param1)
 
     switch (v1) {
     case 0xffffffff:
-        ov23_0225128C(v0, v2, sub_02001504(v0->unk_4C->unk_0C, 2), 6);
+        ov23_0225128C(v0, v2, ListMenu_GetAttribute(v0->unk_4C->unk_0C, 2), 6);
         return 0;
     case 0xfffffffe:
         ov23_0224FD3C(v0);
@@ -1296,10 +1296,10 @@ static BOOL ov23_022507D8(SysTask *param0, void *param1)
     u32 v1;
     u16 v2;
 
-    v1 = sub_02001288(v0->unk_50);
+    v1 = ListMenu_ProcessInput(v0->unk_50);
     v2 = v0->unk_2B0;
 
-    sub_020014D0(v0->unk_50, &v0->unk_2B0);
+    ListMenu_CalcTrueCursorPos(v0->unk_50, &v0->unk_2B0);
 
     if (v2 != v0->unk_2B0) {
         Sound_PlayEffect(1500);
@@ -1533,7 +1533,7 @@ static void ov23_02250B9C(SysTask *param0, void *param1)
 
 void ov23_02250C3C(ListMenu *param0, u32 param1, u8 param2)
 {
-    UnkStruct_ov23_02250CD4 *v0 = (UnkStruct_ov23_02250CD4 *)sub_02001504(param0, 19);
+    UnkStruct_ov23_02250CD4 *v0 = (UnkStruct_ov23_02250CD4 *)ListMenu_GetAttribute(param0, 19);
     UnkFuncPtr_ov23_0224FD84 v1 = v0->unk_268;
     int v2 = param1;
     int v3 = v1(v2, v0);
@@ -1549,14 +1549,14 @@ void ov23_02250C3C(ListMenu *param0, u32 param1, u8 param2)
 
 static void ov23_02250C74(ListMenu *param0, u32 param1, u8 param2)
 {
-    UnkStruct_ov23_02250CD4 *v0 = (UnkStruct_ov23_02250CD4 *)sub_02001504(param0, 19);
+    UnkStruct_ov23_02250CD4 *v0 = (UnkStruct_ov23_02250CD4 *)ListMenu_GetAttribute(param0, 19);
     int v1 = param1;
     UndergroundData *v2 = sub_020298B0(FieldSystem_SaveData(v0->fieldSystem));
 
     if (!sub_02028AFC(v2, v1)) {
-        sub_0200147C(param0, 1, 15, 2);
+        ListMenu_SetAltTextColors(param0, 1, 15, 2);
     } else {
-        sub_0200147C(param0, 2, 15, 2);
+        ListMenu_SetAltTextColors(param0, 2, 15, 2);
     }
 }
 
@@ -1654,7 +1654,7 @@ static BOOL ov23_02250EAC(SysTask *param0, void *param1)
 
     v1 = ov23_02248D20(v0->unk_4C);
 
-    sub_020014DC(v0->unk_4C->unk_0C, &v2, &v3);
+    ListMenu_GetListAndCursorPos(v0->unk_4C->unk_0C, &v2, &v3);
     ov23_022430E0(10, v3, v2);
 
     if (CommSys_CheckError()) {
@@ -1667,7 +1667,7 @@ static BOOL ov23_02250EAC(SysTask *param0, void *param1)
 
     switch (v1) {
     case 0xffffffff:
-        ov23_0225128C(v0, v2, sub_02001504(v0->unk_4C->unk_0C, 2), 6);
+        ov23_0225128C(v0, v2, ListMenu_GetAttribute(v0->unk_4C->unk_0C, 2), 6);
         return 0;
     case 0xfffffffe:
         Sound_PlayEffect(1500);
@@ -1699,10 +1699,10 @@ static BOOL ov23_02250F8C(SysTask *param0, void *param1)
     u32 v1;
     u16 v2;
 
-    v1 = sub_02001288(v0->unk_50);
+    v1 = ListMenu_ProcessInput(v0->unk_50);
     v2 = v0->unk_2B0;
 
-    sub_020014D0(v0->unk_50, &v0->unk_2B0);
+    ListMenu_CalcTrueCursorPos(v0->unk_50, &v0->unk_2B0);
 
     if (v2 != v0->unk_2B0) {
         Sound_PlayEffect(1500);

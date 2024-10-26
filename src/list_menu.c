@@ -21,7 +21,7 @@ static void ScrollList(ListMenu *menu, u8 lineCount, u8 isUpward);
 static u8 UpdateSelectedRow(ListMenu *menu, u8 updateCursor, u8 scrollCount, u8 movingDown);
 static void InvokeCursorCallback(ListMenu *menu, u8 onInit);
 
-ListMenu *sub_0200112C(const ListMenuTemplate *param0, u16 param1, u16 param2, u8 param3)
+ListMenu *ListMenu_New(const ListMenuTemplate *param0, u16 param1, u16 param2, u8 param3)
 {
     ListMenu *v0 = (ListMenu *)Heap_AllocFromHeap(param3, sizeof(ListMenu));
 
@@ -56,7 +56,7 @@ ListMenu *sub_0200112C(const ListMenuTemplate *param0, u16 param1, u16 param2, u
     return v0;
 }
 
-u32 sub_02001288(ListMenu *param0)
+u32 ListMenu_ProcessInput(ListMenu *param0)
 {
     u16 v0, v1;
 
@@ -121,7 +121,7 @@ u32 sub_02001288(ListMenu *param0)
     return 0xffffffff;
 }
 
-void sub_02001384(ListMenu *param0, u16 *param1, u16 *param2)
+void ListMenu_Free(ListMenu *param0, u16 *param1, u16 *param2)
 {
     if (param1 != NULL) {
         *param1 = param0->listPos;
@@ -135,7 +135,7 @@ void sub_02001384(ListMenu *param0, u16 *param1, u16 *param2)
     Heap_FreeToHeapExplicit(param0->heapID, param0);
 }
 
-void sub_020013AC(ListMenu *param0)
+void ListMenu_Draw(ListMenu *param0)
 {
     Window_FillTilemap(param0->template.window, param0->template.textColorBg);
     PrintEntries(param0, param0->listPos, 0, param0->template.maxDisplay);
@@ -143,14 +143,14 @@ void sub_020013AC(ListMenu *param0)
     Window_CopyToVRAM(param0->template.window);
 }
 
-void sub_020013D8(ListMenu *param0, u8 param1, u8 param2, u8 param3)
+void ListMenu_SetTextColors(ListMenu *param0, u8 param1, u8 param2, u8 param3)
 {
     param0->template.textColorFg = param1;
     param0->template.textColorBg = param2;
     param0->template.textColorShadow = param3;
 }
 
-u32 sub_02001408(ListMenu *param0, ListMenuTemplate *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 *param6, u16 *param7)
+u32 ListMenu_TestInput(ListMenu *param0, ListMenuTemplate *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 *param6, u16 *param7)
 {
     if (param1) {
         param0->template = *param1;
@@ -178,7 +178,7 @@ u32 sub_02001408(ListMenu *param0, ListMenuTemplate *param1, u16 param2, u16 par
     return 0xffffffff;
 }
 
-void sub_0200147C(ListMenu *param0, u8 param1, u8 param2, u8 param3)
+void ListMenu_SetAltTextColors(ListMenu *param0, u8 param1, u8 param2, u8 param3)
 {
     param0->altFont.textColorFg = param1;
     param0->altFont.textColorBg = param2;
@@ -186,12 +186,12 @@ void sub_0200147C(ListMenu *param0, u8 param1, u8 param2, u8 param3)
     param0->altFont.prefer = 1;
 }
 
-void sub_020014D0(ListMenu *param0, u16 *param1)
+void ListMenu_CalcTrueCursorPos(ListMenu *param0, u16 *param1)
 {
     *param1 = (u16)(param0->listPos + param0->cursorPos);
 }
 
-void sub_020014DC(ListMenu *param0, u16 *param1, u16 *param2)
+void ListMenu_GetListAndCursorPos(ListMenu *param0, u16 *param1, u16 *param2)
 {
     if (param1 != NULL) {
         *param1 = param0->listPos;
@@ -202,17 +202,17 @@ void sub_020014DC(ListMenu *param0, u16 *param1, u16 *param2)
     }
 }
 
-u8 sub_020014F0(ListMenu *param0)
+u8 ListMenu_GetLastAction(ListMenu *param0)
 {
     return param0->lastAction;
 }
 
-u32 sub_020014F8(ListMenu *param0, u16 param1)
+u32 ListMenu_GetIndexOfChoice(ListMenu *param0, u16 param1)
 {
     return param0->template.choices[param1].index;
 }
 
-u32 sub_02001504(ListMenu *param0, u8 param1)
+u32 ListMenu_GetAttribute(ListMenu *param0, u8 param1)
 {
     u32 v0;
 
@@ -281,7 +281,7 @@ u32 sub_02001504(ListMenu *param0, u8 param1)
     return v0;
 }
 
-void sub_020015CC(ListMenu *param0, StringList *param1)
+void ListMenu_SetChoices(ListMenu *param0, StringList *param1)
 {
     param0->template.choices = param1;
 }

@@ -57,18 +57,18 @@ struct ListMenu {
     u8 heapID;
 };
 
-ListMenu *sub_0200112C(const ListMenuTemplate *param0, u16 param1, u16 param2, u8 param3);
-u32 sub_02001288(ListMenu *param0);
-void sub_02001384(ListMenu *param0, u16 *param1, u16 *param2);
-void sub_020013AC(ListMenu *param0);
-void sub_020013D8(ListMenu *param0, u8 param1, u8 param2, u8 param3);
-u32 sub_02001408(ListMenu *param0, ListMenuTemplate *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 *param6, u16 *param7);
-void sub_0200147C(ListMenu *param0, u8 param1, u8 param2, u8 param3);
-void sub_020014D0(ListMenu *param0, u16 *param1);
-void sub_020014DC(ListMenu *param0, u16 *param1, u16 *param2);
-u8 sub_020014F0(ListMenu *param0);
-u32 sub_020014F8(ListMenu *param0, u16 param1);
-u32 sub_02001504(ListMenu *param0, u8 param1);
-void sub_020015CC(ListMenu *param0, StringList *param1);
+ListMenu *ListMenu_New(const ListMenuTemplate *param0, u16 param1, u16 param2, u8 param3);
+u32 ListMenu_ProcessInput(ListMenu *param0);
+void ListMenu_Free(ListMenu *param0, u16 *param1, u16 *param2);
+void ListMenu_Draw(ListMenu *param0);
+void ListMenu_SetTextColors(ListMenu *param0, u8 param1, u8 param2, u8 param3);
+u32 ListMenu_TestInput(ListMenu *param0, ListMenuTemplate *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 *param6, u16 *param7);
+void ListMenu_SetAltTextColors(ListMenu *param0, u8 param1, u8 param2, u8 param3);
+void ListMenu_CalcTrueCursorPos(ListMenu *param0, u16 *param1);
+void ListMenu_GetListAndCursorPos(ListMenu *param0, u16 *param1, u16 *param2);
+u8 ListMenu_GetLastAction(ListMenu *param0);
+u32 ListMenu_GetIndexOfChoice(ListMenu *param0, u16 param1);
+u32 ListMenu_GetAttribute(ListMenu *param0, u8 param1);
+void ListMenu_SetChoices(ListMenu *param0, StringList *param1);
 
 #endif // POKEPLATINUM_LIST_MENU_H

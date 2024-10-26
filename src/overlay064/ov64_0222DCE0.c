@@ -2417,7 +2417,7 @@ static void ov64_0222FA70 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222
     }
 
     v0.window = &param0->unk_E0;
-    param0->unk_F8 = sub_0200112C(&v0, 0, 0, param3);
+    param0->unk_F8 = ListMenu_New(&v0, 0, 0, param3);
 
     Window_Show(&param0->unk_E0, 1, 1, 9);
     Window_ScheduleCopyToVRAM(&param0->unk_E0);
@@ -2436,7 +2436,7 @@ static u32 ov64_0222FB24 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222E
         return v1;
     }
 
-    v0 = sub_02001288(param0->unk_F8);
+    v0 = ListMenu_ProcessInput(param0->unk_F8);
 
     switch (v0) {
     case 0xffffffff:
@@ -2456,7 +2456,7 @@ static u32 ov64_0222FB24 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222E
 
     Window_Clear(&param0->unk_E0, 1);
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_E0);
-    sub_02001384(param0->unk_F8, NULL, NULL);
+    ListMenu_Free(param0->unk_F8, NULL, NULL);
 
     if (v1 == 2) {
         ov64_0222EA28(param2, 1);

@@ -517,9 +517,9 @@ static BOOL ov107_022462CC (UnkStruct_ov107_02246170 * param0)
         }
         break;
     case 2:
-        v7 = sub_02001288(param0->unk_138);
+        v7 = ListMenu_ProcessInput(param0->unk_138);
         ov107_02249CE0(v7, 1500);
-        sub_020014D0(param0->unk_138, &param0->unk_18);
+        ListMenu_CalcTrueCursorPos(param0->unk_138, &param0->unk_18);
 
         switch (v7) {
         case 0xffffffff:
@@ -700,9 +700,9 @@ static BOOL ov107_022462CC (UnkStruct_ov107_02246170 * param0)
         }
         break;
     case 6:
-        v7 = sub_02001288(param0->unk_138);
+        v7 = ListMenu_ProcessInput(param0->unk_138);
         ov107_02249CE0(v7, 1500);
-        sub_020014D0(param0->unk_138, &param0->unk_18);
+        ListMenu_CalcTrueCursorPos(param0->unk_138, &param0->unk_18);
 
         switch (v7) {
         case 0xffffffff:
@@ -1984,7 +1984,7 @@ static void ov107_02247E5C (UnkStruct_ov107_02246170 * param0)
     v1.textColorBg = 15;
     v1.maxDisplay = 4;
 
-    param0->unk_138 = sub_0200112C(&v1, param0->unk_1C, param0->unk_1E, 100);
+    param0->unk_138 = ListMenu_New(&v1, param0->unk_1C, param0->unk_1E, 100);
     param0->unk_0F_1 = 1;
 
     Window_ScheduleCopyToVRAM(&param0->unk_50[5]);
@@ -1995,13 +1995,13 @@ static void ov107_02247F14(ListMenu *param0, u32 param1, u8 param2)
 {
     u32 v0, v1;
     u16 v2, v3, v4;
-    UnkStruct_ov107_02246170 * v5 = (UnkStruct_ov107_02246170 *)sub_02001504(param0, 19);
+    UnkStruct_ov107_02246170 *v5 = (UnkStruct_ov107_02246170 *)ListMenu_GetAttribute(param0, 19);
 
     if (param2 == 0) {
         Sound_PlayEffect(1500);
     }
 
-    sub_020014D0(param0, &v4);
+    ListMenu_CalcTrueCursorPos(param0, &v4);
     ov107_02247650(v5, &v5->unk_50[9], Unk_ov107_0224A0CC[v4], 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
 
     return;
@@ -2046,7 +2046,7 @@ static void ov107_02247F6C (UnkStruct_ov107_02246170 * param0)
     v1.textColorBg = 15;
     v1.maxDisplay = 4;
 
-    param0->unk_138 = sub_0200112C(&v1, 0, 0, 100);
+    param0->unk_138 = ListMenu_New(&v1, 0, 0, 100);
     param0->unk_0F_1 = 1;
 
     Window_ScheduleCopyToVRAM(&param0->unk_50[6]);
@@ -2057,13 +2057,13 @@ static void ov107_02248028(ListMenu *param0, u32 param1, u8 param2)
 {
     u8 v0, v1;
     u16 v2;
-    UnkStruct_ov107_02246170 * v3 = (UnkStruct_ov107_02246170 *)sub_02001504(param0, 19);
+    UnkStruct_ov107_02246170 *v3 = (UnkStruct_ov107_02246170 *)ListMenu_GetAttribute(param0, 19);
 
     if (param2 == 0) {
         Sound_PlayEffect(1500);
     }
 
-    sub_020014D0(param0, &v2);
+    ListMenu_CalcTrueCursorPos(param0, &v2);
 
     v0 = ov107_02249CAC(v3->unk_14C, v3->unk_09, 2);
 
@@ -2081,7 +2081,7 @@ static void ov107_02248028(ListMenu *param0, u32 param1, u8 param2)
 static void ov107_022480A0(ListMenu *param0, u32 param1, u8 param2)
 {
     u8 v0, v1;
-    UnkStruct_ov107_02246170 * v2 = (UnkStruct_ov107_02246170 *)sub_02001504(param0, 19);
+    UnkStruct_ov107_02246170 *v2 = (UnkStruct_ov107_02246170 *)ListMenu_GetAttribute(param0, 19);
 
     v0 = ov107_02249CAC(v2->unk_14C, v2->unk_09, 2);
     v1 = 1;
@@ -2106,7 +2106,7 @@ static void ov107_022480A0(ListMenu *param0, u32 param1, u8 param2)
         break;
     }
 
-    sub_020013D8(param0, v1, 15, 2);
+    ListMenu_SetTextColors(param0, v1, 15, 2);
     return;
 }
 
@@ -2219,7 +2219,7 @@ static void ov107_022482B0 (UnkStruct_ov107_02246170 * param0)
 
 static void ov107_022482D4 (UnkStruct_ov107_02246170 * param0)
 {
-    sub_020014DC(param0->unk_138, &param0->unk_1C, &param0->unk_1E);
+    ListMenu_GetListAndCursorPos(param0->unk_138, &param0->unk_1C, &param0->unk_1E);
 
     ov107_02248860(&param0->unk_50[9]);
     ov107_02249258(param0);
@@ -3368,13 +3368,13 @@ static void ov107_02249258 (UnkStruct_ov107_02246170 * param0)
     if (param0->unk_0F_1 == 1) {
         param0->unk_0F_1 = 0;
 
-        v0 = (Window *)sub_02001504(param0->unk_138, 18);
+        v0 = (Window *)ListMenu_GetAttribute(param0->unk_138, 18);
 
         Window_Clear(v0, 1);
         Window_FillTilemap(v0, 0);
         Window_ClearAndScheduleCopyToVRAM(v0);
         StringList_Free(param0->unk_13C);
-        sub_02001384(param0->unk_138, NULL, NULL);
+        ListMenu_Free(param0->unk_138, NULL, NULL);
     }
 
     return;

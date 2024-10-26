@@ -203,7 +203,7 @@ static void ov23_0225437C(UnkStruct_ov23_022542D8 *param0)
     v0.window = &param0->unk_04;
     v0.cursorCallback = ov23_02254350;
 
-    param0->unk_28 = sub_0200112C(&v0, *(param0->unk_30), *(param0->unk_34), 4);
+    param0->unk_28 = ListMenu_New(&v0, *(param0->unk_30), *(param0->unk_34), 4);
     Window_CopyToVRAM(&param0->unk_04);
     Window_CopyToVRAM(&param0->unk_14);
     param0->unk_38 = 1;
@@ -213,7 +213,7 @@ static void ov23_022544C0(UnkStruct_ov23_022542D8 *param0)
 {
     u32 v0;
 
-    v0 = sub_02001288(param0->unk_28);
+    v0 = ListMenu_ProcessInput(param0->unk_28);
 
     ov23_022549EC(param0);
 
@@ -246,7 +246,7 @@ static void ov23_0225451C(UnkStruct_ov23_022542D8 *param0)
     ov23_02254044(ov23_022421CC());
 
     Window_Clear(&param0->unk_14, 1);
-    sub_02001384(param0->unk_28, param0->unk_30, param0->unk_34);
+    ListMenu_Free(param0->unk_28, param0->unk_30, param0->unk_34);
     Window_Clear(&param0->unk_04, 1);
     Bg_ScheduleTilemapTransfer(param0->unk_04.bgConfig, param0->unk_04.bgLayer);
     Window_Remove(&param0->unk_04);
@@ -261,9 +261,9 @@ static void ov23_02254564(ListMenu *param0, u32 param1, u8 param2)
     v0 = param1 & 0x1;
 
     if (v0) {
-        sub_0200147C(param0, 1, 15, 2);
+        ListMenu_SetAltTextColors(param0, 1, 15, 2);
     } else {
-        sub_0200147C(param0, 2, 15, 2);
+        ListMenu_SetAltTextColors(param0, 2, 15, 2);
     }
 }
 
@@ -338,8 +338,8 @@ static void ov23_0225461C(UnkStruct_ov23_02254594 *param0)
     }
 
     {
-        sub_020014DC(param0->unk_2C->unk_0C, &v2, &v3);
-        ov23_022549A8(param0->unk_04, v2, sub_02001504(param0->unk_2C->unk_0C, 2), sub_02001504(param0->unk_2C->unk_0C, 3));
+        ListMenu_GetListAndCursorPos(param0->unk_2C->unk_0C, &v2, &v3);
+        ov23_022549A8(param0->unk_04, v2, ListMenu_GetAttribute(param0->unk_2C->unk_0C, 2), ListMenu_GetAttribute(param0->unk_2C->unk_0C, 3));
     }
 
     switch (v0) {
@@ -367,8 +367,8 @@ static void ov23_022546A0(ListMenu *param0, u32 param1, u8 param2)
     u32 v2;
     u32 v3;
 
-    v1 = (UndergroundData *)sub_02001504(param0, 19);
-    v3 = sub_02001504(param0, 2);
+    v1 = (UndergroundData *)ListMenu_GetAttribute(param0, 19);
+    v3 = ListMenu_GetAttribute(param0, 2);
     v2 = (param1 >> 1);
 
     if (v2 == v3 - 1) {
@@ -532,7 +532,7 @@ static void ov23_022549EC(UnkStruct_ov23_022542D8 *param0)
     u16 v0;
 
     v0 = param0->unk_40;
-    sub_020014D0(param0->unk_28, &param0->unk_40);
+    ListMenu_CalcTrueCursorPos(param0->unk_28, &param0->unk_40);
 
     if (v0 != param0->unk_40) {
         Sound_PlayEffect(1500);

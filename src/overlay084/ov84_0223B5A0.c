@@ -1081,13 +1081,13 @@ static void ov84_0223C224(UnkStruct_ov84_0223B5A0 *param0, u16 param1, u16 param
         v0.textXOffset = 0;
     }
 
-    param0->unk_15C = sub_0200112C(&v0, param1, param2, 6);
+    param0->unk_15C = ListMenu_New(&v0, param1, param2, 6);
     Window_ScheduleCopyToVRAM(&param0->unk_04[0]);
 }
 
 static void ov84_0223C2AC(ListMenu *param0, u32 param1, u8 param2)
 {
-    UnkStruct_ov84_0223B5A0 *v0 = (UnkStruct_ov84_0223B5A0 *)sub_02001504(param0, 19);
+    UnkStruct_ov84_0223B5A0 *v0 = (UnkStruct_ov84_0223B5A0 *)ListMenu_GetAttribute(param0, 19);
 
     if (param2 != 1) {
         switch (v0->unk_482) {
@@ -1134,13 +1134,13 @@ static void ov84_0223C2AC(ListMenu *param0, u32 param1, u8 param2)
 
 static void ov84_0223C3B8(ListMenu *param0, u32 param1, u8 param2)
 {
-    UnkStruct_ov84_0223B5A0 *v0 = (UnkStruct_ov84_0223B5A0 *)sub_02001504(param0, 19);
+    UnkStruct_ov84_0223B5A0 *v0 = (UnkStruct_ov84_0223B5A0 *)ListMenu_GetAttribute(param0, 19);
     UnkStruct_ov84_0223BE5C *v1 = &v0->unk_C4->unk_04[v0->unk_C4->unk_64];
 
     if ((v0->unk_47A == 1) && (v0->unk_47C == param1)) {
-        sub_0200147C(param0, 8, 0, 9);
+        ListMenu_SetAltTextColors(param0, 8, 0, 9);
     } else {
-        sub_0200147C(param0, 1, 0, 2);
+        ListMenu_SetAltTextColors(param0, 1, 0, 2);
     }
 
     if (v1->unk_08 == 7) {
@@ -1174,7 +1174,7 @@ static void ov84_0223C3B8(ListMenu *param0, u32 param1, u8 param2)
 
 static void ov84_0223C4E0(UnkStruct_ov84_0223B5A0 *param0)
 {
-    sub_02001384(param0->unk_15C, &param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06, &param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04);
+    ListMenu_Free(param0->unk_15C, &param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06, &param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04);
     StringList_Free(param0->unk_160);
     param0->unk_15C = NULL;
 }
@@ -1227,7 +1227,7 @@ static u8 ov84_0223C5B8(UnkStruct_ov84_0223B5A0 *param0)
     u16 v2, v3;
 
     v0 = &param0->unk_C4->unk_04[param0->unk_C4->unk_64];
-    sub_020014DC(param0->unk_15C, &v0->unk_06, &v0->unk_04);
+    ListMenu_GetListAndCursorPos(param0->unk_15C, &v0->unk_06, &v0->unk_04);
 
     if (gCoreSys.pressedKeys & PAD_BUTTON_SELECT) {
         if (ov84_0223D244(param0) == 1) {
@@ -1236,8 +1236,8 @@ static u8 ov84_0223C5B8(UnkStruct_ov84_0223B5A0 *param0)
         }
     }
 
-    v1 = sub_02001288(param0->unk_15C);
-    sub_020014DC(param0->unk_15C, &v2, &v3);
+    v1 = ListMenu_ProcessInput(param0->unk_15C);
+    ListMenu_GetListAndCursorPos(param0->unk_15C, &v2, &v3);
 
     if (v0->unk_04 != v3) {
         SpriteActor_SetSpritePositionXY(
@@ -1249,14 +1249,14 @@ static u8 ov84_0223C5B8(UnkStruct_ov84_0223B5A0 *param0)
 
     if (v1 == 0xffffffff) {
         if (ov84_0223D1F4(param0) == 1) {
-            v1 = sub_020014F8(param0->unk_15C, v2 + v3);
+            v1 = ListMenu_GetIndexOfChoice(param0->unk_15C, v2 + v3);
             param0->unk_490 = 1;
         }
     }
 
     switch (v1) {
     case 0xffffffff: {
-        u8 v4 = sub_020014F0(param0->unk_15C);
+        u8 v4 = ListMenu_GetLastAction(param0->unk_15C);
 
         if (v4 == 1) {
             ov84_0223EB08(param0, 36);
@@ -1534,7 +1534,7 @@ static u8 ov84_0223CBD8(UnkStruct_ov84_0223B5A0 *param0)
             ov84_0223F2FC(param0);
         } else {
             if (param0->unk_15C != NULL) {
-                sub_02001384(param0->unk_15C, &param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06, &param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04);
+                ListMenu_Free(param0->unk_15C, &param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06, &param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04);
                 StringList_Free(param0->unk_160);
             }
 
@@ -1809,7 +1809,7 @@ static u8 ov84_0223D244(UnkStruct_ov84_0223B5A0 *param0)
 {
     UnkStruct_ov84_0223BE5C *v0 = &param0->unk_C4->unk_04[param0->unk_C4->unk_64];
 
-    if (sub_020014F8(param0->unk_15C, v0->unk_06 + v0->unk_04) == 0xfffffffe) {
+    if (ListMenu_GetIndexOfChoice(param0->unk_15C, v0->unk_06 + v0->unk_04) == 0xfffffffe) {
         return 0;
     }
 
@@ -1830,10 +1830,10 @@ static void ov84_0223D2A0(UnkStruct_ov84_0223B5A0 *param0)
 
     param0->unk_47A = 1;
     param0->unk_47B = v0->unk_06 + v0->unk_04;
-    param0->unk_47C = sub_020014F8(param0->unk_15C, param0->unk_47B);
+    param0->unk_47C = ListMenu_GetIndexOfChoice(param0->unk_15C, param0->unk_47B);
 
     ov84_0223FE18(param0);
-    sub_020013AC(param0->unk_15C);
+    ListMenu_Draw(param0->unk_15C);
     ov84_0223D4E8(param0);
 }
 
@@ -1848,7 +1848,7 @@ static u8 ov84_0223D2F8(UnkStruct_ov84_0223B5A0 *param0)
     }
 
     v0 = &param0->unk_C4->unk_04[param0->unk_C4->unk_64];
-    sub_020014DC(param0->unk_15C, &v0->unk_06, &v0->unk_04);
+    ListMenu_GetListAndCursorPos(param0->unk_15C, &v0->unk_06, &v0->unk_04);
 
     if (ov84_0223D1F4(param0) == 1) {
         Sound_PlayEffect(1500);
@@ -1864,8 +1864,8 @@ static u8 ov84_0223D2F8(UnkStruct_ov84_0223B5A0 *param0)
         return 1;
     }
 
-    v1 = sub_02001288(param0->unk_15C);
-    sub_020014DC(param0->unk_15C, &v2, &v3);
+    v1 = ListMenu_ProcessInput(param0->unk_15C);
+    ListMenu_GetListAndCursorPos(param0->unk_15C, &v2, &v3);
 
     if (v0->unk_04 != v3) {
         SpriteActor_SetSpritePositionXY(param0->unk_E0[5], 177, 24 + (v3 - 1) * 16 - 8);
@@ -1876,7 +1876,7 @@ static u8 ov84_0223D2F8(UnkStruct_ov84_0223B5A0 *param0)
 
     switch (v1) {
     case 0xffffffff: {
-        u8 v4 = sub_020014F0(param0->unk_15C);
+        u8 v4 = ListMenu_GetLastAction(param0->unk_15C);
 
         if (v4 == 1) {
             ov84_0223EB08(param0, 36);
@@ -1921,7 +1921,7 @@ static void ov84_0223D484(UnkStruct_ov84_0223B5A0 *param0)
 {
     UnkStruct_ov84_0223BE5C *v0 = &param0->unk_C4->unk_04[param0->unk_C4->unk_64];
 
-    sub_02001384(param0->unk_15C, &v0->unk_06, &v0->unk_04);
+    ListMenu_Free(param0->unk_15C, &v0->unk_06, &v0->unk_04);
     param0->unk_15C = NULL;
 
     if (param0->unk_47B < (v0->unk_06 + v0->unk_04)) {
@@ -2307,7 +2307,7 @@ static Strbuf *ov84_0223DC9C(UnkStruct_ov84_0223B5A0 *param0, u16 param1)
 static void ov84_0223DCF8(UnkStruct_ov84_0223B5A0 *param0)
 {
     Pocket_TryRemoveItem(param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_00, param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_09 - 3, param0->unk_C4->unk_66, param0->unk_488, 6);
-    sub_02001384(param0->unk_15C, &param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06, &param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04);
+    ListMenu_Free(param0->unk_15C, &param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06, &param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04);
     StringList_Free(param0->unk_160);
 
     ov84_0223BFBC(param0);
@@ -2523,7 +2523,7 @@ static int ov84_0223E18C(UnkStruct_ov84_0223B5A0 *param0)
 static int ov84_0223E1E4(UnkStruct_ov84_0223B5A0 *param0)
 {
     Bag_RegisterItem(param0->unk_C8, param0->unk_C4->unk_66);
-    sub_020013AC(param0->unk_15C);
+    ListMenu_Draw(param0->unk_15C);
     ov84_0223FD84(param0);
     Window_ScheduleCopyToVRAM(&param0->unk_04[1]);
     ov84_02240B34(param0, 1);
@@ -2534,7 +2534,7 @@ static int ov84_0223E1E4(UnkStruct_ov84_0223B5A0 *param0)
 static int ov84_0223E220(UnkStruct_ov84_0223B5A0 *param0)
 {
     Bag_RegisterItem(param0->unk_C8, 0);
-    sub_020013AC(param0->unk_15C);
+    ListMenu_Draw(param0->unk_15C);
     ov84_0223FD84(param0);
     Window_ScheduleCopyToVRAM(&param0->unk_04[1]);
     ov84_02240B34(param0, 1);
@@ -3049,7 +3049,7 @@ static BOOL ov84_0223ED64(UnkStruct_ov84_0223B5A0 *param0, u16 param1)
     v0 = param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06;
     v1 = param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04;
 
-    sub_02001408(param0->unk_15C, NULL, v0, v1, 1, param1, &v0, &v1);
+    ListMenu_TestInput(param0->unk_15C, NULL, v0, v1, 1, param1, &v0, &v1);
 
     if ((v0 == param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06) && (v1 == param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04)) {
         return 0;
@@ -3095,7 +3095,7 @@ static BOOL ov84_0223EE80(UnkStruct_ov84_0223B5A0 *param0, u16 param1)
     v0 = param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06;
     v1 = param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04;
 
-    sub_02001408(param0->unk_15C, NULL, v0, v1, 1, param1, &v0, &v1);
+    ListMenu_TestInput(param0->unk_15C, NULL, v0, v1, 1, param1, &v0, &v1);
 
     if ((v0 == param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06) && (v1 == param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04)) {
         return 0;

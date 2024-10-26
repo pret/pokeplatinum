@@ -282,7 +282,7 @@ static void ov5_021F6768(UnkStruct_ov5_021F6704 *param0)
     Window_Show(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
     ov5_021F68BC(param0);
 
-    param0->unk_23C = sub_0200112C((const ListMenuTemplate *)&param0->unk_21C, *param0->unk_214, *param0->unk_218, 4);
+    param0->unk_23C = ListMenu_New((const ListMenuTemplate *)&param0->unk_21C, *param0->unk_214, *param0->unk_218, 4);
     param0->unk_04 = SysTask_Start(ov5_021F6A34, param0, 0);
 
     return;
@@ -342,9 +342,9 @@ static void ov5_021F68BC(UnkStruct_ov5_021F6704 *param0)
 static void ov5_021F69CC(ListMenu *param0, u32 param1, u8 param2)
 {
     if (param1 == 0xfffffffd) {
-        sub_0200147C(param0, 3, 15, 4);
+        ListMenu_SetAltTextColors(param0, 3, 15, 4);
     } else {
-        sub_0200147C(param0, 1, 15, 2);
+        ListMenu_SetAltTextColors(param0, 1, 15, 2);
     }
 }
 
@@ -353,9 +353,9 @@ static void ov5_021F69F0(ListMenu *param0, u32 param1, u8 param2)
     u32 v0, v1;
     u16 v2 = 0;
     u16 v3 = 0;
-    UnkStruct_ov5_021F6704 *v4 = (UnkStruct_ov5_021F6704 *)sub_02001504(param0, 19);
+    UnkStruct_ov5_021F6704 *v4 = (UnkStruct_ov5_021F6704 *)ListMenu_GetAttribute(param0, 19);
 
-    sub_020014DC(param0, &v2, &v3);
+    ListMenu_GetListAndCursorPos(param0, &v2, &v3);
 
     if ((v4->unk_214 != NULL) && (v4->unk_218 != NULL)) {
         *v4->unk_214 = v2;
@@ -382,10 +382,10 @@ static void ov5_021F6A34(SysTask *param0, void *param1)
         return;
     }
 
-    v1 = sub_02001288(v2->unk_23C);
+    v1 = ListMenu_ProcessInput(v2->unk_23C);
     v0 = v2->unk_6F4;
 
-    sub_020014D0(v2->unk_23C, &v2->unk_6F4);
+    ListMenu_CalcTrueCursorPos(v2->unk_23C, &v2->unk_6F4);
 
     if (v0 != v2->unk_6F4) {
         Sound_PlayEffect(1500);
@@ -416,7 +416,7 @@ static void ov5_021F6AD4(UnkStruct_ov5_021F6704 *param0)
     int v0;
 
     Sound_PlayEffect(1500);
-    sub_02001384(param0->unk_23C, NULL, NULL);
+    ListMenu_Free(param0->unk_23C, NULL, NULL);
     Window_Clear(param0->unk_21C.window, 0);
     Window_Remove(&param0->unk_08);
 

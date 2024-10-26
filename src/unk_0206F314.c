@@ -271,7 +271,7 @@ static int sub_0206F498(UnkStruct_0206F7F8 *param0)
 {
     s32 v0;
 
-    v0 = sub_02001288(param0->unk_C0);
+    v0 = ListMenu_ProcessInput(param0->unk_C0);
 
     if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
         Sound_PlayEffect(1500);
@@ -701,7 +701,7 @@ static void sub_0206FDC0(UnkStruct_0206F7F8 *param0, u16 param1, u16 param2)
     param0->unk_A0.yOffset = 0;
     param0->unk_A0.cursorCallback = sub_0206FF60;
     param0->unk_A0.printCallback = NULL;
-    param0->unk_C0 = sub_0200112C(&(param0->unk_A0), param1, param2, param0->unk_00);
+    param0->unk_C0 = ListMenu_New(&(param0->unk_A0), param1, param2, param0->unk_00);
 
     Window_Show(&param0->unk_D4, 0, (1024 - (18 + 12) - 9), 11);
     sub_0200E060(&param0->unk_E4, 1, (1024 - (18 + 12)), 10);
@@ -713,7 +713,7 @@ static void sub_0206FDC0(UnkStruct_0206F7F8 *param0, u16 param1, u16 param2)
 
 static void sub_0206FF10(UnkStruct_0206F7F8 *param0)
 {
-    sub_02001384(param0->unk_C0, &(param0->unk_22), &(param0->unk_24));
+    ListMenu_Free(param0->unk_C0, &(param0->unk_22), &(param0->unk_24));
     StringList_Free(param0->unk_C4);
     Window_ClearAndCopyToVRAM(&(param0->unk_D4));
     Window_Clear(&(param0->unk_D4), 0);
@@ -725,14 +725,14 @@ static void sub_0206FF10(UnkStruct_0206F7F8 *param0)
 static void sub_0206FF60(ListMenu *param0, u32 param1, u8 param2)
 {
     u16 v0, v1, v2;
-    UnkStruct_0206F7F8 *v3 = (UnkStruct_0206F7F8 *)sub_02001504(param0, 19);
+    UnkStruct_0206F7F8 *v3 = (UnkStruct_0206F7F8 *)ListMenu_GetAttribute(param0, 19);
 
     if (param2 == 0) {
         Sound_PlayEffect(1500);
     }
 
-    sub_020014DC(param0, &v0, &v1);
-    v2 = sub_02001504(param0, 2);
+    ListMenu_GetListAndCursorPos(param0, &v0, &v1);
+    v2 = ListMenu_GetAttribute(param0, 2);
 
     SpriteActor_SetSpritePositionXY(v3->unk_2FC[0], 126, 16 + 16 * (v1 + v0));
 }

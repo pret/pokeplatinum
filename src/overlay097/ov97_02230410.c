@@ -297,7 +297,7 @@ static void ov97_02230530(UnkStruct_ov97_02230868 *param0, UnkStruct_ov97_0223E6
     }
 
     if (param0->unk_2C28) {
-        sub_02001384(param0->unk_2C28, NULL, NULL);
+        ListMenu_Free(param0->unk_2C28, NULL, NULL);
     }
 
     param0->unk_2C2C = StringList_New(param2, 87);
@@ -315,7 +315,7 @@ static void ov97_02230530(UnkStruct_ov97_02230868 *param0, UnkStruct_ov97_0223E6
     v1.count = param2;
     v1.window = param3;
 
-    param0->unk_2C28 = sub_0200112C(&v1, 0, param4, 87);
+    param0->unk_2C28 = ListMenu_New(&v1, 0, param4, 87);
 }
 
 static void ov97_022305EC(Window *param0, int param1)
@@ -418,7 +418,7 @@ static void ov97_02230868(UnkStruct_ov97_02230868 *param0)
 {
     StringList_Free(param0->unk_2C2C);
     param0->unk_2C2C = NULL;
-    sub_02001384(param0->unk_2C28, NULL, NULL);
+    ListMenu_Free(param0->unk_2C28, NULL, NULL);
     param0->unk_2C28 = NULL;
     ov97_02230500(&param0->unk_2C40, 0);
     Window_ClearAndCopyToVRAM(&param0->unk_2C40);
@@ -740,7 +740,7 @@ static void ov97_02231088(OverlayManager *param0, int *param1, int (*param2)(Ove
     UnkStruct_ov97_02230868 *v2 = OverlayManager_Data(param0);
     static int (*v3)(OverlayManager *);
 
-    v0 = sub_02001288(v2->unk_2C28);
+    v0 = ListMenu_ProcessInput(v2->unk_2C28);
 
     switch (v0) {
     case 0xffffffff:

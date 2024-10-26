@@ -205,7 +205,7 @@ static void CommClubMan_CreateList(ListMenuTemplate param0, u8 param1, u8 param2
     v0.choices = sCommClubMan->unk_64;
     v0.window = &sCommClubMan->unk_20;
 
-    sCommClubMan->unk_5C = sub_0200112C(&v0, 0, 0, 4);
+    sCommClubMan->unk_5C = ListMenu_New(&v0, 0, 0, 4);
     Window_CopyToVRAM(&sCommClubMan->unk_20);
 }
 
@@ -314,7 +314,7 @@ static void ov7_02249C44(ListMenu *param0, u32 param1, u8 param2)
 
 static void ov7_02249C64(ListMenu *param0, u32 param1, u8 param2)
 {
-    for (int v0 = 0; v0 < sub_02001504(param0, 3); v0++) {
+    for (int v0 = 0; v0 < ListMenu_GetAttribute(param0, 3); v0++) {
         ov7_02249C94(param0, 0, v0);
     }
 }
@@ -325,7 +325,7 @@ static void ov7_02249C94(ListMenu *param0, u32 param1, u8 param2)
     u16 cnt = 0;
 
     if (sCommClubMan->unk_5C) {
-        sub_020014DC(sCommClubMan->unk_5C, &cnt, NULL);
+        ListMenu_GetListAndCursorPos(sCommClubMan->unk_5C, &cnt, NULL);
     }
 
     cnt += param2;
@@ -460,7 +460,7 @@ static void ov7_02249FFC(SysTask *task, void *param1)
         CommClubMan_DestroyList(task, commClubMan);
     } else {
         if (!sub_02033870()) {
-            v0 = sub_02001288(sCommClubMan->unk_5C);
+            v0 = ListMenu_ProcessInput(sCommClubMan->unk_5C);
         } else {
             v0 = 0xffffffff;
         }
@@ -477,7 +477,7 @@ static void ov7_02249FFC(SysTask *task, void *param1)
             break;
         default:
             Sound_PlayEffect(1500);
-            sub_020014D0(commClubMan->unk_5C, &commClubMan->connectIndex);
+            ListMenu_CalcTrueCursorPos(commClubMan->unk_5C, &commClubMan->connectIndex);
 
             if (sub_02033808() > commClubMan->connectIndex) {
                 ov7_0224A0C8(commClubMan);
@@ -648,7 +648,7 @@ static void ov7_0224A438(ListMenu *param0, u32 param1, u8 param2)
     u16 v0 = 0;
 
     if (sCommClubMan->unk_5C) {
-        sub_020014DC(sCommClubMan->unk_5C, &v0, NULL);
+        ListMenu_GetListAndCursorPos(sCommClubMan->unk_5C, &v0, NULL);
     }
 
     v0 += param2;
@@ -884,14 +884,14 @@ static void ov7_0224A7D0(SysTask *task, void *param1)
 
     if (sCommClubMan->unk_98) {
         sCommClubMan->unk_98 = 0;
-        sub_020013AC(sCommClubMan->unk_5C);
+        ListMenu_Draw(sCommClubMan->unk_5C);
 
-        for (v2 = 0; v2 < sub_02001504(sCommClubMan->unk_5C, 3); v2++) {
+        for (v2 = 0; v2 < ListMenu_GetAttribute(sCommClubMan->unk_5C, 3); v2++) {
             ov7_0224A438(sCommClubMan->unk_5C, 0, v2);
         }
     }
 
-    v1 = sub_02001288(commClubMan->unk_5C);
+    v1 = ListMenu_ProcessInput(commClubMan->unk_5C);
 
     if (CommInfo_NewNetworkId() != 0xff) {
         commClubMan->unk_95 = CommInfo_NewNetworkId();
@@ -968,7 +968,7 @@ static void ov7_0224A97C(SysTask *task, void *param1)
     int v2;
 
     ov7_0224A64C(commClubMan);
-    sub_02001288(commClubMan->unk_5C);
+    ListMenu_ProcessInput(commClubMan->unk_5C);
 
     v1 = sub_02002114(commClubMan->unk_60, 4);
 
@@ -1139,7 +1139,7 @@ static void ov7_0224AC48(SysTask *task, void *param1)
     ov7_0224A64C(commClubMan);
 
     sub_02036994(0);
-    sub_02001288(commClubMan->unk_5C);
+    ListMenu_ProcessInput(commClubMan->unk_5C);
 
     if (FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
         commClubMan->unk_60 = sub_02002100(sCommClubMan->fieldSystem->unk_08, &Unk_ov7_0224ED0C, 1024 - (18 + 12) - 9, 11, 4);
@@ -1154,7 +1154,7 @@ static void ov7_0224ACA4(SysTask *task, void *param1)
     int v2;
 
     ov7_0224A64C(commClubMan);
-    sub_02001288(commClubMan->unk_5C);
+    ListMenu_ProcessInput(commClubMan->unk_5C);
 
     v1 = sub_02002114(commClubMan->unk_60, 4);
 
@@ -1304,7 +1304,7 @@ static void ov7_0224AE78(SysTask *task, void *param1)
     CommClubManager *commClubMan = (CommClubManager *)param1;
 
     ov7_0224A64C(commClubMan);
-    sub_02001288(commClubMan->unk_5C);
+    ListMenu_ProcessInput(commClubMan->unk_5C);
 
     if (FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
         commClubMan->unk_60 = sub_02002100(sCommClubMan->fieldSystem->unk_08, &Unk_ov7_0224ED0C, 1024 - (18 + 12) - 9, 11, 4);
@@ -1319,7 +1319,7 @@ static void ov7_0224AECC(SysTask *task, void *param1)
 
     ov7_0224A64C(commClubMan);
 
-    sub_02001288(commClubMan->unk_5C);
+    ListMenu_ProcessInput(commClubMan->unk_5C);
     v1 = sub_02002114(commClubMan->unk_60, 4);
 
     if (CommSys_CheckError()) {
@@ -1345,7 +1345,7 @@ static void ov7_0224AF2C(SysTask *task, void *param1)
         CommClubMan_SetTask(ov7_0224AD68);
     } else {
         ov7_0224A64C(commClubMan);
-        sub_02001288(commClubMan->unk_5C);
+        ListMenu_ProcessInput(commClubMan->unk_5C);
 
         if (CommTiming_IsSyncState(10) && CommTool_IsInitialized()) {
             CommClubMan_DestroyList(task, commClubMan);
@@ -1360,7 +1360,7 @@ static void ov7_0224AF84(SysTask *task, void *param1)
     u32 v1 = 0xffffffff;
 
     ov7_0224A64C(commClubMan);
-    sub_02001288(commClubMan->unk_5C);
+    ListMenu_ProcessInput(commClubMan->unk_5C);
 
     if (FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
         commClubMan->unk_60 = sub_02002100(sCommClubMan->fieldSystem->unk_08, &Unk_ov7_0224ED0C, 1024 - (18 + 12) - 9, 11, 4);
@@ -1373,7 +1373,7 @@ static void CommClubMan_DestroyList(SysTask *task, CommClubManager *param1)
     Window_FillTilemap(&sCommClubMan->msgWindow, 15);
     Window_Clear(&param1->unk_20, 0);
     StringList_Free(param1->unk_64);
-    sub_02001384(param1->unk_5C, NULL, NULL);
+    ListMenu_Free(param1->unk_5C, NULL, NULL);
     Window_ClearAndCopyToVRAM(&param1->unk_20);
     Window_Remove(&param1->unk_20);
 

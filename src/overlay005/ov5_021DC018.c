@@ -385,7 +385,7 @@ static void ov5_021DC530(UnkStruct_ov5_021DC1A4 *param0, u32 param1)
     Window_Show(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
 
     ov5_021DC7E4(param0);
-    param0->unk_1BC = sub_0200112C((const ListMenuTemplate *)&param0->unk_19C, 0, param0->unk_96, 4);
+    param0->unk_1BC = ListMenu_New((const ListMenuTemplate *)&param0->unk_19C, 0, param0->unk_96, 4);
 
     ov5_021DCAF4(param0);
     param0->unk_04 = SysTask_Start(ov5_021DC95C, param0, 0);
@@ -419,7 +419,7 @@ void ov5_021DC600(UnkStruct_ov5_021DC1A4 *param0, u16 *param1, u16 *param2)
     param0->unk_A4 = param1;
     param0->unk_A8 = param2;
     param0->unk_2DC = ((*param0->unk_A4) + (*param0->unk_A8));
-    param0->unk_1BC = sub_0200112C((const ListMenuTemplate *)&param0->unk_19C, *param1, *param2, 4);
+    param0->unk_1BC = ListMenu_New((const ListMenuTemplate *)&param0->unk_19C, *param1, *param2, 4);
 
     ov5_021DCAF4(param0);
 
@@ -504,9 +504,9 @@ static void ov5_021DC7E4(UnkStruct_ov5_021DC1A4 *param0)
 static void ov5_021DC8F4(ListMenu *param0, u32 param1, u8 param2)
 {
     if (param1 == 0xfffffffd) {
-        sub_0200147C(param0, 3, 15, 4);
+        ListMenu_SetAltTextColors(param0, 3, 15, 4);
     } else {
-        sub_0200147C(param0, 1, 15, 2);
+        ListMenu_SetAltTextColors(param0, 1, 15, 2);
     }
 }
 
@@ -515,9 +515,9 @@ static void ov5_021DC918(ListMenu *param0, u32 param1, u8 param2)
     u32 v0, v1;
     u16 v2 = 0;
     u16 v3 = 0;
-    UnkStruct_ov5_021DC1A4 *v4 = (UnkStruct_ov5_021DC1A4 *)sub_02001504(param0, 19);
+    UnkStruct_ov5_021DC1A4 *v4 = (UnkStruct_ov5_021DC1A4 *)ListMenu_GetAttribute(param0, 19);
 
-    sub_020014DC(param0, &v2, &v3);
+    ListMenu_GetListAndCursorPos(param0, &v2, &v3);
 
     if ((v4->unk_A4 != NULL) && (v4->unk_A8 != NULL)) {
         *v4->unk_A4 = v2;
@@ -544,10 +544,10 @@ static void ov5_021DC95C(SysTask *param0, void *param1)
         return;
     }
 
-    v1 = sub_02001288(v2->unk_1BC);
+    v1 = ListMenu_ProcessInput(v2->unk_1BC);
     v0 = v2->unk_2DC;
 
-    sub_020014D0(v2->unk_1BC, &v2->unk_2DC);
+    ListMenu_CalcTrueCursorPos(v2->unk_1BC, &v2->unk_2DC);
 
     if (v0 != v2->unk_2DC) {
         Sound_PlayEffect(1500);
@@ -582,7 +582,7 @@ static void ov5_021DCA28(UnkStruct_ov5_021DC1A4 *param0)
     int v0;
 
     Sound_PlayEffect(1500);
-    sub_02001384(param0->unk_1BC, NULL, NULL);
+    ListMenu_Free(param0->unk_1BC, NULL, NULL);
     Window_Clear(param0->unk_19C.window, 0);
     Window_Remove(&param0->unk_08);
 
@@ -617,7 +617,7 @@ static void ov5_021DCA90(UnkStruct_ov5_021DC1A4 *param0, u16 param1, u32 param2)
 
 static void ov5_021DCAF4(UnkStruct_ov5_021DC1A4 *param0)
 {
-    sub_020014D0(param0->unk_1BC, &param0->unk_1C2);
+    ListMenu_CalcTrueCursorPos(param0->unk_1BC, &param0->unk_1C2);
 
     if (param0->unk_2A4[param0->unk_1C2] != 0xff) {
         ov5_021DCA90(param0, param0->unk_2A4[param0->unk_1C2], 0);
