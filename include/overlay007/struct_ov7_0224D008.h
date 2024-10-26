@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV7_0224D008_H
 #define POKEPLATINUM_STRUCT_OV7_0224D008_H
 
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 
 #include "overlay005/struct_ov5_021D30A8.h"
@@ -13,6 +12,7 @@
 #include "game_records.h"
 #include "journal.h"
 #include "list_menu.h"
+#include "menu.h"
 #include "message.h"
 #include "savedata.h"
 #include "strbuf.h"

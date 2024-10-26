@@ -9,7 +9,6 @@
 #include "consts/scrcmd.h"
 
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02014EC4_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_02025CCC_decl.h"
@@ -111,6 +110,7 @@
 #include "map_header_data.h"
 #include "map_object.h"
 #include "map_object_move.h"
+#include "menu.h"
 #include "message.h"
 #include "message_util.h"
 #include "party.h"
@@ -131,7 +131,6 @@
 #include "text.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
-#include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"

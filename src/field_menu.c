@@ -20,7 +20,6 @@
 #include "struct_defs/struct_020708E0.h"
 #include "struct_defs/struct_020709CC.h"
 #include "struct_defs/struct_02072014.h"
-#include "struct_defs/struct_02081CF4.h"
 #include "struct_defs/struct_02097728.h"
 #include "struct_defs/struct_02098C44.h"
 
@@ -47,6 +46,7 @@
 #include "journal.h"
 #include "map_header.h"
 #include "map_object.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "party.h"
@@ -62,7 +62,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"

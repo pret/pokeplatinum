@@ -9,7 +9,6 @@
 #include "constants/species.h"
 
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02015064_decl.h"
 #include "struct_decls/struct_02015128_decl.h"
@@ -37,6 +36,7 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "menu.h"
 #include "message.h"
 #include "overlay_manager.h"
 #include "pokemon.h"
@@ -46,7 +46,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"

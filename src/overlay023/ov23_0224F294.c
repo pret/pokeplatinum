@@ -5,7 +5,6 @@
 
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_defs/sprite_template.h"
-#include "struct_defs/struct_02081CF4.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021D2F14.h"
@@ -40,6 +39,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "list_menu.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "player_avatar.h"
@@ -50,7 +50,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
-#include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200C6E4.h"

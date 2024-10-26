@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_defs/struct_0207CB08.h"
-#include "struct_defs/struct_02081CF4.h"
 
 #include "overlay084/ov84_0223B5A0.h"
 #include "overlay084/ov84_022403F4.h"
@@ -18,6 +17,7 @@
 #include "game_options.h"
 #include "heap.h"
 #include "item.h"
+#include "menu.h"
 #include "message.h"
 #include "move_table.h"
 #include "narc.h"
@@ -28,7 +28,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200C440.h"
 #include "unk_0200DA60.h"

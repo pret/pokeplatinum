@@ -1,9 +1,7 @@
-#include "unk_02001AF4.h"
+#include "menu.h"
 
 #include <nitro.h>
 #include <string.h>
-
-#include "struct_defs/struct_02081CF4.h"
 
 #include "bg_window.h"
 #include "colored_arrow.h"
@@ -15,21 +13,6 @@
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
-
-typedef struct UIControlData_t {
-    UnkStruct_02081CF4 unk_00;
-    ColoredArrow *unk_0C;
-    u32 unk_10;
-    u8 unk_14;
-    u8 unk_15;
-    u8 unk_16;
-    u8 unk_17;
-    u8 unk_18;
-    u8 unk_19;
-    u8 unk_1A;
-    u8 unk_1B;
-    u8 unk_1C;
-} UIControlData;
 
 static void sub_0200DB10(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6, u16 param7);
 static void sub_0200DD7C(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6, u16 param7);

@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/font_oam.h"
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
@@ -37,6 +36,7 @@
 #include "item.h"
 #include "journal.h"
 #include "map_header.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
@@ -50,7 +50,6 @@
 #include "text.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
-#include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
 #include "unk_0200C440.h"

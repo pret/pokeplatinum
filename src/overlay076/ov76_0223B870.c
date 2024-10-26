@@ -10,7 +10,6 @@
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/struct_0202CA28.h"
 #include "struct_defs/struct_0207C690.h"
-#include "struct_defs/struct_02081CF4.h"
 
 #include "overlay012/ov12_02225864.h"
 #include "overlay012/struct_ov12_02225F6C.h"
@@ -29,6 +28,7 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
@@ -40,7 +40,6 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_02001AF4.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"

@@ -12,7 +12,6 @@
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_02027F8C.h"
-#include "struct_defs/struct_02081CF4.h"
 #include "struct_defs/struct_02095E80_t.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -38,6 +37,7 @@
 #include "item.h"
 #include "journal.h"
 #include "list_menu.h"
+#include "menu.h"
 #include "message.h"
 #include "message_util.h"
 #include "narc.h"
@@ -55,7 +55,6 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_02006224.h"

@@ -10,7 +10,6 @@
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0207C690.h"
-#include "struct_defs/struct_02081CF4.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay104/struct_ov104_022412F4.h"
@@ -27,6 +26,7 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "menu.h"
 #include "message.h"
 #include "palette.h"
 #include "pokemon.h"
@@ -35,7 +35,6 @@
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_02001AF4.h"
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"

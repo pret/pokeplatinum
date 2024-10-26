@@ -1,12 +1,11 @@
 #ifndef POKEPLATINUM_OV96_0223B6A0_H
 #define POKEPLATINUM_OV96_0223B6A0_H
 
-#include "struct_decls/struct_02001AF4_decl.h"
-
 #include "overlay096/struct_ov96_0223BF40_decl.h"
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "menu.h"
 #include "overlay_manager.h"
 
 int ov96_0223B6A0(OverlayManager *param0, int *param1);

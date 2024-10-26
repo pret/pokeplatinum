@@ -6,7 +6,6 @@
 
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_defs/struct_02081CF4.h"
 
 #include "overlay094/ov94_0223BCB0.h"
 #include "overlay094/ov94_022414B8.h"
@@ -26,6 +25,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "item.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "party.h"
@@ -35,7 +35,6 @@
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"

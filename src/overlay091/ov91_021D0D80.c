@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_defs/pokemon_summary.h"
@@ -25,6 +24,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "list_menu.h"
+#include "menu.h"
 #include "message.h"
 #include "move_table.h"
 #include "narc.h"
@@ -36,7 +36,6 @@
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"

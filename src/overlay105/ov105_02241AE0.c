@@ -4,12 +4,10 @@
 #include <string.h>
 
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_0207C690.h"
-#include "struct_defs/struct_02081CF4.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay104/ov104_0222DCE0.h"
@@ -38,6 +36,7 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
@@ -52,7 +51,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"

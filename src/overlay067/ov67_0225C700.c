@@ -5,7 +5,6 @@
 
 #include "consts/game_records.h"
 
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay061/struct_ov61_0222C3B0.h"
@@ -26,6 +25,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "inlines.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
@@ -35,7 +35,6 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"

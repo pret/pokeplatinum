@@ -4,7 +4,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_defs/struct_0206BC70.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -19,12 +18,12 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "inlines.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
 #include "sprite_resource.h"
 #include "string_template.h"
-#include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"

@@ -3,9 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_defs/struct_02081CF4.h"
-
 #include "field/field_system.h"
 #include "overlay005/struct_ov5_021DC1A4_decl.h"
 
@@ -15,6 +12,7 @@
 #include "font.h"
 #include "heap.h"
 #include "list_menu.h"
+#include "menu.h"
 #include "message.h"
 #include "save_player.h"
 #include "strbuf.h"
@@ -24,7 +22,6 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"

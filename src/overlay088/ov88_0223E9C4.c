@@ -3,18 +3,16 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02001AF4_decl.h"
-
 #include "bg_window.h"
 #include "font.h"
 #include "game_options.h"
 #include "list_menu.h"
+#include "menu.h"
 #include "message.h"
 #include "message_util.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "text.h"
-#include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 

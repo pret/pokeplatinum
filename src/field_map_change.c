@@ -7,7 +7,6 @@
 #include "constants/overworld_weather.h"
 #include "consts/map.h"
 
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/map_load_mode.h"
@@ -38,6 +37,7 @@
 #include "map_header.h"
 #include "map_header_data.h"
 #include "map_object.h"
+#include "menu.h"
 #include "message.h"
 #include "player_avatar.h"
 #include "pokeradar.h"
@@ -48,7 +48,6 @@
 #include "strbuf.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
-#include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200A9DC.h"

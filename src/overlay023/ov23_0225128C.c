@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/struct_02049FA8.h"
@@ -34,6 +33,7 @@
 #include "field_system.h"
 #include "heap.h"
 #include "list_menu.h"
+#include "menu.h"
 #include "message.h"
 #include "player_avatar.h"
 #include "save_player.h"
@@ -42,7 +42,6 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200DA60.h"

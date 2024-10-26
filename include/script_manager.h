@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_SCRIPT_MANAGER_H
 #define POKEPLATINUM_SCRIPT_MANAGER_H
 
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_0203F478.h"
@@ -13,6 +12,7 @@
 
 #include "bg_window.h"
 #include "field_script_context.h"
+#include "menu.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
 

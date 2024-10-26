@@ -3,12 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_020304A0_decl.h"
 #include "struct_decls/struct_020305B8_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_defs/struct_02081CF4.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay104/ov104_0223BCBC.h"
@@ -30,6 +28,7 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"

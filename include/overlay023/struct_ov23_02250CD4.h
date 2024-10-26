@@ -2,7 +2,6 @@
 #define POKEPLATINUM_STRUCT_OV23_02250CD4_H
 
 #include "struct_decls/cell_actor_data.h"
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_defs/struct_0206A844.h"
 
 #include "field/field_system_decl.h"
@@ -16,6 +15,7 @@
 
 #include "bg_window.h"
 #include "list_menu.h"
+#include "menu.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"

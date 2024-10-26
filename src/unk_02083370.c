@@ -5,7 +5,6 @@
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0207F248.h"
-#include "struct_defs/struct_02081CF4.h"
 #include "struct_defs/struct_020831B4.h"
 #include "struct_defs/struct_02083D1C.h"
 
@@ -18,13 +17,13 @@
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "heap.h"
+#include "menu.h"
 #include "message.h"
 #include "party.h"
 #include "pokemon.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"

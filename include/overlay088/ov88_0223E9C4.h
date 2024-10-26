@@ -1,11 +1,10 @@
 #ifndef POKEPLATINUM_OV88_0223E9C4_H
 #define POKEPLATINUM_OV88_0223E9C4_H
 
-#include "struct_decls/struct_02001AF4_decl.h"
-
 #include "bg_window.h"
 #include "game_options.h"
 #include "list_menu.h"
+#include "menu.h"
 #include "message.h"
 #include "strbuf.h"
 #include "string_list.h"

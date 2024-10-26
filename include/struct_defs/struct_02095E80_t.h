@@ -4,7 +4,6 @@
 #include <nitro/fx/fx.h>
 #include <nnsys.h>
 
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_02095E80_decl.h"
@@ -23,6 +22,7 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "list_menu.h"
+#include "menu.h"
 #include "message.h"
 #include "overlay_manager.h"
 #include "savedata.h"

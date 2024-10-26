@@ -5,7 +5,6 @@
 #include <string.h>
 
 #include "struct_defs/archived_sprite.h"
-#include "struct_defs/struct_02081CF4.h"
 
 #include "overlay094/const_ov94_02245FD8.h"
 #include "overlay094/ov94_0223BCB0.h"
@@ -23,6 +22,7 @@
 #include "graphics.h"
 #include "heap.h"
 #include "item.h"
+#include "menu.h"
 #include "message.h"
 #include "message_util.h"
 #include "narc.h"
@@ -32,7 +32,6 @@
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"

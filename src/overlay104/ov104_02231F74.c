@@ -3,14 +3,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/sentence.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
-#include "struct_defs/struct_02081CF4.h"
 
 #include "overlay063/ov63_0222BE18.h"
 #include "overlay063/ov63_0222CCE4.h"
@@ -37,6 +35,7 @@
 #include "game_options.h"
 #include "heap.h"
 #include "list_menu.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
@@ -50,7 +49,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"

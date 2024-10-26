@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_defs/struct_0203CC84.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -10,6 +9,7 @@
 #include "font.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "menu.h"
 #include "message.h"
 #include "overlay_manager.h"
 #include "savedata.h"

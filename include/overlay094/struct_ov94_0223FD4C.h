@@ -4,7 +4,6 @@
 #include <dwc.h>
 #include <nnsys.h>
 
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_defs/pokemon_summary.h"
@@ -26,6 +25,7 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "list_menu.h"
+#include "menu.h"
 #include "message.h"
 #include "overlay_manager.h"
 #include "pokemon.h"

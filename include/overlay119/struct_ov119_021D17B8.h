@@ -2,7 +2,6 @@
 #define POKEPLATINUM_STRUCT_OV119_021D17B8_H
 
 #include "struct_decls/pokemon_animation_sys_decl.h"
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
@@ -11,6 +10,7 @@
 #include "overlay119/struct_ov119_021D14DC.h"
 
 #include "bg_window.h"
+#include "menu.h"
 #include "narc.h"
 #include "palette.h"
 #include "string_list.h"

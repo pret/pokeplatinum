@@ -6,8 +6,6 @@
 #include "constants/communication/comm_type.h"
 #include "consts/sdat.h"
 
-#include "struct_decls/struct_02001AF4_decl.h"
-
 #include "field/field_system.h"
 #include "gmm/message_bank_unk_0353.h"
 
@@ -19,6 +17,7 @@
 #include "field_system.h"
 #include "heap.h"
 #include "list_menu.h"
+#include "menu.h"
 #include "message.h"
 #include "render_text.h"
 #include "save_player.h"
@@ -29,7 +28,6 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_02033200.h"

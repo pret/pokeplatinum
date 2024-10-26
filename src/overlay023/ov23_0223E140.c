@@ -5,7 +5,6 @@
 
 #include "consts/game_records.h"
 
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_defs/struct_0200C738.h"
@@ -38,6 +37,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "journal.h"
+#include "menu.h"
 #include "narc.h"
 #include "save_player.h"
 #include "savedata.h"
@@ -47,7 +47,6 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"

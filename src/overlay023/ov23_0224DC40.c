@@ -5,8 +5,6 @@
 
 #include "consts/game_records.h"
 
-#include "struct_decls/struct_02001AF4_decl.h"
-
 #include "field/field_system.h"
 #include "overlay023/funcptr_ov23_0224DCB8.h"
 #include "overlay023/ov23_02241F74.h"
@@ -24,12 +22,12 @@
 #include "game_records.h"
 #include "heap.h"
 #include "list_menu.h"
+#include "menu.h"
 #include "message.h"
 #include "string_list.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
-#include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_0201D15C.h"

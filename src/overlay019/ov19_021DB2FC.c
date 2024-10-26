@@ -13,12 +13,12 @@
 #include "enums.h"
 #include "graphics.h"
 #include "heap.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_02001AF4.h"
 #include "unk_0200DA60.h"
 
 static void ov19_021DB4B4(BgConfig *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5);

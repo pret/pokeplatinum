@@ -3,7 +3,6 @@
 
 #include <nnsys.h>
 
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0209C194_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0209BDF8.h"
@@ -14,6 +13,7 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "menu.h"
 #include "message.h"
 #include "sprite_resource.h"
 #include "strbuf.h"

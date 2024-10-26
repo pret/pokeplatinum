@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_defs/struct_0207F248.h"
-#include "struct_defs/struct_02081CF4.h"
 
 #include "field/field_system.h"
 
@@ -14,6 +13,7 @@
 #include "heap.h"
 #include "item.h"
 #include "map_header.h"
+#include "menu.h"
 #include "message.h"
 #include "move_table.h"
 #include "party.h"
@@ -23,7 +23,6 @@
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_0207E0B8.h"
