@@ -160,11 +160,11 @@ u32 ov88_0223ED2C(BgConfig *param0, Menu **param1, int *param2)
 
     switch (*param2) {
     case 0:
-        *param1 = sub_02002100(param0, &Unk_ov88_0223F148, (512 - 9), 11, 26);
+        *param1 = Menu_MakeYesNoChoice(param0, &Unk_ov88_0223F148, (512 - 9), 11, 26);
         (*param2)++;
         break;
     case 1:
-        v0 = sub_02002114(*param1, 26);
+        v0 = Menu_ProcessInputAndHandleExit(*param1, 26);
 
         if (v0 != 0xffffffff) {
             (*param2) = 0;

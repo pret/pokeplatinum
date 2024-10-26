@@ -580,7 +580,7 @@ static void sub_0203ADFC(TaskManager *taskMan)
         v3.loopAround = FALSE;
     }
 
-    menu->unk_20 = sub_02001AF4(&v3, 28, 4, menu->unk_28, 11, PAD_BUTTON_B | PAD_BUTTON_X);
+    menu->unk_20 = Menu_New(&v3, 28, 4, menu->unk_28, 11, PAD_BUTTON_B | PAD_BUTTON_X);
 
     Window_ScheduleCopyToVRAM(&menu->unk_00);
     sub_0203B318(menu, menu->unk_30, v5, TrainerInfo_Gender(SaveData_GetTrainerInfo(fieldSystem->saveData)));
@@ -641,7 +641,7 @@ static u32 FieldMenu_MakeList(FieldMenu *menu, u8 *ret)
 static void FieldMenu_Close(FieldMenu *menu)
 {
     sub_0203B4E8(menu);
-    sub_02001BC4(menu->unk_20, NULL);
+    Menu_Free(menu->unk_20, NULL);
     StringList_Free(menu->unk_24);
 
     menu->unk_20 = NULL;
@@ -732,10 +732,10 @@ static BOOL FieldMenu_Select(TaskManager *taskMan)
 
     fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
-    v2 = sub_02001DC4(menu->unk_20);
+    v2 = Menu_GetCursorPos(menu->unk_20);
 
-    menu->unk_2C = sub_02001C94(menu->unk_20, 1504);
-    menu->unk_28 = sub_02001DC4(menu->unk_20);
+    menu->unk_2C = Menu_ProcessInputWithSound(menu->unk_20, 1504);
+    menu->unk_28 = Menu_GetCursorPos(menu->unk_20);
 
     if (v2 != menu->unk_28) {
         sub_0203B558(menu->unk_200[0]->unk_00, menu->unk_28);

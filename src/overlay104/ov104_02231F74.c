@@ -323,7 +323,7 @@ void ov104_022322B0(UnkStruct_ov104_02232B5C *param0)
     Window_Add(v1->unk_00, &param0->unk_08, 1, param0->unk_98, param0->unk_99, v0, param0->unk_9B * 2, 14, 1);
     Window_Show(&param0->unk_08, 1, 985, 12);
     ov104_02232454(param0);
-    param0->unk_B0 = sub_02001B9C(&param0->unk_A4, param0->unk_96, param0->unk_00->unk_34);
+    param0->unk_B0 = Menu_NewSimple(&param0->unk_A4, param0->unk_96, param0->unk_00->unk_34);
     ov104_022325D8(param0);
     param0->unk_04 = SysTask_Start(ov104_022324C8, param0, 0);
 }
@@ -405,7 +405,7 @@ static void ov104_022324C8(SysTask *param0, void *param1)
         return;
     }
 
-    v0 = sub_02001BE0(v1->unk_B0);
+    v0 = Menu_ProcessInput(v1->unk_B0);
 
     if ((gCoreSys.pressedKeysRepeatable & PAD_KEY_UP) || (gCoreSys.pressedKeysRepeatable & PAD_KEY_DOWN) || (gCoreSys.pressedKeysRepeatable & PAD_KEY_LEFT) || (gCoreSys.pressedKeysRepeatable & PAD_KEY_RIGHT)) {
         ov104_022325D8(v1);
@@ -439,7 +439,7 @@ static void ov104_02232570(UnkStruct_ov104_02232B5C *param0)
 
     Sound_PlayEffect(1500);
 
-    sub_02001BC4(param0->unk_B0, NULL);
+    Menu_Free(param0->unk_B0, NULL);
     Window_Clear(param0->unk_A4.window, 0);
     Window_Remove(param0->unk_A4.window);
 
@@ -460,7 +460,7 @@ static void ov104_022325D8(UnkStruct_ov104_02232B5C *param0)
 {
     u8 v0;
 
-    v0 = sub_02001DC4(param0->unk_B0);
+    v0 = Menu_GetCursorPos(param0->unk_B0);
 
     if (param0->unk_29C[v0] != 0xff) {
         ov104_02232AC4(param0, param0->unk_29C[v0], TEXT_SPEED_INSTANT);

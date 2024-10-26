@@ -14,14 +14,14 @@
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 
-static BOOL sub_02001DCC(Menu *param0, u8 param1, u16 param2);
-static u8 sub_02001E24(Menu *param0, u8 param1);
-static u8 sub_02001F1C(Menu *param0);
-static void sub_02001F5C(Menu *param0);
-static void sub_02001FE8(Menu *param0);
-static void sub_02002018(Menu *param0, u8 *param1, u8 *param2, u8 param3);
+static BOOL TryMovingCursorAndPlaySound(Menu *menu, u8 direction, u16 sound);
+static u8 TryMovingCursor(Menu *menu, u8 direction);
+static u8 CalcMaxEntryWidth(Menu *menu);
+static void DrawWholeMenu(Menu *menu);
+static void DrawCursor(Menu *menu);
+static void CalcCursorDrawCoords(Menu *menu, u8 *outX, u8 *outY, u8 cursorPos);
 
-Menu *sub_02001AF4(const MenuTemplate *param0, u8 param1, u8 param2, u8 param3, u8 param4, u32 param5)
+Menu *Menu_New(const MenuTemplate *param0, u8 param1, u8 param2, u8 param3, u8 param4, u32 param5)
 {
     Menu *v0 = (Menu *)Heap_AllocFromHeap(param4, sizeof(Menu));
 
@@ -29,33 +29,33 @@ Menu *sub_02001AF4(const MenuTemplate *param0, u8 param1, u8 param2, u8 param3, 
     v0->cursor = ColoredArrow_New(param4);
     v0->cancelKeys = param5;
     v0->cursorPos = param3;
-    v0->width = sub_02001F1C(v0);
+    v0->width = CalcMaxEntryWidth(v0);
     v0->heapID = param4;
     v0->xOffset = param1;
     v0->yOffset = param2;
     v0->letterWidth = Font_GetAttribute(param0->fontID, 0) + Font_GetAttribute(param0->fontID, 2);
     v0->lineHeight = Font_GetAttribute(param0->fontID, 1) + Font_GetAttribute(param0->fontID, 3);
 
-    sub_02001F5C(v0);
-    sub_02001FE8(v0);
+    DrawWholeMenu(v0);
+    DrawCursor(v0);
 
     return v0;
 }
 
-Menu *sub_02001B7C(const MenuTemplate *param0, u8 param1, u8 param2, u8 param3, u8 param4, u32 param5)
+Menu *Menu_NewAndCopyToVRAM(const MenuTemplate *param0, u8 param1, u8 param2, u8 param3, u8 param4, u32 param5)
 {
-    Menu *v0 = sub_02001AF4(param0, param1, param2, param3, param4, param5);
+    Menu *v0 = Menu_New(param0, param1, param2, param3, param4, param5);
 
     Window_CopyToVRAM(v0->template.window);
     return v0;
 }
 
-Menu *sub_02001B9C(const MenuTemplate *param0, u8 param1, u8 param2)
+Menu *Menu_NewSimple(const MenuTemplate *param0, u8 param1, u8 param2)
 {
-    return sub_02001B7C(param0, Font_GetAttribute(param0->fontID, 0), 0, param1, param2, PAD_BUTTON_B);
+    return Menu_NewAndCopyToVRAM(param0, Font_GetAttribute(param0->fontID, 0), 0, param1, param2, PAD_BUTTON_B);
 }
 
-void sub_02001BC4(Menu *param0, u8 *param1)
+void Menu_Free(Menu *param0, u8 *param1)
 {
     if (param1 != NULL) {
         *param1 = param0->cursorPos;
@@ -65,7 +65,7 @@ void sub_02001BC4(Menu *param0, u8 *param1)
     Heap_FreeToHeapExplicit(param0->heapID, param0);
 }
 
-u32 sub_02001BE0(Menu *param0)
+u32 Menu_ProcessInput(Menu *param0)
 {
     param0->lastAction = 0;
 
@@ -80,7 +80,7 @@ u32 sub_02001BE0(Menu *param0)
     }
 
     if (gCoreSys.pressedKeys & PAD_KEY_UP) {
-        if (sub_02001DCC(param0, 0, 1500) == 1) {
+        if (TryMovingCursorAndPlaySound(param0, 0, 1500) == 1) {
             param0->lastAction = 1;
         }
 
@@ -88,7 +88,7 @@ u32 sub_02001BE0(Menu *param0)
     }
 
     if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
-        if (sub_02001DCC(param0, 1, 1500) == 1) {
+        if (TryMovingCursorAndPlaySound(param0, 1, 1500) == 1) {
             param0->lastAction = 2;
         }
 
@@ -96,7 +96,7 @@ u32 sub_02001BE0(Menu *param0)
     }
 
     if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
-        if (sub_02001DCC(param0, 2, 1500) == 1) {
+        if (TryMovingCursorAndPlaySound(param0, 2, 1500) == 1) {
             param0->lastAction = 3;
         }
 
@@ -104,7 +104,7 @@ u32 sub_02001BE0(Menu *param0)
     }
 
     if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
-        if (sub_02001DCC(param0, 3, 1500) == 1) {
+        if (TryMovingCursorAndPlaySound(param0, 3, 1500) == 1) {
             param0->lastAction = 4;
         }
 
@@ -114,7 +114,7 @@ u32 sub_02001BE0(Menu *param0)
     return 0xffffffff;
 }
 
-u32 sub_02001C94(Menu *param0, u16 param1)
+u32 Menu_ProcessInputWithSound(Menu *param0, u16 param1)
 {
     param0->lastAction = 0;
 
@@ -129,7 +129,7 @@ u32 sub_02001C94(Menu *param0, u16 param1)
     }
 
     if (gCoreSys.pressedKeys & PAD_KEY_UP) {
-        if (sub_02001DCC(param0, 0, param1) == 1) {
+        if (TryMovingCursorAndPlaySound(param0, 0, param1) == 1) {
             param0->lastAction = 1;
         }
 
@@ -137,7 +137,7 @@ u32 sub_02001C94(Menu *param0, u16 param1)
     }
 
     if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
-        if (sub_02001DCC(param0, 1, param1) == 1) {
+        if (TryMovingCursorAndPlaySound(param0, 1, param1) == 1) {
             param0->lastAction = 2;
         }
 
@@ -145,7 +145,7 @@ u32 sub_02001C94(Menu *param0, u16 param1)
     }
 
     if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
-        if (sub_02001DCC(param0, 2, param1) == 1) {
+        if (TryMovingCursorAndPlaySound(param0, 2, param1) == 1) {
             param0->lastAction = 3;
         }
 
@@ -153,7 +153,7 @@ u32 sub_02001C94(Menu *param0, u16 param1)
     }
 
     if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
-        if (sub_02001DCC(param0, 3, param1) == 1) {
+        if (TryMovingCursorAndPlaySound(param0, 3, param1) == 1) {
             param0->lastAction = 4;
         }
 
@@ -163,7 +163,7 @@ u32 sub_02001C94(Menu *param0, u16 param1)
     return 0xffffffff;
 }
 
-u32 sub_02001D44(Menu *param0, u8 param1)
+u32 Menu_ProcessExternalInput(Menu *param0, u8 param1)
 {
     switch (param1) {
     case 0:
@@ -173,184 +173,178 @@ u32 sub_02001D44(Menu *param0, u8 param1)
         Sound_PlayEffect(1500);
         return 0xfffffffe;
     case 2:
-        sub_02001DCC(param0, 0, 1500);
+        TryMovingCursorAndPlaySound(param0, 0, 1500);
         return 0xffffffff;
     case 3:
-        sub_02001DCC(param0, 1, 1500);
+        TryMovingCursorAndPlaySound(param0, 1, 1500);
         return 0xffffffff;
     case 4:
-        sub_02001DCC(param0, 2, 1500);
+        TryMovingCursorAndPlaySound(param0, 2, 1500);
         return 0xffffffff;
     case 5:
-        sub_02001DCC(param0, 3, 1500);
+        TryMovingCursorAndPlaySound(param0, 3, 1500);
         return 0xffffffff;
     }
 
     return 0xffffffff;
 }
 
-u8 sub_02001DC4(Menu *param0)
+u8 Menu_GetCursorPos(Menu *param0)
 {
     return param0->cursorPos;
 }
 
-u8 sub_02001DC8(Menu *param0)
+u8 Menu_GetLastAction(Menu *param0)
 {
     return param0->lastAction;
 }
 
-static BOOL sub_02001DCC(Menu *param0, u8 param1, u16 param2)
+static BOOL TryMovingCursorAndPlaySound(Menu *menu, u8 direction, u16 sound)
 {
-    u8 v0 = param0->cursorPos;
-
-    if (sub_02001E24(param0, param1) == 0) {
-        return 0;
+    u8 oldCursorPos = menu->cursorPos;
+    if (TryMovingCursor(menu, direction) == FALSE) {
+        return FALSE;
     }
 
-    {
-        u8 v1, v2;
-        u8 v3;
+    u8 bgColor = Font_GetAttribute(menu->template.fontID, FONTATTR_BG_COLOR);
 
-        v3 = Font_GetAttribute(param0->template.fontID, 6);
+    u8 x, y;
+    CalcCursorDrawCoords(menu, &x, &y, oldCursorPos);
+    Window_FillRectWithColor(menu->template.window, bgColor, x, y, 8, menu->lineHeight);
 
-        sub_02002018(param0, &v1, &v2, v0);
-        Window_FillRectWithColor(param0->template.window, v3, v1, v2, 8, param0->lineHeight);
-    }
+    DrawCursor(menu);
+    Sound_PlayEffect(sound);
 
-    sub_02001FE8(param0);
-    Sound_PlayEffect(param2);
-
-    return 1;
+    return TRUE;
 }
 
-static u8 sub_02001E24(Menu *param0, u8 param1)
+static u8 TryMovingCursor(Menu *menu, u8 direction)
 {
-    s8 v0;
+    s8 newCursorPos;
 
-    if (param1 == 0) {
-        if (param0->template.ySize <= 1) {
-            return 0;
+    if (direction == SCROLL_DIRECTION_UP) {
+        if (menu->template.ySize <= 1) {
+            return FALSE;
         }
 
-        if ((param0->cursorPos % param0->template.ySize) == 0) {
-            if (param0->template.loopAround == FALSE) {
-                return 0;
+        if (menu->cursorPos % menu->template.ySize == 0) {
+            if (menu->template.loopAround == FALSE) {
+                return FALSE;
             }
 
-            v0 = param0->cursorPos + (param0->template.ySize - 1);
+            newCursorPos = menu->cursorPos + (menu->template.ySize - 1);
         } else {
-            v0 = param0->cursorPos - 1;
+            newCursorPos = menu->cursorPos - 1;
         }
-    } else if (param1 == 1) {
-        if (param0->template.ySize <= 1) {
-            return 0;
+    } else if (direction == SCROLL_DIRECTION_DOWN) {
+        if (menu->template.ySize <= 1) {
+            return FALSE;
         }
 
-        if ((param0->cursorPos % param0->template.ySize) == (param0->template.ySize - 1)) {
-            if (param0->template.loopAround == FALSE) {
-                return 0;
+        if (menu->cursorPos % menu->template.ySize == menu->template.ySize - 1) {
+            if (menu->template.loopAround == FALSE) {
+                return FALSE;
             }
 
-            v0 = param0->cursorPos - (param0->template.ySize - 1);
+            newCursorPos = menu->cursorPos - (menu->template.ySize - 1);
         } else {
-            v0 = param0->cursorPos + 1;
+            newCursorPos = menu->cursorPos + 1;
         }
-    } else if (param1 == 2) {
-        if (param0->template.xSize <= 1) {
-            return 0;
+    } else if (direction == SCROLL_DIRECTION_LEFT) {
+        if (menu->template.xSize <= 1) {
+            return FALSE;
         }
 
-        if (param0->cursorPos < param0->template.ySize) {
-            if (param0->template.loopAround == FALSE) {
-                return 0;
+        if (menu->cursorPos < menu->template.ySize) {
+            if (menu->template.loopAround == FALSE) {
+                return FALSE;
             }
 
-            v0 = param0->cursorPos + (param0->template.ySize * (param0->template.xSize - 1));
+            newCursorPos = menu->cursorPos + (menu->template.ySize * (menu->template.xSize - 1));
         } else {
-            v0 = param0->cursorPos - param0->template.ySize;
+            newCursorPos = menu->cursorPos - menu->template.ySize;
         }
     } else {
-        if (param0->template.xSize <= 1) {
-            return 0;
+        if (menu->template.xSize <= 1) {
+            return FALSE;
         }
 
-        if (param0->cursorPos >= (param0->template.ySize * (param0->template.xSize - 1))) {
-            if (param0->template.loopAround == FALSE) {
-                return 0;
+        if (menu->cursorPos >= menu->template.ySize * (menu->template.xSize - 1)) {
+            if (menu->template.loopAround == FALSE) {
+                return FALSE;
             }
 
-            v0 = param0->cursorPos % param0->template.ySize;
+            newCursorPos = menu->cursorPos % menu->template.ySize;
         } else {
-            v0 = param0->cursorPos + param0->template.ySize;
+            newCursorPos = menu->cursorPos + menu->template.ySize;
         }
     }
 
-    if (param0->template.choices[v0].index == 0xfffffffd) {
-        return 0;
+    if (menu->template.choices[newCursorPos].index == MENU_DUMMY) {
+        return FALSE;
     }
 
-    param0->cursorPos = v0;
-    return 1;
+    menu->cursorPos = newCursorPos;
+    return TRUE;
 }
 
-static u8 sub_02001F1C(Menu *param0)
+static u8 CalcMaxEntryWidth(Menu *menu)
 {
-    u8 v0 = 0;
-    u8 v1, v2;
+    u8 maxWidth = 0;
 
-    for (v1 = 0; v1 < param0->template.xSize * param0->template.ySize; v1++) {
-        v2 = Font_CalcStrbufWidth(param0->template.fontID, param0->template.choices[v1].entry, 0);
+    u8 width;
+    for (u8 i = 0; i < menu->template.xSize * menu->template.ySize; i++) {
+        width = Font_CalcStrbufWidth(menu->template.fontID, menu->template.choices[i].entry, 0);
 
-        if (v0 < v2) {
-            v0 = v2;
+        if (maxWidth < width) {
+            maxWidth = width;
         }
     }
 
-    return v0;
+    return maxWidth;
 }
 
-static void sub_02001F5C(Menu *param0)
+static void DrawWholeMenu(Menu *menu)
 {
-    const void *v0;
-    u8 v1, v2, v3;
-    u8 v4, v5;
+    const void *entry;
+    u8 x, y, dx;
+    u8 i, j;
 
-    Window_FillTilemap(param0->template.window, Font_GetAttribute(param0->template.fontID, 6));
+    Window_FillTilemap(menu->template.window, Font_GetAttribute(menu->template.fontID, FONTATTR_BG_COLOR));
 
-    v1 = param0->xOffset;
-    v3 = param0->width + param0->letterWidth * 2;
+    x = menu->xOffset;
+    dx = menu->width + menu->letterWidth * 2;
 
-    for (v4 = 0; v4 < param0->template.xSize; v4++) {
-        for (v5 = 0; v5 < param0->template.ySize; v5++) {
-            v0 = param0->template.choices[v4 * param0->template.ySize + v5].entry;
-            v2 = (param0->lineHeight + param0->template.lineSpacing) * v5 + param0->yOffset;
+    for (i = 0; i < menu->template.xSize; i++) {
+        for (j = 0; j < menu->template.ySize; j++) {
+            entry = menu->template.choices[i * menu->template.ySize + j].entry;
+            y = (menu->lineHeight + menu->template.lineSpacing) * j + menu->yOffset;
 
-            Text_AddPrinterWithParams(param0->template.window, param0->template.fontID, v0, v1, v2, TEXT_SPEED_NO_TRANSFER, NULL);
+            Text_AddPrinterWithParams(menu->template.window, menu->template.fontID, entry, x, y, TEXT_SPEED_NO_TRANSFER, NULL);
         }
 
-        v1 += v3;
+        x += dx;
     }
 }
 
-static void sub_02001FE8(Menu *param0)
+static void DrawCursor(Menu *menu)
 {
-    u8 v0, v1;
-
-    if (param0->template.suppressCursor == TRUE) {
+    if (menu->template.suppressCursor == TRUE) {
         return;
     }
 
-    sub_02002018(param0, &v0, &v1, param0->cursorPos);
-    ColoredArrow_Print(param0->cursor, param0->template.window, v0, v1);
+    u8 x, y;
+    CalcCursorDrawCoords(menu, &x, &y, menu->cursorPos);
+    ColoredArrow_Print(menu->cursor, menu->template.window, x, y);
 }
 
-static void sub_02002018(Menu *param0, u8 *param1, u8 *param2, u8 param3)
+static void CalcCursorDrawCoords(Menu *menu, u8 *outX, u8 *outY, u8 cursorPos)
 {
-    *param1 = (param3 / param0->template.ySize) * (param0->width + param0->letterWidth * 2);
-    *param2 = (param3 % param0->template.ySize) * (param0->lineHeight + param0->template.lineSpacing) + param0->yOffset;
+    *outX = (cursorPos / menu->template.ySize) * (menu->width + menu->letterWidth * 2);
+    *outY = (cursorPos % menu->template.ySize) * (menu->lineHeight + menu->template.lineSpacing) + menu->yOffset;
 }
 
-Menu *sub_02002054(BgConfig *param0, const WindowTemplate *param1, u16 param2, u8 param3, u8 param4, u32 param5)
+Menu *Menu_MakeYesNoChoiceWithCursorAt(BgConfig *param0, const WindowTemplate *param1, u16 param2, u8 param3, u8 param4, u32 param5)
 {
     MenuTemplate v0;
     MessageLoader *v1;
@@ -375,46 +369,46 @@ Menu *sub_02002054(BgConfig *param0, const WindowTemplate *param1, u16 param2, u
     Window_AddFromTemplate(param0, v0.window, param1);
     Window_Show(v0.window, 1, param2, param3);
 
-    return sub_02001B7C(&v0, 8, 0, param4, param5, PAD_BUTTON_B);
+    return Menu_NewAndCopyToVRAM(&v0, 8, 0, param4, param5, PAD_BUTTON_B);
 }
 
-Menu *sub_02002100(BgConfig *param0, const WindowTemplate *param1, u16 param2, u8 param3, u32 param4)
+Menu *Menu_MakeYesNoChoice(BgConfig *param0, const WindowTemplate *param1, u16 param2, u8 param3, u32 param4)
 {
-    return sub_02002054(param0, param1, param2, param3, 0, param4);
+    return Menu_MakeYesNoChoiceWithCursorAt(param0, param1, param2, param3, 0, param4);
 }
 
-u32 sub_02002114(Menu *param0, u32 param1)
+u32 Menu_ProcessInputAndHandleExit(Menu *param0, u32 param1)
 {
-    u32 v0 = sub_02001BE0(param0);
+    u32 v0 = Menu_ProcessInput(param0);
 
     if (v0 != 0xffffffff) {
-        sub_02002154(param0, param1);
+        Menu_DestroyForExit(param0, param1);
     }
 
     return v0;
 }
 
-u32 sub_02002134(Menu *param0, u8 param1, u32 param2)
+u32 Menu_ProcessExternalInputAndHandleExit(Menu *param0, u8 param1, u32 param2)
 {
-    u32 v0 = sub_02001D44(param0, param1);
+    u32 v0 = Menu_ProcessExternalInput(param0, param1);
 
     if (v0 != 0xffffffff) {
-        sub_02002154(param0, param2);
+        Menu_DestroyForExit(param0, param2);
     }
 
     return v0;
 }
 
-void sub_02002154(Menu *param0, u32 param1)
+void Menu_DestroyForExit(Menu *param0, u32 param1)
 {
     Window_Clear(param0->template.window, 0);
     Window_Remove(param0->template.window);
     Heap_FreeToHeapExplicit(param1, param0->template.window);
     StringList_Free((StringList *)param0->template.choices);
-    sub_02001BC4(param0, NULL);
+    Menu_Free(param0, NULL);
 }
 
-void sub_02002180(Window *param0, u32 param1, u32 param2)
+void Menu_DrawCursorBitmap(Window *param0, u32 param1, u32 param2)
 {
     static const u8 v0[] = {
         0xff,

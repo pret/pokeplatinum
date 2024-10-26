@@ -519,7 +519,7 @@ void ov76_0223BF74(BgConfig *param0, Window *param1, int param2, UnkStruct_ov76_
     v0.loopAround = TRUE;
 
     Window_Show(param1, 1, (1 + (18 + 12)), 13);
-    param3->unk_D4.unk_CC = sub_02001B7C(&v0, 8, 0, 0, 53, PAD_BUTTON_B);
+    param3->unk_D4.unk_CC = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 53, PAD_BUTTON_B);
 }
 
 void ov76_0223C0EC(int param0, s16 *param1, s16 *param2)

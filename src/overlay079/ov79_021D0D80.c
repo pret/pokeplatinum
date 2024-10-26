@@ -355,7 +355,7 @@ static int ov79_021D114C(UnkStruct_ov79_021D0E1C *param0)
 
 static int ov79_021D116C(UnkStruct_ov79_021D0E1C *param0)
 {
-    switch (sub_02002114(param0->unk_D4, param0->unk_00)) {
+    switch (Menu_ProcessInputAndHandleExit(param0->unk_D4, param0->unk_00)) {
     case 0:
         Sound_PlayEffect(1500);
         ov79_021D2008(param0);

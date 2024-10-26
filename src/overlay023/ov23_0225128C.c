@@ -868,12 +868,12 @@ static void ov23_02252038(SysTask *param0, void *param1)
     switch (v0->unk_00) {
     case 0:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            v0->unk_08 = sub_02002100(v0->fieldSystem->unk_08, &Unk_ov23_022569C8, 1024 - (18 + 12) - 9, 11, 4);
+            v0->unk_08 = Menu_MakeYesNoChoice(v0->fieldSystem->unk_08, &Unk_ov23_022569C8, 1024 - (18 + 12) - 9, 11, 4);
             v0->unk_00 = 1;
         }
         break;
     case 1:
-        v1 = sub_02002114(v0->unk_08, 4);
+        v1 = Menu_ProcessInputAndHandleExit(v0->unk_08, 4);
 
         if (v1 == 0xffffffff) {
             return;
@@ -900,7 +900,7 @@ static void ov23_022520C8(SysTask *param0, void *param1)
     UnkStruct_ov23_02252038 *v0 = param1;
 
     if (v0->unk_08) {
-        sub_02002154(v0->unk_08, 4);
+        Menu_DestroyForExit(v0->unk_08, 4);
     }
 
     Heap_FreeToHeap(v0);

@@ -359,12 +359,12 @@ static void ov7_0224D040(UnkStruct_ov7_0224D008 *param0)
     sub_0200DAA4(param0->unk_00, 3, 1024 - (18 + 12) - 9, 11, 0, 11);
     Window_Show(&param0->unk_08[0], 1, 1024 - (18 + 12) - 9, 11);
 
-    param0->unk_80 = sub_02001B7C(&v0, 8, 0, 0, 11, PAD_BUTTON_B);
+    param0->unk_80 = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 11, PAD_BUTTON_B);
 }
 
 static u8 ov7_0224D1EC(UnkStruct_ov7_0224D008 *param0)
 {
-    u32 v0 = sub_02001BE0(param0->unk_80);
+    u32 v0 = Menu_ProcessInput(param0->unk_80);
 
     switch (v0) {
     case 0xffffffff:
@@ -383,7 +383,7 @@ static void ov7_0224D21C(UnkStruct_ov7_0224D008 *param0)
 {
     Window_Clear(&param0->unk_08[0], 1);
     Window_ClearAndCopyToVRAM(&param0->unk_08[0]);
-    sub_02001BC4(param0->unk_80, NULL);
+    Menu_Free(param0->unk_80, NULL);
     StringList_Free(param0->unk_84);
     Window_Remove(&param0->unk_08[0]);
 }
@@ -1108,13 +1108,13 @@ static u8 ov7_0224E3A0(UnkStruct_ov7_0224D008 *param0)
         return 7;
     }
 
-    param0->unk_80 = sub_02002100(param0->unk_00, &Unk_ov7_0224F2CC, (1 + (18 + 12)), 11, 11);
+    param0->unk_80 = Menu_MakeYesNoChoice(param0->unk_00, &Unk_ov7_0224F2CC, (1 + (18 + 12)), 11, 11);
     return 8;
 }
 
 static u8 ov7_0224E3D8(UnkStruct_ov7_0224D008 *param0)
 {
-    switch (sub_02002114(param0->unk_80, 11)) {
+    switch (Menu_ProcessInputAndHandleExit(param0->unk_80, 11)) {
     case 0: {
         Strbuf *v0;
 

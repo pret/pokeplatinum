@@ -850,12 +850,12 @@ static void ov23_02252E70(SysTask *param0, void *param1)
         break;
     case 14:
         if (ov23_02254238(ov23_022421BC()) == 0) {
-            v0->unk_5C = sub_02002100(v0->fieldSystem->unk_08, &Unk_ov23_022569D8, 1024 - (18 + 12) - 9, 11, 4);
+            v0->unk_5C = Menu_MakeYesNoChoice(v0->fieldSystem->unk_08, &Unk_ov23_022569D8, 1024 - (18 + 12) - 9, 11, 4);
             v0->unk_2AA = 15;
         }
         break;
     case 15:
-        v1 = sub_02002114(v0->unk_5C, 4);
+        v1 = Menu_ProcessInputAndHandleExit(v0->unk_5C, 4);
 
         if (v1 == 0xffffffff) {
             return;

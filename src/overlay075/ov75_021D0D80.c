@@ -299,12 +299,12 @@ static void ov75_021D1040(UnkStruct_ov75_021D1184 *param0)
         0, 25, 13, 6, 4, UnkEnum_ov75_021D1598_03, 555
     };
 
-    param0->unk_A4 = sub_02002100(param0->unk_18, &v0, 1, UnkEnum_ov75_021D1598_05, param0->unk_00);
+    param0->unk_A4 = Menu_MakeYesNoChoice(param0->unk_18, &v0, 1, UnkEnum_ov75_021D1598_05, param0->unk_00);
 }
 
 static int ov75_021D1064(UnkStruct_ov75_021D1184 *param0)
 {
-    switch (sub_02002114(param0->unk_A4, param0->unk_00)) {
+    switch (Menu_ProcessInputAndHandleExit(param0->unk_A4, param0->unk_00)) {
     case 0:
         return 1;
     case 0xfffffffe:

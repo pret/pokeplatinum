@@ -259,12 +259,12 @@ static BOOL sub_0209A0F4(UnkStruct_02099DFC *param0)
     switch (param0->unk_04) {
     case 0:
         if (sub_0209A200(param0, 0, 1, 4) == TRUE) {
-            param0->unk_2C = sub_02002054(param0->unk_14, &Unk_020F89EC, 512 - (18 + 12) - 9, 3, 1, param0->unk_00);
+            param0->unk_2C = Menu_MakeYesNoChoiceWithCursorAt(param0->unk_14, &Unk_020F89EC, 512 - (18 + 12) - 9, 3, 1, param0->unk_00);
             param0->unk_04 = 1;
         }
         break;
     case 1: {
-        u32 v1 = sub_02002114(param0->unk_2C, param0->unk_00);
+        u32 v1 = Menu_ProcessInputAndHandleExit(param0->unk_2C, param0->unk_00);
 
         switch (v1) {
         case 0:
@@ -277,12 +277,12 @@ static BOOL sub_0209A0F4(UnkStruct_02099DFC *param0)
     } break;
     case 2:
         if (sub_0209A200(param0, 1, 1, 4) == TRUE) {
-            param0->unk_2C = sub_02002054(param0->unk_14, &Unk_020F89EC, (512 - (18 + 12)) - 9, 3, 1, param0->unk_00);
+            param0->unk_2C = Menu_MakeYesNoChoiceWithCursorAt(param0->unk_14, &Unk_020F89EC, (512 - (18 + 12)) - 9, 3, 1, param0->unk_00);
             param0->unk_04 = 3;
         }
         break;
     case 3: {
-        u32 v2 = sub_02002114(param0->unk_2C, param0->unk_00);
+        u32 v2 = Menu_ProcessInputAndHandleExit(param0->unk_2C, param0->unk_00);
 
         switch (v2) {
         case 0:

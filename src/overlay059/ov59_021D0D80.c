@@ -853,7 +853,7 @@ static const WindowTemplate Unk_ov59_021D3288 = {
 
 static int ov59_021D1A14(UnkStruct_020961E8 *param0, int param1)
 {
-    param0->unk_384 = sub_02002100(param0->unk_00, &Unk_ov59_021D3288, (1 + (18 + 12)), 11, 51);
+    param0->unk_384 = Menu_MakeYesNoChoice(param0->unk_00, &Unk_ov59_021D3288, (1 + (18 + 12)), 11, 51);
     param0->unk_3A8 = 5;
 
     ov59_021D1994(param0);
@@ -891,7 +891,7 @@ static int ov59_021D1A44(UnkStruct_020961E8 *param0, int param1)
         return param1;
     }
 
-    v1 = sub_02002114(param0->unk_384, 51);
+    v1 = Menu_ProcessInputAndHandleExit(param0->unk_384, 51);
 
     if (v1 != 0xffffffff) {
         if (v1 == 0xfffffffe) {
@@ -980,7 +980,7 @@ static int ov59_021D1C14(UnkStruct_020961E8 *param0, int param1)
 
 static int ov59_021D1C34(UnkStruct_020961E8 *param0, int param1)
 {
-    param0->unk_384 = sub_02002100(param0->unk_00, &Unk_ov59_021D3288, (1 + (18 + 12)), 11, 51);
+    param0->unk_384 = Menu_MakeYesNoChoice(param0->unk_00, &Unk_ov59_021D3288, (1 + (18 + 12)), 11, 51);
     param0->unk_3A8 = 23;
 
     ov59_021D1994(param0);
@@ -1002,7 +1002,7 @@ static int ov59_021D1C64(UnkStruct_020961E8 *param0, int param1)
         return param1;
     }
 
-    v1 = sub_02002114(param0->unk_384, 51);
+    v1 = Menu_ProcessInputAndHandleExit(param0->unk_384, 51);
 
     if (v1 != 0xffffffff) {
         if (v1 == 0xfffffffe) {
@@ -1150,7 +1150,7 @@ static int ov59_021D1EB8(UnkStruct_020961E8 *param0, int param1)
 
 static int ov59_021D1EF4(UnkStruct_020961E8 *param0, int param1)
 {
-    param0->unk_384 = sub_02002100(param0->unk_00, &Unk_ov59_021D3288, (1 + (18 + 12)), 11, 51);
+    param0->unk_384 = Menu_MakeYesNoChoice(param0->unk_00, &Unk_ov59_021D3288, (1 + (18 + 12)), 11, 51);
     param0->unk_3A8 = 12;
 
     ov59_021D1994(param0);
@@ -1171,7 +1171,7 @@ static int ov59_021D1F24(UnkStruct_020961E8 *param0, int param1)
         return param1;
     }
 
-    v0 = sub_02002114(param0->unk_384, 51);
+    v0 = Menu_ProcessInputAndHandleExit(param0->unk_384, 51);
 
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
@@ -1333,7 +1333,7 @@ void ov59_021D2204(UnkStruct_020961E8 *param0, int param1, u8 param2)
         break;
     case 13:
         if (param0->unk_384 != NULL) {
-            sub_02002154(param0->unk_384, 51);
+            Menu_DestroyForExit(param0->unk_384, 51);
             param0->unk_384 = NULL;
         }
         break;
@@ -1345,7 +1345,7 @@ void ov59_021D2204(UnkStruct_020961E8 *param0, int param1, u8 param2)
         ov59_021D2628(param0, 12, 0);
 
         if (param0->unk_384 != NULL) {
-            sub_02002154(param0->unk_384, 51);
+            Menu_DestroyForExit(param0->unk_384, 51);
             param0->unk_384 = NULL;
         }
         break;
@@ -1361,7 +1361,7 @@ void ov59_021D2204(UnkStruct_020961E8 *param0, int param1, u8 param2)
         }
 
         if (param0->unk_384 != NULL) {
-            sub_02002154(param0->unk_384, 51);
+            Menu_DestroyForExit(param0->unk_384, 51);
             param0->unk_384 = NULL;
         }
 
@@ -1745,7 +1745,7 @@ static int ov59_021D292C(UnkStruct_020961E8 *param0, int param1)
         ov59_021D28D8(param0, -1);
 
         if (param0->unk_384 != NULL) {
-            sub_02002154(param0->unk_384, 51);
+            Menu_DestroyForExit(param0->unk_384, 51);
             param0->unk_384 = NULL;
         }
 

@@ -719,13 +719,13 @@ static int ov91_021D134C(UnkStruct_ov91_021D0ED8 *param0)
 
 static int ov91_021D136C(UnkStruct_ov91_021D0ED8 *param0)
 {
-    param0->unk_10C = sub_02002100(param0->unk_04, &Unk_ov91_021D2884[14], 1, 12, 67);
+    param0->unk_10C = Menu_MakeYesNoChoice(param0->unk_04, &Unk_ov91_021D2884[14], 1, 12, 67);
     return 4;
 }
 
 static int ov91_021D1394(UnkStruct_ov91_021D0ED8 *param0)
 {
-    switch (sub_02002114(param0->unk_10C, 67)) {
+    switch (Menu_ProcessInputAndHandleExit(param0->unk_10C, 67)) {
     case 0:
         return Unk_ov91_021D27DC[param0->unk_186].unk_00(param0);
     case 0xfffffffe:

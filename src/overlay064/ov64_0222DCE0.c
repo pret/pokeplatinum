@@ -1331,7 +1331,7 @@ static int ov64_0222EA70 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_0222E
             break;
         }
 
-        param0->unk_2C = sub_02002100(param2->unk_00, &Unk_ov64_022321CA, 1, 9, param3);
+        param0->unk_2C = Menu_MakeYesNoChoice(param2->unk_00, &Unk_ov64_022321CA, 1, 9, param3);
         param1->unk_04 = 9;
         break;
     case 9:
@@ -1342,7 +1342,7 @@ static int ov64_0222EA70 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_0222E
             0, 50, 54,
         };
 
-        v3 = sub_02002114(param0->unk_2C, param3);
+        v3 = Menu_ProcessInputAndHandleExit(param0->unk_2C, param3);
 
         switch (v3) {
         case 0xffffffff:
@@ -1851,7 +1851,7 @@ static int ov64_0222F0C4 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222E
         }
         break;
     case 17:
-        v0 = sub_02002114(param0->unk_FC, param3);
+        v0 = Menu_ProcessInputAndHandleExit(param0->unk_FC, param3);
 
         switch (v0) {
         case 0xffffffff:
@@ -2503,7 +2503,7 @@ static BOOL ov64_0222FC48 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222
         return 0;
     }
 
-    param0->unk_FC = sub_02002100(param2->unk_00, &Unk_ov64_022321CA, 1, 9, param3);
+    param0->unk_FC = Menu_MakeYesNoChoice(param2->unk_00, &Unk_ov64_022321CA, 1, 9, param3);
     return 1;
 }
 

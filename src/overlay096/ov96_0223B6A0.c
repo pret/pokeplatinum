@@ -338,7 +338,7 @@ Menu *ov96_0223BBC8(BgConfig *param0, int param1, int param2)
     v0.tilemapTop = param1;
     v0.baseTile = param2;
 
-    return sub_02002100(param0, &v0, (1 + (18 + 12)), 11, 68);
+    return Menu_MakeYesNoChoice(param0, &v0, (1 + (18 + 12)), 11, 68);
 }
 
 void ov96_0223BBFC(UnkStruct_ov96_0223BF40 *param0, int param1, int param2)

@@ -797,7 +797,7 @@ static void ov7_0224CC44(UnkStruct_ov7_0224CC44 *param0, BgConfig *param1, u32 p
         return;
     }
 
-    param0->unk_04 = sub_02002100(param1, &v0, (1 + (18 + 12)), 11, param2);
+    param0->unk_04 = Menu_MakeYesNoChoice(param1, &v0, (1 + (18 + 12)), 11, param2);
     param0->unk_08 = param2;
     param0->unk_00 = 1;
 }
@@ -815,7 +815,7 @@ static u32 ov7_0224CC78(UnkStruct_ov7_0224CC44 *param0)
 {
     u32 v0;
 
-    v0 = sub_02002114(param0->unk_04, param0->unk_08);
+    v0 = Menu_ProcessInputAndHandleExit(param0->unk_04, param0->unk_08);
     return v0;
 }
 

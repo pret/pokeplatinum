@@ -922,14 +922,14 @@ static BOOL ov105_022426E0(UnkStruct_ov105_02241FF4 *param0)
         }
         break;
     case 2:
-        v1 = sub_02001BE0(param0->unk_FC);
+        v1 = Menu_ProcessInput(param0->unk_FC);
         ov105_02246080(param0->unk_310);
 
         switch (v1) {
         case 0xffffffff:
             break;
         case 0:
-            sub_02001BC4(param0->unk_FC, NULL);
+            Menu_Free(param0->unk_FC, NULL);
             ov105_02245A98(param0->unk_F0.window);
             ov105_02246060(param0->unk_310);
             param0->unk_310 = NULL;
@@ -938,7 +938,7 @@ static BOOL ov105_022426E0(UnkStruct_ov105_02241FF4 *param0)
             param0->unk_08++;
             break;
         case 1:
-            sub_02001BC4(param0->unk_FC, NULL);
+            Menu_Free(param0->unk_FC, NULL);
 
             ov105_02245A98(param0->unk_F0.window);
             ov105_02242A58(param0);
@@ -949,7 +949,7 @@ static BOOL ov105_022426E0(UnkStruct_ov105_02241FF4 *param0)
 
             return 1;
         case 3:
-            sub_02001BC4(param0->unk_FC, NULL);
+            Menu_Free(param0->unk_FC, NULL);
 
             ov105_02245A98(param0->unk_F0.window);
             ov105_02242B54(param0);
@@ -962,7 +962,7 @@ static BOOL ov105_022426E0(UnkStruct_ov105_02241FF4 *param0)
         case 0xfffffffe:
         case 2:
         default:
-            sub_02001BC4(param0->unk_FC, NULL);
+            Menu_Free(param0->unk_FC, NULL);
             ov105_02245A98(param0->unk_F0.window);
             ov105_022461A4(param0->unk_30C, 0);
             ov105_02246060(param0->unk_310);
@@ -1217,14 +1217,14 @@ static BOOL ov105_02242D04(UnkStruct_ov105_02241FF4 *param0)
         param0->unk_08++;
         break;
     case 5:
-        v1 = sub_02001BE0(param0->unk_FC);
+        v1 = Menu_ProcessInput(param0->unk_FC);
         ov105_02246080(param0->unk_310);
 
         switch (v1) {
         case 0xffffffff:
             break;
         case 0:
-            sub_02001BC4(param0->unk_FC, NULL);
+            Menu_Free(param0->unk_FC, NULL);
             ov105_02245A98(param0->unk_F0.window);
             ov105_02246060(param0->unk_310);
             param0->unk_310 = NULL;
@@ -1234,7 +1234,7 @@ static BOOL ov105_02242D04(UnkStruct_ov105_02241FF4 *param0)
         case 1:
         default:
             ov105_02246074(param0->unk_30C, 1);
-            sub_02001BC4(param0->unk_FC, NULL);
+            Menu_Free(param0->unk_FC, NULL);
 
             ov105_02245A98(param0->unk_F0.window);
             ov105_02246060(param0->unk_310);
@@ -1452,14 +1452,14 @@ static BOOL ov105_022434BC(UnkStruct_ov105_02241FF4 *param0)
         }
         break;
     case 2:
-        v1 = sub_02001BE0(param0->unk_FC);
+        v1 = Menu_ProcessInput(param0->unk_FC);
         ov105_02246080(param0->unk_310);
 
         switch (v1) {
         case 0xffffffff:
             break;
         case 0:
-            sub_02001BC4(param0->unk_FC, NULL);
+            Menu_Free(param0->unk_FC, NULL);
             ov105_02245A98(param0->unk_F0.window);
             ov105_02246060(param0->unk_310);
             param0->unk_310 = NULL;
@@ -1468,14 +1468,14 @@ static BOOL ov105_022434BC(UnkStruct_ov105_02241FF4 *param0)
             param0->unk_08++;
             break;
         case 4:
-            sub_02001BC4(param0->unk_FC, NULL);
+            Menu_Free(param0->unk_FC, NULL);
             ov105_02245A98(param0->unk_F0.window);
             ov105_02243738(param0);
             return 1;
         case 0xfffffffe:
         case 2:
         default:
-            sub_02001BC4(param0->unk_FC, NULL);
+            Menu_Free(param0->unk_FC, NULL);
             ov105_02245A98(param0->unk_F0.window);
             ov105_022461A4(param0->unk_30C, 0);
             ov105_02246060(param0->unk_310);
@@ -1555,14 +1555,14 @@ static BOOL ov105_02243818(UnkStruct_ov105_02241FF4 *param0)
         param0->unk_08++;
         break;
     case 1:
-        v2 = sub_02001BE0(param0->unk_FC);
+        v2 = Menu_ProcessInput(param0->unk_FC);
         ov105_02246080(param0->unk_310);
 
         switch (v2) {
         case 0xffffffff:
             break;
         case 0:
-            sub_02001BC4(param0->unk_FC, NULL);
+            Menu_Free(param0->unk_FC, NULL);
             ov105_02245A98(param0->unk_F0.window);
             ov105_02246060(param0->unk_310);
             param0->unk_310 = NULL;
@@ -1577,7 +1577,7 @@ static BOOL ov105_02243818(UnkStruct_ov105_02241FF4 *param0)
         case 0xfffffffe:
         case 1:
         default:
-            sub_02001BC4(param0->unk_FC, NULL);
+            Menu_Free(param0->unk_FC, NULL);
             ov105_02245A98(param0->unk_F0.window);
             ov105_02246060(param0->unk_310);
             param0->unk_310 = NULL;
@@ -1677,7 +1677,7 @@ static BOOL ov105_02243A3C(UnkStruct_ov105_02241FF4 *param0)
         }
         break;
     case 2:
-        v2 = sub_02001BE0(param0->unk_FC);
+        v2 = Menu_ProcessInput(param0->unk_FC);
         ov105_02246080(param0->unk_310);
 
         switch (v2) {
@@ -1685,7 +1685,7 @@ static BOOL ov105_02243A3C(UnkStruct_ov105_02241FF4 *param0)
             break;
 
         case 0:
-            sub_02001BC4(param0->unk_FC, NULL);
+            Menu_Free(param0->unk_FC, NULL);
             ov105_02245A98(param0->unk_F0.window);
             ov105_02243D84(param0);
 
@@ -1698,7 +1698,7 @@ static BOOL ov105_02243A3C(UnkStruct_ov105_02241FF4 *param0)
         case 0xfffffffe:
         case 1:
         default:
-            sub_02001BC4(param0->unk_FC, NULL);
+            Menu_Free(param0->unk_FC, NULL);
             ov105_02245A98(param0->unk_F0.window);
             ov105_02243DE4(param0);
             param0->unk_08 = 1;
@@ -1784,14 +1784,14 @@ static BOOL ov105_02243E84(UnkStruct_ov105_02241FF4 *param0)
         break;
 
     case 1:
-        v2 = sub_02001BE0(param0->unk_FC);
+        v2 = Menu_ProcessInput(param0->unk_FC);
         ov105_02246080(param0->unk_310);
 
         switch (v2) {
         case 0xffffffff:
             break;
         case 0:
-            sub_02001BC4(param0->unk_FC, NULL);
+            Menu_Free(param0->unk_FC, NULL);
 
             ov105_02245A98(param0->unk_F0.window);
             ov105_02246060(param0->unk_310);
@@ -1808,7 +1808,7 @@ static BOOL ov105_02243E84(UnkStruct_ov105_02241FF4 *param0)
         case 0xfffffffe:
         case 1:
         default:
-            sub_02001BC4(param0->unk_FC, NULL);
+            Menu_Free(param0->unk_FC, NULL);
 
             ov105_02246060(param0->unk_30C);
             param0->unk_30C = NULL;
@@ -2080,7 +2080,7 @@ static BOOL ov105_02244424(UnkStruct_ov105_02241FF4 *param0)
     case 0:
 
         if (param0->unk_310 != NULL) {
-            sub_02001BC4(param0->unk_FC, NULL);
+            Menu_Free(param0->unk_FC, NULL);
             ov105_02245A98(param0->unk_F0.window);
             ov105_02246060(param0->unk_310);
             param0->unk_310 = NULL;
@@ -2607,7 +2607,7 @@ static void ov105_02244DF0(UnkStruct_ov105_02241FF4 *param0)
     }
 
     ov105_02244DC4(param0, 2, 2, 7);
-    param0->unk_FC = sub_02001B7C(&param0->unk_F0, 0, 0, 0, 93, PAD_BUTTON_B);
+    param0->unk_FC = Menu_NewAndCopyToVRAM(&param0->unk_F0, 0, 0, 0, 93, PAD_BUTTON_B);
 
     return;
 }
@@ -2619,7 +2619,7 @@ static void ov105_02244E94(UnkStruct_ov105_02241FF4 *param0)
     ov105_02244DC4(param0, 0, 0, 3);
     ov105_02244DC4(param0, 1, 1, 4);
 
-    param0->unk_FC = sub_02001B7C(&param0->unk_F0, 0, 0, 0, 93, PAD_BUTTON_B);
+    param0->unk_FC = Menu_NewAndCopyToVRAM(&param0->unk_F0, 0, 0, 0, 93, PAD_BUTTON_B);
     return;
 }
 

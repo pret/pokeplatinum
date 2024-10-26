@@ -464,7 +464,7 @@ static BOOL ov106_02241E5C(UnkStruct_ov106_02243118 *param0)
         }
         break;
     case 3:
-        v1 = sub_02001BE0(param0->unk_98);
+        v1 = Menu_ProcessInput(param0->unk_98);
 
         switch (v1) {
         case 0xffffffff:
@@ -610,7 +610,7 @@ static BOOL ov106_02242108(UnkStruct_ov106_02243118 *param0)
         param0->unk_08 = 5;
         break;
     case 5:
-        v1 = sub_02001BE0(param0->unk_98);
+        v1 = Menu_ProcessInput(param0->unk_98);
 
         switch (v1) {
         case 0xffffffff:
@@ -1114,7 +1114,7 @@ static void ov106_02242A54(UnkStruct_ov106_02243118 *param0)
     ov106_02242A28(param0, 0, 0, 27);
     ov106_02242A28(param0, 1, 1, 28);
 
-    param0->unk_98 = sub_02001B7C(&param0->unk_8C, 8, 0, 0, 98, PAD_BUTTON_B);
+    param0->unk_98 = Menu_NewAndCopyToVRAM(&param0->unk_8C, 8, 0, 0, 98, PAD_BUTTON_B);
     return;
 }
 
@@ -1616,7 +1616,7 @@ static void ov106_02243200(UnkStruct_ov106_02243118 *param0)
 {
     if (param0->unk_0F == 1) {
         param0->unk_0F = 0;
-        sub_02001BC4(param0->unk_98, NULL);
+        Menu_Free(param0->unk_98, NULL);
         Window_Clear(param0->unk_8C.window, 0);
     }
 

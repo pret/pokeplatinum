@@ -1009,7 +1009,7 @@ static BOOL ov104_02230260(UnkStruct_ov104_0222E930 *param0)
     u16 v2 = ov104_0222EA48(param0);
     u8 v3 = (*((param0)->unk_1C++));
 
-    v0->unk_74 = sub_02002054(v1->unk_00, &Unk_ov104_0223F640, ((1024 - (18 + 12)) - 9), 12, v3, v0->unk_34);
+    v0->unk_74 = Menu_MakeYesNoChoiceWithCursorAt(v1->unk_00, &Unk_ov104_0223F640, ((1024 - (18 + 12)) - 9), 12, v3, v0->unk_34);
     param0->unk_78[0] = v2;
 
     ov104_0222E974(param0, ov104_022302B4);
@@ -1023,7 +1023,7 @@ static BOOL ov104_022302B4(UnkStruct_ov104_0222E930 *param0)
     UnkStruct_ov104_022320B4 *v1 = param0->unk_00;
     u16 *v2 = ov104_0222FC14(param0, param0->unk_78[0]);
 
-    v0 = sub_02002114(v1->unk_74, v1->unk_34);
+    v0 = Menu_ProcessInputAndHandleExit(v1->unk_74, v1->unk_34);
 
     if (v0 == 0xffffffff) {
         return 0;

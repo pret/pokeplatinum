@@ -414,7 +414,7 @@ Menu *ov94_0223C3C0(BgConfig *param0, int param1, int param2)
     v0.tilemapTop = param1;
     v0.baseTile = param2;
 
-    return sub_02002100(param0, &v0, (1 + (18 + 12)), 11, 62);
+    return Menu_MakeYesNoChoice(param0, &v0, (1 + (18 + 12)), 11, 62);
 }
 
 void ov94_0223C3F4(UnkStruct_ov94_0223FD4C *param0, int param1, int param2)

@@ -702,7 +702,7 @@ static Menu *ov98_02247B24(BgConfig *param0, int param1, int param2)
     v0.tilemapTop = param1;
     v0.baseTile = param2;
 
-    return sub_02002100(param0, &v0, (1 + (18 + 12)), 11, 109);
+    return Menu_MakeYesNoChoice(param0, &v0, (1 + (18 + 12)), 11, 109);
 }
 
 static Menu *ov98_02247B58(BgConfig *param0, int param1, int param2, int param3)
@@ -713,7 +713,7 @@ static Menu *ov98_02247B58(BgConfig *param0, int param1, int param2, int param3)
     v0.tilemapTop = param1;
     v0.baseTile = param2;
 
-    return sub_02002054(param0, &v0, (1 + (18 + 12)), 11, param3, 109);
+    return Menu_MakeYesNoChoiceWithCursorAt(param0, &v0, (1 + (18 + 12)), 11, param3, 109);
 }
 
 static int ov98_02247B98 (UnkStruct_ov98_02247704 * param0)
@@ -818,7 +818,7 @@ static int ov98_02247D50 (UnkStruct_ov98_02247704 * param0)
         break;
     case 2:
     {
-        int v0 = sub_02002114(param0->unk_88, 109);
+        int v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
 
         if (v0 != 0xffffffff) {
             if (v0 == 0xfffffffe) {
@@ -858,7 +858,7 @@ static int ov98_02247E38 (UnkStruct_ov98_02247704 * param0)
         break;
     case 2:
     {
-        int v0 = sub_02002114(param0->unk_88, 109);
+        int v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
 
         if (v0 != 0xffffffff) {
             if (v0 == 0xfffffffe) {
@@ -1377,7 +1377,7 @@ static int ov98_02248684 (UnkStruct_ov98_02247704 * param0)
         break;
     case 2:
     {
-        int v0 = sub_02002114(param0->unk_88, 109);
+        int v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
 
         if (v0 != 0xffffffff) {
             if (v0 == 0xfffffffe) {
@@ -1407,7 +1407,7 @@ static int ov98_02248684 (UnkStruct_ov98_02247704 * param0)
         break;
     default:
     {
-        int v2 = sub_02002114(param0->unk_88, 109);
+        int v2 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
 
         if (v2 != 0xffffffff) {
             if (v2 == 0xfffffffe) {
@@ -1471,7 +1471,7 @@ static int ov98_02248804 (UnkStruct_ov98_02247704 * param0)
         break;
     case 3:
     {
-        int v0 = sub_02002114(param0->unk_88, 109);
+        int v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
 
         if (v0 != 0xffffffff) {
             if (v0 == 0xfffffffe) {
@@ -1499,7 +1499,7 @@ static int ov98_02248804 (UnkStruct_ov98_02247704 * param0)
 
 static int ov98_022488F8 (UnkStruct_ov98_02247704 * param0)
 {
-    int v0 = sub_02002114(param0->unk_88, 109);
+    int v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
 
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
@@ -1872,7 +1872,7 @@ static int ov98_02248DF4 (UnkStruct_ov98_02247704 * param0)
         break;
     case 2:
     {
-        int v0 = sub_02002114(param0->unk_88, 109);
+        int v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
 
         if (v0 != 0xffffffff) {
             if (v0 == 0xfffffffe) {
@@ -1918,7 +1918,7 @@ static int ov98_02248EE0 (UnkStruct_ov98_02247704 * param0)
         break;
     case 2:
     {
-        int v0 = sub_02002114(param0->unk_88, 109);
+        int v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
 
         if (v0 != 0xffffffff) {
             if (v0 == 0xfffffffe) {

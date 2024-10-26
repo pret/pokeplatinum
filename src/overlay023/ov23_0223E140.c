@@ -684,7 +684,7 @@ void ov23_0223E2F8(void)
             ov23_02254044(ov23_0224219C());
 
             if (Unk_ov23_02257740->unk_848) {
-                sub_02002154(Unk_ov23_02257740->unk_848, 4);
+                Menu_DestroyForExit(Unk_ov23_02257740->unk_848, 4);
             }
 
             sub_02059514();
@@ -993,7 +993,7 @@ static int ov23_0223E8CC(u16 param0, u16 param1)
 static void ov23_0223E99C(SysTask *param0, void *param1)
 {
     if (Unk_ov23_02257740->unk_848) {
-        sub_02002154(Unk_ov23_02257740->unk_848, 4);
+        Menu_DestroyForExit(Unk_ov23_02257740->unk_848, 4);
     }
 
     Unk_ov23_02257740->unk_848 = NULL;
@@ -1021,11 +1021,11 @@ static void ov23_0223EA38(SysTask *param0, void *param1)
 
     if (Unk_ov23_02257740->unk_A24 != -1) {
         if (Text_IsPrinterActive(Unk_ov23_02257740->unk_A24) == 0) {
-            Unk_ov23_02257740->unk_848 = sub_02002100(Unk_ov23_02257740->fieldSystem->unk_08, &Unk_ov23_0225630E, 1024 - (18 + 12) - 9, 11, 4);
+            Unk_ov23_02257740->unk_848 = Menu_MakeYesNoChoice(Unk_ov23_02257740->fieldSystem->unk_08, &Unk_ov23_0225630E, 1024 - (18 + 12) - 9, 11, 4);
             Unk_ov23_02257740->unk_A24 = -1;
         }
     } else {
-        int v1 = sub_02002114(Unk_ov23_02257740->unk_848, 4);
+        int v1 = Menu_ProcessInputAndHandleExit(Unk_ov23_02257740->unk_848, 4);
 
         if (v1 == 0xffffffff) {
             return;

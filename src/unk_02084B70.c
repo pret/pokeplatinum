@@ -1207,12 +1207,12 @@ void sub_020866A0(GameWindowLayout *param0, u8 param1)
     }
 
     Window_Show(&param0->unk_04[36], 1, 1, 14);
-    param0->unk_700 = sub_02001B7C(&v0, 8, 0, 0, 12, PAD_BUTTON_B);
+    param0->unk_700 = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 12, PAD_BUTTON_B);
 }
 
 int sub_02086774(GameWindowLayout *param0)
 {
-    u32 v0 = sub_02001BE0(param0->unk_700);
+    u32 v0 = Menu_ProcessInput(param0->unk_700);
 
     switch (v0) {
     case 0xffffffff:
@@ -1220,14 +1220,14 @@ int sub_02086774(GameWindowLayout *param0)
     case 0xfffffffe:
         sub_0200E084(&param0->unk_04[33], 1);
         Window_Clear(&param0->unk_04[36], 1);
-        sub_02001BC4(param0->unk_700, NULL);
+        Menu_Free(param0->unk_700, NULL);
         StringList_Free(param0->unk_6FC);
         sub_020826E0(param0, 32, 1);
         return 4;
     default:
         sub_0200E084(&param0->unk_04[33], 1);
         Window_Clear(&param0->unk_04[36], 1);
-        sub_02001BC4(param0->unk_700, NULL);
+        Menu_Free(param0->unk_700, NULL);
         StringList_Free(param0->unk_6FC);
 
         if (sub_02096F14(param0->unk_5A4->unk_00, param0->unk_5A4->unk_24, param0->unk_B11, (u8)v0, sub_02086930(param0), 12) == 1) {

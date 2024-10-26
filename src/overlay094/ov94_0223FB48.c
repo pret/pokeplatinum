@@ -694,7 +694,7 @@ static int ov94_022405DC(UnkStruct_ov94_0223FD4C *param0)
 
     Window_Show(&param0->unk_F9C[0], 1, (1 + (18 + 12)), 11);
 
-    param0->unk_10D4 = sub_02001B7C(&v0, 9, 0, 0, 62, PAD_BUTTON_B);
+    param0->unk_10D4 = Menu_NewAndCopyToVRAM(&v0, 9, 0, 0, 62, PAD_BUTTON_B);
     param0->unk_2C = 8;
 
     return 3;
@@ -704,16 +704,16 @@ static int ov94_02240688(UnkStruct_ov94_0223FD4C *param0)
 {
     BoxPokemon *v0;
 
-    switch (sub_02001BE0(param0->unk_10D4)) {
+    switch (Menu_ProcessInput(param0->unk_10D4)) {
     case 1:
-        sub_02001BC4(param0->unk_10D4, NULL);
+        Menu_Free(param0->unk_10D4, NULL);
         StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
         param0->unk_2C = 2;
         ov94_0223C4C0(param0, 8, 5);
         break;
     case 2:
-        sub_02001BC4(param0->unk_10D4, NULL);
+        Menu_Free(param0->unk_10D4, NULL);
         StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
 
@@ -752,7 +752,7 @@ static int ov94_02240688(UnkStruct_ov94_0223FD4C *param0)
         break;
     case 3:
     case 0xfffffffe:
-        sub_02001BC4(param0->unk_10D4, NULL);
+        Menu_Free(param0->unk_10D4, NULL);
         StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
         sub_0200E084(&param0->unk_F5C, 0);
@@ -786,7 +786,7 @@ static int ov94_02240830(UnkStruct_ov94_0223FD4C *param0)
     Window_FillTilemap(v0.window, 0xf0f);
     Window_Show(&param0->unk_F9C[0], 1, (1 + (18 + 12)), 11);
 
-    param0->unk_10D4 = sub_02001B7C(&v0, 9, 0, 0, 62, PAD_BUTTON_B);
+    param0->unk_10D4 = Menu_NewAndCopyToVRAM(&v0, 9, 0, 0, 62, PAD_BUTTON_B);
     param0->unk_2C = 10;
 
     return 3;
@@ -796,16 +796,16 @@ static int ov94_022408E8(UnkStruct_ov94_0223FD4C *param0)
 {
     BoxPokemon *v0;
 
-    switch (sub_02001BE0(param0->unk_10D4)) {
+    switch (Menu_ProcessInput(param0->unk_10D4)) {
     case 1:
-        sub_02001BC4(param0->unk_10D4, NULL);
+        Menu_Free(param0->unk_10D4, NULL);
         StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
         param0->unk_2C = 2;
         ov94_0223C4C0(param0, 8, 6);
         break;
     case 2:
-        sub_02001BC4(param0->unk_10D4, NULL);
+        Menu_Free(param0->unk_10D4, NULL);
         StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
 
@@ -841,7 +841,7 @@ static int ov94_022408E8(UnkStruct_ov94_0223FD4C *param0)
         break;
     case 3:
     case 0xfffffffe:
-        sub_02001BC4(param0->unk_10D4, NULL);
+        Menu_Free(param0->unk_10D4, NULL);
         StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
         sub_0200E084(&param0->unk_F5C, 0);
@@ -876,7 +876,7 @@ static int ov94_02240AC4(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_02240AE8(UnkStruct_ov94_0223FD4C *param0)
 {
-    int v0 = sub_02002114(param0->unk_10D0, 62);
+    int v0 = Menu_ProcessInputAndHandleExit(param0->unk_10D0, 62);
 
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
@@ -908,7 +908,7 @@ static int ov94_02240B4C(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_02240B70(UnkStruct_ov94_0223FD4C *param0)
 {
-    int v0 = sub_02002114(param0->unk_10D0, 62);
+    int v0 = Menu_ProcessInputAndHandleExit(param0->unk_10D0, 62);
 
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
@@ -966,7 +966,7 @@ static int ov94_02240C84(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_02240CA8(UnkStruct_ov94_0223FD4C *param0)
 {
-    int v0 = sub_02002114(param0->unk_10D0, 62);
+    int v0 = Menu_ProcessInputAndHandleExit(param0->unk_10D0, 62);
 
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {

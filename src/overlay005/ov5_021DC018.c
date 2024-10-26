@@ -194,7 +194,7 @@ void ov5_021DC1AC(UnkStruct_ov5_021DC1A4 *param0)
 
     ov5_021DC33C(param0);
 
-    param0->unk_B8 = sub_02001B9C(&param0->unk_AC, param0->unk_96, 4);
+    param0->unk_B8 = Menu_NewSimple(&param0->unk_AC, param0->unk_96, 4);
     param0->unk_04 = SysTask_Start(ov5_021DC3B0, param0, 0);
 
     return;
@@ -278,7 +278,7 @@ static void ov5_021DC3B0(SysTask *param0, void *param1)
         return;
     }
 
-    v0 = sub_02001BE0(v1->unk_B8);
+    v0 = Menu_ProcessInput(v1->unk_B8);
 
     switch (v0) {
     case 0xffffffff:
@@ -303,7 +303,7 @@ void ov5_021DC424(UnkStruct_ov5_021DC1A4 *param0)
     int v0;
 
     Sound_PlayEffect(1500);
-    sub_02001BC4(param0->unk_B8, NULL);
+    Menu_Free(param0->unk_B8, NULL);
     Window_Clear(param0->unk_AC.window, 0);
     Window_Remove(param0->unk_AC.window);
 
@@ -784,7 +784,7 @@ void ov5_021DCD94(UnkStruct_ov5_021DC1A4 *param0, u8 param1)
 
     ov5_021DCE64(param0, param1, v1);
 
-    param0->unk_B8 = sub_02001B9C(&param0->unk_AC, param0->unk_96, 4);
+    param0->unk_B8 = Menu_NewSimple(&param0->unk_AC, param0->unk_96, 4);
     param0->unk_04 = SysTask_Start(ov5_021DC3B0, param0, 0);
 
     return;

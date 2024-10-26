@@ -2662,7 +2662,7 @@ static BOOL ScrCmd_03E(ScriptContext *ctx)
 
     sub_0200DAA4(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
 
-    *v1 = sub_02002100(fieldSystem->unk_08, &Unk_020EAB84, 1024 - (18 + 12) - 9, 11, 4);
+    *v1 = Menu_MakeYesNoChoice(fieldSystem->unk_08, &Unk_020EAB84, 1024 - (18 + 12) - 9, 11, 4);
     ctx->data[0] = v2;
 
     ScriptContext_Pause(ctx, sub_02040824);
@@ -2677,7 +2677,7 @@ static BOOL sub_02040824(ScriptContext *ctx)
     Menu **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_UI_CONTROL);
     u16 *v3 = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
 
-    v0 = sub_02002114(*v2, 4);
+    v0 = Menu_ProcessInputAndHandleExit(*v2, 4);
 
     if (v0 == 0xffffffff) {
         return 0;

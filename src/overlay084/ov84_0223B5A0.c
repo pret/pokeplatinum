@@ -2039,18 +2039,18 @@ static int ov84_0223D730(UnkStruct_ov84_0223B5A0 *param0)
         return 4;
     }
 
-    v0 = sub_02001BE0(param0->unk_158);
+    v0 = Menu_ProcessInput(param0->unk_158);
 
     if (v0 == 0xffffffff) {
         if (ov84_0223D1F4(param0) == 1) {
-            v0 = sub_02001D44(param0->unk_158, 0);
+            v0 = Menu_ProcessExternalInput(param0->unk_158, 0);
             param0->unk_490 = 1;
         }
     }
 
     switch (v0) {
     case 0xffffffff: {
-        u8 v1 = sub_02001DC8(param0->unk_158);
+        u8 v1 = Menu_GetLastAction(param0->unk_158);
 
         if (v1 == 1) {
             ov84_0223EB08(param0, 18);
@@ -2226,10 +2226,10 @@ static int ov84_0223DA14(UnkStruct_ov84_0223B5A0 *param0)
         }
 
         if (ov84_0223D1F4(param0) == 1) {
-            v2 = sub_02002134(param0->unk_158, 0, 6);
+            v2 = Menu_ProcessExternalInputAndHandleExit(param0->unk_158, 0, 6);
             param0->unk_490 = 1;
         } else {
-            v2 = sub_02002114(param0->unk_158, 6);
+            v2 = Menu_ProcessInputAndHandleExit(param0->unk_158, 6);
         }
 
         switch (v2) {
@@ -2239,7 +2239,7 @@ static int ov84_0223DA14(UnkStruct_ov84_0223B5A0 *param0)
             param0->unk_C4->unk_68 = 0;
             return 24;
         case 0xffffffff: {
-            u8 v3 = sub_02001DC8(param0->unk_158);
+            u8 v3 = Menu_GetLastAction(param0->unk_158);
 
             if (v3 == 1) {
                 ov84_0223EB08(param0, 18);
@@ -2448,10 +2448,10 @@ static int ov84_0223E01C(UnkStruct_ov84_0223B5A0 *param0)
     }
 
     if (ov84_0223D1F4(param0) == 1) {
-        v0 = sub_02002134(param0->unk_158, 0, 6);
+        v0 = Menu_ProcessExternalInputAndHandleExit(param0->unk_158, 0, 6);
         param0->unk_490 = 1;
     } else {
-        v0 = sub_02002114(param0->unk_158, 6);
+        v0 = Menu_ProcessInputAndHandleExit(param0->unk_158, 6);
     }
 
     switch (v0) {
@@ -2473,7 +2473,7 @@ static int ov84_0223E01C(UnkStruct_ov84_0223B5A0 *param0)
         return 10;
 
     case 0xffffffff: {
-        u8 v2 = sub_02001DC8(param0->unk_158);
+        u8 v2 = Menu_GetLastAction(param0->unk_158);
 
         if (v2 == 1) {
             ov84_0223EB08(param0, 18);
@@ -2785,10 +2785,10 @@ static int ov84_0223E7CC(UnkStruct_ov84_0223B5A0 *param0)
     }
 
     if (ov84_0223D1F4(param0) == 1) {
-        v0 = sub_02002134(param0->unk_158, 0, 6);
+        v0 = Menu_ProcessExternalInputAndHandleExit(param0->unk_158, 0, 6);
         param0->unk_490 = 1;
     } else {
-        v0 = sub_02002114(param0->unk_158, 6);
+        v0 = Menu_ProcessInputAndHandleExit(param0->unk_158, 6);
     }
 
     switch (v0) {
@@ -2809,7 +2809,7 @@ static int ov84_0223E7CC(UnkStruct_ov84_0223B5A0 *param0)
         param0->unk_426 = ov84_022400A0(param0);
         return 21;
     case 0xffffffff: {
-        u8 v2 = sub_02001DC8(param0->unk_158);
+        u8 v2 = Menu_GetLastAction(param0->unk_158);
 
         if (v2 == 1) {
             ov84_0223EB08(param0, 18);
@@ -3136,11 +3136,11 @@ static BOOL ov84_0223EF4C(UnkStruct_ov84_0223B5A0 *param0)
 
 static BOOL ov84_0223EF9C(UnkStruct_ov84_0223B5A0 *param0, u8 param1)
 {
-    u8 v0 = sub_02001DC4(param0->unk_158);
+    u8 v0 = Menu_GetCursorPos(param0->unk_158);
 
-    sub_02001D44(param0->unk_158, param1);
+    Menu_ProcessExternalInput(param0->unk_158, param1);
 
-    if (v0 == sub_02001DC4(param0->unk_158)) {
+    if (v0 == Menu_GetCursorPos(param0->unk_158)) {
         return 0;
     }
 

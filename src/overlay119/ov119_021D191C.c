@@ -176,7 +176,7 @@ static BOOL ov119_021D1930(UnkStruct_ov119_021D0FD0 *param0)
         param0->unk_60++;
         break;
     case 12: {
-        u32 v9 = sub_02001BE0(param0->unk_04.unk_48);
+        u32 v9 = Menu_ProcessInput(param0->unk_04.unk_48);
 
         switch (v9) {
         case 0xfffffffe:
@@ -329,7 +329,7 @@ static BOOL ov119_021D1BD0(UnkStruct_ov119_021D0FD0 *param0)
         param0->unk_60++;
         break;
     case 12: {
-        u32 v5 = sub_02001BE0(param0->unk_04.unk_48);
+        u32 v5 = Menu_ProcessInput(param0->unk_04.unk_48);
 
         switch (v5) {
         case 0xfffffffe:

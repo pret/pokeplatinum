@@ -434,7 +434,7 @@ void ov84_0223FB70(UnkStruct_ov84_0223B5A0 *param0, u8 *param1, u8 param2)
         v0.loopAround = FALSE;
     }
 
-    param0->unk_158 = sub_02001AF4(&v0, 8, 0, 0, 6, PAD_BUTTON_B);
+    param0->unk_158 = Menu_New(&v0, 8, 0, 0, 6, PAD_BUTTON_B);
 
     if (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08 == 3) {
         Window_FillTilemap(&param0->unk_04[1], 0);
@@ -478,7 +478,7 @@ void ov84_0223FD84(UnkStruct_ov84_0223B5A0 *param0)
 
     Window_Clear(&param0->unk_B4[0], 1);
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_B4[0]);
-    sub_02001BC4(param0->unk_158, NULL);
+    Menu_Free(param0->unk_158, NULL);
     StringList_Free(param0->unk_154);
     Window_Remove(&param0->unk_B4[0]);
     Window_FillTilemap(&param0->unk_04[1], 0);
@@ -612,7 +612,7 @@ static BOOL ov84_022400E0(TextPrinterTemplate *param0, u16 param1)
 
 void ov84_02240120(UnkStruct_ov84_0223B5A0 *param0)
 {
-    param0->unk_158 = sub_02002100(param0->unk_00, &Unk_ov84_02241150, 1024 - 9, 14, 6);
+    param0->unk_158 = Menu_MakeYesNoChoice(param0->unk_00, &Unk_ov84_02241150, 1024 - 9, 14, 6);
 }
 
 void ov84_02240148(UnkStruct_ov84_0223B5A0 *param0, u8 param1)

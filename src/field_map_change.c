@@ -1152,12 +1152,12 @@ BOOL FieldTask_MapChangeToUnderground(TaskManager *taskMan)
         if (FieldMessage_FinishedPrinting(mapChangeUndergroundData->unk_38) == 1) {
             Strbuf_Free(mapChangeUndergroundData->unk_34);
             sub_0200DAA4(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 11);
-            mapChangeUndergroundData->unk_3C = sub_02002100(fieldSystem->unk_08, &Unk_020EC3A0, 1024 - (18 + 12) - 9, 11, 11);
+            mapChangeUndergroundData->unk_3C = Menu_MakeYesNoChoice(fieldSystem->unk_08, &Unk_020EC3A0, 1024 - (18 + 12) - 9, 11, 11);
             mapChangeUndergroundData->state = 2;
         }
         break;
     case 2:
-        switch (sub_02002114(mapChangeUndergroundData->unk_3C, 11)) {
+        switch (Menu_ProcessInputAndHandleExit(mapChangeUndergroundData->unk_3C, 11)) {
         case 0:
             sub_0200E084(&mapChangeUndergroundData->unk_24, 0);
             Window_Remove(&mapChangeUndergroundData->unk_24);

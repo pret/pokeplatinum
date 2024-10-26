@@ -213,7 +213,7 @@ int ov67_0225C820(OverlayManager *param0, int *param1)
     case 2:
         if (v1->unk_08 == 0) {
             ov67_0225D210(&v0->unk_70, 17);
-            v0->unk_D0 = sub_02002100(v0->unk_0C, &Unk_ov67_0225D3EC, (1 + (18 + 12)), 14, 112);
+            v0->unk_D0 = Menu_MakeYesNoChoice(v0->unk_0C, &Unk_ov67_0225D3EC, (1 + (18 + 12)), 14, 112);
             (*param1)++;
         } else {
             (*param1) = 4;
@@ -221,7 +221,7 @@ int ov67_0225C820(OverlayManager *param0, int *param1)
         break;
     case 3: {
         u32 v2;
-        v2 = sub_02002114(v0->unk_D0, 112);
+        v2 = Menu_ProcessInputAndHandleExit(v0->unk_D0, 112);
 
         switch (v2) {
         case 0:
@@ -324,12 +324,12 @@ int ov67_0225C820(OverlayManager *param0, int *param1)
     case 11:
         ov67_0225D294(&v0->unk_A0);
         ov67_0225D210(&v0->unk_40, 88);
-        v0->unk_D0 = sub_02002100(v0->unk_0C, &Unk_ov67_0225D3EC, (1 + (18 + 12)), 14, 112);
+        v0->unk_D0 = Menu_MakeYesNoChoice(v0->unk_0C, &Unk_ov67_0225D3EC, (1 + (18 + 12)), 14, 112);
         (*param1)++;
         break;
     case 12: {
         u32 v11;
-        v11 = sub_02002114(v0->unk_D0, 112);
+        v11 = Menu_ProcessInputAndHandleExit(v0->unk_D0, 112);
 
         switch (v11) {
         case 0:

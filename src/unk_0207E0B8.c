@@ -548,7 +548,7 @@ static int sub_0207E5F4(GameWindowLayout *param0)
 
 static int sub_0207E634(GameWindowLayout *param0)
 {
-    u32 v0 = sub_02001BE0(param0->unk_700);
+    u32 v0 = Menu_ProcessInput(param0->unk_700);
 
     switch (v0) {
     case 0xffffffff:
@@ -557,7 +557,7 @@ static int sub_0207E634(GameWindowLayout *param0)
         sub_0200E084(&param0->unk_04[33], 1);
         Window_Clear(&param0->unk_04[35], 1);
         Window_ClearAndScheduleCopyToVRAM(&param0->unk_04[35]);
-        sub_02001BC4(param0->unk_700, NULL);
+        Menu_Free(param0->unk_700, NULL);
         StringList_Free(param0->unk_6FC);
         sub_020826E0(param0, 29, 1);
         sub_0200D414(param0->unk_5B0[6], 0);
@@ -603,7 +603,7 @@ static int sub_0207E708(GameWindowLayout *param0)
 
 static int sub_0207E714(GameWindowLayout *param0)
 {
-    switch (sub_02002114(param0->unk_700, 12)) {
+    switch (Menu_ProcessInputAndHandleExit(param0->unk_700, 12)) {
     case 0:
         return param0->unk_B04.unk_00(param0);
     case 0xfffffffe:
@@ -2316,7 +2316,7 @@ static int GetValidWindowLayout(GameWindowLayout *param0)
 
 static u8 HandleWindowInputEvent(GameWindowLayout *param0, int *param1)
 {
-    u32 v0 = sub_02001BE0(param0->unk_700);
+    u32 v0 = Menu_ProcessInput(param0->unk_700);
 
     switch (v0) {
     case 0xffffffff:
@@ -2777,7 +2777,7 @@ static int ProcessPokemonItemSwap(GameWindowLayout *param0)
 {
     int v0, v1;
 
-    switch (sub_02002114(param0->unk_700, 12)) {
+    switch (Menu_ProcessInputAndHandleExit(param0->unk_700, 12)) {
     case 0: {
         Pokemon *v2;
         Window *v3;

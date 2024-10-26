@@ -516,7 +516,7 @@ static void ov23_0224F7F4(UnkStruct_ov23_02250CD4 *param0)
         v0.loopAround = FALSE;
     }
 
-    param0->unk_54 = sub_02001AF4(&v0, 28, 4, param0->unk_29C, 11, PAD_BUTTON_B | PAD_BUTTON_X);
+    param0->unk_54 = Menu_New(&v0, 28, 4, param0->unk_29C, 11, PAD_BUTTON_B | PAD_BUTTON_X);
     param0->unk_48 = NULL;
 
     Window_ScheduleCopyToVRAM(&param0->unk_10);
@@ -616,9 +616,9 @@ static BOOL ov23_0224FA58(SysTask *param0, void *param1)
     UnkStruct_ov23_02250CD4 *v0 = param1;
     u16 v1;
 
-    v1 = sub_02001DC4(v0->unk_54);
-    v0->unk_2A0 = sub_02001C94(v0->unk_54, 1504);
-    v0->unk_29C = sub_02001DC4(v0->unk_54);
+    v1 = Menu_GetCursorPos(v0->unk_54);
+    v0->unk_2A0 = Menu_ProcessInputWithSound(v0->unk_54, 1504);
+    v0->unk_29C = Menu_GetCursorPos(v0->unk_54);
 
     if (v1 != v0->unk_29C) {
         ov23_0224F4D0(v0->unk_23C[0]->unk_00, v0->unk_29C);
@@ -650,7 +650,7 @@ static BOOL ov23_0224FA58(SysTask *param0, void *param1)
 
         if (v0->unk_25C) {
             ov23_0224F460(v0);
-            sub_02001BC4(v0->unk_54, NULL);
+            Menu_Free(v0->unk_54, NULL);
             v0->unk_25C = 0;
         }
 
@@ -676,7 +676,7 @@ void ov23_0224FB7C(UnkStruct_ov23_02250CD4 *param0)
         param0->unk_48 = NULL;
     } else if (param0->unk_25C) {
         ov23_0224F460(param0);
-        sub_02001BC4(param0->unk_54, NULL);
+        Menu_Free(param0->unk_54, NULL);
         param0->unk_25C = 0;
     }
 
@@ -1377,7 +1377,7 @@ static void ov23_02250998(SysTask *param0, void *param1)
     UnkStruct_ov23_02250CD4 *v0 = param1;
 
     if (ov23_02254238(ov23_0224219C()) == 0) {
-        v0->unk_5C = sub_02002100(v0->fieldSystem->unk_08, &Unk_ov23_022568D8, 1024 - (18 + 12) - 9, 11, 4);
+        v0->unk_5C = Menu_MakeYesNoChoice(v0->fieldSystem->unk_08, &Unk_ov23_022568D8, 1024 - (18 + 12) - 9, 11, 4);
         v0->unk_2AA = 12;
     }
 }
@@ -1385,7 +1385,7 @@ static void ov23_02250998(SysTask *param0, void *param1)
 static void ov23_022509D4(SysTask *param0, void *param1)
 {
     UnkStruct_ov23_02250CD4 *v0 = param1;
-    int v1 = sub_02002114(v0->unk_5C, 4);
+    int v1 = Menu_ProcessInputAndHandleExit(v0->unk_5C, 4);
 
     if (v1 == 0xffffffff) {
         return;
@@ -1439,14 +1439,14 @@ void ov23_02250A50(UnkFuncPtr_ov23_0224F758 param0, FieldSystem *fieldSystem)
 static void ov23_02250ACC(UnkStruct_ov23_02250CD4 *param0)
 {
     if (ov23_02254238(ov23_022421AC()) == 0) {
-        param0->unk_5C = sub_02002100(param0->fieldSystem->unk_08, &Unk_ov23_022568D8, 1024 - (18 + 12) - 9, 11, 4);
+        param0->unk_5C = Menu_MakeYesNoChoice(param0->fieldSystem->unk_08, &Unk_ov23_022568D8, 1024 - (18 + 12) - 9, 11, 4);
         param0->unk_2AA = 1;
     }
 }
 
 static void ov23_02250B08(UnkStruct_ov23_02250CD4 *param0)
 {
-    int v0 = sub_02002114(param0->unk_5C, 4);
+    int v0 = Menu_ProcessInputAndHandleExit(param0->unk_5C, 4);
 
     if (v0 == 0xffffffff) {
         return;
@@ -1462,7 +1462,7 @@ static void ov23_02250B08(UnkStruct_ov23_02250CD4 *param0)
 static void ov23_02250B34(SysTask *param0, UnkStruct_ov23_02250CD4 *param1, BOOL param2)
 {
     if (param1->unk_5C) {
-        sub_02002154(param1->unk_5C, 4);
+        Menu_DestroyForExit(param1->unk_5C, 4);
     }
 
     Strbuf_Free(param1->unk_68);
@@ -1753,7 +1753,7 @@ void ov23_02251044(void *param0, u32 param1)
     }
 
     if (v0->unk_5C) {
-        sub_02002154(v0->unk_5C, 4);
+        Menu_DestroyForExit(v0->unk_5C, 4);
     }
 
     ov23_0224FCF4(v0);

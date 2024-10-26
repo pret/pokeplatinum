@@ -1253,12 +1253,12 @@ static void ov78_021D1E44(ChooseStarterApp *param0, int param1)
         break;
     case 2:
         ov78_021D1FB4(param0->messageWindow, param1, 360, 1 + param0->cursorPosition, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
-        param0->unk_B8 = sub_02002100(param0->bgl, &param0->unk_B0, (512 + (18 + 12) + 128), 1, param1);
+        param0->unk_B8 = Menu_MakeYesNoChoice(param0->bgl, &param0->unk_B0, (512 + (18 + 12) + 128), 1, param1);
         param0->unk_08 = 0;
         param0->unk_04++;
         break;
     case 3:
-        v0 = sub_02002114(param0->unk_B8, param1);
+        v0 = Menu_ProcessInputAndHandleExit(param0->unk_B8, param1);
 
         switch (v0) {
         case 0xffffffff:

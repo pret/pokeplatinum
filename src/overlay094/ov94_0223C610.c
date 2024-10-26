@@ -520,7 +520,7 @@ static int ov94_0223CE5C(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_0223CE7C(UnkStruct_ov94_0223FD4C *param0)
 {
-    int v0 = sub_02002114(param0->unk_10D0, 62);
+    int v0 = Menu_ProcessInputAndHandleExit(param0->unk_10D0, 62);
 
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {

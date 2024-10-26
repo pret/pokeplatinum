@@ -5,6 +5,8 @@
 #include "colored_arrow.h"
 #include "string_list.h"
 
+#define MENU_DUMMY -3
+
 typedef struct MenuTemplate {
     const StringList *choices;
     Window *window;
@@ -31,20 +33,20 @@ typedef struct Menu {
     u8 heapID;
 } Menu;
 
-Menu *sub_02001AF4(const MenuTemplate *param0, u8 param1, u8 param2, u8 param3, u8 param4, u32 param5);
-Menu *sub_02001B7C(const MenuTemplate *param0, u8 param1, u8 param2, u8 param3, u8 param4, u32 param5);
-Menu *sub_02001B9C(const MenuTemplate *param0, u8 param1, u8 param2);
-void sub_02001BC4(Menu *param0, u8 *param1);
-u32 sub_02001BE0(Menu *param0);
-u32 sub_02001C94(Menu *param0, u16 param1);
-u32 sub_02001D44(Menu *param0, u8 param1);
-u8 sub_02001DC4(Menu *param0);
-u8 sub_02001DC8(Menu *param0);
-Menu *sub_02002054(BgConfig *param0, const WindowTemplate *param1, u16 param2, u8 param3, u8 param4, u32 param5);
-Menu *sub_02002100(BgConfig *param0, const WindowTemplate *param1, u16 param2, u8 param3, u32 param4);
-u32 sub_02002114(Menu *param0, u32 param1);
-u32 sub_02002134(Menu *param0, u8 param1, u32 param2);
-void sub_02002154(Menu *param0, u32 param1);
-void sub_02002180(Window *param0, u32 param1, u32 param2);
+Menu *Menu_New(const MenuTemplate *param0, u8 param1, u8 param2, u8 param3, u8 param4, u32 param5);
+Menu *Menu_NewAndCopyToVRAM(const MenuTemplate *param0, u8 param1, u8 param2, u8 param3, u8 param4, u32 param5);
+Menu *Menu_NewSimple(const MenuTemplate *param0, u8 param1, u8 param2);
+void Menu_Free(Menu *param0, u8 *param1);
+u32 Menu_ProcessInput(Menu *param0);
+u32 Menu_ProcessInputWithSound(Menu *param0, u16 param1);
+u32 Menu_ProcessExternalInput(Menu *param0, u8 param1);
+u8 Menu_GetCursorPos(Menu *param0);
+u8 Menu_GetLastAction(Menu *param0);
+Menu *Menu_MakeYesNoChoiceWithCursorAt(BgConfig *param0, const WindowTemplate *param1, u16 param2, u8 param3, u8 param4, u32 param5);
+Menu *Menu_MakeYesNoChoice(BgConfig *param0, const WindowTemplate *param1, u16 param2, u8 param3, u32 param4);
+u32 Menu_ProcessInputAndHandleExit(Menu *param0, u32 param1);
+u32 Menu_ProcessExternalInputAndHandleExit(Menu *param0, u8 param1, u32 param2);
+void Menu_DestroyForExit(Menu *param0, u32 param1);
+void Menu_DrawCursorBitmap(Window *param0, u32 param1, u32 param2);
 
 #endif // POKEPLATINUM_MENU_H

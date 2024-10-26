@@ -1125,12 +1125,12 @@ static void sub_020733E0(UnkStruct_02072334 *param0)
         0x355
     };
 
-    param0->unk_168 = sub_02002100(param0->unk_170, &v0, (1024 - (18 + 12) - 9), 11, param0->unk_00);
+    param0->unk_168 = Menu_MakeYesNoChoice(param0->unk_170, &v0, (1024 - (18 + 12) - 9), 11, param0->unk_00);
 }
 
 static int sub_0207340C(UnkStruct_02072334 *param0)
 {
-    switch (sub_02002114(param0->unk_168, param0->unk_00)) {
+    switch (Menu_ProcessInputAndHandleExit(param0->unk_168, param0->unk_00)) {
     case 0:
         return 1;
     case 0xfffffffe:

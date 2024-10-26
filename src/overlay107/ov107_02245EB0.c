@@ -576,7 +576,7 @@ static BOOL ov107_022462CC (UnkStruct_ov107_02246170 * param0)
         }
         break;
     case 3:
-        v7 = sub_02001BE0(param0->unk_11C);
+        v7 = Menu_ProcessInput(param0->unk_11C);
 
         switch (v7) {
         case 0xffffffff:
@@ -614,7 +614,7 @@ static BOOL ov107_022462CC (UnkStruct_ov107_02246170 * param0)
         }
         break;
     case 4:
-        v7 = sub_02001BE0(param0->unk_11C);
+        v7 = Menu_ProcessInput(param0->unk_11C);
 
         switch (v7) {
         case 0xffffffff:
@@ -657,7 +657,7 @@ static BOOL ov107_022462CC (UnkStruct_ov107_02246170 * param0)
         }
         break;
     case 5:
-        v7 = sub_02001BE0(param0->unk_11C);
+        v7 = Menu_ProcessInput(param0->unk_11C);
 
         switch (v7) {
         case 0xffffffff:
@@ -771,7 +771,7 @@ static BOOL ov107_022462CC (UnkStruct_ov107_02246170 * param0)
         }
         break;
     case 7:
-        v7 = sub_02001BE0(param0->unk_11C);
+        v7 = Menu_ProcessInput(param0->unk_11C);
 
         switch (v7) {
         case 0xffffffff:
@@ -792,7 +792,7 @@ static BOOL ov107_022462CC (UnkStruct_ov107_02246170 * param0)
         }
         break;
     case 8:
-        v7 = sub_02001BE0(param0->unk_11C);
+        v7 = Menu_ProcessInput(param0->unk_11C);
 
         switch (v7) {
         case 0xffffffff:
@@ -813,7 +813,7 @@ static BOOL ov107_022462CC (UnkStruct_ov107_02246170 * param0)
         }
         break;
     case 9:
-        v7 = sub_02001BE0(param0->unk_11C);
+        v7 = Menu_ProcessInput(param0->unk_11C);
 
         switch (v7) {
         case 0xffffffff:
@@ -1901,7 +1901,7 @@ static void ov107_02247D94 (UnkStruct_ov107_02246170 * param0)
     ov107_02247D68(param0, 0, 0, 26);
     ov107_02247D68(param0, 1, 1, 27);
 
-    param0->unk_11C = sub_02001B7C(&param0->unk_110, 8, 0, 0, 100, PAD_BUTTON_B);
+    param0->unk_11C = Menu_NewAndCopyToVRAM(&param0->unk_110, 8, 0, 0, 100, PAD_BUTTON_B);
     param0->unk_0F_2 = 1;
 
     return;
@@ -1915,7 +1915,7 @@ static void ov107_02247DF0 (UnkStruct_ov107_02246170 * param0)
     ov107_02247D68(param0, 1, 1, 23);
     ov107_02247D68(param0, 2, 2, 24);
 
-    param0->unk_11C = sub_02001B7C(&param0->unk_110, 8, 0, 0, 100, PAD_BUTTON_B);
+    param0->unk_11C = Menu_NewAndCopyToVRAM(&param0->unk_110, 8, 0, 0, 100, PAD_BUTTON_B);
     param0->unk_0F_2 = 1;
 
     return;
@@ -2884,7 +2884,7 @@ static void ov107_02248BB4 (UnkStruct_ov107_02246170 * param0)
 {
     if (param0->unk_0F_2 == 1) {
         param0->unk_0F_2 = 0;
-        sub_02001BC4(param0->unk_11C, NULL);
+        Menu_Free(param0->unk_11C, NULL);
         Window_Clear(param0->unk_110.window, 1);
         Window_ClearAndScheduleCopyToVRAM(param0->unk_110.window);
     }

@@ -376,7 +376,7 @@ static void sub_0206F62C(UnkStruct_0206F7F8 *param0)
         0x355
     };
 
-    param0->unk_C8 = sub_02002100(param0->unk_D0, &v0, (1024 - (18 + 12) - 9), 11, param0->unk_00);
+    param0->unk_C8 = Menu_MakeYesNoChoice(param0->unk_D0, &v0, (1024 - (18 + 12) - 9), 11, param0->unk_00);
 }
 
 static int sub_0206F658(UnkStruct_0206F7F8 *param0)
@@ -399,7 +399,7 @@ static int sub_0206F658(UnkStruct_0206F7F8 *param0)
         param0->unk_0C++;
         break;
     case 2:
-        switch (sub_02002114(param0->unk_C8, param0->unk_00)) {
+        switch (Menu_ProcessInputAndHandleExit(param0->unk_C8, param0->unk_00)) {
         case 0:
             param0->unk_0C++;
             break;

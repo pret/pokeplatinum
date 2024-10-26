@@ -990,14 +990,14 @@ static void ov68_0225D2CC(UnkStruct_ov68_0225D128 *param0)
 static void ov68_0225D304(UnkStruct_ov68_0225D128 *param0, UnkStruct_ov68_0225C91C *param1, u32 param2)
 {
     GF_ASSERT(param0->unk_20 == NULL);
-    param0->unk_20 = sub_02002100(param1->unk_00, &Unk_ov68_0225DD38, (1 + (18 + 12)), 6, param2);
+    param0->unk_20 = Menu_MakeYesNoChoice(param1->unk_00, &Unk_ov68_0225DD38, (1 + (18 + 12)), 6, param2);
 }
 
 static u32 ov68_0225D330(UnkStruct_ov68_0225D128 *param0, u32 param1)
 {
     u32 v0;
 
-    v0 = sub_02002114(param0->unk_20, param1);
+    v0 = Menu_ProcessInputAndHandleExit(param0->unk_20, param1);
 
     if (v0 != 0xffffffff) {
         param0->unk_20 = NULL;
@@ -1009,7 +1009,7 @@ static u32 ov68_0225D330(UnkStruct_ov68_0225D128 *param0, u32 param1)
 static void ov68_0225D348(UnkStruct_ov68_0225D128 *param0, u32 param1)
 {
     if (param0->unk_20 != NULL) {
-        sub_02002154(param0->unk_20, param1);
+        Menu_DestroyForExit(param0->unk_20, param1);
         param0->unk_20 = NULL;
     }
 }

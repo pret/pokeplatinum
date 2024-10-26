@@ -421,7 +421,7 @@ static int ov96_0223C3F0(UnkStruct_ov96_0223BF40 *param0)
 
 static int ov96_0223C420(UnkStruct_ov96_0223BF40 *param0)
 {
-    int v0 = sub_02002114(param0->unk_F68, 68);
+    int v0 = Menu_ProcessInputAndHandleExit(param0->unk_F68, 68);
 
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
@@ -448,7 +448,7 @@ static int ov96_0223C488(UnkStruct_ov96_0223BF40 *param0)
 
 static int ov96_0223C4B8(UnkStruct_ov96_0223BF40 *param0)
 {
-    int v0 = sub_02002114(param0->unk_F68, 68);
+    int v0 = Menu_ProcessInputAndHandleExit(param0->unk_F68, 68);
 
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
@@ -1358,7 +1358,7 @@ static int ov96_0223D3D8(UnkStruct_ov96_0223BF40 *param0)
 
 static int ov96_0223D408(UnkStruct_ov96_0223BF40 *param0)
 {
-    int v0 = sub_02002114(param0->unk_F68, 68);
+    int v0 = Menu_ProcessInputAndHandleExit(param0->unk_F68, 68);
 
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
@@ -1382,7 +1382,7 @@ static int ov96_0223D43C(UnkStruct_ov96_0223BF40 *param0)
 
 static int ov96_0223D46C(UnkStruct_ov96_0223BF40 *param0)
 {
-    int v0 = sub_02002114(param0->unk_F68, 68);
+    int v0 = Menu_ProcessInputAndHandleExit(param0->unk_F68, 68);
 
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
@@ -1440,7 +1440,7 @@ static int ov96_0223D528(UnkStruct_ov96_0223BF40 *param0)
 
 static int ov96_0223D558(UnkStruct_ov96_0223BF40 *param0)
 {
-    int v0 = sub_02002114(param0->unk_F68, 68);
+    int v0 = Menu_ProcessInputAndHandleExit(param0->unk_F68, 68);
 
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {

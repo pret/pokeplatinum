@@ -556,7 +556,7 @@ static Menu *ov61_0222C884(BgConfig *param0, int param1, int param2)
     v0.tilemapTop = param1;
     v0.baseTile = param2;
 
-    return sub_02002100(param0, &v0, (1 + (18 + 12)), 11, 117);
+    return Menu_MakeYesNoChoice(param0, &v0, (1 + (18 + 12)), 11, 117);
 }
 
 static void ov61_0222C8B8(UnkStruct_ov61_0222C664 *param0, MessageLoader *param1, int param2, int param3, u16 param4)
@@ -633,7 +633,7 @@ static int ov61_0222C960(UnkStruct_ov61_0222C664 *param0)
         param0->unk_90++;
         break;
     case 3: {
-        int v0 = sub_02002114(param0->unk_84, 117);
+        int v0 = Menu_ProcessInputAndHandleExit(param0->unk_84, 117);
 
         if (v0 != 0xffffffff) {
             if (v0 == 0xfffffffe) {

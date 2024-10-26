@@ -2099,7 +2099,7 @@ static int ov88_0223DA3C(UnkStruct_02095E80 *param0)
 
     ov88_0223ED80(&param0->unk_49C[24]);
 
-    param0->unk_6C4 = sub_02001B7C(&v0, 8, 0, 0, 26, PAD_BUTTON_B);
+    param0->unk_6C4 = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 26, PAD_BUTTON_B);
     param0->unk_226C = ov88_0223DB48;
 
     return 0;
@@ -2107,11 +2107,11 @@ static int ov88_0223DA3C(UnkStruct_02095E80 *param0)
 
 static int ov88_0223DB48(UnkStruct_02095E80 *param0)
 {
-    switch (sub_02001BE0(param0->unk_6C4)) {
+    switch (Menu_ProcessInput(param0->unk_6C4)) {
     case 0:
         Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
         ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
-        sub_02001BC4(param0->unk_6C4, NULL);
+        Menu_Free(param0->unk_6C4, NULL);
         StringList_Free(param0->unk_6C0);
         param0->unk_226C = ov88_0223D150;
         return 3;
@@ -2119,7 +2119,7 @@ static int ov88_0223DB48(UnkStruct_02095E80 *param0)
     case 1:
         Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
         ov88_0223ECBC(&param0->unk_49C[23], 20, FONT_MESSAGE, param0->unk_184, param0->unk_178);
-        sub_02001BC4(param0->unk_6C4, NULL);
+        Menu_Free(param0->unk_6C4, NULL);
         StringList_Free(param0->unk_6C0);
         param0->unk_226C = ov88_0223DC84;
         break;
@@ -2127,7 +2127,7 @@ static int ov88_0223DB48(UnkStruct_02095E80 *param0)
     case 0xfffffffe:
         Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
         ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
-        sub_02001BC4(param0->unk_6C4, NULL);
+        Menu_Free(param0->unk_6C4, NULL);
         StringList_Free(param0->unk_6C0);
         param0->unk_226C = ov88_0223D150;
         break;
@@ -2447,7 +2447,7 @@ static int ov88_0223E4BC(UnkStruct_02095E80 *param0)
 
     ov88_0223ED80(&param0->unk_49C[25]);
 
-    param0->unk_6C4 = sub_02001B7C(&v0, 8, 0, 0, 26, PAD_BUTTON_B);
+    param0->unk_6C4 = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 26, PAD_BUTTON_B);
     param0->unk_226C = ov88_0223E5B8;
 
     return 0;
@@ -2455,12 +2455,12 @@ static int ov88_0223E4BC(UnkStruct_02095E80 *param0)
 
 static int ov88_0223E5B8(UnkStruct_02095E80 *param0)
 {
-    switch (sub_02001BE0(param0->unk_6C4)) {
+    switch (Menu_ProcessInput(param0->unk_6C4)) {
     case 0:
         Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
         ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
         param0->unk_226C = ov88_0223D150;
-        sub_02001BC4(param0->unk_6C4, NULL);
+        Menu_Free(param0->unk_6C4, NULL);
         StringList_Free(param0->unk_6C0);
         return 3;
         break;
@@ -2469,7 +2469,7 @@ static int ov88_0223E5B8(UnkStruct_02095E80 *param0)
     case 0xfffffffe:
         Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
         ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
-        sub_02001BC4(param0->unk_6C4, NULL);
+        Menu_Free(param0->unk_6C4, NULL);
         StringList_Free(param0->unk_6C0);
         param0->unk_226C = ov88_0223D150;
         break;

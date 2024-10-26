@@ -360,7 +360,7 @@ void ov119_021D11E4(UnkStruct_ov119_021D0FD0 *param0, BgConfig *param1, Window *
     v0.loopAround = TRUE;
 
     Window_Show(param2, 1, (20 + (18 + 12)), 13);
-    param0->unk_04.unk_48 = sub_02001B7C(&v0, 8, 0, 0, 71, PAD_BUTTON_B);
+    param0->unk_04.unk_48 = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 71, PAD_BUTTON_B);
 }
 
 void ov119_021D12CC(UnkStruct_ov119_021D0FD0 *param0)
@@ -368,7 +368,7 @@ void ov119_021D12CC(UnkStruct_ov119_021D0FD0 *param0)
     Window_Clear(&param0->unk_04.unk_14[1], 1);
     Window_ClearAndCopyToVRAM(&param0->unk_04.unk_14[1]);
     Window_Remove(&param0->unk_04.unk_14[1]);
-    sub_02001BC4(param0->unk_04.unk_48, NULL);
+    Menu_Free(param0->unk_04.unk_48, NULL);
     StringList_Free(param0->unk_04.unk_44);
 }
 

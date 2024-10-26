@@ -266,7 +266,7 @@ static void ov23_0224DD2C(UnkStruct_ov23_0224E280 *param0)
 static void ov23_0224DDE4(SysTask *param0, UnkStruct_ov23_0224E280 *param1)
 {
     if (param1->unk_24) {
-        sub_02002154(param1->unk_24, 4);
+        Menu_DestroyForExit(param1->unk_24, 4);
         param1->unk_24 = NULL;
     }
 
@@ -474,7 +474,7 @@ static void ov23_0224E19C(SysTask *param0, UnkStruct_ov23_0224E280 *param1)
 {
     u32 v0;
 
-    v0 = sub_02002114(param1->unk_24, 4);
+    v0 = Menu_ProcessInputAndHandleExit(param1->unk_24, 4);
 
     if (v0 == 0xffffffff) {
         return;
@@ -690,7 +690,7 @@ static void ov23_0224E2D8(SysTask *param0, void *param1)
         break;
     case 19:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            v0->unk_24 = sub_02002100(v0->fieldSystem->unk_08, &Unk_ov23_0225688C, 1024 - (18 + 12) - 9, 11, 4);
+            v0->unk_24 = Menu_MakeYesNoChoice(v0->fieldSystem->unk_08, &Unk_ov23_0225688C, 1024 - (18 + 12) - 9, 11, 4);
             v0->unk_37 = 20;
 
             if (v0->unk_38 != 8) {
@@ -842,7 +842,7 @@ static void ov23_0224E2D8(SysTask *param0, void *param1)
         }
 
         if (v0->unk_24) {
-            sub_02002154(v0->unk_24, 4);
+            Menu_DestroyForExit(v0->unk_24, 4);
             v0->unk_24 = NULL;
         }
 
@@ -872,7 +872,7 @@ static void ov23_0224E8FC(SysTask *param0, UnkStruct_ov23_022577B0 *param1)
 {
     u32 v0;
 
-    v0 = sub_02002114(param1->unk_20, 4);
+    v0 = Menu_ProcessInputAndHandleExit(param1->unk_20, 4);
 
     if (v0 == 0xffffffff) {
         return;
@@ -894,7 +894,7 @@ static void ov23_0224E93C(SysTask *param0, UnkStruct_ov23_022577B0 *param1)
 {
     u32 v0;
 
-    v0 = sub_02002114(param1->unk_20, 4);
+    v0 = Menu_ProcessInputAndHandleExit(param1->unk_20, 4);
 
     if (v0 == 0xffffffff) {
         return;
@@ -926,7 +926,7 @@ static void ov23_0224E93C(SysTask *param0, UnkStruct_ov23_022577B0 *param1)
 static void ov23_0224E9C4(SysTask *param0, UnkStruct_ov23_022577B0 *param1)
 {
     if (param1->unk_20) {
-        sub_02002154(param1->unk_20, 4);
+        Menu_DestroyForExit(param1->unk_20, 4);
         param1->unk_20 = NULL;
     }
 
@@ -1100,7 +1100,7 @@ static void ov23_0224EC50(SysTask *param0, void *param1)
     case 6:
         if (ov23_02254238(ov23_0224219C()) == 0) {
             v0->unk_34 = 7;
-            v0->unk_20 = sub_02002100(v0->fieldSystem->unk_08, &Unk_ov23_0225688C, 1024 - (18 + 12) - 9, 11, 4);
+            v0->unk_20 = Menu_MakeYesNoChoice(v0->fieldSystem->unk_08, &Unk_ov23_0225688C, 1024 - (18 + 12) - 9, 11, 4);
         }
         break;
     case 7:
@@ -1155,7 +1155,7 @@ static void ov23_0224EC50(SysTask *param0, void *param1)
     case 17:
         if (ov23_02254238(ov23_0224219C()) == 0) {
             v0->unk_34 = 18;
-            v0->unk_20 = sub_02002100(v0->fieldSystem->unk_08, &Unk_ov23_0225688C, 1024 - (18 + 12) - 9, 11, 4);
+            v0->unk_20 = Menu_MakeYesNoChoice(v0->fieldSystem->unk_08, &Unk_ov23_0225688C, 1024 - (18 + 12) - 9, 11, 4);
         }
         break;
     case 18:
@@ -1255,7 +1255,7 @@ static void ov23_0224EC50(SysTask *param0, void *param1)
         }
 
         if (v0->unk_20) {
-            sub_02002154(v0->unk_20, 4);
+            Menu_DestroyForExit(v0->unk_20, 4);
             v0->unk_20 = NULL;
         }
 

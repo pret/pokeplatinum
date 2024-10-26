@@ -226,7 +226,7 @@ void sub_02081CF4(GameWindowLayout *param0, const u8 *param1, u8 param2)
     }
 
     Window_Show(&param0->unk_254[0], 1, 1, 14);
-    param0->unk_700 = sub_02001B7C(&v0, 8, 0, 0, 12, PAD_BUTTON_B);
+    param0->unk_700 = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 12, PAD_BUTTON_B);
 }
 
 void sub_02081E08(GameWindowLayout *param0)
@@ -638,7 +638,7 @@ static BOOL sub_0208279C(TextPrinterTemplate *param0, u16 param1)
 
 void sub_020827EC(GameWindowLayout *param0)
 {
-    param0->unk_700 = sub_02002100(
+    param0->unk_700 = Menu_MakeYesNoChoice(
         param0->unk_00, &Unk_020F1E98, 1, 14, 12);
 }
 

@@ -130,7 +130,7 @@ static const WindowTemplate Unk_ov5_021FAF00 = {
 static BOOL ov5_021EA9BC(UnkStruct_ov5_021EAE78 *param0)
 {
     if (Text_IsPrinterActive(param0->unk_40) == 0) {
-        param0->unk_44 = sub_02002100(param0->fieldSystem->unk_08, &Unk_ov5_021FAF00, 1024 - (18 + 12) - 9, 11, 4);
+        param0->unk_44 = Menu_MakeYesNoChoice(param0->fieldSystem->unk_08, &Unk_ov5_021FAF00, 1024 - (18 + 12) - 9, 11, 4);
         param0->unk_48 = 3;
     }
 
@@ -142,7 +142,7 @@ static BOOL ov5_021EA9F8(UnkStruct_ov5_021EAE78 *param0)
     DWCFriendData *v0;
     Strbuf *v1;
     int v2;
-    int v3 = sub_02002114(param0->unk_44, 4);
+    int v3 = Menu_ProcessInputAndHandleExit(param0->unk_44, 4);
 
     if (v3 == 0xffffffff) {
         return 0;
@@ -170,7 +170,7 @@ static BOOL ov5_021EA9F8(UnkStruct_ov5_021EAE78 *param0)
 static BOOL ov5_021EAA6C(UnkStruct_ov5_021EAE78 *param0)
 {
     if (Text_IsPrinterActive(param0->unk_40) == 0) {
-        param0->unk_44 = sub_02002100(param0->fieldSystem->unk_08, &Unk_ov5_021FAF00, 1024 - (18 + 12) - 9, 11, 4);
+        param0->unk_44 = Menu_MakeYesNoChoice(param0->fieldSystem->unk_08, &Unk_ov5_021FAF00, 1024 - (18 + 12) - 9, 11, 4);
         param0->unk_48 = 5;
     }
 
@@ -183,7 +183,7 @@ static BOOL ov5_021EAAA8(UnkStruct_ov5_021EAE78 *param0)
     DWCFriendData *v1;
     Strbuf *v2;
     int v3;
-    int v4 = sub_02002114(param0->unk_44, 4);
+    int v4 = Menu_ProcessInputAndHandleExit(param0->unk_44, 4);
 
     if (v4 == 0xffffffff) {
         return 0;
@@ -202,7 +202,7 @@ static BOOL ov5_021EAAA8(UnkStruct_ov5_021EAE78 *param0)
 static BOOL ov5_021EAAEC(UnkStruct_ov5_021EAE78 *param0)
 {
     if (Text_IsPrinterActive(param0->unk_40) == 0) {
-        param0->unk_44 = sub_02002100(param0->fieldSystem->unk_08, &Unk_ov5_021FAF00, 1024 - (18 + 12) - 9, 11, 4);
+        param0->unk_44 = Menu_MakeYesNoChoice(param0->fieldSystem->unk_08, &Unk_ov5_021FAF00, 1024 - (18 + 12) - 9, 11, 4);
         param0->unk_48 = 7;
     }
 
@@ -215,7 +215,7 @@ static BOOL ov5_021EAB28(UnkStruct_ov5_021EAE78 *param0)
     DWCFriendData *v1;
     Strbuf *v2;
     int v3;
-    int v4 = sub_02002114(param0->unk_44, 4);
+    int v4 = Menu_ProcessInputAndHandleExit(param0->unk_44, 4);
 
     if (v4 == 0xffffffff) {
         return 0;
@@ -339,7 +339,7 @@ static BOOL ov5_021EAC44(UnkStruct_ov5_021EAE78 *param0)
 static BOOL ov5_021EACFC(UnkStruct_ov5_021EAE78 *param0)
 {
     if (Text_IsPrinterActive(param0->unk_40) == 0) {
-        param0->unk_44 = sub_02002100(param0->fieldSystem->unk_08, &Unk_ov5_021FAF00, 1024 - (18 + 12) - 9, 11, 4);
+        param0->unk_44 = Menu_MakeYesNoChoice(param0->fieldSystem->unk_08, &Unk_ov5_021FAF00, 1024 - (18 + 12) - 9, 11, 4);
         param0->unk_48 = 11;
     }
 
@@ -352,7 +352,7 @@ static BOOL ov5_021EAD38(UnkStruct_ov5_021EAE78 *param0)
     TrainerInfo *v1;
     DWCFriendData *v2;
     Strbuf *v3;
-    int v4 = sub_02002114(param0->unk_44, 4);
+    int v4 = Menu_ProcessInputAndHandleExit(param0->unk_44, 4);
 
     if (v4 == 0xffffffff) {
         return 0;

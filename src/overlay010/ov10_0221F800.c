@@ -497,13 +497,13 @@ static void ov10_0221F930(UnkStruct_ov10_0221FB28 *param0)
         sub_0200E060(&param0->unk_B8C, 0, 1, 15);
 
         param0->unk_BAC = Text_AddPrinterWithParams(&param0->unk_B8C, FONT_MESSAGE, param0->unk_BA8, 0, 0, TEXT_SPEED_INSTANT, NULL);
-        param0->unk_BB4 = sub_02002054(param0->unk_0C, &Unk_ov10_02222A68, (1 + (18 + 12)), 14, 1, param0->unk_00->unk_24);
+        param0->unk_BB4 = Menu_MakeYesNoChoiceWithCursorAt(param0->unk_0C, &Unk_ov10_02222A68, (1 + (18 + 12)), 14, 1, param0->unk_00->unk_24);
 
         Bg_ScheduleTilemapTransfer(param0->unk_0C, 0);
         param0->unk_BB0 = 4;
         break;
     case 4: {
-        u32 v0 = sub_02002114(param0->unk_BB4, param0->unk_00->unk_24);
+        u32 v0 = Menu_ProcessInputAndHandleExit(param0->unk_BB4, param0->unk_00->unk_24);
 
         switch (v0) {
         case 0:
@@ -527,7 +527,7 @@ static void ov10_0221F930(UnkStruct_ov10_0221FB28 *param0)
         break;
     case 7:
         if (param0->unk_BB4 != NULL) {
-            sub_02002154(param0->unk_BB4, param0->unk_00->unk_24);
+            Menu_DestroyForExit(param0->unk_BB4, param0->unk_00->unk_24);
             param0->unk_BB4 = NULL;
         }
 

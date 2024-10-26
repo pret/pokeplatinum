@@ -430,7 +430,7 @@ void ov79_021D2054(UnkStruct_ov79_021D0E1C *param0)
         1, 26, 13, 5, 4, 13, 463
     };
 
-    param0->unk_D4 = sub_02002100(param0->unk_24, &v0, 1 + 18 + 12, 15, param0->unk_00);
+    param0->unk_D4 = Menu_MakeYesNoChoice(param0->unk_24, &v0, 1 + 18 + 12, 15, param0->unk_00);
 }
 
 void ov79_021D2078(UnkStruct_ov79_021D0E1C *param0)

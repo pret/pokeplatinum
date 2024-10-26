@@ -826,7 +826,7 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
         }
         break;
     case 3:
-        v6 = sub_02001BE0(param0->unk_17C);
+        v6 = Menu_ProcessInput(param0->unk_17C);
 
         switch (v6) {
         case 0xffffffff:
@@ -894,7 +894,7 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
         }
         break;
     case 4:
-        v6 = sub_02001BE0(param0->unk_17C);
+        v6 = Menu_ProcessInput(param0->unk_17C);
 
         switch (v6) {
         case 0xffffffff:
@@ -1040,7 +1040,7 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
         break;
     case 10:
         v7 = Party_GetPokemonBySlotIndex(param0->unk_43C, ov107_02249C98(param0->unk_14, param0->unk_0D));
-        v6 = sub_02001BE0(param0->unk_17C);
+        v6 = Menu_ProcessInput(param0->unk_17C);
 
         switch (v6) {
         case 0xffffffff:
@@ -1089,7 +1089,7 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
         }
         break;
     case 11:
-        v6 = sub_02001BE0(param0->unk_17C);
+        v6 = Menu_ProcessInput(param0->unk_17C);
 
         switch (v6) {
         case 0xffffffff:
@@ -1164,7 +1164,7 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
         }
         break;
     case 17:
-        v6 = sub_02001BE0(param0->unk_17C);
+        v6 = Menu_ProcessInput(param0->unk_17C);
 
         switch (v6) {
         case 0xffffffff:
@@ -2427,7 +2427,7 @@ static void ov107_022441DC (UnkStruct_ov107_02241D6C * param0)
     ov107_022441B0(param0, 0, 0, 30);
     ov107_022441B0(param0, 1, 1, 31);
 
-    param0->unk_17C = sub_02001B7C(&param0->unk_170, 8, 0, 0, 100, PAD_BUTTON_B);
+    param0->unk_17C = Menu_NewAndCopyToVRAM(&param0->unk_170, 8, 0, 0, 100, PAD_BUTTON_B);
     param0->unk_0E_4 = 1;
 
     return;
@@ -3645,7 +3645,7 @@ static void ov107_02245618 (UnkStruct_ov107_02241D6C * param0)
 {
     if (param0->unk_0E_4 == 1) {
         param0->unk_0E_4 = 0;
-        sub_02001BC4(param0->unk_17C, NULL);
+        Menu_Free(param0->unk_17C, NULL);
         Window_Clear(param0->unk_170.window, 1);
         Window_ClearAndScheduleCopyToVRAM(param0->unk_170.window);
     }
