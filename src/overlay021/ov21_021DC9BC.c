@@ -9,17 +9,14 @@
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D4C0C.h"
 #include "overlay021/ov21_021D517C.h"
-#include "overlay021/ov21_021D57B4.h"
 #include "overlay021/ov21_021E29DC.h"
 #include "overlay021/pokedex_sort.h"
-#include "overlay021/struct_dungeoncoordinates.h"
-#include "overlay021/struct_fieldCoordinates.h"
+#include "overlay021/pokedexencdata.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D2648.h"
 #include "overlay021/struct_ov21_021D4CA0.h"
 #include "overlay021/struct_ov21_021D4CB8.h"
-#include "overlay021/struct_ov21_021D5844.h"
 #include "overlay021/struct_ov21_021E68F4.h"
 #include "overlay021/struct_ov21_021E6A68.h"
 #include "overlay021/struct_ov21_021E6B20.h"
@@ -97,10 +94,10 @@ typedef struct {
     u8 *invisibleDungeons;
     u32 numInvisibleFields;
     u32 numInvisibleDungeons;
-    mapsEncounteredOn dungeonsEncounteredOn;
-    mapsEncounteredOn fieldsEncounteredOn;
-    mapsEncounteredOn dungeonSpecialEncounters;
-    mapsEncounteredOn fieldSpecialEncounters;
+    EncounterLocations dungeonsEncounteredOn;
+    EncounterLocations fieldsEncounteredOn;
+    EncounterLocations dungeonSpecialEncounters;
+    EncounterLocations fieldSpecialEncounters;
 } encounterCollection;
 
 typedef struct {
@@ -118,8 +115,8 @@ typedef struct {
     NNSG2dCharacterData *unk_7F8;
     void *unk_7FC;
     NNSG2dCharacterData *unk_800;
-    dungeonCoordinates *dungeonCoordinatesArray;
-    fieldCoordinates *fieldCoordinatesArray;
+    DungeonCoordinates *dungeonCoordinatesArray;
+    FieldCoordinates *fieldCoordinatesArray;
     int unk_80C;
     int unk_810;
     UnkStruct_ov21_021D2648 unk_814;
@@ -368,8 +365,8 @@ static int ov21_021DCBD8(void *param0, UnkStruct_ov21_021E6B20 *param1, const vo
 
         mapDisplay = param1->unk_08;
         mapDisplay->encounterTime = v0->encounterTime;
-        mapDisplay->dungeonCoordinatesArray = PokedexEncData_GetDungeonLocations(param1->heapID, NULL);
-        mapDisplay->fieldCoordinatesArray = PokedexEncData_GetFieldLocations(param1->heapID, NULL);
+        mapDisplay->dungeonCoordinatesArray = PokedexEncData_GetDungeonCoordinates(param1->heapID, NULL);
+        mapDisplay->fieldCoordinatesArray = PokedexEncData_GetFieldCoordinates(param1->heapID, NULL);
 
         param1->unk_00++;
         break;
@@ -839,19 +836,19 @@ static void ov21_021DD710(PokedexMapDisplay *mapDisplay, const UnkStruct_ov21_02
 
     ov21_021DD8B4(mapDisplay);
 
-    mapDisplay->numVisibleFields = ov21_021D5948(mapDisplay->mapFieldCellMatrix_1, POKEDEXMAPHEIGHT, POKEDEXMAPWIDTH, mapDisplay->fieldCoordinatesArray, &enCollection->fieldsEncounteredOn, enCollection->invisibleFields, enCollection->numInvisibleFields);
-    numCombinedMaps = (enCollection->fieldsEncounteredOn.numMapsEncounteredOn - 1) + enCollection->numInvisibleFields;
+    mapDisplay->numVisibleFields = PokedexEncData_LocateVisibleFields(mapDisplay->mapFieldCellMatrix_1, POKEDEXMAPHEIGHT, POKEDEXMAPWIDTH, mapDisplay->fieldCoordinatesArray, &enCollection->fieldsEncounteredOn, enCollection->invisibleFields, enCollection->numInvisibleFields);
+    numCombinedMaps = (enCollection->fieldsEncounteredOn.numLocations - 1) + enCollection->numInvisibleFields;
     combinedMapArray = Heap_AllocFromHeapAtEnd(heapID, numCombinedMaps);
 
     for (index = 0; index < numCombinedMaps; index++) {
         if (index < enCollection->numInvisibleFields) {
             combinedMapArray[index] = enCollection->invisibleFields[index];
         } else {
-            combinedMapArray[index] = enCollection->fieldsEncounteredOn.mapsEncounteredOnArray[index - enCollection->numInvisibleFields];
+            combinedMapArray[index] = enCollection->fieldsEncounteredOn.locations[index - enCollection->numInvisibleFields];
         }
     }
 
-    mapDisplay->fieldsZero = ov21_021D5948(mapDisplay->mapFieldCellMatrix_2, POKEDEXMAPHEIGHT, POKEDEXMAPWIDTH, mapDisplay->fieldCoordinatesArray, &enCollection->fieldSpecialEncounters, combinedMapArray, numCombinedMaps);
+    mapDisplay->fieldsZero = PokedexEncData_LocateVisibleFields(mapDisplay->mapFieldCellMatrix_2, POKEDEXMAPHEIGHT, POKEDEXMAPWIDTH, mapDisplay->fieldCoordinatesArray, &enCollection->fieldSpecialEncounters, combinedMapArray, numCombinedMaps);
 
     Heap_FreeToHeap(combinedMapArray);
     MapFieldCellMatrix_SmoothCells(mapDisplay->mapFieldCellMatrix_1, POKEDEXMAPHEIGHT, POKEDEXMAPWIDTH);
@@ -872,20 +869,20 @@ static void ov21_021DD710(PokedexMapDisplay *mapDisplay, const UnkStruct_ov21_02
     }
 
     mapDisplay->numDungeons = 0;
-    mapDisplay->numDungeons = ov21_021D5A20(mapDisplay->cellActorArray, mapDisplay->numDungeons, (NUMDUNGEONS * 2), xOffset, yOffset, POKEDEXMAPXSCALE, POKEDEXMAPYSCALE, mapDisplay->dungeonCoordinatesArray, &enCollection->dungeonsEncounteredOn, 2, v2, enCollection->invisibleDungeons, enCollection->numInvisibleDungeons, &mapDisplay->numVisibleDungeons);
+    mapDisplay->numDungeons = PokedexEncData_LocateVisibleDungeons(mapDisplay->cellActorArray, mapDisplay->numDungeons, (NUMDUNGEONS * 2), xOffset, yOffset, POKEDEXMAPXSCALE, POKEDEXMAPYSCALE, mapDisplay->dungeonCoordinatesArray, &enCollection->dungeonsEncounteredOn, 2, v2, enCollection->invisibleDungeons, enCollection->numInvisibleDungeons, &mapDisplay->numVisibleDungeons);
 
-    numCombinedMaps = (enCollection->dungeonsEncounteredOn.numMapsEncounteredOn - 1) + enCollection->numInvisibleDungeons;
+    numCombinedMaps = (enCollection->dungeonsEncounteredOn.numLocations - 1) + enCollection->numInvisibleDungeons;
     combinedMapArray = Heap_AllocFromHeapAtEnd(heapID, numCombinedMaps);
 
     for (index = 0; index < numCombinedMaps; index++) {
         if (index < enCollection->numInvisibleDungeons) {
             combinedMapArray[index] = enCollection->invisibleDungeons[index];
         } else {
-            combinedMapArray[index] = enCollection->dungeonsEncounteredOn.mapsEncounteredOnArray[index - enCollection->numInvisibleDungeons];
+            combinedMapArray[index] = enCollection->dungeonsEncounteredOn.locations[index - enCollection->numInvisibleDungeons];
         }
     }
 
-    mapDisplay->numDungeons = ov21_021D5A20(mapDisplay->cellActorArray, mapDisplay->numDungeons, (NUMDUNGEONS * 2), xOffset, yOffset, POKEDEXMAPXSCALE, POKEDEXMAPYSCALE, mapDisplay->dungeonCoordinatesArray, &enCollection->dungeonSpecialEncounters, 3, v3, combinedMapArray, numCombinedMaps, &mapDisplay->dungeonsZero);
+    mapDisplay->numDungeons = PokedexEncData_LocateVisibleDungeons(mapDisplay->cellActorArray, mapDisplay->numDungeons, (NUMDUNGEONS * 2), xOffset, yOffset, POKEDEXMAPXSCALE, POKEDEXMAPYSCALE, mapDisplay->dungeonCoordinatesArray, &enCollection->dungeonSpecialEncounters, 3, v3, combinedMapArray, numCombinedMaps, &mapDisplay->dungeonsZero);
 
     Heap_FreeToHeap(combinedMapArray);
 }
@@ -1167,24 +1164,24 @@ static void PokedexEncounters_PopulateCategories(encounterCollection *enCollecti
         break;
     }
 
-    PokedexEncData_PopulateMapsEncounteredOn(&enCollection->dungeonsEncounteredOn, species, dungeonCategory, heapID);
-    PokedexEncData_PopulateMapsEncounteredOn(&enCollection->fieldsEncounteredOn, species, fieldCategory, heapID);
+    PokedexEncData_PopulateEncounterLocations(&enCollection->dungeonsEncounteredOn, species, dungeonCategory, heapID);
+    PokedexEncData_PopulateEncounterLocations(&enCollection->fieldsEncounteredOn, species, fieldCategory, heapID);
 
     if (Pokedex_Sort_PokedexUnlocked(param1->dexStatus) == 0) {
-        PokedexEncData_PopulateMapsEncounteredOn(&enCollection->dungeonSpecialEncounters, species, PEFC_DUNGEONSPECIAL, heapID);
-        PokedexEncData_PopulateMapsEncounteredOn(&enCollection->fieldSpecialEncounters, species, PEFC_FIELDSPECIAL, heapID);
+        PokedexEncData_PopulateEncounterLocations(&enCollection->dungeonSpecialEncounters, species, PEFC_DUNGEONSPECIAL, heapID);
+        PokedexEncData_PopulateEncounterLocations(&enCollection->fieldSpecialEncounters, species, PEFC_FIELDSPECIAL, heapID);
     } else {
-        PokedexEncData_PopulateMapsEncounteredOn(&enCollection->dungeonSpecialEncounters, species, PEFC_DUNGEONSPECIALNATDEX, heapID);
-        PokedexEncData_PopulateMapsEncounteredOn(&enCollection->fieldSpecialEncounters, species, PEFC_FIELDSPECIALNATDEX, heapID);
+        PokedexEncData_PopulateEncounterLocations(&enCollection->dungeonSpecialEncounters, species, PEFC_DUNGEONSPECIALNATDEX, heapID);
+        PokedexEncData_PopulateEncounterLocations(&enCollection->fieldSpecialEncounters, species, PEFC_FIELDSPECIALNATDEX, heapID);
     }
 }
 
 static void ov21_021DDB68(encounterCollection *enCollection)
 {
-    PokedexEncData_FreeMapsEncounteredOn(&enCollection->dungeonsEncounteredOn);
-    PokedexEncData_FreeMapsEncounteredOn(&enCollection->fieldsEncounteredOn);
-    PokedexEncData_FreeMapsEncounteredOn(&enCollection->dungeonSpecialEncounters);
-    PokedexEncData_FreeMapsEncounteredOn(&enCollection->fieldSpecialEncounters);
+    PokedexEncData_FreeEncounterLocations(&enCollection->dungeonsEncounteredOn);
+    PokedexEncData_FreeEncounterLocations(&enCollection->fieldsEncounteredOn);
+    PokedexEncData_FreeEncounterLocations(&enCollection->dungeonSpecialEncounters);
+    PokedexEncData_FreeEncounterLocations(&enCollection->fieldSpecialEncounters);
 }
 
 static void ov21_021DDB8C(PokedexMapDisplay *mapDisplay)
