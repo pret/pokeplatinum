@@ -588,7 +588,7 @@ static void ov104_02232830(UnkStruct_ov104_02232B5C *param0)
     param0->unk_194.letterSpacing = 0;
     param0->unk_194.lineSpacing = 0;
 
-    param0->unk_194.pagerMode = 0;
+    param0->unk_194.pagerMode = PAGER_MODE_NONE;
 
     param0->unk_194.fontID = FONT_SYSTEM;
     param0->unk_194.cursorType = 0;

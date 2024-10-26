@@ -21,269 +21,289 @@ static void ScrollList(ListMenu *menu, u8 lineCount, u8 isUpward);
 static u8 UpdateSelectedRow(ListMenu *menu, u8 updateCursor, u8 scrollCount, u8 movingDown);
 static void InvokeCursorCallback(ListMenu *menu, u8 onInit);
 
-ListMenu *ListMenu_New(const ListMenuTemplate *param0, u16 param1, u16 param2, u8 param3)
+ListMenu *ListMenu_New(const ListMenuTemplate *template, u16 startListPos, u16 startCursorPos, u8 heapID)
 {
-    ListMenu *v0 = (ListMenu *)Heap_AllocFromHeap(param3, sizeof(ListMenu));
+    ListMenu *menu = Heap_AllocFromHeap(heapID, sizeof(ListMenu));
 
-    v0->template = *param0;
-    v0->cursor = ColoredArrow_New(param3);
-    v0->listPos = param1;
-    v0->cursorPos = param2;
-    v0->dummy2C = 0;
-    v0->dummy2D = 0;
-    v0->dummy2E = 0xFF;
-    v0->lastAction = 0;
-    v0->heapID = param3;
+    menu->template = *template;
+    menu->cursor = ColoredArrow_New(heapID);
+    menu->listPos = startListPos;
+    menu->cursorPos = startCursorPos;
+    menu->dummy2C = 0;
+    menu->dummy2D = 0;
+    menu->dummy2E = 0xFF;
+    menu->lastAction = 0;
+    menu->heapID = heapID;
 
-    v0->altFont.textColorFg = v0->template.textColorFg;
-    v0->altFont.textColorBg = v0->template.textColorBg;
-    v0->altFont.textColorShadow = v0->template.textColorShadow;
-    v0->altFont.letterSpacing = v0->template.letterSpacing;
-    v0->altFont.fontID = v0->template.fontID;
-    v0->altFont.prefer = 0;
+    menu->altFont.textColorFg = menu->template.textColorFg;
+    menu->altFont.textColorBg = menu->template.textColorBg;
+    menu->altFont.textColorShadow = menu->template.textColorShadow;
+    menu->altFont.letterSpacing = menu->template.letterSpacing;
+    menu->altFont.fontID = menu->template.fontID;
+    menu->altFont.prefer = 0;
 
-    if (v0->template.count < v0->template.maxDisplay) {
-        v0->template.maxDisplay = v0->template.count;
+    if (menu->template.count < menu->template.maxDisplay) {
+        menu->template.maxDisplay = menu->template.count;
     }
 
-    ColoredArrow_SetColor(v0->cursor, TEXT_COLOR(v0->template.textColorFg, v0->template.textColorShadow, v0->template.textColorBg));
-    Window_FillTilemap(v0->template.window, v0->template.textColorBg);
-    PrintEntries(v0, v0->listPos, 0, v0->template.maxDisplay);
-    PrintCursor(v0);
-    InvokeCursorCallback(v0, 1);
-    Window_CopyToVRAM(param0->window);
+    ColoredArrow_SetColor(menu->cursor, TEXT_COLOR(menu->template.textColorFg, menu->template.textColorShadow, menu->template.textColorBg));
+    Window_FillTilemap(menu->template.window, menu->template.textColorBg);
+    PrintEntries(menu, menu->listPos, 0, menu->template.maxDisplay);
+    PrintCursor(menu);
+    InvokeCursorCallback(menu, TRUE);
+    Window_CopyToVRAM(template->window);
 
-    return v0;
+    return menu;
 }
 
-u32 ListMenu_ProcessInput(ListMenu *param0)
+u32 ListMenu_ProcessInput(ListMenu *menu)
 {
-    u16 v0, v1;
+    menu->lastAction = LIST_MENU_ACTION_NONE;
 
-    param0->lastAction = 0;
-
-    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
-        return param0->template.choices[param0->listPos + param0->cursorPos].index;
+    if (JOY_NEW(PAD_BUTTON_A)) {
+        return menu->template.choices[menu->listPos + menu->cursorPos].index;
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
-        return 0xfffffffe;
+    if (JOY_NEW(PAD_BUTTON_B)) {
+        return LIST_CANCEL;
     }
 
-    if (gCoreSys.pressedKeysRepeatable & PAD_KEY_UP) {
-        if (UpdateSelectedRow(param0, 1, 1, 0) == 0) {
-            param0->lastAction = 1;
+    if (JOY_REPEAT(PAD_KEY_UP)) {
+        if (UpdateSelectedRow(menu, TRUE, 1, FALSE) == 0) {
+            menu->lastAction = LIST_MENU_ACTION_MOVE_UP;
         }
 
-        return 0xffffffff;
+        return LIST_NOTHING_CHOSEN;
     }
 
-    if (gCoreSys.pressedKeysRepeatable & PAD_KEY_DOWN) {
-        if (UpdateSelectedRow(param0, 1, 1, 1) == 0) {
-            param0->lastAction = 2;
+    if (JOY_REPEAT(PAD_KEY_DOWN)) {
+        if (UpdateSelectedRow(menu, TRUE, 1, TRUE) == 0) {
+            menu->lastAction = LIST_MENU_ACTION_MOVE_DOWN;
         }
 
-        return 0xffffffff;
+        return LIST_NOTHING_CHOSEN;
     }
 
-    switch (param0->template.pagerMode) {
+    u16 pageUp, pageDown;
+    switch (menu->template.pagerMode) {
     default:
-    case 0:
-        v0 = 0;
-        v1 = 0;
+    case PAGER_MODE_NONE:
+        pageUp = FALSE;
+        pageDown = FALSE;
         break;
-    case 1:
-        v0 = (gCoreSys.pressedKeysRepeatable & PAD_KEY_LEFT);
-        v1 = (gCoreSys.pressedKeysRepeatable & PAD_KEY_RIGHT);
+
+    case PAGER_MODE_LEFT_RIGHT_PAD:
+        pageUp = JOY_REPEAT(PAD_KEY_LEFT);
+        pageDown = JOY_REPEAT(PAD_KEY_RIGHT);
         break;
-    case 2:
-        v0 = (gCoreSys.pressedKeysRepeatable & PAD_BUTTON_L);
-        v1 = (gCoreSys.pressedKeysRepeatable & PAD_BUTTON_R);
+
+    case PAGER_MODE_SHOULDER_BUTTONS:
+        pageUp = JOY_REPEAT(PAD_BUTTON_L);
+        pageDown = JOY_REPEAT(PAD_BUTTON_R);
         break;
     }
 
-    if (v0) {
-        if (UpdateSelectedRow(param0, 1, (u8)param0->template.maxDisplay, 0) == 0) {
-            param0->lastAction = 3;
+    if (pageUp) {
+        if (UpdateSelectedRow(menu, TRUE, menu->template.maxDisplay, FALSE) == 0) {
+            menu->lastAction = LIST_MENU_ACTION_PAGE_UP;
         }
 
-        return 0xffffffff;
+        return LIST_NOTHING_CHOSEN;
     }
 
-    if (v1) {
-        if (UpdateSelectedRow(param0, 1, (u8)param0->template.maxDisplay, 1) == 0) {
-            param0->lastAction = 4;
+    if (pageDown) {
+        if (UpdateSelectedRow(menu, TRUE, menu->template.maxDisplay, TRUE) == 0) {
+            menu->lastAction = LIST_MENU_ACTION_PAGE_DOWN;
         }
 
-        return 0xffffffff;
+        return LIST_NOTHING_CHOSEN;
     }
 
-    return 0xffffffff;
+    return LIST_NOTHING_CHOSEN;
 }
 
-void ListMenu_Free(ListMenu *param0, u16 *param1, u16 *param2)
+void ListMenu_Free(ListMenu *menu, u16 *outListPos, u16 *outCursorPos)
 {
-    if (param1 != NULL) {
-        *param1 = param0->listPos;
+    if (outListPos != NULL) {
+        *outListPos = menu->listPos;
     }
 
-    if (param2 != NULL) {
-        *param2 = param0->cursorPos;
+    if (outCursorPos != NULL) {
+        *outCursorPos = menu->cursorPos;
     }
 
-    ColoredArrow_Free(param0->cursor);
-    Heap_FreeToHeapExplicit(param0->heapID, param0);
+    ColoredArrow_Free(menu->cursor);
+    Heap_FreeToHeapExplicit(menu->heapID, menu);
 }
 
-void ListMenu_Draw(ListMenu *param0)
+void ListMenu_Draw(ListMenu *menu)
 {
-    Window_FillTilemap(param0->template.window, param0->template.textColorBg);
-    PrintEntries(param0, param0->listPos, 0, param0->template.maxDisplay);
-    PrintCursor(param0);
-    Window_CopyToVRAM(param0->template.window);
+    Window_FillTilemap(menu->template.window, menu->template.textColorBg);
+    PrintEntries(menu, menu->listPos, 0, menu->template.maxDisplay);
+    PrintCursor(menu);
+    Window_CopyToVRAM(menu->template.window);
 }
 
-void ListMenu_SetTextColors(ListMenu *param0, u8 param1, u8 param2, u8 param3)
+void ListMenu_SetTextColors(ListMenu *menu, u8 fg, u8 bg, u8 shadow)
 {
-    param0->template.textColorFg = param1;
-    param0->template.textColorBg = param2;
-    param0->template.textColorShadow = param3;
+    menu->template.textColorFg = fg;
+    menu->template.textColorBg = bg;
+    menu->template.textColorShadow = shadow;
 }
 
-u32 ListMenu_TestInput(ListMenu *param0, ListMenuTemplate *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 *param6, u16 *param7)
+u32 ListMenu_TestInput(ListMenu *menu, ListMenuTemplate *template, u16 listPos, u16 cursorPos, u16 updateCursor, u16 input, u16 *outListPos, u16 *outCursorPos)
 {
-    if (param1) {
-        param0->template = *param1;
+    if (template) {
+        menu->template = *template;
     }
 
-    param0->listPos = param2;
-    param0->cursorPos = param3;
-    param0->dummy2C = 0;
-    param0->dummy2D = 0;
+    menu->listPos = listPos;
+    menu->cursorPos = cursorPos;
+    menu->dummy2C = 0;
+    menu->dummy2D = 0;
 
-    if (param5 == PAD_KEY_UP) {
-        UpdateSelectedRow(param0, param4, 1, 0);
-    } else if (param5 == PAD_KEY_DOWN) {
-        UpdateSelectedRow(param0, param4, 1, 1);
+    if (input == PAD_KEY_UP) {
+        UpdateSelectedRow(menu, updateCursor, 1, 0);
+    } else if (input == PAD_KEY_DOWN) {
+        UpdateSelectedRow(menu, updateCursor, 1, 1);
     }
 
-    if (param6 != NULL) {
-        *param6 = param0->listPos;
+    if (outListPos != NULL) {
+        *outListPos = menu->listPos;
     }
 
-    if (param7 != NULL) {
-        *param7 = param0->cursorPos;
+    if (outCursorPos != NULL) {
+        *outCursorPos = menu->cursorPos;
     }
 
-    return 0xffffffff;
+    return LIST_NOTHING_CHOSEN;
 }
 
-void ListMenu_SetAltTextColors(ListMenu *param0, u8 param1, u8 param2, u8 param3)
+void ListMenu_SetAltTextColors(ListMenu *menu, u8 fg, u8 bg, u8 shadow)
 {
-    param0->altFont.textColorFg = param1;
-    param0->altFont.textColorBg = param2;
-    param0->altFont.textColorShadow = param3;
-    param0->altFont.prefer = 1;
+    menu->altFont.textColorFg = fg;
+    menu->altFont.textColorBg = bg;
+    menu->altFont.textColorShadow = shadow;
+    menu->altFont.prefer = TRUE;
 }
 
-void ListMenu_CalcTrueCursorPos(ListMenu *param0, u16 *param1)
+void ListMenu_CalcTrueCursorPos(ListMenu *menu, u16 *outPos)
 {
-    *param1 = (u16)(param0->listPos + param0->cursorPos);
+    *outPos = menu->listPos + menu->cursorPos;
 }
 
-void ListMenu_GetListAndCursorPos(ListMenu *param0, u16 *param1, u16 *param2)
+void ListMenu_GetListAndCursorPos(ListMenu *menu, u16 *outListPos, u16 *outCursorPos)
 {
-    if (param1 != NULL) {
-        *param1 = param0->listPos;
+    if (outListPos != NULL) {
+        *outListPos = menu->listPos;
     }
 
-    if (param2 != NULL) {
-        *param2 = param0->cursorPos;
+    if (outCursorPos != NULL) {
+        *outCursorPos = menu->cursorPos;
     }
 }
 
-u8 ListMenu_GetLastAction(ListMenu *param0)
+u8 ListMenu_GetLastAction(ListMenu *menu)
 {
-    return param0->lastAction;
+    return menu->lastAction;
 }
 
-u32 ListMenu_GetIndexOfChoice(ListMenu *param0, u16 param1)
+u32 ListMenu_GetIndexOfChoice(ListMenu *menu, u16 choice)
 {
-    return param0->template.choices[param1].index;
+    return menu->template.choices[choice].index;
 }
 
-u32 ListMenu_GetAttribute(ListMenu *param0, u8 param1)
+u32 ListMenu_GetAttribute(ListMenu *menu, u8 attribute)
 {
-    u32 v0;
+    u32 result;
 
-    switch (param1) {
-    case 0:
-        v0 = (u32)param0->template.cursorCallback;
+    switch (attribute) {
+    case LIST_MENU_CURSOR_CALLBACK:
+        result = (u32)menu->template.cursorCallback;
         break;
-    case 1:
-        v0 = (u32)param0->template.printCallback;
+
+    case LIST_MENU_PRINT_CALLBACK:
+        result = (u32)menu->template.printCallback;
         break;
-    case 2:
-        v0 = (u32)param0->template.count;
+
+    case LIST_MENU_COUNT:
+        result = menu->template.count;
         break;
-    case 3:
-        v0 = (u32)param0->template.maxDisplay;
+
+    case LIST_MENU_MAX_DISPLAY:
+        result = menu->template.maxDisplay;
         break;
-    case 5:
-        v0 = (u32)param0->template.headerXOffset;
+
+    case LIST_MENU_HEADER_X_OFFSET:
+        result = menu->template.headerXOffset;
         break;
-    case 6:
-        v0 = (u32)param0->template.textXOffset;
+
+    case LIST_MENU_TEXT_X_OFFSET:
+        result = menu->template.textXOffset;
         break;
-    case 7:
-        v0 = (u32)param0->template.cursorXOffset;
+
+    case LIST_MENU_CURSOR_X_OFFSET:
+        result = menu->template.cursorXOffset;
         break;
-    case 8:
-        v0 = (u32)param0->template.yOffset;
+
+    case LIST_MENU_Y_OFFSET:
+        result = menu->template.yOffset;
         break;
-    case 9:
-        v0 = (u32)Font_GetAttribute(param0->template.fontID, 1) + param0->template.lineSpacing;
+
+    case LIST_MENU_LINE_HEIGHT:
+        result = Font_GetAttribute(menu->template.fontID, FONTATTR_MAX_LETTER_HEIGHT) + menu->template.lineSpacing;
         break;
-    case 10:
-        v0 = (u32)param0->template.textColorFg;
+
+    case LIST_MENU_TEXT_COLOR_FG:
+        result = menu->template.textColorFg;
         break;
-    case 11:
-        v0 = (u32)param0->template.textColorBg;
+
+    case LIST_MENU_TEXT_COLOR_BG:
+        result = menu->template.textColorBg;
         break;
-    case 12:
-        v0 = (u32)param0->template.textColorShadow;
+
+    case LIST_MENU_TEXT_COLOR_SHADOW:
+        result = menu->template.textColorShadow;
         break;
-    case 13:
-        v0 = (u32)param0->template.letterSpacing;
+
+    case LIST_MENU_LETTER_SPACING:
+        result = menu->template.letterSpacing;
         break;
-    case 14:
-        v0 = (u32)param0->template.lineSpacing;
+
+    case LIST_MENU_LINE_SPACING:
+        result = menu->template.lineSpacing;
         break;
-    case 15:
-        v0 = (u32)param0->template.pagerMode;
+
+    case LIST_MENU_PAGER_MODE:
+        result = menu->template.pagerMode;
         break;
-    case 16:
-        v0 = (u32)param0->template.fontID;
+
+    case LIST_MENU_FONT_ID:
+        result = menu->template.fontID;
         break;
-    case 17:
-        v0 = (u32)param0->template.cursorType;
+
+    case LIST_MENU_CURSOR_TYPE:
+        result = menu->template.cursorType;
         break;
-    case 18:
-        v0 = (u32)param0->template.window;
+
+    case LIST_MENU_WINDOW:
+        result = (u32)menu->template.window;
         break;
-    case 19:
-        v0 = (u32)param0->template.tmp;
+
+    case LIST_MENU_TMP:
+        result = (u32)menu->template.tmp;
         break;
+
     default:
-        v0 = 0xffffffff;
+        result = LIST_NOTHING_CHOSEN;
     }
 
-    return v0;
+    return result;
 }
 
-void ListMenu_SetChoices(ListMenu *param0, StringList *param1)
+void ListMenu_SetChoices(ListMenu *menu, StringList *choices)
 {
-    param0->template.choices = param1;
+    menu->template.choices = choices;
 }
 
 static void PrintEntry(ListMenu *menu, void *strbuf, u8 xOffset, u8 yOffset)
@@ -319,7 +339,7 @@ static void PrintEntry(ListMenu *menu, void *strbuf, u8 xOffset, u8 yOffset)
 
 static void PrintEntries(ListMenu *menu, u16 startIndex, u16 lineOffset, u16 lineCount)
 {
-    u8 lineY = Font_GetAttribute(menu->template.fontID, FONTATTR_MAX_LETTER_HEIGHT) + menu->template.lineSpacing;
+    u8 lineHeight = Font_GetAttribute(menu->template.fontID, FONTATTR_MAX_LETTER_HEIGHT) + menu->template.lineSpacing;
 
     for (int line = 0; line < lineCount; line++) {
         u8 xOffset;
@@ -329,7 +349,7 @@ static void PrintEntries(ListMenu *menu, u16 startIndex, u16 lineOffset, u16 lin
             xOffset = menu->template.headerXOffset;
         }
 
-        u8 yOffset = ((line + lineOffset) * lineY) + menu->template.yOffset;
+        u8 yOffset = ((line + lineOffset) * lineHeight) + menu->template.yOffset;
 
         if (menu->template.printCallback != NULL) {
             menu->template.printCallback(menu, menu->template.choices[startIndex].index, yOffset);
@@ -342,9 +362,9 @@ static void PrintEntries(ListMenu *menu, u16 startIndex, u16 lineOffset, u16 lin
 
 static void PrintCursor(ListMenu *menu)
 {
-    u8 lineY = Font_GetAttribute(menu->template.fontID, FONTATTR_MAX_LETTER_HEIGHT) + menu->template.lineSpacing;
+    u8 lineHeight = Font_GetAttribute(menu->template.fontID, FONTATTR_MAX_LETTER_HEIGHT) + menu->template.lineSpacing;
     u8 x = menu->template.cursorXOffset;
-    u8 y = (menu->cursorPos * lineY) + menu->template.yOffset;
+    u8 y = (menu->cursorPos * lineHeight) + menu->template.yOffset;
 
     // This does not match as a basic if-check.
     switch (menu->template.cursorType) {
@@ -361,14 +381,14 @@ static void PrintCursor(ListMenu *menu)
 
 static void EraseCursor(ListMenu *menu, u16 atLine)
 {
-    u8 lineSpacing;
+    u8 lineHeight;
     switch (menu->template.cursorType) {
     case 0:
-        lineSpacing = Font_GetAttribute(menu->template.fontID, FONTATTR_MAX_LETTER_HEIGHT) + menu->template.lineSpacing;
+        lineHeight = Font_GetAttribute(menu->template.fontID, FONTATTR_MAX_LETTER_HEIGHT) + menu->template.lineSpacing;
         Window_FillRectWithColor(menu->template.window,
             menu->template.textColorBg,
             menu->template.cursorXOffset,
-            atLine * lineSpacing + menu->template.yOffset,
+            atLine * lineHeight + menu->template.yOffset,
             8,
             16);
         break;
@@ -463,13 +483,13 @@ static void ScrollList(ListMenu *menu, u8 lineCount, u8 movingDown)
         return;
     }
 
-    u8 lineSpacing = Font_GetAttribute(menu->template.fontID, FONTATTR_MAX_LETTER_HEIGHT) + menu->template.lineSpacing;
+    u8 lineHeight = Font_GetAttribute(menu->template.fontID, FONTATTR_MAX_LETTER_HEIGHT) + menu->template.lineSpacing;
 
     if (!movingDown) {
-        Window_Scroll(menu->template.window, SCROLL_DIRECTION_DOWN, lineCount * lineSpacing, PIXEL_FILL(menu->template.textColorBg));
+        Window_Scroll(menu->template.window, SCROLL_DIRECTION_DOWN, lineCount * lineHeight, PIXEL_FILL(menu->template.textColorBg));
         PrintEntries(menu, menu->listPos, 0, lineCount);
 
-        u16 y = (u16)(menu->template.maxDisplay * lineSpacing + menu->template.yOffset);
+        u16 y = (u16)(menu->template.maxDisplay * lineHeight + menu->template.yOffset);
         Window_FillRectWithColor(menu->template.window,
             menu->template.textColorBg,
             0,
@@ -477,7 +497,7 @@ static void ScrollList(ListMenu *menu, u8 lineCount, u8 movingDown)
             Window_GetWidth(menu->template.window) * 8,
             Window_GetHeight(menu->template.window) * 8 - y);
     } else {
-        Window_Scroll(menu->template.window, SCROLL_DIRECTION_UP, lineCount * lineSpacing, PIXEL_FILL(menu->template.textColorBg));
+        Window_Scroll(menu->template.window, SCROLL_DIRECTION_UP, lineCount * lineHeight, PIXEL_FILL(menu->template.textColorBg));
         PrintEntries(menu, menu->listPos + (menu->template.maxDisplay - lineCount), menu->template.maxDisplay - lineCount, lineCount);
         Window_FillRectWithColor(menu->template.window,
             menu->template.textColorBg,

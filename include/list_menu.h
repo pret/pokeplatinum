@@ -9,6 +9,43 @@
 #define LIST_CANCEL         -2
 #define LIST_HEADER         -3
 
+enum ListMenuPagerMode {
+    PAGER_MODE_NONE = 0,
+    PAGER_MODE_LEFT_RIGHT_PAD,
+    PAGER_MODE_SHOULDER_BUTTONS,
+};
+
+enum ListMenuAction {
+    LIST_MENU_ACTION_NONE = 0,
+    LIST_MENU_ACTION_MOVE_UP,
+    LIST_MENU_ACTION_MOVE_DOWN,
+    LIST_MENU_ACTION_PAGE_UP,
+    LIST_MENU_ACTION_PAGE_DOWN,
+};
+
+enum ListMenuAttribute {
+    LIST_MENU_CURSOR_CALLBACK = 0,
+    LIST_MENU_PRINT_CALLBACK,
+    LIST_MENU_COUNT,
+    LIST_MENU_MAX_DISPLAY,
+    LIST_MENU_UNUSED_4,
+    LIST_MENU_HEADER_X_OFFSET,
+    LIST_MENU_TEXT_X_OFFSET,
+    LIST_MENU_CURSOR_X_OFFSET,
+    LIST_MENU_Y_OFFSET,
+    LIST_MENU_LINE_HEIGHT,
+    LIST_MENU_TEXT_COLOR_FG,
+    LIST_MENU_TEXT_COLOR_BG,
+    LIST_MENU_TEXT_COLOR_SHADOW,
+    LIST_MENU_LETTER_SPACING,
+    LIST_MENU_LINE_SPACING,
+    LIST_MENU_PAGER_MODE,
+    LIST_MENU_FONT_ID,
+    LIST_MENU_CURSOR_TYPE,
+    LIST_MENU_WINDOW,
+    LIST_MENU_TMP,
+};
+
 typedef struct ListMenu ListMenu;
 
 typedef void (*CursorCallback)(ListMenu *menu, u32 index, u8 onInit);
@@ -57,18 +94,18 @@ struct ListMenu {
     u8 heapID;
 };
 
-ListMenu *ListMenu_New(const ListMenuTemplate *param0, u16 param1, u16 param2, u8 param3);
-u32 ListMenu_ProcessInput(ListMenu *param0);
-void ListMenu_Free(ListMenu *param0, u16 *param1, u16 *param2);
-void ListMenu_Draw(ListMenu *param0);
-void ListMenu_SetTextColors(ListMenu *param0, u8 param1, u8 param2, u8 param3);
-u32 ListMenu_TestInput(ListMenu *param0, ListMenuTemplate *param1, u16 param2, u16 param3, u16 param4, u16 param5, u16 *param6, u16 *param7);
-void ListMenu_SetAltTextColors(ListMenu *param0, u8 param1, u8 param2, u8 param3);
-void ListMenu_CalcTrueCursorPos(ListMenu *param0, u16 *param1);
-void ListMenu_GetListAndCursorPos(ListMenu *param0, u16 *param1, u16 *param2);
-u8 ListMenu_GetLastAction(ListMenu *param0);
-u32 ListMenu_GetIndexOfChoice(ListMenu *param0, u16 param1);
-u32 ListMenu_GetAttribute(ListMenu *param0, u8 param1);
-void ListMenu_SetChoices(ListMenu *param0, StringList *param1);
+ListMenu *ListMenu_New(const ListMenuTemplate *template, u16 startListPos, u16 startCursorPos, u8 heapID);
+u32 ListMenu_ProcessInput(ListMenu *menu);
+void ListMenu_Free(ListMenu *menu, u16 *outListPos, u16 *outCursorPos);
+void ListMenu_Draw(ListMenu *menu);
+void ListMenu_SetTextColors(ListMenu *menu, u8 fg, u8 bg, u8 shadow);
+u32 ListMenu_TestInput(ListMenu *menu, ListMenuTemplate *template, u16 listPos, u16 cursorPos, u16 updateCursor, u16 input, u16 *outListPos, u16 *outCursorPos);
+void ListMenu_SetAltTextColors(ListMenu *menu, u8 fg, u8 bg, u8 shadow);
+void ListMenu_CalcTrueCursorPos(ListMenu *menu, u16 *outPos);
+void ListMenu_GetListAndCursorPos(ListMenu *menu, u16 *outListPos, u16 *outCursorPos);
+u8 ListMenu_GetLastAction(ListMenu *menu);
+u32 ListMenu_GetIndexOfChoice(ListMenu *menu, u16 choice);
+u32 ListMenu_GetAttribute(ListMenu *menu, u8 attribute);
+void ListMenu_SetChoices(ListMenu *menu, StringList *choices);
 
 #endif // POKEPLATINUM_LIST_MENU_H

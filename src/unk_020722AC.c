@@ -805,7 +805,7 @@ static void sub_02072C98(UnkStruct_02072334 *param0, u8 param1, u8 param2)
     param0->unk_140.tmp = (void *)param0;
     param0->unk_140.count = v1;
     param0->unk_140.maxDisplay = 4;
-    param0->unk_140.pagerMode = 0;
+    param0->unk_140.pagerMode = PAGER_MODE_NONE;
     param0->unk_140.cursorCallback = sub_02072DA4;
     param0->unk_160 = ListMenu_New(&(param0->unk_140), param1, param2, param0->unk_00);
 

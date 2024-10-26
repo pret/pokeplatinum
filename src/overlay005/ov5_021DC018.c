@@ -493,7 +493,7 @@ static void ov5_021DC7E4(UnkStruct_ov5_021DC1A4 *param0)
     param0->unk_19C.textColorShadow = 2;
     param0->unk_19C.letterSpacing = 0;
     param0->unk_19C.lineSpacing = 0;
-    param0->unk_19C.pagerMode = 1;
+    param0->unk_19C.pagerMode = PAGER_MODE_LEFT_RIGHT_PAD;
     param0->unk_19C.fontID = FONT_SYSTEM;
     param0->unk_19C.cursorType = 0;
     param0->unk_19C.tmp = (void *)param0;
