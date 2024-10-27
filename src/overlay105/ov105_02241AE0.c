@@ -1724,7 +1724,7 @@ static void ov105_02243D20(UnkStruct_ov105_02241FF4 *param0)
     sub_02007DC8(param0->unk_12C[0]);
 
     Window_FillTilemap(&param0->unk_50[7], 15);
-    sub_0200E084(&param0->unk_50[7], 1);
+    Window_EraseMessageBox(&param0->unk_50[7], 1);
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_50[7]);
 
     param0->unk_11--;
@@ -1856,7 +1856,7 @@ static BOOL ov105_0224400C(UnkStruct_ov105_02241FF4 *param0)
         Window_FillTilemap(&param0->unk_50[0], 0);
         Window_ScheduleCopyToVRAM(&param0->unk_50[0]);
 
-        sub_0200E084(&param0->unk_50[5], 1);
+        Window_EraseMessageBox(&param0->unk_50[5], 1);
         Window_ClearAndScheduleCopyToVRAM(&param0->unk_50[5]);
 
         ov105_02246244(param0->unk_50);
@@ -3330,7 +3330,7 @@ static void ov105_02245A64(UnkStruct_ov105_02241FF4 *param0)
 
 static void ov105_02245A98(Window *param0)
 {
-    Window_Clear(param0, 1);
+    Window_EraseStandardFrame(param0, 1);
     Window_ClearAndScheduleCopyToVRAM(param0);
 
     return;

@@ -638,7 +638,7 @@ int sub_02085804(GameWindowLayout *param0)
             param0->unk_B11 = sub_020857C0(param0, param0->unk_B11 + 1);
 
             if (param0->unk_B11 != 0xff) {
-                sub_0200E084(&param0->unk_04[34], 0);
+                Window_EraseMessageBox(&param0->unk_04[34], 0);
                 sub_0207F8F8(param0, v3);
                 param0->unk_B0E = 1;
             } else {
@@ -1206,7 +1206,7 @@ void sub_020866A0(GameWindowLayout *param0, u8 param1)
         v0.loopAround = FALSE;
     }
 
-    Window_Show(&param0->unk_04[36], 1, 1, 14);
+    Window_DrawStandardFrame(&param0->unk_04[36], 1, 1, 14);
     param0->unk_700 = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 12, PAD_BUTTON_B);
 }
 
@@ -1218,15 +1218,15 @@ int sub_02086774(GameWindowLayout *param0)
     case 0xffffffff:
         break;
     case 0xfffffffe:
-        sub_0200E084(&param0->unk_04[33], 1);
-        Window_Clear(&param0->unk_04[36], 1);
+        Window_EraseMessageBox(&param0->unk_04[33], 1);
+        Window_EraseStandardFrame(&param0->unk_04[36], 1);
         Menu_Free(param0->unk_700, NULL);
         StringList_Free(param0->unk_6FC);
         sub_020826E0(param0, 32, 1);
         return 4;
     default:
-        sub_0200E084(&param0->unk_04[33], 1);
-        Window_Clear(&param0->unk_04[36], 1);
+        Window_EraseMessageBox(&param0->unk_04[33], 1);
+        Window_EraseStandardFrame(&param0->unk_04[36], 1);
         Menu_Free(param0->unk_700, NULL);
         StringList_Free(param0->unk_6FC);
 
@@ -1252,7 +1252,7 @@ int sub_02086774(GameWindowLayout *param0)
 
 void sub_020868B0(GameWindowLayout *param0)
 {
-    sub_0200E084(&param0->unk_04[32], 1);
+    Window_EraseMessageBox(&param0->unk_04[32], 1);
 
     if (param0->unk_704[param0->unk_B11].unk_0C == 0) {
         MessageLoader_GetStrbuf(param0->unk_69C, 127, param0->unk_6A4);

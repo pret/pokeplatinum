@@ -747,20 +747,20 @@ static void ov65_02236A28(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207D
 
     v0 = Options_Frame(SaveData_Options(param1->unk_08));
 
-    sub_0200DD0C(param0->unk_00, 1, 1, 2, v0, param2);
-    sub_0200DAA4(param0->unk_00, 1, (1 + (18 + 12)), 3, 0, param2);
-    sub_0200DAA4(param0->unk_00, 2, (0 + (24 * 2)), 4, 0, param2);
+    LoadMessageBoxGraphics(param0->unk_00, 1, 1, 2, v0, param2);
+    LoadStandardWindowGraphics(param0->unk_00, 1, (1 + (18 + 12)), 3, 0, param2);
+    LoadStandardWindowGraphics(param0->unk_00, 2, (0 + (24 * 2)), 4, 0, param2);
     Window_Add(param0->unk_00, &param0->unk_1F0, 1, 2, 19, 27, 4, 1, ((1 + (18 + 12)) + 9));
     Window_FillTilemap(&param0->unk_1F0, 15);
-    sub_0200E060(&param0->unk_1F0, 1, 1, 2);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_1F0, 1, 1, 2);
     Window_Add(param0->unk_00, &param0->unk_200, 1, 1, 1, 27, 2, 1, (((1 + (18 + 12)) + 9) + (27 * 4)));
     Window_FillTilemap(&param0->unk_200, 15);
-    Window_Show(&param0->unk_200, 1, (1 + (18 + 12)), 3);
+    Window_DrawStandardFrame(&param0->unk_200, 1, (1 + (18 + 12)), 3);
     Window_Add(param0->unk_00, &param0->unk_210, 1, 2, 16, 28, 2, 1, ((((1 + (18 + 12)) + 9) + (27 * 4)) + (27 * 2)));
     Window_FillTilemap(&param0->unk_210, 0);
     Window_Add(param0->unk_00, &param0->unk_220, 1, 1, 5, 20, 8, 1, (((((1 + (18 + 12)) + 9) + (27 * 4)) + (27 * 2)) + (28 * 2)));
     Window_FillTilemap(&param0->unk_220, 15);
-    Window_Show(&param0->unk_220, 1, (1 + (18 + 12)), 3);
+    Window_DrawStandardFrame(&param0->unk_220, 1, (1 + (18 + 12)), 3);
     Window_Add(param0->unk_00, &param0->unk_230, 1, 23, 5, 7, 5, 1, ((((((1 + (18 + 12)) + 9) + (27 * 4)) + (27 * 2)) + (28 * 2)) + (20 * 8)));
     Window_FillTilemap(&param0->unk_230, 15);
 }
@@ -769,14 +769,14 @@ static void ov65_02236B90(UnkStruct_ov65_02236840 *param0, u32 param1)
 {
     ov65_02236F38(param0);
 
-    sub_0200E084(&param0->unk_1F0, 0);
+    Window_EraseMessageBox(&param0->unk_1F0, 0);
     Window_Remove(&param0->unk_1F0);
-    Window_Clear(&param0->unk_200, 0);
+    Window_EraseStandardFrame(&param0->unk_200, 0);
     Window_Remove(&param0->unk_200);
     Window_Remove(&param0->unk_210);
-    Window_Clear(&param0->unk_220, 0);
+    Window_EraseStandardFrame(&param0->unk_220, 0);
     Window_Remove(&param0->unk_220);
-    Window_Clear(&param0->unk_230, 0);
+    Window_EraseStandardFrame(&param0->unk_230, 0);
     Window_Remove(&param0->unk_230);
 
     if (param0->unk_240 != NULL) {
@@ -909,7 +909,7 @@ static void ov65_02236E50(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207D
 
     v1 = Options_Frame(SaveData_Options(param1->unk_08));
 
-    sub_0200DD0C(param0->unk_00, 1, 1, 2, v1, param4);
+    LoadMessageBoxGraphics(param0->unk_00, 1, 1, 2, v1, param4);
 
     param0->unk_15 = param3;
 }
@@ -968,7 +968,7 @@ static void ov65_02236F70(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207D
 
     Window_FillTilemap(&param0->unk_230, 15);
     Text_AddPrinterWithParamsAndColor(&param0->unk_230, FONT_SYSTEM, v1, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
-    Window_Show(&param0->unk_230, 1, (1 + (18 + 12)), 3);
+    Window_DrawStandardFrame(&param0->unk_230, 1, (1 + (18 + 12)), 3);
     Window_ScheduleCopyToVRAM(&param0->unk_230);
 
     Strbuf_Free(v0);
@@ -977,7 +977,7 @@ static void ov65_02236F70(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207D
 
 static void ov65_02237018(UnkStruct_ov65_02236840 *param0)
 {
-    Window_Clear(&param0->unk_230, 1);
+    Window_EraseStandardFrame(&param0->unk_230, 1);
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_230);
 }
 
@@ -1493,7 +1493,7 @@ static void ov65_02237860(UnkStruct_ov65_022367A8 *param0, u32 param1)
 static void ov65_0223789C(UnkStruct_ov65_022367A8 *param0)
 {
     GF_ASSERT(param0->unk_30.unk_24C == NULL);
-    param0->unk_30.unk_24C = sub_0200E7FC(&param0->unk_30.unk_1F0, 1);
+    param0->unk_30.unk_24C = Window_AddWaitDial(&param0->unk_30.unk_1F0, 1);
 }
 
 static void ov65_022378C4(UnkStruct_ov65_022367A8 *param0, const UnkStruct_0207DE04 *param1, u32 param2)
@@ -1504,12 +1504,12 @@ static void ov65_022378C4(UnkStruct_ov65_022367A8 *param0, const UnkStruct_0207D
         return;
     }
 
-    DeleteWaitDial(param0->unk_30.unk_24C);
+    DestroyWaitDial(param0->unk_30.unk_24C);
 
     param0->unk_30.unk_24C = NULL;
     v0 = Options_Frame(SaveData_Options(param1->unk_08));
 
-    sub_0200DD0C(param0->unk_30.unk_00, 1, 1, 2, v0, param2);
+    LoadMessageBoxGraphics(param0->unk_30.unk_00, 1, 1, 2, v0, param2);
 }
 
 static void ov65_02237908(UnkStruct_ov65_022367A8 *param0, UnkStruct_ov65_02237908 *param1)

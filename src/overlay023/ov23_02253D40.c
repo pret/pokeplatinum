@@ -173,7 +173,7 @@ static int ov23_02253E90(UnkStruct_ov23_02253E2C *param0, BOOL param1, UnkStruct
     }
 
     Window_FillTilemap(&param0->unk_08, 15);
-    sub_0200E060(&param0->unk_08, 1, param0->unk_42, 10);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_08, 1, param0->unk_42, 10);
 
     if (param1) {
         param0->unk_20 = SysTask_Start(ov23_02253E40, param0, 100);
@@ -233,15 +233,15 @@ static void ov23_02253FA4(UnkStruct_ov23_02253E2C *param0, int param1)
 
         switch (param1) {
         case 0:
-            sub_0200E084(&param0->unk_08, 1);
+            Window_EraseMessageBox(&param0->unk_08, 1);
             break;
         case 1:
-            sub_0200E084(&param0->unk_08, 1);
+            Window_EraseMessageBox(&param0->unk_08, 1);
             Window_ClearAndCopyToVRAM(&param0->unk_08);
             Window_Remove(&param0->unk_08);
             break;
         case 2:
-            sub_0200E084(&param0->unk_08, 1);
+            Window_EraseMessageBox(&param0->unk_08, 1);
             Window_ClearAndScheduleCopyToVRAM(&param0->unk_08);
             Window_Remove(&param0->unk_08);
             break;

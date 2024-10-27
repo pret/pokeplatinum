@@ -549,13 +549,13 @@ static void ov94_0223C598(UnkStruct_ov94_0223FD4C *param0)
 
 void ov94_0223C5D8(UnkStruct_ov94_0223FD4C *param0)
 {
-    param0->unk_10DC = sub_0200E7FC(&param0->unk_F5C, 1);
+    param0->unk_10DC = Window_AddWaitDial(&param0->unk_F5C, 1);
 }
 
 void ov94_0223C5F4(UnkStruct_ov94_0223FD4C *param0)
 {
     if (param0->unk_10DC != NULL) {
-        DeleteWaitDial(param0->unk_10DC);
+        DestroyWaitDial(param0->unk_10DC);
         param0->unk_10DC = NULL;
     }
 }

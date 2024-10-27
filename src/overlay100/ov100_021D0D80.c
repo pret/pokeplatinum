@@ -75,10 +75,10 @@ int ov100_021D0D80(OverlayManager *param0, int *param1)
         Window_FillTilemap(v1, 0xFF);
         Window_CopyToVRAM(v1);
 
-        sub_0200DD0C(v0->unk_0C.unk_0C, 1, 500, 15, v2, 111);
-        PaletteData_LoadBufferFromFileStart(v0->unk_0C.unk_10, 38, sub_0200DD08(v2), 111, 0, 0x20, 15 * 16);
+        LoadMessageBoxGraphics(v0->unk_0C.unk_0C, 1, 500, 15, v2, 111);
+        PaletteData_LoadBufferFromFileStart(v0->unk_0C.unk_10, 38, GetMessageBoxPaletteNARCMember(v2), 111, 0, 0x20, 15 * 16);
         PaletteData_LoadBufferFromFileStart(v0->unk_0C.unk_10, 14, 7, 111, 0, 0x20, 14 * 16);
-        sub_0200E060(v1, 0, 500, 15);
+        Window_DrawMessageBoxWithScrollCursor(v1, 0, 500, 15);
 
         ov100_021D4788(&v0->unk_0C);
     }
@@ -144,7 +144,7 @@ int ov100_021D0F44(OverlayManager *param0, int *param1)
 
     SetMainCallback(NULL, NULL);
     DisableHBlank();
-    sub_0200E084(&v0->unk_0C.unk_30, 1);
+    Window_EraseMessageBox(&v0->unk_0C.unk_30, 1);
     Window_ClearAndCopyToVRAM(&v0->unk_0C.unk_30);
     Window_Remove(&v0->unk_0C.unk_30);
 

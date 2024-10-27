@@ -1774,7 +1774,7 @@ static BOOL ov104_02230CAC(UnkStruct_ov104_0222E930 *param0)
 {
     UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
 
-    v0->unk_7C = sub_0200E7FC(&v0->unk_64, (1024 - (18 + 12)));
+    v0->unk_7C = Window_AddWaitDial(&v0->unk_64, (1024 - (18 + 12)));
     return 0;
 }
 
@@ -1782,7 +1782,7 @@ static BOOL ov104_02230CC4(UnkStruct_ov104_0222E930 *param0)
 {
     UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
 
-    DeleteWaitDial(v0->unk_7C);
+    DestroyWaitDial(v0->unk_7C);
     return 0;
 }
 

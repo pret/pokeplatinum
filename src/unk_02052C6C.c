@@ -277,7 +277,7 @@ static void sub_02052FA8(FieldSystem *fieldSystem, UnkStruct_0205300C *param1)
     FieldMessage_DrawWindow(&param1->unk_1C, v0);
 
     param1->unk_34 = FieldMessage_Print(&param1->unk_1C, param1->unk_2C, v0, 1);
-    param1->unk_30 = sub_0200E7FC(&param1->unk_1C, 1024 - (18 + 12));
+    param1->unk_30 = Window_AddWaitDial(&param1->unk_1C, 1024 - (18 + 12));
 }
 
 static BOOL sub_02052FFC(UnkStruct_0205300C *param0)
@@ -288,7 +288,7 @@ static BOOL sub_02052FFC(UnkStruct_0205300C *param0)
 static void sub_0205300C(UnkStruct_0205300C *param0)
 {
     Strbuf_Free(param0->unk_2C);
-    DeleteWaitDial(param0->unk_30);
+    DestroyWaitDial(param0->unk_30);
     sub_0205D988(&param0->unk_1C);
 }
 

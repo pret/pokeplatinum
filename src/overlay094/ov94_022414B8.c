@@ -324,7 +324,7 @@ static void ov94_0224158C(UnkStruct_ov94_0223FD4C *param0, int param1, int param
 
     StringTemplate_Format(param0->unk_B8C, param0->unk_BAC, v0);
     Window_FillTilemap(&param0->unk_F5C, 0xf0f);
-    sub_0200E060(&param0->unk_F5C, 0, 1, 10);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_F5C, 0, 1, 10);
 
     param0->unk_BE0 = Text_AddPrinterWithParams(&param0->unk_F5C, FONT_MESSAGE, param0->unk_BAC, 0, 0, param2, NULL);
 
@@ -454,8 +454,8 @@ static void ov94_0224170C(UnkStruct_ov94_0223FD4C *param0)
 
     Graphics_LoadPalette(104, 1, 0, 0, 16 * 3 * 2, 62);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 62);
-    sub_0200DD0C(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), 62);
-    sub_0200DAA4(v0, 0, (1 + (18 + 12)), 11, 0, 62);
+    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), 62);
+    LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, 62);
     Graphics_LoadTilesToBgLayer(104, 11, v0, 1, 0, 16 * 5 * 0x20, 1, 62);
     Graphics_LoadTilemapToBgLayer(104, 23, v0, 1, 0, 32 * 24 * 2, 1, 62);
 }
@@ -571,8 +571,8 @@ static int ov94_02241A58(UnkStruct_ov94_0223FD4C *param0)
     case 0xfffffffe:
         ListMenu_Free(param0->unk_10D8, &param0->unk_10E4->unk_06, &param0->unk_10E4->unk_04);
         StringList_Free(param0->unk_10CC);
-        Window_Clear(&param0->unk_F9C[0], 0);
-        sub_0200E084(&param0->unk_F5C, 0);
+        Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
+        Window_EraseMessageBox(&param0->unk_F5C, 0);
         Window_Remove(&param0->unk_F9C[0]);
         Window_Remove(&param0->unk_F9C[1]);
         ov94_0223C4C0(param0, 5, 5);
@@ -624,7 +624,7 @@ static int ov94_02241BAC(UnkStruct_ov94_0223FD4C *param0)
     case 0xfffffffe:
         ListMenu_Free(param0->unk_10D8, &param0->unk_10E4->unk_0A, &param0->unk_10E4->unk_08);
         StringList_Free(param0->unk_10CC);
-        Window_Clear(&param0->unk_F9C[1], 0);
+        Window_EraseStandardFrame(&param0->unk_F9C[1], 0);
         Window_Remove(&param0->unk_F9C[0]);
         Window_Remove(&param0->unk_F9C[1]);
         param0->unk_2C = 0;
@@ -634,8 +634,8 @@ static int ov94_02241BAC(UnkStruct_ov94_0223FD4C *param0)
     default:
         ListMenu_Free(param0->unk_10D8, &param0->unk_10E4->unk_0A, &param0->unk_10E4->unk_08);
         StringList_Free(param0->unk_10CC);
-        Window_Clear(&param0->unk_F9C[0], 0);
-        Window_Clear(&param0->unk_F9C[1], 0);
+        Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
+        Window_EraseStandardFrame(&param0->unk_F9C[1], 0);
         Window_Remove(&param0->unk_F9C[0]);
         Window_Remove(&param0->unk_F9C[1]);
         param0->unk_B74.unk_00 = v0;
@@ -686,8 +686,8 @@ static int ov94_02241DA0(UnkStruct_ov94_0223FD4C *param0)
     case 0xfffffffe:
         ListMenu_Free(param0->unk_10D8, NULL, NULL);
         StringList_Free(param0->unk_10CC);
-        Window_Clear(&param0->unk_F9C[0], 0);
-        sub_0200E084(&param0->unk_F5C, 0);
+        Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
+        Window_EraseMessageBox(&param0->unk_F5C, 0);
         Window_Remove(&param0->unk_F9C[0]);
         Sound_PlayEffect(1500);
         param0->unk_2C = 0;
@@ -698,7 +698,7 @@ static int ov94_02241DA0(UnkStruct_ov94_0223FD4C *param0)
     case 2:
         ListMenu_Free(param0->unk_10D8, NULL, NULL);
         StringList_Free(param0->unk_10CC);
-        Window_Clear(&param0->unk_F9C[0], 0);
+        Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
         Window_Remove(&param0->unk_F9C[0]);
         Sound_PlayEffect(1500);
         param0->unk_B74.unk_02 = v0 + 1;
@@ -741,8 +741,8 @@ static int ov94_02241F28(UnkStruct_ov94_0223FD4C *param0)
     case 12:
         ListMenu_Free(param0->unk_10D8, NULL, NULL);
         StringList_Free(param0->unk_10CC);
-        Window_Clear(&param0->unk_F9C[0], 0);
-        sub_0200E084(&param0->unk_F5C, 0);
+        Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
+        Window_EraseMessageBox(&param0->unk_F5C, 0);
         Window_Remove(&param0->unk_F9C[0]);
         Sound_PlayEffect(1500);
 
@@ -756,7 +756,7 @@ static int ov94_02241F28(UnkStruct_ov94_0223FD4C *param0)
         Sound_PlayEffect(1500);
         ListMenu_Free(param0->unk_10D8, NULL, NULL);
         StringList_Free(param0->unk_10CC);
-        Window_Clear(&param0->unk_F9C[0], 0);
+        Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
         Window_Remove(&param0->unk_F9C[0]);
         ov94_02242934(&param0->unk_B74, v0, 0);
         param0->unk_2C = 13;
@@ -1106,7 +1106,7 @@ ListMenu *ov94_022426A8(UnkStruct_ov94_0223FD4C *param0, StringList **param1, Wi
     v0.choices = *param1;
     v0.window = param2;
 
-    Window_Show(param2, 0, (1 + (18 + 12)), 11);
+    Window_DrawStandardFrame(param2, 0, (1 + (18 + 12)), 11);
 
     return ListMenu_New(&v0, param0->unk_10E4->unk_06, param0->unk_10E4->unk_04, 62);
 }
@@ -1182,7 +1182,7 @@ ListMenu *ov94_022427C0(UnkStruct_ov94_0223FD4C *param0, StringList **param1, Wi
     v0.choices = *param1;
     v0.window = param2;
 
-    Window_Show(param2, 0, (1 + (18 + 12)), 11);
+    Window_DrawStandardFrame(param2, 0, (1 + (18 + 12)), 11);
 
     return ListMenu_New(&v0, param0->unk_111C.unk_04[v3], param0->unk_111C.unk_16[v3], 62);
 }
@@ -1210,7 +1210,7 @@ ListMenu *ov94_02242840(StringList **param0, Window *param1, MessageLoader *para
     v0.choices = *param0;
     v0.window = param1;
 
-    Window_Show(param1, 0, (1 + (18 + 12)), 11);
+    Window_DrawStandardFrame(param1, 0, (1 + (18 + 12)), 11);
 
     return ListMenu_New(&v0, 0, 0, 62);
 }
@@ -1241,7 +1241,7 @@ ListMenu *ov94_022428B0(StringList **param0, Window *param1, MessageLoader *para
     v0.choices = *param0;
     v0.window = param1;
 
-    Window_Show(param1, 0, (1 + (18 + 12)), 11);
+    Window_DrawStandardFrame(param1, 0, (1 + (18 + 12)), 11);
 
     return ListMenu_New(&v0, 0, 0, 62);
 }
@@ -1306,7 +1306,7 @@ ListMenu *ov94_022429B4(StringList **param0, Window *param1, MessageLoader *para
     v0.choices = *param0;
     v0.window = param1;
 
-    Window_Show(param1, 1, (1 + (18 + 12)), 11);
+    Window_DrawStandardFrame(param1, 1, (1 + (18 + 12)), 11);
 
     return ListMenu_New(&v0, 0, 0, 62);
 }

@@ -167,7 +167,7 @@ static void ov104_02231FC4(UnkStruct_ov104_022320B4 *param0)
         Window_Add(
             v0->unk_00, &param0->unk_64, 1, 2, 19, 27, 4, 13, (((1024 - (18 + 12)) - 9) - (27 * 4)));
         Window_FillTilemap(&param0->unk_64, 15);
-        sub_0200E060(&param0->unk_64, 0, (1024 - (18 + 12)), 11);
+        Window_DrawMessageBoxWithScrollCursor(&param0->unk_64, 0, (1024 - (18 + 12)), 11);
 
         param0->unk_5A = 1;
     } else {
@@ -193,7 +193,7 @@ void ov104_02232088(UnkStruct_ov104_022320B4 *param0)
 {
     GF_ASSERT(param0->unk_5A == 1);
 
-    sub_0200E084(&param0->unk_64, 0);
+    Window_EraseMessageBox(&param0->unk_64, 0);
     Window_Remove(&param0->unk_64);
 
     param0->unk_5A = 0;
@@ -321,7 +321,7 @@ void ov104_022322B0(UnkStruct_ov104_02232B5C *param0)
     }
 
     Window_Add(v1->unk_00, &param0->unk_08, 1, param0->unk_98, param0->unk_99, v0, param0->unk_9B * 2, 14, 1);
-    Window_Show(&param0->unk_08, 1, 985, 12);
+    Window_DrawStandardFrame(&param0->unk_08, 1, 985, 12);
     ov104_02232454(param0);
     param0->unk_B0 = Menu_NewSimple(&param0->unk_A4, param0->unk_96, param0->unk_00->unk_34);
     ov104_022325D8(param0);
@@ -440,7 +440,7 @@ static void ov104_02232570(UnkStruct_ov104_02232B5C *param0)
     Sound_PlayEffect(1500);
 
     Menu_Free(param0->unk_B0, NULL);
-    Window_Clear(param0->unk_A4.window, 0);
+    Window_EraseStandardFrame(param0->unk_A4.window, 0);
     Window_Remove(param0->unk_A4.window);
 
     for (v0 = 0; v0 < 28; v0++) {
@@ -507,7 +507,7 @@ void ov104_02232624(UnkStruct_ov104_02232B5C *param0)
         }
         Window_Add(v1->unk_00, &param0->unk_08, 1, param0->unk_98, param0->unk_99, v0, param0->unk_9B * 2, 14, 1);
     }
-    Window_Show(&param0->unk_08, 1, 985, 12);
+    Window_DrawStandardFrame(&param0->unk_08, 1, 985, 12);
     ov104_02232830(param0);
     param0->unk_1B4 = ListMenu_New((const ListMenuTemplate *)&param0->unk_194, 0, param0->unk_96, param0->unk_00->unk_34);
     ov104_02232B2C(param0);
@@ -680,7 +680,7 @@ static void ov104_02232A58(UnkStruct_ov104_02232B5C *param0, u8 param1)
     }
 
     ListMenu_Free(param0->unk_1B4, NULL, NULL);
-    Window_Clear(param0->unk_194.window, 0);
+    Window_EraseStandardFrame(param0->unk_194.window, 0);
     Window_Remove(&param0->unk_08);
 
     for (v0 = 0; v0 < 28; v0++) {

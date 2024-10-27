@@ -185,7 +185,7 @@ static void ov76_0223D494(UnkStruct_ov76_0223DE00 *param0, int param1, int param
 
 static int ov76_0223D4C4(UnkStruct_ov76_0223DE00 *param0)
 {
-    Window_Clear(&param0->unk_D4.unk_18[1], 1);
+    Window_EraseStandardFrame(&param0->unk_D4.unk_18[1], 1);
     Window_ClearAndCopyToVRAM(&param0->unk_D4.unk_18[1]);
     Menu_Free(param0->unk_D4.unk_CC, NULL);
     StringList_Free(param0->unk_D4.unk_C8);
@@ -1051,7 +1051,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
                 PaletteData_SetAutoTransparent(param0->unk_D4.unk_14, 1);
                 sub_02015A54(param0->unk_D4.unk_150);
                 sub_02015938(param0->unk_D4.unk_150);
-                sub_0200E084(&param0->unk_D4.unk_18[2], 1);
+                Window_EraseMessageBox(&param0->unk_D4.unk_18[2], 1);
                 Window_ClearAndCopyToVRAM(&param0->unk_D4.unk_18[2]);
                 Window_Remove(&param0->unk_D4.unk_18[2]);
                 param0->unk_3DC++;

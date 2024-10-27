@@ -278,8 +278,8 @@ static void ov5_021F6768(UnkStruct_ov5_021F6704 *param0)
         Window_Add(param0->fieldSystem->unk_08, &param0->unk_08, 3, param0->unk_208, param0->unk_209, 11, param0->unk_20B * 2, 13, 1);
     }
 
-    sub_0200DAA4(param0->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
-    Window_Show(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
+    LoadStandardWindowGraphics(param0->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
+    Window_DrawStandardFrame(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
     ov5_021F68BC(param0);
 
     param0->unk_23C = ListMenu_New((const ListMenuTemplate *)&param0->unk_21C, *param0->unk_214, *param0->unk_218, 4);
@@ -417,7 +417,7 @@ static void ov5_021F6AD4(UnkStruct_ov5_021F6704 *param0)
 
     Sound_PlayEffect(1500);
     ListMenu_Free(param0->unk_23C, NULL, NULL);
-    Window_Clear(param0->unk_21C.window, 0);
+    Window_EraseStandardFrame(param0->unk_21C.window, 0);
     Window_Remove(&param0->unk_08);
 
     for (v0 = 0; v0 < 120; v0++) {

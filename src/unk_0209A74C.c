@@ -98,7 +98,7 @@ void sub_0209A74C(int param0)
     SetAllGraphicsModes(&Unk_020F8ACC);
     Bg_InitFromTemplate(v0, 0, &Unk_020F8ADC, 0);
     Bg_ClearTilemap(v0, 0);
-    sub_0200DAA4(v0, 0, 512 - 9, 2, 0, param0);
+    LoadStandardWindowGraphics(v0, 0, 512 - 9, 2, 0, param0);
     Font_LoadTextPalette(0, 1 * (2 * 16), param0);
     Bg_ClearTilesRange(0, 32, 0, param0);
     Bg_MaskPalette(0, 27681);
@@ -110,7 +110,7 @@ void sub_0209A74C(int param0)
     Text_ResetAllPrinters();
     Window_AddFromTemplate(v0, &v1, &Unk_020F8AC4);
     Window_FillRectWithColor(&v1, 15, 0, 0, 26 * 8, 18 * 8);
-    Window_Show(&v1, 0, 512 - 9, 2);
+    Window_DrawStandardFrame(&v1, 0, 512 - 9, 2);
     MessageLoader_GetStrbuf(v2, v4, v3);
     Text_AddPrinterWithParams(&v1, FONT_SYSTEM, v3, 0, 0, TEXT_SPEED_INSTANT, NULL);
     Strbuf_Free(v3);
@@ -172,7 +172,7 @@ void sub_0209A8E0(int param0)
     SetAllGraphicsModes(&Unk_020F8ACC);
     Bg_InitFromTemplate(v0, 0, &Unk_020F8ADC, 0);
     Bg_ClearTilemap(v0, 0);
-    sub_0200DAA4(v0, 0, 512 - 9, 2, 0, param0);
+    LoadStandardWindowGraphics(v0, 0, 512 - 9, 2, 0, param0);
     Font_LoadTextPalette(0, 1 * (2 * 16), param0);
     Bg_ClearTilesRange(0, 32, 0, param0);
     Bg_MaskPalette(0, 0x6c21);
@@ -184,7 +184,7 @@ void sub_0209A8E0(int param0)
     Text_ResetAllPrinters();
     Window_AddFromTemplate(v0, &v1, &Unk_020F8AC4);
     Window_FillRectWithColor(&v1, 15, 0, 0, 26 * 8, 18 * 8);
-    Window_Show(&v1, 0, (512 - 9), 2);
+    Window_DrawStandardFrame(&v1, 0, (512 - 9), 2);
     MessageLoader_GetStrbuf(v2, v4, v3);
     Text_AddPrinterWithParams(&v1, FONT_SYSTEM, v3, 0, 0, TEXT_SPEED_INSTANT, NULL);
     Strbuf_Free(v3);

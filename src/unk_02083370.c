@@ -116,7 +116,7 @@ u32 sub_02083370(u8 param0)
 
 void sub_0208337C(GameWindowLayout *param0)
 {
-    Window_Clear(&param0->unk_254[0], 1);
+    Window_EraseStandardFrame(&param0->unk_254[0], 1);
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_254[0]);
     Menu_Free(param0->unk_700, NULL);
     StringList_Free(param0->unk_6FC);
@@ -145,7 +145,7 @@ static void sub_020833BC(GameWindowLayout *param0, int *param1)
     v0.suppressCursor = FALSE;
     v0.loopAround = FALSE;
 
-    Window_Show(&param0->unk_04[35], 1, 1, 14);
+    Window_DrawStandardFrame(&param0->unk_04[35], 1, 1, 14);
 
     param0->unk_700 = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 12, PAD_BUTTON_B);
     *param1 = 15;
@@ -167,7 +167,7 @@ static void sub_020834B0(GameWindowLayout *param0, int *param1)
     int v2 = 17;
     FieldSystem *fieldSystem;
 
-    Window_Clear(&param0->unk_04[35], 1);
+    Window_EraseStandardFrame(&param0->unk_04[35], 1);
     Menu_Free(param0->unk_700, NULL);
     StringList_Free(param0->unk_6FC);
 
@@ -207,7 +207,7 @@ static void sub_020834B0(GameWindowLayout *param0, int *param1)
         MessageLoader_GetStrbuf(param0->unk_69C, 83, param0->unk_6A4);
     }
 
-    sub_0200E060(&param0->unk_04[34], 1, (1 + 9), 15);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_04[34], 1, (1 + 9), 15);
     Window_FillTilemap(&param0->unk_04[34], 15);
     sub_0208274C(param0);
 
@@ -218,7 +218,7 @@ int sub_02083658(GameWindowLayout *param0)
 {
     if (Text_IsPrinterActive(param0->unk_B10) == 0) {
         if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            sub_0200E084(&param0->unk_04[34], 1);
+            Window_EraseMessageBox(&param0->unk_04[34], 1);
             sub_020826E0(param0, 29, 1);
             sub_0200D414(param0->unk_5B0[6], 0);
             return 1;
@@ -232,7 +232,7 @@ int sub_020836A8(GameWindowLayout *param0)
 {
     if (Text_IsPrinterActive(param0->unk_B10) == 0) {
         if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            sub_0200E084(&param0->unk_04[34], 1);
+            Window_EraseMessageBox(&param0->unk_04[34], 1);
             LoadOverlay118(param0);
             return 19;
         }
@@ -273,7 +273,7 @@ static void sub_02083700(GameWindowLayout *param0, int *param1)
     v0.suppressCursor = FALSE;
     v0.loopAround = FALSE;
 
-    Window_Show(&param0->unk_04[35], 1, 1, 14);
+    Window_DrawStandardFrame(&param0->unk_04[35], 1, 1, 14);
 
     param0->unk_700 = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 12, PAD_BUTTON_B);
     *param1 = 15;
@@ -290,7 +290,7 @@ static void sub_020837C0(GameWindowLayout *param0, int *param1)
 
 static void sub_020837F4(GameWindowLayout *param0, int *param1)
 {
-    Window_Clear(&param0->unk_04[35], 1);
+    Window_EraseStandardFrame(&param0->unk_04[35], 1);
     Menu_Free(param0->unk_700, NULL);
     StringList_Free(param0->unk_6FC);
     sub_02082708(param0, 43, 1);
@@ -367,7 +367,7 @@ static int sub_02083990(void *param0)
 {
     GameWindowLayout *v0 = param0;
 
-    sub_0200E084(&v0->unk_04[34], 1);
+    Window_EraseMessageBox(&v0->unk_04[34], 1);
     sub_020826E0(v0, 29, 1);
     sub_0200D414(v0->unk_5B0[6], 0);
 
@@ -377,7 +377,7 @@ static int sub_02083990(void *param0)
 int sub_020839BC(GameWindowLayout *param0)
 {
     if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-        sub_0200E084(&param0->unk_04[34], 1);
+        Window_EraseMessageBox(&param0->unk_04[34], 1);
         sub_020826E0(param0, 29, 1);
         sub_0200D414(param0->unk_5B0[6], 0);
         return 1;
@@ -423,7 +423,7 @@ int sub_02083AA4(void *param0)
 {
     GameWindowLayout *v0 = param0;
 
-    sub_0200E084(&v0->unk_04[34], 1);
+    Window_EraseMessageBox(&v0->unk_04[34], 1);
     sub_020826E0(v0, 29, 1);
     sub_0200D414(v0->unk_5B0[6], 0);
 
@@ -443,7 +443,7 @@ static void sub_02083AD0(GameWindowLayout *param0, int *param1)
     CellActor_SetAnim(param0->unk_5B0[7], sub_020805D0(param0->unk_5A4->unk_21, param0->unk_B0F_0) + 2);
     CellActor_SetDrawFlag(param0->unk_5B0[7], 1);
     sub_0207F8F8(param0, param0->unk_B0F_0);
-    sub_0200E084(&param0->unk_04[33], 1);
+    Window_EraseMessageBox(&param0->unk_04[33], 1);
     sub_0208337C(param0);
     sub_020826E0(param0, 30, 1);
 
@@ -714,7 +714,7 @@ static void sub_020844B0(GameWindowLayout *param0, int *param1)
 {
     u8 v0;
 
-    sub_0200E084(&param0->unk_04[33], 1);
+    Window_EraseMessageBox(&param0->unk_04[33], 1);
     sub_0208337C(param0);
 
     for (v0 = 0; v0 < param0->unk_5A4->unk_32_4; v0++) {
@@ -761,7 +761,7 @@ static void sub_020844B0(GameWindowLayout *param0, int *param1)
 int sub_020845A8(GameWindowLayout *param0)
 {
     if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-        sub_0200E084(&param0->unk_04[34], 1);
+        Window_EraseMessageBox(&param0->unk_04[34], 1);
         sub_020826E0(param0, 34, 1);
         sub_0200D414(param0->unk_5B0[6], 0);
         return 1;
@@ -794,7 +794,7 @@ static void sub_020845E8(GameWindowLayout *param0, int *param1)
         sub_02082508(param0, v0);
     }
 
-    sub_0200E084(&param0->unk_04[33], 1);
+    Window_EraseMessageBox(&param0->unk_04[33], 1);
     sub_0208337C(param0);
     sub_020826E0(param0, 29, 1);
     sub_0200D414(param0->unk_5B0[6], 0);
@@ -835,7 +835,7 @@ static void sub_0208472C(GameWindowLayout *param0, int *param1)
 static void sub_02084760(GameWindowLayout *param0, int *param1)
 {
     sub_0208337C(param0);
-    sub_0200E084(&param0->unk_04[33], 1);
+    Window_EraseMessageBox(&param0->unk_04[33], 1);
 
     *param1 = sub_02084780(param0);
 }
@@ -895,7 +895,7 @@ static void sub_02084808(GameWindowLayout *param0, int *param1)
         break;
     }
 
-    sub_0200E084(&param0->unk_04[33], 1);
+    Window_EraseMessageBox(&param0->unk_04[33], 1);
     sub_0208337C(param0);
     sub_02082708(param0, v2, 1);
 
@@ -1001,7 +1001,7 @@ static void sub_020849FC(GameWindowLayout *param0, int *param1)
 
 static int sub_02084A18(GameWindowLayout *param0)
 {
-    sub_0200E084(&param0->unk_04[33], 1);
+    Window_EraseMessageBox(&param0->unk_04[33], 1);
     sub_0208337C(param0);
 
     param0->unk_B14[0] = param0->unk_704[param0->unk_B11].unk_08 / 5;
@@ -1032,7 +1032,7 @@ static int sub_02084A18(GameWindowLayout *param0)
 int sub_02084B34(GameWindowLayout *param0)
 {
     if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-        sub_0200E084(&param0->unk_04[34], 1);
+        Window_EraseMessageBox(&param0->unk_04[34], 1);
         sub_020826E0(param0, 29, 1);
         sub_0200D414(param0->unk_5B0[6], 0);
         return 1;

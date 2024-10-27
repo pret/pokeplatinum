@@ -3368,7 +3368,7 @@ static BOOL ov107_02245210 (Pokemon * param0)
 
 static void ov107_02245288 (Window * param0)
 {
-    sub_0200E084(param0, 1);
+    Window_EraseMessageBox(param0, 1);
     Window_ClearAndScheduleCopyToVRAM(param0);
     return;
 }
@@ -3646,7 +3646,7 @@ static void ov107_02245618 (UnkStruct_ov107_02241D6C * param0)
     if (param0->unk_0E_4 == 1) {
         param0->unk_0E_4 = 0;
         Menu_Free(param0->unk_17C, NULL);
-        Window_Clear(param0->unk_170.window, 1);
+        Window_EraseStandardFrame(param0->unk_170.window, 1);
         Window_ClearAndScheduleCopyToVRAM(param0->unk_170.window);
     }
 
@@ -3666,7 +3666,7 @@ static void ov107_02245660 (UnkStruct_ov107_02241D6C * param0)
     ov107_02249BAC(param0->unk_3EC, 0);
     ov107_02249BAC(param0->unk_434, 0);
 
-    Window_Clear(&param0->unk_50[15], 1);
+    Window_EraseStandardFrame(&param0->unk_50[15], 1);
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_50[15]);
 
     ov107_0224503C(param0, param0->unk_0D, 0);
@@ -3701,7 +3701,7 @@ static void ov107_02245730 (UnkStruct_ov107_02241D6C * param0)
         param0->unk_0E_0 = 0;
         v0 = (Window *)ListMenu_GetAttribute(param0->unk_198, 18);
 
-        Window_Clear(v0, 1);
+        Window_EraseStandardFrame(v0, 1);
         Window_FillTilemap(v0, 0);
         Window_ClearAndScheduleCopyToVRAM(v0);
 

@@ -353,7 +353,7 @@ int ov80_021D1758(UnkStruct_ov80_021D2A08 *param0)
     ov80_021D1B5C(param0, &(v0->unk_28[3]), v2);
     Strbuf_Clear(param0->unk_88);
     ov80_021D1A58(param0, v3, v0->unk_18, v0->unk_1C);
-    sub_0200E2A4(param0->unk_28, 4, (((((1023 - (21 * 4)) - (28 * 4)) - (28 * 14)) - (10 * 2)) - 100), (15 - 1), v2->unk_04, v2->unk_06, param0->unk_04);
+    LoadSignpostContentGraphics(param0->unk_28, 4, (((((1023 - (21 * 4)) - (28 * 4)) - (28 * 14)) - (10 * 2)) - 100), (15 - 1), v2->unk_04, v2->unk_06, param0->unk_04);
 
     if ((v2->unk_04 == 0) || (v2->unk_04 == 1)) {
         v1 = &v0->unk_28[1];
@@ -364,7 +364,7 @@ int ov80_021D1758(UnkStruct_ov80_021D2A08 *param0)
     v0->unk_78 = v1;
     v0->unk_15_4 = v2->unk_04;
 
-    sub_0200E69C(v1, 1, (((((1023 - (21 * 4)) - (28 * 4)) - (28 * 14)) - (10 * 2)) - 100), (15 - 1), v2->unk_04);
+    Window_DrawSignpost(v1, 1, (((((1023 - (21 * 4)) - (28 * 4)) - (28 * 14)) - (10 * 2)) - 100), (15 - 1), v2->unk_04);
     Window_FillTilemap(v1, 15);
     Text_AddPrinterWithParams(v1, FONT_MESSAGE, param0->unk_88, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
     Window_CopyToVRAM(v1);
@@ -688,7 +688,7 @@ static void ov80_021D1D38(UnkStruct_ov80_021D2A08 *param0)
 
     Window_FillTilemap(v1, 0);
     Window_ClearAndCopyToVRAM(v1);
-    sub_0200E744(v1, v0->unk_15_4, 0);
+    Window_EraseSignpost(v1, v0->unk_15_4, 0);
     Bg_ScheduleTilemapTransfer(param0->unk_28, 4);
 }
 

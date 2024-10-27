@@ -798,8 +798,8 @@ static void ov17_0223E67C(UnkStruct_ov17_0224DF54 *param0, NARC *param1)
     PaletteData_LoadBufferFromFileStart(param0->unk_14.unk_90, 45, 36, 23, 0, 0x20, 13 * 16);
 
     v0 = Options_Frame(param0->unk_00->unk_196C);
-    sub_0200DD0C(param0->unk_14.unk_60, 1, 1, 15, v0, 23);
-    PaletteData_LoadBufferFromFileStart(param0->unk_14.unk_90, 38, sub_0200DD08(v0), 23, 0, 0x20, 14 * 16);
+    LoadMessageBoxGraphics(param0->unk_14.unk_60, 1, 1, 15, v0, 23);
+    PaletteData_LoadBufferFromFileStart(param0->unk_14.unk_90, 38, GetMessageBoxPaletteNARCMember(v0), 23, 0, 0x20, 14 * 16);
     ov17_0224C848(param0);
 
     {

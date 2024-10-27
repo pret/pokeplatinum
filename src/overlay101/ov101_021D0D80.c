@@ -430,8 +430,8 @@ void ov101_021D13C8(UnkStruct_ov101_021D13C8 *param0)
     int v0;
     UnkStruct_ov101_021D148C *v1 = &param0->unk_408;
 
-    sub_0200DAA4(param0->unk_43C, 0, 1, 15, 0, 79);
-    sub_0200DD0C(param0->unk_43C, 0, (1 + (18 + 12)), 14, param0->unk_4C4, 79);
+    LoadStandardWindowGraphics(param0->unk_43C, 0, 1, 15, 0, 79);
+    LoadMessageBoxGraphics(param0->unk_43C, 0, (1 + (18 + 12)), 14, param0->unk_4C4, 79);
     Font_LoadScreenIndicatorsPalette(0, 15 * 32, 79);
 
     v1->unk_00 = MessageLoader_Init(0, 26, 544, 79);
@@ -463,7 +463,7 @@ void ov101_021D148C(UnkStruct_ov101_021D13C8 *param0, u32 param1)
 {
     UnkStruct_ov101_021D148C *v0 = &param0->unk_408;
 
-    sub_0200E060(&v0->unk_08[0], 1, (1 + (18 + 12)), 14);
+    Window_DrawMessageBoxWithScrollCursor(&v0->unk_08[0], 1, (1 + (18 + 12)), 14);
     Window_FillTilemap(&v0->unk_08[0], 15);
     MessageLoader_GetStrbuf(v0->unk_00, param1, v0->unk_18);
     Text_AddPrinterWithParams(&v0->unk_08[0], FONT_MESSAGE, v0->unk_18, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
@@ -474,7 +474,7 @@ void ov101_021D14E4(UnkStruct_ov101_021D13C8 *param0)
 {
     UnkStruct_ov101_021D148C *v0 = &param0->unk_408;
 
-    sub_0200E084(&v0->unk_08[0], 1);
+    Window_EraseMessageBox(&v0->unk_08[0], 1);
     Window_FillTilemap(&v0->unk_08[0], 0);
     Window_ScheduleCopyToVRAM(&v0->unk_08[0]);
 }

@@ -207,8 +207,8 @@ static void ov94_0223DE04(UnkStruct_ov94_0223FD4C *param0)
     BgConfig *v0 = param0->unk_04;
 
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 62);
-    sub_0200DD0C(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), 62);
-    sub_0200DAA4(v0, 0, (1 + (18 + 12)), 11, 0, 62);
+    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), 62);
+    LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, 62);
     Graphics_LoadTilesToBgLayer(104, 17, v0, 1, 0, 16 * 5 * 0x20, 1, 62);
     Graphics_LoadPalette(104, 7, 0, 0, 16 * 3 * 2, 62);
 }
@@ -432,7 +432,7 @@ static void ov94_0223E300(UnkStruct_ov94_0223FD4C *param0, int param1, int param
 
     MessageLoader_GetStrbuf(param0->unk_B90, param1, param0->unk_BAC);
     Window_FillTilemap(&param0->unk_F5C, 0xf0f);
-    sub_0200E060(&param0->unk_F5C, 0, 1, 10);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_F5C, 0, 1, 10);
 
     param0->unk_BE0 = Text_AddPrinterWithParams(&param0->unk_F5C, FONT_MESSAGE, param0->unk_BAC, 0, 0, param2, NULL);
 }

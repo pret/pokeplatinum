@@ -168,16 +168,16 @@ void ov5_021E1F04(UnkStruct_ov5_021E1FF4 *param0)
     param0->unk_10 = Heap_AllocFromHeap(param0->unk_04, sizeof(Window));
 
     Window_Add(param0->unk_0C, param0->unk_10, param0->unk_08, 1, 1, param0->unk_2C, param0->unk_30, 13, 393);
-    sub_0200DAA4(param0->unk_0C, param0->unk_08, 985, 11, 0, param0->unk_04);
+    LoadStandardWindowGraphics(param0->unk_0C, param0->unk_08, 985, 11, 0, param0->unk_04);
     Window_FillTilemap(param0->unk_10, Font_GetAttribute(FONT_SYSTEM, FONTATTR_BG_COLOR));
 
     ov5_021E1E20(param0);
-    Window_Show(param0->unk_10, 0, 985, 11);
+    Window_DrawStandardFrame(param0->unk_10, 0, 985, 11);
 }
 
 void ov5_021E1F7C(UnkStruct_ov5_021E1FF4 *param0)
 {
-    Window_Clear(param0->unk_10, 0);
+    Window_EraseStandardFrame(param0->unk_10, 0);
     Window_Remove(param0->unk_10);
     Heap_FreeToHeap(param0->unk_10);
 }

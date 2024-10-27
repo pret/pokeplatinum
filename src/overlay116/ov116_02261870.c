@@ -408,14 +408,14 @@ void ov116_02261F70(UnkStruct_ov116_02262A8C *param0)
         MessageLoader_Free(v0);
     }
 
-    Window_Show(&param0->unk_1FC8, 0, 180, 13);
+    Window_DrawStandardFrame(&param0->unk_1FC8, 0, 180, 13);
     Window_CopyToVRAM(&param0->unk_1FC8);
 }
 
 void ov116_02262004(UnkStruct_ov116_02262A8C *param0)
 {
     if (Window_IsInUse(&param0->unk_1FC8) == 1) {
-        Window_Clear(&param0->unk_1FC8, 1);
+        Window_EraseStandardFrame(&param0->unk_1FC8, 1);
         Window_ClearAndCopyToVRAM(&param0->unk_1FC8);
         Window_Remove(&param0->unk_1FC8);
     }
@@ -562,7 +562,7 @@ void ov116_02262264(UnkStruct_ov116_02262A8C *param0)
         }
 
         if (Window_IsInUse(&param0->unk_1FD8[v1]) == 1) {
-            Window_Clear(&param0->unk_1FD8[v1], 1);
+            Window_EraseStandardFrame(&param0->unk_1FD8[v1], 1);
             Window_ClearAndCopyToVRAM(&param0->unk_1FD8[v1]);
             Window_Remove(&param0->unk_1FD8[v1]);
         }
@@ -835,6 +835,6 @@ void ov116_022628B8(UnkStruct_ov116_0226139C *param0)
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v6, 10, v2, 2, 0, 0, 0, 106);
     PaletteData_LoadBufferFromFileStart(v5, 164, 6, 106, 0, 0x20, 0);
     PaletteData_LoadBufferFromFileStart(v5, 14, 7, 106, 1, 0x20, 14 * 16);
-    PaletteData_LoadBufferFromFileStart(v5, 38, Window_FramePalette(), 106, 1, 0x20, 13 * 16);
-    sub_0200DAA4(v2, 7, 180, 13, 0, 106);
+    PaletteData_LoadBufferFromFileStart(v5, 38, GetStandardWindowPaletteNARCMember(), 106, 1, 0x20, 13 * 16);
+    LoadStandardWindowGraphics(v2, 7, 180, 13, 0, 106);
 }

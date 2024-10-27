@@ -101,8 +101,8 @@ void sub_0208A490 (UnkStruct_02089688 * param0)
     {
         int v5 = Options_Frame(param0->unk_38C.unk_20);
 
-        sub_0200DD0C(v1, 4, 1, 10, v5, 101);
-        PaletteData_LoadBufferFromFileStart(v4, 38, sub_0200DD08(v5), 101, 1, 0x20, 11 * 16);
+        LoadMessageBoxGraphics(v1, 4, 1, 10, v5, 101);
+        PaletteData_LoadBufferFromFileStart(v4, 38, GetMessageBoxPaletteNARCMember(v5), 101, 1, 0x20, 11 * 16);
         PaletteData_LoadBufferFromFileStart(v4, 14, 7, 101, 1, 0x20, 12 * 16);
     }
 }
@@ -748,7 +748,7 @@ void sub_0208B1C4(BgConfig *param0, Window *param1, int param2, int param3, int 
 {
     Window_Init(param1);
     Window_Add(param0, param1, param2, param3, param4, param5, param6, 12, param7);
-    sub_0200E060(param1, 1, 1, 11);
+    Window_DrawMessageBoxWithScrollCursor(param1, 1, 1, 11);
     Window_FillTilemap(param1, 15);
     Window_CopyToVRAM(param1);
     sub_0208B230(param1, param8);

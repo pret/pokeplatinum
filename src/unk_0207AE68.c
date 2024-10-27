@@ -130,7 +130,7 @@ UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Opt
     sub_0207C1CC(v0, v0->unk_00);
     Window_Add(v0->unk_00, v0->unk_04, 1, 2, 0x13, 27, 4, 11, ((18 + 12) + 1));
     Window_FillTilemap(v0->unk_04, 0xff);
-    sub_0200E060(v0->unk_04, 0, 1, 10);
+    Window_DrawMessageBoxWithScrollCursor(v0->unk_04, 0, 1, 10);
 
     v0->unk_18 = sub_0200762C(param11);
     v0->unk_44 = sub_02015F84(param11, 1, 0);
@@ -513,7 +513,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         if (OverlayManager_Exec(param0->unk_38)) {
             OverlayManager_Free(param0->unk_38);
             sub_0207C1CC(param0, param0->unk_00);
-            sub_0200E060(param0->unk_04, 0, 1, 10);
+            Window_DrawMessageBoxWithScrollCursor(param0->unk_04, 0, 1, 10);
             sub_02007DEC(param0->unk_1C[0], 6, 0);
             sub_02007DEC(param0->unk_1C[1], 6, 0);
             sub_020089A0(param0->unk_1C[0]);
@@ -885,14 +885,14 @@ static void sub_0207C1CC(UnkStruct_0207AE68 *param0, BgConfig *param1)
 
         v4 = Options_Frame(param0->unk_2C);
 
-        sub_0200E218(param1, 1, 1, 10, v4, param0->unk_5C);
+        ReplaceTransparentTiles(param1, 1, 1, 10, v4, param0->unk_5C);
         Graphics_LoadTilesToBgLayer(v5, v6, param1, v9, 0, 0, 1, param0->unk_5C);
         Graphics_LoadTilemapToBgLayer(v5, v7, param1, v9, 0, 0, 1, param0->unk_5C);
         PaletteData_LoadBufferFromFileStart(param0->unk_14, v5, v8, param0->unk_5C, 0, 0x20 * 2, 0);
-        PaletteData_LoadBufferFromFileStart(param0->unk_14, 38, sub_0200DD08(v4), param0->unk_5C, 0, 0x20, 10 * 0x10);
+        PaletteData_LoadBufferFromFileStart(param0->unk_14, 38, GetMessageBoxPaletteNARCMember(v4), param0->unk_5C, 0, 0x20, 10 * 0x10);
         PaletteData_LoadBufferFromFileStart(param0->unk_14, 14, 7, param0->unk_5C, 0, 0x20, 0xb * 0x10);
-        Window_SetFrame(param0->unk_00, 2, 1, 0, param0->unk_5C);
-        PaletteData_LoadBufferFromFileStart(param0->unk_14, 38, Window_FramePalette(), param0->unk_5C, 0, 0x20, 8 * 0x10);
+        LoadStandardWindowTiles(param0->unk_00, 2, 1, 0, param0->unk_5C);
+        PaletteData_LoadBufferFromFileStart(param0->unk_14, 38, GetStandardWindowPaletteNARCMember(), param0->unk_5C, 0, 0x20, 8 * 0x10);
     }
 
     {

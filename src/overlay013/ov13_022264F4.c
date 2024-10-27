@@ -501,7 +501,7 @@ static u8 ov13_02226C60(UnkStruct_ov13_02227244 *param0)
 
 static u8 ov13_02226C6C(UnkStruct_ov13_02227244 *param0)
 {
-    sub_0200E084(&param0->unk_1C, 0);
+    Window_EraseMessageBox(&param0->unk_1C, 0);
     return 3;
 }
 
@@ -748,8 +748,8 @@ static void ov13_02226FC4(UnkStruct_ov13_02227244 *param0)
     {
         int v4 = ov16_0223EDE0(param0->unk_00->unk_00);
 
-        Graphics_LoadTilesToBgLayer(38, sub_0200DD04(v4), param0->unk_04, 4, 1024 - (18 + 12), 0, 0, param0->unk_00->unk_0C);
-        PaletteData_LoadBufferFromFileStart(param0->unk_08, 38, sub_0200DD08(v4), param0->unk_00->unk_0C, 1, 0x20, 14 * 16);
+        Graphics_LoadTilesToBgLayer(38, GetMessageBoxTilesNARCMember(v4), param0->unk_04, 4, 1024 - (18 + 12), 0, 0, param0->unk_00->unk_0C);
+        PaletteData_LoadBufferFromFileStart(param0->unk_08, 38, GetMessageBoxPaletteNARCMember(v4), param0->unk_00->unk_0C, 1, 0x20, 14 * 16);
     }
 }
 

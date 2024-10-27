@@ -374,7 +374,7 @@ static void ov13_02227974(UnkStruct_ov13_02227244 *param0)
 
 void ov13_022279F4(UnkStruct_ov13_02227244 *param0)
 {
-    sub_0200E060(&param0->unk_1C, 1, 1024 - (18 + 12), 14);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_1C, 1, 1024 - (18 + 12), 14);
     Window_FillTilemap(&param0->unk_1C, 15);
     ov13_02227A1C(param0);
 }

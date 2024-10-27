@@ -83,7 +83,7 @@ static void ov79_021D1850(UnkStruct_ov79_021D0E1C *param0, Strbuf *param1, u8 pa
     u32 v0 = TEXT_COLOR(1, 2, 15);
 
     if (param3) {
-        sub_0200E060(&param0->unk_E8[2], 1, 1, 14);
+        Window_DrawMessageBoxWithScrollCursor(&param0->unk_E8[2], 1, 1, 14);
     }
 
     Window_FillRectWithColor(&(param0->unk_E8[2]), ((15 << 4) | 15), 0, 0, 27 * 8, 4 * 8);
@@ -380,7 +380,7 @@ void ov79_021D1ED8(UnkStruct_ov79_021D0E1C *param0)
     param0->unk_A4.tmp = (void *)param0;
     param0->unk_A4.count = 3;
 
-    Window_Show(&param0->unk_E8[3], 1, 1 + 18 + 12, 15);
+    Window_DrawStandardFrame(&param0->unk_E8[3], 1, 1 + 18 + 12, 15);
 
     param0->unk_C8 = ListMenu_New(&param0->unk_A4, 0, 0, param0->unk_00);
 }
@@ -389,7 +389,7 @@ void ov79_021D1F60(UnkStruct_ov79_021D0E1C *param0)
 {
     u16 v0, v1;
 
-    Window_Clear(&(param0->unk_E8[3]), 0);
+    Window_EraseStandardFrame(&(param0->unk_E8[3]), 0);
     Window_ClearAndCopyToVRAM(&param0->unk_E8[3]);
 
     ListMenu_Free(param0->unk_C8, &v1, &v0);

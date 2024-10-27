@@ -1013,7 +1013,7 @@ void sub_02091610(PokemonSummaryApp *param0, u8 param1)
 
     v0 = &param0->extraWindows[2];
 
-    sub_0200E060(v0, 1, (1024 - (18 + 12)), 13);
+    Window_DrawMessageBoxWithScrollCursor(v0, 1, (1024 - (18 + 12)), 13);
     Window_FillTilemap(v0, 15);
     MessageLoader_GetStrbuf(param0->msgLoader, v1, param0->strbuf);
     Text_AddPrinterWithParamsAndColor(v0, FONT_MESSAGE, param0->strbuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);

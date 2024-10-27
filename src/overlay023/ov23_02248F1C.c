@@ -172,7 +172,7 @@ static void ov23_02248F1C(SysTask *param0, void *param1)
         }
 
         CellActorCollection_Delete(v0->unk_1BC);
-        sub_0200E084(&v0->unk_3F4, 0);
+        Window_EraseMessageBox(&v0->unk_3F4, 0);
         Window_Remove(&v0->unk_3F4);
         Bg_FreeTilemapBuffer(v1, 7);
 

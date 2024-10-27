@@ -581,8 +581,8 @@ static void ov67_0225CE30(UnkStruct_ov67_0225D154 *param0, u32 param1)
 
         Font_LoadTextPalette(0, 12 * 32, param1);
         Font_LoadScreenIndicatorsPalette(0, 11 * 32, param1);
-        sub_0200DAA4(param0->unk_0C, Unk_ov67_0225D3F4[1], (1 + (18 + 12)), 14, 0, param1);
-        sub_0200DD0C(param0->unk_0C, Unk_ov67_0225D3F4[1], 1, 13, v2, param1);
+        LoadStandardWindowGraphics(param0->unk_0C, Unk_ov67_0225D3F4[1], (1 + (18 + 12)), 14, 0, param1);
+        LoadMessageBoxGraphics(param0->unk_0C, Unk_ov67_0225D3F4[1], 1, 13, v2, param1);
     }
 
     {
@@ -650,9 +650,9 @@ static void ov67_0225D210(UnkStruct_ov67_0225D210 *param0, u32 param1)
     Text_AddPrinterWithParams(&param0->unk_08, FONT_MESSAGE, param0->unk_18, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
 
     if (param0->unk_20 == 0) {
-        Window_Show(&param0->unk_08, 1, (1 + (18 + 12)), 14);
+        Window_DrawStandardFrame(&param0->unk_08, 1, (1 + (18 + 12)), 14);
     } else {
-        sub_0200E060(&param0->unk_08, 1, 1, 13);
+        Window_DrawMessageBoxWithScrollCursor(&param0->unk_08, 1, 1, 13);
     }
 
     Window_ScheduleCopyToVRAM(&param0->unk_08);
@@ -665,14 +665,14 @@ static void ov67_0225D294(UnkStruct_ov67_0225D210 *param0)
     }
 
     if (param0->unk_20 == 0) {
-        Window_Clear(&param0->unk_08, 1);
+        Window_EraseStandardFrame(&param0->unk_08, 1);
         Window_ClearAndScheduleCopyToVRAM(&param0->unk_08);
     } else {
         if (param0->unk_24) {
             ov67_0225D310(param0);
         }
 
-        sub_0200E084(&param0->unk_08, 1);
+        Window_EraseMessageBox(&param0->unk_08, 1);
         Window_ClearAndScheduleCopyToVRAM(&param0->unk_08);
     }
 }
@@ -681,7 +681,7 @@ static void ov67_0225D2EC(UnkStruct_ov67_0225D210 *param0)
 {
     if (param0->unk_20 == 1) {
         GF_ASSERT(param0->unk_24 == NULL);
-        param0->unk_24 = sub_0200E7FC(&param0->unk_08, 1);
+        param0->unk_24 = Window_AddWaitDial(&param0->unk_08, 1);
     }
 }
 
@@ -689,7 +689,7 @@ static void ov67_0225D310(UnkStruct_ov67_0225D210 *param0)
 {
     if (param0->unk_20 == 1) {
         GF_ASSERT(param0->unk_24 != NULL);
-        DeleteWaitDial(param0->unk_24);
+        DestroyWaitDial(param0->unk_24);
         param0->unk_24 = NULL;
     }
 }

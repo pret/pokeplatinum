@@ -1437,14 +1437,14 @@ static void ov69_0225D3A4(UnkStruct_ov69_0225D35C *param0, Options *param1, u32 
 
     Font_LoadScreenIndicatorsPalette(0, 1 * 0x20, param2);
     Font_LoadScreenIndicatorsPalette(4, 11 * 0x20, param2);
-    sub_0200DAA4(param0->unk_00, 1, (1 + (18 + 12)), 0, 0, param2);
-    sub_0200DAA4(param0->unk_00, 1, (1 + (18 + 12)), 0, 0, param2);
+    LoadStandardWindowGraphics(param0->unk_00, 1, (1 + (18 + 12)), 0, 0, param2);
+    LoadStandardWindowGraphics(param0->unk_00, 1, (1 + (18 + 12)), 0, 0, param2);
 
     {
         u8 v1 = Options_Frame(param1);
 
-        sub_0200DD0C(param0->unk_00, 4, 10, 10, v1, param2);
-        sub_0200DD0C(param0->unk_00, 1, 1, 2, v1, param2);
+        LoadMessageBoxGraphics(param0->unk_00, 4, 10, 10, v1, param2);
+        LoadMessageBoxGraphics(param0->unk_00, 1, 1, 2, v1, param2);
     }
 
     Bg_MaskPalette(0, 0x72ca);
@@ -1843,7 +1843,7 @@ static void ov69_0225DBB4(UnkStruct_ov69_0225DC48 *param0, UnkStruct_ov69_0225D3
         Font_Free(FONT_SUBSCREEN);
     }
 
-    Window_Show(&param0->unk_1C, 0, (1 + (18 + 12)), 0);
+    Window_DrawStandardFrame(&param0->unk_1C, 0, (1 + (18 + 12)), 0);
 }
 
 static void ov69_0225DC48(UnkStruct_ov69_0225DC48 *param0)
@@ -1926,14 +1926,14 @@ static int ov69_0225DD10(const UnkStruct_ov69_0225DC48 *param0, u32 param1)
 
 static void ov69_0225DD2C(UnkStruct_ov69_0225DC48 *param0)
 {
-    Window_Clear(&param0->unk_1C, 1);
+    Window_EraseStandardFrame(&param0->unk_1C, 1);
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_1C);
 }
 
 static void ov69_0225DD44(UnkStruct_ov69_0225DC48 *param0)
 {
     Window_ScheduleCopyToVRAM(&param0->unk_1C);
-    Window_Show(&param0->unk_1C, 0, (1 + (18 + 12)), 0);
+    Window_DrawStandardFrame(&param0->unk_1C, 0, (1 + (18 + 12)), 0);
 }
 
 static void ov69_0225DD60(UnkStruct_ov69_0225DDC8 *param0, UnkStruct_ov69_0225D35C *param1, UnkStruct_ov69_0225EF54 *param2, SaveData *param3, u32 param4)
@@ -1971,7 +1971,7 @@ static void ov69_0225DDC8(UnkStruct_ov69_0225DDC8 *param0)
 static void ov69_0225DDFC(UnkStruct_ov69_0225DDC8 *param0)
 {
     Window_FillTilemap(&param0->unk_10, 15);
-    sub_0200E060(&param0->unk_10, 1, 1, 2);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_10, 1, 1, 2);
     Window_ScheduleCopyToVRAM(&param0->unk_10);
 
     param0->unk_04 = Text_AddPrinterWithParams(&param0->unk_10, FONT_MESSAGE, param0->unk_0C, 0, 0, param0->unk_08, NULL);
@@ -2006,7 +2006,7 @@ static u32 ov69_0225DE40(UnkStruct_ov69_0225DDC8 *param0)
 static void ov69_0225DEA0(UnkStruct_ov69_0225DDC8 *param0)
 {
     sub_02015A54(param0->unk_20);
-    sub_0200E084(&param0->unk_10, 1);
+    Window_EraseMessageBox(&param0->unk_10, 1);
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_10);
 }
 
@@ -2033,7 +2033,7 @@ static void ov69_0225DEC0(UnkStruct_ov69_0225E084 *param0, UnkStruct_ov69_0225D3
         v1 = ov69_0225EF74(param2, 0);
 
         Text_AddPrinterWithParams(&param0->unk_1A8, FONT_MESSAGE, v1, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
-        sub_0200E060(&param0->unk_1A8, 0, 10, 10);
+        Window_DrawMessageBoxWithScrollCursor(&param0->unk_1A8, 0, 10, 10);
     }
 
     ov69_0225E590(param0, param1, param3);
@@ -2102,14 +2102,14 @@ static void ov69_0225E00C(UnkStruct_ov69_0225E084 *param0, UnkStruct_ov69_0225EF
 
 static void ov69_0225E084(UnkStruct_ov69_0225E084 *param0)
 {
-    sub_0200E084(&param0->unk_1A8, 1);
+    Window_EraseMessageBox(&param0->unk_1A8, 1);
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_1A8);
 }
 
 static void ov69_0225E0A0(UnkStruct_ov69_0225E084 *param0)
 {
     Window_ScheduleCopyToVRAM(&param0->unk_1A8);
-    sub_0200E060(&param0->unk_1A8, 1, 10, 10);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_1A8, 1, 10, 10);
 }
 
 static BOOL ov69_0225E0C0(UnkStruct_ov69_0225E084 *param0, const UnkStruct_ov69_0225E0C0 *param1)

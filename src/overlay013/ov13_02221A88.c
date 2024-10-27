@@ -490,7 +490,7 @@ static void ov13_022221C8(UnkStruct_ov13_022213F0 *param0, u32 param1)
 {
     Strbuf *v0;
 
-    sub_0200E060(&param0->unk_204C[0], 1, 1, 14);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_204C[0], 1, 1, 14);
     Window_FillTilemap(&param0->unk_204C[0], 15);
 
     v0 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, param1);
@@ -1538,7 +1538,7 @@ static void ov13_02223F7C(UnkStruct_ov13_022213F0 *param0)
 
 void ov13_022240E0(UnkStruct_ov13_022213F0 *param0)
 {
-    sub_0200E060(&param0->unk_204C[1], 1, 1, 14);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_204C[1], 1, 1, 14);
     Window_FillTilemap(&param0->unk_204C[1], 15);
     ov13_02224108(param0);
 }

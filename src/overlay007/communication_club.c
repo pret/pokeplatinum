@@ -197,7 +197,7 @@ static void CommClubMan_CreateList(ListMenuTemplate param0, u8 param1, u8 param2
         Window_Add(sCommClubMan->fieldSystem->unk_08, &sCommClubMan->unk_20, 3, param1, param2, param3, param4, 13, param5);
     }
 
-    Window_Show(&sCommClubMan->unk_20, 1, 1024 - (18 + 12) - 9, 11);
+    Window_DrawStandardFrame(&sCommClubMan->unk_20, 1, 1024 - (18 + 12) - 9, 11);
 
     ListMenuTemplate v0 = param0;
     v0.choices = sCommClubMan->unk_64;
@@ -361,7 +361,7 @@ static void CommClubMan_PrintChooseJoinMsg(CommClubManager *param0)
         Window_Add(sCommClubMan->fieldSystem->unk_08, &sCommClubMan->unk_30, 3, 23, 2, 8, 4, 13, (1 + 20 * 5 * 2));
     }
 
-    Window_Show(&sCommClubMan->unk_30, 1, 1024 - (18 + 12) - 9, 11);
+    Window_DrawStandardFrame(&sCommClubMan->unk_30, 1, 1024 - (18 + 12) - 9, 11);
     Window_FillTilemap(&sCommClubMan->unk_30, 15);
     Window_CopyToVRAM(&sCommClubMan->unk_30);
 
@@ -692,7 +692,7 @@ static void ov7_0224A53C(CommClubManager *man)
         Window_Add(sCommClubMan->fieldSystem->unk_08, &sCommClubMan->unk_30, 3, 22, 2, 9, 4, 13, (1 + 17 * 6 * 2));
     }
 
-    Window_Show(&sCommClubMan->unk_30, 1, 1024 - (18 + 12) - 9, 11);
+    Window_DrawStandardFrame(&sCommClubMan->unk_30, 1, 1024 - (18 + 12) - 9, 11);
     Window_FillTilemap(&sCommClubMan->unk_30, 15);
     Window_CopyToVRAM(&sCommClubMan->unk_30);
 
@@ -1369,14 +1369,14 @@ static void ov7_0224AF84(SysTask *task, void *param1)
 static void CommClubMan_DestroyList(SysTask *task, CommClubManager *param1)
 {
     Window_FillTilemap(&sCommClubMan->msgWindow, 15);
-    Window_Clear(&param1->unk_20, 0);
+    Window_EraseStandardFrame(&param1->unk_20, 0);
     StringList_Free(param1->unk_64);
     ListMenu_Free(param1->unk_5C, NULL, NULL);
     Window_ClearAndCopyToVRAM(&param1->unk_20);
     Window_Remove(&param1->unk_20);
 
     if (param1->unk_97) {
-        Window_Clear(&sCommClubMan->unk_30, 0);
+        Window_EraseStandardFrame(&sCommClubMan->unk_30, 0);
         Window_ClearAndCopyToVRAM(&sCommClubMan->unk_30);
         Window_Remove(&sCommClubMan->unk_30);
         param1->unk_97 = 0;

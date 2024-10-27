@@ -574,8 +574,8 @@ static void ov109_021D4300(UnkStruct_ov109_021D5140 *param0, NARC *param1)
     Graphics_LoadTilemapToBgLayer(12, 11, v0, 6, 0, 0, 1, 95);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 1, 0, 32 * 8 * 0x20, 1, 95);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 3, v0, 1, 0, 32 * 24 * 2, 1, 95);
-    sub_0200DD0C(v0, 0, 1, 10, Options_Frame(param0->unk_0C->unk_14.unk_10), 95);
-    sub_0200DAA4(v0, 0, 1 + (18 + 12), 11, 0, 95);
+    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_0C->unk_14.unk_10), 95);
+    LoadStandardWindowGraphics(v0, 0, 1 + (18 + 12), 11, 0, 95);
 }
 
 static void ov109_021D43EC(void)
@@ -1573,7 +1573,7 @@ static void ov109_021D55A8(UnkStruct_ov109_021D5140 *param0, int param1, int par
     StringTemplate_Format(param0->unk_34, param0->unk_54, v0);
     Strbuf_Free(v0);
     Window_FillTilemap(&param0->unk_35C, 0xf0f);
-    sub_0200E060(&param0->unk_35C, 0, 1, 10);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_35C, 0, 1, 10);
 
     if (param2 == 0) {
         param0->unk_5C = Text_AddPrinterWithParams(&param0->unk_35C, FONT_MESSAGE, param0->unk_54, 0, 0, ov109_021D5854(param0), NULL);
@@ -1598,7 +1598,7 @@ static int ov109_021D5638(int param0)
 
 static void ov109_021D5658(UnkStruct_ov109_021D5140 *param0)
 {
-    sub_0200E084(&param0->unk_35C, 0);
+    Window_EraseMessageBox(&param0->unk_35C, 0);
 }
 
 static void ov109_021D5668(UnkStruct_ov109_021D5140 *param0)

@@ -44,17 +44,17 @@ void ov106_02243710(Window *param0)
 
 void ov106_0224372C(BgConfig *param0, Window *param1)
 {
-    sub_0200DAA4(param0, 0, (1024 - 9), 11, 0, 98);
-    Window_Show(param1, 1, (1024 - 9), 11);
+    LoadStandardWindowGraphics(param0, 0, (1024 - 9), 11, 0, 98);
+    Window_DrawStandardFrame(param1, 1, (1024 - 9), 11);
 
     return;
 }
 
 void ov106_02243758(Window *param0, int param1)
 {
-    sub_0200DD0C(param0->bgConfig, Window_GetBgLayer(param0), ((1024 - 9) - (18 + 12)), 10, param1, 98);
+    LoadMessageBoxGraphics(param0->bgConfig, Window_GetBgLayer(param0), ((1024 - 9) - (18 + 12)), 10, param1, 98);
     Window_FillTilemap(param0, 15);
-    sub_0200E060(param0, 0, ((1024 - 9) - (18 + 12)), 10);
+    Window_DrawMessageBoxWithScrollCursor(param0, 0, ((1024 - 9) - (18 + 12)), 10);
 
     return;
 }

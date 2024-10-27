@@ -138,7 +138,7 @@ void sub_02039834(int param0, int param1, int param2)
     SetAllGraphicsModes(&Unk_020E5ED0);
     Bg_InitFromTemplate(v0, 0, &Unk_020E5EE0, 0);
     Bg_ClearTilemap(v0, 0);
-    sub_0200DAA4(v0, 0, (512 - 9), 2, 0, param0);
+    LoadStandardWindowGraphics(v0, 0, (512 - 9), 2, 0, param0);
     Font_LoadTextPalette(0, 1 * (2 * 16), param0);
     Bg_ClearTilesRange(0, 32, 0, param0);
     Bg_MaskPalette(0, 0x6c21);
@@ -152,7 +152,7 @@ void sub_02039834(int param0, int param1, int param2)
 
     Window_AddFromTemplate(v0, &v1, &Unk_020E5EC8);
     Window_FillRectWithColor(&v1, 15, 0, 0, 26 * 8, 18 * 8);
-    Window_Show(&v1, 0, (512 - 9), 2);
+    Window_DrawStandardFrame(&v1, 0, (512 - 9), 2);
 
     StringTemplate_SetNumber(v5, 0, param2, 5, 2, 1);
     MessageLoader_GetStrbuf(v2, v6, v4);

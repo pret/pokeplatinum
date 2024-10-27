@@ -276,8 +276,8 @@ static void ov94_02244B8C(UnkStruct_ov94_0223FD4C *param0)
     Graphics_LoadPaletteFromOpenNARC(v1, 3, 4, 0, 0, 62);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 62);
     Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, 62);
-    sub_0200DD0C(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), 62);
-    sub_0200DAA4(v0, 0, (1 + (18 + 12)), 11, 0, 62);
+    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), 62);
+    LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, 62);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 2, v0, 1, 0, 0, 0, 62);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 5, v0, 1, 0, 32 * 24 * 2, 0, 62);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 10, v0, 5, 0, 0, 0, 62);
@@ -746,7 +746,7 @@ static int ov94_02245540(UnkStruct_ov94_0223FD4C *param0)
 static int ov94_02245564(UnkStruct_ov94_0223FD4C *param0)
 {
     if (gCoreSys.pressedKeys & PAD_BUTTON_A || gCoreSys.pressedKeys & PAD_BUTTON_B) {
-        Window_Clear(&param0->unk_F8C, 0);
+        Window_EraseStandardFrame(&param0->unk_F8C, 0);
         param0->unk_2C = 0;
     }
 
@@ -904,7 +904,7 @@ void ov94_02245824(UnkStruct_ov94_0223FD4C *param0, MessageLoader *param1, int p
     StringTemplate_Format(param0->unk_B8C, param0->unk_BAC, v0);
     Strbuf_Free(v0);
     Window_FillTilemap(&param0->unk_F5C, 0xf0f);
-    sub_0200E060(&param0->unk_F5C, 0, 1, 10);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_F5C, 0, 1, 10);
 
     param0->unk_BE0 = Text_AddPrinterWithParams(&param0->unk_F5C, FONT_MESSAGE, param0->unk_BAC, 0, 0, param3, NULL);
     param0->unk_10E0 = 0;
@@ -954,7 +954,7 @@ static void ov94_0224593C(UnkStruct_ov94_0223FD4C *param0, int param1)
     StringTemplate_Format(param0->unk_B8C, param0->unk_BDC, v0);
 
     Window_FillTilemap(&param0->unk_F8C, 15);
-    Window_Show(&param0->unk_F8C, 1, (1 + (18 + 12)), 11);
+    Window_DrawStandardFrame(&param0->unk_F8C, 1, (1 + (18 + 12)), 11);
 
     param0->unk_BE0 = Text_AddPrinterWithParams(&param0->unk_F8C, FONT_MESSAGE, param0->unk_BDC, 0, 0, TEXT_SPEED_INSTANT, NULL);
 
@@ -972,7 +972,7 @@ static void ov94_022459B4(UnkStruct_ov94_0223FD4C *param0, int param1, int param
     }
 
     StringTemplate_SetNumber(param0->unk_B8C, 0, param2, 5, 2, 1);
-    sub_0200E084(&param0->unk_F5C, 1);
+    Window_EraseMessageBox(&param0->unk_F5C, 1);
 
     ov94_0224593C(param0, v0);
 }

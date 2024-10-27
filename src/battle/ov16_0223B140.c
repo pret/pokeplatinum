@@ -445,10 +445,10 @@ void ov16_0223B578(BattleSystem *param0)
 
         v1 = ov16_0223EDE0(param0);
 
-        sub_0200E218(param0->unk_04, 1, 1, 10, v1, 5);
+        ReplaceTransparentTiles(param0->unk_04, 1, 1, 10, v1, 5);
         Graphics_LoadTilesToBgLayer(7, 3 + param0->unk_2400, param0->unk_04, 3, 0, 0, 1, 5);
         PaletteData_LoadBufferFromFileStart(param0->unk_28, 7, 172 + (param0->unk_2400 * 3) + ov16_0223EC04(param0), 5, 0, 0, 0);
-        PaletteData_LoadBufferFromFileStart(param0->unk_28, 38, sub_0200DD08(v1), 5, 0, 0x20, 10 * 0x10);
+        PaletteData_LoadBufferFromFileStart(param0->unk_28, 38, GetMessageBoxPaletteNARCMember(v1), 5, 0, 0x20, 10 * 0x10);
         PaletteData_LoadBufferFromFileStart(param0->unk_28, 14, 7, 5, 0, 0x20, 0xb * 0x10);
         Graphics_LoadTilemapToBgLayer(7, 2, param0->unk_04, 3, 0, 0, 1, 5);
     }
@@ -470,7 +470,7 @@ void ov16_0223B578(BattleSystem *param0)
 
     Window_Add(param0->unk_04, param0->windows, 1, 0x2, 0x13, 27, 4, 0xb, (18 + 12) + 1);
     Window_FillTilemap(param0->windows, 0xff);
-    sub_0200E060(&param0->windows[0], 0, 1, 10);
+    Window_DrawMessageBoxWithScrollCursor(&param0->windows[0], 0, 1, 10);
 
     ov16_0223DD4C(param0);
 }
@@ -571,7 +571,7 @@ static void ov16_0223B790(OverlayManager *param0)
 
     Window_Add(v0->unk_04, &v0->windows[0], 1, 2, 0x13, 27, 4, 11, ((18 + 12) + 1));
     Window_FillTilemap(&v0->windows[0], 0xff);
-    sub_0200E060(&v0->windows[0], 0, 1, 10);
+    Window_DrawMessageBoxWithScrollCursor(&v0->windows[0], 0, 1, 10);
 
     v0->unk_90 = sub_0200C6E4(5);
 
@@ -930,10 +930,10 @@ static void ov16_0223C004(BattleSystem *param0, BgConfig *param1)
 
         v3 = ov16_0223EDE0(param0);
 
-        sub_0200E218(param1, 1, 1, 10, v3, 5);
+        ReplaceTransparentTiles(param1, 1, 1, 10, v3, 5);
         Graphics_LoadTilesToBgLayer(7, 3 + param0->unk_2400, param1, 3, 0, 0, 1, 5);
         PaletteData_LoadBufferFromFileStart(param0->unk_28, 7, 172 + (param0->unk_2400 * 3) + ov16_0223EC04(param0), 5, 0, 0, 0);
-        PaletteData_LoadBufferFromFileStart(param0->unk_28, 38, sub_0200DD08(v3), 5, 0, 0x20, 10 * 0x10);
+        PaletteData_LoadBufferFromFileStart(param0->unk_28, 38, GetMessageBoxPaletteNARCMember(v3), 5, 0, 0x20, 10 * 0x10);
         PaletteData_LoadBufferFromFileStart(param0->unk_28, 14, 7, 5, 0, 0x20, 0xb * 0x10);
         Graphics_LoadTilemapToBgLayer(7, 2, param1, 3, 0, 0, 1, 5);
     }
@@ -1722,9 +1722,9 @@ static void ov16_0223D10C(OverlayManager *param0, BattleParams *param1)
 
         v4 = Options_Frame(param1->unk_108);
 
-        sub_0200E218(v0->unk_04, 1, 1, 10, v4, 5);
+        ReplaceTransparentTiles(v0->unk_04, 1, 1, 10, v4, 5);
         PaletteData_LoadBufferFromFileStart(v0->unk_0C, 14, 7, 5, 0, 0x20, 0xb * 0x10);
-        PaletteData_LoadBufferFromFileStart(v0->unk_0C, 38, sub_0200DD08(v4), 5, 0, 0x20, 10 * 0x10);
+        PaletteData_LoadBufferFromFileStart(v0->unk_0C, 38, GetMessageBoxPaletteNARCMember(v4), 5, 0, 0x20, 10 * 0x10);
         PaletteData_FillBufferRange(v0->unk_0C, 0, 0, 0x0, 0, 256);
     }
 
@@ -1732,7 +1732,7 @@ static void ov16_0223D10C(OverlayManager *param0, BattleParams *param1)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     Window_Add(v0->unk_04, v0->unk_08, 1, 2, 0x13, 27, 4, 11, ((18 + 12) + 1));
     Window_FillTilemap(v0->unk_08, 0xff);
-    sub_0200E060(v0->unk_08, 0, 1, 10);
+    Window_DrawMessageBoxWithScrollCursor(v0->unk_08, 0, 1, 10);
 
     {
         MessageLoader *v5;
@@ -1751,7 +1751,7 @@ static void ov16_0223D10C(OverlayManager *param0, BattleParams *param1)
     SetMainCallback(ov16_0223CF1C, v0);
     PaletteData_StartFade(v0->unk_0C, (0x1 | 0x4), 0xffff, 0, 16, 0, 0x0);
 
-    v0->unk_1024 = sub_0200E7FC(v0->unk_08, 1);
+    v0->unk_1024 = Window_AddWaitDial(v0->unk_08, 1);
 
     ov16_0223DECC();
 }
@@ -1974,7 +1974,7 @@ static BOOL ov16_0223D354(OverlayManager *param0)
     case 33:
         if (PaletteData_GetSelectedBuffersMask(v0->unk_0C) == 0) {
             v1 = 1;
-            DeleteWaitDial(v0->unk_1024);
+            DestroyWaitDial(v0->unk_1024);
             sub_02036378(0);
         }
         break;

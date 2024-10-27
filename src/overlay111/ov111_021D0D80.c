@@ -529,7 +529,7 @@ static BOOL ov111_021D10B8(UnkStruct_ov111_021D0F7C *param0)
             param0->unk_0E++;
 
             TouchScreen_GetHoldState(&v0, &v1);
-            sub_0200E084(&param0->unk_5C[15], 0);
+            Window_EraseMessageBox(&param0->unk_5C[15], 0);
             GXLayers_EngineBToggleLayers((GX_PLANEMASK_BG0), 0);
             param0->unk_08 = 2;
         }
@@ -889,14 +889,14 @@ static BOOL ov111_021D1508(UnkStruct_ov111_021D0F7C *param0)
 
         if (v2 == 1) {
             ov111_021D350C(param0->unk_3A0, 0);
-            Window_Clear(&param0->unk_5C[0], 0);
+            Window_EraseStandardFrame(&param0->unk_5C[0], 0);
             Window_ClearAndCopyToVRAM(&param0->unk_5C[0]);
             ov111_021D2E20(param0);
             ov111_021D1FB4(param0);
             return 1;
         } else if (v2 == 2) {
             ov111_021D350C(param0->unk_3A0, 0);
-            Window_Clear(&param0->unk_5C[0], 0);
+            Window_EraseStandardFrame(&param0->unk_5C[0], 0);
             Window_ClearAndCopyToVRAM(&param0->unk_5C[0]);
             ov111_021D1FB4(param0);
             param0->unk_08 = 11;
@@ -907,14 +907,14 @@ static BOOL ov111_021D1508(UnkStruct_ov111_021D0F7C *param0)
 
         if (v2 == 1) {
             ov111_021D350C(param0->unk_3A0, 0);
-            Window_Clear(&param0->unk_5C[0], 0);
+            Window_EraseStandardFrame(&param0->unk_5C[0], 0);
             Window_ClearAndCopyToVRAM(&param0->unk_5C[0]);
             ov111_021D2E18(param0);
             ov111_021D1FB4(param0);
             return 1;
         } else if (v2 == 2) {
             ov111_021D350C(param0->unk_3A0, 0);
-            Window_Clear(&param0->unk_5C[0], 0);
+            Window_EraseStandardFrame(&param0->unk_5C[0], 0);
             Window_ClearAndCopyToVRAM(&param0->unk_5C[0]);
             ov111_021D1FB4(param0);
             param0->unk_08 = 11;
@@ -997,7 +997,7 @@ static BOOL ov111_021D1A88(UnkStruct_ov111_021D0F7C *param0)
         param0->unk_0D--;
 
         if (param0->unk_0D == 0) {
-            sub_0200E084(&param0->unk_5C[0], 0);
+            Window_EraseMessageBox(&param0->unk_5C[0], 0);
             sub_0200F174(0, 0, 0, 0x0, 6, 1, 115);
             param0->unk_08++;
         }

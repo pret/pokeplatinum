@@ -1031,7 +1031,7 @@ static Menu *ov23_0224BD90(BgConfig *param0, const WindowTemplate *param1, u16 p
     v0.lineSpacing = 0;
 
     Window_AddFromTemplate(param0, v0.window, param1);
-    Window_Show(v0.window, 1, param2, param3);
+    Window_DrawStandardFrame(v0.window, 1, param2, param3);
 
     return Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, param4, PAD_BUTTON_B);
 }
@@ -1639,7 +1639,7 @@ static BOOL ov23_0224C790(TaskManager *param0)
         sub_020594FC();
 
         Graphics_LoadPalette(50, 52, 0, 10 * 0x20, 4 * 0x20, 4);
-        sub_0200DAA4(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 2, 4);
+        LoadStandardWindowGraphics(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 2, 4);
 
         if (v1->unk_2D) {
             sub_020594EC();

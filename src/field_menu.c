@@ -493,7 +493,7 @@ static BOOL sub_0203AC44(TaskManager *taskMan)
     case FIELD_MENU_STATE_END:
         sub_0203B2EC(menu, fieldSystem);
         FieldMenu_Close(menu);
-        Window_Clear(&menu->unk_00, 1);
+        Window_EraseStandardFrame(&menu->unk_00, 1);
         Window_Remove(&menu->unk_00);
         sub_0203B200(taskMan);
         Bg_ScheduleTilemapTransfer(fieldSystem->unk_08, 3);
@@ -528,8 +528,8 @@ static void sub_0203ADFC(TaskManager *taskMan)
     v5 = FieldMenu_MakeList(menu, menu->unk_30);
 
     Window_Add(fieldSystem->unk_08, &menu->unk_00, 3, 20, 1, 11, v5 * 3, 12, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (11 * 22)));
-    sub_0200DAA4(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 1, 11);
-    Window_Show(&menu->unk_00, 1, 1024 - (18 + 12) - 9, 11);
+    LoadStandardWindowGraphics(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 1, 11);
+    Window_DrawStandardFrame(&menu->unk_00, 1, 1024 - (18 + 12) - 9, 11);
 
     v2 = MessageLoader_Init(0, 26, 367, 11);
 
@@ -669,8 +669,8 @@ static void sub_0203B094(TaskManager *taskMan)
     }
 
     Window_Add(fieldSystem->unk_08, &menu->unk_10, 3, 1, 1, 12, 4, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)));
-    sub_0200DAA4(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 1, 11);
-    Window_Show(&menu->unk_10, 1, 1024 - (18 + 12) - 9, 11);
+    LoadStandardWindowGraphics(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 1, 11);
+    Window_DrawStandardFrame(&menu->unk_10, 1, 1024 - (18 + 12) - 9, 11);
     Window_FillTilemap(&menu->unk_10, 15);
 
     v2 = MessageLoader_Init(0, 26, 367, 11);
@@ -720,7 +720,7 @@ static void sub_0203B200(TaskManager *taskMan)
         return;
     }
 
-    Window_Clear(&menu->unk_10, 1);
+    Window_EraseStandardFrame(&menu->unk_10, 1);
     Window_Remove(&menu->unk_10);
 }
 
@@ -1427,7 +1427,7 @@ static BOOL FieldMenu_SelectSave(TaskManager *taskMan)
     FieldMenu *menu = TaskManager_Environment(taskMan);
 
     FieldMenu_Close(menu);
-    Window_Clear(&menu->unk_00, 1);
+    Window_EraseStandardFrame(&menu->unk_00, 1);
     Bg_ScheduleTilemapTransfer(menu->unk_00.bgConfig, menu->unk_00.bgLayer);
     Window_Remove(&menu->unk_00);
     sub_0203B200(taskMan);
@@ -1591,7 +1591,7 @@ static BOOL FieldMenu_SelectRetire(TaskManager *taskMan)
     menu = TaskManager_Environment(taskMan);
 
     FieldMenu_Close(menu);
-    Window_Clear(&menu->unk_00, 1);
+    Window_EraseStandardFrame(&menu->unk_00, 1);
     Bg_ScheduleTilemapTransfer(menu->unk_00.bgConfig, menu->unk_00.bgLayer);
     Window_Remove(&menu->unk_00);
     sub_0203B200(taskMan);

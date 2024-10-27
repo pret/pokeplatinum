@@ -2622,7 +2622,7 @@ static void ov107_0224883C (UnkStruct_ov107_02246170 * param0)
 
 static void ov107_02248860 (Window * param0)
 {
-    sub_0200E084(param0, 1);
+    Window_EraseMessageBox(param0, 1);
     Window_ClearAndScheduleCopyToVRAM(param0);
 
     return;
@@ -2885,7 +2885,7 @@ static void ov107_02248BB4 (UnkStruct_ov107_02246170 * param0)
     if (param0->unk_0F_2 == 1) {
         param0->unk_0F_2 = 0;
         Menu_Free(param0->unk_11C, NULL);
-        Window_Clear(param0->unk_110.window, 1);
+        Window_EraseStandardFrame(param0->unk_110.window, 1);
         Window_ClearAndScheduleCopyToVRAM(param0->unk_110.window);
     }
 
@@ -3368,7 +3368,7 @@ static void ov107_02249258 (UnkStruct_ov107_02246170 * param0)
 
         v0 = (Window *)ListMenu_GetAttribute(param0->unk_138, 18);
 
-        Window_Clear(v0, 1);
+        Window_EraseStandardFrame(v0, 1);
         Window_FillTilemap(v0, 0);
         Window_ClearAndScheduleCopyToVRAM(v0);
         StringList_Free(param0->unk_13C);

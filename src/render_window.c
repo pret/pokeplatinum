@@ -100,7 +100,7 @@ static const SpriteTemplate sPokemonPreviewSpriteTemplate = {
     .transferToVRAM = FALSE,
 };
 
-void Window_SetFrame(BgConfig *param0, u8 sprite, u16 param2, u8 param3, u32 param4)
+void LoadStandardWindowTiles(BgConfig *param0, u8 sprite, u16 param2, u8 param3, u32 param4)
 {
     if (param3 == 0) {
         Graphics_LoadTilesToBgLayer(38, 0, param0, sprite, param2, 0, 0, param4);
@@ -109,12 +109,12 @@ void Window_SetFrame(BgConfig *param0, u8 sprite, u16 param2, u8 param3, u32 par
     }
 }
 
-u32 Window_FramePalette(void)
+u32 GetStandardWindowPaletteNARCMember(void)
 {
     return 24;
 }
 
-void sub_0200DAA4(BgConfig *param0, u8 sprite, u16 param2, u8 param3, u8 param4, u32 param5)
+void LoadStandardWindowGraphics(BgConfig *param0, u8 sprite, u16 param2, u8 param3, u8 param4, u32 param5)
 {
     u32 v0;
 
@@ -153,7 +153,7 @@ static void DrawStandardWindowFrame(BgConfig *bgConfig, u8 bgLayer, u8 x, u8 y, 
     // clang-format on
 }
 
-void Window_Show(Window *param0, u8 sprite, u16 param2, u8 param3)
+void Window_DrawStandardFrame(Window *param0, u8 sprite, u16 param2, u8 param3)
 {
     u8 v0 = Window_GetBgLayer(param0);
 
@@ -164,7 +164,7 @@ void Window_Show(Window *param0, u8 sprite, u16 param2, u8 param3)
     }
 }
 
-void Window_Clear(Window *param0, u8 sprite)
+void Window_EraseStandardFrame(Window *param0, u8 sprite)
 {
     u8 v0 = Window_GetBgLayer(param0);
 
@@ -175,24 +175,24 @@ void Window_Clear(Window *param0, u8 sprite)
     }
 }
 
-u32 sub_0200DD04(u32 param0)
+u32 GetMessageBoxTilesNARCMember(u32 param0)
 {
     return 2 + param0;
 }
 
-u32 sub_0200DD08(u32 param0)
+u32 GetMessageBoxPaletteNARCMember(u32 param0)
 {
     return 25 + param0;
 }
 
-void sub_0200DD0C(BgConfig *param0, u8 sprite, u16 param2, u8 param3, u8 param4, u32 param5)
+void LoadMessageBoxGraphics(BgConfig *param0, u8 sprite, u16 param2, u8 param3, u8 param4, u32 param5)
 {
-    Graphics_LoadTilesToBgLayer(38, sub_0200DD04(param4), param0, sprite, param2, 0, 0, param5);
+    Graphics_LoadTilesToBgLayer(38, GetMessageBoxTilesNARCMember(param4), param0, sprite, param2, 0, 0, param5);
 
     if (sprite < 4) {
-        Graphics_LoadPalette(38, sub_0200DD08(param4), 0, param3 * 0x20, 0x20, param5);
+        Graphics_LoadPalette(38, GetMessageBoxPaletteNARCMember(param4), 0, param3 * 0x20, 0x20, param5);
     } else {
-        Graphics_LoadPalette(38, sub_0200DD08(param4), 4, param3 * 0x20, 0x20, param5);
+        Graphics_LoadPalette(38, GetMessageBoxPaletteNARCMember(param4), 4, param3 * 0x20, 0x20, param5);
     }
 }
 
@@ -219,14 +219,14 @@ static void DrawMessageBoxFrame(BgConfig *bgConfig, u8 bgLayer, u8 x, u8 y, u8 w
     // clang-format on
 }
 
-void sub_0200E010(Window *param0, u32 sprite, u32 param2)
+void Window_DrawMessageBox(Window *param0, u32 sprite, u32 param2)
 {
     DrawMessageBoxFrame(param0->bgConfig, Window_GetBgLayer(param0), Window_GetXPos(param0), Window_GetYPos(param0), Window_GetWidth(param0), Window_GetHeight(param0), param2, sprite);
 }
 
-void sub_0200E060(Window *param0, u8 sprite, u16 param2, u8 param3)
+void Window_DrawMessageBoxWithScrollCursor(Window *param0, u8 sprite, u16 param2, u8 param3)
 {
-    sub_0200E010(param0, param2, param3);
+    Window_DrawMessageBox(param0, param2, param3);
 
     if (sprite == 0) {
         Window_CopyToVRAM(param0);
@@ -235,7 +235,7 @@ void sub_0200E060(Window *param0, u8 sprite, u16 param2, u8 param3)
     DrawMessageBoxScrollCursor(param0, param2);
 }
 
-void sub_0200E084(Window *param0, u8 sprite)
+void Window_EraseMessageBox(Window *param0, u8 sprite)
 {
     u8 v0 = Window_GetBgLayer(param0);
 
@@ -311,7 +311,7 @@ static void DrawMessageBoxScrollCursor(Window *window, u16 baseTile)
     Heap_FreeToHeap(cursorBlit);
 }
 
-void sub_0200E218(BgConfig *param0, u8 sprite, u16 param2, u8 param3, u8 param4, u32 param5)
+void ReplaceTransparentTiles(BgConfig *param0, u8 sprite, u16 param2, u8 param3, u8 param4, u32 param5)
 {
     void *v0;
     NNSG2dCharacterData *v1;
@@ -319,7 +319,7 @@ void sub_0200E218(BgConfig *param0, u8 sprite, u16 param2, u8 param3, u8 param4,
     u32 v3;
     u8 v4, v5;
 
-    v0 = Graphics_GetCharData(38, sub_0200DD04(param4), 0, &v1, param5);
+    v0 = Graphics_GetCharData(38, GetMessageBoxTilesNARCMember(param4), 0, &v1, param5);
     v2 = Heap_AllocFromHeap(param5, 0x20 * 18);
 
     memcpy(v2, v1->pRawData, 0x20 * 18);
@@ -344,7 +344,7 @@ void sub_0200E218(BgConfig *param0, u8 sprite, u16 param2, u8 param3, u8 param4,
     Heap_FreeToHeap(v2);
 }
 
-void sub_0200E2A4(BgConfig *param0, u8 sprite, u16 param2, u8 param3, u8 param4, u16 param5, u32 param6)
+void LoadSignpostContentGraphics(BgConfig *param0, u8 sprite, u16 param2, u8 param3, u8 param4, u16 param5, u32 param6)
 {
     Graphics_LoadTilesToBgLayer(
         36, 0, param0, sprite, param2, (18 + 12) * 0x20, 0, param6);
@@ -420,7 +420,7 @@ static void DrawSignpostTiles(Window *window, u16 tile, u8 palette)
     }
 }
 
-void sub_0200E69C(Window *param0, u8 sprite, u16 param2, u8 param3, u8 param4)
+void Window_DrawSignpost(Window *param0, u8 sprite, u16 param2, u8 param3, u8 param4)
 {
     u8 v0 = Window_GetBgLayer(param0);
 
@@ -438,7 +438,7 @@ void sub_0200E69C(Window *param0, u8 sprite, u16 param2, u8 param3, u8 param4)
     DrawMessageBoxScrollCursor(param0, param2);
 }
 
-void sub_0200E744(Window *param0, u8 sprite, u8 param2)
+void Window_EraseSignpost(Window *param0, u8 sprite, u8 param2)
 {
     u8 v0 = Window_GetBgLayer(param0);
 
@@ -453,7 +453,7 @@ void sub_0200E744(Window *param0, u8 sprite, u8 param2)
     }
 }
 
-void *sub_0200E7FC(Window *param0, u32 sprite)
+void *Window_AddWaitDial(Window *param0, u32 sprite)
 {
     WaitDial *v0;
     u32 v1;
@@ -565,7 +565,7 @@ static void SysTask_CleanupWaitDial(SysTask *task, void *data)
     SysTask_Done(task);
 }
 
-void DeleteWaitDial(void *param0)
+void DestroyWaitDial(void *param0)
 {
     WaitDial *v0 = param0;
 
@@ -573,7 +573,7 @@ void DeleteWaitDial(void *param0)
     v0->deleteMode = 1;
 }
 
-void sub_0200EBC8(void *param0)
+void DestroyWaitDialAndTask(void *param0)
 {
     WaitDial *v0 = param0;
 
@@ -581,7 +581,7 @@ void sub_0200EBC8(void *param0)
     v0->deleteMode = 2;
 }
 
-u8 *sub_0200EBF0(BgConfig *param0, u8 sprite, u8 param2, u8 param3, u8 param4, u16 param5, u16 param6, u8 param7, int param8)
+u8 *DrawPokemonPreview(BgConfig *param0, u8 sprite, u8 param2, u8 param3, u8 param4, u16 param5, u16 param6, u8 param7, int param8)
 {
     PokemonPreview *v0 = CreatePokemonPreviewTask(param0, sprite, param2, param3, param8);
 
@@ -595,7 +595,7 @@ u8 *sub_0200EBF0(BgConfig *param0, u8 sprite, u8 param2, u8 param3, u8 param4, u
     return &v0->state;
 }
 
-u8 *sub_0200EC48(BgConfig *param0, u8 sprite, u8 param2, u8 param3, u8 param4, u16 param5, Pokemon *param6, int param7)
+u8 *DrawPokemonPreviewFromStruct(BgConfig *param0, u8 sprite, u8 param2, u8 param3, u8 param4, u16 param5, Pokemon *param6, int param7)
 {
     PokemonPreview *v0 = CreatePokemonPreviewTask(param0, sprite, param2, param3, param7);
 

@@ -1356,7 +1356,7 @@ void ov16_0225E23C(BattleSystem *param0, BattlerData *param1)
         v1.tags = 0;
 
         BattleMessage_Print(param0, v0, &v1, NULL);
-        Battle_SetWaitDial(param0, sub_0200E7FC(BattleSystem_Window(param0, 0), 1));
+        Battle_SetWaitDial(param0, Window_AddWaitDial(BattleSystem_Window(param0, 0), 1));
     }
 
     ClearCommand(param0, param1->battler, 55);
@@ -5017,7 +5017,7 @@ static void WaitForBattleMessagePrint(SysTask *task, void *data)
     BattleMessageWaitTask *waitTask = data;
 
     if (Battle_WaitDial(waitTask->battleSys)) {
-        DeleteWaitDial(Battle_WaitDial(waitTask->battleSys));
+        DestroyWaitDial(Battle_WaitDial(waitTask->battleSys));
         Battle_SetWaitDial(waitTask->battleSys, NULL);
     }
 

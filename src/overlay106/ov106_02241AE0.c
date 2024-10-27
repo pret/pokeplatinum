@@ -717,7 +717,7 @@ static BOOL ov106_022423AC(UnkStruct_ov106_02243118 *param0)
     case 0:
         ov106_02243200(param0);
         ov106_02243664(param0->unk_284, 1);
-        sub_0200E084(&param0->unk_4C[0], 0);
+        Window_EraseMessageBox(&param0->unk_4C[0], 0);
 
         param0->unk_08++;
         break;
@@ -1617,7 +1617,7 @@ static void ov106_02243200(UnkStruct_ov106_02243118 *param0)
     if (param0->unk_0F == 1) {
         param0->unk_0F = 0;
         Menu_Free(param0->unk_98, NULL);
-        Window_Clear(param0->unk_8C.window, 0);
+        Window_EraseStandardFrame(param0->unk_8C.window, 0);
     }
 
     return;
@@ -1669,7 +1669,7 @@ static void ov106_022432AC(UnkStruct_ov106_02243118 *param0)
 static void ov106_022432D4(UnkStruct_ov106_02243118 *param0)
 {
     ov106_02243664(param0->unk_284, 1);
-    sub_0200E084(&param0->unk_4C[0], 0);
+    Window_EraseMessageBox(&param0->unk_4C[0], 0);
 
     ov106_02242AC4(param0, &param0->unk_4C[2], 0, 0, 1, 2, 0, FONT_SYSTEM);
     return;

@@ -276,8 +276,8 @@ static void ov94_0223E6B8(UnkStruct_ov94_0223FD4C *param0)
     Graphics_LoadPaletteFromOpenNARC(v1, 3, 0, 0, 16 * 3 * 2, 62);
     Graphics_LoadPaletteFromOpenNARC(v1, 5, 4, 0, 16 * 8 * 2, 62);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 62);
-    sub_0200DD0C(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), 62);
-    sub_0200DAA4(v0, 0, (1 + (18 + 12)), 11, 0, 62);
+    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), 62);
+    LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, 62);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 13, v0, 1, 0, 16 * 5 * 0x20, 1, 62);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 26, v0, 1, 0, 32 * 24 * 2, 1, 62);
     NARC_dtor(v1);
@@ -783,8 +783,8 @@ static int ov94_0223F190(UnkStruct_ov94_0223FD4C *param0)
     case 0xfffffffe:
         ListMenu_Free(param0->unk_10D8, &param0->unk_10E4->unk_06, &param0->unk_10E4->unk_04);
         StringList_Free(param0->unk_10CC);
-        Window_Clear(&param0->unk_F9C[0], 0);
-        sub_0200E084(&param0->unk_F5C, 0);
+        Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
+        Window_EraseMessageBox(&param0->unk_F5C, 0);
         Window_Remove(&param0->unk_F9C[0]);
         Window_Remove(&param0->unk_F9C[1]);
         Sound_PlayEffect(1500);
@@ -814,7 +814,7 @@ static int ov94_0223F2B0(UnkStruct_ov94_0223FD4C *param0)
     case 0xfffffffe:
         ListMenu_Free(param0->unk_10D8, &param0->unk_10E4->unk_0A, &param0->unk_10E4->unk_08);
         StringList_Free(param0->unk_10CC);
-        Window_Clear(&param0->unk_F9C[1], 0);
+        Window_EraseStandardFrame(&param0->unk_F9C[1], 0);
         Sound_PlayEffect(1500);
         param0->unk_2C = 4;
         ov94_02242AC4(&param0->unk_111C, param0->unk_10E4->unk_06 + param0->unk_10E4->unk_04, param0->unk_10E4->unk_0A, param0->unk_10E4->unk_08);
@@ -822,8 +822,8 @@ static int ov94_0223F2B0(UnkStruct_ov94_0223FD4C *param0)
     default:
         ListMenu_Free(param0->unk_10D8, &param0->unk_10E4->unk_0A, &param0->unk_10E4->unk_08);
         StringList_Free(param0->unk_10CC);
-        Window_Clear(&param0->unk_F9C[0], 0);
-        Window_Clear(&param0->unk_F9C[1], 0);
+        Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
+        Window_EraseStandardFrame(&param0->unk_F9C[1], 0);
         Window_Remove(&param0->unk_F9C[0]);
         Window_Remove(&param0->unk_F9C[1]);
 
@@ -875,8 +875,8 @@ static int ov94_0223F4B0(UnkStruct_ov94_0223FD4C *param0)
     case 0xfffffffe:
         ListMenu_Free(param0->unk_10D8, NULL, NULL);
         StringList_Free(param0->unk_10CC);
-        Window_Clear(&param0->unk_F9C[0], 0);
-        sub_0200E084(&param0->unk_F5C, 0);
+        Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
+        Window_EraseMessageBox(&param0->unk_F5C, 0);
         Window_Remove(&param0->unk_F9C[0]);
         Sound_PlayEffect(1500);
         param0->unk_2C = 0;
@@ -886,7 +886,7 @@ static int ov94_0223F4B0(UnkStruct_ov94_0223FD4C *param0)
     case 2:
         ListMenu_Free(param0->unk_10D8, NULL, NULL);
         StringList_Free(param0->unk_10CC);
-        Window_Clear(&param0->unk_F9C[0], 0);
+        Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
         Window_Remove(&param0->unk_F9C[0]);
         Sound_PlayEffect(1500);
 
@@ -932,8 +932,8 @@ static int ov94_0223F638(UnkStruct_ov94_0223FD4C *param0)
     case 11:
         ListMenu_Free(param0->unk_10D8, NULL, NULL);
         StringList_Free(param0->unk_10CC);
-        Window_Clear(&param0->unk_F9C[0], 0);
-        sub_0200E084(&param0->unk_F5C, 0);
+        Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
+        Window_EraseMessageBox(&param0->unk_F5C, 0);
         Window_Remove(&param0->unk_F9C[0]);
         Sound_PlayEffect(1500);
         param0->unk_2C = 0;
@@ -941,7 +941,7 @@ static int ov94_0223F638(UnkStruct_ov94_0223FD4C *param0)
     default:
         ListMenu_Free(param0->unk_10D8, NULL, NULL);
         StringList_Free(param0->unk_10CC);
-        Window_Clear(&param0->unk_F9C[0], 0);
+        Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
         Window_Remove(&param0->unk_F9C[0]);
         Sound_PlayEffect(1500);
         ov94_02242934(&param0->unk_B7A, v0, 1);
@@ -987,15 +987,15 @@ static int ov94_0223F7C0(UnkStruct_ov94_0223FD4C *param0)
     } else if ((v0 == 0xfffffffe) || (v0 == (Unk_ov94_02245FD4 + 1))) {
         ListMenu_Free(param0->unk_10D8, NULL, NULL);
         StringList_Free(param0->unk_10CC);
-        Window_Clear(&param0->unk_F9C[0], 0);
-        sub_0200E084(&param0->unk_F5C, 0);
+        Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
+        Window_EraseMessageBox(&param0->unk_F5C, 0);
         Window_Remove(&param0->unk_F9C[0]);
         Sound_PlayEffect(1500);
         param0->unk_2C = 0;
     } else {
         ListMenu_Free(param0->unk_10D8, NULL, NULL);
         StringList_Free(param0->unk_10CC);
-        Window_Clear(&param0->unk_F9C[0], 0);
+        Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
         Window_Remove(&param0->unk_F9C[0]);
         Sound_PlayEffect(1500);
 
@@ -1077,7 +1077,7 @@ static void ov94_0223F9A4(UnkStruct_ov94_0223FD4C *param0, int param1, int param
 
     MessageLoader_GetStrbuf(param0->unk_B90, param1, param0->unk_BAC);
     Window_FillTilemap(&param0->unk_F5C, 0xf0f);
-    sub_0200E060(&param0->unk_F5C, 0, 1, 10);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_F5C, 0, 1, 10);
 
     param0->unk_BE0 = Text_AddPrinterWithParams(&param0->unk_F5C, FONT_MESSAGE, param0->unk_BAC, 0, 0, param2, NULL);
 }

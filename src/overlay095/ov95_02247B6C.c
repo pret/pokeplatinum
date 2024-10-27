@@ -256,7 +256,7 @@ static int ov95_02247CB4(UnkStruct_ov95_02247C6C *param0, int *param1)
 
     Bg_FillTilesRange(param0->unk_54, 1, 0x0, 1, 0);
     Bg_FillTilemapRect(param0->unk_54, 1, 0x0, 0, 0, 32, 32, 0);
-    sub_0200DD0C(param0->unk_54, 1, 109, 2, ov95_02247674(param0->unk_00), 58);
+    LoadMessageBoxGraphics(param0->unk_54, 1, 109, 2, ov95_02247674(param0->unk_00), 58);
     Window_Add(param0->unk_54, &(param0->unk_58), 1, 2, 19, 27, 4, 1, 1);
     Window_FillTilemap(&(param0->unk_58), 0xf);
 
@@ -332,7 +332,7 @@ static int ov95_02247F04(UnkStruct_ov95_02247C6C *param0, int *param1)
             MessageLoader_GetStrbuf(v0, v2, param0->unk_68);
             StringTemplate_Format(v1, param0->unk_6C, param0->unk_68);
             Text_AddPrinterWithParams(&(param0->unk_58), FONT_MESSAGE, param0->unk_6C, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
-            sub_0200E010(&(param0->unk_58), 109, 2);
+            Window_DrawMessageBox(&(param0->unk_58), 109, 2);
             Window_CopyToVRAM(&(param0->unk_58));
             param0->unk_08 = 0;
             (*param1) = v3;
@@ -367,7 +367,7 @@ static int ov95_02247F04(UnkStruct_ov95_02247C6C *param0, int *param1)
         break;
     case 3:
         if (++(param0->unk_08) > 60) {
-            sub_0200E084(&(param0->unk_58), 0);
+            Window_EraseMessageBox(&(param0->unk_58), 0);
             param0->unk_08 = 0;
             (*param1)++;
         }

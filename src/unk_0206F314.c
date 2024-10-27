@@ -585,9 +585,9 @@ static void sub_0206FB38(UnkStruct_0206F7F8 *param0)
 
     Bg_SetPriority(0, 2);
     Bg_SetPriority(1, 1);
-    sub_0200DD0C(param0->unk_D0, 3, (1024 - (18 + 12)), 10, param0->unk_1C, param0->unk_00);
-    sub_0200DAA4(param0->unk_D0, 3, (1024 - (18 + 12) - 9), 11, 0, param0->unk_00);
-    sub_0200DAA4(param0->unk_D0, 1, (1024 - (18 + 12) - 9), 11, 0, param0->unk_00);
+    LoadMessageBoxGraphics(param0->unk_D0, 3, (1024 - (18 + 12)), 10, param0->unk_1C, param0->unk_00);
+    LoadStandardWindowGraphics(param0->unk_D0, 3, (1024 - (18 + 12) - 9), 11, 0, param0->unk_00);
+    LoadStandardWindowGraphics(param0->unk_D0, 1, (1024 - (18 + 12) - 9), 11, 0, param0->unk_00);
     Font_LoadTextPalette(0, 13 * 32, param0->unk_00);
     Font_LoadScreenIndicatorsPalette(0, 12 * 32, param0->unk_00);
     Window_Add(param0->unk_D0, &param0->unk_E4, 3, 2, 19, 27, 4, 12, ((1024 - (18 + 12) - 9) - 27 * 4));
@@ -596,7 +596,7 @@ static void sub_0206FB38(UnkStruct_0206F7F8 *param0)
 
 static void sub_0206FC4C(UnkStruct_0206F7F8 *param0)
 {
-    sub_0200E084(&param0->unk_E4, 1);
+    Window_EraseMessageBox(&param0->unk_E4, 1);
     Window_ClearAndCopyToVRAM(&param0->unk_E4);
     Window_Remove(&param0->unk_E4);
     Bg_ClearTilesRange(1, 32 * (24 * (12 + 2) + 9 + 1), 0, param0->unk_00);
@@ -702,8 +702,8 @@ static void sub_0206FDC0(UnkStruct_0206F7F8 *param0, u16 param1, u16 param2)
     param0->unk_A0.printCallback = NULL;
     param0->unk_C0 = ListMenu_New(&(param0->unk_A0), param1, param2, param0->unk_00);
 
-    Window_Show(&param0->unk_D4, 0, (1024 - (18 + 12) - 9), 11);
-    sub_0200E060(&param0->unk_E4, 1, (1024 - (18 + 12)), 10);
+    Window_DrawStandardFrame(&param0->unk_D4, 0, (1024 - (18 + 12) - 9), 11);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_E4, 1, (1024 - (18 + 12)), 10);
     Window_FillTilemap(&param0->unk_E4, ((15 << 4) | 15));
     Text_AddPrinterWithParamsAndColor(&param0->unk_E4, FONT_MESSAGE, param0->unk_2C.unk_10, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
     SpriteActor_EnableObject(param0->unk_2FC[0], 1);
@@ -715,7 +715,7 @@ static void sub_0206FF10(UnkStruct_0206F7F8 *param0)
     ListMenu_Free(param0->unk_C0, &(param0->unk_22), &(param0->unk_24));
     StringList_Free(param0->unk_C4);
     Window_ClearAndCopyToVRAM(&(param0->unk_D4));
-    Window_Clear(&(param0->unk_D4), 0);
+    Window_EraseStandardFrame(&(param0->unk_D4), 0);
     Window_Remove(&(param0->unk_D4));
     SpriteActor_EnableObject(param0->unk_2FC[0], 0);
     Bg_ScheduleTilemapTransfer(param0->unk_D0, 3);
@@ -821,7 +821,7 @@ static void sub_02070050(UnkStruct_0206F7F8 *param0, BOOL param1)
 static void sub_020701DC(UnkStruct_0206F7F8 *param0, u16 param1)
 {
     Window_Add(param0->unk_D0, &param0->unk_D4, 1, 4, 1, 24, 12, 13, 1);
-    Window_Show(&param0->unk_D4, 1, (1024 - (18 + 12) - 9), 11);
+    Window_DrawStandardFrame(&param0->unk_D4, 1, (1024 - (18 + 12) - 9), 11);
     sub_02070050(param0, 0);
     SpriteActor_EnableObject(param0->unk_2FC[1], 1);
     Window_Add(param0->unk_D0, &param0->unk_F4, 3, 8, 14, 8, 2, 13, ((((1024 - (18 + 12) - 9) - 27 * 4) - 6 * 4) - (8 * 2)));
@@ -833,7 +833,7 @@ static void sub_020701DC(UnkStruct_0206F7F8 *param0, u16 param1)
 static void sub_02070288(UnkStruct_0206F7F8 *param0)
 {
     Window_ClearAndCopyToVRAM(&param0->unk_D4);
-    Window_Clear(&param0->unk_D4, 0);
+    Window_EraseStandardFrame(&param0->unk_D4, 0);
     Window_Remove(&param0->unk_D4);
     Window_ClearAndCopyToVRAM(&param0->unk_F4);
     Window_Remove(&param0->unk_F4);

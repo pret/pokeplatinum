@@ -182,8 +182,8 @@ static void sub_0209A3D0(UnkStruct_0209A3D0 *param0)
         Bg_InitFromTemplate(param0->unk_18, 0, &v2, 0);
         Bg_ClearTilemap(param0->unk_18, 0);
     }
-    sub_0200DD0C(param0->unk_18, 0, 512 - (18 + 12), 2, 0, param0->unk_00);
-    sub_0200DAA4(param0->unk_18, 0, (512 - (18 + 12)) - 9, 3, 0, param0->unk_00);
+    LoadMessageBoxGraphics(param0->unk_18, 0, 512 - (18 + 12), 2, 0, param0->unk_00);
+    LoadStandardWindowGraphics(param0->unk_18, 0, (512 - (18 + 12)) - 9, 3, 0, param0->unk_00);
     Font_LoadTextPalette(0, 1 * (2 * 16), param0->unk_00);
     Bg_ClearTilesRange(0, 32, 0, param0->unk_00);
     Bg_MaskPalette(0, 0);
@@ -298,7 +298,7 @@ static BOOL sub_0209A688(UnkStruct_0209A3D0 *param0, u32 param1, int param2, int
     switch (param0->unk_0C) {
     case 0:
         Window_FillRectWithColor(&param0->unk_20, 15, 0, 0, 27 * 8, 4 * 8);
-        sub_0200E060(&param0->unk_20, 0, 512 - (18 + 12), 2);
+        Window_DrawMessageBoxWithScrollCursor(&param0->unk_20, 0, 512 - (18 + 12), 2);
 
         param0->unk_14 = Strbuf_Init(0x400, param0->unk_00);
         MessageLoader_GetStrbuf(param0->unk_1C, param1, param0->unk_14);

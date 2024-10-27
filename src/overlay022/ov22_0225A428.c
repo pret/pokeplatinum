@@ -85,7 +85,7 @@ void ov22_0225A428(UnkStruct_ov22_0225A428 *param0, UnkStruct_ov22_02256BAC *par
         Window_FillTilemap(param0->unk_134, 15);
         ov22_0225A860(param0->unk_134, 26, param1->unk_14, 6, 0, 0, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
         ov22_0225A860(param0->unk_134, 26, param1->unk_14, param1->unk_18, 72, 0, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
-        sub_0200E060(param0->unk_134, 0, 1, 1);
+        Window_DrawMessageBoxWithScrollCursor(param0->unk_134, 0, 1, 1);
     }
 
     param0->unk_30 = param1->unk_04;
@@ -197,7 +197,7 @@ static void ov22_0225A718(BgConfig *param0, const Options *param1)
 {
     int v0 = Options_Frame(param1);
 
-    sub_0200DD0C(param0, 5, 1, 1, v0, 14);
+    LoadMessageBoxGraphics(param0, 5, 1, 1, v0, 14);
     Font_LoadScreenIndicatorsPalette(4, 2 * 32, 14);
 }
 
@@ -210,7 +210,7 @@ static void ov22_0225A748(Window **param0, BgConfig *param1, int param2, int par
     Window_FillTilemap(*param0, 15);
 
     if (param7) {
-        sub_0200E060(*param0, 0, 1, 1);
+        Window_DrawMessageBoxWithScrollCursor(*param0, 0, 1, 1);
     }
 
     Window_CopyToVRAM(*param0);
@@ -232,7 +232,7 @@ static s32 ov22_0225A7CC(Window *param0, int param1, int param2, int param3, int
 
     Window_FillTilemap(param0, 15);
     v0 = ov22_0225A860(param0, param1, param2, param3, param4, param5, TEXT_COLOR(1, 2, 15), param6);
-    sub_0200E060(param0, 0, 1, 1);
+    Window_DrawMessageBoxWithScrollCursor(param0, 0, 1, 1);
 
     return v0;
 }
@@ -243,7 +243,7 @@ static s32 ov22_0225A814(Window *param0, int param1, int param2, int param3, int
 
     Window_FillTilemap(param0, 15);
     v0 = ov22_0225A8B4(param0, param1, param2, param3, param4, param5, TEXT_COLOR(1, 2, 15), param6, param7);
-    sub_0200E060(param0, 0, 1, 1);
+    Window_DrawMessageBoxWithScrollCursor(param0, 0, 1, 1);
 
     return v0;
 }

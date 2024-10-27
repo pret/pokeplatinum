@@ -377,7 +377,7 @@ Menu *Menu_MakeYesNoChoiceWithCursorAt(BgConfig *bgConfig, const WindowTemplate 
     menuTemplate.loopAround = FALSE;
 
     Window_AddFromTemplate(bgConfig, menuTemplate.window, winTemplate);
-    Window_Show(menuTemplate.window, 1, borderTileStart, borderPalette);
+    Window_DrawStandardFrame(menuTemplate.window, 1, borderTileStart, borderPalette);
 
     return Menu_NewAndCopyToVRAM(&menuTemplate, 8, 0, cursorStart, heapID, PAD_BUTTON_B);
 }
@@ -409,7 +409,7 @@ u32 Menu_ProcessExternalInputAndHandleExit(Menu *menu, u8 input, u32 heapID)
 
 void Menu_DestroyForExit(Menu *menu, u32 heapID)
 {
-    Window_Clear(menu->template.window, 0);
+    Window_EraseStandardFrame(menu->template.window, 0);
     Window_Remove(menu->template.window);
     Heap_FreeToHeapExplicit(heapID, menu->template.window);
     StringList_Free(menu->template.choices);

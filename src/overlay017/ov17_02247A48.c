@@ -1193,7 +1193,7 @@ static void ov17_02248DA4(SysTask *param0, void *param1)
     switch (v0->unk_10) {
     case 0:
         if (v0->unk_17 != 0) {
-            sub_0200E060(&v0->unk_00->unk_0C.unk_28[0], 1, 1, 14);
+            Window_DrawMessageBoxWithScrollCursor(&v0->unk_00->unk_0C.unk_28[0], 1, 1, 14);
             Bg_ScheduleTilemapTransfer(v0->unk_00->unk_0C.unk_24, 1);
             ov17_02247A08(v0->unk_00, v0->unk_17, &v0->unk_13);
             v0->unk_10++;
@@ -1212,7 +1212,7 @@ static void ov17_02248DA4(SysTask *param0, void *param1)
         if (v0->unk_19 == 1) {
             v0->unk_10++;
         } else if (v0->unk_12 >= v0->unk_18) {
-            sub_0200E084(&v0->unk_00->unk_0C.unk_28[0], 1);
+            Window_EraseMessageBox(&v0->unk_00->unk_0C.unk_28[0], 1);
             Bg_ScheduleTilemapTransfer(v0->unk_00->unk_0C.unk_24, 1);
             v0->unk_10++;
         }

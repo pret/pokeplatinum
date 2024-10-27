@@ -284,9 +284,9 @@ int ov97_0223795C(BgConfig *param0, UnkStruct_ov97_02237808 *param1, int param2,
 
     if (param1->unk_04 == 1) {
         if (param1->unk_00 == 0) {
-            Window_Show(param1->unk_10, 0, param1->unk_38, param1->unk_3C);
+            Window_DrawStandardFrame(param1->unk_10, 0, param1->unk_38, param1->unk_3C);
         } else {
-            sub_0200E060(param1->unk_10, 0, param1->unk_38, param1->unk_3C);
+            Window_DrawMessageBoxWithScrollCursor(param1->unk_10, 0, param1->unk_38, param1->unk_3C);
         }
     }
 

@@ -225,7 +225,7 @@ void sub_02081CF4(GameWindowLayout *param0, const u8 *param1, u8 param2)
         v0.loopAround = FALSE;
     }
 
-    Window_Show(&param0->unk_254[0], 1, 1, 14);
+    Window_DrawStandardFrame(&param0->unk_254[0], 1, 1, 14);
     param0->unk_700 = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 12, PAD_BUTTON_B);
 }
 
@@ -568,7 +568,7 @@ void sub_020825B4(GameWindowLayout *param0, u8 param1)
 static void sub_02082680(GameWindowLayout *param0, Window *param1, u32 param2, u8 param3)
 {
     if (param3 == 1) {
-        sub_0200E060(param1, 1, (1 + 9), 15);
+        Window_DrawMessageBoxWithScrollCursor(param1, 1, (1 + 9), 15);
     }
 
     Window_FillTilemap(param1, 15);
@@ -596,7 +596,7 @@ void sub_02082708(GameWindowLayout *param0, u32 param1, u8 param2)
     Window *v0 = &param0->unk_04[34];
 
     if (param2 == 1) {
-        sub_0200E060(v0, 1, (1 + 9), 15);
+        Window_DrawMessageBoxWithScrollCursor(v0, 1, (1 + 9), 15);
     }
 
     Window_FillTilemap(v0, 15);
@@ -750,7 +750,7 @@ void sub_020829DC(GameWindowLayout *param0)
     v3[5] = (u16)Pokemon_GetValue(v0, MON_DATA_SPEED, NULL);
 
     Window_Add(param0->unk_00, &param0->unk_254[0], 0, 1, 1, 14, 12, 0, 576);
-    Window_Show(&param0->unk_254[0], 1, 1, 14);
+    Window_DrawStandardFrame(&param0->unk_254[0], 1, 1, 14);
     Window_FillTilemap(&param0->unk_254[0], 15);
 
     for (v2 = 0; v2 < 6; v2++) {
@@ -799,6 +799,6 @@ void sub_02082B58(GameWindowLayout *param0)
 
 void sub_02082C10(GameWindowLayout *param0)
 {
-    Window_Clear(&param0->unk_254[0], 0);
+    Window_EraseStandardFrame(&param0->unk_254[0], 0);
     Window_Remove(&param0->unk_254[0]);
 }

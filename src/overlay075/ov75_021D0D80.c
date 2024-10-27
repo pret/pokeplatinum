@@ -265,7 +265,7 @@ static int ov75_021D0FA0(UnkStruct_ov75_021D1184 *param0)
 
     switch (param0->unk_08) {
     case 0:
-        sub_0200E060(&param0->unk_44[5], 1, 1 + 9, UnkEnum_ov75_021D1598_06);
+        Window_DrawMessageBoxWithScrollCursor(&param0->unk_44[5], 1, 1 + 9, UnkEnum_ov75_021D1598_06);
         Window_FillTilemap(&(param0->unk_44[5]), ((15 << 4) | 15));
 
         v0 = Strbuf_Init((19 * 2 * 2), param0->unk_00);
@@ -280,7 +280,7 @@ static int ov75_021D0FA0(UnkStruct_ov75_021D1184 *param0)
             return 0;
         }
 
-        sub_0200E084(&param0->unk_44[5], 1);
+        Window_EraseMessageBox(&param0->unk_44[5], 1);
         Window_ClearAndCopyToVRAM(&(param0->unk_44[5]));
 
         param0->unk_08 = 0;
@@ -323,7 +323,7 @@ static int ov75_021D108C(UnkStruct_ov75_021D1184 *param0)
     case 0:
         param0->unk_13 = 1;
 
-        sub_0200E060(&param0->unk_44[5], 1, 1 + 9, UnkEnum_ov75_021D1598_06);
+        Window_DrawMessageBoxWithScrollCursor(&param0->unk_44[5], 1, 1 + 9, UnkEnum_ov75_021D1598_06);
         Window_FillTilemap(&(param0->unk_44[5]), ((15 << 4) | 15));
 
         v1 = Strbuf_Init((19 * 2 * 2), param0->unk_00);
@@ -351,7 +351,7 @@ static int ov75_021D108C(UnkStruct_ov75_021D1184 *param0)
             return 0;
         }
 
-        sub_0200E084(&param0->unk_44[5], 1);
+        Window_EraseMessageBox(&param0->unk_44[5], 1);
         Window_ClearAndCopyToVRAM(&(param0->unk_44[5]));
         param0->unk_08 = 0;
 
@@ -705,8 +705,8 @@ static void ov75_021D1598(UnkStruct_ov75_021D1184 *param0)
     v8 = 0 + param0->unk_1C->unk_0F;
     v5 = NARC_ctor(NARC_INDEX_GRAPHIC__MAIL_GRA, param0->unk_00);
 
-    sub_0200DAA4(param0->unk_18, 0, 1, UnkEnum_ov75_021D1598_05, 0, param0->unk_00);
-    sub_0200DD0C(param0->unk_18, 0, 1 + 9, UnkEnum_ov75_021D1598_06, param0->unk_0A, param0->unk_00);
+    LoadStandardWindowGraphics(param0->unk_18, 0, 1, UnkEnum_ov75_021D1598_05, 0, param0->unk_00);
+    LoadMessageBoxGraphics(param0->unk_18, 0, 1 + 9, UnkEnum_ov75_021D1598_06, param0->unk_0A, param0->unk_00);
 
     v1 = NARC_GetMemberSize(v5, v6);
     v2 = Heap_AllocFromHeapAtEnd(param0->unk_00, v1);

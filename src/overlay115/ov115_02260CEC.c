@@ -1493,7 +1493,7 @@ static void ov115_02261A04(UnkStruct_ov115_022617E8 *param0, UnkStruct_ov115_022
 
 static void ov115_02261A10(UnkStruct_ov115_022617E8 *param0, UnkStruct_ov115_02261ADC *param1)
 {
-    Window_Show(&param0->unk_0C, 0, 1, 4);
+    Window_DrawStandardFrame(&param0->unk_0C, 0, 1, 4);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
     ov114_0225CB8C(param1->unk_754);
@@ -1514,7 +1514,7 @@ static BOOL ov115_02261A3C(UnkStruct_ov115_022617E8 *param0, UnkStruct_ov115_022
 
 static void ov115_02261A54(UnkStruct_ov115_022617E8 *param0, UnkStruct_ov115_02261ADC *param1)
 {
-    Window_Clear(&param0->unk_0C, 1);
+    Window_EraseStandardFrame(&param0->unk_0C, 1);
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_0C);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
 }
@@ -3144,7 +3144,7 @@ static void ov115_0226376C(UnkStruct_ov115_02261ADC *param0, u32 param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     Font_LoadScreenIndicatorsPalette(0, 5 * 0x20, param1);
-    sub_0200DAA4(param0->unk_00, 1, 1, 4, 0, param1);
+    LoadStandardWindowGraphics(param0->unk_00, 1, 1, 4, 0, param1);
 }
 
 static void ov115_02263954(UnkStruct_ov115_02261ADC *param0)

@@ -359,8 +359,8 @@ static void ov73_021D1058(UnkStruct_ov73_021D1058 *param0)
         Bg_InitFromTemplate(param0->unk_18, 3, &v2, 0);
         Bg_ClearTilemap(param0->unk_18, 3);
 
-        sub_0200DD0C(param0->unk_18, 0, (0x400 - (18 + 12)), 4, 0, param0->unk_00);
-        sub_0200DAA4(param0->unk_18, 0, ((0x400 - (18 + 12)) - 9), 3, 0, param0->unk_00);
+        LoadMessageBoxGraphics(param0->unk_18, 0, (0x400 - (18 + 12)), 4, 0, param0->unk_00);
+        LoadStandardWindowGraphics(param0->unk_18, 0, ((0x400 - (18 + 12)) - 9), 3, 0, param0->unk_00);
         Font_LoadTextPalette(0, 5 * (2 * 16), param0->unk_00);
         Font_LoadScreenIndicatorsPalette(0, 6 * (2 * 16), param0->unk_00);
     }
@@ -698,7 +698,7 @@ static BOOL ov73_021D1510(UnkStruct_ov73_021D1058 *param0, u32 param1, int param
     case 0:
         Window_AddFromTemplate(param0->unk_18, &param0->unk_1C, &Unk_ov72_021D37EC);
         Window_FillRectWithColor(&param0->unk_1C, 15, 0, 0, 27 * 8, 4 * 8);
-        sub_0200E060(&param0->unk_1C, 0, (0x400 - (18 + 12)), 4);
+        Window_DrawMessageBoxWithScrollCursor(&param0->unk_1C, 0, (0x400 - (18 + 12)), 4);
         RenderControlFlags_SetCanABSpeedUpPrint(1);
         RenderControlFlags_SetAutoScrollFlags(0);
 
@@ -793,7 +793,7 @@ static BOOL ov73_021D1648(UnkStruct_ov73_021D1058 *param0, int param1, int param
 
         param0->unk_40 = ListMenu_New(&v1, 0, 0, param0->unk_00);
 
-        Window_Show(v1.window, 1, ((0x400 - (18 + 12)) - 9), 3);
+        Window_DrawStandardFrame(v1.window, 1, ((0x400 - (18 + 12)) - 9), 3);
         Window_CopyToVRAM(&param0->unk_30);
 
         param0->unk_2C = 1;
@@ -809,7 +809,7 @@ static BOOL ov73_021D1648(UnkStruct_ov73_021D1058 *param0, int param1, int param
             break;
         }
 
-        Window_Clear(&param0->unk_30, 0);
+        Window_EraseStandardFrame(&param0->unk_30, 0);
         Window_Remove(&param0->unk_30);
         ListMenu_Free(param0->unk_40, NULL, NULL);
         StringList_Free(param0->unk_44);

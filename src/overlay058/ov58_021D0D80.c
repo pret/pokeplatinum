@@ -594,8 +594,8 @@ static void ov58_021D142C(UnkStruct_02095EAC *param0, NARC *param1)
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 4, v0, 2, 0, 32 * 24 * 2, 1, 39);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 3, v0, 5, 0, 32 * 8 * 0x20, 1, 39);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 5, v0, 5, 0, 32 * 24 * 2, 1, 39);
-    sub_0200DD0C(v0, 0, 1, 10, Options_Frame(param0->unk_08->unk_08), 39);
-    sub_0200DAA4(v0, 0, 1 + (18 + 12), 11, 0, 39);
+    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_08->unk_08), 39);
+    LoadStandardWindowGraphics(v0, 0, 1 + (18 + 12), 11, 0, 39);
 }
 
 static void ov58_021D1524(void)
@@ -1047,7 +1047,7 @@ static int ov58_021D1E4C(UnkStruct_02095EAC *param0, int param1)
             ov58_021D2CB0(param0, 7);
 
             CommSys_SendData(126, &v1, sizeof(UnkStruct_02095FE4));
-            sub_0200E084(&param0->unk_33C, 1);
+            Window_EraseMessageBox(&param0->unk_33C, 1);
         }
 
         ov58_021D2D10(param0);
@@ -1056,7 +1056,7 @@ static int ov58_021D1E4C(UnkStruct_02095EAC *param0, int param1)
     case 2:
         ov58_021D2CB0(param0, 4);
         ov58_021D1CDC(param0->unk_2AC, 0);
-        sub_0200E084(&param0->unk_33C, 1);
+        Window_EraseMessageBox(&param0->unk_33C, 1);
         ov58_021D2D10(param0);
         Window_CopyToVRAM(&param0->unk_32C);
 
@@ -1204,7 +1204,7 @@ static int ov58_021D2180(UnkStruct_02095EAC *param0, int param1)
     case 2:
         ov58_021D2CB0(param0, 4);
         ov58_021D1CDC(param0->unk_2AC, 0);
-        sub_0200E084(&param0->unk_33C, 1);
+        Window_EraseMessageBox(&param0->unk_33C, 1);
         ov58_021D2D10(param0);
 
         if (CommSys_CurNetId() == 0) {
@@ -1719,7 +1719,7 @@ static void ov58_021D2A98(UnkStruct_02095EAC *param0, int param1, int param2)
     Strbuf_Free(v0);
 
     Window_FillTilemap(&param0->unk_33C, 0xf0f);
-    sub_0200E060(&param0->unk_33C, 0, 1, 10);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_33C, 0, 1, 10);
 
     if (param2 == 0) {
         param2 = 0;
@@ -1747,7 +1747,7 @@ static int ov58_021D2B0C(int param0)
 
 static void ov58_021D2B2C(UnkStruct_02095EAC *param0)
 {
-    sub_0200E084(&param0->unk_33C, 0);
+    Window_EraseMessageBox(&param0->unk_33C, 0);
 }
 
 static void ov58_021D2B3C(UnkStruct_02095EAC *param0, int param1)
