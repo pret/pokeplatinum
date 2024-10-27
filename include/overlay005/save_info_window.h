@@ -25,6 +25,9 @@ enum SaveInfoText {
 #define SAVE_INFO_WINDOW_WIDTH  13
 #define SAVE_INFO_WINDOW_HEIGHT 10
 
+#define SAVE_INFO_MESSAGE_BASE_TILE 0x189
+#define SAVE_INFO_WINDOW_BASE_TILE  0x3D9
+
 typedef struct SaveInfo {
     int pokedexCount;
     int mapLabelTextID;

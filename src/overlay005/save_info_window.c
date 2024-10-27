@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field/window.h"
 #include "constants/narc.h"
 #include "consts/map.h"
 
@@ -145,12 +146,12 @@ void SaveInfoWindow_Draw(SaveInfoWindow *saveInfoWin)
 {
     saveInfoWin->window = Heap_AllocFromHeap(saveInfoWin->heapID, sizeof(Window));
 
-    Window_Add(saveInfoWin->bgConfig, saveInfoWin->window, saveInfoWin->bgLayer, 1, 1, saveInfoWin->width, saveInfoWin->height, 13, 393);
-    LoadStandardWindowGraphics(saveInfoWin->bgConfig, saveInfoWin->bgLayer, 985, 11, 0, saveInfoWin->heapID);
+    Window_Add(saveInfoWin->bgConfig, saveInfoWin->window, saveInfoWin->bgLayer, 1, 1, saveInfoWin->width, saveInfoWin->height, FIELD_MESSAGE_PALETTE_INDEX, SAVE_INFO_MESSAGE_BASE_TILE);
+    LoadStandardWindowGraphics(saveInfoWin->bgConfig, saveInfoWin->bgLayer, SAVE_INFO_WINDOW_BASE_TILE, FIELD_WINDOW_PALETTE_INDEX, STANDARD_WINDOW_SYSTEM, saveInfoWin->heapID);
     Window_FillTilemap(saveInfoWin->window, Font_GetAttribute(FONT_SYSTEM, FONTATTR_BG_COLOR));
 
     SaveInfoWindow_PrintText(saveInfoWin);
-    Window_DrawStandardFrame(saveInfoWin->window, FALSE, 985, 11);
+    Window_DrawStandardFrame(saveInfoWin->window, FALSE, SAVE_INFO_WINDOW_BASE_TILE, FIELD_WINDOW_PALETTE_INDEX);
 }
 
 void SaveInfoWindow_Erase(SaveInfoWindow *saveInfoWin)
