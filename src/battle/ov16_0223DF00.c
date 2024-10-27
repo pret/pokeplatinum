@@ -1721,7 +1721,7 @@ void ov16_0223F9A0(BattleSystem *param0, int param1)
 
 BOOL BattleSystem_CaughtSpecies(BattleSystem *battleSys, int species)
 {
-    return Pokedex_CaughtSpecies(battleSys->pokedex, species);
+    return Pokedex_HasCaughtSpecies(battleSys->pokedex, species);
 }
 
 void Battle_SetDefaultBlend(void)

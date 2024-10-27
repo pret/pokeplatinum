@@ -65,7 +65,7 @@ static inline void CheckPokedexIntegrity(const PokedexData *param0)
     GF_ASSERT(param0->magic == 3203386110);
 }
 
-static BOOL Pokedex_SpeciesOutOfBounds(u16 species)
+static BOOL IsSpeciesOutOfBounds(u16 species)
 {
     if (species == SPECIES_NONE || species > NATIONAL_DEX_COUNT) {
         GF_ASSERT(0);
@@ -140,12 +140,12 @@ static void sub_020263D8(PokedexData *param0, u8 param1, u8 param2, u16 param3)
     sub_02026360(param0, param1, param2, param3);
 }
 
-static inline BOOL Pokedex_SeenBit(const PokedexData *pokedex, u16 species)
+static inline BOOL CheckSeenMask(const PokedexData *pokedex, u16 species)
 {
     return ReadBit((const u8 *)pokedex->seenPokemon, species);
 }
 
-static inline BOOL Pokedex_CaughtBit(const PokedexData *pokedex, u16 species)
+static inline BOOL CheckCaughtMask(const PokedexData *pokedex, u16 species)
 {
     return ReadBit((const u8 *)pokedex->caughtPokemon, species);
 }
@@ -211,7 +211,7 @@ static int sub_02026464(const PokedexData *param0, u32 param1)
 
     GF_ASSERT((param1 == 422) || (param1 == 423) || (param1 == 492) || (param1 == 487));
 
-    if (Pokedex_SeenSpecies(param0, param1) == FALSE) {
+    if (Pokedex_HasSeenSpecies(param0, param1) == FALSE) {
         return 0;
     }
 
@@ -249,7 +249,7 @@ static BOOL sub_02026514(const PokedexData *param0, u32 param1, u8 param2)
 
     GF_ASSERT((param1 == 422) || (param1 == 423) || (param1 == 492) || (param1 == 487));
 
-    if (Pokedex_SeenSpecies(param0, param1) == FALSE) {
+    if (Pokedex_HasSeenSpecies(param0, param1) == FALSE) {
         return 0;
     }
 
@@ -326,7 +326,7 @@ static int sub_020266F8(const PokedexData *param0, u32 param1)
 
     GF_ASSERT((param1 == 412) || (param1 == 413));
 
-    if (Pokedex_SeenSpecies(param0, param1) == FALSE) {
+    if (Pokedex_HasSeenSpecies(param0, param1) == FALSE) {
         return 0;
     }
 
@@ -355,7 +355,7 @@ static BOOL sub_02026754(const PokedexData *param0, u32 param1, u8 param2)
 
     GF_ASSERT((param1 == 412) || (param1 == 413));
 
-    if (Pokedex_SeenSpecies(param0, param1) == FALSE) {
+    if (Pokedex_HasSeenSpecies(param0, param1) == FALSE) {
         return 0;
     }
 
@@ -510,7 +510,7 @@ static int sub_02026958(const PokedexData *param0, u32 param1)
 
     GF_ASSERT(param1 == 479);
 
-    if (Pokedex_SeenSpecies(param0, param1) == FALSE) {
+    if (Pokedex_HasSeenSpecies(param0, param1) == FALSE) {
         return 0;
     }
 
@@ -537,7 +537,7 @@ static BOOL sub_020269A4(const PokedexData *param0, u32 param1, u8 param2)
 
     GF_ASSERT(param1 == 479);
 
-    if (Pokedex_SeenSpecies(param0, param1) == FALSE) {
+    if (Pokedex_HasSeenSpecies(param0, param1) == FALSE) {
         return 0;
     }
 
@@ -778,7 +778,7 @@ u16 sub_02026DD0(const PokedexData *param0)
     v1 = 0;
 
     for (v0 = 1; v0 <= NATIONAL_DEX_COUNT; v0++) {
-        if (Pokedex_CaughtSpecies(param0, v0) == 1) {
+        if (Pokedex_HasCaughtSpecies(param0, v0) == 1) {
             v1++;
         }
     }
@@ -786,7 +786,7 @@ u16 sub_02026DD0(const PokedexData *param0)
     return v1;
 }
 
-u16 Pokedex_SeenCountNational(const PokedexData *pokedex)
+u16 Pokedex_CountSeenNational(const PokedexData *pokedex)
 {
     int i;
     CheckPokedexIntegrity(pokedex);
@@ -794,7 +794,7 @@ u16 Pokedex_SeenCountNational(const PokedexData *pokedex)
     int seenCount = 0;
 
     for (i = 1; i <= NATIONAL_DEX_COUNT; i++) {
-        if (Pokedex_SeenSpecies(pokedex, i) == TRUE) {
+        if (Pokedex_HasSeenSpecies(pokedex, i) == TRUE) {
             seenCount++;
         }
     }
@@ -802,13 +802,13 @@ u16 Pokedex_SeenCountNational(const PokedexData *pokedex)
     return seenCount;
 }
 
-u16 Pokedex_SeenCount(const PokedexData *pokedex)
+u16 Pokedex_CountSeen(const PokedexData *pokedex)
 {
-    if (Pokedex_NationalDexObtained(pokedex)) {
-        return Pokedex_SeenCountNational(pokedex);
+    if (Pokedex_IsNationalDexObtained(pokedex)) {
+        return Pokedex_CountSeenNational(pokedex);
     }
 
-    return Pokedex_SeenCountSinnoh(pokedex);
+    return Pokedex_CountSeenSinnoh(pokedex);
 }
 
 u16 sub_02026E64(const PokedexData *param0)
@@ -820,7 +820,7 @@ u16 sub_02026E64(const PokedexData *param0)
     v1 = 0;
 
     for (v0 = 1; v0 <= NATIONAL_DEX_COUNT; v0++) {
-        if (Pokedex_CaughtSpecies(param0, v0) == 1) {
+        if (Pokedex_HasCaughtSpecies(param0, v0) == 1) {
             if (Pokemon_SinnohDexNumber(v0) != 0) {
                 v1++;
             }
@@ -830,7 +830,7 @@ u16 sub_02026E64(const PokedexData *param0)
     return v1;
 }
 
-u16 Pokedex_SeenCountSinnoh(const PokedexData *pokedex)
+u16 Pokedex_CountSeenSinnoh(const PokedexData *pokedex)
 {
     int i;
 
@@ -838,7 +838,7 @@ u16 Pokedex_SeenCountSinnoh(const PokedexData *pokedex)
     int seenCount = 0;
 
     for (i = 1; i <= NATIONAL_DEX_COUNT; i++) {
-        if (Pokedex_SeenSpecies(pokedex, i) == TRUE && Pokemon_SinnohDexNumber(i) != 0) {
+        if (Pokedex_HasSeenSpecies(pokedex, i) == TRUE && Pokemon_SinnohDexNumber(i) != 0) {
             seenCount++;
         }
     }
@@ -880,7 +880,7 @@ u16 sub_02026F20(const PokedexData *param0)
     v1 = 0;
 
     for (v0 = 1; v0 <= NATIONAL_DEX_COUNT; v0++) {
-        if (Pokedex_CaughtSpecies(param0, v0) == 1) {
+        if (Pokedex_HasCaughtSpecies(param0, v0) == 1) {
             if (sub_02026D44(v0) == 1) {
                 v1++;
             }
@@ -899,7 +899,7 @@ u16 sub_02026F58(const PokedexData *param0)
     v1 = 0;
 
     for (v0 = 1; v0 <= NATIONAL_DEX_COUNT; v0++) {
-        if (Pokedex_SeenSpecies(param0, v0) == TRUE) {
+        if (Pokedex_HasSeenSpecies(param0, v0) == TRUE) {
             v2 = Pokemon_SinnohDexNumber(v0);
 
             if (v2 != 0) {
@@ -913,30 +913,30 @@ u16 sub_02026F58(const PokedexData *param0)
     return v1;
 }
 
-BOOL Pokedex_CaughtSpecies(const PokedexData *pokedex, u16 species)
+BOOL Pokedex_HasCaughtSpecies(const PokedexData *pokedex, u16 species)
 {
     CheckPokedexIntegrity(pokedex);
 
-    if (Pokedex_SpeciesOutOfBounds(species)) {
+    if (IsSpeciesOutOfBounds(species)) {
         return FALSE;
     }
 
-    if (Pokedex_CaughtBit(pokedex, species) && Pokedex_SeenBit(pokedex, species)) {
+    if (CheckCaughtMask(pokedex, species) && CheckSeenMask(pokedex, species)) {
         return TRUE;
     } else {
         return FALSE;
     }
 }
 
-BOOL Pokedex_SeenSpecies(const PokedexData *pokedex, u16 species)
+BOOL Pokedex_HasSeenSpecies(const PokedexData *pokedex, u16 species)
 {
     CheckPokedexIntegrity(pokedex);
 
-    if (Pokedex_SpeciesOutOfBounds(species)) {
+    if (IsSpeciesOutOfBounds(species)) {
         return FALSE;
     }
 
-    return Pokedex_SeenBit(pokedex, species);
+    return CheckSeenMask(pokedex, species);
 }
 
 u32 sub_0202702C(const PokedexData *param0, u8 param1)
@@ -961,11 +961,11 @@ u32 sub_02027058(const PokedexData *param0, u16 param1, int param2)
 {
     CheckPokedexIntegrity(param0);
 
-    if (Pokedex_SpeciesOutOfBounds(param1)) {
+    if (IsSpeciesOutOfBounds(param1)) {
         return -1;
     }
 
-    if (!Pokedex_SeenBit(param0, param1)) {
+    if (!CheckSeenMask(param0, param1)) {
         return -1;
     }
 
@@ -1078,11 +1078,11 @@ void sub_020272A4(PokedexData *param0, Pokemon *pokemon)
 
     CheckPokedexIntegrity(param0);
 
-    if (Pokedex_SpeciesOutOfBounds(v0)) {
+    if (IsSpeciesOutOfBounds(v0)) {
         return;
     }
 
-    if (!Pokedex_SeenBit(param0, v0)) {
+    if (!CheckSeenMask(param0, v0)) {
         inline_0202736C_1(param0, v0, v1);
         sub_020263D8(param0, v2, 0, v0);
     } else {
@@ -1107,11 +1107,11 @@ void sub_0202736C(PokedexData *param0, Pokemon *param1)
 
     CheckPokedexIntegrity(param0);
 
-    if (Pokedex_SpeciesOutOfBounds(v0)) {
+    if (IsSpeciesOutOfBounds(v0)) {
         return;
     }
 
-    if (!Pokedex_SeenBit(param0, v0)) {
+    if (!CheckSeenMask(param0, v0)) {
         inline_0202736C_1(param0, v0, v2);
         sub_020263D8(param0, v3, 0, v0);
     } else {
@@ -1135,7 +1135,7 @@ void sub_02027454(PokedexData *param0)
     param0->nationalDexObtained = 1;
 }
 
-BOOL Pokedex_NationalDexObtained(const PokedexData *pokedex)
+BOOL Pokedex_IsNationalDexObtained(const PokedexData *pokedex)
 {
     CheckPokedexIntegrity(pokedex);
     return pokedex->nationalDexObtained;
@@ -1177,7 +1177,7 @@ BOOL sub_02027514(const PokedexData *param0)
     return param0->unk_319;
 }
 
-BOOL Pokedex_Obtained(const PokedexData *pokedex)
+BOOL Pokedex_IsObtained(const PokedexData *pokedex)
 {
     CheckPokedexIntegrity(pokedex);
     return pokedex->pokedexObtained;

@@ -1175,7 +1175,7 @@ BOOL FieldTask_MapChangeToUnderground(TaskManager *taskMan)
         } else {
             sub_020287E0(fieldSystem->saveData);
             mapChangeUndergroundData->saveInfoWin = SaveInfoWindow_New(fieldSystem, 11, BG_LAYER_MAIN_3);
-            SaveInfoWindow_NewWindow(mapChangeUndergroundData->saveInfoWin);
+            SaveInfoWindow_Draw(mapChangeUndergroundData->saveInfoWin);
             mapChangeUndergroundData->unk_1C = 0;
             ScriptManager_Start(taskMan, 2005, NULL, &mapChangeUndergroundData->unk_1C);
         }
@@ -1186,7 +1186,7 @@ BOOL FieldTask_MapChangeToUnderground(TaskManager *taskMan)
         if (SaveData_OverwriteCheck(fieldSystem->saveData)) {
             mapChangeUndergroundData->state = 5;
         } else {
-            SaveInfoWindow_FreeWindow(mapChangeUndergroundData->saveInfoWin);
+            SaveInfoWindow_Erase(mapChangeUndergroundData->saveInfoWin);
             SaveInfoWindow_Free(mapChangeUndergroundData->saveInfoWin);
 
             if (mapChangeUndergroundData->unk_1C == 0) {

@@ -45,8 +45,8 @@ typedef struct SaveInfoWindow {
     int height;
 } SaveInfoWindow;
 
-void SaveInfoWindow_NewWindow(SaveInfoWindow *saveInfoWin);
-void SaveInfoWindow_FreeWindow(SaveInfoWindow *saveInfoWin);
+void SaveInfoWindow_Draw(SaveInfoWindow *saveInfoWin);
+void SaveInfoWindow_Erase(SaveInfoWindow *saveInfoWin);
 SaveInfoWindow *SaveInfoWindow_New(FieldSystem *fieldSystem, enum HeapId heapID, u8 bgLayer);
 void SaveInfoWindow_Free(SaveInfoWindow *saveInfoWin);
 BOOL FieldSystem_Save(FieldSystem *fieldSystem);

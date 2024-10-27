@@ -708,7 +708,7 @@ static int ov97_0222C78C(OverlayManager *param0, int *param1)
     case UnkEnum_ov97_0222C78C_00:
         ov97_0222C254(v0);
 
-        if (Pokedex_Obtained(v0->unk_0C) == FALSE) {
+        if (Pokedex_IsObtained(v0->unk_0C) == FALSE) {
             ov97_02237790(1, UnkEnum_ov97_0222C78C_01, param1, UnkEnum_ov97_0222C78C_13);
         } else {
             *param1 = UnkEnum_ov97_0222C78C_02;

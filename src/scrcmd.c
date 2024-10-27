@@ -4983,7 +4983,7 @@ static BOOL ScrCmd_11E(ScriptContext *ctx)
     const PokedexData *v0 = SaveData_Pokedex(ctx->fieldSystem->saveData);
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = Pokedex_SeenCountSinnoh(v0);
+    *v1 = Pokedex_CountSeenSinnoh(v0);
     return 0;
 }
 
@@ -5001,7 +5001,7 @@ static BOOL ScrCmd_120(ScriptContext *ctx)
     const PokedexData *v0 = SaveData_Pokedex(ctx->fieldSystem->saveData);
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = Pokedex_SeenCountNational(v0);
+    *v1 = Pokedex_CountSeenNational(v0);
     return 0;
 }
 
@@ -6480,12 +6480,12 @@ static BOOL ScrCmd_218(ScriptContext *ctx)
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
     u16 v2, v3, v4, v5;
 
-    v2 = Pokedex_SeenCountSinnoh(v0);
+    v2 = Pokedex_CountSeenSinnoh(v0);
     v3 = LCRNG_Next() % v2;
     *v1 = 25;
 
     for (v4 = 1, v5 = 0; v4 <= NATIONAL_DEX_COUNT; v4++) {
-        if (Pokedex_SeenSpecies(v0, v4) == TRUE && Pokemon_SinnohDexNumber(v4) != FALSE) {
+        if (Pokedex_HasSeenSpecies(v0, v4) == TRUE && Pokemon_SinnohDexNumber(v4) != FALSE) {
             if (v5 == v3) {
                 *v1 = v4;
                 break;
@@ -6596,7 +6596,7 @@ static BOOL ScrCmd_22D(ScriptContext *ctx)
         sub_02027454(SaveData_Pokedex(ctx->fieldSystem->saveData));
         TrainerInfo_GiveNationalDex(SaveData_GetTrainerInfo(ctx->fieldSystem->saveData));
     } else if (v0 == 2) {
-        *v1 = Pokedex_NationalDexObtained(SaveData_Pokedex(ctx->fieldSystem->saveData));
+        *v1 = Pokedex_IsNationalDexObtained(SaveData_Pokedex(ctx->fieldSystem->saveData));
     } else {
         GF_ASSERT(FALSE);
     }
@@ -7748,7 +7748,7 @@ static BOOL ScrCmd_2C1(ScriptContext *ctx)
 
     if (!SaveData_OverwriteCheck(fieldSystem->saveData)) {
         *saveInfoWin = SaveInfoWindow_New(fieldSystem, HEAP_ID_FIELD, BG_LAYER_MAIN_3);
-        SaveInfoWindow_NewWindow(*saveInfoWin);
+        SaveInfoWindow_Draw(*saveInfoWin);
     }
 
     return FALSE;
@@ -7760,7 +7760,7 @@ static BOOL ScrCmd_2C2(ScriptContext *ctx)
     SaveInfoWindow **saveInfoWin = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_SAVE_INFO_WINDOW);
 
     if (!SaveData_OverwriteCheck(fieldSystem->saveData)) {
-        SaveInfoWindow_FreeWindow(*saveInfoWin);
+        SaveInfoWindow_Erase(*saveInfoWin);
         SaveInfoWindow_Free(*saveInfoWin);
     }
 

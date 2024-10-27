@@ -25,7 +25,7 @@ BOOL ScrCmd_157(ScriptContext *param0)
     const PokedexData *pokedex = SaveData_Pokedex(param0->fieldSystem->saveData);
     u16 *v1 = ScriptContext_GetVarPointer(param0);
 
-    *v1 = Pokedex_Obtained(pokedex);
+    *v1 = Pokedex_IsObtained(pokedex);
     return FALSE;
 }
 

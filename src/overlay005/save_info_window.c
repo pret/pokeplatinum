@@ -54,8 +54,8 @@ static void SaveInfo_SetValues(SaveInfo *saveInfo, const FieldSystem *fieldSyste
 
     saveInfo->mapLabelTextID = MapHeader_GetMapLabelTextID(curLocation->mapId);
 
-    if (Pokedex_Obtained(pokedex)) {
-        saveInfo->pokedexCount = Pokedex_SeenCount(pokedex);
+    if (Pokedex_IsObtained(pokedex)) {
+        saveInfo->pokedexCount = Pokedex_CountSeen(pokedex);
     } else {
         saveInfo->pokedexCount = 0;
     }
@@ -141,7 +141,7 @@ static void SaveInfoWindow_PrintText(const SaveInfoWindow *saveInfoWin)
     }
 }
 
-void SaveInfoWindow_NewWindow(SaveInfoWindow *saveInfoWin)
+void SaveInfoWindow_Draw(SaveInfoWindow *saveInfoWin)
 {
     saveInfoWin->window = Heap_AllocFromHeap(saveInfoWin->heapID, sizeof(Window));
 
@@ -150,12 +150,12 @@ void SaveInfoWindow_NewWindow(SaveInfoWindow *saveInfoWin)
     Window_FillTilemap(saveInfoWin->window, Font_GetAttribute(FONT_SYSTEM, FONTATTR_BG_COLOR));
 
     SaveInfoWindow_PrintText(saveInfoWin);
-    Window_DrawStandardFrame(saveInfoWin->window, 0, 985, 11);
+    Window_DrawStandardFrame(saveInfoWin->window, FALSE, 985, 11);
 }
 
-void SaveInfoWindow_FreeWindow(SaveInfoWindow *saveInfoWin)
+void SaveInfoWindow_Erase(SaveInfoWindow *saveInfoWin)
 {
-    Window_EraseStandardFrame(saveInfoWin->window, 0);
+    Window_EraseStandardFrame(saveInfoWin->window, FALSE);
     Window_Remove(saveInfoWin->window);
     Heap_FreeToHeap(saveInfoWin->window);
 }
