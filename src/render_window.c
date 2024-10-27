@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/narc.h"
+
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
@@ -29,62 +31,81 @@
 #include "unk_0200C6E4.h"
 #include "unk_020131EC.h"
 
-typedef struct {
-    Window *unk_00;
-    u8 unk_04[1024];
-    u8 unk_404[128];
-    u16 unk_484;
-    u8 unk_486;
-    u8 unk_487_0 : 7;
+#define WAIT_DIAL_TILES_PER_FRAME 4
+#define WAIT_DIAL_FRAME_SIZE      (TILE_SIZE_4BPP * WAIT_DIAL_TILES_PER_FRAME)
+#define WAIT_DIAL_FRAME_COUNT     8
+#define WAIT_DIAL_WHOLE_SIZE      (WAIT_DIAL_FRAME_SIZE * WAIT_DIAL_FRAME_COUNT)
+
+#define POKEMON_PREVIEW_RESOURCE_ID 89301
+
+typedef struct WaitDial {
+    Window *window;
+    u8 pixels[WAIT_DIAL_WHOLE_SIZE];
+    u8 messageBoxPixels[WAIT_DIAL_FRAME_SIZE];
+    u16 messageBoxTile;
+    u8 counter;
+    u8 curFrame : 7;
     u8 : 1;
-    u8 unk_488_0 : 2;
+    u8 deleteMode : 2;
     u8 : 6;
-} UnkStruct_0200E924;
+} WaitDial;
 
-typedef struct {
+typedef struct PokemonPreview {
     UnkStruct_ov5_021D30A8 unk_00;
-    CellActorData *unk_1C8;
-    BgConfig *unk_1CC;
-    u8 unk_1D0;
-    u8 unk_1D1;
-    u8 unk_1D2;
-    u8 unk_1D3;
-} UnkStruct_0200ED50;
+    CellActorData *cellActorData;
+    BgConfig *bgConfig;
+    u8 bgLayer;
+    u8 x;
+    u8 y;
+    u8 state;
+} PokemonPreview;
 
-static void sub_0200E130(Window *param0, u16 param1);
-static void sub_0200E31C(BgConfig *param0, u8 param1, u16 param2, u8 param3, u16 param4, u32 param5);
-static void sub_0200E924(UnkStruct_0200E924 *param0, u32 param1);
-static void sub_0200EB20(SysTask *param0, void *param1);
-static UnkStruct_0200ED50 *sub_0200ED14(BgConfig *param0, u8 param1, u8 param2, u8 param3, u32 param4);
-static void sub_0200ED50(UnkStruct_0200ED50 *param0, u32 param1);
-static void sub_0200ED7C(UnkStruct_0200ED50 *param0);
-static void sub_0200EDD4(UnkStruct_0200ED50 *param0, u8 param1, u8 param2);
-static void sub_0200EE98(UnkStruct_ov5_021D30A8 *param0, ArchivedSprite *param1);
-static void sub_0200EE24(UnkStruct_ov5_021D30A8 *param0, u16 param1, u8 param2);
-static void sub_0200EE64(UnkStruct_ov5_021D30A8 *param0, Pokemon *param1);
-static void sub_0200EC9C(SysTask *param0, void *param1);
-static void sub_0200EF7C(UnkStruct_0200ED50 *param0, u8 param1, u16 param2);
-static void sub_0200F12C(UnkStruct_0200ED50 *param0);
+static void DrawStandardWindowFrame(BgConfig *bgConfig, u8 bgLayer, u8 x, u8 y, u8 width, u8 height, u8 palette, u16 tile);
+static void DrawMessageBoxFrame(BgConfig *bgConfig, u8 bgLayer, u8 x, u8 y, u8 width, u8 height, u8 palette, u16 tile);
+static void BlitRectToBitmap(void *srcPixels, u16 srcX, u16 srcY, u16 srcWidth, u16 srcHeight, void *destPixels, u16 destWidth, u16 destHeight, u16 destX, u16 destY, u16 blitWidth, u16 blitHeight);
+static void DrawMessageBoxScrollCursor(Window *window, u16 baseTile);
+static void LoadSignpostContentTiles(BgConfig *bgConfig, u8 bgLayer, u16 offset, u8 param3, u16 narcMemberIdx, u32 heapID);
+static void DrawSignpostTiles(Window *window, u16 tile, u8 palette);
+static void DrawWaitDial(WaitDial *dial, u32 drawMode);
+static void SysTask_TickWaitDial(SysTask *task, void *data);
+static void SysTask_CleanupWaitDial(SysTask *task, void *data);
+static void SysTask_HandlePokemonPreview(SysTask *task, void *data);
+static PokemonPreview *CreatePokemonPreviewTask(BgConfig *bgConfig, u8 bgLayer, u8 x, u8 y, u32 heapID);
+static void sub_0200ED50(PokemonPreview *param0, u32 sprite);
+static void LoadPokemonPreviewResources(PokemonPreview *preview);
+static void CreatePokemonPreviewSprite(PokemonPreview *preview, u8 x, u8 y);
+static void LoadAndDrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, u16 species, u8 gender);
+static void LoadAndDrawPokemonPreviewSpriteFromStruct(UnkStruct_ov5_021D30A8 *param0, Pokemon *mon);
+static void DrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, ArchivedSprite *sprite);
+static void DrawPokemonPreviewWindow(PokemonPreview *preview, u8 palette, u16 tile);
+static void ErasePokemonPreviewWindow(PokemonPreview *preview);
 
-static const SpriteTemplate Unk_020E5040 = {
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    NNS_G2D_VRAM_TYPE_2DMAIN,
-    { 0x15CD5, 0x15CD5, 0x15CD5, 0x15CD5, 0x0, 0x0 },
-    0x0,
-    0x0
+static const SpriteTemplate sPokemonPreviewSpriteTemplate = {
+    .x = 0,
+    .y = 0,
+    .z = 0,
+    .animIdx = 0,
+    .priority = 0,
+    .plttIdx = 0,
+    .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+    .resources = {
+        POKEMON_PREVIEW_RESOURCE_ID,
+        POKEMON_PREVIEW_RESOURCE_ID,
+        POKEMON_PREVIEW_RESOURCE_ID,
+        POKEMON_PREVIEW_RESOURCE_ID,
+        NULL,
+        NULL,
+    },
+    .bgPriority = 0,
+    .transferToVRAM = FALSE,
 };
 
-void Window_SetFrame(BgConfig *param0, u8 param1, u16 param2, u8 param3, u32 param4)
+void Window_SetFrame(BgConfig *param0, u8 sprite, u16 param2, u8 param3, u32 param4)
 {
     if (param3 == 0) {
-        Graphics_LoadTilesToBgLayer(38, 0, param0, param1, param2, 0, 0, param4);
+        Graphics_LoadTilesToBgLayer(38, 0, param0, sprite, param2, 0, 0, param4);
     } else {
-        Graphics_LoadTilesToBgLayer(38, 1, param0, param1, param2, 0, 0, param4);
+        Graphics_LoadTilesToBgLayer(38, 1, param0, sprite, param2, 0, 0, param4);
     }
 }
 
@@ -93,7 +114,7 @@ u32 Window_FramePalette(void)
     return 24;
 }
 
-void sub_0200DAA4(BgConfig *param0, u8 param1, u16 param2, u8 param3, u8 param4, u32 param5)
+void sub_0200DAA4(BgConfig *param0, u8 sprite, u16 param2, u8 param3, u8 param4, u32 param5)
 {
     u32 v0;
 
@@ -103,7 +124,7 @@ void sub_0200DAA4(BgConfig *param0, u8 param1, u16 param2, u8 param3, u8 param4,
         v0 = 1;
     }
 
-    Graphics_LoadTilesToBgLayer(38, v0, param0, param1, param2, 0, 0, param5);
+    Graphics_LoadTilesToBgLayer(38, v0, param0, sprite, param2, 0, 0, param5);
 
     if (param4 == 2) {
         v0 = 45;
@@ -111,43 +132,45 @@ void sub_0200DAA4(BgConfig *param0, u8 param1, u16 param2, u8 param3, u8 param4,
         v0 = 24;
     }
 
-    if (param1 < 4) {
+    if (sprite < 4) {
         Graphics_LoadPalette(38, v0, 0, param3 * 0x20, 0x20, param5);
     } else {
         Graphics_LoadPalette(38, v0, 4, param3 * 0x20, 0x20, param5);
     }
 }
 
-static void sub_0200DB10(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6, u16 param7)
+static void DrawStandardWindowFrame(BgConfig *bgConfig, u8 bgLayer, u8 x, u8 y, u8 width, u8 height, u8 palette, u16 tile)
 {
-    Bg_FillTilemapRect(param0, param1, param7, param2 - 1, param3 - 1, 1, 1, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 1, param2, param3 - 1, param4, 1, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 2, param2 + param4, param3 - 1, 1, 1, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 3, param2 - 1, param3, 1, param5, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 5, param2 + param4, param3, 1, param5, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 6, param2 - 1, param3 + param5, 1, 1, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 7, param2, param3 + param5, param4, 1, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 8, param2 + param4, param3 + param5, 1, 1, param6);
+    // clang-format off
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile,     x - 1,     y - 1,      1,     1,      palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 1, x,         y - 1,      width, 1,      palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 2, x + width, y - 1,      1,     1,      palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 3, x - 1,     y,          1,     height, palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 5, x + width, y,          1,     height, palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 6, x - 1,     y + height, 1,     1,      palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 7, x,         y + height, width, 1,      palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 8, x + width, y + height, 1,     1,      palette);
+    // clang-format on
 }
 
-void Window_Show(Window *param0, u8 param1, u16 param2, u8 param3)
+void Window_Show(Window *param0, u8 sprite, u16 param2, u8 param3)
 {
     u8 v0 = Window_GetBgLayer(param0);
 
-    sub_0200DB10(param0->bgConfig, v0, Window_GetXPos(param0), Window_GetYPos(param0), Window_GetWidth(param0), Window_GetHeight(param0), param3, param2);
+    DrawStandardWindowFrame(param0->bgConfig, v0, Window_GetXPos(param0), Window_GetYPos(param0), Window_GetWidth(param0), Window_GetHeight(param0), param3, param2);
 
-    if (param1 == 0) {
+    if (sprite == 0) {
         Window_CopyToVRAM(param0);
     }
 }
 
-void Window_Clear(Window *param0, u8 param1)
+void Window_Clear(Window *param0, u8 sprite)
 {
     u8 v0 = Window_GetBgLayer(param0);
 
     Bg_FillTilemapRect(param0->bgConfig, v0, 0, Window_GetXPos(param0) - 1, Window_GetYPos(param0) - 1, Window_GetWidth(param0) + 2, Window_GetHeight(param0) + 2, 0);
 
-    if (param1 == 0) {
+    if (sprite == 0) {
         Window_ClearAndCopyToVRAM(param0);
     }
 }
@@ -162,118 +185,133 @@ u32 sub_0200DD08(u32 param0)
     return 25 + param0;
 }
 
-void sub_0200DD0C(BgConfig *param0, u8 param1, u16 param2, u8 param3, u8 param4, u32 param5)
+void sub_0200DD0C(BgConfig *param0, u8 sprite, u16 param2, u8 param3, u8 param4, u32 param5)
 {
-    Graphics_LoadTilesToBgLayer(38, sub_0200DD04(param4), param0, param1, param2, 0, 0, param5);
+    Graphics_LoadTilesToBgLayer(38, sub_0200DD04(param4), param0, sprite, param2, 0, 0, param5);
 
-    if (param1 < 4) {
+    if (sprite < 4) {
         Graphics_LoadPalette(38, sub_0200DD08(param4), 0, param3 * 0x20, 0x20, param5);
     } else {
         Graphics_LoadPalette(38, sub_0200DD08(param4), 4, param3 * 0x20, 0x20, param5);
     }
 }
 
-static void sub_0200DD7C(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6, u16 param7)
+static void DrawMessageBoxFrame(BgConfig *bgConfig, u8 bgLayer, u8 x, u8 y, u8 width, u8 height, u8 palette, u16 tile)
 {
-    Bg_FillTilemapRect(param0, param1, param7, param2 - 2, param3 - 1, 1, 1, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 1, param2 - 1, param3 - 1, 1, 1, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 2, param2, param3 - 1, param4, 1, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 3, param2 + param4, param3 - 1, 1, 1, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 4, param2 + param4 + 1, param3 - 1, 1, 1, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 5, param2 + param4 + 2, param3 - 1, 1, 1, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 6, param2 - 2, param3, 1, param5, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 7, param2 - 1, param3, 1, param5, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 9, param2 + param4, param3, 1, param5, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 10, param2 + param4 + 1, param3, 1, param5, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 11, param2 + param4 + 2, param3, 1, param5, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 12, param2 - 2, param3 + param5, 1, 1, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 13, param2 - 1, param3 + param5, 1, 1, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 14, param2, param3 + param5, param4, 1, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 15, param2 + param4, param3 + param5, 1, 1, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 16, param2 + param4 + 1, param3 + param5, 1, 1, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 17, param2 + param4 + 2, param3 + param5, 1, 1, param6);
+    // clang-format off
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile,      x - 2,         y - 1,      1,     1,      palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 1,  x - 1,         y - 1,      1,     1,      palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 2,  x,             y - 1,      width, 1,      palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 3,  x + width,     y - 1,      1,     1,      palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 4,  x + width + 1, y - 1,      1,     1,      palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 5,  x + width + 2, y - 1,      1,     1,      palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 6,  x - 2,         y,          1,     height, palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 7,  x - 1,         y,          1,     height, palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 9,  x + width,     y,          1,     height, palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 10, x + width + 1, y,          1,     height, palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 11, x + width + 2, y,          1,     height, palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 12, x - 2,         y + height, 1,     1,      palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 13, x - 1,         y + height, 1,     1,      palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 14, x,             y + height, width, 1,    palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 15, x + width,     y + height, 1,     1,      palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 16, x + width + 1, y + height, 1,     1,      palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 17, x + width + 2, y + height, 1,     1,      palette);
+    // clang-format on
 }
 
-void sub_0200E010(Window *param0, u32 param1, u32 param2)
+void sub_0200E010(Window *param0, u32 sprite, u32 param2)
 {
-    sub_0200DD7C(param0->bgConfig, Window_GetBgLayer(param0), Window_GetXPos(param0), Window_GetYPos(param0), Window_GetWidth(param0), Window_GetHeight(param0), param2, param1);
+    DrawMessageBoxFrame(param0->bgConfig, Window_GetBgLayer(param0), Window_GetXPos(param0), Window_GetYPos(param0), Window_GetWidth(param0), Window_GetHeight(param0), param2, sprite);
 }
 
-void sub_0200E060(Window *param0, u8 param1, u16 param2, u8 param3)
+void sub_0200E060(Window *param0, u8 sprite, u16 param2, u8 param3)
 {
     sub_0200E010(param0, param2, param3);
 
-    if (param1 == 0) {
+    if (sprite == 0) {
         Window_CopyToVRAM(param0);
     }
 
-    sub_0200E130(param0, param2);
+    DrawMessageBoxScrollCursor(param0, param2);
 }
 
-void sub_0200E084(Window *param0, u8 param1)
+void sub_0200E084(Window *param0, u8 sprite)
 {
     u8 v0 = Window_GetBgLayer(param0);
 
     Bg_FillTilemapRect(param0->bgConfig, v0, 0, Window_GetXPos(param0) - 2, Window_GetYPos(param0) - 1, Window_GetWidth(param0) + 5, Window_GetHeight(param0) + 2, 0);
 
-    if (param1 == 0) {
+    if (sprite == 0) {
         Window_ClearAndCopyToVRAM(param0);
     }
 }
 
-static void sub_0200E0EC(void *param0, u16 param1, u16 param2, u16 param3, u16 param4, void *param5, u16 param6, u16 param7, u16 param8, u16 param9, u16 param10, u16 param11)
+static void BlitRectToBitmap(void *srcPixels, u16 srcX, u16 srcY, u16 srcWidth, u16 srcHeight, void *destPixels, u16 destWidth, u16 destHeight, u16 destX, u16 destY, u16 blitWidth, u16 blitHeight)
 {
-    Bitmap v0;
-    Bitmap v1;
+    Bitmap src, dest;
 
-    v0.pixels = (u8 *)param0;
-    v0.width = param3;
-    v0.height = param4;
+    src.pixels = (u8 *)srcPixels;
+    src.width = srcWidth;
+    src.height = srcHeight;
 
-    v1.pixels = (u8 *)param5;
-    v1.width = param6;
-    v1.height = param7;
+    dest.pixels = (u8 *)destPixels;
+    dest.width = destWidth;
+    dest.height = destHeight;
 
-    Bitmap_BlitRect4bpp(&v0, &v1, param1, param2, param8, param9, param10, param11, 0);
+    Bitmap_BlitRect4bpp(&src, &dest, srcX, srcY, destX, destY, blitWidth, blitHeight, 0);
 }
 
-static void sub_0200E130(Window *param0, u16 param1)
+#define SCROLL_CURSOR_TILES_PER_FRAME 4
+#define SCROLL_CURSOR_FRAME_COUNT     3
+#define SCROLL_CURSOR_TILE_OFFSET(i)  (TILE_SIZE_4BPP * (i))
+#define SCROLL_CURSOR_FRAME_SIZE      (SCROLL_CURSOR_TILE_OFFSET(SCROLL_CURSOR_TILES_PER_FRAME))
+#define SCROLL_CURSOR_GRAPHICS_SIZE   (SCROLL_CURSOR_FRAME_SIZE * SCROLL_CURSOR_FRAME_COUNT)
+
+static void DrawMessageBoxScrollCursor(Window *window, u16 baseTile)
 {
-    u32 v0;
-    u8 *v1;
-    u8 *v2;
-    u8 *v3;
-    void *v4;
-    u8 v5;
-    u8 v6;
+    // must forward-declare these to match
+    u8 *cursorTiles;
+    void *cursorCharPtr;
 
-    v0 = BgConfig_GetHeapID(param0->bgConfig);
-    v5 = Window_GetBgLayer(param0);
-    v1 = Heap_AllocFromHeap(v0, (0x20 * 4 * 3));
-    v2 = Bg_GetCharPtr(v5);
+    u32 heapID = BgConfig_GetHeapID(window->bgConfig);
+    u8 bgLayer = Window_GetBgLayer(window);
+    u8 *cursorBlit = Heap_AllocFromHeap(heapID, SCROLL_CURSOR_GRAPHICS_SIZE);
+    u8 *bgGfx = Bg_GetCharPtr(bgLayer);
 
-    {
-        NNSG2dCharacterData *v7;
+    NNSG2dCharacterData *cursorCharData;
+    cursorCharPtr = Graphics_GetCharData(NARC_INDEX_GRAPHIC__PL_WINFRAME, 22, FALSE, &cursorCharData, heapID);
+    cursorTiles = cursorCharData->pRawData;
 
-        v4 = Graphics_GetCharData(38, 22, 0, &v7, v0);
-        v3 = (u8 *)v7->pRawData;
+    // Copy the window frame tiles into the blit window as a background
+    for (u8 i = 0; i < SCROLL_CURSOR_FRAME_COUNT; i++) {
+        u32 frameOffset = i * SCROLL_CURSOR_FRAME_SIZE;
+
+        memcpy(&cursorBlit[frameOffset + SCROLL_CURSOR_TILE_OFFSET(0)], &bgGfx[(baseTile + 10) * TILE_SIZE_4BPP], TILE_SIZE_4BPP);
+        memcpy(&cursorBlit[frameOffset + SCROLL_CURSOR_TILE_OFFSET(1)], &bgGfx[(baseTile + 11) * TILE_SIZE_4BPP], TILE_SIZE_4BPP);
+        memcpy(&cursorBlit[frameOffset + SCROLL_CURSOR_TILE_OFFSET(2)], &bgGfx[(baseTile + 10) * TILE_SIZE_4BPP], TILE_SIZE_4BPP);
+        memcpy(&cursorBlit[frameOffset + SCROLL_CURSOR_TILE_OFFSET(3)], &bgGfx[(baseTile + 11) * TILE_SIZE_4BPP], TILE_SIZE_4BPP);
     }
 
-    for (v6 = 0; v6 < 3; v6++) {
-        memcpy(&v1[v6 * 0x20 * 4 + 0x20 * 0], &v2[(param1 + 10) * 0x20], 0x20);
-        memcpy(&v1[v6 * 0x20 * 4 + 0x20 * 1], &v2[(param1 + 11) * 0x20], 0x20);
-        memcpy(&v1[v6 * 0x20 * 4 + 0x20 * 2], &v2[(param1 + 10) * 0x20], 0x20);
-        memcpy(&v1[v6 * 0x20 * 4 + 0x20 * 3], &v2[(param1 + 11) * 0x20], 0x20);
-    }
+    BlitRectToBitmap(cursorTiles,
+        4,
+        0,
+        12,
+        16 * 3,
+        cursorBlit,
+        12,
+        16 * 3,
+        1,
+        0,
+        12,
+        16 * 3);
 
-    sub_0200E0EC(v3, 4, 0, 12, 16 * 3, v1, 12, 16 * 3, 1, 0, 12, 16 * 3);
-    Bg_LoadTiles(param0->bgConfig, v5, v1, (0x20 * 4 * 3), param1 + 18);
-    TextPrinter_SetScrollArrowBaseTile(param1);
-    Heap_FreeToHeap(v4);
-    Heap_FreeToHeap(v1);
+    Bg_LoadTiles(window->bgConfig, bgLayer, cursorBlit, SCROLL_CURSOR_GRAPHICS_SIZE, baseTile + 18);
+    TextPrinter_SetScrollArrowBaseTile(baseTile);
+    Heap_FreeToHeap(cursorCharPtr);
+    Heap_FreeToHeap(cursorBlit);
 }
 
-void sub_0200E218(BgConfig *param0, u8 param1, u16 param2, u8 param3, u8 param4, u32 param5)
+void sub_0200E218(BgConfig *param0, u8 sprite, u16 param2, u8 param3, u8 param4, u32 param5)
 {
     void *v0;
     NNSG2dCharacterData *v1;
@@ -301,15 +339,15 @@ void sub_0200E218(BgConfig *param0, u8 param1, u16 param2, u8 param3, u8 param4,
         v2[v3] = (v4 << 4) | v5;
     }
 
-    Bg_LoadTiles(param0, param1, v2, 0x20 * 18, param2);
+    Bg_LoadTiles(param0, sprite, v2, 0x20 * 18, param2);
     Heap_FreeToHeap(v0);
     Heap_FreeToHeap(v2);
 }
 
-void sub_0200E2A4(BgConfig *param0, u8 param1, u16 param2, u8 param3, u8 param4, u16 param5, u32 param6)
+void sub_0200E2A4(BgConfig *param0, u8 sprite, u16 param2, u8 param3, u8 param4, u16 param5, u32 param6)
 {
     Graphics_LoadTilesToBgLayer(
-        36, 0, param0, param1, param2, (18 + 12) * 0x20, 0, param6);
+        36, 0, param0, sprite, param2, (18 + 12) * 0x20, 0, param6);
 
     {
         NNSG2dPaletteData *v0;
@@ -320,88 +358,91 @@ void sub_0200E2A4(BgConfig *param0, u8 param1, u16 param2, u8 param3, u8 param4,
         NNS_G2dGetUnpackedPaletteData(v1, &v0);
         v2 = (u16 *)v0->pRawData;
 
-        Bg_LoadPalette(param1, (void *)&v2[param4 * 16], 0x20, param3 * 0x20);
+        Bg_LoadPalette(sprite, (void *)&v2[param4 * 16], 0x20, param3 * 0x20);
         Heap_FreeToHeapExplicit(param6, v1);
     }
 
     if ((param4 == 0) || (param4 == 1)) {
-        sub_0200E31C(param0, param1, param2 + (18 + 12), param4, param5, param6);
+        LoadSignpostContentTiles(param0, sprite, param2 + (18 + 12), param4, param5, param6);
     }
 }
 
-static void sub_0200E31C(BgConfig *param0, u8 param1, u16 param2, u8 param3, u16 param4, u32 param5)
+static void LoadSignpostContentTiles(BgConfig *bgConfig, u8 bgLayer, u16 offset, u8 signpostType, u16 narcMemberIdx, u32 heapID)
 {
-    if (param3 == 0) {
-        param4 += 33;
+    if (signpostType == 0) {
+        narcMemberIdx += 33;
     } else {
-        param4 += 2;
+        narcMemberIdx += 2;
     }
 
-    Graphics_LoadTilesToBgLayer(36, param4, param0, param1, param2, 24 * 0x20, 0, param5);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__FIELD_BOARD, narcMemberIdx, bgConfig, bgLayer, offset, 24 * TILE_SIZE_4BPP, FALSE, heapID);
 }
 
-static void sub_0200E354(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6, u16 param7)
+static void DrawSignpostFrame(BgConfig *bgConfig, u8 bgLayer, u8 x, u8 y, u8 width, u8 height, u8 palette, u16 tile)
 {
-    Bg_FillTilemapRect(param0, param1, param7, param2 - 9, param3 - 1, 1, 1, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 1, param2 - 8, param3 - 1, 1, 1, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 2, param2 - 7, param3 - 1, param4 + 7, 1, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 3, param2 + param4, param3 - 1, 1, 1, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 4, param2 + param4 + 1, param3 - 1, 1, 1, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 5, param2 + param4 + 2, param3 - 1, 1, 1, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 6, param2 - 9, param3, 1, param5, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 7, param2 - 8, param3, 1, param5, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 8, param2 - 1, param3, 1, param5, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 9, param2 + param4, param3, 1, param5, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 10, param2 + param4 + 1, param3, 1, param5, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 11, param2 + param4 + 2, param3, 1, param5, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 12, param2 - 9, param3 + param5, 1, 1, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 13, param2 - 8, param3 + param5, 1, 1, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 14, param2 - 7, param3 + param5, param4 + 7, 1, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 15, param2 + param4, param3 + param5, 1, 1, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 16, param2 + param4 + 1, param3 + param5, 1, 1, param6);
-    Bg_FillTilemapRect(param0, param1, param7 + 17, param2 + param4 + 2, param3 + param5, 1, 1, param6);
+    // clang-format off
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile,      x - 9,         y - 1,      1,         1,      palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 1,  x - 8,         y - 1,      1,         1,      palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 2,  x - 7,         y - 1,      width + 7, 1,      palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 3,  x + width,     y - 1,      1,         1,      palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 4,  x + width + 1, y - 1,      1,         1,      palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 5,  x + width + 2, y - 1,      1,         1,      palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 6,  x - 9,         y,          1,         height, palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 7,  x - 8,         y,          1,         height, palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 8,  x - 1,         y,          1,         height, palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 9,  x + width,     y,          1,         height, palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 10, x + width + 1, y,          1,         height, palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 11, x + width + 2, y,          1,         height, palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 12, x - 9,         y + height, 1,         1,      palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 13, x - 8,         y + height, 1,         1,      palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 14, x - 7,         y + height, width + 7, 1,      palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 15, x + width,     y + height, 1,         1,      palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 16, x + width + 1, y + height, 1,         1,      palette);
+    Bg_FillTilemapRect(bgConfig, bgLayer, tile + 17, x + width + 2, y + height, 1,         1,      palette);
+    // clang-format on
 }
 
-static void sub_0200E61C(Window *param0, u16 param1, u8 param2)
+#define SIGNPOST_WIDTH_TILES  6
+#define SIGNPOST_HEIGHT_TILES 4
+
+static void DrawSignpostTiles(Window *window, u16 tile, u8 palette)
 {
-    u16 v0, v1;
-    u16 v2, v3;
-    u8 v4;
+    u16 dy, dx; // must forward-declare to match
 
-    v4 = Window_GetBgLayer(param0);
-    v2 = Window_GetXPos(param0) - 7;
-    v3 = Window_GetYPos(param0);
+    u8 bgLayer = Window_GetBgLayer(window);
+    u16 x = Window_GetXPos(window) - 7;
+    u16 y = Window_GetYPos(window);
 
-    for (v0 = 0; v0 < 4; v0++) {
-        for (v1 = 0; v1 < 6; v1++) {
-            Bg_FillTilemapRect(param0->bgConfig, v4, param1 + v0 * 6 + v1, v2 + v1, v3 + v0, 1, 1, param2);
+    for (dy = 0; dy < SIGNPOST_HEIGHT_TILES; dy++) {
+        for (dx = 0; dx < SIGNPOST_WIDTH_TILES; dx++) {
+            Bg_FillTilemapRect(window->bgConfig, bgLayer, tile + dy * SIGNPOST_WIDTH_TILES + dx, x + dx, y + dy, 1, 1, palette);
         }
     }
 }
 
-void sub_0200E69C(Window *param0, u8 param1, u16 param2, u8 param3, u8 param4)
+void sub_0200E69C(Window *param0, u8 sprite, u16 param2, u8 param3, u8 param4)
 {
     u8 v0 = Window_GetBgLayer(param0);
 
     if ((param4 == 0) || (param4 == 1)) {
-        sub_0200E354(param0->bgConfig, v0, Window_GetXPos(param0), Window_GetYPos(param0), Window_GetWidth(param0), Window_GetHeight(param0), param3, param2);
-        sub_0200E61C(param0, param2 + (18 + 12), param3);
+        DrawSignpostFrame(param0->bgConfig, v0, Window_GetXPos(param0), Window_GetYPos(param0), Window_GetWidth(param0), Window_GetHeight(param0), param3, param2);
+        DrawSignpostTiles(param0, param2 + (18 + 12), param3);
     } else {
-        sub_0200DD7C(param0->bgConfig, v0, Window_GetXPos(param0), Window_GetYPos(param0), Window_GetWidth(param0), Window_GetHeight(param0), param3, param2);
+        DrawMessageBoxFrame(param0->bgConfig, v0, Window_GetXPos(param0), Window_GetYPos(param0), Window_GetWidth(param0), Window_GetHeight(param0), param3, param2);
     }
 
-    if (param1 == 0) {
+    if (sprite == 0) {
         Window_CopyToVRAM(param0);
     }
 
-    sub_0200E130(param0, param2);
+    DrawMessageBoxScrollCursor(param0, param2);
 }
 
-void sub_0200E744(Window *param0, u8 param1, u8 param2)
+void sub_0200E744(Window *param0, u8 sprite, u8 param2)
 {
     u8 v0 = Window_GetBgLayer(param0);
 
-    if ((param1 == 0) || (param1 == 1)) {
+    if ((sprite == 0) || (sprite == 1)) {
         Bg_FillTilemapRect(param0->bgConfig, v0, 0, Window_GetXPos(param0) - 9, Window_GetYPos(param0) - 1, Window_GetWidth(param0) + 11, Window_GetHeight(param0) + 2, 0);
     } else {
         Bg_FillTilemapRect(param0->bgConfig, v0, 0, Window_GetXPos(param0) - 2, Window_GetYPos(param0) - 1, Window_GetWidth(param0) + 5, Window_GetHeight(param0) + 2, 0);
@@ -412,9 +453,9 @@ void sub_0200E744(Window *param0, u8 param1, u8 param2)
     }
 }
 
-void *sub_0200E7FC(Window *param0, u32 param1)
+void *sub_0200E7FC(Window *param0, u32 sprite)
 {
-    UnkStruct_0200E924 *v0;
+    WaitDial *v0;
     u32 v1;
     u8 *v2;
     u8 *v3;
@@ -426,19 +467,19 @@ void *sub_0200E7FC(Window *param0, u32 param1)
     v1 = BgConfig_GetHeapID(param0->bgConfig);
     v6 = Window_GetBgLayer(param0);
     v2 = Bg_GetCharPtr(v6);
-    v0 = Heap_AllocFromHeap(v1, sizeof(UnkStruct_0200E924));
+    v0 = Heap_AllocFromHeap(v1, sizeof(WaitDial));
 
-    memcpy(v0->unk_404, &v2[(param1 + 18) * 0x20], 0x20 * 4);
+    memcpy(v0->messageBoxPixels, &v2[(sprite + 18) * 0x20], 0x20 * 4);
 
     v4 = (u8 *)Heap_AllocFromHeap(v1, 0x20 * 4);
 
-    memcpy(&v4[0x20 * 0], &v2[(param1 + 10) * 0x20], 0x20);
-    memcpy(&v4[0x20 * 1], &v2[(param1 + 11) * 0x20], 0x20);
-    memcpy(&v4[0x20 * 2], &v2[(param1 + 10) * 0x20], 0x20);
-    memcpy(&v4[0x20 * 3], &v2[(param1 + 11) * 0x20], 0x20);
+    memcpy(&v4[0x20 * 0], &v2[(sprite + 10) * 0x20], 0x20);
+    memcpy(&v4[0x20 * 1], &v2[(sprite + 11) * 0x20], 0x20);
+    memcpy(&v4[0x20 * 2], &v2[(sprite + 10) * 0x20], 0x20);
+    memcpy(&v4[0x20 * 3], &v2[(sprite + 11) * 0x20], 0x20);
 
     for (v7 = 0; v7 < 8; v7++) {
-        memcpy(&v0->unk_04[0x20 * 4 * v7], v4, 0x20 * 4);
+        memcpy(&v0->pixels[0x20 * 4 * v7], v4, 0x20 * 4);
     }
 
     Heap_FreeToHeap(v4);
@@ -450,272 +491,342 @@ void *sub_0200E7FC(Window *param0, u32 param1)
         v3 = (u8 *)v8->pRawData;
     }
 
-    sub_0200E0EC(v3, 0, 0, 16, 16 * 8, v0->unk_04, 16, 16 * 8, 0, 0, 16, 16 * 8);
+    BlitRectToBitmap(v3, 0, 0, 16, 16 * 8, v0->pixels, 16, 16 * 8, 0, 0, 16, 16 * 8);
     Heap_FreeToHeap(v5);
 
-    v0->unk_00 = param0;
-    v0->unk_484 = (u16)param1;
-    v0->unk_486 = 0;
-    v0->unk_487_0 = 0;
-    v0->unk_488_0 = 0;
+    v0->window = param0;
+    v0->messageBoxTile = (u16)sprite;
+    v0->counter = 0;
+    v0->curFrame = 0;
+    v0->deleteMode = 0;
 
-    SysTask_ExecuteOnVBlank(sub_0200EB20, v0, 0);
-    sub_0200E924(v0, 1);
+    SysTask_ExecuteOnVBlank(SysTask_TickWaitDial, v0, 0);
+    DrawWaitDial(v0, 1);
 
     return v0;
 }
 
-static void sub_0200E924(UnkStruct_0200E924 *param0, u32 param1)
+static void DrawWaitDial(WaitDial *dial, u32 drawMode)
 {
-    u8 v0, v1, v2, v3;
+    u8 bgLayer = Window_GetBgLayer(dial->window);
+    u8 x = Window_GetXPos(dial->window);
+    u8 y = Window_GetYPos(dial->window);
+    u8 width = Window_GetWidth(dial->window);
 
-    v0 = Window_GetBgLayer(param0->unk_00);
-    v1 = Window_GetXPos(param0->unk_00);
-    v2 = Window_GetYPos(param0->unk_00);
-    v3 = Window_GetWidth(param0->unk_00);
-
-    if (param1 == 2) {
-        Bg_LoadTiles(param0->unk_00->bgConfig, v0, param0->unk_404, 0x20 * 4, param0->unk_484 + 18);
-        Bg_FillTilemapRect(param0->unk_00->bgConfig, v0, param0->unk_484 + 10, v1 + v3 + 1, v2 + 2, 1, 1, 16);
-        Bg_FillTilemapRect(param0->unk_00->bgConfig, v0, param0->unk_484 + 11, v1 + v3 + 2, v2 + 2, 1, 1, 16);
-        Bg_FillTilemapRect(param0->unk_00->bgConfig, v0, param0->unk_484 + 10, v1 + v3 + 1, v2 + 3, 1, 1, 16);
-        Bg_FillTilemapRect(param0->unk_00->bgConfig, v0, param0->unk_484 + 11, v1 + v3 + 2, v2 + 3, 1, 1, 16);
-        Bg_CopyTilemapBufferToVRAM(param0->unk_00->bgConfig, v0);
+    if (drawMode == 2) {
+        Bg_LoadTiles(dial->window->bgConfig, bgLayer, dial->messageBoxPixels, WAIT_DIAL_FRAME_SIZE, dial->messageBoxTile + 18);
+        Bg_FillTilemapRect(dial->window->bgConfig, bgLayer, dial->messageBoxTile + 10, x + width + 1, y + 2, 1, 1, TILEMAP_FILL_VAL_KEEP_PALETTE);
+        Bg_FillTilemapRect(dial->window->bgConfig, bgLayer, dial->messageBoxTile + 11, x + width + 2, y + 2, 1, 1, TILEMAP_FILL_VAL_KEEP_PALETTE);
+        Bg_FillTilemapRect(dial->window->bgConfig, bgLayer, dial->messageBoxTile + 10, x + width + 1, y + 3, 1, 1, TILEMAP_FILL_VAL_KEEP_PALETTE);
+        Bg_FillTilemapRect(dial->window->bgConfig, bgLayer, dial->messageBoxTile + 11, x + width + 2, y + 3, 1, 1, TILEMAP_FILL_VAL_KEEP_PALETTE);
+        Bg_CopyTilemapBufferToVRAM(dial->window->bgConfig, bgLayer);
 
         return;
     }
 
-    Bg_LoadTiles(
-        param0->unk_00->bgConfig, v0, &param0->unk_04[0x20 * 4 * param0->unk_487_0], 0x20 * 4, param0->unk_484 + 18);
+    Bg_LoadTiles(dial->window->bgConfig, bgLayer, &dial->pixels[WAIT_DIAL_FRAME_SIZE * dial->curFrame], WAIT_DIAL_FRAME_SIZE, dial->messageBoxTile + 18);
 
-    if (param1 == 0) {
+    if (drawMode == 0) {
         return;
     }
 
-    Bg_FillTilemapRect(param0->unk_00->bgConfig, v0, param0->unk_484 + 18, v1 + v3 + 1, v2 + 2, 1, 1, 16);
-    Bg_FillTilemapRect(param0->unk_00->bgConfig, v0, param0->unk_484 + 19, v1 + v3 + 2, v2 + 2, 1, 1, 16);
-    Bg_FillTilemapRect(param0->unk_00->bgConfig, v0, param0->unk_484 + 20, v1 + v3 + 1, v2 + 3, 1, 1, 16);
-    Bg_FillTilemapRect(param0->unk_00->bgConfig, v0, param0->unk_484 + 21, v1 + v3 + 2, v2 + 3, 1, 1, 16);
-    Bg_CopyTilemapBufferToVRAM(param0->unk_00->bgConfig, v0);
+    Bg_FillTilemapRect(dial->window->bgConfig, bgLayer, dial->messageBoxTile + 18, x + width + 1, y + 2, 1, 1, TILEMAP_FILL_VAL_KEEP_PALETTE);
+    Bg_FillTilemapRect(dial->window->bgConfig, bgLayer, dial->messageBoxTile + 19, x + width + 2, y + 2, 1, 1, TILEMAP_FILL_VAL_KEEP_PALETTE);
+    Bg_FillTilemapRect(dial->window->bgConfig, bgLayer, dial->messageBoxTile + 20, x + width + 1, y + 3, 1, 1, TILEMAP_FILL_VAL_KEEP_PALETTE);
+    Bg_FillTilemapRect(dial->window->bgConfig, bgLayer, dial->messageBoxTile + 21, x + width + 2, y + 3, 1, 1, TILEMAP_FILL_VAL_KEEP_PALETTE);
+    Bg_CopyTilemapBufferToVRAM(dial->window->bgConfig, bgLayer);
 }
 
-static void sub_0200EB20(SysTask *param0, void *param1)
+static void SysTask_TickWaitDial(SysTask *task, void *data)
 {
-    UnkStruct_0200E924 *v0 = param1;
+    WaitDial *dial = data;
 
-    if (v0->unk_488_0 != 0) {
-        if (v0->unk_488_0 == 1) {
-            sub_0200E924(v0, 2);
+    if (dial->deleteMode != 0) {
+        if (dial->deleteMode == 1) {
+            DrawWaitDial(dial, 2);
         }
 
-        SysTask_Done(param0);
+        SysTask_Done(task);
         return;
     }
 
-    v0->unk_486++;
+    dial->counter++;
 
-    if (v0->unk_486 == 16) {
-        v0->unk_486 = 0;
-        v0->unk_487_0 = (v0->unk_487_0 + 1) & 7;
-        sub_0200E924(v0, 0);
+    if (dial->counter == 16) {
+        dial->counter = 0;
+        dial->curFrame = (dial->curFrame + 1) & 7;
+        DrawWaitDial(dial, 0);
     }
 }
 
-static void sub_0200EB8C(SysTask *param0, void *param1)
+static void SysTask_CleanupWaitDial(SysTask *task, void *data)
 {
-    Heap_FreeToHeap(param1);
-    SysTask_Done(param0);
+    Heap_FreeToHeap(data);
+    SysTask_Done(task);
 }
 
 void DeleteWaitDial(void *param0)
 {
-    UnkStruct_0200E924 *v0 = param0;
+    WaitDial *v0 = param0;
 
-    SysTask_ExecuteAfterVBlank(sub_0200EB8C, v0, 0);
-    v0->unk_488_0 = 1;
+    SysTask_ExecuteAfterVBlank(SysTask_CleanupWaitDial, v0, 0);
+    v0->deleteMode = 1;
 }
 
 void sub_0200EBC8(void *param0)
 {
-    UnkStruct_0200E924 *v0 = param0;
+    WaitDial *v0 = param0;
 
-    SysTask_ExecuteAfterVBlank(sub_0200EB8C, v0, 0);
-    v0->unk_488_0 = 2;
+    SysTask_ExecuteAfterVBlank(SysTask_CleanupWaitDial, v0, 0);
+    v0->deleteMode = 2;
 }
 
-u8 *sub_0200EBF0(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 param5, u16 param6, u8 param7, int param8)
+u8 *sub_0200EBF0(BgConfig *param0, u8 sprite, u8 param2, u8 param3, u8 param4, u16 param5, u16 param6, u8 param7, int param8)
 {
-    UnkStruct_0200ED50 *v0 = sub_0200ED14(param0, param1, param2, param3, param8);
+    PokemonPreview *v0 = CreatePokemonPreviewTask(param0, sprite, param2, param3, param8);
 
     sub_0200ED50(v0, param8);
-    sub_0200ED7C(v0);
-    sub_0200EDD4(v0, param2, param3);
-    sub_0200EE24(&v0->unk_00, param6, param7);
-    sub_0200EF7C(v0, param4, param5);
-    Bg_CopyTilemapBufferToVRAM(param0, param1);
+    LoadPokemonPreviewResources(v0);
+    CreatePokemonPreviewSprite(v0, param2, param3);
+    LoadAndDrawPokemonPreviewSprite(&v0->unk_00, param6, param7);
+    DrawPokemonPreviewWindow(v0, param4, param5);
+    Bg_CopyTilemapBufferToVRAM(param0, sprite);
 
-    return &v0->unk_1D3;
+    return &v0->state;
 }
 
-u8 *sub_0200EC48(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 param5, Pokemon *param6, int param7)
+u8 *sub_0200EC48(BgConfig *param0, u8 sprite, u8 param2, u8 param3, u8 param4, u16 param5, Pokemon *param6, int param7)
 {
-    UnkStruct_0200ED50 *v0 = sub_0200ED14(param0, param1, param2, param3, param7);
+    PokemonPreview *v0 = CreatePokemonPreviewTask(param0, sprite, param2, param3, param7);
 
     sub_0200ED50(v0, param7);
-    sub_0200ED7C(v0);
-    sub_0200EDD4(v0, param2, param3);
-    sub_0200EE64(&v0->unk_00, param6);
-    sub_0200EF7C(v0, param4, param5);
-    Bg_CopyTilemapBufferToVRAM(param0, param1);
+    LoadPokemonPreviewResources(v0);
+    CreatePokemonPreviewSprite(v0, param2, param3);
+    LoadAndDrawPokemonPreviewSpriteFromStruct(&v0->unk_00, param6);
+    DrawPokemonPreviewWindow(v0, param4, param5);
+    Bg_CopyTilemapBufferToVRAM(param0, sprite);
 
-    return &v0->unk_1D3;
+    return &v0->state;
 }
 
-static void sub_0200EC9C(SysTask *param0, void *param1)
+static void SysTask_HandlePokemonPreview(SysTask *task, void *data)
 {
-    UnkStruct_0200ED50 *v0 = param1;
+    PokemonPreview *preview = data;
 
-    switch (v0->unk_1D3) {
+    switch (preview->state) {
     case 1:
-        sub_0200F12C(v0);
-        sub_0200D0F4(v0->unk_1C8);
-        ov5_021D375C(&v0->unk_00);
-        SysTask_FinishAndFreeParam(param0);
+        ErasePokemonPreviewWindow(preview);
+        sub_0200D0F4(preview->cellActorData);
+        ov5_021D375C(&preview->unk_00);
+        SysTask_FinishAndFreeParam(task);
         return;
+
     case 2:
-        v0->unk_1D3 = 3;
-        CellActor_SetAnim(v0->unk_1C8->unk_00, 1);
+        preview->state = 3;
+        CellActor_SetAnim(preview->cellActorData->unk_00, 1);
         break;
+
     case 3:
-        if (CellActor_GetAnimFrame(v0->unk_1C8->unk_00) == 6) {
-            v0->unk_1D3 = 0;
+        if (CellActor_GetAnimFrame(preview->cellActorData->unk_00) == 6) {
+            preview->state = 0;
         }
+        break;
     }
 
-    CellActor_UpdateAnim(v0->unk_1C8->unk_00, FX32_ONE);
-    CellActorCollection_Update(v0->unk_00.unk_00);
+    CellActor_UpdateAnim(preview->cellActorData->unk_00, FX32_ONE);
+    CellActorCollection_Update(preview->unk_00.unk_00);
 }
 
-static UnkStruct_0200ED50 *sub_0200ED14(BgConfig *param0, u8 param1, u8 param2, u8 param3, u32 param4)
+static PokemonPreview *CreatePokemonPreviewTask(BgConfig *bgConfig, u8 bgLayer, u8 x, u8 y, u32 heapID)
 {
-    UnkStruct_0200ED50 *v0 = SysTask_GetParam(SysTask_StartAndAllocateParam(sub_0200EC9C, sizeof(UnkStruct_0200ED50), 0, param4));
+    PokemonPreview *preview = SysTask_GetParam(SysTask_StartAndAllocateParam(SysTask_HandlePokemonPreview, sizeof(PokemonPreview), 0, heapID));
 
-    v0->unk_1D3 = 0;
-    v0->unk_1CC = param0;
-    v0->unk_1D0 = param1;
-    v0->unk_1D1 = param2;
-    v0->unk_1D2 = param3;
+    preview->state = 0;
+    preview->bgConfig = bgConfig;
+    preview->bgLayer = bgLayer;
+    preview->x = x;
+    preview->y = y;
 
-    return v0;
+    return preview;
 }
 
-static void sub_0200ED50(UnkStruct_0200ED50 *param0, u32 param1)
+static void sub_0200ED50(PokemonPreview *param0, u32 param1)
 {
     UnkStruct_ov104_02241308 v0 = { 1, 1, 1, 1, 0, 0 };
     ov5_021D3190(&param0->unk_00, &v0, 1, param1);
 }
 
-static void sub_0200ED7C(UnkStruct_0200ED50 *param0)
+static void LoadPokemonPreviewResources(PokemonPreview *preview)
 {
-    ov5_021D3270(&param0->unk_00, 38, 49, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 89301);
-    ov5_021D3360(&param0->unk_00, 38, 47, 0, 89301);
-    ov5_021D3388(&param0->unk_00, 38, 46, 0, 89301);
-    ov5_021D33B0(&param0->unk_00, 38, 48, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 89301);
+    ov5_021D3270(&preview->unk_00, NARC_INDEX_GRAPHIC__PL_WINFRAME, 49, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, POKEMON_PREVIEW_RESOURCE_ID);
+    ov5_021D3360(&preview->unk_00, NARC_INDEX_GRAPHIC__PL_WINFRAME, 47, FALSE, POKEMON_PREVIEW_RESOURCE_ID);
+    ov5_021D3388(&preview->unk_00, NARC_INDEX_GRAPHIC__PL_WINFRAME, 46, FALSE, POKEMON_PREVIEW_RESOURCE_ID);
+    ov5_021D33B0(&preview->unk_00, NARC_INDEX_GRAPHIC__PL_WINFRAME, 48, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, POKEMON_PREVIEW_RESOURCE_ID);
 }
 
-static void sub_0200EDD4(UnkStruct_0200ED50 *param0, u8 param1, u8 param2)
+static void CreatePokemonPreviewSprite(PokemonPreview *preview, u8 x, u8 y)
 {
-    SpriteTemplate v0 = Unk_020E5040;
+    SpriteTemplate template = sPokemonPreviewSpriteTemplate;
+    template.x = (x + 5) * 8;
+    template.y = (y + 5) * 8;
 
-    v0.x = (param1 + 5) * 8;
-    v0.y = (param2 + 5) * 8;
+    preview->cellActorData = ov5_021D3584(&preview->unk_00, &template);
 
-    param0->unk_1C8 = ov5_021D3584(&param0->unk_00, &v0);
-
-    CellActorCollection_Update(param0->unk_00.unk_00);
-    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+    CellActorCollection_Update(preview->unk_00.unk_00);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, TRUE);
 }
 
-static void sub_0200EE24(UnkStruct_ov5_021D30A8 *param0, u16 param1, u8 param2)
+static void LoadAndDrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, u16 species, u8 gender)
 {
-    void *v0;
-    ArchivedSprite v1;
+    void *buf = sub_0200762C(param0->unk_1C6);
 
-    v0 = sub_0200762C(param0->unk_1C6);
-
-    BuildArchivedPokemonSprite(&v1, param1, param2, 2, 0, NULL, NULL);
-    sub_0200EE98(param0, &v1);
-    sub_02007B6C(v0);
+    ArchivedSprite sprite;
+    BuildArchivedPokemonSprite(&sprite, species, gender, FACE_FRONT, FALSE, NULL, NULL);
+    DrawPokemonPreviewSprite(param0, &sprite);
+    sub_02007B6C(buf);
 }
 
-static void sub_0200EE64(UnkStruct_ov5_021D30A8 *param0, Pokemon *param1)
+static void LoadAndDrawPokemonPreviewSpriteFromStruct(UnkStruct_ov5_021D30A8 *param0, Pokemon *mon)
 {
-    void *v0;
-    ArchivedSprite v1;
+    void *buf = sub_0200762C(param0->unk_1C6);
 
-    v0 = sub_0200762C(param0->unk_1C6);
-
-    Pokemon_BuildArchivedSprite(&v1, param1, 2);
-    sub_0200EE98(param0, &v1);
-    sub_02007B6C(v0);
+    ArchivedSprite sprite;
+    Pokemon_BuildArchivedSprite(&sprite, mon, FACE_FRONT);
+    DrawPokemonPreviewSprite(param0, &sprite);
+    sub_02007B6C(buf);
 }
 
-static void sub_0200EE98(UnkStruct_ov5_021D30A8 *param0, ArchivedSprite *param1)
+#define POKEMON_SPRITE_FRAME_WIDTH_TILES  10
+#define POKEMON_SPRITE_FRAME_HEIGHT_TILES 10
+#define POKEMON_SPRITE_FRAME_SIZE_TILES   (POKEMON_SPRITE_FRAME_WIDTH_TILES * POKEMON_SPRITE_FRAME_HEIGHT_TILES)
+#define POKEMON_SPRITE_FRAME_SIZE_BYTES   (TILE_SIZE_4BPP * POKEMON_SPRITE_FRAME_SIZE_TILES)
+#define POKEMON_SPRITE_WHOLE_SIZE_BYTES   (POKEMON_SPRITE_FRAME_SIZE_BYTES * 2)
+
+static void DrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, ArchivedSprite *sprite)
 {
-    u8 *v0;
-    u32 v1;
-    SpriteResource *v2;
-    NNSG2dImageProxy *v3;
-    SpriteResource *v4;
-    const NNSG2dImagePaletteProxy *v5;
+    u8 *buf;
+    u32 offset;
+    SpriteResource *charResource, *plttResource;
+    NNSG2dImageProxy *imageProxy;
+    const NNSG2dImagePaletteProxy *paletteProxy;
 
-    v0 = Heap_AllocFromHeap(param0->unk_1C6, ((32 * 10 * 10) * 2));
+    buf = Heap_AllocFromHeap(param0->unk_1C6, POKEMON_SPRITE_WHOLE_SIZE_BYTES);
 
-    {
-        UnkStruct_02013610 v6 = { 0, 0, 10, 10 };
-        sub_020135F0(param1->archive, param1->character, param0->unk_1C6, &v6, &v0[0]);
-    }
-    {
-        UnkStruct_02013610 v7 = { 10, 0, 10, 10 };
-        sub_020135F0(param1->archive, param1->character, param0->unk_1C6, &v7, &v0[(32 * 10 * 10)]);
-    }
+    // frame 0
+    UnkStruct_02013610 v6 = { 0, 0, 10, 10 };
+    sub_020135F0(sprite->archive, sprite->character, param0->unk_1C6, &v6, buf);
 
-    v2 = SpriteResourceCollection_Find(param0->unk_194[0], 89301);
-    v3 = sub_0200A534(v2);
-    v1 = NNS_G2dGetImageLocation(v3, NNS_G2D_VRAM_TYPE_2DMAIN);
+    // frame 1
+    UnkStruct_02013610 v7 = { 10, 0, 10, 10 };
+    sub_020135F0(sprite->archive, sprite->character, param0->unk_1C6, &v7, buf + POKEMON_SPRITE_FRAME_SIZE_BYTES);
 
-    DC_FlushRange(v0, ((32 * 10 * 10) * 2));
-    GX_LoadOBJ(v0, v1, ((32 * 10 * 10) * 2));
+    charResource = SpriteResourceCollection_Find(param0->unk_194[SPRITE_RESOURCE_TILES], POKEMON_PREVIEW_RESOURCE_ID);
+    imageProxy = sub_0200A534(charResource);
+    offset = NNS_G2dGetImageLocation(imageProxy, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    Heap_FreeToHeap(v0);
+    DC_FlushRange(buf, POKEMON_SPRITE_WHOLE_SIZE_BYTES);
+    GX_LoadOBJ(buf, offset, POKEMON_SPRITE_WHOLE_SIZE_BYTES);
 
-    v0 = sub_02013660(param1->archive, param1->palette, param0->unk_1C6);
-    v4 = SpriteResourceCollection_Find(param0->unk_194[1], 89301);
-    v5 = sub_0200A72C(v4, v3);
-    v1 = NNS_G2dGetImagePaletteLocation(v5, NNS_G2D_VRAM_TYPE_2DMAIN);
+    Heap_FreeToHeap(buf);
 
-    DC_FlushRange(v0, 32);
-    GX_LoadOBJPltt(v0, v1, 32);
+    buf = sub_02013660(sprite->archive, sprite->palette, param0->unk_1C6);
+    plttResource = SpriteResourceCollection_Find(param0->unk_194[SPRITE_RESOURCE_PALETTE], POKEMON_PREVIEW_RESOURCE_ID);
+    paletteProxy = sub_0200A72C(plttResource, imageProxy);
+    offset = NNS_G2dGetImagePaletteLocation(paletteProxy, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    Heap_FreeToHeap(v0);
+    DC_FlushRange(buf, 32);
+    GX_LoadOBJPltt(buf, offset, 32);
+
+    Heap_FreeToHeap(buf);
 }
 
-static void sub_0200EF7C(UnkStruct_0200ED50 *param0, u8 param1, u16 param2)
+static void DrawPokemonPreviewWindow(PokemonPreview *preview, u8 palette, u16 tile)
 {
-    Bg_FillTilemapRect(param0->unk_1CC, param0->unk_1D0, param2, param0->unk_1D1 - 1, param0->unk_1D2 - 1, 1, 1, param1);
-    Bg_FillTilemapRect(param0->unk_1CC, param0->unk_1D0, param2 + 1, param0->unk_1D1, param0->unk_1D2 - 1, 10, 1, param1);
-    Bg_FillTilemapRect(param0->unk_1CC, param0->unk_1D0, param2 + 2, param0->unk_1D1 + 10, param0->unk_1D2 - 1, 1, 1, param1);
-    Bg_FillTilemapRect(param0->unk_1CC, param0->unk_1D0, param2 + 4, param0->unk_1D1, param0->unk_1D2, 10, 10, param1);
-    Bg_FillTilemapRect(param0->unk_1CC, param0->unk_1D0, param2 + 3, param0->unk_1D1 - 1, param0->unk_1D2, 1, 10, param1);
-    Bg_FillTilemapRect(param0->unk_1CC, param0->unk_1D0, param2 + 5, param0->unk_1D1 + 10, param0->unk_1D2, 1, 10, param1);
-    Bg_FillTilemapRect(param0->unk_1CC, param0->unk_1D0, param2 + 6, param0->unk_1D1 - 1, param0->unk_1D2 + 10, 1, 1, param1);
-    Bg_FillTilemapRect(param0->unk_1CC, param0->unk_1D0, param2 + 7, param0->unk_1D1, param0->unk_1D2 + 10, 10, 1, param1);
-    Bg_FillTilemapRect(param0->unk_1CC, param0->unk_1D0, param2 + 8, param0->unk_1D1 + 10, param0->unk_1D2 + 10, 1, 1, param1);
-    Bg_ScheduleTilemapTransfer(param0->unk_1CC, param0->unk_1D0);
+    Bg_FillTilemapRect(preview->bgConfig,
+        preview->bgLayer,
+        tile,
+        preview->x - 1,
+        preview->y - 1,
+        1,
+        1,
+        palette);
+    Bg_FillTilemapRect(preview->bgConfig,
+        preview->bgLayer,
+        tile + 1,
+        preview->x,
+        preview->y - 1,
+        POKEMON_SPRITE_FRAME_WIDTH_TILES,
+        1,
+        palette);
+    Bg_FillTilemapRect(preview->bgConfig,
+        preview->bgLayer,
+        tile + 2,
+        preview->x + POKEMON_SPRITE_FRAME_WIDTH_TILES,
+        preview->y - 1,
+        1,
+        1,
+        palette);
+    Bg_FillTilemapRect(preview->bgConfig,
+        preview->bgLayer,
+        tile + 4,
+        preview->x,
+        preview->y,
+        POKEMON_SPRITE_FRAME_WIDTH_TILES,
+        POKEMON_SPRITE_FRAME_HEIGHT_TILES,
+        palette);
+    Bg_FillTilemapRect(preview->bgConfig,
+        preview->bgLayer,
+        tile + 3,
+        preview->x - 1,
+        preview->y,
+        1,
+        POKEMON_SPRITE_FRAME_HEIGHT_TILES,
+        palette);
+    Bg_FillTilemapRect(preview->bgConfig,
+        preview->bgLayer,
+        tile + 5,
+        preview->x + POKEMON_SPRITE_FRAME_WIDTH_TILES,
+        preview->y,
+        1,
+        POKEMON_SPRITE_FRAME_HEIGHT_TILES,
+        palette);
+    Bg_FillTilemapRect(preview->bgConfig,
+        preview->bgLayer,
+        tile + 6,
+        preview->x - 1,
+        preview->y + POKEMON_SPRITE_FRAME_HEIGHT_TILES,
+        1,
+        1,
+        palette);
+    Bg_FillTilemapRect(preview->bgConfig,
+        preview->bgLayer,
+        tile + 7,
+        preview->x,
+        preview->y + POKEMON_SPRITE_FRAME_HEIGHT_TILES,
+        POKEMON_SPRITE_FRAME_WIDTH_TILES,
+        1,
+        palette);
+    Bg_FillTilemapRect(preview->bgConfig,
+        preview->bgLayer,
+        tile + 8,
+        preview->x + POKEMON_SPRITE_FRAME_WIDTH_TILES,
+        preview->y + POKEMON_SPRITE_FRAME_HEIGHT_TILES,
+        1,
+        1,
+        palette);
+
+    Bg_ScheduleTilemapTransfer(preview->bgConfig, preview->bgLayer);
 }
 
-static void sub_0200F12C(UnkStruct_0200ED50 *param0)
+static void ErasePokemonPreviewWindow(PokemonPreview *preview)
 {
-    Bg_FillTilemapRect(param0->unk_1CC, param0->unk_1D0, 0, param0->unk_1D1 - 1, param0->unk_1D2 - 1, 12, 12, 0);
-    Bg_ScheduleTilemapTransfer(param0->unk_1CC, param0->unk_1D0);
+    Bg_FillTilemapRect(preview->bgConfig,
+        preview->bgLayer,
+        0,
+        preview->x - 1,
+        preview->y - 1,
+        POKEMON_SPRITE_FRAME_WIDTH_TILES + 2,
+        POKEMON_SPRITE_FRAME_HEIGHT_TILES + 2,
+        0);
+    Bg_ScheduleTilemapTransfer(preview->bgConfig, preview->bgLayer);
 }
