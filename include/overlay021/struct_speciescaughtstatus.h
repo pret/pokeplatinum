@@ -10,6 +10,6 @@ enum CaughtStatus {
 typedef struct {
     int species;
     enum CaughtStatus caughtStatus;
-} speciesCaughtStatus;
+} SpeciesCaughtStatus;
 
 #endif // POKEPLATINUM_STRUCT_SPECIESCAUGHTSTATUS_H

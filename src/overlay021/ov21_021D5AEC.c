@@ -870,7 +870,7 @@ static void ov21_021D67EC(UnkStruct_ov21_021D71A8 *param0, UnkStruct_ov21_021D13
     int v3;
     UnkStruct_ov21_021D4CB8 v4;
     Window *v5;
-    const speciesCaughtStatus *pokeCaughtStatus;
+    const SpeciesCaughtStatus *pokeCaughtStatus;
     int dexIndex;
 
     v4.unk_00 = param1->unk_14C;
@@ -918,7 +918,7 @@ static void ov21_021D68C8(UnkStruct_ov21_021D71A8 *param0, UnkStruct_ov21_021D13
 {
     int dexIndex;
     int v1;
-    const speciesCaughtStatus *pokeCaughtStatus;
+    const SpeciesCaughtStatus *pokeCaughtStatus;
 
     v1 = ov21_021D3898(param2->unk_04);
     dexIndex = ov21_021D375C(param2->unk_04);
@@ -1084,7 +1084,7 @@ static void ov21_021D6AE4(UnkStruct_ov21_021D71A8 *param0, const UnkStruct_ov21_
     int v5;
     int v6;
     int v7;
-    const speciesCaughtStatus *pokeCaughtStatus;
+    const SpeciesCaughtStatus *pokeCaughtStatus;
     int v9;
     int v10;
     int dexIndex;
@@ -1255,7 +1255,7 @@ static void ov21_021D6D78(UnkStruct_ov21_021D71A8 *param0, UnkStruct_ov21_021D13
 {
     UnkStruct_ov21_021D4CB8 v0;
     Window *v1;
-    const speciesCaughtStatus *pokeCaughtStatus;
+    const SpeciesCaughtStatus *pokeCaughtStatus;
 
     pokeCaughtStatus = Pokedex_Sort_SpeciesCaughtStatus(param2->unk_04, dexIndex);
     GF_ASSERT(pokeCaughtStatus);

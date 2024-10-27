@@ -189,9 +189,9 @@ void sub_0206B1D8(VarsFlags *param0, int param1)
     sub_0206AFE0(param0, (6 + (((0 + VARS_START) + 32) + 16)) + param1, 0);
 }
 
-BOOL sub_0206B1F0(VarsFlags *param0, int param1)
+BOOL VarFlags_HiddenLocationsUnlocked(VarsFlags *varFlags, int hiddenLocation)
 {
-    if (sub_0206B010(param0, (6 + (((0 + VARS_START) + 32) + 16)) + param1) == sub_0206B194(param1)) {
+    if (sub_0206B010(varFlags, (6 + (((0 + VARS_START) + 32) + 16)) + hiddenLocation) == sub_0206B194(hiddenLocation)) {
         return 1;
     } else {
         return 0;

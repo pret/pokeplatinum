@@ -721,7 +721,7 @@ void ov21_021D1778(UnkStruct_ov21_021D13FC *param0, const pokedexStatus *param1,
     Window *v3;
     SpriteResource *v4;
     VecFx32 v5;
-    const speciesCaughtStatus *pokeCaughtStatus;
+    const SpeciesCaughtStatus *pokeCaughtStatus;
     u32 v7 = ov21_021D36D8(param1);
 
     pokeCaughtStatus = Pokedex_Sort_SpeciesCaughtStatus(param1, dexIndex);

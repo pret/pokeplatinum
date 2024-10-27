@@ -468,7 +468,7 @@ int Pokedex_Sort_CurrentCaughtStatus(const pokedexStatus *dexStatus)
     return dexStatus->pokedexCompletion.caughtStatusArray[dexStatus->pokedexCompletion.unk_F68].caughtStatus;
 }
 
-const speciesCaughtStatus *Pokedex_Sort_SpeciesCaughtStatus(const pokedexStatus *dexStatus, int dexIndex)
+const SpeciesCaughtStatus *Pokedex_Sort_SpeciesCaughtStatus(const pokedexStatus *dexStatus, int dexIndex)
 {
     if (Pokedex_Sort_IsValidDexIndex(dexStatus, dexIndex)) {
         return &dexStatus->pokedexCompletion.caughtStatusArray[dexIndex];

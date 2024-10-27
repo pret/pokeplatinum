@@ -958,10 +958,10 @@ static BOOL FieldMenu_Pokedex(TaskManager *taskMan)
     v2->unk_00 = v3;
     v2->unk_04 = v4;
     v2->timeOfDay = sub_02055BA8(fieldSystem);
-    v2->fullmoonIslandVisible = sub_0206B1F0(v5, 0); // VarsFlags->vars[54] Fullmoon Island
-    v2->newmoonIslandVisible = sub_0206B1F0(v5, 1); // VarsFlags->vars[55] Newmoon Island
-    v2->springPathVisible = sub_0206B1F0(v5, 2); // VarsFlags->vars[56] Spring Path
-    v2->seabreakPathVisible = sub_0206B1F0(v5, 3); // VarsFlags->vars[57] Seabreak Path
+    v2->fullmoonIslandVisible = VarFlags_HiddenLocationsUnlocked(v5, HL_FULLMOONISLAND);
+    v2->newmoonIslandVisible = VarFlags_HiddenLocationsUnlocked(v5, HL_NEWMOONISLAND);
+    v2->springPathVisible = VarFlags_HiddenLocationsUnlocked(v5, HL_SPRINGPATH);
+    v2->seabreakPathVisible = VarFlags_HiddenLocationsUnlocked(v5, HL_SEABREAKPATH);
     v2->unk_1C = fieldSystem->unk_B4;
 
     sub_0203E0AC(fieldSystem, v2);

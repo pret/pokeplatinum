@@ -374,11 +374,11 @@ static void FieldMapChange_InitTerrainCollisionManager(FieldSystem *fieldSystem)
     GF_ASSERT(fieldSystem->terrainCollisionMan == NULL);
     sub_02039DC0(fieldSystem->location->mapId, fieldSystem->unk_2C);
 
-    if (sub_0206B1F0(SaveData_GetVarsFlags(fieldSystem->saveData), 3)) {
+    if (VarFlags_HiddenLocationsUnlocked(SaveData_GetVarsFlags(fieldSystem->saveData), HL_SEABREAKPATH)) {
         sub_02039FE0(fieldSystem->unk_2C); // reveal Seabreak Path if Oak's Letter has been used
     }
 
-    if (!sub_0206B1F0(SaveData_GetVarsFlags(fieldSystem->saveData), 2)) {
+    if (!VarFlags_HiddenLocationsUnlocked(SaveData_GetVarsFlags(fieldSystem->saveData), HL_SPRINGPATH)) {
         sub_02039F8C(fieldSystem->unk_2C);
     }
 

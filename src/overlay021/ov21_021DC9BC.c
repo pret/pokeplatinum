@@ -8,10 +8,10 @@
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D4C0C.h"
-#include "overlay021/ov21_021D517C.h"
 #include "overlay021/ov21_021E29DC.h"
 #include "overlay021/pokedex_sort.h"
 #include "overlay021/pokedexencdata.h"
+#include "overlay021/pokedexfieldmap.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D2648.h"
@@ -34,6 +34,14 @@
 #include "unk_0200A328.h"
 #include "unk_02012744.h"
 #include "unk_0201F834.h"
+
+#define TERMINALVALUE      0xffff
+#define POKEDEXMAPXSCALE   5
+#define POKEDEXMAPYSCALE   5
+#define POKEDEXMAPHEIGHT   30
+#define POKEDEXMAPWIDTH    30
+#define POKEDEXMAPNUMCELLS (POKEDEXMAPHEIGHT * POKEDEXMAPWIDTH)
+#define NUMDUNGEONS        22
 
 static const u16 fullmoonIslandFields[] = {
     TERMINALVALUE
@@ -109,8 +117,8 @@ typedef struct {
     UnkStruct_ov21_021D4CA0 *AreaUnknownSpriteManager;
     SpriteResource *unk_D0[4];
     UnkStruct_ov21_021D4CA0 *unk_E0[3];
-    u8 mapFieldCellMatrix_1[POKEDEXMAPNUMCELLS];
-    u8 mapFieldCellMatrix_2[POKEDEXMAPNUMCELLS];
+    u8 pokedexFieldMap_1[POKEDEXMAPNUMCELLS];
+    u8 pokedexFieldMap_2[POKEDEXMAPNUMCELLS];
     void *unk_7F4;
     NNSG2dCharacterData *unk_7F8;
     void *unk_7FC;
@@ -836,7 +844,7 @@ static void ov21_021DD710(PokedexMapDisplay *mapDisplay, const UnkStruct_ov21_02
 
     ov21_021DD8B4(mapDisplay);
 
-    mapDisplay->numVisibleFields = PokedexEncData_LocateVisibleFields(mapDisplay->mapFieldCellMatrix_1, POKEDEXMAPHEIGHT, POKEDEXMAPWIDTH, mapDisplay->fieldCoordinatesArray, &enCollection->fieldsEncounteredOn, enCollection->invisibleFields, enCollection->numInvisibleFields);
+    mapDisplay->numVisibleFields = PokedexEncData_LocateVisibleFields(mapDisplay->pokedexFieldMap_1, POKEDEXMAPHEIGHT, POKEDEXMAPWIDTH, mapDisplay->fieldCoordinatesArray, &enCollection->fieldsEncounteredOn, enCollection->invisibleFields, enCollection->numInvisibleFields);
     numCombinedMaps = (enCollection->fieldsEncounteredOn.numLocations - 1) + enCollection->numInvisibleFields;
     combinedMapArray = Heap_AllocFromHeapAtEnd(heapID, numCombinedMaps);
 
@@ -848,11 +856,11 @@ static void ov21_021DD710(PokedexMapDisplay *mapDisplay, const UnkStruct_ov21_02
         }
     }
 
-    mapDisplay->fieldsZero = PokedexEncData_LocateVisibleFields(mapDisplay->mapFieldCellMatrix_2, POKEDEXMAPHEIGHT, POKEDEXMAPWIDTH, mapDisplay->fieldCoordinatesArray, &enCollection->fieldSpecialEncounters, combinedMapArray, numCombinedMaps);
+    mapDisplay->fieldsZero = PokedexEncData_LocateVisibleFields(mapDisplay->pokedexFieldMap_2, POKEDEXMAPHEIGHT, POKEDEXMAPWIDTH, mapDisplay->fieldCoordinatesArray, &enCollection->fieldSpecialEncounters, combinedMapArray, numCombinedMaps);
 
     Heap_FreeToHeap(combinedMapArray);
-    MapFieldCellMatrix_SmoothCells(mapDisplay->mapFieldCellMatrix_1, POKEDEXMAPHEIGHT, POKEDEXMAPWIDTH);
-    MapFieldCellMatrix_SmoothCells(mapDisplay->mapFieldCellMatrix_2, POKEDEXMAPHEIGHT, POKEDEXMAPWIDTH);
+    PokedexFieldMap_SmoothFields(mapDisplay->pokedexFieldMap_1, POKEDEXMAPHEIGHT, POKEDEXMAPWIDTH);
+    PokedexFieldMap_SmoothFields(mapDisplay->pokedexFieldMap_2, POKEDEXMAPHEIGHT, POKEDEXMAPWIDTH);
 
     species = Pokedex_Sort_CurrentSpecies(param1->dexStatus);
 
@@ -891,8 +899,8 @@ static void ov21_021DD8B4(PokedexMapDisplay *mapDisplay)
 {
     int v0;
 
-    memset(mapDisplay->mapFieldCellMatrix_1, 0, sizeof(u8) * (POKEDEXMAPHEIGHT * POKEDEXMAPWIDTH));
-    memset(mapDisplay->mapFieldCellMatrix_2, 0, sizeof(u8) * (POKEDEXMAPHEIGHT * POKEDEXMAPWIDTH));
+    memset(mapDisplay->pokedexFieldMap_1, 0, sizeof(u8) * (POKEDEXMAPHEIGHT * POKEDEXMAPWIDTH));
+    memset(mapDisplay->pokedexFieldMap_2, 0, sizeof(u8) * (POKEDEXMAPHEIGHT * POKEDEXMAPWIDTH));
 
     for (v0 = 0; v0 < mapDisplay->numDungeons; v0++) {
         CellActor_SetDrawFlag(mapDisplay->cellActorArray[v0], 0);
@@ -1099,8 +1107,8 @@ static void ov21_021DD964(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0
 {
     Window_FillTilemap(&param1->unk_00->unk_04, 0);
 
-    ov21_021D517C(&param1->unk_00->unk_04, mapDisplay->unk_800->pRawData, mapDisplay->unk_800->W * 8, mapDisplay->unk_800->H * 8, POKEDEXMAPXSCALE, mapDisplay->mapFieldCellMatrix_2, POKEDEXMAPHEIGHT, POKEDEXMAPWIDTH, 89, 30);
-    ov21_021D517C(&param1->unk_00->unk_04, mapDisplay->unk_7F8->pRawData, mapDisplay->unk_7F8->W * 8, mapDisplay->unk_7F8->H * 8, POKEDEXMAPXSCALE, mapDisplay->mapFieldCellMatrix_1, POKEDEXMAPHEIGHT, POKEDEXMAPWIDTH, 89, 30);
+    PokedexFieldMap_DisplayFields(&param1->unk_00->unk_04, mapDisplay->unk_800->pRawData, mapDisplay->unk_800->W * 8, mapDisplay->unk_800->H * 8, POKEDEXMAPXSCALE, mapDisplay->pokedexFieldMap_2, POKEDEXMAPHEIGHT, POKEDEXMAPWIDTH, 89, 30);
+    PokedexFieldMap_DisplayFields(&param1->unk_00->unk_04, mapDisplay->unk_7F8->pRawData, mapDisplay->unk_7F8->W * 8, mapDisplay->unk_7F8->H * 8, POKEDEXMAPXSCALE, mapDisplay->pokedexFieldMap_1, POKEDEXMAPHEIGHT, POKEDEXMAPWIDTH, 89, 30);
 
     Window_CopyToVRAM(&param1->unk_00->unk_04);
 }

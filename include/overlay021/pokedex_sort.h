@@ -40,7 +40,7 @@ int ov21_021D3770(const pokedexStatus *param0, u32 param1);
 BOOL ov21_021D3794(pokedexStatus *param0, int param1);
 int Pokedex_Sort_CurrentSpecies(const pokedexStatus *param0);
 int Pokedex_Sort_CurrentCaughtStatus(const pokedexStatus *param0);
-const speciesCaughtStatus *Pokedex_Sort_SpeciesCaughtStatus(const pokedexStatus *param0, int dexIndex);
+const SpeciesCaughtStatus *Pokedex_Sort_SpeciesCaughtStatus(const pokedexStatus *param0, int dexIndex);
 BOOL ov21_021D37F8(const pokedexStatus *param0, int param1);
 BOOL ov21_021D3810(pokedexStatus *param0, int param1);
 BOOL ov21_021D3844(pokedexStatus *param0, int param1);

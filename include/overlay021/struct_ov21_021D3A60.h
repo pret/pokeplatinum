@@ -6,7 +6,7 @@
 #include "overlay021/struct_speciesCaughtStatus.h"
 
 typedef struct {
-    speciesCaughtStatus caughtStatusArray[NATIONAL_DEX_COUNT];
+    SpeciesCaughtStatus caughtStatusArray[NATIONAL_DEX_COUNT];
     int unk_F68;
     int numEncountered; // number of pokemon seen
     int encounteredIndexArray[NATIONAL_DEX_COUNT]; // dex number for appearing in dex, dexLength+1 otherwise
