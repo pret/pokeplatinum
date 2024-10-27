@@ -4891,7 +4891,7 @@ static BOOL ov65_02232F30 (UnkStruct_ov65_0222EBE0 * param0)
 static void ov65_02232F50 (UnkStruct_ov65_0222EBE0 * param0)
 {
     if (param0->unk_188) {
-        DestroyWaitDialAndTask(param0->unk_188);
+        DestroyWaitDialTaskOnly(param0->unk_188);
 
         param0->unk_188 = NULL;
 

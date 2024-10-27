@@ -1618,7 +1618,7 @@ static void ov114_0225D458(UnkStruct_ov114_0225D338 *param0, u32 param1)
 static void ov114_0225D474(UnkStruct_ov114_0225D338 *param0, u32 param1)
 {
     if (param0->unk_2C[param1]) {
-        DestroyWaitDialAndTask(param0->unk_2C[param1]);
+        DestroyWaitDialTaskOnly(param0->unk_2C[param1]);
         param0->unk_2C[param1] = NULL;
     }
 }

@@ -1583,7 +1583,7 @@ static void ov70_0225EB24(UnkStruct_ov70_0225E9C8 *param0)
 static void ov70_0225EB38(UnkStruct_ov70_0225E9C8 *param0)
 {
     if (param0->unk_1C != NULL) {
-        DestroyWaitDialAndTask(param0->unk_1C);
+        DestroyWaitDialTaskOnly(param0->unk_1C);
         param0->unk_1C = NULL;
     }
 }
