@@ -4,6 +4,7 @@
 #include "field/field_system.h"
 
 #include "bg_window.h"
+#include "heap.h"
 #include "message.h"
 #include "play_time.h"
 #include "string_template.h"
@@ -33,7 +34,7 @@ typedef struct SaveInfo {
 
 typedef struct SaveInfoWindow {
     FieldSystem *fieldSystem;
-    int heapID;
+    enum HeapId heapID;
     u8 bgLayer;
     BgConfig *bgConfig;
     Window *window;
@@ -46,7 +47,7 @@ typedef struct SaveInfoWindow {
 
 void SaveInfoWindow_NewWindow(SaveInfoWindow *saveInfoWin);
 void SaveInfoWindow_FreeWindow(SaveInfoWindow *saveInfoWin);
-SaveInfoWindow *SaveInfoWindow_New(FieldSystem *fieldSystem, int heapID, u8 bgLayer);
+SaveInfoWindow *SaveInfoWindow_New(FieldSystem *fieldSystem, enum HeapId heapID, u8 bgLayer);
 void SaveInfoWindow_Free(SaveInfoWindow *saveInfoWin);
 BOOL FieldSystem_Save(FieldSystem *fieldSystem);
 void FieldSystem_SaveStateIfCommunicationOff(FieldSystem *fieldSystem);

@@ -17,7 +17,6 @@
 #include "bg_window.h"
 #include "field_overworld_state.h"
 #include "font.h"
-#include "heap.h"
 #include "map_header.h"
 #include "message_util.h"
 #include "player_avatar.h"
@@ -161,7 +160,7 @@ void SaveInfoWindow_FreeWindow(SaveInfoWindow *saveInfoWin)
     Heap_FreeToHeap(saveInfoWin->window);
 }
 
-SaveInfoWindow *SaveInfoWindow_New(FieldSystem *fieldSystem, int heapID, u8 bgLayer)
+SaveInfoWindow *SaveInfoWindow_New(FieldSystem *fieldSystem, enum HeapId heapID, u8 bgLayer)
 {
     SaveInfoWindow *saveInfoWin = Heap_AllocFromHeap(heapID, sizeof(SaveInfoWindow));
 
