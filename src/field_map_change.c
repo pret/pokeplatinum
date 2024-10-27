@@ -17,7 +17,7 @@
 #include "functypes/funcptr_02050904.h"
 #include "overlay005/ov5_021DD6FC.h"
 #include "overlay005/ov5_021E135C.h"
-#include "overlay005/ov5_021E1D20.h"
+#include "overlay005/save_info_window.h"
 #include "overlay005/struct_ov5_021D432C_decl.h"
 #include "overlay006/ov6_02243258.h"
 #include "overlay006/ov6_02247100.h"

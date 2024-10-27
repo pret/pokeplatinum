@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV5_021E1D20_H
-#define POKEPLATINUM_OV5_021E1D20_H
+#ifndef POKEPLATINUM_SAVE_INFO_WINDOW_H
+#define POKEPLATINUM_SAVE_INFO_WINDOW_H
 
 #include "field/field_system.h"
 
@@ -51,4 +51,4 @@ void SaveInfoWindow_Free(SaveInfoWindow *saveInfoWin);
 BOOL FieldSystem_Save(FieldSystem *fieldSystem);
 void FieldSystem_SaveStateIfCommunicationOff(FieldSystem *fieldSystem);
 
-#endif // POKEPLATINUM_OV5_021E1D20_H
+#endif // POKEPLATINUM_SAVE_INFO_WINDOW_H

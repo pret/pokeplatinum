@@ -6,7 +6,7 @@
 #include "struct_defs/struct_0203F478.h"
 
 #include "field/field_system_decl.h"
-#include "overlay005/ov5_021E1D20.h"
+#include "overlay005/save_info_window.h"
 #include "overlay005/struct_ov5_021DC1A4_decl.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 

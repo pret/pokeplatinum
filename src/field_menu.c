@@ -30,7 +30,7 @@
 #include "gmm/message_bank_unk_0367.h"
 #include "overlay005/ov5_021D0D80.h"
 #include "overlay005/ov5_021D2F14.h"
-#include "overlay005/ov5_021E1D20.h"
+#include "overlay005/save_info_window.h"
 #include "overlay021/struct_ov21_021D0D80.h"
 #include "overlay104/struct_ov104_02241308.h"
 
