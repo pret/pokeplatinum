@@ -10,9 +10,9 @@ nfgr_gen = generator(nitrogfx_exe,
     output: '@BASENAME@.NFGR',
 )
 
-pl_font_nfgrs = []
+font_nfgrs = []
 foreach target, inputs: fonts
-    nfgr = custom_target(target,
+    font_nfgrs += custom_target(target,
         output: target,
         input: inputs,
         command: [
@@ -22,29 +22,67 @@ foreach target, inputs: fonts
             '-metadata', '@INPUT1@',
         ]
     )
-    pl_font_nfgrs += mv_gen.process(nfgr)
-    # pl_font_nfgrs += nfgr_gen.process(inputs[0],
-    #     extra_args: [ '-metadata', inputs[1], ],
-    # )
+
 endforeach
 
 font_special_chars_png = files('font_special_chars.png')
-font_special_chars_ncgr = ncgr_gen.process(font_special_chars_png,
-    extra_args: [ '-sopc', '-version101', ],
+font_special_chars_ncgr = custom_target('font_special_chars.NCGR',
+    output: 'font_special_chars.NCGR',
+    input: font_special_chars_png,
+    command: [
+        nitrogfx_exe,
+        '@INPUT@',
+        '@OUTPUT@',
+        '-sopc',
+        '-version101',
+    ],
 )
-font_special_chars_ncgr_lz = lz_gen.process(font_special_chars_ncgr)
-font_special_chars_nclr = nclr_gen.process(font_special_chars_png,
-    extra_args: [ '-bitdepth', '4', '-nopad', '-pcmp', ],
+font_special_chars_ncgr_lz = custom_target('font_special_chars.NCGR.lz',
+    output: 'font_special_chars.NCGR.lz',
+    input: font_special_chars_ncgr,
+    command: [
+        nitrogfx_exe,
+        '@INPUT@',
+        '@OUTPUT@',
+    ],
+)
+font_nclr = custom_target('font.NCLR',
+    output: 'font.NCLR',
+    input: font_special_chars_png,
+    command: [
+        nitrogfx_exe,
+        '@INPUT@',
+        '@OUTPUT@',
+        '-bitdepth', '4',
+        '-nopad',
+        '-pcmp',
+    ],
 )
 
 screen_indicators_png = files('screen_indicators.png')
-screen_indicators_ncgr = ncgr_gen.process(screen_indicators_png,
-    extra_args: [ '-sopc', '-version101', ],
+screen_indicators_ncgr = custom_target('screen_indicators.NCGR',
+    output: 'screen_indicators.NCGR',
+    input: screen_indicators_png,
+    command: [
+        nitrogfx_exe,
+        '@INPUT@',
+        '@OUTPUT@',
+        '-sopc',
+        '-version101',
+    ],
 )
-screen_indicators_nclr = nclr_gen.process(screen_indicators_png,
-    extra_args: [ '-bitdepth', '4', ],
+screen_indicators_nclr = custom_target('screen_indicators.NCLR',
+    output: 'screen_indicators.NCLR',
+    input: screen_indicators_png,
+    command: [
+        nitrogfx_exe,
+        '@INPUT@',
+        '@OUTPUT@',
+        '-bitdepth', '4',
+    ],
 )
 
+current_build_dir = meson.current_build_dir()
 pl_font_order = files('pl_font.order')
 pl_font_ignore = files('pl_font.ignore')
 pl_font_narc = custom_target('pl_font.narc',
@@ -53,9 +91,9 @@ pl_font_narc = custom_target('pl_font.narc',
         'pl_font.naix',
     ],
     input: [
-        pl_font_nfgrs,
+        font_nfgrs,
         font_special_chars_ncgr_lz,
-        font_special_chars_nclr,
+        font_nclr,
         screen_indicators_ncgr,
         screen_indicators_nclr,
         pl_font_order,
@@ -63,7 +101,7 @@ pl_font_narc = custom_target('pl_font.narc',
     ],
     command: [
         knarc_exe,
-        '-d', '@PRIVATE_DIR@',
+        '-d', current_build_dir,
         '-p', '@OUTPUT0@',
         '--order', pl_font_order,
         '--ignore', pl_font_ignore,
