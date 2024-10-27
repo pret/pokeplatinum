@@ -4,5 +4,5 @@ font_subscreen.NFGR
 font_unown.NFGR
 font_special_chars.NCGR.lz
 screen_indicators.NCGR
-font_special_chars.NCLR
+font.NCLR
 screen_indicators.NCLR

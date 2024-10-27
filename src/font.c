@@ -234,7 +234,7 @@ u8 Font_GetAttribute(u8 font, u8 attribute)
 void Font_LoadTextPalette(int palLocation, u32 palSlotOffset, u32 heapID)
 {
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__PL_FONT,
-        font_special_chars_NCLR,
+        font_NCLR,
         palLocation,
         palSlotOffset,
         PALETTE_SIZE_BYTES,
