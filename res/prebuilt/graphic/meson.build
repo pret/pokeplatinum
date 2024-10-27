@@ -29,7 +29,6 @@ prebuilt_files = [
     'oekaki.narc',
     'opening.narc',
     'pl_bag_gra.narc',
-    'pl_font.narc',
     'pl_plist_gra.narc',
     'pl_pst_gra.narc',
     'pl_wifinote.narc',

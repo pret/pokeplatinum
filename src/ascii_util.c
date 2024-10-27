@@ -78,5 +78,5 @@ void Ascii_SetResourceName(NNSG3dResName *resource, const char *src)
 
 BOOL IsFullWidthChar(charcode_t character)
 {
-    return character < CHAR_EN_0;
+    return character < CHAR_0;
 }
