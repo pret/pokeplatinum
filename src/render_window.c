@@ -5,6 +5,8 @@
 
 #include "constants/narc.h"
 
+#include "res/graphics/signposts/field_board.naix"
+
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
@@ -442,7 +444,7 @@ void ReplaceTransparentTiles(BgConfig *bgConfig, u8 bgLayer, u16 bgBaseTile, u8 
 void LoadSignpostContentGraphics(BgConfig *bgConfig, u8 bgLayer, u16 baseTile, u8 palette, u8 signpostType, u16 signpostNARCMemberIdx, u32 heapID)
 {
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__FIELD_BOARD,
-        0,
+        signpost_frame_NCGR,
         bgConfig,
         bgLayer,
         baseTile,
@@ -450,7 +452,7 @@ void LoadSignpostContentGraphics(BgConfig *bgConfig, u8 bgLayer, u16 baseTile, u
         FALSE,
         heapID);
 
-    void *signpostNclr = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_GRAPHIC__FIELD_BOARD, 1, heapID);
+    void *signpostNclr = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_GRAPHIC__FIELD_BOARD, signpost_NCLR, heapID);
 
     NNSG2dPaletteData *paletteData;
     NNS_G2dGetUnpackedPaletteData(signpostNclr, &paletteData);
@@ -474,13 +476,20 @@ void LoadSignpostContentGraphics(BgConfig *bgConfig, u8 bgLayer, u16 baseTile, u
 
 static void LoadSignpostContentTiles(BgConfig *bgConfig, u8 bgLayer, u16 offset, u8 signpostType, u16 narcMemberIdx, u32 heapID)
 {
-    if (signpostType == 0) {
-        narcMemberIdx += 33;
+    if (signpostType == SIGNPOST_CITY_MAP) {
+        narcMemberIdx += city_map_empty_NCGR;
     } else {
-        narcMemberIdx += 2;
+        narcMemberIdx += route_map_00_NCGR;
     }
 
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__FIELD_BOARD, narcMemberIdx, bgConfig, bgLayer, offset, 24 * TILE_SIZE_4BPP, FALSE, heapID);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__FIELD_BOARD,
+        narcMemberIdx,
+        bgConfig,
+        bgLayer,
+        offset,
+        24 * TILE_SIZE_4BPP,
+        FALSE,
+        heapID);
 }
 
 static void DrawSignpostFrame(BgConfig *bgConfig, u8 bgLayer, u8 x, u8 y, u8 width, u8 height, u8 palette, u16 tile)

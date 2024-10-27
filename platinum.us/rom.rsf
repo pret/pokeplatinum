@@ -290,7 +290,13 @@ RomSpec
 	File graphic/ending.narc
 	File graphic/ev_pokeselect.narc
 	File graphic/f_note_gra.narc
-	File graphic/field_board.narc
+
+    Root /graphic
+    HostRoot res/graphics/signposts
+	File field_board.narc
+
+	Root /
+	HostRoot res/prebuilt
 	File graphic/field_encounteffect.narc
 	File graphic/fld_comact.narc
 	File graphic/font.narc

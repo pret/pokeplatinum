@@ -53,6 +53,7 @@ lz_gen = generator(nitrogfx_exe,
 subdir('battle')
 subdir('field')
 subdir('fonts')
+subdir('graphics')
 subdir('items')
 subdir('pokemon')
 subdir('sound')
