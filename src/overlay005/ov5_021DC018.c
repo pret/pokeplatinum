@@ -14,6 +14,7 @@
 #include "list_menu.h"
 #include "menu.h"
 #include "message.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "strbuf.h"
 #include "string_list.h"
@@ -23,7 +24,6 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_0202D05C.h"
 
@@ -189,8 +189,8 @@ void ov5_021DC1AC(UnkStruct_ov5_021DC1A4 *param0)
     }
 
     Window_Add(param0->fieldSystem->unk_08, &param0->unk_08, 3, param0->unk_98, param0->unk_99, v0, param0->unk_9B * 2, 13, ((1 + (10 * 4)) + (10 * 2)));
-    sub_0200DAA4(param0->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
-    Window_Show(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
+    LoadStandardWindowGraphics(param0->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
+    Window_DrawStandardFrame(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
 
     ov5_021DC33C(param0);
 
@@ -304,7 +304,7 @@ void ov5_021DC424(UnkStruct_ov5_021DC1A4 *param0)
 
     Sound_PlayEffect(1500);
     Menu_Free(param0->unk_B8, NULL);
-    Window_Clear(param0->unk_AC.window, 0);
+    Window_EraseStandardFrame(param0->unk_AC.window, 0);
     Window_Remove(param0->unk_AC.window);
 
     for (v0 = 0; v0 < 28; v0++) {
@@ -378,8 +378,8 @@ static void ov5_021DC530(UnkStruct_ov5_021DC1A4 *param0, u32 param1)
         Window_Add(param0->fieldSystem->unk_08, &param0->unk_08, 3, param0->unk_98, param0->unk_99, param1, param0->unk_9B * 2, 13, ((1 + (10 * 4)) + (10 * 2)));
     }
 
-    sub_0200DAA4(param0->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
-    Window_Show(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
+    LoadStandardWindowGraphics(param0->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
+    Window_DrawStandardFrame(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
 
     ov5_021DC7E4(param0);
     param0->unk_1BC = ListMenu_New((const ListMenuTemplate *)&param0->unk_19C, 0, param0->unk_96, 4);
@@ -408,8 +408,8 @@ void ov5_021DC600(UnkStruct_ov5_021DC1A4 *param0, u16 *param1, u16 *param2)
         Window_Add(param0->fieldSystem->unk_08, &param0->unk_08, 3, param0->unk_98, param0->unk_99, v0, param0->unk_9B * 2, 13, ((1 + (10 * 4)) + (10 * 2)));
     }
 
-    sub_0200DAA4(param0->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
-    Window_Show(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
+    LoadStandardWindowGraphics(param0->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
+    Window_DrawStandardFrame(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
 
     ov5_021DC7E4(param0);
 
@@ -580,7 +580,7 @@ static void ov5_021DCA28(UnkStruct_ov5_021DC1A4 *param0)
 
     Sound_PlayEffect(1500);
     ListMenu_Free(param0->unk_1BC, NULL, NULL);
-    Window_Clear(param0->unk_19C.window, 0);
+    Window_EraseStandardFrame(param0->unk_19C.window, 0);
     Window_Remove(&param0->unk_08);
 
     for (v0 = 0; v0 < 28; v0++) {
@@ -639,8 +639,8 @@ void ov5_021DCB24(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 *param3, S
     }
 
     Window_Add(v3->fieldSystem->unk_08, &v3->unk_08, 3, v3->unk_98, v3->unk_99, v1, 4, 13, ((1 + (10 * 4)) + (10 * 2)) + (16 * 10));
-    sub_0200DAA4(v3->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
-    Window_Show(&v3->unk_08, 1, 1024 - (18 + 12) - 9, 11);
+    LoadStandardWindowGraphics(v3->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
+    Window_DrawStandardFrame(&v3->unk_08, 1, 1024 - (18 + 12) - 9, 11);
     Window_FillRectWithColor(&v3->unk_08, 15, 0, 0, (v1 * 8), (4 * 8));
 
     ov5_021DCC00(v3, 15, 0, 0);
@@ -675,7 +675,7 @@ static void ov5_021DCC64(SysTask *param0, void *param1)
     v1 = (UnkStruct_ov5_021DC1A4 *)param1;
 
     if (*v1->unk_A0 == 0xffff) {
-        Window_Clear(v1->unk_AC.window, 0);
+        Window_EraseStandardFrame(v1->unk_AC.window, 0);
         Window_Remove(v1->unk_AC.window);
 
         for (v0 = 0; v0 < 28; v0++) {
@@ -779,8 +779,8 @@ void ov5_021DCD94(UnkStruct_ov5_021DC1A4 *param0, u8 param1)
     }
 
     Window_Add(param0->fieldSystem->unk_08, &param0->unk_08, 3, param0->unk_98, param0->unk_99, (v0 * param1), v1 * 2, 13, ((1 + (10 * 4)) + (10 * 2)));
-    sub_0200DAA4(param0->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
-    Window_Show(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
+    LoadStandardWindowGraphics(param0->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
+    Window_DrawStandardFrame(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
 
     ov5_021DCE64(param0, param1, v1);
 
@@ -808,8 +808,8 @@ Window *ov5_021DCEB0(FieldSystem *fieldSystem, u8 param1, u8 param2)
     Window *v0 = Window_New(4, 1);
 
     Window_Add(fieldSystem->unk_08, v0, 3, param1, param2, 10, 4, 13, 1);
-    sub_0200DAA4(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
-    Window_Show(v0, 1, 1024 - (18 + 12) - 9, 11);
+    LoadStandardWindowGraphics(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
+    Window_DrawStandardFrame(v0, 1, 1024 - (18 + 12) - 9, 11);
     Window_FillTilemap(v0, 15);
 
     {
@@ -831,7 +831,7 @@ Window *ov5_021DCEB0(FieldSystem *fieldSystem, u8 param1, u8 param2)
 
 void ov5_021DCF58(Window *param0)
 {
-    Window_Clear(param0, 0);
+    Window_EraseStandardFrame(param0, 0);
     Windows_Delete(param0, 1);
 }
 
@@ -870,8 +870,8 @@ Window *ov5_021DD020(FieldSystem *fieldSystem, u8 param1, u8 param2)
     Window *v0 = Window_New(4, 1);
 
     Window_Add(fieldSystem->unk_08, v0, 3, param1, param2, 10, 2, 13, (1 + (10 * 4)));
-    sub_0200DAA4(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
-    Window_Show(v0, 1, 1024 - (18 + 12) - 9, 11);
+    LoadStandardWindowGraphics(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
+    Window_DrawStandardFrame(v0, 1, 1024 - (18 + 12) - 9, 11);
 
     ov5_021DD098(fieldSystem, v0);
 
@@ -880,7 +880,7 @@ Window *ov5_021DD020(FieldSystem *fieldSystem, u8 param1, u8 param2)
 
 void ov5_021DD084(Window *param0)
 {
-    Window_Clear(param0, 0);
+    Window_EraseStandardFrame(param0, 0);
     Windows_Delete(param0, 1);
 }
 
@@ -919,8 +919,8 @@ Window *ov5_021DD140(FieldSystem *fieldSystem, u8 param1, u8 param2)
     Window *v0 = Window_New(4, 1);
 
     Window_Add(fieldSystem->unk_08, v0, 3, param1, param2, 10, 2, 13, (1 + (10 * 4)));
-    sub_0200DAA4(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
-    Window_Show(v0, 1, 1024 - (18 + 12) - 9, 11);
+    LoadStandardWindowGraphics(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
+    Window_DrawStandardFrame(v0, 1, 1024 - (18 + 12) - 9, 11);
 
     ov5_021DD1A4(fieldSystem, v0);
 
@@ -964,8 +964,8 @@ UnkStruct_ov5_021DC1A4 *ov5_021DD250(FieldSystem *fieldSystem, u8 param1, u8 par
     v0 = ov5_021DC150(fieldSystem, param1, param2, 0, 0, param3, param4, NULL, NULL);
 
     Window_Add(v0->fieldSystem->unk_08, &v0->unk_08, 3, v0->unk_98, v0->unk_99, 10, 16, 13, ((1 + (10 * 4)) + (10 * 2)));
-    sub_0200DAA4(v0->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
-    Window_Show(&v0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
+    LoadStandardWindowGraphics(v0->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
+    Window_DrawStandardFrame(&v0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
     Window_FillRectWithColor(&v0->unk_08, 15, 0, 0, (10 * 8), (16 * 8));
 
     ov5_021DCC00(v0, 273, 0, 0);
@@ -994,7 +994,7 @@ void ov5_021DD3A8(UnkStruct_ov5_021DC1A4 *param0)
 {
     int v0;
 
-    Window_Clear(param0->unk_AC.window, 0);
+    Window_EraseStandardFrame(param0->unk_AC.window, 0);
     Window_Remove(param0->unk_AC.window);
 
     for (v0 = 0; v0 < 28; v0++) {

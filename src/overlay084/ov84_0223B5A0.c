@@ -33,6 +33,7 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "render_text.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "strbuf.h"
 #include "string_list.h"
@@ -44,7 +45,6 @@
 #include "unk_02005474.h"
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_0201D15C.h"
@@ -820,8 +820,8 @@ static void ov84_0223BC1C(UnkStruct_ov84_0223B5A0 *param0)
     Graphics_LoadPaletteFromOpenNARC(param0->unk_D4, 12, 0, 0, 0, 6);
     Graphics_LoadPaletteFromOpenNARC(param0->unk_D4, 22, 0, 16 * 13 * 2, 32, 6);
     Font_LoadScreenIndicatorsPalette(0, 11 * 32, 6);
-    sub_0200DAA4(param0->unk_00, 0, 1024 - 9, 14, 0, 6);
-    sub_0200DD0C(param0->unk_00, 0, 1024 - 9 - (18 + 12), 12, Options_Frame(param0->unk_D0), 6);
+    LoadStandardWindowGraphics(param0->unk_00, 0, 1024 - 9, 14, 0, 6);
+    LoadMessageBoxGraphics(param0->unk_00, 0, 1024 - 9 - (18 + 12), 12, Options_Frame(param0->unk_D0), 6);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_D4, 15, param0->unk_00, 5, 0, 0, 0, 6);
     Graphics_LoadPaletteFromOpenNARC(param0->unk_D4, 16, 4, 0, 0, 6);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_D4, 17, param0->unk_00, 5, 0, 0, 0, 6);
@@ -2110,7 +2110,7 @@ static int ov84_0223D858(UnkStruct_ov84_0223B5A0 *param0)
         if (v2 != 0) {
             sub_0207CD34(param0->unk_CC, param0->unk_3F8, param0->unk_C4->unk_66, v2, 6);
             Window_FillTilemap(&param0->unk_04[6], 15);
-            sub_0200E060(&param0->unk_04[6], 0, 1024 - 9 - (18 + 12), 12);
+            Window_DrawMessageBoxWithScrollCursor(&param0->unk_04[6], 0, 1024 - 9 - (18 + 12), 12);
             param0->unk_426 = ov84_022400A0(param0);
 
             return 12;
@@ -2124,7 +2124,7 @@ static int ov84_0223D8EC(UnkStruct_ov84_0223B5A0 *param0)
 {
     if (Text_IsPrinterActive(param0->unk_426) == 0) {
         if ((gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) || gCoreSys.touchPressed) {
-            sub_0200E084(&param0->unk_04[6], 0);
+            Window_EraseMessageBox(&param0->unk_04[6], 0);
             Window_ScheduleCopyToVRAM(&param0->unk_04[1]);
             ov84_02240B34(param0, 1);
 
@@ -2152,7 +2152,7 @@ static int ov84_0223D94C(UnkStruct_ov84_0223B5A0 *param0)
 
     if (sub_0207CC10(param0->unk_C4->unk_00, param0->unk_3F8, param0->unk_C4->unk_66, 6) == 1) {
         Window_FillTilemap(&param0->unk_04[6], 15);
-        sub_0200E060(&param0->unk_04[6], 0, 1024 - 9 - (18 + 12), 12);
+        Window_DrawMessageBoxWithScrollCursor(&param0->unk_04[6], 0, 1024 - 9 - (18 + 12), 12);
         param0->unk_426 = ov84_022400A0(param0);
         return 12;
     }
@@ -2189,7 +2189,7 @@ static int ov84_0223DA14(UnkStruct_ov84_0223B5A0 *param0)
         }
     }
         Window_FillTilemap(&param0->unk_04[6], 15);
-        sub_0200E060(&param0->unk_04[6], 0, 1024 - 9 - (18 + 12), 12);
+        Window_DrawMessageBoxWithScrollCursor(&param0->unk_04[6], 0, 1024 - 9 - (18 + 12), 12);
 
         param0->unk_426 = ov84_022400A0(param0);
         param0->unk_483 = 1;
@@ -2248,7 +2248,7 @@ static int ov84_0223DA14(UnkStruct_ov84_0223B5A0 *param0)
             }
         } break;
         case 0xfffffffe:
-            sub_0200E084(&param0->unk_04[6], 0);
+            Window_EraseMessageBox(&param0->unk_04[6], 0);
             Window_ScheduleCopyToVRAM(&param0->unk_04[1]);
             ov84_02240B34(param0, 1);
             ov84_0223D7E8(param0, 0);
@@ -2321,7 +2321,7 @@ static int ov84_0223DDD0(UnkStruct_ov84_0223B5A0 *param0)
     switch (param0->unk_483) {
     case 0:
         Window_FillTilemap(&param0->unk_04[6], 15);
-        sub_0200E060(&param0->unk_04[6], 0, 1024 - 9 - (18 + 12), 12);
+        Window_DrawMessageBoxWithScrollCursor(&param0->unk_04[6], 0, 1024 - 9 - (18 + 12), 12);
         param0->unk_426 = ov84_022400A0(param0);
         param0->unk_483 = 1;
         break;
@@ -2331,7 +2331,7 @@ static int ov84_0223DDD0(UnkStruct_ov84_0223B5A0 *param0)
         }
 
         if ((gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) || gCoreSys.touchPressed) {
-            sub_0200E084(&param0->unk_04[6], 0);
+            Window_EraseMessageBox(&param0->unk_04[6], 0);
             param0->unk_483 = 2;
         }
 
@@ -2482,7 +2482,7 @@ static int ov84_0223E01C(UnkStruct_ov84_0223B5A0 *param0)
         }
     } break;
     case 0xfffffffe:
-        sub_0200E084(&param0->unk_04[6], 0);
+        Window_EraseMessageBox(&param0->unk_04[6], 0);
         Window_ScheduleCopyToVRAM(&param0->unk_04[1]);
         ov84_02240B34(param0, 1);
         return 1;
@@ -2509,7 +2509,7 @@ static int ov84_0223E18C(UnkStruct_ov84_0223B5A0 *param0)
     if (Text_IsPrinterActive(param0->unk_426) == 0) {
         if ((gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) || gCoreSys.touchPressed) {
             param0->unk_479 = 0;
-            sub_0200E084(&param0->unk_04[6], 0);
+            Window_EraseMessageBox(&param0->unk_04[6], 0);
             Window_ScheduleCopyToVRAM(&param0->unk_04[1]);
             ov84_02240B34(param0, 1);
 
@@ -2575,7 +2575,7 @@ static int ov84_0223E27C(UnkStruct_ov84_0223B5A0 *param0)
                 Strbuf *v1;
 
                 Window_FillTilemap(&param0->unk_04[6], 15);
-                sub_0200E060(&param0->unk_04[6], 0, 1024 - 9 - (18 + 12), 12);
+                Window_DrawMessageBoxWithScrollCursor(&param0->unk_04[6], 0, 1024 - 9 - (18 + 12), 12);
                 StringTemplate_SetItemName(param0->unk_118, 0, param0->unk_C4->unk_66);
 
                 v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 46);
@@ -2604,7 +2604,7 @@ static int ov84_0223E36C(UnkStruct_ov84_0223B5A0 *param0)
 {
     if (Text_IsPrinterActive(param0->unk_426) == 0) {
         if ((gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) || gCoreSys.touchPressed) {
-            sub_0200E084(&param0->unk_04[6], 0);
+            Window_EraseMessageBox(&param0->unk_04[6], 0);
             Window_ScheduleCopyToVRAM(&param0->unk_04[1]);
             ov84_02240B34(param0, 1);
 
@@ -2638,7 +2638,7 @@ static int ov84_0223E3BC(UnkStruct_ov84_0223B5A0 *param0)
 
             ov84_02240248(param0, 0);
             Window_FillTilemap(&param0->unk_04[6], 15);
-            sub_0200E060(&param0->unk_04[6], 0, 1024 - 9 - (18 + 12), 12);
+            Window_DrawMessageBoxWithScrollCursor(&param0->unk_04[6], 0, 1024 - 9 - (18 + 12), 12);
             StringTemplate_SetItemName(param0->unk_118, 0, param0->unk_C4->unk_66);
             ov84_02240B34(param0, 2);
 
@@ -2705,7 +2705,7 @@ static int ov84_0223E5C4(UnkStruct_ov84_0223B5A0 *param0)
         Strbuf *v0;
 
         ov84_02240D3C(param0, 0);
-        Window_Clear(&param0->unk_04[7], 1);
+        Window_EraseStandardFrame(&param0->unk_04[7], 1);
         Window_FillTilemap(&param0->unk_04[6], 15);
         v0 = MessageLoader_GetNewStrbuf(param0->unk_114, 76);
         StringTemplate_SetNumber(param0->unk_118, 0, param0->unk_488 * param0->unk_48C, 6, 0, 1);
@@ -2735,7 +2735,7 @@ static int ov84_0223E5C4(UnkStruct_ov84_0223B5A0 *param0)
         Strbuf *v1;
 
         ov84_02240D3C(param0, 0);
-        Window_Clear(&param0->unk_04[7], 1);
+        Window_EraseStandardFrame(&param0->unk_04[7], 1);
         Window_FillTilemap(&param0->unk_04[6], 15);
 
         v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 76);
@@ -2752,9 +2752,9 @@ static int ov84_0223E5C4(UnkStruct_ov84_0223B5A0 *param0)
         param0->unk_48C = 0;
 
         ov84_02240D3C(param0, 0);
-        Window_Clear(&param0->unk_04[8], 1);
-        Window_Clear(&param0->unk_04[7], 1);
-        sub_0200E084(&param0->unk_04[6], 0);
+        Window_EraseStandardFrame(&param0->unk_04[8], 1);
+        Window_EraseStandardFrame(&param0->unk_04[7], 1);
+        Window_EraseMessageBox(&param0->unk_04[6], 0);
         Window_ScheduleCopyToVRAM(&param0->unk_04[1]);
         ov84_02240B34(param0, 1);
         Sound_PlayEffect(1500);
@@ -2819,8 +2819,8 @@ static int ov84_0223E7CC(UnkStruct_ov84_0223B5A0 *param0)
     } break;
     case 0xfffffffe:
         param0->unk_48C = 0;
-        Window_Clear(&param0->unk_04[8], 1);
-        sub_0200E084(&param0->unk_04[6], 0);
+        Window_EraseStandardFrame(&param0->unk_04[8], 1);
+        Window_EraseMessageBox(&param0->unk_04[6], 0);
         Window_ScheduleCopyToVRAM(&param0->unk_04[1]);
         ov84_02240B34(param0, 1);
 
@@ -2862,8 +2862,8 @@ static int ov84_0223E9B0(UnkStruct_ov84_0223B5A0 *param0)
             param0->unk_479 = 0;
             param0->unk_48C = 0;
 
-            Window_Clear(&param0->unk_04[8], 1);
-            sub_0200E084(&param0->unk_04[6], 0);
+            Window_EraseStandardFrame(&param0->unk_04[8], 1);
+            Window_EraseMessageBox(&param0->unk_04[6], 0);
             Window_ScheduleCopyToVRAM(&param0->unk_04[1]);
             ov84_02240B34(param0, 1);
 
@@ -2898,7 +2898,7 @@ static int ov84_0223EA18(UnkStruct_ov84_0223B5A0 *param0)
                 if (Item_LoadParam(param0->unk_C4->unk_66, 6, 6) != 13) {
                     sub_0207CD34(param0->unk_CC, param0->unk_3F8, param0->unk_C4->unk_66, -1, 6);
                     Window_FillTilemap(&param0->unk_04[6], 15);
-                    sub_0200E060(&param0->unk_04[6], 0, 1024 - 9 - (18 + 12), 12);
+                    Window_DrawMessageBoxWithScrollCursor(&param0->unk_04[6], 0, 1024 - 9 - (18 + 12), 12);
 
                     param0->unk_426 = ov84_022400A0(param0);
                     return 12;

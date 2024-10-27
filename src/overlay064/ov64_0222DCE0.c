@@ -38,6 +38,7 @@
 #include "overlay_manager.h"
 #include "pokemon.h"
 #include "render_text.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "sprite_resource.h"
@@ -50,7 +51,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_02017728.h"
@@ -1047,8 +1047,8 @@ static void ov64_0222E620 (UnkStruct_ov64_0222E21C * param0, const UnkStruct_ov6
     v0 = Options_Frame(SaveData_Options(param1->unk_00));
 
     Font_LoadScreenIndicatorsPalette(0, 7 * 0x20, param2);
-    sub_0200DD0C(param0->unk_00, Unk_ov64_02232258[1], (1 + 9), 8, v0, param2);
-    sub_0200DAA4(param0->unk_00, Unk_ov64_02232258[1], 1, 9, 0, param2);
+    LoadMessageBoxGraphics(param0->unk_00, Unk_ov64_02232258[1], (1 + 9), 8, v0, param2);
+    LoadStandardWindowGraphics(param0->unk_00, Unk_ov64_02232258[1], 1, 9, 0, param2);
     Window_Init(&param0->unk_220);
     Window_Add(param0->unk_00, &param0->unk_220, Unk_ov64_02232258[1], 1, 0, 24, 3, 7, ((1 + 9) + (18 + 12)));
 
@@ -1680,7 +1680,7 @@ static void ov64_0222EFBC (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_0222
 
     param0->unk_30 = Text_AddPrinterWithParamsAndColor(&param0->unk_1C, FONT_MESSAGE, param0->unk_38, 0, 0, param0->unk_34, TEXT_COLOR(1, 2, 0), NULL);
 
-    sub_0200E060(&param0->unk_1C, 1, (1 + 9), 8);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_1C, 1, (1 + 9), 8);
     Window_ScheduleCopyToVRAM(&param0->unk_1C);
     Strbuf_Free(v0);
 }
@@ -1696,7 +1696,7 @@ static BOOL ov64_0222F038 (const UnkStruct_ov64_0222F038 * param0)
 
 static void ov64_0222F050 (UnkStruct_ov64_0222F038 * param0)
 {
-    sub_0200E084(&param0->unk_1C, 1);
+    Window_EraseMessageBox(&param0->unk_1C, 1);
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_1C);
 }
 
@@ -2418,7 +2418,7 @@ static void ov64_0222FA70 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222
     v0.window = &param0->unk_E0;
     param0->unk_F8 = ListMenu_New(&v0, 0, 0, param3);
 
-    Window_Show(&param0->unk_E0, 1, 1, 9);
+    Window_DrawStandardFrame(&param0->unk_E0, 1, 1, 9);
     Window_ScheduleCopyToVRAM(&param0->unk_E0);
 
     ov64_0222E880(param2, param1->unk_00, param1->unk_08.unk_04[v3], param3);
@@ -2453,7 +2453,7 @@ static u32 ov64_0222FB24 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222E
 
     ov64_0222FF18(param0);
 
-    Window_Clear(&param0->unk_E0, 1);
+    Window_EraseStandardFrame(&param0->unk_E0, 1);
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_E0);
     ListMenu_Free(param0->unk_F8, NULL, NULL);
 
@@ -2575,7 +2575,7 @@ static void ov64_0222FE70 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222
 
     param0->unk_D8 = Text_AddPrinterWithParamsAndColor(&param0->unk_C4, FONT_MESSAGE, param0->unk_D4, 0, 0, param0->unk_DC, TEXT_COLOR(1, 2, 0), NULL);
 
-    sub_0200E060(&param0->unk_C4, 1, (1 + 9), 8);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_C4, 1, (1 + 9), 8);
     Window_ScheduleCopyToVRAM(&param0->unk_C4);
     Strbuf_Free(v0);
 }
@@ -2591,7 +2591,7 @@ static BOOL ov64_0222FEFC (const UnkStruct_ov64_0222F0C4 * param0)
 
 static void ov64_0222FF18 (UnkStruct_ov64_0222F0C4 * param0)
 {
-    sub_0200E084(&param0->unk_C4, 1);
+    Window_EraseMessageBox(&param0->unk_C4, 1);
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_C4);
     Window_ScheduleCopyToVRAM(&param0->unk_B4);
 }

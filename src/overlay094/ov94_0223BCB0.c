@@ -34,6 +34,7 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "pokemon_icon.h"
+#include "render_window.h"
 #include "sprite_resource.h"
 #include "string_template.h"
 #include "trainer_info.h"
@@ -41,7 +42,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
@@ -549,13 +549,13 @@ static void ov94_0223C598(UnkStruct_ov94_0223FD4C *param0)
 
 void ov94_0223C5D8(UnkStruct_ov94_0223FD4C *param0)
 {
-    param0->unk_10DC = sub_0200E7FC(&param0->unk_F5C, 1);
+    param0->unk_10DC = Window_AddWaitDial(&param0->unk_F5C, 1);
 }
 
 void ov94_0223C5F4(UnkStruct_ov94_0223FD4C *param0)
 {
     if (param0->unk_10DC != NULL) {
-        DeleteWaitDial(param0->unk_10DC);
+        DestroyWaitDial(param0->unk_10DC);
         param0->unk_10DC = NULL;
     }
 }

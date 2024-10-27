@@ -24,6 +24,7 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "render_text.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
@@ -31,7 +32,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_0201D15C.h"
@@ -569,7 +569,7 @@ int ov92_021D0EB8(OverlayManager *param0, int *param1)
         ov92_021D2334(v0);
 
         Window_FillRectWithColor(&v0->unk_B814, 15, 0, 0, 27 * 8, 4 * 8);
-        Window_Show(&v0->unk_B834, 0, ((512 - (18 + 12)) - 9), 7);
+        Window_DrawStandardFrame(&v0->unk_B834, 0, ((512 - (18 + 12)) - 9), 7);
 
         if (v0->unk_BB14 != 0) {
             ov92_021D1DEC(v0);
@@ -586,7 +586,7 @@ int ov92_021D0EB8(OverlayManager *param0, int *param1)
         ov92_021D1700(v0);
 
         if ((gCoreSys.pressedKeys & PAD_BUTTON_B) || (v0->unk_BAF8 & PAD_BUTTON_B)) {
-            Window_Clear(&v0->unk_B834, 0);
+            Window_EraseStandardFrame(&v0->unk_B834, 0);
             Sound_PlayEffect(1501);
             Window_FillRectWithColor(&v0->unk_B814, 15, 0, 0, 27 * 8, 4 * 8);
 
@@ -917,14 +917,14 @@ static void ov92_021D1888(UnkStruct_ov92_021D1B24 *param0, NARC *param1)
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 5, param0->unk_B810, 7, 0, 0, 0, param0->unk_00);
     Graphics_LoadPaletteFromOpenNARC(param1, 6, 4, 0 * (2 * 16), (2 * 16) * 4, param0->unk_00);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 7, param0->unk_B810, 7, 0, 0, 0, param0->unk_00);
-    sub_0200DD0C(param0->unk_B810, 6, (512 - (18 + 12)), 6, Options_Frame(param0->unk_08), param0->unk_00);
-    sub_0200DAA4(param0->unk_B810, 6, ((512 - (18 + 12)) - 9), 7, 0, param0->unk_00);
+    LoadMessageBoxGraphics(param0->unk_B810, 6, (512 - (18 + 12)), 6, Options_Frame(param0->unk_08), param0->unk_00);
+    LoadStandardWindowGraphics(param0->unk_B810, 6, ((512 - (18 + 12)) - 9), 7, 0, param0->unk_00);
     Font_LoadTextPalette(4, 4 * (2 * 16), param0->unk_00);
     Bg_ClearTilesRange(6, 32, 0, param0->unk_00);
     Bg_MaskPalette(6, 0x4753);
     Window_AddFromTemplate(param0->unk_B810, &param0->unk_B814, &Unk_ov92_021D2934);
     Window_FillRectWithColor(&param0->unk_B814, 15, 0, 0, 27 * 8, 4 * 8);
-    sub_0200E060(&param0->unk_B814, 0, (512 - (18 + 12)), 6);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_B814, 0, (512 - (18 + 12)), 6);
 
     param0->unk_B864 = 0;
 
@@ -934,7 +934,7 @@ static void ov92_021D1888(UnkStruct_ov92_021D1B24 *param0, NARC *param1)
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 5, param0->unk_B810, 3, 0, 0, 0, param0->unk_00);
     Graphics_LoadPaletteFromOpenNARC(param1, 6, 0, 0 * (2 * 16), (2 * 16) * 4, param0->unk_00);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 7, param0->unk_B810, 3, 0, 0, 0, param0->unk_00);
-    sub_0200DAA4(param0->unk_B810, 2, ((512 - (18 + 12)) - 9), 7, 0, param0->unk_00);
+    LoadStandardWindowGraphics(param0->unk_B810, 2, ((512 - (18 + 12)) - 9), 7, 0, param0->unk_00);
     Font_LoadTextPalette(0, 4 * (2 * 16), param0->unk_00);
     Bg_ClearTilesRange(2, 32, 0, param0->unk_00);
     Bg_MaskPalette(2, 0x0);
@@ -1034,7 +1034,7 @@ static void ov92_021D1C4C(UnkStruct_ov92_021D1B24 *param0, Window *param1, const
     v0.cursorCallback = ov92_021D1C38;
     param0->unk_B854 = ListMenu_New(&v0, 0, 0, param0->unk_00);
 
-    Window_Show(v0.window, 1, ((512 - (18 + 12)) - 9), 7);
+    Window_DrawStandardFrame(v0.window, 1, ((512 - (18 + 12)) - 9), 7);
     Window_CopyToVRAM(param1);
 }
 
@@ -1062,13 +1062,13 @@ static void ov92_021D1CF4(UnkStruct_ov92_021D1B24 *param0, Window *param1, const
 
     param0->unk_B854 = ListMenu_New(&v0, 0, 0, param0->unk_00);
 
-    Window_Show(v0.window, 1, ((512 - (18 + 12)) - 9), 7);
+    Window_DrawStandardFrame(v0.window, 1, ((512 - (18 + 12)) - 9), 7);
     Window_CopyToVRAM(param1);
 }
 
 static void ov92_021D1DB4(UnkStruct_ov92_021D1B24 *param0)
 {
-    Window_Clear(&param0->unk_B824, 0);
+    Window_EraseStandardFrame(&param0->unk_B824, 0);
     Window_Remove(&param0->unk_B824);
     ListMenu_Free(param0->unk_B854, NULL, NULL);
     StringList_Free(param0->unk_B858);
@@ -1081,7 +1081,7 @@ static void ov92_021D1DEC(UnkStruct_ov92_021D1B24 *param0)
 
     Window_AddFromTemplate(param0->unk_B810, &param0->unk_B844, &Unk_ov92_021D291C);
     Window_FillRectWithColor(&param0->unk_B844, 15, 0, 0, 27 * 8, 6 * 8);
-    Window_Show(&param0->unk_B844, 0, ((512 - (18 + 12)) - 9), 7);
+    Window_DrawStandardFrame(&param0->unk_B844, 0, ((512 - (18 + 12)) - 9), 7);
 
     StringTemplate_SetCountryName(param0->unk_B870, 0, param0->unk_BB14);
     StringTemplate_SetCityName(param0->unk_B870, 1, param0->unk_BB14, param0->unk_BB18);
@@ -1104,7 +1104,7 @@ static void ov92_021D1EBC(UnkStruct_ov92_021D1B24 *param0, int param1, int param
 
     Window_AddFromTemplate(param0->unk_B810, &param0->unk_B844, &Unk_ov92_021D291C);
     Window_FillRectWithColor(&param0->unk_B844, 15, 0, 0, 27 * 8, 6 * 8);
-    Window_Show(&param0->unk_B844, 0, ((512 - (18 + 12)) - 9), 7);
+    Window_DrawStandardFrame(&param0->unk_B844, 0, ((512 - (18 + 12)) - 9), 7);
 
     ov92_021D27E8(param1, param2, v0, v1, param0->unk_00);
 
@@ -1120,7 +1120,7 @@ static void ov92_021D1EBC(UnkStruct_ov92_021D1B24 *param0, int param1, int param
 
 static void ov92_021D1F74(UnkStruct_ov92_021D1B24 *param0)
 {
-    Window_Clear(&param0->unk_B844, 0);
+    Window_EraseStandardFrame(&param0->unk_B844, 0);
     Window_Remove(&param0->unk_B844);
 }
 

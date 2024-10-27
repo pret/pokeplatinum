@@ -26,13 +26,13 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "render_text.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "unk_0200A784.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
@@ -435,8 +435,8 @@ static void ov61_0222C3B0(UnkStruct_ov61_0222C664 *param0)
     Graphics_LoadPaletteFromOpenNARC(v1, 3, 4, 0, 0, 117);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 117);
     Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, 117);
-    sub_0200DD0C(v0, 0, 1, 10, Options_Frame(SaveData_Options(param0->unk_00->unk_00->unk_04)), 117);
-    sub_0200DAA4(v0, 0, (1 + (18 + 12)), 11, 0, 117);
+    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(SaveData_Options(param0->unk_00->unk_00->unk_04)), 117);
+    LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, 117);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 2, v0, 1, 0, 0, 0, 117);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 5, v0, 1, 0, 32 * 24 * 2, 0, 117);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 10, v0, 5, 0, 0, 0, 117);
@@ -500,7 +500,7 @@ static void ov61_0222C794(UnkStruct_ov61_0222C664 *param0, int param1)
     MessageLoader_GetStrbuf(param0->unk_2C, param1, v0);
     StringTemplate_Format(param0->unk_20, param0->unk_3C, v0);
     Window_FillTilemap(&param0->unk_64, 15);
-    Window_Show(&param0->unk_64, 1, (1 + (18 + 12)), 11);
+    Window_DrawStandardFrame(&param0->unk_64, 1, (1 + (18 + 12)), 11);
 
     param0->unk_40 = Text_AddPrinterWithParams(&param0->unk_64, FONT_MESSAGE, param0->unk_3C, 0, 0, TEXT_SPEED_INSTANT, NULL);
     param0->unk_40 = 0xff;
@@ -519,7 +519,7 @@ static void ov61_0222C7F8(UnkStruct_ov61_0222C664 *param0, int param1, int param
     }
 
     StringTemplate_SetNumber(param0->unk_20, 0, param2, 5, 2, 1);
-    sub_0200E084(&param0->unk_44, 1);
+    Window_EraseMessageBox(&param0->unk_44, 1);
 
     ov61_0222C794(param0, v0);
 }
@@ -536,14 +536,14 @@ static int ov61_0222C834(int param0)
 static void ov61_0222C850(UnkStruct_ov61_0222C664 *param0)
 {
     if (param0->unk_88 == NULL) {
-        param0->unk_88 = sub_0200E7FC(&param0->unk_44, 1);
+        param0->unk_88 = Window_AddWaitDial(&param0->unk_44, 1);
     }
 }
 
 static void ov61_0222C86C(UnkStruct_ov61_0222C664 *param0)
 {
     if (param0->unk_88 != NULL) {
-        DeleteWaitDial(param0->unk_88);
+        DestroyWaitDial(param0->unk_88);
         param0->unk_88 = NULL;
     }
 }
@@ -568,7 +568,7 @@ static void ov61_0222C8B8(UnkStruct_ov61_0222C664 *param0, MessageLoader *param1
     StringTemplate_Format(param0->unk_20, param0->unk_34, v0);
     Strbuf_Free(v0);
     Window_FillTilemap(&param0->unk_44, 0xf0f);
-    sub_0200E060(&param0->unk_44, 0, 1, 10);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_44, 0, 1, 10);
 
     param0->unk_40 = Text_AddPrinterWithParams(&param0->unk_44, FONT_MESSAGE, param0->unk_34, 0, 0, param3, NULL);
     param0->unk_8C = 0;
@@ -835,7 +835,7 @@ static int ov61_0222CC40(UnkStruct_ov61_0222C664 *param0)
 static int ov61_0222CC64(UnkStruct_ov61_0222C664 *param0)
 {
     if (gCoreSys.pressedKeys & PAD_BUTTON_A || gCoreSys.pressedKeys & PAD_BUTTON_B) {
-        Window_Clear(&param0->unk_64, 0);
+        Window_EraseStandardFrame(&param0->unk_64, 0);
         param0->unk_90 = 0;
 
         if (ov61_0222C928(-param0->unk_18, param0->unk_1C) == 1) {

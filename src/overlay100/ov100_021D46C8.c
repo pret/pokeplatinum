@@ -21,11 +21,11 @@
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200DA60.h"
 
 int ov100_021D46C8(UnkStruct_ov100_021D46C8 *param0, UnkStruct_020985E4 *param1, int param2)
 {
@@ -56,7 +56,7 @@ int ov100_021D46C8(UnkStruct_ov100_021D46C8 *param0, UnkStruct_020985E4 *param1,
     v0 = Text_AddPrinterWithParams(&param0->unk_30, FONT_MESSAGE, v3, 0, 0, v4, NULL);
     Window_CopyToVRAM(&param0->unk_30);
 
-    sub_0200E060(&param0->unk_30, 0, 500, 15);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_30, 0, 500, 15);
     Strbuf_Free(v2);
     Strbuf_Free(v3);
 
@@ -67,7 +67,7 @@ int ov100_021D46C8(UnkStruct_ov100_021D46C8 *param0, UnkStruct_020985E4 *param1,
 
 void ov100_021D4788(UnkStruct_ov100_021D46C8 *param0)
 {
-    sub_0200E084(&param0->unk_30, 1);
+    Window_EraseMessageBox(&param0->unk_30, 1);
     Window_ClearAndCopyToVRAM(&param0->unk_30);
 }
 

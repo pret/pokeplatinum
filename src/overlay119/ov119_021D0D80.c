@@ -31,6 +31,7 @@
 #include "message.h"
 #include "palette.h"
 #include "pokemon.h"
+#include "render_window.h"
 #include "spl.h"
 #include "strbuf.h"
 #include "string_list.h"
@@ -38,7 +39,6 @@
 #include "text.h"
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02014000.h"
 #include "unk_0201DBEC.h"
@@ -281,10 +281,10 @@ void ov119_021D1068(BgConfig *param0, PaletteData *param1, int param2)
 {
     int v0 = 71;
 
-    sub_0200DD0C(param0, 1, 20, 15, param2, v0);
-    PaletteData_LoadBufferFromFileStart(param1, 38, sub_0200DD08(param2), v0, 0, 0x20, 12 * 16);
-    sub_0200DAA4(param0, 1, (20 + (18 + 12)), 13, 0, v0);
-    PaletteData_LoadBufferFromFileStart(param1, 38, Window_FramePalette(), v0, 0, 0x20, 13 * 16);
+    LoadMessageBoxGraphics(param0, 1, 20, 15, param2, v0);
+    PaletteData_LoadBufferFromFileStart(param1, 38, GetMessageBoxPaletteNARCMember(param2), v0, 0, 0x20, 12 * 16);
+    LoadStandardWindowGraphics(param0, 1, (20 + (18 + 12)), 13, 0, v0);
+    PaletteData_LoadBufferFromFileStart(param1, 38, GetStandardWindowPaletteNARCMember(), v0, 0, 0x20, 13 * 16);
     PaletteData_LoadBufferFromFileStart(param1, 14, 7, v0, 0, 0x20, 14 * 16);
 }
 
@@ -292,7 +292,7 @@ void ov119_021D10F0(BgConfig *param0, Window *param1, int param2, int param3, in
 {
     Window_Init(param1);
     Window_Add(param0, param1, param2, param3, param4, param5, param6, param8, param7);
-    sub_0200E060(param1, 1, 20, 12);
+    Window_DrawMessageBoxWithScrollCursor(param1, 1, 20, 12);
     Window_FillTilemap(param1, 15);
     Window_CopyToVRAM(param1);
 }
@@ -359,13 +359,13 @@ void ov119_021D11E4(UnkStruct_ov119_021D0FD0 *param0, BgConfig *param1, Window *
     v0.suppressCursor = FALSE;
     v0.loopAround = TRUE;
 
-    Window_Show(param2, 1, (20 + (18 + 12)), 13);
+    Window_DrawStandardFrame(param2, 1, (20 + (18 + 12)), 13);
     param0->unk_04.unk_48 = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 71, PAD_BUTTON_B);
 }
 
 void ov119_021D12CC(UnkStruct_ov119_021D0FD0 *param0)
 {
-    Window_Clear(&param0->unk_04.unk_14[1], 1);
+    Window_EraseStandardFrame(&param0->unk_04.unk_14[1], 1);
     Window_ClearAndCopyToVRAM(&param0->unk_04.unk_14[1]);
     Window_Remove(&param0->unk_04.unk_14[1]);
     Menu_Free(param0->unk_04.unk_48, NULL);

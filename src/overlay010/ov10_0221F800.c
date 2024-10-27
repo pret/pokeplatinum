@@ -44,6 +44,7 @@
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "pokemon_summary_app.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
@@ -54,7 +55,6 @@
 #include "unk_0200679C.h"
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02014000.h"
@@ -494,7 +494,7 @@ static void ov10_0221F930(UnkStruct_ov10_0221FB28 *param0)
         }
 
         Window_FillRectWithColor(&param0->unk_B8C, 15, 0, 0, 27 * 8, 4 * 8);
-        sub_0200E060(&param0->unk_B8C, 0, 1, 15);
+        Window_DrawMessageBoxWithScrollCursor(&param0->unk_B8C, 0, 1, 15);
 
         param0->unk_BAC = Text_AddPrinterWithParams(&param0->unk_B8C, FONT_MESSAGE, param0->unk_BA8, 0, 0, TEXT_SPEED_INSTANT, NULL);
         param0->unk_BB4 = Menu_MakeYesNoChoiceWithCursorAt(param0->unk_0C, &Unk_ov10_02222A68, (1 + (18 + 12)), 14, 1, param0->unk_00->unk_24);
@@ -531,7 +531,7 @@ static void ov10_0221F930(UnkStruct_ov10_0221FB28 *param0)
             param0->unk_BB4 = NULL;
         }
 
-        sub_0200E084(&param0->unk_B7C, 0);
+        Window_EraseMessageBox(&param0->unk_B7C, 0);
         Bg_ScheduleTilemapTransfer(param0->unk_0C, 0);
         param0->unk_BB0 = 8;
         break;
@@ -1051,7 +1051,7 @@ static u8 ov10_02220700(UnkStruct_ov10_0221FB28 *param0)
         }
         break;
     default:
-        sub_0200E084(&param0->unk_B7C, 0);
+        Window_EraseMessageBox(&param0->unk_B7C, 0);
         Bg_ScheduleTilemapTransfer(param0->unk_0C, 0);
         param0->unk_B76 = 0;
         param0->unk_B75 = 64 / 3;
@@ -1448,9 +1448,9 @@ static void ov10_02220F1C(UnkStruct_ov10_0221FB28 *param0)
     GF_ASSERT(param0->unk_B9C == GX_BG0_AS_2D && param0->unk_00 != NULL && param0->unk_00->unk_00 != NULL && param0->unk_00->unk_00->unk_108 != NULL);
     v0 = Options_Frame(param0->unk_00->unk_00->unk_108);
 
-    sub_0200DD0C(param0->unk_0C, 0, 1, 15, v0, param0->unk_00->unk_24);
+    LoadMessageBoxGraphics(param0->unk_0C, 0, 1, 15, v0, param0->unk_00->unk_24);
     PaletteData_LoadBufferFromHardware(param0->unk_08, 0, 15 * 16, 0x20 * 1);
-    sub_0200DAA4(param0->unk_0C, 0, (1 + (18 + 12)), 14, 0, param0->unk_00->unk_24);
+    LoadStandardWindowGraphics(param0->unk_0C, 0, (1 + (18 + 12)), 14, 0, param0->unk_00->unk_24);
     PaletteData_LoadBufferFromHardware(param0->unk_08, 0, 14 * 16, 0x20 * 1);
     Font_LoadTextPalette(0, 13 * 0x20, param0->unk_00->unk_24);
     PaletteData_LoadBufferFromHardware(param0->unk_08, 0, 13 * 16, 0x20 * 1);
@@ -2476,7 +2476,7 @@ static void ov10_022227A4(UnkStruct_ov10_0221F800 *param0)
 static void ov10_022229D4(UnkStruct_ov10_0221FB28 *param0)
 {
     Window_FillRectWithColor(&param0->unk_B7C, 15, 0, 0, 27 * 8, 4 * 8);
-    sub_0200E060(&param0->unk_B7C, 0, 1, 15);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_B7C, 0, 1, 15);
 }
 
 static BOOL ov10_02222A08(UnkStruct_ov10_0221FB28 *param0)
@@ -2491,14 +2491,14 @@ static BOOL ov10_02222A08(UnkStruct_ov10_0221FB28 *param0)
 static void ov10_02222A28(UnkStruct_ov10_0221FB28 *param0)
 {
     if (param0->unk_BB8 == NULL) {
-        param0->unk_BB8 = sub_0200E7FC(&param0->unk_B7C, 1);
+        param0->unk_BB8 = Window_AddWaitDial(&param0->unk_B7C, 1);
     }
 }
 
 static void ov10_02222A48(UnkStruct_ov10_0221FB28 *param0)
 {
     if (param0->unk_BB8 != NULL) {
-        DeleteWaitDial(param0->unk_BB8);
+        DestroyWaitDial(param0->unk_BB8);
         param0->unk_BB8 = NULL;
     }
 }

@@ -34,6 +34,7 @@
 #include "palette.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "sys_task.h"
@@ -41,7 +42,6 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02014000.h"
@@ -518,7 +518,7 @@ void ov76_0223BF74(BgConfig *param0, Window *param1, int param2, UnkStruct_ov76_
     v0.suppressCursor = FALSE;
     v0.loopAround = TRUE;
 
-    Window_Show(param1, 1, (1 + (18 + 12)), 13);
+    Window_DrawStandardFrame(param1, 1, (1 + (18 + 12)), 13);
     param3->unk_D4.unk_CC = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 53, PAD_BUTTON_B);
 }
 
@@ -922,19 +922,19 @@ void ov76_0223C8BC(UnkStruct_ov76_0223DE00 *param0)
 
 void ov76_0223C8EC(BgConfig *param0, PaletteData *param1, int param2)
 {
-    sub_0200DD0C(param0, 1, 1, 15, param2, 53);
-    PaletteData_LoadBufferFromFileStart(param1, 38, sub_0200DD08(param2), 53, 0, 0x20, 12 * 16);
-    sub_0200DAA4(param0, 1, (1 + (18 + 12)), 13, 0, 53);
-    PaletteData_LoadBufferFromFileStart(param1, 38, Window_FramePalette(), 53, 0, 0x20, 13 * 16);
+    LoadMessageBoxGraphics(param0, 1, 1, 15, param2, 53);
+    PaletteData_LoadBufferFromFileStart(param1, 38, GetMessageBoxPaletteNARCMember(param2), 53, 0, 0x20, 12 * 16);
+    LoadStandardWindowGraphics(param0, 1, (1 + (18 + 12)), 13, 0, 53);
+    PaletteData_LoadBufferFromFileStart(param1, 38, GetStandardWindowPaletteNARCMember(), 53, 0, 0x20, 13 * 16);
     PaletteData_LoadBufferFromFileStart(param1, 14, 7, 53, 0, 0x20, 14 * 16);
 }
 
 void ov76_0223C974(BgConfig *param0, PaletteData *param1, int param2)
 {
-    sub_0200DD0C(param0, 4, 1, 15, param2, 53);
-    PaletteData_LoadBufferFromFileStart(param1, 38, sub_0200DD08(param2), 53, 1, 0x20, 12 * 16);
-    sub_0200DAA4(param0, 4, (1 + (18 + 12)), 13, 0, 53);
-    PaletteData_LoadBufferFromFileStart(param1, 38, Window_FramePalette(), 53, 1, 0x20, 13 * 16);
+    LoadMessageBoxGraphics(param0, 4, 1, 15, param2, 53);
+    PaletteData_LoadBufferFromFileStart(param1, 38, GetMessageBoxPaletteNARCMember(param2), 53, 1, 0x20, 12 * 16);
+    LoadStandardWindowGraphics(param0, 4, (1 + (18 + 12)), 13, 0, 53);
+    PaletteData_LoadBufferFromFileStart(param1, 38, GetStandardWindowPaletteNARCMember(), 53, 1, 0x20, 13 * 16);
     PaletteData_LoadBufferFromFileStart(param1, 14, 7, 53, 1, 0x20, 14 * 16);
     PaletteData_LoadBufferFromFileStart(param1, 14, 7, 53, 1, 0x20, 3 * 16);
     PaletteData_LoadBufferFromFileStart(param1, 91, 294, 53, 1, 0x20, 11 * 16);
@@ -965,7 +965,7 @@ void ov76_0223CA98(BgConfig *param0, Window *param1, int param2, int param3, int
 {
     Window_Init(param1);
     Window_Add(param0, param1, param2, param3, param4, param5, param6, 14, param7);
-    sub_0200E060(param1, 1, 1, 12);
+    Window_DrawMessageBoxWithScrollCursor(param1, 1, 1, 12);
     Window_FillTilemap(param1, 15);
     Window_CopyToVRAM(param1);
 }

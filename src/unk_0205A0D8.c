@@ -29,6 +29,7 @@
 #include "player_avatar.h"
 #include "pokemon.h"
 #include "pokemon_summary_app.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
@@ -36,7 +37,6 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_0202602C.h"
 #include "unk_0202D778.h"
@@ -605,7 +605,7 @@ static BOOL sub_0205A324(TaskManager *param0)
         break;
     case 44:
         if (CommTiming_IsSyncState(4)) {
-            sub_0200E084(&(v0->unk_14), 0);
+            Window_EraseMessageBox(&(v0->unk_14), 0);
             v0->unk_08(0, NULL);
             v0->unk_34 = 5;
         }
@@ -633,7 +633,7 @@ static void sub_0205AAA0(UnkStruct_0205A0D8 *param0, BOOL param1)
 {
     if (Window_IsInUse(&(param0->unk_14))) {
         if (param1) {
-            sub_0200E084(&param0->unk_14, 0);
+            Window_EraseMessageBox(&param0->unk_14, 0);
             Window_ClearAndCopyToVRAM(&param0->unk_14);
         }
 
@@ -875,7 +875,7 @@ static void sub_0205ADF8(UnkStruct_0205A0D8 *param0, int param1)
         v3 = Pokemon_GetStructSize();
 
         Window_Add(param0->fieldSystem->unk_08, v0, 3, 21, 9, 10, 8, 13, 10);
-        sub_0200DAA4(param0->fieldSystem->unk_08, 3, 1, 11, 0, 4);
+        LoadStandardWindowGraphics(param0->fieldSystem->unk_08, 3, 1, 11, 0, 4);
         Window_FillTilemap(v0, 15);
 
         for (v1 = 0; v1 < 3; v1++) {
@@ -892,7 +892,7 @@ static void sub_0205ADF8(UnkStruct_0205A0D8 *param0, int param1)
 
     Window_FillRectWithColor(v0, 15, 0, 0, 16, v0->height * 8);
     ColoredArrow_Print(param0->unk_78, &param0->unk_54, 0, param1 * 16);
-    Window_Show(&param0->unk_54, 0, 1, 11);
+    Window_DrawStandardFrame(&param0->unk_54, 0, 1, 11);
 
     param0->unk_81 = param1;
     param0->unk_80 = 3 + 1;
@@ -907,7 +907,7 @@ static void sub_0205AF18(UnkStruct_0205A0D8 *param0, int param1)
         int v1;
 
         Window_Add(param0->fieldSystem->unk_08, v0, 3, 20, 11, 11, 6, 13, 90);
-        sub_0200DAA4(param0->fieldSystem->unk_08, 3, 1, 11, 0, 4);
+        LoadStandardWindowGraphics(param0->fieldSystem->unk_08, 3, 1, 11, 0, 4);
         Window_FillTilemap(v0, 15);
 
         for (v1 = 0; v1 < 3; v1++) {
@@ -922,7 +922,7 @@ static void sub_0205AF18(UnkStruct_0205A0D8 *param0, int param1)
 
     Window_FillRectWithColor(v0, 15, 0, 0, 16, v0->height * 8);
     ColoredArrow_Print(param0->unk_78, param0->unk_7C, 0, param1 * 16);
-    Window_Show(param0->unk_7C, 0, 1, 11);
+    Window_DrawStandardFrame(param0->unk_7C, 0, 1, 11);
 }
 
 static int sub_0205AFE4(UnkStruct_0205A0D8 *param0)
@@ -966,7 +966,7 @@ static int sub_0205AFE4(UnkStruct_0205A0D8 *param0)
 
 static void sub_0205B0B4(UnkStruct_0205A0D8 *param0)
 {
-    Window_Clear(param0->unk_7C, 1);
+    Window_EraseStandardFrame(param0->unk_7C, 1);
 }
 
 void sub_0205B0C0(int param0, int param1, void *param2, void *param3)
@@ -1033,7 +1033,7 @@ static BOOL sub_0205B140(TaskManager *param0)
                 StringTemplate_Free(v1->unk_18);
                 Strbuf_Free(v1->unk_00);
                 Strbuf_Free(v1->unk_04);
-                sub_0200E084(&v1->unk_08, 0);
+                Window_EraseMessageBox(&v1->unk_08, 0);
                 Window_Remove(&v1->unk_08);
                 ov5_021D1744(0);
                 v1->unk_28++;

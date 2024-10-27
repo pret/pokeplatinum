@@ -17,13 +17,13 @@
 #include "list_menu.h"
 #include "message.h"
 #include "party.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_0200DA60.h"
 #include "unk_0202602C.h"
 #include "unk_02026150.h"
 #include "unk_020508D4.h"
@@ -102,7 +102,7 @@ static void ov7_0224B4E8(UnkStruct_ov7_0224B4E8 *param0, int param1)
 static void ov7_0224B558(UnkStruct_ov7_0224B4E8 *param0, BOOL param1)
 {
     if (param1) {
-        sub_0200E084(&param0->unk_54, 0);
+        Window_EraseMessageBox(&param0->unk_54, 0);
         Window_ClearAndCopyToVRAM(&param0->unk_54);
     }
 
@@ -132,7 +132,7 @@ static void ov7_0224B5A8(UnkStruct_ov7_0224B4E8 *param0)
         param0->unk_08 = StringList_New(v3 + 2, 4);
 
         Window_Add(param0->fieldSystem->unk_08, v1, 3, 1, 1, 16, (v3 + 2) * 2, 13, 1);
-        Window_Show(&param0->unk_34, 1, 1024 - (18 + 12) - 9, 11);
+        Window_DrawStandardFrame(&param0->unk_34, 1, 1024 - (18 + 12) - 9, 11);
         StringList_AddFromMessageBank(param0->unk_08, param0->unk_68, 123, 12);
 
         for (v4 = 0; v4 < v3; v4++) {
@@ -161,7 +161,7 @@ static void ov7_0224B6AC(UnkStruct_ov7_0224B4E8 *param0)
 {
     if (param0->unk_00) {
         ListMenu_Free(param0->unk_00, NULL, NULL);
-        Window_Clear(&param0->unk_34, 1);
+        Window_EraseStandardFrame(&param0->unk_34, 1);
         Bg_ScheduleTilemapTransfer(param0->unk_34.bgConfig, param0->unk_34.bgLayer);
         Window_Remove(&param0->unk_34);
         StringList_Free(param0->unk_08);
@@ -225,7 +225,7 @@ static void ov7_0224B788(UnkStruct_ov7_0224B4E8 *param0)
     param0->unk_0C = StringList_New(v1, 4);
 
     Window_Add(param0->fieldSystem->unk_08, &param0->unk_44, 3, v5, v3, v4, v1 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - v4 * v1 * 2);
-    Window_Show(&param0->unk_44, 1, 1024 - (18 + 12) - 9, 11);
+    Window_DrawStandardFrame(&param0->unk_44, 1, 1024 - (18 + 12) - 9, 11);
 
     {
         int v7;
@@ -277,7 +277,7 @@ static int ov7_0224B83C(UnkStruct_ov7_0224B4E8 *param0)
 
     if (param0->unk_04) {
         ListMenu_Free(param0->unk_04, NULL, NULL);
-        Window_Clear(&param0->unk_44, 1);
+        Window_EraseStandardFrame(&param0->unk_44, 1);
         Bg_ScheduleTilemapTransfer(param0->unk_44.bgConfig, param0->unk_44.bgLayer);
         Window_Remove(&param0->unk_44);
         StringList_Free(param0->unk_0C);
@@ -332,7 +332,7 @@ static void ov7_0224B8DC(UnkStruct_ov7_0224B4E8 *param0)
     v4 = &param0->unk_24;
 
     Window_Add(param0->fieldSystem->unk_08, v4, 3, 4, 2, 24, 19, 13, 1);
-    Window_Show(v4, 1, 1024 - (18 + 12) - 9, 11);
+    Window_DrawStandardFrame(v4, 1, 1024 - (18 + 12) - 9, 11);
     Window_FillTilemap(v4, 15);
 
     ov7_0224B57C(param0, param0->unk_78 - 1);
@@ -416,7 +416,7 @@ static void ov7_0224B8DC(UnkStruct_ov7_0224B4E8 *param0)
 
 static void ov7_0224BBA0(UnkStruct_ov7_0224B4E8 *param0)
 {
-    Window_Clear(&param0->unk_24, 1);
+    Window_EraseStandardFrame(&param0->unk_24, 1);
     Bg_ScheduleTilemapTransfer(param0->unk_24.bgConfig, param0->unk_24.bgLayer);
     Window_Remove(&param0->unk_24);
 }

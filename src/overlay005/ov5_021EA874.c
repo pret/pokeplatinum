@@ -18,6 +18,7 @@
 #include "list_menu.h"
 #include "menu.h"
 #include "message.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
@@ -26,7 +27,6 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
-#include "unk_0200DA60.h"
 #include "unk_0202ACE0.h"
 #include "unk_0203061C.h"
 #include "unk_0203909C.h"
@@ -69,8 +69,8 @@ static BOOL ov5_021EA874(UnkStruct_ov5_021EAE78 *param0)
 
     param0->unk_8C = 0;
 
-    sub_0200DD0C(param0->fieldSystem->unk_08, 3, (512 - (18 + 12)), 10, Options_Frame(SaveData_Options(param0->unk_34)), 4);
-    sub_0200DAA4(param0->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
+    LoadMessageBoxGraphics(param0->fieldSystem->unk_08, 3, (512 - (18 + 12)), 10, Options_Frame(SaveData_Options(param0->unk_34)), 4);
+    LoadStandardWindowGraphics(param0->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
 
     param0->unk_48 = 1;
     return 0;
@@ -261,7 +261,7 @@ static BOOL ov5_021EAB58(UnkStruct_ov5_021EAE78 *param0)
     param0->unk_00 = StringList_New(v2 + 1, 4);
 
     Window_Add(param0->fieldSystem->unk_08, &param0->unk_20, 3, 19, 1, 12, v3 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (10 * (v3 + 2) * 2));
-    Window_Show(&param0->unk_20, 1, 1024 - (18 + 12) - 9, 11);
+    Window_DrawStandardFrame(&param0->unk_20, 1, 1024 - (18 + 12) - 9, 11);
 
     {
         MessageLoader *v4;
@@ -328,7 +328,7 @@ static BOOL ov5_021EAC44(UnkStruct_ov5_021EAE78 *param0)
         break;
     }
 
-    Window_Clear(&param0->unk_20, 0);
+    Window_EraseStandardFrame(&param0->unk_20, 0);
     Window_Remove(&param0->unk_20);
     ListMenu_Free(param0->unk_04, NULL, NULL);
     StringList_Free(param0->unk_00);

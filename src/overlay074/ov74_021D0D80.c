@@ -20,12 +20,12 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "render_text.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "text.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
@@ -244,7 +244,7 @@ static void ov74_021D1118(void *param0)
     UnkStruct_ov74_021D0D80 *v0 = param0;
 
     if (v0->unk_10_21) {
-        sub_0200DD0C(v0->unk_14, 1, ((((10 + 12 * 2) + 30 * 14) + 27 * 4) + 9), 15, v0->unk_5C[5].unk_02, v0->unk_00);
+        LoadMessageBoxGraphics(v0->unk_14, 1, ((((10 + 12 * 2) + 30 * 14) + 27 * 4) + 9), 15, v0->unk_5C[5].unk_02, v0->unk_00);
         v0->unk_10_21 = 0;
     }
 
@@ -498,8 +498,8 @@ static void ov74_021D14F4(UnkStruct_ov74_021D0D80 *param0)
     Window_Add(param0->unk_14, &param0->unk_2C[0], 1, 1, 0, 12, 2, 13, 10);
     Window_Add(param0->unk_14, &param0->unk_2C[1], 1, 1, 3, 30, 14, 13, (10 + 12 * 2));
     Window_Add(param0->unk_14, &param0->unk_2C[2], 1, 2, 19, 27, 4, 12, ((10 + 12 * 2) + 30 * 14));
-    sub_0200DAA4(param0->unk_14, 1, (((10 + 12 * 2) + 30 * 14) + 27 * 4), 14, 0, param0->unk_00);
-    sub_0200DD0C(param0->unk_14, 1, ((((10 + 12 * 2) + 30 * 14) + 27 * 4) + 9), 15, param0->unk_18.unk_00_10, param0->unk_00);
+    LoadStandardWindowGraphics(param0->unk_14, 1, (((10 + 12 * 2) + 30 * 14) + 27 * 4), 14, 0, param0->unk_00);
+    LoadMessageBoxGraphics(param0->unk_14, 1, ((((10 + 12 * 2) + 30 * 14) + 27 * 4) + 9), 15, param0->unk_18.unk_00_10, param0->unk_00);
 
     Font_LoadTextPalette(0, 13 * 32, param0->unk_00);
     Font_LoadTextPalette(4, 13 * 32, param0->unk_00);
@@ -513,16 +513,16 @@ static void ov74_021D14F4(UnkStruct_ov74_021D0D80 *param0)
     Window_ClearTilemap(&(param0->unk_2C[1]));
     Window_ClearTilemap(&(param0->unk_2C[0]));
 
-    Window_Show(&param0->unk_2C[1], 1, (((10 + 12 * 2) + 30 * 14) + 27 * 4), 14);
-    sub_0200E060(&param0->unk_2C[2], 1, ((((10 + 12 * 2) + 30 * 14) + 27 * 4) + 9), 15);
+    Window_DrawStandardFrame(&param0->unk_2C[1], 1, (((10 + 12 * 2) + 30 * 14) + 27 * 4), 14);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_2C[2], 1, ((((10 + 12 * 2) + 30 * 14) + 27 * 4) + 9), 15);
 }
 
 static void ov74_021D1624(UnkStruct_ov74_021D0D80 *param0)
 {
     u16 v0;
 
-    Window_Clear(&(param0->unk_2C[1]), 0);
-    sub_0200E084(&(param0->unk_2C[2]), 0);
+    Window_EraseStandardFrame(&(param0->unk_2C[1]), 0);
+    Window_EraseMessageBox(&(param0->unk_2C[2]), 0);
 
     for (v0 = 0; v0 < 3; v0++) {
         Window_ClearAndCopyToVRAM(&(param0->unk_2C[v0]));

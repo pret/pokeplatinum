@@ -9,11 +9,11 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "text.h"
 #include "unk_02000C88.h"
 #include "unk_0200A9DC.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 
@@ -101,7 +101,7 @@ void sub_02039A64(int param0, int param1)
     SetAllGraphicsModes(&Unk_020E5F50);
     Bg_InitFromTemplate(v0, 0, &Unk_020E5F60, 0);
     Bg_ClearTilemap(v0, 0);
-    sub_0200DAA4(v0, 0, (512 - 9), 2, 0, param0);
+    LoadStandardWindowGraphics(v0, 0, (512 - 9), 2, 0, param0);
     Font_LoadTextPalette(0, 1 * (2 * 16), param0);
     Bg_ClearTilesRange(0, 32, 0, param0);
     Bg_MaskPalette(0, 0x6c21);
@@ -113,7 +113,7 @@ void sub_02039A64(int param0, int param1)
     Text_ResetAllPrinters();
     Window_AddFromTemplate(v0, &v1, &Unk_020E5F48);
     Window_FillRectWithColor(&v1, 15, 0, 0, 26 * 8, 18 * 8);
-    Window_Show(&v1, 0, (512 - 9), 2);
+    Window_DrawStandardFrame(&v1, 0, (512 - 9), 2);
     MessageLoader_GetStrbuf(v2, v4, v3);
     Text_AddPrinterWithParams(&v1, FONT_SYSTEM, v3, 0, 0, TEXT_SPEED_INSTANT, NULL);
     Strbuf_Free(v3);

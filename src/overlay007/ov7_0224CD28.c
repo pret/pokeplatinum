@@ -33,6 +33,7 @@
 #include "message.h"
 #include "narc.h"
 #include "player_avatar.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
@@ -44,7 +45,6 @@
 #include "unk_0200A328.h"
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_0202854C.h"
 #include "unk_0202C9F4.h"
@@ -356,8 +356,8 @@ static void ov7_0224D040(UnkStruct_ov7_0224D008 *param0)
     v0.suppressCursor = FALSE;
     v0.loopAround = FALSE;
 
-    sub_0200DAA4(param0->unk_00, 3, 1024 - (18 + 12) - 9, 11, 0, 11);
-    Window_Show(&param0->unk_08[0], 1, 1024 - (18 + 12) - 9, 11);
+    LoadStandardWindowGraphics(param0->unk_00, 3, 1024 - (18 + 12) - 9, 11, 0, 11);
+    Window_DrawStandardFrame(&param0->unk_08[0], 1, 1024 - (18 + 12) - 9, 11);
 
     param0->unk_80 = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 11, PAD_BUTTON_B);
 }
@@ -381,7 +381,7 @@ static u8 ov7_0224D1EC(UnkStruct_ov7_0224D008 *param0)
 
 static void ov7_0224D21C(UnkStruct_ov7_0224D008 *param0)
 {
-    Window_Clear(&param0->unk_08[0], 1);
+    Window_EraseStandardFrame(&param0->unk_08[0], 1);
     Window_ClearAndCopyToVRAM(&param0->unk_08[0]);
     Menu_Free(param0->unk_80, NULL);
     StringList_Free(param0->unk_84);
@@ -397,7 +397,7 @@ static u8 ov7_0224D250(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1)
     if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         void *v0;
 
-        sub_0200E084(&param1->unk_08[1], 0);
+        Window_EraseMessageBox(&param1->unk_08[1], 0);
         Window_Remove(&param1->unk_08[1]);
         MessageLoader_Free(param1->unk_88);
         StringTemplate_Free(param1->unk_8C);
@@ -468,7 +468,7 @@ static void ov7_0224D44C(UnkStruct_ov7_0224D008 *param0)
 {
     u32 v0;
 
-    Window_Clear(&param0->unk_08[2], 1);
+    Window_EraseStandardFrame(&param0->unk_08[2], 1);
 
     for (v0 = 0; v0 < 6; v0++) {
         Window_ClearAndCopyToVRAM(&param0->unk_08[v0]);
@@ -496,8 +496,8 @@ static void ov7_0224D474(UnkStruct_ov7_0224D008 *param0)
         Graphics_LoadPaletteFromOpenNARC(v0, 1, 0, 0, 32, 11);
     }
 
-    sub_0200DAA4(param0->unk_00, 3, (1 + (18 + 12)), 11, 0, 11);
-    sub_0200DD0C(param0->unk_00, 3, 1, 10, Options_Frame(param0->unk_278), 11);
+    LoadStandardWindowGraphics(param0->unk_00, 3, (1 + (18 + 12)), 11, 0, 11);
+    LoadMessageBoxGraphics(param0->unk_00, 3, 1, 10, Options_Frame(param0->unk_278), 11);
     NARC_dtor(v0);
 }
 
@@ -769,7 +769,7 @@ static void ov7_0224DAF8(UnkStruct_ov7_0224D008 *param0, u8 param1)
     if (param0->unk_2A9 == 3) {
         if (param1 == 0) {
             Window_FillTilemap(&param0->unk_08[2], 15);
-            Window_Show(
+            Window_DrawStandardFrame(
                 &param0->unk_08[2], 1, (1 + (18 + 12)), 11);
         } else {
             Window_FillRectWithColor(&param0->unk_08[2], 15, 0, 0, (9 * 8), 16);
@@ -788,7 +788,7 @@ static void ov7_0224DAF8(UnkStruct_ov7_0224D008 *param0, u8 param1)
     } else {
         if (param1 == 0) {
             Window_FillTilemap(&param0->unk_08[2], 15);
-            Window_Show(&param0->unk_08[2], 1, (1 + (18 + 12)), 11);
+            Window_DrawStandardFrame(&param0->unk_08[2], 1, (1 + (18 + 12)), 11);
 
             v1 = MessageLoader_GetNewStrbuf(param0->unk_88, 18);
 
@@ -854,7 +854,7 @@ static u8 ov7_0224DC84(UnkStruct_ov7_0224D008 *param0)
 
         Window_FillTilemap(&param0->unk_08[5], 15);
         Window_ClearAndCopyToVRAM(&param0->unk_08[1]);
-        sub_0200E060(&param0->unk_08[5], 0, 1, 10);
+        Window_DrawMessageBoxWithScrollCursor(&param0->unk_08[5], 0, 1, 10);
 
         param0->unk_2AA = (u16)v0;
         param0->unk_2AC = 1;
@@ -943,7 +943,7 @@ static void ov7_0224DED4(UnkStruct_ov7_0224D008 *param0)
     }
 
     Window_FillTilemap(&param0->unk_08[4], 15);
-    Window_Show(&param0->unk_08[4], 1, (1 + (18 + 12)), 11);
+    Window_DrawStandardFrame(&param0->unk_08[4], 1, (1 + (18 + 12)), 11);
 
     v0 = Strbuf_Init((12 * 2), 11);
     v1 = MessageLoader_GetNewStrbuf(param0->unk_88, 20);
@@ -967,8 +967,8 @@ static u8 ov7_0224DFB0(UnkStruct_ov7_0224D008 *param0)
     if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
         CellActor_SetDrawFlag(param0->unk_25C[0], 0);
         CellActor_SetDrawFlag(param0->unk_25C[1], 0);
-        Window_Clear(&param0->unk_08[4], 1);
-        Window_Clear(&param0->unk_08[3], 1);
+        Window_EraseStandardFrame(&param0->unk_08[4], 1);
+        Window_EraseStandardFrame(&param0->unk_08[3], 1);
         Window_FillTilemap(&param0->unk_08[5], 15);
         Sound_PlayEffect(1500);
 
@@ -976,9 +976,9 @@ static u8 ov7_0224DFB0(UnkStruct_ov7_0224D008 *param0)
     }
 
     if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
-        Window_Clear(&param0->unk_08[4], 1);
-        Window_Clear(&param0->unk_08[3], 1);
-        sub_0200E084(&param0->unk_08[5], 0);
+        Window_EraseStandardFrame(&param0->unk_08[4], 1);
+        Window_EraseStandardFrame(&param0->unk_08[3], 1);
+        Window_EraseMessageBox(&param0->unk_08[5], 0);
 
         ov7_0224EB38(param0, 0);
 
@@ -1074,7 +1074,7 @@ static void ov7_0224E28C(UnkStruct_ov7_0224D008 *param0, u8 param1)
     Window_FillTilemap(&param0->unk_08[3], 15);
 
     if (param1 == 0) {
-        Window_Show(&param0->unk_08[3], 1, (1 + (18 + 12)), 11);
+        Window_DrawStandardFrame(&param0->unk_08[3], 1, (1 + (18 + 12)), 11);
     }
 
     v0 = Strbuf_Init(24, 11);
@@ -1160,7 +1160,7 @@ static u8 ov7_0224E3D8(UnkStruct_ov7_0224D008 *param0)
         Sound_PlayEffect(1604);
         return 9;
     case 0xfffffffe:
-        sub_0200E084(&param0->unk_08[5], 0);
+        Window_EraseMessageBox(&param0->unk_08[5], 0);
         ov7_0224EB38(param0, 0);
         CellActor_SetDrawFlag(param0->unk_25C[0], param0->unk_26C[0]);
         CellActor_SetDrawFlag(param0->unk_25C[1], param0->unk_26C[1]);
@@ -1240,7 +1240,7 @@ static u8 ov7_0224E6B8(UnkStruct_ov7_0224D008 *param0)
             }
         }
 
-        sub_0200E084(&param0->unk_08[5], 0);
+        Window_EraseMessageBox(&param0->unk_08[5], 0);
         ov7_0224EB38(param0, 0);
         CellActor_SetDrawFlag(param0->unk_25C[0], param0->unk_26C[0]);
         CellActor_SetDrawFlag(param0->unk_25C[1], param0->unk_26C[1]);
@@ -1260,7 +1260,7 @@ static u8 ov7_0224E7C8(UnkStruct_ov7_0224D008 *param0)
     }
 
     if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-        sub_0200E084(&param0->unk_08[5], 0);
+        Window_EraseMessageBox(&param0->unk_08[5], 0);
         ov7_0224EB38(param0, 0);
         CellActor_SetDrawFlag(param0->unk_25C[0], param0->unk_26C[0]);
         CellActor_SetDrawFlag(param0->unk_25C[1], param0->unk_26C[1]);

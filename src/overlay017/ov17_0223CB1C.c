@@ -28,6 +28,7 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "palette.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -37,7 +38,6 @@
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02014000.h"
 #include "unk_02017728.h"
@@ -610,8 +610,8 @@ static void ov17_0223D4A8(UnkStruct_ov17_02247A48 *param0, NARC *param1)
 
     v0 = Options_Frame(param0->unk_00->unk_196C);
 
-    sub_0200DD0C(param0->unk_0C.unk_24, 1, 1, 15, v0, 22);
-    PaletteData_LoadBufferFromFileStart(param0->unk_0C.unk_44, 38, sub_0200DD08(v0), 22, 0, 0x20, 14 * 16);
+    LoadMessageBoxGraphics(param0->unk_0C.unk_24, 1, 1, 15, v0, 22);
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C.unk_44, 38, GetMessageBoxPaletteNARCMember(v0), 22, 0, 0x20, 14 * 16);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 24, param0->unk_0C.unk_24, 2, 0, 0, 1, 22);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 21, param0->unk_0C.unk_24, 2, 0, 0, 1, 22);
     PaletteData_LoadBufferFromFileStart(param0->unk_0C.unk_44, 45, 37, 22, 0, 0x20, 0xc * 16);

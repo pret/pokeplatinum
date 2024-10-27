@@ -23,13 +23,13 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_020158A8.h"
 #include "unk_02017728.h"
@@ -363,7 +363,7 @@ static int ov79_021D116C(UnkStruct_ov79_021D0E1C *param0)
         return 0;
     case 0xfffffffe:
         Sound_PlayEffect(1500);
-        sub_0200E084(&param0->unk_E8[2], 0);
+        Window_EraseMessageBox(&param0->unk_E8[2], 0);
         param0->unk_18 = 1;
         return 0;
     }
@@ -381,7 +381,7 @@ static int ov79_021D11C0(UnkStruct_ov79_021D0E1C *param0)
         return 0;
     }
 
-    sub_0200E084(&param0->unk_E8[2], 1);
+    Window_EraseMessageBox(&param0->unk_E8[2], 1);
     Window_ClearAndCopyToVRAM(&param0->unk_E8[2]);
 
     param0->unk_20->unk_1C[param0->unk_1A].unk_04_val1_6 = 1;
@@ -655,8 +655,8 @@ static void ov79_021D14A4(UnkStruct_ov79_021D0E1C *param0)
         { 0x4, 0xC, 0xD, 0x8, 0x3, 0xA, 0xB9 }
     };
 
-    sub_0200DAA4(param0->unk_24, 1, 1 + 18 + 12, 15, 0, param0->unk_00);
-    sub_0200DD0C(param0->unk_24, 1, 1, 14, Options_Frame(param0->unk_20->unk_18), param0->unk_00);
+    LoadStandardWindowGraphics(param0->unk_24, 1, 1 + 18 + 12, 15, 0, param0->unk_00);
+    LoadMessageBoxGraphics(param0->unk_24, 1, 1, 14, Options_Frame(param0->unk_20->unk_18), param0->unk_00);
     Font_LoadTextPalette(0, 13 * 32, param0->unk_00);
     Font_LoadScreenIndicatorsPalette(0, 12 * 32, param0->unk_00);
     Font_LoadTextPalette(4, 13 * 32, param0->unk_00);

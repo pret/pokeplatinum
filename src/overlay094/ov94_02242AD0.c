@@ -33,11 +33,11 @@
 #include "journal.h"
 #include "party.h"
 #include "pokemon.h"
+#include "render_window.h"
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_0202CC64.h"
 #include "unk_0202DA40.h"
@@ -328,8 +328,8 @@ static void ov94_02242CAC(UnkStruct_ov94_0223FD4C *param0)
 
     Graphics_LoadPalette(104, 0, 0, 0, 16 * 3 * 2, 62);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 62);
-    sub_0200DD0C(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), 62);
-    sub_0200DAA4(v0, 0, (1 + (18 + 12)), 11, 0, 62);
+    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), 62);
+    LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, 62);
 
     if (param0->unk_10F0 == 0) {
         Bg_ToggleLayer(4, 0);

@@ -60,6 +60,7 @@
 #include "overlay_manager.h"
 #include "pokemon.h"
 #include "render_text.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
@@ -70,7 +71,6 @@
 #include "unk_0200679C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A9DC.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
 #include "unk_02017728.h"
@@ -1343,8 +1343,8 @@ static void ov22_022572A0(UnkStruct_ov22_02255D44 *param0, u32 param1, u8 param2
     Font_LoadScreenIndicatorsPalette(0, 7 * 32, 14);
     Window_Add(param0->unk_00.unk_40, param0->unk_718, 3, param2, param3, param4, param5, 7, (0 + (29 * 4) + (18 + 12)));
     Window_FillTilemap(param0->unk_718, 15);
-    sub_0200DD0C(param0->unk_00.unk_40, 3, (0 + (29 * 4)), 8, v2, 14);
-    sub_0200E060(param0->unk_718, 0, (0 + (29 * 4)), 8);
+    LoadMessageBoxGraphics(param0->unk_00.unk_40, 3, (0 + (29 * 4)), 8, v2, 14);
+    Window_DrawMessageBoxWithScrollCursor(param0->unk_718, 0, (0 + (29 * 4)), 8);
 
     v0 = MessageLoader_Init(0, 26, 385, 13);
     v1 = MessageLoader_GetNewStrbuf(v0, param1);

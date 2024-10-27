@@ -53,6 +53,7 @@
 #include "poffin.h"
 #include "pokemon.h"
 #include "render_text.h"
+#include "render_window.h"
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
@@ -68,7 +69,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02017728.h"
@@ -1465,9 +1465,9 @@ static void ov65_0222ECA8 (UnkStruct_ov65_0222EBE0 * param0, NARC * param1)
     {
         int v1 = Options_Frame(SaveData_Options(param0->unk_160));
 
-        sub_0200DD0C(v0, 2, (512 - (18 + 12)), 10, v1, 54);
-        sub_0200DAA4(v0, 2, ((512 - (18 + 12)) - 9), 11, 0, 54);
-        sub_0200DAA4(v0, 1, ((512 - (18 + 12)) - 9), 11, 0, 54);
+        LoadMessageBoxGraphics(v0, 2, (512 - (18 + 12)), 10, v1, 54);
+        LoadStandardWindowGraphics(v0, 2, ((512 - (18 + 12)) - 9), 11, 0, 54);
+        LoadStandardWindowGraphics(v0, 1, ((512 - (18 + 12)) - 9), 11, 0, 54);
     }
 }
 
@@ -1516,7 +1516,7 @@ static void ov65_0222EE98 (UnkStruct_ov65_0222EBE0 * param0)
     int v0, v1;
 
     if (Window_IsInUse(&param0->unk_350)) {
-        Window_Clear(&param0->unk_350, 0);
+        Window_EraseStandardFrame(&param0->unk_350, 0);
         Window_Remove(&param0->unk_350);
     }
 
@@ -1667,7 +1667,7 @@ static int ov65_0222F1A8 (UnkStruct_ov65_0222EBE0 * param0, int param1)
             param0->unk_04 = sub_0203871C(param0->unk_160, sizeof(UnkStruct_0207DFAC));
             ov65_02232B58(param0, 23, 1);
             GF_ASSERT(param0->unk_188 == NULL);
-            param0->unk_188 = sub_0200E7FC(&param0->unk_330, (512 - (18 + 12)));
+            param0->unk_188 = Window_AddWaitDial(&param0->unk_330, (512 - (18 + 12)));
             param0->unk_3A8 = 14;
         } else {
             param0->unk_3A8 = 34;
@@ -1701,7 +1701,7 @@ static int ov65_0222F288 (UnkStruct_ov65_0222EBE0 * param0, int param1)
     if (v1 == 0xffffffff) {
         return param1;
     } else {
-        sub_0200E084(&param0->unk_360, 0);
+        Window_EraseMessageBox(&param0->unk_360, 0);
         Window_Remove(&param0->unk_360);
 
         if (v1 == 0) {
@@ -1728,7 +1728,7 @@ static int ov65_0222F304 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         Bg_SetPriority(2, 0);
         Bg_SetPriority(1, 1);
         Bg_SetPriority(0, 3);
-        sub_0200E084(&param0->unk_360, 0);
+        Window_EraseMessageBox(&param0->unk_360, 0);
         Window_Remove(&param0->unk_360);
 
         if (v1 == 0) {
@@ -1739,7 +1739,7 @@ static int ov65_0222F304 (UnkStruct_ov65_0222EBE0 * param0, int param1)
             param0->unk_04 = sub_0203871C(param0->unk_160, sizeof(UnkStruct_0207DFAC));
             ov65_02232B58(param0, 23, 1);
             GF_ASSERT(param0->unk_188 == NULL);
-            param0->unk_188 = sub_0200E7FC(&param0->unk_330, (512 - (18 + 12)));
+            param0->unk_188 = Window_AddWaitDial(&param0->unk_330, (512 - (18 + 12)));
             param0->unk_3C8 = 1;
         } else {
             param0->unk_3A8 = 34;
@@ -1761,7 +1761,7 @@ static int ov65_0222F3DC (UnkStruct_ov65_0222EBE0 * param0, int param1)
         Bg_SetPriority(1, 1);
         Bg_SetPriority(3, 0);
         Bg_SetPriority(2, 0);
-        sub_0200E084(&param0->unk_360, 0);
+        Window_EraseMessageBox(&param0->unk_360, 0);
         Window_Remove(&param0->unk_360);
 
         if (v1 == 0) {
@@ -1769,7 +1769,7 @@ static int ov65_0222F3DC (UnkStruct_ov65_0222EBE0 * param0, int param1)
             param0->unk_04 = sub_0203871C(param0->unk_160, sizeof(UnkStruct_0207DFAC));
             ov65_02232B58(param0, 23, 1);
             GF_ASSERT(param0->unk_188 == NULL);
-            param0->unk_188 = sub_0200E7FC(&param0->unk_330, (512 - (18 + 12)));
+            param0->unk_188 = Window_AddWaitDial(&param0->unk_330, (512 - (18 + 12)));
             param0->unk_3C8 = 1;
         } else {
             param0->unk_3A8 = 34;
@@ -1953,7 +1953,7 @@ static int ov65_0222F7AC (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
     if (gCoreSys.pressedKeys & (PAD_BUTTON_B | PAD_BUTTON_A)) {
         if (Window_IsInUse(&param0->unk_360)) {
-            sub_0200E084(&param0->unk_360, 0);
+            Window_EraseMessageBox(&param0->unk_360, 0);
             Window_Remove(&param0->unk_360);
         }
 
@@ -1984,7 +1984,7 @@ static int ov65_0222F808 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
     if (gCoreSys.pressedKeys & (PAD_BUTTON_B | PAD_BUTTON_A)) {
         if (Window_IsInUse(&param0->unk_360)) {
-            sub_0200E084(&param0->unk_360, 0);
+            Window_EraseMessageBox(&param0->unk_360, 0);
             Window_Remove(&param0->unk_360);
         }
 
@@ -2052,7 +2052,7 @@ static int ov65_0222F90C (UnkStruct_ov65_0222EBE0 * param0, int param1)
         }
 
         if (Window_IsInUse(&param0->unk_350)) {
-            Window_Clear(&param0->unk_350, 0);
+            Window_EraseStandardFrame(&param0->unk_350, 0);
             Window_Remove(&param0->unk_350);
         }
 
@@ -2087,7 +2087,7 @@ static int ov65_0222F90C (UnkStruct_ov65_0222EBE0 * param0, int param1)
         param0->unk_04 = sub_0203871C(param0->unk_160, sizeof(UnkStruct_0207DFAC));
         ov65_02232B58(param0, 23, 1);
         GF_ASSERT(param0->unk_188 == NULL);
-        param0->unk_188 = sub_0200E7FC(&param0->unk_330, (512 - (18 + 12)));
+        param0->unk_188 = Window_AddWaitDial(&param0->unk_330, (512 - (18 + 12)));
         param0->unk_3A8 = 14;
     }
 
@@ -2133,7 +2133,7 @@ asm static int ov65_0222FAA0 (UnkStruct_ov65_0222EBE0 * param0, int param1)
     lsl r1, r1, #2
     add r0, r5, r1
     sub r1, #0xea
-    bl sub_0200E7FC
+    bl Window_AddWaitDial
     mov r1, #0x62
     lsl r1, r1, #2
     str r0, [r5, r1]
@@ -2281,7 +2281,7 @@ static int ov65_0222FCDC (UnkStruct_ov65_0222EBE0 * param0, int param1)
             param0->unk_3A8 = ov65_0222EBB8();
 
             if (Window_IsInUse(&param0->unk_360)) {
-                sub_0200E084(&param0->unk_360, 0);
+                Window_EraseMessageBox(&param0->unk_360, 0);
                 Window_Remove(&param0->unk_360);
             }
         }
@@ -2364,7 +2364,7 @@ static void ov65_0222FEEC (UnkStruct_ov65_0222EBE0 * param0)
     }
 
     if (Window_IsInUse(&param0->unk_350)) {
-        Window_Clear(&param0->unk_350, 0);
+        Window_EraseStandardFrame(&param0->unk_350, 0);
         Window_Remove(&param0->unk_350);
     }
 
@@ -2372,7 +2372,7 @@ static void ov65_0222FEEC (UnkStruct_ov65_0222EBE0 * param0)
     Window_Add(param0->unk_15C, &param0->unk_350, 1, 1, 1, 28, 2, 13, (((512 - (18 + 12)) - 9) - (28 * 2)));
     Window_FillTilemap(&param0->unk_350, 15);
     Window_ScheduleCopyToVRAM(&param0->unk_350);
-    Window_Show(&param0->unk_350, 0, ((512 - (18 + 12)) - 9), 11);
+    Window_DrawStandardFrame(&param0->unk_350, 0, ((512 - (18 + 12)) - 9), 11);
 }
 
 static int ov65_0222FFAC (UnkStruct_ov65_0222EBE0 * param0, int param1)
@@ -3280,12 +3280,12 @@ static int ov65_02230E04 (UnkStruct_ov65_0222EBE0 * param0, int param1)
     }
 
     if (Window_IsInUse(&param0->unk_380)) {
-        Window_Clear(&param0->unk_380, 0);
+        Window_EraseStandardFrame(&param0->unk_380, 0);
         Window_Remove(&param0->unk_380);
     }
 
     Window_Add(param0->unk_15C, &param0->unk_380, 2, 16, 3, 15, v1 * 2, 13, ((((((512 - (18 + 12)) - 9) - 10) - (18 + 12 + 24)) - (27 * 4)) - (11 * 22)) - v1 * 2);
-    Window_Show(&param0->unk_380, 1, ((512 - (18 + 12)) - 9), 11);
+    Window_DrawStandardFrame(&param0->unk_380, 1, ((512 - (18 + 12)) - 9), 11);
 
     v2.choices = param0->unk_154;
     v2.window = &param0->unk_380;
@@ -3311,7 +3311,7 @@ static int ov65_02230FBC (UnkStruct_ov65_0222EBE0 * param0, int param1)
     if (Text_IsPrinterActive(param0->unk_180) != 0) {
         if (0 != ov65_02230140(param0)) {
             param0->unk_3A8 = 19;
-            Window_Clear(&param0->unk_380, 0);
+            Window_EraseStandardFrame(&param0->unk_380, 0);
             Window_Remove(&param0->unk_380);
             ListMenu_Free(param0->unk_158, NULL, &param0->unk_3D4);
             StringList_Free(param0->unk_154);
@@ -3355,7 +3355,7 @@ static int ov65_02230FBC (UnkStruct_ov65_0222EBE0 * param0, int param1)
             ov65_02232B58(param0, 103, 0);
             param0->unk_3A8 = 29;
         } else if ((v0 == 0) || (v0 == 1) || (v0 == 29)) {
-            Window_Clear(&param0->unk_380, 0);
+            Window_EraseStandardFrame(&param0->unk_380, 0);
             Window_Remove(&param0->unk_380);
             ListMenu_Free(param0->unk_158, NULL, &param0->unk_3D4);
             StringList_Free(param0->unk_154);
@@ -3390,7 +3390,7 @@ static int ov65_02230FBC (UnkStruct_ov65_0222EBE0 * param0, int param1)
         break;
     }
 
-    Window_Clear(&param0->unk_380, 0);
+    Window_EraseStandardFrame(&param0->unk_380, 0);
     Window_Remove(&param0->unk_380);
     ListMenu_Free(param0->unk_158, NULL, &param0->unk_3D4);
     StringList_Free(param0->unk_154);
@@ -3473,12 +3473,12 @@ static int ov65_0223128C (UnkStruct_ov65_0222EBE0 * param0, int param1)
     }
 
     if (Window_IsInUse(&param0->unk_380)) {
-        Window_Clear(&param0->unk_380, 0);
+        Window_EraseStandardFrame(&param0->unk_380, 0);
         Window_Remove(&param0->unk_380);
     }
 
     Window_Add(param0->unk_15C, &param0->unk_380, 2, 16, 9, 15, v1 * 2, 13, ((((((512 - (18 + 12)) - 9) - 10) - (18 + 12 + 24)) - (27 * 4)) - (11 * 22)) - v1 * 2);
-    Window_Show(&param0->unk_380, 1, ((512 - (18 + 12)) - 9), 11);
+    Window_DrawStandardFrame(&param0->unk_380, 1, ((512 - (18 + 12)) - 9), 11);
 
     v2.choices = param0->unk_154;
     v2.window = &param0->unk_380;
@@ -3498,7 +3498,7 @@ static int ov65_02231440 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
     if (0 != ov65_02230140(param0)) {
         param0->unk_3A8 = 19;
-        Window_Clear(&param0->unk_380, 0);
+        Window_EraseStandardFrame(&param0->unk_380, 0);
         Window_Remove(&param0->unk_380);
         ListMenu_Free(param0->unk_158, NULL, &param0->unk_3D6[param0->unk_3DC]);
         StringList_Free(param0->unk_154);
@@ -3545,7 +3545,7 @@ static int ov65_02231440 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         ov65_0223500C(param0, v1);
     }
 
-    Window_Clear(&param0->unk_380, 0);
+    Window_EraseStandardFrame(&param0->unk_380, 0);
     Window_Remove(&param0->unk_380);
     ListMenu_Free(param0->unk_158, NULL, &param0->unk_3D6[param0->unk_3DC]);
     StringList_Free(param0->unk_154);
@@ -3749,7 +3749,7 @@ static int ov65_022316F0 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         }
 
         Window_Add(param0->unk_15C, &param0->unk_380, 2, 16, 11 + ((3 - v6) * 2), 15, v6 * 2, 13, ((((((512 - (18 + 12)) - 9) - 10) - (18 + 12 + 24)) - (27 * 4)) - (11 * 22)));
-        Window_Show(&param0->unk_380, 1, ((512 - (18 + 12)) - 9), 11);
+        Window_DrawStandardFrame(&param0->unk_380, 1, ((512 - (18 + 12)) - 9), 11);
 
         v7.choices = param0->unk_154;
         v7.window = &param0->unk_380;
@@ -3865,7 +3865,7 @@ static int ov65_02231A98 (UnkStruct_ov65_0222EBE0 * param0, int param1)
     v7 = ov65_0222E8D4(param0, v2);
 
     if (sub_020383E8()) {
-        Window_Clear(&param0->unk_380, 0);
+        Window_EraseStandardFrame(&param0->unk_380, 0);
         Window_Remove(&param0->unk_380);
         ListMenu_Free(param0->unk_158, NULL, NULL);
         StringList_Free(param0->unk_154);
@@ -3994,7 +3994,7 @@ static int ov65_02231A98 (UnkStruct_ov65_0222EBE0 * param0, int param1)
                         ov65_02232DC0(param0, v2 - 1);
                         ov65_02232B58(param0, 17, 0);
                         GF_ASSERT(param0->unk_188 == NULL);
-                        param0->unk_188 = sub_0200E7FC(&param0->unk_330, (512 - (18 + 12)));
+                        param0->unk_188 = Window_AddWaitDial(&param0->unk_330, (512 - (18 + 12)));
 
                         if (v1 != 1) {
                             param0->unk_3A8 = 45;
@@ -4029,7 +4029,7 @@ static int ov65_02231A98 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         ov65_02232DFC(param0);
     }
 
-    Window_Clear(&param0->unk_380, 0);
+    Window_EraseStandardFrame(&param0->unk_380, 0);
     Window_Remove(&param0->unk_380);
     ListMenu_Free(param0->unk_158, NULL, NULL);
     StringList_Free(param0->unk_154);
@@ -4561,7 +4561,7 @@ static int ov65_0223278C (UnkStruct_ov65_0222EBE0 * param0, int param1)
         } else if (v1 == 0) {
             ov65_02232B58(param0, 138, 0);
             GF_ASSERT(param0->unk_188 == NULL);
-            param0->unk_188 = sub_0200E7FC(&param0->unk_330, (512 - (18 + 12)));
+            param0->unk_188 = Window_AddWaitDial(&param0->unk_330, (512 - (18 + 12)));
             param0->unk_3E4 = 1;
             param0->unk_3A8 = 49;
             param0->unk_3BC = 30;
@@ -4684,7 +4684,7 @@ static int ov65_0223294C (UnkStruct_ov65_0222EBE0 * param0, int param1)
                     ov65_02232B58(param0, 17, 0);
 
                     GF_ASSERT(param0->unk_188 == NULL);
-                    param0->unk_188 = sub_0200E7FC(&param0->unk_330, (512 - (18 + 12)));
+                    param0->unk_188 = Window_AddWaitDial(&param0->unk_330, (512 - (18 + 12)));
 
                     if (v2 != 1) {
                         param0->unk_3A8 = 45;
@@ -4729,12 +4729,12 @@ static void ov65_02232B58 (UnkStruct_ov65_0222EBE0 * param0, int param1, BOOL pa
     ov65_02232F50(param0);
 
     if (Window_IsInUse(&param0->unk_360)) {
-        sub_0200E084(&param0->unk_360, 0);
+        Window_EraseMessageBox(&param0->unk_360, 0);
         Window_Remove(&param0->unk_360);
     }
 
     if (Window_IsInUse(&param0->unk_330)) {
-        sub_0200E084(&param0->unk_330, 0);
+        Window_EraseMessageBox(&param0->unk_330, 0);
         Window_Remove(&param0->unk_330);
     }
 
@@ -4755,7 +4755,7 @@ static void ov65_02232B58 (UnkStruct_ov65_0222EBE0 * param0, int param1, BOOL pa
 
     StringTemplate_Format(param0->unk_164, param0->unk_174, param0->unk_170);
     Window_FillTilemap(&param0->unk_330, 15);
-    sub_0200E060(&param0->unk_330, 1, (512 - (18 + 12)), 10);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_330, 1, (512 - (18 + 12)), 10);
     RenderControlFlags_SetCanABSpeedUpPrint(1);
     RenderControlFlags_SetAutoScrollFlags(0);
 
@@ -4769,12 +4769,12 @@ static void ov65_02232CA8 (UnkStruct_ov65_0222EBE0 * param0, int param1)
     ov65_02232F50(param0);
 
     if (Window_IsInUse(&param0->unk_360)) {
-        sub_0200E084(&param0->unk_360, 0);
+        Window_EraseMessageBox(&param0->unk_360, 0);
         Window_Remove(&param0->unk_360);
     }
 
     if (Window_IsInUse(&param0->unk_330)) {
-        sub_0200E084(&param0->unk_330, 0);
+        Window_EraseMessageBox(&param0->unk_330, 0);
         Window_Remove(&param0->unk_330);
     }
 
@@ -4790,7 +4790,7 @@ static void ov65_02232CA8 (UnkStruct_ov65_0222EBE0 * param0, int param1)
     StringTemplate_Format(param0->unk_164, param0->unk_174, param0->unk_170);
 
     Window_FillTilemap(&param0->unk_360, 15);
-    Window_Show(&param0->unk_360, 1, ((512 - (18 + 12)) - 9), 11);
+    Window_DrawStandardFrame(&param0->unk_360, 1, ((512 - (18 + 12)) - 9), 11);
 
     param0->unk_180 = Text_AddPrinterWithParams(&param0->unk_360, 1, param0->unk_174, 0, 0, 0xff, NULL);
     Window_ScheduleCopyToVRAM(&param0->unk_360);
@@ -4819,7 +4819,7 @@ static void ov65_02232DFC (UnkStruct_ov65_0222EBE0 * param0)
     }
 
     if (Window_IsInUse(&param0->unk_330)) {
-        sub_0200E084(&param0->unk_330, 0);
+        Window_EraseMessageBox(&param0->unk_330, 0);
         Window_Remove(&param0->unk_330);
     }
 }
@@ -4891,12 +4891,12 @@ static BOOL ov65_02232F30 (UnkStruct_ov65_0222EBE0 * param0)
 static void ov65_02232F50 (UnkStruct_ov65_0222EBE0 * param0)
 {
     if (param0->unk_188) {
-        sub_0200EBC8(param0->unk_188);
+        DestroyWaitDialTaskOnly(param0->unk_188);
 
         param0->unk_188 = NULL;
 
         if (Window_IsInUse(&param0->unk_330)) {
-            sub_0200E084(&param0->unk_330, 0);
+            Window_EraseMessageBox(&param0->unk_330, 0);
             Window_Remove(&param0->unk_330);
         }
     }

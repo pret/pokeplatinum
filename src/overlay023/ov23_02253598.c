@@ -22,6 +22,7 @@
 #include "heap.h"
 #include "list_menu.h"
 #include "message.h"
+#include "render_window.h"
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_list.h"
@@ -31,7 +32,6 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
-#include "unk_0200DA60.h"
 #include "unk_0202854C.h"
 
 typedef int (*UnkFuncPtr_ov23_022576EC)(const SecretBaseRecord *);
@@ -180,7 +180,7 @@ static void ov23_022537D4(SysTask *param0, void *param1)
 {
     UnkStruct_ov23_022537D4 *v0 = param1;
 
-    Window_Clear(&v0->unk_08, 0);
+    Window_EraseStandardFrame(&v0->unk_08, 0);
     Window_ClearAndCopyToVRAM(&v0->unk_08);
     Window_Remove(&v0->unk_08);
 
@@ -222,7 +222,7 @@ void ov23_02253834(BgConfig *param0, TrainerInfo *param1, UnkFuncPtr_ov23_022538
     v4->unk_04 = param3;
 
     Window_Add(param0, &v4->unk_08, 3, 4, 2, 24, 19, 13, 1);
-    Window_Show(&v4->unk_08, 1, 1024 - (18 + 12) - 9, 11);
+    Window_DrawStandardFrame(&v4->unk_08, 1, 1024 - (18 + 12) - 9, 11);
 
     v1 = MessageLoader_Init(0, 26, 640, 4);
     Window_FillTilemap(&v4->unk_08, 15);
@@ -405,7 +405,7 @@ void *ov23_02253C64(BgConfig *param0, TrainerInfo *param1, UndergroundData *para
     v4->unk_04 = param4;
 
     Window_Add(param0, &v4->unk_08, 3, 4, 2, 24, 19, 13, 1);
-    Window_Show(&v4->unk_08, 1, 1024 - (18 + 12) - 9, 11);
+    Window_DrawStandardFrame(&v4->unk_08, 1, 1024 - (18 + 12) - 9, 11);
 
     v1 = MessageLoader_Init(0, 26, 639, 4);
     Window_FillTilemap(&v4->unk_08, 15);
@@ -424,7 +424,7 @@ void ov23_02253D10(void *param0)
 {
     UnkStruct_ov23_022537D4 *v0 = param0;
 
-    Window_Clear(&v0->unk_08, 0);
+    Window_EraseStandardFrame(&v0->unk_08, 0);
     Window_ClearAndCopyToVRAM(&v0->unk_08);
     Window_Remove(&v0->unk_08);
 

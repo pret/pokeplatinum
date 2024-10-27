@@ -44,6 +44,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "narc.h"
+#include "render_window.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -53,7 +54,6 @@
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
-#include "unk_0200DA60.h"
 #include "unk_02015064.h"
 #include "unk_02015920.h"
 #include "unk_0201D15C.h"
@@ -568,7 +568,7 @@ void ov83_0223DF30(UnkStruct_ov83_0223E138 *param0, int param1)
     StringTemplate_Format(param0->unk_18->unk_04, param0->unk_18->unk_08, param0->unk_18->unk_10);
     Window_FillTilemap(param0->unk_08, 15);
     ov83_0223E21C(param0->unk_08, param0->unk_18->unk_08, 0, 0);
-    sub_0200E060(param0->unk_08, 0, 1, 0);
+    Window_DrawMessageBoxWithScrollCursor(param0->unk_08, 0, 1, 0);
 }
 
 void ov83_0223DF70(UnkStruct_ov83_0223E138 *param0)
@@ -581,7 +581,7 @@ void ov83_0223DF84(UnkStruct_ov83_0223E138 *param0)
 {
     Window_FillTilemap(param0->unk_08, 15);
     ov83_0223E21C(param0->unk_08, param0->unk_18->unk_0C, 0, 0);
-    sub_0200E060(param0->unk_08, 0, 1, 0);
+    Window_DrawMessageBoxWithScrollCursor(param0->unk_08, 0, 1, 0);
 }
 
 void ov83_0223DFAC(UnkStruct_ov83_0223E138 *param0)
@@ -631,9 +631,9 @@ static void ov83_0223E09C(UnkStruct_ov83_0223E138 *param0, u32 param1)
     Window_Add(param0->unk_04, param0->unk_0C, 4, 6, 13, 20, 8, 1, (18 + 12) + 1);
     Window_FillTilemap(param0->unk_08, 15);
     Window_FillTilemap(param0->unk_0C, 0);
-    sub_0200DD0C(param0->unk_04, 4, 1, 0, param0->unk_10, param1);
+    LoadMessageBoxGraphics(param0->unk_04, 4, 1, 0, param0->unk_10, param1);
     Font_LoadScreenIndicatorsPalette(4, 1 * 32, param1);
-    sub_0200E060(param0->unk_08, 1, 1, 0);
+    Window_DrawMessageBoxWithScrollCursor(param0->unk_08, 1, 1, 0);
 }
 
 static void ov83_0223E138(UnkStruct_ov83_0223E138 *param0)
@@ -1058,9 +1058,9 @@ static void ov83_0223E77C(UnkStruct_ov83_0223E824 *param0, u32 param1)
         { 2, 2, 27, 5, 2, 40 }
     };
 
-    sub_0200DD0C(param0->unk_04, 2, 1, 0, param0->unk_18, param1);
+    LoadMessageBoxGraphics(param0->unk_04, 2, 1, 0, param0->unk_18, param1);
     Font_LoadScreenIndicatorsPalette(0, 2 * 32, param1);
-    sub_0200DAA4(param0->unk_04, 2, (1 + (18 + 12)), 1, 0, param1);
+    LoadStandardWindowGraphics(param0->unk_04, 2, (1 + (18 + 12)), 1, 0, param1);
     Font_LoadTextPalette(0, 3 * 32, param1);
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -1154,13 +1154,13 @@ void ov83_0223E994(UnkStruct_ov83_0223E824 *param0)
 void ov83_0223E9BC(UnkStruct_ov83_0223E824 *param0)
 {
     ov83_0223E9D0(param0);
-    param0->unk_34 = sub_0200E7FC(param0->unk_08[3], 1);
+    param0->unk_34 = Window_AddWaitDial(param0->unk_08[3], 1);
 }
 
 void ov83_0223E9D0(UnkStruct_ov83_0223E824 *param0)
 {
     if (param0->unk_34 != NULL) {
-        DeleteWaitDial(param0->unk_34);
+        DestroyWaitDial(param0->unk_34);
         param0->unk_34 = NULL;
     }
 }
@@ -1175,10 +1175,10 @@ static void ov83_0223E9E4(UnkStruct_ov83_0223E824 *param0)
         Text_AddPrinterWithParamsAndColor(param0->unk_08[1], FONT_SYSTEM, param0->unk_1C->unk_34, v0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
     }
 
-    Window_Show(param0->unk_08[1], 0, (1 + (18 + 12)), 1);
+    Window_DrawStandardFrame(param0->unk_08[1], 0, (1 + (18 + 12)), 1);
     Window_FillTilemap(param0->unk_08[2], 15);
     Text_AddPrinterWithParamsAndColor(param0->unk_08[2], FONT_SYSTEM, param0->unk_1C->unk_4C[6], 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
-    Window_Show(param0->unk_08[2], 0, (1 + (18 + 12)), 1);
+    Window_DrawStandardFrame(param0->unk_08[2], 0, (1 + (18 + 12)), 1);
     Window_ScheduleCopyToVRAM(param0->unk_08[1]);
     Window_ScheduleCopyToVRAM(param0->unk_08[2]);
 }
@@ -1279,7 +1279,7 @@ void ov83_0223EC8C(UnkStruct_ov83_0223E824 *param0, u32 param1)
     }
 
     Text_AddPrinterWithParamsAndColor(param0->unk_08[3], FONT_MESSAGE, v0, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
-    sub_0200E060(param0->unk_08[3], 0, 1, 0);
+    Window_DrawMessageBoxWithScrollCursor(param0->unk_08[3], 0, 1, 0);
     Window_ScheduleCopyToVRAM(param0->unk_08[3]);
 }
 

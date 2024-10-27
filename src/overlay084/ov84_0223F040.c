@@ -23,6 +23,7 @@
 #include "narc.h"
 #include "poffin.h"
 #include "render_text.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
@@ -30,7 +31,6 @@
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_0200C440.h"
-#include "unk_0200DA60.h"
 
 static void ov84_0223F9B0(UnkStruct_ov84_0223B5A0 *param0, u32 param1);
 static BOOL ov84_022400E0(TextPrinterTemplate *param0, u16 param1);
@@ -442,7 +442,7 @@ void ov84_0223FB70(UnkStruct_ov84_0223B5A0 *param0, u8 *param1, u8 param2)
         Window_ScheduleCopyToVRAM(&param0->unk_04[1]);
         ov84_02240D5C(param0, param0->unk_C4->unk_66, 1);
     } else {
-        sub_0200E060(&param0->unk_04[v5], 1, 1024 - 9 - (18 + 12), 12);
+        Window_DrawMessageBoxWithScrollCursor(&param0->unk_04[v5], 1, 1024 - 9 - (18 + 12), 12);
         Window_FillTilemap(&param0->unk_04[v5], 15);
 
         v2 = MessageLoader_GetNewStrbuf(param0->unk_114, 42);
@@ -457,7 +457,7 @@ void ov84_0223FB70(UnkStruct_ov84_0223B5A0 *param0, u8 *param1, u8 param2)
         Window_ScheduleCopyToVRAM(&param0->unk_04[v5]);
     }
 
-    Window_Show(&param0->unk_B4[0], 1, 1024 - 9, 14);
+    Window_DrawStandardFrame(&param0->unk_B4[0], 1, 1024 - 9, 14);
     Window_ScheduleCopyToVRAM(&param0->unk_B4[0]);
 }
 
@@ -472,11 +472,11 @@ void ov84_0223FD84(UnkStruct_ov84_0223B5A0 *param0)
     }
 
     if (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08 != 3) {
-        sub_0200E084(&param0->unk_04[v0], 1);
+        Window_EraseMessageBox(&param0->unk_04[v0], 1);
         Window_ClearAndScheduleCopyToVRAM(&param0->unk_04[v0]);
     }
 
-    Window_Clear(&param0->unk_B4[0], 1);
+    Window_EraseStandardFrame(&param0->unk_B4[0], 1);
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_B4[0]);
     Menu_Free(param0->unk_158, NULL);
     StringList_Free(param0->unk_154);
@@ -513,9 +513,9 @@ void ov84_0223FE94(UnkStruct_ov84_0223B5A0 *param0)
     Strbuf *v2;
     u16 v3;
 
-    Window_Show(&param0->unk_04[9], 1, 1024 - 9, 14);
+    Window_DrawStandardFrame(&param0->unk_04[9], 1, 1024 - 9, 14);
     ov84_0223FF44(param0);
-    sub_0200E060(&param0->unk_04[3], 1, 1024 - 9 - (18 + 12), 12);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_04[3], 1, 1024 - 9 - (18 + 12), 12);
     Window_FillTilemap(&param0->unk_04[3], 15);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 52);
@@ -550,8 +550,8 @@ void ov84_0223FF44(UnkStruct_ov84_0223B5A0 *param0)
 
 void ov84_0223FFC0(UnkStruct_ov84_0223B5A0 *param0)
 {
-    sub_0200E084(&param0->unk_04[3], 1);
-    Window_Clear(&param0->unk_04[9], 1);
+    Window_EraseMessageBox(&param0->unk_04[3], 1);
+    Window_EraseStandardFrame(&param0->unk_04[9], 1);
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_04[3]);
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_04[9]);
     Window_ScheduleCopyToVRAM(&param0->unk_04[1]);
@@ -563,7 +563,7 @@ void ov84_0223FFF0(UnkStruct_ov84_0223B5A0 *param0)
     Strbuf *v1;
     u16 v2;
 
-    sub_0200E060(&param0->unk_04[6], 1, 1024 - 9 - (18 + 12), 12);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_04[6], 1, 1024 - 9 - (18 + 12), 12);
     Window_FillTilemap(&param0->unk_04[6], 15);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 54);
@@ -624,7 +624,7 @@ void ov84_02240148(UnkStruct_ov84_0223B5A0 *param0, u8 param1)
     v0 = &param0->unk_04[7];
 
     if (param1 == 0) {
-        Window_Show(v0, 1, 1024 - 9, 14);
+        Window_DrawStandardFrame(v0, 1, 1024 - 9, 14);
     }
 
     Window_FillTilemap(v0, 15);
@@ -658,7 +658,7 @@ void ov84_02240248(UnkStruct_ov84_0223B5A0 *param0, u8 param1)
 
     if (param1 == 0) {
         Window_FillTilemap(v0, 15);
-        Window_Show(v0, 1, 1024 - 9, 14);
+        Window_DrawStandardFrame(v0, 1, 1024 - 9, 14);
 
         v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 78);
 
@@ -688,7 +688,7 @@ void ov84_02240328(UnkStruct_ov84_0223B5A0 *param0)
 
     v0 = &param0->unk_04[10];
     Window_FillTilemap(v0, 15);
-    Window_Show(v0, 1, 1024 - 9, 14);
+    Window_DrawStandardFrame(v0, 1, 1024 - 9, 14);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 108);
     Text_AddPrinterWithParams(v0, FONT_SYSTEM, v1, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);

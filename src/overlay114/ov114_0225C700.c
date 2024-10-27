@@ -31,6 +31,7 @@
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "sprite_resource.h"
@@ -45,7 +46,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
 #include "unk_02017728.h"
@@ -1526,8 +1526,8 @@ static void ov114_0225D290(UnkStruct_ov114_0225D338 *param0, UnkStruct_ov114_022
     u8 v3;
 
     sub_020959F4(1);
-    sub_0200DD0C(param1->unk_00, 2, 1, 13, v0, param4);
-    sub_0200DD0C(param1->unk_00, 4, 1, 13, v0, param4);
+    LoadMessageBoxGraphics(param1->unk_00, 2, 1, 13, v0, param4);
+    LoadMessageBoxGraphics(param1->unk_00, 4, 1, 13, v0, param4);
 
     for (v2 = 0; v2 < 2; v2++) {
         if (v2 == 0) {
@@ -1579,7 +1579,7 @@ static void ov114_0225D368(UnkStruct_ov114_0225D338 *param0, UnkStruct_ov114_022
     ov114_0225D474(param0, param3);
     Window_FillTilemap(&param0->unk_00[param3], 15);
     param0->unk_20[param3] = ov114_0225D218(param1, param2, &param0->unk_00[param3], param0->unk_24[param3], TEXT_SPEED_FAST);
-    sub_0200E060(&param0->unk_00[param3], 1, 1, 13);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_00[param3], 1, 1, 13);
     Window_ScheduleCopyToVRAM(&param0->unk_00[param3]);
 }
 
@@ -1591,7 +1591,7 @@ static void ov114_0225D400(UnkStruct_ov114_0225D338 *param0, u32 param1)
         Text_RemovePrinter(param0->unk_20[param1]);
     }
 
-    sub_0200E084(&param0->unk_00[param1], 1);
+    Window_EraseMessageBox(&param0->unk_00[param1], 1);
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_00[param1]);
 }
 
@@ -1611,14 +1611,14 @@ static BOOL ov114_0225D43C(const UnkStruct_ov114_0225D338 *param0, u32 param1)
 static void ov114_0225D458(UnkStruct_ov114_0225D338 *param0, u32 param1)
 {
     if (param0->unk_2C[param1] == NULL) {
-        param0->unk_2C[param1] = sub_0200E7FC(&param0->unk_00[param1], 1);
+        param0->unk_2C[param1] = Window_AddWaitDial(&param0->unk_00[param1], 1);
     }
 }
 
 static void ov114_0225D474(UnkStruct_ov114_0225D338 *param0, u32 param1)
 {
     if (param0->unk_2C[param1]) {
-        sub_0200EBC8(param0->unk_2C[param1]);
+        DestroyWaitDialTaskOnly(param0->unk_2C[param1]);
         param0->unk_2C[param1] = NULL;
     }
 }

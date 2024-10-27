@@ -29,6 +29,7 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "pokemon.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -38,7 +39,6 @@
 #include "unk_0200762C.h"
 #include "unk_0200A784.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_0201D15C.h"
@@ -475,7 +475,7 @@ static void ov79_021D270C(UnkStruct_ov79_021D2928 *param0)
 
     Window_AddFromTemplate(param0->unk_68, &(param0->unk_6C), &v0);
     Window_FillTilemap(&param0->unk_6C, ((0 << 4) | 0));
-    sub_0200DD0C(param0->unk_68, 1, 1, 14, param0->unk_10->unk_0B, param0->unk_00);
+    LoadMessageBoxGraphics(param0->unk_68, 1, 1, 14, param0->unk_10->unk_0B, param0->unk_00);
     Font_LoadScreenIndicatorsPalette(0, 15 * 32, param0->unk_00);
 }
 
@@ -732,7 +732,7 @@ static int ov79_021D2B84(UnkStruct_ov79_021D2928 *param0, UnkStruct_ov79_021D29B
 
 static int ov79_021D2B94(UnkStruct_ov79_021D2928 *param0)
 {
-    sub_0200E060(&param0->unk_6C, 1, 1, 14);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_6C, 1, 1, 14);
     Window_FillTilemap(&param0->unk_6C, ((15 << 4) | 15));
     Strbuf_Clear(param0->unk_1C.unk_04);
     StringTemplate_SetStrbuf(param0->unk_1C.unk_00, 0, param0->unk_30.unk_0C, 2, 1, GAME_LANGUAGE);
@@ -754,7 +754,7 @@ static int ov79_021D2C08(UnkStruct_ov79_021D2928 *param0)
         return 7;
     }
 
-    sub_0200E084(&param0->unk_6C, 1);
+    Window_EraseMessageBox(&param0->unk_6C, 1);
     Window_ClearAndCopyToVRAM(&param0->unk_6C);
 
     return 8;

@@ -21,6 +21,7 @@
 #include "message.h"
 #include "party.h"
 #include "pokemon.h"
+#include "render_window.h"
 #include "script_manager.h"
 #include "strbuf.h"
 #include "string_list.h"
@@ -29,7 +30,6 @@
 #include "sys_task_manager.h"
 #include "tutor_movesets.h"
 #include "unk_02005474.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_0202631C.h"
 #include "unk_02054884.h"
@@ -476,8 +476,8 @@ static void ov5_021F7F34(UnkStruct_ov5_021F7ED8 *param0)
         Window_Add(param0->fieldSystem->unk_08, &param0->unk_08, 3, param0->unk_C4, param0->unk_C5, 11, param0->unk_C7 * 2, 13, 1);
     }
 
-    sub_0200DAA4(param0->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
-    Window_Show(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
+    LoadStandardWindowGraphics(param0->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
+    Window_DrawStandardFrame(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
     ov5_021F8090(param0);
 
     param0->unk_F0 = ListMenu_New((const ListMenuTemplate *)&param0->unk_D0, 0, param0->unk_C2, 4);
@@ -600,7 +600,7 @@ static void ov5_021F8250(UnkStruct_ov5_021F7ED8 *param0)
 
     Sound_PlayEffect(1500);
     ListMenu_Free(param0->unk_F0, NULL, NULL);
-    Window_Clear(param0->unk_D0.window, 0);
+    Window_EraseStandardFrame(param0->unk_D0.window, 0);
     Window_Remove(&param0->unk_08);
 
     for (v0 = 0; v0 < ((NELEMS(sTeachableMoves)) + 1); v0++) {

@@ -39,6 +39,7 @@
 #include "journal.h"
 #include "menu.h"
 #include "narc.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "sprite_resource.h"
@@ -53,7 +54,6 @@
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_0200A9DC.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_0201D15C.h"
@@ -1317,7 +1317,7 @@ static void ov23_0223EE80(UnkStruct_ov23_0223EE80 *param0)
     Bg_ClearTilemap(v1, 0);
     Bg_ClearTilemap(v1, 1);
     Bg_ClearTilemap(v1, 2);
-    sub_0200DD0C(v1, 3, (512 - (18 + 12)), 10, 0, 29);
+    LoadMessageBoxGraphics(v1, 3, (512 - (18 + 12)), 10, 0, 29);
 
     {
         NARC *v6;
@@ -1590,7 +1590,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
             HBlankSystem_Start(v0->fieldSystem->unk_04->hBlankSystem);
 
             Graphics_LoadPalette(50, 52, 0, 10 * 0x20, 4 * 0x20, 4);
-            sub_0200DAA4(v0->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 2, 4);
+            LoadStandardWindowGraphics(v0->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 2, 4);
             CommPlayerMan_Restart();
 
             ov23_0224B460();

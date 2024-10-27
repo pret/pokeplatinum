@@ -37,6 +37,7 @@
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "render_text.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "sprite_resource.h"
@@ -51,7 +52,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
 #include "unk_02017728.h"
@@ -482,9 +482,9 @@ static void ov97_02233DD0(UnkStruct_ov97_02234A2C *param0, UnkStruct_ov97_02233D
 
     if (param2 & 0x8) {
         if (param2 & 0x10) {
-            sub_0200E060(param1->unk_00, 0, (0x3F0 - (18 + 12)), 13);
+            Window_DrawMessageBoxWithScrollCursor(param1->unk_00, 0, (0x3F0 - (18 + 12)), 13);
         } else {
-            Window_Show(param1->unk_00, 0, 0x3F0, 14);
+            Window_DrawStandardFrame(param1->unk_00, 0, 0x3F0, 14);
         }
     }
 }
@@ -1418,8 +1418,8 @@ static void ov97_02234E7C(UnkStruct_ov97_02234A2C *param0)
 static void ov97_02234ECC(UnkStruct_ov97_02234A2C *param0)
 {
     Font_LoadTextPalette(0, 14 * 32, 78);
-    sub_0200DAA4(param0->unk_20, 0, 0x3F0, 14, 0, 78);
-    sub_0200DD0C(param0->unk_20, 0, (0x3F0 - (18 + 12)), 13, param0->unk_1C, 78);
+    LoadStandardWindowGraphics(param0->unk_20, 0, 0x3F0, 14, 0, 78);
+    LoadMessageBoxGraphics(param0->unk_20, 0, (0x3F0 - (18 + 12)), 13, param0->unk_1C, 78);
 
     memset(&param0->unk_490, 0, sizeof(UnkStruct_ov97_02233DAC));
 
@@ -1482,8 +1482,8 @@ static void ov97_02234F88(UnkStruct_ov97_02234A2C *param0)
     Bg_CopyTilemapBufferToVRAM(param0->unk_20, 2);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
     Font_LoadTextPalette(0, 14 * 32, 78);
-    sub_0200DAA4(param0->unk_20, 0, 0x3F0, 14, 0, 78);
-    sub_0200DD0C(param0->unk_20, 0, (0x3F0 - (18 + 12)), 13, param0->unk_1C, 78);
+    LoadStandardWindowGraphics(param0->unk_20, 0, 0x3F0, 14, 0, 78);
+    LoadMessageBoxGraphics(param0->unk_20, 0, (0x3F0 - (18 + 12)), 13, param0->unk_1C, 78);
 
     ov97_02234ECC(param0);
     param0->unk_490.unk_34 = 10;
@@ -1493,7 +1493,7 @@ static void ov97_02234F88(UnkStruct_ov97_02234A2C *param0)
 static void ov97_02235158(Window *param0)
 {
     if (param0->bgConfig) {
-        sub_0200E084(param0, 0);
+        Window_EraseMessageBox(param0, 0);
         Window_ClearAndCopyToVRAM(param0);
         Window_Remove(param0);
     }
@@ -1933,7 +1933,7 @@ static int ov97_022356E8(OverlayManager *param0, int *param1)
             v3->unk_490.unk_44 = 0;
             v3->unk_490.unk_34 = 40;
             ov97_02233DD0(v3, &v3->unk_490, 0);
-            v3->unk_E8F0.unk_08 = sub_0200E7FC(&v3->unk_4FC, (0x3F0 - (18 + 12)));
+            v3->unk_E8F0.unk_08 = Window_AddWaitDial(&v3->unk_4FC, (0x3F0 - (18 + 12)));
             *param1 = 10;
             break;
         case 2:
@@ -1944,7 +1944,7 @@ static int ov97_022356E8(OverlayManager *param0, int *param1)
         break;
     case 10:
         ov97_02233CE4(v3);
-        DeleteWaitDial(v3->unk_E8F0.unk_08);
+        DestroyWaitDial(v3->unk_E8F0.unk_08);
         v3->unk_04 = 7;
         *param1 = 11;
         break;
@@ -2074,7 +2074,7 @@ static int ov97_022356E8(OverlayManager *param0, int *param1)
             ov97_02233DD0(v3, &v3->unk_490, 0);
             sub_02015A54(v3->unk_E8EC);
             v3->unk_E8F0.unk_00 = 0;
-            v3->unk_E8F0.unk_08 = sub_0200E7FC(&v3->unk_4FC, (0x3F0 - (18 + 12)));
+            v3->unk_E8F0.unk_08 = Window_AddWaitDial(&v3->unk_4FC, (0x3F0 - (18 + 12)));
             *param1 = 21;
             ResetLock(4);
             break;
@@ -2092,7 +2092,7 @@ static int ov97_022356E8(OverlayManager *param0, int *param1)
         v2 = ov97_02233B8C(v3);
 
         if (v2 != 10) {
-            DeleteWaitDial(v3->unk_E8F0.unk_08);
+            DestroyWaitDial(v3->unk_E8F0.unk_08);
             Sound_PlayEffect(1563);
 
             if (v2 == 11) {

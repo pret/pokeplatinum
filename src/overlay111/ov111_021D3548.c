@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "bg_window.h"
-#include "unk_0200DA60.h"
+#include "render_window.h"
 
 static const WindowTemplate Unk_ov111_021D38B8[] = {
     { 0x2, 0x2, 0x1, 0x1B, 0x4, 0xC, 0x1 },
@@ -56,17 +56,17 @@ void ov111_021D3578(Window *param0)
 
 void ov111_021D3594(BgConfig *param0, Window *param1)
 {
-    sub_0200DAA4(param0, 2, (1024 - 9), 11, 0, 115);
-    Window_Show(param1, 1, (1024 - 9), 11);
+    LoadStandardWindowGraphics(param0, 2, (1024 - 9), 11, 0, 115);
+    Window_DrawStandardFrame(param1, 1, (1024 - 9), 11);
 
     return;
 }
 
 void ov111_021D35C0(Window *param0, int param1)
 {
-    sub_0200DD0C(param0->bgConfig, Window_GetBgLayer(param0), ((1024 - 9) - (18 + 12)), 10, param1, 115);
+    LoadMessageBoxGraphics(param0->bgConfig, Window_GetBgLayer(param0), ((1024 - 9) - (18 + 12)), 10, param1, 115);
     Window_FillTilemap(param0, 15);
-    sub_0200E060(param0, 0, ((1024 - 9) - (18 + 12)), 10);
+    Window_DrawMessageBoxWithScrollCursor(param0, 0, ((1024 - 9) - (18 + 12)), 10);
 
     return;
 }

@@ -62,6 +62,7 @@
 #include "party.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -73,7 +74,6 @@
 #include "unk_02006224.h"
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_0201567C.h"
@@ -10138,11 +10138,11 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
 
         BattleSystem_SetGaugePriority(data->battleSys, 0 + 2); // gauge's default is 0
 
-        Window_SetFrame(bgl, 2, 1, 0, HEAP_ID_BATTLE);
-        PaletteData_LoadBufferFromFileStart(paletteSys, NARC_INDEX_GRAPHIC__PL_WINFRAME, Window_FramePalette(), HEAP_ID_BATTLE, 0, 0x20, 8 * 0x10);
+        LoadStandardWindowTiles(bgl, 2, 1, 0, HEAP_ID_BATTLE);
+        PaletteData_LoadBufferFromFileStart(paletteSys, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetStandardWindowPaletteNARCMember(), HEAP_ID_BATTLE, 0, 0x20, 8 * 0x10);
         Window_Add(bgl, window, 2, 0x11, 0x7, 14, 12, 11, (9 + 1));
         Window_FillTilemap(window, 0xFF);
-        Window_Show(window, 0, 1, 8);
+        Window_DrawStandardFrame(window, 0, 1, 8);
 
         data->seqNum = SEQ_GET_EXP_LEVEL_UP_SUMMARY_PRINT_DIFF;
         break;
@@ -10218,7 +10218,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
     case SEQ_GET_EXP_LEVEL_UP_CLEAR: {
         Window *window = BattleSystem_Window(data->battleSys, 1);
 
-        Window_Clear(window, 0);
+        Window_EraseStandardFrame(window, 0);
         Window_Remove(window);
 
         G2_SetBG0Priority(1);

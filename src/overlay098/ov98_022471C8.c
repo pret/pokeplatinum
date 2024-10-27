@@ -30,6 +30,7 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "render_text.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
@@ -38,7 +39,6 @@
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200A784.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
@@ -626,9 +626,9 @@ static void ov98_02247704 (UnkStruct_ov98_02247704 * param0)
     Graphics_LoadPaletteFromOpenNARC(v1, 3, 4, 0, 0, 109);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 109);
     Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, 109);
-    sub_0200DD0C(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_08), 109);
-    sub_0200DAA4(v0, 0, (1 + (18 + 12)), 11, 0, 109);
-    sub_0200DAA4(v0, 2, (1 + (18 + 12)), 11, 0, 109);
+    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_08), 109);
+    LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, 109);
+    LoadStandardWindowGraphics(v0, 2, (1 + (18 + 12)), 11, 0, 109);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 2, v0, 1, 0, 0, 0, 109);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 5, v0, 1, 0, 32 * 24 * 2, 0, 109);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 10, v0, 5, 0, 0, 0, 109);
@@ -682,14 +682,14 @@ static void ov98_02247AE8 (UnkStruct_ov98_02247704 * param0, int param1, int par
 static void ov98_02247AF0 (UnkStruct_ov98_02247704 * param0)
 {
     if (param0->unk_8C == NULL) {
-        param0->unk_8C = sub_0200E7FC(&param0->unk_48, 1);
+        param0->unk_8C = Window_AddWaitDial(&param0->unk_48, 1);
     }
 }
 
 static void ov98_02247B0C (UnkStruct_ov98_02247704 * param0)
 {
     if (param0->unk_8C != NULL) {
-        DeleteWaitDial(param0->unk_8C);
+        DestroyWaitDial(param0->unk_8C);
         param0->unk_8C = NULL;
     }
 }
@@ -753,8 +753,8 @@ static int ov98_02247B98 (UnkStruct_ov98_02247704 * param0)
         v2.choices = param0->unk_A0;
         param0->unk_A4 = ListMenu_New(&v2, 0, 0, 109);
 
-        Window_Show(&param0->unk_78, 1, (1 + (18 + 12)), 11);
-        sub_0200E084(&param0->unk_48, 1);
+        Window_DrawStandardFrame(&param0->unk_78, 1, (1 + (18 + 12)), 11);
+        Window_EraseMessageBox(&param0->unk_48, 1);
         Window_CopyToVRAM(&param0->unk_78);
     }
 
@@ -782,7 +782,7 @@ static int ov98_02247B98 (UnkStruct_ov98_02247704 * param0)
     default:
         StringList_Free(param0->unk_A0);
         ListMenu_Free(param0->unk_A4, NULL, NULL);
-        Window_Clear(&param0->unk_78, 1);
+        Window_EraseStandardFrame(&param0->unk_78, 1);
         Window_ClearAndCopyToVRAM(&param0->unk_78);
         Window_Remove(&param0->unk_78);
         param0->unk_08 = param0->unk_9C;
@@ -1092,7 +1092,7 @@ asm static int ov98_02248350 (UnkStruct_ov98_02247704 * param0)
     mov r1, #1
     mov r2, #0x1f
     mov r3, #0xb
-    bl Window_Show
+    bl Window_DrawStandardFrame
     add r0, r5, #0
     add r0, #0xc4
     bl Window_CopyToVRAM
@@ -1105,7 +1105,7 @@ asm static int ov98_02248350 (UnkStruct_ov98_02247704 * param0)
     mov r1, #1
     mov r2, #0x1f
     mov r3, #0xb
-    bl Window_Show
+    bl Window_DrawStandardFrame
     add r0, r5, #0
     add r0, #0xd4
     bl Window_CopyToVRAM
@@ -1121,7 +1121,7 @@ asm static int ov98_02248350 (UnkStruct_ov98_02247704 * param0)
     add r0, r5, #0
     add r0, #0x48
     mov r1, #1
-    bl sub_0200E084
+    bl Window_EraseMessageBox
     add r0, r5, #0
     add r0, #0x48
     bl Window_ClearAndCopyToVRAM
@@ -1318,7 +1318,7 @@ asm static int ov98_02248350 (UnkStruct_ov98_02247704 * param0)
  _02248614:
     add r0, #0xc4
     mov r1, #0
-    bl Window_Clear
+    bl Window_EraseStandardFrame
     add r0, r5, #0
     add r0, #0xc4
     bl Window_ClearAndCopyToVRAM
@@ -1328,7 +1328,7 @@ asm static int ov98_02248350 (UnkStruct_ov98_02247704 * param0)
     add r0, r5, #0
     add r0, #0xd4
     mov r1, #0
-    bl Window_Clear
+    bl Window_EraseStandardFrame
     add r0, r5, #0
     add r0, #0xd4
     bl Window_ClearAndCopyToVRAM
@@ -2194,7 +2194,7 @@ static int ov98_02249414 (UnkStruct_ov98_02247704 * param0)
 static int ov98_02249438 (UnkStruct_ov98_02247704 * param0)
 {
     if (gCoreSys.pressedKeys & PAD_BUTTON_A || gCoreSys.pressedKeys & PAD_BUTTON_B) {
-        Window_Clear(&param0->unk_68, 0);
+        Window_EraseStandardFrame(&param0->unk_68, 0);
         param0->unk_08 = 0;
     }
 
@@ -2384,7 +2384,7 @@ static void ov98_02249714 (UnkStruct_ov98_02247704 * param0, MessageLoader * par
     StringTemplate_Format(param0->unk_20, param0->unk_38, v0);
     Strbuf_Free(v0);
     Window_FillTilemap(&param0->unk_48, 0xf0f);
-    sub_0200E060(&param0->unk_48, 0, 1, 10);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_48, 0, 1, 10);
 
     param0->unk_44 = Text_AddPrinterWithParams(&param0->unk_48, FONT_MESSAGE, param0->unk_38, 0, 0, param3, NULL);
     param0->unk_90 = 0;
@@ -2485,7 +2485,7 @@ static void ov98_02249900 (UnkStruct_ov98_02247704 * param0, int param1)
     StringTemplate_Format(param0->unk_20, param0->unk_40, v0);
 
     Window_FillTilemap(&param0->unk_68, 15);
-    Window_Show(&param0->unk_68, 1, (1 + (18 + 12)), 11);
+    Window_DrawStandardFrame(&param0->unk_68, 1, (1 + (18 + 12)), 11);
 
     param0->unk_44 = Text_AddPrinterWithParams(&param0->unk_68, FONT_MESSAGE, param0->unk_40, 0, 0, TEXT_SPEED_INSTANT, NULL);
     param0->unk_44 = 0xff;
@@ -2505,7 +2505,7 @@ static void ov98_02249964 (UnkStruct_ov98_02247704 * param0, int param1, int par
 
     StringTemplate_SetNumber(param0->unk_20, 0, param2, 5, 2, 1);
 
-    sub_0200E084(&param0->unk_48, 1);
+    Window_EraseMessageBox(&param0->unk_48, 1);
     ov98_02249900(param0, v0);
 }
 

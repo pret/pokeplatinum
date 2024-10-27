@@ -19,6 +19,7 @@
 #include "menu.h"
 #include "message.h"
 #include "narc.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "sprite_resource.h"
@@ -29,7 +30,6 @@
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
-#include "unk_0200DA60.h"
 #include "unk_020298BC.h"
 #include "unk_0205D8CC.h"
 
@@ -360,9 +360,9 @@ static void ov7_0224C338(UnkStruct_ov7_0224BEFC *param0)
 
 static void ov7_0224C35C(UnkStruct_ov7_0224BEFC *param0)
 {
-    sub_0200DD0C(param0->unk_14, 3, 1, 10, param0->unk_1B0, param0->unk_18);
+    LoadMessageBoxGraphics(param0->unk_14, 3, 1, 10, param0->unk_1B0, param0->unk_18);
     Font_LoadScreenIndicatorsPalette(0, 12 * 32, param0->unk_18);
-    sub_0200DAA4(param0->unk_14, 3, (1 + (18 + 12)), 11, 0, param0->unk_18);
+    LoadStandardWindowGraphics(param0->unk_14, 3, (1 + (18 + 12)), 11, 0, param0->unk_18);
     Font_LoadTextPalette(0, 13 * 32, param0->unk_18);
     Bg_ClearTilemap(param0->unk_14, 3);
 }
@@ -394,7 +394,7 @@ static void ov7_0224C3EC(UnkStruct_ov7_0224C3EC *param0, BgConfig *param1, u32 p
 
     Window_Add(param1, param0->unk_04, 3, 2, 19, 27, 4, 12, ((1 + (18 + 12)) + 9));
     Window_FillTilemap(param0->unk_04, 15);
-    sub_0200E060(param0->unk_04, 0, 1, 10);
+    Window_DrawMessageBoxWithScrollCursor(param0->unk_04, 0, 1, 10);
 
     param0->unk_00 = 1;
 }
@@ -548,7 +548,7 @@ static void ov7_0224C6DC(UnkStruct_ov7_0224C620 *param0, u32 param1, u32 param2,
         Text_AddPrinterWithParamsAndColor(param0->unk_04, FONT_SYSTEM, param0->unk_0C, 0, 16 * v0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
     }
 
-    Window_Show(param0->unk_04, 0, (1 + (18 + 12)), 11);
+    Window_DrawStandardFrame(param0->unk_04, 0, (1 + (18 + 12)), 11);
 }
 
 static void ov7_0224C768(UnkStruct_ov7_0224C768 *param0, BgConfig *param1, u32 param2, const UnkStruct_ov7_0224F1B4 *param3, u32 param4, MessageLoader *param5, void *param6, UnkFuncPtr_ov7_0224C768 param7, CellActorCollection *param8)
@@ -622,7 +622,7 @@ static void ov7_0224C768(UnkStruct_ov7_0224C768 *param0, BgConfig *param1, u32 p
 
     param0->unk_08 = ListMenu_New(&v5, 0, 0, param2);
 
-    Window_Show(param0->unk_04, 0, (1 + (18 + 12)), 11);
+    Window_DrawStandardFrame(param0->unk_04, 0, (1 + (18 + 12)), 11);
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_138[v0] = SpriteResourceCollection_New(1, v0, param2);
@@ -702,7 +702,7 @@ static void ov7_0224CA0C(UnkStruct_ov7_0224C768 *param0)
 {
     param0->unk_134(param0->unk_130, param0->unk_12C);
 
-    Window_Show(param0->unk_04, 0, (1 + (18 + 12)), 11);
+    Window_DrawStandardFrame(param0->unk_04, 0, (1 + (18 + 12)), 11);
     ov7_0224CB70(param0);
 }
 

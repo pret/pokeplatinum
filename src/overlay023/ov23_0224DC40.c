@@ -24,12 +24,12 @@
 #include "list_menu.h"
 #include "menu.h"
 #include "message.h"
+#include "render_window.h"
 #include "string_list.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
-#include "unk_0200DA60.h"
 #include "unk_0201D15C.h"
 #include "unk_0202854C.h"
 #include "unk_020573FC.h"
@@ -234,7 +234,7 @@ static void ov23_0224DD2C(UnkStruct_ov23_0224E280 *param0)
     param0->unk_1C = StringList_New(NELEMS(Unk_ov23_022568B4), 4);
 
     Window_Add(param0->fieldSystem->unk_08, &param0->unk_0C, 3, 1, 1, 10, NELEMS(Unk_ov23_022568B4) * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (10 * NELEMS(Unk_ov23_022568B4) * 2));
-    Window_Show(&param0->unk_0C, 1, 1024 - (18 + 12) - 9, 11);
+    Window_DrawStandardFrame(&param0->unk_0C, 1, 1024 - (18 + 12) - 9, 11);
 
     {
         MessageLoader *v1;
@@ -295,7 +295,7 @@ static void ov23_0224DE3C(UnkStruct_ov23_0224E280 *param0)
     param0->unk_1C = StringList_New(4, 4);
 
     Window_Add(param0->fieldSystem->unk_08, &param0->unk_0C, 3, 1, 1, 16, 4 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (16 * 4 * 2));
-    Window_Show(&param0->unk_0C, 1, 1024 - (18 + 12) - 9, 11);
+    Window_DrawStandardFrame(&param0->unk_0C, 1, 1024 - (18 + 12) - 9, 11);
 
     {
         MessageLoader *v1;
@@ -383,7 +383,7 @@ static void ov23_0224DFA0(UnkStruct_ov23_0224E280 *param0)
     param0->unk_1C = StringList_New(4, 4);
 
     Window_Add(param0->fieldSystem->unk_08, &param0->unk_0C, 3, 1, 1, 16, 4 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (16 * 4 * 2));
-    Window_Show(&param0->unk_0C, 1, 1024 - (18 + 12) - 9, 11);
+    Window_DrawStandardFrame(&param0->unk_0C, 1, 1024 - (18 + 12) - 9, 11);
 
     {
         MessageLoader *v1;
@@ -529,7 +529,7 @@ static BOOL ov23_0224E1E0(SysTask *param0, void *param1)
 static void ov23_0224E244(SysTask *param0, UnkStruct_ov23_0224E280 *param1)
 {
     if (param1->unk_1C) {
-        Window_Clear(&param1->unk_0C, 1);
+        Window_EraseStandardFrame(&param1->unk_0C, 1);
         ListMenu_Free(param1->unk_20, NULL, NULL);
         Window_ClearAndCopyToVRAM(&param1->unk_0C);
         Window_Remove(&param1->unk_0C);
@@ -946,7 +946,7 @@ static void ov23_0224E9C4(SysTask *param0, UnkStruct_ov23_022577B0 *param1)
 static void ov23_0224EA08(SysTask *param0, UnkStruct_ov23_022577B0 *param1)
 {
     if (param1->unk_18) {
-        Window_Clear(&param1->unk_08, 1);
+        Window_EraseStandardFrame(&param1->unk_08, 1);
         ListMenu_Free(param1->unk_1C, NULL, NULL);
         Window_ClearAndCopyToVRAM(&param1->unk_08);
         Window_Remove(&param1->unk_08);
@@ -977,7 +977,7 @@ static void ov23_0224EAA4(UnkStruct_ov23_022577B0 *param0)
     param0->unk_18 = StringList_New(v1, 4);
 
     Window_Add(param0->fieldSystem->unk_08, &param0->unk_08, 3, 1, 1, 16, v1 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (16 * v1 * 2));
-    Window_Show(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
+    Window_DrawStandardFrame(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
     {
         MessageLoader *v2;
         int v3;

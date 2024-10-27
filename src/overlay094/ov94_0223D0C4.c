@@ -28,12 +28,12 @@
 #include "narc.h"
 #include "party.h"
 #include "pokemon.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_020393C8.h"
@@ -239,8 +239,8 @@ static void ov94_0223D2E8(UnkStruct_ov94_0223FD4C *param0)
     Graphics_LoadPaletteFromOpenNARC(v1, 7, 0, 0, 16 * 3 * 2, 62);
     Graphics_LoadPaletteFromOpenNARC(v1, 5, 4, 0, 16 * 8 * 2, 62);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 62);
-    sub_0200DD0C(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), 62);
-    sub_0200DAA4(v0, 0, (1 + (18 + 12)), 11, 0, 62);
+    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), 62);
+    LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, 62);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 17, v0, 1, 0, 16 * 5 * 0x20, 1, 62);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 25, v0, 1, 0, 32 * 24 * 2, 1, 62);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 15, v0, 5, 0, 32 * 21 * 0x40, 1, 62);
@@ -386,7 +386,7 @@ static int ov94_0223D664(UnkStruct_ov94_0223FD4C *param0)
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
             param0->unk_2C = 0;
-            sub_0200E084(&param0->unk_F5C, 0);
+            Window_EraseMessageBox(&param0->unk_F5C, 0);
         } else {
             param0->unk_2C = 2;
             param0->unk_1110 = 1;
@@ -418,7 +418,7 @@ static int ov94_0223D6B8(UnkStruct_ov94_0223FD4C *param0)
     v0.choices = param0->unk_10CC;
     v0.window = &param0->unk_F9C[0];
 
-    Window_Show(&param0->unk_F9C[0], 0, (1 + (18 + 12)), 11);
+    Window_DrawStandardFrame(&param0->unk_F9C[0], 0, (1 + (18 + 12)), 11);
 
     param0->unk_10D4 = Menu_NewAndCopyToVRAM(&v0, 9, 0, 0, 62, PAD_BUTTON_B);
     param0->unk_2C = 8;
@@ -432,7 +432,7 @@ static int ov94_0223D754(UnkStruct_ov94_0223FD4C *param0)
     case 1:
         Menu_Free(param0->unk_10D4, NULL);
         StringList_Free(param0->unk_10CC);
-        Window_Clear(&param0->unk_F9C[0], 0);
+        Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
 
         {
             Pokemon *v0 = (Pokemon *)param0->unk_12C.unk_00.unk_00;
@@ -455,7 +455,7 @@ static int ov94_0223D754(UnkStruct_ov94_0223FD4C *param0)
     case 0xfffffffe:
         Menu_Free(param0->unk_10D4, NULL);
         StringList_Free(param0->unk_10CC);
-        Window_Clear(&param0->unk_F9C[0], 0);
+        Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
 
         param0->unk_2C = 2;
 
@@ -498,7 +498,7 @@ static void ov94_0223D88C(UnkStruct_ov94_0223FD4C *param0, int param1, int param
     v0 = MessageLoader_GetNewStrbuf(param0->unk_B90, param1);
     StringTemplate_Format(param0->unk_B8C, param0->unk_BAC, v0);
     Window_FillTilemap(&param0->unk_F5C, 0xf0f);
-    sub_0200E060(&param0->unk_F5C, 0, 1, 10);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_F5C, 0, 1, 10);
 
     param0->unk_BE0 = Text_AddPrinterWithParams(&param0->unk_F5C, FONT_MESSAGE, param0->unk_BAC, 0, 0, param2, NULL);
 

@@ -45,6 +45,7 @@
 #include "map_object_move.h"
 #include "message.h"
 #include "player_avatar.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "savedata_misc.h"
 #include "script_manager.h"
@@ -53,7 +54,6 @@
 #include "sys_task_manager.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
-#include "unk_0200DA60.h"
 #include "unk_0201D15C.h"
 #include "unk_02027F50.h"
 #include "unk_020508D4.h"
@@ -2845,7 +2845,7 @@ static BOOL ov8_0224B3D4(TaskManager *param0)
             sub_020057A4(1593, 0);
             MessageLoader_GetStrbuf(v2->unk_48, 12, v2->unk_4C);
             FieldMessage_AddWindow(fieldSystem->unk_08, v2->unk_44, 3);
-            sub_0200E084(v2->unk_44, 0);
+            Window_EraseMessageBox(v2->unk_44, 0);
             FieldMessage_DrawWindow(v2->unk_44, SaveData_Options(fieldSystem->saveData));
 
             v2->unk_40 = FieldMessage_Print(v2->unk_44, v2->unk_4C, SaveData_Options(fieldSystem->saveData), 1);
@@ -2863,7 +2863,7 @@ static BOOL ov8_0224B3D4(TaskManager *param0)
             int v10 = Player_GetZPos(fieldSystem->playerAvatar);
 
             ov8_0224B240(&v2->unk_1C, v9, v10);
-            sub_0200E084(v2->unk_44, 0);
+            Window_EraseMessageBox(v2->unk_44, 0);
             Window_Remove(v2->unk_44);
             v2->unk_04 = 0;
             v2->unk_00 = 5;

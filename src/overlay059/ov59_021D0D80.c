@@ -32,6 +32,7 @@
 #include "message_util.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "render_window.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -44,7 +45,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_0201D15C.h"
@@ -578,8 +578,8 @@ static void ov59_021D1388(UnkStruct_020961E8 *param0, NARC *param1)
     Graphics_LoadTilemapToBgLayer(12, 11, v0, 6, 0, 0, 1, 51);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 1, 0, 32 * 8 * 0x20, 1, 51);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 3, v0, 1, 0, 32 * 24 * 2, 1, 51);
-    sub_0200DD0C(v0, 0, 1, 10, Options_Frame(param0->unk_08->unk_08), 51);
-    sub_0200DAA4(v0, 0, 1 + (18 + 12), 11, 0, 51);
+    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_08->unk_08), 51);
+    LoadStandardWindowGraphics(v0, 0, 1 + (18 + 12), 11, 0, 51);
 }
 
 static void ov59_021D1474(void)
@@ -1572,7 +1572,7 @@ static void ov59_021D2628(UnkStruct_020961E8 *param0, int param1, int param2)
     StringTemplate_Format(param0->unk_24, param0->unk_44, v0);
     Strbuf_Free(v0);
     Window_FillTilemap(&param0->unk_34C, 0xf0f);
-    sub_0200E060(&param0->unk_34C, 0, 1, 10);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_34C, 0, 1, 10);
 
     if (param2 == 0) {
         param0->unk_4C = Text_AddPrinterWithParams(&param0->unk_34C, FONT_MESSAGE, param0->unk_44, 0, 0, ov59_021D28D4(param0), NULL);
@@ -1597,7 +1597,7 @@ static int ov59_021D26B8(int param0)
 
 static void ov59_021D26D8(UnkStruct_020961E8 *param0)
 {
-    sub_0200E084(&param0->unk_34C, 0);
+    Window_EraseMessageBox(&param0->unk_34C, 0);
 }
 
 static void ov59_021D26E8(UnkStruct_020961E8 *param0)

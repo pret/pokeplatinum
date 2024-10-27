@@ -41,6 +41,7 @@
 #include "overlay_manager.h"
 #include "pokemon.h"
 #include "render_text.h"
+#include "render_window.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "sys_task.h"
@@ -52,7 +53,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02015064.h"
 #include "unk_02017728.h"
@@ -669,9 +669,9 @@ static void MakeMessageWindow(ChooseStarterApp *app, enum HeapId heapID)
     Window_Add(app->bgl, app->messageWindow, BG_LAYER_MAIN_1, TEXT_POS_X, TEXT_POS_Y, TEXT_COLUMNS, TEXT_ROWS, FRAME_PALETTE_INDEX, TEXT_WINDOW_SIZE + 1);
 
     Window_FillTilemap(app->messageWindow, 15);
-    sub_0200DD0C(app->bgl, BG_LAYER_MAIN_1, FRAME_TEXT_START, FRAME_TEXT_PALETTE_INDEX, app->messageFrame, heapID);
+    LoadMessageBoxGraphics(app->bgl, BG_LAYER_MAIN_1, FRAME_TEXT_START, FRAME_TEXT_PALETTE_INDEX, app->messageFrame, heapID);
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__EV_POKESELECT, 16, 0, FRAME_PALETTE_INDEX * 32, 32, heapID);
-    sub_0200E060(app->messageWindow, 0, FRAME_TEXT_START, FRAME_TEXT_PALETTE_INDEX);
+    Window_DrawMessageBoxWithScrollCursor(app->messageWindow, 0, FRAME_TEXT_START, FRAME_TEXT_PALETTE_INDEX);
 }
 
 static void ov78_021D13A0(ChooseStarterApp *param0)
@@ -1296,7 +1296,7 @@ static u8 ov78_021D1FB4(Window *param0, int param1, int param2, int param3, Text
 
     Window_FillTilemap(param0, 15);
     v2 = Text_AddPrinterWithParamsAndColor(param0, FONT_MESSAGE, v1, 0, 0, param5, param4, NULL);
-    sub_0200E060(param0, 0, 512, 0);
+    Window_DrawMessageBoxWithScrollCursor(param0, 0, 512, 0);
 
     Strbuf_Free(v1);
     MessageLoader_Free(v0);
@@ -1318,7 +1318,7 @@ static u8 ov78_021D201C(Window *param0, int param1, int param2, int param3, u32 
     Window_FillTilemap(param0, 15);
     v1 = Text_AddPrinterWithParamsAndColor(param0, FONT_MESSAGE, *param6, 0, 0, param5, param4, NULL);
 
-    sub_0200E060(param0, 0, 512, 0);
+    Window_DrawMessageBoxWithScrollCursor(param0, 0, 512, 0);
     MessageLoader_Free(v0);
 
     return v1;
@@ -1340,7 +1340,7 @@ static void MakeConfirmationWindow(ChooseStarterApp *param0, int param1)
     param0->unk_B0.palette = 3;
     param0->unk_B0.baseTile = ((18 + 12) + 9 + 128);
 
-    sub_0200DAA4(param0->bgl, 1, (512 + (18 + 12) + 128), 1, 0, param1);
+    LoadStandardWindowGraphics(param0->bgl, 1, (512 + (18 + 12) + 128), 1, 0, param1);
     Font_LoadTextPalette(0, 3 * 32, param1);
 }
 

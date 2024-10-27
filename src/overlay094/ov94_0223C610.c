@@ -19,12 +19,12 @@
 #include "menu.h"
 #include "message.h"
 #include "narc.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_020393C8.h"
 
@@ -278,8 +278,8 @@ static void ov94_0223C888(UnkStruct_ov94_0223FD4C *param0)
 
     Graphics_LoadPaletteFromOpenNARC(v1, 4, 0, 0, 16 * 3 * 2, 62);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 62);
-    sub_0200DD0C(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), 62);
-    sub_0200DAA4(v0, 0, (1 + (18 + 12)), 11, 0, 62);
+    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), 62);
+    LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, 62);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 14, v0, 1, 0, 16 * 6 * 0x20, 1, 62);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 30, v0, 1, 0, 32 * 24 * 2, 1, 62);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 29, v0, 2, 0, 32 * 24 * 2, 1, 62);
@@ -524,12 +524,12 @@ static int ov94_0223CE7C(UnkStruct_ov94_0223FD4C *param0)
 
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
-            sub_0200E084(&param0->unk_109C, 1);
+            Window_EraseMessageBox(&param0->unk_109C, 1);
             Window_ClearAndCopyToVRAM(&param0->unk_109C);
             CellActor_SetAnimateFlag(param0->unk_E20, 1);
             param0->unk_2C = 5;
         } else {
-            sub_0200E084(&param0->unk_109C, 1);
+            Window_EraseMessageBox(&param0->unk_109C, 1);
             Window_ClearAndCopyToVRAM(&param0->unk_109C);
             ov94_0223C4C0(param0, 0, 0);
             param0->unk_2C = 7;
@@ -584,7 +584,7 @@ static void ov94_0223CF80(UnkStruct_ov94_0223FD4C *param0, int param1, int param
 
     MessageLoader_GetStrbuf(param0->unk_B90, param1, param0->unk_BAC);
     Window_FillTilemap(&param0->unk_F5C, 0xf0f);
-    sub_0200E060(&param0->unk_F5C, 0, 1, 10);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_F5C, 0, 1, 10);
 
     param0->unk_BE0 = Text_AddPrinterWithParams(&param0->unk_F5C, FONT_MESSAGE, param0->unk_BAC, 0, 0, param2, NULL);
 }
@@ -595,7 +595,7 @@ static void ov94_0223CFD8(UnkStruct_ov94_0223FD4C *param0, int param1, int param
 
     MessageLoader_GetStrbuf(param0->unk_B90, param1, param0->unk_BAC);
     Window_FillTilemap(&param0->unk_109C, 0xf0f);
-    sub_0200E060(&param0->unk_109C, 0, 1, 10);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_109C, 0, 1, 10);
 
     param0->unk_BE0 = Text_AddPrinterWithParams(&param0->unk_109C, FONT_MESSAGE, param0->unk_BAC, 0, 0, param2, NULL);
 }

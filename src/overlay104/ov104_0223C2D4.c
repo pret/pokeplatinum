@@ -45,6 +45,7 @@
 #include "narc.h"
 #include "palette.h"
 #include "render_text.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -52,7 +53,6 @@
 #include "unk_020041CC.h"
 #include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
@@ -621,11 +621,11 @@ static void ov104_0223CB80(UnkStruct_ov104_0223C4CC *param0)
 
         v0 = sub_0209B970(param0->unk_08);
 
-        sub_0200DD0C(param0->unk_00, 1, (1024 - (18 + 12)), 11, Options_Frame(v0->unk_04), 94);
+        LoadMessageBoxGraphics(param0->unk_00, 1, (1024 - (18 + 12)), 11, Options_Frame(v0->unk_04), 94);
         PaletteData_LoadBufferFromHardware(param0->unk_04, 0, 11 * 16, 0x20);
     }
 
-    sub_0200DAA4(param0->unk_00, 1, ((1024 - (18 + 12)) - 9), 12, 0, 94);
+    LoadStandardWindowGraphics(param0->unk_00, 1, ((1024 - (18 + 12)) - 9), 12, 0, 94);
     PaletteData_LoadBufferFromHardware(param0->unk_04, 0, 12 * 16, 0x20);
 }
 

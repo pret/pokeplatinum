@@ -32,13 +32,13 @@
 #include "pokemon.h"
 #include "pokemon_summary_app.h"
 #include "render_text.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
@@ -602,8 +602,8 @@ static void ov91_021D10C8(UnkStruct_ov91_021D0ED8 *param0, NARC *param1)
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 11, param0->unk_04, 2, 0, 0, 0, 67);
     Graphics_LoadPaletteFromOpenNARC(param1, 12, 0, 0, 0, 67);
     Font_LoadScreenIndicatorsPalette(0, 14 * 32, 67);
-    sub_0200DAA4(param0->unk_04, 0, 1, 12, 0, 67);
-    sub_0200DD0C(param0->unk_04, 0, (1 + 9), 13, Options_Frame(param0->unk_00->unk_08), 67);
+    LoadStandardWindowGraphics(param0->unk_04, 0, 1, 12, 0, 67);
+    LoadMessageBoxGraphics(param0->unk_04, 0, (1 + 9), 13, Options_Frame(param0->unk_00->unk_08), 67);
 }
 
 static void ov91_021D1154(UnkStruct_ov91_021D0ED8 *param0)
@@ -618,7 +618,7 @@ static void ov91_021D1154(UnkStruct_ov91_021D0ED8 *param0)
     ov91_021D1664(param0);
 
     Window_FillTilemap(&param0->unk_08[12], 15);
-    sub_0200E060(&param0->unk_08[12], 0, (1 + 9), 13);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_08[12], 0, (1 + 9), 13);
 }
 
 static void ov91_021D11A0(UnkStruct_ov91_021D0ED8 *param0)

@@ -31,13 +31,13 @@
 #include "message.h"
 #include "party.h"
 #include "pokemon.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200DA60.h"
 #include "unk_020302D0.h"
 #include "unk_0203061C.h"
 #include "unk_0205DFC4.h"
@@ -729,7 +729,7 @@ void ov104_02236FC0(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *
 
 static void ov104_022370C0(BgConfig *param0, Window *param1)
 {
-    Window_Show(param1, 1, ((1024 - (18 + 12)) - 9), 12);
+    Window_DrawStandardFrame(param1, 1, ((1024 - (18 + 12)) - 9), 12);
     Window_FillTilemap(param1, 15);
 
     return;
@@ -743,7 +743,7 @@ void ov104_022370E0(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *
     if (ov104_0223BA14(param1->unk_10) == 0) {
         GF_ASSERT(param0->unk_A8 != NULL);
         v0 = param0->unk_A8;
-        Window_Clear(v0, 0);
+        Window_EraseStandardFrame(v0, 0);
         Windows_Delete(v0, 1);
     } else {
         GF_ASSERT(param0->unk_A8 != NULL);
@@ -757,9 +757,9 @@ void ov104_022370E0(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *
             v1 = param0->unk_A8;
         }
 
-        Window_Clear(v0, 0);
+        Window_EraseStandardFrame(v0, 0);
         Windows_Delete(v0, 1);
-        Window_Clear(v1, 0);
+        Window_EraseStandardFrame(v1, 0);
         Windows_Delete(v1, 1);
     }
 

@@ -44,6 +44,7 @@
 #include "message.h"
 #include "narc.h"
 #include "player_avatar.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "strbuf.h"
 #include "string_list.h"
@@ -54,7 +55,6 @@
 #include "unk_02005474.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
 #include "unk_0202854C.h"
 #include "unk_0206A780.h"
 
@@ -479,7 +479,7 @@ static void ov23_0224F7F4(UnkStruct_ov23_02250CD4 *param0)
     param0->unk_40 = StringList_New(NELEMS(Unk_ov23_02256924), 4);
 
     Window_Add(param0->fieldSystem->unk_08, &param0->unk_10, 3, 20, 1, 11, NELEMS(Unk_ov23_02256924) * 3, 13, (1024 - (18 + 12) - 9 - 11 * 22));
-    Window_Show(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
+    Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {
         MessageLoader *v3;
@@ -681,7 +681,7 @@ void ov23_0224FB7C(UnkStruct_ov23_02250CD4 *param0)
     }
 
     if (Window_IsInUse(&param0->unk_10)) {
-        Window_Clear(&param0->unk_10, 1);
+        Window_EraseStandardFrame(&param0->unk_10, 1);
         Bg_ScheduleTilemapTransfer(param0->unk_10.bgConfig, param0->unk_10.bgLayer);
         Window_Remove(&param0->unk_10);
         StringList_Free(param0->unk_40);
@@ -736,7 +736,7 @@ static void ov23_0224FBFC(UnkStruct_ov23_02250CD4 *param0, int param1)
     param0->unk_44 = StringList_New(v1, 4);
 
     Window_Add(param0->fieldSystem->unk_08, &param0->unk_20, 3, v5, v3, v4, v1 * 2, 13, (1024 - (18 + 12) - 9 - 11 * 22));
-    Window_Show(&param0->unk_20, 1, 1024 - (18 + 12) - 9, 11);
+    Window_DrawStandardFrame(&param0->unk_20, 1, 1024 - (18 + 12) - 9, 11);
 
     {
         MessageLoader *v7;
@@ -771,7 +771,7 @@ static void ov23_0224FCF4(UnkStruct_ov23_02250CD4 *param0)
     }
 
     if (Window_IsInUse(&param0->unk_20)) {
-        Window_Clear(&param0->unk_20, 1);
+        Window_EraseStandardFrame(&param0->unk_20, 1);
         Window_Remove(&param0->unk_20);
     }
 }
@@ -848,7 +848,7 @@ static void ov23_0224FE38(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
     param0->unk_40 = StringList_New(v3 + 1, 4);
 
     Window_Add(param0->fieldSystem->unk_08, &param0->unk_10, 3, 19, 3, 12, (6 * 2), 13, ((1024 - (18 + 12) - 9 - 11 * 22) - 12 * (6 * 2)));
-    Window_Show(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
+    Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {
         MessageLoader *v5;
@@ -1039,7 +1039,7 @@ static void ov23_0225021C(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
     param0->unk_40 = StringList_New(v4 + 1, 4);
 
     Window_Add(param0->fieldSystem->unk_08, &param0->unk_10, 3, 19, 3, 12, (6 * 2), 13, ((1024 - (18 + 12) - 9 - 11 * 22) - 12 * (6 * 2)));
-    Window_Show(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
+    Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {
         MessageLoader *v6;
@@ -1215,7 +1215,7 @@ static void ov23_022505EC(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
     param0->unk_40 = StringList_New(v3 + 1, 4);
 
     Window_Add(param0->fieldSystem->unk_08, &param0->unk_10, 3, 19, 3, 12, (6 * 2), 13, ((1024 - (18 + 12) - 9 - 11 * 22) - 12 * (6 * 2)));
-    Window_Show(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
+    Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {
         MessageLoader *v5;
@@ -1616,7 +1616,7 @@ static void ov23_02250D90(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
     param0->unk_40 = StringList_New(v3 + 1, 4);
 
     Window_Add(param0->fieldSystem->unk_08, &param0->unk_10, 3, 19, 3, 12, (6 * 2), 13, ((1024 - (18 + 12) - 9 - 11 * 22) - 12 * (6 * 2)));
-    Window_Show(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
+    Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {
         MessageLoader *v5;

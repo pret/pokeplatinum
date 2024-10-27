@@ -10,11 +10,11 @@
 #include "menu.h"
 #include "message.h"
 #include "message_util.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_0200DA60.h"
 
 static void ov88_0223EE14(ListMenu *param0, u32 param1, u8 param2);
 
@@ -59,8 +59,8 @@ void ov88_0223E9C4(BgConfig *param0, Window *param1, Options *param2)
     Window_Add(param0, &param1[6], 1, 26, 21, 5, 2, 8, ((1 + (10 * 2)) + (10 * 2)));
     Window_FillTilemap(&param1[6], 0);
 
-    sub_0200DD0C(param0, 0, (512 - (9 + (18 + 12))), 10, Options_Frame(param2), 26);
-    sub_0200DAA4(param0, 0, (512 - 9), 11, 0, 26);
+    LoadMessageBoxGraphics(param0, 0, (512 - (9 + (18 + 12))), 10, Options_Frame(param2), 26);
+    LoadStandardWindowGraphics(param0, 0, (512 - 9), 11, 0, 26);
 
     Window_Add(param0, &param1[21], 0, 2, 21, 20, 2, 13, 1);
     Window_FillTilemap(&param1[21], 0);
@@ -132,9 +132,9 @@ int ov88_0223ECBC(Window *param0, int param1, int param2, MessageLoader *param3,
     v0 = MessageUtil_ExpandedStrbuf(param4, param3, param1, 26);
 
     if (param2 == 1) {
-        sub_0200E060(param0, 0, (512 - (9 + (18 + 12))), 10);
+        Window_DrawMessageBoxWithScrollCursor(param0, 0, (512 - (9 + (18 + 12))), 10);
     } else {
-        Window_Show(param0, 0, (512 - 9), 11);
+        Window_DrawStandardFrame(param0, 0, (512 - 9), 11);
     }
 
     Window_FillTilemap(param0, 15);
@@ -176,7 +176,7 @@ u32 ov88_0223ED2C(BgConfig *param0, Menu **param1, int *param2)
 
 void ov88_0223ED80(Window *param0)
 {
-    Window_Show(param0, 0, (512 - 9), 11);
+    Window_DrawStandardFrame(param0, 0, (512 - 9), 11);
 }
 
 static const ListMenuTemplate Unk_ov88_0223F150 = {
@@ -208,7 +208,7 @@ ListMenu *ov88_0223ED94(StringList *param0, int param1, Window *param2, BgConfig
     int v2 = 5;
 
     Window_Add(param3, param2, 0, 19, 1, 12, v2 * 2, 13, (512 - (9 + (18 + 12))) - (10 * (v2 + 2) * 2));
-    Window_Show(param2, 0, (512 - 9), 11);
+    Window_DrawStandardFrame(param2, 0, (512 - 9), 11);
 
     v1 = Unk_ov88_0223F150;
     v1.count = param1 + 1;

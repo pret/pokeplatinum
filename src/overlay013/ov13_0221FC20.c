@@ -30,6 +30,7 @@
 #include "party.h"
 #include "pokemon.h"
 #include "pokemon_summary_app.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
@@ -39,7 +40,6 @@
 #include "unk_0200679C.h"
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
 #include "unk_0208C098.h"
 #include "unk_02094EDC.h"
 
@@ -836,7 +836,7 @@ static u8 ov13_0222081C(UnkStruct_ov13_022213F0 *param0)
 
 static u8 ov13_02220834(UnkStruct_ov13_022213F0 *param0)
 {
-    sub_0200E084(&param0->unk_204C[1], 0);
+    Window_EraseMessageBox(&param0->unk_204C[1], 0);
     return 2;
 }
 
@@ -1157,8 +1157,8 @@ static void ov13_02220D4C(UnkStruct_ov13_022213F0 *param0)
     {
         int v4 = ov16_0223EDE0(param0->unk_00->unk_08);
 
-        Graphics_LoadTilesToBgLayer(38, sub_0200DD04(v4), param0->unk_1E0, 4, 1, 0, 0, param0->unk_00->unk_0C);
-        PaletteData_LoadBufferFromFileStart(param0->unk_1E4, 38, sub_0200DD08(v4), param0->unk_00->unk_0C, 1, 0x20, 14 * 16);
+        Graphics_LoadTilesToBgLayer(38, GetMessageBoxTilesNARCMember(v4), param0->unk_1E0, 4, 1, 0, 0, param0->unk_00->unk_0C);
+        PaletteData_LoadBufferFromFileStart(param0->unk_1E4, 38, GetMessageBoxPaletteNARCMember(v4), param0->unk_00->unk_0C, 1, 0x20, 14 * 16);
     }
 
     {

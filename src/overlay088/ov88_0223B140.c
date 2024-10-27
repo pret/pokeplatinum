@@ -46,6 +46,7 @@
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "pokemon_summary_app.h"
+#include "render_window.h"
 #include "rtc.h"
 #include "savedata.h"
 #include "sprite_resource.h"
@@ -62,7 +63,6 @@
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_0200A9DC.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_02017728.h"
@@ -375,8 +375,8 @@ static void ov88_0223B3C0(UnkStruct_02095E80 *param0)
     ov88_0223B4F0(param0);
     ov88_0223B320(param0);
 
-    sub_0200DD0C(param0->unk_174, 0, (512 - (9 + (18 + 12))), 10, Options_Frame(param0->unk_08->unk_18), 26);
-    sub_0200DAA4(param0->unk_174, 0, (512 - 9), 11, 0, 26);
+    LoadMessageBoxGraphics(param0->unk_174, 0, (512 - (9 + (18 + 12))), 10, Options_Frame(param0->unk_08->unk_18), 26);
+    LoadStandardWindowGraphics(param0->unk_174, 0, (512 - 9), 11, 0, 26);
 
     ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
 
@@ -735,7 +735,7 @@ static int ov88_0223B914(UnkStruct_02095E80 *param0)
         break;
     case 19:
         if (sub_0200AC1C(2)) {
-            sub_0200E084(&param0->unk_49C[23], 0);
+            Window_EraseMessageBox(&param0->unk_49C[23], 0);
             Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
             ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
             ResetUnlock(2);
@@ -1891,7 +1891,7 @@ static int ov88_0223D5B8(UnkStruct_02095E80 *param0)
         break;
     }
 
-    Window_Clear(&param0->unk_36DC, 0);
+    Window_EraseStandardFrame(&param0->unk_36DC, 0);
     Window_Remove(&param0->unk_36DC);
     ListMenu_Free(param0->unk_36D8, NULL, NULL);
     StringList_Free(param0->unk_36D4);
@@ -2557,13 +2557,13 @@ static void ov88_0223E87C(CellActor *param0, int param1, int param2)
 
 static void ov88_0223E894(UnkStruct_02095E80 *param0)
 {
-    param0->unk_3700 = sub_0200E7FC(&param0->unk_49C[23], (512 - (9 + (18 + 12))));
+    param0->unk_3700 = Window_AddWaitDial(&param0->unk_49C[23], (512 - (9 + (18 + 12))));
 }
 
 static void ov88_0223E8B4(UnkStruct_02095E80 *param0)
 {
     if (param0->unk_3700 != NULL) {
-        DeleteWaitDial(param0->unk_3700);
+        DestroyWaitDial(param0->unk_3700);
         param0->unk_3700 = NULL;
     }
 }

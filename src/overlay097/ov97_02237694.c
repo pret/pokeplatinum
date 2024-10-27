@@ -29,6 +29,7 @@
 #include "message_util.h"
 #include "overlay_manager.h"
 #include "pokemon.h"
+#include "render_window.h"
 #include "savedata.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
@@ -38,7 +39,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_02017728.h"
@@ -284,9 +284,9 @@ int ov97_0223795C(BgConfig *param0, UnkStruct_ov97_02237808 *param1, int param2,
 
     if (param1->unk_04 == 1) {
         if (param1->unk_00 == 0) {
-            Window_Show(param1->unk_10, 0, param1->unk_38, param1->unk_3C);
+            Window_DrawStandardFrame(param1->unk_10, 0, param1->unk_38, param1->unk_3C);
         } else {
-            sub_0200E060(param1->unk_10, 0, param1->unk_38, param1->unk_3C);
+            Window_DrawMessageBoxWithScrollCursor(param1->unk_10, 0, param1->unk_38, param1->unk_3C);
         }
     }
 

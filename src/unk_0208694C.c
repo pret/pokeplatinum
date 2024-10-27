@@ -25,6 +25,7 @@
 #include "overlay_manager.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
+#include "render_window.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -36,7 +37,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_0201567C.h"
@@ -981,7 +981,7 @@ static int sub_02086B64(OverlayManager *param0, int *param1)
         case 5:
             sub_02087544(v0, param0);
             Window_FillTilemap(&v0->unk_41C[9], 0xf0f);
-            sub_0200E060(&v0->unk_41C[9], 0, (32 * 8), 10);
+            Window_DrawMessageBoxWithScrollCursor(&v0->unk_41C[9], 0, (32 * 8), 10);
             v0->unk_4BC = Text_AddPrinterWithParams(&v0->unk_41C[9], FONT_MESSAGE, v0->unk_180, 0, 0, TEXT_SPEED_FAST, NULL);
             Window_CopyToVRAM(&v0->unk_41C[9]);
             v0->unk_4C0 = 6;
@@ -1512,7 +1512,7 @@ static void sub_0208769C(UnkStruct_02087A10 *param0, NARC *param1)
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 6, v0, 1, 0, (32 * 14 * 2), 1, 18);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 7, v0, 0, 0, (32 * 14 * 2), 1, 18);
     Font_LoadScreenIndicatorsPalette(0, 12 * 32, 18);
-    sub_0200DD0C(param0->unk_160, 4, (32 * 8), 10, Options_Frame(param0->unk_18), 18);
+    LoadMessageBoxGraphics(param0->unk_160, 4, (32 * 8), 10, Options_Frame(param0->unk_18), 18);
     Font_LoadScreenIndicatorsPalette(4, 12 * 32, 18);
 
     param0->unk_510 = Graphics_GetCharDataFromOpenNARC(param1, 16, 1, &param0->unk_514, 18);
@@ -1804,7 +1804,7 @@ static void sub_02087D64(BgConfig *param0, Window *param1, int *param2, int para
 
 static void sub_02087F48(Window *param0, int param1, Strbuf *param2)
 {
-    sub_0200E060(param0, 0, (32 * 8), 10);
+    Window_DrawMessageBoxWithScrollCursor(param0, 0, (32 * 8), 10);
     Text_AddPrinterWithParams(param0, FONT_MESSAGE, param2, 0, 0, TEXT_SPEED_INSTANT, NULL);
     Window_CopyToVRAM(param0);
 }

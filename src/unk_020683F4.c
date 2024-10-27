@@ -40,10 +40,10 @@
 #include "party.h"
 #include "player_avatar.h"
 #include "pokeradar.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "script_manager.h"
 #include "strbuf.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_0202631C.h"
 #include "unk_02028124.h"
@@ -963,7 +963,7 @@ static BOOL sub_02068F48(TaskManager *param0)
     case 1:
         if (FieldMessage_FinishedPrinting(v1->unk_14) == 1) {
             if (gCoreSys.pressedKeys & (PAD_KEY | PAD_BUTTON_A | PAD_BUTTON_B)) {
-                sub_0200E084(&v1->unk_00, 0);
+                Window_EraseMessageBox(&v1->unk_00, 0);
                 v1->unk_16++;
             }
         }

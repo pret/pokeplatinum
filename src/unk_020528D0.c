@@ -22,6 +22,7 @@
 #include "message.h"
 #include "party.h"
 #include "pokemon.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "script_manager.h"
 #include "strbuf.h"
@@ -29,7 +30,6 @@
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200A9DC.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_0203A7D8.h"
 #include "unk_020508D4.h"
@@ -165,7 +165,7 @@ static BOOL sub_020529C4(TaskManager *param0)
         }
         break;
     case 4:
-        sub_0200E084(&v0->unk_0C, 0);
+        Window_EraseMessageBox(&v0->unk_0C, 0);
         Window_Remove(&v0->unk_0C);
         StringTemplate_Free(v0->unk_20);
         MessageLoader_Free(v0->unk_1C);

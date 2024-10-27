@@ -18,6 +18,7 @@
 #include "gx_layers.h"
 #include "narc.h"
 #include "player_avatar.h"
+#include "render_window.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "sys_task_manager.h"
@@ -25,7 +26,6 @@
 #include "unk_0200679C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_0201D15C.h"
 #include "unk_0205D8CC.h"
@@ -172,7 +172,7 @@ static void ov23_02248F1C(SysTask *param0, void *param1)
         }
 
         CellActorCollection_Delete(v0->unk_1BC);
-        sub_0200E084(&v0->unk_3F4, 0);
+        Window_EraseMessageBox(&v0->unk_3F4, 0);
         Window_Remove(&v0->unk_3F4);
         Bg_FreeTilemapBuffer(v1, 7);
 

@@ -12,13 +12,13 @@
 #include "menu.h"
 #include "message.h"
 #include "overlay_manager.h"
+#include "render_window.h"
 #include "savedata.h"
 #include "strbuf.h"
 #include "text.h"
 #include "unk_02000C88.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 
@@ -215,8 +215,8 @@ static void sub_02099F80(UnkStruct_02099DFC *param0)
         Bg_ClearTilemap(param0->unk_14, 0);
     }
 
-    sub_0200DD0C(param0->unk_14, 0, (512 - (18 + 12)), 2, 0, param0->unk_00);
-    sub_0200DAA4(param0->unk_14, 0, 512 - (18 + 12) - 9, 3, 0, param0->unk_00);
+    LoadMessageBoxGraphics(param0->unk_14, 0, (512 - (18 + 12)), 2, 0, param0->unk_00);
+    LoadStandardWindowGraphics(param0->unk_14, 0, 512 - (18 + 12) - 9, 3, 0, param0->unk_00);
     Font_LoadTextPalette(0, 1 * (2 * 16), param0->unk_00);
     Bg_ClearTilesRange(0, 32, 0, param0->unk_00);
     Bg_MaskPalette(0, 0x6c21);
@@ -295,13 +295,13 @@ static BOOL sub_0209A0F4(UnkStruct_02099DFC *param0)
     } break;
     case 4:
         if (sub_0209A200(param0, 2, 1, 0) == TRUE) {
-            param0->unk_34 = sub_0200E7FC(&param0->unk_1C, 512 - (18 + 12));
+            param0->unk_34 = Window_AddWaitDial(&param0->unk_1C, 512 - (18 + 12));
             param0->unk_04 = 5;
         }
         break;
     case 5:
         SaveData_Erase(param0->unk_30);
-        DeleteWaitDial(param0->unk_34);
+        DestroyWaitDial(param0->unk_34);
         param0->unk_04 = 6;
         break;
     case 6:
@@ -320,7 +320,7 @@ static BOOL sub_0209A200(UnkStruct_02099DFC *param0, u32 param1, int param2, int
     switch (param0->unk_08) {
     case 0:
         Window_FillRectWithColor(&param0->unk_1C, 15, 0, 0, 27 * 8, 4 * 8);
-        sub_0200E060(&param0->unk_1C, 0, 512 - (18 + 12), 2);
+        Window_DrawMessageBoxWithScrollCursor(&param0->unk_1C, 0, 512 - (18 + 12), 2);
 
         param0->unk_10 = Strbuf_Init(0x400, param0->unk_00);
         MessageLoader_GetStrbuf(param0->unk_18, param1, param0->unk_10);

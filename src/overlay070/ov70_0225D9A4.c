@@ -52,6 +52,7 @@
 #include "overlay_manager.h"
 #include "pokemon.h"
 #include "render_text.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "sprite_resource.h"
@@ -67,7 +68,6 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
@@ -1294,9 +1294,9 @@ static void ov70_0225E4EC(UnkStruct_ov70_0225E4EC *param0, SaveData *param1, u32
         Font_LoadTextPalette(0, 5 * 32, param2);
         Font_LoadScreenIndicatorsPalette(0, 4 * 32, param2);
 
-        sub_0200DAA4(param0->unk_00, Unk_ov70_0226D5CC[0], ((1 + (18 + 12)) + ((18 + 12) + 24)), 3, 0, param2);
-        sub_0200DD0C(param0->unk_00, Unk_ov70_0226D5CC[0], 1, 1, v2, param2);
-        sub_0200E2A4(param0->unk_00, Unk_ov70_0226D5CC[0], (1 + (18 + 12)), 2, 3, 0, param2);
+        LoadStandardWindowGraphics(param0->unk_00, Unk_ov70_0226D5CC[0], ((1 + (18 + 12)) + ((18 + 12) + 24)), 3, 0, param2);
+        LoadMessageBoxGraphics(param0->unk_00, Unk_ov70_0226D5CC[0], 1, 1, v2, param2);
+        LoadSignpostContentGraphics(param0->unk_00, Unk_ov70_0226D5CC[0], (1 + (18 + 12)), 2, 3, 0, param2);
 
         Graphics_LoadPalette(186, 90, 0, 2 * 32, 32, param2);
     }
@@ -1550,7 +1550,7 @@ static void ov70_0225EA44(UnkStruct_ov70_0225E9C8 *param0, const Strbuf *param1)
 
     param0->unk_10 = Text_AddPrinterWithParamsAndColor(&param0->unk_00, FONT_MESSAGE, param0->unk_18, 0, 0, param0->unk_14, TEXT_COLOR(1, 2, 15), NULL);
 
-    sub_0200E060(&param0->unk_00, 1, 1, 1);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_00, 1, 1, 1);
 }
 
 static void ov70_0225EAA4(UnkStruct_ov70_0225E9C8 *param0, const Strbuf *param1)
@@ -1562,20 +1562,20 @@ static void ov70_0225EAA4(UnkStruct_ov70_0225E9C8 *param0, const Strbuf *param1)
     Window_FillTilemap(&param0->unk_00, 15);
     Strbuf_Copy(param0->unk_18, param1);
     Text_AddPrinterWithParamsAndColor(&param0->unk_00, FONT_MESSAGE, param0->unk_18, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
-    sub_0200E060(&param0->unk_00, 1, 1, 1);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_00, 1, 1, 1);
     Window_ScheduleCopyToVRAM(&param0->unk_00);
 }
 
 static void ov70_0225EB08(UnkStruct_ov70_0225E9C8 *param0)
 {
     GF_ASSERT(param0->unk_1C == NULL);
-    param0->unk_1C = sub_0200E7FC(&param0->unk_00, 1);
+    param0->unk_1C = Window_AddWaitDial(&param0->unk_00, 1);
 }
 
 static void ov70_0225EB24(UnkStruct_ov70_0225E9C8 *param0)
 {
     if (param0->unk_1C != NULL) {
-        DeleteWaitDial(param0->unk_1C);
+        DestroyWaitDial(param0->unk_1C);
         param0->unk_1C = NULL;
     }
 }
@@ -1583,7 +1583,7 @@ static void ov70_0225EB24(UnkStruct_ov70_0225E9C8 *param0)
 static void ov70_0225EB38(UnkStruct_ov70_0225E9C8 *param0)
 {
     if (param0->unk_1C != NULL) {
-        sub_0200EBC8(param0->unk_1C);
+        DestroyWaitDialTaskOnly(param0->unk_1C);
         param0->unk_1C = NULL;
     }
 }
@@ -1614,7 +1614,7 @@ static void ov70_0225EB74(UnkStruct_ov70_0225E9C8 *param0)
 
     ov70_0225EB38(param0);
 
-    sub_0200E084(&param0->unk_00, 1);
+    Window_EraseMessageBox(&param0->unk_00, 1);
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_00);
 }
 
@@ -1640,7 +1640,7 @@ static void ov70_0225EBC4(UnkStruct_ov70_0225E9C8 *param0, const Strbuf *param1)
 
     param0->unk_10 = Text_AddPrinterWithParams(&param0->unk_00, FONT_MESSAGE, param0->unk_18, 0, 0, param0->unk_14, NULL);
 
-    sub_0200E69C(&param0->unk_00, 1, (1 + (18 + 12)), 2, 3);
+    Window_DrawSignpost(&param0->unk_00, 1, (1 + (18 + 12)), 2, 3);
 }
 
 static void ov70_0225EC20(UnkStruct_ov70_0225EC20 *param0, UnkStruct_ov70_0225E4EC *param1, u32 param2)
@@ -1760,7 +1760,7 @@ static void ov70_0225EE30(UnkStruct_ov70_0225EC20 *param0, const ListMenuTemplat
 
     Window_Add(param2->unk_00, &param0->unk_20, Unk_ov70_0226D5CC[0], param6, param7, param8, param1->maxDisplay * 2, 5, ((((1 + (18 + 12)) + ((18 + 12) + 24)) + 9) + (27 * 4)));
     Window_FillTilemap(&param0->unk_20, 15);
-    Window_Show(&param0->unk_20, 1, ((1 + (18 + 12)) + ((18 + 12) + 24)), 3);
+    Window_DrawStandardFrame(&param0->unk_20, 1, ((1 + (18 + 12)) + ((18 + 12) + 24)), 3);
 
     param0->unk_30 = ListMenu_New(&param0->unk_00, param3, param4, param5);
 
@@ -1802,7 +1802,7 @@ static void ov70_0225EF14(UnkStruct_ov70_0225EC20 *param0, u16 *param1, u16 *par
 
     param0->unk_30 = NULL;
 
-    Window_Clear(&param0->unk_20, 1);
+    Window_EraseStandardFrame(&param0->unk_20, 1);
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_20);
     Window_Remove(&param0->unk_20);
 
@@ -1863,7 +1863,7 @@ static void ov70_0225EFD8(UnkStruct_ov70_0225EFD4 *param0)
 static void ov70_0225EFE0(UnkStruct_ov70_0225EFD4 *param0, UnkStruct_ov70_0225E4EC *param1, u32 param2, u8 param3, u8 param4, u8 param5, u8 param6)
 {
     Window_Add(param1->unk_00, &param0->unk_00, Unk_ov70_0226D5CC[0], param3, param4, param5, param6, 5, ((((1 + (18 + 12)) + ((18 + 12) + 24)) + 9) + (27 * 4)));
-    Window_Show(&param0->unk_00, 1, ((1 + (18 + 12)) + ((18 + 12) + 24)), 3);
+    Window_DrawStandardFrame(&param0->unk_00, 1, ((1 + (18 + 12)) + ((18 + 12) + 24)), 3);
     Window_FillTilemap(&param0->unk_00, 15);
     Window_ScheduleCopyToVRAM(&param0->unk_00);
 }
@@ -1871,7 +1871,7 @@ static void ov70_0225EFE0(UnkStruct_ov70_0225EFD4 *param0, UnkStruct_ov70_0225E4
 static void ov70_0225F024(UnkStruct_ov70_0225EFD4 *param0)
 {
     if (Window_IsInUse(&param0->unk_00) == 1) {
-        Window_Clear(&param0->unk_00, 1);
+        Window_EraseStandardFrame(&param0->unk_00, 1);
         Window_ClearAndScheduleCopyToVRAM(&param0->unk_00);
         Window_Remove(&param0->unk_00);
     }
@@ -1927,7 +1927,7 @@ static void ov70_0225F144(UnkStruct_ov70_0225F114 *param0)
 static void ov70_0225F14C(UnkStruct_ov70_0225F114 *param0, const Strbuf *param1)
 {
     Text_AddPrinterWithParamsAndColor(&param0->unk_00, FONT_SYSTEM, param1, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
-    Window_Show(&param0->unk_00, 1, ((1 + (18 + 12)) + ((18 + 12) + 24)), 3);
+    Window_DrawStandardFrame(&param0->unk_00, 1, ((1 + (18 + 12)) + ((18 + 12) + 24)), 3);
     Window_ScheduleCopyToVRAM(&param0->unk_00);
 }
 

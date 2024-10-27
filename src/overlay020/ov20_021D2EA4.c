@@ -19,10 +19,10 @@
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_0200DA60.h"
 #include "unk_02014D38.h"
 
 typedef struct {
@@ -146,8 +146,8 @@ void ov20_021D2F50(UnkStruct_ov20_021D30F8 *param0, NARC *param1)
     v1 += 9;
 
     Graphics_LoadPalette(38, 24, 0, 14 * 0x20, 0x20, 35);
-    sub_0200DD0C(v0, 0, v1, 15, ov20_021D2080(param0->unk_04), 35);
-    sub_0200E010(&param0->unk_1C, v1, 15);
+    LoadMessageBoxGraphics(v0, 0, v1, 15, ov20_021D2080(param0->unk_04), 35);
+    Window_DrawMessageBox(&param0->unk_1C, v1, 15);
     Window_PutToTilemap(&param0->unk_0C);
     Window_PutToTilemap(&param0->unk_1C);
 
@@ -541,7 +541,7 @@ void ov20_021D3790(UnkStruct_ov20_021D30F8 *param0, int param1)
     MessageLoader_GetStrbuf(param0->unk_48, 10, param0->unk_4C);
     Text_AddPrinterWithParamsAndColor(&param0->unk_2C, FONT_SYSTEM, param0->unk_4C, 14, 0 + 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 9), NULL);
 
-    Window_Show(&param0->unk_2C, 0, param0->unk_60, 14);
+    Window_DrawStandardFrame(&param0->unk_2C, 0, param0->unk_60, 14);
     ColoredArrow_Print(param0->unk_50, &param0->unk_2C, 0, 0 + (param1 * 16));
 
     Window_CopyToVRAM(&param0->unk_2C);
@@ -555,6 +555,6 @@ void ov20_021D381C(UnkStruct_ov20_021D30F8 *param0, int param1)
 
 void ov20_021D384C(UnkStruct_ov20_021D30F8 *param0)
 {
-    Window_Clear(&param0->unk_2C, 0);
+    Window_EraseStandardFrame(&param0->unk_2C, 0);
     Window_ClearAndCopyToVRAM(&param0->unk_2C);
 }

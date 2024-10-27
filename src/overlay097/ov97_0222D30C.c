@@ -36,6 +36,7 @@
 #include "message_util.h"
 #include "overlay_manager.h"
 #include "pokemon.h"
+#include "render_window.h"
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
@@ -51,7 +52,6 @@
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_0201D15C.h"
@@ -211,11 +211,11 @@ static void ov97_0222D30C(UnkStruct_ov97_0222D04C *param0, int param1)
 {
     if (param1 == 1) {
         if (param0->unk_2A50 == NULL) {
-            param0->unk_2A50 = sub_0200E7FC(&param0->unk_18, 1);
+            param0->unk_2A50 = Window_AddWaitDial(&param0->unk_18, 1);
         }
     } else {
         if (param0->unk_2A50) {
-            DeleteWaitDial(param0->unk_2A50);
+            DestroyWaitDial(param0->unk_2A50);
         }
 
         param0->unk_2A50 = NULL;
@@ -283,14 +283,14 @@ static void ov97_0222D40C(UnkStruct_ov97_0222D04C *param0, int param1)
 static void ov97_0222D444(Window *param0, u8 param1)
 {
     if (Window_IsInUse(param0) == 1) {
-        Window_Clear(param0, param1);
+        Window_EraseStandardFrame(param0, param1);
     }
 }
 
 static void ov97_0222D45C(Window *param0, u8 param1)
 {
     if (Window_IsInUse(param0) == 1) {
-        sub_0200E084(param0, param1);
+        Window_EraseMessageBox(param0, param1);
     }
 }
 
@@ -481,7 +481,7 @@ static void ov97_0222D6F8(OverlayManager *param0, int param1)
         Window_Add(v2->unk_00, v1, 0, 23, 10, 6, 4, 0, (((((1 + (18 + 12)) + 9) + 26 * 6) + 16 * 6) + 17 * 8));
     }
 
-    Window_Show(v1, 1, (1 + (18 + 12)), 3);
+    Window_DrawStandardFrame(v1, 1, (1 + (18 + 12)), 3);
     ov97_0222DD1C(param0, Unk_ov97_0223E5A8, NELEMS(Unk_ov97_0223E5A8), v1, v0);
 }
 
@@ -520,7 +520,7 @@ static int ov97_0222D798(OverlayManager *param0)
         Window_Add(v1->unk_00, v0, 0, 23, 10, 6, 4, 0, (((((1 + (18 + 12)) + 9) + 26 * 6) + 16 * 6) + 17 * 8));
     }
 
-    Window_Show(v0, 1, (1 + (18 + 12)), 3);
+    Window_DrawStandardFrame(v0, 1, (1 + (18 + 12)), 3);
     ov97_0222DD1C(param0, Unk_ov97_0223E598, NELEMS(Unk_ov97_0223E598), v0, 2);
 
     return 5;
@@ -541,7 +541,7 @@ static int ov97_0222D814(OverlayManager *param0)
         Window_Add(v1->unk_00, v0, 0, 23, 10, 6, 4, 0, (((((1 + (18 + 12)) + 9) + 26 * 6) + 16 * 6) + 17 * 8));
     }
 
-    Window_Show(v0, 1, (1 + (18 + 12)), 3);
+    Window_DrawStandardFrame(v0, 1, (1 + (18 + 12)), 3);
     ov97_0222DD1C(param0, Unk_ov97_0223E568, NELEMS(Unk_ov97_0223E568), v0, 78);
 
     return 5;
@@ -562,7 +562,7 @@ static int ov97_0222D884(OverlayManager *param0)
         Window_Add(v1->unk_00, v0, 0, 23, 10, 6, 4, 0, (((((1 + (18 + 12)) + 9) + 26 * 6) + 16 * 6) + 17 * 8));
     }
 
-    Window_Show(v0, 1, (1 + (18 + 12)), 3);
+    Window_DrawStandardFrame(v0, 1, (1 + (18 + 12)), 3);
     ov97_0222DD1C(param0, Unk_ov97_0223E578, NELEMS(Unk_ov97_0223E578), v0, 77);
 
     return 5;
@@ -579,7 +579,7 @@ static void ov97_0222D8F4(OverlayManager *param0)
         Window_Add(v1->unk_00, v0, 0, 23, 10, 6, 4, 0, (((((1 + (18 + 12)) + 9) + 26 * 6) + 16 * 6) + 17 * 8));
     }
 
-    Window_Show(v0, 1, (1 + (18 + 12)), 3);
+    Window_DrawStandardFrame(v0, 1, (1 + (18 + 12)), 3);
     ov97_0222DD1C(param0, Unk_ov97_0223E588, NELEMS(Unk_ov97_0223E588), v0, 4);
 }
 
@@ -680,7 +680,7 @@ static int ov97_0222DA84(OverlayManager *param0)
         Window_Add(v2->unk_00, v0, 0, 15, 9, 16, 8, 0, ((((1 + (18 + 12)) + 9) + 26 * 6) + 16 * 6));
     }
 
-    Window_Show(v0, 1, (1 + (18 + 12)), 3);
+    Window_DrawStandardFrame(v0, 1, (1 + (18 + 12)), 3);
     ov97_0222DD1C(param0, Unk_ov97_0223E5F0, 4, v0, 1);
 
     return 4;
@@ -832,7 +832,7 @@ static void ov97_0222DDD0(OverlayManager *param0, int param1, u32 param2)
         Window_Add(v0->unk_00, v1, 0, 8, 7, 16, v4 * 2, 0, param1);
     }
 
-    Window_Show(v1, 1, (1 + (18 + 12)), 3);
+    Window_DrawStandardFrame(v1, 1, (1 + (18 + 12)), 3);
     ov97_0222DD1C(param0, v2, v4, v1, param2);
 }
 
@@ -858,7 +858,7 @@ static void ov97_0222DE78(OverlayManager *param0, Window *param1, u32 param2)
         Strbuf_Free(v0);
     }
 
-    sub_0200E060(param1, 0, 1, 2);
+    Window_DrawMessageBoxWithScrollCursor(param1, 0, 1, 2);
     MessageLoader_Free(v1->unk_10);
     StringTemplate_Free(v1->unk_0C);
 
@@ -875,7 +875,7 @@ static void ov97_0222DF10(OverlayManager *param0, Window *param1, u16 *param2)
     Strbuf_CopyNumChars(v0, param2, 36);
     Window_FillTilemap(param1, Font_GetAttribute(FONT_SYSTEM, FONTATTR_BG_COLOR));
     Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
-    Window_Show(param1, 0, (1 + (18 + 12)), 3);
+    Window_DrawStandardFrame(param1, 0, (1 + (18 + 12)), 3);
     Strbuf_Free(v0);
 }
 
@@ -927,8 +927,8 @@ static BOOL ov97_0222DFD4(OverlayManager *param0, UnkStruct_ov97_0222D04C *param
 
     v0 = Options_Frame(param1->unk_08);
 
-    sub_0200DD0C(param1->unk_00, 0, 1, 2, v0, 86);
-    sub_0200DAA4(param1->unk_00, 0, (1 + (18 + 12)), 3, 1, 86);
+    LoadMessageBoxGraphics(param1->unk_00, 0, 1, 2, v0, 86);
+    LoadStandardWindowGraphics(param1->unk_00, 0, (1 + (18 + 12)), 3, 1, 86);
 
     *((u16 *)HW_BG_PLTT) = ((31 & 31) << 10 | (12 & 31) << 5 | (12 & 31));
 

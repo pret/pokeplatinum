@@ -31,6 +31,7 @@
 #include "party.h"
 #include "pokemon.h"
 #include "pokemon_summary_app.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
@@ -40,7 +41,6 @@
 #include "unk_02005474.h"
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
@@ -554,8 +554,8 @@ static int sub_0207E634(GameWindowLayout *param0)
     case 0xffffffff:
         break;
     case 0xfffffffe:
-        sub_0200E084(&param0->unk_04[33], 1);
-        Window_Clear(&param0->unk_04[35], 1);
+        Window_EraseMessageBox(&param0->unk_04[33], 1);
+        Window_EraseStandardFrame(&param0->unk_04[35], 1);
         Window_ClearAndScheduleCopyToVRAM(&param0->unk_04[35]);
         Menu_Free(param0->unk_700, NULL);
         StringList_Free(param0->unk_6FC);
@@ -926,8 +926,8 @@ static void sub_0207EB6C(GameWindowLayout *param0, NARC *param1)
     }
 
     Font_LoadScreenIndicatorsPalette(0, 13 * 32, 12);
-    sub_0200DAA4(param0->unk_00, 0, 1, 14, 0, 12);
-    sub_0200DD0C(param0->unk_00, 0, (1 + 9), 15, Options_Frame(param0->unk_5A4->unk_0C), 12);
+    LoadStandardWindowGraphics(param0->unk_00, 0, 1, 14, 0, 12);
+    LoadMessageBoxGraphics(param0->unk_00, 0, (1 + 9), 15, Options_Frame(param0->unk_5A4->unk_0C), 12);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 3, param0->unk_00, 4, 0, 0, 0, 12);
     Graphics_LoadPaletteFromOpenNARC(param1, 4, 4, 0x20, 0x20, 12);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 12, param0->unk_00, 5, 0, 0, 0, 12);
@@ -1689,7 +1689,7 @@ static void sub_0207FFC8(GameWindowLayout *param0)
     u8 *v0;
     u8 v1;
 
-    sub_0200E084(&param0->unk_04[32], 1);
+    Window_EraseMessageBox(&param0->unk_04[32], 1);
     v0 = Heap_AllocFromHeap(12, 8);
 
     switch (param0->unk_5A4->unk_20) {
@@ -2322,7 +2322,7 @@ static u8 HandleWindowInputEvent(GameWindowLayout *param0, int *param1)
     case 0xffffffff:
         break;
     case 0xfffffffe:
-        sub_0200E084(&param0->unk_04[33], 1);
+        Window_EraseMessageBox(&param0->unk_04[33], 1);
         sub_0208337C(param0);
 
         if ((param0->unk_5A4->unk_20 == 2) || (param0->unk_5A4->unk_20 == 17) || (param0->unk_5A4->unk_20 == 23) || (param0->unk_5A4->unk_20 == 22)) {
@@ -2426,7 +2426,7 @@ static int ProcessWindowInput(GameWindowLayout *param0)
     case 1:
         if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(1500);
-            sub_0200E084(&param0->unk_04[34], 1);
+            Window_EraseMessageBox(&param0->unk_04[34], 1);
             sub_0200D414(param0->unk_5B0[6], 0);
             sub_020826E0(param0, 36, 1);
             param0->unk_B14[1] = 0;
@@ -2466,7 +2466,7 @@ static int ProcessWindowInput(GameWindowLayout *param0)
     case 4:
         if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(1500);
-            sub_0200E084(&param0->unk_04[34], 1);
+            Window_EraseMessageBox(&param0->unk_04[34], 1);
             sub_0200D414(param0->unk_5B0[6], 0);
             sub_02083B88(param0);
             return 1;
@@ -2684,7 +2684,7 @@ static int ProcessItemApplication(GameWindowLayout *param0)
         }
     }
 
-    sub_0200E060(v1, 1, (1 + 9), 15);
+    Window_DrawMessageBoxWithScrollCursor(v1, 1, (1 + 9), 15);
     Window_FillTilemap(v1, 15);
     sub_0208274C(param0);
 
@@ -2743,7 +2743,7 @@ static int ProcessMessageResult(GameWindowLayout *param0)
 {
     if (Text_IsPrinterActive(param0->unk_B10) == 0) {
         if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            sub_0200E084(&param0->unk_04[34], 1);
+            Window_EraseMessageBox(&param0->unk_04[34], 1);
             LoadOverlay118(param0);
             return 13;
         }
@@ -2828,7 +2828,7 @@ static int ProcessPokemonItemSwap(GameWindowLayout *param0)
 static int ResetWindowOnInput(GameWindowLayout *param0)
 {
     if (param0->unk_5A4->unk_20 == 10) {
-        sub_0200E084(&param0->unk_04[34], 1);
+        Window_EraseMessageBox(&param0->unk_04[34], 1);
         sub_020826E0(param0, 29, 1);
         sub_0200D414(param0->unk_5B0[6], 0);
         param0->unk_5A4->unk_20 = 0;
@@ -2870,7 +2870,7 @@ static int UpdatePokemonFormWithItem(GameWindowLayout *param0)
         StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
     }
 
-    sub_0200E060(v1, 1, (1 + 9), 15);
+    Window_DrawMessageBoxWithScrollCursor(v1, 1, (1 + 9), 15);
     Window_FillTilemap(v1, 15);
     sub_0208274C(param0);
 

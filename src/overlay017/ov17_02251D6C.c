@@ -26,12 +26,12 @@
 #include "bg_window.h"
 #include "heap.h"
 #include "pokemon.h"
+#include "render_window.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
 #include "unk_0200A9DC.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 
 static int ov17_02251DAC(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3);
@@ -425,7 +425,7 @@ static void ov17_0225228C(SysTask *param0, void *param1)
     case 0:
         if (v0->unk_1A != 0) {
             if (v0->unk_1D == 0) {
-                sub_0200E060(&v0->unk_00->unk_10.unk_24[0], 1, 1, 14);
+                Window_DrawMessageBoxWithScrollCursor(&v0->unk_00->unk_10.unk_24[0], 1, 1, 14);
                 Bg_ScheduleTilemapTransfer(v0->unk_00->unk_10.unk_20, 1);
             }
 
@@ -446,7 +446,7 @@ static void ov17_0225228C(SysTask *param0, void *param1)
         if (v0->unk_1C == 1) {
             v0->unk_10++;
         } else if (v0->unk_12 >= v0->unk_1B) {
-            sub_0200E084(&v0->unk_00->unk_10.unk_24[0], 1);
+            Window_EraseMessageBox(&v0->unk_00->unk_10.unk_24[0], 1);
             Bg_ScheduleTilemapTransfer(v0->unk_00->unk_10.unk_20, 1);
             v0->unk_10++;
         }
@@ -518,7 +518,7 @@ static void ov17_022523AC(SysTask *param0, void *param1)
 
         ov17_02250CEC(v0->unk_00);
 
-        sub_0200E060(&v0->unk_00->unk_10.unk_24[0], 0, 1, 14);
+        Window_DrawMessageBoxWithScrollCursor(&v0->unk_00->unk_10.unk_24[0], 0, 1, 14);
 
         Window_FillTilemap(&v0->unk_00->unk_10.unk_24[0], 0xff);
         Window_CopyToVRAM(&v0->unk_00->unk_10.unk_24[0]);

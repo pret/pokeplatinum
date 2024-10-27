@@ -28,6 +28,7 @@
 #include "party.h"
 #include "pokemon.h"
 #include "render_text.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
@@ -37,7 +38,6 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02028124.h"
 #include "unk_0203D1B8.h"
@@ -726,9 +726,9 @@ static void sub_020729B4(UnkStruct_02072334 *param0)
 
     param0->unk_160 = ListMenu_New(&(param0->unk_140), param0->unk_13C, param0->unk_13E, param0->unk_00);
 
-    Window_Show(&param0->unk_174, 0, (1024 - (18 + 12) - 9), 11);
+    Window_DrawStandardFrame(&param0->unk_174, 0, (1024 - (18 + 12) - 9), 11);
     Text_AddPrinterWithParamsAndColor(&param0->unk_194, FONT_SYSTEM, param0->unk_110.unk_0C, 2, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
-    Window_Show(&param0->unk_194, 0, (1024 - (18 + 12) - 9), 11);
+    Window_DrawStandardFrame(&param0->unk_194, 0, (1024 - (18 + 12) - 9), 11);
     Bg_ScheduleTilemapTransfer(param0->unk_170, 3);
 
     param0->unk_13B_0 = 0;
@@ -808,7 +808,7 @@ static void sub_02072C98(UnkStruct_02072334 *param0, u8 param1, u8 param2)
     param0->unk_140.cursorCallback = sub_02072DA4;
     param0->unk_160 = ListMenu_New(&(param0->unk_140), param1, param2, param0->unk_00);
 
-    Window_Show(&param0->unk_174, 0, (1024 - (18 + 12) - 9), 11);
+    Window_DrawStandardFrame(&param0->unk_174, 0, (1024 - (18 + 12) - 9), 11);
     Bg_ScheduleTilemapTransfer(param0->unk_170, 3);
 
     param0->unk_13B_0 = 1;
@@ -829,11 +829,11 @@ static void sub_02072DB8(UnkStruct_02072334 *param0)
     StringList_Free(param0->unk_164);
 
     Window_ClearAndCopyToVRAM(&(param0->unk_194));
-    Window_Clear(&(param0->unk_194), 0);
+    Window_EraseStandardFrame(&(param0->unk_194), 0);
     Window_Remove(&(param0->unk_194));
 
     Window_ClearAndCopyToVRAM(&(param0->unk_174));
-    Window_Clear(&(param0->unk_174), 0);
+    Window_EraseStandardFrame(&(param0->unk_174), 0);
     Window_Remove(&(param0->unk_174));
 
     param0->unk_13C = v0;
@@ -852,7 +852,7 @@ static void sub_02072E4C(UnkStruct_02072334 *param0)
     u16 v0, v1;
 
     Window_ClearAndCopyToVRAM(&(param0->unk_174));
-    Window_Clear(&(param0->unk_174), 0);
+    Window_EraseStandardFrame(&(param0->unk_174), 0);
     ListMenu_Free(param0->unk_160, &v0, &v1);
     StringList_Free(param0->unk_164);
     Window_Remove(&(param0->unk_174));
@@ -1048,8 +1048,8 @@ static void sub_020731F4(UnkStruct_02072334 *param0)
 {
     param0->unk_170 = sub_0203D170(param0->fieldSystem);
 
-    sub_0200DD0C(param0->unk_170, 3, (1024 - (18 + 12)), 10, param0->unk_14, param0->unk_00);
-    sub_0200DAA4(param0->unk_170, 3, (1024 - (18 + 12) - 9), 11, 0, param0->unk_00);
+    LoadMessageBoxGraphics(param0->unk_170, 3, (1024 - (18 + 12)), 10, param0->unk_14, param0->unk_00);
+    LoadStandardWindowGraphics(param0->unk_170, 3, (1024 - (18 + 12) - 9), 11, 0, param0->unk_00);
 
     Font_LoadTextPalette(0, 13 * 32, param0->unk_00);
     Font_LoadScreenIndicatorsPalette(0, 12 * 32, param0->unk_00);
@@ -1072,7 +1072,7 @@ static void sub_020732C4(UnkStruct_02072334 *param0, int param1, u8 param2, u8 p
     Strbuf *v0;
 
     if (param4) {
-        sub_0200E060(&param0->unk_184, 1, (1024 - (18 + 12)), 10);
+        Window_DrawMessageBoxWithScrollCursor(&param0->unk_184, 1, (1024 - (18 + 12)), 10);
     }
 
     Window_FillRectWithColor(&param0->unk_184, ((15 << 4) | 15), 0, 0, 27 * 8, 4 * 8);
@@ -1096,7 +1096,7 @@ static void sub_020732C4(UnkStruct_02072334 *param0, int param1, u8 param2, u8 p
 
 static void sub_02073398(UnkStruct_02072334 *param0)
 {
-    sub_0200E084(&param0->unk_184, 1);
+    Window_EraseMessageBox(&param0->unk_184, 1);
     Window_ClearAndCopyToVRAM(&param0->unk_184);
 }
 

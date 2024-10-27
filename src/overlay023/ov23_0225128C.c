@@ -36,6 +36,7 @@
 #include "menu.h"
 #include "message.h"
 #include "player_avatar.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "strbuf.h"
 #include "string_list.h"
@@ -44,7 +45,6 @@
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
 #include "unk_0200A9DC.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_0202854C.h"
 #include "unk_02033200.h"
@@ -356,7 +356,7 @@ static void ov23_022515D8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
     param0->unk_40 = StringList_New(v1, 4);
 
     Window_Add(param0->fieldSystem->unk_08, &param0->unk_10, 3, 17, 3, 14, v1 * 2, 13, 2);
-    Window_Show(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
+    Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {
         MessageLoader *v3;
@@ -402,7 +402,7 @@ static void ov23_022516E8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
     param0->unk_40 = StringList_New(v1, 4);
 
     Window_Add(param0->fieldSystem->unk_08, &param0->unk_10, 3, 17, 3, 14, v1 * 2, 13, (2 + 14 * 16));
-    Window_Show(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
+    Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {
         MessageLoader *v3;

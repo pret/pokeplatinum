@@ -38,6 +38,7 @@
 #include "overlay_manager.h"
 #include "palette.h"
 #include "render_text.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -47,7 +48,6 @@
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02014000.h"
@@ -828,7 +828,7 @@ static void ov117_02261368(UnkStruct_ov117_02261280 *param0)
 {
     Strbuf *v0;
 
-    Window_Show(&param0->unk_30[4], 1, ((((((0x8000 - 0x2000) / 32) + (10 * 2)) + (10 * 2)) + (10 * 2)) + (10 * 2)), 6);
+    Window_DrawStandardFrame(&param0->unk_30[4], 1, ((((((0x8000 - 0x2000) / 32) + (10 * 2)) + (10 * 2)) + (10 * 2)) + (10 * 2)), 6);
 
     v0 = MessageLoader_GetNewStrbuf(param0->unk_80, 3);
     Text_AddPrinterWithParamsAndColor(&param0->unk_30[4], FONT_SYSTEM, v0, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
@@ -1086,7 +1086,7 @@ static void ov117_02261AC8(UnkStruct_ov117_02261280 *param0, NARC *param1)
     ov117_02264AF0(param0);
     ov117_02264AB0(param0);
 
-    sub_0200DAA4(param0->unk_2C, 4, ((((((0x8000 - 0x2000) / 32) + (10 * 2)) + (10 * 2)) + (10 * 2)) + (10 * 2)), 6, 0, 110);
+    LoadStandardWindowGraphics(param0->unk_2C, 4, ((((((0x8000 - 0x2000) / 32) + (10 * 2)) + (10 * 2)) + (10 * 2)) + (10 * 2)), 6, 0, 110);
     PaletteData_LoadBufferFromHardware(param0->unk_8C, 1, 6 * 16, 0x20);
     PaletteData_FillBufferRange(param0->unk_8C, 1, 2, 0x0, 0, 1);
 }
