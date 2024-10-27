@@ -10,6 +10,11 @@ subdir('text') # must be listed first for GMM header targets
 # Common generator for "scripting" files, i.e. field and battle scripts
 relative_source_root = fs.relative_to(meson.project_source_root(), meson.project_build_root())
 
+copy_gen = generator(find_program('cp'),
+    arguments: [ '@INPUT@', '@OUTPUT@', ],
+    output: '@PLAINNAME@'
+)
+
 s_to_bin_gen = generator(make_script_bin_sh,
     arguments: [
         '-i', relative_source_root / 'include',
@@ -43,6 +48,16 @@ ncgr_gen = generator(nitrogfx_exe,
 nclr_gen = generator(nitrogfx_exe,
     arguments: [ '@INPUT@', '@OUTPUT@', '@EXTRA_ARGS@', ],
     output: '@BASENAME@.NCLR',
+)
+
+ncer_gen = generator(nitrogfx_exe,
+    arguments: [ '@INPUT@', '@OUTPUT@', '@EXTRA_ARGS@', ],
+    output: '@BASENAME@.NCER'
+)
+
+nanr_gen = generator(nitrogfx_exe,
+    arguments: [ '@INPUT@', '@OUTPUT@', '@EXTRA_ARGS@', ],
+    output: '@BASENAME@.NANR'
 )
 
 lz_gen = generator(nitrogfx_exe,

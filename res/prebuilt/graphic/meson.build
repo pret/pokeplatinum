@@ -31,7 +31,6 @@ prebuilt_files = [
     'pl_plist_gra.narc',
     'pl_pst_gra.narc',
     'pl_wifinote.narc',
-    'pl_winframe.narc',
     'plist_gra.narc',
     'pmsi.narc',
     'poketch.narc',

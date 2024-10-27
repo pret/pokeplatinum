@@ -5,13 +5,13 @@
 
 #include "constants/narc.h"
 
-#include "res/graphics/signposts/field_board.naix"
-
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_02013610.h"
 
+#include "graphics/signposts/field_board.naix"
+#include "graphics/windows/pl_winframe.naix"
 #include "overlay005/ov5_021D2F14.h"
 #include "overlay005/struct_ov5_021D30A8.h"
 #include "overlay104/struct_ov104_02241308.h"
@@ -133,7 +133,7 @@ void LoadStandardWindowTiles(BgConfig *bgConfig, u8 bgLayer, u16 offset, u8 stan
 {
     if (standardWindowType == STANDARD_WINDOW_SYSTEM) {
         Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__PL_WINFRAME,
-            0,
+            standard_system_NCGR,
             bgConfig,
             bgLayer,
             offset,
@@ -142,7 +142,7 @@ void LoadStandardWindowTiles(BgConfig *bgConfig, u8 bgLayer, u16 offset, u8 stan
             heapID);
     } else {
         Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__PL_WINFRAME,
-            1,
+            standard_field_NCGR,
             bgConfig,
             bgLayer,
             offset,
@@ -154,16 +154,16 @@ void LoadStandardWindowTiles(BgConfig *bgConfig, u8 bgLayer, u16 offset, u8 stan
 
 u32 GetStandardWindowPaletteNARCMember()
 {
-    return 24;
+    return standard_system_NCLR;
 }
 
 void LoadStandardWindowGraphics(BgConfig *bgConfig, u8 bgLayer, u16 tileOffset, u8 palOffset, u8 standardWindowType, u32 heapID)
 {
     u32 narcMemberIdx;
     if (standardWindowType == STANDARD_WINDOW_SYSTEM) {
-        narcMemberIdx = 0;
+        narcMemberIdx = standard_system_NCGR;
     } else {
-        narcMemberIdx = 1;
+        narcMemberIdx = standard_field_NCGR;
     }
 
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__PL_WINFRAME,
@@ -176,9 +176,9 @@ void LoadStandardWindowGraphics(BgConfig *bgConfig, u8 bgLayer, u16 tileOffset, 
         heapID);
 
     if (standardWindowType == STANDARD_WINDOW_UNDERGROUND) {
-        narcMemberIdx = 45;
+        narcMemberIdx = standard_underground_NCLR;
     } else {
-        narcMemberIdx = 24;
+        narcMemberIdx = standard_system_NCLR;
     }
 
     if (bgLayer < BG_LAYER_SUB_0) {
@@ -246,12 +246,12 @@ void Window_EraseStandardFrame(Window *window, u8 skipTransfer)
 
 u32 GetMessageBoxTilesNARCMember(u32 messageBoxFrame)
 {
-    return 2 + messageBoxFrame;
+    return message_box_00_NCGR + messageBoxFrame;
 }
 
 u32 GetMessageBoxPaletteNARCMember(u32 messageBoxFrame)
 {
-    return 25 + messageBoxFrame;
+    return message_box_00_NCLR + messageBoxFrame;
 }
 
 void LoadMessageBoxGraphics(BgConfig *bgConfig, u8 bgLayer, u16 tileOffset, u8 palOffset, u8 messageBoxFrame, u32 heapID)
@@ -377,7 +377,11 @@ static void DrawMessageBoxScrollCursor(Window *window, u16 baseTile)
     u8 *bgGfx = Bg_GetCharPtr(bgLayer);
 
     NNSG2dCharacterData *cursorCharData;
-    cursorCharPtr = Graphics_GetCharData(NARC_INDEX_GRAPHIC__PL_WINFRAME, 22, FALSE, &cursorCharData, heapID);
+    cursorCharPtr = Graphics_GetCharData(NARC_INDEX_GRAPHIC__PL_WINFRAME,
+        scroll_cursor_NCGR,
+        FALSE,
+        &cursorCharData,
+        heapID);
     cursorTiles = cursorCharData->pRawData;
 
     // Copy the window frame tiles into the blit window as a background
@@ -417,7 +421,11 @@ void ReplaceTransparentTiles(BgConfig *bgConfig, u8 bgLayer, u16 bgBaseTile, u8 
     u32 i;
     u8 srcTop, srcBot;
 
-    tiles = Graphics_GetCharData(38, GetMessageBoxTilesNARCMember(messageBoxFrame), 0, &chars, heapID);
+    tiles = Graphics_GetCharData(NARC_INDEX_GRAPHIC__PL_WINFRAME,
+        GetMessageBoxTilesNARCMember(messageBoxFrame),
+        FALSE,
+        &chars,
+        heapID);
     src = Heap_AllocFromHeap(heapID, TILE_SIZE_4BPP * 18);
     memcpy(src, chars->pRawData, TILE_SIZE_4BPP * 18);
 
@@ -625,7 +633,7 @@ void *Window_AddWaitDial(Window *window, u32 baseTile)
     Heap_FreeToHeap(tmp);
 
     dialTilesRaw = Graphics_GetCharData(NARC_INDEX_GRAPHIC__PL_WINFRAME,
-        23,
+        wait_dial_NCGR,
         FALSE,
         &dialCharData,
         heapID);
@@ -809,10 +817,29 @@ static void sub_0200ED50(PokemonPreview *preview, u32 heapID)
 
 static void LoadPokemonPreviewResources(PokemonPreview *preview)
 {
-    ov5_021D3270(&preview->unk_00, NARC_INDEX_GRAPHIC__PL_WINFRAME, 49, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, POKEMON_PREVIEW_RESOURCE_ID);
-    ov5_021D3360(&preview->unk_00, NARC_INDEX_GRAPHIC__PL_WINFRAME, 47, FALSE, POKEMON_PREVIEW_RESOURCE_ID);
-    ov5_021D3388(&preview->unk_00, NARC_INDEX_GRAPHIC__PL_WINFRAME, 46, FALSE, POKEMON_PREVIEW_RESOURCE_ID);
-    ov5_021D33B0(&preview->unk_00, NARC_INDEX_GRAPHIC__PL_WINFRAME, 48, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, POKEMON_PREVIEW_RESOURCE_ID);
+    ov5_021D3270(&preview->unk_00,
+        NARC_INDEX_GRAPHIC__PL_WINFRAME,
+        pokemon_preview_NCLR,
+        FALSE,
+        1,
+        NNS_G2D_VRAM_TYPE_2DMAIN,
+        POKEMON_PREVIEW_RESOURCE_ID);
+    ov5_021D3360(&preview->unk_00,
+        NARC_INDEX_GRAPHIC__PL_WINFRAME,
+        pokemon_preview_cell_NCER,
+        FALSE,
+        POKEMON_PREVIEW_RESOURCE_ID);
+    ov5_021D3388(&preview->unk_00,
+        NARC_INDEX_GRAPHIC__PL_WINFRAME,
+        pokemon_preview_anim_NANR,
+        FALSE,
+        POKEMON_PREVIEW_RESOURCE_ID);
+    ov5_021D33B0(&preview->unk_00,
+        NARC_INDEX_GRAPHIC__PL_WINFRAME,
+        pokemon_preview_NCGR,
+        FALSE,
+        NNS_G2D_VRAM_TYPE_2DMAIN,
+        POKEMON_PREVIEW_RESOURCE_ID);
 }
 
 static void CreatePokemonPreviewSprite(PokemonPreview *preview, u8 x, u8 y)
