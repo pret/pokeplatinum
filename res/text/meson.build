@@ -531,7 +531,7 @@ message_bank_files = files(
     'message_bank_route_229.gmm',
     'message_bank_unk_0532.gmm',
     'message_bank_unk_0533.gmm',
-    'message_bank_unk_0534.gmm',
+    'message_bank_save_info_window.gmm',
     'message_bank_ribbon_names.gmm',
     'message_bank_unk_0536.gmm',
     'message_bank_unk_0537.gmm',

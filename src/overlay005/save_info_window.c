@@ -12,6 +12,7 @@
 #include "overlay005/ov5_021EA714.h"
 #include "overlay005/save_info_window.h"
 #include "overlay025/poketch_system.h"
+#include "text/pl_msg.naix"
 
 #include "bg_window.h"
 #include "field_overworld_state.h"
@@ -171,7 +172,7 @@ SaveInfoWindow *SaveInfoWindow_New(FieldSystem *fieldSystem, int heapID, u8 bgLa
     saveInfoWin->bgLayer = bgLayer;
     saveInfoWin->bgConfig = fieldSystem->unk_08;
     saveInfoWin->strTemplate = StringTemplate_Default(heapID);
-    saveInfoWin->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 534, heapID);
+    saveInfoWin->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_save_info_window, heapID);
 
     SaveInfo_SetValues(&saveInfoWin->saveInfo, saveInfoWin->fieldSystem);
     SaveInfoWindow_SetStrings(saveInfoWin->strTemplate, &saveInfoWin->saveInfo);
