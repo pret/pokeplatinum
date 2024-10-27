@@ -4,12 +4,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02025CCC_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
-#include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_02017498.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -24,15 +20,17 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "inlines.h"
+#include "list_menu.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
 #include "render_text.h"
 #include "save_player.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_02001AF4.h"
 #include "unk_0200A784.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -67,14 +65,14 @@ typedef struct {
     Window unk_54;
     Window unk_64;
     Window unk_74;
-    UIControlData *unk_84;
+    Menu *unk_84;
     void *unk_88;
     int unk_8C;
     int unk_90;
     int unk_94;
     int unk_98;
-    ResourceMetadata *unk_9C;
-    BmpList *unk_A0;
+    StringList *unk_9C;
+    ListMenu *unk_A0;
     UnkStruct_ov61_0222C3B0 unk_A4;
 } UnkStruct_ov61_0222C664;
 
@@ -94,7 +92,7 @@ static void ov61_0222C7F8(UnkStruct_ov61_0222C664 *param0, int param1, int param
 static int ov61_0222C834(int param0);
 static void ov61_0222C850(UnkStruct_ov61_0222C664 *param0);
 static void ov61_0222C86C(UnkStruct_ov61_0222C664 *param0);
-static UIControlData *ov61_0222C884(BgConfig *param0, int param1, int param2);
+static Menu *ov61_0222C884(BgConfig *param0, int param1, int param2);
 static void ov61_0222C8B8(UnkStruct_ov61_0222C664 *param0, MessageLoader *param1, int param2, int param3, u16 param4);
 static void ov61_0222C920(UnkStruct_ov61_0222C664 *param0, int param1, int param2);
 static BOOL ov61_0222C928(int param0, int param1);
@@ -550,7 +548,7 @@ static void ov61_0222C86C(UnkStruct_ov61_0222C664 *param0)
     }
 }
 
-static UIControlData *ov61_0222C884(BgConfig *param0, int param1, int param2)
+static Menu *ov61_0222C884(BgConfig *param0, int param1, int param2)
 {
     WindowTemplate v0;
 
@@ -558,7 +556,7 @@ static UIControlData *ov61_0222C884(BgConfig *param0, int param1, int param2)
     v0.tilemapTop = param1;
     v0.baseTile = param2;
 
-    return sub_02002100(param0, &v0, (1 + (18 + 12)), 11, 117);
+    return Menu_MakeYesNoChoice(param0, &v0, (1 + (18 + 12)), 11, 117);
 }
 
 static void ov61_0222C8B8(UnkStruct_ov61_0222C664 *param0, MessageLoader *param1, int param2, int param3, u16 param4)
@@ -635,7 +633,7 @@ static int ov61_0222C960(UnkStruct_ov61_0222C664 *param0)
         param0->unk_90++;
         break;
     case 3: {
-        int v0 = sub_02002114(param0->unk_84, 117);
+        int v0 = Menu_ProcessInputAndHandleExit(param0->unk_84, 117);
 
         if (v0 != 0xffffffff) {
             if (v0 == 0xfffffffe) {

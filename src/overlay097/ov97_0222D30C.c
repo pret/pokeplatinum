@@ -9,7 +9,6 @@
 #include "struct_defs/struct_0203CC84.h"
 
 #include "overlay077/const_ov77_021D742C.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 #include "overlay097/ov97_0222D04C.h"
 #include "overlay097/ov97_02232054.h"
 #include "overlay097/ov97_02237520.h"
@@ -32,6 +31,7 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "list_menu.h"
 #include "message.h"
 #include "message_util.h"
 #include "overlay_manager.h"
@@ -41,19 +41,18 @@
 #include "savedata.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_02000C88.h"
-#include "unk_0200112C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02013A04.h"
 #include "unk_02017728.h"
 #include "unk_0201D15C.h"
 #include "unk_0202DAB4.h"
@@ -183,7 +182,7 @@ UnkStruct_ov97_0223E5B8 Unk_ov97_0223E588[] = {
     { 0x13, (u32)ov97_0222D9F0 }
 };
 
-static UnkStruct_ov84_02240FA8 Unk_ov97_0223E5D0 = {
+static ListMenuTemplate Unk_ov97_0223E5D0 = {
     NULL,
     ov97_022383C4,
     NULL,
@@ -236,11 +235,11 @@ static void ov97_0222D34C(OverlayManager *param0)
     ov97_02237DA0();
 
     if (v1->unk_7C) {
-        sub_02013A3C(v1->unk_7C);
+        StringList_Free(v1->unk_7C);
     }
 
     if (v1->unk_78) {
-        sub_02001384(v1->unk_78, NULL, NULL);
+        ListMenu_Free(v1->unk_78, NULL, NULL);
     }
 
     Window_ClearAndCopyToVRAM(&v1->unk_18);
@@ -779,33 +778,33 @@ static void ov97_0222DC9C(BgConfig *param0)
 static void ov97_0222DD1C(OverlayManager *param0, UnkStruct_ov97_0223E5B8 *param1, int param2, Window *param3, u32 param4)
 {
     int v0;
-    UnkStruct_ov84_02240FA8 v1;
+    ListMenuTemplate v1;
     UnkStruct_ov97_0222D04C *v2 = OverlayManager_Data(param0);
 
     if (v2->unk_7C) {
-        sub_02013A3C(v2->unk_7C);
+        StringList_Free(v2->unk_7C);
     }
 
-    v2->unk_7C = sub_02013A04(param2, 86);
+    v2->unk_7C = StringList_New(param2, 86);
     v2->unk_10 = MessageLoader_Init(0, 26, 421, 86);
 
     for (v0 = 0; v0 < param2; v0++) {
-        sub_02013A4C(v2->unk_7C, v2->unk_10, param1[v0].unk_00, param1[v0].unk_04);
+        StringList_AddFromMessageBank(v2->unk_7C, v2->unk_10, param1[v0].unk_00, param1[v0].unk_04);
     }
 
     MessageLoader_Free(v2->unk_10);
 
     v1 = Unk_ov97_0223E5D0;
 
-    v1.unk_00 = v2->unk_7C;
-    v1.unk_10 = v1.unk_12 = param2;
-    v1.unk_0C = param3;
+    v1.choices = v2->unk_7C;
+    v1.count = v1.maxDisplay = param2;
+    v1.window = param3;
 
     if (v2->unk_78) {
-        sub_02001384(v2->unk_78, NULL, NULL);
+        ListMenu_Free(v2->unk_78, NULL, NULL);
     }
 
-    v2->unk_78 = sub_0200112C(&v1, 0, 0, 86);
+    v2->unk_78 = ListMenu_New(&v1, 0, 0, 86);
 
     if (param4 != -1) {
         ov97_0222DE78(param0, &v2->unk_18, param4);
@@ -887,7 +886,7 @@ static void ov97_0222DF70(OverlayManager *param0, int *param1, int (*param2)(Ove
     UnkStruct_ov97_0222D04C *v2 = OverlayManager_Data(param0);
     static int (*v3)(OverlayManager *);
 
-    v0 = sub_02001288(v2->unk_78);
+    v0 = ListMenu_ProcessInput(v2->unk_78);
 
     switch (v0) {
     case 0xffffffff:

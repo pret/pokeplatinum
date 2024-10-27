@@ -9,7 +9,6 @@
 #include "constants/species.h"
 
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02015064_decl.h"
 #include "struct_decls/struct_02015128_decl.h"
@@ -37,6 +36,7 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "menu.h"
 #include "message.h"
 #include "overlay_manager.h"
 #include "pokemon.h"
@@ -46,7 +46,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
@@ -208,7 +207,7 @@ typedef struct ChooseStarterApp {
     int unk_A8;
     Strbuf *unk_AC;
     WindowTemplate unk_B0;
-    UIControlData *unk_B8;
+    Menu *unk_B8;
     UnkStruct_0200C738 unk_BC;
     CellActorCollection *unk_248;
     SpriteResourceCollection *unk_24C[6];
@@ -1254,12 +1253,12 @@ static void ov78_021D1E44(ChooseStarterApp *param0, int param1)
         break;
     case 2:
         ov78_021D1FB4(param0->messageWindow, param1, 360, 1 + param0->cursorPosition, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
-        param0->unk_B8 = sub_02002100(param0->bgl, &param0->unk_B0, (512 + (18 + 12) + 128), 1, param1);
+        param0->unk_B8 = Menu_MakeYesNoChoice(param0->bgl, &param0->unk_B0, (512 + (18 + 12) + 128), 1, param1);
         param0->unk_08 = 0;
         param0->unk_04++;
         break;
     case 3:
-        v0 = sub_02002114(param0->unk_B8, param1);
+        v0 = Menu_ProcessInputAndHandleExit(param0->unk_B8, param1);
 
         switch (v0) {
         case 0xffffffff:

@@ -3,13 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/pokemon_summary.h"
-#include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/struct_02081CF4.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay104/ov104_0222DCE0.h"
@@ -32,6 +28,7 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
@@ -42,10 +39,10 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
 #include "unk_0200A784.h"
@@ -95,9 +92,9 @@ struct UnkStruct_ov106_02243118_t {
     u16 unk_38[8];
     BgConfig *unk_48;
     Window unk_4C[4];
-    UnkStruct_02081CF4 unk_8C;
-    UIControlData *unk_98;
-    ResourceMetadata unk_9C[2];
+    MenuTemplate unk_8C;
+    Menu *unk_98;
+    StringList unk_9C[2];
     PaletteData *unk_AC;
     UnkStruct_0200C440 *unk_B0;
     Options *unk_B4;
@@ -467,7 +464,7 @@ static BOOL ov106_02241E5C(UnkStruct_ov106_02243118 *param0)
         }
         break;
     case 3:
-        v1 = sub_02001BE0(param0->unk_98);
+        v1 = Menu_ProcessInput(param0->unk_98);
 
         switch (v1) {
         case 0xffffffff:
@@ -613,7 +610,7 @@ static BOOL ov106_02242108(UnkStruct_ov106_02243118 *param0)
         param0->unk_08 = 5;
         break;
     case 5:
-        v1 = sub_02001BE0(param0->unk_98);
+        v1 = Menu_ProcessInput(param0->unk_98);
 
         switch (v1) {
         case 0xffffffff:
@@ -1079,18 +1076,18 @@ static void ov106_022429B0(UnkStruct_ov106_02243118 *param0, Window *param1, u8 
     int v0;
 
     for (v0 = 0; v0 < 2; v0++) {
-        param0->unk_9C[v0].unk_00 = NULL;
-        param0->unk_9C[v0].unk_04 = 0;
+        param0->unk_9C[v0].entry = NULL;
+        param0->unk_9C[v0].index = 0;
     }
 
-    param0->unk_8C.unk_00 = param0->unk_9C;
-    param0->unk_8C.unk_04 = param1;
-    param0->unk_8C.unk_08 = 0;
-    param0->unk_8C.unk_09 = 1;
-    param0->unk_8C.unk_0A = param2;
-    param0->unk_8C.unk_0B_0 = 0;
-    param0->unk_8C.unk_0B_4 = 0;
-    param0->unk_8C.unk_0B_6 = 1;
+    param0->unk_8C.choices = param0->unk_9C;
+    param0->unk_8C.window = param1;
+    param0->unk_8C.fontID = FONT_SYSTEM;
+    param0->unk_8C.xSize = 1;
+    param0->unk_8C.ySize = param2;
+    param0->unk_8C.lineSpacing = 0;
+    param0->unk_8C.suppressCursor = FALSE;
+    param0->unk_8C.loopAround = TRUE;
 
     return;
 }
@@ -1102,8 +1099,8 @@ static void ov106_02242A28(UnkStruct_ov106_02243118 *param0, u8 param1, u8 param
 
     MessageLoader_GetStrbuf(param0->unk_20, param3, param0->unk_30[param1]);
 
-    param0->unk_9C[param1].unk_00 = (const void *)param0->unk_30[param1];
-    param0->unk_9C[param1].unk_04 = param2;
+    param0->unk_9C[param1].entry = (const void *)param0->unk_30[param1];
+    param0->unk_9C[param1].index = param2;
 
     return;
 }
@@ -1117,7 +1114,7 @@ static void ov106_02242A54(UnkStruct_ov106_02243118 *param0)
     ov106_02242A28(param0, 0, 0, 27);
     ov106_02242A28(param0, 1, 1, 28);
 
-    param0->unk_98 = sub_02001B7C(&param0->unk_8C, 8, 0, 0, 98, PAD_BUTTON_B);
+    param0->unk_98 = Menu_NewAndCopyToVRAM(&param0->unk_8C, 8, 0, 0, 98, PAD_BUTTON_B);
     return;
 }
 
@@ -1619,8 +1616,8 @@ static void ov106_02243200(UnkStruct_ov106_02243118 *param0)
 {
     if (param0->unk_0F == 1) {
         param0->unk_0F = 0;
-        sub_02001BC4(param0->unk_98, NULL);
-        Window_Clear(param0->unk_8C.unk_04, 0);
+        Menu_Free(param0->unk_98, NULL);
+        Window_Clear(param0->unk_8C.window, 0);
     }
 
     return;

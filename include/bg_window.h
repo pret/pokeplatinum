@@ -13,6 +13,8 @@
 #define TILEMAP_FILL_VAL_KEEP_PALETTE     16 // do not replace the selected palette index
 #define TILEMAP_FILL_VAL_INCLUDES_PALETTE 17
 
+#define PIXEL_FILL(color) (((color) << 4) | (color))
+
 enum DSScreen {
     DS_SCREEN_MAIN = 0,
     DS_SCREEN_SUB,

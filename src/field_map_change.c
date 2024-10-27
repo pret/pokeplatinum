@@ -7,7 +7,6 @@
 #include "constants/overworld_weather.h"
 #include "consts/map.h"
 
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/map_load_mode.h"
@@ -38,6 +37,7 @@
 #include "map_header.h"
 #include "map_header_data.h"
 #include "map_object.h"
+#include "menu.h"
 #include "message.h"
 #include "player_avatar.h"
 #include "pokeradar.h"
@@ -48,7 +48,6 @@
 #include "strbuf.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
-#include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200A9DC.h"
@@ -126,7 +125,7 @@ typedef struct MapChangeUndergroundData {
     Window unk_24;
     Strbuf *unk_34;
     u8 unk_38;
-    UIControlData *unk_3C;
+    Menu *unk_3C;
 } MapChangeUndergroundData;
 
 typedef struct MapChangeUnionData {
@@ -1153,12 +1152,12 @@ BOOL FieldTask_MapChangeToUnderground(TaskManager *taskMan)
         if (FieldMessage_FinishedPrinting(mapChangeUndergroundData->unk_38) == 1) {
             Strbuf_Free(mapChangeUndergroundData->unk_34);
             sub_0200DAA4(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 11);
-            mapChangeUndergroundData->unk_3C = sub_02002100(fieldSystem->unk_08, &Unk_020EC3A0, 1024 - (18 + 12) - 9, 11, 11);
+            mapChangeUndergroundData->unk_3C = Menu_MakeYesNoChoice(fieldSystem->unk_08, &Unk_020EC3A0, 1024 - (18 + 12) - 9, 11, 11);
             mapChangeUndergroundData->state = 2;
         }
         break;
     case 2:
-        switch (sub_02002114(mapChangeUndergroundData->unk_3C, 11)) {
+        switch (Menu_ProcessInputAndHandleExit(mapChangeUndergroundData->unk_3C, 11)) {
         case 0:
             sub_0200E084(&mapChangeUndergroundData->unk_24, 0);
             Window_Remove(&mapChangeUndergroundData->unk_24);

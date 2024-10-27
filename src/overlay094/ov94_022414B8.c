@@ -7,11 +7,7 @@
 #include "constants/species.h"
 
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
-#include "struct_defs/struct_02013A04_t.h"
 
-#include "overlay084/struct_ov84_02240FA8.h"
 #include "overlay094/const_ov94_02245FD4.h"
 #include "overlay094/const_ov94_02245FD8.h"
 #include "overlay094/ov94_0223BCB0.h"
@@ -31,20 +27,20 @@
 #include "game_options.h"
 #include "graphics.h"
 #include "heap.h"
+#include "list_menu.h"
+#include "menu.h"
 #include "message.h"
 #include "message_util.h"
 #include "narc.h"
 #include "pokemon.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200112C.h"
-#include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02013A04.h"
 #include "unk_0202631C.h"
 #include "unk_0202C858.h"
 #include "unk_020393C8.h"
@@ -82,7 +78,7 @@ static int ov94_02242040(UnkStruct_ov94_0223FD4C *param0);
 static int ov94_02242068(UnkStruct_ov94_0223FD4C *param0);
 static int ov94_0224208C(UnkStruct_ov94_0223FD4C *param0);
 static void ov94_02242668(UnkStruct_ov94_0223BA88 *param0, UnkStruct_ov94_0223FD4C *param1);
-static int ov94_02242718(ResourceMetadata **param0, MessageLoader *param1, MessageLoader *param2, u16 *param3, u8 *param4, int param5, int param6, PokedexData *param7);
+static int ov94_02242718(StringList **param0, MessageLoader *param1, MessageLoader *param2, u16 *param3, u8 *param4, int param5, int param6, PokedexData *param7);
 static TextColor ov94_022421E8(int param0, u32 param1);
 
 static int (*Unk_ov94_0224695C[])(UnkStruct_ov94_0223FD4C *) = {
@@ -567,14 +563,14 @@ static int ov94_02241A58(UnkStruct_ov94_0223FD4C *param0)
     case 7:
     case 8:
     case 9:
-        sub_02001384(param0->unk_10D8, &param0->unk_10E4->unk_06, &param0->unk_10E4->unk_04);
-        sub_02013A3C(param0->unk_10CC);
+        ListMenu_Free(param0->unk_10D8, &param0->unk_10E4->unk_06, &param0->unk_10E4->unk_04);
+        StringList_Free(param0->unk_10CC);
         param0->unk_2C = 5;
         Sound_PlayEffect(1500);
         break;
     case 0xfffffffe:
-        sub_02001384(param0->unk_10D8, &param0->unk_10E4->unk_06, &param0->unk_10E4->unk_04);
-        sub_02013A3C(param0->unk_10CC);
+        ListMenu_Free(param0->unk_10D8, &param0->unk_10E4->unk_06, &param0->unk_10E4->unk_04);
+        StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
         sub_0200E084(&param0->unk_F5C, 0);
         Window_Remove(&param0->unk_F9C[0]);
@@ -626,8 +622,8 @@ static int ov94_02241BAC(UnkStruct_ov94_0223FD4C *param0)
     case 0xffffffff:
         break;
     case 0xfffffffe:
-        sub_02001384(param0->unk_10D8, &param0->unk_10E4->unk_0A, &param0->unk_10E4->unk_08);
-        sub_02013A3C(param0->unk_10CC);
+        ListMenu_Free(param0->unk_10D8, &param0->unk_10E4->unk_0A, &param0->unk_10E4->unk_08);
+        StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[1], 0);
         Window_Remove(&param0->unk_F9C[0]);
         Window_Remove(&param0->unk_F9C[1]);
@@ -636,8 +632,8 @@ static int ov94_02241BAC(UnkStruct_ov94_0223FD4C *param0)
         ov94_02242AC4(&param0->unk_111C, param0->unk_10E4->unk_06 + param0->unk_10E4->unk_04, param0->unk_10E4->unk_0A, param0->unk_10E4->unk_08);
         break;
     default:
-        sub_02001384(param0->unk_10D8, &param0->unk_10E4->unk_0A, &param0->unk_10E4->unk_08);
-        sub_02013A3C(param0->unk_10CC);
+        ListMenu_Free(param0->unk_10D8, &param0->unk_10E4->unk_0A, &param0->unk_10E4->unk_08);
+        StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
         Window_Clear(&param0->unk_F9C[1], 0);
         Window_Remove(&param0->unk_F9C[0]);
@@ -688,8 +684,8 @@ static int ov94_02241DA0(UnkStruct_ov94_0223FD4C *param0)
 
     switch (v0 = ov94_02242A6C(param0->unk_10D8, &param0->unk_108)) {
     case 0xfffffffe:
-        sub_02001384(param0->unk_10D8, NULL, NULL);
-        sub_02013A3C(param0->unk_10CC);
+        ListMenu_Free(param0->unk_10D8, NULL, NULL);
+        StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
         sub_0200E084(&param0->unk_F5C, 0);
         Window_Remove(&param0->unk_F9C[0]);
@@ -700,8 +696,8 @@ static int ov94_02241DA0(UnkStruct_ov94_0223FD4C *param0)
     case 0:
     case 1:
     case 2:
-        sub_02001384(param0->unk_10D8, NULL, NULL);
-        sub_02013A3C(param0->unk_10CC);
+        ListMenu_Free(param0->unk_10D8, NULL, NULL);
+        StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
         Window_Remove(&param0->unk_F9C[0]);
         Sound_PlayEffect(1500);
@@ -743,8 +739,8 @@ static int ov94_02241F28(UnkStruct_ov94_0223FD4C *param0)
         break;
     case 0xfffffffe:
     case 12:
-        sub_02001384(param0->unk_10D8, NULL, NULL);
-        sub_02013A3C(param0->unk_10CC);
+        ListMenu_Free(param0->unk_10D8, NULL, NULL);
+        StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
         sub_0200E084(&param0->unk_F5C, 0);
         Window_Remove(&param0->unk_F9C[0]);
@@ -758,8 +754,8 @@ static int ov94_02241F28(UnkStruct_ov94_0223FD4C *param0)
         break;
     default:
         Sound_PlayEffect(1500);
-        sub_02001384(param0->unk_10D8, NULL, NULL);
-        sub_02013A3C(param0->unk_10CC);
+        ListMenu_Free(param0->unk_10D8, NULL, NULL);
+        StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
         Window_Remove(&param0->unk_F9C[0]);
         ov94_02242934(&param0->unk_B74, v0, 0);
@@ -789,7 +785,7 @@ static int ov94_02242068(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_0224208C(UnkStruct_ov94_0223FD4C *param0)
 {
-    int v0 = sub_02002114(param0->unk_10D0, 62);
+    int v0 = Menu_ProcessInputAndHandleExit(param0->unk_10D0, 62);
 
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
@@ -1073,7 +1069,7 @@ static void ov94_02242668(UnkStruct_ov94_0223BA88 *param0, UnkStruct_ov94_0223FD
     param0->unk_F0 = param1->unk_B74;
 }
 
-static const UnkStruct_ov84_02240FA8 Unk_ov94_0224608C = {
+static const ListMenuTemplate Unk_ov94_0224608C = {
     NULL,
     NULL,
     NULL,
@@ -1095,24 +1091,24 @@ static const UnkStruct_ov84_02240FA8 Unk_ov94_0224608C = {
     NULL
 };
 
-BmpList *ov94_022426A8(UnkStruct_ov94_0223FD4C *param0, ResourceMetadata **param1, Window *param2, MessageLoader *param3)
+ListMenu *ov94_022426A8(UnkStruct_ov94_0223FD4C *param0, StringList **param1, Window *param2, MessageLoader *param3)
 {
-    UnkStruct_ov84_02240FA8 v0;
+    ListMenuTemplate v0;
     int v1;
 
-    *param1 = sub_02013A04(9, 62);
+    *param1 = StringList_New(9, 62);
 
     for (v1 = 0; v1 < 9; v1++) {
-        sub_02013A4C(*param1, param3, 104 + v1, v1 + 1);
+        StringList_AddFromMessageBank(*param1, param3, 104 + v1, v1 + 1);
     }
 
     v0 = Unk_ov94_0224608C;
-    v0.unk_00 = *param1;
-    v0.unk_0C = param2;
+    v0.choices = *param1;
+    v0.window = param2;
 
     Window_Show(param2, 0, (1 + (18 + 12)), 11);
 
-    return sub_0200112C(&v0, param0->unk_10E4->unk_06, param0->unk_10E4->unk_04, 62);
+    return ListMenu_New(&v0, param0->unk_10E4->unk_06, param0->unk_10E4->unk_04, 62);
 }
 
 static u16 Unk_ov94_02246928[] = {
@@ -1128,7 +1124,7 @@ static u16 Unk_ov94_02246928[] = {
     0x1ED
 };
 
-static int ov94_02242718(ResourceMetadata **param0, MessageLoader *param1, MessageLoader *param2, u16 *param3, u8 *param4, int param5, int param6, PokedexData *param7)
+static int ov94_02242718(StringList **param0, MessageLoader *param1, MessageLoader *param2, u16 *param3, u8 *param4, int param5, int param6, PokedexData *param7)
 {
     int v0, v1, v2 = 0;
     int v3 = Unk_ov94_02246928[param6 + 1] - Unk_ov94_02246928[param6];
@@ -1150,30 +1146,30 @@ static int ov94_02242718(ResourceMetadata **param0, MessageLoader *param1, Messa
         }
     }
 
-    *param0 = sub_02013A04(v2 + 1, 62);
+    *param0 = StringList_New(v2 + 1, 62);
 
     for (v0 = 0; v0 < v3; v0++) {
         if (v4) {
             if (sub_02026FE8(param7, param3[v1 + v0])) {
-                sub_02013A4C(*param0, param1, param3[v1 + v0], param3[v1 + v0]);
+                StringList_AddFromMessageBank(*param0, param1, param3[v1 + v0], param3[v1 + v0]);
             }
         } else {
             if (param4[param3[v1 + v0]]) {
                 if (sub_02026FE8(param7, param3[v1 + v0])) {
-                    sub_02013A4C(*param0, param1, param3[v1 + v0], param3[v1 + v0]);
+                    StringList_AddFromMessageBank(*param0, param1, param3[v1 + v0], param3[v1 + v0]);
                 }
             }
         }
     }
 
-    sub_02013A4C(*param0, param2, 121, 0xfffffffe);
+    StringList_AddFromMessageBank(*param0, param2, 121, 0xfffffffe);
 
     return v2 + 1;
 }
 
-BmpList *ov94_022427C0(UnkStruct_ov94_0223FD4C *param0, ResourceMetadata **param1, Window *param2, MessageLoader *param3, MessageLoader *param4, UnkStruct_ov94_0223FD4C_sub3 *param5, PokedexData *param6)
+ListMenu *ov94_022427C0(UnkStruct_ov94_0223FD4C *param0, StringList **param1, Window *param2, MessageLoader *param3, MessageLoader *param4, UnkStruct_ov94_0223FD4C_sub3 *param5, PokedexData *param6)
 {
-    UnkStruct_ov84_02240FA8 v0;
+    ListMenuTemplate v0;
     int v1, v2, v3;
 
     Window_FillTilemap(param2, 0xf0f);
@@ -1182,13 +1178,13 @@ BmpList *ov94_022427C0(UnkStruct_ov94_0223FD4C *param0, ResourceMetadata **param
     v2 = ov94_02242718(param1, param4, param3, param5->unk_18, param5->unk_14, param5->unk_1C, v3, param6);
 
     v0 = Unk_ov94_0224608C;
-    v0.unk_10 = v2;
-    v0.unk_00 = *param1;
-    v0.unk_0C = param2;
+    v0.count = v2;
+    v0.choices = *param1;
+    v0.window = param2;
 
     Window_Show(param2, 0, (1 + (18 + 12)), 11);
 
-    return sub_0200112C(&v0, param0->unk_111C.unk_04[v3], param0->unk_111C.unk_16[v3], 62);
+    return ListMenu_New(&v0, param0->unk_111C.unk_04[v3], param0->unk_111C.unk_16[v3], 62);
 }
 
 static Unk_ov94_0224693C[][2] = {
@@ -1198,30 +1194,30 @@ static Unk_ov94_0224693C[][2] = {
     { 0x79, 0xFFFFFFFE }
 };
 
-BmpList *ov94_02242840(ResourceMetadata **param0, Window *param1, MessageLoader *param2)
+ListMenu *ov94_02242840(StringList **param0, Window *param1, MessageLoader *param2)
 {
-    UnkStruct_ov84_02240FA8 v0;
+    ListMenuTemplate v0;
     int v1;
 
-    *param0 = sub_02013A04(4, 62);
+    *param0 = StringList_New(4, 62);
 
     for (v1 = 0; v1 < 4; v1++) {
-        sub_02013A4C(*param0, param2, Unk_ov94_0224693C[v1][0], Unk_ov94_0224693C[v1][1]);
+        StringList_AddFromMessageBank(*param0, param2, Unk_ov94_0224693C[v1][0], Unk_ov94_0224693C[v1][1]);
     }
 
     v0 = Unk_ov94_0224608C;
-    v0.unk_10 = 4;
-    v0.unk_00 = *param0;
-    v0.unk_0C = param1;
+    v0.count = 4;
+    v0.choices = *param0;
+    v0.window = param1;
 
     Window_Show(param1, 0, (1 + (18 + 12)), 11);
 
-    return sub_0200112C(&v0, 0, 0, 62);
+    return ListMenu_New(&v0, 0, 0, 62);
 }
 
-BmpList *ov94_022428B0(ResourceMetadata **param0, Window *param1, MessageLoader *param2, int param3)
+ListMenu *ov94_022428B0(StringList **param0, Window *param1, MessageLoader *param2, int param3)
 {
-    UnkStruct_ov84_02240FA8 v0;
+    ListMenuTemplate v0;
     int v1;
     const UnkStruct_ov94_022460AC *v2;
     int v3;
@@ -1234,20 +1230,20 @@ BmpList *ov94_022428B0(ResourceMetadata **param0, Window *param1, MessageLoader 
         v3 = (NELEMS(Unk_ov94_022460AC));
     }
 
-    *param0 = sub_02013A04(v3, 62);
+    *param0 = StringList_New(v3, 62);
 
     for (v1 = 0; v1 < v3; v1++) {
-        sub_02013A4C(*param0, param2, v2[v1].unk_00, v1);
+        StringList_AddFromMessageBank(*param0, param2, v2[v1].unk_00, v1);
     }
 
     v0 = Unk_ov94_0224608C;
-    v0.unk_10 = v3;
-    v0.unk_00 = *param0;
-    v0.unk_0C = param1;
+    v0.count = v3;
+    v0.choices = *param0;
+    v0.window = param1;
 
     Window_Show(param1, 0, (1 + (18 + 12)), 11);
 
-    return sub_0200112C(&v0, 0, 0, 62);
+    return ListMenu_New(&v0, 0, 0, 62);
 }
 
 void ov94_02242934(UnkStruct_ov94_0223BA88_sub3 *param0, int param1, int param2)
@@ -1289,30 +1285,30 @@ int ov94_02242970(int param0, int param1, int param2)
     return 0;
 }
 
-BmpList *ov94_022429B4(ResourceMetadata **param0, Window *param1, MessageLoader *param2, MessageLoader *param3)
+ListMenu *ov94_022429B4(StringList **param0, Window *param1, MessageLoader *param2, MessageLoader *param3)
 {
-    UnkStruct_ov84_02240FA8 v0;
+    ListMenuTemplate v0;
     int v1;
     int v2 = NELEMS(Unk_ov94_02246174) + 2;
 
-    *param0 = sub_02013A04(v2, 62);
+    *param0 = StringList_New(v2, 62);
 
-    sub_02013A4C(*param0, param3, 167, 0);
+    StringList_AddFromMessageBank(*param0, param3, 167, 0);
 
     for (v1 = 1; v1 < v2 - 1; v1++) {
-        sub_02013A4C(*param0, param2, Unk_ov94_02246174[v1 - 1], v1);
+        StringList_AddFromMessageBank(*param0, param2, Unk_ov94_02246174[v1 - 1], v1);
     }
 
-    sub_02013A4C(*param0, param3, 168, v2 - 1);
+    StringList_AddFromMessageBank(*param0, param3, 168, v2 - 1);
 
     v0 = Unk_ov94_0224608C;
-    v0.unk_10 = v2;
-    v0.unk_00 = *param0;
-    v0.unk_0C = param1;
+    v0.count = v2;
+    v0.choices = *param0;
+    v0.window = param1;
 
     Window_Show(param1, 1, (1 + (18 + 12)), 11);
 
-    return sub_0200112C(&v0, 0, 0, 62);
+    return ListMenu_New(&v0, 0, 0, 62);
 }
 
 void ov94_02242A44(UnkStruct_ov94_0223FD4C *param0, int param1)
@@ -1324,12 +1320,12 @@ void ov94_02242A44(UnkStruct_ov94_0223FD4C *param0, int param1)
     }
 }
 
-u32 ov94_02242A6C(BmpList *param0, u16 *param1)
+u32 ov94_02242A6C(ListMenu *param0, u16 *param1)
 {
     u16 v0;
-    u32 v1 = sub_02001288(param0);
+    u32 v1 = ListMenu_ProcessInput(param0);
 
-    sub_020014D0(param0, &v0);
+    ListMenu_CalcTrueCursorPos(param0, &v0);
 
     if (*param1 != v0) {
         if (*param1 != 0xffff) {

@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_defs/struct_0203CC84.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -10,6 +9,7 @@
 #include "font.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "menu.h"
 #include "message.h"
 #include "overlay_manager.h"
 #include "savedata.h"
@@ -32,7 +32,7 @@ typedef struct {
     BgConfig *unk_18;
     MessageLoader *unk_1C;
     Window unk_20;
-    UIControlData *unk_30;
+    Menu *unk_30;
     SaveData *unk_34;
     void *unk_38;
     u32 unk_3C;

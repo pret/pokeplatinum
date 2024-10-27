@@ -16,12 +16,12 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "inlines.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_02001AF4.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02025CB0.h"
@@ -336,7 +336,7 @@ static int ov94_02244F8C(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_02244FC4(UnkStruct_ov94_0223FD4C *param0)
 {
-    int v0 = sub_02002114(param0->unk_10D0, 62);
+    int v0 = Menu_ProcessInputAndHandleExit(param0->unk_10D0, 62);
 
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
@@ -363,7 +363,7 @@ static int ov94_0224502C(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_0224505C(UnkStruct_ov94_0223FD4C *param0)
 {
-    int v0 = sub_02002114(param0->unk_10D0, 62);
+    int v0 = Menu_ProcessInputAndHandleExit(param0->unk_10D0, 62);
 
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
@@ -767,7 +767,7 @@ static int ov94_02245594(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_022455D0(UnkStruct_ov94_0223FD4C *param0)
 {
-    int v0 = sub_02002114(param0->unk_10D0, 62);
+    int v0 = Menu_ProcessInputAndHandleExit(param0->unk_10D0, 62);
 
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {

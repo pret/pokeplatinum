@@ -3,26 +3,20 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
-#include "struct_defs/struct_02013A04_t.h"
-
-#include "overlay084/struct_ov84_02240FA8.h"
-
 #include "bg_window.h"
 #include "font.h"
 #include "game_options.h"
+#include "list_menu.h"
+#include "menu.h"
 #include "message.h"
 #include "message_util.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "text.h"
-#include "unk_0200112C.h"
-#include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 
-static void ov88_0223EE14(BmpList *param0, u32 param1, u8 param2);
+static void ov88_0223EE14(ListMenu *param0, u32 param1, u8 param2);
 
 static const u16 Unk_ov88_0223F1A8[][5] = {
     { 0x4, 0x1, 0x9, 0x2, 0x1 },
@@ -160,17 +154,17 @@ static const WindowTemplate Unk_ov88_0223F148 = {
     0x112
 };
 
-u32 ov88_0223ED2C(BgConfig *param0, UIControlData **param1, int *param2)
+u32 ov88_0223ED2C(BgConfig *param0, Menu **param1, int *param2)
 {
     u32 v0 = 0xffffffff;
 
     switch (*param2) {
     case 0:
-        *param1 = sub_02002100(param0, &Unk_ov88_0223F148, (512 - 9), 11, 26);
+        *param1 = Menu_MakeYesNoChoice(param0, &Unk_ov88_0223F148, (512 - 9), 11, 26);
         (*param2)++;
         break;
     case 1:
-        v0 = sub_02002114(*param1, 26);
+        v0 = Menu_ProcessInputAndHandleExit(*param1, 26);
 
         if (v0 != 0xffffffff) {
             (*param2) = 0;
@@ -185,7 +179,7 @@ void ov88_0223ED80(Window *param0)
     Window_Show(param0, 0, (512 - 9), 11);
 }
 
-static const UnkStruct_ov84_02240FA8 Unk_ov88_0223F150 = {
+static const ListMenuTemplate Unk_ov88_0223F150 = {
     NULL,
     NULL,
     NULL,
@@ -207,27 +201,27 @@ static const UnkStruct_ov84_02240FA8 Unk_ov88_0223F150 = {
     NULL
 };
 
-BmpList *ov88_0223ED94(ResourceMetadata *param0, int param1, Window *param2, BgConfig *param3)
+ListMenu *ov88_0223ED94(StringList *param0, int param1, Window *param2, BgConfig *param3)
 {
-    BmpList *v0;
-    UnkStruct_ov84_02240FA8 v1;
+    ListMenu *v0;
+    ListMenuTemplate v1;
     int v2 = 5;
 
     Window_Add(param3, param2, 0, 19, 1, 12, v2 * 2, 13, (512 - (9 + (18 + 12))) - (10 * (v2 + 2) * 2));
     Window_Show(param2, 0, (512 - 9), 11);
 
     v1 = Unk_ov88_0223F150;
-    v1.unk_10 = param1 + 1;
-    v1.unk_12 = v2;
-    v1.unk_00 = param0;
-    v1.unk_0C = param2;
-    v1.unk_04 = ov88_0223EE14;
-    v0 = sub_0200112C(&v1, 0, 0, 26);
+    v1.count = param1 + 1;
+    v1.maxDisplay = v2;
+    v1.choices = param0;
+    v1.window = param2;
+    v1.cursorCallback = ov88_0223EE14;
+    v0 = ListMenu_New(&v1, 0, 0, 26);
 
     return v0;
 }
 
-static void ov88_0223EE14(BmpList *param0, u32 param1, u8 param2)
+static void ov88_0223EE14(ListMenu *param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
         Sound_PlayEffect(1500);

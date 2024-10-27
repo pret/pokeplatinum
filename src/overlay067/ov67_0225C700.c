@@ -5,7 +5,6 @@
 
 #include "consts/game_records.h"
 
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay061/struct_ov61_0222C3B0.h"
@@ -26,6 +25,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "inlines.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
@@ -35,7 +35,6 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -64,7 +63,7 @@ typedef struct {
     UnkStruct_ov67_0225D210 unk_40;
     UnkStruct_ov67_0225D210 unk_70;
     UnkStruct_ov67_0225D210 unk_A0;
-    UIControlData *unk_D0;
+    Menu *unk_D0;
     UnkStruct_ov61_0222C3B0 unk_D4;
 } UnkStruct_ov67_0225D154;
 
@@ -214,7 +213,7 @@ int ov67_0225C820(OverlayManager *param0, int *param1)
     case 2:
         if (v1->unk_08 == 0) {
             ov67_0225D210(&v0->unk_70, 17);
-            v0->unk_D0 = sub_02002100(v0->unk_0C, &Unk_ov67_0225D3EC, (1 + (18 + 12)), 14, 112);
+            v0->unk_D0 = Menu_MakeYesNoChoice(v0->unk_0C, &Unk_ov67_0225D3EC, (1 + (18 + 12)), 14, 112);
             (*param1)++;
         } else {
             (*param1) = 4;
@@ -222,7 +221,7 @@ int ov67_0225C820(OverlayManager *param0, int *param1)
         break;
     case 3: {
         u32 v2;
-        v2 = sub_02002114(v0->unk_D0, 112);
+        v2 = Menu_ProcessInputAndHandleExit(v0->unk_D0, 112);
 
         switch (v2) {
         case 0:
@@ -325,12 +324,12 @@ int ov67_0225C820(OverlayManager *param0, int *param1)
     case 11:
         ov67_0225D294(&v0->unk_A0);
         ov67_0225D210(&v0->unk_40, 88);
-        v0->unk_D0 = sub_02002100(v0->unk_0C, &Unk_ov67_0225D3EC, (1 + (18 + 12)), 14, 112);
+        v0->unk_D0 = Menu_MakeYesNoChoice(v0->unk_0C, &Unk_ov67_0225D3EC, (1 + (18 + 12)), 14, 112);
         (*param1)++;
         break;
     case 12: {
         u32 v11;
-        v11 = sub_02002114(v0->unk_D0, 112);
+        v11 = Menu_ProcessInputAndHandleExit(v0->unk_D0, 112);
 
         switch (v11) {
         case 0:

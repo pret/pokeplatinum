@@ -3,14 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_020304A0_decl.h"
 #include "struct_decls/struct_020305B8_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/struct_02081CF4.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay104/ov104_0223BCBC.h"
@@ -32,6 +28,7 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
@@ -41,6 +38,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
@@ -194,9 +192,9 @@ struct UnkStruct_ov108_02241DB0_t {
     u16 unk_80[8];
     BgConfig *unk_90;
     Window unk_94[2];
-    UnkStruct_02081CF4 unk_B4;
-    UIControlData *unk_C0;
-    ResourceMetadata unk_C4[2];
+    MenuTemplate unk_B4;
+    Menu *unk_C0;
+    StringList unk_C4[2];
     PaletteData *unk_D4;
     Options *unk_D8;
     SaveData *unk_DC;

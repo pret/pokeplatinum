@@ -18,6 +18,8 @@
 #include "game_options.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "list_menu.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
@@ -25,8 +27,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_0200112C.h"
-#include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
@@ -251,7 +251,7 @@ static int ov79_021D0FEC(UnkStruct_ov79_021D0E1C *param0)
 
     if (gCoreSys.heldKeys != 0) {
         if (param0->unk_14 == 0) {
-            v0 = sub_02001288(param0->unk_C4);
+            v0 = ListMenu_ProcessInput(param0->unk_C4);
         }
     } else {
         if (v1 >= 0) {
@@ -307,7 +307,7 @@ static int ov79_021D10B8(UnkStruct_ov79_021D0E1C *param0)
 {
     u32 v0;
 
-    v0 = sub_02001288(param0->unk_C8);
+    v0 = ListMenu_ProcessInput(param0->unk_C8);
 
     if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
         Sound_PlayEffect(1500);
@@ -355,7 +355,7 @@ static int ov79_021D114C(UnkStruct_ov79_021D0E1C *param0)
 
 static int ov79_021D116C(UnkStruct_ov79_021D0E1C *param0)
 {
-    switch (sub_02002114(param0->unk_D4, param0->unk_00)) {
+    switch (Menu_ProcessInputAndHandleExit(param0->unk_D4, param0->unk_00)) {
     case 0:
         Sound_PlayEffect(1500);
         ov79_021D2008(param0);

@@ -32,10 +32,10 @@
 #include "overlay070/struct_ov70_02263910.h"
 #include "overlay070/struct_ov70_02265F38.h"
 #include "overlay070/struct_ov70_0226DA18.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 
 #include "core_sys.h"
 #include "enums.h"
+#include "list_menu.h"
 #include "strbuf.h"
 #include "unk_02005474.h"
 #include "unk_0201D15C.h"
@@ -52,7 +52,7 @@ typedef struct {
     u16 unk_00;
     u16 unk_02;
     s32 unk_04;
-    UnkStruct_ov84_02240FA8 unk_08;
+    ListMenuTemplate unk_08;
     u16 unk_28;
     u16 unk_2A;
 } UnkStruct_ov70_022653DC;
@@ -160,7 +160,7 @@ static BOOL ov70_02265A84(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
 static BOOL ov70_02265CCC(UnkStruct_ov70_02265CCC *param0, UnkStruct_ov66_0222DFF8 *param1, UnkStruct_ov70_0225DEE8 *param2, UnkStruct_ov70_0225CC54 *param3, u8 param4, int param5);
 static BOOL ov70_02265ED0(const UnkStruct_ov70_0225C894 *param0, const UnkStruct_ov70_0225CA20 *param1, const u32 *param2, u32 param3, UnkStruct_ov63_0222CC3C *param4);
 
-static const UnkStruct_ov84_02240FA8 Unk_ov70_0226DA98 = {
+static const ListMenuTemplate Unk_ov70_0226DA98 = {
     NULL,
     NULL,
     NULL,
@@ -2698,7 +2698,7 @@ static void ov70_022653DC(UnkStruct_ov70_022653DC *param0, UnkStruct_ov70_0225DE
     ov70_0225E044(param1, v1, 0);
 
     param0->unk_08 = Unk_ov70_0226DA98;
-    param0->unk_08.unk_00 = ov70_0225E054(param1);
+    param0->unk_08.choices = ov70_0225E054(param1);
 }
 
 static void ov70_02265450(UnkStruct_ov70_022653DC *param0, UnkStruct_ov70_0225DEE8 *param1)

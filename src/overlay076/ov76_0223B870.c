@@ -10,7 +10,6 @@
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/struct_0202CA28.h"
 #include "struct_defs/struct_0207C690.h"
-#include "struct_defs/struct_02081CF4.h"
 
 #include "overlay012/ov12_02225864.h"
 #include "overlay012/struct_ov12_02225F6C.h"
@@ -29,22 +28,22 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_02001AF4.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
-#include "unk_02013A04.h"
 #include "unk_02014000.h"
 #include "unk_0201E86C.h"
 #include "unk_0202419C.h"
@@ -444,7 +443,7 @@ void ov76_0223BF50(void)
 
 void ov76_0223BF74(BgConfig *param0, Window *param1, int param2, UnkStruct_ov76_0223DE00 *param3, int param4)
 {
-    UnkStruct_02081CF4 v0;
+    MenuTemplate v0;
     int v1;
     int v2, v3, v4, v5, v6, v7;
     int v8[4];
@@ -493,7 +492,7 @@ void ov76_0223BF74(BgConfig *param0, Window *param1, int param2, UnkStruct_ov76_
     Window_Init(param1);
     Window_Add(param0, param1, param2, v2, v3, v4, v5, 14, v6);
 
-    param3->unk_D4.unk_C8 = sub_02013A04(v7, 53);
+    param3->unk_D4.unk_C8 = StringList_New(v7, 53);
 
     {
         int v9;
@@ -503,24 +502,24 @@ void ov76_0223BF74(BgConfig *param0, Window *param1, int param2, UnkStruct_ov76_
         for (v9 = 0; v9 < v7; v9++) {
             v10 = MessageLoader_GetNewStrbuf(v11, Unk_ov76_0223EF3C[v8[v9]].unk_00);
 
-            sub_02013A6C(param3->unk_D4.unk_C8, v10, Unk_ov76_0223EF3C[v8[v9]].unk_04);
+            StringList_AddFromStrbuf(param3->unk_D4.unk_C8, v10, Unk_ov76_0223EF3C[v8[v9]].unk_04);
             Strbuf_Free(v10);
         }
 
         MessageLoader_Free(v11);
     }
 
-    v0.unk_00 = param3->unk_D4.unk_C8;
-    v0.unk_08 = 0;
-    v0.unk_04 = param1;
-    v0.unk_09 = 1;
-    v0.unk_0A = v7;
-    v0.unk_0B_0 = 0;
-    v0.unk_0B_4 = 0;
-    v0.unk_0B_6 = 1;
+    v0.choices = param3->unk_D4.unk_C8;
+    v0.fontID = FONT_SYSTEM;
+    v0.window = param1;
+    v0.xSize = 1;
+    v0.ySize = v7;
+    v0.lineSpacing = 0;
+    v0.suppressCursor = FALSE;
+    v0.loopAround = TRUE;
 
     Window_Show(param1, 1, (1 + (18 + 12)), 13);
-    param3->unk_D4.unk_CC = sub_02001B7C(&v0, 8, 0, 0, 53, PAD_BUTTON_B);
+    param3->unk_D4.unk_CC = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 53, PAD_BUTTON_B);
 }
 
 void ov76_0223C0EC(int param0, s16 *param1, s16 *param2)

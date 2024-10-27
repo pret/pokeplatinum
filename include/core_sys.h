@@ -14,9 +14,10 @@ enum ButtonMode {
     BUTTON_MODE_L_IS_A = 3,
 };
 
-#define PAD_KEY           (PAD_KEY_UP | PAD_KEY_DOWN | PAD_KEY_LEFT | PAD_KEY_RIGHT)
-#define JOY_NEW(buttons)  (gCoreSys.pressedKeys & (buttons))
-#define JOY_HELD(buttons) (gCoreSys.heldKeys & (buttons))
+#define PAD_KEY             (PAD_KEY_UP | PAD_KEY_DOWN | PAD_KEY_LEFT | PAD_KEY_RIGHT)
+#define JOY_NEW(buttons)    (gCoreSys.pressedKeys & (buttons))
+#define JOY_HELD(buttons)   (gCoreSys.heldKeys & (buttons))
+#define JOY_REPEAT(buttons) (gCoreSys.pressedKeysRepeatable & (buttons))
 
 typedef struct CoreSys {
     Callback mainCallback;

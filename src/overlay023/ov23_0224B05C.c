@@ -5,15 +5,11 @@
 
 #include "consts/game_records.h"
 
-#include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_02029894_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_02049FA8.h"
-#include "struct_defs/struct_02081CF4.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021E15F4.h"
@@ -39,23 +35,24 @@
 #include "core_sys.h"
 #include "field_map_change.h"
 #include "field_system.h"
+#include "font.h"
 #include "game_records.h"
 #include "graphics.h"
 #include "heap.h"
 #include "journal.h"
 #include "map_object_move.h"
+#include "menu.h"
 #include "message.h"
 #include "player_avatar.h"
 #include "savedata.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
-#include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02013A04.h"
 #include "unk_0202854C.h"
 #include "unk_02030EE0.h"
 #include "unk_02033200.h"
@@ -126,7 +123,7 @@ typedef struct {
 
 typedef struct {
     FieldSystem *fieldSystem;
-    UIControlData *unk_04;
+    Menu *unk_04;
     SysTask *unk_08;
     int unk_0C;
     int unk_10;
@@ -147,7 +144,7 @@ typedef struct {
 typedef struct {
     FieldSystem *fieldSystem;
     SysTask *unk_04;
-    UIControlData *unk_08;
+    Menu *unk_08;
     int unk_0C;
     u8 unk_10;
     u8 unk_11;
@@ -809,7 +806,7 @@ static void ov23_0224BA48(SysTask *param0, void *param1)
     UnkStruct_ov23_0224BA48 *v0 = param1;
 
     if (v0->unk_04) {
-        sub_02002154(v0->unk_04, 4);
+        Menu_DestroyForExit(v0->unk_04, 4);
     }
 
     SysTask_Done(param0);
@@ -824,7 +821,7 @@ static void ov23_0224BA6C(SysTask *param0, void *param1)
     UnkStruct_ov23_0224B730 v1;
 
     if (v0->unk_04) {
-        sub_02002154(v0->unk_04, 4);
+        Menu_DestroyForExit(v0->unk_04, 4);
     }
 
     v1.unk_01 = 0;
@@ -861,12 +858,12 @@ static void ov23_0224BAAC(SysTask *param0, void *param1)
         break;
     case 1:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            v0->unk_04 = sub_02002100(fieldSystem->unk_08, &Unk_ov23_02256864, 1024 - (18 + 12) - 9, 11, 4);
+            v0->unk_04 = Menu_MakeYesNoChoice(fieldSystem->unk_08, &Unk_ov23_02256864, 1024 - (18 + 12) - 9, 11, 4);
             v0->unk_0C = 2;
         }
         break;
     case 2:
-        v6 = sub_02002114(v0->unk_04, 4);
+        v6 = Menu_ProcessInputAndHandleExit(v0->unk_04, 4);
 
         if (v6 == 0) {
             v0->unk_04 = NULL;
@@ -878,12 +875,12 @@ static void ov23_0224BAAC(SysTask *param0, void *param1)
         break;
     case 3:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            v0->unk_04 = sub_02002100(fieldSystem->unk_08, &Unk_ov23_02256864, 1024 - (18 + 12) - 9, 11, 4);
+            v0->unk_04 = Menu_MakeYesNoChoice(fieldSystem->unk_08, &Unk_ov23_02256864, 1024 - (18 + 12) - 9, 11, 4);
             v0->unk_0C = 4;
         }
         break;
     case 4:
-        v6 = sub_02002114(v0->unk_04, 4);
+        v6 = Menu_ProcessInputAndHandleExit(v0->unk_04, 4);
 
         if (v6 == 0) {
             v0->unk_04 = NULL;
@@ -896,12 +893,12 @@ static void ov23_0224BAAC(SysTask *param0, void *param1)
         break;
     case 5:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            v0->unk_04 = sub_02002100(fieldSystem->unk_08, &Unk_ov23_02256864, 1024 - (18 + 12) - 9, 11, 4);
+            v0->unk_04 = Menu_MakeYesNoChoice(fieldSystem->unk_08, &Unk_ov23_02256864, 1024 - (18 + 12) - 9, 11, 4);
             v0->unk_0C = 6;
         }
         break;
     case 6:
-        v6 = sub_02002114(v0->unk_04, 4);
+        v6 = Menu_ProcessInputAndHandleExit(v0->unk_04, 4);
 
         if (v6 == 0) {
             v0->unk_04 = NULL;
@@ -1013,30 +1010,30 @@ static int ov23_0224BD1C(int param0, BOOL param1)
     return v1;
 }
 
-static UIControlData *ov23_0224BD90(BgConfig *param0, const WindowTemplate *param1, u16 param2, u8 param3, u32 param4)
+static Menu *ov23_0224BD90(BgConfig *param0, const WindowTemplate *param1, u16 param2, u8 param3, u32 param4)
 {
-    UnkStruct_02081CF4 v0;
+    MenuTemplate v0;
     MessageLoader *v1 = ov23_02253E3C(ov23_0224219C());
-    ResourceMetadata *v2;
+    StringList *v2;
 
-    v2 = sub_02013A04(2, param4);
+    v2 = StringList_New(2, param4);
 
-    sub_02013A4C(v2, v1, 38, 0);
-    sub_02013A4C(v2, v1, 39, 1);
+    StringList_AddFromMessageBank(v2, v1, 38, 0);
+    StringList_AddFromMessageBank(v2, v1, 39, 1);
 
-    v0.unk_00 = v2;
-    v0.unk_04 = Window_New(param4, 1);
-    v0.unk_08 = 0;
-    v0.unk_09 = 1;
-    v0.unk_0A = 2;
-    v0.unk_0B_0 = 0;
-    v0.unk_0B_4 = 0;
-    v0.unk_0B_0 = 0;
+    v0.choices = v2;
+    v0.window = Window_New(param4, 1);
+    v0.fontID = FONT_SYSTEM;
+    v0.xSize = 1;
+    v0.ySize = 2;
+    v0.lineSpacing = 0;
+    v0.suppressCursor = FALSE;
+    v0.lineSpacing = 0;
 
-    Window_AddFromTemplate(param0, v0.unk_04, param1);
-    Window_Show(v0.unk_04, 1, param2, param3);
+    Window_AddFromTemplate(param0, v0.window, param1);
+    Window_Show(v0.window, 1, param2, param3);
 
-    return sub_02001B7C(&v0, 8, 0, 0, param4, PAD_BUTTON_B);
+    return Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, param4, PAD_BUTTON_B);
 }
 
 static void ov23_0224BE28(SysTask *param0, void *param1)
@@ -1061,12 +1058,12 @@ static void ov23_0224BE28(SysTask *param0, void *param1)
         break;
     case 1:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            v0->unk_04 = sub_02002100(fieldSystem->unk_08, &Unk_ov23_02256864, 1024 - (18 + 12) - 9, 11, 4);
+            v0->unk_04 = Menu_MakeYesNoChoice(fieldSystem->unk_08, &Unk_ov23_02256864, 1024 - (18 + 12) - 9, 11, 4);
             v0->unk_0C = 2;
         }
         break;
     case 2:
-        v6 = sub_02002114(v0->unk_04, 4);
+        v6 = Menu_ProcessInputAndHandleExit(v0->unk_04, 4);
 
         if (v6 == 0) {
             v0->unk_04 = NULL;
@@ -1083,12 +1080,12 @@ static void ov23_0224BE28(SysTask *param0, void *param1)
         break;
     case 4:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            v0->unk_04 = sub_02002100(fieldSystem->unk_08, &Unk_ov23_02256864, 1024 - (18 + 12) - 9, 11, 4);
+            v0->unk_04 = Menu_MakeYesNoChoice(fieldSystem->unk_08, &Unk_ov23_02256864, 1024 - (18 + 12) - 9, 11, 4);
             v0->unk_0C = 5;
         }
         break;
     case 5:
-        v6 = sub_02002114(v0->unk_04, 4);
+        v6 = Menu_ProcessInputAndHandleExit(v0->unk_04, 4);
 
         if (v6 == 0) {
             v0->unk_04 = NULL;
@@ -1112,7 +1109,7 @@ static void ov23_0224BE28(SysTask *param0, void *param1)
         }
         break;
     case 7:
-        v6 = sub_02002114(v0->unk_04, 4);
+        v6 = Menu_ProcessInputAndHandleExit(v0->unk_04, 4);
 
         if (v6 == 0) {
             v0->unk_04 = NULL;
@@ -1814,12 +1811,12 @@ static void ov23_0224CB1C(SysTask *param0, void *param1)
         break;
     case 5:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            v0->unk_08 = sub_02002100(fieldSystem->unk_08, &Unk_ov23_02256864, 1024 - (18 + 12) - 9, 11, 4);
+            v0->unk_08 = Menu_MakeYesNoChoice(fieldSystem->unk_08, &Unk_ov23_02256864, 1024 - (18 + 12) - 9, 11, 4);
             v0->unk_0C = 6;
         }
         break;
     case 6:
-        v3 = sub_02002114(v0->unk_08, 4);
+        v3 = Menu_ProcessInputAndHandleExit(v0->unk_08, 4);
 
         if (v3 == 0) {
             v0->unk_0C = 9;
@@ -1954,7 +1951,7 @@ static void ov23_0224CE94(SysTask *param0, void *param1)
     ov23_0224C6AC(16);
 
     if (v0->unk_08) {
-        sub_02002154(v0->unk_08, 4);
+        Menu_DestroyForExit(v0->unk_08, 4);
     }
 
     SysTask_Done(param0);

@@ -5,7 +5,6 @@
 #include <string.h>
 
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02012B20_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
@@ -25,7 +24,6 @@
 #include "overlay065/struct_ov65_0222F6EC.h"
 #include "overlay065/struct_ov65_02234E50.h"
 #include "overlay065/struct_ov65_022354D8.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 #include "overlay098/struct_ov98_02247168.h"
 
 #include "assert.h"
@@ -45,6 +43,8 @@
 #include "heap.h"
 #include "inlines.h"
 #include "journal.h"
+#include "list_menu.h"
+#include "menu.h"
 #include "message.h"
 #include "message_util.h"
 #include "narc.h"
@@ -58,12 +58,11 @@
 #include "savedata.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_0200112C.h"
-#include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
@@ -72,7 +71,6 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
-#include "unk_02013A04.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
@@ -1562,11 +1560,11 @@ static void ov65_0222EF4C (UnkStruct_ov65_0222EBE0 * param0)
     }
 
     if (param0->unk_150) {
-        sub_02001384(param0->unk_150, NULL, NULL);
+        ListMenu_Free(param0->unk_150, NULL, NULL);
     }
 
     if (param0->unk_14C) {
-        sub_02013A3C(param0->unk_14C);
+        StringList_Free(param0->unk_14C);
         param0->unk_14C = NULL;
     }
 
@@ -1633,7 +1631,7 @@ static int ov65_0222F010 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
             ov65_02232CA8(param0, 18);
 
-            param0->unk_184 = sub_02002100(param0->unk_15C, &Unk_ov65_02238954, ((512 - (18 + 12)) - 9), 11, 54);
+            param0->unk_184 = Menu_MakeYesNoChoice(param0->unk_15C, &Unk_ov65_02238954, ((512 - (18 + 12)) - 9), 11, 54);
             param0->unk_3A8 = 6;
         } else if (!DWC_CheckValidConsole(sub_0202AD28(param0->unk_00))) {
             ov65_02232CA8(param0, 20);
@@ -1650,7 +1648,7 @@ static int ov65_0222F010 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 static int ov65_0222F164 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
     if (Text_IsPrinterActive(param0->unk_180) == 0) {
-        param0->unk_184 = sub_02002100(param0->unk_15C, &Unk_ov65_02238944, ((512 - (18 + 12)) - 9), 11, 54);
+        param0->unk_184 = Menu_MakeYesNoChoice(param0->unk_15C, &Unk_ov65_02238944, ((512 - (18 + 12)) - 9), 11, 54);
         param0->unk_3A8 = 2;
     }
 
@@ -1660,7 +1658,7 @@ static int ov65_0222F164 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 static int ov65_0222F1A8 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
     int v0;
-    int v1 = sub_02002114(param0->unk_184, 54);
+    int v1 = Menu_ProcessInputAndHandleExit(param0->unk_184, 54);
 
     if (v1 == 0xffffffff) {
         return param1;
@@ -1688,7 +1686,7 @@ static int ov65_0222F21C (UnkStruct_ov65_0222EBE0 * param0, int param1)
         Bg_SetPriority(1, 0);
         Bg_SetPriority(0, 3);
 
-        param0->unk_184 = sub_02002054(param0->unk_15C, &Unk_ov65_02238954, ((512 - (18 + 12)) - 9), 11, 1, 54);
+        param0->unk_184 = Menu_MakeYesNoChoiceWithCursorAt(param0->unk_15C, &Unk_ov65_02238954, ((512 - (18 + 12)) - 9), 11, 1, 54);
         param0->unk_3A8 = 4;
     }
 
@@ -1698,7 +1696,7 @@ static int ov65_0222F21C (UnkStruct_ov65_0222EBE0 * param0, int param1)
 static int ov65_0222F288 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
     int v0;
-    int v1 = sub_02002114(param0->unk_184, 54);
+    int v1 = Menu_ProcessInputAndHandleExit(param0->unk_184, 54);
 
     if (v1 == 0xffffffff) {
         return param1;
@@ -1708,7 +1706,7 @@ static int ov65_0222F288 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
         if (v1 == 0) {
             ov65_02232CA8(param0, 22);
-            param0->unk_184 = sub_02002054(param0->unk_15C, &Unk_ov65_02238954, ((512 - (18 + 12)) - 9), 11, 1, 54);
+            param0->unk_184 = Menu_MakeYesNoChoiceWithCursorAt(param0->unk_15C, &Unk_ov65_02238954, ((512 - (18 + 12)) - 9), 11, 1, 54);
             param0->unk_3A8 = 5;
         } else {
             param0->unk_3A8 = 34;
@@ -1721,7 +1719,7 @@ static int ov65_0222F288 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 static int ov65_0222F304 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
     int v0;
-    int v1 = sub_02002114(param0->unk_184, 54);
+    int v1 = Menu_ProcessInputAndHandleExit(param0->unk_184, 54);
 
     if (v1 == 0xffffffff) {
         return param1;
@@ -1754,7 +1752,7 @@ static int ov65_0222F304 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 static int ov65_0222F3DC (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
     int v0;
-    int v1 = sub_02002114(param0->unk_184, 54);
+    int v1 = Menu_ProcessInputAndHandleExit(param0->unk_184, 54);
 
     if (v1 == 0xffffffff) {
         return param1;
@@ -2000,7 +1998,7 @@ static int ov65_0222F808 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 static int ov65_0222F868 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
     if (Text_IsPrinterActive(param0->unk_180) == 0) {
-        param0->unk_184 = sub_02002100(param0->unk_15C, &Unk_ov65_0223894C, ((512 - (18 + 12)) - 9), 11, 54);
+        param0->unk_184 = Menu_MakeYesNoChoice(param0->unk_15C, &Unk_ov65_0223894C, ((512 - (18 + 12)) - 9), 11, 54);
         param0->unk_3A8 = 12;
     }
 
@@ -2010,7 +2008,7 @@ static int ov65_0222F868 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 static int ov65_0222F8AC (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
     int v0;
-    int v1 = sub_02002114(param0->unk_184, 54);
+    int v1 = Menu_ProcessInputAndHandleExit(param0->unk_184, 54);
 
     if (v1 == 0xffffffff) {
         return param1;
@@ -2074,9 +2072,9 @@ static int ov65_0222F90C (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
         if (param0->unk_14C) {
             Window_Remove(&param0->unk_370);
-            sub_02001384(param0->unk_150, NULL, NULL);
+            ListMenu_Free(param0->unk_150, NULL, NULL);
             param0->unk_150 = NULL;
-            sub_02013A3C(param0->unk_14C);
+            StringList_Free(param0->unk_14C);
             param0->unk_14C = NULL;
         }
 
@@ -2352,7 +2350,7 @@ static void ov65_0222FD70 (UnkStruct_ov65_0222EBE0 * param0)
     Window_ScheduleCopyToVRAM(&param0->unk_340);
 }
 
-static void ov65_0222FED8 (BmpList * param0, u32 param1, u8 param2)
+static void ov65_0222FED8(ListMenu *param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
         Sound_PlayEffect(1500);
@@ -2409,9 +2407,9 @@ static int ov65_0222FFAC (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
     if (param0->unk_14C) {
         Window_Remove(&param0->unk_370);
-        sub_02001384(param0->unk_150, NULL, NULL);
+        ListMenu_Free(param0->unk_150, NULL, NULL);
         param0->unk_150 = NULL;
-        sub_02013A3C(param0->unk_14C);
+        StringList_Free(param0->unk_14C);
         param0->unk_14C = NULL;
     }
 
@@ -2896,7 +2894,7 @@ static int ov65_022309D0 (UnkStruct_ov65_0222EBE0 * param0, int param1)
     if (Text_IsPrinterActive(param0->unk_180) == 0) {
         sub_0202B13C(param0->unk_00, ov4_021D2388());
 
-        param0->unk_184 = sub_02002100(param0->unk_15C, &Unk_ov65_0223894C, ((512 - (18 + 12)) - 9), 11, 54);
+        param0->unk_184 = Menu_MakeYesNoChoice(param0->unk_15C, &Unk_ov65_0223894C, ((512 - (18 + 12)) - 9), 11, 54);
         param0->unk_3A8 = 26;
     }
 
@@ -2906,14 +2904,14 @@ static int ov65_022309D0 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 static int ov65_02230A30 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
     int v0;
-    int v1 = sub_02002114(param0->unk_184, 54);
+    int v1 = Menu_ProcessInputAndHandleExit(param0->unk_184, 54);
 
     if (v1 == 0xffffffff) {
         if ((sub_020380E4() >= 4) || sub_02038284() || !CommSys_IsPlayerConnected(0)) {
             ov65_02232DFC(param0);
 
             ov65_02232E58(param0, 16);
-            sub_02002154(param0->unk_184, 54);
+            Menu_DestroyForExit(param0->unk_184, 54);
             param0->unk_3D0 = -1;
             param0->unk_3BC = 20;
             param0->unk_3A8 = 65;
@@ -3083,7 +3081,7 @@ static int ov65_02230D20 (UnkStruct_ov65_0222EBE0 * param0, int param1)
     ov65_022355FC(&param0->unk_3EC);
 
     if (Text_IsPrinterActive(param0->unk_180) == 0) {
-        param0->unk_184 = sub_02002100(param0->unk_15C, &Unk_ov65_0223894C, ((512 - (18 + 12)) - 9), 11, 54);
+        param0->unk_184 = Menu_MakeYesNoChoice(param0->unk_15C, &Unk_ov65_0223894C, ((512 - (18 + 12)) - 9), 11, 54);
         param0->unk_3A8 = 41;
     }
 
@@ -3093,7 +3091,7 @@ static int ov65_02230D20 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 static int ov65_02230D6C (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
     int v0;
-    int v1 = sub_02002114(param0->unk_184, 54);
+    int v1 = Menu_ProcessInputAndHandleExit(param0->unk_184, 54);
 
     ov65_022355FC(&param0->unk_3EC);
 
@@ -3101,7 +3099,7 @@ static int ov65_02230D6C (UnkStruct_ov65_0222EBE0 * param0, int param1)
         ov4_021D2584(param0->unk_04->unk_00.unk_21);
 
         if (v1 == 0xffffffff) {
-            sub_02002154(param0->unk_184, 54);
+            Menu_DestroyForExit(param0->unk_184, 54);
         }
 
         v1 = 1;
@@ -3170,7 +3168,7 @@ UnkStruct_ov65_02239CDC Unk_ov65_02239C9C[] = {
     {0x29, (u32)0xfffffffe}
 };
 
-static UnkStruct_ov84_02240FA8 Unk_ov65_02239CBC = {
+static ListMenuTemplate Unk_ov65_02239CBC = {
     NULL,
     ov65_0222FED8,
     NULL,
@@ -3192,7 +3190,7 @@ static UnkStruct_ov84_02240FA8 Unk_ov65_02239CBC = {
     NULL
 };
 
-static const UnkStruct_ov84_02240FA8 Unk_ov65_02238AD0 = {
+static const ListMenuTemplate Unk_ov65_02238AD0 = {
     NULL,
     ov65_0222FED8,
     NULL,
@@ -3214,7 +3212,7 @@ static const UnkStruct_ov84_02240FA8 Unk_ov65_02238AD0 = {
     NULL
 };
 
-static const UnkStruct_ov84_02240FA8 Unk_ov65_02238AF0 = {
+static const ListMenuTemplate Unk_ov65_02238AF0 = {
     NULL,
     ov65_0222FED8,
     NULL,
@@ -3239,7 +3237,7 @@ static const UnkStruct_ov84_02240FA8 Unk_ov65_02238AF0 = {
 static int ov65_02230E04 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
     int v0, v1;
-    UnkStruct_ov84_02240FA8 v2;
+    ListMenuTemplate v2;
     UnkStruct_ov65_02239CDC * v3;
 
     v1 = 3;
@@ -3248,37 +3246,37 @@ static int ov65_02230E04 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
     if (ov65_0222DCF8(param0) == 1) {
         v1++;
-        v2.unk_10++;
-        v2.unk_12++;
+        v2.count++;
+        v2.maxDisplay++;
         v3[v1 - 1] = Unk_ov65_02239C28;
     }
 
     if (ov65_0222DCE0(param0) == 1) {
         v1++;
-        v2.unk_10++;
-        v2.unk_12++;
+        v2.count++;
+        v2.maxDisplay++;
 
         v3[v1 - 1] = Unk_ov65_02239C30;
     }
 
     if (ov65_0222DD1C(param0) == 1) {
         v1++;
-        v2.unk_10++;
-        v2.unk_12++;
+        v2.count++;
+        v2.maxDisplay++;
         v3[v1 - 1] = Unk_ov65_02239C38;
     }
 
     {
         v1++;
-        v2.unk_10++;
-        v2.unk_12++;
+        v2.count++;
+        v2.maxDisplay++;
         v3[v1 - 1] = Unk_ov65_02239C20;
     }
 
-    param0->unk_154 = sub_02013A04(v1, 54);
+    param0->unk_154 = StringList_New(v1, 54);
 
     for (v0 = 0; v0 < v1; v0++) {
-        sub_02013A4C(param0->unk_154, param0->unk_168, v3[v0].unk_00, v3[v0].unk_04);
+        StringList_AddFromMessageBank(param0->unk_154, param0->unk_168, v3[v0].unk_00, v3[v0].unk_04);
     }
 
     if (Window_IsInUse(&param0->unk_380)) {
@@ -3289,10 +3287,10 @@ static int ov65_02230E04 (UnkStruct_ov65_0222EBE0 * param0, int param1)
     Window_Add(param0->unk_15C, &param0->unk_380, 2, 16, 3, 15, v1 * 2, 13, ((((((512 - (18 + 12)) - 9) - 10) - (18 + 12 + 24)) - (27 * 4)) - (11 * 22)) - v1 * 2);
     Window_Show(&param0->unk_380, 1, ((512 - (18 + 12)) - 9), 11);
 
-    v2.unk_00 = param0->unk_154;
-    v2.unk_0C = &param0->unk_380;
+    v2.choices = param0->unk_154;
+    v2.window = &param0->unk_380;
 
-    param0->unk_158 = sub_0200112C(&v2, 0, param0->unk_3D4, 54);
+    param0->unk_158 = ListMenu_New(&v2, 0, param0->unk_3D4, 54);
 
     Window_ScheduleCopyToVRAM(&param0->unk_380);
     ov65_02232B58(param0, 8, 0);
@@ -3315,15 +3313,15 @@ static int ov65_02230FBC (UnkStruct_ov65_0222EBE0 * param0, int param1)
             param0->unk_3A8 = 19;
             Window_Clear(&param0->unk_380, 0);
             Window_Remove(&param0->unk_380);
-            sub_02001384(param0->unk_158, NULL, &param0->unk_3D4);
-            sub_02013A3C(param0->unk_154);
+            ListMenu_Free(param0->unk_158, NULL, &param0->unk_3D4);
+            StringList_Free(param0->unk_154);
             ov65_02232DFC(param0);
         }
 
         return param1;
     }
 
-    v0 = sub_02001288(param0->unk_158);
+    v0 = ListMenu_ProcessInput(param0->unk_158);
 
     if (0 != ov65_02230140(param0)) {
         v0 = 0xfffffffe;
@@ -3359,8 +3357,8 @@ static int ov65_02230FBC (UnkStruct_ov65_0222EBE0 * param0, int param1)
         } else if ((v0 == 0) || (v0 == 1) || (v0 == 29)) {
             Window_Clear(&param0->unk_380, 0);
             Window_Remove(&param0->unk_380);
-            sub_02001384(param0->unk_158, NULL, &param0->unk_3D4);
-            sub_02013A3C(param0->unk_154);
+            ListMenu_Free(param0->unk_158, NULL, &param0->unk_3D4);
+            StringList_Free(param0->unk_154);
             ov65_0223128C(param0, v0);
             param0->unk_3A8 = 38;
             return param1;
@@ -3394,8 +3392,8 @@ static int ov65_02230FBC (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
     Window_Clear(&param0->unk_380, 0);
     Window_Remove(&param0->unk_380);
-    sub_02001384(param0->unk_158, NULL, &param0->unk_3D4);
-    sub_02013A3C(param0->unk_154);
+    ListMenu_Free(param0->unk_158, NULL, &param0->unk_3D4);
+    StringList_Free(param0->unk_154);
 
     return param1;
 }
@@ -3437,7 +3435,7 @@ static int ov65_02231200 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 static int ov65_0223128C (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
     int v0, v1;
-    UnkStruct_ov84_02240FA8 v2;
+    ListMenuTemplate v2;
     UnkStruct_ov65_02239CDC * v3;
 
     switch (param1) {
@@ -3461,16 +3459,16 @@ static int ov65_0223128C (UnkStruct_ov65_0222EBE0 * param0, int param1)
         break;
     }
 
-    param0->unk_154 = sub_02013A04(v1, 54);
+    param0->unk_154 = StringList_New(v1, 54);
 
     for (v0 = 0; v0 < v1; v0++) {
         if (v3[v0].unk_00 != 71) {
-            sub_02013A4C(param0->unk_154, param0->unk_168, v3[v0].unk_00, v3[v0].unk_04);
+            StringList_AddFromMessageBank(param0->unk_154, param0->unk_168, v3[v0].unk_00, v3[v0].unk_04);
         } else {
             StringTemplate_SetPlazaMinigameName(param0->unk_164, 0, v0);
             MessageLoader_GetStrbuf(param0->unk_168, v3[v0].unk_00, param0->unk_170);
             StringTemplate_Format(param0->unk_164, param0->unk_178, param0->unk_170);
-            sub_02013A6C(param0->unk_154, param0->unk_178, v3[v0].unk_04);
+            StringList_AddFromStrbuf(param0->unk_154, param0->unk_178, v3[v0].unk_04);
         }
     }
 
@@ -3482,10 +3480,10 @@ static int ov65_0223128C (UnkStruct_ov65_0222EBE0 * param0, int param1)
     Window_Add(param0->unk_15C, &param0->unk_380, 2, 16, 9, 15, v1 * 2, 13, ((((((512 - (18 + 12)) - 9) - 10) - (18 + 12 + 24)) - (27 * 4)) - (11 * 22)) - v1 * 2);
     Window_Show(&param0->unk_380, 1, ((512 - (18 + 12)) - 9), 11);
 
-    v2.unk_00 = param0->unk_154;
-    v2.unk_0C = &param0->unk_380;
+    v2.choices = param0->unk_154;
+    v2.window = &param0->unk_380;
 
-    param0->unk_158 = sub_0200112C(&v2, 0, param0->unk_3D6[param0->unk_3DC], 54);
+    param0->unk_158 = ListMenu_New(&v2, 0, param0->unk_3D6[param0->unk_3DC], 54);
 
     Window_ScheduleCopyToVRAM(&param0->unk_380);
 
@@ -3502,8 +3500,8 @@ static int ov65_02231440 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         param0->unk_3A8 = 19;
         Window_Clear(&param0->unk_380, 0);
         Window_Remove(&param0->unk_380);
-        sub_02001384(param0->unk_158, NULL, &param0->unk_3D6[param0->unk_3DC]);
-        sub_02013A3C(param0->unk_154);
+        ListMenu_Free(param0->unk_158, NULL, &param0->unk_3D6[param0->unk_3DC]);
+        StringList_Free(param0->unk_154);
         ov65_02232DFC(param0);
         return param1;
     }
@@ -3512,7 +3510,7 @@ static int ov65_02231440 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         return param1;
     }
 
-    v0 = sub_02001288(param0->unk_158);
+    v0 = ListMenu_ProcessInput(param0->unk_158);
 
     switch (v0) {
     case 0xffffffff:
@@ -3549,8 +3547,8 @@ static int ov65_02231440 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
     Window_Clear(&param0->unk_380, 0);
     Window_Remove(&param0->unk_380);
-    sub_02001384(param0->unk_158, NULL, &param0->unk_3D6[param0->unk_3DC]);
-    sub_02013A3C(param0->unk_154);
+    ListMenu_Free(param0->unk_158, NULL, &param0->unk_3D6[param0->unk_3DC]);
+    StringList_Free(param0->unk_154);
 
     return param1;
 }
@@ -3563,7 +3561,7 @@ static const struct {
     {0x29, (u32)0xfffffffe}
 };
 
-static const UnkStruct_ov84_02240FA8 Unk_ov65_02238A90 = {
+static const ListMenuTemplate Unk_ov65_02238A90 = {
     NULL,
     ov65_0222FED8,
     NULL,
@@ -3687,7 +3685,7 @@ static int ov65_022316F0 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
     if (v0 == NULL) {
         ov65_0223556C(&param0->unk_3EC, v0);
-        sub_02001384(param0->unk_158, NULL, NULL);
+        ListMenu_Free(param0->unk_158, NULL, NULL);
         ov65_02232DC0(param0, v2 - 1);
         ov65_02232B58(param0, 16, 0);
         param0->unk_3A8 = 29;
@@ -3711,7 +3709,7 @@ static int ov65_022316F0 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
     {
         int v5, v6;
-        UnkStruct_ov84_02240FA8 v7;
+        ListMenuTemplate v7;
         u16 v8, v9, v10;
         UnkStruct_0207E060 * v11;
 
@@ -3725,38 +3723,38 @@ static int ov65_022316F0 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         param0->unk_3E0 = v10;
 
         v10 += param0->unk_04->unk_00.unk_21;
-        param0->unk_154 = sub_02013A04(v6, 54);
+        param0->unk_154 = StringList_New(v6, 54);
         v5 = 0;
 
         for (v5 = 0; v5 < NELEMS(Unk_ov65_02238968); v5++) {
             if (v5 == 0) {
                 if (ov65_0222DE68(v9) || (v9 == 0) || (v9 == 28) || (v9 >= 29)) {
-                    v7.unk_12 -= 1;
-                    v7.unk_10 -= 1;
+                    v7.maxDisplay -= 1;
+                    v7.count -= 1;
                     v6 -= 1;
                 } else if (v9 == 16) {
                     if (v10 == 2) {
-                        sub_02013A4C(param0->unk_154, param0->unk_168, 36, Unk_ov65_02238968[v5].unk_04);
+                        StringList_AddFromMessageBank(param0->unk_154, param0->unk_168, 36, Unk_ov65_02238968[v5].unk_04);
                     } else {
-                        v7.unk_12 -= 1;
-                        v7.unk_10 -= 1;
+                        v7.maxDisplay -= 1;
+                        v7.count -= 1;
                         v6 -= 1;
                     }
                 } else {
-                    sub_02013A4C(param0->unk_154, param0->unk_168, Unk_ov65_02238968[v5].unk_00, Unk_ov65_02238968[v5].unk_04);
+                    StringList_AddFromMessageBank(param0->unk_154, param0->unk_168, Unk_ov65_02238968[v5].unk_00, Unk_ov65_02238968[v5].unk_04);
                 }
             } else {
-                sub_02013A4C(param0->unk_154, param0->unk_168, Unk_ov65_02238968[v5].unk_00, Unk_ov65_02238968[v5].unk_04);
+                StringList_AddFromMessageBank(param0->unk_154, param0->unk_168, Unk_ov65_02238968[v5].unk_00, Unk_ov65_02238968[v5].unk_04);
             }
         }
 
         Window_Add(param0->unk_15C, &param0->unk_380, 2, 16, 11 + ((3 - v6) * 2), 15, v6 * 2, 13, ((((((512 - (18 + 12)) - 9) - 10) - (18 + 12 + 24)) - (27 * 4)) - (11 * 22)));
         Window_Show(&param0->unk_380, 1, ((512 - (18 + 12)) - 9), 11);
 
-        v7.unk_00 = param0->unk_154;
-        v7.unk_0C = &param0->unk_380;
+        v7.choices = param0->unk_154;
+        v7.window = &param0->unk_380;
 
-        param0->unk_158 = sub_0200112C(&v7, 0, 0, 54);
+        param0->unk_158 = ListMenu_New(&v7, 0, 0, 54);
 
         Window_ScheduleCopyToVRAM(&param0->unk_380);
     }
@@ -3856,7 +3854,7 @@ static int ov65_02231A98 (UnkStruct_ov65_0222EBE0 * param0, int param1)
     UnkStruct_ov65_022354D8 * v7;
     UnkStruct_0207E060 * v8;
 
-    v0 = sub_02001288(param0->unk_158);
+    v0 = ListMenu_ProcessInput(param0->unk_158);
     v6 = ov65_02230140(param0);
 
     if (0 != v6) {
@@ -3869,8 +3867,8 @@ static int ov65_02231A98 (UnkStruct_ov65_0222EBE0 * param0, int param1)
     if (sub_020383E8()) {
         Window_Clear(&param0->unk_380, 0);
         Window_Remove(&param0->unk_380);
-        sub_02001384(param0->unk_158, NULL, NULL);
-        sub_02013A3C(param0->unk_154);
+        ListMenu_Free(param0->unk_158, NULL, NULL);
+        StringList_Free(param0->unk_154);
 
         if (v7 != NULL) {
             ov65_0223556C(&param0->unk_3EC, v7);
@@ -3883,7 +3881,7 @@ static int ov65_02231A98 (UnkStruct_ov65_0222EBE0 * param0, int param1)
     switch (v0) {
     case 0xffffffff:
         if (v7 == NULL) {
-            sub_02001384(param0->unk_158, NULL, NULL);
+            ListMenu_Free(param0->unk_158, NULL, NULL);
             ov65_02232DC0(param0, v2 - 1);
             ov65_02232B58(param0, 16, 0);
             param0->unk_3A8 = 29;
@@ -4033,8 +4031,8 @@ static int ov65_02231A98 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
     Window_Clear(&param0->unk_380, 0);
     Window_Remove(&param0->unk_380);
-    sub_02001384(param0->unk_158, NULL, NULL);
-    sub_02013A3C(param0->unk_154);
+    ListMenu_Free(param0->unk_158, NULL, NULL);
+    StringList_Free(param0->unk_154);
 
     if (v7 != NULL) {
         ov65_0223556C(&param0->unk_3EC, v7);
@@ -4445,7 +4443,7 @@ static int ov65_022325AC (UnkStruct_ov65_0222EBE0 * param0, int param1)
 static int ov65_022325C4 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
     if (Text_IsPrinterActive(param0->unk_180) == 0) {
-        param0->unk_184 = sub_02002100(param0->unk_15C, &Unk_ov65_0223894C, ((512 - (18 + 12)) - 9), 11, 54);
+        param0->unk_184 = Menu_MakeYesNoChoice(param0->unk_15C, &Unk_ov65_0223894C, ((512 - (18 + 12)) - 9), 11, 54);
         param0->unk_3A8 = 58;
     }
 
@@ -4455,7 +4453,7 @@ static int ov65_022325C4 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 static int ov65_02232608 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
     int v0;
-    int v1 = sub_02002114(param0->unk_184, 54);
+    int v1 = Menu_ProcessInputAndHandleExit(param0->unk_184, 54);
 
     if (Text_IsPrinterActive(param0->unk_180) != 0) {
         return param1;
@@ -4463,7 +4461,7 @@ static int ov65_02232608 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
     if (0 != ov65_02230140(param0)) {
         if (v1 == 0xffffffff) {
-            sub_02002154(param0->unk_184, 54);
+            Menu_DestroyForExit(param0->unk_184, 54);
         }
 
         v1 = 0xfffffffe;
@@ -4532,7 +4530,7 @@ static int ov65_02232734 (UnkStruct_ov65_0222EBE0 * param0, int param1)
     CommMan_SetErrorHandling(0, 1);
 
     if (Text_IsPrinterActive(param0->unk_180) == 0) {
-        param0->unk_184 = sub_02002100(param0->unk_15C, &Unk_ov65_0223894C, ((512 - (18 + 12)) - 9), 11, 54);
+        param0->unk_184 = Menu_MakeYesNoChoice(param0->unk_15C, &Unk_ov65_0223894C, ((512 - (18 + 12)) - 9), 11, 54);
         param0->unk_3A8 = 62;
     }
 
@@ -4549,14 +4547,14 @@ static int ov65_0223278C (UnkStruct_ov65_0222EBE0 * param0, int param1)
     }
 
     if (sub_02038294() || sub_02038284() || (sub_020380E4() >= 3)) {
-        sub_02002154(param0->unk_184, 54);
+        Menu_DestroyForExit(param0->unk_184, 54);
         ov65_02232B58(param0, 101, 0);
         param0->unk_3A8 = 28;
     } else if (sub_020383E8()) {
-        sub_02002154(param0->unk_184, 54);
+        Menu_DestroyForExit(param0->unk_184, 54);
         ov65_0222F6EC(param0);
     } else {
-        v1 = sub_02002114(param0->unk_184, 54);
+        v1 = Menu_ProcessInputAndHandleExit(param0->unk_184, 54);
 
         if (v1 == 0xffffffff) {
             return param1;
@@ -4612,7 +4610,7 @@ static int ov65_0223288C (UnkStruct_ov65_0222EBE0 * param0, int param1)
     }
 
     if (Text_IsPrinterActive(param0->unk_180) == 0) {
-        param0->unk_184 = sub_02002100(param0->unk_15C, &Unk_ov65_0223894C, ((512 - (18 + 12)) - 9), 11, 54);
+        param0->unk_184 = Menu_MakeYesNoChoice(param0->unk_15C, &Unk_ov65_0223894C, ((512 - (18 + 12)) - 9), 11, 54);
         param0->unk_3A8 = 64;
     }
 
@@ -4633,7 +4631,7 @@ static int ov65_0223294C (UnkStruct_ov65_0222EBE0 * param0, int param1)
         v5 = ov65_0222E8D4(param0, v3);
 
         if (v5 == NULL) {
-            sub_02002154(param0->unk_184, 54);
+            Menu_DestroyForExit(param0->unk_184, 54);
             ov65_02232DC0(param0, v3 - 1);
             ov65_02232B58(param0, 16, 0);
             param0->unk_3A8 = 29;
@@ -4644,7 +4642,7 @@ static int ov65_0223294C (UnkStruct_ov65_0222EBE0 * param0, int param1)
             v4 = v6->unk_21;
 
             if ((param0->unk_3DE != v2) || (param0->unk_3E0 != v4)) {
-                sub_02002154(param0->unk_184, 54);
+                Menu_DestroyForExit(param0->unk_184, 54);
                 ov65_02232DC0(param0, v3 - 1);
                 ov65_02232B58(param0, 16, 0);
                 param0->unk_3A8 = 29;
@@ -4654,16 +4652,16 @@ static int ov65_0223294C (UnkStruct_ov65_0222EBE0 * param0, int param1)
     }
 
     if (sub_020380E4() >= 3) {
-        sub_02002154(param0->unk_184, 54);
+        Menu_DestroyForExit(param0->unk_184, 54);
         ov65_02232B58(param0, 18, 0);
         sub_02038378();
         param0->unk_3A8 = 29;
         return param1;
     } else if (sub_020383E8()) {
-        sub_02002154(param0->unk_184, 54);
+        Menu_DestroyForExit(param0->unk_184, 54);
         ov65_0222F6EC(param0);
     } else {
-        v1 = sub_02002114(param0->unk_184, 54);
+        v1 = Menu_ProcessInputAndHandleExit(param0->unk_184, 54);
 
         if (v1 == 0xffffffff) {
             return param1;

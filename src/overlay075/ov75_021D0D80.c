@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_defs/sprite_template.h"
@@ -22,6 +21,7 @@
 #include "game_options.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
@@ -32,7 +32,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200A784.h"
 #include "unk_0200C6E4.h"
@@ -88,7 +87,7 @@ typedef struct {
     NNSG2dScreenData *unk_3C;
     NNSG2dScreenData *unk_40;
     Window unk_44[6];
-    UIControlData *unk_A4;
+    Menu *unk_A4;
     SpriteRenderer *unk_A8;
     SpriteGfxHandler *unk_AC;
     CellActorData *unk_B0[3];
@@ -300,12 +299,12 @@ static void ov75_021D1040(UnkStruct_ov75_021D1184 *param0)
         0, 25, 13, 6, 4, UnkEnum_ov75_021D1598_03, 555
     };
 
-    param0->unk_A4 = sub_02002100(param0->unk_18, &v0, 1, UnkEnum_ov75_021D1598_05, param0->unk_00);
+    param0->unk_A4 = Menu_MakeYesNoChoice(param0->unk_18, &v0, 1, UnkEnum_ov75_021D1598_05, param0->unk_00);
 }
 
 static int ov75_021D1064(UnkStruct_ov75_021D1184 *param0)
 {
-    switch (sub_02002114(param0->unk_A4, param0->unk_00)) {
+    switch (Menu_ProcessInputAndHandleExit(param0->unk_A4, param0->unk_00)) {
     case 0:
         return 1;
     case 0xfffffffe:

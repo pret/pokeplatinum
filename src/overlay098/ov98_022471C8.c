@@ -4,17 +4,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02025CCC_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
-#include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay004/ov4_021D0D80.h"
 #include "overlay061/struct_ov61_0222C3B0.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 #include "overlay094/ov94_0223B140.h"
 #include "overlay098/ov98_02246C20.h"
 #include "overlay098/ov98_022499C8.h"
@@ -29,6 +24,8 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "inlines.h"
+#include "list_menu.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
@@ -36,15 +33,13 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_0200112C.h"
-#include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200A784.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02013A04.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
@@ -78,14 +73,14 @@ typedef struct {
     Window unk_58;
     Window unk_68;
     Window unk_78;
-    UIControlData * unk_88;
+    Menu *unk_88;
     void * unk_8C;
     int unk_90;
     int unk_94;
     int unk_98;
     int unk_9C;
-    ResourceMetadata * unk_A0;
-    BmpList * unk_A4;
+    StringList *unk_A0;
+    ListMenu *unk_A4;
     int unk_A8;
     int unk_AC;
     int unk_B0;
@@ -117,7 +112,7 @@ static void ov98_02247ACC(UnkStruct_ov98_02247704 * param0);
 static void ov98_02247AE8(UnkStruct_ov98_02247704 * param0, int param1, int param2);
 static void ov98_02247AF0(UnkStruct_ov98_02247704 * param0);
 static void ov98_02247B0C(UnkStruct_ov98_02247704 * param0);
-static UIControlData *ov98_02247B24(BgConfig *param0, int param1, int param2);
+static Menu *ov98_02247B24(BgConfig *param0, int param1, int param2);
 static int ov98_02247B98(UnkStruct_ov98_02247704 * param0);
 static int ov98_02247D30(UnkStruct_ov98_02247704 * param0);
 static int ov98_02247D50(UnkStruct_ov98_02247704 * param0);
@@ -162,8 +157,8 @@ static int ov98_02249894(Window * param0, Strbuf *param1, int param2, int param3
 void ov98_022498CC(Window *param0, Strbuf *param1, int param2, int param3, int param4, TextColor param5);
 static void ov98_02249900(UnkStruct_ov98_02247704 * param0, int param1);
 static void ov98_02249964(UnkStruct_ov98_02247704 * param0, int param1, int param2);
-static void ov98_022499A0(BmpList * param0, u32 param1, u8 param2);
-static void ov98_022499B4(BmpList * param0, u32 param1, u8 param2);
+static void ov98_022499A0(ListMenu *param0, u32 param1, u8 param2);
+static void ov98_022499B4(ListMenu *param0, u32 param1, u8 param2);
 
 static int (* Unk_ov98_02249D70[])(UnkStruct_ov98_02247704 *) = {
     ov98_02247B98,
@@ -214,7 +209,7 @@ static const UnkStruct_ov98_02249BDC Unk_ov98_02249BEC[] = {
     {0x4, 0x1D}
 };
 
-static const UnkStruct_ov84_02240FA8 Unk_ov98_02249C0C = {
+static const ListMenuTemplate Unk_ov98_02249C0C = {
     NULL,
     ov98_022499A0,
     NULL,
@@ -247,7 +242,7 @@ static const UnkStruct_ov98_02249BDC Unk_ov98_02249BDC[] = {
     {0x4, 0x1D}
 };
 
-static const UnkStruct_ov84_02240FA8 Unk_ov98_02249C2C = {
+static const ListMenuTemplate Unk_ov98_02249C2C = {
     NULL,
     ov98_022499B4,
     NULL,
@@ -699,7 +694,7 @@ static void ov98_02247B0C (UnkStruct_ov98_02247704 * param0)
     }
 }
 
-static UIControlData *ov98_02247B24(BgConfig *param0, int param1, int param2)
+static Menu *ov98_02247B24(BgConfig *param0, int param1, int param2)
 {
     WindowTemplate v0;
 
@@ -707,10 +702,10 @@ static UIControlData *ov98_02247B24(BgConfig *param0, int param1, int param2)
     v0.tilemapTop = param1;
     v0.baseTile = param2;
 
-    return sub_02002100(param0, &v0, (1 + (18 + 12)), 11, 109);
+    return Menu_MakeYesNoChoice(param0, &v0, (1 + (18 + 12)), 11, 109);
 }
 
-static UIControlData *ov98_02247B58(BgConfig *param0, int param1, int param2, int param3)
+static Menu *ov98_02247B58(BgConfig *param0, int param1, int param2, int param3)
 {
     WindowTemplate v0;
 
@@ -718,7 +713,7 @@ static UIControlData *ov98_02247B58(BgConfig *param0, int param1, int param2, in
     v0.tilemapTop = param1;
     v0.baseTile = param2;
 
-    return sub_02002054(param0, &v0, (1 + (18 + 12)), 11, param3, 109);
+    return Menu_MakeYesNoChoiceWithCursorAt(param0, &v0, (1 + (18 + 12)), 11, param3, 109);
 }
 
 static int ov98_02247B98 (UnkStruct_ov98_02247704 * param0)
@@ -729,7 +724,7 @@ static int ov98_02247B98 (UnkStruct_ov98_02247704 * param0)
     case 0:
     {
         int v1;
-        UnkStruct_ov84_02240FA8 v2;
+        ListMenuTemplate v2;
         const u8 * v3;
         const UnkStruct_ov98_02249BDC * v4;
         int v5;
@@ -748,15 +743,15 @@ static int ov98_02247B98 (UnkStruct_ov98_02247704 * param0)
 
         Window_Add(param0->unk_04, &param0->unk_78, 0, v3[0], v3[1], v3[2], v3[3], 13, (((1 + (18 + 12)) + 9) + 27 * 4));
 
-        param0->unk_A0 = sub_02013A04(v5, 109);
+        param0->unk_A0 = StringList_New(v5, 109);
 
         for (v1 = 0; v1 < v5; v1++) {
-            sub_02013A4C(param0->unk_A0, param0->unk_34, v4[v1].unk_00, v4[v1].unk_04);
+            StringList_AddFromMessageBank(param0->unk_A0, param0->unk_34, v4[v1].unk_00, v4[v1].unk_04);
         }
 
-        v2.unk_0C = &param0->unk_78;
-        v2.unk_00 = param0->unk_A0;
-        param0->unk_A4 = sub_0200112C(&v2, 0, 0, 109);
+        v2.window = &param0->unk_78;
+        v2.choices = param0->unk_A0;
+        param0->unk_A4 = ListMenu_New(&v2, 0, 0, 109);
 
         Window_Show(&param0->unk_78, 1, (1 + (18 + 12)), 11);
         sub_0200E084(&param0->unk_48, 1);
@@ -766,7 +761,7 @@ static int ov98_02247B98 (UnkStruct_ov98_02247704 * param0)
         param0->unk_94++;
         break;
     case 1:
-        v0 = sub_02001288(param0->unk_A4);
+        v0 = ListMenu_ProcessInput(param0->unk_A4);
 
         switch (v0) {
         case 0xffffffff:
@@ -785,8 +780,8 @@ static int ov98_02247B98 (UnkStruct_ov98_02247704 * param0)
         }
         break;
     default:
-        sub_02013A3C(param0->unk_A0);
-        sub_02001384(param0->unk_A4, NULL, NULL);
+        StringList_Free(param0->unk_A0);
+        ListMenu_Free(param0->unk_A4, NULL, NULL);
         Window_Clear(&param0->unk_78, 1);
         Window_ClearAndCopyToVRAM(&param0->unk_78);
         Window_Remove(&param0->unk_78);
@@ -823,7 +818,7 @@ static int ov98_02247D50 (UnkStruct_ov98_02247704 * param0)
         break;
     case 2:
     {
-        int v0 = sub_02002114(param0->unk_88, 109);
+        int v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
 
         if (v0 != 0xffffffff) {
             if (v0 == 0xfffffffe) {
@@ -863,7 +858,7 @@ static int ov98_02247E38 (UnkStruct_ov98_02247704 * param0)
         break;
     case 2:
     {
-        int v0 = sub_02002114(param0->unk_88, 109);
+        int v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
 
         if (v0 != 0xffffffff) {
             if (v0 == 0xfffffffe) {
@@ -1382,7 +1377,7 @@ static int ov98_02248684 (UnkStruct_ov98_02247704 * param0)
         break;
     case 2:
     {
-        int v0 = sub_02002114(param0->unk_88, 109);
+        int v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
 
         if (v0 != 0xffffffff) {
             if (v0 == 0xfffffffe) {
@@ -1412,7 +1407,7 @@ static int ov98_02248684 (UnkStruct_ov98_02247704 * param0)
         break;
     default:
     {
-        int v2 = sub_02002114(param0->unk_88, 109);
+        int v2 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
 
         if (v2 != 0xffffffff) {
             if (v2 == 0xfffffffe) {
@@ -1476,7 +1471,7 @@ static int ov98_02248804 (UnkStruct_ov98_02247704 * param0)
         break;
     case 3:
     {
-        int v0 = sub_02002114(param0->unk_88, 109);
+        int v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
 
         if (v0 != 0xffffffff) {
             if (v0 == 0xfffffffe) {
@@ -1504,7 +1499,7 @@ static int ov98_02248804 (UnkStruct_ov98_02247704 * param0)
 
 static int ov98_022488F8 (UnkStruct_ov98_02247704 * param0)
 {
-    int v0 = sub_02002114(param0->unk_88, 109);
+    int v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
 
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
@@ -1877,7 +1872,7 @@ static int ov98_02248DF4 (UnkStruct_ov98_02247704 * param0)
         break;
     case 2:
     {
-        int v0 = sub_02002114(param0->unk_88, 109);
+        int v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
 
         if (v0 != 0xffffffff) {
             if (v0 == 0xfffffffe) {
@@ -1923,7 +1918,7 @@ static int ov98_02248EE0 (UnkStruct_ov98_02247704 * param0)
         break;
     case 2:
     {
-        int v0 = sub_02002114(param0->unk_88, 109);
+        int v0 = Menu_ProcessInputAndHandleExit(param0->unk_88, 109);
 
         if (v0 != 0xffffffff) {
             if (v0 == 0xfffffffe) {
@@ -2514,14 +2509,14 @@ static void ov98_02249964 (UnkStruct_ov98_02247704 * param0, int param1, int par
     ov98_02249900(param0, v0);
 }
 
-static void ov98_022499A0 (BmpList * param0, u32 param1, u8 param2)
+static void ov98_022499A0(ListMenu *param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
         Sound_PlayEffect(1500);
     }
 }
 
-static void ov98_022499B4 (BmpList * param0, u32 param1, u8 param2)
+static void ov98_022499B4(ListMenu *param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
         Sound_PlayEffect(1500);

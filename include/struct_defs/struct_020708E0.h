@@ -2,8 +2,6 @@
 #define POKEPLATINUM_STRUCT_020708E0_H
 
 #include "struct_decls/cell_actor_data.h"
-#include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_defs/struct_020684D0.h"
 #include "struct_defs/struct_02070950.h"
 
@@ -11,12 +9,14 @@
 #include "overlay005/struct_ov5_021D30A8.h"
 
 #include "bg_window.h"
+#include "menu.h"
+#include "string_list.h"
 
 typedef struct {
     Window unk_00;
     Window unk_10;
-    UIControlData *unk_20;
-    ResourceMetadata *unk_24;
+    Menu *unk_20;
+    StringList *unk_24;
     u16 unk_28;
     u16 state;
     u32 unk_2C;

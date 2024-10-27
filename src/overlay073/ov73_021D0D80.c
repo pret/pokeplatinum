@@ -1,18 +1,14 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_defs/archived_sprite.h"
-#include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/struct_0203CC84.h"
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay057/const_ov57_021D0F80.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 
 #include "bg_window.h"
 #include "core_sys.h"
@@ -21,6 +17,7 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "list_menu.h"
 #include "message.h"
 #include "overlay_manager.h"
 #include "palette.h"
@@ -30,19 +27,18 @@
 #include "savedata.h"
 #include "savedata_misc.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_02000C88.h"
-#include "unk_0200112C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
-#include "unk_02013A04.h"
 #include "unk_0201567C.h"
 #include "unk_02015920.h"
 #include "unk_02017728.h"
@@ -63,8 +59,8 @@ typedef struct {
     Window unk_1C;
     int unk_2C;
     Window unk_30;
-    BmpList *unk_40;
-    ResourceMetadata *unk_44;
+    ListMenu *unk_40;
+    StringList *unk_44;
     int unk_48;
     MessageLoader *unk_4C;
     int unk_50;
@@ -646,7 +642,7 @@ const WindowTemplate Unk_ov72_021D37D4 = {
     0x12D
 };
 
-static const UnkStruct_ov84_02240FA8 Unk_ov72_021D390C = {
+static const ListMenuTemplate Unk_ov72_021D390C = {
     NULL,
     NULL,
     NULL,
@@ -738,7 +734,7 @@ static BOOL ov73_021D1510(UnkStruct_ov73_021D1058 *param0, u32 param1, int param
     return v0;
 }
 
-static void ov73_021D1634(BmpList *param0, u32 param1, u8 param2)
+static void ov73_021D1634(ListMenu *param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
         Sound_PlayEffect(1500);
@@ -748,7 +744,7 @@ static void ov73_021D1634(BmpList *param0, u32 param1, u8 param2)
 static BOOL ov73_021D1648(UnkStruct_ov73_021D1058 *param0, int param1, int param2)
 {
     BOOL v0 = 0;
-    UnkStruct_ov84_02240FA8 v1;
+    ListMenuTemplate v1;
     const WindowTemplate *v2;
     const UnkStruct_ov72_021D3840 *v3;
     int v4, v5;
@@ -782,28 +778,28 @@ static BOOL ov73_021D1648(UnkStruct_ov73_021D1058 *param0, int param1, int param
 
         Window_AddFromTemplate(param0->unk_18, &param0->unk_30, v2);
 
-        param0->unk_44 = sub_02013A04(v5, param0->unk_00);
+        param0->unk_44 = StringList_New(v5, param0->unk_00);
 
         for (v4 = 0; v4 < v5; v4++) {
-            sub_02013A4C(param0->unk_44, param0->unk_4C, v3[v4].unk_00, v3[v4].unk_04);
+            StringList_AddFromMessageBank(param0->unk_44, param0->unk_4C, v3[v4].unk_00, v3[v4].unk_04);
         }
 
         v1 = Unk_ov72_021D390C;
-        v1.unk_00 = param0->unk_44;
-        v1.unk_10 = v5;
-        v1.unk_12 = v5;
-        v1.unk_04 = ov73_021D1634;
-        v1.unk_0C = &param0->unk_30;
+        v1.choices = param0->unk_44;
+        v1.count = v5;
+        v1.maxDisplay = v5;
+        v1.cursorCallback = ov73_021D1634;
+        v1.window = &param0->unk_30;
 
-        param0->unk_40 = sub_0200112C(&v1, 0, 0, param0->unk_00);
+        param0->unk_40 = ListMenu_New(&v1, 0, 0, param0->unk_00);
 
-        Window_Show(v1.unk_0C, 1, ((0x400 - (18 + 12)) - 9), 3);
+        Window_Show(v1.window, 1, ((0x400 - (18 + 12)) - 9), 3);
         Window_CopyToVRAM(&param0->unk_30);
 
         param0->unk_2C = 1;
         break;
     case 1:
-        param0->unk_48 = sub_02001288(param0->unk_40);
+        param0->unk_48 = ListMenu_ProcessInput(param0->unk_40);
 
         if (param0->unk_48 == 0xffffffff) {
             break;
@@ -815,8 +811,8 @@ static BOOL ov73_021D1648(UnkStruct_ov73_021D1058 *param0, int param1, int param
 
         Window_Clear(&param0->unk_30, 0);
         Window_Remove(&param0->unk_30);
-        sub_02001384(param0->unk_40, NULL, NULL);
-        sub_02013A3C(param0->unk_44);
+        ListMenu_Free(param0->unk_40, NULL, NULL);
+        StringList_Free(param0->unk_44);
         Sound_PlayEffect(1500);
 
         param0->unk_2C = 0;

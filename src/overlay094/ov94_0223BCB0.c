@@ -4,7 +4,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_defs/struct_0203E0FC.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -30,6 +29,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "inlines.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
@@ -37,7 +37,6 @@
 #include "sprite_resource.h"
 #include "string_template.h"
 #include "trainer_info.h"
-#include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
@@ -407,7 +406,7 @@ static const WindowTemplate Unk_ov94_022459F8 = {
     0x0
 };
 
-UIControlData *ov94_0223C3C0(BgConfig *param0, int param1, int param2)
+Menu *ov94_0223C3C0(BgConfig *param0, int param1, int param2)
 {
     WindowTemplate v0;
 
@@ -415,7 +414,7 @@ UIControlData *ov94_0223C3C0(BgConfig *param0, int param1, int param2)
     v0.tilemapTop = param1;
     v0.baseTile = param2;
 
-    return sub_02002100(param0, &v0, (1 + (18 + 12)), 11, 62);
+    return Menu_MakeYesNoChoice(param0, &v0, (1 + (18 + 12)), 11, 62);
 }
 
 void ov94_0223C3F4(UnkStruct_ov94_0223FD4C *param0, int param1, int param2)

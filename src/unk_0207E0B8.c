@@ -24,6 +24,7 @@
 #include "heap.h"
 #include "item.h"
 #include "journal.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
@@ -31,17 +32,16 @@
 #include "pokemon.h"
 #include "pokemon_summary_app.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02013A04.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E010.h"
@@ -548,7 +548,7 @@ static int sub_0207E5F4(GameWindowLayout *param0)
 
 static int sub_0207E634(GameWindowLayout *param0)
 {
-    u32 v0 = sub_02001BE0(param0->unk_700);
+    u32 v0 = Menu_ProcessInput(param0->unk_700);
 
     switch (v0) {
     case 0xffffffff:
@@ -557,8 +557,8 @@ static int sub_0207E634(GameWindowLayout *param0)
         sub_0200E084(&param0->unk_04[33], 1);
         Window_Clear(&param0->unk_04[35], 1);
         Window_ClearAndScheduleCopyToVRAM(&param0->unk_04[35]);
-        sub_02001BC4(param0->unk_700, NULL);
-        sub_02013A3C(param0->unk_6FC);
+        Menu_Free(param0->unk_700, NULL);
+        StringList_Free(param0->unk_6FC);
         sub_020826E0(param0, 29, 1);
         sub_0200D414(param0->unk_5B0[6], 0);
         return 1;
@@ -603,7 +603,7 @@ static int sub_0207E708(GameWindowLayout *param0)
 
 static int sub_0207E714(GameWindowLayout *param0)
 {
-    switch (sub_02002114(param0->unk_700, 12)) {
+    switch (Menu_ProcessInputAndHandleExit(param0->unk_700, 12)) {
     case 0:
         return param0->unk_B04.unk_00(param0);
     case 0xfffffffe:
@@ -2316,7 +2316,7 @@ static int GetValidWindowLayout(GameWindowLayout *param0)
 
 static u8 HandleWindowInputEvent(GameWindowLayout *param0, int *param1)
 {
-    u32 v0 = sub_02001BE0(param0->unk_700);
+    u32 v0 = Menu_ProcessInput(param0->unk_700);
 
     switch (v0) {
     case 0xffffffff:
@@ -2777,7 +2777,7 @@ static int ProcessPokemonItemSwap(GameWindowLayout *param0)
 {
     int v0, v1;
 
-    switch (sub_02002114(param0->unk_700, 12)) {
+    switch (Menu_ProcessInputAndHandleExit(param0->unk_700, 12)) {
     case 0: {
         Pokemon *v2;
         Window *v3;

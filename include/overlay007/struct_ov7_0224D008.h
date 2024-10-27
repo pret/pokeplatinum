@@ -1,10 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV7_0224D008_H
 #define POKEPLATINUM_STRUCT_OV7_0224D008_H
 
-#include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 
 #include "overlay005/struct_ov5_021D30A8.h"
 
@@ -14,9 +11,12 @@
 #include "game_options.h"
 #include "game_records.h"
 #include "journal.h"
+#include "list_menu.h"
+#include "menu.h"
 #include "message.h"
 #include "savedata.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "trainer_info.h"
 #include "vars_flags.h"
@@ -26,10 +26,10 @@ typedef struct {
     void *unk_04;
     Window unk_08[6];
     Window unk_68;
-    BmpList *unk_78;
-    ResourceMetadata *unk_7C;
-    UIControlData *unk_80;
-    ResourceMetadata *unk_84;
+    ListMenu *unk_78;
+    StringList *unk_7C;
+    Menu *unk_80;
+    StringList *unk_84;
     MessageLoader *unk_88;
     StringTemplate *unk_8C;
     Camera *camera;

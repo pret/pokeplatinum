@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_defs/struct_0200D0F4.h"
@@ -16,13 +15,13 @@
 #include "game_options.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
 #include "render_text.h"
 #include "strbuf.h"
 #include "text.h"
-#include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
@@ -58,7 +57,7 @@ typedef struct UnkStruct_ov74_021D0D80_t {
     NNSG2dScreenData *unk_28;
     Window unk_2C[3];
     UnkStruct_ov74_021D1720 unk_5C[7];
-    UIControlData *unk_2A8;
+    Menu *unk_2A8;
     u32 unk_2AC;
     SpriteRenderer *unk_2B0;
     SpriteGfxHandler *unk_2B4;
@@ -751,12 +750,12 @@ static void ov74_021D1BA8(UnkStruct_ov74_021D0D80 *param0)
         3, 25, 13, 6, 4, 13, (((((10 + 12 * 2) + 30 * 14) + 27 * 4) + 9) + (18 + 12))
     };
 
-    param0->unk_2A8 = sub_02002100(param0->unk_14, &v0, (((10 + 12 * 2) + 30 * 14) + 27 * 4), 14, param0->unk_00);
+    param0->unk_2A8 = Menu_MakeYesNoChoice(param0->unk_14, &v0, (((10 + 12 * 2) + 30 * 14) + 27 * 4), 14, param0->unk_00);
 }
 
 static u32 ov74_021D1BD0(UnkStruct_ov74_021D0D80 *param0)
 {
-    return sub_02002114(param0->unk_2A8, param0->unk_00);
+    return Menu_ProcessInputAndHandleExit(param0->unk_2A8, param0->unk_00);
 }
 
 static void ov74_021D1BE4(UnkStruct_ov74_021D0D80 *param0, u16 param1, BOOL param2)

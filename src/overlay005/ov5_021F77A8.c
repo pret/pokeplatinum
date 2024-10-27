@@ -6,31 +6,28 @@
 #include "constants/forms.h"
 #include "constants/species.h"
 
-#include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
-#include "struct_defs/struct_02013A04_t.h"
-
 #include "field/field_system.h"
 #include "overlay005/ov5_021DC018.h"
 #include "overlay005/struct_ov5_021DC1A4_decl.h"
 #include "overlay005/struct_ov5_021F7ED8_decl.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 
 #include "bag.h"
 #include "bg_window.h"
 #include "field_script_context.h"
+#include "font.h"
 #include "heap.h"
 #include "inlines.h"
+#include "list_menu.h"
 #include "message.h"
 #include "party.h"
 #include "pokemon.h"
 #include "script_manager.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "tutor_movesets.h"
-#include "unk_0200112C.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -59,11 +56,11 @@ struct UnkStruct_ov5_021F7ED8_t {
     u8 unk_C7;
     u16 *unk_C8;
     u16 *unk_CC;
-    UnkStruct_ov84_02240FA8 unk_D0;
-    BmpList *unk_F0;
+    ListMenuTemplate unk_D0;
+    ListMenu *unk_F0;
     u16 unk_F4;
     u16 unk_F6;
-    ResourceMetadata unk_F8[39];
+    StringList unk_F8[39];
     u16 unk_230[39];
     u16 unk_27E;
 };
@@ -85,7 +82,7 @@ void ov5_021F7F2C(UnkStruct_ov5_021F7ED8 *param0, u32 param1, u32 param2, u32 pa
 static void ov5_021F7F34(UnkStruct_ov5_021F7ED8 *param0);
 static void ov5_021F7FF8(UnkStruct_ov5_021F7ED8 *param0, u32 param1, u32 param2, u32 param3);
 static void ov5_021F8090(UnkStruct_ov5_021F7ED8 *param0);
-static void ov5_021F819C(BmpList *param0, u32 param1, u8 param2);
+static void ov5_021F819C(ListMenu *param0, u32 param1, u8 param2);
 static void ov5_021F81A8(SysTask *param0, void *param1);
 static void ov5_021F8250(UnkStruct_ov5_021F7ED8 *param0);
 
@@ -434,8 +431,8 @@ static void ov5_021F7E18(FieldSystem *fieldSystem, UnkStruct_ov5_021F7ED8 *param
     param1->unk_27E = param4;
 
     for (v0 = 0; v0 < ((NELEMS(sTeachableMoves)) + 1); v0++) {
-        param1->unk_F8[v0].unk_00 = NULL;
-        param1->unk_F8[v0].unk_04 = 0;
+        param1->unk_F8[v0].entry = NULL;
+        param1->unk_F8[v0].index = 0;
         param1->unk_230[v0] = 0xff;
     }
 
@@ -483,7 +480,7 @@ static void ov5_021F7F34(UnkStruct_ov5_021F7ED8 *param0)
     Window_Show(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
     ov5_021F8090(param0);
 
-    param0->unk_F0 = sub_0200112C((const UnkStruct_ov84_02240FA8 *)&param0->unk_D0, 0, param0->unk_C2, 4);
+    param0->unk_F0 = ListMenu_New((const ListMenuTemplate *)&param0->unk_D0, 0, param0->unk_C2, 4);
     param0->unk_04 = SysTask_Start(ov5_021F81A8, param0, 0);
 
     return;
@@ -499,14 +496,14 @@ static void ov5_021F7FF8(UnkStruct_ov5_021F7ED8 *param0, u32 param1, u32 param2,
 
         MessageLoader_GetStrbuf(param0->unk_B8, param1, v2);
         StringTemplate_Format(param0->unk_BC, param0->unk_1C[param0->unk_C7], v2);
-        param0->unk_F8[param0->unk_C7].unk_00 = (const void *)param0->unk_1C[param0->unk_C7];
+        param0->unk_F8[param0->unk_C7].entry = (const void *)param0->unk_1C[param0->unk_C7];
         Strbuf_Free(v2);
     }
 
     if (param3 == 0xfa) {
-        param0->unk_F8[param0->unk_C7].unk_04 = 0xfffffffd;
+        param0->unk_F8[param0->unk_C7].index = 0xfffffffd;
     } else {
-        param0->unk_F8[param0->unk_C7].unk_04 = param3;
+        param0->unk_F8[param0->unk_C7].index = param3;
     }
 
     param0->unk_230[param0->unk_C7] = param2;
@@ -517,35 +514,35 @@ static void ov5_021F7FF8(UnkStruct_ov5_021F7ED8 *param0, u32 param1, u32 param2,
 
 static void ov5_021F8090(UnkStruct_ov5_021F7ED8 *param0)
 {
-    param0->unk_D0.unk_00 = param0->unk_F8;
-    param0->unk_D0.unk_04 = ov5_021F819C;
-    param0->unk_D0.unk_08 = NULL;
-    param0->unk_D0.unk_0C = &param0->unk_08;
-    param0->unk_D0.unk_10 = param0->unk_C7;
-    param0->unk_D0.unk_12 = 8;
-    param0->unk_D0.unk_14 = 1;
-    param0->unk_D0.unk_15 = 12;
-    param0->unk_D0.unk_16 = 2;
-    param0->unk_D0.unk_17_0 = 1;
-    param0->unk_D0.unk_17_4 = 1;
-    param0->unk_D0.unk_18_0 = 15;
-    param0->unk_D0.unk_18_4 = 2;
-    param0->unk_D0.unk_1A_0 = 0;
-    param0->unk_D0.unk_1A_3 = 16;
-    param0->unk_D0.unk_1A_7 = 1;
-    param0->unk_D0.unk_1A_9 = 0;
-    param0->unk_D0.unk_1A_15 = 0;
-    param0->unk_D0.unk_1C = (void *)param0;
+    param0->unk_D0.choices = param0->unk_F8;
+    param0->unk_D0.cursorCallback = ov5_021F819C;
+    param0->unk_D0.printCallback = NULL;
+    param0->unk_D0.window = &param0->unk_08;
+    param0->unk_D0.count = param0->unk_C7;
+    param0->unk_D0.maxDisplay = 8;
+    param0->unk_D0.headerXOffset = 1;
+    param0->unk_D0.textXOffset = 12;
+    param0->unk_D0.cursorXOffset = 2;
+    param0->unk_D0.yOffset = 1;
+    param0->unk_D0.textColorFg = 1;
+    param0->unk_D0.textColorBg = 15;
+    param0->unk_D0.textColorShadow = 2;
+    param0->unk_D0.letterSpacing = 0;
+    param0->unk_D0.lineSpacing = 0;
+    param0->unk_D0.pagerMode = PAGER_MODE_LEFT_RIGHT_PAD;
+    param0->unk_D0.fontID = FONT_SYSTEM;
+    param0->unk_D0.cursorType = 0;
+    param0->unk_D0.tmp = (void *)param0;
 
     return;
 }
 
-static void ov5_021F819C(BmpList *param0, u32 param1, u8 param2)
+static void ov5_021F819C(ListMenu *param0, u32 param1, u8 param2)
 {
     u32 v0, v1;
     u16 v2 = 0;
     u16 v3 = 0;
-    UnkStruct_ov5_021F7ED8 *v4 = (UnkStruct_ov5_021F7ED8 *)sub_02001504(param0, 19);
+    UnkStruct_ov5_021F7ED8 *v4 = (UnkStruct_ov5_021F7ED8 *)ListMenu_GetAttribute(param0, 19);
 
     return;
 }
@@ -567,10 +564,10 @@ static void ov5_021F81A8(SysTask *param0, void *param1)
         return;
     }
 
-    v1 = sub_02001288(v2->unk_F0);
+    v1 = ListMenu_ProcessInput(v2->unk_F0);
     v0 = v2->unk_27E;
 
-    sub_020014D0(v2->unk_F0, &v2->unk_27E);
+    ListMenu_CalcTrueCursorPos(v2->unk_F0, &v2->unk_27E);
 
     if (v0 != v2->unk_27E) {
         Sound_PlayEffect(1500);
@@ -602,8 +599,8 @@ static void ov5_021F8250(UnkStruct_ov5_021F7ED8 *param0)
     int v0;
 
     Sound_PlayEffect(1500);
-    sub_02001384(param0->unk_F0, NULL, NULL);
-    Window_Clear(param0->unk_D0.unk_0C, 0);
+    ListMenu_Free(param0->unk_F0, NULL, NULL);
+    Window_Clear(param0->unk_D0.window, 0);
     Window_Remove(&param0->unk_08);
 
     for (v0 = 0; v0 < ((NELEMS(sTeachableMoves)) + 1); v0++) {

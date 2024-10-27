@@ -4,7 +4,6 @@
 #include <dwc.h>
 #include <nnsys.h>
 
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0206BC70.h"
 
@@ -16,6 +15,7 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "menu.h"
 #include "message.h"
 #include "pokemon.h"
 #include "sprite_resource.h"
@@ -73,7 +73,7 @@ struct UnkStruct_ov96_0223BF40_t {
     Window unk_E78;
     Window unk_E88[3];
     Window unk_EB8[11];
-    UIControlData *unk_F68;
+    Menu *unk_F68;
     void *unk_F6C;
     int unk_F70;
     int unk_F74;

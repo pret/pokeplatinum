@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/font_oam.h"
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
@@ -37,6 +36,7 @@
 #include "item.h"
 #include "journal.h"
 #include "map_header.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
@@ -50,7 +50,6 @@
 #include "text.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
-#include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
 #include "unk_0200C440.h"
@@ -134,7 +133,7 @@ typedef struct UnkStruct_ov10_0221FB28_t {
     Strbuf *unk_BA8;
     int unk_BAC;
     int unk_BB0;
-    UIControlData *unk_BB4;
+    Menu *unk_BB4;
     void *unk_BB8;
     int unk_BBC;
     int unk_BC0;
@@ -498,13 +497,13 @@ static void ov10_0221F930(UnkStruct_ov10_0221FB28 *param0)
         sub_0200E060(&param0->unk_B8C, 0, 1, 15);
 
         param0->unk_BAC = Text_AddPrinterWithParams(&param0->unk_B8C, FONT_MESSAGE, param0->unk_BA8, 0, 0, TEXT_SPEED_INSTANT, NULL);
-        param0->unk_BB4 = sub_02002054(param0->unk_0C, &Unk_ov10_02222A68, (1 + (18 + 12)), 14, 1, param0->unk_00->unk_24);
+        param0->unk_BB4 = Menu_MakeYesNoChoiceWithCursorAt(param0->unk_0C, &Unk_ov10_02222A68, (1 + (18 + 12)), 14, 1, param0->unk_00->unk_24);
 
         Bg_ScheduleTilemapTransfer(param0->unk_0C, 0);
         param0->unk_BB0 = 4;
         break;
     case 4: {
-        u32 v0 = sub_02002114(param0->unk_BB4, param0->unk_00->unk_24);
+        u32 v0 = Menu_ProcessInputAndHandleExit(param0->unk_BB4, param0->unk_00->unk_24);
 
         switch (v0) {
         case 0:
@@ -528,7 +527,7 @@ static void ov10_0221F930(UnkStruct_ov10_0221FB28 *param0)
         break;
     case 7:
         if (param0->unk_BB4 != NULL) {
-            sub_02002154(param0->unk_BB4, param0->unk_00->unk_24);
+            Menu_DestroyForExit(param0->unk_BB4, param0->unk_00->unk_24);
             param0->unk_BB4 = NULL;
         }
 

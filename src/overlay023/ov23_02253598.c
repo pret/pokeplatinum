@@ -5,18 +5,14 @@
 
 #include "constants/heap.h"
 
-#include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
-#include "struct_defs/struct_02013A04_t.h"
 
 #include "overlay023/funcptr_ov23_0224DCB8.h"
 #include "overlay023/funcptr_ov23_02253834.h"
 #include "overlay023/ov23_02241F74.h"
 #include "overlay023/ov23_02253D40.h"
 #include "overlay023/struct_ov23_02253598_decl.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 
 #include "bg_window.h"
 #include "comm_player_manager.h"
@@ -24,9 +20,11 @@
 #include "core_sys.h"
 #include "game_records.h"
 #include "heap.h"
+#include "list_menu.h"
 #include "message.h"
 #include "savedata.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -42,8 +40,8 @@ typedef struct {
     UnkFuncPtr_ov23_02253834 unk_00;
     void *unk_04;
     Window unk_08;
-    ResourceMetadata *unk_18;
-    BmpList *unk_1C;
+    StringList *unk_18;
+    ListMenu *unk_1C;
     UnkFuncPtr_ov23_0224DCB8 unk_20;
     u16 unk_24;
     int unk_28;
@@ -214,7 +212,7 @@ void ov23_02253834(BgConfig *param0, TrainerInfo *param1, UnkFuncPtr_ov23_022538
 {
     SecretBaseRecord *v0;
     MessageLoader *v1;
-    UnkStruct_ov84_02240FA8 v2;
+    ListMenuTemplate v2;
     int v3 = 10;
     UnkStruct_ov23_022537D4 *v4 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov23_022537D4));
 
@@ -397,7 +395,7 @@ void *ov23_02253C64(BgConfig *param0, TrainerInfo *param1, UndergroundData *para
 {
     SecretBaseRecord *v0;
     MessageLoader *v1;
-    UnkStruct_ov84_02240FA8 v2;
+    ListMenuTemplate v2;
     int v3 = 10;
     UnkStruct_ov23_022537D4 *v4 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov23_022537D4));
 

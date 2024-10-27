@@ -3,15 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
 #include "struct_defs/struct_0200C738.h"
-#include "struct_defs/struct_02013A04_t.h"
 
 #include "overlay007/struct_ov7_0224BEFC_decl.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -20,16 +15,17 @@
 #include "font.h"
 #include "game_options.h"
 #include "heap.h"
+#include "list_menu.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_0200112C.h"
-#include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
@@ -87,8 +83,8 @@ typedef struct {
 typedef struct {
     u32 unk_00;
     Window *unk_04;
-    BmpList *unk_08;
-    ResourceMetadata unk_0C[23];
+    ListMenu *unk_08;
+    StringList unk_0C[23];
     Strbuf *unk_C4[23];
     s32 unk_120;
     StringTemplate *unk_124;
@@ -106,7 +102,7 @@ typedef void (*UnkFuncPtr_ov7_0224C768)(void *, u32);
 
 typedef struct {
     u32 unk_00;
-    UIControlData *unk_04;
+    Menu *unk_04;
     u32 unk_08;
 } UnkStruct_ov7_0224CC44;
 
@@ -564,7 +560,7 @@ static void ov7_0224C768(UnkStruct_ov7_0224C768 *param0, BgConfig *param1, u32 p
     static const u8 v4[2] = {
         8, 136
     };
-    static UnkStruct_ov84_02240FA8 v5 = {
+    static ListMenuTemplate v5 = {
         NULL,
         NULL,
         NULL,
@@ -608,23 +604,23 @@ static void ov7_0224C768(UnkStruct_ov7_0224C768 *param0, BgConfig *param1, u32 p
         StringTemplate_Format(param0->unk_124, param0->unk_128, v1);
 
         param0->unk_C4[v0] = Strbuf_Clone(param0->unk_128, param2);
-        param0->unk_0C[v0].unk_00 = param0->unk_C4[v0];
-        param0->unk_0C[v0].unk_04 = v0;
+        param0->unk_0C[v0].entry = param0->unk_C4[v0];
+        param0->unk_0C[v0].index = v0;
     }
 
     param0->unk_C4[param4] = MessageLoader_GetNewStrbuf(param5, 19);
-    param0->unk_0C[param4].unk_00 = param0->unk_C4[param4];
-    param0->unk_0C[param4].unk_04 = param4;
+    param0->unk_0C[param4].entry = param0->unk_C4[param4];
+    param0->unk_0C[param4].index = param4;
 
     StringTemplate_Free(param0->unk_124);
     Strbuf_Free(param0->unk_128);
     Strbuf_Free(v1);
 
-    v5.unk_0C = param0->unk_04;
-    v5.unk_10 = param0->unk_120;
-    v5.unk_00 = param0->unk_0C;
+    v5.window = param0->unk_04;
+    v5.count = param0->unk_120;
+    v5.choices = param0->unk_0C;
 
-    param0->unk_08 = sub_0200112C(&v5, 0, 0, param2);
+    param0->unk_08 = ListMenu_New(&v5, 0, 0, param2);
 
     Window_Show(param0->unk_04, 0, (1 + (18 + 12)), 11);
 
@@ -668,7 +664,7 @@ static void ov7_0224C934(UnkStruct_ov7_0224C768 *param0)
         Strbuf_Free(param0->unk_C4[v0]);
     }
 
-    sub_02001384(param0->unk_08, NULL, NULL);
+    ListMenu_Free(param0->unk_08, NULL, NULL);
     Window_ClearAndCopyToVRAM(param0->unk_04);
     Window_Remove(param0->unk_04);
     Windows_Delete(param0->unk_04, 1);
@@ -681,10 +677,10 @@ static u32 ov7_0224C9A4(UnkStruct_ov7_0224C768 *param0)
     u32 v0;
     u16 v1;
 
-    v0 = sub_02001288(param0->unk_08);
+    v0 = ListMenu_ProcessInput(param0->unk_08);
 
     if (v0 == 0xffffffff) {
-        sub_020014D0(param0->unk_08, &v1);
+        ListMenu_CalcTrueCursorPos(param0->unk_08, &v1);
 
         if (param0->unk_12C != v1) {
             param0->unk_12C = v1;
@@ -747,7 +743,7 @@ static void ov7_0224CB70(UnkStruct_ov7_0224C768 *param0)
 {
     u16 v0;
 
-    sub_020014DC(param0->unk_08, &v0, NULL);
+    ListMenu_GetListAndCursorPos(param0->unk_08, &v0, NULL);
 
     if (v0 <= 0) {
         CellActor_SetDrawFlag(param0->unk_158[0], 0);
@@ -801,7 +797,7 @@ static void ov7_0224CC44(UnkStruct_ov7_0224CC44 *param0, BgConfig *param1, u32 p
         return;
     }
 
-    param0->unk_04 = sub_02002100(param1, &v0, (1 + (18 + 12)), 11, param2);
+    param0->unk_04 = Menu_MakeYesNoChoice(param1, &v0, (1 + (18 + 12)), 11, param2);
     param0->unk_08 = param2;
     param0->unk_00 = 1;
 }
@@ -819,7 +815,7 @@ static u32 ov7_0224CC78(UnkStruct_ov7_0224CC44 *param0)
 {
     u32 v0;
 
-    v0 = sub_02002114(param0->unk_04, param0->unk_08);
+    v0 = Menu_ProcessInputAndHandleExit(param0->unk_04, param0->unk_08);
     return v0;
 }
 

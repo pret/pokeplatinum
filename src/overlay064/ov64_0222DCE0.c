@@ -4,13 +4,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_defs/struct_0200C738.h"
-#include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/struct_02089438.h"
 #include "struct_defs/struct_02099F80.h"
@@ -20,7 +16,6 @@
 #include "overlay063/struct_ov63_0222AE60_decl.h"
 #include "overlay063/struct_ov63_0222BB38_decl.h"
 #include "overlay064/struct_ov64_022302EC.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 
 #include "ascii_util.h"
 #include "bag.h"
@@ -35,6 +30,8 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "inlines.h"
+#include "list_menu.h"
+#include "menu.h"
 #include "message.h"
 #include "message_util.h"
 #include "narc.h"
@@ -45,11 +42,10 @@
 #include "savedata.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200112C.h"
-#include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
@@ -57,7 +53,6 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
-#include "unk_02013A04.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
@@ -145,7 +140,7 @@ typedef struct {
     void * unk_14;
     NNSG2dScreenData * unk_18;
     Window unk_1C;
-    UIControlData * unk_2C;
+    Menu *unk_2C;
     u32 unk_30;
     u32 unk_34;
     Strbuf* unk_38;
@@ -177,9 +172,9 @@ typedef struct {
     u32 unk_D8;
     u32 unk_DC;
     Window unk_E0;
-    ResourceMetadata * unk_F0[2];
-    BmpList * unk_F8;
-    UIControlData * unk_FC;
+    StringList *unk_F0[2];
+    ListMenu *unk_F8;
+    Menu *unk_FC;
     s32 unk_100;
     CellActor * unk_104;
     u32 unk_108;
@@ -317,7 +312,7 @@ static void ov64_0222FE70(UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222E
 static BOOL ov64_0222FEFC(const UnkStruct_ov64_0222F0C4 * param0);
 static void ov64_0222FF18(UnkStruct_ov64_0222F0C4 * param0);
 static u32 ov64_0222FF38(const UnkStruct_ov64_0222F0C4 * param0);
-static void ov64_0222FF48(BmpList * param0, u32 param1, u8 param2);
+static void ov64_0222FF48(ListMenu *param0, u32 param1, u8 param2);
 static void ov64_0222FF5C(UnkStruct_ov64_0222F0C4 * param0);
 static BOOL ov64_02230008(UnkStruct_ov64_0222F0C4 * param0);
 static void ov64_02230044(UnkStruct_ov64_0222F0C4 * param0);
@@ -538,7 +533,7 @@ static const UnkStruct_ov64_022322E4 Unk_ov64_022322E4[2][4] = {
     }
 };
 
-static const UnkStruct_ov84_02240FA8 Unk_ov64_0223226C = {
+static const ListMenuTemplate Unk_ov64_0223226C = {
     NULL,
     ov64_0222FF48,
     NULL,
@@ -1336,7 +1331,7 @@ static int ov64_0222EA70 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_0222E
             break;
         }
 
-        param0->unk_2C = sub_02002100(param2->unk_00, &Unk_ov64_022321CA, 1, 9, param3);
+        param0->unk_2C = Menu_MakeYesNoChoice(param2->unk_00, &Unk_ov64_022321CA, 1, 9, param3);
         param1->unk_04 = 9;
         break;
     case 9:
@@ -1347,7 +1342,7 @@ static int ov64_0222EA70 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_0222E
             0, 50, 54,
         };
 
-        v3 = sub_02002114(param0->unk_2C, param3);
+        v3 = Menu_ProcessInputAndHandleExit(param0->unk_2C, param3);
 
         switch (v3) {
         case 0xffffffff:
@@ -1856,7 +1851,7 @@ static int ov64_0222F0C4 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222E
         }
         break;
     case 17:
-        v0 = sub_02002114(param0->unk_FC, param3);
+        v0 = Menu_ProcessInputAndHandleExit(param0->unk_FC, param3);
 
         switch (v0) {
         case 0xffffffff:
@@ -2081,7 +2076,7 @@ asm static void ov64_0222F414 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_
  _0222F530:
     ldr r1, [sp, #0x18]
     mov r0, #4
-    bl sub_02013A04
+    bl StringList_New
     add r1, r6, #0
     add r1, #0xf4
     ldr r5, [sp, #0x20]
@@ -2096,7 +2091,7 @@ asm static void ov64_0222F414 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_
     ldr r1, [r7, r1]
     ldr r2, [r5, #0]
     ldr r3, [r5, #4]
-    bl sub_02013A4C
+    bl StringList_AddFromMessageBank
     add r4, r4, #1
     add r5, #8
     cmp r4, #4
@@ -2172,7 +2167,7 @@ static void ov64_0222F5F4 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222
     Strbuf_Free(param0->unk_D4);
 
     for (v0 = 0; v0 < 2; v0++) {
-        sub_02013A3C(param0->unk_F0[v0]);
+        StringList_Free(param0->unk_F0[v0]);
     }
 
     Window_Remove(&param0->unk_E0);
@@ -2404,7 +2399,7 @@ static BOOL ov64_0222F948 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222
 
 static void ov64_0222FA70 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2, u32 param3)
 {
-    UnkStruct_ov84_02240FA8 v0;
+    ListMenuTemplate v0;
     UnkStruct_0202B370 * v1;
     u32 v2;
     u32 v3;
@@ -2415,13 +2410,13 @@ static void ov64_0222FA70 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222
     v0 = Unk_ov64_0223226C;
 
     if (v2 == 2) {
-        v0.unk_00 = param0->unk_F0[1];
+        v0.choices = param0->unk_F0[1];
     } else {
-        v0.unk_00 = param0->unk_F0[0];
+        v0.choices = param0->unk_F0[0];
     }
 
-    v0.unk_0C = &param0->unk_E0;
-    param0->unk_F8 = sub_0200112C(&v0, 0, 0, param3);
+    v0.window = &param0->unk_E0;
+    param0->unk_F8 = ListMenu_New(&v0, 0, 0, param3);
 
     Window_Show(&param0->unk_E0, 1, 1, 9);
     Window_ScheduleCopyToVRAM(&param0->unk_E0);
@@ -2440,7 +2435,7 @@ static u32 ov64_0222FB24 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222E
         return v1;
     }
 
-    v0 = sub_02001288(param0->unk_F8);
+    v0 = ListMenu_ProcessInput(param0->unk_F8);
 
     switch (v0) {
     case 0xffffffff:
@@ -2460,7 +2455,7 @@ static u32 ov64_0222FB24 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222E
 
     Window_Clear(&param0->unk_E0, 1);
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_E0);
-    sub_02001384(param0->unk_F8, NULL, NULL);
+    ListMenu_Free(param0->unk_F8, NULL, NULL);
 
     if (v1 == 2) {
         ov64_0222EA28(param2, 1);
@@ -2508,7 +2503,7 @@ static BOOL ov64_0222FC48 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222
         return 0;
     }
 
-    param0->unk_FC = sub_02002100(param2->unk_00, &Unk_ov64_022321CA, 1, 9, param3);
+    param0->unk_FC = Menu_MakeYesNoChoice(param2->unk_00, &Unk_ov64_022321CA, 1, 9, param3);
     return 1;
 }
 
@@ -2611,7 +2606,7 @@ static u32 ov64_0222FF38 (const UnkStruct_ov64_0222F0C4 * param0)
     return v0;
 }
 
-static void ov64_0222FF48 (BmpList * param0, u32 param1, u8 param2)
+static void ov64_0222FF48 (ListMenu * param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
         Sound_PlayEffect(1500);

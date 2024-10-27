@@ -26,6 +26,7 @@
 #include "gx_layers.h"
 #include "hardware_palette.h"
 #include "heap.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
@@ -40,7 +41,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
 #include "unk_0200DA60.h"
@@ -474,11 +474,11 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         }
         break;
     case 20:
-        param0->unk_40 = sub_02002100(param0->unk_00, &Unk_020F0A30, 1, 8, param0->unk_5C);
+        param0->unk_40 = Menu_MakeYesNoChoice(param0->unk_00, &Unk_020F0A30, 1, 8, param0->unk_5C);
         param0->unk_64++;
         break;
     case 21:
-        switch (sub_02002114(param0->unk_40, param0->unk_5C)) {
+        switch (Menu_ProcessInputAndHandleExit(param0->unk_40, param0->unk_5C)) {
         case 0:
             param0->unk_64 = 22;
             PaletteData_StartFade(param0->unk_14, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 0, 16, 0x0);
@@ -544,11 +544,11 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         param0->unk_64++;
         break;
     case 34:
-        param0->unk_40 = sub_02002100(param0->unk_00, &Unk_020F0A30, 1, 8, param0->unk_5C);
+        param0->unk_40 = Menu_MakeYesNoChoice(param0->unk_00, &Unk_020F0A30, 1, 8, param0->unk_5C);
         param0->unk_64++;
         break;
     case 35:
-        switch (sub_02002114(param0->unk_40, param0->unk_5C)) {
+        switch (Menu_ProcessInputAndHandleExit(param0->unk_40, param0->unk_5C)) {
         case 0:
             StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
             StringTemplate_SetMoveName(param0->unk_0C, 1, param0->unk_6C);

@@ -16,9 +16,9 @@ Static main
 	Library libcps.a (.version)
 	Library libssl.a (.version)
 	Object main.nef.p/src_main.c.o
-	Object main.nef.p/src_unk_0200112C.c.o
+	Object main.nef.p/src_list_menu.c.o
 	Object main.nef.p/src_game_version.c.o
-	Object main.nef.p/src_unk_02001AF4.c.o
+	Object main.nef.p/src_menu.c.o
 	Object main.nef.p/src_charcode_util.c.o
 	Object main.nef.p/src_render_text.c.o
 	Object main.nef.p/src_font.c.o
@@ -51,7 +51,7 @@ Static main
 	Object main.nef.p/src_unk_02012744.c.o
 	Object main.nef.p/src_unk_020131EC.c.o
 	Object main.nef.p/src_rtc.c.o
-	Object main.nef.p/src_unk_02013A04.c.o
+	Object main.nef.p/src_string_list.c.o
 	Object main.nef.p/src_screen_scroll_manager.c.o
 	Object main.nef.p/src_unk_02014000.c.o
 	Object main.nef.p/src_colored_arrow.c.o

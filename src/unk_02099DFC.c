@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_defs/struct_0203CC84.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -10,13 +9,13 @@
 #include "font.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "menu.h"
 #include "message.h"
 #include "overlay_manager.h"
 #include "savedata.h"
 #include "strbuf.h"
 #include "text.h"
 #include "unk_02000C88.h"
-#include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
@@ -34,7 +33,7 @@ typedef struct {
     BgConfig *unk_14;
     MessageLoader *unk_18;
     Window unk_1C;
-    UIControlData *unk_2C;
+    Menu *unk_2C;
     SaveData *unk_30;
     void *unk_34;
 } UnkStruct_02099DFC;
@@ -260,12 +259,12 @@ static BOOL sub_0209A0F4(UnkStruct_02099DFC *param0)
     switch (param0->unk_04) {
     case 0:
         if (sub_0209A200(param0, 0, 1, 4) == TRUE) {
-            param0->unk_2C = sub_02002054(param0->unk_14, &Unk_020F89EC, 512 - (18 + 12) - 9, 3, 1, param0->unk_00);
+            param0->unk_2C = Menu_MakeYesNoChoiceWithCursorAt(param0->unk_14, &Unk_020F89EC, 512 - (18 + 12) - 9, 3, 1, param0->unk_00);
             param0->unk_04 = 1;
         }
         break;
     case 1: {
-        u32 v1 = sub_02002114(param0->unk_2C, param0->unk_00);
+        u32 v1 = Menu_ProcessInputAndHandleExit(param0->unk_2C, param0->unk_00);
 
         switch (v1) {
         case 0:
@@ -278,12 +277,12 @@ static BOOL sub_0209A0F4(UnkStruct_02099DFC *param0)
     } break;
     case 2:
         if (sub_0209A200(param0, 1, 1, 4) == TRUE) {
-            param0->unk_2C = sub_02002054(param0->unk_14, &Unk_020F89EC, (512 - (18 + 12)) - 9, 3, 1, param0->unk_00);
+            param0->unk_2C = Menu_MakeYesNoChoiceWithCursorAt(param0->unk_14, &Unk_020F89EC, (512 - (18 + 12)) - 9, 3, 1, param0->unk_00);
             param0->unk_04 = 3;
         }
         break;
     case 3: {
-        u32 v2 = sub_02002114(param0->unk_2C, param0->unk_00);
+        u32 v2 = Menu_ProcessInputAndHandleExit(param0->unk_2C, param0->unk_00);
 
         switch (v2) {
         case 0:

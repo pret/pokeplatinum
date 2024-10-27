@@ -3,19 +3,14 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_defs/pokemon_summary.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
-#include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_020997B8.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay084/struct_ov84_02240FA8.h"
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_02241308.h"
 #include "overlay104/struct_ov104_0224133C.h"
@@ -28,6 +23,8 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "list_menu.h"
+#include "menu.h"
 #include "message.h"
 #include "move_table.h"
 #include "narc.h"
@@ -36,15 +33,13 @@
 #include "pokemon_summary_app.h"
 #include "render_text.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_0200112C.h"
-#include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02013A04.h"
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
 #include "unk_0207C908.h"
@@ -60,9 +55,9 @@ typedef struct {
     MessageLoader *unk_F8;
     StringTemplate *unk_FC;
     Strbuf *unk_100;
-    BmpList *unk_104;
-    ResourceMetadata *unk_108;
-    UIControlData *unk_10C;
+    ListMenu *unk_104;
+    StringList *unk_108;
+    Menu *unk_10C;
     SpriteRenderer *unk_110;
     SpriteGfxHandler *unk_114;
     CellActorData *unk_118[13];
@@ -109,8 +104,8 @@ static void ov91_021D1498(UnkStruct_ov91_021D0ED8 *param0);
 static void ov91_021D1664(UnkStruct_ov91_021D0ED8 *param0);
 static void ov91_021D1784(UnkStruct_ov91_021D0ED8 *param0);
 static void ov91_021D1868(UnkStruct_ov91_021D0ED8 *param0);
-static void ov91_021D188C(BmpList *param0, u32 param1, u8 param2);
-static void ov91_021D18C4(BmpList *param0, u32 param1, u8 param2);
+static void ov91_021D188C(ListMenu *param0, u32 param1, u8 param2);
+static void ov91_021D18C4(ListMenu *param0, u32 param1, u8 param2);
 static void ov91_021D18C8(UnkStruct_ov91_021D0ED8 *param0, u32 param1);
 static void ov91_021D1A68(UnkStruct_ov91_021D0ED8 *param0, u32 param1);
 static void ov91_021D1BBC(UnkStruct_ov91_021D0ED8 *param0, u16 param1);
@@ -159,7 +154,7 @@ static const WindowTemplate Unk_ov91_021D2884[] = {
     { 0x0, 0x17, 0xD, 0x7, 0x4, 0xE, 0x2A6 }
 };
 
-static const UnkStruct_ov84_02240FA8 Unk_ov91_021D27BC = {
+static const ListMenuTemplate Unk_ov91_021D27BC = {
     NULL,
     ov91_021D188C,
     ov91_021D18C4,
@@ -670,9 +665,9 @@ static int ov91_021D122C(UnkStruct_ov91_021D0ED8 *param0)
         return 1;
     }
 
-    sub_020014DC(param0->unk_104, &v1, &v2);
-    v0 = sub_02001288(param0->unk_104);
-    sub_020014DC(param0->unk_104, &param0->unk_00->unk_12, &param0->unk_00->unk_10);
+    ListMenu_GetListAndCursorPos(param0->unk_104, &v1, &v2);
+    v0 = ListMenu_ProcessInput(param0->unk_104);
+    ListMenu_GetListAndCursorPos(param0->unk_104, &param0->unk_00->unk_12, &param0->unk_00->unk_10);
     ov91_021D237C(param0, v1, param0->unk_00->unk_12);
 
     if (param0->unk_00->unk_10 != v2) {
@@ -724,13 +719,13 @@ static int ov91_021D134C(UnkStruct_ov91_021D0ED8 *param0)
 
 static int ov91_021D136C(UnkStruct_ov91_021D0ED8 *param0)
 {
-    param0->unk_10C = sub_02002100(param0->unk_04, &Unk_ov91_021D2884[14], 1, 12, 67);
+    param0->unk_10C = Menu_MakeYesNoChoice(param0->unk_04, &Unk_ov91_021D2884[14], 1, 12, 67);
     return 4;
 }
 
 static int ov91_021D1394(UnkStruct_ov91_021D0ED8 *param0)
 {
-    switch (sub_02002114(param0->unk_10C, 67)) {
+    switch (Menu_ProcessInputAndHandleExit(param0->unk_10C, 67)) {
     case 0:
         return Unk_ov91_021D27DC[param0->unk_186].unk_00(param0);
     case 0xfffffffe:
@@ -907,21 +902,21 @@ static u32 ov91_021D175C(UnkStruct_ov91_021D0ED8 *param0)
 static void ov91_021D1784(UnkStruct_ov91_021D0ED8 *param0)
 {
     MessageLoader *v0;
-    UnkStruct_ov84_02240FA8 v1;
+    ListMenuTemplate v1;
     u32 v2;
 
     param0->unk_184 = (u8)ov91_021D175C(param0) + 1;
-    param0->unk_108 = sub_02013A04(param0->unk_184, 67);
+    param0->unk_108 = StringList_New(param0->unk_184, 67);
 
     v0 = MessageLoader_Init(
         0, 26, 647, 67);
 
     for (v2 = 0; v2 < param0->unk_184; v2++) {
         if (param0->unk_00->unk_0C[v2] != 0xffff) {
-            sub_02013A4C(
+            StringList_AddFromMessageBank(
                 param0->unk_108, v0, param0->unk_00->unk_0C[v2], param0->unk_00->unk_0C[v2]);
         } else {
-            sub_02013A4C(
+            StringList_AddFromMessageBank(
                 param0->unk_108, param0->unk_F8, 32, 0xfffffffe);
             break;
         }
@@ -930,25 +925,25 @@ static void ov91_021D1784(UnkStruct_ov91_021D0ED8 *param0)
     MessageLoader_Free(v0);
 
     v1 = Unk_ov91_021D27BC;
-    v1.unk_00 = param0->unk_108;
-    v1.unk_0C = &param0->unk_08[13];
-    v1.unk_10 = param0->unk_184;
-    v1.unk_1C = (void *)param0;
+    v1.choices = param0->unk_108;
+    v1.window = &param0->unk_08[13];
+    v1.count = param0->unk_184;
+    v1.tmp = (void *)param0;
 
-    param0->unk_104 = sub_0200112C(&v1, param0->unk_00->unk_12, param0->unk_00->unk_10, 67);
+    param0->unk_104 = ListMenu_New(&v1, param0->unk_00->unk_12, param0->unk_00->unk_10, 67);
 
     Window_ScheduleCopyToVRAM(&param0->unk_08[13]);
 }
 
 static void ov91_021D1868(UnkStruct_ov91_021D0ED8 *param0)
 {
-    sub_02001384(param0->unk_104, &param0->unk_00->unk_12, &param0->unk_00->unk_10);
-    sub_02013A3C(param0->unk_108);
+    ListMenu_Free(param0->unk_104, &param0->unk_00->unk_12, &param0->unk_00->unk_10);
+    StringList_Free(param0->unk_108);
 }
 
-static void ov91_021D188C(BmpList *param0, u32 param1, u8 param2)
+static void ov91_021D188C(ListMenu *param0, u32 param1, u8 param2)
 {
-    UnkStruct_ov91_021D0ED8 *v0 = (UnkStruct_ov91_021D0ED8 *)sub_02001504(param0, 19);
+    UnkStruct_ov91_021D0ED8 *v0 = (UnkStruct_ov91_021D0ED8 *)ListMenu_GetAttribute(param0, 19);
 
     if (param2 != 1) {
         Sound_PlayEffect(1501);
@@ -961,7 +956,7 @@ static void ov91_021D188C(BmpList *param0, u32 param1, u8 param2)
     }
 }
 
-static void ov91_021D18C4(BmpList *param0, u32 param1, u8 param2)
+static void ov91_021D18C4(ListMenu *param0, u32 param1, u8 param2)
 {
     return;
 }

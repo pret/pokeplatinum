@@ -9,7 +9,6 @@
 #include "consts/scrcmd.h"
 
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02014EC4_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_02025CCC_decl.h"
@@ -111,6 +110,7 @@
 #include "map_header_data.h"
 #include "map_object.h"
 #include "map_object_move.h"
+#include "menu.h"
 #include "message.h"
 #include "message_util.h"
 #include "party.h"
@@ -131,7 +131,6 @@
 #include "text.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
-#include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -2658,12 +2657,12 @@ static BOOL ScrCmd_03C(ScriptContext *ctx)
 static BOOL ScrCmd_03E(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    UIControlData **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_UI_CONTROL);
+    Menu **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_UI_CONTROL);
     u16 v2 = ScriptContext_ReadHalfWord(ctx);
 
     sub_0200DAA4(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
 
-    *v1 = sub_02002100(fieldSystem->unk_08, &Unk_020EAB84, 1024 - (18 + 12) - 9, 11, 4);
+    *v1 = Menu_MakeYesNoChoice(fieldSystem->unk_08, &Unk_020EAB84, 1024 - (18 + 12) - 9, 11, 4);
     ctx->data[0] = v2;
 
     ScriptContext_Pause(ctx, sub_02040824);
@@ -2675,10 +2674,10 @@ static BOOL sub_02040824(ScriptContext *ctx)
 {
     u32 v0;
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    UIControlData **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_UI_CONTROL);
+    Menu **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_UI_CONTROL);
     u16 *v3 = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
 
-    v0 = sub_02002114(*v2, 4);
+    v0 = Menu_ProcessInputAndHandleExit(*v2, 4);
 
     if (v0 == 0xffffffff) {
         return 0;

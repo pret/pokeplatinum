@@ -6,7 +6,6 @@
 
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_defs/struct_02081CF4.h"
 
 #include "overlay094/ov94_0223BCB0.h"
 #include "overlay094/ov94_022414B8.h"
@@ -26,19 +25,19 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "item.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "party.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02013A04.h"
 #include "unk_020393C8.h"
 #include "unk_020797C8.h"
 
@@ -675,27 +674,27 @@ static int ov94_022405CC(int param0, int param1, int param2)
 
 static int ov94_022405DC(UnkStruct_ov94_0223FD4C *param0)
 {
-    UnkStruct_02081CF4 v0;
+    MenuTemplate v0;
 
-    v0.unk_08 = 0;
-    v0.unk_09 = 1;
-    v0.unk_0A = 3;
-    v0.unk_0B_0 = 0;
-    v0.unk_0B_4 = 0;
-    v0.unk_0B_6 = 0;
+    v0.fontID = FONT_SYSTEM;
+    v0.xSize = 1;
+    v0.ySize = 3;
+    v0.lineSpacing = 0;
+    v0.suppressCursor = FALSE;
+    v0.loopAround = FALSE;
 
-    param0->unk_10CC = sub_02013A04(3, 62);
+    param0->unk_10CC = StringList_New(3, 62);
 
-    sub_02013A4C(param0->unk_10CC, param0->unk_B90, 94, 1);
-    sub_02013A4C(param0->unk_10CC, param0->unk_B90, 95, 2);
-    sub_02013A4C(param0->unk_10CC, param0->unk_B90, 96, 3);
+    StringList_AddFromMessageBank(param0->unk_10CC, param0->unk_B90, 94, 1);
+    StringList_AddFromMessageBank(param0->unk_10CC, param0->unk_B90, 95, 2);
+    StringList_AddFromMessageBank(param0->unk_10CC, param0->unk_B90, 96, 3);
 
-    v0.unk_00 = param0->unk_10CC;
-    v0.unk_04 = &param0->unk_F9C[0];
+    v0.choices = param0->unk_10CC;
+    v0.window = &param0->unk_F9C[0];
 
     Window_Show(&param0->unk_F9C[0], 1, (1 + (18 + 12)), 11);
 
-    param0->unk_10D4 = sub_02001B7C(&v0, 9, 0, 0, 62, PAD_BUTTON_B);
+    param0->unk_10D4 = Menu_NewAndCopyToVRAM(&v0, 9, 0, 0, 62, PAD_BUTTON_B);
     param0->unk_2C = 8;
 
     return 3;
@@ -705,17 +704,17 @@ static int ov94_02240688(UnkStruct_ov94_0223FD4C *param0)
 {
     BoxPokemon *v0;
 
-    switch (sub_02001BE0(param0->unk_10D4)) {
+    switch (Menu_ProcessInput(param0->unk_10D4)) {
     case 1:
-        sub_02001BC4(param0->unk_10D4, NULL);
-        sub_02013A3C(param0->unk_10CC);
+        Menu_Free(param0->unk_10D4, NULL);
+        StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
         param0->unk_2C = 2;
         ov94_0223C4C0(param0, 8, 5);
         break;
     case 2:
-        sub_02001BC4(param0->unk_10D4, NULL);
-        sub_02013A3C(param0->unk_10CC);
+        Menu_Free(param0->unk_10D4, NULL);
+        StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
 
         v0 = ov94_022411DC(param0->unk_00->unk_08, param0->unk_00->unk_0C, param0->unk_110, param0->unk_112);
@@ -753,8 +752,8 @@ static int ov94_02240688(UnkStruct_ov94_0223FD4C *param0)
         break;
     case 3:
     case 0xfffffffe:
-        sub_02001BC4(param0->unk_10D4, NULL);
-        sub_02013A3C(param0->unk_10CC);
+        Menu_Free(param0->unk_10D4, NULL);
+        StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
         sub_0200E084(&param0->unk_F5C, 0);
         param0->unk_2C = 1;
@@ -766,28 +765,28 @@ static int ov94_02240688(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_02240830(UnkStruct_ov94_0223FD4C *param0)
 {
-    UnkStruct_02081CF4 v0;
+    MenuTemplate v0;
 
-    v0.unk_08 = 0;
-    v0.unk_09 = 1;
-    v0.unk_0A = 3;
-    v0.unk_0B_0 = 0;
-    v0.unk_0B_4 = 0;
-    v0.unk_0B_6 = 0;
+    v0.fontID = FONT_SYSTEM;
+    v0.xSize = 1;
+    v0.ySize = 3;
+    v0.lineSpacing = 0;
+    v0.suppressCursor = FALSE;
+    v0.loopAround = FALSE;
 
-    param0->unk_10CC = sub_02013A04(3, 62);
+    param0->unk_10CC = StringList_New(3, 62);
 
-    sub_02013A4C(param0->unk_10CC, param0->unk_B90, 84, 1);
-    sub_02013A4C(param0->unk_10CC, param0->unk_B90, 85, 2);
-    sub_02013A4C(param0->unk_10CC, param0->unk_B90, 86, 3);
+    StringList_AddFromMessageBank(param0->unk_10CC, param0->unk_B90, 84, 1);
+    StringList_AddFromMessageBank(param0->unk_10CC, param0->unk_B90, 85, 2);
+    StringList_AddFromMessageBank(param0->unk_10CC, param0->unk_B90, 86, 3);
 
-    v0.unk_00 = param0->unk_10CC;
-    v0.unk_04 = &param0->unk_F9C[0];
+    v0.choices = param0->unk_10CC;
+    v0.window = &param0->unk_F9C[0];
 
-    Window_FillTilemap(v0.unk_04, 0xf0f);
+    Window_FillTilemap(v0.window, 0xf0f);
     Window_Show(&param0->unk_F9C[0], 1, (1 + (18 + 12)), 11);
 
-    param0->unk_10D4 = sub_02001B7C(&v0, 9, 0, 0, 62, PAD_BUTTON_B);
+    param0->unk_10D4 = Menu_NewAndCopyToVRAM(&v0, 9, 0, 0, 62, PAD_BUTTON_B);
     param0->unk_2C = 10;
 
     return 3;
@@ -797,17 +796,17 @@ static int ov94_022408E8(UnkStruct_ov94_0223FD4C *param0)
 {
     BoxPokemon *v0;
 
-    switch (sub_02001BE0(param0->unk_10D4)) {
+    switch (Menu_ProcessInput(param0->unk_10D4)) {
     case 1:
-        sub_02001BC4(param0->unk_10D4, NULL);
-        sub_02013A3C(param0->unk_10CC);
+        Menu_Free(param0->unk_10D4, NULL);
+        StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
         param0->unk_2C = 2;
         ov94_0223C4C0(param0, 8, 6);
         break;
     case 2:
-        sub_02001BC4(param0->unk_10D4, NULL);
-        sub_02013A3C(param0->unk_10CC);
+        Menu_Free(param0->unk_10D4, NULL);
+        StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
 
         v0 = ov94_022411DC(param0->unk_00->unk_08, param0->unk_00->unk_0C, param0->unk_110, param0->unk_112);
@@ -842,8 +841,8 @@ static int ov94_022408E8(UnkStruct_ov94_0223FD4C *param0)
         break;
     case 3:
     case 0xfffffffe:
-        sub_02001BC4(param0->unk_10D4, NULL);
-        sub_02013A3C(param0->unk_10CC);
+        Menu_Free(param0->unk_10D4, NULL);
+        StringList_Free(param0->unk_10CC);
         Window_Clear(&param0->unk_F9C[0], 0);
         sub_0200E084(&param0->unk_F5C, 0);
         param0->unk_2C = 1;
@@ -877,7 +876,7 @@ static int ov94_02240AC4(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_02240AE8(UnkStruct_ov94_0223FD4C *param0)
 {
-    int v0 = sub_02002114(param0->unk_10D0, 62);
+    int v0 = Menu_ProcessInputAndHandleExit(param0->unk_10D0, 62);
 
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
@@ -909,7 +908,7 @@ static int ov94_02240B4C(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_02240B70(UnkStruct_ov94_0223FD4C *param0)
 {
-    int v0 = sub_02002114(param0->unk_10D0, 62);
+    int v0 = Menu_ProcessInputAndHandleExit(param0->unk_10D0, 62);
 
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
@@ -967,7 +966,7 @@ static int ov94_02240C84(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_02240CA8(UnkStruct_ov94_0223FD4C *param0)
 {
-    int v0 = sub_02002114(param0->unk_10D0, 62);
+    int v0 = Menu_ProcessInputAndHandleExit(param0->unk_10D0, 62);
 
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
