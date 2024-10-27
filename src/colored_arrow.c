@@ -14,7 +14,7 @@
 ColoredArrow *ColoredArrow_New(u32 heapID)
 {
     static const charcode_t chars[] = {
-        CHAR_MENU_ARROW,
+        CHAR_ARROW_MENU,
         CHAR_EOS,
     };
     ColoredArrow *arrow = Heap_AllocFromHeap(heapID, sizeof(ColoredArrow));

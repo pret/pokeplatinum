@@ -156,7 +156,7 @@ void FontManager_TryLoadGlyph(const FontManager *fontManager, charcode_t c, Text
     if (c <= fontManager->header.numGlyphs) {
         c--;
     } else {
-        c = CHAR_EN_QUESTION_MARK - 1;
+        c = CHAR_QUESTION - 1;
     }
 
     fontManager->glyphBitmapFunc(fontManager, c, outGlyph);
@@ -268,7 +268,7 @@ static u8 GlyphWidthFunc_VariableWidth(const FontManager *fontManager, u32 glyph
     if (glyphIdx < fontManager->header.numGlyphs) {
         return fontManager->glyphWidths[glyphIdx];
     } else {
-        return fontManager->glyphWidths[CHAR_EN_QUESTION_MARK - 1];
+        return fontManager->glyphWidths[CHAR_QUESTION - 1];
     }
 }
 

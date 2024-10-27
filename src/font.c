@@ -11,8 +11,8 @@
 #include "font_manager.h"
 #include "graphics.h"
 #include "heap.h"
-#include "render_text.h"
 #include "palette.h"
+#include "render_text.h"
 #include "strbuf.h"
 #include "text.h"
 

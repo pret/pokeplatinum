@@ -40,7 +40,7 @@ void TrainerInfo_Init(TrainerInfo *info)
 BOOL TrainerInfo_HasNoName(const TrainerInfo *info)
 {
     for (int i = 0; i < TRAINER_NAME_LEN + 1; i++) {
-        if (info->name[i] != CHAR_EMPTY) {
+        if (info->name[i] != CHAR_NONE) {
             return FALSE;
         }
     }
