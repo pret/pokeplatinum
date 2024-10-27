@@ -1102,7 +1102,7 @@ static BOOL sub_020691BC(UnkStruct_02068870 *param0)
 
 static void *sub_020691CC(void *param0)
 {
-    ov5_021E2064(param0);
+    FieldSystem_SaveStateIfCommunicationOff(param0);
     sub_0203DE88(param0, ((FieldSystem *)param0)->saveData);
 
     return NULL;

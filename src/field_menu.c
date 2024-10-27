@@ -1251,19 +1251,16 @@ static BOOL FieldMenu_SelectBag(TaskManager *taskMan)
 
 static BOOL FieldMenu_Bag(TaskManager *taskMan)
 {
-    FieldSystem *fieldSystem;
-    FieldMenu *menu;
-
-    fieldSystem = TaskManager_FieldSystem(taskMan);
-    menu = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
+    FieldMenu *menu = TaskManager_Environment(taskMan);
 
     menu->unk_25C = sub_0203D20C(fieldSystem, &menu->unk_230);
     sub_0207CB70(menu->unk_25C, 0);
     menu->unk_22C = sub_0203BC5C;
 
-    ov5_021E2064(fieldSystem);
+    FieldSystem_SaveStateIfCommunicationOff(fieldSystem);
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL sub_0203BC5C(TaskManager *taskMan)

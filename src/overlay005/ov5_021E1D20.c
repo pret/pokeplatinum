@@ -29,7 +29,7 @@
 #include "unk_0202631C.h"
 #include "unk_020366A0.h"
 
-static void ov5_021E2028(FieldSystem *fieldSystem);
+static void FieldSystem_SaveObjectsAndLocation(FieldSystem *fieldSystem);
 
 static const int sSaveInfoLabels[] = {
     SAVE_INFO_LABEL_MAP_NAME,
@@ -113,7 +113,7 @@ static int SaveInfoWindow_Height(const SaveInfo *saveInfo)
     }
 }
 
-static void SaveInfoWindow_PrintText(const UnkStruct_ov5_021E1FF4 *saveInfoWin)
+static void SaveInfoWindow_PrintText(const SaveInfoWindow *saveInfoWin)
 {
     int fontSpacing = Font_GetAttribute(FONT_SYSTEM, FONTATTR_MAX_LETTER_HEIGHT) + Font_GetAttribute(FONT_SYSTEM, FONTATTR_LINE_SPACING);
     int yOffset = 0;
@@ -143,8 +143,7 @@ static void SaveInfoWindow_PrintText(const UnkStruct_ov5_021E1FF4 *saveInfoWin)
     }
 }
 
-// ravetodo: SaveInfoWindow_ShowWindow
-void ov5_021E1F04(UnkStruct_ov5_021E1FF4 *saveInfoWin)
+void SaveInfoWindow_NewWindow(SaveInfoWindow *saveInfoWin)
 {
     saveInfoWin->window = Heap_AllocFromHeap(saveInfoWin->heapID, sizeof(Window));
 
@@ -156,18 +155,16 @@ void ov5_021E1F04(UnkStruct_ov5_021E1FF4 *saveInfoWin)
     Window_DrawStandardFrame(saveInfoWin->window, 0, 985, 11);
 }
 
-// ravetodo: SaveInfoWindow_FreeWindow
-void ov5_021E1F7C(UnkStruct_ov5_021E1FF4 *saveInfoWin)
+void SaveInfoWindow_FreeWindow(SaveInfoWindow *saveInfoWin)
 {
     Window_EraseStandardFrame(saveInfoWin->window, 0);
     Window_Remove(saveInfoWin->window);
     Heap_FreeToHeap(saveInfoWin->window);
 }
 
-// ravetodo: SaveInfoWindow_New
-UnkStruct_ov5_021E1FF4 *ov5_021E1F98(FieldSystem *fieldSystem, int heapID, u8 bgLayer)
+SaveInfoWindow *SaveInfoWindow_New(FieldSystem *fieldSystem, int heapID, u8 bgLayer)
 {
-    UnkStruct_ov5_021E1FF4 *saveInfoWin = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov5_021E1FF4));
+    SaveInfoWindow *saveInfoWin = Heap_AllocFromHeap(heapID, sizeof(SaveInfoWindow));
 
     saveInfoWin->fieldSystem = fieldSystem;
     saveInfoWin->heapID = heapID;
@@ -185,23 +182,20 @@ UnkStruct_ov5_021E1FF4 *ov5_021E1F98(FieldSystem *fieldSystem, int heapID, u8 bg
     return saveInfoWin;
 }
 
-// ravetodo: SaveInfoWindow_Free
-void ov5_021E1FF4(UnkStruct_ov5_021E1FF4 *saveInfoWin)
+void SaveInfoWindow_Free(SaveInfoWindow *saveInfoWin)
 {
     MessageLoader_Free(saveInfoWin->msgLoader);
     StringTemplate_Free(saveInfoWin->strTemplate);
     Heap_FreeToHeap(saveInfoWin);
 }
 
-// ravetodo: FieldSystem_Save
-BOOL ov5_021E200C(FieldSystem *fieldSystem)
+BOOL FieldSystem_Save(FieldSystem *fieldSystem)
 {
-    ov5_021E2028(fieldSystem);
+    FieldSystem_SaveObjectsAndLocation(fieldSystem);
     return SaveData_Save(fieldSystem->saveData) == SAVE_RESULT_OK;
 }
 
-// ravetodo: FieldSystem_SaveObjectsAndLocation
-static void ov5_021E2028(FieldSystem *fieldSystem)
+static void FieldSystem_SaveObjectsAndLocation(FieldSystem *fieldSystem)
 {
     FieldSystem_SaveObjects(fieldSystem);
     ov5_021EA714(fieldSystem, POKETCH_EVENT_SAVE, 0);
@@ -212,7 +206,7 @@ static void ov5_021E2028(FieldSystem *fieldSystem)
     fieldSystem->location->unk_10 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 }
 
-void ov5_021E2064(FieldSystem *fieldSystem)
+void FieldSystem_SaveStateIfCommunicationOff(FieldSystem *fieldSystem)
 {
     if (fieldSystem == NULL) {
         GF_ASSERT(0);
@@ -230,5 +224,5 @@ void ov5_021E2064(FieldSystem *fieldSystem)
         return;
     }
 
-    ov5_021E2028(fieldSystem);
+    FieldSystem_SaveObjectsAndLocation(fieldSystem);
 }

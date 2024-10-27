@@ -56,8 +56,8 @@ enum ScriptManagerMember {
     SCRIPT_MANAGER_TRAINER_1_TASK,
     SCRIPT_MANAGER_COIN_WINDOW,
     SCRIPT_MANAGER_MONEY_WINDOW,
-
-    SCRIPT_DATA_START = 41,
+    SCRIPT_MANAGER_SAVE_INFO_WINDOW,
+    SCRIPT_DATA_START,
     SCRIPT_DATA_PARAMETER_0 = SCRIPT_DATA_START, // used for storing the mon's party slot when you use a field move, the item ID for hidden items, and steps for the PokeRadar
     SCRIPT_DATA_PARAMETER_1, //  used for storing hidden item quantities.
     SCRIPT_DATA_PARAMETER_2, // used for storing hidden item quantities and flags respectively.
@@ -136,7 +136,7 @@ typedef struct ScriptManager {
     SysTask *playerTask; // used to set player sprite animations while saving
     Window coinWindow;
     Window moneyWindow;
-    UnkStruct_ov5_021E1FF4 *unk_D8;
+    SaveInfoWindow *saveInfoWin;
 } ScriptManager;
 
 void ScriptManager_Set(FieldSystem *fieldSystem, u16 scriptID, MapObject *object);

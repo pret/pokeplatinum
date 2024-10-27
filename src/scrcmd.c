@@ -5160,10 +5160,10 @@ static BOOL ScrCmd_CheckSaveType(ScriptContext *ctx)
 static BOOL ScrCmd_12D(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
+    u16 *destVarResult = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = ov5_021E200C(fieldSystem);
-    return 0;
+    *destVarResult = FieldSystem_Save(fieldSystem);
+    return FALSE;
 }
 
 static BOOL ScrCmd_2D6(ScriptContext *ctx)
@@ -7744,27 +7744,27 @@ static BOOL ScrCmd_2BE(ScriptContext *ctx)
 static BOOL ScrCmd_2C1(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    UnkStruct_ov5_021E1FF4 **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 40);
+    SaveInfoWindow **saveInfoWin = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_SAVE_INFO_WINDOW);
 
     if (!SaveData_OverwriteCheck(fieldSystem->saveData)) {
-        *v1 = ov5_021E1F98(fieldSystem, 4, 3);
-        ov5_021E1F04(*v1);
+        *saveInfoWin = SaveInfoWindow_New(fieldSystem, HEAP_ID_FIELD, BG_LAYER_MAIN_3);
+        SaveInfoWindow_NewWindow(*saveInfoWin);
     }
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_2C2(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    UnkStruct_ov5_021E1FF4 **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 40);
+    SaveInfoWindow **saveInfoWin = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_SAVE_INFO_WINDOW);
 
     if (!SaveData_OverwriteCheck(fieldSystem->saveData)) {
-        ov5_021E1F7C(*v1);
-        ov5_021E1FF4(*v1);
+        SaveInfoWindow_FreeWindow(*saveInfoWin);
+        SaveInfoWindow_Free(*saveInfoWin);
     }
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_2C3(ScriptContext *ctx)

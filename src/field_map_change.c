@@ -121,7 +121,7 @@ typedef struct MapChangeUndergroundData {
     int unk_14;
     BOOL unk_18;
     u16 unk_1C;
-    void *unk_20;
+    SaveInfoWindow *saveInfoWin;
     Window unk_24;
     Strbuf *unk_34;
     u8 unk_38;
@@ -1174,8 +1174,8 @@ BOOL FieldTask_MapChangeToUnderground(TaskManager *taskMan)
             ScriptManager_Start(taskMan, 2034, NULL, NULL);
         } else {
             sub_020287E0(fieldSystem->saveData);
-            mapChangeUndergroundData->unk_20 = ov5_021E1F98(fieldSystem, 11, 3);
-            ov5_021E1F04(mapChangeUndergroundData->unk_20);
+            mapChangeUndergroundData->saveInfoWin = SaveInfoWindow_New(fieldSystem, 11, BG_LAYER_MAIN_3);
+            SaveInfoWindow_NewWindow(mapChangeUndergroundData->saveInfoWin);
             mapChangeUndergroundData->unk_1C = 0;
             ScriptManager_Start(taskMan, 2005, NULL, &mapChangeUndergroundData->unk_1C);
         }
@@ -1186,8 +1186,8 @@ BOOL FieldTask_MapChangeToUnderground(TaskManager *taskMan)
         if (SaveData_OverwriteCheck(fieldSystem->saveData)) {
             mapChangeUndergroundData->state = 5;
         } else {
-            ov5_021E1F7C(mapChangeUndergroundData->unk_20);
-            ov5_021E1FF4(mapChangeUndergroundData->unk_20);
+            SaveInfoWindow_FreeWindow(mapChangeUndergroundData->saveInfoWin);
+            SaveInfoWindow_Free(mapChangeUndergroundData->saveInfoWin);
 
             if (mapChangeUndergroundData->unk_1C == 0) {
                 mapChangeUndergroundData->state = 5;

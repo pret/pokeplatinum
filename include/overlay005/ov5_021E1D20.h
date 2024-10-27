@@ -31,8 +31,7 @@ typedef struct SaveInfo {
     PlayTime *playTime;
 } SaveInfo;
 
-// ravetodo: SaveInfoWindow
-typedef struct UnkStruct_ov5_021E1FF4 {
+typedef struct SaveInfoWindow {
     FieldSystem *fieldSystem;
     int heapID;
     u8 bgLayer;
@@ -43,13 +42,13 @@ typedef struct UnkStruct_ov5_021E1FF4 {
     SaveInfo saveInfo;
     int width;
     int height;
-} UnkStruct_ov5_021E1FF4;
+} SaveInfoWindow;
 
-void ov5_021E1F04(UnkStruct_ov5_021E1FF4 *saveInfoWin);
-void ov5_021E1F7C(UnkStruct_ov5_021E1FF4 *saveInfoWin);
-UnkStruct_ov5_021E1FF4 *ov5_021E1F98(FieldSystem *fieldSystem, int heapID, u8 bgLayer);
-void ov5_021E1FF4(UnkStruct_ov5_021E1FF4 *saveInfoWin);
-BOOL ov5_021E200C(FieldSystem *fieldSystem);
-void ov5_021E2064(FieldSystem *fieldSystem);
+void SaveInfoWindow_NewWindow(SaveInfoWindow *saveInfoWin);
+void SaveInfoWindow_FreeWindow(SaveInfoWindow *saveInfoWin);
+SaveInfoWindow *SaveInfoWindow_New(FieldSystem *fieldSystem, int heapID, u8 bgLayer);
+void SaveInfoWindow_Free(SaveInfoWindow *saveInfoWin);
+BOOL FieldSystem_Save(FieldSystem *fieldSystem);
+void FieldSystem_SaveStateIfCommunicationOff(FieldSystem *fieldSystem);
 
 #endif // POKEPLATINUM_OV5_021E1D20_H
