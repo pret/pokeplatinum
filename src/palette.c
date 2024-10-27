@@ -11,10 +11,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 
-#define SLOTS_PER_PALETTE 16
-#define PALETTE_SIZE      (SLOTS_PER_PALETTE)
-#define PALETTE_SIZE_EXT  (SLOTS_PER_PALETTE * 16)
-
 static u8 IsMaskedOn(u16 mask, u16 bit);
 static void FlagFadedPaletteBuffer(PaletteData *paletteData, u16 bufferID);
 static void FilterMaskToValidPalettes(int bufferID, PaletteBuffer *buffer, u16 *outMask);
