@@ -362,7 +362,7 @@ static u32 sub_0203ABD0(FieldSystem *fieldSystem)
 {
     u32 v0 = 0;
 
-    if (sub_02027520(SaveData_Pokedex(fieldSystem->saveData)) == 0) {
+    if (Pokedex_Obtained(SaveData_Pokedex(fieldSystem->saveData)) == FALSE) {
         v0 |= 0x1;
     }
 

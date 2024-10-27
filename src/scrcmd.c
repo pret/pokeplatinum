@@ -4983,7 +4983,7 @@ static BOOL ScrCmd_11E(ScriptContext *ctx)
     const PokedexData *v0 = SaveData_Pokedex(ctx->fieldSystem->saveData);
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = sub_02026EAC(v0);
+    *v1 = Pokedex_SeenCountSinnoh(v0);
     return 0;
 }
 
@@ -5001,7 +5001,7 @@ static BOOL ScrCmd_120(ScriptContext *ctx)
     const PokedexData *v0 = SaveData_Pokedex(ctx->fieldSystem->saveData);
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = sub_02026E0C(v0);
+    *v1 = Pokedex_SeenCountNational(v0);
     return 0;
 }
 
@@ -6480,12 +6480,12 @@ static BOOL ScrCmd_218(ScriptContext *ctx)
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
     u16 v2, v3, v4, v5;
 
-    v2 = sub_02026EAC(v0);
+    v2 = Pokedex_SeenCountSinnoh(v0);
     v3 = LCRNG_Next() % v2;
     *v1 = 25;
 
     for (v4 = 1, v5 = 0; v4 <= NATIONAL_DEX_COUNT; v4++) {
-        if ((sub_02026FE8(v0, v4) == 1) && (Pokemon_SinnohDexNumber(v4) != 0)) {
+        if (Pokedex_SeenSpecies(v0, v4) == TRUE && Pokemon_SinnohDexNumber(v4) != FALSE) {
             if (v5 == v3) {
                 *v1 = v4;
                 break;
@@ -6596,7 +6596,7 @@ static BOOL ScrCmd_22D(ScriptContext *ctx)
         sub_02027454(SaveData_Pokedex(ctx->fieldSystem->saveData));
         TrainerInfo_GiveNationalDex(SaveData_GetTrainerInfo(ctx->fieldSystem->saveData));
     } else if (v0 == 2) {
-        *v1 = sub_02027474(SaveData_Pokedex(ctx->fieldSystem->saveData));
+        *v1 = Pokedex_NationalDexObtained(SaveData_Pokedex(ctx->fieldSystem->saveData));
     } else {
         GF_ASSERT(FALSE);
     }

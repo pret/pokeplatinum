@@ -55,10 +55,8 @@ static void SaveInfo_SetValues(SaveInfo *saveInfo, const FieldSystem *fieldSyste
 
     saveInfo->mapLabelTextID = MapHeader_GetMapLabelTextID(curLocation->mapId);
 
-    // ravetodo: Pokedex_Obtained
-    if (sub_02027520(pokedex)) {
-        // ravetodo: Pokedex_GetCount
-        saveInfo->pokedexCount = sub_02026E48(pokedex);
+    if (Pokedex_Obtained(pokedex)) {
+        saveInfo->pokedexCount = Pokedex_SeenCount(pokedex);
     } else {
         saveInfo->pokedexCount = 0;
     }

@@ -47,7 +47,7 @@ void ov21_021D3208(UnkStruct_ov21_021D3320 *param0, UnkStruct_ov21_021D3208 *par
     param0->unk_00 = param1->unk_00;
     param0->unk_1744 = param1->unk_08;
 
-    if (sub_02027474(param0->unk_00)) {
+    if (Pokedex_NationalDexObtained(param0->unk_00)) {
         param0->unk_1734 = 1;
     } else {
         param0->unk_1734 = 0;
@@ -209,7 +209,7 @@ u32 ov21_021D341C(const UnkStruct_ov21_021D3320 *param0, u32 param1)
 
 BOOL ov21_021D3428(const UnkStruct_ov21_021D3320 *param0)
 {
-    return sub_02027474(param0->unk_00);
+    return Pokedex_NationalDexObtained(param0->unk_00);
 }
 
 void ov21_021D3434(UnkStruct_ov21_021D3320 *param0, u32 param1)
@@ -610,7 +610,7 @@ static void ov21_021D39A4(u16 *param0, int *param1, const PokedexData *param2, c
     *param1 = 0;
 
     for (v0 = 0; v0 < param4; v0++) {
-        if (sub_02026FE8(param2, param3[v0])) {
+        if (Pokedex_SeenSpecies(param2, param3[v0])) {
             param0[*param1] = param3[v0];
             (*param1)++;
         }

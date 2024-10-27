@@ -239,7 +239,7 @@ static void ov97_0222AF1C(UnkStruct_0222AE60 *param0)
 
     sub_02017B70(v0);
 
-    if (sub_02027474(param0->unk_08) == 0) {
+    if (Pokedex_NationalDexObtained(param0->unk_08) == FALSE) {
         return;
     }
 
@@ -600,7 +600,7 @@ static BOOL ov97_0222B5C0(void *param0, int param1, UnkStruct_ov97_02237808 *par
     ov97_0222B53C(param2->unk_10, v5, v4, v7, 19, 16 * 3);
 
     if (v6->unk_4C) {
-        ov97_0222B590(v4, sub_02026E48(v6->unk_08));
+        ov97_0222B590(v4, Pokedex_SeenCount(v6->unk_08));
         ov97_0222B53C(param2->unk_10, v5, v4, v7, 18, 16 * 4);
     }
 
@@ -991,7 +991,7 @@ static int ov97_0222BD70(OverlayManager *param0, int *param1)
     v0->unk_0C = SaveData_GetTrainerInfo(v0->unk_04);
     v0->unk_08 = SaveData_Pokedex(v0->unk_04);
     v0->playTime = SaveData_GetPlayTime(v0->unk_04);
-    v0->unk_4C = sub_02027520(v0->unk_08);
+    v0->unk_4C = Pokedex_Obtained(v0->unk_08);
     v0->unk_50 = TrainerInfo_BadgeCount(v0->unk_0C);
     v0->unk_12C = 15;
 

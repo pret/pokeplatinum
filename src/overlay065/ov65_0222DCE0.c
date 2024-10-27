@@ -1810,7 +1810,7 @@ static void ov65_0222F4C4 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
     param0->unk_04->unk_00.unk_18 = TrainerInfo_GameCode(v0);
     param0->unk_04->unk_00.unk_19 = TrainerInfo_RegionCode(v0);
-    param0->unk_04->unk_00.unk_1A = sub_02027474(v1);
+    param0->unk_04->unk_00.unk_1A = Pokedex_NationalDexObtained(v1);
     param0->unk_04->unk_00.unk_1B = 29;
 
     ov65_02232E70(param0, param1);
