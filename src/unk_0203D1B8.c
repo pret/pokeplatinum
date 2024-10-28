@@ -18,7 +18,6 @@
 #include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_0202DF8C.h"
 #include "struct_defs/struct_0203D8AC.h"
-#include "struct_defs/struct_0203D8EC.h"
 #include "struct_defs/struct_0203D9B8.h"
 #include "struct_defs/struct_0203DA00.h"
 #include "struct_defs/struct_0203DDFC.h"
@@ -770,8 +769,8 @@ static void sub_0203D8DC(FieldSystem *fieldSystem, Options *param1)
 
     static const OverlayManagerTemplate v0 = {
         OptionsMenu_Init,
-        OptionsMenu_Exit,
         OptionsMenu_Main,
+        OptionsMenu_Exit,
         FS_OVERLAY_ID(options_menu)
     };
 
@@ -780,10 +779,10 @@ static void sub_0203D8DC(FieldSystem *fieldSystem, Options *param1)
 
 void *sub_0203D8EC(FieldSystem *fieldSystem)
 {
-    UnkStruct_0203D8EC *v0;
+    OptionsMenu *v0;
     Options *v1;
 
-    v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0203D8EC));
+    v0 = Heap_AllocFromHeapAtEnd(11, sizeof(OptionsMenu));
     v1 = SaveData_Options(FieldSystem_SaveData(fieldSystem));
 
     sub_0203D8DC(fieldSystem, v1);
