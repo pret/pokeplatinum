@@ -17,9 +17,9 @@
 #include "functypes/funcptr_02069238.h"
 #include "overlay005/ov5_021D0D80.h"
 #include "overlay005/ov5_021DFB54.h"
-#include "overlay005/ov5_021E1D20.h"
 #include "overlay005/ov5_021F007C.h"
 #include "overlay005/ov5_021F08CC.h"
+#include "overlay005/save_info_window.h"
 #include "overlay005/struct_ov5_021F0468_decl.h"
 #include "overlay006/ov6_02247100.h"
 #include "savedata/save_table.h"
@@ -1070,7 +1070,7 @@ static u32 sub_02069130(const UnkStruct_020684D0 *param0)
         return -1;
     }
 
-    if (sub_02027474(SaveData_Pokedex(param0->fieldSystem->saveData)) == 0) {
+    if (Pokedex_IsNationalDexObtained(SaveData_Pokedex(param0->fieldSystem->saveData)) == FALSE) {
         return -1;
     }
 
@@ -1102,7 +1102,7 @@ static BOOL sub_020691BC(UnkStruct_02068870 *param0)
 
 static void *sub_020691CC(void *param0)
 {
-    ov5_021E2064(param0);
+    FieldSystem_SaveStateIfCommunicationOff(param0);
     sub_0203DE88(param0, ((FieldSystem *)param0)->saveData);
 
     return NULL;

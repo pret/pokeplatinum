@@ -6,7 +6,6 @@
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay024/ov24_02253CE0.h"
-#include "overlay025/poketch_system.h"
 
 #include "game_overlay.h"
 #include "poketch_data.h"
@@ -17,10 +16,10 @@
 FS_EXTERN_OVERLAY(overlay24);
 FS_EXTERN_OVERLAY(overlay25);
 
-void ov5_021EA714(FieldSystem *fieldSystem, int param1, u32 param2)
+void ov5_021EA714(FieldSystem *fieldSystem, enum PoketchEventID eventID, u32 dummy)
 {
-    if ((fieldSystem->unk_04 != NULL) && (fieldSystem->unk_04->poketchSys != NULL)) {
-        PoketchSystem_SendEvent(fieldSystem->unk_04->poketchSys, param1, param2);
+    if (fieldSystem->unk_04 != NULL && fieldSystem->unk_04->poketchSys != NULL) {
+        PoketchSystem_SendEvent(fieldSystem->unk_04->poketchSys, eventID, dummy);
     }
 }
 

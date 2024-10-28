@@ -30,7 +30,7 @@
 #include "gmm/message_bank_unk_0367.h"
 #include "overlay005/ov5_021D0D80.h"
 #include "overlay005/ov5_021D2F14.h"
-#include "overlay005/ov5_021E1D20.h"
+#include "overlay005/save_info_window.h"
 #include "overlay021/struct_ov21_021D0D80.h"
 #include "overlay104/struct_ov104_02241308.h"
 
@@ -362,7 +362,7 @@ static u32 sub_0203ABD0(FieldSystem *fieldSystem)
 {
     u32 v0 = 0;
 
-    if (sub_02027520(SaveData_Pokedex(fieldSystem->saveData)) == 0) {
+    if (Pokedex_IsObtained(SaveData_Pokedex(fieldSystem->saveData)) == FALSE) {
         v0 |= 0x1;
     }
 
@@ -1251,19 +1251,16 @@ static BOOL FieldMenu_SelectBag(TaskManager *taskMan)
 
 static BOOL FieldMenu_Bag(TaskManager *taskMan)
 {
-    FieldSystem *fieldSystem;
-    FieldMenu *menu;
-
-    fieldSystem = TaskManager_FieldSystem(taskMan);
-    menu = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
+    FieldMenu *menu = TaskManager_Environment(taskMan);
 
     menu->unk_25C = sub_0203D20C(fieldSystem, &menu->unk_230);
     sub_0207CB70(menu->unk_25C, 0);
     menu->unk_22C = sub_0203BC5C;
 
-    ov5_021E2064(fieldSystem);
+    FieldSystem_SaveStateIfCommunicationOff(fieldSystem);
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL sub_0203BC5C(TaskManager *taskMan)

@@ -408,8 +408,8 @@ void *ScriptManager_GetMemberPtr(ScriptManager *scriptManager, u32 member)
         return &scriptManager->coinWindow;
     case SCRIPT_MANAGER_MONEY_WINDOW:
         return &scriptManager->moneyWindow;
-    case 40:
-        return &scriptManager->unk_D8;
+    case SCRIPT_MANAGER_SAVE_INFO_WINDOW:
+        return &scriptManager->saveInfoWin;
     case SCRIPT_DATA_PARAMETER_0:
     case SCRIPT_DATA_PARAMETER_1:
     case SCRIPT_DATA_PARAMETER_2:

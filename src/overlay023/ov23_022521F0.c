@@ -133,7 +133,7 @@ static void ov23_022522F0(UnkStruct_ov23_02250CD4 *param0, int param1)
     int v1, v2, v3, v4, v5;
     SaveData *v6 = FieldSystem_SaveData(param0->fieldSystem);
     UndergroundData *v7 = sub_020298B0(v6);
-    BOOL v8 = sub_02027474(SaveData_Pokedex(v6));
+    BOOL v8 = Pokedex_IsNationalDexObtained(SaveData_Pokedex(v6));
 
     MATH_InitRand16(&v0, sub_02028930(v7) + param1);
 
