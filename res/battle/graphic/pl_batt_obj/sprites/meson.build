@@ -1,6 +1,12 @@
-pl_batt_obj_sprites = files(
-    'pl_batt_obj_00000076.png',
-    'pl_batt_obj_00000112.png',
+tiles_uncompressed_mapping_64 = files(
+    'pl_batt_obj_00000076.png'
+)
+
+tiles_uncompressed_mapping_128 = files(
+    'pl_batt_obj_00000112.png'
+)
+
+tiles_compressed_mapping_64 = files(
     'pl_batt_obj_00000117.png',
     'pl_batt_obj_00000120.png',
     'pl_batt_obj_00000121.png',
@@ -51,58 +57,11 @@ pl_batt_obj_sprites = files(
     'battle_terrain_hall_opponent.png',
     'battle_terrain_giratina_player.png',
     'battle_terrain_giratina_opponent.png',
-    'pl_batt_obj_00000179.png',
     'pl_batt_obj_00000182.png',
     'pl_batt_obj_00000185.png',
-    'healthbox_singles_opponent.png',
-    'healthbox_singles_player.png',
-    'healthbox_doubles_opponent_1.png',
-    'healthbox_doubles_opponent_2.png',
-    'healthbox_doubles_player_1.png',
-    'healthbox_doubles_player_2.png',
-    'ball_status_indicator_opponent.png',
-    'ball_status_indicator_player.png',
-    'pl_batt_obj_00000211.png',
-    'pl_batt_obj_00000214.png',
-    'pl_batt_obj_00000217.png',
-    'contest_icon_beauty.png',
-    'contest_icon_cute.png',
-    'type_icon_dragon.png',
-    'type_icon_electric.png',
-    'type_icon_psychic.png',
-    'type_icon_dark.png',
-    'type_icon_fighting.png',
-    'type_icon_fire.png',
-    'type_icon_flying.png',
-    'type_icon_ghost.png',
-    'type_icon_ground.png',
-    'type_icon_ice.png',
-    'type_icon_bug.png',
-    'contest_icon_smart.png',
-    'type_icon_grass.png',
-    'type_icon_normal.png',
-    'type_icon_poison.png',
-    'type_icon_mystery.png',
-    'type_icon_rock.png',
-    'type_icon_steel.png',
-    'contest_icon_tough.png',
-    'contest_icon_cool.png',
-    'type_icon_water.png',
-    'move_class_physical.png',
-    'move_class_status.png',
-    'move_class_special.png',
     'pl_batt_obj_00000247.png',
-    'battle_subscreen_cursor_corner.png',
     'healthbox_safari.png',
     'bg_party_level_up.png',
-    'player_lucas_back.png',
-    'player_dawn_back.png',
-    'player_barry_back.png',
-    'player_cheryl_back.png',
-    'player_riley_back.png',
-    'player_marley_back.png',
-    'player_buck_back.png',
-    'player_mira_back.png',
     'poke_ball_throw.png',
     'master_ball_throw.png',
     'ultra_ball_throw.png',
@@ -125,20 +84,61 @@ pl_batt_obj_sprites = files(
     'party_gauge.png'
 )
 
-pl_batt_obj_sprite_data = files('data.json')
+tiles_compressed_mapping_32 = files(
+    'pl_batt_obj_00000179.png',
+    'ball_status_indicator_opponent.png',
+    'ball_status_indicator_player.png',
+    'pl_batt_obj_00000211.png',
+    'pl_batt_obj_00000214.png',
+    'pl_batt_obj_00000217.png',
+    'move_class_physical.png',
+    'move_class_status.png',
+    'move_class_special.png',
+    'battle_subscreen_cursor_corner.png'
+)
 
-pl_batt_obj_ncgr = []
-foreach infile : pl_batt_obj_sprites
-    pl_batt_obj_ncgr += custom_target(
-        input: [infile, pl_batt_obj_sprite_data],
-        output: '@BASENAME0@.NCGR',
-        command: [
-            make_pl_batt_obj_sprites_py,
-            '--nitrogfx', nitrogfx_exe.full_path(),
-            '--input', '@INPUT0@',
-            '--output', '@OUTPUT@',
-            '--datafile', '@INPUT1@',
-            '--private-dir', '@PRIVATE_DIR@'
-        ]
-    )
-endforeach
+tiles_compressed_mapping_64_v101 = files(
+    'healthbox_singles_opponent.png',
+    'healthbox_singles_player.png',
+    'healthbox_doubles_opponent_1.png',
+    'healthbox_doubles_opponent_2.png',
+    'healthbox_doubles_player_1.png',
+    'healthbox_doubles_player_2.png'
+)
+
+tiles_compressed_mapping_32_v101 = files(
+    'contest_icon_beauty.png',
+    'contest_icon_cute.png',
+    'type_icon_dragon.png',
+    'type_icon_electric.png',
+    'type_icon_psychic.png',
+    'type_icon_dark.png',
+    'type_icon_fighting.png',
+    'type_icon_fire.png',
+    'type_icon_flying.png',
+    'type_icon_ghost.png',
+    'type_icon_ground.png',
+    'type_icon_ice.png',
+    'type_icon_bug.png',
+    'contest_icon_smart.png',
+    'type_icon_grass.png',
+    'type_icon_normal.png',
+    'type_icon_poison.png',
+    'type_icon_mystery.png',
+    'type_icon_rock.png',
+    'type_icon_steel.png',
+    'contest_icon_tough.png',
+    'contest_icon_cool.png',
+    'type_icon_water.png'
+)
+
+tiles_compressed_vram_transfer = files(
+    'player_lucas_back.png',
+    'player_dawn_back.png',
+    'player_barry_back.png',
+    'player_cheryl_back.png',
+    'player_riley_back.png',
+    'player_marley_back.png',
+    'player_buck_back.png',
+    'player_mira_back.png'
+)

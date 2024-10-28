@@ -5,8 +5,8 @@
 	"sequences":	[{
 			"frameCount":	4,
 			"loopStartFrame":	0,
-			"animationType":	2,
-			"animationType2":	1,
+			"animationElement":	2,
+			"animationType":	1,
 			"playbackMode":	2,
 			"frameData":	[{
 					"frameDelay":	6,
@@ -24,8 +24,8 @@
 		}, {
 			"frameCount":	4,
 			"loopStartFrame":	0,
-			"animationType":	2,
-			"animationType2":	1,
+			"animationElement":	2,
+			"animationType":	1,
 			"playbackMode":	2,
 			"frameData":	[{
 					"frameDelay":	6,
@@ -43,8 +43,8 @@
 		}, {
 			"frameCount":	4,
 			"loopStartFrame":	0,
-			"animationType":	2,
-			"animationType2":	1,
+			"animationElement":	2,
+			"animationType":	1,
 			"playbackMode":	2,
 			"frameData":	[{
 					"frameDelay":	6,
@@ -62,8 +62,8 @@
 		}, {
 			"frameCount":	4,
 			"loopStartFrame":	0,
-			"animationType":	2,
-			"animationType2":	1,
+			"animationElement":	2,
+			"animationType":	1,
 			"playbackMode":	2,
 			"frameData":	[{
 					"frameDelay":	6,

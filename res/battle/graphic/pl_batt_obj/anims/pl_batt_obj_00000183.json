@@ -5,8 +5,8 @@
 	"sequences":	[{
 			"frameCount":	6,
 			"loopStartFrame":	0,
-			"animationType":	0,
-			"animationType2":	1,
+			"animationElement":	0,
+			"animationType":	1,
 			"playbackMode":	2,
 			"frameData":	[{
 					"frameDelay":	0,

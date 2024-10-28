@@ -1,5 +1,32 @@
-pl_batt_obj_palettes = files(
+palettes_normal = files(
     'pl_batt_obj_00000000.pal',
+    'battle_terrain_tower_day.pal',
+    'battle_terrain_tower_afternoon.pal',
+    'battle_terrain_tower_night.pal',
+    'battle_terrain_factory_day.pal',
+    'battle_terrain_factory_afternoon.pal',
+    'battle_terrain_factory_night.pal',
+    'battle_terrain_arcade_day.pal',
+    'battle_terrain_arcade_afternoon.pal',
+    'battle_terrain_arcade_night.pal',
+    'battle_terrain_castle_day.pal',
+    'battle_terrain_castle_afternoon.pal',
+    'battle_terrain_castle_night.pal',
+    'battle_terrain_hall_day.pal',
+    'battle_terrain_hall_afternoon.pal',
+    'battle_terrain_hall_night.pal',
+    'pl_batt_obj_00000070.pal',
+    'player_lucas_back.pal',
+    'player_dawn_back.pal',
+    'player_barry_back.pal',
+    'player_cheryl_back.pal',
+    'player_riley_back.pal',
+    'player_marley_back.pal',
+    'player_buck_back.pal',
+    'player_mira_back.pal'
+)
+
+palettes_pcmp = files(
     'battle_terrain_grass_day.pal',
     'battle_terrain_grass_afternoon.pal',
     'battle_terrain_grass_night.pal',
@@ -51,25 +78,9 @@ pl_batt_obj_palettes = files(
     'battle_terrain_distortion_world_day.pal',
     'battle_terrain_distortion_world_afternoon.pal',
     'battle_terrain_distortion_world_night.pal',
-    'battle_terrain_tower_day.pal',
-    'battle_terrain_tower_afternoon.pal',
-    'battle_terrain_tower_night.pal',
-    'battle_terrain_factory_day.pal',
-    'battle_terrain_factory_afternoon.pal',
-    'battle_terrain_factory_night.pal',
-    'battle_terrain_arcade_day.pal',
-    'battle_terrain_arcade_afternoon.pal',
-    'battle_terrain_arcade_night.pal',
-    'battle_terrain_castle_day.pal',
-    'battle_terrain_castle_afternoon.pal',
-    'battle_terrain_castle_night.pal',
-    'battle_terrain_hall_day.pal',
-    'battle_terrain_hall_afternoon.pal',
-    'battle_terrain_hall_night.pal',
     'battle_terrain_giratina_day.pal',
     'battle_terrain_giratina_afternoon.pal',
     'battle_terrain_giratina_night.pal',
-    'pl_batt_obj_00000070.pal',
     'healthbox_normal.pal',
     'pl_batt_obj_00000072.pal',
     'pl_batt_obj_00000073.pal',
@@ -79,14 +90,6 @@ pl_batt_obj_palettes = files(
     'battle_subscreen_cursor_corner.pal',
     'healthbox_safari.pal',
     'bg_party_level_up.pal',
-    'player_lucas_back.pal',
-    'player_dawn_back.pal',
-    'player_barry_back.pal',
-    'player_cheryl_back.pal',
-    'player_riley_back.pal',
-    'player_marley_back.pal',
-    'player_buck_back.pal',
-    'player_mira_back.pal',
     'poke_ball_throw.pal',
     'master_ball_throw.pal',
     'ultra_ball_throw.pal',
@@ -109,26 +112,3 @@ pl_batt_obj_palettes = files(
     'party_gauge.pal',
     'pl_batt_obj_00000111.pal'
 )
-
-# for some reason, the pcmp file 'size' field is the real size subtracted from 512
-# (e.g., actual numColors=16, size should=32, but real size is 512-32=480)
-# is this part of the standard? nitrogfx can't currently handle it.
-# requires a Python script for a fix.
-
-pl_batt_obj_palette_data = files('data.json')
-
-pl_batt_obj_nclr = []
-foreach infile : pl_batt_obj_palettes
-    pl_batt_obj_nclr += custom_target(
-        input: [infile, pl_batt_obj_palette_data],
-        output: '@BASENAME0@.NCLR',
-        command: [
-            make_pl_batt_obj_palettes_py,
-            '--nitrogfx', nitrogfx_exe.full_path(),
-            '--input', '@INPUT0@',
-            '--output', '@OUTPUT@',
-            '--datafile', '@INPUT1@',
-            '--private-dir', '@PRIVATE_DIR@'
-        ]
-    )
-endforeach

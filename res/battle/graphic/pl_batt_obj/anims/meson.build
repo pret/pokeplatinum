@@ -1,6 +1,9 @@
-pl_batt_obj_anims = files(
+anims_uncompressed = files(
     'pl_batt_obj_00000078.json',
-    'pl_batt_obj_00000114.json',
+    'pl_batt_obj_00000114.json'
+)
+
+anims_compressed = files (
     'pl_batt_obj_00000115.json',
     'pl_batt_obj_00000118.json',
     'pl_batt_obj_00000123.json',
@@ -55,21 +58,3 @@ pl_batt_obj_anims = files(
     'mud_throw.json',
     'party_gauge.json'
 )
-
-pl_batt_obj_anims_data = files('data.json')
-
-pl_batt_obj_nanr = []
-foreach infile : pl_batt_obj_anims
-    pl_batt_obj_nanr += custom_target(
-        input: [infile, pl_batt_obj_anims_data],
-        output: '@BASENAME0@.NANR',
-        command: [
-            make_pl_batt_obj_anims_py,
-            '--nitrogfx', nitrogfx_exe.full_path(),
-            '--input', '@INPUT0@',
-            '--output', '@OUTPUT@',
-            '--datafile', '@INPUT1@',
-            '--private-dir', '@PRIVATE_DIR@'
-        ]
-    )
-endforeach

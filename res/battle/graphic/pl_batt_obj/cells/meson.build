@@ -1,6 +1,9 @@
-pl_batt_obj_cells = files(
+cells_uncompressed = files(
     'pl_batt_obj_00000077.json',
-    'pl_batt_obj_00000113.json',
+    'pl_batt_obj_00000113.json'
+)
+
+cells_compressed = files(
     'pl_batt_obj_00000116.json',
     'pl_batt_obj_00000122.json',
     'pl_batt_obj_00000125.json',
@@ -55,21 +58,3 @@ pl_batt_obj_cells = files(
     'healthbox_safari.json',
     'bg_party_level_up.json'
 )
-
-pl_batt_obj_cells_data = files('data.json')
-
-pl_batt_obj_ncer = []
-foreach infile : pl_batt_obj_cells
-    pl_batt_obj_ncer += custom_target(
-        input: [infile, pl_batt_obj_cells_data],
-        output: '@BASENAME0@.NCER',
-        command: [
-            make_pl_batt_obj_cells_py,
-            '--nitrogfx', nitrogfx_exe.full_path(),
-            '--input', '@INPUT0@',
-            '--output', '@OUTPUT@',
-            '--datafile', '@INPUT1@',
-            '--private-dir', '@PRIVATE_DIR@'
-        ]
-    )
-endforeach
