@@ -266,7 +266,7 @@ static void sub_0209B084(UnkStruct_0209AD84 *param0, int param1, BOOL param2)
     }
 
     if (Window_IsInUse(v0) == 0) {
-        FieldMessage_AddWindow(param0->fieldSystem->unk_08, v0, 3);
+        FieldMessage_AddWindow(param0->fieldSystem->bgConfig, v0, 3);
         FieldMessage_DrawWindow(v0, SaveData_Options(param0->fieldSystem->saveData));
     } else {
         sub_0205D988(v0);
@@ -297,8 +297,8 @@ static void sub_0209B12C(UnkStruct_0209AD84 *param0)
     if (Window_IsInUse(v0) == 0) {
         int v1;
 
-        LoadStandardWindowGraphics(param0->fieldSystem->unk_08, 3, 155, 11, 0, 32);
-        Window_Add(param0->fieldSystem->unk_08, v0, 3, 1, 1, 13, 10, 13, 1);
+        LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 155, 11, 0, 32);
+        Window_Add(param0->fieldSystem->bgConfig, v0, 3, 1, 1, 13, 10, 13, 1);
         Window_FillTilemap(v0, 15);
 
         for (v1 = 0; v1 < 5; v1++) {
@@ -329,8 +329,8 @@ static void sub_0209B1D8(UnkStruct_0209AD84 *param0)
     if (Window_IsInUse(v0) == 0) {
         int v1;
 
-        LoadStandardWindowGraphics(param0->fieldSystem->unk_08, 3, 155, 11, 0, 32);
-        Window_Add(param0->fieldSystem->unk_08, v0, 3, 25, 13, 6, 4, 13, 131);
+        LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 155, 11, 0, 32);
+        Window_Add(param0->fieldSystem->bgConfig, v0, 3, 25, 13, 6, 4, 13, 131);
         Window_FillTilemap(v0, 15);
 
         for (v1 = 0; v1 < 2; v1++) {

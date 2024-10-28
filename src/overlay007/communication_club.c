@@ -160,7 +160,7 @@ static void CommClubMan_PrintMessage(int msgId, BOOL format)
     }
 
     if (!Window_IsInUse(&sCommClubMan->msgWindow)) {
-        FieldMessage_AddWindow(sCommClubMan->fieldSystem->unk_08, &sCommClubMan->msgWindow, 3);
+        FieldMessage_AddWindow(sCommClubMan->fieldSystem->bgConfig, &sCommClubMan->msgWindow, 3);
     }
 
     FieldMessage_DrawWindow(&sCommClubMan->msgWindow, SaveData_Options(sCommClubMan->fieldSystem->saveData));
@@ -181,7 +181,7 @@ static inline void CommClubMan_PrintMessageFastSpeed(int msgId, BOOL format)
     }
 
     if (!Window_IsInUse(&sCommClubMan->msgWindow)) {
-        FieldMessage_AddWindow(sCommClubMan->fieldSystem->unk_08, &sCommClubMan->msgWindow, 3);
+        FieldMessage_AddWindow(sCommClubMan->fieldSystem->bgConfig, &sCommClubMan->msgWindow, 3);
     }
 
     FieldMessage_DrawWindow(&sCommClubMan->msgWindow, SaveData_Options(sCommClubMan->fieldSystem->saveData));
@@ -194,7 +194,7 @@ static inline void CommClubMan_PrintMessageFastSpeed(int msgId, BOOL format)
 static void CommClubMan_CreateList(ListMenuTemplate param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 param5)
 {
     if (!Window_IsInUse(&sCommClubMan->unk_20)) {
-        Window_Add(sCommClubMan->fieldSystem->unk_08, &sCommClubMan->unk_20, 3, param1, param2, param3, param4, 13, param5);
+        Window_Add(sCommClubMan->fieldSystem->bgConfig, &sCommClubMan->unk_20, 3, param1, param2, param3, param4, 13, param5);
     }
 
     Window_DrawStandardFrame(&sCommClubMan->unk_20, 1, 1024 - (18 + 12) - 9, 11);
@@ -358,7 +358,7 @@ static void ov7_02249C94(ListMenu *param0, u32 param1, u8 param2)
 static void CommClubMan_PrintChooseJoinMsg(CommClubManager *param0)
 {
     if (!Window_IsInUse(&sCommClubMan->unk_30)) {
-        Window_Add(sCommClubMan->fieldSystem->unk_08, &sCommClubMan->unk_30, 3, 23, 2, 8, 4, 13, (1 + 20 * 5 * 2));
+        Window_Add(sCommClubMan->fieldSystem->bgConfig, &sCommClubMan->unk_30, 3, 23, 2, 8, 4, 13, (1 + 20 * 5 * 2));
     }
 
     Window_DrawStandardFrame(&sCommClubMan->unk_30, 1, 1024 - (18 + 12) - 9, 11);
@@ -592,7 +592,7 @@ static void CommClubTask_WaitConfirmLeaveGroup(SysTask *task, void *data)
     }
 
     if (FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
-        commClubMan->unk_60 = Menu_MakeYesNoChoice(sCommClubMan->fieldSystem->unk_08, &Unk_ov7_0224ED0C, 1024 - (18 + 12) - 9, 11, 4);
+        commClubMan->unk_60 = Menu_MakeYesNoChoice(sCommClubMan->fieldSystem->bgConfig, &Unk_ov7_0224ED0C, 1024 - (18 + 12) - 9, 11, 4);
         CommClubMan_SetTask(CommClubTask_LeaveGroup);
     }
 }
@@ -689,7 +689,7 @@ static void ov7_0224A53C(CommClubManager *man)
     ov7_0224A5D0();
 
     if (!Window_IsInUse(&sCommClubMan->unk_30)) {
-        Window_Add(sCommClubMan->fieldSystem->unk_08, &sCommClubMan->unk_30, 3, 22, 2, 9, 4, 13, (1 + 17 * 6 * 2));
+        Window_Add(sCommClubMan->fieldSystem->bgConfig, &sCommClubMan->unk_30, 3, 22, 2, 9, 4, 13, (1 + 17 * 6 * 2));
     }
 
     Window_DrawStandardFrame(&sCommClubMan->unk_30, 1, 1024 - (18 + 12) - 9, 11);
@@ -1140,7 +1140,7 @@ static void ov7_0224AC48(SysTask *task, void *param1)
     ListMenu_ProcessInput(commClubMan->unk_5C);
 
     if (FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
-        commClubMan->unk_60 = Menu_MakeYesNoChoice(sCommClubMan->fieldSystem->unk_08, &Unk_ov7_0224ED0C, 1024 - (18 + 12) - 9, 11, 4);
+        commClubMan->unk_60 = Menu_MakeYesNoChoice(sCommClubMan->fieldSystem->bgConfig, &Unk_ov7_0224ED0C, 1024 - (18 + 12) - 9, 11, 4);
         CommClubMan_SetTask(ov7_0224ACA4);
     }
 }
@@ -1305,7 +1305,7 @@ static void ov7_0224AE78(SysTask *task, void *param1)
     ListMenu_ProcessInput(commClubMan->unk_5C);
 
     if (FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
-        commClubMan->unk_60 = Menu_MakeYesNoChoice(sCommClubMan->fieldSystem->unk_08, &Unk_ov7_0224ED0C, 1024 - (18 + 12) - 9, 11, 4);
+        commClubMan->unk_60 = Menu_MakeYesNoChoice(sCommClubMan->fieldSystem->bgConfig, &Unk_ov7_0224ED0C, 1024 - (18 + 12) - 9, 11, 4);
         CommClubMan_SetTask(ov7_0224AECC);
     }
 }
@@ -1361,7 +1361,7 @@ static void ov7_0224AF84(SysTask *task, void *param1)
     ListMenu_ProcessInput(commClubMan->unk_5C);
 
     if (FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
-        commClubMan->unk_60 = Menu_MakeYesNoChoice(sCommClubMan->fieldSystem->unk_08, &Unk_ov7_0224ED0C, 1024 - (18 + 12) - 9, 11, 4);
+        commClubMan->unk_60 = Menu_MakeYesNoChoice(sCommClubMan->fieldSystem->bgConfig, &Unk_ov7_0224ED0C, 1024 - (18 + 12) - 9, 11, 4);
         CommClubMan_SetTask(ov7_0224A97C);
     }
 }

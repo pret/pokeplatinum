@@ -31,10 +31,10 @@ void ov5_021EA728(FieldSystem *fieldSystem)
     if (PoketchData_IsEnabled(poketchData)
         && (sub_0206AE2C(v1) == 0)) {
         Overlay_LoadByID(FS_OVERLAY_ID(overlay25), 2);
-        PoketchSystem_Create(fieldSystem, &fieldSystem->unk_04->poketchSys, fieldSystem->saveData, fieldSystem->unk_08, sub_0200A914(1));
+        PoketchSystem_Create(fieldSystem, &fieldSystem->unk_04->poketchSys, fieldSystem->saveData, fieldSystem->bgConfig, sub_0200A914(1));
     } else {
         Overlay_LoadByID(FS_OVERLAY_ID(overlay24), 2);
-        ov24_02253CE0(fieldSystem->unk_08);
+        ov24_02253CE0(fieldSystem->bgConfig);
     }
 }
 
@@ -47,7 +47,7 @@ void ov5_021EA790(FieldSystem *fieldSystem)
         && (sub_0206AE2C(v1) == 0)) {
         PoketchSystem_StartShutdown(fieldSystem->unk_04->poketchSys);
     } else {
-        ov24_02253DA4(fieldSystem->unk_08);
+        ov24_02253DA4(fieldSystem->bgConfig);
     }
 }
 
@@ -64,7 +64,7 @@ u8 ov5_021EA7CC(FieldSystem *fieldSystem)
             return 1;
         }
     } else {
-        if (ov24_02253DB4(fieldSystem->unk_08)) {
+        if (ov24_02253DB4(fieldSystem->bgConfig)) {
             Overlay_UnloadByID(FS_OVERLAY_ID(overlay24));
             return 1;
         }
@@ -76,17 +76,17 @@ u8 ov5_021EA7CC(FieldSystem *fieldSystem)
 void ov5_021EA830(FieldSystem *fieldSystem)
 {
     Overlay_LoadByID(FS_OVERLAY_ID(overlay24), 2);
-    ov24_02253CE0(fieldSystem->unk_08);
+    ov24_02253CE0(fieldSystem->bgConfig);
 }
 
 void ov5_021EA848(FieldSystem *fieldSystem)
 {
-    ov24_02253DA4(fieldSystem->unk_08);
+    ov24_02253DA4(fieldSystem->bgConfig);
 }
 
 BOOL ov5_021EA854(FieldSystem *fieldSystem)
 {
-    if (ov24_02253DB4(fieldSystem->unk_08)) {
+    if (ov24_02253DB4(fieldSystem->bgConfig)) {
         Overlay_UnloadByID(FS_OVERLAY_ID(overlay24));
         return 1;
     }

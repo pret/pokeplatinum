@@ -168,7 +168,7 @@ SaveInfoWindow *SaveInfoWindow_New(FieldSystem *fieldSystem, enum HeapId heapID,
     saveInfoWin->fieldSystem = fieldSystem;
     saveInfoWin->heapID = heapID;
     saveInfoWin->bgLayer = bgLayer;
-    saveInfoWin->bgConfig = fieldSystem->unk_08;
+    saveInfoWin->bgConfig = fieldSystem->bgConfig;
     saveInfoWin->strTemplate = StringTemplate_Default(heapID);
     saveInfoWin->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_save_info_window, heapID);
 

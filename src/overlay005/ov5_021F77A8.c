@@ -471,12 +471,12 @@ void ov5_021F7F2C(UnkStruct_ov5_021F7ED8 *param0, u32 param1, u32 param2, u32 pa
 static void ov5_021F7F34(UnkStruct_ov5_021F7ED8 *param0)
 {
     if (param0->unk_C7 > 8) {
-        Window_Add(param0->fieldSystem->unk_08, &param0->unk_08, 3, param0->unk_C4, param0->unk_C5, 11, 8 * 2, 13, 1);
+        Window_Add(param0->fieldSystem->bgConfig, &param0->unk_08, 3, param0->unk_C4, param0->unk_C5, 11, 8 * 2, 13, 1);
     } else {
-        Window_Add(param0->fieldSystem->unk_08, &param0->unk_08, 3, param0->unk_C4, param0->unk_C5, 11, param0->unk_C7 * 2, 13, 1);
+        Window_Add(param0->fieldSystem->bgConfig, &param0->unk_08, 3, param0->unk_C4, param0->unk_C5, 11, param0->unk_C7 * 2, 13, 1);
     }
 
-    LoadStandardWindowGraphics(param0->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
+    LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
     Window_DrawStandardFrame(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
     ov5_021F8090(param0);
 

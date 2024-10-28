@@ -858,7 +858,7 @@ static void ov23_0224BAAC(SysTask *param0, void *param1)
         break;
     case 1:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            v0->unk_04 = Menu_MakeYesNoChoice(fieldSystem->unk_08, &Unk_ov23_02256864, 1024 - (18 + 12) - 9, 11, 4);
+            v0->unk_04 = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &Unk_ov23_02256864, 1024 - (18 + 12) - 9, 11, 4);
             v0->unk_0C = 2;
         }
         break;
@@ -875,7 +875,7 @@ static void ov23_0224BAAC(SysTask *param0, void *param1)
         break;
     case 3:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            v0->unk_04 = Menu_MakeYesNoChoice(fieldSystem->unk_08, &Unk_ov23_02256864, 1024 - (18 + 12) - 9, 11, 4);
+            v0->unk_04 = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &Unk_ov23_02256864, 1024 - (18 + 12) - 9, 11, 4);
             v0->unk_0C = 4;
         }
         break;
@@ -893,7 +893,7 @@ static void ov23_0224BAAC(SysTask *param0, void *param1)
         break;
     case 5:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            v0->unk_04 = Menu_MakeYesNoChoice(fieldSystem->unk_08, &Unk_ov23_02256864, 1024 - (18 + 12) - 9, 11, 4);
+            v0->unk_04 = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &Unk_ov23_02256864, 1024 - (18 + 12) - 9, 11, 4);
             v0->unk_0C = 6;
         }
         break;
@@ -1058,7 +1058,7 @@ static void ov23_0224BE28(SysTask *param0, void *param1)
         break;
     case 1:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            v0->unk_04 = Menu_MakeYesNoChoice(fieldSystem->unk_08, &Unk_ov23_02256864, 1024 - (18 + 12) - 9, 11, 4);
+            v0->unk_04 = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &Unk_ov23_02256864, 1024 - (18 + 12) - 9, 11, 4);
             v0->unk_0C = 2;
         }
         break;
@@ -1080,7 +1080,7 @@ static void ov23_0224BE28(SysTask *param0, void *param1)
         break;
     case 4:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            v0->unk_04 = Menu_MakeYesNoChoice(fieldSystem->unk_08, &Unk_ov23_02256864, 1024 - (18 + 12) - 9, 11, 4);
+            v0->unk_04 = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &Unk_ov23_02256864, 1024 - (18 + 12) - 9, 11, 4);
             v0->unk_0C = 5;
         }
         break;
@@ -1104,7 +1104,7 @@ static void ov23_0224BE28(SysTask *param0, void *param1)
         break;
     case 6:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            v0->unk_04 = ov23_0224BD90(fieldSystem->unk_08, &Unk_ov23_0225686C, 1024 - (18 + 12) - 9, 11, 4);
+            v0->unk_04 = ov23_0224BD90(fieldSystem->bgConfig, &Unk_ov23_0225686C, 1024 - (18 + 12) - 9, 11, 4);
             v0->unk_0C = 7;
         }
         break;
@@ -1639,7 +1639,7 @@ static BOOL ov23_0224C790(TaskManager *param0)
         sub_020594FC();
 
         Graphics_LoadPalette(50, 52, 0, 10 * 0x20, 4 * 0x20, 4);
-        LoadStandardWindowGraphics(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 2, 4);
+        LoadStandardWindowGraphics(fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, 4);
 
         if (v1->unk_2D) {
             sub_020594EC();
@@ -1811,7 +1811,7 @@ static void ov23_0224CB1C(SysTask *param0, void *param1)
         break;
     case 5:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            v0->unk_08 = Menu_MakeYesNoChoice(fieldSystem->unk_08, &Unk_ov23_02256864, 1024 - (18 + 12) - 9, 11, 4);
+            v0->unk_08 = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &Unk_ov23_02256864, 1024 - (18 + 12) - 9, 11, 4);
             v0->unk_0C = 6;
         }
         break;

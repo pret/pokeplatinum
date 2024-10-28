@@ -69,8 +69,8 @@ static BOOL ov5_021EA874(UnkStruct_ov5_021EAE78 *param0)
 
     param0->unk_8C = 0;
 
-    LoadMessageBoxGraphics(param0->fieldSystem->unk_08, 3, (512 - (18 + 12)), 10, Options_Frame(SaveData_Options(param0->unk_34)), 4);
-    LoadStandardWindowGraphics(param0->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
+    LoadMessageBoxGraphics(param0->fieldSystem->bgConfig, 3, (512 - (18 + 12)), 10, Options_Frame(SaveData_Options(param0->unk_34)), 4);
+    LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
 
     param0->unk_48 = 1;
     return 0;
@@ -130,7 +130,7 @@ static const WindowTemplate Unk_ov5_021FAF00 = {
 static BOOL ov5_021EA9BC(UnkStruct_ov5_021EAE78 *param0)
 {
     if (Text_IsPrinterActive(param0->unk_40) == 0) {
-        param0->unk_44 = Menu_MakeYesNoChoice(param0->fieldSystem->unk_08, &Unk_ov5_021FAF00, 1024 - (18 + 12) - 9, 11, 4);
+        param0->unk_44 = Menu_MakeYesNoChoice(param0->fieldSystem->bgConfig, &Unk_ov5_021FAF00, 1024 - (18 + 12) - 9, 11, 4);
         param0->unk_48 = 3;
     }
 
@@ -170,7 +170,7 @@ static BOOL ov5_021EA9F8(UnkStruct_ov5_021EAE78 *param0)
 static BOOL ov5_021EAA6C(UnkStruct_ov5_021EAE78 *param0)
 {
     if (Text_IsPrinterActive(param0->unk_40) == 0) {
-        param0->unk_44 = Menu_MakeYesNoChoice(param0->fieldSystem->unk_08, &Unk_ov5_021FAF00, 1024 - (18 + 12) - 9, 11, 4);
+        param0->unk_44 = Menu_MakeYesNoChoice(param0->fieldSystem->bgConfig, &Unk_ov5_021FAF00, 1024 - (18 + 12) - 9, 11, 4);
         param0->unk_48 = 5;
     }
 
@@ -202,7 +202,7 @@ static BOOL ov5_021EAAA8(UnkStruct_ov5_021EAE78 *param0)
 static BOOL ov5_021EAAEC(UnkStruct_ov5_021EAE78 *param0)
 {
     if (Text_IsPrinterActive(param0->unk_40) == 0) {
-        param0->unk_44 = Menu_MakeYesNoChoice(param0->fieldSystem->unk_08, &Unk_ov5_021FAF00, 1024 - (18 + 12) - 9, 11, 4);
+        param0->unk_44 = Menu_MakeYesNoChoice(param0->fieldSystem->bgConfig, &Unk_ov5_021FAF00, 1024 - (18 + 12) - 9, 11, 4);
         param0->unk_48 = 7;
     }
 
@@ -260,7 +260,7 @@ static BOOL ov5_021EAB58(UnkStruct_ov5_021EAE78 *param0)
 
     param0->unk_00 = StringList_New(v2 + 1, 4);
 
-    Window_Add(param0->fieldSystem->unk_08, &param0->unk_20, 3, 19, 1, 12, v3 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (10 * (v3 + 2) * 2));
+    Window_Add(param0->fieldSystem->bgConfig, &param0->unk_20, 3, 19, 1, 12, v3 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (10 * (v3 + 2) * 2));
     Window_DrawStandardFrame(&param0->unk_20, 1, 1024 - (18 + 12) - 9, 11);
 
     {
@@ -339,7 +339,7 @@ static BOOL ov5_021EAC44(UnkStruct_ov5_021EAE78 *param0)
 static BOOL ov5_021EACFC(UnkStruct_ov5_021EAE78 *param0)
 {
     if (Text_IsPrinterActive(param0->unk_40) == 0) {
-        param0->unk_44 = Menu_MakeYesNoChoice(param0->fieldSystem->unk_08, &Unk_ov5_021FAF00, 1024 - (18 + 12) - 9, 11, 4);
+        param0->unk_44 = Menu_MakeYesNoChoice(param0->fieldSystem->bgConfig, &Unk_ov5_021FAF00, 1024 - (18 + 12) - 9, 11, 4);
         param0->unk_48 = 11;
     }
 
@@ -435,7 +435,7 @@ static void ov5_021EAE78(UnkStruct_ov5_021EAE78 *param0, int param1)
 
     MessageLoader_GetStrbuf(param0->unk_3C, param1, param0->unk_08);
     StringTemplate_Format(param0->unk_38, param0->unk_0C, param0->unk_08);
-    FieldMessage_AddWindow(param0->fieldSystem->unk_08, &param0->unk_10, 3);
+    FieldMessage_AddWindow(param0->fieldSystem->bgConfig, &param0->unk_10, 3);
     FieldMessage_DrawWindow(&param0->unk_10, SaveData_Options(param0->fieldSystem->saveData));
 
     param0->unk_40 = FieldMessage_Print(&param0->unk_10, param0->unk_0C, SaveData_Options(param0->fieldSystem->saveData), 1);

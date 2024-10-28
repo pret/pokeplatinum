@@ -323,7 +323,7 @@ UnkStruct_ov23_0224942C *ov23_02249404(FieldSystem *fieldSystem)
     v0 = SysTask_GetParam(v1);
 
     v0->fieldSystem = fieldSystem;
-    v0->unk_1B8 = fieldSystem->unk_08;
+    v0->unk_1B8 = fieldSystem->bgConfig;
 
     return v0;
 }

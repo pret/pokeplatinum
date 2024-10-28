@@ -2601,7 +2601,7 @@ static void ov9_0224ADC0(UnkStruct_ov9_02249B04 *param0)
         v6 = NARC_AllocAndReadWholeMember(param0->unk_10, 0, 4);
         NNS_G2dGetUnpackedCharacterData(v6, &v7);
 
-        Bg_LoadTiles(param0->fieldSystem->unk_08, 2, v7->pRawData, v7->szByte, 0);
+        Bg_LoadTiles(param0->fieldSystem->bgConfig, 2, v7->pRawData, v7->szByte, 0);
         Heap_FreeToHeap(v6);
     }
 
@@ -2612,9 +2612,9 @@ static void ov9_0224ADC0(UnkStruct_ov9_02249B04 *param0)
         v8 = NARC_AllocAndReadWholeMember(param0->unk_10, 2, 4);
         NNS_G2dGetUnpackedScreenData(v8, &v9);
 
-        Bg_CopyTilemapBufferRangeToVRAM(param0->fieldSystem->unk_08, 2, (void *)v9->rawData, v9->szByte, 0);
-        Bg_LoadTilemapBuffer(param0->fieldSystem->unk_08, 2, (void *)v9->rawData, v9->szByte);
-        Bg_CopyTilemapBufferToVRAM(param0->fieldSystem->unk_08, 2);
+        Bg_CopyTilemapBufferRangeToVRAM(param0->fieldSystem->bgConfig, 2, (void *)v9->rawData, v9->szByte, 0);
+        Bg_LoadTilemapBuffer(param0->fieldSystem->bgConfig, 2, (void *)v9->rawData, v9->szByte);
+        Bg_CopyTilemapBufferToVRAM(param0->fieldSystem->bgConfig, 2);
         Heap_FreeToHeap(v8);
     }
 

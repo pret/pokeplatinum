@@ -261,10 +261,10 @@ static void sub_02052F28(FieldSystem *fieldSystem, UnkStruct_0205300C *param1)
 
     SetAllGraphicsModes(&v1);
     Bg_MaskPalette(3, 0x0);
-    Bg_InitFromTemplate(fieldSystem->unk_08, 3, &v2, 0);
+    Bg_InitFromTemplate(fieldSystem->bgConfig, 3, &v2, 0);
     Bg_ClearTilesRange(3, 0x20, 0, 32);
-    Bg_FillTilemapRect(fieldSystem->unk_08, 3, 0x0, 0, 0, 32, 32, 17);
-    Bg_CopyTilemapBufferToVRAM(fieldSystem->unk_08, 3);
+    Bg_FillTilemapRect(fieldSystem->bgConfig, 3, 0x0, 0, 0, 32, 32, 17);
+    Bg_CopyTilemapBufferToVRAM(fieldSystem->bgConfig, 3);
 }
 
 static void sub_02052FA8(FieldSystem *fieldSystem, UnkStruct_0205300C *param1)
@@ -273,7 +273,7 @@ static void sub_02052FA8(FieldSystem *fieldSystem, UnkStruct_0205300C *param1)
 
     param1->unk_2C = MessageBank_GetNewStrbufFromNARC(26, 213, 15, 32);
 
-    FieldMessage_AddWindow(fieldSystem->unk_08, &param1->unk_1C, 3);
+    FieldMessage_AddWindow(fieldSystem->bgConfig, &param1->unk_1C, 3);
     FieldMessage_DrawWindow(&param1->unk_1C, v0);
 
     param1->unk_34 = FieldMessage_Print(&param1->unk_1C, param1->unk_2C, v0, 1);
@@ -321,5 +321,5 @@ static void sub_02053098(FieldSystem *fieldSystem, UnkStruct_0205300C *param1)
         Window_Remove(&param1->unk_1C);
     }
 
-    Bg_FreeTilemapBuffer(fieldSystem->unk_08, 3);
+    Bg_FreeTilemapBuffer(fieldSystem->bgConfig, 3);
 }

@@ -137,15 +137,15 @@ static void CommManUnderground_Init(CommManUnderground *param0, FieldSystem *fie
     sCommManUnderground->unk_1C.unk_02 = 0;
     sCommManUnderground->unk_14B = 0;
     sCommManUnderground->unk_147 = 1;
-    sCommManUnderground->unk_118 = ov23_02253D48(634, 33, fieldSystem->unk_08, v0, 500);
-    sCommManUnderground->unk_11C = ov23_02253D48(638, 33, fieldSystem->unk_08, v0, 0);
-    sCommManUnderground->unk_120 = ov23_02253D48(636, 33, fieldSystem->unk_08, v0, 1000);
-    sCommManUnderground->unk_124 = ov23_02253D48(637, 33, fieldSystem->unk_08, v0, 0);
-    sCommManUnderground->unk_128 = ov23_02253D48(630, 33, fieldSystem->unk_08, v0, 0);
+    sCommManUnderground->unk_118 = ov23_02253D48(634, 33, fieldSystem->bgConfig, v0, 500);
+    sCommManUnderground->unk_11C = ov23_02253D48(638, 33, fieldSystem->bgConfig, v0, 0);
+    sCommManUnderground->unk_120 = ov23_02253D48(636, 33, fieldSystem->bgConfig, v0, 1000);
+    sCommManUnderground->unk_124 = ov23_02253D48(637, 33, fieldSystem->bgConfig, v0, 0);
+    sCommManUnderground->unk_128 = ov23_02253D48(630, 33, fieldSystem->bgConfig, v0, 0);
 
-    LoadMessageBoxGraphics(sCommManUnderground->fieldSystem->unk_08, 3, (1024 - (18 + 12)), 10, 0, 4);
+    LoadMessageBoxGraphics(sCommManUnderground->fieldSystem->bgConfig, 3, (1024 - (18 + 12)), 10, 0, 4);
     Graphics_LoadPalette(50, 52, 0, 10 * 0x20, 4 * 0x20, 4);
-    LoadStandardWindowGraphics(sCommManUnderground->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 2, 4);
+    LoadStandardWindowGraphics(sCommManUnderground->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, 4);
 
     for (v1 = 0; v1 < (7 + 1); v1++) {
         sCommManUnderground->unk_C2[v1] = 0xff;
@@ -761,7 +761,7 @@ void ov23_02242B14(void)
     ov23_0223E878();
 
     if (!sCommManUnderground->unk_14B) {
-        ov23_022468A8(sCommManUnderground->fieldSystem->unk_08);
+        ov23_022468A8(sCommManUnderground->fieldSystem->bgConfig);
     }
 }
 
@@ -819,7 +819,7 @@ void ov23_02242CB4(void)
         ov23_022435A8();
         ov23_0223E2F4();
         sCommManUnderground->unk_14B = 0;
-        LoadMessageBoxGraphics(sCommManUnderground->fieldSystem->unk_08, 3, (1024 - (18 + 12)), 10, 0, 4);
+        LoadMessageBoxGraphics(sCommManUnderground->fieldSystem->bgConfig, 3, (1024 - (18 + 12)), 10, 0, 4);
     }
 }
 

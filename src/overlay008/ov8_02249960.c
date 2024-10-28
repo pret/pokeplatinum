@@ -2844,7 +2844,7 @@ static BOOL ov8_0224B3D4(TaskManager *param0)
 
             sub_020057A4(1593, 0);
             MessageLoader_GetStrbuf(v2->unk_48, 12, v2->unk_4C);
-            FieldMessage_AddWindow(fieldSystem->unk_08, v2->unk_44, 3);
+            FieldMessage_AddWindow(fieldSystem->bgConfig, v2->unk_44, 3);
             Window_EraseMessageBox(v2->unk_44, 0);
             FieldMessage_DrawWindow(v2->unk_44, SaveData_Options(fieldSystem->saveData));
 

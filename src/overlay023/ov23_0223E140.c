@@ -1021,7 +1021,7 @@ static void ov23_0223EA38(SysTask *param0, void *param1)
 
     if (Unk_ov23_02257740->unk_A24 != -1) {
         if (Text_IsPrinterActive(Unk_ov23_02257740->unk_A24) == 0) {
-            Unk_ov23_02257740->unk_848 = Menu_MakeYesNoChoice(Unk_ov23_02257740->fieldSystem->unk_08, &Unk_ov23_0225630E, 1024 - (18 + 12) - 9, 11, 4);
+            Unk_ov23_02257740->unk_848 = Menu_MakeYesNoChoice(Unk_ov23_02257740->fieldSystem->bgConfig, &Unk_ov23_0225630E, 1024 - (18 + 12) - 9, 11, 4);
             Unk_ov23_02257740->unk_A24 = -1;
         }
     } else {
@@ -1398,7 +1398,7 @@ static void ov23_0223F020(UnkStruct_ov23_0223EE80 *param0)
     Unk_ov23_02257740->unk_04 = NULL;
 
     Heap_Destroy(29);
-    ov23_02253E2C(ov23_0224219C(), Unk_ov23_02257740->fieldSystem->unk_08, (1024 - (18 + 12)), (((1024 - (18 + 12)) - 73) - (27 * 4)));
+    ov23_02253E2C(ov23_0224219C(), Unk_ov23_02257740->fieldSystem->bgConfig, (1024 - (18 + 12)), (((1024 - (18 + 12)) - 73) - (27 * 4)));
 }
 
 static void ov23_0223F118(SysTask *param0, void *param1)
@@ -1590,7 +1590,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
             HBlankSystem_Start(v0->fieldSystem->unk_04->hBlankSystem);
 
             Graphics_LoadPalette(50, 52, 0, 10 * 0x20, 4 * 0x20, 4);
-            LoadStandardWindowGraphics(v0->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 2, 4);
+            LoadStandardWindowGraphics(v0->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, 4);
             CommPlayerMan_Restart();
 
             ov23_0224B460();

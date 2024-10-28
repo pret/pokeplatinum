@@ -950,7 +950,7 @@ static BOOL sub_02068F48(TaskManager *param0)
     switch (v1->unk_16) {
     case 0:
         MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
-        FieldMessage_AddWindow(fieldSystem->unk_08, &v1->unk_00, 3);
+        FieldMessage_AddWindow(fieldSystem->bgConfig, &v1->unk_00, 3);
 
         {
             const Options *v2 = SaveData_Options(fieldSystem->saveData);

@@ -417,7 +417,7 @@ static void sub_02059B74(void)
         }
     }
 
-    sub_02038A1C(4, sFieldCommMan->fieldSystem->unk_08);
+    sub_02038A1C(4, sFieldCommMan->fieldSystem->bgConfig);
 }
 
 static void sub_02059BF4(void)

@@ -379,7 +379,7 @@ struct PoketchSystem *FieldSystem_GetPoketchSystem(void)
 BgConfig *sub_0203D170(void *param0)
 {
     FieldSystem *fieldSystem = (FieldSystem *)param0;
-    return fieldSystem->unk_08;
+    return fieldSystem->bgConfig;
 }
 
 SaveData *FieldSystem_SaveData(void *param0)

@@ -478,7 +478,7 @@ static void ov23_0224F7F4(UnkStruct_ov23_02250CD4 *param0)
     v3 = ov23_0224F7D4(v2);
     param0->unk_40 = StringList_New(NELEMS(Unk_ov23_02256924), 4);
 
-    Window_Add(param0->fieldSystem->unk_08, &param0->unk_10, 3, 20, 1, 11, NELEMS(Unk_ov23_02256924) * 3, 13, (1024 - (18 + 12) - 9 - 11 * 22));
+    Window_Add(param0->fieldSystem->bgConfig, &param0->unk_10, 3, 20, 1, 11, NELEMS(Unk_ov23_02256924) * 3, 13, (1024 - (18 + 12) - 9 - 11 * 22));
     Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {
@@ -735,7 +735,7 @@ static void ov23_0224FBFC(UnkStruct_ov23_02250CD4 *param0, int param1)
 
     param0->unk_44 = StringList_New(v1, 4);
 
-    Window_Add(param0->fieldSystem->unk_08, &param0->unk_20, 3, v5, v3, v4, v1 * 2, 13, (1024 - (18 + 12) - 9 - 11 * 22));
+    Window_Add(param0->fieldSystem->bgConfig, &param0->unk_20, 3, v5, v3, v4, v1 * 2, 13, (1024 - (18 + 12) - 9 - 11 * 22));
     Window_DrawStandardFrame(&param0->unk_20, 1, 1024 - (18 + 12) - 9, 11);
 
     {
@@ -847,7 +847,7 @@ static void ov23_0224FE38(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
 
     param0->unk_40 = StringList_New(v3 + 1, 4);
 
-    Window_Add(param0->fieldSystem->unk_08, &param0->unk_10, 3, 19, 3, 12, (6 * 2), 13, ((1024 - (18 + 12) - 9 - 11 * 22) - 12 * (6 * 2)));
+    Window_Add(param0->fieldSystem->bgConfig, &param0->unk_10, 3, 19, 3, 12, (6 * 2), 13, ((1024 - (18 + 12) - 9 - 11 * 22) - 12 * (6 * 2)));
     Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {
@@ -1038,7 +1038,7 @@ static void ov23_0225021C(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
 
     param0->unk_40 = StringList_New(v4 + 1, 4);
 
-    Window_Add(param0->fieldSystem->unk_08, &param0->unk_10, 3, 19, 3, 12, (6 * 2), 13, ((1024 - (18 + 12) - 9 - 11 * 22) - 12 * (6 * 2)));
+    Window_Add(param0->fieldSystem->bgConfig, &param0->unk_10, 3, 19, 3, 12, (6 * 2), 13, ((1024 - (18 + 12) - 9 - 11 * 22) - 12 * (6 * 2)));
     Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {
@@ -1214,7 +1214,7 @@ static void ov23_022505EC(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
 
     param0->unk_40 = StringList_New(v3 + 1, 4);
 
-    Window_Add(param0->fieldSystem->unk_08, &param0->unk_10, 3, 19, 3, 12, (6 * 2), 13, ((1024 - (18 + 12) - 9 - 11 * 22) - 12 * (6 * 2)));
+    Window_Add(param0->fieldSystem->bgConfig, &param0->unk_10, 3, 19, 3, 12, (6 * 2), 13, ((1024 - (18 + 12) - 9 - 11 * 22) - 12 * (6 * 2)));
     Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {
@@ -1377,7 +1377,7 @@ static void ov23_02250998(SysTask *param0, void *param1)
     UnkStruct_ov23_02250CD4 *v0 = param1;
 
     if (ov23_02254238(ov23_0224219C()) == 0) {
-        v0->unk_5C = Menu_MakeYesNoChoice(v0->fieldSystem->unk_08, &Unk_ov23_022568D8, 1024 - (18 + 12) - 9, 11, 4);
+        v0->unk_5C = Menu_MakeYesNoChoice(v0->fieldSystem->bgConfig, &Unk_ov23_022568D8, 1024 - (18 + 12) - 9, 11, 4);
         v0->unk_2AA = 12;
     }
 }
@@ -1409,7 +1409,7 @@ static void ov23_02250A14(UnkStruct_ov23_02250CD4 *param0)
 {
     ov23_0224FB7C(param0);
     ov23_02253968();
-    ov23_02253834(param0->fieldSystem->unk_08, SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSystem)), ov23_02250A0C, param0, 1);
+    ov23_02253834(param0->fieldSystem->bgConfig, SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSystem)), ov23_02250A0C, param0, 1);
     param0->unk_2AA = 10;
 }
 
@@ -1439,7 +1439,7 @@ void ov23_02250A50(UnkFuncPtr_ov23_0224F758 param0, FieldSystem *fieldSystem)
 static void ov23_02250ACC(UnkStruct_ov23_02250CD4 *param0)
 {
     if (ov23_02254238(ov23_022421AC()) == 0) {
-        param0->unk_5C = Menu_MakeYesNoChoice(param0->fieldSystem->unk_08, &Unk_ov23_022568D8, 1024 - (18 + 12) - 9, 11, 4);
+        param0->unk_5C = Menu_MakeYesNoChoice(param0->fieldSystem->bgConfig, &Unk_ov23_022568D8, 1024 - (18 + 12) - 9, 11, 4);
         param0->unk_2AA = 1;
     }
 }
@@ -1615,7 +1615,7 @@ static void ov23_02250D90(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
 
     param0->unk_40 = StringList_New(v3 + 1, 4);
 
-    Window_Add(param0->fieldSystem->unk_08, &param0->unk_10, 3, 19, 3, 12, (6 * 2), 13, ((1024 - (18 + 12) - 9 - 11 * 22) - 12 * (6 * 2)));
+    Window_Add(param0->fieldSystem->bgConfig, &param0->unk_10, 3, 19, 3, 12, (6 * 2), 13, ((1024 - (18 + 12) - 9 - 11 * 22) - 12 * (6 * 2)));
     Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {

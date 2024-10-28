@@ -87,7 +87,7 @@ static void ov7_0224B4E8(UnkStruct_ov7_0224B4E8 *param0, int param1)
 {
     if (Window_IsInUse(&param0->unk_54) == 0) {
         Window_Init(&param0->unk_54);
-        FieldMessage_AddWindow(param0->fieldSystem->unk_08, &param0->unk_54, 3);
+        FieldMessage_AddWindow(param0->fieldSystem->bgConfig, &param0->unk_54, 3);
         FieldMessage_DrawWindow(&param0->unk_54, SaveData_Options(param0->fieldSystem->saveData));
     } else {
         sub_0205D988(&param0->unk_54);
@@ -131,7 +131,7 @@ static void ov7_0224B5A8(UnkStruct_ov7_0224B4E8 *param0)
 
         param0->unk_08 = StringList_New(v3 + 2, 4);
 
-        Window_Add(param0->fieldSystem->unk_08, v1, 3, 1, 1, 16, (v3 + 2) * 2, 13, 1);
+        Window_Add(param0->fieldSystem->bgConfig, v1, 3, 1, 1, 16, (v3 + 2) * 2, 13, 1);
         Window_DrawStandardFrame(&param0->unk_34, 1, 1024 - (18 + 12) - 9, 11);
         StringList_AddFromMessageBank(param0->unk_08, param0->unk_68, 123, 12);
 
@@ -224,7 +224,7 @@ static void ov7_0224B788(UnkStruct_ov7_0224B4E8 *param0)
 
     param0->unk_0C = StringList_New(v1, 4);
 
-    Window_Add(param0->fieldSystem->unk_08, &param0->unk_44, 3, v5, v3, v4, v1 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - v4 * v1 * 2);
+    Window_Add(param0->fieldSystem->bgConfig, &param0->unk_44, 3, v5, v3, v4, v1 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - v4 * v1 * 2);
     Window_DrawStandardFrame(&param0->unk_44, 1, 1024 - (18 + 12) - 9, 11);
 
     {
@@ -331,7 +331,7 @@ static void ov7_0224B8DC(UnkStruct_ov7_0224B4E8 *param0)
     v3 = Strbuf_Init((90 * 2), 4);
     v4 = &param0->unk_24;
 
-    Window_Add(param0->fieldSystem->unk_08, v4, 3, 4, 2, 24, 19, 13, 1);
+    Window_Add(param0->fieldSystem->bgConfig, v4, 3, 4, 2, 24, 19, 13, 1);
     Window_DrawStandardFrame(v4, 1, 1024 - (18 + 12) - 9, 11);
     Window_FillTilemap(v4, 15);
 

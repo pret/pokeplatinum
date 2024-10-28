@@ -228,7 +228,7 @@ UnkStruct_ov56_02256468 *ov56_02256410(FieldSystem *fieldSystem)
     v0 = SysTask_GetParam(v1);
 
     v0->fieldSystem = fieldSystem;
-    v0->unk_14 = fieldSystem->unk_08;
+    v0->unk_14 = fieldSystem->bgConfig;
     v0->unk_04 = fieldSystem->unk_80;
     v0->unk_08 = fieldSystem->unk_7C;
     v0->unk_10 = SaveData_GetTrainerInfo(fieldSystem->saveData);

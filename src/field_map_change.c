@@ -1143,7 +1143,7 @@ BOOL FieldTask_MapChangeToUnderground(TaskManager *taskMan)
         mapChangeUndergroundData->unk_34 = MessageLoader_GetNewStrbuf(msgLoader, 124);
         MessageLoader_Free(msgLoader);
 
-        FieldMessage_AddWindow(fieldSystem->unk_08, &mapChangeUndergroundData->unk_24, 3);
+        FieldMessage_AddWindow(fieldSystem->bgConfig, &mapChangeUndergroundData->unk_24, 3);
         FieldMessage_DrawWindow(&mapChangeUndergroundData->unk_24, SaveData_Options(fieldSystem->saveData));
         mapChangeUndergroundData->unk_38 = FieldMessage_Print(&mapChangeUndergroundData->unk_24, mapChangeUndergroundData->unk_34, SaveData_Options(fieldSystem->saveData), 1);
         mapChangeUndergroundData->state = 1;
@@ -1151,8 +1151,8 @@ BOOL FieldTask_MapChangeToUnderground(TaskManager *taskMan)
     case 1:
         if (FieldMessage_FinishedPrinting(mapChangeUndergroundData->unk_38) == 1) {
             Strbuf_Free(mapChangeUndergroundData->unk_34);
-            LoadStandardWindowGraphics(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 11);
-            mapChangeUndergroundData->unk_3C = Menu_MakeYesNoChoice(fieldSystem->unk_08, &Unk_020EC3A0, 1024 - (18 + 12) - 9, 11, 11);
+            LoadStandardWindowGraphics(fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, 11);
+            mapChangeUndergroundData->unk_3C = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &Unk_020EC3A0, 1024 - (18 + 12) - 9, 11, 11);
             mapChangeUndergroundData->state = 2;
         }
         break;

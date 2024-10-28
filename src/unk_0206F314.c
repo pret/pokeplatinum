@@ -200,7 +200,7 @@ static int sub_0206F314(UnkStruct_0206F314 *param0, FieldSystem *fieldSystem, u1
     v0->unk_18 = sub_0202E840(v0->unk_16);
     v0->unk_19 = sub_0202E84C(v0->unk_16);
     v0->fieldSystem = fieldSystem;
-    v0->unk_D0 = fieldSystem->unk_08;
+    v0->unk_D0 = fieldSystem->bgConfig;
     v0->unk_304 = sub_0202E8C0(v1);
     v0->unk_1A = Options_TextFrameDelay(SaveData_Options(v1));
     v0->unk_1C = Options_Frame(SaveData_Options(v1));

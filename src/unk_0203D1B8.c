@@ -1663,7 +1663,7 @@ static BOOL sub_0203E4F8(TaskManager *param0)
 void sub_0203E518(TaskManager *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov7_0224BEFC *v1 = ov7_0224BE9C(4, fieldSystem->saveData, fieldSystem->unk_08);
+    UnkStruct_ov7_0224BEFC *v1 = ov7_0224BE9C(4, fieldSystem->saveData, fieldSystem->bgConfig);
 
     FieldTask_Start(param0, sub_0203E4F8, v1);
 }
