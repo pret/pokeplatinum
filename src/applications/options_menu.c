@@ -1,4 +1,4 @@
-#include "overlay074/ov74_021D0D80.h"
+#include "applications/options_menu.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -64,9 +64,6 @@ typedef struct UnkStruct_ov74_021D0D80_t {
     CellActorData *unk_2B8;
 } UnkStruct_ov74_021D0D80;
 
-int ov74_021D0D80(OverlayManager *param0, int *param1);
-int ov74_021D0F60(OverlayManager *param0, int *param1);
-int ov74_021D0E58(OverlayManager *param0, int *param1);
 static void ov74_021D1118(void *param0);
 static void ov74_021D10F8(void);
 static int ov74_021D1178(UnkStruct_ov74_021D0D80 *param0);
@@ -88,16 +85,16 @@ static BOOL ov74_021D1B44(UnkStruct_ov74_021D0D80 *param0);
 static void ov74_021D1BA8(UnkStruct_ov74_021D0D80 *param0);
 static u32 ov74_021D1BD0(UnkStruct_ov74_021D0D80 *param0);
 
-int ov74_021D0D80(OverlayManager *param0, int *param1)
+BOOL OptionsMenu_Init(OverlayManager *ovyManager, int *state)
 {
     UnkStruct_ov74_021D0D80 *v0 = NULL;
     Options *v1;
 
-    v1 = (Options *)OverlayManager_Args(param0);
+    v1 = (Options *)OverlayManager_Args(ovyManager);
 
     Heap_Create(3, 38, 0x10000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov74_021D0D80), 38);
+    v0 = OverlayManager_NewData(ovyManager, sizeof(UnkStruct_ov74_021D0D80), 38);
     memset(v0, 0, sizeof(UnkStruct_ov74_021D0D80));
 
     v0->unk_18.unk_00_0 = Options_TextSpeed(v1);
@@ -114,9 +111,9 @@ int ov74_021D0D80(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov74_021D0E58(OverlayManager *param0, int *param1)
+BOOL OptionsMenu_Main(OverlayManager *ovyManager, int *state)
 {
-    UnkStruct_ov74_021D0D80 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov74_021D0D80 *v0 = OverlayManager_Data(ovyManager);
 
     if (v0->unk_10_0 == 1) {
         v0->unk_18.unk_00_0 = v0->unk_5C[0].unk_02;
@@ -136,15 +133,15 @@ int ov74_021D0E58(OverlayManager *param0, int *param1)
     sub_02004FB8(v0->unk_18.unk_00_4);
     Options_SetSystemButtonMode(NULL, v0->unk_18.unk_00_8);
     RenderControlFlags_SetCanABSpeedUpPrint(1);
-    OverlayManager_FreeData(param0);
+    OverlayManager_FreeData(ovyManager);
     Heap_Destroy(v0->unk_00);
 
     return 1;
 }
 
-int ov74_021D0F60(OverlayManager *param0, int *param1)
+BOOL OptionsMenu_Exit(OverlayManager *ovyManager, int *state)
 {
-    UnkStruct_ov74_021D0D80 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov74_021D0D80 *v0 = OverlayManager_Data(ovyManager);
     BOOL v1;
     u32 v2;
 
