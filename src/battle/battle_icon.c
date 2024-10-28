@@ -3,15 +3,17 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/moves.h"
+#include "consts/pokemon.h"
+
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 
-#include "consts/pokemon.h"
-#include "consts/moves.h"
-#include "palette.h"
 #include "battle/graphic/pl_batt_obj/pl_batt_obj.naix"
+
+#include "palette.h"
 #include "unk_0200C6E4.h"
 
 // these do not align with the types defined in consts/pokemon.json.
