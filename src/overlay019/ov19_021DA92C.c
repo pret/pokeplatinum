@@ -26,7 +26,6 @@
 #include "text.h"
 #include "unk_0200762C.h"
 #include "unk_0200C440.h"
-#include "unk_02018340.h"
 
 typedef struct {
     u16 unk_00;

@@ -134,26 +134,26 @@ static BOOL ov12_02237474(BallRotation *param0);
  * These NARC members describe the sprite, palette, cell, and anim to use for that ball.
  */
 static const int sThrownBallSpriteResources[][4] = {
-    { master_ball_throw_ncgr, master_ball_throw_nclr, master_ball_throw_ncer, master_ball_throw_nanr },
-    { ultra_ball_throw_ncgr, ultra_ball_throw_nclr, ultra_ball_throw_ncer, ultra_ball_throw_nanr },
-    { great_ball_throw_ncgr, great_ball_throw_nclr, great_ball_throw_ncer, great_ball_throw_nanr },
-    { poke_ball_throw_ncgr, poke_ball_throw_nclr, poke_ball_throw_ncer, poke_ball_throw_nanr },
-    { safari_ball_throw_ncgr, safari_ball_throw_nclr, safari_ball_throw_ncer, safari_ball_throw_nanr },
-    { net_ball_throw_ncgr, net_ball_throw_nclr, net_ball_throw_ncer, net_ball_throw_nanr },
-    { dive_ball_throw_ncgr, dive_ball_throw_nclr, dive_ball_throw_ncer, dive_ball_throw_nanr },
-    { nest_ball_throw_ncgr, nest_ball_throw_nclr, nest_ball_throw_ncer, nest_ball_throw_nanr },
-    { repeat_ball_throw_ncgr, repeat_ball_throw_nclr, repeat_ball_throw_ncer, repeat_ball_throw_nanr },
-    { timer_ball_throw_ncgr, timer_ball_throw_nclr, timer_ball_throw_ncer, timer_ball_throw_nanr },
-    { luxury_ball_throw_ncgr, luxury_ball_throw_nclr, luxury_ball_throw_ncer, luxury_ball_throw_nanr },
-    { premier_ball_throw_ncgr, premier_ball_throw_nclr, premier_ball_throw_ncer, premier_ball_throw_nanr },
-    { dusk_ball_throw_ncgr, dusk_ball_throw_nclr, dusk_ball_throw_ncer, dusk_ball_throw_nanr },
-    { heal_ball_throw_ncgr, heal_ball_throw_nclr, heal_ball_throw_ncer, heal_ball_throw_nanr },
-    { quick_ball_throw_ncgr, quick_ball_throw_nclr, quick_ball_throw_ncer, quick_ball_throw_nanr },
-    { cherish_ball_throw_ncgr, cherish_ball_throw_nclr, cherish_ball_throw_ncer, cherish_ball_throw_nanr },
-    { park_ball_throw_ncgr, park_ball_throw_nclr, park_ball_throw_ncer, park_ball_throw_nanr },
-    { mud_throw_ncgr, mud_throw_nclr, mud_throw_ncer, mud_throw_nanr },
-    { bait_throw_ncgr, bait_throw_nclr, bait_throw_ncer, bait_throw_nanr },
-    { bait_throw_ncgr, bait_throw_nclr, bait_throw_ncer, bait_throw_nanr }
+    { master_ball_throw_NCGR_lz, master_ball_throw_NCLR, master_ball_throw_NCER_lz, master_ball_throw_NANR_lz },
+    { ultra_ball_throw_NCGR_lz, ultra_ball_throw_NCLR, ultra_ball_throw_NCER_lz, ultra_ball_throw_NANR_lz },
+    { great_ball_throw_NCGR_lz, great_ball_throw_NCLR, great_ball_throw_NCER_lz, great_ball_throw_NANR_lz },
+    { poke_ball_throw_NCGR_lz, poke_ball_throw_NCLR, poke_ball_throw_NCER_lz, poke_ball_throw_NANR_lz },
+    { safari_ball_throw_NCGR_lz, safari_ball_throw_NCLR, safari_ball_throw_NCER_lz, safari_ball_throw_NANR_lz },
+    { net_ball_throw_NCGR_lz, net_ball_throw_NCLR, net_ball_throw_NCER_lz, net_ball_throw_NANR_lz },
+    { dive_ball_throw_NCGR_lz, dive_ball_throw_NCLR, dive_ball_throw_NCER_lz, dive_ball_throw_NANR_lz },
+    { nest_ball_throw_NCGR_lz, nest_ball_throw_NCLR, nest_ball_throw_NCER_lz, nest_ball_throw_NANR_lz },
+    { repeat_ball_throw_NCGR_lz, repeat_ball_throw_NCLR, repeat_ball_throw_NCER_lz, repeat_ball_throw_NANR_lz },
+    { timer_ball_throw_NCGR_lz, timer_ball_throw_NCLR, timer_ball_throw_NCER_lz, timer_ball_throw_NANR_lz },
+    { luxury_ball_throw_NCGR_lz, luxury_ball_throw_NCLR, luxury_ball_throw_NCER_lz, luxury_ball_throw_NANR_lz },
+    { premier_ball_throw_NCGR_lz, premier_ball_throw_NCLR, premier_ball_throw_NCER_lz, premier_ball_throw_NANR_lz },
+    { dusk_ball_throw_NCGR_lz, dusk_ball_throw_NCLR, dusk_ball_throw_NCER_lz, dusk_ball_throw_NANR_lz },
+    { heal_ball_throw_NCGR_lz, heal_ball_throw_NCLR, heal_ball_throw_NCER_lz, heal_ball_throw_NANR_lz },
+    { quick_ball_throw_NCGR_lz, quick_ball_throw_NCLR, quick_ball_throw_NCER_lz, quick_ball_throw_NANR_lz },
+    { cherish_ball_throw_NCGR_lz, cherish_ball_throw_NCLR, cherish_ball_throw_NCER_lz, cherish_ball_throw_NANR_lz },
+    { park_ball_throw_NCGR_lz, park_ball_throw_NCLR, park_ball_throw_NCER_lz, park_ball_throw_NANR_lz },
+    { mud_throw_NCGR_lz, mud_throw_NCLR, mud_throw_NCER_lz, mud_throw_NANR_lz },
+    { bait_throw_NCGR_lz, bait_throw_NCLR, bait_throw_NCER_lz, bait_throw_NANR_lz },
+    { bait_throw_NCGR_lz, bait_throw_NCLR, bait_throw_NCER_lz, bait_throw_NANR_lz }
 };
 
 static const int Unk_ov12_0223AD70[][2] = {

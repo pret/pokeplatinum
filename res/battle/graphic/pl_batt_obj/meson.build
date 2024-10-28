@@ -39,6 +39,7 @@ nanr_uncompressed = nanr_gen.process(anims_uncompressed)
 nanr_compressed = lz_gen.process(nanr_gen.process(anims_compressed))
 
 pl_batt_obj_order = files('pl_batt_obj.order')
+pl_batt_obj_ignore = files('pl_batt_obj.ignore')
 pl_batt_obj_narc = custom_target('pl_batt_obj.narc',
     output: [
         'pl_batt_obj.narc',
@@ -65,6 +66,7 @@ pl_batt_obj_narc = custom_target('pl_batt_obj.narc',
         '-d', '@PRIVATE_DIR@',
         '-p', '@OUTPUT0@',
         '--order', pl_batt_obj_order,
+        '--ignore', pl_batt_obj_ignore,
         '--naix',
     ]
 )

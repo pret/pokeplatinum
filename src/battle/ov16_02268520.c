@@ -50,60 +50,60 @@ static const SpriteTemplate Unk_ov16_022700CC[] = {
  * Maps a battle terrain index to the NARC member in pl_batt_obj containing the player's sprite for it.
  */
 __attribute__((aligned(4))) static const u16 sBattleTerrainPlayerTiles[] = {
-    [TERRAIN_PLAIN] = battle_terrain_path_player_ncgr,
-    [TERRAIN_SAND] = battle_terrain_sand_player_ncgr,
-    [TERRAIN_GRASS] = battle_terrain_grass_player_ncgr,
-    [TERRAIN_PUDDLE] = battle_terrain_puddle_player_ncgr,
-    [TERRAIN_MOUNTAIN] = battle_terrain_mountain_player_ncgr,
-    [TERRAIN_CAVE] = battle_terrain_cave_player_ncgr,
-    [TERRAIN_SNOW] = battle_terrain_snow_player_ncgr,
-    [TERRAIN_WATER] = battle_terrain_surf_player_ncgr,
-    [TERRAIN_ICE] = battle_terrain_ice_player_ncgr,
-    [TERRAIN_BUILDING] = battle_terrain_indoors_player_ncgr,
-    [TERRAIN_GREAT_MARSH] = battle_terrain_mud_player_ncgr,
-    [TERRAIN_BRIDGE] = battle_terrain_puddle_player_ncgr,
-    [TERRAIN_AARON] = battle_terrain_elite4_aaron_player_ncgr,
-    [TERRAIN_BERTHA] = battle_terrain_elite4_bertha_player_ncgr,
-    [TERRAIN_FLINT] = battle_terrain_elite4_flint_player_ncgr,
-    [TERRAIN_LUCIAN] = battle_terrain_elite4_lucian_player_ncgr,
-    [TERRAIN_CYNTHIA] = battle_terrain_champion_player_ncgr,
-    [TERRAIN_DISTORTION_WORLD] = battle_terrain_distortion_world_player_ncgr,
-    [TERRAIN_BATTLE_TOWER] = battle_terrain_tower_player_ncgr,
-    [TERRAIN_BATTLE_FACTORY] = battle_terrain_factory_player_ncgr,
-    [TERRAIN_BATTLE_ARCADE] = battle_terrain_arcade_player_ncgr,
-    [TERRAIN_BATTLE_CASTLE] = battle_terrain_castle_player_ncgr,
-    [TERRAIN_BATTLE_HALL] = battle_terrain_hall_player_ncgr,
-    [TERRAIN_GIRATINA] = battle_terrain_giratina_player_ncgr
+    [TERRAIN_PLAIN] = battle_terrain_path_player_NCGR_lz,
+    [TERRAIN_SAND] = battle_terrain_sand_player_NCGR_lz,
+    [TERRAIN_GRASS] = battle_terrain_grass_player_NCGR_lz,
+    [TERRAIN_PUDDLE] = battle_terrain_puddle_player_NCGR_lz,
+    [TERRAIN_MOUNTAIN] = battle_terrain_mountain_player_NCGR_lz,
+    [TERRAIN_CAVE] = battle_terrain_cave_player_NCGR_lz,
+    [TERRAIN_SNOW] = battle_terrain_snow_player_NCGR_lz,
+    [TERRAIN_WATER] = battle_terrain_surf_player_NCGR_lz,
+    [TERRAIN_ICE] = battle_terrain_ice_player_NCGR_lz,
+    [TERRAIN_BUILDING] = battle_terrain_indoors_player_NCGR_lz,
+    [TERRAIN_GREAT_MARSH] = battle_terrain_mud_player_NCGR_lz,
+    [TERRAIN_BRIDGE] = battle_terrain_puddle_player_NCGR_lz,
+    [TERRAIN_AARON] = battle_terrain_elite4_aaron_player_NCGR_lz,
+    [TERRAIN_BERTHA] = battle_terrain_elite4_bertha_player_NCGR_lz,
+    [TERRAIN_FLINT] = battle_terrain_elite4_flint_player_NCGR_lz,
+    [TERRAIN_LUCIAN] = battle_terrain_elite4_lucian_player_NCGR_lz,
+    [TERRAIN_CYNTHIA] = battle_terrain_champion_player_NCGR_lz,
+    [TERRAIN_DISTORTION_WORLD] = battle_terrain_distortion_world_player_NCGR_lz,
+    [TERRAIN_BATTLE_TOWER] = battle_terrain_tower_player_NCGR_lz,
+    [TERRAIN_BATTLE_FACTORY] = battle_terrain_factory_player_NCGR_lz,
+    [TERRAIN_BATTLE_ARCADE] = battle_terrain_arcade_player_NCGR_lz,
+    [TERRAIN_BATTLE_CASTLE] = battle_terrain_castle_player_NCGR_lz,
+    [TERRAIN_BATTLE_HALL] = battle_terrain_hall_player_NCGR_lz,
+    [TERRAIN_GIRATINA] = battle_terrain_giratina_player_NCGR_lz
 };
 
 /*
  * Maps a battle terrain index to the NARC member in pl_batt_obj containing the opponent's sprite for it.
  */
 __attribute__((aligned(4))) static const u16 sBattleTerrainOpponentTiles[] = {
-    [TERRAIN_PLAIN] = battle_terrain_path_opponent_ncgr,
-    [TERRAIN_SAND] = battle_terrain_sand_opponent_ncgr,
-    [TERRAIN_GRASS] = battle_terrain_grass_opponent_ncgr,
-    [TERRAIN_PUDDLE] = battle_terrain_puddle_opponent_ncgr,
-    [TERRAIN_MOUNTAIN] = battle_terrain_mountain_opponent_ncgr,
-    [TERRAIN_CAVE] = battle_terrain_cave_opponent_ncgr,
-    [TERRAIN_SNOW] = battle_terrain_snow_opponent_ncgr,
-    [TERRAIN_WATER] = battle_terrain_surf_opponent_ncgr,
-    [TERRAIN_ICE] = battle_terrain_ice_opponent_ncgr,
-    [TERRAIN_BUILDING] = battle_terrain_indoors_opponent_ncgr,
-    [TERRAIN_GREAT_MARSH] = battle_terrain_mud_opponent_ncgr,
-    [TERRAIN_BRIDGE] = battle_terrain_mud_opponent_ncgr,
-    [TERRAIN_AARON] = battle_terrain_elite4_aaron_opponent_ncgr,
-    [TERRAIN_BERTHA] = battle_terrain_elite4_bertha_opponent_ncgr,
-    [TERRAIN_FLINT] = battle_terrain_elite4_flint_opponent_ncgr,
-    [TERRAIN_LUCIAN] = battle_terrain_elite4_lucian_opponent_ncgr,
-    [TERRAIN_CYNTHIA] = battle_terrain_champion_opponent_ncgr,
-    [TERRAIN_DISTORTION_WORLD] = battle_terrain_distortion_world_opponent_ncgr,
-    [TERRAIN_BATTLE_TOWER] = battle_terrain_tower_opponent_ncgr,
-    [TERRAIN_BATTLE_FACTORY] = battle_terrain_factory_opponent_ncgr,
-    [TERRAIN_BATTLE_ARCADE] = battle_terrain_arcade_opponent_ncgr,
-    [TERRAIN_BATTLE_CASTLE] = battle_terrain_castle_opponent_ncgr,
-    [TERRAIN_BATTLE_HALL] = battle_terrain_hall_opponent_ncgr,
-    [TERRAIN_GIRATINA] = battle_terrain_giratina_opponent_ncgr
+    [TERRAIN_PLAIN] = battle_terrain_path_opponent_NCGR_lz,
+    [TERRAIN_SAND] = battle_terrain_sand_opponent_NCGR_lz,
+    [TERRAIN_GRASS] = battle_terrain_grass_opponent_NCGR_lz,
+    [TERRAIN_PUDDLE] = battle_terrain_puddle_opponent_NCGR_lz,
+    [TERRAIN_MOUNTAIN] = battle_terrain_mountain_opponent_NCGR_lz,
+    [TERRAIN_CAVE] = battle_terrain_cave_opponent_NCGR_lz,
+    [TERRAIN_SNOW] = battle_terrain_snow_opponent_NCGR_lz,
+    [TERRAIN_WATER] = battle_terrain_surf_opponent_NCGR_lz,
+    [TERRAIN_ICE] = battle_terrain_ice_opponent_NCGR_lz,
+    [TERRAIN_BUILDING] = battle_terrain_indoors_opponent_NCGR_lz,
+    [TERRAIN_GREAT_MARSH] = battle_terrain_mud_opponent_NCGR_lz,
+    [TERRAIN_BRIDGE] = battle_terrain_mud_opponent_NCGR_lz,
+    [TERRAIN_AARON] = battle_terrain_elite4_aaron_opponent_NCGR_lz,
+    [TERRAIN_BERTHA] = battle_terrain_elite4_bertha_opponent_NCGR_lz,
+    [TERRAIN_FLINT] = battle_terrain_elite4_flint_opponent_NCGR_lz,
+    [TERRAIN_LUCIAN] = battle_terrain_elite4_lucian_opponent_NCGR_lz,
+    [TERRAIN_CYNTHIA] = battle_terrain_champion_opponent_NCGR_lz,
+    [TERRAIN_DISTORTION_WORLD] = battle_terrain_distortion_world_opponent_NCGR_lz,
+    [TERRAIN_BATTLE_TOWER] = battle_terrain_tower_opponent_NCGR_lz,
+    [TERRAIN_BATTLE_FACTORY] = battle_terrain_factory_opponent_NCGR_lz,
+    [TERRAIN_BATTLE_ARCADE] = battle_terrain_arcade_opponent_NCGR_lz,
+    [TERRAIN_BATTLE_CASTLE] = battle_terrain_castle_opponent_NCGR_lz,
+    [TERRAIN_BATTLE_HALL] = battle_terrain_hall_opponent_NCGR_lz,
+    [TERRAIN_GIRATINA] = battle_terrain_giratina_opponent_NCGR_lz
 };
 
 /*
@@ -111,30 +111,30 @@ __attribute__((aligned(4))) static const u16 sBattleTerrainOpponentTiles[] = {
  * Each battle terrain has 3 palette options for different times of day.
  */
 __attribute__((aligned(4))) static const u16 sBattleTerrainPaletteFileIndex[][3] = {
-    [TERRAIN_PLAIN] = { battle_terrain_path_day_nclr, battle_terrain_path_afternoon_nclr, battle_terrain_path_night_nclr },
-    [TERRAIN_SAND] = { battle_terrain_sand_day_nclr, battle_terrain_sand_afternoon_nclr, battle_terrain_sand_night_nclr },
-    [TERRAIN_GRASS] = { battle_terrain_grass_day_nclr, battle_terrain_grass_afternoon_nclr, battle_terrain_grass_night_nclr },
-    [TERRAIN_PUDDLE] = { battle_terrain_puddle_day_nclr, battle_terrain_puddle_afternoon_nclr, battle_terrain_puddle_night_nclr },
-    [TERRAIN_MOUNTAIN] = { battle_terrain_mountain_day_nclr, battle_terrain_mountain_afternoon_nclr, battle_terrain_mountain_night_nclr },
-    [TERRAIN_CAVE] = { battle_terrain_cave_day_nclr, battle_terrain_cave_afternoon_nclr, battle_terrain_cave_night_nclr },
-    [TERRAIN_SNOW] = { battle_terrain_snow_day_nclr, battle_terrain_snow_afternoon_nclr, battle_terrain_snow_night_nclr },
-    [TERRAIN_WATER] = { battle_terrain_surf_day_nclr, battle_terrain_surf_afternoon_nclr, battle_terrain_surf_night_nclr },
-    [TERRAIN_ICE] = { battle_terrain_ice_day_nclr, battle_terrain_ice_afternoon_nclr, battle_terrain_ice_night_nclr },
-    [TERRAIN_BUILDING] = { battle_terrain_indoors_day_nclr, battle_terrain_indoors_afternoon_nclr, battle_terrain_indoors_night_nclr },
-    [TERRAIN_GREAT_MARSH] = { battle_terrain_mud_day_nclr, battle_terrain_mud_afternoon_nclr, battle_terrain_mud_night_nclr },
-    [TERRAIN_BRIDGE] = { battle_terrain_mud_day_nclr, battle_terrain_mud_afternoon_nclr, battle_terrain_mud_night_nclr },
-    [TERRAIN_AARON] = { battle_terrain_elite4_aaron_day_nclr, battle_terrain_elite4_aaron_afternoon_nclr, battle_terrain_elite4_aaron_night_nclr },
-    [TERRAIN_BERTHA] = { battle_terrain_elite4_bertha_day_nclr, battle_terrain_elite4_bertha_afternoon_nclr, battle_terrain_elite4_bertha_night_nclr },
-    [TERRAIN_FLINT] = { battle_terrain_elite4_flint_day_nclr, battle_terrain_elite4_flint_afternoon_nclr, battle_terrain_elite4_flint_night_nclr },
-    [TERRAIN_LUCIAN] = { battle_terrain_elite4_lucian_day_nclr, battle_terrain_elite4_lucian_afternoon_nclr, battle_terrain_elite4_lucian_night_nclr },
-    [TERRAIN_CYNTHIA] = { battle_terrain_champion_day_nclr, battle_terrain_champion_afternoon_nclr, battle_terrain_champion_night_nclr },
-    [TERRAIN_DISTORTION_WORLD] = { battle_terrain_distortion_world_day_nclr, battle_terrain_distortion_world_afternoon_nclr, battle_terrain_distortion_world_night_nclr },
-    [TERRAIN_BATTLE_TOWER] = { battle_terrain_tower_day_nclr, battle_terrain_tower_afternoon_nclr, battle_terrain_tower_night_nclr },
-    [TERRAIN_BATTLE_FACTORY] = { battle_terrain_factory_day_nclr, battle_terrain_factory_afternoon_nclr, battle_terrain_factory_night_nclr },
-    [TERRAIN_BATTLE_ARCADE] = { battle_terrain_arcade_day_nclr, battle_terrain_arcade_afternoon_nclr, battle_terrain_arcade_night_nclr },
-    [TERRAIN_BATTLE_CASTLE] = { battle_terrain_castle_day_nclr, battle_terrain_castle_afternoon_nclr, battle_terrain_castle_night_nclr },
-    [TERRAIN_BATTLE_HALL] = { battle_terrain_hall_day_nclr, battle_terrain_hall_afternoon_nclr, battle_terrain_hall_night_nclr },
-    [TERRAIN_GIRATINA] = { battle_terrain_giratina_day_nclr, battle_terrain_giratina_afternoon_nclr, battle_terrain_giratina_night_nclr }
+    [TERRAIN_PLAIN] = { battle_terrain_path_day_NCLR, battle_terrain_path_afternoon_NCLR, battle_terrain_path_night_NCLR },
+    [TERRAIN_SAND] = { battle_terrain_sand_day_NCLR, battle_terrain_sand_afternoon_NCLR, battle_terrain_sand_night_NCLR },
+    [TERRAIN_GRASS] = { battle_terrain_grass_day_NCLR, battle_terrain_grass_afternoon_NCLR, battle_terrain_grass_night_NCLR },
+    [TERRAIN_PUDDLE] = { battle_terrain_puddle_day_NCLR, battle_terrain_puddle_afternoon_NCLR, battle_terrain_puddle_night_NCLR },
+    [TERRAIN_MOUNTAIN] = { battle_terrain_mountain_day_NCLR, battle_terrain_mountain_afternoon_NCLR, battle_terrain_mountain_night_NCLR },
+    [TERRAIN_CAVE] = { battle_terrain_cave_day_NCLR, battle_terrain_cave_afternoon_NCLR, battle_terrain_cave_night_NCLR },
+    [TERRAIN_SNOW] = { battle_terrain_snow_day_NCLR, battle_terrain_snow_afternoon_NCLR, battle_terrain_snow_night_NCLR },
+    [TERRAIN_WATER] = { battle_terrain_surf_day_NCLR, battle_terrain_surf_afternoon_NCLR, battle_terrain_surf_night_NCLR },
+    [TERRAIN_ICE] = { battle_terrain_ice_day_NCLR, battle_terrain_ice_afternoon_NCLR, battle_terrain_ice_night_NCLR },
+    [TERRAIN_BUILDING] = { battle_terrain_indoors_day_NCLR, battle_terrain_indoors_afternoon_NCLR, battle_terrain_indoors_night_NCLR },
+    [TERRAIN_GREAT_MARSH] = { battle_terrain_mud_day_NCLR, battle_terrain_mud_afternoon_NCLR, battle_terrain_mud_night_NCLR },
+    [TERRAIN_BRIDGE] = { battle_terrain_mud_day_NCLR, battle_terrain_mud_afternoon_NCLR, battle_terrain_mud_night_NCLR },
+    [TERRAIN_AARON] = { battle_terrain_elite4_aaron_day_NCLR, battle_terrain_elite4_aaron_afternoon_NCLR, battle_terrain_elite4_aaron_night_NCLR },
+    [TERRAIN_BERTHA] = { battle_terrain_elite4_bertha_day_NCLR, battle_terrain_elite4_bertha_afternoon_NCLR, battle_terrain_elite4_bertha_night_NCLR },
+    [TERRAIN_FLINT] = { battle_terrain_elite4_flint_day_NCLR, battle_terrain_elite4_flint_afternoon_NCLR, battle_terrain_elite4_flint_night_NCLR },
+    [TERRAIN_LUCIAN] = { battle_terrain_elite4_lucian_day_NCLR, battle_terrain_elite4_lucian_afternoon_NCLR, battle_terrain_elite4_lucian_night_NCLR },
+    [TERRAIN_CYNTHIA] = { battle_terrain_champion_day_NCLR, battle_terrain_champion_afternoon_NCLR, battle_terrain_champion_night_NCLR },
+    [TERRAIN_DISTORTION_WORLD] = { battle_terrain_distortion_world_day_NCLR, battle_terrain_distortion_world_afternoon_NCLR, battle_terrain_distortion_world_night_NCLR },
+    [TERRAIN_BATTLE_TOWER] = { battle_terrain_tower_day_NCLR, battle_terrain_tower_afternoon_NCLR, battle_terrain_tower_night_NCLR },
+    [TERRAIN_BATTLE_FACTORY] = { battle_terrain_factory_day_NCLR, battle_terrain_factory_afternoon_NCLR, battle_terrain_factory_night_NCLR },
+    [TERRAIN_BATTLE_ARCADE] = { battle_terrain_arcade_day_NCLR, battle_terrain_arcade_afternoon_NCLR, battle_terrain_arcade_night_NCLR },
+    [TERRAIN_BATTLE_CASTLE] = { battle_terrain_castle_day_NCLR, battle_terrain_castle_afternoon_NCLR, battle_terrain_castle_night_NCLR },
+    [TERRAIN_BATTLE_HALL] = { battle_terrain_hall_day_NCLR, battle_terrain_hall_afternoon_NCLR, battle_terrain_hall_night_NCLR },
+    [TERRAIN_GIRATINA] = { battle_terrain_giratina_day_NCLR, battle_terrain_giratina_afternoon_NCLR, battle_terrain_giratina_night_NCLR }
 };
 
 void ov16_02268520(UnkStruct_ov16_02268520 *param0)
@@ -155,16 +155,16 @@ void ov16_02268520(UnkStruct_ov16_02268520 *param0)
     if (param0->unk_08 == 0) {
         v3 = sBattleTerrainPlayerTiles[param0->unk_09];
         v4 = 20013;
-        v5 = battle_terrain_player_ncer;
+        v5 = battle_terrain_player_NCER_lz;
         v6 = 20005;
-        v7 = battle_terrain_player_nanr;
+        v7 = battle_terrain_player_NANR_lz;
         v8 = 20005;
     } else {
         v3 = sBattleTerrainOpponentTiles[param0->unk_09];
         v4 = 20014;
-        v5 = battle_terrain_opponent_ncer;
+        v5 = battle_terrain_opponent_NCER_lz;
         v6 = 20006;
-        v7 = battle_terrain_opponent_nanr;
+        v7 = battle_terrain_opponent_NANR_lz;
         v8 = 20006;
     }
 

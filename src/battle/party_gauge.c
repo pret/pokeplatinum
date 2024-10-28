@@ -201,10 +201,10 @@ void PartyGauge_LoadGraphics(SpriteRenderer *renderer, SpriteGfxHandler *gfxHand
 {
     NARC *narc = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
 
-    SpriteRenderer_LoadPalette(palette, PLTTBUF_MAIN_OBJ, renderer, gfxHandler, narc, party_gauge_nclr, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, PARTY_GAUGE_PLTT_RES_ID);
-    SpriteRenderer_LoadCharResObjFromOpenNarc(renderer, gfxHandler, narc, party_gauge_ncgr, TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, PARTY_GAUGE_CHAR_RES_ID);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(renderer, gfxHandler, narc, party_gauge_ncer, TRUE, PARTY_GAUGE_CELL_RES_ID);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(renderer, gfxHandler, narc, party_gauge_nanr, TRUE, PARTY_GAUGE_ANIM_RES_ID);
+    SpriteRenderer_LoadPalette(palette, PLTTBUF_MAIN_OBJ, renderer, gfxHandler, narc, party_gauge_NCLR, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, PARTY_GAUGE_PLTT_RES_ID);
+    SpriteRenderer_LoadCharResObjFromOpenNarc(renderer, gfxHandler, narc, party_gauge_NCGR_lz, TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, PARTY_GAUGE_CHAR_RES_ID);
+    SpriteRenderer_LoadCellResObjFromOpenNarc(renderer, gfxHandler, narc, party_gauge_NCER_lz, TRUE, PARTY_GAUGE_CELL_RES_ID);
+    SpriteRenderer_LoadAnimResObjFromOpenNarc(renderer, gfxHandler, narc, party_gauge_NANR_lz, TRUE, PARTY_GAUGE_ANIM_RES_ID);
 
     NARC_dtor(narc);
 }
