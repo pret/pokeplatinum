@@ -51,7 +51,7 @@ typedef struct PokemonSummary {
     BOOL contest; // unk_2C
 } PokemonSummary;
 
-typedef struct PokemonSummaryAppData {
+typedef struct PokemonSummaryMonData {
     Strbuf *speciesName;
     Strbuf *nickname;
     Strbuf *OTName;
@@ -103,26 +103,26 @@ typedef struct PokemonSummaryAppData {
     u32 pokerus : 2;
 
     u32 ribbons[4];
-} PokemonSummaryAppData;
+} PokemonSummaryMonData;
 
-typedef struct PokemonSummaryAppSpriteData {
+typedef struct PokemonSummaryMonSpriteData {
     Camera *camera;
     void *spriteManager;
     SpriteAnimationFrame frames[MAX_ANIMATION_FRAMES];
     PokemonAnimationSys *animationSys;
     Sprite *sprite;
     BOOL flip;
-} PokemonSummaryAppSpriteData;
+} PokemonSummaryMonSpriteData;
 
 typedef struct PokemonSummaryApp {
-    BgConfig *bgl;
+    BgConfig *bgConfig;
     Window staticWindows[36];
     Window *extraWindows;
     u32 numExtraWindows;
 
     PokemonSummary *data;
-    PokemonSummaryAppData monData;
-    PokemonSummaryAppSpriteData monSpriteData;
+    PokemonSummaryMonData monData;
+    PokemonSummaryMonSpriteData monSpriteData;
 
     UnkStruct_02091850 unk_2F0[4];
     UnkStruct_02091850 unk_350[4];
@@ -165,13 +165,13 @@ typedef struct PokemonSummaryApp {
     u8 ribbonNum;
 } PokemonSummaryApp;
 
-BOOL PokemonSummary_ShowContestData(SaveData *param0);
-void PokemonSummary_FlagVisiblePages(PokemonSummary *param0, const u8 *param1);
+BOOL PokemonSummary_ShowContestData(SaveData *saveData);
+void PokemonSummary_FlagVisiblePages(PokemonSummary *summary, const u8 *param1);
 u8 PokemonSummary_PageIsVisble(PokemonSummaryApp *param0, u32 param1);
 u8 PokemonSummary_CountVisiblePages(PokemonSummaryApp *param0);
 void *PokemonSummary_MonData(PokemonSummaryApp *param0);
 u8 PokemonSummary_RibbonAt(PokemonSummaryApp *param0, u8 param1);
-void PokemonSummary_SetPlayerProfile(PokemonSummary *param0, const TrainerInfo *param1);
+void PokemonSummary_SetPlayerProfile(PokemonSummary *summary, const TrainerInfo *trainerInfo);
 u32 PokemonSummary_StatusIconChar(void);
 u32 PokemonSummary_StatusIconPltt(void);
 u32 PokemonSummary_StatusIconCell(void);

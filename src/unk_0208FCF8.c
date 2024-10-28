@@ -137,7 +137,7 @@ void sub_0208FCF8(PokemonSummaryApp *param0)
     u16 v0;
 
     for (v0 = 0; v0 < 36; v0++) {
-        Window_AddFromTemplate(param0->bgl, &param0->staticWindows[v0], &Unk_020F4ED0[v0]);
+        Window_AddFromTemplate(param0->bgConfig, &param0->staticWindows[v0], &Unk_020F4ED0[v0]);
         Window_FillTilemap(&param0->staticWindows[v0], 0);
     }
 
@@ -193,7 +193,7 @@ void sub_0208FD40(PokemonSummaryApp *param0)
     param0->extraWindows = Window_New(19, param0->numExtraWindows);
 
     for (v1 = 0; v1 < param0->numExtraWindows; v1++) {
-        Window_AddFromTemplate(param0->bgl, &param0->extraWindows[v1], &v0[v1]);
+        Window_AddFromTemplate(param0->bgConfig, &param0->extraWindows[v1], &v0[v1]);
     }
 }
 
@@ -423,8 +423,8 @@ static void sub_020902B0(PokemonSummaryApp *param0)
 
 void sub_020904C4(PokemonSummaryApp *param0)
 {
-    Bg_FillTilemapRect(param0->bgl, 1, 0, 0, 0, 32, 2, 16);
-    Bg_FillTilemapRect(param0->bgl, 1, 0, 14, 2, 18, 22, 16);
+    Bg_FillTilemapRect(param0->bgConfig, 1, 0, 0, 0, 32, 2, 16);
+    Bg_FillTilemapRect(param0->bgConfig, 1, 0, 14, 2, 18, 22, 16);
 
     switch (param0->page) {
     case 0:
@@ -921,7 +921,7 @@ void sub_02091420(PokemonSummaryApp *param0)
 void sub_0209145C(PokemonSummaryApp *param0)
 {
     Window_ClearAndScheduleCopyToVRAM(&param0->staticWindows[24]);
-    Bg_ScheduleTilemapTransfer(param0->bgl, 1);
+    Bg_ScheduleTilemapTransfer(param0->bgConfig, 1);
 }
 
 void sub_02091474(PokemonSummaryApp *param0)
