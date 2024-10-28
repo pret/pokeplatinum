@@ -219,7 +219,7 @@ message_bank_files = files(
     'message_bank_unk_0217.gmm',
     'message_bank_unk_0218.gmm',
     'message_bank_status_condition_names.gmm',
-    'message_bank_unk_0220.gmm',
+    'message_bank_options_menu.gmm',
     'message_bank_unk_0221.gmm',
     'message_bank_oreburgh_mine_b1f.gmm',
     'message_bank_oreburgh_mine_b2f.gmm',

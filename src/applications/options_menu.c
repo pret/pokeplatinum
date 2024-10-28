@@ -4,19 +4,26 @@
 #include <string.h>
 
 #include "constants/heap.h"
+#include "constants/narc.h"
+#include "consts/sdat.h"
 
 #include "struct_defs/struct_02099F80.h"
+
+#include "text/gmm/message_bank_options_menu.h"
+#include "text/pl_msg.naix"
 
 #include "bg_window.h"
 #include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "palette.h"
 #include "render_text.h"
 #include "render_window.h"
 #include "strbuf.h"
@@ -29,7 +36,41 @@
 #include "unk_0201DBEC.h"
 #include "unk_020393C8.h"
 
-#define WINCLR_COL(col) (((col) << 4) | (col))
+#define MENU_TITLE_BASE_TILE      10
+#define MENU_TITLE_WIDTH          12
+#define MENU_TITLE_HEIGHT         2
+#define ENTRIES_BASE_TILE         (MENU_TITLE_BASE_TILE + MENU_TITLE_WIDTH * MENU_TITLE_HEIGHT)
+#define ENTRIES_WIDTH             30
+#define ENTRIES_HEIGHT            14
+#define DESCRIPTION_BASE_TILE     (ENTRIES_BASE_TILE + ENTRIES_WIDTH * ENTRIES_HEIGHT)
+#define DESCRIPTION_WIDTH         27
+#define DESCRIPTION_HEIGHT        4
+#define STANDARD_WINDOW_BASE_TILE (DESCRIPTION_BASE_TILE + DESCRIPTION_WIDTH * DESCRIPTION_HEIGHT)
+#define MESSAGE_BOX_BASE_TILE     (STANDARD_WINDOW_BASE_TILE + 9)
+#define CONFIRMATION_BASE_TILE    (MESSAGE_BOX_BASE_TILE + 30)
+
+#define CHOICES_X     (12 * 8 + 4)
+#define CHOICES_WIDTH (48 * 8)
+
+#define SINGLE_ENTRY_HEIGHT 16
+#define FIRST_ENTRY_OFFSET  24
+
+#define NUM_WINDOWS      3
+#define NUM_BG_TEMPLATES 5
+
+#define HEAP_ALLOCATION_SIZE 0x10000
+
+enum {
+    ENTRY_TEXT_SPEED = 0,
+    ENTRY_SOUND_MODE,
+    ENTRY_BATTLE_SCENE,
+    ENTRY_BATTLE_STYLE,
+    ENTRY_BUTTON_MODE,
+    ENTRY_MESSAGE_BOX_FRAME,
+    ENTRY_CLOSE,
+
+    MAX_ENTRIES,
+};
 
 typedef struct OptionsMenuEntry {
     u16 numChoices;
@@ -53,10 +94,18 @@ typedef struct OptionsMenuData {
     MessageLoader *msgLoader;
     void *nscrBuffer;
     NNSG2dScreenData *tilemapData;
-    Window windows[3];
 
     union {
-        OptionsMenuEntry asArray[7];
+        Window asArray[NUM_WINDOWS];
+        struct {
+            Window title;
+            Window entries;
+            Window description;
+        };
+    } windows;
+
+    union {
+        OptionsMenuEntry asArray[MAX_ENTRIES];
         struct {
             OptionsMenuEntry textSpeed;
             OptionsMenuEntry soundMode;
@@ -64,7 +113,7 @@ typedef struct OptionsMenuData {
             OptionsMenuEntry battleStyle;
             OptionsMenuEntry buttonMode;
             OptionsMenuEntry messageBoxStyle;
-            OptionsMenuEntry unk07;
+            OptionsMenuEntry close;
         };
     } entries;
 
@@ -75,28 +124,31 @@ typedef struct OptionsMenuData {
     void *dummy2B8;
 } OptionsMenuData;
 
-static void ov74_021D1118(void *param0);
-static void ov74_021D10F8(void);
-static int ov74_021D1178(OptionsMenuData *param0);
-static int ov74_021D122C(OptionsMenuData *param0);
-static void ov74_021D12D4(OptionsMenuData *param0);
-static void ov74_021D135C(OptionsMenuData *param0);
-static void ov74_021D1390(OptionsMenuData *param0);
-static void ov74_021D14E8(OptionsMenuData *param0);
-static void ov74_021D14F4(OptionsMenuData *param0);
-static void ov74_021D1624(OptionsMenuData *param0);
-static void ov74_021D1668(OptionsMenuData *param0);
-static void ov74_021D17CC(OptionsMenuData *param0, u16 param1);
-static void ov74_021D1BE4(OptionsMenuData *param0, u16 param1, BOOL param2);
-static void ov74_021D1968(OptionsMenuData *param0, u16 param1, BOOL param2);
-static BOOL ov74_021D1A08(const OptionsMenuData *param0);
-static void ov74_021D1720(OptionsMenuData *param0);
-static void ov74_021D1A24(OptionsMenuData *param0);
-static BOOL ov74_021D1B44(OptionsMenuData *param0);
-static void ov74_021D1BA8(OptionsMenuData *param0);
-static u32 ov74_021D1BD0(OptionsMenuData *param0);
+static void OptionsMenuVBlank(void *data);
 
-#define HEAP_ALLOCATION_SIZE 0x10000
+static int SetupMenuVisuals(OptionsMenuData *menuData);
+static void SetVRAMBanks(void);
+static void SetupBgs(OptionsMenuData *menuData);
+static void LoadBgTiles(OptionsMenuData *menuData);
+static void SetupWindows(OptionsMenuData *menuData);
+
+static void PrintTitleAndEntries(OptionsMenuData *param0);
+static void PrintEntryChoices(OptionsMenuData *menuData, u16 entry);
+static void PrintEntryDescription(OptionsMenuData *menuData, u16 entry, BOOL scheduleVRAMCopy);
+static void PrintBankEntryAsDescription(OptionsMenuData *menuData, u16 entry, BOOL scheduleVRAMCopy);
+static BOOL IsTextPrinterDone(const OptionsMenuData *menuData);
+static void LoadAllEntryChoices(OptionsMenuData *menuData);
+
+static BOOL ChangesWereMade(OptionsMenuData *menuData);
+static void DrawConfirmationPrompt(OptionsMenuData *menuData);
+
+static void ProcessMainInput(OptionsMenuData *menuData);
+static u32 ProcessConfirmationInput(OptionsMenuData *menuData);
+
+static int TeardownMenuData(OptionsMenuData *menuData);
+static void TeardownBgs(OptionsMenuData *menuData);
+static void TeardownTilemaps(OptionsMenuData *menuData);
+static void TeardownWindows(OptionsMenuData *menuData);
 
 BOOL OptionsMenu_Init(OverlayManager *ovyManager, int *state)
 {
@@ -152,121 +204,152 @@ BOOL OptionsMenu_Exit(OverlayManager *ovyManager, int *state)
     return TRUE;
 }
 
+enum {
+    STATE_SETUP_MENU_VISUALS = 0,
+    STATE_WAIT_FOR_FADE_IN,
+    STATE_HANDLE_INPUT,
+    STATE_CONFIRM_NEW_SETTINGS,
+    STATE_WAIT_CONFIRM_NEW_SETTINGS,
+    STATE_HANDLE_YES_NO_INPUT,
+    STATE_START_VISUAL_TEARDOWN,
+    STATE_WAIT_FOR_FADE_OUT,
+    STATE_TEARDOWN,
+};
+
 BOOL OptionsMenu_Main(OverlayManager *ovyManager, int *state)
 {
-    OptionsMenuData *v0 = OverlayManager_Data(ovyManager);
-    BOOL v1;
-    u32 v2;
+    OptionsMenuData *menuData = OverlayManager_Data(ovyManager);
+    u32 choiceYesNo;
 
-    switch (v0->state) {
-    case 0:
-        if (!ov74_021D1178(v0)) {
-            return 0;
+    switch (menuData->state) {
+    case STATE_SETUP_MENU_VISUALS:
+        if (!SetupMenuVisuals(menuData)) {
+            return FALSE;
         }
 
-        StartScreenTransition(3, 1, 1, 0x0, 6, 1, v0->heapID);
+        StartScreenTransition(3, 1, 1, 0x0, 6, 1, menuData->heapID);
         break;
-    case 1:
+
+    case STATE_WAIT_FOR_FADE_IN:
         if (!IsScreenTransitionDone()) {
-            return 0;
+            return FALSE;
         }
         break;
-    case 2:
-        if (((gCoreSys.pressedKeys & PAD_BUTTON_A) && (v0->cursor == (7 - 1))) || (gCoreSys.pressedKeys & PAD_BUTTON_B)) {
-            v1 = ov74_021D1B44(v0);
 
-            if (v1 == 1) {
-                v0->state = 3;
+    case STATE_HANDLE_INPUT:
+        if ((JOY_NEW(PAD_BUTTON_A) && menuData->cursor == ENTRY_CLOSE) || JOY_NEW(PAD_BUTTON_B)) {
+            if (ChangesWereMade(menuData) == TRUE) {
+                menuData->state = STATE_CONFIRM_NEW_SETTINGS;
             } else {
-                Sound_PlayEffect(1500);
-                v0->saveSelections = 2;
-                v0->state = 6;
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                menuData->saveSelections = 2;
+                menuData->state = STATE_START_VISUAL_TEARDOWN;
             }
 
-            return 0;
+            return FALSE;
         }
 
-        ov74_021D1A24(v0);
-        return 0;
-    case 3:
-        RenderControlFlags_SetCanABSpeedUpPrint(1);
-        ov74_021D1968(v0, 49, 0);
+        ProcessMainInput(menuData);
+        return FALSE;
+
+    case STATE_CONFIRM_NEW_SETTINGS:
+        RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
+        PrintBankEntryAsDescription(menuData, options_menu_confirm_dialog, FALSE);
         break;
-    case 4:
-        if (ov74_021D1A08(v0)) {
-            RenderControlFlags_SetCanABSpeedUpPrint(0);
-            ov74_021D1BA8(v0);
-            v0->state = 5;
+
+    case STATE_WAIT_CONFIRM_NEW_SETTINGS:
+        if (IsTextPrinterDone(menuData)) {
+            RenderControlFlags_SetCanABSpeedUpPrint(FALSE);
+            DrawConfirmationPrompt(menuData);
+            menuData->state = STATE_HANDLE_YES_NO_INPUT;
         }
 
-        return 0;
-    case 5:
-        v2 = ov74_021D1BD0(v0);
+        return FALSE;
 
-        if (v2 != 0xffffffff) {
-            if (v2 == 0) {
-                Sound_StopEffect(1500, 0);
-                Sound_PlayEffect(1563);
-                v0->saveSelections = 1;
+    case STATE_HANDLE_YES_NO_INPUT:
+        choiceYesNo = ProcessConfirmationInput(menuData);
+
+        if (choiceYesNo != MENU_NOTHING_CHOSEN) {
+            if (choiceYesNo == 0) {
+                Sound_StopEffect(SEQ_SE_CONFIRM, 0);
+                Sound_PlayEffect(SEQ_SE_DP_SAVE);
+                menuData->saveSelections = 1;
             } else {
-                v0->saveSelections = 2;
+                menuData->saveSelections = 2;
             }
 
-            v0->state = 6;
+            menuData->state = STATE_START_VISUAL_TEARDOWN;
         }
 
-        return 0;
-    case 6:
-        if (Text_IsPrinterActive(v0->textPrinter)) {
-            Text_RemovePrinter(v0->textPrinter);
+        return FALSE;
+
+    case STATE_START_VISUAL_TEARDOWN:
+        if (Text_IsPrinterActive(menuData->textPrinter)) {
+            Text_RemovePrinter(menuData->textPrinter);
         }
 
-        StartScreenTransition(3, 0, 0, 0x0, 6, 1, v0->heapID);
+        StartScreenTransition(3, 0, 0, 0x0, 6, 1, menuData->heapID);
         break;
-    case 7:
+
+    case STATE_WAIT_FOR_FADE_OUT:
         if (!IsScreenTransitionDone()) {
-            return 0;
+            return FALSE;
         }
         break;
-    case 8:
-        if (!ov74_021D122C(v0)) {
-            return 0;
+
+    case STATE_TEARDOWN:
+        if (!TeardownMenuData(menuData)) {
+            return FALSE;
         }
 
-        return 1;
+        return TRUE;
     }
 
-    ++v0->state;
-    return 0;
+    menuData->state++;
+    return FALSE;
 }
 
-static void ov74_021D10F8(void)
+static void SetVRAMBanks()
 {
-    UnkStruct_02099F80 v0 = {
-        GX_VRAM_BG_128_A, GX_VRAM_BGEXTPLTT_NONE, GX_VRAM_SUB_BG_128_C, GX_VRAM_SUB_BGEXTPLTT_NONE, GX_VRAM_OBJ_16_G, GX_VRAM_OBJEXTPLTT_NONE, GX_VRAM_SUB_OBJ_16_I, GX_VRAM_SUB_OBJEXTPLTT_NONE, GX_VRAM_TEX_NONE, GX_VRAM_TEXPLTT_NONE
+    UnkStruct_02099F80 banks = {
+        GX_VRAM_BG_128_A,
+        GX_VRAM_BGEXTPLTT_NONE,
+        GX_VRAM_SUB_BG_128_C,
+        GX_VRAM_SUB_BGEXTPLTT_NONE,
+        GX_VRAM_OBJ_16_G,
+        GX_VRAM_OBJEXTPLTT_NONE,
+        GX_VRAM_SUB_OBJ_16_I,
+        GX_VRAM_SUB_OBJEXTPLTT_NONE,
+        GX_VRAM_TEX_NONE,
+        GX_VRAM_TEXPLTT_NONE,
     };
 
-    GXLayers_SetBanks(&v0);
+    GXLayers_SetBanks(&banks);
 }
 
-static void ov74_021D1118(void *param0)
+static void OptionsMenuVBlank(void *data)
 {
-    OptionsMenuData *v0 = param0;
+    OptionsMenuData *menuData = data;
 
-    if (v0->redrawMessageBox) {
-        LoadMessageBoxGraphics(v0->bgConfig, 1, ((((10 + 12 * 2) + 30 * 14) + 27 * 4) + 9), 15, v0->entries.asArray[5].selected, v0->heapID);
-        v0->redrawMessageBox = 0;
+    if (menuData->redrawMessageBox) {
+        LoadMessageBoxGraphics(menuData->bgConfig,
+            BG_LAYER_MAIN_1,
+            MESSAGE_BOX_BASE_TILE,
+            15,
+            menuData->entries.messageBoxStyle.selected,
+            menuData->heapID);
+        menuData->redrawMessageBox = FALSE;
     }
 
     OAMManager_ApplyAndResetBuffers();
     NNS_GfdDoVramTransfer();
-    Bg_RunScheduledUpdates(v0->bgConfig);
+    Bg_RunScheduledUpdates(menuData->bgConfig);
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static int ov74_021D1178(OptionsMenuData *param0)
+static int SetupMenuVisuals(OptionsMenuData *menuData)
 {
-    switch (param0->subState) {
+    switch (menuData->subState) {
     case 0:
         SetMainCallback(NULL, NULL);
         DisableHBlank();
@@ -276,50 +359,56 @@ static int ov74_021D1178(OptionsMenuData *param0)
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
 
-        ov74_021D10F8();
+        SetVRAMBanks();
         sub_0200F32C(0);
         sub_0200F32C(1);
-        ov74_021D12D4(param0);
+        SetupBgs(menuData);
         break;
+
     case 1:
-        ov74_021D1390(param0);
-        param0->msgLoader = MessageLoader_Init(1, 26, 220, param0->heapID);
-        ov74_021D1720(param0);
+        LoadBgTiles(menuData);
+        menuData->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE,
+            NARC_INDEX_MSGDATA__PL_MSG,
+            message_bank_options_menu,
+            menuData->heapID);
+        LoadAllEntryChoices(menuData);
         break;
+
     case 2:
-        ov74_021D14F4(param0);
-        ov74_021D1668(param0);
-        VRAMTransferManager_New(32, param0->heapID);
-        GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+        SetupWindows(menuData);
+        PrintTitleAndEntries(menuData);
+        VRAMTransferManager_New(32, menuData->heapID);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
         DrawWifiConnectionIcon();
-        SetMainCallback(ov74_021D1118, param0);
-        param0->subState = 0;
-        return 1;
+        SetMainCallback(OptionsMenuVBlank, menuData);
+        menuData->subState = 0;
+        return TRUE;
     }
 
-    ++param0->subState;
-    return 0;
+    menuData->subState++;
+    return FALSE;
 }
 
-static int ov74_021D122C(OptionsMenuData *param0)
+static int TeardownMenuData(OptionsMenuData *menuData)
 {
     int v0 = 0, v1 = 0;
 
-    switch (param0->subState) {
+    switch (menuData->subState) {
     case 0:
         VRAMTransferManager_Destroy();
-        ov74_021D1624(param0);
+        TeardownWindows(menuData);
 
-        for (v0 = 0; v0 < 7; v0++) {
-            for (v1 = 0; v1 < param0->entries.asArray[v0].numChoices; v1++) {
-                Strbuf_Free(param0->entries.asArray[v0].choices[v1]);
+        for (v0 = 0; v0 < MAX_ENTRIES; v0++) {
+            for (v1 = 0; v1 < menuData->entries.asArray[v0].numChoices; v1++) {
+                Strbuf_Free(menuData->entries.asArray[v0].choices[v1]);
             }
         }
 
-        MessageLoader_Free(param0->msgLoader);
-        ov74_021D14E8(param0);
-        ov74_021D135C(param0);
+        MessageLoader_Free(menuData->msgLoader);
+        TeardownTilemaps(menuData);
+        TeardownBgs(menuData);
         break;
+
     case 1:
         SetMainCallback(NULL, NULL);
         DisableHBlank();
@@ -328,457 +417,563 @@ static int ov74_021D122C(OptionsMenuData *param0)
 
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
-        param0->subState = 0;
-        return 1;
+        menuData->subState = 0;
+        return TRUE;
     }
 
-    ++param0->subState;
-    return 0;
+    menuData->subState++;
+    return FALSE;
 }
 
-static void ov74_021D12D4(OptionsMenuData *param0)
+static void SetupBgs(OptionsMenuData *menuData)
 {
-    int v0;
+    menuData->bgConfig = BgConfig_New(menuData->heapID);
 
-    param0->bgConfig = BgConfig_New(param0->heapID);
-
-    {
-        GraphicsModes v1 = {
-            GX_DISPMODE_GRAPHICS,
-            GX_BGMODE_0,
-            GX_BGMODE_0,
-            GX_BG0_AS_2D
-        };
-
-        SetAllGraphicsModes(&v1);
-    }
-
-    {
-        BgTemplate v2[] = {
-            {
-                0,
-                0,
-                0x800,
-                0,
-                1,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0xf800,
-                GX_BG_CHARBASE_0x00000,
-                GX_BG_EXTPLTT_01,
-                1,
-                0,
-                0,
-                0,
-            },
-            {
-                0,
-                0,
-                0x800,
-                0,
-                1,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0xf000,
-                GX_BG_CHARBASE_0x00000,
-                GX_BG_EXTPLTT_01,
-                2,
-                0,
-                0,
-                0,
-            },
-            {
-                0,
-                0,
-                0x800,
-                0,
-                1,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0xe800,
-                GX_BG_CHARBASE_0x00000,
-                GX_BG_EXTPLTT_01,
-                3,
-                0,
-                0,
-                0,
-            },
-            {
-                0,
-                0,
-                0x800,
-                0,
-                1,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0xe000,
-                GX_BG_CHARBASE_0x00000,
-                GX_BG_EXTPLTT_01,
-                0,
-                0,
-                0,
-                0,
-            },
-            {
-                0,
-                0,
-                0x800,
-                0,
-                1,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0xf800,
-                GX_BG_CHARBASE_0x00000,
-                GX_BG_EXTPLTT_01,
-                0,
-                0,
-                0,
-                0,
-            },
-        };
-
-        for (v0 = 0; v0 < 5; v0++) {
-            static const v3[5] = {
-                0, 1, 2, 3, 4
-            };
-
-            Bg_InitFromTemplate(param0->bgConfig, v3[v0], &(v2[v0]), 0);
-            Bg_ClearTilemap(param0->bgConfig, v3[v0]);
-        }
-    }
-    Bg_ClearTilesRange(0, 32, 0, param0->heapID);
-    Bg_ClearTilesRange(4, 32, 0, param0->heapID);
-}
-
-static void ov74_021D135C(OptionsMenuData *param0)
-{
-    Bg_FreeTilemapBuffer(param0->bgConfig, 4);
-    Bg_FreeTilemapBuffer(param0->bgConfig, 3);
-    Bg_FreeTilemapBuffer(param0->bgConfig, 2);
-    Bg_FreeTilemapBuffer(param0->bgConfig, 1);
-    Bg_FreeTilemapBuffer(param0->bgConfig, 0);
-    Heap_FreeToHeap(param0->bgConfig);
-}
-
-static void ov74_021D1390(OptionsMenuData *param0)
-{
-    void *v0;
-    u32 v1;
-    NARC *v2;
-    void *v3;
-    NNSG2dCharacterData *v4;
-    NNSG2dPaletteData *v5;
-
-    v2 = NARC_ctor(NARC_INDEX_GRAPHIC__CONFIG_GRA, param0->heapID);
-    v1 = NARC_GetMemberSize(v2, 1);
-    v3 = Heap_AllocFromHeapAtEnd(param0->heapID, v1);
-
-    NARC_ReadWholeMember(v2, 1, (void *)v3);
-    NNS_G2dGetUnpackedCharacterData(v3, &v4);
-    Bg_LoadTiles(param0->bgConfig, 0, v4->pRawData, v4->szByte, 0);
-    Bg_LoadTiles(param0->bgConfig, 4, v4->pRawData, v4->szByte, 0);
-    Heap_FreeToHeap(v3);
-
-    v1 = NARC_GetMemberSize(v2, 0);
-    v3 = Heap_AllocFromHeapAtEnd(param0->heapID, v1);
-    NARC_ReadWholeMember(v2, 0, (void *)v3);
-
-    NNS_G2dGetUnpackedPaletteData(v3, &v5);
-    Bg_LoadPalette(0, v5->pRawData, 0x20 * 1, 0);
-    Bg_LoadPalette(4, v5->pRawData, 0x20 * 1, 0);
-    Heap_FreeToHeap(v3);
-
-    v1 = NARC_GetMemberSize(v2, 2);
-    param0->nscrBuffer = Heap_AllocFromHeap(param0->heapID, v1);
-
-    NARC_ReadWholeMember(v2, 2, (void *)param0->nscrBuffer);
-    NNS_G2dGetUnpackedScreenData(param0->nscrBuffer, &(param0->tilemapData));
-    NARC_dtor(v2);
-    Bg_FillTilemapRect(param0->bgConfig, 2, 0x1, 0, 0, 32, 32, 17);
-    Bg_FillTilemapRect(param0->bgConfig, 4, 0x1, 0, 0, 32, 32, 17);
-    Bg_CopyRectToTilemapRect(param0->bgConfig, 0, 0, 0, 32, 2, param0->tilemapData->rawData, 0, 0, param0->tilemapData->screenWidth / 8, param0->tilemapData->screenHeight / 8);
-    Bg_SetOffset(param0->bgConfig, 0, 3, -24);
-    Bg_ScheduleTilemapTransfer(param0->bgConfig, 2);
-    Bg_ScheduleTilemapTransfer(param0->bgConfig, 0);
-    Bg_ScheduleTilemapTransfer(param0->bgConfig, 4);
-}
-
-static void ov74_021D14E8(OptionsMenuData *param0)
-{
-    Heap_FreeToHeap(param0->nscrBuffer);
-}
-
-static void ov74_021D14F4(OptionsMenuData *param0)
-{
-    Window_Add(param0->bgConfig, &param0->windows[0], 1, 1, 0, 12, 2, 13, 10);
-    Window_Add(param0->bgConfig, &param0->windows[1], 1, 1, 3, 30, 14, 13, (10 + 12 * 2));
-    Window_Add(param0->bgConfig, &param0->windows[2], 1, 2, 19, 27, 4, 12, ((10 + 12 * 2) + 30 * 14));
-    LoadStandardWindowGraphics(param0->bgConfig, 1, (((10 + 12 * 2) + 30 * 14) + 27 * 4), 14, 0, param0->heapID);
-    LoadMessageBoxGraphics(param0->bgConfig, 1, ((((10 + 12 * 2) + 30 * 14) + 27 * 4) + 9), 15, param0->options.messageBoxStyle, param0->heapID);
-
-    Font_LoadTextPalette(0, 13 * 32, param0->heapID);
-    Font_LoadTextPalette(4, 13 * 32, param0->heapID);
-    Font_LoadScreenIndicatorsPalette(0, 12 * 32, param0->heapID);
-    Font_LoadScreenIndicatorsPalette(4, 12 * 32, param0->heapID);
-
-    Window_FillTilemap(&(param0->windows[0]), WINCLR_COL(0));
-    Window_FillTilemap(&(param0->windows[1]), WINCLR_COL(15));
-    Window_FillTilemap(&(param0->windows[2]), WINCLR_COL(15));
-    Window_ClearTilemap(&(param0->windows[2]));
-    Window_ClearTilemap(&(param0->windows[1]));
-    Window_ClearTilemap(&(param0->windows[0]));
-
-    Window_DrawStandardFrame(&param0->windows[1], 1, (((10 + 12 * 2) + 30 * 14) + 27 * 4), 14);
-    Window_DrawMessageBoxWithScrollCursor(&param0->windows[2], 1, ((((10 + 12 * 2) + 30 * 14) + 27 * 4) + 9), 15);
-}
-
-static void ov74_021D1624(OptionsMenuData *param0)
-{
-    u16 v0;
-
-    Window_EraseStandardFrame(&(param0->windows[1]), 0);
-    Window_EraseMessageBox(&(param0->windows[2]), 0);
-
-    for (v0 = 0; v0 < 3; v0++) {
-        Window_ClearAndCopyToVRAM(&(param0->windows[v0]));
-        Window_FillTilemap(&(param0->windows[v0]), 0);
-        Window_ClearTilemap(&(param0->windows[v0]));
-        Window_Remove(&param0->windows[v0]);
-    }
-}
-
-static void ov74_021D1668(OptionsMenuData *param0)
-{
-    u32 v0, v1;
-    u16 v2;
-    TextColor v3, v4, v5;
-    Strbuf *v6;
-    Strbuf *v7;
-    static const u8 v8[7] = {
-        3,
-        6,
-        4,
-        5,
-        7,
-        8,
-        42,
+    GraphicsModes graphicsModes = {
+        GX_DISPMODE_GRAPHICS,
+        GX_BGMODE_0,
+        GX_BGMODE_0,
+        GX_BG0_AS_2D
     };
 
-    v5 = TEXT_COLOR(1, 2, 0);
-    v3 = TEXT_COLOR(1, 2, 15);
-    v4 = TEXT_COLOR(3, 4, 15);
-    v6 = Strbuf_Init(256, param0->heapID);
+    SetAllGraphicsModes(&graphicsModes);
 
-    MessageLoader_GetStrbuf(param0->msgLoader, 0, v6);
+    BgTemplate bgTemplates[NUM_BG_TEMPLATES] = {
+        {
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xf800,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 1,
+            .areaOver = 0,
+            .dummy = 0,
+            .mosaic = FALSE,
+        },
+        {
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xf000,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 2,
+            .areaOver = 0,
+            .dummy = 0,
+            .mosaic = FALSE,
+        },
+        {
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xe800,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 3,
+            .areaOver = 0,
+            .dummy = 0,
+            .mosaic = FALSE,
+        },
+        {
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xe000,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0,
+            .areaOver = 0,
+            .dummy = 0,
+            .mosaic = FALSE,
+        },
+        {
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xf800,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0,
+            .areaOver = 0,
+            .dummy = 0,
+            .mosaic = FALSE,
+        },
+    };
 
-    v1 = 2;
-    Text_AddPrinterWithParamsAndColor(&param0->windows[0], FONT_SYSTEM, v6, v1, 2, TEXT_SPEED_INSTANT, v5, NULL);
+    for (int i = 0; i < NUM_BG_TEMPLATES; i++) {
+        static const int sBgLayers[NUM_BG_TEMPLATES] = {
+            // Must declared inline to match.
+            BG_LAYER_MAIN_0,
+            BG_LAYER_MAIN_1,
+            BG_LAYER_MAIN_2,
+            BG_LAYER_MAIN_3,
+            BG_LAYER_SUB_0,
+        };
 
-    v1 = 4;
-
-    for (v2 = 0; v2 < 7; v2++) {
-        Strbuf_Clear(v6);
-        MessageLoader_GetStrbuf(param0->msgLoader, v8[v2], v6);
-        Text_AddPrinterWithParamsAndColor(&param0->windows[1], FONT_SYSTEM, v6, v1, 16 * v2, TEXT_SPEED_NO_TRANSFER, v3, NULL);
+        Bg_InitFromTemplate(menuData->bgConfig, sBgLayers[i], &(bgTemplates[i]), BG_TYPE_STATIC);
+        Bg_ClearTilemap(menuData->bgConfig, sBgLayers[i]);
     }
 
-    for (v2 = 0; v2 < 7; v2++) {
-        ov74_021D17CC(param0, v2);
-    }
-
-    ov74_021D1BE4(param0, 0, 1);
-
-    Window_CopyToVRAM(&param0->windows[0]);
-    Window_CopyToVRAM(&param0->windows[1]);
-
-    Strbuf_Free(v6);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, menuData->heapID);
+    Bg_ClearTilesRange(BG_LAYER_SUB_0, 32, 0, menuData->heapID);
 }
 
-static void ov74_021D1720(OptionsMenuData *param0)
+static void TeardownBgs(OptionsMenuData *menuData)
 {
-    u16 v0, v1;
-    static const int v3[7] = {
-        3, 2, 2, 2, 3, 20, 0
-    };
-    static const u8 v2[7] = {
-        10,
-        17,
-        13,
-        15,
-        19,
-        22,
+    Bg_FreeTilemapBuffer(menuData->bgConfig, BG_LAYER_SUB_0);
+    Bg_FreeTilemapBuffer(menuData->bgConfig, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(menuData->bgConfig, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(menuData->bgConfig, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(menuData->bgConfig, BG_LAYER_MAIN_0);
+    Heap_FreeToHeap(menuData->bgConfig);
+}
+
+static void LoadBgTiles(OptionsMenuData *menuData)
+{
+    NNSG2dCharacterData *cursorTiles;
+    NNSG2dPaletteData *cursorPalette;
+
+    NARC *narc = NARC_ctor(NARC_INDEX_GRAPHIC__CONFIG_GRA, menuData->heapID);
+
+    u32 memberSize = NARC_GetMemberSize(narc, 1);
+    void *memberBuffer = Heap_AllocFromHeapAtEnd(menuData->heapID, memberSize);
+    NARC_ReadWholeMember(narc, 1, memberBuffer);
+    NNS_G2dGetUnpackedCharacterData(memberBuffer, &cursorTiles);
+    Bg_LoadTiles(menuData->bgConfig, BG_LAYER_MAIN_0, cursorTiles->pRawData, cursorTiles->szByte, 0);
+    Bg_LoadTiles(menuData->bgConfig, BG_LAYER_SUB_0, cursorTiles->pRawData, cursorTiles->szByte, 0);
+    Heap_FreeToHeap(memberBuffer);
+
+    memberSize = NARC_GetMemberSize(narc, 0);
+    memberBuffer = Heap_AllocFromHeapAtEnd(menuData->heapID, memberSize);
+    NARC_ReadWholeMember(narc, 0, memberBuffer);
+    NNS_G2dGetUnpackedPaletteData(memberBuffer, &cursorPalette);
+    Bg_LoadPalette(BG_LAYER_MAIN_0, cursorPalette->pRawData, PALETTE_SIZE_BYTES, 0);
+    Bg_LoadPalette(BG_LAYER_SUB_0, cursorPalette->pRawData, PALETTE_SIZE_BYTES, 0);
+    Heap_FreeToHeap(memberBuffer);
+
+    memberSize = NARC_GetMemberSize(narc, 2);
+    menuData->nscrBuffer = Heap_AllocFromHeap(menuData->heapID, memberSize);
+
+    NARC_ReadWholeMember(narc, 2, menuData->nscrBuffer);
+    NNS_G2dGetUnpackedScreenData(menuData->nscrBuffer, &(menuData->tilemapData));
+    NARC_dtor(narc);
+
+    Bg_FillTilemapRect(menuData->bgConfig,
+        BG_LAYER_MAIN_2,
+        1,
         0,
-    };
+        0,
+        32,
+        32,
+        TILEMAP_FILL_VAL_INCLUDES_PALETTE);
+    Bg_FillTilemapRect(menuData->bgConfig,
+        BG_LAYER_SUB_0,
+        1,
+        0,
+        0,
+        32,
+        32,
+        TILEMAP_FILL_VAL_INCLUDES_PALETTE);
 
-    for (v0 = 0; v0 < 7; v0++) {
-        param0->entries.asArray[v0].numChoices = v3[v0];
+    Bg_CopyRectToTilemapRect(menuData->bgConfig,
+        BG_LAYER_MAIN_0,
+        0,
+        0,
+        32,
+        2,
+        menuData->tilemapData->rawData,
+        0,
+        0,
+        menuData->tilemapData->screenWidth / 8,
+        menuData->tilemapData->screenHeight / 8);
 
-        for (v1 = 0; v1 < v3[v0]; v1++) {
-            param0->entries.asArray[v0].choices[v1] = MessageLoader_GetNewStrbuf(param0->msgLoader, v2[v0] + v1);
+    Bg_SetOffset(menuData->bgConfig, BG_LAYER_MAIN_0, BG_OFFSET_UPDATE_SET_Y, -FIRST_ENTRY_OFFSET);
+    Bg_ScheduleTilemapTransfer(menuData->bgConfig, BG_LAYER_MAIN_2);
+    Bg_ScheduleTilemapTransfer(menuData->bgConfig, BG_LAYER_MAIN_0);
+    Bg_ScheduleTilemapTransfer(menuData->bgConfig, BG_LAYER_SUB_0);
+}
+
+static void TeardownTilemaps(OptionsMenuData *menuData)
+{
+    Heap_FreeToHeap(menuData->nscrBuffer);
+}
+
+static void SetupWindows(OptionsMenuData *menuData)
+{
+    Window_Add(menuData->bgConfig,
+        &menuData->windows.title,
+        BG_LAYER_MAIN_1,
+        1,
+        0,
+        MENU_TITLE_WIDTH,
+        MENU_TITLE_HEIGHT,
+        13,
+        MENU_TITLE_BASE_TILE);
+    Window_Add(menuData->bgConfig,
+        &menuData->windows.entries,
+        BG_LAYER_MAIN_1,
+        1,
+        3,
+        ENTRIES_WIDTH,
+        ENTRIES_HEIGHT,
+        13,
+        ENTRIES_BASE_TILE);
+    Window_Add(menuData->bgConfig,
+        &menuData->windows.description,
+        BG_LAYER_MAIN_1,
+        2,
+        19,
+        DESCRIPTION_WIDTH,
+        DESCRIPTION_HEIGHT,
+        12,
+        DESCRIPTION_BASE_TILE);
+    LoadStandardWindowGraphics(menuData->bgConfig,
+        BG_LAYER_MAIN_1,
+        STANDARD_WINDOW_BASE_TILE,
+        14,
+        STANDARD_WINDOW_SYSTEM,
+        menuData->heapID);
+    LoadMessageBoxGraphics(menuData->bgConfig,
+        BG_LAYER_MAIN_1,
+        MESSAGE_BOX_BASE_TILE,
+        15,
+        menuData->options.messageBoxStyle,
+        menuData->heapID);
+
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(13), menuData->heapID);
+    Font_LoadTextPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(13), menuData->heapID);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(12), menuData->heapID);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_SUB_BG, PLTT_OFFSET(12), menuData->heapID);
+
+    Window_FillTilemap(&menuData->windows.title, PIXEL_FILL(0));
+    Window_FillTilemap(&menuData->windows.entries, PIXEL_FILL(15));
+    Window_FillTilemap(&menuData->windows.description, PIXEL_FILL(15));
+    Window_ClearTilemap(&menuData->windows.description);
+    Window_ClearTilemap(&menuData->windows.entries);
+    Window_ClearTilemap(&menuData->windows.title);
+
+    Window_DrawStandardFrame(&menuData->windows.entries, TRUE, STANDARD_WINDOW_BASE_TILE, 14);
+    Window_DrawMessageBoxWithScrollCursor(&menuData->windows.description, TRUE, MESSAGE_BOX_BASE_TILE, 15);
+}
+
+static void TeardownWindows(OptionsMenuData *menuData)
+{
+    Window_EraseStandardFrame(&menuData->windows.entries, FALSE);
+    Window_EraseMessageBox(&menuData->windows.description, FALSE);
+
+    for (u16 i = 0; i < 3; i++) {
+        Window_ClearAndCopyToVRAM(&menuData->windows.asArray[i]);
+        Window_FillTilemap(&menuData->windows.asArray[i], 0);
+        Window_ClearTilemap(&menuData->windows.asArray[i]);
+        Window_Remove(&menuData->windows.asArray[i]);
+    }
+}
+
+static const u8 sEntryLabels[MAX_ENTRIES] = {
+    options_menu_text_speed_label,
+    options_menu_sound_mode_label,
+    options_menu_battle_scene_label,
+    options_menu_battle_style_label,
+    options_menu_button_mode_label,
+    options_menu_message_box_style_label,
+    options_menu_close_label,
+};
+
+static void PrintTitleAndEntries(OptionsMenuData *menuData)
+{
+    u16 i; // Must forward-declare to match
+    TextColor transparentBg = TEXT_COLOR(1, 2, 0);
+    TextColor whiteBg = TEXT_COLOR(1, 2, 15);
+
+    Strbuf *strbuf = Strbuf_Init(256, menuData->heapID);
+    MessageLoader_GetStrbuf(menuData->msgLoader, options_menu_title, strbuf);
+    Text_AddPrinterWithParamsAndColor(&menuData->windows.title,
+        FONT_SYSTEM,
+        strbuf,
+        2,
+        2,
+        TEXT_SPEED_INSTANT,
+        transparentBg,
+        NULL);
+
+    for (i = 0; i < MAX_ENTRIES; i++) {
+        Strbuf_Clear(strbuf);
+        MessageLoader_GetStrbuf(menuData->msgLoader, sEntryLabels[i], strbuf);
+        Text_AddPrinterWithParamsAndColor(&menuData->windows.entries,
+            FONT_SYSTEM,
+            strbuf,
+            4,
+            16 * i,
+            TEXT_SPEED_NO_TRANSFER,
+            whiteBg,
+            NULL);
+    }
+
+    for (i = 0; i < MAX_ENTRIES; i++) {
+        PrintEntryChoices(menuData, i);
+    }
+
+    PrintEntryDescription(menuData, ENTRY_TEXT_SPEED, TRUE);
+    Window_CopyToVRAM(&menuData->windows.title);
+    Window_CopyToVRAM(&menuData->windows.entries);
+    Strbuf_Free(strbuf);
+}
+
+static const int sNumChoicesPerEntry[MAX_ENTRIES] = {
+    3,
+    2,
+    2,
+    2,
+    3,
+    20,
+    0,
+};
+
+static const u8 sFirstChoicePerEntry[MAX_ENTRIES] = {
+    options_menu_text_speed_slow,
+    options_menu_sound_mode_stereo,
+    options_menu_battle_scene_on,
+    options_menu_battle_style_shift,
+    options_menu_button_mode_normal,
+    options_menu_message_box_style_01,
+    NULL,
+};
+
+static void LoadAllEntryChoices(OptionsMenuData *menuData)
+{
+    u16 i, j;
+    for (i = 0; i < MAX_ENTRIES; i++) {
+        menuData->entries.asArray[i].numChoices = sNumChoicesPerEntry[i];
+        for (j = 0; j < sNumChoicesPerEntry[i]; j++) {
+            menuData->entries.asArray[i].choices[j] = MessageLoader_GetNewStrbuf(menuData->msgLoader, sFirstChoicePerEntry[i] + j);
         }
     }
 
-    param0->entries.asArray[0].selected = param0->options.textSpeed;
-    param0->entries.asArray[2].selected = param0->options.battleScene;
-    param0->entries.asArray[3].selected = param0->options.battleStyle;
-    param0->entries.asArray[1].selected = param0->options.soundMode;
-    param0->entries.asArray[4].selected = param0->options.buttonMode;
-    param0->entries.asArray[5].selected = param0->options.messageBoxStyle;
+    menuData->entries.textSpeed.selected = menuData->options.textSpeed;
+    menuData->entries.battleScene.selected = menuData->options.battleScene;
+    menuData->entries.battleStyle.selected = menuData->options.battleStyle;
+    menuData->entries.soundMode.selected = menuData->options.soundMode;
+    menuData->entries.buttonMode.selected = menuData->options.buttonMode;
+    menuData->entries.messageBoxStyle.selected = menuData->options.messageBoxStyle;
 }
 
-static void ov74_021D17CC(OptionsMenuData *param0, u16 param1)
+static const s8 sEntryXOffsets[] = { 0, 0, 0, 0, 0, 0, 0 };
+
+static void PrintEntryChoices(OptionsMenuData *menuData, u16 entry)
 {
-    u32 v0, v1, v2;
-    u16 v3;
-    u8 v4;
-    s8 v5 = 0;
-    static const s8 v6[] = { 0, 0, 0, 0, 0, 0, 0 };
+    TextColor darkGray, red, color;
+    u16 i;
+    u8 textSpeed;
+    s8 xOffset = 0;
 
-    v0 = TEXT_COLOR(1, 2, 15);
-    v1 = TEXT_COLOR(3, 4, 15);
+    darkGray = TEXT_COLOR(1, 2, 15);
+    red = TEXT_COLOR(3, 4, 15);
 
-    Window_FillRectWithColor(&(param0->windows[1]), WINCLR_COL(15), (12 * 8 + 4) + v6[param1], 0 + param1 * 16, (48 * 8), 16);
-
-    if (param1 == 5) {
-        Text_AddPrinterWithParamsAndColor(&param0->windows[1], FONT_SYSTEM, param0->entries.asArray[param1].choices[param0->entries.asArray[param1].selected], 1 * 48 + (12 * 8 + 4), 16 * param1 + 0, TEXT_SPEED_NO_TRANSFER, v1, NULL);
-        Window_CopyToVRAM(&param0->windows[1]);
-        param0->redrawMessageBox = 1;
+    Window_FillRectWithColor(&menuData->windows.entries, PIXEL_FILL(15), CHOICES_X + sEntryXOffsets[entry], entry * SINGLE_ENTRY_HEIGHT, CHOICES_WIDTH, SINGLE_ENTRY_HEIGHT);
+    if (entry == ENTRY_MESSAGE_BOX_FRAME) {
+        Text_AddPrinterWithParamsAndColor(&menuData->windows.entries,
+            FONT_SYSTEM,
+            menuData->entries.asArray[entry].choices[menuData->entries.asArray[entry].selected],
+            48 + CHOICES_X,
+            entry * SINGLE_ENTRY_HEIGHT,
+            TEXT_SPEED_NO_TRANSFER,
+            red,
+            NULL);
+        Window_CopyToVRAM(&menuData->windows.entries);
+        menuData->redrawMessageBox = TRUE;
         return;
     }
 
-    if (param1 == 1) {
-        Sound_SetPlaybackMode(param0->entries.asArray[param1].selected);
-    } else if (param1 == 4) {
-        Options_SetSystemButtonMode(NULL, param0->entries.asArray[param1].selected);
-    } else if (param1 == 0) {
-        Options_SetTextSpeed(param0->saveOptions, param0->entries.asArray[param1].selected);
-        ov74_021D1BE4(param0, param1, 0);
+    if (entry == ENTRY_SOUND_MODE) {
+        Sound_SetPlaybackMode(menuData->entries.asArray[entry].selected);
+    } else if (entry == ENTRY_BUTTON_MODE) {
+        Options_SetSystemButtonMode(NULL, menuData->entries.asArray[entry].selected);
+    } else if (entry == ENTRY_TEXT_SPEED) {
+        Options_SetTextSpeed(menuData->saveOptions, menuData->entries.asArray[entry].selected);
+        PrintEntryDescription(menuData, entry, FALSE);
     }
 
-    v5 = 0;
-
-    for (v3 = 0; v3 < param0->entries.asArray[param1].numChoices; v3++) {
-        if (v3 == param0->entries.asArray[param1].selected) {
-            v2 = v1;
+    xOffset = 0;
+    for (i = 0; i < menuData->entries.asArray[entry].numChoices; i++) {
+        if (i == menuData->entries.asArray[entry].selected) {
+            color = red;
         } else {
-            v2 = v0;
+            color = darkGray;
         }
 
-        if (v3 == param0->entries.asArray[param1].numChoices - 1) {
-            v4 = TEXT_SPEED_NO_TRANSFER;
+        if (i == menuData->entries.asArray[entry].numChoices - 1) {
+            textSpeed = TEXT_SPEED_NO_TRANSFER;
         } else {
-            v4 = TEXT_SPEED_NO_TRANSFER;
+            textSpeed = TEXT_SPEED_NO_TRANSFER;
         }
 
-        if (param1 == 4) {
-            Text_AddPrinterWithParamsAndColor(&param0->windows[1], FONT_SYSTEM, param0->entries.asArray[param1].choices[v3], (12 * 8 + 4) - 0 + v5, 16 * param1 + 0, v4, v2, NULL);
-            v5 += Font_CalcStrbufWidth(FONT_SYSTEM, param0->entries.asArray[param1].choices[v3], 0) + 12;
+        if (entry == ENTRY_BUTTON_MODE) {
+            Text_AddPrinterWithParamsAndColor(&menuData->windows.entries,
+                FONT_SYSTEM,
+                menuData->entries.asArray[entry].choices[i],
+                xOffset + CHOICES_X,
+                entry * SINGLE_ENTRY_HEIGHT,
+                textSpeed,
+                color,
+                NULL);
+            xOffset += Font_CalcStrbufWidth(FONT_SYSTEM, menuData->entries.asArray[entry].choices[i], 0) + 12;
         } else {
-            Text_AddPrinterWithParamsAndColor(&param0->windows[1], FONT_SYSTEM, param0->entries.asArray[param1].choices[v3], v3 * 48 + (12 * 8 + 4) + v6[param1], 16 * param1 + 0, v4, v2, NULL);
+            Text_AddPrinterWithParamsAndColor(&menuData->windows.entries,
+                FONT_SYSTEM,
+                menuData->entries.asArray[entry].choices[i],
+                i * 48 + CHOICES_X + sEntryXOffsets[entry],
+                entry * SINGLE_ENTRY_HEIGHT,
+                textSpeed,
+                color,
+                NULL);
         }
     }
 
-    Window_CopyToVRAM(&param0->windows[1]);
+    Window_CopyToVRAM(&menuData->windows.asArray[1]);
 }
 
-static void ov74_021D1968(OptionsMenuData *param0, u16 param1, BOOL param2)
+static void PrintBankEntryAsDescription(OptionsMenuData *menuData, u16 entry, BOOL scheduleVRAMCopy)
 {
-    u32 v0;
-    Strbuf *v1;
-    u8 v2;
-
-    if (ov74_021D1A08(param0) == 0) {
-        Text_RemovePrinter(param0->textPrinter);
+    // Kill any active printer
+    if (IsTextPrinterDone(menuData) == FALSE) {
+        Text_RemovePrinter(menuData->textPrinter);
     }
 
-    v2 = Options_TextFrameDelay(param0->saveOptions);
+    u8 renderDelay = Options_TextFrameDelay(menuData->saveOptions);
 
-    Window_FillTilemap(&(param0->windows[2]), 15);
+    Window_FillTilemap(&menuData->windows.description, 15);
 
-    v0 = TEXT_COLOR(1, 2, 15);
-    v1 = Strbuf_Init(256, param0->heapID);
+    TextColor color = TEXT_COLOR(1, 2, 15);
+    Strbuf *strbuf = Strbuf_Init(256, menuData->heapID);
+    MessageLoader_GetStrbuf(menuData->msgLoader, entry, strbuf);
 
-    MessageLoader_GetStrbuf(param0->msgLoader, param1, v1);
-
-    if (param2 == 0) {
-        param0->textPrinter = Text_AddPrinterWithParamsAndColor(&param0->windows[2], FONT_MESSAGE, v1, 4, 0, v2, v0, NULL);
+    if (scheduleVRAMCopy == FALSE) {
+        menuData->textPrinter = Text_AddPrinterWithParamsAndColor(&menuData->windows.description,
+            FONT_MESSAGE,
+            strbuf,
+            4,
+            0,
+            renderDelay,
+            color,
+            NULL);
     } else {
-        Text_AddPrinterWithParamsAndColor(&param0->windows[2], FONT_MESSAGE, v1, 4, 0, TEXT_SPEED_NO_TRANSFER, v0, NULL);
-        Window_ScheduleCopyToVRAM(&param0->windows[2]);
+        Text_AddPrinterWithParamsAndColor(&menuData->windows.description,
+            FONT_MESSAGE,
+            strbuf,
+            4,
+            0,
+            TEXT_SPEED_NO_TRANSFER,
+            color,
+            NULL);
+        Window_ScheduleCopyToVRAM(&menuData->windows.description);
     }
 
-    Strbuf_Free(v1);
+    Strbuf_Free(strbuf);
 }
 
-static BOOL ov74_021D1A08(const OptionsMenuData *param0)
+static BOOL IsTextPrinterDone(const OptionsMenuData *menuData)
 {
-    if (Text_IsPrinterActive(param0->textPrinter) == 0) {
-        return 1;
-    }
-
-    return 0;
+    return Text_IsPrinterActive(menuData->textPrinter) == FALSE;
 }
 
-static void ov74_021D1A24(OptionsMenuData *param0)
+static void ProcessMainInput(OptionsMenuData *menuData)
 {
-    OptionsMenuEntry *v0;
+    OptionsMenuEntry *entry = &menuData->entries.asArray[menuData->cursor];
 
-    v0 = &(param0->entries.asArray[param0->cursor]);
-
-    if (param0->cursor != 6) {
-        if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
-            v0->selected = (v0->selected + 1) % v0->numChoices;
-            ov74_021D17CC(param0, param0->cursor);
-            Sound_PlayEffect(1500);
-        } else if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
-            v0->selected = (v0->selected + v0->numChoices - 1) % v0->numChoices;
-            ov74_021D17CC(param0, param0->cursor);
-            Sound_PlayEffect(1500);
+    if (menuData->cursor != ENTRY_CLOSE) {
+        if (JOY_NEW(PAD_KEY_RIGHT)) {
+            entry->selected = (entry->selected + 1) % entry->numChoices;
+            PrintEntryChoices(menuData, menuData->cursor);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
+        } else if (JOY_NEW(PAD_KEY_LEFT)) {
+            entry->selected = (entry->selected + entry->numChoices - 1) % entry->numChoices;
+            PrintEntryChoices(menuData, menuData->cursor);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
         }
     }
 
-    if (gCoreSys.pressedKeys & PAD_KEY_UP) {
-        param0->cursor = (param0->cursor + 7 - 1) % 7;
-        Bg_ScheduleScroll(param0->bgConfig, 0, 3, -(param0->cursor * 16 + 24));
-        ov74_021D1BE4(param0, param0->cursor, 1);
-        Sound_PlayEffect(1500);
-    } else if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
-        param0->cursor = (param0->cursor + 1) % 7;
-        Bg_ScheduleScroll(param0->bgConfig, 0, 3, -(param0->cursor * 16 + 24));
-        ov74_021D1BE4(param0, param0->cursor, 1);
-        Sound_PlayEffect(1500);
+    if (JOY_NEW(PAD_KEY_UP)) {
+        menuData->cursor = (menuData->cursor + 7 - 1) % 7;
+        Bg_ScheduleScroll(menuData->bgConfig,
+            BG_LAYER_MAIN_0,
+            BG_OFFSET_UPDATE_SET_Y,
+            -(menuData->cursor * SINGLE_ENTRY_HEIGHT + FIRST_ENTRY_OFFSET));
+
+        PrintEntryDescription(menuData, menuData->cursor, TRUE);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
+    } else if (JOY_NEW(PAD_KEY_DOWN)) {
+        menuData->cursor = (menuData->cursor + 1) % 7;
+        Bg_ScheduleScroll(menuData->bgConfig,
+            BG_LAYER_MAIN_0,
+            BG_OFFSET_UPDATE_SET_Y,
+            -(menuData->cursor * SINGLE_ENTRY_HEIGHT + FIRST_ENTRY_OFFSET));
+
+        PrintEntryDescription(menuData, menuData->cursor, TRUE);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 }
 
-static BOOL ov74_021D1B44(OptionsMenuData *param0)
+static BOOL ChangesWereMade(OptionsMenuData *menuData)
 {
-    if ((param0->options.textSpeed != param0->entries.asArray[0].selected) || (param0->options.battleScene != param0->entries.asArray[2].selected) || (param0->options.battleStyle != param0->entries.asArray[3].selected) || (param0->options.soundMode != param0->entries.asArray[1].selected) || (param0->options.buttonMode != param0->entries.asArray[4].selected) || (param0->options.messageBoxStyle != param0->entries.asArray[5].selected)) {
-        return 1;
-    }
-
-    return 0;
+    return menuData->options.textSpeed != menuData->entries.textSpeed.selected
+        || menuData->options.battleScene != menuData->entries.battleScene.selected
+        || menuData->options.battleStyle != menuData->entries.battleStyle.selected
+        || menuData->options.soundMode != menuData->entries.soundMode.selected
+        || menuData->options.buttonMode != menuData->entries.buttonMode.selected
+        || menuData->options.messageBoxStyle != menuData->entries.messageBoxStyle.selected;
 }
 
-static void ov74_021D1BA8(OptionsMenuData *param0)
-{
-    static const WindowTemplate v0 = {
-        3, 25, 13, 6, 4, 13, (((((10 + 12 * 2) + 30 * 14) + 27 * 4) + 9) + (18 + 12))
-    };
+static const WindowTemplate sConfirmationWindowTemplate = {
+    .bgLayer = BG_LAYER_MAIN_3,
+    .tilemapLeft = 25,
+    .tilemapTop = 13,
+    .width = 6,
+    .height = 4,
+    .palette = 13,
+    .baseTile = CONFIRMATION_BASE_TILE,
+};
 
-    param0->yesNoChoice = Menu_MakeYesNoChoice(param0->bgConfig, &v0, (((10 + 12 * 2) + 30 * 14) + 27 * 4), 14, param0->heapID);
+static void DrawConfirmationPrompt(OptionsMenuData *menuData)
+{
+    menuData->yesNoChoice = Menu_MakeYesNoChoice(menuData->bgConfig,
+        &sConfirmationWindowTemplate,
+        STANDARD_WINDOW_BASE_TILE,
+        14,
+        menuData->heapID);
 }
 
-static u32 ov74_021D1BD0(OptionsMenuData *param0)
+static u32 ProcessConfirmationInput(OptionsMenuData *menuData)
 {
-    return Menu_ProcessInputAndHandleExit(param0->yesNoChoice, param0->heapID);
+    return Menu_ProcessInputAndHandleExit(menuData->yesNoChoice, menuData->heapID);
 }
 
-static void ov74_021D1BE4(OptionsMenuData *param0, u16 param1, BOOL param2)
-{
-    static const u8 v0[7] = {
-        43,
-        46,
-        44,
-        45,
-        47,
-        48,
-        52,
-    };
+static const u8 sEntryDescriptions[MAX_ENTRIES] = {
+    options_menu_text_speed_description,
+    options_menu_sound_mode_description,
+    options_menu_battle_scene_description,
+    options_menu_battle_style_description,
+    options_menu_button_mode_description,
+    options_menu_message_box_style_description,
+    options_menu_close_description,
+};
 
-    ov74_021D1968(param0, v0[param1], param2);
+static void PrintEntryDescription(OptionsMenuData *menuData, u16 entry, BOOL scheduleVRAMCopy)
+{
+    PrintBankEntryAsDescription(menuData, sEntryDescriptions[entry], scheduleVRAMCopy);
 }
