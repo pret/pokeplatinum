@@ -3,7 +3,12 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/flavor.h"
+#include "constants/moves.h"
 #include "constants/pokemon.h"
+#include "constants/string.h"
+#include "consts/sdat.h"
+#include "consts/species.h"
 
 #include "struct_defs/struct_02099F80.h"
 
@@ -77,17 +82,17 @@ static int sub_0208D114(PokemonSummaryScreen *param0);
 static int sub_0208D164(PokemonSummaryScreen *param0);
 static u8 sub_0208D17C(PokemonSummaryScreen *param0);
 static u8 ScreenTransitionIsDone(PokemonSummaryScreen *param0);
-static void sub_0208C638(void);
-static void sub_0208C658(BgConfig *param0);
-static void sub_0208C76C(BgConfig *param0);
+static void SetVRAMBanks(void);
+static void SetupBgs(BgConfig *param0);
+static void TeardownBgs(BgConfig *param0);
 static void sub_0208C7AC(PokemonSummaryScreen *param0, NARC *param1);
 static void sub_0208C86C(void);
-static void sub_0208C604(void *param0);
-static void sub_0208C884(PokemonSummaryScreen *param0);
-static void sub_0208C950(PokemonSummaryScreen *param0);
+static void PokemonSummaryScreenVBlank(void *param0);
+static void InitializeStringsAndCopyOTName(PokemonSummaryScreen *param0);
+static void FreeStrings(PokemonSummaryScreen *param0);
 static void sub_0208D1A4(PokemonSummaryScreen *param0);
-static void sub_0208D1D4(PokemonSummaryScreen *param0, BoxPokemon *param1, PokemonSummaryMonData *param2);
-static void sub_0208D200(PokemonSummaryScreen *param0, Pokemon *param1, PokemonSummaryMonData *param2);
+static void SetMonDataFromBoxMon(PokemonSummaryScreen *param0, BoxPokemon *param1, PokemonSummaryMonData *param2);
+static void SetMonData(PokemonSummaryScreen *param0, Pokemon *param1, PokemonSummaryMonData *param2);
 static void sub_0208D678(PokemonSummaryScreen *param0);
 static void sub_0208D618(PokemonSummaryScreen *param0);
 static void sub_0208D7EC(PokemonSummaryScreen *param0, u8 param1);
@@ -126,7 +131,7 @@ const OverlayManagerTemplate Unk_020F410C = {
     PokemonSummaryScreen_Init,
     PokemonSummaryScreen_Main,
     PokemonSummaryScreen_Exit,
-    0xFFFFFFFF
+    FS_OVERLAY_ID_NONE
 };
 
 BOOL PokemonSummary_ShowContestData(SaveData *saveData)
@@ -165,12 +170,12 @@ static int PokemonSummaryScreen_Init(OverlayManager *ovyManager, int *state)
     sub_0201E3D8();
     sub_0201E450(4);
     sub_0208D748(summaryScreen);
-    sub_0208C638();
-    sub_0208C658(summaryScreen->bgConfig);
+    SetVRAMBanks();
+    SetupBgs(summaryScreen->bgConfig);
     sub_0208C7AC(summaryScreen, narc);
     sub_0208C86C();
     sub_020916B4(summaryScreen);
-    sub_0208C884(summaryScreen);
+    InitializeStringsAndCopyOTName(summaryScreen);
     sub_0208D1A4(summaryScreen);
     sub_0208EA44(summaryScreen);
     sub_0208EB64(summaryScreen);
@@ -181,7 +186,7 @@ static int PokemonSummaryScreen_Init(OverlayManager *ovyManager, int *state)
     sub_0208D678(summaryScreen);
     sub_020920C0(summaryScreen);
     sub_020917E0(summaryScreen);
-    SetMainCallback(sub_0208C604, summaryScreen);
+    SetMainCallback(PokemonSummaryScreenVBlank, summaryScreen);
     GXLayers_TurnBothDispOn();
     sub_02004550(61, 0, 0);
     DrawWifiConnectionIcon();
@@ -277,10 +282,10 @@ static int PokemonSummaryScreen_Exit(OverlayManager *ovyManager, int *state)
     sub_020917B0(summaryScreen);
     sub_0208EAF4(summaryScreen);
     sub_0208FE88(summaryScreen);
-    sub_0208C76C(summaryScreen->bgConfig);
+    TeardownBgs(summaryScreen->bgConfig);
     sub_0201E530();
     VRAMTransferManager_Destroy();
-    sub_0208C950(summaryScreen);
+    FreeStrings(summaryScreen);
     NARC_dtor(summaryScreen->narcPlPokeData);
     Font_UseLazyGlyphAccess(FONT_SYSTEM);
 
@@ -292,21 +297,21 @@ static int PokemonSummaryScreen_Exit(OverlayManager *ovyManager, int *state)
     return TRUE;
 }
 
-static void sub_0208C604(void *param0)
+static void PokemonSummaryScreenVBlank(void *data)
 {
-    PokemonSummaryScreen *v0 = param0;
+    PokemonSummaryScreen *summaryScreen = data;
 
-    Bg_RunScheduledUpdates(v0->bgConfig);
-    sub_02008A94(v0->monSpriteData.spriteManager);
+    Bg_RunScheduledUpdates(summaryScreen->bgConfig);
+    sub_02008A94(summaryScreen->monSpriteData.spriteManager);
     sub_0201DCAC();
     OAMManager_ApplyAndResetBuffers();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void sub_0208C638(void)
+static void SetVRAMBanks(void)
 {
-    UnkStruct_02099F80 v0 = {
+    UnkStruct_02099F80 banks = {
         GX_VRAM_BG_128_A,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,
@@ -319,203 +324,196 @@ static void sub_0208C638(void)
         GX_VRAM_TEXPLTT_01_FG
     };
 
-    GXLayers_SetBanks(&v0);
+    GXLayers_SetBanks(&banks);
 }
 
-static void sub_0208C658(BgConfig *param0)
+static void SetupBgs(BgConfig *bgConfig)
 {
-    {
-        GraphicsModes v0 = {
-            GX_DISPMODE_GRAPHICS,
-            GX_BGMODE_0,
-            GX_BGMODE_0,
-            GX_BG0_AS_3D,
-        };
+    GraphicsModes graphicsModes = {
+        GX_DISPMODE_GRAPHICS,
+        GX_BGMODE_0,
+        GX_BGMODE_0,
+        GX_BG0_AS_3D,
+    };
 
-        SetAllGraphicsModes(&v0);
-    }
+    SetAllGraphicsModes(&graphicsModes);
 
-    {
-        BgTemplate v1 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xf800,
-            GX_BG_CHARBASE_0x10000,
-            GX_BG_EXTPLTT_01,
-            0,
-            0,
-            0,
-            0
-        };
+    BgTemplate bgMain1 = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf800,
+        .charBase = GX_BG_CHARBASE_0x10000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0,
+        .areaOver = 0,
+        .dummy = 0,
+        .mosaic = FALSE
+    };
 
-        Bg_InitFromTemplate(param0, 1, &v1, 0);
-        Bg_ClearTilemap(param0, 1);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_1, &bgMain1, BG_TYPE_STATIC);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_1);
 
-    {
-        BgTemplate v2 = {
-            0,
-            0,
-            0x2000,
-            0,
-            4,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xd800,
-            GX_BG_CHARBASE_0x00000,
-            GX_BG_EXTPLTT_01,
-            1,
-            0,
-            0,
-            0
-        };
+    BgTemplate bgMain2 = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x2000,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_512x512,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xd800,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .dummy = 0,
+        .mosaic = FALSE
+    };
 
-        Bg_InitFromTemplate(param0, 2, &v2, 0);
-        Bg_ClearTilemap(param0, 2);
-        Bg_ScheduleScroll(param0, 2, 0, 136);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_2, &bgMain2, BG_TYPE_STATIC);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_2);
+    Bg_ScheduleScroll(bgConfig, BG_LAYER_MAIN_2, 0, 136);
 
-    {
-        BgTemplate v3 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xd000,
-            GX_BG_CHARBASE_0x00000,
-            GX_BG_EXTPLTT_01,
-            3,
-            0,
-            0,
-            0
-        };
+    BgTemplate bgMain3 = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xd000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 3,
+        .areaOver = 0,
+        .dummy = 0,
+        .mosaic = FALSE
+    };
 
-        Bg_InitFromTemplate(param0, 3, &v3, 0);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_3, &bgMain3, BG_TYPE_STATIC);
 
-    {
-        BgTemplate v4 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xf800,
-            GX_BG_CHARBASE_0x10000,
-            GX_BG_EXTPLTT_01,
-            0,
-            0,
-            0,
-            0
-        };
+    BgTemplate bgSub0 = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf800,
+        .charBase = GX_BG_CHARBASE_0x10000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0,
+        .areaOver = 0,
+        .dummy = 0,
+        .mosaic = FALSE
+    };
 
-        Bg_InitFromTemplate(param0, 4, &v4, 0);
-        Bg_ClearTilemap(param0, 4);
-    }
-    {
-        BgTemplate v5 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xf000,
-            GX_BG_CHARBASE_0x00000,
-            GX_BG_EXTPLTT_01,
-            1,
-            0,
-            0,
-            0
-        };
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_0, &bgSub0, BG_TYPE_STATIC);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_0);
 
-        Bg_InitFromTemplate(param0, 5, &v5, 0);
-    }
+    BgTemplate bgSub1 = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .dummy = 0,
+        .mosaic = FALSE
+    };
 
-    Bg_ClearTilesRange(1, 32, 0, 19);
-    Bg_ClearTilesRange(4, 32, 0, 19);
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_1, &bgSub1, BG_TYPE_STATIC);
+
+    Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    Bg_ClearTilesRange(BG_LAYER_SUB_0, 32, 0, HEAP_ID_POKEMON_SUMMARY_SCREEN);
 }
 
-static void sub_0208C76C(BgConfig *param0)
+static void TeardownBgs(BgConfig *bgConfig)
 {
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
-    Bg_FreeTilemapBuffer(param0, 5);
-    Bg_FreeTilemapBuffer(param0, 4);
-    Bg_FreeTilemapBuffer(param0, 3);
-    Bg_FreeTilemapBuffer(param0, 2);
-    Bg_FreeTilemapBuffer(param0, 1);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_SUB_1);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_SUB_0);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_1);
 
-    Heap_FreeToHeapExplicit(19, param0);
+    Heap_FreeToHeapExplicit(HEAP_ID_POKEMON_SUMMARY_SCREEN, bgConfig);
 }
 
-static void sub_0208C7AC(PokemonSummaryScreen *param0, NARC *param1)
+// ravetodo LoadBgTiles?
+static void sub_0208C7AC(PokemonSummaryScreen *summaryScreen, NARC *narc)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 0, param0->bgConfig, 3, 0, 0, 0, 19);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 3, param0->bgConfig, 3, 0, 0, 0, 19);
-    Graphics_LoadPaletteFromOpenNARC(param1, 1, 0, 0, 0, 19);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(narc, 0, summaryScreen->bgConfig, BG_LAYER_MAIN_3, 0, 0, FALSE, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 3, summaryScreen->bgConfig, BG_LAYER_MAIN_3, 0, 0, FALSE, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    Graphics_LoadPaletteFromOpenNARC(narc, 1, PAL_LOAD_MAIN_BG, 0, 0, HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 11, param0->bgConfig, 2, 0, 0, 0, 19);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 11, summaryScreen->bgConfig, BG_LAYER_MAIN_2, 0, 0, FALSE, HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, param0->bgConfig, 4, 0, 0, 0, 19);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 16, param0->bgConfig, 5, 0, 0, 0, 19);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 15, param0->bgConfig, 5, 0, 0, 0, 19);
-    Graphics_LoadPaletteFromOpenNARC(param1, 14, 4, 0, 0, 19);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(narc, 2, summaryScreen->bgConfig, BG_LAYER_SUB_0, 0, 0, FALSE, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(narc, 16, summaryScreen->bgConfig, BG_LAYER_SUB_1, 0, 0, FALSE, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 15, summaryScreen->bgConfig, BG_LAYER_SUB_1, 0, 0, FALSE, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    Graphics_LoadPaletteFromOpenNARC(narc, 14, PAL_LOAD_SUB_BG, 0, 0, HEAP_ID_POKEMON_SUMMARY_SCREEN);
 }
 
+// ravetodo SetBlendAlpha?
 static void sub_0208C86C(void)
 {
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ, 23, 8);
 }
 
-static void sub_0208C884(PokemonSummaryScreen *param0)
+// ravetodo review
+static void InitializeStringsAndCopyOTName(PokemonSummaryScreen *summaryScreen)
 {
-    param0->msgLoader = MessageLoader_Init(0, 26, 455, 19);
-    param0->ribbonLoader = MessageLoader_Init(1, 26, 535, 19);
-    param0->unk_684 = sub_0200C440(1, 2, 0, 19);
-    param0->strFormatter = StringTemplate_Default(19);
-    param0->monData.speciesName = Strbuf_Init(12, 19);
-    param0->monData.nickname = Strbuf_Init(12, 19);
-    param0->monData.OTName = Strbuf_Init(8, 19);
-    param0->strbuf = Strbuf_Init(128, 19);
-    param0->moveNameLoader = MessageLoader_Init(0, 26, 647, 19);
-    param0->playerName = Strbuf_Init(7 + 1, 19);
+    summaryScreen->msgLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 455, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    summaryScreen->ribbonLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 535, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    summaryScreen->unk_684 = sub_0200C440(1, 2, 0, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    summaryScreen->strFormatter = StringTemplate_Default(HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    summaryScreen->monData.speciesName = Strbuf_Init(12, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    summaryScreen->monData.nickname = Strbuf_Init(12, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    summaryScreen->monData.OTName = Strbuf_Init(TRAINER_NAME_LEN + 1, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    summaryScreen->strbuf = Strbuf_Init(128, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    summaryScreen->moveNameLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 647, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    summaryScreen->playerName = Strbuf_Init(TRAINER_NAME_LEN + 1, HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
-    if (param0->data->OTName != NULL) {
-        Strbuf_CopyChars(param0->playerName, param0->data->OTName);
+    if (summaryScreen->data->OTName != NULL) {
+        Strbuf_CopyChars(summaryScreen->playerName, summaryScreen->data->OTName);
     }
 }
 
-static void sub_0208C950(PokemonSummaryScreen *param0)
+// ravetodo review
+static void FreeStrings(PokemonSummaryScreen *summaryScreen)
 {
-    MessageLoader_Free(param0->moveNameLoader);
-    MessageLoader_Free(param0->ribbonLoader);
-    MessageLoader_Free(param0->msgLoader);
-    sub_0200C560(param0->unk_684);
-    StringTemplate_Free(param0->strFormatter);
-    Strbuf_Free(param0->monData.speciesName);
-    Strbuf_Free(param0->monData.nickname);
-    Strbuf_Free(param0->monData.OTName);
-    Strbuf_Free(param0->strbuf);
-    Strbuf_Free(param0->playerName);
+    MessageLoader_Free(summaryScreen->moveNameLoader);
+    MessageLoader_Free(summaryScreen->ribbonLoader);
+    MessageLoader_Free(summaryScreen->msgLoader);
+    sub_0200C560(summaryScreen->unk_684);
+    StringTemplate_Free(summaryScreen->strFormatter);
+    Strbuf_Free(summaryScreen->monData.speciesName);
+    Strbuf_Free(summaryScreen->monData.nickname);
+    Strbuf_Free(summaryScreen->monData.OTName);
+    Strbuf_Free(summaryScreen->strbuf);
+    Strbuf_Free(summaryScreen->playerName);
 }
 
-static int sub_0208C9C8(PokemonSummaryScreen *param0)
+static int sub_0208C9C8(PokemonSummaryScreen *summaryScreen)
 {
-    if (IsScreenTransitionDone() == 1) {
-        sub_02092028(param0);
-        sub_0208D618(param0);
+    if (IsScreenTransitionDone() == TRUE) {
+        sub_02092028(summaryScreen);
+        sub_0208D618(summaryScreen);
 
-        if (param0->data->mode == 2) {
+        if (summaryScreen->data->mode == 2) {
             return 9;
-        } else if (param0->data->mode == 4) {
+        } else if (summaryScreen->data->mode == 4) {
             return 15;
         } else {
             return 2;
@@ -525,153 +523,153 @@ static int sub_0208C9C8(PokemonSummaryScreen *param0)
     return 1;
 }
 
-static int sub_0208CA00(PokemonSummaryScreen *param0)
+static int sub_0208CA00(PokemonSummaryScreen *summaryScreen)
 {
-    if (param0->subscreenExit == 1) {
-        param0->data->returnMode = 1;
+    if (summaryScreen->subscreenExit == TRUE) {
+        summaryScreen->data->returnMode = 1;
         return 18;
     }
 
     if (gCoreSys.pressedKeysRepeatable & PAD_KEY_LEFT) {
-        sub_0208D898(param0, -1);
+        sub_0208D898(summaryScreen, -1);
         return 2;
     }
 
     if (gCoreSys.pressedKeysRepeatable & PAD_KEY_RIGHT) {
-        sub_0208D898(param0, 1);
+        sub_0208D898(summaryScreen, 1);
         return 2;
     }
 
     if (gCoreSys.pressedKeysRepeatable & PAD_KEY_UP) {
-        sub_0208DB10(param0, -1);
+        sub_0208DB10(summaryScreen, -1);
         return 2;
     }
 
     if (gCoreSys.pressedKeysRepeatable & PAD_KEY_DOWN) {
-        sub_0208DB10(param0, 1);
+        sub_0208DB10(summaryScreen, 1);
         return 2;
     }
 
     if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
-        Sound_PlayEffect(1501);
-        param0->data->returnMode = 1;
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        summaryScreen->data->returnMode = 1;
         return 18;
     }
 
     if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
-        if ((param0->data->mode == 3) && (param0->page == 4)) {
-            Sound_PlayEffect(1501);
-            return sub_0208E958(param0);
+        if (summaryScreen->data->mode == 3 && summaryScreen->page == 4) {
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            return sub_0208E958(summaryScreen);
         }
 
-        if (param0->page == 3) {
-            Sound_PlayEffect(1692);
-            param0->subscreen = 0;
+        if (summaryScreen->page == 3) {
+            Sound_PlayEffect(SEQ_SE_DP_SYU01);
+            summaryScreen->subscreen = 0;
             return 3;
-        } else if (param0->page == 5) {
-            Sound_PlayEffect(1692);
-            param0->subscreen = 0;
+        } else if (summaryScreen->page == 5) {
+            Sound_PlayEffect(SEQ_SE_DP_SYU01);
+            summaryScreen->subscreen = 0;
             return 5;
-        } else if (param0->page == 6) {
-            if (param0->ribbonMax != 0) {
-                Sound_PlayEffect(1501);
-                param0->subscreen = 0;
+        } else if (summaryScreen->page == 6) {
+            if (summaryScreen->ribbonMax != 0) {
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+                summaryScreen->subscreen = 0;
                 return 11;
             }
-        } else if (param0->page == 7) {
-            Sound_PlayEffect(1501);
-            param0->data->returnMode = 1;
+        } else if (summaryScreen->page == 7) {
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            summaryScreen->data->returnMode = 1;
             return 18;
         }
     }
 
-    if (sub_0208D920(param0) == 1) {
-        param0->subscreen = 2;
+    if (sub_0208D920(summaryScreen) == 1) {
+        summaryScreen->subscreen = 2;
         return 14;
     }
 
     return 2;
 }
 
-static int sub_0208CB38(PokemonSummaryScreen *param0)
+static int sub_0208CB38(PokemonSummaryScreen *summaryScreen)
 {
-    if (sub_0208DD8C(param0) == 1) {
+    if (sub_0208DD8C(summaryScreen) == TRUE) {
         return 7;
     }
 
     return 3;
 }
 
-static int sub_0208CB4C(PokemonSummaryScreen *param0)
+static int sub_0208CB4C(PokemonSummaryScreen *summaryScreen)
 {
-    if (sub_0208DEA4(param0) == 1) {
+    if (sub_0208DEA4(summaryScreen) == TRUE) {
         return 2;
     }
 
     return 4;
 }
 
-static int sub_0208CB60(PokemonSummaryScreen *param0)
+static int sub_0208CB60(PokemonSummaryScreen *summaryScreen)
 {
-    if (sub_0208E208(param0) == 1) {
+    if (sub_0208E208(summaryScreen) == TRUE) {
         return 7;
     }
 
     return 5;
 }
 
-static int sub_0208CB74(PokemonSummaryScreen *param0)
+static int sub_0208CB74(PokemonSummaryScreen *summaryScreen)
 {
-    if (sub_0208E308(param0) == 1) {
+    if (sub_0208E308(summaryScreen) == TRUE) {
         return 2;
     }
 
     return 6;
 }
 
-static int sub_0208CB88(PokemonSummaryScreen *param0)
+static int sub_0208CB88(PokemonSummaryScreen *summaryScreen)
 {
     if (gCoreSys.pressedKeys & PAD_KEY_UP) {
-        if (sub_0208DF94(param0, -1) == 1) {
-            Sound_PlayEffect(1500);
-            sub_0208DFF4(param0);
+        if (sub_0208DF94(summaryScreen, -1) == TRUE) {
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            sub_0208DFF4(summaryScreen);
         }
 
         return 7;
     }
 
     if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
-        if (sub_0208DF94(param0, 1) == 1) {
-            Sound_PlayEffect(1500);
-            sub_0208DFF4(param0);
+        if (sub_0208DF94(summaryScreen, 1) == TRUE) {
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            sub_0208DFF4(summaryScreen);
         }
 
         return 7;
     }
 
     if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
-        if (param0->cursor == 4) {
-            Sound_PlayEffect(1692);
-            param0->subscreen = 0;
+        if (summaryScreen->cursor == 4) {
+            Sound_PlayEffect(SEQ_SE_DP_SYU01);
+            summaryScreen->subscreen = 0;
 
-            if (param0->page == 3) {
+            if (summaryScreen->page == 3) {
                 return 4;
             } else {
                 return 6;
             }
-        } else if (param0->data->mode != 1) {
-            Sound_PlayEffect(1501);
-            sub_0208F310(param0);
-            param0->cursorTmp = param0->cursor;
+        } else if (summaryScreen->data->mode != 1) {
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            sub_0208F310(summaryScreen);
+            summaryScreen->cursorTmp = summaryScreen->cursor;
             return 8;
         }
     }
 
     if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
-        Sound_PlayEffect(1692);
-        param0->subscreen = 0;
+        Sound_PlayEffect(SEQ_SE_DP_SYU01);
+        summaryScreen->subscreen = 0;
 
-        if (param0->page == 3) {
+        if (summaryScreen->page == 3) {
             return 4;
         } else {
             return 6;
@@ -681,261 +679,262 @@ static int sub_0208CB88(PokemonSummaryScreen *param0)
     return 7;
 }
 
-static int sub_0208CC6C(PokemonSummaryScreen *param0)
+static int sub_0208CC6C(PokemonSummaryScreen *summaryScreen)
 {
     if (gCoreSys.pressedKeys & PAD_KEY_UP) {
-        if (sub_0208DF94(param0, -1) == 1) {
-            Sound_PlayEffect(1500);
-            sub_0208DFF4(param0);
+        if (sub_0208DF94(summaryScreen, -1) == TRUE) {
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            sub_0208DFF4(summaryScreen);
         }
 
         return 8;
     }
 
     if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
-        if (sub_0208DF94(param0, 1) == 1) {
-            Sound_PlayEffect(1500);
-            sub_0208DFF4(param0);
+        if (sub_0208DF94(summaryScreen, 1) == TRUE) {
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            sub_0208DFF4(summaryScreen);
         }
 
         return 8;
     }
 
     if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
-        CellActor_SetDrawFlag(param0->unk_41C[10], 0);
+        CellActor_SetDrawFlag(summaryScreen->unk_41C[10], FALSE);
 
-        if ((param0->cursor != 4) && (param0->cursor != param0->cursorTmp)) {
-            Sound_PlayEffect(1501);
-            sub_0208E0DC(param0);
-            sub_0208F22C(param0, param0->cursor, param0->cursorTmp);
-            sub_02091474(param0);
-            sub_0208DFF4(param0);
+        if (summaryScreen->cursor != 4 && summaryScreen->cursor != summaryScreen->cursorTmp) {
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+            sub_0208E0DC(summaryScreen);
+            sub_0208F22C(summaryScreen, summaryScreen->cursor, summaryScreen->cursorTmp);
+            sub_02091474(summaryScreen);
+            sub_0208DFF4(summaryScreen);
         } else {
-            Sound_PlayEffect(1501);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         }
 
         return 7;
     }
 
     if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
-        Sound_PlayEffect(1501);
-        CellActor_SetDrawFlag(param0->unk_41C[10], 0);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        CellActor_SetDrawFlag(summaryScreen->unk_41C[10], FALSE);
         return 7;
     }
 
     return 8;
 }
 
-static int sub_0208CD44(PokemonSummaryScreen *param0)
+static int sub_0208CD44(PokemonSummaryScreen *summaryScreen)
 {
     if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
-        sub_0208D898(param0, -1);
+        sub_0208D898(summaryScreen, -1);
         return 9;
     }
 
     if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
-        sub_0208D898(param0, 1);
+        sub_0208D898(summaryScreen, 1);
         return 9;
     }
 
     if (gCoreSys.pressedKeys & PAD_KEY_UP) {
-        if (sub_0208DF94(param0, -1) == 1) {
-            Sound_PlayEffect(1500);
-            sub_0208DFF4(param0);
+        if (sub_0208DF94(summaryScreen, -1) == TRUE) {
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            sub_0208DFF4(summaryScreen);
         }
 
         return 9;
     }
 
     if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
-        if (sub_0208DF94(param0, 1) == 1) {
-            Sound_PlayEffect(1500);
-            sub_0208DFF4(param0);
+        if (sub_0208DF94(summaryScreen, 1) == TRUE) {
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
+            sub_0208DFF4(summaryScreen);
         }
 
         return 9;
     }
 
     if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
 
-        if (param0->cursor != 4) {
-            if ((Item_IsHMMove(param0->monData.moves[param0->cursor]) == 1) && (param0->data->move != 0)) {
-                SpriteActor_DrawSprite(param0->unk_41C[18], 0);
-                sub_0208E46C(param0);
-                sub_020914F8(param0);
+        if (summaryScreen->cursor != 4) {
+            if (Item_IsHMMove(summaryScreen->monData.moves[summaryScreen->cursor]) == 1 && summaryScreen->data->move != 0) {
+                SpriteActor_DrawSprite(summaryScreen->unk_41C[18], 0);
+                sub_0208E46C(summaryScreen);
+                sub_020914F8(summaryScreen);
                 return 10;
             }
         }
 
-        param0->data->selectedSlot = param0->cursor;
-        param0->data->returnMode = 0;
+        summaryScreen->data->selectedSlot = summaryScreen->cursor;
+        summaryScreen->data->returnMode = 0;
         return 18;
     }
 
     if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
-        Sound_PlayEffect(1501);
-        param0->data->selectedSlot = 4;
-        param0->data->returnMode = 1;
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        summaryScreen->data->selectedSlot = 4;
+        summaryScreen->data->returnMode = 1;
         return 18;
     }
 
     return 9;
 }
 
-static int sub_0208CE54(PokemonSummaryScreen *param0)
+static int sub_0208CE54(PokemonSummaryScreen *summaryScreen)
 {
     if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-        sub_0208DFF4(param0);
+        sub_0208DFF4(summaryScreen);
         return 9;
     }
 
     return 10;
 }
 
-static int sub_0208CE70(PokemonSummaryScreen *param0)
+static int sub_0208CE70(PokemonSummaryScreen *summaryScreen)
 {
-    if (sub_0208E57C(param0) == 1) {
+    if (sub_0208E57C(summaryScreen) == TRUE) {
         return 13;
     }
 
     return 11;
 }
 
-static int sub_0208CE84(PokemonSummaryScreen *param0)
+static int sub_0208CE84(PokemonSummaryScreen *summaryScreen)
 {
-    if (sub_0208E6A8(param0) == 1) {
+    if (sub_0208E6A8(summaryScreen) == TRUE) {
         return 2;
     }
 
     return 12;
 }
 
-static int sub_0208CE98(PokemonSummaryScreen *param0)
+static int sub_0208CE98(PokemonSummaryScreen *summaryScreen)
 {
     if (gCoreSys.pressedKeysRepeatable & PAD_KEY_LEFT) {
-        sub_0208E794(param0, -1);
+        sub_0208E794(summaryScreen, -1);
         return 13;
     }
 
     if (gCoreSys.pressedKeysRepeatable & PAD_KEY_RIGHT) {
-        sub_0208E794(param0, 1);
+        sub_0208E794(summaryScreen, 1);
         return 13;
     }
 
     if (gCoreSys.pressedKeysRepeatable & PAD_KEY_UP) {
-        sub_0208E794(param0, -4);
+        sub_0208E794(summaryScreen, -4);
         return 13;
     }
 
     if (gCoreSys.pressedKeysRepeatable & PAD_KEY_DOWN) {
-        sub_0208E794(param0, 4);
+        sub_0208E794(summaryScreen, 4);
         return 13;
     }
 
     if (gCoreSys.pressedKeys & (PAD_BUTTON_B | PAD_BUTTON_A)) {
-        Sound_PlayEffect(1501);
-        param0->subscreen = 0;
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
+        summaryScreen->subscreen = 0;
         return 12;
     }
 
     return 13;
 }
 
-static int sub_0208CF0C(PokemonSummaryScreen *param0)
+static int sub_0208CF0C(PokemonSummaryScreen *summaryScreen)
 {
-    if (sub_0209228C(param0) == 1) {
-        return param0->subscreen;
+    if (sub_0209228C(summaryScreen) == TRUE) {
+        return summaryScreen->subscreen;
     }
 
-    if (param0->buttonState == 1) {
-        u8 v0 = sub_020923A4(param0, param0->buttonPos);
+    if (summaryScreen->buttonState == 1) {
+        u8 v0 = sub_020923A4(summaryScreen, summaryScreen->buttonPos);
 
         if (v0 == 7) {
-            param0->subscreenExit = 1;
+            summaryScreen->subscreenExit = TRUE;
         }
 
-        if (param0->monData.isEgg == 1) {
-            if ((v0 == 1) || (v0 == 7)) {
-                sub_0208D7EC(param0, v0);
+        if (summaryScreen->monData.isEgg == TRUE) {
+            if (v0 == 1 || v0 == 7) {
+                sub_0208D7EC(summaryScreen, v0);
             }
         } else {
-            sub_0208D7EC(param0, v0);
+            sub_0208D7EC(summaryScreen, v0);
         }
     }
 
     return 14;
 }
 
-static int sub_0208CF78(PokemonSummaryScreen *param0)
+static int sub_0208CF78(PokemonSummaryScreen *summaryScreen)
 {
     if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-        BoxPokemon *v0;
-        Pokemon *v1;
-        u8 v2;
+        BoxPokemon *boxMon;
+        Pokemon *mon;
+        u8 monValue;
 
-        if (param0->data->dataType == 2) {
-            v0 = PokemonSummary_MonData(param0);
-            v1 = Pokemon_New(19);
-            Pokemon_FromBoxPokemon(v0, v1);
+        if (summaryScreen->data->dataType == 2) {
+            boxMon = PokemonSummary_MonData(summaryScreen);
+            mon = Pokemon_New(HEAP_ID_POKEMON_SUMMARY_SCREEN);
+            Pokemon_FromBoxPokemon(boxMon, mon);
         } else {
-            v1 = PokemonSummary_MonData(param0);
+            mon = PokemonSummary_MonData(summaryScreen);
         }
 
-        sub_02098EF8(param0->data->poffin, v1);
+        sub_02098EF8(summaryScreen->data->poffin, mon);
 
-        param0->subscreen = 0;
-        v2 = param0->monData.cool;
-        param0->monData.cool = (u8)Pokemon_GetValue(v1, MON_DATA_COOL, NULL);
+        summaryScreen->subscreen = 0;
 
-        if (v2 != param0->monData.cool) {
-            param0->subscreen |= 1;
+        monValue = summaryScreen->monData.cool;
+        summaryScreen->monData.cool = (u8)Pokemon_GetValue(mon, MON_DATA_COOL, NULL);
+
+        if (monValue != summaryScreen->monData.cool) {
+            summaryScreen->subscreen |= 1;
         }
 
-        v2 = param0->monData.beauty;
-        param0->monData.beauty = (u8)Pokemon_GetValue(v1, MON_DATA_BEAUTY, NULL);
+        monValue = summaryScreen->monData.beauty;
+        summaryScreen->monData.beauty = (u8)Pokemon_GetValue(mon, MON_DATA_BEAUTY, NULL);
 
-        if (v2 != param0->monData.beauty) {
-            param0->subscreen |= 2;
+        if (monValue != summaryScreen->monData.beauty) {
+            summaryScreen->subscreen |= 2;
         }
 
-        v2 = param0->monData.cute;
-        param0->monData.cute = (u8)Pokemon_GetValue(v1, MON_DATA_CUTE, NULL);
+        monValue = summaryScreen->monData.cute;
+        summaryScreen->monData.cute = (u8)Pokemon_GetValue(mon, MON_DATA_CUTE, NULL);
 
-        if (v2 != param0->monData.cute) {
-            param0->subscreen |= 4;
+        if (monValue != summaryScreen->monData.cute) {
+            summaryScreen->subscreen |= 4;
         }
 
-        v2 = param0->monData.smart;
-        param0->monData.smart = (u8)Pokemon_GetValue(v1, MON_DATA_SMART, NULL);
+        monValue = summaryScreen->monData.smart;
+        summaryScreen->monData.smart = (u8)Pokemon_GetValue(mon, MON_DATA_SMART, NULL);
 
-        if (v2 != param0->monData.smart) {
-            param0->subscreen |= 8;
+        if (monValue != summaryScreen->monData.smart) {
+            summaryScreen->subscreen |= 8;
         }
 
-        v2 = param0->monData.tough;
-        param0->monData.tough = (u8)Pokemon_GetValue(v1, MON_DATA_TOUGH, NULL);
+        monValue = summaryScreen->monData.tough;
+        summaryScreen->monData.tough = (u8)Pokemon_GetValue(mon, MON_DATA_TOUGH, NULL);
 
-        if (v2 != param0->monData.tough) {
-            param0->subscreen |= 16;
+        if (monValue != summaryScreen->monData.tough) {
+            summaryScreen->subscreen |= 16;
         }
 
-        param0->monData.sheen = (u8)Pokemon_GetValue(v1, MON_DATA_SHEEN, NULL);
+        summaryScreen->monData.sheen = (u8)Pokemon_GetValue(mon, MON_DATA_SHEEN, NULL);
 
-        if (param0->data->dataType == 2) {
-            Heap_FreeToHeap(v1);
+        if (summaryScreen->data->dataType == 2) {
+            Heap_FreeToHeap(mon);
         }
 
-        Font_LoadScreenIndicatorsPalette(0, 14 * 32, 19);
-        LoadMessageBoxGraphics(param0->bgConfig, 1, (1024 - (18 + 12)), 13, Options_Frame(param0->data->options), 19);
+        Font_LoadScreenIndicatorsPalette(0, 14 * 32, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+        LoadMessageBoxGraphics(summaryScreen->bgConfig, BG_LAYER_MAIN_1, (1024 - (18 + 12)), 13, Options_Frame(summaryScreen->data->options), HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
-        if (param0->subscreen == 0) {
-            sub_02091610(param0, 0xfe);
+        if (summaryScreen->subscreen == 0) {
+            sub_02091610(summaryScreen, 0xfe);
             return 17;
         } else {
-            sub_02091D50(param0);
-            sub_0208F34C(param0);
-            sub_0208F6A4(param0);
+            sub_02091D50(summaryScreen);
+            sub_0208F34C(summaryScreen);
+            sub_0208F6A4(summaryScreen);
             return 16;
         }
     }
@@ -943,17 +942,15 @@ static int sub_0208CF78(PokemonSummaryScreen *param0)
     return 15;
 }
 
-static int sub_0208D114(PokemonSummaryScreen *param0)
+static int sub_0208D114(PokemonSummaryScreen *summaryScreen)
 {
-    u8 v0;
-
     if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-        for (v0 = 0; v0 < 5; v0++) {
-            if (param0->subscreen & (1 << v0)) {
-                sub_02091610(param0, v0);
-                param0->subscreen ^= (1 << v0);
+        for (u8 i = 0; i < 5; i++) {
+            if (summaryScreen->subscreen & (1 << i)) {
+                sub_02091610(summaryScreen, i);
+                summaryScreen->subscreen ^= (1 << i);
 
-                if (param0->subscreen == 0) {
+                if (summaryScreen->subscreen == 0) {
                     return 17;
                 }
                 break;
@@ -964,7 +961,7 @@ static int sub_0208D114(PokemonSummaryScreen *param0)
     return 16;
 }
 
-static int sub_0208D164(PokemonSummaryScreen *param0)
+static int sub_0208D164(PokemonSummaryScreen *dummy)
 {
     if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         return 18;
@@ -973,7 +970,7 @@ static int sub_0208D164(PokemonSummaryScreen *param0)
     return 17;
 }
 
-static u8 sub_0208D17C(PokemonSummaryScreen *param0)
+static u8 sub_0208D17C(PokemonSummaryScreen *dummy)
 {
     sub_0208C120(1, 19);
     return 19;
@@ -984,197 +981,193 @@ static u8 ScreenTransitionIsDone(PokemonSummaryScreen *dummy)
     return IsScreenTransitionDone() == TRUE;
 }
 
-static void sub_0208D1A4(PokemonSummaryScreen *param0)
+static void sub_0208D1A4(PokemonSummaryScreen *summaryScreen)
 {
-    void *v0 = PokemonSummary_MonData(param0);
+    void *monData = PokemonSummary_MonData(summaryScreen);
 
-    if (param0->data->dataType == 2) {
-        sub_0208D1D4(param0, v0, &param0->monData);
+    if (summaryScreen->data->dataType == 2) {
+        SetMonDataFromBoxMon(summaryScreen, monData, &summaryScreen->monData);
     } else {
-        sub_0208D200(param0, v0, &param0->monData);
+        SetMonData(summaryScreen, monData, &summaryScreen->monData);
     }
 }
 
-static void sub_0208D1D4(PokemonSummaryScreen *param0, BoxPokemon *param1, PokemonSummaryMonData *param2)
+static void SetMonDataFromBoxMon(PokemonSummaryScreen *summaryScreen, BoxPokemon *boxMon, PokemonSummaryMonData *monData)
 {
-    Pokemon *v0 = Pokemon_New(19);
+    Pokemon *mon = Pokemon_New(HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
-    Pokemon_FromBoxPokemon(param1, v0);
-    sub_0208D200(param0, v0, param2);
-    Heap_FreeToHeap(v0);
+    Pokemon_FromBoxPokemon(boxMon, mon);
+    SetMonData(summaryScreen, mon, monData);
+    Heap_FreeToHeap(mon);
 }
 
-static void sub_0208D200(PokemonSummaryScreen *param0, Pokemon *param1, PokemonSummaryMonData *param2)
+// ravetodo entry IDs
+static void SetMonData(PokemonSummaryScreen *summaryScreen, Pokemon *mon, PokemonSummaryMonData *monData)
 {
-    BoxPokemon *v0;
-    u16 v1;
-    u8 v2;
-    BOOL v3;
+    BOOL reencrypt = Pokemon_EnterDecryptionContext(mon);
+    monData->species = (u16)Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+    BoxPokemon *boxMon = Pokemon_GetBoxPokemon(mon);
 
-    v3 = Pokemon_EnterDecryptionContext(param1);
+    MessageLoader_GetStrbuf(summaryScreen->msgLoader, 11, summaryScreen->strbuf);
+    StringTemplate_SetSpeciesName(summaryScreen->strFormatter, 0, boxMon);
+    StringTemplate_Format(summaryScreen->strFormatter, summaryScreen->monData.speciesName, summaryScreen->strbuf);
 
-    param2->species = (u16)Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
+    MessageLoader_GetStrbuf(summaryScreen->msgLoader, 0, summaryScreen->strbuf);
+    StringTemplate_SetNickname(summaryScreen->strFormatter, 0, boxMon);
+    StringTemplate_Format(summaryScreen->strFormatter, summaryScreen->monData.nickname, summaryScreen->strbuf);
 
-    v0 = Pokemon_GetBoxPokemon(param1);
+    MessageLoader_GetStrbuf(summaryScreen->msgLoader, 14, summaryScreen->strbuf);
+    StringTemplate_SetOTName(summaryScreen->strFormatter, 0, boxMon);
+    StringTemplate_Format(summaryScreen->strFormatter, summaryScreen->monData.OTName, summaryScreen->strbuf);
 
-    MessageLoader_GetStrbuf(param0->msgLoader, 11, param0->strbuf);
-    StringTemplate_SetSpeciesName(param0->strFormatter, 0, v0);
-    StringTemplate_Format(param0->strFormatter, param0->monData.speciesName, param0->strbuf);
+    monData->heldItem = (u16)Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
+    monData->level = (u8)Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
+    monData->isEgg = Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL);
 
-    MessageLoader_GetStrbuf(param0->msgLoader, 0, param0->strbuf);
-    StringTemplate_SetNickname(param0->strFormatter, 0, v0);
-    StringTemplate_Format(param0->strFormatter, param0->monData.nickname, param0->strbuf);
-
-    MessageLoader_GetStrbuf(param0->msgLoader, 14, param0->strbuf);
-    StringTemplate_SetOTName(param0->strFormatter, 0, v0);
-    StringTemplate_Format(param0->strFormatter, param0->monData.OTName, param0->strbuf);
-
-    param2->heldItem = (u16)Pokemon_GetValue(param1, MON_DATA_HELD_ITEM, NULL);
-    param2->level = (u8)Pokemon_GetValue(param1, MON_DATA_LEVEL, NULL);
-    param2->isEgg = Pokemon_GetValue(param1, MON_DATA_IS_EGG, NULL);
-
-    if ((Pokemon_GetValue(param1, MON_DATA_NIDORAN_HAS_NICKNAME, NULL) == 1) && (param2->isEgg == 0)) {
-        param2->showGender = 0;
+    if (Pokemon_GetValue(mon, MON_DATA_NIDORAN_HAS_NICKNAME, NULL) == TRUE && monData->isEgg == FALSE) {
+        monData->showGender = FALSE;
     } else {
-        param2->showGender = 1;
+        monData->showGender = TRUE;
     }
 
-    param2->gender = Pokemon_GetGender(param1);
-    param2->caughtBall = (u8)Pokemon_GetValue(param1, MON_DATA_POKEBALL, NULL);
-    param2->type1 = (u8)Pokemon_GetValue(param1, MON_DATA_TYPE_1, NULL);
-    param2->type2 = (u8)Pokemon_GetValue(param1, MON_DATA_TYPE_2, NULL);
-    param2->OTID = Pokemon_GetValue(param1, MON_DATA_OT_ID, NULL);
-    param2->curExp = Pokemon_GetValue(param1, MON_DATA_EXP, NULL);
-    param2->OTGender = (u8)Pokemon_GetValue(param1, MON_DATA_OT_GENDER, NULL);
-    param2->curLevelExp = Pokemon_GetSpeciesBaseExpAt(param2->species, param2->level);
+    monData->gender = Pokemon_GetGender(mon);
+    monData->caughtBall = (u8)Pokemon_GetValue(mon, MON_DATA_POKEBALL, NULL);
+    monData->type1 = (u8)Pokemon_GetValue(mon, MON_DATA_TYPE_1, NULL);
+    monData->type2 = (u8)Pokemon_GetValue(mon, MON_DATA_TYPE_2, NULL);
+    monData->OTID = Pokemon_GetValue(mon, MON_DATA_OT_ID, NULL);
+    monData->curExp = Pokemon_GetValue(mon, MON_DATA_EXP, NULL);
+    monData->OTGender = (u8)Pokemon_GetValue(mon, MON_DATA_OT_GENDER, NULL);
+    monData->curLevelExp = Pokemon_GetSpeciesBaseExpAt(monData->species, monData->level);
 
-    if (param2->level == 100) {
-        param2->nextLevelExp = param2->curLevelExp;
+    if (monData->level == MAX_POKEMON_LEVEL) {
+        monData->nextLevelExp = monData->curLevelExp;
     } else {
-        param2->nextLevelExp = Pokemon_GetSpeciesBaseExpAt(param2->species, param2->level + 1);
+        monData->nextLevelExp = Pokemon_GetSpeciesBaseExpAt(monData->species, monData->level + 1);
     }
 
-    param2->curHP = (u16)Pokemon_GetValue(param1, MON_DATA_CURRENT_HP, NULL);
-    param2->maxHP = (u16)Pokemon_GetValue(param1, MON_DATA_MAX_HP, NULL);
-    param2->attack = (u16)Pokemon_GetValue(param1, MON_DATA_ATK, NULL);
-    param2->defense = (u16)Pokemon_GetValue(param1, MON_DATA_DEF, NULL);
-    param2->spAttack = (u16)Pokemon_GetValue(param1, MON_DATA_SP_ATK, NULL);
-    param2->spDefense = (u16)Pokemon_GetValue(param1, MON_DATA_SP_DEF, NULL);
-    param2->speed = (u16)Pokemon_GetValue(param1, MON_DATA_SPEED, NULL);
-    param2->ability = (u8)Pokemon_GetValue(param1, MON_DATA_ABILITY, NULL);
-    param2->nature = Pokemon_GetNature(param1);
+    monData->curHP = (u16)Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL);
+    monData->maxHP = (u16)Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
+    monData->attack = (u16)Pokemon_GetValue(mon, MON_DATA_ATK, NULL);
+    monData->defense = (u16)Pokemon_GetValue(mon, MON_DATA_DEF, NULL);
+    monData->spAttack = (u16)Pokemon_GetValue(mon, MON_DATA_SP_ATK, NULL);
+    monData->spDefense = (u16)Pokemon_GetValue(mon, MON_DATA_SP_DEF, NULL);
+    monData->speed = (u16)Pokemon_GetValue(mon, MON_DATA_SPEED, NULL);
+    monData->ability = (u8)Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL);
+    monData->nature = Pokemon_GetNature(mon);
 
-    for (v1 = 0; v1 < LEARNED_MOVES_MAX; v1++) {
-        param2->moves[v1] = (u16)Pokemon_GetValue(param1, MON_DATA_MOVE1 + v1, NULL);
-        param2->curPP[v1] = (u8)Pokemon_GetValue(param1, MON_DATA_MOVE1_CUR_PP + v1, NULL);
-        v2 = (u8)Pokemon_GetValue(param1, MON_DATA_MOVE1_PP_UPS + v1, NULL);
-        param2->maxPP[v1] = MoveTable_CalcMaxPP(param2->moves[v1], v2);
+    u16 i;
+    u8 maxPP;
+    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        monData->moves[i] = (u16)Pokemon_GetValue(mon, MON_DATA_MOVE1 + i, NULL);
+        monData->curPP[i] = (u8)Pokemon_GetValue(mon, MON_DATA_MOVE1_CUR_PP + i, NULL);
+        maxPP = (u8)Pokemon_GetValue(mon, MON_DATA_MOVE1_PP_UPS + i, NULL);
+        monData->maxPP[i] = MoveTable_CalcMaxPP(monData->moves[i], maxPP);
     }
 
-    param2->cool = (u8)Pokemon_GetValue(param1, MON_DATA_COOL, NULL);
-    param2->beauty = (u8)Pokemon_GetValue(param1, MON_DATA_BEAUTY, NULL);
-    param2->cute = (u8)Pokemon_GetValue(param1, MON_DATA_CUTE, NULL);
-    param2->smart = (u8)Pokemon_GetValue(param1, MON_DATA_SMART, NULL);
-    param2->tough = (u8)Pokemon_GetValue(param1, MON_DATA_TOUGH, NULL);
-    param2->sheen = (u8)Pokemon_GetValue(param1, MON_DATA_SHEEN, NULL);
-    param2->preferredFlavor = 5;
+    monData->cool = (u8)Pokemon_GetValue(mon, MON_DATA_COOL, NULL);
+    monData->beauty = (u8)Pokemon_GetValue(mon, MON_DATA_BEAUTY, NULL);
+    monData->cute = (u8)Pokemon_GetValue(mon, MON_DATA_CUTE, NULL);
+    monData->smart = (u8)Pokemon_GetValue(mon, MON_DATA_SMART, NULL);
+    monData->tough = (u8)Pokemon_GetValue(mon, MON_DATA_TOUGH, NULL);
+    monData->sheen = (u8)Pokemon_GetValue(mon, MON_DATA_SHEEN, NULL);
+    monData->preferredFlavor = FLAVOR_MAX;
 
-    for (v1 = 0; v1 < 5; v1++) {
-        if (Pokemon_GetFlavorAffinity(param1, v1) == 1) {
-            param2->preferredFlavor = v1;
+    for (i = 0; i < FLAVOR_MAX; i++) {
+        if (Pokemon_GetFlavorAffinity(mon, i) == 1) {
+            monData->preferredFlavor = i;
             break;
         }
     }
 
-    param2->markings = Pokemon_GetValue(param1, MON_DATA_MARKS, NULL);
-    param2->form = Pokemon_GetValue(param1, MON_DATA_FORM, NULL);
-    param2->status = PokemonSummary_StatusIconAnimIdx(param1);
+    monData->markings = Pokemon_GetValue(mon, MON_DATA_MARKS, NULL);
+    monData->form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+    monData->status = PokemonSummary_StatusIconAnimIdx(mon);
 
-    if (Pokemon_CanSpreadPokerus(param1) == 1) {
-        param2->pokerus = 2;
-    } else if (Pokemon_InfectedWithPokerus(param1) == 1) {
-        param2->pokerus = 1;
+    if (Pokemon_CanSpreadPokerus(mon) == TRUE) {
+        monData->pokerus = 2;
+    } else if (Pokemon_InfectedWithPokerus(mon) == TRUE) {
+        monData->pokerus = 1;
 
-        if (param2->status == 7) {
-            param2->status = 0;
+        if (monData->status == 7) {
+            monData->status = 0;
         }
     } else {
-        param2->pokerus = 0;
+        monData->pokerus = 0;
     }
 
-    if (Pokemon_IsShiny(param1) == 1) {
-        param2->isShiny = 1;
+    if (Pokemon_IsShiny(mon) == TRUE) {
+        monData->isShiny = TRUE;
     } else {
-        param2->isShiny = 0;
+        monData->isShiny = FALSE;
     }
 
-    param2->ribbons[0] = 0;
-    param2->ribbons[1] = 0;
-    param2->ribbons[2] = 0;
-    param2->ribbons[3] = 0;
-    param0->ribbonMax = 0;
+    monData->ribbons[0] = 0;
+    monData->ribbons[1] = 0;
+    monData->ribbons[2] = 0;
+    monData->ribbons[3] = 0;
+    summaryScreen->ribbonMax = 0;
 
-    for (v1 = 0; v1 < 80; v1++) {
-        if (Pokemon_GetValue(param1, sub_020923C0(v1, 0), NULL) != 0) {
-            param2->ribbons[v1 / 32] |= (1 << (v1 & 0x1f));
-            param0->ribbonMax++;
+    for (i = 0; i < 80; i++) {
+        if (Pokemon_GetValue(mon, sub_020923C0(i, 0), NULL) != 0) {
+            monData->ribbons[i / 32] |= (1 << (i & 0x1f));
+            summaryScreen->ribbonMax++;
         }
     }
 
-    Pokemon_ExitDecryptionContext(param1, v3);
+    Pokemon_ExitDecryptionContext(mon, reencrypt);
 }
-
-static void sub_0208D618(PokemonSummaryScreen *param0)
+// ravetodo PlayMonCry?
+static void sub_0208D618(PokemonSummaryScreen *summaryScreen)
 {
-    u8 v0;
-
-    if (param0->monData.isEgg != 0) {
+    if (summaryScreen->monData.isEgg != FALSE) {
         return;
     }
 
-    PokeSprite_LoadCryDelay(param0->narcPlPokeData, &v0, param0->monData.species, 1);
+    u8 cryDelay;
+    PokeSprite_LoadCryDelay(summaryScreen->narcPlPokeData, &cryDelay, summaryScreen->monData.species, 1);
 
-    if (param0->monData.species == 441) {
-        Sound_PlayDelayedChatotCry(param0->data->chatotCry, 0, 100, 0, v0);
+    if (summaryScreen->monData.species == SPECIES_CHATOT) {
+        Sound_PlayDelayedChatotCry(summaryScreen->data->chatotCry, 0, 100, 0, cryDelay);
     } else {
-        sub_0200590C(param0->monData.species, v0, param0->monData.form);
+        sub_0200590C(summaryScreen->monData.species, cryDelay, summaryScreen->monData.form);
     }
 }
 
-static void sub_0208D678(PokemonSummaryScreen *param0)
+// ravetodo switchmon or something?
+static void sub_0208D678(PokemonSummaryScreen *summaryScreen)
 {
-    switch (param0->data->mode) {
+    switch (summaryScreen->data->mode) {
     case 0:
     case 1:
-        if (param0->monData.isEgg == 0) {
-            param0->page = 0;
+        if (summaryScreen->monData.isEgg == FALSE) {
+            summaryScreen->page = 0;
         } else {
-            param0->page = 1;
+            summaryScreen->page = 1;
         }
         break;
     case 2:
-        param0->page = 3;
+        summaryScreen->page = 3;
         break;
     case 3:
     case 4:
-        param0->page = 4;
+        summaryScreen->page = 4;
         break;
     }
 
-    sub_0208F6DC(param0, NULL);
-    sub_0208ECF4(param0);
-    sub_0208EF58(param0);
-    sub_0208FA04(param0);
-    sub_0208EDC4(param0);
-    sub_0208F574(param0);
-    sub_0208F34C(param0);
-    sub_0208FD40(param0);
-    sub_020904C4(param0);
-    sub_0208D948(param0);
-    sub_020919E8(param0);
+    sub_0208F6DC(summaryScreen, NULL);
+    sub_0208ECF4(summaryScreen);
+    sub_0208EF58(summaryScreen);
+    sub_0208FA04(summaryScreen);
+    sub_0208EDC4(summaryScreen);
+    sub_0208F574(summaryScreen);
+    sub_0208F34C(summaryScreen);
+    sub_0208FD40(summaryScreen);
+    sub_020904C4(summaryScreen);
+    sub_0208D948(summaryScreen);
+    sub_020919E8(summaryScreen);
 
-    if (param0->data->mode == 2) {
-        sub_0208E190(param0);
+    if (summaryScreen->data->mode == 2) {
+        sub_0208E190(summaryScreen);
     }
 }
 
@@ -1193,79 +1186,80 @@ void PokemonSummary_FlagVisiblePages(PokemonSummary *summary, const u8 *param1)
     }
 }
 
-static void sub_0208D748(PokemonSummaryScreen *param0)
+static void sub_0208D748(PokemonSummaryScreen *summaryScreen)
 {
-    if (param0->data->contest == 1) {
+    if (summaryScreen->data->contest == 1) {
         return;
     }
 
-    if (param0->data->pageFlag & (1 << 4)) {
-        param0->data->pageFlag ^= (1 << 4);
+    if (summaryScreen->data->pageFlag & (1 << 4)) {
+        summaryScreen->data->pageFlag ^= (1 << 4);
     }
 
-    if (param0->data->pageFlag & (1 << 5)) {
-        param0->data->pageFlag ^= (1 << 5);
+    if (summaryScreen->data->pageFlag & (1 << 5)) {
+        summaryScreen->data->pageFlag ^= (1 << 5);
     }
 
-    if (param0->data->pageFlag & (1 << 6)) {
-        param0->data->pageFlag ^= (1 << 6);
+    if (summaryScreen->data->pageFlag & (1 << 6)) {
+        summaryScreen->data->pageFlag ^= (1 << 6);
     }
 }
 
-u8 PokemonSummary_PageIsVisble(PokemonSummaryScreen *param0, u32 param1)
+u8 PokemonSummary_PageIsVisble(PokemonSummaryScreen *summaryScreen, u32 page)
 {
-    if ((param0->monData.isEgg != 0) && (param1 != 1) && (param1 != 7)) {
+    if (summaryScreen->monData.isEgg != 0 && page != 1 && page != 7) {
         return 0;
     }
 
-    return param0->data->pageFlag & (1 << param1);
+    return summaryScreen->data->pageFlag & (1 << page);
 }
 
-u8 PokemonSummary_CountVisiblePages(PokemonSummaryScreen *param0)
+// ravetodo enum
+u8 PokemonSummary_CountVisiblePages(PokemonSummaryScreen *summaryScreen)
 {
-    u8 v0, v1;
+    u8 page;
+    u8 countVisible = 0;
 
-    v1 = 0;
-
-    for (v0 = 0; v0 < 8; v0++) {
-        if (param0->data->pageFlag & (1 << v0)) {
-            v1++;
+    for (page = 0; page < 8; page++) {
+        if (summaryScreen->data->pageFlag & (1 << page)) {
+            countVisible++;
         }
     }
 
-    return v1;
+    return countVisible;
 }
 
-static void sub_0208D7EC(PokemonSummaryScreen *param0, u8 param1)
+// ravetodo switchpage?
+static void sub_0208D7EC(PokemonSummaryScreen *summaryScreen, u8 page)
 {
-    if (param0->page == param1) {
+    if (summaryScreen->page == page) {
         return;
     }
 
-    if (param0->data->mode == 2) {
-        sub_0208E4EC(param0);
+    if (summaryScreen->data->mode == 2) {
+        sub_0208E4EC(summaryScreen);
     }
 
-    sub_0208FE34(param0);
-    param0->page = param1;
-    sub_0208F6DC(param0, NULL);
+    sub_0208FE34(summaryScreen);
+    summaryScreen->page = page;
+    sub_0208F6DC(summaryScreen, NULL);
 
-    sub_0208ECF4(param0);
-    sub_0208EDC4(param0);
-    sub_0208EF58(param0);
-    sub_0208FA04(param0);
-    sub_0208F34C(param0);
-    sub_0208FD40(param0);
-    sub_0208FB54(param0, 0);
+    sub_0208ECF4(summaryScreen);
+    sub_0208EDC4(summaryScreen);
+    sub_0208EF58(summaryScreen);
+    sub_0208FA04(summaryScreen);
+    sub_0208F34C(summaryScreen);
+    sub_0208FD40(summaryScreen);
+    sub_0208FB54(summaryScreen, 0);
 
-    Bg_FillTilemapRect(param0->bgConfig, 1, 0, 14, 4, 19, 20, 0);
-    Bg_CopyTilemapBufferToVRAM(param0->bgConfig, 1);
-    sub_020904C4(param0);
-    sub_0208D948(param0);
-    sub_020919E8(param0);
+    Bg_FillTilemapRect(summaryScreen->bgConfig, 1, 0, 14, 4, 19, 20, 0);
+    Bg_CopyTilemapBufferToVRAM(summaryScreen->bgConfig, BG_LAYER_MAIN_1);
+    sub_020904C4(summaryScreen);
+    sub_0208D948(summaryScreen);
+    sub_020919E8(summaryScreen);
 
-    if (param0->data->mode == 2) {
-        sub_0208E508(param0);
+    if (summaryScreen->data->mode == 2) {
+        sub_0208E508(summaryScreen);
     }
 }
 
@@ -1688,9 +1682,9 @@ static u8 sub_0208DEA4(PokemonSummaryScreen *param0)
     return 0;
 }
 
-static u8 sub_0208DF94(PokemonSummaryScreen *param0, s8 param1)
+static u8 sub_0208DF94(PokemonSummaryScreen *summaryScreen, s8 param1)
 {
-    s8 v0 = param0->cursor;
+    s8 v0 = summaryScreen->cursor;
 
     while (TRUE) {
         v0 += param1;
@@ -1701,17 +1695,17 @@ static u8 sub_0208DF94(PokemonSummaryScreen *param0, s8 param1)
             v0 = 0;
         }
 
-        if ((param0->monData.moves[v0] != 0) || (v0 == 4)) {
+        if (summaryScreen->monData.moves[v0] != 0 || v0 == 4) {
             break;
         }
     }
 
-    if (v0 != param0->cursor) {
-        param0->cursor = v0;
-        return 1;
+    if (v0 != summaryScreen->cursor) {
+        summaryScreen->cursor = v0;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static void sub_0208DFF4(PokemonSummaryScreen *param0)
