@@ -63,69 +63,69 @@
 static int PokemonSummaryScreen_Init(OverlayManager *ovyManager, int *state);
 static int PokemonSummaryScreen_Main(OverlayManager *ovyManager, int *state);
 static int PokemonSummaryScreen_Exit(OverlayManager *ovyManager, int *state);
-static int sub_0208C9C8(PokemonSummaryScreen *param0);
-static int sub_0208CA00(PokemonSummaryScreen *param0);
-static int sub_0208CB38(PokemonSummaryScreen *param0);
-static int sub_0208CB4C(PokemonSummaryScreen *param0);
-static int sub_0208CB60(PokemonSummaryScreen *param0);
-static int sub_0208CB74(PokemonSummaryScreen *param0);
-static int sub_0208CB88(PokemonSummaryScreen *param0);
-static int sub_0208CC6C(PokemonSummaryScreen *param0);
-static int sub_0208CD44(PokemonSummaryScreen *param0);
-static int sub_0208CE54(PokemonSummaryScreen *param0);
-static int sub_0208CE70(PokemonSummaryScreen *param0);
-static int sub_0208CE84(PokemonSummaryScreen *param0);
-static int sub_0208CE98(PokemonSummaryScreen *param0);
-static int sub_0208CF0C(PokemonSummaryScreen *param0);
-static int sub_0208CF78(PokemonSummaryScreen *param0);
-static int sub_0208D114(PokemonSummaryScreen *param0);
-static int sub_0208D164(PokemonSummaryScreen *param0);
-static u8 sub_0208D17C(PokemonSummaryScreen *param0);
-static u8 ScreenTransitionIsDone(PokemonSummaryScreen *param0);
+static int sub_0208C9C8(PokemonSummaryScreen *summaryScreen);
+static int sub_0208CA00(PokemonSummaryScreen *summaryScreen);
+static int sub_0208CB38(PokemonSummaryScreen *summaryScreen);
+static int sub_0208CB4C(PokemonSummaryScreen *summaryScreen);
+static int sub_0208CB60(PokemonSummaryScreen *summaryScreen);
+static int sub_0208CB74(PokemonSummaryScreen *summaryScreen);
+static int sub_0208CB88(PokemonSummaryScreen *summaryScreen);
+static int sub_0208CC6C(PokemonSummaryScreen *summaryScreen);
+static int sub_0208CD44(PokemonSummaryScreen *summaryScreen);
+static int sub_0208CE54(PokemonSummaryScreen *summaryScreen);
+static int sub_0208CE70(PokemonSummaryScreen *summaryScreen);
+static int sub_0208CE84(PokemonSummaryScreen *summaryScreen);
+static int sub_0208CE98(PokemonSummaryScreen *summaryScreen);
+static int sub_0208CF0C(PokemonSummaryScreen *summaryScreen);
+static int sub_0208CF78(PokemonSummaryScreen *summaryScreen);
+static int sub_0208D114(PokemonSummaryScreen *summaryScreen);
+static int sub_0208D164(PokemonSummaryScreen *summaryScreen);
+static u8 sub_0208D17C(PokemonSummaryScreen *summaryScreen);
+static u8 ScreenTransitionIsDone(PokemonSummaryScreen *summaryScreen);
 static void SetVRAMBanks(void);
-static void SetupBgs(BgConfig *param0);
-static void TeardownBgs(BgConfig *param0);
-static void sub_0208C7AC(PokemonSummaryScreen *param0, NARC *param1);
+static void SetupBgs(BgConfig *bgConfig);
+static void TeardownBgs(BgConfig *bgConfig);
+static void sub_0208C7AC(PokemonSummaryScreen *summaryScreen, NARC *narc);
 static void sub_0208C86C(void);
-static void PokemonSummaryScreenVBlank(void *param0);
-static void InitializeStringsAndCopyOTName(PokemonSummaryScreen *param0);
-static void FreeStrings(PokemonSummaryScreen *param0);
-static void sub_0208D1A4(PokemonSummaryScreen *param0);
-static void SetMonDataFromBoxMon(PokemonSummaryScreen *param0, BoxPokemon *param1, PokemonSummaryMonData *param2);
-static void SetMonData(PokemonSummaryScreen *param0, Pokemon *param1, PokemonSummaryMonData *param2);
-static void sub_0208D678(PokemonSummaryScreen *param0);
-static void sub_0208D618(PokemonSummaryScreen *param0);
-static void sub_0208D7EC(PokemonSummaryScreen *param0, u8 param1);
-static void sub_0208D898(PokemonSummaryScreen *param0, s8 param1);
-static u8 sub_0208D920(PokemonSummaryScreen *param0);
-static void sub_0208D748(PokemonSummaryScreen *param0);
-static void sub_0208D948(PokemonSummaryScreen *param0);
-static void sub_0208D9D0(PokemonSummaryScreen *param0);
-static void sub_0208DA84(PokemonSummaryScreen *param0);
-static void sub_0208DB10(PokemonSummaryScreen *param0, s8 param1);
-static s8 sub_0208DBC4(PokemonSummaryScreen *param0, s8 param1);
-static s8 sub_0208DC1C(PokemonSummaryScreen *param0, s8 param1);
-static s8 sub_0208DC84(PokemonSummaryScreen *param0, s8 param1);
-static s8 sub_0208DCE0(PokemonSummaryScreen *param0, s8 param1);
-static u8 sub_0208DD8C(PokemonSummaryScreen *param0);
-static u8 sub_0208DEA4(PokemonSummaryScreen *param0);
-static u8 sub_0208DF94(PokemonSummaryScreen *param0, s8 param1);
-static void sub_0208DFF4(PokemonSummaryScreen *param0);
-static void sub_0208E0DC(PokemonSummaryScreen *param0);
-static void sub_0208E190(PokemonSummaryScreen *param0);
-static void sub_0208E07C(PokemonSummaryScreen *param0, u32 param1);
-static void sub_0208E0B8(PokemonSummaryScreen *param0, u32 param1);
-static void sub_0208E4EC(PokemonSummaryScreen *param0);
-static void sub_0208E508(PokemonSummaryScreen *param0);
-static u8 sub_0208E208(PokemonSummaryScreen *param0);
-static u8 sub_0208E308(PokemonSummaryScreen *param0);
-static void sub_0208E498(PokemonSummaryScreen *param0, u32 param1);
-static void sub_0208E46C(PokemonSummaryScreen *param0);
-static u8 sub_0208E57C(PokemonSummaryScreen *param0);
-static u8 sub_0208E6A8(PokemonSummaryScreen *param0);
-static void sub_0208E794(PokemonSummaryScreen *param0, s8 param1);
-u8 PokemonSummary_RibbonAt(PokemonSummaryScreen *param0, u8 param1);
-static int sub_0208E958(PokemonSummaryScreen *param0);
+static void PokemonSummaryScreenVBlank(void *data);
+static void InitializeStringsAndCopyOTName(PokemonSummaryScreen *summaryScreen);
+static void FreeStrings(PokemonSummaryScreen *summaryScreen);
+static void sub_0208D1A4(PokemonSummaryScreen *summaryScreen);
+static void SetMonDataFromBoxMon(PokemonSummaryScreen *summaryScreen, BoxPokemon *boxMon, PokemonSummaryMonData *monData);
+static void SetMonData(PokemonSummaryScreen *summaryScreen, Pokemon *mon, PokemonSummaryMonData *monData);
+static void sub_0208D678(PokemonSummaryScreen *summaryScreen);
+static void sub_0208D618(PokemonSummaryScreen *summaryScreen);
+static void sub_0208D7EC(PokemonSummaryScreen *summaryScreen, u8 param1);
+static void sub_0208D898(PokemonSummaryScreen *summaryScreen, s8 param1);
+static u8 sub_0208D920(PokemonSummaryScreen *summaryScreen);
+static void sub_0208D748(PokemonSummaryScreen *summaryScreen);
+static void sub_0208D948(PokemonSummaryScreen *summaryScreen);
+static void sub_0208D9D0(PokemonSummaryScreen *summaryScreen);
+static void sub_0208DA84(PokemonSummaryScreen *summaryScreen);
+static void sub_0208DB10(PokemonSummaryScreen *summaryScreen, s8 param1);
+static s8 sub_0208DBC4(PokemonSummaryScreen *summaryScreen, s8 param1);
+static s8 sub_0208DC1C(PokemonSummaryScreen *summaryScreen, s8 param1);
+static s8 sub_0208DC84(PokemonSummaryScreen *summaryScreen, s8 param1);
+static s8 sub_0208DCE0(PokemonSummaryScreen *summaryScreen, s8 param1);
+static u8 sub_0208DD8C(PokemonSummaryScreen *summaryScreen);
+static u8 sub_0208DEA4(PokemonSummaryScreen *summaryScreen);
+static u8 sub_0208DF94(PokemonSummaryScreen *summaryScreen, s8 param1);
+static void sub_0208DFF4(PokemonSummaryScreen *summaryScreen);
+static void sub_0208E0DC(PokemonSummaryScreen *summaryScreen);
+static void sub_0208E190(PokemonSummaryScreen *summaryScreen);
+static void sub_0208E07C(PokemonSummaryScreen *summaryScreen, u32 param1);
+static void sub_0208E0B8(PokemonSummaryScreen *summaryScreen, u32 param1);
+static void sub_0208E4EC(PokemonSummaryScreen *summaryScreen);
+static void sub_0208E508(PokemonSummaryScreen *summaryScreen);
+static u8 sub_0208E208(PokemonSummaryScreen *summaryScreen);
+static u8 sub_0208E308(PokemonSummaryScreen *summaryScreen);
+static void sub_0208E498(PokemonSummaryScreen *summaryScreen, u32 param1);
+static void sub_0208E46C(PokemonSummaryScreen *summaryScreen);
+static u8 sub_0208E57C(PokemonSummaryScreen *summaryScreen);
+static u8 sub_0208E6A8(PokemonSummaryScreen *summaryScreen);
+static void sub_0208E794(PokemonSummaryScreen *summaryScreen, s8 param1);
+u8 PokemonSummary_RibbonAt(PokemonSummaryScreen *summaryScreen, u8 param1);
+static int sub_0208E958(PokemonSummaryScreen *summaryScreen);
 
 const OverlayManagerTemplate Unk_020F410C = {
     PokemonSummaryScreen_Init,
@@ -1229,7 +1229,7 @@ u8 PokemonSummary_CountVisiblePages(PokemonSummaryScreen *summaryScreen)
     return countVisible;
 }
 
-// ravetodo switchpage?
+// ravetodo switchpagegfx?
 static void sub_0208D7EC(PokemonSummaryScreen *summaryScreen, u8 page)
 {
     if (summaryScreen->page == page) {
@@ -1263,252 +1263,250 @@ static void sub_0208D7EC(PokemonSummaryScreen *summaryScreen, u8 page)
     }
 }
 
-static void sub_0208D898(PokemonSummaryScreen *param0, s8 param1)
+// ravetodo changepage
+static void sub_0208D898(PokemonSummaryScreen *summaryScreen, s8 delta)
 {
-    s8 v0 = param0->page;
+    s8 page = summaryScreen->page;
 
     while (TRUE) {
-        v0 += param1;
+        page += delta;
 
-        if (v0 < 0) {
-            v0 = 7;
-        } else if (v0 > 7) {
-            v0 = 0;
+        if (page < 0) {
+            page = 7;
+        } else if (page > 7) {
+            page = 0;
         }
 
-        if (param0->monData.isEgg == 0) {
-            if ((param0->data->pageFlag & (1 << v0)) != 0) {
+        if (summaryScreen->monData.isEgg == FALSE) {
+            if ((summaryScreen->data->pageFlag & (1 << page)) != 0) {
                 break;
             }
         } else {
-            if (((param0->data->pageFlag & (1 << v0)) != 0) && ((v0 == 1) || (v0 == 7))) {
+            if ((summaryScreen->data->pageFlag & (1 << page)) != 0 && (page == 1 || page == 7)) {
                 break;
             }
         }
     }
 
-    if (v0 == param0->page) {
+    if (page == summaryScreen->page) {
         return;
     }
 
-    Sound_PlayEffect(1505);
-    sub_0209219C(param0);
-    sub_0208FB54(param0, 0);
-    sub_0208D7EC(param0, v0);
+    Sound_PlayEffect(SEQ_SE_DP_SELECT5);
+    sub_0209219C(summaryScreen);
+    sub_0208FB54(summaryScreen, 0);
+    sub_0208D7EC(summaryScreen, page);
 }
 
-static u8 sub_0208D920(PokemonSummaryScreen *param0)
+static u8 sub_0208D920(PokemonSummaryScreen *summaryScreen)
 {
-    u8 v0 = sub_020921E4(param0);
+    u8 v0 = sub_020921E4(summaryScreen);
 
     if (v0 == 0xff) {
         return 0;
     }
 
-    param0->buttonCount = 0;
-    param0->buttonPos = v0;
-    param0->buttonState = 0;
+    summaryScreen->buttonCount = 0;
+    summaryScreen->buttonPos = v0;
+    summaryScreen->buttonState = 0;
 
     return 1;
 }
 
-static void sub_0208D948(PokemonSummaryScreen *param0)
+// ravetodo loadpagetiles or something?
+static void sub_0208D948(PokemonSummaryScreen *summaryScreen)
 {
-    {
-        NNSG2dScreenData *v0;
-        void *v1;
-        u32 v2;
-
-        if ((param0->data->mode == 2) && (param0->data->move != 0)) {
-            if (param0->page == 3) {
-                v2 = 12;
-            } else {
-                v2 = 13;
-            }
+    u32 memberIndex;
+    if (summaryScreen->data->mode == 2 && summaryScreen->data->move != 0) {
+        if (summaryScreen->page == 3) {
+            memberIndex = 12;
         } else {
-            v2 = 3 + param0->page;
+            memberIndex = 13;
         }
-
-        v1 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_GRAPHIC__PL_PST_GRA, v2, 19);
-        NNS_G2dGetUnpackedScreenData(v1, &v0);
-
-        Bg_LoadToTilemapRect(param0->bgConfig, 3, v0->rawData, 0, 0, 32, 32);
-        Bg_ScheduleTilemapTransfer(param0->bgConfig, 3);
-        Heap_FreeToHeap(v1);
+    } else {
+        memberIndex = 3 + summaryScreen->page;
     }
 
-    if (param0->page == 0) {
-        sub_0208DA84(param0);
-    } else if (param0->page == 2) {
-        sub_0208D9D0(param0);
+    void *memberBuffer = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_GRAPHIC__PL_PST_GRA, memberIndex, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    NNSG2dScreenData *tilemap;
+    NNS_G2dGetUnpackedScreenData(memberBuffer, &tilemap);
+
+    Bg_LoadToTilemapRect(summaryScreen->bgConfig, BG_LAYER_MAIN_3, tilemap->rawData, 0, 0, 32, 32);
+    Bg_ScheduleTilemapTransfer(summaryScreen->bgConfig, BG_LAYER_MAIN_3);
+    Heap_FreeToHeap(memberBuffer);
+
+    if (summaryScreen->page == 0) {
+        sub_0208DA84(summaryScreen);
+    } else if (summaryScreen->page == 2) {
+        sub_0208D9D0(summaryScreen);
     }
 }
-
-static void sub_0208D9D0(PokemonSummaryScreen *param0)
+// ravetodo drawhealthbar?
+static void sub_0208D9D0(PokemonSummaryScreen *summaryScreen)
 {
     u16 v0;
     u16 v1;
-    u8 v2;
+    u8 pixelCount;
     u8 v3;
 
-    switch (HealthBar_Color(param0->monData.curHP, param0->monData.maxHP, 48)) {
-    case 4:
-    case 3:
-    case 0:
+    switch (HealthBar_Color(summaryScreen->monData.curHP, summaryScreen->monData.maxHP, 48)) {
+    case BARCOLOR_MAX:
+    case BARCOLOR_GREEN:
+    case BARCOLOR_EMPTY:
         v0 = 0xc0 | 0xa000;
         break;
-    case 2:
+    case BARCOLOR_YELLOW:
         v0 = 0xe0 | 0xa000;
         break;
-    case 1:
+    case BARCOLOR_RED:
         v0 = 0x100 | 0xa000;
         break;
     }
 
-    v2 = App_PixelCount(param0->monData.curHP, param0->monData.maxHP, 48);
+    pixelCount = App_PixelCount(summaryScreen->monData.curHP, summaryScreen->monData.maxHP, 48);
 
     for (v3 = 0; v3 < 6; v3++) {
-        if (v2 >= 8) {
+        if (pixelCount >= 8) {
             v1 = v0 + 8;
         } else {
-            v1 = v0 + v2;
+            v1 = v0 + pixelCount;
         }
 
-        Bg_FillTilemapRect(param0->bgConfig, 3, v1, 24 + v3, 6, 1, 1, 17);
+        Bg_FillTilemapRect(summaryScreen->bgConfig, BG_LAYER_MAIN_3, v1, 24 + v3, 6, 1, 1, 17);
 
-        if (v2 < 8) {
-            v2 = 0;
+        if (pixelCount < 8) {
+            pixelCount = 0;
         } else {
-            v2 -= 8;
+            pixelCount -= 8;
         }
     }
 
-    Bg_ScheduleTilemapTransfer(param0->bgConfig, 3);
+    Bg_ScheduleTilemapTransfer(summaryScreen->bgConfig, BG_LAYER_MAIN_3);
 }
-
-static void sub_0208DA84(PokemonSummaryScreen *param0)
+// ravetodo drawexpbar?
+static void sub_0208DA84(PokemonSummaryScreen *summaryScreen)
 {
     u32 v0;
     u32 v1;
     u16 v2;
-    u8 v3;
+    u8 pixelCount;
     u8 v4;
 
-    if (param0->monData.level < 100) {
-        v0 = param0->monData.nextLevelExp - param0->monData.curLevelExp;
-        v1 = param0->monData.curExp - param0->monData.curLevelExp;
+    if (summaryScreen->monData.level < MAX_POKEMON_LEVEL) {
+        v0 = summaryScreen->monData.nextLevelExp - summaryScreen->monData.curLevelExp;
+        v1 = summaryScreen->monData.curExp - summaryScreen->monData.curLevelExp;
     } else {
         v0 = 0;
         v1 = 0;
     }
 
-    v3 = App_PixelCount(v1, v0, 56);
+    pixelCount = App_PixelCount(v1, v0, 56);
 
     for (v4 = 0; v4 < 7; v4++) {
-        if (v3 >= 8) {
+        if (pixelCount >= 8) {
             v2 = 0xac + 8;
         } else {
-            v2 = 0xac + v3;
+            v2 = 0xac + pixelCount;
         }
 
-        Bg_FillTilemapRect(param0->bgConfig, 3, v2, 23 + v4, 23, 1, 1, 17);
+        Bg_FillTilemapRect(summaryScreen->bgConfig, BG_LAYER_MAIN_3, v2, 23 + v4, 23, 1, 1, 17);
 
-        if (v3 < 8) {
-            v3 = 0;
+        if (pixelCount < 8) {
+            pixelCount = 0;
         } else {
-            v3 -= 8;
+            pixelCount -= 8;
         }
     }
 
-    Bg_ScheduleTilemapTransfer(param0->bgConfig, 3);
+    Bg_ScheduleTilemapTransfer(summaryScreen->bgConfig, BG_LAYER_MAIN_3);
 }
 
-static void sub_0208DB10(PokemonSummaryScreen *param0, s8 param1)
+static void sub_0208DB10(PokemonSummaryScreen *summaryScreen, s8 param1)
 {
-    s8 v0 = sub_0208DBC4(param0, param1);
+    s8 v0 = sub_0208DBC4(summaryScreen, param1);
 
     if (v0 == -1) {
         return;
     }
 
-    param0->data->pos = (u8)v0;
+    summaryScreen->data->pos = (u8)v0;
 
-    sub_0208D1A4(param0);
-    sub_0208D618(param0);
-    sub_0208FEA4(param0);
-    sub_0208FF3C(param0);
-    sub_0208FFE0(param0);
+    sub_0208D1A4(summaryScreen);
+    sub_0208D618(summaryScreen);
+    sub_0208FEA4(summaryScreen);
+    sub_0208FF3C(summaryScreen);
+    sub_0208FFE0(summaryScreen);
 
-    if (param0->page == 0) {
-        sub_0208DA84(param0);
-    } else if (param0->page == 2) {
-        sub_0208D9D0(param0);
-    } else if (param0->page == 4) {
-        sub_02091D50(param0);
+    if (summaryScreen->page == 0) {
+        sub_0208DA84(summaryScreen);
+    } else if (summaryScreen->page == 2) {
+        sub_0208D9D0(summaryScreen);
+    } else if (summaryScreen->page == 4) {
+        sub_02091D50(summaryScreen);
     }
 
-    sub_02092098(param0);
-    sub_0208F6DC(param0, NULL);
-    sub_0208ECF4(param0);
-    sub_0208EDC4(param0);
-    sub_0208F16C(param0);
-    sub_0208EF58(param0);
-    sub_0208FA04(param0);
-    sub_0208F71C(param0);
-    sub_0208EE3C(param0);
-    sub_0208EE9C(param0);
-    sub_0208F34C(param0);
-    sub_0208F574(param0);
-    sub_020904C4(param0);
+    sub_02092098(summaryScreen);
+    sub_0208F6DC(summaryScreen, NULL);
+    sub_0208ECF4(summaryScreen);
+    sub_0208EDC4(summaryScreen);
+    sub_0208F16C(summaryScreen);
+    sub_0208EF58(summaryScreen);
+    sub_0208FA04(summaryScreen);
+    sub_0208F71C(summaryScreen);
+    sub_0208EE3C(summaryScreen);
+    sub_0208EE9C(summaryScreen);
+    sub_0208F34C(summaryScreen);
+    sub_0208F574(summaryScreen);
+    sub_020904C4(summaryScreen);
 }
 
-static s8 sub_0208DBC4(PokemonSummaryScreen *param0, s8 param1)
+static s8 sub_0208DBC4(PokemonSummaryScreen *summaryScreen, s8 param1)
 {
-    switch (param0->data->dataType) {
+    switch (summaryScreen->data->dataType) {
     case 0:
-        return sub_0208DC1C(param0, param1);
+        return sub_0208DC1C(summaryScreen, param1);
     case 1:
-        return sub_0208DC84(param0, param1);
+        return sub_0208DC84(summaryScreen, param1);
     case 2:
-        return sub_0208DCE0(param0, param1);
+        return sub_0208DCE0(summaryScreen, param1);
     }
 
     return -1;
 }
 
-static BOOL sub_0208DBF4(PokemonSummaryScreen *param0)
+static BOOL sub_0208DBF4(PokemonSummaryScreen *summaryScreen)
 {
-    if (param0->data->mode == 3) {
-        return 0;
+    if (summaryScreen->data->mode == 3) {
+        return FALSE;
     }
 
-    if ((param0->page != 1) && (param0->page != 7)) {
-        return 0;
+    if (summaryScreen->page != 1 && summaryScreen->page != 7) {
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-static s8 sub_0208DC1C(PokemonSummaryScreen *param0, s8 param1)
+static s8 sub_0208DC1C(PokemonSummaryScreen *summaryScreen, s8 param1)
 {
-    Pokemon *v0;
+    Pokemon *mon;
     s8 v1;
 
-    v1 = (s8)param0->data->pos;
-    v0 = (Pokemon *)param0->data->monData;
+    v1 = (s8)summaryScreen->data->pos;
+    mon = (Pokemon *)summaryScreen->data->monData;
 
     while (TRUE) {
         v1 += param1;
 
-        if ((v1 < 0) || (v1 >= param0->data->max)) {
+        if (v1 < 0 || v1 >= summaryScreen->data->max) {
             return -1;
         }
 
-        v0 = (Pokemon *)((u32)param0->data->monData + Pokemon_GetStructSize() * v1);
+        mon = (Pokemon *)((u32)summaryScreen->data->monData + Pokemon_GetStructSize() * v1);
 
-        if (Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL) != 0) {
-            if (Pokemon_GetValue(v0, MON_DATA_IS_EGG, NULL) != 0) {
-                if (sub_0208DBF4(param0) == 1) {
+        if (Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) != SPECIES_NONE) {
+            if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) != FALSE) {
+                if (sub_0208DBF4(summaryScreen) == TRUE) {
                     break;
                 }
             } else {
@@ -1520,25 +1518,25 @@ static s8 sub_0208DC1C(PokemonSummaryScreen *param0, s8 param1)
     return v1;
 }
 
-static s8 sub_0208DC84(PokemonSummaryScreen *param0, s8 param1)
+static s8 sub_0208DC84(PokemonSummaryScreen *summaryScreen, s8 param1)
 {
-    Pokemon *v0;
+    Pokemon *mon;
     s8 v1;
 
-    v1 = (s8)param0->data->pos;
+    v1 = (s8)summaryScreen->data->pos;
 
     while (TRUE) {
         v1 += param1;
 
-        if ((v1 < 0) || (v1 >= param0->data->max)) {
+        if (v1 < 0 || v1 >= summaryScreen->data->max) {
             return -1;
         }
 
-        v0 = Party_GetPokemonBySlotIndex(param0->data->monData, v1);
+        mon = Party_GetPokemonBySlotIndex(summaryScreen->data->monData, v1);
 
-        if (Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL) != 0) {
-            if (Pokemon_GetValue(v0, MON_DATA_IS_EGG, NULL) != 0) {
-                if (sub_0208DBF4(param0) == 1) {
+        if (Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) != SPECIES_NONE) {
+            if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) != FALSE) {
+                if (sub_0208DBF4(summaryScreen) == TRUE) {
                     break;
                 }
             } else {
@@ -1550,26 +1548,26 @@ static s8 sub_0208DC84(PokemonSummaryScreen *param0, s8 param1)
     return v1;
 }
 
-static s8 sub_0208DCE0(PokemonSummaryScreen *param0, s8 param1)
+static s8 sub_0208DCE0(PokemonSummaryScreen *summaryScreen, s8 param1)
 {
     BoxPokemon *v0;
     s8 v1;
 
-    v1 = (s8)param0->data->pos;
-    v0 = (BoxPokemon *)param0->data->monData;
+    v1 = (s8)summaryScreen->data->pos;
+    v0 = (BoxPokemon *)summaryScreen->data->monData;
 
     while (TRUE) {
         v1 += param1;
 
-        if ((v1 < 0) || (v1 >= param0->data->max)) {
+        if (v1 < 0 || v1 >= summaryScreen->data->max) {
             return -1;
         }
 
-        v0 = (BoxPokemon *)((u32)param0->data->monData + BoxPokemon_GetStructSize() * v1);
+        v0 = (BoxPokemon *)((u32)summaryScreen->data->monData + BoxPokemon_GetStructSize() * v1);
 
-        if (BoxPokemon_GetValue(v0, MON_DATA_SPECIES, NULL) != 0) {
-            if (BoxPokemon_GetValue(v0, MON_DATA_IS_EGG, NULL) != 0) {
-                if (sub_0208DBF4(param0) == 1) {
+        if (BoxPokemon_GetValue(v0, MON_DATA_SPECIES, NULL) != SPECIES_NONE) {
+            if (BoxPokemon_GetValue(v0, MON_DATA_IS_EGG, NULL) != FALSE) {
+                if (sub_0208DBF4(summaryScreen) == TRUE) {
                     break;
                 }
             } else {
@@ -1581,113 +1579,113 @@ static s8 sub_0208DCE0(PokemonSummaryScreen *param0, s8 param1)
     return v1;
 }
 
-void *PokemonSummary_MonData(PokemonSummaryScreen *param0)
+void *PokemonSummary_MonData(PokemonSummaryScreen *summaryScreen)
 {
-    switch (param0->data->dataType) {
+    switch (summaryScreen->data->dataType) {
     case 0:
-        return (void *)((u32)param0->data->monData + (Pokemon_GetStructSize() * param0->data->pos));
+        return (void *)((u32)summaryScreen->data->monData + (Pokemon_GetStructSize() * summaryScreen->data->pos));
     case 1:
-        return (void *)Party_GetPokemonBySlotIndex(param0->data->monData, param0->data->pos);
+        return (void *)Party_GetPokemonBySlotIndex(summaryScreen->data->monData, summaryScreen->data->pos);
     case 2:
-        return (void *)((u32)param0->data->monData + (BoxPokemon_GetStructSize() * param0->data->pos));
+        return (void *)((u32)summaryScreen->data->monData + (BoxPokemon_GetStructSize() * summaryScreen->data->pos));
     }
 
     return NULL;
 }
-
-static u8 sub_0208DD8C(PokemonSummaryScreen *param0)
+// ravetodo erasesubscreens or something?
+static u8 sub_0208DD8C(PokemonSummaryScreen *summaryScreen)
 {
-    switch (param0->subscreen) {
+    switch (summaryScreen->subscreen) {
     case 0:
-        Bg_ScheduleScroll(param0->bgConfig, 2, 0, 136);
-        Bg_ScheduleScroll(param0->bgConfig, 2, 3, 0);
-        sub_0208EE10(param0, 0);
-        Window_ClearAndScheduleCopyToVRAM(&param0->staticWindows[33]);
-        Window_ClearAndScheduleCopyToVRAM(&param0->staticWindows[6]);
-        Window_ClearAndScheduleCopyToVRAM(&param0->staticWindows[32]);
-        Window_ClearAndScheduleCopyToVRAM(&param0->staticWindows[35]);
-        sub_0208F6DC(param0, NULL);
+        Bg_ScheduleScroll(summaryScreen->bgConfig, BG_LAYER_MAIN_2, 0, 136);
+        Bg_ScheduleScroll(summaryScreen->bgConfig, BG_LAYER_MAIN_2, 3, 0);
+        sub_0208EE10(summaryScreen, 0);
+        Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[33]);
+        Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[6]);
+        Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[32]);
+        Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[35]);
+        sub_0208F6DC(summaryScreen, NULL);
 
-        param0->cursor = 0;
-        param0->subscreen = 1;
+        summaryScreen->cursor = 0;
+        summaryScreen->subscreen = 1;
         break;
     case 1: {
-        int v0 = Bg_GetXOffset(param0->bgConfig, 2);
+        int v0 = Bg_GetXOffset(summaryScreen->bgConfig, BG_LAYER_MAIN_2);
 
         if (v0 <= 64) {
-            Bg_ScheduleScroll(param0->bgConfig, 2, 0, 0);
-            param0->subscreen = 2;
+            Bg_ScheduleScroll(summaryScreen->bgConfig, BG_LAYER_MAIN_2, 0, 0);
+            summaryScreen->subscreen = 2;
         } else {
-            Bg_ScheduleScroll(param0->bgConfig, 2, 2, 64);
+            Bg_ScheduleScroll(summaryScreen->bgConfig, BG_LAYER_MAIN_2, 2, 64);
         }
     } break;
     case 2:
-        sub_02091420(param0);
+        sub_02091420(summaryScreen);
 
-        if (param0->data->mode != 1) {
-            sub_02090064(param0, 152);
-            sub_0208F6DC(param0, &param0->staticWindows[35]);
+        if (summaryScreen->data->mode != 1) {
+            sub_02090064(summaryScreen, 152);
+            sub_0208F6DC(summaryScreen, &summaryScreen->staticWindows[35]);
         }
 
-        sub_0208DFF4(param0);
-        SpriteActor_DrawSprite(param0->unk_41C[11], 1);
-        sub_0208F7A4(param0);
+        sub_0208DFF4(summaryScreen);
+        SpriteActor_DrawSprite(summaryScreen->unk_41C[11], TRUE);
+        sub_0208F7A4(summaryScreen);
 
-        if (param0->monData.type1 != param0->monData.type2) {
-            SpriteActor_DrawSprite(param0->unk_41C[12], 1);
+        if (summaryScreen->monData.type1 != summaryScreen->monData.type2) {
+            SpriteActor_DrawSprite(summaryScreen->unk_41C[12], 1);
         }
 
-        CellActor_SetDrawFlag(param0->unk_41C[9], 1);
-        return 1;
+        CellActor_SetDrawFlag(summaryScreen->unk_41C[9], TRUE);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
-
-static u8 sub_0208DEA4(PokemonSummaryScreen *param0)
+// ravetodo drawsubscreens or something?
+static u8 sub_0208DEA4(PokemonSummaryScreen *summaryScreen)
 {
-    switch (param0->subscreen) {
+    switch (summaryScreen->subscreen) {
     case 0:
-        SpriteActor_DrawSprite(param0->unk_41C[11], 0);
-        SpriteActor_DrawSprite(param0->unk_41C[12], 0);
-        SpriteActor_DrawSprite(param0->unk_41C[18], 0);
-        SpriteActor_DrawSprite(param0->unk_41C[19], 0);
-        CellActor_SetDrawFlag(param0->unk_41C[9], 0);
-        Window_ClearAndScheduleCopyToVRAM(&param0->staticWindows[35]);
-        sub_0208F6DC(param0, NULL);
-        sub_0209145C(param0);
-        sub_020913D8(param0);
-        param0->subscreen = 1;
+        SpriteActor_DrawSprite(summaryScreen->unk_41C[11], FALSE);
+        SpriteActor_DrawSprite(summaryScreen->unk_41C[12], FALSE);
+        SpriteActor_DrawSprite(summaryScreen->unk_41C[18], FALSE);
+        SpriteActor_DrawSprite(summaryScreen->unk_41C[19], FALSE);
+        CellActor_SetDrawFlag(summaryScreen->unk_41C[9], FALSE);
+        Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[35]);
+        sub_0208F6DC(summaryScreen, NULL);
+        sub_0209145C(summaryScreen);
+        sub_020913D8(summaryScreen);
+        summaryScreen->subscreen = 1;
         break;
     case 1: {
-        int v0 = Bg_GetXOffset(param0->bgConfig, 2);
+        int v0 = Bg_GetXOffset(summaryScreen->bgConfig, BG_LAYER_MAIN_2);
 
         if (v0 >= 128) {
-            Bg_ScheduleScroll(param0->bgConfig, 2, 0, 136);
-            param0->subscreen = 2;
+            Bg_ScheduleScroll(summaryScreen->bgConfig, BG_LAYER_MAIN_2, 0, 136);
+            summaryScreen->subscreen = 2;
         } else {
-            Bg_ScheduleScroll(param0->bgConfig, 2, 1, 64);
+            Bg_ScheduleScroll(summaryScreen->bgConfig, BG_LAYER_MAIN_2, 1, 64);
         }
     } break;
     case 2:
-        Window_ScheduleCopyToVRAM(&param0->staticWindows[33]);
-        Window_ScheduleCopyToVRAM(&param0->staticWindows[6]);
-        Window_ScheduleCopyToVRAM(&param0->staticWindows[32]);
-        sub_02090064(param0, 129);
-        sub_0208EE10(param0, 1);
-        sub_0208F6DC(param0, &param0->staticWindows[35]);
-        return 1;
+        Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[33]);
+        Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[6]);
+        Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[32]);
+        sub_02090064(summaryScreen, 129);
+        sub_0208EE10(summaryScreen, 1);
+        sub_0208F6DC(summaryScreen, &summaryScreen->staticWindows[35]);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
-
-static u8 sub_0208DF94(PokemonSummaryScreen *summaryScreen, s8 param1)
+// ravetodo trychangemove?
+static u8 sub_0208DF94(PokemonSummaryScreen *summaryScreen, s8 delta)
 {
     s8 v0 = summaryScreen->cursor;
 
     while (TRUE) {
-        v0 += param1;
+        v0 += delta;
 
         if (v0 < 0) {
             v0 = 4;
@@ -1708,428 +1706,424 @@ static u8 sub_0208DF94(PokemonSummaryScreen *summaryScreen, s8 param1)
     return FALSE;
 }
 
-static void sub_0208DFF4(PokemonSummaryScreen *param0)
+static void sub_0208DFF4(PokemonSummaryScreen *summaryScreen)
 {
-    sub_0208F2E8(param0);
+    sub_0208F2E8(summaryScreen);
 
-    if (param0->cursor == 4) {
-        if (param0->data->move != 0) {
-            if (param0->page == 3) {
-                sub_0208E07C(param0, param0->data->move);
+    if (summaryScreen->cursor == 4) {
+        if (summaryScreen->data->move != 0) {
+            if (summaryScreen->page == 3) {
+                sub_0208E07C(summaryScreen, summaryScreen->data->move);
             } else {
-                sub_0208E0B8(param0, param0->data->move);
+                sub_0208E0B8(summaryScreen, summaryScreen->data->move);
             }
         } else {
-            if (param0->page == 3) {
-                sub_0208E07C(param0, 0xffffffff);
+            if (summaryScreen->page == 3) {
+                sub_0208E07C(summaryScreen, 0xffffffff);
             } else {
-                sub_0208E0B8(param0, 0xffffffff);
+                sub_0208E0B8(summaryScreen, 0xffffffff);
             }
         }
     } else {
-        if (param0->page == 3) {
-            sub_0208E07C(param0, param0->monData.moves[param0->cursor]);
+        if (summaryScreen->page == 3) {
+            sub_0208E07C(summaryScreen, summaryScreen->monData.moves[summaryScreen->cursor]);
         } else {
-            sub_0208E0B8(param0, param0->monData.moves[param0->cursor]);
+            sub_0208E0B8(summaryScreen, summaryScreen->monData.moves[summaryScreen->cursor]);
         }
     }
 }
 
-static void sub_0208E07C(PokemonSummaryScreen *param0, u32 param1)
+static void sub_0208E07C(PokemonSummaryScreen *summaryScreen, u32 param1)
 {
     if (param1 == 0xffffffff) {
-        sub_020913D8(param0);
-        SpriteActor_DrawSprite(param0->unk_41C[18], 0);
+        sub_020913D8(summaryScreen);
+        SpriteActor_DrawSprite(summaryScreen->unk_41C[18], FALSE);
     } else {
-        sub_020912A4(param0, param1);
-        sub_0208F294(param0, param1);
-        SpriteActor_DrawSprite(param0->unk_41C[18], 1);
+        sub_020912A4(summaryScreen, param1);
+        sub_0208F294(summaryScreen, param1);
+        SpriteActor_DrawSprite(summaryScreen->unk_41C[18], TRUE);
     }
 }
 
-static void sub_0208E0B8(PokemonSummaryScreen *param0, u32 param1)
+static void sub_0208E0B8(PokemonSummaryScreen *summaryScreen, u32 param1)
 {
-    sub_0208E498(param0, param1);
+    sub_0208E498(summaryScreen, param1);
 
     if (param1 == 0xffffffff) {
-        sub_020915F4(param0);
+        sub_020915F4(summaryScreen);
     } else {
-        sub_02091570(param0, param1);
+        sub_02091570(summaryScreen, param1);
     }
 }
-
-static void sub_0208E0DC(PokemonSummaryScreen *param0)
+// ravetodo swapmoves
+static void sub_0208E0DC(PokemonSummaryScreen *summaryScreen)
 {
-    void *v0;
-    u16 v1;
-    u8 v2;
-    u8 v3;
+    void *monData = PokemonSummary_MonData(summaryScreen);
 
-    v0 = PokemonSummary_MonData(param0);
-
-    if (param0->data->dataType == 2) {
-        BoxPokemon_SwapMoveSlots(v0, param0->cursor, param0->cursorTmp);
+    if (summaryScreen->data->dataType == 2) {
+        BoxPokemon_SwapMoveSlots(monData, summaryScreen->cursor, summaryScreen->cursorTmp);
     } else {
-        Pokemon_SwapMoveSlots(v0, param0->cursor, param0->cursorTmp);
+        Pokemon_SwapMoveSlots(monData, summaryScreen->cursor, summaryScreen->cursorTmp);
     }
 
-    v1 = param0->monData.moves[param0->cursor];
-    param0->monData.moves[param0->cursor] = param0->monData.moves[param0->cursorTmp];
-    param0->monData.moves[param0->cursorTmp] = v1;
+    u16 v1 = summaryScreen->monData.moves[summaryScreen->cursor];
+    summaryScreen->monData.moves[summaryScreen->cursor] = summaryScreen->monData.moves[summaryScreen->cursorTmp];
+    summaryScreen->monData.moves[summaryScreen->cursorTmp] = v1;
 
-    v2 = param0->monData.curPP[param0->cursor];
-    param0->monData.curPP[param0->cursor] = param0->monData.curPP[param0->cursorTmp];
-    param0->monData.curPP[param0->cursorTmp] = v2;
+    u8 v2 = summaryScreen->monData.curPP[summaryScreen->cursor];
+    summaryScreen->monData.curPP[summaryScreen->cursor] = summaryScreen->monData.curPP[summaryScreen->cursorTmp];
+    summaryScreen->monData.curPP[summaryScreen->cursorTmp] = v2;
 
-    v3 = param0->monData.maxPP[param0->cursor];
-    param0->monData.maxPP[param0->cursor] = param0->monData.maxPP[param0->cursorTmp];
-    param0->monData.maxPP[param0->cursorTmp] = v3;
+    u8 v3 = summaryScreen->monData.maxPP[summaryScreen->cursor];
+    summaryScreen->monData.maxPP[summaryScreen->cursor] = summaryScreen->monData.maxPP[summaryScreen->cursorTmp];
+    summaryScreen->monData.maxPP[summaryScreen->cursorTmp] = v3;
 }
-
-static void sub_0208E190(PokemonSummaryScreen *param0)
+// ravetodo switch mon draw sprites?
+static void sub_0208E190(PokemonSummaryScreen *summaryScreen)
 {
-    Window_ClearAndScheduleCopyToVRAM(&param0->staticWindows[33]);
-    Window_ClearAndScheduleCopyToVRAM(&param0->staticWindows[6]);
-    Window_ClearAndScheduleCopyToVRAM(&param0->staticWindows[32]);
+    Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[33]);
+    Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[6]);
+    Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[32]);
 
-    Bg_ScheduleScroll(param0->bgConfig, 2, 0, 0);
+    Bg_ScheduleScroll(summaryScreen->bgConfig, BG_LAYER_MAIN_2, 0, 0);
 
-    sub_02091420(param0);
-    sub_0208DFF4(param0);
+    sub_02091420(summaryScreen);
+    sub_0208DFF4(summaryScreen);
 
-    SpriteActor_DrawSprite(param0->unk_41C[11], 1);
-    sub_0208F7A4(param0);
+    SpriteActor_DrawSprite(summaryScreen->unk_41C[11], TRUE);
+    sub_0208F7A4(summaryScreen);
 
-    if (param0->monData.type1 != param0->monData.type2) {
-        SpriteActor_DrawSprite(param0->unk_41C[12], 1);
+    if (summaryScreen->monData.type1 != summaryScreen->monData.type2) {
+        SpriteActor_DrawSprite(summaryScreen->unk_41C[12], TRUE);
     }
 
-    CellActor_SetDrawFlag(param0->unk_41C[9], 1);
+    CellActor_SetDrawFlag(summaryScreen->unk_41C[9], TRUE);
 }
 
-static u8 sub_0208E208(PokemonSummaryScreen *param0)
+static u8 sub_0208E208(PokemonSummaryScreen *summaryScreen)
 {
-    switch (param0->subscreen) {
+    switch (summaryScreen->subscreen) {
     case 0:
-        Bg_ScheduleScroll(param0->bgConfig, 2, 0, 136);
-        Bg_ScheduleScroll(param0->bgConfig, 2, 3, 256);
-        sub_0208E498(param0, 0xffffffff);
-        sub_0208EE10(param0, 0);
-        Window_ClearAndScheduleCopyToVRAM(&param0->staticWindows[33]);
-        Window_ClearAndScheduleCopyToVRAM(&param0->staticWindows[6]);
-        Window_ClearAndScheduleCopyToVRAM(&param0->staticWindows[32]);
-        Window_ClearAndScheduleCopyToVRAM(&param0->staticWindows[35]);
-        sub_0208F6DC(param0, NULL);
-        param0->cursor = 0;
-        param0->subscreen = 1;
+        Bg_ScheduleScroll(summaryScreen->bgConfig, BG_LAYER_MAIN_2, 0, 136);
+        Bg_ScheduleScroll(summaryScreen->bgConfig, BG_LAYER_MAIN_2, 3, 256);
+        sub_0208E498(summaryScreen, 0xffffffff);
+        sub_0208EE10(summaryScreen, 0);
+        Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[33]);
+        Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[6]);
+        Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[32]);
+        Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[35]);
+        sub_0208F6DC(summaryScreen, NULL);
+        summaryScreen->cursor = 0;
+        summaryScreen->subscreen = 1;
         break;
     case 1: {
-        int v0 = Bg_GetXOffset(param0->bgConfig, 2);
+        int v0 = Bg_GetXOffset(summaryScreen->bgConfig, BG_LAYER_MAIN_2);
 
         if (v0 <= 64) {
-            Bg_ScheduleScroll(param0->bgConfig, 2, 0, 0);
-            param0->subscreen = 2;
+            Bg_ScheduleScroll(summaryScreen->bgConfig, BG_LAYER_MAIN_2, 0, 0);
+            summaryScreen->subscreen = 2;
         } else {
-            Bg_ScheduleScroll(param0->bgConfig, 2, 2, 64);
+            Bg_ScheduleScroll(summaryScreen->bgConfig, BG_LAYER_MAIN_2, 2, 64);
         }
     } break;
     case 2:
-        sub_02091420(param0);
+        sub_02091420(summaryScreen);
 
-        if (param0->data->mode != 1) {
-            sub_02090064(param0, 152);
-            sub_0208F6DC(param0, &param0->staticWindows[35]);
+        if (summaryScreen->data->mode != 1) {
+            sub_02090064(summaryScreen, 152);
+            sub_0208F6DC(summaryScreen, &summaryScreen->staticWindows[35]);
         }
 
-        sub_0208DFF4(param0);
-        sub_0208F7A4(param0);
-        sub_0208F844(param0);
-        CellActor_SetDrawFlag(param0->unk_41C[9], 1);
+        sub_0208DFF4(summaryScreen);
+        sub_0208F7A4(summaryScreen);
+        sub_0208F844(summaryScreen);
+        CellActor_SetDrawFlag(summaryScreen->unk_41C[9], TRUE);
 
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static u8 sub_0208E308(PokemonSummaryScreen *param0)
+static u8 sub_0208E308(PokemonSummaryScreen *summaryScreen)
 {
-    switch (param0->subscreen) {
+    switch (summaryScreen->subscreen) {
     case 0:
-        sub_0208F964(param0);
-        SpriteActor_DrawSprite(param0->unk_41C[19], 0);
-        sub_0208E498(param0, 0xffffffff);
-        CellActor_SetDrawFlag(param0->unk_41C[9], 0);
-        Window_ClearAndScheduleCopyToVRAM(&param0->staticWindows[35]);
-        sub_0208F6DC(param0, NULL);
-        sub_0209145C(param0);
-        sub_020915F4(param0);
-        param0->subscreen = 1;
+        sub_0208F964(summaryScreen);
+        SpriteActor_DrawSprite(summaryScreen->unk_41C[19], FALSE);
+        sub_0208E498(summaryScreen, 0xffffffff);
+        CellActor_SetDrawFlag(summaryScreen->unk_41C[9], FALSE);
+        Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[35]);
+        sub_0208F6DC(summaryScreen, NULL);
+        sub_0209145C(summaryScreen);
+        sub_020915F4(summaryScreen);
+        summaryScreen->subscreen = 1;
         break;
     case 1: {
-        int v0 = Bg_GetXOffset(param0->bgConfig, 2);
+        int v0 = Bg_GetXOffset(summaryScreen->bgConfig, BG_LAYER_MAIN_2);
 
         if (v0 >= 128) {
-            Bg_ScheduleScroll(param0->bgConfig, 2, 0, 136);
-            param0->subscreen = 2;
+            Bg_ScheduleScroll(summaryScreen->bgConfig, BG_LAYER_MAIN_2, 0, 136);
+            summaryScreen->subscreen = 2;
         } else {
-            Bg_ScheduleScroll(param0->bgConfig, 2, 1, 64);
+            Bg_ScheduleScroll(summaryScreen->bgConfig, BG_LAYER_MAIN_2, 1, 64);
         }
     } break;
     case 2:
-        Window_ScheduleCopyToVRAM(&param0->staticWindows[33]);
-        Window_ScheduleCopyToVRAM(&param0->staticWindows[6]);
-        Window_ScheduleCopyToVRAM(&param0->staticWindows[32]);
-        sub_02090064(param0, 158);
-        sub_0208EE10(param0, 1);
-        sub_0208F6DC(param0, &param0->staticWindows[35]);
-        return 1;
+        Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[33]);
+        Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[6]);
+        Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[32]);
+        sub_02090064(summaryScreen, 158);
+        sub_0208EE10(summaryScreen, 1);
+        sub_0208F6DC(summaryScreen, &summaryScreen->staticWindows[35]);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
+}
+// ravetodo draw contest effect tiles or something?
+static void sub_0208E3DC(PokemonSummaryScreen *summaryScreen, u16 param1, u8 param2)
+{
+    Bg_FillTilemapRect(summaryScreen->bgConfig, BG_LAYER_MAIN_2, param1, 2 + param2 * 2, (32 + 15), 1, 1, 16);
+    Bg_FillTilemapRect(summaryScreen->bgConfig, BG_LAYER_MAIN_2, param1 + 1, 2 + param2 * 2 + 1, (32 + 15), 1, 1, 16);
+    Bg_FillTilemapRect(summaryScreen->bgConfig, BG_LAYER_MAIN_2, param1 + 32, 2 + param2 * 2, (32 + 15) + 1, 1, 1, 16);
+    Bg_FillTilemapRect(summaryScreen->bgConfig, BG_LAYER_MAIN_2, param1 + 33, 2 + param2 * 2 + 1, (32 + 15) + 1, 1, 1, 16);
 }
 
-static void sub_0208E3DC(PokemonSummaryScreen *param0, u16 param1, u8 param2)
+static void sub_0208E46C(PokemonSummaryScreen *summaryScreen)
 {
-    Bg_FillTilemapRect(param0->bgConfig, 2, param1, 2 + param2 * 2, (32 + 15), 1, 1, 16);
-    Bg_FillTilemapRect(param0->bgConfig, 2, param1 + 1, 2 + param2 * 2 + 1, (32 + 15), 1, 1, 16);
-    Bg_FillTilemapRect(param0->bgConfig, 2, param1 + 32, 2 + param2 * 2, (32 + 15) + 1, 1, 1, 16);
-    Bg_FillTilemapRect(param0->bgConfig, 2, param1 + 33, 2 + param2 * 2 + 1, (32 + 15) + 1, 1, 1, 16);
-}
-
-static void sub_0208E46C(PokemonSummaryScreen *param0)
-{
+    // ravetodo maybe this is each heart?
     u16 v0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        sub_0208E3DC(param0, 0x12e, v0);
+        sub_0208E3DC(summaryScreen, 0x12e, v0);
     }
 
-    Bg_ScheduleTilemapTransfer(param0->bgConfig, 2);
+    Bg_ScheduleTilemapTransfer(summaryScreen->bgConfig, BG_LAYER_MAIN_2);
 }
 
-static void sub_0208E498(PokemonSummaryScreen *param0, u32 param1)
+static void sub_0208E498(PokemonSummaryScreen *summaryScreen, u32 param1)
 {
     u32 v0;
     u16 v1;
     s8 v2;
 
-    sub_0208E46C(param0);
+    sub_0208E46C(summaryScreen);
 
     if (param1 != 0xffffffff) {
         v0 = MoveTable_LoadParam(param1, MOVEATTRIBUTE_CONTEST_EFFECT);
-        v2 = sub_02095734(v0) / 10;
+        v2 = sub_02095734(v0) / 10; // ravetodo number of hearts?
 
         for (v1 = 0; v1 < v2; v1++) {
-            sub_0208E3DC(param0, 0x12c, v1);
+            sub_0208E3DC(summaryScreen, 0x12c, v1);
         }
     }
 
-    Bg_ScheduleTilemapTransfer(param0->bgConfig, 2);
+    Bg_ScheduleTilemapTransfer(summaryScreen->bgConfig, BG_LAYER_MAIN_2);
 }
 
-static void sub_0208E4EC(PokemonSummaryScreen *param0)
+static void sub_0208E4EC(PokemonSummaryScreen *summaryScreen)
 {
-    if (param0->page == 3) {
-        sub_020913D8(param0);
+    if (summaryScreen->page == 3) {
+        sub_020913D8(summaryScreen);
     } else {
-        sub_020915F4(param0);
+        sub_020915F4(summaryScreen);
     }
 }
 
-static void sub_0208E508(PokemonSummaryScreen *param0)
+static void sub_0208E508(PokemonSummaryScreen *summaryScreen)
 {
-    sub_02091420(param0);
-    sub_0208DFF4(param0);
-    sub_0208F7A4(param0);
+    sub_02091420(summaryScreen);
+    sub_0208DFF4(summaryScreen);
+    sub_0208F7A4(summaryScreen);
 
-    if (param0->page == 3) {
-        sub_0208F964(param0);
-        SpriteActor_DrawSprite(param0->unk_41C[11], 1);
+    if (summaryScreen->page == 3) {
+        sub_0208F964(summaryScreen);
+        SpriteActor_DrawSprite(summaryScreen->unk_41C[11], TRUE);
 
-        if (param0->monData.type1 != param0->monData.type2) {
-            SpriteActor_DrawSprite(param0->unk_41C[12], 1);
+        if (summaryScreen->monData.type1 != summaryScreen->monData.type2) {
+            SpriteActor_DrawSprite(summaryScreen->unk_41C[12], TRUE);
         }
 
-        Bg_ScheduleScroll(param0->bgConfig, 2, 3, 0);
+        Bg_ScheduleScroll(summaryScreen->bgConfig, BG_LAYER_MAIN_2, 3, 0);
     } else {
-        sub_0208F844(param0);
-        Bg_ScheduleScroll(param0->bgConfig, 2, 3, 256);
+        sub_0208F844(summaryScreen);
+        Bg_ScheduleScroll(summaryScreen->bgConfig, BG_LAYER_MAIN_2, 3, 256);
     }
 }
 
-static u8 sub_0208E57C(PokemonSummaryScreen *param0)
+static u8 sub_0208E57C(PokemonSummaryScreen *summaryScreen)
 {
-    switch (param0->subscreen) {
+    switch (summaryScreen->subscreen) {
     case 0:
-        Bg_ScheduleScroll(param0->bgConfig, 2, 0, 256);
-        Bg_ScheduleScroll(param0->bgConfig, 2, 3, 0);
+        Bg_ScheduleScroll(summaryScreen->bgConfig, BG_LAYER_MAIN_2, 0, 256);
+        Bg_ScheduleScroll(summaryScreen->bgConfig, BG_LAYER_MAIN_2, 3, 0);
 
-        sub_0208EE10(param0, 0);
-        Window_ClearAndScheduleCopyToVRAM(&param0->staticWindows[6]);
-        Window_ClearAndScheduleCopyToVRAM(&param0->staticWindows[32]);
-        Window_ClearAndScheduleCopyToVRAM(&param0->staticWindows[30]);
-        Window_ClearAndScheduleCopyToVRAM(&param0->staticWindows[35]);
-        Window_ClearAndScheduleCopyToVRAM(&param0->extraWindows[0]);
-        sub_0208F6DC(param0, NULL);
+        sub_0208EE10(summaryScreen, 0);
+        Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[6]);
+        Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[32]);
+        Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[30]);
+        Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[35]);
+        Window_ClearAndScheduleCopyToVRAM(&summaryScreen->extraWindows[0]);
+        sub_0208F6DC(summaryScreen, NULL);
 
-        param0->ribbonPos = 0;
-        param0->ribbonState = 0;
-        param0->subscreen = 1;
+        summaryScreen->ribbonPos = 0;
+        summaryScreen->ribbonState = 0;
+        summaryScreen->subscreen = 1;
         break;
     case 1: {
-        int v0 = Bg_GetYOffset(param0->bgConfig, 2);
+        int v0 = Bg_GetYOffset(summaryScreen->bgConfig, BG_LAYER_MAIN_2);
 
         if (v0 >= 48) {
-            Bg_ScheduleScroll(param0->bgConfig, 2, 3, 56);
-            param0->subscreen = 2;
+            Bg_ScheduleScroll(summaryScreen->bgConfig, BG_LAYER_MAIN_2, 3, 56);
+            summaryScreen->subscreen = 2;
         } else {
-            Bg_ScheduleScroll(param0->bgConfig, 2, 4, 16);
+            Bg_ScheduleScroll(summaryScreen->bgConfig, BG_LAYER_MAIN_2, 4, 16);
         }
     } break;
     case 2:
-        sub_02090064(param0, 181);
-        sub_0208F6DC(param0, &param0->staticWindows[35]);
-        CellActor_SetDrawFlag(param0->unk_41C[67], 1);
-        CellActor_SetDrawFlag(param0->unk_41C[70], 1);
-        CellActor_SetDrawFlag(param0->unk_41C[63], 0);
-        CellActor_SetDrawFlag(param0->unk_41C[64], 0);
-        CellActor_SetDrawFlag(param0->unk_41C[65], 0);
-        CellActor_SetDrawFlag(param0->unk_41C[66], 0);
-        sub_0208E794(param0, 0);
+        sub_02090064(summaryScreen, 181);
+        sub_0208F6DC(summaryScreen, &summaryScreen->staticWindows[35]);
+        CellActor_SetDrawFlag(summaryScreen->unk_41C[67], 1);
+        CellActor_SetDrawFlag(summaryScreen->unk_41C[70], 1);
+        CellActor_SetDrawFlag(summaryScreen->unk_41C[63], 0);
+        CellActor_SetDrawFlag(summaryScreen->unk_41C[64], 0);
+        CellActor_SetDrawFlag(summaryScreen->unk_41C[65], 0);
+        CellActor_SetDrawFlag(summaryScreen->unk_41C[66], 0);
+        sub_0208E794(summaryScreen, 0);
 
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static u8 sub_0208E6A8(PokemonSummaryScreen *param0)
+static u8 sub_0208E6A8(PokemonSummaryScreen *summaryScreen)
 {
-    switch (param0->subscreen) {
+    switch (summaryScreen->subscreen) {
     case 0:
-        param0->ribbonPos = 0;
-        param0->ribbonState = 0;
-        Window_ClearAndScheduleCopyToVRAM(&param0->extraWindows[1]);
-        Window_ClearAndScheduleCopyToVRAM(&param0->extraWindows[2]);
-        Window_ClearAndScheduleCopyToVRAM(&param0->extraWindows[3]);
-        Window_ClearAndScheduleCopyToVRAM(&param0->staticWindows[35]);
-        sub_0208F6DC(param0, NULL);
-        sub_0208FA04(param0);
-        param0->subscreen = 1;
+        summaryScreen->ribbonPos = 0;
+        summaryScreen->ribbonState = 0;
+        Window_ClearAndScheduleCopyToVRAM(&summaryScreen->extraWindows[1]);
+        Window_ClearAndScheduleCopyToVRAM(&summaryScreen->extraWindows[2]);
+        Window_ClearAndScheduleCopyToVRAM(&summaryScreen->extraWindows[3]);
+        Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[35]);
+        sub_0208F6DC(summaryScreen, NULL);
+        sub_0208FA04(summaryScreen);
+        summaryScreen->subscreen = 1;
         break;
     case 1: {
-        int v0 = Bg_GetYOffset(param0->bgConfig, 2);
+        int v0 = Bg_GetYOffset(summaryScreen->bgConfig, BG_LAYER_MAIN_2);
 
         if (v0 <= 8) {
-            Bg_ScheduleScroll(param0->bgConfig, 2, 3, 0);
-            param0->subscreen = 2;
+            Bg_ScheduleScroll(summaryScreen->bgConfig, BG_LAYER_MAIN_2, 3, 0);
+            summaryScreen->subscreen = 2;
         } else {
-            Bg_ScheduleScroll(param0->bgConfig, 2, 5, 16);
+            Bg_ScheduleScroll(summaryScreen->bgConfig, BG_LAYER_MAIN_2, 5, 16);
         }
     } break;
     case 2:
-        Window_ScheduleCopyToVRAM(&param0->staticWindows[6]);
-        Window_ScheduleCopyToVRAM(&param0->staticWindows[32]);
-        Window_ScheduleCopyToVRAM(&param0->staticWindows[30]);
-        Window_ScheduleCopyToVRAM(&param0->staticWindows[35]);
-        Window_ScheduleCopyToVRAM(&param0->extraWindows[0]);
-        sub_02090064(param0, 180);
-        sub_0208EE10(param0, 1);
-        sub_0208F6DC(param0, &param0->staticWindows[35]);
+        Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[6]);
+        Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[32]);
+        Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[30]);
+        Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[35]);
+        Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[0]);
+        sub_02090064(summaryScreen, 180);
+        sub_0208EE10(summaryScreen, 1);
+        sub_0208F6DC(summaryScreen, &summaryScreen->staticWindows[35]);
 
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
-
-static void sub_0208E794(PokemonSummaryScreen *param0, s8 param1)
+// ravetodo scroll ribbon pos/handle ribbon input or something
+static void sub_0208E794(PokemonSummaryScreen *summaryScreen, s8 delta)
 {
     u8 v0;
     u8 v1;
 
-    v0 = param0->ribbonPos;
-    v1 = param0->ribbonState;
+    v0 = summaryScreen->ribbonPos;
+    v1 = summaryScreen->ribbonState;
 
-    if (param1 == 1) {
-        if ((param0->ribbonPos & 3) == 3) {
+    if (delta == 1) {
+        if ((summaryScreen->ribbonPos & 3) == 3) {
             return;
         }
 
-        if ((param0->ribbonState * 4 + param0->ribbonPos + 1) < param0->ribbonMax) {
-            param0->ribbonPos += 1;
+        if ((summaryScreen->ribbonState * 4 + summaryScreen->ribbonPos + 1) < summaryScreen->ribbonMax) {
+            summaryScreen->ribbonPos += 1;
         }
-    } else if (param1 == -1) {
-        if ((param0->ribbonPos & 3) == 0) {
+    } else if (delta == -1) {
+        if ((summaryScreen->ribbonPos & 3) == 0) {
             return;
         }
 
-        param0->ribbonPos -= 1;
-    } else if (param1 == 4) {
-        if (param0->ribbonPos < 4) {
-            if ((param0->ribbonState * 4 + param0->ribbonPos + 4) >= param0->ribbonMax) {
-                if ((param0->ribbonMax > 4) && ((param0->ribbonMax % 4) != 0)) {
-                    param0->ribbonPos = param0->ribbonMax % 4 + 3;
+        summaryScreen->ribbonPos -= 1;
+    } else if (delta == 4) { // ravetodo ribbons per row const
+        if (summaryScreen->ribbonPos < 4) {
+            if ((summaryScreen->ribbonState * 4 + summaryScreen->ribbonPos + 4) >= summaryScreen->ribbonMax) {
+                if ((summaryScreen->ribbonMax > 4) && ((summaryScreen->ribbonMax % 4) != 0)) {
+                    summaryScreen->ribbonPos = summaryScreen->ribbonMax % 4 + 3;
                 }
             } else {
-                param0->ribbonPos += 4;
+                summaryScreen->ribbonPos += 4;
             }
         } else {
-            if ((param0->ribbonState * 4 + 8) < param0->ribbonMax) {
-                param0->ribbonState++;
+            if ((summaryScreen->ribbonState * 4 + 8) < summaryScreen->ribbonMax) {
+                summaryScreen->ribbonState++;
 
-                if ((param0->ribbonState * 4 + param0->ribbonPos) >= param0->ribbonMax) {
-                    param0->ribbonPos = param0->ribbonMax % 4 + 3;
+                if ((summaryScreen->ribbonState * 4 + summaryScreen->ribbonPos) >= summaryScreen->ribbonMax) {
+                    summaryScreen->ribbonPos = summaryScreen->ribbonMax % 4 + 3;
                 }
             }
         }
-    } else if (param1 == -4) {
-        if (param0->ribbonPos >= 4) {
-            param0->ribbonPos -= 4;
-        } else if (param0->ribbonState != 0) {
-            param0->ribbonState--;
+    } else if (delta == -4) {
+        if (summaryScreen->ribbonPos >= 4) {
+            summaryScreen->ribbonPos -= 4;
+        } else if (summaryScreen->ribbonState != 0) {
+            summaryScreen->ribbonState--;
         }
     }
 
-    if ((v0 != param0->ribbonPos) || (v1 != param0->ribbonState)) {
-        Sound_PlayEffect(1500);
+    if (v0 != summaryScreen->ribbonPos || v1 != summaryScreen->ribbonState) {
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
-    param0->ribbonNum = PokemonSummary_RibbonAt(param0, param0->ribbonPos);
+    summaryScreen->ribbonNum = PokemonSummary_RibbonAt(summaryScreen, summaryScreen->ribbonPos);
 
-    sub_0208FB00(param0);
+    sub_0208FB00(summaryScreen);
 
-    if (v1 != param0->ribbonState) {
-        sub_0208FAA4(param0);
+    if (v1 != summaryScreen->ribbonState) {
+        sub_0208FAA4(summaryScreen);
     }
 
-    sub_020910E4(param0);
-    sub_02090F84(param0);
+    sub_020910E4(summaryScreen);
+    sub_02090F84(summaryScreen);
 
-    if (param0->ribbonState != 0) {
-        CellActor_SetDrawFlag(param0->unk_41C[68], 1);
+    if (summaryScreen->ribbonState != 0) {
+        CellActor_SetDrawFlag(summaryScreen->unk_41C[68], TRUE);
     } else {
-        CellActor_SetDrawFlag(param0->unk_41C[68], 0);
+        CellActor_SetDrawFlag(summaryScreen->unk_41C[68], FALSE);
     }
 
-    if ((param0->ribbonState * 4 + 8) < param0->ribbonMax) {
-        CellActor_SetDrawFlag(param0->unk_41C[69], 1);
+    if ((summaryScreen->ribbonState * 4 + 8) < summaryScreen->ribbonMax) {
+        CellActor_SetDrawFlag(summaryScreen->unk_41C[69], TRUE);
     } else {
-        CellActor_SetDrawFlag(param0->unk_41C[69], 0);
+        CellActor_SetDrawFlag(summaryScreen->unk_41C[69], FALSE);
     }
 }
 
-u8 PokemonSummary_RibbonAt(PokemonSummaryScreen *param0, u8 param1)
+u8 PokemonSummary_RibbonAt(PokemonSummaryScreen *summaryScreen, u8 param1)
 {
     u16 v0;
     u8 v1, v2;
 
-    v1 = param1 + param0->ribbonState * 4;
+    v1 = param1 + summaryScreen->ribbonState * 4;
     v2 = 0;
 
     for (v0 = 0; v0 < 80; v0++) {
-        if ((param0->monData.ribbons[v0 / 32] & (1 << (v0 & 0x1f))) != 0) {
+        if ((summaryScreen->monData.ribbons[v0 / 32] & (1 << (v0 & 0x1f))) != 0) {
             if (v1 == v2) {
                 return (u8)v0;
             }
@@ -2141,18 +2135,18 @@ u8 PokemonSummary_RibbonAt(PokemonSummaryScreen *param0, u8 param1)
     return 0;
 }
 
-static int sub_0208E958(PokemonSummaryScreen *param0)
+static int sub_0208E958(PokemonSummaryScreen *summaryScreen)
 {
-    if (param0->monData.sheen == 255) {
-        Font_LoadScreenIndicatorsPalette(0, 14 * 32, 19);
-        LoadMessageBoxGraphics(param0->bgConfig, 1, (1024 - (18 + 12)), 13, Options_Frame(param0->data->options), 19);
-        sub_02091610(param0, 0xff);
-        param0->data->returnMode = 1;
+    if (summaryScreen->monData.sheen == 255) {
+        Font_LoadScreenIndicatorsPalette(0, 14 * 32, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+        LoadMessageBoxGraphics(summaryScreen->bgConfig, BG_LAYER_MAIN_1, (1024 - (18 + 12)), 13, Options_Frame(summaryScreen->data->options), HEAP_ID_POKEMON_SUMMARY_SCREEN);
+        sub_02091610(summaryScreen, 0xff);
+        summaryScreen->data->returnMode = 1;
 
         return 17;
     }
 
-    param0->data->returnMode = 0;
+    summaryScreen->data->returnMode = 0;
     return 18;
 }
 
@@ -2162,7 +2156,7 @@ void PokemonSummary_SetPlayerProfile(PokemonSummary *summary, const TrainerInfo 
     summary->OTID = TrainerInfo_ID(trainerInfo);
     summary->OTGender = (u8)TrainerInfo_Gender(trainerInfo);
 }
-
+// ravetodo consts
 u32 PokemonSummary_StatusIconChar(void)
 {
     return 64;
@@ -2183,21 +2177,21 @@ u32 PokemonSummary_StatusIconAnim(void)
     return 62;
 }
 
-u32 PokemonSummary_StatusIconAnimIdx(Pokemon *param0)
+u32 PokemonSummary_StatusIconAnimIdx(Pokemon *mon)
 {
-    u32 v0 = Pokemon_GetValue(param0, MON_DATA_STATUS_CONDITION, NULL);
+    u32 statusCondition = Pokemon_GetValue(mon, MON_DATA_STATUS_CONDITION, NULL);
 
-    if (Pokemon_GetValue(param0, MON_DATA_CURRENT_HP, NULL) == 0) {
+    if (Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL) == 0) {
         return 6;
-    } else if ((v0 & (0x8 | 0x80)) != 0) {
+    } else if ((statusCondition & (0x8 | 0x80)) != 0) {
         return 4;
-    } else if ((v0 & 0x7) != 0) {
+    } else if ((statusCondition & 0x7) != 0) {
         return 3;
-    } else if ((v0 & 0x10) != 0) {
+    } else if ((statusCondition & 0x10) != 0) {
         return 5;
-    } else if ((v0 & 0x20) != 0) {
+    } else if ((statusCondition & 0x20) != 0) {
         return 2;
-    } else if ((v0 & 0x40) != 0) {
+    } else if ((statusCondition & 0x40) != 0) {
         return 1;
     }
 

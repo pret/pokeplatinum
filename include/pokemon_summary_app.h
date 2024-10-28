@@ -167,15 +167,15 @@ typedef struct PokemonSummaryScreen {
 
 BOOL PokemonSummary_ShowContestData(SaveData *saveData);
 void PokemonSummary_FlagVisiblePages(PokemonSummary *summary, const u8 *param1);
-u8 PokemonSummary_PageIsVisble(PokemonSummaryScreen *param0, u32 param1);
-u8 PokemonSummary_CountVisiblePages(PokemonSummaryScreen *param0);
-void *PokemonSummary_MonData(PokemonSummaryScreen *param0);
-u8 PokemonSummary_RibbonAt(PokemonSummaryScreen *param0, u8 param1);
+u8 PokemonSummary_PageIsVisble(PokemonSummaryScreen *summaryScreen, u32 page);
+u8 PokemonSummary_CountVisiblePages(PokemonSummaryScreen *summaryScreen);
+void *PokemonSummary_MonData(PokemonSummaryScreen *summaryScreen);
+u8 PokemonSummary_RibbonAt(PokemonSummaryScreen *summaryScreen, u8 param1);
 void PokemonSummary_SetPlayerProfile(PokemonSummary *summary, const TrainerInfo *trainerInfo);
 u32 PokemonSummary_StatusIconChar(void);
 u32 PokemonSummary_StatusIconPltt(void);
 u32 PokemonSummary_StatusIconCell(void);
 u32 PokemonSummary_StatusIconAnim(void);
-u32 PokemonSummary_StatusIconAnimIdx(Pokemon *param0);
+u32 PokemonSummary_StatusIconAnimIdx(Pokemon *mon);
 
 #endif // POKEPLATINUM_UNK_0208C324_H

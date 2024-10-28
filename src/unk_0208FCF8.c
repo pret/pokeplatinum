@@ -297,10 +297,10 @@ void sub_0208FFE0(PokemonSummaryScreen *param0)
     Window_ScheduleCopyToVRAM(&param0->staticWindows[32]);
 }
 
-void sub_02090064(PokemonSummaryScreen *param0, u32 param1)
+void sub_02090064(PokemonSummaryScreen *param0, u32 entryID)
 {
     Window_FillTilemap(&param0->staticWindows[35], 0);
-    sub_02090158(param0, 35, param1, TEXT_COLOR(15, 14, 0), 0);
+    sub_02090158(param0, 35, entryID, TEXT_COLOR(15, 14, 0), 0);
     Window_ScheduleCopyToVRAM(&param0->staticWindows[35]);
 }
 
@@ -338,13 +338,13 @@ static void sub_020900D8(PokemonSummaryScreen *param0, Window *param1, TextColor
     Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->strbuf, v2, 0, TEXT_SPEED_NO_TRANSFER, param2, NULL);
 }
 
-static void sub_02090158(PokemonSummaryScreen *param0, u32 param1, u32 param2, TextColor param3, u32 param4)
+static void sub_02090158(PokemonSummaryScreen *param0, u32 param1, u32 entryID, TextColor param3, u32 param4)
 {
     u8 v0;
     u8 v1;
     u8 v2;
 
-    MessageLoader_GetStrbuf(param0->msgLoader, param2, param0->strbuf);
+    MessageLoader_GetStrbuf(param0->msgLoader, entryID, param0->strbuf);
     sub_020900D8(param0, &param0->staticWindows[param1], param3, param4);
 }
 
