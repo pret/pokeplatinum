@@ -1494,7 +1494,7 @@ static BOOL FieldMenu_Options(TaskManager *taskMan)
     fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
 
-    menu->unk_25C = sub_0203D8EC(fieldSystem);
+    menu->unk_25C = FieldSystem_OpenOptionsMenu(fieldSystem);
     menu->unk_22C = sub_0203C050;
 
     return FALSE;

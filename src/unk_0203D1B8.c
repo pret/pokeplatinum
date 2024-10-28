@@ -763,31 +763,27 @@ void *sub_0203D8AC(FieldSystem *fieldSystem)
     return v0;
 }
 
-static void sub_0203D8DC(FieldSystem *fieldSystem, Options *param1)
+static void OpenOptionsMenu(FieldSystem *fieldSystem, Options *options)
 {
     FS_EXTERN_OVERLAY(options_menu);
 
-    static const OverlayManagerTemplate v0 = {
+    static const OverlayManagerTemplate template = {
         OptionsMenu_Init,
         OptionsMenu_Main,
         OptionsMenu_Exit,
         FS_OVERLAY_ID(options_menu)
     };
 
-    sub_0203CD84(fieldSystem, &v0, param1);
+    sub_0203CD84(fieldSystem, &template, options);
 }
 
-void *sub_0203D8EC(FieldSystem *fieldSystem)
+void *FieldSystem_OpenOptionsMenu(FieldSystem *fieldSystem)
 {
-    OptionsMenu *v0;
-    Options *v1;
+    OptionsMenu *optionsMenu = Heap_AllocFromHeapAtEnd(11, sizeof(OptionsMenu));
+    Options *options = SaveData_Options(FieldSystem_SaveData(fieldSystem));
+    OpenOptionsMenu(fieldSystem, options);
 
-    v0 = Heap_AllocFromHeapAtEnd(11, sizeof(OptionsMenu));
-    v1 = SaveData_Options(FieldSystem_SaveData(fieldSystem));
-
-    sub_0203D8DC(fieldSystem, v1);
-
-    return v0;
+    return optionsMenu;
 }
 
 extern const OverlayManagerTemplate Unk_020F64B0;
