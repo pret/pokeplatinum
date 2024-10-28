@@ -4,7 +4,6 @@
 #include "struct_decls/struct_02070950_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/choose_starter_data.h"
-#include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_0203D8AC.h"
 #include "struct_defs/struct_0203D9B8.h"
 #include "struct_defs/struct_0203E234.h"
@@ -23,6 +22,7 @@
 
 #include "field_task.h"
 #include "pokemon.h"
+#include "pokemon_summary_app.h"
 #include "savedata.h"
 
 void sub_0203D1D4(FieldSystem *fieldSystem, BattleParams *param1);

@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_020916B4_H
 #define POKEPLATINUM_UNK_020916B4_H
 
-#include "struct_defs/pokemon_summary_app.h"
+#include "pokemon_summary_app.h"
 
 void sub_020916B4(PokemonSummaryApp *param0);
 void sub_02091750(PokemonSummaryApp *param0);

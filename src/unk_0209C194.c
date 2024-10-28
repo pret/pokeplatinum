@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_02098C44.h"
 #include "struct_defs/struct_0209C194.h"
 #include "struct_defs/struct_0209C194_1.h"
@@ -18,6 +17,7 @@
 #include "game_records.h"
 #include "heap.h"
 #include "journal.h"
+#include "pokemon_summary_app.h"
 #include "save_player.h"
 #include "unk_020366A0.h"
 #include "unk_0203D1B8.h"

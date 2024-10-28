@@ -1,11 +1,11 @@
 #ifndef POKEPLATINUM_STRUCT_0209BBA4_H
 #define POKEPLATINUM_STRUCT_0209BBA4_H
 
-#include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_02098C44.h"
 
 #include "field/field_system_decl.h"
 
+#include "pokemon_summary_app.h"
 #include "savedata.h"
 
 typedef struct {

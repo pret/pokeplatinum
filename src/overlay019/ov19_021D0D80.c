@@ -11,7 +11,6 @@
 #include "struct_decls/struct_0207CB08_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_02042434.h"
 #include "struct_defs/struct_0208737C.h"
 

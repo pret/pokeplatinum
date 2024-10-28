@@ -1,11 +1,10 @@
-#include "struct_defs/pokemon_summary_app.h"
+#include "pokemon_summary_app.h"
 
 #include <nitro.h>
 #include <string.h>
 
 #include "constants/pokemon.h"
 
-#include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "bg_window.h"

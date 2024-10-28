@@ -9,7 +9,6 @@
 #include "struct_decls/struct_0202D060_decl.h"
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
-#include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_0206BC70.h"
 #include "struct_defs/struct_02098C44.h"
 

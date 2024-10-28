@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/pokemon_summary_app.h"
-
 #include "overlay007/struct_ov7_0224F2EC.h"
 #include "overlay007/struct_ov7_0224F358.h"
 #include "overlay104/struct_ov104_022412F4.h"

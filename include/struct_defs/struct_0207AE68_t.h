@@ -6,7 +6,6 @@
 #include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_0207C8C4.h"
 
@@ -19,6 +18,7 @@
 #include "overlay_manager.h"
 #include "palette.h"
 #include "pokemon.h"
+#include "pokemon_summary_app.h"
 #include "poketch_data.h"
 #include "strbuf.h"
 #include "string_template.h"

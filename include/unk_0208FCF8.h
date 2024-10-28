@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_0208FCF8_H
 #define POKEPLATINUM_UNK_0208FCF8_H
 
-#include "struct_defs/pokemon_summary_app.h"
+#include "pokemon_summary_app.h"
 
 void sub_0208FCF8(PokemonSummaryApp *param0);
 void sub_0208FD40(PokemonSummaryApp *param0);

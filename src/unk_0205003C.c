@@ -6,7 +6,6 @@
 
 #include "struct_decls/struct_020304A0_decl.h"
 #include "struct_decls/struct_020305B8_decl.h"
-#include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_02050224.h"
 #include "struct_defs/struct_02098C44.h"

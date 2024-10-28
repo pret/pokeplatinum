@@ -6,7 +6,6 @@
 #include <string.h>
 
 #include "struct_defs/archived_sprite.h"
-#include "struct_defs/pokemon_summary_app.h"
 #include "struct_defs/struct_02091850.h"
 
 #include "overlay115/camera_angle.h"
