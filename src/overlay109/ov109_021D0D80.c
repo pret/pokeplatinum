@@ -453,7 +453,7 @@ int ov109_021D0D80(OverlayManager *param0, int *param1)
     v0->unk_24 = Party_GetFromSavedata(v0->unk_CC->unk_14.unk_08);
     v0->unk_D80 = NARC_ctor(NARC_INDEX_DATA__GURU2, 95);
 
-    sub_0201DBEC(8, 95);
+    VRAMTransferManager_New(8, 95);
     sub_0201E3D8();
     sub_0201E450(4);
     ov109_021D1C28(v0);
@@ -489,7 +489,7 @@ int ov109_021D0D80(OverlayManager *param0, int *param1)
     ov109_021D3584(v0);
     ov109_021D379C(v0);
     ov109_021D3884(v0);
-    sub_0200F174(0, 1, 1, 0x0, 8, 1, 95);
+    StartScreenTransition(0, 1, 1, 0x0, 8, 1, 95);
 
     return 1;
 }
@@ -513,7 +513,7 @@ int ov109_021D0EB4(OverlayManager *param0, int *param1)
     ov109_021D1C68(v0);
 
     SetMainCallback(NULL, NULL);
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
     NARC_dtor(v0->unk_D80);
     OverlayManager_FreeData(param0);
     Heap_Destroy(95);
@@ -560,7 +560,7 @@ static int ov109_021D0F78(UnkStruct_ov109_021D0F70 *param0)
 
 static int ov109_021D0F8C(UnkStruct_ov109_021D0F70 *param0)
 {
-    if (ScreenWipe_Done()) {
+    if (IsScreenTransitionDone()) {
         if (CommSys_CurNetId() == 0) {
             param0->unk_00 = 2;
         } else {
@@ -1466,7 +1466,7 @@ static int ov109_021D1B8C(UnkStruct_ov109_021D0F70 *param0)
 
 static int ov109_021D1BA4(UnkStruct_ov109_021D0F70 *param0)
 {
-    sub_0200F174(2, 0, 0, 0x0, 8, 1, 95);
+    StartScreenTransition(2, 0, 0, 0x0, 8, 1, 95);
 
     if (param0->unk_1C != sub_020041FC()) {
         sub_02004550(4, param0->unk_1C, 1);
@@ -1478,7 +1478,7 @@ static int ov109_021D1BA4(UnkStruct_ov109_021D0F70 *param0)
 
 static int ov109_021D1BE4(UnkStruct_ov109_021D0F70 *param0)
 {
-    if (ScreenWipe_Done()) {
+    if (IsScreenTransitionDone()) {
         param0->unk_00 = 53;
         return 1;
     }
@@ -1553,7 +1553,7 @@ static void ov109_021D1C00(void *param0)
     UnkStruct_ov109_021D0F70 *v0 = param0;
 
     sub_0201DCAC();
-    sub_0200C800();
+    OAMManager_ApplyAndResetBuffers();
     PaletteData_CommitFadedBuffers(v0->unk_D9C);
     Bg_RunScheduledUpdates(v0->unk_D84);
 }

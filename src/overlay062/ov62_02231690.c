@@ -2034,7 +2034,7 @@ static void ov62_02233798(SysTask *param0, void *param1)
 
     sub_02008A94(v0->unk_14.unk_50);
     sub_0200C7EC(v0->unk_14.unk_08);
-    sub_0200C800();
+    OAMManager_ApplyAndResetBuffers();
 
     v0->unk_14.unk_510 = 0;
 }

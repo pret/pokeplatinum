@@ -1144,11 +1144,11 @@ static int sub_02073438(UnkStruct_02072334 *param0, int param1)
 {
     switch (param0->unk_12) {
     case 0:
-        sub_0200F174(0, param1, param1, 0x0, 6, 1, param0->unk_00);
+        StartScreenTransition(0, param1, param1, 0x0, 6, 1, param0->unk_00);
         param0->unk_12++;
         break;
     case 1:
-        if (!ScreenWipe_Done()) {
+        if (!IsScreenTransitionDone()) {
             break;
         }
 

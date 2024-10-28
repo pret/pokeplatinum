@@ -1261,7 +1261,7 @@ static void ov97_02234B0C(UnkStruct_ov97_02234A2C *param0, BoxPokemonGBA *param1
 
 static void ov97_02234CC4(UnkStruct_ov97_02234A2C *param0, int param1, int param2, int *param3)
 {
-    sub_0200F174(0, param1, param1, 0x0, 6, 1, 78);
+    StartScreenTransition(0, param1, param1, 0x0, 6, 1, 78);
 
     if (param3) {
         *param3 = 23;
@@ -1272,7 +1272,7 @@ static void ov97_02234CC4(UnkStruct_ov97_02234A2C *param0, int param1, int param
 
 static void ov97_02234CF4(UnkStruct_ov97_02234A2C *param0, int param1, int param2, int *param3)
 {
-    sub_0200F174(0, param1, param1, 0x7fff, 6, 1, 78);
+    StartScreenTransition(0, param1, param1, 0x7fff, 6, 1, 78);
 
     if (param3) {
         *param3 = 23;
@@ -2113,7 +2113,7 @@ static int ov97_022356E8(OverlayManager *param0, int *param1)
         }
         break;
     case 23:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             *param1 = v3->unk_24;
         }
         break;

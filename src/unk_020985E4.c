@@ -52,7 +52,7 @@ BOOL sub_0209862C(TaskManager *param0)
         ov5_021D1744(0);
         v1->unk_00++;
     case 1:
-        if (ScreenWipe_Done() == 0) {
+        if (IsScreenTransitionDone() == 0) {
             break;
         }
 

@@ -274,7 +274,7 @@ static void ov5_021DC3B0(SysTask *param0, void *param1)
         return;
     }
 
-    if (ScreenWipe_Done() == 0) {
+    if (IsScreenTransitionDone() == 0) {
         return;
     }
 
@@ -537,7 +537,7 @@ static void ov5_021DC95C(SysTask *param0, void *param1)
         return;
     }
 
-    if (ScreenWipe_Done() == 0) {
+    if (IsScreenTransitionDone() == 0) {
         return;
     }
 

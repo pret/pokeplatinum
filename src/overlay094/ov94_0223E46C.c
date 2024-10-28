@@ -141,7 +141,7 @@ int ov94_0223E46C(UnkStruct_ov94_0223FD4C *param0, int param1)
     ov94_022422B8(&param0->unk_FCC[5], param0->unk_B90, ov94_02242970(param0->unk_B7A.unk_03, param0->unk_B7A.unk_04, 1), 0, 0, TEXT_COLOR(1, 2, 0), 1);
     ov94_0224218C(&param0->unk_10AC[1], param0->unk_BA0, param0->unk_B90, param0->unk_11B0, 0, 0, TEXT_COLOR(1, 2, 0));
 
-    sub_0200F174(3, 1, 1, 0x0, 6, 1, 62);
+    StartScreenTransition(3, 1, 1, 0x0, 6, 1, 62);
     param0->unk_2C = 0;
 
     return 2;
@@ -576,7 +576,7 @@ static int ov94_0223ED94(UnkStruct_ov94_0223FD4C *param0)
         case 6:
         case 7:
             param0->unk_118 = v1;
-            sub_020057A4(1535, 0);
+            Sound_StopEffect(1535, 0);
             ov94_02244234(param0, v1, 1);
             param0->unk_2C = 20;
             break;
@@ -733,7 +733,7 @@ static void ov94_0223EFAC(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_0223F0A8(UnkStruct_ov94_0223FD4C *param0)
 {
-    sub_0200F174(3, 0, 0, 0x0, 6, 1, 62);
+    StartScreenTransition(3, 0, 0, 0x0, 6, 1, 62);
 
     param0->unk_2C = 0;
 

@@ -304,7 +304,7 @@ int ov88_0223B140(OverlayManager *param0, int *param1)
     SetAutorepeat(4, 8);
     ov88_0223C15C();
     ov88_0223C17C(v0->unk_174);
-    sub_0200F174(0, 1, 1, 0x0, 16, 1, 26);
+    StartScreenTransition(0, 1, 1, 0x0, 16, 1, 26);
     ov88_0223C504(v0, v1);
     SetMainCallback(ov88_0223C0E0, v0);
     ov88_0223C63C();
@@ -419,7 +419,7 @@ int ov88_0223B57C(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             *param1 = 1;
 
             ov88_0223B320(v0);
@@ -435,15 +435,15 @@ int ov88_0223B57C(OverlayManager *param0, int *param1)
             ov88_0223CE74(v0);
             break;
         case 2:
-            sub_0200F174(0, 0, 0, 0x0, 8, 1, 26);
+            StartScreenTransition(0, 0, 0, 0x0, 8, 1, 26);
             *param1 = 2;
             break;
         case 3:
-            sub_0200F174(0, 0, 0, 0x0, 8, 1, 26);
+            StartScreenTransition(0, 0, 0, 0x0, 8, 1, 26);
             v0->unk_48 = 4;
             break;
         case 4:
-            if (ScreenWipe_Done()) {
+            if (IsScreenTransitionDone()) {
                 ov88_0223BFD8(v0);
                 ov88_0223BF7C(v0);
                 ov88_0223C44C(v0->unk_174);
@@ -470,18 +470,18 @@ int ov88_0223B57C(OverlayManager *param0, int *param1)
             }
             break;
         case 6:
-            sub_0200F174(0, 1, 1, 0x0, 8, 1, 26);
+            StartScreenTransition(0, 1, 1, 0x0, 8, 1, 26);
             v0->unk_48 = 7;
             break;
         case 7:
-            if (ScreenWipe_Done()) {
+            if (IsScreenTransitionDone()) {
                 v0->unk_48 = 1;
             }
             break;
         }
         break;
     case 2:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             v1 = 1;
         }
         break;

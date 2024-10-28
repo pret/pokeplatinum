@@ -466,7 +466,7 @@ static BOOL sub_0203AC44(TaskManager *taskMan)
         }
         break;
     case FIELD_MENU_STATE_9:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             sub_0203B2EC(menu, fieldSystem);
             Heap_FreeToHeap(menu);
             MapObjectMan_UnpauseAllMovement(fieldSystem->mapObjMan);
@@ -481,7 +481,7 @@ static BOOL sub_0203AC44(TaskManager *taskMan)
         }
         break;
     case FIELD_MENU_STATE_11:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             FieldTask_Change(taskMan, menu->unk_22C, menu->unk_25C);
             Heap_FreeToHeap(menu);
         }
@@ -501,7 +501,7 @@ static BOOL sub_0203AC44(TaskManager *taskMan)
         MapObjectMan_UnpauseAllMovement(fieldSystem->mapObjMan);
         return TRUE;
     case FIELD_MENU_STATE_14:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             menu->state = FIELD_MENU_STATE_SELECT;
         }
         break;
@@ -889,7 +889,7 @@ static void FieldMenu_ApplicationStart(TaskManager *taskMan)
     FieldSystem *fieldSystem;
     FieldMenu *menu;
 
-    if (ScreenWipe_Done() == 0) {
+    if (IsScreenTransitionDone() == 0) {
         return;
     }
 

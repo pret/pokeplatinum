@@ -722,12 +722,12 @@ int ov69_0225C820(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        sub_0200F174(0, 1, 1, 0x0, 6, 1, 105);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, 105);
         ov66_0222E31C(v1->unk_0C, 1);
         (*param1)++;
         break;
     case 1:
-        v2 = ScreenWipe_Done();
+        v2 = IsScreenTransitionDone();
 
         if (v2 == 1) {
             (*param1)++;
@@ -751,11 +751,11 @@ int ov69_0225C820(OverlayManager *param0, int *param1)
         }
         break;
     case 5:
-        sub_0200F174(0, 0, 0, 0x0, 6, 1, 105);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 105);
         (*param1)++;
         break;
     case 6:
-        v2 = ScreenWipe_Done();
+        v2 = IsScreenTransitionDone();
 
         if (v2 == 1) {
             return 1;
@@ -1374,7 +1374,7 @@ static void ov69_0225D318(UnkStruct_ov69_0225D35C *param0, Options *param1, u32 
 {
     param0->unk_1A8 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTIMER, param2);
 
-    sub_0201DBEC(64, param2);
+    VRAMTransferManager_New(64, param2);
     GXLayers_SetBanks(&Unk_ov69_0225F0C0);
 
     ov69_0225D3A4(param0, param1, param2);
@@ -1385,7 +1385,7 @@ static void ov69_0225D318(UnkStruct_ov69_0225D35C *param0, Options *param1, u32 
 static void ov69_0225D35C(UnkStruct_ov69_0225D35C *param0)
 {
     NARC_dtor(param0->unk_1A8);
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
 
     ov69_0225D504(param0);
     ov69_0225D5D8(param0);
@@ -2666,7 +2666,7 @@ static void ov69_0225EAE8(UnkStruct_ov69_0225EB60 *param0, UnkStruct_ov69_0225D3
 {
     int v0, v1;
 
-    sub_020057A4(1473, 0);
+    Sound_StopEffect(1473, 0);
 
     for (v0 = 0; v0 < 12; v0++) {
         CellActor_Delete(param0->unk_3C[v0]);
@@ -2749,7 +2749,7 @@ static void ov69_0225EC08(UnkStruct_ov69_0225EB60 *param0, UnkStruct_ov69_0225E4
             param0->unk_30--;
             ov69_0225EC70(param0, param0->unk_30, param1);
         } else {
-            sub_020057A4(1473, 0);
+            Sound_StopEffect(1473, 0);
             param0->unk_30 = 2;
             param0->unk_32 = 128;
         }

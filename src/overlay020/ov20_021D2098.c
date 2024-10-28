@@ -336,11 +336,11 @@ static void ov20_021D2414(SysTask *param0, void *param1)
 
     switch (v0->unk_14) {
     case 0:
-        sub_0200F174(0, 0, 0, 0x0, 5, 1, 35);
+        StartScreenTransition(0, 0, 0, 0x0, 5, 1, 35);
         v0->unk_14++;
         break;
     case 1:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             int v2;
 
             ov20_021D2EF0(v0->unk_00->unk_244);
@@ -489,11 +489,11 @@ static void ov20_021D2570(SysTask *param0, void *param1)
 
     switch (v0->unk_14) {
     case 0:
-        sub_0200F174(0, 1, 1, 0x0, 5, 1, 35);
+        StartScreenTransition(0, 1, 1, 0x0, 5, 1, 35);
         v0->unk_14++;
         break;
     case 1:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             v0->unk_14++;
         }
         break;

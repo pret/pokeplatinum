@@ -408,7 +408,7 @@ int ov108_02241D70(OverlayManager *param0, int *param1)
 
     *(v1->unk_3C4) = v1->unk_0D;
 
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
     ov108_02242238(v1);
     OverlayManager_FreeData(param0);
     SetMainCallback(NULL, NULL);
@@ -477,7 +477,7 @@ static BOOL ov108_02241DB0(UnkStruct_ov108_02241DB0 *param0)
                 param0->unk_08++;
             }
         } else {
-            sub_0200F174(0, 1, 1, 0x0, 6, 1 * 3, 103);
+            StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, 103);
             param0->unk_08++;
         }
         break;
@@ -485,7 +485,7 @@ static BOOL ov108_02241DB0(UnkStruct_ov108_02241DB0 *param0)
         if (ov104_0223C000(param0->unk_09) == 1) {
             if (param0->unk_0F >= 2) {
                 param0->unk_0F = 0;
-                sub_0200F174(0, 1, 1, 0x0, 6, 1 * 3, 103);
+                StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, 103);
                 param0->unk_08++;
             }
         } else {
@@ -493,7 +493,7 @@ static BOOL ov108_02241DB0(UnkStruct_ov108_02241DB0 *param0)
         }
         break;
     case 9:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             return 1;
         }
         break;
@@ -708,11 +708,11 @@ static BOOL ov108_022421F0(UnkStruct_ov108_02241DB0 *param0)
 
     switch (param0->unk_08) {
     case 0:
-        sub_0200F174(0, 0, 0, 0x0, 6, 1, 103);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 103);
         param0->unk_08++;
         break;
     case 1:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             return 1;
         }
         break;
@@ -1608,7 +1608,7 @@ static BOOL ov108_02242FE8(UnkStruct_ov108_02241DB0 *param0)
 
 static void ov108_02243008(UnkStruct_ov108_02241DB0 *param0)
 {
-    sub_020057A4(1500, 0);
+    Sound_StopEffect(1500, 0);
     Sound_PlayEffect(1508);
     ov108_022435F4(param0->unk_3BC, 1);
 

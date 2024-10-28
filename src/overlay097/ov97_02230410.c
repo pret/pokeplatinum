@@ -563,7 +563,7 @@ static BOOL ov97_02230BF0(UnkStruct_ov97_02230868 *param0, Window *param1, u32 p
 
 static void ov97_02230C10(UnkStruct_ov97_02230868 *param0, int param1, int param2, int *param3)
 {
-    sub_0200F174(0, param1, param1, 0x0, 6, 1, 87);
+    StartScreenTransition(0, param1, param1, 0x0, 6, 1, 87);
 
     if (param3) {
         *param3 = 27;
@@ -1239,7 +1239,7 @@ static int ov97_0223161C(OverlayManager *param0, int *param1)
         ov97_02230C10(v4, 0, 28, param1);
         break;
     case 27:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             *param1 = v4->unk_2CA0;
         }
         break;

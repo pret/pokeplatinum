@@ -97,7 +97,7 @@ static int (*Unk_ov94_02246A40[])(UnkStruct_ov94_0223FD4C *) = {
 int ov94_02244950(UnkStruct_ov94_0223FD4C *param0, int param1)
 {
     ov94_02244F2C(param0);
-    sub_0200F174(0, 1, 1, 0x0, 6, 1, 62);
+    StartScreenTransition(0, 1, 1, 0x0, 6, 1, 62);
 
     ov94_02244A7C(param0->unk_04);
     ov94_02244B8C(param0);
@@ -757,7 +757,7 @@ static int ov94_02245594(UnkStruct_ov94_0223FD4C *param0)
 {
     sub_02039794();
     ov94_0223C5F4(param0);
-    sub_0200F174(0, 0, 0, 0x0, 6, 1, 62);
+    StartScreenTransition(0, 0, 0, 0x0, 6, 1, 62);
 
     param0->unk_2C = 0;
     param0->unk_1110 = 1;

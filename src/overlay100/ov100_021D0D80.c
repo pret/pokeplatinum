@@ -56,7 +56,7 @@ int ov100_021D0D80(OverlayManager *param0, int *param1)
     v0->unk_D0 = OverlayManager_Args(param0);
 
     ov100_021D1034(&v0->unk_0C);
-    sub_0200F174(0, 1, 1, 0x0, 6 * 2, 1, 111);
+    StartScreenTransition(0, 1, 1, 0x0, 6 * 2, 1, 111);
     SetMainCallback(ov100_021D13B4, v0);
 
     v0->unk_0C.unk_50.unk_00 = 31;
@@ -447,7 +447,7 @@ static void ov100_021D13B4(void *param0)
     UnkStruct_ov100_021D4DD8 *v0 = param0;
 
     sub_0201DCAC();
-    sub_0200C800();
+    OAMManager_ApplyAndResetBuffers();
     PaletteData_CommitFadedBuffers(v0->unk_0C.unk_10);
     Bg_RunScheduledUpdates(v0->unk_0C.unk_0C);
 

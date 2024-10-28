@@ -380,7 +380,7 @@ int ov113_0225C700(OverlayManager *param0, int *param1)
 
     v0->unk_08 = BgConfig_New(118);
 
-    sub_0201DBEC(64, 118);
+    VRAMTransferManager_New(64, 118);
     SetAutorepeat(4, 8);
 
     ov113_0225CF58(v0->unk_08);
@@ -423,7 +423,7 @@ int ov113_0225C700(OverlayManager *param0, int *param1)
 
     v0->unk_24 = sub_02015920(118);
 
-    sub_0200F174(0, 1, 1, 0x0, 6, 1, 118);
+    StartScreenTransition(0, 1, 1, 0x0, 6, 1, 118);
 
     if (v0->unk_00->unk_00 != NULL) {
         ov66_0222E31C(v0->unk_00->unk_00, 1);
@@ -471,7 +471,7 @@ int ov113_0225CA04(OverlayManager *param0, int *param1)
         (*param1)++;
         break;
     case 1:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             v0->unk_9BC = 1;
             (*param1)++;
         }
@@ -574,15 +574,15 @@ int ov113_0225CA04(OverlayManager *param0, int *param1)
         }
         break;
     case 9:
-        if (ScreenWipe_Done() == 0) {
+        if (IsScreenTransitionDone() == 0) {
             sub_0200F2C0();
         }
 
-        sub_0200F174(0, 0, 0, 0x0, 6, 1, 118);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 118);
         (*param1)++;
         break;
     case 10:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             (*param1)++;
         }
         break;
@@ -661,7 +661,7 @@ int ov113_0225CDFC(OverlayManager *param0, int *param1)
     NARC_dtor(v0->unk_164);
     SetMainCallback(NULL, NULL);
     DisableHBlank();
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
     sub_0201E530();
     RenderControlFlags_SetCanABSpeedUpPrint(0);
     RenderControlFlags_SetAutoScrollFlags(0);
@@ -692,7 +692,7 @@ static void ov113_0225CF18(void *param0)
     ov113_0225E65C(&v0->unk_194, v0->unk_9BC);
 
     sub_0201DCAC();
-    sub_0200C800();
+    OAMManager_ApplyAndResetBuffers();
     PaletteData_CommitFadedBuffers(v0->unk_0C);
     Bg_RunScheduledUpdates(v0->unk_08);
 

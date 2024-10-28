@@ -85,7 +85,7 @@ static BOOL sub_0209B3C4(TaskManager *param0)
         }
         break;
     case 3:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             if (sub_02097528(v0->unk_10)) {
                 *v0->unk_20 = 0;
                 v0->unk_18 = 4;

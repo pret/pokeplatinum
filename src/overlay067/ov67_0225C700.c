@@ -202,11 +202,11 @@ int ov67_0225C820(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        sub_0200F174(0, 1, 1, 0xffff, 6, 1, 112);
+        StartScreenTransition(0, 1, 1, 0xffff, 6, 1, 112);
         (*param1)++;
         break;
     case 1:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             (*param1)++;
         }
         break;
@@ -361,11 +361,11 @@ int ov67_0225C820(OverlayManager *param0, int *param1)
         }
         break;
     case 7:
-        sub_0200F174(0, 0, 0, 0x0, 6, 1, 112);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 112);
         (*param1)++;
         break;
     case 8:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             return 1;
         }
         break;
@@ -440,11 +440,11 @@ int ov67_0225CC6C(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        sub_0200F174(0, 1, 1, 0xffff, 6, 1, 112);
+        StartScreenTransition(0, 1, 1, 0xffff, 6, 1, 112);
         (*param1)++;
         break;
     case 1:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             (*param1) = 2;
         }
         break;
@@ -500,11 +500,11 @@ int ov67_0225CC6C(OverlayManager *param0, int *param1)
         }
         break;
     case 9:
-        sub_0200F174(0, 0, 0, 0x0, 6, 1, 112);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 112);
         (*param1)++;
         break;
     case 10:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             ov67_0225D310(&v0->unk_40);
             return 1;
         }

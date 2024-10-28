@@ -164,10 +164,10 @@ BOOL OptionsMenu_Main(OverlayManager *ovyManager, int *state)
             return 0;
         }
 
-        sub_0200F174(3, 1, 1, 0x0, 6, 1, v0->heapID);
+        StartScreenTransition(3, 1, 1, 0x0, 6, 1, v0->heapID);
         break;
     case 1:
-        if (!ScreenWipe_Done()) {
+        if (!IsScreenTransitionDone()) {
             return 0;
         }
         break;
@@ -205,7 +205,7 @@ BOOL OptionsMenu_Main(OverlayManager *ovyManager, int *state)
 
         if (v2 != 0xffffffff) {
             if (v2 == 0) {
-                sub_020057A4(1500, 0);
+                Sound_StopEffect(1500, 0);
                 Sound_PlayEffect(1563);
                 v0->saveSelections = 1;
             } else {
@@ -221,10 +221,10 @@ BOOL OptionsMenu_Main(OverlayManager *ovyManager, int *state)
             Text_RemovePrinter(v0->textPrinter);
         }
 
-        sub_0200F174(3, 0, 0, 0x0, 6, 1, v0->heapID);
+        StartScreenTransition(3, 0, 0, 0x0, 6, 1, v0->heapID);
         break;
     case 7:
-        if (!ScreenWipe_Done()) {
+        if (!IsScreenTransitionDone()) {
             return 0;
         }
         break;
@@ -258,7 +258,7 @@ static void ov74_021D1118(void *param0)
         v0->redrawMessageBox = 0;
     }
 
-    sub_0200C800();
+    OAMManager_ApplyAndResetBuffers();
     NNS_GfdDoVramTransfer();
     Bg_RunScheduledUpdates(v0->bgConfig);
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
@@ -289,9 +289,9 @@ static int ov74_021D1178(OptionsMenuData *param0)
     case 2:
         ov74_021D14F4(param0);
         ov74_021D1668(param0);
-        sub_0201DBEC(32, param0->heapID);
+        VRAMTransferManager_New(32, param0->heapID);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-        sub_020397E4();
+        DrawWifiConnectionIcon();
         SetMainCallback(ov74_021D1118, param0);
         param0->subState = 0;
         return 1;
@@ -307,7 +307,7 @@ static int ov74_021D122C(OptionsMenuData *param0)
 
     switch (param0->subState) {
     case 0:
-        sub_0201DC3C();
+        VRAMTransferManager_Destroy();
         ov74_021D1624(param0);
 
         for (v0 = 0; v0 < 7; v0++) {

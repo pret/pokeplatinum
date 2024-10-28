@@ -578,7 +578,7 @@ static BOOL ov6_0223E408(TaskManager *param0)
         ov6_0223E3D8(v1);
 
         if (ov6_0223FF6C(v1->unk_00) == 1) {
-            sub_020057A4(1628, 0);
+            Sound_StopEffect(1628, 0);
             v1->unk_0C++;
             v1->unk_04 = 16;
         }

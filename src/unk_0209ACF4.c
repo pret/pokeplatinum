@@ -169,7 +169,7 @@ static BOOL sub_0209AE14(TaskManager *param0)
         }
         break;
     case 5:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             sub_02097500(v0->unk_50, &(v0->unk_48));
             sub_02097514(v0->unk_50);
             sub_0209ADBC(v0);
@@ -190,7 +190,7 @@ static BOOL sub_0209AE14(TaskManager *param0)
         }
         break;
     case 8:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             if (sub_02097528(v0->unk_50)) {
                 v0->unk_54 = 11;
             } else {

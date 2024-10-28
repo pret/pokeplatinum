@@ -131,7 +131,7 @@ void sub_0208EA44(PokemonSummaryApp *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
-    sub_0201DBEC(32, 19);
+    VRAMTransferManager_New(32, 19);
 
     param0->renderer = sub_0200C6E4(19);
     param0->gfxHandler = sub_0200C704(param0->renderer);

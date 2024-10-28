@@ -242,7 +242,7 @@ void ov119_021D0FD0(void *param0)
 
     sub_02008A94(v0->unk_04.unk_38);
     sub_0201DCAC();
-    sub_0200C800();
+    OAMManager_ApplyAndResetBuffers();
     PaletteData_CommitFadedBuffers(v0->unk_04.unk_04);
     Bg_RunScheduledUpdates(v0->unk_04.unk_00);
 
@@ -269,12 +269,12 @@ void ov119_021D1004(void)
 
 void ov119_021D1028(void)
 {
-    sub_0200F174(0, 1, 1, 0x0, 6, 1, 71);
+    StartScreenTransition(0, 1, 1, 0x0, 6, 1, 71);
 }
 
 void ov119_021D1048(void)
 {
-    sub_0200F174(0, 0, 0, 0x0, 6, 1, 71);
+    StartScreenTransition(0, 0, 0, 0x0, 6, 1, 71);
 }
 
 void ov119_021D1068(BgConfig *param0, PaletteData *param1, int param2)

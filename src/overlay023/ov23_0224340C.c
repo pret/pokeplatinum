@@ -2071,7 +2071,7 @@ static void ov23_02244C70(SysTask *param0, void *param1)
         Unk_ov23_02257764->unk_2F0 = NULL;
         Unk_ov23_02257764->unk_300 = NULL;
 
-        sub_020057A4(1631, 0);
+        Sound_StopEffect(1631, 0);
         break;
     }
 }
@@ -2105,7 +2105,7 @@ static void ov23_02244DE0(int param0, BOOL param1)
         v0->unk_00 = 7;
         Unk_ov23_02257764->unk_300 = NULL;
 
-        sub_020057A4(1631, 0);
+        Sound_StopEffect(1631, 0);
     }
 }
 
@@ -2123,7 +2123,7 @@ static void ov23_02244E10(int param0, BOOL param1)
         Unk_ov23_02257764->unk_2F0 = NULL;
         Unk_ov23_02257764->unk_300 = NULL;
 
-        sub_020057A4(1631, 0);
+        Sound_StopEffect(1631, 0);
     }
 }
 
@@ -3588,7 +3588,7 @@ static void ov23_02246A80(SysTask *param0, void *param1)
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_OBJ, GX_BLEND_PLANEMASK_BG0, 14, 7);
 
         if (ov23_02246F20(Unk_ov23_02257764->fieldSystem->bgConfig, v0)) {
-            sub_020057A4(1632, 0);
+            Sound_StopEffect(1632, 0);
 
             if (v0->unk_15E) {
                 v0->unk_00 = 11;
@@ -3607,7 +3607,7 @@ static void ov23_02246A80(SysTask *param0, void *param1)
         }
         break;
     case 8:
-        sub_020057A4(1632, 0);
+        Sound_StopEffect(1632, 0);
         ov23_02254044(ov23_0224219C());
         break;
     case 9:
@@ -3806,7 +3806,7 @@ static void ov23_02247144(int param0, BOOL param1)
     if (Unk_ov23_02257764->unk_300) {
         UnkStruct_ov23_022468DC *v0 = Unk_ov23_02257764->unk_300;
 
-        sub_020057A4(1632, 0);
+        Sound_StopEffect(1632, 0);
 
         if (v0->unk_15E && param1) {
             ov23_022448FC(v0->unk_15D);

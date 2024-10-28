@@ -500,12 +500,12 @@ static void ov17_022523AC(SysTask *param0, void *param1)
         }
         break;
     case 2:
-        sub_0200F174(0, 0, 0, 0x0, 6, 1, 24);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 24);
         sub_020055D0(1135, 30);
         v0->unk_10++;
         break;
     case 3:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             v0->unk_10++;
         }
         break;
@@ -536,12 +536,12 @@ static void ov17_022523AC(SysTask *param0, void *param1)
         break;
     case 5:
         if (Sound_CheckFade() == 0) {
-            sub_0200F174(0, 1, 1, 0x0, 6, 1, 24);
+            StartScreenTransition(0, 1, 1, 0x0, 6, 1, 24);
             v0->unk_10++;
         }
         break;
     case 6:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             Sound_PlayBGM(1181);
             v0->unk_10++;
         }
@@ -811,7 +811,7 @@ static void ov17_02252858(SysTask *param0, void *param1)
             }
         }
 
-        sub_020057A4(1786, 0);
+        Sound_StopEffect(1786, 0);
         v0->unk_10++;
         break;
     case 5:

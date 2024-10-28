@@ -144,12 +144,12 @@ static int ov79_021D0E1C(UnkStruct_ov79_021D0E1C *param0)
         }
 
         param0->unk_0C = 0;
-        sub_0200F174(0, 1, 1, 0x0, 6, 1, param0->unk_00);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, param0->unk_00);
         break;
     case 2:
         ov79_021D21F8(param0);
 
-        if (!ScreenWipe_Done()) {
+        if (!IsScreenTransitionDone()) {
             return 0;
         }
         break;
@@ -161,12 +161,12 @@ static int ov79_021D0E1C(UnkStruct_ov79_021D0E1C *param0)
         }
 
         param0->unk_0C = 0;
-        sub_0200F174(0, 0, 0, 0x0, 6, 1, param0->unk_00);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, param0->unk_00);
         break;
     case 4:
         ov79_021D21F8(param0);
 
-        if (!ScreenWipe_Done()) {
+        if (!IsScreenTransitionDone()) {
             return 0;
         }
         break;
@@ -198,7 +198,7 @@ static void ov79_021D0F7C(void *param0)
     UnkStruct_ov79_021D0E1C *v0 = (UnkStruct_ov79_021D0E1C *)param0;
 
     if (v0->unk_1B8 != NULL) {
-        sub_0200C800();
+        OAMManager_ApplyAndResetBuffers();
     }
 
     sub_0201DCAC();

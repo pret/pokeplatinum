@@ -184,7 +184,7 @@ int ov58_021D0D80(OverlayManager *param0, int *param1)
 
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);
-        sub_0200F174(0, 17, 17, 0x0, 16, 1, 39);
+        StartScreenTransition(0, 17, 17, 0x0, 16, 1, 39);
 
         {
             UnkStruct_0203DDFC *v2 = (UnkStruct_0203DDFC *)OverlayManager_Args(param0);
@@ -250,7 +250,7 @@ int ov58_021D0F08(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             if (CommSys_CurNetId() != 0) {
                 if (ov58_021D2A30() >= 2) {
                     CommSys_SendData(128, NULL, 0);
@@ -285,7 +285,7 @@ int ov58_021D0F08(OverlayManager *param0, int *param1)
         }
         break;
     case 3:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             return 1;
         }
         break;
@@ -1153,7 +1153,7 @@ static int ov58_021D20C8(UnkStruct_02095EAC *param0, int param1)
 static int ov58_021D20F4(UnkStruct_02095EAC *param0, int param1)
 {
     if (++param0->unk_374 > 60) {
-        sub_0200F174(0, 16, 16, 0x0, 16, 1, 39);
+        StartScreenTransition(0, 16, 16, 0x0, 16, 1, 39);
         param1 = 3;
     }
 
@@ -1243,7 +1243,7 @@ static int ov58_021D2270(UnkStruct_02095EAC *param0, int param1)
 static int ov58_021D2298(UnkStruct_02095EAC *param0, int param1)
 {
     if (CommTiming_IsSyncState(200) || (CommSys_ConnectedCount() == 1)) {
-        sub_0200F174(0, 16, 16, 0x0, 16, 1, 39);
+        StartScreenTransition(0, 16, 16, 0x0, 16, 1, 39);
         param1 = 3;
     }
 

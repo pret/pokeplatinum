@@ -127,7 +127,7 @@ static const struct {
 
 int ov95_02246C20(OverlayManager *param0, int *param1)
 {
-    if (ScreenWipe_Done()) {
+    if (IsScreenTransitionDone()) {
         UnkStruct_ov95_02247628 *v0;
 
         Heap_Create(3, 57, 98304);

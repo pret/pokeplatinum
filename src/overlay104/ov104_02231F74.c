@@ -401,7 +401,7 @@ static void ov104_022324C8(SysTask *param0, void *param1)
         return;
     }
 
-    if (ScreenWipe_Done() == 0) {
+    if (IsScreenTransitionDone() == 0) {
         return;
     }
 
@@ -627,7 +627,7 @@ static void ov104_0223296C(SysTask *param0, void *param1)
         return;
     }
 
-    if (ScreenWipe_Done() == 0) {
+    if (IsScreenTransitionDone() == 0) {
         return;
     }
 

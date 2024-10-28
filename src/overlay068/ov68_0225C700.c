@@ -353,19 +353,19 @@ int ov68_0225C798(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        sub_0200F174(0, 1, 1, 0x0, 6, 1, 122);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, 122);
         ov66_0222E31C(v1->unk_04, 1);
         (*param1)++;
         break;
     case 1:
-        v2 = ScreenWipe_Done();
+        v2 = IsScreenTransitionDone();
 
         if (v2 == 1) {
             (*param1)++;
         }
         break;
     case 2:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             if (ov66_0222E12C(v1->unk_04) == 1) {
                 ov66_0222E2A4(v1->unk_04);
                 (*param1)++;
@@ -385,11 +385,11 @@ int ov68_0225C798(OverlayManager *param0, int *param1)
         }
         break;
     case 3:
-        sub_0200F174(0, 0, 0, 0x0, 6, 1, 122);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 122);
         (*param1)++;
         break;
     case 4:
-        v2 = ScreenWipe_Done();
+        v2 = IsScreenTransitionDone();
 
         if (v2 == 1) {
             ov68_0225D2A0(&v0->unk_2CC);
@@ -439,7 +439,7 @@ static void ov68_0225C91C(UnkStruct_ov68_0225C91C *param0, SaveData *param1, u32
     v0 = SaveData_Options(param1);
     param0->unk_1A4 = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI_LOBBY_OTHER, param2);
 
-    sub_0201DBEC(32, param2);
+    VRAMTransferManager_New(32, param2);
     GXLayers_SetBanks(&Unk_ov68_0225DDC0);
     ov68_0225C9A0(param0, v0, param2);
     ov68_0225CAB4(param0, param2);
@@ -448,7 +448,7 @@ static void ov68_0225C91C(UnkStruct_ov68_0225C91C *param0, SaveData *param1, u32
 static void ov68_0225C960(UnkStruct_ov68_0225C91C *param0)
 {
     NARC_dtor(param0->unk_1A4);
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
 
     ov68_0225CA8C(param0);
     ov68_0225CB44(param0);
@@ -1167,21 +1167,21 @@ static BOOL ov68_0225D478(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB
         }
     } break;
     case 9:
-        sub_0200F174(0, 0, 0, 0x0, 6, 1, param5);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, param5);
         param0->unk_60 = 10;
         break;
     case 10:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             ov68_0225DB3C(param0, param1, param2, param5);
             param0->unk_60 = 11;
         }
         break;
     case 11:
-        sub_0200F174(0, 1, 1, 0x0, 6, 1, param5);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, param5);
         param0->unk_60 = 12;
         break;
     case 12:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             param0->unk_60 = 13;
         }
         break;

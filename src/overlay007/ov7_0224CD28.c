@@ -1528,7 +1528,7 @@ static void ov7_0224EC38(TaskManager *param0)
     FieldSystem *fieldSystem;
     UnkStruct_ov7_0224D008 *v1;
 
-    if (ScreenWipe_Done() == 0) {
+    if (IsScreenTransitionDone() == 0) {
         return;
     }
 
@@ -1554,7 +1554,7 @@ static void ov7_0224EC38(TaskManager *param0)
 
 static u8 ov7_0224EC9C(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1)
 {
-    if (ScreenWipe_Done() == 0) {
+    if (IsScreenTransitionDone() == 0) {
         return 18;
     }
 

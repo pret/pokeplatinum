@@ -122,12 +122,12 @@ static BOOL ov62_02235324(UnkStruct_0208C06C *param0)
         if (param0->unk_0C != 0) {
             param0->unk_0C -= 4;
         } else {
-            sub_0200F174(0, 0, 0, 0, 6, 1, 102);
+            StartScreenTransition(0, 0, 0, 0, 6, 1, 102);
             param0->unk_08++;
         }
         break;
     default:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             ov62_02234540(param0, 0);
             return 1;
         }

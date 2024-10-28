@@ -350,7 +350,7 @@ static BOOL ov76_0223D674(UnkStruct_ov76_0223DE00 *param0)
         break;
 
     case 2:
-        if (ScreenWipe_Done() != 1) {
+        if (IsScreenTransitionDone() != 1) {
             break;
         }
 
@@ -429,7 +429,7 @@ static BOOL ov76_0223D674(UnkStruct_ov76_0223DE00 *param0)
         param0->unk_3D4++;
         break;
     case 6:
-        if (ScreenWipe_Done() != 1) {
+        if (IsScreenTransitionDone() != 1) {
             break;
         }
         Window_Remove(&param0->unk_D4.unk_18[0]);
@@ -1187,7 +1187,7 @@ static BOOL ov76_0223E8A4(UnkStruct_ov76_0223DE00 *param0)
         param0->unk_3D4++;
         break;
     case 2:
-        if (ScreenWipe_Done() != 1) {
+        if (IsScreenTransitionDone() != 1) {
             break;
         }
 
@@ -1503,7 +1503,7 @@ void ov76_0223ECB0(void *param0)
 
     sub_02008A94(v0->unk_D4.unk_D0);
     sub_0201DCAC();
-    sub_0200C800();
+    OAMManager_ApplyAndResetBuffers();
     PaletteData_CommitFadedBuffers(v0->unk_D4.unk_14);
     Bg_RunScheduledUpdates(v0->unk_D4.unk_10);
 

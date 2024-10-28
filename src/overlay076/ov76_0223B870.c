@@ -1092,12 +1092,12 @@ void ov76_0223CE2C(void)
 
 void ov76_0223CE44(void)
 {
-    sub_0200F174(0, 1, 1, 0x0, 6, 1, 53);
+    StartScreenTransition(0, 1, 1, 0x0, 6, 1, 53);
 }
 
 void ov76_0223CE64(void)
 {
-    sub_0200F174(0, 0, 0, 0x0, 6, 1, 53);
+    StartScreenTransition(0, 0, 0, 0x0, 6, 1, 53);
 }
 
 void ov76_0223CE84(UnkStruct_ov76_0223DE00 *param0, NARC *param1)

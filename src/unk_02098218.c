@@ -79,7 +79,7 @@ static int sub_02098218(OverlayManager *param0, int *param1)
     v1->unk_04.unk_3C = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, 71);
     v1->unk_04.unk_00 = BgConfig_New(71);
 
-    sub_0201DBEC(64, 71);
+    VRAMTransferManager_New(64, 71);
 
     v1->unk_04.unk_54 = sub_02015F84(71, 1, 0);
     v1->unk_04.unk_04 = PaletteData_New(71);
@@ -111,7 +111,7 @@ static int sub_02098304(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             (*param1)++;
         }
 
@@ -143,7 +143,7 @@ static int sub_02098304(OverlayManager *param0, int *param1)
         ov119_021D1004();
     } break;
     default:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             return 1;
         }
 
@@ -178,7 +178,7 @@ static int sub_02098388(OverlayManager *param0, int *param1)
     Bg_FreeTilemapBuffer(v0->unk_04.unk_00, 4);
 
     Heap_FreeToHeap(v0->unk_04.unk_00);
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
     sub_02007B6C(v0->unk_04.unk_38);
     sub_02015FB8(v0->unk_04.unk_54);
     NARC_dtor(v0->unk_04.unk_3C);

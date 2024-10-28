@@ -36,7 +36,7 @@ int ov117_022664BC(OverlayManager *param0, int *param1)
     if (v0->unk_00->unk_3D == 1) {
         switch (v0->unk_00->unk_3E) {
         case 0:
-            if (ScreenWipe_Done() == 1) {
+            if (IsScreenTransitionDone() == 1) {
                 sub_0200F2C0();
             }
 

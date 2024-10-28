@@ -19,7 +19,7 @@ void ov80_021D2A08(UnkStruct_ov80_021D2A08 *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
-    sub_0201DBEC(32, param0->unk_04);
+    VRAMTransferManager_New(32, param0->unk_04);
 
     param0->unk_D8 = sub_0200C6E4(param0->unk_04);
     param0->unk_DC = sub_0200C704(param0->unk_D8);
@@ -66,7 +66,7 @@ void ov80_021D2AC0(UnkStruct_ov80_021D2A08 *param0)
 {
     sub_0200C8B0(param0->unk_D8, param0->unk_DC);
     sub_0200C8D4(param0->unk_D8);
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
 }
 
 void ov80_021D2AE0(UnkStruct_ov80_021D2A08 *param0)
@@ -76,5 +76,5 @@ void ov80_021D2AE0(UnkStruct_ov80_021D2A08 *param0)
 
 void ov80_021D2AEC(UnkStruct_ov80_021D2A08 *param0)
 {
-    sub_0200C800();
+    OAMManager_ApplyAndResetBuffers();
 }

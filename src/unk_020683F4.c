@@ -1214,7 +1214,7 @@ static BOOL sub_0206932C(TaskManager *taskMan)
         v1->unk_2A = 1;
         break;
     case 1:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             v1->unk_24 = v1->unk_20(fieldSystem);
             v1->unk_2A = 2;
         }
@@ -1243,7 +1243,7 @@ static BOOL sub_0206932C(TaskManager *taskMan)
         }
         break;
     case 4:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             MapObjectMan_UnpauseAllMovement(fieldSystem->mapObjMan);
             Heap_FreeToHeap(v1);
             return 1;

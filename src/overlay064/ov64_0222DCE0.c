@@ -966,7 +966,7 @@ static void ov64_0222E3D8 (UnkStruct_ov64_0222E21C * param0, u32 param1)
 
     NNS_G2dInitOamManagerModule();
 
-    sub_0201DBEC(16, param1);
+    VRAMTransferManager_New(16, param1);
     sub_0200A784(0, 126, 0, 30, 0, 126, 0, 30, param1);
 
     {
@@ -1025,7 +1025,7 @@ static void ov64_0222E570 (UnkStruct_ov64_0222E21C * param0)
     sub_0201E958();
     sub_0201F8B4();
     sub_0200A878();
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
 }
 
 static void ov64_0222E5D8 (UnkStruct_ov64_0222E21C * param0, u32 param1)
@@ -1256,11 +1256,11 @@ static int ov64_0222EA70 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_0222E
     switch (param1->unk_04) {
     case 0:
         ov64_0222EE20(param0, param1, param2);
-        sub_0200F174(0, 17, 17, 0x0, 6, 1, param3);
+        StartScreenTransition(0, 17, 17, 0x0, 6, 1, param3);
         param1->unk_04 = 1;
         break;
     case 1:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             param1->unk_04 = 3;
         }
         break;
@@ -1290,21 +1290,21 @@ static int ov64_0222EA70 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_0222E
         }
         break;
     case 4:
-        sub_0200F174(0, 16, 16, 0x0, 6, 1, param3);
+        StartScreenTransition(0, 16, 16, 0x0, 6, 1, param3);
         param1->unk_04++;
         break;
     case 5:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             return 1;
         }
         break;
     case 6:
         ov64_0222EE20(param0, param1, param2);
-        sub_0200F174(0, 17, 17, 0x0, 6, 1, param3);
+        StartScreenTransition(0, 17, 17, 0x0, 6, 1, param3);
         param1->unk_04 = 7;
         break;
     case 7:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             u64 v1;
             TrainerInfo * v2;
 
@@ -1810,7 +1810,7 @@ static int ov64_0222F0C4 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222E
         param1->unk_04 = 1;
         break;
     case 10:
-        sub_0200F174(0, 16, 16, 0x0, 6, 1, param3);
+        StartScreenTransition(0, 16, 16, 0x0, 6, 1, param3);
 
         v2 = ov64_0222FF38(param0);
         v1 = sub_0202B370(param1->unk_00);
@@ -1819,7 +1819,7 @@ static int ov64_0222F0C4 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222E
         param1->unk_04 = 11;
         break;
     case 11:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             ov64_0222F6E8(param0, param1, param2);
             ov64_0222E074(param1, 2, 4);
             return 1;
@@ -1831,11 +1831,11 @@ static int ov64_0222F0C4 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222E
         sub_0202AF0C(v1, param1->unk_08.unk_04[v2], param1->unk_2C.unk_00);
     case 13:
         ov64_0222F668(param0, param1, param2, param3);
-        sub_0200F174(0, 17, 17, 0x0, 6, 1, param3);
+        StartScreenTransition(0, 17, 17, 0x0, 6, 1, param3);
         param1->unk_04 = 14;
         break;
     case 14:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             param1->unk_04 = 2;
         }
         break;

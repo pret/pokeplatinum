@@ -43,7 +43,7 @@ void ov108_02243030(UnkStruct_ov108_02243030 *param0, Party *param1, Party *para
 {
     int v0;
 
-    sub_0201DBEC(32, 103);
+    VRAMTransferManager_New(32, 103);
     ov108_022431FC();
 
     NNS_G2dInitOamManagerModule();

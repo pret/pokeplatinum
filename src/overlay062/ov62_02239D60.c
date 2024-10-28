@@ -686,11 +686,11 @@ static BOOL ov62_0223A64C(UnkStruct_0208C06C *param0)
         ov62_02231B8C(param0);
 
         if (ov61_0222BB48(ov62_0224112C(param0), &v1) == 1) {
-            sub_020057A4(1381, 0);
+            Sound_StopEffect(1381, 0);
             ov62_022348B8(param0, 2, v1->unk_0C, v1->unk_04);
             param0->unk_08++;
         } else {
-            sub_020057A4(1381, 0);
+            Sound_StopEffect(1381, 0);
             ov62_02233704(param0, 48);
             ov62_0223196C(param0, 1);
             Sound_PlayEffect(1375);
@@ -1665,7 +1665,7 @@ static BOOL ov62_0223B980(UnkStruct_0208C06C *param0)
         ov62_02231B8C(param0);
 
         if (ov61_0222BB48(ov62_0224112C(param0), &v1) == 1) {
-            sub_020057A4(1381, 0);
+            Sound_StopEffect(1381, 0);
             ov62_022348B8(param0, 3, v1->unk_0C, v1->unk_04);
 
             v0->unk_380.unk_08 = 0;
@@ -1684,7 +1684,7 @@ static BOOL ov62_0223B980(UnkStruct_0208C06C *param0)
             ov62_02234540(param0, 0);
             param0->unk_08 = 7;
         } else {
-            sub_020057A4(1381, 0);
+            Sound_StopEffect(1381, 0);
             Sound_PlayEffect(1375);
             param0->unk_08++;
         }

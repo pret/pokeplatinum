@@ -550,7 +550,7 @@ static BOOL sub_0205A324(TaskManager *param0)
         }
         break;
     case 33:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             sub_0205AAA0(v0, 0);
             sub_0205A0D8(v0, v0->fieldSystem, v0->unk_50, v0->unk_84, 1, 11);
             v0->unk_34 = 34;
@@ -1041,7 +1041,7 @@ static BOOL sub_0205B140(TaskManager *param0)
         }
         break;
     case 2:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             v1->unk_28++;
         }
         break;

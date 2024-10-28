@@ -88,7 +88,7 @@ BOOL DWWarp_Init(OverlayManager *ovy, int *state)
 
     DWWarp_InitModel(dww);
     DWWarp_InitCamera(dww);
-    sub_0200F174(0, 1, 1, 0x0, 16, 1, HEAP_ID_DISTORTION_WORLD_WARP);
+    StartScreenTransition(0, 1, 1, 0x0, 16, 1, HEAP_ID_DISTORTION_WORLD_WARP);
 
     gCoreSys.unk_65 = 0;
 
@@ -117,7 +117,7 @@ BOOL DWWarp_Main(OverlayManager *ovy, int *state)
 
     switch (*state) {
     case DWARP_SEQ_SCREENWIPE:
-        if (ScreenWipe_Done() == TRUE) {
+        if (IsScreenTransitionDone() == TRUE) {
             (*state)++;
         }
         break;
@@ -134,11 +134,11 @@ BOOL DWWarp_Main(OverlayManager *ovy, int *state)
         }
         break;
     case DWARP_SEQ_CLEAR_SCREEN:
-        sub_0200F174(0, 0, 0, 0x0, 20, 1, 30);
+        StartScreenTransition(0, 0, 0, 0x0, 20, 1, 30);
         (*state)++;
         break;
     case DWARP_SEQ_WAIT:
-        if (ScreenWipe_Done() == TRUE) {
+        if (IsScreenTransitionDone() == TRUE) {
             return TRUE;
         }
         break;

@@ -167,11 +167,11 @@ int ov90_021D0E04(OverlayManager *param0, int *param1)
             break;
         }
 
-        sub_0200F174(3, 1, 1, 0x0, 6, 1, v1->unk_00);
+        StartScreenTransition(3, 1, 1, 0x0, 6, 1, v1->unk_00);
         (*param1)++;
         break;
     case 1:
-        if (!ScreenWipe_Done()) {
+        if (!IsScreenTransitionDone()) {
             break;
         }
 
@@ -188,11 +188,11 @@ int ov90_021D0E04(OverlayManager *param0, int *param1)
             break;
         }
 
-        sub_0200F174(3, 0, 0, 0x0, 6, 1, v1->unk_00);
+        StartScreenTransition(3, 0, 0, 0x0, 6, 1, v1->unk_00);
         (*param1)++;
         break;
     case 3:
-        if (!ScreenWipe_Done()) {
+        if (!IsScreenTransitionDone()) {
             break;
         }
 
@@ -854,7 +854,7 @@ static void ov90_021D1A9C(UnkStruct_ov90_021D0ECC *param0)
 
 static void ov90_021D1ABC(UnkStruct_ov90_021D0ECC *param0)
 {
-    sub_0201DBEC(32, param0->unk_00);
+    VRAMTransferManager_New(32, param0->unk_00);
 
     param0->unk_29C = sub_0200C6E4(param0->unk_00);
     param0->unk_2A0 = sub_0200C704(param0->unk_29C);
@@ -905,7 +905,7 @@ static void ov90_021D1B6C(UnkStruct_ov90_021D0ECC *param0)
 {
     sub_0200C8B0(param0->unk_29C, param0->unk_2A0);
     sub_0200C8D4(param0->unk_29C);
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
 }
 
 static void ov90_021D1B90(UnkStruct_ov90_021D0ECC *param0)
@@ -919,7 +919,7 @@ static void ov90_021D1B90(UnkStruct_ov90_021D0ECC *param0)
 
 static void ov90_021D1BA4(void)
 {
-    sub_0200C800();
+    OAMManager_ApplyAndResetBuffers();
 }
 
 static void ov90_021D1BAC(UnkStruct_ov90_021D0ECC *param0)

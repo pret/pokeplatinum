@@ -103,12 +103,12 @@ static BOOL sub_02052CBC(TaskManager *param0)
         if (!sub_020509B4(fieldSystem)) {
             Heap_Create(3, 4, 0x20000);
             sub_02052F28(fieldSystem, v3);
-            sub_0200F174(3, 1, 1, 0x0, 8, 1, 32);
+            StartScreenTransition(3, 1, 1, 0x0, 8, 1, 32);
             (*v4)++;
         }
         break;
     case 2:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             if (SaveData_OverwriteCheck(fieldSystem->saveData) == 0) {
                 sub_02052FA8(fieldSystem, v3);
                 (*v4)++;
@@ -148,11 +148,11 @@ static BOOL sub_02052CBC(TaskManager *param0)
         }
         break;
     case 7:
-        sub_0200F174(3, 0, 0, 0x0, 8, 1, 32);
+        StartScreenTransition(3, 0, 0, 0x0, 8, 1, 32);
         (*v4)++;
         break;
     case 8:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             sub_02053098(fieldSystem, v3);
             sub_0203E274(fieldSystem, &(v3->unk_10));
             (*v4)++;

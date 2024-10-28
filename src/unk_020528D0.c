@@ -144,22 +144,22 @@ static BOOL sub_020529C4(TaskManager *param0)
 
     switch (v0->unk_00) {
     case 0:
-        sub_0200F174(3, 1, 42, 0x0, 8, 1, 32);
+        StartScreenTransition(3, 1, 42, 0x0, 8, 1, 32);
         v0->unk_00++;
         break;
     case 1:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             v0->unk_00++;
         }
         break;
     case 2:
         if ((gCoreSys.pressedKeys & PAD_BUTTON_A) || (gCoreSys.pressedKeys & PAD_BUTTON_B)) {
-            sub_0200F174(0, 0, 0, 0x0, 8, 1, 32);
+            StartScreenTransition(0, 0, 0, 0x0, 8, 1, 32);
             v0->unk_00++;
         }
         break;
     case 3:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             Window_FillTilemap(&v0->unk_0C, 0);
             v0->unk_00++;
         }

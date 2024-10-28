@@ -360,12 +360,12 @@ int ov112_0225C7C4(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        sub_0200F174(0, 1, 1, 0x0, 6, 1, 107);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, 107);
         ov66_0222E31C(v1->unk_08, 1);
         (*param1)++;
         break;
     case 1:
-        v2 = ScreenWipe_Done();
+        v2 = IsScreenTransitionDone();
 
         if (v2 == 1) {
             (*param1)++;
@@ -398,11 +398,11 @@ int ov112_0225C7C4(OverlayManager *param0, int *param1)
         }
         break;
     case 3:
-        sub_0200F174(0, 0, 0, 0x0, 6, 1, 107);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 107);
         (*param1)++;
         break;
     case 4:
-        v2 = ScreenWipe_Done();
+        v2 = IsScreenTransitionDone();
 
         if (v2 == 1) {
             return 1;
@@ -459,7 +459,7 @@ static void ov112_0225C9BC(UnkStruct_ov112_0225C9BC *param0, u32 param1)
 {
     param0->unk_1A4 = NARC_ctor(NARC_INDEX_GRAPHIC__LOBBY_NEWS, param1);
 
-    sub_0201DBEC(48, param1);
+    VRAMTransferManager_New(48, param1);
     GXLayers_SetBanks(&Unk_ov112_0225D858);
 
     ov112_0225CA34(param0, param1);
@@ -469,7 +469,7 @@ static void ov112_0225C9BC(UnkStruct_ov112_0225C9BC *param0, u32 param1)
 static void ov112_0225C9F4(UnkStruct_ov112_0225C9BC *param0)
 {
     NARC_dtor(param0->unk_1A4);
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
 
     ov112_0225CB60(param0);
     ov112_0225CC38(param0);
