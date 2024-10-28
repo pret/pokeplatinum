@@ -54,7 +54,20 @@ typedef struct OptionsMenuData {
     void *nscrBuffer;
     NNSG2dScreenData *tilemapData;
     Window windows[3];
-    OptionsMenuEntry entries[7];
+
+    union {
+        OptionsMenuEntry asArray[7];
+        struct {
+            OptionsMenuEntry textSpeed;
+            OptionsMenuEntry soundMode;
+            OptionsMenuEntry battleScene;
+            OptionsMenuEntry battleStyle;
+            OptionsMenuEntry buttonMode;
+            OptionsMenuEntry messageBoxStyle;
+            OptionsMenuEntry unk07;
+        };
+    } entries;
+
     Menu *yesNoChoice;
     u32 textPrinter;
     void *dummy2B0;
@@ -83,58 +96,60 @@ static BOOL ov74_021D1B44(OptionsMenuData *param0);
 static void ov74_021D1BA8(OptionsMenuData *param0);
 static u32 ov74_021D1BD0(OptionsMenuData *param0);
 
+#define HEAP_ALLOCATION_SIZE 0x10000
+
 BOOL OptionsMenu_Init(OverlayManager *ovyManager, int *state)
 {
-    OptionsMenuData *v0 = NULL;
-    Options *v1;
+    OptionsMenuData *menuData = NULL;
+    Options *options = OverlayManager_Args(ovyManager);
 
-    v1 = (Options *)OverlayManager_Args(ovyManager);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_OPTIONS_MENU, HEAP_ALLOCATION_SIZE);
 
-    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_OPTIONS_MENU, 0x10000);
+    menuData = OverlayManager_NewData(ovyManager, sizeof(OptionsMenuData), HEAP_ID_OPTIONS_MENU);
+    memset(menuData, 0, sizeof(OptionsMenuData));
 
-    v0 = OverlayManager_NewData(ovyManager, sizeof(OptionsMenuData), HEAP_ID_OPTIONS_MENU);
-    memset(v0, 0, sizeof(OptionsMenuData));
+    menuData->options.textSpeed = Options_TextSpeed(options);
+    menuData->options.battleScene = Options_BattleScene(options);
+    menuData->options.battleStyle = Options_BattleStyle(options);
+    menuData->options.soundMode = Options_SoundMode(options);
+    menuData->options.buttonMode = Options_ButtonMode(options);
+    menuData->options.messageBoxStyle = Options_Frame(options);
+    menuData->heapID = HEAP_ID_OPTIONS_MENU;
+    menuData->saveOptions = options;
 
-    v0->options.textSpeed = Options_TextSpeed(v1);
-    v0->options.battleScene = Options_BattleScene(v1);
-    v0->options.battleStyle = Options_BattleStyle(v1);
-    v0->options.soundMode = Options_SoundMode(v1);
-    v0->options.buttonMode = Options_ButtonMode(v1);
-    v0->options.messageBoxStyle = Options_Frame(v1);
-    v0->heapID = HEAP_ID_OPTIONS_MENU;
-    v0->saveOptions = v1;
+    RenderControlFlags_SetCanABSpeedUpPrint(FALSE);
 
-    RenderControlFlags_SetCanABSpeedUpPrint(0);
-
-    return 1;
+    return TRUE;
 }
 
 BOOL OptionsMenu_Exit(OverlayManager *ovyManager, int *state)
 {
-    OptionsMenuData *v0 = OverlayManager_Data(ovyManager);
+    OptionsMenuData *menuData = OverlayManager_Data(ovyManager);
 
-    if (v0->saveSelections == 1) {
-        v0->options.textSpeed = v0->entries[0].selected;
-        v0->options.battleScene = v0->entries[2].selected;
-        v0->options.battleStyle = v0->entries[3].selected;
-        v0->options.soundMode = v0->entries[1].selected;
-        v0->options.buttonMode = v0->entries[4].selected;
-        v0->options.messageBoxStyle = v0->entries[5].selected;
+    if (menuData->saveSelections == 1) {
+        menuData->options.textSpeed = menuData->entries.textSpeed.selected;
+        menuData->options.battleScene = menuData->entries.battleScene.selected;
+        menuData->options.battleStyle = menuData->entries.battleStyle.selected;
+        menuData->options.soundMode = menuData->entries.soundMode.selected;
+        menuData->options.buttonMode = menuData->entries.buttonMode.selected;
+        menuData->options.messageBoxStyle = menuData->entries.messageBoxStyle.selected;
     }
 
-    Options_SetTextSpeed(v0->saveOptions, v0->options.textSpeed);
-    Options_SetBattleScene(v0->saveOptions, v0->options.battleScene);
-    Options_SetBattleStyle(v0->saveOptions, v0->options.battleStyle);
-    Options_SetSoundMode(v0->saveOptions, v0->options.soundMode);
-    Options_SetButtonMode(v0->saveOptions, v0->options.buttonMode);
-    Options_SetFrame(v0->saveOptions, v0->options.messageBoxStyle);
-    sub_02004FB8(v0->options.soundMode);
-    Options_SetSystemButtonMode(NULL, v0->options.buttonMode);
-    RenderControlFlags_SetCanABSpeedUpPrint(1);
-    OverlayManager_FreeData(ovyManager);
-    Heap_Destroy(v0->heapID);
+    Options_SetTextSpeed(menuData->saveOptions, menuData->options.textSpeed);
+    Options_SetBattleScene(menuData->saveOptions, menuData->options.battleScene);
+    Options_SetBattleStyle(menuData->saveOptions, menuData->options.battleStyle);
+    Options_SetSoundMode(menuData->saveOptions, menuData->options.soundMode);
+    Options_SetButtonMode(menuData->saveOptions, menuData->options.buttonMode);
+    Options_SetFrame(menuData->saveOptions, menuData->options.messageBoxStyle);
+    Sound_SetPlaybackMode(menuData->options.soundMode);
+    Options_SetSystemButtonMode(NULL, menuData->options.buttonMode);
 
-    return 1;
+    RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
+
+    OverlayManager_FreeData(ovyManager);
+    Heap_Destroy(menuData->heapID);
+
+    return TRUE;
 }
 
 BOOL OptionsMenu_Main(OverlayManager *ovyManager, int *state)
@@ -239,7 +254,7 @@ static void ov74_021D1118(void *param0)
     OptionsMenuData *v0 = param0;
 
     if (v0->redrawMessageBox) {
-        LoadMessageBoxGraphics(v0->bgConfig, 1, ((((10 + 12 * 2) + 30 * 14) + 27 * 4) + 9), 15, v0->entries[5].selected, v0->heapID);
+        LoadMessageBoxGraphics(v0->bgConfig, 1, ((((10 + 12 * 2) + 30 * 14) + 27 * 4) + 9), 15, v0->entries.asArray[5].selected, v0->heapID);
         v0->redrawMessageBox = 0;
     }
 
@@ -296,8 +311,8 @@ static int ov74_021D122C(OptionsMenuData *param0)
         ov74_021D1624(param0);
 
         for (v0 = 0; v0 < 7; v0++) {
-            for (v1 = 0; v1 < param0->entries[v0].numChoices; v1++) {
-                Strbuf_Free(param0->entries[v0].choices[v1]);
+            for (v1 = 0; v1 < param0->entries.asArray[v0].numChoices; v1++) {
+                Strbuf_Free(param0->entries.asArray[v0].choices[v1]);
             }
         }
 
@@ -591,19 +606,19 @@ static void ov74_021D1720(OptionsMenuData *param0)
     };
 
     for (v0 = 0; v0 < 7; v0++) {
-        param0->entries[v0].numChoices = v3[v0];
+        param0->entries.asArray[v0].numChoices = v3[v0];
 
         for (v1 = 0; v1 < v3[v0]; v1++) {
-            param0->entries[v0].choices[v1] = MessageLoader_GetNewStrbuf(param0->msgLoader, v2[v0] + v1);
+            param0->entries.asArray[v0].choices[v1] = MessageLoader_GetNewStrbuf(param0->msgLoader, v2[v0] + v1);
         }
     }
 
-    param0->entries[0].selected = param0->options.textSpeed;
-    param0->entries[2].selected = param0->options.battleScene;
-    param0->entries[3].selected = param0->options.battleStyle;
-    param0->entries[1].selected = param0->options.soundMode;
-    param0->entries[4].selected = param0->options.buttonMode;
-    param0->entries[5].selected = param0->options.messageBoxStyle;
+    param0->entries.asArray[0].selected = param0->options.textSpeed;
+    param0->entries.asArray[2].selected = param0->options.battleScene;
+    param0->entries.asArray[3].selected = param0->options.battleStyle;
+    param0->entries.asArray[1].selected = param0->options.soundMode;
+    param0->entries.asArray[4].selected = param0->options.buttonMode;
+    param0->entries.asArray[5].selected = param0->options.messageBoxStyle;
 }
 
 static void ov74_021D17CC(OptionsMenuData *param0, u16 param1)
@@ -620,41 +635,41 @@ static void ov74_021D17CC(OptionsMenuData *param0, u16 param1)
     Window_FillRectWithColor(&(param0->windows[1]), WINCLR_COL(15), (12 * 8 + 4) + v6[param1], 0 + param1 * 16, (48 * 8), 16);
 
     if (param1 == 5) {
-        Text_AddPrinterWithParamsAndColor(&param0->windows[1], FONT_SYSTEM, param0->entries[param1].choices[param0->entries[param1].selected], 1 * 48 + (12 * 8 + 4), 16 * param1 + 0, TEXT_SPEED_NO_TRANSFER, v1, NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->windows[1], FONT_SYSTEM, param0->entries.asArray[param1].choices[param0->entries.asArray[param1].selected], 1 * 48 + (12 * 8 + 4), 16 * param1 + 0, TEXT_SPEED_NO_TRANSFER, v1, NULL);
         Window_CopyToVRAM(&param0->windows[1]);
         param0->redrawMessageBox = 1;
         return;
     }
 
     if (param1 == 1) {
-        sub_02004FB8(param0->entries[param1].selected);
+        Sound_SetPlaybackMode(param0->entries.asArray[param1].selected);
     } else if (param1 == 4) {
-        Options_SetSystemButtonMode(NULL, param0->entries[param1].selected);
+        Options_SetSystemButtonMode(NULL, param0->entries.asArray[param1].selected);
     } else if (param1 == 0) {
-        Options_SetTextSpeed(param0->saveOptions, param0->entries[param1].selected);
+        Options_SetTextSpeed(param0->saveOptions, param0->entries.asArray[param1].selected);
         ov74_021D1BE4(param0, param1, 0);
     }
 
     v5 = 0;
 
-    for (v3 = 0; v3 < param0->entries[param1].numChoices; v3++) {
-        if (v3 == param0->entries[param1].selected) {
+    for (v3 = 0; v3 < param0->entries.asArray[param1].numChoices; v3++) {
+        if (v3 == param0->entries.asArray[param1].selected) {
             v2 = v1;
         } else {
             v2 = v0;
         }
 
-        if (v3 == param0->entries[param1].numChoices - 1) {
+        if (v3 == param0->entries.asArray[param1].numChoices - 1) {
             v4 = TEXT_SPEED_NO_TRANSFER;
         } else {
             v4 = TEXT_SPEED_NO_TRANSFER;
         }
 
         if (param1 == 4) {
-            Text_AddPrinterWithParamsAndColor(&param0->windows[1], FONT_SYSTEM, param0->entries[param1].choices[v3], (12 * 8 + 4) - 0 + v5, 16 * param1 + 0, v4, v2, NULL);
-            v5 += Font_CalcStrbufWidth(FONT_SYSTEM, param0->entries[param1].choices[v3], 0) + 12;
+            Text_AddPrinterWithParamsAndColor(&param0->windows[1], FONT_SYSTEM, param0->entries.asArray[param1].choices[v3], (12 * 8 + 4) - 0 + v5, 16 * param1 + 0, v4, v2, NULL);
+            v5 += Font_CalcStrbufWidth(FONT_SYSTEM, param0->entries.asArray[param1].choices[v3], 0) + 12;
         } else {
-            Text_AddPrinterWithParamsAndColor(&param0->windows[1], FONT_SYSTEM, param0->entries[param1].choices[v3], v3 * 48 + (12 * 8 + 4) + v6[param1], 16 * param1 + 0, v4, v2, NULL);
+            Text_AddPrinterWithParamsAndColor(&param0->windows[1], FONT_SYSTEM, param0->entries.asArray[param1].choices[v3], v3 * 48 + (12 * 8 + 4) + v6[param1], 16 * param1 + 0, v4, v2, NULL);
         }
     }
 
@@ -703,7 +718,7 @@ static void ov74_021D1A24(OptionsMenuData *param0)
 {
     OptionsMenuEntry *v0;
 
-    v0 = &(param0->entries[param0->cursor]);
+    v0 = &(param0->entries.asArray[param0->cursor]);
 
     if (param0->cursor != 6) {
         if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
@@ -732,7 +747,7 @@ static void ov74_021D1A24(OptionsMenuData *param0)
 
 static BOOL ov74_021D1B44(OptionsMenuData *param0)
 {
-    if ((param0->options.textSpeed != param0->entries[0].selected) || (param0->options.battleScene != param0->entries[2].selected) || (param0->options.battleStyle != param0->entries[3].selected) || (param0->options.soundMode != param0->entries[1].selected) || (param0->options.buttonMode != param0->entries[4].selected) || (param0->options.messageBoxStyle != param0->entries[5].selected)) {
+    if ((param0->options.textSpeed != param0->entries.asArray[0].selected) || (param0->options.battleScene != param0->entries.asArray[2].selected) || (param0->options.battleStyle != param0->entries.asArray[3].selected) || (param0->options.soundMode != param0->entries.asArray[1].selected) || (param0->options.buttonMode != param0->entries.asArray[4].selected) || (param0->options.messageBoxStyle != param0->entries.asArray[5].selected)) {
         return 1;
     }
 
