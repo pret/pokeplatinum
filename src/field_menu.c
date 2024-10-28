@@ -342,7 +342,7 @@ void sub_0203AB00(FieldSystem *fieldSystem)
         menu->unk_224 = sub_0203ABD0(fieldSystem);
     }
 
-    FieldTask_Change(fieldSystem->unk_10, sub_0203AC44, menu);
+    FieldTask_Change(fieldSystem->taskManager, sub_0203AC44, menu);
 }
 
 static FieldMenu *FieldMenu_Alloc(void)

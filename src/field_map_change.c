@@ -1572,5 +1572,5 @@ void sub_02054864(TaskManager *taskMan)
     Location *location = FieldOverworldState_GetSpecialLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     fieldSystem->mapLoadType = MAP_LOAD_TYPE_OVERWORLD;
-    FieldSystem_StartChangeMapTask(fieldSystem->unk_10, location);
+    FieldSystem_StartChangeMapTask(fieldSystem->taskManager, location);
 }

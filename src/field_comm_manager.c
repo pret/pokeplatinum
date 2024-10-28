@@ -403,7 +403,7 @@ static void sub_02059B74(void)
     for (v0 = 0; v0 < CommSys_ConnectedCount(); v0++) {
         if (v0 != CommSys_CurNetId()) {
             if (sub_02036564(v0) == 94) {
-                if (sFieldCommMan->fieldSystem->unk_10 == NULL) {
+                if (sFieldCommMan->fieldSystem->taskManager == NULL) {
                     for (v1 = 0; v1 < 4; v1++) {
                         if (sFieldCommMan->trainerCard[v1]) {
                             Heap_FreeToHeap(sFieldCommMan->trainerCard[v1]);

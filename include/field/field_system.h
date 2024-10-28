@@ -51,7 +51,7 @@ typedef struct FieldSystem_t {
     FieldSystem_sub2 *unk_04;
     BgConfig *bgConfig;
     SaveData *saveData;
-    TaskManager *unk_10;
+    TaskManager *taskManager;
     MapHeaderData *mapHeaderData;
     int bottomScreen;
     Location *location;

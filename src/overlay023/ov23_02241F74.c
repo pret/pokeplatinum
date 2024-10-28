@@ -1192,7 +1192,7 @@ BOOL ov23_02243298(int param0)
         return 0;
     }
 
-    if (sCommManUnderground->fieldSystem->unk_10) {
+    if (sCommManUnderground->fieldSystem->taskManager) {
         sCommManUnderground->unk_130++;
 
         if (sCommManUnderground->unk_130 > 100) {

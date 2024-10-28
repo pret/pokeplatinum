@@ -174,7 +174,7 @@ static FieldSystem *FieldSystem_Init(OverlayManager *overlayMan)
     v0 = OverlayManager_Args(overlayMan);
 
     fieldSystem->saveData = v0->unk_08;
-    fieldSystem->unk_10 = NULL;
+    fieldSystem->taskManager = NULL;
     fieldSystem->location = sub_0203A720(SaveData_GetFieldOverworldState(fieldSystem->saveData));
     fieldSystem->unk_2C = sub_02039D6C();
 
@@ -240,7 +240,7 @@ BOOL FieldSystem_Run(FieldSystem *fieldSystem)
         sub_0203CECC(&fieldSystem->unk_00->unk_04);
     }
 
-    if (fieldSystem->unk_00->unk_0C && !fieldSystem->unk_10 && !fieldSystem->unk_00->unk_00 && !fieldSystem->unk_00->unk_04) {
+    if (fieldSystem->unk_00->unk_0C && !fieldSystem->taskManager && !fieldSystem->unk_00->unk_00 && !fieldSystem->unk_00->unk_04) {
         return 1;
     }
 

@@ -306,11 +306,11 @@ void sub_0207183C(FieldSystem *fieldSystem)
 
         if (v1->unk_00 == 0) {
             v2->unk_04 = Unk_020F03F4[v1->unk_02].unk_00[1];
-            FieldTask_Start(fieldSystem->unk_10, sub_020718D8, v2);
+            FieldTask_Start(fieldSystem->taskManager, sub_020718D8, v2);
             v1->unk_00 = 1;
         } else {
             v2->unk_04 = Unk_020F03F4[v1->unk_02].unk_00[0];
-            FieldTask_Start(fieldSystem->unk_10, sub_020719D8, v2);
+            FieldTask_Start(fieldSystem->taskManager, sub_020719D8, v2);
             v1->unk_00 = 0;
         }
     }

@@ -45,7 +45,7 @@ void sub_02050568(FieldSystem *fieldSystem)
     UnkStruct_02050568 *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02050568));
 
     memset(v0, 0, sizeof(UnkStruct_02050568));
-    FieldTask_Start(fieldSystem->unk_10, sub_020505A0, v0);
+    FieldTask_Start(fieldSystem->taskManager, sub_020505A0, v0);
 }
 
 static BOOL sub_020505A0(TaskManager *taskMan)

@@ -783,7 +783,7 @@ static void ov23_02251C04(SysTask *param0, void *param1)
         }
         break;
     case 3:
-        if (v0->fieldSystem->unk_10 == NULL) {
+        if (v0->fieldSystem->taskManager == NULL) {
             v2 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov23_02251ACC));
             MI_CpuClear8(v2, sizeof(UnkStruct_ov23_02251ACC));
             v2->unk_00 = 0;
