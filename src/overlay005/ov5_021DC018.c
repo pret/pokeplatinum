@@ -188,8 +188,8 @@ void ov5_021DC1AC(UnkStruct_ov5_021DC1A4 *param0)
         param0->unk_99 -= param0->unk_9B * 2;
     }
 
-    Window_Add(param0->fieldSystem->unk_08, &param0->unk_08, 3, param0->unk_98, param0->unk_99, v0, param0->unk_9B * 2, 13, ((1 + (10 * 4)) + (10 * 2)));
-    LoadStandardWindowGraphics(param0->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
+    Window_Add(param0->fieldSystem->bgConfig, &param0->unk_08, 3, param0->unk_98, param0->unk_99, v0, param0->unk_9B * 2, 13, ((1 + (10 * 4)) + (10 * 2)));
+    LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
     Window_DrawStandardFrame(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
 
     ov5_021DC33C(param0);
@@ -373,12 +373,12 @@ void ov5_021DC528(UnkStruct_ov5_021DC1A4 *param0, u16 param1)
 static void ov5_021DC530(UnkStruct_ov5_021DC1A4 *param0, u32 param1)
 {
     if (param0->unk_9B > 8) {
-        Window_Add(param0->fieldSystem->unk_08, &param0->unk_08, 3, param0->unk_98, param0->unk_99, param1, 8 * 2, 13, ((1 + (10 * 4)) + (10 * 2)));
+        Window_Add(param0->fieldSystem->bgConfig, &param0->unk_08, 3, param0->unk_98, param0->unk_99, param1, 8 * 2, 13, ((1 + (10 * 4)) + (10 * 2)));
     } else {
-        Window_Add(param0->fieldSystem->unk_08, &param0->unk_08, 3, param0->unk_98, param0->unk_99, param1, param0->unk_9B * 2, 13, ((1 + (10 * 4)) + (10 * 2)));
+        Window_Add(param0->fieldSystem->bgConfig, &param0->unk_08, 3, param0->unk_98, param0->unk_99, param1, param0->unk_9B * 2, 13, ((1 + (10 * 4)) + (10 * 2)));
     }
 
-    LoadStandardWindowGraphics(param0->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
+    LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
     Window_DrawStandardFrame(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
 
     ov5_021DC7E4(param0);
@@ -403,12 +403,12 @@ void ov5_021DC600(UnkStruct_ov5_021DC1A4 *param0, u16 *param1, u16 *param2)
     }
 
     if (param0->unk_9B > 8) {
-        Window_Add(param0->fieldSystem->unk_08, &param0->unk_08, 3, param0->unk_98, param0->unk_99, v0, 8 * 2, 13, ((1 + (10 * 4)) + (10 * 2)));
+        Window_Add(param0->fieldSystem->bgConfig, &param0->unk_08, 3, param0->unk_98, param0->unk_99, v0, 8 * 2, 13, ((1 + (10 * 4)) + (10 * 2)));
     } else {
-        Window_Add(param0->fieldSystem->unk_08, &param0->unk_08, 3, param0->unk_98, param0->unk_99, v0, param0->unk_9B * 2, 13, ((1 + (10 * 4)) + (10 * 2)));
+        Window_Add(param0->fieldSystem->bgConfig, &param0->unk_08, 3, param0->unk_98, param0->unk_99, v0, param0->unk_9B * 2, 13, ((1 + (10 * 4)) + (10 * 2)));
     }
 
-    LoadStandardWindowGraphics(param0->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
+    LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
     Window_DrawStandardFrame(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
 
     ov5_021DC7E4(param0);
@@ -638,8 +638,8 @@ void ov5_021DCB24(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 *param3, S
         v1 = (v1 / 8) + 1;
     }
 
-    Window_Add(v3->fieldSystem->unk_08, &v3->unk_08, 3, v3->unk_98, v3->unk_99, v1, 4, 13, ((1 + (10 * 4)) + (10 * 2)) + (16 * 10));
-    LoadStandardWindowGraphics(v3->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
+    Window_Add(v3->fieldSystem->bgConfig, &v3->unk_08, 3, v3->unk_98, v3->unk_99, v1, 4, 13, ((1 + (10 * 4)) + (10 * 2)) + (16 * 10));
+    LoadStandardWindowGraphics(v3->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
     Window_DrawStandardFrame(&v3->unk_08, 1, 1024 - (18 + 12) - 9, 11);
     Window_FillRectWithColor(&v3->unk_08, 15, 0, 0, (v1 * 8), (4 * 8));
 
@@ -778,8 +778,8 @@ void ov5_021DCD94(UnkStruct_ov5_021DC1A4 *param0, u8 param1)
         v1++;
     }
 
-    Window_Add(param0->fieldSystem->unk_08, &param0->unk_08, 3, param0->unk_98, param0->unk_99, (v0 * param1), v1 * 2, 13, ((1 + (10 * 4)) + (10 * 2)));
-    LoadStandardWindowGraphics(param0->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
+    Window_Add(param0->fieldSystem->bgConfig, &param0->unk_08, 3, param0->unk_98, param0->unk_99, (v0 * param1), v1 * 2, 13, ((1 + (10 * 4)) + (10 * 2)));
+    LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
     Window_DrawStandardFrame(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
 
     ov5_021DCE64(param0, param1, v1);
@@ -807,8 +807,8 @@ Window *ov5_021DCEB0(FieldSystem *fieldSystem, u8 param1, u8 param2)
 {
     Window *v0 = Window_New(4, 1);
 
-    Window_Add(fieldSystem->unk_08, v0, 3, param1, param2, 10, 4, 13, 1);
-    LoadStandardWindowGraphics(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
+    Window_Add(fieldSystem->bgConfig, v0, 3, param1, param2, 10, 4, 13, 1);
+    LoadStandardWindowGraphics(fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
     Window_DrawStandardFrame(v0, 1, 1024 - (18 + 12) - 9, 11);
     Window_FillTilemap(v0, 15);
 
@@ -869,8 +869,8 @@ Window *ov5_021DD020(FieldSystem *fieldSystem, u8 param1, u8 param2)
 {
     Window *v0 = Window_New(4, 1);
 
-    Window_Add(fieldSystem->unk_08, v0, 3, param1, param2, 10, 2, 13, (1 + (10 * 4)));
-    LoadStandardWindowGraphics(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
+    Window_Add(fieldSystem->bgConfig, v0, 3, param1, param2, 10, 2, 13, (1 + (10 * 4)));
+    LoadStandardWindowGraphics(fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
     Window_DrawStandardFrame(v0, 1, 1024 - (18 + 12) - 9, 11);
 
     ov5_021DD098(fieldSystem, v0);
@@ -918,8 +918,8 @@ Window *ov5_021DD140(FieldSystem *fieldSystem, u8 param1, u8 param2)
 {
     Window *v0 = Window_New(4, 1);
 
-    Window_Add(fieldSystem->unk_08, v0, 3, param1, param2, 10, 2, 13, (1 + (10 * 4)));
-    LoadStandardWindowGraphics(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
+    Window_Add(fieldSystem->bgConfig, v0, 3, param1, param2, 10, 2, 13, (1 + (10 * 4)));
+    LoadStandardWindowGraphics(fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
     Window_DrawStandardFrame(v0, 1, 1024 - (18 + 12) - 9, 11);
 
     ov5_021DD1A4(fieldSystem, v0);
@@ -963,8 +963,8 @@ UnkStruct_ov5_021DC1A4 *ov5_021DD250(FieldSystem *fieldSystem, u8 param1, u8 par
 
     v0 = ov5_021DC150(fieldSystem, param1, param2, 0, 0, param3, param4, NULL, NULL);
 
-    Window_Add(v0->fieldSystem->unk_08, &v0->unk_08, 3, v0->unk_98, v0->unk_99, 10, 16, 13, ((1 + (10 * 4)) + (10 * 2)));
-    LoadStandardWindowGraphics(v0->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
+    Window_Add(v0->fieldSystem->bgConfig, &v0->unk_08, 3, v0->unk_98, v0->unk_99, 10, 16, 13, ((1 + (10 * 4)) + (10 * 2)));
+    LoadStandardWindowGraphics(v0->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
     Window_DrawStandardFrame(&v0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
     Window_FillRectWithColor(&v0->unk_08, 15, 0, 0, (10 * 8), (16 * 8));
 

@@ -1496,7 +1496,7 @@ static int ov6_02244548(UnkStruct_ov6_02243FFC *param0)
     }
 
     if ((param0->unk_4C == (FX32_ONE * (96 - 1))) && (param0->unk_50 == (FX32_ONE * (96 + 1)))) {
-        ov6_02244F20(param0->fieldSystem->unk_08);
+        ov6_02244F20(param0->fieldSystem->bgConfig);
         param0->unk_14 = 1;
         ov6_02244F58(param0);
         param0->unk_00++;
@@ -1687,8 +1687,8 @@ static void ov6_0224481C(UnkStruct_ov6_02243FFC *param0)
     ov6_02244F80(param0, (FX32_ONE * 0), (FX32_ONE * 192), (FX32_ONE * 1), (FX32_ONE * 192));
     ov6_02244F2C(param0);
 
-    param0->unk_24 = Bg_GetPriority(param0->fieldSystem->unk_08, 0);
-    param0->unk_26 = Bg_GetPriority(param0->fieldSystem->unk_08, 3);
+    param0->unk_24 = Bg_GetPriority(param0->fieldSystem->bgConfig, 0);
+    param0->unk_26 = Bg_GetPriority(param0->fieldSystem->bgConfig, 3);
 
     G2_SetBG1Priority(1);
     G2_SetBG3Priority(0);
@@ -1696,8 +1696,8 @@ static void ov6_0224481C(UnkStruct_ov6_02243FFC *param0)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
 
     ov6_02244E54(v0, 2, &param0->unk_6C);
-    ov6_02244E7C(param0->fieldSystem->unk_08, v0, 0, &param0->unk_68);
-    ov6_02244EB4(param0->fieldSystem->unk_08, v0, 1, &param0->unk_64);
+    ov6_02244E7C(param0->fieldSystem->bgConfig, v0, 0, &param0->unk_68);
+    ov6_02244EB4(param0->fieldSystem->bgConfig, v0, 1, &param0->unk_64);
     ov6_02244928(param0, v0);
 
     NARC_dtor(v0);
@@ -1710,7 +1710,7 @@ static void ov6_022448C8(UnkStruct_ov6_02243FFC *param0)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
     sub_0207121C(param0->unk_244);
 
-    ov6_02244F20(param0->fieldSystem->unk_08);
+    ov6_02244F20(param0->fieldSystem->bgConfig);
     ov6_02244B6C(param0);
 
     G2_SetBG0Priority(param0->unk_24);

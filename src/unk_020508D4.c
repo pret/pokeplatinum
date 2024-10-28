@@ -48,10 +48,10 @@ TaskManager *FieldTask_Set(FieldSystem *fieldSystem, FieldTask param1, void *par
 {
     TaskManager *v0;
 
-    GF_ASSERT(fieldSystem->unk_10 == NULL);
+    GF_ASSERT(fieldSystem->taskManager == NULL);
 
     v0 = sub_020508D4(fieldSystem, param1, param2);
-    fieldSystem->unk_10 = v0;
+    fieldSystem->taskManager = v0;
 
     return v0;
 }
@@ -76,30 +76,30 @@ TaskManager *FieldTask_Start(TaskManager *param0, FieldTask param1, void *param2
     v0 = sub_020508D4(param0->fieldSystem, param1, param2);
     v0->unk_00 = param0;
 
-    param0->fieldSystem->unk_10 = v0;
+    param0->fieldSystem->taskManager = v0;
 
     return v0;
 }
 
 BOOL sub_02050958(FieldSystem *fieldSystem)
 {
-    if (fieldSystem->unk_10 == NULL) {
+    if (fieldSystem->taskManager == NULL) {
         return 0;
     }
 
-    while (fieldSystem->unk_10->unk_04(fieldSystem->unk_10) == 1) {
+    while (fieldSystem->taskManager->unk_04(fieldSystem->taskManager) == 1) {
         TaskManager *v0;
 
-        v0 = fieldSystem->unk_10->unk_00;
+        v0 = fieldSystem->taskManager->unk_00;
 
-        if (fieldSystem->unk_10->unk_14) {
-            Heap_FreeToHeap(fieldSystem->unk_10->unk_14);
+        if (fieldSystem->taskManager->unk_14) {
+            Heap_FreeToHeap(fieldSystem->taskManager->unk_14);
         }
 
-        Heap_FreeToHeap(fieldSystem->unk_10->unk_1C);
-        Heap_FreeToHeap(fieldSystem->unk_10);
+        Heap_FreeToHeap(fieldSystem->taskManager->unk_1C);
+        Heap_FreeToHeap(fieldSystem->taskManager);
 
-        fieldSystem->unk_10 = v0;
+        fieldSystem->taskManager = v0;
 
         if (v0 == NULL) {
             return 1;
@@ -111,7 +111,7 @@ BOOL sub_02050958(FieldSystem *fieldSystem)
 
 BOOL sub_020509A4(FieldSystem *fieldSystem)
 {
-    return fieldSystem->unk_10 != NULL;
+    return fieldSystem->taskManager != NULL;
 }
 
 BOOL sub_020509B4(FieldSystem *fieldSystem)

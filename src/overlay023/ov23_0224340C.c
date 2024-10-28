@@ -2159,7 +2159,7 @@ static void ov23_02244EA4(FieldSystem *fieldSystem, BOOL param1, int param2)
     Unk_ov23_02257764->unk_300 = v0;
     ov23_022451BC(v0);
 
-    v0->unk_10 = fieldSystem->unk_08;
+    v0->unk_10 = fieldSystem->bgConfig;
     v0->fieldSystem = fieldSystem;
     v0->unk_19 = param1;
     v0->unk_18 = param2;
@@ -2224,7 +2224,7 @@ static void ov23_02244FD0(int param0, BOOL param1)
 
         {
             int v1;
-            u8 *v2 = Bg_GetTilemapBuffer(Unk_ov23_02257764->fieldSystem->unk_08, 2);
+            u8 *v2 = Bg_GetTilemapBuffer(Unk_ov23_02257764->fieldSystem->bgConfig, 2);
 
             for (v1 = 0; v1 < 0x800; v1 += 2) {
                 v2[v1] = 0;
@@ -3159,7 +3159,7 @@ static void ov23_02245F94(SysTask *param0, void *param1)
         }
         break;
     case 7:
-        if (ov23_02246640(Unk_ov23_02257764->fieldSystem->unk_08, v0)) {
+        if (ov23_02246640(Unk_ov23_02257764->fieldSystem->bgConfig, v0)) {
             if (v0->unk_113) {
                 v0->unk_00 = 11;
             } else {
@@ -3587,7 +3587,7 @@ static void ov23_02246A80(SysTask *param0, void *param1)
     case 7:
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_OBJ, GX_BLEND_PLANEMASK_BG0, 14, 7);
 
-        if (ov23_02246F20(Unk_ov23_02257764->fieldSystem->unk_08, v0)) {
+        if (ov23_02246F20(Unk_ov23_02257764->fieldSystem->bgConfig, v0)) {
             sub_020057A4(1632, 0);
 
             if (v0->unk_15E) {
@@ -3792,7 +3792,7 @@ static void ov23_0224710C(int param0, BOOL param1, int param2)
     ov23_0224AD7C(param0, 2);
 
     if (CommSys_CurNetId() == param0) {
-        ov23_02246CF0(Unk_ov23_02257764->fieldSystem->unk_08, param1, param2);
+        ov23_02246CF0(Unk_ov23_02257764->fieldSystem->bgConfig, param1, param2);
     }
 }
 
@@ -4204,7 +4204,7 @@ static void ov23_02247A8C(SysTask *param0, void *param1)
         }
         break;
     case 7:
-        if (ov23_02247568(Unk_ov23_02257764->fieldSystem->unk_08, v0)) {
+        if (ov23_02247568(Unk_ov23_02257764->fieldSystem->bgConfig, v0)) {
             if (v0->unk_127) {
                 v0->unk_00 = 11;
             } else {
@@ -4265,7 +4265,7 @@ static void ov23_02247D78(int param0, BOOL param1, int param2)
     ov23_0224AD7C(param0, 2);
 
     if (CommSys_CurNetId() == param0) {
-        ov23_02247D28(Unk_ov23_02257764->fieldSystem->unk_08, param1, param2);
+        ov23_02247D28(Unk_ov23_02257764->fieldSystem->bgConfig, param1, param2);
     }
 }
 
@@ -4500,7 +4500,7 @@ static void ov23_022480C4(SysTask *param0, void *param1)
     case 7:
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_OBJ, GX_BLEND_PLANEMASK_BG0, 14, 7);
 
-        if (ov23_02247F4C(Unk_ov23_02257764->fieldSystem->unk_08, v0)) {
+        if (ov23_02247F4C(Unk_ov23_02257764->fieldSystem->bgConfig, v0)) {
             if (v0->unk_2A) {
                 v0->unk_00 = 11;
             } else {
@@ -4561,7 +4561,7 @@ static void ov23_02248364(int param0, BOOL param1, int param2)
     ov23_0224AD7C(param0, 2);
 
     if (CommSys_CurNetId() == param0) {
-        ov23_02248318(Unk_ov23_02257764->fieldSystem->unk_08, param1, param2);
+        ov23_02248318(Unk_ov23_02257764->fieldSystem->bgConfig, param1, param2);
     }
 }
 
@@ -4683,7 +4683,7 @@ static void ov23_02248570(int param0, BOOL param1, int param2)
     ov23_0224AD7C(param0, 2);
 
     if (CommSys_CurNetId() == param0) {
-        ov23_0224852C(Unk_ov23_02257764->fieldSystem->unk_08, param1, param2);
+        ov23_0224852C(Unk_ov23_02257764->fieldSystem->bgConfig, param1, param2);
     }
 }
 
@@ -4833,7 +4833,7 @@ static void ov23_02248884(SysTask *param0, void *param1)
         v0->unk_00 = 7;
         break;
     case 7:
-        if (ov23_02248614(Unk_ov23_02257764->fieldSystem->unk_08, v0)) {
+        if (ov23_02248614(Unk_ov23_02257764->fieldSystem->bgConfig, v0)) {
             v0->unk_00 = 9;
         }
         break;

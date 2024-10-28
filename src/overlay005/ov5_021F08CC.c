@@ -521,7 +521,7 @@ static void ov5_021F0DC4(UnkStruct_ov5_021F0D6C *param0)
 {
     FieldSystem *fieldSystem = param0->fieldSystem;
 
-    FieldMessage_AddWindow(fieldSystem->unk_08, &param0->window, 3);
+    FieldMessage_AddWindow(fieldSystem->bgConfig, &param0->window, 3);
     FieldMessage_DrawWindow(&param0->window, SaveData_Options(fieldSystem->saveData));
 }
 

@@ -138,7 +138,7 @@ static void ov5_021D0D80(void *param0)
 {
     FieldSystem *fieldSystem = param0;
 
-    Bg_RunScheduledUpdates(fieldSystem->unk_08);
+    Bg_RunScheduledUpdates(fieldSystem->bgConfig);
     sub_0201DCAC();
     sub_0200A858();
 
@@ -198,8 +198,8 @@ static BOOL FieldMap_Init(OverlayManager *overlayMan, int *param1)
         ov5_021D154C();
 
         GXLayers_SwapDisplay();
-        fieldSystem->unk_08 = BgConfig_New(4);
-        ov5_021D1444(fieldSystem->unk_08);
+        fieldSystem->bgConfig = BgConfig_New(4);
+        ov5_021D1444(fieldSystem->bgConfig);
         sub_0205D8CC(0, 1);
         sub_0203F5C0(fieldSystem, 4);
         break;
@@ -323,7 +323,7 @@ static BOOL FieldMap_Exit(OverlayManager *overlayMan, int *param1)
             ov5_021D57D8(&fieldSystem->unk_48);
             ov5_021D5894(&fieldSystem->unk_44);
             ov5_021D1570();
-            ov5_021D1524(fieldSystem->unk_08);
+            ov5_021D1524(fieldSystem->bgConfig);
             ov5_021D5C14(fieldSystem);
             (*param1)++;
         }
@@ -336,7 +336,7 @@ static BOOL FieldMap_Exit(OverlayManager *overlayMan, int *param1)
             Easy3D_Shutdown();
             ov5_021D1AE4(fieldSystem->unk_04->unk_04);
             SetMainCallback(NULL, NULL);
-            Heap_FreeToHeap(fieldSystem->unk_08);
+            Heap_FreeToHeap(fieldSystem->bgConfig);
             Heap_FreeToHeap(fieldSystem->unk_04);
 
             fieldSystem->unk_04 = NULL;
@@ -922,7 +922,7 @@ static void ov5_021D1968(FieldSystem *fieldSystem)
         fieldSystem->unk_04->unk_0C = ov5_021D5EB8(fieldSystem);
     }
 
-    fieldSystem->unk_04->unk_08 = ov5_021DD98C(fieldSystem->unk_08);
+    fieldSystem->unk_04->unk_08 = ov5_021DD98C(fieldSystem->bgConfig);
     fieldSystem->unk_64 = ov5_021E1B08(4);
     fieldSystem->unk_04->unk_10 = ov5_021D5CB0();
 

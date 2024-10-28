@@ -620,7 +620,7 @@ static int sub_0205AA50(UnkStruct_0205A0D8 *param0, const Strbuf *param1)
     Window *v0 = &(param0->unk_14);
 
     if (Window_IsInUse(v0) == 0) {
-        FieldMessage_AddWindow(param0->fieldSystem->unk_08, v0, 3);
+        FieldMessage_AddWindow(param0->fieldSystem->bgConfig, v0, 3);
         FieldMessage_DrawWindow(v0, SaveData_Options(param0->fieldSystem->saveData));
     } else {
         sub_0205D988(v0);
@@ -655,7 +655,7 @@ static void sub_0205AAA0(UnkStruct_0205A0D8 *param0, BOOL param1)
 void sub_0205AB10(FieldSystem *fieldSystem, UnkFuncPtr_0205AB10 *param1)
 {
     UnkStruct_0205A0D8 *v0;
-    TaskManager *v1 = fieldSystem->unk_10;
+    TaskManager *v1 = fieldSystem->taskManager;
 
     if (v1) {
         return;
@@ -738,7 +738,7 @@ static void sub_0205AC28(UnkStruct_0205A0D8 *param0)
 
 static UnkStruct_0205A0D8 *sub_0205AC74(FieldSystem *fieldSystem)
 {
-    return TaskManager_Environment(fieldSystem->unk_10);
+    return TaskManager_Environment(fieldSystem->taskManager);
 }
 
 static void sub_0205AC80(UnkStruct_0205A0D8 *param0, BOOL param1)
@@ -874,8 +874,8 @@ static void sub_0205ADF8(UnkStruct_0205A0D8 *param0, int param1)
         v4 = MessageLoader_Init(1, 26, 412, 4);
         v3 = Pokemon_GetStructSize();
 
-        Window_Add(param0->fieldSystem->unk_08, v0, 3, 21, 9, 10, 8, 13, 10);
-        LoadStandardWindowGraphics(param0->fieldSystem->unk_08, 3, 1, 11, 0, 4);
+        Window_Add(param0->fieldSystem->bgConfig, v0, 3, 21, 9, 10, 8, 13, 10);
+        LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 1, 11, 0, 4);
         Window_FillTilemap(v0, 15);
 
         for (v1 = 0; v1 < 3; v1++) {
@@ -906,8 +906,8 @@ static void sub_0205AF18(UnkStruct_0205A0D8 *param0, int param1)
     if (Window_IsInUse(v0) == 0) {
         int v1;
 
-        Window_Add(param0->fieldSystem->unk_08, v0, 3, 20, 11, 11, 6, 13, 90);
-        LoadStandardWindowGraphics(param0->fieldSystem->unk_08, 3, 1, 11, 0, 4);
+        Window_Add(param0->fieldSystem->bgConfig, v0, 3, 20, 11, 11, 6, 13, 90);
+        LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 1, 11, 0, 4);
         Window_FillTilemap(v0, 15);
 
         for (v1 = 0; v1 < 3; v1++) {
@@ -1020,7 +1020,7 @@ static BOOL sub_0205B140(TaskManager *param0)
         MessageLoader_GetStrbuf(v1->unk_1C, 2 + v2->unk_03, v1->unk_00);
         StringTemplate_SetPlayerName(v1->unk_18, 0, CommInfo_TrainerInfo(v1->unk_24));
         StringTemplate_Format(v1->unk_18, v1->unk_04, v1->unk_00);
-        FieldMessage_AddWindow(fieldSystem->unk_08, &v1->unk_08, 3);
+        FieldMessage_AddWindow(fieldSystem->bgConfig, &v1->unk_08, 3);
         FieldMessage_DrawWindow(&v1->unk_08, SaveData_Options(fieldSystem->saveData));
 
         v1->unk_20 = FieldMessage_Print(&v1->unk_08, v1->unk_04, SaveData_Options(fieldSystem->saveData), 1);

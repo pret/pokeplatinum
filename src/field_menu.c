@@ -342,7 +342,7 @@ void sub_0203AB00(FieldSystem *fieldSystem)
         menu->unk_224 = sub_0203ABD0(fieldSystem);
     }
 
-    FieldTask_Change(fieldSystem->unk_10, sub_0203AC44, menu);
+    FieldTask_Change(fieldSystem->taskManager, sub_0203AC44, menu);
 }
 
 static FieldMenu *FieldMenu_Alloc(void)
@@ -496,7 +496,7 @@ static BOOL sub_0203AC44(TaskManager *taskMan)
         Window_EraseStandardFrame(&menu->unk_00, 1);
         Window_Remove(&menu->unk_00);
         sub_0203B200(taskMan);
-        Bg_ScheduleTilemapTransfer(fieldSystem->unk_08, 3);
+        Bg_ScheduleTilemapTransfer(fieldSystem->bgConfig, 3);
         Heap_FreeToHeap(menu);
         MapObjectMan_UnpauseAllMovement(fieldSystem->mapObjMan);
         return TRUE;
@@ -527,8 +527,8 @@ static void sub_0203ADFC(TaskManager *taskMan)
     menu = TaskManager_Environment(taskMan);
     v5 = FieldMenu_MakeList(menu, menu->unk_30);
 
-    Window_Add(fieldSystem->unk_08, &menu->unk_00, 3, 20, 1, 11, v5 * 3, 12, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (11 * 22)));
-    LoadStandardWindowGraphics(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 1, 11);
+    Window_Add(fieldSystem->bgConfig, &menu->unk_00, 3, 20, 1, 11, v5 * 3, 12, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (11 * 22)));
+    LoadStandardWindowGraphics(fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 1, 11);
     Window_DrawStandardFrame(&menu->unk_00, 1, 1024 - (18 + 12) - 9, 11);
 
     v2 = MessageLoader_Init(0, 26, 367, 11);
@@ -668,8 +668,8 @@ static void sub_0203B094(TaskManager *taskMan)
         return;
     }
 
-    Window_Add(fieldSystem->unk_08, &menu->unk_10, 3, 1, 1, 12, 4, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)));
-    LoadStandardWindowGraphics(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 1, 11);
+    Window_Add(fieldSystem->bgConfig, &menu->unk_10, 3, 1, 1, 12, 4, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)));
+    LoadStandardWindowGraphics(fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 1, 11);
     Window_DrawStandardFrame(&menu->unk_10, 1, 1024 - (18 + 12) - 9, 11);
     Window_FillTilemap(&menu->unk_10, 15);
 

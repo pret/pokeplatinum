@@ -221,7 +221,7 @@ static void sub_0204FDB4(TaskManager *param0, void **param1, u8 param2)
     v1->unk_04 = param2;
     v1->unk_0C = param1;
 
-    FieldTask_Start(fieldSystem->unk_10, sub_0204FDE8, v1);
+    FieldTask_Start(fieldSystem->taskManager, sub_0204FDE8, v1);
     return;
 }
 

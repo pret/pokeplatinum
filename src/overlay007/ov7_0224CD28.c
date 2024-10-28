@@ -185,7 +185,7 @@ void ov7_0224CDA4(TaskManager *param0, FieldSystem *fieldSystem, u16 *param2, u8
 {
     UnkStruct_ov7_0224D008 *v0 = ov7_0224CD88();
 
-    v0->unk_00 = fieldSystem->unk_08;
+    v0->unk_00 = fieldSystem->bgConfig;
 
     v0->unk_298 = Strbuf_Init((24 * 2 * 2), 11);
     v0->unk_270 = SaveData_GetTrainerInfo(fieldSystem->saveData);
@@ -1395,7 +1395,7 @@ static u8 ov7_0224E950(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1)
         return 19;
     }
 
-    FieldMessage_AddWindow(fieldSystem->unk_08, &param1->unk_08[1], 3);
+    FieldMessage_AddWindow(fieldSystem->bgConfig, &param1->unk_08[1], 3);
     FieldMessage_DrawWindow(&param1->unk_08[1], param1->unk_278);
 
     {
@@ -1434,7 +1434,7 @@ static void ov7_0224EA54(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param
 
     StringTemplate_Format(param1->unk_8C, param1->unk_298, v0);
     Strbuf_Free(v0);
-    FieldMessage_AddWindow(fieldSystem->unk_08, &param1->unk_08[1], 3);
+    FieldMessage_AddWindow(fieldSystem->bgConfig, &param1->unk_08[1], 3);
     FieldMessage_DrawWindow(&param1->unk_08[1], param1->unk_278);
 
     param1->unk_2A4 = FieldMessage_Print(&param1->unk_08[1], param1->unk_298, param1->unk_278, 1);
@@ -1558,7 +1558,7 @@ static u8 ov7_0224EC9C(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1)
         return 18;
     }
 
-    FieldMessage_AddWindow(fieldSystem->unk_08, &param1->unk_08[1], 3);
+    FieldMessage_AddWindow(fieldSystem->bgConfig, &param1->unk_08[1], 3);
     FieldMessage_DrawWindow(&param1->unk_08[1], param1->unk_278);
 
     {

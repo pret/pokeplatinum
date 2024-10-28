@@ -216,7 +216,7 @@ static void *ov23_022524B8(UnkStruct_ov23_02250CD4 *param0)
 
     param0->unk_40 = StringList_New(v1, 4);
 
-    Window_Add(param0->fieldSystem->unk_08, &param0->unk_10, 3, 19, 3, 12, v1 * 2, 13, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - 12 * 6));
+    Window_Add(param0->fieldSystem->bgConfig, &param0->unk_10, 3, 19, 3, 12, v1 * 2, 13, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - 12 * 6));
     Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {
@@ -398,7 +398,7 @@ static void ov23_02252A18(UnkStruct_ov23_02250CD4 *param0)
     ov23_0224FB7C(param0);
     param0->unk_40 = StringList_New(v1, 4);
 
-    Window_Add(param0->fieldSystem->unk_08, &param0->unk_10, 3, 19, 3, 12, v1 * 2, 13, (((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - 12 * 6) - 12 * 12));
+    Window_Add(param0->fieldSystem->bgConfig, &param0->unk_10, 3, 19, 3, 12, v1 * 2, 13, (((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - 12 * 6) - 12 * 12));
     Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {
@@ -546,7 +546,7 @@ void ov23_02252D08(int param0, int param1)
 static void ov23_02252D1C(UnkStruct_ov23_02250CD4 *param0)
 {
     if (!Window_IsInUse(&param0->unk_20)) {
-        Window_Add(param0->fieldSystem->unk_08, &param0->unk_20, 3, 1, 12, 12, 4, 13, 1);
+        Window_Add(param0->fieldSystem->bgConfig, &param0->unk_20, 3, 1, 12, 12, 4, 13, 1);
         Window_DrawStandardFrame(&param0->unk_20, 1, 1024 - (18 + 12) - 9, 11);
     }
 
@@ -556,7 +556,7 @@ static void ov23_02252D1C(UnkStruct_ov23_02250CD4 *param0)
 
 void ov23_02252D74(UnkStruct_ov23_02250CD4 *param0, int param1)
 {
-    Window_Add(param0->fieldSystem->unk_08, &param0->unk_30, 3, 1, 1, 7, 4, 13, 51);
+    Window_Add(param0->fieldSystem->bgConfig, &param0->unk_30, 3, 1, 1, 7, 4, 13, 51);
     Window_DrawStandardFrame(&param0->unk_30, 1, 1024 - (18 + 12) - 9, 11);
 
     Window_FillTilemap(&param0->unk_30, 15);
@@ -850,7 +850,7 @@ static void ov23_02252E70(SysTask *param0, void *param1)
         break;
     case 14:
         if (ov23_02254238(ov23_022421BC()) == 0) {
-            v0->unk_5C = Menu_MakeYesNoChoice(v0->fieldSystem->unk_08, &Unk_ov23_022569D8, 1024 - (18 + 12) - 9, 11, 4);
+            v0->unk_5C = Menu_MakeYesNoChoice(v0->fieldSystem->bgConfig, &Unk_ov23_022569D8, 1024 - (18 + 12) - 9, 11, 4);
             v0->unk_2AA = 15;
         }
         break;

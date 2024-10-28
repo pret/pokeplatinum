@@ -355,7 +355,7 @@ static void ov23_022515D8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
 
     param0->unk_40 = StringList_New(v1, 4);
 
-    Window_Add(param0->fieldSystem->unk_08, &param0->unk_10, 3, 17, 3, 14, v1 * 2, 13, 2);
+    Window_Add(param0->fieldSystem->bgConfig, &param0->unk_10, 3, 17, 3, 14, v1 * 2, 13, 2);
     Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {
@@ -401,7 +401,7 @@ static void ov23_022516E8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
 
     param0->unk_40 = StringList_New(v1, 4);
 
-    Window_Add(param0->fieldSystem->unk_08, &param0->unk_10, 3, 17, 3, 14, v1 * 2, 13, (2 + 14 * 16));
+    Window_Add(param0->fieldSystem->bgConfig, &param0->unk_10, 3, 17, 3, 14, v1 * 2, 13, (2 + 14 * 16));
     Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {
@@ -702,7 +702,7 @@ static void ov23_02251C04(SysTask *param0, void *param1)
     case 6:
         ov23_0224FB7C(param1);
         ov23_02254044(ov23_022421BC());
-        v0->unk_270 = ov23_02253C64(v0->fieldSystem->unk_08, SaveData_GetTrainerInfo(FieldSystem_SaveData(v0->fieldSystem)), sub_020298B0(FieldSystem_SaveData(v0->fieldSystem)), NULL, NULL);
+        v0->unk_270 = ov23_02253C64(v0->fieldSystem->bgConfig, SaveData_GetTrainerInfo(FieldSystem_SaveData(v0->fieldSystem)), sub_020298B0(FieldSystem_SaveData(v0->fieldSystem)), NULL, NULL);
         v0->unk_2AA = 7;
         break;
     case 7:
@@ -783,7 +783,7 @@ static void ov23_02251C04(SysTask *param0, void *param1)
         }
         break;
     case 3:
-        if (v0->fieldSystem->unk_10 == NULL) {
+        if (v0->fieldSystem->taskManager == NULL) {
             v2 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov23_02251ACC));
             MI_CpuClear8(v2, sizeof(UnkStruct_ov23_02251ACC));
             v2->unk_00 = 0;
@@ -868,7 +868,7 @@ static void ov23_02252038(SysTask *param0, void *param1)
     switch (v0->unk_00) {
     case 0:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            v0->unk_08 = Menu_MakeYesNoChoice(v0->fieldSystem->unk_08, &Unk_ov23_022569C8, 1024 - (18 + 12) - 9, 11, 4);
+            v0->unk_08 = Menu_MakeYesNoChoice(v0->fieldSystem->bgConfig, &Unk_ov23_022569C8, 1024 - (18 + 12) - 9, 11, 4);
             v0->unk_00 = 1;
         }
         break;

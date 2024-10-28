@@ -1537,7 +1537,7 @@ void sub_0203E2FC(FieldSystem *fieldSystem)
     v0.unk_08 = SaveData_GetTrainerInfo(fieldSystem->saveData);
     v0.unk_0C = sub_02055428(fieldSystem, fieldSystem->location->mapId);
 
-    sub_020985AC(fieldSystem->unk_10, &v0);
+    sub_020985AC(fieldSystem->taskManager, &v0);
 }
 
 BOOL sub_0203E348(FieldSystem *fieldSystem, UnkStruct_0203E348 *param1)
@@ -1663,7 +1663,7 @@ static BOOL sub_0203E4F8(TaskManager *param0)
 void sub_0203E518(TaskManager *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov7_0224BEFC *v1 = ov7_0224BE9C(4, fieldSystem->saveData, fieldSystem->unk_08);
+    UnkStruct_ov7_0224BEFC *v1 = ov7_0224BE9C(4, fieldSystem->saveData, fieldSystem->bgConfig);
 
     FieldTask_Start(param0, sub_0203E4F8, v1);
 }
