@@ -9,6 +9,7 @@
 
 #include "struct_defs/struct_02099F80.h"
 
+#include "graphics/options_menu/config_gra.naix"
 #include "text/gmm/message_bank_options_menu.h"
 #include "text/pl_msg.naix"
 
@@ -551,27 +552,27 @@ static void LoadBgTiles(OptionsMenuData *menuData)
 
     NARC *narc = NARC_ctor(NARC_INDEX_GRAPHIC__CONFIG_GRA, menuData->heapID);
 
-    u32 memberSize = NARC_GetMemberSize(narc, 1);
+    u32 memberSize = NARC_GetMemberSize(narc, tiles_NCGR);
     void *memberBuffer = Heap_AllocFromHeapAtEnd(menuData->heapID, memberSize);
-    NARC_ReadWholeMember(narc, 1, memberBuffer);
+    NARC_ReadWholeMember(narc, tiles_NCGR, memberBuffer);
     NNS_G2dGetUnpackedCharacterData(memberBuffer, &cursorTiles);
     Bg_LoadTiles(menuData->bgConfig, BG_LAYER_MAIN_0, cursorTiles->pRawData, cursorTiles->szByte, 0);
     Bg_LoadTiles(menuData->bgConfig, BG_LAYER_SUB_0, cursorTiles->pRawData, cursorTiles->szByte, 0);
     Heap_FreeToHeap(memberBuffer);
 
-    memberSize = NARC_GetMemberSize(narc, 0);
+    memberSize = NARC_GetMemberSize(narc, tiles_NCLR);
     memberBuffer = Heap_AllocFromHeapAtEnd(menuData->heapID, memberSize);
-    NARC_ReadWholeMember(narc, 0, memberBuffer);
+    NARC_ReadWholeMember(narc, tiles_NCLR, memberBuffer);
     NNS_G2dGetUnpackedPaletteData(memberBuffer, &cursorPalette);
     Bg_LoadPalette(BG_LAYER_MAIN_0, cursorPalette->pRawData, PALETTE_SIZE_BYTES, 0);
     Bg_LoadPalette(BG_LAYER_SUB_0, cursorPalette->pRawData, PALETTE_SIZE_BYTES, 0);
     Heap_FreeToHeap(memberBuffer);
 
-    memberSize = NARC_GetMemberSize(narc, 2);
+    memberSize = NARC_GetMemberSize(narc, tilemap_bin);
     menuData->nscrBuffer = Heap_AllocFromHeap(menuData->heapID, memberSize);
-
-    NARC_ReadWholeMember(narc, 2, menuData->nscrBuffer);
+    NARC_ReadWholeMember(narc, tilemap_bin, menuData->nscrBuffer);
     NNS_G2dGetUnpackedScreenData(menuData->nscrBuffer, &(menuData->tilemapData));
+
     NARC_dtor(narc);
 
     Bg_FillTilemapRect(menuData->bgConfig,

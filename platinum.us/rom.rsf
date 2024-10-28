@@ -283,7 +283,13 @@ RomSpec
 	File graphic/box.narc
 	File graphic/btower.narc
 	File graphic/bucket.narc
-	File graphic/config_gra.narc
+
+    Root /graphic/
+    HostRoot res/graphics/options_menu
+	File config_gra.narc
+
+	Root /
+	HostRoot res/prebuilt
 	File graphic/demo_trade.narc
 	File graphic/dendou_demo.narc
 	File graphic/dendou_pc.narc

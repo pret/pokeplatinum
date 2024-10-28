@@ -3,7 +3,6 @@ prebuilt_files = [
     'box.narc',
     'btower.narc',
     'bucket.narc',
-    'config_gra.narc',
     'demo_trade.narc',
     'dendou_demo.narc',
     'dendou_pc.narc',
