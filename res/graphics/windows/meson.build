@@ -59,9 +59,7 @@ pl_winframe_nclrs = nclr_gen.process(pl_winframe_pals,
         '-bitdepth', '4',
     ]
 )
-pl_winframe_ncers = copy_gen.process(files('pokemon_preview_cell.NCER'))
-# TODO: pending nitrogfx PR
-# pl_winframe_ncers = ncer_gen.process(files('pokemon_preview_cell.json'))
+pl_winframe_ncers = ncer_gen.process(files('pokemon_preview_cell.json'))
 pl_winframe_nanrs = nanr_gen.process(files('pokemon_preview_anim.json'))
 
 pl_winframe_order = files('pl_winframe.order')
