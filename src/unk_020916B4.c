@@ -27,7 +27,7 @@ typedef struct {
 
 static void sub_02091850(UnkStruct_02091850 *param0);
 static void sub_020918CC(VecFx16 *param0, VecFx16 *param1);
-static void sub_020918EC(PokemonSummaryApp *param0);
+static void sub_020918EC(PokemonSummaryScreen *param0);
 static void sub_02091B78(const UnkStruct_02091B78 *param0, VecFx16 *param1, u8 param2);
 static void sub_02091BD4(VecFx16 *param0, VecFx16 *param1, VecFx16 *param2);
 
@@ -122,7 +122,7 @@ static const UnkStruct_02091B78 Unk_020F4FFC[][4] = {
     },
 };
 
-void sub_020916B4(PokemonSummaryApp *param0)
+void sub_020916B4(PokemonSummaryScreen *param0)
 {
     NNS_G3dInit();
 
@@ -143,7 +143,7 @@ void sub_020916B4(PokemonSummaryApp *param0)
     G2_SetBG0Priority(2);
 }
 
-void sub_02091750(PokemonSummaryApp *param0)
+void sub_02091750(PokemonSummaryScreen *param0)
 {
     if (param0->page == 4) {
         sub_020241B4();
@@ -166,7 +166,7 @@ void sub_02091750(PokemonSummaryApp *param0)
     G3_SwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 }
 
-void sub_020917B0(PokemonSummaryApp *param0)
+void sub_020917B0(PokemonSummaryScreen *param0)
 {
     Camera_Delete(param0->monSpriteData.camera);
     sub_02016114(param0->monSpriteData.animationSys, 0);
@@ -174,7 +174,7 @@ void sub_020917B0(PokemonSummaryApp *param0)
     sub_02007B6C(param0->monSpriteData.spriteManager);
 }
 
-void sub_020917E0(PokemonSummaryApp *param0)
+void sub_020917E0(PokemonSummaryScreen *param0)
 {
     VecFx32 v0 = { 0, 0, 0x10000 };
     CameraAngle v1 = { 0, 0, 0 };
@@ -219,7 +219,7 @@ static void sub_020918CC(VecFx16 *param0, VecFx16 *param1)
     param0->z += param1->z;
 }
 
-static void sub_020918EC(PokemonSummaryApp *param0)
+static void sub_020918EC(PokemonSummaryScreen *param0)
 {
     u32 v0;
 
@@ -250,7 +250,7 @@ static void sub_020918EC(PokemonSummaryApp *param0)
     }
 }
 
-void sub_020919E8(PokemonSummaryApp *param0)
+void sub_020919E8(PokemonSummaryScreen *param0)
 {
     u32 v0;
 
@@ -301,7 +301,7 @@ static void sub_02091BD4(VecFx16 *param0, VecFx16 *param1, VecFx16 *param2)
     param2->z = FX_F32_TO_FX16(FX_FX16_TO_F32(param1->z - param0->z) / 4);
 }
 
-void sub_02091D50(PokemonSummaryApp *param0)
+void sub_02091D50(PokemonSummaryScreen *param0)
 {
     u32 v0;
 
@@ -335,7 +335,7 @@ void sub_02091D50(PokemonSummaryApp *param0)
     param0->unk_410 = 0;
 }
 
-void sub_02091F8C(PokemonSummaryApp *param0)
+void sub_02091F8C(PokemonSummaryScreen *param0)
 {
     ArchivedSprite v0;
     void *v1;
@@ -358,7 +358,7 @@ void sub_02091F8C(PokemonSummaryApp *param0)
     sub_02007DEC(param0->monSpriteData.sprite, 35, param0->monSpriteData.flip);
 }
 
-void sub_02092028(PokemonSummaryApp *param0)
+void sub_02092028(PokemonSummaryScreen *param0)
 {
     if (param0->monData.isEgg != 0) {
         PokeSprite_LoadAnimation(param0->narcPlPokeData, param0->monSpriteData.animationSys, param0->monSpriteData.sprite, 0, 2, param0->monSpriteData.flip, 0);
@@ -368,7 +368,7 @@ void sub_02092028(PokemonSummaryApp *param0)
     }
 }
 
-void sub_02092098(PokemonSummaryApp *param0)
+void sub_02092098(PokemonSummaryScreen *param0)
 {
     sub_02016114(param0->monSpriteData.animationSys, 0);
     sub_02007B6C(param0->monSpriteData.spriteManager);

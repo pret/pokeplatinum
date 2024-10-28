@@ -21,8 +21,8 @@
 #include "unk_020920C0.h"
 #include "unk_020923C0.h"
 
-static void sub_0208F194(PokemonSummaryApp *param0, u8 param1, u8 param2, u8 param3);
-static void sub_0208EF0C(PokemonSummaryApp *param0);
+static void sub_0208F194(PokemonSummaryScreen *param0, u8 param1, u8 param2, u8 param3);
+static void sub_0208EF0C(PokemonSummaryScreen *param0);
 static void sub_0208FC30(CellActor *param0, u32 param1, u32 param2, const s16 *param3);
 
 static const UnkStruct_ov7_0224F358 Unk_020F41A8[] = {
@@ -125,7 +125,7 @@ static const u8 Unk_020F411C[] = {
     0x0
 };
 
-void sub_0208EA44(PokemonSummaryApp *param0)
+void sub_0208EA44(PokemonSummaryScreen *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -172,13 +172,13 @@ void sub_0208EA44(PokemonSummaryApp *param0)
     }
 }
 
-void sub_0208EAF4(PokemonSummaryApp *param0)
+void sub_0208EAF4(PokemonSummaryScreen *param0)
 {
     sub_0200C8B0(param0->renderer, param0->gfxHandler);
     sub_0200C8D4(param0->renderer);
 }
 
-void sub_0208EB14(PokemonSummaryApp *param0)
+void sub_0208EB14(PokemonSummaryScreen *param0)
 {
     CellActor_UpdateAnim(param0->unk_41C[21], FX32_ONE);
     CellActor_UpdateAnim(param0->unk_41C[22], FX32_ONE);
@@ -187,7 +187,7 @@ void sub_0208EB14(PokemonSummaryApp *param0)
     CellActor_UpdateAnim(param0->unk_41C[69], FX32_ONE);
 }
 
-void sub_0208EB64(PokemonSummaryApp *param0)
+void sub_0208EB64(PokemonSummaryScreen *param0)
 {
     u16 v0;
 
@@ -224,7 +224,7 @@ void sub_0208EB64(PokemonSummaryApp *param0)
     CellActor_SetDrawFlag(param0->unk_41C[76], 0);
 }
 
-static u8 sub_0208ECB8(PokemonSummaryApp *param0)
+static u8 sub_0208ECB8(PokemonSummaryScreen *param0)
 {
     u8 v0, v1 = 0;
 
@@ -237,7 +237,7 @@ static u8 sub_0208ECB8(PokemonSummaryApp *param0)
     return (23 * 8 + 4) - (24 + (v1 - 1) * 16) / 2;
 }
 
-void sub_0208ECF4(PokemonSummaryApp *param0)
+void sub_0208ECF4(PokemonSummaryScreen *param0)
 {
     CellActor **v0;
     s16 v1, v2;
@@ -283,7 +283,7 @@ void sub_0208ECF4(PokemonSummaryApp *param0)
     }
 }
 
-void sub_0208EDC4(PokemonSummaryApp *param0)
+void sub_0208EDC4(PokemonSummaryScreen *param0)
 {
     u8 v0;
 
@@ -297,7 +297,7 @@ void sub_0208EDC4(PokemonSummaryApp *param0)
     SpriteActor_SetPositionXY(param0->unk_41C[22], (23 * 8 + 4) + ((23 * 8 + 4) - v0) + -4, 24);
 }
 
-void sub_0208EE10(PokemonSummaryApp *param0, u8 param1)
+void sub_0208EE10(PokemonSummaryScreen *param0, u8 param1)
 {
     if (PokemonSummary_CountVisiblePages(param0) <= 1) {
         param1 = 0;
@@ -307,7 +307,7 @@ void sub_0208EE10(PokemonSummaryApp *param0, u8 param1)
     CellActor_SetDrawFlag(param0->unk_41C[22], param1);
 }
 
-void sub_0208EE3C(PokemonSummaryApp *param0)
+void sub_0208EE3C(PokemonSummaryScreen *param0)
 {
     u32 v0;
 
@@ -321,7 +321,7 @@ void sub_0208EE3C(PokemonSummaryApp *param0)
     sub_0200D97C(param0->renderer, param0->gfxHandler, 39, 37 + Unk_020F411C[param0->monData.caughtBall], 0, 6);
 }
 
-void sub_0208EE9C(PokemonSummaryApp *param0)
+void sub_0208EE9C(PokemonSummaryScreen *param0)
 {
     if (param0->monData.status == 7) {
         CellActor_SetDrawFlag(param0->unk_41C[20], 0);
@@ -336,7 +336,7 @@ void sub_0208EE9C(PokemonSummaryApp *param0)
     }
 }
 
-static void sub_0208EF0C(PokemonSummaryApp *param0)
+static void sub_0208EF0C(PokemonSummaryScreen *param0)
 {
     u16 v0;
 
@@ -353,7 +353,7 @@ static void sub_0208EF0C(PokemonSummaryApp *param0)
     sub_0208F71C(param0);
 }
 
-void sub_0208EF58(PokemonSummaryApp *param0)
+void sub_0208EF58(PokemonSummaryScreen *param0)
 {
     u16 v0;
 
@@ -419,19 +419,19 @@ void sub_0208EF58(PokemonSummaryApp *param0)
     }
 }
 
-void sub_0208F16C(PokemonSummaryApp *param0)
+void sub_0208F16C(PokemonSummaryScreen *param0)
 {
     sub_0208F194(param0, 11, 3, param0->monData.type1);
     sub_0208F194(param0, 12, 4, param0->monData.type2);
 }
 
-static void sub_0208F194(PokemonSummaryApp *param0, u8 param1, u8 param2, u8 param3)
+static void sub_0208F194(PokemonSummaryScreen *param0, u8 param1, u8 param2, u8 param3)
 {
     sub_0200D948(param0->renderer, param0->gfxHandler, sub_0207C944(), sub_0207C908(param3), 1, param2);
     sub_0200D414(param0->unk_41C[param1], sub_0207C92C(param3) + 3);
 }
 
-static void sub_0208F1E4(PokemonSummaryApp *param0, u8 *param1, s16 *param2, s16 *param3)
+static void sub_0208F1E4(PokemonSummaryScreen *param0, u8 *param1, s16 *param2, s16 *param3)
 {
     s16 v0, v1;
 
@@ -447,7 +447,7 @@ static void sub_0208F1E4(PokemonSummaryApp *param0, u8 *param1, s16 *param2, s16
     }
 }
 
-void sub_0208F22C(PokemonSummaryApp *param0, u8 param1, u8 param2)
+void sub_0208F22C(PokemonSummaryScreen *param0, u8 param1, u8 param2)
 {
     s16 v0, v1, v2, v3;
 
@@ -458,7 +458,7 @@ void sub_0208F22C(PokemonSummaryApp *param0, u8 param1, u8 param2)
     SpriteActor_SetPositionXY(param0->unk_41C[13 + param2], v0, v1);
 }
 
-void sub_0208F294(PokemonSummaryApp *param0, u32 param1)
+void sub_0208F294(PokemonSummaryScreen *param0, u32 param1)
 {
     u32 v0 = MoveTable_LoadParam(param1, MOVEATTRIBUTE_CLASS);
 
@@ -466,12 +466,12 @@ void sub_0208F294(PokemonSummaryApp *param0, u32 param1)
     sub_0200D414(param0->unk_41C[18], sub_0207CAA8(v0) + 3);
 }
 
-void sub_0208F2E8(PokemonSummaryApp *param0)
+void sub_0208F2E8(PokemonSummaryScreen *param0)
 {
     SpriteActor_SetPositionXY(param0->unk_41C[9], 194, 48 + param0->cursor * 32);
 }
 
-void sub_0208F310(PokemonSummaryApp *param0)
+void sub_0208F310(PokemonSummaryScreen *param0)
 {
     s16 v0, v1;
 
@@ -480,7 +480,7 @@ void sub_0208F310(PokemonSummaryApp *param0)
     CellActor_SetDrawFlag(param0->unk_41C[10], 1);
 }
 
-void sub_0208F34C(PokemonSummaryApp *param0)
+void sub_0208F34C(PokemonSummaryScreen *param0)
 {
     u32 v0;
 
@@ -502,7 +502,7 @@ void sub_0208F34C(PokemonSummaryApp *param0)
     }
 }
 
-void sub_0208F3B0(PokemonSummaryApp *param0)
+void sub_0208F3B0(PokemonSummaryScreen *param0)
 {
     u32 v0;
 
@@ -585,7 +585,7 @@ void sub_0208F3B0(PokemonSummaryApp *param0)
     }
 }
 
-void sub_0208F574(PokemonSummaryApp *param0)
+void sub_0208F574(PokemonSummaryScreen *param0)
 {
     u32 v0;
 
@@ -610,7 +610,7 @@ void sub_0208F574(PokemonSummaryApp *param0)
     }
 }
 
-void sub_0208F600(PokemonSummaryApp *param0)
+void sub_0208F600(PokemonSummaryScreen *param0)
 {
     s16 v0, v1;
 
@@ -627,14 +627,14 @@ void sub_0208F600(PokemonSummaryApp *param0)
     }
 }
 
-void sub_0208F684(PokemonSummaryApp *param0)
+void sub_0208F684(PokemonSummaryScreen *param0)
 {
     if (CellActor_GetAnimFrame(param0->unk_41C[41]) == 2) {
         CellActor_SetDrawFlag(param0->unk_41C[41], 0);
     }
 }
 
-void sub_0208F6A4(PokemonSummaryApp *param0)
+void sub_0208F6A4(PokemonSummaryScreen *param0)
 {
     u8 v0;
 
@@ -645,7 +645,7 @@ void sub_0208F6A4(PokemonSummaryApp *param0)
     }
 }
 
-void sub_0208F6DC(PokemonSummaryApp *param0, Window *param1)
+void sub_0208F6DC(PokemonSummaryScreen *param0, Window *param1)
 {
     if (param1 == NULL) {
         CellActor_SetDrawFlag(param0->unk_41C[47], 0);
@@ -656,7 +656,7 @@ void sub_0208F6DC(PokemonSummaryApp *param0, Window *param1)
     CellActor_SetDrawFlag(param0->unk_41C[47], 1);
 }
 
-void sub_0208F71C(PokemonSummaryApp *param0)
+void sub_0208F71C(PokemonSummaryScreen *param0)
 {
     void *v0 = PokemonSummary_MonData(param0);
     u32 v1;
@@ -672,7 +672,7 @@ void sub_0208F71C(PokemonSummaryApp *param0)
     CellActor_SetFlipMode(param0->unk_41C[19], (PokemonPersonalData_GetFormValue(param0->monData.species, param0->monData.form, 28) ^ 1));
 }
 
-void sub_0208F7A4(PokemonSummaryApp *param0)
+void sub_0208F7A4(PokemonSummaryScreen *param0)
 {
     sub_0200D97C(param0->renderer, param0->gfxHandler, 19, PokeIconPalettesFileIndex(), 0, 5);
 
@@ -704,7 +704,7 @@ static s16 sub_0208F800(u32 param0, s16 param1, s16 param2)
     return param2 + (s16)v0;
 }
 
-void sub_0208F844(PokemonSummaryApp *param0)
+void sub_0208F844(PokemonSummaryScreen *param0)
 {
     SpriteActor_SetPositionXY(param0->unk_41C[48], sub_0208F800(param0->monData.cool, 88, 88), sub_0208F800(param0->monData.cool, 49, 73));
     SpriteActor_SetPositionXY(param0->unk_41C[49], sub_0208F800(param0->monData.beauty, 110, 88), sub_0208F800(param0->monData.beauty, 65, 73));
@@ -719,7 +719,7 @@ void sub_0208F844(PokemonSummaryApp *param0)
     CellActor_SetDrawFlag(param0->unk_41C[52], 1);
 }
 
-void sub_0208F964(PokemonSummaryApp *param0)
+void sub_0208F964(PokemonSummaryScreen *param0)
 {
     CellActor_SetDrawFlag(param0->unk_41C[48], 0);
     CellActor_SetDrawFlag(param0->unk_41C[49], 0);
@@ -728,13 +728,13 @@ void sub_0208F964(PokemonSummaryApp *param0)
     CellActor_SetDrawFlag(param0->unk_41C[52], 0);
 }
 
-static void sub_0208F9B0(PokemonSummaryApp *param0, u8 param1, u8 param2)
+static void sub_0208F9B0(PokemonSummaryScreen *param0, u8 param1, u8 param2)
 {
     sub_0200D948(param0->renderer, param0->gfxHandler, 39, sub_020923C0(param1, 1), 0, 26 + param2);
     sub_0200D414(param0->unk_41C[55 + param2], sub_020923C0(param1, 2) + 7);
 }
 
-void sub_0208FA04(PokemonSummaryApp *param0)
+void sub_0208FA04(PokemonSummaryScreen *param0)
 {
     u16 v0;
 
@@ -758,7 +758,7 @@ void sub_0208FA04(PokemonSummaryApp *param0)
     CellActor_SetAnim(param0->unk_41C[70], 0);
 }
 
-void sub_0208FAA4(PokemonSummaryApp *param0)
+void sub_0208FAA4(PokemonSummaryScreen *param0)
 {
     u16 v0;
 
@@ -772,13 +772,13 @@ void sub_0208FAA4(PokemonSummaryApp *param0)
     }
 }
 
-void sub_0208FB00(PokemonSummaryApp *param0)
+void sub_0208FB00(PokemonSummaryScreen *param0)
 {
     SpriteActor_SetPositionXY(
         param0->unk_41C[67], 132 + (param0->ribbonPos & 3) * 32, 56 + (param0->ribbonPos / 4) * 40);
 }
 
-void sub_0208FB30(PokemonSummaryApp *param0)
+void sub_0208FB30(PokemonSummaryScreen *param0)
 {
     if (CellActor_GetDrawFlag(param0->unk_41C[70]) == 1) {
         CellActor_UpdateAnim(param0->unk_41C[70], FX32_ONE);
@@ -793,7 +793,7 @@ static const s16 Unk_020F4180[][4] = {
     { 0x92, 0x55, 0xB0, 0x5D }
 };
 
-void sub_0208FB54(PokemonSummaryApp *param0, u8 param1)
+void sub_0208FB54(PokemonSummaryScreen *param0, u8 param1)
 {
     u16 v0, v1;
 
@@ -856,7 +856,7 @@ static void sub_0208FC30(CellActor *param0, u32 param1, u32 param2, const s16 *p
     CellActor_SetAnim(param0, 0);
 }
 
-void sub_0208FCD4(PokemonSummaryApp *param0)
+void sub_0208FCD4(PokemonSummaryScreen *param0)
 {
     u32 v0;
 

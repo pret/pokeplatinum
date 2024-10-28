@@ -114,7 +114,7 @@ typedef struct PokemonSummaryMonSpriteData {
     BOOL flip;
 } PokemonSummaryMonSpriteData;
 
-typedef struct PokemonSummaryApp {
+typedef struct PokemonSummaryScreen {
     BgConfig *bgConfig;
     Window staticWindows[36];
     Window *extraWindows;
@@ -163,14 +163,14 @@ typedef struct PokemonSummaryApp {
     u8 ribbonState;
     u8 ribbonMax;
     u8 ribbonNum;
-} PokemonSummaryApp;
+} PokemonSummaryScreen;
 
 BOOL PokemonSummary_ShowContestData(SaveData *saveData);
 void PokemonSummary_FlagVisiblePages(PokemonSummary *summary, const u8 *param1);
-u8 PokemonSummary_PageIsVisble(PokemonSummaryApp *param0, u32 param1);
-u8 PokemonSummary_CountVisiblePages(PokemonSummaryApp *param0);
-void *PokemonSummary_MonData(PokemonSummaryApp *param0);
-u8 PokemonSummary_RibbonAt(PokemonSummaryApp *param0, u8 param1);
+u8 PokemonSummary_PageIsVisble(PokemonSummaryScreen *param0, u32 param1);
+u8 PokemonSummary_CountVisiblePages(PokemonSummaryScreen *param0);
+void *PokemonSummary_MonData(PokemonSummaryScreen *param0);
+u8 PokemonSummary_RibbonAt(PokemonSummaryScreen *param0, u8 param1);
 void PokemonSummary_SetPlayerProfile(PokemonSummary *summary, const TrainerInfo *trainerInfo);
 u32 PokemonSummary_StatusIconChar(void);
 u32 PokemonSummary_StatusIconPltt(void);

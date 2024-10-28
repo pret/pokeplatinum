@@ -58,69 +58,69 @@
 static int PokemonSummaryScreen_Init(OverlayManager *ovyManager, int *state);
 static int PokemonSummaryScreen_Main(OverlayManager *ovyManager, int *state);
 static int PokemonSummaryScreen_Exit(OverlayManager *ovyManager, int *state);
-static int sub_0208C9C8(PokemonSummaryApp *param0);
-static int sub_0208CA00(PokemonSummaryApp *param0);
-static int sub_0208CB38(PokemonSummaryApp *param0);
-static int sub_0208CB4C(PokemonSummaryApp *param0);
-static int sub_0208CB60(PokemonSummaryApp *param0);
-static int sub_0208CB74(PokemonSummaryApp *param0);
-static int sub_0208CB88(PokemonSummaryApp *param0);
-static int sub_0208CC6C(PokemonSummaryApp *param0);
-static int sub_0208CD44(PokemonSummaryApp *param0);
-static int sub_0208CE54(PokemonSummaryApp *param0);
-static int sub_0208CE70(PokemonSummaryApp *param0);
-static int sub_0208CE84(PokemonSummaryApp *param0);
-static int sub_0208CE98(PokemonSummaryApp *param0);
-static int sub_0208CF0C(PokemonSummaryApp *param0);
-static int sub_0208CF78(PokemonSummaryApp *param0);
-static int sub_0208D114(PokemonSummaryApp *param0);
-static int sub_0208D164(PokemonSummaryApp *param0);
-static u8 sub_0208D17C(PokemonSummaryApp *param0);
-static u8 ScreenTransitionIsDone(PokemonSummaryApp *param0);
+static int sub_0208C9C8(PokemonSummaryScreen *param0);
+static int sub_0208CA00(PokemonSummaryScreen *param0);
+static int sub_0208CB38(PokemonSummaryScreen *param0);
+static int sub_0208CB4C(PokemonSummaryScreen *param0);
+static int sub_0208CB60(PokemonSummaryScreen *param0);
+static int sub_0208CB74(PokemonSummaryScreen *param0);
+static int sub_0208CB88(PokemonSummaryScreen *param0);
+static int sub_0208CC6C(PokemonSummaryScreen *param0);
+static int sub_0208CD44(PokemonSummaryScreen *param0);
+static int sub_0208CE54(PokemonSummaryScreen *param0);
+static int sub_0208CE70(PokemonSummaryScreen *param0);
+static int sub_0208CE84(PokemonSummaryScreen *param0);
+static int sub_0208CE98(PokemonSummaryScreen *param0);
+static int sub_0208CF0C(PokemonSummaryScreen *param0);
+static int sub_0208CF78(PokemonSummaryScreen *param0);
+static int sub_0208D114(PokemonSummaryScreen *param0);
+static int sub_0208D164(PokemonSummaryScreen *param0);
+static u8 sub_0208D17C(PokemonSummaryScreen *param0);
+static u8 ScreenTransitionIsDone(PokemonSummaryScreen *param0);
 static void sub_0208C638(void);
 static void sub_0208C658(BgConfig *param0);
 static void sub_0208C76C(BgConfig *param0);
-static void sub_0208C7AC(PokemonSummaryApp *param0, NARC *param1);
+static void sub_0208C7AC(PokemonSummaryScreen *param0, NARC *param1);
 static void sub_0208C86C(void);
 static void sub_0208C604(void *param0);
-static void sub_0208C884(PokemonSummaryApp *param0);
-static void sub_0208C950(PokemonSummaryApp *param0);
-static void sub_0208D1A4(PokemonSummaryApp *param0);
-static void sub_0208D1D4(PokemonSummaryApp *param0, BoxPokemon *param1, PokemonSummaryMonData *param2);
-static void sub_0208D200(PokemonSummaryApp *param0, Pokemon *param1, PokemonSummaryMonData *param2);
-static void sub_0208D678(PokemonSummaryApp *param0);
-static void sub_0208D618(PokemonSummaryApp *param0);
-static void sub_0208D7EC(PokemonSummaryApp *param0, u8 param1);
-static void sub_0208D898(PokemonSummaryApp *param0, s8 param1);
-static u8 sub_0208D920(PokemonSummaryApp *param0);
-static void sub_0208D748(PokemonSummaryApp *param0);
-static void sub_0208D948(PokemonSummaryApp *param0);
-static void sub_0208D9D0(PokemonSummaryApp *param0);
-static void sub_0208DA84(PokemonSummaryApp *param0);
-static void sub_0208DB10(PokemonSummaryApp *param0, s8 param1);
-static s8 sub_0208DBC4(PokemonSummaryApp *param0, s8 param1);
-static s8 sub_0208DC1C(PokemonSummaryApp *param0, s8 param1);
-static s8 sub_0208DC84(PokemonSummaryApp *param0, s8 param1);
-static s8 sub_0208DCE0(PokemonSummaryApp *param0, s8 param1);
-static u8 sub_0208DD8C(PokemonSummaryApp *param0);
-static u8 sub_0208DEA4(PokemonSummaryApp *param0);
-static u8 sub_0208DF94(PokemonSummaryApp *param0, s8 param1);
-static void sub_0208DFF4(PokemonSummaryApp *param0);
-static void sub_0208E0DC(PokemonSummaryApp *param0);
-static void sub_0208E190(PokemonSummaryApp *param0);
-static void sub_0208E07C(PokemonSummaryApp *param0, u32 param1);
-static void sub_0208E0B8(PokemonSummaryApp *param0, u32 param1);
-static void sub_0208E4EC(PokemonSummaryApp *param0);
-static void sub_0208E508(PokemonSummaryApp *param0);
-static u8 sub_0208E208(PokemonSummaryApp *param0);
-static u8 sub_0208E308(PokemonSummaryApp *param0);
-static void sub_0208E498(PokemonSummaryApp *param0, u32 param1);
-static void sub_0208E46C(PokemonSummaryApp *param0);
-static u8 sub_0208E57C(PokemonSummaryApp *param0);
-static u8 sub_0208E6A8(PokemonSummaryApp *param0);
-static void sub_0208E794(PokemonSummaryApp *param0, s8 param1);
-u8 PokemonSummary_RibbonAt(PokemonSummaryApp *param0, u8 param1);
-static int sub_0208E958(PokemonSummaryApp *param0);
+static void sub_0208C884(PokemonSummaryScreen *param0);
+static void sub_0208C950(PokemonSummaryScreen *param0);
+static void sub_0208D1A4(PokemonSummaryScreen *param0);
+static void sub_0208D1D4(PokemonSummaryScreen *param0, BoxPokemon *param1, PokemonSummaryMonData *param2);
+static void sub_0208D200(PokemonSummaryScreen *param0, Pokemon *param1, PokemonSummaryMonData *param2);
+static void sub_0208D678(PokemonSummaryScreen *param0);
+static void sub_0208D618(PokemonSummaryScreen *param0);
+static void sub_0208D7EC(PokemonSummaryScreen *param0, u8 param1);
+static void sub_0208D898(PokemonSummaryScreen *param0, s8 param1);
+static u8 sub_0208D920(PokemonSummaryScreen *param0);
+static void sub_0208D748(PokemonSummaryScreen *param0);
+static void sub_0208D948(PokemonSummaryScreen *param0);
+static void sub_0208D9D0(PokemonSummaryScreen *param0);
+static void sub_0208DA84(PokemonSummaryScreen *param0);
+static void sub_0208DB10(PokemonSummaryScreen *param0, s8 param1);
+static s8 sub_0208DBC4(PokemonSummaryScreen *param0, s8 param1);
+static s8 sub_0208DC1C(PokemonSummaryScreen *param0, s8 param1);
+static s8 sub_0208DC84(PokemonSummaryScreen *param0, s8 param1);
+static s8 sub_0208DCE0(PokemonSummaryScreen *param0, s8 param1);
+static u8 sub_0208DD8C(PokemonSummaryScreen *param0);
+static u8 sub_0208DEA4(PokemonSummaryScreen *param0);
+static u8 sub_0208DF94(PokemonSummaryScreen *param0, s8 param1);
+static void sub_0208DFF4(PokemonSummaryScreen *param0);
+static void sub_0208E0DC(PokemonSummaryScreen *param0);
+static void sub_0208E190(PokemonSummaryScreen *param0);
+static void sub_0208E07C(PokemonSummaryScreen *param0, u32 param1);
+static void sub_0208E0B8(PokemonSummaryScreen *param0, u32 param1);
+static void sub_0208E4EC(PokemonSummaryScreen *param0);
+static void sub_0208E508(PokemonSummaryScreen *param0);
+static u8 sub_0208E208(PokemonSummaryScreen *param0);
+static u8 sub_0208E308(PokemonSummaryScreen *param0);
+static void sub_0208E498(PokemonSummaryScreen *param0, u32 param1);
+static void sub_0208E46C(PokemonSummaryScreen *param0);
+static u8 sub_0208E57C(PokemonSummaryScreen *param0);
+static u8 sub_0208E6A8(PokemonSummaryScreen *param0);
+static void sub_0208E794(PokemonSummaryScreen *param0, s8 param1);
+u8 PokemonSummary_RibbonAt(PokemonSummaryScreen *param0, u8 param1);
+static int sub_0208E958(PokemonSummaryScreen *param0);
 
 const OverlayManagerTemplate Unk_020F410C = {
     PokemonSummaryScreen_Init,
@@ -152,36 +152,36 @@ static int PokemonSummaryScreen_Init(OverlayManager *ovyManager, int *state)
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_POKEMON_SUMMARY_SCREEN, HEAP_ALLOCATION_SIZE);
 
     NARC *narc = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PST_GRA, HEAP_ID_POKEMON_SUMMARY_SCREEN);
-    PokemonSummaryApp *summaryApp = OverlayManager_NewData(ovyManager, sizeof(PokemonSummaryApp), HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    PokemonSummaryScreen *summaryScreen = OverlayManager_NewData(ovyManager, sizeof(PokemonSummaryScreen), HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
-    memset(summaryApp, 0, sizeof(PokemonSummaryApp));
+    memset(summaryScreen, 0, sizeof(PokemonSummaryScreen));
 
-    summaryApp->data = OverlayManager_Args(ovyManager);
-    summaryApp->bgConfig = BgConfig_New(HEAP_ID_POKEMON_SUMMARY_SCREEN);
-    summaryApp->monSpriteData.animationSys = sub_02015F84(HEAP_ID_POKEMON_SUMMARY_SCREEN, 1, 1);
-    summaryApp->narcPlPokeData = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    summaryScreen->data = OverlayManager_Args(ovyManager);
+    summaryScreen->bgConfig = BgConfig_New(HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    summaryScreen->monSpriteData.animationSys = sub_02015F84(HEAP_ID_POKEMON_SUMMARY_SCREEN, 1, 1);
+    summaryScreen->narcPlPokeData = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
     Font_UseImmediateGlyphAccess(FONT_SYSTEM, HEAP_ID_POKEMON_SUMMARY_SCREEN);
     sub_0201E3D8();
     sub_0201E450(4);
-    sub_0208D748(summaryApp);
+    sub_0208D748(summaryScreen);
     sub_0208C638();
-    sub_0208C658(summaryApp->bgConfig);
-    sub_0208C7AC(summaryApp, narc);
+    sub_0208C658(summaryScreen->bgConfig);
+    sub_0208C7AC(summaryScreen, narc);
     sub_0208C86C();
-    sub_020916B4(summaryApp);
-    sub_0208C884(summaryApp);
-    sub_0208D1A4(summaryApp);
-    sub_0208EA44(summaryApp);
-    sub_0208EB64(summaryApp);
-    sub_02091F8C(summaryApp);
-    sub_0208EE3C(summaryApp);
-    sub_0208EE9C(summaryApp);
-    sub_0208FCF8(summaryApp);
-    sub_0208D678(summaryApp);
-    sub_020920C0(summaryApp);
-    sub_020917E0(summaryApp);
-    SetMainCallback(sub_0208C604, summaryApp);
+    sub_020916B4(summaryScreen);
+    sub_0208C884(summaryScreen);
+    sub_0208D1A4(summaryScreen);
+    sub_0208EA44(summaryScreen);
+    sub_0208EB64(summaryScreen);
+    sub_02091F8C(summaryScreen);
+    sub_0208EE3C(summaryScreen);
+    sub_0208EE9C(summaryScreen);
+    sub_0208FCF8(summaryScreen);
+    sub_0208D678(summaryScreen);
+    sub_020920C0(summaryScreen);
+    sub_020917E0(summaryScreen);
+    SetMainCallback(sub_0208C604, summaryScreen);
     GXLayers_TurnBothDispOn();
     sub_02004550(61, 0, 0);
     DrawWifiConnectionIcon();
@@ -192,7 +192,7 @@ static int PokemonSummaryScreen_Init(OverlayManager *ovyManager, int *state)
 
 static int PokemonSummaryScreen_Main(OverlayManager *ovyManager, int *state)
 {
-    PokemonSummaryApp *summaryApp = OverlayManager_Data(ovyManager);
+    PokemonSummaryScreen *summaryScreen = OverlayManager_Data(ovyManager);
 
     switch (*state) {
     case 0:
@@ -200,88 +200,88 @@ static int PokemonSummaryScreen_Main(OverlayManager *ovyManager, int *state)
         *state = 1;
         break;
     case 1:
-        *state = sub_0208C9C8(summaryApp);
+        *state = sub_0208C9C8(summaryScreen);
         break;
     case 2:
-        *state = sub_0208CA00(summaryApp);
+        *state = sub_0208CA00(summaryScreen);
         break;
     case 3:
-        *state = sub_0208CB38(summaryApp);
+        *state = sub_0208CB38(summaryScreen);
         break;
     case 4:
-        *state = sub_0208CB4C(summaryApp);
+        *state = sub_0208CB4C(summaryScreen);
         break;
     case 5:
-        *state = sub_0208CB60(summaryApp);
+        *state = sub_0208CB60(summaryScreen);
         break;
     case 6:
-        *state = sub_0208CB74(summaryApp);
+        *state = sub_0208CB74(summaryScreen);
         break;
     case 7:
-        *state = sub_0208CB88(summaryApp);
+        *state = sub_0208CB88(summaryScreen);
         break;
     case 8:
-        *state = sub_0208CC6C(summaryApp);
+        *state = sub_0208CC6C(summaryScreen);
         break;
     case 9:
-        *state = sub_0208CD44(summaryApp);
+        *state = sub_0208CD44(summaryScreen);
         break;
     case 10:
-        *state = sub_0208CE54(summaryApp);
+        *state = sub_0208CE54(summaryScreen);
         break;
     case 11:
-        *state = sub_0208CE70(summaryApp);
+        *state = sub_0208CE70(summaryScreen);
         break;
     case 12:
-        *state = sub_0208CE84(summaryApp);
+        *state = sub_0208CE84(summaryScreen);
         break;
     case 13:
-        *state = sub_0208CE98(summaryApp);
+        *state = sub_0208CE98(summaryScreen);
         break;
     case 14:
-        *state = sub_0208CF0C(summaryApp);
+        *state = sub_0208CF0C(summaryScreen);
         break;
     case 15:
-        *state = sub_0208CF78(summaryApp);
+        *state = sub_0208CF78(summaryScreen);
         break;
     case 16:
-        *state = sub_0208D114(summaryApp);
+        *state = sub_0208D114(summaryScreen);
         break;
     case 17:
-        *state = sub_0208D164(summaryApp);
+        *state = sub_0208D164(summaryScreen);
         break;
     case 18:
-        *state = sub_0208D17C(summaryApp);
+        *state = sub_0208D17C(summaryScreen);
         break;
     case 19:
-        if (ScreenTransitionIsDone(summaryApp) == TRUE) {
+        if (ScreenTransitionIsDone(summaryScreen) == TRUE) {
             return TRUE;
         }
         break;
     }
 
-    sub_0208EB14(summaryApp);
-    sub_0208F3B0(summaryApp);
-    sub_0208FB30(summaryApp);
-    sub_0200C7EC(summaryApp->gfxHandler);
-    sub_02091750(summaryApp);
+    sub_0208EB14(summaryScreen);
+    sub_0208F3B0(summaryScreen);
+    sub_0208FB30(summaryScreen);
+    sub_0200C7EC(summaryScreen->gfxHandler);
+    sub_02091750(summaryScreen);
 
     return FALSE;
 }
 
 static int PokemonSummaryScreen_Exit(OverlayManager *ovyManager, int *state)
 {
-    PokemonSummaryApp *summaryApp = OverlayManager_Data(ovyManager);
+    PokemonSummaryScreen *summaryScreen = OverlayManager_Data(ovyManager);
 
     SetMainCallback(NULL, NULL);
-    sub_020917B0(summaryApp);
-    sub_0208EAF4(summaryApp);
-    sub_0208FE88(summaryApp);
-    sub_0208C76C(summaryApp->bgConfig);
+    sub_020917B0(summaryScreen);
+    sub_0208EAF4(summaryScreen);
+    sub_0208FE88(summaryScreen);
+    sub_0208C76C(summaryScreen->bgConfig);
     sub_0201E530();
     VRAMTransferManager_Destroy();
-    sub_0208C950(summaryApp);
-    NARC_dtor(summaryApp->narcPlPokeData);
+    sub_0208C950(summaryScreen);
+    NARC_dtor(summaryScreen->narcPlPokeData);
     Font_UseLazyGlyphAccess(FONT_SYSTEM);
 
     G2_BlendNone();
@@ -294,7 +294,7 @@ static int PokemonSummaryScreen_Exit(OverlayManager *ovyManager, int *state)
 
 static void sub_0208C604(void *param0)
 {
-    PokemonSummaryApp *v0 = param0;
+    PokemonSummaryScreen *v0 = param0;
 
     Bg_RunScheduledUpdates(v0->bgConfig);
     sub_02008A94(v0->monSpriteData.spriteManager);
@@ -456,7 +456,7 @@ static void sub_0208C76C(BgConfig *param0)
     Heap_FreeToHeapExplicit(19, param0);
 }
 
-static void sub_0208C7AC(PokemonSummaryApp *param0, NARC *param1)
+static void sub_0208C7AC(PokemonSummaryScreen *param0, NARC *param1)
 {
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 0, param0->bgConfig, 3, 0, 0, 0, 19);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 3, param0->bgConfig, 3, 0, 0, 0, 19);
@@ -475,7 +475,7 @@ static void sub_0208C86C(void)
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ, 23, 8);
 }
 
-static void sub_0208C884(PokemonSummaryApp *param0)
+static void sub_0208C884(PokemonSummaryScreen *param0)
 {
     param0->msgLoader = MessageLoader_Init(0, 26, 455, 19);
     param0->ribbonLoader = MessageLoader_Init(1, 26, 535, 19);
@@ -493,7 +493,7 @@ static void sub_0208C884(PokemonSummaryApp *param0)
     }
 }
 
-static void sub_0208C950(PokemonSummaryApp *param0)
+static void sub_0208C950(PokemonSummaryScreen *param0)
 {
     MessageLoader_Free(param0->moveNameLoader);
     MessageLoader_Free(param0->ribbonLoader);
@@ -507,7 +507,7 @@ static void sub_0208C950(PokemonSummaryApp *param0)
     Strbuf_Free(param0->playerName);
 }
 
-static int sub_0208C9C8(PokemonSummaryApp *param0)
+static int sub_0208C9C8(PokemonSummaryScreen *param0)
 {
     if (IsScreenTransitionDone() == 1) {
         sub_02092028(param0);
@@ -525,7 +525,7 @@ static int sub_0208C9C8(PokemonSummaryApp *param0)
     return 1;
 }
 
-static int sub_0208CA00(PokemonSummaryApp *param0)
+static int sub_0208CA00(PokemonSummaryScreen *param0)
 {
     if (param0->subscreenExit == 1) {
         param0->data->returnMode = 1;
@@ -593,7 +593,7 @@ static int sub_0208CA00(PokemonSummaryApp *param0)
     return 2;
 }
 
-static int sub_0208CB38(PokemonSummaryApp *param0)
+static int sub_0208CB38(PokemonSummaryScreen *param0)
 {
     if (sub_0208DD8C(param0) == 1) {
         return 7;
@@ -602,7 +602,7 @@ static int sub_0208CB38(PokemonSummaryApp *param0)
     return 3;
 }
 
-static int sub_0208CB4C(PokemonSummaryApp *param0)
+static int sub_0208CB4C(PokemonSummaryScreen *param0)
 {
     if (sub_0208DEA4(param0) == 1) {
         return 2;
@@ -611,7 +611,7 @@ static int sub_0208CB4C(PokemonSummaryApp *param0)
     return 4;
 }
 
-static int sub_0208CB60(PokemonSummaryApp *param0)
+static int sub_0208CB60(PokemonSummaryScreen *param0)
 {
     if (sub_0208E208(param0) == 1) {
         return 7;
@@ -620,7 +620,7 @@ static int sub_0208CB60(PokemonSummaryApp *param0)
     return 5;
 }
 
-static int sub_0208CB74(PokemonSummaryApp *param0)
+static int sub_0208CB74(PokemonSummaryScreen *param0)
 {
     if (sub_0208E308(param0) == 1) {
         return 2;
@@ -629,7 +629,7 @@ static int sub_0208CB74(PokemonSummaryApp *param0)
     return 6;
 }
 
-static int sub_0208CB88(PokemonSummaryApp *param0)
+static int sub_0208CB88(PokemonSummaryScreen *param0)
 {
     if (gCoreSys.pressedKeys & PAD_KEY_UP) {
         if (sub_0208DF94(param0, -1) == 1) {
@@ -681,7 +681,7 @@ static int sub_0208CB88(PokemonSummaryApp *param0)
     return 7;
 }
 
-static int sub_0208CC6C(PokemonSummaryApp *param0)
+static int sub_0208CC6C(PokemonSummaryScreen *param0)
 {
     if (gCoreSys.pressedKeys & PAD_KEY_UP) {
         if (sub_0208DF94(param0, -1) == 1) {
@@ -726,7 +726,7 @@ static int sub_0208CC6C(PokemonSummaryApp *param0)
     return 8;
 }
 
-static int sub_0208CD44(PokemonSummaryApp *param0)
+static int sub_0208CD44(PokemonSummaryScreen *param0)
 {
     if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
         sub_0208D898(param0, -1);
@@ -783,7 +783,7 @@ static int sub_0208CD44(PokemonSummaryApp *param0)
     return 9;
 }
 
-static int sub_0208CE54(PokemonSummaryApp *param0)
+static int sub_0208CE54(PokemonSummaryScreen *param0)
 {
     if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         sub_0208DFF4(param0);
@@ -793,7 +793,7 @@ static int sub_0208CE54(PokemonSummaryApp *param0)
     return 10;
 }
 
-static int sub_0208CE70(PokemonSummaryApp *param0)
+static int sub_0208CE70(PokemonSummaryScreen *param0)
 {
     if (sub_0208E57C(param0) == 1) {
         return 13;
@@ -802,7 +802,7 @@ static int sub_0208CE70(PokemonSummaryApp *param0)
     return 11;
 }
 
-static int sub_0208CE84(PokemonSummaryApp *param0)
+static int sub_0208CE84(PokemonSummaryScreen *param0)
 {
     if (sub_0208E6A8(param0) == 1) {
         return 2;
@@ -811,7 +811,7 @@ static int sub_0208CE84(PokemonSummaryApp *param0)
     return 12;
 }
 
-static int sub_0208CE98(PokemonSummaryApp *param0)
+static int sub_0208CE98(PokemonSummaryScreen *param0)
 {
     if (gCoreSys.pressedKeysRepeatable & PAD_KEY_LEFT) {
         sub_0208E794(param0, -1);
@@ -842,7 +842,7 @@ static int sub_0208CE98(PokemonSummaryApp *param0)
     return 13;
 }
 
-static int sub_0208CF0C(PokemonSummaryApp *param0)
+static int sub_0208CF0C(PokemonSummaryScreen *param0)
 {
     if (sub_0209228C(param0) == 1) {
         return param0->subscreen;
@@ -867,7 +867,7 @@ static int sub_0208CF0C(PokemonSummaryApp *param0)
     return 14;
 }
 
-static int sub_0208CF78(PokemonSummaryApp *param0)
+static int sub_0208CF78(PokemonSummaryScreen *param0)
 {
     if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         BoxPokemon *v0;
@@ -943,7 +943,7 @@ static int sub_0208CF78(PokemonSummaryApp *param0)
     return 15;
 }
 
-static int sub_0208D114(PokemonSummaryApp *param0)
+static int sub_0208D114(PokemonSummaryScreen *param0)
 {
     u8 v0;
 
@@ -964,7 +964,7 @@ static int sub_0208D114(PokemonSummaryApp *param0)
     return 16;
 }
 
-static int sub_0208D164(PokemonSummaryApp *param0)
+static int sub_0208D164(PokemonSummaryScreen *param0)
 {
     if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         return 18;
@@ -973,18 +973,18 @@ static int sub_0208D164(PokemonSummaryApp *param0)
     return 17;
 }
 
-static u8 sub_0208D17C(PokemonSummaryApp *param0)
+static u8 sub_0208D17C(PokemonSummaryScreen *param0)
 {
     sub_0208C120(1, 19);
     return 19;
 }
 
-static u8 ScreenTransitionIsDone(PokemonSummaryApp *dummy)
+static u8 ScreenTransitionIsDone(PokemonSummaryScreen *dummy)
 {
     return IsScreenTransitionDone() == TRUE;
 }
 
-static void sub_0208D1A4(PokemonSummaryApp *param0)
+static void sub_0208D1A4(PokemonSummaryScreen *param0)
 {
     void *v0 = PokemonSummary_MonData(param0);
 
@@ -995,7 +995,7 @@ static void sub_0208D1A4(PokemonSummaryApp *param0)
     }
 }
 
-static void sub_0208D1D4(PokemonSummaryApp *param0, BoxPokemon *param1, PokemonSummaryMonData *param2)
+static void sub_0208D1D4(PokemonSummaryScreen *param0, BoxPokemon *param1, PokemonSummaryMonData *param2)
 {
     Pokemon *v0 = Pokemon_New(19);
 
@@ -1004,7 +1004,7 @@ static void sub_0208D1D4(PokemonSummaryApp *param0, BoxPokemon *param1, PokemonS
     Heap_FreeToHeap(v0);
 }
 
-static void sub_0208D200(PokemonSummaryApp *param0, Pokemon *param1, PokemonSummaryMonData *param2)
+static void sub_0208D200(PokemonSummaryScreen *param0, Pokemon *param1, PokemonSummaryMonData *param2)
 {
     BoxPokemon *v0;
     u16 v1;
@@ -1124,7 +1124,7 @@ static void sub_0208D200(PokemonSummaryApp *param0, Pokemon *param1, PokemonSumm
     Pokemon_ExitDecryptionContext(param1, v3);
 }
 
-static void sub_0208D618(PokemonSummaryApp *param0)
+static void sub_0208D618(PokemonSummaryScreen *param0)
 {
     u8 v0;
 
@@ -1141,7 +1141,7 @@ static void sub_0208D618(PokemonSummaryApp *param0)
     }
 }
 
-static void sub_0208D678(PokemonSummaryApp *param0)
+static void sub_0208D678(PokemonSummaryScreen *param0)
 {
     switch (param0->data->mode) {
     case 0:
@@ -1193,7 +1193,7 @@ void PokemonSummary_FlagVisiblePages(PokemonSummary *summary, const u8 *param1)
     }
 }
 
-static void sub_0208D748(PokemonSummaryApp *param0)
+static void sub_0208D748(PokemonSummaryScreen *param0)
 {
     if (param0->data->contest == 1) {
         return;
@@ -1212,7 +1212,7 @@ static void sub_0208D748(PokemonSummaryApp *param0)
     }
 }
 
-u8 PokemonSummary_PageIsVisble(PokemonSummaryApp *param0, u32 param1)
+u8 PokemonSummary_PageIsVisble(PokemonSummaryScreen *param0, u32 param1)
 {
     if ((param0->monData.isEgg != 0) && (param1 != 1) && (param1 != 7)) {
         return 0;
@@ -1221,7 +1221,7 @@ u8 PokemonSummary_PageIsVisble(PokemonSummaryApp *param0, u32 param1)
     return param0->data->pageFlag & (1 << param1);
 }
 
-u8 PokemonSummary_CountVisiblePages(PokemonSummaryApp *param0)
+u8 PokemonSummary_CountVisiblePages(PokemonSummaryScreen *param0)
 {
     u8 v0, v1;
 
@@ -1236,7 +1236,7 @@ u8 PokemonSummary_CountVisiblePages(PokemonSummaryApp *param0)
     return v1;
 }
 
-static void sub_0208D7EC(PokemonSummaryApp *param0, u8 param1)
+static void sub_0208D7EC(PokemonSummaryScreen *param0, u8 param1)
 {
     if (param0->page == param1) {
         return;
@@ -1269,7 +1269,7 @@ static void sub_0208D7EC(PokemonSummaryApp *param0, u8 param1)
     }
 }
 
-static void sub_0208D898(PokemonSummaryApp *param0, s8 param1)
+static void sub_0208D898(PokemonSummaryScreen *param0, s8 param1)
 {
     s8 v0 = param0->page;
 
@@ -1303,7 +1303,7 @@ static void sub_0208D898(PokemonSummaryApp *param0, s8 param1)
     sub_0208D7EC(param0, v0);
 }
 
-static u8 sub_0208D920(PokemonSummaryApp *param0)
+static u8 sub_0208D920(PokemonSummaryScreen *param0)
 {
     u8 v0 = sub_020921E4(param0);
 
@@ -1318,7 +1318,7 @@ static u8 sub_0208D920(PokemonSummaryApp *param0)
     return 1;
 }
 
-static void sub_0208D948(PokemonSummaryApp *param0)
+static void sub_0208D948(PokemonSummaryScreen *param0)
 {
     {
         NNSG2dScreenData *v0;
@@ -1350,7 +1350,7 @@ static void sub_0208D948(PokemonSummaryApp *param0)
     }
 }
 
-static void sub_0208D9D0(PokemonSummaryApp *param0)
+static void sub_0208D9D0(PokemonSummaryScreen *param0)
 {
     u16 v0;
     u16 v1;
@@ -1392,7 +1392,7 @@ static void sub_0208D9D0(PokemonSummaryApp *param0)
     Bg_ScheduleTilemapTransfer(param0->bgConfig, 3);
 }
 
-static void sub_0208DA84(PokemonSummaryApp *param0)
+static void sub_0208DA84(PokemonSummaryScreen *param0)
 {
     u32 v0;
     u32 v1;
@@ -1429,7 +1429,7 @@ static void sub_0208DA84(PokemonSummaryApp *param0)
     Bg_ScheduleTilemapTransfer(param0->bgConfig, 3);
 }
 
-static void sub_0208DB10(PokemonSummaryApp *param0, s8 param1)
+static void sub_0208DB10(PokemonSummaryScreen *param0, s8 param1)
 {
     s8 v0 = sub_0208DBC4(param0, param1);
 
@@ -1468,7 +1468,7 @@ static void sub_0208DB10(PokemonSummaryApp *param0, s8 param1)
     sub_020904C4(param0);
 }
 
-static s8 sub_0208DBC4(PokemonSummaryApp *param0, s8 param1)
+static s8 sub_0208DBC4(PokemonSummaryScreen *param0, s8 param1)
 {
     switch (param0->data->dataType) {
     case 0:
@@ -1482,7 +1482,7 @@ static s8 sub_0208DBC4(PokemonSummaryApp *param0, s8 param1)
     return -1;
 }
 
-static BOOL sub_0208DBF4(PokemonSummaryApp *param0)
+static BOOL sub_0208DBF4(PokemonSummaryScreen *param0)
 {
     if (param0->data->mode == 3) {
         return 0;
@@ -1495,7 +1495,7 @@ static BOOL sub_0208DBF4(PokemonSummaryApp *param0)
     return 1;
 }
 
-static s8 sub_0208DC1C(PokemonSummaryApp *param0, s8 param1)
+static s8 sub_0208DC1C(PokemonSummaryScreen *param0, s8 param1)
 {
     Pokemon *v0;
     s8 v1;
@@ -1526,7 +1526,7 @@ static s8 sub_0208DC1C(PokemonSummaryApp *param0, s8 param1)
     return v1;
 }
 
-static s8 sub_0208DC84(PokemonSummaryApp *param0, s8 param1)
+static s8 sub_0208DC84(PokemonSummaryScreen *param0, s8 param1)
 {
     Pokemon *v0;
     s8 v1;
@@ -1556,7 +1556,7 @@ static s8 sub_0208DC84(PokemonSummaryApp *param0, s8 param1)
     return v1;
 }
 
-static s8 sub_0208DCE0(PokemonSummaryApp *param0, s8 param1)
+static s8 sub_0208DCE0(PokemonSummaryScreen *param0, s8 param1)
 {
     BoxPokemon *v0;
     s8 v1;
@@ -1587,7 +1587,7 @@ static s8 sub_0208DCE0(PokemonSummaryApp *param0, s8 param1)
     return v1;
 }
 
-void *PokemonSummary_MonData(PokemonSummaryApp *param0)
+void *PokemonSummary_MonData(PokemonSummaryScreen *param0)
 {
     switch (param0->data->dataType) {
     case 0:
@@ -1601,7 +1601,7 @@ void *PokemonSummary_MonData(PokemonSummaryApp *param0)
     return NULL;
 }
 
-static u8 sub_0208DD8C(PokemonSummaryApp *param0)
+static u8 sub_0208DD8C(PokemonSummaryScreen *param0)
 {
     switch (param0->subscreen) {
     case 0:
@@ -1650,7 +1650,7 @@ static u8 sub_0208DD8C(PokemonSummaryApp *param0)
     return 0;
 }
 
-static u8 sub_0208DEA4(PokemonSummaryApp *param0)
+static u8 sub_0208DEA4(PokemonSummaryScreen *param0)
 {
     switch (param0->subscreen) {
     case 0:
@@ -1688,7 +1688,7 @@ static u8 sub_0208DEA4(PokemonSummaryApp *param0)
     return 0;
 }
 
-static u8 sub_0208DF94(PokemonSummaryApp *param0, s8 param1)
+static u8 sub_0208DF94(PokemonSummaryScreen *param0, s8 param1)
 {
     s8 v0 = param0->cursor;
 
@@ -1714,7 +1714,7 @@ static u8 sub_0208DF94(PokemonSummaryApp *param0, s8 param1)
     return 0;
 }
 
-static void sub_0208DFF4(PokemonSummaryApp *param0)
+static void sub_0208DFF4(PokemonSummaryScreen *param0)
 {
     sub_0208F2E8(param0);
 
@@ -1741,7 +1741,7 @@ static void sub_0208DFF4(PokemonSummaryApp *param0)
     }
 }
 
-static void sub_0208E07C(PokemonSummaryApp *param0, u32 param1)
+static void sub_0208E07C(PokemonSummaryScreen *param0, u32 param1)
 {
     if (param1 == 0xffffffff) {
         sub_020913D8(param0);
@@ -1753,7 +1753,7 @@ static void sub_0208E07C(PokemonSummaryApp *param0, u32 param1)
     }
 }
 
-static void sub_0208E0B8(PokemonSummaryApp *param0, u32 param1)
+static void sub_0208E0B8(PokemonSummaryScreen *param0, u32 param1)
 {
     sub_0208E498(param0, param1);
 
@@ -1764,7 +1764,7 @@ static void sub_0208E0B8(PokemonSummaryApp *param0, u32 param1)
     }
 }
 
-static void sub_0208E0DC(PokemonSummaryApp *param0)
+static void sub_0208E0DC(PokemonSummaryScreen *param0)
 {
     void *v0;
     u16 v1;
@@ -1792,7 +1792,7 @@ static void sub_0208E0DC(PokemonSummaryApp *param0)
     param0->monData.maxPP[param0->cursorTmp] = v3;
 }
 
-static void sub_0208E190(PokemonSummaryApp *param0)
+static void sub_0208E190(PokemonSummaryScreen *param0)
 {
     Window_ClearAndScheduleCopyToVRAM(&param0->staticWindows[33]);
     Window_ClearAndScheduleCopyToVRAM(&param0->staticWindows[6]);
@@ -1813,7 +1813,7 @@ static void sub_0208E190(PokemonSummaryApp *param0)
     CellActor_SetDrawFlag(param0->unk_41C[9], 1);
 }
 
-static u8 sub_0208E208(PokemonSummaryApp *param0)
+static u8 sub_0208E208(PokemonSummaryScreen *param0)
 {
     switch (param0->subscreen) {
     case 0:
@@ -1858,7 +1858,7 @@ static u8 sub_0208E208(PokemonSummaryApp *param0)
     return 0;
 }
 
-static u8 sub_0208E308(PokemonSummaryApp *param0)
+static u8 sub_0208E308(PokemonSummaryScreen *param0)
 {
     switch (param0->subscreen) {
     case 0:
@@ -1895,7 +1895,7 @@ static u8 sub_0208E308(PokemonSummaryApp *param0)
     return 0;
 }
 
-static void sub_0208E3DC(PokemonSummaryApp *param0, u16 param1, u8 param2)
+static void sub_0208E3DC(PokemonSummaryScreen *param0, u16 param1, u8 param2)
 {
     Bg_FillTilemapRect(param0->bgConfig, 2, param1, 2 + param2 * 2, (32 + 15), 1, 1, 16);
     Bg_FillTilemapRect(param0->bgConfig, 2, param1 + 1, 2 + param2 * 2 + 1, (32 + 15), 1, 1, 16);
@@ -1903,7 +1903,7 @@ static void sub_0208E3DC(PokemonSummaryApp *param0, u16 param1, u8 param2)
     Bg_FillTilemapRect(param0->bgConfig, 2, param1 + 33, 2 + param2 * 2 + 1, (32 + 15) + 1, 1, 1, 16);
 }
 
-static void sub_0208E46C(PokemonSummaryApp *param0)
+static void sub_0208E46C(PokemonSummaryScreen *param0)
 {
     u16 v0;
 
@@ -1914,7 +1914,7 @@ static void sub_0208E46C(PokemonSummaryApp *param0)
     Bg_ScheduleTilemapTransfer(param0->bgConfig, 2);
 }
 
-static void sub_0208E498(PokemonSummaryApp *param0, u32 param1)
+static void sub_0208E498(PokemonSummaryScreen *param0, u32 param1)
 {
     u32 v0;
     u16 v1;
@@ -1934,7 +1934,7 @@ static void sub_0208E498(PokemonSummaryApp *param0, u32 param1)
     Bg_ScheduleTilemapTransfer(param0->bgConfig, 2);
 }
 
-static void sub_0208E4EC(PokemonSummaryApp *param0)
+static void sub_0208E4EC(PokemonSummaryScreen *param0)
 {
     if (param0->page == 3) {
         sub_020913D8(param0);
@@ -1943,7 +1943,7 @@ static void sub_0208E4EC(PokemonSummaryApp *param0)
     }
 }
 
-static void sub_0208E508(PokemonSummaryApp *param0)
+static void sub_0208E508(PokemonSummaryScreen *param0)
 {
     sub_02091420(param0);
     sub_0208DFF4(param0);
@@ -1964,7 +1964,7 @@ static void sub_0208E508(PokemonSummaryApp *param0)
     }
 }
 
-static u8 sub_0208E57C(PokemonSummaryApp *param0)
+static u8 sub_0208E57C(PokemonSummaryScreen *param0)
 {
     switch (param0->subscreen) {
     case 0:
@@ -2010,7 +2010,7 @@ static u8 sub_0208E57C(PokemonSummaryApp *param0)
     return 0;
 }
 
-static u8 sub_0208E6A8(PokemonSummaryApp *param0)
+static u8 sub_0208E6A8(PokemonSummaryScreen *param0)
 {
     switch (param0->subscreen) {
     case 0:
@@ -2050,7 +2050,7 @@ static u8 sub_0208E6A8(PokemonSummaryApp *param0)
     return 0;
 }
 
-static void sub_0208E794(PokemonSummaryApp *param0, s8 param1)
+static void sub_0208E794(PokemonSummaryScreen *param0, s8 param1)
 {
     u8 v0;
     u8 v1;
@@ -2126,7 +2126,7 @@ static void sub_0208E794(PokemonSummaryApp *param0, s8 param1)
     }
 }
 
-u8 PokemonSummary_RibbonAt(PokemonSummaryApp *param0, u8 param1)
+u8 PokemonSummary_RibbonAt(PokemonSummaryScreen *param0, u8 param1)
 {
     u16 v0;
     u8 v1, v2;
@@ -2147,7 +2147,7 @@ u8 PokemonSummary_RibbonAt(PokemonSummaryApp *param0, u8 param1)
     return 0;
 }
 
-static int sub_0208E958(PokemonSummaryApp *param0)
+static int sub_0208E958(PokemonSummaryScreen *param0)
 {
     if (param0->monData.sheen == 255) {
         Font_LoadScreenIndicatorsPalette(0, 14 * 32, 19);
