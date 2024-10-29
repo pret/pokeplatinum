@@ -9,6 +9,7 @@
 #include "constants/items.h"
 #include "consts/battle.h"
 #include "consts/game_records.h"
+#include "consts/species.h"
 
 #include "struct_decls/battle_system.h"
 #include "struct_decls/pokedexdata_decl.h"

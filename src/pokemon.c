@@ -4434,7 +4434,7 @@ void Pokemon_GiveHeldItem(Pokemon *mon, u32 param1, int param2)
     u16 monItem1 = PokemonPersonalData_GetFormValue(monSpecies, monForm, MON_DATA_PERSONAL_ITEM1);
     u16 monItem2 = PokemonPersonalData_GetFormValue(monSpecies, monForm, MON_DATA_PERSONAL_ITEM2);
 
-    if (monItem1 == monItem2 && monItem1 != 0) {
+    if (monItem1 == monItem2 && monItem1 != ITEM_NONE) {
         Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &monItem1);
         return;
     }

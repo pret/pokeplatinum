@@ -693,7 +693,7 @@ static void sub_0207C028(UnkStruct_0207AE68 *param0)
     switch (param0->unk_78) {
     case 13:
     case 14:
-        if (Bag_GetItemQuantity(param0->unk_4C, 4, param0->unk_5C) && (Party_GetCurrentCount(param0->unk_24) < 6)) {
+        if (Bag_GetItemQuantity(param0->unk_4C, ITEM_POKE_BALL, param0->unk_5C) && (Party_GetCurrentCount(param0->unk_24) < 6)) {
             {
                 Pokemon *v1;
                 int v2;
@@ -706,7 +706,7 @@ static void sub_0207C028(UnkStruct_0207AE68 *param0)
                 v2 = SPECIES_SHEDINJA;
                 Pokemon_SetValue(v1, MON_DATA_SPECIES, &v2);
 
-                v2 = 4;
+                v2 = ITEM_POKE_BALL;
                 Pokemon_SetValue(v1, MON_DATA_POKEBALL, &v2);
 
                 v2 = 0;
@@ -749,7 +749,7 @@ static void sub_0207C028(UnkStruct_0207AE68 *param0)
                 GameRecords_IncrementTrainerScore(param0->records, TRAINER_SCORE_EVENT_CAUGHT_SPECIES);
                 PoketchData_PokemonHistoryEnqueue(param0->poketchData, Pokemon_GetBoxPokemon(v1));
                 Heap_FreeToHeap(v1);
-                Bag_TryRemoveItem(param0->unk_4C, 4, 1, param0->unk_5C);
+                Bag_TryRemoveItem(param0->unk_4C, ITEM_POKE_BALL, 1, param0->unk_5C);
             }
         }
         break;

@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/items.h"
+
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -2716,7 +2718,7 @@ static int UpdatePokemonWithItem(GameWindowLayout *param0, Pokemon *param1, int 
     param0->unk_704[param0->unk_B11].unk_0C = param0->unk_5A4->unk_24;
     sub_02083040(param0, param0->unk_B11, param0->unk_704[param0->unk_B11].unk_0C);
 
-    if ((v0 == 112) && ((*param2) != -1)) {
+    if ((v0 == ITEM_GRISEOUS_ORB) && ((*param2) != -1)) {
         return 12;
     }
 

@@ -4,6 +4,8 @@
 #include <nitro/sinit.h>
 #include <string.h>
 
+#include "consts/items.h"
+
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
@@ -231,11 +233,11 @@ void ov17_0223F374(UnkStruct_02095C48 *param0)
             v3 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_BEAUTY, NULL);
 
             switch (v5) {
-            case 260:
+            case ITEM_RED_SCARF:
                 v6 = 110;
                 break;
-            case 261:
-            case 264:
+            case ITEM_BLUE_SCARF:
+            case ITEM_YELLOW_SCARF:
                 v6 = 105;
                 break;
             }
@@ -246,11 +248,11 @@ void ov17_0223F374(UnkStruct_02095C48 *param0)
             v3 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_CUTE, NULL);
 
             switch (v5) {
-            case 261:
+            case ITEM_BLUE_SCARF:
                 v6 = 110;
                 break;
-            case 260:
-            case 262:
+            case ITEM_RED_SCARF:
+            case ITEM_PINK_SCARF:
                 v6 = 105;
                 break;
             }
@@ -261,11 +263,11 @@ void ov17_0223F374(UnkStruct_02095C48 *param0)
             v3 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_SMART, NULL);
 
             switch (v5) {
-            case 262:
+            case ITEM_PINK_SCARF:
                 v6 = 110;
                 break;
-            case 261:
-            case 263:
+            case ITEM_BLUE_SCARF:
+            case ITEM_GREEN_SCARF:
                 v6 = 105;
                 break;
             }
@@ -276,11 +278,11 @@ void ov17_0223F374(UnkStruct_02095C48 *param0)
             v3 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_TOUGH, NULL);
 
             switch (v5) {
-            case 263:
+            case ITEM_GREEN_SCARF:
                 v6 = 110;
                 break;
-            case 262:
-            case 264:
+            case ITEM_PINK_SCARF:
+            case ITEM_YELLOW_SCARF:
                 v6 = 105;
                 break;
             }
@@ -291,11 +293,11 @@ void ov17_0223F374(UnkStruct_02095C48 *param0)
             v3 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_COOL, NULL);
 
             switch (v5) {
-            case 264:
+            case ITEM_YELLOW_SCARF:
                 v6 = 110;
                 break;
-            case 263:
-            case 260:
+            case ITEM_GREEN_SCARF:
+            case ITEM_RED_SCARF:
                 v6 = 105;
                 break;
             }

@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/items.h"
 #include "constants/species.h"
 #include "consts/game_records.h"
 
@@ -2264,7 +2265,7 @@ static int ov5_021E6684(UnkStruct_02026310 *param0)
         }
     }
 
-    if (BoxPokemon_GetValue(v4[v2], MON_DATA_HELD_ITEM, NULL) == 229) {
+    if (BoxPokemon_GetValue(v4[v2], MON_DATA_HELD_ITEM, NULL) == ITEM_EVERSTONE) {
         if (LCRNG_Next() >= (0xffff / 2)) {
             return -1;
         }
@@ -2606,7 +2607,7 @@ void ov5_021E6CF0(Pokemon *param0, u16 param1, u8 param2, TrainerInfo *param3, i
     Pokemon_InitWith(param0, param1, 1, 32, 0, 0, 0, 0);
 
     v0 = 0;
-    v3 = 4;
+    v3 = ITEM_POKE_BALL;
 
     Pokemon_SetValue(param0, MON_DATA_POKEBALL, &v3);
     Pokemon_SetValue(param0, MON_DATA_FRIENDSHIP, &v4);
@@ -2666,7 +2667,7 @@ void ov5_021E6DE8(Pokemon *param0, u16 param1, UnkStruct_02026310 *param2, u32 p
     Pokemon_InitWith(param0, param1, 1, 32, 1, v2, 0, 0);
 
     v0 = 0;
-    v1 = 4;
+    v1 = ITEM_POKE_BALL;
 
     Pokemon_SetValue(param0, MON_DATA_POKEBALL, &v1);
     Pokemon_SetValue(param0, MON_DATA_FRIENDSHIP, &v4);

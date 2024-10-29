@@ -513,13 +513,13 @@ BOOL ScrCmd_31D(ScriptContext *param0)
         v0 = Party_GetPokemonBySlotIndex(v1, v3);
         v8[v3] = Pokemon_GetValue(v0, MON_DATA_HELD_ITEM, NULL);
 
-        if (v8[v3] == 112) {
+        if (v8[v3] == ITEM_GRISEOUS_ORB) {
             v9++;
         }
     }
 
     if (v9 > 0) {
-        v4 = Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), 112, v9, 4);
+        v4 = Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), ITEM_GRISEOUS_ORB, v9, 4);
 
         if (v4 == 0) {
             *v11 = 0xff;
@@ -529,7 +529,7 @@ BOOL ScrCmd_31D(ScriptContext *param0)
         v7 = 0;
 
         for (v3 = 0; v3 < v2; v3++) {
-            if (v8[v3] == 112) {
+            if (v8[v3] == ITEM_GRISEOUS_ORB) {
                 v0 = Party_GetPokemonBySlotIndex(v1, v3);
                 Pokemon_SetValue(v0, MON_DATA_HELD_ITEM, &v7);
             }
@@ -583,8 +583,8 @@ BOOL ScrCmd_31E(ScriptContext *param0)
 
     v5 = Pokemon_GetValue(v0, MON_DATA_HELD_ITEM, NULL);
 
-    if (v5 == 112) {
-        v6 = Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), 112, 1, 4);
+    if (v5 == ITEM_GRISEOUS_ORB) {
+        v6 = Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), ITEM_GRISEOUS_ORB, 1, 4);
 
         if (v6 == 0) {
             *v9 = 0xff;

@@ -4,6 +4,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/items.h"
+#include "consts/species.h"
+
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
@@ -1303,7 +1306,7 @@ static int ov94_022412C8(BoxPokemon *param0)
     BoxPokemon_ExitDecryptionContext(param0, v0);
 
     switch (v1) {
-    case 112:
+    case ITEM_GRISEOUS_ORB:
         return 1;
     }
 
