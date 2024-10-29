@@ -664,7 +664,7 @@ BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot
         param = Pokemon_GetValue(mon, MON_DATA_STATUS_CONDITION, NULL);
         if (param & MON_CONDITION_PARALYSIS) {
             param &= ~MON_CONDITION_PARALYSIS;
-            Pokemon_SetValue(mon, 160, &param);
+            Pokemon_SetValue(mon, MON_DATA_STATUS_CONDITION, &param);
 
             if (selectedSlot == partySlot || targetSlot == partySlot) {
                 param = BattleMon_Get(battleCtx, battler, BATTLEMON_STATUS, NULL);
@@ -1105,7 +1105,7 @@ void ov16_0223EE70(BattleSystem *param0)
                 break;
             }
 
-            Pokemon_SetValue(v2, 112, &v1);
+            Pokemon_SetValue(v2, MON_DATA_FORM, &v1);
         }
     }
 }

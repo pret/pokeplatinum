@@ -537,6 +537,6 @@ void sub_02098EF8(Poffin *param0, Pokemon *param1)
 
     if (v3 < 255) {
         ++v3;
-        Pokemon_SetValue(param1, 9, &v3);
+        Pokemon_SetValue(param1, MON_DATA_FRIENDSHIP, &v3);
     }
 }

@@ -2517,7 +2517,7 @@ static BOOL UpdatePokemonStatus(GameWindowLayout *param0, u8 slot, s8 param2)
 
         mon = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, slot);
         v1 = param0->unk_704[slot].unk_06;
-        Pokemon_SetValue(mon, 163, &v1);
+        Pokemon_SetValue(mon, MON_DATA_CURRENT_HP, &v1);
         return 1;
     }
 
@@ -2704,7 +2704,7 @@ static int UpdatePokemonWithItem(GameWindowLayout *param0, Pokemon *param1, int 
     fieldSystem = param0->unk_5A4->unk_1C;
 
     Bag_TryRemoveItem(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, 12);
-    Pokemon_SetValue(param1, 6, &v0);
+    Pokemon_SetValue(param1, MON_DATA_HELD_ITEM, &v0);
     Pokemon_SetArceusForm(param1);
 
     if ((fieldSystem == NULL) || (fieldSystem->location->mapId < 573) || (fieldSystem->location->mapId > 583)) {
@@ -2726,7 +2726,7 @@ static int UpdatePokemonWithItem(GameWindowLayout *param0, Pokemon *param1, int 
 static void SwapPokemonItem(GameWindowLayout *param0, Pokemon *param1, u32 param2, u32 param3)
 {
     Bag_TryAddItem(param0->unk_5A4->unk_04, (u16)param2, 1, 12);
-    Pokemon_SetValue(param1, 6, &param3);
+    Pokemon_SetValue(param1, MON_DATA_HELD_ITEM, &param3);
     Pokemon_SetArceusForm(param1);
     Pokemon_SetGiratinaForm(param1);
     param0->unk_704[param0->unk_B11].unk_0C = (u16)param3;

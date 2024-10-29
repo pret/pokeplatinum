@@ -881,7 +881,7 @@ static u8 ov13_022208A4(UnkStruct_ov13_022213F0 *param0)
         ov13_02224144(param0);
 
         if (param0->unk_2076 == 5) {
-            param0->unk_207C[0] = (u16)Pokemon_GetValue(param0->unk_04[v0->unk_11].unk_00, 58 + v0->unk_34, NULL);
+            param0->unk_207C[0] = (u16)Pokemon_GetValue(param0->unk_04[v0->unk_11].unk_00, MON_DATA_MOVE1_CUR_PP + v0->unk_34, NULL);
             param0->unk_2078 = 2;
         } else {
             param0->unk_04[v0->unk_11].unk_17_3 = PokemonSummary_StatusIconAnimIdx(param0->unk_04[v0->unk_11].unk_00);

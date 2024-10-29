@@ -632,25 +632,25 @@ static void ov16_0225C47C(BattleSystem *param0, BattlerData *param1)
     if ((v0->unk_18 & 0x200000) == 0) {
         for (v1 = 0; v1 < 4; v1++) {
             if ((v0->unk_01_4 & FlagIndex(v1)) == 0) {
-                Pokemon_SetValue(v2, 54 + v1, (u8 *)&v0->unk_0E[v1]);
-                Pokemon_SetValue(v2, 58 + v1, (u8 *)&v0->unk_12[v1]);
+                Pokemon_SetValue(v2, MON_DATA_MOVE1 + v1, (u8 *)&v0->unk_0E[v1]);
+                Pokemon_SetValue(v2, MON_DATA_MOVE1_CUR_PP + v1, (u8 *)&v0->unk_12[v1]);
             }
         }
     }
 
     if ((v0->unk_08 & FlagIndex(v0->unk_01_0)) == 0) {
-        Pokemon_SetValue(v2, 6, (u8 *)&v0->unk_0C);
+        Pokemon_SetValue(v2, MON_DATA_HELD_ITEM, (u8 *)&v0->unk_0C);
     }
 
-    Pokemon_SetValue(v2, 163, (u8 *)&v0->unk_02);
-    Pokemon_SetValue(v2, 160, (u8 *)&v0->unk_04);
+    Pokemon_SetValue(v2, MON_DATA_CURRENT_HP, (u8 *)&v0->unk_02);
+    Pokemon_SetValue(v2, MON_DATA_STATUS_CONDITION, (u8 *)&v0->unk_04);
 
     if (v0->unk_26) {
-        Pokemon_SetValue(v2, 112, (u8 *)&v0->unk_1C);
+        Pokemon_SetValue(v2, MON_DATA_FORM, (u8 *)&v0->unk_1C);
     }
 
     if (v0->unk_24) {
-        Pokemon_SetValue(v2, 10, (u8 *)&v0->unk_20);
+        Pokemon_SetValue(v2, MON_DATA_ABILITY, (u8 *)&v0->unk_20);
         Pokemon_CalcLevelAndStats(v2);
     }
 
@@ -704,7 +704,7 @@ static void ov16_0225C5E0(BattleSystem *param0, BattlerData *param1)
         }
 
         if ((v0->unk_02 != 215) || ((v0->unk_02 == 215) && (v4 != 43))) {
-            Pokemon_SetValue(v1, 160, (u8 *)&v5);
+            Pokemon_SetValue(v1, MON_DATA_STATUS_CONDITION, (u8 *)&v5);
         }
     }
 

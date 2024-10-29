@@ -218,11 +218,11 @@ UnkStruct_ov104_0223BFFC *ov104_02237DD8(SaveData *param0, u16 param1, u8 param2
         v3 = Party_GetPokemonBySlotIndex(v9->unk_70, v7);
         v0 = 0;
 
-        Pokemon_SetValue(v3, 6, &v0);
+        Pokemon_SetValue(v3, MON_DATA_HELD_ITEM, &v0);
 
         if (Pokemon_GetValue(v3, MON_DATA_LEVEL, NULL) > 50) {
             v1 = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL), 50);
-            Pokemon_SetValue(v3, 8, &v1);
+            Pokemon_SetValue(v3, MON_DATA_EXP, &v1);
             Pokemon_CalcLevelAndStats(v3);
         }
     }
@@ -328,7 +328,7 @@ static void ov104_022381C4(UnkStruct_ov104_0223BFFC *param0)
         v3 = Party_GetPokemonBySlotIndex(param0->unk_70, v2);
         v1 = (u16)sub_0203054C(param0->unk_08, 4, v2, 0, NULL);
 
-        Pokemon_SetValue(v3, 6, &v1);
+        Pokemon_SetValue(v3, MON_DATA_HELD_ITEM, &v1);
     }
 
     return;
@@ -1116,7 +1116,7 @@ static void ov104_02238BBC(UnkStruct_ov104_0223BFFC *param0, Party *param1, u8 p
         v2 -= v1;
         v2 = (v1 - v2);
 
-        Pokemon_SetValue(v3, 163, &v2);
+        Pokemon_SetValue(v3, MON_DATA_CURRENT_HP, &v2);
     }
 
     return;
@@ -1232,7 +1232,7 @@ static void ov104_02238D8C(UnkStruct_ov104_0223BFFC *param0, Party *param1, u8 p
             }
         } else {
             v3 = (LCRNG_Next() % 4 + 2);
-            Pokemon_SetValue(v5, 160, &v3);
+            Pokemon_SetValue(v5, MON_DATA_STATUS_CONDITION, &v3);
             break;
         }
     }
@@ -1306,7 +1306,7 @@ static void ov104_02238E9C(UnkStruct_ov104_0223BFFC *param0, Party *param1, u8 p
 
     for (v0 = 0; v0 < param2; v0++) {
         v5 = Party_GetPokemonBySlotIndex(param1, v0);
-        Pokemon_SetValue(v5, 6, &v3);
+        Pokemon_SetValue(v5, MON_DATA_HELD_ITEM, &v3);
     }
 
     return;
@@ -1336,7 +1336,7 @@ static void ov104_02238EF8(UnkStruct_ov104_0223BFFC *param0, Party *param1, u8 p
 
     for (v0 = 0; v0 < param2; v0++) {
         v5 = Party_GetPokemonBySlotIndex(param1, v0);
-        Pokemon_SetValue(v5, 6, &v3);
+        Pokemon_SetValue(v5, MON_DATA_HELD_ITEM, &v3);
     }
 
     return;
@@ -1360,7 +1360,7 @@ static void ov104_02238F54(UnkStruct_ov104_0223BFFC *param0, Party *param1, u8 p
 
         v1 = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL), v2);
 
-        Pokemon_SetValue(v3, 8, &v1);
+        Pokemon_SetValue(v3, MON_DATA_EXP, &v1);
         Pokemon_CalcLevelAndStats(v3);
     }
 
@@ -1513,7 +1513,7 @@ void ov104_02239054(Party *param0, Party *param1, int param2, int param3)
     v0 = Pokemon_GetValue(v2, MON_DATA_HELD_ITEM, NULL);
     v1 = Party_GetPokemonBySlotIndex(param1, param3);
 
-    Pokemon_SetValue(v1, 6, &v0);
+    Pokemon_SetValue(v1, MON_DATA_HELD_ITEM, &v0);
 
     return;
 }

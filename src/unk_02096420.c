@@ -311,7 +311,7 @@ u8 ApplyItemEffectsToPokemon(Pokemon *param0, u16 param1, u16 param2, u16 param3
     }
 
     if (v1[0] != v1[1]) {
-        Pokemon_SetValue(param0, 160, &v1[1]);
+        Pokemon_SetValue(param0, MON_DATA_STATUS_CONDITION, &v1[1]);
         v2 = 1;
     }
 
@@ -400,7 +400,7 @@ u8 ApplyItemEffectsToPokemon(Pokemon *param0, u16 param1, u16 param2, u16 param3
 
             if (v1[6] != -1) {
                 v1[0] = v1[6];
-                Pokemon_SetValue(param0, 13, &v1[0]);
+                Pokemon_SetValue(param0, MON_DATA_HP_EV, &v1[0]);
                 Pokemon_CalcLevelAndStats(param0);
                 v2 = 1;
             }
@@ -417,7 +417,7 @@ u8 ApplyItemEffectsToPokemon(Pokemon *param0, u16 param1, u16 param2, u16 param3
 
         if (v1[6] != -1) {
             v1[1] = v1[6];
-            Pokemon_SetValue(param0, 14, &v1[1]);
+            Pokemon_SetValue(param0, MON_DATA_ATK_EV, &v1[1]);
             Pokemon_CalcLevelAndStats(param0);
             v2 = 1;
         }
@@ -433,7 +433,7 @@ u8 ApplyItemEffectsToPokemon(Pokemon *param0, u16 param1, u16 param2, u16 param3
 
         if (v1[6] != -1) {
             v1[2] = v1[6];
-            Pokemon_SetValue(param0, 15, &v1[2]);
+            Pokemon_SetValue(param0, MON_DATA_DEF_EV, &v1[2]);
             Pokemon_CalcLevelAndStats(param0);
             v2 = 1;
         }
@@ -449,7 +449,7 @@ u8 ApplyItemEffectsToPokemon(Pokemon *param0, u16 param1, u16 param2, u16 param3
 
         if (v1[6] != -1) {
             v1[3] = v1[6];
-            Pokemon_SetValue(param0, 16, &v1[3]);
+            Pokemon_SetValue(param0, MON_DATA_SPEED_EV, &v1[3]);
             Pokemon_CalcLevelAndStats(param0);
             v2 = 1;
         }
@@ -465,7 +465,7 @@ u8 ApplyItemEffectsToPokemon(Pokemon *param0, u16 param1, u16 param2, u16 param3
 
         if (v1[6] != -1) {
             v1[4] = v1[6];
-            Pokemon_SetValue(param0, 17, &v1[4]);
+            Pokemon_SetValue(param0, MON_DATA_SPATK_EV, &v1[4]);
             Pokemon_CalcLevelAndStats(param0);
             v2 = 1;
         }
@@ -481,7 +481,7 @@ u8 ApplyItemEffectsToPokemon(Pokemon *param0, u16 param1, u16 param2, u16 param3
 
         if (v1[6] != -1) {
             v1[5] = v1[6];
-            Pokemon_SetValue(param0, 18, &v1[5]);
+            Pokemon_SetValue(param0, MON_DATA_SPDEF_EV, &v1[5]);
             Pokemon_CalcLevelAndStats(param0);
             v2 = 1;
         }
@@ -580,7 +580,7 @@ static u8 UpdatePokemonMovePP(Pokemon *mon, u32 moveIDX, u32 pp)
             }
         }
 
-        Pokemon_SetValue(mon, 58 + moveIDX, &ppCurr); // set the pp of the move
+        Pokemon_SetValue(mon, MON_DATA_MOVE1_CUR_PP + moveIDX, &ppCurr); // set the pp of the move
         return 1;
     }
 
@@ -617,8 +617,8 @@ static u8 IncreaseMovePPUps(Pokemon *param0, u32 param1, u32 param2)
 
     v1 = v1 + MoveTable_CalcMaxPP(v0, v2) - v3;
 
-    Pokemon_SetValue(param0, 62 + param1, &v2);
-    Pokemon_SetValue(param0, 58 + param1, &v1);
+    Pokemon_SetValue(param0, MON_DATA_MOVE1_PP_UPS + param1, &v2);
+    Pokemon_SetValue(param0, MON_DATA_MOVE1_CUR_PP + param1, &v1);
 
     return 1;
 }
@@ -641,7 +641,7 @@ static void RestorePokemonHP(Pokemon *mon, u32 param1, u32 param2, u32 param3)
         param1 += param3;
     }
 
-    Pokemon_SetValue(mon, 163, &param1);
+    Pokemon_SetValue(mon, MON_DATA_CURRENT_HP, &param1);
 }
 
 static s32 CalculateEVUpdate(s32 param0, s32 param1, s32 param2)
@@ -747,7 +747,7 @@ static u8 UpdatePokemonFriendship(Pokemon *param0, s32 param1, s32 param2, u16 p
         param2 = 0;
     }
 
-    Pokemon_SetValue(param0, 9, &param2);
+    Pokemon_SetValue(param0, MON_DATA_FRIENDSHIP, &param2);
     return 1;
 }
 

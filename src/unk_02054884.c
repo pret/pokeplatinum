@@ -45,7 +45,7 @@ BOOL sub_020548B0(int param0, SaveData *param1, u16 param2, u8 param3, u16 param
     Pokemon_SetCatchData(v1, v4, 4, param5, param6, param0);
 
     v2 = param4;
-    Pokemon_SetValue(v1, 6, &v2);
+    Pokemon_SetValue(v1, MON_DATA_HELD_ITEM, &v2);
     v0 = Party_AddPokemon(v3, v1);
 
     if (v0) {
@@ -194,7 +194,7 @@ int sub_02054B04(Party *param0, u16 param1)
                     v5--;
                 }
 
-                Pokemon_SetValue(v4, 163, &v5);
+                Pokemon_SetValue(v4, MON_DATA_CURRENT_HP, &v5);
 
                 if (v5 == 1) {
                     v1++;

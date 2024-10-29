@@ -869,8 +869,8 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
             v1 = param0->unk_3C4[0] + 1;
 
             ov76_0223B848(&v2, param0);
-            Pokemon_SetValue(param0->unk_428, 162, (u8 *)&v1);
-            Pokemon_SetValue(param0->unk_428, 171, &v2);
+            Pokemon_SetValue(param0->unk_428, MON_DATA_MAIL_ID, (u8 *)&v1);
+            Pokemon_SetValue(param0->unk_428, MON_DATA_171, &v2);
 
             param0->unk_D4.unk_154 = ov12_02236004(53, &v3);
             ov12_02236320(param0->unk_D4.unk_154);
@@ -997,7 +997,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
             if (param0->unk_264[param0->unk_3C4[0]].unk_00 != 0xff) {
                 v8 = param0->unk_00->unk_04[param0->unk_264[param0->unk_3C4[0]].unk_00];
 
-                Pokemon_SetValue(v8, 171, sub_0202CA28(param0->unk_00->unk_20, param0->unk_3C4[0]));
+                Pokemon_SetValue(v8, MON_DATA_171, sub_0202CA28(param0->unk_00->unk_20, param0->unk_3C4[0]));
             }
         }
         param0->unk_3D4 = 8;
@@ -1222,7 +1222,7 @@ void ov76_0223E91C(UnkStruct_ov76_0223DE00 *param0, int param1)
     v1 = param0->unk_04[param1].unk_00;
 
     if (v1 != 0xff) {
-        Pokemon_SetValue(param0->unk_00->unk_04[v1], 162, (u8 *)&v2);
+        Pokemon_SetValue(param0->unk_00->unk_04[v1], MON_DATA_MAIL_ID, (u8 *)&v2);
     }
 
     param0->unk_04[param1].unk_00 = 0xff;

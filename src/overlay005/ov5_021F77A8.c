@@ -348,7 +348,7 @@ BOOL ScrCmd_2E6(ScriptContext *param0)
 
     if (v14 != 0xff) {
         for (v5 = 0; v5 < 4; v5++) {
-            v11[v5] = Pokemon_GetValue(v6, (54 + v5), NULL);
+            v11[v5] = Pokemon_GetValue(v6, (MON_DATA_MOVE1 + v5), NULL);
         }
 
         for (v2 = 0; v2 < MOVESET_MASK_SIZE; v2++) {

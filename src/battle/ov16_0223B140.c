@@ -1130,7 +1130,7 @@ static void ov16_0223C2C0(BattleSystem *param0, BattleParams *param1)
             for (v1 = 0; v1 < Party_GetCurrentCount(param1->parties[v0]); v1++) {
                 v3 = Party_GetPokemonBySlotIndex(param1->parties[v0], v1);
                 v5 = Pokemon_GetGender(v3);
-                Pokemon_SetValue(v3, 111, &v5);
+                Pokemon_SetValue(v3, MON_DATA_GENDER, &v5);
             }
         }
     }

@@ -270,48 +270,48 @@ void ov104_0222DF40(const UnkStruct_ov104_0223A348_sub2 *param0, Pokemon *param1
     v1 = (param0->unk_14_val2 & 0x3FFFFFFF);
 
     Pokemon_InitWith(param1, param0->unk_00_val1_0, v4, v1, 1, param0->unk_10, 2, 0);
-    Pokemon_SetValue(param1, 175, &v1);
+    Pokemon_SetValue(param1, MON_DATA_COMBINED_IVS, &v1);
     Pokemon_CalcLevelAndStats(param1);
 
     v2 = param0->unk_00_val1_11;
 
-    Pokemon_SetValue(param1, 112, &v2);
-    Pokemon_SetValue(param1, 6, &param0->unk_02);
+    Pokemon_SetValue(param1, MON_DATA_FORM, &v2);
+    Pokemon_SetValue(param1, MON_DATA_HELD_ITEM, &param0->unk_02);
 
     for (v0 = 0; v0 < 4; v0++) {
         v5 = param0->unk_04[v0];
-        Pokemon_SetValue(param1, 54 + v0, &v5);
+        Pokemon_SetValue(param1, MON_DATA_MOVE1 + v0, &v5);
 
         v2 = (param0->unk_1E_val2 >> (v0 * 2)) & 0x3;
-        Pokemon_SetValue(param1, 62 + v0, &v2);
+        Pokemon_SetValue(param1, MON_DATA_MOVE1_PP_UPS + v0, &v2);
 
         v3 = (u8)Pokemon_GetValue(param1, MON_DATA_MOVE1_MAX_PP + v0, NULL);
-        Pokemon_SetValue(param1, 58 + v0, &v3);
+        Pokemon_SetValue(param1, MON_DATA_MOVE1_CUR_PP + v0, &v3);
     }
 
     v6 = param0->unk_0C;
-    Pokemon_SetValue(param1, 7, &v6);
+    Pokemon_SetValue(param1, MON_DATA_OT_ID, &v6);
 
     v2 = param0->unk_18_val1_00;
-    Pokemon_SetValue(param1, 13, &v2);
+    Pokemon_SetValue(param1, MON_DATA_HP_EV, &v2);
 
     v2 = param0->unk_18_val1_01;
-    Pokemon_SetValue(param1, 14, &v2);
+    Pokemon_SetValue(param1, MON_DATA_ATK_EV, &v2);
 
     v2 = param0->unk_18_val1_02;
-    Pokemon_SetValue(param1, 15, &v2);
+    Pokemon_SetValue(param1, MON_DATA_DEF_EV, &v2);
 
     v2 = param0->unk_18_val1_03;
-    Pokemon_SetValue(param1, 16, &v2);
+    Pokemon_SetValue(param1, MON_DATA_SPEED_EV, &v2);
 
     v2 = param0->unk_18_val1_04;
-    Pokemon_SetValue(param1, 17, &v2);
+    Pokemon_SetValue(param1, MON_DATA_SPATK_EV, &v2);
 
     v2 = param0->unk_18_val1_05;
-    Pokemon_SetValue(param1, 18, &v2);
+    Pokemon_SetValue(param1, MON_DATA_SPDEF_EV, &v2);
 
-    Pokemon_SetValue(param1, 10, &param0->unk_20);
-    Pokemon_SetValue(param1, 9, &param0->unk_21);
+    Pokemon_SetValue(param1, MON_DATA_ABILITY, &param0->unk_20);
+    Pokemon_SetValue(param1, MON_DATA_FRIENDSHIP, &param0->unk_21);
 
     if (param0->unk_14_val1_30) {
         MessageLoader *v7;
@@ -320,14 +320,14 @@ void ov104_0222DF40(const UnkStruct_ov104_0223A348_sub2 *param0, Pokemon *param1
         v7 = MessageLoader_Init(1, 26, 412, 4);
         v8 = MessageLoader_GetNewStrbuf(v7, param0->unk_00_val1_0);
 
-        Pokemon_SetValue(param1, 119, v8);
+        Pokemon_SetValue(param1, MON_DATA_NICKNAME_STRBUF, v8);
         Strbuf_Free(v8);
         MessageLoader_Free(v7);
     } else {
-        Pokemon_SetValue(param1, 117, param0->unk_22);
+        Pokemon_SetValue(param1, MON_DATA_NICKNAME, param0->unk_22);
     }
 
-    Pokemon_SetValue(param1, 12, &param0->unk_1F);
+    Pokemon_SetValue(param1, MON_DATA_LANGUAGE, &param0->unk_1F);
     Pokemon_CalcLevelAndStats(param1);
 }
 
@@ -364,8 +364,8 @@ void ov104_0222E134(SaveData *param0, Pokemon *param1)
     v2 = MessageLoader_Init(0, 26, 363, 11);
     v1 = MessageLoader_GetNewStrbuf(v2, 0);
 
-    Pokemon_SetValue(param1, 145, v1);
-    Pokemon_SetValue(param1, 7, &v0);
+    Pokemon_SetValue(param1, MON_DATA_OTNAME_STRBUF, v1);
+    Pokemon_SetValue(param1, MON_DATA_OT_ID, &v0);
 
     Strbuf_Free(v1);
     MessageLoader_Free(v2);

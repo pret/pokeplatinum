@@ -1246,7 +1246,7 @@ static void sub_0203DF68(TaskManager *param0)
         int v4;
 
         v3 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v1->unk_04);
-        Pokemon_SetValue(v3, 118, (u8 *)&v1->unk_0C->unk_1C);
+        Pokemon_SetValue(v3, MON_DATA_NICKNAME_AND_FLAG, (u8 *)&v1->unk_0C->unk_1C);
     } break;
     case 5: {
         UnkStruct_0202B4A0 *v5 = sub_0202B4A0(fieldSystem->saveData);

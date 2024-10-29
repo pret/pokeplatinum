@@ -295,11 +295,11 @@ void ov104_0223BA24(Party *param0)
 
         if (Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL) == 0) {
             v3 = 1;
-            Pokemon_SetValue(mon, 163, &v3);
+            Pokemon_SetValue(mon, MON_DATA_CURRENT_HP, &v3);
         }
 
         v3 = 0;
-        Pokemon_SetValue(mon, 160, &v3);
+        Pokemon_SetValue(mon, MON_DATA_STATUS_CONDITION, &v3);
     }
 
     return;

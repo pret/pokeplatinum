@@ -163,31 +163,31 @@ static void ov6_0224630C(Pokemon *param0, UnkStruct_ov6_0224630C *param1, u32 pa
 
     v0 = ov6_022462E4(param4, param3);
 
-    Pokemon_SetValue(param0, 119, v0);
+    Pokemon_SetValue(param0, MON_DATA_NICKNAME_STRBUF, v0);
     Strbuf_Free(v0);
 
     v1 = 1;
 
-    Pokemon_SetValue(param0, 77, &v1);
-    Pokemon_SetValue(param0, 70, &param1->unk_04);
-    Pokemon_SetValue(param0, 71, &param1->unk_08);
-    Pokemon_SetValue(param0, 72, &param1->unk_0C);
-    Pokemon_SetValue(param0, 73, &param1->unk_10);
-    Pokemon_SetValue(param0, 74, &param1->unk_14);
-    Pokemon_SetValue(param0, 75, &param1->unk_18);
-    Pokemon_SetValue(param0, 19, &param1->unk_24);
-    Pokemon_SetValue(param0, 20, &param1->unk_28);
-    Pokemon_SetValue(param0, 21, &param1->unk_2C);
-    Pokemon_SetValue(param0, 22, &param1->unk_30);
-    Pokemon_SetValue(param0, 23, &param1->unk_34);
-    Pokemon_SetValue(param0, 6, &param1->unk_3C);
+    Pokemon_SetValue(param0, MON_DATA_HAS_NICKNAME, &v1);
+    Pokemon_SetValue(param0, MON_DATA_HP_IV, &param1->unk_04);
+    Pokemon_SetValue(param0, MON_DATA_ATK_IV, &param1->unk_08);
+    Pokemon_SetValue(param0, MON_DATA_DEF_IV, &param1->unk_0C);
+    Pokemon_SetValue(param0, MON_DATA_SPEED_IV, &param1->unk_10);
+    Pokemon_SetValue(param0, MON_DATA_SPATK_IV, &param1->unk_14);
+    Pokemon_SetValue(param0, MON_DATA_SPDEF_IV, &param1->unk_18);
+    Pokemon_SetValue(param0, MON_DATA_COOL, &param1->unk_24);
+    Pokemon_SetValue(param0, MON_DATA_BEAUTY, &param1->unk_28);
+    Pokemon_SetValue(param0, MON_DATA_CUTE, &param1->unk_2C);
+    Pokemon_SetValue(param0, MON_DATA_SMART, &param1->unk_30);
+    Pokemon_SetValue(param0, MON_DATA_TOUGH, &param1->unk_34);
+    Pokemon_SetValue(param0, MON_DATA_HELD_ITEM, &param1->unk_3C);
 
     v0 = ov6_022462E4(param4, 4 + param3);
 
-    Pokemon_SetValue(param0, 145, v0);
+    Pokemon_SetValue(param0, MON_DATA_OTNAME_STRBUF, v0);
     Strbuf_Free(v0);
-    Pokemon_SetValue(param0, 157, &param1->unk_40);
-    Pokemon_SetValue(param0, 12, &param1->unk_48);
+    Pokemon_SetValue(param0, MON_DATA_OT_GENDER, &param1->unk_40);
+    Pokemon_SetValue(param0, MON_DATA_LANGUAGE, &param1->unk_48);
 
     v2 = MapHeader_GetMapLabelTextID(param5);
 

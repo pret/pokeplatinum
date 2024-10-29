@@ -186,7 +186,7 @@ BOOL ov104_02237460(UnkStruct_ov104_0222E930 *param0)
             v7 -= 3;
             v6 = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(v11, MON_DATA_SPECIES, NULL), v7);
 
-            Pokemon_SetValue(v11, 8, &v6);
+            Pokemon_SetValue(v11, MON_DATA_EXP, &v6);
             Pokemon_CalcLevelAndStats(v11);
         }
     }
@@ -197,23 +197,23 @@ BOOL ov104_02237460(UnkStruct_ov104_0222E930 *param0)
         v11 = Party_GetPokemonBySlotIndex(v9->unk_70, v1);
 
         v5 = v9->unk_94[v1];
-        Pokemon_SetValue(v11, 164, &v5);
-        Pokemon_SetValue(v11, 163, &v5);
+        Pokemon_SetValue(v11, MON_DATA_MAX_HP, &v5);
+        Pokemon_SetValue(v11, MON_DATA_CURRENT_HP, &v5);
 
         v5 = v9->unk_A4[v1];
-        Pokemon_SetValue(v11, 165, &v5);
+        Pokemon_SetValue(v11, MON_DATA_ATK, &v5);
 
         v5 = v9->unk_B4[v1];
-        Pokemon_SetValue(v11, 166, &v5);
+        Pokemon_SetValue(v11, MON_DATA_DEF, &v5);
 
         v5 = v9->unk_C4[v1];
-        Pokemon_SetValue(v11, 167, &v5);
+        Pokemon_SetValue(v11, MON_DATA_SPEED, &v5);
 
         v5 = v9->unk_D4[v1];
-        Pokemon_SetValue(v11, 168, &v5);
+        Pokemon_SetValue(v11, MON_DATA_SP_ATK, &v5);
 
         v5 = v9->unk_E4[v1];
-        Pokemon_SetValue(v11, 169, &v5);
+        Pokemon_SetValue(v11, MON_DATA_SP_DEF, &v5);
     }
 
     sub_020520A4(v10);
@@ -374,7 +374,7 @@ BOOL ov104_02237748(UnkStruct_ov104_0222E930 *param0)
 
         for (v11 = 0; v11 < 3; v11++) {
             v1 = Party_GetPokemonBySlotIndex(v2, v3->unk_2C[v11]);
-            Pokemon_SetValue(v1, 6, &v3->unk_412[v11]);
+            Pokemon_SetValue(v1, MON_DATA_HELD_ITEM, &v3->unk_412[v11]);
         }
         break;
     case 19:

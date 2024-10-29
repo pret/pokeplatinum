@@ -4075,7 +4075,7 @@ static void ov19_021D5BAC(UnkStruct_ov19_021D4DF0 *param0)
     v1 = param0->unk_74.unk_22;
     v0->unk_0B = v1;
 
-    BoxPokemon_SetValue(v0->unk_00, 11, &(v1));
+    BoxPokemon_SetValue(v0->unk_00, MON_DATA_MARKS, &(v1));
 
     if ((ov19_021D5E10(param0) == 0) && (ov19_021D5E38(param0) == 1)) {
         SaveData_SetFullSaveRequired();
@@ -4100,7 +4100,7 @@ static void ov19_021D5BE8(UnkStruct_ov19_021D4DF0 *param0, u16 param1, UnkStruct
         sub_02079C50(param2->unk_120, 0xffffffff, v1, 6, &param1);
     }
 
-    BoxPokemon_SetValue(v0->unk_00, 6, &param1);
+    BoxPokemon_SetValue(v0->unk_00, MON_DATA_HELD_ITEM, &param1);
 
     {
         int v2 = BoxPokemon_GetValue(v0->unk_00, MON_DATA_SPECIES, NULL);

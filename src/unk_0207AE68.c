@@ -399,7 +399,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         break;
     case 11:
         if ((sub_0200598C() == 0) && (sub_020160F4(param0->unk_44, 0) == 1) && (sub_02007C24(param0->unk_1C[1]) == 0)) {
-            Pokemon_SetValue(param0->unk_28, 5, (u8 *)&param0->unk_62);
+            Pokemon_SetValue(param0->unk_28, MON_DATA_SPECIES, (u8 *)&param0->unk_62);
             Pokemon_CalcAbility(param0->unk_28);
             Pokemon_CalcLevelAndStats(param0->unk_28);
             StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
@@ -418,7 +418,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
                 PoketchData_PokemonHistoryEnqueue(param0->poketchData, Pokemon_GetBoxPokemon(param0->unk_28));
 
                 if (Pokemon_GetValue(param0->unk_28, MON_DATA_HAS_NICKNAME, NULL) == 0) {
-                    Pokemon_SetValue(param0->unk_28, 179, NULL);
+                    Pokemon_SetValue(param0->unk_28, MON_DATA_SPECIES_NAME, NULL);
                 }
 
                 param0->unk_64++;
@@ -702,43 +702,43 @@ static void sub_0207C028(UnkStruct_0207AE68 *param0)
                 Pokemon_Copy(param0->unk_28, v1);
 
                 v2 = 292;
-                Pokemon_SetValue(v1, 5, &v2);
+                Pokemon_SetValue(v1, MON_DATA_SPECIES, &v2);
 
                 v2 = 4;
-                Pokemon_SetValue(v1, 155, &v2);
+                Pokemon_SetValue(v1, MON_DATA_POKEBALL, &v2);
 
                 v2 = 0;
-                Pokemon_SetValue(v1, 6, &v2);
-                Pokemon_SetValue(v1, 11, &v2);
+                Pokemon_SetValue(v1, MON_DATA_HELD_ITEM, &v2);
+                Pokemon_SetValue(v1, MON_DATA_MARKS, &v2);
 
-                for (v0 = 25; v0 < 53 + 1; v0++) {
+                for (v0 = MON_DATA_SINNOH_CHAMP_RIBBON; v0 < MON_DATA_SINNOH_RIBBON_DUMMY + 1; v0++) {
                     Pokemon_SetValue(v1, v0, &v2);
                 }
 
-                for (v0 = 78; v0 < 109 + 1; v0++) {
+                for (v0 = MON_DATA_HOENN_COOL_RIBBON; v0 < MON_DATA_HOENN_WORLD_RIBBON + 1; v0++) {
                     Pokemon_SetValue(v1, v0, &v2);
                 }
 
-                for (v0 = 123; v0 < 143 + 1; v0++) {
+                for (v0 = MON_DATA_SINNOH_SUPER_COOL_RIBBON; v0 < MON_DATA_CONTEST_RIBBON_DUMMY + 1; v0++) {
                     Pokemon_SetValue(v1, v0, &v2);
                 }
 
-                Pokemon_SetValue(v1, 179, NULL);
-                Pokemon_SetValue(v1, 77, &v2);
-                Pokemon_SetValue(v1, 160, &v2);
+                Pokemon_SetValue(v1, MON_DATA_SPECIES_NAME, NULL);
+                Pokemon_SetValue(v1, MON_DATA_HAS_NICKNAME, &v2);
+                Pokemon_SetValue(v1, MON_DATA_STATUS_CONDITION, &v2);
 
                 v3 = sub_0202818C(param0->unk_5C);
-                Pokemon_SetValue(v1, 170, v3);
+                Pokemon_SetValue(v1, MON_DATA_170, v3);
                 Heap_FreeToHeap(v3);
-                Pokemon_SetValue(v1, 162, &v2);
+                Pokemon_SetValue(v1, MON_DATA_MAIL_ID, &v2);
 
                 MI_CpuClearFast(&v4, sizeof(UnkStruct_0202CA28));
 
-                Pokemon_SetValue(v1, 171, (UnkStruct_0202CA28 *)&v4);
+                Pokemon_SetValue(v1, MON_DATA_171, (UnkStruct_0202CA28 *)&v4);
                 Pokemon_CalcAbility(v1);
 
                 v0 = Pokemon_GetGender(v1);
-                Pokemon_SetValue(v1, 111, &v0);
+                Pokemon_SetValue(v1, MON_DATA_GENDER, &v0);
 
                 Pokemon_CalcLevelAndStats(v1);
                 Party_AddPokemon(param0->unk_24, v1);
@@ -755,7 +755,7 @@ static void sub_0207C028(UnkStruct_0207AE68 *param0)
     case 18:
     case 19:
         v0 = 0;
-        Pokemon_SetValue(param0->unk_28, 6, &v0);
+        Pokemon_SetValue(param0->unk_28, MON_DATA_HELD_ITEM, &v0);
         break;
     }
 }
@@ -948,7 +948,7 @@ static void sub_0207C498(UnkStruct_0207AE68 *param0)
     v1 = Pokemon_New(param0->unk_5C);
 
     Pokemon_Copy(param0->unk_28, v1);
-    Pokemon_SetValue(v1, 5, (u8 *)&param0->unk_62);
+    Pokemon_SetValue(v1, MON_DATA_SPECIES, (u8 *)&param0->unk_62);
     Pokemon_CalcLevelAndStats(v1);
     Pokemon_BuildArchivedSprite(&v0, v1, 2);
     Heap_FreeToHeap(v1);

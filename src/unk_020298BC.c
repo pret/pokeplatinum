@@ -151,8 +151,8 @@ static void sub_020299C0(UnkStruct_0202A138 *param0, const Strbuf *param1, int p
 static void sub_020299D8(const UnkStruct_0202A138 *param0, Pokemon *param1)
 {
     Pokemon_InitWith(param1, param0->unk_08, 0, 0, 1, param0->unk_00, 1, param0->unk_04);
-    Pokemon_SetValue(param1, 117, param0->unk_0A);
-    Pokemon_SetValue(param1, 112, &param0->unk_33);
+    Pokemon_SetValue(param1, MON_DATA_NICKNAME, param0->unk_0A);
+    Pokemon_SetValue(param1, MON_DATA_FORM, &param0->unk_33);
 }
 
 static void sub_02029A18(UnkStruct_0202A150 *param0, u8 param1, u8 param2, u8 param3, u8 param4)

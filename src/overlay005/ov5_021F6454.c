@@ -529,7 +529,7 @@ BOOL ScrCmd_31D(ScriptContext *param0)
         for (v3 = 0; v3 < v2; v3++) {
             if (v8[v3] == 112) {
                 v0 = Party_GetPokemonBySlotIndex(v1, v3);
-                Pokemon_SetValue(v0, 6, &v7);
+                Pokemon_SetValue(v0, MON_DATA_HELD_ITEM, &v7);
             }
         }
     }
@@ -590,7 +590,7 @@ BOOL ScrCmd_31E(ScriptContext *param0)
         }
 
         v4 = 0;
-        Pokemon_SetValue(v0, 6, &v4);
+        Pokemon_SetValue(v0, MON_DATA_HELD_ITEM, &v4);
     }
 
     v3 = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
@@ -622,7 +622,7 @@ BOOL ScrCmd_2F1(ScriptContext *param0)
     u16 v3 = ScriptContext_GetVar(param0);
 
     v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v2);
-    Pokemon_SetValue(v0, 112, &v3);
+    Pokemon_SetValue(v0, MON_DATA_FORM, &v3);
 
     return 0;
 }
