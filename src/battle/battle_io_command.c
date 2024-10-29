@@ -630,7 +630,7 @@ static void ov16_0225C47C(BattleSystem *param0, BattlerData *param1)
     v2 = BattleSystem_PartyPokemon(param0, param1->battler, v0->unk_01_0);
 
     if ((v0->unk_18 & 0x200000) == 0) {
-        for (v1 = 0; v1 < 4; v1++) {
+        for (v1 = 0; v1 < LEARNED_MOVES_MAX; v1++) {
             if ((v0->unk_01_4 & FlagIndex(v1)) == 0) {
                 Pokemon_SetValue(v2, MON_DATA_MOVE1 + v1, (u8 *)&v0->unk_0E[v1]);
                 Pokemon_SetValue(v2, MON_DATA_MOVE1_CUR_PP + v1, (u8 *)&v0->unk_12[v1]);

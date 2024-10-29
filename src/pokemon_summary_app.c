@@ -1075,7 +1075,7 @@ static void sub_0208D200(PokemonSummaryApp *param0, Pokemon *param1, PokemonSumm
     param2->ability = (u8)Pokemon_GetValue(param1, MON_DATA_ABILITY, NULL);
     param2->nature = Pokemon_GetNature(param1);
 
-    for (v1 = 0; v1 < 4; v1++) {
+    for (v1 = 0; v1 < LEARNED_MOVES_MAX; v1++) {
         param2->moves[v1] = (u16)Pokemon_GetValue(param1, MON_DATA_MOVE1 + v1, NULL);
         param2->curPP[v1] = (u8)Pokemon_GetValue(param1, MON_DATA_MOVE1_CUR_PP + v1, NULL);
         v2 = (u8)Pokemon_GetValue(param1, MON_DATA_MOVE1_PP_UPS + v1, NULL);

@@ -1190,7 +1190,7 @@ static u8 ov91_021D1EA0(UnkStruct_ov91_021D0ED8 *param0)
 {
     u8 v0;
 
-    for (v0 = 0; v0 < 4; v0++) {
+    for (v0 = 0; v0 < LEARNED_MOVES_MAX; v0++) {
         if (Pokemon_GetValue(param0->unk_00->unk_00, MON_DATA_MOVE1 + v0, NULL) == 0) {
             break;
         }

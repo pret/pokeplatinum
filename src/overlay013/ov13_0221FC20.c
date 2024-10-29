@@ -1245,7 +1245,7 @@ static void ov13_02220F98(UnkStruct_ov13_022213F0 *param0)
         param0->unk_04[v0].unk_2D = (u16)Pokemon_GetValue(param0->unk_04[v0].unk_00, MON_DATA_MAIL_ID, NULL);
         param0->unk_04[v0].unk_2E = (u8)Pokemon_GetValue(param0->unk_04[v0].unk_00, MON_DATA_FORM, NULL);
 
-        for (v1 = 0; v1 < 4; v1++) {
+        for (v1 = 0; v1 < LEARNED_MOVES_MAX; v1++) {
             UnkStruct_ov13_022236B8 *v2 = &param0->unk_04[v0].unk_30[v1];
 
             v2->unk_00 = Pokemon_GetValue(param0->unk_04[v0].unk_00, MON_DATA_MOVE1 + v1, NULL);

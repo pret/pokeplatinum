@@ -1432,7 +1432,7 @@ void BoxMonGBAToBoxMon(BoxPokemonGBA *param0, BoxPokemon *param1)
     v1 = GetGBABoxMonData(param0, 48, NULL);
     BoxPokemon_SetValue(param1, MON_DATA_SHEEN, (u8 *)&v1);
 
-    for (v2 = 0; v2 < 4; v2++) {
+    for (v2 = 0; v2 < LEARNED_MOVES_MAX; v2++) {
         v1 = GetGBABoxMonData(param0, 13 + v2, NULL);
 
         if (v1 > 354) {

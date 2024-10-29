@@ -2311,7 +2311,7 @@ static BOOL ov19_021D3AC8(BoxPokemon *param0, u16 param1)
     if (BoxPokemon_GetValue(param0, MON_DATA_EGG_EXISTS, NULL) == 0) {
         int v2;
 
-        for (v2 = 0; v2 < 4; v2++) {
+        for (v2 = 0; v2 < LEARNED_MOVES_MAX; v2++) {
             if (BoxPokemon_GetValue(param0, MON_DATA_MOVE1 + v2, NULL) == param1) {
                 v0 = 1;
                 break;

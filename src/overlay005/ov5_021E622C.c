@@ -2415,7 +2415,7 @@ static void ov5_021E6948(Pokemon *param0, BoxPokemon *param1, BoxPokemon *param2
     v6 = Pokemon_GetValue(param0, MON_DATA_FORM, NULL);
     v4 = Pokemon_LoadLevelUpMoveIdsOf(v3, v6, v7->unk_30);
 
-    for (v0 = 0; v0 < 4; v0++) {
+    for (v0 = 0; v0 < LEARNED_MOVES_MAX; v0++) {
         v7->unk_00[v0] = BoxPokemon_GetValue(param1, MON_DATA_MOVE1 + v0, NULL);
         v7->unk_20[v0] = BoxPokemon_GetValue(param2, MON_DATA_MOVE1 + v0, NULL);
     }
@@ -3039,7 +3039,7 @@ static void ov5_021E742C(Pokemon *param0, int param1)
 
     v0 = Pokemon_GetValue(param0, MON_DATA_SPECIES, NULL);
 
-    for (v7 = 0; v7 < 4; v7++) {
+    for (v7 = 0; v7 < LEARNED_MOVES_MAX; v7++) {
         v1[v7] = Pokemon_GetValue(param0, MON_DATA_MOVE1 + v7, NULL);
         v2[v7] = Pokemon_GetValue(param0, MON_DATA_MOVE1_CUR_PP + v7, NULL);
     }
@@ -3074,7 +3074,7 @@ static void ov5_021E742C(Pokemon *param0, int param1)
 
     Pokemon_InitWith(v16, v0, 1, 32, 1, v3, 0, 0);
 
-    for (v7 = 0; v7 < 4; v7++) {
+    for (v7 = 0; v7 < LEARNED_MOVES_MAX; v7++) {
         Pokemon_SetValue(v16, MON_DATA_MOVE1 + v7, &(v1[v7]));
         Pokemon_SetValue(v16, MON_DATA_MOVE1_CUR_PP + v7, &(v2[v7]));
     }

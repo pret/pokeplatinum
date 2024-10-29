@@ -928,7 +928,7 @@ u8 sub_02086104(GameWindowLayout *param0, Pokemon *param1)
     u16 v0;
     u8 v1;
 
-    for (v1 = 0; v1 < 4; v1++) {
+    for (v1 = 0; v1 < LEARNED_MOVES_MAX; v1++) {
         v0 = (u16)Pokemon_GetValue(param1, MON_DATA_MOVE1 + v1, NULL);
 
         if (v0 == param0->unk_5A4->unk_26) {

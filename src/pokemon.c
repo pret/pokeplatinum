@@ -3574,7 +3574,7 @@ static u16 BoxPokemon_AddMove(BoxPokemon *boxMon, u16 moveID)
 
     BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
 
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
         u16 slotMove;
         if ((slotMove = BoxPokemon_GetValue(boxMon, MON_DATA_MOVE1 + i, NULL)) == 0) {
             BoxPokemon_SetMoveSlot(boxMon, moveID, i);
@@ -3603,9 +3603,9 @@ static void BoxPokemon_ReplaceMove(BoxPokemon *boxMon, u16 moveID)
 {
     BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
 
-    u16 moveIDs[4];
-    u8 movePPs[4];
-    u8 movePPUps[4];
+    u16 moveIDs[LEARNED_MOVES_MAX];
+    u8 movePPs[LEARNED_MOVES_MAX];
+    u8 movePPUps[LEARNED_MOVES_MAX];
 
     for (int i = 0; i < 3; i++) {
         moveIDs[i] = BoxPokemon_GetValue(boxMon, MON_DATA_MOVE2 + i, NULL);
@@ -3617,7 +3617,7 @@ static void BoxPokemon_ReplaceMove(BoxPokemon *boxMon, u16 moveID)
     movePPs[3] = MoveTable_LoadParam(moveID, MOVEATTRIBUTE_PP);
     movePPUps[3] = 0;
 
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
         BoxPokemon_SetValue(boxMon, MON_DATA_MOVE1 + i, &moveIDs[i]);
         BoxPokemon_SetValue(boxMon, MON_DATA_MOVE1_CUR_PP + i, &movePPs[i]);
         BoxPokemon_SetValue(boxMon, MON_DATA_MOVE1_PP_UPS + i, &movePPUps[i]);
@@ -4281,7 +4281,7 @@ BOOL Pokemon_SetRotomForm(Pokemon *mon, int monForm, int moveSlot)
     int newFormMoveID = rotomFormMoves[monForm];
 
     int i;
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
         int j;
         int moveID = Pokemon_GetValue(mon, MON_DATA_MOVE1 + i, NULL);
 
@@ -4301,7 +4301,7 @@ BOOL Pokemon_SetRotomForm(Pokemon *mon, int monForm, int moveSlot)
     }
 
     if (newFormMoveID != MOVE_NONE) {
-        for (i = 0; i < 4; i++) {
+        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
             if (Pokemon_GetValue(mon, MON_DATA_MOVE1 + i, NULL) == MOVE_NONE) {
                 Pokemon_ResetMoveSlot(mon, newFormMoveID, i);
                 break;
@@ -4859,7 +4859,7 @@ void sub_0207896C(BoxPokemon *boxMon)
 {
     BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
 
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
         if (BoxPokemon_GetValue(boxMon, MON_DATA_MOVE1 + i, NULL)) {
             u8 moveMaxPP = BoxPokemon_GetValue(boxMon, MON_DATA_MOVE1_MAX_PP + i, NULL);
 

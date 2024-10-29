@@ -1009,7 +1009,7 @@ static void sub_0204ACFC(UnkStruct_ov104_0223A348_sub2 *param0, Pokemon *param1)
     param0->unk_00_val1_11 = Pokemon_GetValue(param1, MON_DATA_FORM, NULL);
     param0->unk_02 = Pokemon_GetValue(param1, MON_DATA_HELD_ITEM, NULL);
 
-    for (v0 = 0; v0 < 4; v0++) {
+    for (v0 = 0; v0 < LEARNED_MOVES_MAX; v0++) {
         param0->unk_04[v0] = Pokemon_GetValue(param1, MON_DATA_MOVE1 + v0, NULL);
         param0->unk_1E_val2 |= ((Pokemon_GetValue(param1, MON_DATA_MOVE1_PP_UPS + v0, NULL)) << (v0 * 2));
     }

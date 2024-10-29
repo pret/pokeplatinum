@@ -278,7 +278,7 @@ void ov104_0222DF40(const UnkStruct_ov104_0223A348_sub2 *param0, Pokemon *param1
     Pokemon_SetValue(param1, MON_DATA_FORM, &v2);
     Pokemon_SetValue(param1, MON_DATA_HELD_ITEM, &param0->unk_02);
 
-    for (v0 = 0; v0 < 4; v0++) {
+    for (v0 = 0; v0 < LEARNED_MOVES_MAX; v0++) {
         v5 = param0->unk_04[v0];
         Pokemon_SetValue(param1, MON_DATA_MOVE1 + v0, &v5);
 
