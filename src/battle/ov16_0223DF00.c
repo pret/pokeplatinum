@@ -1079,29 +1079,29 @@ void ov16_0223EE70(BattleSystem *param0)
         if ((v3 == SPECIES_BURMY) && (param0->unk_2414[0] & FlagIndex(v0))) {
             switch (BattleSystem_Terrain(param0)) {
             default:
-            case 2:
+            case TERRAIN_GRASS:
                 v1 = 0;
                 break;
-            case 0:
-            case 1:
-            case 4:
-            case 5:
-            case 17:
-            case 23:
+            case TERRAIN_PLAIN:
+            case TERRAIN_SAND:
+            case TERRAIN_MOUNTAIN:
+            case TERRAIN_CAVE:
+            case TERRAIN_DISTORTION_WORLD:
+            case TERRAIN_GIRATINA:
                 v1 = 1;
                 break;
-            case 9:
-            case 11:
-            case 12:
-            case 13:
-            case 14:
-            case 15:
-            case 16:
-            case 18:
-            case 19:
-            case 20:
-            case 21:
-            case 22:
+            case TERRAIN_BUILDING:
+            case TERRAIN_BRIDGE:
+            case TERRAIN_AARON:
+            case TERRAIN_BERTHA:
+            case TERRAIN_FLINT:
+            case TERRAIN_LUCIAN:
+            case TERRAIN_CYNTHIA:
+            case TERRAIN_BATTLE_TOWER:
+            case TERRAIN_BATTLE_FACTORY:
+            case TERRAIN_BATTLE_ARCADE:
+            case TERRAIN_BATTLE_CASTLE:
+            case TERRAIN_BATTLE_HALL:
                 v1 = 2;
                 break;
             }
