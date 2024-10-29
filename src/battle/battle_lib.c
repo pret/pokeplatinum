@@ -4357,7 +4357,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
     case ABILITY_AFTERMATH:
         if (battleCtx->defender == battleCtx->faintedMon
             && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_MAGIC_GUARD
-            && BattleSystem_CountAbility(battleSys, battleCtx, 8, 0, ABILITY_DAMP) == 0
+            && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS, 0, ABILITY_DAMP) == 0
             && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
             && ATTACKING_MON.curHP
             && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
