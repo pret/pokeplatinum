@@ -27,6 +27,35 @@
 #include "string_template.h"
 #include "trainer_info.h"
 
+enum PokemonSummaryScreenMode {
+    SUMMARY_MODE_NORMAL = 0,
+    SUMMARY_MODE_LOCK_MOVES,
+    SUMMARY_MODE_SELECT_MOVE,
+    SUMMARY_MODE_POFFIN,
+    SUMMARY_MODE_CONDITION,
+};
+
+enum PokemonSummaryScreenPage {
+    SUMMARY_PAGE_INFO = 0,
+    SUMMARY_PAGE_MEMO,
+    SUMMARY_PAGE_SKILLS,
+    SUMMARY_PAGE_BATTLE_MOVES,
+    SUMMARY_PAGE_CONDITION,
+    SUMMARY_PAGE_CONTEST_MOVES,
+    SUMMARY_PAGE_RIBBONS,
+    SUMMARY_PAGE_EXIT,
+
+    SUMMARY_PAGE_MAX
+};
+
+enum PokemonSummaryDataType {
+    SUMMARY_DATA_MON = 0,
+    SUMMARY_DATA_PARTY_MON,
+    SUMMARY_DATA_BOX_MON,
+};
+
+#define SUMMARY_MOVE_NONE 0xFFFFFFFF
+
 typedef struct PokemonSummary {
     void *monData; //!< Pointer to generic Pokemon data
     Options *options; // unk_04
@@ -166,7 +195,7 @@ typedef struct PokemonSummaryScreen {
 } PokemonSummaryScreen;
 
 BOOL PokemonSummary_ShowContestData(SaveData *saveData);
-void PokemonSummary_FlagVisiblePages(PokemonSummary *summary, const u8 *param1);
+void PokemonSummary_FlagVisiblePages(PokemonSummary *summary, const u8 *pages);
 u8 PokemonSummary_PageIsVisble(PokemonSummaryScreen *summaryScreen, u32 page);
 u8 PokemonSummary_CountVisiblePages(PokemonSummaryScreen *summaryScreen);
 void *PokemonSummary_MonData(PokemonSummaryScreen *summaryScreen);
