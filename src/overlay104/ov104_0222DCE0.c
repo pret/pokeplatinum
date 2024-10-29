@@ -269,7 +269,7 @@ void ov104_0222DF40(const UnkStruct_ov104_0223A348_sub2 *param0, Pokemon *param1
 
     v1 = (param0->unk_14_val2 & 0x3FFFFFFF);
 
-    Pokemon_InitWith(param1, param0->unk_00_val1_0, v4, v1, 1, param0->unk_10, 2, 0);
+    Pokemon_InitWith(param1, param0->unk_00_val1_0, v4, v1, TRUE, param0->unk_10, OTID_NOT_SHINY, 0);
     Pokemon_SetValue(param1, MON_DATA_COMBINED_IVS, &v1);
     Pokemon_CalcLevelAndStats(param1);
 

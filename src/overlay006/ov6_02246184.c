@@ -159,7 +159,7 @@ static void ov6_0224630C(Pokemon *param0, UnkStruct_ov6_0224630C *param1, u32 pa
     u8 v1;
     u32 v2;
 
-    Pokemon_InitWith(param0, param1->unk_00, param2, 32, 1, param1->unk_38, 1, param1->unk_20);
+    Pokemon_InitWith(param0, param1->unk_00, param2, 32, TRUE, param1->unk_38, OTID_SET, param1->unk_20);
 
     v0 = ov6_022462E4(param4, param3);
 

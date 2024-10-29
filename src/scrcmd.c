@@ -6786,7 +6786,7 @@ static void sub_020451B4(FieldSystem *fieldSystem, u16 param1)
     Pokemon *v1 = Pokemon_New(32);
 
     Pokemon_Init(v1);
-    Pokemon_InitWith(v1, param1, 50, 32, 0, 0, 0, 0);
+    Pokemon_InitWith(v1, param1, 50, 32, FALSE, 0, OTID_NOT_SET, 0);
     sub_020272A4(v0, v1);
     Heap_FreeToHeap(v1);
 

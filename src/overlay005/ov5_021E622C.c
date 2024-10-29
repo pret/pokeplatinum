@@ -2604,7 +2604,7 @@ void ov5_021E6CF0(Pokemon *param0, u16 param1, u8 param2, TrainerInfo *param3, i
     u8 v4 = PokemonPersonalData_GetSpeciesValue(param1, MON_DATA_PERSONAL_HATCH_CYCLE);
     Strbuf *v5;
 
-    Pokemon_InitWith(param0, param1, 1, 32, 0, 0, 0, 0);
+    Pokemon_InitWith(param0, param1, 1, 32, FALSE, 0, OTID_NOT_SET, 0);
 
     v0 = 0;
     v3 = ITEM_POKE_BALL;
@@ -2664,7 +2664,7 @@ void ov5_021E6DE8(Pokemon *param0, u16 param1, UnkStruct_02026310 *param2, u32 p
         }
     }
 
-    Pokemon_InitWith(param0, param1, 1, 32, 1, v2, 0, 0);
+    Pokemon_InitWith(param0, param1, 1, 32, TRUE, v2, OTID_NOT_SET, 0);
 
     v0 = 0;
     v1 = ITEM_POKE_BALL;
@@ -3072,7 +3072,7 @@ static void ov5_021E742C(Pokemon *param0, int param1)
         }
     }
 
-    Pokemon_InitWith(v16, v0, 1, 32, 1, v3, 0, 0);
+    Pokemon_InitWith(v16, v0, 1, 32, TRUE, v3, OTID_NOT_SET, 0);
 
     for (v7 = 0; v7 < LEARNED_MOVES_MAX; v7++) {
         Pokemon_SetValue(v16, MON_DATA_MOVE1 + v7, &(v1[v7]));

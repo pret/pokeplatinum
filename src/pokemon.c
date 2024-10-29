@@ -272,11 +272,11 @@ static void sub_02073E18(BoxPokemon *boxMon, int monSpecies, int monLevel, int m
     BoxPokemon_SetValue(boxMon, MON_DATA_PERSONALITY, &monPersonality);
 
     // TODO likely should be an enum
-    if (monOTIDSource == 2) {
+    if (monOTIDSource == OTID_NOT_SHINY) {
         do {
             monOTID = (LCRNG_Next() | (LCRNG_Next() << 16));
         } while (Pokemon_InlineIsPersonalityShiny(monOTID, monPersonality));
-    } else if (monOTIDSource != 1) {
+    } else if (monOTIDSource != OTID_SET) {
         monOTID = 0;
     }
 
@@ -358,7 +358,7 @@ void sub_02074044(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 monNa
     } while (monNature != Pokemon_GetNatureOf(monPersonality));
 
     // TODO monOTIDSource probably an enum?
-    Pokemon_InitWith(mon, monSpecies, monLevel, monIVs, TRUE, monPersonality, 0, 0);
+    Pokemon_InitWith(mon, monSpecies, monLevel, monIVs, TRUE, monPersonality, OTID_NOT_SET, 0);
 }
 
 void sub_02074088(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 param4, u8 param5, u8 param6)
@@ -376,8 +376,7 @@ void sub_02074088(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 param
         monPersonality = sub_02074128(monSpecies, param4, param5);
     }
 
-    // TODO monOTIDSource probably an enum?
-    Pokemon_InitWith(mon, monSpecies, monLevel, monIVs, TRUE, monPersonality, 0, 0);
+    Pokemon_InitWith(mon, monSpecies, monLevel, monIVs, TRUE, monPersonality, OTID_NOT_SET, 0);
 }
 
 static enum PokemonGenderRatio {
@@ -413,8 +412,7 @@ u32 sub_02074128(u16 monSpecies, u8 param1, u8 param2)
 
 void sub_02074158(Pokemon *mon, u16 monSpecies, u8 monLevel, u32 monCombinedIVs, u32 monPersonality)
 {
-    // TODO monOTIDSource probably an enum?
-    Pokemon_InitWith(mon, monSpecies, monLevel, 0, TRUE, monPersonality, 0, 0);
+    Pokemon_InitWith(mon, monSpecies, monLevel, 0, TRUE, monPersonality, OTID_NOT_SET, 0);
     Pokemon_SetValue(mon, MON_DATA_COMBINED_IVS, &monCombinedIVs);
     Pokemon_CalcLevelAndStats(mon);
 }

@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+# include "consts/species.h"
 #include "constants/battle.h"
 #include "constants/pokemon.h"
 
@@ -176,9 +177,9 @@ BattleParams *sub_02051F4C(int param0, const FieldSystem *fieldSystem)
     Bag_TryAddItem(v4->unk_E0, 4, 20, param0);
     v5 = Pokemon_New(param0);
 
-    Pokemon_InitWith(v5, sub_0206B08C(SaveData_GetVarsFlags(fieldSystem->saveData)), 5, 32, 0, 0, 2, 0);
+    Pokemon_InitWith(v5, sub_0206B08C(SaveData_GetVarsFlags(fieldSystem->saveData)), 5, 32, FALSE, 0, OTID_NOT_SHINY, 0);
     Party_AddPokemon(v4->parties[0], v5);
-    Pokemon_InitWith(v5, 399, 2, 32, 0, 0, 2, 0);
+    Pokemon_InitWith(v5, SPECIES_BIDOOF, 2, 32, FALSE, 0, OTID_NOT_SHINY, 0);
     Party_AddPokemon(v4->parties[1], v5);
     Heap_FreeToHeap(v5);
 
@@ -324,7 +325,7 @@ void sub_02052348(BattleParams *param0, const FieldSystem *fieldSystem, int para
         if ((Pokemon_GetValue(v8, MON_DATA_LEVEL, NULL) != param2) && (param2 != 0)) {
             v1 = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(v8, MON_DATA_SPECIES, NULL), param2);
 
-            Pokemon_SetValue(v8, 8, &v1);
+            Pokemon_SetValue(v8, MON_DATA_EXP, &v1);
             Pokemon_CalcLevelAndStats(v8);
         }
 

@@ -42,7 +42,7 @@ BOOL sub_020548B0(int param0, SaveData *param1, u16 param2, u8 param3, u16 param
     v1 = Pokemon_New(param0);
 
     Pokemon_Init(v1);
-    Pokemon_InitWith(v1, param2, param3, 32, 0, 0, 0, 0);
+    Pokemon_InitWith(v1, param2, param3, 32, FALSE, 0, OTID_NOT_SET, 0);
     Pokemon_SetCatchData(v1, v4, ITEM_POKE_BALL, param5, param6, param0);
 
     v2 = param4;
