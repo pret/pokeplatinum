@@ -361,7 +361,7 @@ void sub_02074044(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 monNa
     Pokemon_InitWith(mon, monSpecies, monLevel, monIVs, TRUE, monPersonality, OTID_NOT_SET, 0);
 }
 
-void sub_02074088(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 param4, u8 param5, u8 param6)
+void sub_02074088(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 gender, u8 param5, u8 param6)
 {
     u32 monPersonality;
     u16 unownLetter;
@@ -371,19 +371,13 @@ void sub_02074088(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 param
         do {
             monPersonality = (LCRNG_Next() | (LCRNG_Next() << 16));
             unownLetter = (((monPersonality & 0x3000000) >> 18) | ((monPersonality & 0x30000) >> 12) | ((monPersonality & 0x300) >> 6) | (monPersonality & 0x3)) % 28;
-        } while (param5 != Pokemon_GetNatureOf(monPersonality) || param4 != Pokemon_GetGenderOf(monSpecies, monPersonality) || unownLetter != param6 - 1);
+        } while (param5 != Pokemon_GetNatureOf(monPersonality) || gender != Pokemon_GetGenderOf(monSpecies, monPersonality) || unownLetter != param6 - 1);
     } else {
-        monPersonality = sub_02074128(monSpecies, param4, param5);
+        monPersonality = sub_02074128(monSpecies, gender, param5);
     }
 
     Pokemon_InitWith(mon, monSpecies, monLevel, monIVs, TRUE, monPersonality, OTID_NOT_SET, 0);
 }
-
-static enum PokemonGenderRatio {
-    GENDER_ALWAYS_MALE = 0,
-    GENDER_ALWAYS_FEMALE = 254,
-    GENDER_UNKNOWN = 255
-};
 
 u32 sub_02074128(u16 monSpecies, u8 param1, u8 param2)
 {
@@ -391,9 +385,9 @@ u32 sub_02074128(u16 monSpecies, u8 param1, u8 param2)
 
     u32 result;
     switch (monGenderChance) {
-    case GENDER_ALWAYS_MALE:
-    case GENDER_ALWAYS_FEMALE:
-    case GENDER_UNKNOWN:
+    case GENDER_RATIO_MALE_ONLY:
+    case GENDER_RATIO_FEMALE_ONLY:
+    case GENDER_RATIO_NO_GENDER:
         result = param2;
         break;
     default:
@@ -2444,11 +2438,11 @@ u8 PokemonPersonalData_GetGenderOf(PokemonPersonalData *monPersonalData, u16 unu
     u8 monGender = PokemonPersonalData_GetValue(monPersonalData, MON_DATA_PERSONAL_GENDER);
 
     switch (monGender) {
-    case GENDER_ALWAYS_MALE:
+    case GENDER_RATIO_MALE_ONLY:
         return GENDER_MALE;
-    case GENDER_ALWAYS_FEMALE:
+    case GENDER_RATIO_FEMALE_ONLY:
         return GENDER_FEMALE;
-    case GENDER_UNKNOWN:
+    case GENDER_RATIO_NO_GENDER:
         return GENDER_NONE;
     }
 
