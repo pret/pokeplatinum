@@ -188,7 +188,7 @@ int sub_02054B04(Party *param0, u16 param1)
         v4 = Party_GetPokemonBySlotIndex(param0, v2);
 
         if (Pokemon_CanBattle(v4)) {
-            if (Pokemon_GetValue(v4, MON_DATA_STATUS_CONDITION, NULL) & (0x80 | 0x8)) {
+            if (Pokemon_GetValue(v4, MON_DATA_STATUS_CONDITION, NULL) & (MON_CONDITION_TOXIC | MON_CONDITION_POISON)) {
                 u32 v5 = Pokemon_GetValue(v4, MON_DATA_CURRENT_HP, NULL);
 
                 if (v5 > 1) {

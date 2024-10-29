@@ -2138,7 +2138,7 @@ void ov17_022439C8(UnkStruct_02095C48 *param0, int param1, int param2, UnkStruct
         v0 = Pokemon_GetValue(param0->unk_00.unk_00[param1], MON_DATA_TYPE_1, NULL);
         v1 = Pokemon_GetValue(param0->unk_00.unk_00[param1], MON_DATA_TYPE_2, NULL);
 
-        if ((v0 == 7) || (v1 == 7)) {
+        if ((v0 == TYPE_GHOST) || (v1 == TYPE_GHOST)) {
             param3->unk_07 = 1;
         } else {
             param3->unk_07 = 0;

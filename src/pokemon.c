@@ -3739,7 +3739,7 @@ void Pokemon_ClearMoveSlot(Pokemon *mon, u32 moveSlot)
 static BOOL Pokemon_HasMove(Pokemon *mon, u16 moveID)
 {
     int i;
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
         if (Pokemon_GetValue(mon, MON_DATA_MOVE1 + i, NULL) == moveID) {
             break;
         }
