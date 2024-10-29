@@ -1279,9 +1279,9 @@ static int ov94_02241278(BoxPokemon *param0)
 
     if (v2 > 0) {
         switch (v1) {
-        case 487:
-        case 492:
-        case 479:
+        case SPECIES_GIRATINA:
+        case SPECIES_SHAYMIN:
+        case SPECIES_ROTOM:
             return 1;
         }
     }

@@ -67,7 +67,7 @@ static inline void CheckPokedexIntegrity(const PokedexData *param0)
 
 static BOOL sub_02026344(u16 param0)
 {
-    if ((param0 == 0) || (param0 > NATIONAL_DEX_COUNT)) {
+    if ((param0 == SPECIES_NONE) || (param0 > NATIONAL_DEX_COUNT)) {
         GF_ASSERT(0);
         return 1;
     } else {
@@ -157,7 +157,7 @@ static inline u8 inline_02026BAC(const PokedexData *param0, u16 param1, u8 param
 
 static inline void inline_0202736C_1(PokedexData *param0, u16 param1, u32 param2)
 {
-    if (param1 == 327) {
+    if (param1 == SPECIES_SPINDA) {
         param0->unk_104 = param2;
     }
 }
@@ -324,13 +324,13 @@ static int sub_020266F8(const PokedexData *param0, u32 param1)
     int v1;
     const u8 *v2;
 
-    GF_ASSERT((param1 == 412) || (param1 == 413));
+    GF_ASSERT((param1 == SPECIES_BURMY) || (param1 == SPECIES_WORMADAM));
 
     if (sub_02026FE8(param0, param1) == 0) {
         return 0;
     }
 
-    if (param1 == 412) {
+    if (param1 == SPECIES_BURMY) {
         v2 = &param0->unk_10A;
     } else {
         v2 = &param0->unk_10B;
@@ -381,13 +381,13 @@ static void sub_020267B8(PokedexData *param0, u32 param1, int param2)
     int v0;
     u8 *v1;
 
-    GF_ASSERT((param1 == 412) || (param1 == 413));
+    GF_ASSERT((param1 == SPECIES_BURMY) || (param1 == SPECIES_WORMADAM));
 
     if (sub_02026754(param0, param1, param2)) {
         return;
     }
 
-    if (param1 == 412) {
+    if (param1 == SPECIES_BURMY) {
         v1 = &param0->unk_10A;
     } else {
         v1 = &param0->unk_10B;
@@ -473,7 +473,7 @@ static void sub_020268FC(PokedexData *param0, u16 param1, Pokemon *param2)
     u8 v0 = Pokemon_GetValue(param2, MON_DATA_FORM, NULL);
     u32 v1;
 
-    if (param1 == 386) {
+    if (param1 == SPECIES_DEOXYS) {
         if (sub_020268D8(param0, v0) == 0) {
             v1 = sub_020268B8(param0);
             sub_02026850(param0, v0, v1);
@@ -576,38 +576,38 @@ static void sub_02026A60(PokedexData *param0, u16 param1, Pokemon *param2)
     int v0;
 
     switch (param1) {
-    case 201:
+    case SPECIES_UNOWN:
         v0 = Pokemon_GetForm(param2);
         sub_0202643C(param0, v0);
         break;
-    case 412:
+    case SPECIES_BURMY:
         v0 = Pokemon_GetValue(param2, MON_DATA_FORM, NULL);
         sub_020267B8(param0, param1, v0);
         break;
-    case 413:
+    case SPECIES_WORMADAM:
         v0 = Pokemon_GetValue(param2, MON_DATA_FORM, NULL);
         sub_020267B8(param0, param1, v0);
         break;
-    case 422:
+    case SPECIES_SHELLOS:
         v0 = Pokemon_GetValue(param2, MON_DATA_FORM, NULL);
         sub_020265E8(param0, param1, v0);
         break;
-    case 423:
+    case SPECIES_GASTRODON:
         v0 = Pokemon_GetValue(param2, MON_DATA_FORM, NULL);
         sub_020265E8(param0, param1, v0);
         break;
-    case 386:
+    case SPECIES_DEOXYS:
         sub_020268FC(param0, param1, param2);
         break;
-    case 492:
+    case SPECIES_SHAYMIN:
         v0 = Pokemon_GetValue(param2, MON_DATA_FORM, NULL);
         sub_020265E8(param0, param1, v0);
         break;
-    case 487:
+    case SPECIES_GIRATINA:
         v0 = Pokemon_GetValue(param2, MON_DATA_FORM, NULL);
         sub_020265E8(param0, param1, v0);
         break;
-    case 479:
+    case SPECIES_ROTOM:
         v0 = Pokemon_GetValue(param2, MON_DATA_FORM, NULL);
         sub_02026A00(param0, param1, v0);
         break;

@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/species.h"
+
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
@@ -256,7 +258,7 @@ void ov19_021DBBA8(UnkStruct_ov19_021DBA9C *param0, u32 param1, u32 param2, NNS_
 
                     v6 = PokemonPersonalData_GetFormValue(v5, v9, MON_DATA_PERSONAL_COLOR);
                 } else {
-                    v6 = (v5 != 490) ? 8 : 1;
+                    v6 = (v5 != SPECIES_MANAPHY) ? 8 : 1;
                 }
 
                 {

@@ -4,6 +4,8 @@
 #include <string.h>
 
 #include "consts/game_records.h"
+#include "consts/items.h"
+#include "consts/species.h"
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
@@ -542,13 +544,13 @@ BOOL ScrCmd_31D(ScriptContext *param0)
             v5 = Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
 
             switch (v5) {
-            case 487:
+            case SPECIES_GIRATINA:
                 Pokemon_SetGiratinaForm(v0);
                 break;
-            case 479:
+            case SPECIES_ROTOM:
                 Pokemon_SetRotomForm(v0, 0, 0);
                 break;
-            case 492:
+            case SPECIES_SHAYMIN:
                 Pokemon_SetShayminForm(v0, 0);
                 break;
             }
@@ -599,13 +601,13 @@ BOOL ScrCmd_31E(ScriptContext *param0)
         v2 = Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
 
         switch (v2) {
-        case 487:
+        case SPECIES_GIRATINA:
             Pokemon_SetGiratinaForm(v0);
             break;
-        case 479:
+        case SPECIES_ROTOM:
             Pokemon_SetRotomForm(v0, 0, 0);
             break;
-        case 492:
+        case SPECIES_SHAYMIN:
             Pokemon_SetShayminForm(v0, 0);
             break;
         }
@@ -648,7 +650,7 @@ BOOL ScrCmd_303(ScriptContext *param0)
         v1 = Pokemon_GetValue(v6, MON_DATA_FORM, NULL);
         v2 = Pokemon_GetValue(v6, MON_DATA_IS_EGG, NULL);
 
-        if ((v0 == 479) && (v1 != 0) && (v2 == 0)) {
+        if ((v0 == SPECIES_ROTOM) && (v1 != 0) && (v2 == 0)) {
             if (*v10 == 0xff) {
                 *v10 = v4;
             }
@@ -696,22 +698,22 @@ BOOL ScrCmd_2FF(ScriptContext *param0)
 
     if (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) {
         switch (v0) {
-        case 10:
-        case 11:
-        case 13:
-        case 14:
-        case 129:
-        case 132:
-        case 202:
-        case 235:
-        case 265:
-        case 266:
-        case 268:
-        case 360:
-        case 374:
-        case 412:
-        case 415:
-        case 401:
+        case SPECIES_CATERPIE:
+        case SPECIES_METAPOD:
+        case SPECIES_WEEDLE:
+        case SPECIES_KAKUNA:
+        case SPECIES_MAGIKARP:
+        case SPECIES_DITTO:
+        case SPECIES_WOBBUFFET:
+        case SPECIES_SMEARGLE:
+        case SPECIES_WURMPLE:
+        case SPECIES_SILCOON:
+        case SPECIES_CASCOON:
+        case SPECIES_WYNAUT:
+        case SPECIES_BELDUM:
+        case SPECIES_BURMY:
+        case SPECIES_COMBEE:
+        case SPECIES_KRICKETOT:
             *v6 = 0xffff;
             return 0;
         }

@@ -4742,24 +4742,24 @@ int LowestBit(u32 flag)
 }
 
 static const u16 Unk_020F05BE[18] = {
-    0x96,
-    0x97,
-    0xF9,
-    0xFA,
-    0xFB,
-    0x17E,
-    0x17F,
-    0x180,
-    0x181,
-    0x182,
-    0x1E3,
-    0x1E4,
-    0x1E7,
-    0x1E9,
-    0x1EA,
-    0x1EB,
-    0x1EC,
-    0x1ED
+    SPECIES_MEWTWO,
+    SPECIES_MEW,
+    SPECIES_LUGIA,
+    SPECIES_HO_OH,
+    SPECIES_CELEBI,
+    SPECIES_KYOGRE,
+    SPECIES_GROUDON,
+    SPECIES_RAYQUAZA,
+    SPECIES_JIRACHI,
+    SPECIES_DEOXYS,
+    SPECIES_DIALGA,
+    SPECIES_PALKIA,
+    SPECIES_GIRATINA,
+    SPECIES_PHIONE,
+    SPECIES_MANAPHY,
+    SPECIES_DARKRAI,
+    SPECIES_SHAYMIN,
+    SPECIES_ARCEUS
 };
 
 BOOL sub_02078804(u16 param0)

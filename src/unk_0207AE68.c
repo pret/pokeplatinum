@@ -4,6 +4,8 @@
 #include <string.h>
 
 #include "consts/game_records.h"
+#include "consts/items.h"
+#include "consts/species.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -701,7 +703,7 @@ static void sub_0207C028(UnkStruct_0207AE68 *param0)
                 v1 = Pokemon_New(param0->unk_5C);
                 Pokemon_Copy(param0->unk_28, v1);
 
-                v2 = 292;
+                v2 = SPECIES_SHEDINJA;
                 Pokemon_SetValue(v1, MON_DATA_SPECIES, &v2);
 
                 v2 = 4;

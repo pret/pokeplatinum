@@ -1075,7 +1075,7 @@ void ov16_0223EE70(BattleSystem *param0)
         v2 = BattleSystem_PartyPokemon(param0, 0, v0);
         v3 = Pokemon_GetValue(v2, MON_DATA_SPECIES_EGG, NULL);
 
-        if ((v3 == 412) && (param0->unk_2414[0] & FlagIndex(v0))) {
+        if ((v3 == SPECIES_BURMY) && (param0->unk_2414[0] & FlagIndex(v0))) {
             switch (BattleSystem_Terrain(param0)) {
             default:
             case 2:

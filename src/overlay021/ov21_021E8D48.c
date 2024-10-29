@@ -148,7 +148,7 @@ UnkStruct_ov21_021E8D48 *ov21_021E8D48(const UnkStruct_ov21_021E8E0C *param0)
         v1 = Pokemon_GetValue(param0->unk_10, MON_DATA_SPECIES, NULL);
         v2 = Pokemon_GetValue(param0->unk_10, MON_DATA_FORM, NULL);
 
-        if (v1 == 487) {
+        if (v1 == SPECIES_GIRATINA) {
             Pokedex_SetupGiratina(v2);
         } else {
             Pokedex_SetupGiratina(1);
@@ -231,7 +231,7 @@ static void ov21_021E8E0C(UnkStruct_ov21_021E8D48 *param0, const UnkStruct_ov21_
     {
         int v3;
 
-        if ((param0->unk_220 == 487) && (v2 > 0)) {
+        if ((param0->unk_220 == SPECIES_GIRATINA) && (v2 > 0)) {
             v3 = 11;
         } else {
             v3 = param0->unk_220;

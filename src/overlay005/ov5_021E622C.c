@@ -2250,7 +2250,7 @@ static int ov5_021E6684(UnkStruct_02026310 *param0)
     }
 
     for (v3 = 0, v0 = 0; v0 < 2; v0++) {
-        if ((v1[v0] = BoxPokemon_GetValue(v4[v0], MON_DATA_SPECIES, NULL)) == 132) {
+        if ((v1[v0] = BoxPokemon_GetValue(v4[v0], MON_DATA_SPECIES, NULL)) == SPECIES_DITTO) {
             v3++;
             v2 = v0;
         }
@@ -2968,7 +2968,7 @@ void ov5_021E7308(UnkStruct_02026310 *param0, u32 param1, u32 param2, u32 param3
     if (v3 != 2) {
         v4 = BoxPokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
 
-        if (((v4 == 29) || (v4 == 32)) && (BoxPokemon_GetValue(v1, MON_DATA_HAS_NICKNAME, NULL) == 0)) {
+        if (((v4 == SPECIES_NIDORAN_F) || (v4 == SPECIES_NIDORAN_M)) && (BoxPokemon_GetValue(v1, MON_DATA_HAS_NICKNAME, NULL) == 0)) {
             v3 = 2;
         }
     }
@@ -3061,7 +3061,7 @@ static void ov5_021E742C(Pokemon *param0, int param1)
     v4 = Pokemon_GetValue(param0, MON_DATA_OT_ID, NULL);
     v13 = Pokemon_GetValue(param0, MON_DATA_FORM, NULL);
 
-    if (v0 == 490) {
+    if (v0 == SPECIES_MANAPHY) {
         int v17 = Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL);
 
         if (v17 == sub_02017070(2, 1)) {

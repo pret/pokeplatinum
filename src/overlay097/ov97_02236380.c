@@ -1558,14 +1558,14 @@ void BoxMonGBAToBoxMon(BoxPokemonGBA *param0, BoxPokemon *param1)
     v1 = BoxPokemon_GetGender(param1);
     BoxPokemon_SetValue(param1, MON_DATA_GENDER, (u8 *)&v1);
 
-    if (BoxPokemon_GetValue(param1, MON_DATA_SPECIES, NULL) == 201) {
+    if (BoxPokemon_GetValue(param1, MON_DATA_SPECIES, NULL) == SPECIES_UNOWN) {
         v1 = GetGBABoxMonData(param0, 0, NULL);
         v1 = (((v1 & 0x3000000) >> 18) | ((v1 & 0x30000) >> 12) | ((v1 & 0x300) >> 6) | (v1 & 0x3)) % 28;
 
         BoxPokemon_SetValue(param1, MON_DATA_FORM, (u8 *)&v1);
     }
 
-    if (BoxPokemon_GetValue(param1, MON_DATA_SPECIES, NULL) == 386) {
+    if (BoxPokemon_GetValue(param1, MON_DATA_SPECIES, NULL) == SPECIES_DEOXYS) {
         switch (gCoreSys.unk_66) {
         default:
         case 2:

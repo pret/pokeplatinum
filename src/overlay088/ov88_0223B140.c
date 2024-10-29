@@ -2519,7 +2519,7 @@ static void ov88_0223E694(Party *param0, Party *param1, int param2, int param3, 
 
     param4->unk_2C = param2;
 
-    if (Party_HasSpecies(param0, 441) == 0) {
+    if (Party_HasSpecies(param0, SPECIES_CHATOT) == 0) {
         ChatotCry *v4 = GetChatotCryDataFromSave(param4->unk_10);
         ResetChatotCryDataStatus(v4);
     }

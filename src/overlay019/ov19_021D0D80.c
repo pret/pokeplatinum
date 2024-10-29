@@ -2462,7 +2462,7 @@ static void ov19_021D3D44(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             Heap_FreeToHeap(param0->unk_214);
             Overlay_UnloadByID(FS_OVERLAY_ID(overlay84));
 
-            if ((v1 == 112) && (BoxPokemon_GetValue(param0->unk_00.unk_4C.unk_00, MON_DATA_SPECIES, NULL) != 487)) {
+            if ((v1 == 112) && (BoxPokemon_GetValue(param0->unk_00.unk_4C.unk_00, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA)) {
                 (void)0;
             } else if (v1 != 0) {
                 Bag_TryRemoveItem(SaveData_GetBag(param0->unk_11C), v1, 1, 9);
@@ -2486,7 +2486,7 @@ static void ov19_021D3D44(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         if (ov19_021D6600(param0->unk_114, 2)) {
             if (v1 == 0) {
                 ov19_021D0EC0(param0);
-            } else if ((v1 == 112) && (BoxPokemon_GetValue(param0->unk_00.unk_4C.unk_00, MON_DATA_SPECIES, NULL) != 487)) {
+            } else if ((v1 == 112) && (BoxPokemon_GetValue(param0->unk_00.unk_4C.unk_00, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA)) {
                 StringTemplate_SetItemName(param0->unk_19C, 0, v1);
                 ov19_021D5408(&param0->unk_00, 45);
                 ov19_021D6594(param0->unk_114, 24);
@@ -3793,7 +3793,7 @@ static void ov19_021D55C4(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov19_021D4D
         sub_02079914(param0->unk_120, 0xffffffff, v1->unk_07, v0->unk_00);
         v2 = sub_02079C9C(param0->unk_120, 0xffffffff, v1->unk_07);
 
-        if ((BoxPokemon_GetValue(v2, MON_DATA_SPECIES, NULL) == 492) && (v4 == 1)) {
+        if ((BoxPokemon_GetValue(v2, MON_DATA_SPECIES, NULL) == SPECIES_SHAYMIN) && (v4 == 1)) {
             v3 = 1;
         }
     } else {
@@ -4109,7 +4109,7 @@ static void ov19_021D5BE8(UnkStruct_ov19_021D4DF0 *param0, u16 param1, UnkStruct
             BoxPokemon_SetArceusForm(v0->unk_00);
             v0->unk_0C = BoxPokemon_GetValue(v0->unk_00, MON_DATA_TYPE_1, NULL);
             v0->unk_0D = BoxPokemon_GetValue(v0->unk_00, MON_DATA_TYPE_2, NULL);
-        } else if (v2 == 487) {
+        } else if (v2 == SPECIES_GIRATINA) {
             int v3;
 
             BoxPokemon_SetGiratinaForm(v0->unk_00);

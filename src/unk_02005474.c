@@ -409,7 +409,7 @@ BOOL sub_02005844(u16 param0, u8 param1)
         }
     }
 
-    if (v0 == 441) {
+    if (v0 == SPECIES_CHATOT) {
         if (ProcessAudioInput(*v3, 0, 127, 0) == 1) {
             Sound_FlagDefaultChatotCry(0);
             return 1;

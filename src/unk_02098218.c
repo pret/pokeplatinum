@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "consts/game_records.h"
+#include "consts/species.h"
 
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/struct_0203E2FC.h"
@@ -122,7 +123,7 @@ static int sub_02098304(OverlayManager *param0, int *param1)
 
             PokeSprite_LoadCryDelay(v0->unk_04.unk_3C, &v0->unk_6C, v1, 1);
 
-            if (v1 == 490) {
+            if (v1 == SPECIES_MANAPHY) {
                 v0->unk_5C = 1;
             } else {
                 v0->unk_5C = 0;
