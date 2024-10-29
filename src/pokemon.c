@@ -331,8 +331,7 @@ static void sub_02073E18(BoxPokemon *boxMon, int monSpecies, int monLevel, int m
     v1 = PokemonPersonalData_GetSpeciesValue(monSpecies, MON_DATA_PERSONAL_ABILITY_1);
     v2 = PokemonPersonalData_GetSpeciesValue(monSpecies, MON_DATA_PERSONAL_ABILITY_2);
 
-    // TODO enum value
-    if (v2 != 0) {
+    if (v2 != ABILITY_NONE) {
         if (monPersonality & 1) {
             BoxPokemon_SetValue(boxMon, MON_DATA_ABILITY, &v2);
         } else {
@@ -4038,9 +4037,8 @@ void BoxPokemon_SetArceusForm(BoxPokemon *boxMon)
     int monAbility = BoxPokemon_GetValue(boxMon, MON_DATA_ABILITY, NULL);
     int monHeldItem = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
 
-    // TODO enum values
-    if (monSpecies == SPECIES_ARCEUS && monAbility == 121) {
-        int monForm = Pokemon_GetArceusTypeOf(Item_LoadParam(monHeldItem, 1, 0));
+    if (monSpecies == SPECIES_ARCEUS && monAbility == ABILITY_MULTITYPE) {
+        int monForm = Pokemon_GetArceusTypeOf(Item_LoadParam(monHeldItem, ITEM_PARAM_HOLD_EFFECT, 0));
         BoxPokemon_SetValue(boxMon, MON_DATA_FORM, &monForm);
     }
 }
@@ -4493,7 +4491,7 @@ static void BoxPokemon_CalcAbility(BoxPokemon *boxMon)
     int monAbility2 = PokemonPersonalData_GetFormValue(monSpecies, monForm, MON_DATA_PERSONAL_ABILITY_2);
 
     // TODO enum value?
-    if (monAbility2 != 0) {
+    if (monAbility2 != ABILITY_NONE) {
         if (monPersonality & 1) {
             BoxPokemon_SetValue(boxMon, MON_DATA_ABILITY, &monAbility2);
         } else {
