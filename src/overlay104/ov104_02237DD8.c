@@ -3,6 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/items.h"
+#include "constants/battle/condition.h"
+
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_020304A0_decl.h"
 #include "struct_decls/struct_020305B8_decl.h"
@@ -946,47 +949,47 @@ BOOL ov104_02238B40(UnkStruct_ov104_0223BFFC *param0, u16 param1, u16 param2)
 }
 
 static const u16 Unk_ov104_0223FB4C[] = {
-    0xDD,
-    0xD9,
-    0xD5,
-    0x115,
-    0x128,
-    0xE6,
-    0x113,
-    0xEA,
-    0x116,
-    0x117,
-    0x119
+    ITEM_KINGS_ROCK,
+    ITEM_QUICK_CLAW,
+    ITEM_BRIGHTPOWDER,
+    ITEM_METRONOME,
+    ITEM_BIG_ROOT,
+    ITEM_FOCUS_BAND,
+    ITEM_FOCUS_SASH,
+    ITEM_LEFTOVERS,
+    ITEM_IRON_BALL,
+    ITEM_LAGGING_TAIL,
+    ITEM_BLACK_SLUDGE
 };
 
 static const u16 Unk_ov104_0223FB78[] = {
-    0xD6,
-    0x10F,
-    0x10A,
-    0x10B,
-    0xFD,
-    0xE8,
-    0x109,
-    0x114,
-    0x10C,
-    0x10E,
-    0x116,
-    0x117,
-    0x119
+    ITEM_WHITE_HERB,
+    ITEM_POWER_HERB,
+    ITEM_MUSCLE_BAND,
+    ITEM_WISE_GLASSES,
+    ITEM_SHELL_BELL,
+    ITEM_SCOPE_LENS,
+    ITEM_WIDE_LENS,
+    ITEM_ZOOM_LENS,
+    ITEM_EXPERT_BELT,
+    ITEM_LIFE_ORB,
+    ITEM_IRON_BALL,
+    ITEM_LAGGING_TAIL,
+    ITEM_BLACK_SLUDGE
 };
 
 static const u16 Unk_ov104_0223FB62[] = {
-    0xE6,
-    0x113,
-    0xEA,
-    0xE8,
-    0x109,
-    0x114,
-    0x10C,
-    0x10E,
-    0xDC,
-    0x129,
-    0x11F
+    ITEM_FOCUS_BAND,
+    ITEM_FOCUS_SASH,
+    ITEM_LEFTOVERS,
+    ITEM_SCOPE_LENS,
+    ITEM_WIDE_LENS,
+    ITEM_ZOOM_LENS,
+    ITEM_EXPERT_BELT,
+    ITEM_LIFE_ORB,
+    ITEM_CHOICE_BAND,
+    ITEM_CHOICE_SPECS,
+    ITEM_CHOICE_SCARF
 };
 
 static const u16 *Unk_ov104_02241A2C[] = {
@@ -996,50 +999,50 @@ static const u16 *Unk_ov104_02241A2C[] = {
 };
 
 static const u16 Unk_ov104_0223FB08[] = {
-    0x95,
-    0x96,
-    0x97,
-    0x98,
-    0x99,
-    0x9C,
-    0x9E,
-    0x9D
+    ITEM_CHERI_BERRY,
+    ITEM_CHESTO_BERRY,
+    ITEM_PECHA_BERRY,
+    ITEM_RAWST_BERRY,
+    ITEM_ASPEAR_BERRY,
+    ITEM_PERSIM_BERRY,
+    ITEM_SITRUS_BERRY,
+    ITEM_LUM_BERRY
 };
 
 static const u16 Unk_ov104_0223FB92[] = {
-    0xB8,
-    0xB9,
-    0xBA,
-    0xBB,
-    0xBC,
-    0xBD,
-    0xBE,
-    0xBF,
-    0xC0,
-    0xC1,
-    0xC2,
-    0xC3,
-    0xC4,
-    0xC5,
-    0xC6,
-    0xC7,
-    0xC8,
-    0x9C,
-    0x9E,
-    0x9D
+    ITEM_OCCA_BERRY,
+    ITEM_PASSHO_BERRY,
+    ITEM_WACAN_BERRY,
+    ITEM_RINDO_BERRY,
+    ITEM_YACHE_BERRY,
+    ITEM_CHOPLE_BERRY,
+    ITEM_KEBIA_BERRY,
+    ITEM_SHUCA_BERRY,
+    ITEM_COBA_BERRY,
+    ITEM_PAYAPA_BERRY,
+    ITEM_TANGA_BERRY,
+    ITEM_CHARTI_BERRY,
+    ITEM_KASIB_BERRY,
+    ITEM_HABAN_BERRY,
+    ITEM_COLBUR_BERRY,
+    ITEM_BABIRI_BERRY,
+    ITEM_CHILAN_BERRY,
+    ITEM_PERSIM_BERRY,
+    ITEM_SITRUS_BERRY,
+    ITEM_LUM_BERRY
 };
 
 static const u16 Unk_ov104_0223FB38[] = {
-    0x9C,
-    0x9E,
-    0x9D,
-    0xC9,
-    0xCA,
-    0xCB,
-    0xCC,
-    0xCD,
-    0xCE,
-    0xCF
+    ITEM_PERSIM_BERRY,
+    ITEM_SITRUS_BERRY,
+    ITEM_LUM_BERRY,
+    ITEM_LIECHI_BERRY,
+    ITEM_GANLON_BERRY,
+    ITEM_SALAC_BERRY,
+    ITEM_PETAYA_BERRY,
+    ITEM_APICOT_BERRY,
+    ITEM_LANSAT_BERRY,
+    ITEM_STARF_BERRY
 };
 
 static const u16 *Unk_ov104_02241A20[] = {
@@ -1136,11 +1139,11 @@ static void ov104_02238C18(UnkStruct_ov104_0223BFFC *param0, Party *param1, u8 p
         v4 = Pokemon_GetValue(v6, MON_DATA_TYPE_2, NULL);
         v5 = Pokemon_GetValue(v6, MON_DATA_ABILITY, NULL);
 
-        if ((v3 == 3) || (v4 == 3) || (v3 == 8) || (v4 == 8) || (v5 == 17)) {
+        if ((v3 == TYPE_POISON) || (v4 == TYPE_POISON) || (v3 == TYPE_STEEL) || (v4 == TYPE_STEEL) || (v5 == ABILITY_IMMUNITY)) {
             v1++;
         } else {
-            v2 = 0x8;
-            Pokemon_SetValue(v6, 160, &v2);
+            v2 = MON_CONDITION_POISON;
+            Pokemon_SetValue(v6, MON_DATA_STATUS_CONDITION, &v2);
         }
     }
 
@@ -1165,11 +1168,11 @@ static void ov104_02238C9C(UnkStruct_ov104_0223BFFC *param0, Party *param1, u8 p
         v4 = Pokemon_GetValue(v6, MON_DATA_TYPE_2, NULL);
         v5 = Pokemon_GetValue(v6, MON_DATA_ABILITY, NULL);
 
-        if ((v3 == 4) || (v4 == 4) || (v5 == 7)) {
+        if ((v3 == TYPE_GROUND) || (v4 == TYPE_GROUND) || (v5 == ABILITY_LIMBER)) {
             v1++;
         } else {
-            v2 = 0x40;
-            Pokemon_SetValue(v6, 160, &v2);
+            v2 = MON_CONDITION_PARALYSIS;
+            Pokemon_SetValue(v6, MON_DATA_STATUS_CONDITION, &v2);
         }
     }
 
@@ -1194,11 +1197,11 @@ static void ov104_02238D14(UnkStruct_ov104_0223BFFC *param0, Party *param1, u8 p
         v4 = Pokemon_GetValue(v6, MON_DATA_TYPE_2, NULL);
         v5 = Pokemon_GetValue(v6, MON_DATA_ABILITY, NULL);
 
-        if ((v3 == 10) || (v4 == 10) || (v5 == 41)) {
+        if ((v3 == TYPE_FIRE) || (v4 == TYPE_FIRE) || (v5 == ABILITY_WATER_VEIL)) {
             v1++;
         } else {
-            v2 = 0x10;
-            Pokemon_SetValue(v6, 160, &v2);
+            v2 = MON_CONDITION_BURN;
+            Pokemon_SetValue(v6, MON_DATA_STATUS_CONDITION, &v2);
         }
     }
 
@@ -1223,7 +1226,7 @@ static void ov104_02238D8C(UnkStruct_ov104_0223BFFC *param0, Party *param1, u8 p
         v5 = Party_GetPokemonBySlotIndex(param1, v0);
         v4 = Pokemon_GetValue(v5, MON_DATA_ABILITY, NULL);
 
-        if ((v4 == 15) || (v4 == 72)) {
+        if ((v4 == ABILITY_INSOMNIA) || (v4 == ABILITY_VITAL_SPIRIT)) {
             v2++;
             v0++;
 
@@ -1260,7 +1263,7 @@ static void ov104_02238E08(UnkStruct_ov104_0223BFFC *param0, Party *param1, u8 p
         v5 = Pokemon_GetValue(v7, MON_DATA_TYPE_2, NULL);
         v6 = Pokemon_GetValue(v7, MON_DATA_ABILITY, NULL);
 
-        if ((v4 == 15) || (v5 == 15) || (v6 == 40)) {
+        if ((v4 == TYPE_ICE) || (v5 == TYPE_ICE) || (v6 == ABILITY_MAGMA_ARMOR)) {
             v2++;
             v0++;
 
@@ -1268,8 +1271,8 @@ static void ov104_02238E08(UnkStruct_ov104_0223BFFC *param0, Party *param1, u8 p
                 v0 = 0;
             }
         } else {
-            v3 = 0x20;
-            Pokemon_SetValue(v7, 160, &v3);
+            v3 = MON_CONDITION_FREEZE;
+            Pokemon_SetValue(v7, MON_DATA_STATUS_CONDITION, &v3);
 
             break;
         }
