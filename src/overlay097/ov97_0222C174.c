@@ -783,7 +783,7 @@ static int ov97_0222C78C(OverlayManager *param0, int *param1)
 static int ov97_0222C948(OverlayManager *param0, int *param1)
 {
     Heap_Destroy(91);
-    EnqueueApplication(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D742C);
+    EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenOverlayTemplate);
     OverlayManager_FreeData(param0);
     Heap_Destroy(85);
 

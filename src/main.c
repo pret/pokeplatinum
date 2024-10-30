@@ -68,7 +68,7 @@ static Application sApplication;
 // repeatedly try to restore the backlight to its saved state.
 static PMBackLightSwitch sSavedBacklightState;
 BOOL gIgnoreCartridgeForWake;
-extern const OverlayManagerTemplate Unk_ov77_021D788C;
+extern const OverlayManagerTemplate gOpeningCutsceneOverlayTemplate;
 
 void NitroMain(void)
 {
@@ -103,7 +103,7 @@ void NitroMain(void)
         switch (OS_GetResetParameter()) {
         case RESET_CLEAN:
             sApplication.args.error = FALSE;
-            EnqueueApplication(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D788C);
+            EnqueueApplication(FS_OVERLAY_ID(overlay77), &gOpeningCutsceneOverlayTemplate);
             break;
 
         case RESET_ERROR:

@@ -2435,7 +2435,7 @@ static int ov97_022301BC(OverlayManager *param0, int *param1)
     UnkStruct_ov97_0222D04C *v0 = OverlayManager_Data(param0);
 
     if (v0->unk_440 == 0) {
-        EnqueueApplication(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D742C);
+        EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenOverlayTemplate);
     } else if (v0->unk_440 == 1) {
         EnqueueApplication(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D7AC);
     }

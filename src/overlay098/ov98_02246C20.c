@@ -180,7 +180,7 @@ int ov98_02246DC0(OverlayManager *param0, int *param1)
     OverlayManager_FreeData(param0);
     Heap_Destroy(108);
     Heap_Destroy(91);
-    EnqueueApplication(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D742C);
+    EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenOverlayTemplate);
 
     return 1;
 }

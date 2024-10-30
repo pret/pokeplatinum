@@ -1190,7 +1190,7 @@ static void ov97_0222C094(UnkStruct_0222AE60 *param0)
         EnqueueApplication(FS_OVERLAY_ID(overlay98), &Unk_ov98_02249BAC);
         break;
     case 0:
-        EnqueueApplication(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D742C);
+        EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenOverlayTemplate);
         break;
     }
 }

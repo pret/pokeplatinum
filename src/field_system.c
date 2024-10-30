@@ -87,7 +87,7 @@ static BOOL ExecuteFieldProcesses(OverlayManager *ovyManager, int *state)
 static BOOL ReturnToTitleScreen(OverlayManager *ovyManager, int *state)
 {
     TeardownFieldSystem(ovyManager);
-    EnqueueApplication(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D742C);
+    EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenOverlayTemplate);
     return TRUE;
 }
 
