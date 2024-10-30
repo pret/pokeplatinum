@@ -42,6 +42,11 @@
 FS_EXTERN_OVERLAY(overlay57);
 FS_EXTERN_OVERLAY(overlay77);
 
+enum OSResetParameter {
+    RESET_CLEAN = 0,
+    RESET_ERROR,
+};
+
 typedef struct Application {
     FSOverlayID currOverlayID;
     OverlayManager *currOverlay;
@@ -53,8 +58,8 @@ typedef struct Application {
 static void InitApplication(void);
 static void RunApplication(void);
 static void WaitFrame(void);
-static void TrySystemReset(int resetParam);
-static void SoftReset(int resetParam);
+static void TrySystemReset(enum OSResetParameter resetParam);
+static void SoftReset(enum OSResetParameter resetParam);
 static void HeapCanaryFailed(int param0, int param1);
 static void CheckHeapCanary(void);
 
@@ -96,20 +101,20 @@ void NitroMain(void)
         sub_0209A74C(0);
     } else {
         switch (OS_GetResetParameter()) {
-        case 0:
-            sApplication.args.unk_04 = 0;
+        case RESET_CLEAN:
+            sApplication.args.error = FALSE;
             EnqueueApplication(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D788C);
             break;
 
-        case 1:
+        case RESET_ERROR:
             sub_0200F344(0, 0x0);
             sub_0200F344(1, 0x0);
-            sApplication.args.unk_04 = 1;
+            sApplication.args.error = TRUE;
             EnqueueApplication(FS_OVERLAY_ID(overlay57), &Unk_ov57_021D0F70);
             break;
 
         default:
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
         }
     }
 
@@ -127,10 +132,8 @@ void NitroMain(void)
         HandleConsoleFold();
         ReadKeypadAndTouchpad();
 
-        if ((gCoreSys.heldKeysRaw & RESET_COMBO) == RESET_COMBO) {
-            if (gCoreSys.inhibitReset == FALSE) {
-                SoftReset(0);
-            }
+        if ((gCoreSys.heldKeysRaw & RESET_COMBO) == RESET_COMBO && !gCoreSys.inhibitReset) {
+            SoftReset(RESET_CLEAN);
         }
 
         if (CommSys_Update()) {
@@ -224,7 +227,7 @@ static void WaitFrame(void)
     }
 }
 
-static void TrySystemReset(int resetParam)
+static void TrySystemReset(enum OSResetParameter resetParam)
 {
     if (sub_02038AB8()) {
         if (CARD_TryWaitBackupAsync() == TRUE) {
@@ -252,7 +255,7 @@ static void CheckHeapCanary(void)
     }
 }
 
-static void SoftReset(int resetParam)
+static void SoftReset(enum OSResetParameter resetParam)
 {
     sub_0200F344(DS_SCREEN_MAIN, 0x7fff);
     sub_0200F344(DS_SCREEN_SUB, 0x7fff);

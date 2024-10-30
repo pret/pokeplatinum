@@ -8,7 +8,7 @@
 
 typedef struct ApplicationArgs {
     int unk_00;
-    BOOL unk_04;
+    BOOL error;
     SaveData *saveData;
 } ApplicationArgs;
 

@@ -17,7 +17,6 @@
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_0209C370.h"
 
-#include "field/field_system_sub1_decl.h"
 #include "field/field_system_sub2_decl.h"
 #include "field/field_system_sub3.h"
 #include "overlay005/struct_ov5_021D1A68_decl.h"
@@ -43,11 +42,19 @@
 #include "camera.h"
 #include "journal.h"
 #include "map_header_data.h"
+#include "overlay_manager.h"
 #include "pokeradar.h"
 #include "savedata.h"
 
+typedef struct FieldProcessManager {
+    OverlayManager *parent;
+    OverlayManager *child;
+    BOOL pause;
+    BOOL kill;
+} FieldProcessManager;
+
 typedef struct FieldSystem_t {
-    FieldSystem_sub1 *unk_00;
+    FieldProcessManager *processManager;
     FieldSystem_sub2 *unk_04;
     BgConfig *bgConfig;
     SaveData *saveData;
