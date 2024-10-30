@@ -7,8 +7,6 @@
 #include "consts/items.h"
 #include "consts/species.h"
 
-#include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
 
