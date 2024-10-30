@@ -5,7 +5,7 @@
 
 typedef struct {
     int *unk_00;
-    pokedexStatus *unk_04;
+    PokedexStatus *unk_04;
     int unk_08;
     int unk_0C;
     int unk_10;

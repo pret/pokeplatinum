@@ -10,7 +10,7 @@
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021E29DC.h"
-#include "overlay021/pokedex_sort.h"
+#include "overlay021/ov21_021D3208.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021E68F4.h"
@@ -52,7 +52,7 @@ typedef struct {
 } UnkStruct_ov21_021E9DB0;
 
 typedef struct {
-    pokedexStatus *unk_00;
+    PokedexStatus *unk_00;
     UnkStruct_ov21_021E68F4 *unk_04;
 } UnkStruct_ov21_021E7468;
 

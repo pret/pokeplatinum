@@ -26,7 +26,7 @@ void PokedexFieldMap_DisplayFields(Window *window, u8 *src, u16 fieldWidth, u16 
  * @brief Identifies how many neighboring fields each empty map location has
  *
  * Each combination of neighbors has a corresponding value stored in the map.
- * For example, an empty location with fields to the north and east is different from one with neighbors to the north and northeast.
+ * For example, an empty location with fields to the north and east is distinct from one with neighbors to the north and northeast.
  *
  * @param pokedexFieldMap
  * @param mapHeight

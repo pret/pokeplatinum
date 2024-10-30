@@ -6,7 +6,7 @@
 
 typedef struct {
     int *unk_00;
-    pokedexStatus *unk_04;
+    PokedexStatus *unk_04;
     int unk_08;
     int unk_0C;
     const UnkStruct_ov21_021E68F4 *unk_10;

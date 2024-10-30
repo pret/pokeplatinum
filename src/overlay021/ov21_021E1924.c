@@ -13,7 +13,7 @@
 #include "overlay021/ov21_021DE668.h"
 #include "overlay021/ov21_021E0C68.h"
 #include "overlay021/ov21_021E29DC.h"
-#include "overlay021/pokedex_sort.h"
+#include "overlay021/ov21_021D3208.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D4660.h"
@@ -43,7 +43,7 @@
 
 typedef struct {
     int *unk_00;
-    pokedexStatus *unk_04;
+    PokedexStatus *unk_04;
     UnkStruct_ov21_021DE6D4 *unk_08;
     UnkStruct_ov21_021E68F4 *unk_0C;
     UnkStruct_ov21_021E68F4 *unk_10;
@@ -172,7 +172,7 @@ static UnkStruct_ov21_021E1A7C *ov21_021E199C(int param0, UnkStruct_ov21_021D0F6
 {
     UnkStruct_ov21_021E1A7C *v0;
     UnkStruct_ov21_021E68F4 *v1;
-    pokedexStatus *v2;
+    PokedexStatus *v2;
     int v3;
 
     v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov21_021E1A7C));

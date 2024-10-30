@@ -211,7 +211,7 @@ static int sub_02026464(const PokedexData *dexData, u32 param1)
 
     GF_ASSERT((param1 == 422) || (param1 == 423) || (param1 == 492) || (param1 == 487));
 
-    if (Pokedex_EncounteredSpecies(dexData, param1) == 0) {
+    if (Pokedex_HasEncountered(dexData, param1) == 0) {
         return 0;
     }
 
@@ -249,7 +249,7 @@ static BOOL sub_02026514(const PokedexData *dexData, u32 param1, u8 param2)
 
     GF_ASSERT((param1 == 422) || (param1 == 423) || (param1 == 492) || (param1 == 487));
 
-    if (Pokedex_EncounteredSpecies(dexData, param1) == 0) {
+    if (Pokedex_HasEncountered(dexData, param1) == 0) {
         return 0;
     }
 
@@ -326,7 +326,7 @@ static int sub_020266F8(const PokedexData *dexData, u32 param1)
 
     GF_ASSERT((param1 == 412) || (param1 == 413));
 
-    if (Pokedex_EncounteredSpecies(dexData, param1) == 0) {
+    if (Pokedex_HasEncountered(dexData, param1) == 0) {
         return 0;
     }
 
@@ -355,7 +355,7 @@ static BOOL sub_02026754(const PokedexData *dexData, u32 param1, u8 param2)
 
     GF_ASSERT((param1 == 412) || (param1 == 413));
 
-    if (Pokedex_EncounteredSpecies(dexData, param1) == 0) {
+    if (Pokedex_HasEncountered(dexData, param1) == 0) {
         return 0;
     }
 
@@ -510,7 +510,7 @@ static int sub_02026958(const PokedexData *dexData, u32 param1)
 
     GF_ASSERT(param1 == 479);
 
-    if (Pokedex_EncounteredSpecies(dexData, param1) == 0) {
+    if (Pokedex_HasEncountered(dexData, param1) == 0) {
         return 0;
     }
 
@@ -537,7 +537,7 @@ static BOOL sub_020269A4(const PokedexData *dexData, u32 param1, u8 param2)
 
     GF_ASSERT(param1 == 479);
 
-    if (Pokedex_EncounteredSpecies(dexData, param1) == 0) {
+    if (Pokedex_HasEncountered(dexData, param1) == 0) {
         return 0;
     }
 
@@ -778,7 +778,7 @@ u16 sub_02026DD0(const PokedexData *dexData)
     v1 = 0;
 
     for (v0 = 1; v0 <= NATIONAL_DEX_COUNT; v0++) {
-        if (Pokedex_CaughtSpecies(dexData, v0) == 1) {
+        if (Pokedex_HasCaught(dexData, v0) == 1) {
             v1++;
         }
     }
@@ -795,7 +795,7 @@ u16 sub_02026E0C(const PokedexData *dexData)
     v1 = 0;
 
     for (v0 = 1; v0 <= NATIONAL_DEX_COUNT; v0++) {
-        if (Pokedex_EncounteredSpecies(dexData, v0) == 1) {
+        if (Pokedex_HasEncountered(dexData, v0) == 1) {
             v1++;
         }
     }
@@ -805,7 +805,7 @@ u16 sub_02026E0C(const PokedexData *dexData)
 
 u16 sub_02026E48(const PokedexData *dexData)
 {
-    if (Pokedex_NationalUnlocked(dexData)) {
+    if (Pokedex_IsNationalUnlocked(dexData)) {
         return sub_02026E0C(dexData);
     }
 
@@ -821,7 +821,7 @@ u16 sub_02026E64(const PokedexData *dexData)
     v1 = 0;
 
     for (v0 = 1; v0 <= NATIONAL_DEX_COUNT; v0++) {
-        if (Pokedex_CaughtSpecies(dexData, v0) == 1) {
+        if (Pokedex_HasCaught(dexData, v0) == 1) {
             if (Pokemon_SinnohDexNumber(v0) != 0) {
                 v1++;
             }
@@ -840,7 +840,7 @@ u16 sub_02026EAC(const PokedexData *dexData)
     v1 = 0;
 
     for (v0 = 1; v0 <= NATIONAL_DEX_COUNT; v0++) {
-        if (Pokedex_EncounteredSpecies(dexData, v0) == 1) {
+        if (Pokedex_HasEncountered(dexData, v0) == 1) {
             if (Pokemon_SinnohDexNumber(v0) != 0) {
                 v1++;
             }
@@ -884,7 +884,7 @@ u16 sub_02026F20(const PokedexData *dexData)
     v1 = 0;
 
     for (v0 = 1; v0 <= NATIONAL_DEX_COUNT; v0++) {
-        if (Pokedex_CaughtSpecies(dexData, v0) == 1) {
+        if (Pokedex_HasCaught(dexData, v0) == 1) {
             if (sub_02026D44(v0) == 1) {
                 v1++;
             }
@@ -903,7 +903,7 @@ u16 sub_02026F58(const PokedexData *dexData)
     v1 = 0;
 
     for (v0 = 1; v0 <= NATIONAL_DEX_COUNT; v0++) {
-        if (Pokedex_EncounteredSpecies(dexData, v0) == 1) {
+        if (Pokedex_HasEncountered(dexData, v0) == 1) {
             v2 = Pokemon_SinnohDexNumber(v0);
 
             if (v2 != 0) {
@@ -917,7 +917,7 @@ u16 sub_02026F58(const PokedexData *dexData)
     return v1;
 }
 
-BOOL Pokedex_CaughtSpecies(const PokedexData *dexData, u16 species)
+BOOL Pokedex_HasCaught(const PokedexData *dexData, u16 species)
 {
     CheckPokedexIntegrity(dexData);
 
@@ -932,7 +932,7 @@ BOOL Pokedex_CaughtSpecies(const PokedexData *dexData, u16 species)
     }
 }
 
-BOOL Pokedex_EncounteredSpecies(const PokedexData *dexData, u16 species)
+BOOL Pokedex_HasEncountered(const PokedexData *dexData, u16 species)
 {
     CheckPokedexIntegrity(dexData);
 
@@ -1139,7 +1139,7 @@ void sub_02027454(PokedexData *dexData)
     dexData->nationalDexObtained = 1;
 }
 
-BOOL Pokedex_NationalUnlocked(const PokedexData *dexData)
+BOOL Pokedex_IsNationalUnlocked(const PokedexData *dexData)
 {
     CheckPokedexIntegrity(dexData);
     return dexData->nationalDexObtained;

@@ -1,4 +1,4 @@
-#include "overlay021/pokedex_sort.h"
+#include "overlay021/ov21_021D3208.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -6,9 +6,9 @@
 #include "struct_decls/pokedexdata_decl.h"
 
 #include "overlay021/struct_ov21_021D3208.h"
-#include "overlay021/struct_ov21_021D3A60.h"
+#include "overlay021/pokedexProgress.h"
 #include "overlay021/struct_pokedexstatus.h"
-#include "overlay021/struct_speciesCaughtStatus.h"
+#include "overlay021/speciesCaughtStatus.h"
 
 #include "core_sys.h"
 #include "graphics.h"
@@ -20,19 +20,69 @@
 #include "trainer_info.h"
 #include "unk_0202631C.h"
 
+enum PokedexDataFileIndex {
+    PDFI_NATIONAL,
+    PDFI_SINNOH,
+    PDFI_ALPHABETICAL,
+    PDFI_HEAVIEST,
+    PDFI_LIGHTEST,
+    PDFI_TALLEST,
+    PDFI_SHORTEST,
+    PDFI_ABC,
+    PDFI_DEF,
+    PDFI_GHI,
+    PDFI_JKL,
+    PDFI_MNO,
+    PDFI_PQR,
+    PDFI_STU,
+    PDFI_VWX,
+    PDFI_YZ,
+    PDFI_NORMAL,
+    PDFI_FIGHTING,
+    PDFI_FLYING,
+    PDFI_POISON,
+    PDFI_GROUND,
+    PDFI_ROCK,
+    PDFI_BUG,
+    PDFI_GHOST,
+    PDFI_STEEL,
+    PDFI_FIRE,
+    PDFI_WATER,
+    PDFI_GRASS,
+    PDFI_ELECTRIC,
+    PDFI_PSYCHIC,
+    PDFI_ICE,
+    PDFI_DRAGON,
+    PDFI_DARK,
+    PDFI_QUADRUPED,
+    PDFI_BIPEDALTAILLESS,
+    PDFI_BIPEDALTAILED,
+    PDFI_SERPENTINE,
+    PDFI_MULTIWINGED,
+    PDFI_WINGED,
+    PDFI_INSECTOID,
+    PDFI_HEADBASE,
+    PDFI_HEADARMS,
+    PDFI_HEADLEGS,
+    PDFI_TENTACLES,
+    PDFI_FINS,
+    PDFI_HEAD,
+    PDFI_MULTIBODY
+};
+
 static void Pokedex_Sort_Encountered(u16 *pokedexPreFilterArray, int *numEncountered, const PokedexData *dexData, const u16 *speciesArray, int pokedexLength);
 static void Pokedex_Sort_Caught(u16 *param0, int *param1, const u16 *param2, int param3, const u16 *param4, int param5, BOOL param6, const PokedexData *dexData);
-static void Pokedex_Sort_CaughtStatus(pokedexCompletionStruct *pokedexCompletion, const PokedexData *param1, const u16 *param2, int param3);
-static void Pokedex_Sort_IndentifyEnountered_Full(pokedexCompletionStruct *pokedexCompletion, const u16 *param1, int param2);
-static void Pokedex_Sort_IndentifyEnountered_Filtered(pokedexCompletionStruct *pokedexCompletion);
-static void Pokedex_Sort_NumSeenNCaught(pokedexCompletionStruct *pokedexCompletion, int *numEncountered, int *numCaught);
+static void Pokedex_Sort_CaughtStatus(PokedexProgress *pokedexCompletion, const PokedexData *param1, const u16 *param2, int param3);
+static void Pokedex_Sort_IndentifyEnountered_Full(PokedexProgress *pokedexCompletion, const u16 *param1, int param2);
+static void Pokedex_Sort_IndentifyEnountered_Filtered(PokedexProgress *pokedexCompletion);
+static void Pokedex_Sort_NumSeenNCaught(PokedexProgress *pokedexCompletion, int *numEncountered, int *numCaught);
 static u16 *Pokedex_Sort_SortedArray(int heapID, int pokedexSort, int *pokedexLength);
 static void Pokedex_Sort_Order(int sortCategory, u16 *pokedexPostFilterArray, int *dexLengthPostFilter, const u16 *param3, int dexLengthPreFilter, int heapID, const PokedexData *dexData);
 static void Pokedex_Sort_FilterFirstLetter(int firstLetterFilter, u16 *pokedexPostFilterArray, int *dexLengthPostFilter, const u16 *pokedexPreFilterArray, int numEncountered, int heapID, const PokedexData *dexData);
 static void Pokedex_Sort_FilterType(int typeFilter, u16 *param1, int *param2, const u16 *param3, int dexLengthPreFilter, int heapID, const PokedexData *dexData);
 static void Pokedex_Sort_FilterBodyShape(int bodyShapeFilter, u16 *param1, int *param2, const u16 *param3, int dexLengthPreFilter, int heapID, const PokedexData *dexData);
 
-void Pokedex_Sort_PopulatepokedexStatus(pokedexStatus *dexStatus, UnkStruct_ov21_021D3208 *param1, int heapID)
+void Pokedex_Sort_PopulatepokedexStatus(PokedexStatus *dexStatus, UnkStruct_ov21_021D3208 *param1, int heapID)
 {
     int sortCategory;
     int firstLetterFilter;
@@ -42,12 +92,12 @@ void Pokedex_Sort_PopulatepokedexStatus(pokedexStatus *dexStatus, UnkStruct_ov21
     BOOL dexExists;
     u32 isNationalDex;
 
-    memset(dexStatus, 0, sizeof(pokedexStatus));
+    memset(dexStatus, 0, sizeof(PokedexStatus));
 
     dexStatus->dexData = param1->dexData;
     dexStatus->timeOfDay = param1->timeOfDay;
 
-    if (Pokedex_NationalUnlocked(dexStatus->dexData)) {
+    if (Pokedex_IsNationalUnlocked(dexStatus->dexData)) {
         dexStatus->isNationalDexUnlocked = 1;
     } else {
         dexStatus->isNationalDexUnlocked = 0;
@@ -104,7 +154,7 @@ void Pokedex_Sort_PopulatepokedexStatus(pokedexStatus *dexStatus, UnkStruct_ov21
     dexStatus->seabreakPathVisible = param1->seabreakPathVisible;
 }
 
-void pokedexstatus(pokedexStatus *dexStatus)
+void Pokedex_Sort_PokedexStatusFreeHWData(PokedexStatus *dexStatus)
 {
     Strbuf_Free(dexStatus->trainerName);
     Pokedex_HeightWeightData_Release(dexStatus->HWData);
@@ -113,7 +163,7 @@ void pokedexstatus(pokedexStatus *dexStatus)
     dexStatus->HWData = NULL;
 }
 
-u32 ov21_021D334C(const pokedexStatus *dexStatus, int param1, int param2)
+u32 ov21_021D334C(const PokedexStatus *dexStatus, int param1, int param2)
 {
     u32 v0;
 
@@ -121,7 +171,7 @@ u32 ov21_021D334C(const pokedexStatus *dexStatus, int param1, int param2)
     return v0;
 }
 
-u32 ov21_021D335C(const pokedexStatus *dexStatus, int param1)
+u32 ov21_021D335C(const PokedexStatus *dexStatus, int param1)
 {
     int v0;
 
@@ -131,7 +181,7 @@ u32 ov21_021D335C(const pokedexStatus *dexStatus, int param1)
     return v0;
 }
 
-u32 ov21_021D3374(const pokedexStatus *dexStatus, int param1)
+u32 ov21_021D3374(const PokedexStatus *dexStatus, int param1)
 {
     u32 v0;
 
@@ -141,7 +191,7 @@ u32 ov21_021D3374(const pokedexStatus *dexStatus, int param1)
     return v0;
 }
 
-u32 ov21_021D338C(const pokedexStatus *dexStatus, int param1)
+u32 ov21_021D338C(const PokedexStatus *dexStatus, int param1)
 {
     u32 v0;
 
@@ -151,7 +201,7 @@ u32 ov21_021D338C(const pokedexStatus *dexStatus, int param1)
     return v0;
 }
 
-u32 ov21_021D33A4(const pokedexStatus *dexStatus, int param1)
+u32 ov21_021D33A4(const PokedexStatus *dexStatus, int param1)
 {
     u32 v0;
 
@@ -161,7 +211,7 @@ u32 ov21_021D33A4(const pokedexStatus *dexStatus, int param1)
     return v0;
 }
 
-u32 ov21_021D33BC(const pokedexStatus *dexStatus, int param1)
+u32 ov21_021D33BC(const PokedexStatus *dexStatus, int param1)
 {
     u32 v0;
 
@@ -171,12 +221,12 @@ u32 ov21_021D33BC(const pokedexStatus *dexStatus, int param1)
     return v0;
 }
 
-u32 ov21_021D33D4(const pokedexStatus *dexStatus, u32 species)
+u32 ov21_021D33D4(const PokedexStatus *dexStatus, u32 species)
 {
     return sub_0202756C(dexStatus->dexData, species, 0);
 }
 
-u32 ov21_021D33E0(const pokedexStatus *dexStatus, int param1)
+u32 ov21_021D33E0(const PokedexStatus *dexStatus, int param1)
 {
     int v0 = ov21_021D334C(dexStatus, param1, 1);
 
@@ -187,52 +237,52 @@ u32 ov21_021D33E0(const pokedexStatus *dexStatus, int param1)
     return 2;
 }
 
-u32 ov21_021D33F8(const pokedexStatus *dexStatus)
+u32 ov21_021D33F8(const PokedexStatus *dexStatus)
 {
     return sub_0202702C(dexStatus->dexData, 0);
 }
 
-u32 ov21_021D3404(const pokedexStatus *dexStatus, int param1)
+u32 ov21_021D3404(const PokedexStatus *dexStatus, int param1)
 {
     return sub_02027264(dexStatus->dexData, param1);
 }
 
-u32 ov21_021D3410(const pokedexStatus *dexStatus, u32 param1, int param2)
+u32 ov21_021D3410(const PokedexStatus *dexStatus, u32 param1, int param2)
 {
     return sub_0202756C(dexStatus->dexData, param1, param2);
 }
 
-u32 ov21_021D341C(const pokedexStatus *dexStatus, u32 param1)
+u32 ov21_021D341C(const PokedexStatus *dexStatus, u32 param1)
 {
     return sub_020276C8(dexStatus->dexData, param1);
 }
 
-BOOL Pokedex_Sort_PokedexUnlocked(const pokedexStatus *dexStatus)
+BOOL Pokedex_Sort_PokedexUnlocked(const PokedexStatus *dexStatus)
 {
-    return Pokedex_NationalUnlocked(dexStatus->dexData);
+    return Pokedex_IsNationalUnlocked(dexStatus->dexData);
 }
 
-void ov21_021D3434(pokedexStatus *dexStatus, u32 param1)
+void ov21_021D3434(PokedexStatus *dexStatus, u32 param1)
 {
     dexStatus->unk_175C = param1;
 }
 
-u32 ov21_021D3440(const pokedexStatus *dexStatus)
+u32 ov21_021D3440(const PokedexStatus *dexStatus)
 {
     return dexStatus->unk_175C;
 }
 
-void ov21_021D344C(pokedexStatus *dexStatus, u32 param1)
+void ov21_021D344C(PokedexStatus *dexStatus, u32 param1)
 {
     dexStatus->unk_175E = param1;
 }
 
-u32 ov21_021D3458(const pokedexStatus *dexStatus)
+u32 ov21_021D3458(const PokedexStatus *dexStatus)
 {
     return dexStatus->unk_175E;
 }
 
-BOOL Pokedex_Sort(pokedexStatus *dexStatus, int sortCategory, int firstLetterFilter, int typeFilter1, int typeFilter2, int bodyShapeFilter, int isNationalDex, int heapID, BOOL isFiltered)
+BOOL Pokedex_Sort(PokedexStatus *dexStatus, int sortCategory, int firstLetterFilter, int typeFilter1, int typeFilter2, int bodyShapeFilter, int isNationalDex, int heapID, BOOL isFiltered)
 {
     u16 *pokedexPreFilterArray;
     int dexLengthPreFilter;
@@ -348,12 +398,12 @@ BOOL Pokedex_Sort(pokedexStatus *dexStatus, int sortCategory, int firstLetterFil
     return dexExists;
 }
 
-BOOL Pokedex_Sort_Unfiltered(pokedexStatus *dexStatus, int sortCategory, int firstLetterFilter, int typeFilter1, int typeFilter2, int bodyShapeFilter, int isNationalDex, int heapID)
+BOOL Pokedex_Sort_Unfiltered(PokedexStatus *dexStatus, int sortCategory, int firstLetterFilter, int typeFilter1, int typeFilter2, int bodyShapeFilter, int isNationalDex, int heapID)
 {
     return Pokedex_Sort(dexStatus, sortCategory, firstLetterFilter, typeFilter1, typeFilter2, bodyShapeFilter, isNationalDex, heapID, 0);
 }
 
-BOOL ov21_021D36A4(const pokedexStatus *dexStatus, int param1)
+BOOL ov21_021D36A4(const PokedexStatus *dexStatus, int param1)
 {
     if (param1 == 0) {
         return 1;
@@ -366,7 +416,7 @@ BOOL ov21_021D36A4(const pokedexStatus *dexStatus, int param1)
     return 0;
 }
 
-BOOL ov21_021D36C0(pokedexStatus *dexStatus, int param1)
+BOOL ov21_021D36C0(PokedexStatus *dexStatus, int param1)
 {
     BOOL v0;
 
@@ -379,12 +429,12 @@ BOOL ov21_021D36C0(pokedexStatus *dexStatus, int param1)
     return v0;
 }
 
-int ov21_021D36D8(const pokedexStatus *dexStatus)
+int ov21_021D36D8(const PokedexStatus *dexStatus)
 {
     return dexStatus->isNationalDex;
 }
 
-BOOL Pokedex_Sort_IsValidDexIndex(const pokedexStatus *dexStatus, int dexIndex)
+BOOL Pokedex_Sort_IsValidDexIndex(const PokedexStatus *dexStatus, int dexIndex)
 {
     if (((dexIndex) >= 0) && ((dexIndex) < dexStatus->pokedexCompletion.numEncountered)) {
         return 1;
@@ -393,7 +443,7 @@ BOOL Pokedex_Sort_IsValidDexIndex(const pokedexStatus *dexStatus, int dexIndex)
     return 0;
 }
 
-BOOL ov21_021D36FC(pokedexStatus *dexStatus, int dexIndex)
+BOOL ov21_021D36FC(PokedexStatus *dexStatus, int dexIndex)
 {
     if (Pokedex_Sort_IsValidDexIndex(dexStatus, dexIndex)) {
         dexStatus->pokedexCompletion.unk_F68 = dexIndex;
@@ -403,7 +453,7 @@ BOOL ov21_021D36FC(pokedexStatus *dexStatus, int dexIndex)
     return 0;
 }
 
-BOOL ov21_021D371C(pokedexStatus *dexStatus, int param1)
+BOOL ov21_021D371C(PokedexStatus *dexStatus, int param1)
 {
     if (Pokedex_Sort_IsValidDexIndex(dexStatus, dexStatus->pokedexCompletion.unk_F68 + param1)) {
         dexStatus->pokedexCompletion.unk_F68 += param1;
@@ -419,17 +469,17 @@ BOOL ov21_021D371C(pokedexStatus *dexStatus, int param1)
     return 0;
 }
 
-int ov21_021D375C(const pokedexStatus *dexStatus)
+int ov21_021D375C(const PokedexStatus *dexStatus)
 {
     return dexStatus->pokedexCompletion.unk_F68;
 }
 
-int Pokedex_Sort_CompletionNumEncountered(const pokedexStatus *dexStatus)
+int Pokedex_Sort_CompletionNumEncountered(const PokedexStatus *dexStatus)
 {
     return dexStatus->pokedexCompletion.numEncountered;
 }
 
-int ov21_021D3770(const pokedexStatus *dexStatus, u32 param1)
+int ov21_021D3770(const PokedexStatus *dexStatus, u32 param1)
 {
     int index;
     int numEncountered = Pokedex_Sort_CompletionNumEncountered(dexStatus);
@@ -446,7 +496,7 @@ int ov21_021D3770(const pokedexStatus *dexStatus, u32 param1)
     return index;
 }
 
-BOOL ov21_021D3794(pokedexStatus *dexStatus, int param1)
+BOOL ov21_021D3794(PokedexStatus *dexStatus, int param1)
 {
     u32 v0 = Pokedex_Sort_CompletionNumEncountered(dexStatus);
     u32 v1 = ov21_021D3770(dexStatus, param1);
@@ -458,17 +508,17 @@ BOOL ov21_021D3794(pokedexStatus *dexStatus, int param1)
     return 0;
 }
 
-int Pokedex_Sort_CurrentSpecies(const pokedexStatus *dexStatus)
+int Pokedex_Sort_CurrentSpecies(const PokedexStatus *dexStatus)
 {
     return dexStatus->pokedexCompletion.caughtStatusArray[dexStatus->pokedexCompletion.unk_F68].species;
 }
 
-int Pokedex_Sort_CurrentCaughtStatus(const pokedexStatus *dexStatus)
+int Pokedex_Sort_CurrentCaughtStatus(const PokedexStatus *dexStatus)
 {
     return dexStatus->pokedexCompletion.caughtStatusArray[dexStatus->pokedexCompletion.unk_F68].caughtStatus;
 }
 
-const SpeciesCaughtStatus *Pokedex_Sort_SpeciesCaughtStatus(const pokedexStatus *dexStatus, int dexIndex)
+const SpeciesCaughtStatus *Pokedex_Sort_SpeciesCaughtStatus(const PokedexStatus *dexStatus, int dexIndex)
 {
     if (Pokedex_Sort_IsValidDexIndex(dexStatus, dexIndex)) {
         return &dexStatus->pokedexCompletion.caughtStatusArray[dexIndex];
@@ -477,7 +527,7 @@ const SpeciesCaughtStatus *Pokedex_Sort_SpeciesCaughtStatus(const pokedexStatus 
     return NULL;
 }
 
-BOOL ov21_021D37F8(const pokedexStatus *dexStatus, int param1)
+BOOL ov21_021D37F8(const PokedexStatus *dexStatus, int param1)
 {
     if ((dexStatus->pokedexCompletion.numSpecies > param1) && (param1 >= 0)) {
         return 1;
@@ -486,7 +536,7 @@ BOOL ov21_021D37F8(const pokedexStatus *dexStatus, int param1)
     return 0;
 }
 
-BOOL ov21_021D3810(pokedexStatus *dexStatus, int param1)
+BOOL ov21_021D3810(PokedexStatus *dexStatus, int param1)
 {
     if (ov21_021D37F8(dexStatus, param1)) {
         dexStatus->pokedexCompletion.unk_1724 = param1;
@@ -498,7 +548,7 @@ BOOL ov21_021D3810(pokedexStatus *dexStatus, int param1)
     return 0;
 }
 
-BOOL ov21_021D3844(pokedexStatus *dexStatus, int param1)
+BOOL ov21_021D3844(PokedexStatus *dexStatus, int param1)
 {
     if (ov21_021D387C(dexStatus, param1)) {
         dexStatus->pokedexCompletion.unk_1724 += param1;
@@ -510,7 +560,7 @@ BOOL ov21_021D3844(pokedexStatus *dexStatus, int param1)
     return 0;
 }
 
-BOOL ov21_021D387C(pokedexStatus *dexStatus, int param1)
+BOOL ov21_021D387C(PokedexStatus *dexStatus, int param1)
 {
     if (ov21_021D37F8(dexStatus, dexStatus->pokedexCompletion.unk_1724 + param1)) {
         return 1;
@@ -519,22 +569,22 @@ BOOL ov21_021D387C(pokedexStatus *dexStatus, int param1)
     return 0;
 }
 
-int ov21_021D3898(const pokedexStatus *dexStatus)
+int ov21_021D3898(const PokedexStatus *dexStatus)
 {
     return dexStatus->pokedexCompletion.unk_1724;
 }
 
-int ov21_021D38A4(const pokedexStatus *dexStatus)
+int ov21_021D38A4(const PokedexStatus *dexStatus)
 {
     return dexStatus->pokedexCompletion.numSpecies;
 }
 
-int Pokedex_Sort_SeenIndexToSpecies(const pokedexStatus *dexStatus, int encounteredIndex)
+int Pokedex_Sort_SeenIndexToSpecies(const PokedexStatus *dexStatus, int encounteredIndex)
 {
     return dexStatus->pokedexCompletion.encounteredIndexArray[encounteredIndex];
 }
 
-void ov21_021D38C0(pokedexStatus *dexStatus)
+void ov21_021D38C0(PokedexStatus *dexStatus)
 {
     int v0;
 
@@ -546,27 +596,27 @@ void ov21_021D38C0(pokedexStatus *dexStatus)
     }
 }
 
-int Pokedex_Sort_NumEncountered(const pokedexStatus *dexStatus)
+int Pokedex_Sort_NumEncountered(const PokedexStatus *dexStatus)
 {
     return dexStatus->numEncountered;
 }
 
-int Pokedex_Sort_NumCaught(const pokedexStatus *dexStatus)
+int Pokedex_Sort_NumCaught(const PokedexStatus *dexStatus)
 {
     return dexStatus->numCaught;
 }
 
-Strbuf *Pokedex_Sort_TrainerName(const pokedexStatus *dexStatus)
+Strbuf *Pokedex_Sort_TrainerName(const PokedexStatus *dexStatus)
 {
     return dexStatus->trainerName;
 }
 
-u32 Pokedex_Sort_TrainerGender(const pokedexStatus *dexStatus)
+u32 Pokedex_Sort_TrainerGender(const PokedexStatus *dexStatus)
 {
     return dexStatus->trainerGender;
 }
 
-BOOL ov21_021D392C(const pokedexStatus *dexStatus, int param1)
+BOOL ov21_021D392C(const PokedexStatus *dexStatus, int param1)
 {
     int species = Pokedex_Sort_CurrentSpecies(dexStatus);
 
@@ -577,12 +627,12 @@ BOOL ov21_021D392C(const pokedexStatus *dexStatus, int param1)
     return sub_020274D0(dexStatus->dexData, species, param1);
 }
 
-BOOL Pokedex_Sort_CanDetectForms(const pokedexStatus *dexStatus)
+BOOL Pokedex_Sort_CanDetectForms(const PokedexStatus *dexStatus)
 {
     return Pokedex_CanDetectForms(dexStatus->dexData);
 }
 
-void ov21_021D3960(pokedexStatus *dexStatus)
+void ov21_021D3960(PokedexStatus *dexStatus)
 {
     if (gCoreSys.touchHeld) {
         dexStatus->unk_1758 = 0;
@@ -598,7 +648,7 @@ void ov21_021D3960(pokedexStatus *dexStatus)
     }
 }
 
-u32 ov21_021D3998(const pokedexStatus *dexStatus)
+u32 ov21_021D3998(const PokedexStatus *dexStatus)
 {
     return dexStatus->unk_1758;
 }
@@ -610,7 +660,7 @@ static void Pokedex_Sort_Encountered(u16 *pokedexPreFilterArray, int *numEncount
     *numEncountered = 0;
 
     for (index = 0; index < pokedexLength; index++) {
-        if (Pokedex_EncounteredSpecies(dexData, speciesArray[index])) {
+        if (Pokedex_HasEncountered(dexData, speciesArray[index])) {
             pokedexPreFilterArray[*numEncountered] = speciesArray[index];
             (*numEncountered)++;
         }
@@ -629,7 +679,7 @@ static void Pokedex_Sort_Caught(u16 *param0, int *param1, const u16 *speciesArra
                 if (param6 == 1) {
                     break;
                 } else {
-                    if (Pokedex_CaughtSpecies(dexData, speciesArray[v0])) {
+                    if (Pokedex_HasCaught(dexData, speciesArray[v0])) {
                         break;
                     }
                 }
@@ -643,14 +693,14 @@ static void Pokedex_Sort_Caught(u16 *param0, int *param1, const u16 *speciesArra
     }
 }
 
-static void Pokedex_Sort_CaughtStatus(pokedexCompletionStruct *pokedexCompletion, const PokedexData *dexData, const u16 *speciesArray, int numEncountered)
+static void Pokedex_Sort_CaughtStatus(PokedexProgress *pokedexCompletion, const PokedexData *dexData, const u16 *speciesArray, int numEncountered)
 {
     int index;
 
     pokedexCompletion->numEncountered = 0;
 
     for (index = 0; index < numEncountered; index++) {
-        if (Pokedex_CaughtSpecies(dexData, speciesArray[index])) {
+        if (Pokedex_HasCaught(dexData, speciesArray[index])) {
             pokedexCompletion->caughtStatusArray[pokedexCompletion->numEncountered].caughtStatus = CS_CAUGHT;
         } else {
             pokedexCompletion->caughtStatusArray[pokedexCompletion->numEncountered].caughtStatus = CS_ENCOUNTERED;
@@ -661,7 +711,7 @@ static void Pokedex_Sort_CaughtStatus(pokedexCompletionStruct *pokedexCompletion
     }
 }
 
-static void Pokedex_Sort_IndentifyEnountered_Full(pokedexCompletionStruct *pokedexCompletion, const u16 *speciesArray, int pokedexLength)
+static void Pokedex_Sort_IndentifyEnountered_Full(PokedexProgress *pokedexCompletion, const u16 *speciesArray, int pokedexLength)
 {
     int dexIndex;
     int encounteredIndex;
@@ -683,7 +733,7 @@ static void Pokedex_Sort_IndentifyEnountered_Full(pokedexCompletionStruct *poked
     }
 }
 
-static void Pokedex_Sort_IndentifyEnountered_Filtered(pokedexCompletionStruct *pokedexCompletion)
+static void Pokedex_Sort_IndentifyEnountered_Filtered(PokedexProgress *pokedexCompletion)
 {
     int encounteredIndex;
 
@@ -717,24 +767,24 @@ static void Pokedex_Sort_Order(int sortCategory, u16 *pokedexPostFilterArray, in
     BOOL isAlphabetical = 0;
 
     switch (sortCategory) {
-    case 0:
+    case SC_NUMERIC:
         pokedexSortedArray = NULL;
         break;
-    case 1:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 2, &pokedexLength); // alphabetical
+    case SC_ALPHABETICAL:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_ALPHABETICAL, &pokedexLength);
         isAlphabetical = 1;
         break;
-    case 2:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 3, &pokedexLength); // heaviest
+    case SC_HEAVIEST:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_HEAVIEST, &pokedexLength);
         break;
-    case 3:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 4, &pokedexLength); // lightest
+    case SC_LIGHTEST:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_LIGHTEST, &pokedexLength);
         break;
-    case 4:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 5, &pokedexLength); // tallest
+    case SC_TALLEST:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_TALLEST, &pokedexLength);
         break;
-    case 5:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 6, &pokedexLength); // shortest
+    case SC_SHORTEST:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_SHORTEST, &pokedexLength);
         break;
     default:
         GF_ASSERT(0);
@@ -756,35 +806,35 @@ static void Pokedex_Sort_FilterFirstLetter(int firstLetterFilter, u16 *pokedexPo
     int pokedexLength;
 
     switch (firstLetterFilter) {
-    case 0:
+    case FFL_NONE:
         pokedexSortedArray = NULL;
         break;
-    case 1:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 7, &pokedexLength); // ABC
+    case FFL_ABC:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_ABC, &pokedexLength);
         break;
-    case 2:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 8, &pokedexLength); // DEF
+    case FFL_DEF:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_DEF, &pokedexLength);
         break;
-    case 3:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 9, &pokedexLength); // GHI
+    case FFL_GHI:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_GHI, &pokedexLength);
         break;
-    case 4:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 10, &pokedexLength); // JKL
+    case FFL_JKL:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_JKL, &pokedexLength);
         break;
-    case 5:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 11, &pokedexLength); // MNO
+    case FFL_MNO:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_MNO, &pokedexLength);
         break;
-    case 6:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 12, &pokedexLength); // PQR
+    case FFL_PQR:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_PQR, &pokedexLength);
         break;
-    case 7:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 13, &pokedexLength); // STU
+    case FFL_STU:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_STU, &pokedexLength);
         break;
-    case 8:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 14, &pokedexLength); // VWX
+    case FFL_VWX:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_VWX, &pokedexLength);
         break;
-    case 9:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 15, &pokedexLength); // YZ
+    case FFL_YZ:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_YZ, &pokedexLength);
         break;
     default:
         GF_ASSERT(0);
@@ -806,59 +856,59 @@ static void Pokedex_Sort_FilterType(int typeFilter, u16 *param1, int *param2, co
     int pokedexLength;
 
     switch (typeFilter) {
-    case 0:
+    case FT_NONE:
         pokedexSortedArray = NULL;
         break;
-    case 1:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 16, &pokedexLength); // normal
+    case FT_NORMAL:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_NORMAL, &pokedexLength);
         break;
-    case 2:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 17, &pokedexLength); // fighting
+    case FT_FIGHTING:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_FIGHTING, &pokedexLength);
         break;
-    case 3:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 18, &pokedexLength); // flying
+    case FT_FLYING:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_FLYING, &pokedexLength);
         break;
-    case 4:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 19, &pokedexLength); // poison
+    case FT_POISON:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_POISON, &pokedexLength);
         break;
-    case 5:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 20, &pokedexLength); // ground
+    case FT_GROUND:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_GROUND, &pokedexLength);
         break;
-    case 6:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 21, &pokedexLength); // rock
+    case FT_ROCK:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_ROCK, &pokedexLength);
         break;
-    case 7:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 22, &pokedexLength); // bug
+    case FT_BUG:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_BUG, &pokedexLength);
         break;
-    case 8:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 23, &pokedexLength); // ghost
+    case FT_GHOST:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_GHOST, &pokedexLength);
         break;
-    case 9:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 24, &pokedexLength); // steel
+    case FT_STEEL:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_STEEL, &pokedexLength);
         break;
-    case 10:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 25, &pokedexLength); // fire
+    case FT_FIRE:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_FIRE, &pokedexLength);
         break;
-    case 11:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 26, &pokedexLength); // water
+    case FT_WATER:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_WATER, &pokedexLength);
         break;
-    case 12:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 27, &pokedexLength); // grass
+    case FT_GRASS:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_GRASS, &pokedexLength);
         break;
-    case 13:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 28, &pokedexLength); // electric
+    case FT_ELECTRIC:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_ELECTRIC, &pokedexLength);
         break;
-    case 14:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 29, &pokedexLength); // psychic
+    case FT_PSYCHIC:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_PSYCHIC, &pokedexLength);
         break;
-    case 15:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 30, &pokedexLength); // ice
+    case FT_ICE:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_ICE, &pokedexLength);
         break;
-    case 16:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 31, &pokedexLength); // dragon
+    case FT_DRAGON:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_DRAGON, &pokedexLength);
         break;
-    case 17:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 32, &pokedexLength); // dark
+    case FT_DARK:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_DARK, &pokedexLength);
         break;
     default:
         GF_ASSERT(0);
@@ -880,50 +930,50 @@ static void Pokedex_Sort_FilterBodyShape(int bodyShapeFilter, u16 *param1, int *
     int pokedexLength;
 
     switch (bodyShapeFilter) {
-    case 0:
+    case FBS_NONE:
         pokedexSortedArray = NULL;
         break;
-    case 1:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 33, &pokedexLength); // quadruped
+    case FBS_QUADRUPED:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_QUADRUPED, &pokedexLength);
         break;
-    case 2:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 34, &pokedexLength); // bidedal tailless
+    case FBS_BIPEDALTAILLESS:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_BIPEDALTAILLESS, &pokedexLength);
         break;
-    case 3:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 35, &pokedexLength); // bipedal tailed
+    case FBS_BIPEDALTAILED:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_BIPEDALTAILED, &pokedexLength);
         break;
-    case 4:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 36, &pokedexLength); // serpentine
+    case FBS_SERPENTINE:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_SERPENTINE, &pokedexLength);
         break;
-    case 5:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 37, &pokedexLength); // multi winged
+    case FBS_MULTIWINGED:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_MULTIWINGED, &pokedexLength);
         break;
-    case 6:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 38, &pokedexLength); // winged
+    case FBS_WINGED:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_WINGED, &pokedexLength);
         break;
-    case 7:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 39, &pokedexLength); // insectoid
+    case FBS_INSECTOID:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_INSECTOID, &pokedexLength);
         break;
-    case 8:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 40, &pokedexLength); // head base
+    case FBS_HEADBASE:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_HEADBASE, &pokedexLength);
         break;
-    case 9:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 41, &pokedexLength); // head arms
+    case FBS_HEADARMS:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_HEADARMS, &pokedexLength);
         break;
-    case 10:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 42, &pokedexLength); // head legs
+    case FBS_HEADLEGS:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_HEADLEGS, &pokedexLength);
         break;
-    case 11:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 43, &pokedexLength); // tentacles
+    case FBS_TENTACLES:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_TENTACLES, &pokedexLength);
         break;
-    case 12:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 44, &pokedexLength); // fins
+    case FBS_FINS:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_FINS, &pokedexLength);
         break;
-    case 13:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 45, &pokedexLength); // head
+    case FBS_HEAD:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_HEAD, &pokedexLength);
         break;
-    case 14:
-        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, 46, &pokedexLength); // multi-body
+    case FBS_MULTIBODY:
+        pokedexSortedArray = Pokedex_Sort_SortedArray(heapID, PDFI_MULTIBODY, &pokedexLength);
         break;
     default:
         GF_ASSERT(0);
@@ -939,7 +989,7 @@ static void Pokedex_Sort_FilterBodyShape(int bodyShapeFilter, u16 *param1, int *
     }
 }
 
-static void Pokedex_Sort_NumSeenNCaught(pokedexCompletionStruct *pokedexCompletion, int *numEncountered, int *numCaught)
+static void Pokedex_Sort_NumSeenNCaught(PokedexProgress *pokedexCompletion, int *numEncountered, int *numCaught)
 {
     int index;
 

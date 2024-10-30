@@ -9,7 +9,7 @@
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D4C0C.h"
 #include "overlay021/ov21_021E29DC.h"
-#include "overlay021/pokedex_sort.h"
+#include "overlay021/ov21_021D3208.h"
 #include "overlay021/pokedexencdata.h"
 #include "overlay021/pokedexfieldmap.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
@@ -83,7 +83,7 @@ enum EncounterTime {
 };
 
 typedef struct {
-    pokedexStatus *dexStatus;
+    PokedexStatus *dexStatus;
     int encounterTime;
     UnkStruct_ov21_021E68F4 *unk_08;
 } UnkStruct_ov21_021DCACC;

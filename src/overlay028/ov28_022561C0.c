@@ -637,13 +637,13 @@ static void ov28_02256914(UnkStruct_ov28_02256210 *param0, const UnkStruct_ov28_
 
         v1 = SaveData_Pokedex(PoketchSystem_GetSaveData(param0->poketchSys));
 
-        if (Pokedex_NationalUnlocked(v1)) {
+        if (Pokedex_IsNationalUnlocked(v1)) {
             v2 = v0;
         } else {
             v2 = Pokemon_NationalDexNumber((u16)v0);
         }
 
-        if (((v2 > 0) && (v2 <= NATIONAL_DEX_COUNT)) && Pokedex_EncounteredSpecies(v1, v2)) {
+        if (((v2 > 0) && (v2 <= NATIONAL_DEX_COUNT)) && Pokedex_HasEncountered(v1, v2)) {
             ov25_02254444(v2, 0);
         }
     }

@@ -1,9 +1,9 @@
-#ifndef POKEPLATINUM_STRUCT_OV21_021D3A60_H
-#define POKEPLATINUM_STRUCT_OV21_021D3A60_H
+#ifndef POKEPLATINUM_POKEDEXPROGRESS_H
+#define POKEPLATINUM_POKEDEXPROGRESS_H
 
 #include "constants/species.h"
 
-#include "overlay021/struct_speciesCaughtStatus.h"
+#include "overlay021/speciesCaughtStatus.h"
 
 typedef struct {
     SpeciesCaughtStatus caughtStatusArray[NATIONAL_DEX_COUNT];
@@ -12,6 +12,6 @@ typedef struct {
     int encounteredIndexArray[NATIONAL_DEX_COUNT]; // dex number for appearing in dex, dexLength+1 otherwise
     int unk_1724;
     int numSpecies;
-} pokedexCompletionStruct;
+} PokedexProgress;
 
-#endif // POKEPLATINUM_STRUCT_OV21_021D3A60_H
+#endif // POKEPLATINUM_POKEDEXPROGRESS_H

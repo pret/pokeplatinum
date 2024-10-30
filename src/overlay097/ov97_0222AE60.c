@@ -239,7 +239,7 @@ static void ov97_0222AF1C(UnkStruct_0222AE60 *param0)
 
     sub_02017B70(v0);
 
-    if (Pokedex_NationalUnlocked(param0->unk_08) == 0) {
+    if (Pokedex_IsNationalUnlocked(param0->unk_08) == 0) {
         return;
     }
 
