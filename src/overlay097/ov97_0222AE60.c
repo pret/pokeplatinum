@@ -5,8 +5,6 @@
 #include "struct_decls/struct_0202442C_decl.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay057/const_ov57_021D0F70.h"
-#include "overlay057/const_ov57_021D0F90.h"
 #include "overlay077/const_ov77_021D742C.h"
 #include "overlay097/const_ov97_0223D674.h"
 #include "overlay097/ov97_02235D18.h"
@@ -19,6 +17,7 @@
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "font.h"
+#include "game_start.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -47,7 +46,7 @@
 #include "unk_020366A0.h"
 #include "unk_0209A74C.h"
 
-FS_EXTERN_OVERLAY(overlay57);
+FS_EXTERN_OVERLAY(game_start);
 FS_EXTERN_OVERLAY(overlay77);
 FS_EXTERN_OVERLAY(overlay97);
 FS_EXTERN_OVERLAY(overlay98);
@@ -1164,10 +1163,10 @@ static void ov97_0222C094(UnkStruct_0222AE60 *param0)
 {
     switch (param0->unk_58) {
     case 1:
-        EnqueueApplication(FS_OVERLAY_ID(overlay57), &Unk_ov57_021D0F70);
+        EnqueueApplication(FS_OVERLAY_ID(game_start), &Unk_ov57_021D0F70);
         break;
     case 2:
-        EnqueueApplication(FS_OVERLAY_ID(overlay57), &Unk_ov57_021D0F90);
+        EnqueueApplication(FS_OVERLAY_ID(game_start), &Unk_ov57_021D0F90);
         break;
     case 3:
         EnqueueApplication(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D71C);

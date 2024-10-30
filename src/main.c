@@ -6,7 +6,6 @@
 
 #include "constants/heap.h"
 
-#include "overlay057/const_ov57_021D0F70.h"
 #include "overlay077/const_ov77_021D742C.h"
 
 #include "assert.h"
@@ -15,6 +14,7 @@
 #include "core_sys.h"
 #include "font.h"
 #include "game_overlay.h"
+#include "game_start.h"
 #include "main.h"
 #include "overlay_manager.h"
 #include "rtc.h"
@@ -39,7 +39,7 @@
 
 #define RESET_COMBO (PAD_BUTTON_START | PAD_BUTTON_SELECT | PAD_BUTTON_L | PAD_BUTTON_R)
 
-FS_EXTERN_OVERLAY(overlay57);
+FS_EXTERN_OVERLAY(game_start);
 FS_EXTERN_OVERLAY(overlay77);
 
 enum OSResetParameter {
@@ -110,7 +110,7 @@ void NitroMain(void)
             sub_0200F344(0, 0x0);
             sub_0200F344(1, 0x0);
             sApplication.args.error = TRUE;
-            EnqueueApplication(FS_OVERLAY_ID(overlay57), &Unk_ov57_021D0F70);
+            EnqueueApplication(FS_OVERLAY_ID(game_start), &Unk_ov57_021D0F70);
             break;
 
         default:

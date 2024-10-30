@@ -1096,11 +1096,10 @@ Overlay overlay56
 	Object main.nef.p/src_overlay056_ov56_022561C0.c.o
 }
 
-Overlay overlay57
+Overlay game_start
 {
 	After main
-	Object main.nef.p/src_overlay057_ov57_021D0D80.c.o
-	Object main.nef.p/src_overlay057_ov57_021D0F30.c.o
+	Object main.nef.p/src_game_start.c.o
 }
 
 Overlay overlay58

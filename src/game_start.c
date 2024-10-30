@@ -1,3 +1,5 @@
+#include "game_start.h"
+
 #include <nitro.h>
 #include <string.h>
 
@@ -7,11 +9,6 @@
 #include "struct_decls/struct_02027854_decl.h"
 #include "struct_decls/struct_0202B4A0_decl.h"
 #include "struct_defs/struct_02055BA8.h"
-
-#include "overlay057/const_ov57_021D0F70.h"
-#include "overlay057/const_ov57_021D0F80.h"
-#include "overlay057/const_ov57_021D0F90.h"
-#include "overlay057/ov57_021D0F30.h"
 
 #include "game_options.h"
 #include "heap.h"
@@ -28,8 +25,11 @@
 #include "unk_02025CB0.h"
 #include "unk_02027B70.h"
 #include "unk_0202B37C.h"
+#include "unk_0203D178.h"
 #include "unk_0205C980.h"
+#include "unk_0206A8DC.h"
 #include "unk_0206B9D8.h"
+#include "vars_flags.h"
 
 #include "constdata/const_020EA10C.h"
 #include "constdata/const_020EA11C.h"
@@ -179,4 +179,23 @@ static void ov57_021D0EAC(int param0, SaveData *param1, BOOL param2)
 
     v1 = sub_02027854(param1);
     sub_02027B90(v1, param0, sBerryInitTable, NELEMS(sBerryInitTable) / 2);
+}
+
+void ov57_021D0F30(int param0, SaveData *param1)
+{
+    if (!SaveData_Load(param1)) {
+        OS_ResetSystem(0);
+    }
+}
+
+void ov57_021D0F44(int param0, SaveData *param1)
+{
+    TrainerInfo *v0;
+
+    SaveData_Clear(param1);
+    sub_0203D1A8(param1);
+
+    v0 = SaveData_GetTrainerInfo(param1);
+    TrainerInfo_SetMoney(v0, 3000);
+    sub_0206A92C(SaveData_GetVarsFlags(param1));
 }

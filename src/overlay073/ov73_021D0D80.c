@@ -7,12 +7,11 @@
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay057/const_ov57_021D0F80.h"
-
 #include "bg_window.h"
 #include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
+#include "game_start.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -45,7 +44,7 @@
 
 #include "constdata/const_020F2DAC.h"
 
-FS_EXTERN_OVERLAY(overlay57);
+FS_EXTERN_OVERLAY(game_start);
 
 typedef struct {
     int unk_00;
@@ -249,7 +248,7 @@ int ov73_021D0F7C(OverlayManager *param0, int *param1)
     sub_0208716C(v0->unk_74);
     OverlayManager_FreeData(param0);
     Heap_Destroy(v1);
-    EnqueueApplication(FS_OVERLAY_ID(overlay57), &Unk_ov57_021D0F80);
+    EnqueueApplication(FS_OVERLAY_ID(game_start), &Unk_ov57_021D0F80);
 
     return 1;
 }
