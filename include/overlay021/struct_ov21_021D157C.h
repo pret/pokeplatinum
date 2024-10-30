@@ -3,10 +3,10 @@
 
 #include <nnsys.h>
 
-#include "struct_decls/struct_02018340_decl.h"
+#include "bg_window.h"
 
 typedef struct {
-    BGL *unk_00;
+    BgConfig *unk_00;
     NNSG2dScreenData *unk_04;
     int unk_08;
     int unk_0C;

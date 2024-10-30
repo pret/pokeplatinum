@@ -9,12 +9,12 @@
 
 #include "savedata/save_table.h"
 
+#include "charcode_util.h"
 #include "communication_information.h"
 #include "heap.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "trainer_info.h"
-#include "unk_020021B0.h"
 
 __attribute__((aligned(4))) static const u8 Unk_ov59_021D33B0[] = {
     0x2,
@@ -160,7 +160,7 @@ static void ov59_021D2B90(SaveData *param0, UnkStruct_0202E794 *param1, UnkStruc
         param1->unk_05 = GAME_VERSION;
         param1->unk_06 = GAME_LANGUAGE;
 
-        sub_020021D0(param1->unk_08, TrainerInfo_Name(v1), 7 + 1);
+        CharCode_CopyNumChars(param1->unk_08, TrainerInfo_Name(v1), 7 + 1);
 
         param1->unk_18 = param2[v0].unk_00;
         param1->unk_18.unk_01 = 0;

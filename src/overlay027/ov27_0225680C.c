@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/ov25_02255090.h"
 #include "overlay025/ov25_02255540.h"
@@ -17,13 +15,12 @@
 #include "overlay025/struct_ov25_02255958.h"
 #include "overlay027/struct_ov27_0225680C_1.h"
 #include "overlay027/struct_ov27_0225680C_decl.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
+#include "graphics.h"
 #include "heap.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
-#include "unk_02018340.h"
 
 typedef struct {
     u16 unk_00;
@@ -33,7 +30,7 @@ typedef struct {
 
 struct UnkStruct_ov27_0225680C_t {
     const UnkStruct_ov27_0225680C_1 *unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     u32 unk_08[10];
     NNSG2dOamManagerInstance *unk_30;
     UnkStruct_ov25_02255958 unk_34;
@@ -58,19 +55,19 @@ static void ov27_02256D00(SysTask *param0, void *param1);
 static void ov27_02256D80(SysTask *param0, void *param1);
 static void ov27_02256E1C(SysTask *param0, void *param1);
 static BOOL ov27_02256E90(UnkStruct_ov27_02256E90 *param0, u32 param1);
-static void ov27_02256EC4(BGL *param0, u32 param1);
+static void ov27_02256EC4(BgConfig *param0, u32 param1);
 static void ov27_02256F24(SysTask *param0, void *param1);
 static void ov27_02256F7C(UnkStruct_ov27_0225680C *param0);
 struct PoketchSystem *FieldSystem_GetPoketchSystem(void);
 
-BOOL ov27_0225680C(UnkStruct_ov27_0225680C **param0, const UnkStruct_ov27_0225680C_1 *param1, BGL *param2)
+BOOL ov27_0225680C(UnkStruct_ov27_0225680C **param0, const UnkStruct_ov27_0225680C_1 *param1, BgConfig *param2)
 {
     UnkStruct_ov27_0225680C *v0 = (UnkStruct_ov27_0225680C *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov27_0225680C));
 
     if (v0 != NULL) {
         v0->unk_00 = param1;
         v0->unk_5C = ov25_02254664();
-        v0->unk_04 = sub_02018340(8);
+        v0->unk_04 = BgConfig_New(8);
 
         if (v0->unk_04 == NULL) {
             return 0;
@@ -175,7 +172,7 @@ static void ov27_02256A04(UnkStruct_ov25_02255224 *param0)
 
 static void ov27_02256A18(SysTask *param0, void *param1)
 {
-    static const UnkStruct_ov97_0222DB78 v0 = {
+    static const BgTemplate v0 = {
         0,
         0,
         0x800,
@@ -193,12 +190,12 @@ static void ov27_02256A18(SysTask *param0, void *param1)
     GXSDispCnt v1;
     UnkStruct_ov27_0225680C *v2 = ov25_0225523C(param1);
 
-    sub_020183C4(v2->unk_04, 6, &v0, 0);
-    sub_02006E3C(12, 21, v2->unk_04, 6, 0, 0, 1, 8);
-    sub_02006E60(12, 20, v2->unk_04, 6, 0, 0, 1, 8);
+    Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
+    Graphics_LoadTilesToBgLayer(12, 21, v2->unk_04, 6, 0, 0, 1, 8);
+    Graphics_LoadTilemapToBgLayer(12, 20, v2->unk_04, 6, 0, 0, 1, 8);
 
     ov25_022546B8(0, 0);
-    sub_02019448(v2->unk_04, 6);
+    Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);
 
     {
         UnkStruct_ov27_0225680C *v3 = ov25_0225523C(param1);
@@ -224,8 +221,8 @@ static void ov27_02256A18(SysTask *param0, void *param1)
 
 static BOOL ov27_02256AEC(UnkStruct_ov27_0225680C *param0)
 {
-    sub_02006EC0(12, 2, 1, 0, 0, 1, 8);
-    sub_02006EC0(12, 22, 1, 80 * 0x20, 0, 1, 8);
+    Graphics_LoadObjectTiles(12, 2, 1, 0, 0, 1, 8);
+    Graphics_LoadObjectTiles(12, 22, 1, 80 * 0x20, 0, 1, 8);
 
     return 1;
 }
@@ -344,7 +341,7 @@ static void ov27_02256BB0(SysTask *param0, void *param1)
 
     ov25_02255914(v0->unk_60[8], 1);
     ov27_02256EC4(v0->unk_04, 0);
-    sub_02019448(v0->unk_04, 6);
+    Bg_CopyTilemapBufferToVRAM(v0->unk_04, 6);
     ov27_02256A04(param1);
 }
 
@@ -356,7 +353,7 @@ static void ov27_02256BE8(SysTask *param0, void *param1)
     ov25_022558C4(v0->unk_60[8], 11);
     ov27_02256EC4(v0->unk_04, 1);
 
-    sub_02019448(v0->unk_04, 6);
+    Bg_CopyTilemapBufferToVRAM(v0->unk_04, 6);
 
     PoketchSystem_PlaySoundEffect(1641);
     ov27_02256A04(param1);
@@ -376,7 +373,7 @@ static void ov27_02256C2C(SysTask *param0, void *param1)
     case 0:
         ov25_022558C4(v1->unk_60[8], 12);
         ov27_02256EC4(v1->unk_04, 0);
-        sub_02019448(v1->unk_04, 6);
+        Bg_CopyTilemapBufferToVRAM(v1->unk_04, 6);
         ov25_0225524C(param1);
         break;
     case 1:
@@ -411,7 +408,7 @@ static void ov27_02256C80(SysTask *param0, void *param1)
         if (ov27_02256E90(v2, 6)) {
             PoketchSystem_PlaySoundEffect(1641);
             ov27_02256EC4(v1->unk_04, v2->unk_03);
-            sub_02019448(v1->unk_04, 6);
+            Bg_CopyTilemapBufferToVRAM(v1->unk_04, 6);
         }
         break;
     }
@@ -444,7 +441,7 @@ static void ov27_02256D00(SysTask *param0, void *param1)
         if (ov27_02256E90(v2, 3)) {
             PoketchSystem_PlaySoundEffect(1641);
             ov27_02256EC4(v1->unk_04, v2->unk_03);
-            sub_02019448(v1->unk_04, 6);
+            Bg_CopyTilemapBufferToVRAM(v1->unk_04, 6);
         }
         break;
     }
@@ -471,7 +468,7 @@ static void ov27_02256D80(SysTask *param0, void *param1)
         v2->unk_02 = 0;
         ov25_022558C4(v1->unk_60[8], 15);
         ov27_02256EC4(v1->unk_04, 5);
-        sub_02019448(v1->unk_04, 6);
+        Bg_CopyTilemapBufferToVRAM(v1->unk_04, 6);
         PoketchSystem_PlaySoundEffect(1638);
         ov25_0225524C(param1);
     case 1:
@@ -480,7 +477,7 @@ static void ov27_02256D80(SysTask *param0, void *param1)
             v2->unk_02 ^= 1;
             v2->unk_03 = 5 + v2->unk_02;
             ov27_02256EC4(v1->unk_04, v2->unk_03);
-            sub_02019448(v1->unk_04, 6);
+            Bg_CopyTilemapBufferToVRAM(v1->unk_04, 6);
         }
         break;
     }
@@ -505,7 +502,7 @@ static void ov27_02256E1C(SysTask *param0, void *param1)
     case 0:
         ov25_022558C4(v1->unk_60[8], 16);
         ov27_02256EC4(v1->unk_04, 6);
-        sub_02019448(v1->unk_04, 6);
+        Bg_CopyTilemapBufferToVRAM(v1->unk_04, 6);
         ov25_0225524C(param1);
         v2->unk_00 = 0;
     case 1:
@@ -538,13 +535,13 @@ static BOOL ov27_02256E90(UnkStruct_ov27_02256E90 *param0, u32 param1)
     return 0;
 }
 
-static void ov27_02256EC4(BGL *param0, u32 param1)
+static void ov27_02256EC4(BgConfig *param0, u32 param1)
 {
     u16 *v0;
     u32 v1, v2;
     u16 v3;
 
-    v0 = sub_02019FE4(param0, 6);
+    v0 = Bg_GetTilemapBuffer(param0, 6);
     v0 += ((9 * 32) + 9);
     v3 = 2 + param1 * 5;
 
@@ -571,7 +568,7 @@ static void ov27_02256F24(SysTask *param0, void *param1)
     case 1:
         ov25_022559B0(&(v0->unk_34));
         ov25_022559B0(&(v0->unk_48));
-        sub_02019044(v0->unk_04, 6);
+        Bg_FreeTilemapBuffer(v0->unk_04, 6);
         SysTask_Done(v0->unk_84);
         v0->unk_84 = NULL;
         ov27_02256A04(param1);

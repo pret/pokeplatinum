@@ -3,18 +3,16 @@
 
 #include <nnsys.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-#include "struct_defs/struct_0205AA50.h"
-
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 
+#include "bg_window.h"
 #include "message.h"
 #include "strbuf.h"
 #include "string_template.h"
 
 typedef struct {
-    BGL *unk_00;
+    BgConfig *unk_00;
     u8 padding_04[4];
     const UnkStruct_ov19_021D4DF0 *unk_08;
     UnkStruct_ov19_021D61B0 *unk_0C;

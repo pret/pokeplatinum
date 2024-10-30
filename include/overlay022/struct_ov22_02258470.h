@@ -4,18 +4,19 @@
 #include "struct_decls/struct_02015064_decl.h"
 #include "struct_decls/struct_02015128_decl.h"
 #include "struct_decls/struct_020151A4_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 
 #include "overlay022/struct_ov22_02254DE0.h"
 #include "overlay022/struct_ov22_0225899C.h"
 #include "overlay022/struct_ov22_02259484.h"
+
+#include "bg_window.h"
 
 typedef struct {
     UnkStruct_02015064 *unk_00;
     UnkStruct_02015128 **unk_04;
     UnkStruct_020151A4 **unk_08;
     u8 *unk_0C;
-    BGL *unk_10;
+    BgConfig *unk_10;
     UnkStruct_ov22_02254DE0 *unk_14;
     UnkStruct_ov22_02259484 *unk_18;
     int unk_1C;

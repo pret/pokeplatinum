@@ -3,13 +3,10 @@
 
 #include "struct_decls/cell_actor_data.h"
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02095C48_sub1.h"
 
 #include "battle/struct_ov16_0223E0C8.h"
@@ -24,7 +21,9 @@
 #include "overlay017/struct_ov17_0224C9A4.h"
 #include "overlay017/struct_ov17_02253084.h"
 
+#include "bg_window.h"
 #include "message.h"
+#include "palette.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
@@ -36,7 +35,7 @@ typedef struct {
     Sprite *unk_48[4];
     SpriteRenderer *unk_58;
     SpriteGfxHandler *unk_5C;
-    BGL *unk_60;
+    BgConfig *unk_60;
     Window unk_64[2];
     MessageLoader *unk_84;
     StringTemplate *unk_88;

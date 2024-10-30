@@ -3,16 +3,18 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/font.h"
 #include "constants/narc.h"
+
+#include "fonts/pl_font.naix"
 
 #include "charcode.h"
 #include "font_manager.h"
+#include "graphics.h"
 #include "heap.h"
+#include "palette.h"
 #include "render_text.h"
 #include "strbuf.h"
 #include "text.h"
-#include "unk_02006E3C.h"
 
 typedef struct {
     TextGlyph curGlyph;
@@ -25,19 +27,19 @@ static const struct {
     u16 isMonospace;
 } sFontArchiveData[FONT_MAX] = {
     [FONT_SYSTEM] = {
-        .arcFileIdx = 0,
+        .arcFileIdx = font_system_NFGR,
         .isMonospace = FALSE,
     },
     [FONT_MESSAGE] = {
-        .arcFileIdx = 1,
+        .arcFileIdx = font_message_NFGR,
         .isMonospace = FALSE,
     },
     [FONT_SUBSCREEN] = {
-        .arcFileIdx = 2,
+        .arcFileIdx = font_subscreen_NFGR,
         .isMonospace = FALSE,
     },
     [FONT_UNOWN] = {
-        .arcFileIdx = 3,
+        .arcFileIdx = font_unown_NFGR,
         .isMonospace = FALSE,
     },
 };
@@ -231,12 +233,22 @@ u8 Font_GetAttribute(u8 font, u8 attribute)
 
 void Font_LoadTextPalette(int palLocation, u32 palSlotOffset, u32 heapID)
 {
-    sub_02006E84(NARC_INDEX_GRAPHIC__PL_FONT, 6, palLocation, palSlotOffset, 0x20, heapID);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__PL_FONT,
+        font_NCLR,
+        palLocation,
+        palSlotOffset,
+        PALETTE_SIZE_BYTES,
+        heapID);
 }
 
 void Font_LoadScreenIndicatorsPalette(int palLocation, u32 palSlotOffset, u32 heapID)
 {
-    sub_02006E84(NARC_INDEX_GRAPHIC__PL_FONT, 7, palLocation, palSlotOffset, 0x20, heapID);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__PL_FONT,
+        screen_indicators_NCLR,
+        palLocation,
+        palSlotOffset,
+        PALETTE_SIZE_BYTES,
+        heapID);
 }
 
 u32 Font_CalcMaxLineWidth(enum Font font, const Strbuf *strbuf, u32 letterSpacing)

@@ -11,7 +11,6 @@
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/struct_0203DA00.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02093BBC.h"
 #include "struct_defs/struct_02095C60.h"
 
@@ -49,6 +48,7 @@
 #include "overlay022/struct_ov22_0225AF68.h"
 #include "overlay022/struct_ov22_0225B388.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "font.h"
@@ -60,6 +60,7 @@
 #include "overlay_manager.h"
 #include "pokemon.h"
 #include "render_text.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
@@ -70,11 +71,9 @@
 #include "unk_0200679C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A9DC.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
 #include "unk_02017728.h"
-#include "unk_02018340.h"
 #include "unk_0201E3D8.h"
 #include "unk_020298BC.h"
 #include "unk_020363E8.h"
@@ -229,7 +228,7 @@ int ov22_02255D44(OverlayManager *param0, int *param1)
     ov22_022589E0(&v0->unk_4FC, &v0->unk_458, &v0->unk_3CC, &v0->unk_00, &v0->unk_5C4, 1);
 
     v0->unk_714 = sub_02015920(13);
-    v0->unk_718 = sub_0201A778(13, 1);
+    v0->unk_718 = Window_New(13, 1);
     v0->unk_70C = 0;
 
     sub_02004550(53, 0, 0);
@@ -380,7 +379,7 @@ int ov22_02256098(OverlayManager *param0, int *param1)
     }
 
     sub_02015938(v0->unk_714);
-    sub_0201A928(v0->unk_718, 1);
+    Windows_Delete(v0->unk_718, 1);
 
     ov22_02256C38(v0);
     ov22_02258A34(&v0->unk_4FC);
@@ -465,7 +464,7 @@ int ov22_02256174(OverlayManager *param0, int *param1)
     ov22_022589E0(&v0->unk_4FC, &v0->unk_458, &v0->unk_3CC, &v0->unk_00, &v0->unk_5C4, 0);
 
     v0->unk_714 = sub_02015920(13);
-    v0->unk_718 = sub_0201A778(13, 1);
+    v0->unk_718 = Window_New(13, 1);
     v0->unk_70C = 0;
 
     sub_020959F4(v0->unk_734->unk_16);
@@ -641,7 +640,7 @@ int ov22_02256600(OverlayManager *param0, int *param1)
     ov22_02256FD8(v2->unk_04, &v0->unk_458, v0->unk_724, v2->unk_24);
 
     sub_02015938(v0->unk_714);
-    sub_0201A928(v0->unk_718, 1);
+    Windows_Delete(v0->unk_718, 1);
 
     ov22_02256C38(v0);
     ov22_02258A34(&v0->unk_4FC);
@@ -801,7 +800,7 @@ static void ov22_022568DC(UnkStruct_ov22_02255D44 *param0)
     G2_SetBG2Priority(2);
     G2_SetBG3Priority(3);
 
-    sub_02019184(param0->unk_00.unk_40, 3, 3, -16);
+    Bg_SetOffset(param0->unk_00.unk_40, 3, 3, -16);
 
     ov22_02258354(&param0->unk_3CC, 0);
     ov22_022583A0(&param0->unk_3CC, 0, 2, 0, NULL);
@@ -1029,7 +1028,7 @@ static void ov22_02256C70(SysTask *param0, void *param1)
         break;
     case 6:
         ov22_02256948(v0->unk_00, 1);
-        sub_0201C63C(v0->unk_00->unk_00.unk_40, 1, 3, 0);
+        Bg_ScheduleScroll(v0->unk_00->unk_00.unk_40, 1, 3, 0);
         ov22_022571D4(v0->unk_00);
         v0->unk_0C++;
         break;
@@ -1089,7 +1088,7 @@ static void ov22_02256DE0(SysTask *param0, void *param1)
         ov22_022568DC(v0->unk_00);
         ov22_02256AD4(v0->unk_00);
         ov22_02256948(v0->unk_00, 0);
-        sub_0201C63C(v0->unk_00->unk_00.unk_40, 1, 3, -(5 * 8));
+        Bg_ScheduleScroll(v0->unk_00->unk_00.unk_40, 1, 3, -(5 * 8));
         v0->unk_0C++;
         break;
     case 3:
@@ -1231,10 +1230,10 @@ static BOOL ov22_02257098(UnkStruct_ov22_02256C48 *param0, int param1, int param
     }
 
     if (param0->unk_08 >= 1) {
-        sub_0201C63C(param0->unk_00->unk_00.unk_40, 2, 2, param1);
-        sub_0201C63C(param0->unk_00->unk_00.unk_40, 1, 2, param1);
-        sub_0201C63C(param0->unk_00->unk_00.unk_40, 2, 5, param2);
-        sub_0201C63C(param0->unk_00->unk_00.unk_40, 1, 5, param2);
+        Bg_ScheduleScroll(param0->unk_00->unk_00.unk_40, 2, 2, param1);
+        Bg_ScheduleScroll(param0->unk_00->unk_00.unk_40, 1, 2, param1);
+        Bg_ScheduleScroll(param0->unk_00->unk_00.unk_40, 2, 5, param2);
+        Bg_ScheduleScroll(param0->unk_00->unk_00.unk_40, 1, 5, param2);
     }
 
     param0->unk_08++;
@@ -1248,9 +1247,9 @@ static BOOL ov22_02257098(UnkStruct_ov22_02256C48 *param0, int param1, int param
 
 static void ov22_02257104(UnkStruct_ov22_02255D44 *param0)
 {
-    sub_02019EBC(param0->unk_00.unk_40, 3);
-    sub_02019184(param0->unk_00.unk_40, 3, 0, 0);
-    sub_02019184(param0->unk_00.unk_40, 3, 3, 0);
+    Bg_ClearTilemap(param0->unk_00.unk_40, 3);
+    Bg_SetOffset(param0->unk_00.unk_40, 3, 0, 0);
+    Bg_SetOffset(param0->unk_00.unk_40, 3, 3, 0);
 
     ov22_022574F4(param0, 0);
 
@@ -1271,7 +1270,7 @@ static void ov22_0225718C(UnkStruct_ov22_02255D44 *param0)
 {
     ov22_02257548(param0);
 
-    sub_02019EBC(param0->unk_00.unk_40, 3);
+    Bg_ClearTilemap(param0->unk_00.unk_40, 3);
 
     ov22_022568DC(param0);
 
@@ -1287,9 +1286,9 @@ static void ov22_022571D4(UnkStruct_ov22_02255D44 *param0)
 {
     UnkStruct_02015958 v0;
 
-    sub_02019EBC(param0->unk_00.unk_40, 3);
-    sub_02019184(param0->unk_00.unk_40, 3, 0, 0);
-    sub_02019184(param0->unk_00.unk_40, 3, 3, 0);
+    Bg_ClearTilemap(param0->unk_00.unk_40, 3);
+    Bg_SetOffset(param0->unk_00.unk_40, 3, 0, 0);
+    Bg_SetOffset(param0->unk_00.unk_40, 3, 3, 0);
 
     v0.unk_00 = param0->unk_00.unk_40;
     v0.unk_04 = 3;
@@ -1311,7 +1310,7 @@ static void ov22_02257258(UnkStruct_ov22_02255D44 *param0)
 {
     sub_02015A54(param0->unk_714);
     ov22_022574EC(param0);
-    sub_02019EBC(param0->unk_00.unk_40, 3);
+    Bg_ClearTilemap(param0->unk_00.unk_40, 3);
 }
 
 static u32 ov22_02257278(UnkStruct_ov22_02255D44 *param0)
@@ -1342,18 +1341,18 @@ static void ov22_022572A0(UnkStruct_ov22_02255D44 *param0, u32 param1, u8 param2
     int v2 = Options_Frame(param0->unk_738);
 
     Font_LoadScreenIndicatorsPalette(0, 7 * 32, 14);
-    BGL_AddWindow(param0->unk_00.unk_40, param0->unk_718, 3, param2, param3, param4, param5, 7, (0 + (29 * 4) + (18 + 12)));
-    BGL_FillWindow(param0->unk_718, 15);
-    sub_0200DD0C(param0->unk_00.unk_40, 3, (0 + (29 * 4)), 8, v2, 14);
-    sub_0200E060(param0->unk_718, 0, (0 + (29 * 4)), 8);
+    Window_Add(param0->unk_00.unk_40, param0->unk_718, 3, param2, param3, param4, param5, 7, (0 + (29 * 4) + (18 + 12)));
+    Window_FillTilemap(param0->unk_718, 15);
+    LoadMessageBoxGraphics(param0->unk_00.unk_40, 3, (0 + (29 * 4)), 8, v2, 14);
+    Window_DrawMessageBoxWithScrollCursor(param0->unk_718, 0, (0 + (29 * 4)), 8);
 
     v0 = MessageLoader_Init(0, 26, 385, 13);
     v1 = MessageLoader_GetNewStrbuf(v0, param1);
 
-    Text_AddPrinterWithParamsAndColor(param0->unk_718, 1, v1, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param0->unk_718, FONT_MESSAGE, v1, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
     Strbuf_Free(v1);
     MessageLoader_Free(v0);
-    sub_0201A954(param0->unk_718);
+    Window_CopyToVRAM(param0->unk_718);
 }
 
 static void ov22_02257368(UnkStruct_ov22_02255D44 *param0, u32 param1)
@@ -1362,18 +1361,18 @@ static void ov22_02257368(UnkStruct_ov22_02255D44 *param0, u32 param1)
     Strbuf *v1;
     Strbuf *v2;
 
-    BGL_FillWindow(param0->unk_718, 15);
+    Window_FillTilemap(param0->unk_718, 15);
 
     v0 = MessageLoader_Init(0, 26, 385, 13);
     v2 = MessageLoader_GetNewStrbuf(v0, param1);
     v1 = Strbuf_Init(256, 13);
 
     StringTemplate_Format(param0->unk_744, v1, v2);
-    Text_AddPrinterWithParamsAndColor(param0->unk_718, 1, v1, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param0->unk_718, FONT_MESSAGE, v1, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
     Strbuf_Free(v1);
     Strbuf_Free(v2);
     MessageLoader_Free(v0);
-    sub_0201A954(param0->unk_718);
+    Window_CopyToVRAM(param0->unk_718);
 }
 
 static u32 ov22_022573EC(UnkStruct_ov22_02255D44 *param0, u32 param1)
@@ -1385,7 +1384,7 @@ static u32 ov22_022573EC(UnkStruct_ov22_02255D44 *param0, u32 param1)
 
     GF_ASSERT(param0->unk_740 == NULL);
 
-    BGL_FillWindow(param0->unk_718, 15);
+    Window_FillTilemap(param0->unk_718, 15);
 
     v1 = MessageLoader_Init(0, 26, 385, 13);
     v3 = MessageLoader_GetNewStrbuf(v1, param1);
@@ -1396,14 +1395,14 @@ static u32 ov22_022573EC(UnkStruct_ov22_02255D44 *param0, u32 param1)
     if (param0->unk_734->unk_16 == 0) {
         v2 = Options_TextFrameDelay(param0->unk_738);
     } else {
-        v2 = 1;
+        v2 = TEXT_SPEED_FAST;
     }
 
-    v0 = Text_AddPrinterWithParamsAndColor(param0->unk_718, 1, param0->unk_740, 0, 0, v2, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
+    v0 = Text_AddPrinterWithParamsAndColor(param0->unk_718, FONT_MESSAGE, param0->unk_740, 0, 0, v2, TEXT_COLOR(1, 2, 15), NULL);
 
     Strbuf_Free(v3);
     MessageLoader_Free(v1);
-    sub_0201A954(param0->unk_718);
+    Window_CopyToVRAM(param0->unk_718);
 
     return v0;
 }
@@ -1416,8 +1415,8 @@ static void ov22_02257498(UnkStruct_ov22_02255D44 *param0)
 
 static void ov22_022574B0(UnkStruct_ov22_02255D44 *param0)
 {
-    sub_0201ACF4(param0->unk_718);
-    BGL_DeleteWindow(param0->unk_718);
+    Window_ClearAndCopyToVRAM(param0->unk_718);
+    Window_Remove(param0->unk_718);
 }
 
 static void ov22_022574CC(UnkStruct_ov22_02255D44 *param0, u32 param1)

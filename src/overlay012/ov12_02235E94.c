@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_defs/sprite_template.h"
@@ -28,11 +27,11 @@
 
 #include "heap.h"
 #include "narc.h"
+#include "palette.h"
 #include "pokemon.h"
 #include "spl.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
@@ -1224,12 +1223,12 @@ static BOOL ov12_02236A6C(BallRotation *param0)
         int v0;
 
         v0 = sub_0200D43C(param0->unk_30);
-        sub_02003178(param0->unk_90.paletteSys, 0x4, 1 << v0, -1, 0, 12, 0x37F);
+        PaletteData_StartFade(param0->unk_90.paletteSys, 0x4, 1 << v0, -1, 0, 12, 0x37F);
 
         param0->unk_08++;
     } break;
     case 1:
-        if (sub_0200384C(param0->unk_90.paletteSys) != 0) {
+        if (PaletteData_GetSelectedBuffersMask(param0->unk_90.paletteSys) != 0) {
             break;
         }
 
@@ -1237,13 +1236,13 @@ static BOOL ov12_02236A6C(BallRotation *param0)
             int v1;
 
             v1 = sub_0200D43C(param0->unk_30);
-            sub_02003178(param0->unk_90.paletteSys, 0x4, 1 << v1, -1, 12, 0, 0x37F);
+            PaletteData_StartFade(param0->unk_90.paletteSys, 0x4, 1 << v1, -1, 12, 0, 0x37F);
         }
 
         param0->unk_08++;
         break;
     default:
-        if (sub_0200384C(param0->unk_90.paletteSys) != 0) {
+        if (PaletteData_GetSelectedBuffersMask(param0->unk_90.paletteSys) != 0) {
             break;
         }
 
@@ -1461,12 +1460,12 @@ static BOOL ov12_02236D18(BallRotation *param0)
         int v0;
 
         v0 = sub_0200D43C(param0->unk_30);
-        sub_02003178(param0->unk_90.paletteSys, 0x4, 1 << v0, -5, 0, 10, 0x0);
+        PaletteData_StartFade(param0->unk_90.paletteSys, 0x4, 1 << v0, -5, 0, 10, 0x0);
 
         param0->unk_08++;
     } break;
     case 1:
-        if (sub_0200384C(param0->unk_90.paletteSys) != 0) {
+        if (PaletteData_GetSelectedBuffersMask(param0->unk_90.paletteSys) != 0) {
             break;
         }
 
@@ -1495,7 +1494,7 @@ static BOOL ov12_02236D18(BallRotation *param0)
         }
     } break;
     default:
-        if (sub_0200384C(param0->unk_90.paletteSys) != 0) {
+        if (PaletteData_GetSelectedBuffersMask(param0->unk_90.paletteSys) != 0) {
             break;
         }
 
@@ -1518,12 +1517,12 @@ static BOOL ov12_02236E0C(BallRotation *param0)
         int v0;
 
         v0 = sub_0200D43C(param0->unk_30);
-        sub_02003178(param0->unk_90.paletteSys, 0x4, 1 << v0, -5, 10, 0, 0x0);
+        PaletteData_StartFade(param0->unk_90.paletteSys, 0x4, 1 << v0, -5, 10, 0, 0x0);
     }
         param0->unk_08++;
         break;
     case 1:
-        if (sub_0200384C(param0->unk_90.paletteSys) != 0) {
+        if (PaletteData_GetSelectedBuffersMask(param0->unk_90.paletteSys) != 0) {
             break;
         }
 

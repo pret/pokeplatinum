@@ -3,9 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0205AA50.h"
-
-#include "unk_02018340.h"
+#include "bg_window.h"
 
 static void ov21_021D5248(Window *param0, u8 *param1, u16 param2, u16 param3, int param4, int param5, u8 param6, u8 param7);
 static void ov21_021D52A0(u8 *param0, int param1, int param2, int param3, int param4);
@@ -45,7 +43,7 @@ static void ov21_021D5248(Window *param0, u8 *param1, u16 param2, u16 param3, in
         v1 = v0 / param2;
         v0 = v0 % param2;
 
-        sub_0201ADDC(param0, param1, v0, v1, param2, param3, param6, param7, param4, param4);
+        Window_BlitBitmapRect(param0, param1, v0, v1, param2, param3, param6, param7, param4, param4);
     }
 }
 

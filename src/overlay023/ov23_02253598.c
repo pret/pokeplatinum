@@ -5,37 +5,33 @@
 
 #include "constants/heap.h"
 
-#include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
-#include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay023/funcptr_ov23_0224DCB8.h"
 #include "overlay023/funcptr_ov23_02253834.h"
 #include "overlay023/ov23_02241F74.h"
 #include "overlay023/ov23_02253D40.h"
 #include "overlay023/struct_ov23_02253598_decl.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 
+#include "bg_window.h"
 #include "comm_player_manager.h"
 #include "communication_system.h"
 #include "core_sys.h"
 #include "game_records.h"
 #include "heap.h"
+#include "list_menu.h"
 #include "message.h"
+#include "render_window.h"
 #include "savedata.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
-#include "unk_0200DA60.h"
-#include "unk_02018340.h"
 #include "unk_0202854C.h"
 
 typedef int (*UnkFuncPtr_ov23_022576EC)(const SecretBaseRecord *);
@@ -44,8 +40,8 @@ typedef struct {
     UnkFuncPtr_ov23_02253834 unk_00;
     void *unk_04;
     Window unk_08;
-    ResourceMetadata *unk_18;
-    BmpList *unk_1C;
+    StringList *unk_18;
+    ListMenu *unk_1C;
     UnkFuncPtr_ov23_0224DCB8 unk_20;
     u16 unk_24;
     int unk_28;
@@ -138,31 +134,31 @@ static void ov23_0225360C(Window *param0, MessageLoader *param1, TrainerInfo *pa
     v2 = Strbuf_Init(30, HEAP_ID_FIELD);
 
     MessageLoader_GetStrbuf(param1, 0, v1);
-    Text_AddPrinterWithParams(param0, 0, v1, v7, 1, 0xFF, NULL);
+    Text_AddPrinterWithParams(param0, FONT_SYSTEM, v1, v7, 1, TEXT_SPEED_NO_TRANSFER, NULL);
 
     MessageLoader_GetStrbuf(param1, 1, v1);
-    Text_AddPrinterWithParams(param0, 0, v1, v7, v5, 0xFF, NULL);
+    Text_AddPrinterWithParams(param0, FONT_SYSTEM, v1, v7, v5, TEXT_SPEED_NO_TRANSFER, NULL);
 
     MessageLoader_GetStrbuf(param1, 2, v1);
-    Text_AddPrinterWithParams(param0, 0, v1, v7 + v10, 1, 0xFF, NULL);
+    Text_AddPrinterWithParams(param0, FONT_SYSTEM, v1, v7 + v10, 1, TEXT_SPEED_NO_TRANSFER, NULL);
 
     StringTemplate_SetNumber(v0, 6, TrainerInfo_ID_LowHalf(param2), 5, 2, 1);
     MessageLoader_GetStrbuf(param1, 5, v1);
     StringTemplate_Format(v0, v2, v1);
-    Text_AddPrinterWithParams(param0, 0, v2, v7 + v12, 1, 0xFF, NULL);
+    Text_AddPrinterWithParams(param0, FONT_SYSTEM, v2, v7 + v12, 1, TEXT_SPEED_NO_TRANSFER, NULL);
 
     StringTemplate_SetPlayerName(v0, 0, param2);
     MessageLoader_GetStrbuf(param1, 4, v1);
     StringTemplate_Format(v0, v2, v1);
-    Text_AddPrinterWithParams(param0, 0, v2, v7 + v9, 1, 0xFF, NULL);
+    Text_AddPrinterWithParams(param0, FONT_SYSTEM, v2, v7 + v9, 1, TEXT_SPEED_NO_TRANSFER, NULL);
 
     v3 = sub_0202958C(param3);
     MessageLoader_GetStrbuf(param1, 20 + v3, v1);
-    Text_AddPrinterWithParams(param0, 0, v1, v7 + v9, v5, 0xFF, NULL);
+    Text_AddPrinterWithParams(param0, FONT_SYSTEM, v1, v7 + v9, v5, TEXT_SPEED_NO_TRANSFER, NULL);
 
     for (v3 = 0; v3 < 7; v3++) {
         MessageLoader_GetStrbuf(param1, 6 + v3, v1);
-        Text_AddPrinterWithParams(param0, 0, v1, v7, v6 + v8 * v3, 0xFF, NULL);
+        Text_AddPrinterWithParams(param0, FONT_SYSTEM, v1, v7, v6 + v8 * v3, TEXT_SPEED_NO_TRANSFER, NULL);
     }
 
     for (v3 = 0; v3 < 7; v3++) {
@@ -172,7 +168,7 @@ static void ov23_0225360C(Window *param0, MessageLoader *param1, TrainerInfo *pa
         StringTemplate_SetNumber(v0, 6, v4, 6, 1, 1);
         MessageLoader_GetStrbuf(param1, 13, v1);
         StringTemplate_Format(v0, v2, v1);
-        Text_AddPrinterWithParams(param0, 0, v2, v7 + v12, v6 + v8 * v3, 0xFF, NULL);
+        Text_AddPrinterWithParams(param0, FONT_SYSTEM, v2, v7 + v12, v6 + v8 * v3, TEXT_SPEED_NO_TRANSFER, NULL);
     }
 
     Strbuf_Free(v1);
@@ -184,9 +180,9 @@ static void ov23_022537D4(SysTask *param0, void *param1)
 {
     UnkStruct_ov23_022537D4 *v0 = param1;
 
-    Window_Clear(&v0->unk_08, 0);
-    sub_0201ACF4(&v0->unk_08);
-    BGL_DeleteWindow(&v0->unk_08);
+    Window_EraseStandardFrame(&v0->unk_08, 0);
+    Window_ClearAndCopyToVRAM(&v0->unk_08);
+    Window_Remove(&v0->unk_08);
 
     {
         UnkFuncPtr_ov23_02253834 v1 = v0->unk_00;
@@ -212,11 +208,11 @@ static void ov23_0225381C(SysTask *param0, void *param1)
     }
 }
 
-void ov23_02253834(BGL *param0, TrainerInfo *param1, UnkFuncPtr_ov23_02253834 param2, void *param3, BOOL param4)
+void ov23_02253834(BgConfig *param0, TrainerInfo *param1, UnkFuncPtr_ov23_02253834 param2, void *param3, BOOL param4)
 {
     SecretBaseRecord *v0;
     MessageLoader *v1;
-    UnkStruct_ov84_02240FA8 v2;
+    ListMenuTemplate v2;
     int v3 = 10;
     UnkStruct_ov23_022537D4 *v4 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov23_022537D4));
 
@@ -225,11 +221,11 @@ void ov23_02253834(BGL *param0, TrainerInfo *param1, UnkFuncPtr_ov23_02253834 pa
     v4->unk_00 = param2;
     v4->unk_04 = param3;
 
-    BGL_AddWindow(param0, &v4->unk_08, 3, 4, 2, 24, 19, 13, 1);
-    Window_Show(&v4->unk_08, 1, 1024 - (18 + 12) - 9, 11);
+    Window_Add(param0, &v4->unk_08, 3, 4, 2, 24, 19, 13, 1);
+    Window_DrawStandardFrame(&v4->unk_08, 1, 1024 - (18 + 12) - 9, 11);
 
     v1 = MessageLoader_Init(0, 26, 640, 4);
-    BGL_FillWindow(&v4->unk_08, 15);
+    Window_FillTilemap(&v4->unk_08, 15);
 
     if (param4) {
         v0 = Unk_ov23_022577BC->unk_0C;
@@ -239,7 +235,7 @@ void ov23_02253834(BGL *param0, TrainerInfo *param1, UnkFuncPtr_ov23_02253834 pa
 
     ov23_0225360C(&v4->unk_08, v1, param1, v0);
 
-    sub_0201A9A4(&v4->unk_08);
+    Window_ScheduleCopyToVRAM(&v4->unk_08);
     Sound_PlayEffect(1533);
 
     Unk_ov23_022577BC->unk_04 = SysTask_Start(ov23_0225381C, v4, 10);
@@ -354,18 +350,18 @@ static void ov23_02253A78(Window *param0, MessageLoader *param1, TrainerInfo *pa
     StringTemplate_SetPlayerName(v0, 1, param2);
     MessageLoader_GetStrbuf(param1, 12, v1);
     StringTemplate_Format(v0, v2, v1);
-    Text_AddPrinterWithParams(param0, 0, v2, v7, 1, 0xff, NULL);
+    Text_AddPrinterWithParams(param0, FONT_SYSTEM, v2, v7, 1, TEXT_SPEED_NO_TRANSFER, NULL);
 
     MessageLoader_GetStrbuf(param1, 13, v1);
-    Text_AddPrinterWithParams(param0, 0, v1, v7, 1 + v8, 0xff, NULL);
+    Text_AddPrinterWithParams(param0, FONT_SYSTEM, v1, v7, 1 + v8, TEXT_SPEED_NO_TRANSFER, NULL);
 
     StringTemplate_SetNumber(v0, 6, sub_020295B8(param3), 6, 1, 1);
     MessageLoader_GetStrbuf(param1, 14, v1);
     StringTemplate_Format(v0, v2, v1);
-    Text_AddPrinterWithParams(param0, 0, v2, v7 + 100, 1 + v8, 0xff, NULL);
+    Text_AddPrinterWithParams(param0, FONT_SYSTEM, v2, v7 + 100, 1 + v8, TEXT_SPEED_NO_TRANSFER, NULL);
 
     MessageLoader_GetStrbuf(param1, 15, v1);
-    Text_AddPrinterWithParams(param0, 0, v1, v7, 1 + v8 * 3, 0xff, NULL);
+    Text_AddPrinterWithParams(param0, FONT_SYSTEM, v1, v7, 1 + v8 * 3, TEXT_SPEED_NO_TRANSFER, NULL);
 
     for (v3 = 0; v3 < 5; v3++) {
         TrainerInfo *v13 = sub_020288C8(param4, 4, v3);
@@ -374,19 +370,19 @@ static void ov23_02253A78(Window *param0, MessageLoader *param1, TrainerInfo *pa
             StringTemplate_SetPlayerName(v0, 0, v13);
             MessageLoader_GetStrbuf(param1, 16, v1);
             StringTemplate_Format(v0, v2, v1);
-            Text_AddPrinterWithParams(param0, 0, v2, v7, 1 + v8 * (4 + v3), 0xff, NULL);
+            Text_AddPrinterWithParams(param0, FONT_SYSTEM, v2, v7, 1 + v8 * (4 + v3), TEXT_SPEED_NO_TRANSFER, NULL);
 
             StringTemplate_SetNumber(v0, 5, TrainerInfo_ID_LowHalf(v13), 5, 2, 1);
             MessageLoader_GetStrbuf(param1, 17, v1);
             StringTemplate_Format(v0, v2, v1);
 
-            Text_AddPrinterWithParams(param0, 0, v2, v7 + v12, 1 + v8 * (4 + v3), 0xff, NULL);
+            Text_AddPrinterWithParams(param0, FONT_SYSTEM, v2, v7 + v12, 1 + v8 * (4 + v3), TEXT_SPEED_NO_TRANSFER, NULL);
             Heap_FreeToHeap(v13);
         } else {
             MessageLoader_GetStrbuf(param1, 51, v1);
-            Text_AddPrinterWithParams(param0, 0, v1, v7, 1 + v8 * (4 + v3), 0xff, NULL);
+            Text_AddPrinterWithParams(param0, FONT_SYSTEM, v1, v7, 1 + v8 * (4 + v3), TEXT_SPEED_NO_TRANSFER, NULL);
             MessageLoader_GetStrbuf(param1, 52, v1);
-            Text_AddPrinterWithParams(param0, 0, v1, v7 + v12, 1 + v8 * (4 + v3), 0xff, NULL);
+            Text_AddPrinterWithParams(param0, FONT_SYSTEM, v1, v7 + v12, 1 + v8 * (4 + v3), TEXT_SPEED_NO_TRANSFER, NULL);
         }
     }
 
@@ -395,11 +391,11 @@ static void ov23_02253A78(Window *param0, MessageLoader *param1, TrainerInfo *pa
     StringTemplate_Free(v0);
 }
 
-void *ov23_02253C64(BGL *param0, TrainerInfo *param1, UndergroundData *param2, UnkFuncPtr_ov23_02253834 param3, void *param4)
+void *ov23_02253C64(BgConfig *param0, TrainerInfo *param1, UndergroundData *param2, UnkFuncPtr_ov23_02253834 param3, void *param4)
 {
     SecretBaseRecord *v0;
     MessageLoader *v1;
-    UnkStruct_ov84_02240FA8 v2;
+    ListMenuTemplate v2;
     int v3 = 10;
     UnkStruct_ov23_022537D4 *v4 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov23_022537D4));
 
@@ -408,17 +404,17 @@ void *ov23_02253C64(BGL *param0, TrainerInfo *param1, UndergroundData *param2, U
     v4->unk_00 = param3;
     v4->unk_04 = param4;
 
-    BGL_AddWindow(param0, &v4->unk_08, 3, 4, 2, 24, 19, 13, 1);
-    Window_Show(&v4->unk_08, 1, 1024 - (18 + 12) - 9, 11);
+    Window_Add(param0, &v4->unk_08, 3, 4, 2, 24, 19, 13, 1);
+    Window_DrawStandardFrame(&v4->unk_08, 1, 1024 - (18 + 12) - 9, 11);
 
     v1 = MessageLoader_Init(0, 26, 639, 4);
-    BGL_FillWindow(&v4->unk_08, 15);
+    Window_FillTilemap(&v4->unk_08, 15);
 
     v0 = Unk_ov23_022577BC->unk_0C;
     ov23_02253A78(&v4->unk_08, v1, param1, v0, param2);
 
     Sound_PlayEffect(1533);
-    sub_0201A9A4(&v4->unk_08);
+    Window_ScheduleCopyToVRAM(&v4->unk_08);
     MessageLoader_Free(v1);
 
     return v4;
@@ -428,9 +424,9 @@ void ov23_02253D10(void *param0)
 {
     UnkStruct_ov23_022537D4 *v0 = param0;
 
-    Window_Clear(&v0->unk_08, 0);
-    sub_0201ACF4(&v0->unk_08);
-    BGL_DeleteWindow(&v0->unk_08);
+    Window_EraseStandardFrame(&v0->unk_08, 0);
+    Window_ClearAndCopyToVRAM(&v0->unk_08);
+    Window_Remove(&v0->unk_08);
 
     {
         UnkFuncPtr_ov23_02253834 v1 = v0->unk_00;

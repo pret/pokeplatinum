@@ -3,11 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0205AA50.h"
-
 #include "field/field_system.h"
 #include "overlay005/ov5_021DC018.h"
 
+#include "bg_window.h"
 #include "coins.h"
 #include "field_script_context.h"
 #include "field_system.h"

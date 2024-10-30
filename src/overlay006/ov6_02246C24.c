@@ -64,7 +64,7 @@ void ov6_02246C24(FieldSystem *fieldSystem, const u8 param1)
             v4->unk_00.z += v5.z;
         }
 
-        FieldTask_Start(fieldSystem->unk_10, ov6_02246C9C, v4);
+        FieldTask_Start(fieldSystem->taskManager, ov6_02246C9C, v4);
     } else {
         GF_ASSERT(FALSE);
     }

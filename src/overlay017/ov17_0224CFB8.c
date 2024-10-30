@@ -34,15 +34,15 @@
 #include "overlay017/struct_ov17_022539E4.h"
 #include "overlay022/ov22_0225AF8C.h"
 
+#include "bg_window.h"
 #include "communication_system.h"
 #include "heap.h"
+#include "palette.h"
 #include "pokemon.h"
+#include "render_window.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02002F38.h"
 #include "unk_02005474.h"
-#include "unk_0200DA60.h"
-#include "unk_02018340.h"
 #include "unk_02094EDC.h"
 
 static int ov17_0224CFF8(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3);
@@ -209,7 +209,7 @@ static void ov17_0224D078(SysTask *param0, void *param1)
             u16 *v1, *v2;
             int v3, v4, v5, v6, v7;
 
-            v1 = sub_02019FE4(v0->unk_00->unk_14.unk_60, 2);
+            v1 = Bg_GetTilemapBuffer(v0->unk_00->unk_14.unk_60, 2);
 
             for (v4 = 0; v4 < 4; v4++) {
                 if (Unk_ov17_022549C4[v0->unk_11] + v4 < 0) {
@@ -240,7 +240,7 @@ static void ov17_0224D078(SysTask *param0, void *param1)
                 }
             }
 
-            sub_0201C3C0(v0->unk_00->unk_14.unk_60, 2);
+            Bg_ScheduleTilemapTransfer(v0->unk_00->unk_14.unk_60, 2);
         }
 
         v0->unk_12++;
@@ -312,7 +312,7 @@ static void ov17_0224D240(SysTask *param0, void *param1)
             int v3, v4, v5, v6, v7;
             int v8;
 
-            v1 = sub_02019FE4(v0->unk_00->unk_14.unk_60, 2);
+            v1 = Bg_GetTilemapBuffer(v0->unk_00->unk_14.unk_60, 2);
 
             for (v4 = 0; v4 < 4; v4++) {
                 v8 = Unk_ov17_022549C4[NELEMS(Unk_ov17_022549C4) - 1 - v0->unk_11];
@@ -348,7 +348,7 @@ static void ov17_0224D240(SysTask *param0, void *param1)
                 }
             }
 
-            sub_0201C3C0(v0->unk_00->unk_14.unk_60, 2);
+            Bg_ScheduleTilemapTransfer(v0->unk_00->unk_14.unk_60, 2);
         }
 
         v0->unk_12++;
@@ -1058,7 +1058,7 @@ static void ov17_0224DFF8(SysTask *param0, void *param1)
     switch (v0->unk_10) {
     case 0:
         ov17_0224CDB4(v0->unk_00, 0);
-        sub_02003178(v0->unk_00->unk_14.unk_90, 0x1, (0x1fff ^ ((1 << 4) | (1 << 3) | (1 << 2))), -2, 0, 6, 0x0);
+        PaletteData_StartFade(v0->unk_00->unk_14.unk_90, 0x1, (0x1fff ^ ((1 << 4) | (1 << 3) | (1 << 2))), -2, 0, 6, 0x0);
 
         for (v2 = 0; v2 < 4; v2++) {
             ov17_0224CEE4(v0->unk_00, v2, 0x7fff, 0x254a, 16, 4, &v0->unk_11[v2]);
@@ -1067,7 +1067,7 @@ static void ov17_0224DFF8(SysTask *param0, void *param1)
         v0->unk_10++;
         break;
     case 1:
-        if (sub_0200384C(v0->unk_00->unk_14.unk_90) == 0) {
+        if (PaletteData_GetSelectedBuffersMask(v0->unk_00->unk_14.unk_90) == 0) {
             for (v2 = 0; v2 < 4; v2++) {
                 if (v0->unk_11[v2] == 0) {
                     break;
@@ -1124,11 +1124,11 @@ static void ov17_0224DFF8(SysTask *param0, void *param1)
         }
         break;
     case 4:
-        sub_02003178(v0->unk_00->unk_14.unk_90, 0x1, (0x1fff ^ ((1 << 4) | (1 << 3) | (1 << 2))), -2, 6, 0, 0x0);
+        PaletteData_StartFade(v0->unk_00->unk_14.unk_90, 0x1, (0x1fff ^ ((1 << 4) | (1 << 3) | (1 << 2))), -2, 6, 0, 0x0);
         v0->unk_10++;
         break;
     case 5:
-        if (sub_0200384C(v0->unk_00->unk_14.unk_90) == 0) {
+        if (PaletteData_GetSelectedBuffersMask(v0->unk_00->unk_14.unk_90) == 0) {
             ov17_0224CDB4(v0->unk_00, 1);
             v0->unk_10++;
         }
@@ -1403,8 +1403,8 @@ static void ov17_0224E6C8(SysTask *param0, void *param1)
     switch (v0->unk_10) {
     case 0:
         if (v0->unk_1A != 0) {
-            sub_0200E060(&v0->unk_00->unk_14.unk_64[0], 1, 1, 14);
-            sub_0201C3C0(v0->unk_00->unk_14.unk_60, 1);
+            Window_DrawMessageBoxWithScrollCursor(&v0->unk_00->unk_14.unk_64[0], 1, 1, 14);
+            Bg_ScheduleTilemapTransfer(v0->unk_00->unk_14.unk_60, 1);
 
             ov17_0224C2CC(v0->unk_00, v0->unk_1A, &v0->unk_14);
             v0->unk_10++;
@@ -1423,8 +1423,8 @@ static void ov17_0224E6C8(SysTask *param0, void *param1)
         if (v0->unk_1C == 1) {
             v0->unk_10++;
         } else if (v0->unk_12 >= v0->unk_1B) {
-            sub_0200E084(&v0->unk_00->unk_14.unk_64[0], 1);
-            sub_0201C3C0(v0->unk_00->unk_14.unk_60, 1);
+            Window_EraseMessageBox(&v0->unk_00->unk_14.unk_64[0], 1);
+            Bg_ScheduleTilemapTransfer(v0->unk_00->unk_14.unk_60, 1);
             v0->unk_10++;
         }
         break;

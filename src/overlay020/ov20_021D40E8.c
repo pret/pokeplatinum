@@ -3,9 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020998EC_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay020/ov20_021D0D80.h"
 #include "overlay020/ov20_021D2098.h"
@@ -15,18 +13,18 @@
 #include "overlay020/struct_ov20_021D4E8C.h"
 #include "overlay020/struct_ov20_021D4FF0.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "enums.h"
 #include "heap.h"
 #include "strbuf.h"
 #include "text.h"
-#include "unk_02018340.h"
 
 typedef struct UnkStruct_ov20_021D4210_t {
     UnkStruct_ov20_021D2128 *unk_00;
     const UnkStruct_ov20_021D16E8 *unk_04;
     const UnkStruct_020998EC *unk_08;
-    BGL *unk_0C;
+    BgConfig *unk_0C;
     Window unk_10;
     Window unk_20;
     CellActor *unk_30;
@@ -57,8 +55,8 @@ UnkStruct_ov20_021D4210 *ov20_021D40E8(UnkStruct_ov20_021D2128 *param0, const Un
     v0->unk_0C = ov20_021D2E04(param0);
     v0->unk_3C = Strbuf_Init(32, 35);
 
-    BGL_AddWindow(v0->unk_0C, &v0->unk_10, 2, 4, 0, 26, 32, 12, 1);
-    BGL_AddWindow(v0->unk_0C, &v0->unk_20, 2, 0, 0, 12, 4, 12, 1);
+    Window_Add(v0->unk_0C, &v0->unk_10, 2, 4, 0, 26, 32, 12, 1);
+    Window_Add(v0->unk_0C, &v0->unk_20, 2, 0, 0, 12, 4, 12, 1);
 
     v0->unk_30 = NULL;
     v0->unk_34 = NULL;
@@ -85,29 +83,29 @@ void ov20_021D4164(UnkStruct_ov20_021D4210 *param0)
         Strbuf_Free(param0->unk_3C);
     }
 
-    BGL_DeleteWindow(&(param0->unk_20));
-    BGL_DeleteWindow(&(param0->unk_10));
+    Window_Remove(&(param0->unk_20));
+    Window_Remove(&(param0->unk_10));
     Heap_FreeToHeap(param0);
 }
 
 void ov20_021D41A8(UnkStruct_ov20_021D4210 *param0)
 {
-    BGL *v0;
+    BgConfig *v0;
     u32 v1;
 
     v0 = ov20_021D2E04(param0->unk_00);
 
-    sub_02019690(2, 0x20, 0 * 0x20, 35);
-    sub_02019CB8(v0, 2, 0, 0, 0, 32, 32, 12);
+    Bg_ClearTilesRange(2, 0x20, 0 * 0x20, 35);
+    Bg_FillTilemapRect(v0, 2, 0, 0, 0, 32, 32, 12);
 
-    BGL_FillWindow(&param0->unk_10, 0);
-    sub_0201A9F4(&param0->unk_10);
-    sub_0201ACCC(&param0->unk_10);
-    sub_02019448(v0, 2);
+    Window_FillTilemap(&param0->unk_10, 0);
+    Window_PutToTilemap(&param0->unk_10);
+    Window_LoadTiles(&param0->unk_10);
+    Bg_CopyTilemapBufferToVRAM(v0, 2);
 
     ov20_021D4210(param0);
 
-    sub_02019120(2, 0);
+    Bg_ToggleLayer(2, 0);
 }
 
 static void ov20_021D4210(UnkStruct_ov20_021D4210 *param0)
@@ -133,7 +131,7 @@ void ov20_021D4294(UnkStruct_ov20_021D4210 *param0)
 {
     u32 v0, v1, v2;
 
-    BGL_FillWindow(&param0->unk_10, 0);
+    Window_FillTilemap(&param0->unk_10, 0);
     ov20_021D4638(param0);
 
     v0 = ov20_021D1FE4(param0->unk_04);
@@ -152,13 +150,13 @@ void ov20_021D4294(UnkStruct_ov20_021D4210 *param0)
         }
     }
 
-    sub_0201ACCC(&param0->unk_10);
+    Window_LoadTiles(&param0->unk_10);
 }
 
 void ov20_021D42E4(UnkStruct_ov20_021D4210 *param0)
 {
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_ALL, 0, 16);
-    sub_02019120(2, 1);
+    Bg_ToggleLayer(2, 1);
     G2_SetWnd1InsidePlane(GX_WND_PLANEMASK_ALL, 1);
 
     param0->unk_84 = G2_GetWndOutsidePlane();
@@ -198,7 +196,7 @@ BOOL ov20_021D43D8(UnkStruct_ov20_021D4210 *param0)
     switch (param0->unk_80) {
     case 0:
         if (ov20_021D4F4C(&param0->unk_40)) {
-            sub_02019120(2, 0);
+            Bg_ToggleLayer(2, 0);
             G2_SetWndOutsidePlane(param0->unk_84.planeMask, param0->unk_84.effect);
             GX_SetVisibleWnd(param0->unk_88);
             return 1;
@@ -277,7 +275,7 @@ void ov20_021D44BC(UnkStruct_ov20_021D4210 *param0, int param1)
     param0->unk_8C = v0;
     param0->unk_90 = v1;
 
-    sub_0201ACCC(&param0->unk_10);
+    Window_LoadTiles(&param0->unk_10);
     ov20_021D4E38(&(param0->unk_60), param0->unk_0C, 2, 1, param1 * 24, v6);
 }
 
@@ -305,10 +303,10 @@ static void ov20_021D45AC(UnkStruct_ov20_021D4210 *param0, int param1)
     }
 
     if (v0 < v1) {
-        BGL_WindowColor(&param0->unk_10, 0, 0, v0, 26 * 8, (v1 - v0));
+        Window_FillRectWithColor(&param0->unk_10, 0, 0, v0, 26 * 8, (v1 - v0));
     } else {
-        BGL_WindowColor(&param0->unk_10, 0, 0, v0, 26 * 8, 256 - v0);
-        BGL_WindowColor(&param0->unk_10, 0, 0, 0, 26 * 8, v1);
+        Window_FillRectWithColor(&param0->unk_10, 0, 0, v0, 26 * 8, 256 - v0);
+        Window_FillRectWithColor(&param0->unk_10, 0, 0, 0, 26 * 8, v1);
     }
 }
 
@@ -317,7 +315,7 @@ static void ov20_021D4638(UnkStruct_ov20_021D4210 *param0)
     param0->unk_8C = 48;
     param0->unk_90 = 0;
 
-    sub_02019184(param0->unk_0C, 2, 3, 0);
+    Bg_SetOffset(param0->unk_0C, 2, 3, 0);
 }
 
 static void ov20_021D4658(UnkStruct_ov20_021D4210 *param0, u32 param1, u32 param2)
@@ -325,13 +323,13 @@ static void ov20_021D4658(UnkStruct_ov20_021D4210 *param0, u32 param1, u32 param
     ov20_021D2008(param0->unk_04, param1, param0->unk_3C);
 
     if (param2 <= 240) {
-        Text_AddPrinterWithParamsAndColor(&param0->unk_10, 0, param0->unk_3C, 0 + (param1 & 1) * 112, param2, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_10, FONT_SYSTEM, param0->unk_3C, 0 + (param1 & 1) * 112, param2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     } else {
         u32 v0 = 256 - param2;
 
-        BGL_FillWindow(&param0->unk_20, 0);
-        Text_AddPrinterWithParamsAndColor(&param0->unk_20, 0, param0->unk_3C, 0, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
-        sub_0201ADDC(&param0->unk_10, param0->unk_20.unk_0C, 0, 0, 12 * 8, 2 * 8, 0 + (param1 & 1) * 112, param2, 12 * 8, v0);
-        sub_0201ADDC(&param0->unk_10, param0->unk_20.unk_0C, 0, v0, 12 * 8, 2 * 8, 0 + (param1 & 1) * 112, 0, 12 * 8, (2 * 8) - v0);
+        Window_FillTilemap(&param0->unk_20, 0);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_20, FONT_SYSTEM, param0->unk_3C, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+        Window_BlitBitmapRect(&param0->unk_10, param0->unk_20.pixels, 0, 0, 12 * 8, 2 * 8, 0 + (param1 & 1) * 112, param2, 12 * 8, v0);
+        Window_BlitBitmapRect(&param0->unk_10, param0->unk_20.pixels, 0, v0, 12 * 8, 2 * 8, 0 + (param1 & 1) * 112, 0, 12 * 8, (2 * 8) - v0);
     }
 }

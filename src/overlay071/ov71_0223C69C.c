@@ -3,47 +3,43 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02072014.h"
 
-#include "overlay061/struct_ov61_0222C884.h"
-
+#include "bg_window.h"
 #include "font.h"
 #include "message.h"
 #include "play_time.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_02018340.h"
 
 static void ov71_0223CD64(Window * param0, const u32 param1, const u32 param2, const u32 param3, Strbuf *param4, const u32 param5, const u8 param6, const int param7);
 static void ov71_0223CDB0(Window * param0, const u32 param1, const u32 param2, const u32 param3, const Strbuf *param4);
 
-static const UnkStruct_ov61_0222C884 Unk_ov71_0223D670[] = {
-    {0x7, 0x2, 0x4, 0x11, 0x2, 0xF, 0x6F},
-    {0x7, 0x2, 0x6, 0x11, 0x2, 0xF, 0x91},
-    {0x7, 0x2, 0x9, 0x11, 0x2, 0xF, 0xB3},
-    {0x7, 0x2, 0xC, 0x11, 0x2, 0xF, 0xD5},
-    {0x7, 0x2, 0xF, 0x11, 0x2, 0xF, 0xF7},
-    {0x7, 0x2, 0x12, 0x1C, 0x2, 0xF, 0x119},
-    {0x7, 0x2, 0x14, 0x1C, 0x2, 0xF, 0x151},
-    {0x7, 0x2, 0x2, 0x1C, 0x4, 0xF, 0xC1},
-    {0x7, 0x2, 0x7, 0x1C, 0x2, 0xF, 0x131},
-    {0x7, 0x2, 0x9, 0x1C, 0x2, 0xF, 0x169},
-    {0x7, 0x2, 0xB, 0x1C, 0x2, 0xF, 0x1A1}
+static const WindowTemplate Unk_ov71_0223D670[] = {
+    { 0x7, 0x2, 0x4, 0x11, 0x2, 0xF, 0x6F },
+    { 0x7, 0x2, 0x6, 0x11, 0x2, 0xF, 0x91 },
+    { 0x7, 0x2, 0x9, 0x11, 0x2, 0xF, 0xB3 },
+    { 0x7, 0x2, 0xC, 0x11, 0x2, 0xF, 0xD5 },
+    { 0x7, 0x2, 0xF, 0x11, 0x2, 0xF, 0xF7 },
+    { 0x7, 0x2, 0x12, 0x1C, 0x2, 0xF, 0x119 },
+    { 0x7, 0x2, 0x14, 0x1C, 0x2, 0xF, 0x151 },
+    { 0x7, 0x2, 0x2, 0x1C, 0x4, 0xF, 0xC1 },
+    { 0x7, 0x2, 0x7, 0x1C, 0x2, 0xF, 0x131 },
+    { 0x7, 0x2, 0x9, 0x1C, 0x2, 0xF, 0x169 },
+    { 0x7, 0x2, 0xB, 0x1C, 0x2, 0xF, 0x1A1 }
 };
 
-void ov71_0223C69C (BGL * param0, Window * param1)
+void ov71_0223C69C(BgConfig *param0, Window *param1)
 {
     u8 v0;
-    const UnkStruct_ov61_0222C884 * v1 = Unk_ov71_0223D670;
+    const WindowTemplate *v1 = Unk_ov71_0223D670;
 
     for (v0 = 0; v0 < 11; v0++) {
-        sub_0201A8D4(param0, &param1[v0], &v1[v0]);
+        Window_AddFromTemplate(param0, &param1[v0], &v1[v0]);
     }
 
-    sub_020196C0(param0, 7, 0, 1, 0);
+    Bg_FillTilesRange(param0, 7, 0, 1, 0);
 }
 
 void ov71_0223C6D4 (Window * param0)
@@ -51,7 +47,7 @@ void ov71_0223C6D4 (Window * param0)
     u16 v0;
 
     for (v0 = 0; v0 < 11; v0++) {
-        BGL_DeleteWindow(&param0[v0]);
+        Window_Remove(&param0[v0]);
     }
 }
 
@@ -75,13 +71,13 @@ void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
     MessageLoader * v1;
     Strbuf* v2;
 
-    BGL_WindowColor(&param0[0], 0, 0, 0, 17 * 8, 2 * 8);
-    BGL_WindowColor(&param0[1], 0, 0, 0, 17 * 8, 2 * 8);
-    BGL_WindowColor(&param0[2], 0, 0, 0, 17 * 8, 2 * 8);
-    BGL_WindowColor(&param0[3], 0, 0, 0, 17 * 8, 2 * 8);
-    BGL_WindowColor(&param0[4], 0, 0, 0, 17 * 8, 2 * 8);
-    BGL_WindowColor(&param0[5], 0, 0, 0, 28 * 8, 2 * 8);
-    BGL_WindowColor(&param0[6], 0, 0, 0, 28 * 8, 2 * 8);
+    Window_FillRectWithColor(&param0[0], 0, 0, 0, 17 * 8, 2 * 8);
+    Window_FillRectWithColor(&param0[1], 0, 0, 0, 17 * 8, 2 * 8);
+    Window_FillRectWithColor(&param0[2], 0, 0, 0, 17 * 8, 2 * 8);
+    Window_FillRectWithColor(&param0[3], 0, 0, 0, 17 * 8, 2 * 8);
+    Window_FillRectWithColor(&param0[4], 0, 0, 0, 17 * 8, 2 * 8);
+    Window_FillRectWithColor(&param0[5], 0, 0, 0, 28 * 8, 2 * 8);
+    Window_FillRectWithColor(&param0[6], 0, 0, 0, 28 * 8, 2 * 8);
 
     v1 = MessageLoader_Init(0, 26, 616, 25);
     v2 = Strbuf_Init(32, 25);
@@ -89,7 +85,7 @@ void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
     for (v0 = 0; v0 < 7; v0++) {
         if ((v0 != 3) || (v0 == 3) && (param1->unk_04_3)) {
             MessageLoader_GetStrbuf(v1, Unk_ov71_0223D644[v0], v2);
-            Text_AddPrinterWithParamsAndColor(&param0[v0], 0, v2, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+            Text_AddPrinterWithParamsAndColor(&param0[v0], FONT_SYSTEM, v2, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
         }
     }
 
@@ -110,7 +106,7 @@ void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
 
             v5 = (8 * 17) - Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
 
-            Text_AddPrinterWithParamsAndColor(&param0[2], 0, v2, v5, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+            Text_AddPrinterWithParamsAndColor(&param0[2], FONT_SYSTEM, v2, v5, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
         }
 
         if (param1->unk_04_3) {
@@ -122,7 +118,7 @@ void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
 
             v6 = (8 * 17) - Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
 
-            Text_AddPrinterWithParamsAndColor(&param0[3], 0, v2, v6, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+            Text_AddPrinterWithParamsAndColor(&param0[3], FONT_SYSTEM, v2, v6, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
         }
 
         ov71_0223CD64(&param0[4], (8 * 17), 0, 0, v2, param1->unk_24, 9, 1);
@@ -142,7 +138,7 @@ void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
 
             StringTemplate_Format(v4, v2, v3);
             v7 = (8 * 28) - Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
-            Text_AddPrinterWithParamsAndColor(&param0[5], 0, v2, v7, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+            Text_AddPrinterWithParamsAndColor(&param0[5], FONT_SYSTEM, v2, v7, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
         }
 
         {
@@ -156,7 +152,7 @@ void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
 
             v8 = (8 * 28) - Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
 
-            Text_AddPrinterWithParamsAndColor(&param0[6], 0, v2, v8, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+            Text_AddPrinterWithParamsAndColor(&param0[6], FONT_SYSTEM, v2, v8, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
         }
 
         Strbuf_Free(v3);
@@ -183,7 +179,7 @@ asm void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
     add r0, #0x70
     add r2, r1, #0
     add r3, r1, #0
-    bl BGL_WindowColor
+    bl Window_FillRectWithColor
     mov r1, #0
     mov r0, #0xe0
     str r0, [sp]
@@ -193,7 +189,7 @@ asm void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
     add r0, #0x80
     add r2, r1, #0
     add r3, r1, #0
-    bl BGL_WindowColor
+    bl Window_FillRectWithColor
     mov r1, #0
     mov r0, #0xe0
     str r0, [sp]
@@ -203,7 +199,7 @@ asm void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
     add r0, #0x90
     add r2, r1, #0
     add r3, r1, #0
-    bl BGL_WindowColor
+    bl Window_FillRectWithColor
     mov r1, #0
     mov r0, #0xe0
     str r0, [sp]
@@ -213,7 +209,7 @@ asm void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
     add r0, #0xa0
     add r2, r1, #0
     add r3, r1, #0
-    bl BGL_WindowColor
+    bl Window_FillRectWithColor
     mov r2, #0x9a
     mov r0, #0
     mov r1, #0x1a
@@ -528,7 +524,7 @@ void ov71_0223CD44 (Window * param0, const u8 param1, const u8 param2)
     u8 v0;
 
     for (v0 = param1; v0 <= param2; v0++) {
-        sub_0201ACF4(&param0[v0]);
+        Window_ClearAndCopyToVRAM(&param0[v0]);
     }
 }
 
@@ -538,7 +534,7 @@ static void ov71_0223CD64 (Window * param0, const u32 param1, const u32 param2, 
 
     Strbuf_FormatInt(param4, param5, param6, param7, 1);
     v0 = Font_CalcStrbufWidth(FONT_SYSTEM, param4, 0);
-    Text_AddPrinterWithParamsAndColor(param0, 0, param4, param1 - (v0 + param2), param3, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, param4, param1 - (v0 + param2), param3, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
 }
 
 static void ov71_0223CDB0 (Window * param0, const u32 param1, const u32 param2, const u32 param3, const Strbuf *param4)
@@ -546,7 +542,7 @@ static void ov71_0223CDB0 (Window * param0, const u32 param1, const u32 param2, 
     u32 v0;
 
     v0 = Font_CalcStrbufWidth(FONT_SYSTEM, param4, 0);
-    Text_AddPrinterWithParamsAndColor(param0, 0, param4, param1 - (v0 + param2), param3, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, param4, param1 - (v0 + param2), param3, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
 }
 
 void ov71_0223CDE8 (Window * param0, const TrainerCard * param1, Strbuf *param2)
@@ -561,7 +557,7 @@ void ov71_0223CDE8 (Window * param0, const TrainerCard * param1, Strbuf *param2)
         v0 = 999;
     }
 
-    BGL_WindowColor(&param0[5], 0, 184, 0, 40, 2 * 8);
+    Window_FillRectWithColor(&param0[5], 0, 184, 0, 40, 2 * 8);
 
     {
         u32 v1;
@@ -575,7 +571,7 @@ void ov71_0223CDE8 (Window * param0, const TrainerCard * param1, Strbuf *param2)
         MessageLoader_GetStrbuf(v2, 16, v4);
         StringTemplate_Format(v5, v3, v4);
         v1 = (8 * 28) - Font_CalcStrbufWidth(FONT_SYSTEM, v3, 0);
-        Text_AddPrinterWithParamsAndColor(&param0[5], 0, v3, v1, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0[5], FONT_SYSTEM, v3, v1, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
 
         MessageLoader_Free(v2);
         Strbuf_Free(v3);
@@ -587,9 +583,9 @@ void ov71_0223CDE8 (Window * param0, const TrainerCard * param1, Strbuf *param2)
 void ov71_0223CECC (Window * param0, const BOOL param1, Strbuf *param2)
 {
     if (param1) {
-        Text_AddPrinterWithParamsAndColor(param0, 0, param2, (207 - 2), 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+        Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, param2, (207 - 2), 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
     } else {
-        BGL_WindowColor(param0, 0, (207 - 2), 0, 5, 2 * 8);
-        sub_0201A954(param0);
+        Window_FillRectWithColor(param0, 0, (207 - 2), 0, 5, 2 * 8);
+        Window_CopyToVRAM(param0);
     }
 }

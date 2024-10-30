@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-
 #include "overlay063/struct_ov63_0222CC3C.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
 #include "overlay070/ov70_0225C700.h"
@@ -18,10 +16,10 @@
 
 #include "core_sys.h"
 #include "easy3d_object.h"
+#include "graphics.h"
 #include "heap.h"
 #include "narc.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 
 typedef struct {
     u16 unk_00;
@@ -797,7 +795,7 @@ static void ov70_02269540(UnkStruct_ov70_02269204 *param0, NARC *param1, u32 par
     int v0;
 
     for (v0 = 0; v0 < 15; v0++) {
-        param0->unk_10550[v0].data = sub_0200723C(param1, 129 + v0, 0, param2, 0);
+        param0->unk_10550[v0].data = LoadMemberFromOpenNARC(param1, 129 + v0, 0, param2, 0);
         param0->unk_10550[v0].set = NNS_G3dGetMdlSet(param0->unk_10550[v0].data);
         param0->unk_10550[v0].model = NNS_G3dGetMdlByIdx(param0->unk_10550[v0].set, 0);
         param0->unk_10550[v0].texture = NULL;

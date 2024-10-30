@@ -3,24 +3,23 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0205B43C_decl.h"
 #include "struct_defs/sentence.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0203330C.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0205C22C.h"
 #include "struct_defs/struct_0205C924.h"
 #include "struct_defs/struct_0205C95C.h"
 
 #include "field/field_system.h"
 #include "overlay056/struct_ov56_02256468_decl.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "font.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
@@ -35,12 +34,10 @@
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
-#include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_02014A84.h"
 #include "unk_02017728.h"
-#include "unk_02018340.h"
 #include "unk_02027F84.h"
 #include "unk_02033200.h"
 #include "unk_020508D4.h"
@@ -70,7 +67,7 @@ struct UnkStruct_ov56_02256468_t {
     UnkStruct_0205B43C *unk_08;
     FieldSystem *fieldSystem;
     TrainerInfo *unk_10;
-    BGL *unk_14;
+    BgConfig *unk_14;
     StringTemplate *unk_18;
     MessageLoader *unk_1C;
     u16 *unk_20;
@@ -101,11 +98,11 @@ struct UnkStruct_ov56_02256468_t {
 };
 
 static void ov56_02256294(UnkStruct_ov56_02256468 *param0);
-static void ov56_022564E4(BGL *param0);
-static void ov56_02256508(BGL *param0);
+static void ov56_022564E4(BgConfig *param0);
+static void ov56_02256508(BgConfig *param0);
 static void ov56_02256634(UnkStruct_ov56_02256468 *param0);
 static void ov56_02256704(UnkStruct_ov56_02256468 *param0);
-static void ov56_022562EC(BGL *param0, UnkStruct_ov56_022562EC *param1);
+static void ov56_022562EC(BgConfig *param0, UnkStruct_ov56_022562EC *param1);
 static void ov56_022563E8(UnkStruct_ov56_022562EC *param0);
 static void ov56_022568E0(UnkStruct_ov56_02256468 *param0);
 static void ov56_022567FC(UnkStruct_ov56_02256468 *param0, int param1, UnkStruct_0205C924 *param2);
@@ -122,7 +119,7 @@ static int ov56_02256BC0(UnkStruct_ov56_02256468 *param0);
 static void ov56_02257100(UnkStruct_ov56_02256468 *param0);
 static void ov56_02257048(UnkStruct_ov56_02256468 *param0, TrainerInfo *param1, Sentence *param2, u32 param3);
 static Strbuf *ov56_02256E5C(UnkStruct_02027F8C *param0, u32 param1, StringTemplate *param2, MessageLoader *param3, TrainerInfo *param4);
-static void ov56_02256D64(BGL *param0, NNSG2dScreenData *param1, UnkStruct_ov56_022562EC *param2, int param3, int param4, int *param5);
+static void ov56_02256D64(BgConfig *param0, NNSG2dScreenData *param1, UnkStruct_ov56_022562EC *param2, int param3, int param4, int *param5);
 static void ov56_0225710C(UnkStruct_ov56_02256468 *param0);
 static void ov56_0225712C(UnkStruct_ov56_02256468 *param0);
 static BOOL ov56_02257174(const UnkStruct_ov56_02256468 *param0);
@@ -134,7 +131,7 @@ static void ov56_022571D0(UnkStruct_ov56_02256468 *param0);
 static void ov56_022561C0(SysTask *param0, void *param1)
 {
     UnkStruct_ov56_02256468 *v0 = param1;
-    BGL *v1 = v0->unk_14;
+    BgConfig *v1 = v0->unk_14;
     int v2;
 
     if (v0->fieldSystem->unk_80 == NULL) {
@@ -188,26 +185,26 @@ static void ov56_02256294(UnkStruct_ov56_02256468 *param0)
     param0->unk_2D8.unk_06 = 0;
     param0->unk_18 = StringTemplate_Default(4);
     param0->unk_1C = MessageLoader_Init(0, 26, 635, 4);
-    param0->unk_20 = sub_02006F6C(74, 3, 1, &(param0->unk_24), 4);
+    param0->unk_20 = Graphics_GetScrnData(74, 3, 1, &(param0->unk_24), 4);
 }
 
-static void ov56_022562EC(BGL *param0, UnkStruct_ov56_022562EC *param1)
+static void ov56_022562EC(BgConfig *param0, UnkStruct_ov56_022562EC *param1)
 {
     int v0;
 
     for (v0 = 0; v0 < 3; v0++) {
-        BGL_AddWindow(param0, &param1[v0].unk_00, 4 + v0, 1, 1 + v0 * 8, 8, 2, 12, (32 * 5) + v0 * (8 * 2));
-        BGL_FillWindow(&param1[v0].unk_00, 0x0);
+        Window_Add(param0, &param1[v0].unk_00, 4 + v0, 1, 1 + v0 * 8, 8, 2, 12, (32 * 5) + v0 * (8 * 2));
+        Window_FillTilemap(&param1[v0].unk_00, 0x0);
 
-        sub_0201A954(&param1[v0].unk_00);
+        Window_CopyToVRAM(&param1[v0].unk_00);
 
-        BGL_AddWindow(param0, &param1[v0].unk_10, 4 + v0, 2, 3 + v0 * 8, 27, 5, 12, ((32 * 5) + (8 * 2) * 3) + v0 * (27 * 5));
-        BGL_FillWindow(&param1[v0].unk_10, 0x0);
-        sub_0201A954(&param1[v0].unk_10);
+        Window_Add(param0, &param1[v0].unk_10, 4 + v0, 2, 3 + v0 * 8, 27, 5, 12, ((32 * 5) + (8 * 2) * 3) + v0 * (27 * 5));
+        Window_FillTilemap(&param1[v0].unk_10, 0x0);
+        Window_CopyToVRAM(&param1[v0].unk_10);
 
-        BGL_AddWindow(param0, &param1[v0].unk_20, 4 + v0, 12, 1 + v0 * 8, 15, 2, 12, (((32 * 5) + (8 * 2) * 3) + (27 * 5) * 3) + v0 * (15 * 2));
-        BGL_FillWindow(&param1[v0].unk_20, 0x0);
-        sub_0201A954(&param1[v0].unk_20);
+        Window_Add(param0, &param1[v0].unk_20, 4 + v0, 12, 1 + v0 * 8, 15, 2, 12, (((32 * 5) + (8 * 2) * 3) + (27 * 5) * 3) + v0 * (15 * 2));
+        Window_FillTilemap(&param1[v0].unk_20, 0x0);
+        Window_CopyToVRAM(&param1[v0].unk_20);
     }
 }
 
@@ -216,9 +213,9 @@ static void ov56_022563E8(UnkStruct_ov56_022562EC *param0)
     int v0;
 
     for (v0 = 0; v0 < 3; v0++) {
-        BGL_DeleteWindow(&param0[v0].unk_10);
-        BGL_DeleteWindow(&param0[v0].unk_00);
-        BGL_DeleteWindow(&param0[v0].unk_20);
+        Window_Remove(&param0[v0].unk_10);
+        Window_Remove(&param0[v0].unk_00);
+        Window_Remove(&param0[v0].unk_20);
     }
 }
 
@@ -231,7 +228,7 @@ UnkStruct_ov56_02256468 *ov56_02256410(FieldSystem *fieldSystem)
     v0 = SysTask_GetParam(v1);
 
     v0->fieldSystem = fieldSystem;
-    v0->unk_14 = fieldSystem->unk_08;
+    v0->unk_14 = fieldSystem->bgConfig;
     v0->unk_04 = fieldSystem->unk_80;
     v0->unk_08 = fieldSystem->unk_7C;
     v0->unk_10 = SaveData_GetTrainerInfo(fieldSystem->saveData);
@@ -245,7 +242,7 @@ UnkStruct_ov56_02256468 *ov56_02256410(FieldSystem *fieldSystem)
 void ov56_02256468(UnkStruct_ov56_02256468 *param0)
 {
     if (param0->unk_00 == 2) {
-        BGL *v0 = param0->unk_14;
+        BgConfig *v0 = param0->unk_14;
         int v1;
 
         param0->unk_00 = 3;
@@ -272,20 +269,20 @@ void ov56_02256468(UnkStruct_ov56_02256468 *param0)
     }
 }
 
-static void ov56_022564E4(BGL *param0)
+static void ov56_022564E4(BgConfig *param0)
 {
-    sub_02019044(param0, 4);
-    sub_02019044(param0, 5);
-    sub_02019044(param0, 6);
-    sub_02019044(param0, 7);
+    Bg_FreeTilemapBuffer(param0, 4);
+    Bg_FreeTilemapBuffer(param0, 5);
+    Bg_FreeTilemapBuffer(param0, 6);
+    Bg_FreeTilemapBuffer(param0, 7);
 }
 
-static void ov56_02256508(BGL *param0)
+static void ov56_02256508(BgConfig *param0)
 {
     ov56_022564E4(param0);
 
     {
-        UnkStruct_ov97_0222DB78 v0 = {
+        BgTemplate v0 = {
             0,
             0,
             0x800,
@@ -301,13 +298,13 @@ static void ov56_02256508(BGL *param0)
             0
         };
 
-        sub_020183C4(param0, 4, &v0, 0);
-        sub_02019EBC(param0, 4);
+        Bg_InitFromTemplate(param0, 4, &v0, 0);
+        Bg_ClearTilemap(param0, 4);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
     }
 
     {
-        UnkStruct_ov97_0222DB78 v1 = {
+        BgTemplate v1 = {
             0,
             0,
             0x800,
@@ -323,13 +320,13 @@ static void ov56_02256508(BGL *param0)
             0
         };
 
-        sub_020183C4(param0, 5, &v1, 0);
-        sub_02019EBC(param0, 5);
+        Bg_InitFromTemplate(param0, 5, &v1, 0);
+        Bg_ClearTilemap(param0, 5);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
     }
 
     {
-        UnkStruct_ov97_0222DB78 v2 = {
+        BgTemplate v2 = {
             0,
             0,
             0x800,
@@ -345,13 +342,13 @@ static void ov56_02256508(BGL *param0)
             0
         };
 
-        sub_020183C4(param0, 6, &v2, 0);
-        sub_02019EBC(param0, 6);
+        Bg_InitFromTemplate(param0, 6, &v2, 0);
+        Bg_ClearTilemap(param0, 6);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
     }
 
     {
-        UnkStruct_ov97_0222DB78 v3 = {
+        BgTemplate v3 = {
             0,
             0,
             0x800,
@@ -367,13 +364,13 @@ static void ov56_02256508(BGL *param0)
             0
         };
 
-        sub_020183C4(param0, 7, &v3, 0);
+        Bg_InitFromTemplate(param0, 7, &v3, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
     }
 
-    sub_02006E84(74, 0, 4, 0, 0x20 * 3, 4);
-    sub_02006E3C(74, 2, param0, 7, 0, (32 * 5) * 0x20, 1, 4);
-    sub_02006E60(74, 4, param0, 7, 0, 32 * 24 * 2, 1, 4);
+    Graphics_LoadPalette(74, 0, 4, 0, 0x20 * 3, 4);
+    Graphics_LoadTilesToBgLayer(74, 2, param0, 7, 0, (32 * 5) * 0x20, 1, 4);
+    Graphics_LoadTilemapToBgLayer(74, 4, param0, 7, 0, 32 * 24 * 2, 1, 4);
     sub_0205D8CC(4, 0);
 }
 
@@ -460,20 +457,20 @@ static void ov56_022567FC(UnkStruct_ov56_02256468 *param0, int param1, UnkStruct
 {
     param0->unk_22C[param1].unk_30 = param2->unk_10;
 
-    sub_020198E8(param0->unk_14, 7, 0, param1 * 8, 32, 8, param0->unk_24->rawData, 0, 24 * param0->unk_22C[param1].unk_30, 32, 48);
-    BGL_FillWindow(&param0->unk_22C[param1].unk_00, 0x0);
-    BGL_FillWindow(&param0->unk_22C[param1].unk_10, 0x0);
-    BGL_FillWindow(&param0->unk_22C[param1].unk_20, 0x0);
-    Text_AddPrinterWithParamsAndColor(&param0->unk_22C[param1].unk_00, 1, param2->unk_00, 0, 1, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
-    Text_AddPrinterWithParamsAndColor(&param0->unk_22C[param1].unk_10, 1, param2->unk_04, 0, 6, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
-    sub_0201A9A4(&param0->unk_22C[param1].unk_00);
-    sub_0201A9A4(&param0->unk_22C[param1].unk_10);
+    Bg_CopyToTilemapRect(param0->unk_14, 7, 0, param1 * 8, 32, 8, param0->unk_24->rawData, 0, 24 * param0->unk_22C[param1].unk_30, 32, 48);
+    Window_FillTilemap(&param0->unk_22C[param1].unk_00, 0x0);
+    Window_FillTilemap(&param0->unk_22C[param1].unk_10, 0x0);
+    Window_FillTilemap(&param0->unk_22C[param1].unk_20, 0x0);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_22C[param1].unk_00, FONT_MESSAGE, param2->unk_00, 0, 1, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_22C[param1].unk_10, FONT_MESSAGE, param2->unk_04, 0, 6, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Window_ScheduleCopyToVRAM(&param0->unk_22C[param1].unk_00);
+    Window_ScheduleCopyToVRAM(&param0->unk_22C[param1].unk_10);
 
     if (param2->unk_08) {
-        Text_AddPrinterWithParamsAndColor(&param0->unk_22C[param1].unk_20, 1, param2->unk_08, 0, 1, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_22C[param1].unk_20, FONT_MESSAGE, param2->unk_08, 0, 1, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     }
 
-    sub_0201A9A4(&param0->unk_22C[param1].unk_20);
+    Window_ScheduleCopyToVRAM(&param0->unk_22C[param1].unk_20);
 }
 
 static void ov56_022568E0(UnkStruct_ov56_02256468 *param0)
@@ -497,8 +494,8 @@ static void ov56_022568E0(UnkStruct_ov56_02256468 *param0)
             v2 = ov56_022567E4(param0->unk_2D4, v2);
         }
 
-        DC_FlushRange((void *)sub_02019FE4(param0->unk_14, 7), 32 * 24 * 2);
-        sub_02019460(param0->unk_14, 7, sub_02019FE4(param0->unk_14, 7), 32 * 24 * 2, 0);
+        DC_FlushRange((void *)Bg_GetTilemapBuffer(param0->unk_14, 7), 32 * 24 * 2);
+        Bg_CopyTilemapBufferRangeToVRAM(param0->unk_14, 7, Bg_GetTilemapBuffer(param0->unk_14, 7), 32 * 24 * 2, 0);
 
         param0->unk_2E8 = 0;
     }
@@ -726,7 +723,7 @@ static const int Unk_ov56_02257244[] = {
     0x5
 };
 
-static void ov56_02256D64(BGL *param0, NNSG2dScreenData *param1, UnkStruct_ov56_022562EC *param2, int param3, int param4, int *param5)
+static void ov56_02256D64(BgConfig *param0, NNSG2dScreenData *param1, UnkStruct_ov56_022562EC *param2, int param3, int param4, int *param5)
 {
     int v0, v1 = 0;
 
@@ -754,12 +751,12 @@ static void ov56_02256D64(BGL *param0, NNSG2dScreenData *param1, UnkStruct_ov56_
     for (v0 = 0; v0 < param4; v0++) {
         int v2 = param2[v0].unk_34 / 2;
 
-        sub_020198E8(param0, 7, 0, v0 * 8, 32, 8, param1->rawData, 0, 24 * param2[v0].unk_30 + 8 * v2, 32, 48);
-        sub_02019184(param0, 4 + v0, 3, Unk_ov56_02257244[v2]);
+        Bg_CopyToTilemapRect(param0, 7, 0, v0 * 8, 32, 8, param1->rawData, 0, 24 * param2[v0].unk_30 + 8 * v2, 32, 48);
+        Bg_SetOffset(param0, 4 + v0, 3, Unk_ov56_02257244[v2]);
     }
 
-    DC_FlushRange((void *)sub_02019FE4(param0, 7), 32 * 24 * 2);
-    sub_02019460(param0, 7, sub_02019FE4(param0, 7), 32 * 24 * 2, 0);
+    DC_FlushRange((void *)Bg_GetTilemapBuffer(param0, 7), 32 * 24 * 2);
+    Bg_CopyTilemapBufferRangeToVRAM(param0, 7, Bg_GetTilemapBuffer(param0, 7), 32 * 24 * 2, 0);
 }
 
 static Strbuf *ov56_02256E5C(UnkStruct_02027F8C *param0, u32 param1, StringTemplate *param2, MessageLoader *param3, TrainerInfo *param4)

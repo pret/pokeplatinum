@@ -3,18 +3,18 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay005/hblank_system.h"
 #include "overlay005/ov5_021D57BC.h"
 #include "overlay005/struct_ov5_021D57D8_decl.h"
 
+#include "bg_window.h"
 #include "buffer_manager.h"
 #include "camera.h"
 #include "cell_actor.h"
 #include "enums.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "narc.h"
@@ -22,11 +22,9 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201E190.h"
 #include "unk_0202309C.h"
@@ -815,7 +813,7 @@ static void ov5_021D6290(SpriteResourceTable *param0, int param1, int param2)
     void *v1;
 
     v0 = SpriteResourceTable_GetArrayElement(param0, param1);
-    v1 = sub_02006FE8(65, param2, 0, 4, 1);
+    v1 = LoadMemberFromNARC(65, param2, 0, 4, 1);
 
     SpriteResourceTable_LoadFromBinary(v1, v0, 4);
     Heap_FreeToHeap(v1);
@@ -1496,7 +1494,7 @@ static void ov5_021D6D84(UnkStruct_ov5_021D6594 *param0, int param1)
 
         NNS_G2dGetUnpackedPaletteData(v0.unk_00, &v0.unk_14);
 
-        sub_0201972C(2, v0.unk_14->pRawData, 32, 32 * 6);
+        Bg_LoadPalette(2, v0.unk_14->pRawData, 32, 32 * 6);
         Heap_FreeToHeap(v0.unk_00);
 
         v0.unk_00 = NULL;
@@ -1512,7 +1510,7 @@ static void ov5_021D6DCC(UnkStruct_ov5_021D6594 *param0, int param1)
 
         NNS_G2dGetUnpackedCharacterData(v0.unk_04, &v0.unk_10);
 
-        sub_0201958C(param0->fieldSystem->unk_08, 2, v0.unk_10->pRawData, v0.unk_10->szByte, 0);
+        Bg_LoadTiles(param0->fieldSystem->bgConfig, 2, v0.unk_10->pRawData, v0.unk_10->szByte, 0);
         Heap_FreeToHeap(v0.unk_04);
 
         v0.unk_04 = NULL;
@@ -1531,10 +1529,10 @@ static void ov5_021D6E20(UnkStruct_ov5_021D6594 *param0, int param1)
 
         NNS_G2dGetUnpackedScreenData(v0.unk_08, &v0.unk_0C);
 
-        sub_02019460(param0->fieldSystem->unk_08, 2, (void *)v0.unk_0C->rawData, v0.unk_0C->szByte, 0);
-        sub_02019574(param0->fieldSystem->unk_08, 2, (void *)v0.unk_0C->rawData, v0.unk_0C->szByte);
-        sub_02019E2C(param0->fieldSystem->unk_08, 2, 0, 0, 32, 32, 6);
-        sub_02019448(param0->fieldSystem->unk_08, 2);
+        Bg_CopyTilemapBufferRangeToVRAM(param0->fieldSystem->bgConfig, 2, (void *)v0.unk_0C->rawData, v0.unk_0C->szByte, 0);
+        Bg_LoadTilemapBuffer(param0->fieldSystem->bgConfig, 2, (void *)v0.unk_0C->rawData, v0.unk_0C->szByte);
+        Bg_ChangeTilemapRectPalette(param0->fieldSystem->bgConfig, 2, 0, 0, 32, 32, 6);
+        Bg_CopyTilemapBufferToVRAM(param0->fieldSystem->bgConfig, 2);
         Heap_FreeToHeap(v0.unk_08);
 
         v0.unk_08 = NULL;
@@ -5245,8 +5243,8 @@ static void ov5_021DB144(SysTask *param0, void *param1)
 
         v5 = Unk_ov5_02201D38[v1->unk_B4 / 8];
 
-        sub_0201C63C(v0->unk_00->fieldSystem->unk_08, 2, 0, (v1->unk_AC >> FX32_SHIFT) + v5);
-        sub_0201C63C(v0->unk_00->fieldSystem->unk_08, 2, 3, (v1->unk_B0 >> FX32_SHIFT));
+        Bg_ScheduleScroll(v0->unk_00->fieldSystem->bgConfig, 2, 0, (v1->unk_AC >> FX32_SHIFT) + v5);
+        Bg_ScheduleScroll(v0->unk_00->fieldSystem->bgConfig, 2, 3, (v1->unk_B0 >> FX32_SHIFT));
     }
 }
 

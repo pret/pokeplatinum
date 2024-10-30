@@ -7,47 +7,44 @@
 #include "consts/items.h"
 #include "consts/species.h"
 
-#include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_020308A0_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021EB1A0.h"
 #include "overlay005/ov5_021ECE40.h"
 #include "overlay005/struct_ov5_021F6704_decl.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 
 #include "bag.h"
+#include "bg_window.h"
 #include "field_script_context.h"
+#include "font.h"
 #include "game_records.h"
+#include "graphics.h"
 #include "heap.h"
 #include "inlines.h"
+#include "list_menu.h"
 #include "map_object.h"
 #include "message.h"
 #include "narc.h"
 #include "party.h"
 #include "player_avatar.h"
 #include "pokemon.h"
+#include "render_window.h"
 #include "savedata_misc.h"
 #include "script_manager.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0200112C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_02020AEC.h"
 #include "unk_0202631C.h"
@@ -86,11 +83,11 @@ struct UnkStruct_ov5_021F6704_t {
     u16 *unk_210;
     u16 *unk_214;
     u16 *unk_218;
-    UnkStruct_ov84_02240FA8 unk_21C;
-    BmpList *unk_23C;
+    ListMenuTemplate unk_21C;
+    ListMenu *unk_23C;
     u16 unk_240;
     u16 unk_242;
-    ResourceMetadata unk_244[120];
+    StringList unk_244[120];
     u16 unk_604[120];
     u16 unk_6F4;
 };
@@ -111,8 +108,8 @@ void ov5_021F6760(UnkStruct_ov5_021F6704 *param0, u32 param1, u32 param2, u32 pa
 static void ov5_021F6768(UnkStruct_ov5_021F6704 *param0);
 static void ov5_021F6830(UnkStruct_ov5_021F6704 *param0, u32 param1, u32 param2, u32 param3);
 static void ov5_021F68BC(UnkStruct_ov5_021F6704 *param0);
-static void ov5_021F69CC(BmpList *param0, u32 param1, u8 param2);
-static void ov5_021F69F0(BmpList *param0, u32 param1, u8 param2);
+static void ov5_021F69CC(ListMenu *param0, u32 param1, u8 param2);
+static void ov5_021F69F0(ListMenu *param0, u32 param1, u8 param2);
 static void ov5_021F6A34(SysTask *param0, void *param1);
 static void ov5_021F6AD4(UnkStruct_ov5_021F6704 *param0);
 
@@ -203,7 +200,7 @@ static u16 *ov5_021F65FC(int heapID, int fileIndex, int *pokedexLength)
     u32 pokedexSize;
     u16 *pokedex;
 
-    pokedex = sub_02007068(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_DATA, fileIndex, 0, heapID, 0, &pokedexSize);
+    pokedex = LoadMemberFromNARC_OutFileSize(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_DATA, fileIndex, 0, heapID, 0, &pokedexSize);
     *pokedexLength = pokedexSize / (sizeof(u16));
 
     return pokedex;
@@ -239,8 +236,8 @@ static void ov5_021F6624(FieldSystem *fieldSystem, UnkStruct_ov5_021F6704 *param
     param1->unk_6F4 = param4;
 
     for (v0 = 0; v0 < 120; v0++) {
-        param1->unk_244[v0].unk_00 = NULL;
-        param1->unk_244[v0].unk_04 = 0;
+        param1->unk_244[v0].entry = NULL;
+        param1->unk_244[v0].index = 0;
         param1->unk_604[v0] = 0xff;
     }
 
@@ -278,16 +275,16 @@ void ov5_021F6760(UnkStruct_ov5_021F6704 *param0, u32 param1, u32 param2, u32 pa
 static void ov5_021F6768(UnkStruct_ov5_021F6704 *param0)
 {
     if (param0->unk_20B > 8) {
-        BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_08, 3, param0->unk_208, param0->unk_209, 11, 8 * 2, 13, 1);
+        Window_Add(param0->fieldSystem->bgConfig, &param0->unk_08, 3, param0->unk_208, param0->unk_209, 11, 8 * 2, 13, 1);
     } else {
-        BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_08, 3, param0->unk_208, param0->unk_209, 11, param0->unk_20B * 2, 13, 1);
+        Window_Add(param0->fieldSystem->bgConfig, &param0->unk_08, 3, param0->unk_208, param0->unk_209, 11, param0->unk_20B * 2, 13, 1);
     }
 
-    sub_0200DAA4(param0->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
-    Window_Show(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
+    LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
+    Window_DrawStandardFrame(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
     ov5_021F68BC(param0);
 
-    param0->unk_23C = sub_0200112C((const UnkStruct_ov84_02240FA8 *)&param0->unk_21C, *param0->unk_214, *param0->unk_218, 4);
+    param0->unk_23C = ListMenu_New((const ListMenuTemplate *)&param0->unk_21C, *param0->unk_214, *param0->unk_218, 4);
     param0->unk_04 = SysTask_Start(ov5_021F6A34, param0, 0);
 
     return;
@@ -303,14 +300,14 @@ static void ov5_021F6830(UnkStruct_ov5_021F6704 *param0, u32 param1, u32 param2,
 
         MessageLoader_GetStrbuf(param0->unk_1FC, param1, v2);
         StringTemplate_Format(param0->unk_200, param0->unk_1C[param0->unk_20B], v2);
-        param0->unk_244[param0->unk_20B].unk_00 = (const void *)param0->unk_1C[param0->unk_20B];
+        param0->unk_244[param0->unk_20B].entry = (const void *)param0->unk_1C[param0->unk_20B];
         Strbuf_Free(v2);
     }
 
     if (param3 == 0xfa) {
-        param0->unk_244[param0->unk_20B].unk_04 = 0xfffffffd;
+        param0->unk_244[param0->unk_20B].index = 0xfffffffd;
     } else {
-        param0->unk_244[param0->unk_20B].unk_04 = param3;
+        param0->unk_244[param0->unk_20B].index = param3;
     }
 
     param0->unk_604[param0->unk_20B] = param2;
@@ -321,46 +318,46 @@ static void ov5_021F6830(UnkStruct_ov5_021F6704 *param0, u32 param1, u32 param2,
 
 static void ov5_021F68BC(UnkStruct_ov5_021F6704 *param0)
 {
-    param0->unk_21C.unk_00 = param0->unk_244;
-    param0->unk_21C.unk_04 = ov5_021F69F0;
-    param0->unk_21C.unk_08 = ov5_021F69CC;
-    param0->unk_21C.unk_0C = &param0->unk_08;
-    param0->unk_21C.unk_10 = param0->unk_20B;
-    param0->unk_21C.unk_12 = 8;
-    param0->unk_21C.unk_14 = 1;
-    param0->unk_21C.unk_15 = 12;
-    param0->unk_21C.unk_16 = 2;
-    param0->unk_21C.unk_17_0 = 1;
-    param0->unk_21C.unk_17_4 = 1;
-    param0->unk_21C.unk_18_0 = 15;
-    param0->unk_21C.unk_18_4 = 2;
-    param0->unk_21C.unk_1A_0 = 0;
-    param0->unk_21C.unk_1A_3 = 16;
-    param0->unk_21C.unk_1A_7 = 1;
-    param0->unk_21C.unk_1A_9 = 0;
-    param0->unk_21C.unk_1A_15 = 0;
-    param0->unk_21C.unk_1C = (void *)param0;
+    param0->unk_21C.choices = param0->unk_244;
+    param0->unk_21C.cursorCallback = ov5_021F69F0;
+    param0->unk_21C.printCallback = ov5_021F69CC;
+    param0->unk_21C.window = &param0->unk_08;
+    param0->unk_21C.count = param0->unk_20B;
+    param0->unk_21C.maxDisplay = 8;
+    param0->unk_21C.headerXOffset = 1;
+    param0->unk_21C.textXOffset = 12;
+    param0->unk_21C.cursorXOffset = 2;
+    param0->unk_21C.yOffset = 1;
+    param0->unk_21C.textColorFg = 1;
+    param0->unk_21C.textColorBg = 15;
+    param0->unk_21C.textColorShadow = 2;
+    param0->unk_21C.letterSpacing = 0;
+    param0->unk_21C.lineSpacing = 0;
+    param0->unk_21C.pagerMode = PAGER_MODE_LEFT_RIGHT_PAD;
+    param0->unk_21C.fontID = FONT_SYSTEM;
+    param0->unk_21C.cursorType = 0;
+    param0->unk_21C.tmp = (void *)param0;
 
     return;
 }
 
-static void ov5_021F69CC(BmpList *param0, u32 param1, u8 param2)
+static void ov5_021F69CC(ListMenu *param0, u32 param1, u8 param2)
 {
     if (param1 == 0xfffffffd) {
-        sub_0200147C(param0, 3, 15, 4);
+        ListMenu_SetAltTextColors(param0, 3, 15, 4);
     } else {
-        sub_0200147C(param0, 1, 15, 2);
+        ListMenu_SetAltTextColors(param0, 1, 15, 2);
     }
 }
 
-static void ov5_021F69F0(BmpList *param0, u32 param1, u8 param2)
+static void ov5_021F69F0(ListMenu *param0, u32 param1, u8 param2)
 {
     u32 v0, v1;
     u16 v2 = 0;
     u16 v3 = 0;
-    UnkStruct_ov5_021F6704 *v4 = (UnkStruct_ov5_021F6704 *)sub_02001504(param0, 19);
+    UnkStruct_ov5_021F6704 *v4 = (UnkStruct_ov5_021F6704 *)ListMenu_GetAttribute(param0, 19);
 
-    sub_020014DC(param0, &v2, &v3);
+    ListMenu_GetListAndCursorPos(param0, &v2, &v3);
 
     if ((v4->unk_214 != NULL) && (v4->unk_218 != NULL)) {
         *v4->unk_214 = v2;
@@ -387,10 +384,10 @@ static void ov5_021F6A34(SysTask *param0, void *param1)
         return;
     }
 
-    v1 = sub_02001288(v2->unk_23C);
+    v1 = ListMenu_ProcessInput(v2->unk_23C);
     v0 = v2->unk_6F4;
 
-    sub_020014D0(v2->unk_23C, &v2->unk_6F4);
+    ListMenu_CalcTrueCursorPos(v2->unk_23C, &v2->unk_6F4);
 
     if (v0 != v2->unk_6F4) {
         Sound_PlayEffect(1500);
@@ -421,9 +418,9 @@ static void ov5_021F6AD4(UnkStruct_ov5_021F6704 *param0)
     int v0;
 
     Sound_PlayEffect(1500);
-    sub_02001384(param0->unk_23C, NULL, NULL);
-    Window_Clear(param0->unk_21C.unk_0C, 0);
-    BGL_DeleteWindow(&param0->unk_08);
+    ListMenu_Free(param0->unk_23C, NULL, NULL);
+    Window_EraseStandardFrame(param0->unk_21C.window, 0);
+    Window_Remove(&param0->unk_08);
 
     for (v0 = 0; v0 < 120; v0++) {
         Strbuf_Free(param0->unk_1C[v0]);

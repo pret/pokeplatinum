@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02039E30_decl.h"
 
 #include "field/field_system.h"
@@ -564,8 +563,8 @@ static void ov5_021E7D98(const u8 param0, const UnkStruct_ov5_021EF76C *param1, 
 
     ov5_021E7BAC(param5->unk_EC, v2, &v3);
 
-    sub_02006E28(param5->unk_EC, 0x800);
-    sub_02006E28(param5->unk_EC, v3.unk_0C);
+    NARC_Seek(param5->unk_EC, 0x800);
+    NARC_Seek(param5->unk_EC, v3.unk_0C);
 
     {
         param6->unk_10.unk_00++;
@@ -691,7 +690,7 @@ static void ov5_021E7FF0(const int param0, const u8 param1, UnkStruct_ov5_021EF7
         ov5_021E16CC(param7->unk_EC, v1.unk_0C, param2, param7->unk_84[param1]->unk_868, param7->unk_E4);
     }
 
-    sub_02006E28(param7->unk_EC, v1.unk_04);
+    NARC_Seek(param7->unk_EC, v1.unk_04);
 
     {
         ov5_021EF158(param7->unk_EC, v1.unk_08, param7->unk_84[param1]->unk_85C, param7->unk_84[param1]->unk_858);
@@ -2126,7 +2125,7 @@ static void ov5_021E9B70(const int param0, const u8 param1, const UnkStruct_ov5_
     ov5_021E7BAC(param7->unk_EC, v0, &v2);
 
     v1 = 0x800 + v2.unk_0C;
-    sub_02006E28(param7->unk_EC, v1);
+    NARC_Seek(param7->unk_EC, v1);
 
     DC_FlushRange((void *)param7->unk_84[param1]->unk_854, v2.unk_04);
     v3 = ov5_021E97AC(param7->unk_EC, v2.unk_04, &param7->unk_84[param1]->unk_800, &(param7->unk_84[param1]->unk_854), ov5_021EFA8C(param2));

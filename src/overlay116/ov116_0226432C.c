@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02002F38_decl.h"
 #include "struct_defs/struct_0200D0F4.h"
 
 #include "overlay116/ov116_02261870.h"
@@ -21,16 +20,16 @@
 #include "overlay116/struct_ov116_022660A8.h"
 #include "overlay116/union_ov116_02266FEC.h"
 
+#include "bg_window.h"
 #include "easy3d_object.h"
 #include "heap.h"
 #include "inlines.h"
+#include "palette.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 
 typedef struct {
@@ -629,8 +628,8 @@ static void ov116_0226501C(UnkStruct_ov116_02265470 *param0)
             param0->unk_00++;
         }
 
-        sub_02003A2C(v3, 0, 0x1, *v1 + *v2, 0x0);
-        sub_02003A2C(v3, 1, 0x1, *v1 + *v2, 0x0);
+        PaletteData_BlendMulti(v3, 0, 0x1, *v1 + *v2, 0x0);
+        PaletteData_BlendMulti(v3, 1, 0x1, *v1 + *v2, 0x0);
         break;
 
     case 1:
@@ -656,8 +655,8 @@ static void ov116_0226501C(UnkStruct_ov116_02265470 *param0)
             param0->unk_00++;
         }
 
-        sub_02003A2C(v3, 0, 0x1, *v1 + *v2, 0x0);
-        sub_02003A2C(v3, 1, 0x1, *v1 + *v2, 0x0);
+        PaletteData_BlendMulti(v3, 0, 0x1, *v1 + *v2, 0x0);
+        PaletteData_BlendMulti(v3, 1, 0x1, *v1 + *v2, 0x0);
         break;
 
     default:
@@ -972,11 +971,11 @@ static void ov116_022655DC(UnkStruct_ov116_022660A8 *param0)
             v2[v3] = ov116_02264774(&param0->unk_34[v3]);
         }
 
-        sub_0201C63C(param0->unk_30->unk_10, 7, 3, param0->unk_34[0].unk_00 >> FX32_SHIFT);
-        sub_0201C63C(param0->unk_30->unk_10, 5, 0, param0->unk_34[1].unk_00 >> FX32_SHIFT);
-        sub_0201C63C(param0->unk_30->unk_10, 6, 0, param0->unk_34[2].unk_00 >> FX32_SHIFT);
-        sub_0201C63C(param0->unk_30->unk_10, 1, 0, param0->unk_34[1].unk_00 >> FX32_SHIFT);
-        sub_0201C63C(param0->unk_30->unk_10, 2, 0, param0->unk_34[2].unk_00 >> FX32_SHIFT);
+        Bg_ScheduleScroll(param0->unk_30->unk_10, 7, 3, param0->unk_34[0].unk_00 >> FX32_SHIFT);
+        Bg_ScheduleScroll(param0->unk_30->unk_10, 5, 0, param0->unk_34[1].unk_00 >> FX32_SHIFT);
+        Bg_ScheduleScroll(param0->unk_30->unk_10, 6, 0, param0->unk_34[2].unk_00 >> FX32_SHIFT);
+        Bg_ScheduleScroll(param0->unk_30->unk_10, 1, 0, param0->unk_34[1].unk_00 >> FX32_SHIFT);
+        Bg_ScheduleScroll(param0->unk_30->unk_10, 2, 0, param0->unk_34[2].unk_00 >> FX32_SHIFT);
 
         if (v2[0] && v2[1] && v2[2]) {
             param0->unk_24++;
@@ -994,8 +993,8 @@ static void ov116_022655DC(UnkStruct_ov116_022660A8 *param0)
         *v1 = 6;
     }
 
-    sub_02003A2C(param0->unk_30->unk_14, 0, 0x1, *v0 + *v1, 0x0);
-    sub_02003A2C(param0->unk_30->unk_14, 1, 0x1, *v0 + *v1, 0x0);
+    PaletteData_BlendMulti(param0->unk_30->unk_14, 0, 0x1, *v0 + *v1, 0x0);
+    PaletteData_BlendMulti(param0->unk_30->unk_14, 1, 0x1, *v0 + *v1, 0x0);
 }
 
 static void ov116_02265754(UnkStruct_ov116_022660A8 *param0)
@@ -1018,11 +1017,11 @@ static void ov116_02265754(UnkStruct_ov116_022660A8 *param0)
             v2[v3] = ov116_02264774(&param0->unk_34[v3]);
         }
 
-        sub_0201C63C(param0->unk_30->unk_10, 7, 3, param0->unk_34[0].unk_00 >> FX32_SHIFT);
-        sub_0201C63C(param0->unk_30->unk_10, 5, 0, param0->unk_34[1].unk_00 >> FX32_SHIFT);
-        sub_0201C63C(param0->unk_30->unk_10, 6, 0, param0->unk_34[2].unk_00 >> FX32_SHIFT);
-        sub_0201C63C(param0->unk_30->unk_10, 1, 0, param0->unk_34[1].unk_00 >> FX32_SHIFT);
-        sub_0201C63C(param0->unk_30->unk_10, 2, 0, param0->unk_34[2].unk_00 >> FX32_SHIFT);
+        Bg_ScheduleScroll(param0->unk_30->unk_10, 7, 3, param0->unk_34[0].unk_00 >> FX32_SHIFT);
+        Bg_ScheduleScroll(param0->unk_30->unk_10, 5, 0, param0->unk_34[1].unk_00 >> FX32_SHIFT);
+        Bg_ScheduleScroll(param0->unk_30->unk_10, 6, 0, param0->unk_34[2].unk_00 >> FX32_SHIFT);
+        Bg_ScheduleScroll(param0->unk_30->unk_10, 1, 0, param0->unk_34[1].unk_00 >> FX32_SHIFT);
+        Bg_ScheduleScroll(param0->unk_30->unk_10, 2, 0, param0->unk_34[2].unk_00 >> FX32_SHIFT);
 
         if (v2[0] && v2[1] && v2[2]) {
             param0->unk_24++;
@@ -1040,8 +1039,8 @@ static void ov116_02265754(UnkStruct_ov116_022660A8 *param0)
         *v1 = 0;
     }
 
-    sub_02003A2C(param0->unk_30->unk_14, 0, 0x1, *v0 + *v1, 0x0);
-    sub_02003A2C(param0->unk_30->unk_14, 1, 0x1, *v0 + *v1, 0x0);
+    PaletteData_BlendMulti(param0->unk_30->unk_14, 0, 0x1, *v0 + *v1, 0x0);
+    PaletteData_BlendMulti(param0->unk_30->unk_14, 1, 0x1, *v0 + *v1, 0x0);
 }
 
 static int ov116_022658C8(int param0)

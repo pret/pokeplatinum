@@ -11,13 +11,13 @@
 #include "overlay021/struct_ov21_021D3A60.h"
 
 #include "core_sys.h"
+#include "graphics.h"
 #include "heap.h"
 #include "narc.h"
 #include "pokedex_data_index.h"
 #include "pokedex_heightweight.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "unk_02006E3C.h"
 #include "unk_0202631C.h"
 
 static void ov21_021D39A4(u16 *param0, int *param1, const PokedexData *param2, const u16 *param3, int param4);
@@ -47,7 +47,7 @@ void ov21_021D3208(UnkStruct_ov21_021D3320 *param0, UnkStruct_ov21_021D3208 *par
     param0->unk_00 = param1->unk_00;
     param0->unk_1744 = param1->unk_08;
 
-    if (sub_02027474(param0->unk_00)) {
+    if (Pokedex_IsNationalDexObtained(param0->unk_00)) {
         param0->unk_1734 = 1;
     } else {
         param0->unk_1734 = 0;
@@ -209,7 +209,7 @@ u32 ov21_021D341C(const UnkStruct_ov21_021D3320 *param0, u32 param1)
 
 BOOL ov21_021D3428(const UnkStruct_ov21_021D3320 *param0)
 {
-    return sub_02027474(param0->unk_00);
+    return Pokedex_IsNationalDexObtained(param0->unk_00);
 }
 
 void ov21_021D3434(UnkStruct_ov21_021D3320 *param0, u32 param1)
@@ -610,7 +610,7 @@ static void ov21_021D39A4(u16 *param0, int *param1, const PokedexData *param2, c
     *param1 = 0;
 
     for (v0 = 0; v0 < param4; v0++) {
-        if (sub_02026FE8(param2, param3[v0])) {
+        if (Pokedex_HasSeenSpecies(param2, param3[v0])) {
             param0[*param1] = param3[v0];
             (*param1)++;
         }
@@ -629,7 +629,7 @@ static void ov21_021D39E4(u16 *param0, int *param1, const u16 *param2, int param
                 if (param6 == 1) {
                     break;
                 } else {
-                    if (Pokedex_CaughtSpecies(param7, param2[v0])) {
+                    if (Pokedex_HasCaughtSpecies(param7, param2[v0])) {
                         break;
                     }
                 }
@@ -650,7 +650,7 @@ static void ov21_021D3A60(UnkStruct_ov21_021D3A60 *param0, const PokedexData *pa
     param0->unk_F6C = 0;
 
     for (v0 = 0; v0 < param3; v0++) {
-        if (Pokedex_CaughtSpecies(param1, param2[v0])) {
+        if (Pokedex_HasCaughtSpecies(param1, param2[v0])) {
             param0->unk_00[param0->unk_F6C].unk_04 = 2;
         } else {
             param0->unk_00[param0->unk_F6C].unk_04 = 1;
@@ -704,7 +704,7 @@ static u16 *Pokedex_Sorted_Array(int heapID, int pokedexSort, int *pokedexLength
     GF_ASSERT(47 > pokedexSort);
 
     pokedexDataNarcIndex = Pokedex_Data_NARC_Index();
-    pokedexSortedArray = sub_02007068(pokedexDataNarcIndex, 11 + pokedexSort, 0, heapID, 0, &pokedexSize);
+    pokedexSortedArray = LoadMemberFromNARC_OutFileSize(pokedexDataNarcIndex, 11 + pokedexSort, 0, heapID, 0, &pokedexSize);
     *pokedexLength = pokedexSize / (sizeof(u16));
 
     return pokedexSortedArray;

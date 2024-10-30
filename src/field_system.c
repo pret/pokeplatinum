@@ -5,7 +5,6 @@
 
 #include "constants/field/map_load.h"
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0203CC84.h"
 
 #include "field/field_system_sub1_decl.h"
@@ -20,6 +19,7 @@
 #include "overlay077/const_ov77_021D742C.h"
 
 #include "bag.h"
+#include "bg_window.h"
 #include "comm_player_manager.h"
 #include "communication_system.h"
 #include "core_sys.h"
@@ -174,7 +174,7 @@ static FieldSystem *FieldSystem_Init(OverlayManager *overlayMan)
     v0 = OverlayManager_Args(overlayMan);
 
     fieldSystem->saveData = v0->unk_08;
-    fieldSystem->unk_10 = NULL;
+    fieldSystem->taskManager = NULL;
     fieldSystem->location = sub_0203A720(SaveData_GetFieldOverworldState(fieldSystem->saveData));
     fieldSystem->unk_2C = sub_02039D6C();
 
@@ -240,7 +240,7 @@ BOOL FieldSystem_Run(FieldSystem *fieldSystem)
         sub_0203CECC(&fieldSystem->unk_00->unk_04);
     }
 
-    if (fieldSystem->unk_00->unk_0C && !fieldSystem->unk_10 && !fieldSystem->unk_00->unk_00 && !fieldSystem->unk_00->unk_04) {
+    if (fieldSystem->unk_00->unk_0C && !fieldSystem->taskManager && !fieldSystem->unk_00->unk_00 && !fieldSystem->unk_00->unk_04) {
         return 1;
     }
 
@@ -376,10 +376,10 @@ struct PoketchSystem *FieldSystem_GetPoketchSystem(void)
     return sFieldSystem->unk_04->poketchSys;
 }
 
-BGL *sub_0203D170(void *param0)
+BgConfig *sub_0203D170(void *param0)
 {
     FieldSystem *fieldSystem = (FieldSystem *)param0;
-    return fieldSystem->unk_08;
+    return fieldSystem->bgConfig;
 }
 
 SaveData *FieldSystem_SaveData(void *param0)

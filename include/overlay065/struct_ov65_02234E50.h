@@ -6,8 +6,8 @@
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_defs/sprite_manager_allocation.h"
-#include "struct_defs/struct_0205AA50.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "sprite_resource.h"
 #include "string_template.h"

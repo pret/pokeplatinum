@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/ov25_02255090.h"
 #include "overlay025/ov25_02255540.h"
@@ -16,17 +14,16 @@
 #include "overlay025/struct_ov25_02255958.h"
 #include "overlay030/struct_ov30_022563EC_1.h"
 #include "overlay030/struct_ov30_022563EC_decl.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
+#include "graphics.h"
 #include "heap.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
-#include "unk_02018340.h"
 
 struct UnkStruct_ov30_022563EC_t {
     const UnkStruct_ov30_022563EC_1 *unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     u32 unk_08[10];
     SysTask *unk_30;
     UnkStruct_ov25_02255958 unk_34;
@@ -44,7 +41,7 @@ static void ov30_022565B0(UnkStruct_ov30_022563EC *param0);
 static BOOL ov30_022565F4(UnkStruct_ov30_022563EC *param0);
 static void ov30_02256658(UnkStruct_ov30_022563EC *param0);
 
-BOOL ov30_022563EC(UnkStruct_ov30_022563EC **param0, const UnkStruct_ov30_022563EC_1 *param1, BGL *param2)
+BOOL ov30_022563EC(UnkStruct_ov30_022563EC **param0, const UnkStruct_ov30_022563EC_1 *param1, BgConfig *param2)
 {
     UnkStruct_ov30_022563EC *v0 = (UnkStruct_ov30_022563EC *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov30_022563EC));
 
@@ -122,7 +119,7 @@ static void ov30_022564A0(UnkStruct_ov25_02255224 *param0)
 
 static void ov30_022564B4(SysTask *param0, void *param1)
 {
-    static const UnkStruct_ov97_0222DB78 v0 = {
+    static const BgTemplate v0 = {
         0,
         0,
         0x800,
@@ -142,14 +139,14 @@ static void ov30_022564B4(SysTask *param0, void *param1)
 
     v2 = ov25_0225523C(param1);
 
-    sub_020183C4(v2->unk_04, 6, &v0, 0);
-    sub_02006E3C(12, 23, v2->unk_04, 6, 0, 0, 1, 8);
-    sub_02006E60(12, 26, v2->unk_04, 6, 0, 0, 1, 8);
+    Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
+    Graphics_LoadTilesToBgLayer(12, 23, v2->unk_04, 6, 0, 0, 1, 8);
+    Graphics_LoadTilemapToBgLayer(12, 26, v2->unk_04, 6, 0, 0, 1, 8);
 
     ov25_022546B8(0, 0);
     ov30_022565B0(v2);
 
-    sub_02019448(v2->unk_04, 6);
+    Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);
 
     v1 = GXS_GetDispCnt();
     GXS_SetVisiblePlane(v1.visiblePlane | GX_PLANEMASK_BG2 | GX_PLANEMASK_OBJ);
@@ -161,7 +158,7 @@ static void ov30_02256548(SysTask *param0, void *param1)
     UnkStruct_ov30_022563EC *v0 = ov25_0225523C(param1);
 
     ov30_022565B0(v0);
-    sub_02019448(v0->unk_04, 6);
+    Bg_CopyTilemapBufferToVRAM(v0->unk_04, 6);
     ov30_022564A0(param1);
 }
 
@@ -182,7 +179,7 @@ static void ov30_02256594(SysTask *param0, void *param1)
 {
     UnkStruct_ov30_022563EC *v0 = ov25_0225523C(param1);
 
-    sub_02019044(v0->unk_04, 6);
+    Bg_FreeTilemapBuffer(v0->unk_04, 6);
     ov30_022564A0(param1);
 }
 
@@ -220,7 +217,7 @@ static BOOL ov30_022565F4(UnkStruct_ov30_022563EC *param0)
         },
     };
 
-    sub_02006EC0(12, 29, 1, 0, 0, 1, 8);
+    Graphics_LoadObjectTiles(12, 29, 1, 0, 0, 1, 8);
 
     if (ov25_02255958(&param0->unk_34, 12, 27, 28, 8)) {
         int v1;

@@ -3,18 +3,17 @@
 
 #include <nnsys.h>
 
-#include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0209C194_decl.h"
 #include "struct_defs/struct_0200C738.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0209BDF8.h"
 
 #include "overlay109/struct_ov109_021D5140_sub1.h"
 #include "overlay109/struct_ov109_021D5140_sub2.h"
 #include "overlay109/struct_ov109_021D5140_sub3.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
+#include "menu.h"
 #include "message.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
@@ -28,7 +27,7 @@ typedef struct UnkStruct_ov109_021D5140_t {
     int unk_08;
     UnkStruct_0209C194 *unk_0C;
     UnkStruct_0209BDF8 *unk_10;
-    BGL *unk_14;
+    BgConfig *unk_14;
     BOOL unk_18;
     UnkStruct_ov109_021D5140_sub1 unk_1C;
     SysTask *unk_30;
@@ -53,7 +52,7 @@ typedef struct UnkStruct_ov109_021D5140_t {
     Window unk_36C;
     Window unk_37C;
     Window *unk_38C[2];
-    UIControlData *unk_394;
+    Menu *unk_394;
     void *unk_398[2];
     NNSG2dCharacterData *unk_3A0[2];
     void *unk_3A8[2];

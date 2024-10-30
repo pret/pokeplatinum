@@ -3,27 +3,24 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_02008900.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02013610.h"
 #include "struct_defs/struct_0203E234.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay005/struct_ov5_021DE5D0.h"
-#include "overlay084/struct_ov84_0223BA5C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 #include "overlay115/camera_angle.h"
 
+#include "bg_window.h"
 #include "camera.h"
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "enums.h"
 #include "font.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "inlines.h"
@@ -41,14 +38,12 @@
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_02017728.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 
 typedef struct {
@@ -64,7 +59,7 @@ typedef struct {
     int unk_04;
     int unk_08;
     UnkStruct_0203E234 *unk_0C;
-    BGL *unk_10;
+    BgConfig *unk_10;
     Window unk_14;
     CellActorCollection *unk_24;
     UnkStruct_0200C738 unk_28;
@@ -174,7 +169,7 @@ typedef struct {
 typedef struct {
     UnkStruct_ov86_0223BDAC unk_00;
     UnkStruct_ov86_0223B3C8 *unk_08;
-    BGL *unk_0C;
+    BgConfig *unk_0C;
     Window *unk_10;
     StringTemplate *unk_14;
     Strbuf *unk_18;
@@ -190,7 +185,7 @@ typedef struct {
 typedef struct {
     UnkStruct_ov86_0223BDAC unk_00;
     UnkStruct_ov86_0223B3C8 *unk_08;
-    BGL *unk_0C;
+    BgConfig *unk_0C;
     Window *unk_10;
     UnkStruct_ov86_0223D264 unk_14;
     int unk_28;
@@ -505,7 +500,7 @@ static BOOL ov86_0223B574(UnkStruct_ov86_0223B3C8 *param0)
 
     switch (param0->unk_00) {
     case 0:
-        sub_02006E60(105, 1, param0->unk_10, 3, 0, 0, 1, 63);
+        Graphics_LoadTilemapToBgLayer(105, 1, param0->unk_10, 3, 0, 0, 1, 63);
         param0->unk_00++;
         break;
     case 1:
@@ -625,13 +620,13 @@ static void ov86_0223B74C(UnkStruct_ov86_0223B3C8 *param0)
         GX_VRAM_TEX_0_A,
         GX_VRAM_TEXPLTT_01_FG
     };
-    static const UnkStruct_ov84_0223BA5C v2 = {
+    static const GraphicsModes v2 = {
         GX_DISPMODE_GRAPHICS,
         GX_BGMODE_0,
         GX_BGMODE_0,
         GX_BG0_AS_3D
     };
-    static const UnkStruct_ov97_0222DB78 v3 = {
+    static const BgTemplate v3 = {
         0,
         0,
         0x1000,
@@ -646,7 +641,7 @@ static void ov86_0223B74C(UnkStruct_ov86_0223B3C8 *param0)
         0,
         0
     };
-    static const UnkStruct_ov97_0222DB78 v4 = {
+    static const BgTemplate v4 = {
         0,
         0,
         0,
@@ -661,7 +656,7 @@ static void ov86_0223B74C(UnkStruct_ov86_0223B3C8 *param0)
         0,
         0
     };
-    static const UnkStruct_ov97_0222DB78 v5 = {
+    static const BgTemplate v5 = {
         0,
         0,
         0,
@@ -677,29 +672,29 @@ static void ov86_0223B74C(UnkStruct_ov86_0223B3C8 *param0)
         0
     };
 
-    param0->unk_10 = sub_02018340(63);
+    param0->unk_10 = BgConfig_New(63);
 
     GXLayers_SetBanks(&v1);
     GX_SetDispSelect(GX_DISP_SELECT_SUB_MAIN);
 
-    sub_02018368(&v2);
-    sub_020183C4(param0->unk_10, 1, &v3, 0);
-    sub_020183C4(param0->unk_10, 2, &v4, 0);
-    sub_020183C4(param0->unk_10, 3, &v5, 0);
-    sub_020196C0(param0->unk_10, 1, 0x0, 1, 0);
-    sub_02019CB8(param0->unk_10, 1, 0x0, 0, 0, 32, 32, 0);
-    BGL_AddWindow(param0->unk_10, &(param0->unk_14), 1, 0, 0, 32, 24, 1, 1);
-    BGL_FillWindow(&(param0->unk_14), 0);
-    sub_0201ACCC(&(param0->unk_14));
-    sub_0201A9F4(&param0->unk_14);
+    SetAllGraphicsModes(&v2);
+    Bg_InitFromTemplate(param0->unk_10, 1, &v3, 0);
+    Bg_InitFromTemplate(param0->unk_10, 2, &v4, 0);
+    Bg_InitFromTemplate(param0->unk_10, 3, &v5, 0);
+    Bg_FillTilesRange(param0->unk_10, 1, 0x0, 1, 0);
+    Bg_FillTilemapRect(param0->unk_10, 1, 0x0, 0, 0, 32, 32, 0);
+    Window_Add(param0->unk_10, &(param0->unk_14), 1, 0, 0, 32, 24, 1, 1);
+    Window_FillTilemap(&(param0->unk_14), 0);
+    Window_LoadTiles(&(param0->unk_14));
+    Window_PutToTilemap(&param0->unk_14);
 
     v0 = NARC_ctor(NARC_INDEX_GRAPHIC__DENDOU_DEMO, 63);
 
-    sub_020070E8(v0, 3, param0->unk_10, 3, 0, 0, 1, 63);
-    sub_0200710C(v0, 0, param0->unk_10, 3, 0, 0, 1, 63);
-    sub_02007130(v0, 4, 0, 0, 0x60, 63);
-    sub_0200710C(v0, 2, param0->unk_10, 2, 0, 0, 1, 63);
-    sub_02019448(param0->unk_10, 1);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 3, param0->unk_10, 3, 0, 0, 1, 63);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 0, param0->unk_10, 3, 0, 0, 1, 63);
+    Graphics_LoadPaletteFromOpenNARC(v0, 4, 0, 0, 0x60, 63);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 2, param0->unk_10, 2, 0, 0, 1, 63);
+    Bg_CopyTilemapBufferToVRAM(param0->unk_10, 1);
 
     G2_SetWnd0Position(0, 0, 0, 0);
     G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_ALL ^ GX_WND_PLANEMASK_BG2, 1);
@@ -713,10 +708,10 @@ static void ov86_0223B8C4(UnkStruct_ov86_0223B3C8 *param0)
 {
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
 
-    BGL_DeleteWindow(&(param0->unk_14));
-    sub_02019044(param0->unk_10, 1);
-    sub_02019044(param0->unk_10, 2);
-    sub_02019044(param0->unk_10, 3);
+    Window_Remove(&(param0->unk_14));
+    Bg_FreeTilemapBuffer(param0->unk_10, 1);
+    Bg_FreeTilemapBuffer(param0->unk_10, 2);
+    Bg_FreeTilemapBuffer(param0->unk_10, 3);
     Heap_FreeToHeap(param0->unk_10);
 }
 
@@ -785,8 +780,8 @@ static void ov86_0223BA44(UnkStruct_ov86_0223B3C8 *param0)
     sub_0200A784(0, 128, 0, 32, 0, 128, 0, 32, 63);
 
     param0->unk_24 = sub_020095C4(64, &param0->unk_28, 63);
-    param0->unk_1D0 = sub_02007204(v2, 77, 0, &v0, 63);
-    param0->unk_1D4 = sub_02007220(v2, 78, 0, &v1, 63);
+    param0->unk_1D0 = Graphics_GetCellBankFromOpenNARC(v2, 77, 0, &v0, 63);
+    param0->unk_1D4 = Graphics_GetAnimBankFromOpenNARC(v2, 78, 0, &v1, 63);
 
     ov86_0223BAC8(param0, v0, v1, v2);
 
@@ -831,8 +826,8 @@ static void ov86_0223BAC8(UnkStruct_ov86_0223B3C8 *param0, NNSG2dCellDataBank *p
     v3.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
     v3.heapID = 63;
 
-    v9 = sub_020071B4(param3, 76, 0, &v7, 63);
-    v10 = sub_020071EC(param3, 75, &v8, 63);
+    v9 = Graphics_GetCharDataFromOpenNARC(param3, 76, 0, &v7, 63);
+    v10 = Graphics_GetPlttDataFromOpenNARC(param3, 75, &v8, 63);
 
     for (v12 = 0; v12 < param0->unk_04; v12++) {
         NNS_G2dInitImageProxy(&v5);
@@ -860,7 +855,7 @@ static void ov86_0223BAC8(UnkStruct_ov86_0223B3C8 *param0, NNSG2dCellDataBank *p
         DC_FlushRange(param0->unk_310, 3200);
         GX_LoadOBJ(param0->unk_310, v12 * 2 * 3200 + 3200, 3200);
 
-        sub_02006E84(v1.archive, v1.palette, 1, v12 * 0x20, 0x20, 63);
+        Graphics_LoadPalette(v1.archive, v1.palette, 1, v12 * 0x20, 0x20, 63);
         PokeSprite_LoadAnimationFrames(param0->unk_1C54, &param0->unk_1D8[v12][0], param0->unk_2E0[v12], 1);
     }
 
@@ -875,7 +870,7 @@ static void ov86_0223BAC8(UnkStruct_ov86_0223B3C8 *param0, NNSG2dCellDataBank *p
     DC_FlushRange(param0->unk_310, 3200);
     GX_LoadOBJ(param0->unk_310, 38400, 3200);
 
-    sub_02006E84(v4.unk_00, v4.unk_08, 1, 192, 0x20, 63);
+    Graphics_LoadPalette(v4.unk_00, v4.unk_08, 1, 192, 0x20, 63);
 
     v3.priority = 0;
     param0->unk_1CC = CellActorCollection_Add(&v3);
@@ -1284,7 +1279,7 @@ static void ov86_0223C47C(UnkStruct_ov86_0223C3E4 *param0, int param1)
     for (v0 = 0; v0 < v1; v0++) {
         Strbuf_CopyLineNum(param0->unk_18, param0->unk_1C, v0);
         v2 = (136 - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_18, 0)) / 2;
-        Text_AddPrinterWithParamsAndColor(param0->unk_10, 0, param0->unk_18, param0->unk_2C + v2, param1 + v0 * 16, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+        Text_AddPrinterWithParamsAndColor(param0->unk_10, FONT_SYSTEM, param0->unk_18, param0->unk_2C + v2, param1 + v0 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     }
 }
 
@@ -1337,7 +1332,7 @@ static void ov86_0223C58C(SysTask *param0, void *param1)
     case 0:
         MessageLoader_GetStrbuf(v0->unk_20, 0, v0->unk_1C);
         ov86_0223C47C(v0, 16);
-        sub_0201ACCC(v0->unk_10);
+        Window_LoadTiles(v0->unk_10);
         v0->unk_30 = 20;
         v0->unk_34++;
         break;
@@ -1346,7 +1341,7 @@ static void ov86_0223C58C(SysTask *param0, void *param1)
         ov86_0223C47C(v0, 48);
         ov86_0223C4DC(v0);
         ov86_0223C47C(v0, 64);
-        sub_0201ACCC(v0->unk_10);
+        Window_LoadTiles(v0->unk_10);
         v0->unk_30 = 20;
         v0->unk_34++;
         break;
@@ -1357,7 +1352,7 @@ static void ov86_0223C58C(SysTask *param0, void *param1)
         ov86_0223C47C(v0, 96);
         ov86_0223C54C(v0);
         ov86_0223C47C(v0, 112);
-        sub_0201ACCC(v0->unk_10);
+        Window_LoadTiles(v0->unk_10);
         v0->unk_34++;
         break;
     case 3:
@@ -1394,19 +1389,19 @@ static void ov86_0223C6B4(SysTask *param0, void *param1)
     case 0: {
         int v1 = ov86_0223D284(&v0->unk_14) >> FX32_SHIFT;
 
-        sub_02019184(v0->unk_0C, v0->unk_2C, 3, v1);
+        Bg_SetOffset(v0->unk_0C, v0->unk_2C, 3, v1);
 
         if (ov86_0223D2A4(&v0->unk_14)) {
             v0->unk_28++;
         }
     } break;
     case 1:
-        BGL_FillWindow(v0->unk_10, 0);
-        sub_0201ACCC(v0->unk_10);
+        Window_FillTilemap(v0->unk_10, 0);
+        Window_LoadTiles(v0->unk_10);
         v0->unk_28++;
         break;
     case 2:
-        sub_02019184(v0->unk_0C, v0->unk_2C, 3, 0);
+        Bg_SetOffset(v0->unk_0C, v0->unk_2C, 3, 0);
         ov86_0223BDCC(&v0->unk_00);
         SysTask_Done(param0);
         break;
@@ -1420,7 +1415,7 @@ static void ov86_0223C72C(UnkStruct_ov86_0223B3C8 *param0)
     MessageLoader_GetStrbuf(param0->unk_1C50, 12, param0->unk_1C48);
 
     v0 = (256 - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_1C48, 0)) / 2;
-    Text_AddPrinterWithParamsAndColor(&param0->unk_14, 0, param0->unk_1C48, v0, 4, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_14, FONT_SYSTEM, param0->unk_1C48, v0, 4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     StringTemplate_SetPlayerName(param0->unk_1C44, 0, param0->unk_0C->unk_00);
 
     StringTemplate_SetNumber(param0->unk_1C44, 1, TrainerInfo_ID_LowHalf(param0->unk_0C->unk_00), 5, 2, 1);
@@ -1430,8 +1425,8 @@ static void ov86_0223C72C(UnkStruct_ov86_0223B3C8 *param0)
     StringTemplate_Format(param0->unk_1C44, param0->unk_1C48, param0->unk_1C4C);
 
     v0 = (256 - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_1C48, 0)) / 2;
-    Text_AddPrinterWithParamsAndColor(&param0->unk_14, 0, param0->unk_1C48, v0, 172, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
-    sub_0201ACCC(&param0->unk_14);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_14, FONT_SYSTEM, param0->unk_1C48, v0, 172, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Window_LoadTiles(&param0->unk_14);
 }
 
 static void ov86_0223C840(UnkStruct_ov86_0223B3C8 *param0, int param1)

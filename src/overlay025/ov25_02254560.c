@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-
 #include "overlay025/ov25_02255090.h"
 #include "overlay025/ov25_02255540.h"
 #include "overlay025/poketch_system.h"
@@ -16,16 +14,15 @@
 #include "overlay025/struct_ov25_02255810.h"
 #include "overlay025/struct_ov25_022558C4_decl.h"
 #include "overlay025/struct_ov25_02255958.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "poketch_data.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
-#include "unk_02018340.h"
 
 typedef struct {
     BOOL unk_00;
@@ -48,7 +45,7 @@ struct UnkStruct_ov25_02254560_t {
     UnkStruct_ov25_022555E8 *unk_1CC;
     SysTask *unk_1D0;
     UnkStruct_ov25_02254DD8 unk_1D4;
-    BGL *unk_1F8;
+    BgConfig *unk_1F8;
     PoketchSystem *poketchSys;
     u16 unk_200[256];
     u16 unk_400[16];
@@ -107,7 +104,7 @@ BOOL ov25_02254560(UnkStruct_ov25_02254560 **param0, const UnkStruct_ov25_022545
         }
 
         v0->unk_00 = param1;
-        v0->unk_1F8 = sub_02018340(7);
+        v0->unk_1F8 = BgConfig_New(7);
         v0->poketchSys = poketchSys;
 
         ov25_02254684(v0);
@@ -142,7 +139,7 @@ UnkStruct_ov25_022555E8 *ov25_02254664(void)
     return v0->unk_1CC;
 }
 
-BGL *ov25_02254674(void)
+BgConfig *ov25_02254674(void)
 {
     UnkStruct_ov25_02254560 *v0 = ov25_02254418();
     return v0->unk_1F8;
@@ -153,7 +150,7 @@ static void ov25_02254684(UnkStruct_ov25_02254560 *param0)
     NNSG2dPaletteData *v0;
     void *v1;
 
-    v1 = sub_02006F88(12, 0, &v0, 7);
+    v1 = Graphics_GetPlttData(12, 0, &v0, 7);
 
     if (v1) {
         MI_CpuCopy32(v0->pRawData, param0->unk_200, 8 * 0x40);
@@ -279,7 +276,7 @@ static void ov25_0225480C(UnkStruct_ov25_02255224 *param0)
 
 static void ov25_02254820(SysTask *param0, void *param1)
 {
-    static const UnkStruct_ov97_0222DB78 v0 = {
+    static const BgTemplate v0 = {
         0,
         0,
         0x824,
@@ -294,7 +291,7 @@ static void ov25_02254820(SysTask *param0, void *param1)
         0,
         0
     };
-    static const UnkStruct_ov97_0222DB78 v1 = {
+    static const BgTemplate v1 = {
         0,
         0,
         0x800,
@@ -318,15 +315,15 @@ static void ov25_02254820(SysTask *param0, void *param1)
 
     GXLayers_DisableEngineBLayers();
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
-    sub_020183C4(v2->unk_1F8, 4, &v0, 0);
-    sub_020183C4(v2->unk_1F8, 5, &v1, 0);
+    Bg_InitFromTemplate(v2->unk_1F8, 4, &v0, 0);
+    Bg_InitFromTemplate(v2->unk_1F8, 5, &v1, 0);
 
-    sub_02006E3C(12, 14, v2->unk_1F8, 4, 64, 0, 1, 7);
-    sub_02006E60(12, 15, v2->unk_1F8, 4, 0, 0, 1, 7);
-    sub_02006E9C(12, 13, 4, PoketchSystem_GetBorderColor(v2->poketchSys) * 0x20, 15 * 0x20, 0x20, 7);
+    Graphics_LoadTilesToBgLayer(12, 14, v2->unk_1F8, 4, 64, 0, 1, 7);
+    Graphics_LoadTilemapToBgLayer(12, 15, v2->unk_1F8, 4, 0, 0, 1, 7);
+    Graphics_LoadPaletteWithSrcOffset(12, 13, 4, PoketchSystem_GetBorderColor(v2->poketchSys) * 0x20, 15 * 0x20, 0x20, 7);
 
-    sub_02019CB8(v2->unk_1F8, 5, 64 + 164, 0, 0, 32, 24, 15);
-    sub_02019448(v2->unk_1F8, 5);
+    Bg_FillTilemapRect(v2->unk_1F8, 5, 64 + 164, 0, 0, 32, 24, 15);
+    Bg_CopyTilemapBufferToVRAM(v2->unk_1F8, 5);
 
     GXS_SetVisiblePlane(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_OBJ);
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);
@@ -364,14 +361,14 @@ static void ov25_02254944(SysTask *param0, void *param1)
             v4 = v0->unk_02 % 4;
             v5 = 2 + (20 / 2) - v3;
 
-            sub_02019CB8(v1->unk_1F8, 5, 64, 2, v5, 24, v3 * 2, 15);
+            Bg_FillTilemapRect(v1->unk_1F8, 5, 64, 2, v5, 24, v3 * 2, 15);
 
             if (v4) {
-                sub_02019CB8(v1->unk_1F8, 5, 64 + 164 + v4, 2, v5 - 1, 24, 1, 15);
-                sub_02019CB8(v1->unk_1F8, 5, 64 + 164 - v4, 2, v5 + v3 * 2, 24, 1, 15);
+                Bg_FillTilemapRect(v1->unk_1F8, 5, 64 + 164 + v4, 2, v5 - 1, 24, 1, 15);
+                Bg_FillTilemapRect(v1->unk_1F8, 5, 64 + 164 - v4, 2, v5 + v3 * 2, 24, 1, 15);
             }
 
-            sub_02019448(v1->unk_1F8, 5);
+            Bg_CopyTilemapBufferToVRAM(v1->unk_1F8, 5);
 
             if (v0->unk_02 == 40) {
                 ov25_0225524C(param1);
@@ -413,17 +410,17 @@ static void ov25_02254A5C(SysTask *param0, void *param1)
             v4 = v0->unk_02 % 4;
             v5 = 2 + 20 - v3;
 
-            sub_02019CB8(v1->unk_1F8, 5, 64 + 164, 2, 2, 24, v3, 15);
-            sub_02019CB8(v1->unk_1F8, 5, 64 + 164, 2, v5, 24, v3, 15);
+            Bg_FillTilemapRect(v1->unk_1F8, 5, 64 + 164, 2, 2, 24, v3, 15);
+            Bg_FillTilemapRect(v1->unk_1F8, 5, 64 + 164, 2, v5, 24, v3, 15);
 
             if (v4) {
                 v4--;
 
-                sub_02019CB8(v1->unk_1F8, 5, 64 + 167 - v4, 2, 0, 24, 1, 15);
-                sub_02019CB8(v1->unk_1F8, 5, 64 + 161 + v4, 2, v5 - 1, 24, 1, 15);
+                Bg_FillTilemapRect(v1->unk_1F8, 5, 64 + 167 - v4, 2, 0, 24, 1, 15);
+                Bg_FillTilemapRect(v1->unk_1F8, 5, 64 + 161 + v4, 2, v5 - 1, 24, 1, 15);
             }
 
-            sub_02019448(v1->unk_1F8, 5);
+            Bg_CopyTilemapBufferToVRAM(v1->unk_1F8, 5);
 
             if (v0->unk_02 == 40) {
                 ov25_0225524C(param1);
@@ -446,8 +443,8 @@ static void ov25_02254B8C(SysTask *param0, void *param1)
     v2 = ov25_02255248(param1);
 
     if (v2 < 4) {
-        sub_02019CB8(v1->unk_1F8, 5, 64 + 164 - v2 - 1, 2, 2, 24, 20, 15);
-        sub_02019448(v1->unk_1F8, 5);
+        Bg_FillTilemapRect(v1->unk_1F8, 5, 64 + 164 - v2 - 1, 2, 2, 24, 20, 15);
+        Bg_CopyTilemapBufferToVRAM(v1->unk_1F8, 5);
         ov25_0225524C(param1);
     } else {
         ov25_0225480C(param1);
@@ -465,8 +462,8 @@ static void ov25_02254BF0(SysTask *param0, void *param1)
     v2 = ov25_02255248(param1);
 
     if (v2 < 4) {
-        sub_02019CB8(v1->unk_1F8, 5, 64 + 167 - v2, 2, 2, 24, 20, 15);
-        sub_02019448(v1->unk_1F8, 5);
+        Bg_FillTilemapRect(v1->unk_1F8, 5, 64 + 167 - v2, 2, 2, 24, 20, 15);
+        Bg_CopyTilemapBufferToVRAM(v1->unk_1F8, 5);
         ov25_0225524C(param1);
     } else {
         ov25_0225480C(param1);
@@ -486,8 +483,8 @@ static void ov25_02254C54(void *param0, u16 *param1, int param2)
         v2 = 12;
     }
 
-    sub_020198C0(v0->unk_1F8, 4, param1, v1, v2, 4, 8);
-    sub_02019448(v0->unk_1F8, 4);
+    Bg_LoadToTilemapRect(v0->unk_1F8, 4, param1, v1, v2, 4, 8);
+    Bg_CopyTilemapBufferToVRAM(v0->unk_1F8, 4);
 
     ov25_0225480C(param0);
 }
@@ -579,8 +576,8 @@ static void ov25_02254DE0(UnkStruct_ov25_02254560 *param0, UnkStruct_ov25_02254D
             0
         };
 
-        sub_02006EC0(12, 2, 1, 0, 0, 1, 7);
-        sub_02006E84(12, 0, 5, 0, 0x60, 7);
+        Graphics_LoadObjectTiles(12, 2, 1, 0, 0, 1, 7);
+        Graphics_LoadPalette(12, 0, 5, 0, 0x60, 7);
 
         ov25_02254E84(param0, 15);
 
@@ -666,12 +663,12 @@ static void ov25_02254F68(SysTask *param0, void *param1)
     switch (v0) {
     case 0:
         G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ, 0x1a, 0x6);
-        sub_02019448(v2->unk_1F8, 4);
+        Bg_CopyTilemapBufferToVRAM(v2->unk_1F8, 4);
     case 1:
     case 2:
     case 3:
-        sub_02019CB8(v2->unk_1F8, 5, 64 + 167 - v0, 2, 2, 24, 20, 15);
-        sub_02019448(v2->unk_1F8, 5);
+        Bg_FillTilemapRect(v2->unk_1F8, 5, 64 + 167 - v0, 2, 2, 24, 20, 15);
+        Bg_CopyTilemapBufferToVRAM(v2->unk_1F8, 5);
 
         if (v0 == 3) {
             ov25_0225480C(param1);
@@ -686,9 +683,9 @@ static void ov25_02255004(SysTask *param0, void *param1)
 {
     UnkStruct_ov25_02254560 *v0 = ov25_0225523C(param1);
 
-    sub_02019CB8(v0->unk_1F8, 5, 64, 2, 2, 24, 20, 15);
-    sub_02019448(v0->unk_1F8, 4);
-    sub_02019448(v0->unk_1F8, 5);
+    Bg_FillTilemapRect(v0->unk_1F8, 5, 64, 2, 2, 24, 20, 15);
+    Bg_CopyTilemapBufferToVRAM(v0->unk_1F8, 4);
+    Bg_CopyTilemapBufferToVRAM(v0->unk_1F8, 5);
 
     G2S_SetBlendAlpha(0, 0, 0x1f, 0x0);
     ov25_0225480C(param1);
@@ -698,8 +695,8 @@ static void ov25_02255064(SysTask *param0, void *param1)
 {
     UnkStruct_ov25_02254560 *v0 = ov25_0225523C(param1);
 
-    sub_02019044(v0->unk_1F8, 4);
-    sub_02019044(v0->unk_1F8, 5);
+    Bg_FreeTilemapBuffer(v0->unk_1F8, 4);
+    Bg_FreeTilemapBuffer(v0->unk_1F8, 5);
 
     ov25_0225480C(param1);
 }

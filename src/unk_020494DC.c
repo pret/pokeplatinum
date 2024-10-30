@@ -7,11 +7,11 @@
 
 #include "struct_defs/struct_02049A68.h"
 #include "struct_defs/struct_0204AFC4.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021DC018.h"
 
+#include "bg_window.h"
 #include "communication_system.h"
 #include "field_script_context.h"
 #include "field_system.h"
@@ -299,7 +299,7 @@ BOOL ScrCmd_1E2(ScriptContext *param0)
     v0 = ScriptContext_ReadHalfWord(param0);
 
     if (sub_0205E6D8(param0->fieldSystem->saveData) == 1) {
-        sub_0206BD88(param0->fieldSystem->unk_10, v1, v0);
+        sub_0206BD88(param0->fieldSystem->taskManager, v1, v0);
     } else {
         v2->unk_8DA = v0;
         v2->unk_8D5 = v1;

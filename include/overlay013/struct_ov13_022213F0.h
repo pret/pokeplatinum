@@ -2,24 +2,23 @@
 #define POKEPLATINUM_STRUCT_OV13_022213F0_H
 
 #include "struct_decls/cell_actor_data.h"
-#include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay013/struct_ov13_0221FC20.h"
 #include "overlay013/struct_ov13_02221ED0.h"
 #include "overlay013/struct_ov13_02228A50_decl.h"
 
+#include "bg_window.h"
 #include "message.h"
+#include "palette.h"
 #include "strbuf.h"
 #include "string_template.h"
 
 typedef struct {
     UnkStruct_ov13_0221FC20 *unk_00;
     UnkStruct_ov13_02221ED0 unk_04[6];
-    BGL *unk_1E0;
+    BgConfig *unk_1E0;
     PaletteData *unk_1E4;
     u16 unk_1E8[4][96];
     u16 unk_4E8[4][96];

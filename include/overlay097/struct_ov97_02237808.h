@@ -1,9 +1,9 @@
 #ifndef POKEPLATINUM_STRUCT_OV97_02237808_H
 #define POKEPLATINUM_STRUCT_OV97_02237808_H
 
-#include "struct_defs/struct_0205AA50.h"
-
+#include "bg_window.h"
 #include "string_template.h"
+#include "text.h"
 
 typedef struct {
     int unk_00;
@@ -23,7 +23,7 @@ typedef struct {
     int unk_38;
     int unk_3C;
     int unk_40;
-    u32 unk_44;
+    TextColor unk_44;
     u8 unk_48;
     int unk_4C;
     int unk_50;

@@ -2,8 +2,9 @@
 #define POKEPLATINUM_OV5_021EA714_H
 
 #include "field/field_system_decl.h"
+#include "overlay025/poketch_system.h"
 
-void ov5_021EA714(FieldSystem *fieldSystem, int param1, u32 param2);
+void ov5_021EA714(FieldSystem *fieldSystem, enum PoketchEventID eventID, u32 dummy);
 void ov5_021EA728(FieldSystem *fieldSystem);
 void ov5_021EA790(FieldSystem *fieldSystem);
 u8 ov5_021EA7CC(FieldSystem *fieldSystem);

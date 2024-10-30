@@ -2,13 +2,12 @@
 #include <nitro/sinit.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-
 #include "overlay025/poketch_system.h"
 #include "overlay031/ov31_02256554.h"
 #include "overlay031/struct_ov31_02256554_1.h"
 #include "overlay031/struct_ov31_02256554_decl.h"
 
+#include "bg_window.h"
 #include "heap.h"
 #include "inlines.h"
 #include "poketch_data.h"
@@ -30,8 +29,8 @@ typedef struct {
 
 static void NitroStaticInit(void);
 
-static BOOL ov31_022561D4(void **param0, PoketchSystem *poketchSys, BGL *param2, u32 param3);
-static BOOL ov31_02256228(UnkStruct_ov31_02256228 *param0, PoketchSystem *poketchSys, BGL *param2, u32 param3);
+static BOOL ov31_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3);
+static BOOL ov31_02256228(UnkStruct_ov31_02256228 *param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3);
 static void ov31_02256268(UnkStruct_ov31_02256228 *param0, UnkStruct_ov31_02256554_1 *param1);
 static inline u8 inline_ov31_02256298(const u8 *param0, int param1);
 static inline void inline_ov31_022562EC(u8 *param0, int param1, int param2);
@@ -52,7 +51,7 @@ static void NitroStaticInit(void)
     PoketchSystem_SetAppFunctions(ov31_022561D4, ov31_02256404);
 }
 
-static BOOL ov31_022561D4(void **param0, PoketchSystem *poketchSys, BGL *param2, u32 param3)
+static BOOL ov31_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3)
 {
     UnkStruct_ov31_02256228 *v0 = (UnkStruct_ov31_02256228 *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov31_02256228));
 
@@ -71,7 +70,7 @@ static BOOL ov31_022561D4(void **param0, PoketchSystem *poketchSys, BGL *param2,
     return 0;
 }
 
-static BOOL ov31_02256228(UnkStruct_ov31_02256228 *param0, PoketchSystem *poketchSys, BGL *param2, u32 param3)
+static BOOL ov31_02256228(UnkStruct_ov31_02256228 *param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3)
 {
     param0->poketchSys = poketchSys;
     ov31_02256268(param0, &(param0->unk_0C));

@@ -4,11 +4,11 @@
 #include <string.h>
 
 #include "struct_defs/sentence.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "field/field_system.h"
 #include "overlay005/struct_ov5_021DD42C.h"
 
+#include "bg_window.h"
 #include "field_script_context.h"
 #include "game_options.h"
 #include "message.h"
@@ -18,7 +18,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "unk_02014A84.h"
-#include "unk_02018340.h"
 #include "unk_0205D8CC.h"
 
 typedef struct {
@@ -134,12 +133,12 @@ static void ov5_021DD5D0(FieldSystem *fieldSystem, StringTemplate *param1, UnkSt
 static void ov5_021DD610(FieldSystem *fieldSystem, UnkStruct_ov5_021DD648 *param1)
 {
     if (*(param1->unk_10) == 0) {
-        FieldMessage_AddWindow(fieldSystem->unk_08, param1->unk_0C, 3);
+        FieldMessage_AddWindow(fieldSystem->bgConfig, param1->unk_0C, 3);
         FieldMessage_DrawWindow(param1->unk_0C, SaveData_Options(fieldSystem->saveData));
         *(param1->unk_10) = 1;
     }
 
-    BGL_FillWindow(param1->unk_0C, 15);
+    Window_FillTilemap(param1->unk_0C, 15);
 }
 
 static void ov5_021DD648(UnkStruct_ov5_021DD648 *param0, const MessageLoader *param1, u32 param2)
@@ -171,5 +170,5 @@ static void ov5_021DD6B4(UnkStruct_ov5_021DD648 *param0, int param1, int param2,
 
 static void ov5_021DD6DC(UnkStruct_ov5_021DD648 *param0, int param1)
 {
-    *(param0->unk_14) = Text_AddPrinterWithParams(param0->unk_0C, param1, param0->unk_00, 0, 0, 0, NULL);
+    *(param0->unk_14) = Text_AddPrinterWithParams(param0->unk_0C, param1, param0->unk_00, 0, 0, TEXT_SPEED_INSTANT, NULL);
 }

@@ -1,12 +1,13 @@
 #ifndef POKEPLATINUM_OV20_021D3A54_H
 #define POKEPLATINUM_OV20_021D3A54_H
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_020998EC_decl.h"
 
 #include "overlay020/struct_ov20_021D16E8_decl.h"
 #include "overlay020/struct_ov20_021D2128_decl.h"
 #include "overlay020/struct_ov20_021D3E0C_decl.h"
+
+#include "narc.h"
 
 UnkStruct_ov20_021D3E0C *ov20_021D3A54(UnkStruct_ov20_021D2128 *param0, const UnkStruct_ov20_021D16E8 *param1, const UnkStruct_020998EC *param2);
 void ov20_021D3A80(UnkStruct_ov20_021D3E0C *param0);

@@ -1,13 +1,12 @@
 #ifndef POKEPLATINUM_OV63_0222AE60_H
 #define POKEPLATINUM_OV63_0222AE60_H
 
-#include "struct_decls/struct_02002F38_decl.h"
-
 #include "overlay063/struct_ov63_0222AE60_decl.h"
 #include "overlay063/struct_ov63_0222BB38_decl.h"
 #include "overlay064/struct_ov64_022302EC.h"
 
 #include "cell_actor.h"
+#include "palette.h"
 
 UnkStruct_ov63_0222AE60 *ov63_0222AE60(CellActorCollection *param0, PaletteData *param1, u32 param2, u32 param3);
 void ov63_0222AF14(UnkStruct_ov63_0222AE60 *param0);

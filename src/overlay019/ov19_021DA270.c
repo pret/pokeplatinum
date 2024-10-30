@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/struct_ov19_021D4DF0.h"
@@ -13,11 +11,11 @@
 #include "overlay019/struct_ov19_021DCD18.h"
 
 #include "cell_actor.h"
+#include "graphics.h"
 #include "heap.h"
 #include "narc.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
-#include "unk_02006E3C.h"
 
 BOOL ov19_021DA270(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, CellActorCollection *param3, NARC *param4)
 {
@@ -28,9 +26,9 @@ BOOL ov19_021DA270(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021D61B0 *par
     param0->unk_48 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 10);
 
     NNS_G2dInitImagePaletteProxy(&v0);
-    sub_0200716C(param0->unk_48, PokeIconPalettesFileIndex(), NNS_G2D_VRAM_TYPE_2DMAIN, 2 * 0x20, 10, &v0);
+    Graphics_LoadPartialPaletteFromOpenNARC(param0->unk_48, PokeIconPalettesFileIndex(), NNS_G2D_VRAM_TYPE_2DMAIN, 2 * 0x20, 10, &v0);
 
-    v2 = sub_020071EC(param0->unk_48, PokeIconPalettesFileIndex(), &v1, 10);
+    v2 = Graphics_GetPlttDataFromOpenNARC(param0->unk_48, PokeIconPalettesFileIndex(), &v1, 10);
 
     if (v2) {
         BOOL v3;
@@ -49,10 +47,10 @@ BOOL ov19_021DA270(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021D61B0 *par
         Heap_FreeToHeap(v2);
     }
 
-    param0->unk_08 = sub_02007204(param4, 21, 1, &(param0->unk_10), 10);
-    param0->unk_00 = sub_02007220(param4, 22, 1, &(param0->unk_04), 10);
-    param0->unk_14 = sub_02007204(param4, 23, 1, &(param0->unk_1C), 10);
-    param0->unk_18 = sub_02007220(param4, 24, 1, &(param0->unk_20), 10);
+    param0->unk_08 = Graphics_GetCellBankFromOpenNARC(param4, 21, 1, &(param0->unk_10), 10);
+    param0->unk_00 = Graphics_GetAnimBankFromOpenNARC(param4, 22, 1, &(param0->unk_04), 10);
+    param0->unk_14 = Graphics_GetCellBankFromOpenNARC(param4, 23, 1, &(param0->unk_1C), 10);
+    param0->unk_18 = Graphics_GetAnimBankFromOpenNARC(param4, 24, 1, &(param0->unk_20), 10);
 
     if ((param0->unk_08 == NULL) || (param0->unk_00 == NULL) || (param0->unk_48 == NULL)) {
         return 0;

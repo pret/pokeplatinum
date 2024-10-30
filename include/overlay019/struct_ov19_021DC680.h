@@ -3,19 +3,18 @@
 
 #include <nnsys.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/struct_ov19_021D8318.h"
 #include "overlay019/struct_ov19_021DA384.h"
 #include "overlay019/struct_ov19_021DCD18.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 
 typedef struct {
     UnkStruct_ov19_021D61B0 *unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     CellActorCollection *unk_08;
     const UnkStruct_ov19_021D4DF0 *unk_0C;
     UnkStruct_ov19_021D8318 *unk_10;

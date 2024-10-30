@@ -6,7 +6,6 @@
 #include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02039EBC_decl.h"
 #include "struct_defs/struct_0203D8AC.h"
 
@@ -15,6 +14,7 @@
 #include "overlay080/struct_ov80_021D2C1C.h"
 #include "overlay080/struct_ov80_021D2E10.h"
 
+#include "bg_window.h"
 #include "message.h"
 #include "strbuf.h"
 
@@ -31,7 +31,7 @@ typedef struct UnkStruct_ov80_021D2A08_t {
     int unk_1C;
     int unk_20;
     int unk_24;
-    BGL *unk_28;
+    BgConfig *unk_28;
     UnkStruct_0203D8AC *unk_2C;
     UnkStruct_02039EBC *unk_30;
     void *unk_34;

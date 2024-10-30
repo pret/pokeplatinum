@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 
@@ -17,7 +16,7 @@
 #include "heap.h"
 #include "inlines.h"
 #include "narc.h"
-#include "unk_02002F38.h"
+#include "palette.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
 
@@ -465,7 +464,7 @@ static void ov117_02262C60(UnkStruct_ov117_022626B0 *param0, int param1)
         v0 = 16;
     }
 
-    sub_0200393C(param0->unk_24C, param0->unk_250, param0->unk_254 / 2, v0, 0x1f);
+    BlendPalette(param0->unk_24C, param0->unk_250, param0->unk_254 / 2, v0, 0x1f);
     DC_FlushRange(param0->unk_250, param0->unk_254);
 
     param0->unk_276 = 1;

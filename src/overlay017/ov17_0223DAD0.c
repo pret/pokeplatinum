@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay011/ov11_0221F840.h"
@@ -21,39 +19,37 @@
 #include "overlay017/struct_ov17_02252FC4.h"
 #include "overlay017/struct_ov17_02253084.h"
 #include "overlay022/ov22_0225AF8C.h"
-#include "overlay084/struct_ov84_0223BA5C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_02241308.h"
 #include "overlay104/struct_ov104_0224133C.h"
 
+#include "bg_window.h"
 #include "camera.h"
 #include "font.h"
 #include "game_options.h"
 #include "game_overlay.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "palette.h"
 #include "pokemon.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02002F38.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02014000.h"
 #include "unk_02017728.h"
-#include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_020366A0.h"
@@ -67,7 +63,7 @@ FS_EXTERN_OVERLAY(overlay22);
 
 static void ov17_0223E09C(void *param0);
 static void ov17_0223E1FC(SysTask *param0, void *param1);
-static void ov17_0223E250(BGL *param0);
+static void ov17_0223E250(BgConfig *param0);
 static void ov17_0223E380(UnkStruct_ov17_0224DF54 *param0);
 static void ov17_0223E458(UnkStruct_ov17_0224DF54 *param0);
 static void ov17_0223E4B0(UnkStruct_ov17_0224DF54 *param0, NARC *param1);
@@ -250,17 +246,17 @@ int ov17_0223DAD0(OverlayManager *param0, int *param1)
     v0->unk_14.unk_00 = &v0->unk_00->unk_00;
 
     ov17_0223E458(v0);
-    v0->unk_14.unk_90 = sub_02002F38(23);
+    v0->unk_14.unk_90 = PaletteData_New(23);
 
-    sub_02003858(v0->unk_14.unk_90, 1);
-    sub_02002F70(v0->unk_14.unk_90, 0, 0x200, 23);
-    sub_02002F70(v0->unk_14.unk_90, 1, 0x200, 23);
-    sub_02002F70(v0->unk_14.unk_90, 2, (((16 - 2) * 16) * sizeof(u16)), 23);
-    sub_02002F70(v0->unk_14.unk_90, 3, 0x200, 23);
+    PaletteData_SetAutoTransparent(v0->unk_14.unk_90, 1);
+    PaletteData_AllocBuffer(v0->unk_14.unk_90, 0, 0x200, 23);
+    PaletteData_AllocBuffer(v0->unk_14.unk_90, 1, 0x200, 23);
+    PaletteData_AllocBuffer(v0->unk_14.unk_90, 2, (((16 - 2) * 16) * sizeof(u16)), 23);
+    PaletteData_AllocBuffer(v0->unk_14.unk_90, 3, 0x200, 23);
 
     v0->unk_1050.unk_00 = Heap_AllocFromHeap(23, 0x200);
     ov17_0224CDB4(v0, 1);
-    v0->unk_14.unk_60 = sub_02018340(23);
+    v0->unk_14.unk_60 = BgConfig_New(23);
 
     sub_0201DBEC(64, 23);
     SetAutorepeat(4, 8);
@@ -411,14 +407,14 @@ int ov17_0223DF0C(OverlayManager *param0, int *param1)
     ov17_0223E774(v0);
 
     for (v1 = 0; v1 < 2; v1++) {
-        BGL_DeleteWindow(&v0->unk_14.unk_64[v1]);
+        Window_Remove(&v0->unk_14.unk_64[v1]);
     }
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
-    sub_02019044(v0->unk_14.unk_60, 1);
-    sub_02019044(v0->unk_14.unk_60, 2);
-    sub_02019044(v0->unk_14.unk_60, 3);
+    Bg_FreeTilemapBuffer(v0->unk_14.unk_60, 1);
+    Bg_FreeTilemapBuffer(v0->unk_14.unk_60, 2);
+    Bg_FreeTilemapBuffer(v0->unk_14.unk_60, 3);
 
     ov17_02249358(v0->unk_14.unk_60);
     ov17_022493A4(v0->unk_1074);
@@ -433,11 +429,11 @@ int ov17_0223DF0C(OverlayManager *param0, int *param1)
     sub_020127BC(v0->unk_14.unk_94);
     Font_Free(FONT_SUBSCREEN);
     Heap_FreeToHeap(v0->unk_1050.unk_00);
-    sub_02002FA0(v0->unk_14.unk_90, 0);
-    sub_02002FA0(v0->unk_14.unk_90, 1);
-    sub_02002FA0(v0->unk_14.unk_90, 2);
-    sub_02002FA0(v0->unk_14.unk_90, 3);
-    sub_02002F54(v0->unk_14.unk_90);
+    PaletteData_FreeBuffer(v0->unk_14.unk_90, 0);
+    PaletteData_FreeBuffer(v0->unk_14.unk_90, 1);
+    PaletteData_FreeBuffer(v0->unk_14.unk_90, 2);
+    PaletteData_FreeBuffer(v0->unk_14.unk_90, 3);
+    PaletteData_Free(v0->unk_14.unk_90);
     Strbuf_Free(v0->unk_14.unk_8C);
     StringTemplate_Free(v0->unk_14.unk_88);
     MessageLoader_Free(v0->unk_14.unk_84);
@@ -501,8 +497,8 @@ static void ov17_0223E09C(void *param0)
 
     sub_0201DCAC();
     sub_0200C800();
-    sub_02003694(v0->unk_14.unk_90);
-    sub_0201C2B8(v0->unk_14.unk_60);
+    PaletteData_CommitFadedBuffers(v0->unk_14.unk_90);
+    Bg_RunScheduledUpdates(v0->unk_14.unk_60);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
@@ -519,12 +515,12 @@ static void ov17_0223E18C(UnkStruct_ov17_0224DF54 *param0)
         return;
     }
 
-    v0 = sub_0200316C(param0->unk_14.unk_90, 0);
+    v0 = PaletteData_GetFadedBuffer(param0->unk_14.unk_90, 0);
 
     MI_CpuCopy16(v1->unk_00, v0, 0x200);
 
     if (v1->unk_10 == 1) {
-        sub_020039F8(v1->unk_00, v0, v1->unk_06, v1->unk_08 >> 8, v1->unk_0E);
+        BlendPalettes(v1->unk_00, v0, v1->unk_06, v1->unk_08 >> 8, v1->unk_0E);
 
         if (v1->unk_08 == v1->unk_0A) {
             v1->unk_10 = 0;
@@ -569,7 +565,7 @@ static void ov17_0223E1FC(SysTask *param0, void *param1)
     sub_02038A1C(23, v0->unk_14.unk_60);
 }
 
-static void ov17_0223E250(BGL *param0)
+static void ov17_0223E250(BgConfig *param0)
 {
     GXLayers_DisableEngineALayers();
 
@@ -596,18 +592,18 @@ static void ov17_0223E250(BGL *param0)
     }
 
     {
-        UnkStruct_ov84_0223BA5C v1 = {
+        GraphicsModes v1 = {
             GX_DISPMODE_GRAPHICS,
             GX_BGMODE_0,
             GX_BGMODE_0,
             GX_BG0_AS_3D
         };
 
-        sub_02018368(&v1);
+        SetAllGraphicsModes(&v1);
     }
 
     {
-        UnkStruct_ov97_0222DB78 v2[] = {
+        BgTemplate v2[] = {
             {
                 0,
                 0,
@@ -655,18 +651,18 @@ static void ov17_0223E250(BGL *param0)
             },
         };
 
-        sub_020183C4(param0, 1, &v2[0], 0);
-        sub_02019EBC(param0, 1);
-        sub_02019184(param0, 1, 0, 0);
-        sub_02019184(param0, 1, 3, 0);
-        sub_020183C4(param0, 2, &v2[1], 0);
-        sub_02019EBC(param0, 2);
-        sub_02019184(param0, 2, 0, 0);
-        sub_02019184(param0, 2, 3, 0);
-        sub_020183C4(param0, 3, &v2[2], 0);
-        sub_02019EBC(param0, 3);
-        sub_02019184(param0, 3, 0, 0);
-        sub_02019184(param0, 3, 3, 0);
+        Bg_InitFromTemplate(param0, 1, &v2[0], 0);
+        Bg_ClearTilemap(param0, 1);
+        Bg_SetOffset(param0, 1, 0, 0);
+        Bg_SetOffset(param0, 1, 3, 0);
+        Bg_InitFromTemplate(param0, 2, &v2[1], 0);
+        Bg_ClearTilemap(param0, 2);
+        Bg_SetOffset(param0, 2, 0, 0);
+        Bg_SetOffset(param0, 2, 3, 0);
+        Bg_InitFromTemplate(param0, 3, &v2[2], 0);
+        Bg_ClearTilemap(param0, 3);
+        Bg_SetOffset(param0, 3, 0, 0);
+        Bg_SetOffset(param0, 3, 3, 0);
 
         G2_SetBG0Priority(2);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
@@ -679,8 +675,8 @@ static void ov17_0223E250(BGL *param0)
 
 static void ov17_0223E380(UnkStruct_ov17_0224DF54 *param0)
 {
-    BGL_AddWindow(param0->unk_14.unk_60, &param0->unk_14.unk_64[0], 1, 0x2, 0x13, 27, 4, 13, ((18 + 12) + 1));
-    BGL_AddWindow(param0->unk_14.unk_60, &param0->unk_14.unk_64[1], 1, 0x2, 0xb, 27, 2, 13, ((18 + 12) + 1));
+    Window_Add(param0->unk_14.unk_60, &param0->unk_14.unk_64[0], 1, 0x2, 0x13, 27, 4, 13, ((18 + 12) + 1));
+    Window_Add(param0->unk_14.unk_60, &param0->unk_14.unk_64[1], 1, 0x2, 0xb, 27, 2, 13, ((18 + 12) + 1));
 }
 
 static BOOL ov17_0223E3CC(UnkStruct_ov17_0224DF54 *param0, int *param1, int *param2)
@@ -787,7 +783,7 @@ static void ov17_0223E67C(UnkStruct_ov17_0224DF54 *param0, NARC *param1)
 {
     int v0;
 
-    sub_020070E8(param1, 13, param0->unk_14.unk_60, 3, 0, 0, 1, 23);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 13, param0->unk_14.unk_60, 3, 0, 0, 1, 23);
 
     {
         int v1, v2;
@@ -795,21 +791,21 @@ static void ov17_0223E67C(UnkStruct_ov17_0224DF54 *param0, NARC *param1)
 
         ov17_0223E3CC(param0, &v1, &v2);
         v3 = ov17_0223F0BC(v2, 0);
-        sub_0200710C(param1, v3, param0->unk_14.unk_60, 3, 0, 0, 1, 23);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, v3, param0->unk_14.unk_60, 3, 0, 0, 1, 23);
     }
 
-    PaletteSys_LoadPalette(param0->unk_14.unk_90, 45, 32, 23, 0, 0, 0);
-    PaletteSys_LoadPalette(param0->unk_14.unk_90, 45, 36, 23, 0, 0x20, 13 * 16);
+    PaletteData_LoadBufferFromFileStart(param0->unk_14.unk_90, 45, 32, 23, 0, 0, 0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_14.unk_90, 45, 36, 23, 0, 0x20, 13 * 16);
 
     v0 = Options_Frame(param0->unk_00->unk_196C);
-    sub_0200DD0C(param0->unk_14.unk_60, 1, 1, 15, v0, 23);
-    PaletteSys_LoadPalette(param0->unk_14.unk_90, 38, sub_0200DD08(v0), 23, 0, 0x20, 14 * 16);
+    LoadMessageBoxGraphics(param0->unk_14.unk_60, 1, 1, 15, v0, 23);
+    PaletteData_LoadBufferFromFileStart(param0->unk_14.unk_90, 38, GetMessageBoxPaletteNARCMember(v0), 23, 0, 0x20, 14 * 16);
     ov17_0224C848(param0);
 
     {
         u16 *v4;
 
-        v4 = sub_02003164(param0->unk_14.unk_90, 0);
+        v4 = PaletteData_GetUnfadedBuffer(param0->unk_14.unk_90, 0);
         MI_CpuCopy16(v4, param0->unk_1050.unk_00, 0x200);
     }
 }

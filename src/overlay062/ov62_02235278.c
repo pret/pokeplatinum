@@ -15,10 +15,10 @@
 
 #include "gx_layers.h"
 #include "heap.h"
+#include "palette.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
-#include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
@@ -107,10 +107,10 @@ static BOOL ov62_02235324(UnkStruct_0208C06C *param0)
     case 1:
         if (param0->unk_0C != 16) {
             param0->unk_0C += 2;
-            sub_02003A2C(param0->unk_14.unk_14, 2, 0xFFFE, param0->unk_0C, ov62_022316D0(param0));
-            sub_02003A2C(param0->unk_14.unk_14, 0, 0xFFFF, param0->unk_0C, ov62_022316D0(param0));
-            sub_02003A2C(param0->unk_14.unk_14, 3, 0x3FFE, param0->unk_0C, ov62_022316D0(param0));
-            sub_02003A2C(param0->unk_14.unk_14, 1, 0xFFFF, param0->unk_0C, ov62_022316D0(param0));
+            PaletteData_BlendMulti(param0->unk_14.unk_14, 2, 0xFFFE, param0->unk_0C, ov62_022316D0(param0));
+            PaletteData_BlendMulti(param0->unk_14.unk_14, 0, 0xFFFF, param0->unk_0C, ov62_022316D0(param0));
+            PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0x3FFE, param0->unk_0C, ov62_022316D0(param0));
+            PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0xFFFF, param0->unk_0C, ov62_022316D0(param0));
         } else {
             param0->unk_0C = 16;
             param0->unk_08++;
@@ -275,7 +275,7 @@ static BOOL ov62_02235580(UnkStruct_0208C06C *param0)
 
         if (v0->unk_00 != 16) {
             v0->unk_00 += 2;
-            sub_02003A2C(param0->unk_14.unk_14, 2, 0xC, v0->unk_00, param0->unk_14.unk_44);
+            PaletteData_BlendMulti(param0->unk_14.unk_14, 2, 0xC, v0->unk_00, param0->unk_14.unk_44);
         }
 
         {
@@ -446,7 +446,7 @@ static BOOL ov62_02235854(UnkStruct_0208C06C *param0)
 
         if (v0->unk_00 != 16) {
             v0->unk_00 += 2;
-            sub_02003A2C(param0->unk_14.unk_14, 2, 0xC, v0->unk_00, param0->unk_14.unk_44);
+            PaletteData_BlendMulti(param0->unk_14.unk_14, 2, 0xC, v0->unk_00, param0->unk_14.unk_44);
         }
 
         if (v0->unk_04 == 0) {
@@ -503,19 +503,19 @@ static BOOL ov62_02235A80(UnkStruct_0208C06C *param0)
             param0->unk_08++;
         }
 
-        sub_02003A2C(param0->unk_14.unk_14, 2, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
-        sub_02003A2C(param0->unk_14.unk_14, 0, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
-        sub_02003A2C(param0->unk_14.unk_14, 3, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
-        sub_02003A2C(param0->unk_14.unk_14, 1, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 2, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 0, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
         break;
     case 2:
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 0);
         ov62_022317CC(param0, param0->unk_14.unk_48);
-        sub_02003A2C(param0->unk_14.unk_14, 2, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
-        sub_02003A2C(param0->unk_14.unk_14, 0, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
-        sub_02003A2C(param0->unk_14.unk_14, 3, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
-        sub_02003A2C(param0->unk_14.unk_14, 1, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 2, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 0, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
         param0->unk_08++;
         break;
     case 3:
@@ -528,10 +528,10 @@ static BOOL ov62_02235A80(UnkStruct_0208C06C *param0)
             param0->unk_08++;
         }
 
-        sub_02003A2C(param0->unk_14.unk_14, 2, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
-        sub_02003A2C(param0->unk_14.unk_14, 0, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
-        sub_02003A2C(param0->unk_14.unk_14, 3, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
-        sub_02003A2C(param0->unk_14.unk_14, 1, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 2, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 0, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
         break;
     default:
         ov62_0222FB60(param0, 0);
@@ -556,19 +556,19 @@ static BOOL ov62_02235C70(UnkStruct_0208C06C *param0)
             param0->unk_08++;
         }
 
-        sub_02003A2C(param0->unk_14.unk_14, 2, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
-        sub_02003A2C(param0->unk_14.unk_14, 0, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
-        sub_02003A2C(param0->unk_14.unk_14, 3, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
-        sub_02003A2C(param0->unk_14.unk_14, 1, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 2, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 0, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
         break;
     case 2:
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 0);
         ov62_022317CC(param0, param0->unk_14.unk_48);
-        sub_02003A2C(param0->unk_14.unk_14, 2, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
-        sub_02003A2C(param0->unk_14.unk_14, 0, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
-        sub_02003A2C(param0->unk_14.unk_14, 3, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
-        sub_02003A2C(param0->unk_14.unk_14, 1, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 2, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 0, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
         param0->unk_08++;
         break;
     case 3:
@@ -581,10 +581,10 @@ static BOOL ov62_02235C70(UnkStruct_0208C06C *param0)
             param0->unk_08++;
         }
 
-        sub_02003A2C(param0->unk_14.unk_14, 2, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
-        sub_02003A2C(param0->unk_14.unk_14, 0, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
-        sub_02003A2C(param0->unk_14.unk_14, 3, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
-        sub_02003A2C(param0->unk_14.unk_14, 1, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 2, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 0, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
+        PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
         break;
     default:
         param0->unk_14.unk_40 = 0;

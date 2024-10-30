@@ -4,16 +4,11 @@
 #include <dwc.h>
 #include <nnsys.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0203E0FC.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay006/struct_ov6_02246254.h"
 #include "overlay061/struct_ov61_0222C3B0.h"
@@ -27,19 +22,23 @@
 #include "overlay096/struct_ov96_0223B574.h"
 #include "overlay096/struct_ov96_0223B574_1.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
+#include "list_menu.h"
+#include "menu.h"
 #include "message.h"
 #include "overlay_manager.h"
 #include "pokemon.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
 
 typedef struct UnkStruct_ov94_0223FD4C_t {
     UnkStruct_0203E0FC *unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     UnkStruct_0202B370 *unk_08;
     int unk_0C;
     int unk_10;
@@ -122,10 +121,10 @@ typedef struct UnkStruct_ov94_0223FD4C_t {
     Window unk_FCC[13];
     Window unk_109C;
     Window unk_10AC[2];
-    ResourceMetadata *unk_10CC;
-    UIControlData *unk_10D0;
-    UIControlData *unk_10D4;
-    BmpList *unk_10D8;
+    StringList *unk_10CC;
+    Menu *unk_10D0;
+    Menu *unk_10D4;
+    ListMenu *unk_10D8;
     void *unk_10DC;
     int unk_10E0;
     UnkStruct_ov94_0223FD4C_sub3 *unk_10E4;

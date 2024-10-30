@@ -1,33 +1,26 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0203CC84.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay061/struct_ov61_0222C884.h"
-#include "overlay084/struct_ov84_0223BA5C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
-
+#include "bg_window.h"
 #include "core_sys.h"
 #include "font.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "menu.h"
 #include "message.h"
 #include "overlay_manager.h"
+#include "render_window.h"
 #include "savedata.h"
 #include "strbuf.h"
 #include "text.h"
 #include "unk_02000C88.h"
-#include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02018340.h"
 
 FS_EXTERN_OVERLAY(overlay77);
 
@@ -37,10 +30,10 @@ typedef struct {
     int unk_08;
     int unk_0C;
     Strbuf *unk_10;
-    BGL *unk_14;
+    BgConfig *unk_14;
     MessageLoader *unk_18;
     Window unk_1C;
-    UIControlData *unk_2C;
+    Menu *unk_2C;
     SaveData *unk_30;
     void *unk_34;
 } UnkStruct_02099DFC;
@@ -66,7 +59,7 @@ const OverlayManagerTemplate Unk_020F8A48 = {
     0xFFFFFFFF
 };
 
-static const UnkStruct_ov61_0222C884 Unk_020F89E4 = {
+static const WindowTemplate Unk_020F89E4 = {
     0x0,
     0x2,
     0x13,
@@ -76,7 +69,7 @@ static const UnkStruct_ov61_0222C884 Unk_020F89E4 = {
     0x16D
 };
 
-static const UnkStruct_ov61_0222C884 Unk_020F89EC = {
+static const WindowTemplate Unk_020F89EC = {
     0x0,
     0x19,
     0xD,
@@ -170,7 +163,7 @@ int sub_02099F54(OverlayManager *param0, int *param1)
 static void sub_02099F74(void *param0)
 {
     UnkStruct_02099DFC *v0 = param0;
-    sub_0201C2B8(v0->unk_14);
+    Bg_RunScheduledUpdates(v0->unk_14);
 }
 
 static void sub_02099F80(UnkStruct_02099DFC *param0)
@@ -191,19 +184,19 @@ static void sub_02099F80(UnkStruct_02099DFC *param0)
         GXLayers_SetBanks(&v0);
     }
     {
-        param0->unk_14 = sub_02018340(param0->unk_00);
+        param0->unk_14 = BgConfig_New(param0->unk_00);
     }
     {
-        UnkStruct_ov84_0223BA5C v1 = {
+        GraphicsModes v1 = {
             GX_DISPMODE_GRAPHICS,
             GX_BGMODE_0,
             GX_BGMODE_0,
             GX_BG0_AS_2D
         };
-        sub_02018368(&v1);
+        SetAllGraphicsModes(&v1);
     }
     {
-        UnkStruct_ov97_0222DB78 v2 = {
+        BgTemplate v2 = {
             0x0,
             0x0,
             0x800,
@@ -218,29 +211,29 @@ static void sub_02099F80(UnkStruct_02099DFC *param0)
             0x0,
             0x0
         };
-        sub_020183C4(param0->unk_14, 0, &v2, 0);
-        sub_02019EBC(param0->unk_14, 0);
+        Bg_InitFromTemplate(param0->unk_14, 0, &v2, 0);
+        Bg_ClearTilemap(param0->unk_14, 0);
     }
 
-    sub_0200DD0C(param0->unk_14, 0, (512 - (18 + 12)), 2, 0, param0->unk_00);
-    sub_0200DAA4(param0->unk_14, 0, 512 - (18 + 12) - 9, 3, 0, param0->unk_00);
+    LoadMessageBoxGraphics(param0->unk_14, 0, (512 - (18 + 12)), 2, 0, param0->unk_00);
+    LoadStandardWindowGraphics(param0->unk_14, 0, 512 - (18 + 12) - 9, 3, 0, param0->unk_00);
     Font_LoadTextPalette(0, 1 * (2 * 16), param0->unk_00);
-    sub_02019690(0, 32, 0, param0->unk_00);
-    sub_0201975C(0, 0x6c21);
-    sub_0201975C(4, 0x6c21);
+    Bg_ClearTilesRange(0, 32, 0, param0->unk_00);
+    Bg_MaskPalette(0, 0x6c21);
+    Bg_MaskPalette(4, 0x6c21);
 }
 
 static void sub_0209A044(UnkStruct_02099DFC *param0)
 {
-    sub_02019120(0, 0);
-    sub_02019120(1, 0);
-    sub_02019120(2, 0);
-    sub_02019120(3, 0);
-    sub_02019120(4, 0);
-    sub_02019120(5, 0);
-    sub_02019120(6, 0);
-    sub_02019120(7, 0);
-    sub_02019044(param0->unk_14, 0);
+    Bg_ToggleLayer(0, 0);
+    Bg_ToggleLayer(1, 0);
+    Bg_ToggleLayer(2, 0);
+    Bg_ToggleLayer(3, 0);
+    Bg_ToggleLayer(4, 0);
+    Bg_ToggleLayer(5, 0);
+    Bg_ToggleLayer(6, 0);
+    Bg_ToggleLayer(7, 0);
+    Bg_FreeTilemapBuffer(param0->unk_14, 0);
     Heap_FreeToHeap(param0->unk_14);
 }
 
@@ -249,13 +242,13 @@ static void sub_0209A098(UnkStruct_02099DFC *param0)
     param0->unk_18 = MessageLoader_Init(1, 26, 4, param0->unk_00);
     Text_ResetAllPrinters();
     param0->unk_08 = 0;
-    sub_0201A8D4(param0->unk_14, &param0->unk_1C, &Unk_020F89E4);
-    BGL_WindowColor(&param0->unk_1C, 15, 0, 0, 27 * 8, 4 * 8);
+    Window_AddFromTemplate(param0->unk_14, &param0->unk_1C, &Unk_020F89E4);
+    Window_FillRectWithColor(&param0->unk_1C, 15, 0, 0, 27 * 8, 4 * 8);
 }
 
 static void sub_0209A0E0(UnkStruct_02099DFC *param0)
 {
-    BGL_DeleteWindow(&param0->unk_1C);
+    Window_Remove(&param0->unk_1C);
     MessageLoader_Free(param0->unk_18);
 }
 
@@ -266,12 +259,12 @@ static BOOL sub_0209A0F4(UnkStruct_02099DFC *param0)
     switch (param0->unk_04) {
     case 0:
         if (sub_0209A200(param0, 0, 1, 4) == TRUE) {
-            param0->unk_2C = sub_02002054(param0->unk_14, &Unk_020F89EC, 512 - (18 + 12) - 9, 3, 1, param0->unk_00);
+            param0->unk_2C = Menu_MakeYesNoChoiceWithCursorAt(param0->unk_14, &Unk_020F89EC, 512 - (18 + 12) - 9, 3, 1, param0->unk_00);
             param0->unk_04 = 1;
         }
         break;
     case 1: {
-        u32 v1 = sub_02002114(param0->unk_2C, param0->unk_00);
+        u32 v1 = Menu_ProcessInputAndHandleExit(param0->unk_2C, param0->unk_00);
 
         switch (v1) {
         case 0:
@@ -284,12 +277,12 @@ static BOOL sub_0209A0F4(UnkStruct_02099DFC *param0)
     } break;
     case 2:
         if (sub_0209A200(param0, 1, 1, 4) == TRUE) {
-            param0->unk_2C = sub_02002054(param0->unk_14, &Unk_020F89EC, (512 - (18 + 12)) - 9, 3, 1, param0->unk_00);
+            param0->unk_2C = Menu_MakeYesNoChoiceWithCursorAt(param0->unk_14, &Unk_020F89EC, (512 - (18 + 12)) - 9, 3, 1, param0->unk_00);
             param0->unk_04 = 3;
         }
         break;
     case 3: {
-        u32 v2 = sub_02002114(param0->unk_2C, param0->unk_00);
+        u32 v2 = Menu_ProcessInputAndHandleExit(param0->unk_2C, param0->unk_00);
 
         switch (v2) {
         case 0:
@@ -302,17 +295,17 @@ static BOOL sub_0209A0F4(UnkStruct_02099DFC *param0)
     } break;
     case 4:
         if (sub_0209A200(param0, 2, 1, 0) == TRUE) {
-            param0->unk_34 = sub_0200E7FC(&param0->unk_1C, 512 - (18 + 12));
+            param0->unk_34 = Window_AddWaitDial(&param0->unk_1C, 512 - (18 + 12));
             param0->unk_04 = 5;
         }
         break;
     case 5:
         SaveData_Erase(param0->unk_30);
-        DeleteWaitDial(param0->unk_34);
+        DestroyWaitDial(param0->unk_34);
         param0->unk_04 = 6;
         break;
     case 6:
-        sub_02019EBC(param0->unk_14, 0);
+        Bg_ClearTilemap(param0->unk_14, 0);
         v0 = 1;
         break;
     }
@@ -326,12 +319,12 @@ static BOOL sub_0209A200(UnkStruct_02099DFC *param0, u32 param1, int param2, int
 
     switch (param0->unk_08) {
     case 0:
-        BGL_WindowColor(&param0->unk_1C, 15, 0, 0, 27 * 8, 4 * 8);
-        sub_0200E060(&param0->unk_1C, 0, 512 - (18 + 12), 2);
+        Window_FillRectWithColor(&param0->unk_1C, 15, 0, 0, 27 * 8, 4 * 8);
+        Window_DrawMessageBoxWithScrollCursor(&param0->unk_1C, 0, 512 - (18 + 12), 2);
 
         param0->unk_10 = Strbuf_Init(0x400, param0->unk_00);
         MessageLoader_GetStrbuf(param0->unk_18, param1, param0->unk_10);
-        param0->unk_0C = Text_AddPrinterWithParams(&param0->unk_1C, 1, param0->unk_10, 0, 0, param3, NULL);
+        param0->unk_0C = Text_AddPrinterWithParams(&param0->unk_1C, FONT_MESSAGE, param0->unk_10, 0, 0, param3, NULL);
 
         if (param3 == 0) {
             Strbuf_Free(param0->unk_10);

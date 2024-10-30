@@ -3,37 +3,30 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "field/field_system.h"
-#include "overlay061/struct_ov61_0222C884.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 
 #include "bag.h"
+#include "bg_window.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "field_system.h"
 #include "game_options.h"
 #include "heap.h"
+#include "list_menu.h"
+#include "menu.h"
 #include "message.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200112C.h"
-#include "unk_02001AF4.h"
 #include "unk_02005474.h"
-#include "unk_0200DA60.h"
-#include "unk_02013A04.h"
-#include "unk_02018340.h"
 #include "unk_0202ACE0.h"
 #include "unk_0203061C.h"
 #include "unk_0203909C.h"
@@ -41,8 +34,8 @@
 #include "unk_0205D8CC.h"
 
 typedef struct {
-    ResourceMetadata *unk_00;
-    BmpList *unk_04;
+    StringList *unk_00;
+    ListMenu *unk_04;
     Strbuf *unk_08;
     Strbuf *unk_0C;
     Window unk_10;
@@ -52,7 +45,7 @@ typedef struct {
     StringTemplate *unk_38;
     MessageLoader *unk_3C;
     int unk_40;
-    UIControlData *unk_44;
+    Menu *unk_44;
     int unk_48;
     int unk_4C[8];
     int unk_6C[8];
@@ -62,7 +55,7 @@ typedef struct {
 
 static void ov5_021EAE78(UnkStruct_ov5_021EAE78 *param0, int param1);
 static void ov5_021EAF1C(UnkStruct_ov5_021EAE78 *param0);
-static void ov5_021EAF90(BmpList *param0, u32 param1, u8 param2);
+static void ov5_021EAF90(ListMenu *param0, u32 param1, u8 param2);
 
 static BOOL ov5_021EA874(UnkStruct_ov5_021EAE78 *param0)
 {
@@ -76,8 +69,8 @@ static BOOL ov5_021EA874(UnkStruct_ov5_021EAE78 *param0)
 
     param0->unk_8C = 0;
 
-    sub_0200DD0C(param0->fieldSystem->unk_08, 3, (512 - (18 + 12)), 10, Options_Frame(SaveData_Options(param0->unk_34)), 4);
-    sub_0200DAA4(param0->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
+    LoadMessageBoxGraphics(param0->fieldSystem->bgConfig, 3, (512 - (18 + 12)), 10, Options_Frame(SaveData_Options(param0->unk_34)), 4);
+    LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
 
     param0->unk_48 = 1;
     return 0;
@@ -124,7 +117,7 @@ static BOOL ov5_021EA8F0(UnkStruct_ov5_021EAE78 *param0)
     return 0;
 }
 
-static const UnkStruct_ov61_0222C884 Unk_ov5_021FAF00 = {
+static const WindowTemplate Unk_ov5_021FAF00 = {
     0x3,
     0x19,
     0xD,
@@ -137,7 +130,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov5_021FAF00 = {
 static BOOL ov5_021EA9BC(UnkStruct_ov5_021EAE78 *param0)
 {
     if (Text_IsPrinterActive(param0->unk_40) == 0) {
-        param0->unk_44 = sub_02002100(param0->fieldSystem->unk_08, &Unk_ov5_021FAF00, 1024 - (18 + 12) - 9, 11, 4);
+        param0->unk_44 = Menu_MakeYesNoChoice(param0->fieldSystem->bgConfig, &Unk_ov5_021FAF00, 1024 - (18 + 12) - 9, 11, 4);
         param0->unk_48 = 3;
     }
 
@@ -149,7 +142,7 @@ static BOOL ov5_021EA9F8(UnkStruct_ov5_021EAE78 *param0)
     DWCFriendData *v0;
     Strbuf *v1;
     int v2;
-    int v3 = sub_02002114(param0->unk_44, 4);
+    int v3 = Menu_ProcessInputAndHandleExit(param0->unk_44, 4);
 
     if (v3 == 0xffffffff) {
         return 0;
@@ -177,7 +170,7 @@ static BOOL ov5_021EA9F8(UnkStruct_ov5_021EAE78 *param0)
 static BOOL ov5_021EAA6C(UnkStruct_ov5_021EAE78 *param0)
 {
     if (Text_IsPrinterActive(param0->unk_40) == 0) {
-        param0->unk_44 = sub_02002100(param0->fieldSystem->unk_08, &Unk_ov5_021FAF00, 1024 - (18 + 12) - 9, 11, 4);
+        param0->unk_44 = Menu_MakeYesNoChoice(param0->fieldSystem->bgConfig, &Unk_ov5_021FAF00, 1024 - (18 + 12) - 9, 11, 4);
         param0->unk_48 = 5;
     }
 
@@ -190,7 +183,7 @@ static BOOL ov5_021EAAA8(UnkStruct_ov5_021EAE78 *param0)
     DWCFriendData *v1;
     Strbuf *v2;
     int v3;
-    int v4 = sub_02002114(param0->unk_44, 4);
+    int v4 = Menu_ProcessInputAndHandleExit(param0->unk_44, 4);
 
     if (v4 == 0xffffffff) {
         return 0;
@@ -209,7 +202,7 @@ static BOOL ov5_021EAAA8(UnkStruct_ov5_021EAE78 *param0)
 static BOOL ov5_021EAAEC(UnkStruct_ov5_021EAE78 *param0)
 {
     if (Text_IsPrinterActive(param0->unk_40) == 0) {
-        param0->unk_44 = sub_02002100(param0->fieldSystem->unk_08, &Unk_ov5_021FAF00, 1024 - (18 + 12) - 9, 11, 4);
+        param0->unk_44 = Menu_MakeYesNoChoice(param0->fieldSystem->bgConfig, &Unk_ov5_021FAF00, 1024 - (18 + 12) - 9, 11, 4);
         param0->unk_48 = 7;
     }
 
@@ -222,7 +215,7 @@ static BOOL ov5_021EAB28(UnkStruct_ov5_021EAE78 *param0)
     DWCFriendData *v1;
     Strbuf *v2;
     int v3;
-    int v4 = sub_02002114(param0->unk_44, 4);
+    int v4 = Menu_ProcessInputAndHandleExit(param0->unk_44, 4);
 
     if (v4 == 0xffffffff) {
         return 0;
@@ -236,7 +229,7 @@ static BOOL ov5_021EAB28(UnkStruct_ov5_021EAE78 *param0)
     return 0;
 }
 
-static const UnkStruct_ov84_02240FA8 Unk_ov5_021FAF08 = {
+static const ListMenuTemplate Unk_ov5_021FAF08 = {
     NULL,
     NULL,
     NULL,
@@ -261,14 +254,14 @@ static const UnkStruct_ov84_02240FA8 Unk_ov5_021FAF08 = {
 static BOOL ov5_021EAB58(UnkStruct_ov5_021EAE78 *param0)
 {
     UnkStruct_0202B370 *v0 = sub_0202B370(param0->unk_34);
-    UnkStruct_ov84_02240FA8 v1;
+    ListMenuTemplate v1;
     int v2 = sub_0202AF94(v0);
     int v3 = 5;
 
-    param0->unk_00 = sub_02013A04(v2 + 1, 4);
+    param0->unk_00 = StringList_New(v2 + 1, 4);
 
-    BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_20, 3, 19, 1, 12, v3 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (10 * (v3 + 2) * 2));
-    Window_Show(&param0->unk_20, 1, 1024 - (18 + 12) - 9, 11);
+    Window_Add(param0->fieldSystem->bgConfig, &param0->unk_20, 3, 19, 1, 12, v3 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (10 * (v3 + 2) * 2));
+    Window_DrawStandardFrame(&param0->unk_20, 1, 1024 - (18 + 12) - 9, 11);
 
     {
         MessageLoader *v4;
@@ -277,24 +270,24 @@ static BOOL ov5_021EAB58(UnkStruct_ov5_021EAE78 *param0)
         for (v5 = 0; v5 < 32; v5++) {
             if (sub_0202AF78(v0, v5)) {
                 Strbuf_CopyChars(param0->unk_08, sub_0202AEF0(v0, v5));
-                sub_02013A6C(param0->unk_00, param0->unk_08, v5);
+                StringList_AddFromStrbuf(param0->unk_00, param0->unk_08, v5);
             }
         }
 
-        sub_02013A4C(param0->unk_00, param0->unk_3C, 11, 0xfffffffe);
+        StringList_AddFromMessageBank(param0->unk_00, param0->unk_3C, 11, 0xfffffffe);
     }
 
     v1 = Unk_ov5_021FAF08;
 
-    v1.unk_10 = v2 + 1;
-    v1.unk_12 = v3;
-    v1.unk_00 = param0->unk_00;
-    v1.unk_0C = &param0->unk_20;
-    v1.unk_04 = ov5_021EAF90;
-    v1.unk_1C = param0;
+    v1.count = v2 + 1;
+    v1.maxDisplay = v3;
+    v1.choices = param0->unk_00;
+    v1.window = &param0->unk_20;
+    v1.cursorCallback = ov5_021EAF90;
+    v1.tmp = param0;
 
-    param0->unk_04 = sub_0200112C(&v1, 0, 0, 4);
-    sub_0201A954(&param0->unk_20);
+    param0->unk_04 = ListMenu_New(&v1, 0, 0, 4);
+    Window_CopyToVRAM(&param0->unk_20);
     param0->unk_48 = 9;
 
     return 0;
@@ -305,7 +298,7 @@ static BOOL ov5_021EAC44(UnkStruct_ov5_021EAE78 *param0)
     TrainerInfo *v0;
     int v1;
 
-    v1 = sub_02001288(param0->unk_04);
+    v1 = ListMenu_ProcessInput(param0->unk_04);
 
     switch (v1) {
     case 0xffffffff:
@@ -335,10 +328,10 @@ static BOOL ov5_021EAC44(UnkStruct_ov5_021EAE78 *param0)
         break;
     }
 
-    Window_Clear(&param0->unk_20, 0);
-    BGL_DeleteWindow(&param0->unk_20);
-    sub_02001384(param0->unk_04, NULL, NULL);
-    sub_02013A3C(param0->unk_00);
+    Window_EraseStandardFrame(&param0->unk_20, 0);
+    Window_Remove(&param0->unk_20);
+    ListMenu_Free(param0->unk_04, NULL, NULL);
+    StringList_Free(param0->unk_00);
 
     return 0;
 }
@@ -346,7 +339,7 @@ static BOOL ov5_021EAC44(UnkStruct_ov5_021EAE78 *param0)
 static BOOL ov5_021EACFC(UnkStruct_ov5_021EAE78 *param0)
 {
     if (Text_IsPrinterActive(param0->unk_40) == 0) {
-        param0->unk_44 = sub_02002100(param0->fieldSystem->unk_08, &Unk_ov5_021FAF00, 1024 - (18 + 12) - 9, 11, 4);
+        param0->unk_44 = Menu_MakeYesNoChoice(param0->fieldSystem->bgConfig, &Unk_ov5_021FAF00, 1024 - (18 + 12) - 9, 11, 4);
         param0->unk_48 = 11;
     }
 
@@ -359,7 +352,7 @@ static BOOL ov5_021EAD38(UnkStruct_ov5_021EAE78 *param0)
     TrainerInfo *v1;
     DWCFriendData *v2;
     Strbuf *v3;
-    int v4 = sub_02002114(param0->unk_44, 4);
+    int v4 = Menu_ProcessInputAndHandleExit(param0->unk_44, 4);
 
     if (v4 == 0xffffffff) {
         return 0;
@@ -436,13 +429,13 @@ static BOOL ov5_021EADB4(TaskManager *param0)
 
 static void ov5_021EAE78(UnkStruct_ov5_021EAE78 *param0, int param1)
 {
-    if (BGL_WindowAdded(&param0->unk_10)) {
-        BGL_DeleteWindow(&param0->unk_10);
+    if (Window_IsInUse(&param0->unk_10)) {
+        Window_Remove(&param0->unk_10);
     }
 
     MessageLoader_GetStrbuf(param0->unk_3C, param1, param0->unk_08);
     StringTemplate_Format(param0->unk_38, param0->unk_0C, param0->unk_08);
-    FieldMessage_AddWindow(param0->fieldSystem->unk_08, &param0->unk_10, 3);
+    FieldMessage_AddWindow(param0->fieldSystem->bgConfig, &param0->unk_10, 3);
     FieldMessage_DrawWindow(&param0->unk_10, SaveData_Options(param0->fieldSystem->saveData));
 
     param0->unk_40 = FieldMessage_Print(&param0->unk_10, param0->unk_0C, SaveData_Options(param0->fieldSystem->saveData), 1);
@@ -465,15 +458,15 @@ static void ov5_021EAF1C(UnkStruct_ov5_021EAE78 *param0)
     Strbuf_Free(param0->unk_0C);
     Strbuf_Free(param0->unk_08);
 
-    if (BGL_WindowAdded(&param0->unk_10)) {
-        BGL_DeleteWindow(&param0->unk_10);
+    if (Window_IsInUse(&param0->unk_10)) {
+        Window_Remove(&param0->unk_10);
     }
 }
 
 void ov5_021EAF50(FieldSystem *fieldSystem)
 {
     UnkStruct_ov5_021EAE78 *v0;
-    TaskManager *v1 = fieldSystem->unk_10;
+    TaskManager *v1 = fieldSystem->taskManager;
 
     v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov5_021EAE78));
     ov5_021EAEE0(v0);
@@ -489,7 +482,7 @@ void ov5_021EAF50(FieldSystem *fieldSystem)
     }
 }
 
-static void ov5_021EAF90(BmpList *param0, u32 param1, u8 param2)
+static void ov5_021EAF90(ListMenu *param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
         Sound_PlayEffect(1500);

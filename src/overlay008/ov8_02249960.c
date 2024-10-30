@@ -9,7 +9,6 @@
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_02055130.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02071B10.h"
 #include "struct_defs/struct_02071B30.h"
 #include "struct_defs/struct_02071B6C.h"
@@ -36,6 +35,7 @@
 #include "overlay008/struct_ov8_02249FB8.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
+#include "bg_window.h"
 #include "camera.h"
 #include "core_sys.h"
 #include "field_system.h"
@@ -45,6 +45,7 @@
 #include "map_object_move.h"
 #include "message.h"
 #include "player_avatar.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "savedata_misc.h"
 #include "script_manager.h"
@@ -53,8 +54,6 @@
 #include "sys_task_manager.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
-#include "unk_0200DA60.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_02027F50.h"
 #include "unk_020508D4.h"
@@ -368,13 +367,13 @@ void ov8_0224997C(FieldSystem *fieldSystem)
         v6->unk_00 = 0;
 
         if (v4 == 239) {
-            FieldTask_Start(fieldSystem->unk_10, ov8_02249CD8, v6);
+            FieldTask_Start(fieldSystem->taskManager, ov8_02249CD8, v6);
             v8->unk_00 = 2;
         } else if (v4 == 240) {
-            FieldTask_Start(fieldSystem->unk_10, ov8_02249B74, v6);
+            FieldTask_Start(fieldSystem->taskManager, ov8_02249B74, v6);
             v8->unk_00 = 1;
         } else if (v4 == 241) {
-            FieldTask_Start(fieldSystem->unk_10, ov8_02249A94, v6);
+            FieldTask_Start(fieldSystem->taskManager, ov8_02249A94, v6);
             v8->unk_00 = 0;
         } else {
             GF_ASSERT(FALSE);
@@ -763,10 +762,10 @@ void ov8_02249FB8(FieldSystem *fieldSystem)
         PlayerAvatar_PosVectorOut(fieldSystem->playerAvatar, &v1);
 
         if (v1.y == (FX32_ONE * 16 * 0)) {
-            FieldTask_Start(fieldSystem->unk_10, ov8_0224A018, v0);
+            FieldTask_Start(fieldSystem->taskManager, ov8_0224A018, v0);
             v3->unk_00 = 1;
         } else {
-            FieldTask_Start(fieldSystem->unk_10, ov8_0224A0E8, v0);
+            FieldTask_Start(fieldSystem->taskManager, ov8_0224A0E8, v0);
             v3->unk_00 = 0;
         }
     }
@@ -2208,7 +2207,7 @@ void ov8_0224AD34(FieldSystem *fieldSystem, const u8 param1)
         v1->unk_13 = v4;
 
         Sound_PlayEffect(1599);
-        FieldTask_Start(fieldSystem->unk_10, ov8_0224ADE8, v0);
+        FieldTask_Start(fieldSystem->taskManager, ov8_0224ADE8, v0);
     }
 }
 
@@ -2845,8 +2844,8 @@ static BOOL ov8_0224B3D4(TaskManager *param0)
 
             sub_020057A4(1593, 0);
             MessageLoader_GetStrbuf(v2->unk_48, 12, v2->unk_4C);
-            FieldMessage_AddWindow(fieldSystem->unk_08, v2->unk_44, 3);
-            sub_0200E084(v2->unk_44, 0);
+            FieldMessage_AddWindow(fieldSystem->bgConfig, v2->unk_44, 3);
+            Window_EraseMessageBox(v2->unk_44, 0);
             FieldMessage_DrawWindow(v2->unk_44, SaveData_Options(fieldSystem->saveData));
 
             v2->unk_40 = FieldMessage_Print(v2->unk_44, v2->unk_4C, SaveData_Options(fieldSystem->saveData), 1);
@@ -2864,8 +2863,8 @@ static BOOL ov8_0224B3D4(TaskManager *param0)
             int v10 = Player_GetZPos(fieldSystem->playerAvatar);
 
             ov8_0224B240(&v2->unk_1C, v9, v10);
-            sub_0200E084(v2->unk_44, 0);
-            BGL_DeleteWindow(v2->unk_44);
+            Window_EraseMessageBox(v2->unk_44, 0);
+            Window_Remove(v2->unk_44);
             v2->unk_04 = 0;
             v2->unk_00 = 5;
             break;
@@ -2907,7 +2906,7 @@ BOOL ov8_0224B67C(FieldSystem *fieldSystem, Window *param1, MessageLoader *param
         v2->unk_14 = v1;
         v2->unk_18 = v3;
 
-        FieldTask_Start(fieldSystem->unk_10, ov8_0224B3D4, v2);
+        FieldTask_Start(fieldSystem->taskManager, ov8_0224B3D4, v2);
     }
 
     return 1;

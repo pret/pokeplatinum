@@ -413,7 +413,7 @@ BOOL ScrCmd_272(ScriptContext *param0)
     v0 = Strbuf_Init(10 + 1, 11);
 
     Strbuf_CopyChars(v0, MiscSaveBlock_TabletName(SaveData_MiscSaveBlock(param0->fieldSystem->saveData)));
-    StringTemplate_SetStrbuf(*v2, v3, v0, 0, 0, Unk_020E4C44);
+    StringTemplate_SetStrbuf(*v2, v3, v0, 0, 0, gGameLanguage);
     Strbuf_Free(v0);
 
     return 0;

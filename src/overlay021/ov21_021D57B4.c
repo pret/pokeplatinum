@@ -8,9 +8,9 @@
 #include "overlay021/struct_ov21_021D5890.h"
 
 #include "cell_actor.h"
+#include "graphics.h"
 #include "heap.h"
 #include "narc.h"
-#include "unk_02006E3C.h"
 
 void ov21_021D57B4(UnkStruct_ov21_021D5844 *param0, int param1, int param2, int param3)
 {
@@ -50,7 +50,7 @@ void ov21_021D57B4(UnkStruct_ov21_021D5844 *param0, int param1, int param2, int 
         break;
     }
 
-    param0->unk_00 = (int *)sub_02007068(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_ENC_PLATINUM, v0 + param1, 0, param3, 0, &v1);
+    param0->unk_00 = (int *)LoadMemberFromNARC_OutFileSize(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_ENC_PLATINUM, v0 + param1, 0, param3, 0, &v1);
     param0->unk_04 = v1 / sizeof(int);
 }
 
@@ -70,7 +70,7 @@ UnkStruct_ov21_021D5868 *ov21_021D5868(int param0, int *param1)
     UnkStruct_ov21_021D5868 *v0;
     u32 v1;
 
-    v0 = (UnkStruct_ov21_021D5868 *)sub_02007068(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_ENC_PLATINUM, 0, 0, param0, 0, &v1);
+    v0 = (UnkStruct_ov21_021D5868 *)LoadMemberFromNARC_OutFileSize(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_ENC_PLATINUM, 0, 0, param0, 0, &v1);
 
     if (param1) {
         *param1 = v1 / sizeof(UnkStruct_ov21_021D5868);
@@ -84,7 +84,7 @@ UnkStruct_ov21_021D5890 *ov21_021D5890(int param0, int *param1)
     UnkStruct_ov21_021D5890 *v0;
     u32 v1;
 
-    v0 = (UnkStruct_ov21_021D5890 *)sub_02007068(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_ENC_PLATINUM, 2, 0, param0, 0, &v1);
+    v0 = (UnkStruct_ov21_021D5890 *)LoadMemberFromNARC_OutFileSize(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_ENC_PLATINUM, 2, 0, param0, 0, &v1);
 
     if (param1) {
         *param1 = v1 / sizeof(UnkStruct_ov21_021D5890);

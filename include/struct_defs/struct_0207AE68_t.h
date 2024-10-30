@@ -4,28 +4,27 @@
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/pokemon_summary.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_0207C8C4.h"
 
 #include "bag.h"
+#include "bg_window.h"
 #include "game_options.h"
 #include "game_records.h"
 #include "message.h"
+#include "narc.h"
 #include "overlay_manager.h"
+#include "palette.h"
 #include "pokemon.h"
 #include "poketch_data.h"
 #include "strbuf.h"
 #include "string_template.h"
 
 struct UnkStruct_0207AE68_t {
-    BGL *unk_00;
+    BgConfig *unk_00;
     Window *unk_04;
     MessageLoader *unk_08;
     StringTemplate *unk_0C;

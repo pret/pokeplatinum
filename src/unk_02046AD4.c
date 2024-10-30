@@ -108,6 +108,6 @@ BOOL ScrCmd_14A(ScriptContext *param0)
 
 BOOL ScrCmd_257(ScriptContext *param0)
 {
-    sub_0203E518(param0->fieldSystem->unk_10);
+    sub_0203E518(param0->fieldSystem->taskManager);
     return 1;
 }

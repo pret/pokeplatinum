@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0204B184.h"
@@ -14,6 +13,7 @@
 #include "overlay104/struct_ov104_0223A348_sub1.h"
 #include "overlay104/struct_ov104_0223BA10.h"
 
+#include "bg_window.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "heap.h"
@@ -23,7 +23,6 @@
 #include "save_player.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0203061C.h"
 #include "unk_02051D8C.h"
@@ -46,7 +45,7 @@ static u16 ov104_0223BB10(UnkStruct_ov104_0223BA10 *param0);
 u16 ov104_0223BB60(UnkStruct_ov104_0223BA10 *param0);
 u16 ov104_0223BC24(u16 param0);
 void sub_02052894(BattleParams *param0);
-void ov104_0223BB84(BGL *param0, UnkStruct_ov104_0223BA10 *param1, u32 param2);
+void ov104_0223BB84(BgConfig *param0, UnkStruct_ov104_0223BA10 *param1, u32 param2);
 static void ov104_0223BBC4(u16 *param0, u16 param1);
 
 static const struct {
@@ -381,15 +380,15 @@ u16 ov104_0223BB60(UnkStruct_ov104_0223BA10 *param0)
     return v0;
 }
 
-void ov104_0223BB84(BGL *param0, UnkStruct_ov104_0223BA10 *param1, u32 param2)
+void ov104_0223BB84(BgConfig *param0, UnkStruct_ov104_0223BA10 *param1, u32 param2)
 {
     int v0;
     u16 v1[30];
 
     ov104_0223BBC4(v1, ov104_0223BB60(param1));
 
-    sub_020198C0(param0, param2, v1, 11, 6, 10, 3);
-    sub_0201C3C0(param0, param2);
+    Bg_LoadToTilemapRect(param0, param2, v1, 11, 6, 10, 3);
+    Bg_ScheduleTilemapTransfer(param0, param2);
 
     return;
 }

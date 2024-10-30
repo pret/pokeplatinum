@@ -3,7 +3,6 @@
 
 #include <nitro/rtc.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_defs/struct_02049FA8.h"
 
@@ -13,13 +12,14 @@
 #include "assert.h"
 #include "field_overworld_state.h"
 #include "field_script_context.h"
+#include "graphics.h"
 #include "heap.h"
 #include "map_header.h"
+#include "narc.h"
+#include "palette.h"
 #include "script_manager.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02002F38.h"
-#include "unk_02006E3C.h"
 #include "unk_0201D15C.h"
 #include "unk_0206A8DC.h"
 #include "vars_flags.h"
@@ -34,7 +34,7 @@ static inline void inline_ov61_0222C3B0(UnkStruct_ov61_0222C3B0 *param0, NARC *p
 
     MI_CpuClear8(param0, sizeof(UnkStruct_ov61_0222C3B0));
 
-    v1 = sub_020071EC(param1, param2, &v0, param3);
+    v1 = Graphics_GetPlttDataFromOpenNARC(param1, param2, &v0, param3);
 
     MI_CpuCopy16(&((u16 *)(v0->pRawData))[0 * 16], param0->unk_08, 4 * 0x20);
     MI_CpuCopy16(&((u16 *)(v0->pRawData))[0 * 16], param0->unk_88, 4 * 0x20);
@@ -81,7 +81,7 @@ static inline void inline_ov61_0222C3B0_sub_1(UnkStruct_ov61_0222C3B0 *param0)
         do {
             GF_ASSERT(v1 < (((16 << 8) / 0x300 + 2) * (4 - 1)));
             for (v4 = 1; v4 < 1 + 15; v4++) {
-                sub_0200393C(&param0->unk_08[v0][v4], &param0->unk_88[v1][v4], 1, v3 >> 8, param0->unk_08[v2][v4]);
+                BlendPalette(&param0->unk_08[v0][v4], &param0->unk_88[v1][v4], 1, v3 >> 8, param0->unk_08[v2][v4]);
             }
             v1++;
             if (v5 == 1) {

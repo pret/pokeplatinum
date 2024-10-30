@@ -9,6 +9,7 @@
 #include "overlay006/struct_ov6_02246204_decl.h"
 #include "overlay006/struct_ov6_02246254.h"
 
+#include "graphics.h"
 #include "heap.h"
 #include "map_header.h"
 #include "message.h"
@@ -17,7 +18,6 @@
 #include "save_player.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "unk_02006E3C.h"
 #include "unk_0202F180.h"
 #include "unk_020559DC.h"
 #include "unk_02092494.h"
@@ -67,7 +67,7 @@ UnkStruct_ov6_02246204 *ov6_02246184(u32 param0, u32 param1)
     v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov6_02246204));
     memset(v0, 0, sizeof(UnkStruct_ov6_02246204));
 
-    v0->unk_00 = sub_02006FE8(115, param1, 0, param0, 0);
+    v0->unk_00 = LoadMemberFromNARC(115, param1, 0, param0, 0);
     v0->unk_10 = param0;
     v0->unk_0C = param1;
     v0->unk_04 = Pokemon_New(param0);

@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_02009508.h"
 #include "struct_defs/struct_0200C738.h"
@@ -19,8 +17,9 @@
 
 #include "cell_actor.h"
 #include "heap.h"
+#include "narc.h"
+#include "palette.h"
 #include "sprite_resource.h"
-#include "unk_02002F38.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
@@ -461,20 +460,20 @@ u8 sub_0200CD7C(PaletteData *param0, int param1, SpriteRenderer *param2, SpriteG
     v0 = sub_0200CC9C(param2, param3, param4, param5, param6, param7, param8, param9);
 
     if (v0 != -1) {
-        sub_02003070(param0, param1, v0 * 16, param7 * 0x20);
+        PaletteData_LoadBufferFromHardware(param0, param1, v0 * 16, param7 * 0x20);
     }
 
     return v0;
 }
 
-u8 SpriteRenderer_LoadPalette(PaletteData *param0, enum PaletteBufferId param1, SpriteRenderer *param2, SpriteGfxHandler *param3, NARC *param4, int param5, BOOL param6, int param7, int param8, int param9)
+u8 SpriteRenderer_LoadPalette(PaletteData *param0, enum PaletteBufferID param1, SpriteRenderer *param2, SpriteGfxHandler *param3, NARC *param4, int param5, BOOL param6, int param7, int param8, int param9)
 {
     int v0;
 
     v0 = sub_0200CD0C(param2, param3, param4, param5, param6, param7, param8, param9);
 
     if (v0 != -1) {
-        sub_02003070(param0, param1, v0 * 16, param7 * 0x20);
+        PaletteData_LoadBufferFromHardware(param0, param1, v0 * 16, param7 * 0x20);
     }
 
     return v0;

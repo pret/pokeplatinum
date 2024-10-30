@@ -3,13 +3,13 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_berry_data_decl.h"
 #include "struct_defs/struct_02027854.h"
 #include "struct_defs/struct_02027BF4.h"
 
 #include "berry_data.h"
 #include "heap.h"
+#include "narc.h"
 
 static void sub_02027C50(UnkStruct_02027854 *param0);
 static int sub_02027C7C(const UnkStruct_02027BF4 *param0, int param1, int param2);

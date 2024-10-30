@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-
 #include "overlay063/struct_ov63_0222CC3C.h"
 #include "overlay066/ov66_02231428.h"
 #include "overlay070/funcptr_ov70_02261C60.h"
@@ -13,9 +11,9 @@
 
 #include "easy3d.h"
 #include "easy3d_object.h"
+#include "graphics.h"
 #include "heap.h"
 #include "narc.h"
-#include "unk_02006E3C.h"
 #include "unk_0201D15C.h"
 
 typedef struct {
@@ -566,7 +564,7 @@ static UnkStruct_ov70_02261418 *ov70_022613F4(int param0, int param1, u32 param2
 
     v1 = (param1 * 5) + param0;
     GF_ASSERT(v1 < (5 * 5));
-    v0 = sub_02006FE8(174, 1 + v1, 0, param2, 1);
+    v0 = LoadMemberFromNARC(174, 1 + v1, 0, param2, 1);
 
     return v0;
 }
@@ -789,7 +787,7 @@ static void ov70_0226174C(UnkStruct_ov70_022618C8 *param0, NARC *param1, NNSFndA
 
     {
         for (v0 = 0; v0 < 2; v0++) {
-            param0->unk_00[v0].data = sub_0200723C(param1, param3->unk_120[v0], 0, param4, 0);
+            param0->unk_00[v0].data = LoadMemberFromOpenNARC(param1, param3->unk_120[v0], 0, param4, 0);
             param0->unk_00[v0].set = NNS_G3dGetMdlSet(param0->unk_00[v0].data);
             param0->unk_00[v0].model = NNS_G3dGetMdlByIdx(param0->unk_00[v0].set, 0);
             param0->unk_00[v0].texture = NNS_G3dGetTex(param0->unk_20[v0][0]);
@@ -956,7 +954,7 @@ static void ov70_02261B24(UnkStruct_ov70_02261BB4 *param0, NARC *param1, NNSFndA
 
         for (v1 = 0; v1 < 3; v1++) {
             if (param3->unk_48[v0][v1] != param3->unk_00[v0]) {
-                param0->unk_120[v0][v1] = sub_0200723C(param1, param3->unk_48[v0][v1], 0, param4, 0);
+                param0->unk_120[v0][v1] = LoadMemberFromOpenNARC(param1, param3->unk_48[v0][v1], 0, param4, 0);
             } else {
                 param0->unk_120[v0][v1] = NULL;
             }

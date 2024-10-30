@@ -15,6 +15,7 @@
 #include "overlay104/struct_ov104_0223A348_sub2.h"
 
 #include "cell_actor.h"
+#include "charcode_util.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "flags.h"
@@ -29,7 +30,6 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "trainer_info.h"
-#include "unk_020021B0.h"
 #include "unk_0201D15C.h"
 #include "unk_0202C858.h"
 #include "unk_02038F8C.h"
@@ -229,7 +229,7 @@ u32 ov104_0222DD6C(UnkStruct_ov104_0223A348_sub2 *param0, u16 param1, u32 param2
     }
 
     param0->unk_1E_val2 = 0;
-    param0->unk_1F = Unk_020E4C44;
+    param0->unk_1F = gGameLanguage;
 
     v0 = PokemonPersonalData_GetSpeciesValue(param0->unk_00_val1_0, 25);
 
@@ -446,7 +446,7 @@ void ov104_0222E284(BattleParams *param0, UnkStruct_ov104_0223A348_sub1 *param1,
     param0->trainerIDs[param3] = param1->unk_00;
     param0->trainerData[param3].class = param1->unk_04;
 
-    GF_strcpy(&param0->trainerData[param3].name[0], &param1->unk_08[0]);
+    CharCode_Copy(&param0->trainerData[param3].name[0], &param1->unk_08[0]);
 
     v0 = (Sentence *)&param1->unk_20[0];
     param0->trainerData[param3].winMsg = *v0;

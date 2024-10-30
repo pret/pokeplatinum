@@ -1,8 +1,6 @@
 #ifndef POKEPLATINUM_OV104_0223E894_H
 #define POKEPLATINUM_OV104_0223E894_H
 
-#include "struct_defs/struct_0205AA50.h"
-
 #include "overlay104/struct_ov104_0223E9EC.h"
 #include "overlay104/struct_ov104_0223EA38.h"
 #include "overlay104/struct_ov104_0223EA84_decl.h"
@@ -10,6 +8,8 @@
 #include "overlay104/struct_ov104_0223F094.h"
 #include "overlay104/struct_ov104_0223F174_decl.h"
 #include "overlay104/struct_ov104_0223F1B4.h"
+
+#include "bg_window.h"
 
 void ov104_0223E894(int param0, u32 param1, u32 param2, BOOL *param3, u32 param4);
 void ov104_0223E9CC(int param0, int param1);

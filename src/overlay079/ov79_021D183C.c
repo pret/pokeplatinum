@@ -3,35 +3,32 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
 #include "struct_defs/struct_0203D9B8.h"
 #include "struct_defs/struct_020989DC.h"
 
-#include "overlay061/struct_ov61_0222C884.h"
 #include "overlay079/struct_ov79_021D0E1C.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "font.h"
+#include "list_menu.h"
+#include "menu.h"
 #include "render_text.h"
+#include "render_window.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_0200112C.h"
-#include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
-#include "unk_02013A04.h"
 #include "unk_020158A8.h"
-#include "unk_02018340.h"
 #include "unk_02098FFC.h"
 
-static void ov79_021D1D88(BmpList *param0, u32 param1, u8 param2);
-static void ov79_021D1D94(BmpList *param0, u32 param1, u8 param2);
-static void ov79_021D1FA8(BmpList *param0, u32 param1, u8 param2);
+static void ov79_021D1D88(ListMenu *param0, u32 param1, u8 param2);
+static void ov79_021D1D94(ListMenu *param0, u32 param1, u8 param2);
+static void ov79_021D1FA8(ListMenu *param0, u32 param1, u8 param2);
 
-static const UnkStruct_ov84_02240FA8 Unk_ov79_021D3BB0 = {
+static const ListMenuTemplate Unk_ov79_021D3BB0 = {
     NULL,
     ov79_021D1D94,
     ov79_021D1D88,
@@ -53,7 +50,7 @@ static const UnkStruct_ov84_02240FA8 Unk_ov79_021D3BB0 = {
     NULL
 };
 
-static const UnkStruct_ov84_02240FA8 Unk_ov79_021D3B90 = {
+static const ListMenuTemplate Unk_ov79_021D3B90 = {
     NULL,
     ov79_021D1FA8,
     NULL,
@@ -83,17 +80,17 @@ static void ov79_021D183C(UnkStruct_020989DC *param0)
 
 static void ov79_021D1850(UnkStruct_ov79_021D0E1C *param0, Strbuf *param1, u8 param2, u8 param3)
 {
-    u32 v0 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0));
+    u32 v0 = TEXT_COLOR(1, 2, 15);
 
     if (param3) {
-        sub_0200E060(&param0->unk_E8[2], 1, 1, 14);
+        Window_DrawMessageBoxWithScrollCursor(&param0->unk_E8[2], 1, 1, 14);
     }
 
-    BGL_WindowColor(&(param0->unk_E8[2]), ((15 << 4) | 15), 0, 0, 27 * 8, 4 * 8);
+    Window_FillRectWithColor(&(param0->unk_E8[2]), ((15 << 4) | 15), 0, 0, 27 * 8, 4 * 8);
     RenderControlFlags_SetCanABSpeedUpPrint(1);
     RenderControlFlags_SetAutoScrollFlags(0);
 
-    param0->unk_1F = Text_AddPrinterWithParamsAndColor(&param0->unk_E8[2], 1, param1, 0, 0, param2, v0, NULL);
+    param0->unk_1F = Text_AddPrinterWithParamsAndColor(&param0->unk_E8[2], FONT_MESSAGE, param1, 0, 0, param2, v0, NULL);
 }
 
 static u16 ov79_021D18B4(UnkStruct_0203D9B8 *param0, UnkStruct_ov79_021D0E1C *param1)
@@ -152,7 +149,7 @@ void ov79_021D196C(UnkStruct_ov79_021D0E1C *param0)
     UnkStruct_020989DC *v2;
 
     param0->unk_1C = ov79_021D18B4(param0->unk_20, param0);
-    param0->unk_CC = sub_02013A04(param0->unk_1C, param0->unk_00);
+    param0->unk_CC = StringList_New(param0->unk_1C, param0->unk_00);
 
     for (v0 = param0->unk_1E; v0 != 0xFF; v0 = v1) {
         v2 = &(param0->unk_20->unk_1C[v0]);
@@ -161,11 +158,11 @@ void ov79_021D196C(UnkStruct_ov79_021D0E1C *param0)
         StringTemplate_SetStrbuf(param0->unk_30.unk_00, 0, sub_02015918(param0->unk_28, v2->unk_02), 0, 0, GAME_LANGUAGE);
         StringTemplate_SetNumber(param0->unk_30.unk_00, 1, v2->unk_01, 2, 2, 1);
         StringTemplate_Format(param0->unk_30.unk_00, param0->unk_30.unk_04, param0->unk_30.unk_0C);
-        sub_02013A6C(param0->unk_CC, param0->unk_30.unk_04, v2->unk_05);
+        StringList_AddFromStrbuf(param0->unk_CC, param0->unk_30.unk_04, v2->unk_05);
     }
 
-    sub_02013A6C(param0->unk_CC, param0->unk_30.unk_08, 0xFF);
-    MI_CpuCopy8(&Unk_ov79_021D3BB0, &param0->unk_84, sizeof(UnkStruct_ov84_02240FA8));
+    StringList_AddFromStrbuf(param0->unk_CC, param0->unk_30.unk_08, 0xFF);
+    MI_CpuCopy8(&Unk_ov79_021D3BB0, &param0->unk_84, sizeof(ListMenuTemplate));
 
     param0->unk_82 = param0->unk_20->unk_06;
     param0->unk_80 = param0->unk_20->unk_04;
@@ -184,25 +181,25 @@ void ov79_021D196C(UnkStruct_ov79_021D0E1C *param0)
         param0->unk_20->unk_02 = 0;
     }
 
-    param0->unk_84.unk_0C = &(param0->unk_E8[0]);
-    param0->unk_84.unk_00 = param0->unk_CC;
-    param0->unk_84.unk_1C = (void *)param0;
-    param0->unk_84.unk_10 = param0->unk_1C;
+    param0->unk_84.window = &(param0->unk_E8[0]);
+    param0->unk_84.choices = param0->unk_CC;
+    param0->unk_84.tmp = (void *)param0;
+    param0->unk_84.count = param0->unk_1C;
     param0->unk_16 = 0;
-    param0->unk_C4 = sub_0200112C(&param0->unk_84, param0->unk_80, param0->unk_82, param0->unk_00);
+    param0->unk_C4 = ListMenu_New(&param0->unk_84, param0->unk_80, param0->unk_82, param0->unk_00);
     param0->unk_16 = 1;
 }
 
 void ov79_021D1AB8(UnkStruct_ov79_021D0E1C *param0, BOOL param1)
 {
-    BGL_WindowColor(&(param0->unk_E8[0]), ((0 << 4) | 0), 0, 0, 22 * 8, 12 * 8);
+    Window_FillRectWithColor(&(param0->unk_E8[0]), ((0 << 4) | 0), 0, 0, 22 * 8, 12 * 8);
 
     if (param1) {
-        sub_0201ACF4(&param0->unk_E8[0]);
+        Window_ClearAndCopyToVRAM(&param0->unk_E8[0]);
     }
 
-    sub_02001384(param0->unk_C4, &(param0->unk_80), &(param0->unk_82));
-    sub_02013A3C(param0->unk_CC);
+    ListMenu_Free(param0->unk_C4, &(param0->unk_80), &(param0->unk_82));
+    StringList_Free(param0->unk_CC);
 
     param0->unk_20->unk_04 = param0->unk_80;
     param0->unk_20->unk_06 = param0->unk_82;
@@ -217,40 +214,40 @@ void ov79_021D1B24(UnkStruct_ov79_021D0E1C *param0, u8 param1, u8 param2)
     case 0:
         CellActor_SetAnim(param0->unk_1E0[param1], param1 * 3);
         CellActor_SetAnimateFlag(param0->unk_1E0[param1], 0);
-        sub_0201C04C(
+        Window_Scroll(
             &param0->unk_E8[7 + param1], 1, 2, ((0 << 4) | 0));
         break;
     case 1:
         CellActor_RestartAnim(param0->unk_1E0[param1]);
         CellActor_SetAnimateFlag(param0->unk_1E0[param1], 1);
-        sub_0201C04C(&param0->unk_E8[7 + param1], 0, 4, ((0 << 4) | 0));
+        Window_Scroll(&param0->unk_E8[7 + param1], 0, 4, ((0 << 4) | 0));
         param0->unk_14 = 1;
         break;
     case 2:
         CellActor_SetAnim(param0->unk_1E0[param1], param1 * 3 + 1);
-        sub_0201C04C(&param0->unk_E8[7 + param1], 1, 2, ((0 << 4) | 0));
+        Window_Scroll(&param0->unk_E8[7 + param1], 1, 2, ((0 << 4) | 0));
         param0->unk_14 = 0;
         break;
     case 3:
         CellActor_SetAnim(param0->unk_1E0[param1], param1 * 3 + 2);
-        sub_0201C04C(&param0->unk_E8[7 + param1], 0, 2, ((0 << 4) | 0));
+        Window_Scroll(&param0->unk_E8[7 + param1], 0, 2, ((0 << 4) | 0));
         param0->unk_14 = 1;
         break;
     case 4:
         CellActor_SetAnim(param0->unk_1E0[param1], param1 * 3 + 1);
         CellActor_SetAnimateFlag(param0->unk_1E0[param1], 1);
-        sub_0201C04C(&param0->unk_E8[7 + param1], 0, 2, ((0 << 4) | 0));
+        Window_Scroll(&param0->unk_E8[7 + param1], 0, 2, ((0 << 4) | 0));
         param0->unk_14 = 0;
         break;
     }
 
-    sub_0201A954(&param0->unk_E8[7 + param1]);
+    Window_CopyToVRAM(&param0->unk_E8[7 + param1]);
 }
 
 void ov79_021D1C44(UnkStruct_ov79_021D0E1C *param0, u8 param1)
 {
     int v0;
-    u32 v1 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0));
+    TextColor v1 = TEXT_COLOR(1, 2, 0);
 
     Sound_PlayEffect(1508);
 
@@ -271,16 +268,16 @@ void ov79_021D1C44(UnkStruct_ov79_021D0E1C *param0, u8 param1)
     param0->unk_20->unk_04 = param0->unk_20->unk_06 = 0;
 
     ov79_021D196C(param0);
-    BGL_WindowColor(&(param0->unk_E8[6]), ((0 << 4) | 0), 0, 0, 20 * 8, 3 * 8);
+    Window_FillRectWithColor(&(param0->unk_E8[6]), ((0 << 4) | 0), 0, 0, 20 * 8, 3 * 8);
 
     if (param0->unk_1B == 5) {
-        sub_0201A954(&param0->unk_E8[6]);
+        Window_CopyToVRAM(&param0->unk_E8[6]);
         return;
     }
 
     v0 = (20 * 8) - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_30.unk_38[param0->unk_1B], 0);
 
-    Text_AddPrinterWithParamsAndColor(&param0->unk_E8[6], 0, param0->unk_30.unk_38[param0->unk_1B], v0 / 2, 3, 0, v1, NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_E8[6], FONT_SYSTEM, param0->unk_30.unk_38[param0->unk_1B], v0 / 2, 3, TEXT_SPEED_INSTANT, v1, NULL);
 }
 
 static void ov79_021D1D20(UnkStruct_ov79_021D0E1C *param0, UnkStruct_020989DC *param1)
@@ -305,28 +302,28 @@ static void ov79_021D1D20(UnkStruct_ov79_021D0E1C *param0, UnkStruct_020989DC *p
     }
 }
 
-static void ov79_021D1D88(BmpList *param0, u32 param1, u8 param2)
+static void ov79_021D1D88(ListMenu *param0, u32 param1, u8 param2)
 {
-    UnkStruct_ov79_021D0E1C *v0 = (UnkStruct_ov79_021D0E1C *)sub_02001504(param0, 19);
-    u32 v1;
+    UnkStruct_ov79_021D0E1C *v0 = (UnkStruct_ov79_021D0E1C *)ListMenu_GetAttribute(param0, 19);
+    TextColor v1;
 
-    v1 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0));
+    v1 = TEXT_COLOR(1, 2, 0);
 }
 
-static void ov79_021D1D94(BmpList *param0, u32 param1, u8 param2)
+static void ov79_021D1D94(ListMenu *param0, u32 param1, u8 param2)
 {
-    UnkStruct_ov79_021D0E1C *v0 = (UnkStruct_ov79_021D0E1C *)sub_02001504(param0, 19);
-    u32 v1;
+    UnkStruct_ov79_021D0E1C *v0 = (UnkStruct_ov79_021D0E1C *)ListMenu_GetAttribute(param0, 19);
+    TextColor v1;
     u16 v2, v3;
     u8 v4 = 0;
 
-    v1 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0));
+    v1 = TEXT_COLOR(1, 2, 0);
 
     if (!param2) {
         Sound_PlayEffect(1500);
     }
 
-    sub_020014DC(param0, &v2, &v3);
+    ListMenu_GetListAndCursorPos(param0, &v2, &v3);
     SpriteActor_SetPositionXY(v0->unk_1C0[0], 105, v3 * 16 + 40);
 
     if (v2 == 0) {
@@ -341,11 +338,11 @@ static void ov79_021D1D94(BmpList *param0, u32 param1, u8 param2)
         CellActor_SetDrawFlag(v0->unk_1C0[2], 0);
     }
 
-    BGL_WindowColor(&(v0->unk_E8[1]), ((0 << 4) | 0), 0, 0, 10 * 8, 2 * 8);
+    Window_FillRectWithColor(&(v0->unk_E8[1]), ((0 << 4) | 0), 0, 0, 10 * 8, 2 * 8);
 
     if (param1 == 0xFF) {
         ov79_021D1D20(v0, NULL);
-        sub_0201A954(&v0->unk_E8[1]);
+        Window_CopyToVRAM(&v0->unk_E8[1]);
         SpriteActor_EnableObject(v0->unk_1FC->unk_04, 0);
         return;
     }
@@ -361,7 +358,7 @@ static void ov79_021D1D94(BmpList *param0, u32 param1, u8 param2)
 
     StringTemplate_SetNumber(v0->unk_30.unk_00, 0, v4, 2, 0, 1);
     StringTemplate_Format(v0->unk_30.unk_00, v0->unk_30.unk_04, v0->unk_30.unk_10);
-    Text_AddPrinterWithParamsAndColor(&v0->unk_E8[1], 0, v0->unk_30.unk_04, 8, 0, 0, v1, NULL);
+    Text_AddPrinterWithParamsAndColor(&v0->unk_E8[1], FONT_SYSTEM, v0->unk_30.unk_04, 8, 0, TEXT_SPEED_INSTANT, v1, NULL);
     sub_0209933C(v0->unk_1F8, v0->unk_1FC, v0->unk_20->unk_1C[param1].unk_02);
     SpriteActor_EnableObject(v0->unk_1FC->unk_04, 1);
 }
@@ -370,39 +367,39 @@ void ov79_021D1ED8(UnkStruct_ov79_021D0E1C *param0)
 {
     u8 v0 = 0;
 
-    param0->unk_D0 = sub_02013A04(3, param0->unk_00);
+    param0->unk_D0 = StringList_New(3, param0->unk_00);
 
     for (v0 = 0; v0 < 3; v0++) {
-        sub_02013A4C(param0->unk_D0, param0->unk_2C, 1 + v0, v0);
+        StringList_AddFromMessageBank(param0->unk_D0, param0->unk_2C, 1 + v0, v0);
     }
 
-    MI_CpuCopy8(&Unk_ov79_021D3B90, &param0->unk_A4, sizeof(UnkStruct_ov84_02240FA8));
+    MI_CpuCopy8(&Unk_ov79_021D3B90, &param0->unk_A4, sizeof(ListMenuTemplate));
 
-    param0->unk_A4.unk_0C = &(param0->unk_E8[3]);
-    param0->unk_A4.unk_00 = param0->unk_D0;
-    param0->unk_A4.unk_1C = (void *)param0;
-    param0->unk_A4.unk_10 = 3;
+    param0->unk_A4.window = &(param0->unk_E8[3]);
+    param0->unk_A4.choices = param0->unk_D0;
+    param0->unk_A4.tmp = (void *)param0;
+    param0->unk_A4.count = 3;
 
-    Window_Show(&param0->unk_E8[3], 1, 1 + 18 + 12, 15);
+    Window_DrawStandardFrame(&param0->unk_E8[3], 1, 1 + 18 + 12, 15);
 
-    param0->unk_C8 = sub_0200112C(&param0->unk_A4, 0, 0, param0->unk_00);
+    param0->unk_C8 = ListMenu_New(&param0->unk_A4, 0, 0, param0->unk_00);
 }
 
 void ov79_021D1F60(UnkStruct_ov79_021D0E1C *param0)
 {
     u16 v0, v1;
 
-    Window_Clear(&(param0->unk_E8[3]), 0);
-    sub_0201ACF4(&param0->unk_E8[3]);
+    Window_EraseStandardFrame(&(param0->unk_E8[3]), 0);
+    Window_ClearAndCopyToVRAM(&param0->unk_E8[3]);
 
-    sub_02001384(param0->unk_C8, &v1, &v0);
-    sub_02013A3C(param0->unk_D0);
+    ListMenu_Free(param0->unk_C8, &v1, &v0);
+    StringList_Free(param0->unk_D0);
 
     param0->unk_C8 = NULL;
     param0->unk_D0 = NULL;
 }
 
-static void ov79_021D1FA8(BmpList *param0, u32 param1, u8 param2)
+static void ov79_021D1FA8(ListMenu *param0, u32 param1, u8 param2)
 {
     if (!param2) {
         Sound_PlayEffect(1500);
@@ -429,25 +426,25 @@ void ov79_021D2008(UnkStruct_ov79_021D0E1C *param0)
 
 void ov79_021D2054(UnkStruct_ov79_021D0E1C *param0)
 {
-    static const UnkStruct_ov61_0222C884 v0 = {
+    static const WindowTemplate v0 = {
         1, 26, 13, 5, 4, 13, 463
     };
 
-    param0->unk_D4 = sub_02002100(param0->unk_24, &v0, 1 + 18 + 12, 15, param0->unk_00);
+    param0->unk_D4 = Menu_MakeYesNoChoice(param0->unk_24, &v0, 1 + 18 + 12, 15, param0->unk_00);
 }
 
 void ov79_021D2078(UnkStruct_ov79_021D0E1C *param0)
 {
     int v0, v1;
-    u32 v2 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0));
-    u32 v3 = (u32)(((2 & 0xff) << 16) | ((3 & 0xff) << 8) | ((1 & 0xff) << 0));
+    TextColor v2 = TEXT_COLOR(1, 2, 0);
+    TextColor v3 = TEXT_COLOR(2, 3, 1);
 
-    Text_AddPrinterWithParamsAndColor(&param0->unk_E8[5], 0, param0->unk_30.unk_1C, 4, 0, 0, v2, NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_E8[5], FONT_SYSTEM, param0->unk_30.unk_1C, 4, 0, TEXT_SPEED_INSTANT, v2, NULL);
 
     for (v1 = 0; v1 < 6; v1++) {
         static const u8 v4[] = { 2, 10, 4, 6, 10, 6 };
 
         v0 = (8 * 8) - Font_CalcStrbufWidth(FONT_SUBSCREEN, param0->unk_30.unk_20[v1], 0);
-        Text_AddPrinterWithParamsAndColor(&param0->unk_E8[7 + v1], 2, param0->unk_30.unk_20[v1], v0 / 2, v4[v1], 0, v3, NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_E8[7 + v1], FONT_SUBSCREEN, param0->unk_30.unk_20[v1], v0 / 2, v4[v1], TEXT_SPEED_INSTANT, v3, NULL);
     }
 }

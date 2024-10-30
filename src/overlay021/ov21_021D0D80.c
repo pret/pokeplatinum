@@ -4,9 +4,7 @@
 #include <nnsys.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0209ACBC_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay021/funcptr_ov21_021E9B74.h"
@@ -52,6 +50,7 @@
 #include "overlay021/struct_ov21_021E68F4.h"
 #include "overlay022/struct_ov22_022559F8.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -70,7 +69,6 @@
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02017728.h"
-#include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_0201E86C.h"
@@ -612,7 +610,7 @@ void ov21_021D154C(TouchScreenHitTable *hitTable, int param1, int param2, int pa
     hitTable->rect.right = param4;
 }
 
-void ov21_021D1558(UnkStruct_ov21_021D157C *param0, BGL *param1, int param2, NNSG2dScreenData *param3, int param4, int param5, int param6, int param7, int param8)
+void ov21_021D1558(UnkStruct_ov21_021D157C *param0, BgConfig *param1, int param2, NNSG2dScreenData *param3, int param4, int param5, int param6, int param7, int param8)
 {
     param0->unk_00 = param1;
     param0->unk_08 = param2;
@@ -631,7 +629,7 @@ BOOL ov21_021D157C(UnkStruct_ov21_021D157C *param0)
     int v1;
 
     if (param0->unk_1C <= param0->unk_20) {
-        sub_02019CB8(param0->unk_00, param0->unk_08, 0, 0, 0, 32, 24, 16);
+        Bg_FillTilemapRect(param0->unk_00, param0->unk_08, 0, 0, 0, 32, 24, 16);
 
         v0 = (param0->unk_14 * param0->unk_1C) / param0->unk_20;
         v1 = (param0->unk_18 * param0->unk_1C) / param0->unk_20;
@@ -639,14 +637,14 @@ BOOL ov21_021D157C(UnkStruct_ov21_021D157C *param0)
         v1 += param0->unk_10;
 
         if (v0 > 0) {
-            sub_020198E8(param0->unk_00, param0->unk_08, 0, 0, 32, v0, param0->unk_04->rawData, 0, 32 - v0, 32, 32);
+            Bg_CopyToTilemapRect(param0->unk_00, param0->unk_08, 0, 0, 32, v0, param0->unk_04->rawData, 0, 32 - v0, 32, 32);
         }
 
         if ((32 - v1) > 0) {
-            sub_020198E8(param0->unk_00, param0->unk_08, 0, 32 - v1, 32, v1, param0->unk_04->rawData, 0, 0, 32, 32);
+            Bg_CopyToTilemapRect(param0->unk_00, param0->unk_08, 0, 32 - v1, 32, v1, param0->unk_04->rawData, 0, 0, 32, 32);
         }
 
-        sub_0201C3C0(param0->unk_00, param0->unk_08);
+        Bg_ScheduleTilemapTransfer(param0->unk_00, param0->unk_08);
         param0->unk_1C++;
 
         return 0;
@@ -669,8 +667,8 @@ void ov21_021D1650(Window *param0, int param1, int param2, int param3)
 
     v1 = ov21_021D561C(param2, GAME_LANGUAGE, param3);
 
-    Text_AddPrinterWithParamsAndColor(param0, 2, v0, 22, 0, 0xff, ((u32)(((3 & 0xff) << 16) | ((2 & 0xff) << 8) | ((1 & 0xff) << 0))), NULL);
-    Text_AddPrinterWithParamsAndColor(param0, 2, v1, 49, 0, 0xff, ((u32)(((3 & 0xff) << 16) | ((2 & 0xff) << 8) | ((1 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param0, FONT_SUBSCREEN, v0, 22, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 2, 1), NULL);
+    Text_AddPrinterWithParamsAndColor(param0, FONT_SUBSCREEN, v1, 49, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 2, 1), NULL);
     Strbuf_Free(v0);
 
     ov21_021D5600(v1);

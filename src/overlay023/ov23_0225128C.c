@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/struct_02049FA8.h"
@@ -25,9 +23,8 @@
 #include "overlay023/ov23_02254A14.h"
 #include "overlay023/struct_ov23_0224271C.h"
 #include "overlay023/struct_ov23_02250CD4.h"
-#include "overlay061/struct_ov61_0222C884.h"
-#include "overlay084/struct_ov84_02240FA8.h"
 
+#include "bg_window.h"
 #include "camera.h"
 #include "comm_player_manager.h"
 #include "communication_information.h"
@@ -35,21 +32,20 @@
 #include "core_sys.h"
 #include "field_system.h"
 #include "heap.h"
+#include "list_menu.h"
+#include "menu.h"
 #include "message.h"
 #include "player_avatar.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0200112C.h"
-#include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200A9DC.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02013A04.h"
-#include "unk_02018340.h"
 #include "unk_0202854C.h"
 #include "unk_02033200.h"
 #include "unk_020508D4.h"
@@ -72,7 +68,7 @@ typedef struct {
 typedef struct {
     int unk_00;
     FieldSystem *fieldSystem;
-    UIControlData *unk_08;
+    Menu *unk_08;
     UnkStruct_ov23_022513B0 unk_0C;
     SysTask *unk_10;
 } UnkStruct_ov23_02252038;
@@ -81,7 +77,7 @@ static void ov23_022520E8(FieldSystem *fieldSystem, UnkStruct_ov23_022513B0 *par
 static void ov23_02251F94(FieldSystem *fieldSystem);
 static void ov23_022521C8(UnkStruct_ov23_02250CD4 *param0);
 
-static const UnkStruct_ov61_0222C884 Unk_ov23_022569C8 = {
+static const WindowTemplate Unk_ov23_022569C8 = {
     0x3,
     0x19,
     0xD,
@@ -264,9 +260,9 @@ static int ov23_0225144C(int param0, UnkStruct_ov23_02250CD4 *param1)
     return 0;
 }
 
-static void ov23_0225148C(BmpList *param0, u32 param1, u8 param2)
+static void ov23_0225148C(ListMenu *param0, u32 param1, u8 param2)
 {
-    UnkStruct_ov23_02250CD4 *v0 = (UnkStruct_ov23_02250CD4 *)sub_02001504(param0, 19);
+    UnkStruct_ov23_02250CD4 *v0 = (UnkStruct_ov23_02250CD4 *)ListMenu_GetAttribute(param0, 19);
     int v1 = param1;
 
     if (param1 == 0xfffffffe) {
@@ -276,9 +272,9 @@ static void ov23_0225148C(BmpList *param0, u32 param1, u8 param2)
     ov23_02253F60(ov23_022421BC(), 6 + v1, 0, NULL);
 }
 
-static void ov23_022514B0(BmpList *param0, u32 param1, u8 param2)
+static void ov23_022514B0(ListMenu *param0, u32 param1, u8 param2)
 {
-    UnkStruct_ov23_02250CD4 *v0 = (UnkStruct_ov23_02250CD4 *)sub_02001504(param0, 19);
+    UnkStruct_ov23_02250CD4 *v0 = (UnkStruct_ov23_02250CD4 *)ListMenu_GetAttribute(param0, 19);
     int v1 = param1;
 
     if (param1 == 0xfffffffe) {
@@ -294,8 +290,8 @@ static BOOL ov23_022514D8(SysTask *param0, void *param1)
     u32 v1;
     u16 v2, v3;
 
-    v1 = sub_02001288(v0->unk_48);
-    sub_020014DC(v0->unk_48, &v2, &v3);
+    v1 = ListMenu_ProcessInput(v0->unk_48);
+    ListMenu_GetListAndCursorPos(v0->unk_48, &v2, &v3);
 
     ov23_022430E0(23, v3, v2);
     ov23_022521C8(v0);
@@ -346,7 +342,7 @@ static BOOL ov23_022514D8(SysTask *param0, void *param1)
 
 static void ov23_022515D8(UnkStruct_ov23_02250CD4 *param0, int param1, int param2, UnkFuncPtr_ov23_022515D8 param3, int param4)
 {
-    UnkStruct_ov84_02240FA8 v0;
+    ListMenuTemplate v0;
     int v1 = param2 + 1;
     BOOL v2 = 1;
 
@@ -357,10 +353,10 @@ static void ov23_022515D8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
 
     ov23_0224FB7C(param0);
 
-    param0->unk_40 = sub_02013A04(v1, 4);
+    param0->unk_40 = StringList_New(v1, 4);
 
-    BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_10, 3, 17, 3, 14, v1 * 2, 13, 2);
-    Window_Show(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
+    Window_Add(param0->fieldSystem->bgConfig, &param0->unk_10, 3, 17, 3, 14, v1 * 2, 13, 2);
+    Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {
         MessageLoader *v3;
@@ -370,43 +366,43 @@ static void ov23_022515D8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
 
         for (v4 = 0; v4 < v1; v4++) {
             if (v4 == (v1 - 1)) {
-                sub_02013A4C(param0->unk_40, v3, param1 + 5, 0xfffffffe);
+                StringList_AddFromMessageBank(param0->unk_40, v3, param1 + 5, 0xfffffffe);
             } else {
-                sub_02013A4C(param0->unk_40, v3, param1 + v4, v4);
+                StringList_AddFromMessageBank(param0->unk_40, v3, param1 + v4, v4);
             }
         }
 
         MessageLoader_Free(v3);
     }
 
-    MI_CpuCopy8(ov23_02253D40(), &v0, sizeof(UnkStruct_ov84_02240FA8));
+    MI_CpuCopy8(ov23_02253D40(), &v0, sizeof(ListMenuTemplate));
 
-    v0.unk_10 = v1;
-    v0.unk_12 = v1;
-    v0.unk_00 = param0->unk_40;
-    v0.unk_0C = &param0->unk_10;
+    v0.count = v1;
+    v0.maxDisplay = v1;
+    v0.choices = param0->unk_40;
+    v0.window = &param0->unk_10;
 
     if (param3) {
-        v0.unk_04 = param3;
+        v0.cursorCallback = param3;
     }
 
-    v0.unk_1C = param0;
-    ov23_02251238(param0, v1, v0.unk_10);
-    param0->unk_48 = sub_0200112C(&v0, param0->unk_294, param0->unk_290, 4);
+    v0.tmp = param0;
+    ov23_02251238(param0, v1, v0.count);
+    param0->unk_48 = ListMenu_New(&v0, param0->unk_294, param0->unk_290, 4);
 }
 
 static void ov23_022516E8(UnkStruct_ov23_02250CD4 *param0, int param1, int param2, UnkFuncPtr_ov23_022515D8 param3, int param4)
 {
-    UnkStruct_ov84_02240FA8 v0;
+    ListMenuTemplate v0;
     int v1 = param2 + 1;
     BOOL v2 = 1;
 
     ov23_0224FB7C(param0);
 
-    param0->unk_40 = sub_02013A04(v1, 4);
+    param0->unk_40 = StringList_New(v1, 4);
 
-    BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_10, 3, 17, 3, 14, v1 * 2, 13, (2 + 14 * 16));
-    Window_Show(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
+    Window_Add(param0->fieldSystem->bgConfig, &param0->unk_10, 3, 17, 3, 14, v1 * 2, 13, (2 + 14 * 16));
+    Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {
         MessageLoader *v3;
@@ -416,29 +412,29 @@ static void ov23_022516E8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
 
         for (v4 = 0; v4 < v1; v4++) {
             if (v4 == param2) {
-                sub_02013A4C(param0->unk_40, v3, param1 + v4, 0xfffffffe);
+                StringList_AddFromMessageBank(param0->unk_40, v3, param1 + v4, 0xfffffffe);
             } else {
-                sub_02013A4C(param0->unk_40, v3, param1 + v4, v4);
+                StringList_AddFromMessageBank(param0->unk_40, v3, param1 + v4, v4);
             }
         }
 
         MessageLoader_Free(v3);
     }
 
-    MI_CpuCopy8(ov23_02253D40(), &v0, sizeof(UnkStruct_ov84_02240FA8));
+    MI_CpuCopy8(ov23_02253D40(), &v0, sizeof(ListMenuTemplate));
 
-    v0.unk_10 = param2 + 1;
-    v0.unk_12 = v1;
-    v0.unk_00 = param0->unk_40;
-    v0.unk_0C = &param0->unk_10;
+    v0.count = param2 + 1;
+    v0.maxDisplay = v1;
+    v0.choices = param0->unk_40;
+    v0.window = &param0->unk_10;
 
     if (param3) {
-        v0.unk_04 = param3;
+        v0.cursorCallback = param3;
     }
 
-    v0.unk_1C = param0;
-    ov23_02251238(param0, v1, v0.unk_10);
-    param0->unk_48 = sub_0200112C(&v0, param0->unk_294, param0->unk_290, 4);
+    v0.tmp = param0;
+    ov23_02251238(param0, v1, v0.count);
+    param0->unk_48 = ListMenu_New(&v0, param0->unk_294, param0->unk_290, 4);
 }
 
 static BOOL ov23_022517E0(SysTask *param0, void *param1)
@@ -447,8 +443,8 @@ static BOOL ov23_022517E0(SysTask *param0, void *param1)
     u32 v1;
     u16 v2, v3;
 
-    v1 = sub_02001288(v0->unk_48);
-    sub_020014DC(v0->unk_48, &v2, &v3);
+    v1 = ListMenu_ProcessInput(v0->unk_48);
+    ListMenu_GetListAndCursorPos(v0->unk_48, &v2, &v3);
 
     ov23_022430E0(22, v3, v2);
     ov23_022521C8(v0);
@@ -497,7 +493,7 @@ static BOOL ov23_02251894(SysTask *param0, void *param1)
 
     v1 = ov23_02248D20(v0->unk_4C);
 
-    sub_020014DC(v0->unk_4C->unk_0C, &v3, &v4);
+    ListMenu_GetListAndCursorPos(v0->unk_4C->unk_0C, &v3, &v4);
     ov23_022430E0(2, v4, v3);
 
     if (v1 == 0xfffffffe) {
@@ -506,7 +502,7 @@ static BOOL ov23_02251894(SysTask *param0, void *param1)
 
     switch (v1) {
     case 0xffffffff:
-        ov23_0225128C(v0, v3, sub_02001504(v0->unk_4C->unk_0C, 2), 6);
+        ov23_0225128C(v0, v3, ListMenu_GetAttribute(v0->unk_4C->unk_0C, 2), 6);
         return 0;
     case 0xfffffffe:
         ov23_02254044(ov23_022421DC());
@@ -540,7 +536,7 @@ static BOOL ov23_02251960(SysTask *param0, void *param1)
 
     v1 = ov23_02248D20(v0->unk_4C);
 
-    sub_020014DC(v0->unk_4C->unk_0C, &v3, &v4);
+    ListMenu_GetListAndCursorPos(v0->unk_4C->unk_0C, &v3, &v4);
     ov23_022430E0(6, v4, v3);
 
     if (v1 == 0xfffffffe) {
@@ -549,7 +545,7 @@ static BOOL ov23_02251960(SysTask *param0, void *param1)
 
     switch (v1) {
     case 0xffffffff:
-        ov23_0225128C(v0, v3, sub_02001504(v0->unk_4C->unk_0C, 2), 6);
+        ov23_0225128C(v0, v3, ListMenu_GetAttribute(v0->unk_4C->unk_0C, 2), 6);
         return 0;
     case 0xfffffffe:
         ov23_02254044(ov23_022421DC());
@@ -706,7 +702,7 @@ static void ov23_02251C04(SysTask *param0, void *param1)
     case 6:
         ov23_0224FB7C(param1);
         ov23_02254044(ov23_022421BC());
-        v0->unk_270 = ov23_02253C64(v0->fieldSystem->unk_08, SaveData_GetTrainerInfo(FieldSystem_SaveData(v0->fieldSystem)), sub_020298B0(FieldSystem_SaveData(v0->fieldSystem)), NULL, NULL);
+        v0->unk_270 = ov23_02253C64(v0->fieldSystem->bgConfig, SaveData_GetTrainerInfo(FieldSystem_SaveData(v0->fieldSystem)), sub_020298B0(FieldSystem_SaveData(v0->fieldSystem)), NULL, NULL);
         v0->unk_2AA = 7;
         break;
     case 7:
@@ -787,7 +783,7 @@ static void ov23_02251C04(SysTask *param0, void *param1)
         }
         break;
     case 3:
-        if (v0->fieldSystem->unk_10 == NULL) {
+        if (v0->fieldSystem->taskManager == NULL) {
             v2 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov23_02251ACC));
             MI_CpuClear8(v2, sizeof(UnkStruct_ov23_02251ACC));
             v2->unk_00 = 0;
@@ -837,7 +833,7 @@ static void ov23_02251C04(SysTask *param0, void *param1)
 
 static void ov23_02251F94(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov84_02240FA8 v0;
+    ListMenuTemplate v0;
     UnkStruct_ov23_02250CD4 *v1;
     const int v2 = 6;
 
@@ -872,12 +868,12 @@ static void ov23_02252038(SysTask *param0, void *param1)
     switch (v0->unk_00) {
     case 0:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            v0->unk_08 = sub_02002100(v0->fieldSystem->unk_08, &Unk_ov23_022569C8, 1024 - (18 + 12) - 9, 11, 4);
+            v0->unk_08 = Menu_MakeYesNoChoice(v0->fieldSystem->bgConfig, &Unk_ov23_022569C8, 1024 - (18 + 12) - 9, 11, 4);
             v0->unk_00 = 1;
         }
         break;
     case 1:
-        v1 = sub_02002114(v0->unk_08, 4);
+        v1 = Menu_ProcessInputAndHandleExit(v0->unk_08, 4);
 
         if (v1 == 0xffffffff) {
             return;
@@ -904,7 +900,7 @@ static void ov23_022520C8(SysTask *param0, void *param1)
     UnkStruct_ov23_02252038 *v0 = param1;
 
     if (v0->unk_08) {
-        sub_02002154(v0->unk_08, 4);
+        Menu_DestroyForExit(v0->unk_08, 4);
     }
 
     Heap_FreeToHeap(v0);
@@ -960,7 +956,7 @@ static void ov23_022521C8(UnkStruct_ov23_02250CD4 *param0)
     u16 v0;
 
     v0 = param0->unk_2AE;
-    sub_020014D0(param0->unk_48, &param0->unk_2AE);
+    ListMenu_CalcTrueCursorPos(param0->unk_48, &param0->unk_2AE);
 
     if (v0 != param0->unk_2AE) {
         Sound_PlayEffect(1500);

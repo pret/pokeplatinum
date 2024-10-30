@@ -6,7 +6,6 @@
 #include "constants/field/map_load.h"
 
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_decls/struct_0207CB08_decl.h"
@@ -21,7 +20,6 @@
 #include "struct_defs/struct_020708E0.h"
 #include "struct_defs/struct_020709CC.h"
 #include "struct_defs/struct_02072014.h"
-#include "struct_defs/struct_02081CF4.h"
 #include "struct_defs/struct_02097728.h"
 #include "struct_defs/struct_02098C44.h"
 
@@ -32,14 +30,16 @@
 #include "gmm/message_bank_unk_0367.h"
 #include "overlay005/ov5_021D0D80.h"
 #include "overlay005/ov5_021D2F14.h"
-#include "overlay005/ov5_021E1D20.h"
+#include "overlay005/save_info_window.h"
 #include "overlay021/struct_ov21_021D0D80.h"
 #include "overlay104/struct_ov104_02241308.h"
 
 #include "bag.h"
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
+#include "font.h"
 #include "game_records.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -47,6 +47,7 @@
 #include "journal.h"
 #include "map_header.h"
 #include "map_object.h"
+#include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "party.h"
@@ -54,22 +55,20 @@
 #include "pokemon.h"
 #include "pokemon_summary_app.h"
 #include "poketch_data.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "script_manager.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02013A04.h"
 #include "unk_02014A84.h"
-#include "unk_02018340.h"
 #include "unk_0202631C.h"
 #include "unk_02028124.h"
 #include "unk_0202D778.h"
@@ -343,7 +342,7 @@ void sub_0203AB00(FieldSystem *fieldSystem)
         menu->unk_224 = sub_0203ABD0(fieldSystem);
     }
 
-    FieldTask_Change(fieldSystem->unk_10, sub_0203AC44, menu);
+    FieldTask_Change(fieldSystem->taskManager, sub_0203AC44, menu);
 }
 
 static FieldMenu *FieldMenu_Alloc(void)
@@ -363,7 +362,7 @@ static u32 sub_0203ABD0(FieldSystem *fieldSystem)
 {
     u32 v0 = 0;
 
-    if (sub_02027520(SaveData_Pokedex(fieldSystem->saveData)) == 0) {
+    if (Pokedex_IsObtained(SaveData_Pokedex(fieldSystem->saveData)) == FALSE) {
         v0 |= 0x1;
     }
 
@@ -494,10 +493,10 @@ static BOOL sub_0203AC44(TaskManager *taskMan)
     case FIELD_MENU_STATE_END:
         sub_0203B2EC(menu, fieldSystem);
         FieldMenu_Close(menu);
-        Window_Clear(&menu->unk_00, 1);
-        BGL_DeleteWindow(&menu->unk_00);
+        Window_EraseStandardFrame(&menu->unk_00, 1);
+        Window_Remove(&menu->unk_00);
         sub_0203B200(taskMan);
-        sub_0201C3C0(fieldSystem->unk_08, 3);
+        Bg_ScheduleTilemapTransfer(fieldSystem->bgConfig, 3);
         Heap_FreeToHeap(menu);
         MapObjectMan_UnpauseAllMovement(fieldSystem->mapObjMan);
         return TRUE;
@@ -521,20 +520,20 @@ static void sub_0203ADFC(TaskManager *taskMan)
     FieldSystem *fieldSystem;
     FieldMenu *menu;
     MessageLoader *v2;
-    UnkStruct_02081CF4 v3;
+    MenuTemplate v3;
     u32 v4, v5;
 
     fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
     v5 = FieldMenu_MakeList(menu, menu->unk_30);
 
-    BGL_AddWindow(fieldSystem->unk_08, &menu->unk_00, 3, 20, 1, 11, v5 * 3, 12, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (11 * 22)));
-    sub_0200DAA4(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 1, 11);
-    Window_Show(&menu->unk_00, 1, 1024 - (18 + 12) - 9, 11);
+    Window_Add(fieldSystem->bgConfig, &menu->unk_00, 3, 20, 1, 11, v5 * 3, 12, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (11 * 22)));
+    LoadStandardWindowGraphics(fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 1, 11);
+    Window_DrawStandardFrame(&menu->unk_00, 1, 1024 - (18 + 12) - 9, 11);
 
     v2 = MessageLoader_Init(0, 26, 367, 11);
 
-    menu->unk_24 = sub_02013A04(v5, 11);
+    menu->unk_24 = StringList_New(v5, 11);
     menu->unk_28 = 0;
 
     for (v4 = 0; v4 < v5; v4++) {
@@ -549,13 +548,13 @@ static void sub_0203ADFC(TaskManager *taskMan)
 
             StringTemplate_SetPlayerName(v6, 0, SaveData_GetTrainerInfo(fieldSystem->saveData));
             StringTemplate_Format(v6, v7, v8);
-            sub_02013A6C(menu->unk_24, v7, menu->unk_30[v4]);
+            StringList_AddFromStrbuf(menu->unk_24, v7, menu->unk_30[v4]);
 
             Strbuf_Free(v8);
             Strbuf_Free(v7);
             StringTemplate_Free(v6);
         } else {
-            sub_02013A4C(
+            StringList_AddFromMessageBank(
                 menu->unk_24, v2, Unk_020EA05C[menu->unk_30[v4]][0], menu->unk_30[v4]);
         }
 
@@ -567,23 +566,23 @@ static void sub_0203ADFC(TaskManager *taskMan)
     fieldSystem->unk_90 = menu->unk_30[menu->unk_28];
     MessageLoader_Free(v2);
 
-    v3.unk_00 = menu->unk_24;
-    v3.unk_04 = &menu->unk_00;
-    v3.unk_08 = 1;
-    v3.unk_09 = 1;
-    v3.unk_0A = v5;
-    v3.unk_0B_0 = 8;
-    v3.unk_0B_4 = 1;
+    v3.choices = menu->unk_24;
+    v3.window = &menu->unk_00;
+    v3.fontID = FONT_MESSAGE;
+    v3.xSize = 1;
+    v3.ySize = v5;
+    v3.lineSpacing = 8;
+    v3.suppressCursor = TRUE;
 
     if (v5 >= 4) {
-        v3.unk_0B_6 = 1;
+        v3.loopAround = TRUE;
     } else {
-        v3.unk_0B_6 = 0;
+        v3.loopAround = FALSE;
     }
 
-    menu->unk_20 = sub_02001AF4(&v3, 28, 4, menu->unk_28, 11, PAD_BUTTON_B | PAD_BUTTON_X);
+    menu->unk_20 = Menu_New(&v3, 28, 4, menu->unk_28, 11, PAD_BUTTON_B | PAD_BUTTON_X);
 
-    sub_0201A9A4(&menu->unk_00);
+    Window_ScheduleCopyToVRAM(&menu->unk_00);
     sub_0203B318(menu, menu->unk_30, v5, TrainerInfo_Gender(SaveData_GetTrainerInfo(fieldSystem->saveData)));
 }
 
@@ -642,8 +641,8 @@ static u32 FieldMenu_MakeList(FieldMenu *menu, u8 *ret)
 static void FieldMenu_Close(FieldMenu *menu)
 {
     sub_0203B4E8(menu);
-    sub_02001BC4(menu->unk_20, NULL);
-    sub_02013A3C(menu->unk_24);
+    Menu_Free(menu->unk_20, NULL);
+    StringList_Free(menu->unk_24);
 
     menu->unk_20 = NULL;
 }
@@ -669,10 +668,10 @@ static void sub_0203B094(TaskManager *taskMan)
         return;
     }
 
-    BGL_AddWindow(fieldSystem->unk_08, &menu->unk_10, 3, 1, 1, 12, 4, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)));
-    sub_0200DAA4(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 1, 11);
-    Window_Show(&menu->unk_10, 1, 1024 - (18 + 12) - 9, 11);
-    BGL_FillWindow(&menu->unk_10, 15);
+    Window_Add(fieldSystem->bgConfig, &menu->unk_10, 3, 1, 1, 12, 4, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)));
+    LoadStandardWindowGraphics(fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 1, 11);
+    Window_DrawStandardFrame(&menu->unk_10, 1, 1024 - (18 + 12) - 9, 11);
+    Window_FillTilemap(&menu->unk_10, 15);
 
     v2 = MessageLoader_Init(0, 26, 367, 11);
 
@@ -682,7 +681,7 @@ static void sub_0203B094(TaskManager *taskMan)
         v5 = MessageLoader_GetNewStrbuf(v2, 10);
     }
 
-    Text_AddPrinterWithParams(&menu->unk_10, 0, v5, 0, 0, 0xff, NULL);
+    Text_AddPrinterWithParams(&menu->unk_10, FONT_SYSTEM, v5, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
     Strbuf_Free(v5);
 
     v3 = StringTemplate_Default(11);
@@ -700,13 +699,13 @@ static void sub_0203B094(TaskManager *taskMan)
     }
 
     StringTemplate_Format(v3, v4, v5);
-    Text_AddPrinterWithParams(&menu->unk_10, 0, v4, 0, 16, 0xff, NULL);
+    Text_AddPrinterWithParams(&menu->unk_10, FONT_SYSTEM, v4, 0, 16, TEXT_SPEED_NO_TRANSFER, NULL);
 
     Strbuf_Free(v4);
     Strbuf_Free(v5);
     StringTemplate_Free(v3);
     MessageLoader_Free(v2);
-    sub_0201A9A4(&menu->unk_10);
+    Window_ScheduleCopyToVRAM(&menu->unk_10);
 }
 
 static void sub_0203B200(TaskManager *taskMan)
@@ -721,8 +720,8 @@ static void sub_0203B200(TaskManager *taskMan)
         return;
     }
 
-    Window_Clear(&menu->unk_10, 1);
-    BGL_DeleteWindow(&menu->unk_10);
+    Window_EraseStandardFrame(&menu->unk_10, 1);
+    Window_Remove(&menu->unk_10);
 }
 
 static BOOL FieldMenu_Select(TaskManager *taskMan)
@@ -733,10 +732,10 @@ static BOOL FieldMenu_Select(TaskManager *taskMan)
 
     fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
-    v2 = sub_02001DC4(menu->unk_20);
+    v2 = Menu_GetCursorPos(menu->unk_20);
 
-    menu->unk_2C = sub_02001C94(menu->unk_20, 1504);
-    menu->unk_28 = sub_02001DC4(menu->unk_20);
+    menu->unk_2C = Menu_ProcessInputWithSound(menu->unk_20, 1504);
+    menu->unk_28 = Menu_GetCursorPos(menu->unk_20);
 
     if (v2 != menu->unk_28) {
         sub_0203B558(menu->unk_200[0]->unk_00, menu->unk_28);
@@ -898,7 +897,7 @@ static void FieldMenu_ApplicationStart(TaskManager *taskMan)
     menu = TaskManager_Environment(taskMan);
 
     FieldMenu_Close(menu);
-    BGL_DeleteWindow(&menu->unk_00);
+    Window_Remove(&menu->unk_00);
     sub_0203B200(taskMan);
 
     menu->unk_22C(taskMan);
@@ -1252,19 +1251,16 @@ static BOOL FieldMenu_SelectBag(TaskManager *taskMan)
 
 static BOOL FieldMenu_Bag(TaskManager *taskMan)
 {
-    FieldSystem *fieldSystem;
-    FieldMenu *menu;
-
-    fieldSystem = TaskManager_FieldSystem(taskMan);
-    menu = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
+    FieldMenu *menu = TaskManager_Environment(taskMan);
 
     menu->unk_25C = sub_0203D20C(fieldSystem, &menu->unk_230);
     sub_0207CB70(menu->unk_25C, 0);
     menu->unk_22C = sub_0203BC5C;
 
-    ov5_021E2064(fieldSystem);
+    FieldSystem_SaveStateIfCommunicationOff(fieldSystem);
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL sub_0203BC5C(TaskManager *taskMan)
@@ -1428,9 +1424,9 @@ static BOOL FieldMenu_SelectSave(TaskManager *taskMan)
     FieldMenu *menu = TaskManager_Environment(taskMan);
 
     FieldMenu_Close(menu);
-    Window_Clear(&menu->unk_00, 1);
-    sub_0201C3C0(menu->unk_00.unk_00, menu->unk_00.unk_04);
-    BGL_DeleteWindow(&menu->unk_00);
+    Window_EraseStandardFrame(&menu->unk_00, 1);
+    Bg_ScheduleTilemapTransfer(menu->unk_00.bgConfig, menu->unk_00.bgLayer);
+    Window_Remove(&menu->unk_00);
     sub_0203B200(taskMan);
 
     menu->state = FIELD_MENU_STATE_SAVE;
@@ -1592,9 +1588,9 @@ static BOOL FieldMenu_SelectRetire(TaskManager *taskMan)
     menu = TaskManager_Environment(taskMan);
 
     FieldMenu_Close(menu);
-    Window_Clear(&menu->unk_00, 1);
-    sub_0201C3C0(menu->unk_00.unk_00, menu->unk_00.unk_04);
-    BGL_DeleteWindow(&menu->unk_00);
+    Window_EraseStandardFrame(&menu->unk_00, 1);
+    Bg_ScheduleTilemapTransfer(menu->unk_00.bgConfig, menu->unk_00.bgLayer);
+    Window_Remove(&menu->unk_00);
     sub_0203B200(taskMan);
 
     if (sub_0206AE5C(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {

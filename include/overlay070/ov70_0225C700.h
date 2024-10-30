@@ -3,11 +3,10 @@
 
 #include <nitro/fx/fx.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-
 #include "overlay063/struct_ov63_0222CC3C.h"
 
 #include "easy3d_object.h"
+#include "narc.h"
 
 void ov70_0225C700(const UnkStruct_ov63_0222CC3C *param0, VecFx32 *param1);
 void ov70_0225C714(const VecFx32 *param0, UnkStruct_ov63_0222CC3C *param1);

@@ -3,8 +3,6 @@
 
 #include <nnsys.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020711EC_decl.h"
 
 #include "overlay101/struct_ov101_021D148C.h"
@@ -16,7 +14,9 @@
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 #include "overlay101/struct_ov101_021D7E48_decl.h"
 
+#include "bg_window.h"
 #include "enums.h"
+#include "narc.h"
 
 typedef struct UnkStruct_ov101_021D13C8_t {
     u32 unk_00;
@@ -61,7 +61,7 @@ typedef struct UnkStruct_ov101_021D13C8_t {
     UnkStruct_ov101_021D148C unk_408;
     UnkStruct_ov101_021D1894 unk_424;
     NARC *unk_438;
-    BGL *unk_43C;
+    BgConfig *unk_43C;
     NNSG2dScreenData *unk_440;
     NNSG2dCharacterData *unk_444;
     NNSG2dPaletteData *unk_448;

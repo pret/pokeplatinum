@@ -15,8 +15,6 @@
 
 #include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
@@ -35,6 +33,7 @@
 #include "overlay005/struct_ov5_021DE5D0.h"
 
 #include "cell_actor.h"
+#include "charcode_util.h"
 #include "flags.h"
 #include "heap.h"
 #include "inlines.h"
@@ -43,13 +42,13 @@
 #include "message_util.h"
 #include "move_table.h"
 #include "narc.h"
+#include "palette.h"
 #include "party.h"
 #include "pokemon.h"
 #include "rtc.h"
 #include "strbuf.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
-#include "unk_020021B0.h"
 #include "unk_02005474.h"
 #include "unk_02006224.h"
 #include "unk_0200C6E4.h"
@@ -281,7 +280,7 @@ static void sub_02073E18(BoxPokemon *boxMon, int monSpecies, int monLevel, int m
     }
 
     BoxPokemon_SetValue(boxMon, MON_DATA_OT_ID, &monOTID);
-    BoxPokemon_SetValue(boxMon, MON_DATA_LANGUAGE, &Unk_020E4C44);
+    BoxPokemon_SetValue(boxMon, MON_DATA_LANGUAGE, &gGameLanguage);
     BoxPokemon_SetValue(boxMon, MON_DATA_SPECIES, &monSpecies);
     BoxPokemon_SetValue(boxMon, MON_DATA_SPECIES_NAME, NULL);
 
@@ -294,7 +293,7 @@ static void sub_02073E18(BoxPokemon *boxMon, int monSpecies, int monLevel, int m
     BoxPokemon_SetValue(boxMon, MON_DATA_FRIENDSHIP, &v1);
 
     BoxPokemon_SetValue(boxMon, MON_DATA_MET_LEVEL, &monLevel);
-    BoxPokemon_SetValue(boxMon, MON_DATA_MET_GAME, &Unk_020E4C40);
+    BoxPokemon_SetValue(boxMon, MON_DATA_MET_GAME, &gGameVersion);
 
     v1 = ITEM_POKE_BALL;
     BoxPokemon_SetValue(boxMon, MON_DATA_POKEBALL, &v1);
@@ -1482,7 +1481,7 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
         charcode_t baseName[MON_NAME_LEN + 1];
 
         MessageLoader_GetSpeciesName(monDataBlockA->species, HEAP_ID_SYSTEM, baseName);
-        monDataBlockB->hasNickname = GF_strcmp(baseName, u16Value);
+        monDataBlockB->hasNickname = CharCode_Compare(baseName, u16Value);
     }
         // fall-through
     case MON_DATA_NICKNAME:
@@ -1498,7 +1497,7 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
         MessageLoader_GetSpeciesName(monDataBlockA->species, HEAP_ID_SYSTEM, baseName);
         Strbuf_ToChars(value, nickname, NELEMS(nickname));
 
-        monDataBlockB->hasNickname = GF_strcmp(baseName, nickname);
+        monDataBlockB->hasNickname = CharCode_Compare(baseName, nickname);
     }
         // fall-through
     case MON_DATA_NICKNAME_STRBUF:
@@ -4392,7 +4391,7 @@ void Pokemon_SetCatchData(Pokemon *mon, TrainerInfo *param1, int monPokeball, in
 static void InitializeBoxPokemonAfterCapture(BoxPokemon *boxMon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5)
 {
     UpdateBoxMonStatusAndTrainerInfo(boxMon, param1, 0, param3, param5);
-    BoxPokemon_SetValue(boxMon, MON_DATA_MET_GAME, &Unk_020E4C40);
+    BoxPokemon_SetValue(boxMon, MON_DATA_MET_GAME, &gGameVersion);
     BoxPokemon_SetValue(boxMon, MON_DATA_POKEBALL, &monPokeball);
     BoxPokemon_SetValue(boxMon, MON_DATA_MET_TERRAIN, &param4);
 }

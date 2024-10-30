@@ -2,7 +2,6 @@
 #include <nitro/sinit.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0203F478.h"
 
 #include "overlay025/poketch_system.h"
@@ -10,6 +9,7 @@
 #include "overlay034/struct_ov34_02256540_1.h"
 #include "overlay034/struct_ov34_02256540_decl.h"
 
+#include "bg_window.h"
 #include "heap.h"
 #include "script_manager.h"
 #include "sys_task.h"
@@ -28,8 +28,8 @@ typedef struct {
 
 static void NitroStaticInit(void);
 
-static BOOL ov34_022561D4(void **param0, PoketchSystem *poketchSys, BGL *param2, u32 param3);
-static BOOL ov34_0225621C(UnkStruct_ov34_0225621C *param0, PoketchSystem *poketchSys, BGL *param2, u32 param3);
+static BOOL ov34_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3);
+static BOOL ov34_0225621C(UnkStruct_ov34_0225621C *param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3);
 static void ov34_02256244(UnkStruct_ov34_0225621C *param0);
 static void ov34_02256260(SysTask *param0, void *param1);
 static void ov34_02256294(void *param0);
@@ -46,7 +46,7 @@ static void NitroStaticInit(void)
     PoketchSystem_SetAppFunctions(ov34_022561D4, ov34_02256294);
 }
 
-static BOOL ov34_022561D4(void **param0, PoketchSystem *poketchSys, BGL *param2, u32 param3)
+static BOOL ov34_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3)
 {
     UnkStruct_ov34_0225621C *v0 = (UnkStruct_ov34_0225621C *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov34_0225621C));
 
@@ -64,7 +64,7 @@ static BOOL ov34_022561D4(void **param0, PoketchSystem *poketchSys, BGL *param2,
     return 0;
 }
 
-static BOOL ov34_0225621C(UnkStruct_ov34_0225621C *param0, PoketchSystem *poketchSys, BGL *param2, u32 param3)
+static BOOL ov34_0225621C(UnkStruct_ov34_0225621C *param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3)
 {
     if (ov34_02256540(&(param0->unk_48), &(param0->unk_04), param2)) {
         param0->unk_00 = 0;

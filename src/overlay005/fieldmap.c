@@ -3,7 +3,6 @@
 
 #include "constants/field/map_load.h"
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02020C44_decl.h"
 #include "struct_decls/struct_02027860_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
@@ -48,9 +47,8 @@
 #include "overlay005/struct_ov5_021ED0A4.h"
 #include "overlay009/ov9_02249960.h"
 #include "overlay022/struct_ov22_022559F8.h"
-#include "overlay084/struct_ov84_0223BA5C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
 #include "camera.h"
 #include "comm_player_manager.h"
 #include "core_sys.h"
@@ -74,7 +72,6 @@
 #include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
@@ -100,8 +97,8 @@ struct UnkStruct_ov5_021D1A68_t {
     int unk_02[24];
 };
 
-static void ov5_021D1444(BGL *bgl);
-static void ov5_021D1524(BGL *bgl);
+static void ov5_021D1444(BgConfig *bgl);
+static void ov5_021D1524(BgConfig *bgl);
 static void ov5_021D154C(void);
 static void ov5_021D1570(void);
 static void ov5_021D1578(UnkStruct_ov5_021D5894 *param0);
@@ -141,7 +138,7 @@ static void ov5_021D0D80(void *param0)
 {
     FieldSystem *fieldSystem = param0;
 
-    sub_0201C2B8(fieldSystem->unk_08);
+    Bg_RunScheduledUpdates(fieldSystem->bgConfig);
     sub_0201DCAC();
     sub_0200A858();
 
@@ -201,8 +198,8 @@ static BOOL FieldMap_Init(OverlayManager *overlayMan, int *param1)
         ov5_021D154C();
 
         GXLayers_SwapDisplay();
-        fieldSystem->unk_08 = sub_02018340(4);
-        ov5_021D1444(fieldSystem->unk_08);
+        fieldSystem->bgConfig = BgConfig_New(4);
+        ov5_021D1444(fieldSystem->bgConfig);
         sub_0205D8CC(0, 1);
         sub_0203F5C0(fieldSystem, 4);
         break;
@@ -326,7 +323,7 @@ static BOOL FieldMap_Exit(OverlayManager *overlayMan, int *param1)
             ov5_021D57D8(&fieldSystem->unk_48);
             ov5_021D5894(&fieldSystem->unk_44);
             ov5_021D1570();
-            ov5_021D1524(fieldSystem->unk_08);
+            ov5_021D1524(fieldSystem->bgConfig);
             ov5_021D5C14(fieldSystem);
             (*param1)++;
         }
@@ -339,7 +336,7 @@ static BOOL FieldMap_Exit(OverlayManager *overlayMan, int *param1)
             Easy3D_Shutdown();
             ov5_021D1AE4(fieldSystem->unk_04->unk_04);
             SetMainCallback(NULL, NULL);
-            Heap_FreeToHeap(fieldSystem->unk_08);
+            Heap_FreeToHeap(fieldSystem->bgConfig);
             Heap_FreeToHeap(fieldSystem->unk_04);
 
             fieldSystem->unk_04 = NULL;
@@ -563,31 +560,31 @@ static void ov5_021D1414(void)
     GXLayers_SetBanks(&v0);
 }
 
-void ov5_021D1434(BGL *bgl)
+void ov5_021D1434(BgConfig *bgl)
 {
     ov5_021D1444(bgl);
 }
 
-void ov5_021D143C(BGL *bgl)
+void ov5_021D143C(BgConfig *bgl)
 {
     ov5_021D1524(bgl);
 }
 
-static void ov5_021D1444(BGL *bgl)
+static void ov5_021D1444(BgConfig *bgl)
 {
     {
-        UnkStruct_ov84_0223BA5C v0 = {
+        GraphicsModes v0 = {
             GX_DISPMODE_GRAPHICS,
             GX_BGMODE_0,
             GX_BGMODE_0,
             GX_BG0_AS_3D
         };
 
-        sub_02018368(&v0);
+        SetAllGraphicsModes(&v0);
     }
 
     {
-        UnkStruct_ov97_0222DB78 v1 = {
+        BgTemplate v1 = {
             0,
             0,
             0x800,
@@ -603,13 +600,13 @@ static void ov5_021D1444(BGL *bgl)
             0
         };
 
-        sub_020183C4(bgl, 1, &v1, 0);
-        sub_02019690(1, 32, 0, 4);
-        sub_02019EBC(bgl, 1);
+        Bg_InitFromTemplate(bgl, 1, &v1, 0);
+        Bg_ClearTilesRange(1, 32, 0, 4);
+        Bg_ClearTilemap(bgl, 1);
     }
 
     {
-        UnkStruct_ov97_0222DB78 v2 = {
+        BgTemplate v2 = {
             0,
             0,
             0x800,
@@ -625,12 +622,12 @@ static void ov5_021D1444(BGL *bgl)
             0
         };
 
-        sub_020183C4(bgl, 2, &v2, 0);
-        sub_02019690(2, 32, 0, 4);
-        sub_02019EBC(bgl, 2);
+        Bg_InitFromTemplate(bgl, 2, &v2, 0);
+        Bg_ClearTilesRange(2, 32, 0, 4);
+        Bg_ClearTilemap(bgl, 2);
     }
     {
-        UnkStruct_ov97_0222DB78 v3 = {
+        BgTemplate v3 = {
             0,
             0,
             0x800,
@@ -646,9 +643,9 @@ static void ov5_021D1444(BGL *bgl)
             0
         };
 
-        sub_020183C4(bgl, 3, &v3, 0);
-        sub_02019690(3, 32, 0, 4);
-        sub_02019EBC(bgl, 3);
+        Bg_InitFromTemplate(bgl, 3, &v3, 0);
+        Bg_ClearTilesRange(3, 32, 0, 4);
+        Bg_ClearTilemap(bgl, 3);
     }
 
     {
@@ -659,12 +656,12 @@ static void ov5_021D1444(BGL *bgl)
     }
 }
 
-static void ov5_021D1524(BGL *bgl)
+static void ov5_021D1524(BgConfig *bgl)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3, 0);
-    sub_02019044(bgl, 1);
-    sub_02019044(bgl, 2);
-    sub_02019044(bgl, 3);
+    Bg_FreeTilemapBuffer(bgl, 1);
+    Bg_FreeTilemapBuffer(bgl, 2);
+    Bg_FreeTilemapBuffer(bgl, 3);
 }
 
 static void ov5_021D154C(void)
@@ -925,7 +922,7 @@ static void ov5_021D1968(FieldSystem *fieldSystem)
         fieldSystem->unk_04->unk_0C = ov5_021D5EB8(fieldSystem);
     }
 
-    fieldSystem->unk_04->unk_08 = ov5_021DD98C(fieldSystem->unk_08);
+    fieldSystem->unk_04->unk_08 = ov5_021DD98C(fieldSystem->bgConfig);
     fieldSystem->unk_64 = ov5_021E1B08(4);
     fieldSystem->unk_04->unk_10 = ov5_021D5CB0();
 

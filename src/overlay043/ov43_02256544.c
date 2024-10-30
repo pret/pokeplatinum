@@ -3,9 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-#include "struct_defs/struct_0205AA50.h"
-
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/ov25_02255090.h"
 #include "overlay025/ov25_02255540.h"
@@ -18,20 +15,19 @@
 #include "overlay025/struct_ov25_02255958.h"
 #include "overlay043/struct_ov43_02256544_1.h"
 #include "overlay043/struct_ov43_02256544_decl.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
 #include "font.h"
+#include "graphics.h"
 #include "heap.h"
 #include "message.h"
 #include "strbuf.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02006E3C.h"
-#include "unk_02018340.h"
 
 struct UnkStruct_ov43_02256544_t {
     const UnkStruct_ov43_02256544_1 *unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     u32 unk_08[10];
     UnkStruct_ov25_022555E8 *unk_30;
     UnkStruct_ov25_022558C4 *unk_34[6];
@@ -61,7 +57,7 @@ static void ov43_02256988(UnkStruct_ov43_02256544 *param0, Window *param1, u32 p
 static void ov43_02256A00(UnkStruct_ov43_02256544 *param0, Window *param1, u32 param2);
 static void ov43_02256A4C(UnkStruct_ov43_02256544 *param0, u32 param1);
 
-BOOL ov43_02256544(UnkStruct_ov43_02256544 **param0, const UnkStruct_ov43_02256544_1 *param1, BGL *param2)
+BOOL ov43_02256544(UnkStruct_ov43_02256544 **param0, const UnkStruct_ov43_02256544_1 *param1, BgConfig *param2)
 {
     UnkStruct_ov43_02256544 *v0 = (UnkStruct_ov43_02256544 *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov43_02256544));
 
@@ -144,7 +140,7 @@ static void ov43_022565B4(UnkStruct_ov43_02256544 *param0)
     };
     int v2;
 
-    sub_02006EC0(12, 64, 1, 0, 0, 1, 8);
+    Graphics_LoadObjectTiles(12, 64, 1, 0, 0, 1, 8);
     ov25_02255958(&param0->unk_60, 12, 62, 63, 8);
 
     for (v2 = 0; v2 < 6; v2++) {
@@ -219,7 +215,7 @@ static void ov43_022566EC(UnkStruct_ov25_02255224 *param0)
 
 static void ov43_02256700(SysTask *param0, void *param1)
 {
-    static const UnkStruct_ov97_0222DB78 v0 = {
+    static const BgTemplate v0 = {
         0,
         0,
         0x800,
@@ -244,15 +240,15 @@ static void ov43_02256700(SysTask *param0, void *param1)
     v2 = ov25_0225523C(param1);
     v3 = ov25_02255240(param1);
 
-    sub_020183C4(v2->unk_04, 6, &v0, 0);
+    Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
 
-    v6 = sub_02006E3C(12, 61, v2->unk_04, 6, 0, 0, 1, 8);
-    sub_02006E60(12, 60, v2->unk_04, 6, 0, 0, 1, 8);
+    v6 = Graphics_LoadTilesToBgLayer(12, 61, v2->unk_04, 6, 0, 0, 1, 8);
+    Graphics_LoadTilemapToBgLayer(12, 60, v2->unk_04, 6, 0, 0, 1, 8);
     ov25_022546B8(0, 0);
 
     v6 /= 0x20;
     ov43_022567A4(v2, v3, v6);
-    sub_02019448(v2->unk_04, 6);
+    Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);
 
     v1 = GXS_GetDispCnt();
     GXS_SetVisiblePlane(v1.visiblePlane | GX_PLANEMASK_BG2);
@@ -262,31 +258,31 @@ static void ov43_02256700(SysTask *param0, void *param1)
 
 static void ov43_022567A4(UnkStruct_ov43_02256544 *param0, const UnkStruct_ov43_02256544_1 *param1, u32 param2)
 {
-    BGL_AddWindow(param0->unk_04, &(param0->unk_74), 6, 6, 15, 6, 2, 0, param2);
+    Window_Add(param0->unk_04, &(param0->unk_74), 6, 6, 15, 6, 2, 0, param2);
     param2 += 12;
 
-    BGL_AddWindow(param0->unk_04, &(param0->unk_84), 6, 16, 4, 6, 2, 0, param2);
+    Window_Add(param0->unk_04, &(param0->unk_84), 6, 16, 4, 6, 2, 0, param2);
     param2 += 12;
 
-    BGL_AddWindow(param0->unk_04, &(param0->unk_94), 6, 16, 8, 6, 2, 0, param2);
+    Window_Add(param0->unk_04, &(param0->unk_94), 6, 16, 8, 6, 2, 0, param2);
     param2 += 12;
 
-    BGL_AddWindow(param0->unk_04, &(param0->unk_A4), 6, 3, 19, 22, 2, 0, param2);
+    Window_Add(param0->unk_04, &(param0->unk_A4), 6, 3, 19, 22, 2, 0, param2);
 
-    sub_0201A9F4(&(param0->unk_74));
-    sub_0201A9F4(&(param0->unk_84));
-    sub_0201A9F4(&(param0->unk_94));
-    sub_0201A9F4(&(param0->unk_A4));
+    Window_PutToTilemap(&(param0->unk_74));
+    Window_PutToTilemap(&(param0->unk_84));
+    Window_PutToTilemap(&(param0->unk_94));
+    Window_PutToTilemap(&(param0->unk_A4));
 
     ov43_02256948(param0, param1);
 }
 
 static void ov43_02256870(UnkStruct_ov43_02256544 *param0)
 {
-    BGL_DeleteWindow(&(param0->unk_74));
-    BGL_DeleteWindow(&(param0->unk_84));
-    BGL_DeleteWindow(&(param0->unk_94));
-    BGL_DeleteWindow(&(param0->unk_A4));
+    Window_Remove(&(param0->unk_74));
+    Window_Remove(&(param0->unk_84));
+    Window_Remove(&(param0->unk_94));
+    Window_Remove(&(param0->unk_A4));
 }
 
 static void ov43_02256894(SysTask *param0, void *param1)
@@ -294,7 +290,7 @@ static void ov43_02256894(SysTask *param0, void *param1)
     UnkStruct_ov43_02256544 *v0 = ov25_0225523C(param1);
 
     ov43_02256870(v0);
-    sub_02019044(v0->unk_04, 6);
+    Bg_FreeTilemapBuffer(v0->unk_04, 6);
     ov43_022566EC(param1);
 }
 
@@ -345,7 +341,7 @@ static void ov43_02256988(UnkStruct_ov43_02256544 *param0, Window *param1, u32 p
 {
     u32 v0;
 
-    BGL_FillWindow(param1, 4);
+    Window_FillTilemap(param1, 4);
 
     if (param2 == 18) {
         MessageLoader_GetStrbuf(param0->unk_B8, 6, param0->unk_BC);
@@ -355,16 +351,16 @@ static void ov43_02256988(UnkStruct_ov43_02256544 *param0, Window *param1, u32 p
 
     v0 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_BC, 0);
 
-    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_BC, ((6 * 8) - v0) / 2, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((8 & 0xff) << 8) | ((4 & 0xff) << 0)), NULL);
-    sub_0201ACCC(param1);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_BC, ((6 * 8) - v0) / 2, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 8, 4), NULL);
+    Window_LoadTiles(param1);
 }
 
 static void ov43_02256A00(UnkStruct_ov43_02256544 *param0, Window *param1, u32 param2)
 {
-    BGL_FillWindow(param1, 4);
+    Window_FillTilemap(param1, 4);
     MessageLoader_GetStrbuf(param0->unk_B8, param2, param0->unk_BC);
-    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_BC, 0, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((8 & 0xff) << 8) | ((4 & 0xff) << 0)), NULL);
-    sub_0201ACCC(param1);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_BC, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 8, 4), NULL);
+    Window_LoadTiles(param1);
 }
 
 static void ov43_02256A4C(UnkStruct_ov43_02256544 *param0, u32 param1)

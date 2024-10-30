@@ -7,6 +7,7 @@
 #include "heap.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "text.h"
 
 Options *Options_New(u32 heapID)
 {
@@ -68,11 +69,11 @@ u8 Options_TextFrameDelay(const Options *options)
     int speed = Options_TextSpeed(options);
 
     if (speed == OPTIONS_TEXT_SPEED_SLOW) {
-        return 8;
+        return TEXT_SPEED_SLOW;
     } else if (speed == OPTIONS_TEXT_SPEED_NORMAL) {
-        return 4;
+        return TEXT_SPEED_NORMAL;
     } else {
-        return 1;
+        return TEXT_SPEED_FAST;
     }
 }
 

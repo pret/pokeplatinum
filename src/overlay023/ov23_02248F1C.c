@@ -3,34 +3,30 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_defs/struct_0200C738.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "field/field_system.h"
 #include "overlay023/ov23_02241F74.h"
 #include "overlay023/struct_ov23_0224942C_decl.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "comm_player_manager.h"
 #include "communication_system.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "narc.h"
 #include "player_avatar.h"
+#include "render_window.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_0200679C.h"
-#include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0205D8CC.h"
 
@@ -49,7 +45,7 @@ struct UnkStruct_ov23_0224942C_t {
     int unk_44[8][3];
     int unk_A4[17][4];
     FieldSystem *fieldSystem;
-    BGL *unk_1B8;
+    BgConfig *unk_1B8;
     CellActorCollection *unk_1BC;
     UnkStruct_0200C738 unk_1C0;
     SpriteResourceCollection *unk_34C[4];
@@ -66,14 +62,14 @@ struct UnkStruct_ov23_0224942C_t {
 
 int Unk_ov23_0225776C[8][2];
 
-static void ov23_0224944C(BGL *param0, Window *param1);
+static void ov23_0224944C(BgConfig *param0, Window *param1);
 static void ov23_02249584(UnkStruct_ov23_0224942C *param0);
 static void ov23_02249214(PlayerAvatar *const playerAvatar, int param1[][2], int param2[][3]);
 static void ov23_022491CC(int param0[][2], int param1[][3]);
 static void ov23_022492C8(int param0[][3], CellActor *param1[]);
-static void ov23_0224944C(BGL *param0, Window *param1);
-static void ov23_02249438(BGL *param0);
-static void ov23_0224966C(BGL *param0, Window *param1, int *param2, int *param3, int *param4, UnkStruct_ov23_02249724 *param5);
+static void ov23_0224944C(BgConfig *param0, Window *param1);
+static void ov23_02249438(BgConfig *param0);
+static void ov23_0224966C(BgConfig *param0, Window *param1, int *param2, int *param3, int *param4, UnkStruct_ov23_02249724 *param5);
 static void ov23_02249724(UnkStruct_ov23_02249724 *param0);
 static void ov23_02249778(UnkStruct_ov23_02249724 *param0);
 static int ov23_02249844(UnkStruct_ov23_02249724 *param0, Strbuf *param1);
@@ -87,7 +83,7 @@ static UnkStruct_ov23_0224942C *Unk_ov23_02257768;
 static void ov23_02248F1C(SysTask *param0, void *param1)
 {
     UnkStruct_ov23_0224942C *v0 = param1;
-    BGL *v1 = v0->unk_1B8;
+    BgConfig *v1 = v0->unk_1B8;
     int v2;
 
     Unk_ov23_02257768 = v0;
@@ -148,7 +144,7 @@ static void ov23_02248F1C(SysTask *param0, void *param1)
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
-        sub_0201975C(4, 0);
+        Bg_MaskPalette(4, 0);
         v0->unk_00++;
         break;
     case 4:
@@ -176,9 +172,9 @@ static void ov23_02248F1C(SysTask *param0, void *param1)
         }
 
         CellActorCollection_Delete(v0->unk_1BC);
-        sub_0200E084(&v0->unk_3F4, 0);
-        BGL_DeleteWindow(&v0->unk_3F4);
-        sub_02019044(v1, 7);
+        Window_EraseMessageBox(&v0->unk_3F4, 0);
+        Window_Remove(&v0->unk_3F4);
+        Bg_FreeTilemapBuffer(v1, 7);
 
         ov23_02249438(v1);
         ov23_02249778(&v0->unk_410);
@@ -327,7 +323,7 @@ UnkStruct_ov23_0224942C *ov23_02249404(FieldSystem *fieldSystem)
     v0 = SysTask_GetParam(v1);
 
     v0->fieldSystem = fieldSystem;
-    v0->unk_1B8 = fieldSystem->unk_08;
+    v0->unk_1B8 = fieldSystem->bgConfig;
 
     return v0;
 }
@@ -341,19 +337,19 @@ void ov23_0224942C(UnkStruct_ov23_0224942C *param0)
     }
 }
 
-static void ov23_02249438(BGL *param0)
+static void ov23_02249438(BgConfig *param0)
 {
-    sub_02019044(param0, 4);
-    sub_02019044(param0, 5);
+    Bg_FreeTilemapBuffer(param0, 4);
+    Bg_FreeTilemapBuffer(param0, 5);
 }
 
-static void ov23_0224944C(BGL *param0, Window *param1)
+static void ov23_0224944C(BgConfig *param0, Window *param1)
 {
     sub_0200F344(1, 0x0);
     ov23_02249438(param0);
 
     {
-        UnkStruct_ov97_0222DB78 v0 = {
+        BgTemplate v0 = {
             0,
             0,
             0x800,
@@ -369,11 +365,11 @@ static void ov23_0224944C(BGL *param0, Window *param1)
             0
         };
 
-        sub_020183C4(param0, 4, &v0, 0);
+        Bg_InitFromTemplate(param0, 4, &v0, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
     }
     {
-        UnkStruct_ov97_0222DB78 v1 = {
+        BgTemplate v1 = {
             0,
             0,
             0x800,
@@ -389,11 +385,11 @@ static void ov23_0224944C(BGL *param0, Window *param1)
             0
         };
 
-        sub_020183C4(param0, 5, &v1, 0);
+        Bg_InitFromTemplate(param0, 5, &v1, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
     }
     {
-        UnkStruct_ov97_0222DB78 v2 = {
+        BgTemplate v2 = {
             0,
             0,
             0x800,
@@ -409,9 +405,9 @@ static void ov23_0224944C(BGL *param0, Window *param1)
             0
         };
 
-        sub_020183C4(param0, 7, &v2, 0);
+        Bg_InitFromTemplate(param0, 7, &v2, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
-        sub_02019EBC(param0, 7);
+        Bg_ClearTilemap(param0, 7);
     }
 
     {
@@ -419,17 +415,17 @@ static void ov23_0224944C(BGL *param0, Window *param1)
 
         v3 = NARC_ctor(NARC_INDEX_DATA__UNDERG_RADAR, 4);
 
-        sub_02007130(v3, 0, 4, 0, 0x20 * 2, 4);
-        sub_020070E8(v3, 1, param0, 4, 0, 32 * 5 * 0x20, 0, 4);
-        sub_0200710C(v3, 2, param0, 4, 0, 32 * 24 * 2, 0, 4);
+        Graphics_LoadPaletteFromOpenNARC(v3, 0, 4, 0, 0x20 * 2, 4);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(v3, 1, param0, 4, 0, 32 * 5 * 0x20, 0, 4);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v3, 2, param0, 4, 0, 32 * 24 * 2, 0, 4);
         NARC_dtor(v3);
     }
 
     sub_0205D8CC(4, 0);
-    sub_02019690(7, 32, 0, 4);
+    Bg_ClearTilesRange(7, 32, 0, 4);
     FieldMessage_AddWindow(param0, param1, 7);
-    BGL_FillWindow(param1, 0);
-    sub_02006E84(50, 52, 4, 10 * 0x20, 4 * 0x20, 4);
+    Window_FillTilemap(param1, 0);
+    Graphics_LoadPalette(50, 52, 4, 10 * 0x20, 4 * 0x20, 4);
     sub_0200F338(1);
 }
 
@@ -460,7 +456,7 @@ static void ov23_02249584(UnkStruct_ov23_0224942C *param0)
     sub_0200A640(param0->unk_35C[1]);
 }
 
-static void ov23_0224966C(BGL *param0, Window *param1, int *param2, int *param3, int *param4, UnkStruct_ov23_02249724 *param5)
+static void ov23_0224966C(BgConfig *param0, Window *param1, int *param2, int *param3, int *param4, UnkStruct_ov23_02249724 *param5)
 {
     Strbuf *v0;
 
@@ -472,7 +468,7 @@ static void ov23_0224966C(BGL *param0, Window *param1, int *param2, int *param3,
     case 0:
         if ((v0 = ov23_022498C4(param5)) != NULL) {
             *param2 = Text_AddPrinterWithParams(
-                param1, 1, v0, 0, 16, 1, NULL);
+                param1, FONT_MESSAGE, v0, 0, 16, TEXT_SPEED_FAST, NULL);
             *param3 = 1;
         }
         break;
@@ -484,8 +480,8 @@ static void ov23_0224966C(BGL *param0, Window *param1, int *param2, int *param3,
         break;
     case 2:
         if (ov23_02249900(param5) == 0) {
-            sub_0201C04C(param1, 0, 2, 0x0);
-            sub_0201A954(param1);
+            Window_Scroll(param1, 0, 2, 0x0);
+            Window_CopyToVRAM(param1);
 
             if (++(*param4) >= 8) {
                 *param4 = 0;

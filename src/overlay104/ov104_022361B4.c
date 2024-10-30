@@ -5,13 +5,11 @@
 
 #include "consts/game_records.h"
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020302DC_decl.h"
 #include "struct_decls/struct_0203041C_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0204B184.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0222E63C.h"
@@ -25,6 +23,7 @@
 #include "overlay104/struct_ov104_0223BA10.h"
 #include "overlay104/struct_ov104_0223C4CC.h"
 
+#include "bg_window.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "game_records.h"
@@ -32,14 +31,13 @@
 #include "message.h"
 #include "party.h"
 #include "pokemon.h"
+#include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200DA60.h"
-#include "unk_02018340.h"
 #include "unk_020302D0.h"
 #include "unk_0203061C.h"
 #include "unk_0205DFC4.h"
@@ -62,7 +60,7 @@ BOOL ov104_02236F70(UnkStruct_ov104_0223BA10 *param0, u16 param1, u16 param2);
 void ov104_02236FC0(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *param1);
 void ov104_022370E0(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *param1);
 void ov104_02237180(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *param1);
-static void ov104_022370C0(BGL *param0, Window *param1);
+static void ov104_022370C0(BgConfig *param0, Window *param1);
 static void ov104_02237284(UnkStruct_ov104_022320B4 *param0, Window *param1, TrainerInfo *param2, u16 param3);
 u16 ov104_02237338(UnkStruct_ov104_0223BA10 *param0);
 
@@ -711,15 +709,15 @@ void ov104_02236FC0(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *
     GF_ASSERT(param0->unk_AC == NULL);
 
     if (ov104_0223BA14(param1->unk_10) == 0) {
-        param0->unk_A8 = sub_0201A778(11, 1);
-        BGL_AddWindow(v0->unk_00, param0->unk_A8, 1, 1, 1, 10, 4, 14, (((((1024 - (18 + 12)) - 9) - (27 * 4)) - (11 * 22)) - (10 * 4)));
+        param0->unk_A8 = Window_New(11, 1);
+        Window_Add(v0->unk_00, param0->unk_A8, 1, 1, 1, 10, 4, 14, (((((1024 - (18 + 12)) - 9) - (27 * 4)) - (11 * 22)) - (10 * 4)));
         ov104_022370C0(v0->unk_00, param0->unk_A8);
     } else {
-        param0->unk_A8 = sub_0201A778(11, 1);
-        param0->unk_AC = sub_0201A778(11, 1);
+        param0->unk_A8 = Window_New(11, 1);
+        param0->unk_AC = Window_New(11, 1);
 
-        BGL_AddWindow(v0->unk_00, param0->unk_A8, 1, 1, 1, 10, 4, 14, (((((1024 - (18 + 12)) - 9) - (27 * 4)) - (11 * 22)) - (10 * 4)));
-        BGL_AddWindow(v0->unk_00, param0->unk_AC, 1, 21, 1, 10, 4, 14, ((((((1024 - (18 + 12)) - 9) - (27 * 4)) - (11 * 22)) - (10 * 4)) - (10 * 4)));
+        Window_Add(v0->unk_00, param0->unk_A8, 1, 1, 1, 10, 4, 14, (((((1024 - (18 + 12)) - 9) - (27 * 4)) - (11 * 22)) - (10 * 4)));
+        Window_Add(v0->unk_00, param0->unk_AC, 1, 21, 1, 10, 4, 14, ((((((1024 - (18 + 12)) - 9) - (27 * 4)) - (11 * 22)) - (10 * 4)) - (10 * 4)));
 
         ov104_022370C0(v0->unk_00, param0->unk_A8);
         ov104_022370C0(v0->unk_00, param0->unk_AC);
@@ -729,10 +727,10 @@ void ov104_02236FC0(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *
     return;
 }
 
-static void ov104_022370C0(BGL *param0, Window *param1)
+static void ov104_022370C0(BgConfig *param0, Window *param1)
 {
-    Window_Show(param1, 1, ((1024 - (18 + 12)) - 9), 12);
-    BGL_FillWindow(param1, 15);
+    Window_DrawStandardFrame(param1, 1, ((1024 - (18 + 12)) - 9), 12);
+    Window_FillTilemap(param1, 15);
 
     return;
 }
@@ -745,8 +743,8 @@ void ov104_022370E0(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *
     if (ov104_0223BA14(param1->unk_10) == 0) {
         GF_ASSERT(param0->unk_A8 != NULL);
         v0 = param0->unk_A8;
-        Window_Clear(v0, 0);
-        sub_0201A928(v0, 1);
+        Window_EraseStandardFrame(v0, 0);
+        Windows_Delete(v0, 1);
     } else {
         GF_ASSERT(param0->unk_A8 != NULL);
         GF_ASSERT(param0->unk_AC != NULL);
@@ -759,10 +757,10 @@ void ov104_022370E0(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *
             v1 = param0->unk_A8;
         }
 
-        Window_Clear(v0, 0);
-        sub_0201A928(v0, 1);
-        Window_Clear(v1, 0);
-        sub_0201A928(v1, 1);
+        Window_EraseStandardFrame(v0, 0);
+        Windows_Delete(v0, 1);
+        Window_EraseStandardFrame(v1, 0);
+        Windows_Delete(v1, 1);
     }
 
     param0->unk_A8 = NULL;
@@ -810,19 +808,19 @@ static void ov104_02237284(UnkStruct_ov104_022320B4 *param0, Window *param1, Tra
     MessageLoader_GetStrbuf(v0, 2, v1);
 
     StringTemplate_Format(param0->unk_44, v2, v1);
-    Text_AddPrinterWithParams(param1, 0, v2, 16, 2 * 8, 0xff, NULL);
+    Text_AddPrinterWithParams(param1, FONT_SYSTEM, v2, 16, 2 * 8, TEXT_SPEED_NO_TRANSFER, NULL);
     StringTemplate_SetPlayerName(param0->unk_44, 0, param2);
 
     MessageLoader_GetStrbuf(v0, 0, v1);
 
     StringTemplate_Format(param0->unk_44, v2, v1);
-    Text_AddPrinterWithParams(param1, 0, v2, 0, 0, 0, NULL);
+    Text_AddPrinterWithParams(param1, FONT_SYSTEM, v2, 0, 0, TEXT_SPEED_INSTANT, NULL);
 
     Strbuf_Free(v1);
     Strbuf_Free(v2);
     MessageLoader_Free(v0);
 
-    sub_0201A954(param1);
+    Window_CopyToVRAM(param1);
 
     return;
 }

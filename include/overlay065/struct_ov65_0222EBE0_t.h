@@ -1,14 +1,9 @@
 #ifndef POKEPLATINUM_STRUCT_OV65_0222EBE0_T_H
 #define POKEPLATINUM_STRUCT_OV65_0222EBE0_T_H
 
-#include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_defs/struct_0200C738.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207DFAC.h"
 
 #include "overlay061/struct_ov61_0222C3B0.h"
@@ -17,12 +12,16 @@
 #include "overlay065/struct_ov65_02235130.h"
 #include "overlay065/struct_ov65_022354D8.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
+#include "list_menu.h"
+#include "menu.h"
 #include "message.h"
 #include "overlay_manager.h"
 #include "savedata.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
+#include "string_list.h"
 #include "trainer_info.h"
 
 struct UnkStruct_ov65_0222EBE0_t {
@@ -33,11 +32,11 @@ struct UnkStruct_ov65_0222EBE0_t {
     u8 unk_2C[32];
     int unk_4C[32];
     int unk_CC[32];
-    ResourceMetadata *unk_14C;
-    BmpList *unk_150;
-    ResourceMetadata *unk_154;
-    BmpList *unk_158;
-    BGL *unk_15C;
+    StringList *unk_14C;
+    ListMenu *unk_150;
+    StringList *unk_154;
+    ListMenu *unk_158;
+    BgConfig *unk_15C;
     SaveData *unk_160;
     StringTemplate *unk_164;
     MessageLoader *unk_168;
@@ -47,7 +46,7 @@ struct UnkStruct_ov65_0222EBE0_t {
     Strbuf *unk_178;
     Strbuf *unk_17C;
     int unk_180;
-    UIControlData *unk_184;
+    Menu *unk_184;
     void *unk_188;
     CellActorCollection *unk_18C;
     UnkStruct_0200C738 unk_190;

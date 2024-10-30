@@ -2,9 +2,10 @@
 #define POKEPLATINUM_OV17_02241270_H
 
 #include "struct_decls/cell_actor_data.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
+
+#include "narc.h"
 
 void ov17_02241270(SpriteRenderer *param0, SpriteGfxHandler *param1, NARC *param2);
 CellActorData *ov17_022412C0(SpriteRenderer *param0, SpriteGfxHandler *param1, int param2);

@@ -3,10 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
-#include "struct_defs/struct_0205AA50.h"
-
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/ov25_02255090.h"
 #include "overlay025/ov25_02255540.h"
@@ -19,16 +15,15 @@
 #include "overlay025/struct_ov25_02255958.h"
 #include "overlay032/struct_ov32_02256470_1.h"
 #include "overlay032/struct_ov32_02256470_decl.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
+#include "graphics.h"
 #include "heap.h"
 #include "item.h"
 #include "narc.h"
 #include "pokemon_icon.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
-#include "unk_02018340.h"
 
 typedef struct {
     UnkStruct_ov32_02256470 *unk_00;
@@ -44,7 +39,7 @@ typedef struct {
 
 struct UnkStruct_ov32_02256470_t {
     const UnkStruct_ov32_02256470_1 *unk_00;
-    BGL *unk_04;
+    BgConfig *unk_04;
     UnkStruct_ov25_022555E8 *unk_08;
     u32 unk_0C[10];
     u32 unk_34;
@@ -85,7 +80,7 @@ static const struct {
     { 0xA0, 0x84 }
 };
 
-BOOL ov32_02256470(UnkStruct_ov32_02256470 **param0, const UnkStruct_ov32_02256470_1 *param1, BGL *param2)
+BOOL ov32_02256470(UnkStruct_ov32_02256470 **param0, const UnkStruct_ov32_02256470_1 *param1, BgConfig *param2)
 {
     UnkStruct_ov32_02256470 *v0 = (UnkStruct_ov32_02256470 *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov32_02256470));
 
@@ -160,7 +155,7 @@ static void ov32_02256574(UnkStruct_ov25_02255224 *param0)
 
 static void ov32_02256588(SysTask *param0, void *param1)
 {
-    static const UnkStruct_ov97_0222DB78 v0 = {
+    static const BgTemplate v0 = {
         0,
         0,
         0x800,
@@ -180,17 +175,17 @@ static void ov32_02256588(SysTask *param0, void *param1)
     u32 v3;
 
     v2 = ov25_0225523C(param1);
-    sub_020183C4(v2->unk_04, 6, &v0, 0);
+    Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
 
-    v3 = sub_02006E3C(12, 106, v2->unk_04, 6, 0, 0, 1, 8);
+    v3 = Graphics_LoadTilesToBgLayer(12, 106, v2->unk_04, 6, 0, 0, 1, 8);
     v3 /= 0x20;
 
-    sub_02019CB8(v2->unk_04, 6, 0x5, 0, 0, 32, 24, 0);
+    Bg_FillTilemapRect(v2->unk_04, 6, 0x5, 0, 0, 32, 24, 0);
     ov25_022546B8(0, 0);
 
     v2->unk_34 = v3;
     ov32_02256648(v2, v2->unk_00, v3);
-    sub_02019448(v2->unk_04, 6);
+    Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);
 
     ov25_02255308(15, 1);
     ov25_02255360(2);
@@ -220,8 +215,8 @@ static void ov32_02256648(UnkStruct_ov32_02256470 *param0, const UnkStruct_ov32_
 
     for (v1 = 0; v1 < param1->unk_00; v1++) {
         Window_Init(&(param0->unk_3C[v1]));
-        BGL_AddWindow(param0->unk_04, &(param0->unk_3C[v1]), 6, v0[v1].unk_00, v0[v1].unk_02, 8, 1, 0, param2 + v1 * 8);
-        sub_0201A9F4(&(param0->unk_3C[v1]));
+        Window_Add(param0->unk_04, &(param0->unk_3C[v1]), 6, v0[v1].unk_00, v0[v1].unk_02, 8, 1, 0, param2 + v1 * 8);
+        Window_PutToTilemap(&(param0->unk_3C[v1]));
 
         ov32_022566E0(&(param0->unk_3C[v1]), param0);
         ov32_0225682C(&(param0->unk_3C[v1]), ov32_0225686C(param1->unk_04[v1].unk_06, param1->unk_04[v1].unk_08));
@@ -232,27 +227,27 @@ static void ov32_02256648(UnkStruct_ov32_02256470 *param0, const UnkStruct_ov32_
 
 static void ov32_022566E0(Window *param0, UnkStruct_ov32_02256470 *param1)
 {
-    sub_02019CB8(param1->unk_04, 6, 1, param0->unk_05 - 1, param0->unk_06 - 1, 1, 1, 0);
-    sub_02019CB8(param1->unk_04, 6, 2, param0->unk_05, param0->unk_06 - 1, param0->unk_07, 1, 0);
-    sub_02019CB8(param1->unk_04, 6, 1025, param0->unk_05 + param0->unk_07, param0->unk_06 - 1, 1, 1, 0);
+    Bg_FillTilemapRect(param1->unk_04, 6, 1, param0->tilemapLeft - 1, param0->tilemapTop - 1, 1, 1, 0);
+    Bg_FillTilemapRect(param1->unk_04, 6, 2, param0->tilemapLeft, param0->tilemapTop - 1, param0->width, 1, 0);
+    Bg_FillTilemapRect(param1->unk_04, 6, 1025, param0->tilemapLeft + param0->width, param0->tilemapTop - 1, 1, 1, 0);
 
-    sub_02019CB8(param1->unk_04, 6, 6, param0->unk_05 - 1, param0->unk_06, 1, param0->unk_08, 0);
-    sub_02019CB8(param1->unk_04, 6, 1030, param0->unk_05 + param0->unk_07, param0->unk_06, 1, param0->unk_08, 0);
+    Bg_FillTilemapRect(param1->unk_04, 6, 6, param0->tilemapLeft - 1, param0->tilemapTop, 1, param0->height, 0);
+    Bg_FillTilemapRect(param1->unk_04, 6, 1030, param0->tilemapLeft + param0->width, param0->tilemapTop, 1, param0->height, 0);
 
-    sub_02019CB8(param1->unk_04, 6, 2049, param0->unk_05 - 1, param0->unk_06 + param0->unk_08, 1, 1, 0);
-    sub_02019CB8(param1->unk_04, 6, 2050, param0->unk_05, param0->unk_06 + param0->unk_08, param0->unk_07, 1, 0);
-    sub_02019CB8(param1->unk_04, 6, 3073, param0->unk_05 + param0->unk_07, param0->unk_06 + param0->unk_08, 1, 1, 0);
+    Bg_FillTilemapRect(param1->unk_04, 6, 2049, param0->tilemapLeft - 1, param0->tilemapTop + param0->height, 1, 1, 0);
+    Bg_FillTilemapRect(param1->unk_04, 6, 2050, param0->tilemapLeft, param0->tilemapTop + param0->height, param0->width, 1, 0);
+    Bg_FillTilemapRect(param1->unk_04, 6, 3073, param0->tilemapLeft + param0->width, param0->tilemapTop + param0->height, 1, 1, 0);
 }
 
 static void ov32_0225682C(Window *param0, u32 param1)
 {
-    BGL_WindowColor(param0, 4, 0, 0, 64, 8);
+    Window_FillRectWithColor(param0, 4, 0, 0, 64, 8);
 
     if (param1) {
-        BGL_WindowColor(param0, 15, 0, 0, param1, 8);
+        Window_FillRectWithColor(param0, 15, 0, 0, param1, 8);
     }
 
-    sub_0201ACCC(param0);
+    Window_LoadTiles(param0);
 }
 
 static u32 ov32_0225686C(u32 param0, u32 param1)
@@ -283,7 +278,7 @@ static void ov32_02256898(UnkStruct_ov32_02256470 *param0, const UnkStruct_ov32_
     int v0;
     UnkStruct_ov25_02255810 v1;
 
-    sub_02006EC0(12, 109, 1, 0 * 0x20, 0, 1, 8);
+    Graphics_LoadObjectTiles(12, 109, 1, 0 * 0x20, 0, 1, 8);
 
     v1.unk_0A = 0;
     v1.unk_0B = 2;
@@ -450,7 +445,7 @@ static void ov32_02256BD4(UnkStruct_ov32_02256470 *param0)
     }
 
     for (v0 = 0; v0 < param0->unk_38; v0++) {
-        BGL_DeleteWindow(&(param0->unk_3C[v0]));
+        Window_Remove(&(param0->unk_3C[v0]));
     }
 
     param0->unk_38 = 0;
@@ -460,7 +455,7 @@ static void ov32_02256C38(SysTask *param0, void *param1)
 {
     UnkStruct_ov32_02256470 *v0 = ov25_0225523C(param1);
 
-    sub_02019044(v0->unk_04, 6);
+    Bg_FreeTilemapBuffer(v0->unk_04, 6);
     ov32_02256574(param1);
 }
 
@@ -471,13 +466,13 @@ static void ov32_02256C54(SysTask *param0, void *param1)
 
     ov32_02256BD4(v0);
 
-    sub_02019CB8(v0->unk_04, 6, 0x5, 0, 0, 32, 24, 0);
+    Bg_FillTilemapRect(v0->unk_04, 6, 0x5, 0, 0, 32, 24, 0);
 
     ov32_02256898(v0, v1);
     ov32_0225692C(v0, v1);
     ov32_02256648(v0, v1, v0->unk_34);
 
-    sub_02019448(v0->unk_04, 6);
+    Bg_CopyTilemapBufferToVRAM(v0->unk_04, 6);
 
     PoketchSystem_PlaySoundEffect(1641);
     ov32_02256574(param1);

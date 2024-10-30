@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 
@@ -20,20 +19,20 @@
 #include "overlay099/struct_ov99_021D2CB0_sub2.h"
 #include "overlay099/struct_ov99_021D3A40.h"
 
+#include "bg_window.h"
 #include "core_sys.h"
 #include "easy3d_object.h"
 #include "font.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
+#include "palette.h"
 #include "strbuf.h"
 #include "text.h"
-#include "unk_02002F38.h"
-#include "unk_02006E3C.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
-#include "unk_02018340.h"
 
 typedef void (*UnkFuncPtr_ov99_021D4A04)(UnkStruct_ov99_021D2CB0 *);
 typedef BOOL (*UnkFuncPtr_ov99_021D4A04_1)(UnkStruct_ov99_021D2CB0 *, UnkStruct_ov99_021D3A40 *);
@@ -335,12 +334,12 @@ static void ov99_021D1A54(UnkStruct_ov99_021D2CB0 *param0)
 
     switch (param0->unk_1101) {
     case 0:
-        sub_020039B0(param0->unk_0C, 2, v0 * 16, 16, 4, GX_RGB(28, 12, 6));
+        PaletteData_Blend(param0->unk_0C, 2, v0 * 16, 16, 4, GX_RGB(28, 12, 6));
         break;
     case 2:
         break;
     case 4:
-        sub_020039B0(param0->unk_0C, 2, v0 * 16, 16, 4, GX_RGB(11, 11, 16));
+        PaletteData_Blend(param0->unk_0C, 2, v0 * 16, 16, 4, GX_RGB(11, 11, 16));
         break;
     }
 }
@@ -390,7 +389,7 @@ static void ov99_021D1BC4(UnkStruct_ov99_021D2CB0 *param0, CellActorData **param
         }
 
         param0->unk_10F4 = Heap_AllocFromHeap(75, (0x20 * 8));
-        v3 = sub_020071B4(param0->unk_10F8, v5, 0, &v4, 75);
+        v3 = Graphics_GetCharDataFromOpenNARC(param0->unk_10F8, v5, 0, &v4, 75);
 
         MI_CpuCopy32(v4->pRawData, param0->unk_10F4, (0x20 * 8));
         Heap_FreeToHeap(v3);
@@ -452,34 +451,34 @@ BOOL ov99_021D1D30(UnkStruct_ov99_021D2CB0 *param0, int param1)
 
 static void ov99_021D1D68(UnkStruct_ov99_021D2CB0 *param0)
 {
-    BGL *v0 = param0->unk_08;
+    BgConfig *v0 = param0->unk_08;
 
-    PaletteSys_LoadPalette(param0->unk_0C, 127, 18, 75, 0, 0, 0);
-    sub_020070E8(param0->unk_10F8, 9, param0->unk_08, 2, 0, 0, 0, 75);
-    sub_0200710C(param0->unk_10F8, 3, param0->unk_08, 2, 0, 0, 0, 75);
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C, 127, 18, 75, 0, 0, 0);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_10F8, 9, param0->unk_08, 2, 0, 0, 0, 75);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_10F8, 3, param0->unk_08, 2, 0, 0, 0, 75);
 
-    PaletteSys_LoadPalette(param0->unk_0C, 127, 21, 75, 1, 0, 0);
-    sub_020070E8(param0->unk_10F8, 12, param0->unk_08, 7, 0, 0, 0, 75);
-    sub_0200710C(param0->unk_10F8, 6, param0->unk_08, 7, 0, 0, 0, 75);
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C, 127, 21, 75, 1, 0, 0);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_10F8, 12, param0->unk_08, 7, 0, 0, 0, 75);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_10F8, 6, param0->unk_08, 7, 0, 0, 0, 75);
 
-    sub_02019184(v0, 2, 0, 0);
-    sub_02019184(v0, 2, 3, 0);
-    sub_02019184(v0, 7, 0, 0);
-    sub_02019184(v0, 7, 3, 0);
+    Bg_SetOffset(v0, 2, 0, 0);
+    Bg_SetOffset(v0, 2, 3, 0);
+    Bg_SetOffset(v0, 7, 0, 0);
+    Bg_SetOffset(v0, 7, 3, 0);
 
-    sub_02019120(2, 1);
-    sub_02019120(7, 1);
+    Bg_ToggleLayer(2, 1);
+    Bg_ToggleLayer(7, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
-    sub_0201C3C0(param0->unk_08, 2);
-    sub_0201C3C0(param0->unk_08, 7);
+    Bg_ScheduleTilemapTransfer(param0->unk_08, 2);
+    Bg_ScheduleTilemapTransfer(param0->unk_08, 7);
 }
 
 static void ov99_021D1E6C(UnkStruct_ov99_021D2CB0 *param0)
 {
-    sub_02019120(2, 0);
-    sub_02019120(7, 0);
+    Bg_ToggleLayer(2, 0);
+    Bg_ToggleLayer(7, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
 }
@@ -595,18 +594,18 @@ static void ov99_021D20F8(UnkStruct_ov99_021D2CB0 *param0)
 
 static void ov99_021D211C(UnkStruct_ov99_021D2CB0 *param0)
 {
-    BGL *v0 = param0->unk_08;
+    BgConfig *v0 = param0->unk_08;
 
     ov99_021D439C(param0, param0->unk_1105, 3, 0);
     param0->unk_1105++;
 
-    sub_02019120(3, 1);
-    sub_0201C3C0(param0->unk_08, 2);
+    Bg_ToggleLayer(3, 1);
+    Bg_ScheduleTilemapTransfer(param0->unk_08, 2);
 }
 
 static void ov99_021D214C(UnkStruct_ov99_021D2CB0 *param0)
 {
-    sub_02019120(3, 0);
+    Bg_ToggleLayer(3, 0);
 }
 
 static void ov99_021D2158(UnkStruct_ov99_021D2CB0 *param0)
@@ -661,43 +660,43 @@ static void ov99_021D217C(UnkStruct_ov99_021D2CB0 *param0)
 
 static void ov99_021D2180(UnkStruct_ov99_021D2CB0 *param0)
 {
-    BGL *v0 = param0->unk_08;
+    BgConfig *v0 = param0->unk_08;
 
-    PaletteSys_LoadPalette(param0->unk_0C, 127, 19, 75, 0, 0, 0);
-    sub_020070E8(param0->unk_10F8, 10, param0->unk_08, 2, 0, 0, 0, 75);
-    sub_0200710C(param0->unk_10F8, 4, param0->unk_08, 2, 0, 0, 0, 75);
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C, 127, 19, 75, 0, 0, 0);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_10F8, 10, param0->unk_08, 2, 0, 0, 0, 75);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_10F8, 4, param0->unk_08, 2, 0, 0, 0, 75);
 
-    PaletteSys_LoadPalette(param0->unk_0C, 127, 22, 75, 1, 0, 0);
-    sub_020070E8(param0->unk_10F8, 13, param0->unk_08, 7, 0, 0, 0, 75);
-    sub_0200710C(param0->unk_10F8, 7, param0->unk_08, 7, 0, 0, 0, 75);
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C, 127, 22, 75, 1, 0, 0);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_10F8, 13, param0->unk_08, 7, 0, 0, 0, 75);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_10F8, 7, param0->unk_08, 7, 0, 0, 0, 75);
 
     {
         NNSG2dPaletteData *v1;
         void *v2;
 
-        v2 = sub_020071EC(param0->unk_10F8, 16, &v1, 75);
+        v2 = Graphics_GetPlttDataFromOpenNARC(param0->unk_10F8, 16, &v1, 75);
         MI_CpuCopy16(v1->pRawData, param0->unk_FA4.unk_08_val2.unk_08, 0x20 * 4);
         Heap_FreeToHeap(v2);
     }
 
-    sub_02019184(v0, 2, 0, 0);
-    sub_02019184(v0, 2, 3, 0);
-    sub_02019184(v0, 7, 0, 0);
-    sub_02019184(v0, 7, 3, 0);
+    Bg_SetOffset(v0, 2, 0, 0);
+    Bg_SetOffset(v0, 2, 3, 0);
+    Bg_SetOffset(v0, 7, 0, 0);
+    Bg_SetOffset(v0, 7, 3, 0);
 
-    sub_02019120(2, 1);
-    sub_02019120(7, 1);
+    Bg_ToggleLayer(2, 1);
+    Bg_ToggleLayer(7, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
-    sub_0201C3C0(param0->unk_08, 2);
-    sub_0201C3C0(param0->unk_08, 7);
+    Bg_ScheduleTilemapTransfer(param0->unk_08, 2);
+    Bg_ScheduleTilemapTransfer(param0->unk_08, 7);
 }
 
 static void ov99_021D22AC(UnkStruct_ov99_021D2CB0 *param0)
 {
-    sub_02019120(2, 0);
-    sub_02019120(7, 0);
+    Bg_ToggleLayer(2, 0);
+    Bg_ToggleLayer(7, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
 }
@@ -801,46 +800,46 @@ static void ov99_021D24CC(UnkStruct_ov99_021D2CB0 *param0)
 
 static void ov99_021D24F0(UnkStruct_ov99_021D2CB0 *param0)
 {
-    BGL *v0 = param0->unk_08;
+    BgConfig *v0 = param0->unk_08;
 
-    PaletteSys_LoadPalette(param0->unk_0C, 127, 20, 75, 0, 0, 0);
-    sub_020070E8(param0->unk_10F8, 11, param0->unk_08, 2, 0, 0, 0, 75);
-    sub_0200710C(param0->unk_10F8, 5, param0->unk_08, 2, 0, 0, 0, 75);
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C, 127, 20, 75, 0, 0, 0);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_10F8, 11, param0->unk_08, 2, 0, 0, 0, 75);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_10F8, 5, param0->unk_08, 2, 0, 0, 0, 75);
 
-    PaletteSys_LoadPalette(param0->unk_0C, 127, 23, 75, 1, 0, 0);
-    sub_020070E8(param0->unk_10F8, 14, param0->unk_08, 7, 0, 0, 0, 75);
-    sub_0200710C(param0->unk_10F8, 8, param0->unk_08, 7, 0, 0, 0, 75);
+    PaletteData_LoadBufferFromFileStart(param0->unk_0C, 127, 23, 75, 1, 0, 0);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_10F8, 14, param0->unk_08, 7, 0, 0, 0, 75);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_10F8, 8, param0->unk_08, 7, 0, 0, 0, 75);
 
     {
         NNSG2dPaletteData *v1;
         void *v2;
 
-        v2 = sub_020071EC(param0->unk_10F8, 17, &v1, 75);
+        v2 = Graphics_GetPlttDataFromOpenNARC(param0->unk_10F8, 17, &v1, 75);
         MI_CpuCopy16(v1->pRawData, param0->unk_FA4.unk_08_val3.unk_08, 0x20 * 8);
         Heap_FreeToHeap(v2);
 
-        sub_02002FBC(param0->unk_0C, param0->unk_FA4.unk_08_val3.unk_08, 0, 16 * 1, 0x20);
-        sub_02002FBC(param0->unk_0C, param0->unk_FA4.unk_08_val3.unk_08, 1, 16 * 1, 0x20);
+        PaletteData_LoadBuffer(param0->unk_0C, param0->unk_FA4.unk_08_val3.unk_08, 0, 16 * 1, 0x20);
+        PaletteData_LoadBuffer(param0->unk_0C, param0->unk_FA4.unk_08_val3.unk_08, 1, 16 * 1, 0x20);
     }
 
-    sub_02019184(v0, 2, 0, 0);
-    sub_02019184(v0, 2, 3, 0);
-    sub_02019184(v0, 7, 0, 0);
-    sub_02019184(v0, 7, 3, 0);
+    Bg_SetOffset(v0, 2, 0, 0);
+    Bg_SetOffset(v0, 2, 3, 0);
+    Bg_SetOffset(v0, 7, 0, 0);
+    Bg_SetOffset(v0, 7, 3, 0);
 
-    sub_02019120(2, 1);
-    sub_02019120(7, 1);
+    Bg_ToggleLayer(2, 1);
+    Bg_ToggleLayer(7, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
-    sub_0201C3C0(param0->unk_08, 2);
-    sub_0201C3C0(param0->unk_08, 7);
+    Bg_ScheduleTilemapTransfer(param0->unk_08, 2);
+    Bg_ScheduleTilemapTransfer(param0->unk_08, 7);
 }
 
 static void ov99_021D2640(UnkStruct_ov99_021D2CB0 *param0)
 {
-    sub_02019120(2, 0);
-    sub_02019120(7, 0);
+    Bg_ToggleLayer(2, 0);
+    Bg_ToggleLayer(7, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
 }
@@ -990,7 +989,7 @@ static void ov99_021D2A14(UnkStruct_ov99_021D2CB0 *param0)
 
 static void ov99_021D2A38(UnkStruct_ov99_021D2CB0 *param0)
 {
-    BGL *v0 = param0->unk_08;
+    BgConfig *v0 = param0->unk_08;
 
     ov99_021D12F0(param0);
 
@@ -998,14 +997,14 @@ static void ov99_021D2A38(UnkStruct_ov99_021D2CB0 *param0)
     ov99_021D439C(param0, param0->unk_1105, 2, 1);
     param0->unk_1105++;
 
-    sub_02019120(2, 1);
-    sub_0201C3C0(param0->unk_08, 2);
+    Bg_ToggleLayer(2, 1);
+    Bg_ScheduleTilemapTransfer(param0->unk_08, 2);
 }
 
 static void ov99_021D2A70(UnkStruct_ov99_021D2CB0 *param0)
 {
-    sub_02019120(2, 0);
-    sub_02019120(3, 0);
+    Bg_ToggleLayer(2, 0);
+    Bg_ToggleLayer(3, 0);
 }
 
 static void ov99_021D2A84(UnkStruct_ov99_021D2CB0 *param0)
@@ -1060,34 +1059,34 @@ static void ov99_021D2AA8(UnkStruct_ov99_021D2CB0 *param0)
 
 static void ov99_021D2AAC(UnkStruct_ov99_021D2CB0 *param0)
 {
-    BGL *v0 = param0->unk_08;
+    BgConfig *v0 = param0->unk_08;
 
     gCoreSys.unk_65 = 0;
 
     GXLayers_SwapDisplay();
-    sub_020038B0(param0->unk_0C, 0, 2, 0x0, 0, 1);
+    PaletteData_FillBufferRange(param0->unk_0C, 0, 2, 0x0, 0, 1);
 
     {
         Strbuf *v1;
         int v2;
 
-        param0->unk_24 = sub_0201A778(75, 1);
+        param0->unk_24 = Window_New(75, 1);
 
-        BGL_AddWindow(v0, param0->unk_24, 7, 0, 0, 32, 32, 15, 0);
-        BGL_FillWindow(param0->unk_24, 15);
-        sub_0201A9F4(param0->unk_24);
+        Window_Add(v0, param0->unk_24, 7, 0, 0, 32, 32, 15, 0);
+        Window_FillTilemap(param0->unk_24, 15);
+        Window_PutToTilemap(param0->unk_24);
 
         v1 = MessageLoader_GetNewStrbuf(param0->unk_20, ov99_021D4130());
         v2 = (256 - Font_CalcStrbufWidth(FONT_SYSTEM, v1, 0)) / 2;
 
-        Text_AddPrinterWithParamsColorAndSpacing(param0->unk_24, 0, v1, v2, 80, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0)), 3, 0, NULL);
-        sub_0201ACCC(param0->unk_24);
+        Text_AddPrinterWithParamsColorAndSpacing(param0->unk_24, FONT_SYSTEM, v1, v2, 80, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), 3, 0, NULL);
+        Window_LoadTiles(param0->unk_24);
         Strbuf_Free(v1);
     }
 
-    sub_02019184(v0, 7, 0, 0);
-    sub_02019184(v0, 7, 3, 0);
-    sub_02019120(7, 1);
+    Bg_SetOffset(v0, 7, 0, 0);
+    Bg_SetOffset(v0, 7, 3, 0);
+    Bg_ToggleLayer(7, 1);
 
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);
@@ -1095,15 +1094,15 @@ static void ov99_021D2AAC(UnkStruct_ov99_021D2CB0 *param0)
     sub_0200F44C(0, -16);
     sub_0200F44C(1, -16);
     sub_0200AB4C(0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
-    sub_0201C3C0(param0->unk_08, 7);
+    Bg_ScheduleTilemapTransfer(param0->unk_08, 7);
 }
 
 static void ov99_021D2BBC(UnkStruct_ov99_021D2CB0 *param0)
 {
-    sub_02019120(7, 0);
+    Bg_ToggleLayer(7, 0);
 
     if (param0->unk_24 != NULL) {
-        BGL_DeleteWindow(param0->unk_24);
+        Window_Remove(param0->unk_24);
         Heap_FreeToHeap(param0->unk_24);
         param0->unk_24 = NULL;
     }

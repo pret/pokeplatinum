@@ -1,11 +1,11 @@
 #ifndef POKEPLATINUM_UNK_020366A0_H
 #define POKEPLATINUM_UNK_020366A0_H
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0202610C.h"
 
 #include "overlay065/struct_ov65_0222F6EC.h"
 
+#include "bg_window.h"
 #include "enums.h"
 #include "savedata.h"
 
@@ -97,7 +97,7 @@ void sub_020389C4(u8 param0);
 u8 sub_020389D8(void);
 void sub_020389FC(int param0);
 void sub_02038A0C(void);
-void sub_02038A1C(int param0, BGL *param1);
+void sub_02038A1C(int param0, BgConfig *param1);
 void sub_02038A20(int param0);
 BOOL sub_02038AB8(void);
 BOOL Link_SetErrorState(int param0);

@@ -4,40 +4,35 @@
 #include <string.h>
 
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/sprite_animation_frame.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay095/ov95_02246C20.h"
 #include "overlay095/ov95_022476F0.h"
 #include "overlay095/struct_ov95_02247568.h"
 #include "overlay095/struct_ov95_02247628_decl.h"
 #include "overlay095/struct_ov95_0224773C_decl.h"
 #include "overlay095/struct_ov95_02247958_decl.h"
-#include "overlay097/struct_ov97_0222DB78.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
 #include "pokemon.h"
+#include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
 #include "unk_0200762C.h"
-#include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02018340.h"
 #include "unk_0202419C.h"
 #include "unk_020393C8.h"
 
@@ -50,7 +45,7 @@ typedef struct {
     SpriteAnimationFrame unk_14[10];
     CellActor *unk_3C[2];
     UnkStruct_ov95_02247568 unk_44;
-    BGL *unk_54;
+    BgConfig *unk_54;
     Window unk_58;
     Strbuf *unk_68;
     Strbuf *unk_6C;
@@ -138,10 +133,10 @@ void ov95_02247BC8(void *param0)
 
         ov95_0224773C(v0->unk_70);
 
-        sub_02019044(v0->unk_54, 1);
-        sub_02019044(v0->unk_54, 2);
-        sub_02019044(v0->unk_54, 6);
-        BGL_DeleteWindow(&(v0->unk_58));
+        Bg_FreeTilemapBuffer(v0->unk_54, 1);
+        Bg_FreeTilemapBuffer(v0->unk_54, 2);
+        Bg_FreeTilemapBuffer(v0->unk_54, 6);
+        Window_Remove(&(v0->unk_58));
         NARC_dtor(v0->unk_80);
 
         if (v0->unk_10) {
@@ -211,13 +206,13 @@ static int ov95_02247CB4(UnkStruct_ov95_02247C6C *param0, int *param1)
         GX_VRAM_TEX_0_A,
         GX_VRAM_TEXPLTT_0123_E
     };
-    static const UnkStruct_ov84_0223BA5C v1 = {
+    static const GraphicsModes v1 = {
         GX_DISPMODE_GRAPHICS,
         GX_BGMODE_0,
         GX_BGMODE_0,
         GX_BG0_AS_3D
     };
-    static const UnkStruct_ov97_0222DB78 v2 = {
+    static const BgTemplate v2 = {
         0,
         0,
         0x800,
@@ -232,7 +227,7 @@ static int ov95_02247CB4(UnkStruct_ov95_02247C6C *param0, int *param1)
         0,
         0
     };
-    static const UnkStruct_ov97_0222DB78 v3 = {
+    static const BgTemplate v3 = {
         0,
         0,
         0,
@@ -250,30 +245,30 @@ static int ov95_02247CB4(UnkStruct_ov95_02247C6C *param0, int *param1)
 
     GXLayers_SetBanks(&v0);
     GX_SetDispSelect(GX_DISP_SELECT_SUB_MAIN);
-    sub_02018368(&v1);
+    SetAllGraphicsModes(&v1);
 
-    sub_020183C4(param0->unk_54, 1, &v2, 0);
-    sub_020183C4(param0->unk_54, 2, &v3, 0);
-    sub_020183C4(param0->unk_54, 6, &v3, 0);
+    Bg_InitFromTemplate(param0->unk_54, 1, &v2, 0);
+    Bg_InitFromTemplate(param0->unk_54, 2, &v3, 0);
+    Bg_InitFromTemplate(param0->unk_54, 6, &v3, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
     G2_SetBG0Priority(1);
 
-    sub_020196C0(param0->unk_54, 1, 0x0, 1, 0);
-    sub_02019CB8(param0->unk_54, 1, 0x0, 0, 0, 32, 32, 0);
-    sub_0200DD0C(param0->unk_54, 1, 109, 2, ov95_02247674(param0->unk_00), 58);
-    BGL_AddWindow(param0->unk_54, &(param0->unk_58), 1, 2, 19, 27, 4, 1, 1);
-    BGL_FillWindow(&(param0->unk_58), 0xf);
+    Bg_FillTilesRange(param0->unk_54, 1, 0x0, 1, 0);
+    Bg_FillTilemapRect(param0->unk_54, 1, 0x0, 0, 0, 32, 32, 0);
+    LoadMessageBoxGraphics(param0->unk_54, 1, 109, 2, ov95_02247674(param0->unk_00), 58);
+    Window_Add(param0->unk_54, &(param0->unk_58), 1, 2, 19, 27, 4, 1, 1);
+    Window_FillTilemap(&(param0->unk_58), 0xf);
 
-    sub_02006E84(14, 7, 0, 1 * 0x20, 0x20, 58);
-    sub_02006E3C(93, 22, param0->unk_54, 2, 0, 0, 1, 58);
-    sub_02006E60(93, 21, param0->unk_54, 2, 0, 0, 1, 58);
-    sub_02006E84(93, 23, 0, 0 * 0x20, 0x20, 58);
-    sub_02006E3C(93, 22, param0->unk_54, 6, 0, 0, 1, 58);
-    sub_02006E60(93, 21, param0->unk_54, 6, 0, 0, 1, 58);
-    sub_02006E84(93, 23, 4, 0 * 0x20, 0x20, 58);
+    Graphics_LoadPalette(14, 7, 0, 1 * 0x20, 0x20, 58);
+    Graphics_LoadTilesToBgLayer(93, 22, param0->unk_54, 2, 0, 0, 1, 58);
+    Graphics_LoadTilemapToBgLayer(93, 21, param0->unk_54, 2, 0, 0, 1, 58);
+    Graphics_LoadPalette(93, 23, 0, 0 * 0x20, 0x20, 58);
+    Graphics_LoadTilesToBgLayer(93, 22, param0->unk_54, 6, 0, 0, 1, 58);
+    Graphics_LoadTilemapToBgLayer(93, 21, param0->unk_54, 6, 0, 0, 1, 58);
+    Graphics_LoadPalette(93, 23, 4, 0 * 0x20, 0x20, 58);
 
-    sub_02019448(param0->unk_54, 1);
+    Bg_CopyTilemapBufferToVRAM(param0->unk_54, 1);
     ov95_02248174(param0);
 
     param0->unk_70 = ov95_022476F0(1, 0, 0, 0);
@@ -336,9 +331,9 @@ static int ov95_02247F04(UnkStruct_ov95_02247C6C *param0, int *param1)
 
             MessageLoader_GetStrbuf(v0, v2, param0->unk_68);
             StringTemplate_Format(v1, param0->unk_6C, param0->unk_68);
-            Text_AddPrinterWithParams(&(param0->unk_58), 1, param0->unk_6C, 0, 0, 0xff, NULL);
-            sub_0200E010(&(param0->unk_58), 109, 2);
-            sub_0201A954(&(param0->unk_58));
+            Text_AddPrinterWithParams(&(param0->unk_58), FONT_MESSAGE, param0->unk_6C, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
+            Window_DrawMessageBox(&(param0->unk_58), 109, 2);
+            Window_CopyToVRAM(&(param0->unk_58));
             param0->unk_08 = 0;
             (*param1) = v3;
         }
@@ -362,9 +357,9 @@ static int ov95_02247F04(UnkStruct_ov95_02247C6C *param0, int *param1)
                     sub_0200590C(ov95_0224764C(param0->unk_00), v7, ov95_02247654(param0->unk_00));
                 }
 
-                BGL_FillWindow(&(param0->unk_58), 0xf);
-                Text_AddPrinterWithParams(&(param0->unk_58), 1, param0->unk_6C, 0, 0, 0xff, NULL);
-                sub_0201ACCC(&(param0->unk_58));
+                Window_FillTilemap(&(param0->unk_58), 0xf);
+                Text_AddPrinterWithParams(&(param0->unk_58), FONT_MESSAGE, param0->unk_6C, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
+                Window_LoadTiles(&(param0->unk_58));
                 param0->unk_08 = 0;
                 (*param1)++;
             }
@@ -372,7 +367,7 @@ static int ov95_02247F04(UnkStruct_ov95_02247C6C *param0, int *param1)
         break;
     case 3:
         if (++(param0->unk_08) > 60) {
-            sub_0200E084(&(param0->unk_58), 0);
+            Window_EraseMessageBox(&(param0->unk_58), 0);
             param0->unk_08 = 0;
             (*param1)++;
         }
@@ -483,8 +478,8 @@ static void ov95_0224829C(UnkStruct_ov95_02247C6C *param0)
     NNS_G2dInitImagePaletteProxy(&v0);
     NNS_G2dInitImageProxy(&v1);
 
-    sub_02006F00(93, 9, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &v1);
-    sub_02006EE0(93, 10, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &v0);
+    Graphics_LoadImageMapping(93, 9, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &v1);
+    Graphics_LoadPartialPalette(93, 10, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &v0);
 
     ov95_022475C4(&v2, &param0->unk_44, &v1, &v0, 2);
 

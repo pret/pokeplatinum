@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
-
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/ov19_021D8B54.h"
@@ -15,12 +13,13 @@
 #include "overlay019/struct_ov19_021DA384.h"
 #include "overlay019/struct_ov19_021DE3E8_decl.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
+#include "graphics.h"
 #include "heap.h"
 #include "item.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
 
 static const struct {
     u32 unk_00;
@@ -35,7 +34,7 @@ struct UnkStruct_ov19_021DE3E8_t {
     BOOL unk_00;
     UnkStruct_ov19_021D61B0 *unk_04;
     const UnkStruct_ov19_021D4DF0 *unk_08;
-    BGL *unk_0C;
+    BgConfig *unk_0C;
     CellActorCollection *unk_10;
     UnkStruct_ov19_021DA384 *unk_14;
     UnkStruct_ov19_021D8E00 *unk_18;
@@ -69,7 +68,7 @@ static void ov19_021DE718(UnkStruct_ov19_021DE3E8 *param0, int param1, int param
 static void ov19_021DE858(UnkStruct_ov19_021DE3E8 *param0, int param1, const VecFx32 *param2, int param3, int param4);
 static void ov19_021DE8E0(SysTask *param0, void *param1);
 
-BOOL ov19_021DE3E8(UnkStruct_ov19_021DE3E8 **param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BGL *param3, CellActorCollection *param4)
+BOOL ov19_021DE3E8(UnkStruct_ov19_021DE3E8 **param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, CellActorCollection *param4)
 {
     UnkStruct_ov19_021DE3E8 *v0 = Heap_AllocFromHeap(10, sizeof(UnkStruct_ov19_021DE3E8));
 
@@ -108,7 +107,7 @@ static void ov19_021DE450(UnkStruct_ov19_021DE3E8 *param0)
         int v4;
 
         ov19_021D783C(&v0, &v1, ov19_021D77D0(param0->unk_04), param0->unk_14->unk_1C, param0->unk_14->unk_20, 0);
-        v3 = sub_02006F50(16, Item_FileID(1, 1), 0, &v2, 10);
+        v3 = Graphics_GetCharData(16, Item_FileID(1, 1), 0, &v2, 10);
 
         if (v3) {
             int v5;
@@ -226,8 +225,8 @@ static void ov19_021DE5D4(UnkStruct_ov19_021DE3E8 *param0)
             v2 = 2;
         }
 
-        sub_02006EC0(16, Item_FileID(v0, 1), 0, Unk_ov19_021E04CC[v3].unk_00, 0, 0, 10);
-        sub_02006E84(16, Item_FileID(v0, 2), 1, Unk_ov19_021E04CC[v3].unk_04 * 0x20, 0x20, 10);
+        Graphics_LoadObjectTiles(16, Item_FileID(v0, 1), 0, Unk_ov19_021E04CC[v3].unk_00, 0, 0, 10);
+        Graphics_LoadPalette(16, Item_FileID(v0, 2), 1, Unk_ov19_021E04CC[v3].unk_04 * 0x20, 0x20, 10);
         CellActor_SetExplicitPriority(param0->unk_1C[v3], v2);
 
         ov19_021D78AC(param0->unk_1C[v3], 2);
@@ -267,8 +266,8 @@ static void ov19_021DE718(UnkStruct_ov19_021DE3E8 *param0, int param1, int param
 
         ov19_021DE694(param0, &v0, &v1);
 
-        sub_02006EC0(16, Item_FileID(param2, 1), 0, Unk_ov19_021E04CC[param1].unk_00, 0, 0, 10);
-        sub_02006E84(16, Item_FileID(param2, 2), 1, Unk_ov19_021E04CC[param1].unk_04 * 0x20, 0x20, 10);
+        Graphics_LoadObjectTiles(16, Item_FileID(param2, 1), 0, Unk_ov19_021E04CC[param1].unk_00, 0, 0, 10);
+        Graphics_LoadPalette(16, Item_FileID(param2, 2), 1, Unk_ov19_021E04CC[param1].unk_04 * 0x20, 0x20, 10);
         CellActor_SetExplicitPriority(param0->unk_1C[param1], v1);
 
         ov19_021D78AC(param0->unk_1C[param1], 3);

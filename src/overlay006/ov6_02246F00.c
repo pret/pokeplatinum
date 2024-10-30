@@ -38,7 +38,7 @@ void ov6_02246F00(FieldSystem *fieldSystem, const u8 param1, const u8 param2)
         v1->unk_01 = param1;
         v1->unk_02 = 0;
 
-        FieldTask_Start(fieldSystem->unk_10, ov6_02246F40, v1);
+        FieldTask_Start(fieldSystem->taskManager, ov6_02246F40, v1);
     } else {
         GF_ASSERT(FALSE);
     }

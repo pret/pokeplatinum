@@ -2,7 +2,8 @@
 #define POKEPLATINUM_UNK_0200C440_H
 
 #include "struct_decls/struct_0200C440_decl.h"
-#include "struct_defs/struct_0205AA50.h"
+
+#include "bg_window.h"
 
 UnkStruct_0200C440 *sub_0200C440(u32 param0, u32 param1, u32 param2, u32 param3);
 void sub_0200C560(UnkStruct_0200C440 *param0);

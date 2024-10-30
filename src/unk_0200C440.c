@@ -3,12 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0205AA50.h"
-
+#include "bg_window.h"
+#include "charcode_util.h"
+#include "graphics.h"
 #include "heap.h"
-#include "unk_020021B0.h"
-#include "unk_02006E3C.h"
-#include "unk_02018340.h"
 
 typedef struct UnkStruct_0200C440_t {
     void *unk_00;
@@ -38,7 +36,7 @@ UnkStruct_0200C440 *sub_0200C440(u32 param0, u32 param1, u32 param2, u32 param3)
         u32 v1;
         u8 *v2;
 
-        v0->unk_00 = sub_02006F50(14, 4, 1, &v0->unk_04, param3);
+        v0->unk_00 = Graphics_GetCharData(14, 4, 1, &v0->unk_04, param3);
         v2 = v0->unk_04->pRawData;
 
         for (v1 = 0; v1 < v0->unk_04->szByte; v1++) {
@@ -92,20 +90,20 @@ void sub_0200C560(UnkStruct_0200C440 *param0)
 
 void sub_0200C578(UnkStruct_0200C440 *param0, int param1, Window *param2, u32 param3, u32 param4)
 {
-    sub_0201ADDC(param2, (u8 *)(param0->unk_04->pRawData) + Unk_020E4FEC[param1].unk_00, 0, 0, Unk_020E4FEC[param1].unk_02, 8, param3, param4, Unk_020E4FEC[param1].unk_02, 8);
+    Window_BlitBitmapRect(param2, (u8 *)(param0->unk_04->pRawData) + Unk_020E4FEC[param1].unk_00, 0, 0, Unk_020E4FEC[param1].unk_02, 8, param3, param4, Unk_020E4FEC[param1].unk_02, 8);
 }
 
 void sub_0200C5BC(UnkStruct_0200C440 *param0, s32 param1, u32 param2, int param3, Window *param4, u32 param5, u32 param6)
 {
     int v0;
 
-    sub_020022A4(param0->unk_08, param1, param3, param2);
+    CharCode_FromInt(param0->unk_08, param1, param3, param2);
 
     for (v0 = 0; param0->unk_08[v0] != 0xffff; v0++) {
         if ((param0->unk_08[v0] >= 0xa2) && (param0->unk_08[v0] <= 0xab)) {
-            sub_0201ADDC(param4, (u8 *)(param0->unk_04->pRawData) + ((param0->unk_08[v0] - 0xa2) * 0x20), 0, 0, 8, 8, param5, param6, 8, 8);
+            Window_BlitBitmapRect(param4, (u8 *)(param0->unk_04->pRawData) + ((param0->unk_08[v0] - 0xa2) * 0x20), 0, 0, 8, 8, param5, param6, 8, 8);
         } else {
-            BGL_WindowColor(param4, param0->unk_28, param5, param6, 8, 8);
+            Window_FillRectWithColor(param4, param0->unk_28, param5, param6, 8, 8);
         }
 
         param5 += 8;
@@ -127,7 +125,7 @@ void sub_0200C67C(UnkStruct_0200C440 *param0, s32 param1, u32 param2, int param3
     v2 = param4;
     v1 = param0->unk_28 | (param0->unk_28 << 4);
 
-    sub_020022A4(param0->unk_08, param1, param3, param2);
+    CharCode_FromInt(param0->unk_08, param1, param3, param2);
 
     for (v0 = 0; param0->unk_08[v0] != 0xffff; v0++) {
         if ((param0->unk_08[v0] >= 0xa2) && (param0->unk_08[v0] <= 0xab)) {

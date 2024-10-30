@@ -290,7 +290,13 @@ RomSpec
 	File graphic/ending.narc
 	File graphic/ev_pokeselect.narc
 	File graphic/f_note_gra.narc
-	File graphic/field_board.narc
+
+    Root /graphic
+    HostRoot res/graphics/signposts
+	File field_board.narc
+
+	Root /
+	HostRoot res/prebuilt
 	File graphic/field_encounteffect.narc
 	File graphic/fld_comact.narc
 	File graphic/font.narc
@@ -309,11 +315,23 @@ RomSpec
 	File graphic/oekaki.narc
 	File graphic/opening.narc
 	File graphic/pl_bag_gra.narc
-	File graphic/pl_font.narc
+
+	Root /graphic
+	HostRoot res/fonts
+	File pl_font.narc
+
+	Root /
+	HostRoot res/prebuilt
 	File graphic/pl_plist_gra.narc
 	File graphic/pl_pst_gra.narc
 	File graphic/pl_wifinote.narc
-	File graphic/pl_winframe.narc
+
+    Root /graphic
+    HostRoot res/graphics/windows
+	File pl_winframe.narc
+
+	Root /
+	HostRoot res/prebuilt
 	File graphic/plist_gra.narc
 	File graphic/pmsi.narc
 	File graphic/poketch.narc

@@ -121,7 +121,7 @@ StringTemplate *sub_0204AEE8(SaveData *param0, u16 param1, u16 param2, u8 param3
     for (v0 = 0; v0 < 18; v0++) {
         v1 = sub_02078824(v0);
 
-        if (sub_02026FE8(v4, v1)) {
+        if (Pokedex_HasSeenSpecies(v4, v1)) {
             MessageLoader_GetStrbuf(v6, v1, v2);
             StringTemplate_SetStrbuf(v5, (*param4) + 1, v2, param2, param3, GAME_LANGUAGE);
             (*param4)++;
@@ -377,7 +377,7 @@ static u32 sub_0204B1E8(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_0223A348_sub
     }
 
     param1->unk_1E_val2 = 0;
-    param1->unk_1F = Unk_020E4C44;
+    param1->unk_1F = gGameLanguage;
 
     v0 = PokemonPersonalData_GetSpeciesValue(param1->unk_00_val1_0, 25);
 

@@ -1591,7 +1591,7 @@ void BoxMonGBAToBoxMon(BoxPokemonGBA *param0, BoxPokemon *param1)
 
     BoxPokemon_SetValue(param1, MON_DATA_NICKNAME_AND_FLAG, &v6[0]);
 
-    if (GetGBABoxMonData(param0, 3, NULL) != Unk_020E4C44) {
+    if (GetGBABoxMonData(param0, 3, NULL) != gGameLanguage) {
         v1 = 1;
         BoxPokemon_SetValue(param1, MON_DATA_HAS_NICKNAME, &v1);
     }

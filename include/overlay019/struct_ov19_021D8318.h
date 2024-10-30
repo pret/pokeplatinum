@@ -1,12 +1,12 @@
 #ifndef POKEPLATINUM_STRUCT_OV19_021D8318_H
 #define POKEPLATINUM_STRUCT_OV19_021D8318_H
 
-#include "struct_decls/struct_02018340_decl.h"
-
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/struct_ov19_021DA384.h"
 #include "overlay019/struct_ov19_021DCD18.h"
+
+#include "bg_window.h"
 
 typedef struct {
     u8 unk_00;
@@ -40,7 +40,7 @@ typedef struct {
     int unk_585C;
     u16 unk_5860[9][16];
     UnkStruct_ov19_021DA384 *unk_58F0;
-    BGL *unk_58F4;
+    BgConfig *unk_58F4;
     const UnkStruct_ov19_021D4DF0 *unk_58F8;
     UnkStruct_ov19_021D61B0 *unk_58FC;
 } UnkStruct_ov19_021D8318;

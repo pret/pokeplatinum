@@ -3,9 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
-
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/ov19_021D79F8.h"
@@ -16,14 +13,15 @@
 #include "overlay019/struct_ov19_021DC680.h"
 #include "overlay019/struct_ov19_021DCD18.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
+#include "graphics.h"
 #include "heap.h"
+#include "narc.h"
 #include "party.h"
 #include "pokemon.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02006E3C.h"
-#include "unk_02018340.h"
 
 static const struct {
     u16 unk_00;
@@ -47,7 +45,7 @@ static void ov19_021DCE50(UnkStruct_ov19_021DC680 *param0, fx32 param1);
 static void ov19_021DCEB8(UnkStruct_ov19_021DC680 *param0, BOOL param1);
 static void ov19_021DCF50(UnkStruct_ov19_021DC680 *param0);
 
-BOOL ov19_021DC5F0(UnkStruct_ov19_021DC680 *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BGL *param3, CellActorCollection *param4, NARC *param5)
+BOOL ov19_021DC5F0(UnkStruct_ov19_021DC680 *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, CellActorCollection *param4, NARC *param5)
 {
     param0->unk_00 = param1;
     param0->unk_0C = param2;
@@ -70,7 +68,7 @@ BOOL ov19_021DC5F0(UnkStruct_ov19_021DC680 *param0, UnkStruct_ov19_021D61B0 *par
     ov19_021DA3CC(param0->unk_38, param0->unk_3C, 6);
 
     param0->unk_1C = Heap_AllocFromHeap(10, sizeof(VecFx32) * 6 * 8);
-    param0->unk_14 = sub_020071D0(param5, 6, 1, &(param0->unk_18), 10);
+    param0->unk_14 = Graphics_GetScrnDataFromOpenNARC(param5, 6, 1, &(param0->unk_18), 10);
 
     if ((param0->unk_14 == NULL) || (param0->unk_1C == NULL)) {
         return 0;
@@ -99,7 +97,7 @@ void ov19_021DC6A0(UnkStruct_ov19_021DC680 *param0)
     param0->unk_2B = 0;
     ov19_021DCD64(param0, param0->unk_2B);
     ov19_021DCEB8(param0, 1);
-    sub_02019448(param0->unk_04, 2);
+    Bg_CopyTilemapBufferToVRAM(param0->unk_04, 2);
 }
 
 void ov19_021DC6C8(UnkStruct_ov19_021DC680 *param0)
@@ -129,7 +127,7 @@ static void ov19_021DC708(SysTask *param0, void *param1)
     }
 
     ov19_021DCD64(v0, v0->unk_2B);
-    sub_02019448(v0->unk_04, 2);
+    Bg_CopyTilemapBufferToVRAM(v0->unk_04, 2);
     ov19_021DCE50(v0, v1);
 
     if (v0->unk_2B == 0) {
@@ -172,11 +170,11 @@ static void ov19_021DC79C(SysTask *param0, void *param1)
         v3 = (u32)((v1) >> FX32_SHIFT) / 8;
         v2 = v0->unk_2B - 2 - v3;
 
-        sub_02019CB8(v0->unk_04, 2, 0x0, v0->unk_30, v2, 15, v3, 17);
+        Bg_FillTilemapRect(v0->unk_04, 2, 0x0, v0->unk_30, v2, 15, v3, 17);
     }
 
     ov19_021DCD64(v0, v0->unk_2B);
-    sub_02019448(v0->unk_04, 2);
+    Bg_CopyTilemapBufferToVRAM(v0->unk_04, 2);
     ov19_021DCE50(v0, v1);
 
     if (v0->unk_2B == 26) {
@@ -459,7 +457,7 @@ static void ov19_021DCD64(UnkStruct_ov19_021DC680 *param0, u32 param1)
         v2 = 24 - v1;
     }
 
-    sub_020198C0(param0->unk_04, 2, ((u8 *)param0->unk_18->rawData) + v0, param0->unk_30, v2, 15, v1);
+    Bg_LoadToTilemapRect(param0->unk_04, 2, ((u8 *)param0->unk_18->rawData) + v0, param0->unk_30, v2, 15, v1);
 }
 
 static void ov19_021DCDB4(UnkStruct_ov19_021DC680 *param0, VecFx32 *param1)

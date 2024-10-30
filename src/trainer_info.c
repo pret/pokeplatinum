@@ -5,9 +5,9 @@
 
 #include "constants/charcode.h"
 
+#include "charcode_util.h"
 #include "heap.h"
 #include "strbuf.h"
-#include "unk_020021B0.h"
 
 #define MONEY_MAX 999999
 
@@ -40,7 +40,7 @@ void TrainerInfo_Init(TrainerInfo *info)
 BOOL TrainerInfo_HasNoName(const TrainerInfo *info)
 {
     for (int i = 0; i < TRAINER_NAME_LEN + 1; i++) {
-        if (info->name[i] != CHAR_EMPTY) {
+        if (info->name[i] != CHAR_NONE) {
             return FALSE;
         }
     }
@@ -50,10 +50,10 @@ BOOL TrainerInfo_HasNoName(const TrainerInfo *info)
 
 void TrainerInfo_SetName(TrainerInfo *info, const charcode_t *name)
 {
-    int len = GF_strlen(name);
+    int len = CharCode_Length(name);
     GF_ASSERT(len < TRAINER_NAME_LEN + 1);
 
-    GF_strcpy(info->name, name);
+    CharCode_Copy(info->name, name);
 }
 
 void TrainerInfo_SetNameFromStrbuf(TrainerInfo *info, const Strbuf *name)
@@ -228,6 +228,6 @@ BOOL TrainerInfo_HasNationalDex(TrainerInfo *info)
 
 BOOL TrainerInfo_Equals(const TrainerInfo *info1, const TrainerInfo *info2)
 {
-    return GF_strncmp(info1->name, info2->name, TRAINER_NAME_LEN) == 0
+    return CharCode_CompareNumChars(info1->name, info2->name, TRAINER_NAME_LEN) == 0
         && info1->id == info2->id;
 }

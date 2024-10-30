@@ -3,17 +3,16 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_defs/struct_02015958.h"
 
+#include "bg_window.h"
+#include "graphics.h"
 #include "heap.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
-#include "unk_02006E3C.h"
-#include "unk_02018340.h"
 #include "unk_02023FCC.h"
 
 typedef struct {
@@ -23,7 +22,7 @@ typedef struct {
 } UnkStruct_02015D8C;
 
 typedef struct {
-    BGL *unk_00;
+    BgConfig *unk_00;
     u32 unk_04;
     u32 unk_08;
     u32 unk_0C[4];
@@ -36,7 +35,7 @@ typedef struct {
 } UnkStruct_02015B14;
 
 typedef struct {
-    BGL *unk_00;
+    BgConfig *unk_00;
     u32 unk_04;
     void *unk_08[4];
     NNSG2dScreenData *unk_18[4];
@@ -48,7 +47,7 @@ typedef struct {
 } UnkStruct_02015C38;
 
 typedef struct {
-    BGL *unk_00;
+    BgConfig *unk_00;
     NNSG2dCharacterData *unk_04;
     void *unk_08;
     int unk_0C;
@@ -67,7 +66,7 @@ typedef struct UnkStruct_02015920_t {
     UnkStruct_02023FCC *unk_00;
     TouchScreenHitTable unk_04[2];
     UnkStruct_02015C38 unk_0C[2];
-    BGL *unk_7C;
+    BgConfig *unk_7C;
     u32 unk_80;
     u32 unk_84;
     fx32 unk_88[4];
@@ -91,11 +90,11 @@ static void sub_02015D60(UnkStruct_02015C38 *param0);
 static void sub_02015D8C(UnkStruct_02015D8C *param0, const fx32 *param1, u32 param2);
 static void sub_02015D98(UnkStruct_02015D8C *param0, fx32 param1);
 static u32 sub_02015DA0(const UnkStruct_02015D8C *param0);
-static void sub_02015DCC(u32 param0, u32 param1, BGL *param2, u32 param3, u32 param4, u32 param5);
+static void sub_02015DCC(u32 param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5);
 static void sub_02015E1C(u32 param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5);
 static void sub_02015E64(SysTask *param0, void *param1);
 static void sub_02015EA0(SysTask *param0, void *param1);
-static void sub_02015EE8(BGL *param0, int param1, const NNSG2dScreenData *param2, int param3, int param4);
+static void sub_02015EE8(BgConfig *param0, int param1, const NNSG2dScreenData *param2, int param3, int param4);
 static void sub_02015F34(const NNSG2dScreenData *param0, int param1);
 static void sub_02015F54(const NNSG2dScreenData *param0, int param1);
 
@@ -292,7 +291,7 @@ static void sub_02015C38(UnkStruct_02015C38 *param0, const UnkStruct_02015B14 *p
     param0->unk_35 = param1->unk_2D;
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_08[v0] = sub_02006F6C(param1->unk_08, param1->unk_0C[v0], 1, &param0->unk_18[v0], param2);
+        param0->unk_08[v0] = Graphics_GetScrnData(param1->unk_08, param1->unk_0C[v0], 1, &param0->unk_18[v0], param2);
 
         sub_02015F34(param0->unk_18[v0], param1->unk_1C);
         sub_02015F54(param0->unk_18[v0], param1->unk_20);
@@ -324,8 +323,8 @@ static void sub_02015D00(UnkStruct_02015C38 *param0)
 {
     int v0;
 
-    sub_02019CB8(param0->unk_00, param0->unk_04, 0, param0->unk_34, param0->unk_35, param0->unk_18[0]->screenWidth / 8, param0->unk_18[0]->screenHeight / 8, 0);
-    sub_0201C3C0(param0->unk_00, param0->unk_04);
+    Bg_FillTilemapRect(param0->unk_00, param0->unk_04, 0, param0->unk_34, param0->unk_35, param0->unk_18[0]->screenWidth / 8, param0->unk_18[0]->screenHeight / 8, 0);
+    Bg_ScheduleTilemapTransfer(param0->unk_00, param0->unk_04);
 
     for (v0 = 0; v0 < 4; v0++) {
         Heap_FreeToHeap(param0->unk_08[v0]);
@@ -365,14 +364,14 @@ static u32 sub_02015DA0(const UnkStruct_02015D8C *param0)
     return param0->unk_04 - 1;
 }
 
-static void sub_02015DCC(u32 param0, u32 param1, BGL *param2, u32 param3, u32 param4, u32 param5)
+static void sub_02015DCC(u32 param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5)
 {
     UnkStruct_02015DCC *v0;
 
     v0 = Heap_AllocFromHeap(param5, sizeof(UnkStruct_02015DCC));
     memset(v0, 0, sizeof(UnkStruct_02015DCC));
 
-    v0->unk_08 = sub_02006F50(param0, param1, 1, &v0->unk_04, param5);
+    v0->unk_08 = Graphics_GetCharData(param0, param1, 1, &v0->unk_04, param5);
     v0->unk_00 = param2;
     v0->unk_0C = param3;
     v0->unk_10 = param4;
@@ -387,7 +386,7 @@ static void sub_02015E1C(u32 param0, u32 param1, int param2, u32 param3, u32 par
     v0 = Heap_AllocFromHeap(param5, sizeof(UnkStruct_02015E1C));
     memset(v0, 0, sizeof(UnkStruct_02015E1C));
 
-    v0->unk_04 = sub_02006F88(param0, param1, &v0->unk_00, param5);
+    v0->unk_04 = Graphics_GetPlttData(param0, param1, &v0->unk_00, param5);
     v0->unk_08 = param2;
     v0->unk_0C = param3;
     v0->unk_10 = param4;
@@ -401,7 +400,7 @@ static void sub_02015E64(SysTask *param0, void *param1)
 
     DC_FlushRange(v0->unk_04->pRawData, v0->unk_04->szByte);
 
-    sub_0201958C(v0->unk_00, v0->unk_0C, v0->unk_04->pRawData, v0->unk_04->szByte, v0->unk_10);
+    Bg_LoadTiles(v0->unk_00, v0->unk_0C, v0->unk_04->pRawData, v0->unk_04->szByte, v0->unk_10);
     SysTask_Done(param0);
     Heap_FreeToHeap(v0->unk_08);
     Heap_FreeToHeap(v0);
@@ -424,10 +423,10 @@ static void sub_02015EA0(SysTask *param0, void *param1)
     Heap_FreeToHeap(v0);
 }
 
-static void sub_02015EE8(BGL *param0, int param1, const NNSG2dScreenData *param2, int param3, int param4)
+static void sub_02015EE8(BgConfig *param0, int param1, const NNSG2dScreenData *param2, int param3, int param4)
 {
-    sub_020198E8(param0, param1, param3, param4, param2->screenWidth / 8, param2->screenHeight / 8, param2->rawData, 0, 0, param2->screenWidth / 8, param2->screenHeight / 8);
-    sub_0201C3C0(param0, param1);
+    Bg_CopyToTilemapRect(param0, param1, param3, param4, param2->screenWidth / 8, param2->screenHeight / 8, param2->rawData, 0, 0, param2->screenWidth / 8, param2->screenHeight / 8);
+    Bg_ScheduleTilemapTransfer(param0, param1);
 }
 
 static void sub_02015F34(const NNSG2dScreenData *param0, int param1)

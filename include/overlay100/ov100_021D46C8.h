@@ -3,13 +3,14 @@
 
 #include <nnsys.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_defs/struct_020985E4.h"
 
 #include "overlay100/struct_ov100_021D46C8.h"
 #include "overlay100/struct_ov100_021D4890.h"
 #include "overlay100/struct_ov100_021D49B4.h"
 #include "overlay100/struct_ov100_021D4DD8.h"
+
+#include "narc.h"
 
 int ov100_021D46C8(UnkStruct_ov100_021D46C8 *param0, UnkStruct_020985E4 *param1, int param2);
 void ov100_021D4788(UnkStruct_ov100_021D46C8 *param0);

@@ -6,14 +6,11 @@
 #include "constants/battle/battle_io.h"
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/battle_io.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "battle/battle_display.h"
 #include "battle/battle_io.h"
@@ -72,15 +69,16 @@
 #include "overlay012/ov12_022380BC.h"
 #include "overlay012/struct_ov12_02237728.h"
 
+#include "bg_window.h"
 #include "flags.h"
 #include "heap.h"
 #include "narc.h"
+#include "palette.h"
 #include "party.h"
 #include "pokemon.h"
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
 #include "unk_020131EC.h"
-#include "unk_02018340.h"
 
 typedef void (*UnkFuncPtr_ov16_0226F068)(BattleSystem *, BattlerData *);
 
@@ -1019,8 +1017,8 @@ static void ov16_0225CB80(BattleSystem *param0, BattlerData *param1)
 {
     Window *v0 = BattleSystem_Window(param0, 0);
 
-    BGL_FillWindow(v0, 0xff);
-    sub_0201ACCC(v0);
+    Window_FillTilemap(v0, 0xff);
+    Window_LoadTiles(v0);
 
     ClearCommand(param0, param1->battler, 66);
     ZeroDataBuffer(param1);

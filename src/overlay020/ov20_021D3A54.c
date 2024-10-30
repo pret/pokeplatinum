@@ -3,10 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020998EC_decl.h"
-#include "struct_defs/struct_0205AA50.h"
 
 #include "overlay020/ov20_021D0D80.h"
 #include "overlay020/ov20_021D2098.h"
@@ -17,23 +14,24 @@
 #include "overlay020/struct_ov20_021D4E8C.h"
 #include "overlay020/struct_ov20_021D4FF0.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "enums.h"
 #include "font.h"
+#include "graphics.h"
 #include "heap.h"
 #include "message.h"
+#include "narc.h"
 #include "strbuf.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02006E3C.h"
-#include "unk_02018340.h"
 #include "unk_020998EC.h"
 
 typedef struct UnkStruct_ov20_021D3E0C_t {
     UnkStruct_ov20_021D2128 *unk_00;
     const UnkStruct_ov20_021D16E8 *unk_04;
     const UnkStruct_020998EC *unk_08;
-    BGL *unk_0C;
+    BgConfig *unk_0C;
     u32 unk_10;
     u32 unk_14;
     SysTask *unk_18;
@@ -42,9 +40,9 @@ typedef struct UnkStruct_ov20_021D3E0C_t {
     CellActor *unk_5C;
 } UnkStruct_ov20_021D3E0C;
 
-static u32 ov20_021D3B74(UnkStruct_ov20_021D3E0C *param0, BGL *param1, u32 param2);
-static u32 ov20_021D3C78(UnkStruct_ov20_021D3E0C *param0, BGL *param1, u32 param2);
-static u32 ov20_021D3D44(UnkStruct_ov20_021D3E0C *param0, BGL *param1, u32 param2);
+static u32 ov20_021D3B74(UnkStruct_ov20_021D3E0C *param0, BgConfig *param1, u32 param2);
+static u32 ov20_021D3C78(UnkStruct_ov20_021D3E0C *param0, BgConfig *param1, u32 param2);
+static u32 ov20_021D3D44(UnkStruct_ov20_021D3E0C *param0, BgConfig *param1, u32 param2);
 static void ov20_021D3E0C(UnkStruct_ov20_021D3E0C *param0);
 
 UnkStruct_ov20_021D3E0C *ov20_021D3A54(UnkStruct_ov20_021D2128 *param0, const UnkStruct_ov20_021D16E8 *param1, const UnkStruct_020998EC *param2)
@@ -73,21 +71,21 @@ void ov20_021D3A80(UnkStruct_ov20_021D3E0C *param0)
 
 void ov20_021D3A98(UnkStruct_ov20_021D3E0C *param0, NARC *param1)
 {
-    BGL *v0;
+    BgConfig *v0;
     u32 v1;
 
     v0 = ov20_021D2E04(param0->unk_00);
 
-    sub_0200710C(param1, 2, v0, 1, 0, 0, 1, 35);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 2, v0, 1, 0, 0, 1, 35);
 
-    v1 = sub_020070E8(param1, 3, v0, 1, 0, 0, 1, 35);
+    v1 = Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 3, v0, 1, 0, 0, 1, 35);
     v1 /= 0x20;
     v1 = ov20_021D3B74(param0, v0, v1);
     v1 = ov20_021D3C78(param0, v0, v1);
 
     ov20_021D3D44(param0, v0, v1);
-    sub_02019184(v0, 1, 0, -4);
-    sub_02019184(v0, 1, 3, 2);
+    Bg_SetOffset(v0, 1, 0, -4);
+    Bg_SetOffset(v0, 1, 3, 2);
     ov20_021D3E0C(param0);
 
     G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG1, -10);
@@ -96,10 +94,10 @@ void ov20_021D3A98(UnkStruct_ov20_021D3E0C *param0, NARC *param1)
     G2_SetWnd0Position(0, 0, 255, 160);
     GX_SetVisibleWnd(GX_WNDMASK_W0);
 
-    sub_02019448(v0, 1);
+    Bg_CopyTilemapBufferToVRAM(v0, 1);
 }
 
-static u32 ov20_021D3B74(UnkStruct_ov20_021D3E0C *param0, BGL *param1, u32 param2)
+static u32 ov20_021D3B74(UnkStruct_ov20_021D3E0C *param0, BgConfig *param1, u32 param2)
 {
     int v0, v1, v2;
     Window v3;
@@ -120,24 +118,24 @@ static u32 ov20_021D3B74(UnkStruct_ov20_021D3E0C *param0, BGL *param1, u32 param
 
         if (sub_02099CA0(param0->unk_08, v0)) {
             v5 = MessageLoader_GetNewStrbuf(v4, 0 + v0);
-            v6 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0));
+            v6 = TEXT_COLOR(1, 2, 15);
         } else {
             v5 = MessageLoader_GetNewStrbuf(v4, 12);
-            v6 = (u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((15 & 0xff) << 0));
+            v6 = TEXT_COLOR(3, 4, 15);
         }
 
         GF_ASSERT(param2 < (1024 - 18));
 
-        BGL_AddWindow(param1, &v3, 1, v1, v2, 9, 2, 11, param2);
-        BGL_FillWindow(&v3, 15);
+        Window_Add(param1, &v3, 1, v1, v2, 9, 2, 11, param2);
+        Window_FillTilemap(&v3, 15);
 
         v7 = ((9 * 8) - Font_CalcStrbufWidth(FONT_SYSTEM, v5, 0)) / 2;
 
-        Text_AddPrinterWithParamsAndColor(&v3, 0, v5, v7, 0, 0xff, v6, NULL);
-        sub_0201A9F4(&v3);
-        sub_0201ACCC(&v3);
+        Text_AddPrinterWithParamsAndColor(&v3, FONT_SYSTEM, v5, v7, 0, TEXT_SPEED_NO_TRANSFER, v6, NULL);
+        Window_PutToTilemap(&v3);
+        Window_LoadTiles(&v3);
         Strbuf_Free(v5);
-        BGL_DeleteWindow(&v3);
+        Window_Remove(&v3);
 
         param2 += 18;
         v1 += (9 + 1);
@@ -148,7 +146,7 @@ static u32 ov20_021D3B74(UnkStruct_ov20_021D3E0C *param0, BGL *param1, u32 param
     return param2;
 }
 
-static u32 ov20_021D3C78(UnkStruct_ov20_021D3E0C *param0, BGL *param1, u32 param2)
+static u32 ov20_021D3C78(UnkStruct_ov20_021D3E0C *param0, BgConfig *param1, u32 param2)
 {
     Window v0;
     Strbuf *v1;
@@ -156,12 +154,12 @@ static u32 ov20_021D3C78(UnkStruct_ov20_021D3E0C *param0, BGL *param1, u32 param
 
     GF_ASSERT(param2 < (1024 - 200));
 
-    BGL_AddWindow(param1, &v0, 1, 34, 10, 25, 8, 11, param2);
+    Window_Add(param1, &v0, 1, 34, 10, 25, 8, 11, param2);
     param2 += 200;
 
     v1 = Strbuf_Init(4, 35);
 
-    BGL_FillWindow(&v0, 15);
+    Window_FillTilemap(&v0, 15);
 
     v3 = ov20_021D5044();
 
@@ -170,24 +168,24 @@ static u32 ov20_021D3C78(UnkStruct_ov20_021D3E0C *param0, BGL *param1, u32 param
         ov20_021D506C(v4, &v5, &v6);
 
         if (sub_02099CDC(param0->unk_08, v4)) {
-            v2 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0));
+            v2 = TEXT_COLOR(1, 2, 15);
         } else {
-            v2 = (u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((15 & 0xff) << 0));
+            v2 = TEXT_COLOR(3, 4, 15);
         }
 
-        Text_AddPrinterWithParamsAndColor(&v0, 0, v1, v5 + 3, v6, 0xff, v2, NULL);
+        Text_AddPrinterWithParamsAndColor(&v0, FONT_SYSTEM, v1, v5 + 3, v6, TEXT_SPEED_NO_TRANSFER, v2, NULL);
     }
 
-    sub_0201ACCC(&v0);
-    sub_0201A9F4(&v0);
+    Window_LoadTiles(&v0);
+    Window_PutToTilemap(&v0);
 
     Strbuf_Free(v1);
-    BGL_DeleteWindow(&v0);
+    Window_Remove(&v0);
 
     return param2;
 }
 
-static u32 ov20_021D3D44(UnkStruct_ov20_021D3E0C *param0, BGL *param1, u32 param2)
+static u32 ov20_021D3D44(UnkStruct_ov20_021D3E0C *param0, BgConfig *param1, u32 param2)
 {
     static const struct {
         u16 unk_00;
@@ -208,12 +206,12 @@ static u32 ov20_021D3D44(UnkStruct_ov20_021D3E0C *param0, BGL *param1, u32 param
     for (v4 = 0; v4 < NELEMS(v0); v4++) {
         GF_ASSERT(param2 < (1024 - 16));
 
-        BGL_AddWindow(param1, &v1, 1, v0[v4].unk_00, v0[v4].unk_02, 8, 2, 11, param2);
-        BGL_FillWindow(&v1, 15);
-        Text_AddPrinterWithParamsAndColor(&v1, 0, v3, v5, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0)), NULL);
-        sub_0201A9F4(&v1);
-        sub_0201ACCC(&v1);
-        BGL_DeleteWindow(&v1);
+        Window_Add(param1, &v1, 1, v0[v4].unk_00, v0[v4].unk_02, 8, 2, 11, param2);
+        Window_FillTilemap(&v1, 15);
+        Text_AddPrinterWithParamsAndColor(&v1, FONT_SYSTEM, v3, v5, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
+        Window_PutToTilemap(&v1);
+        Window_LoadTiles(&v1);
+        Window_Remove(&v1);
 
         param2 += 16;
     }
@@ -328,7 +326,7 @@ BOOL ov20_021D3F84(UnkStruct_ov20_021D3E0C *param0)
 
 void ov20_021D3FD0(UnkStruct_ov20_021D3E0C *param0)
 {
-    sub_02019184(param0->unk_0C, 1, 3, 2);
+    Bg_SetOffset(param0->unk_0C, 1, 3, 2);
 }
 
 void ov20_021D3FE0(UnkStruct_ov20_021D3E0C *param0)
@@ -349,7 +347,7 @@ void ov20_021D4004(UnkStruct_ov20_021D3E0C *param0)
 BOOL ov20_021D4020(UnkStruct_ov20_021D3E0C *param0)
 {
     if (ov20_021D4F4C(&param0->unk_1C)) {
-        sub_02019120(1, 0);
+        Bg_ToggleLayer(1, 0);
         return 1;
     }
 
@@ -359,7 +357,7 @@ BOOL ov20_021D4020(UnkStruct_ov20_021D3E0C *param0)
 void ov20_021D403C(UnkStruct_ov20_021D3E0C *param0)
 {
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, GX_BLEND_ALL, 0, 16);
-    sub_02019120(1, 1);
+    Bg_ToggleLayer(1, 1);
     ov20_021D4F1C(&param0->unk_1C, GX_BLEND_PLANEMASK_BG1, GX_BLEND_ALL, 0, 124, (6 * 2));
 }
 
@@ -378,7 +376,7 @@ void ov20_021D4084(UnkStruct_ov20_021D3E0C *param0)
         v0 = 252;
     }
 
-    sub_02019184(param0->unk_0C, 1, 0, v0);
+    Bg_SetOffset(param0->unk_0C, 1, 0, v0);
 }
 
 void ov20_021D40A8(UnkStruct_ov20_021D3E0C *param0)

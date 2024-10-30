@@ -8,11 +8,10 @@
 #include "struct_defs/struct_0202BE38.h"
 #include "struct_defs/struct_0202BF4C.h"
 #include "struct_defs/struct_0202BFCC.h"
-#include "struct_defs/struct_0205AA50.h"
 
-#include "overlay061/struct_ov61_0222C884.h"
 #include "overlay081/struct_ov81_021D1610.h"
 
+#include "bg_window.h"
 #include "font.h"
 #include "heap.h"
 #include "journal.h"
@@ -23,7 +22,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "trainer_data.h"
-#include "unk_02018340.h"
 
 static u8 ov81_021D16B0(UnkStruct_ov81_021D1610 *param0, Window *param1, Window *param2);
 static void ov81_021D17C8(UnkStruct_ov81_021D1610 *param0, Window *param1);
@@ -91,7 +89,7 @@ static void ov81_021D3248(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 static void ov81_021D32A0(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkStruct_0202BFCC *param2, u8 param3, int param4);
 static void ov81_021D3304(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkStruct_0202BFCC *param2, u8 param3);
 
-static const UnkStruct_ov61_0222C884 Unk_ov81_021D3508[] = {
+static const WindowTemplate Unk_ov81_021D3508[] = {
     { 0x0, 0x2, 0x2, 0x18, 0x2, 0xF, 0x1 },
     { 0x0, 0x4, 0x4, 0x1B, 0x12, 0xF, 0x31 },
     { 0x1, 0x2, 0x2, 0x18, 0x2, 0xF, 0x1 },
@@ -103,7 +101,7 @@ void ov81_021D1610(UnkStruct_ov81_021D1610 *param0)
     u32 v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_0201A8D4(param0->unk_00, &param0->unk_04[v0], &Unk_ov81_021D3508[v0]);
+        Window_AddFromTemplate(param0->unk_00, &param0->unk_04[v0], &Unk_ov81_021D3508[v0]);
     }
 }
 
@@ -112,7 +110,7 @@ void ov81_021D1634(UnkStruct_ov81_021D1610 *param0)
     u32 v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        BGL_DeleteWindow(&param0->unk_04[v0]);
+        Window_Remove(&param0->unk_04[v0]);
     }
 }
 
@@ -129,8 +127,8 @@ void ov81_021D164C(UnkStruct_ov81_021D1610 *param0, u32 param1)
         v1 = &param0->unk_04[3];
     }
 
-    BGL_FillWindow(v0, 0);
-    BGL_FillWindow(v1, 0);
+    Window_FillTilemap(v0, 0);
+    Window_FillTilemap(v1, 0);
 
     if (ov81_021D16B0(param0, v0, v1) == 1) {
         ov81_021D17C8(param0, v1);
@@ -139,8 +137,8 @@ void ov81_021D164C(UnkStruct_ov81_021D1610 *param0, u32 param1)
         ov81_021D1C10(param0, v1);
     }
 
-    sub_0201A9A4(v0);
-    sub_0201A9A4(v1);
+    Window_ScheduleCopyToVRAM(v0);
+    Window_ScheduleCopyToVRAM(v1);
 }
 
 static u8 ov81_021D16B0(UnkStruct_ov81_021D1610 *param0, Window *param1, Window *param2)
@@ -161,18 +159,18 @@ static u8 ov81_021D16B0(UnkStruct_ov81_021D1610 *param0, Window *param1, Window 
     StringTemplate_SetNumber(param0->unk_54, 1, v0.unk_00_14, 2, 0, 1);
     StringTemplate_Format(param0->unk_54, param0->unk_58, v1);
     Strbuf_Free(v1);
-    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_58, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
 
     v2 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_58, 0);
     v1 = MessageLoader_GetNewStrbuf(param0->unk_50, 2 + v0.unk_00_11);
-    Text_AddPrinterWithParamsAndColor(param1, 0, v1, v2 + 12, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v1, v2 + 12, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v1);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_50, 0);
     StringTemplate_SetLocationName(param0->unk_54, 0, MapHeader_GetMapLabelTextID(v0.unk_00_19));
 
     StringTemplate_Format(param0->unk_54, param0->unk_58, v1);
-    Text_AddPrinterWithParamsAndColor(param2, 0, param0->unk_58, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param2, FONT_SYSTEM, param0->unk_58, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v1);
 
     return 1;
@@ -367,7 +365,7 @@ static void ov81_021D1AD4(UnkStruct_ov81_021D1610 *param0, Window *param1)
 
     StringTemplate_SetLocationName(param0->unk_54, 0, MapHeader_GetMapLabelTextID(v0.unk_02));
     StringTemplate_Format(param0->unk_54, param0->unk_58, v1);
-    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_58, 0, ((16 * 4 + 16) + 16), 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, ((16 * 4 + 16) + 16), TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v1);
 }
 
@@ -465,7 +463,7 @@ static void ov81_021D1E04(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 9);
 
-    Text_AddPrinterWithParamsAndColor(param1, 0, v0, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v0, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -473,7 +471,7 @@ static void ov81_021D1E40(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 10);
 
-    Text_AddPrinterWithParamsAndColor(param1, 0, v0, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v0, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -481,7 +479,7 @@ static void ov81_021D1E7C(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 11);
 
-    Text_AddPrinterWithParamsAndColor(param1, 0, v0, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v0, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -489,7 +487,7 @@ static void ov81_021D1EB8(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 12);
 
-    Text_AddPrinterWithParamsAndColor(param1, 0, v0, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v0, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -497,7 +495,7 @@ static void ov81_021D1EF4(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 13);
 
-    Text_AddPrinterWithParamsAndColor(param1, 0, v0, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v0, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -505,7 +503,7 @@ static void ov81_021D1F30(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 14);
 
-    Text_AddPrinterWithParamsAndColor(param1, 0, v0, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v0, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -513,7 +511,7 @@ static void ov81_021D1F6C(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 15);
 
-    Text_AddPrinterWithParamsAndColor(param1, 0, v0, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v0, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -521,7 +519,7 @@ static void ov81_021D1FA8(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 16);
 
-    Text_AddPrinterWithParamsAndColor(param1, 0, v0, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v0, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -531,7 +529,7 @@ static void ov81_021D1FE4(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 
     StringTemplate_SetGymName(param0->unk_54, 0, param2->unk_02);
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
-    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -542,7 +540,7 @@ static void ov81_021D2038(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
     StringTemplate_SetGymName(param0->unk_54, 0, param2->unk_02);
     StringTemplate_SetTrainerName(param0->unk_54, 1, param2->unk_04);
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
-    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -552,7 +550,7 @@ static void ov81_021D2098(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 
     StringTemplate_SetTrainerName(param0->unk_54, 0, param2->unk_04);
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
-    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -562,7 +560,7 @@ static void ov81_021D20EC(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 
     StringTemplate_SetTrainerName(param0->unk_54, 0, param2->unk_04);
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
-    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -572,7 +570,7 @@ static void ov81_021D2140(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 
     StringTemplate_SetLocationName(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
-    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -591,7 +589,7 @@ static void ov81_021D219C(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 
     StringTemplate_SetLocationName(param0->unk_54, 0, v1);
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
-    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -610,7 +608,7 @@ static void ov81_021D2208(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 
     StringTemplate_SetLocationName(param0->unk_54, 0, v1);
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
-    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -618,7 +616,7 @@ static void ov81_021D2270(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 30);
 
-    Text_AddPrinterWithParamsAndColor(param1, 0, v0, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v0, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -626,7 +624,7 @@ static void ov81_021D22AC(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 31);
 
-    Text_AddPrinterWithParamsAndColor(param1, 0, v0, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v0, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -636,7 +634,7 @@ static void ov81_021D22E8(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 
     StringTemplate_SetItemName(param0->unk_54, 0, param2->unk_06);
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
-    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -646,7 +644,7 @@ static void ov81_021D233C(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 
     StringTemplate_SetLocationName(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
-    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -656,7 +654,7 @@ static void ov81_021D2398(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 
     StringTemplate_SetLocationName(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
-    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -666,7 +664,7 @@ static void ov81_021D23F4(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 
     StringTemplate_SetLocationName(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
-    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -676,7 +674,7 @@ static void ov81_021D2450(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 
     StringTemplate_SetLocationName(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
-    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -686,7 +684,7 @@ static void ov81_021D24AC(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 
     StringTemplate_SetLocationName(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
-    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -696,7 +694,7 @@ static void ov81_021D2508(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 
     StringTemplate_SetLocationName(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
-    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -706,7 +704,7 @@ static void ov81_021D2564(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 
     StringTemplate_SetLocationName(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
-    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -716,7 +714,7 @@ static void ov81_021D25C0(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 
     StringTemplate_SetLocationName(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
-    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -726,7 +724,7 @@ static void ov81_021D261C(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 
     StringTemplate_SetLocationName(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
-    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -736,7 +734,7 @@ static void ov81_021D2678(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 
     StringTemplate_SetLocationName(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
-    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -746,7 +744,7 @@ static void ov81_021D26D4(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 
     StringTemplate_SetLocationName(param0->unk_54, 0, MapHeader_GetMapLabelTextID(param2->unk_02));
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
-    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_58, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -754,7 +752,7 @@ static void ov81_021D2730(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 45);
 
-    Text_AddPrinterWithParamsAndColor(param1, 0, v0, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v0, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -762,7 +760,7 @@ static void ov81_021D276C(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 47);
 
-    Text_AddPrinterWithParamsAndColor(param1, 0, v0, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v0, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -770,7 +768,7 @@ static void ov81_021D27A8(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 48);
 
-    Text_AddPrinterWithParamsAndColor(param1, 0, v0, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v0, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -778,7 +776,7 @@ static void ov81_021D27E4(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 32);
 
-    Text_AddPrinterWithParamsAndColor(param1, 0, v0, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v0, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -786,7 +784,7 @@ static void ov81_021D2820(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 33);
 
-    Text_AddPrinterWithParamsAndColor(param1, 0, v0, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v0, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -815,7 +813,7 @@ static void ov81_021D285C(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
     }
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_50, v0);
-    Text_AddPrinterWithParamsAndColor(param1, 0, v1, 0, 16 + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v1, 0, 16 + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v1);
 }
 
@@ -853,7 +851,7 @@ static void ov81_021D2908(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
     StringTemplate_SetTimeOfDay(param0->unk_54, 1, param2->unk_01_2);
 
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
-    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_58, 0, (16 * 4 + 16), 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, (16 * 4 + 16), TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -882,7 +880,7 @@ static void ov81_021D29B4(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
     StringTemplate_SetTimeOfDay(param0->unk_54, 1, param2->unk_01_2);
 
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
-    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_58, 0, (16 * 4 + 16), 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, (16 * 4 + 16), TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -914,7 +912,7 @@ static void ov81_021D2A9C(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 
     ov81_021D2A60(param0, param2->unk_02, param2->unk_01_4, 0);
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
-    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_58, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -937,7 +935,7 @@ static void ov81_021D2B20(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 
     ov81_021D2A60(param0, param2->unk_02, param2->unk_01_4, 0);
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
-    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_58, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -961,7 +959,7 @@ static void ov81_021D2BA4(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
     ov81_021D2A60(param0, param2->unk_02, param2->unk_01_4, 0);
     ov81_021D2A60(param0, param2->unk_12, param2->unk_01_5, 1);
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
-    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_58, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -984,7 +982,7 @@ static void ov81_021D2C38(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 
     ov81_021D2A60(param0, param2->unk_02, param2->unk_01_4, 0);
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
-    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_58, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -1008,7 +1006,7 @@ static void ov81_021D2CBC(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
     ov81_021D2A60(param0, param2->unk_02, param2->unk_01_4, 0);
     ov81_021D2A60(param0, param2->unk_12, param2->unk_01_5, 1);
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
-    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_58, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -1018,7 +1016,7 @@ static void ov81_021D2D50(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 
     ov81_021D2A60(param0, param2->unk_02, param2->unk_01_4, 0);
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
-    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_58, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -1029,7 +1027,7 @@ static void ov81_021D2DAC(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
     ov81_021D2A60(param0, param2->unk_02, param2->unk_01_4, 0);
     ov81_021D2A60(param0, param2->unk_22, param2->unk_01_6, 1);
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
-    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_58, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -1037,7 +1035,7 @@ static void ov81_021D2E18(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 79);
 
-    Text_AddPrinterWithParamsAndColor(param1, 0, v0, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v0, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -1047,7 +1045,7 @@ static void ov81_021D2E54(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 
     ov81_021D2A60(param0, param2->unk_22, param2->unk_01_6, 0);
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
-    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_58, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -1055,7 +1053,7 @@ static void ov81_021D2EB0(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 81);
 
-    Text_AddPrinterWithParamsAndColor(param1, 0, v0, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v0, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -1078,7 +1076,7 @@ static void ov81_021D2EEC(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 
     ov81_021D2A60(param0, param2->unk_02, param2->unk_01_4, 0);
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
-    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_58, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -1086,7 +1084,7 @@ static void ov81_021D2F70(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 85);
 
-    Text_AddPrinterWithParamsAndColor(param1, 0, v0, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v0, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -1096,7 +1094,7 @@ static void ov81_021D2FAC(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 
     StringTemplate_SetNumber(param0->unk_54, 0, param2->unk_01_0, 1, 0, 1);
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
-    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_58, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -1104,7 +1102,7 @@ static void ov81_021D300C(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 88);
 
-    Text_AddPrinterWithParamsAndColor(param1, 0, v0, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v0, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -1115,7 +1113,7 @@ static void ov81_021D3048(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
     ov81_021D2A60(param0, param2->unk_02, param2->unk_01_4, 0);
     ov81_021D2A60(param0, param2->unk_22, param2->unk_01_6, 1);
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
-    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_58, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -1123,7 +1121,7 @@ static void ov81_021D30B4(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 94);
 
-    Text_AddPrinterWithParamsAndColor(param1, 0, v0, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v0, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -1131,7 +1129,7 @@ static void ov81_021D30F0(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 86);
 
-    Text_AddPrinterWithParamsAndColor(param1, 0, v0, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v0, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -1157,7 +1155,7 @@ static void ov81_021D312C(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
     }
 
     v0 = MessageLoader_GetNewStrbuf(param0->unk_50, v1);
-    Text_AddPrinterWithParamsAndColor(param1, 0, v0, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v0, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -1167,7 +1165,7 @@ static void ov81_021D3190(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 
     ov81_021D2A60(param0, param2->unk_02, param2->unk_01_4, 0);
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
-    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_58, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -1177,7 +1175,7 @@ static void ov81_021D31EC(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 
     ov81_021D2A60(param0, param2->unk_02, param2->unk_01_4, 0);
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
-    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_58, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -1187,7 +1185,7 @@ static void ov81_021D3248(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 
     StringTemplate_SetPlazaMinigameName(param0->unk_54, 0, param2->unk_01_0);
     StringTemplate_Format(param0->unk_54, param0->unk_58, v0);
-    Text_AddPrinterWithParamsAndColor(param1, 0, param0->unk_58, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_58, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -1213,7 +1211,7 @@ static void ov81_021D32A0(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
     }
 
     v0 = MessageLoader_GetNewStrbuf(param0->unk_50, v1);
-    Text_AddPrinterWithParamsAndColor(param1, 0, v0, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v0, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
@@ -1221,6 +1219,6 @@ static void ov81_021D3304(UnkStruct_ov81_021D1610 *param0, Window *param1, UnkSt
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->unk_50, 102);
 
-    Text_AddPrinterWithParamsAndColor(param1, 0, v0, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
+    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v0, 0, (((16 * 4 + 16) + 16) + 16) + param3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
