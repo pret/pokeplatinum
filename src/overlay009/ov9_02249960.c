@@ -18,8 +18,8 @@
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
+#include "overlay005/fieldmap.h"
 #include "overlay005/map_object_anim_cmd.h"
-#include "overlay005/ov5_021D0D80.h"
 #include "overlay005/ov5_021D57BC.h"
 #include "overlay005/ov5_021DF440.h"
 #include "overlay005/ov5_021E779C.h"

@@ -15,7 +15,7 @@
 #include "field/field_system.h"
 #include "functypes/funcptr_0203BC5C.h"
 #include "functypes/funcptr_02069238.h"
-#include "overlay005/ov5_021D0D80.h"
+#include "overlay005/fieldmap.h"
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay005/ov5_021F007C.h"
 #include "overlay005/ov5_021F08CC.h"

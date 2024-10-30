@@ -1,3 +1,5 @@
+#include "overlay005/fieldmap.h"
+
 #include <nitro.h>
 #include <string.h>
 
@@ -12,12 +14,10 @@
 #include "field/field_system.h"
 #include "field/field_system_sub2_decl.h"
 #include "field/field_system_sub2_t.h"
-#include "overlay005/const_ov5_021F89B0.h"
 #include "overlay005/const_ov5_021FF6B8.h"
 #include "overlay005/const_ov5_021FF744.h"
 #include "overlay005/const_ov5_021FF7D0.h"
 #include "overlay005/hblank_system.h"
-#include "overlay005/ov5_021D0D80.h"
 #include "overlay005/ov5_021D1A94.h"
 #include "overlay005/ov5_021D37AC.h"
 #include "overlay005/ov5_021D521C.h"
@@ -117,7 +117,7 @@ static BOOL FieldMap_Exit(OverlayManager *overlayMan, int *param1);
 static BOOL FieldMap_ChangeZone(FieldSystem *fieldSystem);
 static void ov5_021D134C(FieldSystem *fieldSystem, u8 param1);
 static BOOL ov5_021D119C(FieldSystem *fieldSystem);
-static void ov5_021D0D80(void *param0);
+static void fieldmap(void *param0);
 static void ov5_021D13B4(FieldSystem *fieldSystem);
 static int ov5_021D1178(FieldSystem *fieldSystem);
 static BOOL FieldMap_InDistortionWorld(FieldSystem *fieldSystem);
@@ -126,7 +126,7 @@ static const int *ov5_021D1A68(const UnkStruct_ov5_021D1A68 *param0);
 static const int ov5_021D1A6C(const UnkStruct_ov5_021D1A68 *param0);
 static void ov5_021D1A70(UnkStruct_ov5_021D1A68 *param0);
 
-static inline void inline_ov5_021D0D80(FieldSystem *fieldSystem)
+static inline void inline_fieldmap(FieldSystem *fieldSystem)
 {
     UnkStruct_ov5_021ED0A4 *v0 = sub_0206285C(fieldSystem->mapObjMan);
     UnkStruct_02020C44 *v1 = ov5_021EDC8C(v0);
@@ -134,7 +134,7 @@ static inline void inline_ov5_021D0D80(FieldSystem *fieldSystem)
     sub_02020D68(v1);
 }
 
-static void ov5_021D0D80(void *param0)
+static void fieldmap(void *param0)
 {
     FieldSystem *fieldSystem = param0;
 
@@ -142,7 +142,7 @@ static void ov5_021D0D80(void *param0)
     sub_0201DCAC();
     sub_0200A858();
 
-    inline_ov5_021D0D80(fieldSystem);
+    inline_fieldmap(fieldSystem);
 }
 
 static BOOL FieldMap_Init(OverlayManager *overlayMan, int *param1)
@@ -929,7 +929,7 @@ static void ov5_021D1968(FieldSystem *fieldSystem)
     ov5_021D5CE4(fieldSystem->unk_04->unk_10, ov5_021EFA8C(fieldSystem->unk_30));
     sub_02068344(fieldSystem);
     ov5_021EE7C0(fieldSystem);
-    SetMainCallback(ov5_021D0D80, fieldSystem);
+    SetMainCallback(fieldmap, fieldSystem);
 }
 
 static UnkStruct_ov5_021D1A68 *ov5_021D1A14(int fieldSystem, int param1)

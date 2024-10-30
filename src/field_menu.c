@@ -28,7 +28,7 @@
 #include "functypes/funcptr_0203BC5C.h"
 #include "functypes/funcptr_02050904.h"
 #include "gmm/message_bank_unk_0367.h"
-#include "overlay005/ov5_021D0D80.h"
+#include "overlay005/fieldmap.h"
 #include "overlay005/ov5_021D2F14.h"
 #include "overlay005/save_info_window.h"
 #include "overlay021/struct_ov21_021D0D80.h"

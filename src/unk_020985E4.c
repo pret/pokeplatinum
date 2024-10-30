@@ -8,7 +8,7 @@
 #include "struct_defs/struct_0209862C.h"
 
 #include "field/field_system.h"
-#include "overlay005/ov5_021D0D80.h"
+#include "overlay005/fieldmap.h"
 #include "overlay100/ov100_021D0D80.h"
 
 #include "field_system.h"

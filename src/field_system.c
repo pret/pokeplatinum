@@ -8,8 +8,8 @@
 #include "consts/map.h"
 
 #include "field/field_system_sub2_t.h"
-#include "overlay005/const_ov5_021F89B0.h"
 #include "overlay005/field_control.h"
+#include "overlay005/fieldmap.h"
 #include "overlay005/ov5_021DD6FC.h"
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay005/ov5_021E1B08.h"

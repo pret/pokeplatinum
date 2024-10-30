@@ -11,7 +11,7 @@
 
 #include "field/field_system.h"
 #include "functypes/funcptr_0205AB10.h"
-#include "overlay005/ov5_021D0D80.h"
+#include "overlay005/fieldmap.h"
 
 #include "bag.h"
 #include "bg_window.h"

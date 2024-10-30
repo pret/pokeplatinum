@@ -8,7 +8,7 @@
 #include "struct_defs/sentence.h"
 
 #include "field/field_system.h"
-#include "overlay005/ov5_021D0D80.h"
+#include "overlay005/fieldmap.h"
 
 #include "bg_window.h"
 #include "colored_arrow.h"

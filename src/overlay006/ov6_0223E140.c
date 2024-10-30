@@ -10,8 +10,8 @@
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
+#include "overlay005/fieldmap.h"
 #include "overlay005/motion_blur.h"
-#include "overlay005/ov5_021D0D80.h"
 #include "overlay005/ov5_021D1A94.h"
 #include "overlay005/ov5_021D521C.h"
 #include "overlay005/struct_ov5_021D1BEC_decl.h"
