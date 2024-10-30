@@ -6,7 +6,6 @@
 #include "struct_decls/struct_0202442C_decl.h"
 #include "struct_decls/struct_02025CCC_decl.h"
 #include "struct_defs/struct_0202DF40.h"
-#include "struct_defs/struct_0203CC84.h"
 
 #include "overlay077/const_ov77_021D742C.h"
 #include "overlay097/ov97_0222D04C.h"
@@ -32,6 +31,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "list_menu.h"
+#include "main.h"
 #include "message.h"
 #include "message_util.h"
 #include "overlay_manager.h"
@@ -47,7 +47,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_02000C88.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
@@ -429,7 +428,7 @@ static void ov97_0222D658(OverlayManager *param0)
     UnkStruct_ov97_0222D04C *v2 = OverlayManager_Data(param0);
     UnkStruct_ov97_0222D250 *v3 = &v2->unk_8C.unk_00;
     UnkUnion_ov97_0222D2B0 *v4 = &v2->unk_8C.unk_50;
-    SaveData *v5 = ((UnkStruct_0203CC84 *)OverlayManager_Args(param0))->unk_08;
+    SaveData *v5 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
     MysteryGift *v6;
 
     if (v3->unk_4E_2 == 0) {
@@ -1102,7 +1101,7 @@ static int ov97_0222E2DC(OverlayManager *param0, int *param1)
     }
 
     v0->unk_62C = 29;
-    v0->unk_04 = ((UnkStruct_0203CC84 *)OverlayManager_Args(param0))->unk_08;
+    v0->unk_04 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
     v0->unk_08 = SaveData_Options(v0->unk_04);
     v0->unk_68 = 0xff;
 
@@ -2436,9 +2435,9 @@ static int ov97_022301BC(OverlayManager *param0, int *param1)
     UnkStruct_ov97_0222D04C *v0 = OverlayManager_Data(param0);
 
     if (v0->unk_440 == 0) {
-        sub_02000EC4(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D742C);
+        EnqueueApplication(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D742C);
     } else if (v0->unk_440 == 1) {
-        sub_02000EC4(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D7AC);
+        EnqueueApplication(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D7AC);
     }
 
     Heap_Destroy(91);

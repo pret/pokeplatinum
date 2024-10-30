@@ -21,11 +21,11 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "main.h"
 #include "narc.h"
 #include "overlay_manager.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02000C88.h"
 #include "unk_020041CC.h"
 #include "unk_0200A784.h"
 #include "unk_0200A9DC.h"
@@ -136,7 +136,7 @@ typedef struct {
     u8 unk_2A8;
 } UnkStruct_ov77_021D2E9C;
 
-void sub_02000EC4(FSOverlayID param0, const OverlayManagerTemplate *param1);
+void EnqueueApplication(FSOverlayID param0, const OverlayManagerTemplate *param1);
 static int ov77_021D2D08(OverlayManager *param0, int *param1);
 static int ov77_021D2D94(OverlayManager *param0, int *param1);
 static int ov77_021D2E60(OverlayManager *param0, int *param1);
@@ -1017,7 +1017,7 @@ static int ov77_021D2E60(OverlayManager *param0, int *param1)
     LCRNG_SetSeed(v0->unk_14);
     OverlayManager_FreeData(param0);
     Heap_Destroy(76);
-    sub_02000EC4(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D742C);
+    EnqueueApplication(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D742C);
 
     return 1;
 }

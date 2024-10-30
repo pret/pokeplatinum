@@ -3,12 +3,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0203CC84.h"
-
 #include "overlay018/ov18_0221F800.h"
 
 #include "game_overlay.h"
 #include "heap.h"
+#include "main.h"
 #include "overlay_manager.h"
 #include "savedata.h"
 
@@ -63,7 +62,7 @@ void sub_020995C4(void)
 static int sub_020995D4(OverlayManager *param0, int *param1)
 {
     Heap_Create(3, 49, 0x41000);
-    sub_02099590(((UnkStruct_0203CC84 *)OverlayManager_Args(param0))->unk_08, 49);
+    sub_02099590(((ApplicationArgs *)OverlayManager_Args(param0))->saveData, 49);
     Heap_Destroy(49);
 
     OS_ResetSystem(0);

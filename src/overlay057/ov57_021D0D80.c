@@ -6,7 +6,6 @@
 #include "struct_decls/struct_02025CCC_decl.h"
 #include "struct_decls/struct_02027854_decl.h"
 #include "struct_decls/struct_0202B4A0_decl.h"
-#include "struct_defs/struct_0203CC84.h"
 #include "struct_defs/struct_02055BA8.h"
 
 #include "overlay057/const_ov57_021D0F70.h"
@@ -16,6 +15,7 @@
 
 #include "game_options.h"
 #include "heap.h"
+#include "main.h"
 #include "overlay_manager.h"
 #include "party.h"
 #include "pokemon.h"
@@ -23,7 +23,6 @@
 #include "savedata.h"
 #include "savedata_misc.h"
 #include "trainer_info.h"
-#include "unk_02000C88.h"
 #include "unk_02017428.h"
 #include "unk_0201D15C.h"
 #include "unk_02025CB0.h"
@@ -78,7 +77,7 @@ static int ov57_021D0D80(OverlayManager *param0, int *param1)
 
 static int ov57_021D0D98(OverlayManager *param0, int *param1)
 {
-    SaveData *v0 = ((UnkStruct_0203CC84 *)OverlayManager_Args(param0))->unk_08;
+    SaveData *v0 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
 
     ov57_021D0F44(77, v0);
     return 1;
@@ -87,7 +86,7 @@ static int ov57_021D0D98(OverlayManager *param0, int *param1)
 static int ov57_021D0DAC(OverlayManager *param0, int *param1)
 {
     Heap_Destroy(77);
-    sub_02000EC4(0xffffffff, &Unk_020F6824);
+    EnqueueApplication(0xffffffff, &Unk_020F6824);
 
     return 1;
 }
@@ -102,7 +101,7 @@ static int ov57_021D0DC8(OverlayManager *param0, int *param1)
 
 static int ov57_021D0DE0(OverlayManager *param0, int *param1)
 {
-    SaveData *v0 = ((UnkStruct_0203CC84 *)OverlayManager_Args(param0))->unk_08;
+    SaveData *v0 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
 
     ov57_021D0EAC(77, v0, 1);
     sub_02017434(SaveData_GetPlayTime(v0));
@@ -113,7 +112,7 @@ static int ov57_021D0DE0(OverlayManager *param0, int *param1)
 static int ov57_021D0E00(OverlayManager *param0, int *param1)
 {
     Heap_Destroy(77);
-    sub_02000EC4(0xffffffff, &gFieldSystemNewGameTemplate);
+    EnqueueApplication(0xffffffff, &gFieldSystemNewGameTemplate);
     return 1;
 }
 
@@ -127,7 +126,7 @@ static int ov57_021D0E1C(OverlayManager *param0, int *param1)
 
 static int ov57_021D0E34(OverlayManager *param0, int *param1)
 {
-    SaveData *v0 = ((UnkStruct_0203CC84 *)OverlayManager_Args(param0))->unk_08;
+    SaveData *v0 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
     UnkStruct_02025CCC *v1 = sub_02025CCC(v0);
 
     ov57_021D0F30(77, v0);
@@ -146,7 +145,7 @@ static int ov57_021D0E34(OverlayManager *param0, int *param1)
 static int ov57_021D0E90(OverlayManager *param0, int *param1)
 {
     Heap_Destroy(77);
-    sub_02000EC4(0xffffffff, &gFieldSystemContinueTemplate);
+    EnqueueApplication(0xffffffff, &gFieldSystemContinueTemplate);
     return 1;
 }
 

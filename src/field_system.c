@@ -5,8 +5,6 @@
 
 #include "constants/field/map_load.h"
 
-#include "struct_defs/struct_0203CC84.h"
-
 #include "field/field_system_sub1_decl.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay005/const_ov5_021F89B0.h"
@@ -28,11 +26,11 @@
 #include "field_system.h"
 #include "game_overlay.h"
 #include "heap.h"
+#include "main.h"
 #include "map_header_data.h"
 #include "overlay_manager.h"
 #include "pokeradar.h"
 #include "savedata.h"
-#include "unk_02000C88.h"
 #include "unk_02039C80.h"
 #include "unk_020508D4.h"
 #include "unk_0205F180.h"
@@ -58,7 +56,7 @@ static FieldSystem *sFieldSystem;
 
 static int FieldSystem_InitContinue(OverlayManager *overlayMan, int *param1)
 {
-    UnkStruct_0203CC84 *v0 = OverlayManager_Args(overlayMan);
+    ApplicationArgs *v0 = OverlayManager_Args(overlayMan);
 
     sFieldSystem = FieldSystem_Init(overlayMan);
 
@@ -93,7 +91,7 @@ static int FieldSystem_Main(OverlayManager *overlayMan, int *param1)
 static int FieldSystem_Exit(OverlayManager *overlayMan, int *param1)
 {
     sub_0203CE6C(overlayMan);
-    sub_02000EC4(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D742C);
+    EnqueueApplication(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D742C);
     return 1;
 }
 
@@ -155,7 +153,7 @@ void sub_0203CD84(FieldSystem *fieldSystem, const OverlayManagerTemplate *param1
 
 static FieldSystem *FieldSystem_Init(OverlayManager *overlayMan)
 {
-    UnkStruct_0203CC84 *v0;
+    ApplicationArgs *v0;
     FieldSystem *fieldSystem;
 
     Heap_Create(3, 11, 0x1c000);
@@ -173,7 +171,7 @@ static FieldSystem *FieldSystem_Init(OverlayManager *overlayMan)
 
     v0 = OverlayManager_Args(overlayMan);
 
-    fieldSystem->saveData = v0->unk_08;
+    fieldSystem->saveData = v0->saveData;
     fieldSystem->taskManager = NULL;
     fieldSystem->location = sub_0203A720(SaveData_GetFieldOverworldState(fieldSystem->saveData));
     fieldSystem->unk_2C = sub_02039D6C();

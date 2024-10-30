@@ -8,7 +8,6 @@
 #include "struct_decls/struct_02024440_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02015958.h"
-#include "struct_defs/struct_0203CC84.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay022/struct_ov22_022559F8.h"
@@ -31,6 +30,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "item.h"
+#include "main.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
@@ -46,7 +46,6 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_02000C88.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
@@ -1780,7 +1779,7 @@ static int ov97_02235624(OverlayManager *param0, int *param1)
     sub_0200F344(0, 0x0);
     sub_0200F344(1, 0x0);
 
-    v0->unk_10 = ((UnkStruct_0203CC84 *)OverlayManager_Args(param0))->unk_08;
+    v0->unk_10 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
     v0->unk_14 = SaveData_GetTrainerInfo(v0->unk_10);
     v0->unk_18 = SaveData_Options(v0->unk_10);
     v0->unk_1C = Options_Frame(v0->unk_18);
@@ -2139,7 +2138,7 @@ static int ov97_02235CC8(OverlayManager *param0, int *param1)
     Strbuf_Free(v0->unk_12668);
     Strbuf_Free(v0->unk_1266C);
     Heap_FreeToHeap(v0->unk_20);
-    sub_02000EC4(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D742C);
+    EnqueueApplication(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D742C);
     OverlayManager_FreeData(param0);
     Heap_Destroy(78);
 

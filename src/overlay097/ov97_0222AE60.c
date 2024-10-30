@@ -3,7 +3,6 @@
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0202442C_decl.h"
-#include "struct_defs/struct_0203CC84.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay057/const_ov57_021D0F70.h"
@@ -23,6 +22,7 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "main.h"
 #include "message.h"
 #include "message_util.h"
 #include "overlay_manager.h"
@@ -34,7 +34,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02000C88.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200A784.h"
@@ -984,7 +983,7 @@ static int ov97_0222BD70(OverlayManager *param0, int *param1)
     sub_0200F344(0, 0x0);
     sub_0200F344(1, 0x0);
 
-    v0->unk_04 = ((UnkStruct_0203CC84 *)OverlayManager_Args(param0))->unk_08;
+    v0->unk_04 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
     v0->unk_14 = SaveData_MysteryGift(v0->unk_04);
     v0->unk_11C = FX32_ONE * 0;
     v0->unk_120 = FX32_ONE * 0;
@@ -1165,33 +1164,33 @@ static void ov97_0222C094(UnkStruct_0222AE60 *param0)
 {
     switch (param0->unk_58) {
     case 1:
-        sub_02000EC4(FS_OVERLAY_ID(overlay57), &Unk_ov57_021D0F70);
+        EnqueueApplication(FS_OVERLAY_ID(overlay57), &Unk_ov57_021D0F70);
         break;
     case 2:
-        sub_02000EC4(FS_OVERLAY_ID(overlay57), &Unk_ov57_021D0F90);
+        EnqueueApplication(FS_OVERLAY_ID(overlay57), &Unk_ov57_021D0F90);
         break;
     case 3:
-        sub_02000EC4(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D71C);
+        EnqueueApplication(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D71C);
         break;
     case 5:
-        sub_02000EC4(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D864);
+        EnqueueApplication(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D864);
         break;
     case 4:
-        sub_02000EC4(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D6BC);
+        EnqueueApplication(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D6BC);
         break;
     case 6:
         sub_020243E0("data/eoo.dat");
         break;
     case 7:
         sub_0200569C();
-        sub_02000EC4(0xffffffff, &Unk_020F6DF0);
+        EnqueueApplication(0xffffffff, &Unk_020F6DF0);
         break;
     case 8:
         sub_0200569C();
-        sub_02000EC4(FS_OVERLAY_ID(overlay98), &Unk_ov98_02249BAC);
+        EnqueueApplication(FS_OVERLAY_ID(overlay98), &Unk_ov98_02249BAC);
         break;
     case 0:
-        sub_02000EC4(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D742C);
+        EnqueueApplication(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D742C);
         break;
     }
 }

@@ -1873,7 +1873,7 @@ void CommSys_Seed(MATHRandContext32 *rand)
     RTCTime time;
 
     GetCurrentDateTime(&date, &time);
-    seed = (((((((u64)date.year * 16ULL + date.month) * 32ULL) + date.day) * 32ULL + time.hour) * 64ULL + time.minute) * 64ULL + (time.second + gCoreSys.frameCounter));
+    seed = (((((((u64)date.year * 16ULL + date.month) * 32ULL) + date.day) * 32ULL + time.hour) * 64ULL + time.minute) * 64ULL + (time.second + gCoreSys.vblankCounter));
     MATH_InitRand32(rand, seed);
 }
 

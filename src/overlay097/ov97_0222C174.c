@@ -5,7 +5,6 @@
 #include "struct_decls/struct_0202442C_decl.h"
 #include "struct_defs/struct_0202DBAC.h"
 #include "struct_defs/struct_0202DF40.h"
-#include "struct_defs/struct_0203CC84.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay077/const_ov77_021D742C.h"
@@ -26,6 +25,7 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "main.h"
 #include "message.h"
 #include "message_util.h"
 #include "overlay_manager.h"
@@ -37,7 +37,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02000C88.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0202631C.h"
@@ -680,7 +679,7 @@ static int ov97_0222C6F8(OverlayManager *param0, int *param1)
 
     v0->unk_00 = 85;
     v0->unk_04 = BgConfig_New(v0->unk_00);
-    v0->unk_08 = ((UnkStruct_0203CC84 *)OverlayManager_Args(param0))->unk_08;
+    v0->unk_08 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
     v0->unk_10 = SaveData_GetTrainerInfo(v0->unk_08);
     v0->unk_0C = SaveData_Pokedex(v0->unk_08);
     v0->unk_14 = SaveData_Options(v0->unk_08);
@@ -784,7 +783,7 @@ static int ov97_0222C78C(OverlayManager *param0, int *param1)
 static int ov97_0222C948(OverlayManager *param0, int *param1)
 {
     Heap_Destroy(91);
-    sub_02000EC4(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D742C);
+    EnqueueApplication(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D742C);
     OverlayManager_FreeData(param0);
     Heap_Destroy(85);
 

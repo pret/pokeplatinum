@@ -4,7 +4,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0203CC84.h"
 #include "struct_defs/struct_02089438.h"
 
 #include "overlay065/ov65_0222DCE0.h"
@@ -18,10 +17,10 @@
 #include "error_handling.h"
 #include "game_overlay.h"
 #include "heap.h"
+#include "main.h"
 #include "overlay_manager.h"
 #include "save_player.h"
 #include "strbuf.h"
-#include "unk_02000C88.h"
 #include "unk_020041CC.h"
 #include "unk_02017728.h"
 #include "unk_02030CE8.h"
@@ -104,7 +103,7 @@ int ov98_02246C20(OverlayManager *param0, int *param1)
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov98_02246E88), 108);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov98_02246E88));
-    v0->unk_04 = ((UnkStruct_0203CC84 *)OverlayManager_Args(param0))->unk_08;
+    v0->unk_04 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
     v0->unk_08 = SaveData_Options(v0->unk_04);
     v0->unk_114 = Strbuf_Init(100, 108);
     v0->unk_118 = Strbuf_Init(100, 108);
@@ -181,7 +180,7 @@ int ov98_02246DC0(OverlayManager *param0, int *param1)
     OverlayManager_FreeData(param0);
     Heap_Destroy(108);
     Heap_Destroy(91);
-    sub_02000EC4(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D742C);
+    EnqueueApplication(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D742C);
 
     return 1;
 }
