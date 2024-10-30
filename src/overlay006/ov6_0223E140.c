@@ -2058,7 +2058,7 @@ UnkStruct_ov6_022401B8 *ov6_02240104(u32 param0, FieldSystem *fieldSystem)
     ov6_02240260(&v0->unk_34, v0->unk_11C, &v0->unk_10C);
 
     {
-        BgConfig *v1 = sub_0203D170(v0->fieldSystem);
+        BgConfig *v1 = FieldSystem_GetBgConfig(v0->fieldSystem);
 
         Graphics_LoadTilesToBgLayer(172, 74, v1, 2, 0, 0, 0, param0);
         Graphics_LoadTilemapToBgLayer(172, 76, v1, 2, 0, 0, 0, param0);

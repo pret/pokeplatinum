@@ -351,7 +351,7 @@ static void sub_02068630(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     v2->unk_24 = param0->unk_04;
     v2->unk_22 = param0->unk_06;
 
-    sub_0203CD84(fieldSystem, &Unk_020F1E88, v2);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v2);
     v1->unk_25C = v2;
     sub_0203B674(v1, sub_0203B7C0);
 }
@@ -604,7 +604,7 @@ static void sub_02068A34(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     v2->unk_22 = param0->unk_06;
     v2->unk_26 = Item_MoveForTMHM(param0->unk_04);
 
-    sub_0203CD84(fieldSystem, &Unk_020F1E88, v2);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v2);
     v1->unk_25C = v2;
     sub_0203B674(v1, sub_0203B7C0);
 }
@@ -1003,7 +1003,7 @@ static void sub_02068FEC(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     v2->unk_24 = param0->unk_04;
     v2->unk_22 = param0->unk_06;
 
-    sub_0203CD84(fieldSystem, &Unk_020F1E88, v2);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v2);
     v1->unk_25C = v2;
     sub_0203B674(v1, sub_0203B7C0);
 }

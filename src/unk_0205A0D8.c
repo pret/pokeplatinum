@@ -144,7 +144,7 @@ static void sub_0205A0D8(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem, P
     v0->ribbons = sub_0202D79C(v1);
 
     PokemonSummary_FlagVisiblePages(v0, v2);
-    sub_0203CD84(fieldSystem, &Unk_020F410C, v0);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F410C, v0);
 
     param0->unk_00 = v0;
 }
@@ -178,7 +178,7 @@ static void sub_0205A164(UnkStruct_0205A0D8 *param0, int param1)
         v1->unk_2C[v0] = param0->unk_3D[v0];
     }
 
-    sub_0203CD84(param0->fieldSystem, &Unk_020F1E88, v1);
+    FieldSystem_StartChildProcess(param0->fieldSystem, &Unk_020F1E88, v1);
     param0->unk_04 = v1;
 }
 
@@ -1095,7 +1095,7 @@ void sub_0205B2D4(FieldSystem *fieldSystem)
             v4->unk_28 = 0;
 
             FieldTask_Set(fieldSystem, sub_0205B140, v4);
-            sub_0203D128();
+            FieldSystem_PauseProcessing();
             break;
         }
     }

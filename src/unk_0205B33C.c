@@ -150,7 +150,7 @@ static UnkStruct_0205B43C *sub_0205B3A0(FieldSystem *fieldSystem)
         return NULL;
     }
 
-    v1 = FieldSystem_SaveData(fieldSystem);
+    v1 = FieldSystem_GetSaveData(fieldSystem);
     sub_020369EC(v1);
 
     v2 = (UnkStruct_0205B43C *)Heap_AllocFromHeap(31, sizeof(UnkStruct_0205B43C));

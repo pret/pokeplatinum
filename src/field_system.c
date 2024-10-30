@@ -105,46 +105,42 @@ const OverlayManagerTemplate gFieldSystemContinueTemplate = {
     .overlayID = FS_OVERLAY_ID_NONE,
 };
 
-void sub_0203CD00(FieldSystem *fieldSystem)
+void FieldSystem_StartFieldMap(FieldSystem *fieldSystem)
 {
     GF_ASSERT(fieldSystem->processManager->child == NULL);
     GF_ASSERT(fieldSystem->processManager->parent == NULL);
-    Overlay_LoadByID(FS_OVERLAY_ID(overlay5), 2);
+    Overlay_LoadByID(FS_OVERLAY_ID(overlay5), OVERLAY_LOAD_ASYNC);
 
-    fieldSystem->unk_68 = 0;
-    fieldSystem->processManager->pause = 0;
+    fieldSystem->runningFieldMap = FALSE;
+    fieldSystem->processManager->pause = FALSE;
     fieldSystem->processManager->parent = OverlayManager_New(&gFieldMapTemplate, fieldSystem, HEAP_ID_FIELDMAP);
 }
 
-void sub_0203CD44(FieldSystem *fieldSystem)
+void FieldSystem_FlagNotRunningFieldMap(FieldSystem *fieldSystem)
 {
-    fieldSystem->unk_68 = 0;
+    fieldSystem->runningFieldMap = FALSE;
 }
 
-BOOL sub_0203CD4C(FieldSystem *fieldSystem)
+BOOL FieldSystem_HasParentProcess(FieldSystem *fieldSystem)
 {
     return fieldSystem->processManager->parent != NULL;
 }
 
-BOOL sub_0203CD5C(FieldSystem *fieldSystem)
+BOOL FieldSystem_IsRunningFieldMap(FieldSystem *fieldSystem)
 {
-    if ((fieldSystem->processManager->parent != NULL) && fieldSystem->unk_68) {
-        return 1;
-    } else {
-        return 0;
-    }
+    return fieldSystem->processManager->parent != NULL && fieldSystem->runningFieldMap;
 }
 
-BOOL sub_0203CD74(FieldSystem *fieldSystem)
+BOOL FieldSystem_HasChildProcess(FieldSystem *fieldSystem)
 {
     return fieldSystem->processManager->child != NULL;
 }
 
-void sub_0203CD84(FieldSystem *fieldSystem, const OverlayManagerTemplate *param1, void *param2)
+void FieldSystem_StartChildProcess(FieldSystem *fieldSystem, const OverlayManagerTemplate *overlayTemplate, void *overlayArgs)
 {
     GF_ASSERT(fieldSystem->processManager->child == NULL);
-    sub_0203CD44(fieldSystem);
-    fieldSystem->processManager->child = OverlayManager_New(param1, param2, HEAP_ID_FIELDMAP);
+    FieldSystem_FlagNotRunningFieldMap(fieldSystem);
+    fieldSystem->processManager->child = OverlayManager_New(overlayTemplate, overlayArgs, HEAP_ID_FIELDMAP);
 }
 
 static FieldSystem *InitFieldSystem(OverlayManager *ovyManager)
@@ -236,7 +232,7 @@ static BOOL HandleInputsEventsAndProcesses(FieldSystem *fieldSystem)
 static void HandleFieldInput(FieldSystem *fieldSystem)
 {
     BOOL processInput = FALSE;
-    if (!fieldSystem->processManager->pause && fieldSystem->unk_68 && sub_020509A4(fieldSystem) == FALSE) {
+    if (!fieldSystem->processManager->pause && fieldSystem->runningFieldMap && sub_020509A4(fieldSystem) == FALSE) {
         processInput = TRUE;
     }
 
@@ -331,13 +327,13 @@ static void HandleFieldInput(FieldSystem *fieldSystem)
     }
 }
 
-void sub_0203D128(void)
+void FieldSystem_PauseProcessing(void)
 {
     sFieldSystem->processManager->pause = TRUE;
     CommSys_DisableSendMovementData();
 }
 
-void sub_0203D140(void)
+void FieldSystem_ResumeProcessing(void)
 {
     sFieldSystem->processManager->pause = FALSE;
     CommSys_EnableSendMovementData();
@@ -352,13 +348,12 @@ struct PoketchSystem *FieldSystem_GetPoketchSystem(void)
     return sFieldSystem->unk_04->poketchSys;
 }
 
-BgConfig *sub_0203D170(void *param0)
+BgConfig *FieldSystem_GetBgConfig(void *fieldSystem)
 {
-    FieldSystem *fieldSystem = (FieldSystem *)param0;
-    return fieldSystem->bgConfig;
+    return ((FieldSystem *)fieldSystem)->bgConfig;
 }
 
-SaveData *FieldSystem_SaveData(void *param0)
+SaveData *FieldSystem_GetSaveData(void *fieldSystem)
 {
-    return ((FieldSystem *)param0)->saveData;
+    return ((FieldSystem *)fieldSystem)->saveData;
 }

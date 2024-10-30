@@ -220,7 +220,7 @@ static void CommClubMan_Init(FieldSystem *fieldSystem)
     sCommClubMan->fieldSystem = fieldSystem;
     sCommClubMan->unk_97 = 0;
     sCommClubMan->msgLoader = MessageLoader_Init(1, 26, 353, 4);
-    sCommClubMan->trainerInfoPersonal = SaveData_GetTrainerInfo(FieldSystem_SaveData(sCommClubMan->fieldSystem));
+    sCommClubMan->trainerInfoPersonal = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(sCommClubMan->fieldSystem));
     sCommClubMan->unk_7C = TrainerInfo_New(4);
 
     Window_Init(&sCommClubMan->unk_20);

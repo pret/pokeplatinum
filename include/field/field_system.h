@@ -80,7 +80,7 @@ typedef struct FieldSystem_t {
     const TerrainCollisionManager *terrainCollisionMan;
     int unk_60;
     UnkStruct_ov5_021E1B20 *unk_64;
-    BOOL unk_68;
+    BOOL runningFieldMap;
     UnkStruct_ov23_0224942C *unk_6C;
     int mapLoadType;
     const MapLoadMode *mapLoadMode;

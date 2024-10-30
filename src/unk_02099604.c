@@ -50,7 +50,7 @@ static void sub_0209964C(FieldSystem *fieldSystem, UnkStruct_ov82_0223B164 *para
             FS_OVERLAY_ID(overlay82)
         };
 
-        sub_0203CD84(fieldSystem, &v0, param1);
+        FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
     }
 }
 
@@ -58,7 +58,7 @@ UnkStruct_ov82_0223B164 *sub_02099674(FieldSystem *fieldSystem, int param1, int 
 {
     UnkStruct_ov82_0223B164 *v0;
 
-    v0 = sub_02099604(param1, FieldSystem_SaveData(fieldSystem), param2, fieldSystem->journal);
+    v0 = sub_02099604(param1, FieldSystem_GetSaveData(fieldSystem), param2, fieldSystem->journal);
     sub_0209964C(fieldSystem, v0);
 
     return v0;
@@ -68,7 +68,7 @@ UnkStruct_ov82_0223B164 *sub_020996A0(FieldSystem *fieldSystem, int param1, BOOL
 {
     UnkStruct_ov82_0223B164 *v0;
 
-    v0 = sub_02099604(1, FieldSystem_SaveData(fieldSystem), param1, fieldSystem->journal);
+    v0 = sub_02099604(1, FieldSystem_GetSaveData(fieldSystem), param1, fieldSystem->journal);
     v0->unk_20 = 1;
     v0->unk_24 = param2;
 

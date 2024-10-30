@@ -90,7 +90,7 @@ static void inline_020559DC(FieldSystem *fieldSystem, UnkStruct_02055BA8 *param1
 
 static void sub_02055AC0(FieldSystem *fieldSystem, s32 param1)
 {
-    sub_02028658(FieldSystem_SaveData(fieldSystem), param1);
+    sub_02028658(FieldSystem_GetSaveData(fieldSystem), param1);
     sub_0203F1FC(fieldSystem);
     sub_0206C2D0(fieldSystem->saveData, param1);
     sub_0202B3D8(sub_0202B4A0(fieldSystem->saveData), param1);

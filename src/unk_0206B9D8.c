@@ -91,7 +91,7 @@ static int sub_0206B9D8(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, in
         v2->unk_2C[v0] = param0->unk_0E[v0];
     }
 
-    sub_0203CD84(fieldSystem, &Unk_020F1E88, v2);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v2);
 
     *(param0->unk_14) = v2;
     return 1;
@@ -152,7 +152,7 @@ static int sub_0206BAE0(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, in
 
     PokemonSummary_FlagVisiblePages(v0, v2);
     PokemonSummary_SetPlayerProfile(v0, SaveData_GetTrainerInfo(v1));
-    sub_0203CD84(fieldSystem, &Unk_020F410C, v0);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F410C, v0);
     *(param0->unk_14) = v0;
 
     return 3;

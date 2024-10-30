@@ -50,7 +50,7 @@ BOOL ScrCmd_BufferPlayerName(ScriptContext *ctx)
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 templateArg = ScriptContext_ReadByte(ctx);
 
-    StringTemplate_SetPlayerName(*strTemplate, templateArg, SaveData_GetTrainerInfo(FieldSystem_SaveData(fieldSystem)));
+    StringTemplate_SetPlayerName(*strTemplate, templateArg, SaveData_GetTrainerInfo(FieldSystem_GetSaveData(fieldSystem)));
     return FALSE;
 }
 
@@ -244,7 +244,7 @@ BOOL ScrCmd_0D9(ScriptContext *param0)
 {
     int v0;
     FieldSystem *fieldSystem = param0->fieldSystem;
-    TrainerInfo *v2 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSystem));
+    TrainerInfo *v2 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(param0->fieldSystem));
     StringTemplate **v3 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v4 = ScriptContext_ReadByte(param0);
 

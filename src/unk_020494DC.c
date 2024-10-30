@@ -37,7 +37,7 @@ BOOL ScrCmd_1DB(ScriptContext *param0)
     v0 = ScriptContext_ReadHalfWord(param0);
     v1 = ScriptContext_ReadHalfWord(param0);
 
-    param0->fieldSystem->unk_AC = sub_0204A124(FieldSystem_SaveData(param0->fieldSystem), v0, v1);
+    param0->fieldSystem->unk_AC = sub_0204A124(FieldSystem_GetSaveData(param0->fieldSystem), v0, v1);
     return 0;
 }
 

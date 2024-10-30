@@ -326,7 +326,7 @@ BOOL ov6_02240D5C(FieldSystem *fieldSystem)
             v13[i].minLevel = encounterData->grassEncounters.encounters[i].level;
         }
 
-        BOOL nationalDexObtained = Pokedex_IsNationalDexObtained(SaveData_Pokedex(FieldSystem_SaveData(fieldSystem)));
+        BOOL nationalDexObtained = Pokedex_IsNationalDexObtained(SaveData_Pokedex(FieldSystem_GetSaveData(fieldSystem)));
 
         WildEncounters_ReplaceTimedEncounters(encounterData, &v13[2].species, &v13[3].species);
         WildEncounters_ReplaceRadarEncounters(fieldSystem, encounterData, &v13[0].species, &v13[1].species);
@@ -514,7 +514,7 @@ BOOL ov6_022411C8(FieldSystem *fieldSystem, TaskManager *param1)
             v12[i].minLevel = encounterData->grassEncounters.encounters[i].level;
         }
 
-        BOOL nationalDexObtained = Pokedex_IsNationalDexObtained(SaveData_Pokedex(FieldSystem_SaveData(fieldSystem)));
+        BOOL nationalDexObtained = Pokedex_IsNationalDexObtained(SaveData_Pokedex(FieldSystem_GetSaveData(fieldSystem)));
 
         WildEncounters_ReplaceTimedEncounters(encounterData, &v12[2].species, &v12[3].species);
         WildEncounters_ReplaceRadarEncounters(fieldSystem, encounterData, &v12[0].species, &v12[1].species);
@@ -643,7 +643,7 @@ BOOL ov6_022413E4(FieldSystem *fieldSystem, BattleParams **battleParams)
             v12[i].minLevel = encounterData->grassEncounters.encounters[i].level;
         }
 
-        BOOL nationalDexObtained = Pokedex_IsNationalDexObtained(SaveData_Pokedex(FieldSystem_SaveData(fieldSystem)));
+        BOOL nationalDexObtained = Pokedex_IsNationalDexObtained(SaveData_Pokedex(FieldSystem_GetSaveData(fieldSystem)));
 
         WildEncounters_ReplaceTimedEncounters(encounterData, &v12[2].species, &v12[3].species);
         WildEncounters_ReplaceRadarEncounters(fieldSystem, encounterData, &v12[0].species, &v12[1].species);
@@ -700,7 +700,7 @@ static BOOL ov6_02241674(FieldSystem *fieldSystem, Pokemon *firstPartyMon, Battl
         GetRadarMon(fieldSystem->chain, &species, &level);
 
         if (param6->unk_04 == 1) {
-            TrainerInfo *v3 = SaveData_GetTrainerInfo(FieldSystem_SaveData(fieldSystem));
+            TrainerInfo *v3 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(fieldSystem));
             v0 = ov6_02241F2C(species, level, 1, param6->unk_08, TrainerInfo_ID(v3), encounterFieldParams, firstPartyMon, battleParams);
         } else {
             v0 = ov6_02241F7C(fieldSystem, firstPartyMon, encounterFieldParams, param4, 1, battleParams, species, level);

@@ -1422,13 +1422,13 @@ static void ov23_0223F118(SysTask *param0, void *param1)
     case 2:
         if (IsScreenTransitionDone()) {
             if (fieldSystem->unk_6C == NULL) {
-                sub_0203CD44(fieldSystem);
+                FieldSystem_FlagNotRunningFieldMap(fieldSystem);
                 (v0->unk_00)++;
             }
         }
         break;
     case 3:
-        if (!sub_0203CD4C(fieldSystem)) {
+        if (!FieldSystem_HasParentProcess(fieldSystem)) {
             sub_02039794();
             (v0->unk_00)++;
         }
@@ -1474,7 +1474,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         v0->unk_08++;
 
         if (v0->unk_08 > 80) {
-            UndergroundData *v2 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_02257740->fieldSystem));
+            UndergroundData *v2 = sub_020298B0(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
 
             ov23_02254044(ov23_0224219C());
 
@@ -1777,7 +1777,7 @@ static BOOL ov23_0223F838(int param0, int param1, int param2)
 
 static int ov23_0223F970(UnkStruct_ov23_02256EB0 *param0)
 {
-    SaveData *v0 = FieldSystem_SaveData(Unk_ov23_02257740->fieldSystem);
+    SaveData *v0 = FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem);
     UndergroundData *v1 = sub_020298B0(v0);
     BOOL v2 = TrainerInfo_ID(SaveData_GetTrainerInfo(v0)) % 2;
     BOOL v3 = Pokedex_IsNationalDexObtained(SaveData_Pokedex(v0));
@@ -1850,7 +1850,7 @@ static int ov23_0223FA20(void)
 
 static void ov23_0223FA3C(BgConfig *param0, int param1, UnkStruct_ov23_0223EE80 *param2)
 {
-    UndergroundData *v0 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_02257740->fieldSystem));
+    UndergroundData *v0 = sub_020298B0(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
     int v1, v2, v3 = ov23_0223F9C8();
     int v4, v5, v6, v7, v8 = 0, v9, v10;
     int v11 = ov23_0223FA20();
@@ -2497,8 +2497,8 @@ static int ov23_0224080C(int param0)
 static void ov23_022408A0(int param0, int param1)
 {
     int v0 = param0;
-    SecretBaseRecord *v1 = SaveData_SecretBaseRecord(FieldSystem_SaveData(Unk_ov23_02257740->fieldSystem));
-    UndergroundData *v2 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_02257740->fieldSystem));
+    SecretBaseRecord *v1 = SaveData_SecretBaseRecord(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
+    UndergroundData *v2 = sub_020298B0(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
 
     if (ov23_02241CF4(v0)) {
         ov23_0224F6E0(v0, param1);
@@ -2510,7 +2510,7 @@ static void ov23_022408A0(int param0, int param1)
 
 static BOOL ov23_022408EC(int param0)
 {
-    UndergroundData *v0 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_02257740->fieldSystem));
+    UndergroundData *v0 = sub_020298B0(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
 
     if (ov23_02241CF4(param0)) {
         if (40 == sub_02028C3C(v0)) {
@@ -2683,7 +2683,7 @@ static BOOL ov23_02240CFC(UnkStruct_ov23_0223EE80 *param0)
 {
     u8 v0[2];
     int v1;
-    UndergroundData *v2 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_02257740->fieldSystem));
+    UndergroundData *v2 = sub_020298B0(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
 
     if (Unk_ov23_02257740->unk_A29 == 1) {
         Unk_ov23_02257740->unk_A29 = 0;

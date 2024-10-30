@@ -80,7 +80,7 @@ static void sub_0204EE90(ScriptContext *param0, u16 param1, Pokemon *param2, u16
     *v0 = v1;
 
     v1->unk_00 = param2;
-    v1->unk_04 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSystem));
+    v1->unk_04 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(param0->fieldSystem));
     v1->unk_08 = SaveData_Options(param0->fieldSystem->saveData);
     v1->unk_0C = param3;
     v1->unk_15 = param1;

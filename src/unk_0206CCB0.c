@@ -2167,7 +2167,7 @@ static BOOL sub_0206EA0C(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param
 
 static int sub_0206EA10(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
 {
-    TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(fieldSystem));
+    TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(fieldSystem));
     int v1 = fieldSystem->location->mapId;
 
     if ((v1 == 411) || ((v1 >= 412) && (v1 <= 417))) {
@@ -2624,7 +2624,7 @@ static int sub_0206EDAC(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     u16 v2, v3;
     u32 v4, v5;
     Strbuf *v6 = Strbuf_Init(22, 4);
-    TrainerInfo *v7 = SaveData_GetTrainerInfo(FieldSystem_SaveData(fieldSystem));
+    TrainerInfo *v7 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(fieldSystem));
 
     v1 = sub_0202D834(fieldSystem->saveData);
     v2 = (LCRNG_Next() % 29);

@@ -66,7 +66,7 @@ BOOL ScrCmd_199(ScriptContext *param0)
 {
     FieldSystem *fieldSystem = param0->fieldSystem;
     Pokemon *v1;
-    TrainerInfo *v2 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSystem));
+    TrainerInfo *v2 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(param0->fieldSystem));
     u16 *v3 = ScriptContext_GetVarPointer(param0);
     u16 *v4 = ScriptContext_GetVarPointer(param0);
     u16 v5, v6;

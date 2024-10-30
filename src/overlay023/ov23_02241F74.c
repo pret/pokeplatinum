@@ -789,8 +789,8 @@ void ov23_02242BC0(FieldSystem *fieldSystem)
         ov23_0223E1E4(v0, fieldSystem);
 
         v0 = Heap_AllocFromHeap(15, ov23_02253608());
-        ov23_02253598(v0, SaveData_SecretBaseRecord(FieldSystem_SaveData(fieldSystem)), FieldSystem_SaveData(fieldSystem));
-        ov23_0224F588(sub_020298B0(FieldSystem_SaveData(fieldSystem)));
+        ov23_02253598(v0, SaveData_SecretBaseRecord(FieldSystem_GetSaveData(fieldSystem)), FieldSystem_GetSaveData(fieldSystem));
+        ov23_0224F588(sub_020298B0(FieldSystem_GetSaveData(fieldSystem)));
     }
 }
 

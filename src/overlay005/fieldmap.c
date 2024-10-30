@@ -231,7 +231,7 @@ static BOOL FieldMap_Init(OverlayManager *overlayMan, int *param1)
         break;
     case 3:
         if (ov5_021D5BF4(fieldSystem)) {
-            fieldSystem->unk_68 = 1;
+            fieldSystem->runningFieldMap = TRUE;
             ret = TRUE;
         }
         break;
@@ -255,7 +255,7 @@ static BOOL FieldMap_Main(OverlayManager *overlayMan, int *param1)
 
     ov5_021D134C(fieldSystem, fieldSystem->unk_C0);
 
-    if (fieldSystem->unk_68) {
+    if (fieldSystem->runningFieldMap) {
         return FALSE;
     } else {
         return TRUE;
@@ -367,7 +367,7 @@ const OverlayManagerTemplate gFieldMapTemplate = {
 
 static int ov5_021D1178(FieldSystem *fieldSystem)
 {
-    UnkStruct_02027860 *v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+    UnkStruct_02027860 *v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
     int v1 = sub_02027F80(v0);
 
     if (v1 == 0) {
@@ -887,7 +887,7 @@ static void ov5_021D1878(FieldSystem *fieldSystem)
     FieldEffect_InitRenderObject(fieldSystem->unk_40);
 
     {
-        UnkStruct_02027860 *v3 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+        UnkStruct_02027860 *v3 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
         int v4 = sub_02027F80(v3);
 
         PlayerAvatar_InitDraw(fieldSystem->playerAvatar, v4);
@@ -975,7 +975,7 @@ static void ov5_021D1A70(UnkStruct_ov5_021D1A68 *param0)
 
 static BOOL FieldMap_InDistortionWorld(FieldSystem *fieldSystem)
 {
-    UnkStruct_02027860 *v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+    UnkStruct_02027860 *v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
     int v1 = sub_02027F80(v0);
 
     if (v1 == 9) {

@@ -104,7 +104,7 @@ BOOL ScrCmd_2A8(ScriptContext *param0)
 BOOL ScrCmd_274(ScriptContext *param0)
 {
     FieldSystem *fieldSystem = param0->fieldSystem;
-    TrainerInfo *v1 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSystem));
+    TrainerInfo *v1 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(param0->fieldSystem));
     SaveData *v2 = fieldSystem->saveData;
     u16 *v3 = SaveData_GetCoins(v2);
     u32 v4, v5;
@@ -125,7 +125,7 @@ BOOL ScrCmd_274(ScriptContext *param0)
 BOOL ScrCmd_2A9(ScriptContext *param0)
 {
     FieldSystem *fieldSystem = param0->fieldSystem;
-    TrainerInfo *v1 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSystem));
+    TrainerInfo *v1 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(param0->fieldSystem));
     SaveData *v2 = fieldSystem->saveData;
     u16 *v3 = SaveData_GetCoins(v2);
     u16 *v4 = ScriptContext_GetVarPointer(param0);

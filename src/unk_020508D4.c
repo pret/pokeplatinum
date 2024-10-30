@@ -116,7 +116,7 @@ BOOL sub_020509A4(FieldSystem *fieldSystem)
 
 BOOL sub_020509B4(FieldSystem *fieldSystem)
 {
-    if (sub_0203CD4C(fieldSystem) || sub_0203CD74(fieldSystem)) {
+    if (FieldSystem_HasParentProcess(fieldSystem) || FieldSystem_HasChildProcess(fieldSystem)) {
         return 1;
     } else {
         return 0;
@@ -125,12 +125,12 @@ BOOL sub_020509B4(FieldSystem *fieldSystem)
 
 void sub_020509D4(FieldSystem *fieldSystem)
 {
-    sub_0203CD00(fieldSystem);
+    FieldSystem_StartFieldMap(fieldSystem);
 }
 
 BOOL sub_020509DC(FieldSystem *fieldSystem)
 {
-    if (sub_0203CD5C(fieldSystem)) {
+    if (FieldSystem_IsRunningFieldMap(fieldSystem)) {
         return 1;
     } else {
         return 0;
@@ -144,7 +144,7 @@ static BOOL sub_020509F0(TaskManager *param0)
 
     switch (v1->unk_00) {
     case 0:
-        sub_0203CD84(fieldSystem, v1->unk_04, v1->unk_08);
+        FieldSystem_StartChildProcess(fieldSystem, v1->unk_04, v1->unk_08);
         v1->unk_00++;
         break;
     case 1:

@@ -64,7 +64,7 @@ BOOL sub_0209862C(TaskManager *param0)
                 FS_OVERLAY_ID(overlay100)
             };
 
-            sub_0203CD84(fieldSystem, &v2, v1->unk_04);
+            FieldSystem_StartChildProcess(fieldSystem, &v2, v1->unk_04);
             v1->unk_00++;
         }
         break;

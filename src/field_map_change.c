@@ -687,7 +687,7 @@ void FieldTask_ChangeMapByLocation(TaskManager *taskMan, const Location *nextLoc
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     MapChangeSubData *mapChangeSub = Heap_AllocFromHeapAtEnd(11, sizeof(MapChangeSubData));
 
-    if (sub_0203CD4C(fieldSystem)) {
+    if (FieldSystem_HasParentProcess(fieldSystem)) {
         GF_ASSERT(FALSE);
         return;
     }
@@ -868,7 +868,7 @@ static void FieldTask_FadeInFly(TaskManager *taskMan)
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     MapChangeFlyData *mapChangeData = TaskManager_Environment(taskMan);
 
-    if (!sub_0203CD4C(fieldSystem)) {
+    if (!FieldSystem_HasParentProcess(fieldSystem)) {
         GF_ASSERT(FALSE);
         return;
     }
@@ -999,7 +999,7 @@ static void sub_02053E5C(TaskManager *taskMan)
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     MapChangeDigData *mapChangeData = TaskManager_Environment(taskMan);
 
-    if (!sub_0203CD4C(fieldSystem)) {
+    if (!FieldSystem_HasParentProcess(fieldSystem)) {
         GF_ASSERT(FALSE);
         return;
     }
@@ -1375,7 +1375,7 @@ void sub_020544F0(TaskManager *taskMan, const Location *nextLocation)
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     MapChangeSubData *mapChangeData = Heap_AllocFromHeapAtEnd(11, sizeof(MapChangeSubData));
 
-    if (sub_0203CD4C(fieldSystem)) {
+    if (FieldSystem_HasParentProcess(fieldSystem)) {
         GF_ASSERT(FALSE);
         return;
     }

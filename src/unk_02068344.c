@@ -66,7 +66,7 @@ void sub_02068344(FieldSystem *fieldSystem)
     int v0;
     UnkStruct_02027860 *v1;
 
-    v1 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+    v1 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
     v0 = sub_02027F80(v1);
 
     if (v0 == 0) {
@@ -81,7 +81,7 @@ void sub_02068368(FieldSystem *fieldSystem)
     int v0;
     UnkStruct_02027860 *v1;
 
-    v1 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+    v1 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
     v0 = sub_02027F80(v1);
 
     if (v0 == 0) {
@@ -98,7 +98,7 @@ BOOL sub_02068390(FieldSystem *fieldSystem, const int param1, const int param2, 
     int v0;
     UnkStruct_02027860 *v1;
 
-    v1 = sub_02027860(FieldSystem_SaveData(fieldSystem));
+    v1 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
     v0 = sub_02027F80(v1);
 
     if (v0 == 0) {

@@ -293,7 +293,7 @@ void ov23_0224F5B8(void)
 static int ov23_0224F5C8(void *param0)
 {
     UnkStruct_ov23_02250CD4 *v0 = param0;
-    UndergroundData *v1 = sub_020298B0(FieldSystem_SaveData(v0->fieldSystem));
+    UndergroundData *v1 = sub_020298B0(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_02028E28(v1);
 }
@@ -301,7 +301,7 @@ static int ov23_0224F5C8(void *param0)
 static int ov23_0224F5DC(void *param0)
 {
     UnkStruct_ov23_02250CD4 *v0 = param0;
-    UndergroundData *v1 = sub_020298B0(FieldSystem_SaveData(v0->fieldSystem));
+    UndergroundData *v1 = sub_020298B0(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_020289A0(v1);
 }
@@ -309,7 +309,7 @@ static int ov23_0224F5DC(void *param0)
 int ov23_0224F5F0(int param0, void *param1)
 {
     UnkStruct_ov23_02250CD4 *v0 = param1;
-    UndergroundData *v1 = sub_020298B0(FieldSystem_SaveData(v0->fieldSystem));
+    UndergroundData *v1 = sub_020298B0(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_020289B8(v1, param0);
 }
@@ -317,7 +317,7 @@ int ov23_0224F5F0(int param0, void *param1)
 static int ov23_0224F608(void *param0)
 {
     UnkStruct_ov23_02250CD4 *v0 = param0;
-    UndergroundData *v1 = sub_020298B0(FieldSystem_SaveData(v0->fieldSystem));
+    UndergroundData *v1 = sub_020298B0(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_02028B70(v1);
 }
@@ -325,7 +325,7 @@ static int ov23_0224F608(void *param0)
 int ov23_0224F61C(int param0, void *param1)
 {
     UnkStruct_ov23_02250CD4 *v0 = param1;
-    UndergroundData *v1 = sub_020298B0(FieldSystem_SaveData(v0->fieldSystem));
+    UndergroundData *v1 = sub_020298B0(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_02028B88(v1, param0);
 }
@@ -339,7 +339,7 @@ void ov23_0224F634(int param0)
 static int ov23_0224F658(void *param0)
 {
     UnkStruct_ov23_02250CD4 *v0 = param0;
-    UndergroundData *v1 = sub_020298B0(FieldSystem_SaveData(v0->fieldSystem));
+    UndergroundData *v1 = sub_020298B0(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_02028C3C(v1);
 }
@@ -347,7 +347,7 @@ static int ov23_0224F658(void *param0)
 int ov23_0224F66C(int param0, void *param1)
 {
     UnkStruct_ov23_02250CD4 *v0 = param1;
-    UndergroundData *v1 = sub_020298B0(FieldSystem_SaveData(v0->fieldSystem));
+    UndergroundData *v1 = sub_020298B0(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_02028E44(v1, param0);
 }
@@ -355,7 +355,7 @@ int ov23_0224F66C(int param0, void *param1)
 int ov23_0224F684(int param0, void *param1)
 {
     UnkStruct_ov23_02250CD4 *v0 = param1;
-    UndergroundData *v1 = sub_020298B0(FieldSystem_SaveData(v0->fieldSystem));
+    UndergroundData *v1 = sub_020298B0(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_02028C54(v1, param0);
 }
@@ -363,7 +363,7 @@ int ov23_0224F684(int param0, void *param1)
 int ov23_0224F69C(int param0, void *param1)
 {
     UnkStruct_ov23_02250CD4 *v0 = param1;
-    UndergroundData *v1 = sub_020298B0(FieldSystem_SaveData(v0->fieldSystem));
+    UndergroundData *v1 = sub_020298B0(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_02028C60(v1, param0);
 }
@@ -371,7 +371,7 @@ int ov23_0224F69C(int param0, void *param1)
 static int ov23_0224F6B4(void *param0)
 {
     UnkStruct_ov23_02250CD4 *v0 = param0;
-    UndergroundData *v1 = sub_020298B0(FieldSystem_SaveData(v0->fieldSystem));
+    UndergroundData *v1 = sub_020298B0(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_02028D58(v1);
 }
@@ -379,7 +379,7 @@ static int ov23_0224F6B4(void *param0)
 int ov23_0224F6C8(int param0, void *param1)
 {
     UnkStruct_ov23_02250CD4 *v0 = param1;
-    UndergroundData *v1 = sub_020298B0(FieldSystem_SaveData(v0->fieldSystem));
+    UndergroundData *v1 = sub_020298B0(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_02028D74(v1, param0);
 }
@@ -489,7 +489,7 @@ static void ov23_0224F7F4(UnkStruct_ov23_02250CD4 *param0)
 
         for (v4 = 0; v4 < NELEMS(Unk_ov23_02256924); v4++) {
             if (v4 == v1) {
-                const TrainerInfo *v5 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSystem));
+                const TrainerInfo *v5 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(param0->fieldSystem));
                 Strbuf *v6 = TrainerInfo_NameNewStrbuf(v5, 4);
 
                 StringList_AddFromStrbuf(param0->unk_40, v6, Unk_ov23_02256924[v4].unk_04);
@@ -1409,7 +1409,7 @@ static void ov23_02250A14(UnkStruct_ov23_02250CD4 *param0)
 {
     ov23_0224FB7C(param0);
     ov23_02253968();
-    ov23_02253834(param0->fieldSystem->bgConfig, SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSystem)), ov23_02250A0C, param0, 1);
+    ov23_02253834(param0->fieldSystem->bgConfig, SaveData_GetTrainerInfo(FieldSystem_GetSaveData(param0->fieldSystem)), ov23_02250A0C, param0, 1);
     param0->unk_2AA = 10;
 }
 
@@ -1551,7 +1551,7 @@ static void ov23_02250C74(ListMenu *param0, u32 param1, u8 param2)
 {
     UnkStruct_ov23_02250CD4 *v0 = (UnkStruct_ov23_02250CD4 *)ListMenu_GetAttribute(param0, 19);
     int v1 = param1;
-    UndergroundData *v2 = sub_020298B0(FieldSystem_SaveData(v0->fieldSystem));
+    UndergroundData *v2 = sub_020298B0(FieldSystem_GetSaveData(v0->fieldSystem));
 
     if (!sub_02028AFC(v2, v1)) {
         ListMenu_SetAltTextColors(param0, 1, 15, 2);

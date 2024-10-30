@@ -93,7 +93,7 @@ BOOL ScrCmd_0FA(ScriptContext *param0)
     Strbuf *v0;
     Pokemon *v1;
     void **v2 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
-    TrainerInfo *v3 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSystem));
+    TrainerInfo *v3 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(param0->fieldSystem));
     u16 v4 = ScriptContext_GetVar(param0);
     u16 v5 = ScriptContext_GetVar(param0);
     u16 v6 = ScriptContext_GetVar(param0);

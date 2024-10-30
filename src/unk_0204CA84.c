@@ -62,7 +62,7 @@ BOOL ScrCmd_1A9(ScriptContext *param0)
     SaveData *v1 = fieldSystem->saveData;
     UnkStruct_02026310 *v2 = (UnkStruct_02026310 *)(SaveData_SaveTable(v1, 8));
     Party *v3 = Party_GetFromSavedata(fieldSystem->saveData);
-    TrainerInfo *v4 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSystem));
+    TrainerInfo *v4 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(param0->fieldSystem));
 
     ov5_021E6EA8(v2, v3, v4);
     return 0;

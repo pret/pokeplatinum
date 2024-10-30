@@ -93,7 +93,7 @@ int ov118_021D0DBC(GameWindowLayout *param0)
             break;
         }
 
-        sub_0202736C(SaveData_Pokedex(FieldSystem_SaveData(param0->unk_5A4->unk_1C)), v1);
+        sub_0202736C(SaveData_Pokedex(FieldSystem_GetSaveData(param0->unk_5A4->unk_1C)), v1);
     }
         v0->unk_00++;
         break;

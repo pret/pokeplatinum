@@ -109,7 +109,7 @@ void sub_0206B70C(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1, int para
         param1->unk_04 = v10->z;
     }
 
-    v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(fieldSystem));
+    v0 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(fieldSystem));
     param1->unk_0C = TrainerInfo_Gender(v0);
     v7 = sub_0203A76C(SaveData_GetFieldOverworldState(fieldSystem->saveData));
     v2 = (v7->unk_00 - 2 + 6) % 6;
