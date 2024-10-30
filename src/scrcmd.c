@@ -11,7 +11,6 @@
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02014EC4_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_02025CCC_decl.h"
 #include "struct_decls/struct_02026218_decl.h"
 #include "struct_decls/struct_02026310_decl.h"
 #include "struct_decls/struct_02028430_decl.h"
@@ -128,6 +127,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system_data.h"
 #include "text.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
@@ -135,7 +135,6 @@
 #include "unk_0200F174.h"
 #include "unk_02014D38.h"
 #include "unk_0201D15C.h"
-#include "unk_02025CB0.h"
 #include "unk_020261E4.h"
 #include "unk_0202631C.h"
 #include "unk_02028124.h"
@@ -7237,11 +7236,11 @@ static BOOL ScrCmd_282(ScriptContext *ctx)
 {
     u16 *v0 = ScriptContext_GetVarPointer(ctx);
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    UnkStruct_02025CCC *v2;
+    SystemData *v2;
 
-    v2 = sub_02025CCC(ctx->fieldSystem->saveData);
+    v2 = SaveData_GetSystemData(ctx->fieldSystem->saveData);
 
-    if ((sub_02025D5C(v2) == sub_02055BB8(fieldSystem)) && (sub_02025D60(v2) == sub_02055BC4(fieldSystem))) {
+    if ((SystemData_GetOwnerBirthMonth(v2) == sub_02055BB8(fieldSystem)) && (SystemData_GetOwnerBirthDayOfMonth(v2) == sub_02055BC4(fieldSystem))) {
         *v0 = 1;
     } else {
         *v0 = 0;
@@ -7663,9 +7662,9 @@ static BOOL ScrCmd_2AA(ScriptContext *ctx)
 static BOOL ScrCmd_2AC(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    UnkStruct_02025CCC *v1;
+    SystemData *v1;
 
-    v1 = sub_02025CCC(ctx->fieldSystem->saveData);
+    v1 = SaveData_GetSystemData(ctx->fieldSystem->saveData);
 
     sub_02025D6C(v1, 1);
     return 0;

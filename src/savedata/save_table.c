@@ -13,8 +13,8 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "savedata_misc.h"
+#include "system_data.h"
 #include "unk_02014D38.h"
-#include "unk_02025CB0.h"
 #include "unk_0202602C.h"
 #include "unk_020261E4.h"
 #include "unk_0202631C.h"
@@ -46,7 +46,7 @@
 #include "vars_flags.h"
 
 const SaveTableEntry gSaveTable[] = {
-    { SAVE_TABLE_ENTRY_SYSTEM, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)SystemData_SaveSize, (SaveEntryInitFunc)SystemData_Init },
+    { SAVE_TABLE_ENTRY_SYSTEM, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)SystemData_SaveSize, (SaveEntryInitFunc)SystemData_Clear },
     { SAVE_TABLE_ENTRY_PLAYER, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Player_SaveSize, (SaveEntryInitFunc)Player_Init },
     { SAVE_TABLE_ENTRY_PARTY, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Party_SaveSize, (SaveEntryInitFunc)Party_Init },
     { SAVE_TABLE_ENTRY_BAG, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Bag_SaveSize, (SaveEntryInitFunc)Bag_Init },

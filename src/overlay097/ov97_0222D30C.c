@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_0202442C_decl.h"
-#include "struct_decls/struct_02025CCC_decl.h"
 #include "struct_defs/struct_0202DF40.h"
 
 #include "overlay077/const_ov77_021D742C.h"
@@ -46,6 +45,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system_data.h"
 #include "text.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
@@ -663,7 +663,7 @@ static int ov97_0222DA64(OverlayManager *param0)
 static int ov97_0222DA84(OverlayManager *param0)
 {
     Window *v0;
-    UnkStruct_02025CCC *v1;
+    SystemData *v1;
     UnkStruct_ov97_0222D04C *v2 = OverlayManager_Data(param0);
     MysteryGift *v3 = SaveData_MysteryGift(v2->unk_04);
 

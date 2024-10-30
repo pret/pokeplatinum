@@ -2,7 +2,6 @@
 #define POKEPLATINUM_STRUCT_0203E0FC_H
 
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/struct_02025CCC_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_0202DA40_decl.h"
@@ -14,11 +13,12 @@
 #include "game_records.h"
 #include "journal.h"
 #include "savedata.h"
+#include "system_data.h"
 #include "trainer_info.h"
 
 typedef struct {
     UnkStruct_0202DA40 *unk_00;
-    UnkStruct_02025CCC *unk_04;
+    SystemData *unk_04;
     Party *unk_08;
     PCBoxes *unk_0C;
     PokedexData *unk_10;

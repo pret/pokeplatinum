@@ -31,6 +31,7 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system_data.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
@@ -40,7 +41,6 @@
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
 #include "unk_02024358.h"
-#include "unk_02025CB0.h"
 #include "unk_0202631C.h"
 #include "unk_0202DAB4.h"
 #include "unk_020366A0.h"
@@ -656,7 +656,7 @@ static BOOL ov97_0222B7DC(void *param0, int param1, UnkStruct_ov97_02237808 *par
             v0->unk_34 = 1;
         }
 
-        if (sub_02025D64(sub_02025CCC(v0->unk_04)) == 1) {
+        if (sub_02025D64(SaveData_GetSystemData(v0->unk_04)) == 1) {
             v0->unk_34 = 1;
         }
 

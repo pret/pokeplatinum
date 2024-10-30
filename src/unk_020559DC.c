@@ -5,7 +5,6 @@
 
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_defs/struct_02055BA8.h"
 
 #include "field/field_system.h"
 #include "savedata/save_table.h"
@@ -16,7 +15,7 @@
 #include "pokemon.h"
 #include "rtc.h"
 #include "script_manager.h"
-#include "unk_02025CB0.h"
+#include "system_data.h"
 #include "unk_0202854C.h"
 #include "unk_0202B37C.h"
 #include "unk_0202C858.h"
@@ -31,16 +30,16 @@
 
 static void sub_02055AC0(FieldSystem *fieldSystem, s32 param1);
 static void sub_02055B64(FieldSystem *fieldSystem, s32 param1, const RTCTime *param2);
-static void sub_02055A14(FieldSystem *fieldSystem, UnkStruct_02055BA8 *param1, const RTCDate *param2);
-static void inline_020559DC(FieldSystem *fieldSystem, UnkStruct_02055BA8 *param1, const RTCDate *param2, const RTCTime *param3);
+static void sub_02055A14(FieldSystem *fieldSystem, GameTime *param1, const RTCDate *param2);
+static void inline_020559DC(FieldSystem *fieldSystem, GameTime *param1, const RTCDate *param2, const RTCTime *param3);
 
 void sub_020559DC(FieldSystem *fieldSystem)
 {
     RTCDate v0;
     RTCTime v1;
-    UnkStruct_02055BA8 *v2 = sub_02025CD8(fieldSystem->saveData);
+    GameTime *v2 = SaveData_GetGameTime(fieldSystem->saveData);
 
-    if (v2->unk_00 == 0) {
+    if (v2->canary == FALSE) {
         return;
     }
 
@@ -50,40 +49,40 @@ void sub_020559DC(FieldSystem *fieldSystem)
     inline_020559DC(fieldSystem, v2, &v0, &v1);
 }
 
-static void sub_02055A14(FieldSystem *fieldSystem, UnkStruct_02055BA8 *param1, const RTCDate *param2)
+static void sub_02055A14(FieldSystem *fieldSystem, GameTime *param1, const RTCDate *param2)
 {
     s32 v0;
 
     v0 = RTC_ConvertDateToDay(param2);
 
-    if (v0 < param1->unk_20) {
-        param1->unk_20 = v0;
-    } else if (v0 > param1->unk_20) {
-        sub_02055AC0(fieldSystem, v0 - param1->unk_20);
-        param1->unk_20 = v0;
+    if (v0 < param1->day) {
+        param1->day = v0;
+    } else if (v0 > param1->day) {
+        sub_02055AC0(fieldSystem, v0 - param1->day);
+        param1->day = v0;
     }
 }
 
-static void inline_020559DC(FieldSystem *fieldSystem, UnkStruct_02055BA8 *param1, const RTCDate *param2, const RTCTime *param3)
+static void inline_020559DC(FieldSystem *fieldSystem, GameTime *param1, const RTCDate *param2, const RTCTime *param3)
 {
     s64 v0, v1;
     s32 v2;
 
     v0 = RTC_ConvertDateTimeToSecond(param2, param3);
-    v1 = RTC_ConvertDateTimeToSecond(&param1->unk_04, &param1->unk_14);
+    v1 = RTC_ConvertDateTimeToSecond(&param1->date, &param1->time);
 
     if (v0 < v1) {
-        param1->unk_04 = *param2;
-        param1->unk_14 = *param3;
+        param1->date = *param2;
+        param1->time = *param3;
     } else {
         v2 = (v0 - v1) / 60;
 
         if (v2 > 0) {
-            sub_02025DC8(param1, v2);
+            GameTime_DecrementPenalty(param1, v2);
             sub_02055B64(fieldSystem, v2, param3);
 
-            param1->unk_04 = *param2;
-            param1->unk_14 = *param3;
+            param1->date = *param2;
+            param1->time = *param3;
         }
     }
 }
@@ -152,61 +151,61 @@ static void sub_02055B64(FieldSystem *fieldSystem, s32 param1, const RTCTime *pa
 
 int sub_02055BA8(const FieldSystem *fieldSystem)
 {
-    UnkStruct_02055BA8 *v0 = sub_02025CD8(fieldSystem->saveData);
-    return TimeOfDayForHour(v0->unk_14.hour);
+    GameTime *v0 = SaveData_GetGameTime(fieldSystem->saveData);
+    return TimeOfDayForHour(v0->time.hour);
 }
 
 int sub_02055BB8(const FieldSystem *fieldSystem)
 {
-    UnkStruct_02055BA8 *v0 = sub_02025CD8(fieldSystem->saveData);
-    return v0->unk_04.month;
+    GameTime *v0 = SaveData_GetGameTime(fieldSystem->saveData);
+    return v0->date.month;
 }
 
 int sub_02055BC4(const FieldSystem *fieldSystem)
 {
-    UnkStruct_02055BA8 *v0 = sub_02025CD8(fieldSystem->saveData);
-    return v0->unk_04.day;
+    GameTime *v0 = SaveData_GetGameTime(fieldSystem->saveData);
+    return v0->date.day;
 }
 
 int sub_02055BD0(const FieldSystem *fieldSystem)
 {
-    UnkStruct_02055BA8 *v0 = sub_02025CD8(fieldSystem->saveData);
-    return v0->unk_04.week;
+    GameTime *v0 = SaveData_GetGameTime(fieldSystem->saveData);
+    return v0->date.week;
 }
 
 int sub_02055BDC(const FieldSystem *fieldSystem)
 {
-    UnkStruct_02055BA8 *v0 = sub_02025CD8(fieldSystem->saveData);
-    return v0->unk_14.hour;
+    GameTime *v0 = SaveData_GetGameTime(fieldSystem->saveData);
+    return v0->time.hour;
 }
 
 int sub_02055BE8(const FieldSystem *fieldSystem)
 {
-    UnkStruct_02055BA8 *v0 = sub_02025CD8(fieldSystem->saveData);
-    return v0->unk_14.minute;
+    GameTime *v0 = SaveData_GetGameTime(fieldSystem->saveData);
+    return v0->time.minute;
 }
 
 void sub_02055BF4(const FieldSystem *fieldSystem, RTCDate *param1, RTCTime *param2)
 {
-    UnkStruct_02055BA8 *v0 = sub_02025CD8(fieldSystem->saveData);
-    RTC_ConvertSecondToDateTime(param1, param2, v0->unk_24);
+    GameTime *v0 = SaveData_GetGameTime(fieldSystem->saveData);
+    RTC_ConvertSecondToDateTime(param1, param2, v0->startTimestamp);
 }
 
 void sub_02055C10(const FieldSystem *fieldSystem, RTCDate *param1, RTCTime *param2)
 {
-    UnkStruct_02055BA8 *v0 = sub_02025CD8(fieldSystem->saveData);
-    RTC_ConvertSecondToDateTime(param1, param2, v0->unk_2C);
+    GameTime *v0 = SaveData_GetGameTime(fieldSystem->saveData);
+    RTC_ConvertSecondToDateTime(param1, param2, v0->playTimestamp);
 }
 
 void sub_02055C2C(const FieldSystem *fieldSystem)
 {
-    UnkStruct_02055BA8 *v0 = sub_02025CD8(fieldSystem->saveData);
+    GameTime *v0 = SaveData_GetGameTime(fieldSystem->saveData);
 
-    v0->unk_2C = GetTimestamp();
+    v0->playTimestamp = GetTimestamp();
 }
 
 BOOL sub_02055C40(FieldSystem *fieldSystem)
 {
-    UnkStruct_02055BA8 *v0 = sub_02025CD8(fieldSystem->saveData);
-    return sub_02025DB8(v0);
+    GameTime *v0 = SaveData_GetGameTime(fieldSystem->saveData);
+    return GameTime_HasPenalty(v0);
 }

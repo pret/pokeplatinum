@@ -5,10 +5,8 @@
 
 #include "constants/game_options.h"
 
-#include "struct_decls/struct_02025CCC_decl.h"
 #include "struct_decls/struct_02027854_decl.h"
 #include "struct_decls/struct_0202B4A0_decl.h"
-#include "struct_defs/struct_02055BA8.h"
 
 #include "game_options.h"
 #include "heap.h"
@@ -20,10 +18,10 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "savedata_misc.h"
+#include "system_data.h"
 #include "trainer_info.h"
 #include "unk_02017428.h"
 #include "unk_0201D15C.h"
-#include "unk_02025CB0.h"
 #include "unk_02027B70.h"
 #include "unk_0202B37C.h"
 #include "unk_0205C980.h"
@@ -129,14 +127,14 @@ static int ov57_021D0E1C(OverlayManager *param0, int *param1)
 static int ov57_021D0E34(OverlayManager *param0, int *param1)
 {
     SaveData *v0 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
-    UnkStruct_02025CCC *v1 = sub_02025CCC(v0);
+    SystemData *v1 = SaveData_GetSystemData(v0);
 
     TryLoadingSave(77, v0);
     Options_SetSystemButtonMode(v0, OPTIONS_BUTTON_MODE_NORMAL);
 
-    if (!sub_02025D10(v1) || !sub_02025D40(v1)) {
-        sub_02025DE8(sub_02025CD8(v0));
-        sub_02025CE4(v1);
+    if (!SystemData_MatchesCurrentSystem(v1) || !SystemData_MatchesCurrentRTCOffset(v1)) {
+        GameTime_StartPenalty(SaveData_GetGameTime(v0));
+        SystemData_Init(v1);
         Party_SetShayminLandForm(Party_GetFromSavedata(v0));
     }
 
@@ -158,13 +156,13 @@ static void ov57_021D0EAC(int param0, SaveData *param1, BOOL param2)
     u32 v0;
     UnkStruct_02027854 *v1;
     TrainerInfo *v2;
-    UnkStruct_02055BA8 *v3;
+    GameTime *v3;
     UnkStruct_0202B4A0 *v4;
 
-    sub_02025CE4(sub_02025CCC(param1));
+    SystemData_Init(SaveData_GetSystemData(param1));
 
-    v3 = sub_02025CD8(param1);
-    sub_02025D84(v3);
+    v3 = SaveData_GetGameTime(param1);
+    GameTime_Clear(v3);
 
     v4 = sub_0202B4A0(param1);
     sub_0202B40C(v4, 1, MTRNG_Next());

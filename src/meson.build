@@ -95,7 +95,7 @@ pokeplatinum_c = files(
     'unk_02024358.c',
     'savedata/save_table.c',
     'savedata.c',
-    'unk_02025CB0.c',
+    'system_data.c',
     'save_player.c',
     'trainer_info.c',
     'unk_0202602C.c',

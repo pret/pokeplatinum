@@ -106,10 +106,10 @@
 #include "savedata.h"
 #include "savedata_misc.h"
 #include "strbuf.h"
+#include "system_data.h"
 #include "trainer_info.h"
 #include "unk_02017498.h"
 #include "unk_0201D15C.h"
-#include "unk_02025CB0.h"
 #include "unk_0202631C.h"
 #include "unk_02028124.h"
 #include "unk_020298BC.h"
@@ -1366,7 +1366,7 @@ void sub_0203E0FC(FieldSystem *fieldSystem, int param1)
     v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0203E0FC));
 
     v0->unk_00 = sub_0202DA40(fieldSystem->saveData);
-    v0->unk_04 = sub_02025CCC(fieldSystem->saveData);
+    v0->unk_04 = SaveData_GetSystemData(fieldSystem->saveData);
     v0->unk_08 = SaveData_SaveTable(fieldSystem->saveData, 2);
     v0->unk_0C = SaveData_PCBoxes(fieldSystem->saveData);
     v0->unk_10 = SaveData_Pokedex(fieldSystem->saveData);
@@ -1403,7 +1403,7 @@ void *sub_0203E1AC(FieldSystem *fieldSystem, int param1, int param2)
 
     v0->unk_00 = sub_0202D750(fieldSystem->saveData);
     v0->unk_04 = sub_0202D764(fieldSystem->saveData);
-    v0->unk_08 = sub_02025CCC(fieldSystem->saveData);
+    v0->unk_08 = SaveData_GetSystemData(fieldSystem->saveData);
     v0->unk_10 = SaveData_Options(fieldSystem->saveData);
     v0->unk_14 = sub_0202AD28(sub_0202B370(fieldSystem->saveData));
     v0->unk_0C = fieldSystem->saveData;
