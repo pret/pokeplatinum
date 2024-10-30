@@ -3,7 +3,7 @@
 
 #include "vars_flags.h"
 
-void sub_0206A92C(VarsFlags *param0);
+void VarsFlags_SetBagAvailable(VarsFlags *param0);
 BOOL sub_0206A938(VarsFlags *param0);
 void sub_0206A944(VarsFlags *param0);
 BOOL sub_0206A954(VarsFlags *param0);

@@ -166,7 +166,7 @@ pokeplatinum_c = files(
     'field_menu.c',
     'unk_0203C954.c',
     'field_system.c',
-    'unk_0203D178.c',
+    'location.c',
     'unk_0203D1B8.c',
     'field_script_context.c',
     'script_manager.c',

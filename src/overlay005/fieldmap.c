@@ -274,7 +274,7 @@ static BOOL FieldMap_Exit(OverlayManager *overlayMan, int *param1)
 
         fieldSystem->location->x = Player_GetXPos(fieldSystem->playerAvatar);
         fieldSystem->location->z = Player_GetZPos(fieldSystem->playerAvatar);
-        fieldSystem->location->unk_10 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+        fieldSystem->location->faceDirection = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
         ov5_021EF300(fieldSystem->unk_A0);
 

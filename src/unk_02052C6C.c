@@ -10,7 +10,6 @@
 #include "struct_defs/struct_0202DF8C.h"
 #include "struct_defs/struct_0203E234.h"
 #include "struct_defs/struct_0203E274.h"
-#include "struct_defs/struct_02049FA8.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "field/field_system.h"
@@ -22,6 +21,7 @@
 #include "game_records.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "location.h"
 #include "message.h"
 #include "message_util.h"
 #include "party.h"
@@ -36,7 +36,6 @@
 #include "unk_0200F174.h"
 #include "unk_0202631C.h"
 #include "unk_0202DF8C.h"
-#include "unk_0203D178.h"
 #include "unk_0203D1B8.h"
 #include "unk_020508D4.h"
 #include "unk_02054884.h"
@@ -203,8 +202,8 @@ void sub_02052E58(TaskManager *param0)
     v7 = Party_GetFromSavedata(fieldSystem->saveData);
 
     Party_GiveChampionRibbons(v7);
-    sub_0203D178(v1);
-    sub_0203D190(v2);
+    SetPlayerStartLocation(v1);
+    SetPlayerFirstRespawnLocation(v2);
     sub_0206AD9C(v3);
     sub_0206A944(v3);
     TrainerInfo_SetMainStoryCleared(v4);

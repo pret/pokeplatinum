@@ -4,9 +4,9 @@
 #include <string.h>
 
 #include "struct_decls/struct_0203A790_decl.h"
-#include "struct_defs/struct_02049FA8.h"
 
 #include "field_overworld_state.h"
+#include "location.h"
 #include "savedata.h"
 #include "unk_0201D15C.h"
 #include "unk_0202B37C.h"
@@ -455,7 +455,7 @@ void sub_0206B514(SaveData *param0)
     u32 v0;
     VarsFlags *v1 = SaveData_GetVarsFlags(param0);
     FieldOverworldState *v2 = SaveData_GetFieldOverworldState(param0);
-    Location *location = sub_0203A720(v2);
+    Location *location = FieldOverworldState_GetPlayerLocation(v2);
 
     if ((location->mapId != 457) && (location->mapId != 464)) {
         sub_0206AF90(v1);

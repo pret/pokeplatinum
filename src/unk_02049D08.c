@@ -12,7 +12,6 @@
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_defs/struct_02049FA8.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_02098C44.h"
 
@@ -25,6 +24,7 @@
 #include "heap.h"
 #include "inlines.h"
 #include "journal.h"
+#include "location.h"
 #include "party.h"
 #include "player_avatar.h"
 #include "pokemon.h"

@@ -12,7 +12,6 @@
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0202610C.h"
 #include "struct_defs/struct_0202BE38.h"
-#include "struct_defs/struct_02049FA8.h"
 
 #include "field/field_system.h"
 #include "overlay006/battle_params.h"
@@ -29,6 +28,7 @@
 #include "game_records.h"
 #include "heap.h"
 #include "journal.h"
+#include "location.h"
 #include "map_object.h"
 #include "party.h"
 #include "pokemon.h"

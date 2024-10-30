@@ -5,7 +5,6 @@
 
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_defs/struct_02049FA8.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "field/field_system.h"
@@ -19,6 +18,7 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "location.h"
 #include "message.h"
 #include "party.h"
 #include "pokemon.h"

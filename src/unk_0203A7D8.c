@@ -3,11 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02049FA8.h"
-
 #include "field/field_system.h"
 
 #include "inlines.h"
+#include "location.h"
 #include "vars_flags.h"
 
 typedef struct {
@@ -66,10 +65,10 @@ void sub_0203A7F0(int param0, Location *location)
     param0 = sub_0203A7D8(param0);
 
     location->mapId = Unk_020E97B4[param0].unk_06;
-    location->unk_04 = -1;
+    location->warpId = WARP_ID_NONE;
     location->x = Unk_020E97B4[param0].unk_08;
     location->z = Unk_020E97B4[param0].unk_0A;
-    location->unk_10 = 1;
+    location->faceDirection = FACE_DOWN;
 }
 
 void sub_0203A824(int param0, Location *location)
@@ -77,10 +76,10 @@ void sub_0203A824(int param0, Location *location)
     param0 = sub_0203A7D8(param0);
 
     location->mapId = Unk_020E97B4[param0].unk_00;
-    location->unk_04 = -1;
+    location->warpId = WARP_ID_NONE;
     location->x = Unk_020E97B4[param0].unk_02;
     location->z = Unk_020E97B4[param0].unk_04;
-    location->unk_10 = 0;
+    location->faceDirection = FACE_UP;
 }
 
 int sub_0203A858(int param0)

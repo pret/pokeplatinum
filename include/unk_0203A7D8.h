@@ -1,9 +1,9 @@
 #ifndef POKEPLATINUM_UNK_0203A7D8_H
 #define POKEPLATINUM_UNK_0203A7D8_H
 
-#include "struct_defs/struct_02049FA8.h"
-
 #include "field/field_system_decl.h"
+
+#include "location.h"
 
 int sub_0203A7EC(void);
 void sub_0203A7F0(int param0, Location *param1);

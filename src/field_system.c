@@ -159,7 +159,7 @@ static FieldSystem *InitFieldSystem(OverlayManager *ovyManager)
     fieldSystem->processManager->kill = FALSE;
     fieldSystem->saveData = ((ApplicationArgs *)OverlayManager_Args(ovyManager))->saveData;
     fieldSystem->taskManager = NULL;
-    fieldSystem->location = sub_0203A720(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+    fieldSystem->location = FieldOverworldState_GetPlayerLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));
     fieldSystem->unk_2C = sub_02039D6C();
 
     MapHeaderData_Init(fieldSystem, HEAP_ID_FIELDMAP);

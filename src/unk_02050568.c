@@ -7,7 +7,6 @@
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/struct_02049FA8.h"
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
@@ -18,6 +17,7 @@
 #include "field_map_change.h"
 #include "heap.h"
 #include "inlines.h"
+#include "location.h"
 #include "map_object.h"
 #include "player_avatar.h"
 #include "unk_02005474.h"

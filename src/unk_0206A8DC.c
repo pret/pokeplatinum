@@ -46,13 +46,13 @@ static BOOL sub_0206A8F4(VarsFlags *param0, int param1, u32 param2)
     return 0;
 }
 
-void sub_0206A92C(VarsFlags *param0)
+void VarsFlags_SetBagAvailable(VarsFlags *param0)
 {
     sub_0206A8DC(param0, (2400 + 0));
     return;
 }
 
-BOOL sub_0206A938(VarsFlags *param0)
+BOOL VarsFlags_CheckBagAvailable(VarsFlags *param0)
 {
     return sub_0206A8EC(param0, (2400 + 0));
 }

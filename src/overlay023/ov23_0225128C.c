@@ -5,7 +5,6 @@
 
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_defs/struct_02049FA8.h"
 
 #include "field/field_system.h"
 #include "overlay023/funcptr_ov23_022515D8.h"
@@ -33,6 +32,7 @@
 #include "field_system.h"
 #include "heap.h"
 #include "list_menu.h"
+#include "location.h"
 #include "menu.h"
 #include "message.h"
 #include "player_avatar.h"

@@ -13,7 +13,6 @@
 #include "struct_decls/terrain_collision_manager_decl.h"
 #include "struct_defs/map_load_mode.h"
 #include "struct_defs/struct_0202610C.h"
-#include "struct_defs/struct_02049FA8.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_0209C370.h"
 
@@ -41,6 +40,7 @@
 #include "bg_window.h"
 #include "camera.h"
 #include "journal.h"
+#include "location.h"
 #include "map_header_data.h"
 #include "overlay_manager.h"
 #include "pokeradar.h"

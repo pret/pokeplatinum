@@ -4,7 +4,6 @@
 #include <nitro/rtc.h>
 
 #include "struct_decls/struct_0203A790_decl.h"
-#include "struct_defs/struct_02049FA8.h"
 
 #include "field/field_system.h"
 #include "overlay061/struct_ov61_0222C3B0.h"
@@ -14,6 +13,7 @@
 #include "field_script_context.h"
 #include "graphics.h"
 #include "heap.h"
+#include "location.h"
 #include "map_header.h"
 #include "narc.h"
 #include "palette.h"
@@ -148,15 +148,6 @@ static inline void inline_ov47_0225621C(FieldSystem *fieldSystem, int *param1, i
     inline_ov47_0225621C_sub(fieldSystem, param1, param2);
     *param1 /= 32;
     *param2 /= 32;
-}
-
-static inline void Location_Set(Location *location, int mapId, int param2, int param3, int param4, int param5)
-{
-    location->mapId = mapId;
-    location->unk_04 = param2;
-    location->x = param3;
-    location->z = param4;
-    location->unk_10 = param5;
 }
 
 static inline u16 *ScriptContext_GetVarPointer(ScriptContext *ctx)

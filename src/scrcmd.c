@@ -39,7 +39,6 @@
 #include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_02041DC8.h"
 #include "struct_defs/struct_02042434.h"
-#include "struct_defs/struct_02049FA8.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_02098C44.h"
 
@@ -106,6 +105,7 @@
 #include "heap.h"
 #include "inlines.h"
 #include "journal.h"
+#include "location.h"
 #include "map_header_data.h"
 #include "map_object.h"
 #include "map_object_move.h"
@@ -4945,10 +4945,10 @@ static BOOL ScrCmd_11B(ScriptContext *ctx)
     Location location;
 
     location.mapId = ScriptContext_GetVar(ctx);
-    location.unk_04 = ScriptContext_GetVar(ctx);
+    location.warpId = ScriptContext_GetVar(ctx);
     location.x = ScriptContext_GetVar(ctx);
     location.z = ScriptContext_GetVar(ctx);
-    location.unk_10 = ScriptContext_GetVar(ctx);
+    location.faceDirection = ScriptContext_GetVar(ctx);
 
     FieldOverworldState_SetSpecialLocation(SaveData_GetFieldOverworldState(ctx->fieldSystem->saveData), &location);
     return 0;
@@ -7710,8 +7710,8 @@ static BOOL ScrCmd_2B5(ScriptContext *ctx)
     location->mapId = mapId;
     location->x = v1;
     location->z = v2;
-    location->unk_04 = -1;
-    location->unk_10 = 1;
+    location->warpId = WARP_ID_NONE;
+    location->faceDirection = FACE_DOWN;
 
     return 0;
 }

@@ -4,13 +4,13 @@
 #include <string.h>
 
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_defs/struct_02049FA8.h"
 
 #include "field/field_system.h"
 #include "overlay006/ov6_02243258.h"
 
 #include "field_map_change.h"
 #include "heap.h"
+#include "location.h"
 #include "player_avatar.h"
 #include "pokemon.h"
 #include "sys_task_manager.h"

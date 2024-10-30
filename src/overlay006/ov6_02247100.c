@@ -6,7 +6,6 @@
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/struct_02049FA8.h"
 
 #include "field/field_system.h"
 #include "overlay005/map_object_anim_cmd.h"
@@ -17,6 +16,7 @@
 #include "field_overworld_state.h"
 #include "heap.h"
 #include "journal.h"
+#include "location.h"
 #include "player_avatar.h"
 #include "pokemon.h"
 #include "sys_task_manager.h"

@@ -9,7 +9,6 @@
 #include "struct_decls/struct_02029894_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_defs/struct_02049FA8.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021E15F4.h"
@@ -40,6 +39,7 @@
 #include "graphics.h"
 #include "heap.h"
 #include "journal.h"
+#include "location.h"
 #include "map_object_move.h"
 #include "menu.h"
 #include "message.h"
@@ -1606,10 +1606,10 @@ static BOOL ov23_0224C790(TaskManager *param0)
         break;
     case 4:
         v2.mapId = v1->unk_14;
-        v2.unk_04 = v1->unk_18;
+        v2.warpId = v1->unk_18;
         v2.x = v1->unk_1C;
         v2.z = v1->unk_20;
-        v2.unk_10 = v1->unk_24;
+        v2.faceDirection = v1->unk_24;
         sub_020544F0(param0, &v2);
         (v1->unk_0C)++;
         break;

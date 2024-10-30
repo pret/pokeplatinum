@@ -12,6 +12,7 @@
 
 #include "game_options.h"
 #include "heap.h"
+#include "location.h"
 #include "main.h"
 #include "overlay_manager.h"
 #include "party.h"
@@ -25,7 +26,6 @@
 #include "unk_02025CB0.h"
 #include "unk_02027B70.h"
 #include "unk_0202B37C.h"
-#include "unk_0203D178.h"
 #include "unk_0205C980.h"
 #include "unk_0206A8DC.h"
 #include "unk_0206B9D8.h"
@@ -45,6 +45,8 @@ static int ov57_021D0E1C(OverlayManager *param0, int *param1);
 static int ov57_021D0E34(OverlayManager *param0, int *param1);
 static int ov57_021D0E90(OverlayManager *param0, int *param1);
 static void ov57_021D0EAC(int param0, SaveData *param1, BOOL param2);
+static void TryLoadingSave(int unused, SaveData *saveData);
+static void StartNewSave(int unused, SaveData *saveData);
 
 const OverlayManagerTemplate Unk_ov57_021D0F90 = {
     ov57_021D0D80,
@@ -79,7 +81,7 @@ static int ov57_021D0D98(OverlayManager *param0, int *param1)
 {
     SaveData *v0 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
 
-    ov57_021D0F44(77, v0);
+    StartNewSave(77, v0);
     return 1;
 }
 
@@ -129,7 +131,7 @@ static int ov57_021D0E34(OverlayManager *param0, int *param1)
     SaveData *v0 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
     UnkStruct_02025CCC *v1 = sub_02025CCC(v0);
 
-    ov57_021D0F30(77, v0);
+    TryLoadingSave(77, v0);
     Options_SetSystemButtonMode(v0, OPTIONS_BUTTON_MODE_NORMAL);
 
     if (!sub_02025D10(v1) || !sub_02025D40(v1)) {
@@ -181,21 +183,17 @@ static void ov57_021D0EAC(int param0, SaveData *param1, BOOL param2)
     sub_02027B90(v1, param0, sBerryInitTable, NELEMS(sBerryInitTable) / 2);
 }
 
-void ov57_021D0F30(int param0, SaveData *param1)
+static void TryLoadingSave(int unused, SaveData *saveData)
 {
-    if (!SaveData_Load(param1)) {
+    if (!SaveData_Load(saveData)) {
         OS_ResetSystem(0);
     }
 }
 
-void ov57_021D0F44(int param0, SaveData *param1)
+static void StartNewSave(int unused, SaveData *saveData)
 {
-    TrainerInfo *v0;
-
-    SaveData_Clear(param1);
-    sub_0203D1A8(param1);
-
-    v0 = SaveData_GetTrainerInfo(param1);
-    TrainerInfo_SetMoney(v0, 3000);
-    sub_0206A92C(SaveData_GetVarsFlags(param1));
+    SaveData_Clear(saveData);
+    InitPlayerStartLocation(saveData);
+    TrainerInfo_SetMoney(SaveData_GetTrainerInfo(saveData), 3000);
+    VarsFlags_SetBagAvailable(SaveData_GetVarsFlags(saveData));
 }

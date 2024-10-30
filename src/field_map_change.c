@@ -10,7 +10,6 @@
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/map_load_mode.h"
-#include "struct_defs/struct_02049FA8.h"
 #include "struct_defs/struct_0205EC34.h"
 
 #include "field/field_system.h"
@@ -34,6 +33,7 @@
 #include "heap.h"
 #include "inlines.h"
 #include "journal.h"
+#include "location.h"
 #include "map_header.h"
 #include "map_header_data.h"
 #include "map_object.h"
@@ -214,8 +214,8 @@ static void FieldMapChange_SetNewLocation(FieldSystem *fieldSystem, const Locati
 
     MapHeaderData_Load(fieldSystem, fieldSystem->location->mapId);
 
-    if (fieldSystem->location->unk_04 != -1) {
-        const WarpEvent *warpEvent = MapHeaderData_GetWarpEventByIndex(fieldSystem, fieldSystem->location->unk_04);
+    if (fieldSystem->location->warpId != WARP_ID_NONE) {
+        const WarpEvent *warpEvent = MapHeaderData_GetWarpEventByIndex(fieldSystem, fieldSystem->location->warpId);
 
         fieldSystem->location->x = warpEvent->x;
         fieldSystem->location->z = warpEvent->z;
@@ -340,7 +340,7 @@ static void FieldMapChange_CreateObjects(FieldSystem *fieldSystem)
     fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
     playerData = FieldOverworldState_GetPlayerData(fieldState);
 
-    fieldSystem->playerAvatar = PlayerAvatar_Init(fieldSystem->mapObjMan, fieldSystem->location->x, fieldSystem->location->z, fieldSystem->location->unk_10, playerData->unk_04, gender, 0, playerData);
+    fieldSystem->playerAvatar = PlayerAvatar_Init(fieldSystem->mapObjMan, fieldSystem->location->x, fieldSystem->location->z, fieldSystem->location->faceDirection, playerData->unk_04, gender, 0, playerData);
 
     sub_0203A418(fieldSystem);
     MapObjectMan_StopAllMovement(fieldSystem->mapObjMan);

@@ -3,13 +3,13 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02049FA8.h"
 #include "struct_defs/struct_020556C4.h"
 #include "struct_defs/struct_0205EC34.h"
 #include "struct_defs/struct_02061D3C.h"
 
 #include "field/field_system.h"
 
+#include "location.h"
 #include "map_object.h"
 #include "player_avatar.h"
 #include "savedata.h"
@@ -17,7 +17,7 @@
 #include "unk_020556C4.h"
 
 typedef struct UnkStruct_0203A790_t {
-    Location unk_00;
+    Location player;
     Location entrance;
     Location previous;
     Location special;
@@ -64,9 +64,9 @@ void FieldOverworldState_Init(FieldOverworldState *fieldState)
     fieldState->warpId = sub_0203A7EC();
 }
 
-Location *sub_0203A720(FieldOverworldState *fieldState)
+Location *FieldOverworldState_GetPlayerLocation(FieldOverworldState *fieldState)
 {
-    return &fieldState->unk_00;
+    return &fieldState->player;
 }
 
 Location *FieldOverworldState_GetEntranceLocation(FieldOverworldState *fieldState)

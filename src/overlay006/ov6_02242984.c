@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02049FA8.h"
-
 #include "field/field_system.h"
 #include "overlay006/ov6_02240C9C.h"
 #include "overlay006/ov6_02242F74.h"
@@ -14,6 +12,7 @@
 #include "field_system.h"
 #include "heap.h"
 #include "inlines.h"
+#include "location.h"
 #include "map_header_data.h"
 #include "narc.h"
 #include "player_avatar.h"
