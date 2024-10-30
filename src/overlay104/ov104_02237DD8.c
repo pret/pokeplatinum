@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/items.h"
 #include "constants/battle/condition.h"
+#include "consts/items.h"
 
 #include "struct_decls/struct_020304A0_decl.h"
 #include "struct_decls/struct_020305B8_decl.h"

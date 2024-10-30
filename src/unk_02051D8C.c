@@ -3,9 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
-# include "consts/species.h"
 #include "constants/battle.h"
 #include "constants/pokemon.h"
+#include "consts/species.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
