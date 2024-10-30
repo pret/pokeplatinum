@@ -248,7 +248,7 @@ int ov73_021D0F7C(OverlayManager *param0, int *param1)
     sub_0208716C(v0->unk_74);
     OverlayManager_FreeData(param0);
     Heap_Destroy(v1);
-    EnqueueApplication(FS_OVERLAY_ID(game_start), &Unk_ov57_021D0F80);
+    EnqueueApplication(FS_OVERLAY_ID(game_start), &gGameStartNewSaveOverlayTemplate);
 
     return 1;
 }

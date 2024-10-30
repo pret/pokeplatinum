@@ -42,11 +42,6 @@
 FS_EXTERN_OVERLAY(game_start);
 FS_EXTERN_OVERLAY(overlay77);
 
-enum OSResetParameter {
-    RESET_CLEAN = 0,
-    RESET_ERROR,
-};
-
 typedef struct Application {
     FSOverlayID currOverlayID;
     OverlayManager *currOverlay;
@@ -110,7 +105,7 @@ void NitroMain(void)
             sub_0200F344(0, 0x0);
             sub_0200F344(1, 0x0);
             sApplication.args.error = TRUE;
-            EnqueueApplication(FS_OVERLAY_ID(game_start), &Unk_ov57_021D0F70);
+            EnqueueApplication(FS_OVERLAY_ID(game_start), &gGameStartLoadSaveOverlayTemplate);
             break;
 
         default:
@@ -123,7 +118,7 @@ void NitroMain(void)
 
     InitRNG();
     sub_0200AB84();
-    sub_02017428();
+    PlayTime_FlagNotStarted();
 
     gIgnoreCartridgeForWake = FALSE;
 

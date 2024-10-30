@@ -1,9 +1,7 @@
 #include "game_start.h"
 
-#include <nitro.h>
-#include <string.h>
-
 #include "constants/game_options.h"
+#include "constants/heap.h"
 
 #include "berry_patches.h"
 #include "game_options.h"
@@ -30,158 +28,152 @@
 #include "constdata/const_020EA11C.h"
 #include "constdata/const_020F6824.h"
 
-static int ov57_021D0D80(OverlayManager *param0, int *param1);
-static int ov57_021D0D98(OverlayManager *param0, int *param1);
-static int ov57_021D0DAC(OverlayManager *param0, int *param1);
-static int ov57_021D0DC8(OverlayManager *param0, int *param1);
-static int ov57_021D0DE0(OverlayManager *param0, int *param1);
-static int ov57_021D0E00(OverlayManager *param0, int *param1);
-static int ov57_021D0E1C(OverlayManager *param0, int *param1);
-static int ov57_021D0E34(OverlayManager *param0, int *param1);
-static int ov57_021D0E90(OverlayManager *param0, int *param1);
-static void ov57_021D0EAC(int param0, SaveData *param1, BOOL param2);
+static int GameStartRowanIntro_Init(OverlayManager *ovyManager, int *state);
+static int GameStartRowanIntro_Main(OverlayManager *ovyManager, int *state);
+static int GameStartRowanIntro_Exit(OverlayManager *ovyManager, int *state);
+static int GameStartNewSave_Init(OverlayManager *ovyManager, int *state);
+static int GameStartNewSave_Main(OverlayManager *ovyManager, int *state);
+static int GameStartNewSave_Exit(OverlayManager *ovyManager, int *state);
+static int GameStartLoadSave_Init(OverlayManager *ovyManager, int *state);
+static int GameStartLoadSave_Main(OverlayManager *ovyManager, int *state);
+static int GameStartLoadSave_Exit(OverlayManager *ovyManager, int *state);
+
+static void InitializeNewSave(enum HeapId heapID, SaveData *saveData, BOOL setTrainerID);
 static void TryLoadingSave(int unused, SaveData *saveData);
 static void StartNewSave(int unused, SaveData *saveData);
 
-const OverlayManagerTemplate Unk_ov57_021D0F90 = {
-    ov57_021D0D80,
-    ov57_021D0D98,
-    ov57_021D0DAC,
-    0xffffffff
+const OverlayManagerTemplate gGameStartRowanIntroOverlayTemplate = {
+    .init = GameStartRowanIntro_Init,
+    .main = GameStartRowanIntro_Main,
+    .exit = GameStartRowanIntro_Exit,
+    .overlayID = FS_OVERLAY_ID_NONE,
 };
 
-const OverlayManagerTemplate Unk_ov57_021D0F80 = {
-    ov57_021D0DC8,
-    ov57_021D0DE0,
-    ov57_021D0E00,
-    0xffffffff
+const OverlayManagerTemplate gGameStartNewSaveOverlayTemplate = {
+    .init = GameStartNewSave_Init,
+    .main = GameStartNewSave_Main,
+    .exit = GameStartNewSave_Exit,
+    .overlayID = FS_OVERLAY_ID_NONE,
 };
 
-const OverlayManagerTemplate Unk_ov57_021D0F70 = {
-    ov57_021D0E1C,
-    ov57_021D0E34,
-    ov57_021D0E90,
-    0xffffffff
+const OverlayManagerTemplate gGameStartLoadSaveOverlayTemplate = {
+    .init = GameStartLoadSave_Init,
+    .main = GameStartLoadSave_Main,
+    .exit = GameStartLoadSave_Exit,
+    .overlayID = FS_OVERLAY_ID_NONE,
 };
 
-static int ov57_021D0D80(OverlayManager *param0, int *param1)
+static BOOL GameStartRowanIntro_Init(OverlayManager *ovyManager, int *state)
 {
-    Heap_Create(3, 77, 131072);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_GAME_START, HEAP_SIZE_GAME_START);
     InitRNG();
-
-    return 1;
+    return TRUE;
 }
 
-static int ov57_021D0D98(OverlayManager *param0, int *param1)
+static BOOL GameStartRowanIntro_Main(OverlayManager *ovyManager, int *state)
 {
-    SaveData *v0 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
-
-    StartNewSave(77, v0);
-    return 1;
+    SaveData *saveData = ((ApplicationArgs *)OverlayManager_Args(ovyManager))->saveData;
+    StartNewSave(HEAP_ID_GAME_START, saveData);
+    return TRUE;
 }
 
-static int ov57_021D0DAC(OverlayManager *param0, int *param1)
+static int GameStartRowanIntro_Exit(OverlayManager *ovyManager, int *state)
 {
-    Heap_Destroy(77);
-    EnqueueApplication(0xffffffff, &Unk_020F6824);
-
-    return 1;
+    Heap_Destroy(HEAP_ID_GAME_START);
+    EnqueueApplication(FS_OVERLAY_ID_NONE, &Unk_020F6824);
+    return TRUE;
 }
 
-static int ov57_021D0DC8(OverlayManager *param0, int *param1)
+static int GameStartNewSave_Init(OverlayManager *ovyManager, int *state)
 {
-    Heap_Create(3, 77, 131072);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_GAME_START, HEAP_SIZE_GAME_START);
     InitRNG();
-
-    return 1;
+    return TRUE;
 }
 
-static int ov57_021D0DE0(OverlayManager *param0, int *param1)
+static int GameStartNewSave_Main(OverlayManager *ovyManager, int *state)
 {
-    SaveData *v0 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
-
-    ov57_021D0EAC(77, v0, 1);
-    sub_02017434(SaveData_GetPlayTime(v0));
-
-    return 1;
+    SaveData *saveData = ((ApplicationArgs *)OverlayManager_Args(ovyManager))->saveData;
+    InitializeNewSave(HEAP_ID_GAME_START, saveData, 1);
+    PlayTime_Start(SaveData_GetPlayTime(saveData));
+    return TRUE;
 }
 
-static int ov57_021D0E00(OverlayManager *param0, int *param1)
+static int GameStartNewSave_Exit(OverlayManager *ovyManager, int *state)
 {
-    Heap_Destroy(77);
-    EnqueueApplication(0xffffffff, &gFieldSystemNewGameTemplate);
-    return 1;
+    Heap_Destroy(HEAP_ID_GAME_START);
+    EnqueueApplication(FS_OVERLAY_ID_NONE, &gFieldSystemNewGameTemplate);
+    return TRUE;
 }
 
-static int ov57_021D0E1C(OverlayManager *param0, int *param1)
+static int GameStartLoadSave_Init(OverlayManager *ovyManager, int *state)
 {
-    Heap_Create(3, 77, 131072);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_GAME_START, HEAP_SIZE_GAME_START);
     InitRNG();
-
-    return 1;
+    return TRUE;
 }
 
-static int ov57_021D0E34(OverlayManager *param0, int *param1)
+static int GameStartLoadSave_Main(OverlayManager *ovyManager, int *state)
 {
-    SaveData *v0 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
-    SystemData *v1 = SaveData_GetSystemData(v0);
+    SaveData *saveData = ((ApplicationArgs *)OverlayManager_Args(ovyManager))->saveData;
+    SystemData *systemData = SaveData_GetSystemData(saveData);
 
-    TryLoadingSave(77, v0);
-    Options_SetSystemButtonMode(v0, OPTIONS_BUTTON_MODE_NORMAL);
+    TryLoadingSave(HEAP_ID_GAME_START, saveData);
+    Options_SetSystemButtonMode(saveData, OPTIONS_BUTTON_MODE_NORMAL);
 
-    if (!SystemData_MatchesCurrentSystem(v1) || !SystemData_MatchesCurrentRTCOffset(v1)) {
-        GameTime_StartPenalty(SaveData_GetGameTime(v0));
-        SystemData_Init(v1);
-        Party_SetShayminLandForm(Party_GetFromSavedata(v0));
+    if (!SystemData_MatchesCurrentSystem(systemData) || !SystemData_MatchesCurrentRTCOffset(systemData)) {
+        GameTime_StartPenalty(SaveData_GetGameTime(saveData));
+        SystemData_Init(systemData);
+        Party_SetShayminLandForm(Party_GetFromSavedata(saveData));
     }
 
-    sub_02017434(SaveData_GetPlayTime(v0));
-    return 1;
+    PlayTime_Start(SaveData_GetPlayTime(saveData));
+    return TRUE;
 }
 
-static int ov57_021D0E90(OverlayManager *param0, int *param1)
+static int GameStartLoadSave_Exit(OverlayManager *ovyManager, int *state)
 {
-    Heap_Destroy(77);
-    EnqueueApplication(0xffffffff, &gFieldSystemContinueTemplate);
-    return 1;
+    Heap_Destroy(HEAP_ID_GAME_START);
+    EnqueueApplication(FS_OVERLAY_ID_NONE, &gFieldSystemContinueTemplate);
+    return TRUE;
 }
 
 #include "data/berry_init.h"
 
-static void ov57_021D0EAC(int param0, SaveData *param1, BOOL param2)
+static void InitializeNewSave(enum HeapId heapID, SaveData *saveData, BOOL setTrainerID)
 {
-    u32 v0;
-    BerryPatch *v1;
-    TrainerInfo *v2;
-    GameTime *v3;
-    RecordMixedRNG *v4;
+    u32 rnd;
+    BerryPatch *berryPatches;
+    TrainerInfo *trainerInfo;
+    GameTime *gameTime;
+    RecordMixedRNG *rngCollection;
 
-    SystemData_Init(SaveData_GetSystemData(param1));
+    SystemData_Init(SaveData_GetSystemData(saveData));
 
-    v3 = SaveData_GetGameTime(param1);
-    GameTime_Clear(v3);
+    gameTime = SaveData_GetGameTime(saveData);
+    GameTime_Clear(gameTime);
 
-    v4 = SaveData_GetRecordMixedRNG(param1);
-    RecordMixedRNG_SetEntrySeed(v4, 1, MTRNG_Next());
-    sub_0206C008(param1);
+    rngCollection = SaveData_GetRecordMixedRNG(saveData);
+    RecordMixedRNG_SetEntrySeed(rngCollection, RECORD_MIXED_RNG_PLAYER_OVERRIDE, MTRNG_Next());
+    sub_0206C008(saveData);
 
-    v2 = SaveData_GetTrainerInfo(param1);
-    v0 = MTRNG_Next();
+    trainerInfo = SaveData_GetTrainerInfo(saveData);
+    rnd = MTRNG_Next();
 
-    if (param2) {
-        TrainerInfo_SetID(v2, v0);
+    if (setTrainerID) {
+        TrainerInfo_SetID(trainerInfo, rnd);
     }
 
-    TrainerInfo_SetAppearance(v2, sub_0205C9BC(v0, TrainerInfo_Gender(v2), 0));
+    TrainerInfo_SetAppearance(trainerInfo, sub_0205C9BC(rnd, TrainerInfo_Gender(trainerInfo), 0));
 
-    v1 = MiscSaveBlock_GetBerryPatches(param1);
-    BerryPatches_Init(v1, param0, sBerryInitTable, NELEMS(sBerryInitTable) / 2);
+    berryPatches = MiscSaveBlock_GetBerryPatches(saveData);
+    BerryPatches_Init(berryPatches, heapID, sBerryInitTable, NELEMS(sBerryInitTable) / 2);
 }
 
 static void TryLoadingSave(int unused, SaveData *saveData)
 {
     if (!SaveData_Load(saveData)) {
-        OS_ResetSystem(0);
+        OS_ResetSystem(RESET_CLEAN);
     }
 }
 

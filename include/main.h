@@ -6,6 +6,11 @@
 #include "overlay_manager.h"
 #include "savedata.h"
 
+enum OSResetParameter {
+    RESET_CLEAN = 0,
+    RESET_ERROR,
+};
+
 typedef struct ApplicationArgs {
     int unk_00;
     BOOL error;

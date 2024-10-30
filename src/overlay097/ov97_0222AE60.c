@@ -1163,10 +1163,10 @@ static void ov97_0222C094(UnkStruct_0222AE60 *param0)
 {
     switch (param0->unk_58) {
     case 1:
-        EnqueueApplication(FS_OVERLAY_ID(game_start), &Unk_ov57_021D0F70);
+        EnqueueApplication(FS_OVERLAY_ID(game_start), &gGameStartLoadSaveOverlayTemplate);
         break;
     case 2:
-        EnqueueApplication(FS_OVERLAY_ID(game_start), &Unk_ov57_021D0F90);
+        EnqueueApplication(FS_OVERLAY_ID(game_start), &gGameStartRowanIntroOverlayTemplate);
         break;
     case 3:
         EnqueueApplication(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D71C);
