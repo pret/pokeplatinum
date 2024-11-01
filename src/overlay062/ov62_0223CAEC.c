@@ -987,7 +987,7 @@ static BOOL ov62_0223D744 (UnkStruct_0208C06C * param0)
         break;
     case 2:
         if (ov61_0222BB48(ov62_0224112C(param0), &v1) == 1) {
-            sub_020057A4(1381, 0);
+            Sound_StopEffect(1381, 0);
             ov62_02231B8C(param0);
             ov62_022348B8(param0, 4, v1->unk_0C, v1->unk_04);
             sub_0208B9E0(param0->unk_6F0, 0);
@@ -1005,7 +1005,7 @@ static BOOL ov62_0223D744 (UnkStruct_0208C06C * param0)
                 v0->unk_720.unk_0C[1].unk_04 = ov62_0223D124(param0, v0->unk_720.unk_0C[1].unk_00 - 1);
                 v0->unk_720.unk_0C[2].unk_04 = ov62_0223D124(param0, v0->unk_720.unk_0C[2].unk_00 - 1);
             }
-            sub_020057A4(1381, 0);
+            Sound_StopEffect(1381, 0);
             param0->unk_08++;
         }
         break;
@@ -1018,7 +1018,7 @@ static BOOL ov62_0223D744 (UnkStruct_0208C06C * param0)
         ov62_02231B8C(param0);
 
         if (ov61_0222BB48(ov62_0224112C(param0), &v1) == 1) {
-            sub_020057A4(1381, 0);
+            Sound_StopEffect(1381, 0);
             ov62_022348B8(param0, 5, v1->unk_0C, v1->unk_04);
             sub_0208B9E0(param0->unk_6F0, 0);
             param0->unk_08 = 5;
@@ -1041,7 +1041,7 @@ static BOOL ov62_0223D744 (UnkStruct_0208C06C * param0)
                 sub_0208B9E0(param0->unk_6F0, 0);
                 param0->unk_08 = 5;
             } else {
-                sub_020057A4(1381, 0);
+                Sound_StopEffect(1381, 0);
                 Sound_PlayEffect(1375);
                 param0->unk_08 = 0xFF;
             }

@@ -186,7 +186,7 @@ static int sub_0208C330(OverlayManager *param0, int *param1)
     SetMainCallback(sub_0208C604, v0);
     GXLayers_TurnBothDispOn();
     sub_02004550(61, 0, 0);
-    sub_020397E4();
+    DrawWifiConnectionIcon();
     NARC_dtor(v1);
 
     return 1;
@@ -281,7 +281,7 @@ static int sub_0208C5A0(OverlayManager *param0, int *param1)
     sub_0208FE88(v0);
     sub_0208C76C(v0->bgl);
     sub_0201E530();
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
     sub_0208C950(v0);
     NARC_dtor(v0->narcPlPokeData);
     Font_UseLazyGlyphAccess(FONT_SYSTEM);
@@ -301,7 +301,7 @@ static void sub_0208C604(void *param0)
     Bg_RunScheduledUpdates(v0->bgl);
     sub_02008A94(v0->monSpriteData.spriteManager);
     sub_0201DCAC();
-    sub_0200C800();
+    OAMManager_ApplyAndResetBuffers();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
@@ -511,7 +511,7 @@ static void sub_0208C950(PokemonSummaryApp *param0)
 
 static int sub_0208C9C8(PokemonSummaryApp *param0)
 {
-    if (ScreenWipe_Done() == 1) {
+    if (IsScreenTransitionDone() == 1) {
         sub_02092028(param0);
         sub_0208D618(param0);
 
@@ -983,7 +983,7 @@ static u8 sub_0208D17C(PokemonSummaryApp *param0)
 
 static u8 sub_0208D18C(PokemonSummaryApp *param0)
 {
-    if (ScreenWipe_Done() == 1) {
+    if (IsScreenTransitionDone() == 1) {
         return 1;
     }
 

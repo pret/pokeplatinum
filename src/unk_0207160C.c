@@ -442,8 +442,8 @@ static void sub_02071ACC(const int param0)
 static void sub_02071AEC(const int param0)
 {
     if (param0 == 0) {
-        sub_020057A4(1553, 0);
+        Sound_StopEffect(1553, 0);
     } else {
-        sub_020057A4(1556, 0);
+        Sound_StopEffect(1556, 0);
     }
 }

@@ -407,7 +407,7 @@ static void ov70_0226CC3C(UnkStruct_ov70_0226C914 *param0)
 static void ov70_0226CC58(UnkStruct_ov70_0226C914 *param0)
 {
     if (param0->unk_09) {
-        sub_020057A4(1438, 0);
+        Sound_StopEffect(1438, 0);
         param0->unk_09 = 0;
     }
 }

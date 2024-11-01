@@ -123,11 +123,11 @@ static BOOL sub_02056B70(TaskManager *taskMan)
     switch (v1->unk_00) {
     case 0:
         HBlankSystem_Stop(fieldSystem->unk_04->hBlankSystem);
-        sub_0200F174(v1->unk_04, v1->unk_08, v1->unk_0C, v1->unk_10, v1->unk_14, v1->unk_18, v1->unk_1C);
+        StartScreenTransition(v1->unk_04, v1->unk_08, v1->unk_0C, v1->unk_10, v1->unk_14, v1->unk_18, v1->unk_1C);
         v1->unk_00++;
         break;
     case 1:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             HBlankSystem_Start(fieldSystem->unk_04->hBlankSystem);
             Heap_FreeToHeap(v1);
             return 1;
@@ -369,7 +369,7 @@ static BOOL sub_02056F1C(TaskManager *taskMan)
         (v1->unk_04)++;
         break;
     case 3:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             return 1;
         }
         break;
@@ -571,7 +571,7 @@ static BOOL sub_02057218(TaskManager *taskMan)
         }
         break;
     case 2:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             (v1->unk_04)++;
         }
         break;

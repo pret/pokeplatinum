@@ -160,7 +160,7 @@ int ov61_0222BF44(OverlayManager *param0, int *param1)
     v0->unk_00 = OverlayManager_Args(param0);
     v0->unk_04 = BgConfig_New(117);
 
-    sub_0201DBEC(64, 117);
+    VRAMTransferManager_New(64, 117);
     SetAutorepeat(4, 8);
     ov61_0222C224(v0->unk_04);
     sub_0201E3D8();
@@ -177,7 +177,7 @@ int ov61_0222BF44(OverlayManager *param0, int *param1)
     ov61_0222C3B0(v0);
     ov61_0222C664(v0);
 
-    sub_0200F174(0, 1, 1, 0x0, 6, 1, 117);
+    StartScreenTransition(0, 1, 1, 0x0, 6, 1, 117);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
@@ -214,7 +214,7 @@ int ov61_0222C0F8(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             *param1 = 1;
         }
         break;
@@ -233,7 +233,7 @@ int ov61_0222C0F8(OverlayManager *param0, int *param1)
         }
         break;
     case 2:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             return 1;
         }
         break;
@@ -261,7 +261,7 @@ int ov61_0222C160(OverlayManager *param0, int *param1)
     ov61_0222C38C(v0->unk_04);
     SetMainCallback(NULL, NULL);
     DisableHBlank();
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
     sub_0201E530();
     RenderControlFlags_SetCanABSpeedUpPrint(0);
     RenderControlFlags_SetAutoScrollFlags(0);
@@ -856,7 +856,7 @@ static int ov61_0222CCAC(UnkStruct_ov61_0222C664 *param0)
 
     sub_02039794();
     ov61_0222C86C(param0);
-    sub_0200F174(0, 0, 0, 0x0, 6, 1, 117);
+    StartScreenTransition(0, 0, 0, 0x0, 6, 1, 117);
     param0->unk_08 = 0;
 
     return 1;

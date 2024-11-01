@@ -18,7 +18,6 @@
 #include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_0202DF8C.h"
 #include "struct_defs/struct_0203D8AC.h"
-#include "struct_defs/struct_0203D8EC.h"
 #include "struct_defs/struct_0203D9B8.h"
 #include "struct_defs/struct_0203DA00.h"
 #include "struct_defs/struct_0203DDFC.h"
@@ -43,6 +42,7 @@
 #include "struct_defs/struct_02098C44.h"
 #include "struct_defs/struct_020997B8.h"
 
+#include "applications/options_menu.h"
 #include "battle/ov16_0223B140.h"
 #include "choose_starter/choose_starter_app.h"
 #include "dw_warp/dw_warp.h"
@@ -63,7 +63,6 @@
 #include "overlay064/ov64_0222DCE0.h"
 #include "overlay071/ov71_0223B140.h"
 #include "overlay072/ov72_0223D7A0.h"
-#include "overlay074/ov74_021D0D80.h"
 #include "overlay080/ov80_021D0D80.h"
 #include "overlay081/ov81_021D0D80.h"
 #include "overlay084/const_ov84_02241130.h"
@@ -162,7 +161,7 @@ FS_EXTERN_OVERLAY(overlay61);
 FS_EXTERN_OVERLAY(overlay64);
 FS_EXTERN_OVERLAY(overlay71);
 FS_EXTERN_OVERLAY(overlay72);
-FS_EXTERN_OVERLAY(overlay74);
+FS_EXTERN_OVERLAY(options_menu);
 FS_EXTERN_OVERLAY(choose_starter);
 FS_EXTERN_OVERLAY(overlay80);
 FS_EXTERN_OVERLAY(overlay81);
@@ -764,31 +763,27 @@ void *sub_0203D8AC(FieldSystem *fieldSystem)
     return v0;
 }
 
-static void sub_0203D8DC(FieldSystem *fieldSystem, Options *param1)
+static void OpenOptionsMenu(FieldSystem *fieldSystem, Options *options)
 {
-    FS_EXTERN_OVERLAY(overlay74);
+    FS_EXTERN_OVERLAY(options_menu);
 
-    static const OverlayManagerTemplate v0 = {
-        ov74_021D0D80,
-        ov74_021D0F60,
-        ov74_021D0E58,
-        FS_OVERLAY_ID(overlay74)
+    static const OverlayManagerTemplate template = {
+        OptionsMenu_Init,
+        OptionsMenu_Main,
+        OptionsMenu_Exit,
+        FS_OVERLAY_ID(options_menu)
     };
 
-    sub_0203CD84(fieldSystem, &v0, param1);
+    sub_0203CD84(fieldSystem, &template, options);
 }
 
-void *sub_0203D8EC(FieldSystem *fieldSystem)
+void *FieldSystem_OpenOptionsMenu(FieldSystem *fieldSystem)
 {
-    UnkStruct_0203D8EC *v0;
-    Options *v1;
+    OptionsMenu *optionsMenu = Heap_AllocFromHeapAtEnd(11, sizeof(OptionsMenu));
+    Options *options = SaveData_Options(FieldSystem_SaveData(fieldSystem));
+    OpenOptionsMenu(fieldSystem, options);
 
-    v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0203D8EC));
-    v1 = SaveData_Options(FieldSystem_SaveData(fieldSystem));
-
-    sub_0203D8DC(fieldSystem, v1);
-
-    return v0;
+    return optionsMenu;
 }
 
 extern const OverlayManagerTemplate Unk_020F64B0;

@@ -5209,7 +5209,7 @@ static int ov9_0224D4C4(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224D078 *
 
     if ((param1->unk_44.x == param1->unk_2C.x) && (param1->unk_44.y == param1->unk_2C.y) && (param1->unk_44.z == param1->unk_2C.z)) {
         if (param1->unk_08 == 22) {
-            sub_020057A4(1481, 0);
+            Sound_StopEffect(1481, 0);
             param1->unk_04 = 5;
         } else {
             MapObject *v5 = Player_MapObject(param0->fieldSystem->playerAvatar);
@@ -6524,7 +6524,7 @@ static int ov9_0224E798(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16
         }
     }
 
-    sub_020057A4(1482, 0);
+    Sound_StopEffect(1482, 0);
     return 2;
 }
 
@@ -8310,7 +8310,7 @@ static int ov9_0224FEDC(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16
             ov5_021F88DC(v1, 1 << 2 | 1 << 4 | 1 << 6 | 1 << 5);
         }
 
-        sub_020057A4(1488, 0);
+        Sound_StopEffect(1488, 0);
         *param2 = 4;
 
         {
@@ -8628,7 +8628,7 @@ static int ov9_02250468(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16
             ov5_021F88DC(v1, 1 << 2 | 1 << 4 | 1 << 6 | 1 << 5);
         }
 
-        sub_020057A4(1488, 0);
+        Sound_StopEffect(1488, 0);
         *param2 = 4;
     }
 
@@ -9346,7 +9346,7 @@ static int ov9_02250DA0(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16
 
     if (v0->unk_02 <= 0) {
         v0->unk_02 = 48;
-        sub_020057A4(1484, 0);
+        Sound_StopEffect(1484, 0);
         ov9_0224B64C(param0, v0->unk_00);
         v0->unk_00++;
 
@@ -9384,7 +9384,7 @@ static int ov9_02250E00(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16
     if (v0->unk_02 <= 0) {
         if (v0->unk_00 >= 1) {
             v0->unk_02 = 48;
-            sub_020057A4(1484, 0);
+            Sound_StopEffect(1484, 0);
             ov9_0224B624(param0, v0->unk_00);
             v0->unk_00--;
         } else {

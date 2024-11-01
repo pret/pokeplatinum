@@ -27,7 +27,7 @@ BOOL sub_0200C73C(SpriteRenderer *param0, const UnkStruct_ov104_0224133C *param1
 BOOL sub_0200C7C0(SpriteRenderer *param0, SpriteGfxHandler *param1, int param2);
 void sub_0200C7E4(CellActor *param0);
 void sub_0200C7EC(SpriteGfxHandler *param0);
-void sub_0200C800(void);
+void OAMManager_ApplyAndResetBuffers(void);
 void sub_0200C808(void);
 void sub_0200C810(SpriteGfxHandler *param0);
 void sub_0200C81C(SpriteGfxHandler *param0);

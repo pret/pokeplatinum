@@ -4033,7 +4033,7 @@ static void BattleController_HandleResult(BattleSystem *battleSys, BattleContext
 
 static void BattleController_ScreenWipe(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    if (ScreenWipe_Done() == TRUE) {
+    if (IsScreenTransitionDone() == TRUE) {
         battleCtx->command = BATTLE_CONTROL_FIGHT_END;
     }
 }

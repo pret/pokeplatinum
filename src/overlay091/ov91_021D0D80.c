@@ -475,7 +475,7 @@ static void ov91_021D0F6C(UnkStruct_ov91_021D0ED8 *param0)
     ov91_021D11F0(param0);
     ov91_021D20B4(param0);
 
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
     SetMainCallback(NULL, NULL);
 }
 
@@ -485,7 +485,7 @@ static void ov91_021D0F9C(void *param0)
 
     Bg_RunScheduledUpdates(v0->unk_04);
     sub_0201DCAC();
-    sub_0200C800();
+    OAMManager_ApplyAndResetBuffers();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
@@ -646,7 +646,7 @@ static void ov91_021D11F0(UnkStruct_ov91_021D0ED8 *param0)
 
 static int ov91_021D1214(UnkStruct_ov91_021D0ED8 *param0)
 {
-    if (ScreenWipe_Done() == 1) {
+    if (IsScreenTransitionDone() == 1) {
         return param0->unk_180;
     }
 
@@ -1283,7 +1283,7 @@ static void ov91_021D2014(UnkStruct_ov91_021D0ED8 *param0)
         11, 2, 4, 4, 0, 0
     };
 
-    sub_0201DBEC(64, 67);
+    VRAMTransferManager_New(64, 67);
 
     param0->unk_110 = sub_0200C6E4(67);
     param0->unk_114 = sub_0200C704(param0->unk_110);

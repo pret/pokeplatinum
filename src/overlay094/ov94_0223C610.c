@@ -87,7 +87,7 @@ int ov94_0223C610(UnkStruct_ov94_0223FD4C *param0, int param1)
 
     if (param0->unk_34 == 0) {
         ov94_0223C85C(param0);
-        sub_0200F174(0, 1, 1, 0x0, 6, 1, 62);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, 62);
 
         param0->unk_2C = 0;
         param0->unk_34 = 1;
@@ -95,9 +95,9 @@ int ov94_0223C610(UnkStruct_ov94_0223FD4C *param0, int param1)
         ov94_02243FA8(param0, TrainerInfo_Gender(param0->unk_00->unk_1C));
     } else {
         if (param0->unk_1110 == 1) {
-            sub_0200F174(0, 1, 1, 0x0, 6, 1, 62);
+            StartScreenTransition(0, 1, 1, 0x0, 6, 1, 62);
         } else {
-            sub_0200F174(3, 1, 1, 0x0, 6, 1, 62);
+            StartScreenTransition(3, 1, 1, 0x0, 6, 1, 62);
         }
 
         param0->unk_2C = 5;
@@ -386,7 +386,7 @@ static int ov94_0223CB90(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_0223CBA0(UnkStruct_ov94_0223FD4C *param0)
 {
-    sub_0200F174(3, 1, 1, 0x0, 6, 1, 62);
+    StartScreenTransition(3, 1, 1, 0x0, 6, 1, 62);
     param0->unk_2C = 3;
 
     return 3;
@@ -394,7 +394,7 @@ static int ov94_0223CBA0(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_0223CBC4(UnkStruct_ov94_0223FD4C *param0)
 {
-    if (ScreenWipe_Done()) {
+    if (IsScreenTransitionDone()) {
         param0->unk_2C = 5;
     }
 
@@ -403,7 +403,7 @@ static int ov94_0223CBC4(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_0223CBD8(UnkStruct_ov94_0223FD4C *param0)
 {
-    if (ScreenWipe_Done()) {
+    if (IsScreenTransitionDone()) {
         param0->unk_2C = 5;
     }
 
@@ -500,9 +500,9 @@ static int ov94_0223CE00(UnkStruct_ov94_0223FD4C *param0)
 static int ov94_0223CE14(UnkStruct_ov94_0223FD4C *param0)
 {
     if (param0->unk_18 == 0) {
-        sub_0200F174(0, 0, 0, 0x0, 6, 1, 62);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 62);
     } else {
-        sub_0200F174(3, 0, 0, 0x0, 6, 1, 62);
+        StartScreenTransition(3, 0, 0, 0x0, 6, 1, 62);
     }
 
     param0->unk_2C = 0;

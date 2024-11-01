@@ -975,7 +975,7 @@ void ov114_0225C904(UnkStruct_ov114_0225E854 *param0)
     G2_BlendNone();
     G2S_BlendNone();
 
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
     Heap_FreeToHeap(param0);
 }
 
@@ -1705,13 +1705,13 @@ static void ov114_0225D688(SysTask *param0, void *param1)
 
     switch (v0->unk_00) {
     case 0:
-        sub_0200F174(3, 1, 1, 0xffff, 6, 1, v0->unk_02);
+        StartScreenTransition(3, 1, 1, 0xffff, 6, 1, v0->unk_02);
         ov114_0225E244(&v0->unk_230, &v0->unk_30, v0->unk_02);
         v0->unk_00++;
         break;
     case 1:
         ov114_0225E31C(&v0->unk_230, &v0->unk_30);
-        v1 = ScreenWipe_Done();
+        v1 = IsScreenTransitionDone();
 
         if (v1 == 1) {
             v0->unk_00++;
@@ -1829,7 +1829,7 @@ static void ov114_0225D688(SysTask *param0, void *param1)
         }
         break;
     case 13:
-        sub_0200F174(3, 0, 1, 0x0, 6, 1, v0->unk_02);
+        StartScreenTransition(3, 0, 1, 0x0, 6, 1, v0->unk_02);
         ov114_0225DA5C(v0);
 
         if (v0->unk_08.unk_09 == 0) {
@@ -1854,7 +1854,7 @@ static void ov114_0225D688(SysTask *param0, void *param1)
         break;
     case 14:
         ov114_0225DA5C(v0);
-        v1 = ScreenWipe_Done();
+        v1 = IsScreenTransitionDone();
 
         if (v1 == 1) {
             ov114_0225DFFC(&v0->unk_348);
@@ -2493,7 +2493,7 @@ static UnkStruct_ov114_0225E854 *ov114_0225E5A8(const UnkStruct_ov114_0225C76C *
     v0->unk_02 = param3;
 
     ov114_0225E0F8(&v0->unk_34, &v0->unk_0C);
-    sub_0201DBEC(16, param3);
+    VRAMTransferManager_New(16, param3);
 
     ov114_0225CEF0(&v0->unk_4C, &Unk_ov114_0226014C, Unk_ov114_02260324, 6, param3);
     ov114_0225CFCC(&v0->unk_A0, 32, 2, 2, param3);
@@ -2617,11 +2617,11 @@ static void ov114_0225E874(SysTask *param0, void *param1)
             }
         }
 
-        sub_0200F174(3, 1, 1, 0xffff, 6, 1, v0->unk_02);
+        StartScreenTransition(3, 1, 1, 0xffff, 6, 1, v0->unk_02);
         v0->unk_04++;
         break;
     case 1:
-        v1 = ScreenWipe_Done();
+        v1 = IsScreenTransitionDone();
 
         if (v1) {
             v0->unk_04++;
@@ -2854,11 +2854,11 @@ static void ov114_0225E874(SysTask *param0, void *param1)
         }
         break;
     case 17:
-        sub_0200F174(3, 0, 0, 0x0, 6, 1, v0->unk_02);
+        StartScreenTransition(3, 0, 0, 0x0, 6, 1, v0->unk_02);
         v0->unk_04++;
         break;
     case 18:
-        v1 = ScreenWipe_Done();
+        v1 = IsScreenTransitionDone();
 
         if (v1) {
             v0->unk_04 = 21;
@@ -2928,11 +2928,11 @@ static void ov114_0225ED40(SysTask *param0, void *param1)
             }
         }
 
-        sub_0200F174(3, 1, 1, 0xffff, 6, 1, v0->unk_02);
+        StartScreenTransition(3, 1, 1, 0xffff, 6, 1, v0->unk_02);
         v0->unk_04++;
         break;
     case 1:
-        v1 = ScreenWipe_Done();
+        v1 = IsScreenTransitionDone();
 
         if (v1) {
             v0->unk_04++;
@@ -3094,11 +3094,11 @@ static void ov114_0225ED40(SysTask *param0, void *param1)
         }
         break;
     case 16:
-        sub_0200F174(3, 0, 0, 0x0, 6, 1, v0->unk_02);
+        StartScreenTransition(3, 0, 0, 0x0, 6, 1, v0->unk_02);
         v0->unk_04++;
         break;
     case 17:
-        v1 = ScreenWipe_Done();
+        v1 = IsScreenTransitionDone();
 
         if (v1) {
             v0->unk_04 = 20;
@@ -3224,7 +3224,7 @@ static BOOL ov114_0225F27C(UnkStruct_ov114_0225F270 *param0, UnkStruct_ov114_022
 
     switch (param0->unk_00) {
     case 0:
-        sub_0200F174(0, 0, 1, 0x0, 6, 1, param4);
+        StartScreenTransition(0, 0, 1, 0x0, 6, 1, param4);
         sub_020397C8(0, param4);
 
         if (param0->unk_01) {
@@ -3234,7 +3234,7 @@ static BOOL ov114_0225F27C(UnkStruct_ov114_0225F270 *param0, UnkStruct_ov114_022
         param0->unk_00++;
         break;
     case 1:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             param0->unk_00++;
         }
         break;
@@ -3300,11 +3300,11 @@ static BOOL ov114_0225F27C(UnkStruct_ov114_0225F270 *param0, UnkStruct_ov114_022
         }
         break;
     case 10:
-        sub_0200F174(4, 0, 0, 0x0, 6, 1, param4);
+        StartScreenTransition(4, 0, 0, 0x0, 6, 1, param4);
         param0->unk_00++;
         break;
     case 11:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             sub_02039794();
 
             if (param0->unk_01) {

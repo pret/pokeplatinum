@@ -465,7 +465,7 @@ static void ov75_021D131C(void *param0)
     }
 
     if (v0->unk_A8 != NULL) {
-        sub_0200C800();
+        OAMManager_ApplyAndResetBuffers();
     }
 
     NNS_GfdDoVramTransfer();
@@ -863,13 +863,13 @@ static void ov75_021D1ADC(UnkStruct_ov75_021D1184 *param0)
     int v0 = 0, v1 = 0;
     SpriteTemplate v2;
 
-    sub_020397E4();
+    DrawWifiConnectionIcon();
 
     if (param0->unk_0C == 1) {
         return;
     }
 
-    sub_0201DBEC(32, param0->unk_00);
+    VRAMTransferManager_New(32, param0->unk_00);
 
     param0->unk_A8 = sub_0200C6E4(param0->unk_00);
     param0->unk_AC = sub_0200C704(param0->unk_A8);
@@ -957,6 +957,6 @@ static void ov75_021D1CB8(UnkStruct_ov75_021D1184 *param0)
 
         sub_0200D0B0(param0->unk_A8, param0->unk_AC);
         sub_0200C8D4(param0->unk_A8);
-        sub_0201DC3C();
+        VRAMTransferManager_Destroy();
     }
 }

@@ -190,7 +190,7 @@ static BOOL FieldMap_Init(OverlayManager *overlayMan, int *param1)
 
         ov5_021D1414();
 
-        sub_0201DBEC(128, 4);
+        VRAMTransferManager_New(128, 4);
         sub_02020B90(4, 4);
         Easy3D_Init(4);
 
@@ -332,7 +332,7 @@ static BOOL FieldMap_Exit(OverlayManager *overlayMan, int *param1)
         if (ov5_021D5C30(fieldSystem)) {
             ov5_021D15E8();
             sub_02020BD0();
-            sub_0201DC3C();
+            VRAMTransferManager_Destroy();
             Easy3D_Shutdown();
             ov5_021D1AE4(fieldSystem->unk_04->unk_04);
             SetMainCallback(NULL, NULL);
@@ -784,10 +784,10 @@ static void ov5_021D173C(FieldSystem *fieldSystem)
 void ov5_021D1744(const u8 param0)
 {
     if (param0 == 1) {
-        sub_0200F174(
+        StartScreenTransition(
             0, 1, 1, 0x0, 6, 1, 4);
     } else if (param0 == 0) {
-        sub_0200F174(
+        StartScreenTransition(
             0, 0, 0, 0x0, 6, 1, 4);
     } else {
         GF_ASSERT(FALSE);

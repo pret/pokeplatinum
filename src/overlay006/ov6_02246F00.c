@@ -84,9 +84,9 @@ static BOOL ov6_02246F40(TaskManager *param0)
     case 2:
         if (ov5_021D42F0(fieldSystem->unk_54, 0x1)) {
             if (v1->unk_01 == 0) {
-                sub_020057A4(1554, 0);
+                Sound_StopEffect(1554, 0);
             } else {
-                sub_020057A4(1554, 0);
+                Sound_StopEffect(1554, 0);
             }
 
             Sound_PlayEffect(1521);

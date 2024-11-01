@@ -347,11 +347,11 @@ static BOOL ov106_02241D28(UnkStruct_ov106_02243118 *param0)
         break;
     case 2:
         ov106_02241DD4(param0);
-        sub_0200F174(0, 1, 1, 0x0, 6, 1 * 3, 98);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, 98);
         param0->unk_08++;
         break;
     case 3:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             return 1;
         }
         break;
@@ -411,7 +411,7 @@ static BOOL ov106_02241E5C(UnkStruct_ov106_02243118 *param0)
         if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
             if (ov104_0223B5A4(param0->unk_0D) == 0xfe) {
                 Sound_PlayEffect(1501);
-                sub_0200F174(0, 0, 0, 0x0, 6, 1, 98);
+                StartScreenTransition(0, 0, 0, 0x0, 6, 1, 98);
 
                 param0->unk_10 = 1;
                 param0->unk_08 = 6;
@@ -476,7 +476,7 @@ static BOOL ov106_02241E5C(UnkStruct_ov106_02243118 *param0)
                 param0->unk_1F = param0->unk_0D;
                 param0->unk_08 = 4;
             } else {
-                sub_020057A4(1500, 0);
+                Sound_StopEffect(1500, 0);
                 Sound_PlayEffect(1572);
 
                 if (param0->unk_1F != 0x75) {
@@ -513,7 +513,7 @@ static BOOL ov106_02241E5C(UnkStruct_ov106_02243118 *param0)
         }
         break;
     case 6:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             ov106_02242CA4(param0);
             ov106_022423E8(param0);
             param0->unk_04 = OverlayManager_New(&Unk_020F410C, param0->unk_BC, 98);
@@ -616,7 +616,7 @@ static BOOL ov106_02242108(UnkStruct_ov106_02243118 *param0)
         case 0xffffffff:
             break;
         case 0:
-            sub_020057A4(1500, 0);
+            Sound_StopEffect(1500, 0);
             Sound_PlayEffect(1572);
             ov106_02243200(param0);
             param0->unk_08 = 6;
@@ -695,12 +695,12 @@ static BOOL ov106_02242344(UnkStruct_ov106_02243118 *param0)
 
         if (param0->unk_1B == 0) {
             ov106_022432D4(param0);
-            sub_0200F174(0, 0, 0, 0x0, 6, 1, 98);
+            StartScreenTransition(0, 0, 0, 0x0, 6, 1, 98);
             param0->unk_08++;
         }
         break;
     case 2:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             return 1;
         }
         break;

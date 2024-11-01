@@ -14,7 +14,7 @@ void sub_020056D4(void);
 BOOL sub_02005728(u16 param0, int param1);
 BOOL Sound_PlayEffect(u16 param0);
 BOOL sub_02005770(u16 param0, int param1);
-void sub_020057A4(u16 param0, int param1);
+void Sound_StopEffect(u16 param0, int param1);
 void sub_020057AC(int param0, int param1);
 void sub_020057BC(int param0);
 int Sound_IsEffectPlaying(u16 param0);

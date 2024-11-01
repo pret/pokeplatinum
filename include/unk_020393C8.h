@@ -15,6 +15,6 @@ void sub_02039750(int param0, int param1, BOOL param2, int param3);
 void sub_02039794(void);
 void sub_020397B0(int param0);
 void sub_020397C8(BOOL param0, u32 param1);
-void sub_020397E4(void);
+void DrawWifiConnectionIcon(void);
 
 #endif // POKEPLATINUM_UNK_020393C8_H

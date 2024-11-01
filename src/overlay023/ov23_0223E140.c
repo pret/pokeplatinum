@@ -1416,11 +1416,11 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         break;
     case 1:
         ov23_0224942C(fieldSystem->unk_6C);
-        sub_0200F174(2, 16, 18, 0x0, 6, 1, 4);
+        StartScreenTransition(2, 16, 18, 0x0, 6, 1, 4);
         (v0->unk_00)++;
         break;
     case 2:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             if (fieldSystem->unk_6C == NULL) {
                 sub_0203CD44(fieldSystem);
                 (v0->unk_00)++;
@@ -1443,7 +1443,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         break;
     case 6:
         sub_02039734();
-        sub_0200F174(3, 17, 17, 0x0, 6, 1, 29);
+        StartScreenTransition(3, 17, 17, 0x0, 6, 1, 29);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
@@ -1451,7 +1451,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         (v0->unk_00)++;
         break;
     case 7:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             v0->unk_08 = 0;
             Sound_PlayEffect(1354);
             v0->unk_00 = 8;
@@ -1558,13 +1558,13 @@ static void ov23_0223F118(SysTask *param0, void *param1)
     case 18:
         CellActorCollection_Update(Unk_ov23_02257740->unk_20);
         ov23_02254044(ov23_0224219C());
-        sub_0200F174(3, 16, 16, 0x0, 6, 1, 29);
+        StartScreenTransition(3, 16, 16, 0x0, 6, 1, 29);
         (v0->unk_00)++;
         break;
     case 19:
         CellActorCollection_Update(Unk_ov23_02257740->unk_20);
 
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             sub_02039794();
             ov23_0223F020(v0);
             sub_020509D4(fieldSystem);
@@ -1577,7 +1577,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
             sub_02039734();
             sub_020594FC();
             HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
-            sub_0200F174(1, 17, 19, 0x0, 6, 1, 4);
+            StartScreenTransition(1, 17, 19, 0x0, 6, 1, 4);
             (v0->unk_00)++;
             break;
         }
@@ -1585,7 +1585,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
     case 21:
         sub_0200F338(0);
 
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
             HBlankSystem_Start(v0->fieldSystem->unk_04->hBlankSystem);
 
@@ -1621,12 +1621,12 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         break;
     case 23:
         CellActorCollection_Update(Unk_ov23_02257740->unk_20);
-        sub_0200F174(3, 2, 2, 0x0, 15, 1, 29);
+        StartScreenTransition(3, 2, 2, 0x0, 15, 1, 29);
         Sound_PlayEffect(1697);
         v0->unk_00 = 24;
         break;
     case 24:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             int v3;
 
             for (v3 = 0; v3 < 8; v3++) {

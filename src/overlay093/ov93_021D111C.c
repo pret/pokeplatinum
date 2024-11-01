@@ -159,7 +159,7 @@ int ov93_021D120C(OverlayManager *param0, int *param1)
                 sub_0208C120(1, 72);
             }
         } else {
-            if (ScreenWipe_Done()) {
+            if (IsScreenTransitionDone()) {
                 return 1;
             }
         }

@@ -5319,7 +5319,7 @@ static void ov5_021DB4B8(UnkStruct_ov5_021DB4B8 *param0, int param1)
 
 static void ov5_021DB4E4(UnkStruct_ov5_021DB4B8 *param0)
 {
-    sub_020057A4(param0->unk_BA0, 0);
+    Sound_StopEffect(param0->unk_BA0, 0);
     param0->unk_B9C = 0;
 }
 

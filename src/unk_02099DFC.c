@@ -121,22 +121,22 @@ int sub_02099E38(OverlayManager *param0, int *param1)
         sub_0209A098(v0);
         SetMainCallback(sub_02099F74, (void *)v0);
         GXLayers_TurnBothDispOn();
-        sub_0200F174(0, 1, 1, 0, 6, 1, v0->unk_00);
+        StartScreenTransition(0, 1, 1, 0, 6, 1, v0->unk_00);
         *param1 = 1;
         break;
     case 1:
-        if (ScreenWipe_Done() == TRUE) {
+        if (IsScreenTransitionDone() == TRUE) {
             *param1 = 2;
         }
         break;
     case 2:
         if (sub_0209A0F4(v0) == TRUE) {
-            sub_0200F174(0, 0, 0, 0, 6, 1, v0->unk_00);
+            StartScreenTransition(0, 0, 0, 0, 6, 1, v0->unk_00);
             *param1 = 3;
         }
         break;
     case 3:
-        if (ScreenWipe_Done() == TRUE) {
+        if (IsScreenTransitionDone() == TRUE) {
             sub_0209A0E0(v0);
             sub_0209A044(v0);
             SetMainCallback(NULL, NULL);

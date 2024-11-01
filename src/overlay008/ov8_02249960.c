@@ -449,7 +449,7 @@ static BOOL ov8_02249A94(TaskManager *taskMan)
     } break;
     case 2:
         ov5_021EF388(0, (FX32_ONE * 16 * 0), fieldSystem->unk_A0);
-        sub_020057A4(1626, 0);
+        Sound_StopEffect(1626, 0);
         (v2->unk_00)++;
         break;
     case 3:
@@ -536,7 +536,7 @@ static BOOL ov8_02249B74(TaskManager *taskMan)
         break;
     case 4:
         ov5_021EF388(0, (FX32_ONE * 16 * 2), fieldSystem->unk_A0);
-        sub_020057A4(1626, 0);
+        Sound_StopEffect(1626, 0);
         (v2->unk_00)++;
         break;
     case 5:
@@ -587,7 +587,7 @@ static BOOL ov8_02249CD8(TaskManager *taskMan)
     } break;
     case 2:
         ov5_021EF388(0, (FX32_ONE * 16 * 4), fieldSystem->unk_A0);
-        sub_020057A4(1626, 0);
+        Sound_StopEffect(1626, 0);
         (v2->unk_00)++;
         break;
     case 3:
@@ -795,7 +795,7 @@ static BOOL ov8_0224A018(TaskManager *taskMan)
             if (v3.y >= (FX32_ONE * 16 * 10)) {
                 v3.y = (FX32_ONE * 16 * 10);
 
-                sub_020057A4(1553, 0);
+                Sound_StopEffect(1553, 0);
                 (v2->unk_00)++;
             }
 
@@ -840,7 +840,7 @@ static BOOL ov8_0224A0E8(TaskManager *taskMan)
 
             if (v3.y <= (FX32_ONE * 0)) {
                 v3.y = (FX32_ONE * 0);
-                sub_020057A4(1553, 0);
+                Sound_StopEffect(1553, 0);
                 (v2->unk_00)++;
             }
 
@@ -1363,7 +1363,7 @@ static BOOL ov8_0224A4FC(TaskManager *taskMan)
                 if (v5.y >= v3->unk_EC) {
                     v5.y = v3->unk_EC;
                     v3->unk_10[v3->unk_E8] = Unk_ov8_0224CB68[v3->unk_E8].unk_0B;
-                    sub_020057A4(1553, 0);
+                    Sound_StopEffect(1553, 0);
                     (v2->unk_00)++;
                 }
             } else if (v3->unk_F0 == 1) {
@@ -1371,7 +1371,7 @@ static BOOL ov8_0224A4FC(TaskManager *taskMan)
 
                 if (v5.y <= v3->unk_EC) {
                     v5.y = v3->unk_EC;
-                    sub_020057A4(1553, 0);
+                    Sound_StopEffect(1553, 0);
                     (v2->unk_00)++;
                 }
             } else {
@@ -1434,7 +1434,7 @@ static BOOL ov8_0224A620(TaskManager *taskMan)
                 if (v6.x >= v4->unk_EC) {
                     v6.x = v4->unk_EC;
 
-                    sub_020057A4(1553, 0);
+                    Sound_StopEffect(1553, 0);
                     (v3->unk_00)++;
                 } else {
                     if (LocalMapObj_IsAnimationSet(v1) == 1) {
@@ -1445,7 +1445,7 @@ static BOOL ov8_0224A620(TaskManager *taskMan)
                 if (v6.x <= v4->unk_EC) {
                     v6.x = v4->unk_EC;
 
-                    sub_020057A4(1553, 0);
+                    Sound_StopEffect(1553, 0);
                     (v3->unk_00)++;
                 } else {
                     if (LocalMapObj_IsAnimationSet(v1) == 1) {
@@ -1516,7 +1516,7 @@ static BOOL ov8_0224A770(TaskManager *taskMan)
                 if (v6.z >= v4->unk_EC) {
                     v6.z = v4->unk_EC;
 
-                    sub_020057A4(1553, 0);
+                    Sound_StopEffect(1553, 0);
                     (v3->unk_00)++;
                 } else {
                     if (LocalMapObj_IsAnimationSet(v1) == 1) {
@@ -1527,7 +1527,7 @@ static BOOL ov8_0224A770(TaskManager *taskMan)
                 if (v6.z <= v4->unk_EC) {
                     v6.z = v4->unk_EC;
 
-                    sub_020057A4(1553, 0);
+                    Sound_StopEffect(1553, 0);
                     (v3->unk_00)++;
                 } else {
                     if (LocalMapObj_IsAnimationSet(v1) == 1) {
@@ -2766,7 +2766,7 @@ static BOOL ov8_0224B3D4(TaskManager *param0)
         ov8_0224AF84(v4);
 
         if (v0 == 1) {
-            sub_020057A4(1355, 0);
+            Sound_StopEffect(1355, 0);
             Sound_PlayEffect(1507);
             v2->unk_00++;
         }
@@ -2842,7 +2842,7 @@ static BOOL ov8_0224B3D4(TaskManager *param0)
             v2->unk_04 = 0;
             v2->unk_00++;
 
-            sub_020057A4(1593, 0);
+            Sound_StopEffect(1593, 0);
             MessageLoader_GetStrbuf(v2->unk_48, 12, v2->unk_4C);
             FieldMessage_AddWindow(fieldSystem->bgConfig, v2->unk_44, 3);
             Window_EraseMessageBox(v2->unk_44, 0);
@@ -3368,7 +3368,7 @@ static int ov8_0224BCA8(UnkStruct_ov8_0224C098 *param0)
             MapObject_SetZ(v0->unk_08.unk_08, v0->unk_08.unk_04);
             sub_02064208(v0->unk_08.unk_08);
             ov5_021F4714(v0->unk_08.unk_0C, FX32_ONE);
-            sub_020057A4(1356, 0);
+            Sound_StopEffect(1356, 0);
             Sound_PlayEffect(1367);
             Sound_PlayEffect(1357);
 

@@ -149,9 +149,9 @@ void ov97_02237790(int param0, int param1, int *param2, int param3)
     UnkStruct_ov97_0223F550 *v0 = &Unk_ov97_0223F550;
 
     if (v0->unk_10 == 0) {
-        sub_0200F174(0, param0, param0, 0x0, 6, 1, v0->unk_08);
+        StartScreenTransition(0, param0, param0, 0x0, 6, 1, v0->unk_08);
     } else {
-        sub_0200F174(0, param0, param0, 0x7fff, 6, 1, v0->unk_08);
+        StartScreenTransition(0, param0, param0, 0x7fff, 6, 1, v0->unk_08);
     }
 
     if (param2) {
@@ -165,7 +165,7 @@ void ov97_022377F0(int *param0)
 {
     UnkStruct_ov97_0223F550 *v0 = &Unk_ov97_0223F550;
 
-    if (ScreenWipe_Done()) {
+    if (IsScreenTransitionDone()) {
         *param0 = v0->unk_0C;
     }
 }

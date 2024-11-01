@@ -840,7 +840,7 @@ static BOOL ov104_0222FF90(UnkStruct_ov104_0222E930 *param0)
     u16 v2 = ov104_0222EA48(param0);
     u16 v3 = ov104_0222EA48(param0);
 
-    sub_0200F174(0, v2, v2, v3, v0, v1, 11);
+    StartScreenTransition(0, v2, v2, v3, v0, v1, 11);
     sub_0200F32C(0);
     sub_0200F32C(1);
 
@@ -855,7 +855,7 @@ static BOOL ov104_0222FFD8(UnkStruct_ov104_0222E930 *param0)
 
 static BOOL ov104_0222FFE8(UnkStruct_ov104_0222E930 *param0)
 {
-    if (ScreenWipe_Done() == 1) {
+    if (IsScreenTransitionDone() == 1) {
         return 1;
     }
 
@@ -2095,11 +2095,11 @@ static BOOL ov104_02231148(UnkStruct_ov104_02231148 *param0)
 
         sub_0200F32C(0);
         sub_0200F32C(1);
-        sub_0200F174(0, 32, 32, 0x0, 12, 1, 11);
+        StartScreenTransition(0, 32, 32, 0x0, 12, 1, 11);
         param0->unk_04++;
         break;
     default:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             return 0;
         }
         break;
@@ -2143,7 +2143,7 @@ static BOOL ov104_022311BC(UnkStruct_ov104_02231148 *param0)
         }
     } break;
     default:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             ov104_0223EBD0(param0->unk_2C);
 
             Window_ClearAndCopyToVRAM(param0->unk_28);
@@ -2198,7 +2198,7 @@ static BOOL ov104_022312D8(UnkStruct_ov104_02231148 *param0)
     } break;
 
     default:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             ov104_0223EBD0(param0->unk_2C);
 
             Window_ClearAndCopyToVRAM(param0->unk_28);

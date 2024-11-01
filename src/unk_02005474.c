@@ -36,7 +36,7 @@ void sub_020056D4(void);
 BOOL Sound_PlayEffect(u16 param0);
 BOOL sub_02005770(u16 param0, int param1);
 BOOL sub_02005728(u16 param0, int param1);
-void sub_020057A4(u16 param0, int param1);
+void Sound_StopEffect(u16 param0, int param1);
 void sub_020057AC(int param0, int param1);
 void sub_020057BC(int param0);
 int sub_020057E0(void);
@@ -325,7 +325,7 @@ BOOL sub_02005770(u16 param0, int param1)
     return v1;
 }
 
-void sub_020057A4(u16 param0, int param1)
+void Sound_StopEffect(u16 param0, int param1)
 {
     NNS_SndPlayerStopSeqBySeqNo(param0, param1);
     return;

@@ -1268,10 +1268,10 @@ Overlay overlay73
 	Object main.nef.p/src_overlay073_ov73_021D3250.c.o
 }
 
-Overlay overlay74
+Overlay options_menu
 {
 	After main
-	Object main.nef.p/src_overlay074_ov74_021D0D80.c.o
+	Object main.nef.p/src_applications_options_menu.c.o
 }
 
 Overlay overlay75

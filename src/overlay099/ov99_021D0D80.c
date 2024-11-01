@@ -120,7 +120,7 @@ int ov99_021D0D80(OverlayManager *param0, int *param1)
 
     v0->unk_08 = BgConfig_New(75);
 
-    sub_0201DBEC(64, 75);
+    VRAMTransferManager_New(64, 75);
     SetAutorepeat(4, 8);
 
     ov99_021D1380(v0->unk_08);
@@ -192,7 +192,7 @@ int ov99_021D1028(OverlayManager *param0, int *param1)
 
     if (v0->unk_00->unk_04 && (gCoreSys.pressedKeys & PAD_BUTTON_START)) {
         if ((v0->unk_1100 == 0) && (v0->unk_1101 < 6)) {
-            sub_0200F174(0, 0, 0, 0x0, 6, 1, 75);
+            StartScreenTransition(0, 0, 0, 0x0, 6, 1, 75);
             v0->unk_1100 = 1;
         }
     }
@@ -201,7 +201,7 @@ int ov99_021D1028(OverlayManager *param0, int *param1)
     case 0:
         break;
     case 1:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             if (v0->unk_1102 == 1) {
                 ov99_021D1CFC(v0, v0->unk_1101);
                 v0->unk_1102 = 0;
@@ -282,7 +282,7 @@ int ov99_021D11A8(OverlayManager *param0, int *param1)
     NARC_dtor(v0->unk_10F8);
     SetMainCallback(NULL, NULL);
     DisableHBlank();
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
     sub_0201E530();
     OverlayManager_FreeData(param0);
     Heap_Destroy(75);
@@ -354,7 +354,7 @@ static void ov99_021D1350(void *param0)
     UnkStruct_ov99_021D2CB0 *v0 = param0;
 
     sub_0201DCAC();
-    sub_0200C800();
+    OAMManager_ApplyAndResetBuffers();
     PaletteData_CommitFadedBuffers(v0->unk_0C);
     Bg_RunScheduledUpdates(v0->unk_08);
 

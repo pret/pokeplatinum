@@ -202,12 +202,12 @@ static BOOL sub_0206C964(TaskManager *taskMan)
         }
     } break;
     case 2:
-        sub_0200F174(0, 0, 0, 0x0, 6, 1, 11);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 11);
         sub_0200564C(0, 6);
         v1->unk_00 = 3;
         break;
     case 3:
-        if (!ScreenWipe_Done() || (Sound_CheckFade() != 0)) {
+        if (!IsScreenTransitionDone() || (Sound_CheckFade() != 0)) {
             return 0;
         }
 

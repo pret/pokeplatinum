@@ -642,11 +642,11 @@ static BOOL ov105_02241FF4(UnkStruct_ov105_02241FF4 *param0)
 
         Bg_SetOffset(param0->unk_4C, 2, 0, (33 * 8));
         sub_02007DEC(param0->unk_12C[0], 6, 1);
-        sub_0200F174(0, 1, 1, 0x0, 6, 1 * 3, 93);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, 93);
         param0->unk_08++;
         break;
     case 3:
-        if (ScreenWipe_Done() == 0) {
+        if (IsScreenTransitionDone() == 0) {
             break;
         }
 
@@ -656,7 +656,7 @@ static BOOL ov105_02241FF4(UnkStruct_ov105_02241FF4 *param0)
         break;
     case 4:
         if (ov105_02244780(param0) == 1) {
-            sub_020057A4(1554, 0);
+            Sound_StopEffect(1554, 0);
             Sound_PlayEffect(1657);
 
             for (v0 = 0; v0 < param0->unk_12; v0++) {
@@ -725,14 +725,14 @@ static BOOL ov105_022421F0(UnkStruct_ov105_02241FF4 *param0)
         }
 
         if (param0->unk_13_4 == 1) {
-            sub_0200F174(0, 1, 1, 0x0, 6, 1 * 3, 93);
+            StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, 93);
         }
 
         param0->unk_13_4 = 1;
         param0->unk_08++;
         break;
     case 1:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             return 1;
         }
         break;
@@ -934,7 +934,7 @@ static BOOL ov105_022426E0(UnkStruct_ov105_02241FF4 *param0)
             ov105_02246060(param0->unk_310);
             param0->unk_310 = NULL;
             param0->unk_13_6 = 1;
-            sub_0200F174(0, 0, 0, 0x0, 6, 1, 93);
+            StartScreenTransition(0, 0, 0, 0x0, 6, 1, 93);
             param0->unk_08++;
             break;
         case 1:
@@ -971,7 +971,7 @@ static BOOL ov105_022426E0(UnkStruct_ov105_02241FF4 *param0)
         }
         break;
     case 3:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             ov105_02245464(param0);
             ov105_022451B4(param0);
             param0->unk_04 = OverlayManager_New(&Unk_020F410C, param0->unk_140, 93);
@@ -985,7 +985,7 @@ static BOOL ov105_022426E0(UnkStruct_ov105_02241FF4 *param0)
         }
         break;
     case 5:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             param0->unk_08 = 2;
         }
         break;
@@ -1464,7 +1464,7 @@ static BOOL ov105_022434BC(UnkStruct_ov105_02241FF4 *param0)
             ov105_02246060(param0->unk_310);
             param0->unk_310 = NULL;
             param0->unk_13_6 = 1;
-            sub_0200F174(0, 0, 0, 0x0, 6, 1, 93);
+            StartScreenTransition(0, 0, 0, 0x0, 6, 1, 93);
             param0->unk_08++;
             break;
         case 4:
@@ -1488,7 +1488,7 @@ static BOOL ov105_022434BC(UnkStruct_ov105_02241FF4 *param0)
         }
         break;
     case 3:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             ov105_02245464(param0);
             ov105_022451B4(param0);
             param0->unk_04 = OverlayManager_New(&Unk_020F410C, param0->unk_140, 93);
@@ -1502,7 +1502,7 @@ static BOOL ov105_022434BC(UnkStruct_ov105_02241FF4 *param0)
         }
         break;
     case 5:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             param0->unk_08 = 2;
         }
         break;
@@ -1905,7 +1905,7 @@ static BOOL ov105_0224400C(UnkStruct_ov105_02241FF4 *param0)
         break;
     case 3:
         if (ov105_02244830(param0) == 1) {
-            sub_020057A4(1554, 0);
+            Sound_StopEffect(1554, 0);
             Sound_PlayEffect(1657);
 
             param0->unk_14 = (4 * 2);
@@ -1937,7 +1937,7 @@ static BOOL ov105_0224400C(UnkStruct_ov105_02241FF4 *param0)
         break;
     case 4:
         if (ov105_02244780(param0) == 1) {
-            sub_020057A4(1554, 0);
+            Sound_StopEffect(1554, 0);
             Sound_PlayEffect(1657);
 
             for (v1 = 0; v1 < param0->unk_12; v1++) {
@@ -2057,11 +2057,11 @@ static BOOL ov105_022443DC(UnkStruct_ov105_02241FF4 *param0)
 
     switch (param0->unk_08) {
     case 0:
-        sub_0200F174(0, 0, 0, 0x0, 6, 1, 93);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 93);
         param0->unk_08++;
         break;
     case 1:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             return 1;
         }
         break;

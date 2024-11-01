@@ -263,7 +263,7 @@ static int sub_0207E0B8(OverlayManager *param0, int *param1)
     v1 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, 12);
     v0 = sub_0207ECC0(param0);
 
-    sub_0200F174(1, 3, 3, 0x0, 6, 1, 12);
+    StartScreenTransition(1, 3, 3, 0x0, 6, 1, 12);
     sub_0207EDC0(v0);
     sub_0207E8C0();
     sub_0207E918(v0->unk_00);
@@ -312,7 +312,7 @@ static int sub_0207E0B8(OverlayManager *param0, int *param1)
     }
 
     SetMainCallback(sub_0207E898, v0);
-    sub_020397E4();
+    DrawWifiConnectionIcon();
     NARC_dtor(v1);
 
     return 1;
@@ -439,7 +439,7 @@ static int sub_0207E2A8(OverlayManager *param0, int *param1)
         *param1 = 33;
         break;
     case 33:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             v0->unk_5A4->unk_22 = v0->unk_B11;
             return 1;
         }
@@ -456,7 +456,7 @@ static int sub_0207E2A8(OverlayManager *param0, int *param1)
 
 static int sub_0207E490(GameWindowLayout *param0)
 {
-    if (ScreenWipe_Done() == 1) {
+    if (IsScreenTransitionDone() == 1) {
         if ((param0->unk_5A4->unk_20 == 5) || (param0->unk_5A4->unk_20 == 16)) {
             if (sub_020857A8(param0->unk_5A4->unk_24) == 1) {
                 param0->unk_B0E = 0;
@@ -649,7 +649,7 @@ static int sub_0207E7E0(OverlayManager *param0, int *param1)
     sub_02081B90(v0);
     sub_0207EA24(v0->unk_00);
     sub_0201E530();
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
 
     for (v1 = 0; v1 < 6; v1++) {
         Strbuf_Free(v0->unk_704[v1].unk_00);
@@ -682,7 +682,7 @@ static void sub_0207E898(void *param0)
 
     Bg_RunScheduledUpdates(v0->unk_00);
     sub_0201DCAC();
-    sub_0200C800();
+    OAMManager_ApplyAndResetBuffers();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }

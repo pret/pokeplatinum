@@ -262,22 +262,22 @@ static BOOL sub_0209A544(UnkStruct_0209A3D0 *param0)
     case 2:
         Bg_MaskPalette(0, 0x6c21);
         Bg_MaskPalette(4, 0x6c21);
-        sub_0200F174(0, 1, 1, 0, 6, 1, param0->unk_00);
+        StartScreenTransition(0, 1, 1, 0, 6, 1, param0->unk_00);
         param0->unk_04 = 3;
         break;
     case 3:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             param0->unk_04 = 4;
         }
         break;
     case 4:
         if (sub_0209A688(param0, param0->unk_08, 0, 4) == 1) {
-            sub_0200F174(0, 0, 0, 0, 6, 1, param0->unk_00);
+            StartScreenTransition(0, 0, 0, 0, 6, 1, param0->unk_00);
             param0->unk_04 = 5;
         }
         break;
     case 5:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             Bg_MaskPalette(0, 0);
             Bg_MaskPalette(4, 0);
             param0->unk_04 = 1;

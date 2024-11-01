@@ -193,7 +193,7 @@ static int ov95_022497F8(UnkStruct_ov95_022497D8 *param0, int *param1)
     param0->unk_0C = 0;
 
     SysTask_ExecuteAfterVBlank(ov95_02249F38, param0, 0);
-    sub_0200F174(0, 1, 1, 0x7fff, 3, 1, 58);
+    StartScreenTransition(0, 1, 1, 0x7fff, 3, 1, 58);
 
     return 1;
 }
@@ -223,12 +223,12 @@ static int ov95_02249840(UnkStruct_ov95_022497D8 *param0, int *param1)
         break;
     case 3:
         if (CellActor_IsAnimated(param0->unk_20[0]) == 0) {
-            sub_0200F174(0, 0, 0, 0x7fff, 16, 1, 58);
+            StartScreenTransition(0, 0, 0, 0x7fff, 16, 1, 58);
             (*param1)++;
         }
         break;
     case 4:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             return 1;
         }
     }

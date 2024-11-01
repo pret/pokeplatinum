@@ -115,7 +115,7 @@ const static UnkFuncPtr_0200F6D8 Unk_020E5074[] = {
 
 static UnkStruct_0200F46C Unk_021BF474;
 
-void sub_0200F174(int param0, int param1, int param2, u16 param3, int param4, int param5, int param6)
+void StartScreenTransition(int param0, int param1, int param2, u16 param3, int param4, int param5, int param6)
 {
     UnkStruct_0200F46C *v0;
     u16 v1;
@@ -165,7 +165,7 @@ void sub_0200F27C(void)
     }
 }
 
-BOOL ScreenWipe_Done(void)
+BOOL IsScreenTransitionDone(void)
 {
     if (Unk_021BF474.unk_14C) {
         return 0;

@@ -702,7 +702,7 @@ static u8 ov10_0221FD00(UnkStruct_ov10_0221FB28 *param0)
 
 static u8 ov10_0221FE10(UnkStruct_ov10_0221FB28 *param0)
 {
-    if (ScreenWipe_Done() == 0) {
+    if (IsScreenTransitionDone() == 0) {
         return 0;
     }
 
@@ -825,10 +825,10 @@ static u8 ov10_02220014(UnkStruct_ov10_0221FB28 *param0)
 static u8 ov10_02220228(UnkStruct_ov10_0221FB28 *param0)
 {
     if (param0->unk_B76 == 8) {
-        sub_0200F174(0, 0, 0, 0x7fff, 6, 1, param0->unk_00->unk_24);
+        StartScreenTransition(0, 0, 0, 0x7fff, 6, 1, param0->unk_00->unk_24);
     }
 
-    if ((param0->unk_B76 >= 8) && (ScreenWipe_Done() == 1)) {
+    if ((param0->unk_B76 >= 8) && (IsScreenTransitionDone() == 1)) {
         param0->unk_B73 = 2;
         return 1;
     }
@@ -1143,7 +1143,7 @@ static u8 ov10_02220A34(UnkStruct_ov10_0221FB28 *param0)
 
 static u8 ov10_02220A50(SysTask *param0, UnkStruct_ov10_0221FB28 *param1)
 {
-    if (ScreenWipe_Done() == 0) {
+    if (IsScreenTransitionDone() == 0) {
         return 0;
     }
 
@@ -1163,7 +1163,7 @@ static u8 ov10_02220A50(SysTask *param0, UnkStruct_ov10_0221FB28 *param1)
 
     ov10_02220BE8(param1);
 
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
     PaletteData_FreeBuffer(param1->unk_08, 0);
     PaletteData_Free(param1->unk_08);
 
@@ -1189,7 +1189,7 @@ static BOOL ov10_02220AD0(void)
 
 static void ov10_02220B00(UnkStruct_ov10_0221FB28 *param0, UnkStruct_ov104_02241308 *param1, int param2)
 {
-    sub_0201DBEC(64, param0->unk_00->unk_24);
+    VRAMTransferManager_New(64, param0->unk_00->unk_24);
 
     param0->unk_190 = sub_0200C6E4(param0->unk_00->unk_24);
     param0->unk_194 = sub_0200C704(param0->unk_190);
@@ -1266,7 +1266,7 @@ static void ov10_02220C64(void *param0)
     Bg_RunScheduledUpdates(v0->unk_0C);
     PaletteData_CommitFadedBuffers(v0->unk_08);
     sub_0201DCAC();
-    sub_0200C800();
+    OAMManager_ApplyAndResetBuffers();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }

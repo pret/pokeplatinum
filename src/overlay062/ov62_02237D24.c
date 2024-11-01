@@ -427,11 +427,11 @@ static BOOL ov62_022380B0(UnkStruct_0208C06C *param0)
         ov62_02231B8C(param0);
 
         if (ov61_0222BB48(ov62_0224112C(param0), &v1) == 1) {
-            sub_020057A4(1381, 0);
+            Sound_StopEffect(1381, 0);
             ov62_022348B8(param0, 0, v1->unk_0C, v1->unk_04);
             param0->unk_08++;
         } else {
-            sub_020057A4(1381, 0);
+            Sound_StopEffect(1381, 0);
             ov62_02233704(param0, 47);
             Sound_PlayEffect(1375);
 
@@ -856,14 +856,14 @@ static BOOL ov62_02238B70(UnkStruct_0208C06C *param0)
         ov62_02231B8C(param0);
 
         if (ov61_0222BB48(ov62_0224112C(param0), &v1) == 1) {
-            sub_020057A4(1381, 0);
+            Sound_StopEffect(1381, 0);
             ov62_022348B8(param0, 1, v1->unk_0C, v1->unk_04);
             v0->unk_2E4 = 0;
             param0->unk_0C = 0;
             sub_0208B9E0(param0->unk_6F0, 0);
             ov62_0222FB60(param0, 3);
         } else {
-            sub_020057A4(1381, 0);
+            Sound_StopEffect(1381, 0);
             Sound_PlayEffect(1375);
             param0->unk_08++;
         }

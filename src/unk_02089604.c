@@ -128,7 +128,7 @@ BOOL sub_02089820(UnkStruct_02089688 *param0)
     }
 
     sub_02089808(param0, 1);
-    sub_0200F174(0, 1, 1, 0x0, 6, 1, 101);
+    StartScreenTransition(0, 1, 1, 0x0, 6, 1, 101);
 
     return 0;
 }
@@ -137,11 +137,11 @@ BOOL sub_020898DC(UnkStruct_02089688 *param0)
 {
     switch (param0->unk_29C) {
     case 0:
-        sub_0200F174(0, 0, 0, 0x0, 6, 1, 101);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 101);
         param0->unk_29C++;
         break;
     case 1:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             param0->unk_29C++;
         }
         break;
@@ -156,7 +156,7 @@ BOOL sub_02089938(UnkStruct_02089688 *param0)
 {
     switch (param0->unk_29C) {
     case 0:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             param0->unk_29C++;
         }
         break;

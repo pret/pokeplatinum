@@ -160,7 +160,7 @@ int ov94_02242AD0(UnkStruct_ov94_0223FD4C *param0, int param1)
     ov94_02242CAC(param0);
     ov94_02242D38(param0);
 
-    sub_0200F174(3, 1, 1, 0x0, 6, 1, 62);
+    StartScreenTransition(3, 1, 1, 0x0, 6, 1, 62);
     ov94_02245934(param0);
 
     param0->unk_2C = 0;
@@ -1225,9 +1225,9 @@ static int ov94_02243A90(UnkStruct_ov94_0223FD4C *param0)
     sub_02039794();
 
     if (param0->unk_1110 == 1) {
-        sub_0200F174(0, 0, 0, 0x0, 6, 1, 62);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 62);
     } else {
-        sub_0200F174(3, 0, 0, 0x0, 6, 1, 62);
+        StartScreenTransition(3, 0, 0, 0x0, 6, 1, 62);
     }
 
     param0->unk_2C = 0;

@@ -3,8 +3,8 @@
 
 #include <nnsys.h>
 
-void sub_0201DBEC(u32 param0, int param1);
-void sub_0201DC3C(void);
+void VRAMTransferManager_New(u32 param0, int param1);
+void VRAMTransferManager_Destroy(void);
 BOOL sub_0201DC68(NNS_GFD_DST_TYPE param0, u32 param1, void *param2, u32 param3);
 void sub_0201DCAC(void);
 NNSG2dCellTransferState *sub_0201DCC8(int param0, int param1);

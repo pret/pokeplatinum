@@ -124,9 +124,9 @@ int ov94_0223FB48(UnkStruct_ov94_0223FD4C *param0, int param1)
     ov94_0223FE24(param0);
 
     if (param0->unk_20 == 8) {
-        sub_0200F174(0, 1, 1, 0x0, 6, 1, 62);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, 62);
     } else {
-        sub_0200F174(3, 1, 1, 0x0, 6, 1, 62);
+        StartScreenTransition(3, 1, 1, 0x0, 6, 1, 62);
     }
 
     ov94_02240FA0(param0, param0->unk_110);
@@ -497,7 +497,7 @@ static void ov94_02240268(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_022402A8(UnkStruct_ov94_0223FD4C *param0)
 {
-    if (ScreenWipe_Done()) {
+    if (IsScreenTransitionDone()) {
         param0->unk_2C = 1;
     }
 
@@ -858,10 +858,10 @@ static int ov94_022408E8(UnkStruct_ov94_0223FD4C *param0)
 static int ov94_02240A6C(UnkStruct_ov94_0223FD4C *param0)
 {
     if ((param0->unk_18 == 0) || (param0->unk_18 == 8)) {
-        sub_0200F174(0, 0, 0, 0x0, 6, 1, 62);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 62);
         param0->unk_1110 = 1;
     } else {
-        sub_0200F174(3, 0, 0, 0x0, 6, 1, 62);
+        StartScreenTransition(3, 0, 0, 0x0, 6, 1, 62);
     }
 
     param0->unk_2C = 0;

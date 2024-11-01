@@ -156,11 +156,11 @@ static BOOL ov87_021D1210(UnkStruct_ov87_021D106C *param0, int *param1)
     case 0:
         ov87_021D139C(param0);
         ov87_021D1818(param0);
-        sub_0200F174(3, 1, 1, 0x0, 6, 1, 61);
+        StartScreenTransition(3, 1, 1, 0x0, 6, 1, 61);
         (*param1)++;
         break;
     case 1:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             return 1;
         }
 
@@ -175,11 +175,11 @@ static BOOL ov87_021D1260(UnkStruct_ov87_021D106C *param0, int *param1)
     switch (*param1) {
     case 0:
         Sound_PlayEffect(1550);
-        sub_0200F174(3, 0, 0, 0x0, 6, 1, 61);
+        StartScreenTransition(3, 0, 0, 0x0, 6, 1, 61);
         (*param1)++;
         break;
     case 1:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             ov87_021D186C(param0);
             ov87_021D14B8(param0);
             return 1;

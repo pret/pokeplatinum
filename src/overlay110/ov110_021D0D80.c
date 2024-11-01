@@ -194,12 +194,12 @@ static BOOL ov110_021D0F78 (UnkStruct_ov110_021D0F78 * param0)
         param0->unk_04++;
         break;
     case 1:
-        sub_0200F174(0, 1, 1, 0x0, 6, 1 * 3, 114);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, 114);
         ov110_021D140C(param0);
         param0->unk_04++;
         break;
     case 2:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             return 1;
         }
         break;
@@ -233,11 +233,11 @@ static BOOL ov110_021D1000 (UnkStruct_ov110_021D0F78 * param0)
 
     switch (param0->unk_04) {
     case 0:
-        sub_0200F174(0, 0, 0, 0x0, 6, 1, 114);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 114);
         param0->unk_04++;
         break;
     case 1:
-        if (ScreenWipe_Done() == 1) {
+        if (IsScreenTransitionDone() == 1) {
             return 1;
         }
 

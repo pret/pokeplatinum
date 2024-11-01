@@ -115,9 +115,9 @@ static int ov6_022471C0(TaskManager *taskMan, FieldSystem *fieldSystem, UnkStruc
     }
 
     if (param2->unk_08 == 2) {
-        sub_0200F174(0, 0, 0, 0x0, 6, 1, 4);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 4);
     } else {
-        sub_0200F174(0, 0, 0, 0x7fff, 6, 1, 4);
+        StartScreenTransition(0, 0, 0, 0x7fff, 6, 1, 4);
     }
 
     param2->unk_00++;
@@ -131,7 +131,7 @@ static int ov6_02247244(TaskManager *taskMan, FieldSystem *fieldSystem, UnkStruc
         param2->unk_0C = MapObject_StartAnimation(param2->unk_18, Unk_ov6_022495DC);
     }
 
-    if (ScreenWipe_Done() == 0) {
+    if (IsScreenTransitionDone() == 0) {
         return 0;
     }
 
@@ -215,9 +215,9 @@ static void ov6_0224732C(FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param
 static int ov6_02247354(TaskManager *taskMan, FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param2)
 {
     if (param2->unk_08 == 2) {
-        sub_0200F174(0, 1, 1, 0x0, 6, 1, 4);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, 4);
     } else {
-        sub_0200F174(0, 1, 1, 0x7fff, 6, 1, 4);
+        StartScreenTransition(0, 1, 1, 0x7fff, 6, 1, 4);
     }
 
     param2->unk_14 = ov5_021F0EB0(fieldSystem, 4);
@@ -235,7 +235,7 @@ static int ov6_022473C8(TaskManager *taskMan, FieldSystem *fieldSystem, UnkStruc
         param2->unk_0C = MapObject_StartAnimation(param2->unk_18, Unk_ov6_022495DC);
     }
 
-    if (ScreenWipe_Done() == 0) {
+    if (IsScreenTransitionDone() == 0) {
         return 0;
     }
 

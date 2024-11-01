@@ -762,7 +762,7 @@ int ov65_0222E2A8 (OverlayManager * param0, int * param1)
         v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov65_0222EBE0), 54);
 
         MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov65_0222EBE0));
-        sub_0201DBEC(32, 54);
+        VRAMTransferManager_New(32, 54);
 
         v0->unk_180 = 8;
         v0->unk_160 = v1->unk_00;
@@ -777,7 +777,7 @@ int ov65_0222E2A8 (OverlayManager * param0, int * param1)
         ov65_0222EBE0(v0);
         ov65_0222E01C(v0);
 
-        sub_0200F174(0, 1, 1, 0x0, 6, 1, 54);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, 54);
 
         if (sub_020389B8()) {
             sub_02039734();
@@ -805,7 +805,7 @@ int ov65_0222E3FC (OverlayManager * param0, int * param1)
 
     switch (*param1) {
     case 0:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             *param1 = 1;
         }
         break;
@@ -822,7 +822,7 @@ int ov65_0222E3FC (OverlayManager * param0, int * param1)
         }
         break;
     case 2:
-        if (ScreenWipe_Done()) {
+        if (IsScreenTransitionDone()) {
             return 1;
         }
         break;
@@ -898,7 +898,7 @@ int ov65_0222E548 (OverlayManager * param0, int * param1)
 
     OverlayManager_FreeData(param0);
     sub_0201E530();
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
     Heap_Destroy(54);
 
     switch (v0->unk_3AC) {
@@ -1400,7 +1400,7 @@ static int ov65_0222EBAC (u32 param0)
 
 static int ov65_0222EBB8 (void)
 {
-    sub_0200F174(0, 0, 0, 0x0, 6, 1, 54);
+    StartScreenTransition(0, 0, 0, 0x0, 6, 1, 54);
     ov65_02231A0C();
 
     return 18;
@@ -2383,7 +2383,7 @@ static int ov65_0222FFAC (UnkStruct_ov65_0222EBE0 * param0, int param1)
     UnkStruct_ov65_022354D8 * v4;
     int v5;
 
-    if (ScreenWipe_Done() == 0) {
+    if (IsScreenTransitionDone() == 0) {
         return param1;
     }
 
@@ -2441,7 +2441,7 @@ static int ov65_0222FFAC (UnkStruct_ov65_0222EBE0 * param0, int param1)
     param0->unk_3D0 = -1;
 
     NARC_dtor(v3);
-    sub_0200F174(0, 1, 1, 0x0, 6, 1, 54);
+    StartScreenTransition(0, 1, 1, 0x0, 6, 1, 54);
     param0->unk_3A8 = 19;
 
     CommMan_SetErrorHandling(0, 0);
@@ -2570,7 +2570,7 @@ static int ov65_022302C4 (UnkStruct_ov65_0222EBE0 * param0, int param1)
     UnkStruct_ov65_022354D8 * v3;
     u32 v4;
 
-    if (ScreenWipe_Done() == 0) {
+    if (IsScreenTransitionDone() == 0) {
         return param1;
     }
 
@@ -3417,7 +3417,7 @@ static int ov65_02231200 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         CommMan_SetErrorHandling(0, 1);
 
         sub_0203632C(0);
-        sub_0200F174(0, 0, 0, 0x0, 6, 1, 54);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 54);
 
         param0->unk_3E4 = 0;
 
@@ -4086,7 +4086,7 @@ static int ov65_02231E64 (UnkStruct_ov65_0222EBE0 * param0, int param1)
             param0->unk_3AC = ov65_0222DD94(v0);
 
             sub_0203632C(0);
-            sub_0200F174(0, 0, 0, 0x0, 6, 1, 54);
+            StartScreenTransition(0, 0, 0, 0x0, 6, 1, 54);
 
             param0->unk_3E4 = 0;
             param1 = 2;
@@ -4384,7 +4384,7 @@ static int ov65_022323C0 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         ov65_02231A74(param0, ov4_021D2388());
         ov65_02232E58(param0, v0);
 
-        sub_0200F174(0, 0, 0, 0x0, 6, 1, 54);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 54);
 
         param1 = 2;
     }
@@ -4715,7 +4715,7 @@ static int ov65_0223294C (UnkStruct_ov65_0222EBE0 * param0, int param1)
 static int ov65_02232B28 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
     if (!CommMan_IsInitialized()) {
-        sub_0200F174(0, 0, 0, 0x0, 6, 1, 54);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 54);
         param1 = 2;
     }
 

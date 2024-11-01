@@ -222,10 +222,10 @@ int ov79_021D22E4(OverlayManager *param0, int *param1)
         }
 
         v0->unk_04 = 0;
-        sub_0200F174(0, 1, 1, 0x0, 6, 1, v0->unk_00);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, v0->unk_00);
         break;
     case 3:
-        if (!ScreenWipe_Done()) {
+        if (!IsScreenTransitionDone()) {
             return 0;
         }
 
@@ -235,10 +235,10 @@ int ov79_021D22E4(OverlayManager *param0, int *param1)
             return 0;
         }
 
-        sub_0200F174(0, 0, 0, 0x0, 6, 1, v0->unk_00);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, v0->unk_00);
         break;
     case 5:
-        if (!ScreenWipe_Done()) {
+        if (!IsScreenTransitionDone()) {
             return 0;
         }
 
@@ -332,7 +332,7 @@ static void ov79_021D252C(void *param0)
     Bg_RunScheduledUpdates(v0->unk_68);
     sub_02008A94(v0->unk_40.unk_04);
 
-    sub_0200C800();
+    OAMManager_ApplyAndResetBuffers();
     sub_0201DCAC();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
@@ -532,7 +532,7 @@ static void ov79_021D2858(UnkStruct_ov79_021D2928 *param0)
 
 static void ov79_021D2864(UnkStruct_ov79_021D2928 *param0)
 {
-    sub_0201DBEC(32, param0->unk_00);
+    VRAMTransferManager_New(32, param0->unk_00);
 
     param0->unk_7C = sub_0200C6E4(param0->unk_00);
 
@@ -576,7 +576,7 @@ static void ov79_021D2908(UnkStruct_ov79_021D2928 *param0)
     sub_02099370(param0->unk_5C, param0->unk_60[0]);
     sub_0209903C(param0->unk_5C);
     sub_0200C8D4(param0->unk_7C);
-    sub_0201DC3C();
+    VRAMTransferManager_Destroy();
 }
 
 static int ov79_021D2928(UnkStruct_ov79_021D2928 *param0)

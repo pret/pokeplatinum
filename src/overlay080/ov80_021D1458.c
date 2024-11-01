@@ -199,7 +199,7 @@ int ov80_021D1550(UnkStruct_ov80_021D2A08 *param0)
 {
     param0->unk_14 = 0;
 
-    sub_0200F174(1, 17, 37, 0x0, 6, 1, param0->unk_04);
+    StartScreenTransition(1, 17, 37, 0x0, 6, 1, param0->unk_04);
     Sound_PlayEffect(1679);
     sub_0200F338(0);
     sub_0200F338(1);
@@ -211,7 +211,7 @@ int ov80_021D1550(UnkStruct_ov80_021D2A08 *param0)
 int ov80_021D159C(UnkStruct_ov80_021D2A08 *param0)
 {
     param0->unk_14 = 0;
-    sub_0200F174(2, 16, 36, 0x0, 6, 1, param0->unk_04);
+    StartScreenTransition(2, 16, 36, 0x0, 6, 1, param0->unk_04);
     Sound_PlayEffect(1680);
     return 0;
 }
@@ -220,7 +220,7 @@ int ov80_021D15C8(UnkStruct_ov80_021D2A08 *param0)
 {
     param0->unk_14 = 0;
 
-    sub_0200F174(3, 17, 17, 0x0, 6, 1, param0->unk_04);
+    StartScreenTransition(3, 17, 17, 0x0, 6, 1, param0->unk_04);
     Sound_PlayEffect(1679);
     sub_0200F338(0);
 
@@ -232,7 +232,7 @@ int ov80_021D1610(UnkStruct_ov80_021D2A08 *param0)
 {
     param0->unk_14 = 0;
 
-    sub_0200F174(3, 16, 16, 0x0, 6, 1, param0->unk_04);
+    StartScreenTransition(3, 16, 16, 0x0, 6, 1, param0->unk_04);
     Sound_PlayEffect(1680);
 
     return 0;
@@ -1114,11 +1114,11 @@ static void ov80_021D2774(SysTask *param0, void *param1)
         CellActor_SetAnimateFlag(v1->unk_100, 0);
 
         v0->unk_14 = 0;
-        sub_0200F174(4, 13, 2, 0x0, 8, 1, v0->unk_04);
+        StartScreenTransition(4, 13, 2, 0x0, 8, 1, v0->unk_04);
         v1->unk_04++;
         break;
     case 3:
-        if (!ScreenWipe_Done()) {
+        if (!IsScreenTransitionDone()) {
             return;
         }
 
@@ -1132,11 +1132,11 @@ static void ov80_021D2774(SysTask *param0, void *param1)
         ov80_021D19E4(v0);
 
         v0->unk_14 = 0;
-        sub_0200F174(4, 13, 5, 0x0, 8, 1, v0->unk_04);
+        StartScreenTransition(4, 13, 5, 0x0, 8, 1, v0->unk_04);
         v1->unk_04++;
         break;
     case 4:
-        if (!ScreenWipe_Done()) {
+        if (!IsScreenTransitionDone()) {
             return;
         }
 
@@ -1159,12 +1159,12 @@ static void ov80_021D28EC(SysTask *param0, void *param1)
     switch (v1->unk_04) {
     case 0:
         v0->unk_14 = 0;
-        sub_0200F174(4, 13, 2, 0x0, 8, 1, v0->unk_04);
+        StartScreenTransition(4, 13, 2, 0x0, 8, 1, v0->unk_04);
         Sound_PlayEffect(1681);
         v1->unk_04++;
         break;
     case 1:
-        if (!ScreenWipe_Done()) {
+        if (!IsScreenTransitionDone()) {
             return;
         }
 
@@ -1173,11 +1173,11 @@ static void ov80_021D28EC(SysTask *param0, void *param1)
         Bg_ScheduleTilemapTransfer(v0->unk_28, 4);
         Bg_ScheduleTilemapTransfer(v0->unk_28, 5);
         v0->unk_14 = 0;
-        sub_0200F174(4, 13, 5, 0x0, 8, 1, v0->unk_04);
+        StartScreenTransition(4, 13, 5, 0x0, 8, 1, v0->unk_04);
         v1->unk_04++;
         break;
     case 2:
-        if (!ScreenWipe_Done()) {
+        if (!IsScreenTransitionDone()) {
             return;
         }
 
