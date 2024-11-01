@@ -13,11 +13,11 @@
 #include "inlines.h"
 #include "party.h"
 #include "pokemon.h"
+#include "record_mixed_rng.h"
 #include "rtc.h"
 #include "script_manager.h"
 #include "system_data.h"
 #include "unk_0202854C.h"
-#include "unk_0202B37C.h"
 #include "unk_0202C858.h"
 #include "unk_0202D7A8.h"
 #include "unk_0202E2CC.h"
@@ -92,8 +92,8 @@ static void sub_02055AC0(FieldSystem *fieldSystem, s32 param1)
     sub_02028658(FieldSystem_GetSaveData(fieldSystem), param1);
     sub_0203F1FC(fieldSystem);
     sub_0206C2D0(fieldSystem->saveData, param1);
-    sub_0202B3D8(sub_0202B4A0(fieldSystem->saveData), param1);
-    sub_0202D80C(sub_0202D834(fieldSystem->saveData), sub_0202B428(sub_0202B4A0(fieldSystem->saveData)));
+    RecordMixedRNG_AdvanceEntries(SaveData_GetRecordMixedRNG(fieldSystem->saveData), param1);
+    sub_0202D80C(sub_0202D834(fieldSystem->saveData), RecordMixedRNG_GetRand(SaveData_GetRecordMixedRNG(fieldSystem->saveData)));
 
     {
         Party *v0;

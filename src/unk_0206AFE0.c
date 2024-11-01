@@ -7,9 +7,9 @@
 
 #include "field_overworld_state.h"
 #include "location.h"
+#include "record_mixed_rng.h"
 #include "savedata.h"
 #include "unk_0201D15C.h"
-#include "unk_0202B37C.h"
 #include "unk_0206A8DC.h"
 #include "vars_flags.h"
 
@@ -268,7 +268,7 @@ void sub_0206B2E4(SaveData *param0, u16 param1)
     VarsFlags *v0 = SaveData_GetVarsFlags(param0);
     u32 v1;
 
-    v1 = sub_0202B428(sub_0202B4A0(param0));
+    v1 = RecordMixedRNG_GetRand(SaveData_GetRecordMixedRNG(param0));
     v1 = v1 * 1103515245L + 12345;
 
     sub_0206B280(v0, v1);

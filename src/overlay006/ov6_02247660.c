@@ -8,7 +8,7 @@
 #include "heap.h"
 #include "inlines.h"
 #include "narc.h"
-#include "unk_0202B37C.h"
+#include "record_mixed_rng.h"
 #include "unk_02039C80.h"
 #include "unk_0205F180.h"
 
@@ -35,7 +35,7 @@ BOOL ov6_02247660(FieldSystem *fieldSystem)
         return 0;
     }
 
-    v13 = sub_0202B428(sub_0202B4A0(fieldSystem->saveData));
+    v13 = RecordMixedRNG_GetRand(SaveData_GetRecordMixedRNG(fieldSystem->saveData));
 
     sub_020615AC(fieldSystem->playerAvatar, &v15, &v16);
 

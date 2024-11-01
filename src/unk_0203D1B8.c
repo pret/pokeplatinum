@@ -8,7 +8,6 @@
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
 #include "struct_decls/struct_0202A750_decl.h"
-#include "struct_decls/struct_0202B4A0_decl.h"
 #include "struct_decls/struct_0202C834_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
@@ -101,6 +100,7 @@
 #include "pokemon.h"
 #include "pokemon_summary_app.h"
 #include "poketch_data.h"
+#include "record_mixed_rng.h"
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
@@ -114,7 +114,6 @@
 #include "unk_02028124.h"
 #include "unk_020298BC.h"
 #include "unk_0202ACE0.h"
-#include "unk_0202B37C.h"
 #include "unk_0202C7FC.h"
 #include "unk_0202C858.h"
 #include "unk_0202D05C.h"
@@ -1201,9 +1200,9 @@ static BOOL sub_0203DE98(TaskManager *param0)
             }
         } else if (v2->unk_0C->unk_00 == 5) {
             const u16 *v3 = Strbuf_GetData(v2->unk_0C->unk_18);
-            UnkStruct_0202B4A0 *v4 = sub_0202B4A0(fieldSystem->saveData);
+            RecordMixedRNG *v4 = SaveData_GetRecordMixedRNG(fieldSystem->saveData);
 
-            if (sub_0202B4D8(v4, v3)) {
+            if (RecordMixedRNG_DoesCollectionContainGroup(v4, v3)) {
                 v2->unk_0C->unk_14 = 2;
             }
         }
@@ -1244,8 +1243,8 @@ static void sub_0203DF68(TaskManager *param0)
         Pokemon_SetValue(v3, MON_DATA_NICKNAME_AND_FLAG, (u8 *)&v1->unk_0C->unk_1C);
     } break;
     case 5: {
-        UnkStruct_0202B4A0 *v5 = sub_0202B4A0(fieldSystem->saveData);
-        sub_0202B444(v5, 0, 0, v1->unk_0C->unk_18);
+        RecordMixedRNG *v5 = SaveData_GetRecordMixedRNG(fieldSystem->saveData);
+        RecordMixedRNG_GetEntryNameAsStrbuf(v5, 0, 0, v1->unk_0C->unk_18);
     } break;
     case 6: {
         MiscSaveBlock *v6 = SaveData_MiscSaveBlock(fieldSystem->saveData);
@@ -1620,14 +1619,14 @@ static u8 sub_0203E484(SaveData *param0, u8 param1)
         3,
         3,
     };
-    UnkStruct_0202B4A0 *v1 = sub_0202B4A0(param0);
+    RecordMixedRNG *v1 = SaveData_GetRecordMixedRNG(param0);
     u32 v2;
     u8 v3[12];
     u8 v4, v5, v6, v7;
 
     v2 = LCRNG_GetSeed();
 
-    LCRNG_SetSeed(sub_0202B428(v1));
+    LCRNG_SetSeed(RecordMixedRNG_GetRand(v1));
     MI_CpuCopy8(v0, v3, sizeof(v3));
 
     for (v4 = 0; v4 < 12; v4++) {

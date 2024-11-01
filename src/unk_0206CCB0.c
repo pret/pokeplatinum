@@ -11,7 +11,6 @@
 #include "struct_decls/struct_02027854_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_0202A750_decl.h"
-#include "struct_decls/struct_0202B4A0_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0202D7B0.h"
 #include "struct_defs/struct_0202E7D8.h"
@@ -42,6 +41,7 @@
 #include "message.h"
 #include "party.h"
 #include "pokemon.h"
+#include "record_mixed_rng.h"
 #include "roaming_pokemon.h"
 #include "save_player.h"
 #include "savedata.h"
@@ -53,7 +53,6 @@
 #include "unk_0202631C.h"
 #include "unk_02027B70.h"
 #include "unk_020298BC.h"
-#include "unk_0202B37C.h"
 #include "unk_0202D7A8.h"
 #include "unk_0202E2CC.h"
 #include "unk_0203A944.h"
@@ -822,12 +821,12 @@ static void sub_0206D3E4(FieldSystem *fieldSystem, int param1)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206D43C *v1 = &v0.val4;
-    UnkStruct_0202B4A0 *v2 = sub_0202B4A0(fieldSystem->saveData);
+    RecordMixedRNG *v2 = SaveData_GetRecordMixedRNG(fieldSystem->saveData);
 
     GF_ASSERT(sizeof(UnkUnion_0206D1B8) == 40);
     MI_CpuClearFast(&v0, 40);
 
-    CharCode_CopyNumChars(v1->unk_00, sub_0202B42C(v2, 1, 0), 10 + 1);
+    CharCode_CopyNumChars(v1->unk_00, RecordMixedRNG_GetEntryName(v2, 1, 0), 10 + 1);
     sub_0206CD70(fieldSystem, 2, param1, v1);
 }
 
@@ -2044,12 +2043,12 @@ static const u8 Unk_020EFD34[] = {
     0x5
 };
 
-static int sub_0206E848(UnkStruct_0202B4A0 *param0)
+static int sub_0206E848(RecordMixedRNG *param0)
 {
     int v0, v1;
 
     for (v0 = 0, v1 = 0; v0 < NELEMS(Unk_020EFD34); v0++) {
-        if (sub_0202B4AC(param0, Unk_020EFD34[v0])) {
+        if (RecordMixedRNG_IsEntryValid(param0, Unk_020EFD34[v0])) {
             v1++;
         }
     }
@@ -2061,7 +2060,7 @@ static int sub_0206E870(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 {
     int v0, v1, v2;
     int v3;
-    UnkStruct_0202B4A0 *v4 = sub_0202B4A0(fieldSystem->saveData);
+    RecordMixedRNG *v4 = SaveData_GetRecordMixedRNG(fieldSystem->saveData);
 
     v1 = sub_0206E848(v4);
     GF_ASSERT(v1 > 0);
@@ -2073,7 +2072,7 @@ static int sub_0206E870(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     }
 
     for (v0 = 0; v0 < NELEMS(Unk_020EFD34); v0++) {
-        if (sub_0202B4AC(v4, Unk_020EFD34[v0])) {
+        if (RecordMixedRNG_IsEntryValid(v4, Unk_020EFD34[v0])) {
             if (v1 == 0) {
                 v2 = Unk_020EFD34[v0];
                 break;
@@ -2100,7 +2099,7 @@ static int sub_0206E870(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 
 static BOOL sub_0206E928(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
-    UnkStruct_0202B4A0 *v0 = sub_0202B4A0(fieldSystem->saveData);
+    RecordMixedRNG *v0 = SaveData_GetRecordMixedRNG(fieldSystem->saveData);
 
     if (sub_0206E848(v0) != 0) {
         return 1;

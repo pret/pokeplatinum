@@ -6,7 +6,6 @@
 #include "constants/game_options.h"
 
 #include "struct_decls/struct_02027854_decl.h"
-#include "struct_decls/struct_0202B4A0_decl.h"
 
 #include "game_options.h"
 #include "heap.h"
@@ -15,6 +14,7 @@
 #include "overlay_manager.h"
 #include "party.h"
 #include "pokemon.h"
+#include "record_mixed_rng.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "savedata_misc.h"
@@ -23,7 +23,6 @@
 #include "unk_02017428.h"
 #include "unk_0201D15C.h"
 #include "unk_02027B70.h"
-#include "unk_0202B37C.h"
 #include "unk_0205C980.h"
 #include "unk_0206A8DC.h"
 #include "unk_0206B9D8.h"
@@ -157,15 +156,15 @@ static void ov57_021D0EAC(int param0, SaveData *param1, BOOL param2)
     UnkStruct_02027854 *v1;
     TrainerInfo *v2;
     GameTime *v3;
-    UnkStruct_0202B4A0 *v4;
+    RecordMixedRNG *v4;
 
     SystemData_Init(SaveData_GetSystemData(param1));
 
     v3 = SaveData_GetGameTime(param1);
     GameTime_Clear(v3);
 
-    v4 = sub_0202B4A0(param1);
-    sub_0202B40C(v4, 1, MTRNG_Next());
+    v4 = SaveData_GetRecordMixedRNG(param1);
+    RecordMixedRNG_SetEntrySeed(v4, 1, MTRNG_Next());
     sub_0206C008(param1);
 
     v2 = SaveData_GetTrainerInfo(param1);
