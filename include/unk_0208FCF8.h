@@ -14,14 +14,14 @@ void sub_02090064(PokemonSummaryScreen *param0, u32 param1);
 void sub_020904C4(PokemonSummaryScreen *param0);
 void sub_02090F84(PokemonSummaryScreen *param0);
 void sub_020910E4(PokemonSummaryScreen *param0);
-void sub_020912A4(PokemonSummaryScreen *param0, u32 param1);
-void sub_020913D8(PokemonSummaryScreen *param0);
+void PokemonSummaryScreen_PrintBattleMoveInfo(PokemonSummaryScreen *summaryScreen, u32 move);
+void PokemonSummaryScreen_ClearBattleInfoWindows(PokemonSummaryScreen *summaryScreen);
 void sub_02091420(PokemonSummaryScreen *param0);
 void sub_0209145C(PokemonSummaryScreen *param0);
 void sub_02091474(PokemonSummaryScreen *param0);
-void sub_020914F8(PokemonSummaryScreen *param0);
-void sub_02091570(PokemonSummaryScreen *param0, u32 param1);
-void sub_020915F4(PokemonSummaryScreen *param0);
+void PokemonSummaryScreen_PrintHMMovesCantBeForgotten(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_PrintContestMoveInfo(PokemonSummaryScreen *summaryScreen, u32 move);
+void PokemonSummaryScreen_ClearContestInfoWindows(PokemonSummaryScreen *summaryScreen);
 void sub_02091610(PokemonSummaryScreen *param0, u8 param1);
 
 #endif // POKEPLATINUM_UNK_0208FCF8_H

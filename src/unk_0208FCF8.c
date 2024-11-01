@@ -852,59 +852,55 @@ static void sub_02091188(PokemonSummaryScreen *param0, u32 param1)
     }
 }
 
-void sub_020912A4(PokemonSummaryScreen *param0, u32 param1)
+void PokemonSummaryScreen_PrintBattleMoveInfo(PokemonSummaryScreen *summaryScreen, u32 move)
 {
-    MessageLoader *v0;
-    u32 v1;
-    u32 v2;
+    Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[25]);
+    Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[26]);
+    Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[27]);
 
-    Window_ScheduleCopyToVRAM(&param0->staticWindows[25]);
-    Window_ScheduleCopyToVRAM(&param0->staticWindows[26]);
-    Window_ScheduleCopyToVRAM(&param0->staticWindows[27]);
+    Window_FillTilemap(&summaryScreen->extraWindows[5], 0);
+    Window_FillTilemap(&summaryScreen->extraWindows[6], 0);
+    Window_FillTilemap(&summaryScreen->extraWindows[7], 0);
 
-    Window_FillTilemap(&param0->extraWindows[5], 0);
-    Window_FillTilemap(&param0->extraWindows[6], 0);
-    Window_FillTilemap(&param0->extraWindows[7], 0);
+    u32 power = MoveTable_LoadParam(move, MOVEATTRIBUTE_POWER);
 
-    v2 = MoveTable_LoadParam(param1, MOVEATTRIBUTE_POWER);
-
-    if (v2 <= 1) {
-        MessageLoader_GetStrbuf(param0->msgLoader, 154, param0->strbuf);
+    if (power <= 1) {
+        MessageLoader_GetStrbuf(summaryScreen->msgLoader, 154, summaryScreen->strbuf);
     } else {
-        sub_02090184(param0, 150, v2, 3, 1);
+        sub_02090184(summaryScreen, 150, power, 3, 1);
     }
 
-    sub_020900D8(param0, &param0->extraWindows[5], TEXT_COLOR(1, 2, 0), 2);
+    sub_020900D8(summaryScreen, &summaryScreen->extraWindows[5], TEXT_COLOR(1, 2, 0), 2);
 
-    v2 = MoveTable_LoadParam(param1, MOVEATTRIBUTE_ACCURACY);
+    power = MoveTable_LoadParam(move, MOVEATTRIBUTE_ACCURACY);
 
-    if (v2 == 0) {
-        MessageLoader_GetStrbuf(param0->msgLoader, 154, param0->strbuf);
+    if (power == 0) {
+        MessageLoader_GetStrbuf(summaryScreen->msgLoader, 154, summaryScreen->strbuf);
     } else {
-        sub_02090184(param0, 151, v2, 3, 1);
+        sub_02090184(summaryScreen, 151, power, 3, 1);
     }
 
-    sub_020900D8(param0, &param0->extraWindows[6], TEXT_COLOR(1, 2, 0), 2);
+    sub_020900D8(summaryScreen, &summaryScreen->extraWindows[6], TEXT_COLOR(1, 2, 0), 2);
 
-    v0 = MessageLoader_Init(1, 26, 646, 19);
+    MessageLoader *msgLoader = MessageLoader_Init(1, 26, 646, HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
-    MessageLoader_GetStrbuf(v0, param1, param0->strbuf);
-    sub_020900D8(param0, &param0->extraWindows[7], TEXT_COLOR(1, 2, 0), 0);
-    MessageLoader_Free(v0);
+    MessageLoader_GetStrbuf(msgLoader, move, summaryScreen->strbuf);
+    sub_020900D8(summaryScreen, &summaryScreen->extraWindows[7], TEXT_COLOR(1, 2, 0), 0);
+    MessageLoader_Free(msgLoader);
 
-    Window_ScheduleCopyToVRAM(&param0->extraWindows[5]);
-    Window_ScheduleCopyToVRAM(&param0->extraWindows[6]);
-    Window_ScheduleCopyToVRAM(&param0->extraWindows[7]);
+    Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[5]);
+    Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[6]);
+    Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[7]);
 }
 
-void sub_020913D8(PokemonSummaryScreen *param0)
+void PokemonSummaryScreen_ClearBattleInfoWindows(PokemonSummaryScreen *summaryScreen)
 {
-    Window_ClearAndScheduleCopyToVRAM(&param0->staticWindows[25]);
-    Window_ClearAndScheduleCopyToVRAM(&param0->staticWindows[26]);
-    Window_ClearAndScheduleCopyToVRAM(&param0->staticWindows[27]);
-    Window_ClearAndScheduleCopyToVRAM(&param0->extraWindows[5]);
-    Window_ClearAndScheduleCopyToVRAM(&param0->extraWindows[6]);
-    Window_ClearAndScheduleCopyToVRAM(&param0->extraWindows[7]);
+    Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[25]);
+    Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[26]);
+    Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[27]);
+    Window_ClearAndScheduleCopyToVRAM(&summaryScreen->extraWindows[5]);
+    Window_ClearAndScheduleCopyToVRAM(&summaryScreen->extraWindows[6]);
+    Window_ClearAndScheduleCopyToVRAM(&summaryScreen->extraWindows[7]);
 }
 
 void sub_02091420(PokemonSummaryScreen *param0)
@@ -936,26 +932,26 @@ void sub_02091474(PokemonSummaryScreen *param0)
     Window_ScheduleCopyToVRAM(&param0->extraWindows[0 + param0->cursorTmp]);
 }
 
-void sub_020914F8(PokemonSummaryScreen *param0)
+void PokemonSummaryScreen_PrintHMMovesCantBeForgotten(PokemonSummaryScreen *summaryScreen)
 {
-    Window *v0;
+    Window *window;
 
-    if (param0->page == 3) {
-        Window_ClearAndScheduleCopyToVRAM(&param0->extraWindows[5]);
-        Window_ClearAndScheduleCopyToVRAM(&param0->extraWindows[6]);
-        Window_ClearAndScheduleCopyToVRAM(&param0->extraWindows[7]);
-        v0 = &param0->extraWindows[7];
+    if (summaryScreen->page == 3) {
+        Window_ClearAndScheduleCopyToVRAM(&summaryScreen->extraWindows[5]);
+        Window_ClearAndScheduleCopyToVRAM(&summaryScreen->extraWindows[6]);
+        Window_ClearAndScheduleCopyToVRAM(&summaryScreen->extraWindows[7]);
+        window = &summaryScreen->extraWindows[7];
     } else {
-        v0 = &param0->extraWindows[5];
+        window = &summaryScreen->extraWindows[5];
     }
 
-    Window_FillTilemap(v0, 0);
-    MessageLoader_GetStrbuf(param0->msgLoader, 156, param0->strbuf);
-    sub_020900D8(param0, v0, TEXT_COLOR(1, 2, 0), 0);
-    Window_ScheduleCopyToVRAM(v0);
+    Window_FillTilemap(window, 0);
+    MessageLoader_GetStrbuf(summaryScreen->msgLoader, 156, summaryScreen->strbuf);
+    sub_020900D8(summaryScreen, window, TEXT_COLOR(1, 2, 0), 0);
+    Window_ScheduleCopyToVRAM(window);
 }
 
-void sub_02091570(PokemonSummaryScreen *param0, u32 param1)
+void PokemonSummaryScreen_PrintContestMoveInfo(PokemonSummaryScreen *param0, u32 param1)
 {
     MessageLoader *v0;
     u32 v1;
@@ -976,7 +972,7 @@ void sub_02091570(PokemonSummaryScreen *param0, u32 param1)
     Window_ScheduleCopyToVRAM(&param0->extraWindows[5]);
 }
 
-void sub_020915F4(PokemonSummaryScreen *param0)
+void PokemonSummaryScreen_ClearContestInfoWindows(PokemonSummaryScreen *param0)
 {
     Window_ClearAndScheduleCopyToVRAM(&param0->staticWindows[29]);
     Window_ClearAndScheduleCopyToVRAM(&param0->extraWindows[5]);

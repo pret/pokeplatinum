@@ -48,13 +48,39 @@ enum PokemonSummaryScreenPage {
     SUMMARY_PAGE_MAX
 };
 
+// ravetodo uhhh finish these
+enum PokemonSummaryScreenState {
+    SUMMARY_STATE_TRANSITION_IN = 0,
+    SUMMARY_STATE_WAIT_TRANSITION,
+    SUMMARY_STATE_HANDLE_INPUT,
+    SUMMARY_STATE_3,
+    SUMMARY_STATE_4,
+    SUMMARY_STATE_5,
+    SUMMARY_STATE_6,
+    SUMMARY_STATE_MOVE_SELECT,
+    SUMMARY_STATE_MOVE_SWAP,
+    SUMMARY_STATE_LEARN_MOVE,
+    SUMMARY_STATE_WAIT_HM_MSG_INPUT,
+    SUMMARY_STATE_11,
+    SUMMARY_STATE_12,
+    SUMMARY_STATE_13,
+    SUMMARY_STATE_14,
+    SUMMARY_STATE_15,
+    SUMMARY_STATE_16,
+    SUMMARY_STATE_17,
+    SUMMARY_STATE_TRANSITION_OUT,
+    SUMMARY_STATE_WAIT_EXIT,
+};
+
 enum PokemonSummaryDataType {
     SUMMARY_DATA_MON = 0,
     SUMMARY_DATA_PARTY_MON,
     SUMMARY_DATA_BOX_MON,
 };
 
-#define SUMMARY_MOVE_NONE 0xFFFFFFFF
+#define SUMMARY_MOVE_NONE       0xFFFFFFFF
+#define POINTS_PER_APPEAL_HEART 10
+#define MAX_APPEAL_HEARTS       6
 
 typedef struct PokemonSummary {
     void *monData; //!< Pointer to generic Pokemon data
@@ -199,7 +225,7 @@ void PokemonSummary_FlagVisiblePages(PokemonSummary *summary, const u8 *pages);
 u8 PokemonSummary_PageIsVisble(PokemonSummaryScreen *summaryScreen, u32 page);
 u8 PokemonSummary_CountVisiblePages(PokemonSummaryScreen *summaryScreen);
 void *PokemonSummary_MonData(PokemonSummaryScreen *summaryScreen);
-u8 PokemonSummary_RibbonAt(PokemonSummaryScreen *summaryScreen, u8 param1);
+u8 PokemonSummary_RibbonAt(PokemonSummaryScreen *summaryScreen, u8 pos);
 void PokemonSummary_SetPlayerProfile(PokemonSummary *summary, const TrainerInfo *trainerInfo);
 u32 PokemonSummary_StatusIconChar(void);
 u32 PokemonSummary_StatusIconPltt(void);

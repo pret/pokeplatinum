@@ -358,13 +358,13 @@ void sub_02091F8C(PokemonSummaryScreen *param0)
     sub_02007DEC(param0->monSpriteData.sprite, 35, param0->monSpriteData.flip);
 }
 
-void sub_02092028(PokemonSummaryScreen *param0)
+void PokemonSummaryScreen_LoadMonAnimation(PokemonSummaryScreen *summaryScreen)
 {
-    if (param0->monData.isEgg != 0) {
-        PokeSprite_LoadAnimation(param0->narcPlPokeData, param0->monSpriteData.animationSys, param0->monSpriteData.sprite, 0, 2, param0->monSpriteData.flip, 0);
+    if (summaryScreen->monData.isEgg != FALSE) {
+        PokeSprite_LoadAnimation(summaryScreen->narcPlPokeData, summaryScreen->monSpriteData.animationSys, summaryScreen->monSpriteData.sprite, 0, 2, summaryScreen->monSpriteData.flip, 0);
     } else {
-        sub_02007B98(param0->monSpriteData.sprite, 1);
-        PokeSprite_LoadAnimation(param0->narcPlPokeData, param0->monSpriteData.animationSys, param0->monSpriteData.sprite, param0->monData.species, 2, param0->monSpriteData.flip, 0);
+        sub_02007B98(summaryScreen->monSpriteData.sprite, 1);
+        PokeSprite_LoadAnimation(summaryScreen->narcPlPokeData, summaryScreen->monSpriteData.animationSys, summaryScreen->monSpriteData.sprite, summaryScreen->monData.species, 2, summaryScreen->monSpriteData.flip, 0);
     }
 }
 
@@ -373,5 +373,5 @@ void sub_02092098(PokemonSummaryScreen *param0)
     sub_02016114(param0->monSpriteData.animationSys, 0);
     sub_02007B6C(param0->monSpriteData.spriteManager);
     sub_02091F8C(param0);
-    sub_02092028(param0);
+    PokemonSummaryScreen_LoadMonAnimation(param0);
 }

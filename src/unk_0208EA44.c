@@ -458,17 +458,17 @@ void sub_0208F22C(PokemonSummaryScreen *param0, u8 param1, u8 param2)
     SpriteActor_SetPositionXY(param0->unk_41C[13 + param2], v0, v1);
 }
 
-void sub_0208F294(PokemonSummaryScreen *param0, u32 param1)
+void PokemonSummaryScreen_UpdateMoveCategoryIcon(PokemonSummaryScreen *summaryScreen, u32 move)
 {
-    u32 v0 = MoveTable_LoadParam(param1, MOVEATTRIBUTE_CLASS);
+    u32 category = MoveTable_LoadParam(move, MOVEATTRIBUTE_CLASS);
 
-    sub_0200D948(param0->renderer, param0->gfxHandler, sub_0207CAC0(), sub_0207CA90(v0), 1, 10);
-    sub_0200D414(param0->unk_41C[18], sub_0207CAA8(v0) + 3);
+    sub_0200D948(summaryScreen->renderer, summaryScreen->gfxHandler, sub_0207CAC0(), sub_0207CA90(category), 1, 10);
+    sub_0200D414(summaryScreen->unk_41C[18], sub_0207CAA8(category) + 3);
 }
 
-void sub_0208F2E8(PokemonSummaryScreen *param0)
+void PokemonSummaryScreen_UpdateMoveSelectorPos(PokemonSummaryScreen *summaryScreen)
 {
-    SpriteActor_SetPositionXY(param0->unk_41C[9], 194, 48 + param0->cursor * 32);
+    SpriteActor_SetPositionXY(summaryScreen->unk_41C[9], 194, 48 + summaryScreen->cursor * 32);
 }
 
 void sub_0208F310(PokemonSummaryScreen *param0)
