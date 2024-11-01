@@ -6782,7 +6782,7 @@ static void sub_020451B4(FieldSystem *fieldSystem, u16 param1)
     Pokemon *v1 = Pokemon_New(32);
 
     Pokemon_Init(v1);
-    Pokemon_InitWith(v1, param1, 50, 32, 0, 0, 0, 0);
+    Pokemon_InitWith(v1, param1, 50, 32, FALSE, 0, OTID_NOT_SET, 0);
     sub_020272A4(v0, v1);
     Heap_FreeToHeap(v1);
 
@@ -6903,8 +6903,8 @@ static BOOL ScrCmd_263(ScriptContext *ctx)
         v5 = Party_GetPokemonBySlotIndex(v1, v2);
         v3 = Pokemon_GetValue(v5, MON_DATA_SPECIES, NULL);
 
-        if (v3 == 386) {
-            Pokemon_SetValue(v5, 112, &v0);
+        if (v3 == SPECIES_DEOXYS) {
+            Pokemon_SetValue(v5, MON_DATA_FORM, &v0);
             Pokemon_CalcLevelAndStats(v5);
             sub_0202736C(v6, v5);
         }
@@ -6930,7 +6930,7 @@ static BOOL ScrCmd_264(ScriptContext *ctx)
         v6 = Pokemon_GetValue(v0, MON_DATA_GENDER, NULL);
         v5 = Pokemon_GetValue(v0, MON_DATA_IS_EGG, NULL);
 
-        if ((v2 == 415) && (v5 == 0)) {
+        if ((v2 == SPECIES_COMBEE) && (v5 == 0)) {
             if (v6 == 0) {
                 v3 = 1;
             }
@@ -8176,7 +8176,7 @@ static u32 sub_0204676C(SaveData *saveData)
         for (v0 = 0; v0 < v5; v0++) {
             v1 = Party_GetPokemonBySlotIndex(v4, v0);
 
-            if ((Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL) == 479) && (Pokemon_GetValue(v1, MON_DATA_IS_EGG, NULL) == 0)) {
+            if ((Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL) == SPECIES_ROTOM) && (Pokemon_GetValue(v1, MON_DATA_IS_EGG, NULL) == 0)) {
                 v3 |= 1 << Pokemon_GetValue(v1, MON_DATA_FORM, NULL);
             }
         }
@@ -8192,7 +8192,7 @@ static u32 sub_0204676C(SaveData *saveData)
             v7 = sub_02026218(v6, v0);
             v2 = sub_02026220(v7);
 
-            if ((BoxPokemon_GetValue(v2, 5, NULL) == 479) && (BoxPokemon_GetValue(v2, MON_DATA_IS_EGG, NULL) == 0)) {
+            if ((BoxPokemon_GetValue(v2, MON_DATA_SPECIES, NULL) == SPECIES_ROTOM) && (BoxPokemon_GetValue(v2, MON_DATA_IS_EGG, NULL) == 0)) {
                 v3 |= 1 << BoxPokemon_GetValue(v2, MON_DATA_FORM, NULL);
             }
         }
@@ -8208,7 +8208,7 @@ static u32 sub_0204676C(SaveData *saveData)
             for (v0 = 0; v0 < (5 * 6); v0++) {
                 v2 = sub_02079C9C(v8, v9, v0);
 
-                if ((BoxPokemon_GetValue(v2, 5, NULL) == 479) && (BoxPokemon_GetValue(v2, MON_DATA_IS_EGG, NULL) == 0)) {
+                if ((BoxPokemon_GetValue(v2, MON_DATA_SPECIES, NULL) == SPECIES_ROTOM) && (BoxPokemon_GetValue(v2, MON_DATA_IS_EGG, NULL) == 0)) {
                     v3 |= 1 << BoxPokemon_GetValue(v2, MON_DATA_FORM, NULL);
                 }
             }
@@ -8344,7 +8344,7 @@ static BOOL ScrCmd_328(ScriptContext *ctx)
         for (v3 = 0; v3 < v4; v3++) {
             v5 = Party_GetPokemonBySlotIndex(v1, v3);
 
-            if ((Pokemon_GetValue(v5, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v5, MON_DATA_SPECIES, NULL) == 487)) {
+            if ((Pokemon_GetValue(v5, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v5, MON_DATA_SPECIES, NULL) == SPECIES_GIRATINA)) {
                 sub_0202736C(SaveData_Pokedex(fieldSystem->saveData), v5);
             }
         }
@@ -8368,7 +8368,7 @@ static BOOL ScrCmd_32B(ScriptContext *ctx)
         if (Pokemon_GetValue(v4, MON_DATA_IS_EGG, NULL) == 0) {
             v0 = Pokemon_GetValue(v4, MON_DATA_SPECIES, NULL);
 
-            if (v0 == 486) {
+            if (v0 == SPECIES_REGIGIGAS) {
                 v1 = Pokemon_GetValue(v4, MON_DATA_FATEFUL_ENCOUNTER, NULL);
 
                 if (v1 == 1) {

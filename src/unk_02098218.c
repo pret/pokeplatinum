@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "consts/game_records.h"
+#include "consts/species.h"
 
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/struct_0203E2FC.h"
@@ -122,7 +123,7 @@ static int sub_02098304(OverlayManager *param0, int *param1)
 
             PokeSprite_LoadCryDelay(v0->unk_04.unk_3C, &v0->unk_6C, v1, 1);
 
-            if (v1 == 490) {
+            if (v1 == SPECIES_MANAPHY) {
                 v0->unk_5C = 1;
             } else {
                 v0->unk_5C = 0;
@@ -219,9 +220,9 @@ static BOOL sub_0209843C(TaskManager *param0)
             int v6 = 11;
             int v7 = 0;
 
-            Pokemon_SetValue(v2, 76, &v7);
+            Pokemon_SetValue(v2, MON_DATA_IS_EGG, &v7);
             sub_0209304C(v2, v3, v4, v5, v6);
-            Pokemon_SetValue(v2, 179, NULL);
+            Pokemon_SetValue(v2, MON_DATA_SPECIES_NAME, NULL);
         }
 
         {
@@ -248,7 +249,7 @@ static BOOL sub_0209843C(TaskManager *param0)
     } break;
     case 4:
         if (v0->unk_08->unk_14 == 0) {
-            Pokemon_SetValue(v0->unk_0C.unk_00, 120, v0->unk_08->unk_18);
+            Pokemon_SetValue(v0->unk_0C.unk_00, MON_DATA_NICKNAME_STRBUF_AND_FLAG, v0->unk_08->unk_18);
 
             {
                 FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);

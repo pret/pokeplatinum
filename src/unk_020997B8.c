@@ -35,7 +35,7 @@ u16 *sub_020997D8(Pokemon *param0, u32 param1)
     v5 = (u8)Pokemon_GetValue(param0, MON_DATA_FORM, NULL);
     v4 = (u8)Pokemon_GetValue(param0, MON_DATA_LEVEL, NULL);
 
-    for (v7 = 0; v7 < 4; v7++) {
+    for (v7 = 0; v7 < LEARNED_MOVES_MAX; v7++) {
         v2[v7] = (u16)Pokemon_GetValue(param0, MON_DATA_MOVE1 + v7, NULL);
     }
 

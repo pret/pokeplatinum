@@ -1600,7 +1600,7 @@ void ov16_02266B78(BattleSystem *param0, BattleContext *param1, UnkStruct_ov16_0
 
         param2->unk_0C = param1->battleMons[param5].friendship;
 
-        if ((BattleSystem_CountAbility(param0, param1, 8, 0, 13) == 0) && (BattleSystem_CountAbility(param0, param1, 8, 0, 76) == 0)) {
+        if ((BattleSystem_CountAbility(param0, param1, COUNT_ALIVE_BATTLERS, 0, ABILITY_CLOUD_NINE) == 0) && (BattleSystem_CountAbility(param0, param1, COUNT_ALIVE_BATTLERS, 0, ABILITY_AIR_LOCK) == 0)) {
             param2->unk_10 = param1->fieldConditionsMask;
         } else {
             param2->unk_10 = 0;

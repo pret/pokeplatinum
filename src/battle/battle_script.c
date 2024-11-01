@@ -10922,7 +10922,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 v3 = BattleSystem_PartyPokemon(v2->battleSys, v1, v2->battleCtx->selectedPartySlot[v1]);
 
                 if (v19->unk_14 == 0) {
-                    Pokemon_SetValue(v3, 120, v19->unk_18);
+                    Pokemon_SetValue(v3, MON_DATA_NICKNAME_STRBUF_AND_FLAG, v19->unk_18);
                     ov16_0223F24C(v2->battleSys, (1 + 48));
                 }
 
@@ -10974,9 +10974,9 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
 
                         sub_02079A94(v24, v26);
 
-                        for (v27 = 0; v27 < 4; v27++) {
+                        for (v27 = 0; v27 < LEARNED_MOVES_MAX; v27++) {
                             v28 = Pokemon_GetValue(v3, MON_DATA_MOVE1_MAX_PP + v27, NULL);
-                            Pokemon_SetValue(v3, 58 + v27, &v28);
+                            Pokemon_SetValue(v3, MON_DATA_MOVE1_CUR_PP + v27, &v28);
                         }
 
                         if (Pokemon_SetGiratinaForm(v3) != -1) {

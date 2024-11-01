@@ -3629,7 +3629,7 @@ static void ov107_022455A0 (UnkStruct_ov107_02241D6C * param0, u8 param1, u16 pa
 
     v0 = Party_GetPokemonBySlotIndex(param0->unk_43C, ov107_02249C98(param0->unk_14, param1));
 
-    Pokemon_SetValue(v0, 6, &param2);
+    Pokemon_SetValue(v0, MON_DATA_HELD_ITEM, &param2);
 
     ov107_02249BAC(param0->unk_404[ov107_02249C98(param0->unk_14, param1)], 1);
     ov107_02244A8C(param0, 0, Pokemon_GetBoxPokemon(v0));

@@ -1053,7 +1053,7 @@ static void ov6_02241BAC(const u16 species, const u8 level, const int param2, co
         } while (TRUE);
     }
 
-    Pokemon_InitWith(newEncounter, species, level, 32, TRUE, newEncounterPersonality, 1, encounterFieldParams->trainerID);
+    Pokemon_InitWith(newEncounter, species, level, 32, TRUE, newEncounterPersonality, OTID_SET, encounterFieldParams->trainerID);
 
     GF_ASSERT(ov6_02242514(param2, encounterFieldParams, newEncounter, battleParams));
     Heap_FreeToHeap(newEncounter);

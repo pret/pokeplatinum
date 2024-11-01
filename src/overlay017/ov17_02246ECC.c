@@ -1277,7 +1277,7 @@ static void ov17_02246F24(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246F
 
     MI_CpuClear8(param1, sizeof(UnkStruct_ov17_02246F9C));
 
-    for (v0 = 0; v0 < 4; v0++) {
+    for (v0 = 0; v0 < LEARNED_MOVES_MAX; v0++) {
         param1->unk_00[v0].unk_00 = Pokemon_GetValue(param0->unk_00->unk_00.unk_00[param2], MON_DATA_MOVE1 + v0, NULL);
 
         if (ov17_02243A98(&param0->unk_220, param2, param1->unk_00[v0].unk_00) == 1) {

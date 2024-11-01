@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/species.h"
+
 #include "struct_defs/struct_02013610.h"
 
 #include "heap.h"
@@ -76,14 +78,14 @@ static BOOL sub_020132F8(int param0)
     int v0;
     int v1;
     const int v2[] = {
-        327,
-        495,
+        SPECIES_SPINDA,
+        SPECIES_BAD_EGG,
     };
 
     for (v0 = 0; v0 < 495; v0++) {
         v1 = v2[v0];
 
-        if (v1 == 495) {
+        if (v1 == SPECIES_BAD_EGG) {
             break;
         }
 

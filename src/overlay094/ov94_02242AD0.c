@@ -1295,8 +1295,8 @@ static void ov94_02243BC4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int 
             }
         }
 
-        Pokemon_SetValue(param1, 9, &v1);
-        Pokemon_SetValue(param1, 111, NULL);
+        Pokemon_SetValue(param1, MON_DATA_FRIENDSHIP, &v1);
+        Pokemon_SetValue(param1, MON_DATA_GENDER, NULL);
 
         ov94_02243DE8(param0->unk_00->unk_00, 0);
     }
@@ -1344,10 +1344,10 @@ static void ov94_02243CE4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int 
 
     {
         u8 v1 = 70;
-        Pokemon_SetValue(param1, 9, &v1);
+        Pokemon_SetValue(param1, MON_DATA_FRIENDSHIP, &v1);
     }
 
-    Pokemon_SetValue(param1, 111, NULL);
+    Pokemon_SetValue(param1, MON_DATA_GENDER, NULL);
 
     if (param2 == 18) {
         int v2;

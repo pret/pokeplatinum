@@ -389,8 +389,8 @@ static BOOL sub_02097F38(TaskManager *param0)
         if (v7->unk_22 != 7) {
             v8 = sub_02097F00(v0->unk_08, v7->unk_22);
 
-            Pokemon_SetValue(v8, 162, (u8 *)&v13);
-            Pokemon_SetValue(v8, 171, sub_0202CA28(v1->unk_20, v13 - 1));
+            Pokemon_SetValue(v8, MON_DATA_MAIL_ID, (u8 *)&v13);
+            Pokemon_SetValue(v8, MON_DATA_171, sub_0202CA28(v1->unk_20, v13 - 1));
 
             v9 = sub_0202CA28(v1->unk_20, v13 - 1);
             v10 = sub_0202CA64(v9, 0);

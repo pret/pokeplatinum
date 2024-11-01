@@ -3332,15 +3332,15 @@ static void ov107_022490E8 (UnkStruct_ov107_02246170 * param0, u8 param1, u8 par
 
     if (param0->unk_3D0[ov107_02249C98(param0->unk_14, param1)] == 0) {
         v0 = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL), 50);
-        Pokemon_SetValue(v1, 8, &v0);
+        Pokemon_SetValue(v1, MON_DATA_EXP, &v0);
         Pokemon_CalcLevelAndStats(v1);
     } else if (param0->unk_3D0[ov107_02249C98(param0->unk_14, param1)] == 1) {
         v0 = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL), 55);
-        Pokemon_SetValue(v1, 8, &v0);
+        Pokemon_SetValue(v1, MON_DATA_EXP, &v0);
         Pokemon_CalcLevelAndStats(v1);
     } else {
         v0 = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL), 45);
-        Pokemon_SetValue(v1, 8, &v0);
+        Pokemon_SetValue(v1, MON_DATA_EXP, &v0);
         Pokemon_CalcLevelAndStats(v1);
     }
 

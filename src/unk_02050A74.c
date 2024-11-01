@@ -594,7 +594,7 @@ void sub_020512E4(TaskManager *taskMan, u16 param1, u8 param2, int *param3, BOOL
     v4 = 1;
     v3 = Party_GetPokemonBySlotIndex(v1->parties[1], 0);
 
-    Pokemon_SetValue(v3, 110, &v4);
+    Pokemon_SetValue(v3, MON_DATA_FATEFUL_ENCOUNTER, &v4);
 
     if (param4) {
         v1->unk_164 |= 0x8;

@@ -2498,11 +2498,11 @@ static void ov88_0223E694(Party *param0, Party *param1, int param2, int param3, 
         }
     }
 
-    Pokemon_SetValue(v1, 111, NULL);
+    Pokemon_SetValue(v1, MON_DATA_GENDER, NULL);
 
     if (Pokemon_GetValue(v1, MON_DATA_IS_EGG, NULL) == 0) {
         u8 v3 = 70;
-        Pokemon_SetValue(v1, 9, &v3);
+        Pokemon_SetValue(v1, MON_DATA_FRIENDSHIP, &v3);
     }
 
     sub_0209304C(v1, CommInfo_TrainerInfo(CommSys_CurNetId()), 5, 0, 11);
@@ -2513,7 +2513,7 @@ static void ov88_0223E694(Party *param0, Party *param1, int param2, int param3, 
 
     param4->unk_2C = param2;
 
-    if (Party_HasSpecies(param0, 441) == 0) {
+    if (Party_HasSpecies(param0, SPECIES_CHATOT) == 0) {
         ChatotCry *v4 = GetChatotCryDataFromSave(param4->unk_10);
         ResetChatotCryDataStatus(v4);
     }
