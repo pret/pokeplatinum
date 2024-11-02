@@ -1,37 +1,37 @@
 {
-    "type": "TILES",
-    "contents": [
+    "kind": "char",
+    "graphics": [
         {
             "narc": 17,
-            "member": 4,
+            "file": 4,
             "compressed": false,
             "id": 0,
             "vramType": 2
         },
         {
             "narc": 17,
-            "member": 7,
+            "file": 7,
             "compressed": false,
             "id": 1,
             "vramType": 1
         },
         {
             "narc": 17,
-            "member": 10,
+            "file": 10,
             "compressed": false,
             "id": 2,
             "vramType": 1
         },
         {
             "narc": 17,
-            "member": 13,
+            "file": 13,
             "compressed": false,
             "id": 3,
             "vramType": 1
         },
         {
             "narc": 17,
-            "member": 16,
+            "file": 16,
             "compressed": false,
             "id": 4,
             "vramType": 1

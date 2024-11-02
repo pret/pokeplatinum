@@ -1,32 +1,32 @@
 [
     {
-        "tiles": 0,
+        "graphics": 0,
         "palette": 0,
-        "cells": 0,
+        "cell": 0,
         "anim": 0,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 0
+        "transfer": false,
+        "priority": 0
     },
     {
-        "tiles": 1,
+        "graphics": 1,
         "palette": 0,
-        "cells": 1,
+        "cell": 1,
         "anim": 1,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 1
+        "transfer": false,
+        "priority": 1
     },
     {
-        "tiles": 2,
+        "graphics": 2,
         "palette": 1,
-        "cells": 2,
+        "cell": 2,
         "anim": 2,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 1
+        "transfer": false,
+        "priority": 1
     }
 ]

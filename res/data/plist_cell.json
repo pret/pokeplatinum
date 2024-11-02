@@ -1,45 +1,45 @@
 {
-    "type": "CELLS",
-    "contents": [
+    "kind": "cell",
+    "graphics": [
         {
             "narc": 20,
-            "member": 1,
+            "file": 1,
             "compressed": false,
             "id": 0
         },
         {
             "narc": 20,
-            "member": 6,
+            "file": 6,
             "compressed": false,
             "id": 1
         },
         {
             "narc": 20,
-            "member": 10,
+            "file": 10,
             "compressed": false,
             "id": 2
         },
         {
             "narc": 39,
-            "member": 63,
+            "file": 63,
             "compressed": false,
             "id": 3
         },
         {
             "narc": 19,
-            "member": 4,
+            "file": 4,
             "compressed": false,
             "id": 4
         },
         {
             "narc": 20,
-            "member": 19,
+            "file": 19,
             "compressed": false,
             "id": 5
         },
         {
             "narc": 13,
-            "member": 35,
+            "file": 35,
             "compressed": false,
             "id": 6
         }

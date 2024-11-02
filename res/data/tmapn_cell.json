@@ -1,33 +1,33 @@
 {
-    "type": "CELLS",
-    "contents": [
+    "kind": "cell",
+    "graphics": [
         {
             "narc": 17,
-            "member": 5,
+            "file": 5,
             "compressed": false,
             "id": 0
         },
         {
             "narc": 17,
-            "member": 8,
+            "file": 8,
             "compressed": false,
             "id": 1
         },
         {
             "narc": 17,
-            "member": 11,
+            "file": 11,
             "compressed": false,
             "id": 2
         },
         {
             "narc": 17,
-            "member": 14,
+            "file": 14,
             "compressed": false,
             "id": 3
         },
         {
             "narc": 17,
-            "member": 17,
+            "file": 17,
             "compressed": false,
             "id": 4
         }

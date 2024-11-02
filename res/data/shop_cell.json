@@ -1,21 +1,21 @@
 {
-    "type": "CELLS",
-    "contents": [
+    "kind": "cell",
+    "graphics": [
         {
             "narc": 62,
-            "member": 5,
+            "file": 5,
             "compressed": false,
             "id": 0
         },
         {
             "narc": 62,
-            "member": 8,
+            "file": 8,
             "compressed": false,
             "id": 1
         },
         {
             "narc": 16,
-            "member": 1,
+            "file": 1,
             "compressed": false,
             "id": 2
         }

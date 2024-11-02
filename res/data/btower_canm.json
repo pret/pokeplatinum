@@ -1,9 +1,9 @@
 {
-    "type": "ANIM",
-    "contents": [
+    "kind": "anim",
+    "graphics": [
         {
             "narc": 123,
-            "member": 3,
+            "file": 3,
             "compressed": false,
             "id": 0
         }

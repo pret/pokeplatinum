@@ -29,13 +29,13 @@ with open(source_file) as infile:
 #### terminated with 8 ints of -2
 with open(output_file, mode="wb") as f:
     for element in data:
-        f.write(struct.pack('<i', element['tiles']))
+        f.write(struct.pack('<i', element['graphics']))
         f.write(struct.pack('<i', element['palette']))
-        f.write(struct.pack('<i', element['cells']))
+        f.write(struct.pack('<i', element['cell']))
         f.write(struct.pack('<i', element['anim']))
         f.write(struct.pack('<i', element['multi_cells']))
         f.write(struct.pack('<i', element['multi_anim']))
-        f.write(struct.pack('<i', 1 if element['vram_transfer'] else 0))
-        f.write(struct.pack('<i', element['bg_priority']))
+        f.write(struct.pack('<i', 1 if element['transfer'] else 0))
+        f.write(struct.pack('<i', element['priority']))
     for _ in range(8):
         f.write(struct.pack('<i', -2))

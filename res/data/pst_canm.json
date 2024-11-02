@@ -1,105 +1,105 @@
 {
-    "type": "ANIM",
-    "contents": [
+    "kind": "anim",
+    "graphics": [
         {
             "narc": 39,
-            "member": 47,
+            "file": 47,
             "compressed": false,
             "id": 0
         },
         {
             "narc": 39,
-            "member": 127,
+            "file": 127,
             "compressed": false,
             "id": 1
         },
         {
             "narc": 39,
-            "member": 130,
+            "file": 130,
             "compressed": false,
             "id": 2
         },
         {
             "narc": 27,
-            "member": 243,
+            "file": 243,
             "compressed": true,
             "id": 3
         },
         {
             "narc": 19,
-            "member": 1,
+            "file": 1,
             "compressed": false,
             "id": 4
         },
         {
             "narc": 39,
-            "member": 62,
+            "file": 62,
             "compressed": false,
             "id": 5
         },
         {
             "narc": 39,
-            "member": 66,
+            "file": 66,
             "compressed": false,
             "id": 6
         },
         {
             "narc": 39,
-            "member": 59,
+            "file": 59,
             "compressed": false,
             "id": 7
         },
         {
             "narc": 39,
-            "member": 50,
+            "file": 50,
             "compressed": false,
             "id": 8
         },
         {
             "narc": 13,
-            "member": 34,
+            "file": 34,
             "compressed": false,
             "id": 9
         },
         {
             "narc": 39,
-            "member": 17,
+            "file": 17,
             "compressed": false,
             "id": 10
         },
         {
             "narc": 39,
-            "member": 44,
+            "file": 44,
             "compressed": false,
             "id": 11
         },
         {
             "narc": 39,
-            "member": 70,
+            "file": 70,
             "compressed": false,
             "id": 12
         },
         {
             "narc": 39,
-            "member": 122,
+            "file": 122,
             "compressed": false,
             "id": 13
         },
         {
             "narc": 39,
-            "member": 41,
+            "file": 41,
             "compressed": false,
             "id": 14
         },
         {
             "narc": 39,
-            "member": 126,
+            "file": 126,
             "compressed": false,
             "id": 15
         },
         {
             "narc": 39,
-            "member": 133,
+            "file": 133,
             "compressed": false,
             "id": 16
         }

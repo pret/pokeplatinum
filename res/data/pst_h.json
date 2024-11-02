@@ -1,432 +1,432 @@
 [
     {
-        "tiles": 0,
+        "graphics": 0,
         "palette": 6,
-        "cells": 0,
+        "cell": 0,
         "anim": 0,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 0
+        "transfer": false,
+        "priority": 0
     },
     {
-        "tiles": 1,
+        "graphics": 1,
         "palette": 0,
-        "cells": 1,
+        "cell": 1,
         "anim": 1,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 0
+        "transfer": false,
+        "priority": 0
     },
     {
-        "tiles": 2,
+        "graphics": 2,
         "palette": 0,
-        "cells": 2,
+        "cell": 2,
         "anim": 2,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 0
+        "transfer": false,
+        "priority": 0
     },
     {
-        "tiles": 3,
+        "graphics": 3,
         "palette": 1,
-        "cells": 3,
+        "cell": 3,
         "anim": 3,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 0
+        "transfer": false,
+        "priority": 0
     },
     {
-        "tiles": 4,
+        "graphics": 4,
         "palette": 1,
-        "cells": 3,
+        "cell": 3,
         "anim": 3,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 0
+        "transfer": false,
+        "priority": 0
     },
     {
-        "tiles": 5,
+        "graphics": 5,
         "palette": 1,
-        "cells": 3,
+        "cell": 3,
         "anim": 3,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 0
+        "transfer": false,
+        "priority": 0
     },
     {
-        "tiles": 6,
+        "graphics": 6,
         "palette": 1,
-        "cells": 3,
+        "cell": 3,
         "anim": 3,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 0
+        "transfer": false,
+        "priority": 0
     },
     {
-        "tiles": 7,
+        "graphics": 7,
         "palette": 1,
-        "cells": 3,
+        "cell": 3,
         "anim": 3,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 0
+        "transfer": false,
+        "priority": 0
     },
     {
-        "tiles": 8,
+        "graphics": 8,
         "palette": 1,
-        "cells": 3,
+        "cell": 3,
         "anim": 3,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 0
+        "transfer": false,
+        "priority": 0
     },
     {
-        "tiles": 9,
+        "graphics": 9,
         "palette": 1,
-        "cells": 3,
+        "cell": 3,
         "anim": 3,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 0
+        "transfer": false,
+        "priority": 0
     },
     {
-        "tiles": 10,
+        "graphics": 10,
         "palette": 1,
-        "cells": 3,
+        "cell": 3,
         "anim": 3,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 0
+        "transfer": false,
+        "priority": 0
     },
     {
-        "tiles": 11,
+        "graphics": 11,
         "palette": 5,
-        "cells": 4,
+        "cell": 4,
         "anim": 4,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 0
+        "transfer": false,
+        "priority": 0
     },
     {
-        "tiles": 12,
+        "graphics": 12,
         "palette": 3,
-        "cells": 5,
+        "cell": 5,
         "anim": 5,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 3
+        "transfer": false,
+        "priority": 3
     },
     {
-        "tiles": 13,
+        "graphics": 13,
         "palette": 0,
-        "cells": 6,
+        "cell": 6,
         "anim": 6,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 3
+        "transfer": false,
+        "priority": 3
     },
     {
-        "tiles": 14,
+        "graphics": 14,
         "palette": 0,
-        "cells": 7,
+        "cell": 7,
         "anim": 7,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 3
+        "transfer": false,
+        "priority": 3
     },
     {
-        "tiles": 16,
+        "graphics": 16,
         "palette": 4,
-        "cells": 9,
+        "cell": 9,
         "anim": 9,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 0
+        "transfer": false,
+        "priority": 0
     },
     {
-        "tiles": 17,
+        "graphics": 17,
         "palette": 0,
-        "cells": 10,
+        "cell": 10,
         "anim": 10,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 0
+        "transfer": false,
+        "priority": 0
     },
     {
-        "tiles": 18,
+        "graphics": 18,
         "palette": 0,
-        "cells": 10,
+        "cell": 10,
         "anim": 10,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 0
+        "transfer": false,
+        "priority": 0
     },
     {
-        "tiles": 15,
+        "graphics": 15,
         "palette": 0,
-        "cells": 8,
+        "cell": 8,
         "anim": 8,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 3
+        "transfer": false,
+        "priority": 3
     },
     {
-        "tiles": 22,
+        "graphics": 22,
         "palette": 0,
-        "cells": 8,
+        "cell": 8,
         "anim": 8,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 3
+        "transfer": false,
+        "priority": 3
     },
     {
-        "tiles": 21,
+        "graphics": 21,
         "palette": 0,
-        "cells": 8,
+        "cell": 8,
         "anim": 8,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 3
+        "transfer": false,
+        "priority": 3
     },
     {
-        "tiles": 23,
+        "graphics": 23,
         "palette": 0,
-        "cells": 8,
+        "cell": 8,
         "anim": 8,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 3
+        "transfer": false,
+        "priority": 3
     },
     {
-        "tiles": 19,
+        "graphics": 19,
         "palette": 0,
-        "cells": 8,
+        "cell": 8,
         "anim": 8,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 3
+        "transfer": false,
+        "priority": 3
     },
     {
-        "tiles": 20,
+        "graphics": 20,
         "palette": 0,
-        "cells": 8,
+        "cell": 8,
         "anim": 8,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 3
+        "transfer": false,
+        "priority": 3
     },
     {
-        "tiles": 24,
+        "graphics": 24,
         "palette": 0,
-        "cells": 8,
+        "cell": 8,
         "anim": 8,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 3
+        "transfer": false,
+        "priority": 3
     },
     {
-        "tiles": 25,
+        "graphics": 25,
         "palette": 0,
-        "cells": 11,
+        "cell": 11,
         "anim": 11,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 0
+        "transfer": false,
+        "priority": 0
     },
     {
-        "tiles": 26,
+        "graphics": 26,
         "palette": 5,
-        "cells": 12,
+        "cell": 12,
         "anim": 12,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 3
+        "transfer": false,
+        "priority": 3
     },
     {
-        "tiles": 27,
+        "graphics": 27,
         "palette": 5,
-        "cells": 12,
+        "cell": 12,
         "anim": 12,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 3
+        "transfer": false,
+        "priority": 3
     },
     {
-        "tiles": 28,
+        "graphics": 28,
         "palette": 5,
-        "cells": 12,
+        "cell": 12,
         "anim": 12,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 3
+        "transfer": false,
+        "priority": 3
     },
     {
-        "tiles": 29,
+        "graphics": 29,
         "palette": 5,
-        "cells": 12,
+        "cell": 12,
         "anim": 12,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 3
+        "transfer": false,
+        "priority": 3
     },
     {
-        "tiles": 30,
+        "graphics": 30,
         "palette": 5,
-        "cells": 12,
+        "cell": 12,
         "anim": 12,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 3
+        "transfer": false,
+        "priority": 3
     },
     {
-        "tiles": 31,
+        "graphics": 31,
         "palette": 5,
-        "cells": 12,
+        "cell": 12,
         "anim": 12,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 3
+        "transfer": false,
+        "priority": 3
     },
     {
-        "tiles": 32,
+        "graphics": 32,
         "palette": 5,
-        "cells": 12,
+        "cell": 12,
         "anim": 12,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 3
+        "transfer": false,
+        "priority": 3
     },
     {
-        "tiles": 33,
+        "graphics": 33,
         "palette": 5,
-        "cells": 12,
+        "cell": 12,
         "anim": 12,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 3
+        "transfer": false,
+        "priority": 3
     },
     {
-        "tiles": 34,
+        "graphics": 34,
         "palette": 5,
-        "cells": 12,
+        "cell": 12,
         "anim": 12,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 3
+        "transfer": false,
+        "priority": 3
     },
     {
-        "tiles": 35,
+        "graphics": 35,
         "palette": 5,
-        "cells": 12,
+        "cell": 12,
         "anim": 12,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 3
+        "transfer": false,
+        "priority": 3
     },
     {
-        "tiles": 36,
+        "graphics": 36,
         "palette": 5,
-        "cells": 12,
+        "cell": 12,
         "anim": 12,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 3
+        "transfer": false,
+        "priority": 3
     },
     {
-        "tiles": 37,
+        "graphics": 37,
         "palette": 5,
-        "cells": 12,
+        "cell": 12,
         "anim": 12,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 3
+        "transfer": false,
+        "priority": 3
     },
     {
-        "tiles": 38,
+        "graphics": 38,
         "palette": 0,
-        "cells": 15,
+        "cell": 15,
         "anim": 15,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 2
+        "transfer": false,
+        "priority": 2
     },
     {
-        "tiles": 39,
+        "graphics": 39,
         "palette": 0,
-        "cells": 14,
+        "cell": 14,
         "anim": 14,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 0
+        "transfer": false,
+        "priority": 0
     },
     {
-        "tiles": 40,
+        "graphics": 40,
         "palette": 0,
-        "cells": 13,
+        "cell": 13,
         "anim": 13,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 0
+        "transfer": false,
+        "priority": 0
     },
     {
-        "tiles": 41,
+        "graphics": 41,
         "palette": 0,
-        "cells": 0,
+        "cell": 0,
         "anim": 0,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 0
+        "transfer": false,
+        "priority": 0
     },
     {
-        "tiles": 42,
+        "graphics": 42,
         "palette": 0,
-        "cells": 16,
+        "cell": 16,
         "anim": 16,
         "multi_cells": -1,
         "multi_anim": -1,
-        "vram_transfer": false,
-        "bg_priority": 3
+        "transfer": false,
+        "priority": 3
     }
 ]

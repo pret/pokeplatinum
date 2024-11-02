@@ -1,9 +1,9 @@
 {
-    "type": "PALETTE",
-    "contents": [
+    "kind": "pltt",
+    "graphics": [
         {
             "narc": 39,
-            "member": 69,
+            "file": 69,
             "compressed": false,
             "id": 0,
             "vramType": 1,
@@ -11,7 +11,7 @@
         },
         {
             "narc": 27,
-            "member": 74,
+            "file": 74,
             "compressed": false,
             "id": 1,
             "vramType": 1,
@@ -19,7 +19,7 @@
         },
         {
             "narc": 39,
-            "member": 65,
+            "file": 65,
             "compressed": false,
             "id": 3,
             "vramType": 1,
@@ -27,7 +27,7 @@
         },
         {
             "narc": 20,
-            "member": 23,
+            "file": 23,
             "compressed": false,
             "id": 4,
             "vramType": 2,
@@ -35,7 +35,7 @@
         },
         {
             "narc": 39,
-            "member": 136,
+            "file": 136,
             "compressed": false,
             "id": 5,
             "vramType": 1,
@@ -43,7 +43,7 @@
         },
         {
             "narc": 39,
-            "member": 37,
+            "file": 37,
             "compressed": false,
             "id": 6,
             "vramType": 1,

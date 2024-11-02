@@ -1,15 +1,15 @@
 {
-    "type": "ANIM",
-    "contents": [
+    "kind": "anim",
+    "graphics": [
         {
             "narc": 47,
-            "member": 4,
+            "file": 4,
             "compressed": false,
             "id": 0
         },
         {
             "narc": 47,
-            "member": 6,
+            "file": 6,
             "compressed": false,
             "id": 1
         }

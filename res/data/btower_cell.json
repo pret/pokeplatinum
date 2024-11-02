@@ -1,9 +1,9 @@
 {
-    "type": "CELLS",
-    "contents": [
+    "kind": "cell",
+    "graphics": [
         {
             "narc": 123,
-            "member": 2,
+            "file": 2,
             "compressed": false,
             "id": 0
         }

@@ -1,15 +1,15 @@
 {
-    "type": "CELLS",
-    "contents": [
+    "kind": "cell",
+    "graphics": [
         {
             "narc": 83,
-            "member": 6,
+            "file": 6,
             "compressed": false,
             "id": 0
         },
         {
             "narc": 83,
-            "member": 8,
+            "file": 8,
             "compressed": false,
             "id": 1
         }

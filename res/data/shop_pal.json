@@ -1,9 +1,9 @@
 {
-    "type": "PALETTE",
-    "contents": [
+    "kind": "pltt",
+    "graphics": [
         {
             "narc": 62,
-            "member": 10,
+            "file": 10,
             "compressed": false,
             "id": 0,
             "vramType": 1,
@@ -11,7 +11,7 @@
         },
         {
             "narc": 16,
-            "member": 3,
+            "file": 3,
             "compressed": false,
             "id": 1,
             "vramType": 1,
