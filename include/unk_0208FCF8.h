@@ -10,7 +10,7 @@ void sub_0208FE88(PokemonSummaryScreen *param0);
 void sub_0208FEA4(PokemonSummaryScreen *param0);
 void sub_0208FF3C(PokemonSummaryScreen *param0);
 void sub_0208FFE0(PokemonSummaryScreen *param0);
-void sub_02090064(PokemonSummaryScreen *param0, u32 param1);
+void PokemonSummaryScreen_ClearWindowAndPrintText(PokemonSummaryScreen *summaryScreen, u32 entryID);
 void sub_020904C4(PokemonSummaryScreen *param0);
 void sub_02090F84(PokemonSummaryScreen *param0);
 void sub_020910E4(PokemonSummaryScreen *param0);

@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/narc.h"
+
 #include "overlay007/struct_ov7_0224F2EC.h"
 #include "overlay007/struct_ov7_0224F358.h"
 #include "overlay104/struct_ov104_022412F4.h"
@@ -288,7 +290,7 @@ void sub_0208EDC4(PokemonSummaryScreen *param0)
     u8 v0;
 
     if (PokemonSummary_CountVisiblePages(param0) <= 1) {
-        sub_0208EE10(param0, 0);
+        PokemonSummaryScreen_UpdatePageArrows(param0, FALSE);
     }
 
     v0 = sub_0208ECB8(param0);
@@ -297,14 +299,14 @@ void sub_0208EDC4(PokemonSummaryScreen *param0)
     SpriteActor_SetPositionXY(param0->unk_41C[22], (23 * 8 + 4) + ((23 * 8 + 4) - v0) + -4, 24);
 }
 
-void sub_0208EE10(PokemonSummaryScreen *param0, u8 param1)
+void PokemonSummaryScreen_UpdatePageArrows(PokemonSummaryScreen *summaryScreen, BOOL showArrows)
 {
-    if (PokemonSummary_CountVisiblePages(param0) <= 1) {
-        param1 = 0;
+    if (PokemonSummary_CountVisiblePages(summaryScreen) <= 1) {
+        showArrows = FALSE;
     }
 
-    CellActor_SetDrawFlag(param0->unk_41C[21], param1);
-    CellActor_SetDrawFlag(param0->unk_41C[22], param1);
+    CellActor_SetDrawFlag(summaryScreen->unk_41C[21], showArrows);
+    CellActor_SetDrawFlag(summaryScreen->unk_41C[22], showArrows);
 }
 
 void sub_0208EE3C(PokemonSummaryScreen *param0)
@@ -645,15 +647,15 @@ void sub_0208F6A4(PokemonSummaryScreen *param0)
     }
 }
 
-void sub_0208F6DC(PokemonSummaryScreen *param0, Window *param1)
+void PokemonSummaryScreen_UpdateAButtonSprite(PokemonSummaryScreen *summaryScreen, Window *window)
 {
-    if (param1 == NULL) {
-        CellActor_SetDrawFlag(param0->unk_41C[47], 0);
+    if (window == NULL) {
+        CellActor_SetDrawFlag(summaryScreen->unk_41C[47], FALSE);
         return;
     }
 
-    SpriteActor_SetPositionXY(param0->unk_41C[47], Window_GetXPos(param1) * 8 - 10, 8);
-    CellActor_SetDrawFlag(param0->unk_41C[47], 1);
+    SpriteActor_SetPositionXY(summaryScreen->unk_41C[47], Window_GetXPos(window) * 8 - 10, 8);
+    CellActor_SetDrawFlag(summaryScreen->unk_41C[47], TRUE);
 }
 
 void sub_0208F71C(PokemonSummaryScreen *param0)
@@ -672,17 +674,17 @@ void sub_0208F71C(PokemonSummaryScreen *param0)
     CellActor_SetFlipMode(param0->unk_41C[19], (PokemonPersonalData_GetFormValue(param0->monData.species, param0->monData.form, 28) ^ 1));
 }
 
-void sub_0208F7A4(PokemonSummaryScreen *param0)
+void PokemonSummaryScreen_ShowMonIcon(PokemonSummaryScreen *summaryScreen)
 {
-    sub_0200D97C(param0->renderer, param0->gfxHandler, 19, PokeIconPalettesFileIndex(), 0, 5);
+    sub_0200D97C(summaryScreen->renderer, summaryScreen->gfxHandler, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), FALSE, 5);
 
-    if (param0->page == 3) {
-        SpriteActor_SetPositionXY(param0->unk_41C[19], 24, 48);
+    if (summaryScreen->page == SUMMARY_PAGE_BATTLE_MOVES) {
+        SpriteActor_SetPositionXY(summaryScreen->unk_41C[19], 24, 48);
     } else {
-        SpriteActor_SetPositionXY(param0->unk_41C[19], 32, 68);
+        SpriteActor_SetPositionXY(summaryScreen->unk_41C[19], 32, 68);
     }
 
-    SpriteActor_DrawSprite(param0->unk_41C[19], 1);
+    SpriteActor_DrawSprite(summaryScreen->unk_41C[19], TRUE);
 }
 
 static s16 sub_0208F800(u32 param0, s16 param1, s16 param2)
