@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_0200C440_decl.h"
-#include "struct_decls/struct_berry_data_decl.h"
 #include "struct_defs/struct_020972FC.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -223,7 +222,7 @@ int ov85_02241440(OverlayManager *param0, int *param1)
     memset(v0, 0, sizeof(UnkStruct_ov85_022417E4));
     v0->unk_1F8 = OverlayManager_Args(param0);
     v0->unk_00 = BgConfig_New(36);
-    v0->unk_1FC = BerryData_LoadDataByNarcMemberIndex(v0->unk_1F8->unk_08, 36);
+    v0->unk_1FC = BerryData_Load(v0->unk_1F8->unk_08, 36);
 
     sub_0208C120(0, 36);
 
@@ -854,7 +853,7 @@ static void ov85_02241F0C(UnkStruct_ov85_022417E4 *param0)
     NARC *v0;
 
     Heap_FreeToHeap(param0->unk_1FC);
-    param0->unk_1FC = BerryData_LoadDataByNarcMemberIndex(param0->unk_1F8->unk_08, 36);
+    param0->unk_1FC = BerryData_Load(param0->unk_1F8->unk_08, 36);
     ov85_02241CD0(param0);
 
     v0 = NARC_ctor(NARC_INDEX_GRAPHIC__NTAG_GRA, 36);

@@ -104,7 +104,7 @@ pokeplatinum_c = files(
     'unk_0202631C.c',
     'savedata_misc.c',
     'game_options.c',
-    'unk_02027B70.c',
+    'berry_patches.c',
     'unk_02027F50.c',
     'unk_02027F84.c',
     'unk_02028124.c',

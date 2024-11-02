@@ -8,7 +8,6 @@
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_02027854_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_0202A750_decl.h"
 #include "struct_decls/struct_party_decl.h"
@@ -33,6 +32,7 @@
 #include "savedata/save_table.h"
 
 #include "bag.h"
+#include "berry_patches.h"
 #include "charcode_util.h"
 #include "field_system.h"
 #include "heap.h"
@@ -51,7 +51,6 @@
 #include "trainer_info.h"
 #include "unk_0201D15C.h"
 #include "unk_0202631C.h"
-#include "unk_02027B70.h"
 #include "unk_020298BC.h"
 #include "unk_0202D7A8.h"
 #include "unk_0202E2CC.h"
@@ -2540,14 +2539,14 @@ static int sub_0206EBE8(FieldSystem *fieldSystem)
 
 static int sub_0206EC90(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
 {
-    UnkStruct_02027854 *v0 = sub_02027854(fieldSystem->saveData);
+    BerryPatch *v0 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
     int v1, v2;
 
     v1 = sub_0206EBE8(fieldSystem);
     v2 = Unk_020F0074[v1 * 2 + 1];
     StringTemplate_SetLocationName(param1, 0, MapHeader_GetMapLabelTextID(v2));
 
-    switch (sub_02027D04(v0, v1)) {
+    switch (BerryPatches_GetPatchGrowthStage(v0, v1)) {
     case 5:
         return 36;
     case 4:
