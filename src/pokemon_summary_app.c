@@ -41,7 +41,7 @@
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_020393C8.h"
-#include "unk_0206A8DC.h"
+#include "system_flags.h"
 #include "unk_0208C098.h"
 #include "unk_0208EA44.h"
 #include "unk_0208FCF8.h"

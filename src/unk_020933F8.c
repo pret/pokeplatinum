@@ -50,7 +50,7 @@
 #include "unk_0202F108.h"
 #include "unk_020363E8.h"
 #include "unk_02055808.h"
-#include "unk_0206A8DC.h"
+#include "system_flags.h"
 #include "unk_0206CCB0.h"
 #include "unk_020923C0.h"
 #include "unk_02094EDC.h"

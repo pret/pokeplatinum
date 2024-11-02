@@ -16,7 +16,7 @@
 #include "savedata_misc.h"
 #include "script_manager.h"
 #include "unk_02027F50.h"
-#include "unk_0206A8DC.h"
+#include "system_flags.h"
 #include "vars_flags.h"
 
 typedef struct UnkStruct_ov5_021F8480_t UnkStruct_ov5_021F8480;

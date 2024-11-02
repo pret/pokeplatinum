@@ -15,7 +15,7 @@
 #include "unk_02014A84.h"
 #include "unk_02014D38.h"
 #include "unk_0202631C.h"
-#include "unk_0206A8DC.h"
+#include "system_flags.h"
 #include "vars_flags.h"
 
 struct UnkStruct_0209747C_t {

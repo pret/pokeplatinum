@@ -61,7 +61,7 @@
 #include "unk_020573FC.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
-#include "unk_0206A8DC.h"
+#include "system_flags.h"
 #include "vars_flags.h"
 
 typedef struct {

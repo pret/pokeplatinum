@@ -21,7 +21,7 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_0201D15C.h"
-#include "unk_0206A8DC.h"
+#include "system_flags.h"
 #include "vars_flags.h"
 
 static inline void inline_ov61_0222C3B0_sub_1(UnkStruct_ov61_0222C3B0 *);

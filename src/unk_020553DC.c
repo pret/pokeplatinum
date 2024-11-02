@@ -17,7 +17,7 @@
 #include "trainer_data.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_0206A8DC.h"
+#include "system_flags.h"
 #include "vars_flags.h"
 
 const static u16 Unk_020EC3E0[][2] = {

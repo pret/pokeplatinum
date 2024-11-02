@@ -23,7 +23,7 @@
 #include "unk_02005474.h"
 #include "unk_02055808.h"
 #include "unk_02056B30.h"
-#include "unk_0206A8DC.h"
+#include "system_flags.h"
 #include "unk_02070428.h"
 #include "vars_flags.h"
 

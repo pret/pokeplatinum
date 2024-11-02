@@ -8,7 +8,7 @@
 #include "overlay005/struct_ov5_021D3CE4_decl.h"
 
 #include "field_task.h"
-#include "unk_0206A8DC.h"
+#include "system_flags.h"
 #include "vars_flags.h"
 
 static BOOL ov6_02247FD0(FieldTask *param0);

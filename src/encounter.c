@@ -45,7 +45,7 @@
 #include "unk_0205578C.h"
 #include "unk_02055808.h"
 #include "unk_020562F8.h"
-#include "unk_0206A8DC.h"
+#include "system_flags.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206CCB0.h"
 #include "unk_020797C8.h"

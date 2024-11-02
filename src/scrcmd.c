@@ -195,7 +195,7 @@
 #include "unk_0205DFC4.h"
 #include "unk_020655F4.h"
 #include "unk_02069BE0.h"
-#include "unk_0206A8DC.h"
+#include "system_flags.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206B70C.h"
 #include "unk_0206C0E8.h"

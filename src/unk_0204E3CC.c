@@ -17,7 +17,7 @@
 #include "save_player.h"
 #include "trainer_info.h"
 #include "unk_0202631C.h"
-#include "unk_0206A8DC.h"
+#include "system_flags.h"
 #include "vars_flags.h"
 
 BOOL ScrCmd_157(ScriptContext *param0)

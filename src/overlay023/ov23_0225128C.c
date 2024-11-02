@@ -49,7 +49,7 @@
 #include "unk_0202854C.h"
 #include "unk_02033200.h"
 #include "unk_0206A780.h"
-#include "unk_0206A8DC.h"
+#include "system_flags.h"
 #include "vars_flags.h"
 
 typedef struct {

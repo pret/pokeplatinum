@@ -10,7 +10,7 @@
 #include "record_mixed_rng.h"
 #include "savedata.h"
 #include "unk_0201D15C.h"
-#include "unk_0206A8DC.h"
+#include "system_flags.h"
 #include "vars_flags.h"
 
 static BOOL sub_0206AFE0(VarsFlags *param0, u16 param1, u16 param2);

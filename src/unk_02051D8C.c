@@ -53,7 +53,7 @@
 #include "unk_020559DC.h"
 #include "unk_0205C980.h"
 #include "unk_0205DAC8.h"
-#include "unk_0206A8DC.h"
+#include "system_flags.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206CCB0.h"
 #include "vars_flags.h"

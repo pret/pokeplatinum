@@ -250,7 +250,7 @@ pokeplatinum_c = files(
     'pokeradar.c',
     'unk_02069BE0.c',
     'unk_0206A780.c',
-    'unk_0206A8DC.c',
+    'system_flags.c',
     'unk_0206AFE0.c',
     'unk_0206B70C.c',
     'unk_0206B9D8.c',

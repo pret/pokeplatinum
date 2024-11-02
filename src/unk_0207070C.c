@@ -36,7 +36,7 @@
 #include "unk_02054D00.h"
 #include "unk_0205DAC8.h"
 #include "unk_0205F180.h"
-#include "unk_0206A8DC.h"
+#include "system_flags.h"
 #include "unk_0206B70C.h"
 #include "unk_020711C8.h"
 #include "unk_02071B10.h"

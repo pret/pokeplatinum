@@ -49,7 +49,7 @@
 #include "unk_02030EE0.h"
 #include "unk_020366A0.h"
 #include "unk_02054D00.h"
-#include "unk_0206A8DC.h"
+#include "system_flags.h"
 #include "vars_flags.h"
 
 typedef BOOL (*UnkFuncPtr_ov23_02242540)(int, int);

@@ -81,7 +81,7 @@
 #include "unk_0205C22C.h"
 #include "unk_0205F180.h"
 #include "unk_020683F4.h"
-#include "unk_0206A8DC.h"
+#include "system_flags.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206B9D8.h"
 #include "unk_0207064C.h"

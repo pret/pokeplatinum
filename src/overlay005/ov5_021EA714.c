@@ -10,7 +10,7 @@
 #include "game_overlay.h"
 #include "poketch_data.h"
 #include "unk_0200A784.h"
-#include "unk_0206A8DC.h"
+#include "system_flags.h"
 #include "vars_flags.h"
 
 FS_EXTERN_OVERLAY(overlay24);

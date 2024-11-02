@@ -12,7 +12,7 @@
 #include "trainer_info.h"
 #include "unk_0201D15C.h"
 #include "unk_0202631C.h"
-#include "unk_0206A8DC.h"
+#include "system_flags.h"
 #include "vars_flags.h"
 
 typedef BOOL (*UnkStruct_ov6_022494B0)(FieldSystem *);

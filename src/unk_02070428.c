@@ -19,7 +19,7 @@
 #include "unk_0202D7A8.h"
 #include "unk_0203A7D8.h"
 #include "unk_020556C4.h"
-#include "unk_0206A8DC.h"
+#include "system_flags.h"
 #include "unk_0206AFE0.h"
 #include "vars_flags.h"
 

@@ -29,7 +29,7 @@
 #include "unk_0203D1B8.h"
 #include "unk_020559DC.h"
 #include "unk_0205B33C.h"
-#include "unk_0206A8DC.h"
+#include "system_flags.h"
 #include "vars_flags.h"
 
 typedef struct {

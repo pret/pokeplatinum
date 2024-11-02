@@ -40,7 +40,7 @@
 #include "unk_02054884.h"
 #include "unk_020559DC.h"
 #include "unk_0205D8CC.h"
-#include "unk_0206A8DC.h"
+#include "system_flags.h"
 #include "unk_02096420.h"
 #include "vars_flags.h"
 

@@ -29,7 +29,7 @@
 #include "unk_02038FFC.h"
 #include "unk_0203D1B8.h"
 #include "encounter.h"
-#include "unk_0206A8DC.h"
+#include "system_flags.h"
 #include "unk_02099550.h"
 #include "unk_02099604.h"
 #include "unk_0209BA18.h"
