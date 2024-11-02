@@ -33,7 +33,7 @@
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
 #include "unk_0201D15C.h"
-#include "unk_02050A74.h"
+#include "encounter.h"
 #include "unk_02051D8C.h"
 #include "unk_0205D8CC.h"
 #include "unk_020655F4.h"

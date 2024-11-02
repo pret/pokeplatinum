@@ -13,7 +13,7 @@
 #include "script_manager.h"
 #include "sys_task_manager.h"
 #include "unk_020041CC.h"
-#include "unk_02050A74.h"
+#include "encounter.h"
 #include "unk_02051D8C.h"
 #include "unk_020528D0.h"
 #include "unk_02054884.h"

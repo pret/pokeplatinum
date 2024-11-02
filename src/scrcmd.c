@@ -181,7 +181,7 @@
 #include "unk_0204FAB4.h"
 #include "unk_0205003C.h"
 #include "unk_02050568.h"
-#include "unk_02050A74.h"
+#include "encounter.h"
 #include "unk_020528D0.h"
 #include "unk_02052C6C.h"
 #include "unk_020553DC.h"

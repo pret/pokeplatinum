@@ -30,7 +30,7 @@
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
-#include "unk_02050A74.h"
+#include "encounter.h"
 #include "unk_0205A0D8.h"
 #include "unk_02071D40.h"
 #include "unk_02099500.h"

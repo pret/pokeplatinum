@@ -1,4 +1,4 @@
-#include "unk_02050A74.h"
+#include "encounter.h"
 
 #include <nitro.h>
 #include <string.h>

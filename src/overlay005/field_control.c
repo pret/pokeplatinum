@@ -54,7 +54,7 @@
 #include "unk_02030EE0.h"
 #include "unk_020366A0.h"
 #include "unk_0203C954.h"
-#include "unk_02050A74.h"
+#include "encounter.h"
 #include "unk_02054884.h"
 #include "unk_02054D00.h"
 #include "unk_020562F8.h"

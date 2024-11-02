@@ -218,7 +218,7 @@ Static main
 	Object main.nef.p/src_unk_02050568.c.o
 	Object main.nef.p/src_vars_flags.c.o
 	Object main.nef.p/src_field_task.c.o
-	Object main.nef.p/src_unk_02050A74.c.o
+	Object main.nef.p/src_encounter.c.o
 	Object main.nef.p/src_enc_effects.c.o
 	Object main.nef.p/src_unk_02051D8C.c.o
 	Object main.nef.p/src_unk_020528D0.c.o
