@@ -417,8 +417,8 @@ static BOOL CheckPatchContinueChain(const u8 patchRing, const int battleResult)
 
 BOOL RefreshRadarChain(FieldTask *taskMan)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    int *v1 = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    int *v1 = FieldTask_GetEnv(taskMan);
 
     switch (*v1) {
     case 0:

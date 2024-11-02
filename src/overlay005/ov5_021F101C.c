@@ -22,8 +22,8 @@ typedef struct {
 
 BOOL ov5_021F101C(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_020711C8 *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_020711C8 *v1 = FieldTask_GetEnv(param0);
     int *v2 = FieldTask_GetState(param0);
     UnkStruct_ov5_021F101C *v3 = v1->unk_04;
 
@@ -53,7 +53,7 @@ BOOL ov5_021F101C(FieldTask *param0)
         }
         break;
     case 4:
-        FieldTask_Start(param0, ov5_021F0488, v3->unk_04);
+        FieldTask_InitCall(param0, ov5_021F0488, v3->unk_04);
         (*v2)++;
         break;
     case 5:

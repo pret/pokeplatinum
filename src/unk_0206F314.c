@@ -842,8 +842,8 @@ static void sub_02070288(UnkStruct_0206F7F8 *param0)
 
 static BOOL sub_020702D0(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_0206F314 *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_0206F314 *v1 = FieldTask_GetEnv(param0);
     UnkStruct_0206F7F8 *v2 = v1->unk_08;
 
     switch (v1->unk_00) {
@@ -904,12 +904,12 @@ static BOOL sub_020702D0(FieldTask *param0)
 
 void sub_020703FC(FieldTask *param0, u16 param1)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_0206F314 *v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0206F314));
 
     v1->unk_00 = 0;
     v1->unk_04 = param1;
     v1->unk_08 = NULL;
 
-    FieldTask_Start(fieldSystem->taskManager, sub_020702D0, v1);
+    FieldTask_InitCall(fieldSystem->taskManager, sub_020702D0, v1);
 }

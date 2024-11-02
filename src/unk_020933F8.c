@@ -160,18 +160,18 @@ void sub_020933F8(FieldTask *param0, UnkStruct_02095C48 *param1)
     case 0:
     case 1:
     case 2:
-        FieldTask_Start(param0, sub_02093448, v0);
+        FieldTask_InitCall(param0, sub_02093448, v0);
         break;
     default:
-        FieldTask_Start(param0, sub_020935EC, v0);
+        FieldTask_InitCall(param0, sub_020935EC, v0);
         break;
     }
 }
 
 static BOOL sub_02093448(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_020933F8 *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_020933F8 *v1 = FieldTask_GetEnv(param0);
 
     switch (v1->unk_04) {
     case 0:
@@ -201,7 +201,7 @@ static BOOL sub_02093448(FieldTask *param0)
         break;
     case 4:
         sub_02093BBC(v1->unk_00);
-        sub_02050A38(param0, &Unk_020F55FC, v1->unk_00->unk_199C);
+        FieldTask_RunApplication(param0, &Unk_020F55FC, v1->unk_00->unk_199C);
         v1->unk_04++;
         break;
     case 5:
@@ -220,25 +220,25 @@ static BOOL sub_02093448(FieldTask *param0)
         }
         break;
     case 7:
-        sub_02050A38(param0, &Unk_020F55EC, v1->unk_00);
+        FieldTask_RunApplication(param0, &Unk_020F55EC, v1->unk_00);
         v1->unk_04++;
         break;
     case 8:
         if ((v1->unk_00->unk_00.unk_111 == 1) || (v1->unk_00->unk_00.unk_111 == 2)) {
-            sub_02050A38(param0, &Unk_020F561C, v1->unk_00);
+            FieldTask_RunApplication(param0, &Unk_020F561C, v1->unk_00);
         }
 
         v1->unk_04++;
         break;
     case 9:
         if ((v1->unk_00->unk_00.unk_111 == 0) || (v1->unk_00->unk_00.unk_111 == 2)) {
-            sub_02050A38(param0, &Unk_020F560C, v1->unk_00);
+            FieldTask_RunApplication(param0, &Unk_020F560C, v1->unk_00);
         }
 
         v1->unk_04++;
         break;
     case 10:
-        sub_02050A38(param0, &Unk_020F55DC, v1->unk_00);
+        FieldTask_RunApplication(param0, &Unk_020F55DC, v1->unk_00);
         v1->unk_04++;
         break;
     case 11:
@@ -260,8 +260,8 @@ static BOOL sub_02093448(FieldTask *param0)
 
 static BOOL sub_020935EC(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_020933F8 *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_020933F8 *v1 = FieldTask_GetEnv(param0);
 
     switch (v1->unk_04) {
     case 0:
@@ -273,7 +273,7 @@ static BOOL sub_020935EC(FieldTask *param0)
         case 3:
         case 4:
             sub_02093BBC(v1->unk_00);
-            sub_02050A38(param0, &Unk_020F55FC, v1->unk_00->unk_199C);
+            FieldTask_RunApplication(param0, &Unk_020F55FC, v1->unk_00->unk_199C);
             break;
         }
 
@@ -296,7 +296,7 @@ static BOOL sub_020935EC(FieldTask *param0)
         switch (v1->unk_00->unk_00.unk_111) {
         case 3:
         case 4:
-            sub_02050A38(param0, &Unk_020F55EC, v1->unk_00);
+            FieldTask_RunApplication(param0, &Unk_020F55EC, v1->unk_00);
             break;
         }
 
@@ -307,7 +307,7 @@ static BOOL sub_020935EC(FieldTask *param0)
         case 5:
         case 6:
             sub_02095338(v1->unk_00);
-            sub_02050A38(param0, &Unk_020F561C, v1->unk_00);
+            FieldTask_RunApplication(param0, &Unk_020F561C, v1->unk_00);
             break;
         }
 
@@ -317,7 +317,7 @@ static BOOL sub_020935EC(FieldTask *param0)
         switch (v1->unk_00->unk_00.unk_111) {
         case 7:
         case 8:
-            sub_02050A38(param0, &Unk_020F560C, v1->unk_00);
+            FieldTask_RunApplication(param0, &Unk_020F560C, v1->unk_00);
             break;
         }
 

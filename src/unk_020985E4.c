@@ -35,7 +35,7 @@ void sub_020985E4(FieldTask *param0, SaveData *param1)
     v0->unk_00 = 0;
     v0->unk_04 = v1;
 
-    FieldTask_Start(param0, sub_0209862C, v0);
+    FieldTask_InitCall(param0, sub_0209862C, v0);
 }
 
 BOOL sub_0209862C(FieldTask *param0)
@@ -43,8 +43,8 @@ BOOL sub_0209862C(FieldTask *param0)
     FieldSystem *fieldSystem;
     UnkStruct_0209862C *v1;
 
-    fieldSystem = TaskManager_FieldSystem(param0);
-    v1 = TaskManager_Environment(param0);
+    fieldSystem = FieldTask_GetFieldSystem(param0);
+    v1 = FieldTask_GetEnv(param0);
 
     switch (v1->unk_00) {
     case 0:
@@ -68,13 +68,13 @@ BOOL sub_0209862C(FieldTask *param0)
         }
         break;
     case 2:
-        if (sub_020509B4(fieldSystem) == 0) {
-            sub_020509D4(fieldSystem);
+        if (FieldSystem_IsRunningApplication(fieldSystem) == 0) {
+            FieldSystem_StartFieldMap(fieldSystem);
             v1->unk_00++;
         }
         break;
     case 3:
-        if (sub_020509DC(fieldSystem) == 0) {
+        if (FieldSystem_IsRunningFieldMap(fieldSystem) == 0) {
             v1->unk_00++;
         }
         break;

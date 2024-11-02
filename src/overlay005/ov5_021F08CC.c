@@ -96,8 +96,8 @@ void *ov5_021F08CC(FieldSystem *fieldSystem, u32 param1, int param2)
 
 BOOL ov5_021F08F8(FieldTask *taskMan)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_ov5_021F08CC *v1 = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_ov5_021F08CC *v1 = FieldTask_GetEnv(taskMan);
 
     switch (v1->unk_00) {
     case 0:

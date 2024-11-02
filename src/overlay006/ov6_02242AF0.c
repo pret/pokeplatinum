@@ -175,7 +175,7 @@ void ov6_02242B58(FieldSystem *fieldSystem, const u16 param1, const u16 param2)
         v2->unk_00 = ov6_02242E60;
     }
 
-    FieldTask_Start(fieldSystem->taskManager, ov6_02242C5C, v2);
+    FieldTask_InitCall(fieldSystem->taskManager, ov6_02242C5C, v2);
 }
 
 u32 ov6_02242C3C(FieldSystem *fieldSystem, const u16 param1)
@@ -195,8 +195,8 @@ u32 ov6_02242C3C(FieldSystem *fieldSystem, const u16 param1)
 
 static BOOL ov6_02242C5C(FieldTask *taskMan)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_ov6_02242B58 *v1 = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_ov6_02242B58 *v1 = FieldTask_GetEnv(taskMan);
 
     switch (v1->unk_05) {
     case 0:

@@ -376,7 +376,7 @@ static const MapObjectAnimCmd sVsSeekerAnimSingleExclamationMark[] = {
 
 void VsSeeker_Start(FieldTask *taskMan, StringTemplate *template, u16 *outResult)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     VsSeekerSystem *vsSeeker = Heap_AllocFromHeap(4, sizeof(VsSeekerSystem));
 
     if (vsSeeker == NULL) {
@@ -391,7 +391,7 @@ void VsSeeker_Start(FieldTask *taskMan, StringTemplate *template, u16 *outResult
     vsSeeker->result = outResult;
     vsSeeker->template = template;
 
-    FieldTask_Start(taskMan, VsSeeker_ExecuteTask, vsSeeker);
+    FieldTask_InitCall(taskMan, VsSeeker_ExecuteTask, vsSeeker);
     return;
 }
 
@@ -399,7 +399,7 @@ static BOOL VsSeeker_ExecuteTask(FieldTask *taskMan)
 {
     s32 missingBattery, numDigits;
     enum VsSeekerUsability usability;
-    VsSeekerSystem *vsSeeker = TaskManager_Environment(taskMan);
+    VsSeekerSystem *vsSeeker = FieldTask_GetEnv(taskMan);
 
     switch (vsSeeker->state) {
     case VS_SEEKER_STATE_WAIT_FOR_NPCS:

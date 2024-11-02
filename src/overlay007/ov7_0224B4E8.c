@@ -451,8 +451,8 @@ static BOOL ov7_0224BBC4(UnkStruct_ov7_0224B4E8 *param0)
 
 static BOOL ov7_0224BC74(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov7_0224B4E8 *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_ov7_0224B4E8 *v1 = FieldTask_GetEnv(param0);
     int v2;
 
     switch (v1->unk_7C) {
@@ -570,9 +570,9 @@ static UnkStruct_ov7_0224B4E8 *ov7_0224BE10(FieldSystem *fieldSystem)
 
 void ov7_0224BE7C(FieldTask *param0, u16 *param1)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_ov7_0224B4E8 *v1 = ov7_0224BE10(fieldSystem);
 
     v1->unk_70 = param1;
-    FieldTask_Start(param0, ov7_0224BC74, v1);
+    FieldTask_InitCall(param0, ov7_0224BC74, v1);
 }

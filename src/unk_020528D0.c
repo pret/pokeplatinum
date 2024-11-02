@@ -132,14 +132,14 @@ static void sub_02052914(FieldSystem *fieldSystem, FieldTask *param1)
     }
 
     Window_CopyToVRAM(&v0->unk_0C);
-    FieldTask_Start(param1, sub_020529C4, v0);
+    FieldTask_InitCall(param1, sub_020529C4, v0);
 
     return;
 }
 
 static BOOL sub_020529C4(FieldTask *param0)
 {
-    UnkStruct_02052AA4 *v0 = TaskManager_Environment(param0);
+    UnkStruct_02052AA4 *v0 = FieldTask_GetEnv(param0);
 
     switch (v0->unk_00) {
     case 0:
@@ -204,7 +204,7 @@ BOOL sub_02052B2C(FieldTask *param0)
     FieldSystem *fieldSystem;
     int *v1;
 
-    fieldSystem = TaskManager_FieldSystem(param0);
+    fieldSystem = FieldTask_GetFieldSystem(param0);
     v1 = FieldTask_GetState(param0);
 
     switch (*v1) {
@@ -267,5 +267,5 @@ BOOL sub_02052B2C(FieldTask *param0)
 
 void sub_02052C5C(FieldTask *param0)
 {
-    FieldTask_Start(param0, sub_02052B2C, NULL);
+    FieldTask_InitCall(param0, sub_02052B2C, NULL);
 }

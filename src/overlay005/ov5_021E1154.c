@@ -62,7 +62,7 @@ static void ov5_021E11B0(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, i
     v0->unk_00 = param2;
 
     Sound_PlayEffect(1624);
-    FieldTask_Set(fieldSystem, ov5_021E120C, v0);
+    FieldSystem_CreateTask(fieldSystem, ov5_021E120C, v0);
 }
 
 static int ov5_021E11E0(int param0)
@@ -83,7 +83,7 @@ static int ov5_021E11E0(int param0)
 
 static BOOL ov5_021E120C(FieldTask *param0)
 {
-    UnkStruct_ov5_021E11B0 *v0 = TaskManager_Environment(param0);
+    UnkStruct_ov5_021E11B0 *v0 = FieldTask_GetEnv(param0);
     MapObject *v1 = Player_MapObject(v0->playerAvatar);
     u8 v2 = sub_02062BE8(v1);
 

@@ -1567,12 +1567,12 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         if (IsScreenTransitionDone()) {
             sub_02039794();
             ov23_0223F020(v0);
-            sub_020509D4(fieldSystem);
+            FieldSystem_StartFieldMap(fieldSystem);
             (v0->unk_00)++;
         }
         break;
     case 20:
-        if (sub_020509DC(fieldSystem)) {
+        if (FieldSystem_IsRunningFieldMap(fieldSystem)) {
             fieldSystem->unk_6C = ov23_02249404(fieldSystem);
             sub_02039734();
             sub_020594FC();

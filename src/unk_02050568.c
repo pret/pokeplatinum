@@ -44,13 +44,13 @@ void sub_02050568(FieldSystem *fieldSystem)
     UnkStruct_02050568 *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02050568));
 
     memset(v0, 0, sizeof(UnkStruct_02050568));
-    FieldTask_Start(fieldSystem->taskManager, sub_020505A0, v0);
+    FieldTask_InitCall(fieldSystem->taskManager, sub_020505A0, v0);
 }
 
 static BOOL sub_020505A0(FieldTask *taskMan)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_02050568 *v1 = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_02050568 *v1 = FieldTask_GetEnv(taskMan);
     VarsFlags *v2 = SaveData_GetVarsFlags(fieldSystem->saveData);
 
     switch (v1->unk_08) {

@@ -267,7 +267,7 @@ static UnkStruct_0206851C *sub_0206851C(u32 param0, u16 param1, u16 param2, u16 
 {
     UnkStruct_0206851C *v0;
 
-    v0 = Heap_AllocFromHeap(32, sizeof(UnkStruct_0206851C));
+    v0 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0206851C));
 
     v0->unk_00 = param0;
     v0->unk_04 = param1;
@@ -283,10 +283,10 @@ static void sub_02068540(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     FieldSystem *fieldSystem;
     FieldMenu *v1;
 
-    fieldSystem = TaskManager_FieldSystem(param0->unk_00);
-    v1 = TaskManager_Environment(param0->unk_00);
+    fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
+    v1 = FieldTask_GetEnv(param0->unk_00);
 
-    sub_020509D4(fieldSystem);
+    FieldSystem_StartFieldMap(fieldSystem);
 
     v1->unk_22C = sub_020685AC;
     v1->unk_25C = sub_0206851C(param2, param0->unk_04, 0, 0, 0);
@@ -296,13 +296,13 @@ static void sub_02068540(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 static void sub_02068584(UnkStruct_02068870 *param0, u32 param1)
 {
     void *v0 = sub_0206851C(param1, param0->unk_28, 0, 0, 0);
-    FieldTask_Set(param0->fieldSystem, sub_020685AC, v0);
+    FieldSystem_CreateTask(param0->fieldSystem, sub_020685AC, v0);
 }
 
 static BOOL sub_020685AC(FieldTask *taskMan)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_0206851C *v1 = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_0206851C *v1 = FieldTask_GetEnv(taskMan);
     int *v2 = FieldTask_GetState(taskMan);
     MapObject *v3;
 
@@ -332,8 +332,8 @@ static void sub_02068630(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     FieldMenu *v1;
     PartyManagementData *v2;
 
-    fieldSystem = TaskManager_FieldSystem(param0->unk_00);
-    v1 = TaskManager_Environment(param0->unk_00);
+    fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
+    v1 = FieldTask_GetEnv(param0->unk_00);
     v2 = Heap_AllocFromHeap(11, sizeof(PartyManagementData));
 
     memset(v2, 0, sizeof(PartyManagementData));
@@ -360,8 +360,8 @@ static void sub_020686C8(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     FieldSystem *fieldSystem;
     FieldMenu *v1;
 
-    fieldSystem = TaskManager_FieldSystem(param0->unk_00);
-    v1 = TaskManager_Environment(param0->unk_00);
+    fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
+    v1 = FieldTask_GetEnv(param0->unk_00);
 
     v1->unk_25C = sub_0203D8AC(fieldSystem);
     sub_0203B674(v1, sub_0203C3F4);
@@ -383,10 +383,10 @@ static void sub_02068710(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     FieldSystem *fieldSystem;
     FieldMenu *v1;
 
-    fieldSystem = TaskManager_FieldSystem(param0->unk_00);
-    v1 = TaskManager_Environment(param0->unk_00);
+    fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
+    v1 = FieldTask_GetEnv(param0->unk_00);
 
-    sub_020509D4(fieldSystem);
+    FieldSystem_StartFieldMap(fieldSystem);
 
     v1->unk_22C = FieldTask_MapChangeToUnderground;
     v1->unk_25C = sub_02053FAC(fieldSystem);
@@ -400,7 +400,7 @@ static BOOL sub_02068750(UnkStruct_02068870 *param0)
     void *v0 = sub_02053FAC(param0->fieldSystem);
 
     MapObjectMan_PauseAllMovement(param0->fieldSystem->mapObjMan);
-    FieldTask_Set(param0->fieldSystem, FieldTask_MapChangeToUnderground, v0);
+    FieldSystem_CreateTask(param0->fieldSystem, FieldTask_MapChangeToUnderground, v0);
 
     param0->fieldSystem->unk_90 = 0;
     return 0;
@@ -455,10 +455,10 @@ static void sub_0206883C(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     FieldSystem *fieldSystem;
     FieldMenu *v1;
 
-    fieldSystem = TaskManager_FieldSystem(param0->unk_00);
-    v1 = TaskManager_Environment(param0->unk_00);
+    fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
+    v1 = FieldTask_GetEnv(param0->unk_00);
 
-    sub_020509D4(fieldSystem);
+    FieldSystem_StartFieldMap(fieldSystem);
 
     v1->unk_22C = sub_02068884;
     v1->unk_25C = NULL;
@@ -467,7 +467,7 @@ static void sub_0206883C(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 
 static BOOL sub_02068870(UnkStruct_02068870 *param0)
 {
-    FieldTask_Set(param0->fieldSystem, sub_02068884, NULL);
+    FieldSystem_CreateTask(param0->fieldSystem, sub_02068884, NULL);
     return 0;
 }
 
@@ -476,7 +476,7 @@ static BOOL sub_02068884(FieldTask *param0)
     FieldSystem *fieldSystem;
     int *v1;
 
-    fieldSystem = TaskManager_FieldSystem(param0);
+    fieldSystem = FieldTask_GetFieldSystem(param0);
     v1 = FieldTask_GetState(param0);
 
     switch (*v1) {
@@ -560,8 +560,8 @@ static void sub_020689EC(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     FieldSystem *fieldSystem;
     FieldMenu *v1;
 
-    fieldSystem = TaskManager_FieldSystem(param0->unk_00);
-    v1 = TaskManager_Environment(param0->unk_00);
+    fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
+    v1 = FieldTask_GetEnv(param0->unk_00);
 
     sub_0203D30C(fieldSystem, NULL);
     sub_0203B674(v1, sub_0203C50C);
@@ -585,8 +585,8 @@ static void sub_02068A34(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     FieldMenu *v1;
     PartyManagementData *v2;
 
-    fieldSystem = TaskManager_FieldSystem(param0->unk_00);
-    v1 = TaskManager_Environment(param0->unk_00);
+    fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
+    v1 = FieldTask_GetEnv(param0->unk_00);
     v2 = Heap_AllocFromHeap(11, sizeof(PartyManagementData));
 
     memset(v2, 0, sizeof(PartyManagementData));
@@ -614,8 +614,8 @@ static void sub_02068ACC(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     FieldMenu *v1;
     UnkStruct_02097728 *v2;
 
-    fieldSystem = TaskManager_FieldSystem(param0->unk_00);
-    v1 = TaskManager_Environment(param0->unk_00);
+    fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
+    v1 = FieldTask_GetEnv(param0->unk_00);
     v2 = sub_0203D94C(fieldSystem, 3, Item_MailNumber(param0->unk_04), 11);
 
     v1->unk_260 = sub_0203C540(param0->unk_04, 3, 0);
@@ -635,8 +635,8 @@ static void sub_02068B1C(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     FieldMenu *v1;
     MapObject *v2;
 
-    fieldSystem = TaskManager_FieldSystem(param0->unk_00);
-    v1 = TaskManager_Environment(param0->unk_00);
+    fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
+    v1 = FieldTask_GetEnv(param0->unk_00);
 
     if (param1->unk_10 & 0x1) {
         sub_02068540(param0, param1, 2801);
@@ -660,8 +660,8 @@ static void sub_02068B5C(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     FieldMenu *v1;
     UnkStruct_0203D9B8 *v2;
 
-    fieldSystem = TaskManager_FieldSystem(param0->unk_00);
-    v1 = TaskManager_Environment(param0->unk_00);
+    fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
+    v1 = FieldTask_GetEnv(param0->unk_00);
     v2 = sub_0203D9B8(fieldSystem, 11);
 
     v1->unk_25C = v2;
@@ -684,8 +684,8 @@ static void sub_02068BA8(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     FieldSystem *fieldSystem;
     FieldMenu *v1;
 
-    fieldSystem = TaskManager_FieldSystem(param0->unk_00);
-    v1 = TaskManager_Environment(param0->unk_00);
+    fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
+    v1 = FieldTask_GetEnv(param0->unk_00);
 
     sub_0203DE78(fieldSystem, fieldSystem->saveData);
     v1->unk_25C = NULL;
@@ -710,12 +710,12 @@ static void sub_02068BF8(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     FieldMenu *v1;
     int *v2;
 
-    fieldSystem = TaskManager_FieldSystem(param0->unk_00);
-    v1 = TaskManager_Environment(param0->unk_00);
+    fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
+    v1 = FieldTask_GetEnv(param0->unk_00);
     v2 = Heap_AllocFromHeapAtEnd(11, sizeof(int));
 
     (*v2) = 0;
-    sub_020509D4(fieldSystem);
+    FieldSystem_StartFieldMap(fieldSystem);
 
     v1->unk_22C = RefreshRadarChain;
     v1->unk_25C = v2;
@@ -727,7 +727,7 @@ static BOOL sub_02068C38(UnkStruct_02068870 *param0)
     int *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(int));
 
     *v0 = 0;
-    FieldTask_Set(param0->fieldSystem, RefreshRadarChain, v0);
+    FieldSystem_CreateTask(param0->fieldSystem, RefreshRadarChain, v0);
 
     return 0;
 }
@@ -794,10 +794,10 @@ static void sub_02068CF0(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     UnkStruct_ov5_021F0468 *v2;
     int v3;
 
-    fieldSystem = TaskManager_FieldSystem(param0->unk_00);
-    v1 = TaskManager_Environment(param0->unk_00);
+    fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
+    v1 = FieldTask_GetEnv(param0->unk_00);
 
-    sub_020509D4(fieldSystem);
+    FieldSystem_StartFieldMap(fieldSystem);
 
     v3 = ov5_021F0484();
     v2 = Heap_AllocFromHeapAtEnd(11, v3);
@@ -836,10 +836,10 @@ static void sub_02068D80(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     FieldSystem *fieldSystem;
     FieldMenu *v1;
 
-    fieldSystem = TaskManager_FieldSystem(param0->unk_00);
-    v1 = TaskManager_Environment(param0->unk_00);
+    fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
+    v1 = FieldTask_GetEnv(param0->unk_00);
 
-    sub_020509D4(fieldSystem);
+    FieldSystem_StartFieldMap(fieldSystem);
 
     v1->unk_22C = ov5_021F08F8;
     v1->unk_25C = ov5_021F08CC(fieldSystem, 11, 0);
@@ -850,7 +850,7 @@ static BOOL sub_02068DBC(UnkStruct_02068870 *param0)
 {
     void *v0 = ov5_021F08CC(param0->fieldSystem, 4, 0);
 
-    FieldTask_Set(param0->fieldSystem, ov5_021F08F8, v0);
+    FieldSystem_CreateTask(param0->fieldSystem, ov5_021F08F8, v0);
     return 0;
 }
 
@@ -859,10 +859,10 @@ static void sub_02068DDC(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     FieldSystem *fieldSystem;
     FieldMenu *v1;
 
-    fieldSystem = TaskManager_FieldSystem(param0->unk_00);
-    v1 = TaskManager_Environment(param0->unk_00);
+    fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
+    v1 = FieldTask_GetEnv(param0->unk_00);
 
-    sub_020509D4(fieldSystem);
+    FieldSystem_StartFieldMap(fieldSystem);
 
     v1->unk_22C = ov5_021F08F8;
     v1->unk_25C = ov5_021F08CC(fieldSystem, 11, 1);
@@ -873,7 +873,7 @@ static BOOL sub_02068E18(UnkStruct_02068870 *param0)
 {
     void *v0 = ov5_021F08CC(param0->fieldSystem, 4, 1);
 
-    FieldTask_Set(param0->fieldSystem, ov5_021F08F8, v0);
+    FieldSystem_CreateTask(param0->fieldSystem, ov5_021F08F8, v0);
     return 0;
 }
 
@@ -882,10 +882,10 @@ static void sub_02068E38(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     FieldSystem *fieldSystem;
     FieldMenu *v1;
 
-    fieldSystem = TaskManager_FieldSystem(param0->unk_00);
-    v1 = TaskManager_Environment(param0->unk_00);
+    fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
+    v1 = FieldTask_GetEnv(param0->unk_00);
 
-    sub_020509D4(fieldSystem);
+    FieldSystem_StartFieldMap(fieldSystem);
 
     v1->unk_22C = ov5_021F08F8;
     v1->unk_25C = ov5_021F08CC(fieldSystem, 11, 2);
@@ -896,7 +896,7 @@ static BOOL sub_02068E74(UnkStruct_02068870 *param0)
 {
     void *v0 = ov5_021F08CC(param0->fieldSystem, 4, 2);
 
-    FieldTask_Set(param0->fieldSystem, ov5_021F08F8, v0);
+    FieldSystem_CreateTask(param0->fieldSystem, ov5_021F08F8, v0);
     return 0;
 }
 
@@ -933,7 +933,7 @@ static BOOL sub_02068EFC(UnkStruct_02068870 *param0)
     v0->unk_10 = Strbuf_Init(128, 11);
 
     sub_0207CC10(param0->fieldSystem->saveData, v0->unk_10, Bag_GetRegisteredItem(SaveData_GetBag(param0->fieldSystem->saveData)), 11);
-    FieldTask_Set(param0->fieldSystem, sub_02068F48, v0);
+    FieldSystem_CreateTask(param0->fieldSystem, sub_02068F48, v0);
 
     return 0;
 }
@@ -943,8 +943,8 @@ static BOOL sub_02068F48(FieldTask *param0)
     FieldSystem *fieldSystem;
     UnkStruct_02068EFC *v1;
 
-    fieldSystem = TaskManager_FieldSystem(param0);
-    v1 = TaskManager_Environment(param0);
+    fieldSystem = FieldTask_GetFieldSystem(param0);
+    v1 = FieldTask_GetEnv(param0);
 
     switch (v1->unk_16) {
     case 0:
@@ -985,8 +985,8 @@ static void sub_02068FEC(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     FieldMenu *v1;
     PartyManagementData *v2;
 
-    fieldSystem = TaskManager_FieldSystem(param0->unk_00);
-    v1 = TaskManager_Environment(param0->unk_00);
+    fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
+    v1 = FieldTask_GetEnv(param0->unk_00);
     v2 = Heap_AllocFromHeap(11, sizeof(PartyManagementData));
 
     memset(v2, 0, sizeof(PartyManagementData));
@@ -1012,10 +1012,10 @@ static void sub_02069080(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     FieldSystem *fieldSystem;
     FieldMenu *menu;
 
-    fieldSystem = TaskManager_FieldSystem(param0->unk_00);
-    menu = TaskManager_Environment(param0->unk_00);
+    fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
+    menu = FieldTask_GetEnv(param0->unk_00);
 
-    sub_020509D4(fieldSystem);
+    FieldSystem_StartFieldMap(fieldSystem);
 
     menu->unk_22C = sub_020690F0;
     menu->unk_25C = NULL;
@@ -1039,10 +1039,10 @@ static u32 sub_020690C4(const UnkStruct_020684D0 *param0)
 
 static BOOL sub_020690F0(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     void *v1 = ov6_02247100(fieldSystem, 11);
 
-    FieldTask_Change(param0, ov6_02247120, v1);
+    FieldTask_InitJump(param0, ov6_02247120, v1);
     return 0;
 }
 
@@ -1085,8 +1085,8 @@ static void sub_02069188(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     FieldSystem *fieldSystem;
     FieldMenu *v1;
 
-    fieldSystem = TaskManager_FieldSystem(param0->unk_00);
-    v1 = TaskManager_Environment(param0->unk_00);
+    fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
+    v1 = FieldTask_GetEnv(param0->unk_00);
 
     sub_0203DE88(fieldSystem, fieldSystem->saveData);
     v1->unk_25C = NULL;
@@ -1113,8 +1113,8 @@ static void sub_020691E0(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     FieldMenu *v1;
     PartyManagementData *v2;
 
-    fieldSystem = TaskManager_FieldSystem(param0->unk_00);
-    v1 = TaskManager_Environment(param0->unk_00);
+    fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
+    v1 = FieldTask_GetEnv(param0->unk_00);
 
     v1->unk_25C = sub_0203E598(fieldSystem, 11, 466);
 
@@ -1195,7 +1195,7 @@ static void sub_020692E4(UnkStruct_02068870 *param0, u32 param1)
     v0->unk_10 = Strbuf_Init(128, 11);
 
     sub_0207CD34(SaveData_GetTrainerInfo(param0->fieldSystem->saveData), v0->unk_10, param0->unk_28, param1, 11);
-    FieldTask_Set(param0->fieldSystem, sub_02068F48, v0);
+    FieldSystem_CreateTask(param0->fieldSystem, sub_02068F48, v0);
 }
 
 static BOOL sub_0206932C(FieldTask *taskMan)
@@ -1203,8 +1203,8 @@ static BOOL sub_0206932C(FieldTask *taskMan)
     FieldSystem *fieldSystem;
     UnkStruct_02068870 *v1;
 
-    fieldSystem = TaskManager_FieldSystem(taskMan);
-    v1 = TaskManager_Environment(taskMan);
+    fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    v1 = FieldTask_GetEnv(taskMan);
 
     switch (v1->unk_2A) {
     case 0:
@@ -1219,7 +1219,7 @@ static BOOL sub_0206932C(FieldTask *taskMan)
         }
         break;
     case 2:
-        if (sub_020509B4(fieldSystem)) {
+        if (FieldSystem_IsRunningApplication(fieldSystem)) {
             break;
         }
 
@@ -1231,11 +1231,11 @@ static BOOL sub_0206932C(FieldTask *taskMan)
             }
         }
 
-        sub_020509D4(fieldSystem);
+        FieldSystem_StartFieldMap(fieldSystem);
         v1->unk_2A = 3;
         break;
     case 3:
-        if (sub_020509DC(fieldSystem)) {
+        if (FieldSystem_IsRunningFieldMap(fieldSystem)) {
             MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
             ov5_021D1744(1);
             v1->unk_2A = 4;
@@ -1256,5 +1256,5 @@ static BOOL sub_0206932C(FieldTask *taskMan)
 static void sub_020693F8(UnkStruct_02068870 *param0, UnkFuncPtr_02068870 param1)
 {
     param0->unk_20 = param1;
-    FieldTask_Set(param0->fieldSystem, sub_0206932C, param0);
+    FieldSystem_CreateTask(param0->fieldSystem, sub_0206932C, param0);
 }

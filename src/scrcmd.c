@@ -260,7 +260,7 @@ static BOOL ScrCmd_ReturnCommonScript(ScriptContext *ctx);
 static BOOL ScrCmd_GoTo(ScriptContext *ctx);
 static MapObject *sub_02040ED4(FieldSystem *fieldSystem, int param1);
 static BOOL ScrCmd_017(ScriptContext *ctx);
-static BOOL ScrCmd_018(ScriptContext *ctx);
+static BOOL ScrCmd_Unused018(ScriptContext *ctx);
 static BOOL ScrCmd_019(ScriptContext *ctx);
 static BOOL ScrCmd_Call(ScriptContext *ctx);
 static BOOL ScrCmd_Return(ScriptContext *ctx);
@@ -787,7 +787,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_ReturnCommonScript,
     ScrCmd_GoTo,
     ScrCmd_017,
-    ScrCmd_018,
+    ScrCmd_Unused018,
     ScrCmd_019,
     ScrCmd_Call,
     ScrCmd_Return,
@@ -1896,21 +1896,17 @@ static BOOL ScrCmd_017(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_018(ScriptContext *ctx)
+static BOOL ScrCmd_Unused018(ScriptContext *ctx)
 {
-    u8 v0;
-    s32 v1;
-    u32 v2;
+    u32 taskVal = FieldTask_GetDummy1CVal(ctx->taskManager);
+    u8 val = ScriptContext_ReadByte(ctx);
+    s32 offset = (s32)ScriptContext_ReadWord(ctx);
 
-    v2 = sub_02050A6C(ctx->taskManager);
-    v0 = ScriptContext_ReadByte(ctx);
-    v1 = (s32)ScriptContext_ReadWord(ctx);
-
-    if (v2 == v0) {
-        ScriptContext_Jump(ctx, (u8 *)(ctx->scriptPtr + v1));
+    if (taskVal == val) {
+        ScriptContext_Jump(ctx, (u8 *)(ctx->scriptPtr + offset));
     }
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_019(ScriptContext *ctx)
@@ -3859,7 +3855,7 @@ BOOL sub_02041CC8(ScriptContext *ctx)
 
     v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, 19);
 
-    if (sub_020509B4(fieldSystem)) {
+    if (FieldSystem_IsRunningApplication(fieldSystem)) {
         return 0;
     }
 
@@ -3879,7 +3875,7 @@ static BOOL sub_02041CF4(ScriptContext *ctx)
     v0 = FieldSystem_GetScriptMemberPtr(fieldSystem, 19);
     v2 = *v0;
 
-    if (sub_020509B4(fieldSystem)) {
+    if (FieldSystem_IsRunningApplication(fieldSystem)) {
         return 0;
     }
 
@@ -3916,7 +3912,7 @@ BOOL sub_02041D60(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    if (sub_020509B4(fieldSystem)) {
+    if (FieldSystem_IsRunningApplication(fieldSystem)) {
         return 0;
     }
 
@@ -5561,7 +5557,7 @@ static BOOL ScrCmd_GetPlayerGender(ScriptContext *ctx)
 
 static BOOL ScrCmd_HealParty(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(ctx->taskManager);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(ctx->taskManager);
 
     HealAllPokemonInParty(Party_GetFromSavedata(fieldSystem->saveData));
     return FALSE;
@@ -7796,7 +7792,7 @@ static BOOL ScrCmd_2C4(ScriptContext *ctx)
     v2->unk_10 = ctx->fieldSystem->unk_98;
     v2->unk_20 = ctx->fieldSystem->unk_BC;
 
-    sub_02050A38(ctx->taskManager, &Unk_020F8BE0, v2);
+    FieldTask_RunApplication(ctx->taskManager, &Unk_020F8BE0, v2);
     ScriptContext_Pause(ctx, sub_02041CC8);
 
     return 1;

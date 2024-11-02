@@ -703,7 +703,7 @@ static void ov56_02256D04(UnkStruct_ov56_02256468 *param0)
 {
     int v0 = 0xffffffff;
 
-    if (!sub_020509A4(param0->fieldSystem)) {
+    if (!FieldSystem_IsRunningTask(param0->fieldSystem)) {
         int v1;
 
         v1 = ov56_02256A68(param0);
@@ -880,7 +880,7 @@ static void ov56_02257098(UnkStruct_ov56_02256468 *param0)
     TrainerInfo *v5;
     Sentence v6;
 
-    if (sub_020509A4(param0->fieldSystem)) {
+    if (FieldSystem_IsRunningTask(param0->fieldSystem)) {
         return;
     }
 

@@ -22,8 +22,8 @@ static BOOL sub_0205578C(FieldTask *param0)
     FieldSystem *fieldSystem;
     UnkStruct_0205578C *v1;
 
-    fieldSystem = TaskManager_FieldSystem(param0);
-    v1 = TaskManager_Environment(param0);
+    fieldSystem = FieldTask_GetFieldSystem(param0);
+    v1 = FieldTask_GetEnv(param0);
 
     switch (v1->unk_00) {
     case 0:
@@ -51,5 +51,5 @@ void sub_020557DC(FieldTask *param0, int param1, int param2)
     v0->unk_08 = param1;
     v0->unk_0C = param2;
 
-    FieldTask_Start(param0, sub_0205578C, v0);
+    FieldTask_InitCall(param0, sub_0205578C, v0);
 }

@@ -310,9 +310,9 @@ void sub_02097F30(UnkStruct_02097F18 *param0, u8 param1)
 
 static BOOL sub_02097F38(FieldTask *param0)
 {
-    UnkStruct_02097F38 *v0 = TaskManager_Environment(param0);
+    UnkStruct_02097F38 *v0 = FieldTask_GetEnv(param0);
     UnkStruct_02097F18 *v1 = v0->unk_08;
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
 
     switch (v0->unk_14) {
     case 0:
@@ -340,7 +340,7 @@ static BOOL sub_02097F38(FieldTask *param0)
         v0->unk_14 = 1;
         break;
     case 1:
-        sub_02050A38(param0, &Unk_020F64C0, v1);
+        FieldTask_RunApplication(param0, &Unk_020F64C0, v1);
         v0->unk_14 = 2;
         break;
     case 2: {
@@ -371,7 +371,7 @@ static BOOL sub_02097F38(FieldTask *param0)
         v6->unk_20 = 15;
         v6->unk_0C = v1->unk_24;
 
-        sub_02050A38(param0, &Unk_020F1E88, v6);
+        FieldTask_RunApplication(param0, &Unk_020F1E88, v6);
         v0->unk_14 = 4;
     } break;
     case 4: {
@@ -429,7 +429,7 @@ void sub_020980DC(FieldTask *param0, SaveData *param1)
     v0->unk_0C = Heap_AllocFromHeap(11, sizeof(PartyManagementData));
     memset(v0->unk_0C, 0, sizeof(PartyManagementData));
 
-    FieldTask_Start(param0, sub_02097F38, v0);
+    FieldTask_InitCall(param0, sub_02097F38, v0);
 }
 
 typedef struct {

@@ -46,13 +46,13 @@ void sub_0206C0E8(FieldSystem *fieldSystem)
     v0->unk_0C = 0;
     v0->unk_0D = 0;
 
-    FieldTask_Start(fieldSystem->taskManager, sub_0206C120, v0);
+    FieldTask_InitCall(fieldSystem->taskManager, sub_0206C120, v0);
 }
 
 static BOOL sub_0206C120(FieldTask *taskMan)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_0206C0E8 *v1 = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_0206C0E8 *v1 = FieldTask_GetEnv(taskMan);
 
     switch (v1->unk_0C) {
     case 0:

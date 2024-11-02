@@ -1523,8 +1523,8 @@ static void ov23_0224C6E8(void)
 
 static BOOL ov23_0224C708(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov23_0224BA48 *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_ov23_0224BA48 *v1 = FieldTask_GetEnv(param0);
 
     switch (v1->unk_10) {
     case 0:
@@ -1544,16 +1544,16 @@ static BOOL ov23_0224C708(FieldTask *param0)
 
 static BOOL ov23_0224C74C(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov23_0224BA48 *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_ov23_0224BA48 *v1 = FieldTask_GetEnv(param0);
 
     switch (v1->unk_10) {
     case 0:
-        FieldSystem_StartFieldMap(fieldSystem);
+        FieldSystem_StartFieldMapInner(fieldSystem);
         (v1->unk_10)++;
         break;
     case 1:
-        if (sub_020509DC(fieldSystem)) {
+        if (FieldSystem_IsRunningFieldMap(fieldSystem)) {
             v1->unk_10 = 0;
             return 1;
         }
@@ -1565,8 +1565,8 @@ static BOOL ov23_0224C74C(FieldTask *param0)
 
 static BOOL ov23_0224C790(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov23_0224BA48 *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_ov23_0224BA48 *v1 = FieldTask_GetEnv(param0);
     Location v2;
     int v3 = 0, v4 = 0;
 
@@ -1735,7 +1735,7 @@ static void ov23_0224CAF0(FieldSystem *fieldSystem, int param1, int param2, int 
 
     if (v0) {
         v0->unk_2D = param5;
-        FieldTask_Set(fieldSystem, ov23_0224C790, v0);
+        FieldSystem_CreateTask(fieldSystem, ov23_0224C790, v0);
     }
 }
 

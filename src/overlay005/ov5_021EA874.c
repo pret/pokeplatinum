@@ -372,8 +372,8 @@ static BOOL ov5_021EAD38(UnkStruct_ov5_021EAE78 *param0)
 
 static BOOL ov5_021EADB4(FieldTask *param0)
 {
-    UnkStruct_ov5_021EAE78 *v0 = TaskManager_Environment(param0);
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+    UnkStruct_ov5_021EAE78 *v0 = FieldTask_GetEnv(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
 
     switch (v0->unk_48) {
     case 0:
@@ -475,9 +475,9 @@ void ov5_021EAF50(FieldSystem *fieldSystem)
     v0->unk_48 = 0;
 
     if (v1 == NULL) {
-        FieldTask_Set(fieldSystem, ov5_021EADB4, v0);
+        FieldSystem_CreateTask(fieldSystem, ov5_021EADB4, v0);
     } else {
-        FieldTask_Start(v1, ov5_021EADB4, v0);
+        FieldTask_InitCall(v1, ov5_021EADB4, v0);
     }
 }
 

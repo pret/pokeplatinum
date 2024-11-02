@@ -383,8 +383,8 @@ static void sub_0205610C(FieldSystem *fieldSystem, UnkStruct_020562AC *param1, c
 
 static BOOL sub_02056124(FieldTask *taskMan)
 {
-    FieldSystem *v0 = TaskManager_FieldSystem(taskMan);
-    UnkStruct_020562AC *v1 = TaskManager_Environment(taskMan);
+    FieldSystem *v0 = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_020562AC *v1 = FieldTask_GetEnv(taskMan);
 
     switch (v1->unk_00) {
     case 0:
@@ -465,13 +465,13 @@ void sub_020562AC(FieldSystem *fieldSystem)
 {
     UnkStruct_020562AC *v0;
 
-    v0 = Heap_AllocFromHeap(32, sizeof(UnkStruct_020562AC));
+    v0 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_020562AC));
 
     v0->unk_00 = 0;
     v0->unk_0C = NULL;
     v0->unk_04 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
-    FieldTask_Start(fieldSystem->taskManager, sub_02056124, v0);
+    FieldTask_InitCall(fieldSystem->taskManager, sub_02056124, v0);
 }
 
 void sub_020562D8(FieldSystem *fieldSystem)

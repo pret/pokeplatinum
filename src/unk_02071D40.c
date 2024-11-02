@@ -281,13 +281,13 @@ void sub_02072204(FieldSystem *fieldSystem)
     v0->unk_00 = 0;
     v0->unk_04 = (TrainerCard *)sub_0205C17C(fieldSystem->unk_7C);
 
-    FieldTask_Start(fieldSystem->taskManager, sub_02072230, v0);
+    FieldTask_InitCall(fieldSystem->taskManager, sub_02072230, v0);
 }
 
 static BOOL sub_02072230(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_02072204 *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_02072204 *v1 = FieldTask_GetEnv(param0);
 
     switch (v1->unk_00) {
     case 0:
@@ -303,7 +303,7 @@ static BOOL sub_02072230(FieldTask *param0)
         v1->unk_00 = 11;
         break;
     case 11:
-        if (!sub_020509B4(fieldSystem)) {
+        if (!FieldSystem_IsRunningApplication(fieldSystem)) {
             sub_0205C1F0(fieldSystem->unk_7C);
             Heap_FreeToHeap(v1);
             return 1;

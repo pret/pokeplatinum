@@ -42,8 +42,8 @@ void *sub_0207064C(u32 param0, FieldSystem *fieldSystem, Pokemon *param2, u16 pa
 
 BOOL sub_02070680(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_0207064C *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_0207064C *v1 = FieldTask_GetEnv(param0);
 
     switch (v1->unk_04) {
     case 0:

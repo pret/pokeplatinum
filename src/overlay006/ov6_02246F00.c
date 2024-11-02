@@ -36,7 +36,7 @@ void ov6_02246F00(FieldSystem *fieldSystem, const u8 param1, const u8 param2)
         v1->unk_01 = param1;
         v1->unk_02 = 0;
 
-        FieldTask_Start(fieldSystem->taskManager, ov6_02246F40, v1);
+        FieldTask_InitCall(fieldSystem->taskManager, ov6_02246F40, v1);
     } else {
         GF_ASSERT(FALSE);
     }
@@ -44,8 +44,8 @@ void ov6_02246F00(FieldSystem *fieldSystem, const u8 param1, const u8 param2)
 
 static BOOL ov6_02246F40(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov6_02246F00 *v1 = (UnkStruct_ov6_02246F00 *)TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_ov6_02246F00 *v1 = (UnkStruct_ov6_02246F00 *)FieldTask_GetEnv(param0);
 
     switch (v1->unk_02) {
     case 0: {

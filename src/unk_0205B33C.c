@@ -355,7 +355,7 @@ static void sub_0205B634(UnkStruct_0205B43C *param0)
 
 static void sub_0205B694(UnkStruct_0205B43C *param0)
 {
-    if (!sub_020509A4(param0->fieldSystem)) {
+    if (!FieldSystem_IsRunningTask(param0->fieldSystem)) {
         sub_02036AC4();
         sub_0205C160(param0);
         sub_0205BEA8(0);

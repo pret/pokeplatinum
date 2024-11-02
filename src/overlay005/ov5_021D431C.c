@@ -689,8 +689,8 @@ BOOL ov5_021D4A24(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
 static BOOL ov5_021D4BC8(FieldTask *param0)
 {
     BOOL v0;
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    u8 *v2 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    u8 *v2 = FieldTask_GetEnv(param0);
 
     v0 = ov5_021D42F0(fieldSystem->unk_54, *v2);
 
@@ -813,7 +813,7 @@ void ov5_021D4D48(FieldSystem *fieldSystem, const u8 param1)
     u8 *v0 = Heap_AllocFromHeapAtEnd(4, sizeof(u8));
 
     *v0 = param1;
-    FieldTask_Start(fieldSystem->taskManager, ov5_021D4BC8, v0);
+    FieldTask_InitCall(fieldSystem->taskManager, ov5_021D4BC8, v0);
 }
 
 void ov5_021D4D68(FieldSystem *fieldSystem, const u8 param1)
@@ -865,8 +865,8 @@ UnkStruct_ov5_021D4E00 *ov5_021D4E00(void)
 BOOL ov5_021D4E10(FieldTask *param0)
 {
     MapObject *v0;
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov5_021D4E00 *v2 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_ov5_021D4E00 *v2 = FieldTask_GetEnv(param0);
 
     switch (v2->unk_00) {
     case 0:
@@ -922,8 +922,8 @@ BOOL ov5_021D4E10(FieldTask *param0)
 
 BOOL ov5_021D4F14(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov5_021D4E00 *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_ov5_021D4E00 *v1 = FieldTask_GetEnv(param0);
 
     switch (v1->unk_00) {
     case 0: {
@@ -959,8 +959,8 @@ BOOL ov5_021D4F14(FieldTask *param0)
 
 BOOL ov5_021D4FA0(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov5_021D4E00 *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_ov5_021D4E00 *v1 = FieldTask_GetEnv(param0);
 
     switch (v1->unk_00) {
     case 0: {
@@ -991,8 +991,8 @@ BOOL ov5_021D4FA0(FieldTask *param0)
 BOOL ov5_021D5020(FieldTask *param0)
 {
     MapObject *v0;
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov5_021D4E00 *v2 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_ov5_021D4E00 *v2 = FieldTask_GetEnv(param0);
 
     switch (v2->unk_00) {
     case 0: {
@@ -1070,8 +1070,8 @@ BOOL ov5_021D5020(FieldTask *param0)
 BOOL ov5_021D5150(FieldTask *param0)
 {
     MapObject *v0;
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov5_021D4E00 *v2 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_ov5_021D4E00 *v2 = FieldTask_GetEnv(param0);
 
     switch (v2->unk_00) {
     case 0: {

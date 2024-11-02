@@ -164,12 +164,12 @@ void sub_02050224(FieldTask *param0, u16 param1, u16 param2, u16 *param3)
     v0->unk_0C = param3;
 
     CommFieldCmd_Init(v0);
-    FieldTask_Start(param0, sub_02050264, v0);
+    FieldTask_InitCall(param0, sub_02050264, v0);
 }
 
 static BOOL sub_02050264(FieldTask *param0)
 {
-    UnkStruct_02050224 *v0 = TaskManager_Environment(param0);
+    UnkStruct_02050224 *v0 = FieldTask_GetEnv(param0);
 
     switch (v0->unk_00) {
     case 0:
@@ -202,7 +202,7 @@ static BOOL sub_02050264(FieldTask *param0)
 
 void sub_020502E0(FieldTask *param0, void **param1, u8 param2)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_0205037C *v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0205037C));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_0205037C));
@@ -210,14 +210,14 @@ void sub_020502E0(FieldTask *param0, void **param1, u8 param2)
     v1->unk_04 = param2;
     v1->unk_0C = param1;
 
-    FieldTask_Start(fieldSystem->taskManager, sub_02050314, v1);
+    FieldTask_InitCall(fieldSystem->taskManager, sub_02050314, v1);
     return;
 }
 
 static BOOL sub_02050314(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_0205037C *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_0205037C *v1 = FieldTask_GetEnv(param0);
 
     switch (v1->unk_00) {
     case 0:
@@ -280,7 +280,7 @@ static int sub_02050448(UnkStruct_0205037C *param0, FieldSystem *fieldSystem)
     int v0;
     PartyManagementData *v1;
 
-    if (sub_020509B4(fieldSystem)) {
+    if (FieldSystem_IsRunningApplication(fieldSystem)) {
         return 1;
     }
 
@@ -339,7 +339,7 @@ static int sub_02050520(UnkStruct_0205037C *param0, FieldSystem *fieldSystem)
 {
     PokemonSummary *v0;
 
-    if (sub_020509B4(fieldSystem)) {
+    if (FieldSystem_IsRunningApplication(fieldSystem)) {
         return 3;
     }
 

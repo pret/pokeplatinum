@@ -431,8 +431,8 @@ u32 ov5_021F0484(void)
 
 BOOL ov5_021F0488(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov5_021F0468 *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_ov5_021F0468 *v1 = FieldTask_GetEnv(param0);
     BOOL v2;
 
     switch (v1->unk_0C) {

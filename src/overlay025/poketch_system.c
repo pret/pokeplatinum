@@ -716,7 +716,7 @@ BOOL PoketchSystem_GetDisplayTappedCoords(u32 *x, u32 *y)
 
 BOOL ov25_0225450C(const PoketchSystem *poketchSys)
 {
-    return sub_020509A4(poketchSys->fieldSystem);
+    return FieldSystem_IsRunningTask(poketchSys->fieldSystem);
 }
 
 void ov25_02254518(const PoketchSystem *poketchSys, PoketchButtonManager *buttonManager)

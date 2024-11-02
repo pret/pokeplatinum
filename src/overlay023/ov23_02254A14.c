@@ -206,8 +206,8 @@ static void ov23_02254AA4(const int param0, UnkStruct_ov23_02256098 *param1)
 
 static BOOL ov23_02254AD4(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov23_02256098 *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_ov23_02256098 *v1 = FieldTask_GetEnv(param0);
 
     switch (v1->unk_00) {
     case 0:
@@ -232,19 +232,19 @@ static BOOL ov23_02254AD4(FieldTask *param0)
         }
         break;
     case 3:
-        FieldTask_Start(param0, ov23_02254C84, v1);
+        FieldTask_InitCall(param0, ov23_02254C84, v1);
         break;
     case 4:
-        FieldTask_Start(param0, ov23_02254DF8, v1);
+        FieldTask_InitCall(param0, ov23_02254DF8, v1);
         break;
     case 5:
-        FieldTask_Start(param0, ov23_02255100, v1);
+        FieldTask_InitCall(param0, ov23_02255100, v1);
         break;
     case 6:
-        FieldTask_Start(param0, ov23_02255580, v1);
+        FieldTask_InitCall(param0, ov23_02255580, v1);
         break;
     case 7:
-        FieldTask_Start(param0, ov23_02255850, v1);
+        FieldTask_InitCall(param0, ov23_02255850, v1);
         break;
     case 8:
         if (Text_IsPrinterActive(v1->unk_08) == 0) {
@@ -276,8 +276,8 @@ static BOOL ov23_02254AD4(FieldTask *param0)
 static BOOL ov23_02254C84(FieldTask *param0)
 {
     BOOL v0;
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov23_02256098 *v2 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_ov23_02256098 *v2 = FieldTask_GetEnv(param0);
 
     v0 = ov23_02254318(v2->unk_504);
 
@@ -345,7 +345,7 @@ void ov23_02254D98(FieldSystem *fieldSystem, FieldTask *param1)
     v0->unk_50C = ov5_021D1B6C(fieldSystem->unk_04->unk_04, &Unk_ov23_02256B88);
     v0->unk_4FC = ov5_021D1C2C(v0->unk_50C);
 
-    FieldTask_Start(param1, ov23_02254AD4, v0);
+    FieldTask_InitCall(param1, ov23_02254AD4, v0);
 }
 
 static BOOL ov23_02254DF8(FieldTask *param0)
@@ -354,8 +354,8 @@ static BOOL ov23_02254DF8(FieldTask *param0)
     UnkStruct_ov5_021E1890 *v2;
     BOOL v3;
     BOOL v4;
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov23_02256098 *v6 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_ov23_02256098 *v6 = FieldTask_GetEnv(param0);
 
     switch (v6->unk_04) {
     case 0: {
@@ -532,8 +532,8 @@ static BOOL ov23_02255100(FieldTask *param0)
     fx32 v2, v3;
     BOOL v4;
     BOOL v5;
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov23_02256098 *v7 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_ov23_02256098 *v7 = FieldTask_GetEnv(param0);
 
     switch (v7->unk_04) {
     case 0:
@@ -769,8 +769,8 @@ static BOOL ov23_02255580(FieldTask *param0)
     fx32 v2, v3;
     BOOL v4;
     BOOL v5;
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov23_02256098 *v7 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_ov23_02256098 *v7 = FieldTask_GetEnv(param0);
 
     switch (v7->unk_04) {
     case 0:
@@ -921,8 +921,8 @@ static BOOL ov23_02255850(FieldTask *param0)
     UnkStruct_ov5_021E1890 *v2;
     BOOL v3;
     BOOL v4;
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov23_02256098 *v6 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_ov23_02256098 *v6 = FieldTask_GetEnv(param0);
 
     switch (v6->unk_04) {
     case 0:

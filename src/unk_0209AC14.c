@@ -20,8 +20,8 @@ BOOL sub_0209AC14(FieldTask *param0)
     FieldSystem *fieldSystem;
     UnkStruct_ov7_0224D008 *v1;
 
-    fieldSystem = TaskManager_FieldSystem(param0);
-    v1 = TaskManager_Environment(param0);
+    fieldSystem = FieldTask_GetFieldSystem(param0);
+    v1 = FieldTask_GetEnv(param0);
 
     switch (v1->unk_297) {
     case 16:
@@ -37,14 +37,14 @@ BOOL sub_0209AC14(FieldTask *param0)
 
 static u8 sub_0209AC50(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1)
 {
-    if (sub_020509B4(fieldSystem)) {
+    if (FieldSystem_IsRunningApplication(fieldSystem)) {
         return 16;
     }
 
     param1->unk_2A8 = sub_0207CBAC(param1->unk_04);
 
     Heap_FreeToHeap(param1->unk_04);
-    sub_020509D4(fieldSystem);
+    FieldSystem_StartFieldMap(fieldSystem);
 
     return 17;
 }
@@ -54,12 +54,12 @@ static void sub_0209AC80(FieldTask *param0)
     FieldSystem *fieldSystem;
     UnkStruct_ov7_0224D008 *v1;
 
-    fieldSystem = TaskManager_FieldSystem(param0);
-    v1 = TaskManager_Environment(param0);
+    fieldSystem = FieldTask_GetFieldSystem(param0);
+    v1 = FieldTask_GetEnv(param0);
 
-    if (sub_020509DC(fieldSystem)) {
+    if (FieldSystem_IsRunningFieldMap(fieldSystem)) {
         ov5_021D1744(1);
-        FieldTask_Change(param0, ov7_0224CEAC, v1);
+        FieldTask_InitJump(param0, ov7_0224CEAC, v1);
         v1->unk_297 = 18;
     }
 }

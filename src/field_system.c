@@ -105,7 +105,7 @@ const OverlayManagerTemplate gFieldSystemContinueTemplate = {
     .overlayID = FS_OVERLAY_ID_NONE,
 };
 
-void FieldSystem_StartFieldMap(FieldSystem *fieldSystem)
+void FieldSystem_StartFieldMapInner(FieldSystem *fieldSystem)
 {
     GF_ASSERT(fieldSystem->processManager->child == NULL);
     GF_ASSERT(fieldSystem->processManager->parent == NULL);
@@ -126,7 +126,7 @@ BOOL FieldSystem_HasParentProcess(FieldSystem *fieldSystem)
     return fieldSystem->processManager->parent != NULL;
 }
 
-BOOL FieldSystem_IsRunningFieldMap(FieldSystem *fieldSystem)
+BOOL FieldSystem_IsRunningFieldMapInner(FieldSystem *fieldSystem)
 {
     return fieldSystem->processManager->parent != NULL && fieldSystem->runningFieldMap;
 }
@@ -146,7 +146,7 @@ void FieldSystem_StartChildProcess(FieldSystem *fieldSystem, const OverlayManage
 static FieldSystem *InitFieldSystem(OverlayManager *ovyManager)
 {
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_FIELDMAP, HEAP_SIZE_FIELDMAP);
-    Heap_Create(HEAP_ID_APPLICATION, 32, 0x4000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_FIELD_TASK, HEAP_SIZE_FIELD_TASK);
     Heap_Create(HEAP_ID_SYSTEM, 91, 0x300);
 
     FieldSystem *fieldSystem = OverlayManager_NewData(ovyManager, sizeof(FieldSystem), HEAP_ID_FIELDMAP);
@@ -204,7 +204,7 @@ static void ExecuteAndCleanupIfDone(OverlayManager **ovyManagerPtr)
 static BOOL HandleInputsEventsAndProcesses(FieldSystem *fieldSystem)
 {
     HandleFieldInput(fieldSystem);
-    if (sub_02050958(fieldSystem) == TRUE && fieldSystem->unk_04 != NULL) {
+    if (FieldTask_Run(fieldSystem) == TRUE && fieldSystem->unk_04 != NULL) {
         ov5_021EA714(fieldSystem, POKETCH_EVENT_SLEEP, 0);
     }
 
@@ -232,7 +232,7 @@ static BOOL HandleInputsEventsAndProcesses(FieldSystem *fieldSystem)
 static void HandleFieldInput(FieldSystem *fieldSystem)
 {
     BOOL processInput = FALSE;
-    if (!fieldSystem->processManager->pause && fieldSystem->runningFieldMap && sub_020509A4(fieldSystem) == FALSE) {
+    if (!fieldSystem->processManager->pause && fieldSystem->runningFieldMap && FieldSystem_IsRunningTask(fieldSystem) == FALSE) {
         processInput = TRUE;
     }
 

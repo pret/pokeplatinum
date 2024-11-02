@@ -95,13 +95,13 @@ void ov6_02247A0C(FieldTask *param0)
     v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov6_02247A0C));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov6_02247A0C));
 
-    FieldTask_Start(param0, ov6_02247A34, v0);
+    FieldTask_InitCall(param0, ov6_02247A34, v0);
 }
 
 static BOOL ov6_02247A34(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov6_02247A0C *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_ov6_02247A0C *v1 = FieldTask_GetEnv(param0);
 
     switch (v1->unk_04) {
     case 0:

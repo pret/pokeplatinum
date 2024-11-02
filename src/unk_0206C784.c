@@ -126,7 +126,7 @@ void sub_0206C784(FieldSystem *fieldSystem, const u8 param1, const u8 param2, co
         v0->unk_00 = 2;
     }
 
-    FieldTask_Start(fieldSystem->taskManager, sub_0206C964, v0);
+    FieldTask_InitCall(fieldSystem->taskManager, sub_0206C964, v0);
 }
 
 static void sub_0206C8D4(FieldSystem *fieldSystem, const u8 param1, UnkStruct_ov5_021D5894 *param2)
@@ -138,13 +138,13 @@ static void sub_0206C8D4(FieldSystem *fieldSystem, const u8 param1, UnkStruct_ov
     v0->unk_04 = param2;
     v0->unk_00 = param1;
 
-    FieldTask_Start(fieldSystem->taskManager, sub_0206C8F8, v0);
+    FieldTask_InitCall(fieldSystem->taskManager, sub_0206C8F8, v0);
 }
 
 static BOOL sub_0206C8F8(FieldTask *taskMan)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_0206C8D4 *v1 = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_0206C8D4 *v1 = FieldTask_GetEnv(taskMan);
     int *v2 = FieldTask_GetState(taskMan);
 
     switch (*v2) {
@@ -156,7 +156,7 @@ static BOOL sub_0206C8F8(FieldTask *taskMan)
         }
         break;
     case 1:
-        if (sub_020509B4(fieldSystem)) {
+        if (FieldSystem_IsRunningApplication(fieldSystem)) {
             return 0;
         }
         break;
@@ -171,8 +171,8 @@ static BOOL sub_0206C8F8(FieldTask *taskMan)
 
 static BOOL sub_0206C964(FieldTask *taskMan)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_0206CAD0 *v1 = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    UnkStruct_0206CAD0 *v1 = FieldTask_GetEnv(taskMan);
 
     switch (v1->unk_00) {
     case 0:

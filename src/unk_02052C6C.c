@@ -87,8 +87,8 @@ static BOOL sub_02052CBC(FieldTask *param0)
 {
     Location *v0;
     VarsFlags *v1;
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_0205300C *v3 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_0205300C *v3 = FieldTask_GetEnv(param0);
     int *v4 = FieldTask_GetState(param0);
     UnkStruct_0203E234 *v5 = &v3->unk_04;
 
@@ -98,7 +98,7 @@ static BOOL sub_02052CBC(FieldTask *param0)
         (*v4)++;
         break;
     case 1:
-        if (!sub_020509B4(fieldSystem)) {
+        if (!FieldSystem_IsRunningApplication(fieldSystem)) {
             Heap_Create(3, 4, 0x20000);
             sub_02052F28(fieldSystem, v3);
             StartScreenTransition(3, 1, 1, 0x0, 8, 1, 32);
@@ -157,7 +157,7 @@ static BOOL sub_02052CBC(FieldTask *param0)
         }
         break;
     case 9:
-        if (!sub_020509B4(fieldSystem)) {
+        if (!FieldSystem_IsRunningApplication(fieldSystem)) {
             Heap_FreeToHeap(v3);
             Heap_Destroy(4);
             OS_ResetSystem(0);
@@ -179,8 +179,8 @@ void sub_02052E58(FieldTask *param0)
     GameRecords *v6;
     Party *v7;
 
-    fieldSystem = TaskManager_FieldSystem(param0);
-    v5 = Heap_AllocFromHeap(32, sizeof(UnkStruct_0205300C));
+    fieldSystem = FieldTask_GetFieldSystem(param0);
+    v5 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0205300C));
     v3 = SaveData_GetVarsFlags(fieldSystem->saveData);
     v4 = SaveData_GetTrainerInfo(fieldSystem->saveData);
     v1 = FieldOverworldState_GetSpecialLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));
@@ -210,7 +210,7 @@ void sub_02052E58(FieldTask *param0)
     v6 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
 
     GameRecords_IncrementRecordValue(v6, RECORD_UNK_073);
-    FieldTask_Start(param0, sub_02052CBC, v5);
+    FieldTask_InitCall(param0, sub_02052CBC, v5);
 }
 
 static void sub_02052F28(FieldSystem *fieldSystem, UnkStruct_0205300C *param1)

@@ -111,7 +111,7 @@ static void sub_0205C304(SysTask *task, void *param1)
     UnkStruct_0205C22C *v0 = (UnkStruct_0205C22C *)param1;
     UnkStruct_0205B43C *v1 = v0->unk_00;
 
-    if (!sub_020509A4(v0->fieldSystem)) {
+    if (!FieldSystem_IsRunningTask(v0->fieldSystem)) {
         v0->playerAvatar = v0->fieldSystem->playerAvatar;
         sub_0205C44C(v0, v1, v0->fieldSystem->mapObjMan, v0->unk_474);
         sub_0205C51C(v0, v0->fieldSystem->mapObjMan);

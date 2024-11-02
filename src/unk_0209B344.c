@@ -34,8 +34,8 @@ static BOOL sub_0209B3C4(FieldTask *param0);
 
 void sub_0209B344(FieldTask *param0, u16 *param1)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_0209B3AC *v1 = Heap_AllocFromHeap(32, sizeof(UnkStruct_0209B3AC));
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_0209B3AC *v1 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0209B3AC));
 
     v1->fieldSystem = fieldSystem;
     v1->unk_04 = StringTemplate_Default(32);
@@ -48,7 +48,7 @@ void sub_0209B344(FieldTask *param0, u16 *param1)
     sub_02097520(v1->unk_10);
 
     v1->unk_18 = 0;
-    FieldTask_Start(param0, sub_0209B3C4, v1);
+    FieldTask_InitCall(param0, sub_0209B3C4, v1);
 
     return;
 }
@@ -62,7 +62,7 @@ static void sub_0209B3AC(UnkStruct_0209B3AC *param0)
 
 static BOOL sub_0209B3C4(FieldTask *param0)
 {
-    UnkStruct_0209B3AC *v0 = TaskManager_Environment(param0);
+    UnkStruct_0209B3AC *v0 = FieldTask_GetEnv(param0);
 
     switch (v0->unk_18) {
     case 0:
@@ -72,13 +72,13 @@ static BOOL sub_0209B3C4(FieldTask *param0)
         v0->unk_18 = 1;
         break;
     case 1:
-        if (sub_020509B4(v0->fieldSystem) == 0) {
-            sub_020509D4(v0->fieldSystem);
+        if (FieldSystem_IsRunningApplication(v0->fieldSystem) == 0) {
+            FieldSystem_StartFieldMap(v0->fieldSystem);
             v0->unk_18 = 2;
         }
         break;
     case 2:
-        if (sub_020509DC(v0->fieldSystem)) {
+        if (FieldSystem_IsRunningFieldMap(v0->fieldSystem)) {
             ov5_021D1744(1);
             v0->unk_18 = 3;
         }

@@ -24,8 +24,8 @@ typedef struct {
 
 static BOOL ov5_021DDAE4(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov5_021DDBC8 *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_ov5_021DDBC8 *v1 = FieldTask_GetEnv(param0);
 
     switch (v1->unk_00) {
     case 0:
@@ -69,5 +69,5 @@ void ov5_021DDBC8(FieldTask *param0)
     UnkStruct_ov5_021DDBC8 *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov5_021DDBC8));
 
     v0->unk_00 = 0;
-    FieldTask_Start(param0, ov5_021DDAE4, v0);
+    FieldTask_InitCall(param0, ov5_021DDAE4, v0);
 }

@@ -47,12 +47,12 @@ void ScriptManager_Set(FieldSystem *fieldSystem, u16 scriptID, MapObject *object
     ScriptManager *scriptManager = ScriptManager_New();
 
     sub_0203EA68(fieldSystem, scriptManager, scriptID, object, NULL);
-    FieldTask_Set(fieldSystem, FieldTask_RunScript, scriptManager);
+    FieldSystem_CreateTask(fieldSystem, FieldTask_RunScript, scriptManager);
 }
 
 void ScriptManager_SetApproachingTrainer(FieldSystem *fieldSystem, MapObject *object, int sightRange, int direction, int scriptID, int trainerID, int trainerType, int approachNum)
 {
-    ScriptManager *scriptManager = TaskManager_Environment(fieldSystem->taskManager);
+    ScriptManager *scriptManager = FieldTask_GetEnv(fieldSystem->taskManager);
     ApproachingTrainer *trainer = &scriptManager->trainers[approachNum];
 
     trainer->sightRange = sightRange;
@@ -65,20 +65,20 @@ void ScriptManager_SetApproachingTrainer(FieldSystem *fieldSystem, MapObject *ob
 
 void ScriptManager_Start(FieldTask *taskManager, u16 scriptID, MapObject *object, void *saveType)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskManager);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskManager);
     ScriptManager *scriptManager = ScriptManager_New();
 
     sub_0203EA68(fieldSystem, scriptManager, scriptID, object, saveType);
-    FieldTask_Start(taskManager, FieldTask_RunScript, scriptManager);
+    FieldTask_InitCall(taskManager, FieldTask_RunScript, scriptManager);
 }
 
 void ScriptManager_Change(FieldTask *taskManager, u16 scriptID, MapObject *object)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskManager);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskManager);
     ScriptManager *scriptManager = ScriptManager_New();
 
     sub_0203EA68(fieldSystem, scriptManager, scriptID, object, NULL);
-    FieldTask_Change(taskManager, FieldTask_RunScript, scriptManager);
+    FieldTask_InitJump(taskManager, FieldTask_RunScript, scriptManager);
 }
 
 static BOOL FieldTask_RunScript(FieldTask *taskManager)
@@ -86,8 +86,8 @@ static BOOL FieldTask_RunScript(FieldTask *taskManager)
     int i;
     FieldSysFunc scriptFunction;
     ScriptContext *ctx = NULL;
-    ScriptManager *scriptManager = TaskManager_Environment(taskManager);
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskManager);
+    ScriptManager *scriptManager = FieldTask_GetEnv(taskManager);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskManager);
 
     switch (scriptManager->state) {
     case 0:
@@ -434,7 +434,7 @@ void *ScriptManager_GetMemberPtr(ScriptManager *scriptManager, u32 member)
 
 void *FieldSystem_GetScriptMemberPtr(FieldSystem *fieldSystem, u32 member)
 {
-    ScriptManager *script = TaskManager_Environment(fieldSystem->taskManager);
+    ScriptManager *script = FieldTask_GetEnv(fieldSystem->taskManager);
 
     GF_ASSERT(script->magic == SCRIPT_MANAGER_MAGIC_NUMBER);
 
@@ -443,7 +443,7 @@ void *FieldSystem_GetScriptMemberPtr(FieldSystem *fieldSystem, u32 member)
 
 void sub_0203F0C0(FieldSystem *fieldSystem)
 {
-    ScriptManager *scriptManager = TaskManager_Environment(fieldSystem->taskManager);
+    ScriptManager *scriptManager = FieldTask_GetEnv(fieldSystem->taskManager);
 
     if (sub_0203A9C8(fieldSystem) == 1) {
         scriptManager->function = sub_0203AB00;

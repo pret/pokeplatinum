@@ -2342,13 +2342,13 @@ static void ov9_0224AA34(UnkStruct_ov9_02249B04 *param0, const UnkStruct_ov9_022
         v0->unk_28.z = -v0->unk_28.z;
     }
 
-    FieldTask_Set(param0->fieldSystem, ov9_0224AAD4, param0);
+    FieldSystem_CreateTask(param0->fieldSystem, ov9_0224AAD4, param0);
 }
 
 static BOOL ov9_0224AAD4(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov9_02249B04 *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_ov9_02249B04 *v1 = FieldTask_GetEnv(param0);
     UnkStruct_ov9_0224AC58 *v2 = ov9_0224A598(v1);
     PlayerAvatar *playerAvatar = fieldSystem->playerAvatar;
     MapObject *v4 = Player_MapObject(playerAvatar);
@@ -4908,13 +4908,13 @@ static void ov9_0224D078(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224E0DC 
     v0 = ov9_0224A578(param0, sizeof(UnkStruct_ov9_0224D078));
     v0->unk_64 = param1;
 
-    FieldTask_Set(param0->fieldSystem, ov9_0224D098, param0);
+    FieldSystem_CreateTask(param0->fieldSystem, ov9_0224D098, param0);
 }
 
 static BOOL ov9_0224D098(FieldTask *param0)
 {
     int v0;
-    UnkStruct_ov9_02249B04 *v1 = TaskManager_Environment(param0);
+    UnkStruct_ov9_02249B04 *v1 = FieldTask_GetEnv(param0);
     UnkStruct_ov9_0224D078 *v2 = ov9_0224A598(v1);
 
     do {
@@ -6275,7 +6275,7 @@ static BOOL ov9_0224E434(UnkStruct_ov9_02249B04 *param0, int param1, int param2,
 static void ov9_0224E498(UnkStruct_ov9_02249B04 *param0, const UnkStruct_ov9_02251438 *param1)
 {
     ov9_0224E350(param0, param1);
-    FieldTask_Set(param0->fieldSystem, ov9_0224E4BC, param0);
+    FieldSystem_CreateTask(param0->fieldSystem, ov9_0224E4BC, param0);
 }
 
 static void ov9_0224E4B0(UnkStruct_ov9_02249B04 *param0, const UnkStruct_ov9_02252044 *param1)
@@ -6285,7 +6285,7 @@ static void ov9_0224E4B0(UnkStruct_ov9_02249B04 *param0, const UnkStruct_ov9_022
 
 static BOOL ov9_0224E4BC(FieldTask *param0)
 {
-    UnkStruct_ov9_02249B04 *v0 = TaskManager_Environment(param0);
+    UnkStruct_ov9_02249B04 *v0 = FieldTask_GetEnv(param0);
 
     if (ov9_0224E3A0(v0, param0) == 1) {
         return 1;

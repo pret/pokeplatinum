@@ -33,14 +33,14 @@ void ov6_02247F5C(FieldSystem *fieldSystem)
 
 void ov6_02247FBC(FieldSystem *fieldSystem)
 {
-    FieldTask_Start(fieldSystem->taskManager, ov6_02247FD0, NULL);
+    FieldTask_InitCall(fieldSystem->taskManager, ov6_02247FD0, NULL);
 }
 
 static BOOL ov6_02247FD0(FieldTask *param0)
 {
     int *v0;
     UnkStruct_ov5_021D3CE4 *v1;
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
 
     v0 = FieldTask_GetState(param0);
 

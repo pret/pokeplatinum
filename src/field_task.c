@@ -8,171 +8,159 @@
 #include "field_system.h"
 #include "heap.h"
 
-typedef struct {
-    int unk_00;
-    const OverlayManagerTemplate *unk_04;
-    void *unk_08;
-} UnkStruct_020509F0;
+typedef struct FieldTaskEnv {
+    int state;
+    const OverlayManagerTemplate *overlayTemplate;
+    void *overlayArgs;
+} FieldTaskEnv;
 
-static FieldTask *sub_020508D4(FieldSystem *fieldSystem, FieldTaskFunc param1, void *param2)
+static FieldTask *CreateTaskManager(FieldSystem *fieldSys, FieldTaskFunc taskFunc, void *taskEnv)
 {
-    FieldTask *v0;
+    FieldTask *task = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD_TASK, sizeof(FieldTask));
+    task->prev = NULL;
+    task->func = taskFunc;
+    task->state = 0;
+    task->env = taskEnv;
+    task->dummy10 = 0;
+    task->dummy14 = NULL;
+    task->fieldSys = fieldSys;
+    task->dummy1C = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD_TASK, sizeof(u32));
 
-    v0 = Heap_AllocFromHeapAtEnd(32, sizeof(FieldTask));
-    v0->unk_00 = NULL;
-    v0->unk_04 = param1;
-    v0->unk_08 = 0;
-    v0->unk_0C = param2;
-    v0->unk_10 = 0;
-    v0->unk_14 = NULL;
-    v0->fieldSystem = fieldSystem;
-    v0->unk_1C = Heap_AllocFromHeapAtEnd(32, sizeof(u32));
-
-    return v0;
+    return task;
 }
 
-FieldTask *FieldTask_Set(FieldSystem *fieldSystem, FieldTaskFunc param1, void *param2)
+FieldTask *FieldSystem_CreateTask(FieldSystem *fieldSys, FieldTaskFunc taskFunc, void *taskEnv)
 {
-    FieldTask *v0;
+    GF_ASSERT(fieldSys->taskManager == NULL);
 
-    GF_ASSERT(fieldSystem->taskManager == NULL);
+    FieldTask *task = CreateTaskManager(fieldSys, taskFunc, taskEnv);
+    fieldSys->taskManager = task;
 
-    v0 = sub_020508D4(fieldSystem, param1, param2);
-    fieldSystem->taskManager = v0;
-
-    return v0;
+    return task;
 }
 
-void FieldTask_Change(FieldTask *param0, FieldTaskFunc param1, void *param2)
+void FieldTask_InitJump(FieldTask *task, FieldTaskFunc taskFunc, void *taskEnv)
 {
-    param0->unk_04 = param1;
-    param0->unk_08 = 0;
-    param0->unk_0C = param2;
+    task->func = taskFunc;
+    task->state = 0;
+    task->env = taskEnv;
 
-    if ((param0->unk_14 != 0) || (param0->unk_14 != NULL)) {
-        Heap_FreeToHeap(param0->unk_14);
-        param0->unk_10 = 0;
-        param0->unk_14 = NULL;
+    if (task->dummy14 != 0 || task->dummy14 != NULL) { // Double-comparison required to match
+        Heap_FreeToHeap(task->dummy14);
+        task->dummy10 = 0;
+        task->dummy14 = NULL;
     }
 }
 
-FieldTask *FieldTask_Start(FieldTask *param0, FieldTaskFunc param1, void *param2)
+FieldTask *FieldTask_InitCall(FieldTask *task, FieldTaskFunc taskFunc, void *taskEnv)
 {
-    FieldTask *v0;
+    FieldTask *next = CreateTaskManager(task->fieldSys, taskFunc, taskEnv);
+    next->prev = task;
+    task->fieldSys->taskManager = next;
 
-    v0 = sub_020508D4(param0->fieldSystem, param1, param2);
-    v0->unk_00 = param0;
-
-    param0->fieldSystem->taskManager = v0;
-
-    return v0;
+    return next;
 }
 
-BOOL sub_02050958(FieldSystem *fieldSystem)
+BOOL FieldTask_Run(FieldSystem *fieldSys)
 {
-    if (fieldSystem->taskManager == NULL) {
-        return 0;
+    if (fieldSys->taskManager == NULL) {
+        return FALSE;
     }
 
-    while (fieldSystem->taskManager->unk_04(fieldSystem->taskManager) == 1) {
-        FieldTask *v0;
+    // Run invocations through the call-stack until it is empty.
+    while (fieldSys->taskManager->func(fieldSys->taskManager) == TRUE) {
+        FieldTask *prev = fieldSys->taskManager->prev;
 
-        v0 = fieldSystem->taskManager->unk_00;
-
-        if (fieldSystem->taskManager->unk_14) {
-            Heap_FreeToHeap(fieldSystem->taskManager->unk_14);
+        if (fieldSys->taskManager->dummy14) {
+            Heap_FreeToHeap(fieldSys->taskManager->dummy14);
         }
 
-        Heap_FreeToHeap(fieldSystem->taskManager->unk_1C);
-        Heap_FreeToHeap(fieldSystem->taskManager);
+        Heap_FreeToHeap(fieldSys->taskManager->dummy1C);
+        Heap_FreeToHeap(fieldSys->taskManager);
 
-        fieldSystem->taskManager = v0;
-
-        if (v0 == NULL) {
-            return 1;
+        fieldSys->taskManager = prev;
+        if (prev == NULL) {
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL sub_020509A4(FieldSystem *fieldSystem)
+BOOL FieldSystem_IsRunningTask(FieldSystem *fieldSys)
 {
-    return fieldSystem->taskManager != NULL;
+    return fieldSys->taskManager != NULL;
 }
 
-BOOL sub_020509B4(FieldSystem *fieldSystem)
+BOOL FieldSystem_IsRunningApplication(FieldSystem *fieldSys)
 {
-    if (FieldSystem_HasParentProcess(fieldSystem) || FieldSystem_HasChildProcess(fieldSystem)) {
-        return 1;
+    return FieldSystem_HasParentProcess(fieldSys) || FieldSystem_HasChildProcess(fieldSys);
+}
+
+void FieldSystem_StartFieldMap(FieldSystem *fieldSys)
+{
+    FieldSystem_StartFieldMapInner(fieldSys);
+}
+
+BOOL FieldSystem_IsRunningFieldMap(FieldSystem *fieldSys)
+{
+    // Explicit conditional-branch required to match.
+    if (FieldSystem_IsRunningFieldMapInner(fieldSys)) {
+        return TRUE;
     } else {
-        return 0;
+        return FALSE;
     }
 }
 
-void sub_020509D4(FieldSystem *fieldSystem)
+static BOOL RunChildApplication(FieldTask *task)
 {
-    FieldSystem_StartFieldMap(fieldSystem);
-}
+    FieldSystem *fieldSys = FieldTask_GetFieldSystem(task);
+    FieldTaskEnv *env = FieldTask_GetEnv(task);
 
-BOOL sub_020509DC(FieldSystem *fieldSystem)
-{
-    if (FieldSystem_IsRunningFieldMap(fieldSystem)) {
-        return 1;
-    } else {
-        return 0;
-    }
-}
-
-static BOOL sub_020509F0(FieldTask *param0)
-{
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_020509F0 *v1 = TaskManager_Environment(param0);
-
-    switch (v1->unk_00) {
+    switch (env->state) {
     case 0:
-        FieldSystem_StartChildProcess(fieldSystem, v1->unk_04, v1->unk_08);
-        v1->unk_00++;
+        FieldSystem_StartChildProcess(fieldSys, env->overlayTemplate, env->overlayArgs);
+        env->state++;
         break;
+
     case 1:
-        if (sub_020509B4(fieldSystem)) {
+        if (FieldSystem_IsRunningApplication(fieldSys)) {
             break;
         }
 
-        Heap_FreeToHeap(v1);
-        return 1;
+        Heap_FreeToHeap(env);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-void sub_02050A38(FieldTask *param0, const OverlayManagerTemplate *param1, void *param2)
+void FieldTask_RunApplication(FieldTask *task, const OverlayManagerTemplate *overlayTemplate, void *overlayArgs)
 {
-    UnkStruct_020509F0 *v0 = Heap_AllocFromHeapAtEnd(32, sizeof(UnkStruct_020509F0));
+    FieldTaskEnv *env = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD_TASK, sizeof(FieldTaskEnv));
+    env->state = 0;
+    env->overlayTemplate = overlayTemplate;
+    env->overlayArgs = overlayArgs;
 
-    v0->unk_00 = 0;
-    v0->unk_04 = param1;
-    v0->unk_08 = param2;
-
-    FieldTask_Start(param0, sub_020509F0, v0);
+    FieldTask_InitCall(task, RunChildApplication, env);
 }
 
-FieldSystem *TaskManager_FieldSystem(FieldTask *param0)
+FieldSystem *FieldTask_GetFieldSystem(FieldTask *task)
 {
-    return param0->fieldSystem;
+    return task->fieldSys;
 }
 
-void *TaskManager_Environment(FieldTask *param0)
+void *FieldTask_GetEnv(FieldTask *task)
 {
-    return param0->unk_0C;
+    return task->env;
 }
 
-int *FieldTask_GetState(FieldTask *param0)
+int *FieldTask_GetState(FieldTask *task)
 {
-    return &param0->unk_08;
+    return &task->state;
 }
 
-u32 sub_02050A6C(FieldTask *param0)
+u32 FieldTask_GetDummy1CVal(FieldTask *task)
 {
-    return *param0->unk_1C;
+    return *task->dummy1C;
 }

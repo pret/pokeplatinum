@@ -605,8 +605,8 @@ static void ov23_02251A84(BOOL param0, FieldSystem *fieldSystem)
 
 static BOOL ov23_02251ACC(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_ov23_02251ACC *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_ov23_02251ACC *v1 = FieldTask_GetEnv(param0);
     Location v2;
     u32 v3;
     BOOL v4 = 0;
@@ -787,7 +787,7 @@ static void ov23_02251C04(SysTask *param0, void *param1)
             MI_CpuClear8(v2, sizeof(UnkStruct_ov23_02251ACC));
             v2->unk_00 = 0;
             v2->unk_04 = 0;
-            FieldTask_Set(v0->fieldSystem, ov23_02251ACC, v2);
+            FieldSystem_CreateTask(v0->fieldSystem, ov23_02251ACC, v2);
         }
 
         ov23_02251BB4(param0, v0);

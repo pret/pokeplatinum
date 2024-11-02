@@ -8,10 +8,10 @@
 #include "overlay_manager.h"
 #include "savedata.h"
 
-void FieldSystem_StartFieldMap(FieldSystem *fieldSystem);
+void FieldSystem_StartFieldMapInner(FieldSystem *fieldSystem);
 void FieldSystem_FlagNotRunningFieldMap(FieldSystem *fieldSystem);
 BOOL FieldSystem_HasParentProcess(FieldSystem *fieldSystem);
-BOOL FieldSystem_IsRunningFieldMap(FieldSystem *fieldSystem);
+BOOL FieldSystem_IsRunningFieldMapInner(FieldSystem *fieldSystem);
 BOOL FieldSystem_HasChildProcess(FieldSystem *fieldSystem);
 void FieldSystem_StartChildProcess(FieldSystem *fieldSystem, const OverlayManagerTemplate *overlayTemplate, void *overlayArgs);
 void FieldSystem_PauseProcessing(void);

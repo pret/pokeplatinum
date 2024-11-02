@@ -87,8 +87,8 @@ static const u8 Unk_020F1B64[4] = {
 static BOOL sub_0207DA28(FieldTask *param0)
 {
     int v0;
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_0207DE40 *v2 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_0207DE40 *v2 = FieldTask_GetEnv(param0);
 
     switch (v2->unk_04) {
     case 0:
@@ -104,7 +104,7 @@ static BOOL sub_0207DA28(FieldTask *param0)
         }
         break;
     case 2:
-        sub_02050A38(param0, &Unk_020F1B98, v2->unk_00);
+        FieldTask_RunApplication(param0, &Unk_020F1B98, v2->unk_00);
         v2->unk_04++;
         break;
     case 3:
@@ -205,7 +205,7 @@ static BOOL sub_0207DA28(FieldTask *param0)
         v2->unk_04++;
         break;
     case 13:
-        if (!sub_020509B4(fieldSystem)) {
+        if (!FieldSystem_IsRunningApplication(fieldSystem)) {
             v2->unk_04 = sub_0207DE40(v2);
         }
         break;
@@ -214,7 +214,7 @@ static BOOL sub_0207DA28(FieldTask *param0)
         v2->unk_04++;
         break;
     case 15:
-        if (!sub_020509B4(fieldSystem)) {
+        if (!FieldSystem_IsRunningApplication(fieldSystem)) {
             Heap_FreeToHeap(v2->unk_10);
             v2->unk_04 = 2;
         }
@@ -225,7 +225,7 @@ static BOOL sub_0207DA28(FieldTask *param0)
         v2->unk_04++;
         break;
     case 17:
-        if (!sub_020509B4(fieldSystem)) {
+        if (!FieldSystem_IsRunningApplication(fieldSystem)) {
             Heap_FreeToHeap(v2->unk_10);
             v2->unk_04 = 2;
         }
@@ -235,7 +235,7 @@ static BOOL sub_0207DA28(FieldTask *param0)
         v2->unk_04++;
         break;
     case 19:
-        if (!sub_020509B4(fieldSystem)) {
+        if (!FieldSystem_IsRunningApplication(fieldSystem)) {
             v2->unk_04 = sub_0207DE40(v2);
         }
         break;
@@ -245,7 +245,7 @@ static BOOL sub_0207DA28(FieldTask *param0)
         v2->unk_04++;
         break;
     case 21:
-        if (!sub_020509B4(fieldSystem)) {
+        if (!FieldSystem_IsRunningApplication(fieldSystem)) {
             v2->unk_04 = 2;
             sub_0207DED8(v2->unk_10);
         }
@@ -255,7 +255,7 @@ static BOOL sub_0207DA28(FieldTask *param0)
         v2->unk_04++;
         break;
     case 23:
-        if (!sub_020509B4(fieldSystem)) {
+        if (!FieldSystem_IsRunningApplication(fieldSystem)) {
             v2->unk_04 = sub_0207DE40(v2);
         }
         break;
@@ -265,7 +265,7 @@ static BOOL sub_0207DA28(FieldTask *param0)
         v2->unk_04++;
         break;
     case 25:
-        if (!sub_020509B4(fieldSystem)) {
+        if (!FieldSystem_IsRunningApplication(fieldSystem)) {
             v2->unk_04 = 2;
             sub_0207DF2C(v2->unk_10);
         }
@@ -275,7 +275,7 @@ static BOOL sub_0207DA28(FieldTask *param0)
         v2->unk_04++;
         break;
     case 27:
-        if (!sub_020509B4(fieldSystem)) {
+        if (!FieldSystem_IsRunningApplication(fieldSystem)) {
             v2->unk_04 = sub_0207DE40(v2);
         }
         break;
@@ -285,7 +285,7 @@ static BOOL sub_0207DA28(FieldTask *param0)
         v2->unk_04++;
         break;
     case 29:
-        if (!sub_020509B4(fieldSystem)) {
+        if (!FieldSystem_IsRunningApplication(fieldSystem)) {
             v2->unk_04 = 2;
             sub_0207DF88(v2->unk_10);
         }
@@ -312,7 +312,7 @@ void sub_0207DDC0(FieldTask *param0)
     UnkStruct_0207DE40 *v0 = sub_0207DD94();
 
     v0->unk_00->unk_04 = 2;
-    FieldTask_Start(param0, sub_0207DA28, v0);
+    FieldTask_InitCall(param0, sub_0207DA28, v0);
 }
 
 void sub_0207DDE0(FieldTask *param0, u16 *param1)
@@ -322,7 +322,7 @@ void sub_0207DDE0(FieldTask *param0, u16 *param1)
     v0->unk_00->unk_04 = 1;
     v0->unk_08 = param1;
 
-    FieldTask_Start(param0, sub_0207DA28, v0);
+    FieldTask_InitCall(param0, sub_0207DA28, v0);
 }
 
 static void sub_0207DE04(UnkStruct_0207DE40 *param0, FieldSystem *fieldSystem, u32 param2, u32 param3)

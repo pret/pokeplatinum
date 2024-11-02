@@ -185,7 +185,7 @@ static BOOL sub_0205A258(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem)
 {
     int v0;
 
-    if (sub_020509B4(fieldSystem)) {
+    if (FieldSystem_IsRunningApplication(fieldSystem)) {
         return 0;
     }
 
@@ -214,7 +214,7 @@ static BOOL sub_0205A2B0(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem)
 {
     PokemonSummary *v0;
 
-    if (sub_020509B4(fieldSystem)) {
+    if (FieldSystem_IsRunningApplication(fieldSystem)) {
         return 0;
     }
 
@@ -227,7 +227,7 @@ static BOOL sub_0205A2B0(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem)
 
 static BOOL sub_0205A2DC(UnkStruct_0205A0D8 *param0)
 {
-    if (sub_020509DC(param0->fieldSystem)) {
+    if (FieldSystem_IsRunningFieldMap(param0->fieldSystem)) {
         ov5_021D1744(1);
         CommPlayerMan_Restart();
         return 1;
@@ -253,8 +253,8 @@ static BOOL sub_0205A2FC(void)
 
 static BOOL sub_0205A324(FieldTask *param0)
 {
-    UnkStruct_0205A0D8 *v0 = TaskManager_Environment(param0);
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+    UnkStruct_0205A0D8 *v0 = FieldTask_GetEnv(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
 
     switch (v0->unk_34) {
     case 0:
@@ -385,7 +385,7 @@ static BOOL sub_0205A324(FieldTask *param0)
         }
         break;
     case 19:
-        sub_020509D4(v0->fieldSystem);
+        FieldSystem_StartFieldMap(v0->fieldSystem);
 
         if (v0->unk_88 != 3) {
             v0->unk_43 = 5;
@@ -403,7 +403,7 @@ static BOOL sub_0205A324(FieldTask *param0)
         }
         break;
     case 20:
-        sub_020509D4(v0->fieldSystem);
+        FieldSystem_StartFieldMap(v0->fieldSystem);
 
         if (v0->unk_88 != 3) {
             v0->unk_34 = 22;
@@ -557,7 +557,7 @@ static BOOL sub_0205A324(FieldTask *param0)
         break;
     case 34:
         if (sub_0205A2B0(v0, v0->fieldSystem)) {
-            sub_020509D4(v0->fieldSystem);
+            FieldSystem_StartFieldMap(v0->fieldSystem);
             v0->unk_34 = 35;
         }
         break;
@@ -709,7 +709,7 @@ void sub_0205AB10(FieldSystem *fieldSystem, UnkFuncPtr_0205AB10 *param1)
         break;
     }
 
-    FieldTask_Set(fieldSystem, sub_0205A324, v0);
+    FieldSystem_CreateTask(fieldSystem, sub_0205A324, v0);
 }
 
 static void sub_0205AC28(UnkStruct_0205A0D8 *param0)
@@ -737,7 +737,7 @@ static void sub_0205AC28(UnkStruct_0205A0D8 *param0)
 
 static UnkStruct_0205A0D8 *sub_0205AC74(FieldSystem *fieldSystem)
 {
-    return TaskManager_Environment(fieldSystem->taskManager);
+    return FieldTask_GetEnv(fieldSystem->taskManager);
 }
 
 static void sub_0205AC80(UnkStruct_0205A0D8 *param0, BOOL param1)
@@ -1005,8 +1005,8 @@ void sub_0205B110(int param0, int param1, void *param2, void *param3)
 
 static BOOL sub_0205B140(FieldTask *param0)
 {
-    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_0205B2D4 *v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_0205B2D4 *v1 = FieldTask_GetEnv(param0);
     TrainerCard *v2 = (TrainerCard *)sub_02059EBC(v1->unk_24, NULL, 0);
 
     switch (v1->unk_28) {
@@ -1049,16 +1049,16 @@ static BOOL sub_0205B140(FieldTask *param0)
         v1->unk_28++;
         break;
     case 4:
-        if (!sub_020509B4(fieldSystem)) {
+        if (!FieldSystem_IsRunningApplication(fieldSystem)) {
             v1->unk_28++;
         }
         break;
     case 5:
-        sub_020509D4(fieldSystem);
+        FieldSystem_StartFieldMap(fieldSystem);
         v1->unk_28++;
         break;
     case 6:
-        if (!sub_020509DC(fieldSystem)) {
+        if (!FieldSystem_IsRunningFieldMap(fieldSystem)) {
             ov5_021D1744(1);
             CommPlayerMan_Restart();
             v1->unk_28++;
@@ -1093,7 +1093,7 @@ void sub_0205B2D4(FieldSystem *fieldSystem)
             v4->unk_24 = v0;
             v4->unk_28 = 0;
 
-            FieldTask_Set(fieldSystem, sub_0205B140, v4);
+            FieldSystem_CreateTask(fieldSystem, sub_0205B140, v4);
             FieldSystem_PauseProcessing();
             break;
         }
