@@ -3,17 +3,16 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system.h"
 
+#include "field_task.h"
 #include "heap.h"
 #include "map_object.h"
 #include "player_avatar.h"
 #include "unk_02005474.h"
-#include "unk_020508D4.h"
 #include "unk_0205DAC8.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
@@ -28,7 +27,7 @@ typedef struct {
 } UnkStruct_ov5_021E11B0;
 
 static void ov5_021E11B0(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param2);
-static BOOL ov5_021E120C(TaskManager *param0);
+static BOOL ov5_021E120C(FieldTask *param0);
 static void *ov5_021E132C(int param0);
 static void ov5_021E1350(void *param0);
 
@@ -82,7 +81,7 @@ static int ov5_021E11E0(int param0)
     return 0;
 }
 
-static BOOL ov5_021E120C(TaskManager *param0)
+static BOOL ov5_021E120C(FieldTask *param0)
 {
     UnkStruct_ov5_021E11B0 *v0 = TaskManager_Environment(param0);
     MapObject *v1 = Player_MapObject(v0->playerAvatar);

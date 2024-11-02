@@ -1,8 +1,6 @@
 #ifndef POKEPLATINUM_OV6_0223E140_H
 #define POKEPLATINUM_OV6_0223E140_H
 
-#include "struct_decls/struct_020508D4_decl.h"
-
 #include "field/field_system_decl.h"
 #include "overlay005/struct_ov5_021D1BEC_decl.h"
 #include "overlay006/struct_ov6_0223FDE4_decl.h"
@@ -14,9 +12,10 @@
 #include "overlay006/struct_ov6_02240C44_decl.h"
 
 #include "camera.h"
+#include "field_task.h"
 
-void ov6_0223E384(TaskManager *param0);
-void ov6_0223E4EC(TaskManager *param0);
+void ov6_0223E384(FieldTask *param0);
+void ov6_0223E4EC(FieldTask *param0);
 UnkStruct_ov5_021D1BEC *ov6_0223E6EC(FieldSystem *fieldSystem);
 void ov6_0223E700(UnkStruct_ov5_021D1BEC *param0);
 BOOL ov6_0223E708(UnkStruct_ov5_021D1BEC *param0);

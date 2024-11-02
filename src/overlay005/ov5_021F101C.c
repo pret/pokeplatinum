@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/struct_020711C8.h"
 
 #include "field/field_system.h"
@@ -11,17 +10,17 @@
 #include "overlay005/struct_ov5_021F0468_decl.h"
 #include "overlay006/ov6_02243258.h"
 
+#include "field_task.h"
 #include "heap.h"
 #include "player_avatar.h"
 #include "sys_task_manager.h"
-#include "unk_020508D4.h"
 
 typedef struct {
     SysTask *unk_00;
     UnkStruct_ov5_021F0468 *unk_04;
 } UnkStruct_ov5_021F101C;
 
-BOOL ov5_021F101C(TaskManager *param0)
+BOOL ov5_021F101C(FieldTask *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_020711C8 *v1 = TaskManager_Environment(param0);

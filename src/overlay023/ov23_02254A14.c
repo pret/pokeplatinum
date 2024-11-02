@@ -5,7 +5,6 @@
 
 #include "struct_decls/struct_02029894_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
-#include "struct_decls/struct_020508D4_decl.h"
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
@@ -24,13 +23,13 @@
 
 #include "core_sys.h"
 #include "easy3d.h"
+#include "field_task.h"
 #include "heap.h"
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_0202854C.h"
-#include "unk_020508D4.h"
 #include "unk_020573FC.h"
 
 typedef struct {
@@ -113,12 +112,12 @@ typedef struct {
     u8 unk_522;
 } UnkStruct_ov23_02256098;
 
-static BOOL ov23_02254C84(TaskManager *param0);
-static BOOL ov23_02254AD4(TaskManager *param0);
-static BOOL ov23_02254DF8(TaskManager *param0);
-static BOOL ov23_02255100(TaskManager *param0);
-static BOOL ov23_02255580(TaskManager *param0);
-static BOOL ov23_02255850(TaskManager *param0);
+static BOOL ov23_02254C84(FieldTask *param0);
+static BOOL ov23_02254AD4(FieldTask *param0);
+static BOOL ov23_02254DF8(FieldTask *param0);
+static BOOL ov23_02255100(FieldTask *param0);
+static BOOL ov23_02255580(FieldTask *param0);
+static BOOL ov23_02255850(FieldTask *param0);
 static void ov23_02254A14(FieldSystem *fieldSystem, const int param1, UnkStruct_ov23_02256098 *param2);
 static void ov23_02254A94(FieldSystem *fieldSystem, const int param1);
 static void ov23_02254AA4(const int param0, UnkStruct_ov23_02256098 *param1);
@@ -205,7 +204,7 @@ static void ov23_02254AA4(const int param0, UnkStruct_ov23_02256098 *param1)
     param1->unk_3C = (*v0);
 }
 
-static BOOL ov23_02254AD4(TaskManager *param0)
+static BOOL ov23_02254AD4(FieldTask *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_ov23_02256098 *v1 = TaskManager_Environment(param0);
@@ -274,7 +273,7 @@ static BOOL ov23_02254AD4(TaskManager *param0)
     return 0;
 }
 
-static BOOL ov23_02254C84(TaskManager *param0)
+static BOOL ov23_02254C84(FieldTask *param0)
 {
     BOOL v0;
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
@@ -335,7 +334,7 @@ static BOOL ov23_02254C84(TaskManager *param0)
     return 0;
 }
 
-void ov23_02254D98(FieldSystem *fieldSystem, TaskManager *param1)
+void ov23_02254D98(FieldSystem *fieldSystem, FieldTask *param1)
 {
     UnkStruct_ov23_02256098 *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov23_02256098));
 
@@ -349,7 +348,7 @@ void ov23_02254D98(FieldSystem *fieldSystem, TaskManager *param1)
     FieldTask_Start(param1, ov23_02254AD4, v0);
 }
 
-static BOOL ov23_02254DF8(TaskManager *param0)
+static BOOL ov23_02254DF8(FieldTask *param0)
 {
     fx32 v0, v1;
     UnkStruct_ov5_021E1890 *v2;
@@ -526,7 +525,7 @@ static BOOL ov23_02254DF8(TaskManager *param0)
     return 0;
 }
 
-static BOOL ov23_02255100(TaskManager *param0)
+static BOOL ov23_02255100(FieldTask *param0)
 {
     BOOL v0;
     UnkStruct_ov23_02255C30 v1;
@@ -763,7 +762,7 @@ static BOOL ov23_02255100(TaskManager *param0)
     return 0;
 }
 
-static BOOL ov23_02255580(TaskManager *param0)
+static BOOL ov23_02255580(FieldTask *param0)
 {
     BOOL v0;
     UnkStruct_ov23_02255C30 v1;
@@ -916,7 +915,7 @@ static BOOL ov23_02255580(TaskManager *param0)
     return 0;
 }
 
-static BOOL ov23_02255850(TaskManager *param0)
+static BOOL ov23_02255850(FieldTask *param0)
 {
     fx32 v0, v1;
     UnkStruct_ov5_021E1890 *v2;

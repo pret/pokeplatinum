@@ -6,7 +6,6 @@
 #include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_02027860_decl.h"
 #include "struct_decls/struct_02039E30_decl.h"
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -43,6 +42,7 @@
 #include "camera.h"
 #include "cell_actor.h"
 #include "field_system.h"
+#include "field_task.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "map_header_data.h"
@@ -65,7 +65,6 @@
 #include "unk_02020AEC.h"
 #include "unk_02027F50.h"
 #include "unk_02039C80.h"
-#include "unk_020508D4.h"
 #include "unk_0205DAC8.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
@@ -526,7 +525,7 @@ typedef struct {
     u8 unk_0C[160];
 } UnkFuncPtr_ov9_0224E33C;
 
-typedef int (*UnkFuncPtr_ov9_02253BE4)(UnkStruct_ov9_02249B04 *, TaskManager *, u16 *, const void *);
+typedef int (*UnkFuncPtr_ov9_02253BE4)(UnkStruct_ov9_02249B04 *, FieldTask *, u16 *, const void *);
 
 typedef struct {
     s16 unk_00;
@@ -724,7 +723,7 @@ typedef struct {
 struct UnkStruct_ov9_0224F6EC_t {
     UnkStruct_ov9_02249B04 *unk_00;
     FieldSystem *fieldSystem;
-    TaskManager *unk_08;
+    FieldTask *unk_08;
     MapObject *unk_0C;
     u16 unk_10;
     u16 unk_12;
@@ -917,7 +916,7 @@ static void ov9_0224A8C0(UnkStruct_ov9_02249B04 *param0);
 static void ov9_0224A9E8(UnkStruct_ov9_02249B04 *param0);
 static BOOL ov9_0224AA00(UnkStruct_ov9_02249B04 *param0, int param1, int param2, int param3, int param4);
 static void ov9_0224AA34(UnkStruct_ov9_02249B04 *param0, const UnkStruct_ov9_0224AA00 *param1);
-static BOOL ov9_0224AAD4(TaskManager *param0);
+static BOOL ov9_0224AAD4(FieldTask *param0);
 static BOOL ov9_0224AC58(UnkStruct_ov9_0224AC58 *param0, MapObject *param1);
 static void ov9_0224ADC0(UnkStruct_ov9_02249B04 *param0);
 static void ov9_0224AED8(UnkStruct_ov9_02249B04 *param0);
@@ -1032,7 +1031,7 @@ static void ov9_0224CC50(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224E0DC 
 static BOOL ov9_0224CC7C(UnkStruct_ov9_02249B04 *param0);
 static BOOL ov9_0224D040(UnkStruct_ov9_02249B04 *param0, int param1, int param2, int param3);
 static void ov9_0224D078(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224E0DC *param1);
-static BOOL ov9_0224D098(TaskManager *param0);
+static BOOL ov9_0224D098(FieldTask *param0);
 static const UnkStruct_ov9_022530A4 *ov9_0224D720(int param0);
 static void ov9_0224D744(UnkStruct_ov9_02249B04 *param0);
 static void ov9_0224D780(UnkStruct_ov9_02249B04 *param0, u32 param1);
@@ -1084,11 +1083,11 @@ static void ov9_0224E34C(UnkStruct_ov9_02249B04 *param0);
 static void ov9_0224E350(UnkStruct_ov9_02249B04 *param0, const UnkStruct_ov9_02251438 *param1);
 static void *ov9_0224E37C(UnkStruct_ov9_02249B04 *param0, u32 param1);
 static void *ov9_0224E39C(UnkStruct_ov9_02249B04 *param0);
-static BOOL ov9_0224E3A0(UnkStruct_ov9_02249B04 *param0, TaskManager *param1);
+static BOOL ov9_0224E3A0(UnkStruct_ov9_02249B04 *param0, FieldTask *param1);
 static BOOL ov9_0224E434(UnkStruct_ov9_02249B04 *param0, int param1, int param2, int param3);
 static void ov9_0224E498(UnkStruct_ov9_02249B04 *param0, const UnkStruct_ov9_02251438 *param1);
 static void ov9_0224E4B0(UnkStruct_ov9_02249B04 *param0, const UnkStruct_ov9_02252044 *param1);
-static BOOL ov9_0224E4BC(TaskManager *param0);
+static BOOL ov9_0224E4BC(FieldTask *param0);
 static void ov9_0224E8B4(UnkStruct_ov9_02249B04 *param0);
 static void ov9_0224E8EC(UnkStruct_ov9_02249B04 *param0);
 static void ov9_0224E91C(UnkStruct_ov9_02249B04 *param0, const UnkStruct_ov9_02252414 *param1);
@@ -2346,7 +2345,7 @@ static void ov9_0224AA34(UnkStruct_ov9_02249B04 *param0, const UnkStruct_ov9_022
     FieldTask_Set(param0->fieldSystem, ov9_0224AAD4, param0);
 }
 
-static BOOL ov9_0224AAD4(TaskManager *param0)
+static BOOL ov9_0224AAD4(FieldTask *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_ov9_02249B04 *v1 = TaskManager_Environment(param0);
@@ -4912,7 +4911,7 @@ static void ov9_0224D078(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224E0DC 
     FieldTask_Set(param0->fieldSystem, ov9_0224D098, param0);
 }
 
-static BOOL ov9_0224D098(TaskManager *param0)
+static BOOL ov9_0224D098(FieldTask *param0)
 {
     int v0;
     UnkStruct_ov9_02249B04 *v1 = TaskManager_Environment(param0);
@@ -6197,7 +6196,7 @@ static void *ov9_0224E39C(UnkStruct_ov9_02249B04 *param0)
     return v0;
 }
 
-static BOOL ov9_0224E3A0(UnkStruct_ov9_02249B04 *param0, TaskManager *param1)
+static BOOL ov9_0224E3A0(UnkStruct_ov9_02249B04 *param0, FieldTask *param1)
 {
     int v0;
     int v1;
@@ -6284,7 +6283,7 @@ static void ov9_0224E4B0(UnkStruct_ov9_02249B04 *param0, const UnkStruct_ov9_022
     ov9_0224E498(param0, param1->unk_0C);
 }
 
-static BOOL ov9_0224E4BC(TaskManager *param0)
+static BOOL ov9_0224E4BC(FieldTask *param0)
 {
     UnkStruct_ov9_02249B04 *v0 = TaskManager_Environment(param0);
 
@@ -6295,7 +6294,7 @@ static BOOL ov9_0224E4BC(TaskManager *param0)
     return 0;
 }
 
-static int ov9_0224E4D8(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_0224E4D8(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     UnkStruct_ov9_0224E4D8 *v0 = ov9_0224E37C(param0, sizeof(UnkStruct_ov9_0224E4D8));
 
@@ -6303,7 +6302,7 @@ static int ov9_0224E4D8(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16
     return 1;
 }
 
-static int ov9_0224E4E8(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_0224E4E8(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     MapObject *v0;
     const UnkStruct_ov9_0224E4E8 *v1 = param3;
@@ -6320,7 +6319,7 @@ static int ov9_0224E4E8(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16
     return 0;
 }
 
-static int ov9_0224E520(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_0224E520(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     MapObject *v0;
     const UnkStruct_ov9_0224E4E8 *v1 = param3;
@@ -6342,7 +6341,7 @@ static const UnkFuncPtr_ov9_02253BE4 Unk_ov9_02251360[3] = {
     ov9_0224E520
 };
 
-static int ov9_0224E550(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_0224E550(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     const UnkStruct_ov9_0224E550 *v0 = param3;
     UnkStruct_ov9_0224E5EC *v1 = ov9_0224E37C(param0, sizeof(UnkStruct_ov9_0224E5EC));
@@ -6379,7 +6378,7 @@ static int ov9_0224E550(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16
     return 0;
 }
 
-static int ov9_0224E5EC(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_0224E5EC(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     MapObject *v0 = NULL;
     const UnkStruct_ov9_0224E550 *v1 = param3;
@@ -6437,7 +6436,7 @@ static int ov9_0224E5EC(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16
     return 0;
 }
 
-static int ov9_0224E6B0(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_0224E6B0(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     VecFx32 v0 = { 0, 0, 0 };
     const UnkStruct_ov9_0224E550 *v1 = param3;
@@ -6491,7 +6490,7 @@ static int ov9_0224E6B0(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16
     return 0;
 }
 
-static int ov9_0224E798(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_0224E798(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     const UnkStruct_ov9_0224E550 *v0 = param3;
 
@@ -6535,7 +6534,7 @@ static const UnkFuncPtr_ov9_02253BE4 Unk_ov9_022513E8[4] = {
     ov9_0224E798
 };
 
-static int ov9_0224E860(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_0224E860(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     const UnkStruct_ov9_0224E860 *v0 = param3;
 
@@ -6547,7 +6546,7 @@ static const UnkFuncPtr_ov9_02253BE4 Unk_ov9_02251258[1] = {
     ov9_0224E860
 };
 
-static int ov9_0224E870(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_0224E870(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     const UnkStruct_ov9_0224E870 *v0 = param3;
 
@@ -7406,7 +7405,7 @@ BOOL ov9_0224F2B0(const MapObject *param0)
     return ov9_0224F284(param0, &v0);
 }
 
-UnkStruct_ov9_0224F6EC *ov9_0224F2BC(FieldSystem *fieldSystem, TaskManager *param1, MapObject *param2)
+UnkStruct_ov9_0224F6EC *ov9_0224F2BC(FieldSystem *fieldSystem, FieldTask *param1, MapObject *param2)
 {
     UnkStruct_ov9_0224F6EC *v0;
 
@@ -8025,7 +8024,7 @@ static void ov9_0224FA94(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224FA94 
     }
 }
 
-static int ov9_0224FB3C(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_0224FB3C(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     VecFx32 v0;
     UnkStruct_ov9_0224F930 *v1;
@@ -8088,7 +8087,7 @@ static int ov9_0224FB3C(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16
     return 0;
 }
 
-static int ov9_0224FC2C(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_0224FC2C(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     MapObject *v0 = Player_MapObject(param0->fieldSystem->playerAvatar);
     UnkStruct_ov9_0224FA94 *v1 = ov9_0224E39C(param0);
@@ -8159,7 +8158,7 @@ static int ov9_0224FC2C(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16
     return 0;
 }
 
-static int ov9_0224FD74(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_0224FD74(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     int v0;
     UnkStruct_ov101_021D5D90 *v1 = sub_0205EC04(param0->fieldSystem->playerAvatar);
@@ -8235,7 +8234,7 @@ static int ov9_0224FD74(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16
     return 0;
 }
 
-static int ov9_0224FEDC(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_0224FEDC(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     int v0;
     UnkStruct_ov101_021D5D90 *v1 = sub_0205EC04(param0->fieldSystem->playerAvatar);
@@ -8322,7 +8321,7 @@ static int ov9_0224FEDC(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16
     return 0;
 }
 
-static int ov9_022500E0(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_022500E0(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     u32 v0[2] = { 0xa, 0x6 };
     UnkStruct_ov9_0224FA94 *v1 = ov9_0224E39C(param0);
@@ -8369,7 +8368,7 @@ static void ov9_02250138(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_02250138 
     }
 }
 
-static int ov9_02250170(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_02250170(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     VecFx32 v0;
     UnkStruct_ov9_0224F930 *v1;
@@ -8432,7 +8431,7 @@ static int ov9_02250170(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16
     return 0;
 }
 
-static int ov9_02250260(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_02250260(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     MapObject *v0 = Player_MapObject(param0->fieldSystem->playerAvatar);
     UnkStruct_ov9_02250138 *v1 = ov9_0224E39C(param0);
@@ -8500,7 +8499,7 @@ static int ov9_02250260(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16
     return 0;
 }
 
-static int ov9_02250388(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_02250388(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     int v0;
     UnkStruct_ov101_021D5D90 *v1 = sub_0205EC04(param0->fieldSystem->playerAvatar);
@@ -8553,7 +8552,7 @@ static int ov9_02250388(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16
     return 0;
 }
 
-static int ov9_02250468(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_02250468(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     int v0;
     UnkStruct_ov101_021D5D90 *v1 = sub_0205EC04(param0->fieldSystem->playerAvatar);
@@ -8635,7 +8634,7 @@ static int ov9_02250468(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16
     return 0;
 }
 
-static int ov9_02250650(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_02250650(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     u32 v0[3] = { 0x97, 0x93, 0x73 };
     UnkStruct_ov9_02250138 *v1 = ov9_0224E39C(param0);
@@ -8662,7 +8661,7 @@ static const UnkFuncPtr_ov9_02253BE4 Unk_ov9_0225151C[5] = {
     ov9_02250650
 };
 
-static int ov9_022506AC(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_022506AC(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     const UnkStruct_ov9_022506AC *v0 = param3;
 
@@ -8671,7 +8670,7 @@ static int ov9_022506AC(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16
     return 0;
 }
 
-static int ov9_022506CC(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_022506CC(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     return 2;
 }
@@ -8681,7 +8680,7 @@ static const UnkFuncPtr_ov9_02253BE4 Unk_ov9_022512C0[2] = {
     ov9_022506CC
 };
 
-static int ov9_022506D0(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_022506D0(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     const UnkStruct_ov9_022506D0 *v0 = param3;
     VarsFlags *v1 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
@@ -8694,7 +8693,7 @@ static const UnkFuncPtr_ov9_02253BE4 Unk_ov9_02251238[1] = {
     ov9_022506D0
 };
 
-static int ov9_022506EC(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_022506EC(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     const UnkStruct_ov9_022506EC *v0 = param3;
     VarsFlags *v1 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
@@ -8707,7 +8706,7 @@ static const UnkFuncPtr_ov9_02253BE4 Unk_ov9_0225121C[1] = {
     ov9_022506EC
 };
 
-static int ov9_02250704(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_02250704(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     const UnkStruct_ov9_02250704 *v0 = param3;
 
@@ -8719,7 +8718,7 @@ static const UnkFuncPtr_ov9_02253BE4 Unk_ov9_02251270[1] = {
     ov9_02250704
 };
 
-static int ov9_02250710(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_02250710(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     const UnkStruct_ov9_02250704 *v0 = param3;
 
@@ -8731,7 +8730,7 @@ static const UnkFuncPtr_ov9_02253BE4 Unk_ov9_02251254[1] = {
     ov9_02250710
 };
 
-static int ov9_0225071C(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_0225071C(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     const UnkStruct_ov9_02252414 *v0 = param3;
 
@@ -8740,7 +8739,7 @@ static int ov9_0225071C(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16
     return 0;
 }
 
-static int ov9_02250730(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_02250730(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     if (ov9_0224E964(param0) == 1) {
         ov9_0224E988(param0);
@@ -8799,7 +8798,7 @@ void ov9_02250780(FieldSystem *fieldSystem)
     }
 }
 
-static int ov9_022507C4(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_022507C4(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     UnkStruct_ov9_0225074C *v0;
 
@@ -8813,7 +8812,7 @@ static int ov9_022507C4(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16
     return 0;
 }
 
-static int ov9_022507FC(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_022507FC(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     UnkStruct_020216E0 *v0;
     UnkStruct_ov9_0225074C *v1;
@@ -8838,7 +8837,7 @@ static int ov9_022507FC(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16
     return 0;
 }
 
-static int ov9_02250854(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_02250854(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     UnkStruct_ov9_0225074C *v0;
 
@@ -8866,7 +8865,7 @@ static int ov9_02250854(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16
     return 0;
 }
 
-static int ov9_022508C0(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_022508C0(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     UnkStruct_020216E0 *v0;
     NNSG3dResMdl *v1;
@@ -8887,7 +8886,7 @@ static int ov9_022508C0(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16
     return 0;
 }
 
-static int ov9_022508F4(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_022508F4(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     UnkStruct_ov9_0225074C *v0;
 
@@ -8910,7 +8909,7 @@ static const UnkFuncPtr_ov9_02253BE4 Unk_ov9_02251490[5] = {
     ov9_022508F4
 };
 
-static int ov9_02250918(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_02250918(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     UnkStruct_ov9_02250918 *v0;
 
@@ -8924,7 +8923,7 @@ static int ov9_02250918(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16
     return 0;
 }
 
-static int ov9_0225094C(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_0225094C(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     UnkStruct_ov9_02250918 *v0;
     fx32 v1 = (FX32_ONE * 2);
@@ -8945,7 +8944,7 @@ static int ov9_0225094C(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16
     return 0;
 }
 
-static int ov9_02250994(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_02250994(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     UnkStruct_ov9_02250918 *v0;
 
@@ -8961,7 +8960,7 @@ static int ov9_02250994(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16
     return 0;
 }
 
-static int ov9_022509D4(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_022509D4(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     UnkStruct_ov9_02250918 *v0;
     fx32 v1[8] = { 0x0, 0x800, 0x1000, 0x2000, 0x4000, 0x6000, 0x7000, 0x8000 };
@@ -8988,7 +8987,7 @@ static int ov9_022509D4(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16
     return 0;
 }
 
-static int ov9_02250A58(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_02250A58(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     UnkStruct_ov9_02250918 *v0;
 
@@ -9004,7 +9003,7 @@ static int ov9_02250A58(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16
     return 0;
 }
 
-static int ov9_02250A90(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_02250A90(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     UnkStruct_ov9_02250918 *v0;
 
@@ -9047,7 +9046,7 @@ static const MapObjectAnimCmd Unk_ov9_02251E74[] = {
     { 0xfe, 0x0 }
 };
 
-static int ov9_02250AFC(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_02250AFC(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     UnkStruct_ov9_02250AFC *v0;
 
@@ -9060,7 +9059,7 @@ static int ov9_02250AFC(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16
     return 0;
 }
 
-static int ov9_02250B30(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_02250B30(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     UnkStruct_ov9_02250AFC *v0;
     fx32 v1 = (FX32_ONE * 2);
@@ -9083,7 +9082,7 @@ static int ov9_02250B30(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16
     return 0;
 }
 
-static int ov9_02250B84(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_02250B84(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     UnkStruct_ov9_02250AFC *v0;
 
@@ -9098,7 +9097,7 @@ static int ov9_02250B84(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16
     return 0;
 }
 
-static int ov9_02250BAC(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_02250BAC(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     UnkStruct_ov9_02250AFC *v0;
 
@@ -9218,7 +9217,7 @@ static const MapObjectAnimCmd Unk_ov9_02252E64[] = {
     { 0xfe, 0x0 }
 };
 
-static int ov9_02250C14(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_02250C14(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     UnkStruct_ov9_02250C14 *v0;
 
@@ -9230,7 +9229,7 @@ static int ov9_02250C14(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16
     return 0;
 }
 
-static int ov9_02250C48(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_02250C48(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     UnkStruct_ov9_02250C14 *v0;
     fx32 v1 = (FX32_ONE * 2);
@@ -9266,7 +9265,7 @@ static int ov9_02250C48(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16
     return 0;
 }
 
-static int ov9_02250CD8(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_02250CD8(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     UnkStruct_ov9_02250C14 *v0;
 
@@ -9282,7 +9281,7 @@ static int ov9_02250CD8(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16
     return 0;
 }
 
-static int ov9_02250D10(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_02250D10(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     UnkStruct_ov9_02250C14 *v0;
 
@@ -9323,7 +9322,7 @@ const UnkStruct_ov9_0224A8A0 Unk_ov9_02251D68 = {
     0x14
 };
 
-static int ov9_02250D78(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_02250D78(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     UnkStruct_ov9_02250D78 *v0;
 
@@ -9338,7 +9337,7 @@ static int ov9_02250D78(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16
     return 1;
 }
 
-static int ov9_02250DA0(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_02250DA0(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     UnkStruct_ov9_02250D78 *v0 = ov9_0224E39C(param0);
 
@@ -9363,7 +9362,7 @@ static const UnkFuncPtr_ov9_02253BE4 Unk_ov9_02251340[2] = {
     ov9_02250DA0
 };
 
-static int ov9_02250DE8(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_02250DE8(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     UnkStruct_ov9_02250DE8 *v0;
 
@@ -9375,7 +9374,7 @@ static int ov9_02250DE8(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16
     return 1;
 }
 
-static int ov9_02250E00(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_02250E00(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     UnkStruct_ov9_02250DE8 *v0 = ov9_0224E39C(param0);
 
@@ -9396,7 +9395,7 @@ static int ov9_02250E00(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16
     return 0;
 }
 
-static int ov9_02250E50(UnkStruct_ov9_02249B04 *param0, TaskManager *param1, u16 *param2, const void *param3)
+static int ov9_02250E50(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     UnkStruct_ov9_02250DE8 *v0 = ov9_0224E39C(param0);
 

@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02055CBC_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
@@ -18,13 +17,13 @@
 #include "berry_patches.h"
 #include "core_sys.h"
 #include "easy3d.h"
+#include "field_task.h"
 #include "heap.h"
 #include "map_object.h"
 #include "player_avatar.h"
 #include "savedata_misc.h"
 #include "sys_task_manager.h"
 #include "unk_0201CED8.h"
-#include "unk_020508D4.h"
 #include "unk_02054D00.h"
 #include "unk_020655F4.h"
 #include "unk_020677F4.h"
@@ -382,7 +381,7 @@ static void sub_0205610C(FieldSystem *fieldSystem, UnkStruct_020562AC *param1, c
     param1->unk_0C = MapObject_StartAnimation(v0, param2);
 }
 
-static BOOL sub_02056124(TaskManager *taskMan)
+static BOOL sub_02056124(FieldTask *taskMan)
 {
     FieldSystem *v0 = TaskManager_FieldSystem(taskMan);
     UnkStruct_020562AC *v1 = TaskManager_Environment(taskMan);

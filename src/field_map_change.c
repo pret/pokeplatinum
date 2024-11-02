@@ -8,12 +8,10 @@
 #include "consts/map.h"
 
 #include "struct_decls/struct_0203A790_decl.h"
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/map_load_mode.h"
 #include "struct_defs/struct_0205EC34.h"
 
 #include "field/field_system.h"
-#include "functypes/funcptr_02050904.h"
 #include "overlay005/ov5_021DD6FC.h"
 #include "overlay005/ov5_021E135C.h"
 #include "overlay005/save_info_window.h"
@@ -29,6 +27,7 @@
 #include "core_sys.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
+#include "field_task.h"
 #include "game_overlay.h"
 #include "heap.h"
 #include "inlines.h"
@@ -59,7 +58,6 @@
 #include "unk_0203A7D8.h"
 #include "unk_0203A944.h"
 #include "unk_0203D1B8.h"
-#include "unk_020508D4.h"
 #include "unk_02054BD0.h"
 #include "unk_02054D00.h"
 #include "unk_020553DC.h"
@@ -134,28 +132,28 @@ typedef struct MapChangeUnionData {
     Location location;
 } MapChangeUnionData;
 
-static BOOL FieldTask_ChangeMap(TaskManager *taskMan);
-static BOOL FieldTask_LoadNewGameSpawn(TaskManager *taskMan);
+static BOOL FieldTask_ChangeMap(FieldTask *taskMan);
+static BOOL FieldTask_LoadNewGameSpawn(FieldTask *taskMan);
 static void FieldMapChange_SetNewLocation(FieldSystem *fieldSystem, const Location *param1);
 static void FieldMapChange_InitTerrainCollisionManager(FieldSystem *fieldSystem);
 static void FieldMapChange_RemoveTerrainCollisionManager(FieldSystem *fieldSystem);
 static void FieldMapChange_CreatePlayerObject(FieldSystem *fieldSystem);
 static void sub_02053374(FieldSystem *fieldSystem);
 static void sub_020534BC(FieldSystem *fieldSystem);
-static BOOL FieldTask_MapChangeFly(TaskManager *taskMan);
-static void FieldTask_FinishFly(TaskManager *taskMan);
-static BOOL FieldTask_FinishFieldMapFly(TaskManager *taskMan);
-static void FieldTask_StartFadeInFly(TaskManager *taskMan);
-static BOOL FieldTask_StartFadeInFlySub(TaskManager *taskMan);
-static void FieldTask_FadeInFly(TaskManager *taskMan);
-static BOOL FieldTask_WaitFadeInFly(TaskManager *taskMan);
-static BOOL FieldTask_MapChangeByDig(TaskManager *taskMan);
-static void FieldTask_StartFinishFieldMapDig(TaskManager *taskMan);
-static BOOL FieldTask_FinishFieldMapDig(TaskManager *taskMan);
-static void FieldTask_StartFadeInDig(TaskManager *taskMan);
-static BOOL FieldTask_FadeInDig(TaskManager *taskMan);
-static void sub_02053E5C(TaskManager *taskMan);
-static BOOL sub_0205444C(TaskManager *taskMan, int param1);
+static BOOL FieldTask_MapChangeFly(FieldTask *taskMan);
+static void FieldTask_FinishFly(FieldTask *taskMan);
+static BOOL FieldTask_FinishFieldMapFly(FieldTask *taskMan);
+static void FieldTask_StartFadeInFly(FieldTask *taskMan);
+static BOOL FieldTask_StartFadeInFlySub(FieldTask *taskMan);
+static void FieldTask_FadeInFly(FieldTask *taskMan);
+static BOOL FieldTask_WaitFadeInFly(FieldTask *taskMan);
+static BOOL FieldTask_MapChangeByDig(FieldTask *taskMan);
+static void FieldTask_StartFinishFieldMapDig(FieldTask *taskMan);
+static BOOL FieldTask_FinishFieldMapDig(FieldTask *taskMan);
+static void FieldTask_StartFadeInDig(FieldTask *taskMan);
+static BOOL FieldTask_FadeInDig(FieldTask *taskMan);
+static void sub_02053E5C(FieldTask *taskMan);
+static BOOL sub_0205444C(FieldTask *taskMan, int param1);
 
 static const MapLoadMode sMapLoadMode[] = {
     { 0x1, 0x0, 0x0, 0x0, 0x0, 0x1, 0x0, 0xC4000 },
@@ -446,7 +444,7 @@ static void FieldSystem_SetLocationToUnionRoomExit(FieldSystem *fieldSystem)
     Location_Set(exit, fieldSystem->location->mapId, -1, 8, 2, 1);
 }
 
-static BOOL FieldTask_LoadNewGameSpawn(TaskManager *taskMan)
+static BOOL FieldTask_LoadNewGameSpawn(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     int *state = FieldTask_GetState(taskMan);
@@ -477,7 +475,7 @@ void FieldSystem_SetLoadNewGameSpawnTask(FieldSystem *fieldSystem)
     FieldTask_Set(fieldSystem, FieldTask_LoadNewGameSpawn, NULL);
 }
 
-static BOOL FieldTask_LoadSavedGameMap(TaskManager *taskMan)
+static BOOL FieldTask_LoadSavedGameMap(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
@@ -540,7 +538,7 @@ void FieldSystem_SetLoadSavedGameMapTask(FieldSystem *fieldSystem)
     FieldTask_Set(fieldSystem, FieldTask_LoadSavedGameMap, NULL);
 }
 
-static BOOL FieldTask_LoadMapFromError(TaskManager *taskMan)
+static BOOL FieldTask_LoadMapFromError(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     MapChangeFromErrorData *errorData = TaskManager_Environment(taskMan);
@@ -611,7 +609,7 @@ void FieldSystem_StartLoadMapFromErrorTask(FieldSystem *fieldSystem)
     FieldTask_Set(fieldSystem, FieldTask_LoadMapFromError, errorData);
 }
 
-static BOOL FieldTask_ChangeMap(TaskManager *taskMan)
+static BOOL FieldTask_ChangeMap(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     MapChangeData *mapChangeData = TaskManager_Environment(taskMan);
@@ -645,7 +643,7 @@ static BOOL FieldTask_ChangeMap(TaskManager *taskMan)
     return FALSE;
 }
 
-void FieldSystem_StartChangeMapTask(TaskManager *taskMan, const Location *nextLocation)
+void FieldSystem_StartChangeMapTask(FieldTask *taskMan, const Location *nextLocation)
 {
     MapChangeData *mapChangeData = Heap_AllocFromHeapAtEnd(11, sizeof(MapChangeData));
 
@@ -655,7 +653,7 @@ void FieldSystem_StartChangeMapTask(TaskManager *taskMan, const Location *nextLo
     FieldTask_Start(taskMan, FieldTask_ChangeMap, mapChangeData);
 }
 
-static BOOL FieldTask_ChangeMapSub(TaskManager *taskMan)
+static BOOL FieldTask_ChangeMapSub(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     MapChangeSubData *mapChangeSub = TaskManager_Environment(taskMan);
@@ -682,7 +680,7 @@ static BOOL FieldTask_ChangeMapSub(TaskManager *taskMan)
     return 0;
 }
 
-void FieldTask_ChangeMapByLocation(TaskManager *taskMan, const Location *nextLocation)
+void FieldTask_ChangeMapByLocation(FieldTask *taskMan, const Location *nextLocation)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     MapChangeSubData *mapChangeSub = Heap_AllocFromHeapAtEnd(11, sizeof(MapChangeSubData));
@@ -698,7 +696,7 @@ void FieldTask_ChangeMapByLocation(TaskManager *taskMan, const Location *nextLoc
     FieldTask_Start(taskMan, FieldTask_ChangeMapSub, mapChangeSub);
 }
 
-void FieldTask_ChangeMapToLocation(TaskManager *taskMan, int param1, int param2, int param3, int param4, int param5)
+void FieldTask_ChangeMapToLocation(FieldTask *taskMan, int param1, int param2, int param3, int param4, int param5)
 {
     Location location;
 
@@ -706,7 +704,7 @@ void FieldTask_ChangeMapToLocation(TaskManager *taskMan, int param1, int param2,
     FieldTask_ChangeMapByLocation(taskMan, &location);
 }
 
-static BOOL FieldTask_ChangeMapFull(TaskManager *taskMan)
+static BOOL FieldTask_ChangeMapFull(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     MapChangeSubData *mapChangeSub = TaskManager_Environment(taskMan);
@@ -739,7 +737,7 @@ static BOOL FieldTask_ChangeMapFull(TaskManager *taskMan)
     return FALSE;
 }
 
-void FieldTask_StartMapChangeFull(TaskManager *taskMan, int mapId, int param2, int x, int z, int dir)
+void FieldTask_StartMapChangeFull(FieldTask *taskMan, int mapId, int param2, int x, int z, int dir)
 {
     MapChangeSubData *mapChangeSub = Heap_AllocFromHeapAtEnd(11, sizeof(MapChangeSubData));
 
@@ -764,7 +762,7 @@ void FieldTask_StartMapChangeFly(FieldSystem *fieldSystem, int param1, int param
     FieldTask_Set(fieldSystem, FieldTask_MapChangeFly, mapChangeData);
 }
 
-void FieldTask_ChangeMapChangeFly(TaskManager *taskMan, int param1, int param2, int param3, int param4, int param5)
+void FieldTask_ChangeMapChangeFly(FieldTask *taskMan, int param1, int param2, int param3, int param4, int param5)
 {
     Location location;
 
@@ -779,7 +777,7 @@ void FieldTask_ChangeMapChangeFly(TaskManager *taskMan, int param1, int param2, 
     FieldTask_Change(taskMan, FieldTask_MapChangeFly, mapChangeData);
 }
 
-static BOOL FieldTask_MapChangeFly(TaskManager *taskMan)
+static BOOL FieldTask_MapChangeFly(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     MapChangeFlyData *mapChangeData = TaskManager_Environment(taskMan);
@@ -814,12 +812,12 @@ static BOOL FieldTask_MapChangeFly(TaskManager *taskMan)
     return 0;
 }
 
-static void FieldTask_FinishFly(TaskManager *taskMan)
+static void FieldTask_FinishFly(FieldTask *taskMan)
 {
     FieldTask_Start(taskMan, FieldTask_FinishFieldMapFly, NULL);
 }
 
-static BOOL FieldTask_FinishFieldMapFly(TaskManager *taskMan)
+static BOOL FieldTask_FinishFieldMapFly(FieldTask *taskMan)
 {
     int *state = FieldTask_GetState(taskMan);
 
@@ -835,13 +833,13 @@ static BOOL FieldTask_FinishFieldMapFly(TaskManager *taskMan)
     return FALSE;
 }
 
-static void FieldTask_StartFadeInFly(TaskManager *taskMan)
+static void FieldTask_StartFadeInFly(FieldTask *taskMan)
 {
     MapChangeFlyData *mapChangeData = TaskManager_Environment(taskMan);
     FieldTask_Start(taskMan, FieldTask_StartFadeInFlySub, mapChangeData);
 }
 
-static BOOL FieldTask_StartFadeInFlySub(TaskManager *taskMan)
+static BOOL FieldTask_StartFadeInFlySub(FieldTask *taskMan)
 {
     int *state = FieldTask_GetState(taskMan);
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
@@ -863,7 +861,7 @@ static BOOL FieldTask_StartFadeInFlySub(TaskManager *taskMan)
     return FALSE;
 }
 
-static void FieldTask_FadeInFly(TaskManager *taskMan)
+static void FieldTask_FadeInFly(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     MapChangeFlyData *mapChangeData = TaskManager_Environment(taskMan);
@@ -877,7 +875,7 @@ static void FieldTask_FadeInFly(TaskManager *taskMan)
     FieldTask_Start(taskMan, FieldTask_WaitFadeInFly, mapChangeData);
 }
 
-static BOOL FieldTask_WaitFadeInFly(TaskManager *taskMan)
+static BOOL FieldTask_WaitFadeInFly(FieldTask *taskMan)
 {
     MapChangeFlyData *mapChangeData = TaskManager_Environment(taskMan);
 
@@ -889,7 +887,7 @@ static BOOL FieldTask_WaitFadeInFly(TaskManager *taskMan)
     return FALSE;
 }
 
-void FieldTask_ChangeMapChangeByDig(TaskManager *taskMan, const Location *location, u32 param2)
+void FieldTask_ChangeMapChangeByDig(FieldTask *taskMan, const Location *location, u32 param2)
 {
     MapChangeDigData *mapChangeData = Heap_AllocFromHeapAtEnd(11, sizeof(MapChangeDigData));
 
@@ -901,7 +899,7 @@ void FieldTask_ChangeMapChangeByDig(TaskManager *taskMan, const Location *locati
     FieldTask_Change(taskMan, FieldTask_MapChangeByDig, mapChangeData);
 }
 
-static BOOL FieldTask_MapChangeByDig(TaskManager *taskMan)
+static BOOL FieldTask_MapChangeByDig(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     MapChangeDigData *mapChangeData = TaskManager_Environment(taskMan);
@@ -944,12 +942,12 @@ static BOOL FieldTask_MapChangeByDig(TaskManager *taskMan)
     return FALSE;
 }
 
-static void FieldTask_StartFinishFieldMapDig(TaskManager *taskMan)
+static void FieldTask_StartFinishFieldMapDig(FieldTask *taskMan)
 {
     FieldTask_Start(taskMan, FieldTask_FinishFieldMapDig, NULL);
 }
 
-static BOOL FieldTask_FinishFieldMapDig(TaskManager *taskMan)
+static BOOL FieldTask_FinishFieldMapDig(FieldTask *taskMan)
 {
     int *state = FieldTask_GetState(taskMan);
 
@@ -965,13 +963,13 @@ static BOOL FieldTask_FinishFieldMapDig(TaskManager *taskMan)
     return FALSE;
 }
 
-static void FieldTask_StartFadeInDig(TaskManager *taskMan)
+static void FieldTask_StartFadeInDig(FieldTask *taskMan)
 {
     MapChangeDigData *mapChangeData = TaskManager_Environment(taskMan);
     FieldTask_Start(taskMan, FieldTask_FadeInDig, mapChangeData);
 }
 
-static BOOL FieldTask_FadeInDig(TaskManager *taskMan)
+static BOOL FieldTask_FadeInDig(FieldTask *taskMan)
 {
     int *state = FieldTask_GetState(taskMan);
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
@@ -994,7 +992,7 @@ static BOOL FieldTask_FadeInDig(TaskManager *taskMan)
     return FALSE;
 }
 
-static void sub_02053E5C(TaskManager *taskMan)
+static void sub_02053E5C(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     MapChangeDigData *mapChangeData = TaskManager_Environment(taskMan);
@@ -1008,7 +1006,7 @@ static void sub_02053E5C(TaskManager *taskMan)
     FieldTask_Start(taskMan, ov6_022472E8, v2);
 }
 
-static BOOL FieldTask_MapChangeWarp(TaskManager *taskMan)
+static BOOL FieldTask_MapChangeWarp(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     MapChangeWarpData *mapChangeWarpData = TaskManager_Environment(taskMan);
@@ -1131,7 +1129,7 @@ void FieldTask_SetUndergroundMapChange(FieldSystem *fieldSystem)
     FieldTask_Set(fieldSystem, FieldMapChange_GetMapChangeUndergroundTask(fieldSystem), mapChangeUndergroundData);
 }
 
-BOOL FieldTask_MapChangeToUnderground(TaskManager *taskMan)
+BOOL FieldTask_MapChangeToUnderground(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     MapChangeUndergroundData *mapChangeUndergroundData = TaskManager_Environment(taskMan);
@@ -1250,7 +1248,7 @@ BOOL FieldTask_MapChangeToUnderground(TaskManager *taskMan)
     return 0;
 }
 
-BOOL FieldTask_MapChangeFromUnderground(TaskManager *taskMan)
+BOOL FieldTask_MapChangeFromUnderground(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     MapChangeUndergroundData *mapChangeUndergroundData = TaskManager_Environment(taskMan);
@@ -1311,7 +1309,7 @@ BOOL FieldTask_MapChangeFromUnderground(TaskManager *taskMan)
     return 0;
 }
 
-FieldTask FieldMapChange_GetMapChangeUndergroundTask(const FieldSystem *fieldSystem)
+FieldTaskFunc FieldMapChange_GetMapChangeUndergroundTask(const FieldSystem *fieldSystem)
 {
     if (fieldSystem->mapLoadType == MAP_LOAD_TYPE_OVERWORLD) {
         return FieldTask_MapChangeToUnderground;
@@ -1323,7 +1321,7 @@ FieldTask FieldMapChange_GetMapChangeUndergroundTask(const FieldSystem *fieldSys
     }
 }
 
-static BOOL sub_0205444C(TaskManager *taskMan, int param1)
+static BOOL sub_0205444C(FieldTask *taskMan, int param1)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     MapChangeUndergroundData *mapChangeUndergroundData = TaskManager_Environment(taskMan);
@@ -1346,7 +1344,7 @@ static BOOL sub_0205444C(TaskManager *taskMan, int param1)
     return ret;
 }
 
-static BOOL sub_02054494(TaskManager *taskMan)
+static BOOL sub_02054494(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     MapChangeSubData *mapChangeSub = TaskManager_Environment(taskMan);
@@ -1370,7 +1368,7 @@ static BOOL sub_02054494(TaskManager *taskMan)
     return 0;
 }
 
-void sub_020544F0(TaskManager *taskMan, const Location *nextLocation)
+void sub_020544F0(FieldTask *taskMan, const Location *nextLocation)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     MapChangeSubData *mapChangeData = Heap_AllocFromHeapAtEnd(11, sizeof(MapChangeSubData));
@@ -1386,7 +1384,7 @@ void sub_020544F0(TaskManager *taskMan, const Location *nextLocation)
     FieldTask_Start(taskMan, sub_02054494, mapChangeData);
 }
 
-static BOOL sub_02054538(TaskManager *taskMan)
+static BOOL sub_02054538(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     MapChangeUnionData *mapChangeData = TaskManager_Environment(taskMan);
@@ -1446,7 +1444,7 @@ void sub_020545EC(FieldSystem *fieldSystem)
     fieldSystem->unk_7C = NULL;
 }
 
-static BOOL sub_02054648(TaskManager *taskMan)
+static BOOL sub_02054648(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     MapChangeUnionData *mapChangeData = TaskManager_Environment(taskMan);
@@ -1494,7 +1492,7 @@ static BOOL sub_02054648(TaskManager *taskMan)
     return FALSE;
 }
 
-void sub_02054708(TaskManager *taskMan)
+void sub_02054708(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     Location *location = FieldOverworldState_GetSpecialLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));
@@ -1512,7 +1510,7 @@ void sub_02054708(TaskManager *taskMan)
     FieldTask_Start(taskMan, sub_02054648, mapChangeData);
 }
 
-static BOOL FieldTask_ChangeMapColosseum(TaskManager *taskMan)
+static BOOL FieldTask_ChangeMapColosseum(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     MapChangeData *mapChangeData = TaskManager_Environment(taskMan);
@@ -1546,7 +1544,7 @@ static BOOL FieldTask_ChangeMapColosseum(TaskManager *taskMan)
     return FALSE;
 }
 
-void sub_02054800(TaskManager *taskMan, int mapId, int param2, int x, int z, int param5)
+void sub_02054800(FieldTask *taskMan, int mapId, int param2, int x, int z, int param5)
 {
     Location nextLocation;
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
@@ -1566,7 +1564,7 @@ void sub_02054800(TaskManager *taskMan, int mapId, int param2, int x, int z, int
     FieldTask_Start(taskMan, FieldTask_ChangeMapColosseum, mapChangeData);
 }
 
-void sub_02054864(TaskManager *taskMan)
+void sub_02054864(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     Location *location = FieldOverworldState_GetSpecialLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));

@@ -1,14 +1,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020508D4_decl.h"
-
 #include "field/field_system_decl.h"
 #include "overlay005/encounter_effect.h"
 
+#include "field_task.h"
 #include "heap.h"
 #include "unk_020041CC.h"
-#include "unk_020508D4.h"
 
 typedef struct {
     int unk_00;
@@ -17,9 +15,9 @@ typedef struct {
     int unk_0C;
 } UnkStruct_0205578C;
 
-void sub_020557DC(TaskManager *param0, int param1, int param2);
+void sub_020557DC(FieldTask *param0, int param1, int param2);
 
-static BOOL sub_0205578C(TaskManager *param0)
+static BOOL sub_0205578C(FieldTask *param0)
 {
     FieldSystem *fieldSystem;
     UnkStruct_0205578C *v1;
@@ -44,7 +42,7 @@ static BOOL sub_0205578C(TaskManager *param0)
     return 0;
 }
 
-void sub_020557DC(TaskManager *param0, int param1, int param2)
+void sub_020557DC(FieldTask *param0, int param1, int param2)
 {
     UnkStruct_0205578C *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0205578C));
 

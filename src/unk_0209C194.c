@@ -13,6 +13,7 @@
 #include "overlay109/ov109_021D3D50.h"
 
 #include "field_system.h"
+#include "field_task.h"
 #include "game_options.h"
 #include "game_records.h"
 #include "heap.h"
@@ -20,7 +21,6 @@
 #include "save_player.h"
 #include "unk_020366A0.h"
 #include "unk_0203D1B8.h"
-#include "unk_020508D4.h"
 #include "unk_0209BDF8.h"
 
 FS_EXTERN_OVERLAY(overlay109);

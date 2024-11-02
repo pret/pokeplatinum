@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_0202B370_decl.h"
-#include "struct_decls/struct_020508D4_decl.h"
 
 #include "field/field_system.h"
 
@@ -13,6 +12,7 @@
 #include "communication_information.h"
 #include "communication_system.h"
 #include "field_system.h"
+#include "field_task.h"
 #include "game_options.h"
 #include "heap.h"
 #include "list_menu.h"
@@ -30,7 +30,6 @@
 #include "unk_0202ACE0.h"
 #include "unk_0203061C.h"
 #include "unk_0203909C.h"
-#include "unk_020508D4.h"
 #include "unk_0205D8CC.h"
 
 typedef struct {
@@ -371,7 +370,7 @@ static BOOL ov5_021EAD38(UnkStruct_ov5_021EAE78 *param0)
     return 0;
 }
 
-static BOOL ov5_021EADB4(TaskManager *param0)
+static BOOL ov5_021EADB4(FieldTask *param0)
 {
     UnkStruct_ov5_021EAE78 *v0 = TaskManager_Environment(param0);
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
@@ -466,7 +465,7 @@ static void ov5_021EAF1C(UnkStruct_ov5_021EAE78 *param0)
 void ov5_021EAF50(FieldSystem *fieldSystem)
 {
     UnkStruct_ov5_021EAE78 *v0;
-    TaskManager *v1 = fieldSystem->taskManager;
+    FieldTask *v1 = fieldSystem->taskManager;
 
     v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov5_021EAE78));
     ov5_021EAEE0(v0);

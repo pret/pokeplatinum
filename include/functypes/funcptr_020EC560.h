@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_FUNCPTR_020EC560_H
 #define POKEPLATINUM_FUNCPTR_020EC560_H
 
-#include "struct_decls/struct_020508D4_decl.h"
+#include "field_task.h"
 
-typedef BOOL (*UnkFuncPtr_020EC560)(TaskManager *);
+typedef BOOL (*UnkFuncPtr_020EC560)(FieldTask *);
 
 #endif // POKEPLATINUM_FUNCPTR_020EC560_H

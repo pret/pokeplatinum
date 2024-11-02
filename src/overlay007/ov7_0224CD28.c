@@ -5,8 +5,6 @@
 
 #include "consts/game_records.h"
 
-#include "struct_decls/struct_020508D4_decl.h"
-
 #include "field/field_system.h"
 #include "overlay005/fieldmap.h"
 #include "overlay005/ov5_021D2F14.h"
@@ -19,6 +17,7 @@
 #include "camera.h"
 #include "cell_actor.h"
 #include "core_sys.h"
+#include "field_task.h"
 #include "font.h"
 #include "game_options.h"
 #include "game_records.h"
@@ -50,7 +49,6 @@
 #include "unk_0202C9F4.h"
 #include "unk_0202D05C.h"
 #include "unk_0203D1B8.h"
-#include "unk_020508D4.h"
 #include "unk_020573FC.h"
 #include "unk_0205D8CC.h"
 #include "unk_0206AFE0.h"
@@ -90,7 +88,7 @@ static u8 ov7_0224E5B0(UnkStruct_ov7_0224D008 *param0);
 static u8 ov7_0224EA2C(UnkStruct_ov7_0224D008 *param0);
 static void ov7_0224EA54(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1);
 static void ov7_0224EC20(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1);
-static void ov7_0224EC38(TaskManager *param0);
+static void ov7_0224EC38(FieldTask *param0);
 static u8 ov7_0224EC9C(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1);
 static void ov7_0224EAD0(UnkStruct_ov7_0224D008 *param0);
 static void ov7_0224EB14(UnkStruct_ov7_0224D008 *param0);
@@ -181,7 +179,7 @@ static UnkStruct_ov7_0224D008 *ov7_0224CD88(void)
     return v0;
 }
 
-void ov7_0224CDA4(TaskManager *param0, FieldSystem *fieldSystem, u16 *param2, u8 param3, BOOL param4)
+void ov7_0224CDA4(FieldTask *param0, FieldSystem *fieldSystem, u16 *param2, u8 param3, BOOL param4)
 {
     UnkStruct_ov7_0224D008 *v0 = ov7_0224CD88();
 
@@ -224,7 +222,7 @@ static u8 ov7_0224CE90(FieldSystem *fieldSystem)
     return 8;
 }
 
-BOOL ov7_0224CEAC(TaskManager *param0)
+BOOL ov7_0224CEAC(FieldTask *param0)
 {
     FieldSystem *fieldSystem;
     UnkStruct_ov7_0224D008 *v1;
@@ -1523,7 +1521,7 @@ static void ov7_0224EC20(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param
     param1->unk_297 = 15;
 }
 
-static void ov7_0224EC38(TaskManager *param0)
+static void ov7_0224EC38(FieldTask *param0)
 {
     FieldSystem *fieldSystem;
     UnkStruct_ov7_0224D008 *v1;

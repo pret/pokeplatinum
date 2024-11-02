@@ -10,7 +10,6 @@
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_decls/struct_0202D764_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_02098C44.h"
@@ -20,6 +19,7 @@
 #include "savedata/save_table.h"
 
 #include "field_overworld_state.h"
+#include "field_task.h"
 #include "game_records.h"
 #include "heap.h"
 #include "inlines.h"
@@ -422,7 +422,7 @@ void sub_0204A32C(UnkStruct_0204AFC4 *param0)
     param0 = NULL;
 }
 
-void sub_0204A358(UnkStruct_0204AFC4 *param0, TaskManager *param1, void **param2)
+void sub_0204A358(UnkStruct_0204AFC4 *param0, FieldTask *param1, void **param2)
 {
     sub_0206BBFC(param1, param2, 17, 0, param0->unk_0E, param0->unk_0E, 100, 0);
 }

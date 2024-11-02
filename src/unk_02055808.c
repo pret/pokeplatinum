@@ -3,16 +3,14 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020508D4_decl.h"
-
 #include "field/field_system.h"
 #include "overlay005/ov5_021DD6FC.h"
 
 #include "field_system.h"
+#include "field_task.h"
 #include "unk_0200F174.h"
-#include "unk_020508D4.h"
 
-static BOOL sub_02055808(TaskManager *param0)
+static BOOL sub_02055808(FieldTask *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
 
@@ -23,7 +21,7 @@ static BOOL sub_02055808(TaskManager *param0)
     return 0;
 }
 
-void FieldTask_FinishFieldMap(TaskManager *param0)
+void FieldTask_FinishFieldMap(FieldTask *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
 
@@ -36,7 +34,7 @@ void FieldTask_FinishFieldMap(TaskManager *param0)
     FieldTask_Start(param0, sub_02055808, NULL);
 }
 
-static BOOL sub_02055850(TaskManager *param0)
+static BOOL sub_02055850(FieldTask *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
 
@@ -47,7 +45,7 @@ static BOOL sub_02055850(TaskManager *param0)
     return 0;
 }
 
-void FieldTask_StartFieldMap(TaskManager *param0)
+void FieldTask_StartFieldMap(FieldTask *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
 
@@ -60,7 +58,7 @@ void FieldTask_StartFieldMap(TaskManager *param0)
     FieldTask_Start(param0, sub_02055850, NULL);
 }
 
-static BOOL sub_02055898(TaskManager *param0)
+static BOOL sub_02055898(FieldTask *param0)
 {
     if (IsScreenTransitionDone()) {
         return 1;
@@ -69,7 +67,7 @@ static BOOL sub_02055898(TaskManager *param0)
     return 0;
 }
 
-void sub_020558AC(TaskManager *param0)
+void sub_020558AC(FieldTask *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
 
@@ -84,7 +82,7 @@ void sub_020558AC(TaskManager *param0)
     }
 }
 
-void sub_020558F0(TaskManager *param0)
+void sub_020558F0(FieldTask *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
 
@@ -99,7 +97,7 @@ void sub_020558F0(TaskManager *param0)
     }
 }
 
-static BOOL sub_02055934(TaskManager *param0)
+static BOOL sub_02055934(FieldTask *param0)
 {
     int *v0 = FieldTask_GetState(param0);
 
@@ -119,12 +117,12 @@ static BOOL sub_02055934(TaskManager *param0)
     return 0;
 }
 
-void FieldTask_FinishFadeOut(TaskManager *param0)
+void FieldTask_FinishFadeOut(FieldTask *param0)
 {
     FieldTask_Start(param0, sub_02055934, NULL);
 }
 
-static BOOL sub_02055984(TaskManager *param0)
+static BOOL sub_02055984(FieldTask *param0)
 {
     int *v0 = FieldTask_GetState(param0);
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
@@ -146,7 +144,7 @@ static BOOL sub_02055984(TaskManager *param0)
     return 0;
 }
 
-void FieldTask_StartFadeIn(TaskManager *param0)
+void FieldTask_StartFadeIn(FieldTask *param0)
 {
     FieldTask_Start(param0, sub_02055984, NULL);
 }

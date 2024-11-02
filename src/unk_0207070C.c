@@ -5,7 +5,6 @@
 
 #include "constants/field/map_load.h"
 
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_0203D8AC.h"
 #include "struct_defs/struct_020708E0.h"
@@ -22,6 +21,7 @@
 
 #include "field_menu.h"
 #include "field_overworld_state.h"
+#include "field_task.h"
 #include "heap.h"
 #include "inlines.h"
 #include "journal.h"
@@ -33,7 +33,6 @@
 #include "trainer_info.h"
 #include "unk_0203C954.h"
 #include "unk_0203D1B8.h"
-#include "unk_020508D4.h"
 #include "unk_02054D00.h"
 #include "unk_0205DAC8.h"
 #include "unk_0205F180.h"
@@ -59,39 +58,39 @@ static int sub_02070950(const UnkStruct_02070950 *param0);
 static void sub_020709CC(UnkStruct_020709CC *param0, const UnkStruct_02070950 *param1);
 static int sub_02070EEC(const UnkStruct_02070950 *param0);
 static void sub_02070F54(UnkStruct_020709CC *param0, const UnkStruct_02070950 *param1);
-static BOOL sub_02070F94(TaskManager *taskMan);
+static BOOL sub_02070F94(FieldTask *taskMan);
 static int sub_02070A24(const UnkStruct_02070950 *param0);
 static void sub_02070A80(UnkStruct_020709CC *param0, const UnkStruct_02070950 *param1);
-static BOOL sub_02070AB4(TaskManager *taskMan);
+static BOOL sub_02070AB4(FieldTask *taskMan);
 static int sub_02070CF8(const UnkStruct_02070950 *param0);
 static void sub_02070D30(UnkStruct_020709CC *param0, const UnkStruct_02070950 *param1);
-static BOOL sub_02070D64(TaskManager *taskMan);
+static BOOL sub_02070D64(FieldTask *taskMan);
 static int sub_02070DA0(const UnkStruct_02070950 *param0);
 static void sub_02070DEC(UnkStruct_020709CC *param0, const UnkStruct_02070950 *param1);
-static BOOL sub_02070E20(TaskManager *taskMan);
+static BOOL sub_02070E20(FieldTask *taskMan);
 static int sub_02070E5C(const UnkStruct_02070950 *param0);
 static void sub_02070E7C(UnkStruct_020709CC *param0, const UnkStruct_02070950 *param1);
-static BOOL sub_02070EB0(TaskManager *taskMan);
+static BOOL sub_02070EB0(FieldTask *taskMan);
 static int sub_02070B98(const UnkStruct_02070950 *param0);
 static void sub_02070BD0(UnkStruct_020709CC *param0, const UnkStruct_02070950 *param1);
-static BOOL sub_02070C04(TaskManager *taskMan);
+static BOOL sub_02070C04(FieldTask *taskMan);
 static int sub_02070C40(const UnkStruct_02070950 *param0);
 static void sub_02070C88(UnkStruct_020709CC *param0, const UnkStruct_02070950 *param1);
-static BOOL sub_02070CBC(TaskManager *taskMan);
+static BOOL sub_02070CBC(FieldTask *taskMan);
 static int sub_02070AF0(const UnkStruct_02070950 *param0);
 static void sub_02070B28(UnkStruct_020709CC *param0, const UnkStruct_02070950 *param1);
-static BOOL sub_02070B5C(TaskManager *taskMan);
+static BOOL sub_02070B5C(FieldTask *taskMan);
 static int sub_02070FCC(const UnkStruct_02070950 *param0);
 static void sub_02071010(UnkStruct_020709CC *param0, const UnkStruct_02070950 *param1);
-static BOOL sub_02071050(TaskManager *taskMan);
+static BOOL sub_02071050(FieldTask *taskMan);
 static int sub_020710A4(const UnkStruct_02070950 *param0);
 static void sub_020710D4(UnkStruct_020709CC *param0, const UnkStruct_02070950 *param1);
 static int sub_02071130(const UnkStruct_02070950 *param0);
 static void sub_02071150(UnkStruct_020709CC *param0, const UnkStruct_02070950 *param1);
-static BOOL sub_0207118C(TaskManager *taskMan);
+static BOOL sub_0207118C(FieldTask *taskMan);
 static int sub_020708AC(const UnkStruct_02070950 *param0);
 static void sub_020708E0(UnkStruct_020709CC *param0, const UnkStruct_02070950 *param1);
-static BOOL sub_02070914(TaskManager *taskMan);
+static BOOL sub_02070914(FieldTask *taskMan);
 
 static const UnkStruct_020F0368 Unk_020F0368[] = {
     { sub_020708E0, sub_020708AC },
@@ -289,7 +288,7 @@ static void sub_020708E0(UnkStruct_020709CC *param0, const UnkStruct_02070950 *p
     menu->state = FIELD_MENU_STATE_10;
 }
 
-static BOOL sub_02070914(TaskManager *taskMan)
+static BOOL sub_02070914(FieldTask *taskMan)
 {
     UnkStruct_0207086C *v0 = TaskManager_Environment(taskMan);
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
@@ -385,7 +384,7 @@ static void sub_02070A80(UnkStruct_020709CC *param0, const UnkStruct_02070950 *p
     menu->state = FIELD_MENU_STATE_10;
 }
 
-static BOOL sub_02070AB4(TaskManager *taskMan)
+static BOOL sub_02070AB4(FieldTask *taskMan)
 {
     UnkStruct_0207086C *v0 = TaskManager_Environment(taskMan);
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
@@ -429,7 +428,7 @@ static void sub_02070B28(UnkStruct_020709CC *param0, const UnkStruct_02070950 *p
     menu->state = FIELD_MENU_STATE_10;
 }
 
-static BOOL sub_02070B5C(TaskManager *param0)
+static BOOL sub_02070B5C(FieldTask *param0)
 {
     UnkStruct_0207086C *v0 = TaskManager_Environment(param0);
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
@@ -473,7 +472,7 @@ static void sub_02070BD0(UnkStruct_020709CC *param0, const UnkStruct_02070950 *p
     menu->state = FIELD_MENU_STATE_10;
 }
 
-static BOOL sub_02070C04(TaskManager *taskMan)
+static BOOL sub_02070C04(FieldTask *taskMan)
 {
     UnkStruct_0207086C *v0 = TaskManager_Environment(taskMan);
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
@@ -521,7 +520,7 @@ static void sub_02070C88(UnkStruct_020709CC *param0, const UnkStruct_02070950 *p
     menu->state = FIELD_MENU_STATE_10;
 }
 
-static BOOL sub_02070CBC(TaskManager *taskMan)
+static BOOL sub_02070CBC(FieldTask *taskMan)
 {
     UnkStruct_0207086C *v0 = TaskManager_Environment(taskMan);
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
@@ -565,7 +564,7 @@ static void sub_02070D30(UnkStruct_020709CC *param0, const UnkStruct_02070950 *p
     menu->state = FIELD_MENU_STATE_10;
 }
 
-static BOOL sub_02070D64(TaskManager *param0)
+static BOOL sub_02070D64(FieldTask *param0)
 {
     UnkStruct_0207086C *v0 = TaskManager_Environment(param0);
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
@@ -613,7 +612,7 @@ static void sub_02070DEC(UnkStruct_020709CC *param0, const UnkStruct_02070950 *p
     menu->state = FIELD_MENU_STATE_10;
 }
 
-static BOOL sub_02070E20(TaskManager *taskMan)
+static BOOL sub_02070E20(FieldTask *taskMan)
 {
     UnkStruct_0207086C *v0 = TaskManager_Environment(taskMan);
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
@@ -653,7 +652,7 @@ static void sub_02070E7C(UnkStruct_020709CC *param0, const UnkStruct_02070950 *p
     menu->state = FIELD_MENU_STATE_10;
 }
 
-static BOOL sub_02070EB0(TaskManager *taskMan)
+static BOOL sub_02070EB0(FieldTask *taskMan)
 {
     UnkStruct_0207086C *v0 = TaskManager_Environment(taskMan);
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
@@ -705,7 +704,7 @@ static void sub_02070F54(UnkStruct_020709CC *param0, const UnkStruct_02070950 *p
     menu->state = FIELD_MENU_STATE_10;
 }
 
-static BOOL sub_02070F94(TaskManager *param0)
+static BOOL sub_02070F94(FieldTask *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_020711C8 *v1 = TaskManager_Environment(param0);
@@ -755,7 +754,7 @@ static void sub_02071010(UnkStruct_020709CC *param0, const UnkStruct_02070950 *p
     }
 }
 
-static BOOL sub_02071050(TaskManager *param0)
+static BOOL sub_02071050(FieldTask *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_020711C8 *v1 = TaskManager_Environment(param0);
@@ -833,7 +832,7 @@ static void sub_02071150(UnkStruct_020709CC *param0, const UnkStruct_02070950 *p
     menu->state = FIELD_MENU_STATE_10;
 }
 
-static BOOL sub_0207118C(TaskManager *taskMan)
+static BOOL sub_0207118C(FieldTask *taskMan)
 {
     UnkStruct_0207086C *v0 = TaskManager_Environment(taskMan);
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);

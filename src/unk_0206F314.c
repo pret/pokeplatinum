@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_0202E8C0_decl.h"
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0202EE10.h"
@@ -18,6 +17,7 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "core_sys.h"
+#include "field_task.h"
 #include "font.h"
 #include "game_options.h"
 #include "heap.h"
@@ -35,7 +35,6 @@
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
 #include "unk_0202E840.h"
-#include "unk_020508D4.h"
 
 typedef struct {
     MessageLoader *unk_00;
@@ -841,7 +840,7 @@ static void sub_02070288(UnkStruct_0206F7F8 *param0)
     SpriteActor_EnableObject(param0->unk_2FC[1], 0);
 }
 
-static BOOL sub_020702D0(TaskManager *param0)
+static BOOL sub_020702D0(FieldTask *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_0206F314 *v1 = TaskManager_Environment(param0);
@@ -903,7 +902,7 @@ static BOOL sub_020702D0(TaskManager *param0)
     return 0;
 }
 
-void sub_020703FC(TaskManager *param0, u16 param1)
+void sub_020703FC(FieldTask *param0, u16 param1)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_0206F314 *v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0206F314));

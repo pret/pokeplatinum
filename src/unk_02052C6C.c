@@ -5,7 +5,6 @@
 
 #include "consts/game_records.h"
 
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0202DF8C.h"
 #include "struct_defs/struct_0203E234.h"
@@ -17,6 +16,7 @@
 
 #include "bg_window.h"
 #include "field_overworld_state.h"
+#include "field_task.h"
 #include "game_options.h"
 #include "game_records.h"
 #include "gx_layers.h"
@@ -37,7 +37,6 @@
 #include "unk_0202631C.h"
 #include "unk_0202DF8C.h"
 #include "unk_0203D1B8.h"
-#include "unk_020508D4.h"
 #include "unk_02054884.h"
 #include "unk_020559DC.h"
 #include "unk_0205D8CC.h"
@@ -84,7 +83,7 @@ static void sub_02052C6C(FieldSystem *fieldSystem, BOOL param1)
     Heap_FreeToHeap(v0);
 }
 
-static BOOL sub_02052CBC(TaskManager *param0)
+static BOOL sub_02052CBC(FieldTask *param0)
 {
     Location *v0;
     VarsFlags *v1;
@@ -170,7 +169,7 @@ static BOOL sub_02052CBC(TaskManager *param0)
     return 0;
 }
 
-void sub_02052E58(TaskManager *param0)
+void sub_02052E58(FieldTask *param0)
 {
     FieldSystem *fieldSystem;
     Location *v1, *v2;

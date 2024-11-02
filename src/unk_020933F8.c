@@ -10,7 +10,6 @@
 #include "struct_decls/struct_02029C88_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
 #include "struct_decls/struct_0202A750_decl.h"
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/struct_02093800.h"
 #include "struct_defs/struct_02093BBC.h"
 #include "struct_defs/struct_02094A58.h"
@@ -29,6 +28,7 @@
 #include "assert.h"
 #include "communication_information.h"
 #include "communication_system.h"
+#include "field_task.h"
 #include "game_records.h"
 #include "heap.h"
 #include "journal.h"
@@ -49,7 +49,6 @@
 #include "unk_0202CC64.h"
 #include "unk_0202F108.h"
 #include "unk_020363E8.h"
-#include "unk_020508D4.h"
 #include "unk_02055808.h"
 #include "unk_0206A8DC.h"
 #include "unk_0206CCB0.h"
@@ -84,8 +83,8 @@ void sub_02093AD4(UnkStruct_02095C48 *param0);
 void sub_02094630(UnkStruct_02095C48 *param0, int param1, StringTemplate *param2, u32 param3);
 void sub_02094648(UnkStruct_02095C48 *param0, int param1, StringTemplate *param2, u32 param3);
 void sub_02094680(UnkStruct_02095C48 *param0, int param1, StringTemplate *param2, u32 param3);
-static BOOL sub_02093448(TaskManager *param0);
-static BOOL sub_020935EC(TaskManager *param0);
+static BOOL sub_02093448(FieldTask *param0);
+static BOOL sub_020935EC(FieldTask *param0);
 void sub_02093BBC(UnkStruct_02095C48 *param0);
 void sub_02093C54(UnkStruct_02095C48 *param0);
 static void sub_020944E8(UnkStruct_02095C48 *param0);
@@ -150,7 +149,7 @@ __attribute__((aligned(4))) static const u8 Unk_020F55D0[][6] = {
     { 0xF, 0xF, 0x8, 0x8, 0x14, 0xFF }
 };
 
-void sub_020933F8(TaskManager *param0, UnkStruct_02095C48 *param1)
+void sub_020933F8(FieldTask *param0, UnkStruct_02095C48 *param1)
 {
     UnkStruct_020933F8 *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_020933F8));
 
@@ -169,7 +168,7 @@ void sub_020933F8(TaskManager *param0, UnkStruct_02095C48 *param1)
     }
 }
 
-static BOOL sub_02093448(TaskManager *param0)
+static BOOL sub_02093448(FieldTask *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_020933F8 *v1 = TaskManager_Environment(param0);
@@ -259,7 +258,7 @@ static BOOL sub_02093448(TaskManager *param0)
     return 0;
 }
 
-static BOOL sub_020935EC(TaskManager *param0)
+static BOOL sub_020935EC(FieldTask *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_020933F8 *v1 = TaskManager_Environment(param0);

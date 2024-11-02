@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_020298B0_decl.h"
-#include "struct_decls/struct_020508D4_decl.h"
 
 #include "field/field_system.h"
 #include "overlay023/funcptr_ov23_022515D8.h"
@@ -30,6 +29,7 @@
 #include "communication_system.h"
 #include "core_sys.h"
 #include "field_system.h"
+#include "field_task.h"
 #include "heap.h"
 #include "list_menu.h"
 #include "location.h"
@@ -48,7 +48,6 @@
 #include "unk_0200F174.h"
 #include "unk_0202854C.h"
 #include "unk_02033200.h"
-#include "unk_020508D4.h"
 #include "unk_0206A780.h"
 #include "unk_0206A8DC.h"
 #include "vars_flags.h"
@@ -604,7 +603,7 @@ static void ov23_02251A84(BOOL param0, FieldSystem *fieldSystem)
     Camera_Move(&v0, fieldSystem->camera);
 }
 
-static BOOL ov23_02251ACC(TaskManager *param0)
+static BOOL ov23_02251ACC(FieldTask *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_ov23_02251ACC *v1 = TaskManager_Environment(param0);

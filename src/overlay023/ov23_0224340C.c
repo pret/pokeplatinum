@@ -7,7 +7,6 @@
 
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/struct_0200C738.h"
 
 #include "field/field_system.h"
@@ -31,6 +30,7 @@
 #include "communication_system.h"
 #include "core_sys.h"
 #include "field_system.h"
+#include "field_task.h"
 #include "game_records.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -122,7 +122,7 @@ typedef struct {
     CellActorResourceData unk_238;
     CellActor *unk_25C[32];
     CellActor *unk_2DC[4];
-    TaskManager *unk_2EC;
+    FieldTask *unk_2EC;
     SysTask *unk_2F0;
     SysTask *unk_2F4;
     SysTask *unk_2F8;

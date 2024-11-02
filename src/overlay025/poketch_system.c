@@ -13,6 +13,7 @@
 #include "bg_window.h"
 #include "enums.h"
 #include "field_system.h"
+#include "field_task.h"
 #include "game_overlay.h"
 #include "gender.h"
 #include "heap.h"
@@ -24,7 +25,6 @@
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_0201E3D8.h"
-#include "unk_020508D4.h"
 #include "unk_02099D44.h"
 
 FS_EXTERN_OVERLAY(overlay26);

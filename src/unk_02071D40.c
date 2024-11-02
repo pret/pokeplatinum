@@ -9,13 +9,13 @@
 #include "struct_decls/struct_0202C834_decl.h"
 #include "struct_decls/struct_0202C844_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/struct_02072014.h"
 
 #include "field/field_system.h"
 
 #include "charcode_util.h"
 #include "field_system.h"
+#include "field_task.h"
 #include "game_records.h"
 #include "heap.h"
 #include "play_time.h"
@@ -27,7 +27,6 @@
 #include "unk_0202C7FC.h"
 #include "unk_0203061C.h"
 #include "unk_0203D1B8.h"
-#include "unk_020508D4.h"
 #include "unk_020559DC.h"
 #include "unk_0205B33C.h"
 #include "unk_0206A8DC.h"
@@ -43,7 +42,7 @@ static void sub_02072038(const u16 param0, const u8 param1, const u16 *param2, c
 static void sub_0207207C(const u8 param0, const PlayTime *playTime, const RTCDate *param2, const RTCDate *param3, const RTCTime *param4, const u8 param5, TrainerCard *param6);
 static void sub_02072120(const u32 param0, const u32 param1, const u32 param2, const u32 param3, const u8 *param4, TrainerCard *param5);
 static void sub_0207216C(TrainerInfo *param0, FieldSystem *fieldSystem, TrainerCard *param2);
-static BOOL sub_02072230(TaskManager *param0);
+static BOOL sub_02072230(FieldTask *param0);
 
 void sub_02071D40(const u8 param0, const u8 param1, const u8 param2, const u8 param3, FieldSystem *fieldSystem, TrainerCard *param5)
 {
@@ -285,7 +284,7 @@ void sub_02072204(FieldSystem *fieldSystem)
     FieldTask_Start(fieldSystem->taskManager, sub_02072230, v0);
 }
 
-static BOOL sub_02072230(TaskManager *param0)
+static BOOL sub_02072230(FieldTask *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_02072204 *v1 = TaskManager_Environment(param0);

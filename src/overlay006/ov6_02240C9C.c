@@ -12,7 +12,6 @@
 #include "consts/items.h"
 #include "consts/pokemon.h"
 
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0202D7B0.h"
 #include "struct_defs/struct_0206C638.h"
@@ -30,6 +29,7 @@
 
 #include "field_overworld_state.h"
 #include "field_system.h"
+#include "field_task.h"
 #include "heap.h"
 #include "inlines.h"
 #include "map_header.h"
@@ -445,7 +445,7 @@ BOOL ov6_0224106C(FieldSystem *fieldSystem, const int fishingRodType, BattlePara
     return TRUE;
 }
 
-BOOL ov6_022411C8(FieldSystem *fieldSystem, TaskManager *param1)
+BOOL ov6_022411C8(FieldSystem *fieldSystem, FieldTask *param1)
 {
     BattleParams *battleParams;
     Pokemon *firstPartyMon;

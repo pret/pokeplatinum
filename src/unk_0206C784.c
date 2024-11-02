@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/struct_02055130.h"
 #include "struct_defs/struct_0206C8D4.h"
 
@@ -17,13 +16,13 @@
 
 #include "camera.h"
 #include "field_map_change.h"
+#include "field_task.h"
 #include "heap.h"
 #include "player_avatar.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_0203D1B8.h"
-#include "unk_020508D4.h"
 #include "unk_02054D00.h"
 #include "unk_020553DC.h"
 #include "unk_02055808.h"
@@ -50,8 +49,8 @@ typedef struct {
 } UnkStruct_0206CAD0;
 
 static void sub_0206C8D4(FieldSystem *fieldSystem, const u8 param1, UnkStruct_ov5_021D5894 *param2);
-static BOOL sub_0206C8F8(TaskManager *param0);
-static BOOL sub_0206C964(TaskManager *param0);
+static BOOL sub_0206C8F8(FieldTask *param0);
+static BOOL sub_0206C964(FieldTask *param0);
 static BOOL sub_0206CAD0(UnkStruct_0206CAD0 *param0);
 static BOOL sub_0206CB8C(const fx32 *param0, const fx32 *param1, u8 *param2);
 static void sub_0206CBA0(FieldSystem *fieldSystem);
@@ -142,7 +141,7 @@ static void sub_0206C8D4(FieldSystem *fieldSystem, const u8 param1, UnkStruct_ov
     FieldTask_Start(fieldSystem->taskManager, sub_0206C8F8, v0);
 }
 
-static BOOL sub_0206C8F8(TaskManager *taskMan)
+static BOOL sub_0206C8F8(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_0206C8D4 *v1 = TaskManager_Environment(taskMan);
@@ -170,7 +169,7 @@ static BOOL sub_0206C8F8(TaskManager *taskMan)
     return 0;
 }
 
-static BOOL sub_0206C964(TaskManager *taskMan)
+static BOOL sub_0206C964(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_0206CAD0 *v1 = TaskManager_Environment(taskMan);

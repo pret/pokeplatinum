@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system.h"
@@ -15,12 +14,12 @@
 
 #include "core_sys.h"
 #include "field_map_change.h"
+#include "field_task.h"
 #include "heap.h"
 #include "location.h"
 #include "map_object.h"
 #include "player_avatar.h"
 #include "unk_02005474.h"
-#include "unk_020508D4.h"
 #include "unk_02055808.h"
 #include "unk_02056B30.h"
 #include "unk_0206A8DC.h"
@@ -36,7 +35,7 @@ typedef struct {
     u8 unk_0E;
 } UnkStruct_0206C0E8;
 
-static BOOL sub_0206C120(TaskManager *taskMan);
+static BOOL sub_0206C120(FieldTask *taskMan);
 
 void sub_0206C0E8(FieldSystem *fieldSystem)
 {
@@ -50,7 +49,7 @@ void sub_0206C0E8(FieldSystem *fieldSystem)
     FieldTask_Start(fieldSystem->taskManager, sub_0206C120, v0);
 }
 
-static BOOL sub_0206C120(TaskManager *taskMan)
+static BOOL sub_0206C120(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_0206C0E8 *v1 = TaskManager_Environment(taskMan);

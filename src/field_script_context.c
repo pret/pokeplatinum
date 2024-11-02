@@ -50,7 +50,7 @@ void ScriptContext_Stop(ScriptContext *ctx)
     ctx->scriptPtr = NULL;
 }
 
-void ScriptContext_SetTaskManager(ScriptContext *ctx, TaskManager *taskManager)
+void ScriptContext_SetTaskManager(ScriptContext *ctx, FieldTask *taskManager)
 {
     ctx->taskManager = taskManager;
 }

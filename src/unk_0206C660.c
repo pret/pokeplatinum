@@ -3,17 +3,15 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020508D4_decl.h"
-
 #include "field/field_system.h"
 #include "overlay006/ov6_02246184.h"
 #include "overlay006/struct_ov6_02246204_decl.h"
 #include "overlay006/struct_ov6_02246254.h"
 #include "overlay095/ov95_02246C20.h"
 
+#include "field_task.h"
 #include "heap.h"
 #include "pokemon.h"
-#include "unk_020508D4.h"
 #include "unk_02055808.h"
 
 FS_EXTERN_OVERLAY(overlay95);
@@ -27,10 +25,10 @@ typedef struct {
     Pokemon *unk_28;
 } UnkStruct_0206C660;
 
-static BOOL sub_0206C680(TaskManager *param0);
-static void sub_0206C660(TaskManager *param0);
+static BOOL sub_0206C680(FieldTask *param0);
+static void sub_0206C660(FieldTask *param0);
 
-void sub_0206C660(TaskManager *param0)
+void sub_0206C660(FieldTask *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_0206C660 *v1 = TaskManager_Environment(param0);
@@ -49,7 +47,7 @@ void sub_0206C660(TaskManager *param0)
     }
 }
 
-static BOOL sub_0206C680(TaskManager *param0)
+static BOOL sub_0206C680(FieldTask *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_0206C660 *v1 = TaskManager_Environment(param0);
@@ -90,7 +88,7 @@ static BOOL sub_0206C680(TaskManager *param0)
     return 0;
 }
 
-void sub_0206C740(TaskManager *param0, UnkStruct_ov6_02246204 *param1, int param2, u32 param3)
+void sub_0206C740(FieldTask *param0, UnkStruct_ov6_02246204 *param1, int param2, u32 param3)
 {
     UnkStruct_0206C660 *v0 = Heap_AllocFromHeap(param3, sizeof(UnkStruct_0206C660));
 

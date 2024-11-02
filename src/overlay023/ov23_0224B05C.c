@@ -8,7 +8,6 @@
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_02029894_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
-#include "struct_decls/struct_020508D4_decl.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021E15F4.h"
@@ -34,6 +33,7 @@
 #include "core_sys.h"
 #include "field_map_change.h"
 #include "field_system.h"
+#include "field_task.h"
 #include "font.h"
 #include "game_records.h"
 #include "graphics.h"
@@ -57,7 +57,6 @@
 #include "unk_02030EE0.h"
 #include "unk_02033200.h"
 #include "unk_020366A0.h"
-#include "unk_020508D4.h"
 #include "unk_02054D00.h"
 #include "unk_020573FC.h"
 #include "unk_0205F180.h"
@@ -1522,7 +1521,7 @@ static void ov23_0224C6E8(void)
     }
 }
 
-static BOOL ov23_0224C708(TaskManager *param0)
+static BOOL ov23_0224C708(FieldTask *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_ov23_0224BA48 *v1 = TaskManager_Environment(param0);
@@ -1543,7 +1542,7 @@ static BOOL ov23_0224C708(TaskManager *param0)
     return 0;
 }
 
-static BOOL ov23_0224C74C(TaskManager *param0)
+static BOOL ov23_0224C74C(FieldTask *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_ov23_0224BA48 *v1 = TaskManager_Environment(param0);
@@ -1564,7 +1563,7 @@ static BOOL ov23_0224C74C(TaskManager *param0)
     return 0;
 }
 
-static BOOL ov23_0224C790(TaskManager *param0)
+static BOOL ov23_0224C790(FieldTask *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_ov23_0224BA48 *v1 = TaskManager_Environment(param0);

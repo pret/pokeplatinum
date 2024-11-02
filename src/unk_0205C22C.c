@@ -18,6 +18,7 @@
 #include "overlay005/ov5_021F134C.h"
 #include "overlay005/ov5_021F600C.h"
 
+#include "field_task.h"
 #include "heap.h"
 #include "map_object.h"
 #include "player_avatar.h"
@@ -30,7 +31,6 @@
 #include "unk_02014A84.h"
 #include "unk_02027F84.h"
 #include "unk_020366A0.h"
-#include "unk_020508D4.h"
 #include "unk_0205B33C.h"
 #include "unk_020655F4.h"
 #include "unk_020711EC.h"

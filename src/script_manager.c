@@ -11,6 +11,7 @@
 #include "field/scripts/scr_seq.naix"
 
 #include "field_menu.h"
+#include "field_task.h"
 #include "heap.h"
 #include "map_header.h"
 #include "map_header_data.h"
@@ -21,13 +22,12 @@
 #include "strbuf.h"
 #include "trainer_data.h"
 #include "unk_0201D15C.h"
-#include "unk_020508D4.h"
 #include "vars_flags.h"
 
 #include "constdata/const_020EAB80.h"
 #include "constdata/const_020EAC58.h"
 
-static BOOL FieldTask_RunScript(TaskManager *taskManager);
+static BOOL FieldTask_RunScript(FieldTask *taskManager);
 static ScriptManager *ScriptManager_New();
 static void ScriptContext_Free(ScriptContext *ctx);
 static void sub_0203EA68(FieldSystem *fieldSystem, ScriptManager *scriptManager, u16 scriptID, MapObject *object, void *saveType);
@@ -63,7 +63,7 @@ void ScriptManager_SetApproachingTrainer(FieldSystem *fieldSystem, MapObject *ob
     trainer->object = object;
 }
 
-void ScriptManager_Start(TaskManager *taskManager, u16 scriptID, MapObject *object, void *saveType)
+void ScriptManager_Start(FieldTask *taskManager, u16 scriptID, MapObject *object, void *saveType)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskManager);
     ScriptManager *scriptManager = ScriptManager_New();
@@ -72,7 +72,7 @@ void ScriptManager_Start(TaskManager *taskManager, u16 scriptID, MapObject *obje
     FieldTask_Start(taskManager, FieldTask_RunScript, scriptManager);
 }
 
-void ScriptManager_Change(TaskManager *taskManager, u16 scriptID, MapObject *object)
+void ScriptManager_Change(FieldTask *taskManager, u16 scriptID, MapObject *object)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskManager);
     ScriptManager *scriptManager = ScriptManager_New();
@@ -81,7 +81,7 @@ void ScriptManager_Change(TaskManager *taskManager, u16 scriptID, MapObject *obj
     FieldTask_Change(taskManager, FieldTask_RunScript, scriptManager);
 }
 
-static BOOL FieldTask_RunScript(TaskManager *taskManager)
+static BOOL FieldTask_RunScript(FieldTask *taskManager)
 {
     int i;
     FieldSysFunc scriptFunction;

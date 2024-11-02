@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system.h"
@@ -19,6 +18,7 @@
 
 #include "camera.h"
 #include "field_map_change.h"
+#include "field_task.h"
 #include "heap.h"
 #include "inlines.h"
 #include "location.h"
@@ -27,7 +27,6 @@
 #include "player_avatar.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
-#include "unk_020508D4.h"
 #include "unk_02054D00.h"
 #include "unk_020553DC.h"
 #include "unk_02055808.h"
@@ -53,19 +52,19 @@ typedef struct {
     int unk_1C;
 } UnkStruct_02056B30;
 
-static BOOL sub_02056B70(TaskManager *taskMan);
-static BOOL sub_02056CFC(TaskManager *taskMan);
-static BOOL sub_02056DE4(TaskManager *taskMan);
-static BOOL sub_02056E20(TaskManager *taskMan);
-static BOOL sub_02056EA4(TaskManager *taskMan);
-static BOOL sub_02056F1C(TaskManager *taskMan);
-static BOOL sub_02056FC0(TaskManager *taskMan);
-static BOOL sub_02057008(TaskManager *taskMan);
-static BOOL sub_02057050(TaskManager *taskMan);
-static BOOL sub_0205711C(TaskManager *taskMan);
-static BOOL sub_020571A0(TaskManager *taskMan);
-static BOOL sub_02057218(TaskManager *taskMan);
-static BOOL sub_020572B8(TaskManager *taskMan);
+static BOOL sub_02056B70(FieldTask *taskMan);
+static BOOL sub_02056CFC(FieldTask *taskMan);
+static BOOL sub_02056DE4(FieldTask *taskMan);
+static BOOL sub_02056E20(FieldTask *taskMan);
+static BOOL sub_02056EA4(FieldTask *taskMan);
+static BOOL sub_02056F1C(FieldTask *taskMan);
+static BOOL sub_02056FC0(FieldTask *taskMan);
+static BOOL sub_02057008(FieldTask *taskMan);
+static BOOL sub_02057050(FieldTask *taskMan);
+static BOOL sub_0205711C(FieldTask *taskMan);
+static BOOL sub_020571A0(FieldTask *taskMan);
+static BOOL sub_02057218(FieldTask *taskMan);
+static BOOL sub_020572B8(FieldTask *taskMan);
 static void sub_02057300(FieldSystem *fieldSystem);
 static void sub_02057368(FieldSystem *fieldSystem);
 
@@ -99,7 +98,7 @@ static const UnkFuncPtr_020EC57C Unk_020EC57C[7] = {
     NULL
 };
 
-void sub_02056B30(TaskManager *taskMan, int param1, int param2, int param3, u16 param4, int param5, int param6, int param7)
+void sub_02056B30(FieldTask *taskMan, int param1, int param2, int param3, u16 param4, int param5, int param6, int param7)
 {
     UnkStruct_02056B30 *v0 = Heap_AllocFromHeap(param7, sizeof(UnkStruct_02056B30));
 
@@ -115,7 +114,7 @@ void sub_02056B30(TaskManager *taskMan, int param1, int param2, int param3, u16 
     FieldTask_Start(taskMan, sub_02056B70, v0);
 }
 
-static BOOL sub_02056B70(TaskManager *taskMan)
+static BOOL sub_02056B70(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_02056B30 *v1 = TaskManager_Environment(taskMan);
@@ -202,7 +201,7 @@ void sub_02056C18(FieldSystem *fieldSystem, const int param1, const int param2, 
     FieldTask_Set(fieldSystem, sub_02056CFC, v2);
 }
 
-static BOOL sub_02056CFC(TaskManager *taskMan)
+static BOOL sub_02056CFC(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_02056BDC *v1 = TaskManager_Environment(taskMan);
@@ -254,7 +253,7 @@ static BOOL sub_02056CFC(TaskManager *taskMan)
     return 0;
 }
 
-static BOOL sub_02056DE4(TaskManager *taskMan)
+static BOOL sub_02056DE4(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_02056BDC *v1 = TaskManager_Environment(taskMan);
@@ -273,7 +272,7 @@ static BOOL sub_02056DE4(TaskManager *taskMan)
     return 0;
 }
 
-static BOOL sub_02056E20(TaskManager *taskMan)
+static BOOL sub_02056E20(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_02056BDC *v1 = TaskManager_Environment(taskMan);
@@ -305,7 +304,7 @@ static BOOL sub_02056E20(TaskManager *taskMan)
     return 0;
 }
 
-static BOOL sub_02056EA4(TaskManager *taskMan)
+static BOOL sub_02056EA4(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_02056BDC *v1 = TaskManager_Environment(taskMan);
@@ -333,7 +332,7 @@ static BOOL sub_02056EA4(TaskManager *taskMan)
     return 0;
 }
 
-static BOOL sub_02056F1C(TaskManager *taskMan)
+static BOOL sub_02056F1C(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_02056BDC *v1 = TaskManager_Environment(taskMan);
@@ -378,7 +377,7 @@ static BOOL sub_02056F1C(TaskManager *taskMan)
     return 0;
 }
 
-static BOOL sub_02056FC0(TaskManager *taskMan)
+static BOOL sub_02056FC0(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_02056BDC *v1 = TaskManager_Environment(taskMan);
@@ -399,7 +398,7 @@ static BOOL sub_02056FC0(TaskManager *taskMan)
     return 0;
 }
 
-static BOOL sub_02057008(TaskManager *taskMan)
+static BOOL sub_02057008(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_02056BDC *v1 = TaskManager_Environment(taskMan);
@@ -420,7 +419,7 @@ static BOOL sub_02057008(TaskManager *taskMan)
     return 0;
 }
 
-static BOOL sub_02057050(TaskManager *taskMan)
+static BOOL sub_02057050(FieldTask *taskMan)
 {
     MapObject *mapObj;
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
@@ -471,7 +470,7 @@ static BOOL sub_02057050(TaskManager *taskMan)
     return 0;
 }
 
-static BOOL sub_0205711C(TaskManager *taskMan)
+static BOOL sub_0205711C(FieldTask *taskMan)
 {
     MapObject *mapObj;
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
@@ -504,7 +503,7 @@ static BOOL sub_0205711C(TaskManager *taskMan)
     return 0;
 }
 
-static BOOL sub_020571A0(TaskManager *taskMan)
+static BOOL sub_020571A0(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_02056BDC *v1 = TaskManager_Environment(taskMan);
@@ -532,7 +531,7 @@ static BOOL sub_020571A0(TaskManager *taskMan)
     return 0;
 }
 
-static BOOL sub_02057218(TaskManager *taskMan)
+static BOOL sub_02057218(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_02056BDC *v1 = TaskManager_Environment(taskMan);
@@ -582,7 +581,7 @@ static BOOL sub_02057218(TaskManager *taskMan)
     return 0;
 }
 
-static BOOL sub_020572B8(TaskManager *taskMan)
+static BOOL sub_020572B8(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_02056BDC *v1 = TaskManager_Environment(taskMan);

@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02028430_decl.h"
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0202818C.h"
 #include "struct_defs/struct_0206A844.h"
@@ -18,6 +17,7 @@
 #include "bg_window.h"
 #include "core_sys.h"
 #include "field_system.h"
+#include "field_task.h"
 #include "font.h"
 #include "game_options.h"
 #include "heap.h"
@@ -41,7 +41,6 @@
 #include "unk_0200F174.h"
 #include "unk_02028124.h"
 #include "unk_0203D1B8.h"
-#include "unk_020508D4.h"
 #include "unk_0206A780.h"
 #include "unk_02097624.h"
 
@@ -117,7 +116,7 @@ typedef struct {
     int unk_04;
 } UnkStruct_020736D8;
 
-void sub_020736D8(TaskManager *param0);
+void sub_020736D8(FieldTask *param0);
 void sub_020722AC(void *param0, int *param1);
 static void sub_02072334(UnkStruct_02072334 *param0);
 static void sub_02072364(SysTask *param0, void *param1);
@@ -1274,7 +1273,7 @@ static int sub_020735E8(UnkStruct_02072334 *param0)
     return 0;
 }
 
-static BOOL sub_02073694(TaskManager *param0)
+static BOOL sub_02073694(FieldTask *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_020736D8 *v1 = TaskManager_Environment(param0);
@@ -1296,7 +1295,7 @@ static BOOL sub_02073694(TaskManager *param0)
     return 0;
 }
 
-void sub_020736D8(TaskManager *param0)
+void sub_020736D8(FieldTask *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_020736D8 *v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_020736D8));

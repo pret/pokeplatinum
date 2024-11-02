@@ -3,20 +3,19 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/sentence.h"
 
 #include "field/field_system.h"
 #include "overlay005/fieldmap.h"
 
+#include "field_task.h"
 #include "heap.h"
 #include "savedata_misc.h"
 #include "string_template.h"
 #include "unk_0200F174.h"
 #include "unk_02014A84.h"
 #include "unk_0203D1B8.h"
-#include "unk_020508D4.h"
 #include "unk_0209747C.h"
 
 typedef struct {
@@ -31,9 +30,9 @@ typedef struct {
 } UnkStruct_0209B3AC;
 
 static void sub_0209B3AC(UnkStruct_0209B3AC *param0);
-static BOOL sub_0209B3C4(TaskManager *param0);
+static BOOL sub_0209B3C4(FieldTask *param0);
 
-void sub_0209B344(TaskManager *param0, u16 *param1)
+void sub_0209B344(FieldTask *param0, u16 *param1)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_0209B3AC *v1 = Heap_AllocFromHeap(32, sizeof(UnkStruct_0209B3AC));
@@ -61,7 +60,7 @@ static void sub_0209B3AC(UnkStruct_0209B3AC *param0)
     Heap_FreeToHeap(param0);
 }
 
-static BOOL sub_0209B3C4(TaskManager *param0)
+static BOOL sub_0209B3C4(FieldTask *param0)
 {
     UnkStruct_0209B3AC *v0 = TaskManager_Environment(param0);
 

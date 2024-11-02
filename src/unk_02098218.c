@@ -6,7 +6,6 @@
 #include "consts/game_records.h"
 #include "consts/species.h"
 
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/struct_0203E2FC.h"
 #include "struct_defs/struct_0209843C.h"
 
@@ -18,6 +17,7 @@
 
 #include "bg_window.h"
 #include "field_system.h"
+#include "field_task.h"
 #include "game_options.h"
 #include "game_records.h"
 #include "gx_layers.h"
@@ -37,7 +37,6 @@
 #include "unk_0201DBEC.h"
 #include "unk_02024220.h"
 #include "unk_0202F180.h"
-#include "unk_020508D4.h"
 #include "unk_02055808.h"
 #include "unk_0208694C.h"
 #include "unk_02092494.h"
@@ -195,7 +194,7 @@ static int sub_02098388(OverlayManager *param0, int *param1)
     return 1;
 }
 
-static BOOL sub_0209843C(TaskManager *param0)
+static BOOL sub_0209843C(FieldTask *param0)
 {
     UnkStruct_0209843C *v0 = TaskManager_Environment(param0);
 
@@ -274,7 +273,7 @@ static BOOL sub_0209843C(TaskManager *param0)
     return 0;
 }
 
-void sub_020985AC(TaskManager *param0, void *param1)
+void sub_020985AC(FieldTask *param0, void *param1)
 {
     UnkStruct_0209843C *v0;
     UnkStruct_0203E2FC *v1;

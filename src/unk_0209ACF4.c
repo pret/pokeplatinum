@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/sentence.h"
 
@@ -13,6 +12,7 @@
 #include "bg_window.h"
 #include "colored_arrow.h"
 #include "core_sys.h"
+#include "field_task.h"
 #include "heap.h"
 #include "message.h"
 #include "render_window.h"
@@ -25,7 +25,6 @@
 #include "unk_02014A84.h"
 #include "unk_0202D05C.h"
 #include "unk_0203D1B8.h"
-#include "unk_020508D4.h"
 #include "unk_0205D8CC.h"
 #include "unk_0209747C.h"
 
@@ -51,7 +50,7 @@ typedef struct {
 
 static void sub_0209AD84(UnkStruct_0209AD84 *param0);
 static void sub_0209ADBC(UnkStruct_0209AD84 *param0);
-static BOOL sub_0209AE14(TaskManager *param0);
+static BOOL sub_0209AE14(FieldTask *param0);
 static void sub_0209B084(UnkStruct_0209AD84 *param0, int param1, BOOL param2);
 static BOOL sub_0209B100(UnkStruct_0209AD84 *param0);
 static void sub_0209B110(UnkStruct_0209AD84 *param0);
@@ -61,7 +60,7 @@ static void sub_0209B1D8(UnkStruct_0209AD84 *param0);
 static void sub_0209B27C(UnkStruct_0209AD84 *param0);
 static int sub_0209B288(UnkStruct_0209AD84 *param0);
 
-void sub_0209ACF4(TaskManager *param0)
+void sub_0209ACF4(FieldTask *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_0209AD84 *v1 = Heap_AllocFromHeap(32, sizeof(UnkStruct_0209AD84));
@@ -114,7 +113,7 @@ static void sub_0209ADBC(UnkStruct_0209AD84 *param0)
     }
 }
 
-static BOOL sub_0209AE14(TaskManager *param0)
+static BOOL sub_0209AE14(FieldTask *param0)
 {
     UnkStruct_0209AD84 *v0 = TaskManager_Environment(param0);
 

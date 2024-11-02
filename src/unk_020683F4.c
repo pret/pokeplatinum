@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_0203D9B8.h"
 #include "struct_defs/struct_020684D0.h"
@@ -30,6 +29,7 @@
 #include "field_map_change.h"
 #include "field_menu.h"
 #include "field_system.h"
+#include "field_task.h"
 #include "game_options.h"
 #include "heap.h"
 #include "item.h"
@@ -49,7 +49,6 @@
 #include "unk_02028124.h"
 #include "unk_0203C954.h"
 #include "unk_0203D1B8.h"
-#include "unk_020508D4.h"
 #include "unk_02054D00.h"
 #include "unk_020553DC.h"
 #include "unk_02055C50.h"
@@ -156,12 +155,12 @@ static u32 sub_02068D68(const UnkStruct_020684D0 *param0);
 static u32 sub_02068E94(const UnkStruct_020684D0 *param0);
 static u32 sub_020690C4(const UnkStruct_020684D0 *param0);
 static u32 sub_02069130(const UnkStruct_020684D0 *param0);
-static BOOL sub_02068884(TaskManager *param0);
-static BOOL sub_02068F48(TaskManager *param0);
+static BOOL sub_02068884(FieldTask *param0);
+static BOOL sub_02068F48(FieldTask *param0);
 static void sub_020693F8(UnkStruct_02068870 *param0, UnkFuncPtr_02068870 param1);
-static BOOL sub_0206932C(TaskManager *param0);
-static BOOL sub_020690F0(TaskManager *param0);
-static BOOL sub_020685AC(TaskManager *param0);
+static BOOL sub_0206932C(FieldTask *param0);
+static BOOL sub_020690F0(FieldTask *param0);
+static BOOL sub_020685AC(FieldTask *param0);
 static void sub_020692E4(UnkStruct_02068870 *param0, u32 param1);
 
 static const UnkStruct_020EF79C Unk_020EF79C[] = {
@@ -300,7 +299,7 @@ static void sub_02068584(UnkStruct_02068870 *param0, u32 param1)
     FieldTask_Set(param0->fieldSystem, sub_020685AC, v0);
 }
 
-static BOOL sub_020685AC(TaskManager *taskMan)
+static BOOL sub_020685AC(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_0206851C *v1 = TaskManager_Environment(taskMan);
@@ -472,7 +471,7 @@ static BOOL sub_02068870(UnkStruct_02068870 *param0)
     return 0;
 }
 
-static BOOL sub_02068884(TaskManager *param0)
+static BOOL sub_02068884(FieldTask *param0)
 {
     FieldSystem *fieldSystem;
     int *v1;
@@ -939,7 +938,7 @@ static BOOL sub_02068EFC(UnkStruct_02068870 *param0)
     return 0;
 }
 
-static BOOL sub_02068F48(TaskManager *param0)
+static BOOL sub_02068F48(FieldTask *param0)
 {
     FieldSystem *fieldSystem;
     UnkStruct_02068EFC *v1;
@@ -1038,7 +1037,7 @@ static u32 sub_020690C4(const UnkStruct_020684D0 *param0)
     return -1;
 }
 
-static BOOL sub_020690F0(TaskManager *param0)
+static BOOL sub_020690F0(FieldTask *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
     void *v1 = ov6_02247100(fieldSystem, 11);
@@ -1199,7 +1198,7 @@ static void sub_020692E4(UnkStruct_02068870 *param0, u32 param1)
     FieldTask_Set(param0->fieldSystem, sub_02068F48, v0);
 }
 
-static BOOL sub_0206932C(TaskManager *taskMan)
+static BOOL sub_0206932C(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem;
     UnkStruct_02068870 *v1;

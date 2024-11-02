@@ -9,7 +9,6 @@
 #include "struct_decls/struct_02029D04_decl.h"
 #include "struct_decls/struct_0202A750_decl.h"
 #include "struct_decls/struct_0202C834_decl.h"
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_decls/struct_party_decl.h"
@@ -91,6 +90,7 @@
 #include "coins.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
+#include "field_task.h"
 #include "game_options.h"
 #include "game_records.h"
 #include "heap.h"
@@ -121,7 +121,6 @@
 #include "unk_0202DA40.h"
 #include "unk_020366A0.h"
 #include "unk_02038FFC.h"
-#include "unk_020508D4.h"
 #include "unk_020553DC.h"
 #include "unk_02055808.h"
 #include "unk_020559DC.h"
@@ -227,7 +226,7 @@ typedef struct {
     UnkStruct_0203E348 unk_0C;
 } UnkStruct_0203E35C;
 
-static void sub_0203DF68(TaskManager *taskMan);
+static void sub_0203DF68(FieldTask *taskMan);
 static u8 sub_0203E484(SaveData *saveData, u8 param1);
 
 static BOOL OverlayInit_Battle(OverlayManager *ovyManager, int *state)
@@ -454,7 +453,7 @@ int sub_0203D440(void *param0)
     return v0->pos;
 }
 
-static BOOL sub_0203D444(TaskManager *param0)
+static BOOL sub_0203D444(FieldTask *param0)
 {
     FieldSystem *fieldSystem;
     UnkStruct_0203D444 *v1;
@@ -505,7 +504,7 @@ static BOOL sub_0203D444(TaskManager *param0)
     return 0;
 }
 
-void *sub_0203D50C(TaskManager *taskMan, int param1)
+void *sub_0203D50C(FieldTask *taskMan, int param1)
 {
     UnkStruct_0203D444 *v0;
     PartyManagementData *v1;
@@ -656,7 +655,7 @@ void sub_0203D754(FieldSystem *fieldSystem, UnkStruct_02042434 *param1)
     FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
 }
 
-static BOOL sub_0203D764(TaskManager *taskMan)
+static BOOL sub_0203D764(FieldTask *taskMan)
 {
     int *v0 = FieldTask_GetState(taskMan);
     UnkStruct_0203D764 *v1 = TaskManager_Environment(taskMan);
@@ -698,7 +697,7 @@ static BOOL sub_0203D764(TaskManager *taskMan)
     return 0;
 }
 
-void sub_0203D80C(TaskManager *taskMan, u16 *param1, u16 *param2, u16 *param3)
+void sub_0203D80C(FieldTask *taskMan, u16 *param1, u16 *param2, u16 *param3)
 {
     UnkStruct_0203D764 *v0;
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
@@ -886,7 +885,7 @@ static UnkStruct_0203DA00 *sub_0203DA00(int param0, SaveData *param1, int param2
     return v0;
 }
 
-static BOOL sub_0203DA64(TaskManager *param0)
+static BOOL sub_0203DA64(FieldTask *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_0203DA64 *v1 = TaskManager_Environment(param0);
@@ -915,7 +914,7 @@ static BOOL sub_0203DA64(TaskManager *param0)
     return 0;
 }
 
-void sub_0203DAC0(TaskManager *param0, u16 *param1, SaveData *param2, u16 param3, u16 param4)
+void sub_0203DAC0(FieldTask *param0, u16 *param1, SaveData *param2, u16 param3, u16 param4)
 {
     UnkStruct_0203DA64 *v0;
 
@@ -1011,7 +1010,7 @@ static void sub_0203DBC0(UnkStruct_ov88_0223C370 *param0)
     }
 }
 
-BOOL sub_0203DBF0(TaskManager *param0)
+BOOL sub_0203DBF0(FieldTask *param0)
 {
     int v0;
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
@@ -1109,7 +1108,7 @@ BOOL sub_0203DBF0(TaskManager *param0)
     return 0;
 }
 
-void sub_0203DDDC(TaskManager *param0)
+void sub_0203DDDC(FieldTask *param0)
 {
     UnkStruct_0203DBF0 *v0 = Heap_AllocFromHeap(32, sizeof(UnkStruct_0203DBF0));
 
@@ -1174,7 +1173,7 @@ void sub_0203DE88(FieldSystem *fieldSystem, SaveData *param1)
     FieldSystem_StartChildProcess(fieldSystem, &Unk_020F2FCC, fieldSystem);
 }
 
-static BOOL sub_0203DE98(TaskManager *param0)
+static BOOL sub_0203DE98(FieldTask *param0)
 {
     int v0;
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
@@ -1225,7 +1224,7 @@ static BOOL sub_0203DE98(TaskManager *param0)
     return 0;
 }
 
-static void sub_0203DF68(TaskManager *param0)
+static void sub_0203DF68(FieldTask *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_0203DE98 *v1 = TaskManager_Environment(param0);
@@ -1255,7 +1254,7 @@ static void sub_0203DF68(TaskManager *param0)
     return;
 }
 
-void sub_0203DFE8(TaskManager *param0, int param1, int param2, int param3, int param4, const u16 *param5, u16 *param6)
+void sub_0203DFE8(FieldTask *param0, int param1, int param2, int param3, int param4, const u16 *param5, u16 *param6)
 {
     Pokemon *v0;
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
@@ -1549,7 +1548,7 @@ BOOL sub_0203E348(FieldSystem *fieldSystem, UnkStruct_0203E348 *param1)
     return 1;
 }
 
-static BOOL sub_0203E35C(TaskManager *param0)
+static BOOL sub_0203E35C(FieldTask *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
     VarsFlags *v1 = SaveData_GetVarsFlags(fieldSystem->saveData);
@@ -1585,7 +1584,7 @@ static BOOL sub_0203E35C(TaskManager *param0)
     return 0;
 }
 
-void sub_0203E414(TaskManager *param0, int param1)
+void sub_0203E414(FieldTask *param0, int param1)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
     Options *v1 = SaveData_Options(fieldSystem->saveData);
@@ -1642,7 +1641,7 @@ static u8 sub_0203E484(SaveData *param0, u8 param1)
     return v3[param1];
 }
 
-static BOOL sub_0203E4F8(TaskManager *param0)
+static BOOL sub_0203E4F8(FieldTask *param0)
 {
     UnkStruct_ov7_0224BEFC *v0 = TaskManager_Environment(param0);
 
@@ -1654,7 +1653,7 @@ static BOOL sub_0203E4F8(TaskManager *param0)
     return 0;
 }
 
-void sub_0203E518(TaskManager *param0)
+void sub_0203E518(FieldTask *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_ov7_0224BEFC *v1 = ov7_0224BE9C(4, fieldSystem->saveData, fieldSystem->bgConfig);

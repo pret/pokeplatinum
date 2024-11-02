@@ -6,7 +6,6 @@
 
 #include "consts/game_records.h"
 
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/struct_0207DE04.h"
 
 #include "field/field_system.h"
@@ -23,12 +22,12 @@
 
 #include "communication_system.h"
 #include "field_system.h"
+#include "field_task.h"
 #include "game_overlay.h"
 #include "game_records.h"
 #include "heap.h"
 #include "unk_02038FFC.h"
 #include "unk_0203D1B8.h"
-#include "unk_020508D4.h"
 #include "unk_02050A74.h"
 #include "unk_0206A8DC.h"
 #include "unk_02099550.h"
@@ -53,7 +52,7 @@ typedef struct {
 } UnkStruct_0207DE40;
 
 void sub_02099570(void);
-static BOOL sub_0207DA28(TaskManager *param0);
+static BOOL sub_0207DA28(FieldTask *param0);
 static void sub_0207DE04(UnkStruct_0207DE40 *param0, FieldSystem *fieldSystem, u32 param2, u32 param3);
 static u32 sub_0207DE40(UnkStruct_0207DE40 *param0);
 static UnkStruct_ov115_02260440 *sub_0207DE90(FieldSystem *fieldSystem, u32 param1, u32 param2);
@@ -85,7 +84,7 @@ static const u8 Unk_020F1B64[4] = {
     0x4
 };
 
-static BOOL sub_0207DA28(TaskManager *param0)
+static BOOL sub_0207DA28(FieldTask *param0)
 {
     int v0;
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
@@ -308,7 +307,7 @@ static UnkStruct_0207DE40 *sub_0207DD94(void)
     return v0;
 }
 
-void sub_0207DDC0(TaskManager *param0)
+void sub_0207DDC0(FieldTask *param0)
 {
     UnkStruct_0207DE40 *v0 = sub_0207DD94();
 
@@ -316,7 +315,7 @@ void sub_0207DDC0(TaskManager *param0)
     FieldTask_Start(param0, sub_0207DA28, v0);
 }
 
-void sub_0207DDE0(TaskManager *param0, u16 *param1)
+void sub_0207DDE0(FieldTask *param0, u16 *param1)
 {
     UnkStruct_0207DE40 *v0 = sub_0207DD94();
 

@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/pokemon_summary.h"
 #include "struct_defs/struct_02072014.h"
@@ -22,6 +21,7 @@
 #include "core_sys.h"
 #include "field_comm_manager.h"
 #include "field_system.h"
+#include "field_task.h"
 #include "heap.h"
 #include "map_object.h"
 #include "message.h"
@@ -43,7 +43,6 @@
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_0203D1B8.h"
-#include "unk_020508D4.h"
 #include "unk_0205D8CC.h"
 #include "unk_020655F4.h"
 #include "unk_0207A274.h"
@@ -252,7 +251,7 @@ static BOOL sub_0205A2FC(void)
     return 0;
 }
 
-static BOOL sub_0205A324(TaskManager *param0)
+static BOOL sub_0205A324(FieldTask *param0)
 {
     UnkStruct_0205A0D8 *v0 = TaskManager_Environment(param0);
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
@@ -655,7 +654,7 @@ static void sub_0205AAA0(UnkStruct_0205A0D8 *param0, BOOL param1)
 void sub_0205AB10(FieldSystem *fieldSystem, UnkFuncPtr_0205AB10 *param1)
 {
     UnkStruct_0205A0D8 *v0;
-    TaskManager *v1 = fieldSystem->taskManager;
+    FieldTask *v1 = fieldSystem->taskManager;
 
     if (v1) {
         return;
@@ -1004,7 +1003,7 @@ void sub_0205B110(int param0, int param1, void *param2, void *param3)
     }
 }
 
-static BOOL sub_0205B140(TaskManager *param0)
+static BOOL sub_0205B140(FieldTask *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_0205B2D4 *v1 = TaskManager_Environment(param0);

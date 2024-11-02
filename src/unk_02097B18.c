@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/struct_0202CA28.h"
 #include "struct_defs/struct_0202CA64.h"
 #include "struct_defs/struct_02097F18.h"
@@ -19,6 +18,7 @@
 
 #include "bag.h"
 #include "bg_window.h"
+#include "field_task.h"
 #include "game_options.h"
 #include "game_overlay.h"
 #include "gx_layers.h"
@@ -41,7 +41,6 @@
 #include "unk_02024220.h"
 #include "unk_02028124.h"
 #include "unk_0202C9F4.h"
-#include "unk_020508D4.h"
 #include "unk_02055808.h"
 #include "unk_0206CCB0.h"
 
@@ -309,7 +308,7 @@ void sub_02097F30(UnkStruct_02097F18 *param0, u8 param1)
     param0->unk_2D = param1;
 }
 
-static BOOL sub_02097F38(TaskManager *param0)
+static BOOL sub_02097F38(FieldTask *param0)
 {
     UnkStruct_02097F38 *v0 = TaskManager_Environment(param0);
     UnkStruct_02097F18 *v1 = v0->unk_08;
@@ -417,7 +416,7 @@ static BOOL sub_02097F38(TaskManager *param0)
     return 0;
 }
 
-void sub_020980DC(TaskManager *param0, SaveData *param1)
+void sub_020980DC(FieldTask *param0, SaveData *param1)
 {
     UnkStruct_02097F38 *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02097F38));
 

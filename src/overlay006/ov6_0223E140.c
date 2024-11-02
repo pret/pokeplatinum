@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_02099F80.h"
@@ -26,6 +25,7 @@
 #include "core_sys.h"
 #include "easy3d_object.h"
 #include "field_system.h"
+#include "field_task.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -36,7 +36,6 @@
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
 #include "unk_0201D15C.h"
-#include "unk_020508D4.h"
 #include "unk_020655F4.h"
 
 void include_unk_ov6_02248F30();
@@ -499,7 +498,7 @@ static void ov6_0223E318(FieldSystem *fieldSystem, u32 param1, BOOL param2)
     }
 }
 
-static BOOL ov6_0223E33C(TaskManager *taskMan)
+static BOOL ov6_0223E33C(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_ov6_0223E33C *v1 = TaskManager_Environment(taskMan);
@@ -521,7 +520,7 @@ static BOOL ov6_0223E33C(TaskManager *taskMan)
     return 0;
 }
 
-void ov6_0223E384(TaskManager *taskMan)
+void ov6_0223E384(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_ov6_0223E33C *v1 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov6_0223E33C));
@@ -549,7 +548,7 @@ static void ov6_0223E3D8(UnkStruct_ov6_0223E33C *param0)
     }
 }
 
-static BOOL ov6_0223E408(TaskManager *param0)
+static BOOL ov6_0223E408(FieldTask *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_ov6_0223E33C *v1 = TaskManager_Environment(param0);
@@ -608,7 +607,7 @@ static BOOL ov6_0223E408(TaskManager *param0)
     return 0;
 }
 
-void ov6_0223E4EC(TaskManager *param0)
+void ov6_0223E4EC(FieldTask *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_ov6_0223E33C *v1 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov6_0223E33C));

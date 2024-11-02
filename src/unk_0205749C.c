@@ -3,14 +3,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020508D4_decl.h"
-
 #include "field/field_system.h"
 #include "overlay066/ov66_0222DCE0.h"
 #include "overlay066/struct_ov66_0222DCE0.h"
 
+#include "field_task.h"
 #include "heap.h"
-#include "unk_020508D4.h"
 
 FS_EXTERN_OVERLAY(overlay66);
 
@@ -20,7 +18,7 @@ typedef struct {
     UnkStruct_ov66_0222DCE0 unk_04;
 } UnkStruct_0205749C;
 
-static BOOL sub_020574CC(TaskManager *param0);
+static BOOL sub_020574CC(FieldTask *param0);
 
 static const OverlayManagerTemplate Unk_020ED4CC = {
     ov66_0222DCE0,
@@ -29,7 +27,7 @@ static const OverlayManagerTemplate Unk_020ED4CC = {
     FS_OVERLAY_ID(overlay66)
 };
 
-void sub_0205749C(TaskManager *param0, BOOL param1)
+void sub_0205749C(FieldTask *param0, BOOL param1)
 {
     UnkStruct_0205749C *v0;
 
@@ -40,7 +38,7 @@ void sub_0205749C(TaskManager *param0, BOOL param1)
     FieldTask_Start(param0, sub_020574CC, v0);
 }
 
-static BOOL sub_020574CC(TaskManager *param0)
+static BOOL sub_020574CC(FieldTask *param0)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_0205749C *v1 = TaskManager_Environment(param0);

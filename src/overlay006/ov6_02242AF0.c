@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02027860_decl.h"
-#include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system.h"
@@ -15,12 +14,12 @@
 #include "overlay006/struct_ov6_02242AF0.h"
 
 #include "field_system.h"
+#include "field_task.h"
 #include "heap.h"
 #include "player_avatar.h"
 #include "savedata_misc.h"
 #include "unk_02005474.h"
 #include "unk_02027F50.h"
-#include "unk_020508D4.h"
 #include "unk_020655F4.h"
 
 typedef struct UnkStruct_ov6_02242B58_t UnkStruct_ov6_02242B58;
@@ -38,7 +37,7 @@ typedef struct UnkStruct_ov6_02242B58_t {
     int unk_10;
 } UnkStruct_ov6_02242B58;
 
-static BOOL ov6_02242C5C(TaskManager *taskMan);
+static BOOL ov6_02242C5C(FieldTask *taskMan);
 static BOOL ov6_02242D94(FieldSystem *fieldSystem, UnkStruct_ov6_02242B58 *param1, const fx32 *param2, VecFx32 *param3);
 static BOOL ov6_02242E60(FieldSystem *fieldSystem, UnkStruct_ov6_02242B58 *param1, const fx32 *param2, VecFx32 *param3);
 
@@ -194,7 +193,7 @@ u32 ov6_02242C3C(FieldSystem *fieldSystem, const u16 param1)
     }
 }
 
-static BOOL ov6_02242C5C(TaskManager *taskMan)
+static BOOL ov6_02242C5C(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_ov6_02242B58 *v1 = TaskManager_Environment(taskMan);
