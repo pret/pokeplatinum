@@ -17,6 +17,7 @@
     - [Windows (including WSL 1)](#windows-including-wsl-1)
     - [Unix Systems](#unix-systems)
   - [4. Building the Repository](#4-building-the-repository)
+  - [5. Debugger Support](#5-debugger-support)
 <!--toc:end-->
 
 This document details the steps necessary to build a copy of Pokémon Platinum
@@ -347,3 +348,21 @@ If everything works, then the following ROM should be built:
 If you need further assistance, feel free to ask a question in the `#pokeplatinum`
 channel of the `pret` Discord (see `README.md` for contact information) or [open
 an issue](https://github.com/pret/pokeplatinum/issues/new).
+
+## 5. Debugger Support
+
+This step is optional, but useful. `pokeplatinum` ships with support for GDB
+debugging and a target to build a debug-enabled ROM:
+
+```bash
+make debug
+```
+
+For convenience, a template `launch.json` configuration for VS Code is provided
+in the `.vscode` folder of the repository.
+
+Due to the nature of the Nintendo DS, use of standard builds of GDB for debugging
+is insufficient. A fork of `binutils-gdb` which supports the overlay system
+employed by the console is available [here](https://github.com/joshua-smith-12/binutils-gdb-nds).
+
+For installation instructions, refer to [the `README.md`](https://github.com/joshua-smith-12/binutils-gdb-nds/blob/master/README.md).

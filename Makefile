@@ -69,25 +69,27 @@ ROOT := $(CWD)
 
 NINJA_STATUS := "[%p %f/%t] "
 
+all: release check
+
 release: setup_release rom
 
 debug: setup_debug rom
-	NINJA_STATUS=$(NINJA_STATUS) $(MESON) compile -C $(POKEPLATINUM_BUILD) "debug.nef" "overlay.map"
+	@NINJA_STATUS=$(NINJA_STATUS) $(MESON) compile -C $(POKEPLATINUM_BUILD) "debug.nef" "overlay.map"
 
 setup_release:
-	$(MESON) configure build "-Dgdb_debugging=false"
+	@$(MESON) configure build "-Dgdb_debugging=false"
 
 setup_debug:
-	$(MESON) configure build "-Dgdb_debugging=true"
+	@$(MESON) configure build "-Dgdb_debugging=true"
 
 rom:
-	NINJA_STATUS=$(NINJA_STATUS) $(MESON) compile -C $(POKEPLATINUM_BUILD) "pokeplatinum.us.nds"
+	@NINJA_STATUS=$(NINJA_STATUS) $(MESON) compile -C $(POKEPLATINUM_BUILD) "pokeplatinum.us.nds"
 
 check:
-	NINJA_STATUS=$(NINJA_STATUS) $(MESON) test -C $(POKEPLATINUM_BUILD)
+	@NINJA_STATUS=$(NINJA_STATUS) $(MESON) test -C $(POKEPLATINUM_BUILD)
 
 target:
-	NINJA_STATUS=$(NINJA_STATUS) $(MESON) compile -C $(POKEPLATINUM_BUILD) $(MESON_TARGET)
+	@NINJA_STATUS=$(NINJA_STATUS) $(MESON) compile -C $(POKEPLATINUM_BUILD) $(MESON_TARGET)
 
 $(MWRAP):
 	rm -rf $(MWRAP) $(WRAP_BUILD)
@@ -124,7 +126,7 @@ endif
 			 -- $(POKEPLATINUM_BUILD)
 
 format:
-	$(NINJA) -C $(POKEPLATINUM_BUILD) clang-format
+	@$(NINJA) -C $(POKEPLATINUM_BUILD) clang-format
 
 clean:
-	$(MESON) compile -C $(POKEPLATINUM_BUILD) --clean
+	@$(MESON) compile -C $(POKEPLATINUM_BUILD) --clean
