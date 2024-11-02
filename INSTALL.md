@@ -201,28 +201,57 @@ GNU `coreutils` installed to run the build scripts:
 
 > [!NOTE]
 > Precise packages to be installed will vary by Linux distribution and
-> package registry. Known working alternatives are provided for those
-> packages which may go by a different name in various common registries.
-
-The following dependencies are required to build the repository:
-
-- `git`
-- `meson` (at least version `1.3.0`)
-- `flex`
-- `bison`
-- `build-essential` / `build-essentials`
-- `binutils-arm-none-eabi` / `arm-none-eabi-binutils`
-- `gcc-arm-none-eabi` / `arm-none-eabi-gcc`
-- `wine`
-- `pkg-config`
-
+> package registry. A handful of common distributions are listed below for
+> convenience.
+>
 > [!IMPORTANT]
-> If the version of `meson` provided by your package manager is out of date, then
-> follow [these instructions](https://mesonbuild.com/Getting-meson.html) to get
-> the most recent version.
+> This project requires `meson` version `1.3.0` or higher. If the version of
+> `meson` provided by your package manager is out of date, then follow
+> [these instructions](https://mesonbuild.com/Getting-meson.html) to get the
+> most recent version.
 
 Once you have installed all the above dependencies, proceed to [downloading
 the repository](#2-downloading-the-repository).
+
+#### Ubuntu (and other Debian derivatives)
+
+1. Install `wine`:
+
+    ```bash
+    sudo dpkg --add-architecture i386
+    sudo mkdir -pm755 /etc/apt/keyrings
+    sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
+    sudo apt update
+    sudo apt install --install-recommends winehq-stable
+    ```
+
+2. Install the following packages via `apt`:
+
+    ```bash
+    sudo apt install git flex bison ninja-build build-essential binutils-arm-none-eabi gcc-arm-none-eabi pkg-config
+    ```
+
+3. Install `meson` via `pip`:
+
+    ```bash
+    pip3 install --user meson
+    echo "export PATH=~/.local/bin:$PATH" >> ~/.bashrc
+    source ~/.bashrc
+    ```
+
+#### Arch Linux (and derivatives)
+
+Install dependencies via `pacman`:
+
+```bash
+sudo pacman -S git flex bison build-essentials arm-none-eabi-binutils arm-none-eabi-gcc pkg-config wine meson
+```
+
+#### Fedora (and derivatives)
+
+```bash
+sudo yum install git flex bison gcc make arm-none-eabi-bintuils-cs arm-none-eabi-gcc-cs pkg-config wine meson ninja-build
+```
 
 ### Docker
 
