@@ -225,7 +225,7 @@ typedef struct PokemonSummaryScreen {
     u8 ribbonCol;
     u8 ribbonRow;
     u8 ribbonMax;
-    u8 ribbonID;
+    u8 ribbonNum;
 } PokemonSummaryScreen;
 
 BOOL PokemonSummary_ShowContestData(SaveData *saveData);
@@ -233,7 +233,7 @@ void PokemonSummary_FlagVisiblePages(PokemonSummary *summary, const u8 *pages);
 u8 PokemonSummary_PageIsVisble(PokemonSummaryScreen *summaryScreen, u32 page);
 u8 PokemonSummary_CountVisiblePages(PokemonSummaryScreen *summaryScreen);
 void *PokemonSummary_MonData(PokemonSummaryScreen *summaryScreen);
-u8 PokemonSummaryScreen_RibbonIDAt(PokemonSummaryScreen *summaryScreen, u8 col);
+u8 PokemonSummaryScreen_RibbonNumAt(PokemonSummaryScreen *summaryScreen, u8 col);
 void PokemonSummary_SetPlayerProfile(PokemonSummary *summary, const TrainerInfo *trainerInfo);
 u32 PokemonSummary_StatusIconChar(void);
 u32 PokemonSummary_StatusIconPltt(void);

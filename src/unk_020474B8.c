@@ -444,7 +444,7 @@ BOOL ScrCmd_232(ScriptContext *param0)
     u16 v3 = ScriptContext_GetVar(param0);
     u16 v4;
 
-    v4 = sub_020923C0(v3, 3);
+    v4 = Ribbon_GetData(v3, RIBBON_DATA_NAME_ID);
     StringTemplate_SetRibbonName(*v1, v2, v4);
 
     return 0;

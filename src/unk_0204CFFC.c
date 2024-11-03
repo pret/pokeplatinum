@@ -728,7 +728,7 @@ BOOL ScrCmd_22E(ScriptContext *param0)
     v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->fieldSystem->saveData), v2);
 
     for (v3 = 0, v4 = 0; v3 < 80; v3++) {
-        if (Pokemon_GetValue(v0, sub_020923C0(v3, 0), NULL) != 0) {
+        if (Pokemon_GetValue(v0, Ribbon_GetData(v3, RIBBON_DATA_RIBBON_ID), NULL) != 0) {
             v4++;
         }
     }
@@ -753,7 +753,7 @@ BOOL ScrCmd_22F(ScriptContext *param0)
             v0 = Party_GetPokemonBySlotIndex(v1, v4);
 
             if (Pokemon_GetValue(v0, MON_DATA_IS_EGG, NULL) == 0) {
-                if (Pokemon_GetValue(v0, sub_020923C0(v3, 0), NULL) != 0) {
+                if (Pokemon_GetValue(v0, Ribbon_GetData(v3, RIBBON_DATA_RIBBON_ID), NULL) != 0) {
                     v5++;
                     break;
                 }
@@ -775,7 +775,7 @@ BOOL ScrCmd_230(ScriptContext *param0)
     u8 v4 = 1;
 
     v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->fieldSystem->saveData), v2);
-    *v1 = Pokemon_GetValue(v0, sub_020923C0(v3, 0), NULL);
+    *v1 = Pokemon_GetValue(v0, Ribbon_GetData(v3, RIBBON_DATA_RIBBON_ID), NULL);
 
     return 0;
 }
@@ -789,8 +789,8 @@ BOOL ScrCmd_231(ScriptContext *param0)
 
     v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->fieldSystem->saveData), v1);
 
-    Pokemon_SetValue(v0, sub_020923C0(v2, 0), &v3);
-    sub_0206DDB8(param0->fieldSystem->saveData, v0, sub_020923C0(v2, 0));
+    Pokemon_SetValue(v0, Ribbon_GetData(v2, RIBBON_DATA_RIBBON_ID), &v3);
+    sub_0206DDB8(param0->fieldSystem->saveData, v0, Ribbon_GetData(v2, RIBBON_DATA_RIBBON_ID));
 
     return 0;
 }

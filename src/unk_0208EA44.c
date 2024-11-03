@@ -730,10 +730,10 @@ void HideContestStatDots(PokemonSummaryScreen *summaryScreen)
     CellActor_SetDrawFlag(summaryScreen->unk_41C[52], FALSE);
 }
 
-static void sub_0208F9B0(PokemonSummaryScreen *summaryScreen, u8 ribbonID, u8 param2)
+static void sub_0208F9B0(PokemonSummaryScreen *summaryScreen, u8 ribbonNum, u8 param2)
 {
-    sub_0200D948(summaryScreen->renderer, summaryScreen->gfxHandler, 39, sub_020923C0(ribbonID, 1), 0, 26 + param2);
-    sub_0200D414(summaryScreen->unk_41C[55 + param2], sub_020923C0(ribbonID, 2) + 7);
+    sub_0200D948(summaryScreen->renderer, summaryScreen->gfxHandler, 39, Ribbon_GetData(ribbonNum, RIBBON_DATA_SPRITE_ID), 0, 26 + param2);
+    sub_0200D414(summaryScreen->unk_41C[55 + param2], Ribbon_GetData(ribbonNum, RIBBON_DATA_PALETTE_NUM) + 7);
 }
 
 void sub_0208FA04(PokemonSummaryScreen *param0)
@@ -753,7 +753,7 @@ void sub_0208FA04(PokemonSummaryScreen *param0)
     for (v0 = 0; v0 < 12; v0++) {
         if (v0 < param0->ribbonMax) {
             CellActor_SetDrawFlag(param0->unk_41C[55 + v0], 1);
-            sub_0208F9B0(param0, PokemonSummaryScreen_RibbonIDAt(param0, v0), v0);
+            sub_0208F9B0(param0, PokemonSummaryScreen_RibbonNumAt(param0, v0), v0);
         }
     }
 
@@ -765,7 +765,7 @@ void PokemonSummaryScreen_UpdateShownRibbonRows(PokemonSummaryScreen *summaryScr
     for (u16 i = 0; i < RIBBONS_PER_ROW * 2; i++) {
         if ((summaryScreen->ribbonRow * RIBBONS_PER_ROW + i) < summaryScreen->ribbonMax) {
             CellActor_SetDrawFlag(summaryScreen->unk_41C[55 + i], TRUE);
-            sub_0208F9B0(summaryScreen, PokemonSummaryScreen_RibbonIDAt(summaryScreen, i), i);
+            sub_0208F9B0(summaryScreen, PokemonSummaryScreen_RibbonNumAt(summaryScreen, i), i);
         } else {
             CellActor_SetDrawFlag(summaryScreen->unk_41C[55 + i], FALSE);
         }

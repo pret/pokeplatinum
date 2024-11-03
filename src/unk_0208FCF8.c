@@ -799,10 +799,10 @@ void sub_020910E4(PokemonSummaryScreen *summaryScreen)
     Window_FillTilemap(&summaryScreen->extraWindows[2], 0);
     Window_FillTilemap(&summaryScreen->extraWindows[3], 0);
 
-    MessageLoader_GetStrbuf(summaryScreen->ribbonLoader, sub_020923C0(summaryScreen->ribbonID, 3), summaryScreen->strbuf);
+    MessageLoader_GetStrbuf(summaryScreen->ribbonLoader, Ribbon_GetData(summaryScreen->ribbonNum, RIBBON_DATA_NAME_ID), summaryScreen->strbuf);
     PrintTextToWindow(summaryScreen, &summaryScreen->extraWindows[2], TEXT_COLOR(15, 14, 0), SUMMARY_ALIGNMENT_LEFT);
 
-    MessageLoader_GetStrbuf(summaryScreen->ribbonLoader, sub_02092424(summaryScreen->data->ribbons, summaryScreen->ribbonID), summaryScreen->strbuf);
+    MessageLoader_GetStrbuf(summaryScreen->ribbonLoader, PokemonSummaryScreen_GetRibbonDescriptionID(summaryScreen->data->ribbons, summaryScreen->ribbonNum), summaryScreen->strbuf);
     PrintTextToWindow(summaryScreen, &summaryScreen->extraWindows[3], TEXT_COLOR(1, 2, 0), SUMMARY_ALIGNMENT_LEFT);
 
     Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[2]);

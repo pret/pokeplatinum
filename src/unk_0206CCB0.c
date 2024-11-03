@@ -1387,7 +1387,7 @@ void sub_0206DDB8(SaveData *param0, Pokemon *param1, u32 param2)
     case 30:
     case 35:
     case 40:
-        if (sub_02092464(param2) > 0xff) {
+        if (Ribbon_RibbonIDToNameID(param2) > 0xff) {
             GF_ASSERT(0);
             return;
         }
@@ -1395,7 +1395,7 @@ void sub_0206DDB8(SaveData *param0, Pokemon *param1, u32 param2)
         sub_0206CE38(param1, &v3->unk_1C, &v3->unk_19, &v3->unk_1A, &v3->unk_1B);
         sub_0206CED0(32, param1, &v3->unk_18, v3->unk_00);
 
-        v3->unk_16 = sub_02092464(param2);
+        v3->unk_16 = Ribbon_RibbonIDToNameID(param2);
         v3->unk_17 = v1;
 
         sub_0206CD7C(param0, 3, 5, v3);

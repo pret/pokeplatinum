@@ -1341,7 +1341,7 @@ void sub_02094898(UnkStruct_02095C48 *param0, StringTemplate *param1, u32 param2
         return;
     }
 
-    v1 = sub_020923C0(v0, 3);
+    v1 = Ribbon_GetData(v0, RIBBON_DATA_NAME_ID);
     StringTemplate_SetRibbonName(param1, param2, v1);
 }
 
