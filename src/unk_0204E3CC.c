@@ -15,9 +15,9 @@
 #include "inlines.h"
 #include "player_avatar.h"
 #include "save_player.h"
+#include "system_flags.h"
 #include "trainer_info.h"
 #include "unk_0202631C.h"
-#include "system_flags.h"
 #include "vars_flags.h"
 
 BOOL ScrCmd_157(ScriptContext *param0)

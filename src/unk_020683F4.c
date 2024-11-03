@@ -2,6 +2,7 @@
 
 #include <nitro.h>
 #include <string.h>
+
 #include "constants/savedata/vars_flags.h"
 
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -45,6 +46,7 @@
 #include "save_player.h"
 #include "script_manager.h"
 #include "strbuf.h"
+#include "system_flags.h"
 #include "unk_0200F174.h"
 #include "unk_0202631C.h"
 #include "unk_02028124.h"
@@ -56,7 +58,6 @@
 #include "unk_0205D8CC.h"
 #include "unk_0205DAC8.h"
 #include "unk_0205F180.h"
-#include "system_flags.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206B9D8.h"
 #include "unk_0207CB08.h"

@@ -44,12 +44,12 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system_flags.h"
 #include "trainer_info.h"
 #include "unk_0202854C.h"
 #include "unk_02030EE0.h"
 #include "unk_020366A0.h"
 #include "unk_02054D00.h"
-#include "system_flags.h"
 #include "vars_flags.h"
 
 typedef BOOL (*UnkFuncPtr_ov23_02242540)(int, int);

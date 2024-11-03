@@ -50,6 +50,7 @@
 #include "string_list.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system_flags.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
@@ -61,7 +62,6 @@
 #include "unk_020573FC.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
-#include "system_flags.h"
 #include "vars_flags.h"
 
 typedef struct {

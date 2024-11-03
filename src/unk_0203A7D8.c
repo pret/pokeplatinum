@@ -2,6 +2,7 @@
 
 #include <nitro.h>
 #include <string.h>
+
 #include "constants/savedata/vars_flags.h"
 
 #include "field/field_system.h"

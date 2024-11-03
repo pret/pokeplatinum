@@ -3,9 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/pokemon.h"
-#include "consts/map.h"
 #include "consts/game_records.h"
+#include "consts/map.h"
+#include "consts/pokemon.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
@@ -42,6 +42,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system_flags.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_0200A9DC.h"
@@ -52,7 +53,6 @@
 #include "unk_0202F108.h"
 #include "unk_020363E8.h"
 #include "unk_02055808.h"
-#include "system_flags.h"
 #include "unk_0206CCB0.h"
 #include "unk_020923C0.h"
 #include "unk_02094EDC.h"

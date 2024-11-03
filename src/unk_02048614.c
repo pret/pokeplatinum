@@ -6,20 +6,20 @@
 
 #include "field/field_system.h"
 
+#include "encounter.h"
 #include "field_script_context.h"
 #include "inlines.h"
 #include "map_object.h"
 #include "party.h"
 #include "script_manager.h"
 #include "sys_task_manager.h"
+#include "system_flags.h"
 #include "unk_020041CC.h"
-#include "encounter.h"
 #include "unk_02051D8C.h"
 #include "unk_020528D0.h"
 #include "unk_02054884.h"
 #include "unk_020553DC.h"
 #include "unk_02067A84.h"
-#include "system_flags.h"
 #include "unk_0206AFE0.h"
 #include "vars_flags.h"
 

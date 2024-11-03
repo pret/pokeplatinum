@@ -17,6 +17,7 @@
 
 #include "bg_window.h"
 #include "core_sys.h"
+#include "encounter.h"
 #include "field_task.h"
 #include "game_records.h"
 #include "heap.h"
@@ -33,7 +34,6 @@
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
 #include "unk_0201D15C.h"
-#include "encounter.h"
 #include "unk_02051D8C.h"
 #include "unk_0205D8CC.h"
 #include "unk_020655F4.h"

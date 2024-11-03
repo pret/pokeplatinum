@@ -31,6 +31,7 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system_flags.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
@@ -40,7 +41,6 @@
 #include "unk_02054884.h"
 #include "unk_020559DC.h"
 #include "unk_0205D8CC.h"
-#include "system_flags.h"
 #include "unk_02096420.h"
 #include "vars_flags.h"
 

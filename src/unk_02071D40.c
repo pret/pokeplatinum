@@ -21,6 +21,7 @@
 #include "play_time.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "system_flags.h"
 #include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "unk_0202854C.h"
@@ -29,7 +30,6 @@
 #include "unk_0203D1B8.h"
 #include "unk_020559DC.h"
 #include "unk_0205B33C.h"
-#include "system_flags.h"
 #include "vars_flags.h"
 
 typedef struct {

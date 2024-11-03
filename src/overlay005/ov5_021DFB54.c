@@ -28,6 +28,7 @@
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
 #include "core_sys.h"
+#include "encounter.h"
 #include "field_task.h"
 #include "game_records.h"
 #include "heap.h"
@@ -39,7 +40,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
-#include "encounter.h"
 #include "unk_020553DC.h"
 #include "unk_0205DAC8.h"
 #include "unk_0205F180.h"

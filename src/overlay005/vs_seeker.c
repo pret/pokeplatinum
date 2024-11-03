@@ -21,10 +21,10 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system_flags.h"
 #include "unk_02005474.h"
 #include "unk_0201D15C.h"
 #include "unk_020655F4.h"
-#include "system_flags.h"
 #include "unk_0206AFE0.h"
 #include "vars_flags.h"
 

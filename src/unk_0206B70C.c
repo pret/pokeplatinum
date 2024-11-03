@@ -2,6 +2,7 @@
 
 #include <nitro.h>
 #include <string.h>
+
 #include "constants/savedata/vars_flags.h"
 
 #include "struct_decls/struct_0203A790_decl.h"

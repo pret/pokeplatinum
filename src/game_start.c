@@ -16,11 +16,11 @@
 #include "savedata.h"
 #include "savedata_misc.h"
 #include "system_data.h"
+#include "system_flags.h"
 #include "trainer_info.h"
 #include "unk_02017428.h"
 #include "unk_0201D15C.h"
 #include "unk_0205C980.h"
-#include "system_flags.h"
 #include "unk_0206B9D8.h"
 #include "vars_flags.h"
 

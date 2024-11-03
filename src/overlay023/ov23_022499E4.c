@@ -24,9 +24,9 @@
 #include "heap.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system_flags.h"
 #include "unk_02033200.h"
 #include "unk_020366A0.h"
-#include "system_flags.h"
 #include "vars_flags.h"
 
 static void ov97_0222D19C(SysTask *param0, void *param1);

@@ -2,6 +2,7 @@
 
 #include <nitro.h>
 #include <string.h>
+
 #include "constants/savedata/vars_flags.h"
 #include "consts/map.h"
 
@@ -11,8 +12,8 @@
 #include "location.h"
 #include "record_mixed_rng.h"
 #include "savedata.h"
-#include "unk_0201D15C.h"
 #include "system_flags.h"
+#include "unk_0201D15C.h"
 #include "vars_flags.h"
 
 static BOOL sub_0206AFE0(VarsFlags *param0, u16 param1, u16 param2);

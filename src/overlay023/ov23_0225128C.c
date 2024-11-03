@@ -43,13 +43,13 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system_flags.h"
 #include "unk_02005474.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
 #include "unk_0202854C.h"
 #include "unk_02033200.h"
 #include "unk_0206A780.h"
-#include "system_flags.h"
 #include "vars_flags.h"
 
 typedef struct {

@@ -2,6 +2,7 @@
 
 #include <nitro.h>
 #include <string.h>
+
 #include "constants/savedata/vars_flags.h"
 
 #include "struct_decls/pokedexdata_decl.h"
@@ -10,10 +11,10 @@
 
 #include "inlines.h"
 #include "save_player.h"
+#include "system_flags.h"
 #include "trainer_info.h"
 #include "unk_0201D15C.h"
 #include "unk_0202631C.h"
-#include "system_flags.h"
 #include "vars_flags.h"
 
 typedef BOOL (*UnkStruct_ov6_022494B0)(FieldSystem *);
