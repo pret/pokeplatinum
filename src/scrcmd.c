@@ -556,7 +556,7 @@ static BOOL ScrCmd_1C2(ScriptContext *ctx);
 static BOOL ScrCmd_1C3(ScriptContext *ctx);
 static BOOL ScrCmd_1C4(ScriptContext *ctx);
 static BOOL ScrCmd_1C5(ScriptContext *ctx);
-static BOOL ScrCmd_1CC(ScriptContext *ctx);
+static BOOL ScrCmd_GiveJournal(ScriptContext *ctx);
 static BOOL ScrCmd_1CD(ScriptContext *ctx);
 static BOOL ScrCmd_1CE(ScriptContext *ctx);
 static BOOL ScrCmd_1D2(ScriptContext *ctx);
@@ -638,8 +638,8 @@ static BOOL ScrCmd_260(ScriptContext *ctx);
 static BOOL ScrCmd_262(ScriptContext *ctx);
 static BOOL ScrCmd_263(ScriptContext *ctx);
 static BOOL ScrCmd_264(ScriptContext *ctx);
-static BOOL ScrCmd_265(ScriptContext *ctx);
-static BOOL ScrCmd_266(ScriptContext *ctx);
+static BOOL ScrCmd_HidePoketch(ScriptContext *ctx);
+static BOOL ScrCmd_ShowPoketch(ScriptContext *ctx);
 static BOOL ScrCmd_267(ScriptContext *ctx);
 static BOOL ScrCmd_268(ScriptContext *ctx);
 static BOOL ScrCmd_269(ScriptContext *ctx);
@@ -1113,16 +1113,16 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_CheckBadge,
     ScrCmd_15C,
     ScrCmd_15D,
-    ScrCmd_15E,
-    ScrCmd_15F,
-    ScrCmd_160,
-    ScrCmd_161,
-    ScrCmd_162,
-    ScrCmd_163,
-    ScrCmd_164,
-    ScrCmd_165,
-    ScrCmd_166,
-    ScrCmd_167,
+    ScrCmd_CheckBagAcquired,
+    ScrCmd_GiveBag,
+    ScrCmd_CheckHasPartner,
+    ScrCmd_SetHasPartner,
+    ScrCmd_ClearHasPartner,
+    ScrCmd_CheckStepFlag,
+    ScrCmd_SetStepFlag,
+    ScrCmd_ClearStepFlag,
+    ScrCmd_CheckGameCompleted,
+    ScrCmd_SetGameCompleted,
     ScrCmd_168,
     ScrCmd_169,
     ScrCmd_16A,
@@ -1223,12 +1223,12 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_1C9,
     ScrCmd_1CA,
     ScrCmd_1CB,
-    ScrCmd_1CC,
+    ScrCmd_GiveJournal,
     ScrCmd_1CD,
     ScrCmd_1CE,
-    ScrCmd_1CF,
-    ScrCmd_1D0,
-    ScrCmd_1D1,
+    ScrCmd_Strength,
+    ScrCmd_Flash,
+    ScrCmd_Defog,
     ScrCmd_1D2,
     ScrCmd_1D3,
     ScrCmd_1D4,
@@ -1376,8 +1376,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_262,
     ScrCmd_263,
     ScrCmd_264,
-    ScrCmd_265,
-    ScrCmd_266,
+    ScrCmd_HidePoketch,
+    ScrCmd_ShowPoketch,
     ScrCmd_267,
     ScrCmd_268,
     ScrCmd_269,
@@ -3102,7 +3102,7 @@ static BOOL ScrCmd_LockAll(ScriptContext *ctx)
         MapObject *object = sub_02062570(fieldSystem->mapObjMan, 0x30);
 
         if (object
-            && sub_0206A984(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1
+            && SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1
             && MapObject_IsMoving(object) != FALSE) {
 
             sub_02062DDC(object);
@@ -3215,7 +3215,7 @@ static BOOL ScrCmd_LockLastTalked(ScriptContext *ctx)
     }
 
     if (v3) {
-        if (sub_0206A984(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1 && MapObject_IsMoving(v3) != FALSE) {
+        if (SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1 && MapObject_IsMoving(v3) != FALSE) {
             inline_020410F4_2(1 << 1);
             sub_02062DDC(v3);
         }
@@ -5026,7 +5026,7 @@ static BOOL ScrCmd_123(ScriptContext *ctx)
 
     if (v2 == 0) {
         v4 = sub_02026F58(v0);
-        *v3 = sub_0205E078(v4, inline_0208BE68(SaveData_GetVarsFlags(ctx->fieldSystem->saveData), 10));
+        *v3 = sub_0205E078(v4, SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(ctx->fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_ETERNA_CITY));
     } else {
         v4 = sub_02026F20(v0);
         *v3 = sub_0205E0E4(v4, TrainerInfo_Gender(v1));
@@ -6098,15 +6098,15 @@ static BOOL ScrCmd_1C5(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_1CC(ScriptContext *ctx)
+static BOOL ScrCmd_GiveJournal(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    inline_02044528(SaveData_GetVarsFlags(fieldSystem->saveData));
+    SystemFlag_HandleJournalAcquired(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_SET);
     fieldSystem->journal = Journal_GetSavedPage(SaveData_GetJournal(fieldSystem->saveData), 1);
     sub_02053494(fieldSystem);
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_1CD(ScriptContext *ctx)
@@ -6390,13 +6390,13 @@ static BOOL ScrCmd_202(ScriptContext *ctx)
 
     switch (v5) {
     case 0:
-        sub_0206AE3C(v3);
+        SystemFlag_SetSafariGameActive(v3);
         sub_0206D000(v4);
         *v0 = 30;
         *v1 = 0;
         break;
     case 1:
-        sub_0206AE4C(v3);
+        SystemFlag_ClearSafariGameActive(v3);
         sub_0206D720(ctx->fieldSystem);
         {
             void *v6 = sub_0202BDE0(4);
@@ -6947,20 +6947,18 @@ static BOOL ScrCmd_264(ScriptContext *ctx)
     return 1;
 }
 
-static BOOL ScrCmd_265(ScriptContext *ctx)
+static BOOL ScrCmd_HidePoketch(ScriptContext *ctx)
 {
-    VarsFlags *v0 = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
-
-    sub_0206AE0C(v0);
-    return 0;
+    VarsFlags *varsFlags = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
+    SystemFlag_SetPoketchHidden(varsFlags);
+    return FALSE;
 }
 
-static BOOL ScrCmd_266(ScriptContext *ctx)
+static BOOL ScrCmd_ShowPoketch(ScriptContext *ctx)
 {
-    VarsFlags *v0 = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
-
-    sub_0206AE1C(v0);
-    return 0;
+    VarsFlags *varsFlags = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
+    SystemFlag_ClearPoketchHidden(varsFlags);
+    return FALSE;
 }
 
 static BOOL ScrCmd_267(ScriptContext *ctx)

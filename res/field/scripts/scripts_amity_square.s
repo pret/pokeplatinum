@@ -198,7 +198,7 @@ _02C9:
     ApplyMovement 0xFF, _03C8
     ApplyMovement 0x8002, _03C8
     WaitMovement
-    ScrCmd_161
+    SetHasPartner
     ScrCmd_06D 0x8002, 48
     ReleaseAll
     End
@@ -247,7 +247,7 @@ _0365:
     LockAll
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_162
+    ClearHasPartner
     GoTo _037D
     End
 

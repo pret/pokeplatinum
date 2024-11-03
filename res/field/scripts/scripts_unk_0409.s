@@ -184,7 +184,7 @@ _0314:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_1CF 2, 0x800C
+    Strength 2, 0x800C
     GoToIfEq 0x800C, 1, _03BD
     ScrCmd_09A 0x800C, 70
     GoToIfEq 0x800C, 6, _0372
@@ -205,7 +205,7 @@ _0372:
     End
 
 _0381:
-    ScrCmd_1CF 1
+    Strength 1
     ScrCmd_09A 0x800C, 70
     SetVar 0x8004, 0x800C
     BufferPartyMonNickname 0, 0x800C
@@ -229,9 +229,9 @@ _03BD:
 
 _03CC:
     LockAll
-    ScrCmd_1CF 2, 0x800C
+    Strength 2, 0x800C
     GoToIfEq 0x800C, 1, _03BD
-    ScrCmd_1CF 1
+    Strength 1
     BufferPartyMonNickname 0, 0x8000
     Message 10
     CloseMessage
@@ -250,7 +250,7 @@ _040E:
     GoToIfEq 0x800C, 6, _0469
     CheckBadge BADGE_ID_ICICLE, 0x800C
     GoToIfEq 0x800C, 0, _0469
-    ScrCmd_160 0x800C
+    CheckHasPartner 0x800C
     GoToIfEq 0x800C, 1, _0478
     Message 18
     ScrCmd_03E 0x800C
@@ -299,7 +299,7 @@ _04B9:
 _04DD:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_160 0x800C
+    CheckHasPartner 0x800C
     GoToIfEq 0x800C, 1, _0512
     Message 12
     ScrCmd_03E 0x800C
@@ -382,7 +382,7 @@ _060C:
     Message 16
     CloseMessage
     ScrCmd_0C5 0x8000
-    ScrCmd_1D1 1
+    Defog 1
     PlayFanfare SEQ_SE_DP_FBRADE
     ScrCmd_0C4
     ScrCmd_201 0x8004
@@ -397,7 +397,7 @@ _064C:
     Message 26
     CloseMessage
     ScrCmd_0C5 0x8000
-    ScrCmd_1D0 1
+    Flash 1
     ScrCmd_0C3
     WaitTime 42, 0x800C
     GoTo _0675

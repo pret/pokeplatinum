@@ -269,9 +269,9 @@ void FieldMenu_Init(FieldSystem *fieldSystem)
 {
     FieldMenu *menu = FieldMenu_Alloc();
 
-    if (sub_0206AE5C(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
+    if (SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
         menu->unk_224 = sub_0203AC24(fieldSystem);
-    } else if (sub_0206AE8C(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
+    } else if (SystemFlag_CheckInPalPark(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
         menu->unk_224 = sub_0203AC28(fieldSystem);
     } else if (sub_0206C0D0(fieldSystem) == 1) {
         menu->unk_224 = sub_0203AC2C(fieldSystem);
@@ -325,9 +325,9 @@ void sub_0203AB00(FieldSystem *fieldSystem)
 
     menu->unk_228 = 0;
 
-    if (sub_0206AE5C(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
+    if (SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
         menu->unk_224 = sub_0203AC24(fieldSystem);
-    } else if (sub_0206AE8C(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
+    } else if (SystemFlag_CheckInPalPark(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
         menu->unk_224 = sub_0203AC28(fieldSystem);
     } else if (sub_0206C0D0(fieldSystem) == 1) {
         menu->unk_224 = sub_0203AC2C(fieldSystem);
@@ -368,7 +368,7 @@ static u32 sub_0203ABD0(FieldSystem *fieldSystem)
         v0 |= 0x2;
     }
 
-    if (VarsFlags_CheckBagAvailable(SaveData_GetVarsFlags(fieldSystem->saveData)) == 0) {
+    if (SystemFlag_CheckBagAcquired(SaveData_GetVarsFlags(fieldSystem->saveData)) == 0) {
         v0 |= 0x4;
     }
 
@@ -658,9 +658,9 @@ static void sub_0203B094(FieldTask *taskMan)
     fieldSystem = FieldTask_GetFieldSystem(taskMan);
     menu = FieldTask_GetEnv(taskMan);
 
-    if (sub_0206AE5C(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
+    if (SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
         v6 = 0;
-    } else if (sub_0206AE8C(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
+    } else if (SystemFlag_CheckInPalPark(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
         v6 = 1;
     } else {
         return;
@@ -714,7 +714,7 @@ static void sub_0203B200(FieldTask *taskMan)
     fieldSystem = FieldTask_GetFieldSystem(taskMan);
     menu = FieldTask_GetEnv(taskMan);
 
-    if ((sub_0206AE5C(SaveData_GetVarsFlags(fieldSystem->saveData)) == 0) && (sub_0206AE8C(SaveData_GetVarsFlags(fieldSystem->saveData)) == 0)) {
+    if ((SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData)) == 0) && (SystemFlag_CheckInPalPark(SaveData_GetVarsFlags(fieldSystem->saveData)) == 0)) {
         return;
     }
 
@@ -1591,7 +1591,7 @@ static BOOL FieldMenu_SelectRetire(FieldTask *taskMan)
     Window_Remove(&menu->unk_00);
     sub_0203B200(taskMan);
 
-    if (sub_0206AE5C(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
+    if (SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
         ScriptManager_Change(taskMan, 8821, NULL);
     } else {
         ScriptManager_Change(taskMan, 4, NULL);

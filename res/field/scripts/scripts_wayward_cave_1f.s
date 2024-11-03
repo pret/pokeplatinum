@@ -36,7 +36,7 @@ _002B:
     WaitABXPadPress
     CloseMessage
     SetVar 0x403F, 0x264
-    ScrCmd_161
+    SetHasPartner
     ScrCmd_06D 4, 48
     ReleaseAll
     End
@@ -80,7 +80,7 @@ _00E0:
 
 _00E2:
     LockAll
-    ScrCmd_162
+    ClearHasPartner
     ScrCmd_06D 4, 16
     ScrCmd_1BD 0x800C
     GoToIfEq 0x800C, 2, _0103

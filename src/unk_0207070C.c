@@ -124,12 +124,12 @@ static inline BOOL inline_02070950(const UnkStruct_02070950 *param0, int param1)
 
 static inline BOOL inline_02070A24(const UnkStruct_02070950 *param0)
 {
-    return sub_0206A984(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
+    return SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
 }
 
 static inline BOOL inline_02070EEC(const UnkStruct_02070950 *param0)
 {
-    if ((sub_0206AE5C(SaveData_GetVarsFlags(param0->fieldSystem->saveData)) == 1) || (sub_0206AE8C(SaveData_GetVarsFlags(param0->fieldSystem->saveData)) == 1)) {
+    if ((SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(param0->fieldSystem->saveData)) == 1) || (SystemFlag_CheckInPalPark(SaveData_GetVarsFlags(param0->fieldSystem->saveData)) == 1)) {
         return 1;
     }
 
@@ -138,7 +138,7 @@ static inline BOOL inline_02070EEC(const UnkStruct_02070950 *param0)
 
 static inline BOOL inline_020710A4(const UnkStruct_02070950 *param0)
 {
-    if (sub_0206AE8C(SaveData_GetVarsFlags(param0->fieldSystem->saveData)) == 1) {
+    if (SystemFlag_CheckInPalPark(SaveData_GetVarsFlags(param0->fieldSystem->saveData)) == 1) {
         return 1;
     }
 

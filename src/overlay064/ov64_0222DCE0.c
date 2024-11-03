@@ -3,6 +3,7 @@
 #include <dwc.h>
 #include <nitro.h>
 #include <string.h>
+#include "constants/savedata/vars_flags.h"
 
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
@@ -45,6 +46,7 @@
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
+#include "system_flags.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
@@ -3149,7 +3151,7 @@ static void ov64_0223087C (UnkStruct_ov64_02230620 * param0, UnkStruct_ov64_0222
 
 static void ov64_022308DC (UnkStruct_ov64_02230904 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2, u32 param3)
 {
-    param0->unk_10 = inline_0208BE68(SaveData_GetVarsFlags(param1->unk_00), 53);
+    param0->unk_10 = SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(param1->unk_00), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_BATTLE_PARK);
 
     ov64_02230B1C(param0, param1, param2, param3);
 }

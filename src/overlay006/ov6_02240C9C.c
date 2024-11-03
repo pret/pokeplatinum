@@ -286,7 +286,7 @@ BOOL ov6_02240D5C(FieldSystem *fieldSystem)
         return FALSE;
     }
 
-    if (sub_0206A984(SaveData_GetVarsFlags(fieldSystem->saveData))) {
+    if (SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(fieldSystem->saveData))) {
         v8 = TRUE;
     } else {
         v8 = FALSE;
@@ -311,7 +311,7 @@ BOOL ov6_02240D5C(FieldSystem *fieldSystem)
     }
 
     if (!v8) {
-        v9 = sub_0206AE5C(SaveData_GetVarsFlags(fieldSystem->saveData));
+        v9 = SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData));
         ov6_02242328(fieldSystem, v9, &battleParams);
     } else {
         battleParams = sub_02051D8C(11, BATTLE_TYPE_AI_PARTNER);
@@ -396,7 +396,7 @@ BOOL ov6_0224106C(FieldSystem *fieldSystem, const int fishingRodType, BattlePara
         return FALSE;
     }
 
-    BOOL v2 = sub_0206AE5C(SaveData_GetVarsFlags(fieldSystem->saveData));
+    BOOL v2 = SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData));
 
     ov6_02242328(fieldSystem, v2, battleParams);
 
@@ -478,7 +478,7 @@ BOOL ov6_022411C8(FieldSystem *fieldSystem, FieldTask *param1)
 
     memset(&v9, 0, sizeof(UnkStruct_ov6_02241674));
 
-    if (sub_0206A984(SaveData_GetVarsFlags(fieldSystem->saveData))) {
+    if (SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(fieldSystem->saveData))) {
         v6 = TRUE;
     } else {
         v6 = FALSE;
@@ -499,7 +499,7 @@ BOOL ov6_022411C8(FieldSystem *fieldSystem, FieldTask *param1)
     }
 
     if (!v6) {
-        v7 = sub_0206AE5C(SaveData_GetVarsFlags(fieldSystem->saveData));
+        v7 = SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData));
         ov6_02242328(fieldSystem, v7, &battleParams);
     } else {
         battleParams = sub_02051D8C(11, BATTLE_TYPE_AI_PARTNER);
@@ -604,7 +604,7 @@ BOOL ov6_022413E4(FieldSystem *fieldSystem, BattleParams **battleParams)
     memset(&v9, 0, sizeof(UnkStruct_ov6_02241674));
     v9.unk_0C = FALSE;
 
-    if (sub_0206A984(SaveData_GetVarsFlags(fieldSystem->saveData))) {
+    if (SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(fieldSystem->saveData))) {
         v7 = TRUE;
     } else {
         v7 = FALSE;
@@ -628,7 +628,7 @@ BOOL ov6_022413E4(FieldSystem *fieldSystem, BattleParams **battleParams)
     }
 
     if (!v7) {
-        v8 = sub_0206AE5C(SaveData_GetVarsFlags(fieldSystem->saveData));
+        v8 = SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData));
         ov6_02242328(fieldSystem, v8, battleParams);
     } else {
         *battleParams = sub_02051D8C(11, BATTLE_TYPE_AI_PARTNER);

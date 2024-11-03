@@ -186,15 +186,15 @@ void sub_02052E58(FieldTask *param0)
     v1 = FieldOverworldState_GetSpecialLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));
     v2 = sub_0203A72C(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
-    v5->unk_00 = sub_0206A954(v3);
+    v5->unk_00 = SystemFlag_CheckGameCompleted(v3);
     v5->unk_04.unk_00 = SaveData_GetTrainerInfo(fieldSystem->saveData);
     v5->unk_04.unk_04 = Party_GetFromSavedata(fieldSystem->saveData);
     v5->unk_04.playTime = SaveData_GetPlayTime(fieldSystem->saveData);
     v5->unk_10.unk_00 = TrainerInfo_Gender(SaveData_GetTrainerInfo(fieldSystem->saveData));
-    v5->unk_10.unk_04 = sub_0206A954(v3);
+    v5->unk_10.unk_04 = SystemFlag_CheckGameCompleted(v3);
     v5->unk_10.unk_08 = SaveData_Pokedex(fieldSystem->saveData);
 
-    if (sub_0206A954(v3) == 0) {
+    if (SystemFlag_CheckGameCompleted(v3) == 0) {
         sub_02055C2C(fieldSystem);
     }
 
@@ -203,8 +203,8 @@ void sub_02052E58(FieldTask *param0)
     Party_GiveChampionRibbons(v7);
     SetPlayerStartLocation(v1);
     SetPlayerFirstRespawnLocation(v2);
-    sub_0206AD9C(v3);
-    sub_0206A944(v3);
+    SystemFlag_SetCommunicationClubAccessible(v3);
+    SystemFlag_SetGameCompleted(v3);
     TrainerInfo_SetMainStoryCleared(v4);
 
     v6 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);

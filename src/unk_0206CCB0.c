@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/overworld_weather.h"
+#include "constants/savedata/vars_flags.h"
 #include "constants/species.h"
 
 #include "struct_decls/pokedexdata_decl.h"
@@ -1243,7 +1244,7 @@ static int sub_0206DB38(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 
 static BOOL sub_0206DB48(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
-    return inline_0208BE68(SaveData_GetVarsFlags(fieldSystem->saveData), 6);
+    return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_RESORT_AREA);
 }
 
 void sub_0206DB5C(FieldSystem *fieldSystem, u8 param1)
@@ -1268,7 +1269,7 @@ static int sub_0206DB74(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 
 static BOOL sub_0206DB9C(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
-    return inline_0208BE68(SaveData_GetVarsFlags(fieldSystem->saveData), 6);
+    return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_RESORT_AREA);
 }
 
 void sub_0206DBB0(SaveData *param0, u32 param1, Pokemon *param2, BOOL param3)
@@ -1307,7 +1308,7 @@ static BOOL sub_0206DC3C(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param
         return 0;
     }
 
-    return inline_0208BE68(SaveData_GetVarsFlags(fieldSystem->saveData), 17);
+    return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_FIGHT_AREA);
 }
 
 void sub_0206DC6C(FieldSystem *fieldSystem, u32 param1, Pokemon *param2)
@@ -1576,7 +1577,7 @@ static int sub_0206E018(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 
 static BOOL sub_0206E04C(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
-    return inline_0208BE68(SaveData_GetVarsFlags(fieldSystem->saveData), 17);
+    return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_FIGHT_AREA);
 }
 
 void sub_0206E060(SaveData *param0)
@@ -1606,7 +1607,7 @@ static int sub_0206E098(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 
 static BOOL sub_0206E0CC(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
-    return inline_0208BE68(SaveData_GetVarsFlags(fieldSystem->saveData), 9);
+    return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_OREBURGH_CITY);
 }
 
 void sub_0206E0E0(FieldSystem *fieldSystem, u16 param1)
@@ -1640,7 +1641,7 @@ static int sub_0206E118(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 
 static BOOL sub_0206E160(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
-    return inline_0208BE68(SaveData_GetVarsFlags(fieldSystem->saveData), 17);
+    return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_FIGHT_AREA);
 }
 
 void sub_0206E174(FieldSystem *fieldSystem, u16 param1)
@@ -1902,7 +1903,7 @@ static int sub_0206E5E4(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 
 static BOOL sub_0206E654(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
-    return inline_0208BE68(SaveData_GetVarsFlags(fieldSystem->saveData), 17);
+    return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_FIGHT_AREA);
 }
 
 void sub_0206E668(FieldSystem *fieldSystem, u16 param1)
@@ -2031,7 +2032,7 @@ static int sub_0206E7AC(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 
 static BOOL sub_0206E834(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
-    return inline_0208BE68(SaveData_GetVarsFlags(fieldSystem->saveData), 17);
+    return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_FIGHT_AREA);
 }
 
 static const u8 Unk_020EFD34[] = {
@@ -2257,24 +2258,24 @@ static BOOL sub_0206EBE4(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param
 }
 
 static const u16 Unk_020EFD3C[] = {
-    0x0,
-    0x1,
-    0x2,
-    0x3,
-    0x4,
-    0x5,
-    0x6,
-    0x7,
-    0x8,
-    0x9,
-    0xA,
-    0xB,
-    0xC,
-    0xD,
-    0xE,
-    0xF,
-    0x10,
-    0x11
+    FIRST_ARRIVAL_TWINLEAF_TOWN,
+    FIRST_ARRIVAL_SANDGEM_TOWN,
+    FIRST_ARRIVAL_FLOAROMA_TOWN,
+    FIRST_ARRIVAL_SOLACEON_TOWN,
+    FIRST_ARRIVAL_CELESTIC_TOWN,
+    FIRST_ARRIVAL_SURVIVAL_AREA,
+    FIRST_ARRIVAL_RESORT_AREA,
+    FIRST_ARRIVAL_JUBILIFE_CITY,
+    FIRST_ARRIVAL_CANALAVE_CITY,
+    FIRST_ARRIVAL_OREBURGH_CITY,
+    FIRST_ARRIVAL_ETERNA_CITY,
+    FIRST_ARRIVAL_HEARTHOME_CITY,
+    FIRST_ARRIVAL_PASTORIA_CITY,
+    FIRST_ARRIVAL_VEILSTONE_CITY,
+    FIRST_ARRIVAL_SUNYSHORE_CITY,
+    FIRST_ARRIVAL_SNOWPOINT_CITY,
+    FIRST_ARRIVAL_OUTSIDE_VICTORY_ROAD,
+    FIRST_ARRIVAL_FIGHT_AREA,
 };
 
 static const u16 Unk_020F0074[] = {
@@ -2524,7 +2525,7 @@ static int sub_0206EBE8(FieldSystem *fieldSystem)
     VarsFlags *v4 = SaveData_GetVarsFlags(fieldSystem->saveData);
 
     for (v2 = 0; v2 < NELEMS(Unk_020EFD3C); v2++) {
-        v0[v2] = inline_0208BE68(v4, Unk_020EFD3C[v2]);
+        v0[v2] = SystemFlag_HandleFirstArrivalToZone(v4, HANDLE_FLAG_CHECK, Unk_020EFD3C[v2]);
     }
 
     for (v2 = 0, v3 = 0; v2 < NELEMS(Unk_020F0074) / 2; v2++) {
@@ -2565,7 +2566,7 @@ static int sub_0206EC90(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 static BOOL sub_0206ECFC(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
     VarsFlags *v0 = SaveData_GetVarsFlags(fieldSystem->saveData);
-    return inline_0208BE68(v0, 9);
+    return SystemFlag_HandleFirstArrivalToZone(v0, HANDLE_FLAG_CHECK, FIRST_ARRIVAL_OREBURGH_CITY);
 }
 
 static BOOL sub_0206ED10(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
@@ -2736,13 +2737,13 @@ static int sub_0206EF7C(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 
     v0 = 0;
 
-    if (sub_0206A954(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
+    if (SystemFlag_CheckGameCompleted(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
         v0 = (LCRNG_Next() % 8);
-    } else if (inline_0208BE68(SaveData_GetVarsFlags(fieldSystem->saveData), 11) == 1) {
+    } else if (SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_HEARTHOME_CITY) == TRUE) {
         v0 = (LCRNG_Next() % 5);
-    } else if (inline_0208BE68(SaveData_GetVarsFlags(fieldSystem->saveData), 10) == 1) {
+    } else if (SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_ETERNA_CITY) == TRUE) {
         v0 = (LCRNG_Next() % 4);
-    } else if (inline_0208BE68(SaveData_GetVarsFlags(fieldSystem->saveData), 18) == 1) {
+    } else if (SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_OREBURGH_MINE) == TRUE) {
         v0 = (LCRNG_Next() % 2);
     }
 

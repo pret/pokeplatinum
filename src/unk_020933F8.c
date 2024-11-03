@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/pokemon.h"
+#include "consts/map.h"
 #include "consts/game_records.h"
 
 #include "struct_decls/pokedexdata_decl.h"
@@ -1594,8 +1596,8 @@ void sub_02094C44(UnkStruct_02095C48 *param0, SaveData *param1, u32 param2, Jour
             v1 = SaveData_GetVarsFlags(param0->unk_1970);
 
             if ((param0->unk_00.unk_111 == 2) && (param0->unk_00.unk_110 >= 3) && (sub_02094790(param0) == 0)) {
-                if (sub_0206AAA8(v1, param0->unk_00.unk_10F) == 0) {
-                    sub_0206AA50(v1, param0->unk_00.unk_10F);
+                if (SystemFlag_CheckContestMaster(v1, param0->unk_00.unk_10F) == 0) {
+                    SystemFlag_SetContestMaster(v1, param0->unk_00.unk_10F);
                 }
             }
         }

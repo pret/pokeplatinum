@@ -1675,7 +1675,7 @@ static void ov23_0223F70C(FieldSystem *fieldSystem)
     v0->fieldSystem = fieldSystem;
 
     HBlankSystem_Stop(fieldSystem->unk_04->hBlankSystem);
-    sub_0206AA04(SaveData_GetVarsFlags(fieldSystem->saveData));
+    SystemFlag_SetDiggingForFossils(SaveData_GetVarsFlags(fieldSystem->saveData));
 
     Unk_ov23_02257740->unk_8CC = SysTask_Start(ov23_0223F118, v0, 100);
 }

@@ -1,16 +1,13 @@
 #include "system_flags.h"
 
-#include <nitro.h>
-#include <string.h>
+#include "constants/savedata/vars_flags.h"
+
+#include "consts/map.h"
+#include "consts/pokemon.h"
+#include "consts/sdat.h"
 
 #include "rtc.h"
 #include "vars_flags.h"
-
-enum HandleFlagOp {
-    HANDLE_FLAG_CLEAR = 0,
-    HANDLE_FLAG_SET,
-    HANDLE_FLAG_CHECK,
-};
 
 static void SetFlag(VarsFlags *varsFlags, u16 flagID);
 static void ClearFlag(VarsFlags *varsFlags, u16 flagID);
@@ -53,464 +50,473 @@ static BOOL HandleFlag(VarsFlags *varsFlags, enum HandleFlagOp op, u32 flagID)
     return FALSE;
 }
 
-void VarsFlags_SetBagAvailable(VarsFlags *param0)
+void SystemFlag_SetBagAcquired(VarsFlags *varsFlags)
 {
-    SetFlag(param0, (2400 + 0));
+    SetFlag(varsFlags, FLAG_BAG_ACQUIRED);
 }
 
-BOOL VarsFlags_CheckBagAvailable(VarsFlags *param0)
+BOOL SystemFlag_CheckBagAcquired(VarsFlags *varsFlags)
 {
-    return CheckFlag(param0, (2400 + 0));
+    return CheckFlag(varsFlags, FLAG_BAG_ACQUIRED);
 }
 
-void sub_0206A944(VarsFlags *param0)
+void SystemFlag_SetGameCompleted(VarsFlags *varsFlags)
 {
-    SetFlag(param0, (2400 + 4));
-    return;
+    SetFlag(varsFlags, FLAG_GAME_COMPLETED);
 }
 
-BOOL sub_0206A954(VarsFlags *param0)
+BOOL SystemFlag_CheckGameCompleted(VarsFlags *varsFlags)
 {
-    return CheckFlag(param0, (2400 + 4));
+    return CheckFlag(varsFlags, FLAG_GAME_COMPLETED);
 }
 
-void sub_0206A964(VarsFlags *param0)
+void SystemFlag_SetHasPartner(VarsFlags *varsFlags)
 {
-    SetFlag(param0, (2400 + 1));
-    return;
+    SetFlag(varsFlags, FLAG_HAS_PARTNER);
 }
 
-void sub_0206A974(VarsFlags *param0)
+void SystemFlag_ClearHasPartner(VarsFlags *varsFlags)
 {
-    ClearFlag(param0, (2400 + 1));
-    return;
+    ClearFlag(varsFlags, FLAG_HAS_PARTNER);
 }
 
-BOOL sub_0206A984(VarsFlags *param0)
+BOOL SystemFlag_CheckHasPartner(VarsFlags *varsFlags)
 {
-    return CheckFlag(param0, (2400 + 1));
+    return CheckFlag(varsFlags, FLAG_HAS_PARTNER);
 }
 
-void sub_0206A994(VarsFlags *param0)
+void SystemFlag_SetStep(VarsFlags *varsFlags)
 {
-    SetFlag(param0, (2400 + 5));
-    return;
+    SetFlag(varsFlags, FLAG_STEP);
 }
 
-void sub_0206A9A4(VarsFlags *param0)
+void SystemFlag_ClearStep(VarsFlags *varsFlags)
 {
-    ClearFlag(param0, (2400 + 5));
-    return;
+    ClearFlag(varsFlags, FLAG_STEP);
 }
 
-BOOL sub_0206A9B4(VarsFlags *param0)
+BOOL SystemFlag_CheckStep(VarsFlags *varsFlags)
 {
-    return CheckFlag(param0, (2400 + 5));
+    return CheckFlag(varsFlags, FLAG_STEP);
 }
 
-void VsSeeker_SetUsedFlag(VarsFlags *param0)
+void SystemFlag_SetVsSeekerUsed(VarsFlags *varsFlags)
 {
-    SetFlag(param0, (2400 + 13));
+    SetFlag(varsFlags, FLAG_VS_SEEKER_USED);
 }
 
-void VsSeeker_ClearUsedFlag(VarsFlags *param0)
+void SystemFlag_ClearVsSeekerUsed(VarsFlags *varsFlags)
 {
-    ClearFlag(param0, (2400 + 13));
+    ClearFlag(varsFlags, FLAG_VS_SEEKER_USED);
 }
 
-BOOL VsSeeker_GetUsedFlag(VarsFlags *param0)
+BOOL SystemFlag_CheckVsSeekerUsed(VarsFlags *varsFlags)
 {
-    return CheckFlag(param0, (2400 + 13));
+    return CheckFlag(varsFlags, FLAG_VS_SEEKER_USED);
 }
 
-void sub_0206A9F4(VarsFlags *param0)
+void SystemFlag_SetEnteredUnderground(VarsFlags *varsFlags)
 {
-    SetFlag(param0, (2400 + 14));
-    return;
+    SetFlag(varsFlags, FLAG_ENTERED_UNDERGROUND);
 }
 
-void sub_0206AA04(VarsFlags *param0)
+void SystemFlag_SetDiggingForFossils(VarsFlags *varsFlags)
 {
-    SetFlag(param0, (2400 + 15));
-    return;
+    SetFlag(varsFlags, FLAG_DIGGING_FOR_FOSSILS);
 }
 
-void sub_0206AA14(VarsFlags *param0)
+void SystemFlag_SetSphereAcquired(VarsFlags *varsFlags)
 {
-    SetFlag(param0, (2400 + 16));
-    return;
+    SetFlag(varsFlags, FLAG_SPHERE_ACQUIRED);
 }
 
-void sub_0206AA20(VarsFlags *param0)
+void SystemFlag_SetCreatedSecretBase(VarsFlags *varsFlags)
 {
-    SetFlag(param0, (2400 + 17));
-    return;
+    SetFlag(varsFlags, FLAG_CREATED_SECRET_BASE);
 }
 
-void sub_0206AA30(VarsFlags *param0)
+void SystemFlag_SetDecoratedSecretBase(VarsFlags *varsFlags)
 {
-    SetFlag(param0, (2400 + 18));
-    return;
+    SetFlag(varsFlags, FLAG_DECORATED_SECRET_BASE);
 }
 
-void sub_0206AA40(VarsFlags *param0)
+void SystemFlag_SetDeliveredStolenFlag(VarsFlags *varsFlags)
 {
-    SetFlag(param0, (2400 + 19));
-    return;
+    SetFlag(varsFlags, FLAG_DELIVERED_STOLEN_FLAG);
 }
 
-void sub_0206AA50(VarsFlags *param0, int param1)
+void SystemFlag_SetContestMaster(VarsFlags *varsFlags, enum PokemonContestType contestType)
 {
-    switch (param1) {
-    case 0:
-        SetFlag(param0, (2400 + 8));
+    switch (contestType) {
+    case CONTEST_TYPE_COOL:
+        SetFlag(varsFlags, FLAG_CONTEST_MASTER_COOL);
         break;
-    case 1:
-        SetFlag(param0, (2400 + 9));
+
+    case CONTEST_TYPE_CUTE:
+        SetFlag(varsFlags, FLAG_CONTEST_MASTER_CUTE);
         break;
-    case 2:
-        SetFlag(param0, (2400 + 10));
+
+    case CONTEST_TYPE_BEAUTY:
+        SetFlag(varsFlags, FLAG_CONTEST_MASTER_BEAUTY);
         break;
-    case 3:
-        SetFlag(param0, (2400 + 11));
+
+    case CONTEST_TYPE_SMART:
+        SetFlag(varsFlags, FLAG_CONTEST_MASTER_SMART);
         break;
-    case 4:
-        SetFlag(param0, (2400 + 12));
+
+    case CONTEST_TYPE_TOUGH:
+        SetFlag(varsFlags, FLAG_CONTEST_MASTER_TOUGH);
+        break;
+    }
+}
+
+BOOL SystemFlag_CheckContestMaster(VarsFlags *varsFlags, enum PokemonContestType contestType)
+{
+    BOOL result;
+    switch (contestType) {
+    case CONTEST_TYPE_COOL:
+        result = CheckFlag(varsFlags, FLAG_CONTEST_MASTER_COOL);
+        break;
+
+    case CONTEST_TYPE_CUTE:
+        result = CheckFlag(varsFlags, FLAG_CONTEST_MASTER_CUTE);
+        break;
+
+    case CONTEST_TYPE_BEAUTY:
+        result = CheckFlag(varsFlags, FLAG_CONTEST_MASTER_BEAUTY);
+        break;
+
+    case CONTEST_TYPE_SMART:
+        result = CheckFlag(varsFlags, FLAG_CONTEST_MASTER_SMART);
+        break;
+
+    case CONTEST_TYPE_TOUGH:
+        result = CheckFlag(varsFlags, FLAG_CONTEST_MASTER_TOUGH);
         break;
     }
 
-    return;
+    return result;
 }
 
-BOOL sub_0206AAA8(VarsFlags *param0, int param1)
+BOOL SystemFlag_CheckUnlockedVsSeekerLevel(VarsFlags *varsFlags, int level)
 {
-    int v0;
+    BOOL result = FALSE;
 
-    switch (param1) {
-    case 0:
-        v0 = CheckFlag(param0, (2400 + 8));
-        break;
+    switch (level) {
     case 1:
-        v0 = CheckFlag(param0, (2400 + 9));
+        result = CheckFlag(varsFlags, FLAG_UNLOCKED_VS_SEEKER_LVL_1);
         break;
+
     case 2:
-        v0 = CheckFlag(param0, (2400 + 10));
+        result = CheckFlag(varsFlags, FLAG_UNLOCKED_VS_SEEKER_LVL_2);
         break;
+
     case 3:
-        v0 = CheckFlag(param0, (2400 + 11));
+        result = CheckFlag(varsFlags, FLAG_UNLOCKED_VS_SEEKER_LVL_3);
         break;
+
     case 4:
-        v0 = CheckFlag(param0, (2400 + 12));
+        result = CheckFlag(varsFlags, FLAG_UNLOCKED_VS_SEEKER_LVL_4);
         break;
-    }
 
-    return v0;
-}
-
-BOOL VsSeeker_HasUnlockedLevel(VarsFlags *param0, int param1)
-{
-    int v0 = 0;
-
-    switch (param1) {
-    case 1:
-        v0 = CheckFlag(param0, (2400 + 31));
-        break;
-    case 2:
-        v0 = CheckFlag(param0, (2400 + 32));
-        break;
-    case 3:
-        v0 = CheckFlag(param0, (2400 + 33));
-        break;
-    case 4:
-        v0 = CheckFlag(param0, (2400 + 34));
-        break;
     case 5:
-        v0 = CheckFlag(param0, (2400 + 35));
+        result = CheckFlag(varsFlags, FLAG_UNLOCKED_VS_SEEKER_LVL_5);
         break;
     }
 
-    return v0;
+    return result;
 }
 
-u16 sub_0206AB68(VarsFlags *param0, int param1)
+u16 SystemFlag_GetAltMusicForHeader(VarsFlags *varsFlags, enum MapHeader mapHeader)
 {
-    u16 v0 = 0;
+    u16 sdatID = 0;
+    switch (mapHeader) {
+    case MAP_HEADER_LAKE_VALOR_DRAINED:
+        if (CheckFlag(varsFlags, FLAG_ALT_MUSIC_LAKE_VALOR) == TRUE) {
+            sdatID = SEQ_D_LAKE;
+        }
+        break;
 
-    switch (param1) {
-    case 314:
-        if (CheckFlag(param0, (2400 + 36)) == 1) {
-            v0 = 1070;
+    case MAP_HEADER_VALOR_CAVERN:
+        if (CheckFlag(varsFlags, FLAG_ALT_MUSIC_LAKE_VALOR) == TRUE) {
+            sdatID = SEQ_D_RYAYHY;
         }
         break;
-    case 316:
-        if (CheckFlag(param0, (2400 + 36)) == 1) {
-            v0 = 1065;
+
+    case MAP_HEADER_LAKE_VERITY:
+        if (CheckFlag(varsFlags, FLAG_ALT_MUSIC_LAKE_VERITY) == TRUE) {
+            sdatID = SEQ_D_LAKE;
         }
         break;
-    case 312:
-        if (CheckFlag(param0, (2400 + 46)) == 1) {
-            v0 = 1070;
+
+    case MAP_HEADER_LAKE_ACUITY:
+        if (CheckFlag(varsFlags, FLAG_ALT_MUSIC_LAKE_ACUITY) == TRUE) {
+            sdatID = SEQ_D_LAKE;
         }
         break;
-    case 318:
-        if (CheckFlag(param0, (2400 + 47)) == 1) {
-            v0 = 1070;
+
+    case MAP_HEADER_PAL_PARK:
+        if (CheckFlag(varsFlags, FLAG_ALT_MUSIC_PAL_PARK) == TRUE) {
+            sdatID = SEQ_D_SAFARI;
         }
         break;
-    case 251:
-        if (CheckFlag(param0, (2400 + 53)) == 1) {
-            v0 = 1069;
+
+    case MAP_HEADER_SANDGEM_TOWN_POKEMON_RESEARCH_LAB:
+        if (CheckFlag(varsFlags, FLAG_ALT_MUSIC_ROWANS_LAB) == TRUE) {
+            sdatID = SEQ_OPENING2;
         }
         break;
-    case 422:
-        if (CheckFlag(param0, (2400 + 51)) == 1) {
-            v0 = 1098;
-        }
-        break;
-    case 305:
-    case 306:
-    case 307:
-    case 308:
-    case 309:
-    case 310:
-    case 494:
-    case 497:
-        if (CheckFlag(param0, (2400 + 37)) == 1) {
-            if (IsNight() == 0) {
-                v0 = 1016;
+
+    case MAP_HEADER_GALACTIC_HQ_1F:
+    case MAP_HEADER_GALACTIC_HQ_2F:
+    case MAP_HEADER_GALACTIC_HQ_3F:
+    case MAP_HEADER_GALACTIC_HQ_4F:
+    case MAP_HEADER_GALACTIC_HQ_B1F:
+    case MAP_HEADER_GALACTIC_HQ_B2F:
+    case MAP_HEADER_GALACTIC_HQ_CONTROL_ROOM:
+    case MAP_HEADER_GALACTIC_HQ_LABORATORY:
+        if (CheckFlag(varsFlags, FLAG_ALT_MUSIC_GALACTIC_HQ) == TRUE) {
+            if (!IsNight()) {
+                sdatID = SEQ_CITY07_D;
             } else {
-                v0 = 1045;
+                sdatID = SEQ_CITY07_N;
             }
             break;
         }
 
-        if (param1 == 305) {
-            if (CheckFlag(param0, (2400 + 38)) == 1) {
-                v0 = 1067;
+        if (mapHeader == MAP_HEADER_GALACTIC_HQ_1F) {
+            if (CheckFlag(varsFlags, FLAG_ALT_MUSIC_GALACTIC_HQ_1F) == TRUE) {
+                sdatID = SEQ_D_AGITO;
             }
         }
         break;
-    case 72:
-    case 73:
-    case 74:
-    case 75:
-        if (CheckFlag(param0, (2400 + 39)) == 1) {
-            if (IsNight() == 0) {
-                v0 = 1013;
+
+    case MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_1F:
+    case MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_2F:
+    case MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_3F:
+    case MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_4F:
+        if (CheckFlag(varsFlags, FLAG_ALT_MUSIC_GALACTIC_ETERNA_BUILDING) == TRUE) {
+            if (!IsNight()) {
+                sdatID = SEQ_CITY04_D;
             } else {
-                v0 = 1042;
+                sdatID = SEQ_CITY04_N;
             }
         }
         break;
-    case 201:
-        if (CheckFlag(param0, (2400 + 40)) == 1) {
-            if (IsNight() == 0) {
-                v0 = 1023;
+
+    case MAP_HEADER_VALLEY_WINDWORKS_BUILDING:
+        if (CheckFlag(varsFlags, FLAG_ALT_MUSIC_VALLEY_WINDWORKS_BUILDING) == TRUE) {
+            if (!IsNight()) {
+                sdatID = SEQ_ROAD_C_D;
             } else {
-                v0 = 1052;
+                sdatID = SEQ_ROAD_C_N;
             }
         }
         break;
-    case 256:
-        if (CheckFlag(param0, (2400 + 41)) == 1) {
-            if (IsNight() == 0) {
-                v0 = 1006;
+
+    case MAP_HEADER_FLOAROMA_MEADOW:
+        if (CheckFlag(varsFlags, FLAG_ALT_MUSIC_FLOAROMA_MEADOW) == TRUE) {
+            if (!IsNight()) {
+                sdatID = SEQ_TOWN03_D;
             } else {
-                v0 = 1035;
+                sdatID = SEQ_TOWN03_N;
             }
         }
         break;
-    case 399:
-        if (CheckFlag(param0, (2400 + 42)) == 1) {
-            if (IsNight() == 0) {
-                v0 = 1006;
+
+    case MAP_HEADER_ROUTE_224:
+        if (CheckFlag(varsFlags, FLAG_ALT_MUSIC_ROUTE_224) == TRUE) {
+            if (!IsNight()) {
+                sdatID = SEQ_TOWN03_D;
             } else {
-                v0 = 1035;
+                sdatID = SEQ_TOWN03_N;
             }
         }
         break;
-    case 185:
-        if (CheckFlag(param0, (2400 + 43)) == 1) {
-            v0 = 1001;
+
+    case MAP_HEADER_POKEMON_LEAGUE_CHAMPION_ROOM:
+        if (CheckFlag(varsFlags, FLAG_ALT_MUSIC_CHAMPION_ROOM) == TRUE) {
+            sdatID = SEQ_SILENCE_FIELD;
         }
+        break;
+
+    default:
         break;
     }
 
-    return v0;
+    return sdatID;
 }
 
-void sub_0206AD9C(VarsFlags *param0)
+void SystemFlag_SetCommunicationClubAccessible(VarsFlags *varsFlags)
 {
-    SetFlag(param0, (2400 + 6));
+    SetFlag(varsFlags, FLAG_COMMUNICATION_CLUB_ACCESSIBLE);
     return;
 }
 
-void CommClub_ResetAvailable(VarsFlags *param0)
+void SystemFlag_ClearCommunicationClubAccessible(VarsFlags *varsFlags)
 {
-    ClearFlag(param0, (2400 + 6));
+    ClearFlag(varsFlags, FLAG_COMMUNICATION_CLUB_ACCESSIBLE);
     return;
 }
 
-BOOL CommClub_IsAvailable(VarsFlags *param0)
+BOOL SystemFlag_CheckCommunicationClubAccessible(VarsFlags *varsFlags)
 {
-    return CheckFlag(param0, (2400 + 6));
+    return CheckFlag(varsFlags, FLAG_COMMUNICATION_CLUB_ACCESSIBLE);
 }
 
-BOOL ContestHall_IsVisited(VarsFlags *param0)
+BOOL SystemFlag_CheckContestHallVisited(VarsFlags *varsFlags)
 {
-    return CheckFlag(param0, (2400 + 24));
+    return CheckFlag(varsFlags, FLAG_CONTEST_HALL_VISITED);
 }
 
-BOOL sub_0206ADDC(VarsFlags *param0)
+BOOL SystemFlag_CheckUndergroundFirstEntered(VarsFlags *varsFlags)
 {
-    return CheckFlag(param0, (2400 + 50));
+    return CheckFlag(varsFlags, FLAG_UNDERGROUND_FIRST_ENTERED);
 }
 
-BOOL sub_0206ADEC(VarsFlags *param0)
+BOOL SystemFlag_CheckFreedGalacticHQPokemon(VarsFlags *varsFlags)
 {
-    return CheckFlag(param0, (2400 + 29));
+    return CheckFlag(varsFlags, FLAG_FREED_GALACTIC_HQ_POKEMON);
 }
 
-BOOL sub_0206ADFC(VarsFlags *param0)
+BOOL SystemFlag_CheckMetBebe(VarsFlags *varsFlags)
 {
-    return CheckFlag(param0, (2400 + 30));
+    return CheckFlag(varsFlags, FLAG_MET_BEBE);
 }
 
-void sub_0206AE0C(VarsFlags *param0)
+void SystemFlag_SetPoketchHidden(VarsFlags *varsFlags)
 {
-    SetFlag(param0, (2400 + 28));
+    SetFlag(varsFlags, FLAG_POKETCH_HIDDEN);
 }
 
-void sub_0206AE1C(VarsFlags *param0)
+void SystemFlag_ClearPoketchHidden(VarsFlags *varsFlags)
 {
-    ClearFlag(param0, (2400 + 28));
+    ClearFlag(varsFlags, FLAG_POKETCH_HIDDEN);
 }
 
-BOOL sub_0206AE2C(VarsFlags *param0)
+BOOL SystemFlag_CheckPoketchHidden(VarsFlags *varsFlags)
 {
-    return CheckFlag(param0, (2400 + 28));
+    return CheckFlag(varsFlags, FLAG_POKETCH_HIDDEN);
 }
 
-void sub_0206AE3C(VarsFlags *param0)
+void SystemFlag_SetSafariGameActive(VarsFlags *varsFlags)
 {
-    SetFlag(param0, (2400 + 7));
+    SetFlag(varsFlags, FLAG_SAFARI_GAME_ACTIVE);
 }
 
-void sub_0206AE4C(VarsFlags *param0)
+void SystemFlag_ClearSafariGameActive(VarsFlags *varsFlags)
 {
-    ClearFlag(param0, (2400 + 7));
+    ClearFlag(varsFlags, FLAG_SAFARI_GAME_ACTIVE);
 }
 
-BOOL sub_0206AE5C(VarsFlags *param0)
+BOOL SystemFlag_CheckSafariGameActive(VarsFlags *varsFlags)
 {
-    return CheckFlag(param0, (2400 + 7));
+    return CheckFlag(varsFlags, FLAG_SAFARI_GAME_ACTIVE);
 }
 
-void sub_0206AE6C(VarsFlags *param0)
+void SystemFlag_SetInPalPark(VarsFlags *varsFlags)
 {
-    SetFlag(param0, (2400 + 25));
+    SetFlag(varsFlags, FLAG_IN_PAL_PARK);
 }
 
-void sub_0206AE7C(VarsFlags *param0)
+void SystemFlag_ClearInPalPark(VarsFlags *varsFlags)
 {
-    ClearFlag(param0, (2400 + 25));
+    ClearFlag(varsFlags, FLAG_IN_PAL_PARK);
 }
 
-BOOL sub_0206AE8C(VarsFlags *param0)
+BOOL SystemFlag_CheckInPalPark(VarsFlags *varsFlags)
 {
-    return CheckFlag(param0, (2400 + 25));
+    return CheckFlag(varsFlags, FLAG_IN_PAL_PARK);
 }
 
-void sub_0206AE9C(VarsFlags *param0)
+void SystemFlag_CheckOnCyclingRoad(VarsFlags *varsFlags)
 {
-    ClearFlag(param0, (2400 + 52));
+    ClearFlag(varsFlags, FLAG_ON_CYCLING_ROAD);
 }
 
-BOOL sub_0206AEAC(VarsFlags *param0, int param1)
+BOOL SystemFlag_HandleStrengthActive(VarsFlags *varsFlags, enum HandleFlagOp op)
 {
-    return HandleFlag(param0, param1, (2400 + 2));
+    return HandleFlag(varsFlags, op, FLAG_STRENGTH_ACTIVE);
 }
 
-void sub_0206AEBC(VarsFlags *param0)
+void SystemFlag_SetFlashActive(VarsFlags *varsFlags)
 {
-    SetFlag(param0, (2400 + 26));
+    SetFlag(varsFlags, FLAG_FLASH_ACTIVE);
 }
 
-void sub_0206AECC(VarsFlags *param0)
+void SystemFlag_ClearFlashActive(VarsFlags *varsFlags)
 {
-    ClearFlag(param0, (2400 + 26));
+    ClearFlag(varsFlags, FLAG_FLASH_ACTIVE);
 }
 
-BOOL Overworld_IsFlashActive(VarsFlags *param0)
+BOOL SystemFlag_CheckFlashActive(VarsFlags *varsFlags)
 {
-    return CheckFlag(param0, (2400 + 26));
+    return CheckFlag(varsFlags, FLAG_FLASH_ACTIVE);
 }
 
-void sub_0206AEEC(VarsFlags *param0)
+void SystemFlag_SetDefogActive(VarsFlags *varsFlags)
 {
-    SetFlag(param0, (2400 + 27));
+    SetFlag(varsFlags, FLAG_DEFOG_ACTIVE);
 }
 
-void sub_0206AEFC(VarsFlags *param0)
+void SystemFlag_ClearDefogActive(VarsFlags *varsFlags)
 {
-    ClearFlag(param0, (2400 + 27));
+    ClearFlag(varsFlags, FLAG_DEFOG_ACTIVE);
 }
 
-BOOL Overworld_IsDefogActive(VarsFlags *param0)
+BOOL SystemFlag_CheckDefogActive(VarsFlags *varsFlags)
 {
-    return CheckFlag(param0, (2400 + 27));
+    return CheckFlag(varsFlags, FLAG_DEFOG_ACTIVE);
 }
 
-BOOL sub_0206AF1C(VarsFlags *param0, int param1)
+BOOL SystemFlag_HandleForceBikingInGate(VarsFlags *varsFlags, enum HandleFlagOp op)
 {
-    return HandleFlag(param0, param1, (2400 + 54));
+    return HandleFlag(varsFlags, op, FLAG_FORCE_BIKING_IN_GATE);
 }
 
-BOOL sub_0206AF2C(VarsFlags *param0, int param1)
+BOOL SystemFlag_HandleJournalAcquired(VarsFlags *varsFlags, enum HandleFlagOp op)
 {
-    return HandleFlag(param0, param1, (2400 + 3));
+    return HandleFlag(varsFlags, op, FLAG_JOURNAL_ACQUIRED);
 }
 
-BOOL sub_0206AF3C(VarsFlags *param0, int param1, u32 param2)
+BOOL SystemFlag_HandleFirstArrivalToZone(VarsFlags *varsFlags, enum HandleFlagOp op, u32 firstArrival)
 {
-    GF_ASSERT(param2 < 69);
-    return HandleFlag(param0, param1, (2400 + 80) + param2);
+    GF_ASSERT(firstArrival < FIRST_ARRIVAL_MAX);
+    return HandleFlag(varsFlags, op, SYSTEM_FLAGS_FIRST_ARRIVAL_TO_ZONE + firstArrival);
 }
 
-void sub_0206AF5C(VarsFlags *param0)
+void SystemFlag_SetConnectedToWiFi(VarsFlags *varsFlags)
 {
-    SetFlag(param0, (2400 + 44));
+    SetFlag(varsFlags, FLAG_CONNECTED_TO_WIFI);
 }
 
-BOOL sub_0206AF6C(VarsFlags *param0, int param1, int param2)
+BOOL SystemFlag_HandleOwnsVillaFurniture(VarsFlags *varsFlags, enum HandleFlagOp op, enum VillaFurniture furniture)
 {
-    GF_ASSERT(param2 < 20);
-    return HandleFlag(param0, param1, (2400 + 55) + param2);
+    GF_ASSERT(furniture < VILLA_FURNITURE_MAX);
+    return HandleFlag(varsFlags, op, SYSTEM_FLAGS_VILLA_FURNITURE_START + furniture);
 }
 
-void sub_0206AF90(VarsFlags *param0)
+void SystemFlag_ClearVillaVisitorInside(VarsFlags *varsFlags)
 {
-    ClearFlag(param0, (2400 + 75));
-    return;
+    ClearFlag(varsFlags, FLAG_VILLA_VISITOR_INSIDE);
 }
 
-void sub_0206AFA0(VarsFlags *param0)
+void SystemFlag_ClearVillaVisitorOutside(VarsFlags *varsFlags)
 {
-    ClearFlag(param0, (2400 + 76));
-    return;
+    ClearFlag(varsFlags, FLAG_VILLA_VISITOR_OUTSIDE);
 }
 
-BOOL sub_0206AFB0(VarsFlags *param0, int param1, int param2)
+BOOL SystemFlag_HandleGiratinaAnimation(VarsFlags *varsFlags, enum HandleFlagOp op, enum GiratinaShadowAnimation anim)
 {
-    return HandleFlag(param0, param1, (2400 + 78) + param2);
+    return HandleFlag(varsFlags, op, SYSTEM_FLAGS_GIRATINA_ANIM_START + anim);
 }
 
-BOOL sub_0206AFC0(VarsFlags *param0, int param1)
+BOOL SystemFlag_HandleDistortionWorldPuzzleFinished(VarsFlags *varsFlags, enum HandleFlagOp op)
 {
-    return HandleFlag(param0, param1, (2400 + 77));
+    return HandleFlag(varsFlags, op, FLAG_DISTORTION_WORLD_PUZZLE_FINISHED);
 }
 
-BOOL sub_0206AFD0(VarsFlags *param0)
+BOOL SystemFlag_CheckDistortionWorldSteppingStones(VarsFlags *varsFlags)
 {
-    return HandleFlag(param0, 2, (2400 + 23));
+    return HandleFlag(varsFlags, HANDLE_FLAG_CHECK, FLAG_DISTORTION_WORLD_STEPPING_STONES);
 }

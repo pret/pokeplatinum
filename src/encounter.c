@@ -184,7 +184,7 @@ static BOOL sub_02050B30(FieldTask *taskMan)
             return 1;
         }
 
-        if (sub_0206A984(SaveData_GetVarsFlags(fieldSystem->saveData))) {
+        if (SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(fieldSystem->saveData))) {
             HealAllPokemonInParty(Party_GetFromSavedata(fieldSystem->saveData));
         }
 
@@ -339,7 +339,7 @@ static void sub_02050DFC(UnkStruct_02050DD4 *param0)
 
 void sub_02050E10(FieldSystem *fieldSystem, BattleParams *param1)
 {
-    if (sub_0206AE5C(SaveData_GetVarsFlags(fieldSystem->saveData))) {
+    if (SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData))) {
         UnkStruct_02050ACC *v0;
 
         v0 = sub_02050ACC(param1, EncEffects_CutInEffect(param1), EncEffects_BGM(param1), NULL);
@@ -354,7 +354,7 @@ void sub_02050E10(FieldSystem *fieldSystem, BattleParams *param1)
 
 void sub_02050E78(FieldSystem *fieldSystem, FieldTask *param1, BattleParams *param2)
 {
-    if (sub_0206AE5C(SaveData_GetVarsFlags(fieldSystem->saveData))) {
+    if (SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData))) {
         UnkStruct_02050ACC *v0;
 
         v0 = sub_02050ACC(param2, EncEffects_CutInEffect(param2), EncEffects_BGM(param2), NULL);
@@ -401,7 +401,7 @@ static BOOL sub_02050EE0(FieldTask *taskMan)
             return 0;
         }
 
-        if (sub_0206A984(SaveData_GetVarsFlags(fieldSystem->saveData))) {
+        if (SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(fieldSystem->saveData))) {
             HealAllPokemonInParty(Party_GetFromSavedata(fieldSystem->saveData));
         }
 

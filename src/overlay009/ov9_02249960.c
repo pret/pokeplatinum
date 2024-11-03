@@ -1355,7 +1355,7 @@ static void ov9_02249CC4(UnkStruct_ov9_02249B04 *param0)
         ov9_02249D68(param0, v2);
     }
 
-    if (sub_0206AFC0(v1, 2) == 0) {
+    if (SystemFlag_HandleDistortionWorldPuzzleFinished(v1, HANDLE_FLAG_CHECK) == FALSE) {
         v0->unk_0C |= ((1 << 0) | (1 << 1) | (1 << 2));
     } else {
         v0->unk_0C |= ((1 << 10) | (1 << 11) | (1 << 12) | (1 << 6) | (1 << 7) | (1 << 8));
@@ -6071,7 +6071,7 @@ static int ov9_0224E1CC(UnkStruct_ov101_021D5D90 *param0, void *param1)
     if (v2->unk_08 == 1) {
         VarsFlags *v5 = SaveData_GetVarsFlags(v2->unk_0C->fieldSystem->saveData);
 
-        if (sub_0206AFD0(v5) == 0) {
+        if (SystemFlag_CheckDistortionWorldSteppingStones(v5) == 0) {
             v1->unk_02 = 0;
             v1->unk_00 = 1;
             v1->unk_01 = 1;
@@ -6101,7 +6101,7 @@ static void ov9_0224E294(UnkStruct_ov101_021D5D90 *param0, void *param1)
 
         v1 = SaveData_GetVarsFlags(v0->unk_10.unk_0C->fieldSystem->saveData);
 
-        if (sub_0206AFD0(v1) == 1) {
+        if (SystemFlag_CheckDistortionWorldSteppingStones(v1) == 1) {
             v0->unk_01 = 0;
 
             if (v0->unk_02 < 31) {
@@ -7638,7 +7638,7 @@ static BOOL ov9_0224F3BC(UnkStruct_ov9_0224F6EC *param0)
         if (v17 >= 3) {
             VarsFlags *v18 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
 
-            sub_0206AFC0(v18, 1);
+            SystemFlag_HandleDistortionWorldPuzzleFinished(v18, HANDLE_FLAG_SET);
         }
     }
 
@@ -8698,7 +8698,7 @@ static int ov9_022506EC(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *
     const UnkStruct_ov9_022506EC *v0 = param3;
     VarsFlags *v1 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
 
-    sub_0206AFB0(v1, 1, v0->unk_00);
+    SystemFlag_HandleGiratinaAnimation(v1, HANDLE_FLAG_SET, v0->unk_00);
     return 2;
 }
 
@@ -9641,7 +9641,7 @@ static BOOL ov9_02251104(UnkStruct_ov9_02249B04 *param0, u32 param1, u32 param2)
         }
         break;
     case 7:
-        if (sub_0206AFB0(v0, 2, param2) == 0) {
+        if (SystemFlag_HandleGiratinaAnimation(v0, HANDLE_FLAG_CHECK, param2) == FALSE) {
             return 1;
         }
         break;

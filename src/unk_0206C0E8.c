@@ -70,9 +70,9 @@ static BOOL sub_0206C120(FieldTask *taskMan)
         VarsFlags *v2 = SaveData_GetVarsFlags(fieldSystem->saveData);
 
         if (v1->unk_0D == 0) {
-            sub_0206AE0C(v2);
+            SystemFlag_SetPoketchHidden(v2);
         } else if (v1->unk_0D == 5) {
-            sub_0206AE1C(v2);
+            SystemFlag_ClearPoketchHidden(v2);
         }
     }
 

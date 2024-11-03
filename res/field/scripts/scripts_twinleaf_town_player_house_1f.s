@@ -269,7 +269,7 @@ _036C:
     SetVar 0x8004, 0x1B1
     SetVar 0x8005, 1
     CallCommonScript 0x7FC
-    ScrCmd_1CC
+    GiveJournal
     Message 16
     ScrCmd_1BD 0x8007
     GoToIfEq 0x8007, 1, _03A6

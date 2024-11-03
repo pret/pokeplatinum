@@ -642,7 +642,7 @@ static BOOL ov23_02251ACC(FieldTask *param0)
     case 5:
         if (IsScreenTransitionDone()) {
             ov23_0224B2C8(fieldSystem);
-            sub_0206AA30(SaveData_GetVarsFlags(fieldSystem->saveData));
+            SystemFlag_SetDecoratedSecretBase(SaveData_GetVarsFlags(fieldSystem->saveData));
             ov23_02251F94(fieldSystem);
             Heap_FreeToHeap(v1);
             return 1;

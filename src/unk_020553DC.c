@@ -191,7 +191,7 @@ u16 sub_020554A4(FieldSystem *fieldSystem, int headerID)
         sdatID = MapHeader_GetNightMusicID(headerID);
     }
 
-    u16 v1 = sub_0206AB68(SaveData_GetVarsFlags(fieldSystem->saveData), headerID);
+    u16 v1 = SystemFlag_GetAltMusicForHeader(SaveData_GetVarsFlags(fieldSystem->saveData), headerID);
 
     if (v1 != 0) {
         sdatID = v1;

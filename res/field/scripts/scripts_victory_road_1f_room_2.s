@@ -74,7 +74,7 @@ _00EC:
     WaitABXPadPress
     CloseMessage
     SetVar 0x403F, 0x262
-    ScrCmd_161
+    SetHasPartner
     ScrCmd_06D 28, 48
     ReleaseAll
     End
@@ -136,7 +136,7 @@ _0190:
     Message 4
     CloseMessage
     SetVar 0x4090, 0
-    ScrCmd_162
+    ClearHasPartner
     ScrCmd_06D 28, 14
     GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 55, _020D
@@ -242,7 +242,7 @@ _02DC:
 
 _02E4:
     LockAll
-    ScrCmd_162
+    ClearHasPartner
     ScrCmd_06D 28, 14
     ApplyMovement 0xFF, _03B4
     ApplyMovement 28, _03E0

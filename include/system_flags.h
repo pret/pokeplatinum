@@ -1,64 +1,74 @@
-#ifndef POKEPLATINUM_UNK_0206A8DC_H
-#define POKEPLATINUM_UNK_0206A8DC_H
+#ifndef POKEPLATINUM_SYSTEM_FLAGS_H
+#define POKEPLATINUM_SYSTEM_FLAGS_H
+
+#include "constants/savedata/vars_flags.h"
+#include "consts/pokemon.h"
+#include "consts/map.h"
 
 #include "vars_flags.h"
 
-void VarsFlags_SetBagAvailable(VarsFlags *param0);
-BOOL sub_0206A938(VarsFlags *param0);
-void sub_0206A944(VarsFlags *param0);
-BOOL sub_0206A954(VarsFlags *param0);
-void sub_0206A964(VarsFlags *param0);
-void sub_0206A974(VarsFlags *param0);
-BOOL sub_0206A984(VarsFlags *param0);
-void sub_0206A994(VarsFlags *param0);
-void sub_0206A9A4(VarsFlags *param0);
-BOOL sub_0206A9B4(VarsFlags *param0);
-void VsSeeker_SetUsedFlag(VarsFlags *param0);
-void VsSeeker_ClearUsedFlag(VarsFlags *param0);
-BOOL VsSeeker_GetUsedFlag(VarsFlags *param0);
-void sub_0206A9F4(VarsFlags *param0);
-void sub_0206AA04(VarsFlags *param0);
-void sub_0206AA14(VarsFlags *param0);
-void sub_0206AA20(VarsFlags *param0);
-void sub_0206AA30(VarsFlags *param0);
-void sub_0206AA40(VarsFlags *param0);
-void sub_0206AA50(VarsFlags *param0, int param1);
-BOOL sub_0206AAA8(VarsFlags *param0, int param1);
-BOOL VsSeeker_HasUnlockedLevel(VarsFlags *param0, int param1);
-u16 sub_0206AB68(VarsFlags *param0, int param1);
-void sub_0206AD9C(VarsFlags *param0);
-void CommClub_ResetAvailable(VarsFlags *param0);
-BOOL CommClub_IsAvailable(VarsFlags *param0);
-BOOL ContestHall_IsVisited(VarsFlags *param0);
-BOOL sub_0206ADDC(VarsFlags *param0);
-BOOL sub_0206ADEC(VarsFlags *param0);
-BOOL sub_0206ADFC(VarsFlags *param0);
-void sub_0206AE0C(VarsFlags *param0);
-void sub_0206AE1C(VarsFlags *param0);
-BOOL sub_0206AE2C(VarsFlags *param0);
-void sub_0206AE3C(VarsFlags *param0);
-void sub_0206AE4C(VarsFlags *param0);
-BOOL sub_0206AE5C(VarsFlags *param0);
-void sub_0206AE6C(VarsFlags *param0);
-void sub_0206AE7C(VarsFlags *param0);
-BOOL sub_0206AE8C(VarsFlags *param0);
-void sub_0206AE9C(VarsFlags *param0);
-BOOL sub_0206AEAC(VarsFlags *param0, int param1);
-void sub_0206AEBC(VarsFlags *param0);
-void sub_0206AECC(VarsFlags *param0);
-BOOL Overworld_IsFlashActive(VarsFlags *param0);
-void sub_0206AEEC(VarsFlags *param0);
-void sub_0206AEFC(VarsFlags *param0);
-BOOL Overworld_IsDefogActive(VarsFlags *param0);
-BOOL sub_0206AF1C(VarsFlags *param0, int param1);
-BOOL sub_0206AF2C(VarsFlags *param0, int param1);
-BOOL sub_0206AF3C(VarsFlags *param0, int param1, u32 param2);
-void sub_0206AF5C(VarsFlags *param0);
-BOOL sub_0206AF6C(VarsFlags *param0, int param1, int param2);
-void sub_0206AF90(VarsFlags *param0);
-void sub_0206AFA0(VarsFlags *param0);
-BOOL sub_0206AFB0(VarsFlags *param0, int param1, int param2);
-BOOL sub_0206AFC0(VarsFlags *param0, int param1);
-BOOL sub_0206AFD0(VarsFlags *param0);
+enum HandleFlagOp {
+    HANDLE_FLAG_CLEAR = 0,
+    HANDLE_FLAG_SET,
+    HANDLE_FLAG_CHECK,
+};
 
-#endif // POKEPLATINUM_UNK_0206A8DC_H
+void SystemFlag_SetBagAcquired(VarsFlags *varsFlags);
+BOOL SystemFlag_CheckBagAcquired(VarsFlags *varsFlags);
+void SystemFlag_SetGameCompleted(VarsFlags *varsFlags);
+BOOL SystemFlag_CheckGameCompleted(VarsFlags *varsFlags);
+void SystemFlag_SetHasPartner(VarsFlags *varsFlags);
+void SystemFlag_ClearHasPartner(VarsFlags *varsFlags);
+BOOL SystemFlag_CheckHasPartner(VarsFlags *varsFlags);
+void SystemFlag_SetStep(VarsFlags *varsFlags);
+void SystemFlag_ClearStep(VarsFlags *varsFlags);
+BOOL SystemFlag_CheckStep(VarsFlags *varsFlags);
+void SystemFlag_SetVsSeekerUsed(VarsFlags *varsFlags);
+void SystemFlag_ClearVsSeekerUsed(VarsFlags *varsFlags);
+BOOL SystemFlag_CheckVsSeekerUsed(VarsFlags *varsFlags);
+void SystemFlag_SetEnteredUnderground(VarsFlags *varsFlags);
+void SystemFlag_SetDiggingForFossils(VarsFlags *varsFlags);
+void SystemFlag_SetSphereAcquired(VarsFlags *varsFlags);
+void SystemFlag_SetCreatedSecretBase(VarsFlags *varsFlags);
+void SystemFlag_SetDecoratedSecretBase(VarsFlags *varsFlags);
+void SystemFlag_SetDeliveredStolenFlag(VarsFlags *varsFlags);
+void SystemFlag_SetContestMaster(VarsFlags *varsFlags, enum PokemonContestType contestType);
+BOOL SystemFlag_CheckContestMaster(VarsFlags *varsFlags, enum PokemonContestType contestType);
+BOOL SystemFlag_CheckUnlockedVsSeekerLevel(VarsFlags *varsFlags, int level);
+u16 SystemFlag_GetAltMusicForHeader(VarsFlags *varsFlags, enum MapHeader mapHeader);
+void SystemFlag_SetCommunicationClubAccessible(VarsFlags *varsFlags);
+void SystemFlag_ClearCommunicationClubAccessible(VarsFlags *varsFlags);
+BOOL SystemFlag_CheckCommunicationClubAccessible(VarsFlags *varsFlags);
+BOOL SystemFlag_CheckContestHallVisited(VarsFlags *varsFlags);
+BOOL SystemFlag_CheckUndergroundFirstEntered(VarsFlags *varsFlags);
+BOOL SystemFlag_CheckFreedGalacticHQPokemon(VarsFlags *varsFlags);
+BOOL SystemFlag_CheckMetBebe(VarsFlags *varsFlags);
+void SystemFlag_SetPoketchHidden(VarsFlags *varsFlags);
+void SystemFlag_ClearPoketchHidden(VarsFlags *varsFlags);
+BOOL SystemFlag_CheckPoketchHidden(VarsFlags *varsFlags);
+void SystemFlag_SetSafariGameActive(VarsFlags *varsFlags);
+void SystemFlag_ClearSafariGameActive(VarsFlags *varsFlags);
+BOOL SystemFlag_CheckSafariGameActive(VarsFlags *varsFlags);
+void SystemFlag_SetInPalPark(VarsFlags *varsFlags);
+void SystemFlag_ClearInPalPark(VarsFlags *varsFlags);
+BOOL SystemFlag_CheckInPalPark(VarsFlags *varsFlags);
+void SystemFlag_CheckOnCyclingRoad(VarsFlags *varsFlags);
+BOOL SystemFlag_HandleStrengthActive(VarsFlags *varsFlags, enum HandleFlagOp op);
+void SystemFlag_SetFlashActive(VarsFlags *varsFlags);
+void SystemFlag_ClearFlashActive(VarsFlags *varsFlags);
+BOOL SystemFlag_CheckFlashActive(VarsFlags *varsFlags);
+void SystemFlag_SetDefogActive(VarsFlags *varsFlags);
+void SystemFlag_ClearDefogActive(VarsFlags *varsFlags);
+BOOL SystemFlag_CheckDefogActive(VarsFlags *varsFlags);
+BOOL SystemFlag_HandleForceBikingInGate(VarsFlags *varsFlags, enum HandleFlagOp op);
+BOOL SystemFlag_HandleJournalAcquired(VarsFlags *varsFlags, enum HandleFlagOp op);
+BOOL SystemFlag_HandleFirstArrivalToZone(VarsFlags *varsFlags, enum HandleFlagOp op, u32 firstArrival);
+void SystemFlag_SetConnectedToWiFi(VarsFlags *varsFlags);
+BOOL SystemFlag_HandleOwnsVillaFurniture(VarsFlags *varsFlags, enum HandleFlagOp op, enum VillaFurniture furniture);
+void SystemFlag_ClearVillaVisitorInside(VarsFlags *varsFlags);
+void SystemFlag_ClearVillaVisitorOutside(VarsFlags *varsFlags);
+BOOL SystemFlag_HandleGiratinaAnimation(VarsFlags *varsFlags, enum HandleFlagOp op, enum GiratinaShadowAnimation anim);
+BOOL SystemFlag_HandleDistortionWorldPuzzleFinished(VarsFlags *varsFlags, enum HandleFlagOp op);
+BOOL SystemFlag_CheckDistortionWorldSteppingStones(VarsFlags *varsFlags);
+
+#endif // POKEPLATINUM_SYSTEM_FLAGS_H

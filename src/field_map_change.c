@@ -261,7 +261,8 @@ void FieldMapChange_UpdateGameData(FieldSystem *fieldSystem, BOOL noWarp)
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
     u16 weather = FieldSystem_GetWeather(fieldSystem, mapId);
 
-    if ((weather == OVERWORLD_WEATHER_FOG && Overworld_IsDefogActive(varsFlags) == TRUE) || (weather == OVERWORLD_WEATHER_DARK_FLASH && Overworld_IsFlashActive(varsFlags) == TRUE)) {
+    if ((weather == OVERWORLD_WEATHER_FOG && SystemFlag_CheckDefogActive(varsFlags) == TRUE)
+        || (weather == OVERWORLD_WEATHER_DARK_FLASH && SystemFlag_CheckFlashActive(varsFlags) == TRUE)) {
         weather = OVERWORLD_WEATHER_CLEAR;
     }
 
@@ -475,6 +476,11 @@ void FieldSystem_SetLoadNewGameSpawnTask(FieldSystem *fieldSystem)
     FieldSystem_CreateTask(fieldSystem, FieldTask_LoadNewGameSpawn, NULL);
 }
 
+static inline BOOL CheckJournalAcquired(VarsFlags *varsFlags)
+{
+    return SystemFlag_HandleJournalAcquired(varsFlags, HANDLE_FLAG_CHECK);
+}
+
 static BOOL FieldTask_LoadSavedGameMap(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
@@ -485,22 +491,22 @@ static BOOL FieldTask_LoadSavedGameMap(FieldTask *taskMan)
     case 0:
         SaveData_LoadAndUpdateUnderground(fieldSystem->saveData);
 
-        if (Journal_CheckOpenOnContinue(SaveData_GetJournal(fieldSystem->saveData), inline_020535E8(varsFlags))) {
+        if (Journal_CheckOpenOnContinue(SaveData_GetJournal(fieldSystem->saveData), CheckJournalAcquired(varsFlags))) {
             sub_0203D30C(fieldSystem, NULL);
             (*state) = 4;
             break;
         }
     case 1:
-        fieldSystem->journal = Journal_GetSavedPage(SaveData_GetJournal(fieldSystem->saveData), inline_020535E8(varsFlags));
+        fieldSystem->journal = Journal_GetSavedPage(SaveData_GetJournal(fieldSystem->saveData), CheckJournalAcquired(varsFlags));
 
-        if (CommClub_IsAvailable(varsFlags)) {
+        if (SystemFlag_CheckCommunicationClubAccessible(varsFlags)) {
             FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
 
             if (FieldSystem_IsSaveInUnionRoom(fieldSystem)) {
                 FieldSystem_SetLocationToUnionRoomExit(fieldSystem);
             }
 
-            CommClub_ResetAvailable(varsFlags);
+            SystemFlag_ClearCommunicationClubAccessible(varsFlags);
             FieldMapChange_SetNewLocation(fieldSystem, FieldOverworldState_GetSpecialLocation(fieldState));
             FieldMapChange_InitTerrainCollisionManager(fieldSystem);
             FieldMapChange_UpdateGameData(fieldSystem, 0);
@@ -550,7 +556,7 @@ static BOOL FieldTask_LoadMapFromError(FieldTask *taskMan)
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);
         SaveData_LoadAndUpdateUnderground(fieldSystem->saveData);
-        fieldSystem->journal = Journal_GetSavedPage(SaveData_GetJournal(fieldSystem->saveData), inline_020535E8(varsFlags));
+        fieldSystem->journal = Journal_GetSavedPage(SaveData_GetJournal(fieldSystem->saveData), CheckJournalAcquired(varsFlags));
         (*state)++;
         break;
     case 1:
@@ -594,7 +600,7 @@ void FieldSystem_StartLoadMapFromErrorTask(FieldSystem *fieldSystem)
             VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
             FieldSystem_SetLocationToUnionRoomExit(fieldSystem);
-            sub_0206AD9C(varsFlags);
+            SystemFlag_SetCommunicationClubAccessible(varsFlags);
         } else {
             FieldSystem_SetLoadSavedGameMapTask(fieldSystem);
             return;

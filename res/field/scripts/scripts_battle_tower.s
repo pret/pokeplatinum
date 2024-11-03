@@ -57,7 +57,7 @@ _00EB:
     End
 
 _00F1:
-    ScrCmd_266
+    ShowPoketch
     Return
 
 _00F5:

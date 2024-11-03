@@ -1563,7 +1563,7 @@ _14AC:
     GetPlayerMapPos 0x8004, 0x8005
     GoToIfNe 0x8004, 31, _1570
     GoToIfNe 0x8005, 52, _1570
-    ScrCmd_166 0x4000
+    CheckGameCompleted 0x4000
     GoToIfEq 0x4000, 0, _1570
     ScrCmd_22D 2, 0x4000
     GoToIfEq 0x4000, 0, _1570

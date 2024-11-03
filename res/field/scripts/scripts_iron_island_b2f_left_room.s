@@ -52,7 +52,7 @@ _0064:
     WaitABXPadPress
     CloseMessage
     SetVar 0x403F, 0x261
-    ScrCmd_161
+    SetHasPartner
     ScrCmd_06D 4, 48
     ReleaseAll
     End
@@ -83,7 +83,7 @@ _00F3:
     Message 4
     CloseMessage
     SetVar 0x4092, 0
-    ScrCmd_162
+    ClearHasPartner
     ScrCmd_06D 4, 16
     GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8005, 2, _013E
@@ -151,7 +151,7 @@ _01A8:
 
 _01AA:
     LockAll
-    ScrCmd_162
+    ClearHasPartner
     ScrCmd_06D 4, 16
     GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8005, 40, _0291
@@ -171,9 +171,9 @@ _01AA:
     BufferPlayerName 0
     Message 8
     CloseMessage
-    ScrCmd_161
+    SetHasPartner
     ScrCmd_0E5 0x343, 0x344
-    ScrCmd_162
+    ClearHasPartner
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _037D
     ApplyMovement 5, _0394

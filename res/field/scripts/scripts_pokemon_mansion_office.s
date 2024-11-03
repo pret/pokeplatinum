@@ -194,7 +194,7 @@ _0257:
 
 _0270:
     GoToIfSet 0xAA2, _0304
-    ScrCmd_166 0x800C
+    CheckGameCompleted 0x800C
     GoToIfEq 0x800C, 1, _02C8
     ScrCmd_1B7 0x800C, 2
     CallIfEq 0x800C, 0, _02BE

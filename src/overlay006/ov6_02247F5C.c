@@ -17,7 +17,7 @@ void ov6_02247F5C(FieldSystem *fieldSystem)
 {
     UnkStruct_ov5_021D3CE4 *v0;
 
-    if (!sub_0206ADEC(SaveData_GetVarsFlags(fieldSystem->saveData))) {
+    if (!SystemFlag_CheckFreedGalacticHQPokemon(SaveData_GetVarsFlags(fieldSystem->saveData))) {
         v0 = ov5_021D3DE4(496, 1, fieldSystem->unk_50);
         ov5_021D3F08(v0, 1);
         ov5_021D3E40(v0, 1);

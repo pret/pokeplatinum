@@ -182,5 +182,5 @@ static void StartNewSave(int unused, SaveData *saveData)
     SaveData_Clear(saveData);
     InitPlayerStartLocation(saveData);
     TrainerInfo_SetMoney(SaveData_GetTrainerInfo(saveData), 3000);
-    VarsFlags_SetBagAvailable(SaveData_GetVarsFlags(saveData));
+    SystemFlag_SetBagAcquired(SaveData_GetVarsFlags(saveData));
 }

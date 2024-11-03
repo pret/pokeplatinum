@@ -153,7 +153,7 @@ static void CommManUnderground_Init(CommManUnderground *param0, FieldSystem *fie
         sCommManUnderground->unk_DC[v1] = NULL;
     }
 
-    sub_0206A9F4(SaveData_GetVarsFlags(sCommManUnderground->fieldSystem->saveData));
+    SystemFlag_SetEnteredUnderground(SaveData_GetVarsFlags(sCommManUnderground->fieldSystem->saveData));
     sCommManUnderground->unk_14 = SysTask_Start(ov23_02243310, NULL, 0);
     sub_02032110(ov23_022433F4);
 }

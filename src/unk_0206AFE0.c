@@ -2,6 +2,8 @@
 
 #include <nitro.h>
 #include <string.h>
+#include "constants/savedata/vars_flags.h"
+#include "consts/map.h"
 
 #include "struct_decls/struct_0203A790_decl.h"
 
@@ -115,7 +117,7 @@ BOOL sub_0206B0C4(VarsFlags *param0, u16 param1)
 
 void VsSeeker_Reset(VarsFlags *param0)
 {
-    VsSeeker_ClearUsedFlag(param0);
+    SystemFlag_ClearVsSeekerUsed(param0);
     VsSeeker_SetActiveStepCount(param0, 0);
 }
 
@@ -426,8 +428,8 @@ static u8 sub_0206B4A4(VarsFlags *param0)
 
     v1 = 0;
 
-    for (v0 = 0; v0 < 20; v0++) {
-        if (sub_0206AF6C(param0, 2, v0) == 1) {
+    for (v0 = 0; v0 < VILLA_FURNITURE_MAX; v0++) {
+        if (SystemFlag_HandleOwnsVillaFurniture(param0, HANDLE_FLAG_CHECK, v0) == TRUE) {
             v1++;
         }
     }
@@ -457,9 +459,9 @@ void sub_0206B514(SaveData *param0)
     FieldOverworldState *v2 = SaveData_GetFieldOverworldState(param0);
     Location *location = FieldOverworldState_GetPlayerLocation(v2);
 
-    if ((location->mapId != 457) && (location->mapId != 464)) {
-        sub_0206AF90(v1);
-        sub_0206AFA0(v1);
+    if ((location->mapId != MAP_HEADER_RESORT_AREA) && (location->mapId != MAP_HEADER_VILLA)) {
+        SystemFlag_ClearVillaVisitorInside(v1);
+        SystemFlag_ClearVillaVisitorOutside(v1);
         sub_0206B558(v1, sub_0206B4A4(v1));
     }
 

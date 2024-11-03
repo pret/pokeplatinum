@@ -66,7 +66,7 @@ static BOOL sub_020505A0(FieldTask *taskMan)
         v1->unk_08++;
         break;
     case 2:
-        sub_0206AE0C(v2);
+        SystemFlag_SetPoketchHidden(v2);
 
         {
             Location v3;
@@ -102,7 +102,7 @@ static BOOL sub_020505A0(FieldTask *taskMan)
         v1->unk_08++;
         break;
     case 8:
-        sub_0206AE1C(v2);
+        SystemFlag_ClearPoketchHidden(v2);
 
         {
             Location v4;

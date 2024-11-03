@@ -2,6 +2,7 @@
 
 #include <nitro.h>
 #include <string.h>
+#include "constants/savedata/vars_flags.h"
 
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_0203D9B8.h"
@@ -214,7 +215,7 @@ void sub_0206842C(FieldSystem *fieldSystem, UnkStruct_020684D0 *param1)
 
     param1->fieldSystem = fieldSystem;
     param1->unk_00 = fieldSystem->location->mapId;
-    param1->unk_04 = sub_0206A984(SaveData_GetVarsFlags(fieldSystem->saveData));
+    param1->unk_04 = SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(fieldSystem->saveData));
     param1->unk_08 = PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar);
 
     v0 = Player_GetXPos(fieldSystem->playerAvatar);
@@ -250,7 +251,7 @@ static void sub_020684D0(FieldSystem *fieldSystem, UnkStruct_020684D0 *param1)
 {
     param1->fieldSystem = fieldSystem;
     param1->unk_00 = fieldSystem->location->mapId;
-    param1->unk_04 = sub_0206A984(SaveData_GetVarsFlags(fieldSystem->saveData));
+    param1->unk_04 = SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(fieldSystem->saveData));
     param1->unk_08 = PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar);
     param1->unk_0E = sub_02061760(fieldSystem->playerAvatar);
 
@@ -420,7 +421,7 @@ static u32 sub_0206877C(const UnkStruct_020684D0 *param0)
         return -1;
     }
 
-    if ((sub_0206AE5C(SaveData_GetVarsFlags(param0->fieldSystem->saveData)) == 1) || (sub_0206AE8C(SaveData_GetVarsFlags(param0->fieldSystem->saveData)) == 1)) {
+    if ((SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(param0->fieldSystem->saveData)) == 1) || (SystemFlag_CheckInPalPark(SaveData_GetVarsFlags(param0->fieldSystem->saveData)) == 1)) {
         return -1;
     }
 
@@ -524,7 +525,7 @@ static u32 sub_02068948(const UnkStruct_020684D0 *param0)
         return 2;
     }
 
-    if (sub_0206AF1C(v0, 2) == 1) {
+    if (SystemFlag_HandleForceBikingInGate(v0, HANDLE_FLAG_CHECK) == TRUE) {
         return 1;
     }
 
@@ -1061,7 +1062,7 @@ static u32 sub_02069130(const UnkStruct_020684D0 *param0)
 {
     VarsFlags *v0 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
 
-    if (sub_0206A954(v0) == 0) {
+    if (SystemFlag_CheckGameCompleted(v0) == 0) {
         return -1;
     }
 
@@ -1145,7 +1146,7 @@ BOOL sub_02069238(FieldSystem *fieldSystem)
         return 0;
     }
 
-    if (sub_0206AE8C(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
+    if (SystemFlag_CheckInPalPark(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
         return 0;
     }
 

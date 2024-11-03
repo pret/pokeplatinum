@@ -227,14 +227,14 @@ void sub_02049FA8(FieldSystem *fieldSystem)
     Location *v0 = FieldOverworldState_GetSpecialLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     Location_Set(v0, fieldSystem->location->mapId, -1, Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), 0);
-    sub_0206AD9C(SaveData_GetVarsFlags(fieldSystem->saveData));
+    SystemFlag_SetCommunicationClubAccessible(SaveData_GetVarsFlags(fieldSystem->saveData));
 
     return;
 }
 
 void sub_02049FE8(FieldSystem *fieldSystem)
 {
-    CommClub_ResetAvailable(SaveData_GetVarsFlags(fieldSystem->saveData));
+    SystemFlag_ClearCommunicationClubAccessible(SaveData_GetVarsFlags(fieldSystem->saveData));
 }
 
 u16 sub_02049FF8(SaveData *param0, u16 param1)

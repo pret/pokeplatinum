@@ -83,12 +83,11 @@ BOOL ScrCmd_15C(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_15E(ScriptContext *param0)
+BOOL ScrCmd_CheckBagAcquired(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(param0);
-
-    *v0 = VarsFlags_CheckBagAvailable(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
-    return 0;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    *destVar = SystemFlag_CheckBagAcquired(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
+    return FALSE;
 }
 
 const u8 Unk_020EC064[8] = {
@@ -117,140 +116,137 @@ BOOL ScrCmd_15D(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_15F(ScriptContext *param0)
+BOOL ScrCmd_GiveBag(ScriptContext *ctx)
 {
-    VarsFlags_SetBagAvailable(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
-    return 0;
+    SystemFlag_SetBagAcquired(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
+    return FALSE;
 }
 
-BOOL ScrCmd_160(ScriptContext *param0)
+BOOL ScrCmd_CheckHasPartner(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(param0);
-
-    *v0 = sub_0206A984(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
-    return 0;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    *destVar = SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
+    return FALSE;
 }
 
-BOOL ScrCmd_161(ScriptContext *param0)
+BOOL ScrCmd_SetHasPartner(ScriptContext *ctx)
 {
-    sub_0206A964(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
-    return 0;
+    SystemFlag_SetHasPartner(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
+    return FALSE;
 }
 
-BOOL ScrCmd_162(ScriptContext *param0)
+BOOL ScrCmd_ClearHasPartner(ScriptContext *ctx)
 {
-    sub_0206A974(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
-    return 0;
+    SystemFlag_ClearHasPartner(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
+    return FALSE;
 }
 
-BOOL ScrCmd_163(ScriptContext *param0)
+BOOL ScrCmd_CheckStepFlag(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(param0);
-
-    *v0 = sub_0206A9B4(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
-    return 0;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    *destVar = SystemFlag_CheckStep(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
+    return FALSE;
 }
 
-BOOL ScrCmd_164(ScriptContext *param0)
+BOOL ScrCmd_SetStepFlag(ScriptContext *ctx)
 {
-    sub_0206A994(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
-    return 0;
+    SystemFlag_SetStep(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
+    return FALSE;
 }
 
-BOOL ScrCmd_165(ScriptContext *param0)
+BOOL ScrCmd_ClearStepFlag(ScriptContext *ctx)
 {
-    sub_0206A9A4(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
-    return 0;
+    SystemFlag_ClearStep(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
+    return FALSE;
 }
 
-BOOL ScrCmd_166(ScriptContext *param0)
+BOOL ScrCmd_CheckGameCompleted(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(param0);
-
-    *v0 = sub_0206A954(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
-    return 0;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    *destVar = SystemFlag_CheckGameCompleted(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
+    return FALSE;
 }
 
-BOOL ScrCmd_167(ScriptContext *param0)
+BOOL ScrCmd_SetGameCompleted(ScriptContext *ctx)
 {
-    sub_0206A944(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
-    return 0;
+    SystemFlag_SetGameCompleted(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
+    return FALSE;
 }
 
-BOOL ScrCmd_1CF(ScriptContext *param0)
+BOOL ScrCmd_Strength(ScriptContext *ctx)
 {
-    u8 v0;
-    u16 *v1;
-    VarsFlags *v2 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
+    u16 *destVar;
+    VarsFlags *varsFlags = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
 
-    v0 = ScriptContext_ReadByte(param0);
-
-    switch (v0) {
+    switch (ScriptContext_ReadByte(ctx)) {
     case 1:
-        inline_0204E650(v2);
+        SystemFlag_HandleStrengthActive(varsFlags, HANDLE_FLAG_SET);
         break;
+
     case 0:
-        inline_0204E650_1(v2);
+        SystemFlag_HandleStrengthActive(varsFlags, HANDLE_FLAG_CLEAR);
         break;
+
     case 2:
-        v1 = ScriptContext_GetVarPointer(param0);
-        *v1 = inline_0204E650_2(v2);
+        destVar = ScriptContext_GetVarPointer(ctx);
+        *destVar = SystemFlag_HandleStrengthActive(varsFlags, HANDLE_FLAG_CHECK);
         break;
+
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ScrCmd_1D0(ScriptContext *param0)
+BOOL ScrCmd_Flash(ScriptContext *ctx)
 {
-    u8 v0;
-    u16 *v1;
-    VarsFlags *v2 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
+    u16 *destVar;
+    VarsFlags *varsFlags = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
 
-    v0 = ScriptContext_ReadByte(param0);
-
-    switch (v0) {
+    switch (ScriptContext_ReadByte(ctx)) {
     case 1:
-        sub_0206AEBC(v2);
+        SystemFlag_SetFlashActive(varsFlags);
         break;
+
     case 0:
-        sub_0206AECC(v2);
+        SystemFlag_ClearFlashActive(varsFlags);
         break;
+
     case 2:
-        v1 = ScriptContext_GetVarPointer(param0);
-        *v1 = Overworld_IsFlashActive(v2);
+        destVar = ScriptContext_GetVarPointer(ctx);
+        *destVar = SystemFlag_CheckFlashActive(varsFlags);
         break;
+
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ScrCmd_1D1(ScriptContext *param0)
+BOOL ScrCmd_Defog(ScriptContext *ctx)
 {
-    u8 v0;
-    u16 *v1;
-    VarsFlags *v2 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
+    u16 *destVar;
+    VarsFlags *varsFlags = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
 
-    v0 = ScriptContext_ReadByte(param0);
-
-    switch (v0) {
+    switch (ScriptContext_ReadByte(ctx)) {
     case 1:
-        sub_0206AEEC(v2);
+        SystemFlag_SetDefogActive(varsFlags);
         break;
+
     case 0:
-        sub_0206AEFC(v2);
+        SystemFlag_ClearDefogActive(varsFlags);
         break;
+
     case 2:
-        v1 = ScriptContext_GetVarPointer(param0);
-        *v1 = Overworld_IsDefogActive(v2);
+        destVar = ScriptContext_GetVarPointer(ctx);
+        *destVar = SystemFlag_CheckDefogActive(varsFlags);
         break;
+
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
-    return 0;
+    return FALSE;
 }

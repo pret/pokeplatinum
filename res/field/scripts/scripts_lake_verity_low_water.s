@@ -39,7 +39,7 @@ _005B:
 
 _006F:
     LockAll
-    ScrCmd_162
+    ClearHasPartner
     ApplyMovement 5, _0298
     ApplyMovement 0xFF, _0368
     WaitMovement

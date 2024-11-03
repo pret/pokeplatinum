@@ -581,7 +581,7 @@ BOOL VsSeeker_UpdateStepCount(FieldSystem *fieldSystem)
         VsSeeker_SetBattery(varsFlags, battery);
     }
 
-    if (VsSeeker_GetUsedFlag(varsFlags) == TRUE) {
+    if (SystemFlag_CheckVsSeekerUsed(varsFlags) == TRUE) {
         if (activeStepCount < VS_SEEKER_MAX_NUM_ACTIVE_STEPS) {
             activeStepCount++;
             VsSeeker_SetActiveStepCount(varsFlags, activeStepCount);
@@ -681,7 +681,7 @@ static BOOL VsSeekerSystem_PickRematchTrainers(VsSeekerSystem *vsSeeker)
                 }
 
                 anyAvailable = TRUE;
-                VsSeeker_SetUsedFlag(varsFlags);
+                SystemFlag_SetVsSeekerUsed(varsFlags);
             }
         }
     }
@@ -747,7 +747,7 @@ static u16 VsSeeker_AdjustRematchLevel(FieldSystem *fieldSystem, u16 rematchData
 {
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
-    if (level != 0 && VsSeeker_HasUnlockedLevel(varsFlags, level) == FALSE) {
+    if (level != 0 && SystemFlag_CheckUnlockedVsSeekerLevel(varsFlags, level) == FALSE) {
         level = VsSeeker_GetNextLowerRematchLevel(rematchDataIndex, level);
     }
 

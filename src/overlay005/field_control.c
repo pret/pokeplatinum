@@ -181,7 +181,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
     if (input->dummy5 == FALSE) {
         BOOL hasTwoAliveMons = Party_HasTwoAliveMons(Party_GetFromSavedata(fieldSystem->saveData));
 
-        if (sub_0206A984(SaveData_GetVarsFlags(fieldSystem->saveData)) == TRUE) {
+        if (SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(fieldSystem->saveData)) == TRUE) {
             hasTwoAliveMons = TRUE;
         }
 
@@ -196,7 +196,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
     }
 
     if (input->movement) {
-        sub_0206A9A4(SaveData_GetVarsFlags(fieldSystem->saveData));
+        SystemFlag_ClearStep(SaveData_GetVarsFlags(fieldSystem->saveData));
 
         if (Field_ProcessStep(fieldSystem) == TRUE) {
             return TRUE;
@@ -207,7 +207,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
         int playerEvent = PLAYER_EVENT_NONE;
         int direction = sub_02061308(fieldSystem->playerAvatar, input->pressedKeys, input->heldKeys);
 
-        if (inline_0204E650_2(SaveData_GetVarsFlags(fieldSystem->saveData))) {
+        if (SystemFlag_HandleStrengthActive(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK)) {
             playerEvent |= PLAYER_EVENT_USED_STRENGTH;
         }
 
@@ -546,7 +546,7 @@ static BOOL Field_CheckWildEncounter(FieldSystem *fieldSystem)
 
     Field_GetPlayerPos(fieldSystem, &playerX, &playerZ);
 
-    if (sub_0206AE8C(SaveData_GetVarsFlags(fieldSystem->saveData)) == TRUE) {
+    if (SystemFlag_CheckInPalPark(SaveData_GetVarsFlags(fieldSystem->saveData)) == TRUE) {
         if (sub_02056374(fieldSystem, playerX, playerZ) == TRUE) {
             sub_02051450(fieldSystem, sub_0205639C(fieldSystem));
             return TRUE;
@@ -922,7 +922,7 @@ static BOOL Field_UpdatePoison(FieldSystem *fieldSystem)
 
 static BOOL Field_UpdateSafari(FieldSystem *fieldSystem)
 {
-    if (sub_0206AE5C(SaveData_GetVarsFlags(fieldSystem->saveData)) == FALSE) {
+    if (SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData)) == FALSE) {
         return FALSE;
     }
 

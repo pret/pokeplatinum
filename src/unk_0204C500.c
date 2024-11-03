@@ -30,10 +30,10 @@ BOOL ScrCmd_253(ScriptContext *param0)
     u16 v1 = ScriptContext_GetVar(param0);
 
     if (v1 == 0) {
-        sub_0206AE6C(v0);
+        SystemFlag_SetInPalPark(v0);
         sub_020562F8(param0->fieldSystem);
     } else if (v1 == 1) {
-        sub_0206AE7C(v0);
+        SystemFlag_ClearInPalPark(v0);
         sub_02056328(param0->fieldSystem);
     } else {
         GF_ASSERT(0);

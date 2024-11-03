@@ -75,7 +75,7 @@ void sub_02071D40(const u8 param0, const u8 param1, const u8 param2, const u8 pa
 
         sub_02055BF4(fieldSystem, &v4, &v6);
         sub_02055C10(fieldSystem, &v5, &v6);
-        sub_0207207C(sub_0206A954(SaveData_GetVarsFlags(fieldSystem->saveData)), playTime, &v4, &v5, &v6, param1, param5);
+        sub_0207207C(SystemFlag_CheckGameCompleted(SaveData_GetVarsFlags(fieldSystem->saveData)), playTime, &v4, &v5, &v6, param1, param5);
     }
 
     {
@@ -136,7 +136,7 @@ u8 sub_02071F28(FieldSystem *fieldSystem)
     v5 = sub_0203068C(v1);
     v0 = 0;
 
-    if (sub_0206A954(v3)) {
+    if (SystemFlag_CheckGameCompleted(v3)) {
         v0++;
     }
 
@@ -148,7 +148,7 @@ u8 sub_02071F28(FieldSystem *fieldSystem)
         v0++;
     }
 
-    if (sub_0206AAA8(v3, 0) || sub_0206AAA8(v3, 1) || sub_0206AAA8(v3, 3) || sub_0206AAA8(v3, 4) || sub_0206AAA8(v3, 2)) {
+    if (SystemFlag_CheckContestMaster(v3, 0) || SystemFlag_CheckContestMaster(v3, 1) || SystemFlag_CheckContestMaster(v3, 3) || SystemFlag_CheckContestMaster(v3, 4) || SystemFlag_CheckContestMaster(v3, 2)) {
         v0++;
     }
 
