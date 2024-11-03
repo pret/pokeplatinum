@@ -24,7 +24,7 @@
 #include "menu.h"
 #include "message.h"
 #include "overlay_manager.h"
-#include "pokemon_summary_app.h"
+#include "pokemon_summary_screen.h"
 #include "savedata.h"
 #include "sprite_resource.h"
 #include "strbuf.h"

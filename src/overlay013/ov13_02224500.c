@@ -22,7 +22,7 @@
 #include "narc.h"
 #include "party.h"
 #include "pokemon_icon.h"
-#include "pokemon_summary_app.h"
+#include "pokemon_summary_screen.h"
 #include "unk_0200C6E4.h"
 #include "unk_0207C908.h"
 #include "unk_0207E0B8.h"

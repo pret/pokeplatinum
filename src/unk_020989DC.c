@@ -20,7 +20,7 @@
 #include "party.h"
 #include "poffin.h"
 #include "pokemon.h"
-#include "pokemon_summary_app.h"
+#include "pokemon_summary_screen.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "string_template.h"

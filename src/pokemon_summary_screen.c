@@ -1,4 +1,4 @@
-#include "pokemon_summary_app.h"
+#include "pokemon_summary_screen.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -28,7 +28,7 @@
 #include "overlay_manager.h"
 #include "party.h"
 #include "pokemon.h"
-#include "pokemon_summary_app.h"
+#include "pokemon_summary_screen.h"
 #include "render_window.h"
 #include "ribbon.h"
 #include "savedata.h"

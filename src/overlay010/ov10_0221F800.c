@@ -43,7 +43,7 @@
 #include "party.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
-#include "pokemon_summary_app.h"
+#include "pokemon_summary_screen.h"
 #include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"

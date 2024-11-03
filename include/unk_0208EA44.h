@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_0208EA44_H
 
 #include "bg_window.h"
-#include "pokemon_summary_app.h"
+#include "pokemon_summary_screen.h"
 
 void sub_0208EA44(PokemonSummaryScreen *param0);
 void sub_0208EAF4(PokemonSummaryScreen *param0);

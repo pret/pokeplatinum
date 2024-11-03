@@ -19,7 +19,7 @@
 #include "move_table.h"
 #include "party.h"
 #include "pokemon.h"
-#include "pokemon_summary_app.h"
+#include "pokemon_summary_screen.h"
 #include "render_window.h"
 #include "strbuf.h"
 #include "string_list.h"

@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_0208C324_H
-#define POKEPLATINUM_UNK_0208C324_H
+#ifndef POKEPLATINUM_POKEMON_SUMMARY_SCREEN_H
+#define POKEPLATINUM_POKEMON_SUMMARY_SCREEN_H
 
 #include "constants/moves.h"
 
@@ -21,7 +21,7 @@
 #include "message.h"
 #include "narc.h"
 #include "pokemon.h"
-#include "pokemon_summary_app.h"
+#include "pokemon_summary_screen.h"
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -241,4 +241,4 @@ u32 PokemonSummary_StatusIconCell(void);
 u32 PokemonSummary_StatusIconAnim(void);
 u32 PokemonSummary_StatusIconAnimIdx(Pokemon *mon);
 
-#endif // POKEPLATINUM_UNK_0208C324_H
+#endif // POKEPLATINUM_POKEMON_SUMMARY_SCREEN_H

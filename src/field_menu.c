@@ -51,7 +51,7 @@
 #include "party.h"
 #include "player_avatar.h"
 #include "pokemon.h"
-#include "pokemon_summary_app.h"
+#include "pokemon_summary_screen.h"
 #include "poketch_data.h"
 #include "render_window.h"
 #include "save_player.h"

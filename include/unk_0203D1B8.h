@@ -22,7 +22,7 @@
 
 #include "field_task.h"
 #include "pokemon.h"
-#include "pokemon_summary_app.h"
+#include "pokemon_summary_screen.h"
 #include "savedata.h"
 
 void sub_0203D1D4(FieldSystem *fieldSystem, BattleParams *param1);

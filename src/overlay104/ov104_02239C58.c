@@ -12,7 +12,7 @@
 #include "bag.h"
 #include "heap.h"
 #include "party.h"
-#include "pokemon_summary_app.h"
+#include "pokemon_summary_screen.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "unk_02028124.h"

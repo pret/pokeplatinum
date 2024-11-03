@@ -11,7 +11,7 @@
 #include "message.h"
 #include "move_table.h"
 #include "pokemon.h"
-#include "pokemon_summary_app.h"
+#include "pokemon_summary_screen.h"
 #include "render_window.h"
 #include "ribbon.h"
 #include "strbuf.h"

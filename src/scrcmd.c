@@ -116,7 +116,7 @@
 #include "player_avatar.h"
 #include "poffin.h"
 #include "pokemon.h"
-#include "pokemon_summary_app.h"
+#include "pokemon_summary_screen.h"
 #include "pokeradar.h"
 #include "poketch_data.h"
 #include "render_window.h"

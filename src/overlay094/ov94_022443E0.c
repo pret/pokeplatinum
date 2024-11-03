@@ -9,7 +9,7 @@
 #include "overlay094/struct_ov94_0223FD4C.h"
 
 #include "overlay_manager.h"
-#include "pokemon_summary_app.h"
+#include "pokemon_summary_screen.h"
 #include "unk_0202D778.h"
 
 #include "constdata/const_020F410C.h"

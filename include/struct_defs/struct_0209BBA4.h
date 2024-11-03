@@ -5,7 +5,7 @@
 
 #include "field/field_system_decl.h"
 
-#include "pokemon_summary_app.h"
+#include "pokemon_summary_screen.h"
 #include "savedata.h"
 
 typedef struct {

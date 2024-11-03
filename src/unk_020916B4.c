@@ -13,7 +13,7 @@
 #include "camera.h"
 #include "gx_layers.h"
 #include "pokemon.h"
-#include "pokemon_summary_app.h"
+#include "pokemon_summary_screen.h"
 #include "unk_0200762C.h"
 #include "unk_02015F84.h"
 #include "unk_0202419C.h"

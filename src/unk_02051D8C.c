@@ -34,7 +34,7 @@
 #include "message.h"
 #include "party.h"
 #include "pokemon.h"
-#include "pokemon_summary_app.h"
+#include "pokemon_summary_screen.h"
 #include "poketch_data.h"
 #include "rtc.h"
 #include "save_player.h"

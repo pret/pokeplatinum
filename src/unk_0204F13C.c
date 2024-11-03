@@ -27,7 +27,7 @@
 #include "inlines.h"
 #include "party.h"
 #include "pokemon.h"
-#include "pokemon_summary_app.h"
+#include "pokemon_summary_screen.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "script_manager.h"

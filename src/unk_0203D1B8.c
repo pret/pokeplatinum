@@ -97,7 +97,7 @@
 #include "party.h"
 #include "player_avatar.h"
 #include "pokemon.h"
-#include "pokemon_summary_app.h"
+#include "pokemon_summary_screen.h"
 #include "poketch_data.h"
 #include "record_mixed_rng.h"
 #include "rtc.h"

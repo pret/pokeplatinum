@@ -16,7 +16,7 @@
 #include "move_table.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
-#include "pokemon_summary_app.h"
+#include "pokemon_summary_screen.h"
 #include "ribbon.h"
 #include "unk_0200C6E4.h"
 #include "unk_0201DBEC.h"

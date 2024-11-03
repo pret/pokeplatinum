@@ -20,7 +20,7 @@
 #include "field_task.h"
 #include "heap.h"
 #include "party.h"
-#include "pokemon_summary_app.h"
+#include "pokemon_summary_screen.h"
 #include "record_mixed_rng.h"
 #include "save_player.h"
 #include "savedata.h"

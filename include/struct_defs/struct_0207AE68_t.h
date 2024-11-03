@@ -18,7 +18,7 @@
 #include "overlay_manager.h"
 #include "palette.h"
 #include "pokemon.h"
-#include "pokemon_summary_app.h"
+#include "pokemon_summary_screen.h"
 #include "poketch_data.h"
 #include "strbuf.h"
 #include "string_template.h"
