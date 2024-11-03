@@ -2901,7 +2901,7 @@ static void ov105_02245464(UnkStruct_ov105_02241FF4 *param0)
     param0->unk_140->pos = ov105_022461A0(param0->unk_30C);
     param0->unk_140->move = 0;
     param0->unk_140->dexMode = sub_0207A274(param0->unk_13C);
-    param0->unk_140->contest = 0;
+    param0->unk_140->showContest = FALSE;
 
     PokemonSummary_FlagVisiblePages(param0->unk_140, Unk_ov105_022462DC);
     PokemonSummary_SetPlayerProfile(param0->unk_140, SaveData_GetTrainerInfo(param0->unk_13C));

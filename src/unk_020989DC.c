@@ -329,7 +329,7 @@ static int sub_02098CB0(UnkStruct_02098BE4 *param0)
     v2->max = (u8)Party_GetCurrentCount(v2->monData);
     v2->move = 0;
     v2->mode = 3;
-    v2->contest = 1;
+    v2->showContest = TRUE;
     v2->chatotCry = NULL;
 
     PokemonSummary_FlagVisiblePages(v2, v3);
@@ -430,7 +430,7 @@ static int sub_02098E0C(UnkStruct_02098BE4 *param0)
     v1->move = 0;
     v1->mode = 4;
     v1->poffin = v2;
-    v1->contest = 1;
+    v1->showContest = TRUE;
     v1->chatotCry = NULL;
 
     PokemonSummary_FlagVisiblePages(v1, v3);

@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/sdat.h"
+
 #include "applications/pokemon_summary_screen.h"
 
 #include "bg_window.h"
@@ -11,47 +13,47 @@
 #include "unk_02005474.h"
 #include "unk_0208EA44.h"
 
-typedef struct {
-    u8 unk_00;
-    u8 unk_01;
-    u8 unk_02;
-    u8 unk_03;
-} UnkStruct_020F5164;
+typedef struct PSSSubscreenButton {
+    u8 page;
+    u8 paletteNum;
+    u8 xPos;
+    u8 yPos;
+} PSSSubscreenButton;
 
-static void sub_0223D0BC(PokemonSummaryScreen *param0);
-static int sub_020921FC(PokemonSummaryScreen *param0);
+static void sub_0223D0BC(PokemonSummaryScreen *summaryScreen);
+static int sub_020921FC(PokemonSummaryScreen *summaryScreen);
 
-static const UnkStruct_020F5164 Unk_020F5164[] = {
-    { 0x0, 0x1, 0x1, 0x4 },
-    { 0x1, 0x1, 0x2, 0xA },
-    { 0x2, 0x2, 0x5, 0xF },
-    { 0x3, 0x3, 0xA, 0x12 },
-    { 0x4, 0x2, 0x11, 0x12 },
-    { 0x5, 0x3, 0x16, 0xF },
-    { 0x6, 0x4, 0x19, 0xA },
-    { 0x7, 0x4, 0x1A, 0x4 },
+static const PSSSubscreenButton Unk_020F5164[] = {
+    { PSS_PAGE_INFO, 0x1, 0x1, 0x4 },
+    { PSS_PAGE_MEMO, 0x1, 0x2, 0xA },
+    { PSS_PAGE_SKILLS, 0x2, 0x5, 0xF },
+    { PSS_PAGE_BATTLE_MOVES, 0x3, 0xA, 0x12 },
+    { PSS_PAGE_CONDITION, 0x2, 0x11, 0x12 },
+    { PSS_PAGE_CONTEST_MOVES, 0x3, 0x16, 0xF },
+    { PSS_PAGE_RIBBONS, 0x4, 0x19, 0xA },
+    { PSS_PAGE_EXIT, 0x4, 0x1A, 0x4 },
     { 0xFF, 0xFF, 0xFF, 0xFF }
 };
 
-static const UnkStruct_020F5164 Unk_020F514C[] = {
-    { 0x0, 0x1, 0x2, 0x9 },
-    { 0x1, 0x1, 0x6, 0xF },
-    { 0x2, 0x2, 0xE, 0x12 },
-    { 0x3, 0x3, 0x16, 0xF },
-    { 0x7, 0x4, 0x1A, 0x9 },
+static const PSSSubscreenButton Unk_020F514C[] = {
+    { PSS_PAGE_INFO, 0x1, 0x2, 0x9 },
+    { PSS_PAGE_MEMO, 0x1, 0x6, 0xF },
+    { PSS_PAGE_SKILLS, 0x2, 0xE, 0x12 },
+    { PSS_PAGE_BATTLE_MOVES, 0x3, 0x16, 0xF },
+    { PSS_PAGE_EXIT, 0x4, 0x1A, 0x9 },
     { 0xFF, 0xFF, 0xFF, 0xFF }
 };
 
-static const UnkStruct_020F5164 Unk_020F5128[] = {
-    { 0x3, 0x3, 0xA, 0x12 },
-    { 0x5, 0x3, 0x11, 0x12 },
+static const PSSSubscreenButton Unk_020F5128[] = {
+    { PSS_PAGE_BATTLE_MOVES, 0x3, 0xA, 0x12 },
+    { PSS_PAGE_CONTEST_MOVES, 0x3, 0x11, 0x12 },
     { 0xFF, 0xFF, 0xFF, 0xFF }
 };
 
-static const UnkStruct_020F5164 *Unk_02100D84[] = {
-    Unk_020F5164,
-    Unk_020F514C,
-    Unk_020F5128
+static const PSSSubscreenButton *sSubscreenButtonTypes[] = {
+    [PSS_SUBSCREEN_TYPE_NORMAL] = Unk_020F5164,
+    [PSS_SUBSCREEN_TYPE_HIDE_CONTEST] = Unk_020F514C,
+    [PSS_SUBSCREEN_TYPE_2] = Unk_020F5128
 };
 
 static const TouchScreenRect Unk_020F5188[] = {
@@ -87,73 +89,67 @@ static const TouchScreenRect *Unk_02100D78[] = {
     Unk_020F511C
 };
 
-void sub_020920C0(PokemonSummaryScreen *param0)
+void PokemonSummaryScreen_SetSubscreenType(PokemonSummaryScreen *summaryScreen)
 {
-    switch (param0->data->mode) {
-    case 0:
-    case 1:
-        if (param0->data->contest != FALSE) {
-            param0->subscreenType = 0;
+    switch (summaryScreen->data->mode) {
+    case PSS_MODE_NORMAL:
+    case PSS_MODE_LOCK_MOVES:
+        if (summaryScreen->data->showContest != FALSE) {
+            summaryScreen->subscreenType = PSS_SUBSCREEN_TYPE_NORMAL;
         } else {
-            param0->subscreenType = 1;
-            Bg_ScheduleScroll(param0->bgConfig, 4, 0, 4);
+            summaryScreen->subscreenType = PSS_SUBSCREEN_TYPE_HIDE_CONTEST;
+            Bg_ScheduleScroll(summaryScreen->bgConfig, BG_LAYER_SUB_0, BG_OFFSET_UPDATE_SET_X, 4);
         }
         break;
-    case 2:
-    case 3:
+    case PSS_MODE_SELECT_MOVE:
+    case PSS_MODE_POFFIN:
     default:
-        param0->subscreenType = 0xf;
+        summaryScreen->subscreenType = PSS_SUBSCREEN_TYPE_NONE;
     }
 
-    sub_0209219C(param0);
+    PokemonSummaryScreen_UpdateSubscreenButtonGfx(summaryScreen);
 }
 
-static void sub_0209212C(PokemonSummaryScreen *param0, const UnkStruct_020F5164 *param1, u8 param2)
+static void UpdateSubscreenButtonTilemap(PokemonSummaryScreen *summaryScreen, const PSSSubscreenButton *button, u8 animID)
 {
-    u16 *v0;
-    u16 v1;
+    u16 *bgSub0Tilemap = (u16 *)Bg_GetTilemapBuffer(summaryScreen->bgConfig, BG_LAYER_SUB_0);
+    u16 v1 = (button->page & 1) * 15 + (button->page / 2) * (30 * 5) + animID * 5 + 30;
     u8 v2;
     u8 v3, v4;
 
-    v0 = (u16 *)Bg_GetTilemapBuffer(param0->bgConfig, 4);
-    v1 = (param1->unk_00 & 1) * 15 + (param1->unk_00 / 2) * (30 * 5) + param2 * 5 + 30;
-
     for (v3 = 0; v3 < 5; v3++) {
         for (v4 = 0; v4 < 5; v4++) {
-            v0[(v3 + param1->unk_03) * 32 + v4 + param1->unk_02] = v1 + v3 * 30 + v4 + (param1->unk_01 << 12);
+            bgSub0Tilemap[(v3 + button->yPos) * 32 + v4 + button->xPos] = v1 + v3 * 30 + v4 + (button->paletteNum << 12);
         }
     }
 }
 
-void sub_0209219C(PokemonSummaryScreen *param0)
+void PokemonSummaryScreen_UpdateSubscreenButtonGfx(PokemonSummaryScreen *summaryScreen)
 {
-    const UnkStruct_020F5164 *v0;
-    u8 v1;
-
-    if (param0->subscreenType == 0xf) {
+    if (summaryScreen->subscreenType == PSS_SUBSCREEN_TYPE_NONE) {
         return;
     }
 
-    v0 = Unk_02100D84[param0->subscreenType];
-    v1 = 0;
+    const PSSSubscreenButton *buttonList = sSubscreenButtonTypes[summaryScreen->subscreenType];
+    u8 button = 0;
 
     while (TRUE) {
-        if (v0[v1].unk_00 == 0xff) {
+        if (buttonList[button].page == 0xff) {
             break;
         }
 
-        sub_0209212C(param0, &v0[v1], 0);
-        v1++;
+        UpdateSubscreenButtonTilemap(summaryScreen, &buttonList[button], 0);
+        button++;
     }
 
-    Bg_ScheduleTilemapTransfer(param0->bgConfig, 4);
+    Bg_ScheduleTilemapTransfer(summaryScreen->bgConfig, BG_LAYER_SUB_0);
 }
 
-u8 sub_020921E4(PokemonSummaryScreen *param0)
+u8 sub_020921E4(PokemonSummaryScreen *summaryScreen)
 {
     int v0;
 
-    v0 = sub_020921FC(param0);
+    v0 = sub_020921FC(summaryScreen);
 
     if (v0 != 0xffffffff) {
         return v0;
@@ -162,33 +158,33 @@ u8 sub_020921E4(PokemonSummaryScreen *param0)
     return 0xff;
 }
 
-static int sub_020921FC(PokemonSummaryScreen *param0)
+static int sub_020921FC(PokemonSummaryScreen *summaryScreen)
 {
     int v0;
 
-    if (param0->subscreenType == 0xf) {
+    if (summaryScreen->subscreenType == PSS_SUBSCREEN_TYPE_NONE) {
         return 0xffffffff;
     }
 
-    v0 = sub_02022664(Unk_02100D78[param0->subscreenType]);
+    v0 = sub_02022664(Unk_02100D78[summaryScreen->subscreenType]);
 
     return v0;
 }
 
-static int sub_02092224(PokemonSummaryScreen *param0)
+static int sub_02092224(PokemonSummaryScreen *summaryScreen)
 {
     int v0;
 
-    if (param0->subscreenType == 0xf) {
+    if (summaryScreen->subscreenType == PSS_SUBSCREEN_TYPE_NONE) {
         return 0xffffffff;
     }
 
-    v0 = sub_02022644(Unk_02100D78[param0->subscreenType]);
+    v0 = sub_02022644(Unk_02100D78[summaryScreen->subscreenType]);
 
     if (v0 != 0xffffffff) {
         u16 v1 = 0xfffe;
 
-        if (Bg_DoesPixelAtXYMatchVal(param0->bgConfig, 4, gCoreSys.touchX, gCoreSys.touchY, &v1) == 0) {
+        if (Bg_DoesPixelAtXYMatchVal(summaryScreen->bgConfig, 4, gCoreSys.touchX, gCoreSys.touchY, &v1) == 0) {
             return 0xffffffff;
         }
     }
@@ -196,58 +192,60 @@ static int sub_02092224(PokemonSummaryScreen *param0)
     return v0;
 }
 
-u8 sub_0209228C(PokemonSummaryScreen *param0)
+u8 PokemonSummaryScreen_DrawSubscreenButtonAnim(PokemonSummaryScreen *summaryScreen)
 {
-    const UnkStruct_020F5164 *v0 = Unk_02100D84[param0->subscreenType];
+    const PSSSubscreenButton *buttonList = sSubscreenButtonTypes[summaryScreen->subscreenType];
 
-    switch (param0->buttonState) {
+    switch (summaryScreen->buttonState) {
     case 0:
-        Sound_PlayEffect(1508);
-        sub_0209219C(param0);
-        sub_0209212C(param0, &v0[param0->buttonPos], 2);
-        Bg_ScheduleTilemapTransfer(param0->bgConfig, 4);
-        sub_0208F600(param0);
-        param0->buttonCount = 0;
-        param0->buttonState = 1;
+        Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
+        PokemonSummaryScreen_UpdateSubscreenButtonGfx(summaryScreen);
+        UpdateSubscreenButtonTilemap(summaryScreen, &buttonList[summaryScreen->buttonPos], 2);
+        Bg_ScheduleTilemapTransfer(summaryScreen->bgConfig, 4);
+        sub_0208F600(summaryScreen);
+        summaryScreen->buttonCount = 0;
+        summaryScreen->buttonState = 1;
         break;
 
     case 1:
-        param0->buttonState = 2;
+        summaryScreen->buttonState = 2;
         break;
 
     case 2:
-        if (param0->buttonCount != 3) {
-            param0->buttonCount++;
+        if (summaryScreen->buttonCount != 3) {
+            summaryScreen->buttonCount++;
             break;
         }
 
-        sub_0208F684(param0);
+        sub_0208F684(summaryScreen);
 
-        if (sub_02092224(param0) != param0->buttonPos) {
-            if ((param0->monData.isEgg != 0) && (v0[param0->buttonPos].unk_00 != 1) && (v0[param0->buttonPos].unk_00 != 7)) {
-                sub_0209212C(param0, &v0[param0->buttonPos], 0);
+        if (sub_02092224(summaryScreen) != summaryScreen->buttonPos) {
+            if (summaryScreen->monData.isEgg != FALSE
+                && buttonList[summaryScreen->buttonPos].page != PSS_PAGE_MEMO
+                && buttonList[summaryScreen->buttonPos].page != PSS_PAGE_EXIT) {
+                UpdateSubscreenButtonTilemap(summaryScreen, &buttonList[summaryScreen->buttonPos], 0);
             } else {
-                sub_0209212C(param0, &v0[param0->buttonPos], 1);
+                UpdateSubscreenButtonTilemap(summaryScreen, &buttonList[summaryScreen->buttonPos], 1);
             }
 
-            Bg_ScheduleTilemapTransfer(param0->bgConfig, 4);
-            return 1;
+            Bg_ScheduleTilemapTransfer(summaryScreen->bgConfig, 4);
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
+}
+// ravetodo PokemonSummaryScreen_GetSubscreenButtonPos?
+void sub_02092368(PokemonSummaryScreen *summaryScreen, s16 *param1, s16 *param2)
+{
+    const PSSSubscreenButton *buttonList = sSubscreenButtonTypes[summaryScreen->subscreenType];
+
+    *param1 = buttonList[summaryScreen->buttonPos].xPos * 8 + (5 * 8) / 2;
+    *param2 = buttonList[summaryScreen->buttonPos].yPos * 8 + (5 * 8) / 2;
 }
 
-void sub_02092368(PokemonSummaryScreen *param0, s16 *param1, s16 *param2)
+u8 PokemonSummaryScreen_GetSubscreenButtonPage(PokemonSummaryScreen *summaryScreen, u8 button)
 {
-    const UnkStruct_020F5164 *v0 = Unk_02100D84[param0->subscreenType];
-
-    *param1 = v0[param0->buttonPos].unk_02 * 8 + (5 * 8) / 2;
-    *param2 = v0[param0->buttonPos].unk_03 * 8 + (5 * 8) / 2;
-}
-
-u8 sub_020923A4(PokemonSummaryScreen *param0, u8 param1)
-{
-    const UnkStruct_020F5164 *v0 = Unk_02100D84[param0->subscreenType];
-    return v0[param1].unk_00;
+    const PSSSubscreenButton *buttonList = sSubscreenButtonTypes[summaryScreen->subscreenType];
+    return buttonList[button].page;
 }

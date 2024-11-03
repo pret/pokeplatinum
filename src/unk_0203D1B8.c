@@ -555,7 +555,7 @@ void *sub_0203D5C8(int param0, FieldSystem *fieldSystem, int param2)
     v0->mode = 0;
     v0->ribbons = sub_0202D79C(fieldSystem->saveData);
     v0->dexMode = sub_0207A274(fieldSystem->saveData);
-    v0->contest = PokemonSummary_ShowContestData(fieldSystem->saveData);
+    v0->showContest = PokemonSummary_ShowContestData(fieldSystem->saveData);
     v0->chatotCry = NULL;
 
     PokemonSummary_FlagVisiblePages(v0, Unk_020EA02C);
@@ -596,7 +596,7 @@ PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, int param1, int param2)
     v0->move = 0;
     v0->mode = param2;
     v0->dexMode = sub_0207A274(v1);
-    v0->contest = PokemonSummary_ShowContestData(v1);
+    v0->showContest = PokemonSummary_ShowContestData(v1);
     v0->ribbons = sub_0202D79C(v1);
 
     PokemonSummary_FlagVisiblePages(v0, v2);
@@ -625,7 +625,7 @@ void *sub_0203D6E4(int param0, FieldSystem *fieldSystem, u8 param2)
     v0->move = 0;
     v0->mode = 2;
     v0->dexMode = sub_0207A274(fieldSystem->saveData);
-    v0->contest = PokemonSummary_ShowContestData(fieldSystem->saveData);
+    v0->showContest = PokemonSummary_ShowContestData(fieldSystem->saveData);
 
     PokemonSummary_FlagVisiblePages(v0, Unk_020EA160);
     PokemonSummary_SetPlayerProfile(v0, SaveData_GetTrainerInfo(fieldSystem->saveData));
@@ -1774,7 +1774,7 @@ void *sub_0203E63C(int param0, FieldSystem *fieldSystem, u16 param2, u16 param3)
     v0->mode = 2;
     v0->ribbons = sub_0202D79C(fieldSystem->saveData);
     v0->dexMode = sub_0207A274(fieldSystem->saveData);
-    v0->contest = SystemFlag_CheckContestHallVisited(SaveData_GetVarsFlags(fieldSystem->saveData));
+    v0->showContest = SystemFlag_CheckContestHallVisited(SaveData_GetVarsFlags(fieldSystem->saveData));
     v0->chatotCry = NULL;
 
     PokemonSummary_FlagVisiblePages(v0, Unk_020EA15C);

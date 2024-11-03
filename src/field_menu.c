@@ -1042,7 +1042,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         v3->mode = 0;
         v3->ribbons = sub_0202D79C(fieldSystem->saveData);
         v3->dexMode = sub_0207A274(fieldSystem->saveData);
-        v3->contest = PokemonSummary_ShowContestData(fieldSystem->saveData);
+        v3->showContest = PokemonSummary_ShowContestData(fieldSystem->saveData);
         v3->chatotCry = NULL;
 
         PokemonSummary_FlagVisiblePages(v3, Unk_020EA02C);
@@ -1063,7 +1063,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         v4->move = partyMan->unk_26;
         v4->mode = 2;
         v4->dexMode = sub_0207A274(fieldSystem->saveData);
-        v4->contest = PokemonSummary_ShowContestData(fieldSystem->saveData);
+        v4->showContest = PokemonSummary_ShowContestData(fieldSystem->saveData);
         v4->chatotCry = NULL;
 
         PokemonSummary_FlagVisiblePages(v4, Unk_020EA01C);
@@ -1092,7 +1092,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         v6->move = partyMan->unk_26;
         v6->mode = 2;
         v6->dexMode = sub_0207A274(fieldSystem->saveData);
-        v6->contest = PokemonSummary_ShowContestData(fieldSystem->saveData);
+        v6->showContest = PokemonSummary_ShowContestData(fieldSystem->saveData);
         v6->chatotCry = NULL;
 
         PokemonSummary_FlagVisiblePages(v6, Unk_020EA01C);

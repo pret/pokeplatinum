@@ -140,7 +140,7 @@ static int sub_0206BAE0(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, in
     v0->options = SaveData_Options(v1);
     v0->monData = Party_GetFromSavedata(v1);
     v0->dexMode = sub_0207A274(v1);
-    v0->contest = PokemonSummary_ShowContestData(v1);
+    v0->showContest = PokemonSummary_ShowContestData(v1);
     v0->dataType = 1;
     v0->pos = param0->unk_0D;
     v0->max = (u8)Party_GetCurrentCount(v0->monData);

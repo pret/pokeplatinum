@@ -3,11 +3,11 @@
 
 #include "applications/pokemon_summary_screen.h"
 
-void sub_020920C0(PokemonSummaryScreen *param0);
-void sub_0209219C(PokemonSummaryScreen *param0);
-u8 sub_020921E4(PokemonSummaryScreen *param0);
-u8 sub_0209228C(PokemonSummaryScreen *param0);
-void sub_02092368(PokemonSummaryScreen *param0, s16 *param1, s16 *param2);
-u8 sub_020923A4(PokemonSummaryScreen *param0, u8 param1);
+void PokemonSummaryScreen_SetSubscreenType(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_UpdateSubscreenButtonGfx(PokemonSummaryScreen *summaryScreen);
+u8 sub_020921E4(PokemonSummaryScreen *summaryScreen);
+u8 PokemonSummaryScreen_DrawSubscreenButtonAnim(PokemonSummaryScreen *summaryScreen);
+void sub_02092368(PokemonSummaryScreen *summaryScreen, s16 *param1, s16 *param2);
+u8 PokemonSummaryScreen_GetSubscreenButtonPage(PokemonSummaryScreen *summaryScreen, u8 button);
 
 #endif // POKEPLATINUM_UNK_020920C0_H

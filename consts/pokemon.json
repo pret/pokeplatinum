@@ -150,7 +150,8 @@
                 "CONTEST_TYPE_CUTE",
                 "CONTEST_TYPE_BEAUTY",
                 "CONTEST_TYPE_SMART",
-                "CONTEST_TYPE_TOUGH"
+                "CONTEST_TYPE_TOUGH",
+                "CONTEST_TYPE_MAX"
             ]
         },
         "@PokemonGenderRatio": {

@@ -622,7 +622,7 @@ void sub_0208F600(PokemonSummaryScreen *param0)
 
     sub_02092368(param0, &v0, &v1);
 
-    if (param0->subscreenType == 0) {
+    if (param0->subscreenType == PSS_SUBSCREEN_TYPE_NORMAL) {
         SpriteActor_SetPositionXY(param0->unk_41C[41], v0, v1 + 192);
     } else {
         SpriteActor_SetPositionXY(param0->unk_41C[41], v0 - 4, v1 + 192);
@@ -678,7 +678,7 @@ void PokemonSummaryScreen_ShowMonIcon(PokemonSummaryScreen *summaryScreen)
 {
     sub_0200D97C(summaryScreen->renderer, summaryScreen->gfxHandler, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), FALSE, 5);
 
-    if (summaryScreen->page == SUMMARY_PAGE_BATTLE_MOVES) {
+    if (summaryScreen->page == PSS_PAGE_BATTLE_MOVES) {
         SpriteActor_SetPositionXY(summaryScreen->unk_41C[19], 24, 48);
     } else {
         SpriteActor_SetPositionXY(summaryScreen->unk_41C[19], 32, 68);
@@ -736,28 +736,28 @@ static void sub_0208F9B0(PokemonSummaryScreen *summaryScreen, u8 ribbonNum, u8 p
     sub_0200D414(summaryScreen->unk_41C[55 + param2], Ribbon_GetData(ribbonNum, RIBBON_DATA_PALETTE_NUM) + 7);
 }
 
-void sub_0208FA04(PokemonSummaryScreen *param0)
+void sub_0208FA04(PokemonSummaryScreen *summaryScreen)
 {
-    u16 v0;
+    u16 i;
 
-    for (v0 = 55; v0 <= 70; v0++) {
-        CellActor_SetDrawFlag(param0->unk_41C[v0], 0);
+    for (i = 55; i <= 70; i++) {
+        CellActor_SetDrawFlag(summaryScreen->unk_41C[i], 0);
     }
 
-    if (param0->page != 6) {
+    if (summaryScreen->page != PSS_PAGE_RIBBONS) {
         return;
     }
 
-    sub_0200D97C(param0->renderer, param0->gfxHandler, 39, 136, 0, 5);
+    sub_0200D97C(summaryScreen->renderer, summaryScreen->gfxHandler, 39, 136, 0, 5);
 
-    for (v0 = 0; v0 < 12; v0++) {
-        if (v0 < param0->ribbonMax) {
-            CellActor_SetDrawFlag(param0->unk_41C[55 + v0], 1);
-            sub_0208F9B0(param0, PokemonSummaryScreen_RibbonNumAt(param0, v0), v0);
+    for (i = 0; i < 12; i++) {
+        if (i < summaryScreen->ribbonMax) {
+            CellActor_SetDrawFlag(summaryScreen->unk_41C[55 + i], TRUE);
+            sub_0208F9B0(summaryScreen, PokemonSummaryScreen_RibbonNumAt(summaryScreen, i), i);
         }
     }
 
-    CellActor_SetAnim(param0->unk_41C[70], 0);
+    CellActor_SetAnim(summaryScreen->unk_41C[70], 0);
 }
 
 void PokemonSummaryScreen_UpdateShownRibbonRows(PokemonSummaryScreen *summaryScreen)

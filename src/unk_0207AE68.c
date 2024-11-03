@@ -145,7 +145,7 @@ UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Opt
 
     MI_CpuClearFast(v0->unk_3C, sizeof(PokemonSummary));
 
-    v0->unk_3C->contest = param4;
+    v0->unk_3C->showContest = param4;
     v0->unk_48 = param5;
     v0->unk_4C = param6;
     v0->records = records;

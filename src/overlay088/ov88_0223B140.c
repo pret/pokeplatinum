@@ -1744,7 +1744,7 @@ static void ov88_0223D1EC(UnkStruct_02095E80 *param0, int param1)
     param0->unk_0C.pos = param0->unk_88[0] % 6;
     param0->unk_0C.mode = 1;
     param0->unk_0C.move = 0;
-    param0->unk_0C.contest = PokemonSummary_ShowContestData(param0->unk_08->unk_10);
+    param0->unk_0C.showContest = PokemonSummary_ShowContestData(param0->unk_08->unk_10);
     param0->unk_0C.dexMode = param0->unk_08->unk_30;
     param0->unk_0C.options = param0->unk_08->unk_18;
     param0->unk_0C.ribbons = sub_0202D79C(param0->unk_08->unk_10);
