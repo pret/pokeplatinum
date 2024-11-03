@@ -94,19 +94,19 @@ static const UnkStruct_020F51AC Unk_020F51AC[] = {
     { 0x34, 0x77, 0x0, 0x4F, 0x800D }
 };
 
-u32 sub_020923C0(u8 param0, u8 param1)
+u32 sub_020923C0(u8 ribbonID, u8 param1)
 {
     switch (param1) {
     case 0:
-        return Unk_020F51AC[param0].unk_00;
+        return Unk_020F51AC[ribbonID].unk_00;
     case 1:
-        return Unk_020F51AC[param0].unk_04;
+        return Unk_020F51AC[ribbonID].unk_04;
     case 2:
-        return Unk_020F51AC[param0].unk_06;
+        return Unk_020F51AC[ribbonID].unk_06;
     case 3:
-        return Unk_020F51AC[param0].unk_08;
+        return Unk_020F51AC[ribbonID].unk_08;
     case 4:
-        return Unk_020F51AC[param0].unk_0A;
+        return Unk_020F51AC[ribbonID].unk_0A;
     }
 
     return 0;

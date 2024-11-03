@@ -785,7 +785,7 @@ void sub_02090F84(PokemonSummaryScreen *param0)
 
     v0 = MessageLoader_GetNewStrbuf(param0->msgLoader, 184);
 
-    StringTemplate_SetNumber(param0->strFormatter, 0, param0->ribbonPos + param0->ribbonState * 4 + 1, 3, 0, 1);
+    StringTemplate_SetNumber(param0->strFormatter, 0, param0->ribbonCol + param0->ribbonRow * RIBBONS_PER_ROW + 1, 3, 0, 1);
     StringTemplate_Format(param0->strFormatter, param0->strbuf, v0);
     Strbuf_Free(v0);
 
@@ -796,19 +796,19 @@ void sub_02090F84(PokemonSummaryScreen *param0)
     Window_ScheduleCopyToVRAM(&param0->extraWindows[1]);
 }
 
-void sub_020910E4(PokemonSummaryScreen *param0)
+void sub_020910E4(PokemonSummaryScreen *summaryScreen)
 {
-    Window_FillTilemap(&param0->extraWindows[2], 0);
-    Window_FillTilemap(&param0->extraWindows[3], 0);
+    Window_FillTilemap(&summaryScreen->extraWindows[2], 0);
+    Window_FillTilemap(&summaryScreen->extraWindows[3], 0);
 
-    MessageLoader_GetStrbuf(param0->ribbonLoader, sub_020923C0(param0->ribbonNum, 3), param0->strbuf);
-    sub_020900D8(param0, &param0->extraWindows[2], TEXT_COLOR(15, 14, 0), 0);
+    MessageLoader_GetStrbuf(summaryScreen->ribbonLoader, sub_020923C0(summaryScreen->ribbonID, 3), summaryScreen->strbuf);
+    sub_020900D8(summaryScreen, &summaryScreen->extraWindows[2], TEXT_COLOR(15, 14, 0), 0);
 
-    MessageLoader_GetStrbuf(param0->ribbonLoader, sub_02092424(param0->data->ribbons, param0->ribbonNum), param0->strbuf);
-    sub_020900D8(param0, &param0->extraWindows[3], TEXT_COLOR(1, 2, 0), 0);
+    MessageLoader_GetStrbuf(summaryScreen->ribbonLoader, sub_02092424(summaryScreen->data->ribbons, summaryScreen->ribbonID), summaryScreen->strbuf);
+    sub_020900D8(summaryScreen, &summaryScreen->extraWindows[3], TEXT_COLOR(1, 2, 0), 0);
 
-    Window_ScheduleCopyToVRAM(&param0->extraWindows[2]);
-    Window_ScheduleCopyToVRAM(&param0->extraWindows[3]);
+    Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[2]);
+    Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[3]);
 }
 
 static void PrintMoveInfo(PokemonSummaryScreen *summaryScreen, u32 moveIndex)
@@ -893,7 +893,7 @@ void PokemonSummaryScreen_ClearBattleInfoWindows(PokemonSummaryScreen *summarySc
     Window_ClearAndScheduleCopyToVRAM(&summaryScreen->extraWindows[7]);
 }
 
-void sub_02091420(PokemonSummaryScreen *summaryScreen)
+void ShowMoveInfoOrCancel(PokemonSummaryScreen *summaryScreen)
 {
     if (summaryScreen->data->move != MOVE_NONE) {
         Window_FillTilemap(&summaryScreen->extraWindows[4], 0);
@@ -904,10 +904,10 @@ void sub_02091420(PokemonSummaryScreen *summaryScreen)
     }
 }
 
-void sub_0209145C(PokemonSummaryScreen *param0)
+void HideMoveCancelText(PokemonSummaryScreen *summaryScreen)
 {
-    Window_ClearAndScheduleCopyToVRAM(&param0->staticWindows[24]);
-    Bg_ScheduleTilemapTransfer(param0->bgConfig, 1);
+    Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[24]);
+    Bg_ScheduleTilemapTransfer(summaryScreen->bgConfig, BG_LAYER_MAIN_1);
 }
 
 void sub_02091474(PokemonSummaryScreen *param0)

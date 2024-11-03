@@ -53,17 +53,17 @@ enum PokemonSummaryScreenState {
     SUMMARY_STATE_TRANSITION_IN = 0,
     SUMMARY_STATE_WAIT_TRANSITION,
     SUMMARY_STATE_HANDLE_INPUT,
-    SUMMARY_STATE_3,
-    SUMMARY_STATE_4,
-    SUMMARY_STATE_5,
-    SUMMARY_STATE_6,
+    SUMMARY_STATE_SETUP_BATTLE_MOVE_INFO,
+    SUMMARY_STATE_HIDE_BATTLE_MOVE_INFO,
+    SUMMARY_STATE_SETUP_CONTEST_MOVE_INFO,
+    SUMMARY_STATE_HIDE_CONTEST_MOVE_INFO,
     SUMMARY_STATE_MOVE_SELECT,
     SUMMARY_STATE_MOVE_SWAP,
     SUMMARY_STATE_LEARN_MOVE,
     SUMMARY_STATE_WAIT_HM_MSG_INPUT,
-    SUMMARY_STATE_11,
-    SUMMARY_STATE_12,
-    SUMMARY_STATE_13,
+    SUMMARY_STATE_SETUP_RIBBON_INFO,
+    SUMMARY_STATE_HIDE_RIBBON_INFO,
+    SUMMARY_STATE_RIBBON_SELECT,
     SUMMARY_STATE_14,
     SUMMARY_STATE_15,
     SUMMARY_STATE_16,
@@ -81,6 +81,7 @@ enum PokemonSummaryDataType {
 #define SUMMARY_MOVE_NONE       0xFFFFFFFF
 #define POINTS_PER_APPEAL_HEART 10
 #define MAX_APPEAL_HEARTS       6
+#define RIBBONS_PER_ROW         4
 
 typedef struct PokemonSummary {
     void *monData; //!< Pointer to generic Pokemon data
@@ -214,10 +215,10 @@ typedef struct PokemonSummaryScreen {
     u8 buttonState;
     u8 buttonPos;
 
-    u8 ribbonPos;
-    u8 ribbonState;
+    u8 ribbonCol;
+    u8 ribbonRow;
     u8 ribbonMax;
-    u8 ribbonNum;
+    u8 ribbonID;
 } PokemonSummaryScreen;
 
 BOOL PokemonSummary_ShowContestData(SaveData *saveData);
@@ -225,7 +226,7 @@ void PokemonSummary_FlagVisiblePages(PokemonSummary *summary, const u8 *pages);
 u8 PokemonSummary_PageIsVisble(PokemonSummaryScreen *summaryScreen, u32 page);
 u8 PokemonSummary_CountVisiblePages(PokemonSummaryScreen *summaryScreen);
 void *PokemonSummary_MonData(PokemonSummaryScreen *summaryScreen);
-u8 PokemonSummary_RibbonAt(PokemonSummaryScreen *summaryScreen, u8 pos);
+u8 PokemonSummaryScreen_RibbonIDAt(PokemonSummaryScreen *summaryScreen, u8 col);
 void PokemonSummary_SetPlayerProfile(PokemonSummary *summary, const TrainerInfo *trainerInfo);
 u32 PokemonSummary_StatusIconChar(void);
 u32 PokemonSummary_StatusIconPltt(void);
