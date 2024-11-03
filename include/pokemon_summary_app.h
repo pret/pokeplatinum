@@ -78,6 +78,13 @@ enum PokemonSummaryDataType {
     SUMMARY_DATA_BOX_MON,
 };
 
+// todo: consolidate this with more generic ones if this scheme is used elsewhere
+enum PokemonSummaryTextAlignment {
+    SUMMARY_ALIGNMENT_LEFT = 0,
+    SUMMARY_ALIGNMENT_RIGHT,
+    SUMMARY_ALIGNMENT_CENTER,
+};
+
 #define SUMMARY_MOVE_NONE       0xFFFFFFFF
 #define POINTS_PER_APPEAL_HEART 10
 #define MAX_APPEAL_HEARTS       6
