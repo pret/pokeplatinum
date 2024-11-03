@@ -8,14 +8,14 @@
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021E29DC.h"
-#include "overlay021/ov21_021D3208.h"
+#include "overlay021/pokedexsort.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D4660.h"
 #include "overlay021/struct_ov21_021E68F4.h"
 #include "overlay021/struct_ov21_021E6A68.h"
 #include "overlay021/struct_ov21_021E6B20.h"
-#include "overlay021/struct_pokedexstatus.h"
+#include "overlay021/struct_ov21_021d3320.h"
 
 #include "bg_window.h"
 #include "cell_actor.h"
@@ -35,7 +35,7 @@
 
 typedef struct {
     int *unk_00;
-    PokedexStatus *dexStatus;
+    UnkStruct_ov21_021D3320 *unk_04;
     UnkStruct_ov21_021E68F4 *unk_08;
 } UnkStruct_ov21_021E6104;
 
@@ -126,7 +126,7 @@ static UnkStruct_ov21_021E6104 *ov21_021E608C(int param0, UnkStruct_ov21_021D0F6
     memset(v0, 0, sizeof(UnkStruct_ov21_021E6104));
 
     v0->unk_00 = ov21_021D138C(param1);
-    v0->dexStatus = ov21_021D13EC(param1);
+    v0->unk_04 = ov21_021D13EC(param1);
     v0->unk_08 = ov21_021D1410(param1, 5);
 
     return v0;
@@ -408,7 +408,7 @@ static void ov21_021E6518(UnkStruct_ov21_021E6274 *param0, UnkStruct_ov21_021E61
     VecFx32 v3;
     short v4;
     short v5;
-    int species = Pokedex_Sort_CurrentSpecies(param2->dexStatus);
+    int species = PokedexSort_CurrentSpecies(param2->unk_04);
 
     sub_020093B4(&v0, 93 + 7000, 14 + 7000, 91 + 7000, 92 + 7000, 0xffffffff, 0xffffffff, 0, 1, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
@@ -418,15 +418,15 @@ static void ov21_021E6518(UnkStruct_ov21_021E6274 *param0, UnkStruct_ov21_021E61
     v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
     v1.heapID = param3;
 
-    v4 = Pokedex_HeightWeightData_TrainerPos(param2->dexStatus->HWData, species);
-    v5 = Pokedex_HeightWeightData_TrainerScale(param2->dexStatus->HWData, species);
+    v4 = Pokedex_HeightWeightData_TrainerPos(param2->unk_04->HWData, species);
+    v5 = Pokedex_HeightWeightData_TrainerScale(param2->unk_04->HWData, species);
 
     v1.position.x = 168 << FX32_SHIFT;
     v1.position.y = (88 + v4) << FX32_SHIFT;
 
     param0->unk_10 = CellActorCollection_Add(&v1);
 
-    if (Pokedex_Sort_TrainerGender(param2->dexStatus) == 0) {
+    if (PokedexSort_TrainerGender(param2->unk_04) == 0) {
         CellActor_SetAnim(param0->unk_10, 5);
     } else {
         CellActor_SetAnim(param0->unk_10, 6);
@@ -474,7 +474,7 @@ static void ov21_021E6600(UnkStruct_ov21_021E6118 *param0, int param1)
 static void ov21_021E66B0(UnkStruct_ov21_021E6118 *param0, const UnkStruct_ov21_021E6104 *param1, int param2)
 {
     Strbuf *v0 = Strbuf_Init(32, param2);
-    int species = Pokedex_Sort_CurrentSpecies(param1->dexStatus);
+    int species = PokedexSort_CurrentSpecies(param1->unk_04);
     Strbuf *v3 = MessageUtil_SpeciesName(species, param2);
 
     int heightMessageBankIndex = Height_Message_Bank_Index();
@@ -493,9 +493,9 @@ static void ov21_021E66B0(UnkStruct_ov21_021E6118 *param0, const UnkStruct_ov21_
 
     v1 = MessageLoader_Init(0, 26, 697, param2);
 
-    Text_AddPrinterWithParamsAndColor(&param0->unk_00->unk_04, FONT_SYSTEM, Pokedex_Sort_TrainerName(param1->dexStatus), 146, 152, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_00->unk_04, FONT_SYSTEM, PokedexSort_TrainerName(param1->unk_04), 146, 152, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
 
-    if (Pokedex_Sort_TrainerGender(param1->dexStatus) == 0) {
+    if (PokedexSort_TrainerGender(param1->unk_04) == 0) {
         MessageLoader_GetStrbuf(v1, 95, v0);
     } else {
         MessageLoader_GetStrbuf(v1, 96, v0);
@@ -515,12 +515,12 @@ static void ov21_021E67C8(UnkStruct_ov21_021E6118 *param0, const UnkStruct_ov21_
     Sprite *v0 = ov21_021D2170(param0->unk_00);
     short v1;
     short v2;
-    int species = Pokedex_Sort_CurrentSpecies(param1->dexStatus);
+    int species = PokedexSort_CurrentSpecies(param1->unk_04);
 
-    v1 = Pokedex_HeightWeightData_PokemonPos(param1->dexStatus->HWData, species);
-    v2 = Pokedex_HeightWeightData_PokemonScale(param1->dexStatus->HWData, species);
+    v1 = Pokedex_HeightWeightData_PokemonPos(param1->unk_04->HWData, species);
+    v2 = Pokedex_HeightWeightData_PokemonScale(param1->unk_04->HWData, species);
 
-    ov21_021D1890(param0->unk_00, param1->dexStatus, species, 2, 88, 88 + v1);
+    ov21_021D1890(param0->unk_00, param1->unk_04, species, 2, 88, 88 + v1);
 
     sub_02007DEC(v0, 6, 0);
     sub_020086FC(v0, 15, 15, 0, 0);

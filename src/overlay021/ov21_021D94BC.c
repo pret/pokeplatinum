@@ -10,7 +10,7 @@
 #include "overlay021/ov21_021D4C0C.h"
 #include "overlay021/ov21_021D4EE4.h"
 #include "overlay021/ov21_021D85B0.h"
-#include "overlay021/ov21_021D3208.h"
+#include "overlay021/pokedexsort.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D2648.h"
@@ -23,7 +23,7 @@
 #include "overlay021/struct_ov21_021E68F4.h"
 #include "overlay021/struct_ov21_021E6A68.h"
 #include "overlay021/struct_ov21_021E6B20.h"
-#include "overlay021/struct_pokedexstatus.h"
+#include "overlay021/struct_ov21_021d3320.h"
 
 #include "bg_window.h"
 #include "cell_actor.h"
@@ -42,7 +42,7 @@
 
 typedef struct {
     int *unk_00;
-    PokedexStatus *unk_04;
+    UnkStruct_ov21_021D3320 *unk_04;
     UnkStruct_ov21_021E68F4 *unk_08;
     UnkStruct_ov21_021E68F4 *unk_0C;
 } UnkStruct_ov21_021D95B8;

@@ -8,7 +8,7 @@
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D4340.h"
-#include "overlay021/ov21_021D3208.h"
+#include "overlay021/pokedexsort.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D157C.h"
@@ -17,7 +17,7 @@
 #include "overlay021/struct_ov21_021E68F4.h"
 #include "overlay021/struct_ov21_021E6A68.h"
 #include "overlay021/struct_ov21_021E6B20.h"
-#include "overlay021/struct_pokedexstatus.h"
+#include "overlay021/struct_ov21_021d3320.h"
 
 #include "bg_window.h"
 #include "cell_actor.h"
@@ -35,7 +35,7 @@
 
 typedef struct {
     int *unk_00;
-    PokedexStatus *unk_04;
+    UnkStruct_ov21_021D3320 *unk_04;
     UnkStruct_ov21_021D5B68 *unk_08;
     int unk_0C;
     int unk_10;
@@ -400,11 +400,11 @@ static int ov21_021D8804(UnkStruct_ov21_021E6A68 *param0, void *param1)
         break;
     case 3:
         v2 = 1;
-        v2 = Pokedex_Sort(v0->unk_04, v0->unk_10, v0->unk_14, v0->unk_18, v0->unk_1C, v0->unk_20, ov21_021D36D8(v0->unk_04), param0->heapID, 1);
+        v2 = PokedexSort_Sort(v0->unk_04, v0->unk_10, v0->unk_14, v0->unk_18, v0->unk_1C, v0->unk_20, PokedexStatus_IsNationalDex(v0->unk_04), param0->heapID, 1);
 
         if (v2 == 1) {
             *v0->unk_00 |= (0x1 << 1);
-            ov21_021D3810(v0->unk_04, 0);
+            PokedexSort_SetCurrentValues(v0->unk_04, 0);
             v0->unk_04->unk_1740 = 1;
             v0->unk_08->unk_18 = 1;
         } else {
@@ -541,7 +541,7 @@ static void ov21_021D8A7C(UnkStruct_ov21_021D9320 *param0, UnkStruct_ov21_021D87
 
     ov21_021D8C00(param1);
     ov21_021D8B8C(param1, param2, param4);
-    ov21_021D8BC4(param0, param1, param2, param4, ov21_021D36D8(param2->unk_04));
+    ov21_021D8BC4(param0, param1, param2, param4, PokedexStatus_IsNationalDex(param2->unk_04));
     ov21_021D8C1C(param0, param1, param4);
     ov21_021D8D0C(param0, param1, param2, param4);
 

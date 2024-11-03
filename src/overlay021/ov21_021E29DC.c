@@ -13,7 +13,7 @@
 #include "overlay021/ov21_021DC9BC.h"
 #include "overlay021/ov21_021E0C68.h"
 #include "overlay021/ov21_021E3FFC.h"
-#include "overlay021/ov21_021D3208.h"
+#include "overlay021/pokedexsort.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D4660.h"
@@ -26,7 +26,7 @@
 #include "overlay021/struct_ov21_021E68F4.h"
 #include "overlay021/struct_ov21_021E6A68.h"
 #include "overlay021/struct_ov21_021E6B20.h"
-#include "overlay021/struct_pokedexstatus.h"
+#include "overlay021/struct_ov21_021d3320.h"
 
 #include "bg_window.h"
 #include "cell_actor.h"
@@ -45,7 +45,7 @@
 
 typedef struct {
     int *unk_00;
-    PokedexStatus *unk_04;
+    UnkStruct_ov21_021D3320 *unk_04;
     int unk_08;
     UnkStruct_ov21_021D5B68 *unk_0C;
     UnkStruct_ov21_021DE6D4 *unk_10;
@@ -76,7 +76,7 @@ typedef struct {
 typedef struct {
     int *unk_00;
     UnkStruct_ov21_021E2BA8 *unk_04;
-    PokedexStatus *unk_08;
+    UnkStruct_ov21_021D3320 *unk_08;
     int unk_0C[6];
     BOOL unk_24;
     int unk_28;
@@ -562,7 +562,7 @@ static BOOL ov21_021E2EC4(UnkStruct_ov21_021E2BA8 *param0, int param1, int param
         v1 = 64;
         break;
     case 3:
-        if (Pokedex_Sort_CurrentCaughtStatus(param0->unk_04) == 2) {
+        if (PokedexSort_CurrentCaughtStatus(param0->unk_04) == 2) {
             *param0->unk_00 |= (0x1 << 5);
             param0->unk_08 = 3;
         } else {
@@ -570,7 +570,7 @@ static BOOL ov21_021E2EC4(UnkStruct_ov21_021E2BA8 *param0, int param1, int param
         }
         break;
     case 4:
-        if (Pokedex_Sort_CanDetectForms(param0->unk_04) == 1) {
+        if (PokedexSort_CanDetectForms(param0->unk_04) == 1) {
             *param0->unk_00 |= (0x1 << 8);
             param0->unk_08 = 4;
         } else {
@@ -653,7 +653,7 @@ static void ov21_021E30E4(UnkStruct_ov21_021E2BBC *param0, const UnkStruct_ov21_
 
     ov21_021D276C(param0->unk_00, 6, 0, 0, 0, param2);
 
-    if (ov21_021D36D8(param1->unk_04) == 1) {
+    if (PokedexStatus_IsNationalDex(param1->unk_04) == 1) {
         ov21_021D276C(param0->unk_00, 24, 0, 0, 32, param2);
     }
 
@@ -1179,7 +1179,7 @@ static void ov21_021E37CC(u32 param0, u32 param1, void *param2)
                     Sound_PlayEffect(1675);
                 } else {
                     if (v2->unk_10 == 0) {
-                        if (Pokedex_Sort_CanDetectForms(v3->unk_04) == 1) {
+                        if (PokedexSort_CanDetectForms(v3->unk_04) == 1) {
                             if (v3->unk_08 != 2) {
                                 Sound_PlayEffect(1501);
                             }
@@ -1224,7 +1224,7 @@ static void ov21_021E3960(UnkStruct_ov21_021E3440 *param0, const UnkStruct_ov21_
     if (param1->unk_04->unk_30) {
         ov21_021D276C(param0->unk_00, 6, 4, 0, 0, param2);
 
-        if (ov21_021D36D8(param1->unk_08) == 1) {
+        if (PokedexStatus_IsNationalDex(param1->unk_08) == 1) {
             ov21_021D276C(param0->unk_00, 24, 4, 0, 32, param2);
         }
     }
@@ -1402,7 +1402,7 @@ static void ov21_021E3C6C(UnkStruct_ov21_021E37B4 *param0, UnkStruct_ov21_021E34
     ov21_021D4FE4(&param0->unk_18[2], 108, 24, 24, 16, 0, 0, 2);
     ov21_021D4FE4(&param0->unk_18[3], 148, 24, 24, 16, 0, 0, 3);
 
-    if (Pokedex_Sort_CanDetectForms(param1->unk_08) == 1) {
+    if (PokedexSort_CanDetectForms(param1->unk_08) == 1) {
         v0 = 0;
     } else {
         v0 = 2;
@@ -1597,7 +1597,7 @@ static void ov21_021E3FC0(UnkStruct_ov21_021E326C *param0, int param1, int param
 
 static void ov21_021E3FE4(UnkStruct_ov21_021E3900 *param0, const UnkStruct_ov21_021E342C *param1)
 {
-    if (Pokedex_Sort_CanDetectForms(param1->unk_08) == 0) {
+    if (PokedexSort_CanDetectForms(param1->unk_08) == 0) {
         CellActor_SetDrawFlag(param0->unk_00[4], 0);
     }
 }

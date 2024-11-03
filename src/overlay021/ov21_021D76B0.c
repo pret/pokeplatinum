@@ -10,7 +10,7 @@
 #include "overlay021/ov21_021D4340.h"
 #include "overlay021/ov21_021D4C0C.h"
 #include "overlay021/ov21_021D5AEC.h"
-#include "overlay021/ov21_021D3208.h"
+#include "overlay021/pokedexsort.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D4660.h"
@@ -20,7 +20,7 @@
 #include "overlay021/struct_ov21_021E68F4.h"
 #include "overlay021/struct_ov21_021E6A68.h"
 #include "overlay021/struct_ov21_021E6B20.h"
-#include "overlay021/struct_pokedexstatus.h"
+#include "overlay021/struct_ov21_021d3320.h"
 
 #include "bg_window.h"
 #include "cell_actor.h"
@@ -114,8 +114,8 @@ static void ov21_021D8324(UnkStruct_ov21_021D7A64 *param0);
 static void ov21_021D8354(UnkStruct_ov21_021D7C64 *param0, UnkStruct_ov21_021D77E8 *param1, int param2, fx32 param3);
 static void ov21_021D83C0(UnkStruct_ov21_021D7C64 *param0, UnkStruct_ov21_021D77E8 *param1, const UnkStruct_ov21_021D77D4 *param2);
 static void ov21_021D8434(UnkStruct_ov21_021D7A64 *param0, int param1, int param2);
-static BOOL ov21_021D84E0(UnkStruct_ov21_021D7A64 *param0, PokedexStatus *param1);
-static BOOL ov21_021D8508(UnkStruct_ov21_021D7A64 *param0, PokedexStatus *param1);
+static BOOL ov21_021D84E0(UnkStruct_ov21_021D7A64 *param0, UnkStruct_ov21_021D3320 *param1);
+static BOOL ov21_021D8508(UnkStruct_ov21_021D7A64 *param0, UnkStruct_ov21_021D3320 *param1);
 static void ov21_021D8530(UnkStruct_ov21_021D7A64 *param0, UnkStruct_ov21_021D77D4 *param1);
 static fx32 ov21_021D8580(fx32 param0, s32 param1);
 
@@ -444,7 +444,7 @@ static void ov21_021D7B8C(u32 param0, u32 param1, void *param2)
     UnkStruct_ov21_021D7B8C *v0 = param2;
     UnkStruct_ov21_021D77D4 *v1 = v0->unk_04;
     UnkStruct_ov21_021D7A64 *v2 = v0->unk_00;
-    PokedexStatus *v3 = v1->unk_1C->unk_04;
+    UnkStruct_ov21_021D3320 *v3 = v1->unk_1C->unk_04;
     int v4;
     int v5;
 
@@ -473,7 +473,7 @@ static void ov21_021D7B8C(u32 param0, u32 param1, void *param2)
             break;
         case 4:
             if (v2->unk_20 == 0) {
-                v4 = Pokedex_Sort_CompletionNumEncountered(v3);
+                v4 = PokedexSort_CaughtStatusLength(v3);
                 ov21_021D853C(v1, v4 - 1);
             }
             break;
@@ -541,7 +541,7 @@ static void ov21_021D7CD8(UnkStruct_ov21_021D77E8 *param0, const UnkStruct_ov21_
     if (param1->unk_1C->unk_04->unk_1740 == 1) {
         ov21_021D276C(param0->unk_00, 1, 4, 3 * 32, 32, param2);
     } else {
-        if (ov21_021D36D8(param1->unk_1C->unk_04) == 1) {
+        if (PokedexStatus_IsNationalDex(param1->unk_1C->unk_04) == 1) {
             ov21_021D276C(param0->unk_00, 25, 4, 3 * 32, 32, param2);
         }
     }
@@ -782,7 +782,7 @@ static void ov21_021D828C(UnkStruct_ov21_021D77E8 *param0, int param1)
 static void ov21_021D82A8(UnkStruct_ov21_021D7A64 *param0, UnkStruct_ov21_021D77D4 *param1)
 {
     int v0;
-    PokedexStatus *v1 = param1->unk_1C->unk_04;
+    UnkStruct_ov21_021D3320 *v1 = param1->unk_1C->unk_04;
 
     if (param1->unk_1C->unk_0C <= 0) {
         if (param0->unk_10 != 0) {
@@ -939,7 +939,7 @@ static void ov21_021D84B8(UnkStruct_ov21_021D77D4 *param0)
     }
 }
 
-static BOOL ov21_021D84E0(UnkStruct_ov21_021D7A64 *param0, PokedexStatus *param1)
+static BOOL ov21_021D84E0(UnkStruct_ov21_021D7A64 *param0, UnkStruct_ov21_021D3320 *param1)
 {
     int v0;
 
@@ -950,7 +950,7 @@ static BOOL ov21_021D84E0(UnkStruct_ov21_021D7A64 *param0, PokedexStatus *param1
             v0 = -1;
         }
 
-        if (ov21_021D387C(param1, v0) == 0) {
+        if (PokedexSort_IsValidStep(param1, v0) == 0) {
             return 0;
         }
     }
@@ -958,7 +958,7 @@ static BOOL ov21_021D84E0(UnkStruct_ov21_021D7A64 *param0, PokedexStatus *param1
     return 1;
 }
 
-static BOOL ov21_021D8508(UnkStruct_ov21_021D7A64 *param0, PokedexStatus *param1)
+static BOOL ov21_021D8508(UnkStruct_ov21_021D7A64 *param0, UnkStruct_ov21_021D3320 *param1)
 {
     int v0;
 
@@ -969,7 +969,7 @@ static BOOL ov21_021D8508(UnkStruct_ov21_021D7A64 *param0, PokedexStatus *param1
             v0 = -1;
         }
 
-        if (ov21_021D3844(param1, v0) == 0) {
+        if (PokedexSort_TakeStep(param1, v0) == 0) {
             return 0;
         }
     }
@@ -990,7 +990,7 @@ static void ov21_021D853C(UnkStruct_ov21_021D77D4 *param0, int param1)
         return;
     }
 
-    ov21_021D36FC(param0->unk_1C->unk_04, param1);
+    PokedexSort_SetCurrentStatusIndex(param0->unk_1C->unk_04, param1);
 
     (*param0->unk_20) |= (0x1 << 0);
 

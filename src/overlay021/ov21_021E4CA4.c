@@ -9,7 +9,7 @@
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D4C0C.h"
 #include "overlay021/ov21_021E29DC.h"
-#include "overlay021/ov21_021D3208.h"
+#include "overlay021/pokedexsort.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D4660.h"
@@ -18,7 +18,7 @@
 #include "overlay021/struct_ov21_021E68F4.h"
 #include "overlay021/struct_ov21_021E6A68.h"
 #include "overlay021/struct_ov21_021E6B20.h"
-#include "overlay021/struct_pokedexstatus.h"
+#include "overlay021/struct_ov21_021d3320.h"
 
 #include "bg_window.h"
 #include "cell_actor.h"
@@ -40,7 +40,7 @@
 
 typedef struct {
     int *unk_00;
-    PokedexStatus *unk_04;
+    UnkStruct_ov21_021D3320 *unk_04;
     UnkStruct_ov21_021E68F4 *unk_08;
     int unk_0C;
 } UnkStruct_ov21_021E4D90;
@@ -279,7 +279,7 @@ static int ov21_021E4DC0(UnkStruct_ov21_021E6A68 *param0, void *param1)
     UnkStruct_ov21_021E4D90 *v0 = param1;
     UnkStruct_ov21_021E51DC *v1 = param0->unk_08;
     int v2;
-    int species = Pokedex_Sort_CurrentSpecies(v0->unk_04);
+    int species = PokedexSort_CurrentSpecies(v0->unk_04);
 
     v1 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov21_021E51DC));
     memset(v1, 0, sizeof(UnkStruct_ov21_021E51DC));
@@ -568,7 +568,7 @@ static void ov21_021E5268(u32 param0, u32 param1, void *param2)
     UnkStruct_ov21_021E5228 *v0 = param2;
     UnkStruct_ov21_021E4D90 *v1 = v0->unk_00;
     UnkStruct_ov21_021E51DC *v2 = v0->unk_04;
-    int species = Pokedex_Sort_CurrentSpecies(v1->unk_04);
+    int species = PokedexSort_CurrentSpecies(v1->unk_04);
 
     v2->unk_18[param0] = param1;
 
@@ -1284,7 +1284,7 @@ static void ov21_021E5E28(UnkStruct_ov21_021E51DC *param0)
 
 static void ov21_021E5E48(UnkStruct_ov21_021E51DC *param0, UnkStruct_ov21_021E4D90 *param1)
 {
-    int species = Pokedex_Sort_CurrentSpecies(param1->unk_04);
+    int species = PokedexSort_CurrentSpecies(param1->unk_04);
 
     if (sub_0200598C() == 0) {
         param0->unk_68--;
@@ -1374,7 +1374,7 @@ static void ov21_021E5F38(UnkStruct_ov21_021E5004 *param0, const UnkStruct_ov21_
 
 static void ov21_021E5F5C(UnkStruct_ov21_021E51DC *param0, UnkStruct_ov21_021E4D90 *param1)
 {
-    int species = Pokedex_Sort_CurrentSpecies(param1->unk_04);
+    int species = PokedexSort_CurrentSpecies(param1->unk_04);
 
     if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
         param0->unk_28 = 1;

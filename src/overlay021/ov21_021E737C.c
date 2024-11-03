@@ -10,14 +10,14 @@
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021E29DC.h"
-#include "overlay021/ov21_021D3208.h"
+#include "overlay021/pokedexsort.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021E68F4.h"
 #include "overlay021/struct_ov21_021E6A68.h"
 #include "overlay021/struct_ov21_021E6B20.h"
 #include "overlay021/struct_ov21_021E7F40.h"
-#include "overlay021/struct_pokedexstatus.h"
+#include "overlay021/struct_ov21_021d3320.h"
 #include "overlay022/struct_ov22_022557A0.h"
 #include "overlay022/struct_ov22_02255800.h"
 
@@ -52,7 +52,7 @@ typedef struct {
 } UnkStruct_ov21_021E9DB0;
 
 typedef struct {
-    PokedexStatus *unk_00;
+    UnkStruct_ov21_021D3320 *unk_00;
     UnkStruct_ov21_021E68F4 *unk_04;
 } UnkStruct_ov21_021E7468;
 
@@ -283,10 +283,10 @@ static int ov21_021E74A0(UnkStruct_ov21_021E6A68 *param0, void *param1)
     memset(v1, 0, sizeof(UnkStruct_ov21_021E74A0));
     param0->unk_08 = v1;
 
-    species = Pokedex_Sort_CurrentSpecies(v0->unk_00);
+    species = PokedexSort_CurrentSpecies(v0->unk_00);
     v2 = Pokedex_HeightWeightData_Weight(v0->unk_00->HWData, species);
 
-    if (Pokedex_Sort_TrainerGender(v0->unk_00) == 0) {
+    if (PokedexSort_TrainerGender(v0->unk_00) == 0) {
         v3 = 380;
     } else {
         v3 = 340;
@@ -547,7 +547,7 @@ static void ov21_021E7904(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E74
 {
     UnkStruct_ov21_021D13FC *v0 = param1->unk_00;
     int v1, v2, v3, v4;
-    int species = Pokedex_Sort_CurrentSpecies(param2->unk_00);
+    int species = PokedexSort_CurrentSpecies(param2->unk_00);
     BOOL v6;
     NARC *v7 = ov21_021D26E0(param1->unk_00);
     int v8;
@@ -627,7 +627,7 @@ static void ov21_021E7B34(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E74
     VecFx32 v3;
     short v4;
     short v5;
-    int species = Pokedex_Sort_CurrentSpecies(param2->unk_00);
+    int species = PokedexSort_CurrentSpecies(param2->unk_00);
     int v7 = ov21_021D33D4(param2->unk_00, species);
 
     sub_020093B4(&v0, 93 + 7000, 14 + 7000, 91 + 7000, 92 + 7000, 0xffffffff, 0xffffffff, 0, 3, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
@@ -642,7 +642,7 @@ static void ov21_021E7B34(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E74
 
     param0->unk_00 = CellActorCollection_Add(&v1);
 
-    if (Pokedex_Sort_TrainerGender(param2->unk_00) == 0) {
+    if (PokedexSort_TrainerGender(param2->unk_00) == 0) {
         CellActor_SetAnim(param0->unk_00, 3);
     } else {
         CellActor_SetAnim(param0->unk_00, 4);
@@ -724,7 +724,7 @@ static void ov21_021E7CF8(UnkStruct_ov21_021E747C *param0, int param1)
 static void ov21_021E7DA8(UnkStruct_ov21_021E747C *param0, const UnkStruct_ov21_021E7468 *param1, int heapID)
 {
     Strbuf *v0 = Strbuf_Init(32, heapID);
-    int species = Pokedex_Sort_CurrentSpecies(param1->unk_00);
+    int species = PokedexSort_CurrentSpecies(param1->unk_00);
     Strbuf *v3 = MessageUtil_SpeciesName(species, heapID);
 
     int weightMessageBankIndex = Weight_Message_Bank_Index();
@@ -743,9 +743,9 @@ static void ov21_021E7DA8(UnkStruct_ov21_021E747C *param0, const UnkStruct_ov21_
 
     v1 = MessageLoader_Init(0, 26, 697, heapID);
 
-    Text_AddPrinterWithParamsAndColor(&param0->unk_00->unk_04, FONT_SYSTEM, Pokedex_Sort_TrainerName(param1->unk_00), 146, 152, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_00->unk_04, FONT_SYSTEM, PokedexSort_TrainerName(param1->unk_00), 146, 152, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
 
-    if (Pokedex_Sort_TrainerGender(param1->unk_00) == 0) {
+    if (PokedexSort_TrainerGender(param1->unk_00) == 0) {
         MessageLoader_GetStrbuf(v1, 97, v0);
     } else {
         MessageLoader_GetStrbuf(v1, 98, v0);

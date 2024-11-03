@@ -9,14 +9,14 @@
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021E29DC.h"
 #include "overlay021/ov21_021E4CA4.h"
-#include "overlay021/ov21_021D3208.h"
+#include "overlay021/pokedexsort.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D2648.h"
 #include "overlay021/struct_ov21_021E68F4.h"
 #include "overlay021/struct_ov21_021E6A68.h"
 #include "overlay021/struct_ov21_021E6B20.h"
-#include "overlay021/struct_pokedexstatus.h"
+#include "overlay021/struct_ov21_021d3320.h"
 
 #include "bg_window.h"
 #include "cell_actor.h"
@@ -31,7 +31,7 @@
 
 typedef struct {
     int *unk_00;
-    PokedexStatus *unk_04;
+    UnkStruct_ov21_021D3320 *unk_04;
     UnkStruct_ov21_021E68F4 *unk_08;
     UnkStruct_ov21_021E68F4 *unk_0C;
 } UnkStruct_ov21_021E40F4;
@@ -217,7 +217,7 @@ static int ov21_021E4120(UnkStruct_ov21_021E6A68 *param0, void *param1)
 {
     UnkStruct_ov21_021E40F4 *v0 = param1;
     UnkStruct_ov21_021E4898 *v1;
-    int species = Pokedex_Sort_CurrentSpecies(v0->unk_04);
+    int species = PokedexSort_CurrentSpecies(v0->unk_04);
 
     v1 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov21_021E4898));
 
@@ -372,7 +372,7 @@ static int ov21_021E4288(void *param0, UnkStruct_ov21_021E6B20 *param1, const vo
 static void ov21_021E4328(UnkStruct_ov21_021E4108 *param0, const UnkStruct_ov21_021E40F4 *param1)
 {
     Sprite *v0 = ov21_021D2170(param0->unk_00);
-    int species = Pokedex_Sort_CurrentSpecies(param1->unk_04);
+    int species = PokedexSort_CurrentSpecies(param1->unk_04);
 
     ov21_021D1890(param0->unk_00, param1->unk_04, species, 2, 48, 64);
     sub_02007DEC(v0, 6, 0);

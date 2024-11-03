@@ -1,16 +1,16 @@
-#ifndef POKEPLATINUM_STRUCT_POKEDEXSTATUS_H
-#define POKEPLATINUM_STRUCT_POKEDEXSTATUS_H
+#ifndef POKEPLATINUM_STRUCT_OV21_021D3320_H
+#define POKEPLATINUM_STRUCT_OV21_021D3320_H
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02098700_decl.h"
 
-#include "overlay021/pokedexProgress.h"
+#include "overlay021/sortedpokedex.h"
 
 #include "strbuf.h"
 
 typedef struct {
     const PokedexData *dexData;
-    PokedexProgress pokedexCompletion;
+    SortedPokedex sortedPokedex;
     int isNationalDex;
     BOOL isNationalDexUnlocked;
     int numEncountered;
@@ -28,6 +28,6 @@ typedef struct {
     BOOL newmoonIslandVisible;
     BOOL springPathVisible;
     BOOL seabreakPathVisible;
-} PokedexStatus;
+} UnkStruct_ov21_021D3320;
 
-#endif // POKEPLATINUM_STRUCT_POKEDEXSTATUS_H
+#endif // POKEPLATINUM_STRUCT_OV21_021D3320_H
